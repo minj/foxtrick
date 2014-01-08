@@ -29,34 +29,59 @@ Foxtrick.modules['LinksYouthOverview'] = {
 			return;
 		var ownteamid = Foxtrick.util.id.getOwnTeamId();
 		var owncountryid = Foxtrick.util.id.getOwnLeagueId();
+		var youthSummary = doc.getElementById('ctl00_ctl00_CPContent_CPMain_tblInfo');
+		var countryid = Foxtrick.util.id.findLeagueId(youthSummary);
 		var main = doc.getElementById('ctl00_ctl00_CPContent_divStartMain');
 		var youthteamid = Foxtrick.util.id.findYouthTeamId(main);
 		var server = FoxtrickPrefs.getBool('hty-stage') ? 'stage' : 'www';
 
 
 		//addExternalLinksToYouthOverview
-		var ownBoxBody = null;
+		var ownBoxBody = Foxtrick.createFeaturedElement(doc, this, 'div');
+		var header = Foxtrickl10n.getString('links.boxheader');
+		var ownBoxBodyId = 'foxtrick_links_content';
+		ownBoxBody.setAttribute('id', ownBoxBodyId);
+
+		var added = 0;
 		var links = Foxtrick.modules['Links'].getLinks('youthlink', {
 			'ownteamid': ownteamid,
 			'teamid': teamid,
 			'youthteamid': youthteamid,
 			'owncountryid': owncountryid,
+			'countryid': countryid,
 			'server': server
 		}, doc, this);
 		if (links.length > 0) {
-			ownBoxBody = Foxtrick.createFeaturedElement(doc, this, 'div');
-			var header = Foxtrickl10n.getString('links.boxheader');
-			var ownBoxBodyId = 'foxtrick_links_content';
-			ownBoxBody.setAttribute('id', ownBoxBodyId);
-
 			for (var k = 0; k < links.length; k++) {
 				links[k].link.className = 'inner';
 				ownBoxBody.appendChild(links[k].link);
+				added++
 			}
+		}
+		if (FoxtrickPrefs.isModuleEnabled('LinksTracker')) {
+			var links2 = Foxtrick.modules['Links'].getLinks('trackeryouthlink', {
+				'countryid': countryid,
+			}, doc, Foxtrick.modules['LinksTracker']);
+			if (links2.length > 0) {
+				for (var i = 0; i < links2.length; ++i) {
+					links2[i].link.className = 'flag inner';
+					var img = links2[i].link.getElementsByTagName('img')[0];
+					var style = 'vertical-align:top; margin-top:1px; background: transparent ' +
+						'url(/Img/Flags/flags.gif) no-repeat scroll ' + (-20) * countryid +
+						'px 0pt; -moz-background-clip: -moz-initial; -moz-background-origin: ' +
+						'-moz-initial; -moz-background-inline-policy: -moz-initial;';
+					img.setAttribute('style', style);
+					img.src = '/Img/Icons/transparent.gif';
+					ownBoxBody.appendChild(links2[i].link);
+					++added;
+				}
+			}
+		}
+		if (added) {
 			var box = Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, -20);
 			box.id = 'ft-links-box';
+			Foxtrick.util.links.add(doc, ownBoxBody, this.MODULE_NAME, {});
 		}
-		Foxtrick.util.links.add(doc, ownBoxBody, this.MODULE_NAME, {});
 	}
 };
 
