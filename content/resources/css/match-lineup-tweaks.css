@@ -241,11 +241,48 @@ div.playerDiv div.sectorShirt + div > div > div {
 #playersBenchHome, #playersBenchAway {
 	padding: 0 !important;
 }
-#playersBenchHome {
-	margin-top: -30px !important;
+
+
+
+/* split lineup */
+
+#playersField.ft-field-split {
+	min-height: 430px !important;
 }
-#playersBenchAway {
-	margin-bottom: -30px !important;
+.ft-field-away {
+	background-position: bottom !important;
+}
+
+.ft-field-away .ft-match-lineup-tweaks-stamina-counter-sum-home,
+.ft-field-away .ft-match-lineup-tweaks-stars-counter-sum-home {
+	top: 56px;
+}
+.ft-field-away .ft-match-lineup-tweaks-stamina-counter-sum-away,
+.ft-field-away .ft-match-lineup-tweaks-stars-counter-sum-away {
+	top: 116px;
+}
+.ft-field-away .ft-match-lineup-tweaks-stamina-counter-diff,
+.ft-field-away .ft-match-lineup-tweaks-stars-counter-diff {
+	top: 86px;
+}
+#ft-split-arrow {
+	position: absolute;
+	cursor: pointer;
+	display: block;
+	left: 268px;
+	bottom: 20px;
+	height: 64px;
+	background: url(chrome://foxtrick/content/resources/img/arrows.png) no-repeat left bottom;
+	width: 64px;
+}
+.ft-field-away #ft-split-arrow {
+	background-position: top;
+	bottom: initial;
+	top: 20px;
+}
+#ft-split-lineup-toggle-div {
+	font-size: 1.2em;
+	line-height: normal;
 }
 
 }

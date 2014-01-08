@@ -19,10 +19,11 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 	OPTIONS_CSS: [
 		null, null,
 		Foxtrick.InternalPath + 'resources/css/match-lineup-convert-stars.css',
-		Foxtrick.InternalPath + 'resources/css/match-lineup-split-lineup.css',
+		null,
 	],
 	CSS: Foxtrick.InternalPath + 'resources/css/match-lineup-tweaks.css',
 	run: function(doc) {
+		var module = this;
 		if (Foxtrick.Pages.Match.isPrematch(doc)
 			|| Foxtrick.Pages.Match.inProgress(doc))
 			return;
@@ -35,6 +36,29 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			if (awayId == teamId)
 				this.showAway = true;
 		}
+		// add split-lineup-toggle
+		var toggleDiv = Foxtrick.createFeaturedElement(doc, this, 'div');
+		toggleDiv.id = 'ft-split-lineup-toggle-div';
+		var toggle = doc.createElement('input');
+		toggle.type = 'checkbox';
+		toggle.id = 'ft-split-lineup-toggle';
+		toggle.checked = FoxtrickPrefs.isModuleOptionEnabled('MatchLineupTweaks', 'SplitLineup');
+		Foxtrick.onClick(toggle, function(ev) {
+			var doSplit = ev.target.checked;
+			FoxtrickPrefs.setModuleEnableState('MatchLineupTweaks.SplitLineup', doSplit);
+			var doc = ev.target.ownerDocument;
+			if (doSplit)
+				module.splitLineup(doc);
+			else
+				module.joinLineup(doc);
+		});
+		toggleDiv.appendChild(toggle);
+		var togLabel = doc.createElement('label');
+		togLabel.setAttribute('for', 'ft-split-lineup-toggle');
+		togLabel.textContent = Foxtrickl10n.getString('module.MatchLineupTweaks.SplitLineup.desc');
+		toggleDiv.appendChild(togLabel);
+		var entry = doc.querySelector('#divPlayers h4');
+		entry.parentNode.replaceChild(toggleDiv, entry);
 
 		if (FoxtrickPrefs.isModuleOptionEnabled('MatchLineupTweaks', 'GatherStaminaData'))
 			this.gatherStaminaData(doc);
@@ -667,10 +691,11 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		//Foxtrick.stopListenToChange(doc);
 		var awayDivs = doc.querySelectorAll('div.playerBoxAway');
 		for (var i = 0; i < awayDivs.length; i++) {
-			awayDivs[i].style.top = (Number(awayDivs[i].style.top.match(/\d+/)) - 240) + 'px';
+			awayDivs[i].style.top = (Number(awayDivs[i].style.top.match(/-?\d+/)) - 240) + 'px';
 		}
 		var f = doc.getElementById('playersField');
 		var div = doc.createElement('div');
+		div.id = 'ft-split-arrow-div';
 		var alt = Foxtrickl10n.getString('MatchLineupTweaks.showOther');
 		Foxtrick.addImage(doc, div, {
 			src: '/Img/Icons/transparent.gif',
@@ -688,17 +713,33 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		})(this));
 		f.appendChild(div);
 	},
-	hideOtherTeam: function(doc) {
+	joinLineup: function(doc) {
+		this.hideOtherTeam(doc, true); // undo
+		var awayDivs = doc.querySelectorAll('div.playerBoxAway');
+		for (var i = 0; i < awayDivs.length; i++) {
+			awayDivs[i].style.top = (Number(awayDivs[i].style.top.match(/-?\d+/)) + 240) + 'px';
+		}
+		var div = doc.getElementById('ft-split-arrow-div');
+		div.parentNode.removeChild(div);
+	},
+	hideOtherTeam: function(doc, undo) {
 		var hideDivs = doc.querySelectorAll('div.playerBox' + (this.showAway ? 'Home' : 'Away'));
 		for (var i = 0; i < hideDivs.length; i++) {
-			Foxtrick.addClass(hideDivs[i], 'hidden');
+			if (undo)
+				Foxtrick.removeClass(hideDivs[i], 'hidden');
+			else
+				Foxtrick.addClass(hideDivs[i], 'hidden');
 		}
 		var showDivs = doc.querySelectorAll('div.playerBox' + (this.showAway ? 'Away' : 'Home'));
 		for (var i = 0; i < showDivs.length; i++) {
 			Foxtrick.removeClass(showDivs[i], 'hidden');
 		}
 		var f = doc.getElementById('playersField');
-		if (this.showAway)
+		if (undo)
+			Foxtrick.removeClass(f, 'ft-field-split');
+		else
+			Foxtrick.addClass(f, 'ft-field-split');
+		if (this.showAway && !undo)
 			Foxtrick.addClass(f, 'ft-field-away');
 		else
 			Foxtrick.removeClass(f, 'ft-field-away');
