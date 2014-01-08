@@ -17,6 +17,7 @@ Foxtrick.modules['MatchOrderInterface'] = {
 		Foxtrick.InternalPath + 'resources/css/match-order-faces.css', '', '',
 		[Foxtrick.InternalPath + 'resources/css/match-order-clone.css']],
 	run: function(doc) {
+		var module = this;
 		var check_images = function(doc, target, avatarsXml, getID, scale) {
 			if (!FoxtrickPrefs.isModuleOptionEnabled('MatchOrderInterface', 'ShowFaces'))
 				return;
@@ -528,28 +529,57 @@ Foxtrick.modules['MatchOrderInterface'] = {
 				var needsPenalties = FoxtrickPrefs.isModuleOptionEnabled('MatchOrderInterface',
 				                                                         'AddPenaltyTakerButtons');
 
-				if (!doc.getElementById('ft_fill_penalty_takers')) {
+				if (needsPenalties && !doc.getElementById('ft_penalty_controls')) {
 
-					var useSubs = FoxtrickPrefs.isModuleOptionEnabled('MatchOrderInterface',
-					                                                  'UseSubsForPenalties');
-					var customSort = !FoxtrickPrefs.isModuleOptionEnabled('MatchOrderInterface',
-					                                                      'DontSortPenaltyTakers');
-					var priority = FoxtrickPrefs.isModuleOptionEnabled('MatchOrderInterface',
-					                                                   'PrioritizeSP');
-					var clearFirst = FoxtrickPrefs.isModuleOptionEnabled('MatchOrderInterface',
-					                                                     'ClearPenaltyTakersFirst');
+					var penaltyOptionsDiv = doc.createElement('div');
+					penaltyOptionsDiv.id = 'ft_penalty_options';
+					var options = [
+						'UseSubsForPenalties',
+						'DontSortPenaltyTakers',
+						'PrioritizeSP',
+						'ClearPenaltyTakersFirst',
+					];
 
-					var FillPenaltyTakersDiv = Foxtrick
-						.createFeaturedElement(doc, Foxtrick.modules.MatchOrderInterface, 'div');
-					FillPenaltyTakersDiv.id = 'ft_fill_penalty_takers';
+					for (var o = 0, opt; o < options.length && (opt = options[o]); o++) {
+						var toggleDiv = doc.createElement('div');
+						var toggle = doc.createElement('input');
+						toggle.type = 'checkbox';
+						toggle.id = 'ft-penaltyOpt-' + opt;
+						toggle.checked =
+							FoxtrickPrefs.isModuleOptionEnabled('MatchOrderInterface', opt);
+						Foxtrick.onClick(toggle, (function(opt) {
+							return function(ev) {
+								var on = ev.target.checked;
+								FoxtrickPrefs.setModuleEnableState('MatchOrderInterface.' + opt, on);
+							};
+						})(opt));
+						toggleDiv.appendChild(toggle);
+						var togLabel = doc.createElement('label');
+						togLabel.setAttribute('for', 'ft-penaltyOpt-' + opt);
+						togLabel.textContent =
+							Foxtrickl10n.getString('module.MatchOrderInterface.' + opt + '.desc');
+						toggleDiv.appendChild(togLabel);
+						penaltyOptionsDiv.appendChild(toggleDiv);
+					}
+
 					var FillPenaltyTakersLink = doc.createElement('span');
+					FillPenaltyTakersLink.id = 'ft_fill_penalty_takers';
 					FillPenaltyTakersLink.textContent =
 						Foxtrickl10n.getString('matchOrder.fillPenaltyTakers');
 
 					Foxtrick.onClick(FillPenaltyTakersLink, function() {
 
+						var useSubs = FoxtrickPrefs.isModuleOptionEnabled('MatchOrderInterface',
+																		  'UseSubsForPenalties');
+						var customSort = !FoxtrickPrefs.isModuleOptionEnabled('MatchOrderInterface',
+																			  'DontSortPenaltyTakers');
+						var priority = FoxtrickPrefs.isModuleOptionEnabled('MatchOrderInterface',
+																		   'PrioritizeSP');
+						var clearFirst = FoxtrickPrefs.isModuleOptionEnabled('MatchOrderInterface',
+																			 'ClearPenaltyTakersFirst');
+
 						if (clearFirst)
-							doc.querySelector('#ft_clear_penalty_takers > span').click();
+							doc.getElementById('ft_clear_penalty_takers').click();
 
 						Foxtrick.sessionGet('match-orders-penalty-skills',
 						  function(ps) {
@@ -621,22 +651,21 @@ Foxtrick.modules['MatchOrderInterface'] = {
 							}
 						});
 					});
-					FillPenaltyTakersDiv.appendChild(FillPenaltyTakersLink);
 
-					var clearPenaltyTakersDiv = Foxtrick
-						.createFeaturedElement(doc, Foxtrick.modules.MatchOrderInterface, 'div');
-					clearPenaltyTakersDiv.id = 'ft_clear_penalty_takers';
 					var clearPenaltyTakersLink = doc.createElement('span');
+					clearPenaltyTakersLink.id = 'ft_clear_penalty_takers';
 					clearPenaltyTakersLink.textContent =
 						Foxtrickl10n.getString('matchOrder.clearPenaltyTakers');
-					//clearPenaltyTakersLink.setAttribute('onclick',
-					//                                    'javascript:ft_clear_penalty_takers();');
-					clearPenaltyTakersDiv.appendChild(clearPenaltyTakersLink);
 
-					var frag = doc.createElement('div');
-					frag.id = 'ft_penalty_buttons';
-					frag.appendChild(clearPenaltyTakersDiv);
-					frag.appendChild(FillPenaltyTakersDiv);
+					var penaltyButtons = doc.createElement('div');
+					penaltyButtons.id = 'ft_penalty_buttons';
+					penaltyButtons.appendChild(clearPenaltyTakersLink);
+					penaltyButtons.appendChild(FillPenaltyTakersLink);
+					var frag = Foxtrick.createFeaturedElement(doc, module, 'div');
+					frag.id = 'ft_penalty_controls';
+					frag.appendChild(penaltyButtons);
+					frag.appendChild(doc.createElement('hr'));
+					frag.appendChild(penaltyOptionsDiv);
 
 					var penalties = doc.getElementById('tab_penaltytakers');
 					penalties.appendChild(frag);
