@@ -127,7 +127,9 @@ Foxtrick.Pages.Players = {
 							player = playerList[j];
 							break;
 						}
+					var playerInHTML = true;
 					if (!player) {
+						playerInHTML = false;
 						if (!options || !options.current_squad)
 							continue;
 							// not present in HTML. skip if not retrieving squad from other page
@@ -403,7 +405,7 @@ Foxtrick.Pages.Players = {
 							Number(trainerData.getElementsByTagName('TrainerSkill')[0].textContent);
 						}
 					}
-					if (playerNode.getElementsByTagName('PlayerNumber').length) {
+					if (playerNode.getElementsByTagName('PlayerNumber').length && !playerInHTML) {
 						// number = 100 means this player hasn't been assigned one
 						var number =
 							Number(playerNode.getElementsByTagName('PlayerNumber')[0].textContent);
