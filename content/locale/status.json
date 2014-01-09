@@ -6,7 +6,7 @@
 			"name": "Romanian",
 			"phrases": "1648",
 			"translated_progress": "89",
-			"translated": "1478",
+			"translated": "1480",
 			"approved": "0"
 		},
 		{
@@ -24,7 +24,7 @@
 			"name": "Spanish",
 			"phrases": "1648",
 			"translated_progress": "85",
-			"translated": "1415",
+			"translated": "1417",
 			"approved": "1"
 		},
 		{
@@ -33,7 +33,7 @@
 			"name": "Arabic",
 			"phrases": "1648",
 			"translated_progress": "75",
-			"translated": "1239",
+			"translated": "1241",
 			"approved": "0"
 		},
 		{
@@ -42,7 +42,7 @@
 			"name": "Belarusian",
 			"phrases": "1648",
 			"translated_progress": "36",
-			"translated": "607",
+			"translated": "609",
 			"approved": "0"
 		},
 		{
@@ -69,7 +69,7 @@
 			"name": "Czech",
 			"phrases": "1648",
 			"translated_progress": "89",
-			"translated": "1474",
+			"translated": "1476",
 			"approved": "1207"
 		},
 		{
@@ -87,7 +87,7 @@
 			"name": "German",
 			"phrases": "1648",
 			"translated_progress": "98",
-			"translated": "1621",
+			"translated": "1623",
 			"approved": "2"
 		},
 		{
@@ -122,8 +122,8 @@
 			"code": "fi",
 			"name": "Finnish",
 			"phrases": "1648",
-			"translated_progress": "85",
-			"translated": "1417",
+			"translated_progress": "86",
+			"translated": "1419",
 			"approved": "0"
 		},
 		{
@@ -168,7 +168,7 @@
 			"name": "Georgian",
 			"phrases": "1648",
 			"translated_progress": "65",
-			"translated": "1074",
+			"translated": "1076",
 			"approved": "0"
 		},
 		{
@@ -195,7 +195,7 @@
 			"name": "Macedonian",
 			"phrases": "1648",
 			"translated_progress": "86",
-			"translated": "1420",
+			"translated": "1422",
 			"approved": "0"
 		},
 		{
@@ -204,7 +204,7 @@
 			"name": "Dutch",
 			"phrases": "1648",
 			"translated_progress": "88",
-			"translated": "1456",
+			"translated": "1458",
 			"approved": "0"
 		},
 		{
@@ -221,8 +221,8 @@
 			"code": "pl",
 			"name": "Polish",
 			"phrases": "1648",
-			"translated_progress": "88",
-			"translated": "1465",
+			"translated_progress": "89",
+			"translated": "1467",
 			"approved": "0"
 		},
 		{
@@ -231,7 +231,7 @@
 			"name": "Portuguese",
 			"phrases": "1648",
 			"translated_progress": "85",
-			"translated": "1410",
+			"translated": "1412",
 			"approved": "0"
 		},
 		{
@@ -239,8 +239,8 @@
 			"code": "ru",
 			"name": "Russian",
 			"phrases": "1648",
-			"translated_progress": "99",
-			"translated": "1645",
+			"translated_progress": "100",
+			"translated": "1648",
 			"approved": "1644"
 		},
 		{
@@ -249,7 +249,7 @@
 			"name": "Slovak",
 			"phrases": "1648",
 			"translated_progress": "64",
-			"translated": "1066",
+			"translated": "1068",
 			"approved": "0"
 		},
 		{
@@ -293,8 +293,8 @@
 			"code": "tr",
 			"name": "Turkish",
 			"phrases": "1648",
-			"translated_progress": "77",
-			"translated": "1285",
+			"translated_progress": "78",
+			"translated": "1287",
 			"approved": "0"
 		},
 		{
@@ -303,7 +303,7 @@
 			"name": "Ukrainian",
 			"phrases": "1648",
 			"translated_progress": "90",
-			"translated": "1484",
+			"translated": "1486",
 			"approved": "0"
 		},
 		{
@@ -312,7 +312,7 @@
 			"name": "Chinese Simplified",
 			"phrases": "1648",
 			"translated_progress": "69",
-			"translated": "1146",
+			"translated": "1148",
 			"approved": "0"
 		},
 		{
@@ -330,7 +330,7 @@
 			"name": "Vietnamese",
 			"phrases": "1648",
 			"translated_progress": "75",
-			"translated": "1249",
+			"translated": "1251",
 			"approved": "0"
 		},
 		{
@@ -339,7 +339,7 @@
 			"name": "Galician",
 			"phrases": "1648",
 			"translated_progress": "99",
-			"translated": "1645",
+			"translated": "1647",
 			"approved": "0"
 		},
 		{
@@ -348,7 +348,7 @@
 			"name": "Icelandic",
 			"phrases": "1648",
 			"translated_progress": "57",
-			"translated": "950",
+			"translated": "952",
 			"approved": "0"
 		},
 		{
@@ -357,7 +357,7 @@
 			"name": "Portuguese, Brazilian",
 			"phrases": "1648",
 			"translated_progress": "94",
-			"translated": "1559",
+			"translated": "1561",
 			"approved": "0"
 		},
 		{
@@ -375,7 +375,7 @@
 			"name": "Spanish, Argentina",
 			"phrases": "1648",
 			"translated_progress": "93",
-			"translated": "1537",
+			"translated": "1539",
 			"approved": "0"
 		},
 		{
@@ -393,7 +393,7 @@
 			"name": "Croatian",
 			"phrases": "1648",
 			"translated_progress": "96",
-			"translated": "1585",
+			"translated": "1587",
 			"approved": "1535"
 		},
 		{
@@ -420,7 +420,7 @@
 			"name": "Latvian",
 			"phrases": "1648",
 			"translated_progress": "59",
-			"translated": "979",
+			"translated": "981",
 			"approved": "0"
 		},
 		{
@@ -438,7 +438,7 @@
 			"name": "Maltese",
 			"phrases": "1648",
 			"translated_progress": "47",
-			"translated": "777",
+			"translated": "779",
 			"approved": "0"
 		},
 		{
@@ -456,7 +456,7 @@
 			"name": "Flemish",
 			"phrases": "1648",
 			"translated_progress": "58",
-			"translated": "963",
+			"translated": "965",
 			"approved": "0"
 		},
 		{

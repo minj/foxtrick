@@ -132,7 +132,7 @@ gl:
       note_26: "<module>MatchSimulator</module> agora usa a nova fórmula de resistencia (por Senzascrupoli [post=15917246.1]) para calcular a redución da resistencia."
       note_27: "<module>MatchReportFormat</module> usa as novas iconas de HT."
       note_28: "<module>PlayerStatsExperience</module>: os puntos de experiencia por nivel aumentáronse a 28,62 (se queres ver o debate sobre este cambio, consulta 15766691.423). Agora indícanse as vitorias fáciles, xa que non proporcionan experiencia."
-      note_29: Os módulos das conferencias agora usan un carácter especial de escape no canto de "·", o que resultará útil para o idioma catalán.
+      note_29: 'Os módulos das conferencias agora usan un carácter especial de escape no canto de "·", o que resultará útil para o idioma catalán.'
       note_30: Evita que o deseño de HT interfira con FoxTrick.
       note_31: Engadiuse compatibilidade con www.hattrick.fm
       note_32: "Elimináronse as ligazóns externas de <module>Links</module> que non funcionaban. Cómpre usar iconas externas sempre que sexa posible."
@@ -221,7 +221,7 @@ gl:
       note_6: Moved the highlight feature toggle to the FoxTrick toolbar icon resp. preferences main tab
       note_7: module MatchTables removed since no one used it
       note_8: "MatchSimulator stamina effect: show texts rounded and values not rounded"
-      note_9: preference linking "foxtrick://"-style fixed
+      note_9: 'preference linking "foxtrick://"-style fixed'
       note_10: Matchreport now shows tooltips for all events
       note_11: Links resources moved to yet another server
       note_12: Some internal changes to improve AMO compliance
