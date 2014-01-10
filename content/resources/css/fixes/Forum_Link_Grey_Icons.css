@@ -45,6 +45,9 @@
 .cfFooter .foxtrick-unreadlink {
   background-image: url("chrome://foxtrick/content/resources/img/forum-grey/forum_grey_markunread.png");
 }
+.cfFooter .foxtrick-marker-link {
+  background-image: url("chrome://foxtrick/content/resources/img/forum-grey/forum_palette.png");
+}
 
 .cfFooter .foxtrick-copyfromarchive {
   background-image: url("chrome://foxtrick/content/resources/img/forum-grey/forum_grey_copyposting.png");
@@ -68,7 +71,8 @@
 .cfFooter a[href*="/Forum/Functions.aspx?actionType=ignore&t="],
 .cfFooter .foxtrick-signaturetoggle,
 .cfFooter .foxtrick-unreadlink,
-.cfFooter .foxtrick-copyfromarchive
+.cfFooter .foxtrick-copyfromarchive,
+.cfFooter .foxtrick-marker-link
 {
   color: transparent;
   font-size: 0pt;
