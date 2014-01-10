@@ -45,27 +45,44 @@ a.ft-staff-style {
 }
 
 .ft-staff-chpp {
-	background-color: green;
-	color: white !important;
+	background-color:green;
+	color:white !important;
+	font-weight:700;
+	padding:1px;
+	text-decoration:none;
 }
 
+
 .ft-staff-la {
-	background-color: white;
-	color: green !important;
+	background-color:white;
+	color:green !important;
+	font-weight:700;
+	padding:1px;
+	text-decoration:none;
 }
 
 .ft-staff-mod {
-	background-color: yellow;
-	color: black !important;
+	background-color:yellow;
+	color:black !important;
+	font-weight:700;
+	padding:1px;
+	text-decoration:none;
 }
 
 .ft-staff-gm {
-	background-color: orange;
-	color: black !important;
+	background-color:orange;
+	color:black !important;
+	font-weight:700;
+	padding:1px;
+	text-decoration:none;
 }
 
 .ft-staff-ht {
 	background-color: red;
+	color:white !important;
+	font-weight:700;
+	padding:1px;
+	text-decoration:none;
 }
 
 .ft-staff-official {
@@ -74,6 +91,13 @@ a.ft-staff-style {
 
 .ft-staff-seperator {
 	background-color: #DDD;
+}
+
+.boxBody .teamInfo a:hover,
+.boxBody #ctl00_ctl00_CPContent_CPMain_pnlMySupporters a:hover,
+#sidebar a:hover,
+.feedItem .shy a:hover {
+	text-decoration:underline;
 }
 
 }
