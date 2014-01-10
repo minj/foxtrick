@@ -104,4 +104,8 @@ a.ft-staff-style {
 	text-align: center;
 }
 
+#sidebar a.ft-no-popup {
+	display: inline !important;
+}
+
 }
