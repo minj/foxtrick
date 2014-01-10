@@ -7,7 +7,10 @@
 
 Foxtrick.modules['StaffMarker'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.FORUM,
-	PAGES: ['forumViewThread', 'forumWritePost', 'teamPage'],
+	PAGES: [
+		'forumViewThread', 'forumWritePost',
+		'teamPage', 'guestbook', 'supporters', 'series' // grouped by if/else
+	],
 	NICE: 11, // after team-popup-links
 	OPTIONS: [
 		'officials',
@@ -111,6 +114,18 @@ Foxtrick.modules['StaffMarker'] = {
 			Foxtrick.addClass(flagLink, 'ft-no-popup');
 			flagLink.target = '_blank';
 			return flagLink;
+		},
+		'supporter': function(data, id, object, icon, link) {
+			var doc = object.ownerDocument;
+			if (Foxtrick.isPage(doc, 'supporters'))
+				return false;
+			return true;
+		},
+		'supported': function(data, id, object, icon, link) {
+			var doc = object.ownerDocument;
+			if (Foxtrick.isPage(doc, 'supporters'))
+				return false;
+			return true;
 		},
 	},
 
@@ -392,8 +407,14 @@ Foxtrick.modules['StaffMarker'] = {
 
 				// mark staffs in thread
 				var markThread = function() {
-					var userDivs = doc.getElementById('mainBody').parentNode
-						.getElementsByClassName('float_left');
+					//var userDivs = doc.getElementById('mainBody').parentNode
+					//	.getElementsByClassName('float_left');
+					var userDivs =
+						doc.querySelectorAll('#mainBody .float_left, #sidebar, .mainBox, ' +
+											 '#ctl00_ctl00_CPContent_CPMain_pnlSupportedTeams, ' +
+											 '#ctl00_ctl00_CPContent_CPMain_pnlMySupporters, ' +
+											 '#ctl00_ctl00_CPContent_CPMain_upGB');
+
 					Foxtrick.map(function(user) {
 						var links = user.getElementsByTagName('a');
 						Foxtrick.map(function(a) {
@@ -447,7 +468,7 @@ Foxtrick.modules['StaffMarker'] = {
 					markThread(doc, modifier);
 					markSelect(doc, modifier);
 				}
-				else if (Foxtrick.isPage(doc, 'teamPage') && FoxtrickPrefs.isModuleOptionEnabled('StaffMarker', 'manager')) {
+				else if (FoxtrickPrefs.isModuleOptionEnabled('StaffMarker', 'manager')) {
 					markThread(doc, modifier);
 				}
 			});
