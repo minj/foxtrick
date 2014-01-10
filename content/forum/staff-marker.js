@@ -91,6 +91,7 @@ Foxtrick.modules['StaffMarker'] = {
 	},
 
 	// functions called for the marked object by type
+	// if false is returned the element is not appended
 	// if an element is returned it will be appended instead of default icon
 	object_callback_map: {
 		'chpp-holder': function(data, id, object, icon, link) {
@@ -373,12 +374,18 @@ Foxtrick.modules['StaffMarker'] = {
 								element = icon;
 
 							var obj_func = module.object_callback_map[type];
+							var include = true;
 							if (typeof obj_func === 'function') {
 								var newElement = obj_func(data, id, object, icon, link);
-								if (typeof newElement !== 'undefined')
-									element = newElement;
+								if (typeof newElement !== 'undefined') {
+									if (typeof newElement === 'boolean')
+										include = newElement;
+									else
+										element = newElement;
+								}
 							}
-							object.insertBefore(element, object.firstChild);
+							if (include)
+								object.insertBefore(element, object.firstChild);
 						}
 					}
 				};
