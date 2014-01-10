@@ -385,6 +385,7 @@ Foxtrick.modules['StaffMarker'] = {
 							customMarker[userId] = styleString;
 						Foxtrick.Prefs.setString('module.StaffMarker.own_text',
 												 JSON.stringify(customMarker));
+						Foxtrick.Prefs.setModuleEnableState('StaffMarker.own', true);
 						ev.preventDefault();
 					};
 				})(i, userId));
