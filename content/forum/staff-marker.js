@@ -303,7 +303,8 @@ Foxtrick.modules['StaffMarker'] = {
 
 	run: function(doc) {
 		var module = this;
-		if (Foxtrick.isPage(doc, 'forumViewThread')) {
+		if (Foxtrick.isPage(doc, 'forumViewThread') &&
+			doc.getElementsByClassName('ft-staff-marker-opts').length === 0) {
 			var markUser = Foxtrick.L10n.getString('StaffMarker.userColor');
 			var fgColor = Foxtrick.L10n.getString('StaffMarker.textColor');
 			var bgColor = Foxtrick.L10n.getString('StaffMarker.bgColor');
