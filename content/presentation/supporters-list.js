@@ -2,78 +2,130 @@
 /**
  * supporters-list.js
  * show which supported team support you back and vice versa
- * @author teles
+ * @author teles, LA-MJ
  */
 
 Foxtrick.modules['SupportersList'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.PRESENTATION,
 	PAGES: ['supporters'],
 	OPTIONS: ['SupporterBack', 'SupportedBack'],
+	CSS: Foxtrick.InternalPath + 'resources/css/supporters-list.css',
 
 	run: function(doc) {
-		//var rtl = Foxtrick.util.layout.isRtl(doc);
+		var TEAMS_PER_PAGE = 200;
 		var supporterBack = FoxtrickPrefs.isModuleOptionEnabled('SupportersList', 'SupporterBack');
 		var supportedBack = FoxtrickPrefs.isModuleOptionEnabled('SupportersList', 'SupportedBack');
-        if (!supporterBack && !supportedBack)
+		if (!supporterBack && !supportedBack)
 			return;
 
-        Foxtrick.util.api.retrieve(doc, [
-            ['file', 'teamdetails'],
-            ['version', '2.9'],
-            ['teamId', Foxtrick.util.id.getOwnTeamId()],
-            ['includeSupporters', 'true']
-          ],
-          { cache_lifetime: 'session' },
-          function(xml, errorText) {
-            if (errorText) {
-                Foxtrick.log(errorText);
-                return;
-            }
-            var teams = xml.getElementsByTagName('TeamID');
-            var team = null;
-            for(var t=0; t<teams.length; t++) {
-                if(teams[t].textContent == Foxtrick.util.id.getOwnTeamId()) {
-                    team = teams[t].parentNode;
-                    break;
-                }
-            }
-            if(team == null)
-                return;
+		var teamId = Foxtrick.util.id.getOwnTeamId();
 
-            var sup = null, my = false;
-            if(Foxtrick.getParameterFromUrl(Foxtrick.getHref(doc), 'actionType')==null && supportedBack)
-                sup = team.getElementsByTagName('MySupporters')[0];
-            else if(Foxtrick.getParameterFromUrl(Foxtrick.getHref(doc), 'actionType')=='mysupporters' && supporterBack) {
-                sup = team.getElementsByTagName('SupportedTeams')[0];
-                my = true;
-            }
-            if(sup == null)
-                return;
+		var entry = doc.querySelector('#mainBody table') ||
+			doc.querySelector('#ctl00_ctl00_CPContent_CPMain_pnlMySupporters > br');
+		var loading = Foxtrick.util.note.createLoading(doc);
+		entry.parentNode.insertBefore(loading, entry);
 
-            var ids = [];
-            var all = sup.getElementsByTagName('TeamId');
-            for(var i=0; i<all.length; i++)
-                ids.push(all[i].textContent);
+		var action = Foxtrick.getParameterFromUrl(Foxtrick.getHref(doc), 'actionType');
+		var mine = false;
+		var tag = '', title = '', className = '';
+		if (action === 'mysupporters' && supportedBack) {
+			action = 'supportedteams'; // invert supporter file
+			title = Foxtrickl10n.getString('supporters.youSupportOther');
+			className = 'scMySupporters ft-supported';
+			mine = true;
+			tag = 'SupportedTeams';
+		}
+		else if (action === null && supporterBack) {
+			action = 'mysupporters'; // invert supporter file
+			title = Foxtrickl10n.getString('supporters.otherSupportYou');
+			className = 'scFans ft-supporter';
+			tag = 'MySupporters';
+		}
 
-            var links = doc.querySelectorAll('#mainBody a[href*="TeamID"]');
-            var re = new RegExp('TeamID=([0-9]+)', 'i');
-            for(var l=0; l<links.length; l++) {
-                var href = links[l].getAttribute('href');
-                var matches = re.exec(href);
-                if(matches[1] && Foxtrick.indexOf(ids, matches[1])!=-1) {
-                    var node = my ? links[l].parentNode.parentNode.previousElementSibling : links[l].parentNode;
-                    Foxtrick.addImage(doc, node, {
-                        'src': '/Img/Icons/transparent.gif',
-                        'class': (my ? 'scMySupporters' : 'scFans'),
-                        'width' : '22px',
-                        'height' : '22px',
-                        'title': (my ? Foxtrickl10n.getString('supporters.youSupportOther') : Foxtrickl10n.getString('supporters.otherSupportYou')),
-                        'alt': (my ? Foxtrickl10n.getString('supporters.youSupportOther') : Foxtrickl10n.getString('supporters.otherSupportYou'))
-                    }, node.firstChild, function(img){
-                        Foxtrick.makeFeaturedElement(img, Foxtrick.modules.SupportersList);
-                    });
-                }
-            }
-        });
+		var ids = [];
+
+		var addDecorations = function() {
+			var links = doc.querySelectorAll('#mainBody a[href*="TeamID"]');
+			var re = /TeamID=([0-9]+)/i;
+			for (var l = 0; l < links.length; l++) {
+				var href = links[l].href;
+				var matches = re.exec(href);
+				if (matches[1] && Foxtrick.indexOf(ids, matches[1]) != -1) {
+					var node = mine ? links[l].parentNode.parentNode.previousElementSibling :
+						links[l].parentNode;
+					Foxtrick.addImage(doc, node, {
+						'src': '/Img/Icons/transparent.gif',
+						'class': className,
+						'width': '22px',
+						'height': '22px',
+						'title': title,
+						'alt': title
+					}, node.firstChild, function(img){
+						Foxtrick.makeFeaturedElement(img, Foxtrick.modules.SupportersList);
+					});
+				}
+			}
+			loading.parentNode.removeChild(loading);
+		};
+
+		Foxtrick.util.api.retrieve(doc, [
+			['file', 'supporters'],
+			['version', '1.0'],
+			['actionType', action],
+			['teamId', teamId],
+			['pageSize', TEAMS_PER_PAGE],
+			//['pageIndex', 0],
+		  ],
+		  { cache_lifetime: 'session' },
+		  function(xml, errorText) {
+			if (errorText) {
+				Foxtrick.log(errorText);
+				return;
+			}
+			var sup = xml.getElementsByTagName(tag)[0];
+			if (typeof sup === 'undefined')
+				return;
+
+			var all = sup.getElementsByTagName('TeamId');
+			for (var i = 0; i < all.length; i++)
+				ids.push(all[i].textContent);
+
+			var total = sup.getAttribute('TotalItems');
+			if (total > TEAMS_PER_PAGE) {
+				var pageCt = Math.ceil(total / TEAMS_PER_PAGE);
+				var batchArgs = [];
+				for (var p = 1; p < pageCt; p++) {
+					batchArgs.push([
+						['file', 'supporters'],
+						['version', '1.0'],
+						['actionType', action],
+						['teamId', teamId],
+						['pageSize', TEAMS_PER_PAGE],
+						['pageIndex', p],
+					]);
+				}
+				Foxtrick.util.api.batchRetrieve(doc, batchArgs, { cache_lifetime: 'session' },
+				  function(xmls, errorText) {
+					if (errorText) {
+						Foxtrick.log(errorText);
+					}
+					if (xmls) {
+						for (var x = 0; x < xmls.length; ++x) {
+							var xml = xmls[x];
+							var sup = xml.getElementsByTagName(tag)[0];
+							if (typeof sup === 'undefined')
+								continue;
+
+							var all = sup.getElementsByTagName('TeamId');
+							for (var i = 0; i < all.length; i++)
+								ids.push(all[i].textContent);
+						}
+					}
+					addDecorations();
+				});
+			}
+			else
+				addDecorations();
+		});
 	}
 };
