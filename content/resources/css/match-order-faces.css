@@ -23,4 +23,13 @@
   left: 0px !important;
 }
 
+/* replace HT faces */
+#orders .faceCard {
+	display: none;
+}
+#face .faceCard {
+    display: block;
+}
+
+
 }
