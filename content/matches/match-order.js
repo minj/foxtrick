@@ -8,14 +8,31 @@
 Foxtrick.modules['MatchOrderInterface'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.MATCHES,
 	PAGES: ['matchOrder', 'matchLineup'],
-	OPTIONS: ['GotTrainingOnField', 'DisplayLastMatchInDetails', 'Specialties', 'ShowFaces',
-		'SwapPositions', 'StayOnPage', ['CloneOrder', 'AutoExpandCloned'], 'FixPenaltyTakers',
-		['AddPenaltyTakerButtons', 'UseSubsForPenalties', 'DontSortPenaltyTakers', 'PrioritizeSP',
-		'ClearPenaltyTakersFirst']],
+	OPTIONS: [
+		'GotTrainingOnField', 'DisplayLastMatchInDetails',
+		'Specialties',
+		'ShowFaces',
+		'SwapPositions', 'StayOnPage',
+		['CloneOrder', 'AutoExpandCloned'],
+		'FixPenaltyTakers',
+		[
+			'AddPenaltyTakerButtons',
+			'UseSubsForPenalties',
+			'DontSortPenaltyTakers',
+			'PrioritizeSP',
+			'ClearPenaltyTakersFirst'
+		]
+	],
 	CSS: Foxtrick.InternalPath + 'resources/css/match-order.css',
-	OPTIONS_CSS: ['', '', Foxtrick.InternalPath + 'resources/css/match-order-specialties.css',
-		Foxtrick.InternalPath + 'resources/css/match-order-faces.css', '', '',
-		[Foxtrick.InternalPath + 'resources/css/match-order-clone.css']],
+	OPTIONS_CSS: [
+		null, null,
+		Foxtrick.InternalPath + 'resources/css/match-order-specialties.css',
+		Foxtrick.InternalPath + 'resources/css/match-order-faces.css',
+		null, null,
+		[Foxtrick.InternalPath + 'resources/css/match-order-clone.css'],
+		null,
+		[]
+	],
 	run: function(doc) {
 		var module = this;
 		var check_images = function(doc, target, avatarsXml, getID, scale) {
