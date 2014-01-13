@@ -23,4 +23,11 @@ h2.tblBox.ft-expander-expanded
 	display: none;
 }
 
+/* rendering inconsistenty for hto toggle on matches page*/
+html[firefox] #ctl00_ctl00_CPContent_CPMain_spnToggleTournamentMatches {
+	display: block;
+	position: relative;
+	top: -20px;
+}
+
 }
