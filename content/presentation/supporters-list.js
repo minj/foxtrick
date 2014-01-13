@@ -28,19 +28,18 @@ Foxtrick.modules['SupportersList'] = {
 		var action = Foxtrick.getParameterFromUrl(Foxtrick.getHref(doc), 'actionType');
 		var mine = false;
 		var tag = '', title = '', className = '';
-		if (action === null && supportedBack) {
-			action = 'supportedteams';
-			tag = 'SupportedTeams';
-			title = Foxtrick.L10n.getString('supporters.otherSupportYou');
-			className = 'scFans ft-supporter';
-			tag = 'MySupporters'; // TODO remove
-		}
-		else if (action === 'mysupporters' && supporterBack) {
-			tag = 'MySupporters';
+		if (action === 'mysupporters' && supportedBack) {
+			action = 'supportedteams'; // invert supporter file
 			title = Foxtrick.L10n.getString('supporters.youSupportOther');
 			className = 'scMySupporters ft-supported';
 			mine = true;
-			tag = 'SupportedTeams'; // TODO remove
+			tag = 'SupportedTeams';
+		}
+		else if (action === null && supporterBack) {
+			action = 'mysupporters'; // invert supporter file
+			title = Foxtrick.L10n.getString('supporters.otherSupportYou');
+			className = 'scFans ft-supporter';
+			tag = 'MySupporters';
 		}
 
 		var ids = [];
