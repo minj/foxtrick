@@ -74,7 +74,7 @@ Foxtrick.modules['SupportersList'] = {
 			['actionType', action],
 			['teamId', teamId],
 			['pageSize', TEAMS_PER_PAGE],
-			//['pageIndex', 0],
+			['pageIndex', 0],
 		  ],
 		  { cache_lifetime: 'session' },
 		  function(xml, errorText) {
