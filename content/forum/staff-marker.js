@@ -251,10 +251,16 @@ Foxtrick.modules['StaffMarker'] = {
 					return;
 				// no need to parse the file twice, but we need 2 uris :)
 
+				var TEAMS_PER_PAGE = 200;
+				var teamId = Foxtrick.util.id.getOwnTeamId();
+				var entry = doc.querySelector('#mainBody');
+				var loading = Foxtrick.util.note.createLoading(doc);
+				entry.insertBefore(loading, entry.firstChild);
+
 				Foxtrick.util.api.retrieve(doc, [
 					['file', 'teamdetails'],
-					['version', '2.9'],
-					['teamId', Foxtrick.util.id.getOwnTeamId()],
+					['version', '3.1'],
+					['teamId', teamId],
 					['includeSupporters', 'true']
 				  ],
 				  { cache_lifetime: 'session' },
@@ -263,28 +269,66 @@ Foxtrick.modules['StaffMarker'] = {
 						Foxtrick.log(errorText);
 						return;
 					}
-					var idsS = { type: 'supported', list: [] };
-					var idsM = { type: 'supporter', list: [] };
+					var batchArgs = [], supportedCt;
 					var teams = xml.getElementsByTagName('Team');
 					for (var t = 0; t < teams.length; t++) {
 						var team = teams[t];
-						var sups = team.getElementsByTagName('SupportedTeams');
-						for (var s = 0; s < sups.length; s++) {
-							var sup = sups[s];
-							var all = sup.getElementsByTagName('UserId');
-							for (var i = 0; i < all.length; i++)
-								idsS.list.push({ id: all[i].textContent });
-						}
-						sups = team.getElementsByTagName('MySupporters');
-						for (s = 0; s < sups.length; s++) {
-							sup = sups[s];
-							all = sup.getElementsByTagName('UserId');
-							for (i = 0; i < all.length; i++)
-								idsM.list.push({ id: all[i].textContent });
+						var id = team.getElementsByTagName('TeamID')[0].textContent;
+						var sups = team.getElementsByTagName('SupportedTeams')[0];
+						supportedCt = parseInt(sups.getAttribute('TotalItems'), 10);
+						sups = team.getElementsByTagName('MySupporters')[0];
+						var supporterCt = parseInt(sups.getAttribute('TotalItems'), 10);
+						var pageCt = Math.ceil(supporterCt / TEAMS_PER_PAGE);
+						for (var p = 0; p < pageCt; p++) {
+							batchArgs.push([
+								['file', 'supporters'],
+								['version', '1.0'],
+								['actionType', 'mysupporters'],
+								['teamId', parseInt(id, 10)], // use int for consistency (cache)
+								['pageSize', TEAMS_PER_PAGE],
+								['pageIndex', p],
+							]);
 						}
 					}
-					parseMarkers(JSON.stringify(idsS));
-					parseMarkers(JSON.stringify(idsM));
+					// supported teams are same for both teams so added once only
+					var pageCt = Math.ceil(supportedCt / TEAMS_PER_PAGE);
+					for (var p = 0; p < pageCt; p++) {
+						batchArgs.push([
+							['file', 'supporters'],
+							['version', '1.0'],
+							['actionType', 'supportedteams'],
+							['teamId', teamId],
+							['pageSize', TEAMS_PER_PAGE],
+							['pageIndex', p],
+						]);
+					}
+					Foxtrick.util.api.batchRetrieve(doc, batchArgs, { cache_lifetime: 'session' },
+					  function(xmls, errorText) {
+						if (errorText) {
+							Foxtrick.log(errorText);
+						}
+						if (xmls) {
+							var idsS = { type: 'supported', list: [] };
+							var idsM = { type: 'supporter', list: [] };
+							for (var x = 0; x < xmls.length; ++x) {
+								var xml = xmls[x];
+								var sup = xml.getElementsByTagName('MySupporters')[0];
+								var list = idsM.list;
+								if (!sup) {
+									sup = xml.getElementsByTagName('SupportedTeams')[0];
+									list = idsS.list;
+								}
+
+								var all = sup.getElementsByTagName('UserId');
+								for (var i = 0; i < all.length; i++)
+									list.push({ id: all[i].textContent });
+
+							}
+							parseMarkers(JSON.stringify(idsS));
+							parseMarkers(JSON.stringify(idsM));
+							loading.parentNode.removeChild(loading);
+						}
+					});
 				});
 			} else {
 				Foxtrick.util.load.get(uri)('success',
