@@ -1446,7 +1446,7 @@
 	},
 	"hcstats": {
 		"countrylink": {
-			"url": "http://hcstats.com/[countryid]",
+			"url": "http://hcstats.com/[countryid]/LeagueRank",
 			"filters": [
 				"countryid"
 			]
@@ -1473,12 +1473,20 @@
 			[
 				50,
 				50
+			],
+			[
+				147,
+				147
 			]
 		],
 		"nationalityranges": [
 			[
 				50,
 				50
+			],
+			[
+				147,
+				147
 			]
 		],
 		"title": "Hellenic Hattrick Community Statistics",
