@@ -111,9 +111,6 @@
 
 			var cont = doc.createElement('div');
 
-			//var input = doc.createElement('input');
-			//input.type = 'checkbox';
-
 			var label = doc.createElement('p');
 			label.setAttribute('data-text', 'Links.feeds');
 			cont.appendChild(label);
