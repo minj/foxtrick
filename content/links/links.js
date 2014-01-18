@@ -124,8 +124,10 @@
 				ev.preventDefault();
 				var doc = ev.target.ownerDocument;
 				var links = doc.querySelectorAll('input[option][module^="Links"]:not([id])');
+				var state = links[0].checked;
 				for (var i = 0; i < links.length; i++) {
-					links[i].click();
+					if (links[i].checked === state)
+						links[i].click();
 				}
 			});
 			button.setAttribute('data-text', 'Links.toggle');
