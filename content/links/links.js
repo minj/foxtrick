@@ -97,6 +97,7 @@
 	Foxtrick.modules['Links'] = {
 		MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
 		CORE_MODULE: true,
+		OPTIONS: ['ReuseTab'],
 
 		OPTION_FUNC: function(doc) {
 			// different background context for chrome. needs the links collection
@@ -109,6 +110,9 @@
 			});
 
 			var cont = doc.createElement('div');
+
+			//var input = doc.createElement('input');
+			//input.type = 'checkbox';
 
 			var label = doc.createElement('p');
 			label.setAttribute('data-text', 'Links.feeds');
@@ -151,7 +155,10 @@
 
 				linkNode.href = url;
 				if (link.openinthesamewindow == undefined) {
-					linkNode.target = '_stats';
+					if (Foxtrick.Prefs.isModuleOptionEnabled('Links', 'ReuseTab'))
+						linkNode.target = '_ftlinks';
+					else
+						linkNode.target = '_blank';
 				}
 
 				linkNode.title = link.title;
