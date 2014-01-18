@@ -119,6 +119,18 @@
 			textarea.setAttribute('pref', 'module.Links.feeds');
 			cont.appendChild(textarea);
 
+			var button = doc.createElement('button');
+			Foxtrick.onClick(button, function(ev) {
+				ev.preventDefault();
+				var doc = ev.target.ownerDocument;
+				var links = doc.querySelectorAll('input[option][module^="Links"]:not([id])');
+				for (var i = 0; i < links.length; i++) {
+					links[i].click();
+				}
+			});
+			button.setAttribute('data-text', 'Links.toggle');
+			cont.appendChild(button);
+
 			return cont;
 		},
 
