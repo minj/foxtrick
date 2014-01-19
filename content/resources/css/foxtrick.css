@@ -315,5 +315,9 @@ background-color: #eed;
 .mainRegular > .boxBody {
 	overflow: visible !important;
 }
+/* disable useless block styling for SVG pie charts */
+.percentage {
+	display: inline-block !important;
+}
 
 }
