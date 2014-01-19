@@ -118,6 +118,10 @@ Foxtrick.util.htMl.getLink = function(node) {
 				markup = '[link=' + link + ']';
 		}
 	}
+	else if (link !== null && typeof(link) === 'object') {
+		// svg anchor
+		markup = currentObj.getAttribute('title');
+	}
 	return { copyTitle: Foxtrickl10n.getString('copy.link'), markup: markup };
 };
 Foxtrick.util.htMl.getMarkupFromNode = function(node) {
@@ -163,6 +167,10 @@ Foxtrick.util.htMl.getMarkupFromNodeRec = function(node) {
 		return '\n';
 	}
 	else if (nodeName === 'ul' && node.className.indexOf('ft-popup-list') != -1) {
+		return '';
+	}
+	else if (nodeName === 'desc') {
+		// svg description, useless in HT
 		return '';
 	}
 
