@@ -25,7 +25,7 @@ html[data-theme="standard"] #header {
 }
 
 html[data-theme="simple"] #header {
-	width: 764px;
+	width: 980px;
 	background-color: white !important;
 	border-color: #DDDDDD;
 	border-style: solid;
@@ -57,11 +57,11 @@ html[data-theme="standard"] #menu {
 
 html[data-theme="simple"] #menu {
 	margin-left:10px !important;
-	width: 765px !important;
+	width: 980px !important;
 }
 
 html[dir="ltr"][data-theme="simple"] #shortcuts {
-	right:11px;
+	right:11px !important;
 }
 
 html[dir="rtl"][data-theme="standard"] #sidebar {
