@@ -181,13 +181,13 @@
 			"approved": "0"
 		},
 		{
-			"approved_progress": "77",
+			"approved_progress": "75",
 			"code": "lt",
 			"name": "Lithuanian",
 			"phrases": "1648",
-			"translated_progress": "93",
-			"translated": "1540",
-			"approved": "1270"
+			"translated_progress": "99",
+			"translated": "1647",
+			"approved": "1247"
 		},
 		{
 			"approved_progress": "0",
