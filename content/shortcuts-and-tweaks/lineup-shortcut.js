@@ -143,7 +143,7 @@ Foxtrick.modules['LineupShortcut'] = {
 		var link = Foxtrick.createFeaturedElement(doc, this, 'a');
 		if (type == 'youth') {
 			if (!newRatings)
-				link.href = '/Club/Matches/MatchLineup.aspx?matchID=' + matchid + '&TeamId=' +
+				link.href = '/Club/Matches/MatchLineup.aspx?matchID=' + matchid + '&YouthTeamId=' +
 					teamid + '&HighlightPlayerID=' + playerid + '&SourceSystem=Hattrick';
 			else
 				link.href = '/Club/Matches/Match.aspx?matchID=' + matchid + '&TeamId=' +
