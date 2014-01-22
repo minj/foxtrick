@@ -60,7 +60,9 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		var entry = doc.querySelector('#divPlayers h4');
 		entry.parentNode.replaceChild(toggleDiv, entry);
 
-		if (Foxtrick.Prefs.isModuleOptionEnabled('MatchLineupTweaks', 'GatherStaminaData'))
+		var isYouth = Foxtrick.Pages.Match.isYouth(doc);
+
+		if (!isYouth && Foxtrick.Prefs.isModuleOptionEnabled('MatchLineupTweaks', 'GatherStaminaData'))
 			this.gatherStaminaData(doc);
 
 		// run change now as sometimes we are too slow to init the listener
@@ -79,6 +81,9 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 
 		if (doc.getElementsByClassName('ft-subDiv').length)
 			return;
+
+		var isYouth = Foxtrick.Pages.Match.isYouth(doc);
+		var param = (isYouth ? 'youth' : '') + 'playerid';
 
 		var playerLinks = doc.querySelectorAll('.playersField > div.playerBoxHome > div > a, ' +
 										   '#playersBench > div#playersBenchHome' +
@@ -185,7 +190,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			}
 			var subLinks = playerCell.getElementsByTagName('a');
 			var pIds = Foxtrick.map(function(link) {
-				return Math.abs(Foxtrick.getParameterFromUrl(link, 'playerid'));
+				return Math.abs(Foxtrick.getParameterFromUrl(link, param));
 			}, subLinks);
 			var isSubject = true, sbjPid = pIds[0], objPid = pIds[1] || 0;
 			addSubDiv(sbjPid, time, type, isSubject, objPid);
@@ -229,6 +234,8 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 
 		var homeTeamId = Foxtrick.Pages.Match.getHomeTeamId(doc);
 		var awayTeamId = Foxtrick.Pages.Match.getAwayTeamId(doc);
+		var isYouth = Foxtrick.Pages.Match.isYouth(doc);
+		var param = (isYouth ? 'youth' : '') + 'playerid';
 
 		var homePlayerLinks =
 			doc.querySelectorAll('.playersField > div.playerBoxHome > div > a, ' +
@@ -264,7 +271,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 				Foxtrick.stopListenToChange(doc);
 				var missing = [];
 				for (var i = 0; i < players.length; i++) {
-					var id = Math.abs(Foxtrick.getParameterFromUrl(players[i].href, 'playerid'));
+					var id = Math.abs(Foxtrick.getParameterFromUrl(players[i].href, param));
 					var player = Foxtrick.Pages.Players.getPlayerFromListById(playerInfo, id);
 					var node = players[i].parentNode.parentNode
 						.getElementsByClassName('ft-indicatorDiv')[0];
@@ -293,7 +300,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 						})(j));
 					}
 				}
-			}, { teamid: teamid, current_squad: true, includeMatchInfo: true });
+			}, { teamid: teamid, current_squad: true, includeMatchInfo: true, isYouth: isYouth });
 		};
 
 		addSpecialtiesByTeamId(homeTeamId, homePlayerLinks);
@@ -315,6 +322,8 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		//get player list sucks for nt matches
 		var isNT = Foxtrick.Pages.Match.isNT(doc);
 		var NT = isNT ? { action: 'view', all: 'false' } : null;
+		var isYouth = Foxtrick.Pages.Match.isYouth(doc);
+		var param = (isYouth ? 'youth' : '') + 'playerid';
 
 		var homePlayerLinks =
 			doc.querySelectorAll('.playersField > div.playerBoxHome > div > a, ' +
@@ -334,7 +343,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 				Foxtrick.stopListenToChange(doc);
 				var missing = [];
 				for (var i = 0; i < players.length; i++) {
-					var id = Math.abs(Foxtrick.getParameterFromUrl(players[i].href, 'playerid'));
+					var id = Math.abs(Foxtrick.getParameterFromUrl(players[i].href, param));
 					var player = Foxtrick.Pages.Players.getPlayerFromListById(playerInfo, id);
 					if (!player)
 						missing.push(i);
@@ -354,7 +363,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 					}
 				}
 				Foxtrick.startListenToChange(doc);
-			}, { teamid: teamid, current_squad: true, includeMatchInfo: true, NT: NT});
+			}, { teamid: teamid, current_squad: true, includeMatchInfo: true, NT: NT, isYouth: isYouth});
 		};
 
 		addMissingByTeamId(homeTeamId, homePlayerLinks);
@@ -367,13 +376,15 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		if (!teams.length)
 			return; // we're not ready yet
 
+		var homeTeamId = Foxtrick.Pages.Match.getHomeTeamId(doc);
+		var awayTeamId = Foxtrick.Pages.Match.getAwayTeamId(doc);
 		var isYouth = Foxtrick.Pages.Match.isYouth(doc);
+		var param = (isYouth ? 'youth' : '') + 'playerid';
+
 		if (isYouth) {
-			// TODO youth?
+			var ownteamid = Foxtrick.util.id.getOwnYouthTeamId();
 		}
 		else {
-			var homeTeamId = Foxtrick.Pages.Match.getHomeTeamId(doc);
-			var awayTeamId = Foxtrick.Pages.Match.getAwayTeamId(doc);
 			var ownteamid = Foxtrick.util.id.getOwnTeamId();
 		}
 
@@ -462,24 +473,24 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		};
 
 		var addFacesByTeamId = function(teamid, players) {
-				var avartarArgs = [
-					['file', (isYouth ? 'youth' : '') + 'avatars'],
-					[(isYouth ? 'youthT' : 't') + 'eamId', teamid],
-					['version', '1.1']
-				];
-				Foxtrick.util.api.retrieve(doc, avartarArgs, { cache_lifetime: 'session' },
-				  function(xml, errorText) {
-					if (errorText) {
-						Foxtrick.log(errorText);
-						return;
-					}
-					Foxtrick.stopListenToChange(doc);
-					for (var i = 0; i < players.length; i++) {
-						var id = Math.abs(Foxtrick.getParameterFromUrl(players[i].href, 'playerid'));
-						addFace(players[i].parentNode.parentNode, id, xml);
-					}
-					Foxtrick.startListenToChange(doc);
-				});
+			var avartarArgs = [
+				['file', (isYouth ? 'youth' : '') + 'avatars'],
+				[(isYouth ? 'youthT' : 't') + 'eamId', teamid],
+				['version', '1.1']
+			];
+			Foxtrick.util.api.retrieve(doc, avartarArgs, { cache_lifetime: 'session' },
+			  function(xml, errorText) {
+				if (errorText) {
+					Foxtrick.log(errorText);
+					return;
+				}
+				Foxtrick.stopListenToChange(doc);
+				for (var i = 0; i < players.length; i++) {
+					var id = Math.abs(Foxtrick.getParameterFromUrl(players[i].href, param));
+					addFace(players[i].parentNode.parentNode, id, xml);
+				}
+				Foxtrick.startListenToChange(doc);
+			});
 		};
 
 		addFacesByTeamId(homeTeamId, homePlayerLinks);
@@ -604,6 +615,9 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		if (!players.length)
 			return;
 
+		var isYouth = Foxtrick.Pages.Match.isYouth(doc);
+		var param = (isYouth ? 'youth' : '') + 'playerid';
+
 		var eventIcon = timelineEventDetails.getElementsByClassName('timelineEventDetailsIcon')[0]
 			.getElementsByTagName('img')[0];
 
@@ -626,7 +640,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		};
 
 		for (var i = 0; i < players.length; i++) {
-			var player = Math.abs(Foxtrick.getParameterFromUrl(players[i].href, 'playerid'));
+			var player = Math.abs(Foxtrick.getParameterFromUrl(players[i].href, param));
 			highlightPlayer(player);
 		}
 
@@ -932,6 +946,8 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		if (!Foxtrick.Pages.Match.hasNewRatings(doc))
 			return;
 
+		var isYouth = Foxtrick.Pages.Match.isYouth(doc);
+
 		Foxtrick.stopListenToChange(doc);
 
 		var playerDivs = doc.querySelectorAll('div.playerDiv');
@@ -1000,7 +1016,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 
 		if (Foxtrick.Prefs.isModuleOptionEnabled('MatchLineupTweaks', 'StarCounter'))
 			this.runStars(doc);
-		if (Foxtrick.Prefs.isModuleOptionEnabled('MatchLineupTweaks', 'StaminaCounter'))
+		if (Foxtrick.Prefs.isModuleOptionEnabled('MatchLineupTweaks', 'StaminaCounter') && !isYouth)
 			this.runStamina(doc);
 		// run this after the counters
 		if (Foxtrick.Prefs.isModuleOptionEnabled('MatchLineupTweaks', 'ConvertStars'))
