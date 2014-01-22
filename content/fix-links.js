@@ -27,7 +27,8 @@ Foxtrick.modules.FixLinks = {
 		link.href = this.addAnchor(this.addParam(link.href, 'teamId', teamId), 'tab2');
 	},
 	getDefaultTeamId: function(doc) {
-		var teamId = Foxtrick.util.id.getTeamIdFromUrl(doc.location.href);
+		var teamId = Foxtrick.util.id.getYouthTeamIdFromUrl(doc.location.href) ||
+			Foxtrick.util.id.getTeamIdFromUrl(doc.location.href);
 		if (!teamId) {
 			teamId = Foxtrick.util.id.getTeamIdFromUrl(doc.querySelector('div.subMenu a').href);
 			if (!teamId)
