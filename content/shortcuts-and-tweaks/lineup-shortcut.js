@@ -142,15 +142,19 @@ Foxtrick.modules['LineupShortcut'] = {
 		cell.className = 'ft-lineup-cell';
 		var link = Foxtrick.createFeaturedElement(doc, this, 'a');
 		if (type == 'youth') {
-				link.href = '/Club/Matches/MatchLineup.aspx?matchID=' + matchid + '&YouthTeamID=' +
-				teamid + '&HighlightPlayerID=' + playerid + '&SourceSystem=Youth';
+			if (!newRatings)
+				link.href = '/Club/Matches/MatchLineup.aspx?matchID=' + matchid + '&TeamId=' +
+					teamid + '&HighlightPlayerID=' + playerid + '&SourceSystem=Hattrick';
+			else
+				link.href = '/Club/Matches/Match.aspx?matchID=' + matchid + '&TeamId=' +
+					teamid + '&HighlightPlayerID=' + playerid + '&SourceSystem=Youth#tab2';
 		} else {
-				if (!newRatings)
-					link.href = '/Club/Matches/MatchLineup.aspx?matchID=' + matchid + '&TeamId=' +
-						teamid + '&HighlightPlayerID=' + playerid + '&SourceSystem=Hattrick';
-				else
-					link.href = '/Club/Matches/Match.aspx?matchID=' + matchid + '&TeamId=' +
-						teamid + '&HighlightPlayerID=' + playerid + '&SourceSystem=Hattrick#tab2';
+			if (!newRatings)
+				link.href = '/Club/Matches/MatchLineup.aspx?matchID=' + matchid + '&TeamId=' +
+					teamid + '&HighlightPlayerID=' + playerid + '&SourceSystem=Hattrick';
+			else
+				link.href = '/Club/Matches/Match.aspx?matchID=' + matchid + '&TeamId=' +
+					teamid + '&HighlightPlayerID=' + playerid + '&SourceSystem=Hattrick#tab2';
 		}
 		var src = '';
 		if (type == 'NT')
@@ -184,9 +188,11 @@ Foxtrick.modules['LineupShortcut'] = {
 		var playerid = Foxtrick.util.id.findYouthPlayerId(mainWrapper);
 		var teamid = Foxtrick.util.id.findYouthTeamId(mainWrapper);
 		for (var i = 0; i < matchTable.rows.length; i++) {
+			var date = Foxtrick.util.time.getDateFromText(matchTable.rows[i].cells[0].textContent);
+			var newRatings = (date.valueOf() > 1346101200000);
 			var link = matchTable.rows[i].cells[1].getElementsByTagName('a').item(0);
 			var matchid = Foxtrick.util.id.getMatchIdFromUrl(link.href);
-			this._Add_Lineup_Link(doc, matchTable.rows[i], teamid, playerid, matchid, 'youth');
+			this._Add_Lineup_Link(doc, matchTable.rows[i], teamid, playerid, matchid, 'youth', newRatings);
 		}
 	},
 
