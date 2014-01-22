@@ -618,13 +618,17 @@ Foxtrick.modules['MatchLineupFixes'] = {
 				return;
 			}
 
+			var isYouth = Foxtrick.Pages.Match.isYouth(doc);
+			var pl = isYouth ? 'YouthPlayer' : 'Player';
+
 			var html = ordersTable.innerHTML;
 			for (var i = 0; i < playerData.length; i++) {
 				var p = playerData[i];
+				var id = Number(p.SourcePlayerId);
 				var fullName = p.FirstName + (p.NickName ? " '" + p.NickName + "' " : ' ') +
 					p.LastName;
-				var link = '<a id="playerLink" href="/Club/Players/Player.aspx?PlayerId=' +
-					p.SourcePlayerId + '">' + fullName + '</a>';
+				var link = '<a id="playerLink" href="/Club/Players/' + pl + '.aspx?' + pl + 'Id=' +
+					id + '">' + fullName + '</a>';
 				// use negative lookahead in case HTs actually shape up
 				html = html.replace(new RegExp(fullName + '(?!</a>)', 'g'), link);
 			}
