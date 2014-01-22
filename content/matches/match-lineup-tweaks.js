@@ -478,6 +478,9 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 				[(isYouth ? 'youthT' : 't') + 'eamId', teamid],
 				['version', '1.1']
 			];
+			// youthavatars only works for own team
+			if (isYouth && teamid != ownteamid)
+				return;
 			Foxtrick.util.api.retrieve(doc, avartarArgs, { cache_lifetime: 'session' },
 			  function(xml, errorText) {
 				if (errorText) {
