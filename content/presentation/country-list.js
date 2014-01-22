@@ -17,30 +17,8 @@ Foxtrick.modules['CountryList'] = {
 			return;
 		if (FoxtrickPrefs.isModuleOptionEnabled('CountryList', 'SelectBoxes')) {
 			if (Foxtrick.isPage(doc, 'transferSearchForm')) {
-				// TL search needs this ugly hack to restore the correct country on back navigation
-				var teamId = Foxtrick.modules['Core'].getSelfTeamInfo().teamId;
-				Foxtrick.onClick(doc.getElementById('ctl00_ctl00_CPContent_CPMain_butSearch'),
-				  function(ev) {
-					var doc = ev.target.ownerDocument;
-					var zone = doc.getElementById('ctl00_ctl00_CPContent_CPMain_ddlZone')
-						.selectedIndex;
-					var bornIn = doc.getElementById('ctl00_ctl00_CPContent_CPMain_ddlBornIn')
-						.selectedIndex;
-					Foxtrick.sessionSet('TransferSearchCountry.' + teamId, {
-						zone: zone,
-						bornIn: bornIn
-					});
-				});
 				this._changelist(doc, 'ctl00_ctl00_CPContent_CPMain_ddlZone', 10);
 				this._changelist(doc, 'ctl00_ctl00_CPContent_CPMain_ddlBornIn', 1);
-				Foxtrick.sessionGet('TransferSearchCountry.' + teamId, function(data) {
-					if (data) {
-						doc.getElementById('ctl00_ctl00_CPContent_CPMain_ddlZone').selectedIndex =
-							data.zone;
-						doc.getElementById('ctl00_ctl00_CPContent_CPMain_ddlBornIn').selectedIndex =
-							data.bornIn;
-					}
-				});
 			}
 			else if (Foxtrick.isPage(doc, 'country')) {
 				this._changelist(doc, 'ctl00_ctl00_CPContent_CPMain_ucLeaguesDropdown_ddlLeagues',
@@ -167,57 +145,40 @@ Foxtrick.modules['CountryList'] = {
 
 	_changelist: function(doc, id, start) {
 		var selectbox = doc.getElementById(id);
-		if (selectbox == null) return;
-		Foxtrick.dump('id: ' + id + '   start: ' + start + '\n');
+		if (selectbox == null)
+			return;
+		Foxtrick.log('id: ' + id + '   start: ' + start + '\n');
 		var options = selectbox.options;
 		var countries = options.length;
-		var selected = selectbox.selectedIndex;
-		var id_sel = 0;
-		try {
-			for (var i = start; i < countries; i++) {
-				if (Foxtrick.arch == 'Sandboxed') {
-					if (options[i].getAttribute('selected'))
-						id_sel = options[i].value;
+		var id_sel = selectbox.value;
+		for (var i = start; i < countries; i++) {
+			try {
+				if (id.search(/leagues/i) != -1 || id.search(/zone/i) != -1) {
+					var league = options[i].value;
 				}
 				else {
-					if (i == selected) id_sel = options[i].value;
+					var league = Foxtrick.XMLData.getLeagueIdByCountryId(options[i].value);
 				}
-				try {
-					if (id.search(/leagues/i) != -1 || id.search(/zone/i) != -1) {
-						var league = options[i].value;
-					}
-					else {
-						var league = Foxtrick.XMLData.getLeagueIdByCountryId(options[i].value);
-					}
-					var htname = options[i].text;
-					htname = Foxtrick.util.id.getLeagueDataFromId(league).LeagueName;
-					if (!htname) return -1;
-					options[i].text = htname;
+				var nativeName = Foxtrick.util.id.getLeagueDataFromId(league).LeagueName;
+				if (!nativeName)
+					return -1;
+				options[i].text = nativeName;
 
-				} catch (exml) {
-					Foxtrick.dump('country-list.js countries: ' + exml + '\n');
-				}
+			} catch (exml) {
+				Foxtrick.log('country-list.js countries: ' + exml + '\n');
 			}
-			Foxtrick.makeFeaturedElement(selectbox, Foxtrick.modules.CountryList);
-		} catch (e) {
-			Foxtrick.dump('countrylist: ' + e + '\n');
 		}
-
+		Foxtrick.makeFeaturedElement(selectbox, Foxtrick.modules.CountryList);
 
 		var opt_array = [];
-		try {
-			for (var i = start; i < options.length; i++) {
-				var oldopt = ['-1', '-1'];
-				oldopt[0] = options[i].value;
-				oldopt[1] = options[i].text;
-		//		Foxtrick.dump(i+'  '+oldopt[0]+' '+oldopt[1]+'\n');
-				opt_array.push(oldopt);
-			}
-		} catch (epush) {
-			Foxtrick.dump('countrylist: EPUSH ' + epush + '\n');
+		for (var i = start; i < options.length; i++) {
+			var oldopt = ['-1', '-1'];
+			oldopt[0] = options[i].value;
+			oldopt[1] = options[i].text;
+			opt_array.push(oldopt);
 		}
 
-		function sortByOptionText(a, b) {
+		var sortByOptionText = function(a, b) {
 			var x = a[1];
 			x = (x.search(/.+sland/) == 0) ? 'Island' :
 				((x.search(/.+esk.+republika/) != -1) ? 'Ceska republika' : x);
@@ -230,15 +191,11 @@ Foxtrick.modules['CountryList'] = {
 		}
 
 		opt_array.sort(sortByOptionText);
-		for (var i = 0; i < options.length; i++) {
-			if (i >= start) {
-				// don't restore bad selectedIndex when using 'back' in transferSearchForm
-				if (opt_array[i - start][0] == id_sel && !Foxtrick.isPage(doc, 'transferSearchForm'))
-					selectbox.selectedIndex = i;
-				options[i].value = opt_array[i - start][0];
-				options[i].text = opt_array[i - start][1];
-		//		Foxtrick.dump(i+'  '+options[i].value+' '+options[i].text+'\n');
-			}
+		for (var i = start; i < options.length; i++) {
+			if (opt_array[i - start][0] == id_sel)
+				selectbox.selectedIndex = i;
+			options[i].value = opt_array[i - start][0];
+			options[i].text = opt_array[i - start][1];
 		}
 		selectbox.style.display = 'inline';
 	},
