@@ -53,7 +53,8 @@ Foxtrick.Pages.Players = {
 
 		var getXml = function(doc, callback) {
 			var args = [];
-			var isYouth = Foxtrick.Pages.Players.isYouthPlayersPage(doc) ||
+			var isYouth = (options && options.isYouth) ||
+				Foxtrick.Pages.Players.isYouthPlayersPage(doc) ||
 				Foxtrick.Pages.Players.isYouthMatchOrderPage(doc);
 			if (options && options.teamid) {
 				if (!isYouth)
@@ -105,7 +106,8 @@ Foxtrick.Pages.Players = {
 			try {
 				if (!xml)
 					return;
-				var isYouth = Foxtrick.Pages.Players.isYouthPlayersPage(doc) ||
+				var isYouth = (options && options.isYouth) ||
+					Foxtrick.Pages.Players.isYouthPlayersPage(doc) ||
 					Foxtrick.Pages.Players.isYouthMatchOrderPage(doc);
 				if (!isYouth)
 					var playerNodes = xml.getElementsByTagName('Player');
