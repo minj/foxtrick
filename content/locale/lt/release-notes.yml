@@ -28,6 +28,7 @@ lt:
       android: |
         <p>Foxtrick branduolys buvo ženkliai pertvarkytas, kad geriau veiktų Android platformai skirtoje Firefox naršyklėje. Nuo šiol Foxtrick žymiai sklandžiau veikia mobiliuose įrenginiuose.</p>
         <p>Pagerinti <module>MatchReportFormat</module>, <module>Ratings</module>, <module>MatchSimulator</module>, <module>HTMSPrediction</module> ir kiti moduliai.</p>
+      native_names: "Sandorių rinkos paieškos formoje pasirinktos šalys nebesikeis be reikalo, kai įjungti vietiniai šalių pavadinimai <module>CountryList</module> modulyje."
       custom_links: Peržiūrėta išorinių nuorodų funkcija ir sutvarkytos visos žinomos problemos. Individualias nuorodas nuo šiol galima pridėti ir rungtynių ataskaitos puslapyje.
       player_filters: "Foxtrick naršyklėje galima naudoti <module>PlayerFilters</module> modulį tuo pačiu metu keliose kortelėse."
       history_stats: "<module>HistoryStats</module> dabar veikia Firefox naršyklėje kelioms komandoms vienu metu."
