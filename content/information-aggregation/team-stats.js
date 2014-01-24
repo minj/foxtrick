@@ -51,9 +51,9 @@ Foxtrick.modules['TeamStats'] = {
 					{ category: 'TeamStats.Attributes', name: 'Agreeability', 		property: 'agreeability', 	pages: ['seniorPlayers']},
 					{ category: 'TeamStats.Attributes', name: 'Aggressiveness', 	property: 'aggressiveness', pages: ['seniorPlayers']},
 					{ category: 'TeamStats.Attributes', name: 'Honesty', 			property: 'honesty', 		pages: ['seniorPlayers']},*/
-					{ category: 'Match', 	name: 'Last_stars', 			property: 'lastRating', 			method: 'sum_avg',	pages: ['seniorPlayers', 'youthPlayers']},
+					{ category: 'Match', 	name: 'Last_stars', 			property: 'lastRating', 			method: 'sum_avg',	pages: ['seniorPlayers', 'youthPlayers']}/*,
 					{ category: 'Match', 	name: 'Last_stars_EndOfGame', 	property: 'lastRatingEndOfGame', 	method: 'sum_avg',	pages: ['seniorPlayers']},
-					{ category: 'Match', 	name: 'Last_stars_decline', 	property: 'lastRatingDecline', 	method: 'sum_avg',	pages: ['seniorPlayers']}
+					{ category: 'Match', 	name: 'Last_stars_decline', 	property: 'lastRatingDecline', 	method: 'sum_avg',	pages: ['seniorPlayers']}*/
 				];
 				for (var i = 0; i < attributeOptions.length; ++i) {
 					attributeOptions[i].value = 0;
