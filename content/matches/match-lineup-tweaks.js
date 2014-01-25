@@ -30,7 +30,10 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		if (!Foxtrick.Pages.Match.hasNewRatings(doc))
 			return;
 
-		var teamId = Foxtrick.util.id.getTeamIdFromUrl(doc.location.href);
+		var isYouth = Foxtrick.Pages.Match.isYouth(doc);
+
+		var teamId = isYouth ? Foxtrick.util.id.getYouthTeamIdFromUrl(doc.location.href) :
+			Foxtrick.util.id.getTeamIdFromUrl(doc.location.href);
 		if (teamId) {
 			var awayId = Foxtrick.Pages.Match.getAwayTeamId(doc);
 			if (awayId == teamId)
