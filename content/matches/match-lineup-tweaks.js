@@ -650,6 +650,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 	},
 	// change the number-star display into real stars
 	convertStars: function(doc) {
+		var color = Foxtrick.Pages.Match.isYouth(doc) ? '_blue' : '';
 		var ratings = doc.querySelectorAll('div.playerRating > span');
 		for (var i = 0; i < ratings.length; i++) {
 			var ratingsDiv = ratings[i].parentNode;
@@ -669,14 +670,14 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 				var star5container = doc.createElement('div');
 				// this one's for async image purposes
 				Foxtrick.addImage(doc, star5container, {
-					src: Foxtrick.InternalPath + 'resources/img/matches/5stars.png',
+					src: Foxtrick.InternalPath + 'resources/img/matches/5stars' + color + '.png',
 					alt: '5*'
 				});
 				newDiv.appendChild(star5container);
 			}
 			for (var j = 0; j < stars2; j++) {
 				Foxtrick.addImage(doc, smallDiv, {
-					src: Foxtrick.InternalPath + 'resources/img/matches/2stars_h.png',
+					src: Foxtrick.InternalPath + 'resources/img/matches/2stars' + color + '.png',
 					alt: '2*'
 				});
 			}
@@ -691,7 +692,8 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 				else
 					target = smallDiv;
 				Foxtrick.addImage(doc, target, {
-					src: Foxtrick.InternalPath + 'resources/img/matches/' + count + 'stars_h.png',
+					src: Foxtrick.InternalPath + 'resources/img/matches/' + count + 'stars' +
+						color + '.png',
 					alt: count + '*'
 				});
 			}
