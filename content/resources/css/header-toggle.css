@@ -29,5 +29,8 @@ html[firefox] #ctl00_ctl00_CPContent_CPMain_spnToggleTournamentMatches {
 	position: relative;
 	top: -20px;
 }
+.findSimilarSmallPlayerPage {
+	top: 12px;
+}
 
 }
