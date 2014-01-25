@@ -49,15 +49,15 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 
 		//setup the 'database'
 		this.store.matches = {};
-		this.store.matches.matchFriendly = { minutes: 0, count: 0.0, xp: { min: 0.0, max: 0.0 } };
-		this.store.matches.matchLeague = { minutes: 0, count: 0.0, xp: { min: 0.0, max: 0.0 } };
-		this.store.matches.matchCup = { minutes: 0, count: 0.0, xp: { min: 0.0, max: 0.0 } };
-		this.store.matches.matchNtFriendly = { minutes: 0, count: 0.0, xp: { min: 0.0, max: 0.0 } };
-		this.store.matches.matchQualification = { minutes: 0, count: 0.0, xp:
+		this.store.matches.matchFriendly = { minutes: { min: 0, max: 0 }, count: { min: 0.0, max: 0.0 }, xp: { min: 0.0, max: 0.0 } };
+		this.store.matches.matchLeague = { minutes: { min: 0, max: 0 }, count: { min: 0.0, max: 0.0 }, xp: { min: 0.0, max: 0.0 } };
+		this.store.matches.matchCup = { minutes: { min: 0, max: 0 }, count: { min: 0.0, max: 0.0 }, xp: { min: 0.0, max: 0.0 } };
+		this.store.matches.matchNtFriendly = { minutes: { min: 0, max: 0 }, count: { min: 0.0, max: 0.0 }, xp: { min: 0.0, max: 0.0 } };
+		this.store.matches.matchQualification = { minutes: { min: 0, max: 0 }, count: { min: 0.0, max: 0.0 }, xp:
 			{ min: 0.0, max: 0.0 } };
-		this.store.matches.matchMasters = { minutes: 0, count: 0.0, xp: { min: 0.0, max: 0.0 } };
-		this.store.matches.matchNtLeague = { minutes: 0, count: 0.0, xp: { min: 0.0, max: 0.0 } };
-		this.store.matches.matchNtFinals = { minutes: 0, count: 0.0, xp: { min: 0.0, max: 0.0 } };
+		this.store.matches.matchMasters = { minutes: { min: 0, max: 0 }, count: { min: 0.0, max: 0.0 }, xp: { min: 0.0, max: 0.0 } };
+		this.store.matches.matchNtLeague = { minutes: { min: 0, max: 0 }, count: { min: 0.0, max: 0.0 }, xp: { min: 0.0, max: 0.0 } };
+		this.store.matches.matchNtFinals = { minutes: { min: 0, max: 0 }, count: { min: 0.0, max: 0.0 }, xp: { min: 0.0, max: 0.0 } };
 		this.store.xp = { points: { min: 0.0, max: 0.0 }, xp: { min: 0.0, max: 0.0 } };
 		this.store.currentSkill = null;
 		this.store.skillup = false;
@@ -243,8 +243,10 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 			if (xp_now == this.store.currentSkill) {
 				this.store.matches[gameType].xp['min'] += dxp.min;
 				this.store.matches[gameType].xp['max'] += dxp.max;
-				this.store.matches[gameType]['minutes'] += minutes;
-				this.store.matches[gameType]['count'] += (minutes / 90.0);
+				this.store.matches[gameType].minutes['min'] += minutes;
+				this.store.matches[gameType].minutes['max'] += minutes;
+				this.store.matches[gameType]['count']['min']  += (minutes / 90.0);
+				this.store.matches[gameType]['count']['max']  += (minutes / 90.0);
 				this.store.last = {};
 				this.store.last.node = stats_entries[i];
 				this.store.last.nodeIndex = i;
@@ -283,8 +285,11 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 
 		//adjust minimum gained xp depending on the relevant skillup game
 		if (this.store.skillup) {
+			this.store.matches[this.store.last.gameType].minutes['min'] -= this.store.last.minutes;
+			this.store.matches[this.store.last.gameType].count['min'] -= (this.store.last.minutes / 90.0);
 			this.store.matches[this.store.last.gameType].xp['min'] -= this.store.last.min;
 			this.store.xp.points.min -= this.store.last.min;
+
 			this.store.xp.xp.min -= this.store.last.min / this.pts_for_skillUp;
 		}
 
@@ -377,7 +382,7 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 		thead_tr.appendChild(cell);
 		thead.appendChild(thead_tr);
 
-		var addRow = function(type, count, minutes, min, max, i) {
+		var addRow = function(type, count, minutes, xp, i) {
 			var row = doc.createElement('tr');
 
 			if (i % 2)
@@ -391,13 +396,19 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 			row.appendChild(cell);
 
 			var cell = doc.createElement('td');
+			if(count['min'] == count['max'])
+				cell.textContent = count['max'];
+			else
+				cell.textContent = count['min'] + ' - ' + count['max'];
 			cell.setAttribute('id', 'ft-xp-' + type + '-count');
-			Foxtrick.addClass(cell, 'ft-xp-data-value');
-			cell.textContent = (count > 0) ? count : 0;
+			Foxtrick.addClass(cell, 'ft-xp-data-value');			
 			row.appendChild(cell);
 
 			var cell = doc.createElement('td');
-			cell.textContent = minutes;
+			if(minutes['min'] == minutes['max'])
+				cell.textContent = minutes['max'];
+			else
+				cell.textContent = minutes['min'] + ' - ' + minutes['max'];
 			cell.setAttribute('id', 'ft-xp-' + type + '-minutes');
 			Foxtrick.addClass(cell, 'ft-xp-data-value');
 			row.appendChild(cell);
@@ -405,26 +416,33 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 			var cell = doc.createElement('td');
 			cell.setAttribute('id', 'ft-xp-' + type + '-min');
 			Foxtrick.addClass(cell, 'ft-xp-data-value');
-			cell.textContent = (min > 0) ? min : 0;
+			cell.textContent = xp['min'];
 			row.appendChild(cell);
 
 			var cell = doc.createElement('td');
 			cell.setAttribute('id', 'ft-xp-' + type + '-max');
 			Foxtrick.addClass(cell, 'ft-xp-data-value');
-			cell.textContent = (max > 0) ? max : 0;
+			cell.textContent = xp['max'];
 			row.appendChild(cell);
 
 			table.appendChild(row);
 		};
 
+		var getPrettyValue = function(value){
+			return ( value - Math.floor(value) ) > 0 ? value.toFixed(3) : Math.floor(value);
+		}
+
 		for (var i = 0; i < types.length; i++) {
-			var count = this.store.matches[types[i]]['count'].toFixed(3);
+			var count = this.store.matches[types[i]]['count'];
+			count['min'] = getPrettyValue( count['min'] );
+			count['max'] = getPrettyValue( count['max'] );
 			var minutes = this.store.matches[types[i]]['minutes'];
-			var min = this.store.matches[types[i]].xp['min'].toFixed(3);
-			var max = this.store.matches[types[i]].xp['max'].toFixed(3);
+			var xp = this.store.matches[types[i]].xp;
+			xp['min'] = getPrettyValue( xp['min'] );
+			xp['max'] = getPrettyValue( xp['max'] );
 			var type = types[i];
 
-			addRow(type, count, minutes, min, max, i);
+			addRow(type, count, minutes, xp, i);
 		}
 
 		//xp pts
@@ -440,13 +458,13 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 		var cell = doc.createElement('td');
 		cell.setAttribute('id', 'ft-xp-min-pts');
 		Foxtrick.addClass(cell, 'ft-xp-data-value');
-		cell.textContent = this.store.xp.points.min.toFixed(3);
+		cell.textContent = getPrettyValue( this.store.xp.points.min );
 		row.appendChild(cell);
 
 		var cell = doc.createElement('td');
 		cell.setAttribute('id', 'ft-xp-max-pts');
 		Foxtrick.addClass(cell, 'ft-xp-data-value');
-		cell.textContent = this.store.xp.points.max.toFixed(3);
+		cell.textContent = getPrettyValue( this.store.xp.points.max );
 		row.appendChild(cell);
 		table.appendChild(row);
 
@@ -465,13 +483,13 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 		var cell = doc.createElement('td');
 		cell.setAttribute('id', 'ft-xp-min');
 		Foxtrick.addClass(cell, 'ft-xp-data-value');
-		cell.textContent = (this.store.currentSkill + this.store.xp.xp.min).toFixed(3);
+		cell.textContent = getPrettyValue( this.store.currentSkill + this.store.xp.xp.min );
 		row.appendChild(cell);
 
 		var cell = doc.createElement('td');
 		cell.setAttribute('id', 'ft-xp-max');
 		Foxtrick.addClass(cell, 'ft-xp-data-value');
-		cell.textContent = (this.store.currentSkill + this.store.xp.xp.max).toFixed(3);
+		cell.textContent = getPrettyValue( this.store.currentSkill + this.store.xp.xp.max );
 		row.appendChild(cell);
 
 		table.appendChild(row);
