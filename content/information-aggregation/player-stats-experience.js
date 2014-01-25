@@ -381,6 +381,7 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 		cell.textContent = Foxtrick.L10n.getString('PlayerStatsExperience.maxXPpts');
 		thead_tr.appendChild(cell);
 		thead.appendChild(thead_tr);
+		table.appendChild(thead);
 
 		var addRow = function(type, count, minutes, xp, i) {
 			var row = doc.createElement('tr');
@@ -425,7 +426,7 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 			cell.textContent = xp['max'];
 			row.appendChild(cell);
 
-			table.appendChild(row);
+			tbody.appendChild(row);
 		};
 
 		var getPrettyValue = function(value){
@@ -466,7 +467,7 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 		Foxtrick.addClass(cell, 'ft-xp-data-value');
 		cell.textContent = getPrettyValue( this.store.xp.points.max );
 		row.appendChild(cell);
-		table.appendChild(row);
+		tbody.appendChild(row);
 
 		//xp actual
 		var row = doc.createElement('tr');
@@ -492,12 +493,11 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 		cell.textContent = getPrettyValue( this.store.currentSkill + this.store.xp.xp.max );
 		row.appendChild(cell);
 
-		table.appendChild(row);
+		tbody.appendChild(row);
 
 		//table & headers
 		navigation.parentNode.insertBefore(xp_header, navigation);
 		navigation.parentNode.insertBefore(matchListTable, navigation);
-		table.appendChild(thead);
 		table.appendChild(tbody);
 		matchListTable.appendChild(table);
 
