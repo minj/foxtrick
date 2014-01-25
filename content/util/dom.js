@@ -277,40 +277,32 @@ Foxtrick.addBoxToSidebar = function(doc, title, content, prec, forceLeft) {
 		var dest = doc.createElement('div');
 		dest.className = boxClass;
 		Foxtrick.setAttribute(dest, 'x-precedence', prec);
-		if (Foxtrick.util.layout.isStandard(doc)) {
-			// boxHead
-			var boxHead = doc.createElement('div');
-			boxHead.className = 'boxHead';
-			dest.appendChild(boxHead);
-			// boxHead - boxLeft
-			var headBoxLeft = doc.createElement('div');
-			headBoxLeft.className = 'boxLeft';
-			boxHead.appendChild(headBoxLeft);
-			// boxHead - boxLeft - h2
-			var h2 = doc.createElement('h2');
-			h2.textContent = title;
-			headBoxLeft.appendChild(h2);
-			// boxBody
-			var boxBody = doc.createElement('div');
-			boxBody.className = 'boxBody';
-			dest.appendChild(boxBody);
-			// append content to boxBody
-			boxBody.appendChild(content);
-			// boxFooter
-			var boxFooter = doc.createElement('div');
-			boxFooter.className = 'boxFooter';
-			dest.appendChild(boxFooter);
-			// boxFooter - boxLeft
-			var footBoxLeft = doc.createElement('div');
-			footBoxLeft.className = 'boxLeft';
-			boxFooter.appendChild(footBoxLeft);
-		}
-		else {
-			// header
-			var header = doc.createElement('h2');
-			header.textContent = title;
-			dest.appendChild(header);
-		}
+		// boxHead
+		var boxHead = doc.createElement('div');
+		boxHead.className = 'boxHead';
+		dest.appendChild(boxHead);
+		// boxHead - boxLeft
+		var headBoxLeft = doc.createElement('div');
+		headBoxLeft.className = 'boxLeft';
+		boxHead.appendChild(headBoxLeft);
+		// boxHead - boxLeft - h2
+		var h2 = doc.createElement('h2');
+		h2.textContent = title;
+		headBoxLeft.appendChild(h2);
+		// boxBody
+		var boxBody = doc.createElement('div');
+		boxBody.className = 'boxBody';
+		dest.appendChild(boxBody);
+		// append content to boxBody
+		boxBody.appendChild(content);
+		// boxFooter
+		var boxFooter = doc.createElement('div');
+		boxFooter.className = 'boxFooter';
+		dest.appendChild(boxFooter);
+		// boxFooter - boxLeft
+		var footBoxLeft = doc.createElement('div');
+		footBoxLeft.className = 'boxLeft';
+		boxFooter.appendChild(footBoxLeft);
 		// now we insert the newly created box
 		var inserted = false;
 		for (var i = 0; i < existings.length; ++i) {
@@ -334,10 +326,7 @@ Foxtrick.addBoxToSidebar = function(doc, title, content, prec, forceLeft) {
 	}
 
 	// finally we add the content
-	if (Foxtrick.util.layout.isStandard(doc))
-		dest.getElementsByClassName('boxBody')[0].appendChild(content);
-	else
-		dest.appendChild(content);
+	dest.getElementsByClassName('boxBody')[0].appendChild(content);
 
 	return dest;
 };
