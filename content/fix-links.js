@@ -9,11 +9,17 @@ Foxtrick.modules.FixLinks = {
 	CORE_MODULE: true,
 	PAGES: ['match', 'matches', 'matchesArchive', 'playerStats', 'matchesLatest'],
 	NICE: -20, // place before all DOM mutating modules
-	addParam: function(url, param, value) {
+	addParam: function(url, param, value, replace) {
 		var newUrl = url, urlParts = url.split('#'), hasQuery = /\?/.test(urlParts[0]);
-		if (!new RegExp('[&?]' + param + '=[^&]+', 'i').test(urlParts[0]))
-			newUrl = urlParts[0] + (hasQuery ? '&' : '?') + param + '=' + value +
-				(urlParts[1] ? '#' + urlParts[1] : '');
+		if (replace) {
+			urlParts[0] = urlParts[0].replace(new RegExp('([&?])' + param + '=[^&]+&?', 'i'), '$1');
+			urlParts[0] = urlParts[0].replace(/\?$/, '');
+			hasQuery = /\?/.test(urlParts[0]);
+		}
+		else if (new RegExp('[&?]' + param + '=[^&]+', 'i').test(urlParts[0]))
+			return newUrl;
+		newUrl = urlParts[0] + (hasQuery ? '&' : '?') + param + '=' + value +
+			(urlParts[1] ? '#' + urlParts[1] : '');
 		//else
 		//	newUrl = url.replace(new RegExp('([&?])' + param + '=[^&]*', 'i'),
 		//						 '$1' + param + '=' + value);
