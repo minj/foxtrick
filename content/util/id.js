@@ -63,6 +63,11 @@ Foxtrick.util.id.getTeamIdFromUrl = function(url) {
 	return matched ? Number(matched[1]) : null;
 };
 
+Foxtrick.util.id.getYouthTeamIdFromUrl = function(url) {
+	var matched = url.match(/YouthTeamID=(\d+)/i);
+	return matched ? Number(matched[1]) : null;
+};
+
 Foxtrick.util.id.getMatchIdFromUrl = function(url) {
 	var matched = url.match(/matchID=(\d+)/i);
 	return matched ? Number(matched[1]) : null;
