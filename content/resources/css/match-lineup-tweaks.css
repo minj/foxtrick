@@ -24,7 +24,6 @@ html[dir="ltr"] #timelineEventDetails {
 	padding: 3px;
 	position: absolute;
 }
-
 html[dir="rtl"] .ft-match-lineup-tweaks-teamname-home {
 	top: 15px;
 	right: 15px;
@@ -67,6 +66,10 @@ html[dir="ltr"] .ft-match-lineup-tweaks-teamname-away {
 	width: 65px;
 	text-align: center;
 }
+.isYouthMatch .ft-match-lineup-tweaks-star-counter, .isYouthMatch .ft-match-lineup-tweaks-stamina-counter
+{
+	color: #6ec6e9;
+}
 
 .ft-match-lineup-tweaks-stars-counter-sum-home, .ft-match-lineup-tweaks-stamina-counter-sum-home {
 	top: 289px;
@@ -76,6 +79,10 @@ html[dir="ltr"] .ft-match-lineup-tweaks-teamname-away {
 }
 .ft-match-lineup-tweaks-stars-counter-diff, .ft-match-lineup-tweaks-stamina-counter-diff {
 	top: 319px;
+	border: solid 1px #dfb920;
+}
+.isYouthMatch .ft-match-lineup-tweaks-stars-counter-diff {
+	border: solid 1px #6ec6e9;
 }
 
 html[dir="rtl"] .ft-match-lineup-tweaks-stars-counter-sum-home,
@@ -265,6 +272,7 @@ div.playerDiv div.sectorShirt + div > div > div {
 .ft-field-away .ft-match-lineup-tweaks-stars-counter-diff {
 	top: 86px;
 }
+}
 #ft-split-arrow {
 	position: absolute;
 	cursor: pointer;
@@ -283,6 +291,10 @@ div.playerDiv div.sectorShirt + div > div > div {
 #ft-split-lineup-toggle-div {
 	font-size: 1.2em;
 	line-height: normal;
+}
+.ft-match-lineup-tweaks-teamname-home, .ft-match-lineup-tweaks-stars-counter-sum-home,
+.ft-match-lineup-tweaks-stamina-counter-sum-home {
+	background: #295223;
 }
 
 }

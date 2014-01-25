@@ -20,12 +20,22 @@
 }
 #ft-matchRatingsOptions {
 	right: 12px;
-	top: 216px;
+	top: 250px;
 	width: 175px;
 }
 #ft-matchRatingsTable td {
 	padding: 2px !important;
 	vertical-align: middle !important;
+}
+
+#ft-mrt-homeName {
+	background: #24471f;
+}
+.loosingSector, .winningSector {
+	background-color: #33652c !important;
+}
+.loosingSector:not(.awayTeamBox), .winningSector:not(.awayTeamBox) {
+	background-color: #24471f !important;
 }
 
 }
