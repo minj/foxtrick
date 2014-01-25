@@ -14,7 +14,6 @@ en:
       new: '<header>New modules</header>'
       series_transfers: '<module>SeriesTransfers</module>: Shows a list of players currently for sale on series pages.'
 
- 
     0.13.0:
       important: '<header>Important announcements</header>'
       opera: |
