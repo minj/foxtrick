@@ -30,7 +30,10 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		if (!Foxtrick.Pages.Match.hasNewRatings(doc))
 			return;
 
-		var teamId = Foxtrick.util.id.getTeamIdFromUrl(doc.location.href);
+		var isYouth = Foxtrick.Pages.Match.isYouth(doc);
+
+		var teamId = isYouth ? Foxtrick.util.id.getYouthTeamIdFromUrl(doc.location.href) :
+			Foxtrick.util.id.getTeamIdFromUrl(doc.location.href);
 		if (teamId) {
 			var awayId = Foxtrick.Pages.Match.getAwayTeamId(doc);
 			if (awayId == teamId)
@@ -59,8 +62,6 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		toggleDiv.appendChild(togLabel);
 		var entry = doc.querySelector('#divPlayers h4');
 		entry.parentNode.replaceChild(toggleDiv, entry);
-
-		var isYouth = Foxtrick.Pages.Match.isYouth(doc);
 
 		if (!isYouth && Foxtrick.Prefs.isModuleOptionEnabled('MatchLineupTweaks', 'GatherStaminaData'))
 			this.gatherStaminaData(doc);
