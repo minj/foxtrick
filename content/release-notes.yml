@@ -5,7 +5,7 @@ en:
       note_0: 'This is the development build. Use at your own discretion. Please view <linkSVN>commit history</linkSVN> at Google Code for details of the changes.'
 
     beta:
-      note_0: 'This is the beta version of the next release. Please help translating this version at our super easy crowd-translation page <linkCrowdin>crowdin.net</linkCrowdin>. '
+      note_0: 'This is the beta version of the next release. Please help translating this version at our super easy crowd-translation page <linkCrowdin>crowdin.net</linkCrowdin>.'
 
     0.14.0:
       important: '<header>Important announcements</header>'
@@ -19,14 +19,20 @@ en:
       opera: |
         <p>This is the last major release that officially supports Opera 12 or below. Existing Foxtrick versions may stop functioning without further notice.</p>
         <p>Please consider switching to <linkOperaNext>Opera Next</linkOperaNext> or another supported browser of your choice.</p>
+      safari: 'Safari version 5.x support will soon be dropped.'
       twitter: 'You can follow <linkTwitter>Foxtrick on Twitter</linkTwitter> to receive the latest news, updates, and announcements.'
       crowdin: '<header>A lot of translation updates from our awesome users using the <linkCrowdin>crowdin tool</linkCrowdin>. You can help out as well!</header>'
       new: '<header>New modules</header>'
       hy_skills: '<module>YouthSkills</module>: Enhances youth players page with information from hattrick youthclub. For HY users only.'
       ratings_tweaks: '<module>MatchRatingsTweaks</module>: tweaks ratings on the match report page. Displays numeric ratings and follows their changes when browsing the timeline just like in <module>MatchSimulator</module>. Calculates real scoring/defending/possession probabilities according to formulas establish in the unwritten manual: 15766691.221, 15766691.242'
       other: '<header>Other changes</header>'
+      ht_changes: 'Foxtrick was updated to support recent changes in Hattrick regarding youth match reports, simple theme and match order interface.'
+      locale_support: 'Updated locale support: Euro currency in Latvia, new Spanish dialect names, corrected time and date formats etc.'
       simulator_prob: '<module>MatchSimulator</module> was also enhanced with real scoring/defending/possession probabilities from the new <module>MatchRatingsTweaks</module> module.'
       staff_marker: '<module>StaffMarker</module> has been restructured. New options for supporters, supported teams and national coaches have been added. Please set the preferences to your liking.'
+      inline_options: 'Added inline options for penalty list enhancements of <module>MatchOrderInterface</module> and split lineup functionality in <module>MatchLineupTweaks</module>.'
+      links_enhancments: 'You can now easily disable all <module>Links</module> and configure the way they are opened.'
+      custom_marker: 'An interface to easily add custom user name colors has been added to the footer of forum messages.'
       psico_update: 'An option to display <module>PsicoTSI</module> prediction on the left sidebar was reimplemented.'
       ticker_update: '<module>TickerColoring</module> and <module>TickerAlert</module> were updated with new supporter news ticker types added over the past couple of years.'
       ff_button: 'Firefox toolbar button will now be more responsive and will better reflect Foxtrick state.'
@@ -36,8 +42,13 @@ en:
       android: |
         <p>Major fixes to Foxtrick core have been made in order to adapt to Firefox for Android. As a result, Foxtrick now runs much better on mobile devices.</p>
         <p>Affected modules: <module>MatchReportFormat</module>, <module>Ratings</module>, <module>MatchSimulator</module>, <module>HTMSPrediction</module> <em>et al</em>.</p>
+      ff_cache: 'Fixed an issue in Firefox which prevented Foxtrick to properly update to a new version in some cases.'
+      chpp_update: '<module>SupportersList</module> and <module>MatchIncome</module> displayed wrong behavior after CHPP changes. This is now fixed.'
+      player_xp: '<module>PlayerStatsExperience</module> will now correctly detect walkover matches in all cases.'
+      stamina_data_bug: 'Stamina data collected in <module>MatchLineupTweaks</module> is no longer reset by opening old matches in Firefox.'
       native_names: 'Selected countries will no longer change when navigating back to the transfer search form with native country names enabled in <module>CountryList</module>.'
       custom_links: 'External links functionality has been reviewed and all known issues fixed. You can now add custom links on the match report page as well.'
+      thread_author: '<module>HTThreadMarker</module> and <module>ForumAlterHeaderLine</module> will now correctly detect forum thread author.'
       player_filters: 'It is now possible to use <module>PlayerFilters</module> in multiple tabs at the same time in Firefox.'
       history_stats: '<module>HistoryStats</module> is now usable with multiple teams at the same time in Firefox.'
 
