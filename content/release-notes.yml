@@ -48,7 +48,7 @@ en:
       player_xp: '<module>PlayerStatsExperience</module> will now correctly detect walkover matches in all cases.'
       stamina_data_bug: 'Stamina data collected in <module>MatchLineupTweaks</module> is no longer reset by opening old matches in Firefox.'
       native_names: 'Selected countries will no longer change when navigating back to the transfer search form with native country names enabled in <module>CountryList</module>.'
-      thread_author: '<module>HTThreadMarker</module> and <module>ForumAlterHeaderLine</module> will now correctly detect forum thread author.'
+      thread_author: '<module>HTThreadMarker</module> and <module>ForumAlterHeaderLine</module> will now correctly detect the author of a forum thread.'
       player_filters: 'It is now possible to use <module>PlayerFilters</module> in multiple tabs at the same time in Firefox.'
       history_stats: '<module>HistoryStats</module> is now usable with multiple teams at the same time in Firefox.'
 
