@@ -36,18 +36,9 @@ Foxtrick.modules['HTDateFormat'] = {
 		var weekOffset = FoxtrickPrefs.getString('module.' + this.MODULE_NAME +
 		                                         '.FirstDayOfWeekOffset_text');
 		// set up function for separating date and week/season,
-		// with concerns of some table fixing for simple skin
-		if ((!Foxtrick.util.layout.isStandard(doc) && Foxtrick.isPage(doc, 'matches'))
-			|| Foxtrick.isPage(doc, 'seriesHistory')) {
-			var separate = function(node) {
-				node.appendChild(doc.createElement('br'));
-			};
-		}
-		else {
-			var separate = function(node) {
-				node.appendChild(doc.createTextNode(' '));
-			};
-		}
+		var separate = function(node) {
+			node.appendChild(doc.createTextNode(' '));
+		};
 
 		var modifyDate = function(node) {
 			if (Foxtrick.hasClass(node, 'ft-date') || (Foxtrick.hasClass(node, 'matchdate')

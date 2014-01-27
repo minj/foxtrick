@@ -120,7 +120,7 @@ Foxtrick.util.matchView.fillMatches = function(container, xml, errorText) {
 				+ (isYouth ? '&SourceSystem=Youth' : '&SourceSystem=Hattrick');
 			// get in one line for standard theme while won't fit in one
 			// line anyway for simple theme
-			var cutlength = Foxtrick.util.layout.isStandard(doc) ? 12 : 18;
+			var cutlength = 12;
 			if (!rtl) {
 				matchLink.title = homeTeam + ' - ' + awayTeam;
 				var span1 = doc.createElement('span');

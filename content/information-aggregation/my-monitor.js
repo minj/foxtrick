@@ -179,7 +179,7 @@ Foxtrick.modules['MyMonitor'] = {
 				buildLink(team, nameLink);
 
 				if (FoxtrickPrefs.isModuleOptionEnabled('MyMonitor', 'TeamIcons')) {
-					var height = Foxtrick.util.layout.isStandard(doc) ? '24' : '18';
+					var height = '24';
 					if (team.logo) {
 						var img = doc.createElement('img');
 						img.title = team.name;

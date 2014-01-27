@@ -279,12 +279,7 @@ Foxtrick.modules['PsicoTSI'] = {
 
 			var isWagePredictionAvailable = (wageLow != 'N/A');
 
-			if (Foxtrick.util.layout.isStandard(doc)) {
-				Foxtrick.addClass(table, 'nowrap alltidMatches');
-			}
-			else {
-				Foxtrick.addClass(table, 'alltidMatches');
-			}
+			Foxtrick.addClass(table, 'nowrap alltidMatches');
 
 			if (isUndefinedMainskill) {
 				addImage('UNDEF_MAINSKILL');

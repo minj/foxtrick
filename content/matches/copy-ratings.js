@@ -45,9 +45,7 @@ Foxtrick.modules['CopyRatings'] = {
 				var end = Foxtrick.strrpos(headder, ')</span>');
 
 				var matchlink = doc.getElementById('ctl00_ctl00_CPContent_divStartMain')
-					.getElementsByTagName('h2')[0].getElementsByTagName('a')[
-						Foxtrick.util.layout.isStandard(doc) ? 0 : 2
-					];
+					.getElementsByTagName('h2')[0].getElementsByTagName('a')[0];
 				var gameid = Foxtrick.util.id.getMatchIdFromUrl(matchlink.href);
 				// headder.substr(start, end-start);
 
