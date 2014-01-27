@@ -36,6 +36,7 @@ en:
       psico_update: 'An option to display <module>PsicoTSI</module> prediction on the left sidebar was reimplemented.'
       ticker_update: '<module>TickerColoring</module> and <module>TickerAlert</module> were updated with new supporter news ticker types added over the past couple of years.'
       ticker_chall: 'It is not possible to distinguish friendly challenges from other MyHT messages for HT Supporters in <module>TickerColoring</module> any more. Consequently, that ticker type was renamed.'
+      htms_points: '<module>HTMSPoints</module> was updated to use the new formulas.'
       ff_button: 'Firefox toolbar button will now be more responsive and will better reflect Foxtrick state.'
       ff_disable: 'Disabling Foxtrick in Firefox will now close Foxtrick preferences (if open) and reload all Hattrick tabs to remove any modifications made by Foxtrick.'
       bugs: '<header>Bug fixes</header>'
