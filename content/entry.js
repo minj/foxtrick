@@ -106,8 +106,8 @@ Foxtrick.entry.contentScriptInit = function(data) {
 };
 
 // called on browser load and after preferences changes (background side for sandboxed, fennec)
-Foxtrick.entry.init = function() {
-	Foxtrick.log('Initializing FoxTrick...');
+Foxtrick.entry.init = function(reinit) {
+	Foxtrick.log('Initializing FoxTrick... reinit:', reinit);
 
 	// add MODULE_NAME to modules
 	var i;
@@ -117,7 +117,7 @@ Foxtrick.entry.init = function() {
 	var coreModules = [Foxtrick.Prefs, Foxtrick.L10n, Foxtrick.XMLData];
 	for (var i = 0; i < coreModules.length; ++i) {
 		if (typeof(coreModules[i].init) == 'function')
-			coreModules[i].init();
+			coreModules[i].init(reinit);
 	}
 
 	// create arrays for each recognized page that contains modules
@@ -144,7 +144,7 @@ Foxtrick.entry.init = function() {
 	}
 	Foxtrick.entry.niceRun(modules, function(m) {
 		if (typeof(m.init) == 'function')
-			return function() { m.init(); };
+			return function() { m.init(reinit); };
 		return null;
 	});
 
@@ -155,7 +155,7 @@ Foxtrick.entry.run = function(doc, is_only_css_check) {
 	try {
 		if (Foxtrick.platform == 'Firefox' && Foxtrick.Prefs.getBool('preferences.updated')) {
 			Foxtrick.log('prefs updated');
-			Foxtrick.entry.init();
+			Foxtrick.entry.init(true); // reinit
 			Foxtrick.util.css.reload_module_css(doc);
 			Foxtrick.entry.cssLoaded = true;
 			Foxtrick.Prefs.setBool('preferences.updated', false);

@@ -263,7 +263,7 @@ Foxtrick.Prefs = {
 						}
 					}
 					Foxtrick.Prefs.setBool('preferences.updated', true);
-					Foxtrick.entry.init();
+					Foxtrick.entry.init(true); // reinit
 					return true;
 				}
 				catch (e) {
@@ -277,8 +277,9 @@ Foxtrick.Prefs = {
 		}
 		else if (Foxtrick.arch == 'Sandboxed') {
 			Foxtrick.Prefs._prefs_chrome_user = {};
-			sandboxed.extension.sendRequest({ req: 'clearPrefs' },
-				Foxtrick.entry.init);
+			sandboxed.extension.sendRequest({ req: 'clearPrefs' }, function () {
+				Foxtrick.entry.init(true); // reinit
+			});
 			return true;
 		}
 		return false;
@@ -294,7 +295,7 @@ Foxtrick.Prefs = {
 				}
 			}
 			Foxtrick.Prefs.setBool('preferences.updated', true);
-			Foxtrick.entry.init();
+			Foxtrick.entry.init(true); // reinit
 		}
 		catch (e) {
 			Foxtrick.log(e);
@@ -387,7 +388,7 @@ Foxtrick.Prefs = {
 		Foxtrick.Prefs.setBool('disableTemporary', !Foxtrick.Prefs.getBool('disableTemporary'));
 		Foxtrick.modules.UI.update(sender);
 		if (Foxtrick.arch === 'Gecko') {
-			Foxtrick.entry.init();
+			Foxtrick.entry.init(true); // reinit
 			Foxtrick.reloadAll();
 		}
 	},
@@ -395,14 +396,14 @@ Foxtrick.Prefs = {
 		Foxtrick.Prefs.setBool('featureHighlight', !Foxtrick.Prefs.getBool('featureHighlight'));
 		Foxtrick.modules.UI.update(sender);
 		if (Foxtrick.arch === 'Gecko') {
-			Foxtrick.entry.init();
+			Foxtrick.entry.init(true);  // reinit
 		}
 	},
 	translationKeys: function(sender) {
 		Foxtrick.Prefs.setBool('translationKeys', !Foxtrick.Prefs.getBool('translationKeys'));
 		Foxtrick.modules.UI.update(sender);
 		if (Foxtrick.arch === 'Gecko') {
-			Foxtrick.entry.init();
+			Foxtrick.entry.init(true); // reinit
 		}
 	}
 };

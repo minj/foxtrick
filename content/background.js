@@ -41,9 +41,9 @@ Foxtrick.loader.background.browserLoad = function() {
 
 		var currencyJSON, aboutJSON, worldDetailsJSON, htLanguagesJSONText, cssTextCollection;
 
-		var updateResources = function() {
+		var updateResources = function(reinit) {
 			// init resources
-			Foxtrick.entry.init();
+			Foxtrick.entry.init(reinit);
 
 			// prepare resources for later transmission to content script
 			currencyJSON = JSON.stringify(Foxtrick.XMLData.htCurrencyJSON);
@@ -97,7 +97,7 @@ Foxtrick.loader.background.browserLoad = function() {
 			if (Foxtrick.arch == 'Sandboxed' && localStorage.getItem('preferences.updated')	||
 				Foxtrick.platform == 'Android' &&
 				Foxtrick.Prefs._prefs_gecko.getBoolPref('preferences.updated')) {
-					updateResources();
+					updateResources(true); // reinit
 			}
 
 			var resource = {
