@@ -315,9 +315,7 @@ Foxtrick.modules['ForumChangePosts'] = {
 			if (Ftag) {
 				Ftag = Ftag.getElementsByTagName('strong')[0];
 				var TName = Ftag.textContent;
-				var TName_lng = Ftag.parentNode.title;
-				TName_lng = TName_lng.replace(TName, '');
-				TName_lng = TName_lng.split(' ')[2];
+				var TName_lng = Ftag.parentNode.getAttribute('data-author');
 			} else var TName_lng = false;
 		} catch (e_tag) {
 			Foxtrick.dump('HTO ' + e_tag + '\n'); var TName_lng = false;
