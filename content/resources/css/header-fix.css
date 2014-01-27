@@ -10,6 +10,9 @@
 html[data-multiple] #header {
 	top: 20px !important;
 }
+html[data-multiple][data-theme="simple"] #header {
+	top: 18px !important;
+}
 
 #ctl00_ctl00_ucClubSwitcher_btnSwitchClub {
 	position: fixed !important;

@@ -11,7 +11,7 @@ Foxtrick.modules['ShowLineupSet'] = {
 	PAGES: ['series', 'youthSeries', 'tournaments', 'tournamentsHistory', 'ladders', 'oldSeries', 'marathon', 'topScorers'],
 	OPTIONS: ['LineupSet', 'Ownerless', 'Standing', 'Winning'],
 	NICE: -2, //before ReLiveLinks
-	CSS: Foxtrick.InternalPath + 'resources/css/show-lineup-set.css',
+	//CSS: Foxtrick.InternalPath + 'resources/css/show-lineup-set.css',
 
 	run: function(doc) {
 		var rtl = Foxtrick.util.layout.isRtl(doc);

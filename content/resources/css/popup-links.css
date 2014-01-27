@@ -16,22 +16,7 @@ html[dir="rtl"] td .ft-popup-span {
 	display:block;
 }*/
 
-html[data-theme="standard"] ul.ft-popup-list {
-	font-size: 11px;
-	display: none;
-	position: absolute;
-	background-color: #ffffff;
-	border: solid 2px #267f30;
-	padding: 0px;
-	z-index: 10002;
-	list-style-type: none;
-	margin:0px;
-	padding: 3px 2px !important;
-	-webkit-border-radius: 10px;
-	-moz-border-radius: 10px;
-	border-radius: 10px;
-}
-html[data-theme="simple"] ul.ft-popup-list {
+ul.ft-popup-list {
 	font-size: 11px;
 	display: none;
 	position: absolute;
@@ -42,6 +27,11 @@ html[data-theme="simple"] ul.ft-popup-list {
 	list-style-type: none;
 	margin:0px;
 	padding: 3px 2px 3px 2px;
+}
+html[data-theme="standard"] ul.ft-popup-list {
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
 }
 
 html[dir="ltr"] ul.ft-popup-list {

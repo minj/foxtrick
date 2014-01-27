@@ -9,22 +9,16 @@ html[dir="rtl"] .ft-moderator-popup-align {
 	margin-left: 10px;
 }
 
-html[data-theme="simple"] .ft-moderator-popup {
-	background-color: #ffcc00;
-	position: relative;
-	z-index: 99;
-	border: 1px solid black;
-	padding: 0px 8px 0px 8px;
-	margin-top: -28px ;
-}
-
-html[data-theme="standard"] .ft-moderator-popup {
+.ft-moderator-popup {
 	background-color: #ffcc00;
 	position: relative;
 	z-index: 99;
 	border: 1px solid black;
 	padding: 2px 8px 2px 8px;
 	margin-top: -22px;
+}
+html[data-theme="simple"] .ft-moderator-popup {
+	margin-top: -28px;
 }
 
 }

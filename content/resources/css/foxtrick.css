@@ -267,19 +267,6 @@ ul.ft-pop > li a, ul.ft-pop span {
 }
 #ft_clear_cache {cursor: pointer; color:#3F7137; }
 
-html[data-theme="simple"] .transferPlayerSkills {
-	max-width: 62% !important;
-	background-color: white;
-	padding-left: 5px !important;
-}
-html[data-theme="simple"] .transferPlayerInformation {
-	max-width: 30% !important;
-}
-/* smaller league table for eastern */
-html[data-theme="simple"] body[style*="font-size:0.79em;"] #ctl00_ctl00_CPContent_CPMain_UpdatePanelLiveLeagueTable {
-	font-size:0.9em;
-}
-
 
 #ft-monitor-sidebar-box {
 	overflow: hidden;
