@@ -303,34 +303,6 @@
 		"title": "TodoHattrick",
 		"img": "http://www.stepi.org/todohattrick/images/thbystepi3.ico"
 	},
-	"francestats": {
-		"leaguelink": {
-			"url": "http://www.francestats.fr/show_league.php?league=[leagueid]",
-			"filters": [
-				"countryid"
-			]
-		},
-		"teamlink": {
-			"url": "http://www.francestats.fr/show_team.php?teamid=[teamid]",
-			"filters": [
-				"countryid"
-			]
-		},
-		"countrylink": {
-			"url": "http://www.francestats.fr/",
-			"filters": [
-				"countryid"
-			]
-		},
-		"countryidranges": [
-			[
-				5,
-				5
-			]
-		],
-		"title": "FranceStats",
-		"img": "http://www.francestats.fr/favicon.ico"
-	},
 	"hattristics": {
 		"leaguelink": {
 			"url": "http://www.hattristics.org/pub/viewLeague.php?leagueName=[leaguename]",
