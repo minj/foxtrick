@@ -6,20 +6,24 @@
 div#shortcuts,
 div#shortcuts div.scContainer
 {width: 324px !important;}
+html[data-theme="simple"] div#shortcuts,
+html[data-theme="simple"] div#shortcuts div.scContainer
+{width: 500px !important;}
 div#shortcutsNoSupporter,
 div#shortcutsNoSupporter div.scContainerNoSupporter
 {width: 200px !important;}
-
-html[data-theme="standard"] #ticker, html[data-theme="standard"] #ticker div {
+html[data-theme="simple"] div#shortcutsNoSupporter,
+html[data-theme="simple"] div#shortcutsNoSupporter div.scContainerNoSupporter
+{width: 370px !important;}
+#ticker, #ticker div {
 	width: 400px !important;
 }
 html[data-theme="simple"] #ticker, html[data-theme="simple"] #ticker div {
-	width: 275px !important;
+	width: 280px !important;
 }
-
 html[dir="ltr"][data-theme="standard"] #ticker { left: 235px !important; }
 html[dir="ltr"][data-theme="simple"] #ticker { left: 165px !important; }
-html[dir="rtl"] #ticker { left: 350px; }
+html[dir="rtl"] #ticker { left: 420px; }
 
 
 #ticker div { overflow:hidden !important; white-space:nowrap !important;}
