@@ -81,6 +81,14 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 			var gameType = gameTypeImage.className;
 			return gameTypeImage.parentNode.getAttribute('style') != null;
 		};
+		// new W.O detection
+		var isWalkover = function(node) {
+			var stars = Foxtrick.trim(node.getElementsByClassName('endColumn2')[0].textContent);
+			// stars in standard || no perform || stars in simple
+			if (stars.length === 0 || stars === '-' || stars.match(/^[0-9,. ()]+$/))
+				return false;
+			return true;
+		};
 
 		//get minutes played, maximum 90 minutes tho
 		var getPlayedMinutes = function(node) {
@@ -98,18 +106,18 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 		};
 
 		//did the player get any stars? ... used to identify walkovers
-		var gotStars = function(node) {
-			var stars = node.getElementsByClassName('endColumn2')[0];
-
-			if (Foxtrick.util.layout.isStandard(doc)) {
-				var wholeStars = stars.getElementsByClassName('starWhole')[0];
-				var halfstars = stars.getElementsByClassName('starHalf')[0];
-				var bigstars = stars.getElementsByClassName('starBig')[0];
-				return (wholeStars || halfstars || bigstars);
-			} else {
-				return (stars.textContent.match(/\d+/) !== null);
-			}
-		};
+		//var gotStars = function(node) {
+		//	var stars = node.getElementsByClassName('endColumn2')[0];
+		//
+		//	if (Foxtrick.util.layout.isStandard(doc)) {
+		//		var wholeStars = stars.getElementsByClassName('starWhole')[0];
+		//		var halfstars = stars.getElementsByClassName('starHalf')[0];
+		//		var bigstars = stars.getElementsByClassName('starBig')[0];
+		//		return (wholeStars || halfstars || bigstars);
+		//	} else {
+		//		return (stars.textContent.match(/\d+/) !== null);
+		//	}
+		//};
 
 		//did the player get a red card? ... used to identify walkovers
 		var gotRedCard = function(node) {
@@ -215,8 +223,8 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 
 			//check if he also got stars, a game where he got xpgain
 			//but has not even half a star must be a walkover
-			var got_stars = gotStars(entry);
-			var walkover = !got_stars && minutes == 90 && !redCard;
+			//var got_stars = gotStars(entry);
+			var walkover = isWalkover(entry);
 			var pseudo_points = xp_gain; //for visualisation
 			xp_gain = walkover ? 0 : xp_gain;
 
