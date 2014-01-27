@@ -299,8 +299,8 @@ Foxtrick.modules['ForumChangePosts'] = {
 		Foxtrick.onClick(copy_posting_link_archive, copy_posting_to_clipboard);
 
 		// part of alter header
-		var trunclength = 10;
-		if (isStandardLayout) trunclength = 14;
+		var trunclength = 14;
+		//if (!isStandardLayout) trunclength = 10;
 
 		var doubleHeaderStyle = 'height:30px !important; ';
 		var alt_supporter = doc.createElement('a');

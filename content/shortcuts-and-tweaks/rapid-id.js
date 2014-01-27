@@ -147,12 +147,7 @@ Foxtrick.modules['RapidId'] = {
 
 		var rightnow = doc.getElementById('ctl00_ctl00_ucOngoingEvents_pnlOngoingEvents');
 		if (rightnow) {
-			// no space for rapidid with right_now in simple skin. so don't show it during matches
-			if (!Foxtrick.util.layout.isStandard(doc))
-				return;
-			// limit size in std skin
-			else
-				rightnow.setAttribute('style', 'overflow:hidden; white-space:nowrap; width:300px;');
+			rightnow.setAttribute('style', 'overflow:hidden; white-space:nowrap; width:300px;');
 		}
 		// get labels of optgroup and option
 		for (var i = 0; i < options.length; ++i) {

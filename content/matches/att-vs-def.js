@@ -73,8 +73,7 @@ Foxtrick.modules['AttVsDef'] = {
 			box = Foxtrick.addBoxToSidebar(doc, header, bodydiv, 1);
 		else box = Foxtrick.Pages.Match.addBoxToSidebar(doc, header, bodydiv, 1);
 
-		if (Foxtrick.util.layout.isStandard(doc) && Foxtrick.Prefs.getInt('module.' +
-		    this.MODULE_NAME + '.value') == 0)
+		if (Foxtrick.Prefs.getInt('module.' + this.MODULE_NAME + '.value') == 0)
 			bodydiv.parentNode.style.padding = '8px 6px 15px';
 	},
 

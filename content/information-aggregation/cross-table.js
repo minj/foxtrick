@@ -253,7 +253,7 @@ Foxtrick.modules['CrossTable'] = {
 		};
 
 		var drawSeasonGraph = function() {
-			var width = Foxtrick.util.layout.isStandard(doc) ? 540 : 440;
+			var width = 540;
 			var sorter = function(r, a, b) {
 				var goalsDifference = function(t) {
 					return t.goalsFor[r] - t.goalsAgainst[r];

@@ -144,8 +144,8 @@ Foxtrick.modules['DirectPageLinks'] = {
 
 			//standard skin
 			var supportedButtons = 18;
-			if (!Foxtrick.util.layout.isStandard(doc))
-				supportedButtons = 14; //simple skinn
+			//if (!Foxtrick.util.layout.isStandard(doc))
+			//	supportedButtons = 14; //simple skinn
 
 			//there's room for all pages
 			if (maxpage <= supportedButtons) {

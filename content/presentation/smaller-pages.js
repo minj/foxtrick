@@ -32,8 +32,8 @@ Foxtrick.modules['SmallerPages'] = {
 				}
 				else {
 					// while for simple theme, it's merely the width of the div
-					// with id 'page', which is 765px.
-					main.style.width = '765px';
+					// with id 'page', which is 981px.
+					main.style.width = '981px';
 				}
 			}
 		}

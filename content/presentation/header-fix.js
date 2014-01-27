@@ -85,16 +85,7 @@ Foxtrick.modules['HeaderFix'] = {
 		if (arenaInfo) {
 			arenaInfo = ctl00_ctl00_CPContent_CPMain_pnl.removeChild(arenaInfo);
 			ctl00_ctl00_CPContent_CPMain_pnl.appendChild(arenaInfo);
-			var margin;
-			if (isArena)
-				margin = 'margin-right:18px';
-			else
-				margin = '';
-			if (Foxtrick.util.layout.isStandard(doc))
-				arenaInfo.setAttribute('style', 'float:right !important;');
-			else
-				arenaInfo.setAttribute('style', 'float:right !important; width:190px !important;' +
-				                       margin);
+			arenaInfo.setAttribute('style', 'float:right !important;');
 		}
 
 		// move flash
