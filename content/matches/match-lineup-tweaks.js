@@ -80,7 +80,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		if (!subCells.length)
 			return;
 
-		if (doc.getElementsByClassName('ft-subDiv').length)
+		if (doc.getElementsByClassName('ft-indicator-sub').length)
 			return;
 
 		var isYouth = Foxtrick.Pages.Match.isYouth(doc);
@@ -150,7 +150,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 				//this is bound to break easily
 				var subDiv = Foxtrick
 					.createFeaturedElement(doc, Foxtrick.modules['MatchLineupTweaks'], 'div');
-				Foxtrick.addClass(subDiv, 'ft-subDiv');
+				Foxtrick.addClass(subDiv, 'ft-indicator ft-indicator-sub');
 				Foxtrick.addImage(doc, subDiv, {
 					src: iconSrc,
 					alt: subText,
@@ -162,7 +162,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 						highlightSub(otherId);
 					});
 				}
-				var target = node.getElementsByClassName('ft-indicatorDiv')[0];
+				var target = node.getElementsByClassName('ft-indicator-wrapper')[0];
 				target.appendChild(subDiv);
 			}, playerLinks);
 		};
@@ -275,7 +275,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 					var id = Math.abs(Foxtrick.getParameterFromUrl(players[i].href, param));
 					var player = Foxtrick.Pages.Players.getPlayerFromListById(playerInfo, id);
 					var node = players[i].parentNode.parentNode
-						.getElementsByClassName('ft-indicatorDiv')[0];
+						.getElementsByClassName('ft-indicator-wrapper')[0];
 					if (player)
 						addSpecialty(node, player);
 					else
@@ -292,7 +292,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 
 								Foxtrick.stopListenToChange(doc);
 								var node = players[missing[j].i].parentNode.parentNode
-									.getElementsByClassName('ft-indicatorDiv')[0];
+									.getElementsByClassName('ft-indicator-wrapper')[0];
 								addSpecialty(node, p ? {
 									specialityNumber: p.Specialty
 								} : null);
@@ -352,7 +352,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 				if (missing.length) {
 					for (var j = 0; j < missing.length; ++j) {
 						var playerDiv = players[missing[j]].parentNode.parentNode;
-						var ftDiv = playerDiv.getElementsByClassName('ft-indicatorDiv')[0];
+						var ftDiv = playerDiv.getElementsByClassName('ft-indicator-wrapper')[0];
 						var missingDiv = doc.createElement('div');
 						Foxtrick.addClass(missingDiv, 'ft-playerMissing');
 						Foxtrick.addImage(doc, missingDiv, {
@@ -957,7 +957,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		Foxtrick.stopListenToChange(doc);
 
 		var playerDivs = doc.querySelectorAll('div.playerDiv');
-		if (playerDivs.length && playerDivs[0].getElementsByClassName('ft-indicatorDiv').length)
+		if (playerDivs.length && playerDivs[0].getElementsByClassName('ft-indicator-wrapper').length)
 			// been here before
 			return;
 
@@ -967,7 +967,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		for (var i = 0; i < playerDivs.length; i++) {
 			var player = playerDivs[i];
 			var ftdiv = Foxtrick.createFeaturedElement(doc, this, 'div');
-			Foxtrick.addClass(ftdiv, 'ft-indicatorDiv');
+			Foxtrick.addClass(ftdiv, 'ft-indicator-wrapper');
 			var staminaDiv = player.querySelector('div.sectorShirt + div > div');
 			if (staminaDiv) {
 				var stamina = staminaDiv.title.match(/\d+/)[0];
