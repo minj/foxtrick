@@ -12,7 +12,6 @@ es-AR:
       crowdin: "<header>Muchas actualizaciones en las traducciones de nuestros colaboradores mediante <linkCrowdin> crowdin</linkCrowdin>. Usted también puede ayudarnos!</header>"
       new: "<header>Nuevos módulos</header>"
       hy_skills: "<module>YouthSkills</module>: Mejora en la página de jugadores juveniles con información de hattrick youthclub . Solamente para los usuarios de HY."
-      series_transfers: "<module>SeriesTransfers</module>: muestra una lista de los jugadores actualmente a la venta en la página de la liga."
       other: "<header>Otros cambios</header>"
       simulator_prob: "<module>MatchSimulator</module> también fue mejorado con probabilidades reales anotando/defensa/posesión desde el nuevo módulo <module>MatchRatingsTweaks</module>."
       psico_update: "Se reimplementó una opción para mostrar la predicción de  <module>PsicoTSI</module>en la barra de la izquierda."

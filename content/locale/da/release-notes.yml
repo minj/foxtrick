@@ -12,20 +12,19 @@ da:
       crowdin: "<header>En del oversættelses opdateringer fra vores fantastiske brugere ved hjælp af <linkCrowdin>crowdin </linkCrowdin>. Du kan også hjælpe til!</header>"
       new: "<header>Nye moduler</header>"
       hy_skills: "<module>YouthSkills</module>: Forbedre ungdoms spilleres side med oplysninger fra hattrick youthclub. Kun for HY-brugere."
-      series_transfers: "<module>SeriesTransfers</module>: Viser en liste over spillere der i øjeblikket er til salg på liga sider."
       ratings_tweaks: "<module>MatchRatingsTweaks</module>: Justerer ratings på kamp rapportside. Viser numerisk ratings og følger deres ændringer, når du gennemser tidslinjen, ligesom i <module>MatchSimulator</module>. Beregner virkelige sandsynligheder for scoring/forsvar/bold-besiddelse ifølge formler fra unwritten manual: 15766691.221, 15766691.242"
       other: "<header>Andre ændringer</header>"
       simulator_prob: "<module>MatchSimulator</module> blev også forbedret med virkelige sandsynligheder for scoring/forsvars/bold-besiddelse fra den nye <module>MatchRatingsTweaks</module>-modul."
       staff_marker: "<module>StaffMarker</module> er blevet omstruktureret. Nye muligheder for supportere, supportede hold og Landstrænere er blevet tilføjet. Angiv indstillinger som du gerne vil have det."
       psico_update: "En mulighed for at vise <module>PsicoTSI</module> forudsigelse på venstre sidebar blev genimplementeret."
       ticker_update: "<module>TickerColoring</module> og <module>TickerAlert</module> blev opdateret med nye supporter nyheds symboler, som var tilføjet i de forløbne år."
+      ticker_chall: "Det er ikke længere muligt, at skelne udfordringer til venskabskampe fra andre MyHT meddelelser, for HT supporter  i <module>TickerColoring</module>. Derfor, er denne nyheds meddelelse omdøbt."
       ff_button: Firefox-værktøjslinjeknappen vil nu reagerer mere og vil afspejle Foxtrick stat bedre.
       ff_disable: Deaktivering af Foxtrick i Firefox, vil nu lukke Foxtrick indstillinger (hvis de er åbne), og genindlæse alle Hattrick faner, for at fjerne eventuelle ændringer foretaget af Foxtrick.
-      ticker_chall: "Det er ikke længere muligt, at skelne udfordringer til venskabskampe fra andre MyHT meddelelser, for HT supporter  i <module>TickerColoring</module>. Derfor, er denne nyheds meddelelse omdøbt."
       bugs: "<header>Fejlrettelser</header>"
       android: "<p>Der er lavet en række større ændringer til Foxtrick for at tilpasse Firefox til Android. Som følge heraf, kører Foxtrick nu meget bedre på mobilenheder.</p> <p>Berørte moduler er: <module>MatchReportFormat</module>, <module>Ratings</module>, <module>MatchSimulator</module>, <module>HTMSPrediction</module> <em>og andre</em>.</p>"
-      native_names: "De valgte lande vil ikke længere ændre navn, når du navigerer tilbage til transfersøgning, med hjemland navne aktiveret i <module>CountryList</module>."
       custom_links: Funktionaliteten af eksterne links er blevet gennemgået og alle kendte problemer er løst. Du kan nu også tilføje brugerdefinerede hyperlinks på kamprapportsiden.
+      native_names: "De valgte lande vil ikke længere ændre navn, når du navigerer tilbage til transfersøgning, med hjemland navne aktiveret i <module>CountryList</module>."
       player_filters: "Det er nu muligt at bruge <module>PlayerFilters</module> i flere faner på samme tid i Firefox."
       history_stats: "<module>HistoryStats</module> kan nu bruges med flere hold på samme tid i Firefox."
     0.12.2.1:

@@ -14,14 +14,13 @@ de:
       crowdin: "<header>Eine Menge neue Übersetzungen von unseren geliebten <linkCrowdin>Crowdin</linkCrowdin> Nutzern. Du kannst übrigens auch ganz einfach mithelfen!</header>"
       new: "<header>Neue Module</header>"
       hy_skills: "<module>YouthSkills</module>: Jugendspieler-Seite mit Skill-Informationen aus hattrick youthclub angereichert. Nur für HY-Nutzer."
-      series_transfers: "<module>SeriesTransfers</module>: Listet auf Ligenseiten die momentan zu Verkauf stehenden Spieler auf."
       other: "<header>Andere Änderungen</header>"
       staff_marker: "<module>StaffMarker</module> wurde überarbeitet. Neue Optionen für Teams die du unterstützt, Teams die dich unterstützen und für die Nationaltrainer würden hinzugefügt."
       psico_update: "<module>PsicoTSI</module> lässt sich nun auch in der Seitenleiste anzeigen, so wie man es auch in der ursprünglichen Version möglich war."
       ticker_update: "<module>TickerColoring</module> und <module>TickerAlert</module> wurde auf den neusten Stand gebracht um mit neu hinzugekommenen Tickermeldungen umgehen zu können. "
+      ticker_chall: "Es ist nicht mehr möglich im Ticker Meldungen zu Freundschaftspielen von sonstigen MyHT Meldungen zu unterscheiden. Deswegen wurde dieser Typ von Meldung im Modul <module>TickerColoring</module> umbenannt."
       ff_button: Das Icon in der Foxtrick Symbolleiste spiegelt nun den Foxtrick Status besser wieder.
       ff_disable: Wird Foxtrick unter Firefox deaktiviert schließen die Einstellungen (wenn geöffnet) autoamtisch und alle Hattrick Tabs werden neu geladen.
-      ticker_chall: "Es ist nicht mehr möglich im Ticker Meldungen zu Freundschaftspielen von sonstigen MyHT Meldungen zu unterscheiden. Deswegen wurde dieser Typ von Meldung im Modul <module>TickerColoring</module> umbenannt."
       bugs: "<header>Bugfixes</header>"
       android: |
         <p>Es wurden massive Änderungen im Kern von Foxtrick vorgenommen um besser mit Firefox for Android zu funktionieren. Foxtrick funktioniert nun viel besser auf Mobilgeräten.</p>

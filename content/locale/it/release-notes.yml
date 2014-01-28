@@ -14,22 +14,21 @@ it:
       crowdin: "<header>Sono disponibili tante nuove traduzioni per i nostri utenti su <linkCrowdin>crowdin tool</linkCrowdin>. Anche tu puoi dare una mano!</header>"
       new: "<header>Nuovi moduli</header>"
       hy_skills: "<module>YouthSkills</module>: Migliora la pagina dei giocatori delle giovanili con informazioni fornite da hattrick youthclub. Solo per utenti di HY."
-      series_transfers: "<module>SeriesTransfers</module>: Mostra un elenco di giocatori attualmente in vendita nella pagina della serie."
       ratings_tweaks: '<module>MatchRatingsTweaks</module>: Settaggi sulle valutazioni nella pagina del report della partita. Mostra le valutazioni numerica e segue i loro cambi quando si naviga durante la partita proprio come in <module>MatchSimulator</module>. Calcola le reali probabilità di  segnare/difendere/possesso palla in abse alle formule stabilite in  "unwritten manual": 15766691.221, 15766691.242'
       other: "<header>Altre modifiche</header>"
       simulator_prob: "<module>MatchSimulator</module> è stato migliorato con le reali probabilità di segnare/difendere/possesso dal nuovo <module>MatchRatingsTweaks</module> modulo."
       staff_marker: "<module>StaffMarker</module>  è stato modificato. Ci sono nuove opzioni per i supporters, le squadre supportate e i ct delle nazionali. Per favore imposta le preferenze a tuo piacimento."
       psico_update: "Un'opzione per visualizzare la previsione di <module>PsicoTSI</module> nella barra laterale di sinistra è stata reimplementata."
       ticker_update: "<module>TickerColoring</module> e <module>TickerAlert</module> sono stati aggiornati con i nuovi tipi di ticker per le notizie per i supporter aggiunti negli ultimi due anni."
+      ticker_chall: "Non è possibile distinguere più sfide amichevoli da altri messaggi MyHT per gli HT supporter in <module>TickerColoring</module>. Di conseguenza, è stato rinominato quel tipo di ticker."
       ff_button: Pulsante della barra degli strumenti di Firefox sarà più reattivo e rifletterà meglio lo stato di Foxtrick.
       ff_disable: Disabilitare Foxtrick in Firefox chiuderà le preferenze di Foxtrick (se aperte) e ricaricherà tutte le schede di Hattrick per rimuovere le modifiche apportate da Foxtrick.
-      ticker_chall: "Non è possibile distinguere più sfide amichevoli da altri messaggi MyHT per gli HT supporter in <module>TickerColoring</module>. Di conseguenza, è stato rinominato quel tipo di ticker."
       bugs: "<header>Correzioni di bug</header>"
       android: |
         <p>Sono stati effettuati dei cambiamenti importanti per permettere a foxtrick di funzionare su Firefox per Android. Come risultato, ora Foxtrick funziona molto meglio sui dispositivi mobili.</p>
         <p>Moduli affetti: <module>MatchReportFormat</module>, <module>Ratings</module>, <module>MatchSimulator</module>, <module>HTMSPrediction</module> <em>ed altri </em>.</p>
-      native_names: "I paesi selezionati non cambieranno più quando navigando si tornerà indietro al form della ricerca trasferimenti con i nomi dei paesi natali abilitati in <module>CountryList</module>."
       custom_links: Le funzionalità dei link esterni sono stati ricontrollati e tutti i problemi conosciuti risolti. Ora è anche possibile aggiungere link personalizzati nella pagina del report della partita.
+      native_names: "I paesi selezionati non cambieranno più quando navigando si tornerà indietro al form della ricerca trasferimenti con i nomi dei paesi natali abilitati in <module>CountryList</module>."
       player_filters: "Ora è possibile utilizzare <module>PlayerFilters</module> in più schede contemporaneamente in Firefox."
       history_stats: "<module>HistoryStats</module> è ora utilizzabile con più squadre contemporaneamente in Firefox."
     0.12.2.1:

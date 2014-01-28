@@ -14,7 +14,6 @@ pt-BR:
       crowdin: "<header>Várias atualizações de traduções de nossos fantásticos usuários que usam o <linkCrowdin>crowdin tool</linkCrowdin>. Você também pode ajudar!</header>"
       new: "<header>Novos módulos</header>"
       hy_skills: "<module>YouthSkills</module>: Incrementa a página de jogadores juniores com informações do Hattrick Youthclub.  usuários do HY apenas."
-      series_transfers: "<module>SeriesTransfers</module>: Mostra a lista de jogadores a venda nas páginas das ligas."
       other: "<header>Outras alterações</header>"
       simulator_prob: "<module>MatchSimulator</module> também foi imcrementado com as probabilidades reais de ataque/defesa/posse no novo módulo <module>MatchRatingsTweaks</module>."
       staff_marker: "<module>StaffMarker</module> foi reestruturado. Novas opções para apoiadores, times parceiros e técnicos de seleções nacionais foram adicionadas. Por favor configure ao seu gosto."

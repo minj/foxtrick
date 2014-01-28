@@ -12,20 +12,19 @@ es-CR:
       crowdin: "<header>Muchas actualizaciones de traducción, de nuestros impresionantes usuarios, utilizando la <linkCrowdin>herramienta crowdin</linkCrowdin>. ¡Tu puedes ayudar también!</header>"
       new: "<header>Nuevos módulos</header>"
       hy_skills: "<module>YouthSkills</module>: mejora la página de jugadores jóvenes con información de hattrick youthclub. Solamente para usuarios registrados de HY."
-      series_transfers: "<module>SeriesTransfers</module>: muestra una lista de los jugadores actualmente a la venta en las páginas de la liga."
       ratings_tweaks: "<module>MatchRatingsTweaks</module>: ajustes de calificaciones en la página de reporte de partido. Muestra las calificaciones de forma numérica y sigue sus cambios cuando te desplazas por la línea de tiempo, justo como en <module>MatchSimulator</module>. Calcula las probabilidades reales de ataque/defensa/posesión, según las fórmulas establecidas en el manual no escrito: 15766691.221, 15766691.242"
       other: "<header>Otros cambios</header>"
       simulator_prob: "<module>MatchSimulator</module> también fue mejorada con probabilidades reales de ataque/defensa/posesión del nuevo módulo <module>MatchRatingsTweaks</module>."
       staff_marker: "<module>StaffMarker</module> ha sido reestructurado. Se han añadido nuevas opciones para los supporters, los equipos de los que eres supporter y entrenadores nacionales. Configura las preferencias a tu gusto."
       psico_update: "Una opción para mostrar la predicción de <module>PsicoTSI</module> en la barra lateral izquierda."
       ticker_update: "<module>TickerColoring</module> y <module>TickerAlert</module> fueron actualizados con los nuevos tipos de notificaciones del paquete supporter que se añadieron en los últimos años."
+      ticker_chall: "No es posible distinguir los retos amistosos de otros mensajes de MyHT, para supporters de HT en el modulo de <module>TickerColoring</module>. En consecuencia, ese tipo de notificaciones han sido renombradas."
       ff_button: Botón de la barra de herramientas de Firefox ahora será más receptivo y reflejará mejor el estado de Foxtrick.
       ff_disable: Desactivar Foxtrick en Firefox ahora cierra las preferencias de Foxtrick (si están abierta) y recargar todas las pestañas de Hattrick para quitar cualquier modificación hecha por Foxtrick.
-      ticker_chall: "No es posible distinguir los retos amistosos de otros mensajes de MyHT, para supporters de HT en el modulo de <module>TickerColoring</module>. En consecuencia, ese tipo de notificaciones han sido renombradas."
       bugs: "<header>Corrección de errores</header>"
       android: "<p>Se han hecho correcciones importantes en el núcleo de Foxtrick para adaptarse a Firefox para Android. Como resultado, Foxtrick ahora funciona mucho mejor en los dispositivos móviles.</p> <p>Módulos afectados:  <module>MatchReportFormat</module>, <module>Ratings</module>, <module>MatchSimulator</module>, <module>HTMSPrediction</module> <em>et al</em>.</p>"
-      native_names: "Países seleccionados ya no van a cambiar cuando se navega de regreso a la página de búsqueda de transferencias, con los nombres de país nativo habilitados en <module>CountryList</module>."
       custom_links: La funcionalidad de los Enlaces externos ha sido revisada y todas los errores conocidos han sido arreglados. Ahora puede añadir enlaces personalizados en la página de reporte de partido también.
+      native_names: "Países seleccionados ya no van a cambiar cuando se navega de regreso a la página de búsqueda de transferencias, con los nombres de país nativo habilitados en <module>CountryList</module>."
       player_filters: "Ahora es posible utilizar <module>PlayerFilters</module> en varias pestañas al mismo tiempo en Firefox."
       history_stats: "<module>HistoryStats</module> ahora es utilizable con varios equipos al mismo tiempo en Firefox."
     0.12.2.1:

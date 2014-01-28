@@ -10,26 +10,34 @@ ko:
       opera: |
         <p>이는 Opera 12 및 하위 버전을 공식적으로 지원하는 마지막 메이저 버전입니다. 기존의 Foxtrick 버전들은 추가적인 공지 없이 기능을 중단할 것입니다.</p>
         <p><linkOperaNext>Opera Next</linkOperaNext>로 변경하는 것을 고려하거나 저희가 지원하는 다른 브라우저를 선택해주세요.</p>
+      safari: Safari 5.x 버전 지원이 곧 중단될 것입니다.
       twitter: "<linkTwitter>Foxtrick on Twitter</linkTwitter>을 팔로우하면 최신 뉴스 및 업데이트와 공지를 받을 수 있습니다."
       crowdin: "<header>저희 뛰어난 사용자들이 <linkCrowdin>crowdin tool</linkCrowdin>을 사용하여 수많은 번역 업데이트가 있었습니다. 당신도 도울 수 있습니다!</header>"
       new: "<header>새로운 모듈</header>"
       hy_skills: "<module>YouthSkills</module>: Hattrick Youthclub 정보를 기반으로 유소년 선수 페이지의 정보를 향상시킵니다. 오직 HY 사용자만 해당됩니다."
-      series_transfers: "<module>SeriesTransfers</module>: 시리즈 페이지에 현재 판매 중인 선수 목록을 보여줍니다."
       ratings_tweaks: "<module>MatchRatingsTweaks</module>:  경기 보고서 페이지에서 평점을 조작합니다. <module>MatchSimulator</module>에서처럼 시각표를 탐색할 때 평점과 변화를 수치적으로 표시합니다. ‘unwritten manual: 15766691.221, 15766691.242’에서 규명한 공식에 따라 실제 득점/수비/점유율 확률을 계산합니다."
+      match_weather: "<module>MatchWeather</module>는 경기 페이지에서 오늘과 내일 경기장 날씨를 보여줍니다."
       other: "<header>기타 변경 사항</header>"
+      ht_changes: 최근 Hattrick의 변경 사항들을 지원하기 위해 Foxtrick을 업데이트하였습니다. 지원 대상은 유소년 경기 보고서, 단순 테마 및 경기 지시 사항 설정 인터페이스입니다.
+      locale_support: "로컬 지원 업데이트: 라트비아 Euro 통화, 새로운 스페인 방언 이름, 올바른 시간 날짜 형식 등입니다."
       simulator_prob: "<module>MatchSimulator</module>은 새로운 <module>MatchRatingsTweaks</module> 모듈로부터 실제 득점/수비/점유율 확률로 향상되었습니다."
       staff_marker: "<module>StaffMarker</module>을 재구성하였습니다. 서포터들과 지원받는 팀, 국가 대표 팀 감독 옵션을 추가하였습니다. 환경 설정에서 원하는 대로 설정하세요."
+      links_enhancments: "이제 모든 <module>Links</module>를 쉽게 비활성화시킬 수 있으며 페이지를 여는 방법을 설정할 수 있습니다."
       psico_update: "왼쪽 사이드 바에서 <module>PsicoTSI</module> 예측을 표시하는 옵션을 다시 이행하였습니다."
       ticker_update: "지난 몇 년 동안 추가된 새로운 서포터 뉴스티커 유형을 추가하기 위해 <module>TickerColoring</module> 모듈과 <module>TickerAlert</module> 모듈을 업데이트하였습니다."
+      ticker_chall: "더 이상 <module>TickerColoring</module>에서 HT Supporter용 MyHT 메시지로부터 친선 경기 도전을 구별하는 것이 불가능합니다. 따라서 해당 뉴스티커 유형을 개명하였습니다."
+      htms_points: "<module>HTMSPoints</module>는 새로운 공식을 사용하도록 업데이트되었습니다."
       ff_button: Firefox 툴바 버튼은 이제 더욱 즉각 반응하고 Foxtrick 상태를 반영합니다.
       ff_disable: Firefox에서 Foxtrick을 비활성화하면 이제 (환경 설정이 열려 있는 경우) Foxtrick 환경 설정을 닫고 Foxtrick에 의해 수정된 부분을 모두 제거하기 위해 모든 Hattrick 탭을 다시 불러옵니다.
-      ticker_chall: "더 이상 <module>TickerColoring</module>에서 HT Supporter용 MyHT 메시지로부터 친선 경기 도전을 구별하는 것이 불가능합니다. 따라서 해당 뉴스티커 유형을 개명하였습니다."
       bugs: "<header>버그 수정</header>"
       android: |
         <p>Android 용 Firefox를 적응시키기 위해 Foxtrick 코어에 중대한 변화가 있었습니다. 그 결과 Foxtrick은 이제 모바일 디바이스에서 더 나은 성능을 기대할 수 있습니다.</p>
         <p>해당 모듈: <module>MatchReportFormat</module>, <module>Ratings</module>, <module>MatchSimulator</module>, <module>HTMSPrediction</module> <em>등등</em>.</p>
-      native_names: "<module>CountryList</module>에서 토착 국가 이름으로 활성화된 이적 검색 폼으로 되돌아갈 때 선택한 국가가 더 이상 변경되지 않을 것입니다."
       custom_links: 외부 링크 기능을 재검토하고 알려진 모든 문제를 해결하였습니다. 이제 경기 보고서 페이지에서도 사용자 지정 링크를 추가할 수 있습니다.
+      player_xp: "<module>PlayerStatsExperience</module>가 이제 모든 경우의 부전승 경기들을 올바르게 감지할 것입니다."
+      stamina_data_bug: "Firefox에서 과거 경기들을 열람할 때 <module>MatchLineupTweaks</module>에서 수집한 체력 자료가 재설정되지 않습니다."
+      native_names: "<module>CountryList</module>에서 토착 국가 이름으로 활성화된 이적 검색 폼으로 되돌아갈 때 선택한 국가가 더 이상 변경되지 않을 것입니다."
+      thread_author: "이제부터 <module>HTThreadMarker</module> 및 <module>ForumAlterHeaderLine</module>가 토론장 스레드의 글쓴이를 올바르게 감지할 것입니다."
       player_filters: "Firefox를 사용하는 사용자는 이제 동시에 멀티 탭에서 <module>PlayerFilters</module>을 사용하는 것이 가능합니다."
       history_stats: "이제 Firefox에서 <module>HistoryStats</module>을 동시에 여러 팀들과 함께 쓸 수 있습니다."
     0.12.2.1:
