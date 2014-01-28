@@ -1,5 +1,47 @@
 {
 	"language": {
+		"confidence": [
+			{
+				"text": "nicht vorhanden",
+				"value": "0"
+			},
+			{
+				"text": "katastrophal",
+				"value": "1"
+			},
+			{
+				"text": "armselig",
+				"value": "2"
+			},
+			{
+				"text": "gering",
+				"value": "3"
+			},
+			{
+				"text": "bescheiden",
+				"value": "4"
+			},
+			{
+				"text": "stark",
+				"value": "5"
+			},
+			{
+				"text": "sehr groß",
+				"value": "6"
+			},
+			{
+				"text": "leicht überzogen",
+				"value": "7"
+			},
+			{
+				"text": "völlig übertrieben",
+				"value": "8"
+			},
+			{
+				"text": "total abgehoben",
+				"value": "9"
+			}
+		],
 		"tactics": [
 			{
 				"type": "normal",
@@ -14,12 +56,20 @@
 				"value": "auf Konter spielen"
 			},
 			{
+				"type": "aim",
+				"value": "Angriff durch die Mitte"
+			},
+			{
 				"type": "aow",
 				"value": "Angriff über die Flügel"
 			},
 			{
-				"type": "aim",
-				"value": "Angriff durch die Mitte"
+				"type": "",
+				"value": "Unbekannt"
+			},
+			{
+				"type": "",
+				"value": "Unbekannt"
 			},
 			{
 				"type": "creatively",
@@ -32,178 +82,334 @@
 		],
 		"honesty": [
 			{
-				"text": "herzensgut",
-				"value": "5"
-			},
-			{
-				"text": "rechtschaffen",
-				"value": "4"
-			},
-			{
-				"text": "aufrichtig",
-				"value": "3"
-			},
-			{
-				"text": "ehrlich",
-				"value": "2"
+				"text": "niederträchtig",
+				"value": "0"
 			},
 			{
 				"text": "unehrlich",
 				"value": "1"
 			},
 			{
-				"text": "niederträchtig",
-				"value": "0"
+				"text": "ehrlich",
+				"value": "2"
+			},
+			{
+				"text": "aufrichtig",
+				"value": "3"
+			},
+			{
+				"text": "rechtschaffen",
+				"value": "4"
+			},
+			{
+				"text": "herzensgut",
+				"value": "5"
 			}
 		],
 		"agreeability": [
 			{
-				"text": "eine Integrationsfigur",
-				"value": "5"
-			},
-			{
-				"text": "ein beliebter Spieler",
-				"value": "4"
-			},
-			{
-				"text": "ein sympathischer Mensch",
-				"value": "3"
-			},
-			{
-				"text": "ein angenehmer Zeitgenosse",
-				"value": "2"
+				"text": "ein Ekel",
+				"value": "0"
 			},
 			{
 				"text": "eine umstrittene Person",
 				"value": "1"
 			},
 			{
-				"text": "ein Ekel",
-				"value": "0"
+				"text": "ein angenehmer Zeitgenosse",
+				"value": "2"
+			},
+			{
+				"text": "ein sympathischer Mensch",
+				"value": "3"
+			},
+			{
+				"text": "ein beliebter Spieler",
+				"value": "4"
+			},
+			{
+				"text": "eine Integrationsfigur",
+				"value": "5"
 			}
 		],
-		"positions": [
+		"skills": [
 			{
-				"short": "T",
 				"type": "Keeper",
 				"value": "Torwart"
 			},
 			{
-				"short": "Iv",
-				"type": "Central defender",
-				"value": "Innenverteidiger"
+				"type": "Stamina",
+				"value": "Kondition"
 			},
 			{
-				"short": "Av",
-				"type": "Wing back",
+				"type": "Defender",
+				"value": "Verteidigung"
+			},
+			{
+				"type": "Playmaker",
+				"value": "Spielaufbau"
+			},
+			{
+				"type": "Winger",
+				"value": "Flügelspiel"
+			},
+			{
+				"type": "Scorer",
+				"value": "Torschuss"
+			},
+			{
+				"type": "Kicker",
+				"value": "Standards"
+			},
+			{
+				"type": "Passer",
+				"value": "Passspiel"
+			},
+			{
+				"type": "Experience",
+				"value": "Erfahrung"
+			},
+			{
+				"type": "LeaderShip",
+				"value": "Führungsqualitäten"
+			}
+		],
+		"positions": [
+			{
+				"type": "Keeper",
+				"value": "Torwart"
+			},
+			{
+				"type": "WingBack",
 				"value": "Außenverteidiger"
 			},
 			{
-				"short": "zM",
-				"type": "Inner midfielder",
+				"type": "CentralDefender",
+				"value": "Innenverteidiger"
+			},
+			{
+				"type": "InnerMidfield",
 				"value": "zentrales Mittelfeld"
 			},
 			{
-				"short": "Fl",
 				"type": "Winger",
 				"value": "Flügelspieler"
 			},
 			{
-				"short": "St",
 				"type": "Forward",
 				"value": "Stürmer"
 			}
 		],
-		"levels": [
+		"fans_season": [
 			{
-				"text": "göttlich",
-				"value": "20"
+				"text": "Wir sind dieser Liga nicht würdig.",
+				"value": "0"
 			},
 			{
-				"text": "galaktisch",
-				"value": "19"
+				"text": "Jeder Tag in dieser Liga ist eine Ehre für uns.",
+				"value": "1"
 			},
 			{
-				"text": "märchenhaft",
-				"value": "18"
+				"text": "Wir kämpfen um den Klassenerhalt.",
+				"value": "2"
 			},
 			{
-				"text": "mythisch",
-				"value": "17"
-			},
-			{
-				"text": "außerirdisch",
-				"value": "16"
-			},
-			{
-				"text": "gigantisch",
-				"value": "15"
-			},
-			{
-				"text": "übernatürlich",
-				"value": "14"
-			},
-			{
-				"text": "Weltklasse",
-				"value": "13"
-			},
-			{
-				"text": "fantastisch",
-				"value": "12"
-			},
-			{
-				"text": "brillant",
-				"value": "11"
-			},
-			{
-				"text": "großartig",
-				"value": "10"
-			},
-			{
-				"text": "hervorragend",
-				"value": "9"
-			},
-			{
-				"text": "sehr gut",
-				"value": "8"
-			},
-			{
-				"text": "gut",
-				"value": "7"
-			},
-			{
-				"text": "passabel",
-				"value": "6"
-			},
-			{
-				"text": "durchschnittlich",
-				"value": "5"
-			},
-			{
-				"text": "schwach",
-				"value": "4"
-			},
-			{
-				"text": "armselig",
+				"text": "Ein Platz im Mittelfeld ist angemessen.",
 				"value": "3"
 			},
 			{
-				"text": "erbärmlich",
-				"value": "2"
+				"text": "Wir gehören unter die ersten Vier.",
+				"value": "4"
+			},
+			{
+				"text": "Der Titel ist das Ziel!",
+				"value": "5"
+			},
+			{
+				"text": "Die Meisterschaft ist Pflicht.",
+				"value": "6"
+			},
+			{
+				"text": "Wir sind viel zu gut für diese Spielklasse!",
+				"value": "7"
+			}
+		],
+		"attitude": [
+			{
+				"text": "Kraft sparen",
+				"value": "-1"
+			},
+			{
+				"text": "normal",
+				"value": "0"
+			},
+			{
+				"text": "Spiel des Jahres",
+				"value": "1"
+			}
+		],
+		"levels": [
+			{
+				"text": "nicht vorhanden",
+				"value": "0"
 			},
 			{
 				"text": "katastrophal",
 				"value": "1"
 			},
 			{
-				"text": "nicht vorhanden",
+				"text": "erbärmlich",
+				"value": "2"
+			},
+			{
+				"text": "armselig",
+				"value": "3"
+			},
+			{
+				"text": "schwach",
+				"value": "4"
+			},
+			{
+				"text": "durchschnittlich",
+				"value": "5"
+			},
+			{
+				"text": "passabel",
+				"value": "6"
+			},
+			{
+				"text": "gut",
+				"value": "7"
+			},
+			{
+				"text": "sehr gut",
+				"value": "8"
+			},
+			{
+				"text": "hervorragend",
+				"value": "9"
+			},
+			{
+				"text": "großartig",
+				"value": "10"
+			},
+			{
+				"text": "brillant",
+				"value": "11"
+			},
+			{
+				"text": "fantastisch",
+				"value": "12"
+			},
+			{
+				"text": "Weltklasse",
+				"value": "13"
+			},
+			{
+				"text": "übernatürlich",
+				"value": "14"
+			},
+			{
+				"text": "gigantisch",
+				"value": "15"
+			},
+			{
+				"text": "außerirdisch",
+				"value": "16"
+			},
+			{
+				"text": "mythisch",
+				"value": "17"
+			},
+			{
+				"text": "märchenhaft",
+				"value": "18"
+			},
+			{
+				"text": "galaktisch",
+				"value": "19"
+			},
+			{
+				"text": "göttlich",
+				"value": "20"
+			}
+		],
+		"sponsors": [
+			{
+				"text": "blutdürstig",
 				"value": "0"
+			},
+			{
+				"text": "wütend",
+				"value": "1"
+			},
+			{
+				"text": "irritiert",
+				"value": "3"
+			},
+			{
+				"text": "ruhig",
+				"value": "5"
+			},
+			{
+				"text": "zufrieden",
+				"value": "6"
+			},
+			{
+				"text": "glücklich",
+				"value": "7"
+			},
+			{
+				"text": "überglücklich",
+				"value": "8"
+			},
+			{
+				"text": "euphorisch",
+				"value": "9"
+			},
+			{
+				"text": "im siebten Himmel",
+				"value": "10"
+			},
+			{
+				"text": "vergöttern dich",
+				"value": "11"
+			}
+		],
+		"sectors": [
+			{
+				"type": "Midfield",
+				"value": "Mittelfeld"
+			},
+			{
+				"type": "RightDefense",
+				"value": "Abwehr rechts"
+			},
+			{
+				"type": "CentralDefense",
+				"value": "Abwehr zentral"
+			},
+			{
+				"type": "LeftDefense",
+				"value": "Abwehr links"
+			},
+			{
+				"type": "RightAttack",
+				"value": "Angriff rechts"
+			},
+			{
+				"type": "CentralAttack",
+				"value": "Angriff zentral"
+			},
+			{
+				"type": "LeftAttack",
+				"value": "Angriff links"
 			}
 		],
 		"ratingSubLevels": [
 			{
 				"text": "min.",
-				"value": "0.0"
+				"value": "0"
 			},
 			{
 				"text": "tief",
@@ -211,72 +417,271 @@
 			},
 			{
 				"text": "hoch",
-				"value": "0.50"
+				"value": "0.5"
 			},
 			{
 				"text": "max.",
 				"value": "0.75"
 			}
 		],
+		"fans": [
+			{
+				"text": "blutdürstig",
+				"value": "0"
+			},
+			{
+				"text": "wütend",
+				"value": "1"
+			},
+			{
+				"text": "verärgert",
+				"value": "2"
+			},
+			{
+				"text": "irritiert",
+				"value": "3"
+			},
+			{
+				"text": "enttäuscht",
+				"value": "4"
+			},
+			{
+				"text": "ruhig",
+				"value": "5"
+			},
+			{
+				"text": "zufrieden",
+				"value": "6"
+			},
+			{
+				"text": "glücklich",
+				"value": "7"
+			},
+			{
+				"text": "überglücklich",
+				"value": "8"
+			},
+			{
+				"text": "euphorisch",
+				"value": "9"
+			},
+			{
+				"text": "im siebten Himmel",
+				"value": "10"
+			},
+			{
+				"text": "vergöttern dich",
+				"value": "11"
+			}
+		],
 		"specialties": [
 			{
-				"short": "un",
-				"type": "Unpredictable",
-				"value": "unberechenbar"
+				"type": "None",
+				"value": "keine"
 			},
 			{
-				"short": "du",
-				"type": "Powerful",
-				"value": "durchsetzungsstark"
-			},
-			{
-				"short": "sc",
-				"type": "Quick",
-				"value": "schnell"
-			},
-			{
-				"short": "Bz",
 				"type": "Technical",
 				"value": "Ballzauberer"
 			},
 			{
-				"short": "Ko",
+				"type": "Quick",
+				"value": "schnell"
+			},
+			{
+				"type": "Powerful",
+				"value": "durchsetzungsstark"
+			},
+			{
+				"type": "Unpredictable",
+				"value": "unberechenbar"
+			},
+			{
 				"type": "Head",
 				"value": "Kopfballstärke"
 			},
 			{
-				"short": "Ge",
 				"type": "Regainer",
 				"value": "Geneser"
 			}
 		],
 		"aggressiveness": [
 			{
-				"text": "hitzköpfig",
-				"value": "5"
-			},
-			{
-				"text": "aufbrausend",
-				"value": "4"
-			},
-			{
-				"text": "temperamentvoll",
-				"value": "3"
-			},
-			{
-				"text": "ausgeglichen",
-				"value": "2"
+				"text": "introvertiert",
+				"value": "0"
 			},
 			{
 				"text": "ruhig",
 				"value": "1"
 			},
 			{
-				"text": "introvertiert",
-				"value": "0"
+				"text": "ausgeglichen",
+				"value": "2"
+			},
+			{
+				"text": "temperamentvoll",
+				"value": "3"
+			},
+			{
+				"text": "aufbrausend",
+				"value": "4"
+			},
+			{
+				"text": "hitzköpfig",
+				"value": "5"
 			}
 		],
-		"desc": "Deutsch",
-		"name": "de"
+		"id": "3",
+		"training": [
+			{
+				"type": "Gen",
+				"value": "Allgemein (Form)"
+			},
+			{
+				"type": "Sta",
+				"value": "Kondition"
+			},
+			{
+				"type": "SP",
+				"value": "Standardsituationen"
+			},
+			{
+				"type": "Def",
+				"value": "Verteidigung"
+			},
+			{
+				"type": "Sco",
+				"value": "Chancenverwertung"
+			},
+			{
+				"type": "Cross",
+				"value": "Flankenläufe"
+			},
+			{
+				"type": "Shoot",
+				"value": "Schusstraining"
+			},
+			{
+				"type": "Pass",
+				"value": "Passspiel"
+			},
+			{
+				"type": "PM",
+				"value": "Spielaufbau"
+			},
+			{
+				"type": "GK",
+				"value": "Torwart"
+			},
+			{
+				"type": "ThPass",
+				"value": "Steilpässe"
+			},
+			{
+				"type": "DefPos",
+				"value": "Abwehrverhalten"
+			},
+			{
+				"type": "WingAtt",
+				"value": "Flügelangriff"
+			},
+			{
+				"type": "Indiv",
+				"value": "Einzeltraining"
+			}
+		],
+		"fans_match": [
+			{
+				"text": "Wir treten wohl besser gar nicht erst an!",
+				"value": "0"
+			},
+			{
+				"text": "Oh je, da werden wir garantiert deklassiert.",
+				"value": "1"
+			},
+			{
+				"text": "Das wird nichts.",
+				"value": "2"
+			},
+			{
+				"text": "Wir sind Außenseiter.",
+				"value": "3"
+			},
+			{
+				"text": "Wir sind etwas unterlegen.",
+				"value": "4"
+			},
+			{
+				"text": "Das wird eine knappe Angelegenheit.",
+				"value": "5"
+			},
+			{
+				"text": "Wir sind leicht überlegen.",
+				"value": "6"
+			},
+			{
+				"text": "Wir sind die Favoriten.",
+				"value": "7"
+			},
+			{
+				"text": "Wir werden gewinnen!",
+				"value": "8"
+			},
+			{
+				"text": "Das wird ein Kinderspiel!",
+				"value": "9"
+			},
+			{
+				"text": "Demütigen wir sie!",
+				"value": "10"
+			}
+		],
+		"name": "de",
+		"spirit": [
+			{
+				"text": "wie im Kalten Krieg",
+				"value": "0"
+			},
+			{
+				"text": "blutrünstig",
+				"value": "1"
+			},
+			{
+				"text": "wütend",
+				"value": "2"
+			},
+			{
+				"text": "irritiert",
+				"value": "3"
+			},
+			{
+				"text": "ruhig",
+				"value": "4"
+			},
+			{
+				"text": "zufrieden",
+				"value": "5"
+			},
+			{
+				"text": "gut",
+				"value": "6"
+			},
+			{
+				"text": "ausgezeichnet",
+				"value": "7"
+			},
+			{
+				"text": "euphorisch",
+				"value": "8"
+			},
+			{
+				"text": "auf Wolke Sieben",
+				"value": "9"
+			},
+			{
+				"text": "paradiesisch!",
+				"value": "10"
+			}
+		],
+		"desc": "Deutsch"
 	}
 }

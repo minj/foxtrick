@@ -1,5 +1,47 @@
 {
 	"language": {
+		"confidence": [
+			{
+				"text": "ineżistenti",
+				"value": "0"
+			},
+			{
+				"text": "diżastruż",
+				"value": "1"
+			},
+			{
+				"text": "miżeru",
+				"value": "2"
+			},
+			{
+				"text": "fqir",
+				"value": "3"
+			},
+			{
+				"text": "diċenti",
+				"value": "4"
+			},
+			{
+				"text": "b'saħħitha",
+				"value": "5"
+			},
+			{
+				"text": "sabiħa ħafna",
+				"value": "6"
+			},
+			{
+				"text": "ftit eżaġerata",
+				"value": "7"
+			},
+			{
+				"text": "eżaġerata",
+				"value": "8"
+			},
+			{
+				"text": "kompletament eżaġerata",
+				"value": "9"
+			}
+		],
 		"tactics": [
 			{
 				"type": "normal",
@@ -14,12 +56,20 @@
 				"value": "Ilagħbu bil-kontrattakk"
 			},
 			{
+				"type": "aim",
+				"value": "Attakkaw minn ġon-nofs"
+			},
+			{
 				"type": "aow",
 				"value": "Attakkaw minn mal-linji"
 			},
 			{
-				"type": "aim",
-				"value": "Attakkaw minn ġon-nofs"
+				"type": "",
+				"value": "Mhux magħrufa"
+			},
+			{
+				"type": "",
+				"value": "Mhux magħrufa"
 			},
 			{
 				"type": "creatively",
@@ -32,251 +82,606 @@
 		],
 		"honesty": [
 			{
-				"text": "qaddis",
-				"value": "5"
-			},
-			{
-				"text": "ġust",
-				"value": "4"
-			},
-			{
-				"text": "sinċier",
-				"value": "3"
-			},
-			{
-				"text": "onest",
-				"value": "2"
+				"text": "ta' fama ħażina",
+				"value": "0"
 			},
 			{
 				"text": "diżonest",
 				"value": "1"
 			},
 			{
-				"text": "ta' fama ħażina",
-				"value": "0"
+				"text": "onest",
+				"value": "2"
+			},
+			{
+				"text": "sinċier",
+				"value": "3"
+			},
+			{
+				"text": "ġust",
+				"value": "4"
+			},
+			{
+				"text": "qaddis",
+				"value": "5"
 			}
 		],
 		"agreeability": [
 			{
-				"text": "maħbub mit-tim kollu",
-				"value": "5"
-			},
-			{
-				"text": "popolari",
-				"value": "4"
-			},
-			{
-				"text": "simpatiku",
-				"value": "3"
-			},
-			{
-				"text": "pjaċevoli",
-				"value": "2"
+				"text": "kattiv",
+				"value": "0"
 			},
 			{
 				"text": "kontroversjali",
 				"value": "1"
 			},
 			{
-				"text": "kattiv",
-				"value": "0"
+				"text": "pjaċevoli",
+				"value": "2"
+			},
+			{
+				"text": "simpatiku",
+				"value": "3"
+			},
+			{
+				"text": "popolari",
+				"value": "4"
+			},
+			{
+				"text": "maħbub mit-tim kollu",
+				"value": "5"
 			}
 		],
-		"positions": [
+		"skills": [
 			{
-				"short": "Ke",
 				"type": "Keeper",
 				"value": "Gowler"
 			},
 			{
-				"short": "Cd",
-				"type": "Central defender",
-				"value": "Difensur Ċentrali"
+				"type": "Stamina",
+				"value": "Stamina"
 			},
 			{
-				"short": "Wb",
-				"type": "Wing back",
+				"type": "Defender",
+				"value": "Difens"
+			},
+			{
+				"type": "Playmaker",
+				"value": "Nofs"
+			},
+			{
+				"type": "Winger",
+				"value": "Linja"
+			},
+			{
+				"type": "Scorer",
+				"value": "Attakk"
+			},
+			{
+				"type": "Kicker",
+				"value": "Set Pieces"
+			},
+			{
+				"type": "Passer",
+				"value": "Tqassim"
+			},
+			{
+				"type": "Experience",
+				"value": "Esperjenza"
+			},
+			{
+				"type": "LeaderShip",
+				"value": "Mod ta' tmexxija"
+			}
+		],
+		"positions": [
+			{
+				"type": "Keeper",
+				"value": "Gowler"
+			},
+			{
+				"type": "WingBack",
 				"value": "Difensur Laterali"
 			},
 			{
-				"short": "Im",
-				"type": "Inner midfielder",
+				"type": "CentralDefender",
+				"value": "Difensur Ċentrali"
+			},
+			{
+				"type": "InnerMidfield",
 				"value": "Midfielder Ċentrali"
 			},
 			{
-				"short": "Wi",
 				"type": "Winger",
 				"value": "Plejer tal-Linja"
 			},
 			{
-				"short": "Fo",
 				"type": "Forward",
 				"value": "Attakkant"
 			}
 		],
-		"levels": [
+		"fans_season": [
 			{
-				"text": "divin",
-				"value": "20"
+				"text": "Ma ħaqqniex li nkunu f'din id-diviżjoni",
+				"value": "0"
 			},
 			{
-				"text": "utopjan",
-				"value": "19"
+				"text": "Kull ġurnata f'din id-diviżjoni hija bonus",
+				"value": "1"
 			},
 			{
-				"text": "maġiku",
-				"value": "18"
+				"text": "Irridu nissieltu biex inżommu postna",
+				"value": "2"
 			},
 			{
-				"text": "mitiku",
-				"value": "17"
-			},
-			{
-				"text": "indimunjat",
-				"value": "16"
-			},
-			{
-				"text": "titanniku",
-				"value": "15"
-			},
-			{
-				"text": "sopranaturali",
-				"value": "14"
-			},
-			{
-				"text": "splendidu",
-				"value": "13"
-			},
-			{
-				"text": "manjifiku",
-				"value": "12"
-			},
-			{
-				"text": "brillanti",
-				"value": "11"
-			},
-			{
-				"text": "straordinarju",
-				"value": "10"
-			},
-			{
-				"text": "formidabbli",
-				"value": "9"
-			},
-			{
-				"text": "eċċellenti",
-				"value": "8"
-			},
-			{
-				"text": "sod",
-				"value": "7"
-			},
-			{
-				"text": "passabbli",
-				"value": "6"
-			},
-			{
-				"text": "inadekwat",
-				"value": "5"
-			},
-			{
-				"text": "debboli",
-				"value": "4"
-			},
-			{
-				"text": "fqir",
+				"text": "Post f'nofs il-klassifika ikun sabiħ",
 				"value": "3"
 			},
 			{
-				"text": "miżeru",
-				"value": "2"
+				"text": "Nagħmlu parti mill-aħjar 4",
+				"value": "4"
+			},
+			{
+				"text": "Immira għar-rebħ tat-titlu!",
+				"value": "5"
+			},
+			{
+				"text": "Irridu nirbħu dan l-istaġun",
+				"value": "6"
+			},
+			{
+				"text": "Aħna ħafna aħjar minn din id-diviżjoni!",
+				"value": "7"
+			}
+		],
+		"attitude": [
+			{
+				"text": "Ħuduha bil-mod",
+				"value": "-1"
+			},
+			{
+				"text": "Normali",
+				"value": "0"
+			},
+			{
+				"text": "Ilagħbu għal ħajjitkom",
+				"value": "1"
+			}
+		],
+		"levels": [
+			{
+				"text": "ineżistenti",
+				"value": "0"
 			},
 			{
 				"text": "diżastruż",
 				"value": "1"
 			},
 			{
-				"text": "ineżistenti",
+				"text": "miżeru",
+				"value": "2"
+			},
+			{
+				"text": "fqir",
+				"value": "3"
+			},
+			{
+				"text": "debboli",
+				"value": "4"
+			},
+			{
+				"text": "inadekwat",
+				"value": "5"
+			},
+			{
+				"text": "passabbli",
+				"value": "6"
+			},
+			{
+				"text": "sod",
+				"value": "7"
+			},
+			{
+				"text": "eċċellenti",
+				"value": "8"
+			},
+			{
+				"text": "formidabbli",
+				"value": "9"
+			},
+			{
+				"text": "straordinarju",
+				"value": "10"
+			},
+			{
+				"text": "brillanti",
+				"value": "11"
+			},
+			{
+				"text": "manjifiku",
+				"value": "12"
+			},
+			{
+				"text": "splendidu",
+				"value": "13"
+			},
+			{
+				"text": "sopranaturali",
+				"value": "14"
+			},
+			{
+				"text": "titanniku",
+				"value": "15"
+			},
+			{
+				"text": "indimunjat",
+				"value": "16"
+			},
+			{
+				"text": "mitiku",
+				"value": "17"
+			},
+			{
+				"text": "maġiku",
+				"value": "18"
+			},
+			{
+				"text": "utopjan",
+				"value": "19"
+			},
+			{
+				"text": "divin",
+				"value": "20"
+			}
+		],
+		"sponsors": [
+			{
+				"text": "vjolenti",
 				"value": "0"
+			},
+			{
+				"text": "infurjati",
+				"value": "1"
+			},
+			{
+				"text": "imdejqin",
+				"value": "3"
+			},
+			{
+				"text": "kalmi",
+				"value": "5"
+			},
+			{
+				"text": "kuntenti",
+				"value": "6"
+			},
+			{
+				"text": "sodisfatti",
+				"value": "7"
+			},
+			{
+				"text": "eċċitati",
+				"value": "8"
+			},
+			{
+				"text": "se jtiru bil-ferħ",
+				"value": "9"
+			},
+			{
+				"text": "jiżfnu fit-toroq",
+				"value": "10"
+			},
+			{
+				"text": "Qed jibagħtulek poeżiji ta' mħabba",
+				"value": "11"
+			}
+		],
+		"sectors": [
+			{
+				"type": "Midfield",
+				"value": "Nofs"
+			},
+			{
+				"type": "RightDefense",
+				"value": "Difens - Naħa tal-lemin"
+			},
+			{
+				"type": "CentralDefense",
+				"value": "Difens Ċentrali"
+			},
+			{
+				"type": "LeftDefense",
+				"value": "Difens - Naħa tax-xellug"
+			},
+			{
+				"type": "RightAttack",
+				"value": "Attakk - Naħa tal-lemin"
+			},
+			{
+				"type": "CentralAttack",
+				"value": "Attakk Ċentrali"
+			},
+			{
+				"type": "LeftAttack",
+				"value": "Attakk - Naħa tax-xellug"
 			}
 		],
 		"ratingSubLevels": [
 			{
-				"text": "(Baxx ħafna)",
-				"value": "0.0"
+				"text": "Baxx ħafna",
+				"value": "0"
 			},
 			{
-				"text": "(Baxx)",
+				"text": "Baxx",
 				"value": "0.25"
 			},
 			{
-				"text": "(Għoli)",
-				"value": "0.50"
+				"text": "Għoli",
+				"value": "0.5"
 			},
 			{
-				"text": "(Għoli ħafna)",
+				"text": "Għoli ħafna",
 				"value": "0.75"
+			}
+		],
+		"fans": [
+			{
+				"text": "vjolenti",
+				"value": "0"
+			},
+			{
+				"text": "infurjati",
+				"value": "1"
+			},
+			{
+				"text": "irrabjati",
+				"value": "2"
+			},
+			{
+				"text": "imdejqin",
+				"value": "3"
+			},
+			{
+				"text": "diżappuntati",
+				"value": "4"
+			},
+			{
+				"text": "kalmi",
+				"value": "5"
+			},
+			{
+				"text": "kuntenti",
+				"value": "6"
+			},
+			{
+				"text": "sodisfatti",
+				"value": "7"
+			},
+			{
+				"text": "eċċitati",
+				"value": "8"
+			},
+			{
+				"text": "se jtiru bil-ferħ",
+				"value": "9"
+			},
+			{
+				"text": "jiżfnu fit-toroq",
+				"value": "10"
+			},
+			{
+				"text": "Qed jibagħtulek poeżiji ta' mħabba",
+				"value": "11"
 			}
 		],
 		"specialties": [
 			{
-				"short": "Un",
-				"type": "Unpredictable",
-				"value": "Imprevedibbli"
+				"type": "None",
+				"value": "Xejn"
 			},
 			{
-				"short": "Po",
-				"type": "Powerful",
-				"value": "B'saħħtu"
-			},
-			{
-				"short": "Qu",
-				"type": "Quick",
-				"value": "Veloċi"
-			},
-			{
-				"short": "Te",
 				"type": "Technical",
 				"value": "Tekniku"
 			},
 			{
-				"short": "He",
+				"type": "Quick",
+				"value": "Veloċi"
+			},
+			{
+				"type": "Powerful",
+				"value": "B'saħħtu"
+			},
+			{
+				"type": "Unpredictable",
+				"value": "Imprevedibbli"
+			},
+			{
 				"type": "Head",
 				"value": "Ras"
 			},
 			{
-				"short": "Re",
 				"type": "Regainer",
 				"value": "Akkwistatur"
 			}
 		],
 		"aggressiveness": [
 			{
-				"text": "instabbli",
-				"value": "5"
-			},
-			{
-				"text": "qalil",
-				"value": "4"
-			},
-			{
-				"text": "nervuż",
-				"value": "3"
-			},
-			{
-				"text": "normali",
-				"value": "2"
+				"text": "trankwill",
+				"value": "0"
 			},
 			{
 				"text": "kalm",
 				"value": "1"
 			},
 			{
-				"text": "trankwill",
-				"value": "0"
+				"text": "normali",
+				"value": "2"
+			},
+			{
+				"text": "nervuż",
+				"value": "3"
+			},
+			{
+				"text": "qalil",
+				"value": "4"
+			},
+			{
+				"text": "instabbli",
+				"value": "5"
 			}
 		],
-		"desc": "Malti",
-		"name": "mt"
+		"id": "87",
+		"training": [
+			{
+				"type": "Gen",
+				"value": "Ġenerali (Forma)"
+			},
+			{
+				"type": "Sta",
+				"value": "Stamina"
+			},
+			{
+				"type": "SP",
+				"value": "Set Pieces"
+			},
+			{
+				"type": "Def",
+				"value": "Difens"
+			},
+			{
+				"type": "Sco",
+				"value": "Attakk"
+			},
+			{
+				"type": "Cross",
+				"value": "Kross (Linja)"
+			},
+			{
+				"type": "Shoot",
+				"value": "Xuttijiet"
+			},
+			{
+				"type": "Pass",
+				"value": "Tqassim fil-viċin"
+			},
+			{
+				"type": "PM",
+				"value": "Nofs"
+			},
+			{
+				"type": "GK",
+				"value": "Gowler"
+			},
+			{
+				"type": "ThPass",
+				"value": "Tqassim fit-Tul"
+			},
+			{
+				"type": "DefPos",
+				"value": "Pożizzjonijiet Difensivi"
+			},
+			{
+				"type": "WingAtt",
+				"value": "Attakki mill-Ġenb"
+			},
+			{
+				"type": "Indiv",
+				"value": "Individwali"
+			}
+		],
+		"fans_match": [
+			{
+				"text": "Aħjar ma ninżlux għal-logħob",
+				"value": "0"
+			},
+			{
+				"text": "Bil-wisq aħjar minna",
+				"value": "1"
+			},
+			{
+				"text": "Ser nitilfu",
+				"value": "2"
+			},
+			{
+				"text": "Huma qegħdin favoriti",
+				"value": "3"
+			},
+			{
+				"text": "Ftit aħjar minna",
+				"value": "4"
+			},
+			{
+				"text": "Se tkun logħba bbilanċjata",
+				"value": "5"
+			},
+			{
+				"text": "Ftit aħjar minnhom",
+				"value": "6"
+			},
+			{
+				"text": "Aħna qegħdin favoriti",
+				"value": "7"
+			},
+			{
+				"text": "Ser nirbħu",
+				"value": "8"
+			},
+			{
+				"text": "Faċli mmens",
+				"value": "9"
+			},
+			{
+				"text": "Ejja numiljawhom",
+				"value": "10"
+			}
+		],
+		"name": "mt",
+		"spirit": [
+			{
+				"text": "gwerra bierda",
+				"value": "0"
+			},
+			{
+				"text": "vjolenti",
+				"value": "1"
+			},
+			{
+				"text": "irrabjati",
+				"value": "2"
+			},
+			{
+				"text": "irritati",
+				"value": "3"
+			},
+			{
+				"text": "komposti",
+				"value": "4"
+			},
+			{
+				"text": "kalmi",
+				"value": "5"
+			},
+			{
+				"text": "kuntenti",
+				"value": "6"
+			},
+			{
+				"text": "sodisfatti",
+				"value": "7"
+			},
+			{
+				"text": "se jtiru bil-ferħ",
+				"value": "8"
+			},
+			{
+				"text": "mexjin fis-sħab",
+				"value": "9"
+			},
+			{
+				"text": "Ġenna fuq l-art!",
+				"value": "10"
+			}
+		],
+		"desc": "Malti"
 	}
 }

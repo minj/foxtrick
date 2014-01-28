@@ -1,5 +1,47 @@
 {
 	"language": {
+		"confidence": [
+			{
+				"text": "없음",
+				"value": "0"
+			},
+			{
+				"text": "최악",
+				"value": "1"
+			},
+			{
+				"text": "형편 없음",
+				"value": "2"
+			},
+			{
+				"text": "나쁨",
+				"value": "3"
+			},
+			{
+				"text": "적당함",
+				"value": "4"
+			},
+			{
+				"text": "강력함",
+				"value": "5"
+			},
+			{
+				"text": "훌륭함",
+				"value": "6"
+			},
+			{
+				"text": "약간 과장됨",
+				"value": "7"
+			},
+			{
+				"text": "과장됨",
+				"value": "8"
+			},
+			{
+				"text": "완전히 과장됨",
+				"value": "9"
+			}
+		],
 		"tactics": [
 			{
 				"type": "normal",
@@ -14,12 +56,20 @@
 				"value": "역습"
 			},
 			{
+				"type": "aim",
+				"value": "중앙에서 공격"
+			},
+			{
 				"type": "aow",
 				"value": "측면에서 공격"
 			},
 			{
-				"type": "aim",
-				"value": "중앙에서 공격"
+				"type": "",
+				"value": "알 수 없음"
+			},
+			{
+				"type": "",
+				"value": "알 수 없음"
 			},
 			{
 				"type": "creatively",
@@ -32,251 +82,606 @@
 		],
 		"honesty": [
 			{
-				"text": "신성한",
-				"value": "5"
-			},
-			{
-				"text": "공정한",
-				"value": "4"
-			},
-			{
-				"text": "고결한",
-				"value": "3"
-			},
-			{
-				"text": "정직한",
-				"value": "2"
+				"text": "악명높은",
+				"value": "0"
 			},
 			{
 				"text": "부정직한",
 				"value": "1"
 			},
 			{
-				"text": "악명높은",
-				"value": "0"
+				"text": "정직한",
+				"value": "2"
+			},
+			{
+				"text": "고결한",
+				"value": "3"
+			},
+			{
+				"text": "공정한",
+				"value": "4"
+			},
+			{
+				"text": "신성한",
+				"value": "5"
 			}
 		],
 		"agreeability": [
 			{
-				"text": "사랑스러운 선수",
-				"value": "5"
-			},
-			{
-				"text": "인기 있는 사람",
-				"value": "4"
-			},
-			{
-				"text": "인정 있는 사람",
-				"value": "3"
-			},
-			{
-				"text": "유쾌한 사람",
-				"value": "2"
+				"text": "심술궂은 사람",
+				"value": "0"
 			},
 			{
 				"text": "논쟁상의 사람",
 				"value": "1"
 			},
 			{
-				"text": "심술궂은 사람",
-				"value": "0"
+				"text": "유쾌한 사람",
+				"value": "2"
+			},
+			{
+				"text": "인정 있는 사람",
+				"value": "3"
+			},
+			{
+				"text": "인기 있는 사람",
+				"value": "4"
+			},
+			{
+				"text": "사랑스러운 선수",
+				"value": "5"
 			}
 		],
-		"positions": [
+		"skills": [
 			{
-				"short": "키퍼",
 				"type": "Keeper",
-				"value": "골키퍼"
+				"value": "골키핑"
 			},
 			{
-				"short": "수비",
-				"type": "Central defender",
-				"value": "중앙 수비수"
+				"type": "Stamina",
+				"value": "체력"
 			},
 			{
-				"short": "윙백",
-				"type": "Wing back",
-				"value": "윙 백"
+				"type": "Defender",
+				"value": "수비력"
 			},
 			{
-				"short": "미드",
-				"type": "Inner midfielder",
-				"value": "중앙 미드필드"
+				"type": "Playmaker",
+				"value": "플레이메이킹"
 			},
 			{
-				"short": "윙",
 				"type": "Winger",
 				"value": "윙어"
 			},
 			{
-				"short": "포워",
+				"type": "Scorer",
+				"value": "득점력"
+			},
+			{
+				"type": "Kicker",
+				"value": "세트 피스"
+			},
+			{
+				"type": "Passer",
+				"value": "패스력"
+			},
+			{
+				"type": "Experience",
+				"value": "경험"
+			},
+			{
+				"type": "LeaderShip",
+				"value": "리더십"
+			}
+		],
+		"positions": [
+			{
+				"type": "Keeper",
+				"value": "골키퍼"
+			},
+			{
+				"type": "WingBack",
+				"value": "윙 백"
+			},
+			{
+				"type": "CentralDefender",
+				"value": "중앙 수비수"
+			},
+			{
+				"type": "InnerMidfield",
+				"value": "중앙 미드필드"
+			},
+			{
+				"type": "Winger",
+				"value": "윙어"
+			},
+			{
 				"type": "Forward",
 				"value": "포워드"
 			}
 		],
-		"levels": [
+		"fans_season": [
 			{
-				"text": "신의 경지",
-				"value": "20"
+				"text": "이 리그의 수준은 우리팀에 과분해.",
+				"value": "0"
 			},
 			{
-				"text": "초월적",
-				"value": "19"
+				"text": "이 리그에서 살아남을 수 있을까.",
+				"value": "1"
 			},
 			{
-				"text": "마술적",
-				"value": "18"
+				"text": "살아남기 위해 힘을 내자!",
+				"value": "2"
 			},
 			{
-				"text": "전설적",
-				"value": "17"
-			},
-			{
-				"text": "외계인",
-				"value": "16"
-			},
-			{
-				"text": "막강함",
-				"value": "15"
-			},
-			{
-				"text": "초자연적",
-				"value": "14"
-			},
-			{
-				"text": "세계 최고",
-				"value": "13"
-			},
-			{
-				"text": "훌륭함",
-				"value": "12"
-			},
-			{
-				"text": "눈부심",
-				"value": "11"
-			},
-			{
-				"text": "걸출함",
-				"value": "10"
-			},
-			{
-				"text": "강력함",
-				"value": "9"
-			},
-			{
-				"text": "뛰어남",
-				"value": "8"
-			},
-			{
-				"text": "우수",
-				"value": "7"
-			},
-			{
-				"text": "무난함",
-				"value": "6"
-			},
-			{
-				"text": "불충분함",
-				"value": "5"
-			},
-			{
-				"text": "약함",
-				"value": "4"
-			},
-			{
-				"text": "나쁨",
+				"text": "중간이라도 해보자!",
 				"value": "3"
 			},
 			{
-				"text": "형편 없음",
-				"value": "2"
+				"text": "4등안에는 들겠지?",
+				"value": "4"
+			},
+			{
+				"text": "우승 도전!",
+				"value": "5"
+			},
+			{
+				"text": "우리는 당연히 우승해야되!",
+				"value": "6"
+			},
+			{
+				"text": "이 리그 수준은 너무 낮아!",
+				"value": "7"
+			}
+		],
+		"attitude": [
+			{
+				"text": "부담없이 경기",
+				"value": "-1"
+			},
+			{
+				"text": "일반적인 경기",
+				"value": "0"
+			},
+			{
+				"text": "가장 중요한 시즌 경기",
+				"value": "1"
+			}
+		],
+		"levels": [
+			{
+				"text": "없음",
+				"value": "0"
 			},
 			{
 				"text": "최악",
 				"value": "1"
 			},
 			{
-				"text": "없음",
+				"text": "형편 없음",
+				"value": "2"
+			},
+			{
+				"text": "나쁨",
+				"value": "3"
+			},
+			{
+				"text": "약함",
+				"value": "4"
+			},
+			{
+				"text": "불충분함",
+				"value": "5"
+			},
+			{
+				"text": "무난함",
+				"value": "6"
+			},
+			{
+				"text": "우수",
+				"value": "7"
+			},
+			{
+				"text": "뛰어남",
+				"value": "8"
+			},
+			{
+				"text": "강력함",
+				"value": "9"
+			},
+			{
+				"text": "걸출함",
+				"value": "10"
+			},
+			{
+				"text": "눈부심",
+				"value": "11"
+			},
+			{
+				"text": "훌륭함",
+				"value": "12"
+			},
+			{
+				"text": "세계 최고",
+				"value": "13"
+			},
+			{
+				"text": "초자연적",
+				"value": "14"
+			},
+			{
+				"text": "막강함",
+				"value": "15"
+			},
+			{
+				"text": "외계인",
+				"value": "16"
+			},
+			{
+				"text": "전설적",
+				"value": "17"
+			},
+			{
+				"text": "마술적",
+				"value": "18"
+			},
+			{
+				"text": "초월적",
+				"value": "19"
+			},
+			{
+				"text": "신의 경지",
+				"value": "20"
+			}
+		],
+		"sponsors": [
+			{
+				"text": "극도로 성냄",
 				"value": "0"
+			},
+			{
+				"text": "격노함",
+				"value": "1"
+			},
+			{
+				"text": "신경질적인",
+				"value": "3"
+			},
+			{
+				"text": "차분함",
+				"value": "5"
+			},
+			{
+				"text": "만족함",
+				"value": "6"
+			},
+			{
+				"text": "흡족함",
+				"value": "7"
+			},
+			{
+				"text": "매우 만족함",
+				"value": "8"
+			},
+			{
+				"text": "매우 기뻐함",
+				"value": "9"
+			},
+			{
+				"text": "춤출 듯 기뻐함",
+				"value": "10"
+			},
+			{
+				"text": "최고의 찬사를 보냄",
+				"value": "11"
+			}
+		],
+		"sectors": [
+			{
+				"type": "Midfield",
+				"value": "미드필드"
+			},
+			{
+				"type": "RightDefense",
+				"value": "우측 수비"
+			},
+			{
+				"type": "CentralDefense",
+				"value": "중앙 수비"
+			},
+			{
+				"type": "LeftDefense",
+				"value": "좌측 수비"
+			},
+			{
+				"type": "RightAttack",
+				"value": "우측 공격"
+			},
+			{
+				"type": "CentralAttack",
+				"value": "중앙 공격"
+			},
+			{
+				"type": "LeftAttack",
+				"value": "좌측 공격"
 			}
 		],
 		"ratingSubLevels": [
 			{
-				"text": "(매우 낮음)",
-				"value": "0.0"
+				"text": "매우 낮음",
+				"value": "0"
 			},
 			{
-				"text": "(낮음)",
+				"text": "낮음",
 				"value": "0.25"
 			},
 			{
-				"text": "(높음)",
-				"value": "0.50"
+				"text": "높음",
+				"value": "0.5"
 			},
 			{
-				"text": "(매우 높음)",
+				"text": "매우 높음",
 				"value": "0.75"
+			}
+		],
+		"fans": [
+			{
+				"text": "극도로 성냄",
+				"value": "0"
+			},
+			{
+				"text": "격노함",
+				"value": "1"
+			},
+			{
+				"text": "화난",
+				"value": "2"
+			},
+			{
+				"text": "신경질적인",
+				"value": "3"
+			},
+			{
+				"text": "실망한",
+				"value": "4"
+			},
+			{
+				"text": "차분함",
+				"value": "5"
+			},
+			{
+				"text": "만족함",
+				"value": "6"
+			},
+			{
+				"text": "흡족함",
+				"value": "7"
+			},
+			{
+				"text": "매우 만족함",
+				"value": "8"
+			},
+			{
+				"text": "매우 기뻐함",
+				"value": "9"
+			},
+			{
+				"text": "춤출 듯 기뻐함",
+				"value": "10"
+			},
+			{
+				"text": "최고의 찬사를 보냄",
+				"value": "11"
 			}
 		],
 		"specialties": [
 			{
-				"short": "예측",
-				"type": "Unpredictable",
-				"value": "예측할 수 없음"
+				"type": "None",
+				"value": "없음"
 			},
 			{
-				"short": "힘",
-				"type": "Powerful",
-				"value": "힘 있음"
-			},
-			{
-				"short": "빠름",
-				"type": "Quick",
-				"value": "빠름"
-			},
-			{
-				"short": "마술",
 				"type": "Technical",
 				"value": "공 마술사"
 			},
 			{
-				"short": "헤딩",
+				"type": "Quick",
+				"value": "빠름"
+			},
+			{
+				"type": "Powerful",
+				"value": "힘 있음"
+			},
+			{
+				"type": "Unpredictable",
+				"value": "예측할 수 없음"
+			},
+			{
 				"type": "Head",
 				"value": "헤딩"
 			},
 			{
-				"short": "회복",
 				"type": "Regainer",
 				"value": "회복인"
 			}
 		],
 		"aggressiveness": [
 			{
-				"text": "무책임한",
-				"value": "5"
-			},
-			{
-				"text": "불같은 성질",
-				"value": "4"
-			},
-			{
-				"text": "변덕스러운",
-				"value": "3"
-			},
-			{
-				"text": "침착한",
-				"value": "2"
+				"text": "조용한",
+				"value": "0"
 			},
 			{
 				"text": "평온한",
 				"value": "1"
 			},
 			{
-				"text": "조용한",
-				"value": "0"
+				"text": "침착한",
+				"value": "2"
+			},
+			{
+				"text": "변덕스러운",
+				"value": "3"
+			},
+			{
+				"text": "불같은 성질",
+				"value": "4"
+			},
+			{
+				"text": "무책임한",
+				"value": "5"
 			}
 		],
-		"desc": "한국어",
-		"name": "ko"
+		"id": "17",
+		"training": [
+			{
+				"type": "Gen",
+				"value": "일반 (Form)"
+			},
+			{
+				"type": "Sta",
+				"value": "체력"
+			},
+			{
+				"type": "SP",
+				"value": "세트 플레이"
+			},
+			{
+				"type": "Def",
+				"value": "수비력"
+			},
+			{
+				"type": "Sco",
+				"value": "득점력"
+			},
+			{
+				"type": "Cross",
+				"value": "크로스 패스(윙어)"
+			},
+			{
+				"type": "Shoot",
+				"value": "슈팅"
+			},
+			{
+				"type": "Pass",
+				"value": "짧은 패스"
+			},
+			{
+				"type": "PM",
+				"value": "플레이메이킹"
+			},
+			{
+				"type": "GK",
+				"value": "골키핑"
+			},
+			{
+				"type": "ThPass",
+				"value": "쓰루 패스"
+			},
+			{
+				"type": "DefPos",
+				"value": "수비 포지션"
+			},
+			{
+				"type": "WingAtt",
+				"value": "측 공격"
+			},
+			{
+				"type": "Indiv",
+				"value": "개인"
+			}
+		],
+		"fans_match": [
+			{
+				"text": "경기하지 않는게 낫겠어",
+				"value": "0"
+			},
+			{
+				"text": "우리에겐 너무 벅차",
+				"value": "1"
+			},
+			{
+				"text": "우리는 질 것이다",
+				"value": "2"
+			},
+			{
+				"text": "상대가 유리해",
+				"value": "3"
+			},
+			{
+				"text": "상대가 다소 우세해",
+				"value": "4"
+			},
+			{
+				"text": "대등한 시합이 될 것이다",
+				"value": "5"
+			},
+			{
+				"text": "우리가 다소 유리해",
+				"value": "6"
+			},
+			{
+				"text": "우리가 유리해",
+				"value": "7"
+			},
+			{
+				"text": "우리가 이길것이다",
+				"value": "8"
+			},
+			{
+				"text": "식은죽 먹기지",
+				"value": "9"
+			},
+			{
+				"text": "상대에게 치욕을 선사하자",
+				"value": "10"
+			}
+		],
+		"name": "ko",
+		"spirit": [
+			{
+				"text": "냉전 상태",
+				"value": "0"
+			},
+			{
+				"text": "극도로 성냄",
+				"value": "1"
+			},
+			{
+				"text": "격노함",
+				"value": "2"
+			},
+			{
+				"text": "화냄",
+				"value": "3"
+			},
+			{
+				"text": "침착함",
+				"value": "4"
+			},
+			{
+				"text": "차분함",
+				"value": "5"
+			},
+			{
+				"text": "만족함",
+				"value": "6"
+			},
+			{
+				"text": "흡족함",
+				"value": "7"
+			},
+			{
+				"text": "매우 기뻐함",
+				"value": "8"
+			},
+			{
+				"text": "구름 위를 걷는 기분",
+				"value": "9"
+			},
+			{
+				"text": "지상 낙원!",
+				"value": "10"
+			}
+		],
+		"desc": "한국어 (Korean)"
 	}
 }

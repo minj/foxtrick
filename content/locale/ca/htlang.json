@@ -1,5 +1,47 @@
 {
 	"language": {
+		"confidence": [
+			{
+				"text": "inexistent",
+				"value": "0"
+			},
+			{
+				"text": "per terra",
+				"value": "1"
+			},
+			{
+				"text": "baixa",
+				"value": "2"
+			},
+			{
+				"text": "fluixa",
+				"value": "3"
+			},
+			{
+				"text": "decent",
+				"value": "4"
+			},
+			{
+				"text": "considerable",
+				"value": "5"
+			},
+			{
+				"text": "alta",
+				"value": "6"
+			},
+			{
+				"text": "lleugerament exagerada",
+				"value": "7"
+			},
+			{
+				"text": "exagerada",
+				"value": "8"
+			},
+			{
+				"text": "completament exagerada",
+				"value": "9"
+			}
+		],
 		"tactics": [
 			{
 				"type": "normal",
@@ -14,12 +56,20 @@
 				"value": "Contraatacs"
 			},
 			{
+				"type": "aim",
+				"value": "Atac pel centre"
+			},
+			{
 				"type": "aow",
 				"value": "Atac per les bandes"
 			},
 			{
-				"type": "aim",
-				"value": "Atac pel centre"
+				"type": "",
+				"value": "Desconegut"
+			},
+			{
+				"type": "",
+				"value": "Desconegut"
 			},
 			{
 				"type": "creatively",
@@ -32,178 +82,334 @@
 		],
 		"honesty": [
 			{
-				"text": "un sant",
-				"value": "5"
-			},
-			{
-				"text": "honorable",
-				"value": "4"
-			},
-			{
-				"text": "just",
-				"value": "3"
-			},
-			{
-				"text": "honest",
-				"value": "2"
+				"text": "infame",
+				"value": "0"
 			},
 			{
 				"text": "deshonest",
 				"value": "1"
 			},
 			{
-				"text": "infame",
-				"value": "0"
+				"text": "honest",
+				"value": "2"
+			},
+			{
+				"text": "just",
+				"value": "3"
+			},
+			{
+				"text": "honorable",
+				"value": "4"
+			},
+			{
+				"text": "un sant",
+				"value": "5"
 			}
 		],
 		"agreeability": [
 			{
-				"text": "apreciat company d'equip",
-				"value": "5"
-			},
-			{
-				"text": "noi popular",
-				"value": "4"
-			},
-			{
-				"text": "noi carismàtic",
-				"value": "3"
-			},
-			{
-				"text": "noi agradable",
-				"value": "2"
+				"text": "noi malintencionat",
+				"value": "0"
 			},
 			{
 				"text": "noi polèmic",
 				"value": "1"
 			},
 			{
-				"text": "noi malintencionat",
-				"value": "0"
+				"text": "noi agradable",
+				"value": "2"
+			},
+			{
+				"text": "noi carismàtic",
+				"value": "3"
+			},
+			{
+				"text": "noi popular",
+				"value": "4"
+			},
+			{
+				"text": "apreciat company d'equip",
+				"value": "5"
 			}
 		],
-		"positions": [
+		"skills": [
 			{
-				"short": "P",
 				"type": "Keeper",
-				"value": "Porter"
+				"value": "Porteria"
 			},
 			{
-				"short": "DC",
-				"type": "Central defender",
-				"value": "Defensa central"
+				"type": "Stamina",
+				"value": "Resistència"
 			},
 			{
-				"short": "LAT",
-				"type": "Wing back",
-				"value": "Defensa lateral"
+				"type": "Defender",
+				"value": "Defensa"
 			},
 			{
-				"short": "MC",
-				"type": "Inner midfielder",
-				"value": "Mig centre"
+				"type": "Playmaker",
+				"value": "Creativitat"
 			},
 			{
-				"short": "EXT",
 				"type": "Winger",
 				"value": "Extrem"
 			},
 			{
-				"short": "DV",
+				"type": "Scorer",
+				"value": "Anotació"
+			},
+			{
+				"type": "Kicker",
+				"value": "Pilota aturada"
+			},
+			{
+				"type": "Passer",
+				"value": "Passades"
+			},
+			{
+				"type": "Experience",
+				"value": "Experiència"
+			},
+			{
+				"type": "LeaderShip",
+				"value": "Lideratge"
+			}
+		],
+		"positions": [
+			{
+				"type": "Keeper",
+				"value": "Porter"
+			},
+			{
+				"type": "WingBack",
+				"value": "Defensa lateral"
+			},
+			{
+				"type": "CentralDefender",
+				"value": "Defensa central"
+			},
+			{
+				"type": "InnerMidfield",
+				"value": "Mig centre"
+			},
+			{
+				"type": "Winger",
+				"value": "Extrem"
+			},
+			{
 				"type": "Forward",
 				"value": "Davanter"
 			}
 		],
-		"levels": [
+		"fans_season": [
 			{
-				"text": "diví",
-				"value": "20"
+				"text": "No som dignes d'aquesta divisió",
+				"value": "0"
 			},
 			{
-				"text": "utòpic",
-				"value": "19"
+				"text": "Cada dia a aquesta divisió és un regal",
+				"value": "1"
 			},
 			{
-				"text": "màgic",
-				"value": "18"
+				"text": "Haurem de lluitar per la permanència",
+				"value": "2"
 			},
 			{
-				"text": "mític",
-				"value": "17"
-			},
-			{
-				"text": "extraterrestre",
-				"value": "16"
-			},
-			{
-				"text": "titànic",
-				"value": "15"
-			},
-			{
-				"text": "sobrenatural",
-				"value": "14"
-			},
-			{
-				"text": "classe mundial",
-				"value": "13"
-			},
-			{
-				"text": "magnífic",
-				"value": "12"
-			},
-			{
-				"text": "brillant",
-				"value": "11"
-			},
-			{
-				"text": "destacat",
-				"value": "10"
-			},
-			{
-				"text": "formidable",
-				"value": "9"
-			},
-			{
-				"text": "excel·lent",
-				"value": "8"
-			},
-			{
-				"text": "notable",
-				"value": "7"
-			},
-			{
-				"text": "acceptable",
-				"value": "6"
-			},
-			{
-				"text": "insuficient",
-				"value": "5"
-			},
-			{
-				"text": "dèbil",
-				"value": "4"
-			},
-			{
-				"text": "pobre",
+				"text": "Acabar a mitja taula no estaria malament",
 				"value": "3"
 			},
 			{
-				"text": "horrible",
-				"value": "2"
+				"text": "Estem entre els 4 millors",
+				"value": "4"
+			},
+			{
+				"text": "Lluitarem pel títol!",
+				"value": "5"
+			},
+			{
+				"text": "Hem de guanyar aquesta lliga",
+				"value": "6"
+			},
+			{
+				"text": "Estem per sobre d'aquesta divisió!",
+				"value": "7"
+			}
+		],
+		"attitude": [
+			{
+				"text": "Relaxat",
+				"value": "-1"
+			},
+			{
+				"text": "Normal",
+				"value": "0"
+			},
+			{
+				"text": "Partit de la temporada",
+				"value": "1"
+			}
+		],
+		"levels": [
+			{
+				"text": "inexistent",
+				"value": "0"
 			},
 			{
 				"text": "desastrós",
 				"value": "1"
 			},
 			{
-				"text": "inexistent",
+				"text": "horrible",
+				"value": "2"
+			},
+			{
+				"text": "pobre",
+				"value": "3"
+			},
+			{
+				"text": "dèbil",
+				"value": "4"
+			},
+			{
+				"text": "insuficient",
+				"value": "5"
+			},
+			{
+				"text": "acceptable",
+				"value": "6"
+			},
+			{
+				"text": "notable",
+				"value": "7"
+			},
+			{
+				"text": "excel·lent",
+				"value": "8"
+			},
+			{
+				"text": "formidable",
+				"value": "9"
+			},
+			{
+				"text": "destacat",
+				"value": "10"
+			},
+			{
+				"text": "brillant",
+				"value": "11"
+			},
+			{
+				"text": "magnífic",
+				"value": "12"
+			},
+			{
+				"text": "classe mundial",
+				"value": "13"
+			},
+			{
+				"text": "sobrenatural",
+				"value": "14"
+			},
+			{
+				"text": "titànic",
+				"value": "15"
+			},
+			{
+				"text": "extraterrestre",
+				"value": "16"
+			},
+			{
+				"text": "mític",
+				"value": "17"
+			},
+			{
+				"text": "màgic",
+				"value": "18"
+			},
+			{
+				"text": "utòpic",
+				"value": "19"
+			},
+			{
+				"text": "diví",
+				"value": "20"
+			}
+		],
+		"sponsors": [
+			{
+				"text": "sanguinaris",
 				"value": "0"
+			},
+			{
+				"text": "furiosos",
+				"value": "1"
+			},
+			{
+				"text": "irritats",
+				"value": "3"
+			},
+			{
+				"text": "calmats",
+				"value": "5"
+			},
+			{
+				"text": "conformes",
+				"value": "6"
+			},
+			{
+				"text": "satisfets",
+				"value": "7"
+			},
+			{
+				"text": "encantats",
+				"value": "8"
+			},
+			{
+				"text": "feliços",
+				"value": "9"
+			},
+			{
+				"text": "ballant als carrers",
+				"value": "10"
+			},
+			{
+				"text": "enviant-te poemes d'amor",
+				"value": "11"
+			}
+		],
+		"sectors": [
+			{
+				"type": "Midfield",
+				"value": "Mig camp"
+			},
+			{
+				"type": "RightDefense",
+				"value": "Defensa dreta"
+			},
+			{
+				"type": "CentralDefense",
+				"value": "Defensa central"
+			},
+			{
+				"type": "LeftDefense",
+				"value": "Defensa esquerra"
+			},
+			{
+				"type": "RightAttack",
+				"value": "Atac dret"
+			},
+			{
+				"type": "CentralAttack",
+				"value": "Atac central"
+			},
+			{
+				"type": "LeftAttack",
+				"value": "Atac esquerre"
 			}
 		],
 		"ratingSubLevels": [
 			{
 				"text": "molt baix",
-				"value": "0.0"
+				"value": "0"
 			},
 			{
 				"text": "baix",
@@ -211,72 +417,271 @@
 			},
 			{
 				"text": "alt",
-				"value": "0.50"
+				"value": "0.5"
 			},
 			{
 				"text": "molt alt",
 				"value": "0.75"
 			}
 		],
+		"fans": [
+			{
+				"text": "sanguinaris",
+				"value": "0"
+			},
+			{
+				"text": "furiosos",
+				"value": "1"
+			},
+			{
+				"text": "emprenyats",
+				"value": "2"
+			},
+			{
+				"text": "irritats",
+				"value": "3"
+			},
+			{
+				"text": "desmoralitzats",
+				"value": "4"
+			},
+			{
+				"text": "calmats",
+				"value": "5"
+			},
+			{
+				"text": "conformes",
+				"value": "6"
+			},
+			{
+				"text": "satisfets",
+				"value": "7"
+			},
+			{
+				"text": "encantats",
+				"value": "8"
+			},
+			{
+				"text": "feliços",
+				"value": "9"
+			},
+			{
+				"text": "ballant als carrers",
+				"value": "10"
+			},
+			{
+				"text": "enviant-te poemes d'amor",
+				"value": "11"
+			}
+		],
 		"specialties": [
 			{
-				"short": "Im",
-				"type": "Unpredictable",
-				"value": "Imprevisible"
+				"type": "None",
+				"value": "Sense especialitat"
 			},
 			{
-				"short": "Po",
-				"type": "Powerful",
-				"value": "Potent"
-			},
-			{
-				"short": "Ra",
-				"type": "Quick",
-				"value": "Ràpid"
-			},
-			{
-				"short": "Te",
 				"type": "Technical",
 				"value": "Tècnic"
 			},
 			{
-				"short": "JA",
+				"type": "Quick",
+				"value": "Ràpid"
+			},
+			{
+				"type": "Powerful",
+				"value": "Potent"
+			},
+			{
+				"type": "Unpredictable",
+				"value": "Imprevisible"
+			},
+			{
 				"type": "Head",
 				"value": "Joc aeri"
 			},
 			{
-				"short": "CR",
 				"type": "Regainer",
 				"value": "Cura ràpida"
 			}
 		],
 		"aggressiveness": [
 			{
-				"text": "rabiós",
-				"value": "5"
-			},
-			{
-				"text": "iracund",
-				"value": "4"
-			},
-			{
-				"text": "temperamental",
-				"value": "3"
-			},
-			{
-				"text": "estable",
-				"value": "2"
+				"text": "tranquil",
+				"value": "0"
 			},
 			{
 				"text": "calmat",
 				"value": "1"
 			},
 			{
-				"text": "tranquil",
-				"value": "0"
+				"text": "estable",
+				"value": "2"
+			},
+			{
+				"text": "temperamental",
+				"value": "3"
+			},
+			{
+				"text": "iracund",
+				"value": "4"
+			},
+			{
+				"text": "rabiós",
+				"value": "5"
 			}
 		],
-		"desc": "Català",
-		"name": "ca"
+		"id": "66",
+		"training": [
+			{
+				"type": "Gen",
+				"value": "General (Forma)"
+			},
+			{
+				"type": "Sta",
+				"value": "Resistència"
+			},
+			{
+				"type": "SP",
+				"value": "Pilota aturada"
+			},
+			{
+				"type": "Def",
+				"value": "Defensa"
+			},
+			{
+				"type": "Sco",
+				"value": "Anotació"
+			},
+			{
+				"type": "Cross",
+				"value": "Centrades (Extrem)"
+			},
+			{
+				"type": "Shoot",
+				"value": "Xuts"
+			},
+			{
+				"type": "Pass",
+				"value": "Passades curtes"
+			},
+			{
+				"type": "PM",
+				"value": "Creativitat"
+			},
+			{
+				"type": "GK",
+				"value": "Porteria"
+			},
+			{
+				"type": "ThPass",
+				"value": "Passades llargues"
+			},
+			{
+				"type": "DefPos",
+				"value": "Posicions defensives"
+			},
+			{
+				"type": "WingAtt",
+				"value": "Atacs per les bandes"
+			},
+			{
+				"type": "Indiv",
+				"value": "Individual"
+			}
+		],
+		"fans_match": [
+			{
+				"text": "millor que no el mireu!",
+				"value": "0"
+			},
+			{
+				"text": "ens superen clarament",
+				"value": "1"
+			},
+			{
+				"text": "perdrem",
+				"value": "2"
+			},
+			{
+				"text": "són els favorits",
+				"value": "3"
+			},
+			{
+				"text": "tenen l'avantatge",
+				"value": "4"
+			},
+			{
+				"text": "estarà ajustat",
+				"value": "5"
+			},
+			{
+				"text": "tenim l'avantatge",
+				"value": "6"
+			},
+			{
+				"text": "som els favorits",
+				"value": "7"
+			},
+			{
+				"text": "guanyarem",
+				"value": "8"
+			},
+			{
+				"text": "bufar i fer ampolles!",
+				"value": "9"
+			},
+			{
+				"text": "humiliem-los",
+				"value": "10"
+			}
+		],
+		"name": "ca",
+		"spirit": [
+			{
+				"text": "com a la guerra freda",
+				"value": "0"
+			},
+			{
+				"text": "mala maror",
+				"value": "1"
+			},
+			{
+				"text": "desil·lusionats",
+				"value": "2"
+			},
+			{
+				"text": "pessimistes",
+				"value": "3"
+			},
+			{
+				"text": "serens",
+				"value": "4"
+			},
+			{
+				"text": "optimistes",
+				"value": "5"
+			},
+			{
+				"text": "il·lusionats",
+				"value": "6"
+			},
+			{
+				"text": "entusiasmats",
+				"value": "7"
+			},
+			{
+				"text": "eufòrics",
+				"value": "8"
+			},
+			{
+				"text": "als núvols",
+				"value": "9"
+			},
+			{
+				"text": "paradís terrenal!",
+				"value": "10"
+			}
+		],
+		"desc": "Català"
 	}
 }

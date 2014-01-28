@@ -1,5 +1,47 @@
 {
 	"language": {
+		"confidence": [
+			{
+				"text": "Inexistente",
+				"value": "0"
+			},
+			{
+				"text": "Desastrosa",
+				"value": "1"
+			},
+			{
+				"text": "Terrível",
+				"value": "2"
+			},
+			{
+				"text": "Má",
+				"value": "3"
+			},
+			{
+				"text": "Decente",
+				"value": "4"
+			},
+			{
+				"text": "Boa",
+				"value": "5"
+			},
+			{
+				"text": "Fantástica",
+				"value": "6"
+			},
+			{
+				"text": "Exagerada (mt baixa)",
+				"value": "7"
+			},
+			{
+				"text": "Exagerada",
+				"value": "8"
+			},
+			{
+				"text": "Exagerada (mt alta)",
+				"value": "9"
+			}
+		],
 		"tactics": [
 			{
 				"type": "normal",
@@ -14,12 +56,20 @@
 				"value": "Contra-ataque"
 			},
 			{
+				"type": "aim",
+				"value": "Ataque pelo meio"
+			},
+			{
 				"type": "aow",
 				"value": "Ataque pelas alas"
 			},
 			{
-				"type": "aim",
-				"value": "Ataque pelo meio"
+				"type": "",
+				"value": "Desconhecido"
+			},
+			{
+				"type": "",
+				"value": "Desconhecido"
 			},
 			{
 				"type": "creatively",
@@ -32,251 +82,606 @@
 		],
 		"honesty": [
 			{
-				"text": "exemplar",
-				"value": "5"
-			},
-			{
-				"text": "íntegra",
-				"value": "4"
-			},
-			{
-				"text": "honesta",
-				"value": "3"
-			},
-			{
-				"text": "decente",
-				"value": "2"
+				"text": "infame",
+				"value": "0"
 			},
 			{
 				"text": "desonesta",
 				"value": "1"
 			},
 			{
-				"text": "infame",
-				"value": "0"
+				"text": "decente",
+				"value": "2"
+			},
+			{
+				"text": "honesta",
+				"value": "3"
+			},
+			{
+				"text": "íntegra",
+				"value": "4"
+			},
+			{
+				"text": "exemplar",
+				"value": "5"
 			}
 		],
 		"agreeability": [
 			{
-				"text": "pessoa adorável",
-				"value": "5"
-			},
-			{
-				"text": "pessoa popular",
-				"value": "4"
-			},
-			{
-				"text": "pessoa simpática",
-				"value": "3"
-			},
-			{
-				"text": "pessoa agradável",
-				"value": "2"
+				"text": "pessoa antipática",
+				"value": "0"
 			},
 			{
 				"text": "pessoa controversa",
 				"value": "1"
 			},
 			{
-				"text": "pessoa antipática",
-				"value": "0"
+				"text": "pessoa agradável",
+				"value": "2"
+			},
+			{
+				"text": "pessoa simpática",
+				"value": "3"
+			},
+			{
+				"text": "pessoa popular",
+				"value": "4"
+			},
+			{
+				"text": "pessoa adorável",
+				"value": "5"
 			}
 		],
-		"positions": [
+		"skills": [
 			{
-				"short": "GR",
 				"type": "Keeper",
 				"value": "Guarda-Redes"
 			},
 			{
-				"short": "DC",
-				"type": "Central defender",
-				"value": "Defesa Central"
+				"type": "Stamina",
+				"value": "Resistência"
 			},
 			{
-				"short": "DL",
-				"type": "Wing back",
-				"value": "Defesa Lateral"
+				"type": "Defender",
+				"value": "Defesa"
 			},
 			{
-				"short": "MC",
-				"type": "Inner midfielder",
-				"value": "Médio Centro"
+				"type": "Playmaker",
+				"value": "Criatividade"
 			},
 			{
-				"short": "AL",
 				"type": "Winger",
 				"value": "Ala"
 			},
 			{
-				"short": "AV",
+				"type": "Scorer",
+				"value": "Finalização"
+			},
+			{
+				"type": "Kicker",
+				"value": "Bolas Paradas"
+			},
+			{
+				"type": "Passer",
+				"value": "Assistências"
+			},
+			{
+				"type": "Experience",
+				"value": "Experiência"
+			},
+			{
+				"type": "LeaderShip",
+				"value": "Liderança"
+			}
+		],
+		"positions": [
+			{
+				"type": "Keeper",
+				"value": "Guarda-Redes"
+			},
+			{
+				"type": "WingBack",
+				"value": "Defesa Lateral"
+			},
+			{
+				"type": "CentralDefender",
+				"value": "Defesa Central"
+			},
+			{
+				"type": "InnerMidfield",
+				"value": "Médio Centro"
+			},
+			{
+				"type": "Winger",
+				"value": "Ala"
+			},
+			{
 				"type": "Forward",
 				"value": "Avançado"
 			}
 		],
-		"levels": [
+		"fans_season": [
 			{
-				"text": "lendário",
-				"value": "20"
+				"text": "Somos maus demais para estar nesta divisão",
+				"value": "0"
 			},
 			{
-				"text": "utópico",
-				"value": "19"
+				"text": "Todos os dias nesta divisão são um bónus",
+				"value": "1"
 			},
 			{
-				"text": "mágico",
-				"value": "18"
+				"text": "Iremos lutar para não descer",
+				"value": "2"
 			},
 			{
-				"text": "mítico",
-				"value": "17"
-			},
-			{
-				"text": "colossal",
-				"value": "16"
-			},
-			{
-				"text": "titânico",
-				"value": "15"
-			},
-			{
-				"text": "soberbo",
-				"value": "14"
-			},
-			{
-				"text": "genial",
-				"value": "13"
-			},
-			{
-				"text": "magnífico",
-				"value": "12"
-			},
-			{
-				"text": "brilhante",
-				"value": "11"
-			},
-			{
-				"text": "fenomenal",
-				"value": "10"
-			},
-			{
-				"text": "formidável",
-				"value": "9"
-			},
-			{
-				"text": "excelente",
-				"value": "8"
-			},
-			{
-				"text": "bom",
-				"value": "7"
-			},
-			{
-				"text": "razoável",
-				"value": "6"
-			},
-			{
-				"text": "inadequado",
-				"value": "5"
-			},
-			{
-				"text": "fraco",
-				"value": "4"
-			},
-			{
-				"text": "mau",
+				"text": "Ficaremos a meio da tabela",
 				"value": "3"
 			},
 			{
-				"text": "terrível",
-				"value": "2"
+				"text": "Devemos ficar nos 4 primeiros",
+				"value": "4"
+			},
+			{
+				"text": "Vamos tentar disputar o título!",
+				"value": "5"
+			},
+			{
+				"text": "Temos de vencer esta época",
+				"value": "6"
+			},
+			{
+				"text": "Somos bons demais para estar nesta divisão!",
+				"value": "7"
+			}
+		],
+		"attitude": [
+			{
+				"text": "Jogar com calma",
+				"value": "-1"
+			},
+			{
+				"text": "Normal",
+				"value": "0"
+			},
+			{
+				"text": "Jogo da época",
+				"value": "1"
+			}
+		],
+		"levels": [
+			{
+				"text": "inexistente",
+				"value": "0"
 			},
 			{
 				"text": "desastroso",
 				"value": "1"
 			},
 			{
-				"text": "inexistente",
+				"text": "terrível",
+				"value": "2"
+			},
+			{
+				"text": "mau",
+				"value": "3"
+			},
+			{
+				"text": "fraco",
+				"value": "4"
+			},
+			{
+				"text": "inadequado",
+				"value": "5"
+			},
+			{
+				"text": "razoável",
+				"value": "6"
+			},
+			{
+				"text": "bom",
+				"value": "7"
+			},
+			{
+				"text": "excelente",
+				"value": "8"
+			},
+			{
+				"text": "formidável",
+				"value": "9"
+			},
+			{
+				"text": "fenomenal",
+				"value": "10"
+			},
+			{
+				"text": "brilhante",
+				"value": "11"
+			},
+			{
+				"text": "magnífico",
+				"value": "12"
+			},
+			{
+				"text": "genial",
+				"value": "13"
+			},
+			{
+				"text": "soberbo",
+				"value": "14"
+			},
+			{
+				"text": "titânico",
+				"value": "15"
+			},
+			{
+				"text": "colossal",
+				"value": "16"
+			},
+			{
+				"text": "mítico",
+				"value": "17"
+			},
+			{
+				"text": "mágico",
+				"value": "18"
+			},
+			{
+				"text": "utópico",
+				"value": "19"
+			},
+			{
+				"text": "lendário",
+				"value": "20"
+			}
+		],
+		"sponsors": [
+			{
+				"text": "Desesperados",
 				"value": "0"
+			},
+			{
+				"text": "Furiosos",
+				"value": "1"
+			},
+			{
+				"text": "Irritados",
+				"value": "3"
+			},
+			{
+				"text": "Calmos",
+				"value": "5"
+			},
+			{
+				"text": "Satisfeitos",
+				"value": "6"
+			},
+			{
+				"text": "Contentes",
+				"value": "7"
+			},
+			{
+				"text": "Em delírio",
+				"value": "8"
+			},
+			{
+				"text": "Eufóricos",
+				"value": "9"
+			},
+			{
+				"text": "Nas nuvens",
+				"value": "10"
+			},
+			{
+				"text": "A enviarem-lhe cartas de amor",
+				"value": "11"
+			}
+		],
+		"sectors": [
+			{
+				"type": "Midfield",
+				"value": "Meio Campo"
+			},
+			{
+				"type": "RightDefense",
+				"value": "Defesa (dir.)"
+			},
+			{
+				"type": "CentralDefense",
+				"value": "Defesa (cen.)"
+			},
+			{
+				"type": "LeftDefense",
+				"value": "Defesa (esq.)"
+			},
+			{
+				"type": "RightAttack",
+				"value": "Ataque (dir.)"
+			},
+			{
+				"type": "CentralAttack",
+				"value": "Ataque (cen.)"
+			},
+			{
+				"type": "LeftAttack",
+				"value": "Ataque (esq.)"
 			}
 		],
 		"ratingSubLevels": [
 			{
-				"text": "(mt baixo)",
-				"value": "0.0"
+				"text": "mt baixo",
+				"value": "0"
 			},
 			{
-				"text": "(baixo)",
+				"text": "baixo",
 				"value": "0.25"
 			},
 			{
-				"text": "(alto)",
-				"value": "0.50"
+				"text": "alto",
+				"value": "0.5"
 			},
 			{
-				"text": "(mt alto)",
+				"text": "mt alto",
 				"value": "0.75"
+			}
+		],
+		"fans": [
+			{
+				"text": "Desesperados",
+				"value": "0"
+			},
+			{
+				"text": "Furiosos",
+				"value": "1"
+			},
+			{
+				"text": "Coléricos",
+				"value": "2"
+			},
+			{
+				"text": "Irritados",
+				"value": "3"
+			},
+			{
+				"text": "Desiludidos",
+				"value": "4"
+			},
+			{
+				"text": "Calmos",
+				"value": "5"
+			},
+			{
+				"text": "Satisfeitos",
+				"value": "6"
+			},
+			{
+				"text": "Contentes",
+				"value": "7"
+			},
+			{
+				"text": "Em delírio",
+				"value": "8"
+			},
+			{
+				"text": "Eufóricos",
+				"value": "9"
+			},
+			{
+				"text": "Nas nuvens",
+				"value": "10"
+			},
+			{
+				"text": "A enviarem-lhe cartas de amor",
+				"value": "11"
 			}
 		],
 		"specialties": [
 			{
-				"short": "Im",
-				"type": "Unpredictable",
-				"value": "Imprevisível"
+				"type": "None",
+				"value": "Nenhuma"
 			},
 			{
-				"short": "Fo",
-				"type": "Powerful",
-				"value": "Força"
-			},
-			{
-				"short": "Ve",
-				"type": "Quick",
-				"value": "Velocidade"
-			},
-			{
-				"short": "Té",
 				"type": "Technical",
 				"value": "Técnica"
 			},
 			{
-				"short": "JA",
+				"type": "Quick",
+				"value": "Velocidade"
+			},
+			{
+				"type": "Powerful",
+				"value": "Força"
+			},
+			{
+				"type": "Unpredictable",
+				"value": "Imprevisível"
+			},
+			{
 				"type": "Head",
 				"value": "Jogo aéreo"
 			},
 			{
-				"short": "Re",
 				"type": "Regainer",
 				"value": "Reabilitação"
 			}
 		],
 		"aggressiveness": [
 			{
-				"text": "instável",
-				"value": "5"
-			},
-			{
-				"text": "nervosa",
-				"value": "4"
-			},
-			{
-				"text": "temperamental",
-				"value": "3"
-			},
-			{
-				"text": "equilibrada",
-				"value": "2"
+				"text": "tranquila",
+				"value": "0"
 			},
 			{
 				"text": "calma",
 				"value": "1"
 			},
 			{
-				"text": "tranquila",
-				"value": "0"
+				"text": "equilibrada",
+				"value": "2"
+			},
+			{
+				"text": "temperamental",
+				"value": "3"
+			},
+			{
+				"text": "nervosa",
+				"value": "4"
+			},
+			{
+				"text": "instável",
+				"value": "5"
 			}
 		],
-		"desc": "Português",
-		"name": "pt-PT"
+		"id": "11",
+		"training": [
+			{
+				"type": "Gen",
+				"value": "Geral (Forma)"
+			},
+			{
+				"type": "Sta",
+				"value": "Resistência"
+			},
+			{
+				"type": "SP",
+				"value": "Bolas Paradas"
+			},
+			{
+				"type": "Def",
+				"value": "Defesa"
+			},
+			{
+				"type": "Sco",
+				"value": "Finalização"
+			},
+			{
+				"type": "Cross",
+				"value": "Cruzamentos (Ala)"
+			},
+			{
+				"type": "Shoot",
+				"value": "Remates"
+			},
+			{
+				"type": "Pass",
+				"value": "Assistências"
+			},
+			{
+				"type": "PM",
+				"value": "Criatividade"
+			},
+			{
+				"type": "GK",
+				"value": "Guarda-Redes"
+			},
+			{
+				"type": "ThPass",
+				"value": "Passe Longo"
+			},
+			{
+				"type": "DefPos",
+				"value": "Posicionamento Defensivo"
+			},
+			{
+				"type": "WingAtt",
+				"value": "Ataque Lateral"
+			},
+			{
+				"type": "Indiv",
+				"value": "Individual"
+			}
+		],
+		"fans_match": [
+			{
+				"text": "Vamos ser massacrados",
+				"value": "0"
+			},
+			{
+				"text": "Não temos hipóteses",
+				"value": "1"
+			},
+			{
+				"text": "Vamos perder",
+				"value": "2"
+			},
+			{
+				"text": "Eles são favoritos",
+				"value": "3"
+			},
+			{
+				"text": "Eles têm vantagem",
+				"value": "4"
+			},
+			{
+				"text": "Vai ser equilibrado",
+				"value": "5"
+			},
+			{
+				"text": "Temos vantagem",
+				"value": "6"
+			},
+			{
+				"text": "Somos favoritos",
+				"value": "7"
+			},
+			{
+				"text": "Vamos ganhar",
+				"value": "8"
+			},
+			{
+				"text": "Vai ser um passeio",
+				"value": "9"
+			},
+			{
+				"text": "Vamos humilhá-los",
+				"value": "10"
+			}
+		],
+		"name": "pt-PT",
+		"spirit": [
+			{
+				"text": "De cortar à faca",
+				"value": "0"
+			},
+			{
+				"text": "Descontrolados",
+				"value": "1"
+			},
+			{
+				"text": "Furiosos",
+				"value": "2"
+			},
+			{
+				"text": "Irritados",
+				"value": "3"
+			},
+			{
+				"text": "Conformados",
+				"value": "4"
+			},
+			{
+				"text": "Calmos",
+				"value": "5"
+			},
+			{
+				"text": "Contentes",
+				"value": "6"
+			},
+			{
+				"text": "Bom",
+				"value": "7"
+			},
+			{
+				"text": "Em delírio",
+				"value": "8"
+			},
+			{
+				"text": "Nas nuvens",
+				"value": "9"
+			},
+			{
+				"text": "Paradisíaco",
+				"value": "10"
+			}
+		],
+		"desc": "Português"
 	}
 }

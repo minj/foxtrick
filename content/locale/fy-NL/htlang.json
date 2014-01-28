@@ -1,6 +1,60 @@
 {
 	"language": {
+		"confidence": [
+			{
+				"text": "net besteand",
+				"value": "0"
+			},
+			{
+				"text": "jammerdearlik",
+				"value": "1"
+			},
+			{
+				"text": "tige min",
+				"value": "2"
+			},
+			{
+				"text": "min",
+				"value": "3"
+			},
+			{
+				"text": "aardich",
+				"value": "4"
+			},
+			{
+				"text": "sterk",
+				"value": "5"
+			},
+			{
+				"text": "bjusterbaarlik",
+				"value": "6"
+			},
+			{
+				"text": "in bytsje oerdreaun",
+				"value": "7"
+			},
+			{
+				"text": "oerdreaun",
+				"value": "8"
+			},
+			{
+				"text": "totaal oerdreaun",
+				"value": "9"
+			}
+		],
 		"tactics": [
+			{
+				"type": "normal",
+				"value": "Normaal"
+			},
+			{
+				"type": "pressing",
+				"value": "Druk sette"
+			},
+			{
+				"type": "ca",
+				"value": "Tsjinoanfallen"
+			},
 			{
 				"type": "aim",
 				"value": "Sintrumoanfallen"
@@ -10,8 +64,12 @@
 				"value": "Wjukoanfallen"
 			},
 			{
-				"type": "ca",
-				"value": "Tsjinoanfallen"
+				"type": "",
+				"value": "Unbekend"
+			},
+			{
+				"type": "",
+				"value": "Unbekend"
 			},
 			{
 				"type": "creatively",
@@ -20,263 +78,610 @@
 			{
 				"type": "longshots",
 				"value": "Ofstânsskoaten"
-			},
-			{
-				"type": "normal",
-				"value": "Normaal"
-			},
-			{
-				"type": "pressing",
-				"value": "Druk sette"
 			}
 		],
 		"honesty": [
 			{
-				"text": "hillich",
-				"value": "5"
-			},
-			{
-				"text": "rjochtfeardich",
-				"value": "4"
-			},
-			{
-				"text": "oprjocht",
-				"value": "3"
-			},
-			{
-				"text": "earlik",
-				"value": "2"
+				"text": "net te fertrouwen",
+				"value": "0"
 			},
 			{
 				"text": "ûnearlik",
 				"value": "1"
 			},
 			{
-				"text": "net te fertrouwen",
-				"value": "0"
+				"text": "earlik",
+				"value": "2"
+			},
+			{
+				"text": "oprjocht",
+				"value": "3"
+			},
+			{
+				"text": "rjochtfeardich",
+				"value": "4"
+			},
+			{
+				"text": "hillich",
+				"value": "5"
 			}
 		],
 		"agreeability": [
 			{
-				"text": "spiler wêr't elts fan hâldt",
-				"value": "5"
-			},
-			{
-				"text": "populêre spiler",
-				"value": "4"
-			},
-			{
-				"text": "sympatyke spiler",
-				"value": "3"
-			},
-			{
-				"text": "oangename spiler",
-				"value": "2"
+				"text": "ferfelende spiler",
+				"value": "0"
 			},
 			{
 				"text": "tsjinstridige spiler",
 				"value": "1"
 			},
 			{
-				"text": "ferfelende spiler",
-				"value": "0"
+				"text": "oangename spiler",
+				"value": "2"
+			},
+			{
+				"text": "sympatyke spiler",
+				"value": "3"
+			},
+			{
+				"text": "populêre spiler",
+				"value": "4"
+			},
+			{
+				"text": "spiler wêr't elts fan hâldt",
+				"value": "5"
+			}
+		],
+		"skills": [
+			{
+				"type": "Keeper",
+				"value": "Doelferdigenjen"
+			},
+			{
+				"type": "Stamina",
+				"value": "Kondysje"
+			},
+			{
+				"type": "Defender",
+				"value": "Ferdigenjen"
+			},
+			{
+				"type": "Playmaker",
+				"value": "Posysjespul"
+			},
+			{
+				"type": "Winger",
+				"value": "Wjukspul"
+			},
+			{
+				"type": "Scorer",
+				"value": "Skoaren"
+			},
+			{
+				"type": "Kicker",
+				"value": "Dea Spul"
+			},
+			{
+				"type": "Passer",
+				"value": "Oerspyljen"
+			},
+			{
+				"type": "Experience",
+				"value": "Underfining"
+			},
+			{
+				"type": "LeaderShip",
+				"value": "Liederskip"
 			}
 		],
 		"positions": [
 			{
-				"short": "SF",
-				"type": "Central defender",
-				"value": "Sintrale ferdigener"
-			},
-			{
-				"short": "OF",
-				"type": "Forward",
-				"value": "Oanfaller"
-			},
-			{
-				"short": "MF",
-				"type": "Inner midfielder",
-				"value": "Sintrale middenfjilder"
-			},
-			{
-				"short": "DF",
 				"type": "Keeper",
 				"value": "Doelferdigener"
 			},
 			{
-				"short": "WB",
-				"type": "Wing back",
+				"type": "WingBack",
 				"value": "Wjukferdigener"
 			},
 			{
-				"short": "WI",
+				"type": "CentralDefender",
+				"value": "Sintrale ferdigener"
+			},
+			{
+				"type": "InnerMidfield",
+				"value": "Sintrale middenfjilder"
+			},
+			{
 				"type": "Winger",
 				"value": "Wjukspiler"
+			},
+			{
+				"type": "Forward",
+				"value": "Oanfaller"
+			}
+		],
+		"fans_season": [
+			{
+				"text": "Wat dogge wy yn dizze divyzje?",
+				"value": "0"
+			},
+			{
+				"text": "Eltse dei yn dizze divyzje is in tajefte",
+				"value": "1"
+			},
+			{
+				"text": "Wy moatte fjochtsje tsjin degradaasje",
+				"value": "2"
+			},
+			{
+				"text": "It is prima as wy yn it midden einigje",
+				"value": "3"
+			},
+			{
+				"text": "We hearre by de boppeste fjouwer",
+				"value": "4"
+			},
+			{
+				"text": "Meidwaan om de titel",
+				"value": "5"
+			},
+			{
+				"text": "Wy moatte dit seizoen winne",
+				"value": "6"
+			},
+			{
+				"text": "Wy binne te goed foar dizze divyzje!",
+				"value": "7"
+			}
+		],
+		"attitude": [
+			{
+				"text": "Spylje rêstich",
+				"value": "-1"
+			},
+			{
+				"text": "Normaal",
+				"value": "0"
+			},
+			{
+				"text": "Wedstriid fan it Seizoen",
+				"value": "1"
 			}
 		],
 		"levels": [
 			{
-				"text": "godlik",
-				"value": "20"
-			},
-			{
-				"text": "utopysk",
-				"value": "19"
-			},
-			{
-				"text": "magysk",
-				"value": "18"
-			},
-			{
-				"text": "mytysk",
-				"value": "17"
-			},
-			{
-				"text": "bûtenierdsk",
-				"value": "16"
-			},
-			{
-				"text": "reuseftich",
-				"value": "15"
-			},
-			{
-				"text": "boppenatuerlik",
-				"value": "14"
-			},
-			{
-				"text": "wrâldklasse",
-				"value": "13"
-			},
-			{
-				"text": "bjusterbaarlik",
-				"value": "12"
-			},
-			{
-				"text": "briljant",
-				"value": "11"
-			},
-			{
-				"text": "treflik",
-				"value": "10"
-			},
-			{
-				"text": "formidabel",
-				"value": "9"
-			},
-			{
-				"text": "poerbêst",
-				"value": "8"
-			},
-			{
-				"text": "bêst",
-				"value": "7"
-			},
-			{
-				"text": "aardich",
-				"value": "6"
-			},
-			{
-				"text": "matich",
-				"value": "5"
-			},
-			{
-				"text": "swak",
-				"value": "4"
-			},
-			{
-				"text": "min",
-				"value": "3"
-			},
-			{
-				"text": "neat wurdich",
-				"value": "2"
+				"text": "net-besteand",
+				"value": "0"
 			},
 			{
 				"text": "jammerdearlik",
 				"value": "1"
 			},
 			{
-				"text": "net-besteand",
+				"text": "neat wurdich",
+				"value": "2"
+			},
+			{
+				"text": "min",
+				"value": "3"
+			},
+			{
+				"text": "swak",
+				"value": "4"
+			},
+			{
+				"text": "matich",
+				"value": "5"
+			},
+			{
+				"text": "aardich",
+				"value": "6"
+			},
+			{
+				"text": "bêst",
+				"value": "7"
+			},
+			{
+				"text": "poerbêst",
+				"value": "8"
+			},
+			{
+				"text": "formidabel",
+				"value": "9"
+			},
+			{
+				"text": "treflik",
+				"value": "10"
+			},
+			{
+				"text": "briljant",
+				"value": "11"
+			},
+			{
+				"text": "bjusterbaarlik",
+				"value": "12"
+			},
+			{
+				"text": "wrâldklasse",
+				"value": "13"
+			},
+			{
+				"text": "boppenatuerlik",
+				"value": "14"
+			},
+			{
+				"text": "reuseftich",
+				"value": "15"
+			},
+			{
+				"text": "bûtenierdsk",
+				"value": "16"
+			},
+			{
+				"text": "mytysk",
+				"value": "17"
+			},
+			{
+				"text": "magysk",
+				"value": "18"
+			},
+			{
+				"text": "utopysk",
+				"value": "19"
+			},
+			{
+				"text": "godlik",
+				"value": "20"
+			}
+		],
+		"sponsors": [
+			{
+				"text": "moarddiedich",
 				"value": "0"
+			},
+			{
+				"text": "opsternaat",
+				"value": "1"
+			},
+			{
+				"text": "yrritearre",
+				"value": "3"
+			},
+			{
+				"text": "kalm",
+				"value": "5"
+			},
+			{
+				"text": "kontint",
+				"value": "6"
+			},
+			{
+				"text": "tefreden",
+				"value": "7"
+			},
+			{
+				"text": "tige lokkich",
+				"value": "8"
+			},
+			{
+				"text": "yn de sânde himel",
+				"value": "9"
+			},
+			{
+				"text": "dûnsje op strjitte",
+				"value": "10"
+			},
+			{
+				"text": "Stjoere dy leafdesferzen",
+				"value": "11"
+			}
+		],
+		"sectors": [
+			{
+				"type": "Midfield",
+				"value": "Middenfjild"
+			},
+			{
+				"type": "RightDefense",
+				"value": "Rjochter wjukferdigening"
+			},
+			{
+				"type": "CentralDefense",
+				"value": "Sintrale ferdigening"
+			},
+			{
+				"type": "LeftDefense",
+				"value": "Linker wjukferdigening"
+			},
+			{
+				"type": "RightAttack",
+				"value": "Rjochter wjukoanfal"
+			},
+			{
+				"type": "CentralAttack",
+				"value": "Sintrale oanfal"
+			},
+			{
+				"type": "LeftAttack",
+				"value": "Linker wjukoanfal"
 			}
 		],
 		"ratingSubLevels": [
 			{
-				"text": "(Tige leech)",
-				"value": "0.0"
+				"text": "Tige leech",
+				"value": "0"
 			},
 			{
-				"text": "(Leech)",
+				"text": "Leech",
 				"value": "0.25"
 			},
 			{
-				"text": "(Heech)",
-				"value": "0.50"
+				"text": "Heech",
+				"value": "0.5"
 			},
 			{
-				"text": "(Tige heech)",
+				"text": "Tige heech",
 				"value": "0.75"
+			}
+		],
+		"fans": [
+			{
+				"text": "moarddiedich",
+				"value": "0"
+			},
+			{
+				"text": "opsternaat",
+				"value": "1"
+			},
+			{
+				"text": "lilk",
+				"value": "2"
+			},
+			{
+				"text": "yrritearre",
+				"value": "3"
+			},
+			{
+				"text": "teloarsteld",
+				"value": "4"
+			},
+			{
+				"text": "kalm",
+				"value": "5"
+			},
+			{
+				"text": "kontint",
+				"value": "6"
+			},
+			{
+				"text": "tefreden",
+				"value": "7"
+			},
+			{
+				"text": "tige lokkich",
+				"value": "8"
+			},
+			{
+				"text": "yn de sânde himel",
+				"value": "9"
+			},
+			{
+				"text": "dûnsje op strjitte",
+				"value": "10"
+			},
+			{
+				"text": "Stjoere dy leafdesferzen",
+				"value": "11"
 			}
 		],
 		"specialties": [
 			{
-				"short": "",
-				"type": "Head",
-				"value": "Koppe"
+				"type": "None",
+				"value": "Gjin"
 			},
 			{
-				"short": "",
-				"type": "Powerful",
-				"value": "Krêftich"
-			},
-			{
-				"short": "",
-				"type": "Quick",
-				"value": "Fluch"
-			},
-			{
-				"short": "",
 				"type": "Technical",
 				"value": "Technysk"
 			},
 			{
-				"short": "",
+				"type": "Quick",
+				"value": "Fluch"
+			},
+			{
+				"type": "Powerful",
+				"value": "Krêftich"
+			},
+			{
 				"type": "Unpredictable",
 				"value": "Unfoarspelber"
 			},
 			{
-				"short": "",
+				"type": "Head",
+				"value": "Koppe"
+			},
+			{
 				"type": "Regainer",
 				"value": "Snelle hersteller"
 			}
 		],
 		"aggressiveness": [
 			{
-				"text": "ûnstabyl",
-				"value": "5"
-			},
-			{
-				"text": "fier",
-				"value": "4"
-			},
-			{
-				"text": "temperamintfol",
-				"value": "3"
-			},
-			{
-				"text": "balansearre",
-				"value": "2"
+				"text": "rêstich",
+				"value": "0"
 			},
 			{
 				"text": "kalm",
 				"value": "1"
 			},
 			{
-				"text": "rêstich",
-				"value": "0"
+				"text": "balansearre",
+				"value": "2"
+			},
+			{
+				"text": "temperamintfol",
+				"value": "3"
+			},
+			{
+				"text": "fier",
+				"value": "4"
+			},
+			{
+				"text": "ûnstabyl",
+				"value": "5"
 			}
 		],
-		"desc": "Frysk",
-		"name": "fy-NL"
+		"id": "109",
+		"training": [
+			{
+				"type": "Gen",
+				"value": "Algemien (Foarm)"
+			},
+			{
+				"type": "Sta",
+				"value": "Kondysje"
+			},
+			{
+				"type": "SP",
+				"value": "Dea Spul"
+			},
+			{
+				"type": "Def",
+				"value": "Ferdigenjen"
+			},
+			{
+				"type": "Sco",
+				"value": "Skoaren"
+			},
+			{
+				"type": "Cross",
+				"value": "Wjukspul"
+			},
+			{
+				"type": "Shoot",
+				"value": "Sjitten"
+			},
+			{
+				"type": "Pass",
+				"value": "Oerspyljen"
+			},
+			{
+				"type": "PM",
+				"value": "Posysjespul"
+			},
+			{
+				"type": "GK",
+				"value": "Doelferdigenjen"
+			},
+			{
+				"type": "ThPass",
+				"value": "Iepeningen meitsje"
+			},
+			{
+				"type": "DefPos",
+				"value": "Definsive posysjes"
+			},
+			{
+				"type": "WingAtt",
+				"value": "Wjukoanfallen"
+			},
+			{
+				"type": "Indiv",
+				"value": "Yndividueel"
+			}
+		],
+		"fans_match": [
+			{
+				"text": "Wy wurde fan it kastje nei de muorre stjoerd",
+				"value": "0"
+			},
+			{
+				"text": "Wy wurde oerklast",
+				"value": "1"
+			},
+			{
+				"text": "Wy sille ferlieze",
+				"value": "2"
+			},
+			{
+				"text": "Sy binne favoryt",
+				"value": "3"
+			},
+			{
+				"text": "Sy ha it foardiel",
+				"value": "4"
+			},
+			{
+				"text": "Is der ferskil tusken de ploegen?",
+				"value": "5"
+			},
+			{
+				"text": "Wy ha it foardiel",
+				"value": "6"
+			},
+			{
+				"text": "Wy binne favoryt",
+				"value": "7"
+			},
+			{
+				"text": "Wy sille winne",
+				"value": "8"
+			},
+			{
+				"text": "Dat wurdt maklik!",
+				"value": "9"
+			},
+			{
+				"text": "Litte wy har fernederje!",
+				"value": "10"
+			}
+		],
+		"name": "fy-NL",
+		"spirit": [
+			{
+				"text": "as tidens de Kâlde Oarloch",
+				"value": "0"
+			},
+			{
+				"text": "moarddiedich",
+				"value": "1"
+			},
+			{
+				"text": "opsternaat",
+				"value": "2"
+			},
+			{
+				"text": "yrritearre",
+				"value": "3"
+			},
+			{
+				"text": "wikselfallich",
+				"value": "4"
+			},
+			{
+				"text": "rêstich",
+				"value": "5"
+			},
+			{
+				"text": "kontint",
+				"value": "6"
+			},
+			{
+				"text": "tefreden",
+				"value": "7"
+			},
+			{
+				"text": "tige lokkich",
+				"value": "8"
+			},
+			{
+				"text": "yn de sânde himel",
+				"value": "9"
+			},
+			{
+				"text": "Paradys op Ierde!",
+				"value": "10"
+			}
+		],
+		"desc": "Frysk"
 	}
 }

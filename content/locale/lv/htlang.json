@@ -1,5 +1,47 @@
 {
 	"language": {
+		"confidence": [
+			{
+				"text": "neeksistējoša",
+				"value": "0"
+			},
+			{
+				"text": "katastrofāla",
+				"value": "1"
+			},
+			{
+				"text": "nožēlojama",
+				"value": "2"
+			},
+			{
+				"text": "draņķīga",
+				"value": "3"
+			},
+			{
+				"text": "pieklājīga",
+				"value": "4"
+			},
+			{
+				"text": "stipra",
+				"value": "5"
+			},
+			{
+				"text": "brīnišķīga",
+				"value": "6"
+			},
+			{
+				"text": "mazliet pārspīlēta",
+				"value": "7"
+			},
+			{
+				"text": "pārspīlēta",
+				"value": "8"
+			},
+			{
+				"text": "pavisam pārspīlēta",
+				"value": "9"
+			}
+		],
 		"tactics": [
 			{
 				"type": "normal",
@@ -14,12 +56,20 @@
 				"value": "Pretuzbrukumi"
 			},
 			{
+				"type": "aim",
+				"value": "Uzbrukumi pa centru"
+			},
+			{
 				"type": "aow",
 				"value": "Uzbrukumi pa flangiem"
 			},
 			{
-				"type": "aim",
-				"value": "Uzbrukumi pa centru"
+				"type": "",
+				"value": "Nezināms"
+			},
+			{
+				"type": "",
+				"value": "Nezināms"
 			},
 			{
 				"type": "creatively",
@@ -32,251 +82,606 @@
 		],
 		"honesty": [
 			{
-				"text": "svētais",
-				"value": "5"
-			},
-			{
-				"text": "taisnīgs",
-				"value": "4"
-			},
-			{
-				"text": "krietns",
-				"value": "3"
-			},
-			{
-				"text": "godprātīgs",
-				"value": "2"
+				"text": "neģēlis",
+				"value": "0"
 			},
 			{
 				"text": "nekrietns",
 				"value": "1"
 			},
 			{
-				"text": "neģēlis",
-				"value": "0"
+				"text": "godprātīgs",
+				"value": "2"
+			},
+			{
+				"text": "krietns",
+				"value": "3"
+			},
+			{
+				"text": "taisnīgs",
+				"value": "4"
+			},
+			{
+				"text": "svētais",
+				"value": "5"
 			}
 		],
 		"agreeability": [
 			{
-				"text": "komandas mīlulis",
-				"value": "5"
-			},
-			{
-				"text": "komandas dvēsele",
-				"value": "4"
-			},
-			{
-				"text": "simpātiska persona",
-				"value": "3"
-			},
-			{
-				"text": "patīkams cilvēks",
-				"value": "2"
+				"text": "nešpetns tips",
+				"value": "0"
 			},
 			{
 				"text": "strīdīgs puisis",
 				"value": "1"
 			},
 			{
-				"text": "nešpetns tips",
-				"value": "0"
+				"text": "patīkams cilvēks",
+				"value": "2"
+			},
+			{
+				"text": "simpātiska persona",
+				"value": "3"
+			},
+			{
+				"text": "komandas dvēsele",
+				"value": "4"
+			},
+			{
+				"text": "komandas mīlulis",
+				"value": "5"
+			}
+		],
+		"skills": [
+			{
+				"type": "Keeper",
+				"value": "Vārtos"
+			},
+			{
+				"type": "Stamina",
+				"value": "Izturībā"
+			},
+			{
+				"type": "Defender",
+				"value": "Aizsardzībā"
+			},
+			{
+				"type": "Playmaker",
+				"value": "Saspēlē"
+			},
+			{
+				"type": "Winger",
+				"value": "Flangos"
+			},
+			{
+				"type": "Scorer",
+				"value": "Realizācijā"
+			},
+			{
+				"type": "Kicker",
+				"value": "Standartos"
+			},
+			{
+				"type": "Passer",
+				"value": "Piespēlēs"
+			},
+			{
+				"type": "Experience",
+				"value": "Pieredze"
+			},
+			{
+				"type": "LeaderShip",
+				"value": "Līdera dotības"
 			}
 		],
 		"positions": [
 			{
-				"short": "Ke",
 				"type": "Keeper",
 				"value": "Vārtsargs"
 			},
 			{
-				"short": "Cd",
-				"type": "Central defender",
-				"value": "Centra aizsargs"
-			},
-			{
-				"short": "Wb",
-				"type": "Wing back",
+				"type": "WingBack",
 				"value": "Malējais aizsargs"
 			},
 			{
-				"short": "Im",
-				"type": "Inner midfielder",
+				"type": "CentralDefender",
+				"value": "Centra aizsargs"
+			},
+			{
+				"type": "InnerMidfield",
 				"value": "Centra pussargs"
 			},
 			{
-				"short": "Wi",
 				"type": "Winger",
 				"value": "Malējais pussargs"
 			},
 			{
-				"short": "Fo",
 				"type": "Forward",
 				"value": "Uzbrucējs"
 			}
 		],
-		"levels": [
+		"fans_season": [
 			{
-				"text": "dievišķi",
-				"value": "20"
+				"text": "Mēs tiksim izmantoti kājslauķu vietā ...",
+				"value": "0"
 			},
 			{
-				"text": "utopiski",
-				"value": "19"
+				"text": "Katra diena šajā līgā ir kā bonuss ...",
+				"value": "1"
 			},
 			{
-				"text": "maģiski",
-				"value": "18"
+				"text": "Mums būs smagi jāpacīnās, lai paliktu ...",
+				"value": "2"
 			},
 			{
-				"text": "teiksmaini",
-				"value": "17"
-			},
-			{
-				"text": "kosmiski",
-				"value": "16"
-			},
-			{
-				"text": "titāniski",
-				"value": "15"
-			},
-			{
-				"text": "pārdabiski",
-				"value": "14"
-			},
-			{
-				"text": "pasaules klases",
-				"value": "13"
-			},
-			{
-				"text": "diženi",
-				"value": "12"
-			},
-			{
-				"text": "spīdoši",
-				"value": "11"
-			},
-			{
-				"text": "izcili",
-				"value": "10"
-			},
-			{
-				"text": "iespaidīgi",
-				"value": "9"
-			},
-			{
-				"text": "teicami",
-				"value": "8"
-			},
-			{
-				"text": "labi",
-				"value": "7"
-			},
-			{
-				"text": "apmierinoši",
-				"value": "6"
-			},
-			{
-				"text": "neatbilstoši",
-				"value": "5"
-			},
-			{
-				"text": "vāji",
-				"value": "4"
-			},
-			{
-				"text": "draņķīgi",
+				"text": "Būtu jauki pabeigt sezonu tabulas vidū",
 				"value": "3"
 			},
 			{
-				"text": "nožēlojami",
-				"value": "2"
+				"text": "Mums jābūt četriniekā!",
+				"value": "4"
+			},
+			{
+				"text": "Jācenšas iegūt titulu!",
+				"value": "5"
+			},
+			{
+				"text": "Mums šosezon jāuzvar!",
+				"value": "6"
+			},
+			{
+				"text": "Mēs esam daudz labāki par šo līgu!",
+				"value": "7"
+			}
+		],
+		"attitude": [
+			{
+				"text": "Viegla spēle",
+				"value": "-1"
+			},
+			{
+				"text": "Parasta spēle",
+				"value": "0"
+			},
+			{
+				"text": "Sezonas svarīgākā spēle",
+				"value": "1"
+			}
+		],
+		"levels": [
+			{
+				"text": "neeksistē",
+				"value": "0"
 			},
 			{
 				"text": "katastrofāli",
 				"value": "1"
 			},
 			{
-				"text": "neeksistē",
+				"text": "nožēlojami",
+				"value": "2"
+			},
+			{
+				"text": "draņķīgi",
+				"value": "3"
+			},
+			{
+				"text": "vāji",
+				"value": "4"
+			},
+			{
+				"text": "neatbilstoši",
+				"value": "5"
+			},
+			{
+				"text": "apmierinoši",
+				"value": "6"
+			},
+			{
+				"text": "labi",
+				"value": "7"
+			},
+			{
+				"text": "teicami",
+				"value": "8"
+			},
+			{
+				"text": "iespaidīgi",
+				"value": "9"
+			},
+			{
+				"text": "izcili",
+				"value": "10"
+			},
+			{
+				"text": "spīdoši",
+				"value": "11"
+			},
+			{
+				"text": "diženi",
+				"value": "12"
+			},
+			{
+				"text": "pasaules klases",
+				"value": "13"
+			},
+			{
+				"text": "pārdabiski",
+				"value": "14"
+			},
+			{
+				"text": "titāniski",
+				"value": "15"
+			},
+			{
+				"text": "kosmiski",
+				"value": "16"
+			},
+			{
+				"text": "teiksmaini",
+				"value": "17"
+			},
+			{
+				"text": "maģiski",
+				"value": "18"
+			},
+			{
+				"text": "utopiski",
+				"value": "19"
+			},
+			{
+				"text": "dievišķi",
+				"value": "20"
+			}
+		],
+		"sponsors": [
+			{
+				"text": "asinskāri",
 				"value": "0"
+			},
+			{
+				"text": "saniknoti",
+				"value": "1"
+			},
+			{
+				"text": "aizkaitināti",
+				"value": "3"
+			},
+			{
+				"text": "mierīgi",
+				"value": "5"
+			},
+			{
+				"text": "apmierināti",
+				"value": "6"
+			},
+			{
+				"text": "priecīgi",
+				"value": "7"
+			},
+			{
+				"text": "līksmi",
+				"value": "8"
+			},
+			{
+				"text": "neprātīgā sajūsmā",
+				"value": "9"
+			},
+			{
+				"text": "dejo ielās",
+				"value": "10"
+			},
+			{
+				"text": "Sūta tev mīlestības vēstules",
+				"value": "11"
+			}
+		],
+		"sectors": [
+			{
+				"type": "Midfield",
+				"value": "Vidējā zona"
+			},
+			{
+				"type": "RightDefense",
+				"value": "Labās malas aizs."
+			},
+			{
+				"type": "CentralDefense",
+				"value": "Centra aizsardzība"
+			},
+			{
+				"type": "LeftDefense",
+				"value": "Kreisās malas aizs."
+			},
+			{
+				"type": "RightAttack",
+				"value": "Labās malas uzbr."
+			},
+			{
+				"type": "CentralAttack",
+				"value": "Centra uzbrukums"
+			},
+			{
+				"type": "LeftAttack",
+				"value": "Kreisās malas uzbr."
 			}
 		],
 		"ratingSubLevels": [
 			{
-				"text": "(ļ.zems)",
-				"value": "0.0"
+				"text": "ļ.zems",
+				"value": "0"
 			},
 			{
-				"text": "(zems)",
+				"text": "zems",
 				"value": "0.25"
 			},
 			{
-				"text": "(augsts)",
-				"value": "0.50"
+				"text": "augsts",
+				"value": "0.5"
 			},
 			{
-				"text": "(ļ.augsts)",
+				"text": "ļ.augsts",
 				"value": "0.75"
+			}
+		],
+		"fans": [
+			{
+				"text": "asinskāri",
+				"value": "0"
+			},
+			{
+				"text": "saniknoti",
+				"value": "1"
+			},
+			{
+				"text": "dusmīgi",
+				"value": "2"
+			},
+			{
+				"text": "aizkaitināti",
+				"value": "3"
+			},
+			{
+				"text": "vīlušies",
+				"value": "4"
+			},
+			{
+				"text": "mierīgi",
+				"value": "5"
+			},
+			{
+				"text": "apmierināti",
+				"value": "6"
+			},
+			{
+				"text": "priecīgi",
+				"value": "7"
+			},
+			{
+				"text": "līksmi",
+				"value": "8"
+			},
+			{
+				"text": "neprātīgā sajūsmā",
+				"value": "9"
+			},
+			{
+				"text": "dejo ielās",
+				"value": "10"
+			},
+			{
+				"text": "Sūta tev mīlestības vēstules",
+				"value": "11"
 			}
 		],
 		"specialties": [
 			{
-				"short": "Un",
-				"type": "Unpredictable",
-				"value": "Neprognozējams"
+				"type": "None",
+				"value": "Neviena"
 			},
 			{
-				"short": "Po",
-				"type": "Powerful",
-				"value": "Atlētisks"
-			},
-			{
-				"short": "Qu",
-				"type": "Quick",
-				"value": "Ātrs"
-			},
-			{
-				"short": "Te",
 				"type": "Technical",
 				"value": "Tehnisks"
 			},
 			{
-				"short": "He",
+				"type": "Quick",
+				"value": "Ātrs"
+			},
+			{
+				"type": "Powerful",
+				"value": "Atlētisks"
+			},
+			{
+				"type": "Unpredictable",
+				"value": "Neprognozējams"
+			},
+			{
 				"type": "Head",
 				"value": "Spēle ar galvu"
 			},
 			{
-				"short": "Re",
 				"type": "Regainer",
 				"value": "Veselītis"
 			}
 		],
 		"aggressiveness": [
 			{
-				"text": "psihopāts",
-				"value": "5"
-			},
-			{
-				"text": "karstasinīgs",
-				"value": "4"
-			},
-			{
-				"text": "straujas dabas",
-				"value": "3"
-			},
-			{
-				"text": "līdzsvarots",
-				"value": "2"
+				"text": "flegmatisks",
+				"value": "0"
 			},
 			{
 				"text": "mierīgs",
 				"value": "1"
 			},
 			{
-				"text": "flegmatisks",
-				"value": "0"
+				"text": "līdzsvarots",
+				"value": "2"
+			},
+			{
+				"text": "straujas dabas",
+				"value": "3"
+			},
+			{
+				"text": "karstasinīgs",
+				"value": "4"
+			},
+			{
+				"text": "psihopāts",
+				"value": "5"
 			}
 		],
-		"desc": "Latviešu",
-		"name": "lv"
+		"id": "37",
+		"training": [
+			{
+				"type": "Gen",
+				"value": "Vispārējais (gatavība spēlei)"
+			},
+			{
+				"type": "Sta",
+				"value": "Izturība"
+			},
+			{
+				"type": "SP",
+				"value": "Standarti"
+			},
+			{
+				"type": "Def",
+				"value": "Aizsardzība"
+			},
+			{
+				"type": "Sco",
+				"value": "Realizācija"
+			},
+			{
+				"type": "Cross",
+				"value": "Centrējumi"
+			},
+			{
+				"type": "Shoot",
+				"value": "Sitieni pa vārtiem"
+			},
+			{
+				"type": "Pass",
+				"value": "Īsās piespēles"
+			},
+			{
+				"type": "PM",
+				"value": "Saspēle"
+			},
+			{
+				"type": "GK",
+				"value": "Vārtu sargāšana"
+			},
+			{
+				"type": "ThPass",
+				"value": "Tālās piespēles"
+			},
+			{
+				"type": "DefPos",
+				"value": "Aizsardzības pozīcijas"
+			},
+			{
+				"type": "WingAtt",
+				"value": "Malējie uzbrukumi"
+			},
+			{
+				"type": "Indiv",
+				"value": "Individuālais"
+			}
+		],
+		"fans_match": [
+			{
+				"text": "Labāk nemaz nerādīties",
+				"value": "0"
+			},
+			{
+				"text": "Esam krietni vājāki",
+				"value": "1"
+			},
+			{
+				"text": "Mēs zaudēsim",
+				"value": "2"
+			},
+			{
+				"text": "Viņi ir favorīti",
+				"value": "3"
+			},
+			{
+				"text": "Viņiem ir priekšrocība",
+				"value": "4"
+			},
+			{
+				"text": "Būs grūti jācīnās",
+				"value": "5"
+			},
+			{
+				"text": "Mums ir priekšrocība",
+				"value": "6"
+			},
+			{
+				"text": "Mēs esam favorīti",
+				"value": "7"
+			},
+			{
+				"text": "Mēs uzvarēsim",
+				"value": "8"
+			},
+			{
+				"text": "Stresa nav",
+				"value": "9"
+			},
+			{
+				"text": "Pazemosim viņus",
+				"value": "10"
+			}
+		],
+		"name": "lv",
+		"spirit": [
+			{
+				"text": "kā Sibīrijas ziema",
+				"value": "0"
+			},
+			{
+				"text": "depresīvs",
+				"value": "1"
+			},
+			{
+				"text": "aizkaitināts",
+				"value": "2"
+			},
+			{
+				"text": "drūms",
+				"value": "3"
+			},
+			{
+				"text": "apātisks",
+				"value": "4"
+			},
+			{
+				"text": "mierīgs",
+				"value": "5"
+			},
+			{
+				"text": "miermīlīgs",
+				"value": "6"
+			},
+			{
+				"text": "pozitīvs",
+				"value": "7"
+			},
+			{
+				"text": "praktiski ideāls",
+				"value": "8"
+			},
+			{
+				"text": "staigā pa mākoņiem",
+				"value": "9"
+			},
+			{
+				"text": "Paradīze zemes virsū!",
+				"value": "10"
+			}
+		],
+		"desc": "Latviešu"
 	}
 }

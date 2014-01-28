@@ -1,5 +1,47 @@
 {
 	"language": {
+		"confidence": [
+			{
+				"text": "無価値",
+				"value": "0"
+			},
+			{
+				"text": "最悪",
+				"value": "1"
+			},
+			{
+				"text": "悲惨",
+				"value": "2"
+			},
+			{
+				"text": "劣悪",
+				"value": "3"
+			},
+			{
+				"text": "平静",
+				"value": "4"
+			},
+			{
+				"text": "強気",
+				"value": "5"
+			},
+			{
+				"text": "自信満々",
+				"value": "6"
+			},
+			{
+				"text": "やや自信過剰",
+				"value": "7"
+			},
+			{
+				"text": "大げさな自信",
+				"value": "8"
+			},
+			{
+				"text": "自信過剰",
+				"value": "9"
+			}
+		],
 		"tactics": [
 			{
 				"type": "normal",
@@ -14,12 +56,20 @@
 				"value": "カウンター攻撃"
 			},
 			{
+				"type": "aim",
+				"value": "中央突破"
+			},
+			{
 				"type": "aow",
 				"value": "サイド攻撃"
 			},
 			{
-				"type": "aim",
-				"value": "中央突破"
+				"type": "",
+				"value": "未定"
+			},
+			{
+				"type": "",
+				"value": "未定"
 			},
 			{
 				"type": "creatively",
@@ -32,251 +82,606 @@
 		],
 		"honesty": [
 			{
-				"text": "聖人のよう",
-				"value": "5"
-			},
-			{
-				"text": "高潔",
-				"value": "4"
-			},
-			{
-				"text": "正義漢",
-				"value": "3"
-			},
-			{
-				"text": "正直",
-				"value": "2"
+				"text": "悪評高い",
+				"value": "0"
 			},
 			{
 				"text": "不正直",
 				"value": "1"
 			},
 			{
-				"text": "悪評高い",
-				"value": "0"
+				"text": "正直",
+				"value": "2"
+			},
+			{
+				"text": "正義漢",
+				"value": "3"
+			},
+			{
+				"text": "高潔",
+				"value": "4"
+			},
+			{
+				"text": "聖人のよう",
+				"value": "5"
 			}
 		],
 		"agreeability": [
 			{
-				"text": "皆に愛されている",
-				"value": "5"
-			},
-			{
-				"text": "人気者",
-				"value": "4"
-			},
-			{
-				"text": "思いやりある",
-				"value": "3"
-			},
-			{
-				"text": "感じよい",
-				"value": "2"
+				"text": "嫌われ者",
+				"value": "0"
 			},
 			{
 				"text": "問題の多い",
 				"value": "1"
 			},
 			{
-				"text": "嫌われ者",
-				"value": "0"
+				"text": "感じよい",
+				"value": "2"
+			},
+			{
+				"text": "思いやりある",
+				"value": "3"
+			},
+			{
+				"text": "人気者",
+				"value": "4"
+			},
+			{
+				"text": "皆に愛されている",
+				"value": "5"
 			}
 		],
-		"positions": [
+		"skills": [
 			{
-				"short": "GK",
 				"type": "Keeper",
 				"value": "キーパー"
 			},
 			{
-				"short": "CD",
-				"type": "Central defender",
-				"value": "セントラルディフェンダー"
+				"type": "Stamina",
+				"value": "スタミナ"
 			},
 			{
-				"short": "WB",
-				"type": "Wing back",
-				"value": "ウイングバック"
+				"type": "Defender",
+				"value": "ディフェンス"
 			},
 			{
-				"short": "IM",
-				"type": "Inner midfielder",
-				"value": "インナーミッドフィルダー"
+				"type": "Playmaker",
+				"value": "ゲームメイク"
 			},
 			{
-				"short": "WI",
 				"type": "Winger",
 				"value": "ウインガー"
 			},
 			{
-				"short": "FW",
+				"type": "Scorer",
+				"value": "ストライカー"
+			},
+			{
+				"type": "Kicker",
+				"value": "プレイスキック"
+			},
+			{
+				"type": "Passer",
+				"value": "パス"
+			},
+			{
+				"type": "Experience",
+				"value": "経験"
+			},
+			{
+				"type": "LeaderShip",
+				"value": "リーダーシップ"
+			}
+		],
+		"positions": [
+			{
+				"type": "Keeper",
+				"value": "キーパー"
+			},
+			{
+				"type": "WingBack",
+				"value": "ウイングバック"
+			},
+			{
+				"type": "CentralDefender",
+				"value": "セントラルディフェンダー"
+			},
+			{
+				"type": "InnerMidfield",
+				"value": "インナーミッドフィルダー"
+			},
+			{
+				"type": "Winger",
+				"value": "ウインガー"
+			},
+			{
 				"type": "Forward",
 				"value": "フォワード"
 			}
 		],
-		"levels": [
+		"fans_season": [
 			{
-				"text": "唯一無二",
-				"value": "20"
+				"text": "このディビジョンに値しないです",
+				"value": "0"
 			},
 			{
-				"text": "完璧",
-				"value": "19"
+				"text": "このディビジョンの毎日はいいことですね",
+				"value": "1"
 			},
 			{
-				"text": "魔術的",
-				"value": "18"
+				"text": "生き残るために戦うべきです",
+				"value": "2"
 			},
 			{
-				"text": "非現実的",
-				"value": "17"
-			},
-			{
-				"text": "超人的",
-				"value": "16"
-			},
-			{
-				"text": "偉大",
-				"value": "15"
-			},
-			{
-				"text": "神業",
-				"value": "14"
-			},
-			{
-				"text": "ワールドレベル",
-				"value": "13"
-			},
-			{
-				"text": "強大",
-				"value": "12"
-			},
-			{
-				"text": "鮮烈",
-				"value": "11"
-			},
-			{
-				"text": "非凡",
-				"value": "10"
-			},
-			{
-				"text": "驚異的",
-				"value": "9"
-			},
-			{
-				"text": "優秀",
-				"value": "8"
-			},
-			{
-				"text": "良好",
-				"value": "7"
-			},
-			{
-				"text": "平均的",
-				"value": "6"
-			},
-			{
-				"text": "不満",
-				"value": "5"
-			},
-			{
-				"text": "貧弱",
-				"value": "4"
-			},
-			{
-				"text": "劣悪",
+				"text": "中堅で終わると嬉しいです",
 				"value": "3"
 			},
 			{
-				"text": "悲惨",
-				"value": "2"
+				"text": "うちのチームはトップ4の1つです",
+				"value": "4"
+			},
+			{
+				"text": "優勝を目指そう！",
+				"value": "5"
+			},
+			{
+				"text": "今シーズン優勝するに違いありません",
+				"value": "6"
+			},
+			{
+				"text": "このディビジョンよりうちのチームはずっといいです！",
+				"value": "7"
+			}
+		],
+		"attitude": [
+			{
+				"text": "冷静な試合運び",
+				"value": "-1"
+			},
+			{
+				"text": "普段どおり",
+				"value": "0"
+			},
+			{
+				"text": "最高の試合を目指す",
+				"value": "1"
+			}
+		],
+		"levels": [
+			{
+				"text": "無価値",
+				"value": "0"
 			},
 			{
 				"text": "最悪",
 				"value": "1"
 			},
 			{
-				"text": "無価値",
+				"text": "悲惨",
+				"value": "2"
+			},
+			{
+				"text": "劣悪",
+				"value": "3"
+			},
+			{
+				"text": "貧弱",
+				"value": "4"
+			},
+			{
+				"text": "不満",
+				"value": "5"
+			},
+			{
+				"text": "平均的",
+				"value": "6"
+			},
+			{
+				"text": "良好",
+				"value": "7"
+			},
+			{
+				"text": "優秀",
+				"value": "8"
+			},
+			{
+				"text": "驚異的",
+				"value": "9"
+			},
+			{
+				"text": "非凡",
+				"value": "10"
+			},
+			{
+				"text": "鮮烈",
+				"value": "11"
+			},
+			{
+				"text": "強大",
+				"value": "12"
+			},
+			{
+				"text": "ワールドレベル",
+				"value": "13"
+			},
+			{
+				"text": "神業",
+				"value": "14"
+			},
+			{
+				"text": "偉大",
+				"value": "15"
+			},
+			{
+				"text": "超人的",
+				"value": "16"
+			},
+			{
+				"text": "非現実的",
+				"value": "17"
+			},
+			{
+				"text": "魔術的",
+				"value": "18"
+			},
+			{
+				"text": "完璧",
+				"value": "19"
+			},
+			{
+				"text": "唯一無二",
+				"value": "20"
+			}
+		],
+		"sponsors": [
+			{
+				"text": "殺意を抱いている",
 				"value": "0"
+			},
+			{
+				"text": "怒り狂っている",
+				"value": "1"
+			},
+			{
+				"text": "苛立っている",
+				"value": "3"
+			},
+			{
+				"text": "落ち着いている",
+				"value": "5"
+			},
+			{
+				"text": "許容している",
+				"value": "6"
+			},
+			{
+				"text": "満足している",
+				"value": "7"
+			},
+			{
+				"text": "喜んでいる",
+				"value": "8"
+			},
+			{
+				"text": "興奮している",
+				"value": "9"
+			},
+			{
+				"text": "狂喜乱舞している",
+				"value": "10"
+			},
+			{
+				"text": "愛の歌を歌っている",
+				"value": "11"
+			}
+		],
+		"sectors": [
+			{
+				"type": "Midfield",
+				"value": "ミッドフィールド"
+			},
+			{
+				"type": "RightDefense",
+				"value": "右ディフェンス"
+			},
+			{
+				"type": "CentralDefense",
+				"value": "中央ディフェンス"
+			},
+			{
+				"type": "LeftDefense",
+				"value": "左ディフェンス"
+			},
+			{
+				"type": "RightAttack",
+				"value": "右オフェンス"
+			},
+			{
+				"type": "CentralAttack",
+				"value": "中央オフェンス"
+			},
+			{
+				"type": "LeftAttack",
+				"value": "左オフェンス"
 			}
 		],
 		"ratingSubLevels": [
 			{
-				"text": "(非常に低い)",
-				"value": "0.0"
+				"text": "非常に低い",
+				"value": "0"
 			},
 			{
-				"text": "(低い)",
+				"text": "低い",
 				"value": "0.25"
 			},
 			{
-				"text": "(高い)",
-				"value": "0.50"
+				"text": "高い",
+				"value": "0.5"
 			},
 			{
-				"text": "(非常に高い)",
+				"text": "非常に高い",
 				"value": "0.75"
+			}
+		],
+		"fans": [
+			{
+				"text": "殺意を抱いている",
+				"value": "0"
+			},
+			{
+				"text": "怒り狂っている",
+				"value": "1"
+			},
+			{
+				"text": "腹を立てている",
+				"value": "2"
+			},
+			{
+				"text": "苛立っている",
+				"value": "3"
+			},
+			{
+				"text": "がっかりしている",
+				"value": "4"
+			},
+			{
+				"text": "落ち着いている",
+				"value": "5"
+			},
+			{
+				"text": "許容している",
+				"value": "6"
+			},
+			{
+				"text": "満足している",
+				"value": "7"
+			},
+			{
+				"text": "喜んでいる",
+				"value": "8"
+			},
+			{
+				"text": "興奮している",
+				"value": "9"
+			},
+			{
+				"text": "狂喜乱舞している",
+				"value": "10"
+			},
+			{
+				"text": "愛の歌を歌っている",
+				"value": "11"
 			}
 		],
 		"specialties": [
 			{
-				"short": "Un",
-				"type": "Unpredictable",
-				"value": "意外性"
+				"type": "None",
+				"value": "なし"
 			},
 			{
-				"short": "Po",
-				"type": "Powerful",
-				"value": "パワフル"
-			},
-			{
-				"short": "Qu",
-				"type": "Quick",
-				"value": "すばやい"
-			},
-			{
-				"short": "Te",
 				"type": "Technical",
 				"value": "テクニシャン"
 			},
 			{
-				"short": "He",
+				"type": "Quick",
+				"value": "すばやい"
+			},
+			{
+				"type": "Powerful",
+				"value": "パワフル"
+			},
+			{
+				"type": "Unpredictable",
+				"value": "意外性"
+			},
+			{
 				"type": "Head",
 				"value": "ヘディング"
 			},
 			{
-				"short": "Re",
 				"type": "Regainer",
 				"value": "リゲイナー"
 			}
 		],
 		"aggressiveness": [
 			{
-				"text": "不安定",
-				"value": "5"
-			},
-			{
-				"text": "激情家",
-				"value": "4"
-			},
-			{
-				"text": "気分屋",
-				"value": "3"
-			},
-			{
-				"text": "冷静",
-				"value": "2"
+				"text": "もの静か",
+				"value": "0"
 			},
 			{
 				"text": "穏やか",
 				"value": "1"
 			},
 			{
-				"text": "もの静か",
-				"value": "0"
+				"text": "冷静",
+				"value": "2"
+			},
+			{
+				"text": "気分屋",
+				"value": "3"
+			},
+			{
+				"text": "激情家",
+				"value": "4"
+			},
+			{
+				"text": "不安定",
+				"value": "5"
 			}
 		],
-		"desc": "日本語",
-		"name": "ja"
+		"id": "12",
+		"training": [
+			{
+				"type": "Gen",
+				"value": "全般（コンディション）"
+			},
+			{
+				"type": "Sta",
+				"value": "スタミナ"
+			},
+			{
+				"type": "SP",
+				"value": "プレイスキック"
+			},
+			{
+				"type": "Def",
+				"value": "ディフェンス"
+			},
+			{
+				"type": "Sco",
+				"value": "ストライカー"
+			},
+			{
+				"type": "Cross",
+				"value": "クロス（ウインガー）"
+			},
+			{
+				"type": "Shoot",
+				"value": "シュート"
+			},
+			{
+				"type": "Pass",
+				"value": "ショートパス"
+			},
+			{
+				"type": "PM",
+				"value": "ゲームメイク"
+			},
+			{
+				"type": "GK",
+				"value": "ゴールキーパー"
+			},
+			{
+				"type": "ThPass",
+				"value": "スルーパス"
+			},
+			{
+				"type": "DefPos",
+				"value": "守備重視のポジショニング"
+			},
+			{
+				"type": "WingAtt",
+				"value": "サイド攻撃"
+			},
+			{
+				"type": "Indiv",
+				"value": "個人"
+			}
+		],
+		"fans_match": [
+			{
+				"text": "試合放棄した方がましかも",
+				"value": "0"
+			},
+			{
+				"text": "次元が違う",
+				"value": "1"
+			},
+			{
+				"text": "我々は負けるだろう",
+				"value": "2"
+			},
+			{
+				"text": "彼らが有利だろう",
+				"value": "3"
+			},
+			{
+				"text": "彼らが少し有利だろう",
+				"value": "4"
+			},
+			{
+				"text": "接戦になるだろう",
+				"value": "5"
+			},
+			{
+				"text": "我々が少し有利だろう",
+				"value": "6"
+			},
+			{
+				"text": "我々が有利だろう",
+				"value": "7"
+			},
+			{
+				"text": "我々が勝つだろう",
+				"value": "8"
+			},
+			{
+				"text": "朝飯前だ！",
+				"value": "9"
+			},
+			{
+				"text": "恥をかかせよう！",
+				"value": "10"
+			}
+		],
+		"name": "ja",
+		"spirit": [
+			{
+				"text": "冷戦",
+				"value": "0"
+			},
+			{
+				"text": "殺意",
+				"value": "1"
+			},
+			{
+				"text": "狂乱",
+				"value": "2"
+			},
+			{
+				"text": "苛立ち",
+				"value": "3"
+			},
+			{
+				"text": "冷静",
+				"value": "4"
+			},
+			{
+				"text": "平穏",
+				"value": "5"
+			},
+			{
+				"text": "許容",
+				"value": "6"
+			},
+			{
+				"text": "満足",
+				"value": "7"
+			},
+			{
+				"text": "熱狂",
+				"value": "8"
+			},
+			{
+				"text": "有頂天",
+				"value": "9"
+			},
+			{
+				"text": "敵知らず",
+				"value": "10"
+			}
+		],
+		"desc": "日本語 (Japanese)"
 	}
 }

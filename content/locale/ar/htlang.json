@@ -1,5 +1,47 @@
 {
 	"language": {
+		"confidence": [
+			{
+				"text": "منعدم",
+				"value": "0"
+			},
+			{
+				"text": "كارثي",
+				"value": "1"
+			},
+			{
+				"text": "ردئ",
+				"value": "2"
+			},
+			{
+				"text": "فقير",
+				"value": "3"
+			},
+			{
+				"text": "لائق",
+				"value": "4"
+			},
+			{
+				"text": "قوي",
+				"value": "5"
+			},
+			{
+				"text": "رائع",
+				"value": "6"
+			},
+			{
+				"text": "مبالغون بشكل بسيط",
+				"value": "7"
+			},
+			{
+				"text": "مبالغون",
+				"value": "8"
+			},
+			{
+				"text": "مبالغون تماما",
+				"value": "9"
+			}
+		],
 		"tactics": [
 			{
 				"type": "normal",
@@ -14,12 +56,20 @@
 				"value": "الهجمات المرتدة"
 			},
 			{
+				"type": "aim",
+				"value": "هجوم عن طريق الوسط"
+			},
+			{
 				"type": "aow",
 				"value": "هجوم عن طريق الأجنحة"
 			},
 			{
-				"type": "aim",
-				"value": "هجوم عن طريق الوسط"
+				"type": "",
+				"value": "مجهول"
+			},
+			{
+				"type": "",
+				"value": "مجهول"
 			},
 			{
 				"type": "creatively",
@@ -32,251 +82,606 @@
 		],
 		"honesty": [
 			{
-				"text": "متدين",
-				"value": "5"
-			},
-			{
-				"text": "صالح",
-				"value": "4"
-			},
-			{
-				"text": "مستقيم",
-				"value": "3"
-			},
-			{
-				"text": "صادق",
-				"value": "2"
+				"text": "سيء السمعة",
+				"value": "0"
 			},
 			{
 				"text": "غير أمين",
 				"value": "1"
 			},
 			{
-				"text": "سيء السمعة",
-				"value": "0"
+				"text": "صادق",
+				"value": "2"
+			},
+			{
+				"text": "مستقيم",
+				"value": "3"
+			},
+			{
+				"text": "صالح",
+				"value": "4"
+			},
+			{
+				"text": "متدين",
+				"value": "5"
 			}
 		],
 		"agreeability": [
 			{
-				"text": "محبوب الفريق",
-				"value": "5"
-			},
-			{
-				"text": "شخص ذو شعبية",
-				"value": "4"
-			},
-			{
-				"text": "شخص متعاطف",
-				"value": "3"
-			},
-			{
-				"text": "شخص لطيف",
-				"value": "2"
+				"text": "مكروه",
+				"value": "0"
 			},
 			{
 				"text": "شخص مثير للجدل",
 				"value": "1"
 			},
 			{
-				"text": "مكروه",
-				"value": "0"
+				"text": "شخص لطيف",
+				"value": "2"
+			},
+			{
+				"text": "شخص متعاطف",
+				"value": "3"
+			},
+			{
+				"text": "شخص ذو شعبية",
+				"value": "4"
+			},
+			{
+				"text": "محبوب الفريق",
+				"value": "5"
+			}
+		],
+		"skills": [
+			{
+				"type": "Keeper",
+				"value": "حراسة المرمى"
+			},
+			{
+				"type": "Stamina",
+				"value": "اللياقة البدنية"
+			},
+			{
+				"type": "Defender",
+				"value": "الدفاع"
+			},
+			{
+				"type": "Playmaker",
+				"value": "صناعة اللعب"
+			},
+			{
+				"type": "Winger",
+				"value": "الجناح"
+			},
+			{
+				"type": "Scorer",
+				"value": "التهديف"
+			},
+			{
+				"type": "Kicker",
+				"value": "الركلات ثابتة"
+			},
+			{
+				"type": "Passer",
+				"value": "التمرير"
+			},
+			{
+				"type": "Experience",
+				"value": "الخبرة"
+			},
+			{
+				"type": "LeaderShip",
+				"value": "القيادة"
 			}
 		],
 		"positions": [
 			{
-				"short": "GK",
 				"type": "Keeper",
 				"value": "حارس مرمى"
 			},
 			{
-				"short": "CD",
-				"type": "Central defender",
-				"value": "مدافع وسط"
-			},
-			{
-				"short": "WB",
-				"type": "Wing back",
+				"type": "WingBack",
 				"value": "ظهير"
 			},
 			{
-				"short": "IM",
-				"type": "Inner midfielder",
+				"type": "CentralDefender",
+				"value": "مدافع وسط"
+			},
+			{
+				"type": "InnerMidfield",
 				"value": "لاعب وسط"
 			},
 			{
-				"short": "WI",
 				"type": "Winger",
 				"value": "جناح"
 			},
 			{
-				"short": "FW",
 				"type": "Forward",
 				"value": "مهاجم"
 			}
 		],
-		"levels": [
+		"fans_season": [
 			{
-				"text": "ملهم",
-				"value": "20"
+				"text": "لا نستحق التواجد في هذا التقسيم",
+				"value": "0"
 			},
 			{
-				"text": "مثالي",
-				"value": "19"
+				"text": "كل يوم في هذه التقسيم يمثل إضافة لنا",
+				"value": "1"
 			},
 			{
-				"text": "سحري",
-				"value": "18"
+				"text": "سيتوجب علينا القتال للبقاء عاليا",
+				"value": "2"
 			},
 			{
-				"text": "أسطوري",
-				"value": "17"
-			},
-			{
-				"text": "فضائي",
-				"value": "16"
-			},
-			{
-				"text": "عملاق",
-				"value": "15"
-			},
-			{
-				"text": "خارق",
-				"value": "14"
-			},
-			{
-				"text": "عالمي",
-				"value": "13"
-			},
-			{
-				"text": "مهيب",
-				"value": "12"
-			},
-			{
-				"text": "متألق",
-				"value": "11"
-			},
-			{
-				"text": "متميز",
-				"value": "10"
-			},
-			{
-				"text": "هائل",
-				"value": "9"
-			},
-			{
-				"text": "ممتاز",
-				"value": "8"
-			},
-			{
-				"text": "صلب",
-				"value": "7"
-			},
-			{
-				"text": "مقبول",
-				"value": "6"
-			},
-			{
-				"text": "غير كافي",
-				"value": "5"
-			},
-			{
-				"text": "ضعيف",
-				"value": "4"
-			},
-			{
-				"text": "فقير",
+				"text": "إنهاء الموسم في منتصف الترتيب سيكون أمرا جيدا",
 				"value": "3"
 			},
 			{
-				"text": "ردئ",
-				"value": "2"
+				"text": "نحن ننتمي إلى الفرق الأربعة الأعلى",
+				"value": "4"
+			},
+			{
+				"text": "إجعل اللقب هدفا لك!",
+				"value": "5"
+			},
+			{
+				"text": "يجب علينا الفوز هذا الموسم",
+				"value": "6"
+			},
+			{
+				"text": "نحن أفضل بكثير من هذا التقسيم!",
+				"value": "7"
+			}
+		],
+		"attitude": [
+			{
+				"text": "اللعب بهدوء",
+				"value": "-1"
+			},
+			{
+				"text": "عادي",
+				"value": "0"
+			},
+			{
+				"text": "مباراة الموسم",
+				"value": "1"
+			}
+		],
+		"levels": [
+			{
+				"text": "منعدم",
+				"value": "0"
 			},
 			{
 				"text": "كارثي",
 				"value": "1"
 			},
 			{
-				"text": "منعدم",
+				"text": "ردئ",
+				"value": "2"
+			},
+			{
+				"text": "فقير",
+				"value": "3"
+			},
+			{
+				"text": "ضعيف",
+				"value": "4"
+			},
+			{
+				"text": "غير كافي",
+				"value": "5"
+			},
+			{
+				"text": "مقبول",
+				"value": "6"
+			},
+			{
+				"text": "صلب",
+				"value": "7"
+			},
+			{
+				"text": "ممتاز",
+				"value": "8"
+			},
+			{
+				"text": "هائل",
+				"value": "9"
+			},
+			{
+				"text": "متميز",
+				"value": "10"
+			},
+			{
+				"text": "متألق",
+				"value": "11"
+			},
+			{
+				"text": "مهيب",
+				"value": "12"
+			},
+			{
+				"text": "عالمي",
+				"value": "13"
+			},
+			{
+				"text": "خارق",
+				"value": "14"
+			},
+			{
+				"text": "عملاق",
+				"value": "15"
+			},
+			{
+				"text": "فضائي",
+				"value": "16"
+			},
+			{
+				"text": "أسطوري",
+				"value": "17"
+			},
+			{
+				"text": "سحري",
+				"value": "18"
+			},
+			{
+				"text": "مثالي",
+				"value": "19"
+			},
+			{
+				"text": "ملهم",
+				"value": "20"
+			}
+		],
+		"sponsors": [
+			{
+				"text": "متعطشون للقتل",
 				"value": "0"
+			},
+			{
+				"text": "مغتاظون",
+				"value": "1"
+			},
+			{
+				"text": "مستاؤون",
+				"value": "3"
+			},
+			{
+				"text": "هادؤون",
+				"value": "5"
+			},
+			{
+				"text": "متفهمون",
+				"value": "6"
+			},
+			{
+				"text": "راضون",
+				"value": "7"
+			},
+			{
+				"text": "فرحون",
+				"value": "8"
+			},
+			{
+				"text": "منتشون",
+				"value": "9"
+			},
+			{
+				"text": "يرقصون في الشوارع",
+				"value": "10"
+			},
+			{
+				"text": "يرسلون قصائد الغزل لك",
+				"value": "11"
+			}
+		],
+		"sectors": [
+			{
+				"type": "Midfield",
+				"value": "الوسط"
+			},
+			{
+				"type": "RightDefense",
+				"value": "الدفاع الأيمن"
+			},
+			{
+				"type": "CentralDefense",
+				"value": "وسط الدفاع"
+			},
+			{
+				"type": "LeftDefense",
+				"value": "الدفاع الأيسر"
+			},
+			{
+				"type": "RightAttack",
+				"value": "الهجوم الأيمن"
+			},
+			{
+				"type": "CentralAttack",
+				"value": "وسط الهجوم"
+			},
+			{
+				"type": "LeftAttack",
+				"value": "الهجوم الأيسر"
 			}
 		],
 		"ratingSubLevels": [
 			{
-				"text": "(منخفض جدا)",
-				"value": "0.0"
+				"text": "منخفض جدا",
+				"value": "0"
 			},
 			{
-				"text": "(منخفض)",
+				"text": "منخفض",
 				"value": "0.25"
 			},
 			{
-				"text": "(عالي)",
-				"value": "0.50"
+				"text": "عالي",
+				"value": "0.5"
 			},
 			{
-				"text": "(عالي جدا)",
+				"text": "عالي جدا",
 				"value": "0.75"
+			}
+		],
+		"fans": [
+			{
+				"text": "متعطشون للقتل",
+				"value": "0"
+			},
+			{
+				"text": "مغتاظون",
+				"value": "1"
+			},
+			{
+				"text": "غاضبون",
+				"value": "2"
+			},
+			{
+				"text": "مستاؤون",
+				"value": "3"
+			},
+			{
+				"text": "مصابون بخيبة أمل",
+				"value": "4"
+			},
+			{
+				"text": "هادؤون",
+				"value": "5"
+			},
+			{
+				"text": "متفهمون",
+				"value": "6"
+			},
+			{
+				"text": "راضون",
+				"value": "7"
+			},
+			{
+				"text": "فرحون",
+				"value": "8"
+			},
+			{
+				"text": "منتشون",
+				"value": "9"
+			},
+			{
+				"text": "يرقصون في الشوارع",
+				"value": "10"
+			},
+			{
+				"text": "يرسلون قصائد الغزل لك",
+				"value": "11"
 			}
 		],
 		"specialties": [
 			{
-				"short": "Un",
-				"type": "Unpredictable",
-				"value": "غير متوقع"
+				"type": "None",
+				"value": "لا شيء"
 			},
 			{
-				"short": "Po",
-				"type": "Powerful",
-				"value": "قوي"
-			},
-			{
-				"short": "Qu",
-				"type": "Quick",
-				"value": "سريع"
-			},
-			{
-				"short": "Te",
 				"type": "Technical",
 				"value": "مهاري"
 			},
 			{
-				"short": "He",
+				"type": "Quick",
+				"value": "سريع"
+			},
+			{
+				"type": "Powerful",
+				"value": "قوي"
+			},
+			{
+				"type": "Unpredictable",
+				"value": "غير متوقع"
+			},
+			{
 				"type": "Head",
 				"value": "ضربات الرأس"
 			},
 			{
-				"short": "Re",
 				"type": "Regainer",
 				"value": "مرجاع"
 			}
 		],
 		"aggressiveness": [
 			{
-				"text": "غير متزن",
-				"value": "5"
-			},
-			{
-				"text": "عصبي",
-				"value": "4"
-			},
-			{
-				"text": "مزاجي",
-				"value": "3"
-			},
-			{
-				"text": "متزن",
-				"value": "2"
+				"text": "شديد الهدوء",
+				"value": "0"
 			},
 			{
 				"text": "هادئ",
 				"value": "1"
 			},
 			{
-				"text": "شديد الهدوء",
-				"value": "0"
+				"text": "متزن",
+				"value": "2"
+			},
+			{
+				"text": "مزاجي",
+				"value": "3"
+			},
+			{
+				"text": "عصبي",
+				"value": "4"
+			},
+			{
+				"text": "غير متزن",
+				"value": "5"
 			}
 		],
-		"desc": "العربية",
-		"name": "ar"
+		"id": "22",
+		"training": [
+			{
+				"type": "Gen",
+				"value": "عام (التكوين البدني)"
+			},
+			{
+				"type": "Sta",
+				"value": "اللياقة البدنية"
+			},
+			{
+				"type": "SP",
+				"value": "الكرات الثابتة"
+			},
+			{
+				"type": "Def",
+				"value": "الدفاع"
+			},
+			{
+				"type": "Sco",
+				"value": "التهديف"
+			},
+			{
+				"type": "Cross",
+				"value": "التمريرات العرضية (الجناح)"
+			},
+			{
+				"type": "Shoot",
+				"value": "التسديد"
+			},
+			{
+				"type": "Pass",
+				"value": "التمريرات القصيرة"
+			},
+			{
+				"type": "PM",
+				"value": "صناعة اللعب"
+			},
+			{
+				"type": "GK",
+				"value": "حراسة المرمى"
+			},
+			{
+				"type": "ThPass",
+				"value": "التمريرات البينية"
+			},
+			{
+				"type": "DefPos",
+				"value": "المراكز الدفاعية"
+			},
+			{
+				"type": "WingAtt",
+				"value": "الأجنحة الهجوميين"
+			},
+			{
+				"type": "Indiv",
+				"value": "فردي"
+			}
+		],
+		"fans_match": [
+			{
+				"text": "من الأفضل عدم التوجه إلى الملعب",
+				"value": "0"
+			},
+			{
+				"text": "نحن أسوء",
+				"value": "1"
+			},
+			{
+				"text": "سوف نخسر",
+				"value": "2"
+			},
+			{
+				"text": "هم الأفضل",
+				"value": "3"
+			},
+			{
+				"text": "هم يملكون الأفضلية",
+				"value": "4"
+			},
+			{
+				"text": "سوف تكون مباراة ندية",
+				"value": "5"
+			},
+			{
+				"text": "نحن نملك الأفضلية",
+				"value": "6"
+			},
+			{
+				"text": "نحن الأفضل",
+				"value": "7"
+			},
+			{
+				"text": "سوف نفوز",
+				"value": "8"
+			},
+			{
+				"text": "قطعة من الكعك",
+				"value": "9"
+			},
+			{
+				"text": "سوف نهينهم",
+				"value": "10"
+			}
+		],
+		"name": "ar",
+		"spirit": [
+			{
+				"text": "مثل الحرب الباردة",
+				"value": "0"
+			},
+			{
+				"text": "متعطشون للقتل",
+				"value": "1"
+			},
+			{
+				"text": "مغتاظون",
+				"value": "2"
+			},
+			{
+				"text": "مستاؤون",
+				"value": "3"
+			},
+			{
+				"text": "متآلفون",
+				"value": "4"
+			},
+			{
+				"text": "هادؤون",
+				"value": "5"
+			},
+			{
+				"text": "متفهمون",
+				"value": "6"
+			},
+			{
+				"text": "راضون",
+				"value": "7"
+			},
+			{
+				"text": "فرحون",
+				"value": "8"
+			},
+			{
+				"text": "يمشون فوق السحب",
+				"value": "9"
+			},
+			{
+				"text": "جنة الله في أرضه!",
+				"value": "10"
+			}
+		],
+		"desc": "Arabic"
 	}
 }

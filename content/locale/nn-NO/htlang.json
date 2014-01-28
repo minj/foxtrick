@@ -1,5 +1,47 @@
 {
 	"language": {
+		"confidence": [
+			{
+				"text": "fråverande",
+				"value": "0"
+			},
+			{
+				"text": "katastrofal",
+				"value": "1"
+			},
+			{
+				"text": "elendig",
+				"value": "2"
+			},
+			{
+				"text": "dårleg",
+				"value": "3"
+			},
+			{
+				"text": "brukande",
+				"value": "4"
+			},
+			{
+				"text": "solid",
+				"value": "5"
+			},
+			{
+				"text": "glimrande",
+				"value": "6"
+			},
+			{
+				"text": "lett overdriven",
+				"value": "7"
+			},
+			{
+				"text": "overdriven",
+				"value": "8"
+			},
+			{
+				"text": "heilt overdriven",
+				"value": "9"
+			}
+		],
 		"tactics": [
 			{
 				"type": "normal",
@@ -14,12 +56,20 @@
 				"value": "Kontringsspel"
 			},
 			{
+				"type": "aim",
+				"value": "Angrip i midten"
+			},
+			{
 				"type": "aow",
 				"value": "Angrip på kantane"
 			},
 			{
-				"type": "aim",
-				"value": "Angrip i midten"
+				"type": "",
+				"value": "Ukjend"
+			},
+			{
+				"type": "",
+				"value": "Ukjend"
 			},
 			{
 				"type": "creatively",
@@ -32,251 +82,606 @@
 		],
 		"honesty": [
 			{
-				"text": "helgenaktig",
-				"value": "5"
-			},
-			{
-				"text": "rettvis",
-				"value": "4"
-			},
-			{
-				"text": "redeleg",
-				"value": "3"
-			},
-			{
-				"text": "ærleg",
-				"value": "2"
+				"text": "lystløgnar",
+				"value": "0"
 			},
 			{
 				"text": "uærleg",
 				"value": "1"
 			},
 			{
-				"text": "lystløgnar",
-				"value": "0"
+				"text": "ærleg",
+				"value": "2"
+			},
+			{
+				"text": "redeleg",
+				"value": "3"
+			},
+			{
+				"text": "rettvis",
+				"value": "4"
+			},
+			{
+				"text": "helgenaktig",
+				"value": "5"
 			}
 		],
 		"agreeability": [
 			{
-				"text": "kjær lagkamerat",
-				"value": "5"
-			},
-			{
-				"text": "populær kar",
-				"value": "4"
-			},
-			{
-				"text": "sympatisk type",
-				"value": "3"
-			},
-			{
-				"text": "hyggjeleg kar",
-				"value": "2"
+				"text": "ufin type",
+				"value": "0"
 			},
 			{
 				"text": "kontroversiell person",
 				"value": "1"
 			},
 			{
-				"text": "ufin type",
-				"value": "0"
+				"text": "hyggjeleg kar",
+				"value": "2"
+			},
+			{
+				"text": "sympatisk type",
+				"value": "3"
+			},
+			{
+				"text": "populær kar",
+				"value": "4"
+			},
+			{
+				"text": "kjær lagkamerat",
+				"value": "5"
 			}
 		],
-		"positions": [
+		"skills": [
 			{
-				"short": "MV",
 				"type": "Keeper",
 				"value": "Målvakt"
 			},
 			{
-				"short": "MS",
-				"type": "Central defender",
-				"value": "Midtstoppar"
+				"type": "Stamina",
+				"value": "Kondisjon"
 			},
 			{
-				"short": "WB",
-				"type": "Wing back",
+				"type": "Defender",
+				"value": "Forsvar"
+			},
+			{
+				"type": "Playmaker",
+				"value": "Ballfordeling"
+			},
+			{
+				"type": "Winger",
+				"value": "Kantspel"
+			},
+			{
+				"type": "Scorer",
+				"value": "Målskåring"
+			},
+			{
+				"type": "Kicker",
+				"value": "Daudball"
+			},
+			{
+				"type": "Passer",
+				"value": "Pasningar"
+			},
+			{
+				"type": "Experience",
+				"value": "Røynsle"
+			},
+			{
+				"type": "LeaderShip",
+				"value": "Leiarevne"
+			}
+		],
+		"positions": [
+			{
+				"type": "Keeper",
+				"value": "Målvakt"
+			},
+			{
+				"type": "WingBack",
 				"value": "Sideforsvarar"
 			},
 			{
-				"short": "SM",
-				"type": "Inner midfielder",
+				"type": "CentralDefender",
+				"value": "Midtstoppar"
+			},
+			{
+				"type": "InnerMidfield",
 				"value": "Sentral midtbane"
 			},
 			{
-				"short": "WI",
 				"type": "Winger",
 				"value": "Kantspelar"
 			},
 			{
-				"short": "AN",
 				"type": "Forward",
 				"value": "Angripar"
 			}
 		],
-		"levels": [
+		"fans_season": [
 			{
-				"text": "guddomleg",
-				"value": "20"
+				"text": "Me er ikkje gode nok til å spela i denne divisjonen",
+				"value": "0"
 			},
 			{
-				"text": "utopisk",
-				"value": "19"
+				"text": "Kvar dag i denne divisjonen er ein bonus",
+				"value": "1"
 			},
 			{
-				"text": "magisk",
-				"value": "18"
+				"text": "Me må stå på for å berga plassen",
+				"value": "2"
 			},
 			{
-				"text": "mytisk",
-				"value": "17"
-			},
-			{
-				"text": "utanomjordisk",
-				"value": "16"
-			},
-			{
-				"text": "titanisk",
-				"value": "15"
-			},
-			{
-				"text": "eventyrleg",
-				"value": "14"
-			},
-			{
-				"text": "fantastisk",
-				"value": "13"
-			},
-			{
-				"text": "storveges",
-				"value": "12"
-			},
-			{
-				"text": "glitrande",
-				"value": "11"
-			},
-			{
-				"text": "framifrå",
-				"value": "10"
-			},
-			{
-				"text": "eineståande",
-				"value": "9"
-			},
-			{
-				"text": "utmerkt",
-				"value": "8"
-			},
-			{
-				"text": "solid",
-				"value": "7"
-			},
-			{
-				"text": "brukbar",
-				"value": "6"
-			},
-			{
-				"text": "måteleg",
-				"value": "5"
-			},
-			{
-				"text": "veik",
-				"value": "4"
-			},
-			{
-				"text": "dårleg",
+				"text": "Ei plassering midt på tabellen er fint",
 				"value": "3"
 			},
 			{
-				"text": "elendig",
-				"value": "2"
+				"text": "Me høyrer heime mellom dei 4 beste",
+				"value": "4"
+			},
+			{
+				"text": "Me går for fyrsteplassen!",
+				"value": "5"
+			},
+			{
+				"text": "Me må vinna denne sesongen",
+				"value": "6"
+			},
+			{
+				"text": "Me er altfor gode for denne divisjonen!",
+				"value": "7"
+			}
+		],
+		"attitude": [
+			{
+				"text": "Ta det roleg",
+				"value": "-1"
+			},
+			{
+				"text": "Normal",
+				"value": "0"
+			},
+			{
+				"text": "Den viktigaste kampen i sesongen",
+				"value": "1"
+			}
+		],
+		"levels": [
+			{
+				"text": "fråverande",
+				"value": "0"
 			},
 			{
 				"text": "katastrofal",
 				"value": "1"
 			},
 			{
-				"text": "fråverande",
+				"text": "elendig",
+				"value": "2"
+			},
+			{
+				"text": "dårleg",
+				"value": "3"
+			},
+			{
+				"text": "veik",
+				"value": "4"
+			},
+			{
+				"text": "måteleg",
+				"value": "5"
+			},
+			{
+				"text": "brukbar",
+				"value": "6"
+			},
+			{
+				"text": "solid",
+				"value": "7"
+			},
+			{
+				"text": "utmerkt",
+				"value": "8"
+			},
+			{
+				"text": "eineståande",
+				"value": "9"
+			},
+			{
+				"text": "framifrå",
+				"value": "10"
+			},
+			{
+				"text": "glitrande",
+				"value": "11"
+			},
+			{
+				"text": "storveges",
+				"value": "12"
+			},
+			{
+				"text": "fantastisk",
+				"value": "13"
+			},
+			{
+				"text": "eventyrleg",
+				"value": "14"
+			},
+			{
+				"text": "titanisk",
+				"value": "15"
+			},
+			{
+				"text": "utanomjordisk",
+				"value": "16"
+			},
+			{
+				"text": "mytisk",
+				"value": "17"
+			},
+			{
+				"text": "magisk",
+				"value": "18"
+			},
+			{
+				"text": "utopisk",
+				"value": "19"
+			},
+			{
+				"text": "guddomleg",
+				"value": "20"
+			}
+		],
+		"sponsors": [
+			{
+				"text": "morderiske",
 				"value": "0"
+			},
+			{
+				"text": "rasande",
+				"value": "1"
+			},
+			{
+				"text": "irriterte",
+				"value": "3"
+			},
+			{
+				"text": "rolege",
+				"value": "5"
+			},
+			{
+				"text": "tilfredse",
+				"value": "6"
+			},
+			{
+				"text": "godt nøgde",
+				"value": "7"
+			},
+			{
+				"text": "opprømde",
+				"value": "8"
+			},
+			{
+				"text": "euforiske",
+				"value": "9"
+			},
+			{
+				"text": "i den sjuande himmelen",
+				"value": "10"
+			},
+			{
+				"text": "Sender deg kjærleiksbrev",
+				"value": "11"
+			}
+		],
+		"sectors": [
+			{
+				"type": "Midfield",
+				"value": "Midtbane"
+			},
+			{
+				"type": "RightDefense",
+				"value": "Høgre side forsvar"
+			},
+			{
+				"type": "CentralDefense",
+				"value": "Midtforsvar"
+			},
+			{
+				"type": "LeftDefense",
+				"value": "Venstre side forsvar"
+			},
+			{
+				"type": "RightAttack",
+				"value": "Høgre side angrep"
+			},
+			{
+				"type": "CentralAttack",
+				"value": "Sentralangrep"
+			},
+			{
+				"type": "LeftAttack",
+				"value": "Venstre side angrep"
 			}
 		],
 		"ratingSubLevels": [
 			{
-				"text": "(svært låg)",
-				"value": "0.0"
+				"text": "svært låg",
+				"value": "0"
 			},
 			{
-				"text": "(låg)",
+				"text": "låg",
 				"value": "0.25"
 			},
 			{
-				"text": "(høg)",
-				"value": "0.50"
+				"text": "høg",
+				"value": "0.5"
 			},
 			{
-				"text": "(svært høg)",
+				"text": "svært høg",
 				"value": "0.75"
+			}
+		],
+		"fans": [
+			{
+				"text": "morderiske",
+				"value": "0"
+			},
+			{
+				"text": "rasande",
+				"value": "1"
+			},
+			{
+				"text": "sinte",
+				"value": "2"
+			},
+			{
+				"text": "irriterte",
+				"value": "3"
+			},
+			{
+				"text": "skuffa",
+				"value": "4"
+			},
+			{
+				"text": "rolege",
+				"value": "5"
+			},
+			{
+				"text": "tilfredse",
+				"value": "6"
+			},
+			{
+				"text": "godt nøgde",
+				"value": "7"
+			},
+			{
+				"text": "opprømde",
+				"value": "8"
+			},
+			{
+				"text": "euforiske",
+				"value": "9"
+			},
+			{
+				"text": "i den sjuande himmelen",
+				"value": "10"
+			},
+			{
+				"text": "Sender deg kjærleiksbrev",
+				"value": "11"
 			}
 		],
 		"specialties": [
 			{
-				"short": "Un",
-				"type": "Unpredictable",
-				"value": "Omskifteleg"
+				"type": "None",
+				"value": "Ingen"
 			},
 			{
-				"short": "Po",
-				"type": "Powerful",
-				"value": "Sterk"
-			},
-			{
-				"short": "Qu",
-				"type": "Quick",
-				"value": "Rask"
-			},
-			{
-				"short": "Te",
 				"type": "Technical",
 				"value": "Teknisk"
 			},
 			{
-				"short": "He",
+				"type": "Quick",
+				"value": "Rask"
+			},
+			{
+				"type": "Powerful",
+				"value": "Sterk"
+			},
+			{
+				"type": "Unpredictable",
+				"value": "Omskifteleg"
+			},
+			{
 				"type": "Head",
 				"value": "Hovud"
 			},
 			{
-				"short": "Re",
 				"type": "Regainer",
 				"value": "Frisking"
 			}
 		],
 		"aggressiveness": [
 			{
-				"text": "ustabil",
-				"value": "5"
-			},
-			{
-				"text": "varmblodig",
-				"value": "4"
-			},
-			{
-				"text": "hissig",
-				"value": "3"
-			},
-			{
-				"text": "balansert",
-				"value": "2"
+				"text": "roleg",
+				"value": "0"
 			},
 			{
 				"text": "sindig",
 				"value": "1"
 			},
 			{
-				"text": "roleg",
-				"value": "0"
+				"text": "balansert",
+				"value": "2"
+			},
+			{
+				"text": "hissig",
+				"value": "3"
+			},
+			{
+				"text": "varmblodig",
+				"value": "4"
+			},
+			{
+				"text": "ustabil",
+				"value": "5"
 			}
 		],
-		"desc": "Norsk, nynorsk",
-		"name": "nn-NO"
+		"id": "136",
+		"training": [
+			{
+				"type": "Gen",
+				"value": "Generelt (Form)"
+			},
+			{
+				"type": "Sta",
+				"value": "Kondisjon"
+			},
+			{
+				"type": "SP",
+				"value": "Daudballar"
+			},
+			{
+				"type": "Def",
+				"value": "Forsvar"
+			},
+			{
+				"type": "Sco",
+				"value": "Målskåring"
+			},
+			{
+				"type": "Cross",
+				"value": "Innlegg (Kant)"
+			},
+			{
+				"type": "Shoot",
+				"value": "Skottrening"
+			},
+			{
+				"type": "Pass",
+				"value": "Pasningar"
+			},
+			{
+				"type": "PM",
+				"value": "Ballfordeling"
+			},
+			{
+				"type": "GK",
+				"value": "Målvakt"
+			},
+			{
+				"type": "ThPass",
+				"value": "Gjennombrotspasningar"
+			},
+			{
+				"type": "DefPos",
+				"value": "Defensive posisjonar"
+			},
+			{
+				"type": "WingAtt",
+				"value": "Kantangrep"
+			},
+			{
+				"type": "Indiv",
+				"value": "Individuell"
+			}
+		],
+		"fans_match": [
+			{
+				"text": "Best å ikkje møta fram",
+				"value": "0"
+			},
+			{
+				"text": "Dei kjem til å rundspela oss",
+				"value": "1"
+			},
+			{
+				"text": "Me kjem til å tapa",
+				"value": "2"
+			},
+			{
+				"text": "Dei er favorittar",
+				"value": "3"
+			},
+			{
+				"text": "Dei har overtaket",
+				"value": "4"
+			},
+			{
+				"text": "Det vert ein jamn kamp",
+				"value": "5"
+			},
+			{
+				"text": "Me har overtaket",
+				"value": "6"
+			},
+			{
+				"text": "Me er favorittar",
+				"value": "7"
+			},
+			{
+				"text": "Me kjem til å vinna",
+				"value": "8"
+			},
+			{
+				"text": "Som å stela sukkerty frå småungar",
+				"value": "9"
+			},
+			{
+				"text": "Lat oss audmjuka dei",
+				"value": "10"
+			}
+		],
+		"name": "nn-NO",
+		"spirit": [
+			{
+				"text": "som den kalde krigen",
+				"value": "0"
+			},
+			{
+				"text": "morderiske",
+				"value": "1"
+			},
+			{
+				"text": "rasande",
+				"value": "2"
+			},
+			{
+				"text": "irriterte",
+				"value": "3"
+			},
+			{
+				"text": "fatta",
+				"value": "4"
+			},
+			{
+				"text": "rolege",
+				"value": "5"
+			},
+			{
+				"text": "tilfredse",
+				"value": "6"
+			},
+			{
+				"text": "godt nøgde",
+				"value": "7"
+			},
+			{
+				"text": "opprømde",
+				"value": "8"
+			},
+			{
+				"text": "går på skyer",
+				"value": "9"
+			},
+			{
+				"text": "Paradis på jord!",
+				"value": "10"
+			}
+		],
+		"desc": "Norsk, nynorsk"
 	}
 }

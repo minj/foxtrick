@@ -1,5 +1,47 @@
 {
 	"language": {
+		"confidence": [
+			{
+				"text": "inesistente",
+				"value": "0"
+			},
+			{
+				"text": "disastrosa",
+				"value": "1"
+			},
+			{
+				"text": "tremenda",
+				"value": "2"
+			},
+			{
+				"text": "scarsa",
+				"value": "3"
+			},
+			{
+				"text": "decente",
+				"value": "4"
+			},
+			{
+				"text": "forte",
+				"value": "5"
+			},
+			{
+				"text": "magnifica",
+				"value": "6"
+			},
+			{
+				"text": "leggermente esagerata",
+				"value": "7"
+			},
+			{
+				"text": "esagerata",
+				"value": "8"
+			},
+			{
+				"text": "estremamente esagerata",
+				"value": "9"
+			}
+		],
 		"tactics": [
 			{
 				"type": "normal",
@@ -14,12 +56,20 @@
 				"value": "Contropiede"
 			},
 			{
+				"type": "aim",
+				"value": "Attacco al centro"
+			},
+			{
 				"type": "aow",
 				"value": "Attacco sulle fasce"
 			},
 			{
-				"type": "aim",
-				"value": "Attacco al centro"
+				"type": "",
+				"value": "Sconosciuto"
+			},
+			{
+				"type": "",
+				"value": "Sconosciuto"
 			},
 			{
 				"type": "creatively",
@@ -32,251 +82,606 @@
 		],
 		"honesty": [
 			{
-				"text": "quasi santa",
-				"value": "5"
-			},
-			{
-				"text": "virtuosa",
-				"value": "4"
-			},
-			{
-				"text": "retta",
-				"value": "3"
-			},
-			{
-				"text": "onesta",
-				"value": "2"
+				"text": "infame",
+				"value": "0"
 			},
 			{
 				"text": "disonesta",
 				"value": "1"
 			},
 			{
-				"text": "infame",
-				"value": "0"
+				"text": "onesta",
+				"value": "2"
+			},
+			{
+				"text": "retta",
+				"value": "3"
+			},
+			{
+				"text": "virtuosa",
+				"value": "4"
+			},
+			{
+				"text": "quasi santa",
+				"value": "5"
 			}
 		],
 		"agreeability": [
 			{
-				"text": "amata",
-				"value": "5"
-			},
-			{
-				"text": "popolare",
-				"value": "4"
-			},
-			{
-				"text": "simpatica",
-				"value": "3"
-			},
-			{
-				"text": "gradevole",
-				"value": "2"
+				"text": "attaccabrighe",
+				"value": "0"
 			},
 			{
 				"text": "scontrosa",
 				"value": "1"
 			},
 			{
-				"text": "attaccabrighe",
-				"value": "0"
+				"text": "gradevole",
+				"value": "2"
+			},
+			{
+				"text": "simpatica",
+				"value": "3"
+			},
+			{
+				"text": "popolare",
+				"value": "4"
+			},
+			{
+				"text": "amata",
+				"value": "5"
+			}
+		],
+		"skills": [
+			{
+				"type": "Keeper",
+				"value": "Parate"
+			},
+			{
+				"type": "Stamina",
+				"value": "Resistenza"
+			},
+			{
+				"type": "Defender",
+				"value": "Difesa"
+			},
+			{
+				"type": "Playmaker",
+				"value": "Regia"
+			},
+			{
+				"type": "Winger",
+				"value": "Cross"
+			},
+			{
+				"type": "Scorer",
+				"value": "Attacco"
+			},
+			{
+				"type": "Kicker",
+				"value": "Calci piazzati"
+			},
+			{
+				"type": "Passer",
+				"value": "Passaggi"
+			},
+			{
+				"type": "Experience",
+				"value": "Esperienza"
+			},
+			{
+				"type": "LeaderShip",
+				"value": "Carisma"
 			}
 		],
 		"positions": [
 			{
-				"short": "Po",
 				"type": "Keeper",
 				"value": "Portiere"
 			},
 			{
-				"short": "Dc",
-				"type": "Central defender",
-				"value": "Difensore centrale"
-			},
-			{
-				"short": "Te",
-				"type": "Wing back",
+				"type": "WingBack",
 				"value": "Terzino"
 			},
 			{
-				"short": "Cc",
-				"type": "Inner midfielder",
+				"type": "CentralDefender",
+				"value": "Difensore centrale"
+			},
+			{
+				"type": "InnerMidfield",
 				"value": "Centrocampista"
 			},
 			{
-				"short": "Al",
 				"type": "Winger",
 				"value": "Ala"
 			},
 			{
-				"short": "At",
 				"type": "Forward",
 				"value": "Attaccante"
 			}
 		],
-		"levels": [
+		"fans_season": [
 			{
-				"text": "divino",
-				"value": "20"
+				"text": "Non siamo pronti per questa categoria",
+				"value": "0"
 			},
 			{
-				"text": "utopico",
-				"value": "19"
+				"text": "Ogni giorno in questa serie è regalato",
+				"value": "1"
 			},
 			{
-				"text": "magico",
-				"value": "18"
+				"text": "Dovremo lottare per salvarci",
+				"value": "2"
 			},
 			{
-				"text": "mitico",
-				"value": "17"
-			},
-			{
-				"text": "extraterrestre",
-				"value": "16"
-			},
-			{
-				"text": "titanico",
-				"value": "15"
-			},
-			{
-				"text": "sovrannaturale",
-				"value": "14"
-			},
-			{
-				"text": "fuoriclasse",
-				"value": "13"
-			},
-			{
-				"text": "magnifico",
-				"value": "12"
-			},
-			{
-				"text": "splendido",
-				"value": "11"
-			},
-			{
-				"text": "straordinario",
-				"value": "10"
-			},
-			{
-				"text": "formidabile",
-				"value": "9"
-			},
-			{
-				"text": "eccellente",
-				"value": "8"
-			},
-			{
-				"text": "buono",
-				"value": "7"
-			},
-			{
-				"text": "accettabile",
-				"value": "6"
-			},
-			{
-				"text": "insufficiente",
-				"value": "5"
-			},
-			{
-				"text": "debole",
-				"value": "4"
-			},
-			{
-				"text": "scarso",
+				"text": "Dovremmo finire a metà classifica",
 				"value": "3"
 			},
 			{
-				"text": "tremendo",
-				"value": "2"
+				"text": "Siamo da primi 4 posti",
+				"value": "4"
+			},
+			{
+				"text": "Puntiamo al titolo!",
+				"value": "5"
+			},
+			{
+				"text": "Questa stagione è nostra!",
+				"value": "6"
+			},
+			{
+				"text": "Ci meritiamo molto di più di questa serie!",
+				"value": "7"
+			}
+		],
+		"attitude": [
+			{
+				"text": "Partitella",
+				"value": "-1"
+			},
+			{
+				"text": "Normale",
+				"value": "0"
+			},
+			{
+				"text": "Partita della stagione",
+				"value": "1"
+			}
+		],
+		"levels": [
+			{
+				"text": "inesistente",
+				"value": "0"
 			},
 			{
 				"text": "disastroso",
 				"value": "1"
 			},
 			{
-				"text": "inesistente",
+				"text": "tremendo",
+				"value": "2"
+			},
+			{
+				"text": "scarso",
+				"value": "3"
+			},
+			{
+				"text": "debole",
+				"value": "4"
+			},
+			{
+				"text": "insufficiente",
+				"value": "5"
+			},
+			{
+				"text": "accettabile",
+				"value": "6"
+			},
+			{
+				"text": "buono",
+				"value": "7"
+			},
+			{
+				"text": "eccellente",
+				"value": "8"
+			},
+			{
+				"text": "formidabile",
+				"value": "9"
+			},
+			{
+				"text": "straordinario",
+				"value": "10"
+			},
+			{
+				"text": "splendido",
+				"value": "11"
+			},
+			{
+				"text": "magnifico",
+				"value": "12"
+			},
+			{
+				"text": "fuoriclasse",
+				"value": "13"
+			},
+			{
+				"text": "sovrannaturale",
+				"value": "14"
+			},
+			{
+				"text": "titanico",
+				"value": "15"
+			},
+			{
+				"text": "extraterrestre",
+				"value": "16"
+			},
+			{
+				"text": "mitico",
+				"value": "17"
+			},
+			{
+				"text": "magico",
+				"value": "18"
+			},
+			{
+				"text": "utopico",
+				"value": "19"
+			},
+			{
+				"text": "divino",
+				"value": "20"
+			}
+		],
+		"sponsors": [
+			{
+				"text": "inferociti",
 				"value": "0"
+			},
+			{
+				"text": "furiosi",
+				"value": "1"
+			},
+			{
+				"text": "irritati",
+				"value": "3"
+			},
+			{
+				"text": "calmi",
+				"value": "5"
+			},
+			{
+				"text": "contenti",
+				"value": "6"
+			},
+			{
+				"text": "soddisfatti",
+				"value": "7"
+			},
+			{
+				"text": "in delirio",
+				"value": "8"
+			},
+			{
+				"text": "sulle stelle",
+				"value": "9"
+			},
+			{
+				"text": "danzano per le strade",
+				"value": "10"
+			},
+			{
+				"text": "mandano poesie d'amore",
+				"value": "11"
+			}
+		],
+		"sectors": [
+			{
+				"type": "Midfield",
+				"value": "Centrocampo"
+			},
+			{
+				"type": "RightDefense",
+				"value": "Difesa Destra"
+			},
+			{
+				"type": "CentralDefense",
+				"value": "Difesa Centrale"
+			},
+			{
+				"type": "LeftDefense",
+				"value": "Difesa Sinistra"
+			},
+			{
+				"type": "RightAttack",
+				"value": "Attacco Destro"
+			},
+			{
+				"type": "CentralAttack",
+				"value": "Attacco Centrale"
+			},
+			{
+				"type": "LeftAttack",
+				"value": "Attacco Sinistro"
 			}
 		],
 		"ratingSubLevels": [
 			{
-				"text": "(molto basso)",
-				"value": "0.0"
+				"text": "molto basso",
+				"value": "0"
 			},
 			{
-				"text": "(basso)",
+				"text": "basso",
 				"value": "0.25"
 			},
 			{
-				"text": "(alto)",
-				"value": "0.50"
+				"text": "alto",
+				"value": "0.5"
 			},
 			{
-				"text": "(molto alto)",
+				"text": "molto alto",
 				"value": "0.75"
+			}
+		],
+		"fans": [
+			{
+				"text": "inferociti",
+				"value": "0"
+			},
+			{
+				"text": "furiosi",
+				"value": "1"
+			},
+			{
+				"text": "arrabbiati",
+				"value": "2"
+			},
+			{
+				"text": "irritati",
+				"value": "3"
+			},
+			{
+				"text": "delusi",
+				"value": "4"
+			},
+			{
+				"text": "calmi",
+				"value": "5"
+			},
+			{
+				"text": "contenti",
+				"value": "6"
+			},
+			{
+				"text": "soddisfatti",
+				"value": "7"
+			},
+			{
+				"text": "in delirio",
+				"value": "8"
+			},
+			{
+				"text": "sulle stelle",
+				"value": "9"
+			},
+			{
+				"text": "danzano per le strade",
+				"value": "10"
+			},
+			{
+				"text": "mandano poesie d'amore",
+				"value": "11"
 			}
 		],
 		"specialties": [
 			{
-				"short": "Imp",
-				"type": "Unpredictable",
-				"value": "Imprevedibile"
+				"type": "None",
+				"value": "Nessuna"
 			},
 			{
-				"short": "Pot",
-				"type": "Powerful",
-				"value": "Potente"
-			},
-			{
-				"short": "Vel",
-				"type": "Quick",
-				"value": "Veloce"
-			},
-			{
-				"short": "Tec",
 				"type": "Technical",
 				"value": "Tecnico"
 			},
 			{
-				"short": "CdT",
+				"type": "Quick",
+				"value": "Veloce"
+			},
+			{
+				"type": "Powerful",
+				"value": "Potente"
+			},
+			{
+				"type": "Unpredictable",
+				"value": "Imprevedibile"
+			},
+			{
 				"type": "Head",
 				"value": "Colpo di testa"
 			},
 			{
-				"short": "GV",
 				"type": "Regainer",
 				"value": "Guarigione Veloce"
 			}
 		],
 		"aggressiveness": [
 			{
-				"text": "lunatica",
-				"value": "5"
-			},
-			{
-				"text": "irascibile",
-				"value": "4"
-			},
-			{
-				"text": "impulsiva",
-				"value": "3"
-			},
-			{
-				"text": "equilibrata",
-				"value": "2"
+				"text": "tranquilla",
+				"value": "0"
 			},
 			{
 				"text": "calma",
 				"value": "1"
 			},
 			{
-				"text": "tranquilla",
-				"value": "0"
+				"text": "equilibrata",
+				"value": "2"
+			},
+			{
+				"text": "impulsiva",
+				"value": "3"
+			},
+			{
+				"text": "irascibile",
+				"value": "4"
+			},
+			{
+				"text": "lunatica",
+				"value": "5"
 			}
 		],
-		"desc": "Italiano",
-		"name": "it"
+		"id": "4",
+		"training": [
+			{
+				"type": "Gen",
+				"value": "Generale (Forma)"
+			},
+			{
+				"type": "Sta",
+				"value": "Resistenza"
+			},
+			{
+				"type": "SP",
+				"value": "Calci piazzati"
+			},
+			{
+				"type": "Def",
+				"value": "Difesa"
+			},
+			{
+				"type": "Sco",
+				"value": "Attacco"
+			},
+			{
+				"type": "Cross",
+				"value": "Cross (Ali)"
+			},
+			{
+				"type": "Shoot",
+				"value": "Conclusioni (Tiri)"
+			},
+			{
+				"type": "Pass",
+				"value": "Passaggi"
+			},
+			{
+				"type": "PM",
+				"value": "Regia"
+			},
+			{
+				"type": "GK",
+				"value": "Parate"
+			},
+			{
+				"type": "ThPass",
+				"value": "Passaggi lunghi"
+			},
+			{
+				"type": "DefPos",
+				"value": "Interdizione"
+			},
+			{
+				"type": "WingAtt",
+				"value": "Offensive laterali"
+			},
+			{
+				"type": "Indiv",
+				"value": "Individuale"
+			}
+		],
+		"fans_match": [
+			{
+				"text": "Meglio non presentarsi nemmeno",
+				"value": "0"
+			},
+			{
+				"text": "Siamo nettamente inferiori",
+				"value": "1"
+			},
+			{
+				"text": "Perderemo",
+				"value": "2"
+			},
+			{
+				"text": "Sono i favoriti",
+				"value": "3"
+			},
+			{
+				"text": "Avranno un certo vantaggio",
+				"value": "4"
+			},
+			{
+				"text": "Partita aperta a qualsiasi risultato",
+				"value": "5"
+			},
+			{
+				"text": "Avremo un certo vantaggio",
+				"value": "6"
+			},
+			{
+				"text": "Siamo i favoriti",
+				"value": "7"
+			},
+			{
+				"text": "Vinceremo",
+				"value": "8"
+			},
+			{
+				"text": "Sarà una passeggiata",
+				"value": "9"
+			},
+			{
+				"text": "Umiliamoli!",
+				"value": "10"
+			}
+		],
+		"name": "it",
+		"spirit": [
+			{
+				"text": "guerra aperta",
+				"value": "0"
+			},
+			{
+				"text": "in rivolta",
+				"value": "1"
+			},
+			{
+				"text": "furiosi",
+				"value": "2"
+			},
+			{
+				"text": "irritati",
+				"value": "3"
+			},
+			{
+				"text": "composti",
+				"value": "4"
+			},
+			{
+				"text": "calmi",
+				"value": "5"
+			},
+			{
+				"text": "contenti",
+				"value": "6"
+			},
+			{
+				"text": "soddisfatti",
+				"value": "7"
+			},
+			{
+				"text": "in delirio",
+				"value": "8"
+			},
+			{
+				"text": "sulle stelle",
+				"value": "9"
+			},
+			{
+				"text": "al settimo cielo!",
+				"value": "10"
+			}
+		],
+		"desc": "Italiano"
 	}
 }
