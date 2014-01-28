@@ -327,9 +327,10 @@ Foxtrick.L10n = {
 		try {
 			var lang = Foxtrick.Prefs.getString('htLanguage');
 			var category = Foxtrick.L10n.htLanguagesJSON[lang].language['positions'];
-			shortPos = Foxtrick.nth(0, function(item) {
+			var type = Foxtrick.nth(0, function(item) {
 				return item.value == pos;
-			}, category).short;
+			}, category).type;
+			shortPos = Foxtrick.L10n.getString('match.pos.' + type + '.abbr');
 		}
 		catch (e) {
 			Foxtrick.log(e);
@@ -338,21 +339,7 @@ Foxtrick.L10n = {
 	},
 
 	getShortSpecialityFromEnglish: function(spec) {
-		var direct = function() {
-			return spec.substr(0, 2);
-		};
-		var shortSpec = '';
-		try {
-			var lang = Foxtrick.Prefs.getString('htLanguage');
-			var category = Foxtrick.L10n.htLanguagesJSON[lang].language['specialties'];
-			shortSpec = Foxtrick.nth(0, function(item) {
-				return item.type == spec;
-			}, category).short;
-		}
-		catch (e) {
-			Foxtrick.log(e);
-		}
-		return shortSpec || direct();
+		Foxtrick.L10n.getString('specialty.' + spec + '.abbr');
 	},
 
 	getEnglishSpeciality: function(spec) {
