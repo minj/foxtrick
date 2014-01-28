@@ -25,6 +25,7 @@ en:
       new: '<header>New modules</header>'
       hy_skills: '<module>YouthSkills</module>: Enhances youth players page with information from hattrick youthclub. For HY users only.'
       ratings_tweaks: '<module>MatchRatingsTweaks</module>: tweaks ratings on the match report page. Displays numeric ratings and follows their changes when browsing the timeline just like in <module>MatchSimulator</module>. Calculates real scoring/defending/possession probabilities according to formulas establish in the unwritten manual: 15766691.221, 15766691.242'
+      match_weather: '<module>MatchWeather</module> shows the weather in the arena for today and tomorrow on the match page.'
       other: '<header>Other changes</header>'
       ht_changes: 'Foxtrick was updated to support recent changes in Hattrick regarding youth match reports, simple theme and match order interface.'
       locale_support: 'Updated locale support: Euro currency in Latvia, new Spanish dialect names, corrected time and date formats etc.'
