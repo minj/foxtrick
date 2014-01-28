@@ -201,14 +201,14 @@ div.playerDiv .sectorShirt.ft-smallFaceCard img[src^="/Img/Avatar/hair/"] {
 	-webkit-border-radius: 3px;
 }
 
-.ft-indicatorDiv {
+.ft-indicator-wrapper {
 	position: absolute;
 	width: 98px;
 	left: 2px; /* 0 for rtl */
 	line-height: 1.2em;
 	direction: ltr;
 }
-.ft-indicatorDiv > div {
+.ft-indicator {
 	display: inline-block;
 	background-color: #ffcc00;
 }
