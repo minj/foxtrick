@@ -294,6 +294,7 @@ div.playerDiv div.sectorShirt + div > div > div {
 #ft-split-lineup-toggle-div {
 	font-size: 1.2em;
 	line-height: normal;
+	color: white;
 }
 .ft-match-lineup-tweaks-teamname-home, .ft-match-lineup-tweaks-stars-counter-sum-home,
 .ft-match-lineup-tweaks-stamina-counter-sum-home {
