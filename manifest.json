@@ -286,8 +286,7 @@
 		"https://foxtrick.c6.ixsecure.com/",
 		"http://foxtrick.symbiosis.org.gr/*",
 		"*://foxtrick.googlecode.com/svn/*",
-		"http://www.fantamondi.it/*",
-		"http://pastebin.com/api/*"
+		"http://www.fantamondi.it/*"
 	],
 	"optional_permissions" : [
 		"http://*.hattrick-youthclub.org/*",
