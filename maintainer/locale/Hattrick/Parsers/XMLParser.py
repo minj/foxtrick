@@ -60,6 +60,15 @@ def xml_to_python(el, parent):
 
 	return isArray
 
+def python_to_json(obj):
+	"""
+	turns python dictionary into JSON
+	"""
+	ret = json.dumps(obj, ensure_ascii=False, indent=1, separators=(',', ': '))
+	p = re.compile('^ +', re.M)
+	# add tabs
+	return p.sub((lambda m: (m.end() - m.start()) * '\t'), ret) + '\n'
+
 def toJSON(elem):
 	"""
 	turns ElementTree into JSON
@@ -68,7 +77,4 @@ def toJSON(elem):
 		elem = elem.getroot()
 	d = {}
 	xml_to_python(elem, d)
-	ret = json.dumps(d, ensure_ascii=False, indent=1, separators=(',', ': '))
-	p = re.compile('^ +', re.M)
-	# add tabs
-	return p.sub((lambda m: (m.end() - m.start()) * '\t'), ret)
+	return python_to_json(d)
