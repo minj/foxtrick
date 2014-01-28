@@ -264,13 +264,13 @@ Foxtrick.L10n = {
 		var main = Math.floor(val);
 		var sub = val - main;
 		if (sub >= 0 && sub < 0.25) {
-			sub = '0.0';
+			sub = '0';
 		}
 		else if (sub >= 0.25 && sub < 0.5) {
 			sub = '0.25';
 		}
 		else if (sub >= 0.5 && sub < 0.75) {
-			sub = '0.50';
+			sub = '0.5';
 		}
 		else if (sub >= 0.75 && sub < 1) {
 			sub = '0.75';
