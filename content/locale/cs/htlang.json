@@ -1,5 +1,47 @@
 {
 	"language": {
+		"confidence": [
+			{
+				"text": "neexistující",
+				"value": "0"
+			},
+			{
+				"text": "katastrofální",
+				"value": "1"
+			},
+			{
+				"text": "velmi nízká",
+				"value": "2"
+			},
+			{
+				"text": "nízká",
+				"value": "3"
+			},
+			{
+				"text": "dobrá",
+				"value": "4"
+			},
+			{
+				"text": "silná",
+				"value": "5"
+			},
+			{
+				"text": "výjimečná",
+				"value": "6"
+			},
+			{
+				"text": "lehce přehnaná",
+				"value": "7"
+			},
+			{
+				"text": "dost přehnaná",
+				"value": "8"
+			},
+			{
+				"text": "extrémně přehnaná",
+				"value": "9"
+			}
+		],
 		"tactics": [
 			{
 				"type": "normal",
@@ -14,12 +56,20 @@
 				"value": "Protiútoky"
 			},
 			{
+				"type": "aim",
+				"value": "Útok středem"
+			},
+			{
 				"type": "aow",
 				"value": "Útok po křídlech"
 			},
 			{
-				"type": "aim",
-				"value": "Útok středem"
+				"type": "",
+				"value": "Neznámé"
+			},
+			{
+				"type": "",
+				"value": "Neznámé"
 			},
 			{
 				"type": "creatively",
@@ -32,251 +82,606 @@
 		],
 		"honesty": [
 			{
-				"text": "učiněný andílek",
-				"value": "5"
-			},
-			{
-				"text": "spravedlivý",
-				"value": "4"
-			},
-			{
-				"text": "férový",
-				"value": "3"
-			},
-			{
-				"text": "čestný",
-				"value": "2"
+				"text": "bezectný",
+				"value": "0"
 			},
 			{
 				"text": "nečestný",
 				"value": "1"
 			},
 			{
-				"text": "bezectný",
-				"value": "0"
+				"text": "čestný",
+				"value": "2"
+			},
+			{
+				"text": "férový",
+				"value": "3"
+			},
+			{
+				"text": "spravedlivý",
+				"value": "4"
+			},
+			{
+				"text": "učiněný andílek",
+				"value": "5"
 			}
 		],
 		"agreeability": [
 			{
-				"text": "Miláček týmu",
-				"value": "5"
-			},
-			{
-				"text": "Oblíbený hráč",
-				"value": "4"
-			},
-			{
-				"text": "Sympatický chlapík",
-				"value": "3"
-			},
-			{
-				"text": "Příjemný kluk",
-				"value": "2"
+				"text": "Protiva",
+				"value": "0"
 			},
 			{
 				"text": "Hašteřivý člověk",
 				"value": "1"
 			},
 			{
-				"text": "Protiva",
-				"value": "0"
+				"text": "Příjemný kluk",
+				"value": "2"
+			},
+			{
+				"text": "Sympatický chlapík",
+				"value": "3"
+			},
+			{
+				"text": "Oblíbený hráč",
+				"value": "4"
+			},
+			{
+				"text": "Miláček týmu",
+				"value": "5"
+			}
+		],
+		"skills": [
+			{
+				"type": "Keeper",
+				"value": "Chytání"
+			},
+			{
+				"type": "Stamina",
+				"value": "Kondice"
+			},
+			{
+				"type": "Defender",
+				"value": "Bránění"
+			},
+			{
+				"type": "Playmaker",
+				"value": "Tvorba hry"
+			},
+			{
+				"type": "Winger",
+				"value": "Křídlo"
+			},
+			{
+				"type": "Scorer",
+				"value": "Zakončování"
+			},
+			{
+				"type": "Kicker",
+				"value": "Standardky"
+			},
+			{
+				"type": "Passer",
+				"value": "Přihrávky"
+			},
+			{
+				"type": "Experience",
+				"value": "Zkušenost"
+			},
+			{
+				"type": "LeaderShip",
+				"value": "Vůdcovství"
 			}
 		],
 		"positions": [
 			{
-				"short": "Ke",
 				"type": "Keeper",
 				"value": "Brankář"
 			},
 			{
-				"short": "Cd",
-				"type": "Central defender",
-				"value": "Střední obránce"
-			},
-			{
-				"short": "Wb",
-				"type": "Wing back",
+				"type": "WingBack",
 				"value": "Krajní obránce"
 			},
 			{
-				"short": "Im",
-				"type": "Inner midfielder",
+				"type": "CentralDefender",
+				"value": "Střední obránce"
+			},
+			{
+				"type": "InnerMidfield",
 				"value": "Střední záložník"
 			},
 			{
-				"short": "Wi",
 				"type": "Winger",
 				"value": "Krajní záložník"
 			},
 			{
-				"short": "Fo",
 				"type": "Forward",
 				"value": "Útočník"
 			}
 		],
-		"levels": [
+		"fans_season": [
 			{
-				"text": "Boží",
-				"value": "20"
+				"text": "v této lize se absolutně nechytáme",
+				"value": "0"
 			},
 			{
-				"text": "legendární",
-				"value": "19"
+				"text": "buďme vděční za každý den v této lize",
+				"value": "1"
 			},
 			{
-				"text": "okouzlující",
-				"value": "18"
+				"text": "bude to boj o záchranu",
+				"value": "2"
 			},
 			{
-				"text": "dechberoucí",
-				"value": "17"
-			},
-			{
-				"text": "impozantní",
-				"value": "16"
-			},
-			{
-				"text": "kolosální",
-				"value": "15"
-			},
-			{
-				"text": "abnormální",
-				"value": "14"
-			},
-			{
-				"text": "prvotřídní",
-				"value": "13"
-			},
-			{
-				"text": "perfektní",
-				"value": "12"
-			},
-			{
-				"text": "brilantní",
-				"value": "11"
-			},
-			{
-				"text": "vynikající",
-				"value": "10"
-			},
-			{
-				"text": "nadstandardní",
-				"value": "9"
-			},
-			{
-				"text": "excelentní",
-				"value": "8"
-			},
-			{
-				"text": "solidní",
-				"value": "7"
-			},
-			{
-				"text": "ucházející",
-				"value": "6"
-			},
-			{
-				"text": "neadekvátní",
-				"value": "5"
-			},
-			{
-				"text": "nedostačující",
-				"value": "4"
-			},
-			{
-				"text": "tristní",
+				"text": "líbil by se nám střed tabulky",
 				"value": "3"
 			},
 			{
-				"text": "katastrofální",
-				"value": "2"
+				"text": "patříme do horní poloviny tabulky",
+				"value": "4"
+			},
+			{
+				"text": "jdeme za titulem",
+				"value": "5"
+			},
+			{
+				"text": "tuhle sezónu musíme ligu vyhrát",
+				"value": "6"
+			},
+			{
+				"text": "jsme o třídu lepší než ostatní týmy",
+				"value": "7"
+			}
+		],
+		"attitude": [
+			{
+				"text": "O nic nejde",
+				"value": "-1"
+			},
+			{
+				"text": "Normální",
+				"value": "0"
+			},
+			{
+				"text": "Zápas sezóny",
+				"value": "1"
+			}
+		],
+		"levels": [
+			{
+				"text": "neexistující",
+				"value": "0"
 			},
 			{
 				"text": "odstrašující",
 				"value": "1"
 			},
 			{
-				"text": "neexistující",
+				"text": "katastrofální",
+				"value": "2"
+			},
+			{
+				"text": "tristní",
+				"value": "3"
+			},
+			{
+				"text": "nedostačující",
+				"value": "4"
+			},
+			{
+				"text": "neadekvátní",
+				"value": "5"
+			},
+			{
+				"text": "ucházející",
+				"value": "6"
+			},
+			{
+				"text": "solidní",
+				"value": "7"
+			},
+			{
+				"text": "excelentní",
+				"value": "8"
+			},
+			{
+				"text": "nadstandardní",
+				"value": "9"
+			},
+			{
+				"text": "vynikající",
+				"value": "10"
+			},
+			{
+				"text": "brilantní",
+				"value": "11"
+			},
+			{
+				"text": "perfektní",
+				"value": "12"
+			},
+			{
+				"text": "prvotřídní",
+				"value": "13"
+			},
+			{
+				"text": "abnormální",
+				"value": "14"
+			},
+			{
+				"text": "kolosální",
+				"value": "15"
+			},
+			{
+				"text": "impozantní",
+				"value": "16"
+			},
+			{
+				"text": "dechberoucí",
+				"value": "17"
+			},
+			{
+				"text": "okouzlující",
+				"value": "18"
+			},
+			{
+				"text": "legendární",
+				"value": "19"
+			},
+			{
+				"text": "Boží",
+				"value": "20"
+			}
+		],
+		"sponsors": [
+			{
+				"text": "vražední",
 				"value": "0"
+			},
+			{
+				"text": "vzteklí",
+				"value": "1"
+			},
+			{
+				"text": "podráždění",
+				"value": "3"
+			},
+			{
+				"text": "chladní",
+				"value": "5"
+			},
+			{
+				"text": "klidní",
+				"value": "6"
+			},
+			{
+				"text": "spokojení",
+				"value": "7"
+			},
+			{
+				"text": "nadšení",
+				"value": "8"
+			},
+			{
+				"text": "unešení",
+				"value": "9"
+			},
+			{
+				"text": "tančí v ulicích",
+				"value": "10"
+			},
+			{
+				"text": "pějí oslavné písně",
+				"value": "11"
+			}
+		],
+		"sectors": [
+			{
+				"type": "Midfield",
+				"value": "Záloha"
+			},
+			{
+				"type": "RightDefense",
+				"value": "Pravá strana obrany"
+			},
+			{
+				"type": "CentralDefense",
+				"value": "Střed obrany"
+			},
+			{
+				"type": "LeftDefense",
+				"value": "Levá strana obrany"
+			},
+			{
+				"type": "RightAttack",
+				"value": "Pravá strana útoku"
+			},
+			{
+				"type": "CentralAttack",
+				"value": "Střed útoku"
+			},
+			{
+				"type": "LeftAttack",
+				"value": "Levá strana útoku"
 			}
 		],
 		"ratingSubLevels": [
 			{
-				"text": "(mnohem horší)",
-				"value": "0.0"
+				"text": "mnohem horší",
+				"value": "0"
 			},
 			{
-				"text": "(horší)",
+				"text": "horší",
 				"value": "0.25"
 			},
 			{
-				"text": "(lepší)",
-				"value": "0.50"
+				"text": "lepší",
+				"value": "0.5"
 			},
 			{
-				"text": "(mnohem lepší)",
+				"text": "mnohem lepší",
 				"value": "0.75"
+			}
+		],
+		"fans": [
+			{
+				"text": "vražední",
+				"value": "0"
+			},
+			{
+				"text": "vzteklí",
+				"value": "1"
+			},
+			{
+				"text": "naštvaní",
+				"value": "2"
+			},
+			{
+				"text": "podráždění",
+				"value": "3"
+			},
+			{
+				"text": "zklamaní",
+				"value": "4"
+			},
+			{
+				"text": "chladní",
+				"value": "5"
+			},
+			{
+				"text": "klidní",
+				"value": "6"
+			},
+			{
+				"text": "spokojení",
+				"value": "7"
+			},
+			{
+				"text": "nadšení",
+				"value": "8"
+			},
+			{
+				"text": "unešení",
+				"value": "9"
+			},
+			{
+				"text": "tančí v ulicích",
+				"value": "10"
+			},
+			{
+				"text": "pějí oslavné písně",
+				"value": "11"
 			}
 		],
 		"specialties": [
 			{
-				"short": "Un",
-				"type": "Unpredictable",
-				"value": "Nepředvídatelný"
+				"type": "None",
+				"value": "Žádná"
 			},
 			{
-				"short": "Po",
-				"type": "Powerful",
-				"value": "Silový"
-			},
-			{
-				"short": "Qu",
-				"type": "Quick",
-				"value": "Rychlý"
-			},
-			{
-				"short": "Te",
 				"type": "Technical",
 				"value": "Technický"
 			},
 			{
-				"short": "He",
+				"type": "Quick",
+				"value": "Rychlý"
+			},
+			{
+				"type": "Powerful",
+				"value": "Silový"
+			},
+			{
+				"type": "Unpredictable",
+				"value": "Nepředvídatelný"
+			},
+			{
 				"type": "Head",
 				"value": "Hlavičkář"
 			},
 			{
-				"short": "Re",
 				"type": "Regainer",
 				"value": "Nezmar"
 			}
 		],
 		"aggressiveness": [
 			{
-				"text": "labilní",
-				"value": "5"
-			},
-			{
-				"text": "prchlivý",
-				"value": "4"
-			},
-			{
-				"text": "temperamentní",
-				"value": "3"
-			},
-			{
-				"text": "vyrovnaný",
-				"value": "2"
+				"text": "ledově klidný",
+				"value": "0"
 			},
 			{
 				"text": "chladnokrevný",
 				"value": "1"
 			},
 			{
-				"text": "ledově klidný",
-				"value": "0"
+				"text": "vyrovnaný",
+				"value": "2"
+			},
+			{
+				"text": "temperamentní",
+				"value": "3"
+			},
+			{
+				"text": "prchlivý",
+				"value": "4"
+			},
+			{
+				"text": "labilní",
+				"value": "5"
 			}
 		],
-		"desc": "Čeština",
-		"name": "cs"
+		"id": "35",
+		"training": [
+			{
+				"type": "Gen",
+				"value": "Rámcový (Forma)"
+			},
+			{
+				"type": "Sta",
+				"value": "Kondiční"
+			},
+			{
+				"type": "SP",
+				"value": "Standardní situace"
+			},
+			{
+				"type": "Def",
+				"value": "Bránění"
+			},
+			{
+				"type": "Sco",
+				"value": "Zakončování"
+			},
+			{
+				"type": "Cross",
+				"value": "Křížné přihrávky (křídlo)"
+			},
+			{
+				"type": "Shoot",
+				"value": "Střelba"
+			},
+			{
+				"type": "Pass",
+				"value": "Krátké přihrávky"
+			},
+			{
+				"type": "PM",
+				"value": "Tvorba hry"
+			},
+			{
+				"type": "GK",
+				"value": "Chytání"
+			},
+			{
+				"type": "ThPass",
+				"value": "Dlouhé přihrávky"
+			},
+			{
+				"type": "DefPos",
+				"value": "Obranná souhra"
+			},
+			{
+				"type": "WingAtt",
+				"value": "Křídelní útoky"
+			},
+			{
+				"type": "Indiv",
+				"value": "Individuální"
+			}
+		],
+		"fans_match": [
+			{
+				"text": "debakl",
+				"value": "0"
+			},
+			{
+				"text": "výrazná porážka",
+				"value": "1"
+			},
+			{
+				"text": "jasná porážka",
+				"value": "2"
+			},
+			{
+				"text": "těsná porážka",
+				"value": "3"
+			},
+			{
+				"text": "velmi těsná porážka",
+				"value": "4"
+			},
+			{
+				"text": "vyrovnané utkání",
+				"value": "5"
+			},
+			{
+				"text": "velmi těsná výhra",
+				"value": "6"
+			},
+			{
+				"text": "těsná výhra",
+				"value": "7"
+			},
+			{
+				"text": "snadná výhra",
+				"value": "8"
+			},
+			{
+				"text": "výrazná výhra",
+				"value": "9"
+			},
+			{
+				"text": "střelnice",
+				"value": "10"
+			}
+		],
+		"name": "cs",
+		"spirit": [
+			{
+				"text": "Studená válka",
+				"value": "0"
+			},
+			{
+				"text": "vražedná",
+				"value": "1"
+			},
+			{
+				"text": "vzteklá",
+				"value": "2"
+			},
+			{
+				"text": "podrážděná",
+				"value": "3"
+			},
+			{
+				"text": "chladná",
+				"value": "4"
+			},
+			{
+				"text": "klidná",
+				"value": "5"
+			},
+			{
+				"text": "bez námitek",
+				"value": "6"
+			},
+			{
+				"text": "spokojená",
+				"value": "7"
+			},
+			{
+				"text": "plná nadšení",
+				"value": "8"
+			},
+			{
+				"text": "povznášející",
+				"value": "9"
+			},
+			{
+				"text": "Ráj na Zemi!",
+				"value": "10"
+			}
+		],
+		"desc": "Česky"
 	}
 }

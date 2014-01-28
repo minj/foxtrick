@@ -1,5 +1,47 @@
 {
 	"language": {
+		"confidence": [
+			{
+				"text": "inexistentă",
+				"value": "0"
+			},
+			{
+				"text": "dezastruoasă",
+				"value": "1"
+			},
+			{
+				"text": "mizerabilă",
+				"value": "2"
+			},
+			{
+				"text": "jalnică",
+				"value": "3"
+			},
+			{
+				"text": "decentă",
+				"value": "4"
+			},
+			{
+				"text": "puternică",
+				"value": "5"
+			},
+			{
+				"text": "minunată",
+				"value": "6"
+			},
+			{
+				"text": "uşor exagerată",
+				"value": "7"
+			},
+			{
+				"text": "exagerată",
+				"value": "8"
+			},
+			{
+				"text": "complet exagerată",
+				"value": "9"
+			}
+		],
 		"tactics": [
 			{
 				"type": "normal",
@@ -14,12 +56,20 @@
 				"value": "Contraatac"
 			},
 			{
+				"type": "aim",
+				"value": "Atac pe Centru"
+			},
+			{
 				"type": "aow",
 				"value": "Atac pe Flancuri"
 			},
 			{
-				"type": "aim",
-				"value": "Atac pe Centru"
+				"type": "",
+				"value": "Necunoscut"
+			},
+			{
+				"type": "",
+				"value": "Necunoscut"
 			},
 			{
 				"type": "creatively",
@@ -32,251 +82,606 @@
 		],
 		"honesty": [
 			{
-				"text": "angelic",
-				"value": "5"
-			},
-			{
-				"text": "incoruptibil",
-				"value": "4"
-			},
-			{
-				"text": "integru",
-				"value": "3"
-			},
-			{
-				"text": "cinstit",
-				"value": "2"
+				"text": "infam",
+				"value": "0"
 			},
 			{
 				"text": "necinstit",
 				"value": "1"
 			},
 			{
-				"text": "infam",
-				"value": "0"
+				"text": "cinstit",
+				"value": "2"
+			},
+			{
+				"text": "integru",
+				"value": "3"
+			},
+			{
+				"text": "incoruptibil",
+				"value": "4"
+			},
+			{
+				"text": "angelic",
+				"value": "5"
 			}
 		],
 		"agreeability": [
 			{
-				"text": "membru iubit al echipei",
-				"value": "5"
-			},
-			{
-				"text": "tip popular",
-				"value": "4"
-			},
-			{
-				"text": "tip simpatic",
-				"value": "3"
-			},
-			{
-				"text": "tip plăcut",
-				"value": "2"
+				"text": "tip antipatic",
+				"value": "0"
 			},
 			{
 				"text": "tip controversat",
 				"value": "1"
 			},
 			{
-				"text": "tip antipatic",
-				"value": "0"
+				"text": "tip plăcut",
+				"value": "2"
+			},
+			{
+				"text": "tip simpatic",
+				"value": "3"
+			},
+			{
+				"text": "tip popular",
+				"value": "4"
+			},
+			{
+				"text": "membru iubit al echipei",
+				"value": "5"
 			}
 		],
-		"positions": [
+		"skills": [
 			{
-				"short": "P",
 				"type": "Keeper",
 				"value": "Portar"
 			},
 			{
-				"short": "FC",
-				"type": "Central defender",
-				"value": "Fundaş Central"
+				"type": "Stamina",
+				"value": "Rezistenţă"
 			},
 			{
-				"short": "FL",
-				"type": "Wing back",
-				"value": "Fundaş Lateral"
+				"type": "Defender",
+				"value": "Apărare"
 			},
 			{
-				"short": "MC",
-				"type": "Inner midfielder",
-				"value": "Mijlocaş Central"
+				"type": "Playmaker",
+				"value": "Construcţie"
 			},
 			{
-				"short": "EX",
 				"type": "Winger",
 				"value": "Extremă"
 			},
 			{
-				"short": "AT",
+				"type": "Scorer",
+				"value": "Atac"
+			},
+			{
+				"type": "Kicker",
+				"value": "Faze fixe"
+			},
+			{
+				"type": "Passer",
+				"value": "Pase"
+			},
+			{
+				"type": "Experience",
+				"value": "Experienţă"
+			},
+			{
+				"type": "LeaderShip",
+				"value": "Lider"
+			}
+		],
+		"positions": [
+			{
+				"type": "Keeper",
+				"value": "Portar"
+			},
+			{
+				"type": "WingBack",
+				"value": "Fundaş Lateral"
+			},
+			{
+				"type": "CentralDefender",
+				"value": "Fundaş Central"
+			},
+			{
+				"type": "InnerMidfield",
+				"value": "Mijlocaş Central"
+			},
+			{
+				"type": "Winger",
+				"value": "Extremă"
+			},
+			{
 				"type": "Forward",
 				"value": "Atacant"
 			}
 		],
-		"levels": [
+		"fans_season": [
 			{
-				"text": "divin",
-				"value": "20"
+				"text": "Nu suntem de divizia asta",
+				"value": "0"
 			},
 			{
-				"text": "utopic",
-				"value": "19"
+				"text": "Fiecare zi în divizia asta e o plăcere",
+				"value": "1"
 			},
 			{
-				"text": "magic",
-				"value": "18"
+				"text": "Trebuie să luptăm",
+				"value": "2"
 			},
 			{
-				"text": "mitic",
-				"value": "17"
-			},
-			{
-				"text": "extraterestru",
-				"value": "16"
-			},
-			{
-				"text": "titanic",
-				"value": "15"
-			},
-			{
-				"text": "supranatural",
-				"value": "14"
-			},
-			{
-				"text": "legendar",
-				"value": "13"
-			},
-			{
-				"text": "magnific",
-				"value": "12"
-			},
-			{
-				"text": "sclipitor",
-				"value": "11"
-			},
-			{
-				"text": "impresionant",
-				"value": "10"
-			},
-			{
-				"text": "formidabil",
-				"value": "9"
-			},
-			{
-				"text": "excelent",
-				"value": "8"
-			},
-			{
-				"text": "bun",
-				"value": "7"
-			},
-			{
-				"text": "acceptabil",
-				"value": "6"
-			},
-			{
-				"text": "inadecvat",
-				"value": "5"
-			},
-			{
-				"text": "slab",
-				"value": "4"
-			},
-			{
-				"text": "jalnic",
+				"text": "Ar fi bună o clasare la mijloc",
 				"value": "3"
 			},
 			{
-				"text": "mizerabil",
-				"value": "2"
+				"text": "Suntem de locurile 1-4",
+				"value": "4"
+			},
+			{
+				"text": "Vrem titlul!",
+				"value": "5"
+			},
+			{
+				"text": "Trebuie să câştigăm sezonul ăsta",
+				"value": "6"
+			},
+			{
+				"text": "Avem valoare peste nivelul diviziei ăsteia!",
+				"value": "7"
+			}
+		],
+		"attitude": [
+			{
+				"text": "Relaxat",
+				"value": "-1"
+			},
+			{
+				"text": "Normal",
+				"value": "0"
+			},
+			{
+				"text": "Meciul sezonului",
+				"value": "1"
+			}
+		],
+		"levels": [
+			{
+				"text": "inexistent",
+				"value": "0"
 			},
 			{
 				"text": "dezastruos",
 				"value": "1"
 			},
 			{
-				"text": "inexistent",
+				"text": "mizerabil",
+				"value": "2"
+			},
+			{
+				"text": "jalnic",
+				"value": "3"
+			},
+			{
+				"text": "slab",
+				"value": "4"
+			},
+			{
+				"text": "inadecvat",
+				"value": "5"
+			},
+			{
+				"text": "acceptabil",
+				"value": "6"
+			},
+			{
+				"text": "bun",
+				"value": "7"
+			},
+			{
+				"text": "excelent",
+				"value": "8"
+			},
+			{
+				"text": "formidabil",
+				"value": "9"
+			},
+			{
+				"text": "impresionant",
+				"value": "10"
+			},
+			{
+				"text": "sclipitor",
+				"value": "11"
+			},
+			{
+				"text": "magnific",
+				"value": "12"
+			},
+			{
+				"text": "legendar",
+				"value": "13"
+			},
+			{
+				"text": "supranatural",
+				"value": "14"
+			},
+			{
+				"text": "titanic",
+				"value": "15"
+			},
+			{
+				"text": "extraterestru",
+				"value": "16"
+			},
+			{
+				"text": "mitic",
+				"value": "17"
+			},
+			{
+				"text": "magic",
+				"value": "18"
+			},
+			{
+				"text": "utopic",
+				"value": "19"
+			},
+			{
+				"text": "divin",
+				"value": "20"
+			}
+		],
+		"sponsors": [
+			{
+				"text": "violenţi",
 				"value": "0"
+			},
+			{
+				"text": "furioşi",
+				"value": "1"
+			},
+			{
+				"text": "iritaţi",
+				"value": "3"
+			},
+			{
+				"text": "calmi",
+				"value": "5"
+			},
+			{
+				"text": "mulţumiţi",
+				"value": "6"
+			},
+			{
+				"text": "bucuroşi",
+				"value": "7"
+			},
+			{
+				"text": "în delir",
+				"value": "8"
+			},
+			{
+				"text": "euforici",
+				"value": "9"
+			},
+			{
+				"text": "dansează pe străzi",
+				"value": "10"
+			},
+			{
+				"text": "îţi trimit scrisori de dragoste",
+				"value": "11"
+			}
+		],
+		"sectors": [
+			{
+				"type": "Midfield",
+				"value": "Mijloc"
+			},
+			{
+				"type": "RightDefense",
+				"value": "Apărare pe dreapta"
+			},
+			{
+				"type": "CentralDefense",
+				"value": "Apărare pe centru"
+			},
+			{
+				"type": "LeftDefense",
+				"value": "Apărare pe stânga"
+			},
+			{
+				"type": "RightAttack",
+				"value": "Atac pe dreapta"
+			},
+			{
+				"type": "CentralAttack",
+				"value": "Atac pe centru"
+			},
+			{
+				"type": "LeftAttack",
+				"value": "Atac pe stânga"
 			}
 		],
 		"ratingSubLevels": [
 			{
-				"text": "(foarte scăzut)",
-				"value": "0.0"
+				"text": "foarte scăzut",
+				"value": "0"
 			},
 			{
-				"text": "(scăzut)",
+				"text": "scăzut",
 				"value": "0.25"
 			},
 			{
-				"text": "(ridicat)",
-				"value": "0.50"
+				"text": "ridicat",
+				"value": "0.5"
 			},
 			{
-				"text": "(foarte ridicat)",
+				"text": "foarte ridicat",
 				"value": "0.75"
+			}
+		],
+		"fans": [
+			{
+				"text": "violenţi",
+				"value": "0"
+			},
+			{
+				"text": "furioşi",
+				"value": "1"
+			},
+			{
+				"text": "nervoşi",
+				"value": "2"
+			},
+			{
+				"text": "iritaţi",
+				"value": "3"
+			},
+			{
+				"text": "dezamăgiţi",
+				"value": "4"
+			},
+			{
+				"text": "calmi",
+				"value": "5"
+			},
+			{
+				"text": "mulţumiţi",
+				"value": "6"
+			},
+			{
+				"text": "bucuroşi",
+				"value": "7"
+			},
+			{
+				"text": "în delir",
+				"value": "8"
+			},
+			{
+				"text": "euforici",
+				"value": "9"
+			},
+			{
+				"text": "dansează pe străzi",
+				"value": "10"
+			},
+			{
+				"text": "îţi trimit scrisori de dragoste",
+				"value": "11"
 			}
 		],
 		"specialties": [
 			{
-				"short": "Un",
-				"type": "Unpredictable",
-				"value": "Imprevizibil"
+				"type": "None",
+				"value": "Fără"
 			},
 			{
-				"short": "Po",
-				"type": "Powerful",
-				"value": "Puternic"
-			},
-			{
-				"short": "Qu",
-				"type": "Quick",
-				"value": "Rapid"
-			},
-			{
-				"short": "Te",
 				"type": "Technical",
 				"value": "Tehnic"
 			},
 			{
-				"short": "He",
+				"type": "Quick",
+				"value": "Rapid"
+			},
+			{
+				"type": "Powerful",
+				"value": "Puternic"
+			},
+			{
+				"type": "Unpredictable",
+				"value": "Imprevizibil"
+			},
+			{
 				"type": "Head",
 				"value": "Cap"
 			},
 			{
-				"short": "Re",
 				"type": "Regainer",
 				"value": "Recuperare"
 			}
 		],
 		"aggressiveness": [
 			{
-				"text": "instabil",
-				"value": "5"
-			},
-			{
-				"text": "irascibil",
-				"value": "4"
-			},
-			{
-				"text": "temperamental",
-				"value": "3"
-			},
-			{
-				"text": "echilibrat",
-				"value": "2"
+				"text": "potolit",
+				"value": "0"
 			},
 			{
 				"text": "calm",
 				"value": "1"
 			},
 			{
-				"text": "potolit",
-				"value": "0"
+				"text": "echilibrat",
+				"value": "2"
+			},
+			{
+				"text": "temperamental",
+				"value": "3"
+			},
+			{
+				"text": "irascibil",
+				"value": "4"
+			},
+			{
+				"text": "instabil",
+				"value": "5"
 			}
 		],
-		"desc": "Română",
-		"name": "ro"
+		"id": "23",
+		"training": [
+			{
+				"type": "Gen",
+				"value": "General (Formă)"
+			},
+			{
+				"type": "Sta",
+				"value": "Rezistenţă"
+			},
+			{
+				"type": "SP",
+				"value": "Faze fixe"
+			},
+			{
+				"type": "Def",
+				"value": "Apărare"
+			},
+			{
+				"type": "Sco",
+				"value": "Atac"
+			},
+			{
+				"type": "Cross",
+				"value": "Extremă"
+			},
+			{
+				"type": "Shoot",
+				"value": "Şut"
+			},
+			{
+				"type": "Pass",
+				"value": "Pase scurte"
+			},
+			{
+				"type": "PM",
+				"value": "Construcţie"
+			},
+			{
+				"type": "GK",
+				"value": "Portar"
+			},
+			{
+				"type": "ThPass",
+				"value": "Pase în adâncime"
+			},
+			{
+				"type": "DefPos",
+				"value": "Poziţii defensive"
+			},
+			{
+				"type": "WingAtt",
+				"value": "Atacuri pe extremă"
+			},
+			{
+				"type": "Indiv",
+				"value": "Individual"
+			}
+		],
+		"fans_match": [
+			{
+				"text": "Mai bine nu ne prezentăm!",
+				"value": "0"
+			},
+			{
+				"text": "Suntem surclasaţi",
+				"value": "1"
+			},
+			{
+				"text": "Vom pierde",
+				"value": "2"
+			},
+			{
+				"text": "Ei sunt favoriţii",
+				"value": "3"
+			},
+			{
+				"text": "Ei sunt mai buni",
+				"value": "4"
+			},
+			{
+				"text": "Va fi un meci echilibrat",
+				"value": "5"
+			},
+			{
+				"text": "Suntem mai buni decât ei",
+				"value": "6"
+			},
+			{
+				"text": "Suntem favoriţi",
+				"value": "7"
+			},
+			{
+				"text": "Vom câştiga",
+				"value": "8"
+			},
+			{
+				"text": "Floare la ureche!",
+				"value": "9"
+			},
+			{
+				"text": "Hai să-i umilim",
+				"value": "10"
+			}
+		],
+		"name": "ro",
+		"spirit": [
+			{
+				"text": "ca la război",
+				"value": "0"
+			},
+			{
+				"text": "violenţi",
+				"value": "1"
+			},
+			{
+				"text": "furioşi",
+				"value": "2"
+			},
+			{
+				"text": "iritaţi",
+				"value": "3"
+			},
+			{
+				"text": "liniştiţi",
+				"value": "4"
+			},
+			{
+				"text": "calmi",
+				"value": "5"
+			},
+			{
+				"text": "mulţumiţi",
+				"value": "6"
+			},
+			{
+				"text": "bucuroşi",
+				"value": "7"
+			},
+			{
+				"text": "în delir",
+				"value": "8"
+			},
+			{
+				"text": "cu capul în nori",
+				"value": "9"
+			},
+			{
+				"text": "în al nouălea cer!",
+				"value": "10"
+			}
+		],
+		"desc": "Romanian"
 	}
 }

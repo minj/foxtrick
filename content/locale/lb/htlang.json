@@ -1,5 +1,47 @@
 {
 	"language": {
+		"confidence": [
+			{
+				"text": "inexistent",
+				"value": "0"
+			},
+			{
+				"text": "katastrophal",
+				"value": "1"
+			},
+			{
+				"text": "erbäermlech",
+				"value": "2"
+			},
+			{
+				"text": "aarmséileg",
+				"value": "3"
+			},
+			{
+				"text": "dezent",
+				"value": "4"
+			},
+			{
+				"text": "staark",
+				"value": "5"
+			},
+			{
+				"text": "wonnerbar",
+				"value": "6"
+			},
+			{
+				"text": "liicht iwwerdriwwen",
+				"value": "7"
+			},
+			{
+				"text": "iwwerdriwwen",
+				"value": "8"
+			},
+			{
+				"text": "komplett iwwerdriwwen",
+				"value": "9"
+			}
+		],
 		"tactics": [
 			{
 				"type": "normal",
@@ -14,12 +56,20 @@
 				"value": "Konteren"
 			},
 			{
+				"type": "aim",
+				"value": "Attack iwwer d'Mëtt"
+			},
+			{
 				"type": "aow",
 				"value": "Attack iwwer d'Säiten"
 			},
 			{
-				"type": "aim",
-				"value": "Attack iwwer d'Mëtt"
+				"type": "",
+				"value": "Onbekannt"
+			},
+			{
+				"type": "",
+				"value": "Onbekannt"
 			},
 			{
 				"type": "creatively",
@@ -32,251 +82,606 @@
 		],
 		"honesty": [
 			{
-				"text": "gutthäerzeg",
-				"value": "5"
-			},
-			{
-				"text": "fair",
-				"value": "4"
-			},
-			{
-				"text": "korrekt",
-				"value": "3"
-			},
-			{
-				"text": "éierlech",
-				"value": "2"
+				"text": "dreckeg",
+				"value": "0"
 			},
 			{
 				"text": "onéierlech",
 				"value": "1"
 			},
 			{
-				"text": "dreckeg",
-				"value": "0"
+				"text": "éierlech",
+				"value": "2"
+			},
+			{
+				"text": "korrekt",
+				"value": "3"
+			},
+			{
+				"text": "fair",
+				"value": "4"
+			},
+			{
+				"text": "gutthäerzeg",
+				"value": "5"
 			}
 		],
 		"agreeability": [
 			{
-				"text": "eng integréiert Persoun",
-				"value": "5"
-			},
-			{
-				"text": "eng populär Persoun",
-				"value": "4"
-			},
-			{
-				"text": "eng sympathesch Persoun",
-				"value": "3"
-			},
-			{
-				"text": "eng beléift Persoun",
-				"value": "2"
+				"text": "eng ekleg Persoun",
+				"value": "0"
 			},
 			{
 				"text": "eng kontrovers Persoun",
 				"value": "1"
 			},
 			{
-				"text": "eng ekleg Persoun",
-				"value": "0"
+				"text": "eng beléift Persoun",
+				"value": "2"
+			},
+			{
+				"text": "eng sympathesch Persoun",
+				"value": "3"
+			},
+			{
+				"text": "eng populär Persoun",
+				"value": "4"
+			},
+			{
+				"text": "eng integréiert Persoun",
+				"value": "5"
 			}
 		],
-		"positions": [
+		"skills": [
 			{
-				"short": "Ke",
 				"type": "Keeper",
 				"value": "Goalkeeper"
 			},
 			{
-				"short": "Cd",
-				"type": "Central defender",
-				"value": "zentrale Verteideger"
+				"type": "Stamina",
+				"value": "Konditioun"
 			},
 			{
-				"short": "Wb",
-				"type": "Wing back",
-				"value": "Ausseverteideger"
+				"type": "Defender",
+				"value": "Verteidegung"
 			},
 			{
-				"short": "Im",
-				"type": "Inner midfielder",
-				"value": "zentrale Mëttelfeldspiller"
+				"type": "Playmaker",
+				"value": "Spillmaacher"
 			},
 			{
-				"short": "Wi",
 				"type": "Winger",
 				"value": "Bande"
 			},
 			{
-				"short": "Fo",
+				"type": "Scorer",
+				"value": "Buteur"
+			},
+			{
+				"type": "Kicker",
+				"value": "Strofstéiss"
+			},
+			{
+				"type": "Passer",
+				"value": "Passpill"
+			},
+			{
+				"type": "Experience",
+				"value": "Erfahrung"
+			},
+			{
+				"type": "LeaderShip",
+				"value": "Féierungsqualitéiten"
+			}
+		],
+		"positions": [
+			{
+				"type": "Keeper",
+				"value": "Goalkeeper"
+			},
+			{
+				"type": "WingBack",
+				"value": "Ausseverteideger"
+			},
+			{
+				"type": "CentralDefender",
+				"value": "zentrale Verteideger"
+			},
+			{
+				"type": "InnerMidfield",
+				"value": "zentrale Mëttelfeldspiller"
+			},
+			{
+				"type": "Winger",
+				"value": "Bande"
+			},
+			{
 				"type": "Forward",
 				"value": "Stiermer"
 			}
 		],
-		"levels": [
+		"fans_season": [
 			{
-				"text": "gëttlech",
-				"value": "20"
+				"text": "Mer sinn net prett fir dës Divisioun.",
+				"value": "0"
 			},
 			{
-				"text": "utopesch",
-				"value": "19"
+				"text": "All Dag méi an dëser Divisioun ass e Bonus.",
+				"value": "1"
 			},
 			{
-				"text": "magesch",
-				"value": "18"
+				"text": "Mer mussen eis druginn, fir dobäi ze bleiwen.",
+				"value": "2"
 			},
 			{
-				"text": "phänomenal",
-				"value": "17"
-			},
-			{
-				"text": "ausserierdesch",
-				"value": "16"
-			},
-			{
-				"text": "onheemlech",
-				"value": "15"
-			},
-			{
-				"text": "iwwernatierlech",
-				"value": "14"
-			},
-			{
-				"text": "sensationell",
-				"value": "13"
-			},
-			{
-				"text": "fantastesch",
-				"value": "12"
-			},
-			{
-				"text": "brilliant",
-				"value": "11"
-			},
-			{
-				"text": "impressionant",
-				"value": "10"
-			},
-			{
-				"text": "formidabel",
-				"value": "9"
-			},
-			{
-				"text": "excellent",
-				"value": "8"
-			},
-			{
-				"text": "staark",
-				"value": "7"
-			},
-			{
-				"text": "passabel",
-				"value": "6"
-			},
-			{
-				"text": "mëttelméisseg",
-				"value": "5"
-			},
-			{
-				"text": "schwaach",
-				"value": "4"
-			},
-			{
-				"text": "aarmséileg",
+				"text": "Eng Plaz an der Mëtt vun der Tabell wier flott.",
 				"value": "3"
 			},
 			{
-				"text": "erbäermlech",
-				"value": "2"
+				"text": "Mer gehéieren an d'Top 4.",
+				"value": "4"
+			},
+			{
+				"text": "Eist Zil sollt den Titel sinn!",
+				"value": "5"
+			},
+			{
+				"text": "Dës Saison musse mer den Titel gewannen.",
+				"value": "6"
+			},
+			{
+				"text": "Mer sinn ze gutt fir déi heiten Divisioun!",
+				"value": "7"
+			}
+		],
+		"attitude": [
+			{
+				"text": "relax spillen",
+				"value": "-1"
+			},
+			{
+				"text": "Normal",
+				"value": "0"
+			},
+			{
+				"text": "Match vun der Saison",
+				"value": "1"
+			}
+		],
+		"levels": [
+			{
+				"text": "inexistent",
+				"value": "0"
 			},
 			{
 				"text": "katastrophal",
 				"value": "1"
 			},
 			{
-				"text": "inexistent",
+				"text": "erbäermlech",
+				"value": "2"
+			},
+			{
+				"text": "aarmséileg",
+				"value": "3"
+			},
+			{
+				"text": "schwaach",
+				"value": "4"
+			},
+			{
+				"text": "mëttelméisseg",
+				"value": "5"
+			},
+			{
+				"text": "passabel",
+				"value": "6"
+			},
+			{
+				"text": "staark",
+				"value": "7"
+			},
+			{
+				"text": "excellent",
+				"value": "8"
+			},
+			{
+				"text": "formidabel",
+				"value": "9"
+			},
+			{
+				"text": "impressionant",
+				"value": "10"
+			},
+			{
+				"text": "brilliant",
+				"value": "11"
+			},
+			{
+				"text": "fantastesch",
+				"value": "12"
+			},
+			{
+				"text": "sensationell",
+				"value": "13"
+			},
+			{
+				"text": "iwwernatierlech",
+				"value": "14"
+			},
+			{
+				"text": "onheemlech",
+				"value": "15"
+			},
+			{
+				"text": "ausserierdesch",
+				"value": "16"
+			},
+			{
+				"text": "phänomenal",
+				"value": "17"
+			},
+			{
+				"text": "magesch",
+				"value": "18"
+			},
+			{
+				"text": "utopesch",
+				"value": "19"
+			},
+			{
+				"text": "gëttlech",
+				"value": "20"
+			}
+		],
+		"sponsors": [
+			{
+				"text": "mäerderesch",
 				"value": "0"
+			},
+			{
+				"text": "rosen",
+				"value": "1"
+			},
+			{
+				"text": "irritéiert",
+				"value": "3"
+			},
+			{
+				"text": "roueg",
+				"value": "5"
+			},
+			{
+				"text": "zefridden",
+				"value": "6"
+			},
+			{
+				"text": "frou",
+				"value": "7"
+			},
+			{
+				"text": "immens frou",
+				"value": "8"
+			},
+			{
+				"text": "euphoresch",
+				"value": "9"
+			},
+			{
+				"text": "ausgeflippt",
+				"value": "10"
+			},
+			{
+				"text": "këssen der d'Féiss",
+				"value": "11"
+			}
+		],
+		"sectors": [
+			{
+				"type": "Midfield",
+				"value": "Mëttelfeld"
+			},
+			{
+				"type": "RightDefense",
+				"value": "Riets Verteidegung"
+			},
+			{
+				"type": "CentralDefense",
+				"value": "Zentral Verteidegung"
+			},
+			{
+				"type": "LeftDefense",
+				"value": "Lénks Verteidegung"
+			},
+			{
+				"type": "RightAttack",
+				"value": "Rietse Stuerm"
+			},
+			{
+				"type": "CentralAttack",
+				"value": "Zentrale Stuerm"
+			},
+			{
+				"type": "LeftAttack",
+				"value": "Lénke Stuerm"
 			}
 		],
 		"ratingSubLevels": [
 			{
-				"text": "(Ganz niddereg)",
-				"value": "0.0"
+				"text": "Ganz niddereg",
+				"value": "0"
 			},
 			{
-				"text": "(Niddereg)",
+				"text": "Niddereg",
 				"value": "0.25"
 			},
 			{
-				"text": "(Héich)",
-				"value": "0.50"
+				"text": "Héich",
+				"value": "0.5"
 			},
 			{
-				"text": "(Ganz héich)",
+				"text": "Ganz héich",
 				"value": "0.75"
+			}
+		],
+		"fans": [
+			{
+				"text": "mäerderesch",
+				"value": "0"
+			},
+			{
+				"text": "rosen",
+				"value": "1"
+			},
+			{
+				"text": "klorrosen",
+				"value": "2"
+			},
+			{
+				"text": "irritéiert",
+				"value": "3"
+			},
+			{
+				"text": "enttäuscht",
+				"value": "4"
+			},
+			{
+				"text": "roueg",
+				"value": "5"
+			},
+			{
+				"text": "zefridden",
+				"value": "6"
+			},
+			{
+				"text": "frou",
+				"value": "7"
+			},
+			{
+				"text": "immens frou",
+				"value": "8"
+			},
+			{
+				"text": "euphoresch",
+				"value": "9"
+			},
+			{
+				"text": "ausgeflippt",
+				"value": "10"
+			},
+			{
+				"text": "këssen der d'Féiss",
+				"value": "11"
 			}
 		],
 		"specialties": [
 			{
-				"short": "Un",
-				"type": "Unpredictable",
-				"value": "onberechenbar"
+				"type": "None",
+				"value": "Keng"
 			},
 			{
-				"short": "Po",
-				"type": "Powerful",
-				"value": "duerchsetzungsstaark"
-			},
-			{
-				"short": "Qu",
-				"type": "Quick",
-				"value": "séier"
-			},
-			{
-				"short": "Te",
 				"type": "Technical",
 				"value": "Dribbler"
 			},
 			{
-				"short": "He",
+				"type": "Quick",
+				"value": "séier"
+			},
+			{
+				"type": "Powerful",
+				"value": "duerchsetzungsstaark"
+			},
+			{
+				"type": "Unpredictable",
+				"value": "onberechenbar"
+			},
+			{
 				"type": "Head",
 				"value": "kappballstaark"
 			},
 			{
-				"short": "Re",
 				"type": "Regainer",
 				"value": "Gesondheetswonner"
 			}
 		],
 		"aggressiveness": [
 			{
-				"text": "onzouverlässeg",
-				"value": "5"
-			},
-			{
-				"text": "opbrausend",
-				"value": "4"
-			},
-			{
-				"text": "temperamentvoll",
-				"value": "3"
-			},
-			{
-				"text": "ausgeglach",
-				"value": "2"
+				"text": "introvertéiert",
+				"value": "0"
 			},
 			{
 				"text": "roueg",
 				"value": "1"
 			},
 			{
-				"text": "introvertéiert",
-				"value": "0"
+				"text": "ausgeglach",
+				"value": "2"
+			},
+			{
+				"text": "temperamentvoll",
+				"value": "3"
+			},
+			{
+				"text": "opbrausend",
+				"value": "4"
+			},
+			{
+				"text": "onzouverlässeg",
+				"value": "5"
 			}
 		],
-		"desc": "Lëtzebuergesch",
-		"name": "lb"
+		"id": "111",
+		"training": [
+			{
+				"type": "Gen",
+				"value": "Allgemeng (Form)"
+			},
+			{
+				"type": "Sta",
+				"value": "Konditioun"
+			},
+			{
+				"type": "SP",
+				"value": "Strofstéiss"
+			},
+			{
+				"type": "Def",
+				"value": "Verteidegung"
+			},
+			{
+				"type": "Sco",
+				"value": "Stiermertraining"
+			},
+			{
+				"type": "Cross",
+				"value": "Säitenugrëff"
+			},
+			{
+				"type": "Shoot",
+				"value": "Schosstraining"
+			},
+			{
+				"type": "Pass",
+				"value": "Kuerzpasstraining"
+			},
+			{
+				"type": "PM",
+				"value": "Spillopbau"
+			},
+			{
+				"type": "GK",
+				"value": "Goalkeepstraining"
+			},
+			{
+				"type": "ThPass",
+				"value": "Passen an d'Déift"
+			},
+			{
+				"type": "DefPos",
+				"value": "Defensivtraining"
+			},
+			{
+				"type": "WingAtt",
+				"value": "Fligelugrëff"
+			},
+			{
+				"type": "Indiv",
+				"value": "Individuell"
+			}
+		],
+		"fans_match": [
+			{
+				"text": "Besser mer weisen eis guer net",
+				"value": "0"
+			},
+			{
+				"text": "Do kréie mer der laanscht d'Baken",
+				"value": "1"
+			},
+			{
+				"text": "Mer wäerte verléieren",
+				"value": "2"
+			},
+			{
+				"text": "Se sinn d'Favoritten",
+				"value": "3"
+			},
+			{
+				"text": "Si sinn am Virdeel",
+				"value": "4"
+			},
+			{
+				"text": "Dat gëtt eng knapp Affaire",
+				"value": "5"
+			},
+			{
+				"text": "Mer sinn am Virdeel",
+				"value": "6"
+			},
+			{
+				"text": "Mer si Favoritt",
+				"value": "7"
+			},
+			{
+				"text": "Mer gewannen dat",
+				"value": "8"
+			},
+			{
+				"text": "Dat gëtt eng liicht Affaire",
+				"value": "9"
+			},
+			{
+				"text": "Déi maache mer platt",
+				"value": "10"
+			}
+		],
+		"name": "lb",
+		"spirit": [
+			{
+				"text": "wéi am Kale Krich",
+				"value": "0"
+			},
+			{
+				"text": "mäerderesch",
+				"value": "1"
+			},
+			{
+				"text": "rosen",
+				"value": "2"
+			},
+			{
+				"text": "irritéiert",
+				"value": "3"
+			},
+			{
+				"text": "passiv",
+				"value": "4"
+			},
+			{
+				"text": "relax",
+				"value": "5"
+			},
+			{
+				"text": "relativ frou",
+				"value": "6"
+			},
+			{
+				"text": "frou",
+				"value": "7"
+			},
+			{
+				"text": "immens frou",
+				"value": "8"
+			},
+			{
+				"text": "am siwenten Himmel",
+				"value": "9"
+			},
+			{
+				"text": "wéi am Paradäis",
+				"value": "10"
+			}
+		],
+		"desc": "Lëtzebuergesch"
 	}
 }

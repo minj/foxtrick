@@ -1,5 +1,47 @@
 {
 	"language": {
+		"confidence": [
+			{
+				"text": "neobstoječa ali čista nula",
+				"value": "0"
+			},
+			{
+				"text": "katastrofalna",
+				"value": "1"
+			},
+			{
+				"text": "bedna",
+				"value": "2"
+			},
+			{
+				"text": "uboga",
+				"value": "3"
+			},
+			{
+				"text": "spodobna",
+				"value": "4"
+			},
+			{
+				"text": "močna",
+				"value": "5"
+			},
+			{
+				"text": "čudovita",
+				"value": "6"
+			},
+			{
+				"text": "rahlo pretirana",
+				"value": "7"
+			},
+			{
+				"text": "pretirana",
+				"value": "8"
+			},
+			{
+				"text": "popolnoma pretirana",
+				"value": "9"
+			}
+		],
 		"tactics": [
 			{
 				"type": "normal",
@@ -14,12 +56,20 @@
 				"value": "Protinapadi"
 			},
 			{
+				"type": "aim",
+				"value": "Napad po sredini"
+			},
+			{
 				"type": "aow",
 				"value": "Napad po krilih"
 			},
 			{
-				"type": "aim",
-				"value": "Napad po sredini"
+				"type": "",
+				"value": "Neznano"
+			},
+			{
+				"type": "",
+				"value": "Neznano"
 			},
 			{
 				"type": "creatively",
@@ -32,251 +82,606 @@
 		],
 		"honesty": [
 			{
-				"text": "svetniški",
-				"value": "5"
-			},
-			{
-				"text": "pravičen",
-				"value": "4"
-			},
-			{
-				"text": "pošten",
-				"value": "3"
-			},
-			{
-				"text": "odkritosrčen",
-				"value": "2"
+				"text": "nesramen",
+				"value": "0"
 			},
 			{
 				"text": "nepošten",
 				"value": "1"
 			},
 			{
-				"text": "nesramen",
-				"value": "0"
+				"text": "odkritosrčen",
+				"value": "2"
+			},
+			{
+				"text": "pošten",
+				"value": "3"
+			},
+			{
+				"text": "pravičen",
+				"value": "4"
+			},
+			{
+				"text": "svetniški",
+				"value": "5"
 			}
 		],
 		"agreeability": [
 			{
-				"text": "ljubljenec moštva",
-				"value": "5"
-			},
-			{
-				"text": "priljubljen",
-				"value": "4"
-			},
-			{
-				"text": "simpatičen",
-				"value": "3"
-			},
-			{
-				"text": "prijeten",
-				"value": "2"
+				"text": "zloben",
+				"value": "0"
 			},
 			{
 				"text": "prepirljiv",
 				"value": "1"
 			},
 			{
-				"text": "zloben",
-				"value": "0"
+				"text": "prijeten",
+				"value": "2"
+			},
+			{
+				"text": "simpatičen",
+				"value": "3"
+			},
+			{
+				"text": "priljubljen",
+				"value": "4"
+			},
+			{
+				"text": "ljubljenec moštva",
+				"value": "5"
 			}
 		],
-		"positions": [
+		"skills": [
 			{
-				"short": "Ke",
 				"type": "Keeper",
 				"value": "Vratar"
 			},
 			{
-				"short": "Cd",
-				"type": "Central defender",
-				"value": "Srednji branilec"
+				"type": "Stamina",
+				"value": "Vzdržljivost"
 			},
 			{
-				"short": "Wb",
-				"type": "Wing back",
-				"value": "Bočni branilec"
+				"type": "Defender",
+				"value": "Branilec"
 			},
 			{
-				"short": "Im",
-				"type": "Inner midfielder",
+				"type": "Playmaker",
 				"value": "Vezist"
 			},
 			{
-				"short": "Wi",
 				"type": "Winger",
 				"value": "Krilo"
 			},
 			{
-				"short": "Fo",
+				"type": "Scorer",
+				"value": "Napadalec"
+			},
+			{
+				"type": "Kicker",
+				"value": "Prosti streli"
+			},
+			{
+				"type": "Passer",
+				"value": "Podaje"
+			},
+			{
+				"type": "Experience",
+				"value": "Izkušnje"
+			},
+			{
+				"type": "LeaderShip",
+				"value": "Vodstvene sposobnosti"
+			}
+		],
+		"positions": [
+			{
+				"type": "Keeper",
+				"value": "Vratar"
+			},
+			{
+				"type": "WingBack",
+				"value": "Bočni branilec"
+			},
+			{
+				"type": "CentralDefender",
+				"value": "Srednji branilec"
+			},
+			{
+				"type": "InnerMidfield",
+				"value": "Vezist"
+			},
+			{
+				"type": "Winger",
+				"value": "Krilo"
+			},
+			{
 				"type": "Forward",
 				"value": "Napadalec"
 			}
 		],
-		"levels": [
+		"fans_season": [
 			{
-				"text": "božansko",
-				"value": "20"
+				"text": "Ne zaslužimo si igranja v tej ligi",
+				"value": "0"
 			},
 			{
-				"text": "utopično",
-				"value": "19"
+				"text": "Vsak dodaten dan v tej ligi bo odličen dosežek",
+				"value": "1"
 			},
 			{
-				"text": "čarobno",
-				"value": "18"
+				"text": "Morali se bomo zelo potruditi za obstanek v tej ligi",
+				"value": "2"
 			},
 			{
-				"text": "legendarno",
-				"value": "17"
-			},
-			{
-				"text": "izvenzemeljsko",
-				"value": "16"
-			},
-			{
-				"text": "mogočno",
-				"value": "15"
-			},
-			{
-				"text": "nadnaravno",
-				"value": "14"
-			},
-			{
-				"text": "svetovno",
-				"value": "13"
-			},
-			{
-				"text": "veličastno",
-				"value": "12"
-			},
-			{
-				"text": "sijajno",
-				"value": "11"
-			},
-			{
-				"text": "izjemno",
-				"value": "10"
-			},
-			{
-				"text": "fenomenalno",
-				"value": "9"
-			},
-			{
-				"text": "odlično",
-				"value": "8"
-			},
-			{
-				"text": "solidno",
-				"value": "7"
-			},
-			{
-				"text": "sprejemljivo",
-				"value": "6"
-			},
-			{
-				"text": "pomanjkljivo",
-				"value": "5"
-			},
-			{
-				"text": "šibko",
-				"value": "4"
-			},
-			{
-				"text": "ubogo",
+				"text": "Uvrstitev v sredini lestvice bo lep dosežek",
 				"value": "3"
 			},
 			{
-				"text": "borno",
-				"value": "2"
+				"text": "Spadamo med prve štiri",
+				"value": "4"
+			},
+			{
+				"text": "Z malo sreče lahko osvojimo to ligo",
+				"value": "5"
+			},
+			{
+				"text": "To sezono moramo biti na prvem mestu v ligi",
+				"value": "6"
+			},
+			{
+				"text": "Imamo veliko predobro ekipo za to ligo!",
+				"value": "7"
+			}
+		],
+		"attitude": [
+			{
+				"text": "Igrajte sproščeno",
+				"value": "-1"
+			},
+			{
+				"text": "Običajno",
+				"value": "0"
+			},
+			{
+				"text": "Tekma sezone",
+				"value": "1"
+			}
+		],
+		"levels": [
+			{
+				"text": "neobstoječe",
+				"value": "0"
 			},
 			{
 				"text": "katastrofalno",
 				"value": "1"
 			},
 			{
-				"text": "neobstoječe",
+				"text": "borno",
+				"value": "2"
+			},
+			{
+				"text": "ubogo",
+				"value": "3"
+			},
+			{
+				"text": "šibko",
+				"value": "4"
+			},
+			{
+				"text": "pomanjkljivo",
+				"value": "5"
+			},
+			{
+				"text": "sprejemljivo",
+				"value": "6"
+			},
+			{
+				"text": "solidno",
+				"value": "7"
+			},
+			{
+				"text": "odlično",
+				"value": "8"
+			},
+			{
+				"text": "fenomenalno",
+				"value": "9"
+			},
+			{
+				"text": "izjemno",
+				"value": "10"
+			},
+			{
+				"text": "sijajno",
+				"value": "11"
+			},
+			{
+				"text": "veličastno",
+				"value": "12"
+			},
+			{
+				"text": "svetovno",
+				"value": "13"
+			},
+			{
+				"text": "nadnaravno",
+				"value": "14"
+			},
+			{
+				"text": "mogočno",
+				"value": "15"
+			},
+			{
+				"text": "izvenzemeljsko",
+				"value": "16"
+			},
+			{
+				"text": "legendarno",
+				"value": "17"
+			},
+			{
+				"text": "čarobno",
+				"value": "18"
+			},
+			{
+				"text": "utopično",
+				"value": "19"
+			},
+			{
+				"text": "božansko",
+				"value": "20"
+			}
+		],
+		"sponsors": [
+			{
+				"text": "morilski",
 				"value": "0"
+			},
+			{
+				"text": "besni",
+				"value": "1"
+			},
+			{
+				"text": "razdraženi",
+				"value": "3"
+			},
+			{
+				"text": "mirni",
+				"value": "5"
+			},
+			{
+				"text": "zadovoljni",
+				"value": "6"
+			},
+			{
+				"text": "veseli",
+				"value": "7"
+			},
+			{
+				"text": "navdušeni",
+				"value": "8"
+			},
+			{
+				"text": "vzhičeni",
+				"value": "9"
+			},
+			{
+				"text": "plešejo na ulicah",
+				"value": "10"
+			},
+			{
+				"text": "pošiljajo ti ljubezenska pisma",
+				"value": "11"
+			}
+		],
+		"sectors": [
+			{
+				"type": "Midfield",
+				"value": "Sredina"
+			},
+			{
+				"type": "RightDefense",
+				"value": "Desna obramba"
+			},
+			{
+				"type": "CentralDefense",
+				"value": "Srednja obramba"
+			},
+			{
+				"type": "LeftDefense",
+				"value": "Leva obramba"
+			},
+			{
+				"type": "RightAttack",
+				"value": "Desni napad"
+			},
+			{
+				"type": "CentralAttack",
+				"value": "Srednji napad"
+			},
+			{
+				"type": "LeftAttack",
+				"value": "Levi napad"
 			}
 		],
 		"ratingSubLevels": [
 			{
-				"text": "(Zelo nizko)",
-				"value": "0.0"
+				"text": "Zelo nizko",
+				"value": "0"
 			},
 			{
-				"text": "(Nizko)",
+				"text": "Nizko",
 				"value": "0.25"
 			},
 			{
-				"text": "(Visoko)",
-				"value": "0.50"
+				"text": "Visoko",
+				"value": "0.5"
 			},
 			{
-				"text": "(Zelo visoko)",
+				"text": "Zelo visoko",
 				"value": "0.75"
+			}
+		],
+		"fans": [
+			{
+				"text": "morilski",
+				"value": "0"
+			},
+			{
+				"text": "besni",
+				"value": "1"
+			},
+			{
+				"text": "jezni",
+				"value": "2"
+			},
+			{
+				"text": "razdraženi",
+				"value": "3"
+			},
+			{
+				"text": "razočarani",
+				"value": "4"
+			},
+			{
+				"text": "mirni",
+				"value": "5"
+			},
+			{
+				"text": "zadovoljni",
+				"value": "6"
+			},
+			{
+				"text": "veseli",
+				"value": "7"
+			},
+			{
+				"text": "navdušeni",
+				"value": "8"
+			},
+			{
+				"text": "vzhičeni",
+				"value": "9"
+			},
+			{
+				"text": "plešejo na ulicah",
+				"value": "10"
+			},
+			{
+				"text": "pošiljajo ti ljubezenska pisma",
+				"value": "11"
 			}
 		],
 		"specialties": [
 			{
-				"short": "Un",
-				"type": "Unpredictable",
-				"value": "Nepredvidljiv"
+				"type": "None",
+				"value": "Brez"
 			},
 			{
-				"short": "Po",
-				"type": "Powerful",
-				"value": "Močan"
-			},
-			{
-				"short": "Qu",
-				"type": "Quick",
-				"value": "Hiter"
-			},
-			{
-				"short": "Te",
 				"type": "Technical",
 				"value": "Tehničen"
 			},
 			{
-				"short": "He",
+				"type": "Quick",
+				"value": "Hiter"
+			},
+			{
+				"type": "Powerful",
+				"value": "Močan"
+			},
+			{
+				"type": "Unpredictable",
+				"value": "Nepredvidljiv"
+			},
+			{
 				"type": "Head",
 				"value": "Igra z glavo"
 			},
 			{
-				"short": "Re",
 				"type": "Regainer",
 				"value": "Hitreje okreva"
 			}
 		],
 		"aggressiveness": [
 			{
-				"text": "nestabilen",
-				"value": "5"
-			},
-			{
-				"text": "vročekrven",
-				"value": "4"
-			},
-			{
-				"text": "vzkipljiv",
-				"value": "3"
-			},
-			{
-				"text": "uravnotežen",
-				"value": "2"
+				"text": "hladnokrven",
+				"value": "0"
 			},
 			{
 				"text": "miren",
 				"value": "1"
 			},
 			{
-				"text": "hladnokrven",
-				"value": "0"
+				"text": "uravnotežen",
+				"value": "2"
+			},
+			{
+				"text": "vzkipljiv",
+				"value": "3"
+			},
+			{
+				"text": "vročekrven",
+				"value": "4"
+			},
+			{
+				"text": "nestabilen",
+				"value": "5"
 			}
 		],
-		"desc": "Slovenščina",
-		"name": "sl"
+		"id": "45",
+		"training": [
+			{
+				"type": "Gen",
+				"value": "Splošni trening (Pripravljenost)"
+			},
+			{
+				"type": "Sta",
+				"value": "Vzdržljivost"
+			},
+			{
+				"type": "SP",
+				"value": "Prosti streli"
+			},
+			{
+				"type": "Def",
+				"value": "Obramba"
+			},
+			{
+				"type": "Sco",
+				"value": "Napad"
+			},
+			{
+				"type": "Cross",
+				"value": "Krila"
+			},
+			{
+				"type": "Shoot",
+				"value": "Streljanje"
+			},
+			{
+				"type": "Pass",
+				"value": "Kratke podaje"
+			},
+			{
+				"type": "PM",
+				"value": "Grajenje igre"
+			},
+			{
+				"type": "GK",
+				"value": "Trening vratarjev"
+			},
+			{
+				"type": "ThPass",
+				"value": "Podaje v prostor"
+			},
+			{
+				"type": "DefPos",
+				"value": "Obrambni položaji"
+			},
+			{
+				"type": "WingAtt",
+				"value": "Krilni napad"
+			},
+			{
+				"type": "Indiv",
+				"value": "Individualni"
+			}
+		],
+		"fans_match": [
+			{
+				"text": "Najbolje, da se na tekmi sploh ne prikažemo",
+				"value": "0"
+			},
+			{
+				"text": "Naš nasprotnik je za razred boljši",
+				"value": "1"
+			},
+			{
+				"text": "Izgubili bomo",
+				"value": "2"
+			},
+			{
+				"text": "Oni so favoriti",
+				"value": "3"
+			},
+			{
+				"text": "Oni imajo prednost",
+				"value": "4"
+			},
+			{
+				"text": "Končni rezultat bo tesen",
+				"value": "5"
+			},
+			{
+				"text": "Mi imamo prednost",
+				"value": "6"
+			},
+			{
+				"text": "Mi smo favoriti",
+				"value": "7"
+			},
+			{
+				"text": "Zmagali bomo",
+				"value": "8"
+			},
+			{
+				"text": "Ni dvoma o zmagi",
+				"value": "9"
+			},
+			{
+				"text": "Moramo jih popolnoma ponižati",
+				"value": "10"
+			}
+		],
+		"name": "sl",
+		"spirit": [
+			{
+				"text": "kot v hladni vojni",
+				"value": "0"
+			},
+			{
+				"text": "morilsko",
+				"value": "1"
+			},
+			{
+				"text": "besno",
+				"value": "2"
+			},
+			{
+				"text": "vznemirjeno",
+				"value": "3"
+			},
+			{
+				"text": "spremenljivo",
+				"value": "4"
+			},
+			{
+				"text": "umirjeno",
+				"value": "5"
+			},
+			{
+				"text": "zadovoljno",
+				"value": "6"
+			},
+			{
+				"text": "navdušeno",
+				"value": "7"
+			},
+			{
+				"text": "vzhičeno",
+				"value": "8"
+			},
+			{
+				"text": "v sedmih nebesih",
+				"value": "9"
+			},
+			{
+				"text": "raj na zemlji",
+				"value": "10"
+			}
+		],
+		"desc": "Slovenščina"
 	}
 }

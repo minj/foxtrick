@@ -1,5 +1,47 @@
 {
 	"language": {
+		"confidence": [
+			{
+				"text": "beznadziejna",
+				"value": "0"
+			},
+			{
+				"text": "fatalna",
+				"value": "1"
+			},
+			{
+				"text": "nędzna",
+				"value": "2"
+			},
+			{
+				"text": "kiepska",
+				"value": "3"
+			},
+			{
+				"text": "przyzwoita",
+				"value": "4"
+			},
+			{
+				"text": "mocna",
+				"value": "5"
+			},
+			{
+				"text": "cudowna",
+				"value": "6"
+			},
+			{
+				"text": "lekko przesadzona",
+				"value": "7"
+			},
+			{
+				"text": "przesadzona",
+				"value": "8"
+			},
+			{
+				"text": "niemożliwie przesadzona",
+				"value": "9"
+			}
+		],
 		"tactics": [
 			{
 				"type": "normal",
@@ -14,12 +56,20 @@
 				"value": "Gra z kontry"
 			},
 			{
+				"type": "aim",
+				"value": "Atak środkiem"
+			},
+			{
 				"type": "aow",
 				"value": "Atak skrzydłami"
 			},
 			{
-				"type": "aim",
-				"value": "Atak środkiem"
+				"type": "",
+				"value": "nieznany"
+			},
+			{
+				"type": "",
+				"value": "nieznany"
 			},
 			{
 				"type": "creatively",
@@ -32,251 +82,606 @@
 		],
 		"honesty": [
 			{
-				"text": "świątobliwy",
-				"value": "5"
-			},
-			{
-				"text": "szlachetny",
-				"value": "4"
-			},
-			{
-				"text": "prawy",
-				"value": "3"
-			},
-			{
-				"text": "uczciwy",
-				"value": "2"
+				"text": "podły",
+				"value": "0"
 			},
 			{
 				"text": "nieuczciwy",
 				"value": "1"
 			},
 			{
-				"text": "podły",
-				"value": "0"
+				"text": "uczciwy",
+				"value": "2"
+			},
+			{
+				"text": "prawy",
+				"value": "3"
+			},
+			{
+				"text": "szlachetny",
+				"value": "4"
+			},
+			{
+				"text": "świątobliwy",
+				"value": "5"
 			}
 		],
 		"agreeability": [
 			{
-				"text": "uwielbiany przez zespół",
-				"value": "5"
-			},
-			{
-				"text": "popularny",
-				"value": "4"
-			},
-			{
-				"text": "sympatyczny",
-				"value": "3"
-			},
-			{
-				"text": "przyjemny",
-				"value": "2"
+				"text": "złośliwy",
+				"value": "0"
 			},
 			{
 				"text": "kontrowersyjny",
 				"value": "1"
 			},
 			{
-				"text": "złośliwy",
-				"value": "0"
+				"text": "przyjemny",
+				"value": "2"
+			},
+			{
+				"text": "sympatyczny",
+				"value": "3"
+			},
+			{
+				"text": "popularny",
+				"value": "4"
+			},
+			{
+				"text": "uwielbiany przez zespół",
+				"value": "5"
+			}
+		],
+		"skills": [
+			{
+				"type": "Keeper",
+				"value": "Bramkarz"
+			},
+			{
+				"type": "Stamina",
+				"value": "Kondycja"
+			},
+			{
+				"type": "Defender",
+				"value": "Defensywa"
+			},
+			{
+				"type": "Playmaker",
+				"value": "Rozgrywanie"
+			},
+			{
+				"type": "Winger",
+				"value": "Skrzydłowy"
+			},
+			{
+				"type": "Scorer",
+				"value": "Skuteczność"
+			},
+			{
+				"type": "Kicker",
+				"value": "St.fragmenty"
+			},
+			{
+				"type": "Passer",
+				"value": "Podania"
+			},
+			{
+				"type": "Experience",
+				"value": "Doświadczenie"
+			},
+			{
+				"type": "LeaderShip",
+				"value": "Przywódca"
 			}
 		],
 		"positions": [
 			{
-				"short": "Ke",
 				"type": "Keeper",
 				"value": "bramkarz"
 			},
 			{
-				"short": "Cd",
-				"type": "Central defender",
-				"value": "stoper"
-			},
-			{
-				"short": "Wb",
-				"type": "Wing back",
+				"type": "WingBack",
 				"value": "boczny obrońca"
 			},
 			{
-				"short": "Im",
-				"type": "Inner midfielder",
+				"type": "CentralDefender",
+				"value": "stoper"
+			},
+			{
+				"type": "InnerMidfield",
 				"value": "pomocnik"
 			},
 			{
-				"short": "Wi",
 				"type": "Winger",
 				"value": "skrzydłowy"
 			},
 			{
-				"short": "Fo",
 				"type": "Forward",
 				"value": "napastnik"
 			}
 		],
-		"levels": [
+		"fans_season": [
 			{
-				"text": "boski",
-				"value": "20"
+				"text": "ta liga nas całkowicie przerasta",
+				"value": "0"
 			},
 			{
-				"text": "utopijny",
-				"value": "19"
+				"text": "każdy dzień w tej lidze to cud",
+				"value": "1"
 			},
 			{
-				"text": "magiczny",
-				"value": "18"
+				"text": "będziemy musieli walczyć o utrzymanie",
+				"value": "2"
 			},
 			{
-				"text": "mityczny",
-				"value": "17"
-			},
-			{
-				"text": "nieziemski",
-				"value": "16"
-			},
-			{
-				"text": "tytaniczny",
-				"value": "15"
-			},
-			{
-				"text": "nadprzyrodzony",
-				"value": "14"
-			},
-			{
-				"text": "światowej klasy",
-				"value": "13"
-			},
-			{
-				"text": "mistrzowski",
-				"value": "12"
-			},
-			{
-				"text": "błyskotliwy",
-				"value": "11"
-			},
-			{
-				"text": "olśniewający",
-				"value": "10"
-			},
-			{
-				"text": "fantastyczny",
-				"value": "9"
-			},
-			{
-				"text": "znakomity",
-				"value": "8"
-			},
-			{
-				"text": "solidny",
-				"value": "7"
-			},
-			{
-				"text": "zadowalający",
-				"value": "6"
-			},
-			{
-				"text": "przeciętny",
-				"value": "5"
-			},
-			{
-				"text": "słaby",
-				"value": "4"
-			},
-			{
-				"text": "kiepski",
+				"text": "środek tabeli powinien być nasz",
 				"value": "3"
 			},
 			{
-				"text": "nędzny",
-				"value": "2"
+				"text": "nasze miejsce to czołowa czwórka",
+				"value": "4"
+			},
+			{
+				"text": "walczymy o tytuł!",
+				"value": "5"
+			},
+			{
+				"text": "mistrzostwo musi być nasze",
+				"value": "6"
+			},
+			{
+				"text": "przerastamy tę ligę o lata świetlne!",
+				"value": "7"
+			}
+		],
+		"attitude": [
+			{
+				"text": "gra na luzie (PIC)",
+				"value": "-1"
+			},
+			{
+				"text": "normalne spotkanie",
+				"value": "0"
+			},
+			{
+				"text": "mecz sezonu (MOTS)",
+				"value": "1"
+			}
+		],
+		"levels": [
+			{
+				"text": "beznadziejny",
+				"value": "0"
 			},
 			{
 				"text": "fatalny",
 				"value": "1"
 			},
 			{
-				"text": "beznadziejny",
+				"text": "nędzny",
+				"value": "2"
+			},
+			{
+				"text": "kiepski",
+				"value": "3"
+			},
+			{
+				"text": "słaby",
+				"value": "4"
+			},
+			{
+				"text": "przeciętny",
+				"value": "5"
+			},
+			{
+				"text": "zadowalający",
+				"value": "6"
+			},
+			{
+				"text": "solidny",
+				"value": "7"
+			},
+			{
+				"text": "znakomity",
+				"value": "8"
+			},
+			{
+				"text": "fantastyczny",
+				"value": "9"
+			},
+			{
+				"text": "olśniewający",
+				"value": "10"
+			},
+			{
+				"text": "błyskotliwy",
+				"value": "11"
+			},
+			{
+				"text": "mistrzowski",
+				"value": "12"
+			},
+			{
+				"text": "światowej klasy",
+				"value": "13"
+			},
+			{
+				"text": "nadprzyrodzony",
+				"value": "14"
+			},
+			{
+				"text": "tytaniczny",
+				"value": "15"
+			},
+			{
+				"text": "nieziemski",
+				"value": "16"
+			},
+			{
+				"text": "mityczny",
+				"value": "17"
+			},
+			{
+				"text": "magiczny",
+				"value": "18"
+			},
+			{
+				"text": "utopijny",
+				"value": "19"
+			},
+			{
+				"text": "boski",
+				"value": "20"
+			}
+		],
+		"sponsors": [
+			{
+				"text": "żądni krwi",
 				"value": "0"
+			},
+			{
+				"text": "wściekli",
+				"value": "1"
+			},
+			{
+				"text": "zirytowani",
+				"value": "3"
+			},
+			{
+				"text": "obojętni",
+				"value": "5"
+			},
+			{
+				"text": "spokojni",
+				"value": "6"
+			},
+			{
+				"text": "zadowoleni",
+				"value": "7"
+			},
+			{
+				"text": "zachwyceni",
+				"value": "8"
+			},
+			{
+				"text": "szaleją z radości",
+				"value": "9"
+			},
+			{
+				"text": "w siódmym niebie",
+				"value": "10"
+			},
+			{
+				"text": "przysyłają poematy miłosne",
+				"value": "11"
+			}
+		],
+		"sectors": [
+			{
+				"type": "Midfield",
+				"value": "Pomoc"
+			},
+			{
+				"type": "RightDefense",
+				"value": "Prawa obrona"
+			},
+			{
+				"type": "CentralDefense",
+				"value": "Środek obrony"
+			},
+			{
+				"type": "LeftDefense",
+				"value": "Lewa obrona"
+			},
+			{
+				"type": "RightAttack",
+				"value": "Prawy atak"
+			},
+			{
+				"type": "CentralAttack",
+				"value": "Środkowy atak"
+			},
+			{
+				"type": "LeftAttack",
+				"value": "Lewy atak"
 			}
 		],
 		"ratingSubLevels": [
 			{
-				"text": "(min.)",
-				"value": "0.0"
+				"text": "min.",
+				"value": "0"
 			},
 			{
-				"text": "(niski)",
+				"text": "niski",
 				"value": "0.25"
 			},
 			{
-				"text": "(wysoki)",
-				"value": "0.50"
+				"text": "wysoki",
+				"value": "0.5"
 			},
 			{
-				"text": "(maks.)",
+				"text": "maks.",
 				"value": "0.75"
+			}
+		],
+		"fans": [
+			{
+				"text": "żądni krwi",
+				"value": "0"
+			},
+			{
+				"text": "wściekli",
+				"value": "1"
+			},
+			{
+				"text": "rozzłoszczeni",
+				"value": "2"
+			},
+			{
+				"text": "zirytowani",
+				"value": "3"
+			},
+			{
+				"text": "zawiedzeni",
+				"value": "4"
+			},
+			{
+				"text": "obojętni",
+				"value": "5"
+			},
+			{
+				"text": "spokojni",
+				"value": "6"
+			},
+			{
+				"text": "zadowoleni",
+				"value": "7"
+			},
+			{
+				"text": "zachwyceni",
+				"value": "8"
+			},
+			{
+				"text": "szaleją z radości",
+				"value": "9"
+			},
+			{
+				"text": "w siódmym niebie",
+				"value": "10"
+			},
+			{
+				"text": "przysyłają poematy miłosne",
+				"value": "11"
 			}
 		],
 		"specialties": [
 			{
-				"short": "Un",
-				"type": "Unpredictable",
-				"value": "nieprzewidywalny"
+				"type": "None",
+				"value": "brak"
 			},
 			{
-				"short": "Po",
-				"type": "Powerful",
-				"value": "atletyczny"
-			},
-			{
-				"short": "Qu",
-				"type": "Quick",
-				"value": "szybki"
-			},
-			{
-				"short": "Te",
 				"type": "Technical",
 				"value": "techniczny"
 			},
 			{
-				"short": "He",
+				"type": "Quick",
+				"value": "szybki"
+			},
+			{
+				"type": "Powerful",
+				"value": "atletyczny"
+			},
+			{
+				"type": "Unpredictable",
+				"value": "nieprzewidywalny"
+			},
+			{
 				"type": "Head",
 				"value": "gra głową"
 			},
 			{
-				"short": "Re",
 				"type": "Regainer",
 				"value": "witalny"
 			}
 		],
 		"aggressiveness": [
 			{
-				"text": "niezrównoważony",
-				"value": "5"
-			},
-			{
-				"text": "porywczy",
-				"value": "4"
-			},
-			{
-				"text": "z charakterem",
-				"value": "3"
-			},
-			{
-				"text": "zrównoważony",
-				"value": "2"
+				"text": "spokojny",
+				"value": "0"
 			},
 			{
 				"text": "opanowany",
 				"value": "1"
 			},
 			{
-				"text": "spokojny",
-				"value": "0"
+				"text": "zrównoważony",
+				"value": "2"
+			},
+			{
+				"text": "z charakterem",
+				"value": "3"
+			},
+			{
+				"text": "porywczy",
+				"value": "4"
+			},
+			{
+				"text": "niezrównoważony",
+				"value": "5"
 			}
 		],
-		"desc": "Polski",
-		"name": "pl"
+		"id": "13",
+		"training": [
+			{
+				"type": "Gen",
+				"value": "ogólny (forma)"
+			},
+			{
+				"type": "Sta",
+				"value": "kondycja"
+			},
+			{
+				"type": "SP",
+				"value": "stałe fragmenty"
+			},
+			{
+				"type": "Def",
+				"value": "defensywa"
+			},
+			{
+				"type": "Sco",
+				"value": "skuteczność"
+			},
+			{
+				"type": "Cross",
+				"value": "dośrodkowania"
+			},
+			{
+				"type": "Shoot",
+				"value": "strzelecki"
+			},
+			{
+				"type": "Pass",
+				"value": "krótkie podania"
+			},
+			{
+				"type": "PM",
+				"value": "rozgrywanie"
+			},
+			{
+				"type": "GK",
+				"value": "bramkarski"
+			},
+			{
+				"type": "ThPass",
+				"value": "prostopadłe podania"
+			},
+			{
+				"type": "DefPos",
+				"value": "postawa obronna"
+			},
+			{
+				"type": "WingAtt",
+				"value": "atak skrzydłem"
+			},
+			{
+				"type": "Indiv",
+				"value": "indywidualny"
+			}
+		],
+		"fans_match": [
+			{
+				"text": "lepiej się nie pokazujmy!",
+				"value": "0"
+			},
+			{
+				"text": "nie mamy szans",
+				"value": "1"
+			},
+			{
+				"text": "przegramy",
+				"value": "2"
+			},
+			{
+				"text": "to oni są faworytami",
+				"value": "3"
+			},
+			{
+				"text": "to oni mają przewagę",
+				"value": "4"
+			},
+			{
+				"text": "szanse są wyrównane",
+				"value": "5"
+			},
+			{
+				"text": "mamy przewagę",
+				"value": "6"
+			},
+			{
+				"text": "jesteśmy faworytami",
+				"value": "7"
+			},
+			{
+				"text": "wygramy",
+				"value": "8"
+			},
+			{
+				"text": "bułka z masłem!",
+				"value": "9"
+			},
+			{
+				"text": "poniżmy ich",
+				"value": "10"
+			}
+		],
+		"name": "pl",
+		"spirit": [
+			{
+				"text": "jak w czasie Zimnej Wojny",
+				"value": "0"
+			},
+			{
+				"text": "żądni krwi",
+				"value": "1"
+			},
+			{
+				"text": "wściekli",
+				"value": "2"
+			},
+			{
+				"text": "zirytowani",
+				"value": "3"
+			},
+			{
+				"text": "opanowani",
+				"value": "4"
+			},
+			{
+				"text": "obojętni",
+				"value": "5"
+			},
+			{
+				"text": "spokojni",
+				"value": "6"
+			},
+			{
+				"text": "zadowoleni",
+				"value": "7"
+			},
+			{
+				"text": "zachwyceni",
+				"value": "8"
+			},
+			{
+				"text": "w siódmym niebie",
+				"value": "9"
+			},
+			{
+				"text": "Raj na Ziemi!",
+				"value": "10"
+			}
+		],
+		"desc": "Polski"
 	}
 }

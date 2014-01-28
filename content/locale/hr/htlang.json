@@ -1,5 +1,47 @@
 {
 	"language": {
+		"confidence": [
+			{
+				"text": "nikakvo",
+				"value": "0"
+			},
+			{
+				"text": "katastrofalno",
+				"value": "1"
+			},
+			{
+				"text": "očajno",
+				"value": "2"
+			},
+			{
+				"text": "loše",
+				"value": "3"
+			},
+			{
+				"text": "pristojno",
+				"value": "4"
+			},
+			{
+				"text": "jako",
+				"value": "5"
+			},
+			{
+				"text": "sjajno",
+				"value": "6"
+			},
+			{
+				"text": "malo pretjerano",
+				"value": "7"
+			},
+			{
+				"text": "pretjerano",
+				"value": "8"
+			},
+			{
+				"text": "potpuno pretjerano",
+				"value": "9"
+			}
+		],
 		"tactics": [
 			{
 				"type": "normal",
@@ -14,12 +56,20 @@
 				"value": "Protunapadi"
 			},
 			{
+				"type": "aim",
+				"value": "Napadi kroz sredinu"
+			},
+			{
 				"type": "aow",
 				"value": "Napadi po krilima"
 			},
 			{
-				"type": "aim",
-				"value": "Napadi kroz sredinu"
+				"type": "",
+				"value": "Nepoznat"
+			},
+			{
+				"type": "",
+				"value": "Nepoznat"
 			},
 			{
 				"type": "creatively",
@@ -32,251 +82,606 @@
 		],
 		"honesty": [
 			{
-				"text": "kao svetac",
-				"value": "5"
-			},
-			{
-				"text": "pravedan",
-				"value": "4"
-			},
-			{
-				"text": "čestit",
-				"value": "3"
-			},
-			{
-				"text": "pošten",
-				"value": "2"
+				"text": "na zlu glasu",
+				"value": "0"
 			},
 			{
 				"text": "nepošten",
 				"value": "1"
 			},
 			{
-				"text": "na zlu glasu",
-				"value": "0"
+				"text": "pošten",
+				"value": "2"
+			},
+			{
+				"text": "čestit",
+				"value": "3"
+			},
+			{
+				"text": "pravedan",
+				"value": "4"
+			},
+			{
+				"text": "kao svetac",
+				"value": "5"
 			}
 		],
 		"agreeability": [
 			{
-				"text": "Obožavani član momčadi",
-				"value": "5"
-			},
-			{
-				"text": "Popularan tip",
-				"value": "4"
-			},
-			{
-				"text": "Simpatičan momak",
-				"value": "3"
-			},
-			{
-				"text": "Drag momak",
-				"value": "2"
+				"text": "Opak tip",
+				"value": "0"
 			},
 			{
 				"text": "Svadljiv čovjek",
 				"value": "1"
 			},
 			{
-				"text": "Opak tip",
-				"value": "0"
+				"text": "Drag momak",
+				"value": "2"
+			},
+			{
+				"text": "Simpatičan momak",
+				"value": "3"
+			},
+			{
+				"text": "Popularan tip",
+				"value": "4"
+			},
+			{
+				"text": "Obožavani član momčadi",
+				"value": "5"
+			}
+		],
+		"skills": [
+			{
+				"type": "Keeper",
+				"value": "Na vratima"
+			},
+			{
+				"type": "Stamina",
+				"value": "Izdržljivost"
+			},
+			{
+				"type": "Defender",
+				"value": "U obrani"
+			},
+			{
+				"type": "Playmaker",
+				"value": "Kreiranje igre"
+			},
+			{
+				"type": "Winger",
+				"value": "Na krilu"
+			},
+			{
+				"type": "Scorer",
+				"value": "U napadu"
+			},
+			{
+				"type": "Kicker",
+				"value": "Iz prekida"
+			},
+			{
+				"type": "Passer",
+				"value": "Proigravanje"
+			},
+			{
+				"type": "Experience",
+				"value": "Iskustvo"
+			},
+			{
+				"type": "LeaderShip",
+				"value": "Sposob. vodstva"
 			}
 		],
 		"positions": [
 			{
-				"short": "Ke",
 				"type": "Keeper",
 				"value": "Vratar"
 			},
 			{
-				"short": "Cd",
-				"type": "Central defender",
-				"value": "Obrambeni"
-			},
-			{
-				"short": "Wb",
-				"type": "Wing back",
+				"type": "WingBack",
 				"value": "Zadnji bočni"
 			},
 			{
-				"short": "Im",
-				"type": "Inner midfielder",
+				"type": "CentralDefender",
+				"value": "Obrambeni"
+			},
+			{
+				"type": "InnerMidfield",
 				"value": "Srednji vezni"
 			},
 			{
-				"short": "Wi",
 				"type": "Winger",
 				"value": "Krilo"
 			},
 			{
-				"short": "Fo",
 				"type": "Forward",
 				"value": "Napadač"
 			}
 		],
-		"levels": [
+		"fans_season": [
 			{
-				"text": "božanski",
-				"value": "20"
+				"text": "Ne možemo se nositi s ovom ligom",
+				"value": "0"
 			},
 			{
-				"text": "utopijski",
-				"value": "19"
+				"text": "Svaki bod u ovoj ligi je uspjeh",
+				"value": "1"
 			},
 			{
-				"text": "čaroban",
-				"value": "18"
+				"text": "Morat ćemo se boriti za opstanak",
+				"value": "2"
 			},
 			{
-				"text": "mitski",
-				"value": "17"
-			},
-			{
-				"text": "izvanzemaljski",
-				"value": "16"
-			},
-			{
-				"text": "titanski",
-				"value": "15"
-			},
-			{
-				"text": "natprirodan",
-				"value": "14"
-			},
-			{
-				"text": "svjetski",
-				"value": "13"
-			},
-			{
-				"text": "veličanstven",
-				"value": "12"
-			},
-			{
-				"text": "sjajan",
-				"value": "11"
-			},
-			{
-				"text": "izvanredan",
-				"value": "10"
-			},
-			{
-				"text": "impresivan",
-				"value": "9"
-			},
-			{
-				"text": "odličan",
-				"value": "8"
-			},
-			{
-				"text": "dobar",
-				"value": "7"
-			},
-			{
-				"text": "prolazan",
-				"value": "6"
-			},
-			{
-				"text": "nedovoljan",
-				"value": "5"
-			},
-			{
-				"text": "slab",
-				"value": "4"
-			},
-			{
-				"text": "loš",
+				"text": "Mjesto nam je u sredini tablice",
 				"value": "3"
 			},
 			{
-				"text": "očajan",
-				"value": "2"
+				"text": "Među najjače smo četiri ekipe",
+				"value": "4"
+			},
+			{
+				"text": "Cilj je naslov!",
+				"value": "5"
+			},
+			{
+				"text": "Ove sezone moramo biti prvaci",
+				"value": "6"
+			},
+			{
+				"text": "Puno smo bolji od svih u ligi!",
+				"value": "7"
+			}
+		],
+		"attitude": [
+			{
+				"text": "Štedimo snagu",
+				"value": "-1"
+			},
+			{
+				"text": "Normalna utakmica",
+				"value": "0"
+			},
+			{
+				"text": "Utakmica sezone",
+				"value": "1"
+			}
+		],
+		"levels": [
+			{
+				"text": "nikakav",
+				"value": "0"
 			},
 			{
 				"text": "katastrofalan",
 				"value": "1"
 			},
 			{
-				"text": "nikakav",
+				"text": "očajan",
+				"value": "2"
+			},
+			{
+				"text": "loš",
+				"value": "3"
+			},
+			{
+				"text": "slab",
+				"value": "4"
+			},
+			{
+				"text": "nedovoljan",
+				"value": "5"
+			},
+			{
+				"text": "prolazan",
+				"value": "6"
+			},
+			{
+				"text": "dobar",
+				"value": "7"
+			},
+			{
+				"text": "odličan",
+				"value": "8"
+			},
+			{
+				"text": "impresivan",
+				"value": "9"
+			},
+			{
+				"text": "izvanredan",
+				"value": "10"
+			},
+			{
+				"text": "sjajan",
+				"value": "11"
+			},
+			{
+				"text": "veličanstven",
+				"value": "12"
+			},
+			{
+				"text": "svjetski",
+				"value": "13"
+			},
+			{
+				"text": "natprirodan",
+				"value": "14"
+			},
+			{
+				"text": "titanski",
+				"value": "15"
+			},
+			{
+				"text": "izvanzemaljski",
+				"value": "16"
+			},
+			{
+				"text": "mitski",
+				"value": "17"
+			},
+			{
+				"text": "čaroban",
+				"value": "18"
+			},
+			{
+				"text": "utopijski",
+				"value": "19"
+			},
+			{
+				"text": "božanski",
+				"value": "20"
+			}
+		],
+		"sponsors": [
+			{
+				"text": "željni krvi",
 				"value": "0"
+			},
+			{
+				"text": "bijesni",
+				"value": "1"
+			},
+			{
+				"text": "iziritirani",
+				"value": "3"
+			},
+			{
+				"text": "smireni",
+				"value": "5"
+			},
+			{
+				"text": "zadovoljni",
+				"value": "6"
+			},
+			{
+				"text": "sretni",
+				"value": "7"
+			},
+			{
+				"text": "zaneseni",
+				"value": "8"
+			},
+			{
+				"text": "izvan sebe",
+				"value": "9"
+			},
+			{
+				"text": "plešu po ulicama",
+				"value": "10"
+			},
+			{
+				"text": "šalju vam ljubavne pjesme",
+				"value": "11"
+			}
+		],
+		"sectors": [
+			{
+				"type": "Midfield",
+				"value": "Veza"
+			},
+			{
+				"type": "RightDefense",
+				"value": "Desna obrana"
+			},
+			{
+				"type": "CentralDefense",
+				"value": "Središnja obrana"
+			},
+			{
+				"type": "LeftDefense",
+				"value": "Lijeva obrana"
+			},
+			{
+				"type": "RightAttack",
+				"value": "Desni napad"
+			},
+			{
+				"type": "CentralAttack",
+				"value": "Središnji napad"
+			},
+			{
+				"type": "LeftAttack",
+				"value": "Lijevi napad"
 			}
 		],
 		"ratingSubLevels": [
 			{
-				"text": "(vrlo nizak)",
-				"value": "0.0"
+				"text": "vrlo nizak",
+				"value": "0"
 			},
 			{
-				"text": "(nizak)",
+				"text": "nizak",
 				"value": "0.25"
 			},
 			{
-				"text": "(visok)",
-				"value": "0.50"
+				"text": "visok",
+				"value": "0.5"
 			},
 			{
-				"text": "(vrlo visok)",
+				"text": "vrlo visok",
 				"value": "0.75"
+			}
+		],
+		"fans": [
+			{
+				"text": "željni krvi",
+				"value": "0"
+			},
+			{
+				"text": "bijesni",
+				"value": "1"
+			},
+			{
+				"text": "razdraženi",
+				"value": "2"
+			},
+			{
+				"text": "iziritirani",
+				"value": "3"
+			},
+			{
+				"text": "razočarani",
+				"value": "4"
+			},
+			{
+				"text": "smireni",
+				"value": "5"
+			},
+			{
+				"text": "zadovoljni",
+				"value": "6"
+			},
+			{
+				"text": "sretni",
+				"value": "7"
+			},
+			{
+				"text": "zaneseni",
+				"value": "8"
+			},
+			{
+				"text": "izvan sebe",
+				"value": "9"
+			},
+			{
+				"text": "plešu po ulicama",
+				"value": "10"
+			},
+			{
+				"text": "šalju vam ljubavne pjesme",
+				"value": "11"
 			}
 		],
 		"specialties": [
 			{
-				"short": "Un",
-				"type": "Unpredictable",
-				"value": "Nepredvidiv"
+				"type": "None",
+				"value": "Bez specijalnosti"
 			},
 			{
-				"short": "Po",
-				"type": "Powerful",
-				"value": "Snažan"
-			},
-			{
-				"short": "Qu",
-				"type": "Quick",
-				"value": "Brz"
-			},
-			{
-				"short": "Te",
 				"type": "Technical",
 				"value": "Tehničar"
 			},
 			{
-				"short": "He",
+				"type": "Quick",
+				"value": "Brz"
+			},
+			{
+				"type": "Powerful",
+				"value": "Snažan"
+			},
+			{
+				"type": "Unpredictable",
+				"value": "Nepredvidiv"
+			},
+			{
 				"type": "Head",
 				"value": "Igra glavom"
 			},
 			{
-				"short": "Re",
 				"type": "Regainer",
 				"value": "Brži oporavak"
 			}
 		],
 		"aggressiveness": [
 			{
-				"text": "nestabilan",
-				"value": "5"
-			},
-			{
-				"text": "vatren",
-				"value": "4"
-			},
-			{
-				"text": "nagao",
-				"value": "3"
-			},
-			{
-				"text": "uravnotežen",
-				"value": "2"
+				"text": "miran",
+				"value": "0"
 			},
 			{
 				"text": "priseban",
 				"value": "1"
 			},
 			{
-				"text": "miran",
-				"value": "0"
+				"text": "uravnotežen",
+				"value": "2"
+			},
+			{
+				"text": "nagao",
+				"value": "3"
+			},
+			{
+				"text": "vatren",
+				"value": "4"
+			},
+			{
+				"text": "nestabilan",
+				"value": "5"
 			}
 		],
-		"desc": "Hrvatski",
-		"name": "hr"
+		"id": "39",
+		"training": [
+			{
+				"type": "Gen",
+				"value": "Općeniti (forma)"
+			},
+			{
+				"type": "Sta",
+				"value": "Izdržljivost"
+			},
+			{
+				"type": "SP",
+				"value": "Slobodni udarci"
+			},
+			{
+				"type": "Def",
+				"value": "Obrana"
+			},
+			{
+				"type": "Sco",
+				"value": "Napadači"
+			},
+			{
+				"type": "Cross",
+				"value": "Nabacivanja (Krila)"
+			},
+			{
+				"type": "Shoot",
+				"value": "Udarci na gol"
+			},
+			{
+				"type": "Pass",
+				"value": "Kratka dodavanja"
+			},
+			{
+				"type": "PM",
+				"value": "Veza"
+			},
+			{
+				"type": "GK",
+				"value": "Vratari"
+			},
+			{
+				"type": "ThPass",
+				"value": "Duga dodavanja"
+			},
+			{
+				"type": "DefPos",
+				"value": "Obrambena igra"
+			},
+			{
+				"type": "WingAtt",
+				"value": "Krilni napadi"
+			},
+			{
+				"type": "Indiv",
+				"value": "Individualni"
+			}
+		],
+		"fans_match": [
+			{
+				"text": "Bolje da i ne idemo!",
+				"value": "0"
+			},
+			{
+				"text": "Nemamo šanse",
+				"value": "1"
+			},
+			{
+				"text": "Izgubit ćemo",
+				"value": "2"
+			},
+			{
+				"text": "Oni su favoriti",
+				"value": "3"
+			},
+			{
+				"text": "Prednost je na njihovoj strani",
+				"value": "4"
+			},
+			{
+				"text": "Bit će to izjednačena utakmica",
+				"value": "5"
+			},
+			{
+				"text": "Prednost je na našoj strani",
+				"value": "6"
+			},
+			{
+				"text": "Favoriti smo",
+				"value": "7"
+			},
+			{
+				"text": "Pobijedit ćemo",
+				"value": "8"
+			},
+			{
+				"text": "Lako ćemo!",
+				"value": "9"
+			},
+			{
+				"text": "Rasturimo ih!",
+				"value": "10"
+			}
+		],
+		"name": "hr",
+		"spirit": [
+			{
+				"text": "hladni rat",
+				"value": "0"
+			},
+			{
+				"text": "ubilački",
+				"value": "1"
+			},
+			{
+				"text": "bijesan",
+				"value": "2"
+			},
+			{
+				"text": "razljućen",
+				"value": "3"
+			},
+			{
+				"text": "sabran",
+				"value": "4"
+			},
+			{
+				"text": "smiren",
+				"value": "5"
+			},
+			{
+				"text": "staložen",
+				"value": "6"
+			},
+			{
+				"text": "zadovoljan",
+				"value": "7"
+			},
+			{
+				"text": "zanesen",
+				"value": "8"
+			},
+			{
+				"text": "u sedmom nebu",
+				"value": "9"
+			},
+			{
+				"text": "raj na zemlji!",
+				"value": "10"
+			}
+		],
+		"desc": "Hrvatski"
 	}
 }

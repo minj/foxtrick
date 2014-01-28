@@ -1,5 +1,47 @@
 {
 	"language": {
+		"confidence": [
+			{
+				"text": "niet-bestaand",
+				"value": "0"
+			},
+			{
+				"text": "rampzalig",
+				"value": "1"
+			},
+			{
+				"text": "waardeloos",
+				"value": "2"
+			},
+			{
+				"text": "slecht",
+				"value": "3"
+			},
+			{
+				"text": "behoorlijk",
+				"value": "4"
+			},
+			{
+				"text": "sterk",
+				"value": "5"
+			},
+			{
+				"text": "wonderbaarlijk",
+				"value": "6"
+			},
+			{
+				"text": "lichtelijk overdreven",
+				"value": "7"
+			},
+			{
+				"text": "overdreven",
+				"value": "8"
+			},
+			{
+				"text": "compleet overdreven",
+				"value": "9"
+			}
+		],
 		"tactics": [
 			{
 				"type": "normal",
@@ -14,12 +56,20 @@
 				"value": "counter"
 			},
 			{
+				"type": "aim",
+				"value": "centrumaanval"
+			},
+			{
 				"type": "aow",
 				"value": "vleugelaanval"
 			},
 			{
-				"type": "aim",
-				"value": "centrumaanval"
+				"type": "",
+				"value": "onbekend"
+			},
+			{
+				"type": "",
+				"value": "onbekend"
 			},
 			{
 				"type": "creatively",
@@ -32,251 +82,606 @@
 		],
 		"honesty": [
 			{
-				"text": "goudeerlijk",
-				"value": "5"
-			},
-			{
-				"text": "rechtvaardig",
-				"value": "4"
-			},
-			{
-				"text": "oprecht",
-				"value": "3"
-			},
-			{
-				"text": "eerlijk",
-				"value": "2"
+				"text": "berucht",
+				"value": "0"
 			},
 			{
 				"text": "oneerlijk",
 				"value": "1"
 			},
 			{
-				"text": "berucht",
-				"value": "0"
+				"text": "eerlijk",
+				"value": "2"
+			},
+			{
+				"text": "oprecht",
+				"value": "3"
+			},
+			{
+				"text": "rechtvaardig",
+				"value": "4"
+			},
+			{
+				"text": "goudeerlijk",
+				"value": "5"
 			}
 		],
 		"agreeability": [
 			{
-				"text": "geliefde teamspeler",
-				"value": "5"
-			},
-			{
-				"text": "populair",
-				"value": "4"
-			},
-			{
-				"text": "sympathiek",
-				"value": "3"
-			},
-			{
-				"text": "aangenaam",
-				"value": "2"
+				"text": "gemeen",
+				"value": "0"
 			},
 			{
 				"text": "controversieel",
 				"value": "1"
 			},
 			{
-				"text": "gemeen",
-				"value": "0"
+				"text": "aangenaam",
+				"value": "2"
+			},
+			{
+				"text": "sympathiek",
+				"value": "3"
+			},
+			{
+				"text": "populair",
+				"value": "4"
+			},
+			{
+				"text": "geliefde teamspeler",
+				"value": "5"
+			}
+		],
+		"skills": [
+			{
+				"type": "Keeper",
+				"value": "Keepen"
+			},
+			{
+				"type": "Stamina",
+				"value": "Conditie"
+			},
+			{
+				"type": "Defender",
+				"value": "Verdedigen"
+			},
+			{
+				"type": "Playmaker",
+				"value": "Positiespel"
+			},
+			{
+				"type": "Winger",
+				"value": "Vleugelspel"
+			},
+			{
+				"type": "Scorer",
+				"value": "Scoren"
+			},
+			{
+				"type": "Kicker",
+				"value": "Spelhervatting"
+			},
+			{
+				"type": "Passer",
+				"value": "Passen"
+			},
+			{
+				"type": "Experience",
+				"value": "Ervaring"
+			},
+			{
+				"type": "LeaderShip",
+				"value": "Leiderschap"
 			}
 		],
 		"positions": [
 			{
-				"short": "K",
 				"type": "Keeper",
 				"value": "Keeper"
 			},
 			{
-				"short": "CD",
-				"type": "Central defender",
-				"value": "Centrale verdediger"
-			},
-			{
-				"short": "WB",
-				"type": "Wing back",
+				"type": "WingBack",
 				"value": "Vleugelverdediger"
 			},
 			{
-				"short": "IM",
-				"type": "Inner midfielder",
+				"type": "CentralDefender",
+				"value": "Centrale verdediger"
+			},
+			{
+				"type": "InnerMidfield",
 				"value": "Middenvelder"
 			},
 			{
-				"short": "W",
 				"type": "Winger",
 				"value": "Vleugelspeler"
 			},
 			{
-				"short": "F",
 				"type": "Forward",
 				"value": "Aanvaller"
 			}
 		],
-		"levels": [
+		"fans_season": [
 			{
-				"text": "goddelijk",
-				"value": "20"
+				"text": "we zijn het niet waard om in deze divisie te spelen",
+				"value": "0"
 			},
 			{
-				"text": "utopisch",
-				"value": "19"
+				"text": "elke dag in deze divisie is een bonus",
+				"value": "1"
 			},
 			{
-				"text": "magisch",
-				"value": "18"
+				"text": "we moeten vechten om ons te handhaven",
+				"value": "2"
 			},
 			{
-				"text": "mythisch",
-				"value": "17"
-			},
-			{
-				"text": "buitenaards",
-				"value": "16"
-			},
-			{
-				"text": "reusachtig",
-				"value": "15"
-			},
-			{
-				"text": "bovennatuurlijk",
-				"value": "14"
-			},
-			{
-				"text": "wereldklasse",
-				"value": "13"
-			},
-			{
-				"text": "wonderbaarlijk",
-				"value": "12"
-			},
-			{
-				"text": "briljant",
-				"value": "11"
-			},
-			{
-				"text": "uitmuntend",
-				"value": "10"
-			},
-			{
-				"text": "formidabel",
-				"value": "9"
-			},
-			{
-				"text": "uitstekend",
-				"value": "8"
-			},
-			{
-				"text": "goed",
-				"value": "7"
-			},
-			{
-				"text": "redelijk",
-				"value": "6"
-			},
-			{
-				"text": "matig",
-				"value": "5"
-			},
-			{
-				"text": "zwak",
-				"value": "4"
-			},
-			{
-				"text": "slecht",
+				"text": "ergens in de middenmoot is prima",
 				"value": "3"
 			},
 			{
-				"text": "waardeloos",
-				"value": "2"
+				"text": "we horen in de top 4 thuis",
+				"value": "4"
+			},
+			{
+				"text": "we gaan voor de titel",
+				"value": "5"
+			},
+			{
+				"text": "we moeten dit seizoen kampioen worden",
+				"value": "6"
+			},
+			{
+				"text": "we zijn veel te goed voor deze divisie!",
+				"value": "7"
+			}
+		],
+		"attitude": [
+			{
+				"text": "speel het rustig",
+				"value": "-1"
+			},
+			{
+				"text": "normaal",
+				"value": "0"
+			},
+			{
+				"text": "wedstrijd van het seizoen",
+				"value": "1"
+			}
+		],
+		"levels": [
+			{
+				"text": "niet-bestaand",
+				"value": "0"
 			},
 			{
 				"text": "rampzalig",
 				"value": "1"
 			},
 			{
-				"text": "niet-bestaand",
+				"text": "waardeloos",
+				"value": "2"
+			},
+			{
+				"text": "slecht",
+				"value": "3"
+			},
+			{
+				"text": "zwak",
+				"value": "4"
+			},
+			{
+				"text": "matig",
+				"value": "5"
+			},
+			{
+				"text": "redelijk",
+				"value": "6"
+			},
+			{
+				"text": "goed",
+				"value": "7"
+			},
+			{
+				"text": "uitstekend",
+				"value": "8"
+			},
+			{
+				"text": "formidabel",
+				"value": "9"
+			},
+			{
+				"text": "uitmuntend",
+				"value": "10"
+			},
+			{
+				"text": "briljant",
+				"value": "11"
+			},
+			{
+				"text": "wonderbaarlijk",
+				"value": "12"
+			},
+			{
+				"text": "wereldklasse",
+				"value": "13"
+			},
+			{
+				"text": "bovennatuurlijk",
+				"value": "14"
+			},
+			{
+				"text": "reusachtig",
+				"value": "15"
+			},
+			{
+				"text": "buitenaards",
+				"value": "16"
+			},
+			{
+				"text": "mythisch",
+				"value": "17"
+			},
+			{
+				"text": "magisch",
+				"value": "18"
+			},
+			{
+				"text": "utopisch",
+				"value": "19"
+			},
+			{
+				"text": "goddelijk",
+				"value": "20"
+			}
+		],
+		"sponsors": [
+			{
+				"text": "moorddadig",
 				"value": "0"
+			},
+			{
+				"text": "woedend",
+				"value": "1"
+			},
+			{
+				"text": "geïrriteerd",
+				"value": "3"
+			},
+			{
+				"text": "kalm",
+				"value": "5"
+			},
+			{
+				"text": "content",
+				"value": "6"
+			},
+			{
+				"text": "tevreden",
+				"value": "7"
+			},
+			{
+				"text": "dolgelukkig",
+				"value": "8"
+			},
+			{
+				"text": "in de wolken",
+				"value": "9"
+			},
+			{
+				"text": "in de zevende hemel",
+				"value": "10"
+			},
+			{
+				"text": "sturen je liefdesgedichten",
+				"value": "11"
+			}
+		],
+		"sectors": [
+			{
+				"type": "Midfield",
+				"value": "Middenveld"
+			},
+			{
+				"type": "RightDefense",
+				"value": "Rechterverdediging"
+			},
+			{
+				"type": "CentralDefense",
+				"value": "Centrale verdediging"
+			},
+			{
+				"type": "LeftDefense",
+				"value": "Linkerverdediging"
+			},
+			{
+				"type": "RightAttack",
+				"value": "Rechteraanval"
+			},
+			{
+				"type": "CentralAttack",
+				"value": "Centrale aanval"
+			},
+			{
+				"type": "LeftAttack",
+				"value": "Linkeraanval"
 			}
 		],
 		"ratingSubLevels": [
 			{
-				"text": "(zeer laag)",
-				"value": "0.0"
+				"text": "zeer laag",
+				"value": "0"
 			},
 			{
-				"text": "(laag)",
+				"text": "laag",
 				"value": "0.25"
 			},
 			{
-				"text": "(hoog)",
-				"value": "0.50"
+				"text": "hoog",
+				"value": "0.5"
 			},
 			{
-				"text": "(zeer hoog)",
+				"text": "zeer hoog",
 				"value": "0.75"
+			}
+		],
+		"fans": [
+			{
+				"text": "moorddadig",
+				"value": "0"
+			},
+			{
+				"text": "woedend",
+				"value": "1"
+			},
+			{
+				"text": "boos",
+				"value": "2"
+			},
+			{
+				"text": "geïrriteerd",
+				"value": "3"
+			},
+			{
+				"text": "teleurgesteld",
+				"value": "4"
+			},
+			{
+				"text": "kalm",
+				"value": "5"
+			},
+			{
+				"text": "content",
+				"value": "6"
+			},
+			{
+				"text": "tevreden",
+				"value": "7"
+			},
+			{
+				"text": "dolgelukkig",
+				"value": "8"
+			},
+			{
+				"text": "in de wolken",
+				"value": "9"
+			},
+			{
+				"text": "in de zevende hemel",
+				"value": "10"
+			},
+			{
+				"text": "sturen je liefdesgedichten",
+				"value": "11"
 			}
 		],
 		"specialties": [
 			{
-				"short": "On",
-				"type": "Unpredictable",
-				"value": "Onvoorspelbaar"
+				"type": "None",
+				"value": "Geen"
 			},
 			{
-				"short": "Kr",
-				"type": "Powerful",
-				"value": "Krachtig"
-			},
-			{
-				"short": "Sn",
-				"type": "Quick",
-				"value": "Snel"
-			},
-			{
-				"short": "Te",
 				"type": "Technical",
 				"value": "Technisch"
 			},
 			{
-				"short": "Ko",
+				"type": "Quick",
+				"value": "Snel"
+			},
+			{
+				"type": "Powerful",
+				"value": "Krachtig"
+			},
+			{
+				"type": "Unpredictable",
+				"value": "Onvoorspelbaar"
+			},
+			{
 				"type": "Head",
 				"value": "Koppen"
 			},
 			{
-				"short": "He",
 				"type": "Regainer",
 				"value": "Snel herstel"
 			}
 		],
 		"aggressiveness": [
 			{
-				"text": "instabiel",
-				"value": "5"
-			},
-			{
-				"text": "opvliegend",
-				"value": "4"
-			},
-			{
-				"text": "temperamentvol",
-				"value": "3"
-			},
-			{
-				"text": "evenwichtig",
-				"value": "2"
+				"text": "rustig",
+				"value": "0"
 			},
 			{
 				"text": "kalm",
 				"value": "1"
 			},
 			{
-				"text": "rustig",
-				"value": "0"
+				"text": "evenwichtig",
+				"value": "2"
+			},
+			{
+				"text": "temperamentvol",
+				"value": "3"
+			},
+			{
+				"text": "opvliegend",
+				"value": "4"
+			},
+			{
+				"text": "instabiel",
+				"value": "5"
 			}
 		],
-		"desc": "Nederlands",
-		"name": "nl"
+		"id": "10",
+		"training": [
+			{
+				"type": "Gen",
+				"value": "algemeen (vorm)"
+			},
+			{
+				"type": "Sta",
+				"value": "conditie"
+			},
+			{
+				"type": "SP",
+				"value": "spelhervattingen"
+			},
+			{
+				"type": "Def",
+				"value": "verdedigen"
+			},
+			{
+				"type": "Sco",
+				"value": "scoren"
+			},
+			{
+				"type": "Cross",
+				"value": "vleugelspel"
+			},
+			{
+				"type": "Shoot",
+				"value": "schieten"
+			},
+			{
+				"type": "Pass",
+				"value": "korte pass"
+			},
+			{
+				"type": "PM",
+				"value": "positiespel"
+			},
+			{
+				"type": "GK",
+				"value": "keepen"
+			},
+			{
+				"type": "ThPass",
+				"value": "openingen maken"
+			},
+			{
+				"type": "DefPos",
+				"value": "controlerend spel"
+			},
+			{
+				"type": "WingAtt",
+				"value": "vleugelaanval"
+			},
+			{
+				"type": "Indiv",
+				"value": "individueel"
+			}
+		],
+		"fans_match": [
+			{
+				"text": "we kunnen beter wegblijven!",
+				"value": "0"
+			},
+			{
+				"text": "we worden overklast",
+				"value": "1"
+			},
+			{
+				"text": "we gaan verliezen",
+				"value": "2"
+			},
+			{
+				"text": "zij zijn favoriet",
+				"value": "3"
+			},
+			{
+				"text": "zij zijn licht in het voordeel",
+				"value": "4"
+			},
+			{
+				"text": "we zijn aan elkaar gewaagd",
+				"value": "5"
+			},
+			{
+				"text": "wij zijn licht in het voordeel",
+				"value": "6"
+			},
+			{
+				"text": "wij zijn favoriet",
+				"value": "7"
+			},
+			{
+				"text": "we gaan winnen",
+				"value": "8"
+			},
+			{
+				"text": "makkie!",
+				"value": "9"
+			},
+			{
+				"text": "we rollen ze op",
+				"value": "10"
+			}
+		],
+		"name": "nl",
+		"spirit": [
+			{
+				"text": "als in de Koude Oorlog",
+				"value": "0"
+			},
+			{
+				"text": "moorddadig",
+				"value": "1"
+			},
+			{
+				"text": "woedend",
+				"value": "2"
+			},
+			{
+				"text": "geïrriteerd",
+				"value": "3"
+			},
+			{
+				"text": "bedaard",
+				"value": "4"
+			},
+			{
+				"text": "kalm",
+				"value": "5"
+			},
+			{
+				"text": "content",
+				"value": "6"
+			},
+			{
+				"text": "tevreden",
+				"value": "7"
+			},
+			{
+				"text": "dolgelukkig",
+				"value": "8"
+			},
+			{
+				"text": "in de wolken",
+				"value": "9"
+			},
+			{
+				"text": "paradijs op aarde!",
+				"value": "10"
+			}
+		],
+		"desc": "Nederlands"
 	}
 }

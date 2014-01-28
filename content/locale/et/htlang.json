@@ -1,5 +1,47 @@
 {
 	"language": {
+		"confidence": [
+			{
+				"text": "puudub",
+				"value": "0"
+			},
+			{
+				"text": "kohutav",
+				"value": "1"
+			},
+			{
+				"text": "armetu",
+				"value": "2"
+			},
+			{
+				"text": "vilets",
+				"value": "3"
+			},
+			{
+				"text": "rahuldav",
+				"value": "4"
+			},
+			{
+				"text": "hea",
+				"value": "5"
+			},
+			{
+				"text": "suurepärane",
+				"value": "6"
+			},
+			{
+				"text": "natuke liialdatud",
+				"value": "7"
+			},
+			{
+				"text": "selgelt liialdatud",
+				"value": "8"
+			},
+			{
+				"text": "äärmiselt liialdatud",
+				"value": "9"
+			}
+		],
 		"tactics": [
 			{
 				"type": "normal",
@@ -14,12 +56,20 @@
 				"value": "Vasturünnakud"
 			},
 			{
+				"type": "aim",
+				"value": "Ründa keskelt"
+			},
+			{
 				"type": "aow",
 				"value": "Ründa äärtelt"
 			},
 			{
-				"type": "aim",
-				"value": "Ründa keskelt"
+				"type": "",
+				"value": "Teadmata"
+			},
+			{
+				"type": "",
+				"value": "Teadmata"
 			},
 			{
 				"type": "creatively",
@@ -32,178 +82,334 @@
 		],
 		"honesty": [
 			{
-				"text": "pühaklik",
-				"value": "5"
-			},
-			{
-				"text": "äraostmatu",
-				"value": "4"
-			},
-			{
-				"text": "õiglane",
-				"value": "3"
-			},
-			{
-				"text": "aus",
-				"value": "2"
+				"text": "autu",
+				"value": "0"
 			},
 			{
 				"text": "ebaaus",
 				"value": "1"
 			},
 			{
-				"text": "autu",
-				"value": "0"
+				"text": "aus",
+				"value": "2"
+			},
+			{
+				"text": "õiglane",
+				"value": "3"
+			},
+			{
+				"text": "äraostmatu",
+				"value": "4"
+			},
+			{
+				"text": "pühaklik",
+				"value": "5"
 			}
 		],
 		"agreeability": [
 			{
-				"text": "Armastatud meeskonnaliige",
-				"value": "5"
-			},
-			{
-				"text": "Populaarne sell",
-				"value": "4"
-			},
-			{
-				"text": "Sümpaatne kuju",
-				"value": "3"
-			},
-			{
-				"text": "Meeldiv sell",
-				"value": "2"
+				"text": "Ebameeldiv tüüp",
+				"value": "0"
 			},
 			{
 				"text": "Vastuoluline isiksus",
 				"value": "1"
 			},
 			{
-				"text": "Ebameeldiv tüüp",
-				"value": "0"
+				"text": "Meeldiv sell",
+				"value": "2"
+			},
+			{
+				"text": "Sümpaatne kuju",
+				"value": "3"
+			},
+			{
+				"text": "Populaarne sell",
+				"value": "4"
+			},
+			{
+				"text": "Armastatud meeskonnaliige",
+				"value": "5"
 			}
 		],
-		"positions": [
+		"skills": [
 			{
-				"short": "Vv",
 				"type": "Keeper",
 				"value": "Väravavaht"
 			},
 			{
-				"short": "Kk",
-				"type": "Central defender",
-				"value": "Keskkaitsja"
+				"type": "Stamina",
+				"value": "Vastupidavus"
 			},
 			{
-				"short": "Äk",
-				"type": "Wing back",
+				"type": "Defender",
+				"value": "Kaitsmine"
+			},
+			{
+				"type": "Playmaker",
+				"value": "Mängujuht"
+			},
+			{
+				"type": "Winger",
+				"value": "Äärel"
+			},
+			{
+				"type": "Scorer",
+				"value": "Ründamine"
+			},
+			{
+				"type": "Kicker",
+				"value": "Standardolukorrad"
+			},
+			{
+				"type": "Passer",
+				"value": "Söötmine"
+			},
+			{
+				"type": "Experience",
+				"value": "Kogemus"
+			},
+			{
+				"type": "LeaderShip",
+				"value": "Juhioskus"
+			}
+		],
+		"positions": [
+			{
+				"type": "Keeper",
+				"value": "Väravavaht"
+			},
+			{
+				"type": "WingBack",
 				"value": "Äärekaitsja"
 			},
 			{
-				"short": "Kpk",
-				"type": "Inner midfielder",
+				"type": "CentralDefender",
+				"value": "Keskkaitsja"
+			},
+			{
+				"type": "InnerMidfield",
 				"value": "Keskpoolkaitsja"
 			},
 			{
-				"short": "Äär",
 				"type": "Winger",
 				"value": "Äär"
 			},
 			{
-				"short": "Rü",
 				"type": "Forward",
 				"value": "Ründaja"
 			}
 		],
-		"levels": [
+		"fans_season": [
 			{
-				"text": "jumalik",
-				"value": "20"
+				"text": "Me pole selle liiga väärilised",
+				"value": "0"
 			},
 			{
-				"text": "utoopiline",
-				"value": "19"
+				"text": "Iga siin liigas veedetud päev on meie jaoks eneseületamine",
+				"value": "1"
 			},
 			{
-				"text": "maagiline",
-				"value": "18"
+				"text": "Ilma lahinguta me siit liigast ei kao",
+				"value": "2"
 			},
 			{
-				"text": "müstiline",
-				"value": "17"
-			},
-			{
-				"text": "ulmeline",
-				"value": "16"
-			},
-			{
-				"text": "titaanlik",
-				"value": "15"
-			},
-			{
-				"text": "üleloomulik",
-				"value": "14"
-			},
-			{
-				"text": "maailmaklass",
-				"value": "13"
-			},
-			{
-				"text": "imepärane",
-				"value": "12"
-			},
-			{
-				"text": "hiilgav",
-				"value": "11"
-			},
-			{
-				"text": "silmapaistev",
-				"value": "10"
-			},
-			{
-				"text": "suurepärane",
-				"value": "9"
-			},
-			{
-				"text": "eeskujulik",
-				"value": "8"
-			},
-			{
-				"text": "hea",
-				"value": "7"
-			},
-			{
-				"text": "rahuldav",
-				"value": "6"
-			},
-			{
-				"text": "puudulik",
-				"value": "5"
-			},
-			{
-				"text": "nõrk",
-				"value": "4"
-			},
-			{
-				"text": "vilets",
+				"text": "Koht liigatabeli keskel oleks tore",
 				"value": "3"
 			},
 			{
-				"text": "armetu",
-				"value": "2"
+				"text": "Me kuulume esinelikusse",
+				"value": "4"
+			},
+			{
+				"text": "Ürita liigavõitu saada",
+				"value": "5"
+			},
+			{
+				"text": "Me peame selle hooaja võitma",
+				"value": "6"
+			},
+			{
+				"text": "See liiga raiskab meie väärtuslikku aega!",
+				"value": "7"
+			}
+		],
+		"attitude": [
+			{
+				"text": "Mängi rahulikult",
+				"value": "-1"
+			},
+			{
+				"text": "Tavaline",
+				"value": "0"
+			},
+			{
+				"text": "Aasta mäng",
+				"value": "1"
+			}
+		],
+		"levels": [
+			{
+				"text": "olematu",
+				"value": "0"
 			},
 			{
 				"text": "kohutav",
 				"value": "1"
 			},
 			{
-				"text": "olematu",
+				"text": "armetu",
+				"value": "2"
+			},
+			{
+				"text": "vilets",
+				"value": "3"
+			},
+			{
+				"text": "nõrk",
+				"value": "4"
+			},
+			{
+				"text": "puudulik",
+				"value": "5"
+			},
+			{
+				"text": "rahuldav",
+				"value": "6"
+			},
+			{
+				"text": "hea",
+				"value": "7"
+			},
+			{
+				"text": "eeskujulik",
+				"value": "8"
+			},
+			{
+				"text": "suurepärane",
+				"value": "9"
+			},
+			{
+				"text": "silmapaistev",
+				"value": "10"
+			},
+			{
+				"text": "hiilgav",
+				"value": "11"
+			},
+			{
+				"text": "imepärane",
+				"value": "12"
+			},
+			{
+				"text": "maailmaklass",
+				"value": "13"
+			},
+			{
+				"text": "üleloomulik",
+				"value": "14"
+			},
+			{
+				"text": "titaanlik",
+				"value": "15"
+			},
+			{
+				"text": "ulmeline",
+				"value": "16"
+			},
+			{
+				"text": "müstiline",
+				"value": "17"
+			},
+			{
+				"text": "maagiline",
+				"value": "18"
+			},
+			{
+				"text": "utoopiline",
+				"value": "19"
+			},
+			{
+				"text": "jumalik",
+				"value": "20"
+			}
+		],
+		"sponsors": [
+			{
+				"text": "märatsevad tänavatel",
 				"value": "0"
+			},
+			{
+				"text": "raevunud",
+				"value": "1"
+			},
+			{
+				"text": "pettunud",
+				"value": "3"
+			},
+			{
+				"text": "rahulikud",
+				"value": "5"
+			},
+			{
+				"text": "meelitatud",
+				"value": "6"
+			},
+			{
+				"text": "rõõmsad",
+				"value": "7"
+			},
+			{
+				"text": "õnnelikud",
+				"value": "8"
+			},
+			{
+				"text": "ekstaasis",
+				"value": "9"
+			},
+			{
+				"text": "tantsivad tänavatel",
+				"value": "10"
+			},
+			{
+				"text": "saadavad armastuskirju",
+				"value": "11"
+			}
+		],
+		"sectors": [
+			{
+				"type": "Midfield",
+				"value": "Poolkaitse"
+			},
+			{
+				"type": "RightDefense",
+				"value": "Paremkaitse"
+			},
+			{
+				"type": "CentralDefense",
+				"value": "Keskkaitse"
+			},
+			{
+				"type": "LeftDefense",
+				"value": "Vasakkaitse"
+			},
+			{
+				"type": "RightAttack",
+				"value": "Paremrünne"
+			},
+			{
+				"type": "CentralAttack",
+				"value": "Keskrünne"
+			},
+			{
+				"type": "LeftAttack",
+				"value": "Vasakrünne"
 			}
 		],
 		"ratingSubLevels": [
 			{
 				"text": "(väga madal)",
-				"value": "0.0"
+				"value": "0"
 			},
 			{
 				"text": "(madal)",
@@ -211,72 +417,271 @@
 			},
 			{
 				"text": "(kõrge)",
-				"value": "0.50"
+				"value": "0.5"
 			},
 			{
 				"text": "(väga kõrge)",
 				"value": "0.75"
 			}
 		],
+		"fans": [
+			{
+				"text": "märatsevad tänavatel",
+				"value": "0"
+			},
+			{
+				"text": "raevunud",
+				"value": "1"
+			},
+			{
+				"text": "vihased",
+				"value": "2"
+			},
+			{
+				"text": "pettunud",
+				"value": "3"
+			},
+			{
+				"text": "kahtlevad",
+				"value": "4"
+			},
+			{
+				"text": "rahulikud",
+				"value": "5"
+			},
+			{
+				"text": "meelitatud",
+				"value": "6"
+			},
+			{
+				"text": "rõõmsad",
+				"value": "7"
+			},
+			{
+				"text": "õnnelikud",
+				"value": "8"
+			},
+			{
+				"text": "ekstaasis",
+				"value": "9"
+			},
+			{
+				"text": "tantsivad tänavatel",
+				"value": "10"
+			},
+			{
+				"text": "saadavad armastuskirju",
+				"value": "11"
+			}
+		],
 		"specialties": [
 			{
-				"short": "Un",
-				"type": "Unpredictable",
-				"value": "Ettearvamatu"
+				"type": "None",
+				"value": "Erioskuseta"
 			},
 			{
-				"short": "Po",
-				"type": "Powerful",
-				"value": "Jõuline"
-			},
-			{
-				"short": "Qu",
-				"type": "Quick",
-				"value": "Kiire"
-			},
-			{
-				"short": "Te",
 				"type": "Technical",
 				"value": "Tehniline"
 			},
 			{
-				"short": "He",
+				"type": "Quick",
+				"value": "Kiire"
+			},
+			{
+				"type": "Powerful",
+				"value": "Jõuline"
+			},
+			{
+				"type": "Unpredictable",
+				"value": "Ettearvamatu"
+			},
+			{
 				"type": "Head",
 				"value": "Peamäng"
 			},
 			{
-				"short": "Re",
 				"type": "Regainer",
 				"value": "Elujõuline"
 			}
 		],
 		"aggressiveness": [
 			{
-				"text": "ebastabiilne",
-				"value": "5"
-			},
-			{
-				"text": "äge",
-				"value": "4"
-			},
-			{
-				"text": "temperamentne",
-				"value": "3"
-			},
-			{
-				"text": "tasakaalukas",
-				"value": "2"
+				"text": "tasane",
+				"value": "0"
 			},
 			{
 				"text": "rahulik",
 				"value": "1"
 			},
 			{
-				"text": "tasane",
-				"value": "0"
+				"text": "tasakaalukas",
+				"value": "2"
+			},
+			{
+				"text": "temperamentne",
+				"value": "3"
+			},
+			{
+				"text": "äge",
+				"value": "4"
+			},
+			{
+				"text": "ebastabiilne",
+				"value": "5"
 			}
 		],
-		"desc": "Eesti",
-		"name": "et"
+		"id": "36",
+		"training": [
+			{
+				"type": "Gen",
+				"value": "Üldvorm"
+			},
+			{
+				"type": "Sta",
+				"value": "Vastupidavus"
+			},
+			{
+				"type": "SP",
+				"value": "Standardolukorrad"
+			},
+			{
+				"type": "Def",
+				"value": "Kaitse"
+			},
+			{
+				"type": "Sco",
+				"value": "Ründamine"
+			},
+			{
+				"type": "Cross",
+				"value": "Tsenderdused (Ääred)"
+			},
+			{
+				"type": "Shoot",
+				"value": "Pealelöögid"
+			},
+			{
+				"type": "Pass",
+				"value": "Lühikesed söödud"
+			},
+			{
+				"type": "PM",
+				"value": "Mängujuhtimine"
+			},
+			{
+				"type": "GK",
+				"value": "Väravavaht"
+			},
+			{
+				"type": "ThPass",
+				"value": "Pikad söödud"
+			},
+			{
+				"type": "DefPos",
+				"value": "Kaitsvad asetused"
+			},
+			{
+				"type": "WingAtt",
+				"value": "Äärerünnak"
+			},
+			{
+				"type": "Indiv",
+				"value": "Individuaalne"
+			}
+		],
+		"fans_match": [
+			{
+				"text": "Põgeneme kabuhirmus",
+				"value": "0"
+			},
+			{
+				"text": "Vastane on selgelt üle",
+				"value": "1"
+			},
+			{
+				"text": "Me kaotame",
+				"value": "2"
+			},
+			{
+				"text": "Raskeks läheb",
+				"value": "3"
+			},
+			{
+				"text": "Neil on kerge eelis",
+				"value": "4"
+			},
+			{
+				"text": "Kohtub võrdne võrdsega",
+				"value": "5"
+			},
+			{
+				"text": "Meil on kerge eelis",
+				"value": "6"
+			},
+			{
+				"text": "Võit on üpriski võimalik",
+				"value": "7"
+			},
+			{
+				"text": "Me võidame",
+				"value": "8"
+			},
+			{
+				"text": "Käkitegu",
+				"value": "9"
+			},
+			{
+				"text": "Põrmustame nad",
+				"value": "10"
+			}
+		],
+		"name": "et",
+		"spirit": [
+			{
+				"text": "sõjajalal",
+				"value": "0"
+			},
+			{
+				"text": "raevunud",
+				"value": "1"
+			},
+			{
+				"text": "vihane",
+				"value": "2"
+			},
+			{
+				"text": "pettunud",
+				"value": "3"
+			},
+			{
+				"text": "stabiilne",
+				"value": "4"
+			},
+			{
+				"text": "rahulik",
+				"value": "5"
+			},
+			{
+				"text": "meeldiv",
+				"value": "6"
+			},
+			{
+				"text": "rõõmus",
+				"value": "7"
+			},
+			{
+				"text": "õnnelik",
+				"value": "8"
+			},
+			{
+				"text": "kõnnivad pilvedes",
+				"value": "9"
+			},
+			{
+				"text": "maapealses paradiisis",
+				"value": "10"
+			}
+		],
+		"desc": "Eesti"
 	}
 }

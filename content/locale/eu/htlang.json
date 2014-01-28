@@ -1,5 +1,47 @@
 {
 	"language": {
+		"confidence": [
+			{
+				"text": "batere ez",
+				"value": "0"
+			},
+			{
+				"text": "penagarria",
+				"value": "1"
+			},
+			{
+				"text": "baxua",
+				"value": "2"
+			},
+			{
+				"text": "eskasa",
+				"value": "3"
+			},
+			{
+				"text": "itxurazkoa",
+				"value": "4"
+			},
+			{
+				"text": "sendoa",
+				"value": "5"
+			},
+			{
+				"text": "altua",
+				"value": "6"
+			},
+			{
+				"text": "harrotuta",
+				"value": "7"
+			},
+			{
+				"text": "oilartuta",
+				"value": "8"
+			},
+			{
+				"text": "guztiz oilartuta",
+				"value": "9"
+			}
+		],
 		"tactics": [
 			{
 				"type": "normal",
@@ -14,12 +56,20 @@
 				"value": "Kontraerasoa"
 			},
 			{
+				"type": "aim",
+				"value": "Erditik eraso"
+			},
+			{
 				"type": "aow",
 				"value": "Hegaletatik eraso"
 			},
 			{
-				"type": "aim",
-				"value": "Erditik eraso"
+				"type": "",
+				"value": "Ezezaguna"
+			},
+			{
+				"type": "",
+				"value": "Ezezaguna"
 			},
 			{
 				"type": "creatively",
@@ -32,251 +82,606 @@
 		],
 		"honesty": [
 			{
-				"text": "ogi puska",
-				"value": "5"
-			},
-			{
-				"text": "bihotz onekoa",
-				"value": "4"
-			},
-			{
-				"text": "zuzena",
-				"value": "3"
-			},
-			{
-				"text": "leiala",
-				"value": "2"
+				"text": "gaiztoa",
+				"value": "0"
 			},
 			{
 				"text": "petrala",
 				"value": "1"
 			},
 			{
-				"text": "gaiztoa",
-				"value": "0"
+				"text": "leiala",
+				"value": "2"
+			},
+			{
+				"text": "zuzena",
+				"value": "3"
+			},
+			{
+				"text": "bihotz onekoa",
+				"value": "4"
+			},
+			{
+				"text": "ogi puska",
+				"value": "5"
 			}
 		],
 		"agreeability": [
 			{
-				"text": "taldekide maitagarria",
-				"value": "5"
-			},
-			{
-				"text": "mirestua",
-				"value": "4"
-			},
-			{
-				"text": "jatorra",
-				"value": "3"
-			},
-			{
-				"text": "atsegina",
-				"value": "2"
+				"text": "zakarra",
+				"value": "0"
 			},
 			{
 				"text": "liskartsua",
 				"value": "1"
 			},
 			{
-				"text": "zakarra",
-				"value": "0"
+				"text": "atsegina",
+				"value": "2"
+			},
+			{
+				"text": "jatorra",
+				"value": "3"
+			},
+			{
+				"text": "mirestua",
+				"value": "4"
+			},
+			{
+				"text": "taldekide maitagarria",
+				"value": "5"
 			}
 		],
-		"positions": [
+		"skills": [
 			{
-				"short": "At",
 				"type": "Keeper",
-				"value": "Atezaina"
+				"value": "Atezaintza"
 			},
 			{
-				"short": "EA",
-				"type": "Central defender",
-				"value": "Erdiko Atzelaria"
+				"type": "Stamina",
+				"value": "Egoera fisikoa"
 			},
 			{
-				"short": "HA",
-				"type": "Wing back",
-				"value": "Hego Atzelaria"
+				"type": "Defender",
+				"value": "Defentsa"
 			},
 			{
-				"short": "Er",
-				"type": "Inner midfielder",
-				"value": "Erdilaria"
+				"type": "Playmaker",
+				"value": "Sortze-lana"
 			},
 			{
-				"short": "He",
 				"type": "Winger",
 				"value": "Hegalekoa"
 			},
 			{
-				"short": "Au",
+				"type": "Scorer",
+				"value": "Errematea"
+			},
+			{
+				"type": "Kicker",
+				"value": "Baloi gelditua"
+			},
+			{
+				"type": "Passer",
+				"value": "Paseak"
+			},
+			{
+				"type": "Experience",
+				"value": "Eskarmentua"
+			},
+			{
+				"type": "LeaderShip",
+				"value": "Lidertza"
+			}
+		],
+		"positions": [
+			{
+				"type": "Keeper",
+				"value": "Atezaina"
+			},
+			{
+				"type": "WingBack",
+				"value": "Hego Atzelaria"
+			},
+			{
+				"type": "CentralDefender",
+				"value": "Erdiko Atzelaria"
+			},
+			{
+				"type": "InnerMidfield",
+				"value": "Erdilaria"
+			},
+			{
+				"type": "Winger",
+				"value": "Hegalekoa"
+			},
+			{
 				"type": "Forward",
 				"value": "Aurrelaria"
 			}
 		],
-		"levels": [
+		"fans_season": [
 			{
-				"text": "jainkotiarra",
-				"value": "20"
+				"text": "Ez dugu maila honetarako talderik",
+				"value": "0"
 			},
 			{
-				"text": "utopikoa",
-				"value": "19"
+				"text": "Maila honetan gauden egun bakoitza sari bat da",
+				"value": "1"
 			},
 			{
-				"text": "magikoa",
-				"value": "18"
+				"text": "Bertan mantentzeko borroka egin beharko dugu",
+				"value": "2"
 			},
 			{
-				"text": "mitikoa",
-				"value": "17"
-			},
-			{
-				"text": "estralurtarra",
-				"value": "16"
-			},
-			{
-				"text": "titanikoa",
-				"value": "15"
-			},
-			{
-				"text": "naturaz gaindikoa",
-				"value": "14"
-			},
-			{
-				"text": "mundiala",
-				"value": "13"
-			},
-			{
-				"text": "aparta",
-				"value": "12"
-			},
-			{
-				"text": "liluragarria",
-				"value": "11"
-			},
-			{
-				"text": "nabarmena",
-				"value": "10"
-			},
-			{
-				"text": "zoragarria",
-				"value": "9"
-			},
-			{
-				"text": "bikaina",
-				"value": "8"
-			},
-			{
-				"text": "ona",
-				"value": "7"
-			},
-			{
-				"text": "egokia",
-				"value": "6"
-			},
-			{
-				"text": "eskasa",
-				"value": "5"
-			},
-			{
-				"text": "ahula",
-				"value": "4"
-			},
-			{
-				"text": "pobrea",
+				"text": "Erdialdean amaitzea ondo legoke",
 				"value": "3"
 			},
 			{
-				"text": "penagarria",
-				"value": "2"
+				"text": "Goiko 4etan egon beharko ginateke",
+				"value": "4"
+			},
+			{
+				"text": "Txapela borrokatu behar da!",
+				"value": "5"
+			},
+			{
+				"text": "Denboraldia txapeldun bukatu beharko genuke",
+				"value": "6"
+			},
+			{
+				"text": "Maila honetarako baino askoz hobeak gara!",
+				"value": "7"
+			}
+		],
+		"attitude": [
+			{
+				"text": "Lasai jokatu",
+				"value": "-1"
+			},
+			{
+				"text": "Normala",
+				"value": "0"
+			},
+			{
+				"text": "Hil ala bizikoa",
+				"value": "1"
+			}
+		],
+		"levels": [
+			{
+				"text": "ez daki",
+				"value": "0"
 			},
 			{
 				"text": "negargarria",
 				"value": "1"
 			},
 			{
-				"text": "ez daki",
+				"text": "penagarria",
+				"value": "2"
+			},
+			{
+				"text": "pobrea",
+				"value": "3"
+			},
+			{
+				"text": "ahula",
+				"value": "4"
+			},
+			{
+				"text": "eskasa",
+				"value": "5"
+			},
+			{
+				"text": "egokia",
+				"value": "6"
+			},
+			{
+				"text": "ona",
+				"value": "7"
+			},
+			{
+				"text": "bikaina",
+				"value": "8"
+			},
+			{
+				"text": "zoragarria",
+				"value": "9"
+			},
+			{
+				"text": "nabarmena",
+				"value": "10"
+			},
+			{
+				"text": "liluragarria",
+				"value": "11"
+			},
+			{
+				"text": "aparta",
+				"value": "12"
+			},
+			{
+				"text": "mundiala",
+				"value": "13"
+			},
+			{
+				"text": "naturaz gaindikoa",
+				"value": "14"
+			},
+			{
+				"text": "titanikoa",
+				"value": "15"
+			},
+			{
+				"text": "estralurtarra",
+				"value": "16"
+			},
+			{
+				"text": "mitikoa",
+				"value": "17"
+			},
+			{
+				"text": "magikoa",
+				"value": "18"
+			},
+			{
+				"text": "utopikoa",
+				"value": "19"
+			},
+			{
+				"text": "jainkotiarra",
+				"value": "20"
+			}
+		],
+		"sponsors": [
+			{
+				"text": "akabatuko zaituzte",
 				"value": "0"
+			},
+			{
+				"text": "haserre",
+				"value": "1"
+			},
+			{
+				"text": "minduta",
+				"value": "3"
+			},
+			{
+				"text": "lasai",
+				"value": "5"
+			},
+			{
+				"text": "gustura",
+				"value": "6"
+			},
+			{
+				"text": "alai",
+				"value": "7"
+			},
+			{
+				"text": "pozik",
+				"value": "8"
+			},
+			{
+				"text": "zoriontsu",
+				"value": "9"
+			},
+			{
+				"text": "pozez zoratzen",
+				"value": "10"
+			},
+			{
+				"text": "zu miresten",
+				"value": "11"
+			}
+		],
+		"sectors": [
+			{
+				"type": "Midfield",
+				"value": "Zelaierdia"
+			},
+			{
+				"type": "RightDefense",
+				"value": "Eskuin Defentsa"
+			},
+			{
+				"type": "CentralDefense",
+				"value": "Erdiko Defentsa"
+			},
+			{
+				"type": "LeftDefense",
+				"value": "Ezker Defentsa"
+			},
+			{
+				"type": "RightAttack",
+				"value": "Eskuin Erasoa"
+			},
+			{
+				"type": "CentralAttack",
+				"value": "Erdiko Erasoa"
+			},
+			{
+				"type": "LeftAttack",
+				"value": "Ezker Erasoa"
 			}
 		],
 		"ratingSubLevels": [
 			{
-				"text": "(Oso baxua)",
-				"value": "0.0"
+				"text": "Oso baxua",
+				"value": "0"
 			},
 			{
-				"text": "(Baxua)",
+				"text": "Baxua",
 				"value": "0.25"
 			},
 			{
-				"text": "(Altua)",
-				"value": "0.50"
+				"text": "Altua",
+				"value": "0.5"
 			},
 			{
-				"text": "(Oso altua)",
+				"text": "Oso altua",
 				"value": "0.75"
+			}
+		],
+		"fans": [
+			{
+				"text": "akabatuko zaituzte",
+				"value": "0"
+			},
+			{
+				"text": "haserre",
+				"value": "1"
+			},
+			{
+				"text": "sutan",
+				"value": "2"
+			},
+			{
+				"text": "minduta",
+				"value": "3"
+			},
+			{
+				"text": "huts egin diezu",
+				"value": "4"
+			},
+			{
+				"text": "lasai",
+				"value": "5"
+			},
+			{
+				"text": "gustura",
+				"value": "6"
+			},
+			{
+				"text": "alai",
+				"value": "7"
+			},
+			{
+				"text": "pozik",
+				"value": "8"
+			},
+			{
+				"text": "zoriontsu",
+				"value": "9"
+			},
+			{
+				"text": "pozez zoratzen",
+				"value": "10"
+			},
+			{
+				"text": "zu miresten",
+				"value": "11"
 			}
 		],
 		"specialties": [
 			{
-				"short": "Un",
-				"type": "Unpredictable",
-				"value": "Ustekabekoa"
+				"type": "None",
+				"value": "Bat ere ez"
 			},
 			{
-				"short": "Po",
-				"type": "Powerful",
-				"value": "Ahaltsua"
-			},
-			{
-				"short": "Qu",
-				"type": "Quick",
-				"value": "Azkarra"
-			},
-			{
-				"short": "Te",
 				"type": "Technical",
 				"value": "Teknikoa"
 			},
 			{
-				"short": "He",
+				"type": "Quick",
+				"value": "Azkarra"
+			},
+			{
+				"type": "Powerful",
+				"value": "Ahaltsua"
+			},
+			{
+				"type": "Unpredictable",
+				"value": "Ustekabekoa"
+			},
+			{
 				"type": "Head",
 				"value": "Buruz abila"
 			},
 			{
-				"short": "Re",
 				"type": "Regainer",
 				"value": "Sendaerraza"
 			}
 		],
 		"aggressiveness": [
 			{
-				"text": "buruarina",
-				"value": "5"
-			},
-			{
-				"text": "suminkorra",
-				"value": "4"
-			},
-			{
-				"text": "odolberoa",
-				"value": "3"
-			},
-			{
-				"text": "zentzuduna",
-				"value": "2"
+				"text": "patsadatsua",
+				"value": "0"
 			},
 			{
 				"text": "lasaia",
 				"value": "1"
 			},
 			{
-				"text": "patsadatsua",
-				"value": "0"
+				"text": "zentzuduna",
+				"value": "2"
+			},
+			{
+				"text": "odolberoa",
+				"value": "3"
+			},
+			{
+				"text": "suminkorra",
+				"value": "4"
+			},
+			{
+				"text": "buruarina",
+				"value": "5"
 			}
 		],
-		"desc": "Euskara",
-		"name": "eu"
+		"id": "110",
+		"training": [
+			{
+				"type": "Gen",
+				"value": "Orokorra (Sasoia)"
+			},
+			{
+				"type": "Sta",
+				"value": "Egoera Fisikoa"
+			},
+			{
+				"type": "SP",
+				"value": "Baloi Gelditua"
+			},
+			{
+				"type": "Def",
+				"value": "Defentsa"
+			},
+			{
+				"type": "Sco",
+				"value": "Erremateak"
+			},
+			{
+				"type": "Cross",
+				"value": "Erdiraketak (Hegalekoa)"
+			},
+			{
+				"type": "Shoot",
+				"value": "Jaurtiketak"
+			},
+			{
+				"type": "Pass",
+				"value": "Pase Motzak"
+			},
+			{
+				"type": "PM",
+				"value": "Sortze-lana"
+			},
+			{
+				"type": "GK",
+				"value": "Atezaintza"
+			},
+			{
+				"type": "ThPass",
+				"value": "Pase Luzeak"
+			},
+			{
+				"type": "DefPos",
+				"value": "Defentsa Postuak"
+			},
+			{
+				"type": "WingAtt",
+				"value": "Hegaleko Erasoak"
+			},
+			{
+				"type": "Indiv",
+				"value": "Bakarkakoa"
+			}
+		],
+		"fans_match": [
+			{
+				"text": "Ez azaltzea hobe!",
+				"value": "0"
+			},
+			{
+				"text": "Ez dugu zer eginik",
+				"value": "1"
+			},
+			{
+				"text": "Galdu egingo dugu",
+				"value": "2"
+			},
+			{
+				"text": "Eurak dira faborito",
+				"value": "3"
+			},
+			{
+				"text": "Abantaila eurek dute",
+				"value": "4"
+			},
+			{
+				"text": "Partidu berdindua izango da",
+				"value": "5"
+			},
+			{
+				"text": "Gu zertxobait hobeak gara",
+				"value": "6"
+			},
+			{
+				"text": "Faboritoak gara",
+				"value": "7"
+			},
+			{
+				"text": "Irabazi beharrekoa",
+				"value": "8"
+			},
+			{
+				"text": "Arazorik ez!",
+				"value": "9"
+			},
+			{
+				"text": "Hankaperatu ditzagun",
+				"value": "10"
+			}
+		],
+		"name": "eu",
+		"spirit": [
+			{
+				"text": "lur jota",
+				"value": "0"
+			},
+			{
+				"text": "sutan",
+				"value": "1"
+			},
+			{
+				"text": "urduri",
+				"value": "2"
+			},
+			{
+				"text": "arduratuta",
+				"value": "3"
+			},
+			{
+				"text": "bare",
+				"value": "4"
+			},
+			{
+				"text": "lasai",
+				"value": "5"
+			},
+			{
+				"text": "gustura",
+				"value": "6"
+			},
+			{
+				"text": "gozatzen",
+				"value": "7"
+			},
+			{
+				"text": "pozez zoratzen",
+				"value": "8"
+			},
+			{
+				"text": "zeruan bezala",
+				"value": "9"
+			},
+			{
+				"text": "paradisuko atean",
+				"value": "10"
+			}
+		],
+		"desc": "Euskara"
 	}
 }

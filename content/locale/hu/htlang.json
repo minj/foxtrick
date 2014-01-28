@@ -1,5 +1,47 @@
 {
 	"language": {
+		"confidence": [
+			{
+				"text": "nem létező",
+				"value": "0"
+			},
+			{
+				"text": "katasztrofális",
+				"value": "1"
+			},
+			{
+				"text": "pocsék",
+				"value": "2"
+			},
+			{
+				"text": "csapnivaló",
+				"value": "3"
+			},
+			{
+				"text": "stabil",
+				"value": "4"
+			},
+			{
+				"text": "erős",
+				"value": "5"
+			},
+			{
+				"text": "kiváló",
+				"value": "6"
+			},
+			{
+				"text": "kissé túlzott",
+				"value": "7"
+			},
+			{
+				"text": "önhitt",
+				"value": "8"
+			},
+			{
+				"text": "teljességgel önelégült",
+				"value": "9"
+			}
+		],
 		"tactics": [
 			{
 				"type": "normal",
@@ -14,12 +56,20 @@
 				"value": "Ellentámadás"
 			},
 			{
+				"type": "aim",
+				"value": "Középen támadás"
+			},
+			{
 				"type": "aow",
 				"value": "Széleken támadás"
 			},
 			{
-				"type": "aim",
-				"value": "Középen támadás"
+				"type": "",
+				"value": "Ismeretlen"
+			},
+			{
+				"type": "",
+				"value": "Ismeretlen"
 			},
 			{
 				"type": "creatively",
@@ -32,251 +82,606 @@
 		],
 		"honesty": [
 			{
-				"text": "angyali",
-				"value": "5"
-			},
-			{
-				"text": "igazságos",
-				"value": "4"
-			},
-			{
-				"text": "egyenes",
-				"value": "3"
-			},
-			{
-				"text": "becsületes",
-				"value": "2"
+				"text": "balhés",
+				"value": "0"
 			},
 			{
 				"text": "sunyi",
 				"value": "1"
 			},
 			{
-				"text": "balhés",
-				"value": "0"
+				"text": "becsületes",
+				"value": "2"
+			},
+			{
+				"text": "egyenes",
+				"value": "3"
+			},
+			{
+				"text": "igazságos",
+				"value": "4"
+			},
+			{
+				"text": "angyali",
+				"value": "5"
 			}
 		],
 		"agreeability": [
 			{
-				"text": "Imádott csapattag",
-				"value": "5"
-			},
-			{
-				"text": "Népszerű fickó",
-				"value": "4"
-			},
-			{
-				"text": "Szimpatikus fickó",
-				"value": "3"
-			},
-			{
-				"text": "Kedves fickó",
-				"value": "2"
+				"text": "Bajkeverő alak",
+				"value": "0"
 			},
 			{
 				"text": "Öntörvényű ember",
 				"value": "1"
 			},
 			{
-				"text": "Bajkeverő alak",
-				"value": "0"
+				"text": "Kedves fickó",
+				"value": "2"
+			},
+			{
+				"text": "Szimpatikus fickó",
+				"value": "3"
+			},
+			{
+				"text": "Népszerű fickó",
+				"value": "4"
+			},
+			{
+				"text": "Imádott csapattag",
+				"value": "5"
+			}
+		],
+		"skills": [
+			{
+				"type": "Keeper",
+				"value": "Védés"
+			},
+			{
+				"type": "Stamina",
+				"value": "Erőnlét"
+			},
+			{
+				"type": "Defender",
+				"value": "Védekezés"
+			},
+			{
+				"type": "Playmaker",
+				"value": "Játékszervezés"
+			},
+			{
+				"type": "Winger",
+				"value": "Szélsőjáték"
+			},
+			{
+				"type": "Scorer",
+				"value": "Gólszerzés"
+			},
+			{
+				"type": "Kicker",
+				"value": "Pontrúgás"
+			},
+			{
+				"type": "Passer",
+				"value": "Átadás"
+			},
+			{
+				"type": "Experience",
+				"value": "Tapasztalat"
+			},
+			{
+				"type": "LeaderShip",
+				"value": "Vezetői képesség"
 			}
 		],
 		"positions": [
 			{
-				"short": "Ke",
 				"type": "Keeper",
 				"value": "Kapus"
 			},
 			{
-				"short": "Cd",
-				"type": "Central defender",
-				"value": "Középhátvéd"
-			},
-			{
-				"short": "Wb",
-				"type": "Wing back",
+				"type": "WingBack",
 				"value": "Szélsőhátvéd"
 			},
 			{
-				"short": "Im",
-				"type": "Inner midfielder",
+				"type": "CentralDefender",
+				"value": "Középhátvéd"
+			},
+			{
+				"type": "InnerMidfield",
 				"value": "Középpályás"
 			},
 			{
-				"short": "Wi",
 				"type": "Winger",
 				"value": "Szélső"
 			},
 			{
-				"short": "Fo",
 				"type": "Forward",
 				"value": "Csatár"
 			}
 		],
-		"levels": [
+		"fans_season": [
 			{
-				"text": "isteni",
-				"value": "20"
+				"text": "Nem vagyunk idevalók",
+				"value": "0"
 			},
 			{
-				"text": "csodás",
-				"value": "19"
+				"text": "Ebben a csoportban minden nap ajándék",
+				"value": "1"
 			},
 			{
-				"text": "varázslatos",
-				"value": "18"
+				"text": "Küzdeni kell a bent maradásért",
+				"value": "2"
 			},
 			{
-				"text": "legendás",
-				"value": "17"
-			},
-			{
-				"text": "földöntúli",
-				"value": "16"
-			},
-			{
-				"text": "titáni",
-				"value": "15"
-			},
-			{
-				"text": "természetfeletti",
-				"value": "14"
-			},
-			{
-				"text": "világklasszis",
-				"value": "13"
-			},
-			{
-				"text": "lenyűgöző",
-				"value": "12"
-			},
-			{
-				"text": "ragyogó",
-				"value": "11"
-			},
-			{
-				"text": "kiemelkedő",
-				"value": "10"
-			},
-			{
-				"text": "nagyszerű",
-				"value": "9"
-			},
-			{
-				"text": "remek",
-				"value": "8"
-			},
-			{
-				"text": "jó",
-				"value": "7"
-			},
-			{
-				"text": "megfelelő",
-				"value": "6"
-			},
-			{
-				"text": "középszerű",
-				"value": "5"
-			},
-			{
-				"text": "gyenge",
-				"value": "4"
-			},
-			{
-				"text": "csapnivaló",
+				"text": "Jó lenne a mezőny közepén végezni",
 				"value": "3"
 			},
 			{
-				"text": "pocsék",
-				"value": "2"
+				"text": "Az első négyben a helyünk",
+				"value": "4"
+			},
+			{
+				"text": "Cél a bajnoki cím!",
+				"value": "5"
+			},
+			{
+				"text": "Nyerni kell ebben a szezonban",
+				"value": "6"
+			},
+			{
+				"text": "Kiemelkedünk ebből a csoportból!",
+				"value": "7"
+			}
+		],
+		"attitude": [
+			{
+				"text": "Laza játék",
+				"value": "-1"
+			},
+			{
+				"text": "Átlagos",
+				"value": "0"
+			},
+			{
+				"text": "A szezon legfontosabb mérkőzése",
+				"value": "1"
+			}
+		],
+		"levels": [
+			{
+				"text": "nem létező",
+				"value": "0"
 			},
 			{
 				"text": "katasztrofális",
 				"value": "1"
 			},
 			{
-				"text": "nem létező",
+				"text": "pocsék",
+				"value": "2"
+			},
+			{
+				"text": "csapnivaló",
+				"value": "3"
+			},
+			{
+				"text": "gyenge",
+				"value": "4"
+			},
+			{
+				"text": "középszerű",
+				"value": "5"
+			},
+			{
+				"text": "megfelelő",
+				"value": "6"
+			},
+			{
+				"text": "jó",
+				"value": "7"
+			},
+			{
+				"text": "remek",
+				"value": "8"
+			},
+			{
+				"text": "nagyszerű",
+				"value": "9"
+			},
+			{
+				"text": "kiemelkedő",
+				"value": "10"
+			},
+			{
+				"text": "ragyogó",
+				"value": "11"
+			},
+			{
+				"text": "lenyűgöző",
+				"value": "12"
+			},
+			{
+				"text": "világklasszis",
+				"value": "13"
+			},
+			{
+				"text": "természetfeletti",
+				"value": "14"
+			},
+			{
+				"text": "titáni",
+				"value": "15"
+			},
+			{
+				"text": "földöntúli",
+				"value": "16"
+			},
+			{
+				"text": "legendás",
+				"value": "17"
+			},
+			{
+				"text": "varázslatos",
+				"value": "18"
+			},
+			{
+				"text": "csodás",
+				"value": "19"
+			},
+			{
+				"text": "isteni",
+				"value": "20"
+			}
+		],
+		"sponsors": [
+			{
+				"text": "gyilkos",
 				"value": "0"
+			},
+			{
+				"text": "dühödt",
+				"value": "1"
+			},
+			{
+				"text": "ingerült",
+				"value": "3"
+			},
+			{
+				"text": "higgadt",
+				"value": "5"
+			},
+			{
+				"text": "elégedett",
+				"value": "6"
+			},
+			{
+				"text": "boldog",
+				"value": "7"
+			},
+			{
+				"text": "mámoros",
+				"value": "8"
+			},
+			{
+				"text": "fellegjáró",
+				"value": "9"
+			},
+			{
+				"text": "karneváli",
+				"value": "10"
+			},
+			{
+				"text": "szerelmes versekkel bombáznak",
+				"value": "11"
+			}
+		],
+		"sectors": [
+			{
+				"type": "Midfield",
+				"value": "Középpálya"
+			},
+			{
+				"type": "RightDefense",
+				"value": "Jobb oldali védelem"
+			},
+			{
+				"type": "CentralDefense",
+				"value": "Középső védelem"
+			},
+			{
+				"type": "LeftDefense",
+				"value": "Bal oldali védelem"
+			},
+			{
+				"type": "RightAttack",
+				"value": "Jobb oldali támadás"
+			},
+			{
+				"type": "CentralAttack",
+				"value": "Középső támadás"
+			},
+			{
+				"type": "LeftAttack",
+				"value": "Bal oldali támadás"
 			}
 		],
 		"ratingSubLevels": [
 			{
-				"text": "(Éppen)",
-				"value": "0.0"
+				"text": "Éppen",
+				"value": "0"
 			},
 			{
-				"text": "(Átlag alatt)",
+				"text": "Átlag alatt",
 				"value": "0.25"
 			},
 			{
-				"text": "(Átlagos)",
-				"value": "0.50"
+				"text": "Átlagos",
+				"value": "0.5"
 			},
 			{
-				"text": "(Átlag felett)",
+				"text": "Átlag felett",
 				"value": "0.75"
+			}
+		],
+		"fans": [
+			{
+				"text": "gyilkos",
+				"value": "0"
+			},
+			{
+				"text": "dühödt",
+				"value": "1"
+			},
+			{
+				"text": "mérges",
+				"value": "2"
+			},
+			{
+				"text": "ingerült",
+				"value": "3"
+			},
+			{
+				"text": "csalódott",
+				"value": "4"
+			},
+			{
+				"text": "higgadt",
+				"value": "5"
+			},
+			{
+				"text": "elégedett",
+				"value": "6"
+			},
+			{
+				"text": "boldog",
+				"value": "7"
+			},
+			{
+				"text": "mámoros",
+				"value": "8"
+			},
+			{
+				"text": "fellegjáró",
+				"value": "9"
+			},
+			{
+				"text": "karneváli",
+				"value": "10"
+			},
+			{
+				"text": "szerelmes versekkel bombáznak",
+				"value": "11"
 			}
 		],
 		"specialties": [
 			{
-				"short": "Un",
-				"type": "Unpredictable",
-				"value": "Kiszámíthatatlan"
+				"type": "None",
+				"value": "Nincs"
 			},
 			{
-				"short": "Po",
-				"type": "Powerful",
-				"value": "Erőteljes"
-			},
-			{
-				"short": "Qu",
-				"type": "Quick",
-				"value": "Gyors"
-			},
-			{
-				"short": "Te",
 				"type": "Technical",
 				"value": "Technikás"
 			},
 			{
-				"short": "He",
+				"type": "Quick",
+				"value": "Gyors"
+			},
+			{
+				"type": "Powerful",
+				"value": "Erőteljes"
+			},
+			{
+				"type": "Unpredictable",
+				"value": "Kiszámíthatatlan"
+			},
+			{
 				"type": "Head",
 				"value": "Jól fejelő"
 			},
 			{
-				"short": "Re",
 				"type": "Regainer",
 				"value": "Szívós"
 			}
 		],
 		"aggressiveness": [
 			{
-				"text": "bizonytalan",
-				"value": "5"
-			},
-			{
-				"text": "lobbanékony",
-				"value": "4"
-			},
-			{
-				"text": "temperamentumos",
-				"value": "3"
-			},
-			{
-				"text": "kiegyensúlyozott",
-				"value": "2"
+				"text": "jámbor",
+				"value": "0"
 			},
 			{
 				"text": "higgadt",
 				"value": "1"
 			},
 			{
-				"text": "jámbor",
-				"value": "0"
+				"text": "kiegyensúlyozott",
+				"value": "2"
+			},
+			{
+				"text": "temperamentumos",
+				"value": "3"
+			},
+			{
+				"text": "lobbanékony",
+				"value": "4"
+			},
+			{
+				"text": "bizonytalan",
+				"value": "5"
 			}
 		],
-		"desc": "Magyar",
-		"name": "hu"
+		"id": "33",
+		"training": [
+			{
+				"type": "Gen",
+				"value": "Általános edzés (forma)"
+			},
+			{
+				"type": "Sta",
+				"value": "Erőnlét"
+			},
+			{
+				"type": "SP",
+				"value": "Pontrúgás"
+			},
+			{
+				"type": "Def",
+				"value": "Védekezés"
+			},
+			{
+				"type": "Sco",
+				"value": "Gólszerzés"
+			},
+			{
+				"type": "Cross",
+				"value": "Keresztlabdák (Szélsőjáték)"
+			},
+			{
+				"type": "Shoot",
+				"value": "Kapura lövés"
+			},
+			{
+				"type": "Pass",
+				"value": "Rövid passzok (Átadás)"
+			},
+			{
+				"type": "PM",
+				"value": "Játékszervezés"
+			},
+			{
+				"type": "GK",
+				"value": "Védés"
+			},
+			{
+				"type": "ThPass",
+				"value": "Támadásépítés"
+			},
+			{
+				"type": "DefPos",
+				"value": "Területvédekezés"
+			},
+			{
+				"type": "WingAtt",
+				"value": "Széleken támadás"
+			},
+			{
+				"type": "Indiv",
+				"value": "Egyéni"
+			}
+		],
+		"fans_match": [
+			{
+				"text": "Jobb, ha ki se állunk",
+				"value": "0"
+			},
+			{
+				"text": "Esélyünk sincs",
+				"value": "1"
+			},
+			{
+				"text": "Ki fogunk kapni",
+				"value": "2"
+			},
+			{
+				"text": "Ők a favoritok",
+				"value": "3"
+			},
+			{
+				"text": "Ők vannak előnyösebb helyzetben",
+				"value": "4"
+			},
+			{
+				"text": "Szoros lesz",
+				"value": "5"
+			},
+			{
+				"text": "Mi vagyunk előnyösebb helyzetben",
+				"value": "6"
+			},
+			{
+				"text": "Mi vagyunk a favoritok",
+				"value": "7"
+			},
+			{
+				"text": "Győzni fogunk",
+				"value": "8"
+			},
+			{
+				"text": "Gyerekjáték lesz",
+				"value": "9"
+			},
+			{
+				"text": "Alázzuk meg őket",
+				"value": "10"
+			}
+		],
+		"name": "hu",
+		"spirit": [
+			{
+				"text": "hidegháborús",
+				"value": "0"
+			},
+			{
+				"text": "gyilkos",
+				"value": "1"
+			},
+			{
+				"text": "dühödt",
+				"value": "2"
+			},
+			{
+				"text": "ingerült",
+				"value": "3"
+			},
+			{
+				"text": "hűvös",
+				"value": "4"
+			},
+			{
+				"text": "nyugodt",
+				"value": "5"
+			},
+			{
+				"text": "elégedett",
+				"value": "6"
+			},
+			{
+				"text": "boldog",
+				"value": "7"
+			},
+			{
+				"text": "mámoros",
+				"value": "8"
+			},
+			{
+				"text": "fellegjáró",
+				"value": "9"
+			},
+			{
+				"text": "földi paradicsom!",
+				"value": "10"
+			}
+		],
+		"desc": "Magyar"
 	}
 }

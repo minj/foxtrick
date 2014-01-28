@@ -1,5 +1,47 @@
 {
 	"language": {
+		"confidence": [
+			{
+				"text": "לא קיים",
+				"value": "0"
+			},
+			{
+				"text": "איום",
+				"value": "1"
+			},
+			{
+				"text": "גרוע",
+				"value": "2"
+			},
+			{
+				"text": "עלוב",
+				"value": "3"
+			},
+			{
+				"text": "סביר",
+				"value": "4"
+			},
+			{
+				"text": "טוב",
+				"value": "5"
+			},
+			{
+				"text": "נפלא",
+				"value": "6"
+			},
+			{
+				"text": "מופרז מעט",
+				"value": "7"
+			},
+			{
+				"text": "מופרז",
+				"value": "8"
+			},
+			{
+				"text": "מופרז מאוד",
+				"value": "9"
+			}
+		],
 		"tactics": [
 			{
 				"type": "normal",
@@ -14,12 +56,20 @@
 				"value": "התקפות מתפרצות"
 			},
 			{
+				"type": "aim",
+				"value": "התקפה מהמרכז"
+			},
+			{
 				"type": "aow",
 				"value": "התקפה מהאגפים"
 			},
 			{
-				"type": "aim",
-				"value": "התקפה מהמרכז"
+				"type": "",
+				"value": "לא ידוע"
+			},
+			{
+				"type": "",
+				"value": "לא ידוע"
 			},
 			{
 				"type": "creatively",
@@ -32,251 +82,606 @@
 		],
 		"honesty": [
 			{
-				"text": "קדוש",
-				"value": "5"
-			},
-			{
-				"text": "צדיק",
-				"value": "4"
-			},
-			{
-				"text": "ישר",
-				"value": "3"
-			},
-			{
-				"text": "הגון",
-				"value": "2"
+				"text": "ידוע לשמצה",
+				"value": "0"
 			},
 			{
 				"text": "בלתי הגון",
 				"value": "1"
 			},
 			{
-				"text": "ידוע לשמצה",
-				"value": "0"
+				"text": "הגון",
+				"value": "2"
+			},
+			{
+				"text": "ישר",
+				"value": "3"
+			},
+			{
+				"text": "צדיק",
+				"value": "4"
+			},
+			{
+				"text": "קדוש",
+				"value": "5"
 			}
 		],
 		"agreeability": [
 			{
-				"text": "אהוב הקבוצה",
-				"value": "5"
-			},
-			{
-				"text": "מקובל",
-				"value": "4"
-			},
-			{
-				"text": "נחמד",
-				"value": "3"
-			},
-			{
-				"text": "נעים",
-				"value": "2"
+				"text": "בעייתי",
+				"value": "0"
 			},
 			{
 				"text": "שנוי במחלוקת",
 				"value": "1"
 			},
 			{
-				"text": "בעייתי",
-				"value": "0"
+				"text": "נעים",
+				"value": "2"
+			},
+			{
+				"text": "נחמד",
+				"value": "3"
+			},
+			{
+				"text": "מקובל",
+				"value": "4"
+			},
+			{
+				"text": "אהוב הקבוצה",
+				"value": "5"
+			}
+		],
+		"skills": [
+			{
+				"type": "Keeper",
+				"value": "עמידה בשער"
+			},
+			{
+				"type": "Stamina",
+				"value": "כושר גופני"
+			},
+			{
+				"type": "Defender",
+				"value": "הגנה"
+			},
+			{
+				"type": "Playmaker",
+				"value": "עשיית משחק"
+			},
+			{
+				"type": "Winger",
+				"value": "משחק אגפים"
+			},
+			{
+				"type": "Scorer",
+				"value": "הבקעה"
+			},
+			{
+				"type": "Kicker",
+				"value": "מצבים נייחים"
+			},
+			{
+				"type": "Passer",
+				"value": "מסירה"
+			},
+			{
+				"type": "Experience",
+				"value": "ניסיון"
+			},
+			{
+				"type": "LeaderShip",
+				"value": "מנהיגות"
 			}
 		],
 		"positions": [
 			{
-				"short": "Ke",
 				"type": "Keeper",
 				"value": "שוער"
 			},
 			{
-				"short": "Cd",
-				"type": "Central defender",
-				"value": "בלם"
-			},
-			{
-				"short": "Wb",
-				"type": "Wing back",
+				"type": "WingBack",
 				"value": "מגן"
 			},
 			{
-				"short": "Im",
-				"type": "Inner midfielder",
+				"type": "CentralDefender",
+				"value": "בלם"
+			},
+			{
+				"type": "InnerMidfield",
 				"value": "קשר"
 			},
 			{
-				"short": "Wi",
 				"type": "Winger",
 				"value": "קיצוני"
 			},
 			{
-				"short": "Fo",
 				"type": "Forward",
 				"value": "חלוץ"
 			}
 		],
-		"levels": [
+		"fans_season": [
 			{
-				"text": "עילאי",
-				"value": "20"
+				"text": "אנחנו לא ראויים לליגה הזו",
+				"value": "0"
 			},
 			{
-				"text": "אוטופי",
-				"value": "19"
+				"text": "כל יום בליגה הזו הוא בונוס",
+				"value": "1"
 			},
 			{
-				"text": "קסום",
-				"value": "18"
+				"text": "אנחנו צריכים להלחם כדי לשרוד בליגה",
+				"value": "2"
 			},
 			{
-				"text": "אגדי",
-				"value": "17"
-			},
-			{
-				"text": "שמיימי",
-				"value": "16"
-			},
-			{
-				"text": "אימתני",
-				"value": "15"
-			},
-			{
-				"text": "על טבעי",
-				"value": "14"
-			},
-			{
-				"text": "עולמי",
-				"value": "13"
-			},
-			{
-				"text": "נהדר",
-				"value": "12"
-			},
-			{
-				"text": "מבריק",
-				"value": "11"
-			},
-			{
-				"text": "יוצא מן הכלל",
-				"value": "10"
-			},
-			{
-				"text": "מעולה",
-				"value": "9"
-			},
-			{
-				"text": "מצוין",
-				"value": "8"
-			},
-			{
-				"text": "טוב",
-				"value": "7"
-			},
-			{
-				"text": "סביר",
-				"value": "6"
-			},
-			{
-				"text": "בינוני",
-				"value": "5"
-			},
-			{
-				"text": "חלש",
-				"value": "4"
-			},
-			{
-				"text": "עלוב",
+				"text": "יהיה נחמד לסיים באמצע הטבלה",
 				"value": "3"
 			},
 			{
-				"text": "גרוע",
-				"value": "2"
+				"text": "אנחנו שייכים לחלק העליון",
+				"value": "4"
+			},
+			{
+				"text": "כוון אל האליפות!",
+				"value": "5"
+			},
+			{
+				"text": "אנחנו צריכים לנצח העונה הזו",
+				"value": "6"
+			},
+			{
+				"text": "אנחנו הרבה יותר טובים מכל הליגה הזו!",
+				"value": "7"
+			}
+		],
+		"attitude": [
+			{
+				"text": "משחק רגוע",
+				"value": "-1"
+			},
+			{
+				"text": "רגיל",
+				"value": "0"
+			},
+			{
+				"text": "משחק העונה",
+				"value": "1"
+			}
+		],
+		"levels": [
+			{
+				"text": "לא קיים",
+				"value": "0"
 			},
 			{
 				"text": "איום",
 				"value": "1"
 			},
 			{
-				"text": "לא קיים",
+				"text": "גרוע",
+				"value": "2"
+			},
+			{
+				"text": "עלוב",
+				"value": "3"
+			},
+			{
+				"text": "חלש",
+				"value": "4"
+			},
+			{
+				"text": "בינוני",
+				"value": "5"
+			},
+			{
+				"text": "סביר",
+				"value": "6"
+			},
+			{
+				"text": "טוב",
+				"value": "7"
+			},
+			{
+				"text": "מצוין",
+				"value": "8"
+			},
+			{
+				"text": "מעולה",
+				"value": "9"
+			},
+			{
+				"text": "יוצא מן הכלל",
+				"value": "10"
+			},
+			{
+				"text": "מבריק",
+				"value": "11"
+			},
+			{
+				"text": "נהדר",
+				"value": "12"
+			},
+			{
+				"text": "עולמי",
+				"value": "13"
+			},
+			{
+				"text": "על טבעי",
+				"value": "14"
+			},
+			{
+				"text": "אימתני",
+				"value": "15"
+			},
+			{
+				"text": "שמיימי",
+				"value": "16"
+			},
+			{
+				"text": "אגדי",
+				"value": "17"
+			},
+			{
+				"text": "קסום",
+				"value": "18"
+			},
+			{
+				"text": "אוטופי",
+				"value": "19"
+			},
+			{
+				"text": "עילאי",
+				"value": "20"
+			}
+		],
+		"sponsors": [
+			{
+				"text": "רצחניים",
 				"value": "0"
+			},
+			{
+				"text": "זועמים",
+				"value": "1"
+			},
+			{
+				"text": "מוטרדים",
+				"value": "3"
+			},
+			{
+				"text": "מאופקים",
+				"value": "5"
+			},
+			{
+				"text": "רגועים",
+				"value": "6"
+			},
+			{
+				"text": "מרוצים",
+				"value": "7"
+			},
+			{
+				"text": "מאושרים",
+				"value": "8"
+			},
+			{
+				"text": "מרחפים",
+				"value": "9"
+			},
+			{
+				"text": "רוקדים ברחובות",
+				"value": "10"
+			},
+			{
+				"text": "שולחים לך מכתבי אהבה",
+				"value": "11"
+			}
+		],
+		"sectors": [
+			{
+				"type": "Midfield",
+				"value": "קישור"
+			},
+			{
+				"type": "RightDefense",
+				"value": "הגנה ימנית"
+			},
+			{
+				"type": "CentralDefense",
+				"value": "הגנה מרכזית"
+			},
+			{
+				"type": "LeftDefense",
+				"value": "הגנה שמאלית"
+			},
+			{
+				"type": "RightAttack",
+				"value": "התקפה ימנית"
+			},
+			{
+				"type": "CentralAttack",
+				"value": "התקפה מרכזית"
+			},
+			{
+				"type": "LeftAttack",
+				"value": "התקפה שמאלית"
 			}
 		],
 		"ratingSubLevels": [
 			{
-				"text": "(נמוך מאוד)",
-				"value": "0.0"
+				"text": "נמוך מאוד",
+				"value": "0"
 			},
 			{
-				"text": "(נמוך)",
+				"text": "נמוך",
 				"value": "0.25"
 			},
 			{
-				"text": "(גבוה)",
-				"value": "0.50"
+				"text": "גבוה",
+				"value": "0.5"
 			},
 			{
-				"text": "(גבוה מאוד)",
+				"text": "גבוה מאוד",
 				"value": "0.75"
+			}
+		],
+		"fans": [
+			{
+				"text": "רצחניים",
+				"value": "0"
+			},
+			{
+				"text": "זועמים",
+				"value": "1"
+			},
+			{
+				"text": "כועסים",
+				"value": "2"
+			},
+			{
+				"text": "מוטרדים",
+				"value": "3"
+			},
+			{
+				"text": "מאוכזבים",
+				"value": "4"
+			},
+			{
+				"text": "מאופקים",
+				"value": "5"
+			},
+			{
+				"text": "רגועים",
+				"value": "6"
+			},
+			{
+				"text": "מרוצים",
+				"value": "7"
+			},
+			{
+				"text": "מאושרים",
+				"value": "8"
+			},
+			{
+				"text": "מרחפים",
+				"value": "9"
+			},
+			{
+				"text": "רוקדים ברחובות",
+				"value": "10"
+			},
+			{
+				"text": "שולחים לך מכתבי אהבה",
+				"value": "11"
 			}
 		],
 		"specialties": [
 			{
-				"short": "Un",
-				"type": "Unpredictable",
-				"value": "בלתי צפוי"
+				"type": "None",
+				"value": "אין"
 			},
 			{
-				"short": "Po",
-				"type": "Powerful",
-				"value": "חזק"
-			},
-			{
-				"short": "Qu",
-				"type": "Quick",
-				"value": "מהיר"
-			},
-			{
-				"short": "Te",
 				"type": "Technical",
 				"value": "טכני"
 			},
 			{
-				"short": "He",
+				"type": "Quick",
+				"value": "מהיר"
+			},
+			{
+				"type": "Powerful",
+				"value": "חזק"
+			},
+			{
+				"type": "Unpredictable",
+				"value": "בלתי צפוי"
+			},
+			{
 				"type": "Head",
 				"value": "משחק ראש"
 			},
 			{
-				"short": "Re",
 				"type": "Regainer",
 				"value": "משתקם"
 			}
 		],
 		"aggressiveness": [
 			{
-				"text": "פרוע",
-				"value": "5"
-			},
-			{
-				"text": "סוער",
-				"value": "4"
-			},
-			{
-				"text": "חם מזג",
-				"value": "3"
-			},
-			{
-				"text": "מאוזן",
-				"value": "2"
+				"text": "שליו",
+				"value": "0"
 			},
 			{
 				"text": "רגוע",
 				"value": "1"
 			},
 			{
-				"text": "שליו",
-				"value": "0"
+				"text": "מאוזן",
+				"value": "2"
+			},
+			{
+				"text": "חם מזג",
+				"value": "3"
+			},
+			{
+				"text": "סוער",
+				"value": "4"
+			},
+			{
+				"text": "פרוע",
+				"value": "5"
 			}
 		],
-		"desc": "עברית",
-		"name": "he"
+		"id": "40",
+		"training": [
+			{
+				"type": "Gen",
+				"value": "כושר משחק"
+			},
+			{
+				"type": "Sta",
+				"value": "כושר גופני"
+			},
+			{
+				"type": "SP",
+				"value": "מצבים נייחים"
+			},
+			{
+				"type": "Def",
+				"value": "הגנה"
+			},
+			{
+				"type": "Sco",
+				"value": "הבקעה"
+			},
+			{
+				"type": "Cross",
+				"value": "משחק אגפים"
+			},
+			{
+				"type": "Shoot",
+				"value": "בעיטה"
+			},
+			{
+				"type": "Pass",
+				"value": "מסירה"
+			},
+			{
+				"type": "PM",
+				"value": "עשיית משחק"
+			},
+			{
+				"type": "GK",
+				"value": "עמידה בשער"
+			},
+			{
+				"type": "ThPass",
+				"value": "מסירות עומק"
+			},
+			{
+				"type": "DefPos",
+				"value": "עמדות הגנתיות"
+			},
+			{
+				"type": "WingAtt",
+				"value": "התקפות כנף"
+			},
+			{
+				"type": "Indiv",
+				"value": "אישי"
+			}
+		],
+		"fans_match": [
+			{
+				"text": "עדיף לא להגיע!",
+				"value": "0"
+			},
+			{
+				"text": "אין לנו סיכוי",
+				"value": "1"
+			},
+			{
+				"text": "אנחנו נפסיד",
+				"value": "2"
+			},
+			{
+				"text": "הם עדיפים",
+				"value": "3"
+			},
+			{
+				"text": "המשחק נוטה לטובתם",
+				"value": "4"
+			},
+			{
+				"text": "יהיה צמוד",
+				"value": "5"
+			},
+			{
+				"text": "המשחק נוטה לטובתנו",
+				"value": "6"
+			},
+			{
+				"text": "אנחנו עדיפים",
+				"value": "7"
+			},
+			{
+				"text": "אנחנו ננצח",
+				"value": "8"
+			},
+			{
+				"text": "קלי קלות!",
+				"value": "9"
+			},
+			{
+				"text": "בואו נשפיל אותם",
+				"value": "10"
+			}
+		],
+		"name": "he",
+		"spirit": [
+			{
+				"text": "כמו במלחמה הקרה",
+				"value": "0"
+			},
+			{
+				"text": "רצחניים",
+				"value": "1"
+			},
+			{
+				"text": "זועמים",
+				"value": "2"
+			},
+			{
+				"text": "מוטרדים",
+				"value": "3"
+			},
+			{
+				"text": "מאופקים",
+				"value": "4"
+			},
+			{
+				"text": "רגועים",
+				"value": "5"
+			},
+			{
+				"text": "מרוצים",
+				"value": "6"
+			},
+			{
+				"text": "מאושרים",
+				"value": "7"
+			},
+			{
+				"text": "מרחפים",
+				"value": "8"
+			},
+			{
+				"text": "מעל העננים",
+				"value": "9"
+			},
+			{
+				"text": "גן עדן עלי אדמות!",
+				"value": "10"
+			}
+		],
+		"desc": "Hebrew"
 	}
 }

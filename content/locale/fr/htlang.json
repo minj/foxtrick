@@ -1,5 +1,47 @@
 {
 	"language": {
+		"confidence": [
+			{
+				"text": "inexistante",
+				"value": "0"
+			},
+			{
+				"text": "catastrophique",
+				"value": "1"
+			},
+			{
+				"text": "mauvaise",
+				"value": "2"
+			},
+			{
+				"text": "faible",
+				"value": "3"
+			},
+			{
+				"text": "convenable",
+				"value": "4"
+			},
+			{
+				"text": "forte",
+				"value": "5"
+			},
+			{
+				"text": "inébranlable",
+				"value": "6"
+			},
+			{
+				"text": "légèrement exagérée",
+				"value": "7"
+			},
+			{
+				"text": "exagérée",
+				"value": "8"
+			},
+			{
+				"text": "complètement exagérée",
+				"value": "9"
+			}
+		],
 		"tactics": [
 			{
 				"type": "normal",
@@ -14,12 +56,20 @@
 				"value": "Contre-attaques"
 			},
 			{
+				"type": "aim",
+				"value": "Attaque au centre"
+			},
+			{
 				"type": "aow",
 				"value": "Attaque sur les ailes"
 			},
 			{
-				"type": "aim",
-				"value": "Attaque au centre"
+				"type": "",
+				"value": "Inconnu"
+			},
+			{
+				"type": "",
+				"value": "Inconnu"
 			},
 			{
 				"type": "creatively",
@@ -32,251 +82,606 @@
 		],
 		"honesty": [
 			{
-				"text": "vertueux",
-				"value": "5"
-			},
-			{
-				"text": "intègre",
-				"value": "4"
-			},
-			{
-				"text": "sincère",
-				"value": "3"
-			},
-			{
-				"text": "honnête",
-				"value": "2"
+				"text": "fourbe",
+				"value": "0"
 			},
 			{
 				"text": "malhonnête",
 				"value": "1"
 			},
 			{
-				"text": "fourbe",
-				"value": "0"
+				"text": "honnête",
+				"value": "2"
+			},
+			{
+				"text": "sincère",
+				"value": "3"
+			},
+			{
+				"text": "intègre",
+				"value": "4"
+			},
+			{
+				"text": "vertueux",
+				"value": "5"
 			}
 		],
 		"agreeability": [
 			{
-				"text": "type adulé par ses coéquipiers",
-				"value": "5"
-			},
-			{
-				"text": "gars populaire",
-				"value": "4"
-			},
-			{
-				"text": "gars sympathique",
-				"value": "3"
-			},
-			{
-				"text": "gars aimable",
-				"value": "2"
+				"text": "type désagréable",
+				"value": "0"
 			},
 			{
 				"text": "personnage controversé",
 				"value": "1"
 			},
 			{
-				"text": "type désagréable",
-				"value": "0"
+				"text": "gars aimable",
+				"value": "2"
+			},
+			{
+				"text": "gars sympathique",
+				"value": "3"
+			},
+			{
+				"text": "gars populaire",
+				"value": "4"
+			},
+			{
+				"text": "type adulé par ses coéquipiers",
+				"value": "5"
 			}
 		],
-		"positions": [
+		"skills": [
 			{
-				"short": "Ga",
 				"type": "Keeper",
 				"value": "Gardien"
 			},
 			{
-				"short": "Ac",
-				"type": "Central defender",
-				"value": "Arrière central"
+				"type": "Stamina",
+				"value": "Endurance"
 			},
 			{
-				"short": "Al",
-				"type": "Wing back",
-				"value": "Arrière latéral"
+				"type": "Defender",
+				"value": "Défense"
 			},
 			{
-				"short": "Mdt",
-				"type": "Inner midfielder",
-				"value": "Milieu de terrain"
+				"type": "Playmaker",
+				"value": "Construction"
 			},
 			{
-				"short": "Ai",
 				"type": "Winger",
 				"value": "Ailier"
 			},
 			{
-				"short": "At",
+				"type": "Scorer",
+				"value": "Buteur"
+			},
+			{
+				"type": "Kicker",
+				"value": "Coup franc"
+			},
+			{
+				"type": "Passer",
+				"value": "Passe"
+			},
+			{
+				"type": "Experience",
+				"value": "Expérience"
+			},
+			{
+				"type": "LeaderShip",
+				"value": "Temp. de chef"
+			}
+		],
+		"positions": [
+			{
+				"type": "Keeper",
+				"value": "Gardien"
+			},
+			{
+				"type": "WingBack",
+				"value": "Arrière latéral"
+			},
+			{
+				"type": "CentralDefender",
+				"value": "Arrière central"
+			},
+			{
+				"type": "InnerMidfield",
+				"value": "Milieu de terrain"
+			},
+			{
+				"type": "Winger",
+				"value": "Ailier"
+			},
+			{
 				"type": "Forward",
 				"value": "Attaquant"
 			}
 		],
-		"levels": [
+		"fans_season": [
 			{
-				"text": "divin",
-				"value": "20"
+				"text": "On n’a pas le niveau dans cette division.",
+				"value": "0"
 			},
 			{
-				"text": "utopique",
-				"value": "19"
+				"text": "Chaque point grappillé dans cette division sera un exploit",
+				"value": "1"
 			},
 			{
-				"text": "magique",
-				"value": "18"
+				"text": "Il va falloir se battre pour survivre.",
+				"value": "2"
 			},
 			{
-				"text": "mythique",
-				"value": "17"
-			},
-			{
-				"text": "extraterrestre",
-				"value": "16"
-			},
-			{
-				"text": "titanesque",
-				"value": "15"
-			},
-			{
-				"text": "surnaturel",
-				"value": "14"
-			},
-			{
-				"text": "légendaire",
-				"value": "13"
-			},
-			{
-				"text": "inoubliable",
-				"value": "12"
-			},
-			{
-				"text": "brillant",
-				"value": "11"
-			},
-			{
-				"text": "impressionnant",
-				"value": "10"
-			},
-			{
-				"text": "formidable",
-				"value": "9"
-			},
-			{
-				"text": "excellent",
-				"value": "8"
-			},
-			{
-				"text": "honorable",
-				"value": "7"
-			},
-			{
-				"text": "passable",
-				"value": "6"
-			},
-			{
-				"text": "inadéquat",
-				"value": "5"
-			},
-			{
-				"text": "faible",
-				"value": "4"
-			},
-			{
-				"text": "médiocre",
+				"text": "Ce serait bien d’accrocher le milieu de tableau.",
 				"value": "3"
 			},
 			{
-				"text": "mauvais",
-				"value": "2"
+				"text": "On fera partie des 4 premiers",
+				"value": "4"
+			},
+			{
+				"text": "On peut jouer le titre !",
+				"value": "5"
+			},
+			{
+				"text": "On doit gagner cette saison",
+				"value": "6"
+			},
+			{
+				"text": "On est de loin la meilleure équipe de cette division !",
+				"value": "7"
+			}
+		],
+		"attitude": [
+			{
+				"text": "Tranquille",
+				"value": "-1"
+			},
+			{
+				"text": "Normal",
+				"value": "0"
+			},
+			{
+				"text": "Match le plus important",
+				"value": "1"
+			}
+		],
+		"levels": [
+			{
+				"text": "inexistant",
+				"value": "0"
 			},
 			{
 				"text": "catastrophique",
 				"value": "1"
 			},
 			{
-				"text": "inexistant",
+				"text": "mauvais",
+				"value": "2"
+			},
+			{
+				"text": "médiocre",
+				"value": "3"
+			},
+			{
+				"text": "faible",
+				"value": "4"
+			},
+			{
+				"text": "inadéquat",
+				"value": "5"
+			},
+			{
+				"text": "passable",
+				"value": "6"
+			},
+			{
+				"text": "honorable",
+				"value": "7"
+			},
+			{
+				"text": "excellent",
+				"value": "8"
+			},
+			{
+				"text": "formidable",
+				"value": "9"
+			},
+			{
+				"text": "impressionnant",
+				"value": "10"
+			},
+			{
+				"text": "brillant",
+				"value": "11"
+			},
+			{
+				"text": "inoubliable",
+				"value": "12"
+			},
+			{
+				"text": "légendaire",
+				"value": "13"
+			},
+			{
+				"text": "surnaturel",
+				"value": "14"
+			},
+			{
+				"text": "titanesque",
+				"value": "15"
+			},
+			{
+				"text": "extraterrestre",
+				"value": "16"
+			},
+			{
+				"text": "mythique",
+				"value": "17"
+			},
+			{
+				"text": "magique",
+				"value": "18"
+			},
+			{
+				"text": "utopique",
+				"value": "19"
+			},
+			{
+				"text": "divin",
+				"value": "20"
+			}
+		],
+		"sponsors": [
+			{
+				"text": "d’humeur massacrante",
 				"value": "0"
+			},
+			{
+				"text": "furieux",
+				"value": "1"
+			},
+			{
+				"text": "irrités",
+				"value": "3"
+			},
+			{
+				"text": "calmes",
+				"value": "5"
+			},
+			{
+				"text": "contents",
+				"value": "6"
+			},
+			{
+				"text": "heureux",
+				"value": "7"
+			},
+			{
+				"text": "délirants de joie",
+				"value": "8"
+			},
+			{
+				"text": "sur un nuage",
+				"value": "9"
+			},
+			{
+				"text": "au septième ciel",
+				"value": "10"
+			},
+			{
+				"text": "en admiration devant vous",
+				"value": "11"
+			}
+		],
+		"sectors": [
+			{
+				"type": "Midfield",
+				"value": "Milieu de terrain"
+			},
+			{
+				"type": "RightDefense",
+				"value": "Déf. latérale droite"
+			},
+			{
+				"type": "CentralDefense",
+				"value": "Défense centrale"
+			},
+			{
+				"type": "LeftDefense",
+				"value": "Déf. latérale gauche"
+			},
+			{
+				"type": "RightAttack",
+				"value": "Attaque aile droite"
+			},
+			{
+				"type": "CentralAttack",
+				"value": "Attaque centrale"
+			},
+			{
+				"type": "LeftAttack",
+				"value": "Attaque aile gauche"
 			}
 		],
 		"ratingSubLevels": [
 			{
-				"text": "(très bas)",
-				"value": "0.0"
+				"text": "très bas",
+				"value": "0"
 			},
 			{
-				"text": "(bas)",
+				"text": "bas",
 				"value": "0.25"
 			},
 			{
-				"text": "(haut)",
-				"value": "0.50"
+				"text": "haut",
+				"value": "0.5"
 			},
 			{
-				"text": "(très haut)",
+				"text": "très haut",
 				"value": "0.75"
+			}
+		],
+		"fans": [
+			{
+				"text": "d’humeur massacrante",
+				"value": "0"
+			},
+			{
+				"text": "furieux",
+				"value": "1"
+			},
+			{
+				"text": "en colère",
+				"value": "2"
+			},
+			{
+				"text": "irrités",
+				"value": "3"
+			},
+			{
+				"text": "dépités",
+				"value": "4"
+			},
+			{
+				"text": "calmes",
+				"value": "5"
+			},
+			{
+				"text": "contents",
+				"value": "6"
+			},
+			{
+				"text": "heureux",
+				"value": "7"
+			},
+			{
+				"text": "délirants de joie",
+				"value": "8"
+			},
+			{
+				"text": "sur un nuage",
+				"value": "9"
+			},
+			{
+				"text": "au septième ciel",
+				"value": "10"
+			},
+			{
+				"text": "en admiration devant vous",
+				"value": "11"
 			}
 		],
 		"specialties": [
 			{
-				"short": "Un",
-				"type": "Unpredictable",
-				"value": "Imprévisible"
+				"type": "None",
+				"value": "Aucune"
 			},
 			{
-				"short": "Po",
-				"type": "Powerful",
-				"value": "Costaud"
-			},
-			{
-				"short": "Qu",
-				"type": "Quick",
-				"value": "Rapide"
-			},
-			{
-				"short": "Te",
 				"type": "Technical",
 				"value": "Technique"
 			},
 			{
-				"short": "He",
+				"type": "Quick",
+				"value": "Rapide"
+			},
+			{
+				"type": "Powerful",
+				"value": "Costaud"
+			},
+			{
+				"type": "Unpredictable",
+				"value": "Imprévisible"
+			},
+			{
 				"type": "Head",
 				"value": "Joueur de tête"
 			},
 			{
-				"short": "Re",
 				"type": "Regainer",
 				"value": "Guérison accélérée"
 			}
 		],
 		"aggressiveness": [
 			{
-				"text": "instable",
-				"value": "5"
-			},
-			{
-				"text": "impulsif",
-				"value": "4"
-			},
-			{
-				"text": "caractériel",
-				"value": "3"
-			},
-			{
-				"text": "équilibré",
-				"value": "2"
+				"text": "tranquille",
+				"value": "0"
 			},
 			{
 				"text": "calme",
 				"value": "1"
 			},
 			{
-				"text": "tranquille",
-				"value": "0"
+				"text": "équilibré",
+				"value": "2"
+			},
+			{
+				"text": "caractériel",
+				"value": "3"
+			},
+			{
+				"text": "impulsif",
+				"value": "4"
+			},
+			{
+				"text": "instable",
+				"value": "5"
 			}
 		],
-		"desc": "Français",
-		"name": "fr"
+		"id": "5",
+		"training": [
+			{
+				"type": "Gen",
+				"value": "Général (forme)"
+			},
+			{
+				"type": "Sta",
+				"value": "Endurance"
+			},
+			{
+				"type": "SP",
+				"value": "Coup franc"
+			},
+			{
+				"type": "Def",
+				"value": "Défense"
+			},
+			{
+				"type": "Sco",
+				"value": "Buteur"
+			},
+			{
+				"type": "Cross",
+				"value": "Ailier"
+			},
+			{
+				"type": "Shoot",
+				"value": "Tirs"
+			},
+			{
+				"type": "Pass",
+				"value": "Passe"
+			},
+			{
+				"type": "PM",
+				"value": "Construction"
+			},
+			{
+				"type": "GK",
+				"value": "Gardien"
+			},
+			{
+				"type": "ThPass",
+				"value": "Relances"
+			},
+			{
+				"type": "DefPos",
+				"value": "Positions défensives"
+			},
+			{
+				"type": "WingAtt",
+				"value": "Débordement"
+			},
+			{
+				"type": "Indiv",
+				"value": "Individuel"
+			}
+		],
+		"fans_match": [
+			{
+				"text": "On ferait mieux de ne pas y aller !",
+				"value": "0"
+			},
+			{
+				"text": "On n’a pas le niveau",
+				"value": "1"
+			},
+			{
+				"text": "On va perdre",
+				"value": "2"
+			},
+			{
+				"text": "Ils partent favoris",
+				"value": "3"
+			},
+			{
+				"text": "Ils ont un léger avantage",
+				"value": "4"
+			},
+			{
+				"text": "Ça s’annonce serré",
+				"value": "5"
+			},
+			{
+				"text": "On a un léger avantage",
+				"value": "6"
+			},
+			{
+				"text": "On part favori",
+				"value": "7"
+			},
+			{
+				"text": "On va gagner",
+				"value": "8"
+			},
+			{
+				"text": "Ça va être du gâteau !",
+				"value": "9"
+			},
+			{
+				"text": "On va les écraser !",
+				"value": "10"
+			}
+		],
+		"name": "fr",
+		"spirit": [
+			{
+				"text": "la guerre froide",
+				"value": "0"
+			},
+			{
+				"text": "d'humeur massacrante",
+				"value": "1"
+			},
+			{
+				"text": "furieux",
+				"value": "2"
+			},
+			{
+				"text": "irrité",
+				"value": "3"
+			},
+			{
+				"text": "passif",
+				"value": "4"
+			},
+			{
+				"text": "calme",
+				"value": "5"
+			},
+			{
+				"text": "content",
+				"value": "6"
+			},
+			{
+				"text": "heureux",
+				"value": "7"
+			},
+			{
+				"text": "délirant de joie",
+				"value": "8"
+			},
+			{
+				"text": "sur un nuage",
+				"value": "9"
+			},
+			{
+				"text": "le paradis sur Terre !",
+				"value": "10"
+			}
+		],
+		"desc": "Français"
 	}
 }
