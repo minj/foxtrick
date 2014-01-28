@@ -212,6 +212,9 @@ div.playerDiv .sectorShirt.ft-smallFaceCard img[src^="/Img/Avatar/hair/"] {
 	display: inline-block;
 	background-color: #ffcc00;
 }
+.isYouthMatch .ft-indicator{
+	background-color: #cccccc;
+}
 /* stamina */
 div.playerDiv div.sectorShirt + div > div {
 	width: 4px !important;
