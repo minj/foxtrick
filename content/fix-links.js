@@ -45,6 +45,8 @@ Foxtrick.modules.FixLinks = {
 		return teamId;
 	},
 	parseMatchPage: function(doc) {
+		if (Foxtrick.Pages.Match.isPrematch(doc) || Foxtrick.Pages.Match.inProgress(doc))
+			return;
 		if (!Foxtrick.Pages.Match.hasNewRatings(doc))
 			return;
 
