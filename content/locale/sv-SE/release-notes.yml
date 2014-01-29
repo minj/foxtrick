@@ -10,12 +10,16 @@ sv-SE:
       opera: |
         <p>This is the last major release that officially supports Opera 12 or below. Existing Foxtrick versions may stop functioning without further notice.</p>
         <p>Please consider switching to <linkOperaNext>Opera Next</linkOperaNext> or another supported browser of your choice.</p>
+      safari: Support för Safari version 5.x kommer snart att upphöra.
       twitter: "Du kan följa <linkTwitter>Foxtrick på Twitter</linkTwitter> för att få senaste nytt, uppdateringar och meddelanden."
       crowdin: "<header>En hel massa översättningsuppdateringar av användare via översättningsverktyget på <linkCrowdin>crowdin.net</linkCrowdin>. Du kan också hjälpa till!</header>"
       new: "<header>Nya moduler</header>"
       hy_skills: "<module>YouthSkills</module>: Förbättrar sidan för juniorspelare med information från  hattrick youthclub. Endast för HY -användare."
       ratings_tweaks: "<module>MatchRatingsTweaks</module>: tweaks ratings on the match report page. Displays numeric ratings and follows their changes when browsing the timeline just like in <module>MatchSimulator</module>. Calculates real scoring/defending/possession probabilities according to formulas establish in the unwritten manual: 15766691.221, 15766691.242"
+      match_weather: "<module>MatchWeather</module> visar vädret på arenan för idag och imorgon på matchsidan."
       other: "<header>Andra ändringar</header>"
+      ht_changes: Foxtrick uppdaterades för att stödja de senaste förändringarna i Hattrick angående matchrapporter för juniorer, enkelt tema samt gränssnittet för matchorder.
+      locale_support: "Updated locale support: Euro currency in Latvia, new Spanish dialect names, corrected time and date formats etc."
       simulator_prob: "<module>MatchSimulator</module> was also enhanced with real scoring/defending/possession probabilities from the new <module>MatchRatingsTweaks</module> module."
       staff_marker: "<module>StaffMarker</module> har gjorts om. Nya alternativ för supportrar, supportade lag och länders förbundskaptener har lagts till. Vänligen ange inställningar efter dina behov."
       psico_update: "En möjlighet att visa <module>PsicoTSI</module> -prognosen till vänster har återinförts."

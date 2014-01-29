@@ -10,26 +10,39 @@ fr:
       opera: |
         <p>Cette version est la dernière qui sera supportée officiellement par Opera 12 et version antérieure. Les prochaines versions de FoxTrick peuvent cesser de fonctionner sans préavis.</p>
         <p>S'il vous plaît envisager de passer à <linkOperaNext>Opera Next</linkOperaNext> ou un autre navigateur compatible de votre choix.</p>
+      safari: La prise en charge de Safari version 5.x sera bientôt abandonnée.
       twitter: "Vous pouvez suivre <linkTwitter>Foxtrick sur Twitter</linkTwitter>pour recevoir les dernières nouvelles, mises à jour et annonces."
       crowdin: "<header>Mise à jour des traductions de la part de nos fidèles utilisateurs via <linkCrowdin>crowdin tool</linkCrowdin>. Vous pouvez aussi nous donner un coup de main!</header>"
       new: "<header>Nouveaux modules</header>"
       hy_skills: "<module>YouthSkills</module>: Améliore la page des jeunes avec les informations de hattrick youthclub. Uniquement pour les utilisateurs de HY."
       ratings_tweaks: |-
         <module>MatchRatingsTweaks</module>: Réglages des notes détaillées du rapport de match. Afficher les valeurs numériques et suivre leur évolution en passant en revue la chronologie dans l'onglet Notes détaillées.<module>MatchSimulator</module>. Calculer les probabilités réelles attaque/défense/possession selon des formules établies dans le sujet "unwritten manual" sur le forum "Global (English)": 15766691.221, 15766691.242
+      match_weather: "<module>MatchWeather</module> indique la météo du jour et du lendemain dans le stade sur la page de match."
       other: "<header>Autres changements</header>"
+      ht_changes: "FoxTrick a été mis à jour pour prendre en charge les récentes modifications d'Hattrick concernant les rapports de match des jeunes, la version simplifiée et l'interface d'ordre de match."
+      locale_support: "Mise à jour de la prise en charge locale : Euro en Lettonie, nouveaux dialecte espagnol, correction de format de date et d'heure, etc."
       simulator_prob: "<module>MatchSimulator</module> a également été amélioré avec les probabilités réelles d'attaque/défense/possession du nouveau module <module>MatchRatingsTweaks</module>."
       staff_marker: "<module>StaffMarker</module> a été revu. De nouvelles options pour vos supporters, les équipes supportées et les sélectionneurs nationaux ont été ajoutées. S'il vous plaît définissez vos préférences à votre convenance."
+      custom_marker: "Une interface permettant de personnaliser facilement les couleurs du pseudo d'un manager a été ajoutée dans le pied de page des messages de forum."
+      inline_options: "Ajouts d'options pour sélectionner les tireurs dans <module>MatchOrderInterface</module> et une fonction pour diviser la composition en deux dans <module>MatchLineupTweaks</module>."
+      links_enhancments: "Vous pouvez maintenant facilement désactiver tous les <module>Links</module> puis configurer les liens comme vous le souhaitez."
       psico_update: "Une option pour afficher les prédictions de <module>PsicoTSI</module> dans la barre latérale gauche a été mise en place."
       ticker_update: "<module>TickerColoring</module> et <module>TickerAlert</module> ont été mis à jour avec les nouveaux types de notifications des supporters ajoutés au cours des deux dernières années."
       ticker_chall: "Il n'est plus possible de distinguer les défis amicaux des autres messages de MyHT pour les supporters HT dans <module>TickerColoring</module> . Par conséquent, cette notification a été renommée."
+      htms_points: "<module>HTMSPoints</module>  a été mis à jour pour utiliser les nouvelles formules."
       ff_button: "L'icône dans la barre d'outils de Firefox va maintenant être plus réactif et reflétera mieux l'état de FoxTrick."
       ff_disable: "Désactiver FoxTrick dans Firefox va maintenant fermer l'onglet des préférences de FoxTrick (si ouvert) et recharger tous les onglets d'Hattrick pour éliminer toutes les modifications apportées par FoxTrick."
       bugs: "<header>Correctifs</header>"
       android: |
         <p>Des correctifs majeures ont été réalisés sur le noyau de FoxTrick afin de s'adapter à Firefox pour Android. Du coup, FoxTrick se comporte nettement mieux sur les appareils mobiles.</p>
         <p>Modules concernés: <module>MatchReportFormat</module>, <module>Ratings</module>, <module>MatchSimulator</module>, <module>HTMSPrediction</module> <em>et autres</em>.</p>
+      ff_cache: "Correction d'un souci dans Firefox qui empêchait Foxtrick  de se mettre à jour dans certains cas."
       custom_links: 'La fonctionnalité "Liens externes" a été revue et corrigée de tous les problèmes connus. Vous pouvez maintenant ajouter des liens personnalisés sur la page de rapport de match aussi.'
+      chpp_update: "<module>SupportersList</module> et <module>MatchIncome</module> ne s'affichaient plus correctement suite à une modification du CHPP. Ceci est maintenant corrigé."
+      player_xp: "<module>PlayerStatsExperience</module> détecte maintenant  correctement les matchs forfait dans tous les cas."
+      stamina_data_bug: "Les données d'endurance recueillies dans <module>MatchLineupTweaks</module> ne sont plus remises à zéro lors de l'ouverture d'anciens rapports de matchs dans Firefox."
       native_names: "Les pays sélectionnés ne changeront plus quand vous retournerez sur le formulaire de recherche de transfert avec le nom original des pays activé dans <module>CountryList</module>."
+      thread_author: "<module>HTThreadMarker</module> et <module>ForumAlterHeaderLine</module> détectent maintenant correctement l'auteur d'un fil de forum."
       player_filters: "Il est maintenant possible d'utiliser <module>PlayerFilters</module> dans plusieurs onglets en même temps dans Firefox."
       history_stats: "<module>HistoryStats</module> est maintenant utilisable avec plusieurs équipes en même temps dans Firefox."
     0.12.2.1:

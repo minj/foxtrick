@@ -7,7 +7,15 @@ hr:
       note_0: "Ovo je beta inačica buduće nove verzije. Pomozite na prevoditi ovu verziju sa super lakim prevođenjem na <linkCrowdin>crowdin.net</linkCrowdin>."
     0.13.0:
       important: "<header>Važne obavijesti</header>"
+      opera: |
+        <p>Ovo je zadnja verzija koja podržava Operu 12 i niže verzije. Postojeće Foxtrick verzije mogu prestati funkcionirati bez prethodne obavijesti.</p>
+        <p>Razmislite o prijelazu na <linkOperaNext>Opera Next</linkOperaNext> ili neki drugi podržani preglednik po Vašem izboru.</p>
+      safari: Safari verzija 5.x će uskoro biti onemogućena.
+      twitter: "Možete pratiti <linkTwitter>Foxtrick na Twitteru</linkTwitter> kako biste dobili najnovije vijesti, ažuriranja i objave."
       crowdin: "<header>Mnogo prevoditeljskih nadogradnji od naših fantastičnih korisnika koristeći <linkCrowdin>crowdin alat</linkCrowdin>. I Vi možete pomoći!</header>"
+      new: "<header>Novi moduli</header>"
+      hy_skills: "<module>Juniorske vještine</module>: Unaprijedite juniorske igračke stranice s podacima od hattrick youthcluba. Samo za HY korisnike."
+      other: "<header>Druge promjene</header>"
     0.12.2:
       note_0: "<header>Mnogo prevoditeljskih nadogradnji od naših fantastičnih korisnika koristeći <linkCrowdin>crowdin alat</linkCrowdin>. I Vi možete pomoći!</header>"
       note_1: "<module>PlayerStatsExperience</module>: računanje iskustva sada predviđa kako je potrebno 28.57 bodova za jednu razinu (see 15766691.780)."

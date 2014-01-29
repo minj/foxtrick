@@ -6,9 +6,19 @@ nl:
     beta:
       note_0: "Dit is een beta versie van de volgende release. Help alsjeblieft met vertalen van deze versie op de zeer gebruiksvriendelijke crowd-vertaal pagina <linkCrowdin>crowdin.net</linkCrowdin>. "
     0.13.0:
+      opera: "<p>Dit is de laatste grote release die officieel Opera 12 of lager ondersteunt. Bestaande Foxtrick versies kunnen hierdoor wellicht niet meer werken zonder dat dit wordt aangegeven.</p> <p>Overweeg om over te schakelen naar <linkOperaNext>Volgende Opera</linkOperaNext> of een andere ondersteunde browser te kiezen.</p>"
+      safari: De ondersteuning voor Safari versie 5.x zal binnenkort worden stopgezet.
+      twitter: "Je kan <linkTwitter> Foxtrick volgen op Twitter </linkTwitter> om de laatste update, nieuwtjes en berichten te ontvangen."
       crowdin: "<header>Heel veel vertalingsupdates van onze geweldige gebruikers zijn gemaakt met behulp van de <linkCrowdin>crowdin tool</linkCrowdin>. Jij kan ons ook helpen!</header>"
+      new: "<header>Nieuwe modules</header>"
+      other: "<header>Andere veranderingen</header>"
+    0.12.2.1:
+      note_3: Het probleem dat vreemde symbolen in plaats van valuta tekens veroorzaakte in Foxtrick, is opgelost
     0.12.2:
       note_0: "<header>Heel veel vertalingsupdates van onze geweldige gebruikers zijn gemaakt met behulp van de <linkCrowdin>crowdin tool</linkCrowdin>. Jij kan ons ook helpen!</header>"
+      note_1: "<module>PlayerStatsExperience</module>: Bij de ervarings berekening wordt ervan uitgegaan dat er 28,57 punten per niveau zijn (Zie 15766691.780)."
+      note_2: "Nieuw: De module <module>PsicoTSI</module> is in Foxtrick opgenomen."
+      note_3: "<module>ShowLineupSet</module>: optie toegevoegd om je eigen team te laten opvallen in de ranglijst."
       note_11: "<header>Bugfixes</header>"
     0.12.1.1:
       note_0: Vertalingsupdates.
@@ -54,6 +64,7 @@ nl:
       note_10: "<module>MovePlayerStatement</module>: Mogelijkheid toegevoegd om de gehele spelers' status te verwijderen."
       note_11: "<module>YouthTwins</module>: Handmatig geactiveerde wijzigingen op de HYC-website worden nu automatisch doorgegeven op de jeugdspelers pagina."
       note_12: "<header>Bugfixes</header>"
+      note_18: BackgroundFixed module is verwijderd.
       note_19: "<header>Kopieer modules</header>"
       note_20: "<module>CopyRatings</module>:Toernooiwedstrijd ID ondersteuning."
       note_23: Algemene HTML copy/paste foutjes opgelost.

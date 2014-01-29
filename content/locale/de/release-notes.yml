@@ -10,6 +10,7 @@ de:
       opera: |
         <p>Das ist die letzte größere Veröffentlichung mit offizieller Opera 12 Unterstürzung. Bislang veröffentlichte Foxtrick Versionen können unter Umständen plötzlich nicht mehr functionieren.</p>
         <p>Bitte zieh in Erwägung <linkOperaNext>Opera Next</linkOperaNext> oder einen anderen unterstützten Browser deiner Wahl zu verwenden.</p>
+      safari: Safari Version 5.x Unterstützung wird bald eingestellt werden.
       twitter: "Du kannst <linkTwitter>Foxtrick auf Twitter</linkTwitter> folgen um regelmässig Nachrichten zu Updates und weitere Meldungen zu erhalten."
       crowdin: "<header>Eine Menge neue Übersetzungen von unseren geliebten <linkCrowdin>Crowdin</linkCrowdin> Nutzern. Du kannst übrigens auch ganz einfach mithelfen!</header>"
       new: "<header>Neue Module</header>"

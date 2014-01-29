@@ -5,6 +5,7 @@ fi:
       note_0: "Tämä on uuden versiomme beta-versio. Olisitko ystävällinen, ja auttaisit meitä kääntämään versiota todella helpossa palvelussamme <linkCrowdin>crowdin.net</linkCrowdin>. "
     0.13.0:
       crowdin: "<header>Paljon käännöspäivityksiä mahtavilta <linkCrowdin>crowdin-työkalua</linkCrowdin> käyttäviltä käyttäjiltämme. Sinäkin voit auttaa!</header>"
+      other: "<header>Muita muutoksia</header>"
     0.12.2:
       note_0: "<header>Paljon käännöspäivityksiä mahtavilta <linkCrowdin>crowdin-työkalua</linkCrowdin> käyttäviltä käyttäjiltämme. Sinäkin voit auttaa!</header>"
       note_3: "<module>ShowLineupSet</module>: Lisättiin vaihtoehto korostaa oma joukkue sarjataulukoissa."

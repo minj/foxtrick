@@ -22,6 +22,8 @@ ko:
       locale_support: "로컬 지원 업데이트: 라트비아 Euro 통화, 새로운 스페인 방언 이름, 올바른 시간 날짜 형식 등입니다."
       simulator_prob: "<module>MatchSimulator</module>은 새로운 <module>MatchRatingsTweaks</module> 모듈로부터 실제 득점/수비/점유율 확률로 향상되었습니다."
       staff_marker: "<module>StaffMarker</module>을 재구성하였습니다. 서포터들과 지원받는 팀, 국가 대표 팀 감독 옵션을 추가하였습니다. 환경 설정에서 원하는 대로 설정하세요."
+      custom_marker: 사용자 이름 색상을 쉽게 꾸밀 수 있는 인터페이스를 토론장 메시지 바닥글에 추가했습니다.
+      inline_options: "페널티 킥 순서 탭에서 <module>MatchOrderInterface</module>의 강화 기능과 <module>MatchLineupTweaks</module>에 라인업 분할 기능을 인라인 옵션으로 추가했습니다."
       links_enhancments: "이제 모든 <module>Links</module>를 쉽게 비활성화시킬 수 있으며 페이지를 여는 방법을 설정할 수 있습니다."
       psico_update: "왼쪽 사이드 바에서 <module>PsicoTSI</module> 예측을 표시하는 옵션을 다시 이행하였습니다."
       ticker_update: "지난 몇 년 동안 추가된 새로운 서포터 뉴스티커 유형을 추가하기 위해 <module>TickerColoring</module> 모듈과 <module>TickerAlert</module> 모듈을 업데이트하였습니다."
@@ -33,7 +35,9 @@ ko:
       android: |
         <p>Android 용 Firefox를 적응시키기 위해 Foxtrick 코어에 중대한 변화가 있었습니다. 그 결과 Foxtrick은 이제 모바일 디바이스에서 더 나은 성능을 기대할 수 있습니다.</p>
         <p>해당 모듈: <module>MatchReportFormat</module>, <module>Ratings</module>, <module>MatchSimulator</module>, <module>HTMSPrediction</module> <em>등등</em>.</p>
+      ff_cache: Firefox에서 경우에 따라 Foxtrick이 새로운 버전으로 업데이트하는 것을 방해하는 문제를 해결하였습니다.
       custom_links: 외부 링크 기능을 재검토하고 알려진 모든 문제를 해결하였습니다. 이제 경기 보고서 페이지에서도 사용자 지정 링크를 추가할 수 있습니다.
+      chpp_update: "CHPP 변경 이후 <module>SupportersList</module>와 <module>MatchIncome</module>이 잘못된 반응을 보이는 문제를 해결하였습니다."
       player_xp: "<module>PlayerStatsExperience</module>가 이제 모든 경우의 부전승 경기들을 올바르게 감지할 것입니다."
       stamina_data_bug: "Firefox에서 과거 경기들을 열람할 때 <module>MatchLineupTweaks</module>에서 수집한 체력 자료가 재설정되지 않습니다."
       native_names: "<module>CountryList</module>에서 토착 국가 이름으로 활성화된 이적 검색 폼으로 되돌아갈 때 선택한 국가가 더 이상 변경되지 않을 것입니다."
