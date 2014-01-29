@@ -19,36 +19,25 @@ def xml_to_python(el, parent):
 		isArray = True
 		if type(parent[tag]) is not list:
 			parent[tag] = [parent[tag]]
-		parent[tag].append({})
+		dest = {}
+		parent[tag].append(dest)
 	else:
-		parent[tag] = {} #assume unique tag and make a assosiative node
+		parent[tag] = dest = {} #assume unique tag and make an assosiative node
 
 	# parse childs recursively
 	for child in childs:
-		if isArray:
-			areChildsArray = xml_to_python(child, parent[tag][len(parent[tag]) - 1])
-		else:
-			areChildsArray = xml_to_python(child, parent[tag])
+		areChildsArray = xml_to_python(child, dest)
 
 	# add any attributes
 	for key in attrs:
-		if isArray:
-			parent[tag][len(parent[tag]) - 1][key] = el.get(key)
-		else:
-			parent[tag][key] = el.get(key)
+		dest[key] = el.get(key)
 
 	if len(childs) == 0 and len(attrs) == 0:
 		# text-only element
-		if isArray:
-			parent[tag][len(parent[tag]) - 1] = text
-		else:
-			parent[tag] = text
+		dest = text
 	elif text:
 		# add textContent
-		if isArray:
-			parent[tag][len(parent[tag]) - 1]['textContent'] = text
-		else:
-			parent[tag]['textContent'] = text
+		dest['textContent'] = text
 
 	# bypass useless item name elements i.e. League in LeagueList > League
 	# since we don't need them to detect isArray any more
