@@ -18,6 +18,7 @@ Foxtrick.modules['SkinPlugin'] = {
 		var loader = Foxtrick.util.load.filePickerForText(doc,
 		  function(text) {
 			holder.textContent += text + '\n';
+			holder.dispatchEvent(new Event('input'));
 		});
 		cont.appendChild(loader);
 
