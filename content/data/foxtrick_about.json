@@ -204,6 +204,10 @@
 				{
 					"id": "6779565",
 					"name": "LasseSvendsen"
+				},
+				{
+					"id": "1693272",
+					"name": "Max_Schreck"
 				}
 			]
 		},
@@ -566,6 +570,10 @@
 				{
 					"id": "7439277",
 					"name": "white_eagle"
+				},
+				{
+					"id": "5193223",
+					"name": "ironm"
 				}
 			]
 		},
@@ -699,13 +707,14 @@
 		{
 			"language": "Romanian",
 			"translators": [
-			{
-				"id": "552640",
-				"name": "slader"
-			},
-			{
-				"name": "aqualung01"
-			}
+				{
+					"id": "552640",
+					"name": "slader"
+				},
+				{
+					"id": "540775",
+					"name": "aqualung01"
+				}
 			]
 		},
 		{
