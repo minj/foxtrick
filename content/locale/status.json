@@ -69,7 +69,7 @@
 			"name": "Czech",
 			"phrases": "1672",
 			"translated_progress": "88",
-			"translated": "1477",
+			"translated": "1478",
 			"approved": "1209"
 		},
 		{
@@ -213,7 +213,7 @@
 			"name": "Norwegian",
 			"phrases": "1672",
 			"translated_progress": "59",
-			"translated": "987",
+			"translated": "997",
 			"approved": "0"
 		},
 		{
@@ -222,7 +222,7 @@
 			"name": "Polish",
 			"phrases": "1672",
 			"translated_progress": "90",
-			"translated": "1506",
+			"translated": "1513",
 			"approved": "0"
 		},
 		{
@@ -375,7 +375,7 @@
 			"name": "Spanish, Argentina",
 			"phrases": "1672",
 			"translated_progress": "99",
-			"translated": "1656",
+			"translated": "1661",
 			"approved": "0"
 		},
 		{
@@ -384,7 +384,7 @@
 			"name": "Spanish, Costa Rica",
 			"phrases": "1672",
 			"translated_progress": "98",
-			"translated": "1647",
+			"translated": "1654",
 			"approved": "0"
 		},
 		{
@@ -392,8 +392,8 @@
 			"code": "hr",
 			"name": "Croatian",
 			"phrases": "1672",
-			"translated_progress": "97",
-			"translated": "1637",
+			"translated_progress": "100",
+			"translated": "1672",
 			"approved": "1479"
 		},
 		{
@@ -473,8 +473,8 @@
 			"code": "bs",
 			"name": "Bosnian",
 			"phrases": "1672",
-			"translated_progress": "96",
-			"translated": "1620",
+			"translated_progress": "97",
+			"translated": "1625",
 			"approved": "0"
 		}
 	]

@@ -15,12 +15,46 @@ hr:
       crowdin: "<header>Mnogo prevoditeljskih nadogradnji od naših fantastičnih korisnika koristeći <linkCrowdin>crowdin alat</linkCrowdin>. I Vi možete pomoći!</header>"
       new: "<header>Novi moduli</header>"
       hy_skills: "<module>Juniorske vještine</module>: Unaprijedite juniorske igračke stranice s podacima od hattrick youthcluba. Samo za HY korisnike."
+      ratings_tweaks: "<module>MatchRatingsTweaks</module>: popravlja ocjene terena na stranici izvještaja utakmice. Prikazuje brojčane vrijednosti i prati njihove promjene prilikom pregledavanja jednako kao u <module>MatchSimulator</module>. Računa stvarne vrijednosti odnosa napad/obrana/posjed vjerojatnosti prema formulama uspostavljenima u nepisanom priručniku: 15766691.221, 15766691.242"
+      match_weather: "<module>MatchWeather</module> prikazuje vremensku prognozu na stadionu za danas i sutra."
       other: "<header>Druge promjene</header>"
+      ht_changes: Foxtrick je ažuriran kako bi podržavao nedavne promjene u Hattricku vezane za izvještaje juniorskih utakmica, jednostavne teme i promjene sučenja postavljanja taktike.
+      locale_support: "Ažurirana lokalne promjene: uvođenje Eura u Latviji, nova španjolska dijalektna imena, ispravke vremena i datuma."
+      simulator_prob: "<module>MatchSimulator</module> je popravljen sa stvarnim napad/obrana/posjed vjerojatnostima iz novog <module>MatchRatingsTweaks</module> modula."
+      staff_marker: "<module>StaffMarker</module> je ispravljen. Nove opcije za simpatizere, momčadi i izbornike nacionalnih momčadi su dodane. Namjestite ih po vašoj želji."
+      custom_marker: Sučelje za jednostavno dodavanje boja uz imena je dodano na dno forumske poruke.
+      inline_options: "Dodane opcije za izvođače jedanaesteraca u <module>MatchOrderInterface</module> i podijeljene su mogućnosti u <module>MatchLineupTweaks</module>."
+      links_enhancments: "Možete jednostavno isključiti sve <module>Poveznice</module> i sami odrediti način njihova pojavljivanja."
+      psico_update: "Mogućnost prikaza <module>PsicoTSI</module> prognoze na lijevoj strani je ispravljena."
+      ticker_update: "<module>TickerColoring</module> i <module>TickerAlert</module> su ažurirani s novim mogućnostima Supportera koje su dodavane u proteklim godinama."
+      ticker_chall: "Više nije moguće razlikovati prijateljske izazove od ostalih MyHT poruka i Supportera u <module>TickerColoring</module>. Stoga je to promijenjeno."
+      htms_points: "<module>HTMSPoints</module> je ažuriran novim formulama."
+      ff_button: Postavke u Firefoxu će bolje održavati stanje Foxtricka.
+      ff_disable: Gašenje Foxtricka u Firefoxu će sada zatvoriti Foxtrick opcije i ponovno učitati sve Hattrick kartice (ako su otvorene) kako bi se uklonile promjene koje će to uzrokovati.
+      bugs: "<header>Popravljene greške</header>"
+      android: |
+        <p>Velike promjene na Foxtrickovoj jezgri su napravljene kako bi se prilagodile Firefoxu za Android. Kao rezultat, Foxtrick sada puno bolje radi na mobilnim uređajima</p>
+        <p>Moduli na koje je utjecalo: <module>MatchReportFormat</module>, <module>Ratings</module>, <module>MatchSimulator</module>, <module>HTMSPrediction</module> <em>i ostali</em>.</p>
+      ff_cache: Popravljen problem s Firefoxom koji je sprječavao Foxtrick da ispravno ažutira nove verzije u nekim slučajevima.
+      custom_links: Vanjske poveznice su popravljene. Sada možete dodati vlastite poveznice na stranicu izvještaja utakmice.
+      chpp_update: "<module>SupportersList</module> i <module>MatchIncome</module> su prikazivale krive vrijednosti CHPP promjena. To je sada ispravljeno."
+      player_xp: "<module>PlayerStatsExperience</module> će bolje zapažati utakmice bez borbe."
+      stamina_data_bug: "Podaci u izdržljivosti sakupljeni u <module>MatchLineupTweaks</module> se više ne resetiraju prilikom otvaranja starih utakmica u Firefoxu."
+      native_names: "Izabrane države se više mijenjati prilikom promjene unazad na tražilicu transfera ako imate omogućeno imena države u <module>CountryList</module>."
+      thread_author: "<module>HTThreadMarker</module> i <module>ForumAlterHeaderLine</module> će sada ispravno zapažati autora teme na forumu."
+      player_filters: "Sada je moguće koristiti <module>PlayerFilters</module> u više kartica u isto vrijeme u Firefoxu."
+      history_stats: "<module>HistoryStats</module> je sada upotrebljiv s više momčadi u isto vrijeme u Firefoxu."
+    0.12.2.1:
+      note_0: Poveznice više neće nestajati nakon čišćenja Foxtrickove memorije u Firefoxu.
+      note_1: Promjene u Farskom i nekim drugim jezicima koje su uzrokovale pad Foxtricka su sada popravljene.
+      note_2: "<module>MatchIncome</module> će sada prikazivati postotke posjećenosti dok je vaš stadion u izgradnji. Tijekom izgradnje je Foxtricku nemoguće procjeniti je li vrijednost za vaš stadion točna ili ne. Foxtrick će pretpostaviti da jest i stoga će pokazivati krive vrijednosti prilikom pregledavanja starih utakmica prije novog kapaciteta."
+      note_3: Ispravljen problem koji je uzrokovao da Foxtrick prikazuje čudne simbole umjesto valute
     0.12.2:
       note_0: "<header>Mnogo prevoditeljskih nadogradnji od naših fantastičnih korisnika koristeći <linkCrowdin>crowdin alat</linkCrowdin>. I Vi možete pomoći!</header>"
       note_1: "<module>PlayerStatsExperience</module>: računanje iskustva sada predviđa kako je potrebno 28.57 bodova za jednu razinu (see 15766691.780)."
       note_2: "NOVO: the <module>PsicoTSI</module> je implementiran u Foxtrick."
       note_3: "<module>ShowLineupSet</module>: Dodana opcija za isticanje vlastite momčadi u tablici."
+      note_4: "<module>CopyYouth</module>: promjene juniorskih treninga će biti automatski poslane u hattrick youthclub (samo za korisnike HTY)."
       note_5: "NOVO: <module>SupportersList</module>: Pokazuje tko podržava vašu momčad od momčadi koje vi podržavate i obrnuto"
       note_6: "<module>MatchLineupTweaks</module>: Skupite podatke o izdržljivosti vaših igrača svaki put kad posjetite stranicu postave formacije. Ovo će se koristiti za bolju procjenu ocjene u  <module>MatchSimulator</module> i može se pregledati u <module>SkillTable</module>. Igrač mora odigrati čitavih 90 minuta. Utakmice s presing taktikom ili negativnim SE-ovima (za snažne igrače) nisu uključene. Pappagallopoli je zaslužan za formulu procjene ocjena."
       note_7: "NOVO: <module>Fans</module>: Dodaj HT live link uz linkove na buduće utakmice. Prikaži razvoj broja navijača u dodatnoj traci."
@@ -66,6 +100,8 @@ hr:
       note_5: "NOVO: <module>CopyBBAd</module>: Kopira razne oglase u BB kodu (napravio: merfis)."
       note_6: "NOVO: <module>DashboardCalendar</module>: Dodano gumb za izvoz Hattrick tjedna u formatu za iCalendar (trebalo bi biti kompatibilno sa aplikacijama: Google Calendar, Thunderbird + Lightning, MS Outlook, KOrganizer, Evolution, Apple iCal itd..)"
       note_7: "<module>LiveAlert</module>: Dodati raznorazni zvukovi za postignute golove. Korišteni su zvuci iz <linkHTLS>HTLiveSight</linkHTLS> aplikacije. U početku vaši golovi neće biti prepoznati u Re-Live pregledu utakmica."
+      note_8: "<module>CopyYouth</module>: hattrick youthclub korisnici će sada moći automatski slati izvještaje skauta za odbijene igrače na HY stranice"
+      note_9: "<module>CopyYouth</module>: hattrick youthclub korisnici će sada moći automatski slati trening izvještaje na HY stranice čim prvi put pročitaju izvješće"
       note_10: "<module>LineupShortcut</module> sada linkovi vode do nove stranice s postavom."
       note_11: "<module>SkillTable</module> sada prikazuje ikone za trenere i specijalnosti igrača."
       note_12: "AddLeaveConfButton је preimenovan u <module>ForumLeaveButton</module>"
@@ -116,6 +152,7 @@ hr:
       note_34: Ispravljena podrška za Firefox za Android 17+.
       note_35: Firefox 12 je sada minimalna verzija za pokretanje Foxtrick-a.
       note_36: Google Chrome 22 je sada minimalna verzija za pokretanje Foxtrick-a.
+      note_37: "Opera: ispravljen problem koji je omogućio mješanje Foxtrick-a sa ostalim stranicama (poput Hattrick Youthclub). Slike bi se sada trebale učitavati mnogo brže. Neki moduli označeni kao onemogućeni u Operi su sada omogućeni."
       note_38: "<header>Mnogo prevoditeljskih nadogradnji od naših fantastičnih korisnika koristeći <linkCrowdin>crowdin alat</linkCrowdin>. I Vi možete pomoći!</header>"
       note_39: "<header>Stranica postavki je prerađena.</header>"
       note_40: "<strong>I mnogo mnogo više</strong>"
@@ -126,6 +163,7 @@ hr:
       note_3: "<module>PlayerStatsExperience</module>: A fancy new version with much more details and colored feedback if the data is reliable. (Thanks to SeanConnery (7751762) for testing the colors for red-green blind users)"
       note_4: "<module>MatchOrderInterface</module>: Possibility to clone or clone and convert an existing order. Players will not be filled in on purpose."
       note_5: "<module>YouthTwins</module>: Option added to hide the information link about twins (default off)"
+      note_6: "<module>StaffMarker</module>: Koristeći Google kod za preuzimanje hattrick youthclub informacija kako bi se rasteretili HY serveri"
       note_7: "<module>TeamPopupLinks</module>: Some restyling to integrate better with the overall look and feel of hattrick.org"
       note_8: Support for the KeyPlayer page
       note_9: Some improvements for Firefox on Android

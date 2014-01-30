@@ -19,10 +19,15 @@ es-AR:
       locale_support: "Soporte actualizado: moneda de Euro en Letonia, nuevos nombres de dialecto español, formatos etc. tiempo corregido y fecha."
       simulator_prob: "<module>MatchSimulator</module> también fue mejorado con probabilidades reales anotando/defensa/posesión desde el nuevo módulo <module>MatchRatingsTweaks</module>."
       staff_marker: "<module>StaffMarker</module> ha sido reestructurado. Se han añadido nuevas opciones para los fanáticos, los equipos compatibles y entrenadores nacionales. Configure las preferencias a tu gusto."
+      custom_marker: Se ha añadido una interfaz para añadir fácilmente un nombre personalizado por el usuario a los colores al pie de los mensajes del foro.
       psico_update: "Se reimplementó una opción para mostrar la predicción de  <module>PsicoTSI</module>en la barra de la izquierda."
       ff_disable: Deshabilitar Foxtrick en Firefox ahora cierra las preferencias de Foxtrick (si están abiertas) y recarga todas las pestañas de Hattrick para quitar cualquier modificación hecha por Foxtrick.
       bugs: "<header>Corrección de errores</header>"
       custom_links: La funcionalidad de enlaces externos ha sido revisada y todos las errores conocidos fueron arreglados. Ahora también se puede añadir enlaces personalizados en la página de informe de partido.
+      chpp_update: "<module>SupportersList</module> y <module>MathcIncome</module> muestran mal comportamiento después de cambios CHPP. Esto ahora esta arreglado."
+      player_xp: "<module>PlayerStatsExperience</module> ahora detectará correctamente los partidos con abandono en todos los casos."
+      stamina_data_bug: "Los datos de condicion obtenidos en <module>MatchLineupTweaks</module> ya no se reinician por abrir viejos partidos en Firefox."
+      thread_author: "<module>HTThreadMarker</module> y <module>ForumAlterHeaderLine</module> ahora detectarán correctamente el autor de un hilo del foro."
       player_filters: "Ahora es posible utilizar <module>PlayerFilters</module> en varias pestañas al mismo tiempo en Firefox."
       history_stats: "<module>HistoryStats</module> ahora es utilizable con varios equipos al mismo tiempo en Firefox."
     0.12.2.1:
