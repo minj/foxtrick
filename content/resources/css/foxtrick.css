@@ -307,4 +307,8 @@ background-color: #eed;
 	display: inline-block !important;
 }
 
+html[data-theme="simple"] tr.darkereven {
+	background-color: #dde1dd;
+}
+
 }
