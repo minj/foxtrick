@@ -303,34 +303,6 @@
 		"title": "TodoHattrick",
 		"img": "http://www.stepi.org/todohattrick/images/thbystepi3.ico"
 	},
-	"francestats": {
-		"leaguelink": {
-			"url": "http://www.francestats.fr/show_league.php?league=[leagueid]",
-			"filters": [
-				"countryid"
-			]
-		},
-		"teamlink": {
-			"url": "http://www.francestats.fr/show_team.php?teamid=[teamid]",
-			"filters": [
-				"countryid"
-			]
-		},
-		"countrylink": {
-			"url": "http://www.francestats.fr/",
-			"filters": [
-				"countryid"
-			]
-		},
-		"countryidranges": [
-			[
-				5,
-				5
-			]
-		],
-		"title": "FranceStats",
-		"img": "http://www.francestats.fr/favicon.ico"
-	},
 	"hattristics": {
 		"leaguelink": {
 			"url": "http://www.hattristics.org/pub/viewLeague.php?leagueName=[leaguename]",
@@ -762,13 +734,6 @@
 		"title": "HT-bet",
 		"img": "http://www.ht-bet.org/favicon.ico"
 	},
-	"HattrickUnited": {
-		"teamlink": {
-			"url": "http://hattrickunited.org/[teamid]"
-		},
-		"img": "http://hattrickunited.org/wp-content/themes/arras/images/favicon.ico",
-		"title": "Hattrick United"
-	},
 	"frenchtracker":  {
 		"img": "http://www.ht-fff.org/favicon.ico",
 		"title": "French U20/NT Tracker",
@@ -794,6 +759,34 @@
 			[
 				5,
 				5
+			]
+		]
+	},
+	"scotlandtracker":  {
+		"img": "http://hattrickscotland.org/favicon.png",
+		"title": "Scotland U20/NT Tracker",
+		"trackernationalteamlink": {
+			"url": "http://hattrickscotland.org/nationalteams.php",
+			"filters": [
+				"countryid"
+			]
+		},
+		"trackerplayerlink": {
+			"url": "http://hattrickscotland.org/players.php?do=view&playerid=[playerid]",
+			"filters": [
+				"nationality"
+			]
+		},
+		"countryidranges": [
+			[
+				26,
+				26
+			]
+		],
+		"nationalityranges": [
+			[
+				26,
+				26
 			]
 		]
 	},
@@ -1184,6 +1177,12 @@
 				"nationality"
 			]
 		},
+		"trackeryouthlink": {
+			"url": "http://ht-tracker.rakoczif.hu/",
+			"filters": [
+				"countryid"
+			]
+		},
 		"countryidranges": [
 			[
 				51,
@@ -1417,6 +1416,54 @@
 		"title": "HTEV Simulator",
 		"img": "http://htev.org/static/htevfavicon.gif"
 	},
+	"hcstats": {
+		"countrylink": {
+			"url": "http://hcstats.com/[countryid]/LeagueRank",
+			"filters": [
+				"countryid"
+			]
+		},
+		"leaguelink": {
+			"url": "http://hcstats.com/[countryid]/Series/[leagueid]",
+			"filters": [
+				"countryid"
+			]
+		},
+		"teamlink": {
+			"url": "http://hcstats.com/[countryid]/Team/[teamid]",
+			"filters": [
+				"countryid"
+			]
+		},
+		"playerlink": {
+			"url": "http://hcstats.com/Player/[playerid]",
+			"filters": [
+				"nationality"
+			]
+		},
+		"countryidranges": [
+			[
+				50,
+				50
+			],
+			[
+				127,
+				148
+			]
+		],
+		"nationalityranges": [
+			[
+				50,
+				50
+			],
+			[
+				127,
+				148
+			]
+		],
+		"title": "Hellenic Hattrick Community Statistics",
+		"img": "http://hcstats.com/favicon.ico"
+	},
 	"hatstatsnet": {
 		"leaguelink": {
 			"url": "http://hatstats.net/[countryid]/standings.php?series=[leagueid]",
@@ -1439,63 +1486,51 @@
 		"countryidranges": [
 			[
 				1,
-				1
-			],
-			[
-				2,
 				2
 			],
 			[
-				8,
-				8
+				6,
+				6
 			],
 			[
-				9,
+				8,
 				9
 			],
 			[
+				11,
+				11
+			],
+			[
 				15,
-				15
-			],
-			[
-				17,
-				17
-			],
-			[
-				21,
-				22
-			],
-			[
-				24,
 				24
 			],
 			[
 				26,
-				27
+				31
 			],
 			[
-				36,
+				33,
 				36
+			],
+			[
+				38,
+				39
+			],
+			[
+				45,
+				45
 			],
 			[
 				47,
 				47
 			],
 			[
+				50,
+				50
+			],
+			[
 				52,
-				52
-			],
-			[
-				54,
-				54
-			],
-			[
-				63,
-				63
-			],
-			[
-				85,
-				85
+				148
 			]
 		],
 		"title": "Hatstats",
