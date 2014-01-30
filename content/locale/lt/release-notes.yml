@@ -27,9 +27,9 @@ lt:
       links_enhancments: "Dabar galite lengvai išjungti visas išorines nuorodas (<module>Links</module> modulis) ir nustatyti, kaip jos atsidaro."
       psico_update: "<module>PsicoTSI</module> spėjimą vėl galima matyti kairiajame meniu."
       ticker_update: "Atnaujinti <module>TickerColoring</module> ir <module>TickerAlert</module> moduliai: atsirado naujos naujienų eilučių kategorijos, pridėtos per kelerius paskutinius metus."
-      ticker_chall: "Draugiškų rungtynių pasiūlymai HT Rėmėjams nebesiskiria nuo kitų MyHT žinučių, todėl ši kategorija pašalinta iš <module>TickerColoring</module> modulio."
+      ticker_chall: "Draugiškų rungtynių pasiūlymai HT-Rėmėjams nebesiskiria nuo kitų MyHT žinučių, todėl ši kategorija pašalinta iš <module>TickerColoring</module> modulio."
       htms_points: "<module>HTMSPoints</module> modulio naudojamos formulės atnaujintos."
-      ff_button: Foxtrick logotipas Firefox naršyklės meniu juostoje veikia sklandžiau ir geriau atspindi Foxtrick būseną.
+      ff_button: Foxtrick mygtukas Firefox naršyklės meniu juostoje veikia sklandžiau ir geriau atspindi Foxtrick būseną.
       ff_disable: Nuo šiol išjungus Foxtrick Firefox naršyklėje užsidarys Foxtrick nustatymai (jei rodomi) ir persikraus visos Hattrick kortelės, kad būtų panaikinti Foxtrick padaryti pakitimai.
       bugs: "<header>Pataisytos klaidos</header>"
       android: |
@@ -37,7 +37,7 @@ lt:
         <p>Pagerinti <module>MatchReportFormat</module>, <module>Ratings</module>, <module>MatchSimulator</module>, <module>HTMSPrediction</module> ir kiti moduliai.</p>
       ff_cache: Sutaisyta klaida, dėl kurios Foxtrick atnaujinimai kartais nesuveikdavo Firefox naršyklėje.
       custom_links: Peržiūrėta išorinių nuorodų funkcija ir sutvarkytos visos žinomos problemos. Individualias nuorodas nuo šiol galima pridėti ir rungtynių ataskaitos puslapyje.
-      chpp_update: "Pasikeitus CHPP sąsajai moduliai <module>SupportersList</module> ir <module>MatchIncome</module> veikė klaidingai. Klaida ištaisyta."
+      chpp_update: "Pasikeitus CHPP sąsajai moduliai <module>SupportersList</module> ir <module>MatchIncome</module> veikė klaidingai. Klaidos ištaisytos."
       player_xp: "Modulis <module>PlayerStatsExperience</module> dabar visais atvejais teisingai aptiks techninius pralaimėjimus."
       stamina_data_bug: "Ištvermės duomenys, surinkti <module>MatchLineupTweaks</module> modulio, daugiau nebebus perrašomi  atvėrus senas rungtynes Firefox naršyklėje."
       native_names: "Sandorių rinkos paieškos formoje pasirinktos šalys nebesikeis be reikalo, kai įjungti vietiniai šalių pavadinimai <module>CountryList</module> modulyje."

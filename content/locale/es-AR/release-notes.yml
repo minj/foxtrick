@@ -20,6 +20,7 @@ es-AR:
       simulator_prob: "<module>MatchSimulator</module> también fue mejorado con probabilidades reales anotando/defensa/posesión desde el nuevo módulo <module>MatchRatingsTweaks</module>."
       staff_marker: "<module>StaffMarker</module> ha sido reestructurado. Se han añadido nuevas opciones para los fanáticos, los equipos compatibles y entrenadores nacionales. Configure las preferencias a tu gusto."
       custom_marker: Se ha añadido una interfaz para añadir fácilmente un nombre personalizado por el usuario a los colores al pie de los mensajes del foro.
+      links_enhancments: "Ahora fácilmente puede deshabilitar todos los <module>Links</module> y configurar la forma en que se abren."
       psico_update: "Se reimplementó una opción para mostrar la predicción de  <module>PsicoTSI</module>en la barra de la izquierda."
       ff_disable: Deshabilitar Foxtrick en Firefox ahora cierra las preferencias de Foxtrick (si están abiertas) y recarga todas las pestañas de Hattrick para quitar cualquier modificación hecha por Foxtrick.
       bugs: "<header>Corrección de errores</header>"

@@ -18,7 +18,7 @@ pl:
         <p>Wszystkie przeglądarki mogą również odtwarzać dźwięki bezpośrednio z Internetu (adresów http). Wystarczy skopiować link do dźwięku (np. http://foxtrick.org/sound.wav) do pola edycji dźwięków. Nie ma ograniczenia rozmiaru.</p>  
         <p>Przeglądarki Mozilla mogą również odtwarzać dźwięki bezpośrednio z dysku (adresów URL plików) bez limitu rozmiaru. Najprostszy sposób uzyskania odpowiedniego formatu: W przeglądarce wciśnij Ctrl + o, przejdź do pliku dźwięku i zaznacz go. W polu adresu na górze jest teraz odpowiedni link do lokalnego pliku (np. file:///c:/sound.wav). Skopiuj i wklej to do pola edycji dźwięków.</p>
     authorize:
-      question: Dlaczego powinienem zezwolić FoxTrickowi, by miał dostęp do danych mojej drużyny?
+      question: Dlaczego powinienem zezwolić FoxTrickowi na dostęp do danych mojej drużyny?
       answer: |
         <p>Chociaż większość danych wymaganych przez FoxTrick można pobrać bezpośrednio z przeglądanej strony, niektóre moduły wymagają pobierania danych z Hattricka do poprawnego działania.</p>
         <p>By pobierać dane z Hattricka, łącznie z danymi zespołu, lig i drużyn narodowych, trzeba uprzednio zazwolić na to FoxTrickowi.</p>
