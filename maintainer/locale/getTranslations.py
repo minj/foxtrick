@@ -8,6 +8,7 @@ from Hattrick import Language
 
 import xml.etree.ElementTree as ET
 import codecs
+import os
 
 CONSUMER_KEY = Credentials.KEY
 CONSUMER_SECRET = Credentials.SECRET
