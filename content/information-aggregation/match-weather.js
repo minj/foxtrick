@@ -61,19 +61,23 @@ Foxtrick.modules['MatchWeather'] = {
 			div.appendChild(pT);
 			Foxtrick.makeFeaturedElement(pT, 'MatchWeather');
 
-			if(FoxtrickPrefs.isModuleOptionEnabled('MatchWeather', 'Irl') && data.irlNow && data.irlTomorrow) {
-				Foxtrick.addClass(pN, 'ft-match-weather');
-				var iN = doc.createElement('p');
-				Foxtrick.addImage(doc, iN, {src: 'Img.axd?res=Weather&img=weather'+data.irlNow+'.png'}, false);	
-				iN.appendChild(doc.createTextNode(' '+Foxtrickl10n.getString('matchWeather.irltoday')));
-				div.insertBefore(iN, pT);
-				Foxtrick.makeFeaturedElement(iN, 'MatchWeather');
-				Foxtrick.addClass(pT, 'ft-match-weather');
-				var iT = doc.createElement('p');
-				Foxtrick.addImage(doc, iT, {src: 'Img.axd?res=Weather&img=weather'+data.irlTomorrow+'.png'}, false);	
-				iT.appendChild(doc.createTextNode(' '+Foxtrickl10n.getString('matchWeather.irltomorrow')));
-				div.appendChild(iT);
-				Foxtrick.makeFeaturedElement(iT, 'MatchWeather');
+			if (FoxtrickPrefs.isModuleOptionEnabled('MatchWeather', 'Irl')) {
+				if (typeof data.irlNow !== 'undefined') {
+					Foxtrick.addClass(pN, 'ft-match-weather');
+					var iN = doc.createElement('p');
+					Foxtrick.addImage(doc, iN, {src: 'Img.axd?res=Weather&img=weather'+data.irlNow+'.png'}, false);
+					iN.appendChild(doc.createTextNode(' '+Foxtrickl10n.getString('matchWeather.irltoday')));
+					div.insertBefore(iN, pT);
+					Foxtrick.makeFeaturedElement(iN, 'MatchWeather');
+				}
+				if (typeof data.irlTomorrow !== 'undefined') {
+					Foxtrick.addClass(pT, 'ft-match-weather');
+					var iT = doc.createElement('p');
+					Foxtrick.addImage(doc, iT, {src: 'Img.axd?res=Weather&img=weather'+data.irlTomorrow+'.png'}, false);
+					iT.appendChild(doc.createTextNode(' '+Foxtrickl10n.getString('matchWeather.irltomorrow')));
+					div.appendChild(iT);
+					Foxtrick.makeFeaturedElement(iT, 'MatchWeather');
+				}
 			}
 	},		
 
