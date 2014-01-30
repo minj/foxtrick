@@ -161,12 +161,13 @@ def parseLanguage(o, code):
 	return out
 
 def run():
+	scriptDir = os.path.dirname(os.path.abspath(__file__))
 	for langId in Language.Codes:
 		code = Language.Codes[langId]
 		langObject = getLanguage(langId)
 		result = parseLanguage(langObject['HattrickData'], code)
 		output = XMLParser.python_to_json({'language': result})
-		of = '../../content/locale/%s/htlang.json' % code
+		of = '%s/../../content/locale/%s/htlang.json' % (scriptDir, code)
 		o = codecs.open(of, mode='w', encoding='utf-8')
 		o.write(output)
 		o.close()
