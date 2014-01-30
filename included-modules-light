@@ -54,6 +54,7 @@ links/links-world.js
 matches/copy-ratings.js
 matches/htms-prediction.js
 matches/match-income.js
+matches/match-ratings-tweaks.js
 matches/ratings.js
 presentation/currency-converter.js
 presentation/fans.js
