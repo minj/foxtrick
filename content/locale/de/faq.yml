@@ -3,7 +3,6 @@ de:
   faq:
     style:
       question: Wie kann ich das Erscheinungsbild von Foxtrick verändern?
-      answer: ""
     sound-format:
       question: Welche Dateiformate sind bei Alarm-Geräuschen erlaubt?
       answer: |
@@ -16,7 +15,6 @@ de:
         </ul>
     sound-location:
       question: Wie ist das Limit bei der Dateigröße und wo befinden sich die Dateien?
-      answer: ""
     authorize:
       question: Warum sollte ich Foxtrick zugriff auf meine Mannschaftsdaten geben?
       answer: |

@@ -3,16 +3,11 @@ lv:
   faq:
     style:
       question: Kā es varu stilizēt FoxTrick?
-      answer: ""
     sound-format:
       question: Kuri failu formāti ir pieļaujami, lietojot brīdinājuma skaņas?
-      answer: ""
     sound-location:
       question: Kāds ir brīdinājuma skaņu lieluma ierobežojums un kur tās var atrast?
-      answer: ""
     authorize:
       question: Kāpēc būtu jāatļauj FoxTrick piekļūt manas komandas datiem?
-      answer: ""
     privacy:
       question: Kā FoxTrick aizsargā manu konfidencialitāti?
-      answer: ""

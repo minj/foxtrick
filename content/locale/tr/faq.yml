@@ -3,7 +3,6 @@ tr:
   faq:
     style:
       question: "FoxTrick'i nasıl biçimlendirebilirim?"
-      answer: ""
     sound-format:
       question: Uyarı sesleri için hangi dosya türleri kullanılabilir ?
       answer: |
@@ -16,7 +15,6 @@ tr:
         </ul>
     sound-location:
       question: Uyarı sesleri için boyut sınırları nedir ve onları nerede bulabilirim?
-      answer: ""
     authorize:
       question: "Takım bilgilerime erişmesi için neden Foxtrick'e izin vermeliyim?"
       answer: |

@@ -3,7 +3,6 @@ fi:
   faq:
     style:
       question: Kuinka voin muotoilla FoxTrickiani?
-      answer: ""
     sound-format:
       question: Mitkä tiedostomuodot kelpaavat hälytysääniin?
       answer: |
@@ -16,7 +15,6 @@ fi:
         </ul>
     sound-location:
       question: Mikä on kokorajoitus hälytysäänille ja minne ne voi asettaa?
-      answer: ""
     authorize:
       question: Miksi minun pitää valtuuttaa FoxTrick päästäkseni joukkueeni tietoihin?
       answer: |

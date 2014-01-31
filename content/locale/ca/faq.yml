@@ -2,17 +2,12 @@
 ca:
   faq:
     style:
-      question: ""
-      answer: ""
+      question: Com podria estilitzar el meu FoxTrick?
     sound-format:
       question: Quins formats de so es permeten per a les alertes de so?
-      answer: ""
     sound-location:
-      question: Quina és la mida límits per les alertes sonores i on es poden trobar?
-      answer: ""
+      question: Quina és la mida límit per les alertes sonores i on es poden trobar?
     authorize:
       question: "Per què he d'autoritzar FoxTrick a accedir a les dades del meu equip?"
-      answer: ""
     privacy:
       question: Com protegirà la meva privacitat FoxTrick?
-      answer: ""

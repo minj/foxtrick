@@ -3,16 +3,11 @@ et:
   faq:
     style:
       question: Kuidas ma saan oma Foxtricki stiliseerida?
-      answer: ""
     sound-format:
       question: Millised failiformaadid on lubatud Foxtricki teavitushelideks?
-      answer: ""
     sound-location:
       question: Milline on teavitushelide suuruse piirang ja kust neid leida võib?
-      answer: ""
     authorize:
       question: Miks ma peaksin Foxtrickil lubama oma meeskonna andmetele ligi pääseda?
-      answer: ""
     privacy:
       question: Kuidas FoxTrick kaitseb minu privaatsust?
-      answer: ""

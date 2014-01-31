@@ -5,8 +5,8 @@ da:
       question: Hvordan kan jeg style FoxTrick?
       answer: "<p>FoxTrick tilbyder et sæt præsentation værktøjer for at man kan tilpasse sine egne design. Disse værktøjer leveres via HTML-ID'er og kategorier, og du kan bruge CSS til at definere din foretrukne designs.</p>  <p>Eksempler på bruger design kan findes <linkCSSExample>her</linkCSSExample> eller <linkCSSExampleGCode>her</linkCSSExampleGCode>, som du kan redigere efter eget ønske. Når du har gemt filen, kan du bruge modulet <module>SkinPlugin</module>, til indlæsning af CSS fil, for at bruger designet er i brug.</p>"
     sound-format:
-      question: 'Hvilke filformater er tilladt for lydmeddelelse? '
-      answer: '<p>Forskellige browsere tillader forskellige filformater. Her er en liste (formater der ikke er på listen kan fungere, hvis de relevante plugins er installeret, eg Quicktime til at afspille mp3 i Firefox):</p> <ul><li>Mozilla: wav, ogg</li> <li>Safari (muligvis med Quicktime): wav, mp3</li> <li>Chrome: ogg, mp3, wav</li> <li>Opera: wav, ogg</li></ul>'
+      question: "Hvilke filformater er tilladt for lydmeddelelse? "
+      answer: "<p>Forskellige browsere tillader forskellige filformater. Her er en liste (formater der ikke er på listen kan fungere, hvis de relevante plugins er installeret, eg Quicktime til at afspille mp3 i Firefox):</p> <ul><li>Mozilla: wav, ogg</li> <li>Safari (muligvis med Quicktime): wav, mp3</li> <li>Chrome: ogg, mp3, wav</li> <li>Opera: wav, ogg</li></ul>"
     sound-location:
       question: Hvad er grænsen for størrelsen af ​​lydmeddelelse og hvor kan de findes?
       answer: |
@@ -18,15 +18,15 @@ da:
     authorize:
       question: Hvorfor bør jeg tillade FoxTrick at få adgang til mit hold data?
       answer: |
-        <p>Selv om de fleste nødvendige data FoxTrick skal bruge, kan hentes direkte fra den side, du kigger på,kræver visse moduler stadig download af data fra Hattrick for at fungere korrekt.</p>
+        <p>Selv om de fleste nødvendige data FoxTrick skal bruge, kan hentes direkte fra den side, du kigger på, kræver visse moduler stadig download af data fra Hattrick for at fungere korrekt.</p>
         
         <p>Hvis du vil hente data fra Hattrick, herunder data af dit hold, ligaer, og landshold, skal du godkende FoxTrick på forhånd</p>
         
-        <p>Du godkender FoxTrick ved at oplyse dit brugernavn og adgangskode på chpp.hattrick.org til gengæld for ​​en bekræftelseskode, som du giver til FoxTrick. FoxTrick vil ikke vide dit brugernavn eller adgangskode i hele processen.</p>
+        <p>Du godkender FoxTrick ved at oplyse dit brugernavn og adgangskode på chpp.hattrick.org til gengæld for ​​en bekræftelseskode, som du giver til FoxTrick. FoxTrick vil ikke kende dit brugernavn eller adgangskode i hele processen.</p>
         
-        <p>Hvis du vil vide mere om godkendelses processen, kan du læse <linkCHPPDesc>CHPP - Sådan fungerer det</linkCHPPDesc> på Hattrick.</p>
+        <p>Hvis du vil vide mere om godkendelsesprocessen, kan du læse <linkCHPPDesc>CHPP - Sådan fungerer det</linkCHPPDesc> på Hattrick.</p>
         
-        <p>Nogle moduler kræver dataadgang til at fungere korrekt:</p>
+        <p>Nogle moduler kræver dataadgang for at kunne fungere korrekt:</p>
         
         <ul>
         <li><module>CrossTable</module></li>
