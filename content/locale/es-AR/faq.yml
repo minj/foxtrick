@@ -9,7 +9,7 @@ es-AR:
         <p>Un archivo de estilo de usuario de ejemplo se puede encontrar <linkCSSExample>aquí</linkCSSExample> o <linkCSSExampleGCode>aquí</linkCSSExampleGCode>, los cuales se pueden modificar para satisfacer tus necesidades. Después de guardar el archivo, puede utilizar el módulo <module>SkinPlugin</module> para cargar el archivo CSS y aplicarlo.</p>
     sound-format:
       question: ¿Qué formatos de archivo están permitidos para los sonidos de alerta?
-      answer: "<p>Diferentes navegadores permiten diferentes formatos de archivo. Aquí está una lista (otros formatos pueden funcionar si se instalan los plugins adecuados, por ejemplo Quicktime para reproducir mp3 en Firefox):</p> <ul><li>Mozilla: wav, ogg</li> <li>Safari (puede necesitar Quicktime): wav, mp3</li> <li>cromo: ogg, mp3, wav</li> <li>Opera: wav, ogg</li></ul>"
+      answer: '<p>Diferentes navegadores permiten diferentes formatos de archivo. Aquí está una lista (otros formatos pueden funcionar si se instalan los plugins adecuados, por ejemplo Quicktime para reproducir mp3 en Firefox):</p> <ul><li>Mozilla: wav, ogg</li> <li>Safari (puede necesitar Quicktime): wav, mp3</li> <li>cromo: ogg, mp3, wav</li> <li>Opera: wav, ogg</li></ul>'
     sound-location:
       question: ¿Cuál es el límite de tamaño para sonidos de alerta y dónde se pueden ser encontrados?
       answer: |
