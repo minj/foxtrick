@@ -75,6 +75,35 @@ Foxtrick.modules['AttVsDef'] = {
 
 		if (Foxtrick.Prefs.getInt('module.' + this.MODULE_NAME + '.value') == 0)
 			bodydiv.parentNode.style.padding = '8px 6px 15px';
+
+		this.updatePossesion(doc);
+	},
+
+	updatePossesion: function(doc) {
+		var nbsp = String.fromCharCode(160);
+		var realProb = Foxtrick.Prefs.getBool('AttVsDef.realProbabilitiesOn');
+		var bars = doc.querySelectorAll('.possesionbar img[width]');
+		var pctgs = doc.querySelectorAll('.rightAnalysisColoumn strong');
+		for (var i = 0; i < bars.length; i++) {
+			var homePctg = pctgs[i * 2];
+			var awayPctg = pctgs[i * 2 + 1];
+			var bar = bars[i], oWidth = bar.getAttribute('data-original-width'), width;
+			if (oWidth === null) {
+				oWidth = bar.width;
+				bar.setAttribute('data-original-width', oWidth);
+			}
+
+			if (realProb)
+				width = Math.floor(Foxtrick.Predict.possession(parseInt(oWidth, 10) / 100) * 100);
+			else
+				width = oWidth;
+
+			bar.width = width;
+			var hWidth = width < 10 ? nbsp + nbsp + width : width;
+			var aWidth = 100 - width;
+			homePctg.textContent = hWidth + '%';
+			awayPctg.textContent = aWidth + '%';
+		}
 	},
 
 	_oldStyleBars: function(doc, ratingstable, bodydiv) {
