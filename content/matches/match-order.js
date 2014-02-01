@@ -808,6 +808,8 @@ Foxtrick.modules['MatchOrderInterface'] = {
 					if (playerid) {
 						var player = Foxtrick.Pages.Players.getPlayerFromListById(playerList,
 						                                                          playerid);
+						if (!player)
+							return;
 						Foxtrick.modules['LoyaltyDisplay']
 							.replacePercentageImage(player, doc.getElementById('details'));
 					}
