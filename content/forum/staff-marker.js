@@ -22,7 +22,8 @@ Foxtrick.modules['StaffMarker'] = {
 		'coach',
 
 		'manager',
-		'own'
+		'own',
+		'forumInterface'
 	],
 	OPTION_EDITS: true,
 	OPTION_EDITS_DISABLED_LIST: [
@@ -35,7 +36,8 @@ Foxtrick.modules['StaffMarker'] = {
 		true,
 
 		true,
-		false
+		false,
+		true
 	],
 
 	CSS: Foxtrick.InternalPath + 'resources/css/staff-marker.css',
@@ -348,138 +350,9 @@ Foxtrick.modules['StaffMarker'] = {
 	run: function(doc) {
 		var module = this;
 		if (Foxtrick.isPage(doc, 'forumViewThread') &&
-			doc.getElementsByClassName('ft-staff-marker-opts').length === 0) {
-			var markUser = Foxtrick.L10n.getString('StaffMarker.userColor');
-			var fgColor = Foxtrick.L10n.getString('StaffMarker.textColor');
-			var bgColor = Foxtrick.L10n.getString('StaffMarker.bgColor');
-			var saveText = Foxtrick.L10n.getString('button.save');
-			var closeText = Foxtrick.L10n.getString('button.close');
-			var resetText = Foxtrick.L10n.getString('button.reset');
-
-			var customMarker = {};
-			var customText = Foxtrick.Prefs.getString('module.StaffMarker.own_text');
-			try {
-				customMarker = JSON.parse(customText);
-			}
-			catch (e) {
-				Foxtrick.log('StaffMarker.own_text JSON parse error: ', customText);
-			}
-			var elems = doc.getElementsByClassName('cfWrapper');
-			for (var i = 0; i < elems.length; i++) {
-				var cfHeader = elems[i].getElementsByClassName('cfHeader')[0];
-				if (!cfHeader)
-					continue;
-				var userId = Foxtrick.util.id.findUserId(cfHeader);
-				var userName = cfHeader.querySelector('a[href*="' + userId + '"][title]').title;
-				if (userName.match(/^(GM|LA|HT|CHPP|Mod)-/i))
-					// custom coloring for staff is not feasible due to CSS cascading issues
-					continue;
-				var cfFooter = elems[i].getElementsByClassName('cfFooter')[0];
-				var markerOptions = Foxtrick.createFeaturedElement(doc, module, 'div');
-				markerOptions.id = 'ft-staff-marker-opts-' + i;
-				Foxtrick.addClass(markerOptions, 'ft-staff-marker-opts hidden');
-				var fgLabel = doc.createElement('label');
-				fgLabel.textContent = fgColor;
-				fgLabel.setAttribute('for', 'ft-staff-marker-fg-' + i);
-				markerOptions.appendChild(fgLabel);
-				markerOptions.appendChild(doc.createTextNode('\u00a0'));
-				var fg = doc.createElement('input');
-				fg.id = 'ft-staff-marker-fg-' + i;
-				fg.setAttribute('size', 7);
-				fg.setAttribute('type', 'color');
-				fg.value = '';
-				var colorSupported = !!fg.value;
-				markerOptions.appendChild(fg);
-				markerOptions.appendChild(doc.createTextNode('\u00a0'));
-				var bgLabel = doc.createElement('label');
-				bgLabel.textContent = bgColor;
-				bgLabel.setAttribute('for', 'ft-staff-marker-bg-' + i);
-				markerOptions.appendChild(bgLabel);
-				markerOptions.appendChild(doc.createTextNode('\u00a0'));
-				var bg = doc.createElement('input');
-				bg.id = 'ft-staff-marker-bg-' + i;
-				bg.setAttribute('size', 7);
-				bg.setAttribute('type', 'color');
-
-				var style = customMarker[userId];
-				var color = style ? style.match(/([^-]|^)color\s*:\s*(#[0-9a-f]{6})/i) : null;
-				fg.value = color ? color[2] : '#ffffff';
-				color = style ? style.match(/background-color\s*:\s*(#[0-9a-f]{6})/i) : null;
-				bg.value = color ? color[1] : '#ffffff';
-
-				markerOptions.appendChild(bg);
-				markerOptions.appendChild(doc.createElement('br'));
-				var btnSave = doc.createElement('button');
-				btnSave.textContent = saveText;
-				Foxtrick.onClick(btnSave, (function(i, userId) {
-					return function(ev) {
-						var doc = ev.target.ownerDocument;
-						Foxtrick.removeClass(doc.getElementById('foxtrick-marker-link-' + i), 'hidden');
-						Foxtrick.addClass(doc.getElementById('ft-staff-marker-opts-' + i), 'hidden');
-						var fg = doc.getElementById('ft-staff-marker-fg-' + i);
-						var bg = doc.getElementById('ft-staff-marker-bg-' + i);
-
-						var styleString = '';
-						if (fg.value !== '#ffffff' && fg.value !== '')
-							styleString = 'color:' + fg.value + ';';
-						if (bg.value !== '#ffffff' && bg.value !== '')
-							styleString += 'background-color:' + bg.value + ';';
-						if (styleString === '')
-							delete customMarker[userId];
-						else
-							customMarker[userId] = styleString;
-						Foxtrick.Prefs.setString('module.StaffMarker.own_text',
-												 JSON.stringify(customMarker));
-						Foxtrick.Prefs.setModuleEnableState('StaffMarker.own', true);
-						ev.preventDefault();
-					};
-				})(i, userId));
-				markerOptions.appendChild(btnSave);
-				markerOptions.appendChild(doc.createTextNode('\u00a0'));
-				var btnClose = doc.createElement('button');
-				btnClose.textContent = closeText;
-				Foxtrick.onClick(btnClose, (function(i) {
-					return function(ev) {
-						var doc = ev.target.ownerDocument;
-						Foxtrick.addClass(doc.getElementById('ft-staff-marker-opts-' + i), 'hidden');
-						Foxtrick.removeClass(doc.getElementById('foxtrick-marker-link-' + i), 'hidden');
-						ev.preventDefault();
-					};
-				})(i));
-				markerOptions.appendChild(btnClose);
-				markerOptions.appendChild(doc.createTextNode('\u00a0'));
-				markerOptions.appendChild(doc.createTextNode('\u00a0'));
-				var btnReset = doc.createElement('button');
-				btnReset.textContent = resetText;
-				Foxtrick.onClick(btnReset, (function(i, userId) {
-					return function(ev) {
-						var doc = ev.target.ownerDocument;
-						var fg = doc.getElementById('ft-staff-marker-fg-' + i);
-						var bg = doc.getElementById('ft-staff-marker-bg-' + i);
-						fg.value = (colorSupported && '#ffffff') || '';
-						bg.value = (colorSupported && '#ffffff') || '';
-						ev.preventDefault();
-					};
-				})(i, userId));
-				markerOptions.appendChild(btnReset);
-				cfFooter.appendChild(markerOptions);
-
-				var markerLink = Foxtrick.createFeaturedElement(doc, module, 'a')
-				markerLink.id = 'foxtrick-marker-link-' + i;
-				markerLink.className = 'foxtrick-marker-link';
-				markerLink.textContent = markerLink.title = markUser;
-				markerLink.href = 'javascript:void(0);';
-				Foxtrick.onClick(markerLink, (function(i) {
-					return function(ev) {
-						var link = ev.target, doc = link.ownerDocument;
-						Foxtrick.addClass(link, 'hidden');
-						Foxtrick.removeClass(doc.getElementById('ft-staff-marker-opts-' + i), 'hidden');
-					};
-				})(i));
-				var secondaryLinks = cfFooter.getElementsByClassName('float_right')[0];
-				secondaryLinks.insertBefore(markerLink, secondaryLinks.firstChild);
-			}
-		}
+			doc.getElementsByClassName('ft-staff-marker-opts').length === 0 &&
+			Foxtrick.Prefs.isModuleOptionEnabled('StaffMarker', 'forumInterface'))
+			this.addForumInterface(doc);
 
 		Foxtrick.sessionGet('staff-marker-data.' + Foxtrick.modules['Core'].getSelfTeamInfo().teamId,
 		  function(data) {
@@ -651,5 +524,138 @@ Foxtrick.modules['StaffMarker'] = {
 				}
 			});
 		});
+	},
+	addForumInterface: function(doc) {
+		var module = this;
+		var markUser = Foxtrick.L10n.getString('StaffMarker.userColor');
+		var fgColor = Foxtrick.L10n.getString('StaffMarker.textColor');
+		var bgColor = Foxtrick.L10n.getString('StaffMarker.bgColor');
+		var saveText = Foxtrick.L10n.getString('button.save');
+		var closeText = Foxtrick.L10n.getString('button.close');
+		var resetText = Foxtrick.L10n.getString('button.reset');
+
+		var customMarker = {};
+		var customText = Foxtrick.Prefs.getString('module.StaffMarker.own_text');
+		try {
+			customMarker = JSON.parse(customText);
+		}
+		catch (e) {
+			Foxtrick.log('StaffMarker.own_text JSON parse error: ', customText);
+		}
+		var elems = doc.getElementsByClassName('cfWrapper');
+		for (var i = 0; i < elems.length; i++) {
+			var cfHeader = elems[i].getElementsByClassName('cfHeader')[0];
+			if (!cfHeader)
+				continue;
+			var userId = Foxtrick.util.id.findUserId(cfHeader);
+			var userName = cfHeader.querySelector('a[href*="' + userId + '"][title]').title;
+			if (userName.match(/^(GM|LA|HT|CHPP|Mod)-/i))
+				// custom coloring for staff is not feasible due to CSS cascading issues
+				continue;
+			var cfFooter = elems[i].getElementsByClassName('cfFooter')[0];
+			var markerOptions = Foxtrick.createFeaturedElement(doc, module, 'div');
+			markerOptions.id = 'ft-staff-marker-opts-' + i;
+			Foxtrick.addClass(markerOptions, 'ft-staff-marker-opts hidden');
+			var fgLabel = doc.createElement('label');
+			fgLabel.textContent = fgColor;
+			fgLabel.setAttribute('for', 'ft-staff-marker-fg-' + i);
+			markerOptions.appendChild(fgLabel);
+			markerOptions.appendChild(doc.createTextNode('\u00a0'));
+			var fg = doc.createElement('input');
+			fg.id = 'ft-staff-marker-fg-' + i;
+			fg.setAttribute('size', 7);
+			fg.setAttribute('type', 'color');
+			fg.value = '';
+			var colorSupported = !!fg.value;
+			markerOptions.appendChild(fg);
+			markerOptions.appendChild(doc.createTextNode('\u00a0'));
+			var bgLabel = doc.createElement('label');
+			bgLabel.textContent = bgColor;
+			bgLabel.setAttribute('for', 'ft-staff-marker-bg-' + i);
+			markerOptions.appendChild(bgLabel);
+			markerOptions.appendChild(doc.createTextNode('\u00a0'));
+			var bg = doc.createElement('input');
+			bg.id = 'ft-staff-marker-bg-' + i;
+			bg.setAttribute('size', 7);
+			bg.setAttribute('type', 'color');
+
+			var style = customMarker[userId];
+			var color = style ? style.match(/([^-]|^)color\s*:\s*(#[0-9a-f]{6})/i) : null;
+			fg.value = color ? color[2] : '#ffffff';
+			color = style ? style.match(/background-color\s*:\s*(#[0-9a-f]{6})/i) : null;
+			bg.value = color ? color[1] : '#ffffff';
+
+			markerOptions.appendChild(bg);
+			markerOptions.appendChild(doc.createElement('br'));
+			var btnSave = doc.createElement('button');
+			btnSave.textContent = saveText;
+			Foxtrick.onClick(btnSave, (function(i, userId) {
+				return function(ev) {
+					var doc = ev.target.ownerDocument;
+					Foxtrick.removeClass(doc.getElementById('foxtrick-marker-link-' + i), 'hidden');
+					Foxtrick.addClass(doc.getElementById('ft-staff-marker-opts-' + i), 'hidden');
+					var fg = doc.getElementById('ft-staff-marker-fg-' + i);
+					var bg = doc.getElementById('ft-staff-marker-bg-' + i);
+
+					var styleString = '';
+					if (fg.value !== '#ffffff' && fg.value !== '')
+						styleString = 'color:' + fg.value + ';';
+					if (bg.value !== '#ffffff' && bg.value !== '')
+						styleString += 'background-color:' + bg.value + ';';
+					if (styleString === '')
+						delete customMarker[userId];
+					else
+						customMarker[userId] = styleString;
+					Foxtrick.Prefs.setString('module.StaffMarker.own_text',
+											 JSON.stringify(customMarker));
+					Foxtrick.Prefs.setModuleEnableState('StaffMarker.own', true);
+					ev.preventDefault();
+				};
+			})(i, userId));
+			markerOptions.appendChild(btnSave);
+			markerOptions.appendChild(doc.createTextNode('\u00a0'));
+			var btnClose = doc.createElement('button');
+			btnClose.textContent = closeText;
+			Foxtrick.onClick(btnClose, (function(i) {
+				return function(ev) {
+					var doc = ev.target.ownerDocument;
+					Foxtrick.addClass(doc.getElementById('ft-staff-marker-opts-' + i), 'hidden');
+					Foxtrick.removeClass(doc.getElementById('foxtrick-marker-link-' + i), 'hidden');
+					ev.preventDefault();
+				};
+			})(i));
+			markerOptions.appendChild(btnClose);
+			markerOptions.appendChild(doc.createTextNode('\u00a0'));
+			markerOptions.appendChild(doc.createTextNode('\u00a0'));
+			var btnReset = doc.createElement('button');
+			btnReset.textContent = resetText;
+			Foxtrick.onClick(btnReset, (function(i, userId) {
+				return function(ev) {
+					var doc = ev.target.ownerDocument;
+					var fg = doc.getElementById('ft-staff-marker-fg-' + i);
+					var bg = doc.getElementById('ft-staff-marker-bg-' + i);
+					fg.value = (colorSupported && '#ffffff') || '';
+					bg.value = (colorSupported && '#ffffff') || '';
+					ev.preventDefault();
+				};
+			})(i, userId));
+			markerOptions.appendChild(btnReset);
+			cfFooter.appendChild(markerOptions);
+
+			var markerLink = Foxtrick.createFeaturedElement(doc, module, 'a')
+			markerLink.id = 'foxtrick-marker-link-' + i;
+			markerLink.className = 'foxtrick-marker-link';
+			markerLink.textContent = markerLink.title = markUser;
+			markerLink.href = 'javascript:void(0);';
+			Foxtrick.onClick(markerLink, (function(i) {
+				return function(ev) {
+					var link = ev.target, doc = link.ownerDocument;
+					Foxtrick.addClass(link, 'hidden');
+					Foxtrick.removeClass(doc.getElementById('ft-staff-marker-opts-' + i), 'hidden');
+				};
+			})(i));
+			var secondaryLinks = cfFooter.getElementsByClassName('float_right')[0];
+			secondaryLinks.insertBefore(markerLink, secondaryLinks.firstChild);
+		}
 	}
 };
