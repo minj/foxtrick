@@ -24,16 +24,6 @@
 #ft-drop-down-menu > li {
 	display: inline-block;
 }
-#ft-drop-down-menu > li.ft-hasSubMenu::after {
-    position: absolute;
-    top: 17px;
-    right: 4px;
-    display: inline-block;
-    border-right: 4px solid transparent;
-    border-top: 4px solid white;
-    border-left: 4px solid transparent;
-    content: '';
-}
 
 ul.ft-drop-down-submenu a {
 	overflow: hidden;
@@ -157,10 +147,6 @@ html[data-theme="standard"][firefox] ul#ft-drop-down-menu > li > a {
 html[data-theme="standard"] ul#ft-drop-down-menu > li > a {
 	padding-right: 18px;
 	padding-left: 12px;
-}
-
-html[data-theme="simple"] #ft-drop-down-menu > li.ft-hasSubMenu::after {
-    top: 10px;
 }
 
 }

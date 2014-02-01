@@ -8,8 +8,12 @@
 Foxtrick.modules['MainMenuDropDown'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES: ['all'],
-	OPTIONS: ['DisregardFirstHeader'],
+	OPTIONS: ['DisregardFirstHeader', 'DropDownArrows'],
 	CSS: [Foxtrick.InternalPath + 'resources/css/main-menu-drop-down.css'],
+	OPTIONS_CSS: [
+		null, 
+		Foxtrick.InternalPath + 'resources/css/main-menu-drop-down-arrow.css',
+	], 
 
 	convertMainMenuToUnorderedList: function(doc) {
 		var menuLinks = doc.querySelectorAll('#menu > a');
@@ -70,7 +74,9 @@ Foxtrick.modules['MainMenuDropDown'] = {
 			}, menu.entries);
 		}, menus);
 
+		//add class to style those that have a ddm
 		Foxtrick.addClass(node, 'ft-hasSubMenu');
+
 		node.appendChild(list);
 	},
 	run: function(doc) {
