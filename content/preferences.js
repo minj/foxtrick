@@ -543,6 +543,7 @@ function initMainTab()
 	// load preferences
 	$('#pref-load-do').click(function() {
 		Foxtrick.Prefs.LoadPrefs($('#pref-load-text').val());
+		$('#pref-load-text').val('');
 		window.location.href = window.location.href + '&imported=true';
 		window.location.reload();
 	});
