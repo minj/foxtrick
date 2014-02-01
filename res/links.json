@@ -152,13 +152,6 @@
 		"title": "Hattrick Hall of Fame (player)",
 		"img": "http://www.databased.at/hattrick/pix/icons/hhof.ico"
 	},
-	"tppc":  {
-			"leaguelink" : { 
-				"url" : "http://www.adrianomoutinho.com/hattrick/index.php?LeagueId=[leagueid]&Language=[lang]"
-			},
-			"title" : "Team Position Probability Calculator",
-			"img" : "http://www.adrianomoutinho.com/templates/ja_olyra_template_j15/favicon.ico"
-	},
 	"htstats_all": {
 		"playedmatchlink": {
 			"url": "http://www.htstats.com/matchinfo-[matchid]&setlang=[lang]"
