@@ -251,11 +251,7 @@ Foxtrick.modules['PlayerFilters'] = {
 					{ name: 'Aggressiveness', property: 'aggressiveness', pages: ['seniorPlayers']},
 					{ name: 'Honesty', property: 'honesty', pages: ['seniorPlayers']},*/
 					{ name: 'Last_stars', property: 'lastRating', pages: ['seniorPlayers',
-						'youthPlayers']},
-					{ name: 'Last_stars_EndOfGame', property: 'lastRatingEndOfGame',
-						pages: ['seniorPlayers']},
-					{ name: 'Last_stars_decline', property: 'lastRatingDecline',
-						pages: ['seniorPlayers']}
+						'youthPlayers']}
 				];
 				var option = doc.createElement('option');
 				option.value = 'attribute-all';
