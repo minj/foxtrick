@@ -17,6 +17,8 @@ Foxtrick.log = function() {
 
 	var i, concated = '', hasError = false;
 	var args = Array.prototype.slice.apply(arguments);
+	if (args.length < 2 && typeof args[0] === 'undefined')
+		return;
 	for (i = 0; i < arguments.length; ++i) {
 		var content = arguments[i];
 		var item = '';
