@@ -89,7 +89,7 @@ Foxtrick.modules['LoyaltyDisplay'] = {
 			var playersNode = doc.getElementsByClassName('playerInfo');
 			Foxtrick.Pages.Players.getPlayerList(doc,
 			  function(playerInfo) {
-				if (!playerInfo)
+				if (!playerInfo || !playerInfo.length)
 					return;
 				for (var p = 0; p < playersNode.length; ++p) {
 					var playerid = Foxtrick.Pages.Players.getPlayerId(playersNode[p]);

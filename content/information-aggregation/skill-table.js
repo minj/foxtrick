@@ -998,7 +998,7 @@ Foxtrick.modules['SkillTable'] = {
 			var args = [['TeamId', TeamId], ['file', 'teamdetails'], ['version', '2.9']];
 			Foxtrick.util.api.retrieve(doc, args, { cache_lifetime: 'session' },
 			  function(xml, errorText) {
-				if (xml) {
+				if (xml && !errorText) {
 					var teams = xml.getElementsByTagName('TeamID');
 					var teamIdx = 0;
 					for (; teamIdx < teams.length; ++teamIdx) {
@@ -1017,10 +1017,10 @@ Foxtrick.modules['SkillTable'] = {
 						}, list);
 						Foxtrick.util.api.batchRetrieve(doc, argsTransfersPlayer,
 						                                { cache_lifetime: 'session' },
-						  function(xmls) {
+						  function(xmls, errors) {
 							var argsPlayerevents = [], i;
 							for (i = 0; i < xmls.length; ++i) {
-								if (xmls[i]) {
+								if (xmls[i] && !errors[i]) {
 									// if there is a transfer, we are finished with this player
 									var hasTransfers =
 										setHomeGrownAndJoinedSinceFromTransfers(xmls[i], list);
@@ -1034,13 +1034,16 @@ Foxtrick.modules['SkillTable'] = {
 										]);
 									}
 								}
+								else
+									Foxtrick.log('No XML in batchRetrieve', argsTransfersPlayer[i],
+												 errors[i]);
 							}
 							// try set joined date from pull date
 							Foxtrick.util.api.batchRetrieve(doc, argsPlayerevents,
 							                                { cache_lifetime: 'session' },
-							  function(xmls) {
+							  function(xmls, errors) {
 								for (i = 0; i < xmls.length; ++i) {
-									if (xmls[i]) {
+									if (xmls[i] && !errors[i]) {
 										var was_pulled = setJoinedSinceFromPullDate(xmls[i], list);
 										if (!was_pulled) {
 											// no pull date = from starting squad.
@@ -1052,6 +1055,9 @@ Foxtrick.modules['SkillTable'] = {
 											}, list);
 										}
 									}
+									else
+										Foxtrick.log('No XML in batchRetrieve', argsPlayerevents[i],
+													 errors[i]);
 								}
 
 								// finished. now display results
@@ -1089,7 +1095,7 @@ Foxtrick.modules['SkillTable'] = {
 					}, current_squad_list);
 					Foxtrick.util.api.batchRetrieve(doc, argsTransfersPlayer,
 					                                { cache_lifetime: 'session' },
-					  function(xmls) {
+					  function(xmls, errors) {
 						// filter, concat with oldies and display
 						current_squad_list = Foxtrick.filter(function(n) {
 							return n.motherClubBonus;

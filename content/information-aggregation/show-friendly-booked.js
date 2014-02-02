@@ -41,9 +41,10 @@ Foxtrick.modules['ShowFriendlyBooked'] = {
 				];
 				Foxtrick.util.api.retrieve(doc, parameters, { cache_lifetime: 'default' },
 				  function(xml, errorText) {
-					if (xml == null) {
+					if (!xml || errorText) {
 						destCell.textContent = Foxtrick.L10n.getString('status.error.abbr');
 						destCell.title = errorText;
+						Foxtrick.log(errorText);
 						return;
 					}
 					// reset textContent and title

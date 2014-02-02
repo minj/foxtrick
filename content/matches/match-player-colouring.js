@@ -130,13 +130,15 @@ Foxtrick.modules.MatchPlayerColouring = {
 			return null;
 		};
 		Foxtrick.util.api.retrieve(doc, homeArgs, { cache_lifetime: 'session' },
-		  function(homeXml, errorText) {
+		  function(homeXml, homeError) {
 			Foxtrick.util.api.retrieve(doc, awayArgs, { cache_lifetime: 'session' },
-			  function(awayXml, errorText) {
+			  function(awayXml, awayError) {
 				// remove the loading note
 				if (loading) loading.parentNode.removeChild(loading);
-				if (!homeXml || !awayXml)
+				if (!homeXml || !awayXml || homeError || awayError) {
+					Foxtrick.log(homeError, awayError);
 					return;
+				}
 
 				Foxtrick.log('Successfully retrieved lineup XML.');
 

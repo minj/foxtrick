@@ -266,7 +266,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		var addSpecialtiesByTeamId = function(teamid, players) {
 			Foxtrick.Pages.Players.getPlayerList(doc,
 			  function(playerInfo) {
-				if (!playerInfo)
+				if (!playerInfo || !playerInfo.length)
 					return;
 
 				Foxtrick.stopListenToChange(doc);
@@ -338,7 +338,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		var addMissingByTeamId = function(teamid, players) {
 			Foxtrick.Pages.Players.getPlayerList(doc,
 			  function(playerInfo) {
-				if (!playerInfo)
+				if (!playerInfo || !playerInfo.length)
 					return;
 
 				Foxtrick.stopListenToChange(doc);
@@ -484,7 +484,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 				return;
 			Foxtrick.util.api.retrieve(doc, avartarArgs, { cache_lifetime: 'session' },
 			  function(xml, errorText) {
-				if (errorText) {
+				if (!xml || errorText) {
 					Foxtrick.log(errorText);
 					return;
 				}
@@ -862,8 +862,8 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		Foxtrick.log('Existing StaminaData', data);
 
 		Foxtrick.util.api.retrieve(doc, detailsArgs, { cache_lifetime: 'session' },
-		  function(xml) {
-			if (!xml)
+		  function(xml, errorText) {
+			if (!xml || errorText)
 				return;
 
 			var team = xml.getElementsByTagName((isHome ? 'Home' : 'Away') + 'Team')[0];

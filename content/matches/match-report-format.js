@@ -546,7 +546,11 @@ var eventText = {
 			};
 
 			Foxtrick.util.api.retrieve(doc, detailsArgs, { cache_lifetime: 'session' },
-			  function(xml) {
+			  function(xml, errorText) {
+				if (!xml || errorText) {
+					Foxtrick.log(errorText);
+					return;
+				}
 				var homeId = xml.getElementsByTagName('HomeTeamID')[0].textContent;
 				var awayId = xml.getElementsByTagName('AwayTeamID')[0].textContent;
 				var homeName = xml.getElementsByTagName('HomeTeamName')[0].textContent;
@@ -567,9 +571,13 @@ var eventText = {
 					['version', '1.8']
 				];
 				Foxtrick.util.api.retrieve(doc, homeLineupArgs, { cache_lifetime: 'session' },
-				  function(homeXml) {
+				  function(homeXml, homeError) {
 					Foxtrick.util.api.retrieve(doc, awayLineupArgs, { cache_lifetime: 'session' },
-					  Foxtrick.preventChange(doc, function(awayXml) {
+					  Foxtrick.preventChange(doc, function(awayXml, awayError) {
+						if (!homeXml || homeError || !awayXml || awayError) {
+							Foxtrick.log(homeError, awayError);
+							return;
+						}
 						if (Foxtrick.Pages.Match.hasNewRatings(doc)) {
 							var parent = doc.querySelector('#divReport>div');
 							while (!Foxtrick.hasClass(parent.firstChild, 'separator'))
@@ -707,7 +715,11 @@ var eventText = {
 										//get the player name from playerdetails instead
 										Foxtrick.util.api.retrieve(doc, playerArgs,
 										                           {cache_lifetime: 'session'},
-										  function(playerXml) {
+										  function(playerXml, errorText) {
+											if (!playerXml || errorText) {
+												Foxtrick.log(errorText);
+												return;
+											}
 
 											var player = playerXml.getElementsByTagName('Player')[0];
 											var firstName = player.getElementsByTagName('FirstName')[0]

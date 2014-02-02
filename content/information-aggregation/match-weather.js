@@ -28,7 +28,8 @@ Foxtrick.modules['MatchWeather'] = {
 		];
 		Foxtrick.util.api.retrieve(doc, parameters, { cache_lifetime: 'session' },
 		  function(xml, errorText) {
-			if (!xml) {
+			if (!xml || errorText) {
+				Foxtrick.log(errorText);
 				return;
 			}
 
@@ -112,7 +113,8 @@ Foxtrick.modules['MatchWeather'] = {
 		];
 		Foxtrick.util.api.retrieve(doc, parameters, { cache_lifetime: 'session' },
 		  function(xml, errorText) {
-			if (!xml) {
+			if (!xml || errorText) {
+				Foxtrick.log(errorText);
 				return;
 			}
 			var data = {};

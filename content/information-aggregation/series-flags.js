@@ -61,7 +61,10 @@ Foxtrick.modules['SeriesFlags'] = {
 					args.push(arg);
 					Foxtrick.util.api.retrieve(doc, args, { cache_lifetime: 'session' },
 					  function(xml, errorText) {
-						if (!xml) return;
+						if (!xml || errorText) {
+							Foxtrick.log(errorText);
+							return;
+						}
 						Foxtrick.stopListenToChange(doc);
 						var data = { // in case LeagueLevelUnit is missing (eg during quali matches)
 							'leagueId': 0,

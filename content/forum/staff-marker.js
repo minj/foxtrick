@@ -270,7 +270,7 @@ Foxtrick.modules['StaffMarker'] = {
 				  ],
 				  { cache_lifetime: 'session' },
 				  function(xml, errorText) {
-					if (errorText) {
+					if (!xml || errorText) {
 						Foxtrick.log(errorText);
 						return;
 					}
@@ -308,15 +308,17 @@ Foxtrick.modules['StaffMarker'] = {
 						]);
 					}
 					Foxtrick.util.api.batchRetrieve(doc, batchArgs, { cache_lifetime: 'session' },
-					  function(xmls, errorText) {
-						if (errorText) {
-							Foxtrick.log(errorText);
-						}
+					  function(xmls, errors) {
 						if (xmls) {
 							var idsS = { type: 'supported', list: [] };
 							var idsM = { type: 'supporter', list: [] };
 							for (var x = 0; x < xmls.length; ++x) {
 								var xml = xmls[x];
+								var errorText = errors[x];
+								if (!xml || errorText) {
+									Foxtrick.log('No XML in batchRetrieve', batchArgs[x], errorText);
+									continue;
+								}
 								var sup = xml.getElementsByTagName('MySupporters')[0];
 								var list = idsM.list;
 								if (!sup) {

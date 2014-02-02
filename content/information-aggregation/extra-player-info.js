@@ -15,7 +15,7 @@ Foxtrick.modules['ExtraPlayerInfo'] = {
 
 		Foxtrick.Pages.Players.getPlayerList(doc,
 		  function(playerList) {
-			if (!playerList) {
+			if (!playerList || !playerList.length) {
 				Foxtrick.log('ExtraPlayerInfo: unable to retrieve player list.');
 			}
 

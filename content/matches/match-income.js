@@ -127,8 +127,10 @@ Foxtrick.modules['MatchIncome'] = {
 				var args = [['file', 'arenadetails'], ['version', '1.5'], ['teamId', teamId]];
 				Foxtrick.util.api.retrieve(doc, args, { cache_lifetime: 'session' },
 				function(xml, errorText) {
-					if(!xml)
+					if(!xml || errorText) {
+						Foxtrick.log(errorText);
 						return;
+					}
 
 					//has the arena been altered?
 					var rebuildDateAvailable = xml.getElementsByTagName('RebuiltDate')[0].getAttribute('Available') == 'True';

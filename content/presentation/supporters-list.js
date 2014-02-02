@@ -107,13 +107,15 @@ Foxtrick.modules['SupportersList'] = {
 					]);
 				}
 				Foxtrick.util.api.batchRetrieve(doc, batchArgs, { cache_lifetime: 'session' },
-				  function(xmls, errorText) {
-					if (errorText) {
-						Foxtrick.log(errorText);
-					}
+				  function(xmls, errors) {
 					if (xmls) {
 						for (var x = 0; x < xmls.length; ++x) {
 							var xml = xmls[x];
+							var errorText = errors[x];
+							if (!xml || errorText) {
+								Foxtrick.log('No XML in batchRetrieve', batchArgs[x], errorText);
+								continue;
+							}
 							var sup = xml.getElementsByTagName(tag)[0];
 							if (typeof sup === 'undefined')
 								continue;

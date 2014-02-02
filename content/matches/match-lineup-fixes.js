@@ -154,7 +154,11 @@ Foxtrick.modules['MatchLineupFixes'] = {
 		// weather events don't have the player name in the timeline
 		var fixWeatherSEs = function() {
 			Foxtrick.util.api.retrieve(doc, detailsArgs, { cache_lifetime: 'session' },
-			  function(xml) {
+			  function(xml, errorText) {
+				if (!xml || errorText) {
+					Foxtrick.log(errorText);
+					return;
+				}
 				var events = xml.getElementsByTagName('Event');
 				Foxtrick.map(function(evt) {
 					var evtMarkup = evt.getElementsByTagName('EventText')[0]
@@ -407,7 +411,12 @@ Foxtrick.modules['MatchLineupFixes'] = {
 			}
 
 			Foxtrick.util.api.retrieve(doc, detailsArgs, { cache_lifetime: 'session' },
-			  function(xml) {
+			  function(xml, errorText) {
+				if (!xml || errorText) {
+					Foxtrick.log(errorText);
+					return;
+				}
+
 				var homeId = xml.getElementsByTagName('HomeTeamID')[0].textContent;
 				var awayId = xml.getElementsByTagName('AwayTeamID')[0].textContent;
 
@@ -427,9 +436,13 @@ Foxtrick.modules['MatchLineupFixes'] = {
 				];
 
 				Foxtrick.util.api.retrieve(doc, homeArgs, { cache_lifetime: 'session' },
-				  function(homeXml) {
+				  function(homeXml, homeError) {
 					Foxtrick.util.api.retrieve(doc, awayArgs, { cache_lifetime: 'session' },
-					  function(awayXml) {
+					  function(awayXml, awayError) {
+						if (!homeXml || homeError || !awayXml || awayError) {
+							Foxtrick.log(homeError, awayError);
+							return;
+						}
 						/**
 						 * add <Substitution> xml (home or away) to appropriate events
 						 * @param	{Array}		subEvents	an array of sub objects

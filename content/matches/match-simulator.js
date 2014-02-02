@@ -702,7 +702,7 @@ Foxtrick.modules.MatchSimulator = {
 
 				Foxtrick.util.api.retrieve(doc, orderMatchArgs, { cache_lifetime: 'session' },
 				  function(orderMatchXml, errorText) {
-					if (errorText) {
+					if (!orderMatchXml || errorText) {
 						if (loadingOtherMatches && loadingOtherMatches.parentNode) {
 							loadingOtherMatches.parentNode.removeChild(loadingOtherMatches);
 							loadingOtherMatches = null;
@@ -754,6 +754,8 @@ Foxtrick.modules.MatchSimulator = {
 							loadingOtherMatches.parentNode.removeChild(loadingOtherMatches);
 							loadingOtherMatches = null;
 						}
+						if (!otherMatchesXml)
+							return;
 
 						var getMatchDetails =
 						  function(selectedMatchid, SourceSystem, homeAway, isNew) {
@@ -795,6 +797,8 @@ Foxtrick.modules.MatchSimulator = {
 									loadingMatch.parentNode.removeChild(loadingMatch);
 									loadingMatch = null;
 								}
+								if (!selectedMatchXML)
+									return;
 								// update match select
 								if (isNew) {
 									var option = doc.createElement('option');

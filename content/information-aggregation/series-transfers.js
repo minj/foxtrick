@@ -100,11 +100,16 @@ Foxtrick.modules['SeriesTransfers'] = {
 			var currencyRate = Foxtrick.util.currency.getRate(doc);
 			//batch retrieve
 			Foxtrick.util.api.batchRetrieve(doc, batchArgs, { cache_lifetime: 'session' },
-				function(xmls) { 
+				function(xmls, errors) {
 					if (xmls) {
 						var hasListedPlayers = false;
 						for (var i = 0; i < xmls.length; ++i) {
 							var xml = xmls[i];
+							var errorText = errors[i];
+							if (!xml || errorText) {
+								Foxtrick.log('No XML in batchRetrieve', batchArgs[i], errorText);
+								continue;
+							}
 							var tid = Number(xml.getElementsByTagName('TeamID')[0].textContent);
 							var teamName = xml.getElementsByTagName('TeamName')[0].textContent;
 							var players = xml.getElementsByTagName('Player');

@@ -28,8 +28,10 @@ Foxtrick.modules['SupporterStatsEnhancements'] = {
 
 		Foxtrick.util.api.retrieve(doc, args, { cache_lifetime: 'session' },
 		  function(xml, errorText) {
-			if (!xml)
+			if (!xml || errorText) {
+				Foxtrick.log(errorText);
 				return;
+			}
 			var playerNodes = xml.getElementsByTagName('Player');
 
 			var table = doc.getElementById('mainBody').getElementsByTagName('table')[0];

@@ -400,14 +400,16 @@ Foxtrick.util.api = {
 			callback(null);
 			return;
 		}
-		var index = 0, responses = [];
+		var index = 0, responses = [], errors = [];
 		var processSingle = function(last_response, errorText) {
 			// collect responses
-			if (index != 0)
+			if (index != 0) {
 				responses.push(last_response);
+				errors.push(errorText);
+			}
 			// return if finished
 			if (index == batchParameters.length)
-				callback(responses, errorText);
+				callback(responses, errors);
 			else
 				// load next file
 				Foxtrick.util.api.retrieve(doc, batchParameters[index++], options, processSingle);

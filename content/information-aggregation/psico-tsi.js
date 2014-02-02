@@ -119,6 +119,8 @@ Foxtrick.modules['PsicoTSI'] = {
 		var currRate = Foxtrick.util.currency.getRate(doc);
 
 		Foxtrick.Pages.Players.getPlayerList(doc, function(playerList) {
+			if (!playerList)
+				return;
 			for (var i = 0, p; i < playerList.length && (p = playerList[i]); ++i) {
 
 				var injured = (p.injuredWeeks && true);

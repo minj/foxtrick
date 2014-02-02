@@ -228,7 +228,7 @@ Foxtrick.modules['MatchOrderInterface'] = {
 				  ],
 				  { cache_lifetime: 'session' },
 				  function(xml, errorText) {
-					if (errorText) {
+					if (!xml || errorText) {
 						/*if (loadingOtherMatches && loadingOtherMatches.parentNode) {
 							loadingOtherMatches.parentNode.removeChild(loadingOtherMatches);
 							loadingOtherMatches = null;
@@ -491,7 +491,7 @@ Foxtrick.modules['MatchOrderInterface'] = {
 			  ],
 			  { cache_lifetime: 'session' },
 			  function(xml, errorText) {
-				if (errorText) {
+				if (!xml || errorText) {
 					/*if (loadingOtherMatches && loadingOtherMatches.parentNode) {
 						loadingOtherMatches.parentNode.removeChild(loadingOtherMatches);
 						loadingOtherMatches = null;

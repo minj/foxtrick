@@ -28,21 +28,23 @@ Foxtrick.util.currency = {
 			var teamargs = [['file', 'teamdetails'], ['version', '2.9'], ['TeamId', ownTeamId]];
 			Foxtrick.util.api.retrieve(doc, teamargs, { cache_lifetime: 'session'},
 			  function(teamXml, errorText) {
-				if (teamXml) {
-					// set the correct currency
-					var teams = teamXml.getElementsByTagName('IsPrimaryClub');
-					var primaryTeamIdx = 0;
-					for (; primaryTeamIdx < teams.length; ++primaryTeamIdx) {
-						if (teams[primaryTeamIdx].textContent == 'True')
-							break;
-					}
-					var leagueId = teamXml.getElementsByTagName('LeagueID')[primaryTeamIdx].textContent;
-					Foxtrick.Prefs.setString('Currency.Rate.' + ownTeamId,
-											Foxtrick.util.currency.findRate(leagueId).toString());
-					Foxtrick.Prefs.setString('Currency.Symbol.' + ownTeamId,
-											Foxtrick.util.currency.findSymbol(leagueId));
-					callback();
+				if (!teamXml || errorText) {
+					Foxtrick.log('[ERROR] Currency detection failed:', errorText);
+					return;
 				}
+				// set the correct currency
+				var teams = teamXml.getElementsByTagName('IsPrimaryClub');
+				var primaryTeamIdx = 0;
+				for (; primaryTeamIdx < teams.length; ++primaryTeamIdx) {
+					if (teams[primaryTeamIdx].textContent == 'True')
+						break;
+				}
+				var leagueId = teamXml.getElementsByTagName('LeagueID')[primaryTeamIdx].textContent;
+				Foxtrick.Prefs.setString('Currency.Rate.' + ownTeamId,
+										Foxtrick.util.currency.findRate(leagueId).toString());
+				Foxtrick.Prefs.setString('Currency.Symbol.' + ownTeamId,
+										Foxtrick.util.currency.findSymbol(leagueId));
+				callback();
 			});
 		}
 		else

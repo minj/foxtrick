@@ -52,14 +52,16 @@ Foxtrick.modules['YouthTwins'] = {
 		//debug: Fakes a reponse where twins will be present
 		//callback: function to be called after HY was queried
 		var getTwinsFromHY = function(teamid, forceupdate, debug, userType, callback) {
-			getYouthPlayerList(teamid, function(playerlist) {
-				if (!playerlist || !playerlist.getElementsByTagName('YouthPlayer')) {
+			getYouthPlayerList(teamid, function(playerlist, errorText) {
+				if (!playerlist || !playerlist.getElementsByTagName('YouthPlayer') || errorText) {
 					Foxtrick.log('[ERROR] YouthTwins: no playerlist');
+					Foxtrick.log(errorText);
 					return;
 				}
-				getYouthAvatars(teamid, function(avatars) {
-					if (!avatars || !avatars.getElementsByTagName('YouthPlayer')) {
+				getYouthAvatars(teamid, function(avatars, errorText) {
+					if (!avatars || !avatars.getElementsByTagName('YouthPlayer') || errorText) {
 						Foxtrick.log('[ERROR] YouthTwins: no avatars');
+						Foxtrick.log(errorText);
 						return;
 					}
 					//urlencode xml files
