@@ -626,7 +626,7 @@ pref("extensions.foxtrick.prefs.module.TeamStats.Status.enabled", true);
 pref("extensions.foxtrick.prefs.module.TeamStats.Attributes.enabled", true);
 pref("extensions.foxtrick.prefs.module.TeamStats.Skills.enabled", true);
 pref("extensions.foxtrick.prefs.module.TeamStats.Match.enabled", true);
-pref("extensions.foxtrick.prefs.module.TabsTest.enabled", true);
+pref("extensions.foxtrick.prefs.module.TabsTest.enabled", false);
 pref("extensions.foxtrick.prefs.module.TickerAlert.challenge.enabled", true);
 pref("extensions.foxtrick.prefs.module.TickerAlert.challenge.sound", "foxtrick://resources/sounds/DingLing.wav");
 pref("extensions.foxtrick.prefs.module.TickerAlert.enabled", true);
