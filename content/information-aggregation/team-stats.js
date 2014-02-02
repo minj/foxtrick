@@ -204,8 +204,9 @@ Foxtrick.modules['TeamStats'] = {
 				return row;
 			};
 
-			if (Foxtrick.Prefs.isModuleOptionEnabled('TeamStats', 'General')) {
-				if (numPlayers) {
+			if (numPlayers) {
+
+				if (Foxtrick.Prefs.isModuleOptionEnabled('TeamStats', 'General')) {
 					var data = doc.createElement('span');
 					var total = doc.createElement('span');
 					total.className = 'nowrap';
@@ -219,203 +220,204 @@ Foxtrick.modules['TeamStats'] = {
 					data.appendChild(doc.createTextNode(' / '));
 					data.appendChild(total);
 					addRow('TeamStats.General', Foxtrick.L10n.getString('TeamStats.Players'), data);
-				}
-				if (totalAge) {
-					var avgAge = Math.round(totalAge / numPlayers);
-					var avgYears = Math.floor(avgAge / 112);
-					var avgDays = avgAge % 112;
-					addRow('TeamStats.General', Foxtrick.L10n.getString('Age'),
-					       avgYears + '.' + avgDays);
-				}
-				if (Foxtrick.Pages.Players.isYouthPlayersPage(doc)) {
-					var youngerThanNineteen = numPlayers - olderThanNineteen;
-					var row = addRow('TeamStats.General', Foxtrick.L10n
-					                 .getString('TeamStats.PlayerNotToOld'), youngerThanNineteen);
-					if (youngerThanNineteen < 9) {
-						row.className = 'red';
+					if (totalAge) {
+						var avgAge = Math.round(totalAge / numPlayers);
+						var avgYears = Math.floor(avgAge / 112);
+						var avgDays = avgAge % 112;
+						addRow('TeamStats.General', Foxtrick.L10n.getString('Age'),
+							   avgYears + '.' + avgDays);
 					}
-					if (olderThanNineteen) {
+					if (Foxtrick.Pages.Players.isYouthPlayersPage(doc)) {
+						var youngerThanNineteen = numPlayers - olderThanNineteen;
 						var row = addRow('TeamStats.General', Foxtrick.L10n
-						                 .getString('TeamStats.PlayerToOld'), olderThanNineteen);
-						row.className = 'red';
-					}
-				}
-			}
-
-			var methods = {
-				sum_avg: function(val, numPlayers) {
-					var avg = val / numPlayers;
-					var data = doc.createElement('span');
-					var total = doc.createElement('span');
-					total.className = 'nowrap';
-					total.textContent = Foxtrick.formatNumber(val, '\u00a0');
-					total.setAttribute('title', Foxtrick.L10n.getString('TeamStats.Total'));
-					var avgSpan = doc.createElement('span');
-					avgSpan.className = 'nowrap';
-					avgSpan.textContent = Foxtrick.formatNumber(avg.toFixed(1), '\u00a0');
-					avgSpan.setAttribute('title', Foxtrick.L10n.getString('TeamStats.Average'));
-					data.appendChild(total);
-					data.appendChild(doc.createTextNode(' / '));
-					data.appendChild(avgSpan);
-					return data;
-				},
-				avergage: function(val, numPlayers) {
-					return Math.round(val / numPlayers);
-				},
-				skill: function(val, numPlayers) {
-					var span = doc.createElement('span');
-					var avg = val / numPlayers;
-					span.textContent = avg.toFixed(1);
-					span.title = Foxtrick.L10n.getFullLevelByValue(avg);
-					return span;
-				},
-				age: function(val, numPlayers) {
-					return val;
-				}
-			};
-			for (var j = 0; j < attributeOptions.length; ++j) {
-				if (!Foxtrick.isOneOfPages(attributeOptions[j].pages, doc))
-					continue;
-				if (!Foxtrick.Prefs.isModuleOptionEnabled('TeamStats',
-				    attributeOptions[j].category.replace(/.+\./, '')))
-					continue;
-				if (Foxtrick.Pages.Players.isPropertyInList(playerList,
-				    attributeOptions[j].property)) {
-					var text = methods[attributeOptions[j].method](attributeOptions[j].value,
-					                                               numPlayers);
-					addRow(attributeOptions[j].category, Foxtrick.L10n
-					       .getString(attributeOptions[j].name), text);
-				}
-			}
-
-			if (Foxtrick.Prefs.isModuleOptionEnabled('TeamStats', 'Speciality')) {
-				if (hasSpecialities) {
-					var specSummary = [], speciality, i;
-					for (speciality in specialities) {
-						specSummary.push({ type: speciality, count: specialities[speciality] });
-						specSummary.sort(function(a, b) { return a.type.localeCompare(b.type) });
-						specSummary.sort(function(a, b) { return b.count - a.count });
-					}
-					for (i in specSummary) {
-						addRow('Speciality', specSummary[i].type, specSummary[i].count,
-						       'speciality-' + Foxtrick.L10n
-						       .getEnglishSpeciality(specSummary[i].type), specSummary[i].type);
-					}
-				}
-			}
-			if (Foxtrick.Prefs.isModuleOptionEnabled('TeamStats', 'Personality')) {
-				if (Foxtrick.Pages.Players.isPropertyInList(playerList, 'aggressiveness')
-					&& Foxtrick.Pages.Players.isPropertyInList(playerList, 'agreeability')
-					&& Foxtrick.Pages.Players.isPropertyInList(playerList, 'honesty')) {
-					var avgAggressiveness = Math.round(totalAggressiveness / numPlayers);
-					var avgAgreeability = Math.round(totalAgreeability / numPlayers);
-					var avgHonesty = Math.round(totalHonesty / numPlayers);
-					addRow('Personality', Foxtrick.L10n.getString('Aggressiveness'),
-					       Foxtrick.L10n.getLevelByTypeAndValue('aggressiveness', avgAggressiveness));
-					addRow('Personality', Foxtrick.L10n.getString('Agreeability'),
-					       Foxtrick.L10n.getLevelByTypeAndValue('agreeability', avgAgreeability));
-					addRow('Personality', Foxtrick.L10n.getString('Honesty'),
-					       Foxtrick.L10n.getLevelByTypeAndValue('honesty', avgHonesty));
-				}
-			}
-			if (Foxtrick.Prefs.isModuleOptionEnabled('TeamStats', 'Status')) {
-				if (transferListed > 0) {
-					var img = doc.createElement('img');
-					img.src = '/Img/Icons/dollar.gif';
-					img.alt = Foxtrick.L10n.getString('TransferListed');
-					img.className = 'transferListed';
-					addRow('Status', img, transferListed, 'transfer-listed',
-					       Foxtrick.L10n.getString('TeamStats.TransferListed'));
-				}
-				if (yellowCards > 0) {
-					var img = doc.createElement('img');
-					img.src = '/Img/Icons/yellow_card.gif';
-					img.alt = Foxtrick.L10n.getString('Yellow_card');
-					img.className = 'cardsOne';
-					addRow('Status', img, yellowCards, 'cards',
-					       Foxtrick.L10n.getString('TeamStats.Cards'));
-				}
-				if (twoYellowCards > 0) {
-					var img = doc.createElement('img');
-					img.src = '/Img/Icons/dual_yellow_card.gif';
-					img.alt = '2 ' + Foxtrick.L10n.getString('Yellow_card');
-					img.className = 'cardsTwo';
-					addRow('Status', img, twoYellowCards, 'cards',
-					       Foxtrick.L10n.getString('TeamStats.Cards'));
-				}
-				if (redCards > 0) {
-					var img = doc.createElement('img');
-					img.src = '/Img/Icons/red_card.gif';
-					img.alt = Foxtrick.L10n.getString('Red_card');
-					img.className = 'cardsOne';
-					addRow('Status', img, redCards, 'cards',
-					       Foxtrick.L10n.getString('TeamStats.Cards'));
-				}
-				if (bruised > 0) {
-					var img = doc.createElement('img');
-					img.src = '/Img/Icons/bruised.gif';
-					img.alt = Foxtrick.L10n.getString('Bruised');
-					img.className = 'injuryBruised';
-					addRow('Status', img, bruised, 'injured',
-					       Foxtrick.L10n.getString('TeamStats.Injured'));
-				}
-				if (injured > 0) {
-					var img = doc.createElement('img');
-					img.src = '/Img/Icons/injured.gif';
-					img.alt = Foxtrick.L10n.getString('Injured');
-					img.className = 'injuryInjured';
-
-					var data = doc.createElement('span');
-					data.textContent = injured;
-					data.appendChild(doc.createTextNode(' ('));
-					var weeks = doc.createElement('strong');
-					weeks.textContent = injuredWeeks;
-					data.appendChild(weeks);
-					data.appendChild(doc.createTextNode(')'));
-
-					addRow('Status', img, data, 'injured',
-					       Foxtrick.L10n.getString('TeamStats.Injured'));
-				}
-			}
-			if (Foxtrick.Prefs.isModuleOptionEnabled('TeamStats', 'Current_league')) {
-				if (Foxtrick.Pages.Players.isPropertyInList(playerList, 'currentLeagueId')
-				|| Foxtrick.Pages.Players.isPropertyInList(playerList, 'countryId')) {
-
-					var leagues = [];
-					for (var i = 0; i < playerList.length; ++i) {
-						var id = playerList[i].currentLeagueId || playerList[i].countryId;
-						if (id !== undefined) {
-							if (leagues[id] === undefined) {
-								leagues[id] = 1;
-							}
-							else {
-								++leagues[id];
-							}
+										 .getString('TeamStats.PlayerNotToOld'), youngerThanNineteen);
+						if (youngerThanNineteen < 9) {
+							row.className = 'red';
+						}
+						if (olderThanNineteen) {
+							var row = addRow('TeamStats.General', Foxtrick.L10n
+											 .getString('TeamStats.PlayerToOld'), olderThanNineteen);
+							row.className = 'red';
 						}
 					}
-					var isLeague = false;
-					var category = 'Nationality';
-					if (Foxtrick.Pages.Players.isPropertyInList(playerList, 'currentLeagueId')) {
-						isLeague = true;
-						category = 'Current_league';
+				}
+
+				var methods = {
+					sum_avg: function(val, numPlayers) {
+						var avg = val / numPlayers;
+						var data = doc.createElement('span');
+						var total = doc.createElement('span');
+						total.className = 'nowrap';
+						total.textContent = Foxtrick.formatNumber(val, '\u00a0');
+						total.setAttribute('title', Foxtrick.L10n.getString('TeamStats.Total'));
+						var avgSpan = doc.createElement('span');
+						avgSpan.className = 'nowrap';
+						avgSpan.textContent = Foxtrick.formatNumber(avg.toFixed(1), '\u00a0');
+						avgSpan.setAttribute('title', Foxtrick.L10n.getString('TeamStats.Average'));
+						data.appendChild(total);
+						data.appendChild(doc.createTextNode(' / '));
+						data.appendChild(avgSpan);
+						return data;
+					},
+					avergage: function(val, numPlayers) {
+						return Math.round(val / numPlayers);
+					},
+					skill: function(val, numPlayers) {
+						var span = doc.createElement('span');
+						var avg = val / numPlayers;
+						span.textContent = avg.toFixed(1);
+						span.title = Foxtrick.L10n.getFullLevelByValue(avg);
+						return span;
+					},
+					age: function(val, numPlayers) {
+						return val;
 					}
-					var leagueSummary = [], i;
-					for (i in leagues) {
-						if (isLeague)
-							var name = Foxtrick.XMLData.League[i].LeagueName;
-						else
-							var name = Foxtrick.XMLData.League[
-								Foxtrick.XMLData.countryToLeague[i]
-							].LeagueName;
-						leagueSummary.push({ name: name, count: leagues[i] });
+				};
+				for (var j = 0; j < attributeOptions.length; ++j) {
+					if (!Foxtrick.isOneOfPages(attributeOptions[j].pages, doc))
+						continue;
+					if (!Foxtrick.Prefs.isModuleOptionEnabled('TeamStats',
+						attributeOptions[j].category.replace(/.+\./, '')))
+						continue;
+					if (Foxtrick.Pages.Players.isPropertyInList(playerList,
+						attributeOptions[j].property)) {
+						var text = methods[attributeOptions[j].method](attributeOptions[j].value,
+																	   numPlayers);
+						addRow(attributeOptions[j].category, Foxtrick.L10n
+							   .getString(attributeOptions[j].name), text);
 					}
-					leagueSummary.sort(function(a, b) { return a.name.localeCompare(b.name) });
-					leagueSummary.sort(function(a, b) { return b.count - a.count });
-					for (var i = 0; i < leagueSummary.length; ++i) {
-						addRow(category, leagueSummary[i].name, leagueSummary[i].count);
+				}
+
+				if (Foxtrick.Prefs.isModuleOptionEnabled('TeamStats', 'Speciality')) {
+					if (hasSpecialities) {
+						var specSummary = [], speciality, i;
+						for (speciality in specialities) {
+							specSummary.push({ type: speciality, count: specialities[speciality] });
+							specSummary.sort(function(a, b) { return a.type.localeCompare(b.type) });
+							specSummary.sort(function(a, b) { return b.count - a.count });
+						}
+						for (i in specSummary) {
+							addRow('Speciality', specSummary[i].type, specSummary[i].count,
+								   'speciality-' + Foxtrick.L10n
+								   .getEnglishSpeciality(specSummary[i].type), specSummary[i].type);
+						}
+					}
+				}
+				if (Foxtrick.Prefs.isModuleOptionEnabled('TeamStats', 'Personality')) {
+					if (Foxtrick.Pages.Players.isPropertyInList(playerList, 'aggressiveness')
+						&& Foxtrick.Pages.Players.isPropertyInList(playerList, 'agreeability')
+						&& Foxtrick.Pages.Players.isPropertyInList(playerList, 'honesty')) {
+						var avgAggressiveness = Math.round(totalAggressiveness / numPlayers);
+						var avgAgreeability = Math.round(totalAgreeability / numPlayers);
+						var avgHonesty = Math.round(totalHonesty / numPlayers);
+						addRow('Personality', Foxtrick.L10n.getString('Aggressiveness'),
+							   Foxtrick.L10n.getLevelByTypeAndValue('aggressiveness', avgAggressiveness));
+						addRow('Personality', Foxtrick.L10n.getString('Agreeability'),
+							   Foxtrick.L10n.getLevelByTypeAndValue('agreeability', avgAgreeability));
+						addRow('Personality', Foxtrick.L10n.getString('Honesty'),
+							   Foxtrick.L10n.getLevelByTypeAndValue('honesty', avgHonesty));
+					}
+				}
+				if (Foxtrick.Prefs.isModuleOptionEnabled('TeamStats', 'Status')) {
+					if (transferListed > 0) {
+						var img = doc.createElement('img');
+						img.src = '/Img/Icons/dollar.gif';
+						img.alt = Foxtrick.L10n.getString('TransferListed');
+						img.className = 'transferListed';
+						addRow('Status', img, transferListed, 'transfer-listed',
+							   Foxtrick.L10n.getString('TeamStats.TransferListed'));
+					}
+					if (yellowCards > 0) {
+						var img = doc.createElement('img');
+						img.src = '/Img/Icons/yellow_card.gif';
+						img.alt = Foxtrick.L10n.getString('Yellow_card');
+						img.className = 'cardsOne';
+						addRow('Status', img, yellowCards, 'cards',
+							   Foxtrick.L10n.getString('TeamStats.Cards'));
+					}
+					if (twoYellowCards > 0) {
+						var img = doc.createElement('img');
+						img.src = '/Img/Icons/dual_yellow_card.gif';
+						img.alt = '2 ' + Foxtrick.L10n.getString('Yellow_card');
+						img.className = 'cardsTwo';
+						addRow('Status', img, twoYellowCards, 'cards',
+							   Foxtrick.L10n.getString('TeamStats.Cards'));
+					}
+					if (redCards > 0) {
+						var img = doc.createElement('img');
+						img.src = '/Img/Icons/red_card.gif';
+						img.alt = Foxtrick.L10n.getString('Red_card');
+						img.className = 'cardsOne';
+						addRow('Status', img, redCards, 'cards',
+							   Foxtrick.L10n.getString('TeamStats.Cards'));
+					}
+					if (bruised > 0) {
+						var img = doc.createElement('img');
+						img.src = '/Img/Icons/bruised.gif';
+						img.alt = Foxtrick.L10n.getString('Bruised');
+						img.className = 'injuryBruised';
+						addRow('Status', img, bruised, 'injured',
+							   Foxtrick.L10n.getString('TeamStats.Injured'));
+					}
+					if (injured > 0) {
+						var img = doc.createElement('img');
+						img.src = '/Img/Icons/injured.gif';
+						img.alt = Foxtrick.L10n.getString('Injured');
+						img.className = 'injuryInjured';
+
+						var data = doc.createElement('span');
+						data.textContent = injured;
+						data.appendChild(doc.createTextNode(' ('));
+						var weeks = doc.createElement('strong');
+						weeks.textContent = injuredWeeks;
+						data.appendChild(weeks);
+						data.appendChild(doc.createTextNode(')'));
+
+						addRow('Status', img, data, 'injured',
+							   Foxtrick.L10n.getString('TeamStats.Injured'));
+					}
+				}
+				if (Foxtrick.Prefs.isModuleOptionEnabled('TeamStats', 'Current_league')) {
+					if (Foxtrick.Pages.Players.isPropertyInList(playerList, 'currentLeagueId')
+					|| Foxtrick.Pages.Players.isPropertyInList(playerList, 'countryId')) {
+
+						var leagues = [];
+						for (var i = 0; i < playerList.length; ++i) {
+							var id = playerList[i].currentLeagueId || playerList[i].countryId;
+							if (id !== undefined) {
+								if (leagues[id] === undefined) {
+									leagues[id] = 1;
+								}
+								else {
+									++leagues[id];
+								}
+							}
+						}
+						var isLeague = false;
+						var category = 'Nationality';
+						if (Foxtrick.Pages.Players.isPropertyInList(playerList, 'currentLeagueId')) {
+							isLeague = true;
+							category = 'Current_league';
+						}
+						var leagueSummary = [], i;
+						for (i in leagues) {
+							if (isLeague)
+								var name = Foxtrick.XMLData.League[i].LeagueName;
+							else
+								var name = Foxtrick.XMLData.League[
+									Foxtrick.XMLData.countryToLeague[i]
+								].LeagueName;
+							leagueSummary.push({ name: name, count: leagues[i] });
+						}
+						leagueSummary.sort(function(a, b) { return a.name.localeCompare(b.name) });
+						leagueSummary.sort(function(a, b) { return b.count - a.count });
+						for (var i = 0; i < leagueSummary.length; ++i) {
+							addRow(category, leagueSummary[i].name, leagueSummary[i].count);
+						}
 					}
 				}
 			}
+
 			var old_table = doc.getElementById('team-stats-table');
 			if (old_table)
 				old_table.parentNode.replaceChild(table, old_table);
