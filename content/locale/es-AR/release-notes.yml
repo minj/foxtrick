@@ -22,8 +22,11 @@ es-AR:
       custom_marker: Se ha añadido una interfaz para añadir fácilmente un nombre personalizado por el usuario a los colores al pie de los mensajes del foro.
       links_enhancments: 'Ahora fácilmente puede deshabilitar todos los <module>Links</module> y configurar la forma en que se abren.'
       psico_update: 'Se reimplementó una opción para mostrar la predicción de  <module>PsicoTSI</module>en la barra de la izquierda.'
+      htms_points: '<module>HTMSPoints</module> fue actualizado para usar las nuevas formulas.'
+      ff_button: El botón de la barra de herramientas de Firefox será ahora más exacto y reflejará mejor el estado de Firefox.
       ff_disable: Deshabilitar Foxtrick en Firefox ahora cierra las preferencias de Foxtrick (si están abiertas) y recarga todas las pestañas de Hattrick para quitar cualquier modificación hecha por Foxtrick.
       bugs: '<header>Corrección de errores</header>'
+      ff_cache: Solucionado un problema en Firefox que impedía a Foxtrick actualizarse, en algunos casos, correctamente a una nueva versión.
       custom_links: La funcionalidad de enlaces externos ha sido revisada y todos las errores conocidos fueron arreglados. Ahora también se puede añadir enlaces personalizados en la página de informe de partido.
       chpp_update: '<module>SupportersList</module> y <module>MathcIncome</module> muestran mal comportamiento después de cambios CHPP. Esto ahora esta arreglado.'
       player_xp: '<module>PlayerStatsExperience</module> ahora detectará correctamente los partidos con abandono en todos los casos.'
@@ -34,6 +37,7 @@ es-AR:
     0.12.2.1:
       note_0: Los enlaces ya no desaparecerán después de borrar el caché de Foxtrick en Firefox.
       note_1: Ahora se tienen en cuenta cambios en Farsi y otros idiomas que pueden haber causado que Foxtrick funcionara incorrectamente.
+      note_2: '<module>MatchIncome</module> mostrará ahora los porcentajes de uso mientras tu estadio esta en construcción. Durante el tiempo de construcción es imposible para Foxtrick conocer si es correcto o no el tamaño del estadio para un juego en particular. Foxtrick asumirá que es correcto y hasta que se actualize su tamaño actual mostrará los porcentajes incorrectos cuando mire un juego ya jugado en tu estadio.'
       note_3: Solucionado el problema que causó que Foxtrick mostrara símbolos raros en lugar de la moneda del usuario
     0.12.2:
       note_0: '<header>Muchas actualizaciones en las traducciones de nuestros usuarios mediante <linkCrowdin> crowdin</linkCrowdin>. Vos también podés ayudarnos!</header>'
