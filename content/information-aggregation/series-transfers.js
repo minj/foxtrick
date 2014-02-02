@@ -90,8 +90,10 @@ Foxtrick.modules['SeriesTransfers'] = {
 		mainBox.appendChild(table);
 
 		//loading note
-		var loading = Foxtrick.util.note.createLoading(doc);
-		mainBox.appendChild(loading);
+		if (Foxtrick.Prefs.getBool('xmlLoad')) {
+			var loading = Foxtrick.util.note.createLoading(doc);
+			mainBox.appendChild(loading);
+		}
 
 		//retrieve currency rate
 		Foxtrick.util.currency.establish(doc, function(){
