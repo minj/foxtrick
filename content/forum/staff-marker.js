@@ -253,6 +253,9 @@ Foxtrick.modules['StaffMarker'] = {
 					return;
 				// no need to parse the file twice, but we need 2 uris :)
 
+				if (!Foxtrick.Prefs.getBool('xmlLoad'))
+					return;
+
 				var TEAMS_PER_PAGE = 200;
 				var teamId = Foxtrick.util.id.getOwnTeamId();
 				var entry = doc.querySelector('#mainBody');
