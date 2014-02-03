@@ -244,7 +244,10 @@ ul.nav li a
 
 ul.nav li:hover
 {
-/*	background: linear-gradient(to bottom, #7abcff 0%,#60abf8 44%,#4096ee 100%);*/
+/*
+background: linear-gradient(top, #7abcff 0%, #60abf8 44%, #4096ee 100%);
+background: linear-gradient(to bottom, #7abcff 0%,#60abf8 44%,#4096ee 100%);
+*/
 }
 
 ul.nav li a:hover
