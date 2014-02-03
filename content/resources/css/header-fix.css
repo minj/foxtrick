@@ -111,5 +111,8 @@ html[data-multiple] #content {
 .ui-widget {
 	z-index:10002 !important;
 }
-
+/* Fix for ongoing matches and rapidID in simple theme*/
+html[data-theme="simple"] .ongoingEvents, html[data-theme="simple"] #ft_rapidid {
+	margin-top: 24px !important;
+}
 }
