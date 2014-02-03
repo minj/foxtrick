@@ -35,7 +35,9 @@ da:
       custom_links: Funktionaliteten af eksterne links er blevet gennemgået og alle kendte problemer er løst. Du kan nu også tilføje brugerdefinerede hyperlinks på kamprapportsiden.
       chpp_update: '<module>SupportersList</module> og <module>MatchIncome</module> fungerede ikke efter hensigten efter CHPP ændringer. Dette er nu rettet.'
       player_xp: '<module>PlayerStatsExperience</module> vil nu registrere walkover kampe korrekt i alle tilfælde.'
+      stamina_data_bug: 'Kondi data indsamlet i <module>MatchLineupTweaks</module> nulstilles ikke længere ved at åbne gamle kampe i Firefox.'
       native_names: 'De valgte lande vil ikke længere ændre navn, når du navigerer tilbage til transfersøgning, med hjemland navne aktiveret i <module>CountryList</module>.'
+      thread_author: '<module>HTThreadMarker</module> og <module>ForumAlterHeaderLine</module> vil nu registrere forfatteren af en forumtråd korrekt.'
       player_filters: 'Det er nu muligt at bruge <module>PlayerFilters</module> i flere faner på samme tid i Firefox.'
       history_stats: '<module>HistoryStats</module> kan nu bruges med flere hold på samme tid i Firefox.'
     0.12.2.1:
