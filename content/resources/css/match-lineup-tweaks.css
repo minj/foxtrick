@@ -18,8 +18,6 @@ html[dir="ltr"] #timelineEventDetails {
 
 	border: solid 2px #79A777;
 	background: #3F7137;
-	-moz-border-radius: 7px;
-	-webkit-border-radius: 7px;
 	border-radius: 7px;
 	padding: 3px;
 	position: absolute;
@@ -59,8 +57,6 @@ html[dir="ltr"] .ft-match-lineup-tweaks-teamname-away {
 	position: absolute;
 	border: solid 2px #79A777;
 	background: #3F7137;
-	-moz-border-radius: 7px;
-	-webkit-border-radius: 7px;
 	border-radius: 7px;
 	padding: 5px 3px;
 	width: 65px;
@@ -116,36 +112,17 @@ html[dir="rtl"] .ft-match-lineup-tweaks-stamina-counter-diff
 	border-color: #3fd6fc !important;
 }
 .ft-highlight-playerDiv-bench, .ft-highlight-playerDiv-field, .ft-highlight-playerDiv-url {
-	animation-name: ft-highlight-shake;
-	animation-duration: 0.8s;
-	transform-origin:50% 50%;
-	animation-iteration-count: 2;
-	animation-timing-function: linear;
-
 	-webkit-animation-name: ft-highlight-shake;
 	-webkit-animation-duration: 0.8s;
 	-webkit-transform-origin:50% 50%;
 	-webkit-animation-iteration-count: 2;
 	-webkit-animation-timing-function: linear;
 
-	-moz-animation-name: ft-highlight-shake;
-	-moz-animation-duration: 0.8s;
-	-moz-transform-origin:50% 50%;
-	-moz-animation-iteration-count: 2;
-	-moz-animation-timing-function: linear;
-}
-@keyframes ft-highlight-shake {
-	0% { transform: translate(2px, 1px) rotate(0deg); }
-	10% { transform: translate(-1px, -2px) rotate(-3deg); }
-	20% { transform: translate(-3px, 0px) rotate(3deg); }
-	30% { transform: translate(0px, 2px) rotate(0deg); }
-	40% { transform: translate(1px, -1px) rotate(3deg); }
-	50% { transform: translate(-1px, 2px) rotate(-3deg); }
-	60% { transform: translate(-3px, 1px) rotate(0deg); }
-	70% { transform: translate(2px, 1px) rotate(-3deg); }
-	80% { transform: translate(-1px, -1px) rotate(3deg); }
-	90% { transform: translate(2px, 2px) rotate(0deg); }
-	100% { transform: translate(1px, -2px) rotate(-3deg); }
+	animation-name: ft-highlight-shake;
+	animation-duration: 0.8s;
+	transform-origin:50% 50%;
+	animation-iteration-count: 2;
+	animation-timing-function: linear;
 }
 @-webkit-keyframes ft-highlight-shake {
 	0% { -webkit-transform: translate(2px, 1px) rotate(0deg); }
@@ -160,19 +137,18 @@ html[dir="rtl"] .ft-match-lineup-tweaks-stamina-counter-diff
 	90% { -webkit-transform: translate(2px, 2px) rotate(0deg); }
 	100% { -webkit-transform: translate(1px, -2px) rotate(-3deg); }
 }
-
-@-moz-keyframes ft-highlight-shake {
-	0% { -moz-transform: translate(2px, 1px) rotate(0deg); }
-	10% { -moz-transform: translate(-1px, -2px) rotate(-3deg); }
-	20% { -moz-transform: translate(-3px, 0px) rotate(3deg); }
-	30% { -moz-transform: translate(0px, 2px) rotate(0deg); }
-	40% { -moz-transform: translate(1px, -1px) rotate(3deg); }
-	50% { -moz-transform: translate(-1px, 2px) rotate(-3deg); }
-	60% { -moz-transform: translate(-3px, 1px) rotate(0deg); }
-	70% { -moz-transform: translate(2px, 1px) rotate(-3deg); }
-	80% { -moz-transform: translate(-1px, -1px) rotate(3deg); }
-	90% { -moz-transform: translate(2px, 2px) rotate(0deg); }
-	100% { -moz-transform: translate(1px, -2px) rotate(-3deg); }
+@keyframes ft-highlight-shake {
+	0% { transform: translate(2px, 1px) rotate(0deg); }
+	10% { transform: translate(-1px, -2px) rotate(-3deg); }
+	20% { transform: translate(-3px, 0px) rotate(3deg); }
+	30% { transform: translate(0px, 2px) rotate(0deg); }
+	40% { transform: translate(1px, -1px) rotate(3deg); }
+	50% { transform: translate(-1px, 2px) rotate(-3deg); }
+	60% { transform: translate(-3px, 1px) rotate(0deg); }
+	70% { transform: translate(2px, 1px) rotate(-3deg); }
+	80% { transform: translate(-1px, -1px) rotate(3deg); }
+	90% { transform: translate(2px, 2px) rotate(0deg); }
+	100% { transform: translate(1px, -2px) rotate(-3deg); }
 }
 div.playerDiv .sectorShirt.ft-smallFaceCard {
 	background-image: url() !important;
@@ -197,8 +173,6 @@ div.playerDiv .sectorShirt.ft-smallFaceCard img[src^="/Img/Avatar/hair/"] {
 	background-color: #295223 !important;
 	border: 1px solid #79A777 !important;
 	border-radius: 3px;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
 }
 
 .ft-indicator-wrapper {
@@ -230,8 +204,6 @@ div.playerDiv div.sectorShirt + div > div > div {
 	display: inline-block;
 	float: right;
 	border-radius: 7px;
-	-moz-border-radius: 7px;
-	-webkit-border-radius: 7px;
 	color: black;
 	border: 1px solid black;
 }

@@ -73,13 +73,8 @@ div.scEditSC .txtb{width:300px;}
 	z-index: 10030;
 	margin-left: auto;
 	margin-right: auto;
-	-webkit-border-radius: 0 0 6px 6px;
-	-moz-border-radius: 0 0 6px 6px;
 	border-radius: 0 0 6px 6px;
-	box-shadow: 0 -3px
-	rgba(0, 0, 0, .2) inset;
-	-moz-box-shadow: 0 -3px rgba(0,0,0,.2) inset;
-	-webkit-box-shadow: 0 -3px rgba(0, 0, 0, .2) inset;
+	box-shadow: 0 -3px rgba(0, 0, 0, .2) inset;
 }
 #mobile_header_center_tab{
 	width: 70px !important;
@@ -100,14 +95,10 @@ div.scEditSC .txtb{width:300px;}
 }
 #mobile_header_center.out    {
 	top: 207px;
-	-moz-transition: .5s top ease;
-	-webkit-transition: .5s top ease;
 	transition: .5s top ease;
 }
 #mobile_header_center  {
 	top: -1px;
-	-moz-transition: .5s top ease;
-	-webkit-transition: .5s top ease;
 	transition: .5s top ease;
 }
 #mobile_header {height: 30px; position:fixed; width:100%}
@@ -126,8 +117,6 @@ div.scEditSC .txtb{width:300px;}
 	background-color:white;
 	border-bottom: 2px solid #849D84;
 	padding-bottom: 5px;
- 	-moz-transition: .5s top ease;
-	-webkit-transition: .5s top ease;
 	transition: .5s top ease;
 	top: -1px;
 	height: auto !important;
@@ -143,19 +132,14 @@ div.scEditSC .txtb{width:300px;}
 	border: 2px solid #849D84;
 	padding: 2px;
 
- 	-moz-perspective: 300;
  	-webkit-perspective: 300;
  	perspective: 300;
 
-	-moz-transition:1s -moz-transform ease 0s, 1s opacity ease 0s;
-	-webkit-transition: 1s -webkit-transform ease 0s, 1s opacity ease 0s;
 	transition: 1s transform ease 0s, 1s opacity ease 0s;
 
-	-moz-transform: rotateX(0deg);
 	-webkit-transform: rotateX(0deg);
 	transform: rotateX(0deg);
 
-	-moz-backface-visibility: hidden;
 	-webkit-backface-visibility: hidden;
 	backface-visibility: hidden;
 }
@@ -170,19 +154,16 @@ div.scEditSC .txtb{width:300px;}
 }
 .ft-mobile .subMenu.out {
 	opacity: 0;
-	-moz-transform: rotateY(180deg);
 	-webkit-transform: rotateY(180deg);
 	transform: rotateY(180deg);
 }
 .ft-mobile .subMenuConf.out {
  	opacity: 0;
-	-moz-transform: rotateY(180deg);
 	-webkit-transform: rotateY(180deg);
 	transform: rotateY(180deg);
 }
 .ft-mobile #sidebar.out {
 	opacity: 0;
-	-moz-transform: rotateY(-180deg);
 	-webkit-transform: rotateY(-180deg);
 	transform: rotateY(-180deg);
 }

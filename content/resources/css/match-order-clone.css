@@ -2,8 +2,6 @@
 .ft-match-order-clone-button {
 	border: 2px solid black;
 	border-radius: 7px;
-	-moz-border-radius: 7px;
-	-webkit-border-radius: 7px;
 	color: white;
 	position: absolute;
 	font-weight: 900;

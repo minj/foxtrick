@@ -29,20 +29,18 @@ ul.ft-popup-list {
 	padding: 3px 2px 3px 2px;
 }
 html[data-theme="standard"] ul.ft-popup-list {
-	-webkit-border-radius: 10px;
-	-moz-border-radius: 10px;
 	border-radius: 10px;
 }
 
 html[dir="ltr"] ul.ft-popup-list {
 	left:  10px;
-	right: initial;
 	right: -moz-initial;
+	right: initial;
 }
 html[dir="rtl"] ul.ft-popup-list {
 	right: 10px;
-	left: initial;
 	left: -moz-initial;
+	left: initial;
 }
 
 ul.ft-popup-list-up {
