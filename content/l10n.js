@@ -257,6 +257,10 @@ Foxtrick.L10n = {
 				text = val;
 			}
 		}
+		if (!text.match(/\(/))
+			// some LAs (wrongfully) add parathesis here. For others we need our own
+			text = '(' + text + ')';
+
 		return text;
 	},
 
