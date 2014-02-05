@@ -64,6 +64,7 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/util/local-store.js</string>
 				<string>content/util/load.js</string>
 				<string>content/util/log.js</string>
+				<string>content/util/match-event.js</string>
 				<string>content/util/match-view.js</string>
 				<string>content/util/math.js</string>
 				<string>content/util/misc.js</string>

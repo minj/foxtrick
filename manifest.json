@@ -52,6 +52,7 @@
 			"content/util/log.js",
 			"content/util/match-view.js",
 			"content/util/misc.js",
+			"content/util/match-event.js",
 			"content/util/math.js",
 			"content/util/module.js",
 			"content/util/note.js",
