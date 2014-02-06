@@ -459,7 +459,7 @@ Foxtrick.util.matchEvent.eventDescription = {
 };
 
 Foxtrick.util.matchEvent.isLiveEvent = function(event){
-	return Foxtrick.hasClass(event, 'liveHomeEvent') || Foxtrick.hasClass(event, 'liveEvent') || event.getElementsByClassName('liveEvent').length;
+	return Foxtrick.hasClass(event, 'liveHomeEvent') || Foxtrick.hasClass(event, 'liveAwayEvent') || event.getElementsByClassName('liveEvent').length;
 }
 
 Foxtrick.util.matchEvent.isHomeEvent = function(event){
