@@ -502,7 +502,6 @@ Foxtrick.util.matchEvent.getEventIcons = function(event, type){
 
 		return eventIcons[type];
 	} else {
-		var icons = []
 		if(type == 'team')
 			return [eventIcons]
 	}
