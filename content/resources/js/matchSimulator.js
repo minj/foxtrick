@@ -40,3 +40,5 @@ var ft_queueChange = function(ev) {
 
 // listen to field player changes
 document.getElementById('fieldplayers').addEventListener('DOMNodeInserted', ft_queueChange, false);
+
+//@ sourceURL=matchSimulator.js
