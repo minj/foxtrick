@@ -110,13 +110,15 @@ Foxtrick.modules.MatchReportFormat = {
 			var eventHighlights = doc.querySelectorAll('.tblHighlights tr > td[id^=matchEventIndex_]');
 				for(var ehl = 0; ehl < eventHighlights.length; ehl++){
 					var row = eventHighlights[ehl].parentNode;
+					//Foxtrick.listen(row, 'mouseover', addHighlight, true);
+					//Foxtrick.listen(row, 'mouseout', removeHighlight, true);
 					row.addEventListener("mouseover", addHighlight, true);
 					row.addEventListener("mouseout", removeHighlight, true);
 				}
 		}
 
 		var doMatchReport = function(doc, matchReport){
-			var matchReport = doc.getElementById('matchReport');
+			
 
 			//steal HT-Live styling
 			Foxtrick.addClass(matchReport, 'liveReport');
@@ -158,7 +160,8 @@ Foxtrick.modules.MatchReportFormat = {
 			return;
 
 		//do the stuff
-		doMatchReport(doc);
+		var matchReport = doc.getElementById('matchReport');
+		doMatchReport(doc, matchReport);
 		Foxtrick.util.matchEvent.addEventIndicators(matchReport);
 		fixHighlighting(doc);
 	}
