@@ -471,7 +471,7 @@ Foxtrick.util.matchEvent.isAwayEvent = function(event){
 }
 
 Foxtrick.util.matchEvent.isNeutralEvent = function(event){
-	return !Foxtrick.util.matchEvent.isHomeEvent(event) && Foxtrick.util.matchEvent.isAwayEvent(event);
+	return !Foxtrick.util.matchEvent.isHomeEvent(event) && !Foxtrick.util.matchEvent.isAwayEvent(event);
 }
 
 Foxtrick.util.matchEvent.getEventMinute = function(event){
