@@ -169,14 +169,14 @@ Foxtrick.modules['MatchOrderInterface'] = {
 
 					var player = Foxtrick.Pages.Players.getPlayerFromListById(playerList, id);
 					if (player && player.specialityNumber != 0) {
-
+						var specIdx = player.specialityNumber;
 						Foxtrick.addClass(cards_health[i], 'ft-specialty');
-						var title = Foxtrick.L10n.getSpecialityFromNumber(player.specialityNumber);
-						var specImageUrl = Foxtrick.getSpecialtyImagePathFromNumber(specIdx);
+						var title = Foxtrick.L10n.getSpecialityFromNumber(specIdx);
+						var specUrl = Foxtrick.getSpecialtyImagePathFromNumber(specIdx);
 						Foxtrick.addImage(doc, cards_health[i], {
 							alt: title,
 							title: title,
-							src: specImageUrl,
+							src: specUrl,
 							class: 'ft-specialty'
 						});
 					}

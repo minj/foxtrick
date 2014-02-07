@@ -249,12 +249,13 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			if (node.getElementsByClassName('ft-specialty').length)
 				return;
 			if (player && player.specialityNumber != 0) {
-				var title = Foxtrick.L10n.getSpecialityFromNumber(player.specialityNumber);
-				var specImageUrl = Foxtrick.getSpecialtyImagePathFromNumber(specIdx);
+				var specIdx = player.specialityNumber;
+				var title = Foxtrick.L10n.getSpecialityFromNumber(specIdx);
+				var specUrl = Foxtrick.getSpecialtyImagePathFromNumber(specIdx);
 				Foxtrick.addImage(doc, node, {
 					alt: title,
 					title: title,
-					src: specImageUrl,
+					src: specUrl,
 					class: 'ft-specialty ft-match-lineup-tweaks-specialty-icon'
 				});
 			}
