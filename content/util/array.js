@@ -139,3 +139,13 @@ Foxtrick.indexOf = function(a, b){
 		}
 		return -1;
 };
+
+/**
+ * Convert an array-like object to an array
+ * Suitable for node lists, arrays, strings, and the arguments object
+ * @param	{Array}	arayLike
+ * @returns	{Array}
+ */
+Foxtrick.toArray = function(arayLike) {
+	return Array.prototype.slice.call(arayLike);
+};
