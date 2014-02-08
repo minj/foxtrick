@@ -28,13 +28,6 @@ Foxtrick.modules['LineupShortcut'] = {
 	},
 
 	_Analyze_Player_Page: function(doc) {
-		// get leagueId for ntName and u20Name
-		var leagueId = Foxtrick.Pages.Player.getNationalityId(doc);
-		var league = Foxtrick.XMLData.League[leagueId];
-		var ntName = league.LeagueName;
-		var ntId = league.NationalTeamId;
-		var u20Name = 'U-20 ' + ntName;
-		var u20Id = league.U20TeamId;
 		// to get match history table
 		var mainBody = doc.getElementById('mainBody');
 		var boxes = mainBody.getElementsByClassName('mainBox');
@@ -52,6 +45,16 @@ Foxtrick.modules['LineupShortcut'] = {
 		var mainWrapper = doc.getElementById('ctl00_ctl00_CPContent_divStartMain');
 		var playerId = Foxtrick.util.id.findPlayerId(mainWrapper);
 		var teamName = Foxtrick.util.id.extractTeamName(mainWrapper);
+
+		// get leagueId for ntName and u20Name
+		var leagueId = Foxtrick.Pages.Player.getNationalityId(doc);
+		if (leagueId) {
+			var league = Foxtrick.XMLData.League[leagueId];
+			var ntName = league.LeagueName;
+			var ntId = league.NationalTeamId;
+			var u20Name = 'U-20 ' + ntName;
+			var u20Id = league.U20TeamId;
+		}
 
 		var hasTransfer = false;
 		for (var i = 0; i < matchTable.rows.length; i++) {
@@ -81,12 +84,12 @@ Foxtrick.modules['LineupShortcut'] = {
 					hasMatch = true;
 				}
 			}
-			else if (Foxtrick.member(ntName, matchTeams)) {
+			else if (leagueId && Foxtrick.member(ntName, matchTeams)) {
 				this._Add_Lineup_Link(doc, matchTable.rows[i], ntId, playerId, matchId, 'NT',
 									  newRatings);
 				hasMatch = true;
 			}
-			else if (Foxtrick.member(u20Name, matchTeams)) {
+			else if (leagueId && Foxtrick.member(u20Name, matchTeams)) {
 				this._Add_Lineup_Link(doc, matchTable.rows[i], u20Id, playerId, matchId, 'U20',
 									  newRatings);
 				hasMatch = true;
