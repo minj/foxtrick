@@ -354,7 +354,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 						var playerDiv = players[missing[j]].parentNode.parentNode;
 						var ftDiv = playerDiv.getElementsByClassName('ft-indicator-wrapper')[0];
 						var missingDiv = doc.createElement('div');
-						Foxtrick.addClass(missingDiv, 'ft-playerMissing');
+						Foxtrick.addClass(missingDiv, 'ft-playerMissing ft-indicator');
 						Foxtrick.addImage(doc, missingDiv, {
 							alt: alt,
 							title: alt,
