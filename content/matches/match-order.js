@@ -79,11 +79,7 @@ Foxtrick.modules['MatchOrderInterface'] = {
 					return;
 
 					Foxtrick.addClass(shirt, 'smallFaceCard');
-				var style =
-					'background-image:url('
-					// cleaning background//+players[i].getElementsByTagName('BackgroundImage')[0].textContent
-					+ ');'
-					+ 'top:-20px; width:' + Math.round(100 / scale) + 'px; height:' +
+				var style = 'top:-20px; width:' + Math.round(100 / scale) + 'px; height:' +
 					Math.round(123 / scale) + 'px';
 				shirt.setAttribute('style', style);
 				var sizes = {
@@ -98,11 +94,23 @@ Foxtrick.modules['MatchOrderInterface'] = {
 					hair: [92, 123],
 					misc: [0, 0] // don't show (eg cards)
 				};
+				var sizesOld = {
+					backgrounds: [0, 0],// don't show
+					faces: [47, 49],
+					eyes: [47, 49],
+					mouths: [47, 49],
+					noses: [47, 49],
+					hair: [47, 49],
+					misc: [0, 0] // don't show (eg cards)
+				};
+				var oldFaces = Foxtrick.Prefs.isModuleEnabled('OldStyleFace');
+				var sz = oldFaces ? sizesOld : sizes;
+
 				var layers = players[i].getElementsByTagName('Layer');
 				for (var j = 0; j < layers.length; ++j) {
 					var src = layers[j].getElementsByTagName('Image')[0].textContent;
 					var bodypart;
-					for (bodypart in sizes) {
+					for (bodypart in sz) {
 						if (src.search(bodypart) != -1)
 							break;
 					}
@@ -116,15 +124,25 @@ Foxtrick.modules['MatchOrderInterface'] = {
 						var body = src.match(/([^\/]+)(\w+$)/)[0];
 						src = kiturl + body;
 					}
-					var x = Math.round(Number(layers[j].getAttribute('x')) / scale);
-					var y = Math.round(Number(layers[j].getAttribute('y')) / scale);
+					var styleString;
+					if (!oldFaces) {
+						var x = Math.round(Number(layers[j].getAttribute('x')) / scale);
+						var y = Math.round(Number(layers[j].getAttribute('y')) / scale);
+						styleString = 'top:' + y + 'px;left:' + x + 'px;position:absolute;';
+					}
+					else {
+						styleString = '';
+						scale = 1;
+					}
+					var width = Math.round(sz[bodypart][0] / scale);
+					var height = Math.round(sz[bodypart][1] / scale);
+
 					var img = doc.createElement('img');
 					if (Foxtrick.Prefs.isModuleOptionEnabled('OriginalFace', 'ColouredYouth'))
 						src = src.replace(/y_/, '');
 					img.src = src;
-					img.setAttribute('style', 'top:' + y + 'px;left:' + x + 'px;position:absolute;');
-					img.width = Math.round(sizes[bodypart][0] / scale);
-					img.height = Math.round(sizes[bodypart][1] / scale);
+					img.width = width;
+					img.height = height;
 					shirt.appendChild(img);
 				}
 			};
