@@ -80,7 +80,7 @@ function initSearch() {
 			_modules[searchstr].push(item);
 		}
 		else
-			_modules[searchstr] = item;	
+			_modules[searchstr] = item;
 	}
 	$('.module').each(function() {
 		try {
@@ -557,6 +557,7 @@ function initMainTab()
 	// load preferences
 	$('#pref-load-do').click(function() {
 		FoxtrickPrefs.LoadPrefs($('#pref-load-text').val());
+		$('#pref-load-text').val('');
 		window.location.href = window.location.href + '&imported=true';
 		window.location.reload();
 	});
