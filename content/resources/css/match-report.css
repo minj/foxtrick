@@ -4,62 +4,10 @@
  * non-table way.
  */
 
-.ft-match-lineup td {
-	vertical-align: top !important;
+ .liveEvent br {
+	display: none;
 }
 
-.ft-match-lineup li {
-	padding-bottom: 2px !important;
-	border-bottom: 1px solid #eee;
-}
-
-.ft-match-lineup a {
-	text-decoration: none !important;
-	color: #006db5 !important;
-}
-
-.ft-match-lineup-comment:before {
-	content: "(";
-}
-
-.ft-match-lineup-comment {
-	padding-left: 3px;
-}
-
-.ft-match-lineup-comment:after {
-	content: ")";
-}
-
-.ft-match-report {
-	border-spacing: 0 5px;
-}
-
-.ft-match-report-event {
-	display: table-row;
-}
-
-.ft-match-report-event-minute {
-	display: table-cell;
-	width: 30px;
-	font-weight: bold;
-	vertical-align: top;
-}
-
-.ft-match-report-event-icon {
-	display: table-cell;
-	width: 22px;
-}
-
-.ft-match-report-event-icon-image {
-	margin-top: 2px;
-	margin-bottom: 2px;
-}
-
-.ft-match-report-event-content {
-	display: table-cell;
-	padding-left: 10px;
-	vertical-align: top;
-}
 .ft-match-report-lineup,
 .ft-match-report-match-report,
 .ft-match-report-kick-off,
@@ -77,14 +25,5 @@
 	font-weight: bold;
 }
 
-.ft-match-report-event-content {
-	border-left: 3px solid #fff;
-}
-.ft-match-report-event-home .ft-match-report-event-content {
-	border-color: darkBlue;
-}
-.ft-match-report-event-away .ft-match-report-event-content {
-	border-color: #FF9000;
-}
 
 }
