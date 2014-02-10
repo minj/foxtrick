@@ -28,68 +28,68 @@ input#ctl00_ctl00_CPContent_CPMain_btnGenerate + div + table > tbody > tr:first-
 	display: none;
 }
 
-img[src="/Img/Avatar/colors/ft_a.png"]
+img[src$="/Img/Avatar/colors/ft_a.png"]
 {
 	background-image: url("chrome://foxtrick/content/resources/img/old-style-face/colors/ft_a.png");
 }
-img[src="/Img/Avatar/colors/ft_b.png"]
+img[src$="/Img/Avatar/colors/ft_b.png"]
 {
 	background-image: url("chrome://foxtrick/content/resources/img/old-style-face/colors/ft_b.png");
 }
-img[src="/Img/Avatar/colors/ft_d.png"]
+img[src$="/Img/Avatar/colors/ft_d.png"]
 {
 	background-image: url("chrome://foxtrick/content/resources/img/old-style-face/colors/ft_d.png");
 }
-img[src="/Img/Avatar/colors/ft_e.png"]
+img[src$="/Img/Avatar/colors/ft_e.png"]
 {
 	background-image: url("chrome://foxtrick/content/resources/img/old-style-face/colors/ft_e.png");
 }
-img[src="/Img/Avatar/colors/ft_f.png"]
+img[src$="/Img/Avatar/colors/ft_f.png"]
 {
 	background-image: url("chrome://foxtrick/content/resources/img/old-style-face/colors/ft_f.png");
 }
-img[src="/Img/Avatar/colors/ft_g.png"]
+img[src$="/Img/Avatar/colors/ft_g.png"]
 {
 	background-image: url("chrome://foxtrick/content/resources/img/old-style-face/colors/ft_g.png");
 }
-img[src="/Img/Avatar/colors/ft_h.png"]
+img[src$="/Img/Avatar/colors/ft_h.png"]
 {
 	background-image: url("chrome://foxtrick/content/resources/img/old-style-face/colors/ft_h.png");
 }
-img[src="/Img/Avatar/colors/ft_i.png"]
+img[src$="/Img/Avatar/colors/ft_i.png"]
 {
 	background-image: url("chrome://foxtrick/content/resources/img/old-style-face/colors/ft_i.png");
 }
-img[src="/Img/Avatar/colors/ft_k.png"]
+img[src$="/Img/Avatar/colors/ft_k.png"]
 {
 	background-image: url("chrome://foxtrick/content/resources/img/old-style-face/colors/ft_k.png");
 }
-img[src="/Img/Avatar/colors/ft_m.png"]
+img[src$="/Img/Avatar/colors/ft_m.png"]
 {
 	background-image: url("chrome://foxtrick/content/resources/img/old-style-face/colors/ft_m.png");
 }
 
-img[src="/Img/Avatar/colors/hc_a.png"]
+img[src$="/Img/Avatar/colors/hc_a.png"]
 {
 	background-image: url("chrome://foxtrick/content/resources/img/old-style-face/colors/hc_a.png");
 }
-img[src="/Img/Avatar/colors/hc_b.png"]
+img[src$="/Img/Avatar/colors/hc_b.png"]
 {
 	background-image: url("chrome://foxtrick/content/resources/img/old-style-face/colors/hc_b.png");
 }
-img[src="/Img/Avatar/colors/hc_c.png"]
+img[src$="/Img/Avatar/colors/hc_c.png"]
 {
 	background-image: url("chrome://foxtrick/content/resources/img/old-style-face/colors/hc_c.png");
 }
-img[src="/Img/Avatar/colors/hc_f.png"]
+img[src$="/Img/Avatar/colors/hc_f.png"]
 {
 	background-image: url("chrome://foxtrick/content/resources/img/old-style-face/colors/hc_f.png");
 }
-img[src="/Img/Avatar/colors/hc_g.png"]
+img[src$="/Img/Avatar/colors/hc_g.png"]
 {
 	background-image: url("chrome://foxtrick/content/resources/img/old-style-face/colors/hc_g.png");
 }
-img[src="/Img/Avatar/colors/hc_i.png"]
+img[src$="/Img/Avatar/colors/hc_i.png"]
 {
 	background-image: url("chrome://foxtrick/content/resources/img/old-style-face/colors/hc_i.png");
 }

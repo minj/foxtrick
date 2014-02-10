@@ -395,7 +395,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			doc.querySelectorAll('.playersField > div.playerBoxAway > div > a, #playersBench > ' +
 			                     'div#playersBenchAway > div.playerBoxAway > div > a');
 
-        var scale = 3;
+		var scale = 3;
 		var addFace = function(fieldplayer, id, avatarsXml) {
 			if (avatarsXml) {
 				if (!id)
@@ -438,11 +438,22 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 					hair: [92, 123],
 					//misc: [0, 0] // don't show (eg cards)
 				};
+				var sizesOld = {
+					faces: [47, 49],
+					eyes: [47, 49],
+					mouths: [47, 49],
+					noses: [47, 49],
+					hair: [47, 49],
+				};
+
+				var oldFaces = FoxtrickPrefs.isModuleEnabled('OldStyleFace');
+				var sz = oldFaces ? sizesOld : sizes;
+
 				var layers = players[i].getElementsByTagName('Layer');
 				for (var j = 0; j < layers.length; ++j) {
 					var src = layers[j].getElementsByTagName('Image')[0].textContent;
 					var show = false, bodypart;
-					for (bodypart in sizes) {
+					for (bodypart in sz) {
 						if (src.search(bodypart) != -1) {
 							show = true;
 							break;
@@ -455,17 +466,29 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 						var body = src.match(/([^\/]+)(\w+$)/)[0];
 						src = kiturl + body;
 					}
-					var x = Math.round(Number(layers[j].getAttribute('x')) / scale);
-					var y = Math.round(Number(layers[j].getAttribute('y')) / scale);
+
+					var styleString;
+					if (!oldFaces) {
+						var x = Math.round(Number(layers[j].getAttribute('x')) / scale);
+						var y = Math.round(Number(layers[j].getAttribute('y')) / scale);
+						styleString = 'top:' + y + 'px;left:' + x + 'px;position:absolute;';
+					}
+					else {
+						styleString = '';
+						scale = 1;
+					}
+					var width = Math.round(sz[bodypart][0] / scale);
+					var height = Math.round(sz[bodypart][1] / scale);
 
 					if (FoxtrickPrefs.isModuleOptionEnabled('OriginalFace', 'ColouredYouth'))
 						src = src.replace(/y_/, '');
+
 					Foxtrick.addImage(doc, shirt, {
 						alt: '',
 						src: src,
-						style: 'top:' + y + 'px;left:' + x + 'px;position:absolute;',
-						width: Math.round(sizes[bodypart][0] / scale),
-						height: Math.round(sizes[bodypart][1] / scale)
+						style: styleString,
+						width: width,
+						height: height
 					});
 				}
 			}
