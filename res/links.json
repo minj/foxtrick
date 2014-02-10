@@ -67,7 +67,7 @@
 		},
 		"title": "htlivesight match viewer (based on livefox)",
 		"img": "http://htlivesight.sourceforge.net/images/48.png"
-	},	
+	},
 	"xray_live": {
 		"matchlink": {
 			"url": "http://www.databased.at/hattrick/x-ray/index.asp?starter=live&matchid=[matchid]"
@@ -499,7 +499,7 @@
 		],
 		"title": "HT-U20 Check age vs U-20 matches",
 		"img": "resources/linkicons/u20.png"
-	}, 
+	},
 	"hottrickkeeper": {
 		"keeperlink": {
 			"url": "http://www.hottrick.org/hattrick_keeper_tool.php"
@@ -1435,14 +1435,10 @@
 			]
 		},
 		"countryidranges": [
-			[
-				50,
-				50
-			],
-			[
-				117,
-				148
-			]
+			[50, 50],
+			[104, 107],
+			[110, 113],
+			[117, 148]
 		],
 		"nationalityranges": [
 			[
