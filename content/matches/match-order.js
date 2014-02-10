@@ -140,6 +140,7 @@ Foxtrick.modules['MatchOrderInterface'] = {
 					var img = doc.createElement('img');
 					if (Foxtrick.Prefs.isModuleOptionEnabled('OriginalFace', 'ColouredYouth'))
 						src = src.replace(/y_/, '');
+					img.setAttribute('style', styleString);
 					img.src = src;
 					img.width = width;
 					img.height = height;
