@@ -141,21 +141,33 @@ Foxtrick.modules['EmbedMedia'] = {
 				target.firstChild.textContent = '(' + json.title + ')';
 
 			var sanitize_oEmbed_Iframe = function(html) {
+				var empty = doc.createTextNode('');
 				var m = html.match(/<iframe [^>]+><\/iframe>/i);
 				if (!m)
-					return '';
+					return empty;
+
 				var iframe = m[0];
-				m = iframe.match(/^<iframe .*?src="(.+?)"/i);
 				// iframe must have a valid source
+				m = iframe.match(/src="(.+?)"/i);
 				if (!m)
-					return '';
+					return empty;
+
 				var src = m[1];
-				// must have a different origin
+				// src must have a different origin
 				// only allow http, https, and relative protocols
-				if (!Foxtrick.isHtUrl(src) && src.match(/^(https?:)?\/\//))
-					return iframe;
-				else
-					return '';
+				if (Foxtrick.isHtUrl(src) || !src.match(/^(https?:)?\/\//))
+					return empty;
+
+				var h = iframe.match(/height="(\d+)"/i);
+				var w = iframe.match(/width="(\d+)"/i);
+
+				var el = doc.createElement('iframe');
+				el.setAttribute('src', src);
+				el.setAttribute('frameborder', '0');
+				el.setAttribute('allowfullscreen', '');
+				el.height = h ? h[1] : 0;
+				el.width = w ? w[1] : 0;
+				return el;
 			};
 
 			switch (json.type) {
@@ -169,10 +181,12 @@ Foxtrick.modules['EmbedMedia'] = {
 					target.nextSibling.replaceChild(img, target.nextSibling.firstChild);
 					break;
 				case 'video':
-					target.nextSibling.innerHTML = sanitize_oEmbed_Iframe(json.html);
+					target.nextSibling.replaceChild(sanitize_oEmbed_Iframe(json.html),
+													target.nextSibling.firstChild);
 					break;
 				default:
-					target.nextSibling.innerHTML = sanitize_oEmbed_Iframe(json.html);
+					target.nextSibling.replaceChild(sanitize_oEmbed_Iframe(json.html),
+													target.nextSibling.firstChild);
 					break;
 			}
 		};
