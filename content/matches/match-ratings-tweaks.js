@@ -77,7 +77,7 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 		tr1.appendChild(tdChkBox1);
 		var tdLabel1 = doc.createElement('td');
 		var labelProb = doc.createElement('label');
-		labelProb.for = 'ft-matchRatingProb';
+		labelProb.setAttribute('for', 'ft-matchRatingProb');
 		labelProb.textContent = Foxtrickl10n.getString('match.ratings.realProbabilities');
 		labelProb.setAttribute('aria-label', labelProb.title = probTitle);
 		tdLabel1.appendChild(labelProb);

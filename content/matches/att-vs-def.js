@@ -60,7 +60,7 @@ Foxtrick.modules['AttVsDef'] = {
 		tr1.appendChild(tdChkBox1);
 		var tdLabel1 = doc.createElement('td');
 		var labelProb = doc.createElement('label');
-		labelProb.for = 'ft-attvsdeffProb';
+		labelProb.setAttribute('for', 'ft-attvsdeffProb');
 		labelProb.textContent = Foxtrickl10n.getString('match.ratings.realProbabilities');
 		labelProb.setAttribute('aria-label', labelProb.title = probTitle);
 		tdLabel1.appendChild(labelProb);
