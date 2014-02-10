@@ -302,15 +302,11 @@ Foxtrick.modules['SkillTable'] = {
 				var speciality = function(cell, spec) {
 					var specIdx = Foxtrickl10n.getNumberFromSpeciality(spec);
 					if (specIdx) {
-						var icon_suffix = '';
-						if (FoxtrickPrefs.getBool('anstoss2icons'))
-							icon_suffix = '_alt';
+						var specImageUrl = Foxtrick.getSpecialtyImagePathFromNumber(specIdx);
 						Foxtrick.addImage(doc, cell, {
 							alt: spec,
 							title: spec,
-							src: Foxtrick.InternalPath +
-								'resources/img/matches/spec' + specIdx +
-								icon_suffix + '.png'
+							src: specImageUrl
 						});
 					}
 					cell.setAttribute('index', spec);

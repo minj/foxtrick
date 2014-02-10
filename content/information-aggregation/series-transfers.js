@@ -166,14 +166,11 @@ Foxtrick.modules['SeriesTransfers'] = {
 										if(spec){
 											var icon_suffix = '';
 											var specialtyName = Foxtrickl10n.getSpecialityFromNumber(spec);
-											if (FoxtrickPrefs.getBool('anstoss2icons'))
-												icon_suffix = '_alt';
+											var specialtyUrl = Foxtrick.getSpecialtyImagePathFromNumber(spec);
 											Foxtrick.addImage(doc, cell, {
 												alt: specialtyName,
 												title: specialtyName,
-												src: Foxtrick.InternalPath +
-													'resources/img/matches/spec' + spec +
-													icon_suffix + '.png'
+												src: specialtyUrl
 											});
 										}
 										cell.setAttribute('index', spec);

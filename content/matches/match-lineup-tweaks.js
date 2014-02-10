@@ -249,15 +249,13 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			if (node.getElementsByClassName('ft-specialty').length)
 				return;
 			if (player && player.specialityNumber != 0) {
-				var title = Foxtrickl10n.getSpecialityFromNumber(player.specialityNumber);
-				var icon_suffix = '';
-				if (FoxtrickPrefs.getBool('anstoss2icons'))
-					icon_suffix = '_alt';
+				var specIdx = player.specialityNumber;
+				var title = Foxtrickl10n.getSpecialityFromNumber(specIdx);
+				var specUrl = Foxtrick.getSpecialtyImagePathFromNumber(specIdx);
 				Foxtrick.addImage(doc, node, {
 					alt: title,
 					title: title,
-					src: Foxtrick.InternalPath + 'resources/img/matches/spec' +
-						player.specialityNumber + icon_suffix + '.png',
+					src: specUrl,
 					class: 'ft-specialty ft-match-lineup-tweaks-specialty-icon'
 				});
 			}

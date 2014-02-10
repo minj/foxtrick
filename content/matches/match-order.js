@@ -152,17 +152,14 @@ Foxtrick.modules['MatchOrderInterface'] = {
 
 					var player = Foxtrick.Pages.Players.getPlayerFromListById(playerList, id);
 					if (player && player.specialityNumber != 0) {
-
+						var specIdx = player.specialityNumber;
 						Foxtrick.addClass(cards_health[i], 'ft-specialty');
-						var title = Foxtrickl10n.getSpecialityFromNumber(player.specialityNumber);
-						var icon_suffix = '';
-						if (FoxtrickPrefs.getBool('anstoss2icons'))
-							icon_suffix = '_alt';
+						var title = Foxtrickl10n.getSpecialityFromNumber(specIdx);
+						var specUrl = Foxtrick.getSpecialtyImagePathFromNumber(specIdx);
 						Foxtrick.addImage(doc, cards_health[i], {
 							alt: title,
 							title: title,
-							src: Foxtrick.InternalPath + 'resources/img/matches/spec' +
-								player.specialityNumber + icon_suffix + '.png',
+							src: specUrl,
 							class: 'ft-specialty'
 						});
 					}

@@ -464,3 +464,15 @@ Foxtrick.decodeBase64 = function(str) {
 		return null;
 	}
 };
+
+Foxtrick.getSpecialtyImagePathFromNumber = function(type, negative){
+	var base = Foxtrick.InternalPath + 'resources/img/matches/spec';
+	var url = base + type;
+	if(negative)
+		url = url + '_red';
+
+	if(FoxtrickPrefs.getBool('anstoss2icons'))
+		url = url + '_alt';
+
+	return  url + '.png'
+}
