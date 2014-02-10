@@ -11,14 +11,14 @@ Foxtrick.modules['SeriesTransfers'] = {
 
 	run: function(doc) {
 		var leagueTable = doc.getElementById('mainBody').getElementsByTagName('table')[0];
-		
+
 		// checks whether a team is ownerless
 		var isNotOwnerless = function(link) { return !Foxtrick.hasClass(link, 'shy') && Foxtrick.getParameterFromUrl(link.getAttribute('href'), 'teamid')};
-		
+
 		// get bots/ownerless
 		var teams = leagueTable.getElementsByTagName('a');
 		var teamLinks = Foxtrick.filter(isNotOwnerless, teams);
-		
+
 		//get teamdIds
 		var teamIds = []
 		for(var i in teamLinks){
@@ -49,7 +49,7 @@ Foxtrick.modules['SeriesTransfers'] = {
 		div.appendChild(mainBox);
 
 		var createRowElement = function (type, textContent){
-			var elem = doc.createElement(type);	
+			var elem = doc.createElement(type);
 			elem.textContent = textContent;
 			return elem;
 		}
@@ -59,15 +59,15 @@ Foxtrick.modules['SeriesTransfers'] = {
 		table.setAttribute('id', 'ft-players-for-sale');
 
 		//thead
-		var columns =	[{text:'Nationality.abbr', title:'Nationality'},						 
-						{text:'Player', title:'Player'}, 
+		var columns =	[{text:'Nationality.abbr', title:'Nationality'},
+						{text:'Player', title:'Player'},
 						{text:'Team', title:'Team'},
-						{text:'Speciality.abbr', title:'Speciality'}, 
-						{text:'Age.abbr', title:'Age'}, 
-						{text:'Experience.abbr', title:'Experience'}, 
-						{text:'Form.abbr', title:'Form'}, 
-						{text:'TSI.abbr', title:'TSI'}, 
-						{text:'Salary.abbr', title:'Salary'}, 
+						{text:'Speciality.abbr', title:'Speciality'},
+						{text:'Age.abbr', title:'Age'},
+						{text:'Experience.abbr', title:'Experience'},
+						{text:'Form.abbr', title:'Form'},
+						{text:'TSI.abbr', title:'TSI'},
+						{text:'Salary.abbr', title:'Salary'},
 						{text:'Injured.abbr', title:'Injured'}];
 
 		var thead = doc.createElement('thead');
@@ -79,7 +79,7 @@ Foxtrick.modules['SeriesTransfers'] = {
 			var th = createRowElement('th', localized_text);
 			th.setAttribute('title', localized_alt_n_title);
 			th.setAttribute('alt', localized_alt_n_title);
-			thead_tr.appendChild(th);					
+			thead_tr.appendChild(th);
 		}
 		thead.appendChild(thead_tr);
 
@@ -90,15 +90,17 @@ Foxtrick.modules['SeriesTransfers'] = {
 		mainBox.appendChild(table);
 
 		//loading note
-		var loading = Foxtrick.util.note.createLoading(doc);
-		mainBox.appendChild(loading);
+		if (FoxtrickPrefs.getBool('xmlLoad')) {
+			var loading = Foxtrick.util.note.createLoading(doc);
+			mainBox.appendChild(loading);
+		}
 
 		//retrieve currency rate
 		Foxtrick.util.currency.establish(doc, function(){
 			var currencyRate = Foxtrick.util.currency.getRate(doc);
 			//batch retrieve
 			Foxtrick.util.api.batchRetrieve(doc, batchArgs, { cache_lifetime: 'session' },
-				function(xmls) { 
+				function(xmls) {
 					if (xmls) {
 						var hasListedPlayers = false;
 						for (var i = 0; i < xmls.length; ++i) {
@@ -110,7 +112,7 @@ Foxtrick.modules['SeriesTransfers'] = {
 								var player = players[p];
 								var playerID = Number(player.getElementsByTagName('PlayerID')[0].textContent);
 								var isTransferListed = Number(player.getElementsByTagName('TransferListed')[0].textContent);
-								
+
 								if(isTransferListed){
 									hasListedPlayers = true;
 
@@ -178,14 +180,14 @@ Foxtrick.modules['SeriesTransfers'] = {
 									};
 									specialityFunc(specialtyTD, specialty);
 									tr.appendChild( specialtyTD );
-									
+
 									//rest
 									tr.appendChild( createRowElement('td', age + '.' + ageDays) );
 									tr.appendChild( createRowElement('td', experience) );
 									tr.appendChild( createRowElement('td', form) );
 									tr.appendChild( createRowElement('td', Foxtrick.formatNumber(playerTsi, '\u00a0') ) );
 									tr.appendChild( createRowElement('td', Foxtrick.formatNumber(salary, '\u00a0')) );
-																	
+
 									//injurytd
 									var injuryTD = doc.createElement('td');
 									var injuryFunc = function(cell, injury){
@@ -224,7 +226,7 @@ Foxtrick.modules['SeriesTransfers'] = {
 							var span = doc.createElement('span');
 							span.textContent = Foxtrickl10n.getString("SeriesTransfers.notransfers");
 							mainBox.appendChild(span);
-						} 
+						}
 					} else {
 						//chpp retrieved shizzle
 					}

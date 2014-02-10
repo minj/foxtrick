@@ -255,7 +255,8 @@ Foxtrick.modules['MyMonitor'] = {
 
 				// matches container
 				var matchesContainer = doc.createElement('div');
-				Foxtrick.util.matchView.startLoad(matchesContainer);
+				if (FoxtrickPrefs.getBool('xmlLoad'))
+					Foxtrick.util.matchView.startLoad(matchesContainer);
 				frame.appendChild(matchesContainer);
 
 				var args = [
@@ -268,11 +269,13 @@ Foxtrick.modules['MyMonitor'] = {
 
 				Foxtrick.util.api.retrieve(doc, args, { cache_lifetime: 'default' },
 				  function(xml, errorText) {
-					if (xml !== null) {
-						team.name = xml.getElementsByTagName('TeamName')[0].textContent;
-						team.id = xml.getElementsByTagName('TeamID')[0].textContent;
-						buildLink(team, nameLink);
+					if (!xml || errorText) {
+						Foxtrick.log(errorText);
+						return;
 					}
+					team.name = xml.getElementsByTagName('TeamName')[0].textContent;
+					team.id = xml.getElementsByTagName('TeamID')[0].textContent;
+					buildLink(team, nameLink);
 					var nextmatchdate = Foxtrick.util.matchView
 						.fillMatches(matchesContainer, xml, errorText);
 					// change expire date of xml to after next match game

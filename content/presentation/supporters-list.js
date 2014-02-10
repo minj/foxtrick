@@ -20,10 +20,12 @@ Foxtrick.modules['SupportersList'] = {
 
 		var teamId = Foxtrick.util.id.getOwnTeamId();
 
-		var entry = doc.querySelector('#mainBody table') ||
-			doc.querySelector('#ctl00_ctl00_CPContent_CPMain_pnlMySupporters > br');
-		var loading = Foxtrick.util.note.createLoading(doc);
-		entry.parentNode.insertBefore(loading, entry);
+		if (FoxtrickPrefs.getBool('xmlLoad')) {
+			var entry = doc.querySelector('#mainBody table') ||
+				doc.querySelector('#ctl00_ctl00_CPContent_CPMain_pnlMySupporters > br');
+			var loading = Foxtrick.util.note.createLoading(doc);
+			entry.parentNode.insertBefore(loading, entry);
+		}
 
 		var action = Foxtrick.getParameterFromUrl(Foxtrick.getHref(doc), 'actionType');
 		var mine = false;
@@ -78,7 +80,7 @@ Foxtrick.modules['SupportersList'] = {
 		  ],
 		  { cache_lifetime: 'session' },
 		  function(xml, errorText) {
-			if (errorText) {
+			if (!xml || errorText) {
 				Foxtrick.log(errorText);
 				return;
 			}
