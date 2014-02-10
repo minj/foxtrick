@@ -1,3 +1,4 @@
+'use strict';
 /*
 Copyright (c) 2010 Re4Ver <psicotsitool@gmail.com>, http://www.aldeaglobal.net/psicotsi/
 Copyright (c) 2013 lizardopoli <lizardopoli@gmail.com>, http://psicotsi.sourceforge.net/releases/
@@ -173,6 +174,7 @@ Foxtrick.psico = {
 			pinput[pskillMax] = pinput[pskillMax] - 0.1;
 		}
 		// Recognising mainSkill
+		var mainSkill;
 		switch (pskillMax) {
 			case 3:
 				mainSkill = 'PM';
@@ -354,12 +356,12 @@ Foxtrick.psico = {
 		debug += 'WAGE (without SP and base salary): ' + parseInt(wage, 10) + '\n';
 
 		if (age >= 29 && age <= 37) {
-			wage = wage / (1 - (age - 28) / 10)
+			wage = wage / (1 - (age - 28) / 10);
 			debug += 'WAGE (without AGE impact): ' + parseInt(wage, 10) + '\n';
 			comparing_wage = wage * (1 + 0.0025 * Math.max(0, playerskills[8])) + 250;
 		}
 
-		coefficients = {
+		var coefficients = {
 			// wage = (a * (skill ^ b)) [* c, if secondary skill] [* d, if wage > 20000]
 			//sk    a             b             c     d
 			'5' : [ 0.0005010000, 6.4000000000, 0.50, 1      ], //keeping    [PLACEHOLDER]
@@ -390,7 +392,7 @@ Foxtrick.psico = {
 		var max_high = 0;
 		var detectable = false;
 
-		for (loop = 2; loop <= 7; ++loop) {
+		for (var loop = 2; loop <= 7; ++loop) {
 			var skill = playerskills[loop];
 			if (skill < 1) {
 				continue;
@@ -442,7 +444,7 @@ Foxtrick.psico = {
 			if (loop == mainSkill)
 				continue;
 			var subskill = playerskills[loop] - subtractFromSkill;
-			var wage_sub_component = 0
+			var wage_sub_component = 0;
 
 			if (loop != 5) { // not GK
 				wage_sub_component = coefficients[loop][0] *
@@ -478,9 +480,10 @@ Foxtrick.psico = {
 		if (wage_main_component > 20000)
 			wage_main_component = 20000 + (wage_main_component - 20000) * coefficients[mainSkill][3];
 
-		if (mainSkill == 5) {
-			wage_main_component = wage_main_component * keeping_adj;
-		}
+		// N/A wage detection for keepers keeping_ad undefined
+		// if (mainSkill == 5) {
+		// 	wage_main_component = wage_main_component * keeping_adj;
+		// }
 
 		// remove > 20000 discount on wage to get proper skill prediction
 		if (wage > 20000)
