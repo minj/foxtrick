@@ -22,12 +22,17 @@ if (Foxtrick.chromeContext() == 'background') {
 					var idbManager = Cc['@mozilla.org/dom/indexeddb/manager;1']
 						.getService(Ci.nsIIndexedDatabaseManager);
 					if (typeof idbManager.initWindowless === 'function') {
-						// FF26 and earlier
-						Foxtrick.IDBProxy = {};
-						idbManager.initWindowless(Foxtrick.IDBProxy);
+						var idb = {};
+						try {
+							// FF26 and earlier
+							idbManager.initWindowless(idb);
+							Foxtrick.IDBProxy = idb;
+						}
+						catch (e) {
+							Cu.importGlobalProperties(['indexedDB']);
+						}
 					}
 					else {
-						// in the future in FF28?
 						Cu.importGlobalProperties(['indexedDB']);
 					}
 				}
