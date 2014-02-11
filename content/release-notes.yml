@@ -21,7 +21,7 @@ en:
       simulator_skills: 'Sublevel names in <module>MatchSimulator</module> were corrected for a few languages.'
       embed_media: '<module>PsicoTSI</module> and <module>EmbedMedia</module> were made more secure.'
       other: '<header>Other changes</header>'
-      report_format: '<module>MatchReportFormat</module> and <module>LiveMatchReportFormat</module> modules were rewritten and now works without CHPP access.'
+      report_format: '<module>MatchReportFormat</module> and <module>LiveMatchReportFormat</module> modules were rewritten and now work without CHPP access.'
       attvsdef: 'Real probabilities in <module>AttVsDef</module> module now also affects ball possession bars.'
       staff_marker: 'Custom color interface in <module>StaffMarker</module> is now optional.'
       mmdd: 'Arrows in <module>MainMenuDropDown</module> menus are now optional.'
