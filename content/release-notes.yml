@@ -15,6 +15,7 @@ en:
       series_transfers: '<module>SeriesTransfers</module>: Shows a list of players currently for sale on series pages.'
 
     0.13.0.1:
+      crowdin: '<header>A lot of translation updates from our awesome users using the <linkCrowdin>crowdin tool</linkCrowdin>. You can help out as well!</header>'
       bugs: '<header>Bug fixes</header>'
       old_faces: '<module>OldStyleFace</module> was not running properly on match order interface and match lineup pages. This is now fixed.'
       simulator_skills: 'Sublevel names in <module>MatchSimulator</module> were corrected for a few languages.'
