@@ -345,35 +345,31 @@
 			},
 			{
 				"text": "irritados",
-				"value": "3"
+				"value": "2"
 			},
 			{
 				"text": "calmos",
-				"value": "5"
+				"value": "3"
 			},
 			{
 				"text": "satisfeitos",
-				"value": "6"
+				"value": "4"
 			},
 			{
 				"text": "contentes",
-				"value": "7"
+				"value": "5"
 			},
 			{
 				"text": "em delírio",
-				"value": "8"
+				"value": "6"
 			},
 			{
 				"text": "eufóricos",
-				"value": "9"
+				"value": "7"
 			},
 			{
 				"text": "nas nuvens",
-				"value": "10"
-			},
-			{
-				"text": "rindo à toa",
-				"value": "11"
+				"value": "8"
 			}
 		],
 		"sectors": [

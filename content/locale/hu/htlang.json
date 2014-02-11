@@ -345,35 +345,31 @@
 			},
 			{
 				"text": "ingerült",
-				"value": "3"
+				"value": "2"
 			},
 			{
 				"text": "higgadt",
-				"value": "5"
+				"value": "3"
 			},
 			{
 				"text": "elégedett",
-				"value": "6"
+				"value": "4"
 			},
 			{
 				"text": "boldog",
-				"value": "7"
+				"value": "5"
 			},
 			{
 				"text": "mámoros",
-				"value": "8"
+				"value": "6"
 			},
 			{
 				"text": "fellegjáró",
-				"value": "9"
+				"value": "7"
 			},
 			{
 				"text": "karneváli",
-				"value": "10"
-			},
-			{
-				"text": "szerelmes versekkel bombáznak",
-				"value": "11"
+				"value": "8"
 			}
 		],
 		"sectors": [

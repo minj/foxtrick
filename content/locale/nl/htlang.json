@@ -345,35 +345,31 @@
 			},
 			{
 				"text": "geïrriteerd",
-				"value": "3"
+				"value": "2"
 			},
 			{
 				"text": "kalm",
-				"value": "5"
+				"value": "3"
 			},
 			{
 				"text": "content",
-				"value": "6"
+				"value": "4"
 			},
 			{
 				"text": "tevreden",
-				"value": "7"
+				"value": "5"
 			},
 			{
 				"text": "dolgelukkig",
-				"value": "8"
+				"value": "6"
 			},
 			{
 				"text": "in de wolken",
-				"value": "9"
+				"value": "7"
 			},
 			{
 				"text": "in de zevende hemel",
-				"value": "10"
-			},
-			{
-				"text": "sturen je liefdesgedichten",
-				"value": "11"
+				"value": "8"
 			}
 		],
 		"sectors": [

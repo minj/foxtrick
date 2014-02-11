@@ -345,35 +345,31 @@
 			},
 			{
 				"text": "podráždění",
-				"value": "3"
+				"value": "2"
 			},
 			{
 				"text": "chladní",
-				"value": "5"
+				"value": "3"
 			},
 			{
 				"text": "klidní",
-				"value": "6"
+				"value": "4"
 			},
 			{
 				"text": "spokojení",
-				"value": "7"
+				"value": "5"
 			},
 			{
 				"text": "nadšení",
-				"value": "8"
+				"value": "6"
 			},
 			{
 				"text": "unešení",
-				"value": "9"
+				"value": "7"
 			},
 			{
 				"text": "tančí v ulicích",
-				"value": "10"
-			},
-			{
-				"text": "pějí oslavné písně",
-				"value": "11"
+				"value": "8"
 			}
 		],
 		"sectors": [

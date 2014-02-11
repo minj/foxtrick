@@ -345,35 +345,31 @@
 			},
 			{
 				"text": "rahatsız",
-				"value": "3"
+				"value": "2"
 			},
 			{
 				"text": "sakin",
-				"value": "5"
+				"value": "3"
 			},
 			{
 				"text": "hoşnut",
-				"value": "6"
+				"value": "4"
 			},
 			{
 				"text": "memnun",
-				"value": "7"
+				"value": "5"
 			},
 			{
 				"text": "coşkulu",
-				"value": "8"
+				"value": "6"
 			},
 			{
 				"text": "uçmuş",
-				"value": "9"
+				"value": "7"
 			},
 			{
 				"text": "sokaklarda halay çekiyorlar",
-				"value": "10"
-			},
-			{
-				"text": "antrenmana baklava yolluyorlar",
-				"value": "11"
+				"value": "8"
 			}
 		],
 		"sectors": [

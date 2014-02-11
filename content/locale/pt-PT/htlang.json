@@ -345,35 +345,31 @@
 			},
 			{
 				"text": "Irritados",
-				"value": "3"
+				"value": "2"
 			},
 			{
 				"text": "Calmos",
-				"value": "5"
+				"value": "3"
 			},
 			{
 				"text": "Satisfeitos",
-				"value": "6"
+				"value": "4"
 			},
 			{
 				"text": "Contentes",
-				"value": "7"
+				"value": "5"
 			},
 			{
 				"text": "Em delírio",
-				"value": "8"
+				"value": "6"
 			},
 			{
 				"text": "Eufóricos",
-				"value": "9"
+				"value": "7"
 			},
 			{
 				"text": "Nas nuvens",
-				"value": "10"
-			},
-			{
-				"text": "A enviarem-lhe cartas de amor",
-				"value": "11"
+				"value": "8"
 			}
 		],
 		"sectors": [

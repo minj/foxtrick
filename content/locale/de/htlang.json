@@ -345,35 +345,31 @@
 			},
 			{
 				"text": "irritiert",
-				"value": "3"
+				"value": "2"
 			},
 			{
 				"text": "ruhig",
-				"value": "5"
+				"value": "3"
 			},
 			{
 				"text": "zufrieden",
-				"value": "6"
+				"value": "4"
 			},
 			{
 				"text": "glücklich",
-				"value": "7"
+				"value": "5"
 			},
 			{
 				"text": "überglücklich",
-				"value": "8"
+				"value": "6"
 			},
 			{
 				"text": "euphorisch",
-				"value": "9"
+				"value": "7"
 			},
 			{
 				"text": "im siebten Himmel",
-				"value": "10"
-			},
-			{
-				"text": "vergöttern dich",
-				"value": "11"
+				"value": "8"
 			}
 		],
 		"sectors": [

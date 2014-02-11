@@ -345,35 +345,31 @@
 			},
 			{
 				"text": "ärtynyt",
-				"value": "3"
+				"value": "2"
 			},
 			{
 				"text": "maltillinen",
-				"value": "5"
+				"value": "3"
 			},
 			{
 				"text": "hyvä",
-				"value": "6"
+				"value": "4"
 			},
 			{
 				"text": "tyytyväinen",
-				"value": "7"
+				"value": "5"
 			},
 			{
 				"text": "haltioitunut",
-				"value": "8"
+				"value": "6"
 			},
 			{
 				"text": "taivaallinen",
-				"value": "9"
+				"value": "7"
 			},
 			{
 				"text": "seitsemäs taivas",
-				"value": "10"
-			},
-			{
-				"text": "lähettävät rakkausrunoja sinulle",
-				"value": "11"
+				"value": "8"
 			}
 		],
 		"sectors": [

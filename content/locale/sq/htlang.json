@@ -344,36 +344,32 @@
 				"value": "1"
 			},
 			{
-				"text": "të bezdisur",
-				"value": "3"
+				"text": "të ngacmuar",
+				"value": "2"
 			},
 			{
 				"text": "të qetë",
-				"value": "5"
+				"value": "3"
+			},
+			{
+				"text": "të matur",
+				"value": "4"
 			},
 			{
 				"text": "të kënaqur",
-				"value": "6"
-			},
-			{
-				"text": "të lumtur",
-				"value": "7"
+				"value": "5"
 			},
 			{
 				"text": "në delir",
-				"value": "8"
+				"value": "6"
 			},
 			{
 				"text": "të stërkënaqur",
-				"value": "9"
+				"value": "7"
 			},
 			{
 				"text": "duke hedhur valle",
-				"value": "10"
-			},
-			{
-				"text": "duke ju bërë urata",
-				"value": "11"
+				"value": "8"
 			}
 		],
 		"sectors": [

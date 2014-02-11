@@ -345,35 +345,31 @@
 			},
 			{
 				"text": "irriterede",
-				"value": "3"
+				"value": "2"
 			},
 			{
 				"text": "rolige",
-				"value": "5"
+				"value": "3"
 			},
 			{
 				"text": "tilfredse",
-				"value": "6"
+				"value": "4"
 			},
 			{
 				"text": "glade",
-				"value": "7"
+				"value": "5"
 			},
 			{
 				"text": "henrykte",
-				"value": "8"
+				"value": "6"
 			},
 			{
 				"text": "euforiske",
-				"value": "9"
+				"value": "7"
 			},
 			{
 				"text": "i syvende himmel",
-				"value": "10"
-			},
-			{
-				"text": "sender dig kærlighedsdigte",
-				"value": "11"
+				"value": "8"
 			}
 		],
 		"sectors": [
