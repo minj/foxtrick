@@ -7,6 +7,7 @@ pl:
       note_0: 'To jest wersja beta następnego wydania. Proszę pomóż w tłumaczeniu tej wersji na naszej super łatwej stronie tłumaczeń <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.13.0:
       important: '<header>Ważne ogłoszenia</header>'
+      opera: "<p>To ostatnie główne wydanie główne, które oficjalnie wspiera wspiera Operę 12 lub starszą. Istniejące wersje Foxtrick'a mogą przestać działać bez wcześniejszego uprzedzenia.</p> <p>Proszę rozważyć przejście do <linkOperaNext>OperaNext</linkOperaNext> lub innej wybranej przez siebie obsługiwanej przeglądarki.</p>"
       safari: Wsparcie dla Safari w wersja 5.x wkrótce zostanie zaprzestane.
       twitter: 'Możesz śledzić <linkTwitter>Foxtrick na Twitterze</linkTwitter>, aby otrzymywać najnowsze wiadomości, aktualizacje i ogłoszenia.'
       crowdin: '<header>Wiele tłumaczeń pochodzi od naszych niesamowitych użytkowników korzystających z <linkCrowdin>narzędzia crowdin</linkCrowdin>. Ty też możesz pomóc!</header>'
@@ -40,10 +41,12 @@ pl:
       note_3: Naprawiono problem, który powodował, że Foxtrick wyświetlał dziwne symbole zamiast waluty użytkownika
     0.12.2:
       note_0: '<header>Wiele tłumaczeń pochodzi od naszych niesamowitych użytkowników korzystających z <linkCrowdin>narzędzia crowdin</linkCrowdin>. Ty też możesz pomóc!</header>'
+      note_1: '<module>PlayerStatsExperience</module>: teraz obliczanie doświadczenia zakłada, że 28,57 punktów przypada na jeden poziom (patrz 15766691.780).'
       note_2: "Nowość: narzędzie <module>PsicoTSI</module> zostało zaimportowane do Foxtrick'a."
       note_3: '<module>ShowLineupSet</module>: Dodano opcję, aby wyróżnić własny zespół w tabeli.'
       note_4: '<module>CopyYouth</module>: teraz efekty treningu juniorów zostaną wysłane do hattrick youthclub automatycznie (tylko dla użytkowników hy).'
       note_5: 'Nowość: <module>SupportersList</module>: Pokazuje, który zespół, któremu kibicujesz, także kibicuje twojemu zespołowi i odwrotnie'
+      note_7: 'Nowość: <module>Fans</module>: dodaje link na żywo obok linków do przyszłych meczów. Dodaje informację o zmianie ilości fanów w pasku bocznym.'
       note_8: "Użytkownicy posiadający wiele zespołów mogą teraz zmieniać styl Hattrick'a za pomocą selektorów 'body.ft-teamID-0000000' w <module>SkinPlugin</module>."
       note_9: 'Usprawniono <module>HeaderToggle</module> tak by był bardziej odporny na wpływy ze strony innych modułów lub samego Hattricka.'
       note_10: '<module>MatchSimulator</module> został dostosowany w celu włączenia nowych informacji o typie trenera podczas kopiowania ocen.'
@@ -60,7 +63,10 @@ pl:
       note_3: 'Poprawki dla <module>CopyPosting</module> i <module>StaffMarker</module>.'
       note_4: Naprawiono niektóre problemy związane z dźwiękiem.
       note_5: Naprawiono problem w Androidzie powodujący, że Foxtrick nie uruchamiał się w niektórych przypadkach.
+      note_6: Linie podziałów w forach i szablonach poczty powinny teraz być poprawnie rozpoznawane podczas importowania preferencji.
+      note_7: Rozwiązano problem rozpoznawania ocen dla zachodniofryzyjskich ustawień regionalnych.
       note_8: 'Naprawiono niektóre problemy w <module>ForumAlterHeaderLine</module>, <module>ManagerButtons</module> i <module>HideSignatures</module>.'
+      note_9: "<module>SkillTable</module> będzie teraz działać ponownie dla użytkowników z jednym zespołem bez autoryzowania Foxtrick'a."
     0.12.1:
       note_0: '<header>Wiele tłumaczeń pochodzi od naszych niesamowitych użytkowników korzystających z <linkCrowdin>narzędzia crowdin</linkCrowdin>. Ty też możesz pomóc!</header>'
       note_1: 'Nowość: <module>SupportershipExpirationDate</module>: kliknięcie na dni pozostałe w pakiecie supportera na stronie głównej [?] wyświetli datę wygaśnięcia pakietu'
