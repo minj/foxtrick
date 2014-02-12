@@ -370,6 +370,10 @@
 			{
 				"text": "nhảy múa trên đường",
 				"value": "8"
+			},
+			{
+				"text": "Gởi bạn thư hâm mộ",
+				"value": "9"
 			}
 		],
 		"sectors": [

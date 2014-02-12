@@ -370,6 +370,10 @@
 			{
 				"text": "šokantys gatvėse",
 				"value": "8"
+			},
+			{
+				"text": "siunčia Jums meilės eilėraščius",
+				"value": "9"
 			}
 		],
 		"sectors": [

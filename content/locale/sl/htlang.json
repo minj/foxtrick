@@ -370,6 +370,10 @@
 			{
 				"text": "plešejo na ulicah",
 				"value": "8"
+			},
+			{
+				"text": "pošiljajo ti ljubezenska pisma",
+				"value": "9"
 			}
 		],
 		"sectors": [

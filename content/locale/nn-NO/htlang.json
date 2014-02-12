@@ -370,6 +370,10 @@
 			{
 				"text": "i den sjuande himmelen",
 				"value": "8"
+			},
+			{
+				"text": "Sender deg kjærleiksbrev",
+				"value": "9"
 			}
 		],
 		"sectors": [

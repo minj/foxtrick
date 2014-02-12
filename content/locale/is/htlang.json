@@ -370,6 +370,10 @@
 			{
 				"text": "Dansandi á götunum",
 				"value": "8"
+			},
+			{
+				"text": "Senda ástarljóð til þín",
+				"value": "9"
 			}
 		],
 		"sectors": [

@@ -370,6 +370,10 @@
 			{
 				"text": "dansează pe străzi",
 				"value": "8"
+			},
+			{
+				"text": "îţi trimit scrisori de dragoste",
+				"value": "9"
 			}
 		],
 		"sectors": [

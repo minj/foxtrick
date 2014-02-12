@@ -370,6 +370,10 @@
 			{
 				"text": "plešu na ulicama",
 				"value": "8"
+			},
+			{
+				"text": "Pjevaju pobjedničke pjesme",
+				"value": "9"
 			}
 		],
 		"sectors": [
