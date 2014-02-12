@@ -105,31 +105,6 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 			return Math.min(90, minutes);
 		};
 
-		//did the player get any stars? ... used to identify walkovers
-		//var gotStars = function(node) {
-		//	var stars = node.getElementsByClassName('endColumn2')[0];
-		//
-		//	if (Foxtrick.util.layout.isStandard(doc)) {
-		//		var wholeStars = stars.getElementsByClassName('starWhole')[0];
-		//		var halfstars = stars.getElementsByClassName('starHalf')[0];
-		//		var bigstars = stars.getElementsByClassName('starBig')[0];
-		//		return (wholeStars || halfstars || bigstars);
-		//	} else {
-		//		return (stars.textContent.match(/\d+/) !== null);
-		//	}
-		//};
-
-		//did the player a red card? ... used to identify walkovers
-		var gotRedCard = function(node) {
-			var cards = node.getElementsByTagName('td')[4].getElementsByTagName('img')[0];
-
-			var redcard = false;
-			if (cards)
-				redcard = (cards.src.search('red_card') > -1);
-
-			return redcard;
-		};
-
 		//figure out the gametype, most important to figure out how many xp pts are gained
 		var getGameType = function(node, date, u20) {
 
@@ -212,7 +187,7 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 			var date = Foxtrick.util.time.getDateFromText(match_date.textContent);
 
 			//current skilllevel
-			var	xp_now = parseInt(entry.cells[parserconfig.xp].textContent, 10);
+			var xp_now = parseInt(entry.cells[parserconfig.xp].textContent, 10);
 
 			//remember current XP Level to detect skilldowns
 			if (this.store.currentSkill === null)
@@ -221,17 +196,12 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 			var u20 = matches_entries[i].getElementsByTagName('a')[0]
 				.textContent.search('U-20') > -1;
 			var ntMatch = isNTmatch(entry);
-			var minutes = getPlayedMinutes(entry);
 			var gameType = getGameType(entry, date, u20);
-			var xp_gain = getXpGain(minutes, gameType);
-			var redCard = gotRedCard(matches_entries[i]);
-
-			//check if he also got stars, a game where he got xpgain
-			//but has not even half a star must be a walkover
-			//var got_stars = gotStars(entry);
+			var minutes = getPlayedMinutes(entry);
+			var pseudo_points = getXpGain(minutes, gameType); //for visualisation
 			var walkover = isWalkover(entry);
-			var pseudo_points = xp_gain; //for visualisation
-			xp_gain = walkover ? 0 : xp_gain;
+			// reset both xp_gain and minute count if it's a WO
+			var xp_gain = walkover ? (minutes = 0) : pseudo_points;
 
 			//adjust min and max values to take care of international vs. nationl friendlies
 			var getXPMinMaxDifference = function(ntMatch, xp_gain, gameType) {
