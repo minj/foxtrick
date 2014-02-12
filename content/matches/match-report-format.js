@@ -124,7 +124,7 @@ Foxtrick.modules.MatchReportFormat = {
 
 
 			// steal HT-Live styling
-			Foxtrick.addClass(matchReport, 'liveReport');
+			Foxtrick.addClass(matchReport, 'liveReport ft-matchReport');
 
 			// match report header
 			var reportHeader =

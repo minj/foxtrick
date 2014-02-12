@@ -25,5 +25,10 @@
 	font-weight: bold;
 }
 
+.ft-matchReport td.date {
+	width: moz-initial !important;
+	width: initial !important;
+}
+
 
 }
