@@ -7,6 +7,19 @@ en:
     beta:
       note_0: 'This is the beta version of the next release. Please help translating this version at our super easy crowd-translation page <linkCrowdin>crowdin.net</linkCrowdin>.'
 
+    0.13.0.1:
+      crowdin: '<header>A lot of translation updates from our awesome users using the <linkCrowdin>crowdin tool</linkCrowdin>. You can help out as well!</header>'
+      bugs: '<header>Bug fixes</header>'
+      old_faces: '<module>OldStyleFace</module> was not running properly on match order interface and match lineup pages. This is now fixed.'
+      simulator_skills: 'Sublevel names in <module>MatchSimulator</module> were corrected for a few languages.'
+      embed_media: '<module>PsicoTSI</module> and <module>EmbedMedia</module> were made more secure.'
+      other: '<header>Other changes</header>'
+      report_format: '<module>MatchReportFormat</module> and <module>LiveMatchReportFormat</module> modules were rewritten and now work without CHPP access.'
+      attvsdef: 'Real probabilities in <module>AttVsDef</module> module now also affects ball possession bars.'
+      staff_marker: 'Custom color interface in <module>StaffMarker</module> is now optional.'
+      mmdd: 'Arrows in <module>MainMenuDropDown</module> menus are now optional.'
+      and_more: 'Various other small changes and fixes.'
+
     0.13.0:
       important: '<header>Important announcements</header>'
       opera: |
@@ -52,7 +65,7 @@ en:
       note_1: 'Changes in Farsi and other languages that may have caused Foxtrick to break are now accounted for.'
       note_2: '<module>MatchIncome</module> will now show usage percentages while your arena is under construction. During construction time it is impossible for FoxTrick to know wether your current arena size for a particular game is correct or not. FoxTrick will assume it is correct and will thatfore show incorrect percentages when looking at older games played at your arena before its current size has been reached.'
       note_3: "Fixed the problem that caused Foxtrick to display weird symbols instead of user's currency"
-    
+
     0.12.2:
       note_0: '<header>A lot of translation updates from our awesome users using the <linkCrowdin>crowdin tool</linkCrowdin>. You can help out as well!</header>'
       note_1: '<module>PlayerStatsExperience</module>: the experience calculation now assumes there are 28.57 points per level (see 15766691.780).'
