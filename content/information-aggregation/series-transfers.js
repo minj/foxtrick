@@ -105,13 +105,13 @@ Foxtrick.modules['SeriesTransfers'] = {
 			var currencyRate = Foxtrick.util.currency.getRate(doc);
 			// batch retrieve
 			Foxtrick.util.api.batchRetrieve(doc, batchArgs, { cache_lifetime: 'session' },
-			  function(xmls, errors) {
+			  function(xmls, errorText) {
 				if (xmls)
-					processXMLs(xmls, errors, currencyRate);
+					processXMLs(xmls, errorText, currencyRate);
 			});
 		});
 
-		var processXMLs = function(xmls, errors, currencyRate) {
+		var processXMLs = function(xmls, errorText, currencyRate) {
 			var getNumFromXML = function(field) {
 				return Number(player.getElementsByTagName(field)[0].textContent);
 			};
@@ -155,8 +155,7 @@ Foxtrick.modules['SeriesTransfers'] = {
 			var hasListedPlayers = false;
 			for (var i = 0; i < xmls.length; ++i) {
 				var xml = xmls[i];
-				var errorText = errors[i];
-				if (!xml || errorText) {
+				if (!xml) {
 					Foxtrick.log('No XML in batchRetrieve', batchArgs[i], errorText);
 					continue;
 				}
