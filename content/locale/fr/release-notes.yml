@@ -8,7 +8,15 @@ fr:
     0.13.0.1:
       crowdin: '<header>Mise à jour des traductions de la part de nos fidèles utilisateurs via <linkCrowdin>crowdin tool</linkCrowdin>. Vous pouvez aussi nous donner un coup de main!</header>'
       bugs: '<header>Correctifs</header>'
+      old_faces: "<module>OldStyleFace</module> ne fonctionnait pas correctement sur l'interface d'ordre de match et sur les pages de compositions. Ceci est maintenant corrigé."
+      simulator_skills: 'Des noms de sous niveaux dans <module>MatchSimulator</module> ont été corrigées pour certaines langues.'
+      embed_media: '<module>PsicoTSI</module> et <module>EmbedMedia</module> ont été rendus encore plus sûrs.'
       other: '<header>Autres changements</header>'
+      report_format: 'Les modules <module>MatchReportFormat</module> et <module>LiveMatchReportFormat</module> ont été réécrits et maintenant fonctionnent sans accès CHPP.'
+      attvsdef: 'Les probabilités réelles du module <module>AttVsDef</module> affectent maintenant aussi la barre de possession.'
+      staff_marker: "L'interface pour coloriser les pseudos dans <module>StaffMarker</module> est désormais optionnelle."
+      mmdd: 'Les flèches dans le menu <module>MainMenuDropDown</module> sont maintenant en option.'
+      and_more: Divers autres petits changements et corrections.
     0.13.0:
       important: '<header>Annonces importantes</header>'
       opera: |
