@@ -1,5 +1,3 @@
-@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name), domain(hattrick.fm) {
-
 #ctl00_ctl00_CPContent_CPMain_btnOK,
 #ctl00_ctl00_CPContent_CPMain_btnSendNew,
 #ctl00_ctl00_CPContent_CPMain_btnCancel {
@@ -8,6 +6,4 @@
 
 #ft-forum-preview-button {
 	margin-left:10px;
-}
-
 }

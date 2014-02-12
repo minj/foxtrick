@@ -314,27 +314,22 @@ Foxtrick.util.css.getCssTextFromFile = function(cssUrl) {
 		// not a file. line is css text already
 		css_text = cssUrl;
 	}
-	//css_text = css_text.replace(new RegExp('\\[data-theme="' + Foxtrick.Prefs.getString('theme') +
-	//                            '"\\]', 'g'), '');
-	//css_text = css_text.replace(new RegExp('\\[dir="' + Foxtrick.Prefs.getString('dir') + '"\\]',
-	//                            'g'), '');
-	if (Foxtrick.arch == 'Sandboxed') {
-		// remove moz-document statement
-		if (css_text && css_text.search(/@-moz-document/) != -1) {
-			css_text = css_text.replace(/@-moz-document[^\{]+\{/, '');
-			var closing_bracket = css_text.lastIndexOf('}');
-			css_text = css_text.substr(0, closing_bracket) + css_text.substr(closing_bracket + 1);
-		}
-	}
 	return css_text;
 };
 
 // gets all css from modules.CSS settings
 Foxtrick.util.css.getCssFileArrayToString = function(cssUrls) {
 	var cssTextCollection = '';
+	if (Foxtrick.arch === 'Gecko')
+		cssTextCollection +=
+			'@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), ' +
+			'domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), ' +
+			'domain(hattrick.name), domain(hattrick.fm) {';
 	for (var i = 0; i < cssUrls.length; ++i) {
 		cssTextCollection += Foxtrick.util.css.getCssTextFromFile(cssUrls[i]);
 	}
+	if (Foxtrick.arch === 'Gecko')
+		cssTextCollection += '}';
 	return cssTextCollection;
 };
 

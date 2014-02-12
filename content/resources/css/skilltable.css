@@ -1,5 +1,3 @@
-@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name), domain(hattrick.fm) {
-
 html[dir="ltr"] .ft_skilltablediv { margin: 35px 0 35px -8px; }
 html[dir="rtl"] .ft_skilltablediv { margin: 35px -8px 35px 0; }
 .ft_skilltablediv.transfer { margin: 35px 0; }
@@ -32,4 +30,3 @@ html[dir="ltr"] .ft_skilltable_container td.status img { margin-left: 0.5em; }
 html[dir="rtl"] .ft_skilltable_container td.status img { margin-left: 0.5em; }
 html[dir="rtl"] .ft_skilltable_container td.formatted-num { direction: ltr; }
 #ft_skilltable img { vertical-align: middle; }
-}

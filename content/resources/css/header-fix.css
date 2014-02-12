@@ -1,6 +1,4 @@
 /* HeaderFix by Catalyst2950 */
-@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name), domain(hattrick.fm) {
-
 /* Fix the header on screen */
 #header {
 	position: fixed !important;
@@ -114,5 +112,4 @@ html[data-multiple] #content {
 /* Fix for ongoing matches and rapidID in simple theme*/
 html[data-theme="simple"] .ongoingEvents, html[data-theme="simple"] #ft_rapidid {
 	margin-top: 24px !important;
-}
 }

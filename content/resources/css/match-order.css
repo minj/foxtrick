@@ -1,5 +1,3 @@
-@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name), domain(hattrick.fm) {
-
 #ft_swap_positions, #ft_fill_penalty_takers, #ft_clear_penalty_takers {
 	background-color: #3f7137;
 	cursor: pointer;
@@ -68,6 +66,4 @@ html[dir="rtl"] #skills img[class*="youthSkillBar"]{
 }
 #list .ui-draggable-dragging .shirt {
 	display: block;
-}
-
 }

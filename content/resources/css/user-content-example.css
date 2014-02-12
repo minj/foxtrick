@@ -1,4 +1,3 @@
-@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name), domain(hattrick.fm) {
 /* user-content-example.css
  *
  * This file is a list of CSS statements for styling FoxTrick that satisfies
@@ -319,5 +318,3 @@ font-weight: bold !important;
 .ft-away {background-color:#F74 !important;} /* played away */
 .ft-home.ft-away {background-color:#7F0 !important;} /*played both */
 .ft-own {background-color:#DDD !important;} /* own country */
-
-}

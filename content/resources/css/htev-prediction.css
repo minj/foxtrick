@@ -1,5 +1,3 @@
-@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name), domain(hattrick.fm) {
-
 .ft-popup-span {
 	position: relative;
 	display:inline;
@@ -114,5 +112,4 @@ html[data-theme="simple"] .ft-htev-nav ul {
 }
 .ft-htev-info {
 	text-align:center !important;
-}
 }

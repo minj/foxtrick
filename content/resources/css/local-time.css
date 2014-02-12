@@ -1,5 +1,3 @@
-@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name), domain(hattrick.fm) {
-
 /* local clock positions */
 html[dir="ltr"] #ft-local-time {
 	float: right;
@@ -45,6 +43,4 @@ html[dir="ltr"] .date[x-ht-date], html[dir="ltr"] #ft-local-time, html[dir="ltr"
 html[dir="rtl"] .date[x-ht-date], html[dir="rtl"] #ft-local-time, html[dir="rtl"] #time {
 	padding-right: 14px !important;
 	background-position: right center;
-}
-
 }

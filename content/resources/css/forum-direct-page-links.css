@@ -1,5 +1,3 @@
-@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name), domain(hattrick.fm) {
-
 .pager a.page {
 	line-height:22px !important;
 	margin-left: 1px;
@@ -16,6 +14,4 @@
 
 .pager img {
 	margin-right: 0px !important;
-}
-
 }

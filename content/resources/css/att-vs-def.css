@@ -1,5 +1,3 @@
-@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name), domain(hattrick.fm) {
-
 #ft-attvsdefOptionsTable td {
 	padding: 2px !important;
 	vertical-align: middle !important;
@@ -9,6 +7,4 @@
 }
 div.foxtrick-graphs-row > div.foxtrick-graphs-cell:first-child {
 	width: 58px;
-}
-
 }

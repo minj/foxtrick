@@ -1,10 +1,6 @@
-@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name), domain(hattrick.fm) {
-
 img.ft_friendly {
 	width:15px;
 	height:13px;
 	background: url('chrome://foxtrick/content/resources/img/friendly_small.png') no-repeat scroll 0 0 transparent;
 	margin-left:4px;
-}
-
 }
