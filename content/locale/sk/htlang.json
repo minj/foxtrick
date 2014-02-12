@@ -345,35 +345,35 @@
 			},
 			{
 				"text": "podráždení",
-				"value": "3"
+				"value": "2"
 			},
 			{
 				"text": "chladní",
-				"value": "5"
+				"value": "3"
 			},
 			{
 				"text": "pokojní",
-				"value": "6"
+				"value": "4"
 			},
 			{
 				"text": "šťastní",
-				"value": "7"
+				"value": "5"
 			},
 			{
 				"text": "nadšení",
-				"value": "8"
+				"value": "6"
 			},
 			{
 				"text": "úplne bez seba",
-				"value": "9"
+				"value": "7"
 			},
 			{
 				"text": "tancujú v uliciach",
-				"value": "10"
+				"value": "8"
 			},
 			{
 				"text": "Skladajú o tebe básne",
-				"value": "11"
+				"value": "9"
 			}
 		],
 		"sectors": [

@@ -345,35 +345,35 @@
 			},
 			{
 				"text": "irriterade",
-				"value": "3"
+				"value": "2"
 			},
 			{
 				"text": "lugna",
-				"value": "5"
+				"value": "3"
 			},
 			{
 				"text": "tillfreds",
-				"value": "6"
+				"value": "4"
 			},
 			{
 				"text": "belåtna",
-				"value": "7"
+				"value": "5"
 			},
 			{
 				"text": "lyriska",
-				"value": "8"
+				"value": "6"
 			},
 			{
 				"text": "svävar på små moln",
-				"value": "9"
+				"value": "7"
 			},
 			{
 				"text": "badar i fontänerna",
-				"value": "10"
+				"value": "8"
 			},
 			{
 				"text": "skickar dig kärleksdikter",
-				"value": "11"
+				"value": "9"
 			}
 		],
 		"sectors": [

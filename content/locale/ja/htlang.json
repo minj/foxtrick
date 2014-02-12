@@ -345,35 +345,35 @@
 			},
 			{
 				"text": "苛立っている",
-				"value": "3"
+				"value": "2"
 			},
 			{
 				"text": "落ち着いている",
-				"value": "5"
+				"value": "3"
 			},
 			{
 				"text": "許容している",
-				"value": "6"
+				"value": "4"
 			},
 			{
 				"text": "満足している",
-				"value": "7"
+				"value": "5"
 			},
 			{
 				"text": "喜んでいる",
-				"value": "8"
+				"value": "6"
 			},
 			{
 				"text": "興奮している",
-				"value": "9"
+				"value": "7"
 			},
 			{
 				"text": "狂喜乱舞している",
-				"value": "10"
+				"value": "8"
 			},
 			{
 				"text": "愛の歌を歌っている",
-				"value": "11"
+				"value": "9"
 			}
 		],
 		"sectors": [

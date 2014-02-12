@@ -345,35 +345,35 @@
 			},
 			{
 				"text": "iznervirani",
-				"value": "3"
+				"value": "2"
 			},
 			{
 				"text": "mirni",
-				"value": "5"
+				"value": "3"
 			},
 			{
 				"text": "zadovoljni",
-				"value": "6"
+				"value": "4"
 			},
 			{
 				"text": "sretni",
-				"value": "7"
+				"value": "5"
 			},
 			{
 				"text": "zaneseni",
-				"value": "8"
+				"value": "6"
 			},
 			{
 				"text": "pali u sevdah",
-				"value": "9"
+				"value": "7"
 			},
 			{
 				"text": "plešu na ulicama",
-				"value": "10"
+				"value": "8"
 			},
 			{
 				"text": "Pjevaju pobjedničke pjesme",
-				"value": "11"
+				"value": "9"
 			}
 		],
 		"sectors": [

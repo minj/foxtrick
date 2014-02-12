@@ -345,35 +345,35 @@
 			},
 			{
 				"text": "razdraženi",
-				"value": "3"
+				"value": "2"
 			},
 			{
 				"text": "mirni",
-				"value": "5"
+				"value": "3"
 			},
 			{
 				"text": "zadovoljni",
-				"value": "6"
+				"value": "4"
 			},
 			{
 				"text": "veseli",
-				"value": "7"
+				"value": "5"
 			},
 			{
 				"text": "navdušeni",
-				"value": "8"
+				"value": "6"
 			},
 			{
 				"text": "vzhičeni",
-				"value": "9"
+				"value": "7"
 			},
 			{
 				"text": "plešejo na ulicah",
-				"value": "10"
+				"value": "8"
 			},
 			{
 				"text": "pošiljajo ti ljubezenska pisma",
-				"value": "11"
+				"value": "9"
 			}
 		],
 		"sectors": [

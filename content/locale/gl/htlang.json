@@ -345,35 +345,35 @@
 			},
 			{
 				"text": "irritados",
-				"value": "3"
+				"value": "2"
 			},
 			{
 				"text": "calmos",
-				"value": "5"
+				"value": "3"
 			},
 			{
 				"text": "satisfeitos",
-				"value": "6"
+				"value": "4"
 			},
 			{
 				"text": "ledos",
-				"value": "7"
+				"value": "5"
 			},
 			{
 				"text": "eufóricos",
-				"value": "8"
+				"value": "6"
 			},
 			{
 				"text": "cantando a rianxeira",
-				"value": "9"
+				"value": "7"
 			},
 			{
 				"text": "bailando a muiñeira",
-				"value": "10"
+				"value": "8"
 			},
 			{
 				"text": "Adicándoche cantigas de amor",
-				"value": "11"
+				"value": "9"
 			}
 		],
 		"sectors": [

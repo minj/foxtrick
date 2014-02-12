@@ -344,36 +344,36 @@
 				"value": "1"
 			},
 			{
-				"text": "신경질적인",
-				"value": "3"
+				"text": "화냄",
+				"value": "2"
 			},
 			{
 				"text": "차분함",
-				"value": "5"
+				"value": "3"
 			},
 			{
 				"text": "만족함",
-				"value": "6"
+				"value": "4"
 			},
 			{
 				"text": "흡족함",
-				"value": "7"
+				"value": "5"
 			},
 			{
 				"text": "매우 만족함",
-				"value": "8"
+				"value": "6"
 			},
 			{
 				"text": "매우 기뻐함",
-				"value": "9"
+				"value": "7"
 			},
 			{
 				"text": "춤출 듯 기뻐함",
-				"value": "10"
+				"value": "8"
 			},
 			{
 				"text": "최고의 찬사를 보냄",
-				"value": "11"
+				"value": "9"
 			}
 		],
 		"sectors": [

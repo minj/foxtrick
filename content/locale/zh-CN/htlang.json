@@ -345,35 +345,35 @@
 			},
 			{
 				"text": "恼怒",
-				"value": "3"
+				"value": "2"
 			},
 			{
 				"text": "平静",
-				"value": "5"
+				"value": "3"
 			},
 			{
 				"text": "满足",
-				"value": "6"
+				"value": "4"
 			},
 			{
 				"text": "满意",
-				"value": "7"
+				"value": "5"
 			},
 			{
 				"text": "极度兴奋",
-				"value": "8"
+				"value": "6"
 			},
 			{
 				"text": "生活愉快",
-				"value": "9"
+				"value": "7"
 			},
 			{
 				"text": "乐不可支",
-				"value": "10"
+				"value": "8"
 			},
 			{
 				"text": "吟首情诗给您听",
-				"value": "11"
+				"value": "9"
 			}
 		],
 		"sectors": [

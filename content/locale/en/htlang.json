@@ -345,35 +345,35 @@
 			},
 			{
 				"text": "irritated",
-				"value": "3"
+				"value": "2"
 			},
 			{
 				"text": "calm",
-				"value": "5"
+				"value": "3"
 			},
 			{
 				"text": "content",
-				"value": "6"
+				"value": "4"
 			},
 			{
 				"text": "satisfied",
-				"value": "7"
+				"value": "5"
 			},
 			{
 				"text": "delirious",
-				"value": "8"
+				"value": "6"
 			},
 			{
 				"text": "high on life",
-				"value": "9"
+				"value": "7"
 			},
 			{
 				"text": "dancing in the streets",
-				"value": "10"
+				"value": "8"
 			},
 			{
 				"text": "Sending love poems to you",
-				"value": "11"
+				"value": "9"
 			}
 		],
 		"sectors": [

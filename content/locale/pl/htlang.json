@@ -345,35 +345,35 @@
 			},
 			{
 				"text": "zirytowani",
-				"value": "3"
+				"value": "2"
 			},
 			{
 				"text": "obojętni",
-				"value": "5"
+				"value": "3"
 			},
 			{
 				"text": "spokojni",
-				"value": "6"
+				"value": "4"
 			},
 			{
 				"text": "zadowoleni",
-				"value": "7"
+				"value": "5"
 			},
 			{
 				"text": "zachwyceni",
-				"value": "8"
+				"value": "6"
 			},
 			{
 				"text": "szaleją z radości",
-				"value": "9"
+				"value": "7"
 			},
 			{
 				"text": "w siódmym niebie",
-				"value": "10"
+				"value": "8"
 			},
 			{
 				"text": "przysyłają poematy miłosne",
-				"value": "11"
+				"value": "9"
 			}
 		],
 		"sectors": [

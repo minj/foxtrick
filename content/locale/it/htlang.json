@@ -345,35 +345,35 @@
 			},
 			{
 				"text": "irritati",
-				"value": "3"
+				"value": "2"
 			},
 			{
 				"text": "calmi",
-				"value": "5"
+				"value": "3"
 			},
 			{
 				"text": "contenti",
-				"value": "6"
+				"value": "4"
 			},
 			{
 				"text": "soddisfatti",
-				"value": "7"
+				"value": "5"
 			},
 			{
 				"text": "in delirio",
-				"value": "8"
+				"value": "6"
 			},
 			{
 				"text": "sulle stelle",
-				"value": "9"
+				"value": "7"
 			},
 			{
 				"text": "danzano per le strade",
-				"value": "10"
+				"value": "8"
 			},
 			{
 				"text": "mandano poesie d'amore",
-				"value": "11"
+				"value": "9"
 			}
 		],
 		"sectors": [
