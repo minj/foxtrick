@@ -13,20 +13,21 @@ Foxtrick.modules['LiveMatchReportFormat'] = {
 	run: function(doc) {
 		var react = function(liveReport, indicators) {
 			var events = liveReport.getElementsByTagName('tr');
-			for(var i=0; i < events.length; i++){
+			for (var i = 0; i < events.length; i++) {
 				var event = events[i];
 
-				//no event, stuff like the indicators or our indicators
-				if(!event.getAttribute('data-eventtype')){
+				// no event, stuff like the indicators or our indicators
+				if (!event.getAttribute('data-eventtype')) {
 					event.firstChild.setAttribute('colspan', '4');
 					continue;
 				}
 				Foxtrick.util.matchEvent.addEventIcons(event);
 			}
-			if(indicators)
+			if (indicators)
 				Foxtrick.util.matchEvent.addEventIndicators(liveReport);
 		};
-		var livereportsContainer = doc.getElementById('ctl00_ctl00_CPContent_CPMain_UpdatePanelMatch');
+		var livereportsContainer =
+			doc.getElementById('ctl00_ctl00_CPContent_CPMain_UpdatePanelMatch');
 		if (livereportsContainer)
 			Foxtrick.listen(livereportsContainer, 'DOMNodeInserted',
 			  function(event) {
@@ -40,14 +41,14 @@ Foxtrick.modules['LiveMatchReportFormat'] = {
 			Foxtrick.listen(lContainer, 'DOMNodeInserted',
 			  function(event) {
 				if (event.target.getAttribute && event.target.getAttribute('id') &&
-				    event.target.getAttribute('id') == 'ctl00_ctl00_CPContent_CPMain_repM') {
-				var livereports = event.target.getElementsByClassName('liveReport');
-				for (var i = 0; i < livereports.length; i++)
-					react(livereports[i], true);
+					event.target.getAttribute('id') == 'ctl00_ctl00_CPContent_CPMain_repM') {
+					var livereports = event.target.getElementsByClassName('liveReport');
+					for (var i = 0; i < livereports.length; i++)
+						react(livereports[i], true);
 				}
 			}, false);
 
-		//firstload
+		// firstload
 		var livereports = doc.getElementsByClassName('liveReport');
 		for (var i = 0; i < livereports.length; i++) {
 			react(livereports[i], true);
