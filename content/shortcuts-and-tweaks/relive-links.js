@@ -7,7 +7,7 @@
 
 Foxtrick.modules['ReLiveLinks'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-	PAGES: ['match', 'matchOld', 'matches', 'matchesArchive', 'cupMatches',
+	PAGES: ['matches', 'matchesArchive', 'cupMatches',
 			 'fixtures', 'youthFixtures', 'series'],
 	NICE: -1, //before any modules that might change row count
 	run: function(doc) {
@@ -26,35 +26,7 @@ Foxtrick.modules['ReLiveLinks'] = {
 
 		var rows, row, liveTdIdx = 4, cloneUrlIdx = 5, tdCount = 7, scoreIdx = 3;
 
-		if (Foxtrick.isPage(doc, 'match') || Foxtrick.isPage(doc, 'matchOld')) {
-
-			if (Foxtrick.Pages.Match.isPrematch(doc)
-			|| Foxtrick.Pages.Match.inProgress(doc))
-			return;
-
-			var SourceSystem = 'Hattrick';
-			var isYouth = Foxtrick.Pages.Match.isYouth(doc);
-			var isHTOIntegrated = Foxtrick.Pages.Match.isHTOIntegrated(doc);
-			if (isYouth)
-				SourceSystem = 'Youth';
-			if (isHTOIntegrated)
-				SourceSystem = 'HTOIntegrated';
-			var matchId = Foxtrick.Pages.Match.getId(doc);
-
-			var link = Foxtrick.createFeaturedElement(doc, this, 'a');
-			link.href = '/Club/Matches/Live.aspx?matchID=' + matchId +
-				'&actionType=addMatch&SourceSystem=' + SourceSystem;
-			link.appendChild(img.cloneNode(true));
-			if (!Foxtrick.Pages.Match.hasNewRatings(doc))
-				doc.getElementsByTagName('h1')[1].appendChild(link);
-			else {
-				var byLine = doc.querySelector('div.byline');
-				byLine.insertBefore(link, byLine.firstChild);
-			}
-
-			return;
-		}
-		else if (Foxtrick.isPage(doc, 'series')) {
+		if (Foxtrick.isPage(doc, 'series')) {
 
 			tdCount = 2;//3;
 			cloneUrlIdx = 0;
