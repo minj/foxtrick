@@ -320,16 +320,17 @@ Foxtrick.util.css.getCssTextFromFile = function(cssUrl) {
 // gets all css from modules.CSS settings
 Foxtrick.util.css.getCssFileArrayToString = function(cssUrls) {
 	var cssTextCollection = '';
-	if (Foxtrick.arch === 'Gecko')
-		cssTextCollection +=
-			'@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), ' +
-			'domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), ' +
-			'domain(hattrick.name), domain(hattrick.fm) {';
 	for (var i = 0; i < cssUrls.length; ++i) {
 		cssTextCollection += Foxtrick.util.css.getCssTextFromFile(cssUrls[i]);
 	}
-	if (Foxtrick.arch === 'Gecko')
-		cssTextCollection += '}';
+	if (Foxtrick.arch === 'Gecko') {
+		cssTextCollection =
+			'@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), ' +
+			'domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), ' +
+			'domain(hattrick.name), domain(hattrick.fm) {\n' +
+				cssTextCollection +
+			'\n}\n';
+	}
 	return cssTextCollection;
 };
 
