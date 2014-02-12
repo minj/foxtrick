@@ -104,12 +104,6 @@ div.cfMessage, div.edited, div.cfHeader, div.feedItem, div.cfUserInfo, div.signa
 div.playerInfo, .alert, .tournamentInvite, .frontPageList, .teamName {
 	overflow: visible !important;
 }
-/* the above declaration breaks team news in simple skin : */
-
-html[data-theme="simple"] .clubnewsLogo img {
-	max-width: 22px;
-	max-height: 22px;
-}
 
 .tournamentInvite::after {
 	content: ".";
