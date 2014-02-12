@@ -142,10 +142,8 @@ Foxtrick.modules['DirectPageLinks'] = {
 			var end;
 			var start;
 
-			//standard skin
-			var supportedButtons = 18;
-			//if (!Foxtrick.util.layout.isStandard(doc))
-			//	supportedButtons = 14; //simple skinn
+			// Android renders larger font due to intelligent scaling
+			var supportedButtons = Foxtrick.platform === 'Android' ? 12 : 18;
 
 			//there's room for all pages
 			if (maxpage <= supportedButtons) {
