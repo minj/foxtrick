@@ -5,6 +5,18 @@ hr:
       note_0: 'Ovo je razvojna inačica. Koristiti na svoju odgovornost. Za detalje o promjenama pogledajte <linkSVN>commit history</linkSVN> na Google Code stranici.'
     beta:
       note_0: 'Ovo je beta inačica buduće nove verzije. Pomozite na prevoditi ovu verziju sa super lakim prevođenjem na <linkCrowdin>crowdin.net</linkCrowdin>.'
+    0.13.0.1:
+      crowdin: '<header>Mnogo prevoditeljskih nadogradnji od naših fantastičnih korisnika koristeći <linkCrowdin>crowdin alat</linkCrowdin>. I Vi možete pomoći!</header>'
+      bugs: '<header>Popravljene greške</header>'
+      old_faces: '<module>OldStyleFace</module> nije radio kako treba na stranici postavljanja taktike, Ovo je sada popravljeno.'
+      simulator_skills: 'Imena podrazina u <module>MatchSimulator</module> su ispravljena za neke jezike.'
+      embed_media: '<module>PsicoTSI</module> i <module>EmbedMedia</module> su više sigurni sada.'
+      other: '<header>Druge promjene</header>'
+      report_format: '<module>MatchReportFormat</module> i <module>LiveMatchReportFormat</module> moduli su ponovno napisani i sada rade bez CHPP pristupa.'
+      attvsdef: 'Stvarne vjerojatnosti u <module>AttVsDef</module> modulu sada također utječu i na prikaz posjeda lopte.'
+      staff_marker: 'Vlastita boja kod <module>StaffMarker</module> modula je sada neobvezujuća.'
+      mmdd: 'Strelice u <module>MainMenuDropDown</module> izborniku su sada neobvezujuće.'
+      and_more: Razne druge male promjene i popravci.
     0.13.0:
       important: '<header>Važne obavijesti</header>'
       opera: |

@@ -5,6 +5,10 @@ pl:
       note_0: 'To jest wersja rozwojowa. Korzystaj według własnego uznania. Proszę sprawdź szczegóły zmian <linkSVN>historia zmian</linkSVN> w witrynie Google Code.'
     beta:
       note_0: 'To jest wersja beta następnego wydania. Proszę pomóż w tłumaczeniu tej wersji na naszej super łatwej stronie tłumaczeń <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.13.0.1:
+      crowdin: '<header>Wiele tłumaczeń pochodzi od naszych niesamowitych użytkowników korzystających z <linkCrowdin>narzędzia crowdin</linkCrowdin>. Ty też możesz pomóc!</header>'
+      bugs: '<header>Poprawki błędów</header>'
+      other: '<header>Inne zmiany</header>'
     0.13.0:
       important: '<header>Ważne ogłoszenia</header>'
       opera: "<p>To ostatnie główne wydanie główne, które oficjalnie wspiera wspiera Operę 12 lub starszą. Istniejące wersje Foxtrick'a mogą przestać działać bez wcześniejszego uprzedzenia.</p> <p>Proszę rozważyć przejście do <linkOperaNext>OperaNext</linkOperaNext> lub innej wybranej przez siebie obsługiwanej przeglądarki.</p>"

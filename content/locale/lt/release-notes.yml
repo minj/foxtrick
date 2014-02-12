@@ -5,6 +5,18 @@ lt:
       note_0: 'Įdiegėte nestabilią versiją. Naudokite savo rizika. Peržiūrėkite „Google Code“ <linkSVN>pakeitimų sąrašą</linkSVN>.'
     beta:
       note_0: 'Įdiegėte išankstinę (beta) versiją. Prašome prisidėti prie jos vertimo į lietuvių kalbą ypatingai šauniame vertėjų savanorių portale „<linkCrowdin>crowdin.net</linkCrowdin>“. '
+    0.13.0.1:
+      crowdin: '<header>Daugybė vertimo atnaujinimų. Dėkojame savo šauniems vartotojams, kurie naudojasi <linkCrowdin>crowdin portalu</linkCrowdin>. Ir Jūs galite prisidėti!</header>'
+      bugs: '<header>Pataisytos klaidos</header>'
+      old_faces: '<module>OldStyleFace</module> modulis neveikė rungtynių nurodymų sąsajos bei rungtynių sudėties puslapiuose. Klaida ištaisyta.'
+      simulator_skills: 'Kai kurioms kalboms pataisyti polygmenų pavadinimai <module>MatchSimulator</module> modulyje.'
+      embed_media: 'Padidintas <module>PsicoTSI</module> ir <module>EmbedMedia</module> modulių saugumas.'
+      other: '<header>Kiti pakeitimai</header>'
+      report_format: '<module>MatchReportFormat</module> ir <module>LiveMatchReportFormat</module> moduliai buvo perrašyti ir dabar veikia be CHPP sąsajos.'
+      attvsdef: 'Realios tikimybės <module>AttVsDef</module> modulyje dabar pakeičia ir kamuolio kontrolės juosteles.'
+      staff_marker: 'Galima išjungti individualių vartotojų spalvų sąsają <module>StaffMarker</module> modulyje.'
+      mmdd: 'Galima išjungti meniu rodyklėles <module>MainMenuDropDown</module> modulyje.'
+      and_more: Daugybė kitų smulkių pataisymų ir pakitimų.
     0.13.0:
       important: '<header>Svarbūs pranešimai</header>'
       opera: |

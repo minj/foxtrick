@@ -5,6 +5,8 @@ sr:
       note_0: 'За детаље о променама погледајте  на <linkSVN>Google Code</linkSVN> сајту.'
     beta:
       note_0: 'Ово је бета верзија наредне званичне верзије. Уколико желите да помогнете у превођењу посетите нашу страницу за преводиоце на <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.13.0.1:
+      crowdin: '<header>Ажурирани преводи на многобројне језике уз помоћ <linkCrowdin>crowdin алата</linkCrowdin>. Ако и Ви хоћете да помогнете, само изволите!</header>'
     0.13.0:
       important: '<header>Важна обавештења</header>'
       crowdin: '<header>Ажурирани преводи на многобројне језике уз помоћ <linkCrowdin>crowdin алата</linkCrowdin>. Ако и Ви хоћете да помогнете, само изволите!</header>'
