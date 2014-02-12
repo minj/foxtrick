@@ -5,6 +5,18 @@ gl:
       note_0: 'Esta é a versión en proceso desenvolvemento. Úsaa baixo a túa responsabilidade. Podes ollar o <linkSVN>Historial de cambios</linkSVN> en Google Code para ver detalles dos mesmos.'
     beta:
       note_0: 'Esta é a versión beta do próximo lanzamento. Podes axudar a traducila na nosa marabillosa páxina de tradución en equipo <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.13.0.1:
+      crowdin: '<header>Unha morea de actualizacións das traducións realizadas polos nosos marabillosos usuarios a través da <linkCrowdin>ferramenta Crowdin</linkCrowdin>. Por certo, ti tamén podes colaborar!</header>'
+      bugs: '<header>Solucións de erros</header>'
+      old_faces: 'O módulo <module>OldStyleFace</module> non ía ben na páxina de ordes do partido e na páxina de aliñación. Arranxado.'
+      simulator_skills: 'Os nomes dos subniveis no módulo <module>MatchSimulator</module> foron correxidos en certas linguaxes.'
+      embed_media: 'O módulo <module>PsicoTSI</module> e o módulo <module>EmbedMedia</module> sonche agora máis seguros.'
+      other: '<header>Outros cambios</header>'
+      report_format: 'O módulo <module>MatchReportFormat</module> e o <module>LiveMatchReportFormat</module> foron rescritos e agora xa van co acceso CHPP.'
+      attvsdef: 'As probabilidades reais no módulo <module>AttVsDef</module> afectan agora tambén ás barras de posesión.'
+      staff_marker: 'O cor personalizado do módulo <module>StaffMarker</module> é agora opcional.'
+      mmdd: 'As frechas nos menús do módulo  <module>MainMenuDropDown</module> sonche agora opcionais.'
+      and_more: Moitos outros cambios pequeniños por aquí e por alá.
     0.13.0:
       important: '<header>Anuncios importantes</header>'
       opera: |
