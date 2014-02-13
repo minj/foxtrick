@@ -128,7 +128,7 @@ Foxtrick.modules['ShowLineupSet'] = {
 
 					var teams = makeTeamNodes(link);
 
-					var goals = row.cells[1].textContent).split(/\s*-\s*/).trim();
+					var goals = row.cells[1].textContent.split(/\s*-\s*/).trim();
 					var goal_dif = parseInt(goals[0]) - parseInt(goals[1]);
 					if (rtl)
 						goal_dif *= -1; // reverted for rtl
