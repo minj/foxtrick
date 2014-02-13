@@ -523,7 +523,7 @@ Foxtrick.Pages.Players = {
 
 				player.playerNode = playerNode;
 
-				var nameLink = Foxtrick.nth(0, function(n) {
+				var nameLink = Foxtrick.nth(function(n) {
 					return !Foxtrick.hasClass(n, 'flag');
 				}, playerNode.getElementsByTagName('a'));
 				player.nameLink = nameLink.cloneNode(true);

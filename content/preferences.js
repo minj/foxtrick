@@ -874,7 +874,7 @@ function initChangesTab()
 	try {
 		if (lang != 'en') {
 			var category = statusJSON.status;
-			var st = Foxtrick.nth(0, function(item) {
+			var st = Foxtrick.nth(function(item) {
 				return item.code == lang;
 			}, category).translated_progress;
 			statusText = Foxtrick.L10n.getString('releaseNotes.translationStatus').replace(/%s/, st);

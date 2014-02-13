@@ -681,7 +681,7 @@ Foxtrick.util.matchEvent.addEventIndicator = function(event, invert) {
 		}
 	];
 
-	var indType = Foxtrick.nth(0, function(n) {
+	var indType = Foxtrick.nth(function(n) {
 		return n.func();
 	}, indicatorList);
 

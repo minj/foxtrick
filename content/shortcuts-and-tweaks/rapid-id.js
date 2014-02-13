@@ -60,7 +60,7 @@ Foxtrick.modules['RapidId'] = {
 			}
 			setSelected(type);
 			var urlTmpl = doc.location.protocol + '//' + doc.location.host + '/' +
-				Foxtrick.nth(0, function(n) { return n.value == type; }, options).url;
+				Foxtrick.nth(function(n) { return n.value == type; }, options).url;
 			// open in current tab if only one ID, in new tabs if more than one
 			Foxtrick.map(function(id) {
 				var url = urlTmpl.replace('%n', id);

@@ -68,13 +68,16 @@ Foxtrick.count = function(func, array) {
 	}, 0);
 };
 
-// TODO: review
 // returns (n+1)'th value in array that satisfy func
+// n is 0 by default
 // -- returns first if n === 0
 // returns null if not found
-Foxtrick.nth = function(n, func, array) {
+Foxtrick.nth = function(func, array, n) {
 	var count = 0;
 	var ret = null;
+	if (!n)
+		n = 0;
+
 	Foxtrick.any(function(e, i, a) {
 		// loop until found
 		if (func(e, i, a)) {

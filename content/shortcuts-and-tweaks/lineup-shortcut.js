@@ -173,7 +173,7 @@ Foxtrick.modules['LineupShortcut'] = {
 		var mainWrapper = doc.getElementById('ctl00_ctl00_CPContent_divStartMain');
 		var mainBody = doc.getElementById('mainBody');
 
-		var matchLink = Foxtrick.nth(0, function(n) {
+		var matchLink = Foxtrick.nth(function(n) {
 				return n.href.search(/\/Club\/Matches\/Match\.aspx/i) >= 0;
 			}, mainBody.getElementsByTagName('a'));
 		if (!matchLink)

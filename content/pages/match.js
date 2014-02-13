@@ -125,7 +125,7 @@ Foxtrick.Pages.Match = {
 
 		try {
 			var category = Foxtrick.L10n.htLanguagesJSON[lang].language['tactics'];
-			var subLevelValue = Foxtrick.nth(0, function(item) {
+			var subLevelValue = Foxtrick.nth(function(item) {
 				return item.value == tactics;
 			}, category).type;
 			return subLevelValue || -1;

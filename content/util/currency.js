@@ -52,7 +52,7 @@ Foxtrick.util.currency = {
 	},
 	getSymbolByCode: function(lookup) {
 		var category = Foxtrick.XMLData.htCurrencyJSON.hattrickcurrencies;
-		return Foxtrick.nth(0, function(item) {
+		return Foxtrick.nth(function(item) {
 			return item.code == lookup;
 		}, category).symbol;
 	},
@@ -66,7 +66,7 @@ Foxtrick.util.currency = {
 
 	getRateByCode: function(lookup) {
 		var category = Foxtrick.XMLData.htCurrencyJSON.hattrickcurrencies;
-		return parseFloat(Foxtrick.nth(0, function(item) {
+		return parseFloat(Foxtrick.nth(function(item) {
 			return item.code == lookup;
 		}, category).eurorate);
 	},

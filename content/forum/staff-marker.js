@@ -401,7 +401,7 @@ Foxtrick.modules['StaffMarker'] = {
 							[/^\u202d?CHPP-/i, 'chpp'],
 							[/^\u202d?LA-/i, 'la']
 						];
-						var first = Foxtrick.nth(0, function(pair) {
+						var first = Foxtrick.nth(function(pair) {
 							return alias.search(pair[0]) == 0;
 						}, markers);
 						if (first) {

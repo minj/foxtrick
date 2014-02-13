@@ -94,7 +94,7 @@ Foxtrick.modules.FixLinks = {
 			if (youthid) {
 				// add youthteamid to report link
 				var row = link.parentNode.parentNode;
-				var reportLink = Foxtrick.nth(0, function(a) {
+				var reportLink = Foxtrick.nth(function(a) {
 					return a.href && /Match\.aspx/.test(a.href) && !/#/.test(a.href);
 				}, row.getElementsByTagName('a'));
 				reportLink.href = this.addParam(reportLink.href, 'youthTeamId', youthid);
