@@ -97,15 +97,14 @@ Foxtrick.indexOf = function(array, e) {
 // TODO: review
 // returns whether e is a member of array
 Foxtrick.member = function(e, array) {
-	if (!Array.isArray(array))
-		array = Foxtrick.toArray(array);
-	return array.indexOf(e) !== -1;
+	return Foxtrick.indexOf(array, e) !== -1;
 };
 
 
 // returns count of members in given array that satisfy func
 Foxtrick.count = function(func, array) {
-	array = Foxtrick.toArray(array);
+	if (!Array.isArray(array))
+		array = Foxtrick.toArray(array);
 	return array.reduce(function(ct, e, i, a) {
 		if (func(e, i, a))
 			ct++;
