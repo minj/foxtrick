@@ -42,9 +42,9 @@ Foxtrick.modules['ForumLeaveButton'] = {
 				for (var i = 0; i < liElems.length; i++) {
 					var subDivs = liElems[i].firstChild.getElementsByTagName('div');
 					for (var k = 0; k < subDivs.length; k++) {
-						if (subDivs[k].className == 'float_left prioFolderName'
-							&& Foxtrick.trim(subDivs[k].getElementsByTagName('a')[0].textContent)
-							== confName) {
+						if (subDivs[k].className == 'float_left prioFolderName' &&
+							subDivs[k].getElementsByTagName('a')[0].textContent.trim() ==
+							confName) {
 							var inputs = subDivs[k + 1].getElementsByTagName('input');
 							for (var j = 0; j < inputs.length; j++) {
 								if (inputs[j].className == 'leave') {
@@ -88,7 +88,7 @@ Foxtrick.modules['ForumLeaveButton'] = {
 		}
 		if (link == null || link.lastChild == null || link.lastChild.data == null) return;
 
-		var confName = Foxtrick.trim(link.lastChild.data);
+		var confName = link.lastChild.data.trim();
 
 		var leaveConf = doc.createElement('div');
 		leaveConf.setAttribute('id', 'ftLC-btn' + foldersCounter);

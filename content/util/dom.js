@@ -95,7 +95,7 @@ Foxtrick.removeAttributeValue = function(obj, attribute, value) {
 	var _attrib = obj.getAttribute(attribute);
 	if (_attrib) {
 		var reg = new RegExp('(\\s|^)' + value + '(\\s|$)', 'g');
-		Foxtrick.setAttribute(obj, attribute, Foxtrick.trim(_attrib.replace(reg, ' ')));
+		Foxtrick.setAttribute(obj, attribute, _attrib.replace(reg, ' ').trim());
 	}
 };
 
@@ -110,7 +110,7 @@ Foxtrick.addClass = function(obj, cls) {
 	if(!obj || !obj.classList)
 		return;
 
-	var classes = Foxtrick.trim(cls).split(' ');
+	var classes = cls.trim().split(' ');
 	for(var c in classes)
 		obj.classList.add(classes[c]);
 };

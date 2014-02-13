@@ -108,7 +108,7 @@ Foxtrick.Pages.TransferSearchResults = {
 				var ageMatch = player.ageText.match(/(\d+)/g);
 				player.age = { years: parseInt(ageMatch[0], 10), days: parseInt(ageMatch[1], 10) };
 				player.tsi = Foxtrick.trimnum(infoTable.rows[2].cells[1].textContent);
-				var speciality = Foxtrick.trim(infoTable.rows[3].cells[1].textContent);
+				var speciality = infoTable.rows[3].cells[1].textContent.trim();
 				player.speciality = (speciality == '-') ? '' : speciality;
 				player.deadline = infoTable.rows[4].cells[1].cloneNode(true);
 

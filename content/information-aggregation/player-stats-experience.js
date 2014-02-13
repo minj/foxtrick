@@ -83,7 +83,7 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 		};
 		// new W.O detection
 		var isWalkover = function(node) {
-			var stars = Foxtrick.trim(node.getElementsByClassName('endColumn2')[0].textContent);
+			var stars = node.getElementsByClassName('endColumn2')[0].textContent.trim();
 			// stars in standard || no perform || stars in simple
 			if (stars.length === 0 || stars === '-' || stars.match(/^[0-9,. ()]+$/))
 				return false;

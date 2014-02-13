@@ -128,7 +128,7 @@ Foxtrick.modules['ShowLineupSet'] = {
 
 					var teams = makeTeamNodes(link);
 
-					var goals = Foxtrick.trim(row.cells[1].textContent).split(/\s*-\s*/);
+					var goals = row.cells[1].textContent).split(/\s*-\s*/).trim();
 					var goal_dif = parseInt(goals[0]) - parseInt(goals[1]);
 					if (rtl)
 						goal_dif *= -1; // reverted for rtl
@@ -148,7 +148,7 @@ Foxtrick.modules['ShowLineupSet'] = {
 				} else {
 					var correctTeam = "TeamID="+Foxtrick.util.id.getOwnTeamId();
 				}
-				
+
 				var tables = doc.getElementById('mainBody').getElementsByTagName('table');
 				// only deal with fixture/result tables
 				tables = Foxtrick.filter(function(n) {
@@ -170,7 +170,7 @@ Foxtrick.modules['ShowLineupSet'] = {
 							}
 						}
 					}
-				}				
+				}
 		}
 	}
 };

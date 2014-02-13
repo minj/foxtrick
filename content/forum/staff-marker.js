@@ -478,7 +478,7 @@ Foxtrick.modules['StaffMarker'] = {
 							if (a.getAttribute('href').search(/\/Club\/Manager\/\?userId\=/i) == -1
 								|| a.getAttribute('href').search(/redir_to_league=true/i) != -1)
 								return;
-							var uname = Foxtrick.trim(a.title);
+							var uname = a.title.trim();
 							var uid = a.href.replace(/.+userId=/i, '').match(/^\d+/);
 							modifier(uid, uname, a);
 						}, links);
@@ -499,7 +499,7 @@ Foxtrick.modules['StaffMarker'] = {
 						var user_hasClass = {};
 						var option;
 						while (option = select.options[i++]) {
-							var uname = Foxtrick.trim(option.textContent);
+							var uname = option.textContent.trim();
 							if (uname == '')
 								break;
 							var uid = option.value.replace(/by_|to_/gi, '');

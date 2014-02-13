@@ -83,7 +83,7 @@ Foxtrick.util.id.extractTeamName = function(element) {
 	}, element.getElementsByTagName('a'));
 	for (var i = 0; i < links.length; i++) {
 		if (Foxtrick.util.id.isTeamDetailUrl(links[i].href)) {
-			return Foxtrick.trim(links[i].textContent);
+			return links[i].textContent.trim();
 		}
 	}
 	return null;
@@ -195,7 +195,7 @@ Foxtrick.util.id.extractLeagueName = function(element) {
 	}, element.getElementsByTagName('a'));
 	for (var i = 0; i < links.length; i++) {
 		if (Foxtrick.util.id.isSeriesDetailUrl(links[i].href)) {
-			return Foxtrick.trim(links[i].text);
+			return links[i].text.trim();
 		}
 	}
 	return null;

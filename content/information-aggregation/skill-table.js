@@ -1190,7 +1190,7 @@ Foxtrick.modules['SkillTable'] = {
 								// recursively get the content of child nodes
 								ret += getNode(children[i]) + ' ';
 							}
-							return Foxtrick.trim(ret);
+							return ret.trim();
 						}
 						else {
 							if (node.nodeName.toLowerCase() == 'img') {

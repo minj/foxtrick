@@ -260,9 +260,9 @@ Foxtrick.Pages.Player = {
 								break; //skills are not visible
 							}
 							var skillValue = parseInt(skillLink.href.match(/ll=(\d+)/)[1], 10);
-							var skillText = Foxtrick.trim(skillLink.textContent);
-							var skillName = Foxtrick.trim(rows[i].getElementsByTagName('td')[0]
-							                              .textContent).replace(':', '');
+							var skillText = skillLink.textContent.trim();
+							var skillContent = rows[i].getElementsByTagName('td')[0].textContent;
+							var skillName = skillContent.replace(':', '').trim();
 							skills[skillOrder[i]] = skillValue;
 							skillTexts[skillOrder[i]] = skillText;
 							skillNames[skillOrder[i]] = skillName;
@@ -281,8 +281,8 @@ Foxtrick.Pages.Player = {
 								break; //skills are not visible
 							}
 							var skillValue = parseInt(skillLink.href.match(/ll=(\d+)/)[1], 10);
-							var skillText = Foxtrick.trim(skillLink.textContent);
-							var skillName = Foxtrick.trim(cells[2 * i].textContent).replace(':', '');
+							var skillText = skillLink.textContent.trim();
+							var skillName = cells[2 * i].textContent.trim().replace(':', '');
 							skills[skillOrder[i]] = skillValue;
 							skillTexts[skillOrder[i]] = skillText;
 							skillNames[skillOrder[i]] = skillName;
@@ -318,6 +318,7 @@ Foxtrick.Pages.Player = {
 						var currentText = '';
 						var maxText = '';
 						var skillCell = rows[i].getElementsByTagName('td')[1];
+						var textCell = rows[i].getElementsByTagName('td')[0];
 						if (skillCell.getElementsByClassName('youthSkillBar').length > 0) {
 							// bar is present
 							// skills could either be a skill or unknown
@@ -336,12 +337,10 @@ Foxtrick.Pages.Player = {
 						}
 						else {
 							// no images, the cell says 'unknown'
-							currentText = maxText = Foxtrick.trim(skillCell.textContent);
+							currentText = maxText = skillCell.textContent.trim();
 						}
 						skillTexts[skillOrder[i]] = { current: currentText, max: maxText };
-						skillNames[skillOrder[i]] =
-							Foxtrick.trim(rows[i].getElementsByTagName('td')[0].textContent)
-								.replace(':', '');
+						skillNames[skillOrder[i]] = textCell.textContent.trim().replace(':', '');
 					}
 				}
 			}

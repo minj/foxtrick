@@ -117,7 +117,8 @@ Foxtrick.modules['ReLiveLinks'] = {
 			row = rows[i];
 			tds = row.getElementsByTagName('td');
 			if (tds.length != tdCount) continue;
-			if (! Foxtrick.trim(tds[scoreIdx].textContent).match(/^\d/)) continue;
+			if (!tds[scoreIdx].textContent.trim().match(/^\d/))
+				continue;
 			liveTd = tds[liveTdIdx];
 			if (liveTd && liveTd.getElementsByTagName('a').length) continue;
 			links = tds[cloneUrlIdx].getElementsByTagName('a');

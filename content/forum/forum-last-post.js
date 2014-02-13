@@ -41,7 +41,7 @@ Foxtrick.modules['ForumLastPost'] = {
 			if (pager == null) return;
 			var divs = doc.getElementsByClassName('fplThreadInfo');
 			for (var i = 0; i < divs.length; i++) {
-				var id = Foxtrick.trim(divs[i].textContent);
+				var id = divs[i].textContent.trim();
 				if (id.search(/\//) > -1)
 					continue;
 				if (lastpage) id = id - perpage + 1;

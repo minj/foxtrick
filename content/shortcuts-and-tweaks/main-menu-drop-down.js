@@ -11,9 +11,9 @@ Foxtrick.modules['MainMenuDropDown'] = {
 	OPTIONS: ['DisregardFirstHeader', 'DropDownArrows'],
 	CSS: [Foxtrick.InternalPath + 'resources/css/main-menu-drop-down.css'],
 	OPTIONS_CSS: [
-		null, 
+		null,
 		Foxtrick.InternalPath + 'resources/css/main-menu-drop-down-arrow.css',
-	], 
+	],
 
 	convertMainMenuToUnorderedList: function(doc) {
 		var menuLinks = doc.querySelectorAll('#menu > a');
@@ -29,7 +29,7 @@ Foxtrick.modules['MainMenuDropDown'] = {
 		var logout = doc.getElementById('ctl00_ctl00_CPHeader_ucMenu_hypLogout');
 		doc.getElementById('menu').insertBefore(list, logout);
 	},
-	
+
 	addMenusToListItem: function(doc, node, menus, className) {
 		if (!menus.length)
 			return;
@@ -62,7 +62,7 @@ Foxtrick.modules['MainMenuDropDown'] = {
 					addSeperator(list, menu.name);
 				firstHeader = false;
 			} else {
-				addSeperator(list, menu.name);	
+				addSeperator(list, menu.name);
 			}
 			Foxtrick.map(function(entry) {
 				var li = doc.createElement('li');
@@ -82,7 +82,7 @@ Foxtrick.modules['MainMenuDropDown'] = {
 	run: function(doc) {
 
 		var module = this;
-		
+
 		// put #menu > a in #menu > ul > li', logout is left as is
 		this.convertMainMenuToUnorderedList(doc);
 
@@ -129,7 +129,7 @@ Foxtrick.modules['MainMenuDropDown'] = {
 					else
 						return false;
 				}, source);
-				return primaries;	
+				return primaries;
 			}
 			this.getPrimaryMenusForUrl = function(url) {
 				return this.getMenusForUrl(url, navi.menus.primary);
@@ -221,7 +221,7 @@ Foxtrick.modules['MainMenuDropDown'] = {
 							var links = boxBody.parentNode.querySelectorAll('a');
 
 							var menu = {};
-							menu.name = Foxtrick.trim(header.textContent);
+							menu.name = header.textContent.trim();
 							menu.url = doc.location.href.replace(/^.*\/\/[^\/]+/, '')
 								.replace(/Default\.aspx/i, '');
 							menu.entries = [];
@@ -231,7 +231,7 @@ Foxtrick.modules['MainMenuDropDown'] = {
 								// no empty shit, like
 								if (link.textContent.replace(/\s*/gi, '') == '')
 									return;
-								
+
 								if (Foxtrick.getHref(doc) + '#' == link.href)
 									return;
 
@@ -239,7 +239,7 @@ Foxtrick.modules['MainMenuDropDown'] = {
 									return;
 
 								var entry = {};
-								entry.text = Foxtrick.trim(link.textContent);
+								entry.text = link.textContent.trim();
 								entry.link = !Foxtrick.isHtUrl(link.href) ? link.href :
 									link.href.replace(/^.*\/\/[^\/]+/, '').replace(/Default\.aspx/i, '');
 								menu.entries.push(entry);
@@ -254,7 +254,7 @@ Foxtrick.modules['MainMenuDropDown'] = {
 				// learns primary menus from current document
 				var getPrimaryMenus = function(doc) {
 					var subMenuContent = doc.querySelectorAll('.subMenu > .subMenuBox > .boxBody')[0];
-					
+
 					// no navigation sidebar, like forums
 					if (subMenuContent === undefined)
 						return [];
@@ -271,7 +271,7 @@ Foxtrick.modules['MainMenuDropDown'] = {
 					Foxtrick.map(function(node) {
 						if (node.tagName === 'H3') {
 							menu = {};
-							menu.name = Foxtrick.trim(node.textContent);
+							menu.name = node.textContent.trim();
 
 							menu.entries = [];
 							menu.timestamp = (new Date()).getTime();
@@ -283,7 +283,7 @@ Foxtrick.modules['MainMenuDropDown'] = {
 
 							Foxtrick.map(function(link) {
 								var entry = {};
-								entry.text = Foxtrick.trim(link.textContent);
+								entry.text = link.textContent.trim();
 								entry.link = !Foxtrick.isHtUrl(link.href) ? link.href :
 									link.href.replace(/^.*\/\/[^\/]+/, '').replace(/Default\.aspx/i, '');
 								menu.entries.push( entry );
@@ -324,7 +324,7 @@ Foxtrick.modules['MainMenuDropDown'] = {
 				module.addMenusToListItem(doc, links[l].parentNode,
 										  Foxtrick.union(primaries, secondaries),
 										  'ft-drop-down-submenu');
-				
+
 				// secondary links
 				var secondaryLinks = links[l].parentNode.querySelectorAll('a');
 				for (var sl = 0; sl < secondaryLinks.length; sl++) {
@@ -374,7 +374,7 @@ Foxtrick.modules['MainMenuDropDown'] = {
 			}
 			return null;
 		}
-		
+
 		function getMenuTextColor() {
 			var tcolor;
 			Foxtrick.map(function(styleSheet) {
@@ -395,11 +395,11 @@ Foxtrick.modules['MainMenuDropDown'] = {
 					}
 				}
 				catch (e) {};
-			}, doc.styleSheets);	
-			return tcolor;	
+			}, doc.styleSheets);
+			return tcolor;
 		}
 		var tc = getMenuTextColor();
-	
+
 		var hrstyle = '#menu hr { background-color:' + tc +
 			' !important;} .ft-drop-down-submenu li span, #menu h3 {color:' + tc + ' !important;}';
 		Foxtrick.util.inject.css(doc, hrstyle, 'dynamic-mmmd-style');

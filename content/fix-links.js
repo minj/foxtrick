@@ -114,7 +114,7 @@ Foxtrick.modules.FixLinks = {
 		var homeId = Foxtrick.getParameterFromUrl(doc.location.href, 'HomeTeamID');
 		var awayId = Foxtrick.getParameterFromUrl(doc.location.href, 'AwayTeamID');
 		var names = doc.querySelectorAll('#mainBody th');
-		var home = Foxtrick.trim(names[0].textContent), away = Foxtrick.trim(names[1].textContent);
+		var home = names[0].textContent.trim(), away = names[1].textContent.trim();
 		var links = doc.querySelectorAll('#mainBody td.left a');
 		// links go in cycles of 6
 		// home team match: match-link, match-home-lineup-link, match-away-lineup-link

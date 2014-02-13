@@ -66,7 +66,7 @@ Foxtrick.modules['MatchTables'] = {
 		for (var i = 0; i < tblBodyObj.rows.length; i++) {
 			if (tblBodyObj.rows[i].cells[1]) {
 				var cell = tblBodyObj.rows[i].cells[0];
-				var content = Foxtrick.trim(cell.innerHTML);
+				var content = cell.innerHTML.trim();
 				var reg = /(\d{1,4})(.*?)(\d{1,2})(.*?)(\d{1,4})(.*?)/i;
 				if (content.search(':') > -1)
 					reg = /(\d{1,4})(.*?)(\d{1,2})(.*?)(\d{1,4})(.*?)(\d{2})(.*?)(\d{2})(.*?)/i;

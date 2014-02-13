@@ -36,13 +36,12 @@ Foxtrick.modules['GoalDifferenceToTables'] = {
 			if (tblBodyObj.rows[i].cells[goalcell]) {
 				var newCell = Foxtrick.insertFeaturedCell(tblBodyObj.rows[i], this, -1);
 				Foxtrick.addClass(newCell, 'right');
-				var content = Foxtrick.trim(tblBodyObj.rows[i]
-				                            .cells[goalcell].textContent).split('-');
-				if (Foxtrick.trim(content[0]) == '') {
-					content[0] = Foxtrick.trim(tblBodyObj.rows[i].cells[goalcell - 1].textContent);
-					content[1] = Foxtrick.trim(tblBodyObj.rows[i].cells[goalcell + 1].textContent);
+				var content = tblBodyObj.rows[i].cells[goalcell].textContent.trim().split('-');
+				if (content[0].trim() === '') {
+					content[0] = tblBodyObj.rows[i].cells[goalcell - 1].textContent.trim();
+					content[1] = tblBodyObj.rows[i].cells[goalcell + 1].textContent.trim();
 				}
-				var result = Foxtrick.trim(content[0]) - Foxtrick.trim(content[1]);
+				var result = content[0].trim() - content[1].trim();
 				newCell.textContent = result;
 				if (result > 0)
 					Foxtrick.addClass(newCell, 'ft-gd-positive');

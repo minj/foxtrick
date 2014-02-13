@@ -11,10 +11,6 @@ Foxtrick.stripHTML = function(text) {
 	return text.replace(/(<([^>]+)>)/ig, '');
 };
 
-Foxtrick.trim = function(text) {
-	return text.replace(/^\s+|\s+$|&nbsp;|\u00a0/g, '');
-};
-
 Foxtrick.trimnum = function(text) {
 	text = String(text);
 	return text ? parseInt(text.replace(/\D+|\s|&nbsp;|\u00a0/g, ''), 10) : 0;

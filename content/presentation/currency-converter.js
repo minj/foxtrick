@@ -100,9 +100,9 @@ Foxtrick.modules['CurrencyConverter'] = {
 
 					var begin = re.lastIndex - matched[0].length;
 					var end = re.lastIndex;
-					sole = Foxtrick.trim(node.textContent.substr(0, begin)) == ''
-						&& Foxtrick.trim(node.textContent.substr(end)) == ''
-						&& node.parentNode.childNodes.length == 1;
+					sole = node.textContent.substr(0, begin).trim() === ''
+						&& node.textContent.substr(end).trim() === ''
+						&& node.parentNode.childNodes.length === 1;
 
 					pairs.push([end, formatMoney(newAmount)]);
 				}

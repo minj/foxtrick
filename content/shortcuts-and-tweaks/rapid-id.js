@@ -51,7 +51,7 @@ Foxtrick.modules['RapidId'] = {
 			var type = select.options[select.selectedIndex].getAttribute('value');
 			var input = doc.getElementsByClassName('ft_rapidid_input')[0];
 			var value = input.value;
-			value = Foxtrick.trim(value);
+			value = value.trim();
 			// split the value separated by white space to a list
 			var idList = value.split(/\s+/);
 			// ensure the list is valid

@@ -62,7 +62,7 @@ Foxtrick.modules['CopyPlayerAd'] = {
 			for (var i = 0; i < byLinePars.length; ++i) {
 				byLinePars[i].parentNode.insertBefore(doc.createTextNode('\n'), byLinePars[i]);
 			}
-			ad += Foxtrick.trim(byLine.textContent) + '\n\n';
+			ad += byLine.textContent.trim() + '\n\n';
 
 			if (Foxtrick.Pages.Player.getNationalityName(doc) !== null) {
 				ad += Foxtrick.L10n.getString('Nationality') + ': '
@@ -86,14 +86,14 @@ Foxtrick.modules['CopyPlayerAd'] = {
 					basicInfoBreaks[i].parentNode.insertBefore(doc.createTextNode('\n'),
 					                                           basicInfoBreaks[i]);
 				}
-				ad += Foxtrick.trim(basicInfo.textContent) + '\n\n';
+				ad += basicInfo.textContent.trim() + '\n\n';
 			}
 			else {
 				// sometime ista string tag sometimes a paragraph seemingly
 				var basicInfo = playerInfo.getElementsByTagName('p')[0] ||
 					playerInfo.getElementsByTagName('strong')[0];
 				if (basicInfo) {
-					var speciality = Foxtrick.trim(basicInfo.textContent);
+					var speciality = basicInfo.textContent.trim();
 					// we will bold the speciality part, right after
 					// colon plus space
 					var colonRe = new RegExp(':\\s*');
@@ -109,7 +109,7 @@ Foxtrick.modules['CopyPlayerAd'] = {
 			var table = playerInfo.getElementsByTagName('table')[0];
 			if (table) {
 				for (var i = 0; i < table.rows.length; i++) {
-					ad += Foxtrick.trim(table.rows[i].cells[0].textContent) + ' ';
+					ad += table.rows[i].cells[0].textContent.trim() + ' ';
 					// remove teampopuplinks
 					var cellCopy = table.rows[i].cells[1].cloneNode(true);
 					var popupLinks = cellCopy.getElementsByTagName('a');
@@ -118,8 +118,8 @@ Foxtrick.modules['CopyPlayerAd'] = {
 					}
 					// bolding for speciality
 					ad += (i == 5 ? '[b]' : '') +
-						Foxtrick.trim(cellCopy.textContent .replace(/\n/g, '').replace(/\s+/g, ' '))
-						+ (i == 5 ? '[/b]' : '') + '\n';
+						cellCopy.textContent.replace(/\n/g, '').replace(/\s+/g, ' ').trim() +
+						(i == 5 ? '[/b]' : '') + '\n';
 				}
 				ad += '\n';
 			}
@@ -290,7 +290,7 @@ Foxtrick.modules['CopyPlayerAd'] = {
 					for (var j = 1; j < popupLinks.length; j++) {
 						popupLinks[j].textContent = '';
 					}
-					ad += Foxtrick.trim(cellCopy.textContent);
+					ad += cellCopy.textContent.trim();
 					ad += '\n';
 				}
 			}

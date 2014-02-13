@@ -59,35 +59,35 @@ Foxtrick.modules['CopyBBAd'] = {
 				for (var i = 0; i < leagueTableLength; i++) {
 					ad += '[tr]\n';
 					//position
-					ad += '[td]' + Foxtrick.trim(leagueTable.rows[i].cells[posRnkg].textContent) +
+					ad += '[td]' + leagueTable.rows[i].cells[posRnkg].textContent.trim() +
 						'[/td]\n';
 					//team - trim to first 30 chars
-					ad += '[td]' + Foxtrick.trim(leagueTable.rows[i].cells[posTeam].textContent)
+					ad += '[td]' + leagueTable.rows[i].cells[posTeam].textContent.trim()
 						.substring(0, 30) + '[/td]\n';
 					//games
-					ad += '[td][right] ' + Foxtrick.trim(leagueTable.rows[i].cells[posGames]
-														 .textContent) + ' [/right][/td]\n';
+					ad += '[td][right] ' + leagueTable.rows[i].cells[posGames].textContent.trim() +
+						' [/right][/td]\n';
 					//wins
-					ad += '[td][right] ' + Foxtrick.trim(leagueTable.rows[i].cells[posWins]
-														 .textContent) + ' [/right][/td]\n';
+					ad += '[td][right] ' + leagueTable.rows[i].cells[posWins].textContent.trim() +
+						' [/right][/td]\n';
 					//draws
-					ad += '[td][right] ' + Foxtrick.trim(leagueTable.rows[i].cells[posDraws]
-														 .textContent) + ' [/right][/td]\n';
+					ad += '[td][right] ' + leagueTable.rows[i].cells[posDraws].textContent.trim() +
+						 ' [/right][/td]\n';
 					//lost
-					ad += '[td][right] ' + Foxtrick.trim(leagueTable.rows[i].cells[posLost]
-														 .textContent) + ' [/right][/td]\n';
+					ad += '[td][right] ' + leagueTable.rows[i].cells[posLost].textContent.trim() +
+						' [/right][/td]\n';
 					//goals for
-					ad += '[td][right] ' + Foxtrick.trim(leagueTable.rows[i].cells[posGF]
-														 .textContent) + ' [/right][/td]\n';
+					ad += '[td][right] ' + leagueTable.rows[i].cells[posGF].textContent.trim() +
+						' [/right][/td]\n';
 					//goals against
-					ad += '[td][right] ' + Foxtrick.trim(leagueTable.rows[i].cells[posGA]
-														 .textContent) + ' [/right][/td]\n';
+					ad += '[td][right] ' + leagueTable.rows[i].cells[posGA].textContent.trim() +
+						' [/right][/td]\n';
 					//goal difference
-					ad += '[td][right] ' + Foxtrick.trim(leagueTable.rows[i].cells[posGD]
-														 .textContent) + ' [/right][/td]\n';
+					ad += '[td][right] ' + leagueTable.rows[i].cells[posGD].textContent.trim() +
+						' [/right][/td]\n';
 					//points
-					ad += '[td][right] ' + Foxtrick.trim(leagueTable.rows[i].cells[posPts]
-														 .textContent) + ' [/right][/td]\n';
+					ad += '[td][right] ' + leagueTable.rows[i].cells[posPts].textContent.trim() +
+						' [/right][/td]\n';
 					ad += '[/tr]\n';
 				}
 				ad += '[/table]\n';
@@ -226,7 +226,7 @@ Foxtrick.modules['CopyBBAd'] = {
 			var mainBody = doc.getElementById('mainBody');
 			var financesTable = mainBody.getElementsByTagName('table')[0];
 
-			var ad = '[b]' + Foxtrick.trim(mainBody.getElementsByTagName('h2')[0].textContent) +
+			var ad = '[b]' + mainBody.getElementsByTagName('h2')[0].textContent.trim() +
 				'[/b]\n\n';
 			ad += '[table]\n';
 			for (var i = 0; i < financesTable.rows.length; i++) {

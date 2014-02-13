@@ -120,7 +120,7 @@ Foxtrick.Pages.Match = {
 	},
 
 	getTacticsFromCell: function(cell) {
-		var tactics = Foxtrick.trim(cell.textContent);
+		var tactics = cell.textContent.trim();
 		var lang = Foxtrick.Prefs.getString('htLanguage');
 
 		try {

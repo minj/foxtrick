@@ -40,7 +40,7 @@ Foxtrick.modules['CopyRatings'] = {
 				var _t = Foxtrick.L10n.getString('match.ratings.total') + ':';
 
 				var headder = doc.getElementsByTagName('h1')[1].textContent;
-				headder = Foxtrick.trim(headder);
+				headder = headder.trim();
 				var start = Foxtrick.strrpos(headder, '<span>(') + 7;
 				var end = Foxtrick.strrpos(headder, ')</span>');
 
@@ -50,8 +50,8 @@ Foxtrick.modules['CopyRatings'] = {
 				// headder.substr(start, end-start);
 
 				start = Foxtrick.strrpos(headder, ' - ');
-				var gameresult_h = Foxtrick.trim(headder.substr(start - 2, 2));
-				var gameresult_a = Foxtrick.trim(headder.substr(start + 3, 2));
+				var gameresult_h = headder.substr(start - 2, 2).trim();
+				var gameresult_a = headder.substr(start + 3, 2).trim();
 
 				var ad = '\n[table]\n';
 				var table = Foxtrick.Pages.Match.getRatingsTable(doc).cloneNode(true);

@@ -39,7 +39,7 @@ Foxtrick.modules['MedianTransferPrice'] = {
 		}
 
 		if (count > 0) {
-			var currency = Foxtrick.trim(table.rows[5].cells[3].textContent.match(/\D+$/)[0]);
+			var currency = table.rows[5].cells[3].textContent.match(/\D+$/)[0].trim();
 			var row = Foxtrick.insertFeaturedRow(table, this, table.rows.length);
 			var cell = row.insertCell(0);
 			cell.className = 'left bold';

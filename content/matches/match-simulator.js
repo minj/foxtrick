@@ -201,7 +201,7 @@ Foxtrick.modules.MatchSimulator = {
 			var teamtacticsDiv = doc.getElementById('tactics').cloneNode(true);
 			teamtacticsDiv.removeChild(teamtacticsDiv.getElementsByClassName('speechLevel')[0]);
 			teamtacticsDiv.removeChild(teamtacticsDiv.getElementsByTagName('select')[0]);
-			var teamtacticsTitle = Foxtrick.trim(teamtacticsDiv.textContent);
+			var teamtacticsTitle = teamtacticsDiv.textContent.trim();
 
 			var attVsDefCheck = doc.getElementById('ft_attVsDef_check');
 			if (attVsDefCheck.checked)

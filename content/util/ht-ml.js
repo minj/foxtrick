@@ -176,11 +176,8 @@ Foxtrick.util.htMl.getMarkupFromNodeRec = function(node) {
 
 	var ret = '';
 
-	var trim = function(string) {
-		return string.replace(/\s+/gm, ' ');
-	};
 	if (!node.hasChildNodes()) {
-		ret = trim(node.textContent);
+		ret = node.textContent.replace(/\s+/gm, ' ').trim();
 	}
 	else {
 		var children = node.childNodes;
@@ -277,12 +274,12 @@ Foxtrick.util.htMl.getHtMl = function(node) {
 				markup += '\n';
 			}
 		}
-		markup = Foxtrick.trim(markup);
+		markup = markup.trim();
 		return { copyTitle: Foxtrick.L10n.getString('copy.ht-ml'), markup: markup };
 	}
 	else {
 		var markup = Foxtrick.util.htMl.getMarkupFromNode(node);
-		markup = Foxtrick.trim(markup);
+		markup = markup.trim();
 		return { copyTitle: Foxtrick.L10n.getString('copy.ht-ml'), markup: markup };
 	}
 	return null;
@@ -300,7 +297,7 @@ Foxtrick.util.htMl.getTable = function(node) {
 	}
 	if (table !== null) {
 		var markup = Foxtrick.util.htMl.getMarkupFromNode(table);
-		markup = Foxtrick.trim(markup);
+		markup = markup.trim();
 		return { copyTitle: Foxtrick.L10n.getString('copy.table'), markup: markup };
 	}
 	return null;

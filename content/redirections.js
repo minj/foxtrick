@@ -32,9 +32,8 @@ Foxtrick.modules['Redirections'] = {
 			if (doc.location.href.search(/redir_to_team=true/i) != -1)
 						tar = serv + '/Club/?TeamID=' + teamid;
 			else if (doc.location.href.search(/redir_to_mail=true/i) != -1) {
-				var username = Foxtrick.trim(doc.getElementsByTagName('h1')[1]
-				                             .getElementsByClassName('speedBrowser')[0]
-				                             .nextSibling.textContent);
+				var username = doc.getElementsByTagName('h1')[1]
+					.getElementsByClassName('speedBrowser')[0].nextSibling.textContent.trim();
 				tar = serv + '/MyHattrick/Inbox/?actionType=newMail&alias=' + username;
 			}
 			else if (doc.location.href.search(/redir_to_lastlineup=true/i) != -1)
@@ -151,7 +150,7 @@ Foxtrick.modules['Redirections'] = {
 					var sourceSystem = Foxtrick.getParameterFromUrl(upcoming[0].parentNode.href, 'SourceSystem');
 
 					if (doc.location.href.search(/redir_to_nextmatch=true/i) != -1)
-							tar = serv + '/Club/Matches/Match.aspx?matchID=' + matchId + 
+							tar = serv + '/Club/Matches/Match.aspx?matchID=' + matchId +
 								'&SourceSystem=' + sourceSystem;
 						else if (doc.location.href.search(/redir_to_addnextmatch=true/i) != -1)
 							tar = serv + '/Club/Matches/Live.aspx?actionType=addMatch&matchID=' +

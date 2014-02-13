@@ -47,7 +47,7 @@ Foxtrick.modules['HeaderToggle'] = {
 				while (el) {
 					// if text node, wrap in span on first encounter
 					if (el.nodeType == Foxtrick.NodeTypes.TEXT_NODE) {
-						if (Foxtrick.trim(el.nodeValue) != '') {
+						if (el.nodeValue.trim() !== '') {
 							var target = el.nextSibling;
 							var span = doc.createElement('span');
 							span.appendChild(el);
@@ -69,7 +69,7 @@ Foxtrick.modules['HeaderToggle'] = {
 
 					//use our own hidden class so we overrule ht but won't show stuff that is hidden for another reason
 					Foxtrick.toggleClass(el, 'ft-headertoggle-hidden');
-					
+
 					// count new forum postings
 					if (Foxtrick.hasClass(el, 'ft-headertoggle-hidden') &&
 					    el.getElementsByClassName('fplThreadInfo')[0] != undefined) {

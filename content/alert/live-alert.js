@@ -56,7 +56,7 @@ Foxtrick.modules['LiveAlert'] = {
 			var teams = tab.childNodes[tab.childNodes.length - 1].textContent;
 			if (tab.childNodes[tab.childNodes.length - 1].title)
 				teams = tab.childNodes[tab.childNodes.length - 1].title;
-			teams = Foxtrick.trim(teams);
+			teams = teams.trim();
 			return teams.split(' - ');
 		}
 	},
