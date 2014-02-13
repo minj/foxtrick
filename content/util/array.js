@@ -218,7 +218,7 @@ Foxtrick.exclude = function(array, e) {
 		if (current !== e)
 			return true;
 		return false;
-	});
+	}, array);
 };
 
 /**
