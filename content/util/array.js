@@ -110,25 +110,20 @@ Foxtrick.intersect = function(a, b) {
 	return Foxtrick.unique(r);
 };
 
-// TODO: review
-// returns the concat of array a and array b
-// a is changed
-Foxtrick.concat = function(a, b) {
-	return b.reduce(function(conc, e) {
-		conc.push(e);
-		return conc;
-	}, a);
+// pushes all elements of b onto a
+// better use native arrays only
+// returns the new length
+Foxtrick.push = function(a, b) {
+	return Array.prototype.push.apply(a, b);
 };
 
-// TODO: review
-// returns the unique concat of array a and array b
-// a is changed
-Foxtrick.concat_unique = function(a, b) {
-	return b.reduce(function(conc, e) {
-		if (!Foxtrick.has(conc, e))
-			conc.push(e);
-		return conc;
-	}, a);
+// pushes all elements of b onto a if they don't already exist there
+// better use native arrays only
+// returns the new length
+Foxtrick.push_new = function(a, b) {
+	// find elements in b but not in a
+	var newElements = Foxtrick.filter(function(e, i, b) { return !Foxtrick.has(a, e); }, b);
+	return Foxtrick.push(a, newElements);
 };
 
 // test if e is in array a, returns -1 if not

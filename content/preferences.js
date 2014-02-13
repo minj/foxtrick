@@ -1406,7 +1406,7 @@ function testPermissions() {
 
 						if (result == false && Foxtrick.Prefs.getBool('module.' + module +
 						    '.enabled')) {
-							Foxtrick.concat_unique(modulelist, neededPermission.modules);
+							Foxtrick.push_new(modulelist, neededPermission.modules);
 							$('#alert-text').text(Foxtrick.L10n.getString('prefs.needPermissions') +
 							                      ' ' + modulelist);
 							$('#alert').attr('style', 'display:block;');
@@ -1474,17 +1474,13 @@ function checkPermissions() {
 				if (Foxtrick.Prefs.getBool('module.' + neededPermission.modules[m] + '.enabled')
 				    == true && $(id).attr('permission-granted') == 'false') {
 					needsPermissions = true;
-					combined_permissions.modules =
-						Foxtrick.concat_unique(combined_permissions.modules,
-						                       neededPermission.modules);
+					Foxtrick.push_new(combined_permissions.modules, neededPermission.modules);
 					if (neededPermission.types.permissions)
-						combined_permissions.types.permissions =
-							Foxtrick.concat_unique(combined_permissions.types.permissions,
-							                       neededPermission.types.permissions);
+						Foxtrick.push_new(combined_permissions.types.permissions,
+						                       neededPermission.types.permissions);
 					if (neededPermission.types.origins)
-						combined_permissions.types.origins =
-							Foxtrick.concat_unique(combined_permissions.types.origins,
-							                       neededPermission.types.origins);
+						Foxtrick.push_new(combined_permissions.types.origins,
+						                       neededPermission.types.origins);
 				}
 			}
 		}, neededPermissions);
