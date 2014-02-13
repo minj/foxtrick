@@ -21,43 +21,76 @@ Foxtrick.toArray = function(arrayLike) {
 	return Array.prototype.slice.call(arrayLike);
 };
 
-// loops over an array-like with a function
+/**
+ * Runs func(el, i, array) for each element in an array-like.
+ * @param  {function(*, number, Array)} func
+ * @param  {Array}                      array array-like
+ */
 Foxtrick.forEach = function(func, array) {
 	if (!Array.isArray(array))
 		array = Foxtrick.toArray(array);
 	array.forEach(func);
 };
-// returns an array with the value of each member of given array applied
-// with func
+
+/**
+ * Returns an array with the values of func(el, i, array)
+ * for each element el in array-like.
+ * @param  {function(*, number, Array)} func
+ * @param  {Array}                      array array-like
+ * @return {Array}
+ */
 Foxtrick.map = function(func, array) {
 	if (!Array.isArray(array))
 		array = Foxtrick.toArray(array);
 	return array.map(func);
 };
 
-// returns an array which contains the members in given array that satisfy
-// func
+/**
+ * Returns an array that contains elements in a given array-like
+ * that satisfy func(el, i, array) == true.
+ * @param  {function(*, number, Array)} func
+ * @param  {Array}                      array array-like
+ * @return {Array}
+ */
 Foxtrick.filter = function(func, array) {
 	if (!Array.isArray(array))
 		array = Foxtrick.toArray(array);
 	return array.filter(func);
 };
 
-// returns whether at least a member in given array satisfy func
+/**
+ * Tests whether at least one element in a given array-like
+ * satisfies func(el, i, array) == true.
+ * @param  {function(*, number, Array)} func
+ * @param  {Array}                      array array-like
+ * @return {boolean}
+ */
 Foxtrick.any = function(func, array) {
 	if (!Array.isArray(array))
 		array = Foxtrick.toArray(array);
 	return array.some(func);
 };
 
-// returns whether all members in given array satisfy func
+/**
+ * Tests whether all elements in a given array-like
+ * satisfy func(el, i, array) == true.
+ * @param  {function(*, number, Array)} func
+ * @param  {Array}                      array array-like
+ * @return {boolean}
+ */
 Foxtrick.all = function(func, array) {
 	if (!Array.isArray(array))
 		array = Foxtrick.toArray(array);
 	return array.every(func);
 };
 
-// returns count of members in given array that satisfy func
+/**
+ * Tests how many elements in a given array-like
+ * satisfy func(el, i, array) == true.
+ * @param  {function(*, number, Array)} func
+ * @param  {Array}                      array array-like
+ * @return {number}
+ */
 Foxtrick.count = function(func, array) {
 	if (!Array.isArray(array))
 		array = Foxtrick.toArray(array);
@@ -68,10 +101,15 @@ Foxtrick.count = function(func, array) {
 	}, 0);
 };
 
-// returns (n+1)'th value in array that satisfy func
-// n is 0 by default
-// -- returns first if n === 0
-// returns null if not found
+/**
+ * Returns the n-th element in a given array-like
+ * that satisfies func(el, i, array) == true, or null if not found.
+ * n is optional and defaults to 0 (first element).
+ * @param  {function(*, number, Array)} func
+ * @param  {Array}                      array array-like
+ * @param  {number=}                    n
+ * @return {*}                                found element or null
+ */
 Foxtrick.nth = function(func, array, n) {
 	var count = 0;
 	var ret = null;
@@ -94,8 +132,13 @@ Foxtrick.nth = function(func, array, n) {
 	return ret;
 };
 
-// return the concat of array a and array b
-// does not modify the original array
+/**
+ * Returns the concat of two array-likes a and b.
+ * Does not modify originals.
+ * @param  {Array} a array-like
+ * @param  {Array} b array-like
+ * @return {Array}   concat
+ */
 Foxtrick.concat = function(a, b) {
 	if (!Array.isArray(a))
 		a = Foxtrick.toArray(a);
@@ -104,42 +147,72 @@ Foxtrick.concat = function(a, b) {
 	return a.concat(b);
 };
 
-// returns the intersection of array a and array b
+/**
+ * Returns the unique intersection (===) of two array-likes a and b.
+ * Does not modify originals.
+ * @param  {Array} a array-like
+ * @param  {Array} b array-like
+ * @return {Array}   intersection
+ */
 Foxtrick.intersect = function(a, b) {
 	var r = Foxtrick.filter(function(e, i, a) { return Foxtrick.has(b, e); }, a);
 	return Foxtrick.unique(r);
 };
 
-// pushes all elements of b onto a
-// better use native arrays only
-// returns the new length
+/**
+ * Pushes all elements of array b onto array a.
+ * Better use native arrays only.
+ * @param  {Array}  a array
+ * @param  {Array}  b array
+ * @return {number}   new length
+ */
 Foxtrick.push = function(a, b) {
 	return Array.prototype.push.apply(a, b);
 };
 
-// pushes all elements of b onto a if they don't already exist there
-// better use native arrays only
-// returns the new length
+/**
+ * Pushes all elements of array b onto array  a if they don't already exist (===) there.
+ * Better use native arrays only.
+ * @param  {Array}  a array
+ * @param  {Array}  b array
+ * @return {number}   new length
+ */
 Foxtrick.push_new = function(a, b) {
 	// find elements in b but not in a
 	var newElements = Foxtrick.filter(function(e, i, b) { return !Foxtrick.has(a, e); }, b);
 	return Foxtrick.push(a, newElements);
 };
 
-// test if e is in array a, returns -1 if not
+/**
+ * Returns the first index of an element e in an array-like (===), or -1 if not found.
+ * @param  {Array}  array
+ * @param  {*}      e
+ * @return {number}
+ */
 Foxtrick.indexOf = function(array, e) {
 	if (!Array.isArray(array))
 		array = Foxtrick.toArray(array);
 	return array.indexOf(e);
 };
 
-// returns whether e is a member of array
+/**
+ * Tests whether an element e is in an array-like (===).
+ * @param  {Array}   array
+ * @param  {*}       e
+ * @return {boolean}
+ */
 Foxtrick.has = function(array, e) {
 	return Foxtrick.indexOf(array, e) !== -1;
 };
 
-// excludes an element e from array and returns the result array
-// does not modify original
+/**
+ * Returns an array that contains elements in a given array-like
+ * that are not (!==) element e.
+ * Does not modify the original array.
+ * @param  {Array} array array-like
+ * @param  {*}     e     element to exclude
+ * @return {Array}
+ */
 Foxtrick.exclude = function(array, e) {
 	return Foxtrick.filter(function(current, i, array) {
 		if (current !== e)
@@ -148,7 +221,12 @@ Foxtrick.exclude = function(array, e) {
 	});
 };
 
-// returns an array with duplicate items reduced to one
+/**
+ * Returns an array that contains unique elements in a given array-like.
+ * Does not modify the original array.
+ * @param  {Array} array array-like
+ * @return {Array}
+ */
 Foxtrick.unique = function(array) {
 	var ret = [];
 	var n = array.length;
