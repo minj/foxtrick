@@ -8,50 +8,90 @@
 if (!Foxtrick)
 	var Foxtrick = {};
 
+// FIXME: remove
 // returns an array with the value of each member of given array applied
 // with func
 Foxtrick.map = function(func, array) {
-	var ret = [];
-	for (var i = 0; i < array.length; ++i)
-		ret.push(func(array[i], i));
-	return ret;
+	return array.map(func);
 };
 
+// FIXME: remove
 // returns an array which contains the members in given array that satisfy
 // func
 Foxtrick.filter = function(func, array) {
-	var ret = [];
-	for (var i = 0; i < array.length; ++i) {
-		if (func(array[i], i))
-			ret.push(array[i]);
-	}
-	return ret;
+	return array.filter(func);
 };
 
+// FIXME: remove
 // returns whether at least a member in given array satisfy func
 Foxtrick.any = function(func, array) {
-	for (var i = 0; i < array.length; ++i)
-		if (func(array[i], i))
-			return true;
-	return false;
+	return array.some(func);
 };
 
+// FIXME: remove
 // returns whether all members in given array satisfy func
 Foxtrick.all = function(func, array) {
-	for (var i = 0; i < array.length; ++i)
-		if (!func(array[i], i))
-			return false;
-	return true;
+	return array.every(func);
+};
+
+// FIXME: remove
+// return the union of array a and array b
+// does not modify the original array
+Foxtrick.union = function(a, b) {
+	return a.concat(b);
+};
+
+// FIXME: remove
+// test if b is in array a, returns -1 if not
+Foxtrick.indexOf = function(a, b) {
+	return a.indexOf(b);
+};
+
+// TODO: review
+// returns whether n is a member of array
+Foxtrick.member = function(n, array) {
+	return array.some(function(t) { return n === t; });
+};
+
+// TODO: review
+// returns the intersection of array a and array b
+Foxtrick.intersect = function(a, b) {
+	var r = [];
+	for (var i = 0; i < a.length; ++i)
+		if (Foxtrick.member(a[i], b))
+			r.push(a[i]);
+	r = Foxtrick.unique(r);
+	return r;
+};
+
+// TODO: review
+// returns the concat of array a and array b
+// a is changed
+Foxtrick.concat = function(a, b) {
+	return b.reduce(function(conc, e) {
+		conc.push(e);
+		return conc;
+	}, a);
+};
+
+// TODO: review
+// returns the unique concat of array a and array b
+// a is changed
+Foxtrick.concat_unique = function(a, b) {
+	return b.reduce(function(conc, e) {
+		if (!Foxtrick.member(e, conc))
+			conc.push(e);
+		return conc;
+	}, a);
 };
 
 // returns count of members in given array that satisfy func
 Foxtrick.count = function(func, array) {
-	var ret = 0;
-	for (var i = 0; i < array.length; ++i) {
-		if (func(array[i], i))
-			++ret;
-	}
-	return ret;
+	return array.reduce(function(ct, e, i, a) {
+		if (func(e, i, a))
+			ct++;
+		return ct;
+	}, 0);
 };
 
 // returns (n+1)'th value in array that satisfy func
@@ -60,7 +100,7 @@ Foxtrick.count = function(func, array) {
 Foxtrick.nth = function(n, func, array) {
 	var count = 0;
 	for (var i = 0; i < array.length; ++i)
-		if (func(array[i], i))
+		if (func(array[i], i, array))
 			if (count++ == n)
 				return array[i];
 	return null;
@@ -80,46 +120,6 @@ Foxtrick.unique = function(array) {
 	return ret;
 };
 
-// returns whether n is a member of array
-Foxtrick.member = function(n, array) {
-	return Foxtrick.any(function(t) { return n === t; }, array);
-};
-
-// returns the intersection of array a and array b
-Foxtrick.intersect = function(a, b) {
-	var r = [];
-	for (var i = 0; i < a.length; ++i)
-		if (Foxtrick.member(a[i], b))
-			r.push(a[i]);
-	r = Foxtrick.unique(r);
-	return r;
-};
-// return the union of array a and array b
-// does not modify the original array
-Foxtrick.union = function(a, b) {
-	var r = [];
-	for (var i = 0; i < a.length; i++) {
-		r.push(a[i]);
-	}
-	for (var i = 0; i < b.length; i++) {
-		r.push(b[i]);
-	}
-	return r;
-};
-// returns the concat of array a and array b
-Foxtrick.concat = function(a, b) {
-	for (var i = 0; i < b.length; ++i)
-			a.push(b[i]);
-	return a;
-};
-
-// returns the unique concat of array a and array b
-Foxtrick.concat_unique = function(a, b) {
-	for (var i = 0; i < b.length; ++i)
-		if (!Foxtrick.member(b[i], a))
-			a.push(b[i]);
-	return a;
-};
 
 // removes a element b from array a and returns a
 Foxtrick.remove = function(a, b) {
@@ -128,16 +128,6 @@ Foxtrick.remove = function(a, b) {
 		if (a[i] !== b)
 			r.push(a[i]);
 	return r;
-};
-
-// test if b is in array a, returns -1 if not
-Foxtrick.indexOf = function(a, b){
-		for(var i=0; i<a.length; i++){
-				if(a[i]==b){
-						return i;
-				}
-		}
-		return -1;
 };
 
 /**
