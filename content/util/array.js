@@ -122,7 +122,7 @@ Foxtrick.concat = function(a, b) {
 // a is changed
 Foxtrick.concat_unique = function(a, b) {
 	return b.reduce(function(conc, e) {
-		if (!Foxtrick.member(e, conc))
+		if (!Foxtrick.has(conc, e))
 			conc.push(e);
 		return conc;
 	}, a);
@@ -135,9 +135,8 @@ Foxtrick.indexOf = function(array, e) {
 	return array.indexOf(e);
 };
 
-// TODO: review
 // returns whether e is a member of array
-Foxtrick.member = function(e, array) {
+Foxtrick.has = function(array, e) {
 	return Foxtrick.indexOf(array, e) !== -1;
 };
 

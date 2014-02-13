@@ -136,7 +136,7 @@ Foxtrick.Prefs = {
 		var values = Foxtrick.Prefs.getList(branch);
 
 		// already exists?
-		var exists = Foxtrick.member(value, values);
+		var exists = Foxtrick.has(values, value);
 
 		if (exists)
 			return false;

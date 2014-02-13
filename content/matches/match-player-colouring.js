@@ -149,9 +149,9 @@ Foxtrick.modules.MatchPlayerColouring = {
 
 					var id = getPlayerId(n);
 					if (id) {
-						if (Foxtrick.member(id, homePlayers))
+						if (Foxtrick.has(homePlayers, id))
 							Foxtrick.addClass(n, homeClass);
-						else if (Foxtrick.member(id, awayPlayers))
+						else if (Foxtrick.has(awayPlayers, id))
 							Foxtrick.addClass(n, awayClass);
 					}
 				}, links);

@@ -75,19 +75,19 @@ Foxtrick.modules['LineupShortcut'] = {
 			var matchTeams = [teamsText.substr(homeIdx, awayIdx - 1), teamsText.substr(awayIdx)];
 			var hasMatch = false;
 
-			if (Foxtrick.member(teamName, matchTeams)) {
+			if (Foxtrick.has(matchTeams, teamName)) {
 				if (!hasTransfer) {
 					this._Add_Lineup_Link(doc, matchTable.rows[i], teamId, playerId, matchId,
 										  'normal', newRatings);
 					hasMatch = true;
 				}
 			}
-			else if (leagueId && Foxtrick.member(ntName, matchTeams)) {
+			else if (leagueId && Foxtrick.has(matchTeams, ntName)) {
 				this._Add_Lineup_Link(doc, matchTable.rows[i], ntId, playerId, matchId, 'NT',
 									  newRatings);
 				hasMatch = true;
 			}
-			else if (leagueId && Foxtrick.member(u20Name, matchTeams)) {
+			else if (leagueId && Foxtrick.has(matchTeams, u20Name)) {
 				this._Add_Lineup_Link(doc, matchTable.rows[i], u20Id, playerId, matchId, 'U20',
 									  newRatings);
 				hasMatch = true;

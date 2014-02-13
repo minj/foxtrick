@@ -1157,7 +1157,7 @@ function initModules()
 		$(obj).attr('x-on', module.MODULE_CATEGORY + ' all');
 		// show on view-by-page tab
 		if (module.PAGES) {
-			if (Foxtrick.member('all', module.PAGES))
+			if (Foxtrick.has(module.PAGES, 'all'))
 				$(obj).attr('x-on', $(obj).attr('x-on') + ' universal');
 			else if (Foxtrick.intersect(module.PAGES, pageIds).length > 0)
 				$(obj).attr('x-on', $(obj).attr('x-on') + ' on_page');

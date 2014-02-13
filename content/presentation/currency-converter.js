@@ -61,7 +61,7 @@ Foxtrick.modules['CurrencyConverter'] = {
 			// only convert most inner td and p tags
 			var nodes = Foxtrick.filter(function(node) {
 					var tagName = node.tagName.toLowerCase();
-					return Foxtrick.member(tagName, ['td', 'p']) &&
+					return Foxtrick.has(['td', 'p'], tagName) &&
 						!Foxtrick.any(function(child) {
 							return node.getElementsByTagName(child).length > 0;
 						}, ['td', 'p']);

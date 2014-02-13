@@ -122,11 +122,11 @@ Foxtrick.modules['MatchLineupFixes'] = {
 		}
 
 		var lineupEvents = Foxtrick.filter(function(event) {
-			return Foxtrick.member(event.type, lineupEventTypes);
+			return Foxtrick.has(lineupEventTypes, event.type);
 		}, tEventTypeByEvent);
 
 		var weatherEvents = Foxtrick.filter(function(event) {
-			return Foxtrick.member(event.type, weatherEventTypes);
+			return Foxtrick.has(weatherEventTypes, event.type);
 		}, tEventTypeByEvent);
 
 		// info for CHPP
@@ -229,10 +229,10 @@ Foxtrick.modules['MatchLineupFixes'] = {
 			//
 			// some exlusive groups
 			//var leavesFieldOnly = Foxtrick.filter(function(player) {
-			//	return !Foxtrick.member(player, comesAndGoes);
+			//	return !Foxtrick.has(comesAndGoes, player);
 			//}, leavesField);
 			//var entersFieldOnly = Foxtrick.filter(function(player) {
-			//	return !Foxtrick.member(player, comesAndGoes);
+			//	return !Foxtrick.has(comesAndGoes, player);
 			//}, entersField);
 
 			for (var i = 0; i < leavesField.length; ++i) {
@@ -288,7 +288,7 @@ Foxtrick.modules['MatchLineupFixes'] = {
 				var found = false;
 				--j;
 				while (j > -1 && timeline[j].min == eventMin && timeline[j].sec == eventSec) {
-					if (Foxtrick.member(tEventTypeByEvent[j].type, lineupEventTypes))
+					if (Foxtrick.has(lineupEventTypes, tEventTypeByEvent[j].type))
 						// multiple lineup events happen at the same time
 						// will be fixed in fixMulipleSubs()
 						break;
@@ -314,7 +314,7 @@ Foxtrick.modules['MatchLineupFixes'] = {
 		// red card subs don't need fixing
 		var undoRedCards = function() {
 			var redCardEvents = Foxtrick.filter(function(event) {
-				return Foxtrick.member(event.type, redCardEventTypes);
+				return Foxtrick.has(redCardEventTypes, event.type);
 			}, tEventTypeByEvent);
 			if (!redCardEvents.length)
 				return;
@@ -340,7 +340,7 @@ Foxtrick.modules['MatchLineupFixes'] = {
 		// so we will have to use chpp
 		var fixMultipleSubs = function() {
 			var subEvents = Foxtrick.filter(function(event) {
-				return Foxtrick.member(event.type, subEventTypes);
+				return Foxtrick.has(subEventTypes, event.type);
 			}, tEventTypeByEvent);
 			if (!subEvents.length)
 				return;

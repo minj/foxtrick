@@ -39,7 +39,7 @@ Foxtrick.modules['HistoryStats'] = {
 			catch (e) {
 				var page = 1;
 			}
-			if (!Foxtrick.member(page, this.Pages[teamId])) {
+			if (!Foxtrick.has(this.Pages[teamId], page)) {
 				this.Pages[teamId].push(page);
 
 				// get season offset
@@ -145,12 +145,12 @@ Foxtrick.modules['HistoryStats'] = {
 							table[i].innerHTML.replace(season - this.Offset[teamId], '').trim();
 						var pos = table[i].textContent.match(/\d{1}/);
 						buff = season + '|' + league + '|' + pos + '|' + leagueN;
-						if (!Foxtrick.member(buff, this.Buffer[teamId]))
+						if (!Foxtrick.has(this.Buffer[teamId], buff))
 							this.Buffer[teamId].push(buff);
 					}
 					else if (cup != -1) {
 						buff = season + '|' + cup;
-						if (!Foxtrick.member(buff, this.Buffer[teamId]))
+						if (!Foxtrick.has(this.Buffer[teamId], buff))
 							this.Buffer[teamId].push(buff);
 					}
 				}
