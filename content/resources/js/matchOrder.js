@@ -5,9 +5,7 @@ ht.orders.handleData = function(arg) {
 	// all org
 	ht.orders.handleDataOrg.apply(this, arguments);
 	// raise event after
-	var evt = document.createEvent('Event');
-	evt.initEvent('interface_ready', true, true);
-	document.getElementsByTagName('body')[0].dispatchEvent(evt);
+	document.body.dispatchEvent(new Event('interface_ready', { bubbles: true }));
 	// restore old
 	ht.orders.handleData = ht.orders.handleDataOrg;
 };

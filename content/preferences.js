@@ -80,7 +80,7 @@ function initSearch() {
 			_modules[searchstr].push(item);
 		}
 		else
-			_modules[searchstr] = item;	
+			_modules[searchstr] = item;
 	}
 	$('.module').each(function() {
 		try {
@@ -759,9 +759,7 @@ function getModule(module)
 					  (function(textInput) {
 						return function(text) {
 							textInput.value = text;
-							var ev = document.createEvent('HTMLEvents');
-							ev.initEvent('change', true, false);
-							textInput.dispatchEvent(ev);
+							textInput.dispatchEvent(new Event('input'));
 						};
 					})(textInput));
 					textDiv.appendChild(load);

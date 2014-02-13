@@ -164,15 +164,11 @@ Foxtrick.modules['TeamStats'] = {
 					Foxtrick.onClick(row, function(ev) {
 						var filterSelect = doc.getElementById('foxtrick-filter-select');
 						// init filters
-						var evt = doc.createEvent('HTMLEvents');
-						evt.initEvent('change', true, true); // event type,bubbling,cancelable
-						filterSelect.dispatchEvent(evt);
+						filterSelect.dispatchEvent(new Event('change'));
 						// set filter
 						filterSelect.value = filter;
 						// call filter
-						var evt2 = doc.createEvent('HTMLEvents');
-						evt2.initEvent('change', true, true); // event type,bubbling,cancelable
-						filterSelect.dispatchEvent(evt2);
+						filterSelect.dispatchEvent(new Event('change'));
 
 						window.scroll(0, 0);
 						window.scrollBy(0, doc.getElementById('ctl00_ctl00_CPContent_divStartMain').offsetTop);
