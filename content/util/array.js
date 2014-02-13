@@ -2,17 +2,30 @@
 /*
  * array.js
  * Array handler functions
- * @author ryanli, convincedd
+ * Most of them can be used with array-like structures like node lists.
+ * @author ryanli, convincedd, LA-MJ
  */
 
 if (!Foxtrick)
 	var Foxtrick = {};
 
+/**
+ * Convert an array-like object to an array
+ * Suitable for node lists, arrays, strings,
+ * match() object and the arguments object
+ * Anything that has a length property and properties 0, 1, 2...
+ * @param	{Array}	arrayLike
+ * @return	{Array}
+ */
+Foxtrick.toArray = function(arrayLike) {
+	return Array.prototype.slice.call(arrayLike);
+};
+
 // loops over an array-like with a function
 Foxtrick.forEach = function(func, array) {
 	if (!Array.isArray(array))
 		array = Foxtrick.toArray(array);
-	return array.forEach(func);
+	array.forEach(func);
 };
 // returns an array with the value of each member of given array applied
 // with func
@@ -44,6 +57,40 @@ Foxtrick.all = function(func, array) {
 	return array.every(func);
 };
 
+// returns count of members in given array that satisfy func
+Foxtrick.count = function(func, array) {
+	if (!Array.isArray(array))
+		array = Foxtrick.toArray(array);
+	return array.reduce(function(ct, e, i, a) {
+		if (func(e, i, a))
+			ct++;
+		return ct;
+	}, 0);
+};
+
+// TODO: review
+// returns (n+1)'th value in array that satisfy func
+// -- returns first if n === 0
+// returns null if not found
+Foxtrick.nth = function(n, func, array) {
+	var count = 0;
+	var ret = null;
+	Foxtrick.any(function(e, i, a) {
+		// loop until found
+		if (func(e, i, a)) {
+			// we have a match
+			if (count++ === n) {
+				// found n-th match: stop
+				ret = e;
+				return true;
+			}
+		}
+		// continue
+		return false;
+	}, array);
+	return ret;
+};
+
 // return the union of array a and array b
 // does not modify the original array
 Foxtrick.union = function(a, b) {
@@ -54,15 +101,10 @@ Foxtrick.union = function(a, b) {
 	return a.concat(b);
 };
 
-// TODO: review
 // returns the intersection of array a and array b
 Foxtrick.intersect = function(a, b) {
-	var r = [];
-	for (var i = 0; i < a.length; ++i)
-		if (Foxtrick.member(a[i], b))
-			r.push(a[i]);
-	r = Foxtrick.unique(r);
-	return r;
+	var r = Foxtrick.filter(function(e, i, a) { return Foxtrick.has(b, e); }, a);
+	return Foxtrick.unique(r);
 };
 
 // TODO: review
@@ -86,7 +128,6 @@ Foxtrick.concat_unique = function(a, b) {
 	}, a);
 };
 
-// TODO: review
 // test if e is in array a, returns -1 if not
 Foxtrick.indexOf = function(array, e) {
 	if (!Array.isArray(array))
@@ -100,28 +141,14 @@ Foxtrick.member = function(e, array) {
 	return Foxtrick.indexOf(array, e) !== -1;
 };
 
-
-// returns count of members in given array that satisfy func
-Foxtrick.count = function(func, array) {
-	if (!Array.isArray(array))
-		array = Foxtrick.toArray(array);
-	return array.reduce(function(ct, e, i, a) {
-		if (func(e, i, a))
-			ct++;
-		return ct;
-	}, 0);
-};
-
-// returns (n+1)'th value in array that satisfy func
-// -- returns first if n == 0
-// returns null if not found
-Foxtrick.nth = function(n, func, array) {
-	var count = 0;
-	for (var i = 0; i < array.length; ++i)
-		if (func(array[i], i, array))
-			if (count++ == n)
-				return array[i];
-	return null;
+// removes element e from array and returns the result array
+// does not modify original
+Foxtrick.remove = function(array, e) {
+	return Foxtrick.filter(function(current, i, array) {
+		if (current !== e)
+			return true;
+		return false;
+	});
 };
 
 // returns an array with duplicate items reduced to one
@@ -136,24 +163,4 @@ Foxtrick.unique = function(array) {
 		ret.push(array[i]);
 	}
 	return ret;
-};
-
-
-// removes a element b from array a and returns a
-Foxtrick.remove = function(a, b) {
-	var r = [];
-	for (var i = 0; i < a.length; ++i)
-		if (a[i] !== b)
-			r.push(a[i]);
-	return r;
-};
-
-/**
- * Convert an array-like object to an array
- * Suitable for node lists, arrays, strings, and the arguments object
- * @param	{Array}	arrayLike
- * @return	{Array}
- */
-Foxtrick.toArray = function(arrayLike) {
-	return Array.prototype.slice.call(arrayLike);
 };
