@@ -262,7 +262,7 @@ Foxtrick.Pages.Player = {
 							var skillValue = parseInt(skillLink.href.match(/ll=(\d+)/)[1], 10);
 							var skillText = skillLink.textContent.trim();
 							var skillContent = rows[i].getElementsByTagName('td')[0].textContent;
-							var skillName = skillContent.replace(':', '').trim();
+							var skillName = skillContent.trim().replace(':', '');
 							skills[skillOrder[i]] = skillValue;
 							skillTexts[skillOrder[i]] = skillText;
 							skillNames[skillOrder[i]] = skillName;
