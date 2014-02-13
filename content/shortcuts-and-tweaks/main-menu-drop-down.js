@@ -148,7 +148,7 @@ Foxtrick.modules['MainMenuDropDown'] = {
 					Foxtrick.any(function(menu) {
 						if (menu.url.toLowerCase() === newMenu.url.toLowerCase() &&
 						   menu.name === newMenu.name) {
-							secondary = Foxtrick.remove(secondary, menu);
+							secondary = Foxtrick.exclude(secondary, menu);
 							return true; // stops on first match
 						}
 						return false;

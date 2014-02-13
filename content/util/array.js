@@ -138,9 +138,9 @@ Foxtrick.has = function(array, e) {
 	return Foxtrick.indexOf(array, e) !== -1;
 };
 
-// removes element e from array and returns the result array
+// excludes an element e from array and returns the result array
 // does not modify original
-Foxtrick.remove = function(array, e) {
+Foxtrick.exclude = function(array, e) {
 	return Foxtrick.filter(function(current, i, array) {
 		if (current !== e)
 			return true;

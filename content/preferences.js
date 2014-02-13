@@ -1387,7 +1387,7 @@ function testPermissions() {
 							    $(id).attr('permission-granted') == 'false')
 								getPermission(neededPermission);
 							else if (!$(id).prop('checked')) {
-								modulelist = Foxtrick.remove(modulelist, module);
+								modulelist = Foxtrick.exclude(modulelist, module);
 								if (modulelist.length > 0) {
 									$('#alert-text').text(Foxtrick.L10n
 									                      .getString('prefs.needPermissions') +
