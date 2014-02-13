@@ -8,49 +8,50 @@
 if (!Foxtrick)
 	var Foxtrick = {};
 
-// FIXME: remove
+// loops over an array-like with a function
+Foxtrick.forEach = function(func, array) {
+	if (!Array.isArray(array))
+		array = Foxtrick.toArray(array);
+	return array.forEach(func);
+};
 // returns an array with the value of each member of given array applied
 // with func
 Foxtrick.map = function(func, array) {
+	if (!Array.isArray(array))
+		array = Foxtrick.toArray(array);
 	return array.map(func);
 };
 
-// FIXME: remove
 // returns an array which contains the members in given array that satisfy
 // func
 Foxtrick.filter = function(func, array) {
+	if (!Array.isArray(array))
+		array = Foxtrick.toArray(array);
 	return array.filter(func);
 };
 
-// FIXME: remove
 // returns whether at least a member in given array satisfy func
 Foxtrick.any = function(func, array) {
+	if (!Array.isArray(array))
+		array = Foxtrick.toArray(array);
 	return array.some(func);
 };
 
-// FIXME: remove
 // returns whether all members in given array satisfy func
 Foxtrick.all = function(func, array) {
+	if (!Array.isArray(array))
+		array = Foxtrick.toArray(array);
 	return array.every(func);
 };
 
-// FIXME: remove
 // return the union of array a and array b
 // does not modify the original array
 Foxtrick.union = function(a, b) {
+	if (!Array.isArray(a))
+		a = Foxtrick.toArray(a);
+	if (!Array.isArray(b))
+		b = Foxtrick.toArray(b);
 	return a.concat(b);
-};
-
-// FIXME: remove
-// test if b is in array a, returns -1 if not
-Foxtrick.indexOf = function(a, b) {
-	return a.indexOf(b);
-};
-
-// TODO: review
-// returns whether n is a member of array
-Foxtrick.member = function(n, array) {
-	return array.some(function(t) { return n === t; });
 };
 
 // TODO: review
@@ -85,8 +86,26 @@ Foxtrick.concat_unique = function(a, b) {
 	}, a);
 };
 
+// TODO: review
+// test if e is in array a, returns -1 if not
+Foxtrick.indexOf = function(array, e) {
+	if (!Array.isArray(array))
+		array = Foxtrick.toArray(array);
+	return array.indexOf(e);
+};
+
+// TODO: review
+// returns whether e is a member of array
+Foxtrick.member = function(e, array) {
+	if (!Array.isArray(array))
+		array = Foxtrick.toArray(array);
+	return array.indexOf(e) !== -1;
+};
+
+
 // returns count of members in given array that satisfy func
 Foxtrick.count = function(func, array) {
+	array = Foxtrick.toArray(array);
 	return array.reduce(function(ct, e, i, a) {
 		if (func(e, i, a))
 			ct++;
