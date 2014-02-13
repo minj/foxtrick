@@ -27,8 +27,6 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		if (Foxtrick.Pages.Match.isPrematch(doc)
 			|| Foxtrick.Pages.Match.inProgress(doc))
 			return;
-		if (!Foxtrick.Pages.Match.hasNewRatings(doc))
-			return;
 
 		var isYouth = Foxtrick.Pages.Match.isYouth(doc);
 
@@ -969,8 +967,6 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 	change: function(doc) {
 		if (Foxtrick.Pages.Match.isPrematch(doc)
 			|| Foxtrick.Pages.Match.inProgress(doc))
-			return;
-		if (!Foxtrick.Pages.Match.hasNewRatings(doc))
 			return;
 
 		var isYouth = Foxtrick.Pages.Match.isYouth(doc);

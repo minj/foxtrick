@@ -7,50 +7,22 @@
 
 Foxtrick.modules['MatchIncome'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.MATCHES,
-	PAGES: ['match', 'matchOld'],
+	PAGES: ['match'],
 	OPTIONS: ['UtilizationPercentages'],
 	run: function(doc) {
 		var module = this;
 		Foxtrick.util.currency.establish(doc, function() {
-			var hasNewRatings = Foxtrick.Pages.Match.hasNewRatings(doc);
-
-			if (!hasNewRatings) {
-				var sidebar = doc.getElementById('sidebar');
-				var sidebarBoxes = sidebar.getElementsByClassName('sidebarBox');
-				var isSoldSeats = function(n) {
-					// returns whether a sidebarBox is sold seats box
-					var tables = n.getElementsByTagName('table');
-					if (tables.length != 1)
-						return false;
-					if (tables[0].rows.length != 4)
-						return false;
-					if (tables[0].rows[0].cells.length < 2)
-						return false;
-					if (tables[0].rows[0].cells[0].textContent.search(/\d/) != -1)
-						return false;
-					if (tables[0].rows[0].cells[1].textContent.search(/\d/) == -1)
-						return false;
-					return true;
-				};
-				var soldSeatBox = Foxtrick.filter(isSoldSeats, sidebarBoxes)[0];
-				if (!soldSeatBox) // cannot find sold seat boxes
-					return;
-			}
-			else {
-				var table = Foxtrick.filter(function(n) {
-					if (n.rows.length != 4)
-						return false;
-					if (n.rows[0].cells.length < 2)
-						return false;
-					if (n.rows[0].cells[0].textContent.search(/\d/) != -1)
-						return false;
-					if (n.rows[0].cells[1].textContent.search(/\d/) == -1)
-						return false;
-					return true;
-				}, doc.querySelectorAll('div.reportHighlights > table'))[0];
-			}
-			if (!hasNewRatings)
-				var table = soldSeatBox.getElementsByTagName('table')[0];
+			var table = Foxtrick.filter(function(n) {
+				if (n.rows.length != 4)
+					return false;
+				if (n.rows[0].cells.length < 2)
+					return false;
+				if (n.rows[0].cells[0].textContent.search(/\d/) != -1)
+					return false;
+				if (n.rows[0].cells[1].textContent.search(/\d/) == -1)
+					return false;
+				return true;
+			}, doc.querySelectorAll('div.reportHighlights > table'))[0];
 			if (!table)
 				return;
 

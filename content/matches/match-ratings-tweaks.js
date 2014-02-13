@@ -25,8 +25,6 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 		if (Foxtrick.Pages.Match.isPrematch(doc)
 			|| Foxtrick.Pages.Match.inProgress(doc))
 			return;
-		if (!Foxtrick.Pages.Match.hasNewRatings(doc))
-			return;
 		var module = this;
 		var sectorsField = doc.getElementById('sectorsField');
 		var doProb = Foxtrick.Prefs.isModuleOptionEnabled('MatchRatingsTweaks', 'RealProbabilities');
@@ -141,8 +139,6 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 	change: function(doc) {
 		if (Foxtrick.Pages.Match.isPrematch(doc)
 			|| Foxtrick.Pages.Match.inProgress(doc))
-			return;
-		if (!Foxtrick.Pages.Match.hasNewRatings(doc))
 			return;
 
 		var doProb = Foxtrick.Prefs.isModuleOptionEnabled('MatchRatingsTweaks', 'RealProbabilities');

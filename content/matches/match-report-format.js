@@ -12,7 +12,7 @@
 
 Foxtrick.modules.MatchReportFormat = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.MATCHES,
-	PAGES: ['match', 'matchOld'],
+	PAGES: ['match'],
 	OPTIONS: ['ShowEventIcons'],
 	CSS: Foxtrick.InternalPath + 'resources/css/match-report.css',
 
@@ -155,9 +155,6 @@ Foxtrick.modules.MatchReportFormat = {
 
 			matchReport.insertBefore(table, matchReport.firstChild);
 		};
-
-		if (!Foxtrick.Pages.Match.hasNewRatings(doc))
-			return;
 
 		if (Foxtrick.Pages.Match.isPrematch(doc))
 			return;

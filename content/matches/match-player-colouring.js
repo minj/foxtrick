@@ -7,7 +7,7 @@
 
 Foxtrick.modules.MatchPlayerColouring = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.MATCHES,
-	PAGES: ['match', 'matchOld'],
+	PAGES: ['match'],
 	OPTIONS: ['SeparateOwnPlayerColors'],
 
 	CSS: Foxtrick.InternalPath + 'resources/css/match-player-colouring.css',
@@ -65,15 +65,8 @@ Foxtrick.modules.MatchPlayerColouring = {
 				|| (n.href.search(/NationalTeam\/NationalTeam\.aspx\?teamId=\d+/) > -1);
 		};
 
-		if (Foxtrick.Pages.Match.hasNewRatings(doc)) {
-			var teams = doc.getElementById('testingNewHeader').getElementsByTagName('h1')[0].getElementsByTagName('a');
-			var sidebar = doc.getElementsByClassName('tblHighlights')[0];
-		}
-		else {
-			var sidebar = doc.getElementById('sidebar');
-			var teams = sidebar.getElementsByTagName('table')[0].getElementsByTagName('a');
-		}
-
+		var teams = doc.getElementById('testingNewHeader').getElementsByTagName('h1')[0].getElementsByTagName('a');
+		var sidebar = doc.getElementsByClassName('tblHighlights')[0];
 		teams = Foxtrick.filter(isTeamLink, teams);
 		var homeTeam = teams[0];
 		var awayTeam = teams[1];

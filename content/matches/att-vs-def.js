@@ -7,7 +7,7 @@
 
 Foxtrick.modules['AttVsDef'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.MATCHES,
-	PAGES: ['match', 'matchOld'],
+	PAGES: ['match'],
 	CSS: Foxtrick.InternalPath + 'resources/css/att-vs-def.css',
 	NICE: -1, // before Ratings
 	RADIO_OPTIONS: ['newstyle', 'oldstyle', 'oldstyleifkseparated'],
@@ -69,9 +69,7 @@ Foxtrick.modules['AttVsDef'] = {
 		optionsTable.appendChild(tbody);
 		optionsDiv.appendChild(optionsTable);
 		bodydiv.appendChild(optionsDiv);
-		if (!Foxtrick.Pages.Match.hasNewRatings(doc))
-			box = Foxtrick.addBoxToSidebar(doc, header, bodydiv, 1);
-		else box = Foxtrick.Pages.Match.addBoxToSidebar(doc, header, bodydiv, 1);
+		box = Foxtrick.Pages.Match.addBoxToSidebar(doc, header, bodydiv, 1);
 
 		if (Foxtrick.Prefs.getInt('module.' + this.MODULE_NAME + '.value') == 0)
 			bodydiv.parentNode.style.padding = '8px 6px 15px';

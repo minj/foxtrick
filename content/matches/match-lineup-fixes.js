@@ -655,9 +655,6 @@ Foxtrick.modules['MatchLineupFixes'] = {
 			|| Foxtrick.Pages.Match.inProgress(doc))
 			return;
 
-		if (!Foxtrick.Pages.Match.hasNewRatings(doc))
-			return;
-
 		if (Foxtrick.Pages.Match.isWalkOver(doc.querySelector('div.mainBox table')))
 			return;
 

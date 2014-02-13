@@ -47,8 +47,6 @@ Foxtrick.modules.FixLinks = {
 	parseMatchPage: function(doc) {
 		if (Foxtrick.Pages.Match.isPrematch(doc) || Foxtrick.Pages.Match.inProgress(doc))
 			return;
-		if (!Foxtrick.Pages.Match.hasNewRatings(doc))
-			return;
 
 		var browseLinks = doc.querySelectorAll('.speedBrowser a');
 		for (var i = 0; i < browseLinks.length; i++) {

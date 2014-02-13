@@ -7,7 +7,7 @@
 
 Foxtrick.modules['Ratings'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.MATCHES,
-	PAGES: ['match', 'matchOld'],
+	PAGES: ['match'],
 	OPTIONS: ['HideAverages', 'HatStats', 'HatStatsDetailed', 'LoddarStats', 'PeasoStats',
 		'VnukStats', 'HTitaVal', 'GardierStats'],
 	ratingDefs: {}, // will be filled in initOptions
@@ -27,14 +27,6 @@ Foxtrick.modules['Ratings'] = {
 		if (ratingstable == null) return;
 		if (Foxtrick.Pages.Match.isWalkOver(ratingstable))
 			return;
-
-		if (!Foxtrick.Pages.Match.hasNewRatings(doc) &&
-		    Foxtrick.Prefs.isModuleOptionEnabled('Ratings', 'HideAverages')
-			&& !Foxtrick.Pages.Match.isYouth(doc)) {
-			for (var i = 0; i < 5; ++i) {
-				ratingstable.deleteRow(-1);
-			}
-		}
 
 		var midfieldLevel = [
 			Foxtrick.Math.hsToFloat(ratingstable.rows[1].cells[3].textContent),
