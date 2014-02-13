@@ -322,7 +322,7 @@ Foxtrick.modules['MainMenuDropDown'] = {
 				var primaries = navi.getPrimaryMenusForUrl(primaryUrl);
 				var secondaries = navi.getSecondaryMenusForUrl(primaryUrl);
 				module.addMenusToListItem(doc, links[l].parentNode,
-										  Foxtrick.union(primaries, secondaries),
+										  Foxtrick.concat(primaries, secondaries),
 										  'ft-drop-down-submenu');
 
 				// secondary links

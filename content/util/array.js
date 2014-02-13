@@ -94,9 +94,9 @@ Foxtrick.nth = function(func, array, n) {
 	return ret;
 };
 
-// return the union of array a and array b
+// return the concat of array a and array b
 // does not modify the original array
-Foxtrick.union = function(a, b) {
+Foxtrick.concat = function(a, b) {
 	if (!Array.isArray(a))
 		a = Foxtrick.toArray(a);
 	if (!Array.isArray(b))

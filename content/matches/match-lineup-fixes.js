@@ -108,7 +108,7 @@ Foxtrick.modules['MatchLineupFixes'] = {
 			TIMELINE_EVENT_TYPES.SECOND_YELLOW_CARD, // TODO: currently not in use!
 			TIMELINE_EVENT_TYPES.RED_CARD,
 		];
-		var lineupEventTypes = Foxtrick.union(redCardEventTypes, subEventTypes);
+		var lineupEventTypes = Foxtrick.concat(redCardEventTypes, subEventTypes);
 
 		var weatherEventTypes = [
 			TIMELINE_EVENT_TYPES.RAIN,
