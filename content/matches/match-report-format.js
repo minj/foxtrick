@@ -159,7 +159,7 @@ Foxtrick.modules.MatchReportFormat = {
 		if (!Foxtrick.Pages.Match.hasNewRatings(doc))
 			return;
 
-		if (Foxtrick.Pages.Match.isPrematch(doc) || Foxtrick.Pages.Match.inProgress(doc))
+		if (Foxtrick.Pages.Match.isPrematch(doc))
 			return;
 
 		// do the stuff
