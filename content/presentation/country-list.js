@@ -179,16 +179,17 @@ Foxtrick.modules['CountryList'] = {
 		}
 
 		var sortByOptionText = function(a, b) {
-			var x = a[1];
-			x = (x.search(/.+sland/) == 0) ? 'Island' :
-				((x.search(/.+esk.+republika/) != -1) ? 'Ceska republika' : x);
-			var y = b[1];
-			y = (y.search(/.+sland/) == 0) ? 'Island' :
-				((y.search(/.+esk.+republika/) != -1) ? 'Ceska republika' : y);
-			//if (parseInt(a[0]) <= 0 || parseInt(b[0]) <= 0) return -1;
-			//not working well in chrome. should be compare values also
-			return ((x < y) ? -1 : ((x > y) ? 1 : 0));
-		}
+			// var x = a[1];
+			// x = (x.search(/.+sland/) == 0) ? 'Island' :
+			// 	((x.search(/.+esk.+republika/) != -1) ? 'Ceska republika' : x);
+			// var y = b[1];
+			// y = (y.search(/.+sland/) == 0) ? 'Island' :
+			// 	((y.search(/.+esk.+republika/) != -1) ? 'Ceska republika' : y);
+			// //if (parseInt(a[0]) <= 0 || parseInt(b[0]) <= 0) return -1;
+			// //not working well in chrome. should be compare values also
+			// return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+			return a[1].localeCompare(b[1], 'sv');
+		};
 
 		opt_array.sort(sortByOptionText);
 		for (var i = start; i < options.length; i++) {
