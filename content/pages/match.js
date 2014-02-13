@@ -100,8 +100,7 @@ Foxtrick.Pages.Match = {
 
 	inProgress: function(doc) {
 		var matchStatus = doc.getElementById('ctl00_ctl00_CPContent_CPMain_lblMatchStatus');
-		var tabCount = doc.getElementsByClassName('tabItem').length;
-		return (matchStatus != null) && (matchStatus.textContent != '') || tabCount && tabCount < 3;
+		return (matchStatus !== null) && (matchStatus.textContent.trim() !== '');
 	},
 
 	getRatingsTable: function(doc) {
