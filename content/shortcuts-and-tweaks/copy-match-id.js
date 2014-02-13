@@ -8,7 +8,7 @@
 Foxtrick.modules['CopyMatchID'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES: ['matches', 'matchesArchive', 'matchesHistory',
-					'matchesLatest', 'arena', 'matchLineup'],
+					'matchesLatest', 'arena'],
 	//CSS: Foxtrick.InternalPath + 'resources/css/copy-match-id.css',
 
 	run: function(doc) {
@@ -70,35 +70,6 @@ Foxtrick.modules['CopyMatchID'] = {
 
 					count++;
 				}
-			}
-		}
-		else if (Foxtrick.isPage(doc, 'matchLineup')) {
-			var images = doc.getElementById('mainBody').getElementsByTagName('img');
-			for (var i = 0; i < images.length; i++) {
-				if (images[i].className.search(
-				    /matchLeague|matchFriendly|matchMasters|matchCup|matchQualification/) == -1)
-					continue;
-
-				var href = '';
-				var links = doc.getElementById('ctl00_ctl00_CPContent_divStartMain').getElementsByTagName('a');
-				for (var j = 0; j < links.length; j++) {
-					if (links[j].href.match(/Club\/Matches\/Match\.aspx/i)) {
-						href = links[j].href;
-						break;
-					}
-				}
-				var matchid = href.replace(/.+matchID=/i, '').match(/^\d+/)[0];
-
-				images[i].setAttribute('title', images[i].title + ': ' +
-				                       Foxtrick.L10n.getString('copy.matchid'));
-				images[i] = Foxtrick.makeFeaturedElement(images[i], this);
-				images[i].setAttribute('matchid', matchid);
-				images[i].setAttribute('id', '_' + this.MODULE_NAME + count);
-				Foxtrick.onClick(images[i], copyId);
-
-				count++;
-				break;
-
 			}
 		}
 	}

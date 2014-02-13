@@ -7,7 +7,7 @@
 
 Foxtrick.modules['FriendlyInterface'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.PRESENTATION,
-	PAGES: ['matchLineup', 'playerDetails', 'guestbook', 'dashboard'],
+	PAGES: ['playerDetails', 'guestbook', 'dashboard'],
 	CSS: Foxtrick.InternalPath + 'resources/css/friendly-interface.css',
 	OPTIONS: [
 		'FullPlayerNameInLineUp',
@@ -17,49 +17,7 @@ Foxtrick.modules['FriendlyInterface'] = {
 	],
 
 	run: function(doc) {
-		if (Foxtrick.isPage(doc, 'matchLineup')
-			&& Foxtrick.Prefs.isModuleOptionEnabled('FriendlyInterface', 'FullPlayerNameInLineUp')) {
-			// show full player names while hiding overflew characters
-			var field = doc.getElementsByClassName('field')[0];
-			var names = field.getElementsByClassName('name');
-			for (var i = 0; i < names.length; ++i) {
-				var name = names[i];
-				Foxtrick.addClass(name, 'ft-fullPlayerName');
-				var link = name.getElementsByTagName('a')[0];
-				// link may not be present for youth matches
-				// (when a team walks over)
-				if (!link) {
-					return;
-				}
-				var setName = function(s) {
-					link.textContent = s;
-				};
-				var original = link.textContent; // original name shown in link
-				var full = link.title; // full name shown in link title
-				if (original.substr(1, 3) == '.  ') { // in form like 'J.  Doe'
-					var initial = original[0]; // first character of first name
-					var lastNameShown = original.substr(4);
-					// ellipsis as the last two characters, remove it
-					if (lastNameShown.substr(lastNameShown.length - 2) == '..') {
-						lastNameShown = lastNameShown.substr(0, lastNameShown.length - 2);
-						var firstNameLength = full.match(RegExp('^(' + initial +
-						                                 '\\S*)\\s'))[1].length;
-						var remaining = full.substr(firstNameLength + 1);
-						// remove space after first name
-						var lastNamePos = remaining.indexOf(lastNameShown);
-						var lastName = remaining.substr(lastNamePos);
-						setName(initial + '. ' + lastName);
-					}
-					else {
-						setName(original);
-					}
-				}
-				else { // in form like 'Jesus'
-					setName(full);
-				}
-			}
-		}
-		else if (Foxtrick.isPage(doc, 'playerDetails')
+		if (Foxtrick.isPage(doc, 'playerDetails')
 			&& Foxtrick.Prefs.isModuleOptionEnabled('FriendlyInterface', 'NtLinkForNtPlayer')) {
 			// show national team names as links in national players' page
 			var playerInfo = doc.getElementsByClassName('playerInfo')[0];

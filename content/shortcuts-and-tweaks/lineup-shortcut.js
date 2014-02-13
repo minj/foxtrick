@@ -6,7 +6,7 @@
 
 Foxtrick.modules['LineupShortcut'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-	PAGES: ['playerDetails', 'statsBestGames', 'matchLineup', 'youthPlayer'],
+	PAGES: ['playerDetails', 'statsBestGames', 'youthPlayer'],
 	OPTIONS: ['HighlightPlayer'],
 
 	run: function(doc) {
@@ -16,8 +16,6 @@ Foxtrick.modules['LineupShortcut'] = {
 			this._Analyze_Youth_Player_Page(doc);
 		else if (Foxtrick.isPage(doc, 'statsBestGames'))
 			this._Analyze_Stat_Page(doc);
-		else if (Foxtrick.isPage(doc, 'matchLineup'))
-			this._Highlight_Player(doc);
 	},
 
 	change: function(doc) {
@@ -198,23 +196,4 @@ Foxtrick.modules['LineupShortcut'] = {
 			this._Add_Lineup_Link(doc, matchTable.rows[i], teamid, playerid, matchid, 'youth', newRatings);
 		}
 	},
-
-	//************************ HIGHLIGHT PLAYER ***********************************
-	_Highlight_Player: function(doc) {
-		if (Foxtrick.Prefs.isModuleOptionEnabled('LineupShortcut', 'HighlightPlayer')) {
-			var newimg = 'url(' + Foxtrick.ResourcePath + 'resources/img/box_yellow.gif)';
-			//Getting playerid from url
-			var passedid = doc.baseURI.replace(/.+HighlightPlayerID=/i, '').match(/^\d+/);
-			if (passedid) {
-				var playerdivs = doc.getElementsByClassName('name');
-				for (var i = 0; i < playerdivs.length; i++) {
-					var playerid = Foxtrick.util.id.findPlayerId(playerdivs[i]);
-					if (playerid == passedid) {
-						//Found it!
-						playerdivs[i].parentNode.style.backgroundImage = newimg;
-					}
-				}
-			}
-		}
-	}
 };

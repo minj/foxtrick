@@ -191,7 +191,6 @@
 			"content/matches/match-report-format.js",
 			"content/matches/match-simulator.js",
 			"content/matches/ratings.js",
-			"content/matches/stars-counter.js",
 			"content/presentation/bookmark-adjust.js",
 			"content/presentation/country-list.js",
 			"content/presentation/currency-converter.js",

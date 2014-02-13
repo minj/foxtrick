@@ -182,7 +182,6 @@ FoxtrickFirefox.prototype = {
 		'matches/match-report-format.js',
 		'matches/match-simulator.js',
 		'matches/ratings.js',
-		'matches/stars-counter.js',
 		'presentation/bookmark-adjust.js',
 		'presentation/country-list.js',
 		'presentation/currency-converter.js',

@@ -7,7 +7,7 @@
 
 Foxtrick.modules['MatchOrderInterface'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.MATCHES,
-	PAGES: ['matchOrder', 'matchLineup'],
+	PAGES: ['matchOrder'],
 	OPTIONS: [
 		'GotTrainingOnField', 'DisplayLastMatchInDetails',
 		'Specialties',
@@ -148,25 +148,9 @@ Foxtrick.modules['MatchOrderInterface'] = {
 				}
 			};
 
-			if (Foxtrick.isPage(doc, 'matchOrder'))	{
-				var playerdivs = target.getElementsByClassName('player');
-				for (var k = 0; k < playerdivs.length; ++k)
-					add_image(playerdivs[k]);
-			}
-			else if (Foxtrick.isPage(doc, 'matchLineup')) {
-				var playerdivs = target.getElementsByClassName('box_lineup');
-				for (var k = 0; k < playerdivs.length; ++k)
-					add_image(playerdivs[k]);
-				playerdivs = target.getElementsByClassName('box_substitute');
-				for (var k = 0; k < playerdivs.length; ++k)
-					add_image(playerdivs[k]);
-				playerdivs = target.getElementsByClassName('box_highlighted');
-				for (var k = 0; k < playerdivs.length; ++k)
-					add_image(playerdivs[k]);
-				playerdivs = target.getElementsByClassName('box_replaced');
-				for (var k = 0; k < playerdivs.length; ++k)
-					add_image(playerdivs[k]);
-			}
+			var playerdivs = target.getElementsByClassName('player');
+			for (var k = 0; k < playerdivs.length; ++k)
+				add_image(playerdivs[k]);
 		};
 		var savePenaltySkills = function(playerList) {
 			var players = {};
@@ -200,60 +184,6 @@ Foxtrick.modules['MatchOrderInterface'] = {
 						});
 					}
 				}
-			}
-		};
-
-		var runMatchLineup = function(doc) {
-			var isYouth = (doc.location.href.search(/isYouth=true|SourceSystem=Youth/i) != -1);
-			if (isYouth) {
-				var teamid = Foxtrick.util.id
-					.findYouthTeamId(doc.getElementsByClassName('subMenu')[0]);
-				var ownteamid = Foxtrick.util.id.getOwnYouthTeamId();
-			}
-			else {
-				var teamid = Foxtrick.util.id.findTeamId(doc.getElementsByClassName('subMenu')[0]);
-				var ownteamid = Foxtrick.util.id.getOwnTeamId();
-			}
-			var getID = function(fieldplayer) {
-				return Foxtrick.util.id.findPlayerId(fieldplayer);
-			};
-
-			// load ahead players and then wait for interface loaded
-			Foxtrick.Pages.Players.getPlayerList(doc,
-			  function(playerInfo) {
-				if (!playerInfo || playerInfo.length == 0) {
-					Foxtrick.log('unable to retrieve player list.');
-					return;
-				}
-				check_Specialties(doc, doc.getElementsByClassName('field')[0], playerInfo, getID,
-				                  'box_lineup');
-				check_Specialties(doc, doc.getElementsByClassName('field')[0], playerInfo, getID,
-				                  'box_substitute');
-				check_Specialties(doc, doc.getElementsByClassName('field')[0], playerInfo, getID,
-				                  'box_highlighted');
-				check_Specialties(doc, doc.getElementsByClassName('field')[0], playerInfo, getID,
-				                  'box_replaced');
-			}, { teamid: teamid, current_squad: true, includeMatchInfo: true });
-
-
-			if (teamid == ownteamid) {
-				Foxtrick.util.api.retrieve(doc, [
-					['file', (isYouth ? 'youth' : '') + 'avatars'],
-					['version', '1.1'],
-					[(isYouth ? 'youthT' : 't') + 'eamId', teamid]
-				  ],
-				  { cache_lifetime: 'session' },
-				  function(xml, errorText) {
-					if (!xml || errorText) {
-						/*if (loadingOtherMatches && loadingOtherMatches.parentNode) {
-							loadingOtherMatches.parentNode.removeChild(loadingOtherMatches);
-							loadingOtherMatches = null;
-						}*/
-						Foxtrick.log(errorText);
-						return;
-					}
-					check_images(doc, doc.getElementsByClassName('field')[0], xml, getID, 4);
-				});
 			}
 		};
 
@@ -868,11 +798,7 @@ Foxtrick.modules['MatchOrderInterface'] = {
 		};
 
 		var isYouth = (doc.location.href.search(/isYouth=true|SourceSystem=Youth/i) != -1);
-		if (Foxtrick.isPage(doc, 'matchOrder')) {
-			runMatchOrder(doc);
-			Foxtrick.util.inject.jsLink(doc, Foxtrick.InternalPath + 'resources/js/matchOrder.js');
-		}
-		else if (Foxtrick.isPage(doc, 'matchLineup'))
-			runMatchLineup(doc);
+		runMatchOrder(doc);
+		Foxtrick.util.inject.jsLink(doc, Foxtrick.InternalPath + 'resources/js/matchOrder.js');
 	}
 };

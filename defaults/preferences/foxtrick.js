@@ -553,7 +553,6 @@ pref("extensions.foxtrick.prefs.module.StaffMarker.coach.enabled", true);
 pref("extensions.foxtrick.prefs.module.StaffMarker.own.enabled", false);
 pref("extensions.foxtrick.prefs.module.StaffMarker.own_text", "{\"1001\" : \"color: red;\", \"1002\" : \"background-color: yellow;\"}");
 pref("extensions.foxtrick.prefs.module.StaffMarker.forumInterface.enabled", true);
-pref("extensions.foxtrick.prefs.module.StarsCounter.enabled", true);
 pref("extensions.foxtrick.prefs.module.SupportershipExpirationDate.enabled", true);
 pref("extensions.foxtrick.prefs.module.SupportersList.enabled", true);
 pref("extensions.foxtrick.prefs.module.SupportersList.SupporterBack.enabled", true);
