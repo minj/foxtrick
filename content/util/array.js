@@ -177,7 +177,7 @@ Foxtrick.push = function(a, b) {
  * @param  {Array}  b array
  * @return {number}   new length
  */
-Foxtrick.push_new = function(a, b) {
+Foxtrick.pushNew = function(a, b) {
 	// find elements in b but not in a
 	var newElements = Foxtrick.filter(function(e, i, b) { return !Foxtrick.has(a, e); }, b);
 	return Foxtrick.push(a, newElements);
