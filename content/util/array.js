@@ -19,13 +19,8 @@ if (!Foxtrick)
  */
 Foxtrick.toArray = function(arrayLike) {
 	if (typeof arrayLike === 'undefined') {
-		try {
-			throw new Error('No array specified');
-		}
-		catch (e) {
-			Foxtrick.log(e);
-			return [];
-		}
+		Foxtrick.log(new Error('No array specified'));
+		return [];
 	}
 	else if (arrayLike === null)
 		return [];
@@ -180,13 +175,8 @@ Foxtrick.intersect = function(a, b) {
  */
 Foxtrick.push = function(a, b) {
 	if (typeof a !== 'object' || a === null) {
-		try {
-			throw new Error('No array specified');
-		}
-		catch (e) {
-			Foxtrick.log(e);
-			return 0;
-		}
+		Foxtrick.log(new Error('No array specified'));
+		return 0;
 	}
 	return Array.prototype.push.apply(a, b);
 };
@@ -250,13 +240,8 @@ Foxtrick.exclude = function(array, e) {
  */
 Foxtrick.unique = function(array) {
 	if (typeof array !== 'object' || array === null) {
-		try {
-			throw new Error('No array specified');
-		}
-		catch (e) {
-			Foxtrick.log(e);
-			return [];
-		}
+		Foxtrick.log(new Error('No array specified'));
+		return [];
 	}
 	var ret = [];
 	var n = array.length;
