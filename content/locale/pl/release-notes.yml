@@ -8,7 +8,15 @@ pl:
     0.13.0.1:
       crowdin: '<header>Wiele tłumaczeń pochodzi od naszych niesamowitych użytkowników korzystających z <linkCrowdin>narzędzia crowdin</linkCrowdin>. Ty też możesz pomóc!</header>'
       bugs: '<header>Poprawki błędów</header>'
+      old_faces: '<module>OldStyleFace</module> nie działał poprawnie w interfejsie poleceń meczowych i ustawieniu składu. Został już naprawiony.'
+      simulator_skills: 'Nazwy podpoziomów w <module>MatchSimulator</module> zostały poprawione dla kilku języków.'
+      embed_media: 'Poprawiono bezpieczeństwo modułów <module>PsicoTSI</module> i <module>EmbedMedia</module>.'
       other: '<header>Inne zmiany</header>'
+      report_format: 'Moduły <module>MatchReportFormat</module> i <module>LiveMatchReportFormat</module> zostały przepisane i teraz działają bez dostępu CHPP.'
+      attvsdef: 'Rzeczywiste prawdopodobieństwo w module <module>AttVsDef</module> teraz wpływa także na pasek stanu posiadania piłki.'
+      staff_marker: 'Interfejs niestandardowych kolorów w <module>StaffMarker</module> jest teraz opcjonalny.'
+      mmdd: 'Strzałki w menu <module>MainMenuDropDown</module> są teraz opcjonalne.'
+      and_more: Różne inne małe zmiany i poprawki.
     0.13.0:
       important: '<header>Ważne ogłoszenia</header>'
       opera: "<p>To ostatnie główne wydanie główne, które oficjalnie wspiera wspiera Operę 12 lub starszą. Istniejące wersje Foxtrick'a mogą przestać działać bez wcześniejszego uprzedzenia.</p> <p>Proszę rozważyć przejście do <linkOperaNext>OperaNext</linkOperaNext> lub innej wybranej przez siebie obsługiwanej przeglądarki.</p>"
@@ -21,6 +29,8 @@ pl:
       other: '<header>Inne zmiany</header>'
       ht_changes: "Foxtrick został zaktualizowany, by zapewniać wsparcie dla ostatnich zmian w Hattrick'u dotyczących raportów z meczów juniorów, prostego motywu i interfejsu poleceń meczowych."
       locale_support: 'Uaktualniono wsparcie regionalne: waluta Euro na Łotwie, nowe nazwy dialektu hiszpańskiego, poprawiony czas i formaty daty itp.'
+      simulator_prob: '<module>MatchSimulator</module> został także wzbogacony o prawdziwe prawdopodobieństwa strzałów/obrony/posiadania z nowego modułu <module>MatchRatingsTweaks</module>.'
+      staff_marker: '<module>StaffMarker</module> został zrestrukturyzowany. Zostały dodane nowe opcje dla kibiców, zespołów, którym się kibicuje, i trenerów reprezentacji. Proszę ustawić preferencje zgodnie z własnymi upodobaniami.'
       custom_marker: Dodano interfejs służący do łatwego dodawania kolorów nazwy użytkownika do stopki wiadomości na forum.
       inline_options: 'Dodano wbudowane opcje dla rozszerzeń listy wykonawców stałych fragmentów w <module>MatchOrderInterface</module> oraz funkcjonalności podzielonego składu w <module>MatchLineupTweaks</module>.'
       links_enhancments: 'Można teraz łatwo wyłączyć wszystkie <module>linki</module> i skonfigurować sposób, w jaki są one otwierane.'
@@ -30,6 +40,7 @@ pl:
       ff_button: Przycisk paska narzędzi programu Firefox będzie teraz lepiej reagował i odzwierciedlał faktyczny stan Foxtricka.
       ff_disable: "Wyłączenie Foxtrick'a w Firefox'ie teraz zamknie preferencje Foxtrick'a (jeśli są otwarte) i odświeży wszystkie karty Hattrick'a, aby usunąć wszelkie modyfikacje wprowadzone przez Foxtrick'a."
       bugs: '<header>Poprawki błędów</header>'
+      android: "<p>Dokonano znacznych poprawek w jądrze Foxtrick'a w celu dostosowania do Firefox'a dla systemu Android. W efekcie, Foxtrick teraz działa lepiej na urządzeniach mobilnych.</p> <p>Dotyczy modułów: <module>MatchReportFormat</module>, <module>Oceny</module>, <module>MatchSimulator</module>, <module>HTMSPrediction</module> <em>i innych</em>.</p>"
       ff_cache: "Poprawiono błąd w przeglądarce Firefox, który uniemożliwiał Foxtrick'owi poprawnie aktualizować się do nowej wersji w niektórych przypadkach."
       custom_links: Sprawdzono funkcjonalność linków zewnętrznych, a wszystkie znane problemy naprawiono. Można teraz dodać również własne linki na stronie raportu meczowego.
       chpp_update: '<module>SupportersList</module> i <module>MatchIncome</module> wykazywały błędne zachowanie po zmianach CHPP. Zostało to naprawione.'

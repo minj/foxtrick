@@ -8,7 +8,15 @@ ko:
     0.13.0.1:
       crowdin: '<header>저희 뛰어난 사용자들이 <linkCrowdin>crowdin tool</linkCrowdin>을 사용하여 수많은 번역 업데이트가 있었습니다. 당신도 도울 수 있습니다!</header>'
       bugs: '<header>버그 수정</header>'
+      old_faces: '경기 지시 사항 인터페이스와 경기 라인업 페이지에서 <module>OldStyleFace</module>가 제대로 동작하지 않았고 이러한 문제를 수정하였습니다.'
+      simulator_skills: '<module>MatchSimulator</module>에서 일부 언어의 Sublevel 이름을 바로잡았습니다.'
+      embed_media: '<module>PsicoTSI</module> 및 <module>EmbedMedia</module>의 보안성이 강화되었습니다.'
       other: '<header>기타 변경 사항</header>'
+      report_format: '<module>MatchReportFormat</module> 및 <module>LiveMatchReportFormat</module> 모듈을 재작성하여 CHPP 접근 없이 동작합니다.'
+      attvsdef: '<module>AttVsDef</module>모듈에서 실제 확률이 볼 점유율 바에 영향을 줍니다.'
+      staff_marker: '<module>StaffMarker</module>에서 사용자 색상 인터페이스가 선택사항이 되었습니다.'
+      mmdd: '<module>MainMenuDropDown</module> 메뉴에서 화살표가 선택사항이 되었습니다.'
+      and_more: 그 외에 작은 규모의 변화와 수정이 있었습니다.
     0.13.0:
       important: '<header>중요한 공지 사항</header>'
       opera: |

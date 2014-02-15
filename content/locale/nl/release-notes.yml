@@ -7,7 +7,15 @@ nl:
       note_0: 'Dit is een beta versie van de volgende release. Help alsjeblieft met vertalen van deze versie op de zeer gebruiksvriendelijke crowd-vertaal pagina <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.13.0.1:
       crowdin: '<header>Heel veel vertalingsupdates van onze geweldige gebruikers zijn gemaakt met behulp van de <linkCrowdin>crowdin tool</linkCrowdin>. Jij kan ons ook helpen!</header>'
+      bugs: '<header>Bugfixes</header>'
+      old_faces: '<module>OldStyleFace</module> werkte niet naar behoren bij de wedstrijd orders-pagina en de opstelling. Dit is nu opgelost.'
+      simulator_skills: 'Sublevel namen in <module>MatchSimulator</module> zijn gecorrigeerd voor enkele talen.'
+      embed_media: '<module>PsicoTSI</module> en <module>EmbedMedia</module> werden veiliger gemaakt.'
       other: '<header>Andere veranderingen</header>'
+      report_format: '<module>MatchReportFormat</module> en <module>LiveMatchReportFormat</module> modules werden herschreven en werken nu zonder CHPP toegang.'
+      staff_marker: 'Aangepaste kleur interface in <module>StaffMarker</module> is nu optioneel.'
+      mmdd: "Pijlen in <module>MainMenuDropDown</module> menu's zijn nu optioneel."
+      and_more: Diverse andere kleine veranderingen en correcties.
     0.13.0:
       important: '<header>Belangrijke aankondigingen</header>'
       opera: '<p>Dit is de laatste grote release die officieel Opera 12 of lager ondersteunt. Bestaande Foxtrick versies kunnen hierdoor wellicht niet meer werken zonder dat dit wordt aangegeven.</p> <p>Overweeg om over te schakelen naar <linkOperaNext>Volgende Opera</linkOperaNext> of een andere ondersteunde browser te kiezen.</p>'
@@ -19,6 +27,11 @@ nl:
       ratings_tweaks: '<module>MatchRatingsTweaks</module>: berekent waarderingen op de wedstrijd verslag pagina. Geeft numerieke waarderingen en toont hun wijzigingen tijdens het volgen van de tijdlijn net als in <module>MatchSimulator</module>. Berekent echte scoren/verdedigen/balbezit kansen volgens gevonden formules in de ongeschreven handleiding: 15766691.221, 15766691.242'
       match_weather: '<module>MatchWeather</module> toont het weer in het stadion voor vandaag en morgen op de wedstrijdpagina.'
       other: '<header>Andere veranderingen</header>'
+      ht_changes: Foxtrick is bijgewerkt om recente wijzigingen te ondersteunen in Hattrick voor jeugdwedstrijd-verslagen, het simpele thema en de wedstrijdinstellingen interface.
+      locale_support: 'Locale ondersteuning bijgewerkt: Euro valuta in Letland, nieuwe Spaanse dialect namen, gecorrigeerde tijd en datum formaten enz.'
+      simulator_prob: '<module>MatchSimulator</module> was ook verbeterd met echte scoren/verdedigen/bezit waarschijnlijkheden van de nieuwe <module>MatchRatingsTweaks</module> module.'
+      staff_marker: '<module>StaffMarker</module> is herschreven. Nieuwe opties voor supporters, teams die jij supportert en bondscoaches zijn toegevoegd.  Stel de voorkeuren om deze aan te passen aan jouw behoeftes.'
+      psico_update: 'Een optie voor het weergeven van <module>PsicoTSI</module> voorspelling op de zijbalk links was geïmplementeerd.'
     0.12.2.1:
       note_3: Het probleem dat vreemde symbolen in plaats van valuta tekens veroorzaakte in Foxtrick, is opgelost
     0.12.2:
@@ -32,6 +45,7 @@ nl:
       note_1: 'Snelheid van <module>MainMenuDropDown</module> verbeterd.'
       note_2: Kleine verbeteringen in toegankelijkheid.
       note_3: 'Verbeteringen voor <module>CopyPosting</module> en <module>StaffMarker</module>.'
+      note_4: Oplossingen voor een aantal geluidsgerelateerde kwesties doorgevoerd.
     0.12.1:
       note_0: '<header>Heel veel vertalingsupdates van onze geweldige gebruikers zijn gemaakt met behulp van de <linkCrowdin>crowdin tool</linkCrowdin>. Jij kan ons ook helpen!</header>'
       note_1: 'Nieuw: <module>SupportershipExpirationDate</module>: Klik op de resterende dagen in je overzicht, zal er voor zorgen dat je de vervaldatum van je supporterlidmaatschap kan zien'

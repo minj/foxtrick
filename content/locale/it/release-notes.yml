@@ -8,7 +8,15 @@ it:
     0.13.0.1:
       crowdin: '<header>Sono disponibili tante nuove traduzioni per i nostri utenti su <linkCrowdin>crowdin tool</linkCrowdin>. Anche tu puoi dare una mano!</header>'
       bugs: '<header>Correzioni di bug</header>'
+      old_faces: "<module>OldStyleFace</module> non funzionava correttamente sull' interfaccia degli ordini partita e sulla pagina delle formazioni. Questo problema ora è risolto."
+      simulator_skills: 'I nomi dei sottolivelli in <module>MatchSimulator</module> sono stati corretti per alcune lingue.'
+      embed_media: '<module>PsicoTSI</module> ed <module>EmbedMedia</module> sono stati resi più sicuri.'
       other: '<header>Altre modifiche</header>'
+      report_format: 'I moduli <module>MatchReportFormat</module> e <module>LiveMatchReportFormat</module> sono stati riscritti e ora lavoro senza accesso CHPP.'
+      attvsdef: 'Le probabilità reali nel modulo <module>AttVsDef</module> ora sono presenti anche per le barre del possesso palla.'
+      staff_marker: 'Interfaccia colori personalizzabili nel modulo <module>StaffMarker</module> ora è facoltativo.'
+      mmdd: 'Le frecce nel menu di <module>MainMenuDropDown</module> ora sono facoltative.'
+      and_more: Varie altre piccole modifiche e correzioni.
     0.13.0:
       important: '<header>Avvisi importanti</header>'
       opera: |
