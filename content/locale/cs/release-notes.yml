@@ -7,8 +7,12 @@ cs:
       note_0: 'Toto je beta verze dalšího vydání. Prosím pomožte s překladem této verze na naší superjednoduché překladatelské stránce <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.13.0.1:
       crowdin: '<header>Spousta překladatelských updatů od našich skvělých uživatelů využívajících <linkCrowdin>crowdin nástroj</linkCrowdin>. Můžeš také pomoci!</header>'
+      bugs: '<header>Opravy chyb</header>'
+      other: '<header>Ostatní změny</header>'
     0.13.0:
       crowdin: '<header>Spousta překladatelských updatů od našich skvělých uživatelů využívajících <linkCrowdin>crowdin nástroj</linkCrowdin>. Můžeš také pomoci!</header>'
+      new: '<header>Nové moduly</header>'
+      other: '<header>Ostatní změny</header>'
     0.12.2:
       note_0: '<header>Spousta překladatelských updatů od našich skvělých uživatelů využívajících <linkCrowdin>crowdin nástroj</linkCrowdin>. Můžeš také pomoci!</header>'
       note_11: '<header>Opravy bugů</header>'

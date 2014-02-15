@@ -29,23 +29,34 @@ de:
       hy_skills: '<module>YouthSkills</module>: Jugendspieler-Seite mit Skill-Informationen aus hattrick youthclub angereichert. Nur für HY-Nutzer.'
       match_weather: '<module>MatchWeather</module> zeigt das Wetter für heute und morgen auf der Spielseite an.'
       other: '<header>Andere Änderungen</header>'
+      ht_changes: Foxtrick wurde aktualisiert um die letzten Änderungen in Hattrick bezüglich der Spielberichte der Jugend, dem einfachen Skin und der Aufstellungsseite zu unterstützen.
       locale_support: 'Aktualisierte lokale Einstellungen: Euro als Währung in Lettland, neue spanische Dialektbezeichnungen, korrigierte Zeit- und Datumsformate etc.'
       staff_marker: '<module>StaffMarker</module> wurde überarbeitet. Neue Optionen für Teams die du unterstützt, Teams die dich unterstützen und für die Nationaltrainer würden hinzugefügt.'
+      custom_marker: Es wurde eine Schnittstelle zum einfachen Hinzufügen von benutzerdefinierten Farben des Namens in der Forensignatur hinzugefügt.
+      links_enhancments: 'Du kannst jetzt einfach alle <module>Links</module> deaktivieren und einstellen, wie sie geöffnet werden.'
       psico_update: '<module>PsicoTSI</module> lässt sich nun auch in der Seitenleiste anzeigen, so wie man es auch in der ursprünglichen Version möglich war.'
       ticker_update: '<module>TickerColoring</module> und <module>TickerAlert</module> wurde auf den neusten Stand gebracht um mit neu hinzugekommenen Tickermeldungen umgehen zu können. '
       ticker_chall: 'Es ist nicht mehr möglich im Ticker Meldungen zu Freundschaftspielen von sonstigen MyHT Meldungen zu unterscheiden. Deswegen wurde dieser Typ von Meldung im Modul <module>TickerColoring</module> umbenannt.'
+      htms_points: '<module>HTMSPoints</module> wurde aktualisiert um die neuen Formeln anzuwenden.'
       ff_button: Das Icon in der Foxtrick Symbolleiste spiegelt nun den Foxtrick Status besser wieder.
       ff_disable: Wird Foxtrick unter Firefox deaktiviert schließen die Einstellungen (wenn geöffnet) autoamtisch und alle Hattrick Tabs werden neu geladen.
       bugs: '<header>Bugfixes</header>'
       android: |
         <p>Es wurden massive Änderungen im Kern von Foxtrick vorgenommen um besser mit Firefox for Android zu funktionieren. Foxtrick funktioniert nun viel besser auf Mobilgeräten.</p>
         <p>Betroffene Module:  <module>MatchReportFormat</module>, <module>Ratings</module>, <module>MatchSimulator</module>, <module>HTMSPrediction</module> <em>und andere</em>.</p>
+      ff_cache: Behob ein Problem in Firefox, welches Firefox in einigen Fällen daran hinderte, ordnungsgemäß auf eine neue Version zu aktualisieren.
       custom_links: Die Funktionalität externer Links wurde überprüft und alle bekannten Probleme behoben. Du kannst jetzt auch benutzerdefinierte Links auf der Spielberichtseite anlegen.
+      player_filters: '<module>PlayerFilters</module> können in Firefox nun gleichzeitig in mehreren Tabs genutzt werden.'
+    0.12.2.1:
+      note_0: Links werden nach Leeren des Foxtrick Caches in Firefox nicht mehr verschwinden.
+      note_1: Änderungen in Farsi und anderen Sprachen, welche Foxtrick zum Absturz gebracht haben könnten, werden nun berücksichtigt.
+      note_3: Behob das Problem, welches verursachte, dass Foxtrick komische Symbole anstelle von Währungen des Benutzers anzeigte
     0.12.2:
       note_0: '<header>Eine Menge neuer Übersetzungen von unseren fantastischen <linkCrowdin>Crowdin</linkCrowdin>-Nutzern. Du kannst übrigens auch ganz einfach mithelfen!</header>'
       note_1: '<module>PlayerStatsExperience</module>: Die Berechnung geht davon aus dass für einen Anstieg der Erfahrung 28.57 Erfahrungspunkte benötigt werden. (Siehe  15766691.780).'
       note_2: 'NEW: <module>PsicoTSI</module> wurde in FoxTrick integriert.'
       note_3: '<module>ShowLineupSet</module>: Option zur Hervorhebung des eigenen Teams in der Ligatabelle hinzugefügt.'
+      note_4: '<module>CopyYouth</module>: Änderungen am Jugendtraining werden jetzt automatisch an den hattrick youthclub (nur für HY-Benutzer) gesendet.'
       note_5: 'NEU: <module>SupportersList</module>: In der Liste, der von Dir unterstützten Teams, die Teams anzeigen, die Dich unterstützen und umgekehrt'
       note_6: '<module>MatchLineupTweaks</module>: Ausdauerdaten deiner Spieler sammeln wann immer ein beendetes Spiel betrachtet. Diese Daten dienen dazu die Bewertungsprognose des <module>MatchSimulator</module> zu verbessern und können im <module>SkillTable</module> betrachtet werden. Es werden nur Spieler berücksichtigt die durchgespielt haben. Spieltest du Pressing oder traten negative Spezialereignisse ein wird ein Spiel nicht berücksichtigt. Die Formel zur Prognose wurde von Pappagallopoli entwickelt.'
       note_7: 'NEW: <module>Fans</module>: Auf der Fan-Seite gibt es nun Live-Links und die Summe der Fanentwicklung wird angezeigt.'
@@ -93,6 +104,7 @@ de:
       note_5: 'NEU: <module>CopyBBAd</module>: Verschiedene Anzeigen in BB-Code kopieren (von merfis).'
       note_6: 'NEU: <module>DashboardCalendar</module>: Hiermit kann per Knopfdruck die Hattrick-Woche im iCalendar-Format exportiert werden. (Sollte mit Google Calendar, Thunderbird+Lightning, MS Outlook, KOrganizer, Evolution, Apple iCal etc, funktionieren)'
       note_7: '<module>LiveAlert</module>: Unterschiedliche Töne für heim-/auswärts- bzw. deine Mannschaft. Benutzt die Töne von <linkHTLS>HTLiveSight</linkHTLS>.'
+      note_9: '<module>CopyYouth</module>: hattrick youthclub Benutzer senden nun den Trainingsreport automatisch zu HY, wenn sie ihn das erste Mal lesen'
       note_10: '<module>LineupShortcut</module> ist jetzt mit der neuen Aufstellungsseite verlinkt.'
       note_11: '<module>SkillTable</module> verwendet jetzt Symbole für Spezialitäten und Trainer.'
       note_12: 'Das Module AddLeaveConfButton wurde in <module>ForumLeaveButton</module> umbenannt'
