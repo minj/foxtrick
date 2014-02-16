@@ -27,13 +27,13 @@ Foxtrick.modules['NewMail'] = {
 			// mail count within My Hattrick link
 			var myHt = menu.getElementsByTagName('a')[0];
 			if (myHt.getElementsByTagName('span').length) {
-				var mailCountSpan = myHt.getElementsByTagName('span')[0];				
+				var mailCountSpan = myHt.getElementsByTagName('span')[0];
 				mailCountSpan.className = 'ft-new-mail';
 				Foxtrick.onClick(mailCountSpan, function(e){
-					e.target.ownerDocument.location='/MyHattrick/Inbox/';
+					e.target.ownerDocument.location.assign('/MyHattrick/Inbox/');
 					e.preventDefault();
 				});
-				var newMailCount = Number(mailCountSpan.textContent.match(/\d+/)[0]);				
+				var newMailCount = Number(mailCountSpan.textContent.match(/\d+/)[0]);
 			}
 			else {
 				// no unread mails

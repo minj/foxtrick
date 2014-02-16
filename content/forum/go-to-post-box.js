@@ -101,6 +101,7 @@ Foxtrick.modules['GoToPostBox'] = {
 			goButton.setAttribute('value', Foxtrick.L10n.getString('button.go'));
 			goButton.setAttribute('class', 'ft_gotobox ft_gotobox_btn');
 			var gotoFkt = function(ev) {
+				var doc = ev.target.ownerDocument;
 				var boxNum = ev.target.id.match(/\d/)[0];
 				var val = doc.getElementById('foxtrick_forum_postbox_postboxnum_' + boxNum).value;
 				if (val.indexOf('.') > 0) {
@@ -110,7 +111,8 @@ Foxtrick.modules['GoToPostBox'] = {
 				else {
 					val = '' + iTopicId + tab + '&n=' + val;
 				}
-				doc.location.href = '/Forum/Read.aspx?t=' + val;
+				// doc.location='' does not work hear, no idea
+				doc.location.assign('/Forum/Read.aspx?t=' + val);
 			};
 			Foxtrick.onClick(goButton, gotoFkt);
 

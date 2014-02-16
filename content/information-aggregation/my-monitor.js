@@ -361,8 +361,9 @@ Foxtrick.modules['MyMonitor'] = {
 			var fillSelect = function() {
 				select.textContent = ''; // clear first
 				Foxtrick.listen(select, 'change', function() {
+					// doc.location='' does not work hear, no idea
 					if (select.value)
-						doc.location.href = select.value;
+						doc.location.assign(select.value);
 				}, false);
 				// use an option as faux-header
 				var fauxHeader = doc.createElement('option');
