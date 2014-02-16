@@ -42,7 +42,7 @@ Foxtrick.util.note = {
 		if (old) {
 			old.parentNode.removeChild(old);
 		}
-		var note = this.create(doc, msg, buttons, hasClose, timeout);
+		var note = this.create(doc, msg, buttons, hasClose, id, timeout);
 		note.id = id;
 		if (insertBefore && insertBefore.parentNode) {
 			insertBefore.parentNode.insertBefore(note, insertBefore);
@@ -75,10 +75,14 @@ Foxtrick.util.note = {
 		return note;
 	},
 
-	create: function(doc, msg, buttons, hasClose, timeout) {
+	create: function(doc, msg, buttons, hasClose, id, timeout) {
 		try {
 			var container = doc.createElement('div');
 			container.className = 'ft-note';
+
+			if (!id)
+				id = 'ft-note-' + Math.random().toString().substr(2);
+			container.id = id;
 
 			// msg could be either a string or an HTML node
 			if (typeof(msg) == 'string') {
@@ -179,7 +183,8 @@ Foxtrick.util.note = {
 			container.appendChild(img);
 			container.appendChild(doc.createTextNode(' '));
 			container.appendChild(doc.createTextNode(loadingText));
-			var note = this.create(doc, container, null, false);
+			var id = 'ft-loading-' + Math.random().toString().substr(2);
+			var note = this.create(doc, container, null, false, id);
 
 			// delay showing
 			Foxtrick.addClass(note, 'hidden');
