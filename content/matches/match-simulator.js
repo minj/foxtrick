@@ -50,8 +50,10 @@ Foxtrick.modules.MatchSimulator = {
 		var useHTMS = Foxtrick.Prefs.isModuleOptionEnabled('MatchSimulator', 'HTMSPrediction');
 		var useStaminaPred = Foxtrick.Prefs.isModuleOptionEnabled('MatchSimulator', 'StaminaPrediction');
 
+		var FIELD_OVERLAY_ID = 'fieldOverlay';
+
 		var displayOption = Foxtrick.Prefs.getInt('module.MatchSimulator.value');
-		var fieldOverlay = doc.getElementById('fieldOverlay');
+		var fieldOverlay = doc.getElementById(FIELD_OVERLAY_ID);
 		if (displayOption == 1)
 			Foxtrick.addClass(fieldOverlay, 'displayBelow');
 		else if (displayOption == 2)
@@ -1205,7 +1207,7 @@ Foxtrick.modules.MatchSimulator = {
 		var optionsDiv = Foxtrick.createFeaturedElement(doc, this, 'div');
 		optionsDiv.id = 'ft_matchsimulator_options';
 		optionsDiv.className = 'overlaySector overlayMidfield';
-		var fieldOverlay = doc.getElementById('fieldOverlay');
+		var fieldOverlay = doc.getElementById(FIELD_OVERLAY_ID);
 		fieldOverlay.appendChild(optionsDiv);
 
 		var optionsDivElm = doc.createElement('div');
@@ -1279,7 +1281,8 @@ Foxtrick.modules.MatchSimulator = {
 		}
 
 		// --- flipping ---
-		var checkFlipped = function() {
+		var checkFlipped = function(doc) {
+			var fieldOverlay = doc.getElementById(FIELD_OVERLAY_ID);
 			if (Foxtrick.util.layout.isFlipped(doc)) {
 				Foxtrick.log('is flipped');
 				Foxtrick.removeClass(fieldOverlay, 'not_flipped');
@@ -1293,8 +1296,11 @@ Foxtrick.modules.MatchSimulator = {
 		};
 		Foxtrick.onClick(doc.getElementById('flip_lineup'), function(ev) {
 			// ff is too fast. so we cue to ensure css add been added by page already
-			window.setTimeout(function () { checkFlipped(); }, 0);
+			var win = ev.target.ownerDocument.defaultView;
+			Foxtrick.rAF(win, function() {
+				checkFlipped(this.document);
+			});
 		});
-		checkFlipped();
+		checkFlipped(doc);
 	}
 };

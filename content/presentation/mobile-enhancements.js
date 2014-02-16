@@ -16,6 +16,8 @@ Foxtrick.modules['MobileEnhancements'] = {
 
 
 	run: function(doc) {
+		var win = doc.defaultView;
+		var MENU_ID = 'menu';
 		// get viewport size
 		var viewport_size = Foxtrick.Prefs.getString('module.MobileEnhancements.ViewPort_text');
 		if (Foxtrick.isPage(doc, 'matchOrder'))	{
@@ -33,8 +35,8 @@ Foxtrick.modules['MobileEnhancements'] = {
 		var menu_hide = function() {
 			// slide out and later add hidden
 			Foxtrick.removeClass(mobile_header_center, 'out');
-			window.setTimeout(function() {
-				Foxtrick.addClass(menu, 'hidden');
+			win.setTimeout(function() {
+				Foxtrick.addClass(this.document.getElementById(MENU_ID), 'hidden');
 			}, 1000);
 		};
 
@@ -96,7 +98,7 @@ Foxtrick.modules['MobileEnhancements'] = {
 		var hattrick = doc.getElementsByClassName('hattrick')[0] ||
 			doc.getElementsByClassName('hattrickNoSupporter')[0];
 		var header = doc.getElementById('header');
-		var menu = doc.getElementById('menu');
+		var menu = doc.getElementById(MENU_ID);
 
 		// move menu bellow header
 		var mobile_header = doc.createElement('div');

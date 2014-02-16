@@ -34,10 +34,11 @@ Foxtrick.util.api = {
 			return;
 		else {
 			Foxtrick.util.api.authorizationQueued = true;
-			window.setTimeout(function() {
+			var win = doc.defaultView;
+			win.setTimeout(function() {
 				Foxtrick.util.api.authorizationQueued = false;
-				Foxtrick.util.api._authorize(doc);
-			},0);
+				Foxtrick.util.api._authorize(this.document);
+			}, 0);
 		}
 	},
 

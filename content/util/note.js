@@ -126,14 +126,17 @@ Foxtrick.util.note = {
 			}
 
 			if (timeout) {
-				window.setTimeout(function() {
+				var win = doc.defaultView;
+				win.setTimeout(function() {
 					try {
+						var container = this.document.getElementById(id);
+						if (container)
 							container.parentNode.removeChild(container);
-						}
-						catch (e) {
-							Foxtrick.log(e);
-						}
-				},timeout);
+					}
+					catch (e) {
+						Foxtrick.log(e);
+					}
+				}, timeout);
 			}
 
 			if (hasClose === true) {
@@ -188,7 +191,10 @@ Foxtrick.util.note = {
 
 			// delay showing
 			Foxtrick.addClass(note, 'hidden');
-			window.setTimeout(function() { Foxtrick.removeClass(note, 'hidden'); }, 500);
+			var win = doc.defaultView;
+			win.setTimeout(function() {
+				Foxtrick.removeClass(this.document.getElementById(id), 'hidden');
+			}, 500);
 
 			return note;
 		}
