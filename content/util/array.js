@@ -19,7 +19,7 @@ if (!Foxtrick)
  */
 Foxtrick.toArray = function(arrayLike) {
 	if (typeof arrayLike === 'undefined') {
-		Foxtrick.log(new Error('No array specified'));
+		Foxtrick.error('No array specified');
 		return [];
 	}
 	else if (arrayLike === null)
@@ -175,7 +175,7 @@ Foxtrick.intersect = function(a, b) {
  */
 Foxtrick.push = function(a, b) {
 	if (typeof a !== 'object' || a === null) {
-		Foxtrick.log(new Error('No array specified'));
+		Foxtrick.error('No array specified');
 		return 0;
 	}
 	return Array.prototype.push.apply(a, b);
@@ -240,7 +240,7 @@ Foxtrick.exclude = function(array, e) {
  */
 Foxtrick.unique = function(array) {
 	if (typeof array !== 'object' || array === null) {
-		Foxtrick.log(new Error('No array specified'));
+		Foxtrick.error('No array specified');
 		return [];
 	}
 	var ret = [];

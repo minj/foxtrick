@@ -8,6 +8,15 @@
 if (!Foxtrick)
 	var Foxtrick = {};
 
+/**
+ * Log an error
+ * @param  {string} err String to log. Will be converted into string if otherwise.
+ */
+Foxtrick.error = function(err) {
+	Foxtrick.log(new Error('' + err));
+};
+
+
 // outputs a list of strings/objects/errors to FoxTrick log
 Foxtrick.log = function() {
 	try {
