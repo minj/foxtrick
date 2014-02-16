@@ -26,11 +26,6 @@ if (!Foxtrick) var Foxtrick = {};
 				isJSON: true,
 				isBase64: true
 			},
-			for_htev: {
-				url: 'http://htev.org/',
-				name: 'fromFoxtrick',
-				domain: '.htev.org'
-			}
 		};
 
 		var makeCookie = function(where, name, oldvalue, newvalue) {
