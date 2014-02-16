@@ -450,6 +450,32 @@ Foxtrick.decodeBase64 = function(str) {
 	}
 };
 
+/**
+ * requestAnimationFrame wrapper
+ * Finds rAF and attaches cb callback to it
+ * Ensures $this in cb refers to the window
+ * @param  {Window}   win
+ * @param  {function} cb
+ */
+Foxtrick.rAF = function(win, cb) {
+	if (typeof win !== 'object') {
+		Foxtrick.error('rAF needs a window!');
+		return;
+	}
+	var rAF = win.requestAnimationFrame || win.mozRequestAnimationFrame ||
+		win.webkitRequestAnimationFrame;
+	if (typeof rAF !== 'function') {
+		Foxtrick.error('No rAF defined!');
+		return;
+	}
+	if (typeof cb !== 'function') {
+		Foxtrick.error('rAF needs a callback!');
+		return;
+	}
+	rAF(cb.bind(win));
+};
+
+
 Foxtrick.getSpecialtyImagePathFromNumber = function(type, negative){
 	var base = Foxtrick.InternalPath + 'resources/img/matches/spec';
 	var url = base + type;
@@ -458,6 +484,6 @@ Foxtrick.getSpecialtyImagePathFromNumber = function(type, negative){
 
 	if(Foxtrick.Prefs.getBool('anstoss2icons'))
 		url = url + '_alt';
-	
+
 	return  url + '.png'
 }
