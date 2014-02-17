@@ -511,9 +511,11 @@ Foxtrick.util.matchEvent.getEventId = function(event) {
 	return parseInt(event.getAttribute('data-eventtype').match(/\d+/)[0], 10);
 };
 
-Foxtrick.util.matchEvent.isWeatherEvent = function(event) {
+Foxtrick.util.matchEvent.isFirstEvent = function(event) {
 	var id = Foxtrick.util.matchEvent.getEventId(event);
-	return (id >= 30 && id <= 33);
+	// in HTO matches there is no weather event
+	// so lineup event 20 is first instead
+	return (id >= 30 && id <= 33 || id === 20);
 };
 
 Foxtrick.util.matchEvent.getEventIcons = function(event, type) {
@@ -606,7 +608,7 @@ Foxtrick.util.matchEvent.addEventIndicators = function(container) {
 		return;
 
 	//figure out if the reading direction is inverted (last event first)
-	var inverted = !Foxtrick.util.matchEvent.isWeatherEvent(eventRows[0]);
+	var inverted = !Foxtrick.util.matchEvent.isFirstEvent(eventRows[0]);
 	for (var e = 0; e < eventRows.length; e++)
 		Foxtrick.util.matchEvent.addEventIndicator(eventRows[e], inverted);
 };
