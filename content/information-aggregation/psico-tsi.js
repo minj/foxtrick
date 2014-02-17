@@ -305,30 +305,100 @@ Foxtrick.modules['PsicoTSI'] = {
 				addImage('HIGH_SUBLEVELS');
 			}
 
-			table.innerHTML = '<tr><th colspan="4" class="center"><b>' +
-				mainSkillText.toUpperCase() + '</tr>' +
-				'<tr><th colspan="2" class="center"><b>' +
-				Foxtrick.L10n.getString('PsicoTSI.TSI_PREDICTION') + '</b></th>' +
-				'<th colspan="2" class="center endColumn1"><b>' +
-				Foxtrick.L10n.getString('PsicoTSI.WAGE_PREDICTION') + ' (' +
-				Foxtrick.util.currency.getSymbol(doc) + ')</b></th></tr>' +
-				'<tr><td><b>' + Foxtrick.L10n.getString('PsicoTSI.FORM_SUBLEVELS') +
-				'</b></td><td><b>' + Foxtrick.L10n.getString('PsicoTSI.PREDICTION') + '</td>' +
-				'<td class="endColumn1"><b>' +
-				Foxtrick.L10n.getString('PsicoTSI.SECONDARIES_SUBLEVELS') +
-				'</b></td><td><b>' + Foxtrick.L10n.getString('PsicoTSI.PREDICTION') + '</td></tr>' +
-				'<tr><td>' + Foxtrick.L10n.getString('PsicoTSI.FORM_HIGH') + '</td><td>' +
-				formHigh + '</td>' + '<td class="endColumn1">' +
-				Foxtrick.L10n.getString('PsicoTSI.DECIMALS_HIGH') + '</td><td' +
-				(!isWagePredictionAvailable ? ' class="shy"' : '') + '>' + wageHigh + '</td></tr>' +
-				'<tr><td>' + Foxtrick.L10n.getString('PsicoTSI.FORM_AVG') + '</td><td>' +
-				formAvg + '</td>' + '<td class="endColumn1">' +
-				Foxtrick.L10n.getString('PsicoTSI.DECIMALS_AVG') + '</td><td' +
-				(!isWagePredictionAvailable? ' class="shy"' : '') + '>' + wageAvg + '</td></tr>' +
-				'<tr><td>' + Foxtrick.L10n.getString('PsicoTSI.FORM_LOW') + '</td><td>' +
-				formLow + '</td>' + '<td class="endColumn1">' +
-				Foxtrick.L10n.getString('PsicoTSI.DECIMALS_LOW') + '</td><td' +
-				(!isWagePredictionAvailable ? ' class="shy"' : '') + '>' + wageLow + '</td></tr>';
+			var tbody = doc.createElement('tbody');
+			table.appendChild(tbody);
+			var tr = doc.createElement('tr');
+			var td = doc.createElement('th');
+			td.colSpan = 4;
+			Foxtrick.addClass(td, 'center');
+			td.textContent = mainSkillText.toUpperCase();
+			tr.appendChild(td);
+			tbody.appendChild(tr);
+
+			tr = doc.createElement('tr');
+			td = doc.createElement('th');
+			td.colSpan = 2;
+			Foxtrick.addClass(td, 'center');
+			td.textContent = Foxtrick.L10n.getString('PsicoTSI.TSI_PREDICTION');
+			tr.appendChild(td);
+			td = doc.createElement('th');
+			td.colSpan = 2;
+			Foxtrick.addClass(td, 'center endColumn1');
+			td.textContent = Foxtrick.L10n.getString('PsicoTSI.WAGE_PREDICTION') + ' (' +
+				Foxtrick.util.currency.getSymbol(doc) + ')';
+			tr.appendChild(td);
+			tbody.appendChild(tr);
+
+			tr = doc.createElement('tr');
+			td = doc.createElement('th');
+			td.textContent = Foxtrick.L10n.getString('PsicoTSI.FORM_SUBLEVELS');
+			tr.appendChild(td);
+			td = doc.createElement('th');
+			td.textContent = Foxtrick.L10n.getString('PsicoTSI.PREDICTION');
+			tr.appendChild(td);
+			td = doc.createElement('th');
+			Foxtrick.addClass(td, 'endColumn1');
+			td.textContent = Foxtrick.L10n.getString('PsicoTSI.SECONDARIES_SUBLEVELS');
+			tr.appendChild(td);
+			td = doc.createElement('th');
+			td.textContent = Foxtrick.L10n.getString('PsicoTSI.PREDICTION');
+			tr.appendChild(td);
+			tbody.appendChild(tr);
+
+			tr = doc.createElement('tr');
+			td = doc.createElement('td');
+			td.textContent = Foxtrick.L10n.getString('PsicoTSI.FORM_HIGH');
+			tr.appendChild(td);
+			td = doc.createElement('td');
+			td.textContent = formHigh;
+			tr.appendChild(td);
+			td = doc.createElement('td');
+			Foxtrick.addClass(td, 'endColumn1');
+			td.textContent = Foxtrick.L10n.getString('PsicoTSI.DECIMALS_HIGH');
+			tr.appendChild(td);
+			td = doc.createElement('td');
+			if (isWagePredictionAvailable)
+				Foxtrick.addClass(td, 'shy');
+			td.textContent = wageHigh;
+			tr.appendChild(td);
+			tbody.appendChild(tr);
+
+			tr = doc.createElement('tr');
+			td = doc.createElement('td');
+			td.textContent = Foxtrick.L10n.getString('PsicoTSI.FORM_AVG');
+			tr.appendChild(td);
+			td = doc.createElement('td');
+			td.textContent = formAvg;
+			tr.appendChild(td);
+			td = doc.createElement('td');
+			Foxtrick.addClass(td, 'endColumn1');
+			td.textContent = Foxtrick.L10n.getString('PsicoTSI.DECIMALS_AVG');
+			tr.appendChild(td);
+			td = doc.createElement('td');
+			if (isWagePredictionAvailable)
+				Foxtrick.addClass(td, 'shy');
+			td.textContent = wageAvg;
+			tr.appendChild(td);
+			tbody.appendChild(tr);
+
+			tr = doc.createElement('tr');
+			td = doc.createElement('td');
+			td.textContent = Foxtrick.L10n.getString('PsicoTSI.FORM_LOW');
+			tr.appendChild(td);
+			td = doc.createElement('td');
+			td.textContent = formLow;
+			tr.appendChild(td);
+			td = doc.createElement('td');
+			Foxtrick.addClass(td, 'endColumn1');
+			td.textContent = Foxtrick.L10n.getString('PsicoTSI.DECIMALS_LOW');
+			tr.appendChild(td);
+			td = doc.createElement('td');
+			if (isWagePredictionAvailable)
+				Foxtrick.addClass(td, 'shy');
+			td.textContent = wageLow;
+			tr.appendChild(td);
+			tbody.appendChild(tr);
+
 		}
 
 		var onLeft = Foxtrick.Prefs.isModuleOptionEnabled('PsicoTSI', 'showOnLeft');
@@ -355,14 +425,29 @@ Foxtrick.modules['PsicoTSI'] = {
 				var STR_FORM = Foxtrick.L10n.getString('PsicoTSI.FORM');
 				var CurrencyName = Foxtrick.util.currency.getSymbol(doc);
 
-				var formH = '<p>[' + STR_FORM + '+]=' + formHigh + '</p>';
-				var formA = '<p>[' + STR_FORM + '~]=' + formAvg + '</p>';
-				var formL = '<p>[' + STR_FORM + '-]=' + formLow + '</p>';
-				var wageH = '<p>[' + CurrencyName + '+]=' + wageHigh + '</p>';
-				var wageA = '<p>[' + CurrencyName + '~]=' + wageAvg + '</p>';
-				var wageL = '<p>[' + CurrencyName + '-]=' + wageLow + '</p>';
-				sidebar.innerHTML = '<p><b>' + mainSkillText + ':</b></p>' + formH + formA + formL +
-					wageH + wageA + wageL;
+				var head = doc.createElement('p');
+				sidebar.appendChild(head);
+				var b = doc.createElement('strong');
+				head.appendChild(b);
+				b.textContent = mainSkillText;
+				var formH = doc.createElement('p');
+				sidebar.appendChild(formH);
+				formH.textContent = '[' + STR_FORM + '+]=' + formHigh + '';
+				var formA = doc.createElement('p');
+				sidebar.appendChild(formA);
+				formA.textContent = '[' + STR_FORM + '~]=' + formAvg + '';
+				var formL = doc.createElement('p');
+				sidebar.appendChild(formL);
+				formL.textContent = '[' + STR_FORM + '-]=' + formLow + '';
+				var wageH = doc.createElement('p');
+				sidebar.appendChild(wageH);
+				wageH.textContent = '[' + CurrencyName + '+]=' + wageHigh + '';
+				var wageA = doc.createElement('p');
+				sidebar.appendChild(wageA);
+				wageA.textContent = '[' + CurrencyName + '~]=' + wageAvg + '';
+				var wageL = doc.createElement('p');
+				sidebar.appendChild(wageL);
+				wageL.textContent = '[' + CurrencyName + '-]=' + wageLow + '';
 			}
 
 			sidebar.appendChild(imgsOnly);
