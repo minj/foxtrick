@@ -28,10 +28,10 @@ Foxtrick.util.sanitize.addHTML = function(doc, html, target) {
 };
 
 
-// only local web, http(s) or internal links
+// only local web, http(s), // or internal links
 Foxtrick.util.sanitize._whitelist_url =
-	new RegExp('[\/|https?:\/\/|' + Foxtrick.InternalPath.replace(/\//g, '\\/')
-	           .replace(/-/g, '\\-') + '][-a-z0-9+&@#\\/%\\?=~_\\|!:,.;\\(\\)\\[\\]]+', 'i');
+	new RegExp('^((https?:)?//|/|' + Foxtrick.InternalPath +
+	           ')[-a-z0-9+&@#/%?=~_|!:,.;()[\\]]+', 'i');
 
 Foxtrick.util.sanitize.parseUrl = function(url) {
 	if (url && Foxtrick.util.sanitize._whitelist_url.test(url))
