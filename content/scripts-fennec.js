@@ -201,7 +201,6 @@ Foxtrick.loader.background.contentScriptManager = {
 		'presentation/league-news-filter.js',
 		'presentation/local-time.js',
 		'presentation/loyalty-display.js',
-		'presentation/match-tables.js',
 		'presentation/mobile-enhancements.js',
 		'presentation/move-manager-online.js',
 		'presentation/move-player-select-box.js',

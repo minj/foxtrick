@@ -221,7 +221,6 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/presentation/league-news-filter.js</string>
 				<string>content/presentation/local-time.js</string>
 				<string>content/presentation/loyalty-display.js</string>
-				<string>content/presentation/match-tables.js</string>
 				<string>content/presentation/mobile-enhancements.js</string>
 				<string>content/presentation/move-manager-online.js</string>
 				<string>content/presentation/move-player-select-box.js</string>
