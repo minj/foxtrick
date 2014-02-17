@@ -123,10 +123,7 @@ Foxtrick.modules['HistoryStats'] = {
 							}
 							cup = table[i].textContent.match(/\d{1,2}/);
 							if (!cup)
-								cup = "<span class='bold' title='" +
-									Foxtrick.L10n.getString('HistoryStats.cupwinner') + "'>" +
-									Foxtrick.L10n.getString('HistoryStats.cupwinner.short') +
-									'</span>';
+								cup = '!';
 						}
 					}
 					//league
@@ -163,59 +160,81 @@ Foxtrick.modules['HistoryStats'] = {
 
 	_paste: function(doc) {
 		var teamId = Foxtrick.Pages.All.getTeamId(doc);
-		if (this.Buffer[teamId].length == 0)
+		if (this.Buffer[teamId].length === 0)
 			return;
-		try {
-			var HistoryTable = '<tr>' +
-				"<th title='" + Foxtrick.L10n.getString('HistoryStats.season') + "'>" +
-				Foxtrick.L10n.getString('HistoryStats.season.short') + '</th>' +
-				"<th title='" + Foxtrick.L10n.getString('HistoryStats.cup') + "'>" +
-				Foxtrick.L10n.getString('HistoryStats.cup.short') + '</th>' +
-				"<th title='" + Foxtrick.L10n.getString('HistoryStats.league') + "'>" +
-				Foxtrick.L10n.getString('HistoryStats.league.short') + '</th>' +
-				"<th title='" + Foxtrick.L10n.getString('HistoryStats.finalPosition') + "'>" +
-				Foxtrick.L10n.getString('HistoryStats.finalPosition.short') + '</th></tr>';
 
-			var last = -1;
-			for (var i = 0; i < this.Buffer[teamId].length; i++) {
-				var dummy = this.Buffer[teamId][i].split('|');
-				dummy[0] = parseInt(dummy[0], 10) - this.Offset[teamId] + '|';
-				var line = '<tr><td>%s' + dummy[0] + '</td><td>%c' + dummy[0] + '</td><td>%l' +
-					dummy[0] + '</td><td>%p' + dummy[0] + '</td></tr>';
+		var table = doc.createElement('table');
+		Foxtrick.addClass(table, 'smallText historystats');
+		var tbody = doc.createElement('tbody');
+		table.appendChild(tbody);
 
-				if (last == -1 || last != dummy[0]) {
-					HistoryTable += line;
+		var tr = doc.createElement('tr');
+		var td = doc.createElement('th');
+		td.title = Foxtrick.L10n.getString('HistoryStats.season');
+		td.textContent = Foxtrick.L10n.getString('HistoryStats.season.short');
+		tr.appendChild(td);
+		td = doc.createElement('th');
+		td.title = Foxtrick.L10n.getString('HistoryStats.cup');
+		td.textContent = Foxtrick.L10n.getString('HistoryStats.cup.short');
+		tr.appendChild(td);
+		td = doc.createElement('th');
+		td.title = Foxtrick.L10n.getString('HistoryStats.league');
+		td.textContent = Foxtrick.L10n.getString('HistoryStats.league.short');
+		tr.appendChild(td);
+		td = doc.createElement('th');
+		td.title = Foxtrick.L10n.getString('HistoryStats.finalPosition');
+		td.textContent = Foxtrick.L10n.getString('HistoryStats.finalPosition.short');
+		tr.appendChild(td);
+		tbody.appendChild(tr);
+
+		for (var i = 0; i < this.Buffer[teamId].length; i++) {
+			var info = this.Buffer[teamId][i].split('|');
+			var season = parseInt(info[0], 10) - this.Offset[teamId];
+			var cup = info[1];
+			var position = info[2];
+			var league = info[3];
+			var className = 'ft-history-stats-row-' + season;
+			var row = tbody.querySelector('.' + className);
+
+			if (!row) {
+				row = doc.createElement('tr');
+				Foxtrick.addClass(row, className);
+				for (var j = 0; j < 4; j++) {
+					row.insertCell();
 				}
-
-
-				HistoryTable = HistoryTable.replace('%s' + dummy[0], dummy[0]);
-
-				if (dummy[3]) {
-					HistoryTable = HistoryTable.replace('%p' + dummy[0], dummy[2]);
-					HistoryTable = HistoryTable.replace('%l' + dummy[0], dummy[3]);
-				} else {
-					HistoryTable = HistoryTable.replace('%c' + dummy[0], dummy[1]);
+				tbody.appendChild(row);
+				row.cells[0].textContent = season;
+				row.cells[1].textContent =
+					row.cells[2].textContent = row.cells[3].textContent = '-';
+			}
+			if (league) {
+				row.cells[2].textContent = league;
+				row.cells[3].textContent = position;
+			}
+			else {
+				if (cup != '!')
+					row.cells[1].textContent = cup;
+				else {
+					row.cells[1].textContent = '';
+					var b = doc.createElement('strong');
+					b.title = Foxtrick.L10n.getString('HistoryStats.cupwinner');
+					b.textContent = Foxtrick.L10n.getString('HistoryStats.cupwinner.short');
+					row.cells[1].appendChild(b);
 				}
-
-				last = dummy[0];
 			}
-			var	table = doc.createElement('table');
-			table.setAttribute('class', 'smallText historystats');
-			HistoryTable = HistoryTable.replace(/%[cpl]\d{1,2}/gi, '-').replace(/\|/g, '');
-			table.innerHTML = HistoryTable;
-
-			if (doc.getElementById('ft_HistoryStats') === null) {
-				var	ownBoxBody = Foxtrick.createFeaturedElement(doc, this, 'div');
-				var header = Foxtrick.L10n.getString('HistoryStats.boxheader');
-				var ownBoxBodyId = 'ft_HistoryStats';
-				ownBoxBody.setAttribute('id', ownBoxBodyId);
-				ownBoxBody.appendChild(table);
-				Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, 1);
-			}
-			else doc.getElementById('ft_HistoryStats').firstChild.innerHTML = table.innerHTML;
 		}
-		catch (e) {
-			Foxtrick.log(e);
+
+		var target = doc.getElementById('ft_HistoryStats');
+		if (target === null) {
+			var ownBoxBody = Foxtrick.createFeaturedElement(doc, this, 'div');
+			var header = Foxtrick.L10n.getString('HistoryStats.boxheader');
+			var ownBoxBodyId = 'ft_HistoryStats';
+			ownBoxBody.setAttribute('id', ownBoxBodyId);
+			ownBoxBody.appendChild(table);
+			Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, 1);
+		}
+		else {
+			target.replaceChild(table, target.firstChild);
 		}
 	}
 };
