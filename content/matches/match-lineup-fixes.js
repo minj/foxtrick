@@ -14,6 +14,8 @@ Foxtrick.modules['MatchLineupFixes'] = {
 	//CSS: Foxtrick.InternalPath + 'resources/css/match-lineup-fixes.css',
 	run: function(doc) {
 
+		var module = this;
+
 		// START PREPARATION STAGE
 
 		// this is where we fix HTs shit
@@ -161,17 +163,28 @@ Foxtrick.modules['MatchLineupFixes'] = {
 				}
 				var events = xml.getElementsByTagName('Event');
 				Foxtrick.map(function(evt) {
-					var evtMarkup = evt.getElementsByTagName('EventText')[0]
-						.textContent.replace(RegExp('<br\\s*/?>', 'g'), '');
-					var evtType = evt.getElementsByTagName('EventTypeID')[0]
-						.textContent;
+					var evtMarkup = evt.getElementsByTagName('EventText')[0].textContent;
+					var evtType = evt.getElementsByTagName('EventTypeID')[0].textContent;
 
 					if (evtType > 300 && evtType < 310) {
-						// whether events
-						var temp = doc.createElement('div');
-						Foxtrick.util.sanitize.addHTML(doc, evtMarkup, temp);
-						// trusted source
-						var link = temp.getElementsByTagName('a')[0];
+						// weather events
+						// <a href="\/Club\/Players\/(Youth)?Player\.aspx\?playerId=\d+"
+						// title="" class=""></a>
+						var url = evtMarkup.match(/href="(\/Club\/Players\/.+?)"/i);
+						var name = evtMarkup.match(/<a.+?>(.+?)<\/a>/i);
+						var className = evtMarkup.match(/class="(.+?)"/i);
+						var title = evtMarkup.match(/title="(.+?)"/i);
+						if (!url || !name) {
+							Foxtrick.error('Weather SE player link parsing failed');
+							return;
+						}
+						var link = Foxtrick.createFeaturedElement(doc, module, 'a');
+						link.href = url[1];
+						link.textContent = name[1];
+						if (className)
+							Foxtrick.addClass(link, className[1]);
+						if (title)
+							link.title = title[1];
 						// let's inject a hidden row into
 						// match highlights table (report tab)
 						var table = doc.querySelector('table.tblHighlights');
