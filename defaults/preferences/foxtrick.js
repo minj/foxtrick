@@ -269,7 +269,6 @@ pref("extensions.foxtrick.prefs.module.MatchLineupTweaks.ShowFaces.enabled", tru
 pref("extensions.foxtrick.prefs.module.MatchLineupTweaks.ShowSpecialties.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchLineupTweaks.SplitLineup.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchLineupTweaks.StaminaCounter.enabled", true);
-pref("extensions.foxtrick.prefs.module.MatchLineupTweaks.StarCounter.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchOrderInterface.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchOrderInterface.GotTrainingOnField.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchOrderInterface.DisplayLastMatchInDetails.enabled", true);
@@ -298,8 +297,6 @@ pref("extensions.foxtrick.prefs.module.MatchRatingsTweaks.RealProbabilities.enab
 pref("extensions.foxtrick.prefs.module.MatchReportFormat.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchReportFormat.ShowEventIcons.enabled", true);
 pref("extensions.foxtrick.prefs.module.LiveMatchReportFormat.enabled", true);
-pref("extensions.foxtrick.prefs.module.MatchTables.enabled", false);
-pref("extensions.foxtrick.prefs.module.MatchTables.RemoveTime.enabled", false);
 pref("extensions.foxtrick.prefs.module.MatchWeather.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchWeather.Irl.enabled", true);
 pref("extensions.foxtrick.prefs.module.MedianTransferPrice.enabled", true);
