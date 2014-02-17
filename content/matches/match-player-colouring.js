@@ -17,8 +17,7 @@ Foxtrick.modules.MatchPlayerColouring = {
 	},
 
 	color: function(doc) {
-		if (Foxtrick.Pages.Match.isPrematch(doc)
-			|| Foxtrick.Pages.Match.inProgress(doc))
+		if (Foxtrick.Pages.Match.isPrematch(doc))
 			return;
 
 		if (doc.location.search.search(/&HighlightPlayerID=(\d+)/) != -1) {
