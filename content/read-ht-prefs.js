@@ -77,7 +77,7 @@ Foxtrick.modules['ReadHtPrefs'] = {
 	readDateFormat: function(doc) {
 		var scripts = doc.getElementsByTagName('script');
 		for (var i = 0; i < scripts.length; ++i) {
-			var script = scripts[i].innerHTML;
+			var script = scripts[i].textContent;
 			var timeDiffOff = script.search(/HT.Clock.init/i);
 			if (timeDiffOff != -1) {
 				// function call to timeDiff in the script

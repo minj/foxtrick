@@ -100,7 +100,7 @@ Foxtrick.util.layout.mainBodyHasScroll = function(doc) {
 	var mainBodyChildren = doc.getElementById('mainBody').getElementsByTagName('script');
 	var i = 0, child;
 	while (child = mainBodyChildren[i++])
-		if (child.innerHTML && child.innerHTML.search(/adjustHeight\(\'mainBody\'/) != -1)
+		if (child.textContent && child.textContent.search(/adjustHeight\(\'mainBody\'/) != -1)
 			return true;
 	return false;
 };
