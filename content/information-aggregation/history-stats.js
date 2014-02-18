@@ -138,8 +138,8 @@ Foxtrick.modules['HistoryStats'] = {
 								table[i].removeChild(table[i].getElementsByTagName('a')[0]);
 						}
 						catch (e_rem) {}
-						table[i].innerHTML =
-							table[i].innerHTML.replace(season - this.Offset[teamId], '').trim();
+						table[i].textContent =
+							table[i].textContent.replace(season - this.Offset[teamId], '').trim();
 						var pos = table[i].textContent.match(/\d{1}/);
 						buff = season + '|' + league + '|' + pos + '|' + leagueN;
 						if (!Foxtrick.has(this.Buffer[teamId], buff))
