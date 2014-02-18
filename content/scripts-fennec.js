@@ -249,8 +249,8 @@ Foxtrick.loader.background.contentScriptManager = {
 	],
 
 	load: function() {
-		var consoleService = Components.classes['@mozilla.org/consoleservice;1']
-									.getService(Components.interfaces.nsIConsoleService);
+		var consoleService = Cc['@mozilla.org/consoleservice;1'].
+			getService(Ci.nsIConsoleService);
 		// load content scripts into content pages. those start running in loader-fennec
 		for (var i = 0; i < this.contentScripts.length; ++i) {
 			try {

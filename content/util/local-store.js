@@ -19,8 +19,8 @@ if (Foxtrick.chromeContext() == 'background') {
 			}
 			finally {
 				if (!hasIDB) {
-					var idbManager = Cc['@mozilla.org/dom/indexeddb/manager;1']
-						.getService(Ci.nsIIndexedDatabaseManager);
+					var idbManager = Cc['@mozilla.org/dom/indexeddb/manager;1'].
+						getService(Ci.nsIIndexedDatabaseManager);
 					if (typeof idbManager.initWindowless === 'function') {
 						var idb = {};
 						try {
@@ -121,13 +121,12 @@ if (Foxtrick.chromeContext() == 'background') {
 
 		(function(){
 			var url = 'http://localStore.foxtrick.org';
-			var ios = Components.classes['@mozilla.org/network/io-service;1']
-					  .getService(Components.interfaces.nsIIOService);
-			var ssm = Components.classes['@mozilla.org/scriptsecuritymanager;1']
-					  .getService(Components.interfaces.nsIScriptSecurityManager);
-			var smc = Components.classes['@mozilla.org/dom/storagemanager;1'] ||
-				Components.classes['@mozilla.org/dom/localStorage-manager;1'];
-			var dsm = smc.getService(Components.interfaces.nsIDOMStorageManager);
+			var ios = Cc['@mozilla.org/network/io-service;1'].getService(Ci.nsIIOService);
+			var ssm = Cc['@mozilla.org/scriptsecuritymanager;1'].
+				getService(Ci.nsIScriptSecurityManager);
+			var smc = Cc['@mozilla.org/dom/storagemanager;1'] ||
+				Cc['@mozilla.org/dom/localStorage-manager;1'];
+			var dsm = smc.getService(Ci.nsIDOMStorageManager);
 
 			var uri = ios.newURI(url, '', null);
 			var principal = ssm.getCodebasePrincipal ? ssm.getCodebasePrincipal(uri) :

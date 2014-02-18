@@ -40,16 +40,16 @@ Foxtrick.util.notify.create = function(msg, url) {
 		};
 
 		try {
-			var alertWin = Components.classes['@mozilla.org/alerts-service;1']
-				.getService(Components.interfaces.nsIAlertsService);
+			var alertWin = Cc['@mozilla.org/alerts-service;1'].
+				getService(Ci.nsIAlertsService);
 			alertWin.showAlertNotification(img, title, msg, clickable, url, listener);
 		}
 		catch (e) {
 			// fix for when alerts-service is not available (e.g. SUSE)
-			var alertWin = Components.classes['@mozilla.org/embedcomp/window-watcher;1']
-				.getService(Components.interfaces.nsIWindowWatcher)
-				.openWindow(null, 'chrome://global/content/alerts/alert.xul',
-					'_blank', 'chrome,titlebar=no,popup=yes', null);
+			var alertWin = Cc['@mozilla.org/embedcomp/window-watcher;1'].
+				getService(Ci.nsIWindowWatcher).
+				openWindow(null, 'chrome://global/content/alerts/alert.xul',
+				           '_blank', 'chrome,titlebar=no,popup=yes', null);
 			alertWin.arguments = [img, 'www.hattrick.org', msg, clickable, url, 0, listener];
 		}
 	};

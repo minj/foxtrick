@@ -16,9 +16,9 @@ if (!Foxtrick.util.sanitize)
 Foxtrick.util.sanitize.addHTML = function(doc, html, target) {
 	if (Foxtrick.arch == 'Gecko') {
 		target.textConent = '';
-		var fragment = Components.classes['@mozilla.org/parserutils;1']
-			.getService(Components.interfaces.nsIParserUtils)
-			.parseFragment(html, 0, false, null, doc.documentElement);
+		var fragment = Cc['@mozilla.org/parserutils;1'].
+			getService(Ci.nsIParserUtils).
+			parseFragment(html, 0, false, null, doc.documentElement);
 		return target.appendChild(fragment);
 	}
 	else {

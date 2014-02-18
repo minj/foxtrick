@@ -1,9 +1,5 @@
-// wrapper for firefox bootstrap
-
-const Cu = Components.utils;
 'use strict';
 Cu.import('resource://gre/modules/Services.jsm');
-
 
 var FoxtrickFennec = function(window) {
 	this.owner = window;
@@ -70,8 +66,8 @@ FoxtrickFennec.prototype = {
 		'scripts-fennec.js'
 	],
 	loadScript: function() {
-		var consoleService = Components.classes['@mozilla.org/consoleservice;1']
-							.getService(Components.interfaces.nsIConsoleService);
+		var consoleService =
+			Cc['@mozilla.org/consoleservice;1'].getService(Ci.nsIConsoleService);
 		// loading Foxtrick into window.Foxtrick
 		for (var i = 0; i < this.scripts.length; ++i) {
 			try {

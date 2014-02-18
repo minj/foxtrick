@@ -132,9 +132,8 @@ Foxtrick.copyStringToClipboard = function(string) {
 			sandboxed.extension.sendRequest({ req: 'clipboard', content: string });
 		}
 		else {
-			var gClipboardHelper = Components
-				.classes['@mozilla.org/widget/clipboardhelper;1']
-				.getService(Components.interfaces.nsIClipboardHelper);
+			var gClipboardHelper = Cc['@mozilla.org/widget/clipboardhelper;1'].
+				getService(Ci.nsIClipboardHelper);
 			gClipboardHelper.copyString(string);
 		}
 	}
@@ -327,8 +326,8 @@ Foxtrick.insertAtCursor = function(textarea, text) {
 
 Foxtrick.confirmDialog = function(msg) {
 	if (Foxtrick.arch === 'Gecko') {
-		var promptService = Components.classes['@mozilla.org/embedcomp/prompt-service;1']
-			.getService(Components.interfaces.nsIPromptService);
+		var promptService = Cc['@mozilla.org/embedcomp/prompt-service;1'].
+			getService(Ci.nsIPromptService);
 		return promptService.confirm(null, null, msg);
 	}
 	else {
@@ -338,8 +337,8 @@ Foxtrick.confirmDialog = function(msg) {
 
 Foxtrick.alert = function(msg) {
 	if (Foxtrick.arch === 'Gecko') {
-		var promptService = Components.classes['@mozilla.org/embedcomp/prompt-service;1']
-			.getService(Components.interfaces.nsIPromptService);
+		var promptService = Cc['@mozilla.org/embedcomp/prompt-service;1'].
+			getService(Ci.nsIPromptService);
 		promptService.alert(null, null, msg);
 	}
 	else {
@@ -351,8 +350,8 @@ Foxtrick.alert = function(msg) {
 Foxtrick.reloadAll = function() {
 	// reload ht tabs
 	if (Foxtrick.platform == 'Firefox') {
-		var wm = Components.classes['@mozilla.org/appshell/window-mediator;1']
-							 .getService(Components.interfaces.nsIWindowMediator);
+		var wm = Cc['@mozilla.org/appshell/window-mediator;1'].
+			getService(Ci.nsIWindowMediator);
 		var browserEnumerator = wm.getEnumerator('navigator:browser');
 
 		// Check each browser instance for our URL
@@ -385,8 +384,8 @@ Foxtrick.openAndReuseOneTabPerURL = function(url, reload) {
 	try {
 		var host = url.match(/(http:\/\/[a-zA-Z0-9_.-]+)/)[1];
 
-		var wm = Components.classes['@mozilla.org/appshell/window-mediator;1']
-						 .getService(Components.interfaces.nsIWindowMediator);
+		var wm = Cc['@mozilla.org/appshell/window-mediator;1'].
+			getService(Ci.nsIWindowMediator);
 		var browserEnumerator = wm.getEnumerator('navigator:browser');
 
 		// Check each browser instance for our URL

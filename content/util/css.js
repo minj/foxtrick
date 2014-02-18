@@ -126,14 +126,13 @@ Foxtrick.util.css.unload_css_permanent = function(cssList) {
 				// needs to be uncompressed to have the right csss precedence
 				css = 'data:text/css;charset=US-ASCII,' + encodeURIComponent(css);
 			}
+			var sss, ios, uri;
 			try {
-				var sss = Components
-					.classes['@mozilla.org/content/style-sheet-service;1']
-					.getService(Components.interfaces.nsIStyleSheetService);
-				var ios = Components
-					.classes['@mozilla.org/network/io-service;1']
-					.getService(Components.interfaces.nsIIOService);
-				var uri = ios.newURI(css, null, null);
+				sss = Cc['@mozilla.org/content/style-sheet-service;1'].
+					getService(Ci.nsIStyleSheetService);
+				ios = Cc['@mozilla.org/network/io-service;1'].
+					getService(Ci.nsIIOService);
+				uri = ios.newURI(css, null, null);
 			}
 			catch (e) {
 				return;
@@ -240,12 +239,14 @@ Foxtrick.util.css.load_css_permanent = function(css) {
 			css = 'data:text/css;charset=US-ASCII,' + encodeURIComponent(css);
 		}
 
+		var sss, uri, ios;
+
 		try {
-			var sss = Components.classes['@mozilla.org/content/style-sheet-service;1']
-				.getService(Components.interfaces.nsIStyleSheetService);
-			var ios = Components.classes['@mozilla.org/network/io-service;1']
-				.getService(Components.interfaces.nsIIOService);
-			var uri = ios.newURI(css, null, null);
+			sss = Cc['@mozilla.org/content/style-sheet-service;1'].
+				getService(Ci.nsIStyleSheetService);
+			ios = Cc['@mozilla.org/network/io-service;1'].
+				getService(Ci.nsIIOService);
+			uri = ios.newURI(css, null, null);
 		}
 		catch (e) {
 			return;

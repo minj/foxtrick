@@ -43,7 +43,7 @@ Foxtrick.log = function() {
 				// readability. the place/object doesn't get shown for me in a readable way
 				// in any console i tried
 				// goes to the error console ctrl+shift+j
-				Components.utils.reportError(item);
+				Cu.reportError(item);
 			}
 			else if (Foxtrick.arch == 'Sandboxed') {
 				item = content.message;
@@ -111,8 +111,8 @@ Foxtrick.log = function() {
 	}
 	if (Foxtrick.arch == 'Gecko') {
 		// goes to the error console ctrl+shift+j
-		var consoleService = Components.classes['@mozilla.org/consoleservice;1']
-							.getService(Components.interfaces.nsIConsoleService);
+		var consoleService =
+			Cc['@mozilla.org/consoleservice;1'].getService(Ci.nsIConsoleService);
 		consoleService.logStringMessage('FoxTrick: ' + concated);
 	}
 	if (typeof(dump) == 'function' && Foxtrick.Prefs.getBool('dump')) {

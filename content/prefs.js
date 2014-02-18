@@ -441,16 +441,14 @@ if (Foxtrick.arch === 'Gecko') {
 		_prefs_gecko: null,
 
 		init: function() {
-			Foxtrick.Prefs._prefs_gecko = Components
-				.classes['@mozilla.org/preferences-service;1']
-				.getService(Components.interfaces.nsIPrefService)
-				.getBranch('extensions.foxtrick.prefs.');
+			Foxtrick.Prefs._prefs_gecko = Cc['@mozilla.org/preferences-service;1'].
+				getService(Ci.nsIPrefService).getBranch('extensions.foxtrick.prefs.');
 		},
 
 		getString: function(key) {
 			try {
 				return Foxtrick.Prefs._prefs_gecko.getComplexValue(encodeURI(key),
-						Components.interfaces.nsISupportsString).data;
+						Ci.nsISupportsString).data;
 			} catch (e) {
 				return null;
 			}
@@ -462,13 +460,12 @@ if (Foxtrick.arch === 'Gecko') {
 				sandboxed.extension.sendRequest({ req: 'setValue', type: 'string',
 				                                key: key, value: value });
 			else {
-				var str = Components
-					.classes['@mozilla.org/supports-string;1']
-					.createInstance(Components.interfaces.nsISupportsString);
+				var str = Cc['@mozilla.org/supports-string;1'].
+					createInstance(Ci.nsISupportsString);
 				str.data = value;
 				Foxtrick.Prefs._prefs_gecko.setComplexValue(encodeURI(key),
-					Components.interfaces.nsISupportsString, str);
-				}
+					Ci.nsISupportsString, str);
+			}
 		},
 
 		getInt: function(key) {

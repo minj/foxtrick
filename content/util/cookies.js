@@ -77,8 +77,7 @@ if (!Foxtrick) var Foxtrick = {};
 					}
 					var new_cookie = makeCookie(where, name, oldValue, what);
 					var cookieManager2 =
-						Components.classes['@mozilla.org/cookiemanager;1']
-							.getService(Components.interfaces.nsICookieManager2);
+						Cc['@mozilla.org/cookiemanager;1'].getService(Ci.nsICookieManager2);
 					//expire just to make the function happy, no effect
 					//when the param before is true (session only)
 					var expire = (new Date()).getTime() + 60 * 60 * 24 * 7;
@@ -152,16 +151,13 @@ if (!Foxtrick) var Foxtrick = {};
 
 			if (Foxtrick.arch == 'Gecko') {
 				var cookieManager2 =
-					Components.classes['@mozilla.org/cookiemanager;1']
-						.getService(Components.interfaces.nsICookieManager2);
+					Cc['@mozilla.org/cookiemanager;1'].getService(Ci.nsICookieManager2);
 				var iter = cookieManager2.getCookiesFromHost(cookies[where].domain);
 				var cookie_count = 0;
 				while (iter.hasMoreElements()) {
 					var cookie = iter.getNext();
-					if (cookie instanceof Components.interfaces.nsICookie) {
-						if (cookie.name == name
-						&& cookie.host == cookies[where].domain)
-						{
+					if (cookie instanceof Ci.nsICookie) {
+						if (cookie.name == name && cookie.host == cookies[where].domain) {
 							if (cookies[where].isJSON && !cookies[where].isBase64)
 								callback(JSON.parse(cookie.value));
 							else if (cookies[where].isJSON && cookies[where].isBase64)

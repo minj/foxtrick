@@ -434,7 +434,7 @@ if (Foxtrick.arch === 'Gecko') {
 	// probably because 'this' is undefined
 
 	var plScope = {};
-	Components.utils.import('resource://gre/modules/PluralForm.jsm', plScope);
+	Cu.import('resource://gre/modules/PluralForm.jsm', plScope);
 
 	var FoxtrickL10nGecko = {
 
@@ -455,10 +455,9 @@ if (Foxtrick.arch === 'Gecko') {
 				}
 			}
 
-			this._strings_bundle_default =
-				Components.classes['@mozilla.org/intl/stringbundle;1']
-				.getService(Components.interfaces.nsIStringBundleService)
-				.createBundle('chrome://foxtrick/content/foxtrick.properties');
+			this._strings_bundle_default = Cc['@mozilla.org/intl/stringbundle;1'].
+				getService(Ci.nsIStringBundleService).
+				createBundle('chrome://foxtrick/content/foxtrick.properties');
 
 			try {
 				this.plForm_default = Number(this._strings_bundle_default
@@ -468,18 +467,18 @@ if (Foxtrick.arch === 'Gecko') {
 			this.setUserLocaleGecko(Foxtrick.Prefs.getString('htLanguage'));
 
 			this._strings_bundle_screenshots_default =
-				Components.classes['@mozilla.org/intl/stringbundle;1']
-				.getService(Components.interfaces.nsIStringBundleService)
-				.createBundle('chrome://foxtrick/content/foxtrick.screenshots');
+				Cc['@mozilla.org/intl/stringbundle;1'].
+				getService(Ci.nsIStringBundleService).
+				createBundle('chrome://foxtrick/content/foxtrick.screenshots');
 		},
 
 		setUserLocaleGecko: function(localecode) {
 			try {
 				this._strings_bundle =
-					Components.classes['@mozilla.org/intl/stringbundle;1']
-					.getService(Components.interfaces.nsIStringBundleService)
-					.createBundle('chrome://foxtrick/content/locale/' + localecode +
-					              '/foxtrick.properties');
+					Cc['@mozilla.org/intl/stringbundle;1'].
+					getService(Ci.nsIStringBundleService).
+					createBundle('chrome://foxtrick/content/locale/' + localecode +
+								 '/foxtrick.properties');
 			}
 			catch (e) {
 				this._strings_bundle = this._strings_bundle_default;
@@ -493,10 +492,10 @@ if (Foxtrick.arch === 'Gecko') {
 
 			try {
 				this._strings_bundle_screenshots =
-					Components.classes['@mozilla.org/intl/stringbundle;1']
-					.getService(Components.interfaces.nsIStringBundleService)
-					.createBundle('chrome://foxtrick/content/locale/' + localecode +
-					              '/foxtrick.screenshots');
+					Cc['@mozilla.org/intl/stringbundle;1'].
+					getService(Ci.nsIStringBundleService).
+					createBundle('chrome://foxtrick/content/locale/' + localecode +
+								  '/foxtrick.screenshots');
 			}
 			catch (e) {
 				this._strings_bundle_screenshots = this._strings_bundle_screenshots_default;
