@@ -269,6 +269,7 @@ pref("extensions.foxtrick.prefs.module.MatchLineupTweaks.ShowFaces.enabled", tru
 pref("extensions.foxtrick.prefs.module.MatchLineupTweaks.ShowSpecialties.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchLineupTweaks.SplitLineup.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchLineupTweaks.StaminaCounter.enabled", true);
+pref("extensions.foxtrick.prefs.module.MatchLineupTweaks.StarCounter.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchOrderInterface.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchOrderInterface.GotTrainingOnField.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchOrderInterface.DisplayLastMatchInDetails.enabled", true);
