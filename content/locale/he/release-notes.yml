@@ -8,7 +8,15 @@ he:
     0.13.0.1:
       crowdin: '<header>עדכוני תרגום רבים של המשתמשים המדהימים שלנו באמצעות <linkCrowdin>כלי ה-crowdin</linkCrowdin>. גם אתם יכולים לעזור!</header>'
       bugs: '<header>תיקוני באגים</header>'
+      old_faces: '<module>OldStyleFace</module> לא רץ היטב בממשק מתן ההוראות למשחק. זה תוקן.'
+      simulator_skills: 'שמות של תתי רמות ב-<module>MatchSimulator</module> תוקנו עבור מספר שפות.'
+      embed_media: '<module>PsicoTSI</module> ו-<module>EmbedMedia</module> נעשו מאובטחים יותר.'
       other: '<header>שינויים אחרים</header>'
+      report_format: '<module>MatchReportFormat</module> ו-<module>LiveMatchReportFormat</module> שוכתבו וכעת עובדים ללא צורך בגישת CHPP.'
+      attvsdef: 'הסיכויים האמיתיים במודול <module>AttVsDef</module> משפיעים עתה גם על עמודות ההחזקה בכדור.'
+      staff_marker: 'ממשק הצביעה לפי בחירה <module>StaffMarker</module> הוא עכשיו אופציונלי.'
+      mmdd: 'החיצים בתפריטי <module>MainMenuDropDown</module> הם אופציונליים.'
+      and_more: הרבה שינויים ותיקונים קטנים נוספים.
     0.13.0:
       important: '<header>הודעות חשובות</header>'
       opera: |
