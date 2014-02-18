@@ -1,3 +1,4 @@
+'use strict';
 if (!Foxtrick)
 	var Foxtrick = {};
 if (!Foxtrick.api)
@@ -23,6 +24,6 @@ Foxtrick.api.pastebin.login = function(callback, user, password, failure, finali
 	params['api_user_name']		= user;
 	params['api_user_password']	= password;
 	params['api_dev_key']		= Foxtrick.api.pastebin.api_dev_key;
-	
+
 	Foxtrick.api.pastebin._generic('login', Foxtrick.api.pastebin.api_login_url, callback, params, failure, finalize);
 };

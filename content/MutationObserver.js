@@ -1,3 +1,4 @@
+'use strict';
 try {
 	console.log(this);
 	var FoxtrickMutationObserver = (function() {

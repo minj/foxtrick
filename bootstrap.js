@@ -3,7 +3,7 @@
  * version 2.0 (the "License"). You can obtain a copy of the License at
  * http://mozilla.org/MPL/2.0/.
  */
-
+'use strict';
 const Cc = Components.classes;
 const Ci = Components.interfaces;
 const Cr = Components.results;

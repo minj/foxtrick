@@ -1,3 +1,4 @@
+'use strict';
 if (!Foxtrick)
 	var Foxtrick = {};
 if (!Foxtrick.api)
@@ -8,7 +9,7 @@ if (!Foxtrick.api.pastebin)
 /**
  * Pastebin paste api access
  * Calls _generic and executes callback(response);
- * In case of success response is a URL to the pasted code. 
+ * In case of success response is a URL to the pasted code.
  * failure(response, status) is called if the request fails
  * finalize(response, status) is always called
  * @param	{function}		callback	function to execute

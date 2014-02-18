@@ -1,6 +1,7 @@
 // wrapper for firefox bootstrap
 
 const Cu = Components.utils;
+'use strict';
 Cu.import('resource://gre/modules/Services.jsm');
 
 

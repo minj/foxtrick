@@ -1,6 +1,5 @@
+'use strict';
 // function for the match-simulator which use hattrick scripts
-
-
 //update Players stamina
 var ft_updatePlayers = function() {
 	//console.log('ft_updatePlayers stamina');

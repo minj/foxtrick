@@ -4,6 +4,7 @@
  * Updates the corresponding menu whenever the user browses to the original target page (room for improvement)
  * @author CatzHoek
  */
+'use strict';
 
 Foxtrick.modules['MainMenuDropDown'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,

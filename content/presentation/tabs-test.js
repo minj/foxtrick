@@ -1,3 +1,4 @@
+'use strict';
 Foxtrick.modules['TabsTest'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.PRESENTATION,
 	PAGES: ['all'],
@@ -55,7 +56,7 @@ Foxtrick.modules['TabsTest'] = {
 		var container = tabs.parentNode;
 		container.appendChild(div);
 		Foxtrick.util.tabs.addElementToTab(doc, div, 'ft-tab-readme');
-		
+
 		//match report
 		Foxtrick.addMutationEventListener(container, 'DOMNodeInserted', function() {
 			Foxtrick.util.tabs.initialize(doc);

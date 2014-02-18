@@ -1,3 +1,4 @@
+'use strict';
 // custom function to bypass opera's stupidity
 function shutDown() {
 	if (isOpera) {

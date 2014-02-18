@@ -1,4 +1,4 @@
-
+'use strict';
 /* fixing ht function to raise and custom event after init of interface */
 ht.orders.handleDataOrg = ht.orders.handleData;
 ht.orders.handleData = function(arg) {
