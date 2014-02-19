@@ -322,15 +322,9 @@ div#main
 	text-decoration: none;
 }*/
 
-html[dir="rtl"] #save
-{
-	font-weight: bold;
-	float:left;
-}
 #save
 {
 	font-weight: bold;
-	float:right;
 }
 
 #note

@@ -1391,9 +1391,9 @@ function testPermissions() {
 					if (result === false &&
 					    Foxtrick.Prefs.getBool('module.' + module + '.enabled')) {
 						Foxtrick.pushNew(modulelist, neededPermission.modules);
-						var needsPermText = Foxtrick.L10n.getString('prefs.needPermissions') +
-							' ' + modulelist.join(', ');
-						$('#alert-text').text(needsPermText);
+						var needsPermHtml = Foxtrick.L10n.getString('prefs.needPermissions') +
+							'<ul><li>' + modulelist.join('</li><li>') + '</li></ul>';
+						$('#alert-text').html(needsPermHtml);
 						$('#alert').attr('style', 'display:block;');
 					}
 				}
@@ -1406,9 +1406,9 @@ function testPermissions() {
 			else if (!$(id).prop('checked')) {
 				modulelist = Foxtrick.exclude(modulelist, module);
 				if (modulelist.length > 0) {
-					var needsPermText = Foxtrick.L10n.getString('prefs.needPermissions') +
-						' ' + modulelist.join(', ');
-					$('#alert-text').text(needsPermText);
+					var needsPermHtml = Foxtrick.L10n.getString('prefs.needPermissions') +
+						'<ul><li>' + modulelist.join('</li><li>') + '</li></ul>';
+					$('#alert-text').html(needsPermHtml);
 					$('#alert').attr('style', 'display:block;');
 				}
 				else {
