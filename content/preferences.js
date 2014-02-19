@@ -1372,48 +1372,53 @@ function permissionsMakeIdFromName(module) {
 function testPermissions() {
 	// initialize elements which need permissions, ask for permission if needed
 	if (Foxtrick.platform === 'Chrome') {
+		var makeChecker = function(id) {
+			return function() {
+				checkPermission(id);
+			};
+		};
+
+		var testModulePermission = function(neededPermission) {
+			chrome.permissions.contains(neededPermission['types'],
+			  function(result) {
+				for (var m = 0; m < neededPermission.modules.length; ++m) {
+					var module = neededPermission.modules[m];
+					var id = permissionsMakeIdFromName(module);
+					$(id).attr('permission-granted', result);
+					neededPermission.granted = result;
+					$(id).click(makeChecker(id));
+
+					if (result === false &&
+					    Foxtrick.Prefs.getBool('module.' + module + '.enabled')) {
+						Foxtrick.pushNew(modulelist, neededPermission.modules);
+						var needsPermText = Foxtrick.L10n.getString('prefs.needPermissions') +
+							' ' + modulelist.join(', ');
+						$('#alert-text').text(needsPermText);
+						$('#alert').attr('style', 'display:block;');
+					}
+				}
+			});
+		};
+		var checkPermission = function(id) {
+			if ($(id).prop('checked') &&
+			    $(id).attr('permission-granted') == 'false')
+				getPermission(neededPermission);
+			else if (!$(id).prop('checked')) {
+				modulelist = Foxtrick.exclude(modulelist, module);
+				if (modulelist.length > 0) {
+					var needsPermText = Foxtrick.L10n.getString('prefs.needPermissions') +
+						' ' + modulelist.join(', ');
+					$('#alert-text').text(needsPermText);
+					$('#alert').attr('style', 'display:block;');
+				}
+				else {
+					$('#alert-text').text('');
+					$('#alert').attr('style', 'display:none;');
+				}
+			}
+		};
 		var modulelist = [];
 		for (var i = 0; i < neededPermissions.length; ++i) {
-			var testModulePermission = function(neededPermission) {
-				chrome.permissions.contains(neededPermission['types'],
-				  function(result) {
-					for (var m = 0; m < neededPermission.modules.length; ++m) {
-						var module = neededPermission.modules[m];
-						var id = permissionsMakeIdFromName(module);
-						$(id).attr('permission-granted', result);
-						neededPermission.granted = result;
-						var checkPermission = function() {
-							if ($(id).prop('checked') &&
-							    $(id).attr('permission-granted') == 'false')
-								getPermission(neededPermission);
-							else if (!$(id).prop('checked')) {
-								modulelist = Foxtrick.exclude(modulelist, module);
-								if (modulelist.length > 0) {
-									$('#alert-text').text(Foxtrick.L10n
-									                      .getString('prefs.needPermissions') +
-									                      ' ' + modulelist);
-									$('#alert').attr('style', 'display:block;');
-								}
-								else {
-									$('#alert-text').text('');
-									$('#alert').attr('style', 'display:none;');
-								}
-							}
-						};
-						$(id).click(function() {
-							checkPermission();
-						});
-
-						if (result == false && Foxtrick.Prefs.getBool('module.' + module +
-						    '.enabled')) {
-							Foxtrick.pushNew(modulelist, neededPermission.modules);
-							$('#alert-text').text(Foxtrick.L10n.getString('prefs.needPermissions') +
-							                      ' ' + modulelist);
-							$('#alert').attr('style', 'display:block;');
-						}
-					}
-				});
-			};
 			testModulePermission(neededPermissions[i]);
 		}
 	}
