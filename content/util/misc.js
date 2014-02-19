@@ -55,12 +55,23 @@ if (!Foxtrick) var Foxtrick = {};
 // May throw an error if unable to play the sound.
 Foxtrick.playSound = function(url, doc) {
 	try {
+		if (typeof url !== 'string') {
+			Foxtrick.log('Bad sound:', url);
+			return;
+		}
 		url = url.replace(/^foxtrick:\/\//, Foxtrick.ResourcePath);
 		var type = 'wav';
 		if (url.indexOf('data:audio') == 0)
 			type = url.match(/data:audio\/(.+);/)[1];
-		else
-			type = url.match(/.+\.([^\.]+)$/)[1];
+		else {
+			var ext = url.match(/\.([^\.]+)$/);
+			if (ext)
+				type = ext[1];
+			else {
+				Foxtrick.log('Not a sound file:', url);
+				return;
+			}
+		}
 		Foxtrick.log('play: ' + url.substring(0, 100));
 		try {
 			var music = new Audio();
