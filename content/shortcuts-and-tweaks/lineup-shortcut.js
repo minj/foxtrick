@@ -180,6 +180,7 @@ Foxtrick.modules['LineupShortcut'] = {
 		for (var i = 0; i < matchTable.rows.length; i++) {
 			var date = Foxtrick.util.time.getDateFromText(matchTable.rows[i].cells[0].textContent);
 			var link = matchTable.rows[i].cells[1].getElementsByTagName('a').item(0);
+			link.href += '&HighlightPlayerID=' + playerid;
 			var matchid = Foxtrick.util.id.getMatchIdFromUrl(link.href);
 			this._Add_Lineup_Link(doc, matchTable.rows[i], teamid, playerid, matchid, 'youth');
 		}

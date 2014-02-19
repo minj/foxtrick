@@ -93,7 +93,7 @@ Foxtrick.modules.MatchPlayerColouring = {
 		if (hl) {
 			// highlight single player
 			var playerId = hl[1];
-			var links = doc.querySelectorAll('a[href*="layerId=' + playerId + '"]');
+			var links = doc.querySelectorAll('a[href*="' + playerId + '"]');
 			// add an arbitrarily home class
 			Foxtrick.map(function(a) {
 				Foxtrick.addClass(a, 'ft-match-player-hl');
