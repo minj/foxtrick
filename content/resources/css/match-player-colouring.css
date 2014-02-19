@@ -1,20 +1,23 @@
-.ft-match-player-home, .ft-match-player-away, .ft-match-player-mine {
+.ft-match-player-home, .ft-match-player-away, .ft-match-player-minem,
+.ft-match-player-hl {
 	padding: 0 2px !important;
 }
 
 .ft-match-player-home {
 	color: #849D84 !important;
 	border: 1px solid #849D84;
-	background-color: white !important;
+	background-color: white;
 }
 
 .ft-match-player-away {
 	border: 1px solid white;
-	background: none repeat scroll 0 0 #849D84;
+	background: #849D84;
 	color:white !important;
 }
 
-.ft-match-player-mine {
+.ft-match-player-hl {
+	background-color: hsl(270, 40%, 40%);
+	color: white !important;
 }
 
 .ft-match-event-home > td:first-child {

@@ -42,20 +42,6 @@ Foxtrick.modules.MatchPlayerColouring = {
 		if (Foxtrick.Pages.Match.isPrematch(doc))
 			return;
 
-		if (doc.location.search.search(/&HighlightPlayerID=(\d+)/) != -1) {
-			// highlight single player
-			var playerId = doc.location.search.match(/&HighlightPlayerID=(\d+)/)[1];
-			var links = doc.getElementById('ctl00_ctl00_CPContent_divStartMain').getElementsByTagName('a');
-			links = Foxtrick.filter(function(a) {
-				return a.hasAttribute('href') && a.getAttribute('href').indexOf(playerId) > -1;
-				//must use getAttribute because #anchor links (tabs) include the original url
-			}, links);
-			// add an arbitrarily home class
-			Foxtrick.map(function(a) {
-				Foxtrick.addClass(a, 'ft-match-player-home');
-			}, links);
-			return;
-		}
 
 		var isTeamLink = function(n) {
 			return (n.href.search(/Club\/\?TeamID=\d+/) > -1) ||
@@ -102,5 +88,16 @@ Foxtrick.modules.MatchPlayerColouring = {
 		Foxtrick.map(function(n) {
 			Foxtrick.addClass(n.parentNode.parentNode, 'ft-match-event-away');
 		}, awayLinks);
+
+		var hl = doc.location.search.match(/&HighlightPlayerID=(\d+)/);
+		if (hl) {
+			// highlight single player
+			var playerId = hl[1];
+			var links = doc.querySelectorAll('a[href*="layerId=' + playerId + '"');
+			// add an arbitrarily home class
+			Foxtrick.map(function(a) {
+				Foxtrick.addClass(a, 'ft-match-player-hl');
+			}, links);
+		}
 	}
 };
