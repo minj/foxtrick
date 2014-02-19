@@ -8,7 +8,15 @@ da:
     0.13.0.1:
       crowdin: '<header>En del oversættelses opdateringer fra vores fantastiske brugere ved hjælp af <linkCrowdin>crowdin </linkCrowdin>. Du kan også hjælpe til!</header>'
       bugs: '<header>Fejlrettelser</header>'
+      old_faces: '<module>OldStyleFace</module> fungerede ikke korrekt på kamp ordre og opstillings sider. Dette er nu rettet.'
+      simulator_skills: 'Evne underniveau navne i <module>MatchSimulator</module> blev korrigeret for nogle få sprog.'
+      embed_media: '<module>PsicoTSI</module> og <module>EmbedMedia</module> blev gjort mere sikker.'
       other: '<header>Andre ændringer</header>'
+      report_format: '<module>MatchReportFormat</module> og <module>LiveMatchReportFormat</module> moduler blev omskrevet og virker nu uden CHPP adgang.'
+      attvsdef: 'Reelle sandsynligheder i <module>AttVsDef</module> modul påvirker nu også bold besiddelse barer.'
+      staff_marker: 'Brugerdefineret farve interface i <module>StaffMarker</module> er nu valgfri.'
+      mmdd: 'Pilene i <module>MainMenuDropDown</module> menuer er nu valgfrie.'
+      and_more: Forskellige andre små ændringer og rettelser.
     0.13.0:
       important: '<header>Vigtige meddelelser</header>'
       opera: '<p>Dette er den sidste store udgivelse, der officielt understøtter Opera 12 eller dérunder. Eksisterende Foxtrick versioner kan stoppe med at virke uden yderligere varsel.</p> <p>Du kan overveje at skifte til <linkOperaNext>Opera Next</linkOperaNext> eller en anden understøttet browser efter eget valg.</p>'
