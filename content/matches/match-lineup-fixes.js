@@ -173,7 +173,6 @@ Foxtrick.modules['MatchLineupFixes'] = {
 						var url = evtMarkup.match(/href="(\/Club\/Players\/.+?)"/i);
 						var name = evtMarkup.match(/<a.+?>(.+?)<\/a>/i);
 						var className = evtMarkup.match(/class="(.+?)"/i);
-						var title = evtMarkup.match(/title="(.+?)"/i);
 						if (!url || !name) {
 							Foxtrick.error('Weather SE player link parsing failed');
 							return;
@@ -181,10 +180,16 @@ Foxtrick.modules['MatchLineupFixes'] = {
 						var link = Foxtrick.createFeaturedElement(doc, module, 'a');
 						link.href = url[1];
 						link.textContent = name[1];
-						if (className)
+						link.title = link.textContent;
+						if (className) {
 							Foxtrick.addClass(link, className[1]);
-						if (title)
-							link.title = title[1];
+							if (Foxtrick.Prefs.isModuleEnabled('MatchPlayerColouring')) {
+								var isHome = /home/i.test(className[1]);
+								var mpcClass = Foxtrick.modules.MatchPlayerColouring.
+									getPlayerClass(doc, isHome);
+								Foxtrick.addClass(link, mpcClass);
+							}
+						}
 						// let's inject a hidden row into
 						// match highlights table (report tab)
 						var table = doc.querySelector('table.tblHighlights');

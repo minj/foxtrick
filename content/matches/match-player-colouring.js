@@ -9,11 +9,33 @@ Foxtrick.modules.MatchPlayerColouring = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.MATCHES,
 	PAGES: ['match'],
 	OPTIONS: ['SeparateOwnPlayerColors'],
+	NICE: 1, // after match-report-format
 
 	CSS: Foxtrick.InternalPath + 'resources/css/match-player-colouring.css',
 
 	run: function(doc) {
 		this.color(doc);
+	},
+
+	getPlayerClass: function(doc, home) {
+		var isYouth = Foxtrick.Pages.Match.isYouth(doc);
+		//Retrieve teams id
+		var myTeamId = null;
+		if (Foxtrick.Prefs.isModuleOptionEnabled('MatchPlayerColouring',
+		    'SeparateOwnPlayerColors'))
+			myTeamId = isYouth ? Foxtrick.util.id.getOwnYouthTeamId() :
+				Foxtrick.util.id.getOwnTeamId();
+
+		if (home) {
+			var homeTeamId = Foxtrick.Pages.Match.getHomeTeamId(doc);
+			return (myTeamId == homeTeamId) ? 'ft-match-player-mine' :
+				'ft-match-player-home';
+		}
+		else {
+			var awayTeamId = Foxtrick.Pages.Match.getAwayTeamId(doc);
+			return (myTeamId == awayTeamId) ? 'ft-match-player-mine' :
+			'ft-match-player-away';
+		}
 	},
 
 	color: function(doc) {
@@ -35,153 +57,50 @@ Foxtrick.modules.MatchPlayerColouring = {
 			return;
 		}
 
-		// creating a loading note that lasts till XMLs are loaded
-		var loading = Foxtrick.util.note.createLoading(doc);
-		var notifyArea =
-			doc.getElementById('ctl00_ctl00_CPContent_ucNotifications_updNotifications');
-		notifyArea.appendChild(loading);
-
-		var SourceSystem = 'Hattrick';
-		var isYouth = Foxtrick.Pages.Match.isYouth(doc);
-		var isHTOIntegrated = Foxtrick.Pages.Match.isHTOIntegrated(doc);
-		if (isYouth)
-			SourceSystem = 'Youth';
-		if (isHTOIntegrated)
-			SourceSystem = 'HTOIntegrated';
-		var matchId = Foxtrick.util.id.getMatchIdFromUrl(doc.location.href);
-
-		//Retrieve teams id
-		if (Foxtrick.Prefs.isModuleOptionEnabled('MatchPlayerColouring',
-			'SeparateOwnPlayerColors'))
-			var myTeamId = isYouth ? Foxtrick.util.id.getOwnYouthTeamId() :
-				Foxtrick.util.id.getOwnTeamId();
-		else
-			var myTeamId = null;
-
 		var isTeamLink = function(n) {
-			return (n.href.search(/Club\/\?TeamID=\d+/) > -1)
-				|| (n.href.search(/Youth\/(Default\.aspx)?\?YouthTeamID=\d+/) > -1)
-				|| (n.href.search(/NationalTeam\/NationalTeam\.aspx\?teamId=\d+/) > -1);
+			return (n.href.search(/Club\/\?TeamID=\d+/) > -1) ||
+				(n.href.search(/Youth\/(Default\.aspx)?\?YouthTeamID=\d+/) > -1) ||
+				(n.href.search(/NationalTeam\/NationalTeam\.aspx\?teamId=\d+/) > -1);
 		};
 
-		var teams = doc.getElementById('testingNewHeader').getElementsByTagName('h1')[0].getElementsByTagName('a');
 		var sidebar = doc.getElementsByClassName('tblHighlights')[0];
+		var teams = doc.getElementById('testingNewHeader').getElementsByTagName('h1')[0].
+			getElementsByTagName('a');
 		teams = Foxtrick.filter(isTeamLink, teams);
-		var homeTeam = teams[0];
-		var awayTeam = teams[1];
+		var homeClass = this.getPlayerClass(doc, true);
+		var awayClass = this.getPlayerClass(doc, false);
+		Foxtrick.addClass(teams[0], homeClass);
+		Foxtrick.addClass(teams[1], awayClass);
 
-		var homeTeamId = Foxtrick.util.id.getTeamIdFromUrl(homeTeam.href);
-		var awayTeamId = Foxtrick.util.id.getTeamIdFromUrl(awayTeam.href);
+		// colour all player links
+		Foxtrick.forEach(function(n) {
+			Foxtrick.addClass(n, homeClass);
+		}, doc.querySelectorAll('a.homeplayer, .highlightHome a'));
+		Foxtrick.forEach(function(n) {
+			Foxtrick.addClass(n, awayClass);
+		}, doc.querySelectorAll('a.awayplayer, .highlightAway a'));
 
+		if (!sidebar) {
+			// layout error
+			// probably WO, stop
+			return;
+		}
 
-		var homeClass = (myTeamId == homeTeamId) ? 'ft-match-player-mine' :
-			'ft-match-player-home';
-		var awayClass = (myTeamId == awayTeamId) ? 'ft-match-player-mine' :
-			'ft-match-player-away';
-
-		Foxtrick.addClass(homeTeam, homeClass);
-		Foxtrick.addClass(awayTeam, awayClass);
-
-		var mainWrapper = doc.getElementById('ctl00_ctl00_CPContent_divStartMain').parentNode;
-		var links = Foxtrick.filter(function(n) {
+		// add class for sidebar event rows (aligns cards etc according to team)
+		var sidebarLinks = Foxtrick.filter(function(n) {
 			return n.hasAttribute('href');
-		}, mainWrapper.getElementsByTagName('a'));
-
-		// arguments for retrieving XML
-		var homeArgs = [
-			['file', 'matchlineup'],
-			['matchID', matchId],
-			['teamID', homeTeamId],
-			['SourceSystem', SourceSystem],
-			['version', '1.8']
-		];
-		var awayArgs = [
-			['file', 'matchlineup'],
-			['matchID', matchId],
-			['teamID', awayTeamId],
-			['SourceSystem', SourceSystem],
-			['version', '1.8']
-		];
-
-		var getPlayers = function(xml) {
-			var field_start_end =
-				Array.prototype.slice.call(xml.getElementsByTagName('PlayerID'));
-			var subs_in =
-				Array.prototype.slice.call(xml.getElementsByTagName('SubjectPlayerID'));
-			var players = field_start_end.concat(subs_in);
-
-			return Foxtrick.map(function(n) {
-					return Number(n.textContent);
-				}, players);
-		};
-		var getPlayerId = function(a) {
-			var m;
-			if (!a.hasAttribute('data-do-not-color')
-				&& (m = a.href.match(/PlayerId=(\d+)/i)))
-				return Number(m[1]);
-			return null;
-		};
-		Foxtrick.util.api.retrieve(doc, homeArgs, { cache_lifetime: 'session' },
-		  function(homeXml, homeError) {
-			Foxtrick.util.api.retrieve(doc, awayArgs, { cache_lifetime: 'session' },
-			  function(awayXml, awayError) {
-				// remove the loading note
-				if (loading) loading.parentNode.removeChild(loading);
-				if (!homeXml || !awayXml || homeError || awayError) {
-					Foxtrick.log(homeError, awayError);
-					return;
-				}
-
-				Foxtrick.log('Successfully retrieved lineup XML.');
-
-				var homePlayers = getPlayers(homeXml);
-				var awayPlayers = getPlayers(awayXml);
-
-				// colour all player links
-				Foxtrick.map(function(n) {
-					if (
-						Foxtrick.isDescendantOf(n, doc.getElementById('playersField'))
-						||
-						Foxtrick.isDescendantOf(n, doc.getElementById('playersBench'))
-					)
-						return;
-
-					var id = getPlayerId(n);
-					if (id) {
-						if (Foxtrick.has(homePlayers, id))
-							Foxtrick.addClass(n, homeClass);
-						else if (Foxtrick.has(awayPlayers, id))
-							Foxtrick.addClass(n, awayClass);
-					}
-				}, links);
-
-				if (!sidebar) {
-					// layout error
-					// probably WO, stop
-					return;
-				}
-
-				// add class for sidebar event rows (aligns cards etc according to team)
-				var sidebarLinks = Foxtrick.filter(function(n) {
-					return n.hasAttribute('href');
-				}, sidebar.getElementsByTagName('a'));
-				var homeLinks = Foxtrick.filter(function(n) {
-					return (getPlayerId(n) != null)
-						&& Foxtrick.hasClass(n, homeClass);
-				}, sidebarLinks);
-				var awayLinks = Foxtrick.filter(function(n) {
-					return (getPlayerId(n) != null)
-						&& Foxtrick.hasClass(n, awayClass);
-				}, sidebarLinks);
-				Foxtrick.map(function(n) {
-					Foxtrick.addClass(n.parentNode.parentNode,
-						'ft-match-event-home');
-				}, homeLinks);
-				Foxtrick.map(function(n) {
-					Foxtrick.addClass(n.parentNode.parentNode,
-						'ft-match-event-away');
-				}, awayLinks);
-			});
-		});
+		}, sidebar.getElementsByTagName('a'));
+		var homeLinks = Foxtrick.filter(function(n) {
+			return Foxtrick.hasClass(n, homeClass);
+		}, sidebarLinks);
+		var awayLinks = Foxtrick.filter(function(n) {
+			return Foxtrick.hasClass(n, awayClass);
+		}, sidebarLinks);
+		Foxtrick.map(function(n) {
+			Foxtrick.addClass(n.parentNode.parentNode, 'ft-match-event-home');
+		}, homeLinks);
+		Foxtrick.map(function(n) {
+			Foxtrick.addClass(n.parentNode.parentNode, 'ft-match-event-away');
+		}, awayLinks);
 	}
 };
