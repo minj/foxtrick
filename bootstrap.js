@@ -54,8 +54,8 @@ let windowListener = {
 		// Wait for the window to finish loading
 		let domWindow = aWindow.QueryInterface(Ci.nsIInterfaceRequestor)
 			.getInterface(Ci.nsIDOMWindow);
-		domWindow.addEventListener('load', function() {
-			domWindow.removeEventListener('load', arguments.callee, false);
+		domWindow.addEventListener('load', function waitForWindowload() {
+			domWindow.removeEventListener('load', waitForWindowload, false);
 			_gLoader.loadIntoWindow(domWindow);
 		}, false);
 	},
