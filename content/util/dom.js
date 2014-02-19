@@ -164,7 +164,7 @@ Foxtrick.listen = function(target, type, listener, useCapture) {
 	target.addEventListener(type, function(ev) {
 		var doc = ev.target.ownerDocument;
 		Foxtrick.stopListenToChange(doc);
-		listener(ev);
+		listener.bind(this)(ev);
 		Foxtrick.log.flush(doc);
 		Foxtrick.startListenToChange(doc);
 	}, useCapture);
