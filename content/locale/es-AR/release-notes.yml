@@ -8,7 +8,15 @@ es-AR:
     0.13.0.1:
       crowdin: '<header>Muchas actualizaciones en las traducciones de nuestros colaboradores mediante <linkCrowdin> crowdin</linkCrowdin>. Usted también puede ayudarnos!</header>'
       bugs: '<header>Corrección de errores</header>'
+      old_faces: '<module>OldStyleFace</module> no funcionaba correctamente las páginas de interfaz de órdenes del partido y alineación del partido. Ya esta arreglado.'
+      simulator_skills: 'Los nombres de Sublevel en <module>MatchSimulator</module> fueron corregidos para varios idiomas.'
+      embed_media: '<module>PsicoTSI</module> y <module>EmbedMedia</module> se hicieron más seguros.'
       other: '<header>Otros cambios</header>'
+      report_format: 'Los módulos <module>MatchReportFormat</module> y <module>LiveMatchReportFormat</module> fueron reescritos y ahora trabajan sin acceso CHPP.'
+      attvsdef: 'Probabilidades reales en el módulo <module>AttVsDef</module> ahora también afecta a las barras de posesión de balón.'
+      staff_marker: 'Interfaz de color personalizado en <module>StaffMarker</module> ahora es opcional.'
+      mmdd: 'Las flechas en los menús de <module>MainMenuDropDown</module> ahora son opcionales.'
+      and_more: Otros pequeños cambios y correcciones.
     0.13.0:
       important: '<header>Anuncios importantes</header>'
       opera: '<p>Esta es la última versión que soporta oficialmente Opera 12 o anterior. Las versiones existentes de Foxtrick pueden dejar de funcionar sin aviso.</p> <p>Por favor considere cambiar a <linkOperaNext>Opera Next</linkOperaNext> u otro navegador compatible de su elección.</p>'
@@ -17,6 +25,7 @@ es-AR:
       crowdin: '<header>Muchas actualizaciones en las traducciones de nuestros colaboradores mediante <linkCrowdin> crowdin</linkCrowdin>. Usted también puede ayudarnos!</header>'
       new: '<header>Nuevos módulos</header>'
       hy_skills: '<module>YouthSkills</module>: Mejora en la página de jugadores juveniles con información de hattrick youthclub . Solamente para los usuarios de HY.'
+      ratings_tweaks: '<module>MatchRatingsTweaks</module>: ajustes de calificaciones en la página de informe de partido. Muestra las calificaciones numéricas y sigue sus cambios navegando la línea de tiempo en <module>MatchSimulator</module>. Calcula las probabilidades reales anotando/defensa/posesión según fórmulas establecidas en el manual no escrito: 15766691.221, 15766691.242'
       match_weather: '<module>MatchWeather</module> muestra el tiempo en el estadio para hoy y mañana en la página del partido.'
       other: '<header>Otros cambios</header>'
       ht_changes: Foxtrick fue actualizado para soportar los cambios recientes en Hattrick relacionados con los informes de partidos de juveniles, tema simple e interfaz de orden de partido.
@@ -24,17 +33,22 @@ es-AR:
       simulator_prob: '<module>MatchSimulator</module> también fue mejorado con probabilidades reales anotando/defensa/posesión desde el nuevo módulo <module>MatchRatingsTweaks</module>.'
       staff_marker: '<module>StaffMarker</module> ha sido reestructurado. Se han añadido nuevas opciones para los fanáticos, los equipos compatibles y entrenadores nacionales. Configure las preferencias a tu gusto.'
       custom_marker: Se ha añadido una interfaz para añadir fácilmente un nombre personalizado por el usuario a los colores al pie de los mensajes del foro.
+      inline_options: 'Se añadieron opciones para la lista de penales en <module>MatchOrderInterface</module> y se dividió la funcionalidad de alineación en <module>MatchLineupTweaks</module>.'
       links_enhancments: 'Ahora fácilmente puede deshabilitar todos los <module>Links</module> y configurar la forma en que se abren.'
       psico_update: 'Se reimplementó una opción para mostrar la predicción de  <module>PsicoTSI</module>en la barra de la izquierda.'
+      ticker_update: '<module>TickerColoring</module> y <module>TickerAlert</module> fueron actualizados con nuevos tipos para supporters de noticias añadidos en los últimos años.'
+      ticker_chall: 'No es más posible distinguir los retos amistosos de otros mensajes MyHT para Supporters en <module>TickerColoring</module>. En consecuencia, ese tilde fue renombrado.'
       htms_points: '<module>HTMSPoints</module> fue actualizado para usar las nuevas formulas.'
       ff_button: El botón de la barra de herramientas de Firefox será ahora más exacto y reflejará mejor el estado de Firefox.
       ff_disable: Deshabilitar Foxtrick en Firefox ahora cierra las preferencias de Foxtrick (si están abiertas) y recarga todas las pestañas de Hattrick para quitar cualquier modificación hecha por Foxtrick.
       bugs: '<header>Corrección de errores</header>'
+      android: '<p>Se han hecho correcciones importantes al nucleo de Foxtrick para adaptarse a Firefox para Android. Como resultado, Foxtrick ahora funciona mucho mejor en los dispositivos móviles.</p> <p>Módulos afecados:  <module>MatchReportFormat</module>, <module>Ratings</module>, <module>MatchSimulator</module>, <module>HTMSPrediction</module> <em>et al</em>.</p>'
       ff_cache: Solucionado un problema en Firefox que impedía a Foxtrick actualizarse, en algunos casos, correctamente a una nueva versión.
       custom_links: La funcionalidad de enlaces externos ha sido revisada y todos las errores conocidos fueron arreglados. Ahora también se puede añadir enlaces personalizados en la página de informe de partido.
       chpp_update: '<module>SupportersList</module> y <module>MathcIncome</module> muestran mal comportamiento después de cambios CHPP. Esto ahora esta arreglado.'
       player_xp: '<module>PlayerStatsExperience</module> ahora detectará correctamente los partidos con abandono en todos los casos.'
       stamina_data_bug: 'Los datos de condicion obtenidos en <module>MatchLineupTweaks</module> ya no se reinician por abrir viejos partidos en Firefox.'
+      native_names: 'Países seleccionados ya no va a cambiar cuando se vuelve a la pantalla de búsqueda de transferencias con los nombres de país nativo habilitados en <module>CountryList</module>.'
       thread_author: '<module>HTThreadMarker</module> y <module>ForumAlterHeaderLine</module> ahora detectarán correctamente el autor de un hilo del foro.'
       player_filters: 'Ahora es posible utilizar <module>PlayerFilters</module> en varias pestañas al mismo tiempo en Firefox.'
       history_stats: '<module>HistoryStats</module> ahora es utilizable con varios equipos al mismo tiempo en Firefox.'
