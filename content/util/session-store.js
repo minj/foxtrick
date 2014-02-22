@@ -65,7 +65,7 @@ else {
 
 		Foxtrick.sessionSet = function(key, value) {
 			// inform background
-			sandboxed.extension.sendRequest({
+			Foxtrick.SB.extension.sendRequest({
 				req: 'sessionSet',
 				key: key,
 				value: value
@@ -74,7 +74,7 @@ else {
 
 		Foxtrick.sessionGet = function(key, callback) {
 			// get from background
-			sandboxed.extension.sendRequest({
+			Foxtrick.SB.extension.sendRequest({
 				req: 'sessionGet',
 				key: key
 			}, function(response) {
@@ -89,7 +89,7 @@ else {
 
 		Foxtrick.sessionDeleteBranch = function(branch) {
 			// inform background
-			sandboxed.extension.sendRequest({
+			Foxtrick.SB.extension.sendRequest({
 				req: 'sessionDeleteBranch',
 				branch: branch
 			});

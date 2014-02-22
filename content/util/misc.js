@@ -117,7 +117,7 @@ Foxtrick.playSound = function(url, doc) {
 			if (Foxtrick.chromeContext() == 'content') {
 				// via background since internal sounds might not be acessible
 				// from the html page itself
-				sandboxed.extension.sendRequest({req: 'playSound', url: url});
+				Foxtrick.SB.extension.sendRequest({req: 'playSound', url: url});
 			}
 			else
 			{
@@ -140,7 +140,7 @@ Foxtrick.playSound = function(url, doc) {
 Foxtrick.copyStringToClipboard = function(string) {
 	if (Foxtrick.arch === 'Gecko') {
 		if (Foxtrick.chromeContext() === 'content') {
-			sandboxed.extension.sendRequest({ req: 'clipboard', content: string });
+			Foxtrick.SB.extension.sendRequest({ req: 'clipboard', content: string });
 		}
 		else {
 			var gClipboardHelper = Cc['@mozilla.org/widget/clipboardhelper;1'].
@@ -153,7 +153,7 @@ Foxtrick.copyStringToClipboard = function(string) {
 	}
 	else if (Foxtrick.arch === 'Sandboxed') {
 		if (Foxtrick.chromeContext() == 'content')
-			sandboxed.extension.sendRequest({ req: 'clipboard', content: string });
+			Foxtrick.SB.extension.sendRequest({ req: 'clipboard', content: string });
 		else {
 			if (Foxtrick.platform == 'Chrome')
 				Foxtrick.loader.background.copyToClipBoard(string);
@@ -165,7 +165,7 @@ Foxtrick.copyStringToClipboard = function(string) {
 
 Foxtrick.newTab = function(url) {
 	if (Foxtrick.chromeContext() === 'content') {
-		sandboxed.extension.sendRequest({
+		Foxtrick.SB.extension.sendRequest({
 			req: 'newTab',
 			url: url
 		});

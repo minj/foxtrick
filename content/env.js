@@ -12,25 +12,25 @@ if (!Foxtrick)
 // sandboxed object for chrome, safari, opera and fennec
 // used to communicate between content script and background script
 /*
-sandboxed.extension.sendRequest(data, callback)
+Foxtrick.SB.extension.sendRequest(data, callback)
 // send JSON data from content to background
 // callback: function(JSON)
 
-sandboxed.extension.onRequest.addListener(listener)
+Foxtrick.SB.extension.onRequest.addListener(listener)
 // listen to requests (background and content side)
 // with listener = function(JSON data, sender, callback);
 // sender - content: { tab: { id: id, url: messageEvent.target.url } };
 // sender - background: undefined
 // callback: function(JSON)
 
-sandboxed.extension.broadcastMessage(data, callback)
+Foxtrick.SB.extension.broadcastMessage(data, callback)
 // send JSON data from background to all tabs
 // with callback function(JSON)
 
-sandboxed.extension.getURL(path)
+Foxtrick.SB.extension.getURL(path)
 // get extension url of path relative to extension folder
 
-sandboxed.tabs.create(url)
+Foxtrick.SB.tabs.create(url)
 // create a tab from background with url
 */
 
@@ -75,7 +75,7 @@ if (typeof(opera) == 'object') {
 		opera.extension.addEventListener('message', handler, false);
 	};
 
-	var sandboxed = {
+	Foxtrick.SB = {
 		// Track tabs that make requests to the global page, assigning them
 		// IDs so we can recognize them later.
 		__getTabId: (function() {
@@ -143,7 +143,7 @@ if (typeof(opera) == 'object') {
 							return;
 
 						var request = messageEvent.data.data;
-						var id = sandboxed.__getTabId(messageEvent.target);
+						var id = Foxtrick.SB.__getTabId(messageEvent.target);
 
 						var sender = { tab: { id: id, url: messageEvent.target.url } };
 						var sendResponse = function(dataToSend) {
@@ -207,7 +207,7 @@ else if (typeof(safari) == 'object') {
 	};
 
 	// Safari adapter. copied from adblockplus for safari
-	var sandboxed = {
+	Foxtrick.SB = {
 		// Track tabs that make requests to the global page, assigning them
 		// IDs so we can recognize them later.
 		__getTabId: (function() {
@@ -283,7 +283,7 @@ else if (typeof(safari) == 'object') {
 							return;
 
 						var request = messageEvent.message.data;
-						var id = sandboxed.__getTabId(messageEvent.target);
+						var id = Foxtrick.SB.__getTabId(messageEvent.target);
 
 						var sender = { tab: { id: id, url: messageEvent.target.url } };
 						var sendResponse = function(dataToSend) {
@@ -367,7 +367,7 @@ else if (typeof(chrome) == 'object') {
 	};
 
 	// port common functions to sandboxed
-	var sandboxed = {
+	Foxtrick.SB = {
 		extension: {
 			sendRequest: function(data, callback) {
 				if (callback)
@@ -385,7 +385,7 @@ else if (typeof(chrome) == 'object') {
 				// The function we'll return at the end of all this
 				function theFunction(data, callback) {
 					var i;
-					for (i in sandboxed.tabs.tab) {
+					for (i in Foxtrick.SB.tabs.tab) {
 						chrome.tabs.sendRequest(Number(i), data, callback);
 					}
 				}
@@ -410,12 +410,12 @@ else if (typeof(chrome) == 'object') {
 	// register tab for broadcastMessage
 	if (Foxtrick.chromeContext() == 'content') {
 		//  recieve tab id on register
-		sandboxed.extension.sendRequest({ req: 'register' },
+		Foxtrick.SB.extension.sendRequest({ req: 'register' },
 		  function(response) {
-			sandboxed.extension.tabid = response.tabid;
+			Foxtrick.SB.extension.tabid = response.tabid;
 		});
 		// answer to status check after every new page load
-		sandboxed.extension.onRequest.addListener(
+		Foxtrick.SB.extension.onRequest.addListener(
 		  function(request, sender, sendResponse) {
 			if (request.req == 'checkAlive') {
 				// send back who answered
@@ -427,23 +427,23 @@ else if (typeof(chrome) == 'object') {
 		(function() {
 			// request tabs to confirm being alive
 			function updateTabList(senderid) {
-				var tabListCopy = sandboxed.tabs.tab, i;
+				var tabListCopy = Foxtrick.SB.tabs.tab, i;
 				// clear list and add alive tabs again
-				sandboxed.tabs.tab = {};
+				Foxtrick.SB.tabs.tab = {};
 				for (i in tabListCopy) {
 					// not the sender
 					if (i != senderid) {
 						chrome.tabs.sendRequest(Number(i), { id: i, req: 'checkAlive' },
 						  function(response) {
 							if (response)
-								sandboxed.tabs.tab[response.id] = true;
+								Foxtrick.SB.tabs.tab[response.id] = true;
 						});
 					}
 				}
-				sandboxed.tabs.tab[senderid] = true;
+				Foxtrick.SB.tabs.tab[senderid] = true;
 			};
 			// listen to tab register
-			sandboxed.extension.onRequest.addListener(
+			Foxtrick.SB.extension.onRequest.addListener(
 			  function(request, sender, sendResponse) {
 				if (request.req == 'register') {
 					updateTabList(sender.tab.id);
@@ -501,7 +501,7 @@ else {
 			var addListener = function(name, handler) {};
 
 		// fennec adapter. adapted from adblockplus for safari
-		var sandboxed = {
+		Foxtrick.SB = {
 			// Track tabs that make requests to the global page, assigning them
 			// IDs so we can recognize them later.
 			__getTabId: (function() {
@@ -525,7 +525,7 @@ else {
 			})(),
 			__listener: function(messageEvent) {
 				var request = messageEvent.json.data;
-				var id = sandboxed.__getTabId(messageEvent.target);
+				var id = Foxtrick.SB.__getTabId(messageEvent.target);
 
 				var sender = { tab: {
 					id: id, url: messageEvent.target.lastLocation,
@@ -599,7 +599,7 @@ else {
 							receiveMessage: function(messageEvent) {
 								// bg context
 								var request = messageEvent.json.data;
-								var id = sandboxed.__getTabId(messageEvent.target);
+								var id = Foxtrick.SB.__getTabId(messageEvent.target);
 
 								var sender = { tab: {
 									id: id,
@@ -661,14 +661,14 @@ else {
 		// register tab for broadcastMessage
 		if (Foxtrick.chromeContext() == 'content') {
 			//  recieve tab id on register
-			sandboxed.extension.sendRequest({ req: 'register' },
+			Foxtrick.SB.extension.sendRequest({ req: 'register' },
 			  function(response) {
-				sandboxed.extension.tabid = response.tabid;
+				Foxtrick.SB.extension.tabid = response.tabid;
 			});
 		}
 		else {
 			// listen to tab register
-			sandboxed.extension.onRequest.addListener(
+			Foxtrick.SB.extension.onRequest.addListener(
 			  function(request, sender, sendResponse) {
 				if (request.req=='register') {
 					sendResponse({ tabid: sender.tab.id });

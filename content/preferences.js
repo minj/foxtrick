@@ -15,7 +15,7 @@ function initLoader() {
 		init();
 	// opera prefs runs in content context. add need resources first
 	else
-		sandboxed.extension.sendRequest({ req: 'optionsPageLoad' },
+		Foxtrick.SB.extension.sendRequest({ req: 'optionsPageLoad' },
 		  function(data) {
 			try {
 				Foxtrick.entry.contentScriptInit(data);

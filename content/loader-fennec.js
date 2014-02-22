@@ -34,15 +34,15 @@ if (Foxtrick.platform == 'Android') {
 			                    Foxtrick.loader.fennec.DOMContentLoadedListener, false);
 
 			// stop listen to unload request
-			sandboxed.extension.onRequest.removeListener(Foxtrick.loader.fennec.stopListener);
+			Foxtrick.SB.extension.onRequest.removeListener(Foxtrick.loader.fennec.stopListener);
 		},
 
 		tabLoadStart: function() {
 			// listen to unload request
-			sandboxed.extension.onRequest.addListener(Foxtrick.loader.fennec.stopListener);
+			Foxtrick.SB.extension.onRequest.addListener(Foxtrick.loader.fennec.stopListener);
 
 			// request needed data from background and start with DOMContentLoaded
-			sandboxed.extension.sendRequest({ req: 'tabLoad' },
+			Foxtrick.SB.extension.sendRequest({ req: 'tabLoad' },
 			  function(data) {
 				Foxtrick.log('tabLoad: initing and adding listener');
 				Foxtrick.entry.contentScriptInit(data);

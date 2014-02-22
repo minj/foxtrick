@@ -400,7 +400,7 @@ Foxtrick.addImage = function(doc, elem, features, insertBefore, callback) {
 			};
 			fr.readAsDataURL(imgFile);
 		}
-		//sandboxed.extension.sendRequest({ req: 'getDataUrl', url: features.src },
+		//Foxtrick.SB.extension.sendRequest({ req: 'getDataUrl', url: features.src },
 		//  function(data) {
 		//	var img = doc.createElement('img');
 		//	for (i in features) {
@@ -431,7 +431,7 @@ Foxtrick.addImage = function(doc, elem, features, insertBefore, callback) {
 
 Foxtrick.getImageFeatures = function(features, callback) {
 	if (Foxtrick.platform == 'Opera')
-		sandboxed.extension.sendRequest({ req: 'getDataUrl', url: features.src },
+		Foxtrick.SB.extension.sendRequest({ req: 'getDataUrl', url: features.src },
 		  function(data) {
 			var img = {}, i;
 			for (i in features)

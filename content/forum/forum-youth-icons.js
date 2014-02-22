@@ -444,7 +444,7 @@ Foxtrick.modules['ForumYouthIcons'] = {
 					}
 					else if (openingTag == 'debug') {
 						if (Foxtrick.arch === 'Sandboxed' || Foxtrick.platform == 'Android') {
-							sandboxed.extension.sendRequest({ req: 'getDebugLog' },
+							Foxtrick.SB.extension.sendRequest({ req: 'getDebugLog' },
 							  function(n) {
 								insertText(Foxtrick.log.header(doc) + '\n' + n.log);
 								textCounter(ta, fieldCounter, maxLength);

@@ -243,7 +243,7 @@ else if (Foxtrick.platform == 'Safari') {
 		safari.extension.settings.openFoxtrickOptions = false;
 		safari.extension.settings.addEventListener('change', function(e) {
 			if (e.key == 'openFoxtrickOptions')
-				sandboxed.tabs.create({ url: Foxtrick.InternalPath + 'preferences.html' });
+				Foxtrick.SB.tabs.create({ url: Foxtrick.InternalPath + 'preferences.html' });
 		}, false);
 	};
 }

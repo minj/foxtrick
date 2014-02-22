@@ -264,7 +264,7 @@ Foxtrick.loader.background.contentScriptManager = {
 
 	unload: function() {
 		// tell content script to unload
-		sandboxed.extension.broadcastMessage('unload');
+		Foxtrick.SB.extension.broadcastMessage('unload');
 
 		// unload content scripts
 		for (var i = 0; i < this.contentScripts.length; ++i)

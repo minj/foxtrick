@@ -29,7 +29,7 @@ Foxtrick.loader.background.contentRequestsListener = function(request, sender, s
 // background script unload function
 Foxtrick.loader.background.browserUnload = function() {
 	// remove contentRequestsListener on unload
-	sandboxed.extension.onRequest.removeListener(Foxtrick.loader.background.contentRequestsListener);
+	Foxtrick.SB.extension.onRequest.removeListener(Foxtrick.loader.background.contentRequestsListener);
 };
 
 
@@ -77,7 +77,7 @@ Foxtrick.loader.background.browserLoad = function() {
 			}
 		}
 
-		sandboxed.extension.onRequest.addListener(Foxtrick.loader.background
+		Foxtrick.SB.extension.onRequest.addListener(Foxtrick.loader.background
 		                                          .contentRequestsListener);
 
 		// -- requests functions --
@@ -227,7 +227,7 @@ Foxtrick.loader.background.browserLoad = function() {
 		// from misc.js: tabs
 		Foxtrick.loader.background.requests.newTab = function(request, sender, sendResponse) {
 			// @param url - the URL of new tab to create
-			sandboxed.tabs.create({ url: request.url });
+			Foxtrick.SB.tabs.create({ url: request.url });
 		};
 		Foxtrick.loader.background.requests.reuseTab = function(request, sender, sendResponse) {
 			// @param url - the URL of new tab to create
@@ -279,7 +279,7 @@ Foxtrick.loader.background.browserLoad = function() {
 						} catch (e) {}
 					}
 					else
-						sandboxed.tabs.create({ url: request.url });
+						Foxtrick.SB.tabs.create({ url: request.url });
 					notification.cancel();
 				};
 				// Then show the notification.

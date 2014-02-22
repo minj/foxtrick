@@ -23,7 +23,7 @@ Foxtrick.util.notify.create = function(msg, url) {
 						if (Foxtrick.platform == 'Firefox')
 							Foxtrick.openAndReuseOneTabPerURL(url, true);
 						else {
-							sandboxed.extension.sendRequest({
+							Foxtrick.SB.extension.sendRequest({
 								req: 'reuseTab',
 								url: url
 							});
@@ -53,7 +53,7 @@ Foxtrick.util.notify.create = function(msg, url) {
 		}
 	};
 	var createChrome = function() {
-		sandboxed.extension.sendRequest({ req: 'notify', msg: msg, url: url });
+		Foxtrick.SB.extension.sendRequest({ req: 'notify', msg: msg, url: url });
 	};
 
 	if (Foxtrick.arch == 'Gecko') {

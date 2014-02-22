@@ -125,7 +125,7 @@ Foxtrick.log = function() {
 		}
 		else {
 			// send it via background since fennec doesn't show all dumps from content side
-			sandboxed.extension.sendRequest({ req: 'log', log: concated + '\n' });
+			Foxtrick.SB.extension.sendRequest({ req: 'log', log: concated + '\n' });
 		}
 	}
 };
