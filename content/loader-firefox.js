@@ -44,9 +44,7 @@ Foxtrick.loader.firefox.browserLoad = function() {
 			appcontent.addEventListener('unload', Foxtrick.loader.firefox.docUnload, true);
 
 			// add listener to tab focus changes
-			var wm = Cc['@mozilla.org/appshell/window-mediator;1'].
-				getService(Ci.nsIWindowMediator);
-			var browserEnumerator = wm.getEnumerator('navigator:browser');
+			var browserEnumerator = Services.wm.getEnumerator('navigator:browser');
 			var browserWin = browserEnumerator.getNext();
 			var tabbrowser = browserWin.getBrowser();
 			tabbrowser.tabContainer.addEventListener('select', Foxtrick.loader.firefox.tabFocus,
@@ -64,9 +62,7 @@ Foxtrick.loader.firefox.browserUnLoad = function() {
 		appcontent.removeEventListener('DOMContentLoaded',
 		                               Foxtrick.loader.firefox.DOMContentLoaded, true);
 		appcontent.removeEventListener('unload', Foxtrick.loader.firefox.docUnload, true);
-		var wm = Cc['@mozilla.org/appshell/window-mediator;1'].
-			getService(Ci.nsIWindowMediator);
-		var browserEnumerator = wm.getEnumerator('navigator:browser');
+		var browserEnumerator = Services.wm.getEnumerator('navigator:browser');
 		var browserWin = browserEnumerator.getNext();
 		var tabbrowser = browserWin.getBrowser();
 		tabbrowser.tabContainer.removeEventListener('select',
@@ -104,9 +100,7 @@ Foxtrick.loader.firefox.tabFocus = function(ev) {
 			return;
 		}
 
-		var wm = Cc['@mozilla.org/appshell/window-mediator;1'].
-			getService(Ci.nsIWindowMediator);
-		var browserEnumerator = wm.getEnumerator('navigator:browser');
+		var browserEnumerator = Services.wm.getEnumerator('navigator:browser');
 		var browserWin = browserEnumerator.getNext();
 		var tabbrowser = browserWin.getBrowser();
 		var currentBrowser = tabbrowser.getBrowserAtIndex(ev.target.selectedIndex);

@@ -455,8 +455,7 @@ if (Foxtrick.arch === 'Gecko') {
 				}
 			}
 
-			this._strings_bundle_default = Cc['@mozilla.org/intl/stringbundle;1'].
-				getService(Ci.nsIStringBundleService).
+			this._strings_bundle_default = Services.strings.
 				createBundle('chrome://foxtrick/content/foxtrick.properties');
 
 			try {
@@ -466,17 +465,13 @@ if (Foxtrick.arch === 'Gecko') {
 
 			this.setUserLocaleGecko(Foxtrick.Prefs.getString('htLanguage'));
 
-			this._strings_bundle_screenshots_default =
-				Cc['@mozilla.org/intl/stringbundle;1'].
-				getService(Ci.nsIStringBundleService).
+			this._strings_bundle_screenshots_default = Services.strings.
 				createBundle('chrome://foxtrick/content/foxtrick.screenshots');
 		},
 
 		setUserLocaleGecko: function(localecode) {
 			try {
-				this._strings_bundle =
-					Cc['@mozilla.org/intl/stringbundle;1'].
-					getService(Ci.nsIStringBundleService).
+				this._strings_bundle = Services.strings.
 					createBundle('chrome://foxtrick/content/locale/' + localecode +
 								 '/foxtrick.properties');
 			}
@@ -491,9 +486,7 @@ if (Foxtrick.arch === 'Gecko') {
 			} catch (e) {}
 
 			try {
-				this._strings_bundle_screenshots =
-					Cc['@mozilla.org/intl/stringbundle;1'].
-					getService(Ci.nsIStringBundleService).
+				this._strings_bundle_screenshots = Services.strings.
 					createBundle('chrome://foxtrick/content/locale/' + localecode +
 								  '/foxtrick.screenshots');
 			}

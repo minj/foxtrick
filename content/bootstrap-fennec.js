@@ -66,8 +66,6 @@ FoxtrickFennec.prototype = {
 		'scripts-fennec.js'
 	],
 	loadScript: function() {
-		var consoleService =
-			Cc['@mozilla.org/consoleservice;1'].getService(Ci.nsIConsoleService);
 		// loading Foxtrick into window.Foxtrick
 		for (var i = 0; i < this.scripts.length; ++i) {
 			try {
@@ -76,7 +74,7 @@ FoxtrickFennec.prototype = {
 			}
 			catch (e) {
 				e.message = 'Foxtrick ERROR: ' + e.message;
-				consoleService.logStringMessage(e);
+				Services.console.logStringMessage(e);
 			}
 		}
 	},

@@ -126,13 +126,11 @@ Foxtrick.util.css.unload_css_permanent = function(cssList) {
 				// needs to be uncompressed to have the right csss precedence
 				css = 'data:text/css;charset=US-ASCII,' + encodeURIComponent(css);
 			}
-			var sss, ios, uri;
+			var sss, uri;
 			try {
 				sss = Cc['@mozilla.org/content/style-sheet-service;1'].
 					getService(Ci.nsIStyleSheetService);
-				ios = Cc['@mozilla.org/network/io-service;1'].
-					getService(Ci.nsIIOService);
-				uri = ios.newURI(css, null, null);
+				url = Services.io.newURI(css, null, null);
 			}
 			catch (e) {
 				return;
@@ -239,14 +237,12 @@ Foxtrick.util.css.load_css_permanent = function(css) {
 			css = 'data:text/css;charset=US-ASCII,' + encodeURIComponent(css);
 		}
 
-		var sss, uri, ios;
+		var sss, uri;
 
 		try {
 			sss = Cc['@mozilla.org/content/style-sheet-service;1'].
 				getService(Ci.nsIStyleSheetService);
-			ios = Cc['@mozilla.org/network/io-service;1'].
-				getService(Ci.nsIIOService);
-			uri = ios.newURI(css, null, null);
+			uri = Services.io.newURI(css, null, null);
 		}
 		catch (e) {
 			return;

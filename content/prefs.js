@@ -441,8 +441,7 @@ if (Foxtrick.arch === 'Gecko') {
 		_prefs_gecko: null,
 
 		init: function() {
-			Foxtrick.Prefs._prefs_gecko = Cc['@mozilla.org/preferences-service;1'].
-				getService(Ci.nsIPrefService).getBranch('extensions.foxtrick.prefs.');
+			Foxtrick.Prefs._prefs_gecko = Services.prefs.getBranch('extensions.foxtrick.prefs.');
 		},
 
 		getString: function(key) {

@@ -249,8 +249,6 @@ Foxtrick.loader.background.contentScriptManager = {
 	],
 
 	load: function() {
-		var consoleService = Cc['@mozilla.org/consoleservice;1'].
-			getService(Ci.nsIConsoleService);
 		// load content scripts into content pages. those start running in loader-fennec
 		for (var i = 0; i < this.contentScripts.length; ++i) {
 			try {
@@ -259,7 +257,7 @@ Foxtrick.loader.background.contentScriptManager = {
 			}
 			catch (e) {
 				e.message = 'Foxtrick ERROR: ' + e.message;
-				consoleService.logStringMessage(e);
+				Services.console.logStringMessage(e);
 			}
 		}
 	},

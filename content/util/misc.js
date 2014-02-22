@@ -337,9 +337,7 @@ Foxtrick.insertAtCursor = function(textarea, text) {
 
 Foxtrick.confirmDialog = function(msg) {
 	if (Foxtrick.arch === 'Gecko') {
-		var promptService = Cc['@mozilla.org/embedcomp/prompt-service;1'].
-			getService(Ci.nsIPromptService);
-		return promptService.confirm(null, null, msg);
+		return Services.prompt.confirm(null, null, msg);
 	}
 	else {
 		return window.confirm(msg);
@@ -348,9 +346,7 @@ Foxtrick.confirmDialog = function(msg) {
 
 Foxtrick.alert = function(msg) {
 	if (Foxtrick.arch === 'Gecko') {
-		var promptService = Cc['@mozilla.org/embedcomp/prompt-service;1'].
-			getService(Ci.nsIPromptService);
-		promptService.alert(null, null, msg);
+		Services.prompt.alert(null, null, msg);
 	}
 	else {
 		window.alert(msg);
@@ -361,9 +357,7 @@ Foxtrick.alert = function(msg) {
 Foxtrick.reloadAll = function() {
 	// reload ht tabs
 	if (Foxtrick.platform == 'Firefox') {
-		var wm = Cc['@mozilla.org/appshell/window-mediator;1'].
-			getService(Ci.nsIWindowMediator);
-		var browserEnumerator = wm.getEnumerator('navigator:browser');
+		var browserEnumerator = Services.wm.getEnumerator('navigator:browser');
 
 		// Check each browser instance for our URL
 		while (browserEnumerator.hasMoreElements()) {
@@ -395,9 +389,7 @@ Foxtrick.openAndReuseOneTabPerURL = function(url, reload) {
 	try {
 		var host = url.match(/(http:\/\/[a-zA-Z0-9_.-]+)/)[1];
 
-		var wm = Cc['@mozilla.org/appshell/window-mediator;1'].
-			getService(Ci.nsIWindowMediator);
-		var browserEnumerator = wm.getEnumerator('navigator:browser');
+		var browserEnumerator = Services.wm.getEnumerator('navigator:browser');
 
 		// Check each browser instance for our URL
 		var found = false;
@@ -429,7 +421,7 @@ Foxtrick.openAndReuseOneTabPerURL = function(url, reload) {
 
 		// Our URL isn't open. Open it now.
 		if (!found) {
-			var recentWindow = wm.getMostRecentWindow('navigator:browser');
+			var recentWindow = Services.wm.getMostRecentWindow('navigator:browser');
 			if (recentWindow) { //Foxtrick.log('open recentWindow: ',url);
 				// Use an existing browser window
 				recentWindow.delayedOpenTab(url, null, null, null, null);

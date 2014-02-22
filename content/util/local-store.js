@@ -121,17 +121,14 @@ if (Foxtrick.chromeContext() == 'background') {
 
 		(function(){
 			var url = 'http://localStore.foxtrick.org';
-			var ios = Cc['@mozilla.org/network/io-service;1'].getService(Ci.nsIIOService);
-			var ssm = Cc['@mozilla.org/scriptsecuritymanager;1'].
-				getService(Ci.nsIScriptSecurityManager);
-			var smc = Cc['@mozilla.org/dom/storagemanager;1'] ||
-				Cc['@mozilla.org/dom/localStorage-manager;1'];
-			var dsm = smc.getService(Ci.nsIDOMStorageManager);
 
-			var uri = ios.newURI(url, '', null);
+			var ssm = Services.scriptSecurityManager;
+
+			var uri = Services.io.newURI(url, '', null);
 			var principal = ssm.getCodebasePrincipal ? ssm.getCodebasePrincipal(uri) :
 				ssm.getNoAppCodebasePrincipal(uri);
-			var localStorage = dsm.getLocalStorageForPrincipal(principal, '');
+			var localStorage =
+				Services.domStorageManager.getLocalStorageForPrincipal(principal, '');
 			var key;
 			for (key in localStorage) {
 				if (key.indexOf('localStore.') === 0)

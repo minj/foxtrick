@@ -46,8 +46,7 @@ Foxtrick.util.notify.create = function(msg, url) {
 		}
 		catch (e) {
 			// fix for when alerts-service is not available (e.g. SUSE)
-			var alertWin = Cc['@mozilla.org/embedcomp/window-watcher;1'].
-				getService(Ci.nsIWindowWatcher).
+			var alertWin = Services.ww.
 				openWindow(null, 'chrome://global/content/alerts/alert.xul',
 				           '_blank', 'chrome,titlebar=no,popup=yes', null);
 			alertWin.arguments = [img, 'www.hattrick.org', msg, clickable, url, 0, listener];

@@ -4,19 +4,14 @@
  * http://mozilla.org/MPL/2.0/.
  */
 'use strict';
-const Cc = Components.classes;
-const Ci = Components.interfaces;
-const Cr = Components.results;
-const Cu = Components.utils;
-const Cm = Components.manager;
+const { classes: Cc, interfaces: Ci, utils: Cu, manager: Cm, results: Cr } = Components;
 
 let _gLoader;
 
 Cu.import('resource://gre/modules/Services.jsm');
 
 function isFennecNative() {
-	let appInfo = Cc['@mozilla.org/xre/app-info;1'].getService(Ci.nsIXULAppInfo);
-	return (appInfo.ID == '{aa3c5121-dab2-40e2-81ca-7ea25febc110}');
+	return Services.appinfo.ID == '{aa3c5121-dab2-40e2-81ca-7ea25febc110}';
 }
 
 
@@ -85,10 +80,8 @@ function startup(aData, aReason) {
 		                                    _gLoader, 'UTF-8');
 	}
 
-	let wm = Cc['@mozilla.org/appshell/window-mediator;1'].getService(Ci.nsIWindowMediator);
 	// Load into any existing windows
-	let enumerator = wm.getEnumerator('navigator:browser');
-
+	let enumerator = Services.wm.getEnumerator('navigator:browser');
 	let win;
 	while (enumerator.hasMoreElements()) {
 		win = enumerator.getNext().QueryInterface(Ci.nsIDOMWindow);
@@ -102,7 +95,7 @@ function startup(aData, aReason) {
 	}
 
 	// Load into any new windows
-	wm.addListener(windowListener);
+	Services.wm.addListener(windowListener);
 }
 
 function shutdown(aData, aReason) {
@@ -111,23 +104,19 @@ function shutdown(aData, aReason) {
 	if (aReason == APP_SHUTDOWN)
 		return;
 
-	let wm = Cc['@mozilla.org/appshell/window-mediator;1'].getService(Ci.nsIWindowMediator);
-
 	// Stop listening for new windows
-	wm.removeListener(windowListener);
+	Services.wm.removeListener(windowListener);
 
 	// Unload from any existing windows
-	let windows = wm.getEnumerator('navigator:browser');
+	let windows = Services.wm.getEnumerator('navigator:browser');
 	while (windows.hasMoreElements()) {
 		let win = windows.getNext().QueryInterface(Ci.nsIDOMWindow);
 		_gLoader.unloadFromWindow(win);
 	}
 
 	// Flush string bundle cache
-	Cc['@mozilla.org/intl/stringbundle;1'].getService(Ci.nsIStringBundleService).flushBundles();
+	Services.strings.flushBundles();
 
-	// remove manifest
-	Cm.removeBootstrappedManifestLocation(aData.installPath);
 	// flush jar cache
 	// this should prevent cache issues
 	let addOnDir = aData.installPath.clone();

@@ -458,8 +458,9 @@ else {
 	Foxtrick.arch = 'Gecko';
 	Foxtrick.InternalPath = Foxtrick.ResourcePath = 'chrome://foxtrick/content/';
 
+	var Cc = Components.classes, Ci = Components.interfaces, Cu = Components.utils;
 	Cu.import('resource://gre/modules/Services.jsm');
-	var appInfoID = Cc['@mozilla.org/xre/app-info;1'].getService(Ci.nsIXULAppInfo).ID;
+	var appInfoID = Services.appinfo.ID;
 	if (appInfoID == '{aa3c5121-dab2-40e2-81ca-7ea25febc110}')
 		Foxtrick.platform = 'Android';
 	else
