@@ -1762,7 +1762,7 @@ YamlParser.prototype =
  *
  * @author Matthew Lewinski <matthew@lewinski.org>
  */
-YamlEscaper = function(){};
+var YamlEscaper = function(){};
 YamlEscaper.prototype =
 {
 	/**
