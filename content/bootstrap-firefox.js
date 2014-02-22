@@ -362,6 +362,8 @@ function loadIntoWindow(window) {
 
 	// only in content windows (not menupopups etc)
 	if (!window.document.getElementById('appcontent')) return;
+	if (window.document.documentElement.getAttribute('windowtype') != 'navigator:browser')
+		return;
 
 	// create & run
 	try {
