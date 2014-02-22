@@ -1,6 +1,5 @@
 /*
 Copyright (c) 2010 Jeremy Faivre
-Copyright (c) 2012 minj <4mr.minj@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -20,6 +19,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
+(function(){
 /**
  * Exception class thrown when an error occurs during parsing.
  *
@@ -27,7 +27,7 @@ THE SOFTWARE.
  *
  * @api
  */
-
+ 
 /**
  * Constructor.
  *
@@ -45,7 +45,7 @@ var YamlParseException = function(message, parsedLine, snippet, parsedFile){
 		this.parsedFile = (parsedFile !== undefined) ? parsedFile : null;
 
 		this.updateRepr();
-
+		
 		this.message = message;
 
 };
@@ -54,7 +54,7 @@ YamlParseException.prototype =
 
 	name: 'YamlParseException',
 	message: null,
-
+	
 	parsedFile: null,
 	parsedLine: -1,
 	snippet: null,
@@ -137,7 +137,7 @@ YamlParseException.prototype =
 	{
 		this.message = this.rawMessage;
 
-		dot = false;
+		var dot = false;
 		if ('.' === this.message.charAt(this.message.length - 1)) {
 			this.message = this.message.substring(0, this.message.length - 1);
 			dot = true;
@@ -168,6 +168,7 @@ YamlParseException.prototype =
  * @api
  */
 
+var YamlRunningUnderNode = false;
 var Yaml = function(){};
 Yaml.prototype =
 {
@@ -191,7 +192,7 @@ Yaml.prototype =
 	 */
 	parseFile: function(file /* String */, callback /* Function */)
 	{
-		if ( callback == undefined )
+		if ( callback == null )
 		{
 			var input = this.getFileContents(file);
 			var ret = null;
@@ -208,7 +209,7 @@ Yaml.prototype =
 			}
 			return ret;
 		}
-
+		
 		this.getFileContents(file, function(data)
 		{
 			callback(new Yaml().parse(data));
@@ -252,20 +253,23 @@ Yaml.prototype =
     *
     * @api
     */
-	dump: function(array, inline)
+	dump: function(array, inline, spaces)
 	{
-		if ( inline == undefined ) inline = 2;
+		if ( inline == null ) inline = 2;
 
 		var yaml = new YamlDumper();
+		if (spaces) {
+		    yaml.numSpacesForIndentation = spaces;
+		}
 
 		return yaml.dump(array, inline);
 	},
-
+	
 	getXHR: function()
 	{
 		if ( window.XMLHttpRequest )
 			return new XMLHttpRequest();
-
+		 
 		if ( window.ActiveXObject )
 		{
 			var names = [
@@ -274,7 +278,7 @@ Yaml.prototype =
 			"Msxml2.XMLHTTP",
 			"Microsoft.XMLHTTP"
 			];
-
+			
 			for ( var i = 0; i < 4; i++ )
 			{
 				try{ return new ActiveXObject(names[i]); }
@@ -283,34 +287,57 @@ Yaml.prototype =
 		}
 		return null;
 	},
-
+	
 	getFileContents: function(file, callback)
 	{
-		var request = this.getXHR();
+	    if ( YamlRunningUnderNode )
+	    {
+	        var fs = require('fs');
+	        if ( callback == null )
+	        {
+	            var data = fs.readFileSync(file);
+	            if (data == null) return null;
+	            return ''+data;
+	        }
+	        else
+	        {
+	            fs.readFile(file, function(err, data)
+	            {
+	                if (err)
+	                    callback(null);
+	                else
+	                    callback(data);
+	            });
+	        }
+	    }
+	    else
+	    {
+    		var request = this.getXHR();
+		
+    		// Sync
+    		if ( callback == null )
+    		{
+    			request.open('GET', file, false);                  
+    			request.send(null);
 
-		// Sync
-		if ( callback == undefined )
-		{
-			request.open('GET', file, false);
-			request.send(null);
-
-			if ( request.status == 200 || request.status == 0 )
-				return request.responseText;
-
-			return null;
-		}
-
-		// Async
-		request.onreadystatechange = function()
-		{
-			if ( request.readyState == 4 )
-				if ( request.status == 200 || request.status == 0 )
-					callback(request.responseText);
-				else
-					callback(null);
-		};
-		request.open('GET', file, true);
-		request.send(null);
+    			if ( request.status == 200 || request.status == 0 )
+    				return request.responseText;
+			
+    			return null;
+    		}
+		
+    		// Async
+    		request.onreadystatechange = function()
+    		{
+    			if ( request.readyState == 4 )
+    				if ( request.status == 200 || request.status == 0 )
+    					callback(request.responseText);
+    				else
+    					callback(null);
+    		};
+    		request.open('GET', file, true);                  
+    		request.send(null);
+	    }
 	}
 };
 
@@ -319,22 +346,51 @@ var YAML =
 	/*
 	 * @param integer inline The level where you switch to inline YAML
 	 */
-
-	encode: function(input, inline)
+	 
+	stringify: function(input, inline, spaces)
 	{
-		return new Yaml().dump(input, inline);
+		return new Yaml().dump(input, inline, spaces);
 	},
-
-	decode: function(input)
+	
+	parse: function(input)
 	{
 		return new Yaml().parse(input);
 	},
-
+	
 	load: function(file, callback)
 	{
 		return new Yaml().parseFile(file, callback);
 	}
 };
+
+// Handle node.js case
+if (typeof exports !== 'undefined') {
+    if (typeof module !== 'undefined' && module.exports) {
+        exports = module.exports = YAML;
+        YamlRunningUnderNode = true;
+        
+        // Add require handler
+        (function () {
+            var require_handler = function (module, filename) {
+                // fill in result
+                module.exports = YAML.load(filename);
+            };
+
+            // register require extensions only if we're on node.js
+            // hack for browserify
+            if ( undefined !== require.extensions ) {
+                require.extensions['.yml'] = require_handler;
+                require.extensions['.yaml'] = require_handler;
+            }
+        }());
+    }
+}
+
+// Handle browser case
+if ( typeof(window) != "undefined" )
+{
+    window.YAML = YAML;
+}
 
 /**
  * YamlInline implements a YAML parser/dumper for the YAML inline syntax.
@@ -343,7 +399,7 @@ var YamlInline = function(){};
 YamlInline.prototype =
 {
 	i: null,
-
+	
 	/**
 	 * Convert a YAML string to a JS object.
 	 *
@@ -371,11 +427,12 @@ YamlInline.prototype =
 				break;
 			default:
 				result = this.parseScalar(value);
+		}
 
-				// some comment can end the scalar
-				if ( value.substr(this.i).replace(/^\s+#.*$/, '') ) {
-					throw new YamlParseException('Unexpected characters near "'+value.substr(this.i)+'".');
-				}
+		// some comment can end the scalar
+		if ( value.substr(this.i+1).replace(/^\s*#.*$/, '') != '' ) {
+		    console.log("oups "+value.substr(this.i+1));
+			throw new YamlParseException('Unexpected characters near "'+value.substr(this.i)+'".');
 		}
 
 		return result;
@@ -391,7 +448,7 @@ YamlInline.prototype =
 	dump: function(value)
 	{
 		if ( undefined == value || null == value )
-			return 'null';
+			return 'null';	
 		if ( value instanceof Date)
 			return value.toISOString();
 		if ( typeof(value) == 'object')
@@ -477,11 +534,11 @@ YamlInline.prototype =
 		if ( stringDelimiters == undefined ) stringDelimiters = ['"', "'"];
 		if ( i == undefined ) i = 0;
 		if ( evaluate == undefined ) evaluate = true;
-
+		
 		var output = null;
 		var pos = null;
 		var matches = null;
-
+		
 		if ( this.inArray(scalar[i], stringDelimiters) )
 		{
 			// quoted scalar
@@ -500,7 +557,7 @@ YamlInline.prototype =
 			if ( !delimiters )
 			{
 				output = (scalar+'').substring(i);
-
+				
 				i += output.length;
 
 				// remove comments
@@ -523,7 +580,7 @@ YamlInline.prototype =
 		}
 
 		this.i = i;
-
+		
 		return output;
 	},
 
@@ -541,14 +598,14 @@ YamlInline.prototype =
 	{
 		var matches = null;
 		//var item = /^(.*?)['"]\s*(?:[,:]|[}\]]\s*,)/.exec((scalar+'').substring(i))[1];
-
+		
 		if ( !(matches = new RegExp('^'+YamlInline.REGEX_QUOTED_STRING).exec((scalar+'').substring(i))) )
 		{
 			throw new YamlParseException('Malformed inline YAML string ('+(scalar+'').substring(i)+').');
 		}
 
 		var output = matches[0].substr(1, matches[0].length - 2);
-
+		
 		var unescaper = new YamlUnescaper();
 
 		if ( '"' == (scalar+'').charAt(i) )
@@ -579,7 +636,7 @@ YamlInline.prototype =
 	parseSequence: function(sequence, i)
 	{
 		if ( i == undefined ) i = 0;
-
+		
 		var output = [];
 		var len = sequence.length;
 		i += 1;
@@ -606,10 +663,10 @@ YamlInline.prototype =
 				case ' ':
 					break;
 				default:
-					isQuoted = this.inArray(sequence.charAt(i), ['"', "'"]);
+					var isQuoted = this.inArray(sequence.charAt(i), ['"', "'"]);
 					var value = this.parseScalar(sequence, [',', ']'], ['"', "'"], i);
 					i = this.i;
-
+					
 					if ( !isQuoted && (value+'').indexOf(': ') != -1 )
 					{
 						// embedded mapping?
@@ -658,7 +715,7 @@ YamlInline.prototype =
 		while ( i < len )
 		{
 			doContinue = false;
-
+			
 			switch ( mapping.charAt(i) )
 			{
 				case ' ':
@@ -670,7 +727,7 @@ YamlInline.prototype =
 					this.i = i;
 					return output;
 			}
-
+			
 			if ( doContinue ) continue;
 
 			// key
@@ -713,7 +770,7 @@ YamlInline.prototype =
 					break;
 				}
 			}
-
+			
 			if ( doContinue ) continue;
 		}
 
@@ -730,7 +787,7 @@ YamlInline.prototype =
 	evaluateScalar: function(scalar)
 	{
 		scalar = this.trim(scalar);
-
+		
 		var raw = null;
 		var cast = null;
 
@@ -788,17 +845,17 @@ YamlInline.prototype =
 		'(?::([0-9][0-9]))?))?)?'+
 		'$','gi');
 	},
-
+	
 	trim: function(str /* String */)
 	{
 		return (str+'').replace(/^\s+/,'').replace(/\s+$/,'');
 	},
-
+	
 	isNumeric: function(input)
 	{
 		return (input - 0) == input && input.length > 0 && input.replace(/\s+/g,'') != '';
 	},
-
+	
 	inArray: function(key, tab)
 	{
 		var i;
@@ -809,11 +866,11 @@ YamlInline.prototype =
 		}
 		return false;
 	},
-
+	
 	getKeys: function(tab)
 	{
 		var ret = [];
-
+		
 		for ( var name in tab )
 		{
 			if ( tab.hasOwnProperty(name) )
@@ -821,20 +878,20 @@ YamlInline.prototype =
 				ret.push(name);
 			}
 		}
-
+		
 		return ret;
 	},
-
+	
 	/*reduceArray: function(tab, fun)
 	{
 		var len = tab.length;
 		if (typeof fun != "function")
 			throw new YamlParseException("fun is not a function");
-
+		
 		// no value to return if no initial value and an empty array
 		if (len == 0 && arguments.length == 1)
 			throw new YamlParseException("empty array");
-
+		
 		var i = 0;
 		if (arguments.length >= 2)
 		{
@@ -849,7 +906,7 @@ YamlInline.prototype =
 					rv = tab[i++];
 					break;
 				}
-
+		
 				// if array contains no values, no initial value to return
 				if (++i >= len)
 					throw new YamlParseException("no initial value to return");
@@ -865,26 +922,26 @@ YamlInline.prototype =
 
 		return rv;
 	},*/
-
+	
 	octdec: function(input)
 	{
 	    return parseInt((input+'').replace(/[^0-7]/gi, ''), 8);
 	},
-
+	
 	hexdec: function(input)
 	{
 		input = this.trim(input);
 		if ( (input+'').substr(0, 2) == '0x' ) input = (input+'').substring(2);
 	    return parseInt((input+'').replace(/[^a-f0-9]/gi, ''), 16);
 	},
-
+	
 	/**
 	 * @see http://phpjs.org/functions/strtotime
 	 * @note we need timestamp with msecs so /1000 removed
-	 * @note original contained binary | 0 (wtf?!) everywhere, which messes everything up
+	 * @note original contained binary | 0 (wtf?!) everywhere, which messes everything up 
 	 */
 	strtotime: function (h,b){var f,c,g,k,d="";h=(h+"").replace(/\s{2,}|^\s|\s$/g," ").replace(/[\t\r\n]/g,"");if(h==="now"){return b===null||isNaN(b)?new Date().getTime()||0:b||0}else{if(!isNaN(d=Date.parse(h))){return d||0}else{if(b){b=new Date(b)}else{b=new Date()}}}h=h.toLowerCase();var e={day:{sun:0,mon:1,tue:2,wed:3,thu:4,fri:5,sat:6},mon:["jan","feb","mar","apr","may","jun","jul","aug","sep","oct","nov","dec"]};var a=function(i){var o=(i[2]&&i[2]==="ago");var n=(n=i[0]==="last"?-1:1)*(o?-1:1);switch(i[0]){case"last":case"next":switch(i[1].substring(0,3)){case"yea":b.setFullYear(b.getFullYear()+n);break;case"wee":b.setDate(b.getDate()+(n*7));break;case"day":b.setDate(b.getDate()+n);break;case"hou":b.setHours(b.getHours()+n);break;case"min":b.setMinutes(b.getMinutes()+n);break;case"sec":b.setSeconds(b.getSeconds()+n);break;case"mon":if(i[1]==="month"){b.setMonth(b.getMonth()+n);break}default:var l=e.day[i[1].substring(0,3)];if(typeof l!=="undefined"){var p=l-b.getDay();if(p===0){p=7*n}else{if(p>0){if(i[0]==="last"){p-=7}}else{if(i[0]==="next"){p+=7}}}b.setDate(b.getDate()+p);b.setHours(0,0,0,0)}}break;default:if(/\d+/.test(i[0])){n*=parseInt(i[0],10);switch(i[1].substring(0,3)){case"yea":b.setFullYear(b.getFullYear()+n);break;case"mon":b.setMonth(b.getMonth()+n);break;case"wee":b.setDate(b.getDate()+(n*7));break;case"day":b.setDate(b.getDate()+n);break;case"hou":b.setHours(b.getHours()+n);break;case"min":b.setMinutes(b.getMinutes()+n);break;case"sec":b.setSeconds(b.getSeconds()+n);break}}else{return false}break}return true};g=h.match(/^(\d{2,4}-\d{2}-\d{2})(?:\s(\d{1,2}:\d{2}(:\d{2})?)?(?:\.(\d+))?)?$/);if(g!==null){if(!g[2]){g[2]="00:00:00"}else{if(!g[3]){g[2]+=":00"}}k=g[1].split(/-/g);k[1]=e.mon[k[1]-1]||k[1];k[0]=+k[0];k[0]=(k[0]>=0&&k[0]<=69)?"20"+(k[0]<10?"0"+k[0]:k[0]+""):(k[0]>=70&&k[0]<=99)?"19"+k[0]:k[0]+"";return parseInt(this.strtotime(k[2]+" "+k[1]+" "+k[0]+" "+g[2])+(g[4]?g[4]:""),10)}var j="([+-]?\\d+\\s(years?|months?|weeks?|days?|hours?|min|minutes?|sec|seconds?|sun\\.?|sunday|mon\\.?|monday|tue\\.?|tuesday|wed\\.?|wednesday|thu\\.?|thursday|fri\\.?|friday|sat\\.?|saturday)|(last|next)\\s(years?|months?|weeks?|days?|hours?|min|minutes?|sec|seconds?|sun\\.?|sunday|mon\\.?|monday|tue\\.?|tuesday|wed\\.?|wednesday|thu\\.?|thursday|fri\\.?|friday|sat\\.?|saturday))(\\sago)?";g=h.match(new RegExp(j,"gi"));if(g===null){return false}for(f=0,c=g.length;f<c;f++){if(!a(g[f].split(" "))){return false}}return b.getTime()||0}
-
+	 
 };
 
 /*
@@ -908,7 +965,7 @@ YamlParser.prototype =
 	currentLineNb: -1,
 	currentLine: '',
 	refs: {},
-
+	
 	/**
 	 * Parses a YAML string to a JS value.
 	 *
@@ -921,23 +978,23 @@ YamlParser.prototype =
 		this.currentLineNb = -1;
 		this.currentLine = '';
 		this.lines = this.cleanup(value).split("\n");
-
+		
 		var data = null;
       var context = null;
-
+      		
 		while ( this.moveToNextLine() )
 		{
 			if ( this.isCurrentLineEmpty() )
 			{
 				continue;
 			}
-
+			
 			// tab?
 			if ( this.currentLine.charAt(0) == '\t' )
 			{
 				throw new YamlParseException('A YAML file cannot contain tabs as indentation.', this.getRealCurrentLineNb() + 1, this.currentLine);
 			}
-
+			
 			var isRef = false;
 			var isInPlace = false;
 			var isProcessed = false;
@@ -950,7 +1007,7 @@ YamlParser.prototype =
 			var parsed = null;
 			var len = null;
 			var reverse = null;
-
+			
 			if ( values = /^\-((\s+)(.+?))?\s*$/.exec(this.currentLine) )
 			{
 
@@ -961,16 +1018,16 @@ YamlParser.prototype =
 
 				if ( !this.isDefined(data) ) data = [];
 				//if ( !(data instanceof Array) ) throw new YamlParseException("Non array entry", this.getRealCurrentLineNb() + 1, this.currentLine);
-
+				
 				values = {leadspaces: values[2], value: values[3]};
-
+				
 				if ( this.isDefined(values.value) && ( matches = /^&([^ ]+) *(.*)/.exec(values.value) ) )
 				{
 					matches = {ref: matches[1], value: matches[2]};
 					isRef = matches.ref;
 					values.value = matches.value;
 				}
-
+				
 				// array
 				if ( !this.isDefined(values.value) || '' == this.trim(values.value) || values.value.replace(/^ +/,'').charAt(0) == '#' )
 				{
@@ -982,9 +1039,9 @@ YamlParser.prototype =
 				}
 				else
 				{
-					if ( this.isDefined(values.leadspaces) &&
-						' ' == values.leadspaces &&
-						( matches = new RegExp('^('+YamlInline.REGEX_QUOTED_STRING+'|[^ \'"\{\[].*?) *\:(\\s+(.+?))?\\s*$').exec(values.value) )
+					if ( this.isDefined(values.leadspaces) && 
+						' ' == values.leadspaces && 
+						( matches = new RegExp('^('+YamlInline.REGEX_QUOTED_STRING+'|[^ \'"\{\[].*?) *\:(\\s+(.+?))?\\s*$').exec(values.value) ) 
 					) {
 						matches = {key: matches[1], value: matches[3]};
 						// this is a compact notation element, add to next block and parse
@@ -992,7 +1049,7 @@ YamlParser.prototype =
 						parser = new YamlParser(c);
 						parser.refs = this.refs;
 						block = values.value;
-
+						
 						if ( !this.isNextLineIndented() )
 						{
 							block += "\n"+this.getNextEmbedBlock(this.getCurrentLineIndentation() + 2);
@@ -1013,11 +1070,11 @@ YamlParser.prototype =
 				if (context && 'sequence' == context) {
 					throw new YamlParseException('You cannot define a mapping item when in a sequence', this.getRealCurrentLineNb() + 1, this.currentLine);
 				}
-				context = 'mapping';
+				context = 'mapping';				
 				//if ( data instanceof Array ) throw new YamlParseException("Non mapped entry", this.getRealCurrentLineNb() + 1, this.currentLine);
-
+				
 				values = {key: values[1], value: values[3]};
-
+				
 				try {
 					key = new YamlInline().parseScalar(values.key);
 				} catch (e) {
@@ -1026,9 +1083,9 @@ YamlParser.prototype =
 						e.setSnippet(this.currentLine);
 					}
 					throw e;
-				}
-
-
+				}				
+				
+				
 				if ( '<<' == key )
 				{
 					if ( this.isDefined(values.value) && '*' == (values.value+'').charAt(0) )
@@ -1049,13 +1106,13 @@ YamlParser.prototype =
 						{
 							value = this.getNextEmbedBlock();
 						}
-
+						
 						c = this.getRealCurrentLineNb() + 1;
 						parser = new YamlParser(c);
 						parser.refs = this.refs;
 						parsed = parser.parse(value);
 						this.refs = parser.refs;
-
+				
 						var merged = [];
 						if ( !this.isObject(parsed) )
 						{
@@ -1081,7 +1138,7 @@ YamlParser.prototype =
 							// Associative array, merge
 							merged = this.mergeObject(merged, parsed);
 						}
-
+				
 						isProcessed = merged;
 					}
 				}
@@ -1091,7 +1148,7 @@ YamlParser.prototype =
 					isRef = matches.ref;
 					values.value = matches.value;
 				}
-
+				
 				if ( isProcessed )
 				{
 					// Merge keys
@@ -1140,10 +1197,10 @@ YamlParser.prototype =
 						}
 						throw e;
 					}
-
+					
 					if ( this.isObject(value) )
 					{
-						first = value[0];
+						var first = value[0];
 						if ( typeof(value) == 'string' && '*' == first.charAt(0) )
 						{
 							data = [];
@@ -1155,13 +1212,13 @@ YamlParser.prototype =
 							value = data;
 						}
 					}
-
+				
 					return value;
 				}
-
+				
 				throw new YamlParseException('Unable to parse.', this.getRealCurrentLineNb() + 1, this.currentLine);
 			}
-
+		
 			if ( isRef )
 			{
 				if ( data instanceof Array )
@@ -1177,7 +1234,7 @@ YamlParser.prototype =
 				}
 			}
 		}
-
+		
 		return this.isEmpty(data) ? null : data;
 	},
 
@@ -1219,7 +1276,7 @@ YamlParser.prototype =
 		if ( !this.isDefined(indentation) )
 		{
 			newIndent = this.getCurrentLineIndentation();
-
+			
 			var unindentedEmbedBlock = this.isStringUnIndentedCollectionItem(this.currentLine);
 
 			if ( !this.isCurrentLineEmpty() && 0 == newIndent && !unindentedEmbedBlock )
@@ -1234,12 +1291,17 @@ YamlParser.prototype =
 
 		var data = [this.currentLine.substr(newIndent)];
 
-		var isItUnindentedCollection = this.isStringUnIndentedCollectionItem(this.currentLine);
+		var isUnindentedCollection = this.isStringUnIndentedCollectionItem(this.currentLine);
+
+		var continuationIndent = -1;
+		if (isUnindentedCollection === true) {
+			continuationIndent = 1 + /^\-((\s+)(.+?))?\s*$/.exec(this.currentLine)[2].length;
+		}
 
 		while ( this.moveToNextLine() )
 		{
 
-			if (isItUnindentedCollection && !this.isStringUnIndentedCollectionItem(this.currentLine)) {
+			if (isUnindentedCollection && !this.isStringUnIndentedCollectionItem(this.currentLine) && this.getCurrentLineIndentation() != continuationIndent) {
 				this.moveToPreviousLine();
 				break;
 			}
@@ -1368,7 +1430,7 @@ YamlParser.prototype =
 	{
 		if ( indicator == undefined ) indicator = '';
 		if ( indentation == undefined ) indentation = 0;
-
+		
 		separator = '|' == separator ? "\n" : ' ';
 		var text = '';
 		var diff = null;
@@ -1394,9 +1456,9 @@ YamlParser.prototype =
 
 			return '';
 		}
-
+		
 		matches = {indent: matches[1], text: matches[2]};
-
+		
 		var textIndent = matches.indent;
 		var previousIndent = 0;
 
@@ -1404,16 +1466,16 @@ YamlParser.prototype =
 		while ( this.currentLineNb + 1 < this.lines.length )
 		{
 			this.moveToNextLine();
-
+			
 			if ( matches = new RegExp('^( {'+textIndent.length+',})(.+)$').exec(this.currentLine) )
 			{
 				matches = {indent: matches[1], text: matches[2]};
-
+				
 				if ( ' ' == separator && previousIndent != matches.indent )
 				{
 					text = text.substr(0, text.length - 1)+"\n";
 				}
-
+				
 				previousIndent = matches.indent;
 
 				diff = matches.indent.length - textIndent.length;
@@ -1546,7 +1608,7 @@ YamlParser.prototype =
 		if ( regex.test(value) )
 		{
 			var trimmedValue = value.replace(regex, '');
-
+			
 			// items have been removed, update the offset
 			this.offset += this.subStrCount(value, "\n") - this.subStrCount(trimmedValue, "\n");
 			value = trimmedValue;
@@ -1557,7 +1619,7 @@ YamlParser.prototype =
 		if ( regex.test(value) )
 		{
 			trimmedValue = value.replace(regex, '');
-
+			
 			// items have been removed, update the offset
 			this.offset += this.subStrCount(value, "\n") - this.subStrCount(trimmedValue, "\n");
 			value = trimmedValue;
@@ -1610,22 +1672,22 @@ YamlParser.prototype =
 	{
 		return (0 === this.currentLine.indexOf('- '));
 	},
-
+	
 	isObject: function(input)
 	{
 		return typeof(input) == 'object' && this.isDefined(input);
 	},
-
+	
 	isEmpty: function(input)
 	{
 		return input == undefined || input == null || input == '' || input == 0 || input == "0" || input == false;
 	},
-
+	
 	isDefined: function(input)
 	{
 		return input != undefined && input != null;
 	},
-
+	
 	reverseArray: function(input /* Array */)
 	{
 		var result = [];
@@ -1634,15 +1696,15 @@ YamlParser.prototype =
 		{
 			result.push(input[i]);
 		}
-
+		
 		return result;
 	},
-
+	
 	merge: function(a /* Object */, b /* Object */)
 	{
 		var c = {};
 		var i;
-
+		
 		for ( i in a )
 		{
 			if ( a.hasOwnProperty(i) )
@@ -1655,10 +1717,10 @@ YamlParser.prototype =
 				if ( /^\d+$/.test(i) ) c.push(b);
 				else c[i] = b[i];
 		}
-
+		
 		return c;
 	},
-
+	
 	strRepeat: function(str /* String */, count /* Integer */)
 	{
 		var i;
@@ -1666,17 +1728,17 @@ YamlParser.prototype =
 		for ( i = 0; i < count; i++ ) result += str;
 		return result;
 	},
-
+	
 	subStrCount: function(string, subString, start, length)
 	{
 		var c = 0;
-
+		
 		string = '' + string;
 		subString = '' + subString;
-
+		
 		if ( start != undefined ) string = string.substr(start);
-		if ( length != undefined ) string = string.substr(0, length);
-
+		if ( length != undefined ) string = string.substr(0, length); 
+		
 		var len = string.length;
 		var sublen = subString.length;
 		for ( var i = 0; i < len; i++ )
@@ -1685,10 +1747,10 @@ YamlParser.prototype =
 				c++;
 				i += sublen - 1;
 		}
-
+		
 		return c;
 	},
-
+	
 	trim: function(str /* String */)
 	{
 		return (str+'').replace(/^ +/,'').replace(/ +$/,'');
@@ -1731,14 +1793,14 @@ YamlEscaper.prototype =
 		for (var i = 0; i < len; ++i)
 			if ( i >= maxlen ) esc.push('');
 
-		var ret = '';
+		var ret = '';		
 		ret = value.replace(new RegExp(YamlEscaper.escapees.join('|'),'g'), function(str){
 			for(var i = 0; i < len; ++i){
 				if( str == YamlEscaper.escapees[i] )
 					return esc[i];
 			}
 		});
-		return '"' + ret + '"';
+		return '"' + ret + '"'; 
 	},
 
 	/**
@@ -1770,7 +1832,7 @@ YamlEscaper.prototype =
 YamlEscaper.REGEX_CHARACTER_TO_ESCAPE = "[\\x00-\\x1f]|\xc2\x85|\xc2\xa0|\xe2\x80\xa8|\xe2\x80\xa9";
 
 // Mapping arrays for escaping a double quoted string. The backslash is
-// first to ensure proper escaping.
+// first to ensure proper escaping. 
 YamlEscaper.escapees = ['\\\\', '\\"', '"',
 									 "\x00",  "\x01",  "\x02",  "\x03",  "\x04",  "\x05",  "\x06",  "\x07",
 									 "\x08",  "\x09",  "\x0a",  "\x0b",  "\x0c",  "\x0d",  "\x0e",  "\x0f",
@@ -1879,7 +1941,7 @@ YamlUnescaper.prototype =
 				return this.pack('N', new YamlInline().hexdec(value.substr(2, 8)));
 		}
 	},
-
+	
 	/**
 	 * @see http://phpjs.org/functions/pack
 	 * @warning only modes used above copied
@@ -1911,11 +1973,12 @@ YamlDumper.prototype =
 	 */
 	dump: function(input, inline, indent)
 	{
-		if ( inline == undefined ) inline = 0;
-		if ( indent == undefined ) indent = 0;
+		if ( inline == null ) inline = 0;
+		if ( indent == null ) indent = 0;
 		var output = '';
 		var prefix = indent ? this.strRepeat(' ', indent) : '';
 		var yaml;
+		if (!this.numSpacesForIndentation) this.numSpacesForIndentation = 2;
 
 		if ( inline <= 0 || !this.isObject(input) || this.isEmpty(input) )
 		{
@@ -1926,20 +1989,20 @@ YamlDumper.prototype =
 		{
 			var isAHash = !this.arrayEquals(this.getKeys(input), this.range(0,input.length - 1));
 			var willBeInlined;
-
+			
 			for ( var key in input )
 			{
 				if ( input.hasOwnProperty(key) )
 				{
 					willBeInlined = inline - 1 <= 0 || !this.isObject(input[key]) || this.isEmpty(input[key]);
-
+					
 					if ( isAHash ) yaml = new YamlInline();
-
-					output +=
+					
+					output += 
 						prefix + '' +
 						(isAHash ? yaml.dump(key)+':' : '-') + '' +
 						(willBeInlined ? ' ' : "\n") + '' +
-						this.dump(input[key], inline - 1, (willBeInlined ? 0 : indent + 2)) + '' +
+						this.dump(input[key], inline - 1, (willBeInlined ? 0 : indent + this.numSpacesForIndentation)) + '' +
 						(willBeInlined ? "\n" : '');
 				}
 			}
@@ -1947,7 +2010,7 @@ YamlDumper.prototype =
 
 		return output;
 	},
-
+	
 	strRepeat: function(str /* String */, count /* Integer */)
 	{
 		var i;
@@ -1955,12 +2018,12 @@ YamlDumper.prototype =
 		for ( i = 0; i < count; i++ ) result += str;
 		return result;
 	},
-
+	
 	isObject: function(input)
 	{
 		return this.isDefined(input) && typeof(input) == 'object';
 	},
-
+	
 	isEmpty: function(input)
 	{
 		var ret = input == undefined || input == null || input == '' || input == 0 || input == "0" || input == false;
@@ -1972,16 +2035,16 @@ YamlDumper.prototype =
 		}
 		return ret;
 	},
-
+	
 	isDefined: function(input)
 	{
 		return input != undefined && input != null;
 	},
-
+	
 	getKeys: function(tab)
 	{
 		var ret = [];
-
+		
 		for ( var name in tab )
 		{
 			if ( tab.hasOwnProperty(name) )
@@ -1989,35 +2052,36 @@ YamlDumper.prototype =
 				ret.push(name);
 			}
 		}
-
+		
 		return ret;
 	},
-
+	
 	range: function(start, end)
 	{
 		if ( start > end ) return [];
-
+		
 		var ret = [];
-
+		
 		for ( var i = start; i <= end; i++ )
 		{
 			ret.push(i);
 		}
-
+		
 		return ret;
 	},
-
+	
 	arrayEquals: function(a,b)
 	{
 		if ( a.length != b.length ) return false;
-
+		
 		var len = a.length;
-
+		
 		for ( var i = 0; i < len; i++ )
 		{
 			if ( a[i] != b[i] ) return false;
 		}
-
+		
 		return true;
 	}
 };
+})();
