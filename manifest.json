@@ -32,6 +32,7 @@
 			"content/lib/PluralForm.js",
 			"content/lib/FileSaver.js",
 			"content/lib/psico.js",
+			"content/lib/integration.js",
 
 			//<!-- utilities -->
 			"content/util/api.js",

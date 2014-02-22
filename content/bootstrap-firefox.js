@@ -18,9 +18,9 @@ FoxtrickFirefox.prototype = {
 		//<!-- external libraries -->
 		'lib/oauth.js',
 		'lib/sha1.js',
-		'lib/yaml.js',
-		'lib/FileSaver.js',
-		'lib/idbstore.js',
+		// 'lib/yaml.js',
+		//'lib/FileSaver.js',
+		// 'lib/idbstore.js',
 		'lib/psico.js',
 
 		//<!-- utilities -->
@@ -246,6 +246,30 @@ FoxtrickFirefox.prototype = {
 	],
 
 	loadScript: function() {
+		try {
+			// lib scope integration
+			let libMap = {
+				'saveAs': 'FileSaver.js',
+				'YAML': 'yaml.js',
+				'IDBStore': 'idbstore.js',
+			};
+			let scope = {
+				self: this.owner,
+				Foxtrick: this,
+				exports: true,
+				module: { exports: true },
+				require: {}
+			};
+			for (let lib in libMap) {
+				Services.scriptloader.
+					loadSubScript('chrome://foxtrick/content/lib/' + libMap[lib], scope, 'UTF-8');
+				this.owner.Foxtrick[lib] = scope.module.exports;
+			}
+		}
+		catch (e) {
+			e.message = 'Foxtrick ERROR: ' + e.message;
+			Services.console.logStringMessage(e);
+		}
 		// loading Foxtrick into window.Foxtrick
 		for (var i = 0; i < this.scripts.length; ++i) {
 			try {

@@ -26,6 +26,7 @@ Foxtrick.loader.background.contentScriptManager = {
 		'lib/jester.js',
 		'lib/FileSaver.js',
 		'lib/psico.js',
+		'lib/integration.js',
 
 		//<!-- utilities -->
 		'util/api.js',

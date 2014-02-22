@@ -46,7 +46,7 @@ if (Foxtrick.chromeContext() == 'background') {
 		getQueue: [],
 		setQueue: [],
 	};
-	Foxtrick.localStore = new IDBStore({
+	Foxtrick.localStore = new Foxtrick.IDBStore({
 		storeName: 'localStore',
 		storePrefix: 'Foxtrick',
 		keyPath: null,
