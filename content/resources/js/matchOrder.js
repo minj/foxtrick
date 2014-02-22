@@ -47,7 +47,12 @@ function ft_swap_positions() {
 			pos2.initTactic();
 		}
 		if (player2) {
-			pos1.changePlayer(player2);
+			if (!player1)
+				// calling changePlayer swaps players immediately
+				// the problem is that calling changePlayer twice is not only unnecessary
+				// but also looses sp/captain assignment for some reason
+				pos1.changePlayer(player2);
+
 			ht.$('#' + pos1.id).removeClass(pos1.getTactic());
 			pos1.tacticInt = tactic2;
 			pos1.initTactic();
