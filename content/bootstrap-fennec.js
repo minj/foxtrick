@@ -89,7 +89,7 @@ FoxtrickFennec.prototype = {
 		}
 		catch (e) {
 			e.message = 'Foxtrick ERROR: ' + e.message;
-			consoleService.logStringMessage(e);
+			Services.console.logStringMessage(e);
 		}
 		for (var i = 0; i < this.scripts.length; ++i) {
 			try {
