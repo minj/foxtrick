@@ -60,8 +60,6 @@ Foxtrick.modules['LineupShortcut'] = {
 			var teamId = Foxtrick.util.id.getTeamIdFromUrl(link.href);
 			var matchId = Foxtrick.util.id.getMatchIdFromUrl(link.href);
 			link.href += '&HighlightPlayerID=' + playerId;
-			// new ratings launched on 2012-08-28
-			var date = Foxtrick.util.time.getDateFromText(matchTable.rows[i].cells[0].textContent);
 
 			// find out home/away team names
 			// \u00a0 is no-break space (entity &nbsp;)
@@ -92,7 +90,7 @@ Foxtrick.modules['LineupShortcut'] = {
 			if (!hasMatch)
 				hasTransfer = true;
 
-			if (newRatings && !link.href.match(/#/))
+			if (!link.href.match(/#/))
 				link.href += '#tab2';
 		}
 	},
@@ -118,9 +116,6 @@ Foxtrick.modules['LineupShortcut'] = {
 			matchtable.rows[0].appendChild(newhead);
 			//We start from second row because first is header
 			for (var i = 1; i < matchtable.rows.length; i++) {
-				// new ratings launched on 2012-08-28
-				var date =
-					Foxtrick.util.time.getDateFromText(matchtable.rows[i].cells[0].textContent);
 				var link = matchtable.rows[i].cells[1].getElementsByTagName('a').item(0);
 				var matchid = Foxtrick.util.id.getMatchIdFromUrl(link.href);
 				this._Add_Lineup_Link(doc, matchtable.rows[i], teamid, playerid, matchid,
@@ -178,7 +173,6 @@ Foxtrick.modules['LineupShortcut'] = {
 		var playerid = Foxtrick.util.id.findYouthPlayerId(mainWrapper);
 		var teamid = Foxtrick.util.id.findYouthTeamId(mainWrapper);
 		for (var i = 0; i < matchTable.rows.length; i++) {
-			var date = Foxtrick.util.time.getDateFromText(matchTable.rows[i].cells[0].textContent);
 			var link = matchTable.rows[i].cells[1].getElementsByTagName('a').item(0);
 			link.href += '&HighlightPlayerID=' + playerid;
 			var matchid = Foxtrick.util.id.getMatchIdFromUrl(link.href);
