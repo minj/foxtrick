@@ -364,6 +364,7 @@ FoxtrickFirefox.prototype = {
 	cleanup: function() {
 		// remove ui
 		this.shutdown();
+		this.saveAs.unload();
 		let popup = this.owner.document.getElementById('contentAreaContextMenu');
 		if (popup && this.contextLinkItem)
 			popup.removeChild(this.contextLinkItem);

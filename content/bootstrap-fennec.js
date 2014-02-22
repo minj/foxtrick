@@ -115,6 +115,7 @@ FoxtrickFennec.prototype = {
 	},
 
 	cleanup: function() {
+		this.saveAs.unload();
 		//stop background
 		this.loader.background.browserUnload();
 		// remove content scripts and listeners
