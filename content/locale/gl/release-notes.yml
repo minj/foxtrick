@@ -9,12 +9,12 @@ gl:
       crowdin: '<header>Unha morea de actualizacións das traducións realizadas polos nosos marabillosos usuarios a través da <linkCrowdin>ferramenta Crowdin</linkCrowdin>. Por certo, ti tamén podes colaborar!</header>'
       bugs: '<header>Solucións de erros</header>'
       old_faces: 'O módulo <module>OldStyleFace</module> non ía ben na páxina de ordes do partido e na páxina de aliñación. Arranxado.'
-      simulator_skills: 'Os nomes dos subniveis no módulo <module>MatchSimulator</module> foron correxidos en certas linguaxes.'
+      simulator_skills: 'Os nomes dos subniveis do módulo <module>MatchSimulator</module> foron corrixidos en certos idiomas.'
       embed_media: 'O módulo <module>PsicoTSI</module> e o módulo <module>EmbedMedia</module> sonche agora máis seguros.'
       other: '<header>Outros cambios</header>'
-      report_format: 'O módulo <module>MatchReportFormat</module> e o <module>LiveMatchReportFormat</module> foron rescritos e agora xa van co acceso CHPP.'
-      attvsdef: 'As probabilidades reais no módulo <module>AttVsDef</module> afectan agora tambén ás barras de posesión.'
-      staff_marker: 'O cor personalizado do módulo <module>StaffMarker</module> é agora opcional.'
+      report_format: 'Os módulos <module>MatchReportFormat</module> e <module>LiveMatchReportFormat</module> foron rescritos e agora xa funcionan sen o acceso CHPP.'
+      attvsdef: 'As probabilidades reais do módulo <module>AttVsDef</module> afectan agora tamén ás barras de posesión.'
+      staff_marker: 'Agora, a cor personalizada do módulo <module>StaffMarker</module> é opcional.'
       mmdd: 'As frechas nos menús do módulo  <module>MainMenuDropDown</module> sonche agora opcionais.'
       and_more: Moitos outros cambios pequeniños por aquí e por alá.
     0.13.0:
