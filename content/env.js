@@ -44,7 +44,7 @@ Foxtrick.SB.tabs.create(url)
 // Foxtrick.ResourcePath: called from html page - external page
 // (opera, access to extension folder prohibited), path to extension folder (all other)
 
-
+(function() {
 Foxtrick.DataPath = 'https://foxtrick.googlecode.com/svn/trunk/res/';
 // used to cache dataUrl images
 Foxtrick.dataUrlStorage = {};
@@ -707,3 +707,8 @@ Foxtrick.moduleCategories = {
 	ALERT: 'alert',
 	ACCESSIBILITY: 'accessibility'
 };
+})();
+
+if (Foxtrick.arch === 'Gecko') {
+	var Cc = Components.classes, Ci = Components.interfaces, Cu = Components.utils;
+}
