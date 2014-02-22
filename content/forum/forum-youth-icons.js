@@ -453,7 +453,7 @@ Foxtrick.modules['ForumYouthIcons'] = {
 						}
 						else {
 							openingTag = Foxtrick.log.header(doc) + '\n' +
-								Foxtrick.log.cache.substr(Foxtrick.log.cache.length - 3500);
+								Foxtrick.debugLogStorage;
 						}
 					}
 					else if (openingTag == 'settings') {

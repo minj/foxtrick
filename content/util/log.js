@@ -23,35 +23,29 @@ Foxtrick.log = function() {
 		if (Foxtrick.Prefs.getBool('logDisabled'))
 			return;
 	} catch (e) {}
-
-	var i, concated = '', hasError = false;
-	var args = Array.prototype.slice.apply(arguments);
-	if (args.length < 2 && typeof args[0] === 'undefined')
+	if (arguments.length < 2 && typeof arguments[0] === 'undefined')
+		// useless logging
 		return;
+
+	// compile everything into a single string for trivial logging contexts
+	var i, hasError = false, concated = '';
 	for (i = 0; i < arguments.length; ++i) {
 		var content = arguments[i];
 		var item = '';
 		if (content instanceof Error) {
+			// exception
 			hasError = true;
 			if (Foxtrick.arch == 'Gecko') {
 				// there also would be Components.stack if someone finds a nice way to display it
 				item = content.message + '\n'
 					+ content.fileName + ': ' + content.lineNumber + '\n'
 					+ 'Stack trace:\n'
-					+ content.stack;
-				item = item.replace(/.+@/g, '');
-				// readability. the place/object doesn't get shown for me in a readable way
-				// in any console i tried
-				// goes to the error console ctrl+shift+j
-				Cu.reportError(item);
+					+ content.stack.replace(/^.*@/g, ''); // strip function names
 			}
 			else if (Foxtrick.arch == 'Sandboxed') {
 				item = content.message;
 				if (typeof (content.stack) != 'undefined')
 					item += '\n' + content.stack;
-				if (args[i].arguments) {
-					args[i] = args[i].arguments.concat(args[i]);
-				}
 			}
 		}
 		else if (typeof(content) != 'string') {
@@ -73,35 +67,39 @@ Foxtrick.log = function() {
 		}
 		concated += ' ' + item;
 	}
+	// add the compiled string to HTML log container
 	Foxtrick.log.cache += concated + '\n';
+	Foxtrick.log.flush();
 
-	// log on browser
+	// store in debug storage (retrieved with forum debug log icon)
+	if (Foxtrick.chromeContext() == 'content')
+		Foxtrick.SB.extension.sendRequest({ req: 'addDebugLog', log: concated + '\n' });
+	else {
+		Foxtrick.addToDebugLogStorage(concated + '\n');
+	}
+
+	// live logging in browser
 	if (typeof(Firebug) != 'undefined'
 		&& typeof(Firebug.Console) != 'undefined'
 		&& typeof(Firebug.Console.log) == 'function') {
 		// if Firebug.Console.log is available, make use of it
-		if (hasError)
-			// could just use just 'args', but i didn't get tracing to work nice
-			Firebug.Console.log(concated);
-		else
-			Firebug.Console.log(args);
+		Firebug.Console.log(arguments);
 	}
-	else if (typeof(opera) != 'undefined'
-		&& typeof(opera.postError) == 'function') {
-		opera.postError(args);
-	}
-	if (typeof(console) != 'undefined'
-		&& typeof(console.log) == 'function') {
+	if (typeof console != 'undefined' && typeof console.log == 'function') {
 		// if console.log is available, make use of it
-		// (support multiple arguments)
-		// for firefox it's in the webconsole (only injected, thus preferences.html only)
-		console.log.apply(console, args);
+		// for firefox it's in the webconsole (ctrl+shift+K) in preferences.html
+		// and logging in the browser console (ctrl+shift+J)
+		console.log.apply(console, arguments);
 		if (hasError) {
+			// print a nice stack trace for exceptions in the console
 			var stackDumped = false;
 			for (i = 0; i < arguments.length; ++i) {
 				var content = arguments[i];
 				if (content instanceof Error && typeof (content.stack) != 'undefined') {
-					console.log(content.stack);
+					if (typeof console.error != 'undefined')
+						console.error(content.stack);
+					else
+						console.log(content.stack);
 					stackDumped = true;
 				}
 			}
@@ -110,12 +108,15 @@ Foxtrick.log = function() {
 		}
 	}
 	if (Foxtrick.arch == 'Gecko') {
-		// goes to the error console ctrl+shift+j
-		var consoleService =
-			Cc['@mozilla.org/consoleservice;1'].getService(Ci.nsIConsoleService);
-		consoleService.logStringMessage('FoxTrick: ' + concated);
+		// goes to JS->Log in the browser console (ctrl+shift+J)
+		if (Foxtrick.platform == 'Android' && Foxtrick.chromeContext() == 'content')
+			// logging does not work particularly well in Fennec content
+			Cu.reportError(new Error('FoxTrick: ' + concated));
+		else
+			Services.console.logStringMessage('FoxTrick: ' + concated);
 	}
 	if (typeof(dump) == 'function' && Foxtrick.Prefs.getBool('dump')) {
+		// window.dump, a Gecko extension
 		if (Foxtrick.chromeContext() === 'background') {
 			var lines = concated.split(/\n/);
 			lines = Foxtrick.map(function(l) {
@@ -127,16 +128,6 @@ Foxtrick.log = function() {
 			sandboxed.extension.sendRequest({ req: 'log', log: concated + '\n' });
 		}
 	}
-
-	// add to stored log
-	if (Foxtrick.arch === 'Sandboxed') {
-		if (Foxtrick.chromeContext() == 'content')
-			sandboxed.extension.sendRequest({ req: 'addDebugLog', log: concated + '\n' });
-		else {
-			Foxtrick.addToDebugLogStorage(concated + '\n');
-		}
-	}
-	Foxtrick.log.flush();
 };
 
 // environment info shown in log as header
@@ -157,6 +148,7 @@ Foxtrick.log.header = function(doc) {
 // Foxtrick.log.flush()
 Foxtrick.log.cache = '';
 
+// print to HTML log, when doc is available
 Foxtrick.log.flush = (function() {
 	var lastDoc = null;
 	return function(doc) {
@@ -171,6 +163,7 @@ Foxtrick.log.flush = (function() {
 			&& Foxtrick.Prefs.getBool('DisplayHTMLDebugOutput')
 			&& Foxtrick.log.cache != '') {
 			var div = doc.getElementById('ft-log');
+			var consoleDiv;
 			if (div == null) {
 				// create log container
 				div = doc.createElement('div');
@@ -178,7 +171,8 @@ Foxtrick.log.flush = (function() {
 				var header = doc.createElement('h2');
 				header.textContent = Foxtrick.L10n.getString('log.header');
 				div.appendChild(header);
-				var consoleDiv = doc.createElement('pre');
+				consoleDiv = doc.createElement('pre');
+				consoleDiv.id = 'ft-log-pre';
 				consoleDiv.textContent = Foxtrick.log.header(doc);
 				div.appendChild(consoleDiv);
 				// add to page
@@ -187,7 +181,7 @@ Foxtrick.log.flush = (function() {
 					bottom.parentNode.insertBefore(div, bottom);
 			}
 			else {
-				var consoleDiv = div.getElementsByTagName('pre')[0];
+				consoleDiv = doc.getElementById('ft-log-pre');
 			}
 			// add to log
 			consoleDiv.textContent += Foxtrick.log.cache;
@@ -197,9 +191,9 @@ Foxtrick.log.flush = (function() {
 	};
 })();
 
-// debug log storage (sandboxed)
+// debug log storage
+// (retrieved with forum debug log icon)
 Foxtrick.debugLogStorage = '';
-
 Foxtrick.addToDebugLogStorage = function(text) {
 	var cutoff = Foxtrick.debugLogStorage.length - 3500;
 	cutoff = (cutoff < 0) ? 0 : cutoff;
