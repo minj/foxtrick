@@ -10,7 +10,6 @@ Foxtrick.modules['FriendlyInterface'] = {
 	PAGES: ['playerDetails', 'guestbook', 'dashboard'],
 	CSS: Foxtrick.InternalPath + 'resources/css/friendly-interface.css',
 	OPTIONS: [
-		'FullPlayerNameInLineUp',
 		'NtLinkForNtPlayer',
 		'HideAnswerTo',
 		'HideSpeechlessSecretary'

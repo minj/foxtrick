@@ -172,7 +172,6 @@ pref("extensions.foxtrick.prefs.module.ForumYouthIcons.symbols_text","★;☆;�
 pref("extensions.foxtrick.prefs.module.ForumYouthIcons.tournament.enabled", true);
 pref("extensions.foxtrick.prefs.module.ForumYouthIcons.tournament_match.enabled", true);
 pref("extensions.foxtrick.prefs.module.FriendlyInterface.enabled", true);
-pref("extensions.foxtrick.prefs.module.FriendlyInterface.FullPlayerNameInLineUp.enabled", true);
 pref("extensions.foxtrick.prefs.module.FriendlyInterface.NtLinkForNtPlayer.enabled", true);
 pref("extensions.foxtrick.prefs.module.FriendlyInterface.HideAnswerTo.enabled", false);
 pref("extensions.foxtrick.prefs.module.FriendlyInterface.HideSpeechlessSecretary.enabled", false);
