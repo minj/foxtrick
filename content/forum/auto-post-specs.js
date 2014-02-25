@@ -6,8 +6,7 @@
  */
 
 Foxtrick.modules['AutoPostSpecs'] = {
-	CORE_MODULE: true, 
-	MODULE_CATEGORY: Foxtrick.moduleCategories.FORUM,
+	CORE_MODULE: true,
 	PAGES: ['forumWritePost'],
 	run: function(doc) {
 
