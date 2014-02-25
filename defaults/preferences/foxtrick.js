@@ -89,7 +89,6 @@ pref("extensions.foxtrick.prefs.module.ExtraShortcuts.Latehome.enabled", false);
 pref("extensions.foxtrick.prefs.module.ExtraShortcuts.No9.enabled", false);
 pref("extensions.foxtrick.prefs.module.ExtraShortcuts.Prefs.enabled", false);
 pref("extensions.foxtrick.prefs.module.ExtraShortcuts.Supporterstats.enabled", false);
-pref("extensions.foxtrick.prefs.module.ExtraShortcuts.Supporterstats.enabled", false);
 pref("extensions.foxtrick.prefs.module.ExtraShortcuts.Transfers.enabled", false);
 pref("extensions.foxtrick.prefs.module.ExtraShortcuts.ManageCHPP.enabled", true);
 pref("extensions.foxtrick.prefs.module.Fans.enabled", true);
@@ -545,6 +544,7 @@ pref("extensions.foxtrick.prefs.module.SupportershipExpirationDate.enabled", tru
 pref("extensions.foxtrick.prefs.module.SupportersList.enabled", true);
 pref("extensions.foxtrick.prefs.module.SupportersList.SupporterBack.enabled", true);
 pref("extensions.foxtrick.prefs.module.SupportersList.SupportedBack.enabled", true);
+pref("extensions.foxtrick.prefs.module.SupporterStatsEnhancements.enabled", true);
 pref("extensions.foxtrick.prefs.module.TableSort.enabled", true);
 pref("extensions.foxtrick.prefs.module.TeamPopupLinks.Achievements.default", false);
 pref("extensions.foxtrick.prefs.module.TeamPopupLinks.Achievements.more", true);
@@ -596,6 +596,9 @@ pref("extensions.foxtrick.prefs.module.TeamPopupLinks.TeamHistory.default", fals
 pref("extensions.foxtrick.prefs.module.TeamPopupLinks.TeamHistory.more", true);
 pref("extensions.foxtrick.prefs.module.TeamPopupLinks.TeamHistory.newTab", false);
 pref("extensions.foxtrick.prefs.module.TeamPopupLinks.TeamLinks.enabled", true);
+pref("extensions.foxtrick.prefs.module.TeamPopupLinks.Tournaments.default", false);
+pref("extensions.foxtrick.prefs.module.TeamPopupLinks.Tournaments.more", true);
+pref("extensions.foxtrick.prefs.module.TeamPopupLinks.Tournaments.newTab", false);
 pref("extensions.foxtrick.prefs.module.TeamPopupLinks.TransferHistory.default", false);
 pref("extensions.foxtrick.prefs.module.TeamPopupLinks.TransferHistory.more", true);
 pref("extensions.foxtrick.prefs.module.TeamPopupLinks.TransferHistory.newTab", false);
