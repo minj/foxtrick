@@ -10,13 +10,7 @@ Foxtrick.modules['HeaderFix'] = {
 	PAGES: ['all'],
 	OPTIONS: ['FixLeft'],
 	CSS: Foxtrick.InternalPath + 'resources/css/header-fix.css',
-
-	init: function() {
-		if (Foxtrick.Prefs.isModuleOptionEnabled('HeaderFix', 'FixLeft'))
-			Foxtrick.Prefs.setBool('module.HeaderFixLeft.enabled', true);
-		else
-			Foxtrick.Prefs.setBool('module.HeaderFixLeft.enabled', false);
-	},
+	OPTIONS_CSS: [Foxtrick.InternalPath + 'resources/css/header-fix-left.css'],
 
 	run: function(doc) {
 
@@ -96,14 +90,5 @@ Foxtrick.modules['HeaderFix'] = {
 			ctl00_ctl00_CPContent_CPMain_pnlArenaFlash
 				.setAttribute('style', 'margin-top:25px; margin-left:-8px !important;' +
 				              ' margin-right:-3px !important;');
-	}
-};
-
-Foxtrick.modules['HeaderFixLeft'] = {
-	CSS: Foxtrick.InternalPath + 'resources/css/header-fix-left.css',
-
-	init: function() {
-		if (!Foxtrick.Prefs.isModuleEnabled('HeaderFix'))
-			Foxtrick.Prefs.setBool('module.HeaderFixLeft.enabled', false);
 	}
 };

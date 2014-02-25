@@ -181,7 +181,6 @@ pref("extensions.foxtrick.prefs.module.GoalDifferenceToTables.enabled", true);
 pref("extensions.foxtrick.prefs.module.GoToPostBox.enabled", true);
 pref("extensions.foxtrick.prefs.module.HeaderFix.enabled", false);
 pref("extensions.foxtrick.prefs.module.HeaderFix.FixLeft.enabled", false);
-pref("extensions.foxtrick.prefs.module.HeaderFixLeft.enabled", false);
 pref("extensions.foxtrick.prefs.module.HideSignatures.enabled", false);
 pref("extensions.foxtrick.prefs.module.HighlightOwnerless.enabled", true);
 pref("extensions.foxtrick.prefs.module.HighlightCupwins.enabled", true);
