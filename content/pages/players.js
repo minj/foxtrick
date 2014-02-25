@@ -10,10 +10,6 @@ if (!Foxtrick.Pages)
 	Foxtrick.Pages = {};
 
 Foxtrick.Pages.Players = {
-	CORE_MODULE: true,
-	PAGES: ['players'],
-	NICE: -50, // before anything else
-
 	isPlayersPage: function(doc) {
 		return this.isSeniorPlayersPage(doc) || this.isYouthPlayersPage(doc);
 	},
