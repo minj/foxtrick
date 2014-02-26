@@ -216,7 +216,7 @@ Foxtrick.util.matchEvent.eventIconDefinition = {
 	'miss_R': Foxtrick.InternalPath + 'resources/img/matches/red_ball_R.png',
 	'miss_L': Foxtrick.InternalPath + 'resources/img/matches/red_ball_L.png',
 	'pressing': Foxtrick.InternalPath + 'resources/img/matches/press.png',
-	'rain': Foxtrick.InternalPath + 'resources/img/matches/rain.gif',
+	'rain': '/Club/Matches/images/weather0.png',
 	'red card': '/Img/Icons/red_card.gif',
 	'se_technical': function() {
 		return Foxtrick.getSpecialtyImagePathFromNumber(1, false);
@@ -250,7 +250,7 @@ Foxtrick.util.matchEvent.eventIconDefinition = {
 	},
 	'substitution': '/Img/Matches/substitution.gif',
 	'sub_out': '/Img/Matches/sub_out.gif',
-	'sun': Foxtrick.InternalPath + 'resources/img/matches/sun.png',
+	'sun': '/Club/Matches/images/weather3.png',
 	'swap': '/Img/Matches/player_swap.gif',
 	'tired': Foxtrick.InternalPath + 'resources/img/matches/tired.png',
 	'whistle': Foxtrick.InternalPath + 'resources/img/matches/whistle.png',
@@ -263,7 +263,7 @@ Foxtrick.util.matchEvent.eventIconDefinition = {
 	'indirect': Foxtrick.InternalPath + 'resources/img/matches/indirect.png',
 	'confusion': '/Club/Matches/images/confusion.png',
 	'penalty': Foxtrick.InternalPath + 'resources/img/matches/penalty.png',
-	'pullback': Foxtrick.InternalPath + 'resources/img/matches/pullback.png',
+	'pullback': '/Club/Matches/images/pullback.png',
 	'longshot': Foxtrick.InternalPath + 'resources/img/matches/longshot.png',
 	'corner': Foxtrick.InternalPath + 'resources/img/matches/corner.png',
 	'experience': Foxtrick.InternalPath + 'resources/img/matches/exp.png',
