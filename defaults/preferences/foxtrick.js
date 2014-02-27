@@ -674,5 +674,6 @@ pref("extensions.foxtrick.prefs.MatchSimulator.realProbabilitiesOn", false);
 pref("extensions.foxtrick.prefs.AttVsDef.realProbabilitiesOn", false);
 pref("extensions.foxtrick.prefs.runLoggedOff", false);
 pref("extensions.foxtrick.prefs.dump", false);
+pref("extensions.foxtrick.prefs.logDisabled", true);
 pref("extensions.foxtrick.prefs.module.MobileEnhancements.ViewPort.enabled", true);
 pref("extensions.foxtrick.prefs.module.MobileEnhancements.ViewPort_text", "320");

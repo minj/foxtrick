@@ -19,10 +19,6 @@ Foxtrick.error = function(err) {
 
 // outputs a list of strings/objects/errors to FoxTrick log
 Foxtrick.log = function() {
-	try {
-		if (Foxtrick.Prefs.getBool('logDisabled'))
-			return;
-	} catch (e) {}
 	if (arguments.length < 2 && typeof arguments[0] === 'undefined')
 		// useless logging
 		return;
@@ -78,7 +74,13 @@ Foxtrick.log = function() {
 		Foxtrick.addToDebugLogStorage(concated + '\n');
 	}
 
-	// live logging in browser
+	// live logging in browser for devs
+	try {
+		if (Foxtrick.Prefs.getBool('logDisabled'))
+			return;
+	}
+	catch (e) {}
+
 	if (typeof(Firebug) != 'undefined'
 		&& typeof(Firebug.Console) != 'undefined'
 		&& typeof(Firebug.Console.log) == 'function') {

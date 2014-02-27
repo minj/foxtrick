@@ -68,7 +68,7 @@ Foxtrick.entry.docLoad = function(doc) {
 // @param data - copy of the resources passed from the background script
 Foxtrick.entry.contentScriptInit = function(data) {
 
-	Foxtrick.log('Foxtrick.entry.contentScriptInit');
+	// Foxtrick.log('Foxtrick.entry.contentScriptInit');
 	// add MODULE_NAME to modules
 	var i;
 	for (i in Foxtrick.modules)
@@ -107,7 +107,7 @@ Foxtrick.entry.contentScriptInit = function(data) {
 
 // called on browser load and after preferences changes (background side for sandboxed, fennec)
 Foxtrick.entry.init = function(reinit) {
-	Foxtrick.log('Initializing FoxTrick... reinit:', reinit);
+	// Foxtrick.log('Initializing FoxTrick... reinit:', reinit);
 
 	// add MODULE_NAME to modules
 	var i;

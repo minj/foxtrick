@@ -44,7 +44,7 @@ if (Foxtrick.platform == 'Android') {
 			// request needed data from background and start with DOMContentLoaded
 			Foxtrick.SB.extension.sendRequest({ req: 'tabLoad' },
 			  function(data) {
-				Foxtrick.log('tabLoad: initing and adding listener');
+				// Foxtrick.log('tabLoad: initing and adding listener');
 				Foxtrick.entry.contentScriptInit(data);
 				addEventListener('DOMContentLoaded',
 				                 Foxtrick.loader.fennec.DOMContentLoadedListener, false);
