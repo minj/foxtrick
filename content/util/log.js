@@ -148,48 +148,61 @@ Foxtrick.log.header = function(doc) {
 // Foxtrick.log.flush()
 Foxtrick.log.cache = '';
 
+// a reference to the last document element for flushing
+// this is a potential memory leak,
+// therefore it needs to be cleared onbeforeunload
+Foxtrick.log.doc = null;
+
 // print to HTML log, when doc is available
-Foxtrick.log.flush = (function() {
-	var lastDoc = null;
-	return function(doc) {
-		if (Foxtrick.arch == 'Sandboxed' && Foxtrick.chromeContext() == 'background')
-			return;
+Foxtrick.log.flush = function(doc) {
+	if (Foxtrick.platform !== 'Firefox' && Foxtrick.chromeContext() === 'background')
+		return;
+	if (!Foxtrick.Prefs.getBool('DisplayHTMLDebugOutput'))
+		return;
 
-		doc = (lastDoc = doc || lastDoc);
-		if (!doc)
+	if (!doc) {
+		if (this.doc)
+			doc = this.doc;
+		else
 			return;
+	}
+	else if (doc !== this.doc) {
+		doc.defaultView.addEventListener('beforeunload', function(ev) {
+			var doc = ev.target;
+			if (Foxtrick.log.doc === doc)
+				Foxtrick.log.doc = null;
+		});
+		this.doc = doc;
+	}
 
-		if (doc.getElementById('page') != null
-			&& Foxtrick.Prefs.getBool('DisplayHTMLDebugOutput')
-			&& Foxtrick.log.cache != '') {
-			var div = doc.getElementById('ft-log');
-			var consoleDiv;
-			if (div == null) {
-				// create log container
-				div = doc.createElement('div');
-				div.id = 'ft-log';
-				var header = doc.createElement('h2');
-				header.textContent = Foxtrick.L10n.getString('log.header');
-				div.appendChild(header);
-				consoleDiv = doc.createElement('pre');
-				consoleDiv.id = 'ft-log-pre';
-				consoleDiv.textContent = Foxtrick.log.header(doc);
-				div.appendChild(consoleDiv);
-				// add to page
-				var bottom = doc.getElementById('bottom');
-				if (bottom)
-					bottom.parentNode.insertBefore(div, bottom);
-			}
-			else {
-				consoleDiv = doc.getElementById('ft-log-pre');
-			}
-			// add to log
-			consoleDiv.textContent += Foxtrick.log.cache;
-			// clear the cache
-			Foxtrick.log.cache = '';
+	if (doc.getElementById('page') && Foxtrick.log.cache !== '') {
+		var div = doc.getElementById('ft-log');
+		var consoleDiv;
+		if (!div) {
+			// create log container
+			div = doc.createElement('div');
+			div.id = 'ft-log';
+			var header = doc.createElement('h2');
+			header.textContent = Foxtrick.L10n.getString('log.header');
+			div.appendChild(header);
+			consoleDiv = doc.createElement('pre');
+			consoleDiv.id = 'ft-log-pre';
+			consoleDiv.textContent = Foxtrick.log.header(doc);
+			div.appendChild(consoleDiv);
+			// add to page
+			var bottom = doc.getElementById('bottom');
+			if (bottom)
+				bottom.parentNode.insertBefore(div, bottom);
 		}
-	};
-})();
+		else {
+			consoleDiv = doc.getElementById('ft-log-pre');
+		}
+		// add to log
+		consoleDiv.textContent += Foxtrick.log.cache;
+		// clear the cache
+		Foxtrick.log.cache = '';
+	}
+};
 
 // debug log storage
 // (retrieved with forum debug log icon)
