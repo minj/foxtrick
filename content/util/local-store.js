@@ -8,33 +8,18 @@
 // background
 if (Foxtrick.chromeContext() == 'background') {
 	if (Foxtrick.arch === 'Gecko') {
-		(function () {
+		(function() {
 			var hasIDB = false;
 			try {
-				// works in bootstrap.js and FF27 preferences
-				hasIDB = (typeof indexedDB !== 'undefined' || typeof mozIndexedDB !== 'undefined');
+				// bootstrap
+				hasIDB = typeof indexedDB !== 'undefined';
 			}
-			catch (e) {
-				// FF25 preferences.html throws 'UnknownError'
-			}
+			catch (e) {}
 			finally {
 				if (!hasIDB) {
-					var idbManager = Cc['@mozilla.org/dom/indexeddb/manager;1'].
-						getService(Ci.nsIIndexedDatabaseManager);
-					if (typeof idbManager.initWindowless === 'function') {
-						var idb = {};
-						try {
-							// FF26 and earlier
-							idbManager.initWindowless(idb);
-							Foxtrick.IDBProxy = idb;
-						}
-						catch (e) {
-							Cu.importGlobalProperties(['indexedDB']);
-						}
-					}
-					else {
+					if (typeof Cu.importGlobalProperties === 'function')
+						// FF27+ preferences.html
 						Cu.importGlobalProperties(['indexedDB']);
-					}
 				}
 			}
 		})();
@@ -46,26 +31,29 @@ if (Foxtrick.chromeContext() == 'background') {
 		getQueue: [],
 		setQueue: [],
 	};
-	Foxtrick.localStore = new Foxtrick.IDBStore({
-		storeName: 'localStore',
-		storePrefix: 'Foxtrick',
-		keyPath: null,
-		autoIncrement: true,
-		indexes: [],
-		onStoreReady: function() {
-			var ls = Foxtrick._localStore;
-			ls.ready = true;
-			for (var i = 0; i < ls.setQueue.length; ++i) {
-				Foxtrick.localSet(ls.setQueue[i][0], ls.setQueue[i][1]);
-			}
-			for (var i = 0; i < ls.getQueue.length; ++i) {
-				Foxtrick.localGet(ls.getQueue[i][0], ls.getQueue[i][1]);
-			}
-			ls.setQueue = [];
-			ls.getQueue = [];
-		},
-		onError: function(error) { throw error; }
-	});
+	try {
+		Foxtrick.localStore = new Foxtrick.IDBStore({
+			storeName: 'localStore',
+			storePrefix: 'Foxtrick',
+			keyPath: null,
+			autoIncrement: true,
+			indexes: [],
+			onStoreReady: function() {
+				var ls = Foxtrick._localStore;
+				ls.ready = true;
+				for (var i = 0; i < ls.setQueue.length; ++i) {
+					Foxtrick.localSet(ls.setQueue[i][0], ls.setQueue[i][1]);
+				}
+				for (var i = 0; i < ls.getQueue.length; ++i) {
+					Foxtrick.localGet(ls.getQueue[i][0], ls.getQueue[i][1]);
+				}
+				ls.setQueue = [];
+				ls.getQueue = [];
+			},
+			onError: function(error) { throw error; }
+		});
+	}
+	catch (e) {}
 	Foxtrick.localSet = function(key, value) {
 		if (Foxtrick._localStore.ready)
 			Foxtrick.localStore.put(key, value);
@@ -109,7 +97,7 @@ if (Foxtrick.chromeContext() == 'background') {
 
 // purge localStorage
 	if (Foxtrick.arch === 'Sandboxed') {
-		(function(localStorage){
+		(function(localStorage) {
 
 			for (var key in localStorage) {
 				if (key.indexOf('localStore.') === 0)
@@ -119,7 +107,7 @@ if (Foxtrick.chromeContext() == 'background') {
 	}
 	else if (Foxtrick.arch === 'Gecko') {
 
-		(function(){
+		(function() {
 			var url = 'http://localStore.foxtrick.org';
 
 			var ssm = Services.scriptSecurityManager;
