@@ -290,7 +290,8 @@ Foxtrick.loader.background.browserLoad = function() {
 			if (Foxtrick.platform === 'Safari') {
 				var showGrowlNotification = function(msg) {
 					try {
-						if (window.GrowlSafariBridge.notifyWithOptions !== undefined) {
+						if (window.GrowlSafariBridge &&
+						    window.GrowlSafariBridge.notifyWithOptions) {
 							window.GrowlSafariBridge.notifyWithOptions(msg.name, msg.status, {
 								isSticky: false,
 								priority: -1,
