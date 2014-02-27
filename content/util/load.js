@@ -31,9 +31,9 @@ Foxtrick.util.load.get = function(url, params) {
 	// status: String, either 'success' or 'failure'
 	// code: Integer, HTTP status code
 	// text: String, response text
-
+	var loadImpl;
 	if (Foxtrick.chromeContext() == 'content') {
-		var loadImpl = function(cb) {
+		loadImpl = function(cb) {
 			Foxtrick.SB.extension.sendRequest({ req: 'getXml', url: url, params: params },
 			  function(response) {
 				try {
@@ -50,7 +50,7 @@ Foxtrick.util.load.get = function(url, params) {
 		};
 	}
 	else {
-		var loadImpl = function(cb) {
+		loadImpl = function(cb) {
 			var req = new window.XMLHttpRequest();
 			var type = (params != null) ? 'POST' : 'GET';
 			req.open(type, url, true);
@@ -61,16 +61,14 @@ Foxtrick.util.load.get = function(url, params) {
 			if (type == 'POST' && typeof(req.setRequestHeader) == 'function')
 				req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
-			req.onreadystatechange = function(aEvt) {
-				if (req.readyState == 4) {
-					var status = (req.status < 400 && req.responseText != '') ?
-						'success' : 'failure';
-					cb({
-						code: req.status,
-						status: status,
-						text: req.responseText
-					});
-				}
+			req.onloadend = function() {
+				var status = (req.status < 400 && req.responseText !== '') ?
+					'success' : 'failure';
+				cb({
+					code: req.status,
+					status: status,
+					text: req.responseText
+				});
 			};
 
 			try {
@@ -167,14 +165,12 @@ Foxtrick.util.load.async = function(url, callback, params) {
 		if (type == 'POST' && typeof(req.setRequestHeader) == 'function')
 			req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
-		req.onreadystatechange = function(aEvt) {
-			if (req.readyState == 4) {
-				try {
-					callback(req.responseText, req.status);
-				}
-				catch (e) {
-					Foxtrick.log('Uncaught callback error: - url: ' + url + ' params: ' + params, e);
-				}
+		req.onloadend = function() {
+			try {
+				callback(req.responseText, req.status);
+			}
+			catch (e) {
+				Foxtrick.log('Uncaught callback error: - url: ' + url + ' params: ' + params, e);
 			}
 		};
 

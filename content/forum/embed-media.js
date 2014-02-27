@@ -62,14 +62,12 @@ Foxtrick.modules['EmbedMedia'] = {
 			if (typeof(req.overrideMimeType) == 'function')
 				req.overrideMimeType('text/plain');
 
-			req.onreadystatechange = function(aEvt) {
-				if (req.readyState == 4) {
-					try {
-						callback(req.responseText, req.status);
-					}
-					catch (e) {
-						Foxtrick.log('Uncaught callback error: - url: ', url, ': ', e);
-					}
+			req.onloadend = function() {
+				try {
+					callback(req.responseText, req.status);
+				}
+				catch (e) {
+					Foxtrick.log('Uncaught callback error: - url: ', url, ': ', e);
 				}
 			};
 
