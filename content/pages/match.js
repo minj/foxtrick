@@ -131,9 +131,32 @@ Foxtrick.Pages.Match = {
 			return subLevelValue || -1;
 		}
 		catch (e) {
-			Foxtrick.log('getTacticsFromCell', e, path);
+			Foxtrick.log('getTacticsFromCell', e);
 		}
 		return null;
+	},
+	/**
+	 * Get tactics data for home and away teams
+	 * E. g. { tactics: ['aow', 'normal'], level: [15, 0] }
+	 * @param  {document}                                        doc
+	 * @return { tactics: Array.<string>, level: Array.<number>}
+	 */
+	getTacticsByTeam: function(doc) {
+		var ratingstable = this.getRatingsTable(doc);
+		var tacticRow = 10, levelRow = 11;
+		if (this.hasIndSetPieces(ratingstable)) {
+			tacticRow = 14;
+			levelRow = 15;
+		}
+		var tactics = [
+			this.getTacticsFromCell(ratingstable.rows[tacticRow].cells[1]),
+			this.getTacticsFromCell(ratingstable.rows[tacticRow].cells[2])
+		];
+		var level = [
+			parseInt(ratingstable.rows[levelRow].cells[3].textContent, 10) || 0,
+			parseInt(ratingstable.rows[levelRow].cells[4].textContent, 10) || 0
+		];
+		return { tactics: tactics, level: level };
 	},
 
 	// START NEW RATINGS UTILS

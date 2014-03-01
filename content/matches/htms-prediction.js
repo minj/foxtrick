@@ -228,26 +228,9 @@ Foxtrick.modules['HTMSPrediction'] = {
 			Foxtrick.Math.hsToFloat(ratingstable.rows[7].cells[3].textContent),
 			Foxtrick.Math.hsToFloat(ratingstable.rows[7].cells[4].textContent)
 		];
-		if (Foxtrick.Pages.Match.hasIndSetPieces(ratingstable)) {
-			var tactics = [
-				Foxtrick.Pages.Match.getTacticsFromCell(ratingstable.rows[14].cells[1]),
-				Foxtrick.Pages.Match.getTacticsFromCell(ratingstable.rows[14].cells[2])
-			];
-			var tacticsLevel = [
-				parseInt(ratingstable.rows[15].cells[3].textContent, 10) || 0,
-				parseInt(ratingstable.rows[15].cells[4].textContent, 10) || 0
-			];
-		}
-		else {
-			var tactics = [
-				Foxtrick.Pages.Match.getTacticsFromCell(ratingstable.rows[10].cells[1]),
-				Foxtrick.Pages.Match.getTacticsFromCell(ratingstable.rows[10].cells[2])
-			];
-			var tacticsLevel = [
-				parseInt(ratingstable.rows[11].cells[3].textContent, 10) || 0,
-				parseInt(ratingstable.rows[11].cells[4].textContent, 10) || 0
-			];
-		}
+		var tacticsData = Foxtrick.Pages.Match.getTacticsByTeam(doc);
+		var tactics = tacticsData.tactics;
+		var tacticsLevel = tacticsData.level;
 
 		var htmsDiv = Foxtrick.createFeaturedElement(doc, this, 'div');
 		htmsDiv.id = 'htmsMatchDivId';

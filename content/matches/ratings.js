@@ -57,29 +57,9 @@ Foxtrick.modules['Ratings'] = {
 			Foxtrick.Math.hsToFloat(ratingstable.rows[7].cells[4].textContent)
 		];
 
-		var tactics;
-		var tacticsLevel;
-		if (Foxtrick.Pages.Match.hasIndSetPieces(ratingstable)) {
-			tactics = [
-				Foxtrick.Pages.Match.getTacticsFromCell(ratingstable.rows[14].cells[1]),
-				Foxtrick.Pages.Match.getTacticsFromCell(ratingstable.rows[14].cells[2])
-			];
-			tacticsLevel = [
-				parseInt(ratingstable.rows[15].cells[3].textContent, 10) || 0,
-				parseInt(ratingstable.rows[15].cells[4].textContent, 10) || 0
-			];
-		}
-		else  {
-			tactics = [
-				Foxtrick.Pages.Match.getTacticsFromCell(ratingstable.rows[10].cells[1]),
-				Foxtrick.Pages.Match.getTacticsFromCell(ratingstable.rows[10].cells[2])
-			];
-			tacticsLevel = [
-				parseInt(ratingstable.rows[11].cells[3].textContent, 10) || 0,
-				parseInt(ratingstable.rows[11].cells[4].textContent, 10) || 0
-			];
-		}
-		//Foxtrick.log('Tactics:[', tactics , '], TacticsLevel:[' ,tacticsLevel ,']');
+		var tacticsData = Foxtrick.Pages.Match.getTacticsByTeam(doc);
+		var tactics = tacticsData.tactics;
+		var tacticsLevel = tacticsData.level;
 
 		// seperator
 		var row = ratingstable.insertRow(-1);
