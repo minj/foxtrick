@@ -2,104 +2,66 @@
 // page IDs of last page are stored in array pageIds
 var pageIds = [];
 
-function initLoader() {
-	var w;
-	if (w = document.location.href.match(/width=(\d+)/))
-		document.getElementsByTagName('body')[0].setAttribute('style', 'width:' + w[1] + 'px;');
-
-	// fennec runs init() from injected entry.js (injected)
-	// called directly, it'll run and save actually for some reason
-
-	// gecko, safari, chrome
-	if (Foxtrick.arch === 'Gecko' || Foxtrick.chromeContext() == 'background')
-		init();
-	// opera prefs runs in content context. add need resources first
-	else
-		Foxtrick.SB.extension.sendRequest({ req: 'optionsPageLoad' },
-		  function(data) {
-			try {
-				Foxtrick.entry.contentScriptInit(data);
-				init();
-			} catch (e) { Foxtrick.log('initLoader: ', e); }
-		});
-}
-
-function init() {
-	try {
-		$('body').hide();
-			initCoreModules();
-			getPageIds();
-			initTabs();
-			initSearch(); //important, run after module divs have been created (initTabs)
-			initListeners(); //important, run after module divs have been created (initTabs)
-			initTextAndValues();
-			locateFragment(window.location.toString()); // locate element by fragment
-			testPermissions();
-		$('body').show();
-
-		//mobile
-		if (Foxtrick.Prefs.isModuleEnabled('MobileEnhancements')) {
-			$('#tabs').hide();
-			$('#content').addClass('ft-mobile');
-			Foxtrick.log(Foxtrick, 'MobileEnhancements');
-			Foxtrick.onClick($('#navigation-header')[0],
-			  function() {
-				$('#tabs').toggle();
-				$('#main').toggle();
-			});
-		}
-
-		/* Run a test. */
-		if (window.location.href.search(/saved=true/) !== -1) {
-			notice(Foxtrick.L10n.getString('prefs.feedback.saved'));
-			window.location.href = window.location.href
-				.substr(0, window.location.href.search(/\&saved=true/));
-		}
-		else if (window.location.href.search(/imported=true/) !== -1) {
-			notice(Foxtrick.L10n.getString('prefs.feedback.loaded'));
-			window.location.href = window.location.href
-				.substr(0, window.location.href.search(/\&imported=true/));
-		}
-	} catch (e) {
-		Foxtrick.log('init: ', e);
-	}
-}
-
 //used to cache the searchable module items to prevent the search functionality
 //from traversing the dom all the time
 var _modules = {};
+
+function notice(msg) {
+	$('#note-content').text(msg);
+	$('#note').show('slow');
+}
+
+function baseURI() {
+	return window.location.toString().replace(/#.*$/, '');
+}
+
+function generateURI(tab, module, id, search) {
+	var location = baseURI();
+	if (tab)
+		return location + '#tab=' + tab;
+	else if (module)
+		return location + '#module=' + module;
+	else if (id)
+		return location + '#' + id;
+	else if (search)
+		return location + '#search=' + search;
+}
+
 //feed the search bar with options, no effect yet
 function initSearch() {
-	var searchadd = function(searchstr, item){
-		if(_modules[searchstr] instanceof Array)
+	var searchadd = function(searchstr, item) {
+		if (_modules[searchstr] instanceof Array)
 			_modules[searchstr].push(item);
-		else if(_modules[searchstr] instanceof Object){
+		else if (_modules[searchstr] instanceof Object) {
 			var tmp = _modules[searchstr];
-			_modules[searchstr] = []
+			_modules[searchstr] = [];
 			_modules[searchstr].push(tmp);
 			_modules[searchstr].push(item);
 		}
 		else
 			_modules[searchstr] = item;
-	}
+	};
 	$('.module').each(function() {
 		try {
+			var savename, h3;
 			var name = $(this).attr('id');
 			if (name && name.match(/^pref-/)) {
-				var savename = name.replace(/^pref-/, '');
-				searchadd(savename, $('#' + name)[0])
+				savename = name.replace(/^pref-/, '');
+				searchadd(savename, $('#' + name)[0]);
 				//addToModuleList(name.replace(/^pref-/, ''));
-			}else if (name && name.match(/^faq-/)) {
-				var h3 = $(this).children('h3:first');
-				var savename = h3.text().replace('¶', '');
+			}
+			else if (name && name.match(/^faq-/)) {
+				h3 = $(this).children('h3:first');
+				savename = h3.text().replace('¶', '');
 				searchadd(savename, $(this)[0]);
 			}
 			else {
-				var h3 = $(this).children('h3:first');
+				h3 = $(this).children('h3:first');
 				if (h3.attr('data-text')) {
 					name = Foxtrick.L10n.getString(h3.attr('data-text'));
 					searchadd(name, $(this)[0]);
-				} else {
+				}
+				else {
 					Foxtrick.log('no search support, missing h3 and/or data-text');
 				}
 			}
@@ -111,19 +73,20 @@ function initSearch() {
 }
 
 //search
-function search(string, search) {
+function search(string, perform) {
 	if (string.length > 0) {
 		$('#breadcrumb-2').show();
 		$('#breadcrumb-3').show();
-		if (search) {
+		if (perform) {
 			$('#breadcrumb-2').text(Foxtrick.L10n.getString('prefs.search'));
 			$('#breadcrumb-3').text(string);
-			$('#breadcrumb-3').attr('href', generateURI(null, null, null, string) );
+			$('#breadcrumb-3').attr('href', generateURI(null, null, null, string));
 			$('#breadcrumb-sep-1').show();
 			$('#breadcrumb-sep-2').show();
-		} else {
+		}
+		else {
 			$('#breadcrumb-2').text(string);
-			$('#breadcrumb-2').attr('href', generateURI(null, string, null, null) );
+			$('#breadcrumb-2').attr('href', generateURI(null, string, null, null));
 			$('#breadcrumb-sep-1').show();
 			$('#breadcrumb-sep-2').hide();
 			$('#breadcrumb-3').hide();
@@ -136,23 +99,31 @@ function search(string, search) {
 		for (i in _modules) {
 			try {
 				if (i.search(regex) > -1) {
-					if(_modules[i] instanceof Array){
-						for(var k = 0; k < _modules[i].length; k++)
-							_modules[i][k].className = _modules[i][k].className.replace(/hidden/g, '');
-					} else
+					if (_modules[i] instanceof Array) {
+						for (var k = 0; k < _modules[i].length; k++) {
+							_modules[i][k].className =
+								_modules[i][k].className.replace(/hidden/g, '');
+						}
+					}
+					else
 						_modules[i].className = _modules[i].className.replace(/hidden/g, '');
-				} else {
-					if(_modules[i] instanceof Array){
-						for(var k = 0; k < _modules[i].length; k++)
+				}
+				else {
+					if (_modules[i] instanceof Array) {
+						for (var k = 0; k < _modules[i].length; k++) {
 							_modules[i][k].className = _modules[i][k].className + ' hidden';
-					} else
+						}
+					}
+					else
 						_modules[i].className = _modules[i].className + ' hidden';
 				}
-			} catch (e) {
-					continue;
+			}
+			catch (e) {
+				continue;
 			}
 		}
-	} else {
+	}
+	else {
 		$('#breadcrumb-2').hide();
 		$('#breadcrumb-3').hide();
 		$('#breadcrumb-sep-1').hide();
@@ -160,49 +131,24 @@ function search(string, search) {
 		var i;
 		for (i in _modules) {
 			try {
-				if(_modules[i] instanceof Array){
-						for(var k = 0; k < _modules[i].length; k++)
-							_modules[i][k].className = _modules[i][k].className.replace(/hidden/g, '');
-				} else
+				if (_modules[i] instanceof Array) {
+					for (var k = 0; k < _modules[i].length; k++) {
+						_modules[i][k].className = _modules[i][k].className.replace(/hidden/g, '');
+					}
+				}
+				else
 					_modules[i].className = _modules[i].className.replace(/hidden/g, '');
-			} catch (e) {
-
 			}
+			catch (e) {}
 		}
 	}
 
 }
 
-function searchEvent(ev) {
-	if (ev.target.value.length < 4)
-		return;
-	var here = window.location.toString();
-	var there = generateURI('all');
-	if (here != there) {
-		window.location.href = there;
-		locateFragment(window.location.toString());
-	}
-	search(ev.target.value, true);
-}
-
-function initCoreModules()
-{
-	// add MODULE_NAME to modules
-	var i;
-	for (i in Foxtrick.modules)
-		Foxtrick.modules[i].MODULE_NAME = i;
-
-	// core functions needed for preferences, localization, etc.
-	var core = [Foxtrick.Prefs, Foxtrick.L10n, Foxtrick.XMLData];
-	for (var i = 0; i < core.length; ++i)
-		if (typeof(core[i].init) == 'function')
-			core[i].init();
-}
-
 // see http://tools.ietf.org/html/rfc3986#section-3.5
-function parseFragment(fragment)
-{
-	var pairs = String(fragment).split(/&/); // key - value pairs use ampersand (&) as delimiter
+function parseFragment(fragment) {
+	var pairs = String(fragment).split(/&/);
+	// key - value pairs use ampersand (&) as delimiter
 	var ret = {};
 	for (var i = 0; i < pairs.length; ++i) {
 		var pair = pairs[i].split(/=/); // key and value are separated by equal sign (=)
@@ -212,8 +158,8 @@ function parseFragment(fragment)
 	return ret;
 }
 
-function locateFragment(uri)
-{
+
+function locateFragment(uri) {
 	// show functions
 	var showModule = function(module) {
 		var moduleObj = $('#pref-' + String(module));
@@ -228,7 +174,7 @@ function locateFragment(uri)
 			$('#navigation-header').text(Foxtrick.L10n.getString('tab.' + tab));
 		//mobile end
 		$('#breadcrumb-1').text(Foxtrick.L10n.getString('tab.' + tab));
-		$('#breadcrumb-1').attr('href', generateURI(tab, null, null, null) );
+		$('#breadcrumb-1').attr('href', generateURI(tab, null, null, null));
 		search(''); //search reset
 		$('#pane > div').hide();
 		$('#tabs > li').removeClass('active');
@@ -241,17 +187,17 @@ function locateFragment(uri)
 	};
 
 	// only keep the fragment of URI
-	var fragment = (uri.indexOf('#') > -1)
-		? fragment = uri.replace(/^.+#/, '') : '';
+	var fragment = (uri.indexOf('#') > -1) ? fragment = uri.replace(/^.+#/, '') : '';
 	var param = parseFragment(fragment);
 	if (param['module'])
 		showModule(param['module']);
 	else if (param['tab'])
 		showTab(param['tab']);
-	else if (param['search']){
+	else if (param['search']) {
 		showTab('all');
 		search(param['search'], true);
-	} else if (param['faq'])
+	}
+	else if (param['faq'])
 		showFaq(param['faq']);
 	else if (param['view-by'] == 'page')
 		showTab('on_page');
@@ -291,22 +237,396 @@ function locateFragment(uri)
 	//mobile end
 }
 
-function baseURI()
-{
-	return window.location.toString().replace(/#.*$/, '');
+function searchEvent(ev) {
+	if (ev.target.value.length < 4)
+		return;
+	var here = window.location.toString();
+	var there = generateURI('all');
+	if (here != there) {
+		window.location.href = there;
+		locateFragment(window.location.toString());
+	}
+	search(ev.target.value, true);
 }
 
-function generateURI(tab, module, id, search)
+// permissions management
+
+// check if permissions are granted in init and ask for permission if needed on saving
+// that's unsave since we don't check permissions right before asking for them
+// but since permission request must be in the click handler and not in a callback
+// this seems to be the only way
+
+// should move/get that to the resp. modules
+var neededPermissions = [
+	{
+		modules: ['ExtraShortcuts.HtRadio'],
+		types: { origins: ['http://stream.ht-radio.nl/*'] }
+	},
+	{
+		modules: ['ExtraShortcuts.No9'],
+		types: { origins: ['http://no9-online.de/*'] }
+	},
+	{
+		modules: ['ExtraShortcuts.Latehome'],
+		types: { origins: ['http://www.latehome.de/*'] }
+	},
+	{
+		modules: ['EmbedMedia.EmbedModeOEmebed'],
+		types: {
+			origins: [
+				'https://vimeo.com/api/*',
+				'https://www.youtube.com/*',
+				'https://www.dailymotion.com/services/*'
+			]
+		}
+	},
+	{
+		modules: ['EmbedMedia.EmbedFlickrImages'],
+		types: { origins: ['http://www.flickr.com/services/oembed/*'] }
+	},
+	{
+		modules: ['EmbedMedia.EmbedDeviantArtImages'],
+		types: { origins: ['http://backend.deviantart.com/*'] }
+	},
+	{
+		modules: ['EmbedMedia.EmbedSoundCloud'],
+		types: { origins: ['http://soundcloud.com/*'] }
+	},
+	{
+		modules: ['EmbedMedia.EmbedImageshack'],
+		types: { origins: ['http://imageshack.us/*'] }
+	},
+	{
+		modules: ['YouthTwins'],
+		types: { origins: ['http://*.hattrick-youthclub.org/*'] }
+	},
+	{
+		modules: ['CopyYouth.AutoSendTrainingReportToHY'],
+		types: { origins: ['http://*.hattrick-youthclub.org/*'] }
+	},
+	{
+		modules: ['CopyYouth.AutoSendRejectedToHY'],
+		types: { origins: ['http://*.hattrick-youthclub.org/*'] }
+	},
+	{
+		modules: ['CopyYouth.AutoSendTrainingChangesToHY'],
+		types: { origins: ['http://*.hattrick-youthclub.org/*'] }
+	},
+	{
+		modules: ['YouthSkills'],
+		types: { origins: ['http://*.hattrick-youthclub.org/*'] }
+	},
+	{
+		modules: ['HTEVPrediction'],
+		types: { origins: ['http://htev.org/api/*'] }
+	},
+	{
+		modules: ['MatchWeather'],
+		types: { origins: ['http://api.openweathermap.org/*'] }
+	}
+];
+
+function permissionsMakeIdFromName(module) {
+	var id = '#pref-' + module;
+	if (id.indexOf('.') == -1)
+		id = id + '-check'; // main module check
+	else
+		id = id.replace(/\./g, '-'); // suboption check
+	return id;
+}
+
+function getPermission(neededPermission, showSaved) {
+	// Permissions must be requested from inside a user gesture, like a button's
+	// click handler.
+	chrome.permissions.request(neededPermission['types'],
+	  function(granted) {
+		// The callback argument will be true if the user granted the permissions.
+		for (var m = 0; m < neededPermission.modules.length; ++m) {
+			var id = permissionsMakeIdFromName(neededPermission.modules[m]);
+			if (!granted) {
+				$(id).prop('checked', false);
+				Foxtrick.Prefs.setBool('module.' + neededPermission.modules[m] + '.enabled', false);
+				Foxtrick.log('Permission declined: ', neededPermission.modules[m]);
+			}
+			else {
+				$(id).attr('permission-granted', true);
+				Foxtrick.log('Permission granted: ', neededPermission.modules[m]);
+			}
+			if (showSaved) {
+				notice(Foxtrick.L10n.getString('prefs.feedback.saved'));
+			}
+		}
+	});
+}
+
+function checkPermissions() {
+	var needsPermissions = false;
+	// ask for permissions if needed
+	if (Foxtrick.platform === 'Chrome') {
+		// combine all need permissions into on request
+		var combined_permissions = {
+			modules: [],
+			types: { permissions: [], origins: [] }
+		};
+		neededPermissions.forEach(function(neededPermission) {
+			neededPermission.modules.forEach(function(module, m, modules) {
+				var id = permissionsMakeIdFromName(module);
+				if (Foxtrick.Prefs.getBool('module.' + module + '.enabled') === true &&
+				    $(id).attr('permission-granted') == 'false') {
+					needsPermissions = true;
+					Foxtrick.pushNew(combined_permissions.modules, modules);
+					if (neededPermission.types.permissions)
+						Foxtrick.pushNew(combined_permissions.types.permissions,
+						                 neededPermission.types.permissions);
+					if (neededPermission.types.origins)
+						Foxtrick.pushNew(combined_permissions.types.origins,
+						                 neededPermission.types.origins);
+				}
+			});
+		});
+
+		getPermission(combined_permissions, true);
+	}
+	return needsPermissions;
+	// false prevents save notived be shown. will be shown delayed in getPermissions
+}
+
+function revokePermissions() {
+	// removes current permissions
+	var revokeModulePermission = function(neededPermission) {
+		chrome.permissions.remove(neededPermission['types'],
+		  function(result) {
+			for (var m = 0; m < neededPermission.modules.length; ++m) {
+				var id = permissionsMakeIdFromName(neededPermission.modules[m]);
+				$(id).attr('permission-granted', false);
+				Foxtrick.log('Permission removed: ', neededPermission.modules[m], result);
+			}
+		});
+	};
+	if (Foxtrick.platform === 'Chrome') {
+		for (var i = 0; i < neededPermissions.length; ++i) {
+			revokeModulePermission(neededPermissions[i]);
+		}
+	}
+}
+
+function testPermissions() {
+	// initialize elements which need permissions, ask for permission if needed
+	if (Foxtrick.platform === 'Chrome') {
+		var makeChecker = function(id, perm, module) {
+			return function() {
+				checkPermission(id, perm, module);
+			};
+		};
+
+		var testModulePermission = function(neededPermission) {
+			chrome.permissions.contains(neededPermission['types'],
+			  function(result) {
+				for (var m = 0; m < neededPermission.modules.length; ++m) {
+					var module = neededPermission.modules[m];
+					var id = permissionsMakeIdFromName(module);
+					$(id).attr('permission-granted', result);
+					neededPermission.granted = result;
+					$(id).click(makeChecker(id, neededPermission, module));
+
+					if (result === false &&
+					    Foxtrick.Prefs.getBool('module.' + module + '.enabled')) {
+						Foxtrick.pushNew(modulelist, neededPermission.modules);
+						var needsPermHtml = Foxtrick.L10n.getString('prefs.needPermissions') +
+							'<ul><li>' + modulelist.join('</li><li>') + '</li></ul>';
+						$('#alert-text').html(needsPermHtml);
+						$('#alert').attr('style', 'display:block;');
+					}
+				}
+			});
+		};
+		var checkPermission = function(id, neededPermission, module) {
+			if ($(id).prop('checked') &&
+			    $(id).attr('permission-granted') == 'false')
+				getPermission(neededPermission);
+			else if (!$(id).prop('checked')) {
+				modulelist = Foxtrick.exclude(modulelist, module);
+				if (modulelist.length > 0) {
+					var needsPermText = Foxtrick.L10n.getString('prefs.needPermissions') +
+						' ' + modulelist.join(', ');
+					$('#alert-text').text(needsPermText);
+					$('#alert').attr('style', 'display:block;');
+				}
+				else {
+					$('#alert-text').text('');
+					$('#alert').attr('style', 'display:none;');
+				}
+			}
+		};
+		var modulelist = [];
+		for (var i = 0; i < neededPermissions.length; ++i) {
+			testModulePermission(neededPermissions[i]);
+		}
+	}
+}
+
+function saveEvent(ev) {
+	Foxtrick.log('save');
+	var pref;
+	if ($(ev.target).attr('pref')) {
+		pref = $(ev.target).attr('pref');
+
+		if ($(ev.target).is(':checkbox'))
+			Foxtrick.Prefs.setBool(pref, $(ev.target).is(':checked'));
+		else if ($(ev.target)[0].nodeName.toLowerCase() == 'select')
+			Foxtrick.Prefs.setString(pref, $(ev.target)[0].value);
+			// calculated just-in-time, so .attr('value') would fail here
+		else if ($(ev.target).is(':input'))
+			Foxtrick.Prefs.setString(pref, $(ev.target)[0].value);
+	}
+	else if ($(ev.target)[0].nodeName.toLowerCase() == 'option') {
+		pref = $($(ev.target)[0]).parent().attr('pref');
+		var value = $(ev.target)[0].value;
+		Foxtrick.Prefs.setString(pref, $(ev.target)[0].value);
+	}
+	else {
+		var module = $(ev.target).attr('module');
+		if ($(ev.target).attr('option')) {
+			Foxtrick.log('option of module');
+			// option of module
+			var option = $(ev.target).attr('option');
+			if ($(ev.target).is(':checkbox'))
+				Foxtrick.Prefs.
+					setModuleEnableState(module + '.' + option, $(ev.target).is(':checked'));
+			else if ($(ev.target).is(':input'))
+				Foxtrick.Prefs.setModuleOptionsText(module + '.' + option, $(ev.target)[0].value);
+		}
+		else if ($(ev.target).is(':radio')) {
+			if ($(ev.target).is(':checked'))
+				Foxtrick.Prefs.setModuleValue(module, $(ev.target).prop('value'));
+		}
+		else {
+			Foxtrick.Prefs.setModuleEnableState(module, $(ev.target).is(':checked'));
+			Foxtrick.log('setModuleEnableState');
+		}
+	}
+	Foxtrick.Prefs.setBool('preferences.updated', true);
+}
+function save() {
+	var needsPermissions = checkPermissions();
+
+	if (!needsPermissions)
+		notice(Foxtrick.L10n.getString('prefs.feedback.saved'));
+	// else it is shown in permission request callback
+
+	Foxtrick.Prefs.setBool('preferences.updated', true);
+}
+
+/**
+ * Parse and add a note containing whitelisted HTML
+ * markup and custom, predefined linkTags.
+ * @param {String} note  Raw note to be parsed.
+ * @param {DOMElement} parent    Element to add the note to.
+ * @param {Object} links A map containing custom linkTags and their corresponding URLs.
+ */
+function addNote(note, parent, links)
 {
-	var location = baseURI();
-	if (tab)
-		return location + '#tab=' + tab;
-	else if (module)
-		return location + '#module=' + module;
-	else if (id)
-		return location + '#' + id;
-	else if (search)
-		return location + '#search=' + search;
+	/**
+	 * Create a white-listed tag or fall back to createLink
+	 * @param  {String} tagName    Name of the tag or link.
+	 * @param  {String} tagContent Text content of the tag.
+	 *                             Some tags may have other tags in them.
+	 * @return {DOMElement}        Element created.
+	 */
+	var createTag = function(tagName, tagContent) {
+		/**
+		 * Create specific DOM elements. This should be called for white-listed elements only.
+		 * @param  {String}     nodeName    Name of the element to create.
+		 * @param  {String}     textContent Text content of the element.
+		 * @param  {[Object]}   options     Map of properties and values of the element.
+		 * @return {DOMElement}             Element created.
+		 */
+		var createNode = function(nodeName, textContent, options) {
+			var opt;
+			var node = document.createElement(nodeName);
+			if (textContent !== null)
+				node.textContent = textContent;
+			if (options !== undefined && typeof(options) === 'object')
+				for (opt in options)
+					if (options.hasOwnProperty(opt))
+						node[opt] = options[opt];
+			return node;
+		};
+		var createNestedNode = function(nodeName, tagContent, options) {
+			var el = createNode(nodeName, null, options);
+			addNote(tagContent, el, links);
+			// recursively parse and add content to nodes with nesting enabled
+			return el;
+		};
+		var createLink = function(linkName, linkText) {
+			if (typeof(links) === 'object' && links.hasOwnProperty(linkName)) {
+				if (linkName.search('FTlink') === 0)
+					// links starting with 'FTlink' are assumed to be internal
+					// and open in the same tab
+					return createNode('a', linkText, { href: links[linkName] });
+				else
+					return createNode('a', linkText, { href: links[linkName], target: '_blank' });
+			}
+			else
+				// default to creating text nodes so no evil tags are actually rendered
+				return document.createTextNode(linkText);
+		};
+		switch (tagName) {
+			// simple white-listed HTML
+			case 'em':
+			case 'strong':
+				return createNode(tagName, tagContent);
+			// custom simple tags
+			case 'module':
+				return createNode('a', tagContent, { href: '#module=' + tagContent });
+			// white-listed tags allowed to have other tags in them
+			case 'ul':
+			case 'li':
+			case 'p':
+				return createNestedNode(tagName, tagContent);
+			case 'header':
+				return createNestedNode('h5', tagContent); //TODO change header if needed
+			default:
+				// defaults to links with predefined URLs, e. g. <linkHome>
+				return createLink(tagName, tagContent);
+		}
+	};
+
+	if (note === '')
+		return;
+
+	var noteContainer = document.createDocumentFragment();
+	// create a container to add all nodes before appending them to DOM in one go
+
+	var noteTokens =
+		note.match(/<(\w+)>[\s\S]*?<\/\1>|[\s\S]+?(?=<(\w+)>[\s\S]*?<\/\2>|$)/mg);
+	// tokenize into text and outer tags, nesting will be dealt with recursion
+	// allow only word characters for tag names and match only properly paired tags
+	// tags have no attributes and are thus safe
+	var tagRegex = /^<(\w+)>([\s\S]*?)<\/\1>$/m;
+	noteTokens.forEach(function(token) {
+		if (tagRegex.test(token)) {
+			var tag = tagRegex.exec(token);
+			// 0: whole token, 1: tagName, 2: tagContent
+			noteContainer.appendChild(createTag(tag[1], tag[2]));
+		}
+		else
+			noteContainer.appendChild(document.createTextNode(token));
+	});
+	parent.appendChild(noteContainer);
+}
+
+function initCoreModules() {
+	// add MODULE_NAME to modules
+	var i;
+	for (i in Foxtrick.modules)
+		Foxtrick.modules[i].MODULE_NAME = i;
+
+	// core functions needed for preferences, localization, etc.
+	var core = [Foxtrick.Prefs, Foxtrick.L10n, Foxtrick.XMLData];
+	for (var i = 0; i < core.length; ++i)
+		if (typeof(core[i].init) == 'function')
+			core[i].init();
 }
 
 function initAutoSaveListeners() {
@@ -317,12 +637,15 @@ function initAutoSaveListeners() {
 		$(this).attr('savelistener', 'true');
 		if ($(this).is(':checkbox')) {
 			$(this).click(function(ev) { saveEvent(ev); });
-		} else if ($(this)[0].nodeName.toLowerCase() == 'select') {
+		}
+		else if ($(this)[0].nodeName.toLowerCase() == 'select') {
 			$(this)[0].addEventListener('change', saveEvent, false);
-		} else if ($(this).is(':input')) {
+		}
+		else if ($(this).is(':input')) {
 			$(this)[0].addEventListener('input', saveEvent, false);
 			$(this)[0].addEventListener('change', saveEvent, false);
-		} else {
+		}
+		else {
 			$(this).attr('savelistener', 'false');
 		}
 	});
@@ -340,25 +663,24 @@ function initAutoSaveListeners() {
 	});
 }
 
-function initListeners()
-{
+function initListeners() {
 	initAutoSaveListeners();
 
 	$('#search-input')[0].addEventListener('input', searchEvent, false);
 	$('#save').click(function() { save(); $('#alert').attr('style', 'display:none;'); });
 	$('body').click(function(ev) {
-		if ((ev.target.nodeName.toLowerCase() == 'a'
-			|| ev.target.nodeName.toLowerCase() == 'xhtml:a')) {
-			if ((ev.target.href.indexOf(baseURI()) == 0
-				|| ev.target.getAttribute('href')[0] == '#')) {
+		if (ev.target.nodeName.toLowerCase() == 'a' ||
+		    ev.target.nodeName.toLowerCase() == 'xhtml:a') {
+			if ((ev.target.href.indexOf(baseURI()) === 0 ||
+			    ev.target.getAttribute('href')[0] == '#')) {
 				locateFragment(ev.target.href);
 			}
-			else if (ev.target.getAttribute('href').indexOf('http://www.hattrick.org') == 0) {
+			else if (ev.target.getAttribute('href').indexOf('http://www.hattrick.org') === 0) {
 				// we redirect links starting with
 				// 'http://www.hattrick.org' to last Hattrick host
-				ev.target.setAttribute('href',
-					ev.target.getAttribute('href').replace(/^http:\/\/www\.hattrick\.org/,
-					                                       Foxtrick.getLastHost()));
+				var url =
+					ev.target.href.replace(/^http:\/\/www\.hattrick\.org/, Foxtrick.getLastHost());
+				ev.target.setAttribute('href', url);
 			}
 		}
 	});
@@ -366,8 +688,7 @@ function initListeners()
 
 // get page IDs in Foxtrick.ht_pages that last page matches and store them
 // in pageIds
-function getPageIds()
-{
+function getPageIds() {
 	var lastPage = Foxtrick.getLastPage();
 	var i;
 	for (i in Foxtrick.ht_pages) {
@@ -379,227 +700,8 @@ function getPageIds()
 	}
 }
 
-function initTabs()
-{
-	// attach each tab with corresponding pane
-	$('#tabs li a').each(function() {
-		var tab = $(this).parent().attr('id').replace(/^tab-/, '');
-		$(this).attr('href', generateURI(tab));
-	});
-	// set up href of 'view by' links
-	$('#view-by-category a').attr('href', '#view-by=category');
-	$('#view-by-page a').attr('href', '#view-by=page');
-	// initialize the tabs
-	initMainTab();
-	initChangesTab();
-	initHelpTab();
-	initAboutTab();
-	initModules();
-}
 
-function initTextAndValues()
-{
-	var locale = Foxtrick.Prefs.getString('htLanguage');
-
-	if (Foxtrick.L10n.getString('direction') == 'rtl')
-		$('html').attr('dir', 'rtl');
-
-	document.title = Foxtrick.L10n.getString('prefs.title');
-	$('#version').text(Foxtrick.version() + ' ' + Foxtrick.branch());
-
-	// initialize text
-	$('body [data-text]').each(function() {
-		if ($(this).attr('data-text'))
-			$(this).prepend(document.createTextNode(Foxtrick.L10n.getString($(this)
-			                .attr('data-text'))));
-	});
-
-	// initialize modules
-	$('#pane [module]').each(function() {
-		var module = $(this).attr('module');
-		if ($(this).attr('option')) {
-			var option = $(this).attr('option');
-			// module option
-			if ($(this).is(':checkbox')) {
-				if (Foxtrick.Prefs.isModuleOptionEnabled(module, option))
-					$(this).prop('checked', true);
-			}
-			else if ($(this).is(':input')) // text input
-				$(this)[0].value = Foxtrick.Prefs.getString('module.' + module + '.' + option);
-		}
-		else if ($(this).is(':radio')) {
-			// radio input
-			var selected = Foxtrick.Prefs.getModuleValue(module);
-			if ($(this).prop('value') == selected)
-				$(this).prop('checked', true);
-		}
-		else if (Foxtrick.Prefs.isModuleEnabled(module)) // module itself
-			$(this).prop('checked', true);
-	});
-	// initialize inputs
-	$('#pane input[pref]').each(function() {
-		if ($(this).is(':checkbox')) {
-			// checkbox
-			if (Foxtrick.Prefs.getBool($(this).attr('pref')))
-				$(this).prop('checked', true);
-		}
-		else {
-			// text input
-			$(this).attr('value', Foxtrick.Prefs.getString($(this).attr('pref')));
-		}
-	});
-	$('#pane textarea[pref]').each(function() {
-		$(this).text(Foxtrick.Prefs.getString($(this).attr('pref')));
-	});
-	// initialize elements with blockers, disable if blocker enabled
-	$('body [blocked-by]').each(function() {
-		var blockee = $(this);
-		var blocker = $('#' + blockee.attr('blocked-by'));
-		var updateStatus = function() {
-			if (blocker.is(':checked'))
-				blockee.prop('disabled', true);
-			else
-				blockee.prop('disabled', false);
-		};
-		blocker.click(function() { updateStatus(); });
-		updateStatus();
-	});
-	// initialize elements with dependency, show only if dependency met
-	$('#pane [depends-on]').each(function() {
-		var depender = $(this);
-		var dependee = $('#' + depender.attr('depends-on'));
-		var updateStatus = function() {
-			if (dependee.is(':checked'))
-				Foxtrick.removeClass(depender[0], 'hidden');
-			else
-				Foxtrick.addClass(depender[0], 'hidden');
-		};
-		dependee.click(function() { updateStatus(); });
-		updateStatus();
-	});
-
-	// show page IDs in view-by-page
-	$('#view-by-page a').text($('#view-by-page a').text()
-		+ ' (' + pageIds.join(', ') + ')');
-
-	// initialize delete-token
-	var chpp_url = Foxtrick.Prefs.getString('last-host') +
-		'/MyHattrick/Preferences/ExternalAccessGrants.aspx';
-	$('#pref-delete-token-desc').html($('#pref-delete-token-desc')
-	                                  .text().replace(/\{(.+)\}/, "<a href='" + chpp_url +
-	                                                  "' target='_blank'>$1</a>"));
-	var oauth_keys = Foxtrick.Prefs.getAllKeysOfBranch('oauth');
-	if (oauth_keys)	{
-		var teamids = Foxtrick.map(function(n) {
-			return n.match(/oauth\.(.+)\.accessToken/)[1];
-		}, oauth_keys);
-		teamids = Foxtrick.unique(teamids);
-		for (var i = 0; i < teamids.length; ++i) {
-			var id = parseInt(teamids[i], 10);
-			if (!isNaN(id)) {
-				var item = document.createElement('option');
-				item.value = id;
-				item.textContent = id;
-				$('#select-delete-token-teamids').append($(item));
-			}
-			else {
-				// delete invalid
-				var array = Foxtrick.Prefs.getAllKeysOfBranch('oauth.' + teamids[i]);
-				for (var j = 0; j < array.length; j++) {
-					Foxtrick.Prefs.deleteValue(array[j]);
-				}
-			}
-		}
-	}
-}
-
-function initMainTab()
-{
-	// setup
-	$('#pref-setup-desc').html(Foxtrick.L10n.getString('prefs.setup.desc')
-		.replace(/{(.+)}/, "<a href='http://code.google.com/p/foxtrick/issues/list' " +
-		         "target='_blank'>$1</a>"));
-
-	// add links to main tab prefs
-	$('#pane > div[x-on*="main"] h3').each(function() {
-		if ($(this).attr('id')) {
-			var link = document.createElement('a');
-			link.className = 'module-link';
-			link.textContent = '¶';
-			link.href = generateURI(null, null, $(this).attr('id'));
-			link.title = Foxtrick.L10n.getString('module.link');
-			$(this).append($(link));
-		}
-	});
-
-	// save preferences
-	$('#pref-save-do').click(function() {
-		var savePrefs = $('#pref-save-pref').is(':checked');
-		var saveNotes = $('#pref-save-data').is(':checked');
-		var saveToken = $('#pref-save-token').is(':checked');
-		$('#pref-save-text').val(Foxtrick.Prefs.SavePrefs(savePrefs, saveNotes, saveToken));
-	});
-
-	// load preferences
-	$('#pref-load-do').click(function() {
-		Foxtrick.Prefs.LoadPrefs($('#pref-load-text').val());
-		$('#pref-load-text').val('');
-		window.location.href = window.location.href + '&imported=true';
-		window.location.reload();
-	});
-
-	// restore to default
-	$('#pref-stored-restore').click(function() {
-		if (Foxtrick.confirmDialog(Foxtrick.L10n.getString('prefs.restoreDefault.ask'))) {
-			Foxtrick.Prefs.cleanupBranch();
-			window.location.href = window.location.href + '&imported=true';
-			window.location.reload();
-		}
-	});
-
-	// delete OAuth token/secret
-	$('#pref-delete-token').click(function() {
-		var teamid = $('#select-delete-token-teamids')[0].value;
-		if (Foxtrick.confirmDialog(Foxtrick.L10n
-		    .getString('prefs.deleteToken.ask').replace('%s', teamid))) {
-			var array = Foxtrick.Prefs.getAllKeysOfBranch('oauth.' + teamid);
-			for (var i = 0; i < array.length; i++) {
-				Foxtrick.Prefs.deleteValue(array[i]);
-			}
-			window.location.href = window.location.href + '&imported=true';
-			window.location.reload();
-		}
-	});
-
-	// disable all
-	$('#pref-stored-disable').click(function() {
-		if (Foxtrick.confirmDialog(Foxtrick.L10n.getString('prefs.disableAllModules.ask'))) {
-			Foxtrick.log('preferences: diable all');
-			Foxtrick.Prefs.disableAllModules();
-			window.location.href = window.location.href + '&imported=true';
-			window.location.reload();
-		}
-	});
-
-	// revoke permissions
-	$('#pref-revoke-permissions').click(function() {
-		if (Foxtrick.confirmDialog(Foxtrick.L10n.getString('prefs.revokePermissions.ask'))) {
-			Foxtrick.log('preferences: revoke permissions');
-			revokePermissions();
-		}
-	});
-
-	// clear cche
-	$('#pref-stored-clear-cache').click(function() {
-		Foxtrick.sessionDeleteBranch('');
-		Foxtrick.localDeleteBranch('');
-		//Foxtrick.util.api.clearCache();
-		window.location.reload();
-	});
-}
-
-function getModule(module)
-{
+function getModule(module) {
 	var getScreenshot = function(link) {
 		var a = document.createElement('a');
 		a.className = 'screenshot';
@@ -678,61 +780,84 @@ function getModule(module)
 		}
 	}
 
+	var item;
+
 	// checkbox options
 	if (module.OPTIONS) {
 		var checkboxes = document.createElement('ul');
 		options.appendChild(checkboxes);
 		checkboxes.id = module.MODULE_NAME + '-checkboxes';
 
-		for (var i = 0; i < module.OPTIONS.length; ++i) {
-			var item, label, checkbox = null;
+		var appendOptionToList = function(key, list) {
+			item = document.createElement('li');
+			list.appendChild(item);
+			var label = document.createElement('label');
+			item.appendChild(label);
+			checkbox = document.createElement('input');
+			checkbox.type = 'checkbox';
+			checkbox.setAttribute('module', module.MODULE_NAME);
+			label.appendChild(checkbox);
 
-			var appendOptionToList = function(key, list) {
-				item = document.createElement('li');
-				list.appendChild(item);
-				label = document.createElement('label');
-				item.appendChild(label);
-				checkbox = document.createElement('input');
-				checkbox.type = 'checkbox';
-				checkbox.setAttribute('module', module.MODULE_NAME);
-				label.appendChild(checkbox);
+			var desc = Foxtrick.Prefs.getModuleElementDescription(module.MODULE_NAME, key);
+			checkbox.id = entry.id + '-' + key;
+			checkbox.setAttribute('option', key);
+			label.appendChild(document.createTextNode(desc));
 
-				var desc = Foxtrick.Prefs.getModuleElementDescription(module.MODULE_NAME, key);
-				checkbox.id = entry.id + '-' + key;
-				checkbox.setAttribute('option', key);
-				label.appendChild(document.createTextNode(desc));
+			// screenshot
+			var screenshotLink = Foxtrick.L10n.getScreenshot(module.MODULE_NAME + '.' + key);
+			if (false && screenshotLink)
+				label.appendChild(getScreenshot(screenshotLink));
+		};
 
-				// screenshot
-				screenshotLink = Foxtrick.L10n.getScreenshot(module.MODULE_NAME + '.' + key);
-				if (false && screenshotLink)
-					label.appendChild(getScreenshot(screenshotLink));
+		var appendOptionsArrayToList = function(optionsarray, parentlist) {
+			for (var k = 0; k < optionsarray.length; ++k) {
+				if (k == 1) {
+					item = document.createElement('li');
+					parentlist.appendChild(item);
+					parentlist = document.createElement('ul');
+					parentlist.setAttribute('depends-on', entry.id + '-' + optionsarray[0]);
+					item.appendChild(parentlist);
+					parentlist.id = module.MODULE_NAME + '-' +
+						optionsarray[0] + '-checkboxes';
+				}
+
+				if (optionsarray[k] instanceof Array)
+					appendOptionsArrayToList(optionsarray[k], parentlist);
+				else
+					appendOptionToList(optionsarray[k], parentlist);
+			}
+		};
+		var makeTextListener = function(input) {
+			return function(text) {
+				input.value = text;
+				input.dispatchEvent(new Event('input'));
 			};
+		};
+		var makePlayListener = function(input) {
+			return function() {
+				Foxtrick.playSound(input.value, this.ownerDocument);
+			};
+		};
+
+		var makeDataListener = function(input, isSound) {
+			return function(url) {
+				input.value = url;
+				input.dispatchEvent(new Event('change'));
+				if (isSound)
+					Foxtrick.playSound(url, input.ownerDocument);
+			};
+		};
+
+
+		for (var i = 0; i < module.OPTIONS.length; ++i) {
+			var checkbox, textDiv, textInput;
 
 			//supereasy way to create subgroups for options, just supply an array
 			//first element will toggle visibility for entries 1->n
 			//supports nested subgroups
 			if (module.OPTIONS[i] instanceof Array) {
 				var parentlist = checkboxes;
-				var appendOptionsArrayToList = function(optionsarray, parentlist) {
-					for (var k = 0; k < optionsarray.length; ++k) {
-						if (k == 1) {
-							var item = document.createElement('li');
-							parentlist.appendChild(item);
-							parentlist = document.createElement('ul');
-							parentlist.setAttribute('depends-on', entry.id + '-' + optionsarray[0]);
-							item.appendChild(parentlist);
-							parentlist.id = module.MODULE_NAME + '-' +
-								optionsarray[0] + '-checkboxes';
-						}
-
-						if (optionsarray[k] instanceof Array)
-							appendOptionsArrayToList(optionsarray[k], parentlist);
-						else
-							appendOptionToList(optionsarray[k], parentlist);
-					}
-				};
 				appendOptionsArrayToList(module.OPTIONS[i], parentlist);
-
 				continue;
 			}
 
@@ -742,69 +867,53 @@ function getModule(module)
 
 			if (module.OPTION_EDITS &&
 				(!module.OPTION_EDITS_DISABLED_LIST || !module.OPTION_EDITS_DISABLED_LIST[i])) {
-				var textDiv = document.createElement('div');
+				textDiv = document.createElement('div');
 				textDiv.id = checkbox.id + '-text-div';
 				textDiv.setAttribute('depends-on', checkbox.id);
 				item.appendChild(textDiv);
 
-				var textInput = document.createElement('input');
+				textInput = document.createElement('input');
 				textInput.id = checkbox.id + '-text';
 				textInput.setAttribute('module', module.MODULE_NAME);
 				textInput.setAttribute('option', module.OPTIONS[i] + '_text');
 				textDiv.appendChild(textInput);
 
+				var load;
+
 				if (module.OPTION_EDITS_TEXTFILE_LOAD_BUTTONS &&
 				    module.OPTION_EDITS_TEXTFILE_LOAD_BUTTONS[i]) {
-					var load = Foxtrick.util.load.filePickerForText(document,
-					  (function(textInput) {
-						return function(text) {
-							textInput.value = text;
-							textInput.dispatchEvent(new Event('input'));
-						};
-					})(textInput));
+					load = Foxtrick.util.load.
+							filePickerForText(document, makeTextListener(textInput));
 					textDiv.appendChild(load);
 				}
 				if (module.OPTION_EDITS_DATAURL_LOAD_BUTTONS &&
 				    module.OPTION_EDITS_DATAURL_LOAD_BUTTONS[i]) {
 
-					var load = Foxtrick.util.load.filePickerForDataUrl(document,
-					  (function(textInput) {
-						return function(url) {
-							textInput.value = url;
-							var ev = document.createEvent('HTMLEvents');
-							ev.initEvent('change', true, false);
-							textInput.dispatchEvent(ev);
-							if (module.OPTION_EDITS_DATAURL_IS_SOUND &&
-							    module.OPTION_EDITS_DATAURL_IS_SOUND[i])
-								Foxtrick.playSound(url, document);
-						};
-					})(textInput));
+					var isSound = module.OPTION_EDITS_DATAURL_IS_SOUND &&
+						module.OPTION_EDITS_DATAURL_IS_SOUND[i];
+
+					load = Foxtrick.util.load.
+						filePickerForDataUrl(document, makeDataListener(textInput, isSound));
 					textDiv.appendChild(load);
 
-					if (module.OPTION_EDITS_DATAURL_IS_SOUND &&
-					    module.OPTION_EDITS_DATAURL_IS_SOUND[i]) {
+					if (isSound) {
 						var playButton = document.createElement('button');
 						playButton.setAttribute('data-text', 'button.play');
 						playButton.id = checkbox.id + '-playButton';
-						playButton.addEventListener('click',
-						  (function(textInput) {
-							return function(ev) {
-								Foxtrick.playSound(textInput.value, document);
-							}
-						})(textInput), false);
+						Foxtrick.onClick(playButton, makePlayListener(textInput));
 						textDiv.appendChild(playButton);
 					}
 				}
 			}
 			if (module.OPTION_TEXTS &&
 				(!module.OPTION_TEXTS_DISABLED_LIST || !module.OPTION_TEXTS_DISABLED_LIST[i])) {
-				var textDiv = document.createElement('div');
+				textDiv = document.createElement('div');
 				textDiv.id = checkbox.id + '-text-div';
 
 				textDiv.setAttribute('depends-on', checkbox.id);
 				item.appendChild(textDiv);
 
-				var textInput = document.createElement('textarea');
+				textInput = document.createElement('textarea');
 				textInput.id = checkbox.id + '-text';
 				textInput.setAttribute('module', module.MODULE_NAME);
 				textInput.setAttribute('option', module.OPTIONS[i] + '_text');
@@ -820,9 +929,9 @@ function getModule(module)
 		options.appendChild(radios);
 
 		for (var i = 0; i < module.RADIO_OPTIONS.length; ++i) {
-			var item = document.createElement('li');
+			item = document.createElement('li');
 			radios.appendChild(item);
-			var label = document.createElement('label');
+			label = document.createElement('label');
 			item.appendChild(label);
 			var radio = document.createElement('input');
 			radio.type = 'radio';
@@ -843,8 +952,129 @@ function getModule(module)
 	return entry;
 }
 
-function initChangesTab()
-{
+function initModules() {
+	var modules = [], i;
+	for (i in Foxtrick.modules)
+		modules.push(Foxtrick.modules[i]);
+	// remove modules without categories
+	modules = Foxtrick.filter(function(m) {
+		return m.MODULE_CATEGORY !== undefined;
+	}, modules);
+	// sort modules in alphabetical order. Links modules to the end
+	modules.sort(function(a, b) {
+		if (a.MODULE_NAME.search(/Links/) === 0)
+			if (b.MODULE_NAME.search(/Links/) === 0)
+				return a.MODULE_NAME.localeCompare(b.MODULE_NAME);
+			else
+				return 1;
+		else if (b.MODULE_NAME.search(/Links/) === 0)
+			return -1;
+		else
+			return a.MODULE_NAME.localeCompare(b.MODULE_NAME);
+	});
+
+	for (var i = 0; i < modules.length; ++i) {
+		var module = modules[i];
+		var obj = getModule(module);
+		// show on view-by-category tab
+		$(obj).attr('x-on', module.MODULE_CATEGORY + ' all');
+		// show on view-by-page tab
+		if (module.PAGES) {
+			if (Foxtrick.has(module.PAGES, 'all'))
+				$(obj).attr('x-on', $(obj).attr('x-on') + ' universal');
+			else if (Foxtrick.intersect(module.PAGES, pageIds).length > 0)
+				$(obj).attr('x-on', $(obj).attr('x-on') + ' on_page');
+		}
+		$('#pane').append(obj);
+	}
+}
+
+function initMainTab() {
+	// setup
+	var gcUrl = '<a href="http://code.google.com/p/foxtrick/issues/list" ' +
+		'target="_blank">$1</a>';
+	var desc = Foxtrick.L10n.getString('prefs.setup.desc').replace(/{(.+)}/, gcUrl);
+	$('#pref-setup-desc').html(desc);
+
+	// add links to main tab prefs
+	$('#pane > div[x-on*="main"] h3').each(function() {
+		if ($(this).attr('id')) {
+			var link = document.createElement('a');
+			link.className = 'module-link';
+			link.textContent = '¶';
+			link.href = generateURI(null, null, $(this).attr('id'));
+			link.title = Foxtrick.L10n.getString('module.link');
+			$(this).append($(link));
+		}
+	});
+
+	// save preferences
+	$('#pref-save-do').click(function() {
+		var savePrefs = $('#pref-save-pref').is(':checked');
+		var saveNotes = $('#pref-save-data').is(':checked');
+		var saveToken = $('#pref-save-token').is(':checked');
+		$('#pref-save-text').val(Foxtrick.Prefs.SavePrefs(savePrefs, saveNotes, saveToken));
+	});
+
+	// load preferences
+	$('#pref-load-do').click(function() {
+		Foxtrick.Prefs.LoadPrefs($('#pref-load-text').val());
+		$('#pref-load-text').val('');
+		window.location.href = window.location.href + '&imported=true';
+		window.location.reload();
+	});
+
+	// restore to default
+	$('#pref-stored-restore').click(function() {
+		if (Foxtrick.confirmDialog(Foxtrick.L10n.getString('prefs.restoreDefault.ask'))) {
+			Foxtrick.Prefs.cleanupBranch();
+			window.location.href = window.location.href + '&imported=true';
+			window.location.reload();
+		}
+	});
+
+	// delete OAuth token/secret
+	$('#pref-delete-token').click(function() {
+		var teamid = $('#select-delete-token-teamids')[0].value;
+		var delToken = Foxtrick.L10n.getString('prefs.deleteToken.ask').replace('%s', teamid);
+		if (Foxtrick.confirmDialog(delToken)) {
+			var array = Foxtrick.Prefs.getAllKeysOfBranch('oauth.' + teamid);
+			for (var i = 0; i < array.length; i++) {
+				Foxtrick.Prefs.deleteValue(array[i]);
+			}
+			window.location.href = window.location.href + '&imported=true';
+			window.location.reload();
+		}
+	});
+
+	// disable all
+	$('#pref-stored-disable').click(function() {
+		if (Foxtrick.confirmDialog(Foxtrick.L10n.getString('prefs.disableAllModules.ask'))) {
+			Foxtrick.log('preferences: diable all');
+			Foxtrick.Prefs.disableAllModules();
+			window.location.href = window.location.href + '&imported=true';
+			window.location.reload();
+		}
+	});
+
+	// revoke permissions
+	$('#pref-revoke-permissions').click(function() {
+		if (Foxtrick.confirmDialog(Foxtrick.L10n.getString('prefs.revokePermissions.ask'))) {
+			Foxtrick.log('preferences: revoke permissions');
+			revokePermissions();
+		}
+	});
+
+	// clear cche
+	$('#pref-stored-clear-cache').click(function() {
+		Foxtrick.sessionDeleteBranch('');
+		Foxtrick.localDeleteBranch('');
+		//Foxtrick.util.api.clearCache();
+		window.location.reload();
+	});
+}
+
+function initChangesTab() {
 	var changesLink = document.createElement('a');
 	changesLink.href = '#tab=changes';
 	changesLink.className = 'module-link';
@@ -854,15 +1084,17 @@ function initChangesTab()
 
 	var lang = Foxtrick.Prefs.getString('htLanguage');
 
-	var releaseNotesLinks = Foxtrick.util.load.ymlSync(Foxtrick.InternalPath +
-	                                                   'release-notes-links.yml');
+	var releaseNotesLinks =
+		Foxtrick.util.load.ymlSync(Foxtrick.InternalPath + 'release-notes-links.yml');
 
-	var releaseNotesLocalized = Foxtrick.util.load.ymlSync(Foxtrick.InternalPath + 'locale/'
-	                                                       + lang + '/release-notes.yml');
-	var releaseNotes = Foxtrick.util.load.ymlSync(Foxtrick.InternalPath + 'release-notes.yml');
+	var releaseNotesLocalized =
+		Foxtrick.util.load.ymlSync(Foxtrick.InternalPath + 'locale/' +
+		                           lang + '/release-notes.yml');
+	var releaseNotes =
+		Foxtrick.util.load.ymlSync(Foxtrick.InternalPath + 'release-notes.yml');
 
-	if (releaseNotesLinks === null || releaseNotesLocalized === null ||
-		releaseNotes === null) {
+	if (releaseNotesLinks === null ||
+	    releaseNotesLocalized === null || releaseNotes === null) {
 		Foxtrick.log('Release notes failed');
 		return;
 	}
@@ -877,9 +1109,11 @@ function initChangesTab()
 			var st = Foxtrick.nth(function(item) {
 				return item.code == lang;
 			}, category).translated_progress;
-			statusText = Foxtrick.L10n.getString('releaseNotes.translationStatus').replace(/%s/, st);
+			statusText =
+				Foxtrick.L10n.getString('releaseNotes.translationStatus').replace(/%s/, st);
 		}
-	} catch (e) {}
+	}
+	catch (e) {}
 
 	var versions = {};
 	var versionsLocalized = {};
@@ -894,7 +1128,8 @@ function initChangesTab()
 			if (json.hasOwnProperty(locale))
 				rawVersions = json[locale].versions;
 		for (v in rawVersions) {
-			prefixedNotes = rawVersions[v], notes = [];
+			prefixedNotes = rawVersions[v];
+			notes = [];
 			for (n in prefixedNotes) {
 				//idx = n.match(/\d+/);
 				notes[n] = prefixedNotes[n];
@@ -905,8 +1140,8 @@ function initChangesTab()
 	parseNotes(releaseNotes, versions);
 	parseNotes(releaseNotesLocalized, versionsLocalized);
 
-	if (! versions) {
-		Foxtrick.log('NO RELEASE NOTES!!!');
+	if (!versions) {
+		Foxtrick.error('NO RELEASE NOTES!!!');
 		return;
 	}
 
@@ -955,7 +1190,7 @@ function initChangesTab()
 	}
 
 	var updateNotepad = function() {
-		var version = select.options[select.selectedIndex].value.replace(/(\d\.\d\.\d)\.\d/, '$1');
+		var version = select.value.replace(/(\d\.\d\.\d)\.\d/, '$1');
 		var list = $('#pref-notepad-list')[0];
 		list.textContent = ''; // clear list
 		for (var j = 10; j >= -1; --j) {
@@ -969,8 +1204,8 @@ function initChangesTab()
 				if (!notes)
 					continue;
 				$('#pref-notepad-title')[0].textContent =
-					Foxtrick.L10n.getString('releaseNotes.version') + ' '
-					+ version + sub + subsub;
+					Foxtrick.L10n.getString('releaseNotes.version') + ' ' +
+						version + sub + subsub;
 
 				for (var i in notes) {
 					note = notes[i];
@@ -988,9 +1223,9 @@ function initChangesTab()
 		}
 	};
 
-	var version = Foxtrick.version().replace(/(\d\.\d\.\d)\.\d/, '$1');
+	var currentVersion = Foxtrick.version().replace(/(\d\.\d\.\d)\.\d/, '$1');
 	for (var i = 0; i < select.options.length; ++i) {
-		if (select.options[i].value == version) {
+		if (select.options[i].value == currentVersion) {
 			select.selectedIndex = i;
 			break;
 		}
@@ -1000,8 +1235,7 @@ function initChangesTab()
 	$(select).change(updateNotepad);
 }
 
-function initHelpTab()
-{
+function initHelpTab() {
 	// external links
 	var about = Foxtrick.util.load.sync(Foxtrick.InternalPath + 'data/foxtrick_about.json');
 	var aboutJSON = JSON.parse(about);
@@ -1018,8 +1252,9 @@ function initHelpTab()
 	// FAQ (faq.yml or localized locale/code/faq.yml
 	var faqLinks = Foxtrick.util.load.ymlSync(Foxtrick.InternalPath + 'faq-links.yml');
 	var faq = Foxtrick.util.load.ymlSync(Foxtrick.InternalPath + 'faq.yml');
-	var faqLocal = Foxtrick.util.load.ymlSync(Foxtrick.InternalPath + 'locale/'
-		+ Foxtrick.Prefs.getString('htLanguage') + '/faq.yml');
+	var faqLocal =
+		Foxtrick.util.load.ymlSync(Foxtrick.InternalPath + 'locale/' +
+		                           Foxtrick.Prefs.getString('htLanguage') + '/faq.yml');
 	var items = {};
 	var itemsLocal = {};
 	var parseFaq = function(src, dest) {
@@ -1038,8 +1273,8 @@ function initHelpTab()
 	parseFaq(faq, items);
 	parseFaq(faqLocal, itemsLocal);
 
-	if (! items) {
-		Foxtrick.log('NO FAQ!!!');
+	if (!items) {
+		Foxtrick.error('NO FAQ!!!');
 		return;
 	}
 
@@ -1056,8 +1291,8 @@ function initHelpTab()
 		$('#pane').append($(block));
 		// question
 		var header = document.createElement('h3');
-		var question = (typeof itemLocal === 'object' && itemLocal.question)
-			? itemLocal.question : item.question;
+		var question = (typeof itemLocal === 'object' && itemLocal.question) ?
+			itemLocal.question : item.question;
 		addNote(question, header, faqLinks);
 		block.appendChild(header);
 
@@ -1073,8 +1308,8 @@ function initHelpTab()
 		// answer
 		var content = document.createElement('p');
 		// import child nodes one by one as we may use XHTML there
-		var answer = (typeof itemLocal === 'object' && itemLocal.answer)
-			? itemLocal.answer : item.answer;
+		var answer = (typeof itemLocal === 'object' && itemLocal.answer) ?
+			itemLocal.answer : item.answer;
 
 		addNote(answer, content, faqLinks);
 		container.appendChild(content);
@@ -1130,371 +1365,203 @@ function initAboutTab()
 	});
 }
 
-function initModules()
-{
-	var modules = [], i;
-	for (i in Foxtrick.modules)
-		modules.push(Foxtrick.modules[i]);
-	// remove modules without categories
-	modules = Foxtrick.filter(function(m) { return m.MODULE_CATEGORY != undefined; }, modules);
-	// sort modules in alphabetical order. Links modules to the end
-	modules.sort(function(a, b) {
-		if (a.MODULE_NAME.search(/Links/) == 0)
-			if (b.MODULE_NAME.search(/Links/) == 0)
-				return a.MODULE_NAME.localeCompare(b.MODULE_NAME);
-			else
-				return 1;
-		else if (b.MODULE_NAME.search(/Links/) == 0)
-			return -1;
-		else
-			return a.MODULE_NAME.localeCompare(b.MODULE_NAME);
+function initTabs() {
+	// attach each tab with corresponding pane
+	$('#tabs li a').each(function() {
+		var tab = $(this).parent().attr('id').replace(/^tab-/, '');
+		$(this).attr('href', generateURI(tab));
 	});
-
-	for (var i = 0; i < modules.length; ++i) {
-		var module = modules[i];
-		var obj = getModule(module);
-		// show on view-by-category tab
-		$(obj).attr('x-on', module.MODULE_CATEGORY + ' all');
-		// show on view-by-page tab
-		if (module.PAGES) {
-			if (Foxtrick.has(module.PAGES, 'all'))
-				$(obj).attr('x-on', $(obj).attr('x-on') + ' universal');
-			else if (Foxtrick.intersect(module.PAGES, pageIds).length > 0)
-				$(obj).attr('x-on', $(obj).attr('x-on') + ' on_page');
-		}
-		$('#pane').append(obj);
-	}
+	// set up href of 'view by' links
+	$('#view-by-category a').attr('href', '#view-by=category');
+	$('#view-by-page a').attr('href', '#view-by=page');
+	// initialize the tabs
+	initMainTab();
+	initChangesTab();
+	initHelpTab();
+	initAboutTab();
+	initModules();
 }
 
-function saveEvent(ev) {
-	Foxtrick.log('save');
-	if ($(ev.target).attr('pref')) {
-		var pref = $(ev.target).attr('pref');
+function initTextAndValues() {
+	var locale = Foxtrick.Prefs.getString('htLanguage');
 
-		if ($(ev.target).is(':checkbox'))
-			Foxtrick.Prefs.setBool(pref, $(ev.target).is(':checked'));
-		else if ($(ev.target)[0].nodeName.toLowerCase() == 'select')
-			Foxtrick.Prefs.setString(pref, $(ev.target)[0].value);
-			// calculated just-in-time, so .attr('value') would fail here
-		else if ($(ev.target).is(':input'))
-			Foxtrick.Prefs.setString(pref, $(ev.target)[0].value);
-	} else if ($(ev.target)[0].nodeName.toLowerCase() == 'option'){
-		var pref = $($(ev.target)[0]).parent().attr('pref');
-		var value = $(ev.target)[0].value;
-		Foxtrick.Prefs.setString(pref, $(ev.target)[0].value);
-	} else {
-		var module = $(ev.target).attr('module');
-		if ($(ev.target).attr('option')) {
-			Foxtrick.log('option of module');
-			// option of module
-			var option = $(ev.target).attr('option');
-			if ($(ev.target).is(':checkbox'))
-				Foxtrick.Prefs.setModuleEnableState(module + '.' + option,
-				                                   $(ev.target).is(':checked'));
-			else if ($(ev.target).is(':input'))
-				Foxtrick.Prefs.setModuleOptionsText(module + '.' + option, $(ev.target)[0].value);
+	if (Foxtrick.L10n.getString('direction') == 'rtl')
+		$('html').attr('dir', 'rtl');
+
+	document.title = Foxtrick.L10n.getString('prefs.title');
+	$('#version').text(Foxtrick.version() + ' ' + Foxtrick.branch());
+
+	// initialize text
+	$('body [data-text]').each(function() {
+		if ($(this).attr('data-text')) {
+			var text = Foxtrick.L10n.getString($(this).attr('data-text'));
+			var node = document.createTextNode(text);
+			$(this).prepend(node);
 		}
-		else if ($(ev.target).is(':radio')) {
-			if ($(ev.target).is(':checked'))
-				Foxtrick.Prefs.setModuleValue(module, $(ev.target).prop('value'));
+	});
+
+	// initialize modules
+	$('#pane [module]').each(function() {
+		var module = $(this).attr('module');
+		if ($(this).attr('option')) {
+			var option = $(this).attr('option');
+			// module option
+			if ($(this).is(':checkbox')) {
+				if (Foxtrick.Prefs.isModuleOptionEnabled(module, option))
+					$(this).prop('checked', true);
+			}
+			else if ($(this).is(':input')) // text input
+				$(this)[0].value = Foxtrick.Prefs.getString('module.' + module + '.' + option);
+		}
+		else if ($(this).is(':radio')) {
+			// radio input
+			var selected = Foxtrick.Prefs.getModuleValue(module);
+			if ($(this).prop('value') == selected)
+				$(this).prop('checked', true);
+		}
+		else if (Foxtrick.Prefs.isModuleEnabled(module)) // module itself
+			$(this).prop('checked', true);
+	});
+	// initialize inputs
+	$('#pane input[pref]').each(function() {
+		if ($(this).is(':checkbox')) {
+			// checkbox
+			if (Foxtrick.Prefs.getBool($(this).attr('pref')))
+				$(this).prop('checked', true);
 		}
 		else {
-			Foxtrick.Prefs.setModuleEnableState(module, $(ev.target).is(':checked'));
-			Foxtrick.log('setModuleEnableState');
-		}
-	}
-	Foxtrick.Prefs.setBool('preferences.updated', true);
-}
-function save()
-{
-	var needsPermissions = checkPermissions();
-
-	if (!needsPermissions)
-		notice(Foxtrick.L10n.getString('prefs.feedback.saved'));
-	// else it is shown in permission request callback
-
-	Foxtrick.Prefs.setBool('preferences.updated', true);
-}
-
-function notice(msg)
-{
-	$('#note-content').text(msg);
-	$('#note').show('slow');
-}
-/**
- * Parse and add a note containing whitelisted HTML
- * markup and custom, predefined linkTags.
- * @param {String} note  Raw note to be parsed.
- * @param {DOMElement} parent    Element to add the note to.
- * @param {Object} links A map containing custom linkTags and their corresponding URLs.
- */
-function addNote(note, parent, links)
-{
-	/**
-	 * Create a white-listed tag or fall back to createLink
-	 * @param  {String} tagName	Name of the tag or link.
-	 * @param  {String} tagContent	Text content of the tag. Some tags may have other tags in them.
-	 * @return {DOMElement}	Element created.
-	 */
-	var createTag = function(tagName, tagContent) {
-		/**
-		 * Create specific DOM elements. This should be called for white-listed elements only.
-		 * @param  {String} nodeName    Name of the element to create.
-		 * @param  {String} textContent Text content of the element.
-		 * @param  {[Object]}	options   Map of properties and values of the element.
-		 * @return {DOMElement}	Element created.
-		 */
-		var createNode = function(nodeName, textContent, options) {
-			var opt;
-			var node = document.createElement(nodeName);
-			if (textContent !== null)
-				node.textContent = textContent;
-			if (options !== undefined && typeof(options) === 'object')
-				for (opt in options)
-					if (options.hasOwnProperty(opt))
-						node[opt] = options[opt];
-			return node;
-		};
-		var createNestedNode = function(nodeName, tagContent, options) {
-			var el = createNode(nodeName, null, options);
-			addNote(tagContent, el, links);
-			// recursively parse and add content to nodes with nesting enabled
-			return el;
-		};
-		var createLink = function(linkName, linkText) {
-			if (typeof(links) === 'object' && links.hasOwnProperty(linkName)) {
-				if (linkName.search('FTlink') === 0)
-					// links starting with 'FTlink' are assumed to be internal
-					// and open in the same tab
-					return createNode('a', linkText, { href: links[linkName] });
-				else
-					return createNode('a', linkText, { href: links[linkName], target: '_blank' });
-			}
-			else
-				// default to creating text nodes so no evil tags are actually rendered
-				return document.createTextNode(linkText);
-		};
-		switch (tagName) {
-			// simple white-listed HTML
-			case 'em':
-			case 'strong':
-				return createNode(tagName, tagContent);
-			// custom simple tags
-			case 'module':
-				return createNode('a', tagContent, {
-					href: '#module=' + tagContent
-				});
-			// white-listed tags allowed to have other tags in them
-			case 'ul':
-			case 'li':
-			case 'p':
-				return createNestedNode(tagName, tagContent);
-			case 'header':
-				return createNestedNode('h5', tagContent); //TODO change header if needed
-			default:
-			// defaults to links with predefined URLs, e. g. <linkHome>
-				return createLink(tagName, tagContent);
-		}
-	};
-
-	if (note === '')
-		return;
-
-	var noteContainer = document.createDocumentFragment();
-	// create a container to add all nodes before appending them to DOM in one go
-
-	var noteTokens = note.match(/<(\w+)>[\s\S]*?<\/\1>|[\s\S]+?(?=<(\w+)>[\s\S]*?<\/\2>|$)/mg);
-	// tokenize into text and outer tags, nesting will be delt with recursion
-	// allow only word characters for tag names and match only properly paired tags
-
-	var tagRegex = /^<(\w+)>([\s\S]*?)<\/\1>$/m;
-	for (var i = 0, token; token = noteTokens[i]; ++i) {
-		if (tagRegex.test(token)) {
-			var tag = tagRegex.exec(token);
-			// 0: whole token, 1: tagName, 2: tagContent
-			noteContainer.appendChild(createTag(tag[1], tag[2]));
-		}
-		else
-			noteContainer.appendChild(document.createTextNode(token));
-	}
-	parent.appendChild(noteContainer);
-}
-
-
-// permissions management
-
-// check if permissions are granted in init and ask for permission if needed on saving
-// that's unsave since we don't check permissions right before asking for them
-// but since permission request must be in the click handler and not in a callback
-// this seems to be the only way
-
-// should move/get that to the resp. modules
-var neededPermissions = [
-	/*{ modules: 'StaffMarker', types:{
-		origins: 'http://foxtrick.googlecode.com/svn/trunk/res/staff/*']}
-	},*/
-	{ modules: ['ExtraShortcuts.HtRadio'], types: { origins: ['http://stream.ht-radio.nl/*']}},
-	{ modules: ['ExtraShortcuts.No9'], types: { origins: ['http://no9-online.de/*']}},
-	{ modules: ['ExtraShortcuts.Latehome'], types: { origins: ['http://www.latehome.de/*']}},
-	/*{ modules: 'StaffMarker.HT-Youthclub'9, types: {
-		origins: ['http://foxtrick.googlecode.com/svn/trunk/res/staff/*']
-	}},*/
-	{ modules: ['EmbedMedia.EmbedModeOEmebed'], types: {
-		origins: ['https://vimeo.com/api/*', 'https://www.youtube.com/*',
-		'https://www.dailymotion.com/services/*']
-	}},
-	{ modules: ['EmbedMedia.EmbedFlickrImages'], types: {
-		origins: ['http://www.flickr.com/services/oembed/*']
-	}},
-	{ modules: ['EmbedMedia.EmbedDeviantArtImages'], types: {
-		origins: ['http://backend.deviantart.com/*']
-	}},
-	{ modules: ['EmbedMedia.EmbedSoundCloud'], types: { origins: ['http://soundcloud.com/*']}},
-	{ modules: ['EmbedMedia.EmbedImageshack'], types: { origins: ['http://imageshack.us/*']}},
-	{ modules: ['YouthTwins'], types: { origins: ['http://*.hattrick-youthclub.org/*']}},
-	{ modules: ['CopyYouth.AutoSendTrainingReportToHY'], types: { origins: ['http://*.hattrick-youthclub.org/*']}},
-	{ modules: ['CopyYouth.AutoSendRejectedToHY'], types: { origins: ['http://*.hattrick-youthclub.org/*']}},
-	{ modules: ['CopyYouth.AutoSendTrainingChangesToHY'], types: { origins: ['http://*.hattrick-youthclub.org/*']}},
-	{ modules: ['YouthSkills'], types: { origins: ['http://*.hattrick-youthclub.org/*']}},
-	{ modules: ['HTEVPrediction'], types: { origins: ['http://htev.org/api/*']}},
-	{ modules: ['MatchWeather'], types: { origins: ['http://api.openweathermap.org/*']}}
-];
-
-function permissionsMakeIdFromName(module) {
-	var id = '#pref-' + module;
-	if (id.indexOf('.') == -1)
-		id = id + '-check'; // main module check
-	else
-		id = id.replace(/\./g, '-'); // suboption check
-	return id;
-}
-
-function testPermissions() {
-	// initialize elements which need permissions, ask for permission if needed
-	if (Foxtrick.platform === 'Chrome') {
-		var makeChecker = function(id) {
-			return function() {
-				checkPermission(id);
-			};
-		};
-
-		var testModulePermission = function(neededPermission) {
-			chrome.permissions.contains(neededPermission['types'],
-			  function(result) {
-				for (var m = 0; m < neededPermission.modules.length; ++m) {
-					var module = neededPermission.modules[m];
-					var id = permissionsMakeIdFromName(module);
-					$(id).attr('permission-granted', result);
-					neededPermission.granted = result;
-					$(id).click(makeChecker(id));
-
-					if (result === false &&
-					    Foxtrick.Prefs.getBool('module.' + module + '.enabled')) {
-						Foxtrick.pushNew(modulelist, neededPermission.modules);
-						var needsPermHtml = Foxtrick.L10n.getString('prefs.needPermissions') +
-							'<ul><li>' + modulelist.join('</li><li>') + '</li></ul>';
-						$('#alert-text').html(needsPermHtml);
-						$('#alert').attr('style', 'display:block;');
-					}
-				}
-			});
-		};
-		var checkPermission = function(id) {
-			if ($(id).prop('checked') &&
-			    $(id).attr('permission-granted') == 'false')
-				getPermission(neededPermission);
-			else if (!$(id).prop('checked')) {
-				modulelist = Foxtrick.exclude(modulelist, module);
-				if (modulelist.length > 0) {
-					var needsPermHtml = Foxtrick.L10n.getString('prefs.needPermissions') +
-						'<ul><li>' + modulelist.join('</li><li>') + '</li></ul>';
-					$('#alert-text').html(needsPermHtml);
-					$('#alert').attr('style', 'display:block;');
-				}
-				else {
-					$('#alert-text').text('');
-					$('#alert').attr('style', 'display:none;');
-				}
-			}
-		};
-		var modulelist = [];
-		for (var i = 0; i < neededPermissions.length; ++i) {
-			testModulePermission(neededPermissions[i]);
-		}
-	}
-}
-
-function getPermission(neededPermission, showSaved) {
-	// Permissions must be requested from inside a user gesture, like a button's
-	// click handler.
-	chrome.permissions.request(neededPermission['types'],
-	  function(granted) {
-		// The callback argument will be true if the user granted the permissions.
-		for (var m = 0; m < neededPermission.modules.length; ++m) {
-			var id = permissionsMakeIdFromName(neededPermission.modules[m]);
-			if (!granted) {
-				$(id).prop('checked', false);
-				Foxtrick.Prefs.setBool('module.' + neededPermission.modules[m] + '.enabled', false);
-				Foxtrick.log('Permission declined: ', neededPermission.modules[m]);
-			}
-			else {
-				$(id).attr('permission-granted', true);
-				Foxtrick.log('Permission granted: ', neededPermission.modules[m]);
-			}
-			if (showSaved) {
-				notice(Foxtrick.L10n.getString('prefs.feedback.saved'));
-			}
+			// text input
+			$(this).attr('value', Foxtrick.Prefs.getString($(this).attr('pref')));
 		}
 	});
-}
+	$('#pane textarea[pref]').each(function() {
+		$(this).text(Foxtrick.Prefs.getString($(this).attr('pref')));
+	});
+	// initialize elements with blockers, disable if blocker enabled
+	$('body [blocked-by]').each(function() {
+		var blockee = $(this);
+		var blocker = $('#' + blockee.attr('blocked-by'));
+		var updateStatus = function() {
+			if (blocker.is(':checked'))
+				blockee.prop('disabled', true);
+			else
+				blockee.prop('disabled', false);
+		};
+		blocker.click(function() { updateStatus(); });
+		updateStatus();
+	});
+	// initialize elements with dependency, show only if dependency met
+	$('#pane [depends-on]').each(function() {
+		var depender = $(this);
+		var dependee = $('#' + depender.attr('depends-on'));
+		var updateStatus = function() {
+			if (dependee.is(':checked'))
+				Foxtrick.removeClass(depender[0], 'hidden');
+			else
+				Foxtrick.addClass(depender[0], 'hidden');
+		};
+		dependee.click(function() { updateStatus(); });
+		updateStatus();
+	});
 
-function revokePermissions() {
-	// removes current permissions
-	if (Foxtrick.platform === 'Chrome') {
-		for (var i = 0; i < neededPermissions.length; ++i) {
-			var revokeModulePermission = function(neededPermission) {
-				chrome.permissions.remove(neededPermission['types'],
-				  function(result) {
-					for (var m = 0; m < neededPermission.modules.length; ++m) {
-						var id = permissionsMakeIdFromName(neededPermission.modules[m]);
-						$(id).attr('permission-granted', false);
-						Foxtrick.log('Permission removed: ', neededPermission.modules[m], result);
-					}
-				});
-			};
-			revokeModulePermission(neededPermissions[i]);
+	// show page IDs in view-by-page
+	$('#view-by-page a').text($('#view-by-page a').text() + ' (' + pageIds.join(', ') + ')');
+
+	// initialize delete-token
+	var chpp_url = Foxtrick.Prefs.getString('last-host') +
+		'/MyHattrick/Preferences/ExternalAccessGrants.aspx';
+	var delDesc = $('#pref-delete-token-desc').text().
+		replace(/\{(.+)\}/, '<a href="' + chpp_url + '" target="_blank">$1</a>');
+	$('#pref-delete-token-desc').html(delDesc);
+	var oauth_keys = Foxtrick.Prefs.getAllKeysOfBranch('oauth');
+	if (oauth_keys) {
+		var teamids = Foxtrick.map(function(n) {
+			return n.match(/oauth\.(.+)\.accessToken/)[1];
+		}, oauth_keys);
+		teamids = Foxtrick.unique(teamids);
+		for (var i = 0; i < teamids.length; ++i) {
+			var id = parseInt(teamids[i], 10);
+			if (!isNaN(id)) {
+				var item = document.createElement('option');
+				item.value = id;
+				item.textContent = id;
+				$('#select-delete-token-teamids').append($(item));
+			}
+			else {
+				// delete invalid
+				var array = Foxtrick.Prefs.getAllKeysOfBranch('oauth.' + teamids[i]);
+				for (var j = 0; j < array.length; j++) {
+					Foxtrick.Prefs.deleteValue(array[j]);
+				}
+			}
 		}
 	}
 }
 
-function checkPermissions() {
-	var needsPermissions = false;
-	// ask for permissions if needed
-	if (Foxtrick.platform === 'Chrome') {
-		// combine all need permissions into on request
-		var combined_permissions = { modules: [], types: { permissions: [], origins: [] } };
-		Foxtrick.map(function(neededPermission) {
-			for (var m = 0; m < neededPermission.modules.length; ++m) {
-				var id = permissionsMakeIdFromName(neededPermission.modules[m]);
-				if (Foxtrick.Prefs.getBool('module.' + neededPermission.modules[m] + '.enabled')
-				    == true && $(id).attr('permission-granted') == 'false') {
-					needsPermissions = true;
-					Foxtrick.pushNew(combined_permissions.modules, neededPermission.modules);
-					if (neededPermission.types.permissions)
-						Foxtrick.pushNew(combined_permissions.types.permissions,
-						                       neededPermission.types.permissions);
-					if (neededPermission.types.origins)
-						Foxtrick.pushNew(combined_permissions.types.origins,
-						                       neededPermission.types.origins);
-				}
-			}
-		}, neededPermissions);
+function init() {
+	try {
+		$('body').hide();
+		initCoreModules();
+		getPageIds();
+		initTabs();
+		initSearch();    // important, run after module divs have been created (initTabs)
+		initListeners(); // important, run after module divs have been created (initTabs)
+		initTextAndValues();
+		locateFragment(window.location.toString()); // locate element by fragment
+		testPermissions();
+		$('body').show();
 
-		getPermission(combined_permissions, true);
+		// mobile
+		if (Foxtrick.Prefs.isModuleEnabled('MobileEnhancements')) {
+			$('#tabs').hide();
+			$('#content').addClass('ft-mobile');
+			Foxtrick.log(Foxtrick, 'MobileEnhancements');
+			Foxtrick.onClick($('#navigation-header')[0], function() {
+				$('#tabs').toggle();
+				$('#main').toggle();
+			});
+		}
+
+		/* Run a test. */
+		if (window.location.href.search(/saved=true/) !== -1) {
+			notice(Foxtrick.L10n.getString('prefs.feedback.saved'));
+			window.location.href = window.location.href.
+				substr(0, window.location.href.search(/\&saved=true/));
+		}
+		else if (window.location.href.search(/imported=true/) !== -1) {
+			notice(Foxtrick.L10n.getString('prefs.feedback.loaded'));
+			window.location.href = window.location.href.
+				substr(0, window.location.href.search(/\&imported=true/));
+		}
 	}
-	return needsPermissions;
-	// false prevents save notived be shown. will be shown delayed in getPermissions
+	catch (e) {
+		Foxtrick.log('init: ', e);
+	}
 }
 
+function initLoader() {
+	var w = document.location.href.match(/width=(\d+)/);
+	if (w)
+		document.getElementsByTagName('body')[0].setAttribute('style', 'width:' + w[1] + 'px;');
+
+	// fennec runs init() from injected entry.js (injected)
+	// called directly, it'll run and save actually for some reason
+
+	// gecko, safari, chrome
+	if (Foxtrick.arch === 'Gecko' || Foxtrick.chromeContext() === 'background')
+		init();
+	else
+		// opera prefs runs in content context. add need resources first
+		Foxtrick.SB.extension.sendRequest({ req: 'optionsPageLoad' },
+		  function(data) {
+			try {
+				Foxtrick.entry.contentScriptInit(data);
+				init();
+			}
+			catch (e) {
+				Foxtrick.log('initLoader: ', e);
+			}
+		});
+}
 // this is the preference script entry point for sandboxed arch
 initLoader();
