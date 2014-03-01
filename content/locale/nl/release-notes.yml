@@ -13,6 +13,7 @@ nl:
       embed_media: '<module>PsicoTSI</module> en <module>EmbedMedia</module> werden veiliger gemaakt.'
       other: '<header>Andere veranderingen</header>'
       report_format: '<module>MatchReportFormat</module> en <module>LiveMatchReportFormat</module> modules werden herschreven en werken nu zonder CHPP toegang.'
+      attvsdef: 'Echte kansen opgenomen in de module <module> AttVsDef </module> hebben nu ook invloed op balbezit berekening.'
       staff_marker: 'Aangepaste kleur interface in <module>StaffMarker</module> is nu optioneel.'
       mmdd: "Pijlen in <module>MainMenuDropDown</module> menu's zijn nu optioneel."
       and_more: Diverse andere kleine veranderingen en correcties.
@@ -31,8 +32,17 @@ nl:
       locale_support: 'Locale ondersteuning bijgewerkt: Euro valuta in Letland, nieuwe Spaanse dialect namen, gecorrigeerde tijd en datum formaten enz.'
       simulator_prob: '<module>MatchSimulator</module> was ook verbeterd met echte scoren/verdedigen/bezit waarschijnlijkheden van de nieuwe <module>MatchRatingsTweaks</module> module.'
       staff_marker: '<module>StaffMarker</module> is herschreven. Nieuwe opties voor supporters, teams die jij supportert en bondscoaches zijn toegevoegd.  Stel de voorkeuren om deze aan te passen aan jouw behoeftes.'
+      custom_marker: Een interface om gemakkelijk naam kleuren aan te passen is toegevoegd aan de voettekst van forumberichten.
+      links_enhancments: 'Je kun nu gemakkelijk alle <module>Links</module> uitschakelen en instellen hoe ze worden geopend.'
       psico_update: 'Een optie voor het weergeven van <module>PsicoTSI</module> voorspelling op de zijbalk links was geïmplementeerd.'
+      ff_button: The Firefox werkbalk knop zal nu beter reageren en zal de status van Foxtrick beter aangeven.
+      ff_disable: Door Foxtrick uit te schakelen, zal Foxtrick voorkeuren (wanneer geopend) worden gesloten en alle Hattrick vensters zullen herladen worden om alle Foxtrick opties uit te schakelen.
+      bugs: '<header>Fout herstel</header>'
+      stamina_data_bug: 'Conditie data welke is verzameld in <module>MatchLineupTweaks</module> zal niet langer teruggezet worden wanneer er oude wedstrijden worden geopend in Firefox.'
+      native_names: 'Geselecteerde landen zullen niet langer aangepast worden, wanneer er wordt teruggekeerd naar het transfer zoekformulier met inheemse landnamen ingeschakeld in <module>CountryList</module>.'
+      thread_author: '<module>HTThreadMarker</module> and <module>ForumAlterHeaderLine</module> zal nu de schrijver van een forum topic juist weergeven.'
     0.12.2.1:
+      note_1: Wijzigingen in Farsi en andere talen welke problemen gaven in Foxtrick zijn nu administratief verwerkt.
       note_3: Het probleem dat vreemde symbolen in plaats van valuta tekens veroorzaakte in Foxtrick, is opgelost
     0.12.2:
       note_0: '<header>Heel veel vertalingsupdates van onze geweldige gebruikers zijn gemaakt met behulp van de <linkCrowdin>crowdin tool</linkCrowdin>. Jij kan ons ook helpen!</header>'
@@ -40,12 +50,16 @@ nl:
       note_2: 'Nieuw: De module <module>PsicoTSI</module> is in Foxtrick opgenomen.'
       note_3: '<module>ShowLineupSet</module>: optie toegevoegd om je eigen team te laten opvallen in de ranglijst.'
       note_11: '<header>Bugfixes</header>'
+      note_12: "Het TSI NaN probleem op spelers pagina's of wanneer xml downloaden is uitgeschakeld is verholpen. (<module>Skilltable</module>, <module>TeamStats</module> etc.)"
+      note_15: 'De uitdaging snelkoppeling in <module>TeamPopupLinks</module> is opgelost.'
+      note_16: Een bug in het voorkeuren zoek menu is verholpen.
     0.12.1.1:
       note_0: Vertalingsupdates.
       note_1: 'Snelheid van <module>MainMenuDropDown</module> verbeterd.'
       note_2: Kleine verbeteringen in toegankelijkheid.
       note_3: 'Verbeteringen voor <module>CopyPosting</module> en <module>StaffMarker</module>.'
       note_4: Oplossingen voor een aantal geluidsgerelateerde kwesties doorgevoerd.
+      note_7: Het ratings herken probleem voor de Friese instelling is opgelost.
     0.12.1:
       note_0: '<header>Heel veel vertalingsupdates van onze geweldige gebruikers zijn gemaakt met behulp van de <linkCrowdin>crowdin tool</linkCrowdin>. Jij kan ons ook helpen!</header>'
       note_1: 'Nieuw: <module>SupportershipExpirationDate</module>: Klik op de resterende dagen in je overzicht, zal er voor zorgen dat je de vervaldatum van je supporterlidmaatschap kan zien'
@@ -69,6 +83,7 @@ nl:
       note_7: '<module>LiveAlert</module>: verschillende geluiden toegevoegd voor thuis/uit/eigen team goals.  Gebruikt standaard geluiden van <linkHTLS>HTLiveSight</linkHTLS>. Goals van je eigen team zullen niet direct herkend worden in Re-Live.'
       note_12: 'AddLeaveConfButton is hernoemd naar <module>ForumLeaveButton</module>'
       note_13: Vanaf nu, zal je browser en je Hattrick lay out automatisch zijn bijgesloten in berichten die je post op het Foxtrick forum. Dit zal ons helpen om problemen eerder op te lossen. Delete deze informatie alstublieft niet als je een posting maakt.
+      note_17: Safari updates lijken problemen te hebben. Gebruikers kunnen het beste de vorige Foxtrick versie verwijderen en de nieuwe installeren.
     0.11.0.1:
       note_0: '<header>Heel veel vertalingsupdates van onze geweldige gebruikers zijn gemaakt met behulp van de <linkCrowdin>crowdin tool</linkCrowdin>. Jij kan ons ook helpen!</header>'
     0.11.0:
