@@ -42,21 +42,13 @@ Foxtrick.modules.MatchPlayerColouring = {
 		if (Foxtrick.Pages.Match.isPrematch(doc))
 			return;
 
-
-		var isTeamLink = function(n) {
-			return (n.href.search(/Club\/\?TeamID=\d+/) > -1) ||
-				(n.href.search(/Youth\/(Default\.aspx)?\?YouthTeamID=\d+/) > -1) ||
-				(n.href.search(/NationalTeam\/NationalTeam\.aspx\?teamId=\d+/) > -1);
-		};
-
 		var sidebar = doc.getElementsByClassName('tblHighlights')[0];
-		var teams = doc.getElementById('testingNewHeader').getElementsByTagName('h1')[0].
-			getElementsByTagName('a');
-		teams = Foxtrick.filter(isTeamLink, teams);
 		var homeClass = this.getPlayerClass(doc, true);
 		var awayClass = this.getPlayerClass(doc, false);
-		Foxtrick.addClass(teams[0], homeClass);
-		Foxtrick.addClass(teams[1], awayClass);
+		var homeTeam = Foxtrick.Pages.Match.getHomeTeam(doc);
+		var awayTeam = Foxtrick.Pages.Match.getAwayTeam(doc);
+		Foxtrick.addClass(homeTeam, homeClass);
+		Foxtrick.addClass(awayTeam, awayClass);
 
 		// colour all player links
 		Foxtrick.forEach(function(n) {
