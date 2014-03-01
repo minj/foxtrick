@@ -70,6 +70,15 @@ Foxtrick.Pages.Match = {
 			return null;
 		}
 	},
+	/**
+	 * Get match date
+	 * @param  {document} doc
+	 * @return {Date}
+	 */
+	getDate: function(doc) {
+		var date = doc.getElementsByClassName('date')[0];
+		return Foxtrick.util.time.getDateFromText(date.textContent);
+	},
 
 	inProgress: function(doc) {
 		var matchStatus = doc.getElementById('ctl00_ctl00_CPContent_CPMain_lblMatchStatus');
