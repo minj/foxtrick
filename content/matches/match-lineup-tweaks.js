@@ -891,8 +891,8 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		}
 
 		Foxtrick.log('Existing StaminaData', data);
-
-		var tactics = Foxtrick.Pages.Match.getTacticsByTeam(doc).tactics[Number(!isHome)];
+		var table = Foxtrick.Pages.Match.getRatingsTable(doc);
+		var tactics = Foxtrick.Pages.Match.getTacticsByTeam(table).tactics[Number(!isHome)];
 		// don't parse pressing: affects stamina
 		if (tactics == 'pressing')
 			return;

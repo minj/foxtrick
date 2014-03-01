@@ -228,7 +228,7 @@ Foxtrick.modules['HTMSPrediction'] = {
 			Foxtrick.Math.hsToFloat(ratingstable.rows[7].cells[3].textContent),
 			Foxtrick.Math.hsToFloat(ratingstable.rows[7].cells[4].textContent)
 		];
-		var tacticsData = Foxtrick.Pages.Match.getTacticsByTeam(doc);
+		var tacticsData = Foxtrick.Pages.Match.getTacticsByTeam(ratingstable);
 		var tactics = tacticsData.tactics;
 		var tacticsLevel = tacticsData.level;
 

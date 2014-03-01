@@ -145,11 +145,10 @@ Foxtrick.Pages.Match = {
 	/**
 	 * Get tactics data for home and away teams
 	 * E. g. { tactics: ['aow', 'normal'], level: [15, 0] }
-	 * @param  {document}                                        doc
+	 * @param  {HTMLTableElement}                                ratingstable
 	 * @return { tactics: Array.<string>, level: Array.<number>}
 	 */
-	getTacticsByTeam: function(doc) {
-		var ratingstable = this.getRatingsTable(doc);
+	getTacticsByTeam: function(ratingstable) {
 		var tacticRow = 10, levelRow = 11;
 		if (this.hasIndSetPieces(ratingstable)) {
 			tacticRow = 14;
