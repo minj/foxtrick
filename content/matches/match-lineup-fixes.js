@@ -11,6 +11,7 @@ Foxtrick.modules['MatchLineupFixes'] = {
 	OPTIONS: [
 		'FixWeatherSEs', 'AddStarsToSubs', 'FixMultipleEvents', 'AddLinksInOrders'
 	],
+	NICE: 2, // after match-player-colouring
 	//CSS: Foxtrick.InternalPath + 'resources/css/match-lineup-fixes.css',
 	run: function(doc) {
 
@@ -155,62 +156,41 @@ Foxtrick.modules['MatchLineupFixes'] = {
 
 		// weather events don't have the player name in the timeline
 		var fixWeatherSEs = function() {
-			Foxtrick.util.api.retrieve(doc, detailsArgs, { cache_lifetime: 'session' },
-			  function(xml, errorText) {
-				if (!xml || errorText) {
-					Foxtrick.log(errorText);
-					return;
+			var events = doc.getElementsByClassName('matchevent');
+			// this catches both original HT events
+			// and our liveEvents (if match-report-format is on)
+			// we need to exclude hidden events (originals after MRF has run)
+			events = Foxtrick.filter(function(evt) {
+				return !Foxtrick.hasClass(evt, 'hidden');
+			}, events);
+			Foxtrick.forEach(function(evt, i) {
+				var evtType = parseInt(evt.dataset.eventtype, 10);
+				if (evtType > 300 && evtType < 310) {
+					// weather events
+					var playerLink = evt.getElementsByTagName('a')[0].cloneNode(true);
+					// let's inject a hidden row into
+					// match highlights table (report tab)
+					var table = doc.querySelector('table.tblHighlights');
+					var row = table.insertRow(-1);
+					Foxtrick.addClass(row, 'hidden');
+					var cell = row.insertCell(-1);
+					/*
+					 * here is the relevant snippet from HT code:
+					className = ht.timeline.getEventTypeHighlightClass(type);
+					eventControlSelector = "." + className + "#matchEventIndex_" + eventIndex
+					eventControl = ht.$(eventControlSelector);
+					 * getEventTypeHighlightClass returns undefined for weather SEs
+					 * so we need to fake this cell accordingly to be picked up by HTs ;)
+					 */
+					cell.id = 'matchEventIndex_' + i;
+					// README: match event index is assumed to be i here
+					// it normally works for regular events
+					// but might break in the future
+					// just like all things in HT :P
+					Foxtrick.addClass(cell, 'undefined');
+					cell.appendChild(playerLink);
 				}
-				var events = xml.getElementsByTagName('Event');
-				Foxtrick.map(function(evt) {
-					var evtMarkup = evt.getElementsByTagName('EventText')[0].textContent;
-					var evtType = evt.getElementsByTagName('EventTypeID')[0].textContent;
-
-					if (evtType > 300 && evtType < 310) {
-						// weather events
-						// <a href="\/Club\/Players\/(Youth)?Player\.aspx\?playerId=\d+"
-						// title="" class=""></a>
-						var url = evtMarkup.match(/href="(\/Club\/Players\/.+?)"/i);
-						var name = evtMarkup.match(/<a.+?>(.+?)<\/a>/i);
-						var className = evtMarkup.match(/class="(.+?)"/i);
-						if (!url || !name) {
-							Foxtrick.error('Weather SE player link parsing failed');
-							return;
-						}
-						var link = Foxtrick.createFeaturedElement(doc, module, 'a');
-						link.href = url[1];
-						link.textContent = name[1];
-						link.title = link.textContent;
-						if (className) {
-							Foxtrick.addClass(link, className[1]);
-							if (Foxtrick.Prefs.isModuleEnabled('MatchPlayerColouring')) {
-								var isHome = /home/i.test(className[1]);
-								var mpcClass = Foxtrick.modules.MatchPlayerColouring.
-									getPlayerClass(doc, isHome);
-								Foxtrick.addClass(link, mpcClass);
-							}
-						}
-						// let's inject a hidden row into
-						// match highlights table (report tab)
-						var table = doc.querySelector('table.tblHighlights');
-						var row = table.insertRow(-1);
-						Foxtrick.addClass(row, 'hidden');
-						var cell = row.insertCell(-1);
-						/*
-						 * here is the relevant snippet from HT code:
-						className = ht.timeline.getEventTypeHighlightClass(type);
-						eventControlSelector = "." + className + "#matchEventIndex_" + eventIndex
-						eventControl = ht.$(eventControlSelector);
-						 * getEventTypeHighlightClass returns undefined for weather SEs
-						 * so we need to fake this cell accordingly to be picked up by HTs ;)
-						 */
-						cell.id = 'matchEventIndex_' +
-							evt.attributes.getNamedItem('Index').textContent;
-						Foxtrick.addClass(cell, 'undefined');
-						cell.appendChild(link);
-					}
-				}, events);
-			});
+			}, events);
 		};
 
 		// add stars for players that leave the field
@@ -428,210 +408,201 @@ Foxtrick.modules['MatchLineupFixes'] = {
 				}
 			}
 
-			Foxtrick.util.api.retrieve(doc, detailsArgs, { cache_lifetime: 'session' },
-			  function(xml, errorText) {
-				if (!xml || errorText) {
-					Foxtrick.log(errorText);
-					return;
-				}
+			var homeId = Foxtrick.Pages.Match.getHomeTeamId(doc);
+			var awayId = Foxtrick.Pages.Match.getAwayTeamId(doc);
 
-				var homeId = xml.getElementsByTagName('HomeTeamID')[0].textContent;
-				var awayId = xml.getElementsByTagName('AwayTeamID')[0].textContent;
+			var homeArgs = [
+				['file', 'matchlineup'],
+				['matchID', matchId],
+				['teamID', homeId],
+				['SourceSystem', SourceSystem],
+				['version', '1.8']
+			];
+			var awayArgs = [
+				['file', 'matchlineup'],
+				['matchID', matchId],
+				['teamID', awayId],
+				['SourceSystem', SourceSystem],
+				['version', '1.8']
+			];
 
-				var homeArgs = [
-					['file', 'matchlineup'],
-					['matchID', matchId],
-					['teamID', homeId],
-					['SourceSystem', SourceSystem],
-					['version', '1.8']
-				];
-				var awayArgs = [
-					['file', 'matchlineup'],
-					['matchID', matchId],
-					['teamID', awayId],
-					['SourceSystem', SourceSystem],
-					['version', '1.8']
-				];
+			Foxtrick.util.api.retrieve(doc, homeArgs, { cache_lifetime: 'session' },
+			  function(homeXml, homeError) {
+				Foxtrick.util.api.retrieve(doc, awayArgs, { cache_lifetime: 'session' },
+				  function(awayXml, awayError) {
+					if (!homeXml || homeError || !awayXml || awayError) {
+						Foxtrick.log(homeError, awayError);
+						return;
+					}
+					/**
+					 * add <Substitution> xml (home or away) to appropriate events
+					 * @param	{Array}		subEvents	an array of sub objects
+					 * @param	{Array}		xmlSubs		an array of <substitution> xmls
+					 * @param	{Integer}	offset		offset to skip previously bound xml
+					 */
+					var bindXmlToEvents = function(subEvents, xmlSubs, offset) {
+						for (var i = 0; i < subEvents.length; i++) {
+							subEvents[i].xml = xmlSubs[i + offset];
+						}
+					};
 
-				Foxtrick.util.api.retrieve(doc, homeArgs, { cache_lifetime: 'session' },
-				  function(homeXml, homeError) {
-					Foxtrick.util.api.retrieve(doc, awayArgs, { cache_lifetime: 'session' },
-					  function(awayXml, awayError) {
-						if (!homeXml || homeError || !awayXml || awayError) {
-							Foxtrick.log(homeError, awayError);
+					/**
+					 * replace SbjPId & ObjPId in sub.xml with HTO IDs
+					 * HTO IDs are used in the timeline/ratings for HTO matches
+					 * @param	{Array}		subGroup	array of sub objects
+					 * @returns	{Boolean}				whether successful or not
+					 */
+					var addHTOIds = function(subGroup) {
+						var findPId = function(sourceId) {
+							for (var i = 0; i < HTOPlayers.length; i++) {
+								if (HTOPlayers[i].SourcePlayerId == sourceId)
+									return HTOPlayers[i].PlayerId;
+							}
+							return null;
+						};
+						for (var j = 0; j < subGroup.length; j++) {
+							var subXml = subGroup[j].xml;
+
+							var sbjIdEl = subXml.getElementsByTagName('SubjectPlayerID')[0];
+							var sbjId = sbjIdEl.textContent;
+							var realSbjId = findPId(sbjId);
+
+							var objIdEl = subXml.getElementsByTagName('ObjectPlayerID')[0];
+							var objId = objIdEl.textContent;
+							var realObjId;
+							// in case sbjPlayer leaves without sub
+							// XML: objId = 0, newPosId = 0, newPosBeh = -1
+							// @ref matchId: 394945951 teamId: 3110
+							if (objId == 0) {
+								realObjId = 0;
+							}
+							else
+								realObjId = findPId(objId);
+
+							if (realSbjId === null || realObjId === null)
+								return false;
+							sbjIdEl.textContent = realSbjId;
+							objIdEl.textContent = realObjId;
+						}
+						return true;
+					};
+
+					// we really can't tell
+					// how many stars the players have
+					// in the middle steps
+					// unless the position/behaviour is the same
+					// as after all subs have happened
+					var setStarsIfKnown = function(player, finalRatings) {
+						if (player.PositionID != -1) {
+							player.Stars = -1;
+							var finalPlayer = Foxtrick.filter(function(p) {
+								return p.PlayerId == player.PlayerId;
+							}, finalRatings.players)[0];
+							if (player.PositionID == finalPlayer.PositionID &&
+								player.PositionBehaviour ==
+									finalPlayer.PositionBehaviour)
+								player.Stars = finalPlayer.Stars;
+						}
+					};
+
+					var homeSubsXml = homeXml.getElementsByTagName('Substitution');
+					var awaySubsXml = awayXml.getElementsByTagName('Substitution');
+					// use two indices as offsets to bind correct xml
+					var homeSubsCt = 0;
+					var awaySubsCt = 0;
+
+					for (var i = 0; i < subGroups.length; i++) {
+						var subGroup = subGroups[i];
+						// divide the subs in subGroup by home/away
+						var homeSubsInGroup = [];
+						var awaySubsInGroup = [];
+						for (var j = 0; j < subGroup.length; j++) {
+							var sub = subGroup[j];
+							if (sub.isHome)
+								homeSubsInGroup.push(sub);
+							else
+								awaySubsInGroup.push(sub);
+						}
+						// bind the xml accordingly
+						bindXmlToEvents(homeSubsInGroup, homeSubsXml, homeSubsCt);
+						bindXmlToEvents(awaySubsInGroup, awaySubsXml, awaySubsCt);
+						// update the offsets so that already used xml is skipped later
+						homeSubsCt += homeSubsInGroup.length;
+						awaySubsCt += awaySubsInGroup.length;
+						if (subGroup.length == 1)
+							// we don't care about single subs any more
+							// they served their purpose as offsets
+							continue;
+						if (SourceSystem == 'HTOIntegrated' && !addHTOIds(subGroup)) {
+							// we can't do anything without HTOIds
+							Foxtrick.log('MatchLineupFixes: failed to add HTO IDs');
 							return;
 						}
-						/**
-						 * add <Substitution> xml (home or away) to appropriate events
-						 * @param	{Array}		subEvents	an array of sub objects
-						 * @param	{Array}		xmlSubs		an array of <substitution> xmls
-						 * @param	{Integer}	offset		offset to skip previously bound xml
-						 */
-						var bindXmlToEvents = function(subEvents, xmlSubs, offset) {
-							for (var i = 0; i < subEvents.length; i++) {
-								subEvents[i].xml = xmlSubs[i + offset];
-							}
-						};
 
-						/**
-						 * replace SbjPId & ObjPId in sub.xml with HTO IDs
-						 * HTO IDs are used in the timeline/ratings for HTO matches
-						 * @param	{Array}		subGroup	array of sub objects
-						 * @returns	{Boolean}				whether successful or not
-						 */
-						var addHTOIds = function(subGroup) {
-							var findPId = function(sourceId) {
-								for (var i = 0; i < HTOPlayers.length; i++) {
-									if (HTOPlayers[i].SourcePlayerId == sourceId)
-										return HTOPlayers[i].PlayerId;
+						// OK, we assume everything's OK now.
+						// Let's go through subs one by one and fix each one except the last
+						for (var j = 0; j < subGroup.length - 1; j++) {
+							var sub = subGroup[j];
+							var ratingsData = (sub.isHome) ? playerRatingsHome :
+								playerRatingsAway;
+							var ratings = ratingsData[sub.idx];
+
+							// ratings at last event
+							// used for setStarsIfKnown
+							var finalIdx = subGroup[subGroup.length - 1].idx;
+							var finalRatings = ratingsData[finalIdx];
+
+							// rewind to the event before this one
+							// since we go through subs one by one
+							// this will update the current iteration
+							// with previous changes (if any)
+							var goodIdx = sub.idx - 1;
+							rewindRatings(ratingsData, sub.idx, goodIdx);
+
+							// get the relevant players and apply sub
+							var sbjId = sub.xml
+								.getElementsByTagName('SubjectPlayerID')[0].textContent;
+							var objId = sub.xml
+								.getElementsByTagName('ObjectPlayerID')[0].textContent;
+							var sbjPlayer = Foxtrick.filter(function(p) {
+								return p.PlayerId == sbjId;
+							}, ratings.players)[0];
+							var objPlayer = Foxtrick.filter(function(p) {
+								return p.PlayerId == objId;
+							}, ratings.players)[0];
+							// in case sbjPlayer leaves without sub
+							// XML: objId = 0, newPosId = 0, newPosBeh = -1
+							// @ref matchId: 394945951 teamId: 3110
+							// this means objPlayer is null
+							if (objPlayer === null) {
+								sbjPlayer.PositionID = -1;
+							}
+							else {
+								var orderType = Number(sub.xml
+									.getElementsByTagName('OrderType')[0].textContent);
+								var targetPlayer = objPlayer, sourcePlayer = sbjPlayer;
+								if (orderType == 3) {
+									// for some weird reason NewPositionId
+									// is applied to sbjPlayer in swaps
+									targetPlayer = sbjPlayer;
+									sourcePlayer = objPlayer;
 								}
-								return null;
-							};
-							for (var j = 0; j < subGroup.length; j++) {
-								var subXml = subGroup[j].xml;
+								sourcePlayer.PositionBehaviour = targetPlayer.PositionBehaviour;
+								sourcePlayer.PositionID = targetPlayer.PositionID;
+								targetPlayer.PositionBehaviour = Number(sub.xml
+									.getElementsByTagName('NewPositionBehaviour')[0].textContent);
+								targetPlayer.PositionID = Number(sub.xml
+									.getElementsByTagName('NewPositionId')[0].textContent);
 
-								var sbjIdEl = subXml.getElementsByTagName('SubjectPlayerID')[0];
-								var sbjId = sbjIdEl.textContent;
-								var realSbjId = findPId(sbjId);
-
-								var objIdEl = subXml.getElementsByTagName('ObjectPlayerID')[0];
-								var objId = objIdEl.textContent;
-								var realObjId;
-								// in case sbjPlayer leaves without sub
-								// XML: objId = 0, newPosId = 0, newPosBeh = -1
-								// @ref matchId: 394945951 teamId: 3110
-								if (objId == 0) {
-									realObjId = 0;
-								}
-								else
-									realObjId = findPId(objId);
-
-								if (realSbjId === null || realObjId === null)
-									return false;
-								sbjIdEl.textContent = realSbjId;
-								objIdEl.textContent = realObjId;
-							}
-							return true;
-						};
-
-						// we really can't tell
-						// how many stars the players have
-						// in the middle steps
-						// unless the position/behaviour is the same
-						// as after all subs have happened
-						var setStarsIfKnown = function(player, finalRatings) {
-							if (player.PositionID != -1) {
-								player.Stars = -1;
-								var finalPlayer = Foxtrick.filter(function(p) {
-									return p.PlayerId == player.PlayerId;
-								}, finalRatings.players)[0];
-								if (player.PositionID == finalPlayer.PositionID &&
-									player.PositionBehaviour ==
-										finalPlayer.PositionBehaviour)
-									player.Stars = finalPlayer.Stars;
-							}
-						};
-
-						var events = xml.getElementsByTagName('Event');
-						var homeSubsXml = homeXml.getElementsByTagName('Substitution');
-						var awaySubsXml = awayXml.getElementsByTagName('Substitution');
-						// use two indices as offsets to bind correct xml
-						var homeSubsCt = 0;
-						var awaySubsCt = 0;
-
-						for (var i = 0; i < subGroups.length; i++) {
-							var subGroup = subGroups[i];
-							// divide the subs in subGroup by home/away
-							var homeSubsInGroup = [];
-							var awaySubsInGroup = [];
-							for (var j = 0; j < subGroup.length; j++) {
-								var sub = subGroup[j];
-								if (sub.isHome)
-									homeSubsInGroup.push(sub);
-								else
-									awaySubsInGroup.push(sub);
-							}
-							// bind the xml accordingly
-							bindXmlToEvents(homeSubsInGroup, homeSubsXml, homeSubsCt);
-							bindXmlToEvents(awaySubsInGroup, awaySubsXml, awaySubsCt);
-							// update the offsets so that already used xml is skipped later
-							homeSubsCt += homeSubsInGroup.length;
-							awaySubsCt += awaySubsInGroup.length;
-							if (subGroup.length == 1)
-								// we don't care about single subs any more
-								// they served their purpose as offsets
-								continue;
-							if (SourceSystem == 'HTOIntegrated' && !addHTOIds(subGroup)) {
-								// we can't do anything without HTOIds
-								Foxtrick.log('MatchLineupFixes: failed to add HTO IDs');
-								return;
-							}
-
-							// OK, we assume everything's OK now.
-							// Let's go through subs one by one and fix each one except the last
-							for (var j = 0; j < subGroup.length - 1; j++) {
-								var sub = subGroup[j];
-								var ratingsData = (sub.isHome) ? playerRatingsHome :
-									playerRatingsAway;
-								var ratings = ratingsData[sub.idx];
-
-								// ratings at last event
-								// used for setStarsIfKnown
-								var finalIdx = subGroup[subGroup.length - 1].idx;
-								var finalRatings = ratingsData[finalIdx];
-
-								// rewind to the event before this one
-								// since we go through subs one by one
-								// this will update the current iteration
-								// with previous changes (if any)
-								var goodIdx = sub.idx - 1;
-								rewindRatings(ratingsData, sub.idx, goodIdx);
-
-								// get the relevant players and apply sub
-								var sbjId = sub.xml
-									.getElementsByTagName('SubjectPlayerID')[0].textContent;
-								var objId = sub.xml
-									.getElementsByTagName('ObjectPlayerID')[0].textContent;
-								var sbjPlayer = Foxtrick.filter(function(p) {
-									return p.PlayerId == sbjId;
-								}, ratings.players)[0];
-								var objPlayer = Foxtrick.filter(function(p) {
-									return p.PlayerId == objId;
-								}, ratings.players)[0];
-								// in case sbjPlayer leaves without sub
-								// XML: objId = 0, newPosId = 0, newPosBeh = -1
-								// @ref matchId: 394945951 teamId: 3110
-								// this means objPlayer is null
-								if (objPlayer === null) {
-									sbjPlayer.PositionID = -1;
-								}
-								else {
-									var orderType = Number(sub.xml
-										.getElementsByTagName('OrderType')[0].textContent);
-									var targetPlayer = objPlayer, sourcePlayer = sbjPlayer;
-									if (orderType == 3) {
-										// for some weird reason NewPositionId
-										// is applied to sbjPlayer in swaps
-										targetPlayer = sbjPlayer;
-										sourcePlayer = objPlayer;
-									}
-									sourcePlayer.PositionBehaviour = targetPlayer.PositionBehaviour;
-									sourcePlayer.PositionID = targetPlayer.PositionID;
-									targetPlayer.PositionBehaviour = Number(sub.xml
-										.getElementsByTagName('NewPositionBehaviour')[0].textContent);
-									targetPlayer.PositionID = Number(sub.xml
-										.getElementsByTagName('NewPositionId')[0].textContent);
-
-									setStarsIfKnown(sbjPlayer, finalRatings);
-									setStarsIfKnown(objPlayer, finalRatings);
-								}
+								setStarsIfKnown(sbjPlayer, finalRatings);
+								setStarsIfKnown(objPlayer, finalRatings);
 							}
 						}
+					}
 
-						// don't forget to save, dumbo!
-						saveRatings(playerRatingsHome);
-						saveRatings(playerRatingsAway);
-					});
+					// don't forget to save, dumbo!
+					saveRatings(playerRatingsHome);
+					saveRatings(playerRatingsAway);
 				});
 			});
 		};
