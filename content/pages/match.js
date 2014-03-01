@@ -118,6 +118,38 @@ Foxtrick.Pages.Match = {
 		return true;
 	},
 
+	getRatingsByTeam: function(ratingstable) {
+		var ratings = {};
+		ratings.mf = [
+			Foxtrick.Math.hsToFloat(ratingstable.rows[1].cells[3].textContent),
+			Foxtrick.Math.hsToFloat(ratingstable.rows[1].cells[4].textContent)
+		];
+		ratings.rd = [
+			Foxtrick.Math.hsToFloat(ratingstable.rows[2].cells[3].textContent),
+			Foxtrick.Math.hsToFloat(ratingstable.rows[2].cells[4].textContent)
+		];
+		ratings.cd = [
+			Foxtrick.Math.hsToFloat(ratingstable.rows[3].cells[3].textContent),
+			Foxtrick.Math.hsToFloat(ratingstable.rows[3].cells[4].textContent)
+		];
+		ratings.ld = [
+			Foxtrick.Math.hsToFloat(ratingstable.rows[4].cells[3].textContent),
+			Foxtrick.Math.hsToFloat(ratingstable.rows[4].cells[4].textContent)
+		];
+		ratings.ra = [
+			Foxtrick.Math.hsToFloat(ratingstable.rows[5].cells[3].textContent),
+			Foxtrick.Math.hsToFloat(ratingstable.rows[5].cells[4].textContent)
+		];
+		ratings.ca = [
+			Foxtrick.Math.hsToFloat(ratingstable.rows[6].cells[3].textContent),
+			Foxtrick.Math.hsToFloat(ratingstable.rows[6].cells[4].textContent)
+		];
+		ratings.la = [
+			Foxtrick.Math.hsToFloat(ratingstable.rows[7].cells[3].textContent),
+			Foxtrick.Math.hsToFloat(ratingstable.rows[7].cells[4].textContent)
+		];
+		return ratings;
+	},
 	getTacticsLevelFromCell: function(cell) {
 		var basevalue = 0;
 		if (cell.firstChild.nodeName == 'A')

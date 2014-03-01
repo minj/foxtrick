@@ -19,43 +19,22 @@ Foxtrick.modules['Ratings'] = {
 	},
 	run: function(doc) {
 
-		var isprematch = (doc.getElementById('ctl00_ctl00_CPContent_CPMain_pnlPreMatch') != null);
-		if (isprematch) return;
+		if (Foxtrick.Pages.Match.isPrematch(doc) || Foxtrick.Pages.Match.inProgress(doc))
+			return;
 
 		var ratingstable = Foxtrick.Pages.Match.getRatingsTable(doc);
 
-		if (ratingstable == null) return;
 		if (Foxtrick.Pages.Match.isWalkOver(ratingstable))
 			return;
 
-		var midfieldLevel = [
-			Foxtrick.Math.hsToFloat(ratingstable.rows[1].cells[3].textContent),
-			Foxtrick.Math.hsToFloat(ratingstable.rows[1].cells[4].textContent)
-		];
-		var rdefence = [
-			Foxtrick.Math.hsToFloat(ratingstable.rows[2].cells[3].textContent),
-			Foxtrick.Math.hsToFloat(ratingstable.rows[2].cells[4].textContent)
-		];
-		var cdefence = [
-			Foxtrick.Math.hsToFloat(ratingstable.rows[3].cells[3].textContent),
-			Foxtrick.Math.hsToFloat(ratingstable.rows[3].cells[4].textContent)
-		];
-		var ldefence = [
-			Foxtrick.Math.hsToFloat(ratingstable.rows[4].cells[3].textContent),
-			Foxtrick.Math.hsToFloat(ratingstable.rows[4].cells[4].textContent)
-		];
-		var rattack = [
-			Foxtrick.Math.hsToFloat(ratingstable.rows[5].cells[3].textContent),
-			Foxtrick.Math.hsToFloat(ratingstable.rows[5].cells[4].textContent)
-		];
-		var cattack = [
-			Foxtrick.Math.hsToFloat(ratingstable.rows[6].cells[3].textContent),
-			Foxtrick.Math.hsToFloat(ratingstable.rows[6].cells[4].textContent)
-		];
-		var lattack = [
-			Foxtrick.Math.hsToFloat(ratingstable.rows[7].cells[3].textContent),
-			Foxtrick.Math.hsToFloat(ratingstable.rows[7].cells[4].textContent)
-		];
+		var ratings = Foxtrick.Pages.Match.getRatingsByTeam(ratingstable);
+		var midfieldLevel = ratings.mf;
+		var rdefence = ratings.rd;
+		var cdefence = ratings.cd;
+		var ldefence = ratings.ld;
+		var rattack = ratings.ra;
+		var cattack = ratings.ca;
+		var lattack = ratings.la;
 
 		var tacticsData = Foxtrick.Pages.Match.getTacticsByTeam(ratingstable);
 		var tactics = tacticsData.tactics;
