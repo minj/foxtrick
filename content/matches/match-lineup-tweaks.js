@@ -61,8 +61,12 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		var entry = doc.querySelector('#divPlayers h4');
 		entry.parentNode.replaceChild(toggleDiv, entry);
 
-		if (!isYouth && Foxtrick.Prefs.isModuleOptionEnabled('MatchLineupTweaks', 'GatherStaminaData'))
+		if (!isYouth &&
+		    Foxtrick.Prefs.isModuleOptionEnabled('MatchLineupTweaks', 'GatherStaminaData')) {
 			this.gatherStaminaData(doc);
+			// debug mode for home (true) or away (false)
+			// this.gatherStaminaData(doc, true);
+		}
 
 		// run change now as sometimes we are too slow to init the listener
 		// causing display to be broken on first load
@@ -785,18 +789,26 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 	},
 	/**
 	 * Gather stamina data to be used for match-simulator and player table
-	 * @param	{document}	doc
+	 * @param {document} doc
+	 * @param {boolean}  forceHome a flag to enable debug mode for home/away
 	 */
-	gatherStaminaData: function(doc) {
-		// only gather data for own team
-		var homeId = Foxtrick.Pages.Match.getHomeTeamId(doc);
-		var awayId = Foxtrick.Pages.Match.getAwayTeamId(doc);
-		var ownId = Foxtrick.util.id.getOwnTeamId();
+	gatherStaminaData: function(doc, forceHome) {
+		var debug = false;
 		var isHome = false;
-		if (homeId == ownId)
-			isHome = true;
-		else if (awayId != ownId)
-			return;
+		if (typeof forceHome === 'undefined') {
+			// only gather data for own team
+			var homeId = Foxtrick.Pages.Match.getHomeTeamId(doc);
+			var awayId = Foxtrick.Pages.Match.getAwayTeamId(doc);
+			var ownId = Foxtrick.util.id.getOwnTeamId();
+			if (homeId == ownId)
+				isHome = true;
+			else if (awayId != ownId)
+				return;
+		}
+		else {
+			isHome = forceHome;
+			debug = true;
+		}
 
 		var getStamina = function(lastEnergy, checkpoints, isRested) {
 			// these formulas are derrived from the formula used in match-simulator
@@ -960,7 +972,8 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 				}
 			}, players);
 			Foxtrick.log('StaminaData:', matchDate, players, data);
-			Foxtrick.Prefs.setString('StaminaData.' + ownId, JSON.stringify(data));
+			if (!debug)
+				Foxtrick.Prefs.setString('StaminaData.' + ownId, JSON.stringify(data));
 		});
 	},
 
