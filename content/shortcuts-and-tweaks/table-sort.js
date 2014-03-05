@@ -219,7 +219,8 @@ Foxtrick.modules['TableSort'] = {
 		}
 
 		for (var i = 0; i < tables.length; ++i) {
-			if (tables[i].getAttribute('id') == 'ft_skilltable')
+			if (tables[i].getAttribute('id') == 'ft_skilltable' ||
+			    Foxtrick.hasClass(tables[i], 'tablesorter'))
 				continue;
 			var ths = tables[i].getElementsByTagName('th');
 			for (var j = 0; j < ths.length; ++j) {
