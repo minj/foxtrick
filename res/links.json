@@ -1436,21 +1436,21 @@
 		},
 		"countryidranges": [
 			[50, 50],
-			[104, 107],
+			[89, 89],
+			[91, 91],
+			[93, 107],
 			[110, 113],
 			[117, 148]
 		],
 		"nationalityranges": [
-			[
-				50,
-				50
-			],
-			[
-				117,
-				148
-			]
+			[50, 50],
+			[89, 89],
+			[91, 91],
+			[93, 107],
+			[110, 113],
+			[117, 148]
 		],
-		"title": "Hellenic Hattrick Community Statistics",
+		"title": "HCStats",
 		"img": "http://hcstats.com/favicon.ico"
 	},
 	"hatstatsnet": {
