@@ -36,30 +36,19 @@ Foxtrick.modules['ForumLeaveButton'] = {
 			var sUrl = Foxtrick.getHref(doc);
 			var confPos = sUrl.search(/LeaveConf=/i);
 			if (confPos > -1) {
-				var confName = sUrl.substr(confPos + 10).replace(/\%20/g, ' ');
-				var ul = doc.getElementById('ctl00_ctl00_CPContent_CPMain_rlFolders__rbl');
-				var liElems = ul.getElementsByTagName('li');
-				for (var i = 0; i < liElems.length; i++) {
-					var subDivs = liElems[i].firstChild.getElementsByTagName('div');
-					for (var k = 0; k < subDivs.length; k++) {
-						if (subDivs[k].className == 'float_left prioFolderName' &&
-							subDivs[k].getElementsByTagName('a')[0].textContent.trim() ==
-							confName) {
-							var inputs = subDivs[k + 1].getElementsByTagName('input');
-							for (var j = 0; j < inputs.length; j++) {
-								if (inputs[j].className == 'leave') {
-
-									var func = "javascript:__doPostBack('";
-									func += inputs[j].getAttribute('name');
-									func += "', '')";
-									if (func) {
-										doc.location.href = func;
-									}
-								}
-							}
-						}
+				var confName = Foxtrick.getParameterFromUrl(sUrl, 'LeaveConf');
+				confName = confName.replace(/\%20/g, ' ');
+				var ulId = 'ctl00_ctl00_CPContent_CPMain_ucForumPreferences_rlFolders__rbl';
+				var ul = doc.getElementById(ulId);
+				var names = ul.getElementsByClassName('prioFolderName');
+				Foxtrick.any(function(div) {
+					if (div.textContent.trim() === confName) {
+						var leave = div.parentNode.getElementsByClassName('leave')[0];
+						leave.click();
+						return true;
 					}
-				}
+					return false;
+				}, names);
 			}
 		}
 	},
