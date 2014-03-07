@@ -208,6 +208,9 @@ Foxtrick.Pages.Match = {
 	 * @return box to be added to
 	 */
 	addBoxToSidebar: function(doc, title, content, prec) {
+		if (this.isPrematch(doc))
+			// redirect to old style in prematch
+			return Foxtrick.addBoxToSidebar.apply(Foxtrick, arguments);
 		// class of the box to add
 		var boxClass = '';
 		var sidebar;
