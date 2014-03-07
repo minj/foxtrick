@@ -709,7 +709,7 @@ Foxtrick.util.matchEvent.addEventIndicator = function(event, invert) {
 			if (event.nextSibling)
 				event.parentNode.insertBefore(indicator, event.nextSibling);
 			else
-				event.appendChild(indicator);
+				event.parentNode.appendChild(indicator);
 		}
 	}
 };
