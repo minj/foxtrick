@@ -7,7 +7,7 @@
 
 Foxtrick.modules['MatchLineupTweaks'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.MATCHES,
-	PAGES: ['match'],
+	PAGES: ['match', 'matchesLive'],
 	OPTIONS: [
 		'DisplayTeamNameOnField', 'ShowSpecialties',
 		'ConvertStars',
@@ -23,9 +23,27 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 	],
 	CSS: Foxtrick.InternalPath + 'resources/css/match-lineup-tweaks.css',
 	run: function(doc) {
+		if (!Foxtrick.Pages.Match.hasRatingsTabs(doc))
+			return;
+
+		this.addSplitLineupToggle(doc);
+
+		if (Foxtrick.Prefs.isModuleOptionEnabled('MatchLineupTweaks', 'GatherStaminaData')) {
+			this.gatherStaminaData(doc);
+			// debug mode for home (true) or away (false)
+			// this.gatherStaminaData(doc, true);
+		}
+
+		// run change now as sometimes we are too slow to init the listener
+		// causing display to be broken on first load
+		this.change(doc);
+
+	},
+	addSplitLineupToggle: function(doc) {
 		var module = this;
-		if (Foxtrick.Pages.Match.isPrematch(doc)
-			|| Foxtrick.Pages.Match.inProgress(doc))
+		var SPLIT_TOGGLE_ID = 'ft-split-lineup-toggle';
+		if (doc.getElementById(SPLIT_TOGGLE_ID))
+			// already done
 			return;
 
 		var isYouth = Foxtrick.Pages.Match.isYouth(doc);
@@ -37,13 +55,14 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			if (awayId == teamId)
 				this.showAway = true;
 		}
-		// add split-lineup-toggle
+
 		var toggleDiv = Foxtrick.createFeaturedElement(doc, this, 'div');
 		toggleDiv.id = 'ft-split-lineup-toggle-div';
 		var toggle = doc.createElement('input');
 		toggle.type = 'checkbox';
-		toggle.id = 'ft-split-lineup-toggle';
-		toggle.checked = Foxtrick.Prefs.isModuleOptionEnabled('MatchLineupTweaks', 'SplitLineup');
+		toggle.id = SPLIT_TOGGLE_ID;
+		toggle.checked =
+			Foxtrick.Prefs.isModuleOptionEnabled('MatchLineupTweaks', 'SplitLineup');
 		Foxtrick.onClick(toggle, function(ev) {
 			var doSplit = ev.target.checked;
 			Foxtrick.Prefs.setModuleEnableState('MatchLineupTweaks.SplitLineup', doSplit);
@@ -56,22 +75,11 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		toggleDiv.appendChild(toggle);
 		var togLabel = doc.createElement('label');
 		togLabel.setAttribute('for', 'ft-split-lineup-toggle');
-		togLabel.textContent = Foxtrick.L10n.getString('module.MatchLineupTweaks.SplitLineup.desc');
+		togLabel.textContent =
+			Foxtrick.L10n.getString('module.MatchLineupTweaks.SplitLineup.desc');
 		toggleDiv.appendChild(togLabel);
 		var entry = doc.querySelector('#divPlayers h4');
 		entry.parentNode.replaceChild(toggleDiv, entry);
-
-		if (!isYouth &&
-		    Foxtrick.Prefs.isModuleOptionEnabled('MatchLineupTweaks', 'GatherStaminaData')) {
-			this.gatherStaminaData(doc);
-			// debug mode for home (true) or away (false)
-			// this.gatherStaminaData(doc, true);
-		}
-
-		// run change now as sometimes we are too slow to init the listener
-		// causing display to be broken on first load
-		this.change(doc);
-
 	},
 	// add substition icon for players on the field
 	// that are involved in substitutions
@@ -229,10 +237,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 	},
 	//adds apecialty icons for all players, on field and on bench
 	runSpecialties: function(doc) {
-		var body = doc.getElementById('mainBody');
-		var teams = body.querySelectorAll('h1 > a, h1 > span > a');
-
-		if (!teams.length)
+		if (!Foxtrick.Pages.Match.getHomeTeam(doc))
 			return; // we're not ready yet
 
 		var homeTeamId = Foxtrick.Pages.Match.getHomeTeamId(doc);
@@ -308,10 +313,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		addSpecialtiesByTeamId(awayTeamId, awayPlayerLinks);
 	},
 	runMissing: function(doc) {
-		var body = doc.getElementById('mainBody');
-		var teams = body.querySelectorAll('h1 > a, h1 > span > a');
-
-		if (!teams.length)
+		if (!Foxtrick.Pages.Match.getHomeTeam(doc))
 			return; // we're not ready yet
 
 		if (doc.getElementsByClassName('ft-playerMissing').length)
@@ -371,10 +373,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		addMissingByTeamId(awayTeamId, awayPlayerLinks);
 	},
 	runFaces: function(doc) {
-		var body = doc.getElementById('mainBody');
-		var teams = body.querySelectorAll('h1 > a, h1 > span > a');
-
-		if (!teams.length)
+		if (!Foxtrick.Pages.Match.getHomeTeam(doc))
 			return; // we're not ready yet
 
 		var homeTeamId = Foxtrick.Pages.Match.getHomeTeamId(doc);
@@ -729,6 +728,9 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 	showAway: false,
 	// split lineup into two for home/away
 	splitLineup: function(doc) {
+		if (!Foxtrick.Pages.Match.hasRatingsTabs(doc))
+			return;
+
 		this.hideOtherTeam(doc);
 		// that one started: stop again
 		//Foxtrick.stopListenToChange(doc);
@@ -793,6 +795,8 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 	 * @param {boolean}  forceHome a flag to enable debug mode for home/away
 	 */
 	gatherStaminaData: function(doc, forceHome) {
+		if (Foxtrick.Pages.Match.isYouth(doc))
+			return;
 		var debug = false;
 		var isHome = false;
 		var ownId = Foxtrick.util.id.getOwnTeamId();
@@ -853,7 +857,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		var playerRatings = Foxtrick.Pages.Match.getTeamRatingsByEvent(doc, isHome);
 
 		if (!playerRatings.length) {
-			// most likely WO
+			// most likely WO, or match in progress
 			// abort
 			return;
 		}
@@ -968,8 +972,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 	},
 
 	change: function(doc) {
-		if (Foxtrick.Pages.Match.isPrematch(doc)
-			|| Foxtrick.Pages.Match.inProgress(doc))
+		if (!Foxtrick.Pages.Match.hasRatingsTabs(doc))
 			return;
 
 		var isYouth = Foxtrick.Pages.Match.isYouth(doc);
@@ -977,10 +980,12 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		Foxtrick.stopListenToChange(doc);
 
 		var playerDivs = doc.querySelectorAll('div.playerDiv');
-		if (playerDivs.length && playerDivs[0].getElementsByClassName('ft-indicator-wrapper').length)
+		if (playerDivs.length &&
+		    playerDivs[0].getElementsByClassName('ft-indicator-wrapper').length)
 			// been here before
 			return;
 
+		this.addSplitLineupToggle(doc);
 		if (Foxtrick.Prefs.isModuleOptionEnabled('MatchLineupTweaks', 'SplitLineup'))
 			this.splitLineup(doc);
 

@@ -7,7 +7,7 @@
 
 Foxtrick.modules['MatchRatingsTweaks'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.MATCHES,
-	PAGES: ['match'],
+	PAGES: ['match', 'matchesLive'],
 	CSS: Foxtrick.InternalPath + 'resources/css/match-ratings-tweaks.css',
 	OPTIONS: [
 		'FollowChanges',
@@ -17,18 +17,26 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 		Foxtrick.InternalPath + 'resources/css/match-ratings-follow.css',
 		null, // don't use a separate file as this option is dynamic
 	],
-
 	/**
-	 * @param	{document}	doc
+	 * @param  {document} doc
 	 */
 	run: function(doc) {
-		if (Foxtrick.Pages.Match.isPrematch(doc)
-			|| Foxtrick.Pages.Match.inProgress(doc))
-			return;
+		// run change now as sometimes we are too slow to init the listener
+		// causing display to be broken on first load
+		this.change(doc);
+	},
+	prepareField: function(doc) {
 		var module = this;
+		var OPTIONS_DIV_ID = 'ft-matchRatingsOptions';
+		if (doc.getElementById(OPTIONS_DIV_ID))
+			// done
+			return;
+
 		var sectorsField = doc.getElementById('sectorsField');
-		var doProb = Foxtrick.Prefs.isModuleOptionEnabled('MatchRatingsTweaks', 'RealProbabilities');
-		var doChanges = Foxtrick.Prefs.isModuleOptionEnabled('MatchRatingsTweaks', 'FollowChanges');
+		var doProb =
+			Foxtrick.Prefs.isModuleOptionEnabled('MatchRatingsTweaks', 'RealProbabilities');
+		var doChanges =
+			Foxtrick.Prefs.isModuleOptionEnabled('MatchRatingsTweaks', 'FollowChanges');
 		if (doChanges) {
 			// add team names
 			var home = Foxtrick.Pages.Match.getHomeTeamName(doc);
@@ -47,7 +55,7 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 		// add options
 		var optionsDiv = Foxtrick.createFeaturedElement(doc, this, 'div');
 		Foxtrick.addClass(optionsDiv, 'ft-ratings-box');
-		optionsDiv.id = 'ft-matchRatingsOptions';
+		optionsDiv.id = OPTIONS_DIV_ID;
 		var optionsTable = doc.createElement('table');
 		optionsTable.id = 'ft-matchRatingsTable';
 		var tbody = doc.createElement('tbody');
@@ -99,10 +107,6 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 		if (!doProb)
 			Foxtrick.addClass(p, 'hidden');
 		htP.parentNode.insertBefore(p, htP);
-
-		// run change now as sometimes we are too slow to init the listener
-		// causing display to be broken on first load
-		this.change(doc);
 	},
 	/**
 	 * Placeholder for sector abbreviations
@@ -137,11 +141,13 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 	 * @param	{document}	doc
 	 */
 	change: function(doc) {
-		if (Foxtrick.Pages.Match.isPrematch(doc)
-			|| Foxtrick.Pages.Match.inProgress(doc))
+		if (!Foxtrick.Pages.Match.hasRatingsTabs(doc))
 			return;
 
-		var doProb = Foxtrick.Prefs.isModuleOptionEnabled('MatchRatingsTweaks', 'RealProbabilities');
+		this.prepareField(doc);
+
+		var doProb =
+			Foxtrick.Prefs.isModuleOptionEnabled('MatchRatingsTweaks', 'RealProbabilities');
 		// sync the checkbox
 		var chkbox = doc.getElementById('ft-matchRatingProb');
 		if (chkbox && chkbox.checked !== doProb) {
@@ -149,7 +155,8 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 			Foxtrick.toggleClass(doc.getElementById('ft-probabilityDesc'), 'hidden');
 			Foxtrick.toggleClass(doc.getElementById('ht-probabilityDesc'), 'hidden');
 		}
-		var doChanges = Foxtrick.Prefs.isModuleOptionEnabled('MatchRatingsTweaks', 'FollowChanges');
+		var doChanges =
+			Foxtrick.Prefs.isModuleOptionEnabled('MatchRatingsTweaks', 'FollowChanges');
 		if (!doChanges && !doProb)
 			return;
 

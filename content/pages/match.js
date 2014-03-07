@@ -12,17 +12,29 @@ if (!Foxtrick.Pages)
 
 Foxtrick.Pages.Match = {
 	getHomeTeam: function(doc) {
-		var body = doc.getElementById('mainBody');
-		var teams = body.querySelectorAll('h1 > a, h1 > span > a');
 		var homeIdx = Foxtrick.util.layout.isRtl(doc) ? 1 : 0;
-		var link = teams[homeIdx];
+		var link;
+		if (Foxtrick.isPage(doc, 'matchesLive')) {
+			link = doc.querySelectorAll('.liveTabText a')[homeIdx];
+		}
+		else {
+			var body = doc.getElementById('mainBody');
+			var teams = body.querySelectorAll('h1 > a, h1 > span > a');
+			link = teams[homeIdx];
+		}
 		return link;
 	},
 	getAwayTeam: function(doc) {
-		var body = doc.getElementById('mainBody');
-		var teams = body.querySelectorAll('h1 > a, h1 > span > a');
 		var awayIdx = Foxtrick.util.layout.isRtl(doc) ? 0 : 1;
-		var link = teams[awayIdx];
+		var link;
+		if (Foxtrick.isPage(doc, 'matchesLive')) {
+			link = doc.querySelectorAll('.liveTabText a')[awayIdx];
+		}
+		else {
+			var body = doc.getElementById('mainBody');
+			var teams = body.querySelectorAll('h1 > a, h1 > span > a');
+			link = teams[awayIdx];
+		}
 		return link;
 	},
 	getHomeTeamId: function(doc) {
@@ -39,6 +51,9 @@ Foxtrick.Pages.Match = {
 	},
 	isPrematch: function(doc) {
 		return (doc.getElementById('ctl00_ctl00_CPContent_CPMain_pnlPreMatch') != null);
+	},
+	hasRatingsTabs: function(doc) {
+		return doc.getElementById('divSectors') !== null;
 	},
 	getSourceSystem: function(doc) {
 		var SourceSystem = 'Hattrick';
