@@ -26,8 +26,6 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		if (!Foxtrick.Pages.Match.hasRatingsTabs(doc))
 			return;
 
-		this.addSplitLineupToggle(doc);
-
 		if (Foxtrick.Prefs.isModuleOptionEnabled('MatchLineupTweaks', 'GatherStaminaData')) {
 			this.gatherStaminaData(doc);
 			// debug mode for home (true) or away (false)
@@ -37,7 +35,6 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		// run change now as sometimes we are too slow to init the listener
 		// causing display to be broken on first load
 		this.change(doc);
-
 	},
 	addSplitLineupToggle: function(doc) {
 		var module = this;
@@ -979,13 +976,13 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 
 		Foxtrick.stopListenToChange(doc);
 
+		this.addSplitLineupToggle(doc);
 		var playerDivs = doc.querySelectorAll('div.playerDiv');
 		if (playerDivs.length &&
 		    playerDivs[0].getElementsByClassName('ft-indicator-wrapper').length)
 			// been here before
 			return;
 
-		this.addSplitLineupToggle(doc);
 		if (Foxtrick.Prefs.isModuleOptionEnabled('MatchLineupTweaks', 'SplitLineup'))
 			this.splitLineup(doc);
 
