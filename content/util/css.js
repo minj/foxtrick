@@ -130,7 +130,7 @@ Foxtrick.util.css.unload_css_permanent = function(cssList) {
 			try {
 				sss = Cc['@mozilla.org/content/style-sheet-service;1'].
 					getService(Ci.nsIStyleSheetService);
-				url = Services.io.newURI(css, null, null);
+				uri = Services.io.newURI(css, null, null);
 			}
 			catch (e) {
 				return;
