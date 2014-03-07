@@ -1,3 +1,5 @@
+@-moz-document url("chrome://browser/content/browser.xul") {
+
 #foxtrick-toolbar-button {
 	list-style-image: url("chrome://foxtrick/skin/icon-24.png");
 	-moz-box-orient: horizontal;
@@ -25,4 +27,6 @@ toolbar[iconsize="small"] #foxtrick-toolbar-button[status="enabled"] {
 
 #foxtrick-popup-copy {
 	list-style-image: url("chrome://foxtrick/skin/icon-16.png");
+}
+
 }
