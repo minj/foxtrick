@@ -1,8 +1,0 @@
-/*no @moz-doc since it's inject and only on that page anyway.adding @moz-doc will break sandboxed version */
-
-table[class="indent left thin"] td, table[class="indent right thin"] td {font-size: 0.95em !important; padding:1px 1px !important; height:24px;}
-
-#aspnetForm[action*="Default.aspx?LeagueLevelUnitID="] #mainBody>table.indent  { margin-left: -10px;}
-#aspnetForm[action*="Default.aspx?LeagueLevelUnitID="] table.left  { width:48%;}
-#aspnetForm[action*="Default.aspx?LeagueLevelUnitID="] table.right  { width:52%;}
-
