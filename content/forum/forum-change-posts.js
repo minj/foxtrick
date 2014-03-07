@@ -429,7 +429,9 @@ Foxtrick.modules['ForumChangePosts'] = {
 				var header_right_links = header_right.getElementsByTagName('a');
 				var k = 0, header_right_link;
 				while (header_right_link = header_right_links[k++]) {
-					if (header_right_link.href.search('showHide') != -1) {
+					var header_right_link_onclick = header_right_link.getAttribute('onclick');
+					if (header_right_link_onclick &&
+					    /jQuery\('#\d+'\).toggle\(\)/.test(header_right_link_onclick)) {
 						is_ignored = true;
 						header_right_link.parentNode.setAttribute('style', 'margin-left:3px;');
 						break;
