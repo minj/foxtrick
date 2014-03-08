@@ -288,12 +288,11 @@ Foxtrick.modules['ForumChangePosts'] = {
 		copy_posting_div.appendChild(list);
 
 		var copy_posting_link_archive = doc.createElement('a');
-		copy_posting_link_archive.setAttribute('href', 'javascript:void(0);');
 		copy_posting_link_archive.title = Foxtrick.L10n.getString('copy.posting.title')
 			.replace('%s', Foxtrick.L10n.getString('copy.posting.style.ht-ml'));
 		copy_posting_link_archive.setAttribute('is_archive_link', 'true');
 		copy_posting_link_archive.textContent = Foxtrick.L10n.getString('button.copy');
-		copy_posting_link_archive.setAttribute('class', 'foxtrick-copyfromarchive');
+		copy_posting_link_archive.setAttribute('class', 'foxtrick-copyfromarchive ft-link');
 		copy_posting_link_archive = Foxtrick.makeFeaturedElement(copy_posting_link_archive,
 		                                                         Foxtrick.modules.CopyPosting);
 		Foxtrick.onClick(copy_posting_link_archive, copy_posting_to_clipboard);
@@ -333,9 +332,8 @@ Foxtrick.modules['ForumChangePosts'] = {
 							.createFeaturedElement(doc, Foxtrick.modules.FormatPostingText,
 							                       'blockquote');
 						spoiler_show.id = 'spoilshow_quoteNum' + (++numSpoilerQuotes);
-						spoiler_show.className = 'spoiler ft-dummy';
+						spoiler_show.className = 'spoiler ft-link';
 						var open_link = doc.createElement('a');
-						open_link.href = 'javascript:void(0);';
 						open_link.setAttribute('spoilerID', numSpoilerQuotes);
 						open_link.textContent =
 							Foxtrick.L10n.getString('FormatPostingText.ShowNestedQuotes');
@@ -639,7 +637,8 @@ Foxtrick.modules['ForumChangePosts'] = {
 				var PostID_message = post_link1.title.replace(/\d+\./, '');
 				if (!do_copy_post_id && !post_link1.id) {
 					var PostID_thread = post_link1.title.replace(/\.\d+/g, '');
-					post_link1.href = 'javascript:void(0);';
+					post_link1.removeAttribute('href');
+					Foxtrick.addClass(post_link1, 'ft-link');
 					Foxtrick.onClick(post_link1, function(ev) {
 						var PostID_message = ev.target.id.replace(/\d+-/, '');
 						var PostID_thread = ev.target.id.replace(/-\d+/, '');

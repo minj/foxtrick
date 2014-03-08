@@ -122,9 +122,8 @@ Foxtrick.util.tabs.addHandle = function(doc, title, icon, shows) {
 	li.id = shows + '-handle';
 
 	var link = doc.createElement('a');
-	link.href = 'javascript:void(0);';
 	link.setAttribute('disabled', 'disabled');
-	Foxtrick.addClass(link, 'tabItem');
+	Foxtrick.addClass(link, 'tabItem ft-link');
 	var _shows = link.getAttribute('shows');
 	if (_shows)
 		shows = _shows + ',' + shows;

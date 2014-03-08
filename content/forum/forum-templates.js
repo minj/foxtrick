@@ -201,8 +201,8 @@ Foxtrick.modules['ForumTemplates'] = {
 		controls_div.id = sControlsID;
 		controls_div.style.paddingTop = '5px';
 		var new_button = doc.createElement('a');
-		new_button.setAttribute('id', 'addTemplateId');
-		new_button.setAttribute('href', 'javascript:void(0)');
+		new_button.id = 'addTemplateId';
+		new_button.className = 'ft-link';
 		new_button.setAttribute('style', 'margin-right:10px;');
 		new_button.setAttribute('tabIndex', '3');
 		new_button.textContent = Foxtrick.L10n.getString('ForumTemplates.make');
@@ -213,8 +213,8 @@ Foxtrick.modules['ForumTemplates'] = {
 			Foxtrick.addClass(templates_div, 'hidden');
 
 			var show_button = doc.createElement('a');
-			show_button.setAttribute('id', 'showTemplateId');
-			show_button.setAttribute('href', 'javascript:void(0);');
+			show_button.id = 'showTemplateId';
+			show_button.className = 'ft-link';
 			show_button.setAttribute('style', 'margin-right:10px;');
 			//show_button.setAttribute('tabIndex', '3');
 			show_button.textContent = Foxtrick.L10n.getString('ForumTemplates.show');
@@ -222,9 +222,8 @@ Foxtrick.modules['ForumTemplates'] = {
 			controls_div.appendChild(show_button);
 
 			var hide_button = doc.createElement('a');
-			hide_button.setAttribute('id', 'hideTemplateId');
-			hide_button.setAttribute('href', 'javascript:void(0);');
-			hide_button.className = 'hidden';
+			hide_button.id = 'hideTemplateId';
+			hide_button.className = 'hidden ft-link';
 			hide_button.setAttribute('style', 'margin-right:10px;');
 			//hide_button.setAttribute('tabIndex', '3');
 			hide_button.textContent = Foxtrick.L10n.getString('ForumTemplates.hide');

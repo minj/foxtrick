@@ -159,10 +159,10 @@ Foxtrick.modules['ExtraShortcuts'] = {
 			}
 			if (Foxtrick.Prefs.isModuleOptionEnabled('ExtraShortcuts', 'FoxTrickPrefs')) {
 				var link = doc.createElement('a');
-				link.className = 'ft_extra-shortcuts';
-				link.href = 'javascript:void(0);';
+				link.className = 'ft_extra-shortcuts ft-link';
 				Foxtrick.onClick(link, function() {
-					Foxtrick.Prefs.show('#tab=on_page&view-by=page');});
+					Foxtrick.Prefs.show('#tab=on_page&view-by=page');
+				});
 				var img1 = doc.createElement('img');
 				img1.setAttribute('class', 'ftSCFtPrefs');
 				img1.src = '/Img/Icons/transparent.gif';

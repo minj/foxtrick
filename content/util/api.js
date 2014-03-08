@@ -157,7 +157,7 @@ Foxtrick.util.api = {
 			// link to FAQ
 			var more = doc.createElement('a');
 			more.textContent = Foxtrick.L10n.getString('oauth.why');
-			more.href = 'javascript:void(0);';
+			Foxtrick.addClass(more, 'ft-link');
 			Foxtrick.onClick(more, function() { Foxtrick.Prefs.show('#faq=authorize'); });
 			div.appendChild(more);
 		};

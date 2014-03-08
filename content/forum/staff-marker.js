@@ -649,9 +649,8 @@ Foxtrick.modules['StaffMarker'] = {
 
 			var markerLink = Foxtrick.createFeaturedElement(doc, module, 'a')
 			markerLink.id = 'foxtrick-marker-link-' + i;
-			markerLink.className = 'foxtrick-marker-link';
+			markerLink.className = 'foxtrick-marker-link ft-link';
 			markerLink.textContent = markerLink.title = markUser;
-			markerLink.href = 'javascript:void(0);';
 			Foxtrick.onClick(markerLink, (function(i) {
 				return function(ev) {
 					var link = ev.target, doc = link.ownerDocument;
