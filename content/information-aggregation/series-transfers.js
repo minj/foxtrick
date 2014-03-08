@@ -100,17 +100,6 @@ Foxtrick.modules['SeriesTransfers'] = {
 			mainBox.appendChild(loading);
 		}
 
-		// retrieve currency rate
-		Foxtrick.util.currency.establish(doc, function() {
-			var currencyRate = Foxtrick.util.currency.getRate(doc);
-			// batch retrieve
-			Foxtrick.util.api.batchRetrieve(doc, batchArgs, { cache_lifetime: 'session' },
-			  function(xmls, errors) {
-				if (xmls)
-					processXMLs(xmls, errors, currencyRate);
-			});
-		});
-
 		var processXMLs = function(xmls, errors, currencyRate) {
 			var getNumFromXML = function(field) {
 				return Number(player.getElementsByTagName(field)[0].textContent);
@@ -245,5 +234,17 @@ Foxtrick.modules['SeriesTransfers'] = {
 				mainBox.appendChild(span);
 			}
 		};
+
+		// retrieve currency rate
+		Foxtrick.util.currency.establish(doc, function() {
+			var currencyRate = Foxtrick.util.currency.getRate(doc);
+			// batch retrieve
+			Foxtrick.util.api.batchRetrieve(doc, batchArgs, { cache_lifetime: 'session' },
+			  function(xmls, errors) {
+				if (xmls)
+					processXMLs(xmls, errors, currencyRate);
+			});
+		});
+
 	}
 };
