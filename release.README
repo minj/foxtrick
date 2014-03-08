@@ -7,7 +7,7 @@ git svn dcommit
 run foxtrick-release.sh
 run foxtrick.release-light.sh
 
-*uploads to foxtrick.org/release, foxtrick.symbiosis.org.gr/release/ and googlecode/downloads
+*uploads to foxtrick.org/release, foxtrick.symbiosis.org.gr/release/
 *AMO and google hosted versions are uploaded to foxtrick.symbiosis.org.gr/hosting/
 
 chrome store:
