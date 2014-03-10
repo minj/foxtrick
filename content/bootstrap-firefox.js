@@ -345,7 +345,6 @@ FoxtrickFirefox.prototype = {
 	loadToolbarItem: function() {
 		try {
 			// toolbar
-			let that = this;
 			this.generalButton = this.ToolbarItem.create(
 				'<toolbarbutton id="foxtrick-toolbar-button" ' +
 					'type="menu" ' +

@@ -74,10 +74,8 @@ function initAustralisUI() {
 		label: 'Foxtrick',
 		tooltiptext: 'Foxtrick',
 		onCreated: function(aNode) {
-			// load saved pref state
-			let chromeDoc = aNode.ownerDocument;
-			let doc = chromeDoc.defaultView.gBrowser.contentWindow.document;
-			chromeDoc.defaultView.Foxtrick.modules.UI.update(doc);
+			let win = aNode.ownerDocument.defaultView;
+			win.Foxtrick.modules.UI._updateSingle(win);
 		},
 		// onViewShowing: function(ev) {
 		// 	// initialize code
