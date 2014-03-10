@@ -285,26 +285,30 @@ FoxtrickFirefox.prototype = {
 
 	loadUI: function() {
 		try {
-			Services.scriptloader.loadSubScript('chrome://foxtrick/content/lib/ToolbarItem.js', this);
+			Services.scriptloader.loadSubScript('chrome://foxtrick/content/lib/ToolbarItem.js',
+												this);
 			try {
 				// toolbar
 				let that = this;
 				this.generalButton = this.ToolbarItem.create(
-					"<toolbarbutton id='foxtrick-toolbar-button' " +
-						"type='menu' " +
-						"label='FoxTrick' " +
-						"tooltiptext='FoxTrick' " +
-						"context='foxtrick-menu' " +
-						"class='" + this.ToolbarItem.BASIC_ITEM_CLASS + " foxtrick-toolbar-item'>" +
-						"<menupopup id='foxtrick-menu'>" +
-							"<menuitem id='foxtrick-toolbar-preferences'/>" +
-							"<menuitem id='foxtrick-toolbar-deactivate' type='checkbox' autocheck='true'/>" +
-							"<menuitem id='foxtrick-toolbar-clearCache' />" +
-							"<menuitem id='foxtrick-toolbar-highlight' type='checkbox' autocheck='true'/>" +
-							"<menuitem id='foxtrick-toolbar-translationKeys' type='checkbox' " +
-							"autocheck='true'/>" +
-						"</menupopup>" +
-					"</toolbarbutton>",
+					'<toolbarbutton id="foxtrick-toolbar-button" ' +
+						'type="menu" ' +
+						'label="FoxTrick" ' +
+						'tooltiptext="FoxTrick" ' +
+						'context="foxtrick-menu" ' +
+						'class="' + this.ToolbarItem.BASIC_ITEM_CLASS +
+							' foxtrick-toolbar-item">' +
+						'<menupopup id="foxtrick-menu">' +
+							'<menuitem id="foxtrick-toolbar-preferences"/>' +
+							'<menuitem id="foxtrick-toolbar-deactivate" type="checkbox" ' +
+								'autocheck="true"/>' +
+							'<menuitem id="foxtrick-toolbar-clearCache" />' +
+							'<menuitem id="foxtrick-toolbar-highlight" type="checkbox" ' +
+								'autocheck="true"/>' +
+							'<menuitem id="foxtrick-toolbar-translationKeys" type="checkbox" ' +
+								'autocheck="true"/>' +
+						'</menupopup>' +
+					'</toolbarbutton>',
 					this.owner.document.getElementById('nav-bar'),
 					{
 						onInit: function() {
@@ -317,38 +321,38 @@ FoxtrickFirefox.prototype = {
 			}
 			catch (e) {
 				dump('FoxTrick error: Toolbar button init ' + e + '\n');
-				Cu.reportError('FoxTrick error: ' + e);
+				Cu.reportError('FoxTrick error: Toolbar button init ' + e);
 			}
 			try {
 				// contextmenu
 				let popup = this.owner.document.getElementById('contentAreaContextMenu');
+				let copyPaste = this.owner.document.getElementById('context-paste');
 				this.contextLinkItem = this.ToolbarItem.toDOMDocumentFragment(
-					"<menu id='foxtrick-popup-copy' " +
-						"class='menu-iconic foxtrick-menu-item' " +
-						"label='FoxTrick'>" +
-						"<menupopup>" +
-							"<menuitem id='foxtrick-popup-copy-id' " +
-								"label='Copy ID'/>" +
-							"<menuitem id='foxtrick-popup-copy-link' " +
-								"label='Copy Link Location in HT-ML'/>" +
-							"<menuitem id='foxtrick-popup-copy-ht-ml' " +
-								"label='Copy in HT-ML'/>" +
-							"<menuitem id='foxtrick-popup-copy-table' " +
-								"label='Copy table in HT-ML'/>" +
-						"</menupopup>" +
-					"</menu>"
-					, popup).querySelector('*');
-				popup.insertBefore(this.contextLinkItem,
-								   this.owner.document.getElementById('context-paste').nextSibling);
+					'<menu id="foxtrick-popup-copy" ' +
+						'class="menu-iconic foxtrick-menu-item" ' +
+						'label="FoxTrick">' +
+						'<menupopup>' +
+							'<menuitem id="foxtrick-popup-copy-id" ' +
+								'label="Copy ID"/>' +
+							'<menuitem id="foxtrick-popup-copy-link" ' +
+								'label="Copy Link Location in HT-ML"/>' +
+							'<menuitem id="foxtrick-popup-copy-ht-ml" ' +
+								'label="Copy in HT-ML"/>' +
+							'<menuitem id="foxtrick-popup-copy-table" ' +
+								'label="Copy table in HT-ML"/>' +
+						'</menupopup>' +
+					'</menu>',
+					popup).querySelector('*');
+				popup.insertBefore(this.contextLinkItem, copyPaste.nextSibling);
 			}
 			catch (e) {
 				dump('FoxTrick error: Context menu init ' + e + '\n');
-				Cu.reportError('FoxTrick error: ' + e);
+				Cu.reportError('FoxTrick error: Context menu init ' + e);
 			}
 		}
 		catch (e) {
 			dump('FoxTrick error: ToolbarItem failed ' + e + '\n');
-			Cu.reportError('FoxTrick error: ' + e);
+			Cu.reportError('FoxTrick error: ToolbarItem failed ' + e);
 		}
 	},
 
@@ -376,17 +380,18 @@ FoxtrickFirefox.prototype = {
 
 // called from main bootstrap.js for each browser window
 function loadIntoWindow(window) {
-	if (!window || !window.document) return;
+	if (!window || !window.document)
+		return;
 
 	// styles also needed in eg customize-toolbox
 	var uri = 'chrome://foxtrick/content/resources/css/overlay.css';
-	var style = window.document.createProcessingInstruction('xml-stylesheet',
-			"id='foxtrick-overlay-css' type='text/css' href='" + uri + "'"
-		);
+	var attr = 'id="foxtrick-overlay-css" type="text/css" href="' + uri + '"';
+	var style = window.document.createProcessingInstruction('xml-stylesheet', attr);
 	window.document.insertBefore(style, window.document.documentElement);
 
 	// only in content windows (not menupopups etc)
-	if (!window.document.getElementById('appcontent')) return;
+	if (!window.document.getElementById('appcontent'))
+		return;
 	if (window.document.documentElement.getAttribute('windowtype') != 'navigator:browser')
 		return;
 
@@ -394,7 +399,8 @@ function loadIntoWindow(window) {
 	try {
 		window.Foxtrick = new FoxtrickFirefox(window);
 		window.Foxtrick.init();
-	} catch (e) {
+	}
+	catch (e) {
 		dump('FoxTrick error: ' + e + '\n');
 		Cu.reportError('FoxTrick error: ' + e);
 	}
@@ -402,7 +408,8 @@ function loadIntoWindow(window) {
 
 
 function unloadFromWindow(window) {
-	if (!window || !window.document) return;
+	if (!window || !window.document)
+		return;
 
 	// styles also needed in eg customize-toolbox
 	var style = window.document.getElementById('foxtrick-overlay-css');
@@ -415,14 +422,5 @@ function unloadFromWindow(window) {
 
 	// stop and delete
 	window.Foxtrick.cleanup();
-	var button = window.document.getElementById('foxtrick-toolbar-button');
-	if (button) {
-		//try again
-		button.parentNode.removeChild(button);
-		try {
-			window.Foxtrick.cleanup();
-		}
-		catch (e) {}
-	}
 	delete window.Foxtrick;
 }

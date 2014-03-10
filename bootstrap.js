@@ -19,23 +19,24 @@ function isFennecNative() {
 function setDefaultPrefs(pathToDefault, branch) {
 	// Load default preferences and set up properties for them
 	let defaultBranch = Services.prefs.getDefaultBranch(branch);
-	let scope =	{
+	let scope = {
 		pref: function(key, val) {
-			if (key.substr(0, branch.length) != branch)	{
-				Cu.reportError(new Error('Ignoring default preference ' + key + ', wrong branch.'));
+			if (key.substr(0, branch.length) != branch) {
+				Cu.reportError(new Error('Ignoring default preference ' +
+				               key + ', wrong branch.'));
 				return;
 			}
 			key = key.substr(branch.length);
 			switch (typeof val) {
 				case 'boolean':
 					defaultBranch.setBoolPref(key, val);
-				break;
+					break;
 				case 'number':
 					defaultBranch.setIntPref(key, val);
-				break;
+					break;
 				case 'string':
 					defaultBranch.setCharPref(key, val);
-				break;
+					break;
 			}
 		}
 	};
@@ -47,15 +48,15 @@ function setDefaultPrefs(pathToDefault, branch) {
 let windowListener = {
 	onOpenWindow: function(aWindow) {
 		// Wait for the window to finish loading
-		let domWindow = aWindow.QueryInterface(Ci.nsIInterfaceRequestor)
-			.getInterface(Ci.nsIDOMWindow);
+		let domWindow = aWindow.QueryInterface(Ci.nsIInterfaceRequestor).
+			getInterface(Ci.nsIDOMWindow);
 		domWindow.addEventListener('load', function waitForWindowload() {
 			domWindow.removeEventListener('load', waitForWindowload, false);
 			_gLoader.loadIntoWindow(domWindow);
 		}, false);
 	},
-	onCloseWindow: function(aWindow) { },
-	onWindowTitleChange: function(aWindow, aTitle) { }
+	onCloseWindow: function(aWindow) {},
+	onWindowTitleChange: function(aWindow, aTitle) {}
 };
 
 function startup(aData, aReason) {
@@ -73,7 +74,8 @@ function startup(aData, aReason) {
 		setDefaultPrefs(pathToDefault, branch);
 		Services.scriptloader.loadSubScript('chrome://foxtrick/content/bootstrap-fennec.js',
 		                                    _gLoader, 'UTF-8');
-	} else {
+	}
+	else {
 		pathToDefault = aData.resourceURI.spec + 'defaults/preferences/foxtrick.js';
 		setDefaultPrefs(pathToDefault, branch);
 		Services.scriptloader.loadSubScript('chrome://foxtrick/content/bootstrap-firefox.js',
@@ -88,7 +90,8 @@ function startup(aData, aReason) {
 		_gLoader.loadIntoWindow(win);
 	}
 	if (typeof win !== 'undefined') {
-		// during FF startup bootstrap runs before any windows are created, hence win is undefined
+		// during FF startup bootstrap runs before any windows are created,
+		// hence win is undefined
 		// this is not the case if FT is re-enabled from add-ons menu, though
 		// probably same thing with upgrades
 		win.Foxtrick.reloadAll();
