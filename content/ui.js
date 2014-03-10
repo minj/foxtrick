@@ -138,8 +138,8 @@ if (Foxtrick.platform == 'Firefox') {
 			button.setAttribute('status', 'disabled');
 			statusText = Foxtrick.L10n.getString('status.disabled');
 		}
-		else if (Foxtrick.isHt(doc)
-			&& !(Foxtrick.Prefs.getBool('disableOnStage') && Foxtrick.isStage(doc))) {
+		else if ((Foxtrick.isHt(doc) || /^chrome:\/\/foxtrick/.test(doc.location.href)) &&
+		         !(Foxtrick.Prefs.getBool('disableOnStage') && Foxtrick.isStage(doc))) {
 			// FoxTrick is enabled, and active on current page
 			button.setAttribute('status', 'active');
 			statusText = Foxtrick.L10n.getString('status.active');
