@@ -42,7 +42,9 @@ if (Foxtrick.platform == 'Firefox') {
 
 		// toolbar menu - preferences
 		var toolbarPreferences = document.getElementById('foxtrick-toolbar-preferences');
-		toolbarPreferences.addEventListener('click', function() { Foxtrick.Prefs.show() }, false);
+		toolbarPreferences.addEventListener('click', function() {
+			Foxtrick.Prefs.show();
+		}, false);
 		// toolbar menu - disable
 		var toolbarDisable = document.getElementById('foxtrick-toolbar-deactivate');
 		toolbarDisable.addEventListener('click', function(ev) {
@@ -76,21 +78,25 @@ if (Foxtrick.platform == 'Firefox') {
 	Foxtrick.modules.UI.updateMenu = function(document) {
 		// toolbar menu - preferences
 		var toolbarPreferences = document.getElementById('foxtrick-toolbar-preferences');
-		if (!toolbarPreferences) return; // wrong place somehow
+		if (!toolbarPreferences)
+			// wrong place somehow
+			return;
 		toolbarPreferences.setAttribute('label', Foxtrick.L10n.getString('toolbar.preferences'));
 		// toolbar menu - disable
 		var toolbarDisable = document.getElementById('foxtrick-toolbar-deactivate');
-		toolbarDisable.setAttribute('label', Foxtrick.L10n.getString('toolbar.disableTemporary'));
+		toolbarDisable.setAttribute('label',
+		                            Foxtrick.L10n.getString('toolbar.disableTemporary'));
 		// toolbar menu - clearCache
 		var clearCache = document.getElementById('foxtrick-toolbar-clearCache');
 		clearCache.setAttribute('label', Foxtrick.L10n.getString('api.clearCache'));
 		// toolbar menu - highlight
 		var toolbarHighlight = document.getElementById('foxtrick-toolbar-highlight');
-		toolbarHighlight.setAttribute('label', Foxtrick.L10n.getString('toolbar.featureHighlight'));
+		toolbarHighlight.setAttribute('label',
+		                              Foxtrick.L10n.getString('toolbar.featureHighlight'));
 		// toolbar menu - translationKeys
 		var toolbarTranslationKeys = document.getElementById('foxtrick-toolbar-translationKeys');
-		toolbarTranslationKeys.setAttribute('label', Foxtrick.L10n
-		                                    .getString('toolbar.translationKeys'));
+		toolbarTranslationKeys.setAttribute('label',
+		                                    Foxtrick.L10n.getString('toolbar.translationKeys'));
 	};
 
 	Foxtrick.modules.UI.onTabChange = function(document) {
@@ -116,7 +122,8 @@ if (Foxtrick.platform == 'Firefox') {
 
 			var translationKeysItem = document.getElementById('foxtrick-toolbar-translationKeys');
 			if (translationKeysItem)
-				translationKeysItem.setAttribute('checked', Foxtrick.Prefs.getBool('translationKeys'));
+				translationKeysItem.setAttribute('checked',
+				                                 Foxtrick.Prefs.getBool('translationKeys'));
 		}
 
 		var button = document.getElementById('foxtrick-toolbar-button');
@@ -140,11 +147,13 @@ if (Foxtrick.platform == 'Firefox') {
 		else {
 			// FoxTrick is enabled, but not active on current page
 			button.setAttribute('status', 'enabled');
+			var hostname = '';
 			try {
 				// it's called twice in ff3.6 and works with one of the calls, thus display is fine
 				// the other raises an error. dunno why and found no proper checks
-				var hostname = doc.location.hostname;
-			} catch (e) {}
+				hostname = doc.location.hostname;
+			}
+			catch (e) {}
 			statusText = Foxtrick.L10n.getString('status.enabled').replace('%s', hostname);
 		}
 		var tooltipText = Foxtrick.L10n.getString('toolbar.title') + ' ' + Foxtrick.version() +
@@ -187,7 +196,7 @@ if (Foxtrick.platform == 'Opera') {
 	};
 
 	Foxtrick.modules.UI.updateIcon = function(button) {
-		var icon = '', statusText = '';
+		var statusText = '';
 		if (Foxtrick.Prefs.getBool('disableTemporary')) {
 			button.icon = 'skin/disabled-24.png';
 			statusText = Foxtrick.L10n.getString('status.disabled');
@@ -196,8 +205,8 @@ if (Foxtrick.platform == 'Opera') {
 			statusText = Foxtrick.L10n.getString('status.active');
 			button.icon = 'skin/icon-24.png';
 		}
-		var tooltipText = Foxtrick.L10n.getString('toolbar.title') + ' ' + Foxtrick.version() + ' ' +
-			Foxtrick.branch() + ' (' + statusText + ')';
+		var tooltipText = Foxtrick.L10n.getString('toolbar.title') + ' ' +
+			Foxtrick.version() + ' ' + Foxtrick.branch() + ' (' + statusText + ')';
 		button.title = tooltipText;
 	};
 }
@@ -228,8 +237,8 @@ else if (Foxtrick.platform == 'Chrome') {
 			iconUrl = '../skin/icon-24.png';
 			statusText = Foxtrick.L10n.getString('status.active');
 		}
-		var tooltipText = Foxtrick.L10n.getString('toolbar.title') + ' ' + Foxtrick.version() + ' ' +
-			Foxtrick.branch() + ' (' + statusText + ')';
+		var tooltipText = Foxtrick.L10n.getString('toolbar.title') + ' ' +
+			Foxtrick.version() + ' ' + Foxtrick.branch() + ' (' + statusText + ')';
 		chrome.pageAction.setIcon({ tabId: tab.id, path: iconUrl });
 		chrome.pageAction.setTitle({ tabId: tab.id, title: tooltipText });
 	};
@@ -249,5 +258,5 @@ else if (Foxtrick.platform == 'Safari') {
 }
 
 
-else if (Foxtrick.platform == 'Android') {
-}
+// else if (Foxtrick.platform == 'Android') {
+// }
