@@ -292,22 +292,55 @@ FoxtrickFirefox.prototype = {
 
 	loadUI: function() {
 		this.loadContextMenu();
-		try {
-			Services.scriptloader.loadSubScript('chrome://foxtrick/content/lib/ToolbarItem.js',
-			                                    this);
-			this.loadToolbarItem();
+
+		if (typeof this.owner.CustomizableUI !== 'undefined') {
+			// Australis
+			this.loadAustralisUI();
 		}
-		catch (e) {
-			dump('FoxTrick error: ToolbarItem failed ' + e + '\n');
-			Cu.reportError('FoxTrick error: ToolbarItem failed ' + e);
+		else {
+			try {
+				Services.scriptloader.loadSubScript('chrome://foxtrick/content/lib/ToolbarItem.js',
+				                                    this);
+				this.loadToolbarItem();
+			}
+			catch (e) {
+				dump('FoxTrick error: ToolbarItem failed ' + e + '\n');
+				Cu.reportError('FoxTrick error: ToolbarItem failed ' + e);
+			}
 		}
 	},
 	removeUI: function() {
 		this.removeContextMenu();
 
+		if (typeof this.owner.CustomizableUI !== 'undefined')
+			// Australis
+			this.removeAustralisUI();
+
 		// defined in ToolbarItem.js
 		if (typeof this.shutdown === 'function')
 			this.shutdown();
+	},
+	loadAustralisUI: function() {
+		let doc = this.owner.document;
+		let panel = doc.createElement('panelview');
+		panel.setAttribute('id', 'foxtrick-toolbar-view');
+		let menuString =
+			'<toolbarbutton id="foxtrick-toolbar-preferences" />' +
+			'<toolbarbutton id="foxtrick-toolbar-deactivate" type="checkbox" ' +
+				'autocheck="true"/>' +
+			'<toolbarbutton id="foxtrick-toolbar-clearCache" />' +
+			'<toolbarbutton id="foxtrick-toolbar-highlight" type="checkbox" ' +
+				'autocheck="true"/>' +
+			'<toolbarbutton id="foxtrick-toolbar-translationKeys" type="checkbox" ' +
+				'autocheck="true"/>';
+		let fragment = this.toDOMDocumentFragment(doc, menuString, panel);
+		panel.appendChild(fragment);
+		doc.getElementById('mainPopupSet').appendChild(panel);
+	},
+	removeAustralisUI: function() {
+		let panel = this.owner.document.getElementById('foxtrick-toolbar-view');
+		if (panel)
+			panel.remove();
 	},
 	loadToolbarItem: function() {
 		try {

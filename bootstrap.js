@@ -48,16 +48,45 @@ function setDefaultPrefs(pathToDefault, branch) {
 let windowListener = {
 	onOpenWindow: function(aWindow) {
 		// Wait for the window to finish loading
-		let domWindow = aWindow.QueryInterface(Ci.nsIInterfaceRequestor).
-			getInterface(Ci.nsIDOMWindow);
-		domWindow.addEventListener('load', function waitForWindowload() {
-			domWindow.removeEventListener('load', waitForWindowload, false);
+		let domWindow = aWindow.QueryInterface(Ci.nsIInterfaceRequestor)
+			.getInterface(Ci.nsIDOMWindow);
+		domWindow.addEventListener('DOMContentLoaded', function waitForWindowload() {
+			domWindow.removeEventListener('DOMContentLoaded', waitForWindowload, false);
 			_gLoader.loadIntoWindow(domWindow);
 		}, false);
 	},
 	onCloseWindow: function(aWindow) {},
 	onWindowTitleChange: function(aWindow, aTitle) {}
 };
+
+function initAustralisUI() {
+	try {
+		Cu.import('resource:///modules/CustomizableUI.jsm');
+	}
+	catch (e) {
+		return;
+	}
+	CustomizableUI.createWidget({
+		id: 'foxtrick-toolbar-button',
+		type: 'view',
+		viewId: 'foxtrick-toolbar-view',
+		defaultArea: CustomizableUI.AREA_NAVBAR,
+		label: 'Foxtrick',
+		tooltiptext: 'Foxtrick',
+		onCreated: function(aNode) {
+			// load saved pref state
+			let chromeDoc = aNode.ownerDocument;
+			let doc = chromeDoc.defaultView.gBrowser.contentWindow.document;
+			chromeDoc.defaultView.Foxtrick.modules.UI.update(doc);
+		},
+		// onViewShowing: function(ev) {
+		// 	// initialize code
+		// },
+		// onViewHiding: function(ev) {
+		// 	// cleanup code
+		// }
+	});
+}
 
 function startup(aData, aReason) {
 	// prefs branch
@@ -97,6 +126,11 @@ function startup(aData, aReason) {
 		win.Foxtrick.reloadAll();
 	}
 
+	if (!isFennecNative()) {
+		// this needs to run after existed windows were loaded into
+		initAustralisUI();
+	}
+
 	// Load into any new windows
 	Services.wm.addListener(windowListener);
 }
@@ -115,6 +149,11 @@ function shutdown(aData, aReason) {
 	while (windows.hasMoreElements()) {
 		let win = windows.getNext().QueryInterface(Ci.nsIDOMWindow);
 		_gLoader.unloadFromWindow(win);
+	}
+
+	if (typeof CustomizableUI !== 'undefined') {
+		// this needs to run after existed windows were loaded into
+		CustomizableUI.destroyWidget('foxtrick-toolbar-button');
 	}
 
 	// Flush string bundle cache
