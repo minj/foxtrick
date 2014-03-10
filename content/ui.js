@@ -38,8 +38,7 @@ if (Foxtrick.platform == 'Firefox') {
 		// toolbar menu - disable
 		var toolbarDisable = document.getElementById('foxtrick-toolbar-deactivate');
 		toolbarDisable.addEventListener('click', function(ev) {
-			var doc = ev.view.gBrowser.contentWindow.document;
-			Foxtrick.Prefs.disable(doc);
+			Foxtrick.Prefs.disable();
 		}, false);
 		// toolbar menu - clearCache
 		var clearCache = document.getElementById('foxtrick-toolbar-clearCache');
@@ -51,24 +50,32 @@ if (Foxtrick.platform == 'Firefox') {
 		// toolbar menu - highlight
 		var toolbarHighlight = document.getElementById('foxtrick-toolbar-highlight');
 		toolbarHighlight.addEventListener('click', function(ev) {
-			var doc = ev.view.gBrowser.contentWindow.document;
-			Foxtrick.Prefs.highlight(doc);
+			Foxtrick.Prefs.highlight();
 		}, false);
 		// toolbar menu - translationKeys
 		var toolbarTranslationKeys = document.getElementById('foxtrick-toolbar-translationKeys');
 		toolbarTranslationKeys.addEventListener('click', function(ev) {
-			var doc = ev.view.gBrowser.contentWindow.document;
-			Foxtrick.Prefs.translationKeys(doc); // sets the pref and calls update()
-			Foxtrick.modules.UI.updateMenu(ev.view.document);
+			Foxtrick.Prefs.translationKeys(); // sets the pref and calls update()
 		}, false);
-		Foxtrick.modules.UI.update();
+		Foxtrick.modules.UI._updateSingle(window);
 	};
-	Foxtrick.modules.UI.update = function(doc) {
-		Foxtrick.modules.UI.updateIcon(doc);
-		Foxtrick.modules.UI.updateMenu();
+	Foxtrick.modules.UI.onTabChange = function() {
+		Foxtrick.modules.UI._updateSingle(window);
+	};
+	Foxtrick.modules.UI._updateSingle = function(chromeWindow) {
+		Foxtrick.modules.UI.updateIcon(chromeWindow);
+		Foxtrick.modules.UI.updateMenu(chromeWindow);
+	};
+	Foxtrick.modules.UI.update = function() {
+		var browserEnumerator = Services.wm.getEnumerator('navigator:browser');
+		while (browserEnumerator.hasMoreElements()) {
+			var browserWin = browserEnumerator.getNext();
+			Foxtrick.modules.UI._updateSingle(browserWin);
+		}
 	};
 
-	Foxtrick.modules.UI.updateMenu = function() {
+	Foxtrick.modules.UI.updateMenu = function(chromeWindow) {
+		var document = chromeWindow.document;
 		// toolbar menu - preferences
 		var toolbarPreferences = document.getElementById('foxtrick-toolbar-preferences');
 		if (!toolbarPreferences)
@@ -94,13 +101,9 @@ if (Foxtrick.platform == 'Firefox') {
 		                                    Foxtrick.L10n.getString('toolbar.translationKeys'));
 		toolbarTranslationKeys.setAttribute('checked', Foxtrick.Prefs.getBool('translationKeys'));
 	};
-
-	Foxtrick.modules.UI.onTabChange = function(doc) {
-		Foxtrick.modules.UI.update(doc);
-	};
-
-	Foxtrick.modules.UI.updateIcon = function(doc) {
-		var button = document.getElementById('foxtrick-toolbar-button');
+	Foxtrick.modules.UI.updateIcon = function(chromeWindow) {
+		var doc = chromeWindow.gBrowser.contentWindow.document;
+		var button = chromeWindow.document.getElementById('foxtrick-toolbar-button');
 
 		if (!button || !doc)
 			return;
