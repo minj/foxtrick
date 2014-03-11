@@ -13,8 +13,9 @@ Foxtrick.util.inject = {};
 
 Foxtrick.util.inject.cssLink = function(doc, url) {
 	if (Foxtrick.arch == 'Sandboxed') {
+		var id = url.match(/([^\/]+)\.css$/)[1];
 		Foxtrick.util.load.get(url)('success', function(text) {
-			Foxtrick.util.inject.css(doc, text);
+			Foxtrick.util.inject.css(doc, text, id);
 		});
 		return;
 	}
@@ -30,6 +31,7 @@ Foxtrick.util.inject.cssLink = function(doc, url) {
 };
 
 Foxtrick.util.inject.css = function(doc, css, id) {
+	var sourceName = 'ft.' + id + '.css';
 	var head = doc.getElementsByTagName('head')[0];
 	var style = doc.createElement('style');
 	style.setAttribute('type', 'text/css');
@@ -37,7 +39,7 @@ Foxtrick.util.inject.css = function(doc, css, id) {
 	head.appendChild(style);
 
 	var inject = function(css) {
-		style.appendChild(doc.createTextNode(css));
+		style.textContent = css + '\n\n/*# sourceURL=' + sourceName + ' */\n';
 	};
 	Foxtrick.util.css.replaceExtensionDirectory(css, inject, id);
 
@@ -47,8 +49,9 @@ Foxtrick.util.inject.css = function(doc, css, id) {
 // attaches a JavaScript file to the page
 Foxtrick.util.inject.jsLink = function(doc, url) {
 	if (Foxtrick.arch == 'Sandboxed') {
+		var id = url.match(/([^\/]+)\.js$/)[1];
 		Foxtrick.util.load.get(url)('success', function(text) {
-			Foxtrick.util.inject.js(doc, text);
+			Foxtrick.util.inject.js(doc, text, id);
 		});
 		return;
 	}
@@ -61,11 +64,13 @@ Foxtrick.util.inject.jsLink = function(doc, url) {
 };
 
 // attaches a JavaScript snippet to the page
-Foxtrick.util.inject.js = function(doc, js) {
+Foxtrick.util.inject.js = function(doc, js, id) {
+	var sourceName = 'ft.' + id + '.js';
 	var head = doc.getElementsByTagName('head')[0];
 	var script = doc.createElement('script'); // dynamically injected from chrome only
 	script.setAttribute('type', 'text/javascript');
-	script.textContent = js;
+	script.id = id;
+	script.textContent = js + '\n\n//# sourceURL=' + sourceName + '\n';
 	head.appendChild(script);
 	return script;
 };

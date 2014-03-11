@@ -30,10 +30,6 @@ Foxtrick.modules['MarkAllAsRead'] = {
 		container.className = 'ft-mark-all-as-read';
 		container.title = Foxtrick.L10n.getString('MarkAllAsRead.title');
 
-		// mark-all-as-read using ht's javascript link. need to use the webpage's
-		// injected script function
-		//var addr = "javascript:__doPostBack('ctl00$ctl00$CPContent$ucLeftMenu$ucNewPosts', 'mrk|%s')".replace(/%s/, threadList);
-		//container.setAttribute('onclick', addr);
 		container = Foxtrick.makeFeaturedElement(container, this);
 
 		if (Foxtrick.util.layout.isStandard(doc))
@@ -41,9 +37,12 @@ Foxtrick.modules['MarkAllAsRead'] = {
 		else
 			var target = doc.getElementById('myForums').previousSibling;
 		target.appendChild(container);
-		Foxtrick.util.inject.js(doc, "document.getElementsByClassName('ft-mark-all-as-read')[0]" +
-								".addEventListener('click', function() {" +
-								"__doPostBack('ctl00$ctl00$CPContent$ucLeftMenu$ucNewPosts'," +
-								"'mrk|%s'); }, false);".replace(/%s/, threadList));
+		var js =
+			'document.getElementsByClassName("ft-mark-all-as-read")[0].' +
+				'addEventListener("click", function() {\n' +
+					'__doPostBack("ctl00$ctl00$CPContent$ucLeftMenu$ucNewPosts", "mrk|%s");\n' +
+				'}, false);';
+		js = js.replace(/%s/, threadList);
+		Foxtrick.util.inject.js(doc, js, 'ft-mark-all-as-read');
 	}
 };

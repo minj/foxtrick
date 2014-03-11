@@ -45,7 +45,7 @@ Foxtrick.modules['SkinPlugin'] = {
 	run: function(doc) {
 		if (Foxtrick.arch != 'Gecko') {
 			var skin = Foxtrick.Prefs.getString('module.SkinPlugin.skin');
-			Foxtrick.util.inject.css(doc, skin);
+			Foxtrick.util.inject.css(doc, skin, 'skin-plugin');
 		}
 	}
 };

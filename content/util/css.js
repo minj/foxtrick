@@ -274,8 +274,7 @@ Foxtrick.util.css.load_module_css = function(doc) {
 				Foxtrick.current_css = data.cssText;
 				Foxtrick.util.css.load_css_permanent(Foxtrick.current_css);
 			} else {
-				var style = Foxtrick.util.inject.css(doc, data.cssText);
-				style.id = 'ft-module-css';
+				Foxtrick.util.inject.css(doc, data.cssText, 'ft-module-css');
 			}
 		});
 	}
@@ -326,7 +325,7 @@ Foxtrick.util.css.getCssFileArrayToString = function(cssUrls) {
 			'domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), ' +
 			'domain(hattrick.name), domain(hattrick.fm) {\n' +
 				cssTextCollection +
-			'\n}\n';
+			'\n}\n\n/*# sourceURL=ft.ft-module-css.css */\n';
 	}
 	return cssTextCollection;
 };

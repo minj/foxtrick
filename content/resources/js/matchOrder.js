@@ -96,5 +96,3 @@ function ft_fix_penalty_takers() {
 function ft_stay_on_page() {
 	ht.orders.doneURL = document.location.href;
 }
-
-//# sourceURL=matchOrder.js

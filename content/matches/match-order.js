@@ -474,17 +474,16 @@ Foxtrick.modules['MatchOrderInterface'] = {
 						.createFeaturedElement(doc, Foxtrick.modules.MatchOrderInterface, 'div');
 					swapPositionsDiv.id = 'ft_swap_positions';
 					var swapPositionsLink = doc.createElement('span');
-					// invoke our injected script which changes the webpage's script variables
-					//swapPositionsLink.setAttribute('onclick', 'javascript:ft_swap_positions();');
 					swapPositionsLink.textContent =
 						Foxtrick.L10n.getString('matchOrder.swapPositions');
 					swapPositionsDiv.appendChild(swapPositionsLink);
 					var formations = doc.getElementById('formations');
 					formations.parentNode.insertBefore(swapPositionsDiv, formations.nextSibling);
-					Foxtrick.util.inject.js(doc, "document.getElementById('ft_swap_positions')" +
-											".addEventListener('click', function() {" +
-											"ft_swap_positions();" +
-											"}, false);");
+					var swapJS =
+						'document.getElementById("ft_swap_positions").' +
+							'addEventListener("click", ft_swap_positions);';
+
+					Foxtrick.util.inject.js(doc, swapJS, 'ft-swap-positions');
 				}
 
 
@@ -632,29 +631,24 @@ Foxtrick.modules['MatchOrderInterface'] = {
 
 					var penalties = doc.getElementById('tab_penaltytakers');
 					penalties.appendChild(frag);
-					Foxtrick.util.inject.js(doc, "document.getElementById('ft_clear_penalty_takers')" +
-											".addEventListener('click', function() {" +
-											"ft_clear_penalty_takers();" +
-											"}, false);");
+					var clearPenaltiesJS =
+						'document.getElementById("ft_clear_penalty_takers").' +
+							'addEventListener("click", ft_clear_penalty_takers);';
+					Foxtrick.util.inject.js(doc, clearPenaltiesJS, 'ft-clear-penalty-takers');
 				}
 
 				if (Foxtrick.Prefs.isModuleOptionEnabled('MatchOrderInterface', 'StayOnPage')) {
-					// use our injected script to changes the webpage's script after action url
-					//doc.getElementById('send').setAttribute('onclick',
-					//                                        'javascript:ft_stay_on_page()');
-					Foxtrick.util.inject.js(doc, "document.getElementById('send')" +
-											".addEventListener('click', function() {" +
-											"ft_stay_on_page();" +
-											"}, false);");
+					var stayJS =
+						'document.getElementById("send").' +
+							'addEventListener("click", ft_stay_on_page);';
+					Foxtrick.util.inject.js(doc, stayJS, 'ft-stay-on-page');
 				}
 				if (Foxtrick.Prefs.isModuleOptionEnabled('MatchOrderInterface',
 				    'FixPenaltyTakers')) {
-					//var penaltiesLink = doc.querySelector('#li_tab_subs + li > a');
-					//penaltiesLink.setAttribute('onclick', 'javascript:ft_fix_penalty_takers();');
-					Foxtrick.util.inject.js(doc, "document.querySelector('#li_tab_subs + li > a')" +
-											".addEventListener('click', function() {" +
-											"ft_fix_penalty_takers();" +
-											"}, false);");
+					var fixPenaltiesJS =
+						'document.querySelector("#li_tab_subs + li > a").' +
+							'addEventListener("click", ft_fix_penalty_takers);';
+					Foxtrick.util.inject.js(doc, fixPenaltiesJS, 'ft-fix-penalty-takers');
 				}
 
 				// add playerid to details
