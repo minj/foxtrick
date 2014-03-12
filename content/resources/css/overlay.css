@@ -24,6 +24,21 @@ toolbar[iconsize="small"] #foxtrick-toolbar-button[status="disabled"] {
 toolbar[iconsize="small"] #foxtrick-toolbar-button[status="enabled"] {
 	list-style-image: url("chrome://foxtrick/skin/enabled.png");
 }
+#foxtrick-toolbar-button[cui-areatype="menu-panel"] {
+	list-style-image: url("chrome://foxtrick/skin/icon-32.png");
+	-moz-box-orient: vertical;
+}
+#foxtrick-toolbar-button[cui-areatype="menu-panel"][status="disabled"] {
+	list-style-image: url("chrome://foxtrick/skin/disabled-32.png");
+}
+#foxtrick-toolbar-button[cui-areatype="menu-panel"][status="enabled"] {
+	list-style-image: url("chrome://foxtrick/skin/enabled-32.png");
+}
+
+toolbarpaletteitem[place="palette"] > #foxtrick-toolbar-button {
+	list-style-image: url("chrome://foxtrick/skin/icon-32.png");
+	-moz-box-orient: vertical;
+}
 
 #foxtrick-popup-copy {
 	list-style-image: url("chrome://foxtrick/skin/icon-16.png");
