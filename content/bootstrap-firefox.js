@@ -335,7 +335,7 @@ FoxtrickFirefox.prototype = {
 				'autocheck="true"/>';
 		let fragment = this.toDOMDocumentFragment(doc, menuString, panel);
 		panel.appendChild(fragment);
-		doc.getElementById('mainPopupSet').appendChild(panel);
+		doc.getElementById('PanelUI-multiView').appendChild(panel);
 	},
 	removeAustralisUI: function() {
 		let panel = this.owner.document.getElementById('foxtrick-toolbar-view');
