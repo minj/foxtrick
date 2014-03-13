@@ -5,6 +5,10 @@ bg:
       note_0: 'Това е работната версия на Фокстрик. Използвайте по ваша преценка. Моля вижте <linkSVN>commit history</linkSVN> в Google Code за подробности за промени.'
     beta:
       note_0: 'Това е бета версията на Фокстрик. Моля помогнете с превода на тази версия на нашия суперлесна страница за групов превод <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.13.0.1:
+      bugs: '<header>поправени грешки</header>'
+      old_faces: '<module>Старият стил на лицата</module>не работеше правилно на страницата за даване на нареждане за мача и страницата със състава .Това е оправено сега.'
+      simulator_skills: 'Имената на поднивата в <module>симулатор на мача</module>бяха поправени за няколко езика.'
     0.10.0:
       note_0: 'NEW: <module>TransferHistoryFilters</module>: Allows you to filter transfers for bought or sold players only. Only available for the team history, not players (default on)'
       note_1: 'NEW: <module>FriendlyPool</module>: Colorizes visited countries in the friendly pool (supporters only, default on)'
