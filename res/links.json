@@ -857,6 +857,20 @@
 		"countryidranges": [[9, 9]],
 		"nationalityranges": [[9, 9]]
 	},
+	"sloveniatracker": {
+		"img": "http://www.sloscfan.com/favicon.ico",
+		"title": "HTSlo - Slovenian Hattrick U-20/NT tracker",
+		"trackernationalteamlink": {
+			"url": "http://www.sloscfan.com/hattrick/",
+			"filters": ["countryid"]
+		},
+		"trackerplayerlink": {
+			"url": "http://www.sloscfan.com/hattrick/",
+			"filters": ["nationality"]
+		},
+		"countryidranges": [[64, 64]],
+		"nationalityranges": [[64, 64]]
+	},
 	"ht-ys": {
 		"youthleaguelink": {
 			"url": "http://www.ht-ys.org/?league_id=[youthleagueid]"
