@@ -19,6 +19,6 @@ if (!Foxtrick.api.pastebin)
  * @param	{[Function]}	finalize	function to execute (optional)
  */
 Foxtrick.api.pastebin.get = function(callback, paste_key, failure, finalize) {
-	var url = 'http://pastebin.com/raw.php?i=' + paste_key;
-	Foxtrick.api.pastebin._generic('get', url, callback, null, failure, finalize);
+	Foxtrick.api.pastebin._generic('get', this.api_get_url, callback, { i: paste_key },
+	                               failure, finalize);
 };

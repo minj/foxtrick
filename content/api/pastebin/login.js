@@ -12,7 +12,6 @@ if (!Foxtrick.api.pastebin)
  * In case of success response is a <api_user_key>
  * failure(response, status) is called if the request fails
  * finalize(response, status) is always called
- * @param	{String}		api			api name
  * @param	{function}		callback	function to execute
  * @param	{String}		user		pastebin username to log in
  * @param	{String}		password	pastebin user password
@@ -20,10 +19,12 @@ if (!Foxtrick.api.pastebin)
  * @param	{[Function]}	finalize	function to execute (optional)
  */
 Foxtrick.api.pastebin.login = function(callback, user, password, failure, finalize) {
-	var params = {}
-	params['api_user_name']		= user;
-	params['api_user_password']	= password;
-	params['api_dev_key']		= Foxtrick.api.pastebin.api_dev_key;
+	var params = {
+		api_user_name: user,
+		api_user_password: password,
+		api_dev_key: this.api_dev_key,
+	};
 
-	Foxtrick.api.pastebin._generic('login', Foxtrick.api.pastebin.api_login_url, callback, params, failure, finalize);
+	Foxtrick.api.pastebin._generic('login', this.api_login_url, callback, params,
+	                               failure, finalize);
 };
