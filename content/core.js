@@ -275,7 +275,13 @@ Foxtrick.modules['Core'] = {
 				var title = 'Bug ' + nonce + ' by ' + team + ' (' + id + ')';
 				var prefs = Foxtrick.Prefs.SavePrefs(true, true, false, true);
 				// export non-defaults + user notes but NOT token
-				var bug = Foxtrick.log.header(doc) + '\n' + url + '\n' + log + '\n\n\n' + prefs;
+				var bug = log + '\n\n\n' + prefs;
+				// add a somewhat sane limit of 200K
+				var MAX_LENGTH = 200 * 1024;
+				if (bug.length > MAX_LENGTH)
+					bug = bug.substr(bug.length - MAX_LENGTH);
+
+				bug = Foxtrick.log.header(doc) + '\n' + url + '\n' + bug;
 
 				var showNote = function(url) {
 					var info = doc.createDocumentFragment();

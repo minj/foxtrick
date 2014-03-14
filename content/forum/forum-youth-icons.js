@@ -443,17 +443,22 @@ Foxtrick.modules['ForumYouthIcons'] = {
 						openingTag = Foxtrick.Prefs.getString('forumSymbol');
 					}
 					else if (openingTag == 'debug') {
+						var ensureLength = function(str) {
+							var MAX_LENGTH = 3500;
+							if (str.length > MAX_LENGTH)
+								str = str.substr(str.length - MAX_LENGTH);
+						};
 						if (Foxtrick.arch === 'Sandboxed' || Foxtrick.platform == 'Android') {
 							Foxtrick.SB.extension.sendRequest({ req: 'getDebugLog' },
 							  function(n) {
-								insertText(Foxtrick.log.header(doc) + '\n' + n.log);
+								insertText(Foxtrick.log.header(doc) + '\n' + ensureLength(n.log));
 								textCounter(ta, fieldCounter, maxLength);
 							});
 							return;
 						}
 						else {
 							openingTag = Foxtrick.log.header(doc) + '\n' +
-								Foxtrick.debugLogStorage;
+								ensureLength(Foxtrick.debugLogStorage);
 						}
 					}
 					else if (openingTag == 'settings') {

@@ -207,9 +207,7 @@ Foxtrick.log.flush = function(doc) {
 // (retrieved with forum debug log icon)
 Foxtrick.debugLogStorage = '';
 Foxtrick.addToDebugLogStorage = function(text) {
-	var cutoff = Foxtrick.debugLogStorage.length - 3500;
-	cutoff = (cutoff < 0) ? 0 : cutoff;
-	Foxtrick.debugLogStorage = Foxtrick.debugLogStorage.substr(cutoff) + text;
+	Foxtrick.debugLogStorage += text;
 };
 
 // a wrapper around Foxtrick.log for compatibility
