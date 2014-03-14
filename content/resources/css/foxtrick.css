@@ -263,7 +263,7 @@ ul.ft-pop > li a, ul.ft-pop span {
 	display: block;
 	cursor: pointer;
 }
-#ft_clear_cache {cursor: pointer; color:#3F7137; }
+#ft_clear_cache, #ft_report_bug {cursor: pointer; color:#3F7137; margin: 0 6px;}
 
 
 #ft-monitor-sidebar-box {

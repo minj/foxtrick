@@ -28,6 +28,7 @@ Foxtrick.modules['Core'] = {
 		this.featureHighlight(doc);
 		this.showChangeLog(doc);
 		this.HT_TIME = Foxtrick.util.time.getHtTimeStamp(doc);
+		this.addBugReportLink(doc);
 	},
 
 	updateLastHost: function(doc) {
@@ -251,6 +252,115 @@ Foxtrick.modules['Core'] = {
 
 	getSelfTeamInfo: function() {
 		return this.SELF_TEAM_INFO;
+	},
+
+	/**
+	 * Adds a link to send Foxtrick log to pastebin
+	 * @param {document} doc
+	 */
+	addBugReportLink: function(doc) {
+		var CORE = this;
+		var bottom = doc.getElementById('bottom');
+		if (bottom) {
+
+			var reportBug = function(log) {
+				if (log === '')
+					return;
+
+				var team = CORE.getSelfTeamInfo().teamName;
+				var id = CORE.getSelfTeamInfo().teamId;
+				var url = doc.location.pathname + doc.location.search;
+				var nonce = Math.random().toString(16).substr(2).toUpperCase();
+
+				var title = 'Bug ' + nonce + ' by ' + team + ' (' + id + ')';
+				var prefs = Foxtrick.Prefs.SavePrefs(true, true, false, true);
+				// export non-defaults + user notes but NOT token
+				var bug = Foxtrick.log.header(doc) + '\n' + url + '\n' + log + '\n\n\n' + prefs;
+
+				var showNote = function(url) {
+					var info = doc.createDocumentFragment();
+
+					var text, parts, link;
+
+					var copied;
+					if (/^https?:/.test(url)) {
+						// upload successful
+						Foxtrick.copyStringToClipboard('[link=' + url + ']');
+						copied = doc.createElement('p');
+						copied.textContent = Foxtrick.L10n.getString('reportBug.link.copied');
+						info.appendChild(copied);
+						var captcha = doc.createElement('p');
+						text = Foxtrick.L10n.getString('reportBug.captcha');
+						parts = text.match(/.+?(?=\{)|\{.*?\}|.+/g);
+						captcha.appendChild(doc.createTextNode(parts[0]));
+						link = doc.createElement('a');
+						link.href = url;
+						link.target = '_blank';
+						link.textContent = parts[1].replace(/[{}]/g, '');
+						captcha.appendChild(link);
+						captcha.appendChild(doc.createTextNode(parts[2]));
+						info.appendChild(captcha);
+					}
+					else {
+						// too many pastes
+						Foxtrick.copyStringToClipboard(bug);
+						copied = doc.createElement('p');
+						copied.textContent = Foxtrick.L10n.getString('reportBug.log.copied');
+						info.appendChild(copied);
+						var pastebin = doc.createElement('p');
+						text = Foxtrick.L10n.getString('reportBug.pastebin');
+						parts = text.match(/.+?(?=\{)|\{.*?\}|.+/g);
+						pastebin.appendChild(doc.createTextNode(parts[0]));
+						link = doc.createElement('a');
+						link.href = 'http://pastebin.com/';
+						link.target = '_blank';
+						link.textContent = parts[1].replace(/[{}]/g, '');
+						pastebin.appendChild(link);
+						pastebin.appendChild(doc.createTextNode(parts[2]));
+						info.appendChild(pastebin);
+					}
+
+					var forum = doc.createElement('p');
+					text = Foxtrick.L10n.getString('reportBug.forum');
+					parts = text.match(/.+?(?=\{)|\{.*?\}|.+/g);
+					forum.appendChild(doc.createTextNode(parts[0]));
+					link = doc.createElement('a');
+					link.href = '/Forum/Overview.aspx?v=0&f=173635';
+					link.target = '_blank';
+					link.textContent = parts[1].replace(/[{}]/g, '');
+					forum.appendChild(link);
+					forum.appendChild(doc.createTextNode(parts[2]));
+					info.appendChild(forum);
+
+					var insertBefore = doc.getElementById('testingNewHeader') ||
+						doc.getElementsByTagName('h1')[1];
+					Foxtrick.util.note.add(doc, insertBefore, 'ft-bug-report-link-note',
+					                       info, null, true, true);
+				};
+
+				// try an unlisted paste first but failback to public if limit exceeded
+				Foxtrick.api.pastebin.paste(showNote, title, bug, 'unlisted');
+			};
+
+			var reportBugSpan = doc.createElement('span');
+			reportBugSpan.id = 'ft_report_bug';
+			reportBugSpan.textContent = Foxtrick.L10n.getString('reportBug.title');
+			var title = Foxtrick.L10n.getString('reportBug.desc');
+			reportBugSpan.setAttribute('area-label', reportBugSpan.title = title);
+			Foxtrick.onClick(reportBugSpan, function() {
+				if (Foxtrick.arch === 'Sandboxed' || Foxtrick.platform == 'Android') {
+					Foxtrick.SB.extension.sendRequest({ req: 'getDebugLog' },
+					  function(n) {
+						reportBug(n.log);
+					});
+				}
+				else {
+					reportBug(Foxtrick.debugLogStorage);
+					Foxtrick.debugLogStorage = ''; // clear the storage to prevent spam
+				}
+			});
+			bottom.insertBefore(reportBugSpan, bottom.firstChild);
+		}
 	},
 
 	parsePlayerList: function(doc) {
