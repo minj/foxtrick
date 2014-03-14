@@ -406,7 +406,6 @@ Foxtrick.loader.background.browserLoad = function() {
 		Foxtrick.loader.background.requests.getDebugLog = function(request, sender, sendResponse) {
 			// @callback_param log - contains the debug log storage
 			sendResponse({ log: Foxtrick.debugLogStorage });
-			Foxtrick.debugLogStorage = '';
 		};
 
 		// from mobile-enhancements.js

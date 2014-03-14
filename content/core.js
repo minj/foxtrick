@@ -362,7 +362,6 @@ Foxtrick.modules['Core'] = {
 				}
 				else {
 					reportBug(Foxtrick.debugLogStorage);
-					Foxtrick.debugLogStorage = ''; // clear the storage to prevent spam
 				}
 			});
 			bottom.insertBefore(reportBugSpan, bottom.firstChild);
