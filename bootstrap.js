@@ -5,6 +5,7 @@
  */
 'use strict';
 const { classes: Cc, interfaces: Ci, utils: Cu, manager: Cm, results: Cr } = Components;
+const PATH = 'chrome://foxtrick/content/';
 
 let _gLoader;
 
@@ -99,14 +100,12 @@ function startup(aData, aReason) {
 		// so we can't name this one foxtrick-android.js
 		pathToDefault = aData.resourceURI.spec + 'defaults/preferences/foxtrick-android';
 		setDefaultPrefs(pathToDefault, branch);
-		Services.scriptloader.loadSubScript('chrome://foxtrick/content/bootstrap-fennec.js',
-		                                    _gLoader, 'UTF-8');
+		Services.scriptloader.loadSubScript(PATH + 'bootstrap-fennec.js', _gLoader, 'UTF-8');
 	}
 	else {
 		pathToDefault = aData.resourceURI.spec + 'defaults/preferences/foxtrick.js';
 		setDefaultPrefs(pathToDefault, branch);
-		Services.scriptloader.loadSubScript('chrome://foxtrick/content/bootstrap-firefox.js',
-		                                    _gLoader, 'UTF-8');
+		Services.scriptloader.loadSubScript(PATH + 'bootstrap-firefox.js', _gLoader, 'UTF-8');
 	}
 
 	// Load into any existing windows

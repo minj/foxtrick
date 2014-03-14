@@ -81,8 +81,7 @@ FoxtrickFennec.prototype = {
 				require: {}
 			};
 			for (let lib in libMap) {
-				Services.scriptloader.
-					loadSubScript('chrome://foxtrick/content/lib/' + libMap[lib], scope, 'UTF-8');
+				Services.scriptloader.loadSubScript(PATH + 'lib/' + libMap[lib], scope, 'UTF-8');
 				this.owner.Foxtrick[lib] = scope.module.exports;
 			}
 		}
@@ -92,8 +91,7 @@ FoxtrickFennec.prototype = {
 		}
 		for (var i = 0; i < this.scripts.length; ++i) {
 			try {
-				Services.scriptloader.loadSubScript('chrome://foxtrick/content/' +
-													this.scripts[i], this.owner, 'UTF-8');
+				Services.scriptloader.loadSubScript(PATH + this.scripts[i], this.owner, 'UTF-8');
 			}
 			catch (e) {
 				e.message = 'Foxtrick ERROR: ' + e.message;
