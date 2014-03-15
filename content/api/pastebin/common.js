@@ -19,6 +19,7 @@ Foxtrick.api.pastebin.api_paste_private = {
 	'public': '0', // unlimited
 	'unlisted': '1', // max 25 per day
 	'private': '2', // max 10 per day
+	// however it seems the anonymous API is limited to 10
 };
 Foxtrick.api.pastebin.api_paste_expire_date = 'N'; //N=never
 Foxtrick.api.pastebin.api_paste_format = 'text';

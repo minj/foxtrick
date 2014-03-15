@@ -281,7 +281,7 @@ Foxtrick.modules['Core'] = {
 				if (bug.length > MAX_LENGTH)
 					bug = bug.substr(bug.length - MAX_LENGTH);
 
-				bug = Foxtrick.log.header(doc) + '\n' + url + '\n' + bug;
+				bug = Foxtrick.log.header(doc) + 'BUG URL: ' + url + '\n\n' + bug;
 
 				var showNote = function(url) {
 					var info = doc.createDocumentFragment();
@@ -344,7 +344,6 @@ Foxtrick.modules['Core'] = {
 					                       info, null, true, true);
 				};
 
-				// try an unlisted paste first but failback to public if limit exceeded
 				Foxtrick.api.pastebin.paste(showNote, title, bug, 'unlisted');
 			};
 
