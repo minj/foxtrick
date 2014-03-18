@@ -96,7 +96,6 @@
 		},
 
 		run: function(doc) {
-
 			var getType = function(url) {
 				var type;
 				for (type in types) {
@@ -174,7 +173,7 @@
 			};
 			if (Foxtrick.util.layout.isSupporter(doc)) {
 				tickerCheck();
-				ticker.addEventListener('DOMNodeInserted', tickerCheck, false);
+				Foxtrick.onChange(ticker, tickerCheck);
 			}
 		}
 	};
