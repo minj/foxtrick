@@ -99,15 +99,15 @@ if (!Foxtrick) var Foxtrick = {};
 						name: name,
 						what: what
 					  },
-					  function(reponse) {
+					  function(response) {
 						if (callback) {
 							try {
 								if (cookies[where].isJSON && cookies[where].isBase64)
-									callback(JSON.parse(Foxtrick.decodeBase64(reponse)));
+									callback(JSON.parse(Foxtrick.decodeBase64(response)));
 								else if (cookies[where].isJSON && !cookies[where].isBase64)
-									callback(JSON.parse(reponse));
+									callback(JSON.parse(response));
 								else
-									callback(reponse);
+									callback(response);
 							}
 							catch (e) {
 								Foxtrick.log('Error in callback for cookieSet', response, e);
