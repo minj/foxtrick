@@ -272,6 +272,7 @@ Foxtrick.entry.change = function(ev) {
 			/^\/Community\/CHPP\/ChppPrograms\.aspx/i,
 			/^\/Club\/Arena\/ArenaUsage\.aspx/i,
 			/^\/Club\/Matches\/Live\.aspx/i,
+			/^\/MatchOrder\/(Default.aspx|$)/i,
 		];
 		if (Foxtrick.any(function(ex) { return ex.test(doc.location.pathname); }, excludes)) {
 			return;
