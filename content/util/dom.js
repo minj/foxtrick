@@ -221,7 +221,7 @@ Foxtrick.onChange = function(node, callback, obsOpts) {
  * @param  {Node}                            node     container
  * @param  {function(Array.<Node>): boolean} callback
  * @param  {MutationObserverInit}            obsOpts  observer options
- * @return {Array.<Node>}
+ * @return {MutationObserver}
  */
 Foxtrick.getChanges = function(node, callback, obsOpts) {
 	return Foxtrick.observe(node, function(records) {
