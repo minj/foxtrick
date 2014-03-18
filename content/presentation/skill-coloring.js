@@ -240,7 +240,7 @@ Foxtrick.modules['SkillColoring'] = {
 		                                                                 'skill_translated_title');
 		var skill_select = Foxtrick.Prefs.isModuleOptionEnabled('SkillColoring', 'skill_select');
 
-		var playerDetailsChange = function(ev) {
+		var playerDetailsChange = function() {
 			// Foxtrick.log('playerDetailsChange')
 
 			var createLink = function(type, level, skill, skill_translated) {
@@ -361,8 +361,7 @@ Foxtrick.modules['SkillColoring'] = {
 		// on the lineup page
 		if ((skill_color || non_skill_color || skill_number || skill_translated) &&
 		    Foxtrick.isPage(doc, 'matchOrder')) {
-			Foxtrick.addMutationEventListener(doc.getElementById('details'), 'DOMNodeInserted',
-			                                  playerDetailsChange, false);
+			Foxtrick.onChange(doc.getElementById('details'), playerDetailsChange);
 		}
 
 		if (skill_select && Foxtrick.isPage(doc, 'transferSearchForm')) {
