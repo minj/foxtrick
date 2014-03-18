@@ -25,10 +25,8 @@ Foxtrick.modules['LocalTime'] = {
 		var updateTime = function() {
 			localTime.textContent = Foxtrick.util.time.buildDate(null, true, true);
 		};
-		time.addEventListener('DOMCharacterDataModified', updateTime, false);
-		// Chrome changes text node (optimised)
-		time.addEventListener('DOMNodeInserted', updateTime, false);
-		// FF creates a new node (correct behaviour)
+		Foxtrick.onChange(time, updateTime, { characterData: true });
+		// Chrome needs characterData, FF needs childList
 
 		localTime.title = Foxtrick.L10n.getString('LocalTime.local.title');
 		localTime = Foxtrick.makeFeaturedElement(localTime, this);
