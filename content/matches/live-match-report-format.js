@@ -27,32 +27,19 @@ Foxtrick.modules['LiveMatchReportFormat'] = {
 			if (indicators)
 				Foxtrick.util.matchEvent.addEventIndicators(liveReport);
 		};
+		var reactAll = function(doc) {
+			var livereports = doc.getElementsByClassName('liveReport');
+			Foxtrick.forEach(function(report) {
+				react(report, true);
+			}, livereports);
+		};
+
+		// firstload
+		reactAll(doc);
+
 		var livereportsContainer =
 			doc.getElementById('ctl00_ctl00_CPContent_CPMain_UpdatePanelMatch');
 		if (livereportsContainer)
-			Foxtrick.listen(livereportsContainer, 'DOMNodeInserted',
-			  function(event) {
-				if (event.target.className == 'liveReport') {
-					react(event.target, true);
-				}
-			}, false);
-
-		var lContainer = doc.getElementsByClassName('liveMatchContainer')[0];
-		if (lContainer)
-			Foxtrick.listen(lContainer, 'DOMNodeInserted',
-			  function(event) {
-				if (event.target.getAttribute && event.target.getAttribute('id') &&
-					event.target.getAttribute('id') == 'ctl00_ctl00_CPContent_CPMain_repM') {
-					var livereports = event.target.getElementsByClassName('liveReport');
-					for (var i = 0; i < livereports.length; i++)
-						react(livereports[i], true);
-				}
-			}, false);
-
-		// firstload
-		var livereports = doc.getElementsByClassName('liveReport');
-		for (var i = 0; i < livereports.length; i++) {
-			react(livereports[i], true);
-		}
+			Foxtrick.onChange(livereportsContainer, reactAll, { subtree: false });
 	},
 };
