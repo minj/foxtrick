@@ -1,6 +1,6 @@
 .ft-popup-span {
 	position: relative;
-	display:inline;
+	display:inline-block;
 }
 .ft-popup-span:hover div.ft-htev-popup {
 	display: block !important;

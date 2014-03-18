@@ -1,6 +1,6 @@
 .ft-popup-span {
 	position: relative;
-	display:inline;
+	display:inline-block;
 }
 
 h1 > span.ft-popup-span {
