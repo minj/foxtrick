@@ -133,7 +133,7 @@ else if (Foxtrick.chromeContext() == 'content') {
 
 	Foxtrick.localSet = function(key, value) {
 		// inform background
-		Foxtrick.SB.extension.sendRequest({
+		Foxtrick.SB.ext.sendRequest({
 			req: 'localSet',
 			key: key,
 			value: value
@@ -142,7 +142,7 @@ else if (Foxtrick.chromeContext() == 'content') {
 
 	Foxtrick.localGet = function(key, callback) {
 		// get from background
-		Foxtrick.SB.extension.sendRequest({ req: 'localGet', key: key },
+		Foxtrick.SB.ext.sendRequest({ req: 'localGet', key: key },
 		  function(response) {
 			try {
 				callback(response.value);
@@ -155,9 +155,6 @@ else if (Foxtrick.chromeContext() == 'content') {
 
 	Foxtrick.localDeleteBranch = function(branch) {
 		// inform background
-		Foxtrick.SB.extension.sendRequest({
-			req: 'localDeleteBranch',
-			branch: branch
-		});
+		Foxtrick.SB.ext.sendRequest({ req: 'localDeleteBranch', branch: branch });
 	};
 }

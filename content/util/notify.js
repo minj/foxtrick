@@ -23,10 +23,7 @@ Foxtrick.util.notify.create = function(msg, url) {
 						if (Foxtrick.platform == 'Firefox')
 							Foxtrick.openAndReuseOneTabPerURL(url, true);
 						else {
-							Foxtrick.SB.extension.sendRequest({
-								req: 'reuseTab',
-								url: url
-							});
+							Foxtrick.SB.ext.sendRequest({ req: 'reuseTab', url: url });
 						}
 					}
 					if (topic == 'alertfinished') {
@@ -53,7 +50,7 @@ Foxtrick.util.notify.create = function(msg, url) {
 		}
 	};
 	var createChrome = function() {
-		Foxtrick.SB.extension.sendRequest({ req: 'notify', msg: msg, url: url });
+		Foxtrick.SB.ext.sendRequest({ req: 'notify', msg: msg, url: url });
 	};
 
 	if (Foxtrick.arch == 'Gecko') {

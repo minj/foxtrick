@@ -12,22 +12,22 @@ if (!Foxtrick)
 // sandboxed object for chrome, safari, opera and fennec
 // used to communicate between content script and background script
 /*
-Foxtrick.SB.extension.sendRequest(data, callback)
+Foxtrick.SB.ext.sendRequest(data, callback)
 // send JSON data from content to background
 // callback: function(JSON)
 
-Foxtrick.SB.extension.onRequest.addListener(listener)
+Foxtrick.SB.ext.onRequest.addListener(listener)
 // listen to requests (background and content side)
 // with listener = function(JSON data, sender, callback);
 // sender - content: { tab: { id: id, url: messageEvent.target.url } };
 // sender - background: undefined
 // callback: function(JSON)
 
-Foxtrick.SB.extension.broadcastMessage(data, callback)
+Foxtrick.SB.ext.broadcastMessage(data, callback)
 // send JSON data from background to all tabs
 // with callback function(JSON)
 
-Foxtrick.SB.extension.getURL(path)
+Foxtrick.SB.ext.getURL(path)
 // get extension url of path relative to extension folder
 
 Foxtrick.SB.tabs.create(url)
@@ -98,7 +98,7 @@ if (typeof(opera) == 'object') {
 			return theFunction;
 		})(),
 
-		extension: {
+		ext: {
 			sendRequest: (function() {
 				// The function we'll return at the end of all this
 				function theFunction(data, callback) {
@@ -230,7 +230,7 @@ else if (typeof(safari) == 'object') {
 			return theFunction;
 		})(),
 
-		extension: {
+		ext: {
 			getBackgroundPage: function() {
 				return safari.extension.globalPage.contentWindow;
 			},
@@ -368,7 +368,7 @@ else if (typeof(chrome) == 'object') {
 
 	// port common functions to sandboxed
 	Foxtrick.SB = {
-		extension: {
+		ext: {
 			sendRequest: function(data, callback) {
 				if (callback)
 					chrome.extension.sendRequest(data, callback);
@@ -410,12 +410,12 @@ else if (typeof(chrome) == 'object') {
 	// register tab for broadcastMessage
 	if (Foxtrick.chromeContext() == 'content') {
 		//  recieve tab id on register
-		Foxtrick.SB.extension.sendRequest({ req: 'register' },
+		Foxtrick.SB.ext.sendRequest({ req: 'register' },
 		  function(response) {
-			Foxtrick.SB.extension.tabid = response.tabid;
+			Foxtrick.SB.ext.tabid = response.tabid;
 		});
 		// answer to status check after every new page load
-		Foxtrick.SB.extension.onRequest.addListener(
+		Foxtrick.SB.ext.onRequest.addListener(
 		  function(request, sender, sendResponse) {
 			if (request.req == 'checkAlive') {
 				// send back who answered
@@ -443,7 +443,7 @@ else if (typeof(chrome) == 'object') {
 				Foxtrick.SB.tabs.tab[senderid] = true;
 			};
 			// listen to tab register
-			Foxtrick.SB.extension.onRequest.addListener(
+			Foxtrick.SB.ext.onRequest.addListener(
 			  function(request, sender, sendResponse) {
 				if (request.req == 'register') {
 					updateTabList(sender.tab.id);
@@ -542,7 +542,7 @@ else {
 				};
 				handler(request, sender, sendResponse);
 			},
-			extension: {
+			ext: {
 				getURL: function(path) {
 					return 'chrome://foxtrick/' + path;
 				},
@@ -661,14 +661,14 @@ else {
 		// register tab for broadcastMessage
 		if (Foxtrick.chromeContext() == 'content') {
 			//  recieve tab id on register
-			Foxtrick.SB.extension.sendRequest({ req: 'register' },
+			Foxtrick.SB.ext.sendRequest({ req: 'register' },
 			  function(response) {
-				Foxtrick.SB.extension.tabid = response.tabid;
+				Foxtrick.SB.ext.tabid = response.tabid;
 			});
 		}
 		else {
 			// listen to tab register
-			Foxtrick.SB.extension.onRequest.addListener(
+			Foxtrick.SB.ext.onRequest.addListener(
 			  function(request, sender, sendResponse) {
 				if (request.req=='register') {
 					sendResponse({ tabid: sender.tab.id });

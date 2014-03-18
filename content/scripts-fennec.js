@@ -264,7 +264,7 @@ Foxtrick.loader.background.contentScriptManager = {
 
 	unload: function() {
 		// tell content script to unload
-		Foxtrick.SB.extension.broadcastMessage('unload');
+		Foxtrick.SB.ext.broadcastMessage('unload');
 		Foxtrick.saveAs.unload();
 
 		// unload content scripts

@@ -80,10 +80,11 @@ Foxtrick.util.css.replaceExtensionDirectory = function(cssTextCollection, callba
 
 	if (Foxtrick.platform == 'Opera') {
 		if (cssTextCollection.search(InternalPathRegExp) != -1)
-			Foxtrick.SB.extension.sendRequest({
-					req: 'convertImages', cssText: cssTextCollection,
-					type: id
-				},
+			Foxtrick.SB.ext.sendRequest({
+				req: 'convertImages',
+				cssText: cssTextCollection,
+				type: id
+			  },
 			  function(data) {
 				try {
 					callback(data.cssText);
@@ -268,7 +269,7 @@ Foxtrick.util.css.load_module_css = function(doc) {
 	}
 	else {
 		Foxtrick.util.css.collect_module_css();
-		Foxtrick.SB.extension.sendRequest({ req: 'getCss', files: Foxtrick.cssFiles },
+		Foxtrick.SB.ext.sendRequest({ req: 'getCss', files: Foxtrick.cssFiles },
 		  function(data) {
 			if (Foxtrick.platform == 'Android') {
 				Foxtrick.current_css = data.cssText;

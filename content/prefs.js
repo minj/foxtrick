@@ -272,12 +272,12 @@ Foxtrick.Prefs = {
 				}
 			}
 			else {
-				Foxtrick.SB.extension.sendRequest({ req: 'clearPrefs' });
+				Foxtrick.SB.ext.sendRequest({ req: 'clearPrefs' });
 			}
 		}
 		else if (Foxtrick.arch == 'Sandboxed') {
 			Foxtrick.Prefs._prefs_chrome_user = {};
-			Foxtrick.SB.extension.sendRequest({ req: 'clearPrefs' }, function () {
+			Foxtrick.SB.ext.sendRequest({ req: 'clearPrefs' }, function () {
 				Foxtrick.entry.init(true); // reinit
 			});
 			return true;
@@ -456,8 +456,12 @@ if (Foxtrick.arch === 'Gecko') {
 		setString: function(key, value) {
 			value = value.replace(/\\./g, unescape);
 			if (Foxtrick.chromeContext() === 'content')
-				Foxtrick.SB.extension.sendRequest({ req: 'setValue', type: 'string',
-				                                key: key, value: value });
+				Foxtrick.SB.ext.sendRequest({
+					req: 'setValue',
+					type: 'string',
+					key: key,
+					value: value
+				});
 			else {
 				var str = Cc['@mozilla.org/supports-string;1'].
 					createInstance(Ci.nsISupportsString);
@@ -477,8 +481,12 @@ if (Foxtrick.arch === 'Gecko') {
 
 		setInt: function(key, value) {
 			if (Foxtrick.chromeContext() === 'content')
-				Foxtrick.SB.extension.sendRequest({ req: 'setValue', type: 'int',
-				                                key: key, value: value });
+				Foxtrick.SB.ext.sendRequest({
+					req: 'setValue',
+					type: 'int',
+					key: key,
+					value: value
+				});
 			else
 				Foxtrick.Prefs._prefs_gecko.setIntPref(encodeURI(key), value);
 		},
@@ -493,8 +501,12 @@ if (Foxtrick.arch === 'Gecko') {
 
 		setBool: function(key, value) {
 			if (Foxtrick.chromeContext() === 'content')
-				Foxtrick.SB.extension.sendRequest({ req: 'setValue', type: 'bool',
-				                                key: key, value: value });
+				Foxtrick.SB.ext.sendRequest({
+					req: 'setValue',
+					type: 'bool',
+					key: key,
+					value: value
+				});
 			else
 				Foxtrick.Prefs._prefs_gecko.setBoolPref(encodeURI(key), value);
 		},
@@ -505,7 +517,7 @@ if (Foxtrick.arch === 'Gecko') {
 					Foxtrick.Prefs._prefs_gecko.clearUserPref(encodeURI(key));   // reset to default
 			}
 			else {
-				Foxtrick.SB.extension.sendRequest({ req: 'deleteValue', key: key });
+				Foxtrick.SB.ext.sendRequest({ req: 'deleteValue', key: key });
 			}
 		},
 
@@ -737,7 +749,7 @@ if (Foxtrick.arch === 'Sandboxed') {
 					else {
 						// not default, set it
 						Foxtrick.Prefs._prefs_chrome_user[key] = value;
-						Foxtrick.SB.extension.sendRequest({ req: 'setValue', key: key, value: value });
+						Foxtrick.SB.ext.sendRequest({ req: 'setValue', key: key, value: value });
 					}
 				}
 				catch (e) {}
@@ -745,7 +757,7 @@ if (Foxtrick.arch === 'Sandboxed') {
 
 			deleteValue: function(key) {
 				delete(Foxtrick.Prefs._prefs_chrome_user[key]);
-				Foxtrick.SB.extension.sendRequest({ req: 'deleteValue', key: key });
+				Foxtrick.SB.ext.sendRequest({ req: 'deleteValue', key: key });
 			},
 		};
 

@@ -65,19 +65,13 @@ else {
 
 		Foxtrick.sessionSet = function(key, value) {
 			// inform background
-			Foxtrick.SB.extension.sendRequest({
-				req: 'sessionSet',
-				key: key,
-				value: value
-			});
+			Foxtrick.SB.ext.sendRequest({ req: 'sessionSet', key: key, value: value });
 		};
 
 		Foxtrick.sessionGet = function(key, callback) {
 			// get from background
-			Foxtrick.SB.extension.sendRequest({
-				req: 'sessionGet',
-				key: key
-			}, function(response) {
+			Foxtrick.SB.ext.sendRequest({ req: 'sessionGet', key: key },
+			  function(response) {
 				try {
 					callback(response.value);
 				}
@@ -89,10 +83,7 @@ else {
 
 		Foxtrick.sessionDeleteBranch = function(branch) {
 			// inform background
-			Foxtrick.SB.extension.sendRequest({
-				req: 'sessionDeleteBranch',
-				branch: branch
-			});
+			Foxtrick.SB.ext.sendRequest({ req: 'sessionDeleteBranch', branch: branch });
 		};
 	}
 }

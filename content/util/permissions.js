@@ -12,9 +12,7 @@ if (!Foxtrick) var Foxtrick = {};
 	Foxtrick.containsPermission = function(types, callback){
 		if (Foxtrick.platform == 'Chrome') {
 			if (Foxtrick.chromeContext() == 'content') {
-				Foxtrick.SB.extension.sendRequest({
-						req: 'containsPermission', types: types
-				  },
+				Foxtrick.SB.ext.sendRequest({ req: 'containsPermission', types: types },
 				  function(response) {
 					callback(response);
 				});
@@ -37,9 +35,7 @@ if (!Foxtrick) var Foxtrick = {};
 	Foxtrick.requestPermission = function(types, callback){
 		if (Foxtrick.platform == 'Chrome') {
 			if (Foxtrick.chromeContext() == 'content') {
-				// Foxtrick.SB.extension.sendRequest({
-				// 		req: 'requestPermission', types: types
-				//   },
+				// Foxtrick.SB.ext.sendRequest({ req: 'requestPermission', types: types },
 				//   function(response) {
 				// 	callback(response);
 				// });
@@ -62,9 +58,7 @@ if (!Foxtrick) var Foxtrick = {};
 	Foxtrick.removePermission = function(types, callback){
 		if (Foxtrick.platform == 'Chrome') {
 			if (Foxtrick.chromeContext() == 'content') {
-				// Foxtrick.SB.extension.sendRequest({
-				// 		req: 'removePermission', types: types
-				//   },
+				// Foxtrick.SB.ext.sendRequest({ req: 'removePermission', types: types },
 				//   function(response) {
 				// 	callback(response);
 				// });

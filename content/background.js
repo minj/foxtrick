@@ -29,7 +29,7 @@ Foxtrick.loader.background.contentRequestsListener = function(request, sender, s
 // background script unload function
 Foxtrick.loader.background.browserUnload = function() {
 	// remove contentRequestsListener on unload
-	Foxtrick.SB.extension.onRequest.removeListener(Foxtrick.loader.background.contentRequestsListener);
+	Foxtrick.SB.ext.onRequest.removeListener(Foxtrick.loader.background.contentRequestsListener);
 };
 
 
@@ -77,8 +77,7 @@ Foxtrick.loader.background.browserLoad = function() {
 			}
 		}
 
-		Foxtrick.SB.extension.onRequest.addListener(Foxtrick.loader.background
-		                                          .contentRequestsListener);
+		Foxtrick.SB.ext.onRequest.addListener(Foxtrick.loader.background.contentRequestsListener);
 
 		// -- requests functions --
 		// here goes the handlers to content requests of requestName

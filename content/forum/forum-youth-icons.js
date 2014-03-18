@@ -449,7 +449,7 @@ Foxtrick.modules['ForumYouthIcons'] = {
 								str = str.substr(str.length - MAX_LENGTH);
 						};
 						if (Foxtrick.arch === 'Sandboxed' || Foxtrick.platform == 'Android') {
-							Foxtrick.SB.extension.sendRequest({ req: 'getDebugLog' },
+							Foxtrick.SB.ext.sendRequest({ req: 'getDebugLog' },
 							  function(n) {
 								insertText(Foxtrick.log.header(doc) + '\n' + ensureLength(n.log));
 								textCounter(ta, fieldCounter, maxLength);

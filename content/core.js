@@ -357,7 +357,7 @@ Foxtrick.modules['Core'] = {
 			reportBugSpan.setAttribute('area-label', reportBugSpan.title = title);
 			Foxtrick.onClick(reportBugSpan, function() {
 				if (Foxtrick.arch === 'Sandboxed' || Foxtrick.platform == 'Android') {
-					Foxtrick.SB.extension.sendRequest({ req: 'getDebugLog' },
+					Foxtrick.SB.ext.sendRequest({ req: 'getDebugLog' },
 					  function(n) {
 						reportBug(n.log);
 					});

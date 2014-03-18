@@ -66,7 +66,7 @@ Foxtrick.log = function() {
 
 	// store in debug storage (retrieved with forum debug log icon)
 	if (Foxtrick.chromeContext() == 'content')
-		Foxtrick.SB.extension.sendRequest({ req: 'addDebugLog', log: concated });
+		Foxtrick.SB.ext.sendRequest({ req: 'addDebugLog', log: concated });
 	else {
 		Foxtrick.addToDebugLogStorage(concated);
 	}
@@ -123,7 +123,7 @@ Foxtrick.log = function() {
 		}
 		else {
 			// send it via background since fennec doesn't show all dumps from content side
-			Foxtrick.SB.extension.sendRequest({ req: 'log', log: concated });
+			Foxtrick.SB.ext.sendRequest({ req: 'log', log: concated });
 		}
 	}
 };

@@ -93,8 +93,12 @@ if (!Foxtrick) var Foxtrick = {};
 			}
 			else if (Foxtrick.platform == 'Chrome') {
 				if (Foxtrick.chromeContext() == 'content') {
-					Foxtrick.SB.extension.sendRequest(
-					  { req: 'cookieSet', where: where, name: name, what: what },
+					Foxtrick.SB.ext.sendRequest({
+						req: 'cookieSet',
+						where: where,
+						name: name,
+						what: what
+					  },
 					  function(reponse) {
 						if (callback) {
 							try {
@@ -106,15 +110,14 @@ if (!Foxtrick) var Foxtrick = {};
 									callback(reponse);
 							}
 							catch (e) {
-								Foxtrick.log('Error in callback for cookieSet',
-											 response, e);
+								Foxtrick.log('Error in callback for cookieSet', response, e);
 							}
 						}
 					});
 				}
 			}
 			else if (callback)
-					callback(null);
+				callback(null);
 		};
 
 		// chrome background
@@ -169,7 +172,7 @@ if (!Foxtrick) var Foxtrick = {};
 				return;
 			} else if (Foxtrick.platform == 'Chrome') {
 				if (Foxtrick.chromeContext() == 'content') {
-					Foxtrick.SB.extension.sendRequest({
+					Foxtrick.SB.ext.sendRequest({
 							req: 'cookieGet', where: where, name: name
 					  },
 					  function(response) {
