@@ -23,6 +23,9 @@ Foxtrick.modules['Core'] = {
 		this.parseSelfTeamInfo(doc);
 		if (Foxtrick.isPage(doc, 'players') || Foxtrick.isPage(doc, 'youthPlayers'))
 			this.parsePlayerList(doc);
+		if (Foxtrick.isPage(doc, 'matchOrder'))
+			Foxtrick.util.inject.jsLink(doc, Foxtrick.InternalPath +
+			                            'resources/js/matchOrderData.js');
 		this.updateLastHost(doc);
 		this.showVersion(doc);
 		this.featureHighlight(doc);

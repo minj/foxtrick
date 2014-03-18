@@ -1265,8 +1265,6 @@ Foxtrick.modules.MatchSimulator = {
 		realProbabilitiesLabel.title = Foxtrick.L10n.getString('matchOrder.realProbabilities.title');
 		optionsDivElm.appendChild(realProbabilitiesLabel);
 
-		Foxtrick.util.inject.jsLink(doc, Foxtrick.InternalPath + 'resources/js/matchSimulator.js');
-
 		if (useRatings || useHTMS) {
 			var overlayBottom = doc.createElement('div');
 			fieldOverlay.appendChild(overlayBottom).id = 'ft-overlayBottom';
