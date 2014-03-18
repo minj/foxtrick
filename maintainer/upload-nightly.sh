@@ -7,7 +7,7 @@
 # upload-nightly.sh will pass all of its arguments to Make
 #
 # Options:
-# -c : name of the config file sh 
+# -c : name of the config file sh
 # any other arguments resp anything after is passed to Make
 #
 # Exit codes:
@@ -78,18 +78,13 @@ if [ "$UPLOAD_UPDATE_FILES" == "true" ]; then
 	sed -i "s|{UPDATE_LINK}|${URL_BASE}/chrome/foxtrick-${VERSION}.crx|g" update-chrome.xml
 	sed -i "s|{VERSION}|${VERSION}|g" update-chrome.xml
 
-	# modify update-opera.xml for Opera
-	cp update-tmpl-opera.xml update-opera.xml
-	sed -i "s|{UPDATE_LINK}|${URL_BASE}/opera/foxtrick-${VERSION}.oex|g" update-opera.xml
-	sed -i "s|{VERSION}|${VERSION}|g" update-opera.xml
-
 	# modify update-safari.plist for Safari
 	cp update-tmpl-safari.plist update-safari.plist
 	sed -i "s|{UPDATE_LINK}|${URL_BASE}/safari/foxtrick-${VERSION}.safariextz|g" update-safari.plist
 	sed -i "s|{VERSION}|${VERSION}|g" update-safari.plist
 fi
-	
-echo "uploading to $HOST $DEST"	
+
+echo "uploading to $HOST $DEST"
 cp ftp-tmpl ftp
 sed -i \
     -e "s|{USER}|${USER}|g" \
@@ -101,4 +96,4 @@ sed -i \
 lftp -f ftp || exit 3
 rm ftp
 
-rm -f update-firefox.rdf update-chrome.xml update-opera.xml update-safari.plist
+rm -f update-firefox.rdf update-chrome.xml update-safari.plist

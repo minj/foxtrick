@@ -63,7 +63,7 @@ Foxtrick.entry.docLoad = function(doc) {
 };
 
 // invoved for each new instance of a content script
-// for chrome/safari/opera after each page load
+// for chrome/safari after each page load
 // for fennec on new tab opened
 // @param data - copy of the resources passed from the background script
 Foxtrick.entry.contentScriptInit = function(data) {

@@ -74,33 +74,6 @@ one background thread and one for each page (non-persistant with page reload)
 =log=
 	console.log directly
 
-
-==opera==
-one background thread and one for each page (non-persistant with page reload)
-=rights=
-	content scripts and html document can't access extension diretory
-=script loading=
-	background.html (background)
-	includes folder, copied from content and subfolders (content)
-=content starter=
-	loader-chrome.js
-=preferences page=
-	runs in content context
-=prefs=
-	localStore via background
-=l10n=
-	text load via background
-=xml_resources_load=
-	via background
-=css=
-	injected via background
-	imgs converted to dataurl
-=sessionStore=
-	updates via background
-=log=
-	opera.postError directly
-
-
 ==safari==
 one background thread and one for each page (non-persistant with page reload)
 =rights=

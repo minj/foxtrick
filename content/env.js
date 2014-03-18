@@ -9,7 +9,7 @@ if (!Foxtrick)
 	var Foxtrick = {};
 
 
-// sandboxed object for chrome, safari, opera and fennec
+// sandboxed object for chrome, safari and fennec
 // used to communicate between content script and background script
 /*
 Foxtrick.SB.ext.sendRequest(data, callback)
@@ -34,151 +34,21 @@ Foxtrick.SB.tabs.create(url)
 // create a tab from background with url
 */
 
-// Foxtrick.arch: 'Sandboxed' (chrome,opera,safari) or 'Gecko' (firefox, fennec)
+// Foxtrick.arch: 'Sandboxed' (chrome,safari) or 'Gecko' (firefox, fennec)
 // used mainly in l10n, prefs and css injection
 
-// Foxtrick.platform: 'Chrome', 'Opera', 'Safari', 'Firefox', 'Android'
+// Foxtrick.platform: 'Chrome', 'Safari', 'Firefox', 'Android'
 // used mainly in UI and script starting
 
 // Foxtrick.InternalPath: called from extension - path to extension folder
 // Foxtrick.ResourcePath: called from html page - external page
-// (opera, access to extension folder prohibited), path to extension folder (all other)
 
 (function() {
 Foxtrick.DataPath = 'https://foxtrick.googlecode.com/svn/trunk/res/';
 // used to cache dataUrl images
 Foxtrick.dataUrlStorage = {};
 
-if (typeof(opera) == 'object') {
-	Foxtrick.arch = 'Sandboxed';
-	Foxtrick.platform = 'Opera';
-	Foxtrick.InternalPath = 'content/';
-	Foxtrick.ResourcePath = 'https://foxtrick.googlecode.com/svn/trunk/content/';
-
-	// to tell which context the chrome script is running at
-	// either background page, or content script
-	Foxtrick.chromeContext = function() {
-		try {
-			if (opera.extension.postMessage) {
-				return 'content';
-			}
-			else {
-				return 'background';
-			}
-		}
-		catch (e) {
-			return 'content';
-		}
-	};
-
-	var addListener = function(handler) {
-		opera.extension.addEventListener('message', handler, false);
-	};
-
-	Foxtrick.SB = {
-		// Track tabs that make requests to the global page, assigning them
-		// IDs so we can recognize them later.
-		__getTabId: (function() {
-			// Tab objects are destroyed when no one has a reference to them,
-			// so we keep a list of them, lest our IDs get lost.
-			var tabs = [];
-			var lastAssignedTabId = 0;
-			var theFunction = function(tab) {
-				// Clean up closed tabs, to avoid memory bloat.
-				tabs = tabs.filter(function(t) { return t.browserWindow != null; });
-
-				if (tab.id == undefined) {
-					// New tab
-					tab.id = lastAssignedTabId + 1;
-					lastAssignedTabId = tab.id;
-					tabs.push(tab); // save so it isn't garbage collected, losing our ID.
-				}
-				return tab.id;
-			};
-			return theFunction;
-		})(),
-
-		ext: {
-			sendRequest: (function() {
-				// The function we'll return at the end of all this
-				function theFunction(data, callback) {
-					var callbackToken = 'callback' + Math.random();
-
-					// Listen for a response for our specific request token.
-					addOneTimeResponseListener(callbackToken, callback);
-
-					opera.extension.postMessage({
-						name: 'request',
-						data: data,
-						callbackToken: callbackToken
-					});
-				}
-
-				// Make a listener that, when it hears sendResponse for the given
-				// callbackToken, calls callback(resultData) and deregisters the
-				// listener.
-				function addOneTimeResponseListener(callbackToken, callback) {
-					var responseHandler = function(messageEvent) {
-						if (messageEvent.data.name != 'response')
-							return;
-						if (messageEvent.data.callbackToken != callbackToken)
-							return;
-
-						if (callback)
-							callback(messageEvent.data.data);
-
-						opera.extension.removeEventListener('message', responseHandler, false);
-					};
-					addListener(responseHandler);
-				}
-
-				return theFunction;
-			})(),
-
-			onRequest: {
-				addListener: function(handler) {
-					addListener(function(messageEvent) {
-						// Only listen for 'sendRequest' messages
-						if (messageEvent.data.name != 'request')
-							return;
-
-						var request = messageEvent.data.data;
-						var id = Foxtrick.SB.__getTabId(messageEvent.target);
-
-						var sender = { tab: { id: id, url: messageEvent.target.url } };
-						var sendResponse = function(dataToSend) {
-							var responseMessage = {
-								name: 'response',
-								callbackToken: messageEvent.data.callbackToken,
-								data: dataToSend
-							};
-							messageEvent.source.postMessage(responseMessage);
-						};
-						handler(request, sender, sendResponse);
-					});
-				},
-			},
-			// sending everywhere including options and popups
-			broadcastMessage: function(message) {
-				opera.extension.broadcastMessage(message);
-			},
-			getURL: function(path) {
-				return './' + path;
-			},
-			getBackgroundPage: function() {
-				return opera.extension.bgProcess;
-			},
-		},
-
-		tabs: {
-			create: function(props) {
-				opera.extension.tabs.create(props);
-			},
-		},
-	};
-}
-
-else if (typeof(safari) == 'object') {
+if (typeof(safari) == 'object') {
 	Foxtrick.arch = 'Sandboxed';
 	Foxtrick.platform = 'Safari';
 	Foxtrick.InternalPath = Foxtrick.ResourcePath = safari.extension.baseURI + 'content/';

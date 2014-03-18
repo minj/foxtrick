@@ -695,9 +695,7 @@ if (Foxtrick.arch === 'Sandboxed') {
 					};
 
 					parsePrefsFile('../defaults/preferences/foxtrick.js');
-					if (Foxtrick.platform == 'Opera')
-						parsePrefsFile('../defaults/preferences/foxtrick.opera');
-					else if (Foxtrick.platform == 'Chrome')
+					if (Foxtrick.platform == 'Chrome')
 						parsePrefsFile('../defaults/preferences/foxtrick.chrome');
 					else if (Foxtrick.platform == 'Safari')
 						parsePrefsFile('../defaults/preferences/foxtrick.safari');

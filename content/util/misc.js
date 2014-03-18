@@ -148,7 +148,7 @@ Foxtrick.copyStringToClipboard = function(string) {
 			gClipboardHelper.copyString(string);
 		}
 	}
-	else if (Foxtrick.platform == 'Opera' || Foxtrick.platform == 'Safari') {
+	else if (Foxtrick.platform == 'Safari') {
 		Foxtrick.sessionSet('clipboard', string);
 	}
 	else if (Foxtrick.arch === 'Sandboxed') {

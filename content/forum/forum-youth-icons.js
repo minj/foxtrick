@@ -354,7 +354,7 @@ Foxtrick.modules['ForumYouthIcons'] = {
 					}
 
 					if (ta.selectionStart || ta.selectionStart == '0') {
-						// Opera, Mozilla
+						// Mozilla
 						var st = ta.scrollTop;
 						ta.value = s.textBeforeSelection + newText + s.textAfterSelection;
 						ta.scrollTop = st;
@@ -391,9 +391,6 @@ Foxtrick.modules['ForumYouthIcons'] = {
 							}
 							if (replaceText == 'ttt' && s.selectionLength === 0) {
 								ta.selectionStart = s.selectionStart + 17;
-								if (Foxtrick.platform == 'Opera')
-									ta.selectionStart++;
-								// opera uses \n\r thus we need to add one for that extra \r
 								ta.selectionEnd = ta.selectionStart + 5;
 							}
 						}
@@ -410,7 +407,7 @@ Foxtrick.modules['ForumYouthIcons'] = {
 					var s = Foxtrick.getSelection(ta);
 
 					var insertText = function(text) {
-						// Opera, Mozilla
+						// Mozilla
 						if (ta.selectionStart || ta.selectionStart == '0') {
 							var st = ta.scrollTop;
 							ta.value = s.textBeforeSelection + s.selectedText + text +

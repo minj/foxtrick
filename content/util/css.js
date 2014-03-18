@@ -12,90 +12,73 @@ Foxtrick.util.css = {};
 
 // load images in background and convert them to dataUrl
 // needed for opera since they don't allow access to repository from html document
-Foxtrick.util.css.convertImageUrlToData = function(cssTextCollection, callback) {
-	var pending = 0;
+// Foxtrick.util.css.convertImageUrlToData = function(cssTextCollection, callback) {
+// 	var pending = 0;
 
-	// send back when all images are converted
-	var resolve = function() {
-		if (--pending <= 0) {
-			callback(cssTextCollection);
-		}
-	};
-	// convert an image
-	var replaceImage = function(url) {
-		var image = new Image;
-		image.onload = function() {
-			var canvas = document.createElement('canvas');
-			canvas.width = image.width;
-			canvas.height = image.height;
-			var context = canvas.getContext('2d');
-			context.drawImage(image, 0, 0);
-			var dataUrl = canvas.toDataURL();
-			Foxtrick.dataUrlStorage[url] = dataUrl;
-			cssTextCollection = cssTextCollection.replace(RegExp(url, 'g'), dataUrl);
-			return resolve();
-		};
-		image.onerror = function() {
-			return resolve();
-		};
-		return image.src = url;
-	};
+// 	// send back when all images are converted
+// 	var resolve = function() {
+// 		if (--pending <= 0) {
+// 			callback(cssTextCollection);
+// 		}
+// 	};
+// 	// convert an image
+// 	var replaceImage = function(url) {
+// 		var image = new Image;
+// 		image.onload = function() {
+// 			var canvas = document.createElement('canvas');
+// 			canvas.width = image.width;
+// 			canvas.height = image.height;
+// 			var context = canvas.getContext('2d');
+// 			context.drawImage(image, 0, 0);
+// 			var dataUrl = canvas.toDataURL();
+// 			Foxtrick.dataUrlStorage[url] = dataUrl;
+// 			cssTextCollection = cssTextCollection.replace(RegExp(url, 'g'), dataUrl);
+// 			return resolve();
+// 		};
+// 		image.onerror = function() {
+// 			return resolve();
+// 		};
+// 		return image.src = url;
+// 	};
 
-	if (cssTextCollection) {
-		var fullUrlRegExp = new RegExp("\\(\'?\"?chrome://foxtrick/content/([^\\)]+)\'?\"?\\)",
-			'gi');
-		var urls = cssTextCollection.match(fullUrlRegExp);
-		var InternalPathRegExp = RegExp('chrome://foxtrick/content/', 'ig');
-		cssTextCollection = cssTextCollection.replace(InternalPathRegExp, Foxtrick.InternalPath);
+// 	if (cssTextCollection) {
+// 		var fullUrlRegExp = new RegExp("\\(\'?\"?chrome://foxtrick/content/([^\\)]+)\'?\"?\\)",
+// 			'gi');
+// 		var urls = cssTextCollection.match(fullUrlRegExp);
+// 		var InternalPathRegExp = RegExp('chrome://foxtrick/content/', 'ig');
+// 		cssTextCollection = cssTextCollection.replace(InternalPathRegExp, Foxtrick.InternalPath);
 
-		if (urls) {
-			// first check dataurl cache
-			for (var i = 0; i < urls.length; ++i) {
-				urls[i] = urls[i].replace(/\(\'?\"?|\'?\"?\)/g, '').replace(InternalPathRegExp,
-				                                                           Foxtrick.InternalPath);
-				if (Foxtrick.dataUrlStorage[urls[i]]) {
-					cssTextCollection = cssTextCollection.replace(RegExp(urls[i], 'g'),
-					                                              Foxtrick.dataUrlStorage[urls[i]]);
-				}
-			}
-			// convert missing images
-			for (var i = 0; i < urls.length; ++i) {
-				urls[i] = urls[i].replace(/\(\'?\"?|\'?\"?\)/g, '').replace(InternalPathRegExp,
-				                                                            Foxtrick.InternalPath);
-				if (!Foxtrick.dataUrlStorage[urls[i]]) {
-					pending++;
-					replaceImage(urls[i]);
-				}
-			}
-			// resolve cached dataurls
-			pending++;
-			resolve();
-		}
-	}
-};
+// 		if (urls) {
+// 			// first check dataurl cache
+// 			for (var i = 0; i < urls.length; ++i) {
+// 				urls[i] = urls[i].replace(/\(\'?\"?|\'?\"?\)/g, '').replace(InternalPathRegExp,
+// 				                                                           Foxtrick.InternalPath);
+// 				if (Foxtrick.dataUrlStorage[urls[i]]) {
+// 					cssTextCollection = cssTextCollection.replace(RegExp(urls[i], 'g'),
+// 					                                              Foxtrick.dataUrlStorage[urls[i]]);
+// 				}
+// 			}
+// 			// convert missing images
+// 			for (var i = 0; i < urls.length; ++i) {
+// 				urls[i] = urls[i].replace(/\(\'?\"?|\'?\"?\)/g, '').replace(InternalPathRegExp,
+// 				                                                            Foxtrick.InternalPath);
+// 				if (!Foxtrick.dataUrlStorage[urls[i]]) {
+// 					pending++;
+// 					replaceImage(urls[i]);
+// 				}
+// 			}
+// 			// resolve cached dataurls
+// 			pending++;
+// 			resolve();
+// 		}
+// 	}
+// };
 
 // replace links in the css files to the approriate chrome resources for each browser
 Foxtrick.util.css.replaceExtensionDirectory = function(cssTextCollection, callback, id) {
 	var InternalPathRegExp = RegExp('chrome://foxtrick/content/', 'ig');
 
-	if (Foxtrick.platform == 'Opera') {
-		if (cssTextCollection.search(InternalPathRegExp) != -1)
-			Foxtrick.SB.ext.sendRequest({
-				req: 'convertImages',
-				cssText: cssTextCollection,
-				type: id
-			  },
-			  function(data) {
-				try {
-					callback(data.cssText);
-				}
-				catch (e) {
-					Foxtrick.log('Error in callback for convertImages', data, e);
-				}
-			});
-		else callback(cssTextCollection);
-	}
-	else if (Foxtrick.platform == 'Safari' || Foxtrick.platform == 'Chrome') {
+	if (Foxtrick.platform == 'Safari' || Foxtrick.platform == 'Chrome') {
 		callback(cssTextCollection.replace(InternalPathRegExp, Foxtrick.InternalPath));
 	}
 	else callback(cssTextCollection);

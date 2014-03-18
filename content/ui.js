@@ -140,56 +140,7 @@ if (Foxtrick.platform == 'Firefox') {
 }
 
 
-if (Foxtrick.platform == 'Opera') {
-
-	Foxtrick.modules.UI.UIItemProperties = {
-		disabled: false,
-		title: 'FoxTrick',
-		icon: 'skin/icon-16.png',
-		popup: {
-			href: 'popup.html',
-			width: 200,
-			height: 130
-		},
-		onclick: function(event) {
-			Foxtrick.modules.UI.button.popup.width = 200;
-			Foxtrick.modules.UI.button.popup.height = 130;
-			//Foxtrick.Prefs.disable(event.currentTarget);
-		}
-
-	};
-
-	Foxtrick.modules.UI.onLoad = function() {
-		// Specify the properties of the button before creating it.
-		// Create the button and add it to the toolbar.
-		Foxtrick.modules.UI.button =
-			opera.contexts.toolbar.createItem(Foxtrick.modules.UI.UIItemProperties);
-		opera.contexts.toolbar.addItem(Foxtrick.modules.UI.button);
-		Foxtrick.modules.UI.updateIcon(Foxtrick.modules.UI.button);
-	};
-
-	Foxtrick.modules.UI.update = function() {
-		Foxtrick.modules.UI.updateIcon(Foxtrick.modules.UI.button);
-	};
-
-	Foxtrick.modules.UI.updateIcon = function(button) {
-		var statusText = '';
-		if (Foxtrick.Prefs.getBool('disableTemporary')) {
-			button.icon = 'skin/disabled-24.png';
-			statusText = Foxtrick.L10n.getString('status.disabled');
-		}
-		else {
-			statusText = Foxtrick.L10n.getString('status.active');
-			button.icon = 'skin/icon-24.png';
-		}
-		var tooltipText = Foxtrick.L10n.getString('toolbar.title') + ' ' +
-			Foxtrick.version() + ' ' + Foxtrick.branch() + ' (' + statusText + ')';
-		button.title = tooltipText;
-	};
-}
-
-
-else if (Foxtrick.platform == 'Chrome') {
+if (Foxtrick.platform == 'Chrome') {
 
 	Foxtrick.modules.UI.onLoad = function() {
 		chrome.pageAction.onClicked.addListener(function(tab) {

@@ -1550,18 +1550,6 @@ function initLoader() {
 	// gecko, safari, chrome
 	if (Foxtrick.arch === 'Gecko' || Foxtrick.chromeContext() === 'background')
 		init();
-	else
-		// opera prefs runs in content context. add need resources first
-		Foxtrick.SB.ext.sendRequest({ req: 'optionsPageLoad' },
-		  function(data) {
-			try {
-				Foxtrick.entry.contentScriptInit(data);
-				init();
-			}
-			catch (e) {
-				Foxtrick.log('initLoader: ', e);
-			}
-		});
 }
 // this is the preference script entry point for sandboxed arch
 initLoader();

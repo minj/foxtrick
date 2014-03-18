@@ -96,7 +96,6 @@
 		},
 
 		run: function(doc) {
-			// type of change to listen to. opera doesn't support DOMSubtreeModified
 
 			var getType = function(url) {
 				var type;

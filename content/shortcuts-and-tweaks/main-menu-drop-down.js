@@ -379,23 +379,19 @@ Foxtrick.modules['MainMenuDropDown'] = {
 		function getMenuTextColor() {
 			var tcolor;
 			Foxtrick.map(function(styleSheet) {
-				try {
-					// opera throws security exception when accessing CSS from different domain
-					if (styleSheet.cssRules) {
-						Foxtrick.any(function(rule) {
-							var c = textColor(rule.cssText);
+				if (styleSheet.cssRules) {
+					Foxtrick.any(function(rule) {
+						var c = textColor(rule.cssText);
 
-							if (c) {
-								tcolor = c;
-								return true;
-							}
-							else
-								return false;
+						if (c) {
+							tcolor = c;
+							return true;
+						}
+						else
+							return false;
 
-						}, styleSheet.cssRules);
-					}
+					}, styleSheet.cssRules);
 				}
-				catch (e) {};
 			}, doc.styleSheets);
 			return tcolor;
 		}

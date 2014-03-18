@@ -774,8 +774,6 @@ Foxtrick.modules['MatchOrderInterface'] = {
 				             .getElementsByTagName('div').length !== 0);
 				waitForInterface();
 			}, false);
-			if (Foxtrick.platform == 'Opera')
-				waitForInterface();
 		};
 
 		var isYouth = (doc.location.href.search(/isYouth=true|SourceSystem=Youth/i) != -1);

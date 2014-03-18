@@ -246,8 +246,7 @@ Foxtrick.modules['EmbedMedia'] = {
 							//Opera would need permision for that workarround, FF and Chrome
 							//don't seem to require it tho
 							//dunno about safari
-							if (key == 'imageshack' && (Foxtrick.platform == 'Opera' ||
-							    Foxtrick.platform == 'Safari'))
+							if (key == 'imageshack' && Foxtrick.platform == 'Safari')
 								continue;
 
 							linkDict['site'] = key;

@@ -1,7 +1,7 @@
 APP_NAME = foxtrick
 
 # branch type:
-# Firefox, Chrome, Opera: nightly, release, hosting
+# Firefox, Chrome: nightly, release, hosting
 # Safari: nightly, release
 DIST_TYPE = nightly
 
@@ -50,19 +50,11 @@ ROOT_FILES_FIREFOX = chrome.manifest \
 	COPYING \
 	HACKING
 ROOT_FILES_CHROME = manifest.json
-ROOT_FILES_OPERA = config.xml \
-	content/background.html \
-	content/background.js \
-	content/preferences.html \
-	content/preferences.js \
-	content/popup.html \
-	content/popup.js
 ROOT_FILES_SAFARI = Info.plist \
 	Settings.plist \
 	skin/icon.png
 ROOT_FOLDERS_FIREFOX = defaults/
 ROOT_FOLDERS_CHROME = defaults/ skin/
-ROOT_FOLDERS_OPERA = defaults/ skin/
 ROOT_FOLDERS_SAFARI = defaults/ skin/
 SCRIPT_FOLDERS = alert/ \
 	access/ \
@@ -114,7 +106,6 @@ CONTENT_FILES_CHROME = $(CONTENT_FILES) background.html \
 	popup.html \
 	popup.js \
 	loader-chrome.js
-CONTENT_FILES_OPERA = $(CONTENT_FILES) 	loader-chrome.js
 CONTENT_FILES_SAFARI = $(CONTENT_FILES) background.html \
 	background.js \
 	preferences.html \
@@ -123,7 +114,7 @@ CONTENT_FILES_SAFARI = $(CONTENT_FILES) background.html \
 BACKGROUND_LIBS = \
 	jquery.js
 
-all: firefox chrome opera safari
+all: firefox chrome safari
 
 firefox:
 	#
@@ -227,75 +218,6 @@ endif
 	# clean up
 	make clean-build
 
-opera:
-	#
-	############ make opera ############
-	#
-	make clean-opera clean-build
-	mkdir $(BUILD_DIR)
-	# copy root files
-	cp -r $(ROOT_FILES_OPERA) $(ROOT_FOLDERS_OPERA) $(BUILD_DIR)
-	# content/
-	mkdir $(BUILD_DIR)/includes
-	cd content/; \
-	cp -r $(subst /,/.,$(SCRIPT_FOLDERS)) $(CONTENT_FILES_OPERA) \
-		../$(BUILD_DIR)/includes
-	# remove ignore modules from files
-	mkdir $(BUILD_DIR)/content
-	cd content/; \
-	cp -r $(RESOURCE_FOLDERS) \
-		../$(BUILD_DIR)/content
-	# remove bad lib
-	rm $(BUILD_DIR)/includes/ToolbarItem.js
-	# remove ignore modules from files
-	perl module-update.pl $(MODULES) $(IGNORED_MODULES) $(BUILD_DIR)/
-	## change files to opera naming
-	mv $(BUILD_DIR)/preferences.html $(BUILD_DIR)/options.html
-	mv $(BUILD_DIR)/includes/env.js $(BUILD_DIR)/includes/aa00_env.js
-	mv $(BUILD_DIR)/includes/module.js $(BUILD_DIR)/includes/aa10_module.js
-	mv $(BUILD_DIR)/includes/loader-chrome.js $(BUILD_DIR)/includes/zz99_loader-chrome.js
-	mv $(BUILD_DIR)/includes/context-menu-copy.js $(BUILD_DIR)/includes/zz98_context-menu-copy.js
-	# background-libs
-	mkdir $(BUILD_DIR)/lib
-	cd $(BUILD_DIR)/includes; \
-		mv $(BACKGROUND_LIBS) ../lib
-	cd $(BUILD_DIR); sed -i -r 's|(href=\"\./)|href=\"./content/|' background.html options.html popup.html
-	cd $(BUILD_DIR); sed -i -r 's|(src=\"\./[a-zA-Z0-9_-]+/)|src=\"./|' background.html options.html popup.html
-	cd $(BUILD_DIR); sed -i -r 's|(src=\"\./)|src=\"./includes/|' background.html options.html popup.html
-	cd $(BUILD_DIR); sed -i -r 's|(/includes/env.js)|/includes/aa00_env.js|' background.html options.html popup.html
-	cd $(BUILD_DIR); sed -i -r 's|(/includes/module.js)|/includes/aa10_module.js|' background.html options.html popup.html
-	cd $(BUILD_DIR); sed -i -r 's|(context-menu-copy.js)|zz98_context-menu-copy.js|' \
-		background.html options.html popup.html
-	## change entry files folder back to root
-	cd $(BUILD_DIR); sed -i -r 's|(/includes/background.js)|/background.js|' background.html
-	cd $(BUILD_DIR); sed -i -r 's|(/includes/preferences.js)|/preferences.js|' options.html
-	cd $(BUILD_DIR); sed -i -r 's|(/includes/popup.js)|/popup.js|' popup.html
-	## change background libs folder
-	cd $(BUILD_DIR); \
-	for lib in $(BACKGROUND_LIBS); do \
-		sed -i -r "s|(/includes/$$lib)|/lib/$$lib|" background.html options.html popup.html; \
-	done
-	# set branch
-	cd $(BUILD_DIR); \
-	sed -i -r "/extensions\\.foxtrick\\.prefs\\.branch/s|\"svn\"|\"$(BRANCH) opera\"|" defaults/preferences/foxtrick.js
-	# modify according to dist type
-ifeq ($(DIST_TYPE),nightly)
-	cd $(BUILD_DIR); \
-	../version.sh $(REV_VERSION); \
-	sed -i -r 's|(<update-description href=").+("/>)|\1'$(UPDATE_URL)'/opera/update.xml\2|' config.xml
-else ifeq ($(DIST_TYPE),release)
-	cd $(BUILD_DIR); \
-	sed -i -r 's|(<update-description href=").+("/>)|\1'$(UPDATE_URL)'/opera/update.xml\2|' config.xml
-else ifeq ($(DIST_TYPE),hosting)
-	cd $(BUILD_DIR); \
-	sed -i -r '/update-description/d' config.xml
-endif
-	# make oex
-	cd $(BUILD_DIR); \
-	$(ZIP) -r ../$(APP_NAME).oex *
-	# clean up
-	make clean-build
-
 safari:
 	#
 	############ make safari ############
@@ -349,9 +271,6 @@ clean-chrome:
 	rm -rf *.crx
 	rm -rf *.zip
 
-clean-opera:
-	rm -rf *.oex
-
 clean-safari:
 	rm -rf *.safariextz
 	rm -rf xar.log
@@ -361,4 +280,4 @@ clean-build:
 	rm -f sha1-hash.dat
 	rm -f signature.dat
 
-clean: clean-firefox clean-chrome clean-opera clean-safari clean-build
+clean: clean-firefox clean-chrome clean-safari clean-build

@@ -1,10 +1,6 @@
 'use strict';
-// custom function to bypass opera's stupidity
 function shutDown() {
-	if (isOpera) {
-		window.setTimeout(window.close, 100); // go to async mode for click event to complete
-	}
-	else window.close();
+	window.close();
 }
 function init()
 {
@@ -72,12 +68,7 @@ function clearCache()
 }
 function openPrefs()
 {
-	if (isOpera) {
-		BackgroundPage.Foxtrick.modules.UI.button.popup.width = 600;
-		BackgroundPage.Foxtrick.modules.UI.button.popup.height = 800;
-		document.location.href = 'options.html?width=600';
-	}
-	else document.location.href = 'preferences.html?width=600';
+	document.location.href = 'preferences.html?width=600';
 }
 function visitHomePage()
 {
@@ -88,14 +79,10 @@ function visitHomePage()
 	}
 	shutDown();
 }
-var BackgroundPage, isOpera = false, isChrome = false;
-if (typeof window.opera == 'object') {
-		BackgroundPage = opera.extension.bgProcess;
-		isOpera = true;
-}
-else if (typeof window.chrome == 'object') {
-		BackgroundPage = chrome.extension.getBackgroundPage();
-		isChrome = true;
+var BackgroundPage, isChrome = false;
+if (typeof window.chrome == 'object') {
+	BackgroundPage = chrome.extension.getBackgroundPage();
+	isChrome = true;
 }
 if (BackgroundPage)
 	init();

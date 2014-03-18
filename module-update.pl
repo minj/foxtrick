@@ -50,21 +50,6 @@ my @targets = (
 		"to" => "<!-- end categorized modules -->",
 		"prefix" => "\t<script type=\"application/x-javascript\" src=\"./",
 		"suffix" => "\"></script>\n"
-	},
-	# different path for opera
-	{
-		"file" => "background.html",
-		"from" => "<!-- categorized modules -->",
-		"to" => "<!-- end categorized modules -->",
-		"prefix" => "\t<script type=\"application/x-javascript\" src=\"./",
-		"suffix" => "\"></script>\n"
-	},
-	{
-		"file" => "preferences.html",
-		"from" => "<!-- categorized modules -->",
-		"to" => "<!-- end categorized modules -->",
-		"prefix" => "\t<script type=\"application/x-javascript\" src=\"./",
-		"suffix" => "\"></script>\n"
 	}
 );
 
@@ -148,6 +133,4 @@ foreach my $module (@ignored_modules) {
 	print "remove " . $filename . "\n";
 	# ff,chrome,safari
 	unlink($path . "content/" . $module);
-	#opera
-	unlink($path . "includes/" . $filename);
 }

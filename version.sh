@@ -23,10 +23,6 @@ else
 	if [ -f manifest.json ]; then
 		sed -i -r "/\"version\"/s|\"[0-9.]+\"|\"$VER\"|" manifest.json
 	fi
-	# Opera
-	if [ -f config.xml ]; then
-		sed -i -r "/version=.+network=/s|\"[0-9.]+\"|\"$VER\"|" config.xml
-	fi
 	# Safari
 	if [ -f Info.plist ]; then
 		sed -i -r "/<!--version-->/s|>[0-9.]+<|>$VER<|" Info.plist

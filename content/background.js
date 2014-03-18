@@ -87,9 +87,8 @@ Foxtrick.loader.background.browserLoad = function() {
 		Foxtrick.loader.background.requests = {};
 
 		// called to parse a copy of the settings and data to the content script
-		// pageLoad: on HT pages for chrome/safari/opera
+		// pageLoad: on HT pages for chrome/safari
 		// scriptLoad: once per tab for fennec
-		// optionsPageLoad: on options page for opera
 		Foxtrick.loader.background.requests.pageLoad = function(request, sender, sendResponse) {
 			// access user setting directly here, since getBool uses a copy
 			// which needs updating just here
@@ -128,9 +127,6 @@ Foxtrick.loader.background.browserLoad = function() {
 		// fennecs tab child processes
 		Foxtrick.loader.background.requests.tabLoad = Foxtrick.loader.background.requests.pageLoad;
 
-		// operas options page
-		Foxtrick.loader.background.requests.optionsPageLoad =
-			Foxtrick.loader.background.requests.pageLoad;
 		// ----- end of init part. ------
 
 
@@ -173,16 +169,17 @@ Foxtrick.loader.background.browserLoad = function() {
 			// @param files - an array of files to be loaded into string
 			sendResponse({ cssText: Foxtrick.util.css.getCssFileArrayToString(request.files) });
 		};
-		Foxtrick.loader.background.requests.convertImages = function(request, sender, sendResponse) {
-			// @param files - a string for which image urls are converted to data urls
-			// updates cssTextCollection if 'ft-module-css' conversion was done
-			Foxtrick.util.css.convertImageUrlToData(request.cssText,
-			  function(cssText) {
-				if (request.type == 'ft-module-css')
-					cssTextCollection = cssText;
-				sendResponse({ cssText: cssText });
-			});
-		};
+		// Foxtrick.loader.background.requests.convertImages =
+		// function(request, sender, sendResponse) {
+		// 	// @param files - a string for which image urls are converted to data urls
+		// 	// updates cssTextCollection if 'ft-module-css' conversion was done
+		// 	Foxtrick.util.css.convertImageUrlToData(request.cssText,
+		// 	  function(cssText) {
+		// 		if (request.type == 'ft-module-css')
+		// 			cssTextCollection = cssText;
+		// 		sendResponse({ cssText: cssText });
+		// 	});
+		// };
 		Foxtrick.loader.background.requests.getXml = function(request, sender, sendResponse) {
 			// @param url - the URL of resource to load with window.XMLHttpRequest
 			// @param params - params != null makes it and used for a POST request

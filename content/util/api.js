@@ -353,8 +353,7 @@ Foxtrick.util.api = {
 									             'url: ', url);
 								}
 							}
-							else if (status == 401 || (Foxtrick.platform == 'Opera' &&
-								status == 0)) { // opera hotfix. returned status not correct
+							else if (status == 401) {
 								Foxtrick.log('ApiProxy: error 401, unauthorized. Arguments: ',
 								             parameters);
 								Foxtrick.util.api.invalidateAccessToken(doc);

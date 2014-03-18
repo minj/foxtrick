@@ -374,82 +374,24 @@ Foxtrick.GetDataURIText = function(filetext) {
  *	@param callback When further steps are required, handle in this callback function expecting callback(imgElem)
  */
 Foxtrick.addImage = function(doc, elem, features, insertBefore, callback) {
-	if ((Foxtrick.platform == 'Opera') && features.src.indexOf('content/resources') == 0) {
-		// Get the image resource
-		var imgFile = opera.extension.getFile('/' + features.src);
+	var img = doc.createElement('img');
+	var i;
+	for (i in features)
+		Foxtrick.setAttribute(img, i, features[i]);
+	if (insertBefore)
+		elem.insertBefore(img, insertBefore);
+	else
+		elem.appendChild(img);
 
-		if (imgFile) {
-		// Read out the File object as a Data URI
-			var fr = new FileReader();
-			fr.onload = function() {
-				var img = doc.createElement('img');
-				img.src = fr.result;
-				var i;
-				for (i in features) {
-					if (features.hasOwnProperty(i) && i != 'src') {
-						Foxtrick.setAttribute(img, i, features[i]);
-					}
-				}
-				if (insertBefore)
-					elem.insertBefore(img, insertBefore);
-				else
-					elem.appendChild(img);
-
-				if(callback)
-					callback(img);
-			};
-			fr.readAsDataURL(imgFile);
-		}
-		//Foxtrick.SB.ext.sendRequest({ req: 'getDataUrl', url: features.src },
-		//  function(data) {
-		//	var img = doc.createElement('img');
-		//	for (i in features) {
-		//		if (i != 'src') // that one we set bellow. prevents csp warning
-		//			img.setAttribute(i, features[i]);
-		//	}
-		//	img.src = data.url;
-		//	if (insertBefore)
-		//		elem.insertBefore(img, insertBefore);
-		//	else
-		//		elem.appendChild(img);
-		//});
-	}
-	else {
-		var img = doc.createElement('img');
-		var i;
-		for (i in features)
-			Foxtrick.setAttribute(img, i, features[i]);
-		if (insertBefore)
-			elem.insertBefore(img, insertBefore);
-		else
-			elem.appendChild(img);
-
-		if(callback)
-			callback(img);
-	}
+	if (callback)
+		callback(img);
 };
 
 Foxtrick.getImageFeatures = function(features, callback) {
-	if (Foxtrick.platform == 'Opera')
-		Foxtrick.SB.ext.sendRequest({ req: 'getDataUrl', url: features.src },
-		  function(data) {
-			var img = {}, i;
-			for (i in features)
-				img[i] = features[i];
-			img.src = data.url;
-			try {
-				callback(img);
-			}
-			catch (e) {
-				Foxtrick.log('Error in callback for getImageFeatures', features, img, e);
-			}
-		});
-	else {
-		var img = {}, i;
-		for (i in features)
-			img[i] = features[i];
-		callback(img);
-	}
+	var img = {}, i;
+	for (i in features)
+		img[i] = features[i];
+	callback(img);
 };
 
 Foxtrick.getSelection = function(ta) {

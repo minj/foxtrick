@@ -58,9 +58,8 @@ Foxtrick.util.note = {
 		if (doJump)
 			note.scrollIntoView(false);
 
-		// add copy instructions for opera and safari to copy notes
-		if ((Foxtrick.platform == 'Opera' || Foxtrick.platform == 'Safari') &&
-		    id.indexOf('copy-note') !== -1) {
+		// add copy instructions for safari to copy notes
+		if (Foxtrick.platform == 'Safari' && id.indexOf('copy-note') !== -1) {
 			Foxtrick.sessionGet('clipboard',
 			  function(string) {
 				var msg_p = note.getElementsByTagName('p')[0];

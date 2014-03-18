@@ -52,14 +52,6 @@ html[dir="ltr"] #tacticLevelLabelOther {
 .ftUpcomingNationalIcon { background-image: url("chrome://foxtrick/content/resources/img/matches/upcomingNationalIcon.png"); }
 
 
-html[opera] .ftMatchLeague , html[safari] .ftMatchLeague , html[chrome] .ftMatchLeague  { background-color: #C7FBBB}
-html[opera] .ftMatchQualification , html[safari] .ftMatchQualification , html[chrome] .ftMatchQualification  { background-color: #B7EBBB}
-html[opera] .ftMatchCup , html[safari] .ftMatchCup , html[chrome] .ftMatchCup  { background-color: #CCD2CC}
-html[opera] .ftMatchFriendly , html[safari] .ftMatchFriendly , html[chrome] .ftMatchFriendly  { background-color: white}
-html[opera] .ftMatchTournament , html[safari] .ftMatchTournament , html[chrome] .ftMatchTournament  { background-color: #FFC880}
-html[opera] .ftUpcomingNationalIcon , html[safari] .ftUpcomingNationalIcon , html[chrome] .ftUpcomingNationalIcon  { background-color: #FFC880}
-
-
 /* bottom box */
 #ft-overlayBottom {
 	background-color: white;

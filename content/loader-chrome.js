@@ -13,7 +13,7 @@ if (!Foxtrick.loader.chrome)
 	Foxtrick.loader.chrome = {};
 
 // invoked when an allowed HTML document (as defined by eg manifest.json) is load started
-// starts the content instances for chrome/opera/safari (one per tab/peg. not persistant)
+// starts the content instances for chrome/safari (one per tab/peg. not persistant)
 Foxtrick.loader.chrome.docLoadStart = function() {
 	try {
 		if (!Foxtrick.isHtUrl(document.location.href)
@@ -101,7 +101,7 @@ Foxtrick.loader.chrome.clickListener = function(e) {
 					// insert clipboard at current position
 					ta = e.target;
 					var s = Foxtrick.getSelection(ta);
-					// Opera, Mozilla
+					// Mozilla
 					if (ta.selectionStart || ta.selectionStart == '0') {
 						var st = ta.scrollTop;
 						ta.value = s.textBeforeSelection + text +
@@ -130,5 +130,5 @@ Foxtrick.loader.chrome.initGrowl = function() {
 	} catch (e) { Foxtrick.log(e); }
 };
 
-// this is the content side entry point for chrome/opera/safari
+// this is the content side entry point for chrome/safari
 Foxtrick.loader.chrome.docLoadStart();
