@@ -176,19 +176,17 @@ Foxtrick.modules.MatchSimulator = {
 			ratingsTable.parentNode.replaceChild(newTable, ratingsTable);
 		};
 
-		var showLevelNumbers = function(ev) {
-			// only listen to rating prediction changes
-			if (!ev.target.parentNode)
+		var showLevelNumbers = function(target) {
+			if (!Foxtrick.hasClass(target, 'posLabel') &&
+			    target.id != 'ft_stamina_discount_check' &&
+			    target.id != 'ft_attVsDef_check' &&
+			    target.id != 'ft_realProbabilities_check')
 				return;
-			if (!Foxtrick.hasClass(ev.target.parentNode, 'posLabel')
-				&& ev.target.id != 'ft_stamina_discount_check'
-				&& ev.target.id != 'ft_attVsDef_check'
-				&& ev.target.id != 'ft_realProbabilities_check')
-				return;
-			var updateHTMS = (ev.target.id != 'ft_attVsDef_check'
-							  && ev.target.id != 'ft_realProbabilities_check');
+
+			var updateHTMS = (target.id != 'ft_attVsDef_check' &&
+			                  target.id != 'ft_realProbabilities_check');
 			var updateOther = !updateHTMS;
-			var updatePctgDiff = (ev.target.id != 'ft_attVsDef_check');
+			var updatePctgDiff = (target.id != 'ft_attVsDef_check');
 
 			//Foxtrick.log('showLevelNumbers')
 			var overlayRatings = fieldOverlay.getElementsByClassName('overlayRatings');
@@ -1020,7 +1018,10 @@ Foxtrick.modules.MatchSimulator = {
 					});
 				});
 			}
-			//Foxtrick.addMutationEventListener(fieldOverlay, 'DOMNodeInserted', showLevelNumbers, false);
+		};
+
+		var clickHandler = function(ev) {
+			showLevelNumbers(ev.target);
 		};
 
 		// old lineup import click
@@ -1204,7 +1205,16 @@ Foxtrick.modules.MatchSimulator = {
 			}
 		};
 
-		Foxtrick.addMutationEventListener(fieldOverlay, 'DOMNodeInserted', showLevelNumbers, false);
+		Foxtrick.getChanges(fieldOverlay, function(nodes) {
+			// run once and only if posLabels change
+			Foxtrick.any(function(node) {
+				if (Foxtrick.hasClass(node, 'posLabel')) {
+					showLevelNumbers(node);
+					return true;
+				}
+				return false;
+			}, nodes);
+		});
 
 
 		// stamina discount
@@ -1223,7 +1233,7 @@ Foxtrick.modules.MatchSimulator = {
 
 		if (Foxtrick.Prefs.getBool('MatchSimulator.staminaDiscountOn'))
 			staminaDiscountCheck.checked = 'checked';
-		Foxtrick.onClick(staminaDiscountCheck, showLevelNumbers);
+		Foxtrick.onClick(staminaDiscountCheck, clickHandler);
 		optionsDivElm.appendChild(staminaDiscountCheck);
 
 		var staminaDiscountLabel = doc.createElement('label');
@@ -1240,7 +1250,7 @@ Foxtrick.modules.MatchSimulator = {
 		attVsDefCheck.type = 'checkbox';
 		if (Foxtrick.Prefs.getBool('MatchSimulator.attVsDefOn'))
 			attVsDefCheck.checked = 'checked';
-		Foxtrick.onClick(attVsDefCheck, showLevelNumbers);
+		Foxtrick.onClick(attVsDefCheck, clickHandler);
 		optionsDivElm.appendChild(attVsDefCheck);
 
 		var attVsDefLabel = doc.createElement('label');
@@ -1256,7 +1266,7 @@ Foxtrick.modules.MatchSimulator = {
 		realProbabilitiesCheck.type = 'checkbox';
 		if (Foxtrick.Prefs.getBool('MatchSimulator.realProbabilitiesOn'))
 			realProbabilitiesCheck.checked = 'checked';
-		Foxtrick.onClick(realProbabilitiesCheck, showLevelNumbers);
+		Foxtrick.onClick(realProbabilitiesCheck, clickHandler);
 		optionsDivElm.appendChild(realProbabilitiesCheck);
 
 		var realProbabilitiesLabel = doc.createElement('label');
