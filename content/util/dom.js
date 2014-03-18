@@ -270,6 +270,38 @@ Foxtrick.observe = function(node, callback, options) {
 	observe();
 	return observer;
 };
+/**
+ * Execute callback(doc, node, observer) when node changes.
+ * Stops observing if callback returns true.
+ * @param  {Node}                                  node
+ * @param  {function(HTMLDocument, Node): boolean} callback
+ * @param  {MutationObserverInit}                  obsOpts  observer options
+ * @return {MutationObserver}
+ */
+Foxtrick.onChange = function(node, callback, obsOpts) {
+	return Foxtrick.observe(node, function() {
+		var doc = node.ownerDocument;
+		return callback(doc, node);
+	}, obsOpts);
+};
+/**
+ * Get nodes whose children change.
+ * Stops observing if callback returns true.
+ * @param  {Node}                            node     container
+ * @param  {function(Array.<Node>): boolean} callback
+ * @param  {MutationObserverInit}            obsOpts  observer options
+ * @return {Array.<Node>}
+ */
+Foxtrick.getChanges = function(node, callback, obsOpts) {
+	return Foxtrick.observe(node, function(records) {
+		var affectedNodes = [];
+		records.forEach(function(record) {
+			affectedNodes.push(record.target);
+		});
+		var uniques = Foxtrick.unique(affectedNodes);
+		return callback(uniques);
+	}, obsOpts);
+};
 
 /* Foxtrick.addBoxToSidebar
  * @desc add a box to the sidebar, either on the right or on the left
