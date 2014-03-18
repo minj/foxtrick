@@ -18,9 +18,11 @@ Foxtrick.modules['LiveAlert'] = {
 
 	run: function(doc) {
 		this.alert(doc);
+		var results = doc.getElementById('ctl00_ctl00_CPContent_CPMain_UpdatePanelPopupMessages');
+		Foxtrick.onChange(results, this.alert.bind(this));
 	},
 
-	change: function(doc) {
+	onChange: function(doc) {
 		this.alert(doc);
 	},
 
