@@ -3,6 +3,10 @@
 	// save player objects onto player strips
 	var playerlist = document.getElementById('list');
 	var ft_updatePlayers = function() {
+		var strips = document.querySelectorAll('#players .player');
+		if (!strips.length)
+			return;
+
 		ht.playerManager.players.forEach(function(player) {
 			var id = player.id;
 			// HTs use the same ID for elements in '#players' and in '.position'
@@ -12,22 +16,10 @@
 		});
 	};
 
-	// run when all changes have passed
-	var ft_checkStamina = function() {
-		if (--ft_queued > 0)
-			return;
+	var MO = window.MutationObserver || window.WebKitMutationObserver;
+	var opts = { childList: true, subtree: true };
+	var observer = new MO(function() {
 		ft_updatePlayers();
-		playerlist.addEventListener('DOMNodeInserted', ft_queueChange, false);
-	};
-
-	// queue DOMchanges and run only once after all have passed
-	var ft_queued = 0;
-	var ft_queueChange = function(ev) {
-		playerlist.removeEventListener('DOMNodeInserted', ft_queueChange, false);
-		++ft_queued;
-		window.setTimeout(function() { ft_checkStamina(); }, 0);
-	};
-
-	// listen to field player changes
-	playerlist.addEventListener('DOMNodeInserted', ft_queueChange, false);
+	});
+	observer.observe(playerlist, opts);
 })();
