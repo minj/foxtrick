@@ -292,7 +292,7 @@ Foxtrick.util.load.filePickerForDataUrl = function(doc, callback) {
 		var reader = new win.FileReader();
 		reader.onerror = function(e) {
 			win.alert('Error code: ' + e.target.error.code);
-			calback(null);
+			callback(null);
 		};
 		reader.onload = function(evt) {
 			var dataUrl = evt.target.result;
