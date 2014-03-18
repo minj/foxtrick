@@ -65,10 +65,10 @@ Foxtrick.modules['YouthTwins'] = {
 						return;
 					}
 					//urlencode xml files
-					var pl = encodeURIComponent((new window.XMLSerializer())
-					                            .serializeToString(playerlist));
-					var av = encodeURIComponent((new window.XMLSerializer())
-					                            .serializeToString(avatars));
+					var win = doc.defaultView;
+					var xml = new win.XMLSerializer();
+					var pl = encodeURIComponent(xml.serializeToString(playerlist));
+					var av = encodeURIComponent(xml.serializeToString(avatars));
 
 					//api url
 					var url = 'http://www.hattrick-youthclub.org' +

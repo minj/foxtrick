@@ -162,6 +162,8 @@ Foxtrick.modules['TeamStats'] = {
 					row.title = Foxtrick.L10n.getString('TeamStats.FilterFor') + ' ' + title;
 					row.setAttribute('style', 'cursor:pointer');
 					Foxtrick.onClick(row, function(ev) {
+						var doc = ev.target.ownerDocument;
+						var win = doc.defaultView;
 						var filterSelect = doc.getElementById('foxtrick-filter-select');
 						// init filters
 						filterSelect.dispatchEvent(new Event('change'));
@@ -170,8 +172,9 @@ Foxtrick.modules['TeamStats'] = {
 						// call filter
 						filterSelect.dispatchEvent(new Event('change'));
 
-						window.scroll(0, 0);
-						window.scrollBy(0, doc.getElementById('ctl00_ctl00_CPContent_divStartMain').offsetTop);
+						win.scroll(0, 0);
+						var main = doc.getElementById('ctl00_ctl00_CPContent_divStartMain');
+						win.scrollBy(0, main.offsetTop);
 					});
 				};
 

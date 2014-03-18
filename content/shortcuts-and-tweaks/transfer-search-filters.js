@@ -121,7 +121,7 @@ Foxtrick.modules['TransferSearchFilters'] = {
 				try {
 					var filter = ev.target.getAttribute('filter');
 					// parse it
-					var dp = new window.DOMParser();
+					var dp = new ev.view.DOMParser();
 					var obj = dp.parseFromString(filter, 'text/xml');
 
 					var root = obj.firstChild;

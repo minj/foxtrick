@@ -886,7 +886,8 @@ Foxtrick.Pages.Players = {
 		// otherwise, we get list synchronously and return it
 		if (callback) {
 			// always display delayed
-			window.setTimeout(function() {
+			var win = doc.defaultView;
+			win.setTimeout(function() {
 				getXml(doc, function(xml) {
 					try {
 						// parse HTML first because players present in XML may

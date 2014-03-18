@@ -135,11 +135,11 @@ Foxtrick.util.htMl.getMarkupFromNodeRec = function(node) {
 	}
 
 	var doc = node.ownerDocument;
-	var window = doc.defaultView;
+	var win = doc.defaultView;
 
 	var computedStyle = null;
 	if (node.nodeType === Foxtrick.NodeTypes.ELEMENT_NODE) {
-		computedStyle = window.getComputedStyle(node, null);
+		computedStyle = win.getComputedStyle(node, null);
 	}
 
 	if (computedStyle && computedStyle.getPropertyValue('display') === 'none') {
@@ -263,8 +263,8 @@ Foxtrick.util.htMl.getMarkupFromNodeRec = function(node) {
 };
 
 Foxtrick.util.htMl.getHtMl = function(node) {
-	var window = node.ownerDocument.defaultView;
-	var selection = window.getSelection();
+	var win = node.ownerDocument.defaultView;
+	var selection = win.getSelection();
 	if (!selection.isCollapsed && selection.rangeCount > 0) {
 		var markup = '';
 		for (var i = 0; i < selection.rangeCount; ++i) {

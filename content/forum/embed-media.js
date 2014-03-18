@@ -57,7 +57,7 @@ Foxtrick.modules['EmbedMedia'] = {
 		};
 
 		var oEmbedRequest = function(url, callback) {
-			var req = new window.XMLHttpRequest();
+			var req = new doc.defaultView.XMLHttpRequest();
 			req.open('GET', url, true);
 			if (typeof(req.overrideMimeType) == 'function')
 				req.overrideMimeType('text/plain');

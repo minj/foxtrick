@@ -228,11 +228,12 @@ Foxtrick.modules['DashboardCalendar'] = {
 		Foxtrick.addImage(doc, parent,
 		                  { src: Foxtrick.InternalPath + 'resources/img/calendar-day.png',
 		                  alt: title, title: title });
-		Foxtrick.onClick(newLink, function() {
-			// using window.Blob here otherwise it's undefined in Android
-			Foxtrick.saveAs(new window.Blob(cal, {type: 'text/calendar;charset=utf-8'}), 'ht-cal-' + todayString + '.ics');
+		Foxtrick.onClick(newLink, function(ev) {
+			// using view.Blob here otherwise it's undefined in Android
+			var blob = new ev.view.Blob(cal, { type: 'text/calendar;charset=utf-8' });
+			Foxtrick.saveAs(blob, 'ht-cal-' + todayString + '.ics');
 		});
 		var br = doc.querySelector('#ctl00_ctl00_CPContent_CPMain_lnkArchive + br');
-		br.parentNode.insertBefore(newLink,	br);
+		br.parentNode.insertBefore(newLink, br);
 	},
 };

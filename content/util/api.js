@@ -259,7 +259,7 @@ Foxtrick.util.api = {
 						return;
 					}
 
-					var parser = new window.DOMParser();
+					var parser = new doc.defaultView.DOMParser();
 					try {
 						callback(parser.parseFromString(JSON.parse(xml_cache.xml_string),
 						         'text/xml'));
