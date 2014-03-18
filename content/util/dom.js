@@ -238,7 +238,38 @@ Foxtrick.removeMutationEventListener = function(target, type, listener, useCaptu
 		}
 	}
 };
-
+/**
+ * Add a mutation observer to a node.
+ * Calls callback(mutations) on childList changes in the whole tree.
+ * Default behavior can be overriden by specifying observer options.
+ * Stops observing in case callback returns true.
+ * Returns the observer.
+ * @param  {Node}                                      node     observer target
+ * @param  {function(Array.<MutationRecord>): boolean} callback
+ * @param  {MutationObserverInit}                      options  observer options
+ * @return {MutationObserver}
+ */
+Foxtrick.observe = function(node, callback, options) {
+	var doc = node.ownerDocument;
+	var win = doc.defaultView;
+	var MO = win.MutationObserver || win.WebKitMutationObserver;
+	var opts = { childList: true, subtree: true };
+	for (var opt in options) {
+		opts[opt] = options[opt];
+	}
+	var observe = function() {
+		observer.takeRecords();
+		observer.observe(node, opts);
+	};
+	var observer = new MO(function(mutations) {
+		observer.disconnect();
+		if (!callback(mutations))
+			observe();
+	});
+	observer.reconnect = observe;
+	observe();
+	return observer;
+};
 
 /* Foxtrick.addBoxToSidebar
  * @desc add a box to the sidebar, either on the right or on the left
