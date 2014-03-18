@@ -524,7 +524,6 @@ pref("extensions.foxtrick.prefs.module.SkillTable.youth.own.JoinedSince", true);
 pref("extensions.foxtrick.prefs.module.SkillTranslation.enabled", true);
 pref("extensions.foxtrick.prefs.module.SkinPlugin.enabled", false);
 pref("extensions.foxtrick.prefs.module.SkinPlugin.skin", "");
-pref("extensions.foxtrick.prefs.module.SmallerPages.enabled", false);
 pref("extensions.foxtrick.prefs.module.StaffMarker.enabled", true);
 pref("extensions.foxtrick.prefs.module.StaffMarker.officials.enabled", true);
 pref("extensions.foxtrick.prefs.module.StaffMarker.editor.enabled", true);
