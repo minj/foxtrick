@@ -259,12 +259,13 @@ Foxtrick.entry.run = function(doc, is_only_css_check) {
 	}
 };
 
-Foxtrick.entry.change = function(ev) {
+Foxtrick.entry.change = function(doc, changes) {
 	try {
-		var doc = ev.target.ownerDocument;
-		if (ev.target.nodeType !== Foxtrick.NodeTypes.ELEMENT_NODE &&
-			ev.target.nodeType !== Foxtrick.NodeTypes.TEXT_NODE)
-			return;
+		// var doc = ev.target.ownerDocument;
+		// var node = ev.target;
+		// if (node.nodeType !== Foxtrick.NodeTypes.ELEMENT_NODE &&
+		// 	node.nodeType !== Foxtrick.NodeTypes.TEXT_NODE)
+		// 	return;
 
 		// don't act to changes on the excluded pages
 		var excludes = [
@@ -284,17 +285,31 @@ Foxtrick.entry.change = function(ev) {
 			return;
 		}
 
-		var node = ev.target;
-		while (node && node.nodeName != '#document') {
-			if (node && Foxtrick.hasClass(node, 'ft-ignore-changes'))
-				return;
-			node = node.parentNode;
-		}
-		// ignore changes list
-		if (ev.originalTarget &&
-			(Foxtrick.hasClass(ev.originalTarget, 'boxBody')
-			|| Foxtrick.hasClass(ev.originalTarget, 'ft-popup-span')))
+		var ignoredClasses = [
+			'ft-ignore-changes',
+			'ft-popup-span',
+		];
+
+		var isIgnored = function(node) {
+			return Foxtrick.any(function(cls) {
+				return Foxtrick.hasClass(node, cls);
+			}, ignoredClasses);
+		};
+
+		if (Foxtrick.any(isIgnored, changes)) {
 			return;
+		}
+		// var node = ev.target;
+		// while (node && node.nodeName != '#document') {
+		// 	if (node && Foxtrick.hasClass(node, 'ft-ignore-changes'))
+		// 		return;
+		// 	node = node.parentNode;
+		// }
+		// ignore changes list
+		// if (ev.originalTarget &&
+		// 	(Foxtrick.hasClass(ev.originalTarget, 'boxBody')
+		// 	|| Foxtrick.hasClass(ev.originalTarget, 'ft-popup-span')))
+		// 	return;
 
 		if (Foxtrick.Prefs.isEnabled(doc)) {
 			Foxtrick.log('call modules change functions');
@@ -311,7 +326,7 @@ Foxtrick.entry.change = function(ev) {
 			// invoke niceRun to run modules
 			Foxtrick.entry.niceRun(modules, function(m) {
 				if (typeof(m.change) == 'function')
-					return function() { m.change(doc, ev); };
+					return function() { m.change(doc/*, ev*/); };
 				return null;
 			});
 

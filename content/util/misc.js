@@ -10,34 +10,76 @@ if (!Foxtrick) var Foxtrick = {};
 // uses setTimout to queue the change function call after
 // all current DOMNodeInserted events have passed.
 (function() {
-	var changeQueued = false;
+	// var changeQueued = false;
 
-	var waitForChanges = function(ev) {
-		// we ignore further events
-		if (changeQueued)
-			return;
+	// var waitForChanges = function(ev) {
+	// 	// we ignore further events
+	// 	if (changeQueued)
+	// 		return;
 
-		// first call. queue our change function call
-		changeQueued = true;
-		Foxtrick.stopListenToChange(ev.target.ownerDocument);
-		window.setTimeout(function() {
-			// all events have passed. run change function now and restart listening to changes
-			Foxtrick.entry.change(ev);
-			Foxtrick.startListenToChange(ev.target.ownerDocument);
-			changeQueued = false;
-		}, 0);
+	// 	// first call. queue our change function call
+	// 	changeQueued = true;
+	// 	Foxtrick.stopListenToChange(ev.target.ownerDocument);
+	// 	window.setTimeout(function() {
+	// 		// all events have passed. run change function now and restart listening to changes
+	// 		Foxtrick.entry.change(ev);
+	// 		Foxtrick.startListenToChange(ev.target.ownerDocument);
+	// 		changeQueued = false;
+	// 	}, 0);
+	// };
+
+	// Foxtrick.startListenToChange = function(doc) {
+	// 	if (!Foxtrick.isHt(doc))
+	// 		return;
+	// 	var content = doc.getElementById('content');
+	// 	content.addEventListener('DOMNodeInserted', waitForChanges, true);
+	// };
+
+	// Foxtrick.stopListenToChange = function(doc) {
+	// 	var content = doc.getElementById('content');
+	// 	content.removeEventListener('DOMNodeInserted', waitForChanges, true);
+	// };
+
+	// Foxtrick.preventChange = function(doc, func) {
+	// 	return function() {
+	// 		Foxtrick.stopListenToChange(doc);
+	// 		func.apply(this, arguments);
+	// 		Foxtrick.startListenToChange(doc);
+	// 	};
+	// };
+	var waitForChanges = function(changes) {
+		var doc = changes[0].ownerDocument;
+		Foxtrick.stopListenToChange(doc);
+		Foxtrick.entry.change(doc, changes);
+		Foxtrick.startListenToChange(doc);
 	};
 
 	Foxtrick.startListenToChange = function(doc) {
 		if (!Foxtrick.isHt(doc))
 			return;
-		var content = doc.getElementById('content');
-		content.addEventListener('DOMNodeInserted', waitForChanges, true);
+
+		// must store MO on contentWindow
+		// otherwise it's killed by Firefox's GC
+		var win = doc.defaultView;
+		var obs = win._FoxtrickObserver;
+		if (obs) {
+			obs.reconnect();
+		}
+		else {
+			var content = doc.getElementById('content');
+			win._FoxtrickObserver = Foxtrick.getChanges(content, waitForChanges);
+			win.addEventListener('beforeunload', function(ev) {
+				if (this._FoxtrickObserver)
+					delete this._FoxtrickObserver;
+			});
+		}
 	};
 
 	Foxtrick.stopListenToChange = function(doc) {
-		var content = doc.getElementById('content');
-		content.removeEventListener('DOMNodeInserted', waitForChanges, true);
+		var win = doc.defaultView;
+		var obs = win._FoxtrickObserver;
+		if (obs)
+			obs.disconnect();
 	};
 
 	Foxtrick.preventChange = function(doc, func) {
