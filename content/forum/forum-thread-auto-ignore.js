@@ -101,7 +101,7 @@ Foxtrick.modules.ForumThreadAutoIgnore = {
 			}
 		};
 		checkThreads();
-		Foxtrick.listen(doc.getElementById('ctl00_ctl00_CPContent_ucLeftMenu_' +
-		                'pnlLeftMenuScrollContent'), 'DOMSubtreeModified', checkThreads, true);
+		var id = 'ctl00_ctl00_CPContent_ucLeftMenu_pnlLeftMenuScrollContent';
+		Foxtrick.onChange(doc.getElementById(id), checkThreads);
 	}
 };
