@@ -58,9 +58,7 @@ Foxtrick.modules['TabsTest'] = {
 		Foxtrick.util.tabs.addElementToTab(doc, div, 'ft-tab-readme');
 
 		//match report
-		Foxtrick.addMutationEventListener(container, 'DOMNodeInserted', function() {
-			Foxtrick.util.tabs.initialize(doc);
-		}, false);
+		Foxtrick.onChange(container, Foxtrick.util.tabs.initialize);
 
 		Foxtrick.util.tabs.show(doc, 'tab-main');
 	}
