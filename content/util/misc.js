@@ -330,9 +330,9 @@ Foxtrick.getLastPage = function(host) {
 
 /** Insert text in given textarea at the current position of the cursor */
 Foxtrick.insertAtCursor = function(textarea, text) {
-	textarea.value = textarea.value.substring(0, textarea.selectionStart)
-		+ text
-		+ textarea.value.substring(textarea.selectionEnd, textarea.value.length);
+	textarea.value = textarea.value.substring(0, textarea.selectionStart) + text +
+		textarea.value.substring(textarea.selectionEnd, textarea.value.length);
+	textarea.dispatchEvent(new Event('input'));
 };
 
 Foxtrick.confirmDialog = function(msg) {

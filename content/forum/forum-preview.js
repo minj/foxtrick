@@ -185,13 +185,13 @@ Foxtrick.modules['ForumPreview'] = {
 
 			try {
 				if (Foxtrick.hasClass(prev_div, 'hidden')) {
-					msg_window.removeEventListener('keyup', preview, false);
+					msg_window.removeEventListener('input', preview, false);
 					var toolbar = doc.getElementsByClassName('HTMLToolbar');
 					for (var i = 0; i < toolbar.length; ++i)
 						toolbar[i].removeEventListener('click', preview, false);
 
 				} else {
-					Foxtrick.listen(msg_window, 'keyup', preview, false);
+					Foxtrick.listen(msg_window, 'input', preview, false);
 					var toolbar = doc.getElementsByClassName('HTMLToolbar');
 					for (var i = 0; i < toolbar.length; ++i)
 						Foxtrick.onClick(toolbar[i], preview);
