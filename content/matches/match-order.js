@@ -344,19 +344,6 @@ Foxtrick.modules['MatchOrderInterface'] = {
 					//clone the settings
 					clone_settings(src_id, id);
 				};
-				var cloneById = function(src_id) {
-					cloneAsTypeById(src_id, mapping[src_id]);
-				};
-
-				Foxtrick.onClick(doc.getElementById('addSub'), function(ev) {
-					mapping[getLastId()] = 'addSub';
-				});
-				Foxtrick.listen(doc.getElementById('addChange'), function(ev) {
-					mapping[getLastId()] = 'addChange';
-				});
-				Foxtrick.listen(doc.getElementById('addSwap'), function(ev) {
-					mapping[getLastId()] = 'addSwap';
-				});
 
 				var addCloneButtonsForNode = function(node) {
 
