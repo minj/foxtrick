@@ -76,11 +76,19 @@ Foxtrick.Pages.Match = {
 	},
 
 	getId: function(doc) {
-		try {
-			return (doc.location.search.match(/matchID=(\d+)/i)[1]);
+		if (Foxtrick.isPage(doc, 'matchesLive')) {
+			var link = doc.querySelector('.liveResult a');
+			if (!link)
+				return null;
+			return Foxtrick.util.id.getMatchIdFromUrl(link.href);
 		}
-		catch (e) {
-			return null;
+		else {
+			try {
+				return (doc.location.search.match(/matchID=(\d+)/i)[1]);
+			}
+			catch (e) {
+				return null;
+			}
 		}
 	},
 	/**
