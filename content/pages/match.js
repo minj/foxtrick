@@ -222,6 +222,43 @@ Foxtrick.Pages.Match = {
 
 	// START NEW RATINGS UTILS
 
+	/**
+	 * Add a listener to changes of tabId in HT-Live matches.
+	 * Calls callback(doc) on mutation.
+	 * Registers a chain of MOs to by-pass the Live timer.
+	 * Cannot use subtree: true on the container because
+	 * change() would execute every second in FF.
+	 * This is because the match timer triggers childList changes in FF.
+	 * @param {HTMLDocument}           doc
+	 * @param {string}                 tabId    element to listen to
+	 * @param {function(HTMLDocument)} callback
+	 */
+	addLiveTabListener: function(doc, tabId, callback) {
+		var registerTab = function(doc) {
+			callback(doc);
+			var target = doc.getElementById(tabId);
+			if (target) {
+				// found the right tab
+				Foxtrick.onChange(target, callback);
+			}
+		};
+		var registerMatch = function(doc) {
+			registerTab(doc);
+			var target = doc.getElementById('ctl00_ctl00_CPContent_CPMain_phLiveStatusPanel');
+			if (target) {
+				// found match view
+				Foxtrick.onChange(target, registerTab, { subtree: false });
+			}
+		};
+		// start everything onLoad
+		registerMatch(doc);
+		var liveContainer = doc.getElementById('ctl00_ctl00_CPContent_CPMain_UpdatePanelMatch');
+		if (liveContainer) {
+			// this the largest container that contains overview OR match view
+			Foxtrick.onChange(liveContainer, registerMatch, { subtree: false });
+		}
+	},
+
 	/* modeled on Foxtrick.addBoxToSidebar
 	 * @desc add a box to the sidebar on the right
 	 * @param doc - HTML document the content is to be added on

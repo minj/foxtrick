@@ -51,29 +51,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		var change = function(doc) {
 			module.onChange.bind(module)(doc);
 		};
-		var registerTab = function(doc) {
-			change(doc);
-			var target = doc.getElementById('playersField');
-			if (target) {
-				// found the right tab
-				Foxtrick.onChange(target, change);
-			}
-		};
-		var registerMatch = function(doc) {
-			registerTab(doc);
-			var target = doc.getElementById('ctl00_ctl00_CPContent_CPMain_phLiveStatusPanel');
-			if (target) {
-				// found match view
-				Foxtrick.onChange(target, registerTab, { subtree: false });
-			}
-		};
-		// start everything onLoad
-		registerMatch(doc);
-		var liveContainer = doc.getElementById('ctl00_ctl00_CPContent_CPMain_UpdatePanelMatch');
-		if (liveContainer) {
-			// this the largest container that contains overview OR match view
-			Foxtrick.onChange(liveContainer, registerMatch, { subtree: false });
-		}
+		Foxtrick.Pages.Match.addLiveTabListener(doc, 'playersField', change);
 	},
 	addSplitLineupToggle: function(doc) {
 		var module = this;
