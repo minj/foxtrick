@@ -1,41 +1,33 @@
-'use strict';
-// function for the match-simulator which use hattrick scripts
-//update Players stamina
-var ft_updatePlayers = function() {
-	//console.log('ft_updatePlayers stamina');
-	var fieldplayers = document.getElementById('fieldplayers');
-	var playerdivs = fieldplayers.getElementsByClassName('position');
-	for (var position = 0; position < 14; ++position) {
-		var player = ht.field.positions[position].player;
+(function() {
+	'use strict';
+	// save player objects onto player strips
+	var playerlist = document.getElementById('list');
+	var ft_updatePlayers = function() {
+		ht.playerManager.players.forEach(function(player) {
+			var id = player.id;
+			// HTs use the same ID for elements in '#players' and in '.position'
+			var playerStrip = document.querySelector('#players #list_playerID' + id);
+			if (playerStrip && !playerStrip.dataset.json)
+				playerStrip.setAttribute('data-json', JSON.stringify(player));
+		});
+	};
 
-		if (player != null) {
-			playerdivs[position].setAttribute('stamina', player.stamina);
-			playerdivs[position].setAttribute('playerId', player.id);
-		}
-		else {
-			playerdivs[position].removeAttribute('stamina');
-			playerdivs[position].removeAttribute('playerId');
-		}
-	}
-};
+	// run when all changes have passed
+	var ft_checkStamina = function() {
+		if (--ft_queued > 0)
+			return;
+		ft_updatePlayers();
+		playerlist.addEventListener('DOMNodeInserted', ft_queueChange, false);
+	};
 
-// run when all changes have passed
-var ft_checkStamina = function() {
-	var fieldOverlay = document.getElementById('fieldplayers');
-	if (--ft_queued > 0)
-		return;
-	ft_updatePlayers();
-	fieldOverlay.addEventListener('DOMNodeInserted', ft_queueChange, false);
-};
+	// queue DOMchanges and run only once after all have passed
+	var ft_queued = 0;
+	var ft_queueChange = function(ev) {
+		playerlist.removeEventListener('DOMNodeInserted', ft_queueChange, false);
+		++ft_queued;
+		window.setTimeout(function() { ft_checkStamina(); }, 0);
+	};
 
-// queue DOMchanges and run only once after all have passed
-var ft_queued = 0;
-var ft_queueChange = function(ev) {
-	var fieldOverlay = document.getElementById('fieldplayers');
-	fieldOverlay.removeEventListener('DOMNodeInserted', ft_queueChange, false);
-	++ft_queued;
-	window.setTimeout(function() { ft_checkStamina(); }, 0);
-};
-
-// listen to field player changes
-document.getElementById('fieldplayers').addEventListener('DOMNodeInserted', ft_queueChange, false);
+	// listen to field player changes
+	playerlist.addEventListener('DOMNodeInserted', ft_queueChange, false);
+})();

@@ -1144,18 +1144,22 @@ Foxtrick.modules.MatchSimulator = {
 				var overlayRatings = doc.getElementsByClassName('overlayRatings');
 				var overlayRatingsDiscounted =
 					doc.getElementsByClassName('overlayRatingsDiscounted');
-				var playerdivs =
-					doc.getElementById('fieldplayers').getElementsByClassName('position');
+				var positionDivs = doc.querySelectorAll('#fieldplayers .position');
 				for (var sector = 0; sector < overlayRatingsNums.length; ++sector) {
 					var old_rating = orgRatings[sector];
 					var sum_sq_c_ij_times_func_of_s_i = 0;
 					var sum_sq_c_ij = 0;
 					for (var position = 0; position < 14; ++position) {
-						var player = {};
-						player.stamina = Number(playerdivs[position].getAttribute('stamina'));
+						var positionDiv = positionDivs[position];
+						var playerDiv = positionDiv.getElementsByClassName('player')[0];
+						if (!playerDiv)
+							continue;
+						var id = playerDiv.id.match(/\d+/)[0];
+						var playerStrip = doc.querySelector('#players #list_playerID' + id);
+						// HTs use the same ID for elements in '#players' and in '.position'
+						var player = JSON.parse(playerStrip.dataset.json);
 						if (!player.stamina)
 							continue;
-						player.id = Number(playerdivs[position].getAttribute('playerId'));
 						if (typeof (staminaData) == 'object' &&
 							staminaData.hasOwnProperty(player.id)) {
 							player.staminaPrediction = parseFloat(staminaData[player.id][1]);
@@ -1165,7 +1169,7 @@ Foxtrick.modules.MatchSimulator = {
 
 						var tactic = 'normal', t;
 						for (t in tactics) {
-							if (Foxtrick.hasClass(playerdivs[position], t)) {
+							if (Foxtrick.hasClass(positionDiv, t)) {
 								tactic = t;
 							}
 						}
