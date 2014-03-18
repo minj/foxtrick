@@ -11,7 +11,6 @@ Foxtrick.modules['StaffMarker'] = {
 		'forumViewThread', 'forumWritePost',
 		'teamPage', 'guestbook', 'supporters', 'series' // grouped by if/else
 	],
-	NICE: 11, // after team-popup-links
 	OPTIONS: [
 		'officials',
 		'editor',
@@ -405,7 +404,8 @@ Foxtrick.modules['StaffMarker'] = {
 							return alias.search(pair[0]) == 0;
 						}, markers);
 						if (first) {
-							Foxtrick.addClass(object, 'ft-staff-style ft-staff-' + first[1]);
+							Foxtrick.addClass(object, 'ft-staff ft-staff-style ft-staff-' +
+							                  first[1]);
 						}
 					}
 					// data loaded from external files
@@ -416,7 +416,7 @@ Foxtrick.modules['StaffMarker'] = {
 					for (type in data) {
 						if (data[type][id] == true && enable[type] == true) {
 							var icon = img.cloneNode(), link, element;
-							Foxtrick.addClass(object, 'ft-staff-' + type);
+							Foxtrick.addClass(object, 'ft-staff ft-staff-' + type);
 							Foxtrick.addClass(icon, 'ft-staff-icon ft-staff-' + type);
 							icon.title = icon.alt = module.title_map[type];
 							var duty, dutyDesc;
@@ -483,6 +483,15 @@ Foxtrick.modules['StaffMarker'] = {
 							modifier(uid, uname, a);
 						}, links);
 					}, userDivs);
+					if (Foxtrick.isPage(doc, 'guestbook')) {
+						var id = 'ctl00_ctl00_CPContent_CPMain_upGB';
+						var gb = doc.getElementById(id);
+						Foxtrick.onChange(gb, function() {
+							if (gb.getElementsByClassName('ft-staff').length)
+								return;
+							markThread();
+						}, { subtree: false });
+					}
 				};
 				// mark staffs in select box
 				var markSelect = function() {

@@ -403,19 +403,20 @@ Foxtrick.modules['TeamPopupLinks'] = {
 		};
 
 		// team links
-		var aLink = doc.getElementById('teamLinks').getElementsByTagName('a')[0];
-		if (aLink)
-			addSpan(aLink);
+		var link = doc.getElementById('teamLinks').getElementsByTagName('a')[0];
+		if (link)
+			addSpan(link);
 
 		// all in mainWrapper (ie. not left boxes)
 		if (sUrl.search(/Forum\/(Default\.aspx)?\?/i) != -1)
 			return; // not in forum overview
 		var aLinks = doc.getElementById('mainBody').getElementsByTagName('a');
 		var i = 0, aLink;
-		while (aLink = aLinks[i++]) {
-			if (!aLink.hasAttribute('href') || aLink.getElementsByTagName('img')[0] != null ||
+		while ((aLink = aLinks[i++])) {
+			if (!aLink.hasAttribute('href') ||
+			    Foxtrick.hasClass(aLink, 'ft-no-popup') ||
 			    aLink.parentNode.className == 'liveTabText' ||
-				Foxtrick.hasClass(aLink, 'ft-no-popup'))
+			    aLink.querySelector('img:not(.ft-staff-icon)') !== null)
 				continue; // don't add to buttons, and htlive tabs
 			addSpan(aLink);
 		}
@@ -423,9 +424,10 @@ Foxtrick.modules['TeamPopupLinks'] = {
 		var sidebar = doc.getElementById('sidebar');
 		if (sidebar) {
 			aLinks = sidebar.getElementsByTagName('a');
-			var i = 0, aLink;
-			while (aLink = aLinks[i++]) {
-				if (!aLink.hasAttribute('href') || aLink.getElementsByTagName('img')[0] != null)
+			i = 0;
+			while ((aLink = aLinks[i++])) {
+				if (!aLink.hasAttribute('href') ||
+				    aLink.querySelector('img:not(.ft-staff-icon)') !== null)
 					continue; // don't add to buttons
 				addSpan(aLink);
 			}
