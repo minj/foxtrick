@@ -47,20 +47,12 @@ Foxtrick.util.inject.css = function(doc, css, id) {
 };
 
 // attaches a JavaScript file to the page
+// dynamically injected from chrome only
 Foxtrick.util.inject.jsLink = function(doc, url) {
-	if (Foxtrick.arch == 'Sandboxed') {
-		var id = url.match(/([^\/]+)\.js$/)[1];
-		Foxtrick.util.load.get(url)('success', function(text) {
-			Foxtrick.util.inject.js(doc, text, id);
-		});
-		return;
-	}
-	var head = doc.getElementsByTagName('head')[0];
-	var script = doc.createElement('script'); // dynamically injected from chrome only
-	script.setAttribute('type', 'application/javascript');
-	script.setAttribute('src', url);
-	head.appendChild(script);
-	return script;
+	var id = url.match(/([^\/]+)\.js$/)[1];
+	Foxtrick.util.load.get(url)('success', function(text) {
+		Foxtrick.util.inject.js(doc, text, id);
+	});
 };
 
 // attaches a JavaScript snippet to the page
