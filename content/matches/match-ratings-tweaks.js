@@ -23,7 +23,46 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 	run: function(doc) {
 		// run change now as sometimes we are too slow to init the listener
 		// causing display to be broken on first load
-		this.change(doc);
+		//this.change(doc);
+		//this.onChange(doc);
+		this.registerListener(doc);
+	},
+	/**
+	 * Register a chain of MOs to by-pass the Live timer.
+	 * Cannot use subtree: true on the container because
+	 * change() would execute every second in FF.
+	 * This is because the match timer triggers childList changes in FF.
+	 * @param  {HTMLDocument} doc
+	 */
+	registerListener: function(doc) {
+		var module = this;
+		// do the actual stuff
+		var change = function(doc) {
+			module.onChange.bind(module)(doc);
+		};
+		var registerTab = function(doc) {
+			change(doc);
+			var target = doc.getElementById('divSectors');
+			if (target) {
+				// found the right tab
+				Foxtrick.onChange(target, change);
+			}
+		};
+		var registerMatch = function(doc) {
+			registerTab(doc);
+			var target = doc.getElementById('ctl00_ctl00_CPContent_CPMain_phLiveStatusPanel');
+			if (target) {
+				// found match view
+				Foxtrick.onChange(target, registerTab, { subtree: false });
+			}
+		};
+		// start everything onLoad
+		registerMatch(doc);
+		var liveContainer = doc.getElementById('ctl00_ctl00_CPContent_CPMain_UpdatePanelMatch');
+		if (liveContainer) {
+			// this the largest container that contains overview OR match view
+			Foxtrick.onChange(liveContainer, registerMatch, { subtree: false });
+		}
 	},
 	prepareField: function(doc) {
 		var module = this;
@@ -76,7 +115,7 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 			Foxtrick.toggleClass(doc.getElementById('ht-probabilityDesc'), 'hidden');
 			if (timelineButton) {
 				timelineButton.click();
-				module.change(doc);
+				module.onChange(doc);
 			}
 		});
 		tdChkBox1.appendChild(chkbox1);
@@ -140,7 +179,7 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 	/**
 	 * @param	{document}	doc
 	 */
-	change: function(doc) {
+	onChange: function(doc) {
 		if (!Foxtrick.Pages.Match.hasRatingsTabs(doc))
 			return;
 

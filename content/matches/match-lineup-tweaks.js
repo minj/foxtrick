@@ -23,6 +23,12 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 	],
 	CSS: Foxtrick.InternalPath + 'resources/css/match-lineup-tweaks.css',
 	run: function(doc) {
+		// run change now as sometimes we are too slow to init the listener
+		// causing display to be broken on first load
+		// this.change(doc);
+		//this.onChange(doc);
+		this.registerListener(doc);
+
 		if (!Foxtrick.Pages.Match.hasRatingsTabs(doc))
 			return;
 
@@ -31,10 +37,43 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			// debug mode for home (true) or away (false)
 			// this.gatherStaminaData(doc, true);
 		}
-
-		// run change now as sometimes we are too slow to init the listener
-		// causing display to be broken on first load
-		this.change(doc);
+	},
+	/**
+	 * Register a chain of MOs to by-pass the Live timer.
+	 * Cannot use subtree: true on the container because
+	 * change() would execute every second in FF.
+	 * This is because the match timer triggers childList changes in FF.
+	 * @param  {HTMLDocument} doc
+	 */
+	registerListener: function(doc) {
+		var module = this;
+		// do the actual stuff
+		var change = function(doc) {
+			module.onChange.bind(module)(doc);
+		};
+		var registerTab = function(doc) {
+			change(doc);
+			var target = doc.getElementById('playersField');
+			if (target) {
+				// found the right tab
+				Foxtrick.onChange(target, change);
+			}
+		};
+		var registerMatch = function(doc) {
+			registerTab(doc);
+			var target = doc.getElementById('ctl00_ctl00_CPContent_CPMain_phLiveStatusPanel');
+			if (target) {
+				// found match view
+				Foxtrick.onChange(target, registerTab, { subtree: false });
+			}
+		};
+		// start everything onLoad
+		registerMatch(doc);
+		var liveContainer = doc.getElementById('ctl00_ctl00_CPContent_CPMain_UpdatePanelMatch');
+		if (liveContainer) {
+			// this the largest container that contains overview OR match view
+			Foxtrick.onChange(liveContainer, registerMatch, { subtree: false });
+		}
 	},
 	addSplitLineupToggle: function(doc) {
 		var module = this;
@@ -968,7 +1007,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			Foxtrick.Prefs.setString('StaminaData.' + ownId, JSON.stringify(data));
 	},
 
-	change: function(doc) {
+	onChange: function(doc) {
 		if (!Foxtrick.Pages.Match.hasRatingsTabs(doc))
 			return;
 
