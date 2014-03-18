@@ -268,11 +268,12 @@ Foxtrick.entry.change = function(ev) {
 
 		// don't act to changes on the excluded pages
 		var excludes = [
-			/\/Club\/Matches\/MatchOrder\//i,
-			/\/Community\/CHPP\/ChppPrograms\.aspx/i,
-			/\/Club\/Arena\/ArenaUsage\.aspx/i
+			/^\/Club\/Matches\/MatchOrder\//i,
+			/^\/Community\/CHPP\/ChppPrograms\.aspx/i,
+			/^\/Club\/Arena\/ArenaUsage\.aspx/i,
+			/^\/Club\/Matches\/Live\.aspx/i,
 		];
-		if (Foxtrick.any(function(ex) {	return doc.location.href.search(ex) > -1; }, excludes)) {
+		if (Foxtrick.any(function(ex) { return ex.test(doc.location.pathname); }, excludes)) {
 			return;
 		}
 
