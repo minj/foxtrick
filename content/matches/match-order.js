@@ -441,9 +441,6 @@ Foxtrick.modules['MatchOrderInterface'] = {
 
 			var loading = doc.getElementById('loading');
 			var waitForInterface = function(ev) {
-				loading.removeEventListener('DOMCharacterDataModified', waitForInterface, false);
-				loading.removeEventListener('DOMSubtreeModified', waitForInterface, false);
-				loading.removeEventListener('DOMNodeInserted', waitForInterface, false);
 				if (hasInterface)
 					return;
 				Foxtrick.log('hasInterface');
@@ -651,8 +648,7 @@ Foxtrick.modules['MatchOrderInterface'] = {
 
 				// listen to all that has players (seperatelly to reduce excessive calling)
 				var details = doc.getElementById('details');
-				Foxtrick.addMutationEventListener(details, 'DOMNodeInserted',
-				  function(ev) {
+				Foxtrick.onChange(details, function() {
 					//Foxtrick.log('details change');
 					if (hasPlayerInfo) {
 						if (Foxtrick.Prefs.isModuleOptionEnabled('MatchOrderInterface',
@@ -661,31 +657,28 @@ Foxtrick.modules['MatchOrderInterface'] = {
 						if (Foxtrick.Prefs.isModuleEnabled('LoyaltyDisplay'))
 							injectLoyaltyBars();
 					}
-				}, false);
+				});
 
 				var list = doc.getElementById('list');
-				Foxtrick.addMutationEventListener(list, 'DOMNodeInserted',
-				  function(ev) {
+				Foxtrick.onChange(list, function() {
 					//Foxtrick.log('list change');
 					if (hasPlayerInfo)
 						showPlayerInfo(list);
 					if (hasAvatars)
 						check_images(doc, list, avatarsXml, getID, 3);
-				}, false);
+				});
 
 				var fieldplayers = doc.getElementById('fieldplayers');
-				Foxtrick.addMutationEventListener(fieldplayers, 'DOMNodeInserted',
-				  function(ev) {
+				Foxtrick.onChange(fieldplayers, function() {
 					//Foxtrick.log('fieldplayers change');
 					if (hasPlayerInfo)
 						showPlayerInfo(fieldplayers);
 					if (hasAvatars)
 						check_images(doc, fieldplayers, avatarsXml, getID, 3);
-				}, false);
+				});
 
 				var tab_subs = doc.getElementById('tab_subs');
-				Foxtrick.addMutationEventListener(tab_subs, 'DOMNodeInserted',
-				  function(ev) {
+				Foxtrick.onChange(tab_subs, function() {
 					//Foxtrick.log('tab_subs change');
 					if (hasPlayerInfo)
 						showPlayerInfo(tab_subs);
@@ -693,17 +686,16 @@ Foxtrick.modules['MatchOrderInterface'] = {
 						check_images(doc, tab_subs, avatarsXml, getID, 3);
 
 					runAddCloneButtons();
-				}, false);
+				});
 
 				var tab_penaltytakers = doc.getElementById('tab_penaltytakers');
-				Foxtrick.addMutationEventListener(tab_penaltytakers, 'DOMNodeInserted',
-				  function(ev) {
+				Foxtrick.onChange(tab_penaltytakers, function() {
 					//Foxtrick.log('tab_penaltytakers change');
 					if (hasPlayerInfo)
 						showPlayerInfo(tab_penaltytakers);
 					if (hasAvatars)
 						check_images(doc, tab_penaltytakers, avatarsXml, getID, 3);
-				}, false);
+				});
 			};
 
 			var addLastMatchtoDetails = function() {
@@ -749,7 +741,7 @@ Foxtrick.modules['MatchOrderInterface'] = {
 				//this highlights players on the field for supporters only
 				if (Foxtrick.Prefs.isModuleOptionEnabled('MatchOrderInterface',
 				    'GotTrainingOnField')) {
-					//players aren't send with the document, but the addMutationEventListeners
+					//players aren't send with the document, but the eventListeners
 					//later will take care
 					var listplayers = target.getElementsByClassName('player');
 
@@ -765,10 +757,6 @@ Foxtrick.modules['MatchOrderInterface'] = {
 				check_Specialties(doc, target, playerList, getIDParent, 'cards_health');
 			};
 
-/*			loading.addEventListener('DOMCharacterDataModified', waitForInterface, false);
-			loading.addEventListener('DOMSubtreeModified', waitForInterface, false);
-			loading.addEventListener('DOMNodeInserted', waitForInterface, false);
-*/
 			doc.addEventListener('interface_ready', function(e) {
 				Foxtrick.log('interface ready: ', doc.getElementById('tab_penaltytakers')
 				             .getElementsByTagName('div').length !== 0);
