@@ -188,14 +188,15 @@ div.playerDiv .sectorShirt.ft-smallFaceCard img[src^="/Img/Avatar/hair/"] {
 	background-color: #cccccc;
 }
 /* stamina */
-div.playerDiv div.sectorShirt + div > div {
+.ft-staminaDiv {
 	width: 4px !important;
 	height: 50px !important;
 	left: auto !important;
 	right: -5px !important;
 	top: -10px !important;
+	z-index: 1 !important;
 }
-div.playerDiv div.sectorShirt + div > div > div {
+.ft-staminaDiv > div {
 	width: 100% !important;
 }
 .ft-staminaText {

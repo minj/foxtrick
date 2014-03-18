@@ -991,6 +991,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			var ftdiv = Foxtrick.createFeaturedElement(doc, this, 'div');
 			Foxtrick.addClass(ftdiv, 'ft-indicator-wrapper');
 			var staminaDiv = player.querySelector('div.sectorShirt + div > div');
+			Foxtrick.addClass(staminaDiv, 'ft-staminaDiv');
 			if (staminaDiv) {
 				var stamina = staminaDiv.title.match(/\d+/)[0];
 				var fatigue = 100 - Number(stamina);
