@@ -27,6 +27,8 @@ Foxtrick.modules['TransferDeadline'] = {
 	change: function(doc) {
 		if (Foxtrick.isPage(doc, 'playerDetails'))
 			this.runPlayerDetail(doc);
+		else if (Foxtrick.isPage(doc, 'bookmarks'))
+			this.runTransferResult(doc);
 	},
 
 	processNode: function(node, htTime) {
