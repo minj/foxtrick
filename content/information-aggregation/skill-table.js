@@ -302,6 +302,10 @@ Foxtrick.modules['SkillTable'] = {
 				var speciality = function(cell, spec) {
 					var specIdx = Foxtrick.L10n.getNumberFromSpeciality(spec);
 					if (specIdx) {
+						var hidden = doc.createElement('span');
+						hidden.className = 'hidden';
+						hidden.textContent = spec;
+						cell.appendChild(hidden);
 						var specImageUrl = Foxtrick.getSpecialtyImagePathFromNumber(specIdx);
 						Foxtrick.addImage(doc, cell, {
 							alt: spec,
