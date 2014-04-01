@@ -36,10 +36,14 @@ nl:
       links_enhancments: 'Je kun nu gemakkelijk alle <module>Links</module> uitschakelen en instellen hoe ze worden geopend.'
       psico_update: 'Een optie voor het weergeven van <module>PsicoTSI</module> voorspelling op de zijbalk links was geïmplementeerd.'
       ticker_update: '<module>Berichten kleuren</module> en <module>de notificatie</module> werden bijgewerkt met nieuwe typen notificaties die zijn toegevoegd in de afgelopen paar jaar.'
+      ticker_chall: 'Het is niet meer mogelijk onderscheid te maken tussen uitdagingen voor vriendschappelijke wedstrijden van andere MyHT berichten voor HT Supporters in <module>TickerColoring</module>. Als consequentie daarvan is het ticker type hernoemd.'
       htms_points: '<module>HTMSPoints</module> werd bijgewerkt om de nieuwe formules te gebruiken.'
       ff_button: The Firefox werkbalk knop zal nu beter reageren en zal de status van Foxtrick beter aangeven.
       ff_disable: Door Foxtrick uit te schakelen, zal Foxtrick voorkeuren (wanneer geopend) worden gesloten en alle Hattrick vensters zullen herladen worden om alle Foxtrick opties uit te schakelen.
       bugs: '<header>Fout herstel</header>'
+      android: |
+        <p>Grote aanpassingen aan de Foxtrick broncode om deze aan te passen voor gebruik in Firefox voor Android. Als resultaat zal Foxtrick een stuk beter werken op mobiele apparaten.</p>
+        <p>Getroffen modules: <module>MatchReportFormat</module>, <module>Ratings</module>, <module>MatchSimulator</module>, <module>HTMSPrediction</module> <em>et al</em>.</p>
       stamina_data_bug: 'Conditie data welke is verzameld in <module>MatchLineupTweaks</module> zal niet langer teruggezet worden wanneer er oude wedstrijden worden geopend in Firefox.'
       native_names: 'Geselecteerde landen zullen niet langer aangepast worden, wanneer er wordt teruggekeerd naar het transfer zoekformulier met inheemse landnamen ingeschakeld in <module>CountryList</module>.'
       thread_author: '<module>HTThreadMarker</module> and <module>ForumAlterHeaderLine</module> zal nu de schrijver van een forum topic juist weergeven.'
