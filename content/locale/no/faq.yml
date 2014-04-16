@@ -3,7 +3,7 @@
   faq:
     style:
       question: Hvordan kan jeg forandre utseendet på FoxTrick?
-      answer: "<p>FoxTrick gir et sett med presentasjonsgrensesnitt som brukerne kan tilpasse til sine egne stiler. Disse grensesnittene gis gjennom HTML-IDer og klasser, og du kan bruke CSS til å definere din foretrukne stil.</p>  <p>Fileksempler, som du kan endre for å tilfredsstille dine behov, finnes <linkCSSExample>her</linkCSSExample> eller <linkCSSExampleGCode>her</linkCSSExampleGCode>. Når du lagrer filen, kan du bruke modulen <module>SkinPlugin</module> for lasting av CSS-filen for å bruke stilsettet du har valgt.</p>"
+      answer: '<p>FoxTrick gir et sett med presentasjonsgrensesnitt som brukerne kan tilpasse til sine egne stiler. Disse grensesnittene gis gjennom HTML-IDer og klasser, og du kan bruke CSS til å definere din foretrukne stil.</p>  <p>Fileksempler, som du kan endre for å tilfredsstille dine behov, finnes <linkCSSExample>her</linkCSSExample> eller <linkCSSExampleGCode>her</linkCSSExampleGCode>. Når du lagrer filen, kan du bruke modulen <module>SkinPlugin</module> for lasting av CSS-filen for å bruke stilsettet du har valgt.</p>'
     sound-format:
       question: Hvilke filformater tillates for varsellyder?
       answer: |
