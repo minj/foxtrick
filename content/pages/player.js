@@ -208,7 +208,22 @@ Foxtrick.Pages.Player = {
 			return null;
 		}
 	},
-
+	
+	getSpeciality: function(doc) {
+		var node = doc.getElementsByClassName('playerInfo')[0].
+				getElementsByTagName('tr')[5].
+				getElementsByTagName('td')[1];
+		var speciality = Foxtrick.L10n.getEnglishSpeciality(node.textContent.trim());
+		if("Technical" !== speciality &&
+		   "Head" !== speciality &&
+		   "Unpredictable" !== speciality &&
+		   "Quick" !== speciality &&
+		   "Powerful" !== speciality &&
+		   "Regainer" !== speciality)
+			speciality = "";
+		return speciality;
+	},
+	
 	getSkills: function(doc) {
 		var skillsWithText = this.getSkillsWithText(doc);
 		return (skillsWithText ? skillsWithText.values : null);
@@ -437,5 +452,60 @@ Foxtrick.Pages.Player = {
 // LastMatch
 			callback(player);
 		});
+	},
+
+	getPositionsContributions: function(skills, spec) {
+		var speciality = Foxtrick.L10n.getEnglishSpeciality(spec);
+		
+		var contributions = {};
+		
+		function getValue(keeper, defending, playmaking, winger, passing, scoring, skills) {
+			var value = keeper * skills.keeper;
+			value += defending * skills.defending;
+			value += playmaking * skills.playmaking;
+			value += winger * skills.winger;
+			value += passing * skills.passing;
+			value += scoring * skills.scoring;
+			
+			return parseFloat((value).toFixed(1));
+		}
+		//all coefficients taken from http://wiki.hattrick.org/wiki/Hattrick_-_Skill_positions
+		contributions.kp = getValue(1.468, 0.701, 0, 0, 0, 0, skills);
+		contributions.wbd = getValue(0, 1.479, 0.066, 0.323, 0, 0, skills);
+		contributions.wb = getValue(0, 1.368, 0.167, 0.506, 0, 0, skills);
+		contributions.wbtm = getValue(0, 1.37, 0.167, 0.276, 0, 0, skills);
+		contributions.wbo = getValue(0, 1.079, 0.23, 0.618, 0, 0, skills);
+		contributions.cd = getValue(0, 1.516, 0.244, 0, 0, 0, skills);
+		contributions.cdtw = getValue(0, 1.492, 0.171, 0.252, 0, 0, skills);
+		contributions.cdo = getValue(0, 1.103, 0.329, 0, 0, 0, skills);
+		contributions.wd = getValue(0, 0.738, 0.381, 0.723, 0.223, 0, skills);
+		contributions.w = getValue(0, 0.55, 0.455, 0.854, 0.311, 0, skills);
+		contributions.wtm = getValue(0, 0.528, 0.574, 0.564, 0.278, 0, skills);
+		contributions.wo = getValue(0, 0.268, 0.381, 1, 0.378, 0, skills);
+		contributions.imd = getValue(0, 0.864, 0.944, 0, 0.358, 0, skills);
+		contributions.im = getValue(0, 0.589, 1, 0, 0.541, 0, skills);
+		contributions.imtw = getValue(0, 0.597, 0.881, 0.489, 0.496, 0, skills);
+		contributions.imo = getValue(0, 0.318, 0.944, 0, 0.697, 0, skills);
+		if (speciality === "Technical") {
+			contributions.tdf = getValue(0, 0, 0.429, 0.124, 0.885, 0.729, skills);
+			contributions.fwd = "X";
+		} else {
+			contributions.tdf = "X";
+			contributions.fwd = getValue(0, 0, 0.429, 0.124, 0.814, 0.729, skills);
+		}
+		
+		contributions.fw = getValue(0, 0, 0, 0.18, 0.49 , 1.221, skills);
+		contributions.fwtw = getValue(0, 0, 0, 0.524, 0.339, 1.236, skills);
+		return contributions;
+	},
+	
+	getBestPosition: function(contributions){
+		var max = {"position": "", "value": 0};
+		for(name in contributions)
+		    if (contributions[name] > max.value) {
+			max.position = name;
+			max.value = contributions[name];
+		    }
+		return max;
 	}
 };

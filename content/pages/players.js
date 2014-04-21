@@ -879,9 +879,35 @@ Foxtrick.Pages.Players = {
 					player.psicoTSI = psicoLink.textContent.match(/\d+\.\d+/)[0];
 					player.psicoTitle = psicoLink.textContent.match(/(.+)\s\[/)[1];
 				}
-
+				
 			}
 		};
+		
+		var addContributionsInfo = function(playerList) {
+			if (!Foxtrick.Pages.Players.isYouthPlayersPage(doc)) {
+				for (var i = 0; i < playerList.length; ++i) {
+					var player = playerList[i];
+					var skills = {
+						"keeper": player.keeper,
+						"playmaking": player.playmaking,
+						"passing": player.passing,
+						"winger": player.winger,
+						"defending": player.defending,
+						"scoring": player.scoring,
+					}
+					var contributions = Foxtrick.Pages.Player.getPositionsContributions(skills, player.speciality);
+					
+					for (name in contributions) 
+						player[name] = contributions[name];
+					
+					var bestPosition = Foxtrick.Pages.Player.getBestPosition(contributions);
+					//if all skills = 0, then all positions contributions will be 0, so bestPosition = X
+					player.bestPosition = bestPosition.position ? Foxtrick.L10n.getString(bestPosition.position + "Position.abbr") : "X";
+					player.bestPositionLong = bestPosition.position ? Foxtrick.L10n.getString(bestPosition.position + "Position") : "X";
+					player.bestPositionValue = bestPosition.value ? bestPosition.value : 0;
+				}
+			}
+		}
 		// if callback is provided, we get list with XML
 		// otherwise, we get list synchronously and return it
 		if (callback) {
@@ -894,6 +920,7 @@ Foxtrick.Pages.Players = {
 						// not present in XML (NT players)
 						if (!options || !options.current_squad) parseHtml();
 						if (xml) parseXml(xml);
+						addContributionsInfo(playerList);
 						callback(playerList);
 					}
 					catch (e) {
@@ -906,6 +933,7 @@ Foxtrick.Pages.Players = {
 		else {
 			try {
 				parseHtml();
+				addContributionsInfo(playerList);
 				return playerList;
 			}
 			catch (e) {

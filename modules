@@ -25,6 +25,7 @@ forum/mark-all-as-read.js
 forum/mark-unread.js
 forum/show-forum-pref-button.js
 forum/staff-marker.js
+information-aggregation/best-player-position.js
 information-aggregation/cross-table.js
 information-aggregation/dashboard-calendar.js
 information-aggregation/election-table.js
@@ -40,6 +41,7 @@ information-aggregation/median-transfer-price.js
 information-aggregation/my-monitor.js
 information-aggregation/nt-peek.js
 information-aggregation/player-birthday.js
+information-aggregation/player-positions-evaluations.js
 information-aggregation/player-stats-experience.js
 information-aggregation/psico-tsi.js
 information-aggregation/season-stats.js

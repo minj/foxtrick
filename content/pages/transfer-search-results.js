@@ -128,8 +128,19 @@ Foxtrick.Pages.TransferSearchResults = {
 					skills.shift();
 				var skillOrder = ['stamina', 'keeper', 'playmaking', 'passing', 'winger',
 					'defending', 'scoring', 'setPieces'];
-				for (var i = 0; i < skillOrder.length; ++i)
+				var fullSkills = {};
+				for (var i = 0; i < skillOrder.length; ++i) {
 					player[skillOrder[i]] = Number(skills[i].href.match(/ll=(\d+)/)[1]);
+					fullSkills[skillOrder[i]] = player[skillOrder[i]];
+				}
+				var contributions = Foxtrick.Pages.Player.getPositionsContributions(fullSkills, player.speciality);
+				for(name in contributions)
+					player[name] = contributions[name];
+					
+				var bestPosition = Foxtrick.Pages.Player.getBestPosition(contributions);
+				player.bestPosition = Foxtrick.L10n.getString(bestPosition.position + "Position.abbr");
+				player.bestPositionLong = Foxtrick.L10n.getString(bestPosition.position + "Position");
+				player.bestPositionValue = bestPosition.value;
 			}
 			catch (e) {
 				Foxtrick.log(e);

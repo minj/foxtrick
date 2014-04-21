@@ -21,7 +21,7 @@ Foxtrick.modules['SkillTable'] = {
 				fullType.type = 'transfer';
 				return fullType;
 			}
-
+			
 			var isOwn = Foxtrick.Pages.Players.isOwnPlayersPage(doc);
 
 			if (Foxtrick.Pages.Players.isSeniorPlayersPage(doc) ||
@@ -85,7 +85,6 @@ Foxtrick.modules['SkillTable'] = {
 				if (fullType.type != 'transfer'
 					&& fullType.subtype != 'nt'
 					&& fullType.subtype != 'oldiesCoach') {
-
 					var getLastMatchDates = function(PlayerInfo) {
 						pid = Foxtrick.Pages.Players.getPlayerId(PlayerInfo);
 						var as = PlayerInfo.getElementsByTagName('a');
@@ -107,7 +106,6 @@ Foxtrick.modules['SkillTable'] = {
 					var lastMatchDate = dates.lastMatchDate;
 					var secondLastMatchDate = dates.secondLastMatchDate;
 				}
-
 				if (fullType.type == 'transfer') {
 					allPlayerInfo = doc.getElementsByClassName('transferPlayerInfo');
 					for (i = 0; i < allPlayerInfo.length; ++i) {
@@ -124,6 +122,7 @@ Foxtrick.modules['SkillTable'] = {
 						}
 					}
 				}
+				
 				// functions used to attach data to table cell
 				var category = function(cell, cat) {
 					var categories = ['GK', 'WB', 'CD', 'W', 'IM', 'FW', 'S', 'R', 'E1', 'E2'];
@@ -464,9 +463,31 @@ Foxtrick.modules['SkillTable'] = {
 					{ name: 'Current_league', property: 'currentLeagueId',
 						method: league, sortString: true },
 					{ name: 'TransferCompare', property: 'transferCompare', method: link},
-					{ name: 'OwnerNotes', property: 'OwnerNotes'}
+					{ name: 'OwnerNotes', property: 'OwnerNotes'},
+					{ name: 'kpPosition', property: 'kp'},
+					{ name: 'wbdPosition', property: 'wbd'},
+					{ name: 'wbPosition', property: 'wb'},
+					{ name: 'wbtmPosition', property: 'wbtm'},
+					{ name: 'wboPosition', property: 'wbo'},
+					{ name: 'cdPosition', property: 'cd'},
+					{ name: 'cdtwPosition', property: 'cdtw'},
+					{ name: 'cdoPosition', property: 'cdo'},
+					{ name: 'wdPosition', property: 'wd'},
+					{ name: 'wPosition', property: 'w'},
+					{ name: 'wtmPosition', property: 'wtm'},
+					{ name: 'woPosition', property: 'wo'},
+					{ name: 'imdPosition', property: 'imd'},
+					{ name: 'imPosition', property: 'im'},
+					{ name: 'imtwPosition', property: 'imtw'},
+					{ name: 'imoPosition', property: 'imo'},
+					{ name: 'fwPosition', property: 'fw'},
+					{ name: 'fwdPosition', property: 'fwd'},
+					{ name: 'fwtwPosition', property: 'fwtw'},
+					{ name: 'tdfPosition', property: 'tdf'},
+					{ name: 'BestPosition', property: 'bestPosition', sortString: true},
+					{ name: 'BestPositionValue', property: 'bestPositionValue'},
 				];
-
+				
 				for (j = 0; j < columns.length; ++j) {
 					columns[j].available = false;
 					if (columns[j].properties) {
@@ -853,7 +874,7 @@ Foxtrick.modules['SkillTable'] = {
 			if (fullType.type == 'transfer') {
 				var playerList = Foxtrick.Pages.TransferSearchResults.getPlayerList(doc);
 				showTable(playerList);
-			}
+			} 
 			else {
 				var loading = Foxtrick.util.note.createLoading(doc);
 				doc.getElementsByClassName('ft_skilltable_wrapper')[0].appendChild(loading);
@@ -1357,6 +1378,10 @@ Foxtrick.modules['SkillTable'] = {
 					.getElementsByClassName('borderSeparator')[0].nextSibling;
 				insertBefore.parentNode.insertBefore(tablediv, insertBefore);
 			}
+			else if (Foxtrick.Pages.Player.isSeniorPlayerPage(doc)) {
+				var insertParent = doc.getElementById('mainBody');
+				insertParent.appendChild(tablediv);
+			}
 			else {
 				var playerList = doc.getElementsByClassName('playerList')[0];
 				if (playerList) {
@@ -1386,7 +1411,7 @@ Foxtrick.modules['SkillTable'] = {
 			}
 			return tablediv;
 		};
-
+		
 		if (doc.getElementById('ft_skilltablediv'))
 			return;
 
