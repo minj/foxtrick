@@ -339,10 +339,10 @@
 	},
 	"ht-dog": {
 		"teamlink": {
-			"url": "http://mikehell.kicks-ass.net/ht-dog/?otherTeamID=[teamid]"
+			"url": "http://htdog-mikehell.rhcloud.com/ht-dog/?otherTeamID=[teamid]"
 		},
 		"title": "HT-Dog",
-		"img": "http://mikehell.kicks-ass.net:8080/ht-dog/animated_favicon111.gif"
+		"img": "http://htdog-mikehell.rhcloud.com/ht-dog/animated_favicon111.gif"
 	},
 	"healingkawasaki": {
 		"playerhealinglink": {
