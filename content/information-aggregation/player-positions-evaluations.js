@@ -31,10 +31,10 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 			
 			var tr = doc.createElement('tr');
 			var td = doc.createElement('th');
-			td.textContent = "Position";
+			td.textContent = Foxtrick.L10n.getString("module.PlayerPositionsEvaluations.position");
 			tr.appendChild(td);
 			td = doc.createElement('th');
-			td.textContent = "Contribution";
+			td.textContent = Foxtrick.L10n.getString("module.PlayerPositionsEvaluations.contribution");
 			tr.appendChild(td);
 			tbody.appendChild(tr);
 			for(name in contributions) {
