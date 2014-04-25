@@ -3,6 +3,8 @@ ka:
   versions:
     beta:
       note_0: 'ეს არის ახალი ვერსიის საცდელი ვარიანტი. გთხოვთ დაგვეხმარეთ თარგმნაში ჩვენი უადვილესი სათარგმნი საიტის გამოყენებით <linkCrowdin>crowdin.net</linkCrowdin>.'
+    0.12.2.1:
+      note_0: Links will no longer disappear after clearing Foxtrick cache in Firefox.
     0.10.0:
       note_0: 'NEW: <module>TransferHistoryFilters</module>: Allows you to filter transfers for bought or sold players only. Only available for the team history, not players (default on)'
       note_1: 'NEW: <module>FriendlyPool</module>: Colorizes visited countries in the friendly pool (supporters only, default on)'
