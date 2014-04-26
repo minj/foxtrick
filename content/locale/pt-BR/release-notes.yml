@@ -9,11 +9,11 @@ pt-BR:
       crowdin: '<header>Várias atualizações de traduções de nossos fantásticos usuários que usam o <linkCrowdin>crowdin tool</linkCrowdin>. Você também pode ajudar!</header>'
       bugs: '<header>Correções de bugs</header>'
       old_faces: '<module>OldStyleFace</module> não estava funcionando corretamente na interface do ordem de partida e páginas de programação do jogo. Isto agora é fixo.'
-      simulator_skills: 'Subnível nomes em <module>MatchSimulator</module> foram corrigidos para alguns idiomas.'
-      embed_media: '<module>PsicoTSI</module> e <module>EmbedMedia</module> tornaram-se mais seguro.'
+      simulator_skills: 'Nomes dos subníveis em <module>MatchSimulator</module> foram corrigidos para alguns idiomas.'
+      embed_media: '<module>PsicoTSI</module> e <module>EmbedMedia</module> tornaram-se mais seguros.'
       other: '<header>Outras alterações</header>'
       report_format: 'Os módulos <module>MatchReportFormat</module> e <module>LiveMatchReportFormat</module> foram reescritos e agora funcionam sem acesso CHPP.'
-      attvsdef: 'Probabilidades reais no módulo <module>AttVsDef</module> agora afeta também barras de posse de bola.'
+      attvsdef: 'Probabilidades reais no módulo <module>AttVsDef</module> agora afeta também as barras de posse de bola.'
       staff_marker: 'Interface de cor personalizada em <module>StaffMarker</module> agora é opcional.'
       mmdd: 'Setas em <module>MainMenuDropDown</module> menus agora são opcionais.'
       and_more: Várias outras pequenas alterações e correções.
@@ -22,7 +22,7 @@ pt-BR:
       opera: |
         <p>Este é o último grande lançamento que oficialmente suporta Opera 12 ou anterior. As versões existentes do foxtrick poderão deixar de funcionar sem qualquer aviso.This is the last major release that officially supports Opera 12 or below. Existing Foxtrick versions may stop functioning without further notice.</p>
         <p>Por favor considere trocar para <linkOperaNext>Opera Next</linkOperaNext> ou outro navegador suportado, à sua escolha.</p>
-      safari: Safari versão 5. x suporte será retirada em breve.
+      safari: 'Suporte para Safari versão 5. x  será eliminado em breve.'
       twitter: 'Você pode seguir <linkTwitter>Foxtrick no Twitter</linkTwitter>para receber as últimas notícias, informações e anúncios.'
       crowdin: '<header>Várias atualizações de traduções de nossos fantásticos usuários que usam o <linkCrowdin>crowdin tool</linkCrowdin>. Você também pode ajudar!</header>'
       new: '<header>Novos módulos</header>'
@@ -31,8 +31,8 @@ pt-BR:
       match_weather: '<module>MatchWeather</module> mostra o clima na arena para hoje e amanhã na página do jogo.'
       other: '<header>Outras alterações</header>'
       ht_changes: FoxTrick foi atualizado para suportar as mudanças recentes no Hattrick sobre relatórios de jogo de juniores, tema simples e interface de ordem de partida.
-      locale_support: 'Atualizado o suporte à localidade: moeda de Euro na Letónia, novos nomes de dialeto espanhol, data e tempo corrigido formatos etc.'
-      simulator_prob: '<module>MatchSimulator</module> também foi imcrementado com as probabilidades reais de ataque/defesa/posse no novo módulo <module>MatchRatingsTweaks</module>.'
+      locale_support: 'Atualizado o suporte à localidade: moeda de Euro na Letônia, novos nomes de dialetos espanhóis, corrigido os formato de data e hora, etc.'
+      simulator_prob: '<module>MatchSimulator</module> também foi incrementado com as probabilidades reais de ataque/defesa/posse no novo módulo <module>MatchRatingsTweaks</module>.'
       staff_marker: '<module>StaffMarker</module> foi reestruturado. Novas opções para apoiadores, times parceiros e técnicos de seleções nacionais foram adicionadas. Por favor configure ao seu gosto.'
       custom_marker: Uma interface para facilmente adicionar cores de nome de usuário personalizado foi adicionada para o rodapé das mensagens do fórum.
       inline_options: 'Opções adicionado in-line para pena de listam de aprimoramentos de <module>MatchOrderInterface</module> e dividir a funcionalidade de programação em <module>MatchLineupTweaks</module>.'
