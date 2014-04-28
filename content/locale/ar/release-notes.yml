@@ -1,6 +1,32 @@
 ---
 ar:
   versions:
+    nightly:
+      note_0: 'هذه النسخة تطويرية وأنت تستخدمها على مسؤوليتك. الرجاء مراجعة <linkSVN>تاريخ التغييرات</linkSVN> في Google Code لمعرفة تفاصيل التحديثات.'
+    beta:
+      note_0: 'هذه النسخة تجريبية للإصدار القادم. الرجاء المساعدة في ترجمة هذه النسخة في صفحة الترجمة السهلة جدا على <linkCrowdin>crowdin.net</linkCrowdin>.'
+    0.13.0.1:
+      crowdin: '<header>العديد من التحديثات اللغوية والترجمات بواسطة مستخدمينا الأعزاء عبر أداة<linkCrowdin>crowdin </linkCrowdin>. يمكنك مساعدتنا كذلك!</header>'
+      bugs: '<header>إصلاح الأخطاء التقنية</header>'
+      old_faces: '<module>OldStyleFace</module> لم تكن هذه الأداة تعمل بشكل صحيح في نموذج إرسال أوامر المباراة وتم الآن إصلاح هذه المشكلة.'
+      simulator_skills: 'تم تصحيح أسماء المستويات الفرعية للمهارات في <module>MatchSimulator</module> للعديد من اللغات.'
+      embed_media: 'تم إصلاح أخطاء أمنية في وظيفة <module>PsicoTSI</module> ووظيفة <module>EmbedMedia</module>.'
+      other: '<header>تغييرات أخرى</header>'
+      report_format: 'تم إعادة برمجة الوظيفة <module>MatchReportFormat</module> والوظيفة <module>LiveMatchReportFormat</module> ولا يشترط التخويل بواسطة CHPP لإستخدامهما بعد الآن.'
+      attvsdef: 'الإحتمالات الحقيقة في وظيفة <module>AttVsDef</module> تؤثر الآن على قضبان إمتلاك الكرة.'
+      staff_marker: 'أصبحت الواجهة اللونية المخصصة في وظيفة <module>StaffMarker</module> إختيارية.'
+      mmdd: 'أصبحت الأسهم في وظيفة <module>MainMenuDropDown</module> الخاصة بالقوائم إختيارية.'
+      and_more: والعديد من التغييرات والإصلاحات الصغيرة الأخرى.
+    0.13.0:
+      important: '<header>إعلانات هامة</header>'
+      opera: |
+        <p>هذا هو الإصدار الأخير الذي يدعم متصفح Opera 12 والنسخ السابقة والإصدارات التي تدعم متصفح Foxtrick قد تتوقف من دون إشعار مسبق.</p>
+         <p>الرجاء محاولة استخدام المتصفح <linkOperaNext>Opera Next</linkOperaNext> أو أي متصفح آخر مدعوم من إختيارك.</p>
+      safari: الدعم لمتصفح Safari في الإصدارات 5.x سيتوقف قريبا.
+      twitter: 'يمكنك متابعة  <linkTwitter>Foxtrick على Twitter</linkTwitter> لمعرفة آخر الأخبار والتحديثات والإعلانات.'
+      crowdin: '<header>العديد من التحديثات اللغوية والترجمات بواسطة مستخدمينا الأعزاء عبر أداة<linkCrowdin>crowdin </linkCrowdin>. يمكنك مساعدتنا كذلك!</header>'
+      new: '<header>وظائف جديدة</header>'
+      hy_skills: '<module>YouthSkills</module>: تعزيز صفحة لاعبي الشباب بمعلومات من hattrick youthclub. لمستخدمي hattrick youthclub فقط.'
     0.10.0:
       note_0: 'NEW: <module>TransferHistoryFilters</module>: Allows you to filter transfers for bought or sold players only. Only available for the team history, not players (default on)'
       note_1: 'NEW: <module>FriendlyPool</module>: Colorizes visited countries in the friendly pool (supporters only, default on)'
