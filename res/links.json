@@ -1055,31 +1055,14 @@
 	},
 	"hatstatsnet": {
 		"leaguelink": {
-			"url": "http://hatstats.net/[countryid]/standings.php?series=[leagueid]",
-			"filters": ["countryid"]
+			"url": "http://hatstats.net/[countryid]/standings.php?series=[leagueid]"
 		},
 		"teamlink": {
-			"url": "http://hatstats.net/[countryid]/team.php?teamID=[teamid]",
-			"filters": ["countryid"]
+			"url": "http://hatstats.net/[countryid]/team.php?teamID=[teamid]"
 		},
 		"countrylink": {
-			"url": "http://hatstats.net/[countryid]/",
-			"filters": ["countryid"]
+			"url": "http://hatstats.net/[countryid]/"
 		},
-		"countryidranges": [
-			[1, 2],
-			[6, 6],
-			[8, 9],
-			[11, 11],
-			[15, 24],
-			[26, 31],
-			[33, 36],
-			[38, 39],
-			[45, 45],
-			[47, 47],
-			[50, 50],
-			[52, 148]
-		],
 		"title": "Hatstats",
 		"img": "http://hatstats.net/favicon.ico"
 	}
