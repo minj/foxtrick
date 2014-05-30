@@ -156,11 +156,17 @@
 					}, tickersNow);
 					//Foxtrick.log('tickersNow filtered',newTickers)
 
+					var open = Foxtrick.L10n.getString('notify.open');
 					Foxtrick.map(function(n) {
 						var type = getType(n.link);
 
 						if (Foxtrick.Prefs.getBool('module.TickerAlert.' + type + '.enabled')) {
-							Foxtrick.util.notify.create(n.text, n.link);
+							Foxtrick.util.notify.create(n.text, n.link, function(response) {}, {
+								id: 'ticker-' + type + Date.valueOf(),
+								opts: {
+									buttons: [{ title: open }],
+								}
+							});
 							var sound = Foxtrick.Prefs.getString('module.TickerAlert.' + type + '.sound');
 							if (sound) {
 								Foxtrick.playSound(sound, doc);

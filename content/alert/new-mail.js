@@ -39,12 +39,22 @@ Foxtrick.modules['NewMail'] = {
 				// no unread mails
 				var newMailCount = 0;
 			}
+
+			var open = Foxtrick.L10n.getString('notify.open');
+
 			Foxtrick.sessionSet('mailCount', newMailCount);
 			if (Foxtrick.Prefs.isModuleOptionEnabled('NewMail', 'NotifyMail')
 				&& newMailCount > oldMailCount) {
 				Foxtrick.util.notify.create(Foxtrick.L10n.getString('notify.newMail', newMailCount)
 				                            .replace(/%s/, newMailCount), 'http://' +
-				                            doc.location.host + '/MyHattrick/Inbox/');
+				                            doc.location.host + '/MyHattrick/Inbox/',
+				                            function(response) {},
+				                            {
+				                            	id: 'mail',
+				                            	opts: {
+				                            		buttons: [{ title: open }],
+				                            	}
+				                            });
 				// play sound if enabled
 				if (Foxtrick.Prefs.isModuleOptionEnabled('NewMail', 'NotifyMailSound')) {
 					var sound = Foxtrick.Prefs.getString('module.NewMail.NotifyMailSound_text');
@@ -90,7 +100,14 @@ Foxtrick.modules['NewMail'] = {
 				Foxtrick.util.notify.create(Foxtrick.L10n.getString('notify.newForumMessage',
 				                            newForumCount).replace(/%s/, newForumCount),
 											'http://' + doc.location.host +
-											'/Forum/?actionType=refresh');
+											'/Forum/?actionType=refresh',
+				                            function(response) {},
+				                            {
+				                            	id: 'forum',
+				                            	opts: {
+				                            		buttons: [{ title: open }],
+				                            	}
+				                            });
 				// play sound if enabled
 				if (Foxtrick.Prefs.isModuleOptionEnabled('NewMail', 'NotifyForumSound')) {
 					var sound = Foxtrick.Prefs.getString('module.NewMail.NotifyForumSound_text');

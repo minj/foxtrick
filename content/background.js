@@ -257,49 +257,7 @@ Foxtrick.loader.background.browserLoad = function() {
 
 		// from notify.js
 		Foxtrick.loader.background.requests.notify = function(request, sender, sendResponse) {
-			// @param msg - message to notify the user
-			if (window.webkitNotifications) {
-				var notification = webkitNotifications.createNotification(
-					'resources/img/hattrick-logo.png', // logo location
-					'Hattrick', // notification title
-					request.msg // notification body text
-				);
-				// this webkit notification. onclick is needed
-				notification.onclick = function() {
-					if (Foxtrick.platform == 'Chrome') {
-						// goto msg.url in sender tab
-						chrome.tabs.update(sender.tab.id, { url: request.url, selected: true });
-						// focus last window. needs permissions: tabs. only nightly as for now
-						try {
-							chrome.windows.update(sender.tab.windowId, { focused: true });
-						} catch (e) {}
-					}
-					else
-						Foxtrick.SB.tabs.create({ url: request.url });
-					notification.cancel();
-				};
-				// Then show the notification.
-				notification.show();
-				// close after 10 sec
-				window.setTimeout(function() { notification.cancel(); }, 10000);
-			}
-			if (Foxtrick.platform === 'Safari') {
-				var showGrowlNotification = function(msg) {
-					try {
-						if (window.GrowlSafariBridge &&
-						    window.GrowlSafariBridge.notifyWithOptions) {
-							window.GrowlSafariBridge.notifyWithOptions(msg.name, msg.status, {
-								isSticky: false,
-								priority: -1,
-								imageUrl: msg.img_url
-							});
-						}
-					} catch (e) { Foxtrick.log(e); }
-				};
-
-				var img = Foxtrick.InternalPath + 'resources/img/hattrick-logo.png';
-				showGrowlNotification({ name: 'www.hattrick.org', status: request.msg, img_url: img });
-			}
+			Foxtrick.util.notify.create(request, sender, sendResponse);
 		};
 
 		// from context-menu.js: dummy. request handled in there
