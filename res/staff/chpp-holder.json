@@ -20,7 +20,7 @@
 		{ "id": 653581, "name": "CHPP-teles", "appNames": [ "HTLoto", "PHT" ] },
 		{ "id": 10439897, "name": "Castor_paresseux", "appNames": [ "QCM-HT" ] },
 		{ "id": 9286790, "name": "Cis_Trans", "appNames": [ "SYL scanner" ] },
-		{ "id": 10800601, "name": "Dantekavala", "appNames": [ "HT-SpyMarket", "Hattrick Network Analysis" ] },
+		{ "id": 10800601, "name": "Dantekavala", "appNames": [ "HT-SpyMarket", "HT-Tools", "Hattrick Network Analysis" ] },
 		{ "id": 2554426, "name": "DerKanzler", "appNames": [ "Maptrick" ] },
 		{ "id": 980430, "name": "DorkPower", "appNames": [ "Hattrick Stars" ] },
 		{ "id": 9069389, "name": "Drago81", "appNames": [ "HatLights" ] },
@@ -47,6 +47,7 @@
 		{ "id": 11196534, "name": "Llalundo", "appNames": [ "Club Top Scorers" ] },
 		{ "id": 185572, "name": "Lobster", "appNames": [ "HT-Monster" ] },
 		{ "id": 40280, "name": "Loke_", "appNames": [ "HAM" ] },
+		{ "id": 7160958, "name": "MOD-walperg", "appNames": [ "htguatemala" ] },
 		{ "id": 1532705, "name": "Mackshot", "appNames": [ "Cup Manager", "hattrick youthclub" ] },
 		{ "id": 1451294, "name": "Mati-JFC", "appNames": [ "Hattrick Friendly Database", "TUPAZ Tool" ] },
 		{ "id": 9900496, "name": "Menfiesto", "appNames": [ "Copa Velez HT" ] },
@@ -125,6 +126,7 @@
 		{ "id": 3187833, "name": "rafeeZG", "appNames": [ "Poland NT/U20 Tracker" ] },
 		{ "id": 7006397, "name": "ravenye", "appNames": [ "Hattrick Mobile Manager" ] },
 		{ "id": 6875175, "name": "resu100", "appNames": [ "Hattrick-Argonaut" ] },
+		{ "id": 7897785, "name": "sdeboer", "appNames": [ "HT-OA" ] },
 		{ "id": 6886447, "name": "seralph", "appNames": [ "Gham - GplHattrickManager" ] },
 		{ "id": 3093899, "name": "signor_kappa", "appNames": [ "Hattrick Gazette" ] },
 		{ "id": 6661049, "name": "sneu_", "appNames": [ "HTIrssi" ] },
@@ -136,7 +138,6 @@
 		{ "id": 659104, "name": "trews", "appNames": [ "Chilean Hattrick NT/U20 Tracker" ] },
 		{ "id": 11971062, "name": "tys0n28", "appNames": [ "Hattrick Scout Spy" ] },
 		{ "id": 873814, "name": "vichenze", "appNames": [ "SE Statistics" ] },
-		{ "id": 7160958, "name": "walperg", "appNames": [ "htguatemala" ] },
 		{ "id": 1430685, "name": "wysota", "appNames": [ "Yaham" ] }
 	]
 }
