@@ -43,7 +43,8 @@ Foxtrick.modules['CopyMatchID'] = {
 
 				var images = cells[i].getElementsByTagName('img');
 				for (var j = 0; j < images.length; j++) {
-					if (images[j].className.search(new RegExp('matchLeague|matchFriendly' +
+					var image = images[j];
+					if (image.className.search(new RegExp('matchLeague|matchFriendly' +
 					    '|matchMasters|matchCup|matchQualification|matchTournament' +
 						'|matchSingleMatch')) == -1)
 						continue;
@@ -60,13 +61,13 @@ Foxtrick.modules['CopyMatchID'] = {
 						continue;
 					var matchid = href.replace(/.+matchID=/i, '').match(/^\d+/)[0];
 
-					images[j].setAttribute('title', images[j].title + ': ' +
-					                       Foxtrick.L10n.getString('copy.matchid'));
-					images[j] = Foxtrick.makeFeaturedElement(images[j], this);
-					images[j].setAttribute('matchid', matchid);
-					images[j].setAttribute('id', '_' + this.MODULE_NAME + count);
-					Foxtrick.onClick(images[j], copyId);
-					Foxtrick.addClass(images[j], 'ft-link');
+					image.setAttribute('title', image.title + ': ' +
+					                   Foxtrick.L10n.getString('copy.matchid'));
+					image = Foxtrick.makeFeaturedElement(image, this);
+					image.setAttribute('matchid', matchid);
+					image.setAttribute('id', '_' + this.MODULE_NAME + count);
+					Foxtrick.onClick(image, copyId);
+					Foxtrick.addClass(image, 'ft-link');
 
 					count++;
 				}
