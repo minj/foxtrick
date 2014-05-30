@@ -208,22 +208,16 @@ Foxtrick.Pages.Player = {
 			return null;
 		}
 	},
-	
+
 	getSpeciality: function(doc) {
-		var node = doc.getElementsByClassName('playerInfo')[0].
-				getElementsByTagName('tr')[5].
-				getElementsByTagName('td')[1];
-		var speciality = Foxtrick.L10n.getEnglishSpeciality(node.textContent.trim());
-		if("Technical" !== speciality &&
-		   "Head" !== speciality &&
-		   "Unpredictable" !== speciality &&
-		   "Quick" !== speciality &&
-		   "Powerful" !== speciality &&
-		   "Regainer" !== speciality)
-			speciality = "";
+		var specNode =
+			doc.querySelector('.playerInfo table.thin tr:nth-of-type(6) td:nth-of-type(2)');
+		if (!specNode)
+			return null;
+		var speciality = Foxtrick.L10n.getEnglishSpeciality(specNode.textContent.trim());
 		return speciality;
 	},
-	
+
 	getSkills: function(doc) {
 		var skillsWithText = this.getSkillsWithText(doc);
 		return (skillsWithText ? skillsWithText.values : null);
@@ -453,23 +447,26 @@ Foxtrick.Pages.Player = {
 			callback(player);
 		});
 	},
-
-	getPositionsContributions: function(skills, spec) {
-		var speciality = Foxtrick.L10n.getEnglishSpeciality(spec);
-		
-		var contributions = {};
-		
-		function getValue(keeper, defending, playmaking, winger, passing, scoring, skills) {
+	/**
+	 * Get position contributions
+	 * @param  {Object<String,Number>} skills skill map
+	 * @param  {String}                spec   English specialty
+	 * @return {Object<String,Number>}        position map
+	 */
+	getContributions: function(skills, spec) {
+		var getValue = function(keeper, defending, playmaking, winger, passing, scoring, skills) {
 			var value = keeper * skills.keeper;
 			value += defending * skills.defending;
 			value += playmaking * skills.playmaking;
 			value += winger * skills.winger;
 			value += passing * skills.passing;
 			value += scoring * skills.scoring;
-			
-			return parseFloat((value).toFixed(1));
-		}
-		//all coefficients taken from http://wiki.hattrick.org/wiki/Hattrick_-_Skill_positions
+
+			return parseFloat(value.toFixed(1));
+		};
+
+		// all coefficients taken from http://wiki.hattrick.org/wiki/Hattrick_-_Skill_positions
+		var contributions = {};
 		contributions.kp = getValue(1.468, 0.701, 0, 0, 0, 0, skills);
 		contributions.wbd = getValue(0, 1.479, 0.066, 0.323, 0, 0, skills);
 		contributions.wb = getValue(0, 1.368, 0.167, 0.506, 0, 0, skills);
@@ -486,26 +483,27 @@ Foxtrick.Pages.Player = {
 		contributions.im = getValue(0, 0.589, 1, 0, 0.541, 0, skills);
 		contributions.imtw = getValue(0, 0.597, 0.881, 0.489, 0.496, 0, skills);
 		contributions.imo = getValue(0, 0.318, 0.944, 0, 0.697, 0, skills);
-		if (speciality === "Technical") {
+
+		if (spec === 'Technical') {
 			contributions.tdf = getValue(0, 0, 0.429, 0.124, 0.885, 0.729, skills);
-			contributions.fwd = "X";
+			contributions.fwd = 'X';
 		} else {
-			contributions.tdf = "X";
+			contributions.tdf = 'X';
 			contributions.fwd = getValue(0, 0, 0.429, 0.124, 0.814, 0.729, skills);
 		}
-		
+
 		contributions.fw = getValue(0, 0, 0, 0.18, 0.49 , 1.221, skills);
 		contributions.fwtw = getValue(0, 0, 0, 0.524, 0.339, 1.236, skills);
 		return contributions;
 	},
-	
-	getBestPosition: function(contributions){
-		var max = {"position": "", "value": 0};
-		for(name in contributions)
-		    if (contributions[name] > max.value) {
-			max.position = name;
-			max.value = contributions[name];
-		    }
+
+	getBestPosition: function(contributions) {
+		var max = { position: '', value: 0 };
+		for (var name in contributions)
+			if (contributions[name] > max.value) {
+				max.position = name;
+				max.value = contributions[name];
+			}
 		return max;
 	}
 };

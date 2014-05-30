@@ -879,35 +879,43 @@ Foxtrick.Pages.Players = {
 					player.psicoTSI = psicoLink.textContent.match(/\d+\.\d+/)[0];
 					player.psicoTitle = psicoLink.textContent.match(/(.+)\s\[/)[1];
 				}
-				
+
 			}
 		};
-		
+
 		var addContributionsInfo = function(playerList) {
 			if (!Foxtrick.Pages.Players.isYouthPlayersPage(doc)) {
 				for (var i = 0; i < playerList.length; ++i) {
 					var player = playerList[i];
 					var skills = {
-						"keeper": player.keeper,
-						"playmaking": player.playmaking,
-						"passing": player.passing,
-						"winger": player.winger,
-						"defending": player.defending,
-						"scoring": player.scoring,
+						keeper: player.keeper,
+						playmaking: player.playmaking,
+						passing: player.passing,
+						winger: player.winger,
+						defending: player.defending,
+						scoring: player.scoring,
 					}
-					var contributions = Foxtrick.Pages.Player.getPositionsContributions(skills, player.speciality);
-					
-					for (name in contributions) 
+					var spec = Foxtrick.L10n.getEnglishSpeciality(player.speciality);
+					var contributions = Foxtrick.Pages.Player.getContributions(skills, spec);
+					for (var name in contributions)
 						player[name] = contributions[name];
-					
+
 					var bestPosition = Foxtrick.Pages.Player.getBestPosition(contributions);
-					//if all skills = 0, then all positions contributions will be 0, so bestPosition = X
-					player.bestPosition = bestPosition.position ? Foxtrick.L10n.getString(bestPosition.position + "Position.abbr") : "X";
-					player.bestPositionLong = bestPosition.position ? Foxtrick.L10n.getString(bestPosition.position + "Position") : "X";
-					player.bestPositionValue = bestPosition.value ? bestPosition.value : 0;
+					// if all skills = 0, then all positions contributions will be 0,
+					// so bestPosition = X
+					if (bestPosition.position) {
+						player.bestPosition =
+							Foxtrick.L10n.getString(bestPosition.position + 'Position.abbr')
+						player.bestPositionLong =
+							Foxtrick.L10n.getString(bestPosition.position + 'Position');
+					}
+					else
+						player.bestPosition = player.bestPositionLong = 'X';
+
+					player.bestPositionValue = bestPosition.value || 0;
 				}
 			}
-		}
+		};
 		// if callback is provided, we get list with XML
 		// otherwise, we get list synchronously and return it
 		if (callback) {

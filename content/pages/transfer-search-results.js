@@ -133,13 +133,16 @@ Foxtrick.Pages.TransferSearchResults = {
 					player[skillOrder[i]] = Number(skills[i].href.match(/ll=(\d+)/)[1]);
 					fullSkills[skillOrder[i]] = player[skillOrder[i]];
 				}
-				var contributions = Foxtrick.Pages.Player.getPositionsContributions(fullSkills, player.speciality);
-				for(name in contributions)
+				var spec = Foxtrick.L10n.getEnglishSpeciality(player.speciality);
+				var contributions = Foxtrick.Pages.Player.getContributions(fullSkills, spec);
+				for (var name in contributions)
 					player[name] = contributions[name];
-					
+
 				var bestPosition = Foxtrick.Pages.Player.getBestPosition(contributions);
-				player.bestPosition = Foxtrick.L10n.getString(bestPosition.position + "Position.abbr");
-				player.bestPositionLong = Foxtrick.L10n.getString(bestPosition.position + "Position");
+				player.bestPosition =
+					Foxtrick.L10n.getString(bestPosition.position + 'Position.abbr');
+				player.bestPositionLong =
+					Foxtrick.L10n.getString(bestPosition.position + 'Position');
 				player.bestPositionValue = bestPosition.value;
 			}
 			catch (e) {
