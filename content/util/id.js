@@ -31,6 +31,9 @@ Foxtrick.util.id.getLeagueLeveUnitIdFromUrl = function(url) {
 };
 
 Foxtrick.util.id.findLeagueId = function(element) {
+	if (!element)
+		return null;
+
 	var links = Foxtrick.filter(function(n) {
 		return n.hasAttribute('href');
 	}, element.getElementsByTagName('a'));
