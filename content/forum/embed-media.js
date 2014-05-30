@@ -98,8 +98,7 @@ Foxtrick.modules['EmbedMedia'] = {
 			'imgur': '^(?:https?://)?imgur.com/([\\w\\d]+)$',
 			'imageshack': '^(?:https?://)?(?:www)?imageshack\\.us/[\\w\\d.%~/-]+/(\\d+)/(\\w+)' +
 				'.(gif|jpg|jpeg|png|bmp)(?:/|$)',
-			'genericImage': '^(?:https?://)?[\\w\\d.%~/-]+' +
-				'(?:gif|jpg|jpeg|png|bmp)$'
+			'genericImage': '^(?:https?:)?//[\\w\\d.%~/+-]+(?:gif|jpg|jpeg|png|bmp)$'
 		};
 
 		//oEmbed supported sites need entries at this point
