@@ -486,9 +486,9 @@ Foxtrick.Pages.Player = {
 
 		if (spec === 'Technical') {
 			contributions.tdf = getValue(0, 0, 0.429, 0.124, 0.885, 0.729, skills);
-			contributions.fwd = 'X';
+			contributions.fwd = 0;
 		} else {
-			contributions.tdf = 'X';
+			contributions.tdf = 0;
 			contributions.fwd = getValue(0, 0, 0.429, 0.124, 0.814, 0.729, skills);
 		}
 
