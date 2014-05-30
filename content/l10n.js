@@ -349,19 +349,20 @@ Foxtrick.L10n = {
 	getEnglishSpeciality: function(spec) {
 		if (!spec)
 			return null;
-		var engSpec = spec;
 		try {
 			var lang = Foxtrick.Prefs.getString('htLanguage');
 			var category = Foxtrick.L10n.htLanguagesJSON[lang].language['specialties'];
-			engSpec = Foxtrick.nth(function(item) {
+			var found = Foxtrick.nth(function(item) {
 				return item.value == spec;
-			}, category).type;
+			}, category);
+			if (!found)
+				return null;
+			return found.type;
 		}
 		catch (e) {
 			Foxtrick.log(e);
 			return null;
 		}
-		return engSpec;
 	},
 
 	getSpecialityFromNumber: function(number) {
