@@ -643,12 +643,12 @@ Foxtrick.modules['SkillTable'] = {
 									return 0;
 								}
 								// place empty cells at the bottom
-								if (aContent === '' || aContent === null ||
-								    aContent === undefined) {
+								if (aContent === '' || aContent === 'X' ||
+								    aContent === null || aContent === undefined) {
 									return 1;
 								}
-								if (bContent === '' || bContent === null ||
-								    bContent === undefined) {
+								if (bContent === '' || bContent === 'X' ||
+								    bContent === null || bContent === undefined) {
 									return -1;
 								}
 								if (sortString) {

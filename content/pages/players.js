@@ -261,7 +261,7 @@ Foxtrick.Pages.Players = {
 								if (playerNode.getElementsByTagName('MotherClubBonus')[0]
 								    .textContent == 'True') {
 									player.motherClubBonus = doc.createElement('span');
-									player.motherClubBonus.textContent = 'X';
+									player.motherClubBonus.textContent = '✔';
 									player.motherClubBonus.title =
 										Foxtrick.L10n.getString('skilltable.youthplayer');
 								}
@@ -727,7 +727,7 @@ Foxtrick.Pages.Players = {
 				for (var j = 0; j < imgs.length; ++j) {
 					if (imgs[j].className == 'motherclubBonus') {
 						player.motherClubBonus = doc.createElement('span');
-						player.motherClubBonus.textContent = 'X';
+						player.motherClubBonus.textContent = '✔';
 						player.motherClubBonus.title =
 							Foxtrick.L10n.getString('skilltable.youthplayer');
 					}
