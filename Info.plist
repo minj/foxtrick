@@ -138,6 +138,7 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/forum/mark-unread.js</string>
 				<string>content/forum/show-forum-pref-button.js</string>
 				<string>content/forum/staff-marker.js</string>
+				<string>content/information-aggregation/best-player-position.js</string>
 				<string>content/information-aggregation/cross-table.js</string>
 				<string>content/information-aggregation/dashboard-calendar.js</string>
 				<string>content/information-aggregation/election-table.js</string>
@@ -153,6 +154,7 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/information-aggregation/my-monitor.js</string>
 				<string>content/information-aggregation/nt-peek.js</string>
 				<string>content/information-aggregation/player-birthday.js</string>
+				<string>content/information-aggregation/player-positions-evaluations.js</string>
 				<string>content/information-aggregation/player-stats-experience.js</string>
 				<string>content/information-aggregation/psico-tsi.js</string>
 				<string>content/information-aggregation/season-stats.js</string>
