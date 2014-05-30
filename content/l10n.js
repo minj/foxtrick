@@ -347,6 +347,8 @@ Foxtrick.L10n = {
 	},
 
 	getEnglishSpeciality: function(spec) {
+		if (!spec)
+			return null;
 		var engSpec = spec;
 		try {
 			var lang = Foxtrick.Prefs.getString('htLanguage');
@@ -357,6 +359,7 @@ Foxtrick.L10n = {
 		}
 		catch (e) {
 			Foxtrick.log(e);
+			return null;
 		}
 		return engSpec;
 	},
