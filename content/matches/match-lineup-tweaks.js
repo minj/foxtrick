@@ -899,7 +899,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			}
 		}
 		var data = {}, dataText = Foxtrick.Prefs.getString('StaminaData.' + ownId);
-		if (dataText) {
+		if (dataText && !debug) {
 			try {
 				data = JSON.parse(dataText);
 			}
