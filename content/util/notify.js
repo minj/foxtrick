@@ -52,8 +52,8 @@ if (Foxtrick.platform === 'Chrome' && chrome.notifications) {
 // @param source - URL of event if applicable
 Foxtrick.util.notify.create = function(msg, source, cb, opts) {
 	var createGecko = function() {
-		var img = Foxtrick.InternalPath + 'resources/img/hattrick-logo.png';
-		var title = 'Hattrick.org';
+		var img = Foxtrick.InternalPath + 'resources/img/icon-128.png';
+		var title = 'Hattrick';
 		var clickable = true;
 		var listener = {
 			observe: function(subject, topic, data) {
@@ -78,14 +78,14 @@ Foxtrick.util.notify.create = function(msg, source, cb, opts) {
 		try {
 			var alertWin = Cc['@mozilla.org/alerts-service;1'].
 				getService(Ci.nsIAlertsService);
-			alertWin.showAlertNotification(img, title, msg, clickable, url, listener);
+			alertWin.showAlertNotification(img, title, msg, clickable, source, listener);
 		}
 		catch (e) {
 			// fix for when alerts-service is not available (e.g. SUSE)
 			var alertWin = Services.ww.
 				openWindow(null, 'chrome://global/content/alerts/alert.xul',
 				           '_blank', 'chrome,titlebar=no,popup=yes', null);
-			alertWin.arguments = [img, 'www.hattrick.org', msg, clickable, url, 0, listener];
+			alertWin.arguments = [img, 'www.hattrick.org', msg, clickable, source, 0, listener];
 		}
 	};
 
