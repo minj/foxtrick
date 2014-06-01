@@ -181,7 +181,6 @@ pref("extensions.foxtrick.prefs.module.HTDateFormat.enabled", true);
 pref("extensions.foxtrick.prefs.module.HTDateFormat.FirstDayOfWeekOffset.enabled", false);
 pref("extensions.foxtrick.prefs.module.HTDateFormat.FirstDayOfWeekOffset_text", "0");
 pref("extensions.foxtrick.prefs.module.HTDateFormat.LocalSeason.enabled", false);
-pref("extensions.foxtrick.prefs.module.HTEVPrediction.enabled", true);
 pref("extensions.foxtrick.prefs.module.HTMSPoints.enabled", true);
 pref("extensions.foxtrick.prefs.module.HTMSPoints.AddToPlayer.enabled", true);
 pref("extensions.foxtrick.prefs.module.HTMSPoints.AddToSearchResult.enabled", true);
