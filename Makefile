@@ -215,6 +215,13 @@ else ifeq ($(DIST_TYPE),hosting)
 	sed -i -r '/\/\/<!--/d' manifest.json; \
 	$(ZIP) -r ../$(APP_NAME).zip *
 endif
+ifeq ($(WEBSTORE),true)
+	cd $(BUILD_DIR); \
+	sed -i -r 's/"FoxTrick"/"FoxTrick (Beta)"/' manifest.json; \
+	sed -i -r '/update_url/d' manifest.json; \
+	sed -i -r '/\/\/<!--/d' manifest.json; \
+	$(ZIP) -r ../$(APP_NAME).zip *
+endif
 	# clean up
 	make clean-build
 
