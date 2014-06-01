@@ -116,7 +116,7 @@ Foxtrick.Pages.Players = {
 						var id = Number(playerNode.getElementsByTagName('PlayerID')[0].textContent);
 					else
 						var id = Number(playerNode.getElementsByTagName('YouthPlayerID')[0]
-						                .textContent);
+										.textContent);
 					// find player with the same ID from playerList (parsed from
 					// HTML)
 					var player = null, j;
@@ -148,7 +148,7 @@ Foxtrick.Pages.Players = {
 							if (playerNode.getElementsByTagName('InjuryLevel')[0])
 								player.injuredWeeks =
 									Number(playerNode.getElementsByTagName('InjuryLevel')[0]
-									       .textContent);
+										   .textContent);
 							if (player.injuredWeeks == 0) player.bruised = 1;
 							else
 								player.bruised = 0;
@@ -167,49 +167,49 @@ Foxtrick.Pages.Players = {
 							if (playerNode.getElementsByTagName('TransferListed')[0])
 								player.transferListed =
 									Number(playerNode.getElementsByTagName('TransferListed')[0]
-									       .textContent);
+										   .textContent);
 							if (playerNode.getElementsByTagName('PlayerForm')[0])
 								player.form = Number(playerNode.getElementsByTagName('PlayerForm')[0]
-								                     .textContent);
+													 .textContent);
 							if (playerNode.getElementsByTagName('StaminaSkill')[0])
 								player.stamina =
 									Number(playerNode.getElementsByTagName('StaminaSkill')[0]
-									       .textContent);
+										   .textContent);
 
 							if (playerNode.getElementsByTagName('KeeperSkill')[0])
 								player.keeperSkill =
 									Number(playerNode.getElementsByTagName('KeeperSkill')[0]
-									       .textContent);
+										   .textContent);
 
 							if (playerNode.getElementsByTagName('PlaymakerSkill')[0])
 								player.playmakerSkill =
 									Number(playerNode.getElementsByTagName('PlaymakerSkill')[0]
-									       .textContent);
+										   .textContent);
 
 							if (playerNode.getElementsByTagName('ScorerSkill')[0])
 								player.scorerSkill =
 									Number(playerNode.getElementsByTagName('ScorerSkill')[0]
-									       .textContent);
+										   .textContent);
 
 							if (playerNode.getElementsByTagName('PassingSkill')[0])
 								player.passingSkill =
 									Number(playerNode.getElementsByTagName('PassingSkill')[0]
-									       .textContent);
+										   .textContent);
 
 							if (playerNode.getElementsByTagName('WingerSkill')[0])
 								player.wingerSkill =
 									Number(playerNode.getElementsByTagName('WingerSkill')[0]
-									       .textContent);
+										   .textContent);
 
 							if (playerNode.getElementsByTagName('DefenderSkill')[0])
 								player.defenderSkill =
 									Number(playerNode.getElementsByTagName('DefenderSkill')[0]
-									       .textContent);
+										   .textContent);
 
 							if (playerNode.getElementsByTagName('SetPiecesSkill')[0])
 								player.setPiecesSkill =
 									Number(playerNode.getElementsByTagName('SetPiecesSkill')[0]
-									       .textContent);
+										   .textContent);
 
 							if (playerNode.getElementsByTagName('Specialty')[0]) {
 								var specs = { 0: '', 1: 'Technical', 2: 'Quick', 3: 'Powerful',
@@ -256,10 +256,10 @@ Foxtrick.Pages.Players = {
 							if (playerNode.getElementsByTagName('Loyalty').length)
 								player.loyalty =
 									Number(playerNode.getElementsByTagName('Loyalty')[0]
-									       .textContent);
+										   .textContent);
 							if (playerNode.getElementsByTagName('MotherClubBonus').length)
 								if (playerNode.getElementsByTagName('MotherClubBonus')[0]
-								    .textContent == 'True') {
+									.textContent == 'True') {
 									player.motherClubBonus = doc.createElement('span');
 									player.motherClubBonus.textContent = '✔';
 									player.motherClubBonus.title =
@@ -289,8 +289,8 @@ Foxtrick.Pages.Players = {
 								// keep full name in title
 
 						player.nameLink.setAttribute('title', playerNode
-						                             .getElementsByTagName('FirstName')[0]
-						                             .textContent + ' '
+													 .getElementsByTagName('FirstName')[0]
+													 .textContent + ' '
 													+ playerNode.getElementsByTagName('LastName')[0]
 													.textContent);
 					}
@@ -302,7 +302,7 @@ Foxtrick.Pages.Players = {
 					if (playerNode.getElementsByTagName('PlayerCategoryId').length) {
 						var category =
 							Number(playerNode.getElementsByTagName('PlayerCategoryId')[0]
-							       .textContent);
+								   .textContent);
 						if (category > 0) {
 							player.category = category;
 						}
@@ -362,7 +362,7 @@ Foxtrick.Pages.Players = {
 					if (playerNode.getElementsByTagName('Salary').length) {
 						// from krone to € to user-defined
 						player.salary = Math.floor(Number(playerNode.getElementsByTagName('Salary')[0]
-						                           .textContent) / (10 * currencyRate));
+												   .textContent) / (10 * currencyRate));
 					}
 					if (playerNode.getElementsByTagName('IsAbroad').length) {
 						player.isAbroad = parseInt(playerNode.getElementsByTagName('IsAbroad')[0]
@@ -545,29 +545,23 @@ Foxtrick.Pages.Players = {
 
 				// The bit of text that contains age, tsi
 				var basicHtml = basicInformation.firstChild.textContent
-				if(basicInformation.firstChild.nextSibling !== null){
-				    basicHtml = basicHtml + basicInformation.firstChild.nextSibling.textContent;
-				    if(basicInformation.firstChild.nextSibling.nextSibling  !== null)
-				    	basicHtml = basicHtml + basicInformation.firstChild.nextSibling.nextSibling.textContent;
+				if (basicInformation.firstChild.nextSibling !== null) {
+					basicHtml += ' ' + basicInformation.firstChild.nextSibling.textContent;
+					if (basicInformation.firstChild.nextSibling.nextSibling !== null)
+						basicHtml += ' ' + basicInformation.firstChild.nextSibling.nextSibling.textContent;
 				}
 
-				var ageText = basicHtml;
+				var ageText = basicHtml.trim().replace(/\s\s+/g, ' ');
 				// First we dump TSI out of the string, and then
 				// the first match is years and the second is days
-				var tsiMatch = ageText.match(RegExp('\\w+\\s*(=|:)\\s*[\\d\\s]*'));
+				var tsiMatch = ageText.match(/\w+(\s*[=:–])?\s*[\d\s]*,/);
 				if (tsiMatch) {
 					ageText = ageText.replace(tsiMatch[0], '');
 				}
 
-				var ageRe = new RegExp('\\d+\\D+\\d+\\s\\S+');
-				var ageReRussian = new RegExp('\\D+\\d+\\D+\\d+');
+				var ageRe = /\d+\D+\d+\s\S+/;
 				if (ageText.match(ageRe) !== null) {
 					ageText = ageText.match(ageRe)[0].replace(',', '');
-				}
-				else if (ageText.match(ageReRussian) !== null) {
-					// Russian have some problems using that RegExp
-					// try this instead:
-					ageText = ageText.match(ageReRussian)[0].replace(',', '');
 				}
 				player.ageText = ageText;
 
@@ -630,7 +624,7 @@ Foxtrick.Pages.Players = {
 						if (player[basicSkillNames[j]] === undefined
 							&& links[basicSkillNames[j]] !== undefined) {
 							player[basicSkillNames[j]] = parseInt(links[basicSkillNames[j]].href
-							                                      .match(/ll=(\d+)/)[1], 10);
+																  .match(/ll=(\d+)/)[1], 10);
 						}
 					}
 				}
@@ -815,7 +809,7 @@ Foxtrick.Pages.Players = {
 				}
 
 				if (Foxtrick.Pages.Players.isSeniorPlayersPage(doc) &&
-				    !Foxtrick.Pages.Players.isOldiesPage(doc)) {
+					!Foxtrick.Pages.Players.isOldiesPage(doc)) {
 					player.transferCompare = doc.createElement('a');
 					player.transferCompare.textContent =
 						Foxtrick.L10n.getString('TransferCompare.abbr');
@@ -862,7 +856,7 @@ Foxtrick.Pages.Players = {
 							var j;
 							for (j in Foxtrick.XMLData.League) {
 								if (leagueText.indexOf(Foxtrick.XMLData.League[j].LeagueName)
-								    !== -1) {
+									!== -1) {
 									player.currentLeagueId = j;
 									break;
 								}
