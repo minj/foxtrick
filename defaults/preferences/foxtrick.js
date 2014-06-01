@@ -83,7 +83,6 @@ pref("extensions.foxtrick.prefs.module.ExtraShortcuts.AddLeft.enabled", true);
 pref("extensions.foxtrick.prefs.module.ExtraShortcuts.AddSpace.enabled", true);
 pref("extensions.foxtrick.prefs.module.ExtraShortcuts.enabled", true);
 pref("extensions.foxtrick.prefs.module.ExtraShortcuts.FoxTrickPrefs.enabled", true);
-pref("extensions.foxtrick.prefs.module.ExtraShortcuts.HtRadio.enabled", false);
 pref("extensions.foxtrick.prefs.module.ExtraShortcuts.Latehome.enabled", false);
 pref("extensions.foxtrick.prefs.module.ExtraShortcuts.No9.enabled", false);
 pref("extensions.foxtrick.prefs.module.ExtraShortcuts.Prefs.enabled", false);
