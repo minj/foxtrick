@@ -38,7 +38,7 @@ Foxtrick.modules['Redirections'] = {
 			}
 			else if (doc.location.href.search(/redir_to_lastlineup=true/i) != -1)
 				tar = serv + '/Club/Matches/MatchLineup.aspx?MatchID=&TeamID=' + teamid +
-					'&useArchive=True';
+					'&useArchive=True&redir_to_newlineup=true';
 			else if (doc.location.href.search(/redir_to_nextmatch=true/i) != -1)
 				tar = serv + '/Club/Matches/?TeamID=' + teamid + '&redir_to_nextmatch=true';
 			else if (doc.location.href.search(/redir_to_addnextmatch=true/i) != -1)
@@ -156,6 +156,10 @@ Foxtrick.modules['Redirections'] = {
 							tar = serv + '/Club/Matches/Live.aspx?actionType=addMatch&matchID=' +
 								matchId + '&SourceSystem=' + sourceSystem;
 				}
+			}
+			else if (doc.location.href.search(/redir_to_newlineup=true/i) != -1) {
+				var match = doc.querySelector('a[href^="/Club/Matches/Match.aspx?"]');
+				tar = match.href + '&teamId=' + teamid + '#tab2';
 			}
 		}
 

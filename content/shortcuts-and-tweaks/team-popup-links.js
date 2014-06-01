@@ -72,7 +72,8 @@ Foxtrick.modules['TeamPopupLinks'] = {
 			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_flags=true'
 		},
 		'LastLineup': {
-			linkByTeam: '/Club/Matches/MatchLineup.aspx?TeamID=[teamid]&useArchive=True',
+			linkByTeam: '/Club/Matches/MatchLineup.aspx?TeamID=[teamid]' +
+				'&useArchive=True&redir_to_newlineup=true',
 			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_lastlineup=true'
 		},
 		'NextMatch': {
