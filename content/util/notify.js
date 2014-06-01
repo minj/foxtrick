@@ -18,9 +18,10 @@ if (Foxtrick.platform === 'Chrome' && chrome.notifications) {
 				chrome.windows.update(id, { focused: true });
 			} catch (e) {}
 		};
-		var openTabFromNote = function(noteId, tabOpts) {
+		var openTabFromNote = function(noteId, tabOptsFn) {
 			var note = Foxtrick.util.notify._notes[noteId];
 			if (note) {
+				var tabOpts = tabOptsFn(note);
 				// focus sender tab
 				chrome.tabs.update(note.tab, tabOpts, function() {
 					if (chrome.runtime.lastError) {
@@ -38,10 +39,10 @@ if (Foxtrick.platform === 'Chrome' && chrome.notifications) {
 			chrome.notifications.clear(noteId, function(done) {});
 		};
 		chrome.notifications.onClicked.addListener(function(noteId) {
-			openTabFromNote(noteId, { selected: true });
+			openTabFromNote(noteId, function(note) { return { selected: true }; });
 		});
 		chrome.notifications.onButtonClicked.addListener(function(noteId, bId) {
-			openTabFromNote(noteId, { selected: true, url: note.url });
+			openTabFromNote(noteId, function(note) { return { selected: true, url: note.url }; });
 		});
 	})();
 }
