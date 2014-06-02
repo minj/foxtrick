@@ -1,6 +1,6 @@
 body
 {
-	max-height: 540px; 
+	max-height: 540px;
 	font-size: 1em;
 	margin: 0px;
 	padding: 8px;
@@ -75,7 +75,7 @@ input[disabled], button[disabled], select[disabled], textarea[disabled]
 button.active
 {
 	/*background-color: #eef;*/
-	background-color: : #fff;
+	background-color: #fff;
 	border: 3px solid #a8a8a8;
 }
 
@@ -220,7 +220,7 @@ ul.nav li
 }
 
 ul.nav li:last-child {
-	border-radius: 0 0 4px 4px;	
+	border-radius: 0 0 4px 4px;
 }
 
 ul.nav li.hide
@@ -230,7 +230,7 @@ ul.nav li.hide
 
 ul.nav li.active
 {
-	
+
 }
 
 ul.nav li a
@@ -256,7 +256,7 @@ ul.nav li a:hover
 }
 
 div {
-	
+
 }
 
 div#pane
@@ -353,16 +353,16 @@ html[dir="rtl"] #note
 	right: auto;
 	left: 20px;
 }
-.alert > p 
+.alert > p
 {
-	padding: 4px;	
+	padding: 4px;
 }
 .alert
 {
 	background: linear-gradient(top, #ffbc7a 0%, #f8ab60 44%, #ee9640 100%);
-	background: linear-gradient(to bottom, #ffbc7a 0%,#f8ab60 44%,#ee9640 100%);	
+	background: linear-gradient(to bottom, #ffbc7a 0%,#f8ab60 44%,#ee9640 100%);
 	border-radius: 4px;
-/*	
+/*
 	border: solid 1px orange;
 	background-color: #FCF6DF;
 	margin: 10px;
@@ -414,9 +414,9 @@ h1 {
 	margin: 0;
 	padding: 10px;
 }
-#header {	
+#header {
 	background: linear-gradient(top, #7abcff 0%, #60abf8 44%, #4096ee 100%);
-	background: linear-gradient(to bottom, #7abcff 0%,#60abf8 44%,#4096ee 100%);	
+	background: linear-gradient(to bottom, #7abcff 0%,#60abf8 44%,#4096ee 100%);
 	border-radius: 4px;
 }
 
