@@ -124,6 +124,13 @@
 		"title": "hattriX-Ray arenasizer",
 		"img": "resources/linkicons/xray_arenasizer.png"
 	},
+	"HT-Tools_training_estimation": {
+		"playerlink": {
+			"url": "http://www.ht-tools.eu/training?years=[years]&days=[age_days]&skilllevel=&subskill=&coachlevel=[Coach]&assistants=&intensity=[TI]&stamina=[STA]&skill="
+		},
+		"title": "Training Estimation",
+		"img": "http://www.ht-tools.eu/static/img/favicon.png"
+	},
 	"HTPE": {
 		"transfercomparelink": {
 			"url": "http://www.databased.at/hattrick/htpe/?pid=[playerid]&tid=[teamid]&tsi=[tsi]&age=[age]&form=[form]&exp=[exp]&st=[stamina]&gk=[goalkeeping]&pm=[playmaking]&pa=[passing]&wi=[winger]&de=[defending]&sc=[scoring]&sp=[setpieces]"
