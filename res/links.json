@@ -25,7 +25,7 @@
 	},
 	"ht_tools_sponsors_revenue": {
 		"economylink": {
-			"url": "http://www.ht-tools.eu/sponsorsrevenue?teamid=[teamid]"
+			"url": "http://www.ht-tools.eu/sponsorsrevenue"
 		},
 		"title": "HT-Tools Sponsors Revenue",
 		"img": "http://www.ht-tools.eu/static/img/favicon.png"
