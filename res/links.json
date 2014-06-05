@@ -1,4 +1,42 @@
 {
+	"ht_tools_training_estimation": {
+		"playerlink": {
+			"url": "http://www.ht-tools.eu/training"
+		},
+		"traininglink": {
+			"url": "http://www.ht-tools.eu/training"
+		},
+		"title": "HT-Tools Training Estimation",
+		"img": "http://www.ht-tools.eu/static/img/favicon.png"
+	},
+	"ht_tools_subskill": {
+		"playerlink": {
+			"url": "http://www.ht-tools.eu/subskill?playerid=[playerid]&teamid=[teamid]"
+		},
+		"title": "HT-Tools Subskill",
+		"img": "http://www.ht-tools.eu/static/img/favicon.png"
+	},
+	"ht_tools_arena_optimizer": {
+		"arenalink": {
+			"url": "http://www.ht-tools.eu/arena?teamid=[teamid]"
+		},
+		"title": "HT-Tools Arena",
+		"img": "http://www.ht-tools.eu/static/img/favicon.png"
+	},
+	"ht_tools_sponsors_revenue": {
+		"economylink": {
+			"url": "http://www.ht-tools.eu/arena?teamid=[teamid]"
+		},
+		"title": "HT-Tools Sponsors Revenue",
+		"img": "http://www.ht-tools.eu/static/img/favicon.png"
+	},
+	"ht_tools_healing": {
+		"playerhealinglink": {
+			"url": "http://www.ht-tools.eu/healing?playerid=[playerid]&teamid=[teamid]"
+		},
+		"title": "HT-Tools healing",
+		"img": "http://www.ht-tools.eu/static/img/favicon.png"
+	},
 	"xray_crossover": {
 		"playerlink": {
 			"url": "http://www.databased.at/hattrick/x-ray/?starter=crossover&pid=[playerid]"
