@@ -900,6 +900,20 @@
 		"countryidranges": [[64, 64]],
 		"nationalityranges": [[64, 64]]
 	},
+	"romaniantracker": {
+		"img": "http://www.ht-ro.org/favicon.ico",
+		"title": "HT-Ro / NT & U-20 Tracker",
+		"trackernationalteamlink": {
+			"url": "http://www.ht-ro.org",
+			"filters": ["countryid"]
+		},
+		"trackerplayerlink": {
+			"url": "http://www.ht-ro.org",
+			"filters": ["nationality"]
+		},
+		"countryidranges": [[66, 66]],
+		"nationalityranges": [[66, 66]]
+	},
 	"ht-ys": {
 		"youthleaguelink": {
 			"url": "http://www.ht-ys.org/?league_id=[youthleagueid]"
