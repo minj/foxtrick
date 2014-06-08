@@ -911,8 +911,8 @@
 			"url": "http://www.ht-ro.org",
 			"filters": ["nationality"]
 		},
-		"countryidranges": [[66, 66]],
-		"nationalityranges": [[66, 66]]
+		"countryidranges": [[37, 37]],
+		"nationalityranges": [[37, 37]]
 	},
 	"ht-ys": {
 		"youthleaguelink": {
