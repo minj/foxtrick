@@ -120,15 +120,15 @@ Foxtrick.loader.chrome.clickListener = function(e) {
 
 Foxtrick.loader.chrome.initGrowl = function() {
 	try {
-    if(document.getElementsByTagName('body').length) {
-        var object = document.createElement('object');
-        object.setAttribute('type', 'application/x-growl-safari-bridge');
-        object.width = '0';
-        object.height = '0';
-        object.id = 'growl-safari-bridge';
-        document.getElementsByTagName('body')[0].appendChild(object);
-        window.GrowlSafariBridge = object;
-    }
+		if (document.getElementsByTagName('body').length) {
+			var object = document.createElement('object');
+			object.setAttribute('type', 'application/x-growl-safari-bridge');
+			object.width = '0';
+			object.height = '0';
+			object.id = 'growl-safari-bridge';
+			document.getElementsByTagName('body')[0].appendChild(object);
+			window.GrowlSafariBridge = object;
+		}
 	} catch (e) { Foxtrick.log(e); }
 };
 
