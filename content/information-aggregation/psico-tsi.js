@@ -83,7 +83,7 @@ Foxtrick.modules['PsicoTSI'] = {
 
 		var p = Foxtrick.Pages.Player.getSkills(doc);
 
-		if (typeof (p.playmaking) == 'undefined') {
+		if (!p) {
 			this.drawMessage(doc, doc.getElementById('ctl00_ctl00_CPContent_CPMain_updBestLatest'));
 			return;
 		}
