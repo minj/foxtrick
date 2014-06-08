@@ -72,6 +72,7 @@ Foxtrick.modules['LinksPlayerDetail'] = {
 			var injuredweeks = Foxtrick.Pages.Player.getInjuryWeeks(doc);
 			if (injuredweeks > 0) {
 				var ilinks = Foxtrick.modules['Links'].getLinks('playerhealinglink', {
+          'teamid': teamid,
 					'playerid': playerid,
 					'form': form,
 					'age': years,
