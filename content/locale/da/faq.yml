@@ -6,15 +6,24 @@ da:
       answer: "<p>FoxTrick tilbyder et sæt præsentation værktøjer for at man kan tilpasse sine egne design. Disse værktøjer leveres via HTML-ID'er og kategorier, og du kan bruge CSS til at definere din foretrukne designs.</p>  <p>Eksempler på bruger design kan findes <linkCSSExample>her</linkCSSExample> eller <linkCSSExampleGCode>her</linkCSSExampleGCode>, som du kan redigere efter eget ønske. Når du har gemt filen, kan du bruge modulet <module>SkinPlugin</module>, til indlæsning af CSS fil, for at bruger designet er i brug.</p>"
     sound-format:
       question: 'Hvilke filformater er tilladt for lydmeddelelse? '
-      answer: '<p>Forskellige browsere tillader forskellige filformater. Her er en liste (formater der ikke er på listen kan fungere, hvis de relevante plugins er installeret, eg Quicktime til at afspille mp3 i Firefox):</p> <ul><li>Mozilla: wav, ogg</li> <li>Safari (muligvis med Quicktime): wav, mp3</li> <li>Chrome: ogg, mp3, wav</li> <li>Opera: wav, ogg</li></ul>'
+      answer:
+        "<p>Different browsers allow different file formats. Here's a list (non-listed formats may work if the appropriate plugins are installed, eg Quicktime to play mp3 in Firefox):</p>
+
+<ul>
+<li>Mozilla":
+          wav, ogg</li>
+<li>Safari (may need Quicktime):
+            wav, mp3</li>
+<li>Chrome:
+              ogg, mp3, wav</li><li>Opera: ""
     sound-location:
       question: Hvad er grænsen for størrelsen af ​​lydmeddelelse og hvor kan de findes?
-      answer: |
-        <p>Alle browsere kan afspille data urls. Det er de internt gemte lyde, når du bruger load knappen via indstillingerne. Da de er konverteret og gemt i dine indstillinger, er størrelsen begrænset til omkring 160KB per lyd.</p>
-        
-        <p>Alle browsere kan også afspille lyde direkte fra internettet (http urls). Bare kopiere et link til en lyd (f.eks http://foxtrick.org/sound.wav) i redigeringsfeltet for lyde. Ingen størrelse grænse.</p>
-        
-        <p>Mozilla-browsere også kan afspille lyde direkte fra din harddisk (fil urls) uden størrelse grænse. Nemmeste måde at få det rigtige format: I browser skriv Ctrl + o, browse til den lydfil, og vælg den. I adresselinjen på toppen er nu det rigtige link til den lokale fil (e file:///c:/sound.wav). Kopiér og indsæt dette i redigeringsfeltet for lydene. </p>
+      answer:
+        "<p>All browsers can play data urls. Those are the internally saved sounds when you use the load button provided in the preferences. Since they are converted and saved in your preferences, the size is limited to around 160kB per sound.</p>
+
+<p>All browsers also can play sounds directly from the internet (http urls). Just copy a link to a sound (eg http://foxtrick.org/sound.wav) into the edit field for sounds. No size limit.</p>
+
+<p>Mozilla browsers also can play sounds directly from your harddrive (file urls) with no size limit. Easiest way to get the right format": ""
     authorize:
       question: Hvorfor bør jeg tillade FoxTrick at få adgang til mit hold data?
       answer: |
