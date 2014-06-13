@@ -42,9 +42,10 @@ Foxtrick.SB.tabs.create(url)
 
 // Foxtrick.InternalPath: called from extension - path to extension folder
 // Foxtrick.ResourcePath: called from html page - external page
+// Foxtrick.DataPath: path to res/
 
 (function() {
-Foxtrick.DataPath = 'https://foxtrick.googlecode.com/svn/trunk/res/';
+
 // used to cache dataUrl images
 Foxtrick.dataUrlStorage = {};
 
@@ -52,6 +53,7 @@ if (typeof(safari) == 'object') {
 	Foxtrick.arch = 'Sandboxed';
 	Foxtrick.platform = 'Safari';
 	Foxtrick.InternalPath = Foxtrick.ResourcePath = safari.extension.baseURI + 'content/';
+	Foxtrick.DataPath = safari.extension.baseURI + 'res/';
 
 	// to tell which context the chrome script is running at
 	// either background page, or content script
@@ -219,6 +221,7 @@ else if (typeof(chrome) == 'object') {
 	Foxtrick.arch = 'Sandboxed';
 	Foxtrick.platform = 'Chrome';
 	Foxtrick.InternalPath = Foxtrick.ResourcePath = chrome.extension.getURL('content/');
+	Foxtrick.DataPath = chrome.extension.getURL('res/');
 
 	// to tell which context the chrome script is running at
 	// either background page, or content script
@@ -327,6 +330,7 @@ else if (typeof(chrome) == 'object') {
 else {
 	Foxtrick.arch = 'Gecko';
 	Foxtrick.InternalPath = Foxtrick.ResourcePath = 'chrome://foxtrick/content/';
+	Foxtrick.DataPath = 'chrome://foxtrick_resources/content/';
 
 	var Cc = Components.classes, Ci = Components.interfaces, Cu = Components.utils;
 	Cu.import('resource://gre/modules/Services.jsm');
@@ -582,3 +586,10 @@ Foxtrick.moduleCategories = {
 if (Foxtrick.arch === 'Gecko') {
 	var Cc = Components.classes, Ci = Components.interfaces, Cu = Components.utils;
 }
+
+// this is external URL for builds
+// uncommented in MakeFile
+/* <BUILD>
+if (Foxtrick.platform !== 'Android')
+	Foxtrick.DataPath = 'https://foxtrick.googlecode.com/svn/trunk/res/';
+</BUILD> */

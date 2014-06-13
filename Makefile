@@ -134,6 +134,9 @@ firefox:
 	cp -r skin $(BUILD_DIR)/chrome
 	# remove ignore modules from files
 	perl module-update.pl $(MODULES) $(IGNORED_MODULES) $(BUILD_DIR)/chrome/
+	# modify DataPath
+	cd $(BUILD_DIR); \
+	sed -i -r '/\/\* <BUILD>|<\/BUILD> \*\//d' chrome/content/env.js
 	#removes zips from res
 	rm -rf $(BUILD_DIR)/chrome/*/*.zip
 	rm -rf $(BUILD_DIR)/chrome/*/*/*.zip
@@ -191,6 +194,9 @@ chrome:
 		../$(BUILD_DIR)/content
 	# remove ignore modules from files
 	perl module-update.pl $(MODULES) $(IGNORED_MODULES) $(BUILD_DIR)/
+	# modify DataPath
+	cd $(BUILD_DIR); \
+	sed -i -r '/\/\* <BUILD>|<\/BUILD> \*\//d' content/env.js
 	# set branch
 	cd $(BUILD_DIR); \
 	sed -i -r "/extensions\\.foxtrick\\.prefs\\.branch/s|\"svn\"|\"$(BRANCH) chrome\"|" defaults/preferences/foxtrick.js
@@ -240,6 +246,9 @@ safari:
 		../$(SAFARI_BUILD_DIR)/content
 	# remove ignore modules from files
 	perl module-update.pl $(MODULES) $(IGNORED_MODULES) $(SAFARI_BUILD_DIR)/
+	# modify DataPath
+	cd $(BUILD_DIR); \
+	sed -i -r '/\/\* <BUILD>|<\/BUILD> \*\//d' content/env.js
 	# set branch
 	cd $(SAFARI_BUILD_DIR); \
 	sed -i -r "/extensions\\.foxtrick\\.prefs\\.branch/s|\"svn\"|\"$(BRANCH) safari\"|" defaults/preferences/foxtrick.js
