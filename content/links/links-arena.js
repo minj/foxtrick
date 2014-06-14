@@ -26,12 +26,14 @@ Foxtrick.modules['LinksArena'] = {
 			if (alldivs[j].className == 'arenaInfo') {
 				var thisdiv = alldivs[j];
 				var arenaTable = thisdiv.getElementsByTagName('table')[0];
+				var teamid = Foxtrick.Pages.All.getTeamId(doc);
 
 				var links = Foxtrick.modules['Links'].getLinks('arenalink', {
 					'terraces': Foxtrick.trimnum(arenaTable.rows[3].cells[1].textContent),
 					'basic': Foxtrick.trimnum(arenaTable.rows[4].cells[1].textContent),
 					'roof': Foxtrick.trimnum(arenaTable.rows[5].cells[1].textContent),
 					'vip': Foxtrick.trimnum(arenaTable.rows[6].cells[1].textContent),
+					'teamid': teamid
 				}, doc, this);
 				if (links.length > 0) {
 					ownBoxBody = Foxtrick.createFeaturedElement(doc, this, 'div');

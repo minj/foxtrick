@@ -40,11 +40,13 @@ Foxtrick.modules['LinksEconomy'] = {
 
 		// symbol maybe undefined here, #care
 		var currencySymbol = Foxtrick.util.currency.getSymbol(doc);
+		var teamid = Foxtrick.Pages.All.getTeamId(doc);
 		var links = Foxtrick.modules['Links'].getLinks('economylink', {
 			'Cash': Cash,
 			'newCash': newCash,
 			'Currency': currencySymbol,
-			'owncountryid': owncountryid
+			'owncountryid': owncountryid,
+			'teamid': teamid
 		}, doc, this);
 		var ownBoxBody = null;
 		if (links.length > 0) {
