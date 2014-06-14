@@ -103,7 +103,8 @@ Foxtrick.modules['Core'] = {
 			this.SELF_TEAM_INFO = {
 				teamId: Foxtrick.util.id.findTeamId(teamLinks),
 				leagueId: Foxtrick.util.id.findLeagueId(teamLinks),
-				teamName: Foxtrick.util.id.extractTeamName(teamLinks)
+				teamName: Foxtrick.util.id.extractTeamName(teamLinks),
+				seriesId: Foxtrick.util.id.findLeagueLeveUnitId(teamLinks),
 			};
 			Foxtrick.localGet('shortTeamName.' + this.SELF_TEAM_INFO.teamId,
 			  function(name) {
