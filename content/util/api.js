@@ -172,11 +172,12 @@ Foxtrick.util.api = {
 
 
 	// used to change expire date of xml_cache eg for to my_monitors nextmachtdate
-	setCacheLifetime: function(doc, parameters_str, cache_lifetime) {
+	setCacheLifetime: function(parameters_str, cache_lifetime) {
 		Foxtrick.sessionGet('xml_cache.' + parameters_str,
 		  function(xml_cache) {
-			Foxtrick.sessionSet('xml_cache.' + parameters_str,
-							{ xml_string: xml_cache.xml_string, cache_lifetime: cache_lifetime });
+			var xml_string = xml_cache ? xml_cache.xml_string : '';
+			var obj = { xml_string: xml_string, cache_lifetime: cache_lifetime };
+			Foxtrick.sessionSet('xml_cache.' + parameters_str, obj);
 		});
 	},
 

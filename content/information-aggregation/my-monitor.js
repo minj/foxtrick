@@ -280,10 +280,9 @@ Foxtrick.modules['MyMonitor'] = {
 						.fillMatches(matchesContainer, xml, errorText);
 					// change expire date of xml to after next match game
 					if (nextmatchdate) {
-						var expire = Foxtrick.util.time
-							.getDateFromText(nextmatchdate, 'yyyymmdd');
-						Foxtrick.util.api.setCacheLifetime(doc, parameters_str,
-						                                   expire.getTime() + 105 * 60 * 1000);
+						var expire = Foxtrick.util.time.getDateFromText(nextmatchdate, 'yyyymmdd');
+						var time = expire.getTime() + 105 * 60 * 1000;
+						Foxtrick.util.api.setCacheLifetime(parameters_str, time);
 					}
 				});
 
