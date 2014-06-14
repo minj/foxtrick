@@ -10,12 +10,18 @@ Foxtrick.modules['SeriesTransfers'] = {
 	PAGES: ['series'],
 
 	run: function(doc) {
+
+		var AUTO_REFRESH_IN = 2 * 24 * 60 * 60 * 1000; // two days
+		var resultId = 'ft-series-transfers-result';
+		var timeId = 'ft-series-transfers-time';
+		var now = Foxtrick.util.time.getHtTimeStamp(doc);
+
 		var leagueTable = doc.getElementById('mainBody').getElementsByTagName('table')[0];
 
 		// checks whether a team is ownerless
 		var isNotOwnerless = function(link) {
 			return !Foxtrick.hasClass(link, 'shy') &&
-				Foxtrick.getParameterFromUrl(link.getAttribute('href'), 'teamid');
+				Foxtrick.util.id.getTeamIdFromUrl(link.href);
 		};
 
 		// get bots/ownerless
@@ -23,24 +29,42 @@ Foxtrick.modules['SeriesTransfers'] = {
 		var teamLinks = Foxtrick.filter(isNotOwnerless, teams);
 
 		// get teamdIds
-		var teamIds = [];
-		for (var i in teamLinks) {
-			var teamId = Foxtrick.getParameterFromUrl(teamLinks[i].getAttribute('href'), 'teamid');
-			teamIds.push(teamId);
-		}
+		var teamIds = Foxtrick.map(function(link) {
+			return Foxtrick.util.id.getTeamIdFromUrl(link.href);
+		}, teamLinks);
 
 		// build batchArgs
-		var batchArgs = [];
-		Foxtrick.map(function(n) {
-			var args = { 'teamid': n, 'file': 'players' };
-			batchArgs.push(args);
+		var batchArgs = Foxtrick.map(function(n) {
+			return [['teamId', n], ['file', 'players'], ['version', '2.2']];
 		}, teamIds);
+
+		var invalidateCache = function() {
+			Foxtrick.forEach(function(args) {
+				var file = JSON.stringify(args);
+				Foxtrick.util.api.setCacheLifetime(file, now);
+			}, batchArgs);
+		};
+
+		var reFetch = function(ev) {
+			invalidateCache();
+			var win = ev.target.ownerDocument.defaultView;
+			win.setTimeout(function() {
+				var doc = this.document;
+				Foxtrick.forEach(function(id) {
+					var node = doc.getElementById(id);
+					if (node)
+						node.parentNode.removeChild(node);
+				}, [resultId, timeId]);
+				now = Foxtrick.util.time.getHtTimeStamp(doc);
+				showPlayers();
+			}, 300);
+		};
 
 		// create html
 		var div = Foxtrick.createFeaturedElement(doc, this, 'div');
 		var mainBody = doc.getElementById('mainBody');
-		var before =
-			doc.getElementById('ctl00_ctl00_CPContent_CPMain_ucForumSneakpeek_updSneakpeek');
+		var beforeId = 'ctl00_ctl00_CPContent_CPMain_ucForumSneakpeek_updSneakpeek';
+		var before = doc.getElementById(beforeId);
 		mainBody.insertBefore(div, before);
 
 		var mainBox = doc.createElement('div');
@@ -48,8 +72,16 @@ Foxtrick.modules['SeriesTransfers'] = {
 
 		var h2 = doc.createElement('h2');
 		h2.textContent = Foxtrick.L10n.getString('SeriesTransfers.header');
-
 		mainBox.appendChild(h2);
+
+		var fetchDiv = doc.createElement('div');
+		var fetchLink = doc.createElement('a');
+		Foxtrick.addClass(fetchLink, 'ft-link');
+		fetchLink.textContent = Foxtrick.L10n.getString('SeriesTransfers.fetch');
+		Foxtrick.onClick(fetchLink, reFetch);
+		fetchDiv.appendChild(fetchLink);
+		mainBox.appendChild(fetchDiv);
+
 		div.appendChild(mainBox);
 
 		var createRowElement = function(type, textContent) {
@@ -58,47 +90,50 @@ Foxtrick.modules['SeriesTransfers'] = {
 			return elem;
 		};
 
-		var table = doc.createElement('table');
-		Foxtrick.addClass(table, 'hidden');
-		table.setAttribute('id', 'ft-players-for-sale');
+		var loading, table, tbody;
+		var buildTable = function() {
+			table = doc.createElement('table');
+			Foxtrick.addClass(table, 'hidden');
+			table.id = resultId;
 
-		// thead
-		var columns = [
-			{ text: 'Nationality.abbr', title: 'Nationality' },
-			{ text: 'Player', title: 'Player' },
-			{ text: 'Team', title: 'Team' },
-			{ text: 'Speciality.abbr', title: 'Speciality' },
-			{ text: 'Age.abbr', title: 'Age' },
-			{ text: 'Experience.abbr', title: 'Experience' },
-			{ text: 'Form.abbr', title: 'Form' },
-			{ text: 'TSI.abbr', title: 'TSI' },
-			{ text: 'Salary.abbr', title: 'Salary' },
-			{ text: 'Injured.abbr', title: 'Injured' },
-		];
+			// thead
+			var columns = [
+				{ text: 'Nationality.abbr', title: 'Nationality' },
+				{ text: 'Player', title: 'Player' },
+				{ text: 'Team', title: 'Team' },
+				{ text: 'Speciality.abbr', title: 'Speciality' },
+				{ text: 'Age.abbr', title: 'Age' },
+				{ text: 'Experience.abbr', title: 'Experience' },
+				{ text: 'Form.abbr', title: 'Form' },
+				{ text: 'TSI.abbr', title: 'TSI' },
+				{ text: 'Salary.abbr', title: 'Salary' },
+				{ text: 'Injured.abbr', title: 'Injured' },
+			];
 
-		var thead = doc.createElement('thead');
-		var thead_tr = doc.createElement('tr');
-		for (var i = 0; i < columns.length; i++) {
-			var localized_text = Foxtrick.L10n.getString(columns[i].text);
-			var localized_alt_n_title = Foxtrick.L10n.getString(columns[i].title);
-			var th = createRowElement('th', localized_text);
-			th.setAttribute('title', localized_alt_n_title);
-			th.setAttribute('alt', localized_alt_n_title);
-			thead_tr.appendChild(th);
-		}
-		thead.appendChild(thead_tr);
+			var thead = doc.createElement('thead');
+			var thead_tr = doc.createElement('tr');
+			for (var i = 0; i < columns.length; i++) {
+				var localized_text = Foxtrick.L10n.getString(columns[i].text);
+				var localized_alt_n_title = Foxtrick.L10n.getString(columns[i].title);
+				var th = createRowElement('th', localized_text);
+				th.setAttribute('title', localized_alt_n_title);
+				th.setAttribute('alt', localized_alt_n_title);
+				thead_tr.appendChild(th);
+			}
+			thead.appendChild(thead_tr);
 
-		// tbody
-		var tbody = doc.createElement('tbody');
-		table.appendChild(thead);
-		table.appendChild(tbody);
-		mainBox.appendChild(table);
+			// tbody
+			tbody = doc.createElement('tbody');
+			table.appendChild(thead);
+			table.appendChild(tbody);
+			mainBox.insertBefore(table, fetchDiv);
 
-		// loading note
-		if (Foxtrick.Prefs.getBool('xmlLoad')) {
-			var loading = Foxtrick.util.note.createLoading(doc);
-			mainBox.appendChild(loading);
-		}
+			// loading note
+			if (Foxtrick.Prefs.getBool('xmlLoad')) {
+				loading = Foxtrick.util.note.createLoading(doc);
+				mainBox.appendChild(loading);
+			}
+		};
 
 		var processXMLs = function(xmls, errors, currencyRate) {
 			var getNumFromXML = function(field) {
@@ -130,7 +165,6 @@ Foxtrick.modules['SeriesTransfers'] = {
 			};
 			var specialityFunc = function(cell, spec) {
 				if (spec) {
-					var icon_suffix = '';
 					var specialtyName = Foxtrick.L10n.getSpecialityFromNumber(spec);
 					var specialtyUrl = Foxtrick.getSpecialtyImagePathFromNumber(spec);
 					Foxtrick.addImage(doc, cell, {
@@ -142,6 +176,7 @@ Foxtrick.modules['SeriesTransfers'] = {
 				cell.setAttribute('index', spec);
 			};
 			var hasListedPlayers = false;
+			var oldestFile = Infinity;
 			for (var i = 0; i < xmls.length; ++i) {
 				var xml = xmls[i];
 				var errorText = errors[i];
@@ -149,6 +184,9 @@ Foxtrick.modules['SeriesTransfers'] = {
 					Foxtrick.log('No XML in batchRetrieve', batchArgs[i], errorText);
 					continue;
 				}
+				var fetchDate = Date(xml.getElementsByTagName('FetchedDate')[0].textContent);
+				oldestFile = Math.min(new Date(fetchDate).valueOf(), oldestFile);
+
 				var tid = Number(xml.getElementsByTagName('TeamID')[0].textContent);
 				var teamName = xml.getElementsByTagName('TeamName')[0].textContent;
 				var players = xml.getElementsByTagName('Player');
@@ -160,7 +198,9 @@ Foxtrick.modules['SeriesTransfers'] = {
 					if (isTransferListed) {
 						hasListedPlayers = true;
 
-						var playerName = player.getElementsByTagName('PlayerName')[0].textContent;
+						var firstName = player.getElementsByTagName('FirstName')[0].textContent;
+						var lastName = player.getElementsByTagName('LastName')[0].textContent;
+						var playerName = firstName + ' ' + lastName;
 						var playerTsi = getNumFromXML('TSI');
 						var specialty = getNumFromXML('Specialty');
 						var experience = getNumFromXML('Experience');
@@ -168,11 +208,11 @@ Foxtrick.modules['SeriesTransfers'] = {
 						var ageDays = getNumFromXML('AgeDays');
 						var form = getNumFromXML('PlayerForm');
 						var salary = Math.floor(getNumFromXML('Salary') / (10 * currencyRate));
-						var agreeability = getNumFromXML('Agreeability');
-						var aggressivness = getNumFromXML('Aggressiveness');
-						var honesty = getNumFromXML('Honesty');
-						var leadership = getNumFromXML('Leadership');
-						var cards = getNumFromXML('Cards');
+						// var agreeability = getNumFromXML('Agreeability');
+						// var aggressivness = getNumFromXML('Aggressiveness');
+						// var honesty = getNumFromXML('Honesty');
+						// var leadership = getNumFromXML('Leadership');
+						// var cards = getNumFromXML('Cards');
 						var countryID = getNumFromXML('CountryID');
 						var injuryLevel = getNumFromXML('InjuryLevel');
 
@@ -229,21 +269,45 @@ Foxtrick.modules['SeriesTransfers'] = {
 			loading.parentNode.removeChild(loading);
 			if (!hasListedPlayers) {
 				table.parentNode.removeChild(table);
-				var span = doc.createElement('span');
-				span.textContent = Foxtrick.L10n.getString('SeriesTransfers.notransfers');
-				mainBox.appendChild(span);
+				var div = doc.createElement('div');
+				div.id = resultId;
+				div.textContent = Foxtrick.L10n.getString('SeriesTransfers.notransfers');
+				mainBox.insertBefore(div, fetchDiv);
 			}
+			Foxtrick.localSet('series_transfers.' + seriesId, oldestFile);
+			var infoDiv = doc.createElement('div');
+			var info = Foxtrick.L10n.getString('SeriesTransfers.lastFetch');
+			var dateText = Foxtrick.util.time.buildDate(new Date(oldestFile), true);
+			infoDiv.textContent = info.replace(/%s/, dateText);
+			infoDiv.id = timeId;
+			fetchDiv.insertBefore(infoDiv, fetchLink);
 		};
 
-		// retrieve currency rate
-		Foxtrick.util.currency.establish(doc, function() {
-			var currencyRate = Foxtrick.util.currency.getRate(doc);
-			// batch retrieve
-			Foxtrick.util.api.batchRetrieve(doc, batchArgs, { cache_lifetime: 'session' },
-			  function(xmls, errors) {
-				if (xmls)
-					processXMLs(xmls, errors, currencyRate);
+		var showPlayers = function() {
+			buildTable();
+			// retrieve currency rate
+			Foxtrick.util.currency.establish(doc, function() {
+				var currencyRate = Foxtrick.util.currency.getRate(doc);
+				// batch retrieve
+				var time = now + AUTO_REFRESH_IN;
+				Foxtrick.util.api.batchRetrieve(doc, batchArgs, { cache_lifetime: time },
+				  function(xmls, errors) {
+					if (xmls)
+						processXMLs(xmls, errors, currencyRate);
+				});
 			});
+		};
+
+		var sidebar = doc.getElementById('sidebar');
+		var seriesId = Foxtrick.util.id.findLeagueLeveUnitId(sidebar);
+		var ownSeriesId = Foxtrick.modules.Core.getSelfTeamInfo().seriesId;
+		Foxtrick.localGet('series_transfers.' + seriesId, function(time) {
+			if (time || seriesId === ownSeriesId) {
+				// we follow this series
+				if (time + AUTO_REFRESH_IN < now)
+					invalidateCache();
+				showPlayers();
+			}
 		});
 
 	}
