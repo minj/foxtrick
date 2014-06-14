@@ -247,7 +247,7 @@ safari:
 	# remove ignore modules from files
 	perl module-update.pl $(MODULES) $(IGNORED_MODULES) $(SAFARI_BUILD_DIR)/
 	# modify DataPath
-	cd $(BUILD_DIR); \
+	cd $(SAFARI_BUILD_DIR); \
 	sed -i -r '/\/\* <BUILD>|<\/BUILD> \*\//d' content/env.js
 	# set branch
 	cd $(SAFARI_BUILD_DIR); \
