@@ -27,6 +27,9 @@ Foxtrick.modules['SeriesTransfers'] = {
 		// get bots/ownerless
 		var teams = leagueTable.getElementsByTagName('a');
 		var teamLinks = Foxtrick.filter(isNotOwnerless, teams);
+		if (!teamLinks.length)
+			// only bots
+			return;
 
 		// get teamdIds
 		var teamIds = Foxtrick.map(function(link) {
@@ -184,7 +187,8 @@ Foxtrick.modules['SeriesTransfers'] = {
 					Foxtrick.log('No XML in batchRetrieve', batchArgs[i], errorText);
 					continue;
 				}
-				var fetchDate = Date(xml.getElementsByTagName('FetchedDate')[0].textContent);
+				var fetchedTime = xml.getElementsByTagName('FetchedDate')[0].textContent;
+				var fetchDate = Foxtrick.util.time.getDateFromText(fetchedTime, 'yyyy-mm-dd');
 				oldestFile = Math.min(new Date(fetchDate).valueOf(), oldestFile);
 
 				var tid = Number(xml.getElementsByTagName('TeamID')[0].textContent);
