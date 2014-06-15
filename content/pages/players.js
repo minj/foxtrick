@@ -49,26 +49,20 @@ Foxtrick.Pages.Players = {
 
 		var getXml = function(doc, callback) {
 			var args = [];
+
+			var teamId = Foxtrick.util.id.getOwnTeamId();
+			if (options && options.teamid)
+				teamId = options.teamid;
+			else if (doc.location.href.match(/teamid=(\d)/i))
+				teamId = Foxtrick.util.id.getTeamIdFromUrl(doc.location.href);
+
 			var isYouth = (options && options.isYouth) ||
 				Foxtrick.Pages.Players.isYouthPlayersPage(doc) ||
 				Foxtrick.Pages.Players.isYouthMatchOrderPage(doc);
-			if (options && options.teamid) {
-				if (!isYouth)
-					args.push(['teamId', options.teamid]);
-				else
-					args.push(['youthTeamId', options.teamid]);
-			}
-			else if (doc.location.href.match(/teamid=(\d)/i)) {
-				var id = Foxtrick.util.id.getTeamIdFromUrl(doc.location.href);
-				if (!isYouth) {
-					args.push(['teamId', id]);
-				}
-				else {
-					args.push(['youthTeamId', id]);
-				}
-			}
+
 			if (isYouth) {
 				args.push(['file', 'youthplayerlist']);
+				args.push(['youthTeamId', teamId]);
 				args.push(['actionType', 'details']);
 			}
 			else if (Foxtrick.Pages.Players.isNtPlayersPage(doc) || (options && options.NT)) {
@@ -78,12 +72,14 @@ Foxtrick.Pages.Players = {
 				if (options && options.NT && typeof(options.NT.all) != 'undefined')
 					all = options.NT.all;
 				args.push(['file', 'nationalplayers']);
-				args.push(['ShowAll', all]);
+				args.push(['teamId', teamId]);
 				args.push(['actionType', action]);
+				args.push(['showAll', all]);
 			}
 			else {
 				args.push(['file', 'players']);
 				args.push(['version', '2.2']);
+				args.push(['teamId', teamId]);
 
 				if (!options || !options.current_squad) {
 					if (Foxtrick.Pages.Players.isOldiesPage(doc))
@@ -92,7 +88,7 @@ Foxtrick.Pages.Players = {
 						args.push(['actionType', 'viewOldCoaches']);
 				}
 			}
-			if (options && options.includeMatchInfo == true) {
+			if (options && options.includeMatchInfo) {
 				args.push(['includeMatchInfo', 'true']); // senior
 				args.push(['showLastMatch', 'true']); // youth
 			}
