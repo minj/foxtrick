@@ -209,6 +209,11 @@ Foxtrick.util.api = {
 	// session: take xml from this session. xml doesn't expire
 	// default: currently 1 hour, see below
 	// timestamp: time in milliseconds since 1970 when a new xml will get retrieved
+	// parameter order and spelling consistency helps caching
+	// preferred order: file, version?, id, actiontype?, others... (check existing usage)
+	// preferred spelling: param names in camelBack, values in lowercase;
+	//                     integers over strings;
+	//                     strings over booleans.
 	retrieve: function(doc, parameters, options, callback) {
 		if (!Foxtrick.Prefs.getBool('xmlLoad')) {
 			Foxtrick.log('XML loading disabled');
