@@ -37,7 +37,7 @@ Foxtrick.modules['ShowFriendlyBooked'] = {
 
 				var parameters = [
 					['file', 'teamdetails'],
-					['teamID', teamId]
+					['teamId', teamId]
 				];
 				Foxtrick.util.api.retrieve(doc, parameters, { cache_lifetime: 'default' },
 				  function(xml, errorText) {

@@ -278,7 +278,7 @@ Foxtrick.modules['PlayerFilters'] = {
 
 			var batchArgs = [];
 			Foxtrick.map(function(n) {
-				var args = { 'teamid': n.currentClubId, 'file': 'teamdetails' };
+				var args = [['file', 'teamdetails'], ['teamId', n.currentClubId]];
 				batchArgs.push(args);
 			}, playerList);
 

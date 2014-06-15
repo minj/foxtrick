@@ -239,7 +239,7 @@ Foxtrick.modules['StaffMarker'] = {
 			}
 		}
 		// custom URLs
-		if (enable['supporter']	&& Foxtrick.util.layout.isSupporter(doc)) {
+		if (enable['supporter'] && Foxtrick.util.layout.isSupporter(doc)) {
 			uris.push('supporter');
 			uris.push('supported');
 		}
@@ -287,8 +287,8 @@ Foxtrick.modules['StaffMarker'] = {
 							batchArgs.push([
 								['file', 'supporters'],
 								['version', '1.0'],
-								['actionType', 'mysupporters'],
 								['teamId', parseInt(id, 10)], // use int for consistency (cache)
+								['actionType', 'mysupporters'],
 								['pageSize', TEAMS_PER_PAGE],
 								['pageIndex', p],
 							]);
@@ -300,8 +300,8 @@ Foxtrick.modules['StaffMarker'] = {
 						batchArgs.push([
 							['file', 'supporters'],
 							['version', '1.0'],
-							['actionType', 'supportedteams'],
 							['teamId', teamId],
+							['actionType', 'supportedteams'],
 							['pageSize', TEAMS_PER_PAGE],
 							['pageIndex', p],
 						]);
@@ -656,7 +656,7 @@ Foxtrick.modules['StaffMarker'] = {
 			markerOptions.appendChild(btnReset);
 			cfFooter.appendChild(markerOptions);
 
-			var markerLink = Foxtrick.createFeaturedElement(doc, module, 'a')
+			var markerLink = Foxtrick.createFeaturedElement(doc, module, 'a');
 			markerLink.id = 'foxtrick-marker-link-' + i;
 			markerLink.className = 'foxtrick-marker-link ft-link';
 			markerLink.textContent = markerLink.title = markUser;

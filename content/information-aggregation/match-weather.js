@@ -18,13 +18,12 @@ Foxtrick.modules['MatchWeather'] = {
 		if (!imgW)
 			return; // no arena id, match played or ongoing, no need to have tomorrow weather
 
-		var reg = /ArenaID=(\d+)/i;
-		var arenaID = imgW.href.match(reg);
+		var arenaId = Foxtrick.getParameterFromUrl(imgW.href, 'arenaId');
 
 		var parameters = [
 			['file', 'arenadetails'],
 			['version', '1.5'],
-			['arenaID', arenaID[1]]
+			['arenaId', parseInt(arenaId, 10)],
 		];
 		Foxtrick.util.api.retrieve(doc, parameters, { cache_lifetime: 'session' },
 		  function(xml, errorText) {
@@ -36,9 +35,10 @@ Foxtrick.modules['MatchWeather'] = {
 			var regionID = xml.getElementsByTagName('RegionID')[0].textContent;
 			Foxtrick.sessionGet('weather.region.' + regionID,
 			  function(data) {
-				if(!data) {
+				if (!data) {
 					me.fetchRegion(doc, regionID);
-				} else {
+				}
+				else {
 					me.showWeather(doc, data);
 				}
 			});
@@ -109,7 +109,7 @@ Foxtrick.modules['MatchWeather'] = {
 		var parameters = [
 			['file', 'regiondetails'],
 			['version', '1.2'],
-			['regionID', regionID]
+			['regionId', parseInt(regionID, 10)]
 		];
 		Foxtrick.util.api.retrieve(doc, parameters, { cache_lifetime: 'session' },
 		  function(xml, errorText) {

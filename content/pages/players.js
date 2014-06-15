@@ -56,13 +56,16 @@ Foxtrick.Pages.Players = {
 				if (!isYouth)
 					args.push(['teamId', options.teamid]);
 				else
-					args.push(['youthTeamID', options.teamid]);
+					args.push(['youthTeamId', options.teamid]);
 			}
 			else if (doc.location.href.match(/teamid=(\d)/i)) {
-				if (!isYouth)
-					args.push(['teamId', doc.location.href.match(/teamid=(\d+)/i)[1]]);
-				else
-					args.push(['youthTeamID', doc.location.href.match(/teamid=(\d+)/i)[1]]);
+				var id = Foxtrick.util.id.getTeamIdFromUrl(doc.location.href);
+				if (!isYouth) {
+					args.push(['teamId', id]);
+				}
+				else {
+					args.push(['youthTeamId', id]);
+				}
 			}
 			if (isYouth) {
 				args.push(['file', 'youthplayerlist']);
@@ -90,11 +93,11 @@ Foxtrick.Pages.Players = {
 				}
 			}
 			if (options && options.includeMatchInfo == true) {
-				args.push(['includeMatchInfo', 'true']);  // senior
-				args.push(['showLastMatch', 'true']);	 // youth
+				args.push(['includeMatchInfo', 'true']); // senior
+				args.push(['showLastMatch', 'true']); // youth
 			}
 			Foxtrick.util.currency.establish(doc, function() {
-				Foxtrick.util.api.retrieve(doc, args, { cache_lifetime: 'session'}, callback);
+				Foxtrick.util.api.retrieve(doc, args, { cache_lifetime: 'session' }, callback);
 			});
 		};
 

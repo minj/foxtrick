@@ -65,7 +65,7 @@ Foxtrick.modules['NtPeek'] = {
 
 		var ntArgs = [
 			['file', 'matches'],
-			['teamID', ntId]
+			['teamId', parseInt(ntId, 10)]
 		];
 		var parameters_nt_str = JSON.stringify(ntArgs);
 		Foxtrick.util.api.retrieve(doc, ntArgs, { cache_lifetime: 'default' },
@@ -82,7 +82,7 @@ Foxtrick.modules['NtPeek'] = {
 
 		var u20Args = [
 			['file', 'matches'],
-			['teamID', u20Id]
+			['teamId', parseInt(u20Id, 10)]
 		];
 		var parameters_u20_str = JSON.stringify(u20Args);
 		Foxtrick.util.api.retrieve(doc, u20Args, { cache_lifetime: 'default' },

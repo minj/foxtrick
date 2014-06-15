@@ -19,7 +19,7 @@ Foxtrick.modules['SeriesFlags'] = {
 			Foxtrick.localGet('seriesFlags',
 			  function(mapping) {
 				if (mapping == undefined)
-					mapping = { 'userID': {}, 'teamID': {} };
+					mapping = { 'userId': {}, 'teamId': {} };
 
 				// data is an Object with attributes leagueId, seriesName,
 				// and seriesId
@@ -88,7 +88,7 @@ Foxtrick.modules['SeriesFlags'] = {
 						Foxtrick.localGet('seriesFlags',
 						  function(mapping) {
 							if (mapping == undefined)
-								mapping = { 'userID': {}, 'teamID': {} };
+								mapping = { 'userId': {}, 'teamId': {} };
 							mapping[arg[0]][arg[1]] = data;
 							Foxtrick.localSet('seriesFlags', mapping);
 							var flag = buildFromData(data);
@@ -101,7 +101,7 @@ Foxtrick.modules['SeriesFlags'] = {
 		};
 		var modifyUserLinks = function(links) {
 			Foxtrick.map(function(n) {
-				buildFlag(['userID', Foxtrick.util.id.getUserIdFromUrl(n.href)],
+				buildFlag(['userId', Foxtrick.util.id.getUserIdFromUrl(n.href)],
 				  function(flag) {
 					if (Foxtrick.hasClass(n, 'series-flag') ||
 					    Foxtrick.hasClass(n.parentNode.parentNode, 'ft-popup-list'))
@@ -114,7 +114,7 @@ Foxtrick.modules['SeriesFlags'] = {
 		};
 		var modifyTeamLinks = function(links) {
 			Foxtrick.map(function(n) {
-				buildFlag(['teamID', Foxtrick.util.id.getTeamIdFromUrl(n.href)],
+				buildFlag(['teamId', Foxtrick.util.id.getTeamIdFromUrl(n.href)],
 				  function(flag) {
 					if (Foxtrick.hasClass(n, 'series-flag') ||
 					    Foxtrick.hasClass(n.parentNode.parentNode, 'ft-popup-list'))

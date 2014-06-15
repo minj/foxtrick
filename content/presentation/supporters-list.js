@@ -62,7 +62,7 @@ Foxtrick.modules['SupportersList'] = {
 						'height': '22px',
 						'title': title,
 						'alt': title
-					}, node.firstChild, function(img){
+					}, node.firstChild, function(img) {
 						Foxtrick.makeFeaturedElement(img, Foxtrick.modules.SupportersList);
 					});
 				}
@@ -73,8 +73,8 @@ Foxtrick.modules['SupportersList'] = {
 		Foxtrick.util.api.retrieve(doc, [
 			['file', 'supporters'],
 			['version', '1.0'],
-			['actionType', action],
 			['teamId', teamId],
+			['actionType', action],
 			['pageSize', TEAMS_PER_PAGE],
 			['pageIndex', 0],
 		  ],
@@ -100,8 +100,8 @@ Foxtrick.modules['SupportersList'] = {
 					batchArgs.push([
 						['file', 'supporters'],
 						['version', '1.0'],
-						['actionType', action],
 						['teamId', teamId],
+						['actionType', action],
 						['pageSize', TEAMS_PER_PAGE],
 						['pageIndex', p],
 					]);

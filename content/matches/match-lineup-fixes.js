@@ -141,8 +141,8 @@ Foxtrick.modules['MatchLineupFixes'] = {
 		var detailsArgs = [
 			['file', 'matchdetails'],
 			['matchEvents', 'true'],
-			['matchID', matchId],
-			['SourceSystem', SourceSystem],
+			['matchId', matchId],
+			['sourceSystem', SourceSystem],
 			['version', '2.3'],
 			['lang', locale]
 		];
@@ -413,17 +413,17 @@ Foxtrick.modules['MatchLineupFixes'] = {
 
 			var homeArgs = [
 				['file', 'matchlineup'],
-				['matchID', matchId],
-				['teamID', homeId],
-				['SourceSystem', SourceSystem],
-				['version', '1.8']
+				['version', '1.8'],
+				['teamId', homeId],
+				['matchId', matchId],
+				['sourceSystem', SourceSystem],
 			];
 			var awayArgs = [
 				['file', 'matchlineup'],
-				['matchID', matchId],
-				['teamID', awayId],
-				['SourceSystem', SourceSystem],
-				['version', '1.8']
+				['version', '1.8'],
+				['teamId', awayId],
+				['matchId', matchId],
+				['sourceSystem', SourceSystem],
 			];
 
 			Foxtrick.util.api.retrieve(doc, homeArgs, { cache_lifetime: 'session' },

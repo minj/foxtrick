@@ -512,8 +512,8 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		var addFacesByTeamId = function(teamid, players) {
 			var avartarArgs = [
 				['file', (isYouth ? 'youth' : '') + 'avatars'],
+				['version', '1.1'],
 				[(isYouth ? 'youthT' : 't') + 'eamId', teamid],
-				['version', '1.1']
 			];
 			// youthavatars only works for own team
 			if (isYouth && teamid != ownteamid)
@@ -884,8 +884,8 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		// var detailsArgs = [
 		// 	['file', 'matchdetails'],
 		// 	['matchEvents', 'true'],
-		// 	['matchID', matchId],
-		// 	['SourceSystem', SourceSystem],
+		// 	['matchId', matchId],
+		// 	['sourceSystem', SourceSystem],
 		// 	['version', '2.3'],
 		// 	['lang', locale]
 		// ];

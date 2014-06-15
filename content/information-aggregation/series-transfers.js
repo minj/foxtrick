@@ -35,7 +35,7 @@ Foxtrick.modules['SeriesTransfers'] = {
 
 		// build batchArgs
 		var batchArgs = Foxtrick.map(function(n) {
-			return [['teamId', n], ['file', 'players'], ['version', '2.2']];
+			return [['file', 'players'], ['version', '2.2'], ['teamId', n]];
 		}, teamIds);
 
 		var invalidateCache = function() {

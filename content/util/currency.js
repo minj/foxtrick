@@ -25,8 +25,8 @@ Foxtrick.util.currency = {
 				return;
 			}
 
-			var teamargs = [['file', 'teamdetails'], ['version', '2.9'], ['TeamId', ownTeamId]];
-			Foxtrick.util.api.retrieve(doc, teamargs, { cache_lifetime: 'session'},
+			var teamargs = [['file', 'teamdetails'], ['version', '2.9'], ['teamId', ownTeamId]];
+			Foxtrick.util.api.retrieve(doc, teamargs, { cache_lifetime: 'session' },
 			  function(teamXml, errorText) {
 				if (!teamXml || errorText) {
 					Foxtrick.log('[ERROR] Currency detection failed:', errorText);

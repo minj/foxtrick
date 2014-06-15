@@ -696,8 +696,8 @@ Foxtrick.modules.MatchSimulator = {
 				var orderMatchArgs = [
 					['file', 'matchdetails'],
 					['version', '2.3'],
-					['matchID', matchid],
-					['SourceSystem', SourceSystem]
+					['matchId', matchid],
+					['sourceSystem', SourceSystem]
 				];
 
 				Foxtrick.util.api.retrieve(doc, orderMatchArgs, { cache_lifetime: 'session' },
@@ -738,10 +738,10 @@ Foxtrick.modules.MatchSimulator = {
 					// now get other teams matches
 					var otherMatchesArgs = [
 						['file', 'matchesarchive'],
-						['teamID', otherTeamID]
+						['teamId', otherTeamID]
 					];
 					if (isHTOIntegrated)
-						otherMatchesArgs.push(['SourceSystem', 'HTOIntegrated']);
+						otherMatchesArgs.push(['sourceSystem', 'HTOIntegrated']);
 
 					Foxtrick.util.api.retrieve(doc, otherMatchesArgs, { cache_lifetime: 'session' },
 					  function(otherMatchesXml, errorText) {
@@ -780,8 +780,8 @@ Foxtrick.modules.MatchSimulator = {
 							var selectedMatchArgs = [
 								['file', 'matchdetails'],
 								['version', '2.3'],
-								['matchID', selectedMatchid],
-								['SourceSystem', SourceSystem]
+								['matchId', selectedMatchid],
+								['sourceSystem', SourceSystem]
 							];
 							Foxtrick.util.api.retrieve(doc, selectedMatchArgs,
 							                           { cache_lifetime: 'session' },

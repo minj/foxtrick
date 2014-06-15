@@ -311,7 +311,7 @@ Foxtrick.modules['CrossTable'] = {
 			doc.getElementById('ctl00_ctl00_CPContent_CPMain_ucSeasonsDropdown_ddlSeasons').value;
 		var args = [
 			['file', 'leaguefixtures'],
-			['leagueLevelUnitID', leagueId],
+			['leagueLevelUnitId', leagueId],
 			['season', season]
 		];
 

@@ -22,9 +22,11 @@ Foxtrick.modules['SupporterStatsEnhancements'] = {
 		if (teamid == 0)
 			return;
 
-		var args = [];
-		args.push(['teamId', teamid]);
-		args.push(['file', 'players']);
+		var args = [
+			['file', 'players'],
+			['version', '2.2'],
+			['teamId', teamid],
+		];
 
 		Foxtrick.util.api.retrieve(doc, args, { cache_lifetime: 'session' },
 		  function(xml, errorText) {

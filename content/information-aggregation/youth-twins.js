@@ -13,32 +13,26 @@ Foxtrick.modules['YouthTwins'] = {
 	OPTIONS: ['HideInfoLink'],
 	CSS: Foxtrick.InternalPath + 'resources/css/youth-twins.css',
 	run: function(doc) {
-		var ignoreHours = 24;
-
 		if (!Foxtrick.isPage(doc, 'ownYouthPlayers'))
 			return;
 
 		var getYouthPlayerList = function(teamId, callback) {
-			var args = [];
-			args.push(['file', 'youthplayerlist']);
-			args.push(['youthTeamID', teamId]);
-			args.push(['actionType', 'details']);
-			args.push(['showScoutCall', true]);
-			args.push(['version', '1.0']);
+			var args = [
+				['file', 'youthplayerlist'],
+				['version', '1.0'],
+				['youthTeamId', teamId],
+				['actionType', 'details'],
+				['showScoutCall', 'true'],
+			];
 			Foxtrick.util.api.retrieve(doc, args, { cache_lifetime: 'session' }, callback);
 		};
 		var getYouthAvatars = function(teamId, callback) {
-			var args = [];
-			args.push(['file', 'youthavatars']);
-			args.push(['version', '1.1']);
-			args.push(['youthTeamID', teamId]);
-			Foxtrick.util.api.retrieve(doc, args, { cache_lifetime: 'session'}, callback);
-		};
-
-		var getUtcFromTimestamp = function(ts) {
-			var date = new Date();
-			date.setTime(ts);
-			return date.toUTCString();
+			var args = [
+				['file', 'youthavatars'],
+				['version', '1.1'],
+				['youthTeamId', teamId],
+			];
+			Foxtrick.util.api.retrieve(doc, args, { cache_lifetime: 'session' }, callback);
 		};
 
 		//icons resources for representation

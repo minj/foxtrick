@@ -1016,7 +1016,7 @@ Foxtrick.modules['SkillTable'] = {
 
 			// first get teams activation date. we'll need it later
 			var TeamId = Foxtrick.Pages.All.getTeamId(doc);
-			var args = [['TeamId', TeamId], ['file', 'teamdetails'], ['version', '2.9']];
+			var args = [['file', 'teamdetails'], ['version', '2.9'], ['teamId', TeamId]];
 			Foxtrick.util.api.retrieve(doc, args, { cache_lifetime: 'session' },
 			  function(xml, errorText) {
 				if (xml && !errorText) {
@@ -1033,7 +1033,7 @@ Foxtrick.modules['SkillTable'] = {
 						var argsTransfersPlayer = [];
 						Foxtrick.map(function(player) {
 							argsTransfersPlayer.push([
-								['playerid', player.id], ['file', 'transfersPlayer']
+								['file', 'transfersplayer'], ['playerId', player.id]
 							]);
 						}, list);
 						Foxtrick.util.api.batchRetrieve(doc, argsTransfersPlayer,
@@ -1051,7 +1051,7 @@ Foxtrick.modules['SkillTable'] = {
 										var pid = xmls[i].getElementsByTagName('PlayerID')[0]
 											.textContent;
 										argsPlayerevents.push([
-											['playerid', pid], ['file', 'playerevents']
+											['file', 'playerevents'], ['playerId', pid]
 										]);
 									}
 								}
@@ -1111,7 +1111,7 @@ Foxtrick.modules['SkillTable'] = {
 					var argsTransfersPlayer = [];
 					Foxtrick.map(function(player) {
 						argsTransfersPlayer.push([
-							['playerid', player.id], ['file', 'transfersPlayer']
+							['file', 'transfersplayer'], ['playerId', player.id]
 						]);
 					}, current_squad_list);
 					Foxtrick.util.api.batchRetrieve(doc, argsTransfersPlayer,

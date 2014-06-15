@@ -59,8 +59,8 @@ Foxtrick.Pages.Player = {
 	},
 
 	getId: function(doc) {
-		var url = String(doc.location);
-		return url.match(RegExp('PlayerID=(\\d+)', 'i'))[1];
+		var id = Foxtrick.getParameterFromUrl(doc.location.href, 'playerId');
+		return parseInt(id, 10) || null;
 	},
 
 	getNationalityId: function(doc) {
@@ -387,11 +387,12 @@ Foxtrick.Pages.Player = {
 	},
 
 	getPlayer: function(doc, playerid, callback) {
-		var args = [];
-		args.push(['file', 'playerdetails']);
-		args.push(['playerID', playerid]);
-		args.push(['version', '2.1']);
-		Foxtrick.util.api.retrieve(doc, args, { cache_lifetime: 'session'},
+		var args = [
+			['file', 'playerdetails'],
+			['version', '2.1'],
+			['playerId', playerid],
+		];
+		Foxtrick.util.api.retrieve(doc, args, { cache_lifetime: 'session' },
 		  function(xml, errorText) {
 			if (!xml || errorText) {
 				Foxtrick.log(errorText);

@@ -25,7 +25,7 @@ Foxtrick.modules['FriendlyPool'] = {
 		var parameters = [
 			['file', 'teamdetails'],
 			['version', '2.6'],
-			['teamID', ownteamid],
+			['teamId', ownteamid],
 			['includeFlags', 'true']
 		];
 		Foxtrick.util.api.retrieve(doc, parameters, { cache_lifetime: 'default' },
