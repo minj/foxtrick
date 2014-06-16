@@ -19,6 +19,7 @@ Foxtrick.util.currency = {
 		var rate, symbol;
 		if (!code || !this.isValidCode(code)) {
 			if (!Foxtrick.util.layout.hasMultipleTeams(doc)) {
+				code = this.findCode();
 				Foxtrick.Prefs.setString('Currency.Code.' + ownTeamId, code);
 				rate = this.getRateByCode(code);
 				symbol = this.getSymbolByCode(code);
