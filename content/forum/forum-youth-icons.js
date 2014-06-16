@@ -444,11 +444,15 @@ Foxtrick.modules['ForumYouthIcons'] = {
 							var MAX_LENGTH = 3500;
 							if (str.length > MAX_LENGTH)
 								str = str.substr(str.length - MAX_LENGTH);
+							return str;
 						};
 						if (Foxtrick.arch === 'Sandboxed' || Foxtrick.platform == 'Android') {
 							Foxtrick.SB.ext.sendRequest({ req: 'getDebugLog' },
 							  function(n) {
-								insertText(Foxtrick.log.header(doc) + '\n' + ensureLength(n.log));
+							  	var header = Foxtrick.log.header(doc);
+							  	var log = ensureLength(n.log);
+							  	var text = header + '\n' + log;
+								insertText(text);
 								textCounter(ta, fieldCounter, maxLength);
 							});
 							return;
