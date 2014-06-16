@@ -26,20 +26,20 @@ Foxtrick.modules['TopPlayersOwner'] = {
 				Foxtrick.log(errorText);
 				return;
 			}
-                        
+
 			var all = xml.getElementsByTagName('PlayerID');
 			for (var i = 0; i < all.length; i++)
 				ids.push(all[i].textContent);
-                       
+
 			var allPlayers = doc.getElementsByClassName('mainBox')[0].getElementsByTagName('a');
-			for (var i = 0; i<allPlayers.length; ++i) {
-				var player = Foxtrick.getParameterFromUrl(allPlayers[i].href, 'playerId')
+			for (var i = 0; i < allPlayers.length; ++i) {
+				var player = Foxtrick.getParameterFromUrl(allPlayers[i].href, 'playerId');
 				if (player && ids.indexOf(player) >= 0) {
-					var row = allPlayers[i].parentNode.parentNode
+					var row = allPlayers[i].parentNode.parentNode;
 					Foxtrick.addClass(row, 'ft-top-players-owner');
-					Foxtrick.makeFeaturedElement(row, Foxtrick.modules.TopPlayersOwner)
-				}			
+					Foxtrick.makeFeaturedElement(row, Foxtrick.modules.TopPlayersOwner);
+				}
 			}
 		});
 	}
-}
+};
