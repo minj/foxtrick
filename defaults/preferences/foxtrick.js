@@ -93,6 +93,7 @@ pref("extensions.foxtrick.prefs.module.Fans.enabled", true);
 pref("extensions.foxtrick.prefs.module.Fans.AddLiveLink.enabled", true);
 pref("extensions.foxtrick.prefs.module.Fans.ShowSumFans.enabled", true);
 pref("extensions.foxtrick.prefs.module.Filter.enabled", true);
+pref("extensions.foxtrick.prefs.module.TopPlayersOwner.enabled", true);
 pref("extensions.foxtrick.prefs.module.FixcssProblems.CalendarAutoMinHeight.enabled", true);
 pref("extensions.foxtrick.prefs.module.FixcssProblems.RemoveForumSneakPeak.enabled", false);
 pref("extensions.foxtrick.prefs.module.FixcssProblems.Club_Menu_Teamnames.enabled", false);
