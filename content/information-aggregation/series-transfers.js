@@ -290,8 +290,7 @@ Foxtrick.modules['SeriesTransfers'] = {
 		var showPlayers = function() {
 			buildTable();
 			// retrieve currency rate
-			Foxtrick.util.currency.establish(doc, function() {
-				var currencyRate = Foxtrick.util.currency.getRate(doc);
+			Foxtrick.util.currency.establish(doc, function(currencyRate) {
 				// batch retrieve
 				var time = now + AUTO_REFRESH_IN;
 				Foxtrick.util.api.batchRetrieve(doc, batchArgs, { cache_lifetime: time },

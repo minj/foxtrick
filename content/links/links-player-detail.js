@@ -26,7 +26,7 @@ Foxtrick.modules['LinksPlayerDetail'] = {
 
 	_run: function(doc) {
 		var module = this;
-		Foxtrick.util.currency.establish(doc, function() {
+		Foxtrick.util.currency.establish(doc, function(rate) {
 			//addExternalLinksToPlayerDetail
 			var playerInfo = doc.getElementsByClassName('playerInfo')[0];
 			if (!playerInfo)
@@ -66,8 +66,8 @@ Foxtrick.modules['LinksPlayerDetail'] = {
 			var ls = basicSkills.leadership;
 
 			var wageObj = Foxtrick.Pages.Player.getWage(doc);
-			var wage = Math.round(wageObj.base * Foxtrick.util.currency.getRate(doc));
-			var wagebonus = Math.round(wageObj.bonus * Foxtrick.util.currency.getRate(doc));
+			var wage = Math.round(wageObj.base * rate);
+			var wagebonus = Math.round(wageObj.bonus * rate);
 
 			var injuredweeks = Foxtrick.Pages.Player.getInjuryWeeks(doc);
 			if (injuredweeks > 0) {

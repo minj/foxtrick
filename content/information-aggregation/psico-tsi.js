@@ -100,7 +100,7 @@ Foxtrick.modules['PsicoTSI'] = {
 		var age = p.age.years;
 		var injured = Foxtrick.Pages.Player.getInjuryWeeks(doc) && true;
 
-		var pr = this.getPrediction(p, Foxtrick.util.currency.getRate(doc));
+		var pr = this.getPrediction(p, Foxtrick.util.currency.getRate());
 		if (!pr)
 			return;
 
@@ -117,7 +117,7 @@ Foxtrick.modules['PsicoTSI'] = {
 	 */
 	runPlayers: function(doc) {
 		var module = this;
-		var currRate = Foxtrick.util.currency.getRate(doc);
+		var currRate = Foxtrick.util.currency.getRate();
 
 		Foxtrick.Pages.Players.getPlayerList(doc, function(playerList) {
 			if (!playerList)
@@ -325,7 +325,7 @@ Foxtrick.modules['PsicoTSI'] = {
 			td.colSpan = 2;
 			Foxtrick.addClass(td, 'center endColumn1');
 			td.textContent = Foxtrick.L10n.getString('PsicoTSI.WAGE_PREDICTION') + ' (' +
-				Foxtrick.util.currency.getSymbol(doc) + ')';
+				Foxtrick.util.currency.getSymbol() + ')';
 			tr.appendChild(td);
 			tbody.appendChild(tr);
 
@@ -423,7 +423,7 @@ Foxtrick.modules['PsicoTSI'] = {
 			if (typeof (maxSkill) != 'undefined') {
 				// skills available
 				var STR_FORM = Foxtrick.L10n.getString('PsicoTSI.FORM');
-				var CurrencyName = Foxtrick.util.currency.getSymbol(doc);
+				var CurrencyName = Foxtrick.util.currency.getSymbol();
 
 				var head = doc.createElement('p');
 				sidebar.appendChild(head);

@@ -11,7 +11,7 @@ Foxtrick.modules['MatchIncome'] = {
 	OPTIONS: ['UtilizationPercentages'],
 	run: function(doc) {
 		var module = this;
-		Foxtrick.util.currency.establish(doc, function() {
+		Foxtrick.util.currency.establish(doc, function(rate, symbol) {
 			var table = Foxtrick.filter(function(n) {
 				if (n.rows.length != 4)
 					return false;
@@ -77,7 +77,7 @@ Foxtrick.modules['MatchIncome'] = {
 			sum *= priceQ;
 
 			// convert to local currency
-			sum /= Foxtrick.util.currency.getRate(doc);
+			sum /= rate;
 			// get rid of possible fraction
 			sum = Math.floor(sum);
 
@@ -90,8 +90,7 @@ Foxtrick.modules['MatchIncome'] = {
 			td2a.className = 'ch';
 			td2a.textContent = Foxtrick.L10n.getString('matches.income');
 			td2b.className = 'nowrap';
-			td2b.textContent = Foxtrick.formatNumber(sum, ' ') + ' ' +
-				Foxtrick.util.currency.getSymbol(doc);
+			td2b.textContent = Foxtrick.formatNumber(sum, ' ') + ' ' + symbol;
 
 			//display utilization percentage for games that happened after last arena change
 			if(Foxtrick.Prefs.isModuleOptionEnabled('MatchIncome', 'UtilizationPercentages')){

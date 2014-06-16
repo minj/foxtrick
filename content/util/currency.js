@@ -15,13 +15,14 @@ Foxtrick.util.currency = {
 	 */
 	establish: function(doc, callback) {
 		var ownTeamId = Foxtrick.util.id.getOwnTeamId();
-		var rate = this.getRate(doc);
-		var symbol = this.getSymbol(doc);
-		if (!rate || !symbol || !this.isValidSymbol(symbol)) {
+		var code = this.getCode();
+		var rate, symbol;
+		if (!code || !this.isValidCode(code)) {
 			if (!Foxtrick.util.layout.hasMultipleTeams(doc)) {
-				Foxtrick.Prefs.setString('Currency.Rate.' + ownTeamId, this.findRate().toString());
-				Foxtrick.Prefs.setString('Currency.Symbol.' + ownTeamId, this.findSymbol());
-				callback();
+				Foxtrick.Prefs.setString('Currency.Code.' + ownTeamId, code);
+				rate = this.getRateByCode(code);
+				symbol = this.getSymbolByCode(code);
+				callback(rate, symbol);
 				return;
 			}
 
@@ -39,16 +40,20 @@ Foxtrick.util.currency = {
 					if (teams[primaryTeamIdx].textContent == 'True')
 						break;
 				}
-				var leagueId = teamXml.getElementsByTagName('LeagueID')[primaryTeamIdx].textContent;
-				Foxtrick.Prefs.setString('Currency.Rate.' + ownTeamId,
-										Foxtrick.util.currency.findRate(leagueId).toString());
-				Foxtrick.Prefs.setString('Currency.Symbol.' + ownTeamId,
-										Foxtrick.util.currency.findSymbol(leagueId));
-				callback();
+				var leagues = teamXml.getElementsByTagName('LeagueID');
+				var leagueId = leagues[primaryTeamIdx].textContent;
+				rate = Foxtrick.util.currency.findRate(leagueId);
+				symbol = Foxtrick.util.currency.findSymbol(leagueId);
+				code = Foxtrick.util.currency.codeFromCurrency({ rate: rate, symbol: symbol });
+				Foxtrick.Prefs.setString('Currency.Code.' + ownTeamId, code);
+				callback(rate, symbol);
 			});
 		}
-		else
-			callback();
+		else {
+			rate = this.getRateByCode(code);
+			symbol = this.getSymbolByCode(code);
+			callback(rate, symbol);
+		}
 	},
 	getSymbolByCode: function(lookup) {
 		var category = Foxtrick.XMLData.htCurrencyJSON.hattrickcurrencies;
@@ -57,10 +62,10 @@ Foxtrick.util.currency = {
 		}, category).symbol;
 	},
 
-	isValidSymbol: function(symbol) {
+	isValidCode: function(code) {
 		var category = Foxtrick.XMLData.htCurrencyJSON.hattrickcurrencies;
 		return Foxtrick.any(function(item) {
-			return item.symbol == symbol;
+			return item.code == code;
 		}, category);
 	},
 
@@ -71,18 +76,49 @@ Foxtrick.util.currency = {
 		}, category).eurorate);
 	},
 	/**
+	 * get saved currency code
+	 * @return	{String}		Code
+	 */
+	getCode: function() {
+		var id = Foxtrick.util.id.getOwnTeamId();
+		return Foxtrick.Prefs.getString('Currency.Code.' + id);
+	},
+	/**
+	 * find currency code by leagueid
+	 * @param	{Integer}	id	leagueid
+	 * @return	{String}		code
+	 */
+	findCode: function(id) {
+		var leagueId = id || Foxtrick.util.id.getOwnLeagueId();
+		return this.codeFromCurrency({
+			rate: this.findRate(leagueId),
+			symbol: this.findSymbol(leagueId)
+		});
+	},
+	/**
+	 * get currency code from { rate, symbol }
+	 * @param  {{ rate: Number, symbol: String }} curr currency
+	 * @return {String}                                currency code
+	 */
+	codeFromCurrency: function(curr) {
+		var category = Foxtrick.XMLData.htCurrencyJSON.hattrickcurrencies;
+		var currency = Foxtrick.nth(function(item) {
+			return item.symbol === curr.symbol && parseFloat(item.eurorate) === curr.rate;
+		}, category);
+		return currency ? currency.code : null;
+	},
+	/**
 	 * get saved currency symbol
 	 * use with Foxtrick.util.currency.establish!
-	 * @param	{document}	doc
-	 * @returns	{String}		Symbol
+	 * @return	{String}		symbol
 	 */
-	getSymbol: function(doc) {
-		return Foxtrick.Prefs.getString('Currency.Symbol.' + Foxtrick.Pages.All.getOwnTeamId(doc));
+	getSymbol: function() {
+		return this.getSymbolByCode(this.getCode());
 	},
 	/**
 	 * find currency symbol by leagueid
 	 * @param	{Integer}	id	leagueid
-	 * @returns	{String}		Symbol
+	 * @return	{String}		Symbol
 	 */
 	findSymbol: function(id) {
 		var leagueId = id || Foxtrick.util.id.getOwnLeagueId();
@@ -92,18 +128,16 @@ Foxtrick.util.currency = {
 	/**
 	 * get saved ratio to euro (1 curr = x euro)
 	 * use with Foxtrick.util.currency.establish!
-	 * @param	{document}	doc
-	 * @returns	{Number}	rate
+	 * @return	{Number}	rate
 	 */
-	getRate: function(doc) {
-		return parseFloat(Foxtrick.Prefs.getString('Currency.Rate.' +
-												  Foxtrick.Pages.All.getOwnTeamId(doc)));
+	getRate: function() {
+		return this.getRateByCode(this.getCode());
 	},
 	/**
 	 * find currency rate by leagueid
 	 * 1 curr = x euro
 	 * @param	{Integer}	id	leagueid
-	 * @returns	{Number}		rate
+	 * @return	{Number}		rate
 	 */
 	findRate: function(id) {
 		var leagueId = id || Foxtrick.util.id.getOwnLeagueId();

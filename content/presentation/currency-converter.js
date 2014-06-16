@@ -40,12 +40,12 @@ Foxtrick.modules['CurrencyConverter'] = {
 		// don't run on forum pages
 		if (doc.location.href.search(/Forum/i) != -1)
 			return;
-		Foxtrick.util.currency.establish(doc, function() {
+		Foxtrick.util.currency.establish(doc, function(rate, symbol) {
 
 			// old stuffs
-			var oldSymbol = Foxtrick.util.currency.getSymbol(doc);
+			var oldSymbol = symbol;
 			var oldLength = oldSymbol.length;
-			var oldRate = Foxtrick.util.currency.getRate(doc);
+			var oldRate = rate;
 
 			// new stuffs
 			var code = Foxtrick.Prefs.getString('module.CurrencyConverter.to');

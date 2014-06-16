@@ -94,7 +94,7 @@ Foxtrick.modules['ExtendedPlayerDetailsWage'] = {
 	OPTIONS: ['WageWithoutBonus', 'SeasonWage'],
 
 	run: function(doc) {
-		Foxtrick.util.currency.establish(doc, function() {
+		Foxtrick.util.currency.establish(doc, function(rate, symbol) {
 			var div = doc.getElementById('ft_bonuswage');
 			if (div != null) return;
 
@@ -112,15 +112,13 @@ Foxtrick.modules['ExtendedPlayerDetailsWage'] = {
 			var wageText = wageElm.textContent;
 			var hasBonus = wageText.indexOf('%') > 0;
 
-			// replace spaces in the currency to non-break spaces (U+00A0)
-			var currency = Foxtrick.util.currency.getSymbol(doc).replace(' ', '\u00a0');
-			var currencyLen = currency.length;
-			var splitPos = wageText.indexOf(currency) + currencyLen;
+			var currencyLen = symbol.length;
+			var splitPos = wageText.indexOf(symbol) + currencyLen;
 			var part1 = wageText.substr(0, splitPos);
 			var part2 = wageText.substr(splitPos);
 
-			var wage = parseInt(part1.replace(/\d+%/, '').replace(currency, '')
-								.replace(/\s/g, '').match(/\d+/)[0], 10);
+			var wage = parseInt(part1.replace(/\d+%/, '').replace(symbol, '').
+			                    replace(/\s/g, '').match(/\d+/)[0], 10);
 			if (isNaN(wage))
 				return;
 
@@ -137,7 +135,7 @@ Foxtrick.modules['ExtendedPlayerDetailsWage'] = {
 				var span = doc.createElement('span');
 				span.setAttribute('id', 'ft_bonuswage');
 				span.setAttribute('style', 'direction: ltr !important; color:#666666;');
-				span.textContent = '(' + formattedWage + '\u00a0' + currency + ')';
+				span.textContent = '(' + formattedWage + '\u00a0' + symbol + ')';
 				wageElm.appendChild(span);
 				wageElm.appendChild(doc.createTextNode(part2));
 				Foxtrick.makeFeaturedElement(span, this);
@@ -147,9 +145,8 @@ Foxtrick.modules['ExtendedPlayerDetailsWage'] = {
 				var span = doc.createElement('span');
 				span.setAttribute('id', 'ft_seasonwage');
 				span.textContent =
-					Foxtrick.formatNumber(wage * 16, '\u00a0') + '\u00a0'
-					+ currency
-					+ Foxtrick.L10n.getString('ExtendedPlayerDetails.perseason');
+					Foxtrick.formatNumber(wage * 16, '\u00a0') + '\u00a0' + symbol +
+					Foxtrick.L10n.getString('ExtendedPlayerDetails.perseason');
 				wageElm.appendChild(span);
 				Foxtrick.makeFeaturedElement(span, this);
 			}
