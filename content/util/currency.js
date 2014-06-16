@@ -55,6 +55,11 @@ Foxtrick.util.currency = {
 			callback(rate, symbol);
 		}
 	},
+	reset: function() {
+		Foxtrick.log('RESETING CURRENCY');
+		var ownTeamId = Foxtrick.util.id.getOwnTeamId();
+		Foxtrick.Prefs.deleteValue('Currency.Code.' + ownTeamId);
+	},
 	getSymbolByCode: function(lookup) {
 		var category = Foxtrick.XMLData.htCurrencyJSON.hattrickcurrencies;
 		return Foxtrick.nth(function(item) {

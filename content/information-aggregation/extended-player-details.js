@@ -112,6 +112,11 @@ Foxtrick.modules['ExtendedPlayerDetailsWage'] = {
 			var wageText = wageElm.textContent;
 			var hasBonus = wageText.indexOf('%') > 0;
 
+			if (!wageText.match(symbol)) {
+				// bad currency
+				Foxtrick.util.currency.reset();
+				return;
+			}
 			var currencyLen = symbol.length;
 			var splitPos = wageText.indexOf(symbol) + currencyLen;
 			var part1 = wageText.substr(0, splitPos);
