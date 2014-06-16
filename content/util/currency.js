@@ -31,6 +31,8 @@ Foxtrick.util.currency = {
 			  function(teamXml, errorText) {
 				if (!teamXml || errorText) {
 					Foxtrick.log('[ERROR] Currency detection failed:', errorText);
+					// can't detect if CHPP is disabled with multiple teams
+					Foxtrick.util.currency.displaySelector(doc);
 					return;
 				}
 				// set the correct currency
@@ -54,6 +56,57 @@ Foxtrick.util.currency = {
 			symbol = this.getSymbolByCode(code);
 			callback(rate, symbol);
 		}
+	},
+
+	displaySelector: function(doc) {
+		var selectId = 'ft-currency-selector';
+		var noteId = 'ft-currency-selector-note';
+		if (doc.getElementById(noteId))
+			return;
+
+		var defaultCode = this.findCode();
+		var ownTeamId = Foxtrick.util.id.getOwnTeamId();
+
+		var currencySelect = doc.createElement('select');
+		currencySelect.id = selectId;
+		var currencies = Foxtrick.XMLData.htCurrencyJSON.hattrickcurrencies;
+		currencies.sort(function(a, b) { return a.name.localeCompare(b.name); });
+		for (var i = 0; i < currencies.length; ++i) {
+			var item = doc.createElement('option');
+			item.value = currencies[i].code;
+			item.textContent = currencies[i].name;
+			if (defaultCode === item.value)
+				item.selected = 'selected';
+			currencySelect.appendChild(item);
+		}
+
+		var cont = doc.createElement('div');
+		var h3 = doc.createElement('h3');
+		h3.textContent = Foxtrick.L10n.getString('currency.failed');
+		cont.appendChild(h3);
+		var p = doc.createElement('p');
+		p.textContent = Foxtrick.L10n.getString('currency.chpp');
+		cont.appendChild(p);
+		var span = doc.createElement('span');
+		span.textContent = Foxtrick.L10n.getString('currency.select');
+		cont.appendChild(span);
+		cont.appendChild(currencySelect);
+		var button = doc.createElement('button');
+		button.textContent = Foxtrick.L10n.getString('button.save');
+		Foxtrick.onClick(button, function(ev) {
+			ev.preventDefault();
+			var doc = ev.target.ownerDocument;
+			var select = doc.getElementById(selectId);
+			Foxtrick.Prefs.setString('Currency.Code.' + ownTeamId, select.value);
+			var note = doc.getElementById(noteId);
+			note.parentNode.removeChild(note);
+		});
+		cont.appendChild(button);
+
+		var insertBefore = doc.getElementById('testingNewHeader') ||
+			doc.getElementsByTagName('h1')[1];
+		Foxtrick.util.note.add(doc, insertBefore, noteId, cont, null, false, true);
+
 	},
 	reset: function() {
 		Foxtrick.log('RESETING CURRENCY');
