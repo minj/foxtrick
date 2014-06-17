@@ -481,7 +481,8 @@ Foxtrick.encodeBase64 = function(str) {
 Foxtrick.decodeBase64 = function(str) {
 	try {
 		return decodeURIComponent(escape(window.atob(str)));
-	} catch (e) {
+	}
+	catch (e) {
 		Foxtrick.log('Error decoding base64 encoded string', str, e);
 		return null;
 	}
@@ -509,18 +510,25 @@ Foxtrick.rAF = function(win, cb) {
 		Foxtrick.error('rAF needs a callback!');
 		return;
 	}
-	rAF(cb.bind(win));
+	rAF(function() {
+		try {
+			cb.bind(win)();
+		}
+		catch (e) {
+			Foxtrick.log('Error in callback for rAF', e);
+		}
+	});
 };
 
 
-Foxtrick.getSpecialtyImagePathFromNumber = function(type, negative){
+Foxtrick.getSpecialtyImagePathFromNumber = function(type, negative) {
 	var base = Foxtrick.InternalPath + 'resources/img/matches/spec';
 	var url = base + type;
-	if(negative)
+	if (negative)
 		url = url + '_red';
 
-	if(Foxtrick.Prefs.getBool('anstoss2icons'))
+	if (Foxtrick.Prefs.getBool('anstoss2icons'))
 		url = url + '_alt';
 
-	return  url + '.png'
-}
+	return url + '.png';
+};

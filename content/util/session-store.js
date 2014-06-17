@@ -28,14 +28,22 @@ Foxtrick._sessionGet = function(keymap, callback) {
 		}
 	}
 
-	if (typeof(callback) == 'function')
-		callback(answermap);
+	if (typeof(callback) == 'function') {
+		try {
+			callback(answermap);
+		}
+		catch (e) {
+			Foxtrick.log('Error in callback for sessionGet', keymap);
+		}
+	}
 	return answermap;
 };
 
 Foxtrick._sessionDeleteBranch = function(branch) {
-	if (!branch) branch = '';
-	if (branch != '') branch += '.';
+	if (!branch)
+		branch = '';
+	if (branch !== '')
+		branch += '.';
 	var key;
 	for (key in Foxtrick.sessionStore) {
 		if (key.indexOf(branch) === 0)
@@ -47,7 +55,12 @@ Foxtrick._sessionDeleteBranch = function(branch) {
 if (Foxtrick.platform == 'Firefox') {
 	Foxtrick.sessionSet = Foxtrick._sessionSet;
 	Foxtrick.sessionGet = function(key, callback) {
-		callback(Foxtrick._sessionGet(key));
+		try {
+			callback(Foxtrick._sessionGet(key));
+		}
+		catch (e) {
+			Foxtrick.log('Error in callback for sessionGet', key);
+		}
 	};
 	Foxtrick.sessionDeleteBranch = Foxtrick._sessionDeleteBranch;
 }
@@ -76,7 +89,7 @@ else {
 					callback(response.value);
 				}
 				catch (e) {
-					Foxtrick.log('Error in callback for sessionGet', response, e);
+					Foxtrick.log('Error in callback for sessionGet', key, response, e);
 				}
 			});
 		};

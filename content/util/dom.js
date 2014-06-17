@@ -212,7 +212,13 @@ Foxtrick.observe = function(node, callback, options) {
 Foxtrick.onChange = function(node, callback, obsOpts) {
 	return Foxtrick.observe(node, function() {
 		var doc = node.ownerDocument;
-		return callback(doc, node);
+		try {
+			return callback(doc, node);
+		}
+		catch (e) {
+			Foxtrick.log('Error in callback for onChange', e);
+			return true;
+		}
 	}, obsOpts);
 };
 /**
@@ -230,7 +236,13 @@ Foxtrick.getChanges = function(node, callback, obsOpts) {
 			affectedNodes.push(record.target);
 		});
 		var uniques = Foxtrick.unique(affectedNodes);
-		return callback(uniques);
+		try {
+			return callback(uniques);
+		}
+		catch (e) {
+			Foxtrick.log('Error in callback for getChanges', e);
+			return true;
+		}
 	}, obsOpts);
 };
 

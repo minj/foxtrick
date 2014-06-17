@@ -215,9 +215,21 @@ Foxtrick.util.api = {
 	//                     integers over strings;
 	//                     strings over booleans.
 	retrieve: function(doc, parameters, options, callback) {
+		var safeCallback = (function(parameters) {
+			return function() {
+				try {
+					callback.apply(this, arguments);
+				}
+				catch (e) {
+					Foxtrick.log('ApiProxy: uncaught callback error: ', e,
+					             'parameters: ', parameters);
+				}
+			};
+		})(parameters);
+
 		if (!Foxtrick.Prefs.getBool('xmlLoad')) {
 			Foxtrick.log('XML loading disabled');
-			callback(null);
+			safeCallback(null);
 			return;
 		}
 
@@ -237,7 +249,7 @@ Foxtrick.util.api = {
 									'  recheckDate: ', (new Date(recheckDate)).toString(),
 									'  current timestamp: ', (new Date(HT_date)).toString());
 				Foxtrick.util.api.addClearCacheLink(doc);
-				callback(null, Foxtrick.L10n.getString('api.serverUnavailable'));
+				safeCallback(null, Foxtrick.L10n.getString('api.serverUnavailable'));
 				return;
 			}
 
@@ -261,28 +273,23 @@ Foxtrick.util.api = {
 
 					if (xml_cache.xml_string == '503') {
 						// server was down. we wait for cache expires
-						callback(null, Foxtrick.L10n.getString('api.serverUnavailable'));
+						safeCallback(null, Foxtrick.L10n.getString('api.serverUnavailable'));
 						return;
 					}
 
 					var parser = new doc.defaultView.DOMParser();
-					try {
-						callback(parser.parseFromString(JSON.parse(xml_cache.xml_string),
+					safeCallback(parser.parseFromString(JSON.parse(xml_cache.xml_string),
 						         'text/xml'));
-					} catch (e) {
-						Foxtrick.log('ApiProxy: uncaught callback error: ', e,
-						             'parameters: ', parameters);
-					}
 				}
 				else {
 					// add to or create queue
 					if (typeof(Foxtrick.util.api.queue[parameters_str]) !== 'undefined') {
-						Foxtrick.util.api.queue[parameters_str].push(callback);
+						Foxtrick.util.api.queue[parameters_str].push(safeCallback);
 						return;
 					}
 					else {
 						Foxtrick.util.api.queue[parameters_str] = [];
-						Foxtrick.util.api.queue[parameters_str].push(callback);
+						Foxtrick.util.api.queue[parameters_str].push(safeCallback);
 					}
 
 					// process queued requested
@@ -352,12 +359,7 @@ Foxtrick.util.api = {
 													{ xml_string: JSON.stringify(serializer
 														.serializeToString(x)),
 													cache_lifetime: cache_lifetime });
-								try {
-									process_queued(x, status);
-								} catch (e) {
-									Foxtrick.log('ApiProxy: uncaught callback error: ', e,
-									             'url: ', url);
-								}
+								process_queued(x, status);
 							}
 							else if (status == 401) {
 								Foxtrick.log('ApiProxy: error 401, unauthorized. Arguments: ',
@@ -403,13 +405,19 @@ Foxtrick.util.api = {
 	batchRetrieve: function(doc, batchParameters, options, callback) {
 		if (!Foxtrick.Prefs.getBool('xmlLoad')) {
 			Foxtrick.log('XML loading disabled');
-			callback(null);
+			try {
+				callback(null);
+			}
+			catch (e) {
+				Foxtrick.log('ApiProxy: uncaught callback error: ', e,
+				             'parameters: ', batchParameters);
+			}
 			return;
 		}
 		var index = 0, responses = [], errors = [];
 		var processSingle = function(last_response, errorText) {
 			// collect responses
-			if (index != 0) {
+			if (index !== 0) {
 				responses.push(last_response);
 				errors.push(errorText);
 			}

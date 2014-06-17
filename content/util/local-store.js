@@ -57,15 +57,21 @@ if (Foxtrick.chromeContext() == 'background') {
 	Foxtrick.localSet = function(key, value) {
 		if (Foxtrick._localStore.ready)
 			Foxtrick.localStore.put(key, value);
-		else
+		else {
 			Foxtrick._localStore.setQueue.push([key, value]);
+		}
 	};
 	Foxtrick.localGet = function(key, callback) {
 		if (Foxtrick._localStore.ready) {
 			Foxtrick.localStore.get(key, function(value) {
 				if (typeof value === 'undefined')
 					value = null;
-				callback(value);
+				try {
+					callback(value);
+				}
+				catch (e) {
+					Foxtrick.log('Error in callback for localGet', key, value, e);
+				}
 			});
 		}
 		else
@@ -81,14 +87,23 @@ if (Foxtrick.chromeContext() == 'background') {
 			onEnd: function() {
 				Foxtrick.log('localStore branch "' + branch + '" deleted');
 			},
-			writeAccess: true
+			writeAccess: true,
+			onError: function(e) {
+				Foxtrick.log('Error deleting localStore branch ' + branch, e);
+			},
 		};
 		if (branch !== '') {
-			options.keyRange = Foxtrick.localStore.makeKeyRange({
-				lower: branch + '.', // charCode 46
-				upper: branch + '/', // charCode 47
-				excludeUpper: true
-			});
+			try {
+				options.keyRange = Foxtrick.localStore.makeKeyRange({
+					lower: branch + '.', // charCode 46
+					upper: branch + '/', // charCode 47
+					excludeUpper: true
+				});
+			}
+			catch (e) {
+				Foxtrick.log('Error deleting localStore branch ' + branch +
+				             'in makeKeyRange', e);
+			}
 		}
 		Foxtrick.localStore.iterate(function(item, cursor) {
 			cursor.delete();

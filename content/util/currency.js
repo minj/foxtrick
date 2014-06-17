@@ -14,6 +14,15 @@ Foxtrick.util.currency = {
 	 * @param	{Function}	callback
 	 */
 	establish: function(doc, callback) {
+		var safeCallback = function() {
+			try {
+				callback.apply(this, arguments);
+			}
+			catch (e) {
+				Foxtrick.log('Error in callback for currency.establish', e);
+			}
+		};
+
 		var ownTeamId = Foxtrick.util.id.getOwnTeamId();
 		var code = this.getCode();
 		var rate, symbol;
@@ -23,7 +32,7 @@ Foxtrick.util.currency = {
 				Foxtrick.Prefs.setString('Currency.Code.' + ownTeamId, code);
 				rate = this.getRateByCode(code);
 				symbol = this.getSymbolByCode(code);
-				callback(rate, symbol);
+				safeCallback(rate, symbol);
 				return;
 			}
 
@@ -49,13 +58,13 @@ Foxtrick.util.currency = {
 				symbol = Foxtrick.util.currency.findSymbol(leagueId);
 				code = Foxtrick.util.currency.codeFromCurrency({ rate: rate, symbol: symbol });
 				Foxtrick.Prefs.setString('Currency.Code.' + ownTeamId, code);
-				callback(rate, symbol);
+				safeCallback(rate, symbol);
 			});
 		}
 		else {
 			rate = this.getRateByCode(code);
 			symbol = this.getSymbolByCode(code);
-			callback(rate, symbol);
+			safeCallback(rate, symbol);
 		}
 	},
 
