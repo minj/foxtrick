@@ -8,6 +8,8 @@
 Foxtrick.modules['Filter'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES: ['statsTopPlayers'],
+	CSS: Foxtrick.InternalPath + 'resources/css/filter.css',
+	OPTIONS: ['ShowOwned'],
 
 	run: function(doc) {
 		var FILTER_FUNC = {
@@ -371,5 +373,47 @@ Foxtrick.modules['Filter'] = {
 				addExtraFilters(this.PAGES[i]);
 			}
 		}
-	}
+		if (Foxtrick.isPage(doc, 'statsTopPlayers')) {
+			if (Foxtrick.Prefs.isModuleOptionEnabled('Filter', 'ShowOwned'))
+				this.showOwned(doc);
+		}
+	},
+	/**
+	 * Highlight players of the logged in manager in Top Players stats page
+	 * @author tasosventouris
+	 * @param  {document} doc
+	 */
+	showOwned: function(doc) {
+
+		var teamId = Foxtrick.modules.Core.getSelfTeamInfo().teamId;
+		var ids = [];
+
+		Foxtrick.util.api.retrieve(doc, [
+			['file', 'players'],
+			['version', '2.2'],
+			['teamId', teamId]
+		  ],
+		  { cache_lifetime: 'session' },
+		  function(xml, errorText) {
+			if (!xml || errorText) {
+				Foxtrick.log(errorText);
+				return;
+			}
+
+			var all = xml.getElementsByTagName('PlayerID');
+			for (var i = 0; i < all.length; i++)
+				ids.push(all[i].textContent);
+
+			var allPlayers = doc.getElementById('mainBody').getElementsByTagName('a');
+			for (var i = 0; i < allPlayers.length; ++i) {
+				var player = Foxtrick.getParameterFromUrl(allPlayers[i].href, 'playerId');
+				if (player && ids.indexOf(player) >= 0) {
+					var row = allPlayers[i].parentNode.parentNode;
+					Foxtrick.addClass(row, 'ft-top-players-owner');
+					Foxtrick.makeFeaturedElement(row, Foxtrick.modules.TopPlayersOwner);
+				}
+			}
+		});
+
+	},
 };
