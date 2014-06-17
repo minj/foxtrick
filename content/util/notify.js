@@ -16,7 +16,8 @@ if (Foxtrick.platform === 'Chrome' && chrome.notifications) {
 			// focus window. needs permissions: tabs. only nightly as for now
 			try {
 				chrome.windows.update(id, { focused: true });
-			} catch (e) {}
+			}
+			catch (e) {}
 		};
 		var openTabFromNote = function(noteId, tabOptsFn) {
 			var note = Foxtrick.util.notify._notes[noteId];
@@ -90,7 +91,7 @@ Foxtrick.util.notify.create = function(msg, source, cb, opts) {
 		}
 	};
 
-	var id = '',  chromeOpts = {};
+	var id = '', chromeOpts = {};
 	if (opts) {
 		// in content (need to send to bg)
 		chromeOpts = opts.opts || {};
@@ -145,7 +146,7 @@ Foxtrick.util.notify.create = function(msg, source, cb, opts) {
 						if (chrome.runtime.lastError)
 							return;
 					});
-				}
+				};
 				if (id in notes)
 					// need to clear first
 					// otherwise new note is not displayed
@@ -168,7 +169,8 @@ Foxtrick.util.notify.create = function(msg, source, cb, opts) {
 					// focus last window. needs permissions: tabs. only nightly as for now
 					try {
 						chrome.windows.update(source.tab.windowId, { focused: true });
-					} catch (e) {}
+					}
+					catch (e) {}
 				}
 				else
 					Foxtrick.SB.tabs.create({ url: msg.url });
@@ -190,7 +192,8 @@ Foxtrick.util.notify.create = function(msg, source, cb, opts) {
 							imageUrl: msg.img_url
 						});
 					}
-				} catch (e) { Foxtrick.log(e); }
+				}
+				catch (e) { Foxtrick.log(e); }
 			};
 
 			var img = Foxtrick.InternalPath + 'resources/img/hattrick-logo.png';
