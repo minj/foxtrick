@@ -18,7 +18,7 @@ Foxtrick.modules['SeriesFlags'] = {
 		var buildFlag = function(arg, callback) {
 			Foxtrick.localGet('seriesFlags',
 			  function(mapping) {
-				if (mapping == undefined)
+				if (!mapping || typeof mapping[arg[0]] === 'undefined')
 					mapping = { 'userId': {}, 'teamId': {} };
 
 				// data is an Object with attributes leagueId, seriesName,
@@ -87,7 +87,7 @@ Foxtrick.modules['SeriesFlags'] = {
 						// it may have changed during the retrieval of XML
 						Foxtrick.localGet('seriesFlags',
 						  function(mapping) {
-							if (mapping == undefined)
+							if (!mapping || typeof mapping[arg[0]] === 'undefined')
 								mapping = { 'userId': {}, 'teamId': {} };
 							mapping[arg[0]][arg[1]] = data;
 							Foxtrick.localSet('seriesFlags', mapping);
