@@ -287,15 +287,15 @@ Foxtrick.util.load.filePickerForDataUrl = function(doc, callback) {
 	var input = doc.createElement('input');
 	input.type = 'file';
 	input.addEventListener('change', function(ev) {
-		var win = ev.view;
-		var file = ev.target.files[0];
+		var win = this.ownerDocument.defaultView;
+		var file = this.files[0];
 		var reader = new win.FileReader();
 		reader.onerror = function(e) {
 			win.alert('Error code: ' + e.target.error.code);
 			callback(null);
 		};
-		reader.onload = function(evt) {
-			var dataUrl = evt.target.result;
+		reader.onload = function(e) {
+			var dataUrl = e.target.result;
 			if (dataUrl.length > 164000) {
 				win.alert('File too large');
 				dataUrl = null;
@@ -314,15 +314,15 @@ Foxtrick.util.load.filePickerForText = function(doc, callback) {
 	var input = doc.createElement('input');
 	input.type = 'file';
 	input.addEventListener('change', function(ev) {
-		var win = ev.target;
-		var file = ev.target.files[0];
+		var win = this.ownerDocument.defaultView;
+		var file = this.files[0];
 		var reader = new win.FileReader();
 		reader.onerror = function(e) {
 			win.alert('Error code: ' + e.target.error.code);
 			callback(null);
 		};
-		reader.onload = function(evt) {
-			var text = evt.target.result;
+		reader.onload = function(e) {
+			var text = e.target.result;
 			if (text.length > 64000) {
 				win.alert('File too large');
 				text = null;
