@@ -1013,12 +1013,17 @@ function initMainTab() {
 		var savePrefs = $('#pref-save-pref').is(':checked');
 		var saveNotes = $('#pref-save-data').is(':checked');
 		var saveToken = $('#pref-save-token').is(':checked');
-		$('#pref-save-text').val(Foxtrick.Prefs.SavePrefs(savePrefs, saveNotes, saveToken));
+		$('#pref-save-text').val(Foxtrick.Prefs.save({
+			prefs: savePrefs,
+			notes: saveNotes,
+			oauth: saveToken,
+			defaults: true
+		}));
 	});
 
 	// load preferences
 	$('#pref-load-do').click(function() {
-		Foxtrick.Prefs.LoadPrefs($('#pref-load-text').val());
+		Foxtrick.Prefs.load($('#pref-load-text').val());
 		$('#pref-load-text').val('');
 		window.location.href = window.location.href + '&imported=true';
 		window.location.reload();

@@ -161,8 +161,7 @@ Foxtrick.modules['Core'] = {
 				var nonce = Math.random().toString(16).substr(2).toUpperCase();
 
 				var title = 'Bug ' + nonce + ' by ' + team + ' (' + id + ')';
-				var prefs = Foxtrick.Prefs.SavePrefs(true, true, false, true);
-				// export non-defaults + user notes but NOT token
+				var prefs = Foxtrick.Prefs.save({ notes: true, skipFiles: true });
 				var bug = log + '\n\n\n' + prefs;
 				// add a somewhat sane limit of 200K
 				var MAX_LENGTH = 200 * 1024;

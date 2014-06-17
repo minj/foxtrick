@@ -303,31 +303,47 @@ Foxtrick.Prefs = {
 		}
 		return true;
 	},
-
-	SavePrefs: function(savePrefs, saveNotes, saveToken, userSettings, format) {
-		// userSettings = null from prefs export -> output all including default
-		// userSettings = true from forumyouthicon-pref-output-button -> output only non-default
-
+	/**
+	 * Save preferences. Skips default values, CHPP tokens and notes by default
+	 * @param  {{format, defaults, oauth, notes, prefs, skipFiles}} options export options
+	 * @return {String}                                                     preferences
+	 */
+	save: function(options) {
+		var opts = {
+			format: 'user_pref("extensions.foxtrick.prefs.%key",%value);',
+			defaults: false, // include default values
+			oauth: false, // include CHPP tokens
+			notes: false, // include templates, filters
+			prefs: true, // other prefs
+			skipFiles: false, // whether to exclude dataURIs
+		};
+		for (var o in opts) {
+			if (o in options) {
+				opts[o] = options[o];
+			}
+		}
 		try {
-			if (!format) format = 'user_pref("extensions.foxtrick.prefs.%key",%value);';
 			var ret = '';
 			var array = Foxtrick.Prefs.getAllKeysOfBranch('');
 			array.sort();
-			for (var i = 0; i < array.length; i++) {
-				var key = array[i];
-				if (i > 0 && key == array[i - 1])
-					continue; // some appear twice!?
-				if (!userSettings || Foxtrick.Prefs.prefHasUserValue(key)) {
-					// output all or only non-default switch
-					if ((Foxtrick.Prefs.isPrefSetting(key) && savePrefs)
-						|| (!Foxtrick.Prefs.isPrefSetting(key) && key.indexOf('oauth.') == -1
-						    && saveNotes)
-						|| (key.indexOf('oauth') != -1 && saveToken)) {
-						var item = format.replace(/%key/, key);
+			array = Foxtrick.unique(array);
+			var fileRe = /^data:\w+\/[\w\d.+-]+;base64,/;
+			Foxtrick.map(function(key) {
+				var isCustom = Foxtrick.Prefs.prefHasUserValue(key);
+				var isRegular = Foxtrick.Prefs.isPrefSetting(key);
+				var isOauth = (key.indexOf('oauth.') === 0);
+				if (opts.defaults || isCustom) {
+					if (isRegular && opts.prefs || isOauth && opts.oauth ||
+					    !isRegular && !isOauth && opts.notes) {
+						var item = opts.format.replace(/%key/, key);
 
 						var value = null;
-						if ((value = Foxtrick.Prefs.getString(key)) !== null)
-							item = item.replace(/%value/, '"' + value.replace(/\n/g, '\\n') + '"');
+						if ((value = Foxtrick.Prefs.getString(key)) !== null) {
+							if (!opts.skipFiles || !fileRe.test(value)) {
+								value = value.replace(/\n/g, '\\n');
+								item = item.replace(/%value/, '"' + value + '"');
+							}
+						}
 						else if ((value = Foxtrick.Prefs.getInt(key)) !== null)
 							item = item.replace(/%value/, value);
 						else if ((value = Foxtrick.Prefs.getBool(key)) !== null)
@@ -336,7 +352,7 @@ Foxtrick.Prefs = {
 							ret += item + '\n';
 					}
 				}
-			}
+			}, array);
 			return ret;
 		}
 		catch (e) {
@@ -345,7 +361,7 @@ Foxtrick.Prefs = {
 		}
 	},
 
-	LoadPrefs: function(string) {
+	load: function(string) {
 		var format = /user_pref\("extensions\.foxtrick\.prefs\.(.+?)",(.+)\);/;
 		var lines = string.split('\n');
 		for (var i = 0; i < lines.length; ++i) {
