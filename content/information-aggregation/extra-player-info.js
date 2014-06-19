@@ -101,7 +101,8 @@ Foxtrick.modules['ExtraPlayerInfo'] = {
 						});
 					};
 					var targetNode = allPlayers[i].getElementsByTagName('b')[0];
-					addPlayerLanguage(id, targetNode);
+					if (targetNode)
+						addPlayerLanguage(id, targetNode);
 				}
 			}
 		});
