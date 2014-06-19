@@ -919,14 +919,21 @@ Foxtrick.Pages.Players = {
 					try {
 						// parse HTML first because players present in XML may
 						// not present in XML (NT players)
-						if (!options || !options.current_squad) parseHtml();
-						if (xml) parseXml(xml);
+						if (!options || !options.current_squad)
+							parseHtml();
+						if (xml)
+							parseXml(xml);
 						addContributionsInfo(playerList);
-						callback(playerList);
 					}
 					catch (e) {
 						Foxtrick.log(e);
-						callback(null);
+						playerList = null;
+					}
+					try {
+						callback(playerList);
+					}
+					catch (e) {
+						Foxtrick.log('Error in callback for getPlayerList', e);
 					}
 				});
 			}, 0);
