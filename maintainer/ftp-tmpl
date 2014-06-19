@@ -9,7 +9,6 @@ put update-firefox.rdf -o update.rdf
 cd chrome/
 put {PATH}/foxtrick.crx -o foxtrick-{VERSION}.crx
 put update-chrome.xml -o update.xml
-put {PATH}/foxtrick.zip -o foxtrick-{VERSION}.zip
 put -O webstore {PATH}/foxtrick.zip
 
 cd ../safari/
