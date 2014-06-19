@@ -111,8 +111,9 @@ Foxtrick.modules['ExtendedPlayerDetailsWage'] = {
 
 			var wageText = wageElm.textContent;
 			var hasBonus = wageText.indexOf('%') > 0;
+			var curRe = new RegExp('\\d+' + '\u00a0' + symbol);
 
-			if (!wageText.match(symbol)) {
+			if (!wageText.match(curRe)) {
 				// bad currency
 				Foxtrick.util.currency.reset();
 				return;
