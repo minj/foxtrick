@@ -53,22 +53,12 @@ Foxtrick.modules['TransferSearchResultFilters'] = {
 				if (player.speciality == null)
 					return true;
 				return (player.speciality == '');
-			},
-			'HTMS Potential': function(player, min, max) {
-				if (player.htmsPotential == null)
-					return true;
-				if (typeof(min) == 'number' && player.htmsPotential < min)
-					return true;
-				if (typeof(max) == 'number' && player.htmsPotential > max)
-					return true;
-				return false;
-			},
+			}
 		};
 		// default filter values
 		var FILTER_VAL = [
 			{ key: 'form', type: 'skillselect', min: null, max: null, minAllowed: 0, maxAllowed: 8},
 			{ key: 'days', type: 'minmax', min: null, max: null },
-			{ key: 'HTMS Potential', type: 'minmax',min: null, max: null },
 			{ key: 'hideOrdinary', type: 'check', checked: false },
 			{ key: 'hideInjured', type: 'check', checked: false },
 			{ key: 'hideSuspended', type: 'check', checked: false },

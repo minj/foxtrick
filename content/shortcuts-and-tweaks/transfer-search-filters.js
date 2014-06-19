@@ -46,8 +46,6 @@ Foxtrick.modules['TransferSearchFilters'] = {
 			'_32': 'ctl00_ctl00_CPContent_CPMain_chkUseGlobalMax',
 			'_33': 'ctl00_ctl00_CPContent_CPMain_ddlAgeDaysMin',
 			'_34': 'ctl00_ctl00_CPContent_CPMain_ddlAgeDaysMax',
-			'_35': 'ctl00_ctl00_CPContent_CPMain_ddlHTMSMin',
-			'_36': 'ctl00_ctl00_CPContent_CPMain_ddlHTMSMax',
 
 			'_51': 'FoxtrickTransferSearchResultFilters.hideBruised.check',
 			'_52': 'FoxtrickTransferSearchResultFilters.hideInjured.check',
@@ -56,9 +54,8 @@ Foxtrick.modules['TransferSearchFilters'] = {
 			'_56': 'FoxtrickTransferSearchResultFilters.days.Max',
 			'_57': 'FoxtrickTransferSearchResultFilters.Skills.form.Min',
 			'_58': 'FoxtrickTransferSearchResultFilters.Skills.form.Max',
-			'_59': 'FoxtrickTransferSearchResultFilters.hideOrdinary.check',
-			'_60': 'FoxtrickTransferSearchResultFilters.HTMS.min',
-			'_61': 'FoxtrickTransferSearchResultFilters.HTMS.max',
+			'_59': 'FoxtrickTransferSearchResultFilters.hideOrdinary.check'
+
 		};
 		var findFormElement = function(id) {
 			return doc.getElementById(id);
