@@ -46,9 +46,9 @@ Foxtrick.Pages.Players = {
 
 	getPlayerList: function(doc, callback, options) {
 		var playerList = [];
+		var args = [];
 
 		var getXml = function(doc, callback) {
-			var args = [];
 
 			var teamId = Foxtrick.util.id.getOwnTeamId();
 			if (options && options.teamid)
@@ -268,6 +268,7 @@ Foxtrick.Pages.Players = {
 					}
 
 					// we found this player in the XML file,
+					player.inXML = true;
 					// go on the retrieve information
 					player.nameLink = doc.createElement('a');
 					player.nameLink.href = '/Club/Players/' + (isYouth ? 'Youth' : '') +
@@ -492,7 +493,17 @@ Foxtrick.Pages.Players = {
 							player.staminaPrediction = null;
 					}, playerList);
 				}
-			} catch (e) { Foxtrick.log(e); }
+
+				var missingXML = Foxtrick.filter(function(p) {
+					return !p.inXML;
+				}, playerList);
+				if (missingXML.length) {
+					Foxtrick.log('WARNING: New players in HTML', missingXML, 'resetting cache');
+					var now = Foxtrick.util.time.getHtTimeStamp(doc);
+					Foxtrick.util.api.setCacheLifetime(JSON.stringify(args), now);
+				}
+			}
+			catch (e) { Foxtrick.log(e); }
 		};
 
 		var parseHtml = function() {
