@@ -207,6 +207,7 @@ Foxtrick.util.api = {
 
 	// options: { cache:'session' or 'default' or timestamp }
 	// session: take xml from this session. xml doesn't expire
+	// unless timestamp is manually set on sessionStore later
 	// default: currently 1 hour, see below
 	// timestamp: time in milliseconds since 1970 when a new xml will get retrieved
 	// parameter order and spelling consistency helps caching
@@ -256,17 +257,21 @@ Foxtrick.util.api = {
 			var parameters_str = JSON.stringify(parameters);
 			Foxtrick.sessionGet('xml_cache.' + parameters_str,
 			  function(xml_cache) {
-				if (xml_cache)
-					Foxtrick.log('ApiProxy: options: ', options,
-								'  cache_lifetime: ', (options.cache_lifetime == 'session')
-								? 'session' : (new Date(xml_cache.cache_lifetime))
-								.toString(),
-								'  current timestamp: ', (new Date(HT_date)).toString());
+				var session = options && options.cache_lifetime === 'session' || false;
+				var cacheTime = 0;
+				if (xml_cache) {
+					cacheTime = Number(xml_cache.cache_lifetime);
+					var cacheString = session ? 'session ' : '';
+					if (cacheTime)
+						cacheString += new Date(cacheTime).toString();
+					Foxtrick.log('ApiProxy: options: ', options, 'cache_lifetime: ', cacheString,
+					             'current timestamp: ', new Date(HT_date).toString());
+				}
 
 				// check file cache next
-				if (xml_cache && xml_cache.xml_string && options
-						&& (options.cache_lifetime == 'session'
-							|| (Number(xml_cache.cache_lifetime) > HT_date))) {
+				// numetical cache time overrides 'session'
+				if (xml_cache && xml_cache.xml_string && options &&
+				    (session && !cacheTime || cacheTime > HT_date)) {
 					Foxtrick.log('ApiProxy: use cached xml: ' , parameters_str);
 
 					Foxtrick.util.api.addClearCacheLink(doc);
