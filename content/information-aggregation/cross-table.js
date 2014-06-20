@@ -279,6 +279,14 @@ Foxtrick.modules['CrossTable'] = {
 				graphContainer.removeChild(graph);
 			}
 			else {
+				graph.onload = graph.onerror = function() {
+					if (this.height < 200 || this.width < 200) {
+						var msg = Foxtrick.L10n.getString('resource.error');
+						msg = msg.replace(/%s/, 'chart.apis.google.com');
+						Foxtrick.util.note.add(doc, msg, 'ft-flag-map-failed-note',
+						                       { to: graphContainer });
+					}
+				};
 				// Google Chart API documentation:
 				// Line charts:
 				// http://code.google.com/apis/chart/docs/gallery/line_charts.html

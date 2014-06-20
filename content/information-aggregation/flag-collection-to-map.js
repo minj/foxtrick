@@ -421,6 +421,13 @@ Foxtrick.modules['FlagCollectionToMap'] = {
 		map.appendChild(doc.createTextNode(' '));
 
 		var img = doc.createElement('img');
+		img.onload = img.onerror = function() {
+			if (this.height < 300 || this.width < 300) {
+				var msg = Foxtrick.L10n.getString('resource.error');
+				msg = msg.replace(/%s/, 'chart.apis.google.com');
+				Foxtrick.util.note.add(doc, msg, 'ft-flag-map-failed-note', { to: map });
+			}
+		};
 		img.id = 'foxtrick-img-map-' + anchorId;
 		img.alt = 'Map';
 		img.src = urlWorld;
