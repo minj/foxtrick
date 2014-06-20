@@ -317,9 +317,11 @@ Foxtrick.Prefs = {
 			prefs: true, // other prefs
 			skipFiles: false, // whether to exclude dataURIs
 		};
-		for (var o in opts) {
-			if (o in options) {
-				opts[o] = options[o];
+		if (options && typeof options === 'object') {
+			for (var o in opts) {
+				if (o in options) {
+					opts[o] = options[o];
+				}
 			}
 		}
 		try {
