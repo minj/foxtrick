@@ -66,7 +66,7 @@ Foxtrick.modules['ConfirmActions'] = {
 								msgPara.appendChild(cont);
 							}
 							msgPara.appendChild(doc.createTextNode(msg));
-							var confirm = Foxtrick.util.note.create(doc, msgPara, [
+							var buttons = [
 								{
 									type: Foxtrick.util.note.BUTTON_OK,
 									listener: function(ev) {
@@ -93,9 +93,10 @@ Foxtrick.modules['ConfirmActions'] = {
 										confirm.parentNode.removeChild(confirm);
 									}
 								}
-							]);
-							confirm.id = ids.BID.CONFIRM_ID;
-							bidAlert.getElementsByTagName('div')[0].appendChild(confirm);
+							];
+							var target = bidAlert.getElementsByTagName('div')[0];
+							Foxtrick.util.note.add(doc, msgPara, ids.BID.CONFIRM_ID,
+							                       { buttons: buttons, to: target });
 							Foxtrick.addClass(bidButton, 'hidden');
 							bidText[0] && bidText[0].setAttribute('disabled', 'disabled');
 							bidText[1] && bidText[1].setAttribute('disabled', 'disabled');
@@ -128,35 +129,35 @@ Foxtrick.modules['ConfirmActions'] = {
 								msgPara.appendChild(cont);
 							}
 							msgPara.appendChild(doc.createTextNode(msg));
-							var confirm = Foxtrick.util.note.create(doc, msgPara,
-								[
-									{
-										type: Foxtrick.util.note.BUTTON_OK,
-										listener: function(ev) {
-											var doc = ev.target.ownerDocument;
-											var sellText = doc.getElementById(ids.SELL.TEXT_ID);
-											sellText.removeAttribute('disabled');
-											var sellButton = doc.getElementById(ids.SELL.BUTTON_ID);
-											sellButton.click();
-										}
-									},
-									{
-										type: Foxtrick.util.note.BUTTON_CANCEL,
-										listener: function(ev) {
-											var doc = ev.target.ownerDocument;
-											var sellButton = doc.getElementById(ids.SELL.BUTTON_ID);
-											Foxtrick.removeClass(sellButton, 'hidden');
-											var cancelButton = doc.getElementById(ids.SELL.CANCEL_ID);
-											Foxtrick.removeClass(cancelButton, 'hidden');
-											var sellText = doc.getElementById(ids.SELL.TEXT_ID);
-											sellText.removeAttribute('disabled');
-											var confirm = doc.getElementById(ids.SELL.CONFIRM_ID);
-											confirm.parentNode.removeChild(confirm);
-										}
+							var buttons = [
+								{
+									type: Foxtrick.util.note.BUTTON_OK,
+									listener: function(ev) {
+										var doc = ev.target.ownerDocument;
+										var sellText = doc.getElementById(ids.SELL.TEXT_ID);
+										sellText.removeAttribute('disabled');
+										var sellButton = doc.getElementById(ids.SELL.BUTTON_ID);
+										sellButton.click();
 									}
-								]);
-							confirm.id = ids.SELL.CONFIRM_ID;
-							sellButton.parentNode.appendChild(confirm);
+								},
+								{
+									type: Foxtrick.util.note.BUTTON_CANCEL,
+									listener: function(ev) {
+										var doc = ev.target.ownerDocument;
+										var sellButton = doc.getElementById(ids.SELL.BUTTON_ID);
+										Foxtrick.removeClass(sellButton, 'hidden');
+										var cancelButton = doc.getElementById(ids.SELL.CANCEL_ID);
+										Foxtrick.removeClass(cancelButton, 'hidden');
+										var sellText = doc.getElementById(ids.SELL.TEXT_ID);
+										sellText.removeAttribute('disabled');
+										var confirm = doc.getElementById(ids.SELL.CONFIRM_ID);
+										confirm.parentNode.removeChild(confirm);
+									}
+								}
+							];
+							var target = sellButton.parentNode;
+							Foxtrick.util.note.add(doc, msgPara, ids.SELL.CONFIRM_ID,
+							                       { buttons: buttons, to: target });
 							Foxtrick.addClass(sellButton, 'hidden');
 							Foxtrick.addClass(cancelButton, 'hidden');
 							sellText.disabled = 'disabled';
@@ -217,53 +218,53 @@ Foxtrick.modules['ConfirmActions'] = {
 									msgPara.appendChild(cont);
 								}
 								msgPara.appendChild(doc.createTextNode(msg));
-								var confirm = Foxtrick.util.note.create(doc, msgPara,
-									[
-										{
-											type: Foxtrick.util.note.BUTTON_OK,
-											listener: function(ev) {
-												var doc = ev.target.ownerDocument;
-												var actionSelect =
-													doc.getElementById(ids.STAFF.ACTION_SELECT_ID);
-												actionSelect.removeAttribute('disabled');
-												var amountText =
-													doc.getElementById(ids.STAFF.AMOUNT_TEXT_ID);
-												amountText.removeAttribute('disabled');
-												var roleSelect =
-													doc.getElementById(ids.STAFF.ROLE_SELECT_ID);
-												roleSelect.removeAttribute('disabled');
-												// after confirm all webpage's javascript link click action
-												var submitButton =
-													doc.getElementById(ids.STAFF.SUBMIT_BUTTON_ID);
-												submitButton.setAttribute('onclick',
-												                          submitButton
-												                          .getAttribute('alt-onclick'));
-												submitButton.click();
-											}
-										},
-										{
-											type: Foxtrick.util.note.BUTTON_CANCEL,
-											listener: function(ev) {
-												var doc = ev.target.ownerDocument;
-												var submitButton =
-													doc.getElementById(ids.STAFF.SUBMIT_BUTTON_ID);
-												Foxtrick.removeClass(submitButton, 'hidden');
-												var actionSelect =
-													doc.getElementById(ids.STAFF.ACTION_SELECT_ID);
-												actionSelect.removeAttribute('disabled');
-												var amountText =
-													doc.getElementById(ids.STAFF.AMOUNT_TEXT_ID);
-												amountText.removeAttribute('disabled');
-												var roleSelect =
-													doc.getElementById(ids.STAFF.ROLE_SELECT_ID);
-												roleSelect.removeAttribute('disabled');
-												var confirm = doc.getElementById(ids.STAFF.CONFIRM_ID);
-												confirm.parentNode.removeChild(confirm);
-											}
+								var buttons = [
+									{
+										type: Foxtrick.util.note.BUTTON_OK,
+										listener: function(ev) {
+											var doc = ev.target.ownerDocument;
+											var actionSelect =
+												doc.getElementById(ids.STAFF.ACTION_SELECT_ID);
+											actionSelect.removeAttribute('disabled');
+											var amountText =
+												doc.getElementById(ids.STAFF.AMOUNT_TEXT_ID);
+											amountText.removeAttribute('disabled');
+											var roleSelect =
+												doc.getElementById(ids.STAFF.ROLE_SELECT_ID);
+											roleSelect.removeAttribute('disabled');
+											// after confirm all webpage's javascript link click action
+											var submitButton =
+												doc.getElementById(ids.STAFF.SUBMIT_BUTTON_ID);
+											submitButton.setAttribute('onclick',
+											                          submitButton
+											                          .getAttribute('alt-onclick'));
+											submitButton.click();
 										}
-									]);
-								confirm.id = ids.STAFF.CONFIRM_ID;
-								submitButton.parentNode.appendChild(confirm);
+									},
+									{
+										type: Foxtrick.util.note.BUTTON_CANCEL,
+										listener: function(ev) {
+											var doc = ev.target.ownerDocument;
+											var submitButton =
+												doc.getElementById(ids.STAFF.SUBMIT_BUTTON_ID);
+											Foxtrick.removeClass(submitButton, 'hidden');
+											var actionSelect =
+												doc.getElementById(ids.STAFF.ACTION_SELECT_ID);
+											actionSelect.removeAttribute('disabled');
+											var amountText =
+												doc.getElementById(ids.STAFF.AMOUNT_TEXT_ID);
+											amountText.removeAttribute('disabled');
+											var roleSelect =
+												doc.getElementById(ids.STAFF.ROLE_SELECT_ID);
+											roleSelect.removeAttribute('disabled');
+											var confirm = doc.getElementById(ids.STAFF.CONFIRM_ID);
+											confirm.parentNode.removeChild(confirm);
+										}
+									}
+								];
+								var target = submitButton.parentNode;
+								Foxtrick.util.note.add(doc, msgPara, ids.STAFF.CONFIRM_ID,
+								                       { buttons: buttons, to: target });
 								confirmAdded = true;
 								Foxtrick.addClass(submitButton, 'hidden');
 								actionSelect.disabled = amountText.disabled =

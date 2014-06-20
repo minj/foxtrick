@@ -52,8 +52,9 @@ Foxtrick.modules['ReadHtPrefs'] = {
 				else
 					msg += ' ' + language; // fallback for outdated description
 
-				Foxtrick.util.note.add(doc, null, 'ft-language-changed', msg, null, true, true);
-			} else {
+				Foxtrick.util.note.add(doc, msg, 'ft-language-changed', { focus: true });
+			}
+			else {
 				Foxtrick.log('Language changed: ' + newLang + '(' + readLang +
 				             ') but no Foxtrick support yet.');
 			}

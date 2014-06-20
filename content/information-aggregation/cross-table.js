@@ -274,10 +274,9 @@ Foxtrick.modules['CrossTable'] = {
 			}
 			if (roundsPlayed == 0) {
 				// no matches played, display a message instead of the graph
+				var note = Foxtrick.L10n.getString('CrossTable.noMatches');
+				Foxtrick.util.note.add(doc, note, null, { at: graphContainer });
 				graphContainer.removeChild(graph);
-				var noMatches = Foxtrick.util.note.create(doc, Foxtrick.L10n
-				                                          .getString('CrossTable.noMatches'));
-				graphContainer.appendChild(noMatches);
 			}
 			else {
 				// Google Chart API documentation:
@@ -325,10 +324,10 @@ Foxtrick.modules['CrossTable'] = {
 					drawSeasonGraph(xml);
 				}
 				if (errorText) {
-					var note = Foxtrick.util.note.create(doc, errorText);
-					graphContainer.appendChild(note);
-					note = Foxtrick.util.note.create(doc, errorText);
-					table.appendChild(note);
+					var note = Foxtrick.util.note.add(doc, errorText, null,
+					                                  { at: graphContainer });
+					note = note.cloneNode(true);
+					table.parentNode.appendChild(note);
 				}
 			}
 			catch (e) {

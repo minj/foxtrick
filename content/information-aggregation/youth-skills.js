@@ -340,9 +340,6 @@ Foxtrick.modules['YouthSkills'] = {
 			if (!entry)
 				return;
 
-			var insertBefore = entry.firstChild;
-			var container = doc.createElement('div');
-			var p = doc.createElement('p');
 			var text;
 			try {
 				text = JSON.parse(response).error;
@@ -351,10 +348,9 @@ Foxtrick.modules['YouthSkills'] = {
 				text = response;
 			}
 
-			p.textContent = 'Hattrick Youthclub Error ' + status + ': ' + text;
-			container.appendChild(p);
-			Foxtrick.util.note.add(doc, insertBefore, 'ft-youth-skills-error', container,
-								   null, true, null, false);
+			text = 'Hattrick Youthclub Error ' + status + ': ' + text;
+			var target = doc.getElementById('ft-hy-skills-info');
+			Foxtrick.util.note.add(doc, text, 'ft-youth-skills-error', { at: target });
 		};
 
 		var loading;
@@ -428,6 +424,6 @@ Foxtrick.modules['YouthSkills'] = {
 				finalize(null);
 			}
 		});
-		
+
 	}
 };

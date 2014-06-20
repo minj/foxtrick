@@ -1089,15 +1089,10 @@ Foxtrick.modules['SkillTable'] = {
 				}
 				else {
 					loading.parentNode.removeChild(loading);
-					if (status == 503) {
-						var note = Foxtrick.util.note.create(doc, Foxtrick.L10n
-						                                     .getString('api.serverUnavailable'));
-						doc.getElementsByClassName('ft_skilltable_wrapper')[0].appendChild(note);
-					}
-					else {
-						var note = Foxtrick.util.note.create(doc, Foxtrick.L10n.getString('error'));
-						doc.getElementsByClassName('ft_skilltable_wrapper')[0].appendChild(note);
-					}
+					var target = doc.getElementsByClassName('ft_skilltable_wrapper')[0];
+					var str = (status == 503) ? 'api.serverUnavailable' : 'error';
+					var msg = Foxtrick.L10n.getString(str);
+					Foxtrick.util.note.add(doc, msg, null, { to: target });
 				}
 			});
 		};
@@ -1255,10 +1250,8 @@ Foxtrick.modules['SkillTable'] = {
 					var table = doc.getElementsByClassName('ft_skilltable')[0];
 					Foxtrick.copyStringToClipboard(toHtMl(table));
 
-					var note = Foxtrick.util.note.add(doc, table, 'ft-skilltable-copy-note',
-					                                  Foxtrick.L10n
-					                                  .getString('copy.skilltable.copied'),
-					                                  null, true);
+					Foxtrick.util.note.add(doc, Foxtrick.L10n.getString('copy.skilltable.copied'),
+					                       'ft-skilltable-copy-note', { at: table });
 				});
 			// links: customize
 			var customize = doc.createElement('a');

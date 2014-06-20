@@ -93,11 +93,8 @@ Foxtrick.modules['CopyBBAd'] = {
 				ad += '[/table]\n';
 
 				Foxtrick.copyStringToClipboard(ad);
-				var insertBefore = doc.getElementsByTagName('h1')[1];
-				var note = Foxtrick.util.note.add(doc, insertBefore, 'ft-tableAd-copy-note',
-												  Foxtrick.L10n
-												  .getString('CopyTableAd.copied'),
-												  null, true);
+				Foxtrick.util.note.add(doc, Foxtrick.L10n.getString('CopyTableAd.copied'),
+				                       'ft-tableAd-copy-note');
 			}
 
 		}
@@ -175,11 +172,8 @@ Foxtrick.modules['CopyBBAd'] = {
 					ad += '[/table]\n\n';
 				}
 				Foxtrick.copyStringToClipboard(ad);
-				var insertBefore = doc.getElementsByTagName('h1')[1];
-				var note = Foxtrick.util.note.add(doc, insertBefore, 'ft-tableAd-copy-note',
-												  Foxtrick.L10n
-												  .getString('CopyLeagueStatsAd.copied'),
-												  null, true);
+				Foxtrick.util.note.add(doc, Foxtrick.L10n.getString('CopyLeagueStatsAd.copied'),
+				                       'ft-tableAd-copy-note');
 			}
 
 			catch (e) {
@@ -192,7 +186,7 @@ Foxtrick.modules['CopyBBAd'] = {
 		if (button) {
 			Foxtrick.addClass(button, 'ft-copy-bb-ad ft-pop-up-container');
 
-			var versions = ['all','max','avg'];
+			var versions = ['all', 'max', 'avg'];
 			var list = doc.createElement('ul');
 			list.className = 'ft-pop';
 			for (var j = 0; j < versions.length; ++j) {
@@ -252,10 +246,8 @@ Foxtrick.modules['CopyBBAd'] = {
 			ad = ad.replace(/\s+/g, ' ');
 
 			Foxtrick.copyStringToClipboard(ad);
-			var insertBefore = doc.getElementsByTagName('h1')[1];
-			var note = Foxtrick.util.note.add(doc, insertBefore, 'ft-tableAd-copy-note',
-											  Foxtrick.L10n.getString('CopyFinancesAd.copied'),
-											  null, true);
+			Foxtrick.util.note.add(doc, Foxtrick.L10n.getString('CopyFinancesAd.copied'),
+			                       'ft-tableAd-copy-note');
 		}
 		catch (e) {
 			Foxtrick.log('CopyFinancesAd', e);

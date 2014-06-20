@@ -577,10 +577,9 @@ Foxtrick.modules.MatchSimulator = {
 				}
 
 				Foxtrick.copyStringToClipboard(text);
-				var note = Foxtrick.util.note.add(doc, doc.getElementById('mainBody').firstChild,
-				                                  'ft-ratings-copy-note',
-				                                  Foxtrick.L10n.getString('copy.ratings.copied'),
-				                                  null, true);
+				var target = doc.getElementById('ft-overlayBottom');
+				Foxtrick.util.note.add(doc, Foxtrick.L10n.getString('copy.ratings.copied'),
+				                       'ft-ratings-copy-note', { to: target });
 			};
 
 			// get levels from ratings text and display them

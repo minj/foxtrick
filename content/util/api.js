@@ -74,7 +74,7 @@ Foxtrick.util.api = {
 			showNotice();
 			var linkPar = doc.createElement('p');
 			div.appendChild(linkPar);
-			linkPar.appendChild(Foxtrick.util.note.createLoading(doc, true));
+			linkPar.appendChild(Foxtrick.util.note.createLoading(doc, null, true));
 			Foxtrick.log('Requesting token at: ', Foxtrick.util.api.stripToken(requestTokenUrl));
 			Foxtrick.util.load.async(requestTokenUrl, function(text, status) {
 				Foxtrick.stopListenToChange(doc);
@@ -165,8 +165,7 @@ Foxtrick.util.api = {
 			if (!text) div.textContent = Foxtrick.L10n.getString('oauth.success');
 			else div.textContent = text;
 		};
-		Foxtrick.util.note.add(doc, null, 'ft-api-proxy-auth', div, null,
-			false, false, false);
+		Foxtrick.util.note.add(doc, div, 'ft-api-proxy-auth', { closable: false });
 		Foxtrick.startListenToChange(doc);
 	},
 

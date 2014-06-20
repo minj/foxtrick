@@ -113,9 +113,7 @@ Foxtrick.util.currency = {
 		});
 		cont.appendChild(button);
 
-		var insertBefore = doc.getElementById('testingNewHeader') ||
-			doc.getElementsByTagName('h1')[1];
-		Foxtrick.util.note.add(doc, insertBefore, noteId, cont, null, false, true);
+		Foxtrick.util.note.add(doc, cont, noteId, { closable: false });
 
 	},
 	reset: function() {

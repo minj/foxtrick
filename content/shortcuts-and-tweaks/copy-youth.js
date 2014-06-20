@@ -17,13 +17,7 @@ Foxtrick.modules['CopyYouth'] = {
 	CSS: Foxtrick.InternalPath + 'resources/css/copy-youth.css',
 
 	addNode: function(doc, text, timeout) {
-		var insertBefore = doc.getElementsByTagName('h1')[1];
-		var container = doc.createElement('div');
-		var p = doc.createElement('p');
-		p.appendChild(doc.createTextNode(text));
-		container.appendChild(p);
-		Foxtrick.util.note.add(doc, insertBefore, 'ft-training-report-copy-note', container,
-							   null, true, null, false, timeout);
+		Foxtrick.util.note.add(doc, text, null, { timeout: timeout });
 	},
 
 	addTrainingReport: function(doc) {
@@ -34,7 +28,6 @@ Foxtrick.modules['CopyYouth'] = {
 				var mainBody = doc.getElementById('mainBody');
 				var matchid = Foxtrick.util.id.findMatchId(mainBody);
 
-				var subDivs = mainBody.getElementsByTagName('div');
 				// FIXME - what the hell are they using this class‽
 				var playerInfo = mainBody.getElementsByClassName('playerInfo')[0];
 				var clone = playerInfo.cloneNode(true);
@@ -53,7 +46,6 @@ Foxtrick.modules['CopyYouth'] = {
 				Foxtrick.copyStringToClipboard(plain);
 
 				// display note
-				var insertBefore = doc.getElementsByTagName('h1')[1];
 				var server = Foxtrick.Prefs.getBool('hty-stage') ? 'stage' : 'www';
 				var url = 'http://' + server +
 					'.hattrick-youthclub.org/site/coachcomments_add/htmatch/' + matchid;
@@ -75,8 +67,7 @@ Foxtrick.modules['CopyYouth'] = {
 				linkContainer.appendChild(doc.createTextNode(string[1]));
 				container.appendChild(linkContainer);
 
-				Foxtrick.util.note.add(doc, insertBefore, 'ft-training-report-copy-note', container,
-				                       null, true);
+				Foxtrick.util.note.add(doc, container, 'ft-training-report-copy-note');
 			}
 			catch (e) {
 				Foxtrick.log(e);
@@ -349,7 +340,6 @@ Foxtrick.modules['CopyYouth'] = {
 				Foxtrick.copyStringToClipboard(html);
 
 				// display note
-				var insertBefore = doc.getElementsByTagName('h1')[1];
 				var url = 'http://www.ht-ys.org/read_fixtures';
 				var container = doc.createElement('div');
 				var p = doc.createElement('p');
@@ -368,9 +358,7 @@ Foxtrick.modules['CopyYouth'] = {
 				linkContainer.appendChild(doc.createTextNode(string[1]));
 				container.appendChild(linkContainer);
 
-				var note = Foxtrick.util.note.add(doc, insertBefore,
-				                                  'ft-youthfixtures-source-copy-note', container,
-				                                  null, true);
+				Foxtrick.util.note.add(doc, container, 'ft-youthfixtures-source-copy-note');
 			}
 			catch (e) {
 				Foxtrick.log(e);

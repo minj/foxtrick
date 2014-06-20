@@ -225,10 +225,8 @@ Foxtrick.modules['Core'] = {
 					forum.appendChild(doc.createTextNode(parts[2]));
 					info.appendChild(forum);
 
-					var insertBefore = doc.getElementById('testingNewHeader') ||
-						doc.getElementsByTagName('h1')[1];
-					Foxtrick.util.note.add(doc, insertBefore, 'ft-bug-report-link-note',
-					                       info, null, true, true);
+					Foxtrick.util.note.add(doc, info, 'ft-bug-report-link-note',
+					                       { closable: false, focus: true });
 				};
 
 				Foxtrick.api.pastebin.paste(showNote, title, bug, 'unlisted');

@@ -78,17 +78,8 @@ Foxtrick.modules['MyMonitor'] = {
 			addLink.className = 'ft-link';
 			addLink.textContent = Foxtrick.L10n.getString('button.add');
 			Foxtrick.onClick(addLink, function() {
-				var noteId = 'ft-monitor-add-note';
-				while (note = doc.getElementById(noteId))
-					note.parentNode.removeChild(note);
-				var note = Foxtrick.util.note.create(
-					doc,
-					Foxtrick.L10n.getString('MyMonitor.addHelp'),
-					null,
-					true
-				);
-				note.id = noteId;
-				mydiv.appendChild(note);
+				var msg = Foxtrick.L10n.getString('MyMonitor.addHelp');
+				Foxtrick.util.note.add(doc, msg, 'ft-monitor-add-note', { to: mydiv });
 			});
 			addRemove.appendChild(addLink);
 
@@ -101,10 +92,6 @@ Foxtrick.modules['MyMonitor'] = {
 			removeLink.className = 'ft-link';
 			removeLink.textContent = Foxtrick.L10n.getString('button.remove');
 			Foxtrick.onClick(removeLink, function() {
-				var noteId = 'ft-monitor-remove-note';
-				while (note = doc.getElementById(noteId))
-					note.parentNode.removeChild(note);
-
 				var removeBox = doc.createElement('div');
 				removeBox.id = 'ft-monitor-remove-box';
 				// label prompting to select a team for removal
@@ -142,9 +129,7 @@ Foxtrick.modules['MyMonitor'] = {
 				});
 				removeBox.appendChild(removeButton);
 				// add note
-				var note = Foxtrick.util.note.create(doc, removeBox, null, true);
-				note.id = noteId;
-				mydiv.appendChild(note);
+				Foxtrick.util.note.add(doc, removeBox, 'ft-monitor-remove-note', { to: mydiv });
 			});
 			addRemove.appendChild(removeLink);
 

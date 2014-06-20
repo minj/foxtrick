@@ -132,7 +132,6 @@ Foxtrick.modules['HTMSPoints'] = {
 					points.textContent = Foxtrick.L10n.getString('HTMSPoints.AbilityAndPotential')
 						.replace(/%1/, calcResult[0])
 						.replace(/%2/, calcResult[1]);
-					//points.appendChild(Foxtrick.util.note.createLoading(doc, true));
 					container.appendChild(points);
 					firstdiv.appendChild(container);
 					//Foxtrick.dump('skills: '+skillList);
@@ -170,7 +169,6 @@ Foxtrick.modules['HTMSPoints'] = {
 					container.appendChild(getLink(skillList));
 					container.appendChild(doc.createTextNode(' '));
 					var points = doc.createElement('span');
-					//points.appendChild(Foxtrick.util.note.createLoading(doc, true));
 					var calcResult = this.calc(skillArray);
 					points.textContent = Foxtrick.L10n.getString('HTMSPoints.AbilityAndPotential')
 						.replace(/%1/, calcResult[0])

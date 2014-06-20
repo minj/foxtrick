@@ -15,12 +15,9 @@ Foxtrick.modules['CopyMatchID'] = {
 		var copyId = function(ev) {
 			try {
 				var matchid = ev.target.getAttribute('matchid');
-				var insertBefore = doc.getElementById('testingNewHeader') ||
-					doc.getElementsByTagName('h1')[1];
 				Foxtrick.copyStringToClipboard(matchid);
-				var note = Foxtrick.util.note.add(doc, insertBefore, 'ft-match-id-copy-note',
-				                                  Foxtrick.L10n.getString('copy.matchid.copied'),
-				                                  null, true, true);
+				Foxtrick.util.note.add(doc, Foxtrick.L10n.getString('copy.matchid.copied'),
+				                       'ft-match-id-copy-note');
 			}
 			catch (e) {
 				Foxtrick.log(e);

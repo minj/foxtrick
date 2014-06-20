@@ -23,14 +23,10 @@ Foxtrick.modules['CopyRatings'] = {
 
 		var createRatings = function(place, teams) {
 			try {
+				var insertBefore = null;
 				if (place == 'table')
-					var insertBefore =
-						doc.getElementById('mainBody').getElementsByTagName('h2')[0].parentNode;
-				else if (place == 'box')
-					var insertBefore = doc.getElementById('foxtrick_addactionsbox_parentDiv');
-				else {
-					var insertBefore = doc.getElementsByTagName('h1')[1];
-				}
+					insertBefore = doc.getElementById('oldMatchRatings');
+
 				var team1 = (teams == 'both') || (teams == 'home');
 				var team2 = (teams == 'both') || (teams == 'away');
 
@@ -183,9 +179,8 @@ Foxtrick.modules['CopyRatings'] = {
 				}
 
 				Foxtrick.copyStringToClipboard(ad);
-				var note = Foxtrick.util.note.add(doc, insertBefore, 'ft-ratings-copy-note',
-				                                  Foxtrick.L10n.getString('copy.ratings.copied'),
-				                                  null, true);
+				Foxtrick.util.note.add(doc, Foxtrick.L10n.getString('copy.ratings.copied'),
+				                       'ft-ratings-copy-note', { at: insertBefore });
 			}
 			catch (e) {
 				Foxtrick.log(e);

@@ -22,20 +22,18 @@ Foxtrick.modules['ForumChangePosts'] = {
 			img.src = '/Img/Icons/transparent.gif';
 			link.appendChild(img);
 			Foxtrick.onClick(img, function() {
-					var idExpanded = (idLink.href.search(/MInd/i) >= 0);
-					if (idExpanded) {
-						var postId = idLink.href.match(/\d+\.\d+/g)[0];
-					}
-					else {
-						var postId = idLink.title;
-					}
-					var insertBefore = idLink.parentNode.parentNode.parentNode; // cfWrapper
-					Foxtrick.copyStringToClipboard('[post=Oops]'.replace('Oops', postId));
-					var note = Foxtrick.util.note.add(doc, insertBefore, 'ft-post-id-copy-note- '
-					                                  + postId.replace(/\D/g, ' - '),
-						Foxtrick.L10n.getString('copy.postid.copied').replace('%s', postId),
-						null, true);
-				});
+				var idExpanded = (idLink.href.search(/MInd/i) >= 0);
+				var postId = idExpanded ? idLink.href.match(/\d+\.\d+/g)[0] : idLink.title;
+				Foxtrick.copyStringToClipboard('[post=Oops]'.replace('Oops', postId));
+				var insertBefore = idLink;
+				while (!Foxtrick.hasClass(insertBefore, 'cfWrapper') &&
+				       !Foxtrick.hasClass(insertBefore, 'boxBody'))
+					insertBefore = insertBefore.parentNode;
+
+				var id = 'ft-post-id-copy-note-' + postId.replace(/\D/g, '-');
+				var note = Foxtrick.L10n.getString('copy.postid.copied').replace('%s', postId);
+				Foxtrick.util.note.add(doc, note, id, { at: insertBefore });
+			});
 			idLink.parentNode.insertBefore(link, idLink);
 		};
 		var copy_posting_to_clipboard = function(ev) {
@@ -64,7 +62,6 @@ Foxtrick.modules['ForumChangePosts'] = {
 					// official. detailed header is one down
 					Foxtrick.log(header.className, '\n');
 				}
-				var insertBefore = header.parentNode;
 
 				var header_left = null;
 				var header_right = null;
@@ -160,62 +157,62 @@ Foxtrick.modules['ForumChangePosts'] = {
 					}
 				}
 
-			// make header
-			var headstr = post_id1 + ': ' + poster_link1.title + ' » ';
-			if (poster_link2 && post_link2)
-				headstr += post_id2 + ': ' + poster_link2.title + '\n';
-			else
-				headstr += 'all\n';
-			if (copy_style == 'ht-ml')
-				headstr = '[q=' + poster_link1.title + '][post=' + post_id1 + ']\n';
+				// make header
+				var headstr = post_id1 + ': ' + poster_link1.title + ' » ';
+				if (poster_link2 && post_link2)
+					headstr += post_id2 + ': ' + poster_link2.title + '\n';
+				else
+					headstr += 'all\n';
+				if (copy_style == 'ht-ml')
+					headstr = '[q=' + poster_link1.title + '][post=' + post_id1 + ']\n';
 
-			// get date+time
-			var date = header_right_text.replace(/^ /, '');
-			var time = '';
-			if (date.search(/\d+:\d+/) == 0) {  // time unaltered
-				var cur_time = doc.getElementById('time').textContent;
-				var hi = cur_time.search(/\d+:\d+/);
-				time = date;
-				date = cur_time.substring(0, hi);
-			}
-			else if (date.search(/\d+:\d+/) == -1) { // date hidden by forumalterheaderline
-				var span = header_right.getElementsByTagName('span')[0];
-				if (span) time = span.title;
-				else time = date;
-			}
+				// get date+time
+				var date = header_right_text.replace(/^ /, '');
+				var time = '';
+				if (date.search(/\d+:\d+/) == 0) {  // time unaltered
+					var cur_time = doc.getElementById('time').textContent;
+					var hi = cur_time.search(/\d+:\d+/);
+					time = date;
+					date = cur_time.substring(0, hi);
+				}
+				else if (date.search(/\d+:\d+/) == -1) { // date hidden by forumalterheaderline
+					var span = header_right.getElementsByTagName('span')[0];
+					if (span) time = span.title;
+					else time = date;
+				}
 
-			var fulldate = date + time;
-			if (copy_style != 'ht-ml') headstr = fulldate + '  \n' + headstr + '';
+				var fulldate = date + time;
+				if (copy_style != 'ht-ml') headstr = fulldate + '  \n' + headstr + '';
 
-			if (copy_style == 'wiki') {
-				var headstr = '{{forum_message|\n';
-					headstr += '| from = [ [ ' + poster_link1.title + ' ] ]\n';
-					headstr += '| to = ' + (poster_link2 ? poster_link2.title : 'Everyone') + '\n';
-					headstr += '| msgid = ' + post_id1 + '\n';
-					headstr += '| prevmsgid = ' + (post_id2 ? post_id2 : '') + '\n';
-					headstr += '| datetime = ' + fulldate.replace(/(.+)(\d+:\d+)/, '$1' + 'at ' +
-					                                              '$2') + '\n';
-					headstr += '| keywords = \n';
-					headstr += '| text =\n';
-			}
+				if (copy_style == 'wiki') {
+					var headstr = '{{forum_message|\n';
+						headstr += '| from = [ [ ' + poster_link1.title + ' ] ]\n';
+						headstr += '| to = ' + (poster_link2 ? poster_link2.title : 'Everyone') + '\n';
+						headstr += '| msgid = ' + post_id1 + '\n';
+						headstr += '| prevmsgid = ' + (post_id2 ? post_id2 : '') + '\n';
+						headstr += '| datetime = ' + fulldate.replace(/(.+)(\d+:\d+)/, '$1' + 'at ' +
+						                                              '$2') + '\n';
+						headstr += '| keywords = \n';
+						headstr += '| text =\n';
+				}
 
-			// get message content
-			var msg = header.parentNode.getElementsByClassName('message')[0];
-			var message = Foxtrick.util.htMl.getMarkupFromNode(msg);
-			message = headstr + message;
+				// get message content
+				var msg = header.parentNode.getElementsByClassName('message')[0];
+				var message = Foxtrick.util.htMl.getMarkupFromNode(msg);
+				message = headstr + message;
 
-			// complete message
-			if (copy_style == 'wiki')
-				message += '}}';
-			else if (copy_style == 'ht-ml')
-				message += '[/q]';
+				// complete message
+				if (copy_style == 'wiki')
+					message += '}}';
+				else if (copy_style == 'ht-ml')
+					message += '[/q]';
 
-			Foxtrick.copyStringToClipboard(message);
+				Foxtrick.copyStringToClipboard(message);
 
-			var note = Foxtrick.util.note.add(doc, insertBefore, 'ft-posting-copy-note- ' +
-			                                  post_id1.replace(/\D/, ' - '),
-				Foxtrick.L10n.getString('copy.posting.copied').replace('%s', post_id1),
-				null, true);
+				var insertBefore = header.parentNode;
+				var id = 'ft-posting-copy-note- ' + post_id1.replace(/\D/, ' - ');
+				var note = Foxtrick.L10n.getString('copy.posting.copied').replace('%s', post_id1);
+				Foxtrick.util.note.add(doc, note, id, { at: insertBefore });
 			}
 			catch (e) {
 				Foxtrick.log(e);
