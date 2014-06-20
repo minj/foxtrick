@@ -7,8 +7,8 @@
 
 Foxtrick.modules['ConfirmActions'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-	PAGES: ['playerDetails', 'staff'],
-	OPTIONS: ['Bid', 'TransferList', 'NtChange', 'StaffChange'],
+	PAGES: ['playerDetails'],
+	OPTIONS: ['Bid', 'TransferList', 'NtChange'],
 
 	/**
 	 * @param	{document}	doc
@@ -180,110 +180,6 @@ Foxtrick.modules['ConfirmActions'] = {
 						if (!confirm(Foxtrick.L10n.getString('ConfirmActions.ntremove')))
 							ev.preventDefault();
 					});
-				}
-			}
-		}
-		else if (Foxtrick.isPage(doc, 'staff')) {
-			if (Foxtrick.Prefs.isModuleOptionEnabled('ConfirmActions', 'StaffChange')) {
-				var submitButton = doc.getElementById(ids.STAFF.SUBMIT_BUTTON_ID);
-				if (submitButton) {
-					submitButton = Foxtrick.makeFeaturedElement(submitButton, this);
-					Foxtrick.onClick(submitButton, function(ev) {
-						var doc = ev.target.ownerDocument;
-						var submitButton = doc.getElementById(ids.STAFF.SUBMIT_BUTTON_ID);
-						var actionSelect = doc.getElementById(ids.STAFF.ACTION_SELECT_ID);
-						var amountText = doc.getElementById(ids.STAFF.AMOUNT_TEXT_ID);
-						var roleSelect = doc.getElementById(ids.STAFF.ROLE_SELECT_ID);
-						var confirm = doc.getElementById(ids.STAFF.CONFIRM_ID);
-						var confirmAdded = true;
-						if (actionSelect && amountText && roleSelect && !confirm) {
-							var actionIndex = parseInt(actionSelect.selectedIndex, 10);
-							var amount = amountText.value;
-							var roleIndex = parseInt(roleSelect.selectedIndex, 10);
-							var roleStr = roleSelect.options[roleIndex].textContent;
-							if (!isNaN(amount) && roleIndex !== 0) {
-								var msgTemplate;
-								if (actionIndex === 0) {
-									msgTemplate = Foxtrick.L10n.getString('ConfirmActions.hirestaff');
-								}
-								else if (actionIndex === 1) {
-									msgTemplate = Foxtrick.L10n.getString('ConfirmActions.sackstaff');
-								}
-								var msg = msgTemplate.replace(/\%num/, amount).replace(/\%kind/, roleStr);
-								var msgPara = doc.createElement('p');
-								if (Foxtrick.util.layout.hasMultipleTeams(doc)) {
-									var cont = doc.createElement('strong');
-									cont.textContent =
-										Foxtrick.modules['Core'].getSelfTeamInfo().teamName + ': ';
-									msgPara.appendChild(cont);
-								}
-								msgPara.appendChild(doc.createTextNode(msg));
-								var buttons = [
-									{
-										type: Foxtrick.util.note.BUTTON_OK,
-										listener: function(ev) {
-											var doc = ev.target.ownerDocument;
-											var actionSelect =
-												doc.getElementById(ids.STAFF.ACTION_SELECT_ID);
-											actionSelect.removeAttribute('disabled');
-											var amountText =
-												doc.getElementById(ids.STAFF.AMOUNT_TEXT_ID);
-											amountText.removeAttribute('disabled');
-											var roleSelect =
-												doc.getElementById(ids.STAFF.ROLE_SELECT_ID);
-											roleSelect.removeAttribute('disabled');
-											// after confirm all webpage's javascript link click action
-											var submitButton =
-												doc.getElementById(ids.STAFF.SUBMIT_BUTTON_ID);
-											submitButton.setAttribute('onclick',
-											                          submitButton
-											                          .getAttribute('alt-onclick'));
-											submitButton.click();
-										}
-									},
-									{
-										type: Foxtrick.util.note.BUTTON_CANCEL,
-										listener: function(ev) {
-											var doc = ev.target.ownerDocument;
-											var submitButton =
-												doc.getElementById(ids.STAFF.SUBMIT_BUTTON_ID);
-											Foxtrick.removeClass(submitButton, 'hidden');
-											var actionSelect =
-												doc.getElementById(ids.STAFF.ACTION_SELECT_ID);
-											actionSelect.removeAttribute('disabled');
-											var amountText =
-												doc.getElementById(ids.STAFF.AMOUNT_TEXT_ID);
-											amountText.removeAttribute('disabled');
-											var roleSelect =
-												doc.getElementById(ids.STAFF.ROLE_SELECT_ID);
-											roleSelect.removeAttribute('disabled');
-											var confirm = doc.getElementById(ids.STAFF.CONFIRM_ID);
-											confirm.parentNode.removeChild(confirm);
-										}
-									}
-								];
-								var target = submitButton.parentNode;
-								Foxtrick.util.note.add(doc, msgPara, ids.STAFF.CONFIRM_ID,
-								                       { buttons: buttons, to: target });
-								confirmAdded = true;
-								Foxtrick.addClass(submitButton, 'hidden');
-								actionSelect.disabled = amountText.disabled =
-									roleSelect.disabled = 'disabled';
-								if (confirmAdded === false) {
-									// after confirm all webpage's javascript link click action
-									submitButton.setAttribute('onclick',
-									                          submitButton.getAttribute('alt-onclick'));
-									submitButton.click();
-								}
-								ev.preventDefault();
-							}
-						}
-					});
-					// need to store the onclick attribute as alt-onclick
-					// to prevent it from being executed right away
-					// and use it when needed
-					submitButton.setAttribute('alt-onclick', submitButton.getAttribute('onclick'));
-					submitButton.removeAttribute('onclick');
 				}
 			}
 		}

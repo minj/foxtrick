@@ -167,7 +167,6 @@ Foxtrick.loader.background.contentScriptManager = {
 		'links/links-national.js',
 		'links/links-player-detail.js',
 		'links/links-players.js',
-		'links/links-staff.js',
 		'links/links-team.js',
 		'links/links-tracker.js',
 		'links/links-training.js',

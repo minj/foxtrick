@@ -187,7 +187,6 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/links/links-national.js</string>
 				<string>content/links/links-player-detail.js</string>
 				<string>content/links/links-players.js</string>
-				<string>content/links/links-staff.js</string>
 				<string>content/links/links-team.js</string>
 				<string>content/links/links-tracker.js</string>
 				<string>content/links/links-training.js</string>
