@@ -14,6 +14,7 @@ Foxtrick.modules['HeaderFix'] = {
 
 	run: function(doc) {
 
+		// flash objects protrude from the header in Firefox
 		var isArena = Foxtrick.isPage(doc, 'arena');
 		var isMatch = Foxtrick.isPage(doc, 'match');
 
@@ -24,71 +25,41 @@ Foxtrick.modules['HeaderFix'] = {
 		if (doc.location.href.search(/Youth/i) != -1)
 			return;
 
-		var ctl00_ctl00_CPContent_CPMain_pnl =
+		var panel =
 			doc.getElementById('ctl00_ctl00_CPContent_CPMain_pnlPreMatch');
 		if (isArena)
-			ctl00_ctl00_CPContent_CPMain_pnl =
-				doc.getElementById('ctl00_ctl00_CPContent_CPMain_pnlMain');
-		var ctl00_ctl00_CPContent_CPMain_pnlTeamInfo =
-			doc.getElementById('ctl00_ctl00_CPContent_CPMain_pnlTeamInfo');
-		var ctl00_ctl00_CPContent_CPMain_pnlArenaFlash =
-			doc.getElementById('ctl00_ctl00_CPContent_CPMain_pnlArenaFlash');
+			panel = doc.getElementById('ctl00_ctl00_CPContent_CPMain_pnlMain');
+		var panelTeamInfo = doc.getElementById('ctl00_ctl00_CPContent_CPMain_pnlTeamInfo');
+		var panelArenaFlash = doc.getElementById('ctl00_ctl00_CPContent_CPMain_pnlArenaFlash');
 
 		// check right page and is supporter
-		if (isMatch && (!ctl00_ctl00_CPContent_CPMain_pnl ||
-		    !ctl00_ctl00_CPContent_CPMain_pnlTeamInfo))
+		if (isMatch && (!panel || !panelTeamInfo))
 			return;
-		if (isArena && !ctl00_ctl00_CPContent_CPMain_pnl)
+		if (isArena && !panel)
 			return;
-		if (!ctl00_ctl00_CPContent_CPMain_pnlArenaFlash)
+		if (!panelArenaFlash)
 			return;
 
-		if (isArena && ctl00_ctl00_CPContent_CPMain_pnl.getElementsByTagName('h1').length > 1)
+		if (isArena && panel.getElementsByTagName('h1').length > 1)
 			return; // don't move if arena is under constriction
 
-		// get some divs to move
-		var arenaInfo = ctl00_ctl00_CPContent_CPMain_pnlArenaFlash.nextSibling;
-		var separator = null;
-		var mainBox = null;
-		var divs = ctl00_ctl00_CPContent_CPMain_pnl.getElementsByTagName('div');
-		for (var i = 0; i < divs.length; ++i) {
-			if (divs[i].className == 'arenaInfo')
-				arenaInfo = divs[i];
-			if (divs[i].className == 'separator')
-				separator = divs[i];
-			if (divs[i].className == 'mainBox')
-				mainBox = divs[i];
-		}
+		var mainBox = panel.getElementsByClassName('mainBox')[0];
+		if (mainBox && Foxtrick.util.layout.isStandard(doc))
+			mainBox.setAttribute('style', 'margin-bottom:0px;');
 
-		// reduce margins of new top div
-		if (ctl00_ctl00_CPContent_CPMain_pnlTeamInfo)
-			ctl00_ctl00_CPContent_CPMain_pnlTeamInfo
-				.setAttribute('style', 'float:left !important; margin-top:-20px;');
-		else {
-			mainBox.getElementsByTagName('h2')[0].setAttribute('style', 'margin-top:-20px;');
-			if (Foxtrick.util.layout.isStandard(doc))
-				mainBox.setAttribute('style', 'margin-bottom:0px;');
-		}
-
-		// move or delete seperator
-		if (separator && (isMatch || !Foxtrick.util.layout.isStandard(doc))) {
-			separator = ctl00_ctl00_CPContent_CPMain_pnl.removeChild(separator);
-			ctl00_ctl00_CPContent_CPMain_pnl.appendChild(separator);
-		}
-		// move areainfo
-		if (arenaInfo) {
-			arenaInfo = ctl00_ctl00_CPContent_CPMain_pnl.removeChild(arenaInfo);
-			ctl00_ctl00_CPContent_CPMain_pnl.appendChild(arenaInfo);
-			arenaInfo.setAttribute('style', 'float:right !important;');
+		// (re)move sperators
+		var seps = Foxtrick.toArray(doc.querySelectorAll('#mainBody .separator'));
+		if (seps.length) {
+			var separator = seps.shift();
+			panel.appendChild(separator);
+			Foxtrick.forEach(function(sep) {
+				sep.parentNode.removeChild(sep);
+			}, seps);
 		}
 
 		// move flash
-		ctl00_ctl00_CPContent_CPMain_pnlArenaFlash = ctl00_ctl00_CPContent_CPMain_pnl.removeChild(ctl00_ctl00_CPContent_CPMain_pnlArenaFlash);
-		ctl00_ctl00_CPContent_CPMain_pnl.appendChild(ctl00_ctl00_CPContent_CPMain_pnlArenaFlash);
-		ctl00_ctl00_CPContent_CPMain_pnlArenaFlash.setAttribute('style', 'margin-top:25px;');
-		if (isArena)
-			ctl00_ctl00_CPContent_CPMain_pnlArenaFlash
-				.setAttribute('style', 'margin-top:25px; margin-left:-8px !important;' +
-				              ' margin-right:-3px !important;');
+		panelArenaFlash = panel.removeChild(panelArenaFlash);
+		Foxtrick.removeClass(panelArenaFlash, 'float_left');
+		panel.appendChild(panelArenaFlash);
 	}
 };

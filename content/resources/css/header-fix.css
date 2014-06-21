@@ -105,6 +105,16 @@ html[data-multiple] #content {
 	z-index:9999 !important;
 }
 
+/* prematch arena */
+div.arenaInfo {
+	width: 100% !important;
+	float: none !important;
+}
+#ctl00_ctl00_CPContent_CPMain_pnlArenaFlash object {
+	display: block;
+	margin: 0 auto;
+}
+
 /* fix for popup shop*/
 .ui-widget {
 	z-index:10002 !important;
