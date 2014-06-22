@@ -95,8 +95,8 @@ Foxtrick.modules['ForumChangePosts'] = {
 				var poster_id2 = null;
 				var supporter_link1 = null;
 				var supporter_link2 = null;
-				var league_link1 = null;
-				var league_link2 = null;
+				var series_link1 = null;
+				var series_link2 = null;
 				var post_id1 = null;
 				var post_id2 = null;
 
@@ -415,8 +415,8 @@ Foxtrick.modules['ForumChangePosts'] = {
 			var poster_id2 = null;
 			var supporter_link1 = null;
 			var supporter_link2 = null;
-			var league_link1 = null;
-			var league_link2 = null;
+			var series_link1 = null;
+			var series_link2 = null;
 			var is_ignored = false;
 			if (do_single_header && header_right) {
 				var header_right_links = header_right.getElementsByTagName('a');
@@ -466,12 +466,10 @@ Foxtrick.modules['ForumChangePosts'] = {
 						}
 					}
 				}
-				if (!isStandardLayout) {
-					if (!league_link1 && header_left_link.href.search(/LeagueLevelUnitID/i) != -1)
-						league_link1 = header_left_link;
-					else if (header_left_link.href.search(/LeagueLevelUnitID/i) != -1)
-						league_link2 = header_left_link;
-				}
+				if (!series_link1 && header_left_link.href.search(/LeagueLevelUnitID/i) != -1)
+					series_link1 = header_left_link;
+				else if (header_left_link.href.search(/LeagueLevelUnitID/i) != -1)
+					series_link2 = header_left_link;
 			}
 
 			// get user, user_info, user_avater: all maybe = null !!!
@@ -601,32 +599,32 @@ Foxtrick.modules['ForumChangePosts'] = {
 						poster_link2.textContent = userName2.substr(0, trunclength - 2) + '..';
 					}
 				}
-				if (league_link1) {
-					var league_name1 = league_link1.textContent;
-					if (league_name1.length > trunclength) {
-						league_link1.setAttribute('title', league_name1);
-						league_link1.textContent = league_name1.substr(0, trunclength - 2) + '..';
+				if (series_link1) {
+					var series_name1 = series_link1.textContent;
+					if (series_name1.length > trunclength) {
+						series_link1.setAttribute('title', series_name1);
+						series_link1.textContent = series_name1.substr(0, trunclength - 2) + '..';
 					}
 				}
-				if (league_link2) {
-					var league_name2 = league_link2.textContent;
-					if (league_name2.length > trunclength) {
-						league_link2.setAttribute('title', league_name2);
-						league_link2.textContent = league_name2.substr(0, trunclength - 2) + '..';
+				if (series_link2) {
+					var series_name2 = series_link2.textContent;
+					if (series_name2.length > trunclength) {
+						series_link2.setAttribute('title', series_name2);
+						series_link2.textContent = series_name2.substr(0, trunclength - 2) + '..';
 					}
 				}
 			}
 
 			if (do_truncate_leaguename) {
-				if (league_link1) {
-					league_link1.textContent = league_link1.textContent.replace(/\..+/, '');
-					if (league_link1.textContent.length > 3 && league_link1.textContent != 'VIII')
-						league_link1.textContent = 'I';
+				if (series_link1) {
+					series_link1.textContent = series_link1.textContent.replace(/\..+/, '');
+					if (series_link1.textContent.length > 3 && series_link1.textContent != 'VIII')
+						series_link1.textContent = 'I';
 				}
-				if (league_link2) {
-					league_link2.textContent = league_link2.textContent.replace(/\..+/, '');
-					if (league_link2.textContent.length > 3 && league_link2.textContent != 'VIII')
-						league_link2.textContent = 'I';
+				if (series_link2) {
+					series_link2.textContent = series_link2.textContent.replace(/\..+/, '');
+					if (series_link2.textContent.length > 3 && series_link2.textContent != 'VIII')
+						series_link2.textContent = 'I';
 				}
 			}
 
