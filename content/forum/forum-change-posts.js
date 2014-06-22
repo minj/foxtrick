@@ -237,7 +237,7 @@ Foxtrick.modules['ForumChangePosts'] = {
 				!Foxtrick.Prefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'CheckDesign');
 			var do_truncate_nicks = do_alter_header &&
 				Foxtrick.Prefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'TruncateLongNick');
-			var do_truncate_leaguename = do_alter_header &&
+			var do_truncate_seriesname = do_alter_header &&
 				Foxtrick.Prefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'TruncateLeagueName');
 			var do_hide_old_time = do_alter_header &&
 				Foxtrick.Prefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'HideOldTime');
@@ -491,9 +491,9 @@ Foxtrick.modules['ForumChangePosts'] = {
 			// get info & nodes from user_info
 			var teamid = null;
 			var teamname = null;
-			var leagueid = null;
+			var seriesId = null;
 			var countryLink = null;
-			var leagueLinkUserInfo = null;
+			var seriesLinkUserInfo = null;
 			if (user_info) {
 				var user_info_links = user_info.getElementsByTagName('a');
 				var k = 0, user_info_link;
@@ -508,8 +508,8 @@ Foxtrick.modules['ForumChangePosts'] = {
 					if (user_info_link.href.search(/LeagueID=/i) != -1) {
 							countryLink = user_info_link;
 					} else if (user_info_link.href.search(/LeagueLevelUnitID=/i) != -1) {
-							leagueLinkUserInfo = user_info_link;
-							leagueid =
+							seriesLinkUserInfo = user_info_link;
+							seriesId =
 								Foxtrick.util.id.getLeagueLeveUnitIdFromUrl(user_info_link.href);
 					}
 				}
@@ -568,7 +568,7 @@ Foxtrick.modules['ForumChangePosts'] = {
 			}
 
 			// move links -----------------------------------------
-			if (do_move_links && countryLink && leagueLinkUserInfo) {
+			if (do_move_links && countryLink && seriesLinkUserInfo) {
 				var placenode;
 				if (supporter_link1) placenode = supporter_link1.nextSibling;
 				else placenode = poster_link1.nextSibling;
@@ -576,8 +576,8 @@ Foxtrick.modules['ForumChangePosts'] = {
 					// false: 'Show detailed post header' is activated; don't run
 					var space = doc.createTextNode(' ');
 					header_left.insertBefore(space, placenode);
-					header_left.insertBefore(leagueLinkUserInfo, space);
-					header_left.insertBefore(countryLink, leagueLinkUserInfo);
+					header_left.insertBefore(seriesLinkUserInfo, space);
+					header_left.insertBefore(countryLink, seriesLinkUserInfo);
 					var space = doc.createTextNode(' ');
 					header_left.insertBefore(space, countryLink);
 				}
@@ -614,7 +614,7 @@ Foxtrick.modules['ForumChangePosts'] = {
 				}
 			}
 
-			if (do_truncate_leaguename) {
+			if (do_truncate_seriesname) {
 				if (series_link1) {
 					series_link1.textContent = series_link1.textContent.replace(/\..+/, '');
 					if (series_link1.textContent.length > 3 && series_link1.textContent != 'VIII')
