@@ -529,8 +529,10 @@ Foxtrick.modules['StaffMarker'] = {
 
 				var enable = module.getEnabledTypes();
 
-				if (Foxtrick.isPage(doc, 'forumViewThread') || Foxtrick.isPage(doc, 'forumWritePost')) {
+				if (Foxtrick.isPage(doc, 'forumViewThread') ||
+				    Foxtrick.isPage(doc, 'forumWritePost')) {
 					markThread(doc, modifier);
+					Foxtrick.modules['ForumAlterHeaderLine'].ensureUnbrokenHeaders(doc);
 					markSelect(doc, modifier);
 				}
 				else if (Foxtrick.Prefs.isModuleOptionEnabled('StaffMarker', 'manager')) {

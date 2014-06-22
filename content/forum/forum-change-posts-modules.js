@@ -129,21 +129,46 @@ Foxtrick.modules['ForumAlterHeaderLine'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.FORUM,
 	PAGES: ['forumViewThread'],
 	OPTIONS: [
-		'SingleHeaderLine', 'CheckDesign', 'TruncateLongNick', 'TruncateLeagueName', 'HideOldTime',
-		'SmallHeaderFont', 'ShortPostId', 'ReplaceSupporterStar', 'BookmarkHeaderSmall',
-		'HighlightThreadOpener'
+		'SingleHeaderLine',
+		'CheckDesign',
+
+		'TruncateLongNick', 'TruncateLeagueName', 'HideOldTime',
+
+		'SmallHeaderFont',
+
+		'ShortPostId',
+
+		'ReplaceSupporterStar',
+		'BookmarkHeaderSmall',
+
+		'HighlightThreadOpener',
 	],
 	OPTIONS_CSS: [
 		Foxtrick.InternalPath + 'resources/css/fixes/Forum_Header_Single.css',
 		Foxtrick.InternalPath + 'resources/css/fixes/Forum_Header_CheckDesign.css',
-		'', '', '',
+		null, null, null,
 		Foxtrick.InternalPath + 'resources/css/fixes/Forum_Header_Smallsize_Single.css',
-		'',
+		null,
 		Foxtrick.InternalPath + 'resources/css/fixes/Forum_Header_RemoveSupporterStar.css',
-		Foxtrick.InternalPath + 'resources/css/fixes/BookmarkHeaderSmall.css'
+		Foxtrick.InternalPath + 'resources/css/fixes/BookmarkHeaderSmall.css',
+		null,
 	],
 
-	CSS: Foxtrick.InternalPath + 'resources/css/fixes/Forum_Header_Single_SimpleFix.css'
+	CSS: Foxtrick.InternalPath + 'resources/css/fixes/Forum_Header_Single_SimpleFix.css',
+	ensureUnbrokenHeaders: function(doc) {
+		if (Foxtrick.Prefs.isModuleEnabled('ForumAlterHeaderLine') &&
+		    Foxtrick.Prefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'CheckDesign')) {
+
+			var headers = doc.getElementsByClassName('cfHeader');
+			var badHeaders = Foxtrick.filter(function(header) {
+				var header_right = header.getElementsByClassName('float_right')[0];
+				return (header.offsetTop - header_right.offsetTop < -3);
+			}, headers);
+			Foxtrick.forEach(function(header) {
+				header.setAttribute('class', 'cfHeader ftdoubleLine');
+			}, badHeaders);
+		}
+	},
 };
 
 

@@ -396,7 +396,7 @@ Foxtrick.modules['ForumChangePosts'] = {
 		var num_wrapper = 0;  // message counter
 		var wrappers = doc.getElementsByClassName('cfWrapper');
 		var i = 0, wrapper;
-		while (wrapper = wrappers[i++]) {
+		while ((wrapper = wrappers[i++])) {
 			if (wrapper.getElementsByClassName('cfDeleted').length > 0)
 				continue; // post deleted, process next
 			var header = wrapper.getElementsByClassName('cfHeader')[0];
@@ -404,8 +404,7 @@ Foxtrick.modules['ForumChangePosts'] = {
 			// +++++++++++ gather info and nodes +++++++++++++++++++++++++
 			var header_left = header.getElementsByClassName('float_left')[0];
 			var header_right = header.getElementsByClassName('float_right')[0];
-			var header_right_inner = header_right.getElementsByTagName('div')[0]
-				|| header_right;
+			var header_right_inner = header_right.getElementsByTagName('div')[0] || header_right;
 
 			// get post_links, poster_links, poster_id from header
 			var header_left_links = header_left.getElementsByTagName('a');
@@ -714,10 +713,6 @@ Foxtrick.modules['ForumChangePosts'] = {
 									+ '..';
 							}
 						}
-						if (header.offsetTop - header_right.offsetTop < -3) {
-							header.setAttribute('class', 'cfHeader ftdoubleLine');
-							Foxtrick.dump('do_truncate_nicks: adjust height back\n');
-						}
 					}
 				}
 			}  // end single header line
@@ -733,5 +728,6 @@ Foxtrick.modules['ForumChangePosts'] = {
 
 			++num_wrapper;
 		}
+		Foxtrick.modules['ForumAlterHeaderLine'].ensureUnbrokenHeaders(doc);
 	}
 };
