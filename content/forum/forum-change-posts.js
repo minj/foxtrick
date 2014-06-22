@@ -296,7 +296,6 @@ Foxtrick.modules['ForumChangePosts'] = {
 
 		// part of alter header
 		var trunclength = 14;
-		//if (!isStandardLayout) trunclength = 10;
 
 		var doubleHeaderStyle = 'height:30px !important; ';
 		var alt_supporter = doc.createElement('a');
@@ -589,28 +588,30 @@ Foxtrick.modules['ForumChangePosts'] = {
 			}
 
 			// single header line ---------------------------------------
-			if (do_truncate_nicks && do_single_header_allways) {
+			if (do_truncate_nicks) {
 				var userName1 = poster_link1.textContent;
 				if (userName1.length > trunclength) {
-					poster_link1.setAttribute('longnick', poster_link1.textContent);
+					poster_link1.setAttribute('title', userName1);
 					poster_link1.textContent = userName1.substr(0, trunclength - 2) + '..';
 				}
 				if (poster_link2) {
 					var userName2 = poster_link2.textContent;
 					if (userName2.length > trunclength) {
-						poster_link2.setAttribute('longnick', poster_link2.textContent);
+						poster_link2.setAttribute('title', userName2);
 						poster_link2.textContent = userName2.substr(0, trunclength - 2) + '..';
 					}
 				}
 				if (league_link1) {
 					var league_name1 = league_link1.textContent;
 					if (league_name1.length > trunclength) {
+						league_link1.setAttribute('title', league_name1);
 						league_link1.textContent = league_name1.substr(0, trunclength - 2) + '..';
 					}
 				}
 				if (league_link2) {
 					var league_name2 = league_link2.textContent;
 					if (league_name2.length > trunclength) {
+						league_link2.setAttribute('title', league_name2);
 						league_link2.textContent = league_name2.substr(0, trunclength - 2) + '..';
 					}
 				}
@@ -683,39 +684,7 @@ Foxtrick.modules['ForumChangePosts'] = {
 			if (do_single_header && is_ignored && header.className == 'cfHeader doubleLine') {
 				wrapper.setAttribute('style', 'margin-bottom: 20px !important;');
 			}
-			if (do_single_header && !do_single_header_allways && !is_ignored) {
-				if (header.className == 'cfHeader doubleLine') {
-					if (do_truncate_nicks) {
-						var userName1 = poster_link1.textContent;
-						if (userName1.length > trunclength) {
-							poster_link1.setAttribute('longnick', poster_link1.textContent);
-							poster_link1.textContent = userName1.substr(0, trunclength - 2) + '..';
-						}
-						if (poster_link2) {
-							var userName2 = poster_link2.textContent;
-							if (userName2.length > trunclength) {
-								poster_link2.setAttribute('longnick', poster_link2.textContent);
-								poster_link2.textContent = userName2.substr(0, trunclength - 2) +
-								'..';
-							}
-						}
-						if (league_link1) {
-							var league_name1 = league_link1.textContent;
-							if (league_name1.length > trunclength) {
-								league_link1.textContent = league_name1.substr(0, trunclength - 2)
-									+ '..';
-							}
-						}
-						if (league_link2) {
-							var league_name2 = league_link2.textContent;
-							if (league_name2.length > trunclength) {
-								league_link2.textContent = league_name2.substr(0, trunclength - 2)
-									+ '..';
-							}
-						}
-					}
-				}
-			}  // end single header line
+			// end single header line
 
 			// add default facecard ----------------------------
 			if (do_default_facecard && user && !user_avatar) {
