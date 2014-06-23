@@ -80,6 +80,12 @@ Foxtrick.modules['EmbedMedia'] = {
 			'genericImage': '^(?:https?:)?//[\\w\\d.%~/+-]+(?:gif|jpg|jpeg|png|bmp)$'
 		};
 
+		var genericExludes = [
+			'^(?:https?://)?(?:www\\.)?imageshack\\.us/',
+			'^(?:https?://)?(?:www\\.)?dropbox.com/',
+			'^(?:https?://)?(?:www\\.)?fotos-hochladen.net/view/',
+		];
+
 		//oEmbed supported sites need entries at this point
 		var oembed_urls = {
 			'vimeo': 'https://vimeo.com/api/oembed.json?maxwidth=400&url=',
@@ -213,13 +219,18 @@ Foxtrick.modules['EmbedMedia'] = {
 						//link passed regex, add to supported links
 						if (matches) {
 							//ignore imageshack pseudo-links detected as generic
-							if (key == 'genericImage' &&
-								link.href.match('^(?:https?://)?(?:www)?imageshack\\.us/'))
-								continue;
+							if (key == 'genericImage') {
+								var excluded = Foxtrick.any(function(re) {
+									return link.href.match(re);
+								}, genericExludes);
+
+								if (excluded)
+									continue;
+							}
 
 							//but convert to generic if the users already pasted an image link
-							if(key == "imageshack" && link.href.match(/img\d+/))
-								key = "genericImage";
+							if (key == 'imageshack' && link.href.match(/img\d+/))
+								key = 'genericImage';
 
 							//Opera would need permision for that workarround, FF and Chrome
 							//don't seem to require it tho
