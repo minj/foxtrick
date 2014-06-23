@@ -57,28 +57,7 @@ Foxtrick.modules['EmbedMedia'] = {
 		};
 
 		var oEmbedRequest = function(url, callback) {
-			var req = new doc.defaultView.XMLHttpRequest();
-			req.open('GET', url, true);
-			if (typeof(req.overrideMimeType) == 'function')
-				req.overrideMimeType('text/plain');
-
-			req.onloadend = function() {
-				try {
-					callback(req.responseText, req.status);
-				}
-				catch (e) {
-					Foxtrick.log('Uncaught callback error: - url: ', url, ': ', e);
-				}
-			};
-
-			try {
-				req.send(null);
-			}
-			catch (e) {
-				// catch cross-domain errors
-				Foxtrick.log(url, ' ', e);
-				callback(null, 0);
-			}
+			Foxtrick.util.load.async(url, callback);
 		};
 
 		//Link validation regex, check if the link is supported by any means
@@ -349,13 +328,18 @@ Foxtrick.modules['EmbedMedia'] = {
 					//load json from providers async
 					Foxtrick.util.load.get(oEmbedRequestURL)('success',
 					  function(response) {
-						var json = JSON.parse(response);
-						do_oEmbed(target, json);
+						try {
+							var json = JSON.parse(response);
+							do_oEmbed(target, json);
+						}
+						catch (e) {
+							Foxtrick.log('oEmbed error:', e.toString());
+						}
 					})('failure', function(code) {
 						Foxtrick.log('Error loading embed code: ', oembed_urls[key] +
-						             target.firstChild.href);
-						target.nextSibling.textContent = 'Not a media item, host is down or has ' +
-							'uncomprehensive response.';
+									 target.firstChild.href);
+						target.nextSibling.textContent =
+							Foxtrick.L10n.getString('oembed.badresponse');
 					});
 				}
 				//iFrame
