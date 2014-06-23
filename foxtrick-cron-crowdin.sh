@@ -34,7 +34,6 @@ cd $NIGHTLY || log "Cannot cd to $NIGHTLY"
 git stash
 git svn rebase || log "Cannot git-svn rebase"
 cd maintainer || log "Cannot cd to maintainer"
-./commit-resources.sh || echo "Cannot commit resource zips"
 cd ..
 #git stash apply
 log "Success resource update."
