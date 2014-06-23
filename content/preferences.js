@@ -259,10 +259,6 @@ function searchEvent(ev) {
 // should move/get that to the resp. modules
 var neededPermissions = [
 	{
-		modules: ['ExtraShortcuts.HtRadio'],
-		types: { origins: ['http://stream.ht-radio.nl/*'] }
-	},
-	{
 		modules: ['ExtraShortcuts.No9'],
 		types: { origins: ['http://no9-online.de/*'] }
 	},
@@ -282,7 +278,7 @@ var neededPermissions = [
 	},
 	{
 		modules: ['EmbedMedia.EmbedFlickrImages'],
-		types: { origins: ['http://www.flickr.com/services/oembed/*'] }
+		types: { origins: ['https://secure.flickr.com/services/oembed/*'] }
 	},
 	{
 		modules: ['EmbedMedia.EmbedDeviantArtImages'],
@@ -290,11 +286,11 @@ var neededPermissions = [
 	},
 	{
 		modules: ['EmbedMedia.EmbedSoundCloud'],
-		types: { origins: ['http://soundcloud.com/*'] }
+		types: { origins: ['https://soundcloud.com/*'] }
 	},
 	{
 		modules: ['EmbedMedia.EmbedImageshack'],
-		types: { origins: ['http://imageshack.us/*'] }
+		types: { origins: ['https://imageshack.us/*'] }
 	},
 	{
 		modules: ['YouthTwins'],
@@ -315,10 +311,6 @@ var neededPermissions = [
 	{
 		modules: ['YouthSkills'],
 		types: { origins: ['http://*.hattrick-youthclub.org/*'] }
-	},
-	{
-		modules: ['HTEVPrediction'],
-		types: { origins: ['http://htev.org/api/*'] }
 	},
 	{
 		modules: ['MatchWeather'],

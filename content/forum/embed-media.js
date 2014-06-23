@@ -92,7 +92,7 @@ Foxtrick.modules['EmbedMedia'] = {
 			'youtube': 'https://www.youtube.com/oembed?format=json&maxwidth=400&url=',
 			'dailymotion': 'https://www.dailymotion.com/services/oembed?format=json' +
 				'&maxwidth=400&url=',
-			'flickr': 'http://www.flickr.com/services/oembed/?format=json&url=',
+			'flickr': 'https://secure.flickr.com/services/oembed/?format=json&url=',
 			'deviantart': 'http://backend.deviantart.com/oembed?format=json&url=',
 			'soundcloud': 'https://soundcloud.com/oembed?format=json&show_comments=false&url='
 		};
@@ -277,7 +277,7 @@ Foxtrick.modules['EmbedMedia'] = {
 			//adjust to correct media url used later
 			if (media_link['site'] == 'imageshack') {
 				if (media_link['params'].length == 3)
-					a.href = 'http://imageshack.us/shareable/?i=' + media_link['params'][0] + '.' +
+					a.href = 'https://imageshack.us/shareable/?i=' + media_link['params'][0] + '.' +
 						media_link['params'][2] + '&s=' + media_link['params'][1];
 			}
 			else if (media_link['site'] == 'imgur')

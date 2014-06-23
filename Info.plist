@@ -291,7 +291,6 @@ a good reason to. They are for version bumps in Makefile.
 				<string>foxtrick.googlecode.com</string>
 				<string>*.hattrick-youthclub.org</string>
 				<string>www.fantamondi.it</string>
-				<string>htev.org</string>
 				<string>pastebin.com</string>
 				<string>api.openweathermap.org</string>
 			</array>
@@ -304,6 +303,6 @@ a good reason to. They are for version bumps in Makefile.
 	<key>Update Manifest URL</key>
 	<string>https://www.foxtrick.org/nightly/safari/update.plist</string><!--updateurl-->
 	<key>Website</key>
-	<string>http://www.foxtrick.org/</string>
+	<string>https://www.foxtrick.org/</string>
 </dict>
 </plist>

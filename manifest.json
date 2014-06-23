@@ -286,17 +286,15 @@
 	],
 	"optional_permissions" : [
 		"http://*.hattrick-youthclub.org/*",
-		"http://stream.ht-radio.nl/*",
 		"http://no9-online.de/*",
 		"http://www.latehome.de/*",
 		"https://vimeo.com/api/*",
 		"https://www.youtube.com/*",
 		"https://www.dailymotion.com/services/*",
-		"http://www.flickr.com/services/oembed/*",
+		"https://secure.flickr.com/services/oembed/*",
 		"http://backend.deviantart.com/*",
-		"http://soundcloud.com/*",
-		"http://imageshack.us/*",
-		"http://htev.org/api/*",
+		"https://soundcloud.com/*",
+		"https://imageshack.us/*",
 		"http://api.openweathermap.org/*"
 	],
 	"page_action": {
