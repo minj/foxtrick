@@ -82,8 +82,8 @@ Foxtrick.modules['EmbedMedia'] = {
 
 		var genericExludes = [
 			'^(?:https?://)?(?:www\\.)?imageshack\\.us/',
-			'^(?:https?://)?(?:www\\.)?dropbox.com/',
-			'^(?:https?://)?(?:www\\.)?fotos-hochladen.net/view/',
+			'^(?:https?://)?(?:www\\.)?dropbox\\.com/',
+			'^(?:https?://)?(?:www\\.)?fotos-hochladen\\.net/view/',
 		];
 
 		//oEmbed supported sites need entries at this point
