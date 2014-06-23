@@ -516,7 +516,8 @@ Foxtrick.util.matchEvent.isFirstEvent = function(event) {
 	// in HTO matches there is no weather event
 	// so lineup event 20 is first instead
 	// in neighborhood matches (friendly WOs) 22 is the first event
-	return (id >= 30 && id <= 33 || id === 20 || id === 22);
+	// event-o-Matic events: 700-705
+	return (id >= 30 && id <= 33 || id === 20 || id === 22 || id >= 700 && id < 710);
 };
 
 Foxtrick.util.matchEvent.getEventIcons = function(event, type) {
