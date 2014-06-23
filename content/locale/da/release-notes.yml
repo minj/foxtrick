@@ -42,9 +42,7 @@ da:
       ff_button: Firefox-værktøjslinjeknappen vil nu reagerer mere og vil afspejle Foxtrick stat bedre.
       ff_disable: Deaktivering af Foxtrick i Firefox, vil nu lukke Foxtrick indstillinger (hvis de er åbne), og genindlæse alle Hattrick faner, for at fjerne eventuelle ændringer foretaget af Foxtrick.
       bugs: '<header>Fejlrettelser</header>'
-      android:
-        <p>Major fixes to Foxtrick core have been made in order to adapt to Firefox for Android. As a result, Foxtrick now runs much better on mobile devices.</p>
-<p>Affected modules: ""
+      android: '<p>Der er lavet en række større ændringer til Foxtrick for at tilpasse Firefox til Android. Som følge heraf, kører Foxtrick nu meget bedre på mobilenheder.</p> <p>Berørte moduler er: <module>MatchReportFormat</module>, <module>Ratings</module>, <module>MatchSimulator</module>, <module>HTMSPrediction</module> <em>og andre</em>.</p>'
       ff_cache: 'Et problem som forhindrede Foxtrick i korrekt opdatering til en ny version i  nogle tilfælde i firefox, er løst.'
       custom_links: Funktionaliteten af eksterne links er blevet gennemgået og alle kendte problemer er løst. Du kan nu også tilføje brugerdefinerede hyperlinks på kamprapportsiden.
       chpp_update: '<module>SupportersList</module> og <module>MatchIncome</module> fungerede ikke efter hensigten efter CHPP ændringer. Dette er nu rettet.'
