@@ -569,17 +569,17 @@ Foxtrick.modules['ForumChangePosts'] = {
 
 			// move links -----------------------------------------
 			if (do_move_links && countryLink && seriesLinkUserInfo) {
-				var placenode;
-				if (supporter_link1) placenode = supporter_link1.nextSibling;
-				else placenode = poster_link1.nextSibling;
-				if (header_left === placenode.parentNode) {
+				var placenode = supporter_link1 || poster_link1;
+				// find the ancestor that is a direct child of header_left
+				while (!Foxtrick.hasClass(placenode.parentNode, 'float_left'))
+					placenode = placenode.parentNode;
+				if (placenode.nodeName !== 'BDO') {
 					// false: 'Show detailed post header' is activated; don't run
 					var space = doc.createTextNode(' ');
-					header_left.insertBefore(space, placenode);
+					header_left.insertBefore(space, placenode.nextSibling);
 					header_left.insertBefore(seriesLinkUserInfo, space);
 					header_left.insertBefore(countryLink, seriesLinkUserInfo);
-					var space = doc.createTextNode(' ');
-					header_left.insertBefore(space, countryLink);
+					header_left.insertBefore(space.cloneNode(false), countryLink);
 				}
 
 			}
