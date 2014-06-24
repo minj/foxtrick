@@ -25,6 +25,7 @@ pl:
       crowdin: '<header>Wiele tłumaczeń pochodzi od naszych niesamowitych użytkowników korzystających z <linkCrowdin>narzędzia crowdin</linkCrowdin>. Ty też możesz pomóc!</header>'
       new: '<header>Nowe moduły</header>'
       hy_skills: '<module>YouthSkills</module>: wzbogaca stronę juniorów o informacje z hattrick youthclub. Wyłącznie dla użytkowników hy.'
+      ratings_tweaks: '<module>MatchRatingsTweaks</module>: ulepsza oceny na stronie raportu meczowego. Wyświetla wskaźniki liczbowe i śledzi ich zmiany podczas przeglądania osi czasu, podobnie jak w <module>MatchSimulator</module>. Oblicza rzeczywiste prawdopodobieństwo strzałów/obrony/posiadania według formuły ustalonej w niepisanym podręczniku: 15766691.221, 15766691.242'
       match_weather: '<module>MatchWeather</module> pokazuje pogodę na stadionie na dziś i jutro na stronie meczu.'
       other: '<header>Inne zmiany</header>'
       ht_changes: "Foxtrick został zaktualizowany, by zapewniać wsparcie dla ostatnich zmian w Hattrick'u dotyczących raportów z meczów juniorów, prostego motywu i interfejsu poleceń meczowych."
@@ -36,6 +37,7 @@ pl:
       links_enhancments: 'Można teraz łatwo wyłączyć wszystkie <module>linki</module> i skonfigurować sposób, w jaki są one otwierane.'
       psico_update: 'Ponownie dodano możliwość wyświetlania przewidywania <module>PsicoTSI</module> na lewym pasku bocznym.'
       ticker_update: "<module>TickerColoring</module> i <module>TickerAlert</module> zostały zaktualizowane o nowy rodzaj wiadomości supporter'ów dodanych w ciągu ostatnich kilku lat."
+      ticker_chall: "Nie jest już możliwe odróżnienie wyzwań na mecze towarzyskie od innych wiadomości MyHT dla supporter'ów HT w <module>TickerColoring</module>. W związku z tym zmieniono nazwę tego typu znacznika."
       htms_points: '<module>HTMSPoints</module> został zaktualizowany do wykorzystywania nowych formuł.'
       ff_button: Przycisk paska narzędzi programu Firefox będzie teraz lepiej reagował i odzwierciedlał faktyczny stan Foxtricka.
       ff_disable: "Wyłączenie Foxtrick'a w Firefox'ie teraz zamknie preferencje Foxtrick'a (jeśli są otwarte) i odświeży wszystkie karty Hattrick'a, aby usunąć wszelkie modyfikacje wprowadzone przez Foxtrick'a."
@@ -53,6 +55,7 @@ pl:
     0.12.2.1:
       note_0: "Linki nie znikną po wyczyszczeniu pamięci podręcznej Foxtrick'a w Firefox'ie."
       note_1: "Zajęto się już zmianami w języku perskim i innych językach, które mogły być przyczyną awarii Foxtrick'a."
+      note_2: '<module>MatchIncome</module> obecnie pokaże zajętość miejsc w procentach,  gdy stadion jest w (prze)budowie. W czasie (prze)budowy, FoxTrick nie jest w stanie stwierdzić, czy bieżący rozmiar stadionu dla danego meczu jest prawidłowy czy nie. FoxTrick przyjmie, że jest poprawny i dlatego pokaże niepoprawne wartości procentowe, kierując się meczami rozegranymi na stadionie przed osiągnięciem jego bieżącego rozmiaru.'
       note_3: Naprawiono problem, który powodował, że Foxtrick wyświetlał dziwne symbole zamiast waluty użytkownika
     0.12.2:
       note_0: '<header>Wiele tłumaczeń pochodzi od naszych niesamowitych użytkowników korzystających z <linkCrowdin>narzędzia crowdin</linkCrowdin>. Ty też możesz pomóc!</header>'
@@ -61,6 +64,7 @@ pl:
       note_3: '<module>ShowLineupSet</module>: Dodano opcję, aby wyróżnić własny zespół w tabeli.'
       note_4: '<module>CopyYouth</module>: teraz efekty treningu juniorów zostaną wysłane do hattrick youthclub automatycznie (tylko dla użytkowników hy).'
       note_5: 'Nowość: <module>SupportersList</module>: Pokazuje, który zespół, któremu kibicujesz, także kibicuje twojemu zespołowi i odwrotnie'
+      note_6: "<module>MatchLineupTweaks</module>: dodano możliwość zbierania danych o kondycji gracza przy każdej wizycie na stronie meczu. Dane będą wykorzystywane do lepszego przewidywania ocen w module <module>MatchSimulator</module>, a mogą być przeglądane w <module>SkillTable</module>. Gracz musi wystąpić w całym meczu (90 minut). Mecze z pressing'iem lub negatywnymi zdarzeniami pogodowymi (w przypadku graczy atletycznych) nie są brane pod uwagę. Formuła do wyliczeń została stworzona przez Pappagallopoli."
       note_7: 'Nowość: <module>Fans</module>: dodaje link na żywo obok linków do przyszłych meczów. Dodaje informację o zmianie ilości fanów w pasku bocznym.'
       note_8: "Użytkownicy posiadający wiele zespołów mogą teraz zmieniać styl Hattrick'a za pomocą selektorów 'body.ft-teamID-0000000' w <module>SkinPlugin</module>."
       note_9: 'Usprawniono <module>HeaderToggle</module> tak by był bardziej odporny na wpływy ze strony innych modułów lub samego Hattricka.'
@@ -116,7 +120,7 @@ pl:
       note_17: Aktualizacje Safari wydaje się być uszkodzona. Użytkownicy powinni usunąć poprzednią wersję Foxtrick i zainstalować nową.
     0.11.0.1:
       note_0: '<header>Wiele tłumaczeń pochodzi od naszych niesamowitych użytkowników korzystających z <linkCrowdin>narzędzia crowdin</linkCrowdin>. Ty też możesz pomóc!</header>'
-      note_1: 'Naprawić drobne problemy w <module>ForumLastPost</module>, <module>ContextMenuCopy</module>, <module>PlayerFilters</module>, <module>SmallerPages</module>, <module>SkillTable</module>, <module>TeamPopupLinks</module>, <module>"DobierzPrzychód"</module> i <module>HTThreadMarker</module>.'
+      note_1: 'Naprawia drobne problemy w <module>ForumLastPost</module>, <module>ContextMenuCopy</module>, <module>PlayerFilters</module>, <module>SmallerPages</module>, <module>SkillTable</module>, <module>TeamPopupLinks</module>, <module>"DobierzPrzychód"</module> i <module>HTThreadMarker</module>.'
       note_2: Zapobiec przeładowaniu wszystkich kart Hattricka, po otwarciu nowego okna przeglądarki Firefox.
     0.11.0:
       note_0: 'Nowość: <module>DirectPageLinks</module>: dodane linki, by mieć dostęp do określonych stron w wątku na forum'
