@@ -27,7 +27,7 @@ en:
       nav_fix: 'Navigation in <module>GoToPostBox</module> and <module>MyMonitor</module> was fixed in Firefox.'
       new_lineup: 'Modules <module>MatchPlayerColouring</module>, <module>LineupShortcut</module>, <module>TeamPopupLinks</module> and <module>SeniorTeamShortCuts</module> will now work correctly with the new match lineup page.'
       other: '<header>Other changes</header>'
-      live_ratings: 'Live ratings support was added in <module>MatchLineupTweaks</module> and <module>MatchRatingsTweaks</module>.'
+      live_ratings: 'Live ratings support was added in <module>MatchLineupTweaks</module>, <module>MatchRatingsTweaks</module> and <module>MatchPlayerColouring</module>.'
       own_top_players: '<module>Filter</module> module now highlights your players in the Top Players statistics page.'
       htev: 'htev.org can no longer sustain the load of Foxtrick requests thus HTEVPrediction module was removed.'
       removed: 'SmallerPages and MatchTables modules were also removed due to their uselessness.'
