@@ -7,7 +7,7 @@
 
 Foxtrick.modules.MatchPlayerColouring = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.MATCHES,
-	PAGES: ['match'],
+	PAGES: ['match', 'matchesLive'],
 	OPTIONS: ['SeparateOwnPlayerColors'],
 	NICE: 1, // after match-report-format
 
@@ -15,6 +15,23 @@ Foxtrick.modules.MatchPlayerColouring = {
 
 	run: function(doc) {
 		this.color(doc);
+		if (Foxtrick.isPage(doc, 'matchesLive')) {
+			var watchHighlights = function(doc) {
+				var highlight = doc.querySelector('.liveTabsContainer');
+				if (highlight)
+					Foxtrick.onChange(highlight, this.color.bind(this));
+			};
+
+			var react = function(doc) {
+				this.color(doc);
+				watchHighlights.bind(this)(doc);
+			};
+
+			var livereportsContainer =
+				doc.getElementById('ctl00_ctl00_CPContent_CPMain_UpdatePanelMatch');
+			if (livereportsContainer)
+				Foxtrick.onChange(livereportsContainer, react.bind(this), { subtree: false });
+		}
 	},
 
 	getPlayerClass: function(doc, home) {
