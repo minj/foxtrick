@@ -38,16 +38,20 @@ Foxtrick.Pages.Match = {
 		return link;
 	},
 	getHomeTeamId: function(doc) {
-		return Foxtrick.util.id.getTeamIdFromUrl(this.getHomeTeam(doc).href);
+		var team = this.getHomeTeam(doc);
+		return team ? Foxtrick.util.id.getTeamIdFromUrl(team.href) : null;
 	},
 	getAwayTeamId: function(doc) {
-		return Foxtrick.util.id.getTeamIdFromUrl(this.getAwayTeam(doc).href);
+		var team = this.getAwayTeam(doc);
+		return team ? Foxtrick.util.id.getTeamIdFromUrl(team.href) : null;
 	},
 	getHomeTeamName: function(doc) {
-		return this.getHomeTeam(doc).textContent;
+		var team = this.getHomeTeam(doc);
+		return team ? team.textContent : null;
 	},
 	getAwayTeamName: function(doc) {
-		return this.getAwayTeam(doc).textContent;
+		var team = this.getAwayTeam(doc);
+		return team ? team.textContent : null;
 	},
 	isPrematch: function(doc) {
 		return (doc.getElementById('ctl00_ctl00_CPContent_CPMain_pnlPreMatch') != null);
