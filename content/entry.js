@@ -53,7 +53,7 @@ Foxtrick.entry.docLoad = function(doc) {
 	var begin = (new Date()).getTime();
 	Foxtrick.entry.run(doc);
 	var diff = (new Date()).getTime() - begin;
-	Foxtrick.log('run time: ', diff, ' ms | ',
+	Foxtrick.log('page run time: ', diff, ' ms | ',
 		doc.location.pathname, doc.location.search);
 
 	Foxtrick.log.flush(doc);
