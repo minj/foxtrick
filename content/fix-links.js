@@ -69,7 +69,7 @@ Foxtrick.modules.FixLinks = {
 		return youthid;
 	},
 	parseMatchPage: function(doc) {
-		if (Foxtrick.Pages.Match.isPrematch(doc))
+		if (Foxtrick.Pages.Match.isPrematch(doc) || Foxtrick.Pages.Match.inProgress(doc))
 			return;
 
 		var module = this;
