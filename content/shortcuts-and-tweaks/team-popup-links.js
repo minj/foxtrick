@@ -168,6 +168,8 @@ Foxtrick.modules['TeamPopupLinks'] = {
 	},
 
 	add_popup_links: function(doc) {
+		var mainBody = doc.getElementById('mainBody');
+
 		var sUrl = Foxtrick.getHref(doc);
 		var ownTeamId = Foxtrick.util.id.getOwnTeamId();
 		var curTeamId = Foxtrick.Pages.All.getTeamId(doc);
@@ -378,11 +380,9 @@ Foxtrick.modules['TeamPopupLinks'] = {
 
 					}
 
-					var mainBody = doc.getElementById('mainBody');
-
 					var pT = Foxtrick.GetElementPosition(org_link, mainBody)['top'];
 					if ((hasScroll && (pT - mainBody.scrollTop < mainBody.offsetHeight / 2))
-						|| pT - doc.body.scrollTop < 300) { // = popdown
+						|| pT - doc.body.scrollTop < 300 || !mainBody) { // = popdown
 						var more = list.removeChild(list.lastChild);
 						list.insertBefore(more, list.firstChild);
 						var down = true;
@@ -412,15 +412,17 @@ Foxtrick.modules['TeamPopupLinks'] = {
 		// all in mainWrapper (ie. not left boxes)
 		if (sUrl.search(/Forum\/(Default\.aspx)?\?/i) != -1)
 			return; // not in forum overview
-		var aLinks = doc.getElementById('mainBody').getElementsByTagName('a');
-		var i = 0, aLink;
-		while ((aLink = aLinks[i++])) {
-			if (!aLink.hasAttribute('href') ||
-			    Foxtrick.hasClass(aLink, 'ft-no-popup') ||
-			    aLink.parentNode.className == 'liveTabText' ||
-			    aLink.querySelector('img:not(.ft-staff-icon)') !== null)
-				continue; // don't add to buttons, and htlive tabs
-			addSpan(aLink);
+		if (mainBody) {
+			var aLinks = mainBody.getElementsByTagName('a');
+			var i = 0, aLink;
+			while ((aLink = aLinks[i++])) {
+				if (!aLink.hasAttribute('href') ||
+				    Foxtrick.hasClass(aLink, 'ft-no-popup') ||
+				    aLink.parentNode.className == 'liveTabText' ||
+				    aLink.querySelector('img:not(.ft-staff-icon)') !== null)
+					continue; // don't add to buttons, and htlive tabs
+				addSpan(aLink);
+			}
 		}
 
 		var sidebar = doc.getElementById('sidebar');

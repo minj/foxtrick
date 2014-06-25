@@ -97,7 +97,10 @@ Foxtrick.util.layout.isSupporter = function(doc) {
 
 // Returns whether scrolling is on for #mainBody
 Foxtrick.util.layout.mainBodyHasScroll = function(doc) {
-	var mainBodyChildren = doc.getElementById('mainBody').getElementsByTagName('script');
+	var mainBody = doc.getElementById('mainBody');
+	if (!mainBody)
+		return false;
+	var mainBodyChildren = mainBody.getElementsByTagName('script');
 	var i = 0, child;
 	while (child = mainBodyChildren[i++])
 		if (child.textContent && child.textContent.search(/adjustHeight\(\'mainBody\'/) != -1)
