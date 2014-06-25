@@ -358,7 +358,7 @@ Foxtrick.Pages.Match = {
 	parsePlayerScript: function(doc) {
 		var scripts = doc.getElementsByTagName('script');
 		var regex = /ht\.matchAnalysis\.playerData\s*=\s*'([\s\S]+?)';/m;
-		var playerData;
+		var playerData = null;
 		for (var i = 0; i < scripts.length; i++) {
 			if (regex.test(scripts[i].textContent)) {
 				var json = regex.exec(scripts[i].textContent)[1];

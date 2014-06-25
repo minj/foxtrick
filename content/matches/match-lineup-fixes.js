@@ -609,13 +609,17 @@ Foxtrick.modules['MatchLineupFixes'] = {
 		// there's only plaintext in orders tab
 		// let's add links
 		var addLinksInOrders = function() {
+			if (Foxtrick.Pages.Match.isYouth(doc))
+				// FIXME: no player script in youth
+				return;
+
 			var ordersTable = doc.querySelector('#ListPlayerOrders table');
 			if (!ordersTable)
 				return;
 
 			var playerData = Foxtrick.Pages.Match.parsePlayerScript(doc);
 
-			if (!playerData.length) {
+			if (playerData.length) {
 				Foxtrick.log('addLinksInOrders: failed to parse playerData');
 				return;
 			}
