@@ -5,6 +5,31 @@ ko:
       note_0: '자세한 내용은 Google Code의 <linkSVN>보고 기록</linkSVN>을 참조하세요.'
     beta:
       note_0: '이것은 다음 배포의 beta 버전 입니다. 이 버전에서 저희 군중-번역 페이지를 통해 번역해주세요. <linkCrowdin>crowdin.net</linkCrowdin>'
+    0.14.0:
+      important: '<header>중요한 공지 사항</header>'
+      crowdin: '<header>저희 뛰어난 사용자들이 <linkCrowdin>crowdin tool</linkCrowdin>을 사용하여 수많은 번역 업데이트가 있었습니다. 당신도 도울 수 있습니다!</header>'
+      browsers: Opera 12 지원이 중단되었습니다. 이제 Safari 6 및 Firefox 24가 Foxtrick을 실행할 수 있는 최소 버전입니다.
+      backend: Foxtrick 코어를 정리하고 갱신하였습니다. 이 변화는 경기 보고서, HT-Live, 경기 지시 사항 인터페이스, 자동 통화 감지, Foxtrick 캐시 등 수많은 페이지, 모듈 및 기능에 영향을 미칩니다. 버그를 찾으면 신고해주세요.
+      bug_report: Hattrick 하단에 Foxtrick 버그를 효과적으로 신고할 수 있는 링크를 추가했습니다. 문제가 발생한 페이지에서 이 링크를 클릭하고 표시되는 지침을 따라주세요.
+      twitter: '<linkTwitter>Foxtrick on Twitter</linkTwitter>을 팔로우하면 최신 뉴스 및 업데이트와 공지를 받을 수 있습니다.'
+      new: '<header>새로운 모듈</header>'
+      series_transfers: '<module>SeriesTransfers</module>: 시리즈 페이지에서 현재 판매 중인 선수 목록을 보여줍니다.'
+      player_positions: '<module>PlayerPositionsEvaluations</module> 및 <module>BestPlayerPosition</module> 모듈은  <linkContributionsWiki>Hattrick Wiki</linkContributionsWiki>에 따라 다양한 포지션에서 선수 기여를 계산합니다.'
+      bugs: '<header>버그 수정</header>'
+      australis: 새로운 브라우저 테마와 함께 동작하도록 Firefox 아이콘 메뉴를 수정하였습니다.
+      chrome_notes: Google Chrome에서 새로운 알림 시스템을 사용하도록 Foxtrick 알림을 수정하였습니다.
+      player_cache: Foxtrick은 이제 당신의 팀에서 새로운 선수를 감지하고 자동으로 CHPP 데이터를 새로 고칩니다.
+      train_est: Foxtrick은 더 이상 새로운 훈련 평가 기능의 테이블 정렬을 방해하지 않습니다.
+      mrf_fixes: '<module>MatchReportFormat</module>은 더 이상 일부 경기 보고서에서 레이아웃을 깨뜨리지 않을 것입니다. 또한 더 많은 이벤트 아이콘을 추가했습니다.'
+      forum_header: '<module>ForumAlterHeaderLine</module>을 검토하여 이제 모든 옵션이 제대로 동작할 것입니다.'
+      nav_fix: 'Firefox버전에서 <module>GoToPostBox</module> 및 <module>MyMonitor</module>의 내비게이션을 수정하였습니다.'
+      new_lineup: '이제 새로운 경기 라인업 페이지에서 <module>MatchPlayerColouring</module>, <module>LineupShortcut</module>, <module>TeamPopupLinks</module> 및 <module>SeniorTeamShortCuts</module> 모듈이 제대로 작동할 것입니다.'
+      other: '<header>기타 변경 사항</header>'
+      live_ratings: ' <module>MatchLineupTweaks</module>, <module>MatchRatingsTweaks</module> 및 <module>MatchPlayerColouring</module> 모듈에 라이브 레이팅 지원을 추가하였습니다.'
+      own_top_players: "<module>Filter</module> 모듈은 이제 '최고 선수' 통계 페이지에서 당신의 선수들을 강조합니다."
+      htev: htev.org은 더 이상 Foxtrick의 요청 업무를 수행할 수 없어 HTEVPrediction 모듈을 제거했습니다.
+      removed: SmallerPages 및 MatchTables 모듈 또한 쓸모없어져 제거했습니다.
+      and_more: 그 외에 작은 규모의 변화와 수정이 있었습니다.
     0.13.0.1:
       crowdin: '<header>저희 뛰어난 사용자들이 <linkCrowdin>crowdin tool</linkCrowdin>을 사용하여 수많은 번역 업데이트가 있었습니다. 당신도 도울 수 있습니다!</header>'
       bugs: '<header>버그 수정</header>'

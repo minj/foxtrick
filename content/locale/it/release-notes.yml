@@ -5,6 +5,31 @@ it:
       note_0: 'Questa è la versione di sviluppo. Utilizzala a tua discrezione. per favore visita <linkSVN>commit history</linkSVN> su Google code per dettagli sui cambiamenti.'
     beta:
       note_0: 'Questa è la versione beta della prossima release. Per favore aiutaci a tradurre questa versione con la nostra semplicissima pagina di traduzione di Crowdin <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.14.0:
+      important: '<header>Avvisi importanti</header>'
+      crowdin: '<header>Sono disponibili tante nuove traduzioni per i nostri utenti su <linkCrowdin>crowdin tool</linkCrowdin>. Anche tu puoi dare una mano!</header>'
+      browsers: Il supporto per opera 12 è stato interrotto. Safari 6 e Firefox 24 ora sono versioni minime per eseguire Foxtrick.
+      backend: "Sono stati effettuati aggiornamenti e pulizia nel codice di Foxtrick. Le modifiche interessano un gran numero di pagine, moduli e funzionalità, tra cui il report della partita, HT-Live, l'interfaccia degli ordini partita, la rilevazione automatica della valuta e la cache di Foxtrick. Si prega di segnalare eventuali bug rilevati."
+      bug_report: Il footer di Hattrick ora includerà un link per segnalare efficacemente i bug di Foxtrick. Utilizzalo nella pagina dove è presente il problema e segui le istruzioni visualizzate.
+      twitter: 'Puoi seguire <linkTwitter>Foxtrick su Twitter</linkTwitter> per ricevere le ultime notizie, aggiornamenti e annunci.'
+      new: '<header>Nuovi moduli</header>'
+      series_transfers: '<module>SeriesTransfers</module>: Mostra un elenco di giocatori attualmente in vendita nella pagina della serie.'
+      player_positions: "I moduli <module>PlayerPositionsEvaluations</module> e <module>BestPlayerPosition</module> calcolano l'efficacia del giocatore in varie posizioni del campo sin base al criterio descritto su <linkContributionsWiki>Hattrick Wiki</linkContributionsWiki>."
+      bugs: '<header>Correzioni di bug</header>'
+      australis: "L'icona del menu di Firefox è stato adattata per poter funzionare con il nuovo tema del browser."
+      chrome_notes: Le notifiche di foxtrick sono state rimesse a posto per utilizzare il nuovo sistema di notifiche in Google Chrome.
+      player_cache: Foxtrick ora rileverà nuovi giocatori nella tua squadra e aggiornerà automaticamente i dati CHPP.
+      train_est: "Foxtrick non interferirà più con la tabella ordinata della nuova funzione di stima dell'allenamento."
+      mrf_fixes: '<module>MatchReportFormat</module> non avranno più un layout malfunzionante in alcune partite. Aggiunte più icone per gli eventi.'
+      forum_header: '<module>ForumAlterHeaderLine</module> è stato rivisto e ora dovrebbe funzionare correttamente in tutti i casi.'
+      nav_fix: 'La navigazione in <module>GoToPostBox</module> e <module>MyMonitor</module> è stata migliorata per Firefox.'
+      new_lineup: 'I moduli <module>MatchPlayerColouring</module>, <module>LineupShortcut</module>, <module>TeamPopupLinks</module> e <module>SeniorTeamShortCuts</module> ora funzioneranno correttamente con la nuova pagina mostrante la disposizione dei giocatori in campo.'
+      other: '<header>Altre modifiche</header>'
+      live_ratings: 'Il supporto alle valutazioni live è stato aggiunto a  <module>MatchLineupTweaks</module>, <module>MatchRatingsTweaks</module> e <module>MatchPlayerColouring</module>.'
+      own_top_players: 'Il modulo <module>filtro</module> ora mette in evidenza i tuoi giocatori nella pagina delle statistiche dei migliori giocatori.'
+      htev: htev.org non è più in grado di sostenere il carico delle richieste di Foxtrick così il modulo HTEVPrediction è stato rimosso.
+      removed: Anche i moduli SmallerPages e MatchTables sono stati rimossi a causa della loro inutilità.
+      and_more: Varie altre piccole modifiche e correzioni.
     0.13.0.1:
       crowdin: '<header>Sono disponibili tante nuove traduzioni per i nostri utenti su <linkCrowdin>crowdin tool</linkCrowdin>. Anche tu puoi dare una mano!</header>'
       bugs: '<header>Correzioni di bug</header>'

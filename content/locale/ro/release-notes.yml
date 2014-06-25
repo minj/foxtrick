@@ -5,9 +5,43 @@ ro:
       note_0: 'Această versiune este în dezvoltare continuă. Utilizați-o după cum doriți. Vă rugăm să vizualizați <linkSVN>istoricul</linkSVN> de la Google Code pentru detalii cu privire la modificări.'
     beta:
       note_0: 'Aceasta este o versiune beta a următoarei versiuni care va fi lansată. Vă rugăm ajutați traducând această versiune utilizând pagina de traducere <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.14.0:
+      important: '<header>Anunţuri importante</header>'
+      crowdin: '<header>O mulțime de traduceri actualizate de către userii care folosesc <linkCrowdin> instrumentul crowdin</linkCrowdin>. Și tu poți ajuta!</header>'
+      browsers: Suportul pentru Opera 12 a încetat. Safari 6 și Firefox 24 sunt acum versiuni minime pentru a rula Foxtrick.
+      backend: S-au făcut mai multe operațiuni de curățenie și actualizare la Foxtrick. Schimbările afectează multe pagini, module și funcționalități, inclusiv raportul de meci, HT-Live, interfața ordinelor de meci, detecția automată a monedei și cache-ul Foxtrick. Vă rugăm să ne raportați orice bug găsiți.
+      bug_report: Footerul Hattrick va include acum și un link către raportarea bugurilor pe Foxtrick. Folosiți-l pe pagina afectată și urmați instrucțiunile care apar.
+      twitter: 'Puteţi urmări <linkTwitter>Foxtrick pe Twitter</linkTwitter> pentru a primi ultimele ştiri, actualizări şi anunţuri.'
+      new: '<header>Module noi</header>'
+      series_transfers: '<module>SeriesTransfers</module>: Arată o listă de jucători actualmente de vânzare pe pagina seriei.'
+      player_positions: 'Modulele <module>PlayerPositionsEvaluations</module> și <module>BestPlayerPosition</module> calculează eficiența jucătorului pe diverse poziții în funcție de <linkContributionsWiki>Hattrick Wiki</linkContributionsWiki>.'
+      bugs: '<header>Buguri reparate</header>'
+      australis: Meniul Firefox a fost reparat pentru a funcționa cu noua temă de browser.
+      chrome_notes: Notificările Foxtrick au fost reparate pentru a utiliza noul sistem de notificări din Google Chrome.
+      player_cache: Foxtrick va detecta acum noii jucători din echipă și va reîncărca automat datele CHPP.
+      train_est: Foxtrick nu mai interferă cu sortarea tabelului în noua funcționalitate de estimare a antrenamentului.
+      mrf_fixes: '<module>MatchReportFormat</module> nu va mai avea afișarea stricată în unele meciuri. Adăugat mai multe pictograme de evenimente.'
+      forum_header: '<module>ForumAlterHeaderLine</module> a fost revizuit și ar trebui să meargă corect în toate cazurile.'
+      nav_fix: 'Navigrea în <module>GoToPostBox</module> și <module>MyMonitor</module> a fost reparată în Firefox.'
+      new_lineup: 'Modulele <module>MatchPlayerColouring</module>, <module>LineupShortcut</module>, <module>TeamPopupLinks</module> și <module>SeniorTeamShortCuts</module> vor funcționa acum corect cu noua pagină de aliniere jucători.'
+      other: '<header>Alte schimbări</header>'
+      live_ratings: 'Suportul pentru ratinguri live a fost adăugat în <module>MatchLineupTweaks</module>, <module>MatchRatingsTweaks</module> și <module>MatchPlayerColouring</module>.'
+      own_top_players: 'Modulul <module>Filter</module> evidențiază acum jucătorii tăi în pagina de statistici Top Players.'
+      htev: htev.org nu mai poate susține încărcarea de cereri Foxtrick și astfel că modulul HTEVPrediction a fost înlăturat.
+      removed: Modulele SmallerPages și MatchTables au fost și ele eliminate din cauza lipsei de utilitate.
+      and_more: Diverse alte mici modificări și reparații.
     0.13.0.1:
       crowdin: '<header>O mulțime de traduceri actualizate de către userii care folosesc <linkCrowdin> instrumentul crowdin</linkCrowdin>. Și tu poți ajuta!</header>'
+      bugs: '<header>Buguri reparate</header>'
+      old_faces: '<module>OldStyleFace</module> nu funcționa corect pe interfața ordinelor de meci și pe paginile de liste de jucători din meci. Problema s-a remediat.'
+      simulator_skills: 'Numele de subnivel din <module>MatchSimulator</module> au fost corectate în câteva limbi.'
+      embed_media: '<module>PsicoTSI</module> și <module>EmbedMedia</module> au fost făcute mai sigure.'
       other: '<header>Alte schimbări</header>'
+      report_format: 'Modulele <module>MatchReportFormat</module> și <module>LiveMatchReportFormat</module> au fost rescrise și funcționează acum fără acces la CHPP.'
+      attvsdef: 'Probabilitățile reale din modulul <module>AttVsDef</module> afectează acum și barele de posesia mingii.'
+      staff_marker: 'Interfața de culori setată de utilizator în  <module>StaffMarker</module> este acum opțională.'
+      mmdd: 'Săgețile din meniurile <module>MainMenuDropDown</module> sunt acum opționale.'
+      and_more: Diferite alte mici schimbări și reparații.
     0.13.0:
       important: '<header>Anunţuri importante</header>'
       opera: |
@@ -26,10 +60,20 @@ ro:
       simulator_prob: '<module>MatchSimulator</module> a fost îmbunătăţit cu probabilităţile reale de atac/apărare/posesie din noul modul <module>MatchRatingsTweaks</module>.'
       staff_marker: '<module>StaffMarker</module> a fost restructurat. S-au adăugat noi opţiuni pentru susţinători, echipe susţinute şi antrenorii naţionalelor. Vă rugăm să setaţi preferinţele pe care le doriţi.'
       custom_marker: La baza paginii de mesaje din forum s-a adăugat o interfaţă pentru a adăuga uşor culori pentru numele utilizatorilor.
+      inline_options: 'Adăugat opțiuni inline pentru ameliorarea listei de penalty-uri de la <module>MatchOrderInterface</module> și despărțit funcționalitatea de aliniere în <module>MatchLineupTweaks</module>.'
       links_enhancments: 'Acum puteţi dezactiva cu uşurinţă toate <module>Linkurile</module> şi puteţi configura felul cum se deschid ele.'
       psico_update: 'S-a reimplementat o opţiune pentru a afişa predicţia <module>PsicoTSI</module> pe bara laterală din stânga.'
       ticker_update: '<module>TickerColoring</module> şi <module>TickerAlert</module> au fost actualizate cu noile tipuri de ştiri adăugate de-a lungul ultimilor doi ani.'
       ticker_chall: 'Nu se mai poate face distincţia între provocările la amicale şi alte mesaje MyHT pentru suporterii HT din <module>TickerColoring</module>. Ca urmare, acel tip de ştire a fost rebotezat.'
+      htms_points: '<module>HTMSPoints</module> a fost actualizat cu noile formule.'
+      ff_button: Butonul din bara de utilități Firefox va fi acum mai rapid la răspuns și va reflecta mai bine starea Foxtrick.
+      ff_disable: Dezactivarea Foxtrick în Firefox va închide acum preferințele Foxtrick (dacă pagina e deschisă) și va reîncărca toate taburile Hattrick pentru a elimina alte modificări efectuate de Foxtrick.
+      bugs: '<header>Buguri reparate</header>'
+      android: |
+        <p>S-au efectuat reparații majore în core-ul Foxtrick pentru a adapta Firefox la Android. Ca urmare, Foxtrick rulează acum mult mai bine pe dispozitive mobile.</p>
+        <p>Module afectate: <module>MatchReportFormat</module>, <module>Ratings</module>, <module>MatchSimulator</module>, <module>HTMSPrediction</module> <em>et al</em>.</p>
+      ff_cache: Reparat o problemă în Firefox ce împiedica în unele cazuri Foxtrick să se actualizeze corect la o nouă versiune.
+      custom_links: Funcționalitatea linkurilor externe a fost revizuită și toate problemele cunoscute s-au reparat. Puteți adăuga acum linkuri și la pagina de raport de meci.
     0.12.2:
       note_0: '<header>O mulțime de traduceri actualizate de către userii care folosesc <linkCrowdin> instrumentul crowdin</linkCrowdin>. Și tu poți ajuta!</header>'
       note_11: '<header>Bugfixes</header>'

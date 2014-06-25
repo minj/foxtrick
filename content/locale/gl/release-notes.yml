@@ -5,6 +5,31 @@ gl:
       note_0: 'Esta é a versión en proceso desenvolvemento. Úsaa baixo a túa responsabilidade. Podes ollar o <linkSVN>Historial de cambios</linkSVN> en Google Code para ver detalles dos mesmos.'
     beta:
       note_0: 'Esta é a versión beta do próximo lanzamento. Podes axudar a traducila na nosa marabillosa páxina de tradución en equipo <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.14.0:
+      important: '<header>Anuncios importantes</header>'
+      crowdin: '<header>Unha morea de actualizacións das traducións realizadas polos nosos marabillosos usuarios a través da <linkCrowdin>ferramenta Crowdin</linkCrowdin>. Por certo, ti tamén podes colaborar!</header>'
+      browsers: Rematou a compatibilidade con Opera 12. Agora as versións mínimas para executar o Foxtrick son Safari 6 e Firefox 24.
+      backend: Fixemos limpa e actualización do núcleo do Foxtrick. Os trocos afectan a unha morea de páxinas, módulos e funcionalidades, como o reporte do partido, o HT-Live, a pantalla de ordes do partido, a detección automática de divisa e o caché do Foxtrick. Se atopas algún bug, non dubides en informarnos!
+      bug_report: No pé de páxina do Hattrick atoparás a partir de agora unha ligazón para informar dos bugs do Foxtrick. Emprégao cando estés na páxina na que detectaches o bug, e segue as instruccións que aparecerán.
+      twitter: 'Podes seguir a <linkTwitter>FoxTrick no Twitter</linkTwitter> para recibir as noticias, as novidades e os anuncios máis recentes.'
+      new: '<header>Módulos novos</header>'
+      series_transfers: '<module>SeriesTransfers</module>: Amosa unha lista dos xogadores que estean nese momento á venda na páxina da túa liga.'
+      player_positions: 'O módulo <module>PlayerPositionsEvaluations</module> e o <module>BestPlayerPosition</module> calculan a efectividade en varias posicións, dacordo co <linkContributionsWiki>Hattrick Wiki</linkContributionsWiki>.'
+      bugs: '<header>Solucións de erros</header>'
+      australis: A icona do Firefox foi arranxada para que traballase ben co novo tema do navegador.
+      chrome_notes: As notificacións do Foxtrick foron arranxadas para empregar o novo sistema de notificacións no Google Chrome.
+      player_cache: O Foxtrick detectará agora novos xogadores no teu equipo e actualizará os datos CHPP automáticamente.
+      train_est: O Foxtrick xa non interferirá coa ordenación da taboa na nova funcionalidade de estimación do adestramento.
+      mrf_fixes: 'O <module>MatchReportFormat</module> xa non terá un diseño rachado nalgúns partidos. Engadíronse mais iconas de eventos.'
+      forum_header: 'O <module>ForumAlterHeaderLine</module> foi revisado e agora debería funcionar ben en tódolos casos.'
+      nav_fix: 'A navegación no <module>GoToPostBox</module> e no <module>MyMonitor</module> foi arranxada no Firefox.'
+      new_lineup: 'Os módulos <module>MatchPlayerColouring</module>, <module>LineupShortcut</module>, <module>TeamPopupLinks</module> e <module>SeniorTeamShortCuts</module> funcionarán agora correctamente coa nova páxina de ordes do partido.'
+      other: '<header>Outros cambios</header>'
+      live_ratings: 'O soporte para as calificacións en vivo foi engadido no<module>MatchLineupTweaks</module>, no <module>MatchRatingsTweaks</module> e no <module>MatchPlayerColouring</module>.'
+      own_top_players: 'O módulo <module>Filter</module> salienta agora ós teus xogadores na páxina de Mellores Xogadores.'
+      htev: htev.org non pode aturar a carga de peticións do Foxtrick, polo que o módulo HTEVPrediction foi eliminado.
+      removed: Os módulos SmallerPages e MatchTables foron suprimidos porque non valían para moito.
+      and_more: Moitos outros cambios pequeniños por aquí e por alá.
     0.13.0.1:
       crowdin: '<header>Unha morea de actualizacións das traducións realizadas polos nosos marabillosos usuarios a través da <linkCrowdin>ferramenta Crowdin</linkCrowdin>. Por certo, ti tamén podes colaborar!</header>'
       bugs: '<header>Solucións de erros</header>'

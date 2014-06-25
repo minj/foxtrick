@@ -5,6 +5,31 @@ lt:
       note_0: 'Įdiegėte nestabilią versiją. Naudokite savo rizika. Peržiūrėkite „Google Code“ <linkSVN>pakeitimų sąrašą</linkSVN>.'
     beta:
       note_0: 'Įdiegėte išankstinę (beta) versiją. Prašome prisidėti prie jos vertimo į lietuvių kalbą ypatingai šauniame vertėjų savanorių portale „<linkCrowdin>crowdin.net</linkCrowdin>“. '
+    0.14.0:
+      important: '<header>Svarbūs pranešimai</header>'
+      crowdin: '<header>Daugybė vertimo atnaujinimų. Dėkojame savo šauniems vartotojams, kurie naudojasi <linkCrowdin>crowdin portalu</linkCrowdin>. Ir Jūs galite prisidėti!</header>'
+      browsers: Opera 12 palaikymas nutrauktas. Safari 6 ir Firefox 24 yra seniausios versijos, su kuriomis Foxtrick veikia.
+      backend: Foxtrick branduolys yra nuolat atnaujinamas ir tvarkomas. Pokyčiai galėjo paveikti daug puslapių, modulių ir jų funkcijų, įskaitant rungtynių ataskaitas, HT Live, rungtynių nurodymų formą, automatinę valiutos aptikimo sistemą ir Foxtrick podėlį. Prašome pranešti apie Jūsų rastas klaidas ir sutrikimus.
+      bug_report: Hattrick puslapių apačioje rasite nuorodą, kuria pasinaudoję galite pranešti apie Foxtrick sutrikimus. Tiesiog spragtelėkite ją tame puslapyje, kur pastebėjote klaidą, ir vykdykite pasirodžiusius nurodymus.
+      twitter: "Paskutines Foxtrick naujienas, atnaujinimus ir pranešimus gausite sekdami <linkTwitter>Foxtrick Twitter'yje</linkTwitter>."
+      new: '<header>Nauji moduliai</header>'
+      series_transfers: '<module>SeriesTransfers</module> grupės puslapyje rodo dabar parduodamų žaidėjų sąrašą.'
+      player_positions: '<module>PlayerPositionsEvaluations</module> ir <module>BestPlayerPosition</module> moduliai apskaičiuoja žaidėjų efektyvumą įvairiose pozicijose. Skaičiavimai atliekami pagal duomenis, esančius <linkContributionsWiki>Hattrick Wiki</linkContributionsWiki>.'
+      bugs: '<header>Pataisytos klaidos</header>'
+      australis: Foxtrick logotipo meniu pritaikytas prie naujosios Firefox išvaizdos.
+      chrome_notes: Sutaisyti Foxtrick pranešimai Google Chrome naršyklėje. Naudojama nauja pranešimų sistema.
+      player_cache: Foxtrick dabar automatiškai aptiks naujus žaidėjus Jūsų komandoje ir atnaujins CHPP duomenis.
+      train_est: Foxtrick nebegadins žaidėjų rikiavimo treniruočių skaičiuoklio puslapyje.
+      mrf_fixes: '<module>MatchReportFormat</module> modulis veikdavo neteisingai kai kuriose rungtynėse. Klaida ištaisyta. Atsirado daugiau logotipų įvykiams.'
+      forum_header: '<module>ForumAlterHeaderLine</module> modulis peržiūrėtas ir ištaisytos įvairios klaidos.'
+      nav_fix: '<module>GoToPostBox</module> ir <module>MyMonitor</module> modulių navigacija neveikė Firefox naršyklėje. Klaida ištaisyta.'
+      new_lineup: '<module>MatchPlayerColouring</module>, <module>LineupShortcut</module>, <module>TeamPopupLinks</module> ir <module>SeniorTeamShortCuts</module> moduliai nuo šiol veiks su naujo tipo rungtynių ataskaita.'
+      other: '<header>Kiti pakeitimai</header>'
+      live_ratings: '<module>MatchLineupTweaks</module>, <module>MatchRatingsTweaks</module> ir <module>MatchPlayerColouring</module> nuo šiol veiks ir HT-Live. Primename, kad reitingus gyvai matyti gali tik HT-Rėmėjai.'
+      own_top_players: '<module>Filter</module> modulis paryškina Jūsų žaidėjus geriausių žaidėjų puslapyje.'
+      htev: htev.org serveris neįstengia aptarnauti Foxtrick užklausų, todėl HTEVPrediction modulis buvo panaikintas.
+      removed: SmallerPages ir MatchTables moduliai pašalinti dėl mažavertiškumo.
+      and_more: Daugybė kitų smulkių pataisymų ir pakitimų.
     0.13.0.1:
       crowdin: '<header>Daugybė vertimo atnaujinimų. Dėkojame savo šauniems vartotojams, kurie naudojasi <linkCrowdin>crowdin portalu</linkCrowdin>. Ir Jūs galite prisidėti!</header>'
       bugs: '<header>Pataisytos klaidos</header>'

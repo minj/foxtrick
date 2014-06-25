@@ -5,6 +5,14 @@ es-AR:
       note_0: 'Se trata de la version de desarrollo. Utilizar bajo su propio riesgo. Por favor ver <linkSVN>historial de commit</linkSVN> en Google Code para detalles de los cambios.'
     beta:
       note_0: 'Esta es la versión beta de la próxima versión. Por favor ayude a traducir esta versión en nuestra super-fácil página <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.14.0:
+      important: '<header>Anuncios importantes</header>'
+      crowdin: '<header>Muchas actualizaciones en las traducciones de nuestros colaboradores mediante <linkCrowdin> crowdin</linkCrowdin>. Usted también puede ayudarnos!</header>'
+      twitter: 'Puedes seguir <linkTwitter>Foxtrick on Twitter</linkTwitter> para recibir las últimas noticias, actualizaciones y anuncios.'
+      new: '<header>Nuevos módulos</header>'
+      bugs: '<header>Corrección de errores</header>'
+      other: '<header>Otros cambios</header>'
+      and_more: Otros pequeños cambios y correcciones.
     0.13.0.1:
       crowdin: '<header>Muchas actualizaciones en las traducciones de nuestros colaboradores mediante <linkCrowdin> crowdin</linkCrowdin>. Usted también puede ayudarnos!</header>'
       bugs: '<header>Corrección de errores</header>'

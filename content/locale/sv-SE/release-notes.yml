@@ -5,6 +5,14 @@ sv-SE:
       note_0: 'This is the development build. Use at your own discretion. Please view <linkSVN>commit history</linkSVN> at Google Code for details of the changes.'
     beta:
       note_0: 'Detta är BETA -versionen av nästa utgåva. Hjälp gärna till att översätta denna version via vårt superlätta översättningsverktyg på <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.14.0:
+      important: '<header>Viktiga meddelanden</header>'
+      crowdin: '<header>En hel massa översättningsuppdateringar av användare via översättningsverktyget på <linkCrowdin>crowdin.net</linkCrowdin>. Du kan också hjälpa till!</header>'
+      twitter: 'Du kan följa <linkTwitter>Foxtrick på Twitter</linkTwitter> för att få senaste nytt, uppdateringar och meddelanden.'
+      new: '<header>Nya moduler</header>'
+      bugs: '<header>Buggfixar</header>'
+      other: '<header>Andra ändringar</header>'
+      and_more: Flera andra mindre ändringar och korrigeringar.
     0.13.0.1:
       crowdin: '<header>En hel massa översättningsuppdateringar av användare via översättningsverktyget på <linkCrowdin>crowdin.net</linkCrowdin>. Du kan också hjälpa till!</header>'
       bugs: '<header>Buggfixar</header>'
