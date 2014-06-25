@@ -7,6 +7,7 @@
 
 Foxtrick.modules['TeamPopupLinks'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+	OUTSIDE_MAINBODY: true,
 	PAGES: ['all'],
 	NICE: 10, // after anythings that works on team/manager links
 	// but before staff-marker

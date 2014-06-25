@@ -6,6 +6,7 @@
 
 Foxtrick.modules['SimplePresentation'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.PRESENTATION,
+	OUTSIDE_MAINBODY: true,
 	PAGES: ['all'],
 
 	OPTIONS: [

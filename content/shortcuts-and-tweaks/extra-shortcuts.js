@@ -7,6 +7,7 @@
 
 Foxtrick.modules['ExtraShortcuts'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+	OUTSIDE_MAINBODY: true,
 	PAGES: ['all'],
 	OPTIONS: ['AddSpace', 'AddLeft', 'Supporterstats', 'Transfers', 'Prefs', 'FoxTrickPrefs',
 		'ManageCHPP', 'No9', 'Latehome'],

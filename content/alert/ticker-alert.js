@@ -22,6 +22,7 @@
 	};
 	Foxtrick.modules.TickerAlert = {
 		MODULE_CATEGORY: Foxtrick.moduleCategories.ALERT,
+		OUTSIDE_MAINBODY: true,
 		PAGES: ['all'],
 		NICE: 20, // after all other modules that make changes to #ticker
 

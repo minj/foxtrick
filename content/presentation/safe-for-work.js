@@ -7,6 +7,7 @@
 
 Foxtrick.modules['SafeForWork'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.PRESENTATION,
+	OUTSIDE_MAINBODY: true,
 	PAGES: ['all'],
 	NICE: -49,	//right after core, totally ridiculous to call it here but hey!
 	OPTION_FUNC: function(doc) {

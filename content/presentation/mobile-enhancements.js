@@ -9,6 +9,7 @@
 //if (Foxtrick.platform == 'Android')
 Foxtrick.modules['MobileEnhancements'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.PRESENTATION,
+	OUTSIDE_MAINBODY: true,
 	PAGES: ['all'],
 	CSS: Foxtrick.InternalPath + 'resources/css/mobile-enhancements.css',
 	OPTIONS: ['ViewPort'],

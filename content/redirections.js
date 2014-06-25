@@ -6,6 +6,7 @@
  */
 
 Foxtrick.modules['Redirections'] = {
+	OUTSIDE_MAINBODY: true,
 	CORE_MODULE: true,
 	PAGES: ['all'],
 	NICE: -40,  // after Core, before anything else

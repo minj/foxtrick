@@ -7,6 +7,7 @@
 
 Foxtrick.modules['Core'] = {
 	CORE_MODULE: true,
+	OUTSIDE_MAINBODY: true,
 	PAGES: ['all'],
 	NICE: -50, // before anything else
 	CSS: [

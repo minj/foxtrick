@@ -7,6 +7,7 @@
 
 Foxtrick.modules['NewMail'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.ALERT,
+	OUTSIDE_MAINBODY: true,
 	PAGES: ['all'],
 	OPTIONS: ['NotifyMail', 'NotifyMailSound', 'NotifyForum', 'NotifyForumSound'],
 	OPTION_EDITS: true,

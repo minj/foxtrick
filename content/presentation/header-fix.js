@@ -7,6 +7,7 @@
 
 Foxtrick.modules['HeaderFix'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.PRESENTATION,
+	OUTSIDE_MAINBODY: true,
 	PAGES: ['all'],
 	OPTIONS: ['FixLeft'],
 	CSS: Foxtrick.InternalPath + 'resources/css/header-fix.css',

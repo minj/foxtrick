@@ -7,6 +7,7 @@
 
 Foxtrick.modules['SkinPlugin'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.PRESENTATION,
+	OUTSIDE_MAINBODY: true,
 	PAGES: ['all'],
 
 	OPTION_FUNC: function(doc) {

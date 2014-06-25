@@ -237,6 +237,19 @@ Foxtrick.entry.run = function(doc, is_only_css_check) {
 			}
 		}
 
+		// pages with no mainBody
+		var mainBodyExcludes = [
+			/^\/Shop\//i,
+		];
+		var noMainBody = Foxtrick.any(function(ex) {
+			return ex.test(doc.location.pathname);
+		}, mainBodyExcludes);
+		if (noMainBody) {
+			modules = modules.filter(function(module) {
+				return module.OUTSIDE_MAINBODY;
+			});
+		}
+
 		// invoke niceRun to run modules
 		Foxtrick.entry.niceRun(modules, function(m) {
 			if (typeof(m.run) == 'function')
@@ -321,6 +334,19 @@ Foxtrick.entry.change = function(doc, changes) {
 					for (var i = 0; i < Foxtrick.entry.runMap[page].length; ++i)
 						modules.push(Foxtrick.entry.runMap[page][i]);
 				}
+			}
+
+			// pages with no mainBody
+			var mainBodyExcludes = [
+				/^\/Shop\//i,
+			];
+			var noMainBody = Foxtrick.any(function(ex) {
+				return ex.test(doc.location.pathname);
+			}, mainBodyExcludes);
+			if (noMainBody) {
+				modules = modules.filter(function(module) {
+					return module.OUTSIDE_MAINBODY;
+				});
 			}
 
 			// invoke niceRun to run modules

@@ -7,6 +7,7 @@
 
 Foxtrick.modules['ARIALandmarks'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.ACCESSIBILITY,
+	OUTSIDE_MAINBODY: true,
 	PAGES: ['all'],
 	NICE: 50, //after everything
 

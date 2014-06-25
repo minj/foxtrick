@@ -25,6 +25,7 @@ if (Foxtrick.platform != 'Android')
 
 	Foxtrick.modules.ContextMenuCopy = {
 		MODULE_CATEGORY: Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+		OUTSIDE_MAINBODY: true,
 		PAGES: ['all'],
 		OPTIONS: ['Id', 'Link', 'HtMl', 'Table'],
 

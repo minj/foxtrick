@@ -7,6 +7,7 @@
 
 Foxtrick.modules['TickerColoring'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.ALERT,
+	OUTSIDE_MAINBODY: true,
 	PAGES: ['all'],
 	CSS: Foxtrick.InternalPath + 'resources/css/ticker-coloring.css',
 

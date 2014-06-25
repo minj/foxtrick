@@ -7,6 +7,7 @@
 
 Foxtrick.modules['RapidId'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
+	OUTSIDE_MAINBODY: true,
 	PAGES: ['all'],
 	CSS: Foxtrick.InternalPath + 'resources/css/rapidid.css',
 

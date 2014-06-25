@@ -6,6 +6,7 @@
 */
 
 Foxtrick.modules.UI = {
+	OUTSIDE_MAINBODY: true,
 	CORE_MODULE: true,
 	PAGES: ['all'],
 

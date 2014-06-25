@@ -6,6 +6,7 @@
  */
 
 Foxtrick.modules['ReadHtPrefs'] = {
+	OUTSIDE_MAINBODY: true,
 	PAGES: ['all'],
 	CORE_MODULE: true,
 	NICE: -20,
