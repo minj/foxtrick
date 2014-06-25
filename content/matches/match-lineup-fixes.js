@@ -619,7 +619,7 @@ Foxtrick.modules['MatchLineupFixes'] = {
 
 			var playerData = Foxtrick.Pages.Match.parsePlayerScript(doc);
 
-			if (playerData.length) {
+			if (!playerData || !playerData.length) {
 				Foxtrick.log('addLinksInOrders: failed to parse playerData');
 				return;
 			}
