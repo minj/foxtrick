@@ -983,7 +983,7 @@ function initModules() {
 
 function initMainTab() {
 	// setup
-	var gcUrl = '<a href="http://code.google.com/p/foxtrick/issues/list" ' +
+	var gcUrl = '<a href="https://code.google.com/p/foxtrick/issues/list" ' +
 		'target="_blank">$1</a>';
 	var desc = Foxtrick.L10n.getString('prefs.setup.desc').replace(/{(.+)}/, gcUrl);
 	$('#pref-setup-desc').html(desc);

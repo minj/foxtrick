@@ -18,7 +18,7 @@
 		<em:developer>ljushaff</em:developer>
 		<em:developer>LA-MJ</em:developer>
 
-		<em:homepageURL>http://www.foxtrick.org/</em:homepageURL>
+		<em:homepageURL>https://www.foxtrick.org/</em:homepageURL>
 		<em:iconURL>chrome://foxtrick/skin/icon.png</em:iconURL>
 		<em:icon64URL>chrome://foxtrick/skin/icon-64.png</em:icon64URL>
 		<em:optionsURL>chrome://foxtrick/content/preferences.html</em:optionsURL>

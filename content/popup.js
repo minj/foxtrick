@@ -73,7 +73,7 @@ function openPrefs()
 function visitHomePage()
 {
 	if (isChrome) {
-		chrome.tabs.create({ 'url': 'http://code.google.com/p/foxtrick/' });
+		chrome.tabs.create({ 'url': 'https://www.foxtrick.org/' });
 		window.close();
 		return false;
 	}

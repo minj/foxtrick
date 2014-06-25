@@ -2,11 +2,11 @@
 	"links": [
 		{
 			"id": "homepage",
-			"href": "http://www.foxtrick.org/"
+			"href": "https://www.foxtrick.org/"
 		},
 		{
 			"id": "bugTracker",
-			"href": "http://code.google.com/p/foxtrick/issues/"
+			"href": "https://code.google.com/p/foxtrick/issues/"
 		},
 		{
 			"id": "hattrickForum",
@@ -14,27 +14,15 @@
 		},
 		{
 			"id": "screenshots",
-			"href": "http://www.foxtrick.org/screenshots/"
+			"href": "https://www.foxtrick.org/screenshots/"
 		},
 		{
-			"id": "nightlyFirefox",
-			"href": "http://www.foxtrick.org/nightly/"
-		},
-		{
-			"id": "nightlyChrome",
-			"href": "http://www.foxtrick.org/nightly/chrome/"
-		},
-		{
-			"id": "nightlyOpera",
-			"href": "http://www.foxtrick.org/nightly/opera/"
-		},
-		{
-			"id": "nightlySafari",
-			"href": "http://www.foxtrick.org/nightly/safari/"
+			"id": "beta",
+			"href": "https://www.foxtrick.org/download/beta"
 		},
 		{
 			"id": "recentChanges",
-			"href": "http://code.google.com/p/foxtrick/source/list"
+			"href": "https://code.google.com/p/foxtrick/source/list"
 		}
 	],
 	"maintainers": [
