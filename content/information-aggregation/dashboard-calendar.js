@@ -134,7 +134,7 @@ Foxtrick.modules['DashboardCalendar'] = {
 			for (var j = 0, z = eventDays[day].length; j < z; j++) {
 				var event = eventDays[day][j];
 				if (event) {
-					var eTime = event.time.split(':');
+					var eTime = event.time.split(/\D/);
 					var eventTime = Foxtrick.util.time.addDaysToDate(today, i);
 					eventTime.setHours(eTime[0]);
 					eventTime.setMinutes(eTime[1]);
