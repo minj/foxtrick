@@ -7,12 +7,19 @@
 
 Foxtrick.modules.FixLinks = {
 	CORE_MODULE: true,
-	PAGES: ['match', 'matches', 'matchesArchive', 'playerStats', 'matchesLatest'],
+	PAGES: [
+		'match',
+		'matches', 'matchesArchive',
+		'playerStats',
+		'matchesLatest',
+		'players', 'youthPlayers'
+	],
 	NICE: -20, // place before all DOM mutating modules
 	addParam: function(url, param, value, replace) {
 		var newUrl = url, urlParts = url.split('#'), hasQuery = /\?/.test(urlParts[0]);
 		if (replace) {
-			urlParts[0] = urlParts[0].replace(new RegExp('([&?])' + param + '=[^&]+&?', 'i'), '$1');
+			var rePlaceRe = new RegExp('([&?])' + param + '=[^&]+&?', 'i');
+			urlParts[0] = urlParts[0].replace(rePlaceRe, '$1');
 			urlParts[0] = urlParts[0].replace(/\?$/, '');
 			hasQuery = /\?/.test(urlParts[0]);
 		}
@@ -29,10 +36,19 @@ Foxtrick.modules.FixLinks = {
 		var urlParts = url.split('#');
 		return urlParts[0] + '#' + anchor;
 	},
-	fixLineupLink: function(link, teamId, youthTeamId) {
-		var url = this.addAnchor(this.addParam(link.href, 'teamId', teamId), 'tab2');
+	addTeamId: function(url, teamId, youthTeamId) {
+		url = this.addParam(url, 'teamId', teamId);
 		if (youthTeamId)
 			url = this.addParam(url, 'youthTeamId', youthTeamId);
+		return url;
+	},
+	fixLineupLink: function(link, teamId, youthTeamId) {
+		var url = this.addTeamId(link.href, teamId, youthTeamId);
+		url = this.addAnchor(url, 'tab2');
+		link.href = url;
+	},
+	addPlayerHighlight: function(link, playerId) {
+		var url = this.addParam(link.href, 'HighlightPlayerID', playerId);
 		link.href = url;
 	},
 	getDefaultTeamId: function(doc) {
@@ -44,59 +60,91 @@ Foxtrick.modules.FixLinks = {
 		}
 		return teamId;
 	},
+	getYouthTeamId: function(doc) {
+		var youthid = Foxtrick.util.id.getYouthTeamIdFromUrl(doc.location.href);
+		if (!youthid) {
+			var menu = doc.getElementsByClassName('subMenu')[0];
+			youthid = menu ? Foxtrick.util.id.findYouthTeamId(menu) : null;
+		}
+		return youthid;
+	},
 	parseMatchPage: function(doc) {
-		if (Foxtrick.Pages.Match.isPrematch(doc) || Foxtrick.Pages.Match.inProgress(doc))
+		if (Foxtrick.Pages.Match.isPrematch(doc))
 			return;
+
+		var module = this;
+		var makeListener = function(link) {
+			return function(e) {
+				var doc = link.ownerDocument;
+				var l = doc.location.href.match(/(#.*)/);
+				var a = link.href.match(/(#.*)/);
+				if (l && !a)
+					link.href = link.href + l[1];
+			};
+		};
+
+		var loc = doc.location.href;
+		var paramsTosave = {
+			teamId: Foxtrick.util.id.getTeamIdFromUrl(loc),
+			youthTeamId: Foxtrick.util.id.getYouthTeamIdFromUrl(loc),
+			HighlightPlayerID: Foxtrick.getParameterFromUrl(loc, 'HighlightPlayerID'),
+			BrowseIds: Foxtrick.getParameterFromUrl(loc, 'BrowseIds'),
+		};
+		var saveParams = function(link) {
+			var url = link.href;
+			for (var p in paramsTosave) {
+				if (paramsTosave[p]) {
+					url = module.addParam(url, p, paramsTosave[p]);
+				}
+			}
+			link.href = url;
+		};
 
 		var browseLinks = doc.querySelectorAll('.speedBrowser a');
 		for (var i = 0; i < browseLinks.length; i++) {
 			var link = browseLinks[i];
-			Foxtrick.onClick(link, (function(link) {
-				return function(e) {
-					var l = doc.location.href.match(/(#.*)/);
-					var a = link.href.match(/(#.*)/);
-					if (l && !a)
-						link.href = link.href + l[1];
-			}})(link));
+			saveParams(link);
+			Foxtrick.onClick(link, makeListener(link));
 		}
 
 		var links = doc.querySelectorAll('div.boxHead a');
 		var id = this.getDefaultTeamId(doc);
 		var isYouth = Foxtrick.Pages.Match.isYouth(doc);
-		var youthid = Foxtrick.util.id.getYouthTeamIdFromUrl(doc.location.href);
-		if (isYouth && !youthid) {
-			var menu = doc.getElementsByClassName('subMenu')[0];
-			youthid = menu ? Foxtrick.util.id.findYouthTeamId(menu) : null;
-		}
 		for (var i = 0; i < links.length; ++i) {
-			var url = this.addParam(links[i].href, 'teamId', id);
-			if (youthid)
-				url = this.addParam(url, 'youthTeamId', youthid);
-			links[i].href = url;
+			saveParams(links[i]);
 		}
-		links = doc.querySelectorAll('#oldMatchRatings table th a');
-		if (isYouth) {
-			this.fixLineupLink(links[0], id, Foxtrick.Pages.Match.getHomeTeamId(doc));
-			this.fixLineupLink(links[1], id, Foxtrick.Pages.Match.getAwayTeamId(doc));
-		}
-		else {
-			this.fixLineupLink(links[0], Foxtrick.Pages.Match.getHomeTeamId(doc));
-			this.fixLineupLink(links[1], Foxtrick.Pages.Match.getAwayTeamId(doc));
-		}
+		links = doc.querySelectorAll('#oldMatchRatings th a');
+		Foxtrick.forEach(function(link) {
+			if (isYouth) {
+				module.fixLineupLink(link, id, Foxtrick.Pages.Match.getHomeTeamId(doc));
+			}
+			else {
+				module.fixLineupLink(link, Foxtrick.Pages.Match.getHomeTeamId(doc));
+			}
+			saveParams(link);
+		}, links);
 	},
 	parseMatchesPage: function(doc) {
-		var lineupImgs = doc.querySelectorAll('#mainBody table img.matchOrder');
+		var table = doc.querySelector('#mainBody table');
+		var b = table.querySelector('a[href*="BrowseIds"]');
+		var browseIds = b ? Foxtrick.getParameterFromUrl(b.href, 'BrowseIds') : null;
+		var lineupImgs = table.querySelectorAll('img.matchOrder');
 		var id = this.getDefaultTeamId(doc);
-		var youthid = Foxtrick.util.id.getYouthTeamIdFromUrl(doc.location.href);
+		var isYouth = /Youth/i.test(doc.location.href);
+		var youthid = isYouth ? this.getYouthTeamId(doc) : null;
+		var isReportLink = function(a) {
+			return a.href && /Match\.aspx/.test(a.href) && !/#/.test(a.href);
+		};
+
 		for (var i = 0; i < lineupImgs.length; i++) {
 			var link = lineupImgs[i].parentNode;
 			this.fixLineupLink(link, id, youthid);
+			if (browseIds)
+				link.href = this.addParam(link.href, 'BrowseIds', browseIds);
 			if (youthid) {
 				// add youthteamid to report link
 				var row = link.parentNode.parentNode;
-				var reportLink = Foxtrick.nth(function(a) {
-					return a.href && /Match\.aspx/.test(a.href) && !/#/.test(a.href);
-				}, row.getElementsByTagName('a'));
+				var reportLink = Foxtrick.nth(isReportLink, row.getElementsByTagName('a'));
 				reportLink.href = this.addParam(reportLink.href, 'youthTeamId', youthid);
 			}
 		}
@@ -107,10 +155,11 @@ Foxtrick.modules.FixLinks = {
 		var links = doc.querySelectorAll('#matches a');
 		for (var i = 0; i < links.length; i++) {
 			this.fixLineupLink(links[i], id);
-			links[i].href = this.addParam(links[i].href, 'HighlightPlayerID', pid);
+			this.addPlayerHighlight(links[i], pid);
 		}
 	},
 	parseH2HLatestMatches: function(doc) {
+		var module = this;
 		var homeId = Foxtrick.getParameterFromUrl(doc.location.href, 'HomeTeamID');
 		var awayId = Foxtrick.getParameterFromUrl(doc.location.href, 'AwayTeamID');
 		var names = doc.querySelectorAll('#mainBody th');
@@ -122,7 +171,7 @@ Foxtrick.modules.FixLinks = {
 
 		var addTeamIdIfAway = function(match, lineup, name, id) {
 			if (!new RegExp('^' + name).test(match.textContent))
-				lineup.href = Foxtrick.modules.FixLinks.addParam(lineup.href, 'teamId', id);
+				lineup.href = module.addParam(lineup.href, 'teamId', id);
 		};
 		for (var i = 0; i < links.length; i += 6) {
 			// add ids to match-links
@@ -132,6 +181,19 @@ Foxtrick.modules.FixLinks = {
 			addTeamIdIfAway(links[i], links[i + 2], home, homeId);
 			addTeamIdIfAway(links[i + 3], links[i + 5], away, awayId);
 		}
+	},
+	parsePlayers: function(doc) {
+		var module = this;
+		var id = this.getDefaultTeamId(doc);
+		var isYouth = Foxtrick.isPage(doc, 'youthPlayers');
+		var youthid = isYouth ? this.getYouthTeamId(doc) : null;
+		var players = doc.getElementsByClassName('playerInfo');
+		Foxtrick.forEach(function(p) {
+			var pid = Foxtrick.util.id.findPlayerId(p);
+			var matchLink = p.querySelector('a[href^="/Club/Matches/Match.aspx"]');
+			module.fixLineupLink(matchLink, id, youthid);
+			module.addPlayerHighlight(matchLink, pid);
+		}, players);
 	},
 	run: function(doc) {
 		if (Foxtrick.isPage(doc, 'match'))
@@ -143,5 +205,7 @@ Foxtrick.modules.FixLinks = {
 			this.parsePlayerStats(doc);
 		else if (Foxtrick.isPage(doc, 'matchesLatest'))
 			this.parseH2HLatestMatches(doc);
+		else if (Foxtrick.isPage(doc, 'players') || Foxtrick.isPage(doc, 'youthPlayers'))
+			this.parsePlayers(doc);
 	},
 };
