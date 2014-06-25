@@ -363,7 +363,12 @@ Foxtrick.Pages.Player = {
 						}
 					}
 				}
+				else
+					found = false;
 			}
+			else
+				found = false;
+
 			return found ? { values: skills, texts: skillTexts, names: skillNames } : null;
 		}
 		catch (e) {
