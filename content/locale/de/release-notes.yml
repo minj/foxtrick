@@ -8,9 +8,13 @@ de:
     0.14.0:
       important: '<header>Wichtige Ankündigungen</header>'
       crowdin: '<header>Eine Menge neue Übersetzungen von unseren geliebten <linkCrowdin>Crowdin</linkCrowdin> Nutzern. Du kannst übrigens auch ganz einfach mithelfen!</header>'
+      browsers: Oper 12 Unterstützung wurde eingestellt. Safari 6 und Firefox 24 sind jetzt minimal Versionen, um Foxtrick zu verwenden.
+      bug_report: Die Hattrick-Fußzeile enthält nun eine Verknüpfung um effektiv Foxtrick-Fehler melden. Verwenden Sie es auf der betreffenden Seite und befolgen Sie die angezeigten Anweisungen.
       twitter: 'Du kannst <linkTwitter>Foxtrick auf Twitter</linkTwitter> folgen um regelmässig Nachrichten zu Updates und weitere Meldungen zu erhalten.'
       new: '<header>Neue Module</header>'
+      series_transfers: '<module>SeriesTransfers</module>: Listet auf Ligenseiten die momentan zum Verkauf stehenden Spieler auf.'
       bugs: '<header>Bugfixes</header>'
+      australis: Firefox-Symbol-Menü wurde festgesetzt, um besser mit dem neuen Browser-Thema zu harmonieren.
       other: '<header>Andere Änderungen</header>'
       and_more: Mehrere kleinere Änderungen und Korrekturen.
     0.13.0.1:

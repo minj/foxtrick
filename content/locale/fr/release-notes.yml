@@ -8,10 +8,27 @@ fr:
     0.14.0:
       important: '<header>Annonces importantes</header>'
       crowdin: '<header>Mise à jour des traductions de la part de nos fidèles utilisateurs via <linkCrowdin>crowdin tool</linkCrowdin>. Vous pouvez aussi nous donner un coup de main!</header>'
+      browsers: Le support de Opéra 12 est stoppé. Safari 6 et Firefox 24 sont maintenant des versions minimales pour exécuter Foxtrick.
+      backend: "Une multitude de nettoyage et de mises à jour du noyau de Foxtrick ont été réalisées. Les modifications affectent un grand nombre de pages, modules et fonctionnalités, inclus le rapport de match, le HT-Live, l'interface d'ordre de match, la détection automatique de la monnaie et le cache de Foxtrick. Veuillez nous signaler tous bugs."
+      bug_report: "Le pied de page de Hattrick comporte maintenant un lien pour signaler efficacement les bugs de Foxtrick. Utilisez-le sur la page incriminée et suivez les instructions qui s'affichent."
       twitter: 'Vous pouvez suivre <linkTwitter>Foxtrick sur Twitter</linkTwitter>pour recevoir les dernières nouvelles, mises à jour et annonces.'
       new: '<header>Nouveaux modules</header>'
+      series_transfers: '<module>SeriesTransfers</module>: Affiche une liste des joueurs de la ligue actuellement en vente sur les pages de poule.'
+      player_positions: 'Les modules <module>PlayerPositionsEvaluations</module> et <module>BestPlayerPosition</module> évaluent les joueurs dans diverses positions selon le <linkContributionsWiki>Wiki de Hattrick</linkContributionsWiki>.'
       bugs: '<header>Correctifs</header>'
+      australis: "Le menu de l'icône a été revu et fonctionne avec le nouveau thème de Firefox."
+      chrome_notes: Les notifications de FoxTrick fonctionnent avec le nouveau système de notification de Google Chrome.
+      player_cache: FoxTrick détecte maintenant les nouveaux joueurs de votre équipe et actualise automatiquement les données CHPP.
+      train_est: "FoxTrick n'interfère plus avec le tableau de la nouvelle fonction d'estimation de l'entraînement."
+      mrf_fixes: "<module>MatchReportFormat</module> ne doit plus briser la mise en page de certains matchs. Ajout de nouveaux icônes d'événements."
+      forum_header: '<module>ForumAlterHeaderLine</module> a été revu et devrait maintenant fonctionner correctement dans tous les cas.'
+      nav_fix: 'La navigation via <module>GoToPostBox</module> et <module>MyMonitor</module> a été corrigé sur Firefox.'
+      new_lineup: 'Les modules <module>MatchPlayerColouring</module>, <module>LineupShortcut</module>, <module>TeamPopupLinks</module> et <module>SeniorTeamShortCuts</module> fonctionnent désormais correctement avec la nouvelle page de composition du match.'
       other: '<header>Autres changements</header>'
+      live_ratings: 'Les notes détaillées du match en live sont prises en compte dans <module>MatchLineupTweaks</module>, <module>MatchRatingsTweaks</module> et <module>MatchPlayerColouring</module>.'
+      own_top_players: 'Le module <module>Filter</module> met maintenant en évidence vos joueurs dans la page des Meilleurs Joueurs.'
+      htev: htev.org peut ne plus supporter la charge des requêtes de Foxtrick donc le module HTEVPrediction a été supprimé.
+      removed: SmallerPages et MatchTables modules ont également été retirés en raison de leur inutilité.
       and_more: Divers autres petits changements et corrections.
     0.13.0.1:
       crowdin: '<header>Mise à jour des traductions de la part de nos fidèles utilisateurs via <linkCrowdin>crowdin tool</linkCrowdin>. Vous pouvez aussi nous donner un coup de main!</header>'

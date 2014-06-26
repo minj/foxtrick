@@ -3,6 +3,10 @@ de:
   faq:
     style:
       question: Wie kann ich das Erscheinungsbild von Foxtrick verändern?
+      answer: |
+        <p>FoxTrick bietet dem User eine Reihe von Schnittstellen, die es erlauben, das Erscheinungsbild anzupassen. Diese Schnittstellen werden durch HTML-IDs und Klassen bereitgestellt und per CSS können eigene Stile definiert werden.</p>  
+        
+        <p>Beispieldateien sind <linkCSSExample>hier</linkCSSExample> oder <linkCSSExampleGCode>hier</linkCSSExampleGCode> hinterlegt, die Sie anpassen können. Nach dem Speichern der Datei, kann diese mit Hilfe des <module>SkinPlugin</module>-Moduls geladen und so verwendet werden.</p>
     sound-format:
       question: Welche Dateiformate sind bei Alarm-Geräuschen erlaubt?
       answer: |
@@ -15,6 +19,11 @@ de:
         </ul>
     sound-location:
       question: Wie ist das Limit bei der Dateigröße und wo befinden sich die Dateien?
+      answer: |
+        <p>Alle Browser können Daten-URLs abspielen. Dies sind intern gespeicherte Sounds, die über die Schaltfläche Laden in den Voreinstellungen verfügbar sind. Da diese konvertiert und in den Einstellungen gespeichert sind, ist die Größe  auf rund 160 kb pro Ton beschränkt.</p>  
+        <p>Alle Browser können auch Sounds direkt aus dem Internet (http-URL) abspielen. Kopieren Sie einfach einen Link zu einem Ton (zB http://foxtrick.org/sound.wav) in das Eingabefeld für Sounds. Dabei gibt es keine Größenbeschränkung.</p>  
+        
+        <p>-Mozilla-Browser können auch Töne direkt von Ihrer Festplatte (Datei-Urls) belibeiger Größen widergeben. Der einfachste Weg, um das richtige Link-Format zu erhalten ist: Mit dem Browser durch drücken von Strg + o im Auswahlfenster die Audio-Datei auswählen. Die Adresse erscheint dann in der Adresszeile und kann in der Form direkt als Link zu der lokalen Datei (z.B. file:///c:/sound.wav) verwendet werden. Diese Adresse können Sie einfach durch kopieren und einfügen in das Eingabefeld für den Klang übertragen.</p>
     authorize:
       question: Warum sollte ich Foxtrick zugriff auf meine Mannschaftsdaten geben?
       answer: |

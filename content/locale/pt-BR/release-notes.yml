@@ -8,10 +8,18 @@ pt-BR:
     0.14.0:
       important: '<header>Anúncios Importantes</header>'
       crowdin: '<header>Várias atualizações de traduções de nossos fantásticos usuários que usam o <linkCrowdin>crowdin tool</linkCrowdin>. Você também pode ajudar!</header>'
+      browsers: Suporte ao Opera 12 foi descontinuado. Safari 6 e Firefox 24 agora são versões mínimas para executar Foxtrick.
+      backend: Foram feitas mais limpezas e atualizações para o núcleo do Foxtrick. As alterações afetam um monte de páginas, módulos e funcionalidades, incluindo o relatório do jogo, HT-Live, interface da ordem de jogo, detecção automática de moeda e cache do Foxtrick. Por favor reporte quaisquer erros que você encontrar.
+      bug_report: Rodapé do Hattrick agora irá incluir um link para efetivamente Relatar bugs no Foxtrick. Use-o na página com defeito e siga as instruções que aparecem.
       twitter: 'Você pode seguir <linkTwitter>Foxtrick no Twitter</linkTwitter>para receber as últimas notícias, informações e anúncios.'
       new: '<header>Novos módulos</header>'
+      series_transfers: '<module>SeriesTransfers</module>: Mostra a lista de jogadores atualmente a venda nas páginas da liga.'
+      player_positions: 'Módulos <module>PlayerPositionsEvaluations</module> e <module>BestPlayerPosition</module> calculam a efetividade do jogador em várias posições de acordo com o <linkContributionsWiki>Hattrick Wiki</linkContributionsWiki>.'
       bugs: '<header>Correções de bugs</header>'
       other: '<header>Outras alterações</header>'
+      own_top_players: 'Módulo <module>Filter</module> agora destaca seus jogadores na página de estatísticas de melhores jogadores.'
+      htev: htev.org já não pode sustentar a carga de solicitações de Foxtrick, portanto, o módulo HTEVPrediction foi removido.
+      removed: Os módulos SmallerPages e MatchTables também foram removidos devido a sua inutilidade.
       and_more: Várias outras pequenas alterações e correções.
     0.13.0.1:
       crowdin: '<header>Várias atualizações de traduções de nossos fantásticos usuários que usam o <linkCrowdin>crowdin tool</linkCrowdin>. Você também pode ajudar!</header>'

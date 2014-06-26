@@ -8,11 +8,28 @@ da:
     0.14.0:
       important: '<header>Vigtige meddelelser</header>'
       crowdin: '<header>En del oversættelses opdateringer fra vores fantastiske brugere ved hjælp af <linkCrowdin>crowdin </linkCrowdin>. Du kan også hjælpe til!</header>'
+      browsers: Der ydes ikke længere support for Opera 12. Du skal som minimum enten have Safari 6 eller FireFox 24 for at Foxtrick fungerer.
+      backend: Der er foretaget yderligere opdateringer og oprydning af kernen. Ændringerne påvirker en del sider, moduler og funktioner såsom kamprapport, HT-Live, kampordre interface, automatisk valuta tilvalg og Foxtrick cache. Hvis du støder på enhver slags fejl brug fejl rapporterings linket i bunden af din HT side.
+      bug_report: Hattricks fodnote indeholder nu et link for at rapportere Foxtrick fejl. Brug det på den side fejlen opstår og følg vejledningen.
       twitter: 'Du kan følge <linkTwitter>Foxtrick på Twitter</linkTwitter> for at modtage de seneste nyheder, opdateringer og meddelelser.'
       new: '<header>Nye moduler</header>'
+      series_transfers: '<module>SeriesTransfers</module>: Viser en liste over spillere der i øjeblikket er til salg på liga sider.'
+      player_positions: '<module>PlayerPositionsEvaluations</module> og <module>BestPlayerPosition</module> moduler beregner spiller bidrag i forskellige positioner efter <linkContributionsWiki>Hattrick Wiki</linkContributionsWiki>.'
       bugs: '<header>Fejlrettelser</header>'
+      australis: Firefox ikonet i menuen er rettet til så at det fungerer med den nye browser tema.
+      chrome_notes: Foxtrick notifikationer blev rettet til at bruge det nye notifikationssystem i Google Chrome.
+      player_cache: Foxtrick vil nu registrere nye spillere på dit hold og opdatere CHPP data automatisk.
+      train_est: Foxtrick er ikke længere i konflikt med tabel sortering i den nye træningsberegning funktion.
+      mrf_fixes: '<module>MatchReportFormat</module> vil ikke længere have et fejlagtig layout i nogle kampe. Flere ikoner er tilføjet for begivenheder.'
+      forum_header: '<module>ForumAlterHeaderLine</module> blev gennemgået, og burde nu fungere korrekt i alle tilfælde.'
+      nav_fix: 'Navigering i <module>GoToPostBox</module> og <module>MyMonitor</module> blev rettet i Firefox.'
+      new_lineup: 'Modulerne <module>MatchPlayerColouring</module>, <module>LineupShortcut</module>, <module>TeamPopupLinks</module> og <module>SeniorTeamShortCuts</module> vil nu fungere korrekt med den nye opstillings side.'
       other: '<header>Andre ændringer</header>'
-      and_more: Forskellige andre små ændringer og rettelser.
+      live_ratings: 'Support for Live Ratings blev tilføjet i <module>MatchLineupTweaks</module>, <module>MatchRatingsTweaks</module> og <module>MatchPlayerColouring</module>.'
+      own_top_players: '<module>Filter</module> modul fremhæver nu dine spillere i Top spillere statistik side.'
+      htev: htev.org kan ikke længere opretholde belastning af Foxtrick anmodninger, dermed HTEVPrediction modul blev fjernet.
+      removed: SmallerPages og MatchTables moduler blev også fjernet på grund af deres ubrugelighed.
+      and_more: Forskellige små ændringer og rettelser.
     0.13.0.1:
       crowdin: '<header>En del oversættelses opdateringer fra vores fantastiske brugere ved hjælp af <linkCrowdin>crowdin </linkCrowdin>. Du kan også hjælpe til!</header>'
       bugs: '<header>Fejlrettelser</header>'
@@ -24,7 +41,7 @@ da:
       attvsdef: 'Reelle sandsynligheder i <module>AttVsDef</module> modul påvirker nu også bold besiddelse barer.'
       staff_marker: 'Brugerdefineret farve interface i <module>StaffMarker</module> er nu valgfri.'
       mmdd: 'Pilene i <module>MainMenuDropDown</module> menuer er nu valgfrie.'
-      and_more: Forskellige andre små ændringer og rettelser.
+      and_more: Forskellige små ændringer og rettelser.
     0.13.0:
       important: '<header>Vigtige meddelelser</header>'
       opera: '<p>Dette er den sidste store udgivelse, der officielt understøtter Opera 12 eller dérunder. Eksisterende Foxtrick versioner kan stoppe med at virke uden yderligere varsel.</p> <p>Du kan overveje at skifte til <linkOperaNext>Opera Next</linkOperaNext> eller en anden understøttet browser efter eget valg.</p>'
