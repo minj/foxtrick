@@ -20,42 +20,50 @@ Foxtrick.modules['ForumLastPost'] = {
 
 	_change: function(doc) {
 		if (Foxtrick.isPage(doc, 'forum')) {
-
 			var perpage = Foxtrick.Prefs.getInt('perpage');
-			if (perpage == null) perpage = 20;
-			var lastpage = (Foxtrick.Prefs.isModuleOptionEnabled('ForumLastPost', 'lastpage'));
-			var divs = doc.getElementsByClassName('threadInfo');
-			for (var i = 0; i < divs.length; i++) {
-				var id = divs[i].textContent;
-				if (id.search(/\//) > -1)
-					continue;
-				if (lastpage)
-					id = id - perpage + 1;
-				if (id < 1)
-					id = 1;
-				var url = divs[i].parentNode.parentNode.getElementsByTagName('a')[0];
-				url.href = url.href.replace(/n=\d+/, 'n=' + id);
-			}
+			if (!perpage)
+				perpage = 20;
 
-			var pager = doc.getElementById('ctl00_ctl00_CPContent_CPMain_updLatestThreads');
-			if (pager == null) return;
-			var divs = doc.getElementsByClassName('fplThreadInfo');
-			for (var i = 0; i < divs.length; i++) {
-				var id = divs[i].textContent.trim();
-				if (id.search(/\//) > -1)
-					continue;
-				if (lastpage) id = id - perpage + 1;
-				if (id < 1) id = 1;
-				var url = divs[i].parentNode.parentNode.getElementsByTagName('a')[0];
-				url.href = url.href.replace(/n=\d+/, 'n=' + id);
-			}
+			var lastpage = Foxtrick.Prefs.isModuleOptionEnabled('ForumLastPost', 'lastpage');
+
+			var changeLinks = function(rowClass, countClass, linkClass) {
+				var rows = doc.getElementsByClassName(rowClass);
+				Foxtrick.forEach(function(row) {
+					var div = row.getElementsByClassName(countClass)[0];
+					var postCt = div.textContent;
+					if (/\//.test(postCt))
+						// unread
+						return;
+
+					var url = row.querySelector('.' + linkClass + ' a');
+					if (url.getElementsByTagName('strong').length) {
+						// this thread is open now!
+						// default to first post
+						return;
+					}
+
+					if (lastpage)
+						postCt = postCt - perpage + 1;
+					if (postCt < 1)
+						postCt = 1;
+
+					url.href = url.href.replace(/n=\d+/i, 'n=' + postCt);
+				}, rows);
+			};
+
+			// sidebar thread list
+			changeLinks('threadItem', 'threadInfo', 'url');
+			// last-viewed thread list
+			changeLinks('folderitem', 'fplThreadInfo', 'fplLongThreadName');
 		}
 		else {
-			var select = doc.getElementById('ctl00_ctl00_CPContent_CPMain_ddlMessagesPerPage');
-			if (select == null) return;
-			var id = select.options[select.selectedIndex].text;
-			id = parseInt(id, 10);
-			Foxtrick.Prefs.setInt('perpage', id);
+			var selectId = 'ctl00_ctl00_CPContent_CPMain_ucForumPreferences_ddlMessagesPerPage';
+			var select = doc.getElementById(selectId);
+			if (!select)
+				return;
+
+			var ct = parseInt(select.value, 10);
+			Foxtrick.Prefs.setInt('perpage', ct);
 		}
 	}
 };
