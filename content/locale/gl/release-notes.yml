@@ -20,15 +20,15 @@ gl:
       chrome_notes: As notificacións do Foxtrick foron arranxadas para empregar o novo sistema de notificacións no Google Chrome.
       player_cache: O Foxtrick detectará agora novos xogadores no teu equipo e actualizará os datos CHPP automáticamente.
       train_est: O Foxtrick xa non interferirá coa ordenación da taboa na nova funcionalidade de estimación do adestramento.
-      mrf_fixes: 'O <module>MatchReportFormat</module> xa non terá un diseño rachado nalgúns partidos. Engadíronse mais iconas de eventos.'
+      mrf_fixes: 'O <module>MatchReportFormat</module> xa non amosará un deseño escangallado nalgúns partidos. Tamén engadíronse mais iconas de eventos.'
       forum_header: 'O <module>ForumAlterHeaderLine</module> foi revisado e agora debería funcionar ben en tódolos casos.'
       nav_fix: 'A navegación no <module>GoToPostBox</module> e no <module>MyMonitor</module> foi arranxada no Firefox.'
       new_lineup: 'Os módulos <module>MatchPlayerColouring</module>, <module>LineupShortcut</module>, <module>TeamPopupLinks</module> e <module>SeniorTeamShortCuts</module> funcionarán agora correctamente coa nova páxina de ordes do partido.'
       other: '<header>Outros cambios</header>'
       live_ratings: 'O soporte para as calificacións en vivo foi engadido no<module>MatchLineupTweaks</module>, no <module>MatchRatingsTweaks</module> e no <module>MatchPlayerColouring</module>.'
       own_top_players: 'O módulo <module>Filter</module> salienta agora ós teus xogadores na páxina de Mellores Xogadores.'
-      htev: htev.org non pode aturar a carga de peticións do Foxtrick, polo que o módulo HTEVPrediction foi eliminado.
-      removed: Os módulos SmallerPages e MatchTables foron suprimidos porque non valían para moito.
+      htev: Xa que htev.org non podía aturar a carga de peticións do Foxtrick, o módulo HTEVPrediction foi eliminado.
+      removed: Os módulos SmallerPages e MatchTables foron suprimidos xa que non valían para moito.
       and_more: Moitos outros cambios pequeniños por aquí e por alá.
     0.13.0.1:
       crowdin: '<header>Unha morea de actualizacións das traducións realizadas polos nosos marabillosos usuarios a través da <linkCrowdin>ferramenta Crowdin</linkCrowdin>. Por certo, ti tamén podes colaborar!</header>'
