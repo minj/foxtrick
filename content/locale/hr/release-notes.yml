@@ -11,7 +11,7 @@ hr:
       twitter: 'Možete pratiti <linkTwitter>Foxtrick na Twitteru</linkTwitter> kako biste dobili najnovije vijesti, ažuriranja i objave.'
       new: '<header>Novi moduli</header>'
       bugs: '<header>Popravljene greške</header>'
-      other: '<header>Druge promjene</header>'
+      other: '<header>Ostale promjene</header>'
       and_more: Razne druge male promjene i popravci.
     0.13.0.1:
       crowdin: '<header>Mnogo prevoditeljskih nadogradnji od naših fantastičnih korisnika koristeći <linkCrowdin>crowdin alat</linkCrowdin>. I Vi možete pomoći!</header>'

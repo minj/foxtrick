@@ -74,6 +74,8 @@ ro:
         <p>Module afectate: <module>MatchReportFormat</module>, <module>Ratings</module>, <module>MatchSimulator</module>, <module>HTMSPrediction</module> <em>et al</em>.</p>
       ff_cache: Reparat o problemă în Firefox ce împiedica în unele cazuri Foxtrick să se actualizeze corect la o nouă versiune.
       custom_links: Funcționalitatea linkurilor externe a fost revizuită și toate problemele cunoscute s-au reparat. Puteți adăuga acum linkuri și la pagina de raport de meci.
+    0.12.2.1:
+      note_0: Link-urile nu mai dispar după golirea cache-ului Foxtrick în Firefox.
     0.12.2:
       note_0: '<header>O mulțime de traduceri actualizate de către userii care folosesc <linkCrowdin> instrumentul crowdin</linkCrowdin>. Și tu poți ajuta!</header>'
       note_11: '<header>Bugfixes</header>'
