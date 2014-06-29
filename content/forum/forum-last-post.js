@@ -30,9 +30,8 @@ Foxtrick.modules['ForumLastPost'] = {
 				var rows = doc.getElementsByClassName(rowClass);
 				Foxtrick.forEach(function(row) {
 					var div = row.getElementsByClassName(countClass)[0];
-					var postCt = div.textContent.trim();
-					if (/\//.test(postCt))
-						// unread
+					if (div.querySelector('span[onclick]'))
+						// mark-read span = unread
 						return;
 
 					var url = row.querySelector('.' + linkClass + ' a');
@@ -42,7 +41,7 @@ Foxtrick.modules['ForumLastPost'] = {
 						return;
 					}
 
-					var postNum = parseInt(postCt, 10);
+					var postNum = parseInt(div.textContent.trim(), 10);
 
 					if (lastpage)
 						postNum = postNum - perpage + 1;
