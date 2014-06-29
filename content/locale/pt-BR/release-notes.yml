@@ -11,12 +11,21 @@ pt-BR:
       browsers: Suporte ao Opera 12 foi descontinuado. Safari 6 e Firefox 24 agora são versões mínimas para executar Foxtrick.
       backend: Foram feitas mais limpezas e atualizações para o núcleo do Foxtrick. As alterações afetam um monte de páginas, módulos e funcionalidades, incluindo o relatório do jogo, HT-Live, interface da ordem de jogo, detecção automática de moeda e cache do Foxtrick. Por favor reporte quaisquer erros que você encontrar.
       bug_report: Rodapé do Hattrick agora irá incluir um link para efetivamente Relatar bugs no Foxtrick. Use-o na página com defeito e siga as instruções que aparecem.
-      twitter: 'Você pode seguir <linkTwitter>Foxtrick no Twitter</linkTwitter>para receber as últimas notícias, informações e anúncios.'
+      twitter: 'Você pode seguir <linkTwitter>Foxtrick no Twitter</linkTwitter> para receber as últimas notícias, informações e anúncios.'
       new: '<header>Novos módulos</header>'
       series_transfers: '<module>SeriesTransfers</module>: Mostra a lista de jogadores atualmente a venda nas páginas da liga.'
       player_positions: 'Módulos <module>PlayerPositionsEvaluations</module> e <module>BestPlayerPosition</module> calculam a efetividade do jogador em várias posições de acordo com o <linkContributionsWiki>Hattrick Wiki</linkContributionsWiki>.'
       bugs: '<header>Correções de bugs</header>'
+      australis: Menu de ícones do Firefox foi corrigido para funcionar com o novo tema do navegador.
+      chrome_notes: Notificações do FoxTrick foram corrigidas para usar o novo sistema de notificação no Google Chrome.
+      player_cache: FoxTrick agora irá detectar novos jogadores na sua equipe e atualizar dados CHPP automaticamente.
+      train_est: FoxTrick já não interfere na tabela de classificação no novo recurso de estimativa de treinamento.
+      mrf_fixes: '<module>MatchReportFormat</module> deixará de ter um layout quebrado em algumas partidas. Adicionado mais ícones do evento.'
+      forum_header: '<module>ForumAlterHeaderLine</module> foi revisado e agora deve funcionar corretamente em todos os casos.'
+      nav_fix: 'Navegação em <module>GoToPostBox</module> e <module>MyMonitor</module> foram corrigidas no Firefox.'
+      new_lineup: 'Módulos <module>MatchPlayerColouring</module>, <module>LineupShortcut</module>, <module>TeamPopupLinks</module> e <module>SeniorTeamShortCuts</module> agora vão funcionar corretamente com a nova página de escalação da partida.'
       other: '<header>Outras alterações</header>'
+      live_ratings: 'Suporte para notas ao vivo foi adicionado ao <module>MatchLineupTweaks</module>, <module>MatchRatingsTweaks</module> e <module>MatchPlayerColouring</module>.'
       own_top_players: 'Módulo <module>Filter</module> agora destaca seus jogadores na página de estatísticas de melhores jogadores.'
       htev: htev.org já não pode sustentar a carga de solicitações de Foxtrick, portanto, o módulo HTEVPrediction foi removido.
       removed: Os módulos SmallerPages e MatchTables também foram removidos devido a sua inutilidade.
@@ -51,7 +60,7 @@ pt-BR:
       simulator_prob: '<module>MatchSimulator</module> também foi incrementado com as probabilidades reais de ataque/defesa/posse no novo módulo <module>MatchRatingsTweaks</module>.'
       staff_marker: '<module>StaffMarker</module> foi reestruturado. Novas opções para apoiadores, times parceiros e técnicos de seleções nacionais foram adicionadas. Por favor configure ao seu gosto.'
       custom_marker: Uma interface para facilmente adicionar cores de nome de usuário personalizado foi adicionada para o rodapé das mensagens do fórum.
-      inline_options: 'Opções adicionado in-line para pena de listam de aprimoramentos de <module>MatchOrderInterface</module> e dividir a funcionalidade de programação em <module>MatchLineupTweaks</module>.'
+      inline_options: 'Adicionadas opções in-line com aprimoramentos para lista de penaltis  em <module>MatchOrderInterface</module> e dividiu a funcionalidade de programação em <module>MatchLineupTweaks</module>.'
       links_enhancments: 'Você pode facilmente desabilitar todos os <module>Links</module> e configurar o modo que eles são abertos.'
       psico_update: 'Uma opção para mostrar a estimativa do <module>PsicoTSI</module> na barra do lado esquerdo foi reimplementado.'
       ticker_update: '<module>TickerColoring</module> e <module>TickerAlert</module> foram atualizados com novos tipos de ticker de notícias torcedor adicionados ao longo dos últimos anos.'

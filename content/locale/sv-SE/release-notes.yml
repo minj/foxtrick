@@ -8,10 +8,27 @@ sv-SE:
     0.14.0:
       important: '<header>Viktiga meddelanden</header>'
       crowdin: '<header>En hel massa översättningsuppdateringar av användare via översättningsverktyget på <linkCrowdin>crowdin.net</linkCrowdin>. Du kan också hjälpa till!</header>'
+      browsers: Stöd för Opera 12 har upphört. Safari 6 och Firefox 24 är nu de lägsta versionerna för att köra Foxtrick.
+      backend: Mera uppdateringar och rensning i Foxtricks kärna har gjorts. Ändringarna påverkar en hel del sidor, moduler och funktioner, inklusive matchrapport, HT-Live, gränssnitt för matchorder, automatisk identifiering av valuta och Foxtrick cache. Vänligen rapportera om du hittar buggar.
+      bug_report: Hattricks sidfot inkluderar nu en länk för att snaabbt och effektivt rapportera en bug i Foxtrick. Använd den på den felande sidan och följ sedan instruktionerna som följer.
       twitter: 'Du kan följa <linkTwitter>Foxtrick på Twitter</linkTwitter> för att få senaste nytt, uppdateringar och meddelanden.'
       new: '<header>Nya moduler</header>'
+      series_transfers: '<module>SeriesTransfers</module>: Visar en lista över spelare för närvarande till salu på seriesidan.'
+      player_positions: 'Modulerna <module>PlayerPositionsEvaluations</module> och <module>BestPlayerPosition</module>  beräknar spelarens effektivitet på olika positioner enligt <linkContributionsWiki>Hattrick Wiki</linkContributionsWiki>.'
       bugs: '<header>Buggfixar</header>'
+      australis: Firefox ikonmeny har anpassats för att fungera med det nya browsertemat.
+      chrome_notes: Foxtrick notifications were fixed to use the new notification system in Google Chrome.
+      player_cache: FoxTrick kommer nu upptäcka nya spelare i ditt lag och uppdatera CHPP-data automatiskt.
+      train_est: Foxtrick no longer interferes with table sorting in the new training estimation feature.
+      mrf_fixes: '<module>MatchReportFormat</module> will no longer have a broken layout in some matches. Added more event icons.'
+      forum_header: '<module>ForumAlterHeaderLine</module> was reviewed and should now work correctly in all cases.'
+      nav_fix: 'Navigation in <module>GoToPostBox</module> and <module>MyMonitor</module> was fixed in Firefox.'
+      new_lineup: 'Modules <module>MatchPlayerColouring</module>, <module>LineupShortcut</module>, <module>TeamPopupLinks</module> and <module>SeniorTeamShortCuts</module> will now work correctly with the new match lineup page.'
       other: '<header>Andra ändringar</header>'
+      live_ratings: 'Live ratings support was added in <module>MatchLineupTweaks</module>, <module>MatchRatingsTweaks</module> and <module>MatchPlayerColouring</module>.'
+      own_top_players: '<module>Filter</module> module now highlights your players in the Top Players statistics page.'
+      htev: htev.org can no longer sustain the load of Foxtrick requests thus HTEVPrediction module was removed.
+      removed: SmallerPages and MatchTables modules were also removed due to their uselessness.
       and_more: Flera andra mindre ändringar och korrigeringar.
     0.13.0.1:
       crowdin: '<header>En hel massa översättningsuppdateringar av användare via översättningsverktyget på <linkCrowdin>crowdin.net</linkCrowdin>. Du kan också hjälpa till!</header>'

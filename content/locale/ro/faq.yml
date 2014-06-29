@@ -8,7 +8,7 @@ ro:
         
         <p>Un exemplu de stil poate fi găsit<linkCSSExample>aici</linkCSSExample> sau <linkCSSExampleGCode>aici</linkCSSExampleGCode>, pe care îl puteți modifica pentru a vă satisface nevoile.După ce salvați fișierul, puteți folosi modulul <module>SkinPlugin</module>, modul pentru încărcarea fișierului CSS, pentru a avea stilul dorit în utilizare.</p>
     sound-format:
-      question: Care formate de fișiere sunt permise pentru alertele sunet?
+      question: Ce formate de fișiere sunt permise pentru alertele de sunet?
       answer: |
         <p>Diferite brosere permit diferite formate. Aici este o listă (formatele nelistate pot funcționa dacă plugin-urile necesare sunt instalate, de ex. Quicktime pentru a reda mp3 în Firefox):</p>
         
