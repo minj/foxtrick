@@ -30,7 +30,7 @@ Foxtrick.modules['ForumLastPost'] = {
 				var rows = doc.getElementsByClassName(rowClass);
 				Foxtrick.forEach(function(row) {
 					var div = row.getElementsByClassName(countClass)[0];
-					var postCt = div.textContent;
+					var postCt = div.textContent.trim();
 					if (/\//.test(postCt))
 						// unread
 						return;
@@ -42,12 +42,14 @@ Foxtrick.modules['ForumLastPost'] = {
 						return;
 					}
 
-					if (lastpage)
-						postCt = postCt - perpage + 1;
-					if (postCt < 1)
-						postCt = 1;
+					var postNum = parseInt(postCt, 10);
 
-					url.href = url.href.replace(/n=\d+/i, 'n=' + postCt);
+					if (lastpage)
+						postNum = postNum - perpage + 1;
+					if (postNum < 1)
+						postNum = 1;
+
+					url.href = url.href.replace(/n=\d+/i, 'n=' + postNum);
 				}, rows);
 			};
 
