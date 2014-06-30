@@ -103,23 +103,48 @@ ro:
       note_11: '<header>Corectări erori</header>'
       note_12: 'Reparat eroarea TSI NaN pe paginile jucătorilor echipei naţionale sau când descărcarea xml este dezactivată (<module>Skilltable</module>, <module>TeamStats</module> etc.)'
       note_13: 'Jucătorii nefolosiţi nu vor mai fi incluşi atunci când se utilizează opţiunea "Umple lista executanților de penalty-uri" în <module>MatchOrderInterface</module>.'
+      note_15: 'Link-ul de provocări din <module>TeamPopupLinks</module> e acum funcțional.'
+      note_16: 'Rezolvat un "glitch" în zona de Preferințe.'
     0.12.1.1:
+      note_0: Actualizări traduceri.
+      note_1: 'Am îmbunătățit performanța <module>MainMenuDropDown</module>.'
+      note_2: Îmbunătățiri minore legate de accesibilitate.
+      note_3: 'Probleme rezovlate pentru <module>CopyPosting</module> și <module>StaffMarker</module>.'
       note_4: Câteva probleme legate de sunet rezolvate.
+      note_5: Am remediat o problemă legată de Android, deoarece, în unele cazuri, nu îi permitea Foxtrick-ului să pornească.
+      note_7: Am rezolvat o problemă legată de recunoașterea rating-urilor pentru Frysk.
+      note_8: 'Am remediat unele probleme în <module>ForumAlterHeaderLine</module>, <module>ManagerButtons</module> și <module>HideSignatures</module>.'
+      note_9: '<module>SkillTable</module> va funcționa din nou, fără autorizarea Foxtrick-ului, pentru userii cu o singură echipă.'
     0.12.1:
       note_0: '<header>O mulțime de traduceri actualizate de către userii care folosesc <linkCrowdin> instrumentul crowdin</linkCrowdin>. Și tu poți ajuta!</header>'
+      note_1: 'NOU: <module>SupportershipExpirationDate</module>: Apăsând pe zilele rămase de Supporter, din "Biroul Meu", veți putea vedea data expirării'
+      note_2: '<module>MatchIncome</module>: Am adăugat opțiunea de a afișa locurile utilizate pe stadion, în procente, lângă numărul de vizitatori pe pagina unui meci'
+      note_3: 'NOU: <module>MainMenuDropDown</module>: Adaugă meniuri derulante în bara principală de navigare, care conţin toate link-urile disponibile de obicei în bara laterală a paginii respective.'
+      note_4: 'Am remediat problema recunoașterii timpului în Firefox, la exportarea <module>DashboardCalendar</module>.'
+      note_6: '<module>DashboardCalendar</module>: Am eliminat multiplele solicitări de download în Firefox.'
+      note_7: '<module>HeaderFix</module>: Acum apare bara de schimbare a echipei, ascunsă anterior.'
+      note_8: '<module>ConfirmActions</module>: Userii cu echipe multiple vor vedea, de acum, numele echipei de pe care licitează.'
+      note_9: '<module>TransferSearchFilters</module>: Filterele vor salva, de acum, și vârsta în zile a jucătorilor.'
+      note_10: A fost adăugat suportul pentru limba azeră.
+      note_11: Sute de alte remedieri pentru problemele cauzate de schimbările din Hattrick.
     0.12.0:
       note_0: '<header>O mulțime de traduceri actualizate de către userii care folosesc <linkCrowdin> instrumentul crowdin</linkCrowdin>. Și tu poți ajuta!</header>'
       note_1: 'NOU: <module>MatchLineupTweaks</module>: Modifică numărătorul de stele pe modelul vechi. Adaugă numărători pentru stele și rezistență pe noua pagină de ordine. Afișează specilitățile jucătorilor și adaugă numele echipei pe teren pentru a limita confuzia. Afișează chipurile jucătorilor pentru echipa ta. Evidențiază jucătorii cu șanse la event într-un meci.'
+      note_2: O mulțime de remedieri pentru diverse module, după ce noul Magazin Hattrick a fost introdus.
       note_3: 'NEW: <module>MatchLineupFixes</module>: Afișează numele jucătorilor pentru evenimentele speciale de vreme. Adaugă link-uri pentru jucători în ordinele proprii. Adaugă numărătoare pentru ultima stea a jucătorilor de pe bancă. Remediază multiple evenimente ce au loc în același timp: jucătorii schimbă pozițiile rând pe rând în loc să le schimbe în același timp.'
       note_4: 'NOU: <module>ReLiveLinks</module>: Adaugă link-uri pentru HT Re-Live pentru meciurile încheiate.'
       note_5: 'NOU: <module>CopyBBAd</module>: Copiază anunțuri diverse în codul BB (de merfis).'
       note_6: 'NOU: <module>DashboardCalendar</module>: Adăugat un buton pentru a exporta săptămâna Hattrick în formatul iCalendar (ar trebui să fie compatibil cu Google Calendar, Thunderbird+Lightning, MS Outlook, KOrganizer, Evolution, Apple iCal etc)'
       note_7: '<module>LiveAlert</module>: Adăugate diferite sunete pentru golurile echipelor gazdă/oaspete/proprii. Folosește sunete de la <linkHTLS>HTLiveSight</linkHTLS>. Golurile echipei proprii nu vor fi recunoscute în modul Re-Live la început.'
+      note_8: '<module>CopyYouth</module>: Userii ce au cont pe Hattrick YouthClub vor trimite automat datele către HY, atunci când îi dau reject unui jucător'
+      note_9: '<module>CopyYouth</module>: Userii cu conturi pe Hattrick YouthClub vor trimite raportul de antrenament către HY automat, când îl vor citi pentru prima dată'
       note_10: '<module>LineupShortcut</module> se leagă acum cu pagina nouă a echipei de start.'
       note_11: '<module>SkillTable</module> utilizează acum pictograme pentru specialități și antrenori.'
       note_12: 'AddLeaveConfButton este redenumit în  <module>ForumLeaveButton</module>'
       note_13: De acum înainte, browser-ul și setările de aspect ale Hattrick vor fi automat incluse în mesajele postate pe forumul FoxTrick. Acest lucru ne va ajuta să rezolvăm rapid problemele. Vă rugăm nu ștergeți aceste informații în momentul scrierii mesajelor.
       note_14: Codul suplimentului a fost curățat pentru o mai bună lizibilitate și întreținere.
+      note_15: 'Am rezolvat câteva probeleme legate de detectarea săptămânii în <module>PlayerStatsTrainingWeek</module>.'
+      note_16: 'Am reparat o eroare în <module>MatchSimulator</module>, care făcea să apară rating-uri greşite când opţiunea atac contra apărare era oprită.'
       note_17: Update-urile de la Safari par să nu meargă. Utilizatorii ar trebui să elimine versiunea trecută de FoxTrick și să instaleze una nouă.
     0.11.0.1:
       note_0: '<header>O mulțime de actualizări ale traducerilor de la useri care folosesc <linkCrowdin>instrumentul crowdin</linkCrowdin>. Și tu poți ajuta!</header>'
@@ -175,12 +200,12 @@ ro:
       note_4: '<module>MatchOrderInterface</module>: Possibility to clone or clone and convert an existing order. Players will not be filled in on purpose.'
       note_5: '<module>YouthTwins</module>: Option added to hide the information link about twins (default off)'
       note_7: '<module>TeamPopupLinks</module>: Some restyling to integrate better with the overall look and feel of hattrick.org'
-      note_8: Support for the KeyPlayer page
-      note_9: Some improvements for Firefox on Android
-      note_10: Possibility to test alert sounds in the preferences
-      note_11: Some internal changes related to data storage
-      note_12: Some smaller changes and fixes we forgot about
-      note_13: '<header>Bugfixes</header>'
+      note_8: Suport pentru KeyPlayer
+      note_9: Câteva îmbunătățiri pe Android pentru Foxtrick
+      note_10: Posibilitatea de a testa sunete de alarmă în preferințe
+      note_11: Câteva modificări interne legate de stocarea datelor
+      note_12: Câteva modificări și remedieri pe care le-am uitat
+      note_13: '<header>Bug-uri rezolvate</header>'
       note_14: '<module>ExtendedPlayerDetails</module>: Fixed wage per week and season beeing incorrect for korean and probably some other languages too'
       note_15: '<module>MatchOrderInterface</module>: Face will also show for replaced and highlighted players for past lineups'
       note_16: '<module>MatchPlayerColouring</module>: Now works properly for players that were put in and left the field before the game ended'
@@ -373,13 +398,13 @@ ro:
       note_9: Module YouthSkillNotes and ShortPA removed. (ryanli)
       note_10: 'Option to hide forum sneak-peek in <module>FixcssProblems</module>. (ljushaff)'
       note_11: 'Option to copy advertisement in non-table style in <module>CopyPlayerAd</module>. (ryanli)'
-      note_12: 'Option to show HatStats per rating in <module>Ratings</module>. (taised)'
+      note_12: 'Opțiunea de a afișa HatStats în <module>Ratings</module>. (taised)'
       note_13: Belarusian locale. (LA-Stolik)
-      note_14: 'Add some frequently asked questions at <FTlinkHelp>Help tab</FTlinkHelp>. (ryanli)'
-      note_15: New grey icon for report links. (ljushaff)
-      note_16: '<module>YouthPromotes</module> also shows the earliest date to promote a player. (ryanli)'
-      note_17: Most features working under Google Chrome. (ryanli)
+      note_14: 'Adăugate câteva întrebări frecvente <FTlinkHelp>Help tab</FTlinkHelp>. (ryanli)'
+      note_15: O nouă inconițăă gri pentru link-uri. (ljushaff)
+      note_16: '<module>YouthPromotes</module> afișează, de asemenea, cea mai devreme dată când un jucător poate fi promovat. (ryanli)'
+      note_17: Majoritatea caracteristicilor funcționează cu Google Chrome. (ryanli)
       note_18: Some trivial fixes for latest Hattrick changes. (ryanli, taised, ljushaff)
       note_19: 'Module <module>TeamSelectBox</module> disabled by default. (ryanli)'
-      note_20: 'Module <module>SmallerPages</module> disabled by default. (ljushaff)'
-      note_21: 'Radio options in <module>ExtraShortcuts</module> are disabled by default. (ryanli)'
+      note_20: 'Modulul <module>SmallerPages</module> e dezactivat standard. (ljushaff)'
+      note_21: 'Opțiunile radio din <module>ExtraShortcuts</module> sunt dezactivate standard. (ryanli)'

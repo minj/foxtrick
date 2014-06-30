@@ -8,9 +8,12 @@ bs:
     0.14.0:
       important: '<header>Važne obavijesti</header>'
       crowdin: '<header>Mnogo prevoditeljskih nadogradnji od naših fantastičnih korisnika koristeći <linkCrowdin>crowdin alat</linkCrowdin>. I Vi možete pomoći!</header>'
+      browsers: Ukinuta je podrška za operu 12. Safari 6 i Firefox 24 su sada minimalne verzije pokrenuti Foxtrick.
+      backend: Više čišćenje i ažuriranja Foxtrick jezgre smo napravili. Promjene utiču na puno stranica, modula i funkcionalnosti, uključujući izvještaje utakmica, HT-Live, utakmica reda sučelje, automatsko prepoznavanje valute i Foxtrick cache. Molimo prijavite sve bugove koje ste pronašli.
       twitter: 'Možete pratiti <linkTwitter>Foxtrick na Twitteru</linkTwitter> kako biste dobili najnovije vijesti, ažuriranja i objave.'
       new: '<header>Novi moduli</header>'
       bugs: '<header>Popravljene greške</header>'
+      nav_fix: 'Nalazite se u <module> GoToPostBox </ modula> i <module> MyMonitor </ modula> fiksiran je u Firefoxu.'
       other: '<header>Druge promjene</header>'
       and_more: Razne druge male promjene i popravke.
     0.13.0.1:
