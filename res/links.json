@@ -37,6 +37,13 @@
 		"title": "HT-Tools healing",
 		"img": "http://www.ht-tools.eu/static/img/favicon.png"
 	},
+	"ht_tools_spyingopponent": {
+		"teamlink": {
+			"url": "http://www.ht-tools.eu/spyingtheopponent?teamid=[teamid]"
+		},
+		"title": "HT-Tools Spying the Opponent",
+		"img": "http://www.ht-tools.eu/static/img/favicon.png"
+	},
 	"xray_crossover": {
 		"playerlink": {
 			"url": "http://www.databased.at/hattrick/x-ray/?starter=crossover&pid=[playerid]"
