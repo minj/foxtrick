@@ -1,13 +1,11 @@
 'use strict';
 
-if (!Foxtrick)
-    var Foxtrick = {};
 if (!Foxtrick.api)
-    Foxtrick.api = {};
+	Foxtrick.api = {};
 if (!Foxtrick.api.hy)
-    Foxtrick.api.hy = {};
+	Foxtrick.api.hy = {};
 if (!Foxtrick.api.hy.URL)
-    Foxtrick.api.hy.URL = {};
+	Foxtrick.api.hy.URL = {};
 
 /* players-youth-skills.js
  * Functions working the HY playersYouthSkills API supplied by HY.

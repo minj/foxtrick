@@ -78,9 +78,6 @@
  *     in Firefox.
  */
 
-if (!Foxtrick)
-	var Foxtrick = {};
-
 Foxtrick.OAuth = {};
 
 Foxtrick.OAuth.setProperties = function setProperties(into, from) {

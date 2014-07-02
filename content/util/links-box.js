@@ -5,8 +5,8 @@
  * @author convinced
  */
 
-if (!Foxtrick) var Foxtrick = {};
-if (!Foxtrick.util) Foxtrick.util = {};
+if (!Foxtrick.util)
+	Foxtrick.util = {};
 
 Foxtrick.util.links = {
 	add: function(doc, ownBoxBody, pagemodule, info, isNewSidebar) {

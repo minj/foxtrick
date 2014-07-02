@@ -4,8 +4,6 @@
  * Utilities for HTML and DOM
  */
 
-if (!Foxtrick) var Foxtrick = {};
-
 /**
  * Create a foxtrick feature dom node
  * @param doc Document

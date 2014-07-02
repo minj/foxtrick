@@ -1,11 +1,9 @@
 'use strict';
 
-if (!Foxtrick)
-    var Foxtrick = {};
 if (!Foxtrick.api)
-    Foxtrick.api = {};
+	Foxtrick.api = {};
 if (!Foxtrick.api.hy)
-    Foxtrick.api.hy = {};
+	Foxtrick.api.hy = {};
 
 /* common.js
  * Common functions for the HY API
@@ -27,8 +25,10 @@ if (!Foxtrick.api.hy)
  * All APIs use the 503 cooldown mechanism via _fetchOrIgnore:
  * If the request returns 503, a flag is set that causes all consequent requests
  * from all APIs to fail automatically with 503 for a specific period of time.
- * This is of course invisible as long as data-fetchers have something in cache (even if it's stale)
- * Data from data-miners, on the other hand, are lost, therefore they should display an error message.
+ * This is of course invisible as long as data-fetchers have something in cache
+ * (even if it's stale)
+ * Data from data-miners, on the other hand, are lost,
+ * therefore they should display an error message.
  *
  * All APIs have common request parameters that are injected into _fetchOrIgnore via _buildParams
  *

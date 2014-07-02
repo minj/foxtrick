@@ -5,8 +5,6 @@
  * @author ryanli, convincedd
  */
 
-if (!Foxtrick)
-	var Foxtrick = {};
 Foxtrick.entry = {};
 
 

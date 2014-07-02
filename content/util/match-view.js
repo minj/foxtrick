@@ -5,8 +5,8 @@
  * @author ryanli
  */
 
-if (!Foxtrick) var Foxtrick = {};
-if (!Foxtrick.util) Foxtrick.util = {};
+if (!Foxtrick.util)
+	Foxtrick.util = {};
 Foxtrick.util.matchView = {};
 
 Foxtrick.util.matchView.startLoad = function(container) {

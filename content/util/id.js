@@ -4,8 +4,6 @@
 * Utilities for dealing with ID
 */
 
-if (!Foxtrick)
-	var Foxtrick = {};
 if (!Foxtrick.util)
 	Foxtrick.util = {};
 Foxtrick.util.id = {};

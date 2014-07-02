@@ -7,8 +7,6 @@
  * Foxtrick conversion and additions by CatzHoek
  */
 
-if (!Foxtrick)
-    var Foxtrick = {};
 if (!Foxtrick.util)
     Foxtrick.util = {};
 Foxtrick.util.color = {};
@@ -147,7 +145,7 @@ Foxtrick.util.color.hsvToRgb = function(h, s, v){
 };
 
 /**
- * Converts an color in 6 digit hex representation to RGB. 
+ * Converts an color in 6 digit hex representation to RGB.
  * returns r, g, and b in the set [0, 255].
  *
  * @param   String  hex     The 6 digit hex representation, # is not required
@@ -163,7 +161,7 @@ Foxtrick.util.color.hexToRgb = function(hex) {
 }
 
 /**
- * Converts an rgb color into a 6 digit hex representation. 
+ * Converts an rgb color into a 6 digit hex representation.
  * returns hex with leading #.
  *
  * @param   Number  r       The red color value

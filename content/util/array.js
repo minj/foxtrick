@@ -6,9 +6,6 @@
  * @author ryanli, convincedd, LA-MJ
  */
 
-if (!Foxtrick)
-	var Foxtrick = {};
-
 /**
  * Convert an array-like object to an array
  * Suitable for node lists, arrays, strings,

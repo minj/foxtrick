@@ -14,7 +14,6 @@
  */
 
 
-if (!Foxtrick) var Foxtrick = {};
 Foxtrick.Pages = {};
 
 Foxtrick.Pages.All = {

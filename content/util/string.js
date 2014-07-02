@@ -4,8 +4,6 @@
  * Utilities for string processing
  */
 
-if (!Foxtrick) var Foxtrick = {};
-
 /** Remove any occurences of tags ('<something>') from text */
 Foxtrick.stripHTML = function(text) {
 	return text.replace(/(<([^>]+)>)/ig, '');

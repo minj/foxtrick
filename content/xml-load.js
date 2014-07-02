@@ -5,8 +5,6 @@
  * @author convinced
  */
 
-if (!Foxtrick) var Foxtrick = {};
-
 Foxtrick.XMLData = {
 	MODULE_NAME: 'XMLData',
 	PAGES: ['all'],
@@ -19,7 +17,8 @@ Foxtrick.XMLData = {
 		this.htCurrencyJSON = JSON.parse(currency);
 		var about = Foxtrick.util.load.sync(Foxtrick.InternalPath + 'data/foxtrick_about.json');
 		this.aboutJSON = JSON.parse(about);
-		var worldDetails = Foxtrick.util.load.sync(Foxtrick.InternalPath + 'data/worlddetails.json');
+		var worldDetails = Foxtrick.util.load.sync(Foxtrick.InternalPath +
+		                                           'data/worlddetails.json');
 		this.worldDetailsJSON = JSON.parse(worldDetails);
 
 		var leagueList = this.worldDetailsJSON.HattrickData.LeagueList;

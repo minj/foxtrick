@@ -16,8 +16,6 @@
  * '.' and '?' will be escaped automatically.
  */
 
-if (!Foxtrick) var Foxtrick = {};
-
 Foxtrick.ht_pages = {
 	// following are mainly used for information gathering. keep on top
 	'myHattrick'				: '/MyHattrick/$',  // that's the news page

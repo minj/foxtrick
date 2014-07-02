@@ -1,13 +1,11 @@
 'use strict';
 
-if (!Foxtrick)
-    var Foxtrick = {};
 if (!Foxtrick.api)
-    Foxtrick.api = {};
+	Foxtrick.api = {};
 if (!Foxtrick.api.hy)
-    Foxtrick.api.hy = {};
+	Foxtrick.api.hy = {};
 if (!Foxtrick.api.hy.URL)
-    Foxtrick.api.hy.URL = {};
+	Foxtrick.api.hy.URL = {};
 
 /* matches-training.js
  * url: 'http://www.hattrick-youthclub.org/_data_provider/foxtrick/matchesTraining';
@@ -15,7 +13,8 @@ if (!Foxtrick.api.hy.URL)
  * params:
  * hash: md5/sha1/base64(app + '_' + teamId + '_' + identifier)
  * lang: the language as mentioned in the html meta tag of hattrick.org
- * identifier: a random (unique, changing with every request) identifier just for securing the request
+ * identifier: a random (unique, changing with every request) identifier
+ * just for securing the request
  * primaryTraining: selected primary training value
  * secondaryTraining: selected secondary training value
  *

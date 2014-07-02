@@ -4,8 +4,8 @@
  * Utilities for date and time
  */
 
-if (!Foxtrick) var Foxtrick = {};
-if (!Foxtrick.util) Foxtrick.util = {};
+if (!Foxtrick.util)
+	Foxtrick.util = {};
 
 Foxtrick.util.time = {
 	/* Returns the date format of Hattrick, with 'd', 'm', and 'y'

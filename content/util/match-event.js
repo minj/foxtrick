@@ -6,9 +6,9 @@
 
 'use strict';
 
-if (!Foxtrick) var Foxtrick = {};
-if (!Foxtrick.util) Foxtrick.util = {};
-if (!Foxtrick.util.matchEvent) Foxtrick.util.matchEvent = {};
+if (!Foxtrick.util)
+	Foxtrick.util = {};
+Foxtrick.util.matchEvent = {};
 
 /*
 	 * Source: /Community/CHPP/ChppMatchEventTypes.aspx

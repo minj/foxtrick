@@ -4,9 +4,6 @@
  * FoxTrick loader for Fennec platform
  */
 
-
-if (!Foxtrick)
-	var Foxtrick = {};
 if (!Foxtrick.loader)
 	Foxtrick.loader = {};
 

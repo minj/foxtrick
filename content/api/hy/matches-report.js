@@ -1,13 +1,11 @@
 'use strict';
 
-if (!Foxtrick)
-    var Foxtrick = {};
 if (!Foxtrick.api)
-    Foxtrick.api = {};
+	Foxtrick.api = {};
 if (!Foxtrick.api.hy)
-    Foxtrick.api.hy = {};
+	Foxtrick.api.hy = {};
 if (!Foxtrick.api.hy.URL)
-    Foxtrick.api.hy.URL = {};
+	Foxtrick.api.hy.URL = {};
 
 /* matches-report.js
  * url: 'http://www.hattrick-youthclub.org/_data_provider/foxtrick/matchesReport';
