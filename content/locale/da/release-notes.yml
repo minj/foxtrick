@@ -27,7 +27,7 @@ da:
       other: '<header>Andre ændringer</header>'
       live_ratings: 'Support for Live Ratings blev tilføjet i <module>MatchLineupTweaks</module>, <module>MatchRatingsTweaks</module> og <module>MatchPlayerColouring</module>.'
       own_top_players: '<module>Filter</module> modul fremhæver nu dine spillere i Top spillere statistik side.'
-      htev: htev.org kan ikke længere opretholde belastning af Foxtrick anmodninger, dermed HTEVPrediction modul blev fjernet.
+      htev: htev.org kan ikke længere opretholde belastning af Foxtrick anmodninger, dermed blev HTEVPrediction-modul fjernet.
       removed: SmallerPages og MatchTables moduler blev også fjernet på grund af deres ubrugelighed.
       and_more: Forskellige små ændringer og rettelser.
     0.13.0.1:
