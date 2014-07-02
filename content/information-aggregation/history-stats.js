@@ -212,6 +212,14 @@ Foxtrick.modules['HistoryStats'] = {
 				}
 			}
 		}
+		// sort by season DESC
+		var rows = Foxtrick.toArray(table.rows);
+		rows.sort(function(a, b) {
+			return parseInt(b.cells[0].textContent, 10) - parseInt(a.cells[0].textContent, 10);
+		});
+		rows.forEach(function(row) {
+			tbody.appendChild(row);
+		});
 
 		var target = doc.getElementById('ft_HistoryStats');
 		if (target === null) {
