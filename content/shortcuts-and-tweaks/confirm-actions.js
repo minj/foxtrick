@@ -54,15 +54,16 @@ Foxtrick.modules['ConfirmActions'] = {
 							var msgTemplate = Foxtrick.L10n.getString('ConfirmActions.bid');
 							var value = bidText[1] && bidText[1].value ||
 								bidText[0] && bidText[0].value;
-							var price = value
-								.split('').reverse().join('')
-								.replace(new RegExp('(.{3})(?!$)', 'g'), '$1' + String.fromCharCode(160))
-								.split('').reverse().join('');
+							var price = value.split('').reverse().join('').
+								replace(/(.{3})(?!$)/g, '$1' + String.fromCharCode(160)).
+								split('').reverse().join('');
+
 							var msg = msgTemplate.replace(/\%s/, price);
 							var msgPara = doc.createElement('p');
 							if (Foxtrick.util.layout.hasMultipleTeams(doc)) {
 								var cont = doc.createElement('strong');
-								cont.textContent = Foxtrick.modules['Core'].getSelfTeamInfo().teamName + ': ';
+								cont.textContent =
+									Foxtrick.modules['Core'].getSelfTeamInfo().teamName + ': ';
 								msgPara.appendChild(cont);
 							}
 							msgPara.appendChild(doc.createTextNode(msg));
@@ -71,10 +72,14 @@ Foxtrick.modules['ConfirmActions'] = {
 									type: Foxtrick.util.note.BUTTON_OK,
 									listener: function(ev) {
 										var doc = ev.target.ownerDocument;
-										var bidText = [doc.getElementById(ids.BID.TEXT_ID[0]),
-													   doc.getElementById(ids.BID.TEXT_ID[1])];
-										bidText[0] && bidText[0].removeAttribute('disabled');
-										bidText[1] && bidText[1].removeAttribute('disabled');
+										var bidText = [
+											doc.getElementById(ids.BID.TEXT_ID[0]),
+											doc.getElementById(ids.BID.TEXT_ID[1])
+										];
+										if (bidText[0])
+											bidText[0].removeAttribute('disabled');
+										if (bidText[1])
+											bidText[1].removeAttribute('disabled');
 										var bidButton = doc.getElementById(ids.BID.BUTTON_ID);
 										bidButton.click();
 									}
@@ -85,10 +90,14 @@ Foxtrick.modules['ConfirmActions'] = {
 										var doc = ev.target.ownerDocument;
 										var bidButton = doc.getElementById(ids.BID.BUTTON_ID);
 										Foxtrick.removeClass(bidButton, 'hidden');
-										var bidText = [doc.getElementById(ids.BID.TEXT_ID[0]),
-													   doc.getElementById(ids.BID.TEXT_ID[1])];
-										bidText[0] && bidText[0].removeAttribute('disabled');
-										bidText[1] && bidText[1].removeAttribute('disabled');
+										var bidText = [
+											doc.getElementById(ids.BID.TEXT_ID[0]),
+											doc.getElementById(ids.BID.TEXT_ID[1])
+										];
+										if (bidText[0])
+											bidText[0].removeAttribute('disabled');
+										if (bidText[1])
+											bidText[1].removeAttribute('disabled');
 										var confirm = doc.getElementById(ids.BID.CONFIRM_ID);
 										confirm.parentNode.removeChild(confirm);
 									}
@@ -98,8 +107,10 @@ Foxtrick.modules['ConfirmActions'] = {
 							Foxtrick.util.note.add(doc, msgPara, ids.BID.CONFIRM_ID,
 							                       { buttons: buttons, to: target });
 							Foxtrick.addClass(bidButton, 'hidden');
-							bidText[0] && bidText[0].setAttribute('disabled', 'disabled');
-							bidText[1] && bidText[1].setAttribute('disabled', 'disabled');
+							if (bidText[0])
+								bidText[0].setAttribute('disabled', 'disabled');
+							if (bidText[1])
+								bidText[1].setAttribute('disabled', 'disabled');
 							ev.preventDefault();
 						}
 					});
@@ -116,16 +127,18 @@ Foxtrick.modules['ConfirmActions'] = {
 						var sellText = doc.getElementById(ids.SELL.TEXT_ID);
 						var confirm = doc.getElementById('ft-sell-confirm');
 						if (sellText && !confirm) {
-							var msgTemplate = Foxtrick.L10n.getString('ConfirmActions.transferlist');
-							var price = sellText.value
-								.split('').reverse().join('')
-								.replace(new RegExp('(.{3})(?!$)', 'g'), '$1' + String.fromCharCode(160))
-								.split('').reverse().join('');
+							var msgTemplate =
+								Foxtrick.L10n.getString('ConfirmActions.transferlist');
+							var price = sellText.value.split('').reverse().join('').
+								replace(/(.{3})(?!$)/g, '$1' + String.fromCharCode(160)).
+								split('').reverse().join('');
+
 							var msg = msgTemplate.replace(/\%s/, price);
 							var msgPara = doc.createElement('p');
 							if (Foxtrick.util.layout.hasMultipleTeams(doc)) {
 								var cont = doc.createElement('strong');
-								cont.textContent = Foxtrick.modules['Core'].getSelfTeamInfo().teamName + ': ';
+								cont.textContent =
+									Foxtrick.modules['Core'].getSelfTeamInfo().teamName + ': ';
 								msgPara.appendChild(cont);
 							}
 							msgPara.appendChild(doc.createTextNode(msg));
@@ -168,10 +181,10 @@ Foxtrick.modules['ConfirmActions'] = {
 			}
 			if (Foxtrick.Prefs.isModuleOptionEnabled('ConfirmActions', 'NtChange')) {
 				// one may coach both a U-20 and an NT team
-				var ntId =
-					'ctl00_ctl00_CPContent_CPSidebar_ucNTCoachOptions_repNTActions_ctl00_lnkNTAction';
-				var u20Id =
-					'ctl00_ctl00_CPContent_CPSidebar_ucNTCoachOptions_repNTActions_ctl01_lnkNTAction';
+				var ntId = 'ctl00_ctl00_CPContent_CPSidebar_' +
+					'ucNTCoachOptions_repNTActions_ctl00_lnkNTAction';
+				var u20Id = 'ctl00_ctl00_CPContent_CPSidebar_' +
+					'ucNTCoachOptions_repNTActions_ctl01_lnkNTAction';
 				var submitLink = doc.getElementById(ntId) || doc.getElementById(u20Id);
 				if (submitLink) {
 					submitLink = Foxtrick.makeFeaturedElement(submitLink, this);
