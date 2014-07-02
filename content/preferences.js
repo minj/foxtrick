@@ -204,31 +204,6 @@ function locateFragment(uri) {
 	else
 		showTab('main'); // show the main tab by default
 
-	// adjust tab visibility according to view-by type
-	var viewByPage = (param['view-by'] == 'page');
-	// add class if view by page, remove class if view by category
-	var setClass = function(obj, className) {
-		viewByPage ? obj.addClass(className) : obj.removeClass(className);
-	};
-	// opposite of setClass
-	var unsetClass = function(obj, className) {
-		viewByPage ? obj.removeClass(className) : obj.addClass(className);
-	};
-	// set up tab classes
-	//setClass($('#view-by-page'), 'active');
-	//unsetClass($('#view-by-category'), 'active');
-	//for (var i in Foxtrick.moduleCategories)
-	//	setClass($('#tab-' + Foxtrick.moduleCategories[i]), 'hide');
-	//unsetClass($('#tab-on_page'), 'hide');
-	//unsetClass($('#tab-universal'), 'hide');
-	$('#tabs li a').each(function() {
-		var uri = $(this).attr('href').replace(/&view-by=page/g, '');
-		if (viewByPage)
-			$(this).attr('href', uri + '&view-by=page');
-		else
-			$(this).attr('href', uri);
-	});
-
 	//mobile start
 	if (Foxtrick.Prefs.isModuleEnabled('MobileEnhancements')) {
 		$('#tabs').hide();
@@ -337,7 +312,8 @@ function getPermission(neededPermission, showSaved) {
 			var id = permissionsMakeIdFromName(neededPermission.modules[m]);
 			if (!granted) {
 				$(id).prop('checked', false);
-				Foxtrick.Prefs.setBool('module.' + neededPermission.modules[m] + '.enabled', false);
+				var pref = 'module.' + neededPermission.modules[m] + '.enabled';
+				Foxtrick.Prefs.setBool(pref, false);
 				Foxtrick.log('Permission declined: ', neededPermission.modules[m]);
 			}
 			else {
@@ -474,7 +450,7 @@ function saveEvent(ev) {
 	else if ($(ev.target)[0].nodeName.toLowerCase() == 'option') {
 		pref = $($(ev.target)[0]).parent().attr('pref');
 		var value = $(ev.target)[0].value;
-		Foxtrick.Prefs.setString(pref, $(ev.target)[0].value);
+		Foxtrick.Prefs.setString(pref, value);
 	}
 	else {
 		var module = $(ev.target).attr('module');
@@ -482,11 +458,11 @@ function saveEvent(ev) {
 			Foxtrick.log('option of module');
 			// option of module
 			var option = $(ev.target).attr('option');
+			pref = module + '.' + option;
 			if ($(ev.target).is(':checkbox'))
-				Foxtrick.Prefs.
-					setModuleEnableState(module + '.' + option, $(ev.target).is(':checked'));
+				Foxtrick.Prefs.setModuleEnableState(pref, $(ev.target).is(':checked'));
 			else if ($(ev.target).is(':input'))
-				Foxtrick.Prefs.setModuleOptionsText(module + '.' + option, $(ev.target)[0].value);
+				Foxtrick.Prefs.setModuleOptionsText(pref, $(ev.target)[0].value);
 		}
 		else if ($(ev.target).is(':radio')) {
 			if ($(ev.target).is(':checked'))
@@ -1120,7 +1096,7 @@ function initChangesTab() {
 			dest = {};
 			return;
 		}
-		var locale, v, n, idx, rawVersions, prefixedNotes;
+		var locale, v, n, rawVersions, prefixedNotes;
 		for (locale in json)
 			if (json.hasOwnProperty(locale))
 				rawVersions = json[locale].versions;
@@ -1380,8 +1356,6 @@ function initTabs() {
 }
 
 function initTextAndValues() {
-	var locale = Foxtrick.Prefs.getString('htLanguage');
-
 	if (Foxtrick.L10n.getString('direction') == 'rtl')
 		$('html').attr('dir', 'rtl');
 
