@@ -5,6 +5,7 @@
 *.crx
 *.oex
 *.safariextz
+foxtrick.zip
 maintainer/upload.*conf.sh
 maintainer/*.pem
 maintainer/*.der
