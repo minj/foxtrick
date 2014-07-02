@@ -46,18 +46,20 @@ Foxtrick.modules['MatchLineupFixes'] = {
 		var saveRatings = function(playerRatingsByEvent) {
 			// save modifications
 			for (var i = 0; i < playerRatingsByEvent.length; ++i) {
-				playerRatingsByEvent[i].source.value = JSON.stringify(playerRatingsByEvent[i].players);
+				playerRatingsByEvent[i].source.value =
+					JSON.stringify(playerRatingsByEvent[i].players);
 			}
 		};
 
 		/**
 		 * Rewind player ratings to an earlier timeline index
-		 * @param	{Array}		playerRatingsByEvent	an array of playerRatings arrays to change
-		 * @param	{Integer}	eventIdx				event to rewind
-		 * @param	{Integer}	sourceIdx				event to rewind to
-		 * @param	{[Array]}	attributesToReset		what attributes to actually reset (optional)
+		 * @param {Array}   playerRatingsByEvent an array of playerRatings arrays to change
+		 * @param {Integer} eventIdx             event to rewind
+		 * @param {Integer} sourceIdx            event to rewind to
+		 * @param {[Array]} attributesToReset    what attributes to actually reset (optional)
 		 */
-		var rewindRatings = function(playerRatingsByEvent, eventIdx, sourceIdx, attributesToReset) {
+		var rewindRatings = function(playerRatingsByEvent, eventIdx, sourceIdx,
+		                             attributesToReset) {
 			if (typeof (attributesToReset) == 'undefined')
 				attributesToReset = [
 					'IsCaptain',
@@ -69,11 +71,11 @@ Foxtrick.modules['MatchLineupFixes'] = {
 				];
 			var players = playerRatingsByEvent[eventIdx].players;
 			var correctPlayers = playerRatingsByEvent[sourceIdx].players;
-			for (var l = 0; l < players.length; l++) {
-				for (var m = 0, attr; attr = attributesToReset[m]; m++) {
-					players[l][attr] = correctPlayers[l][attr];
-				}
-			}
+			players.forEach(function(player, p) {
+				attributesToReset.forEach(function(attr) {
+					player[attr] = correctPlayers[p][attr];
+				});
+			});
 		};
 
 		// more stuff in each event:
@@ -87,12 +89,12 @@ Foxtrick.modules['MatchLineupFixes'] = {
 		//doc.querySelectorAll('input[id$="_timelineEventType"]')
 		var TIMELINE_EVENT_TYPES = {
 			YELLOW_CARD: 6,
-			SECOND_YELLOW_CARD: 7, 	// bug? unused!
-			RED_CARD: 8,			// also second yellow now
+			SECOND_YELLOW_CARD: 7, // bug? unused!
+			RED_CARD: 8,           // also second yellow now
 			GOAL: 9,
-			SUB: 10, 				// also swap right now
+			SUB: 10,               // also swap right now
 			NEW_BEHAVIOR: 11,
-			SWAP: 12, 				// bug? unused!
+			SWAP: 12,              // bug? unused!
 			MINUTE: 14,
 			PULLBACK: 15,
 			CONFUSION: 16,
@@ -105,10 +107,10 @@ Foxtrick.modules['MatchLineupFixes'] = {
 		var subEventTypes = [
 			TIMELINE_EVENT_TYPES.SUB,
 			TIMELINE_EVENT_TYPES.NEW_BEHAVIOR,
-			TIMELINE_EVENT_TYPES.SWAP // TODO: currently not in use!
+			TIMELINE_EVENT_TYPES.SWAP // README: currently not in use!
 		];
 		var redCardEventTypes = [
-			TIMELINE_EVENT_TYPES.SECOND_YELLOW_CARD, // TODO: currently not in use!
+			TIMELINE_EVENT_TYPES.SECOND_YELLOW_CARD, // README: currently not in use!
 			TIMELINE_EVENT_TYPES.RED_CARD,
 		];
 		var lineupEventTypes = Foxtrick.concat(redCardEventTypes, subEventTypes);
@@ -198,13 +200,12 @@ Foxtrick.modules['MatchLineupFixes'] = {
 			// filter players that have not played: { FromMin: 0, ToMin: 0 }
 			// these have
 			var played = [];
-			for (var i = 0; i < playerRatingsByEvent[0].players.length; ++i) {
-				var player = playerRatingsByEvent[0].players[i];
-				if (!(player.FromMin == 0 && player.ToMin == 0)) {
+			playerRatingsByEvent[0].players.forEach(function(player, i) {
+				if (!(player.FromMin === 0 && player.ToMin === 0)) {
 					player.ftIdx = i; // saving the index in the original array
 					played.push(player);
 				}
-			}
+			});
 			// WARNING: those are object references, not clones, modify with care!
 			// perhaps we should clone instead?
 
@@ -233,8 +234,7 @@ Foxtrick.modules['MatchLineupFixes'] = {
 			//	return !Foxtrick.has(comesAndGoes, player);
 			//}, entersField);
 
-			for (var i = 0; i < leavesField.length; ++i) {
-				var player = leavesField[i];
+			leavesField.forEach(function(player) {
 				var subMin = player.ToMin;
 				var idx = player.ftIdx;
 				// index in the original players array
@@ -248,9 +248,10 @@ Foxtrick.modules['MatchLineupFixes'] = {
 						while (playerRatingsByEvent[j].players[idx].Stars != -1)
 							++j;
 						// reached the sub second because stars = -1
+						// var subSec = timeline[j].sec;
 
 						var starsLast = playerRatingsByEvent[j - 1].players[idx].Stars;
-						var subSec = timeline[j].sec;
+
 						// save stamina for later?
 						// player.ftLastStamina = ratings.players[idx].Stamina;
 
@@ -269,7 +270,7 @@ Foxtrick.modules['MatchLineupFixes'] = {
 						break;
 					}
 				}
-			}
+			});
 
 			saveRatings(playerRatingsByEvent);
 		};
@@ -299,7 +300,7 @@ Foxtrick.modules['MatchLineupFixes'] = {
 				// j now points to an event before these events
 				// while idx is still our lineup event
 				// let's go forward and reset players one event at a time
-				for (var k = j + 1; k < idx ; k++) {
+				for (var k = j + 1; k < idx; k++) {
 					rewindRatings(playerRatingsHome, k, j);
 					rewindRatings(playerRatingsAway, k, j);
 				}
@@ -436,9 +437,9 @@ Foxtrick.modules['MatchLineupFixes'] = {
 					}
 					/**
 					 * add <Substitution> xml (home or away) to appropriate events
-					 * @param	{Array}		subEvents	an array of sub objects
-					 * @param	{Array}		xmlSubs		an array of <substitution> xmls
-					 * @param	{Integer}	offset		offset to skip previously bound xml
+					 * @param {Array}   subEvents an array of sub objects
+					 * @param {Array}   xmlSubs   an array of <substitution> xmls
+					 * @param {Integer} offset    offset to skip previously bound xml
 					 */
 					var bindXmlToEvents = function(subEvents, xmlSubs, offset) {
 						for (var i = 0; i < subEvents.length; i++) {
@@ -449,8 +450,8 @@ Foxtrick.modules['MatchLineupFixes'] = {
 					/**
 					 * replace SbjPId & ObjPId in sub.xml with HTO IDs
 					 * HTO IDs are used in the timeline/ratings for HTO matches
-					 * @param	{Array}		subGroup	array of sub objects
-					 * @returns	{Boolean}				whether successful or not
+					 * @param  {Array}   subGroup array of sub objects
+					 * @return {Boolean} whether  successful or not
 					 */
 					var addHTOIds = function(subGroup) {
 						var findPId = function(sourceId) {
@@ -473,7 +474,7 @@ Foxtrick.modules['MatchLineupFixes'] = {
 							// in case sbjPlayer leaves without sub
 							// XML: objId = 0, newPosId = 0, newPosBeh = -1
 							// @ref matchId: 394945951 teamId: 3110
-							if (objId == 0) {
+							if (objId == '0') {
 								realObjId = 0;
 							}
 							else
@@ -511,8 +512,7 @@ Foxtrick.modules['MatchLineupFixes'] = {
 					var homeSubsCt = 0;
 					var awaySubsCt = 0;
 
-					for (var i = 0; i < subGroups.length; i++) {
-						var subGroup = subGroups[i];
+					subGroups.forEach(function(subGroup) {
 						// divide the subs in subGroup by home/away
 						var homeSubsInGroup = [];
 						var awaySubsInGroup = [];
@@ -532,7 +532,7 @@ Foxtrick.modules['MatchLineupFixes'] = {
 						if (subGroup.length == 1)
 							// we don't care about single subs any more
 							// they served their purpose as offsets
-							continue;
+							return;
 						if (SourceSystem == 'HTOIntegrated' && !addHTOIds(subGroup)) {
 							// we can't do anything without HTOIds
 							Foxtrick.log('MatchLineupFixes: failed to add HTO IDs');
@@ -541,8 +541,7 @@ Foxtrick.modules['MatchLineupFixes'] = {
 
 						// OK, we assume everything's OK now.
 						// Let's go through subs one by one and fix each one except the last
-						for (var j = 0; j < subGroup.length - 1; j++) {
-							var sub = subGroup[j];
+						subGroup.forEach(function(sub) {
 							var ratingsData = (sub.isHome) ? playerRatingsHome :
 								playerRatingsAway;
 							var ratings = ratingsData[sub.idx];
@@ -560,10 +559,10 @@ Foxtrick.modules['MatchLineupFixes'] = {
 							rewindRatings(ratingsData, sub.idx, goodIdx);
 
 							// get the relevant players and apply sub
-							var sbjId = sub.xml
-								.getElementsByTagName('SubjectPlayerID')[0].textContent;
-							var objId = sub.xml
-								.getElementsByTagName('ObjectPlayerID')[0].textContent;
+							var sbjId = sub.xml.
+								getElementsByTagName('SubjectPlayerID')[0].textContent;
+							var objId = sub.xml.
+								getElementsByTagName('ObjectPlayerID')[0].textContent;
 							var sbjPlayer = Foxtrick.filter(function(p) {
 								return p.PlayerId == sbjId;
 							}, ratings.players)[0];
@@ -578,8 +577,8 @@ Foxtrick.modules['MatchLineupFixes'] = {
 								sbjPlayer.PositionID = -1;
 							}
 							else {
-								var orderType = Number(sub.xml
-									.getElementsByTagName('OrderType')[0].textContent);
+								var orderType = Number(sub.xml.
+									getElementsByTagName('OrderType')[0].textContent);
 								var targetPlayer = objPlayer, sourcePlayer = sbjPlayer;
 								if (orderType == 3) {
 									// for some weird reason NewPositionId
@@ -589,16 +588,16 @@ Foxtrick.modules['MatchLineupFixes'] = {
 								}
 								sourcePlayer.PositionBehaviour = targetPlayer.PositionBehaviour;
 								sourcePlayer.PositionID = targetPlayer.PositionID;
-								targetPlayer.PositionBehaviour = Number(sub.xml
-									.getElementsByTagName('NewPositionBehaviour')[0].textContent);
-								targetPlayer.PositionID = Number(sub.xml
-									.getElementsByTagName('NewPositionId')[0].textContent);
+								targetPlayer.PositionBehaviour = Number(sub.xml.
+									getElementsByTagName('NewPositionBehaviour')[0].textContent);
+								targetPlayer.PositionID = Number(sub.xml.
+									getElementsByTagName('NewPositionId')[0].textContent);
 
 								setStarsIfKnown(sbjPlayer, finalRatings);
 								setStarsIfKnown(objPlayer, finalRatings);
 							}
-						}
-					}
+						});
+					});
 
 					// don't forget to save, dumbo!
 					saveRatings(playerRatingsHome);
@@ -631,7 +630,8 @@ Foxtrick.modules['MatchLineupFixes'] = {
 			for (var i = 0; i < playerData.length; i++) {
 				var p = playerData[i];
 				var id = Number(p.SourcePlayerId);
-				var fullName = p.FirstName + (p.NickName ? " '" + p.NickName + "' " : ' ') +
+				var fullName = p.FirstName +
+					(p.NickName ? " '" + p.NickName + "' " : ' ') +
 					p.LastName;
 				var link = '<a id="playerLink" href="/Club/Players/' + pl + '.aspx?' + pl + 'Id=' +
 					id + '">' + fullName + '</a>';
@@ -644,8 +644,7 @@ Foxtrick.modules['MatchLineupFixes'] = {
 
 
 		// DO STUFF
-		if (Foxtrick.Pages.Match.isPrematch(doc)
-			|| Foxtrick.Pages.Match.inProgress(doc))
+		if (Foxtrick.Pages.Match.isPrematch(doc) || Foxtrick.Pages.Match.inProgress(doc))
 			return;
 
 		if (Foxtrick.Pages.Match.isWalkOver(doc.querySelector('div.mainBox table')))
@@ -658,7 +657,8 @@ Foxtrick.modules['MatchLineupFixes'] = {
 			Foxtrick.Prefs.isModuleOptionEnabled('MatchLineupFixes', 'FixWeatherSEs'))
 			fixWeatherSEs();
 
-		if (!playerRatingsHome[0].players[0].hasOwnProperty('ftIdx') && // FF is executing twice, wtf?
+		// FF is executing twice, wtf?
+		if (!playerRatingsHome[0].players[0].hasOwnProperty('ftIdx') &&
 			Foxtrick.Prefs.isModuleOptionEnabled('MatchLineupFixes', 'AddStarsToSubs')) {
 			addStarsToSubs(playerRatingsHome);
 			addStarsToSubs(playerRatingsAway);
