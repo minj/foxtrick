@@ -38,8 +38,7 @@ Foxtrick.modules['Core'] = {
 	updateLastHost: function(doc) {
 		// update Foxtrick.lastHost, which is used when opening links
 		// from browser chrome
-		Foxtrick.setLastHost(doc.location.protocol + '//'
-			+ doc.location.hostname);
+		Foxtrick.setLastHost(doc.location.protocol + '//' + doc.location.hostname);
 		Foxtrick.setLastPage(doc.location.href);
 	},
 
@@ -57,7 +56,8 @@ Foxtrick.modules['Core'] = {
 				}
 				Foxtrick.Prefs.setString('oldVersion', Foxtrick.version());
 			}
-		} catch (e) {
+		}
+		catch (e) {
 			// catching very old 'wrong' formats and fix them by just using the upto date version
 			Foxtrick.Prefs.setString('oldVersion', Foxtrick.version());
 		}
@@ -79,11 +79,12 @@ Foxtrick.modules['Core'] = {
 	featureHighlight: function(doc) {
 		if (!Foxtrick.Prefs.getBool('featureHighlight'))
 			return;
-		var css =	"[class^='ft'], [id^='ft']," + // 'ft' at front
-					"[class*=' ft'], [id*=' ft']," + // 'ft' at start word
-					"[class*='foxtrick'], [id*='foxtrick']" + // 'foxtrick' anywhere
-					'{ background-color:#66ccff !important; color:black !important; ' +
-					'border: 1px solid #66ccff !important;}';
+		var css =
+			'[class^="ft"], [id^="ft"],' + // 'ft' at front
+			'[class*=" ft"], [id*=" ft"],' + // 'ft' at start word
+			'[class*="foxtrick"], [id*="foxtrick"]' + // 'foxtrick' anywhere
+			'{ background-color:#66ccff !important; color:black !important; ' +
+			'border: 1px solid #66ccff !important;}';
 		var featureCss = doc.getElementById('ft-feature-highlight-css');
 		// remove old CSS if exists
 		if (featureCss) {
@@ -262,7 +263,7 @@ Foxtrick.modules['Core'] = {
 	 * don't use in async context because
 	 * data is overwritten by subsequent reloads
 	 * team might change in FF!
-	 * @returns	{Array}		playerList
+	 * @return {Array} playerList
 	 */
 	getPlayerList: function() {
 		return this.PLAYER_LIST;
