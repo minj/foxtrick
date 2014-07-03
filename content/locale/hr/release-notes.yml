@@ -8,6 +8,7 @@ hr:
     0.14.0:
       important: '<header>Važne obavijesti</header>'
       crowdin: '<header>Mnogo prevoditeljskih nadogradnji od naših fantastičnih korisnika koristeći <linkCrowdin>crowdin alat</linkCrowdin>. I Vi možete pomoći!</header>'
+      browsers: Ukinuta je podrška za operu 12. Safari 6 i Firefox 24 su sada minimalne verzije za pokretanje Foxtricka.
       twitter: 'Možete pratiti <linkTwitter>Foxtrick na Twitteru</linkTwitter> kako biste dobili najnovije vijesti, ažuriranja i objave.'
       new: '<header>Novi moduli</header>'
       bugs: '<header>Popravljene greške</header>'

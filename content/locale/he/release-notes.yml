@@ -8,10 +8,27 @@ he:
     0.14.0:
       important: '<header>הודעות חשובות</header>'
       crowdin: '<header>עדכוני תרגום רבים של המשתמשים המדהימים שלנו באמצעות <linkCrowdin>כלי ה-crowdin</linkCrowdin>. גם אתם יכולים לעזור!</header>'
+      browsers: התמיכה באופרה 12 הופסקה. ספארי 6 ופיירפוקס 24 הן גירסאות המינימום להפעלת פוקסטריק.
+      backend: 'נעשו עוד עדכונים והליכי ניקוי לליבת פוקסטריק. השינויים משפיעים על דפים רבים, מודולים ותפקוד, לרבות דו"ח המשחק, האטריק חי, ממשק מתן ההוראות למשחק, זיהוי אוטומטי של מטבע וזיכרון הקאש של פוקסטריק. נא דווחו על תקלות, ככל שתמצאו כאלה.'
+      bug_report: בתחתית הדף בהאטריק יופיע קישור לשם דיווח יעיל על תקלות בפוקסטריק. יש להשתמש בו בדף שבו נמצאה תקלה, ולפעול בהתאם להוראות שיופיעו.
       twitter: 'באפשרותך לעקוב אחר עדכוני <linkTwitter>פוקסטריק בטוויטר</linkTwitter> על מנת לקבל את החדשות, העדכונים וההודעות האחרונים.'
       new: '<header>מודולים חדשים</header>'
+      series_transfers: 'המודול <module>SeriesTransfers</module>: מציג בדף הליגה רשימת שחקנים, שכרגע עומדים למכירה אצל קבוצות הליגה.'
+      player_positions: 'המודולים <module>PlayerPositionsEvaluations</module> ו-<module>BestPlayerPosition</module> מחשבים את יעילות השחקן בעמדות שונות בהתאם ל-<linkContributionsWiki>Hattrick Wiki</linkContributionsWiki>.'
       bugs: '<header>תיקוני באגים</header>'
+      australis: צלמית פוקסטריק בתפריט תוקנה, כך שתעבוד גם תחת העיצוב החדש של הדפדפן.
+      chrome_notes: תוקנו ההתראות של פוקסטריק, כך שישתמשו במערכת ההתראות החדשה של של גוגל כרום.
+      player_cache: פוקסטריק יזהה מעתה שחקנים חדשים בקבוצתך וירענן את נתוני ה-CHPP אוטומטית.
+      train_est: פוקסטריק לא יפריע עוד למיון הטבלה בכלי החדש של אומדן האימונים.
+      mrf_fixes: 'המודול <module>MatchReportFormat</module> לא יציג יותר את הדו"ח באופן פגום בחלק מהמשחקים. גם נוספו צלמיות אירועים נוספות.'
+      forum_header: 'המודול <module>ForumAlterHeaderLine</module> שופץ, ואמור לעבוד תמיד באופן תקין.'
+      nav_fix: 'הניווט במודולים <module>GoToPostBox</module> ו-<module>MyMonitor</module> תוקן בפיירפוקס.'
+      new_lineup: 'המודולים <module>MatchPlayerColouring</module>, <module>LineupShortcut</module>, <module>TeamPopupLinks</module> ו-<module>SeniorTeamShortCuts</module> יעבדו כעת באופן תקין בדף החדש של ההרכבים.'
       other: '<header>שינויים אחרים</header>'
+      live_ratings: 'נוספה תמיכה בציונים בשידור חי במודולים <module>MatchLineupTweaks</module>, <module>MatchRatingsTweaks</module> ו-<module>MatchPlayerColouring</module>.'
+      own_top_players: 'המודול <module>Filter</module> מדגיש את שחקניך בדף הסטטיסטיקה של השחקנים המובילים.'
+      htev: אתר htev.org אינו יכול לעמוד בעומס הפניות דרך פוקסטריק, ולכן הוסר מודול תחזית המשחקים HTEVPrediction.
+      removed: המודולים SmallerPages ו-MatchTables הוסרו בשל חוסר תועלת.
       and_more: הרבה שינויים ותיקונים קטנים נוספים.
     0.13.0.1:
       crowdin: '<header>עדכוני תרגום רבים של המשתמשים המדהימים שלנו באמצעות <linkCrowdin>כלי ה-crowdin</linkCrowdin>. גם אתם יכולים לעזור!</header>'
