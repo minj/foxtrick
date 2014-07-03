@@ -2,6 +2,8 @@
 #
 # Author: Anastasios Ventouris <tasosventouris@gmail.com>
 
+import re
+
 targets = [
 	{
 		"file" : "manifest.json",
@@ -56,19 +58,23 @@ del modules[-1]
 
 #iterate through targets
 for tar in targets:
-    #create the empty file
-    output = open(tar['file'], "w")
-    
-    #write the *from* string
-    output.write(tar['from'] + "\n")
-    
-    #iterate through modules and write them in the file
+    #open the file and copy the content to a variable
+    fh = file(tar['file'], 'r')
+    originaltext = fh.read()
+    fh.close()
+
+    #create the text with the modules list
+    modstring = "\n"
     for mod in modules:
         line = tar['prefix'] + mod + tar['suffix']
-        output.write(line)
-        
-    #write the *to* strings
-    output.write(tar['to'])
+        modstring = modstring + line
 
-    #close the file
-    output.close()
+    #find and replace the content between *from* and *to*
+    reg = reg = "(?<=%s).*?(?=%s)" % (tar['from'],tar['to'])
+    r = re.compile(reg,re.DOTALL)
+    result = r.sub(modstring, originaltext)
+
+    #write the new file
+    f_out = file(tar['file'], 'w')
+    f_out.write(result)
+    f_out.close()    
