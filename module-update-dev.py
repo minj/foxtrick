@@ -70,7 +70,7 @@ for tar in targets:
         modstring = modstring + line
 
     #find and replace the content between *from* and *to*
-    reg = reg = "(?<=%s).*?(?=%s)" % (tar['from'],tar['to'])
+    reg = "(?<=%s).*?(?=\t*%s)" % (tar['from'],tar['to'])
     r = re.compile(reg,re.DOTALL)
     result = r.sub(modstring, originaltext)
 
