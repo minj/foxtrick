@@ -125,6 +125,9 @@ Foxtrick.loader.background.browserLoad = function() {
 		// fennecs tab child processes
 		Foxtrick.loader.background.requests.tabLoad = Foxtrick.loader.background.requests.pageLoad;
 
+		// safari options page
+		Foxtrick.loader.background.requests.optionsPageLoad =
+			Foxtrick.loader.background.requests.pageLoad;
 		// ----- end of init part. ------
 
 
