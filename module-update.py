@@ -112,9 +112,9 @@ def update(sourcefile, excludefile, dirfile):
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description='Update module listing in manifest files. Author: Anastasios Ventouris')
-    parser.add_argument('-source','--sourcefile', help='The name of the source file. Default value = modules', required=False, default="modules")
-    parser.add_argument('-exclude','--excludefile', help='The name of the source file to ignore. Default value = None', required=False)
-    parser.add_argument('-dir','--dirfile', help='The path to the new working directory. Default value = .', default=".", required=False)
+    parser.add_argument('-s','--sources-file', dest='sourcefile', help='The name of the sources file. Default value = modules', required=False, default="modules")
+    parser.add_argument('-e','--excludes-file', dest='excludefile', help='The name of the file with sources to ignore. Default value = None', required=False)
+    parser.add_argument('-d','--build-dir', dest='dirfile', help='The path to the new working directory. Default value = .', default=".", required=False)
 
     args = parser.parse_args()
     update(args.sourcefile,args.excludefile,args.dirfile)
