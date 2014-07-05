@@ -117,15 +117,16 @@ def update(sourcefile, excludefile, dirfile):
 def add(filename,light):
     #get module file list from file *modules*
     modules = open("modules", "r").read()
-    modules = modules.splitlines()
+    #take \n
+    modules = modules.splitlines(True)
 
-    #convert  '/path/to/foxtrick/content/category/module.js' to 'category/module.js'
-    filename = filename.split("/")
-    filename = filename[-2]+filename[-1]
+    #convert  '/path/to/foxtrick/content/category/module.js' to 'category/module.js
+    r = re.compile('^(.*?/)?content/')
+    module = r.sub('', filename) + '\n'
 
     #add file in modules
-    if filename not in modules:
-        modules.append(filename)
+    if module not in modules:
+        modules.append(module)
         modules.sort()
 
         #write the new file
@@ -141,8 +142,8 @@ def add(filename,light):
         modules = modules.splitlines()
 
         #add file in modules
-        if filename not in modules:
-            modules.append(filename)
+        if module not in modules:
+            modules.append(module)
             modules.sort()
 
             #write the new file
