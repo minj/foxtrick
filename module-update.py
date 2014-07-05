@@ -77,9 +77,6 @@ def update(sourcefile, excludefile, dirfile):
             #pathfile = pathfile.replace("/",'\\')
             if os.path.isfile(pathfile):
                 os.remove(pathfile)
-    else:
-        ignorelist = []
-
 
     #iterate through targets
     for tar in targets:
@@ -157,7 +154,7 @@ def add(filename,light):
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description='Update module listing in manifest files. Author: Anastasios Ventouris')
-    parser.add_argument("function", 
+    parser.add_argument("function",
                     nargs="?",
                     choices=['update', 'add', 'rm']
                     )
@@ -174,7 +171,7 @@ if __name__ == '__main__':
         parser.add_argument('-f','--file-name', dest='filename', help='The name of the file with the path you want to add', required=True)
         parser.add_argument('-light','--light-file', help='The name of the source file to ignore. Default value = None', required=False, action='store_true')
         args = parser.parse_args(sub_args)
-        add(args.filename,args.lightfile)  
+        add(args.filename,args.lightfile)
 
     elif args.function == "rm":
         pass
