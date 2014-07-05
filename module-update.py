@@ -168,10 +168,10 @@ if __name__ == '__main__':
         update(args.sourcefile,args.excludefile,args.dirfile)
 
     elif args.function == "add":
-        parser.add_argument('-f','--file-name', dest='filename', help='The name of the file with the path you want to add', required=True)
-        parser.add_argument('-light','--light-file', help='The name of the source file to ignore. Default value = None', required=False, action='store_true')
+        parser.add_argument('-l', '--light-module', dest='light', help='The name of the source file to ignore. Default value = None', required=False, action='store_true')
+        parser.add_argument('filename', help='The name of the file with the path you want to add')
         args = parser.parse_args(sub_args)
-        add(args.filename,args.lightfile)
+        add(args.filename,args.light)
 
     elif args.function == "rm":
         pass
