@@ -11,8 +11,21 @@ hr:
       browsers: Ukinuta je podrška za operu 12. Safari 6 i Firefox 24 su sada minimalne verzije za pokretanje Foxtricka.
       twitter: 'Možete pratiti <linkTwitter>Foxtrick na Twitteru</linkTwitter> kako biste dobili najnovije vijesti, ažuriranja i objave.'
       new: '<header>Novi moduli</header>'
+      series_transfers: '<module>SeriesTransfers</module>: prikazuje listu igrača trenutno na prodaji na stranicama liga.'
+      player_positions: '<module>PlayerPositionsEvaluations</module> i <module>BestPlayerPosition</module> moduli izračunavaju korisnost igrača na različitim pozicijama prema <linkContributionsWiki>Hattrick Wiki</linkContributionsWiki>.'
       bugs: '<header>Popravljene greške</header>'
+      australis: Ikona Firefox izbornika je popravljena za rad s novom temom preglednika.
+      chrome_notes: Foxtrick obavijesti su promjenjene kako bi radile s novim sustavom obavijesti u Google Chrome-u.
+      player_cache: Foxtrick će od sada automatski prepoznavati nove igrače u tvojoj ekipi i ažurirati CHPP podatke.
+      train_est: Foxtrick više ne interferira sa razvrstavanjem tablice u novoj opciji za procjenu brzine treninga.
+      mrf_fixes: '<module>MatchReportFormat</module> neće se više događati greška u prikazu nekih utakmica. Dodano je još ikona za događaje.'
+      forum_header: '<module>ForumAlterHeaderLine</module> je preispitan i sada bi trebao ispravno raditi u svim slučajevima.'
+      nav_fix: 'Navigacija u <module>GoToPostBox</module> i <module>MyMonitor</module> je popravljena u Firefoxu.'
+      new_lineup: 'Moduli <module>MatchPlayerColouring</module>, <module>LineupShortcut</module>, <module>TeamPopupLinks</module> i <module>SeniorTeamShortCuts</module> će sad ispravno funkcionirati sa novom stranicom za postavu.'
       other: '<header>Ostale promjene</header>'
+      own_top_players: '<module>Filter</module> modul sada označava tvoje igrače na stranici Najbolji Igrači.'
+      htev: htev.org više ne može izdržati teret zahtjeva Foxtricka stoga je modul HTEVPrediction uklonjen.
+      removed: Moduli SmallerPages i MatchTables su uklonjeni zbog svoje beskorisnosti.
       and_more: Razne druge male promjene i popravci.
     0.13.0.1:
       crowdin: '<header>Mnogo prevoditeljskih nadogradnji od naših fantastičnih korisnika koristeći <linkCrowdin>crowdin alat</linkCrowdin>. I Vi možete pomoći!</header>'
