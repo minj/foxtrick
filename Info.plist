@@ -118,13 +118,13 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/alert/ticker-coloring.js</string>
 				<string>content/forum/auto-post-specs.js</string>
 				<string>content/forum/embed-media.js</string>
-				<string>content/forum/forum-change-posts.js</string>
 				<string>content/forum/forum-change-posts-modules.js</string>
+				<string>content/forum/forum-change-posts.js</string>
 				<string>content/forum/forum-direct-page-links.js</string>
 				<string>content/forum/forum-last-post.js</string>
 				<string>content/forum/forum-leave-button.js</string>
-				<string>content/forum/forum-next-and-previous.js</string>
 				<string>content/forum/forum-mod-popup.js</string>
+				<string>content/forum/forum-next-and-previous.js</string>
 				<string>content/forum/forum-presentation.js</string>
 				<string>content/forum/forum-preview.js</string>
 				<string>content/forum/forum-strip-hattrick-links.js</string>
@@ -180,7 +180,6 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/links/links-country.js</string>
 				<string>content/links/links-economy.js</string>
 				<string>content/links/links-fans.js</string>
-				<string>content/links/links.js</string>
 				<string>content/links/links-league.js</string>
 				<string>content/links/links-manager.js</string>
 				<string>content/links/links-match.js</string>
@@ -190,12 +189,13 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/links/links-team.js</string>
 				<string>content/links/links-tracker.js</string>
 				<string>content/links/links-training.js</string>
-				<string>content/links/links-youth.js</string>
 				<string>content/links/links-world.js</string>
+				<string>content/links/links-youth.js</string>
+				<string>content/links/links.js</string>
 				<string>content/matches/att-vs-def.js</string>
-				<string>content/matches/live-match-report-format.js</string>
 				<string>content/matches/copy-ratings.js</string>
 				<string>content/matches/htms-prediction.js</string>
+				<string>content/matches/live-match-report-format.js</string>
 				<string>content/matches/match-income.js</string>
 				<string>content/matches/match-lineup-fixes.js</string>
 				<string>content/matches/match-lineup-tweaks.js</string>
