@@ -79,8 +79,13 @@ def update(sourcefile, excludefile, dirfile):
 
     #iterate through targets
     for tar in targets:
+        #check if file exists
+        pathfile = path + tar['file']
+        if not os.path.isfile(pathfile):
+            continue
+
         #open the file and copy the content to a list variable
-        fh = file(path+tar['file'], 'r')
+        fh = file(pathfile, 'r')
         #keep \n
         lines = fh.read().splitlines(True)
         fh.close()
