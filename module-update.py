@@ -52,15 +52,21 @@ def update(sourcefile, excludefile, dirfile):
 	}
     ]
 
-    path = dirfile+"/"
+    #get module file list from file *modules*
+    modules = open(sourcefile, "r").read()
+    modules = modules.splitlines()
 
     #if exclude file in fuction, read the file
     if excludefile:
         ignorelist = open(excludefile, "r").read()
         ignorelist = ignorelist.splitlines()
 
-        #delete files from ignorelist in the build
         for mod in ignorelist:
+            #remove mod from modules
+            if mod in modules:
+                modules.remove(mod)
+
+            #delete files from ignorelist in the build
             pathfile = dirfile + '/content/' + mod
             #replace the backslash with a slash
             #pathfile = pathfile.replace("/",'\\')
@@ -69,9 +75,7 @@ def update(sourcefile, excludefile, dirfile):
     else:
         ignorelist = []
 
-    #get module file list from file *modules*
-    modules = open(sourcefile, "r").read()
-    modules = modules.splitlines()
+    path = dirfile+"/"
 
     #iterate through targets
     for tar in targets:
