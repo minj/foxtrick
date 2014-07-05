@@ -117,13 +117,64 @@ def update(sourcefile, excludefile, dirfile):
         f_out.writelines(lines)
         f_out.close()
 
+def add(filename,light):
+    #get module file list from file *modules*
+    modules = open("modules", "r").read()
+    modules = modules.splitlines()
+
+    #convert  '/path/to/foxtrick/content/category/module.js' to 'category/module.js'
+    filename = filename.split("/")
+    filename = filename[-2]+filename[-1]
+
+    #add file in modules
+    if filename not in modules:
+        modules.append(filename)
+        modules.sort()
+
+        #write the new file
+        f_out = file("modules",'w')
+        f_out.writelines(modules)
+        f_out.close()
+
+    #check if light is called and add the file also in light
+    if light:
+        modules = open("included-modules-light","r").read()
+        modules = modules.splitlines()
+
+        #add file in modules
+        if filename not in modules:
+            modules.append(filename)
+            modules.sort()
+
+            #write the new file
+            f_out = file("included-modules-light",'w')
+            f_out.writelines(modules)
+            f_out.close()
+            
 
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description='Update module listing in manifest files. Author: Anastasios Ventouris')
-    parser.add_argument('-s','--sources-file', dest='sourcefile', help='The name of the sources file. Default value = modules', required=False, default="modules")
-    parser.add_argument('-e','--excludes-file', dest='excludefile', help='The name of the file with sources to ignore. Default value = None', required=False)
-    parser.add_argument('-d','--build-dir', dest='dirfile', help='The path to the new working directory. Default value = .', default=".", required=False)
+    parser.add_argument("function", 
+                    nargs="?",
+                    choices=['update', 'add', 'rm']
+                    )
+    args, sub_args = parser.parse_known_args()
 
-    args = parser.parse_args()
-    update(args.sourcefile,args.excludefile,args.dirfile)
+    if args.function == "update":
+        parser.add_argument('-s','--sources-file', dest='sourcefile', help='The name of the sources file. Default value = modules', required=False, default="modules")
+        parser.add_argument('-e','--excludes-file', dest='excludefile', help='The name of the file with sources to ignore. Default value = None', required=False)
+        parser.add_argument('-d','--build-dir', dest='dirfile', help='The path to the new working directory. Default value = .', default=".", required=False)
+        args = parser.parse_args(sub_args)
+        update(args.sourcefile,args.excludefile,args.dirfile)
+
+    elif args.function == "add":
+        parser.add_argument('-f','--file-name', dest='filename', help='The name of the file with the path you want to add', required=True)
+        parser.add_argument('-light','--light-file', help='The name of the source file to ignore. Default value = None', required=False, action='store_true')
+        args = parser.parse_args(sub_args)
+        add(args.filename,args.lightfile)  
+
+    elif args.function == "rm":
+        pass
+
+
