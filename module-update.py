@@ -56,7 +56,7 @@ def update(sourcefile, excludefile, dirfile):
 
     #if exclude file in fuction, read the file
     if excludefile:
-        ignorelist = open(path+excludefile, "r").read()
+        ignorelist = open(excludefile, "r").read()
         ignorelist = ignorelist.splitlines()
 
         #delete files from ignorelist in the build
@@ -70,7 +70,7 @@ def update(sourcefile, excludefile, dirfile):
         ignorelist = []
 
     #get module file list from file *modules*
-    modules = open(path+sourcefile, "r").read()
+    modules = open(sourcefile, "r").read()
     modules = modules.splitlines()
 
     #iterate through targets
