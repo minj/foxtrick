@@ -139,7 +139,8 @@ def add(filename,light):
     #check if light is called and add the file also in light
     if light:
         modules = open("included-modules-light","r").read()
-        modules = modules.splitlines()
+        #take \n
+        modules = modules.splitlines(True)
 
         #add file in modules
         if module not in modules:
