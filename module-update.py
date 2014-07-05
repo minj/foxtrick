@@ -136,6 +136,8 @@ def add(filename,light):
         f_out.writelines(modules)
         f_out.close()
 
+        update("modules",None,".")
+
     #check if light is called and add the file also in light
     if light:
         modules = open("included-modules-light","r").read()
@@ -150,7 +152,7 @@ def add(filename,light):
             f_out = file("included-modules-light",'w')
             f_out.writelines(modules)
             f_out.close()
-            
+
 
 if __name__ == '__main__':
 
