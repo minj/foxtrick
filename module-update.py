@@ -6,7 +6,7 @@ import re
 import argparse
 import os
 
-def update(args):
+def update(args=dict(sourcefile="modules", excludefile=None, dirfile=".")):
     sourcefile = args['sourcefile']
     excludefile = args['excludefile']
     dirfile = args['dirfile']
@@ -120,46 +120,57 @@ def update(args):
 def add(args):
     filename = args['filename']
     light = args['light']
-    #get module file list from file *modules*
-    modules = open("modules", "r").read()
-    #take \n
-    modules = modules.splitlines(True)
 
+    module = normalize_path(filename)
+
+    add_module('modules', module)
+    if light:
+        add_module('included-modules-light', module)
+
+    update()
+
+def rm(args):
+    filename = args['filename']
+    module = normalize_path(filename)
+
+    rm_module('modules', module)
+    rm_module('included-modules-light', module)
+
+    update()
+
+def normalize_path(path):
     #convert  '/path/to/foxtrick/content/category/module.js' to 'category/module.js
     r = re.compile('^(.*?/)?content/')
-    module = r.sub('', filename) + '\n'
+    path = r.sub('', path) + '\n'
+    return path
 
-    #add file in modules
+
+def rm_module(sourcefile, module):
+    #get module file list from file *sourcefile*
+    modules = open(sourcefile, "r").read()
+    #take \n
+    modules = modules.splitlines(True)
+    if module in modules:
+        modules.remove(module)
+        modules.sort()
+
+        #write the new file
+        f_out = file(sourcefile,'w')
+        f_out.writelines(modules)
+        f_out.close()
+
+def add_module(sourcefile, module):
+    #get module file list from file *sourcefile*
+    modules = open(sourcefile, "r").read()
+    #take \n
+    modules = modules.splitlines(True)
     if module not in modules:
         modules.append(module)
         modules.sort()
 
         #write the new file
-        f_out = file("modules",'w')
+        f_out = file(sourcefile,'w')
         f_out.writelines(modules)
-        f_out.close()
-
-        update(dict(sourcefile="modules", excludefile=None, dirfile="."))
-
-    #check if light is called and add the file also in light
-    if light:
-        modules = open("included-modules-light","r").read()
-        #take \n
-        modules = modules.splitlines(True)
-
-        #add file in modules
-        if module not in modules:
-            modules.append(module)
-            modules.sort()
-
-            #write the new file
-            f_out = file("included-modules-light",'w')
-            f_out.writelines(modules)
-            f_out.close()
-
-def rm(args):
-    filename = args['filename']
-    pass
 
 if __name__ == '__main__':
 
