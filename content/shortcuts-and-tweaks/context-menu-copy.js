@@ -13,14 +13,30 @@ if (Foxtrick.platform != 'Android')
 	// item: menu item for Firefox and Chrome
 	// copyText: text to be copied
 	var contextEntries = {
-		'foxtrick-popup-copy-id': { option: 'Id', func: Foxtrick.util.htMl.getId, item: null,
-			copyText: null },
-		'foxtrick-popup-copy-link': { option: 'Link', func: Foxtrick.util.htMl.getLink, item: null,
-			copyText: null },
-		'foxtrick-popup-copy-ht-ml': { option: 'HtMl', func: Foxtrick.util.htMl.getHtMl, item: null,
-			copyText: null },
-		'foxtrick-popup-copy-table': { option: 'Table', func: Foxtrick.util.htMl.getTable,
-			item: null, copyText: null }
+		'foxtrick-popup-copy-id': {
+			option: 'Id',
+			func: Foxtrick.util.htMl.getId,
+			item: null,
+			copyText: null
+		},
+		'foxtrick-popup-copy-link': {
+			option: 'Link',
+			func: Foxtrick.util.htMl.getLink,
+			item: null,
+			copyText: null
+		},
+		'foxtrick-popup-copy-ht-ml': {
+			option: 'HtMl',
+			func: Foxtrick.util.htMl.getHtMl,
+			item: null,
+			copyText: null
+		},
+		'foxtrick-popup-copy-table': {
+			option: 'Table',
+			func: Foxtrick.util.htMl.getTable,
+			item: null,
+			copyText: null
+		}
 	};
 
 	Foxtrick.modules.ContextMenuCopy = {
@@ -55,7 +71,7 @@ if (Foxtrick.platform != 'Android')
 				  function(request, sender, sendResponse) {
 					var documentUrlPatterns = [
 						'*://*.hattrick.org/*',
-						"*://*.hattrick.fm/*",
+						'*://*.hattrick.fm/*',
 						'*://*.hattrick.ws/*',
 						'*://*.hattrick.name/*',
 						'*://*.hat-trick.net/*',
@@ -157,10 +173,11 @@ if (Foxtrick.platform != 'Android')
 						else
 							entries[type].item.setAttribute('hidden', true);
 					}
+					var popup = document.getElementById('foxtrick-popup-copy');
 					if (showing)
-						document.getElementById('foxtrick-popup-copy').setAttribute('hidden', false);
+						popup.setAttribute('hidden', false);
 					else
-						document.getElementById('foxtrick-popup-copy').setAttribute('hidden', true);
+						popup.setAttribute('hidden', true);
 				}, false);
 			}
 			else if (Foxtrick.arch == 'Sandboxed') {
