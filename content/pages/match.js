@@ -52,7 +52,7 @@ Foxtrick.Pages.Match = {
 		return team ? team.textContent : null;
 	},
 	isPrematch: function(doc) {
-		return (doc.getElementById('ctl00_ctl00_CPContent_CPMain_pnlPreMatch') != null);
+		return doc.getElementById('ctl00_ctl00_CPContent_CPMain_pnlPreMatch') !== null;
 	},
 	hasRatingsTabs: function(doc) {
 		return doc.getElementById('divSectors') !== null;
@@ -68,30 +68,30 @@ Foxtrick.Pages.Match = {
 		return SourceSystem;
 	},
 	isYouth: function(doc) {
-		return (doc.location.search.search(/isYouth=true|SourceSystem=Youth/i) > -1);
+		return /isYouth=true|SourceSystem=Youth/i.test(doc.location.search);
 	},
 	isHTOIntegrated: function(doc) {
-		return (doc.location.search.search(/SourceSystem=HTOIntegrated/i) > -1);
+		return /SourceSystem=HTOIntegrated/i.test(doc.location.search);
 	},
 	isNT: function(doc) {
-		return this.getHomeTeamId(doc) < 10000 && this.getAwayTeamId(doc) < 10000;
+		var homeId = this.getHomeTeamId(doc);
+		var awayId = this.getAwayTeamId(doc);
+		return homeId && awayId && homeId < 10000 && awayId < 10000 || false;
 	},
 
 	getId: function(doc) {
+		var url;
 		if (Foxtrick.isPage(doc, 'matchesLive')) {
 			var link = doc.querySelector('.liveResult a');
 			if (!link)
 				return null;
-			return Foxtrick.util.id.getMatchIdFromUrl(link.href);
+			else
+				url = link.href;
 		}
 		else {
-			try {
-				return (doc.location.search.match(/matchID=(\d+)/i)[1]);
-			}
-			catch (e) {
-				return null;
-			}
+			url = doc.location.href;
 		}
+		return Foxtrick.util.id.getMatchIdFromUrl(url);
 	},
 	/**
 	 * Get match date
@@ -105,25 +105,17 @@ Foxtrick.Pages.Match = {
 
 	inProgress: function(doc) {
 		var matchStatus = doc.getElementById('ctl00_ctl00_CPContent_CPMain_lblMatchStatus');
-		return (matchStatus !== null) && (matchStatus.textContent.trim() !== '');
+		return matchStatus !== null && matchStatus.textContent.trim() !== '';
 	},
 
 	getRatingsTable: function(doc) {
-		try {
-			return doc.getElementById('mainBody')
-				.getElementsByClassName('mainBox')[0]
-				.getElementsByTagName('table')[0];
-		}
-		catch (e) {
-			return null;
-		}
+		return doc.querySelector('.teamMatchRatingsTable table');
 	},
 
 	hasIndSetPieces: function(ratingstable) {
 		// either iSP level link in that cell or for old matches tactic=no link
-		return ratingstable.rows.length > 10
-				&& ratingstable.rows[10].cells.length > 1
-				&& ratingstable.rows[10].cells[1].getElementsByTagName('a').length > 0;
+		return ratingstable.rows.length > 10 && ratingstable.rows[10].cells.length > 1 &&
+			ratingstable.rows[10].cells[1].getElementsByTagName('a').length > 0;
 	},
 
 	isWalkOver: function(ratingstable) {
@@ -144,42 +136,25 @@ Foxtrick.Pages.Match = {
 	},
 
 	getRatingsByTeam: function(ratingstable) {
+		var getRatingFromCell = function(coords) {
+			var cell = ratingstable.rows[coords[0]].cells[coords[1]];
+			return Foxtrick.Math.hsToFloat(cell.textContent);
+		};
 		var ratings = {};
-		ratings.mf = [
-			Foxtrick.Math.hsToFloat(ratingstable.rows[1].cells[3].textContent),
-			Foxtrick.Math.hsToFloat(ratingstable.rows[1].cells[4].textContent)
-		];
-		ratings.rd = [
-			Foxtrick.Math.hsToFloat(ratingstable.rows[2].cells[3].textContent),
-			Foxtrick.Math.hsToFloat(ratingstable.rows[2].cells[4].textContent)
-		];
-		ratings.cd = [
-			Foxtrick.Math.hsToFloat(ratingstable.rows[3].cells[3].textContent),
-			Foxtrick.Math.hsToFloat(ratingstable.rows[3].cells[4].textContent)
-		];
-		ratings.ld = [
-			Foxtrick.Math.hsToFloat(ratingstable.rows[4].cells[3].textContent),
-			Foxtrick.Math.hsToFloat(ratingstable.rows[4].cells[4].textContent)
-		];
-		ratings.ra = [
-			Foxtrick.Math.hsToFloat(ratingstable.rows[5].cells[3].textContent),
-			Foxtrick.Math.hsToFloat(ratingstable.rows[5].cells[4].textContent)
-		];
-		ratings.ca = [
-			Foxtrick.Math.hsToFloat(ratingstable.rows[6].cells[3].textContent),
-			Foxtrick.Math.hsToFloat(ratingstable.rows[6].cells[4].textContent)
-		];
-		ratings.la = [
-			Foxtrick.Math.hsToFloat(ratingstable.rows[7].cells[3].textContent),
-			Foxtrick.Math.hsToFloat(ratingstable.rows[7].cells[4].textContent)
-		];
+		// rows 1-7 contain numeric data (columns 3-4) for both team ratings in this order:
+		var order = ['mf', 'rd', 'cd', 'ld', 'ra', 'ca', 'la'];
+		for (var i = 1; i <= 7; i++) {
+			ratings[order[i - 1]] = Foxtrick.map(getRatingFromCell, [[i, 3], [i, 4]]);
+		}
 		return ratings;
 	},
 	getTacticsLevelFromCell: function(cell) {
 		var basevalue = 0;
-		if (cell.firstChild.nodeName == 'A')
-			basevalue = parseInt(cell.firstChild.href.replace(/.+lt=skill/i, '')
-			                     .replace(/.+ll=/i, '').match(/^\d+/), 10);
+		var tacticsLink = cell.getElementsByTagName('a')[0];
+		if (tacticsLink) {
+			var level = Foxtrick.getParameterFromUrl(tacticsLink.href, 'll');
+			basevalue = parseInt(level, 10);
+		}
 		return basevalue;
 	},
 
@@ -273,14 +248,13 @@ Foxtrick.Pages.Match = {
 		if (this.isPrematch(doc))
 			// redirect to old style in prematch
 			return Foxtrick.addBoxToSidebar.apply(Foxtrick, arguments);
-		// class of the box to add
-		var boxClass = '';
-		var sidebar;
-		(sidebar = doc.getElementsByClassName('reportHighlights')[0]) &&
-			(boxClass = 'ft-newSidebarBox');
 
+		var sidebar = doc.getElementsByClassName('reportHighlights')[0];
 		if (!sidebar)
 			return;
+
+		// class of the box to add
+		var boxClass = 'ft-newSidebarBox';
 
 		// destination box
 		var dest;
@@ -295,7 +269,7 @@ Foxtrick.Pages.Match = {
 		}
 		// create new box if old one doesn't exist
 		if (!dest) {
-			var dest = doc.createElement('div');
+			dest = doc.createElement('div');
 			dest.className = boxClass;
 			dest.setAttribute('x-precedence', prec);
 			// boxHead
@@ -317,11 +291,9 @@ Foxtrick.Pages.Match = {
 			if (existings.length) {
 				for (var i = 0; i < existings.length; ++i) {
 					// precedence of current box, hattrick boxes are set to 0
-					var curPrec = existings[i].hasAttribute('x-precedence')
-						? Number(existings[i].getAttribute('x-precedence'))
-						: 0;
+					var curPrec = parseInt(existings[i].getAttribute('x-precedence'), 10) || 0;
 					if (curPrec > prec) {
-						if (i == 0 && curPrec == 0)
+						if (i === 0 && curPrec === 0)
 							// first to be added and placed before HT boxes. add it on top
 							// before possible updatepanel div (eg teampage challenge and mailto)
 							sidebar.insertBefore(dest, sidebar.firstChild);
@@ -376,8 +348,8 @@ Foxtrick.Pages.Match = {
 	/**
 	 * get timeline data as array of {min, sec}
 	 * each minute/event has input.hidden[id$="_time"][value="min.sec"]
-	 * @param	{document}	doc
-	 * @returns	{Array}		[{min: Integer, sec: Integer},..]
+	 * @param  {document} doc
+	 * @return {Array}        [{min: Integer, sec: Integer},..]
 	 */
 	getTimeline: function(doc) {
 		var timeline = Foxtrick.map(function(el) {
@@ -395,9 +367,9 @@ Foxtrick.Pages.Match = {
 	 * { Cards: 0,	FromMin: -1, InjuryLevel: 0, IsCaptain: false,
 	 * 	IsKicker: false, PlayerId: 360991810, PositionBehaviour: 0,
 	 * 	PositionID: 100, Stamina: 1, Stars: 3, ToMin: 90 }
-	 * @param	{document}	doc
-	 * @param	{Boolean}	isHome
-	 * @returns	{Array}			[{players: Array, source: HTMLInputElement}]
+	 * @param  {document} doc
+	 * @param  {Boolean}  isHome
+	 * @return {Array}           [{players: Array, source: HTMLInputElement}]
 	 */
 	getTeamRatingsByEvent: function(doc, isHome) {
 		var playerRatings = doc.querySelectorAll('input[id$="_playerRatings' +
@@ -417,8 +389,8 @@ Foxtrick.Pages.Match = {
 	 * used ot match highlights (#matchEventIndex_ + eventIdx)
 	 * 5 minute updates have index=0, no event
 	 * While idx is the timeline index (starts at 0, includes 5 minute updates)
-	 * @param	{document}	doc
-	 * @returns	{Array}		[{eventIdx: Integer, idx: Integer},..]
+	 * @param  {document} doc
+	 * @return {Array}        [{eventIdx: Integer, idx: Integer},..]
 	 */
 	getEventIndicesByEvent: function(doc) {
 		var eventIndices = doc.querySelectorAll('input[id$="_eventIndex"]');
