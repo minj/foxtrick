@@ -900,7 +900,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		// ];
 		if (SourceSystem == 'HTOIntegrated') {
 			// need to parse player data and change PlayerIds to HT Ids
-			var HTOPlayers = Foxtrick.Pages.Match.parsePlayerScript(doc);
+			var HTOPlayers = Foxtrick.Pages.Match.parsePlayerData(doc);
 
 			if (!HTOPlayers) {
 				Foxtrick.log('gatherStaminaData: failed to parse playerData');
