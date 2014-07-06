@@ -19,8 +19,8 @@ Foxtrick._sessionGet = function(keymap, callback) {
 	if (typeof(keymap) === 'string')
 		answermap = Foxtrick.sessionStore[keymap];
 	else if (typeof(keymap) === 'object') {
-		var answermap = {}, key;
-		for (key in keymap) {
+		answermap = {};
+		for (var key in keymap) {
 			if (Foxtrick.sessionStore[key] !== null)
 				answermap[key] = Foxtrick.sessionStore[key];
 			else
