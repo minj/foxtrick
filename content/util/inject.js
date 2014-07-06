@@ -39,7 +39,7 @@ Foxtrick.util.inject.css = function(doc, css, id) {
 	var inject = function(css) {
 		style.textContent = css + '\n\n/*# sourceURL=' + sourceName + ' */\n';
 	};
-	Foxtrick.util.css.replaceExtensionDirectory(css, inject, id);
+	Foxtrick.util.css.replaceExtensionDirectory(css, inject);
 
 	return style;
 };

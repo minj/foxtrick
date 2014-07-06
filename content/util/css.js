@@ -40,31 +40,32 @@ Foxtrick.util.css = {};
 // 	};
 
 // 	if (cssTextCollection) {
-// 		var fullUrlRegExp = new RegExp("\\(\'?\"?chrome://foxtrick/content/([^\\)]+)\'?\"?\\)",
-// 			'gi');
+// 		var fullUrlRegExp =
+// 			new RegExp("\\(\'?\"?chrome://foxtrick/content/([^\\)]+)\'?\"?\\)", 'gi');
 // 		var urls = cssTextCollection.match(fullUrlRegExp);
-// 		var InternalPathRegExp = RegExp('chrome://foxtrick/content/', 'ig');
-// 		cssTextCollection = cssTextCollection.replace(InternalPathRegExp, Foxtrick.InternalPath);
+// 		var InternalPathRE = RegExp('chrome://foxtrick/content/', 'ig');
+// 		cssTextCollection = cssTextCollection.replace(InternalPathRE, Foxtrick.InternalPath);
 
-// 		if (urls) {
-// 			// first check dataurl cache
-// 			for (var i = 0; i < urls.length; ++i) {
-// 				urls[i] = urls[i].replace(/\(\'?\"?|\'?\"?\)/g, '').replace(InternalPathRegExp,
-// 				                                                           Foxtrick.InternalPath);
-// 				if (Foxtrick.dataUrlStorage[urls[i]]) {
-// 					cssTextCollection = cssTextCollection.replace(RegExp(urls[i], 'g'),
-// 					                                              Foxtrick.dataUrlStorage[urls[i]]);
-// 				}
-// 			}
-// 			// convert missing images
-// 			for (var i = 0; i < urls.length; ++i) {
-// 				urls[i] = urls[i].replace(/\(\'?\"?|\'?\"?\)/g, '').replace(InternalPathRegExp,
-// 				                                                            Foxtrick.InternalPath);
-// 				if (!Foxtrick.dataUrlStorage[urls[i]]) {
-// 					pending++;
-// 					replaceImage(urls[i]);
-// 				}
-// 			}
+		// if (urls) {
+		// 	// first check dataurl cache
+		// 	for (var i = 0; i < urls.length; ++i) {
+		// 		urls[i] = urls[i].replace(/\(\'?\"?|\'?\"?\)/g, '').
+		// 			replace(InternalPathRE, Foxtrick.InternalPath);
+		// 		if (Foxtrick.dataUrlStorage[urls[i]]) {
+		// 			cssTextCollection =
+		// 				cssTextCollection.replace(RegExp(urls[i], 'g'),
+		// 				                          Foxtrick.dataUrlStorage[urls[i]]);
+		// 		}
+		// 	}
+		// 	// convert missing images
+		// 	for (var i = 0; i < urls.length; ++i) {
+		// 		urls[i] = urls[i].replace(/\(\'?\"?|\'?\"?\)/g, '').
+		// 			replace(InternalPathRE, Foxtrick.InternalPath);
+		// 		if (!Foxtrick.dataUrlStorage[urls[i]]) {
+		// 			pending++;
+		// 			replaceImage(urls[i]);
+		// 		}
+		// 	}
 // 			// resolve cached dataurls
 // 			pending++;
 // 			resolve();
@@ -73,8 +74,8 @@ Foxtrick.util.css = {};
 // };
 
 // replace links in the css files to the approriate chrome resources for each browser
-Foxtrick.util.css.replaceExtensionDirectory = function(cssTextCollection, callback, id) {
-	var InternalPathRegExp = RegExp('chrome://foxtrick/content/', 'ig');
+Foxtrick.util.css.replaceExtensionDirectory = function(cssTextCollection, callback) {
+	var InternalPathRegExp = /chrome:\/\/foxtrick\/content\//ig;
 
 	if (Foxtrick.platform == 'Safari' || Foxtrick.platform == 'Chrome') {
 		callback(cssTextCollection.replace(InternalPathRegExp, Foxtrick.InternalPath));
@@ -134,11 +135,6 @@ Foxtrick.util.css.unload_css_permanent = function(cssList) {
 				unload_css_permanent_impl(cssList[i]);
 		}
 	}
-	else {
-		var moduleCss = doc.getElementById('ft-module-css');
-		if (moduleCss)
-			moduleCss.parentNode.removeChild(moduleCss);
-	}
 };
 
 // collect all enabled module css urls in Foxtrick.cssFiles array
@@ -163,19 +159,21 @@ Foxtrick.util.css.collect_module_css = function() {
 			// module options CSS
 			if (module.OPTIONS && module.OPTIONS_CSS) {
 				var pushCss = function(options, css) {
-					for (var i = 0;	i < Math.min(css.length, options.length); i++) {
+					for (var i = 0; i < Math.min(css.length, options.length); i++) {
 						if (css[i] instanceof Array && options[i] instanceof Array) {
 							pushCss(options[i], css[i]);
-						} else if (typeof(css[i]) === 'string' && typeof(options[i]) === 'string') {
-							if (Foxtrick.Prefs.isModuleOptionEnabled(module.MODULE_NAME, options[i])
-							    && css[i]) {
+						}
+						else if (typeof(css[i]) === 'string' && typeof(options[i]) === 'string') {
+							var enabled = Foxtrick.Prefs.
+								isModuleOptionEnabled(module.MODULE_NAME, options[i]);
+							if (enabled && css[i]) {
 								Foxtrick.cssFiles.push(css[i]);
 							}
-						} else if (css[i] == null) {
-							//
-						} else {
-							alert('OPTIONS_CSS not matching OPTIONS structure: ' + typeof(css[i]) +
-							      ' ' + module.MODULE_NAME + ' ' + options[i] + ' ' + css[i]);
+						}
+						else if (css[i]) {
+							Foxtrick.error('OPTIONS_CSS not matching OPTIONS structure: ' +
+							               typeof(css[i]) + ' ' + module.MODULE_NAME + ' ' +
+							               options[i] + ' ' + css[i]);
 						}
 					}
 				};
@@ -183,14 +181,11 @@ Foxtrick.util.css.collect_module_css = function() {
 			}
 
 			// module options CSS
-			if (module.RADIO_OPTIONS
-				&& module.RADIO_OPTIONS_CSS
-				&& module.RADIO_OPTIONS_CSS[Foxtrick.Prefs.getInt('module.' +
-				                                                 module.MODULE_NAME + '.value')]) {
-					Foxtrick.cssFiles.push(module.RADIO_OPTIONS_CSS[
-					                       Foxtrick.Prefs.getInt('module.' +
-					                                            module.MODULE_NAME + '.value')
-					                       ]);
+			if (module.RADIO_OPTIONS && module.RADIO_OPTIONS_CSS) {
+				var value = Foxtrick.Prefs.getInt('module.' + module.MODULE_NAME + '.value');
+			    if (module.RADIO_OPTIONS_CSS[value]) {
+					Foxtrick.cssFiles.push(module.RADIO_OPTIONS_CSS[value]);
+				}
 			}
 		}
 	};
@@ -255,7 +250,8 @@ Foxtrick.util.css.load_module_css = function(doc) {
 			if (Foxtrick.platform == 'Android') {
 				Foxtrick.current_css = data.cssText;
 				Foxtrick.util.css.load_css_permanent(Foxtrick.current_css);
-			} else {
+			}
+			else {
 				Foxtrick.util.inject.css(doc, data.cssText, 'ft-module-css');
 			}
 		});
