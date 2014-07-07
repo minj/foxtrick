@@ -5,10 +5,14 @@
  */
 
 /**
- * Create a foxtrick feature dom node
- * @param doc Document
- * @param module Object
- * @param type String
+ * Create an element with Foxtrick feature highlight enabled.
+ * This and other similar functions must be used on the outer container
+ * of DOM created and/or modified by Foxtrick.
+ * Returns the element.
+ * @param  {document} doc
+ * @param  {Object}   module
+ * @param  {String}   type
+ * @return {HTMLElement}
  */
 Foxtrick.createFeaturedElement = function(doc, module, type) {
 	if (module && module.MODULE_NAME && module.MODULE_CATEGORY) {
@@ -29,10 +33,12 @@ Foxtrick.createFeaturedElement = function(doc, module, type) {
 };
 
 /**
- * Insert a new row in table for foxtrick highlight feature
- * @param table Node
- * @param module Object
- * @param index Integer
+ * Insert a new row in a table with Foxtrick feature highlight.
+ * Returns the row.
+ * @param  {HTMLTableElement}    table
+ * @param  {Object}              module
+ * @param  {Integer}             index
+ * @return {HTMLTableRowElement}
  */
 Foxtrick.insertFeaturedRow = function(table, module, index) {
 	var row = table.insertRow(index);
@@ -46,10 +52,12 @@ Foxtrick.insertFeaturedRow = function(table, module, index) {
 };
 
 /**
- * Insert a new cell in a row for foxtrick highlight feature
- * @param row Node
- * @param module Object
- * @param index Integer
+ * Insert a new cell in a row with Foxtrick feature highlight.
+ * Returns the cell.
+ * @param  {HTMLTableRowElement}  row
+ * @param  {Object}               module
+ * @param  {Integer}              index
+ * @return {HTMLTableCellElement}
  */
 Foxtrick.insertFeaturedCell = function(row, module, index) {
 	var cell = row.insertCell(index);
@@ -62,6 +70,12 @@ Foxtrick.insertFeaturedCell = function(row, module, index) {
 	return cell;
 };
 
+/**
+ * Enable Foxtrick feature highlight on an existing element
+ * @param  {HTMLElement} node
+ * @param  {Object} module
+ * @return {HTMLElement}
+ */
 Foxtrick.makeFeaturedElement = function(node, module) {
 	Foxtrick.addClass(node, 'ft-dummy');
 	if (Foxtrick.Prefs.getBool('featureHighlight')) {
@@ -73,12 +87,26 @@ Foxtrick.makeFeaturedElement = function(node, module) {
 	return node;
 };
 
+/**
+ * Test whether an attribute of an element has the given value
+ * or contains it in a space-delimited list
+ * @param  {HTMLElement}  el
+ * @param  {String}       attribute
+ * @param  {String}       value
+ * @return {Boolean}
+ */
 Foxtrick.hasAttributeValue = function(el, attribute, value) {
 	var reg = new RegExp('(\\s|^)' + value + '(\\s|$)');
 	return el && typeof el.getAttribute === 'function' && el.getAttribute(attribute) &&
 		reg.test(el.getAttribute(attribute));
 };
 
+/**
+ * Add a value to the space-delimited list of element's attribute
+ * @param {HTMLElement} el
+ * @param {String}      attribute
+ * @param {String}      value
+ */
 Foxtrick.addAttributeValue = function(el, attribute, value) {
 	if (!Foxtrick.hasAttributeValue(el, attribute, value)) {
 		var _attrib = el.getAttribute(attribute);
@@ -89,6 +117,12 @@ Foxtrick.addAttributeValue = function(el, attribute, value) {
 	}
 };
 
+/**
+ * Remove a value from the space-delimited list of element's attribute
+ * @param {HTMLElement} el
+ * @param {String}      attribute
+ * @param {String}      value
+ */
 Foxtrick.removeAttributeValue = function(el, attribute, value) {
 	var _attrib = el.getAttribute(attribute);
 	if (_attrib !== null) {
@@ -97,6 +131,12 @@ Foxtrick.removeAttributeValue = function(el, attribute, value) {
 	}
 };
 
+/**
+ * Test whether an element has a class
+ * @param  {HTMLElement} el
+ * @param  {String}      cls
+ * @return {Boolean}
+ */
 Foxtrick.hasClass = function(el, cls) {
 	if (!el || !el.classList)
 		return false;
@@ -104,6 +144,11 @@ Foxtrick.hasClass = function(el, cls) {
 	return el.classList.contains(cls);
 };
 
+/**
+ * Add a class or a space-delimited list of classes to an alement
+ * @param {HTMLElement} el
+ * @param {String}      cls
+ */
 Foxtrick.addClass = function(el, cls) {
 	if (!el || !el.classList)
 		return;
@@ -113,16 +158,32 @@ Foxtrick.addClass = function(el, cls) {
 		el.classList.add(classes[c]);
 };
 
+/**
+ * Remove a class from an element
+ * @param {HTMLElement} el
+ * @param {String}      cls
+ */
 Foxtrick.removeClass = function(el, cls) {
 	if (el && el.classList)
 		el.classList.remove(cls);
 };
 
+/**
+ * Toggle a class of an element
+ * @param {HTMLElement} el
+ * @param {String}      cls
+ */
 Foxtrick.toggleClass = function(el, cls) {
 	if (el && el.classList)
 		el.classList.toggle(cls);
 };
 
+/**
+ * Test whether document contains an element with a given ID
+ * @param  {document} doc
+ * @param  {String}   id
+ * @return {Boolean}
+ */
 Foxtrick.hasElement = function(doc, id) {
 	if (doc.getElementById(id)) {
 		return true;
@@ -130,6 +191,12 @@ Foxtrick.hasElement = function(doc, id) {
 	return false;
 };
 
+/**
+ * Test whether an element is within another element
+ * @param  {HTMLElement} descendant
+ * @param  {HTMLElement} ancestor
+ * @return {Boolean}
+ */
 Foxtrick.isDescendantOf = function(descendant, ancestor) {
 	while (descendant.parentNode) {
 		if (descendant.parentNode === ancestor)
@@ -139,6 +206,11 @@ Foxtrick.isDescendantOf = function(descendant, ancestor) {
 	return false;
 };
 
+/**
+ * Get the given element's index among its siblings
+ * @param  {HTMLElement} element
+ * @return {Integer}
+ */
 Foxtrick.getChildIndex = function(element) {
 	var count = 0;
 	while (element.previousSibling) {
@@ -149,9 +221,11 @@ Foxtrick.getChildIndex = function(element) {
 };
 
 /**
- * Adds event listener, tabindex=0 and role=button
- * @param	{element}	target
- * @param	{Function}	listener
+ * Adds a click event listener to an element.
+ * Sets tabindex=0 and role=button if these attributes have no value.
+ * The callback is executed with global change listeners stopped.
+ * @param {HTMLElement} el
+ * @param {function}    listener
  */
 Foxtrick.onClick = function(el, listener) {
 	Foxtrick.listen(el, 'click', listener, false);
@@ -161,6 +235,14 @@ Foxtrick.onClick = function(el, listener) {
 		el.setAttribute('role', 'button');
 };
 
+/**
+ * Add an event listener to an element.
+ * The callback is executed with global change listeners stopped.
+ * @param {HTMLElement} el
+ * @param {String}      type       event type
+ * @param {function}    listener
+ * @param {Boolean}     useCapture
+ */
 Foxtrick.listen = function(el, type, listener, useCapture) {
 	el.addEventListener(type, function(ev) {
 		var doc = ev.target.ownerDocument;
@@ -170,10 +252,12 @@ Foxtrick.listen = function(el, type, listener, useCapture) {
 		Foxtrick.startListenToChange(doc);
 	}, useCapture);
 };
+
 /**
  * Add a mutation observer to a node.
+ * Should not be used directly.
  * Calls callback(mutations) on childList changes in the whole tree.
- * Default behavior can be overriden by specifying observer options.
+ * Default behavior can be overridden by specifying observer options.
  * Stops observing in case callback returns true.
  * Returns the observer.
  * @param  {Node}                                      node     observer target
@@ -202,9 +286,11 @@ Foxtrick.observe = function(node, callback, options) {
 	observe();
 	return observer;
 };
+
 /**
  * Execute callback(doc, node, observer) when node changes.
  * Stops observing if callback returns true.
+ * Returns the observer.
  * @param  {Node}                                  node
  * @param  {function(HTMLDocument, Node): boolean} callback
  * @param  {MutationObserverInit}                  obsOpts  observer options
@@ -222,9 +308,11 @@ Foxtrick.onChange = function(node, callback, obsOpts) {
 		}
 	}, obsOpts);
 };
+
 /**
  * Get nodes whose children change.
  * Stops observing if callback returns true.
+ * Returns the observer.
  * @param  {Node}                            node     container
  * @param  {function(Array.<Node>): boolean} callback
  * @param  {MutationObserverInit}            obsOpts  observer options
@@ -247,15 +335,16 @@ Foxtrick.getChanges = function(node, callback, obsOpts) {
 	}, obsOpts);
 };
 
-/* Foxtrick.addBoxToSidebar
- * @desc add a box to the sidebar, either on the right or on the left
+/**
+ * Add a box to the sidebar, either on the right or on the left.
+ * Returns the added box.
  * @author Ryan Li
- * @param doc - HTML document the content is to be added on
- * @param title - the title of the box, will create one if inexists
- * @param content - HTML node of the content
- * @param prec - precedence of the box, smaller value will be placed higher
- * @param forceLeft - force the box to be desplayed on the left
- * @return box to be added to
+ * @param  {document}    doc
+ * @param  {String}      title     the title of the box, will create one if inexists
+ * @param  {HTMLElement} content   HTML node of the content
+ * @param  {Integer}     prec      precedence of the box, the smaller, the higher
+ * @param  {Boolean}     forceLeft force the box to be displayed on the left
+ * @return {HTMLElement}           box to be added to
  */
 Foxtrick.addBoxToSidebar = function(doc, title, content, prec, forceLeft) {
 	// class of the box to add
@@ -339,6 +428,14 @@ Foxtrick.addBoxToSidebar = function(doc, title, content, prec, forceLeft) {
 	return dest;
 };
 
+/**
+ * Activate a text box with a place-holder value.
+ * Returns whether it contains custom value
+ * @param  {HTMLElement} el
+ * @param  {String}      cssClass class name for the active state
+ * @param  {String}      text     place-holder text
+ * @return {Boolean}              whether current value is custom
+ */
 Foxtrick.setActiveTextBox = function(el, cssClass, text) {
 	el.className = cssClass;
 	if (el.value === text) {
@@ -348,6 +445,14 @@ Foxtrick.setActiveTextBox = function(el, cssClass, text) {
 	return true;
 };
 
+/**
+ * Deactivate a text box with a place-holder value.
+ * Returns whether it contains custom value
+ * @param  {HTMLElement} el
+ * @param  {String}      cssClass class name for the inactive state
+ * @param  {String}      text     place-holder text
+ * @return {Boolean}              whether current value is custom
+ */
 Foxtrick.setInactiveTextBox = function(el, cssClass, text) {
 	el.className = cssClass;
 	if (el.value === '') {
@@ -357,6 +462,13 @@ Foxtrick.setInactiveTextBox = function(el, cssClass, text) {
 	return true;
 };
 
+/**
+ * Get element position relative to reference.
+ * Returns the position as an object {top, left}.
+ * @param  {HTMLElement}                 el
+ * @param  {HTMLElement}                 ref
+ * @return {{top: Number, left: Number}}     position
+ */
 Foxtrick.getElementPosition = function(el, ref) {
 	var pT = 0, pL = 0;
 	while (el && el !== ref) {
@@ -367,18 +479,26 @@ Foxtrick.getElementPosition = function(el, ref) {
 	return { top: pT, left: pL };
 };
 
+/**
+ * Convert a string into data URI text file
+ * @param  {String} str
+ * @return {String}
+ */
 Foxtrick.getDataURIText = function(str) {
 	return 'data:text/plain;charset=utf-8,' + encodeURIComponent(str);
 };
 
 /**
- *	Proper way to add an image,
- *	for some crazy reason opera has this weird async step.
- *	@param doc The document
- *	@parem elem The desired parent element
- *	@param features Attributes to be added to the new img element in dictionary form
- *	@param insertBefore If appendChild is not what you want to do, use this
- *	@param callback When further steps are required, handle in this callback function expecting callback(imgElem)
+ * Add an image in an asynchronous way.
+ * Used to be the only way to add images from FT package
+ * in some extension architectures.
+ * Continued to be used with forward compatibility in mind.
+ * Callback receives the created image.
+ * @param {document}                   doc
+ * @param {HTMLElement}                parent
+ * @param {Object}                     features     a map of image attributes
+ * @param {HTMLElement}                insertBefore next sibling
+ * @param {function(HTMLImageElement)} callback
  */
 Foxtrick.addImage = function(doc, parent, features, insertBefore, callback) {
 	var img = doc.createElement('img');
@@ -393,6 +513,14 @@ Foxtrick.addImage = function(doc, parent, features, insertBefore, callback) {
 		callback(img);
 };
 
+/**
+ * Describe selected text in a text area.
+ * Returns null if no selection or
+ * {completeText, selectionStart, selectionEnd, selectionLength,
+ * textBeforeSelection, selectedText, textAfterSelection}
+ * @param  {HTMLElement} ta text area
+ * @return {Object}
+ */
 Foxtrick.getSelection = function(ta) {
 	if (ta) {
 		ta.focus();
