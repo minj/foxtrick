@@ -103,6 +103,7 @@ ro:
       note_11: '<header>Corectări erori</header>'
       note_12: 'Reparat eroarea TSI NaN pe paginile jucătorilor echipei naţionale sau când descărcarea xml este dezactivată (<module>Skilltable</module>, <module>TeamStats</module> etc.)'
       note_13: 'Jucătorii nefolosiţi nu vor mai fi incluşi atunci când se utilizează opţiunea "Umple lista executanților de penalty-uri" în <module>MatchOrderInterface</module>.'
+      note_14: Am rezolvat o problemă legată de ID-urile jucătorilor.
       note_15: 'Link-ul de provocări din <module>TeamPopupLinks</module> e acum funcțional.'
       note_16: 'Rezolvat un "glitch" în zona de Preferințe.'
     0.12.1.1:
@@ -112,6 +113,7 @@ ro:
       note_3: 'Probleme rezovlate pentru <module>CopyPosting</module> și <module>StaffMarker</module>.'
       note_4: Câteva probleme legate de sunet rezolvate.
       note_5: Am remediat o problemă legată de Android, deoarece, în unele cazuri, nu îi permitea Foxtrick-ului să pornească.
+      note_6: Rândurile libere de pe forum și mail-uri ar trebui să fie recunoscute corect, când sunt importate preferințele.
       note_7: Am rezolvat o problemă legată de recunoașterea rating-urilor pentru Frysk.
       note_8: 'Am remediat unele probleme în <module>ForumAlterHeaderLine</module>, <module>ManagerButtons</module> și <module>HideSignatures</module>.'
       note_9: '<module>SkillTable</module> va funcționa din nou, fără autorizarea Foxtrick-ului, pentru userii cu o singură echipă.'
@@ -121,6 +123,7 @@ ro:
       note_2: '<module>MatchIncome</module>: Am adăugat opțiunea de a afișa locurile utilizate pe stadion, în procente, lângă numărul de vizitatori pe pagina unui meci'
       note_3: 'NOU: <module>MainMenuDropDown</module>: Adaugă meniuri derulante în bara principală de navigare, care conţin toate link-urile disponibile de obicei în bara laterală a paginii respective.'
       note_4: 'Am remediat problema recunoașterii timpului în Firefox, la exportarea <module>DashboardCalendar</module>.'
+      note_5: '<module>MatchOrderInterface</module>: Acum apar avatarele și pentru cluburile adiționale.'
       note_6: '<module>DashboardCalendar</module>: Am eliminat multiplele solicitări de download în Firefox.'
       note_7: '<module>HeaderFix</module>: Acum apare bara de schimbare a echipei, ascunsă anterior.'
       note_8: '<module>ConfirmActions</module>: Userii cu echipe multiple vor vedea, de acum, numele echipei de pe care licitează.'
@@ -199,6 +202,7 @@ ro:
       note_3: '<module>PlayerStatsExperience</module>: A fancy new version with much more details and colored feedback if the data is reliable. (Thanks to SeanConnery (7751762) for testing the colors for red-green blind users)'
       note_4: '<module>MatchOrderInterface</module>: Possibility to clone or clone and convert an existing order. Players will not be filled in on purpose.'
       note_5: '<module>YouthTwins</module>: Option added to hide the information link about twins (default off)'
+      note_6: '<module>StaffMarker</module>: Folosim Google Code pentru informațiile oferite de serverele Hattrick Youthclub, începând de acum'
       note_7: '<module>TeamPopupLinks</module>: Some restyling to integrate better with the overall look and feel of hattrick.org'
       note_8: Suport pentru KeyPlayer
       note_9: Câteva îmbunătățiri pe Android pentru Foxtrick
