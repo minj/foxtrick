@@ -129,7 +129,7 @@ pref("extensions.foxtrick.prefs.module.ForumPresentation.Forum_NewPostsInBracket
 pref("extensions.foxtrick.prefs.module.ForumPresentation.Forum_Spoiler_reveal.enabled", false);
 pref("extensions.foxtrick.prefs.module.ForumPresentation.HideFlagsInForumHeader.enabled", false);
 pref("extensions.foxtrick.prefs.module.ForumPresentation.HideLeagueInForumHeader.enabled", false);
-pref("extensions.foxtrick.prefs.module.ForumPresentation.moved_avatarinfo_fix.enabled", false);
+pref("extensions.foxtrick.prefs.module.ForumPresentation.moved_avatarinfo_fix.enabled", true);
 pref("extensions.foxtrick.prefs.module.ForumPreview.enabled", true);
 pref("extensions.foxtrick.prefs.module.ForumRedirManagerToTeam.enabled", false);
 pref("extensions.foxtrick.prefs.module.ForumStripHattrickLinks.enabled", true);
