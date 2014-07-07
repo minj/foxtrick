@@ -14,12 +14,14 @@ Foxtrick.createFeaturedElement = function(doc, module, type) {
 	if (module && module.MODULE_NAME && module.MODULE_CATEGORY) {
 		var node = doc.createElement(type);
 		node.className = 'ft-dummy';
-		if (Foxtrick.Prefs.getBool('featureHighlight'))
-			node.title = module.MODULE_NAME + ' (' + Foxtrick.L10n
-				.getString('tab.' + module.MODULE_CATEGORY) + '): ' +
+		if (Foxtrick.Prefs.getBool('featureHighlight')) {
+			var cat = Foxtrick.L10n.getString('tab.' + module.MODULE_CATEGORY);
+			node.title = module.MODULE_NAME + ' (' + cat + '): ' +
 				Foxtrick.Prefs.getModuleDescription(module.MODULE_NAME);
+		}
 		return node;
-	} else {
+	}
+	else {
 		Foxtrick.log('Incorrect usage of Foxtrick.createFeaturedElement. typeof(module) = ',
 		             typeof(module));
 		return null;
@@ -35,10 +37,11 @@ Foxtrick.createFeaturedElement = function(doc, module, type) {
 Foxtrick.insertFeaturedRow = function(table, module, index) {
 	var row = table.insertRow(index);
 	row.className = 'ft-dummy';
-	if (Foxtrick.Prefs.getBool('featureHighlight'))
-		row.title = module.MODULE_NAME + ' (' + Foxtrick.L10n.getString('tab.' +
-		                                    module.MODULE_CATEGORY) + '): ' +
-											Foxtrick.Prefs.getModuleDescription(module.MODULE_NAME);
+	if (Foxtrick.Prefs.getBool('featureHighlight')) {
+		var cat = Foxtrick.L10n.getString('tab.' + module.MODULE_CATEGORY);
+		row.title = module.MODULE_NAME + ' (' + cat + '): ' +
+			Foxtrick.Prefs.getModuleDescription(module.MODULE_NAME);
+	}
 	return row;
 };
 
@@ -51,76 +54,73 @@ Foxtrick.insertFeaturedRow = function(table, module, index) {
 Foxtrick.insertFeaturedCell = function(row, module, index) {
 	var cell = row.insertCell(index);
 	cell.className = 'ft-dummy';
-	if (Foxtrick.Prefs.getBool('featureHighlight'))
-		cell.title = module.MODULE_NAME + ' (' + Foxtrick.L10n.getString('tab.' +
-		                                     module.MODULE_CATEGORY) + '): ' +
-											Foxtrick.Prefs.getModuleDescription(module.MODULE_NAME);
+	if (Foxtrick.Prefs.getBool('featureHighlight')) {
+		var cat = Foxtrick.L10n.getString('tab.' + module.MODULE_CATEGORY);
+		cell.title = module.MODULE_NAME + ' (' + cat + '): ' +
+			Foxtrick.Prefs.getModuleDescription(module.MODULE_NAME);
+	}
 	return cell;
 };
 
 Foxtrick.makeFeaturedElement = function(node, module) {
 	Foxtrick.addClass(node, 'ft-dummy');
-	if (Foxtrick.Prefs.getBool('featureHighlight'))
-		node.title = module.MODULE_NAME + ' (' + Foxtrick.L10n.getString('tab.' +
-		                                     module.MODULE_CATEGORY) + '): ' +
-											Foxtrick.Prefs.getModuleDescription(module.MODULE_NAME) +
-											(node.title ? ' / ' + node.title : '');
+	if (Foxtrick.Prefs.getBool('featureHighlight')) {
+		var cat = Foxtrick.L10n.getString('tab.' + module.MODULE_CATEGORY);
+		node.title = module.MODULE_NAME + ' (' + cat + '): ' +
+			Foxtrick.Prefs.getModuleDescription(module.MODULE_NAME) +
+			(node.title ? ' / ' + node.title : '');
+	}
 	return node;
 };
 
-Foxtrick.hasAttributeValue = function(obj, attribute, value) {
-	var reg = new RegExp('(\\s|^)' + value + '(\\s|$)', 'g');
-	return (obj && obj.getAttribute !== undefined
-		&& obj.getAttribute(attribute)
-		&& reg.test(obj.getAttribute(attribute)));
+Foxtrick.hasAttributeValue = function(el, attribute, value) {
+	var reg = new RegExp('(\\s|^)' + value + '(\\s|$)');
+	return el && typeof el.getAttribute === 'function' && el.getAttribute(attribute) &&
+		reg.test(el.getAttribute(attribute));
 };
 
-Foxtrick.setAttribute = function(obj, attribute, value) {
-	obj.setAttribute(attribute, value);
-};
-
-Foxtrick.addAttributeValue = function(obj, attribute, value) {
-	if (!Foxtrick.hasAttributeValue(obj, attribute, value)) {
-		var _attrib = obj.getAttribute(attribute);
-		if (_attrib)
-			Foxtrick.setAttribute(obj, attribute, _attrib + ' ' + value);
+Foxtrick.addAttributeValue = function(el, attribute, value) {
+	if (!Foxtrick.hasAttributeValue(el, attribute, value)) {
+		var _attrib = el.getAttribute(attribute);
+		if (_attrib !== null)
+			el.setAttribute(attribute, _attrib + ' ' + value);
 		else
-			Foxtrick.setAttribute(obj, attribute, value);
+			el.setAttribute(attribute, value);
 	}
 };
 
-Foxtrick.removeAttributeValue = function(obj, attribute, value) {
-	var _attrib = obj.getAttribute(attribute);
-	if (_attrib) {
+Foxtrick.removeAttributeValue = function(el, attribute, value) {
+	var _attrib = el.getAttribute(attribute);
+	if (_attrib !== null) {
 		var reg = new RegExp('(\\s|^)' + value + '(\\s|$)', 'g');
-		Foxtrick.setAttribute(obj, attribute, _attrib.replace(reg, ' ').trim());
+		el.setAttribute(attribute, _attrib.replace(reg, ' ').trim());
 	}
 };
 
-Foxtrick.hasClass = function(obj, cls) {
-	if(!obj || !obj.classList)
+Foxtrick.hasClass = function(el, cls) {
+	if (!el || !el.classList)
 		return false;
 
-	return obj.classList.contains(cls);
+	return el.classList.contains(cls);
 };
 
-Foxtrick.addClass = function(obj, cls) {
-	if(!obj || !obj.classList)
+Foxtrick.addClass = function(el, cls) {
+	if (!el || !el.classList)
 		return;
 
 	var classes = cls.trim().split(' ');
-	for(var c in classes)
-		obj.classList.add(classes[c]);
+	for (var c in classes)
+		el.classList.add(classes[c]);
 };
 
-Foxtrick.removeClass = function(obj, cls) {
-	if(obj && obj.classList)
-		obj.classList.remove(cls);
+Foxtrick.removeClass = function(el, cls) {
+	if (el && el.classList)
+		el.classList.remove(cls);
 };
 
-Foxtrick.toggleClass = function(obj, cls) {
-	if(obj && obj.classList)
-		obj.classList.toggle(cls);
+Foxtrick.toggleClass = function(el, cls) {
+	if (el && el.classList)
+		el.classList.toggle(cls);
 };
 
 Foxtrick.hasElement = function(doc, id) {
@@ -129,14 +129,16 @@ Foxtrick.hasElement = function(doc, id) {
 	}
 	return false;
 };
+
 Foxtrick.isDescendantOf = function(descendant, ancestor) {
 	while (descendant.parentNode) {
-		if (descendant.parentNode == ancestor)
+		if (descendant.parentNode === ancestor)
 			return true;
 		descendant = descendant.parentNode;
 	}
 	return false;
 };
+
 Foxtrick.getChildIndex = function(element) {
 	var count = 0;
 	while (element.previousSibling) {
@@ -145,21 +147,22 @@ Foxtrick.getChildIndex = function(element) {
 	}
 	return count;
 };
+
 /**
  * Adds event listener, tabindex=0 and role=button
  * @param	{element}	target
  * @param	{Function}	listener
  */
-Foxtrick.onClick = function(target, listener) {
-	Foxtrick.listen(target, 'click', listener, false);
-	if (!target.hasAttribute('tabindex'))
-		Foxtrick.setAttribute(target, 'tabindex', '0');
-	if (!target.hasAttribute('role'))
-		Foxtrick.setAttribute(target, 'role', 'button');
+Foxtrick.onClick = function(el, listener) {
+	Foxtrick.listen(el, 'click', listener, false);
+	if (!el.hasAttribute('tabindex'))
+		el.setAttribute('tabindex', '0');
+	if (!el.hasAttribute('role'))
+		el.setAttribute('role', 'button');
 };
 
-Foxtrick.listen = function(target, type, listener, useCapture) {
-	target.addEventListener(type, function(ev) {
+Foxtrick.listen = function(el, type, listener, useCapture) {
+	el.addEventListener(type, function(ev) {
 		var doc = ev.target.ownerDocument;
 		Foxtrick.stopListenToChange(doc);
 		listener.bind(this)(ev);
@@ -256,11 +259,14 @@ Foxtrick.getChanges = function(node, callback, obsOpts) {
  */
 Foxtrick.addBoxToSidebar = function(doc, title, content, prec, forceLeft) {
 	// class of the box to add
-	var boxClass = '';
-	var sidebar;
-	((sidebar = doc.getElementById('sidebar')) && (boxClass = 'sidebarBox') && !forceLeft)
-		|| ((sidebar = doc.getElementsByClassName('subMenu')[0]) && (boxClass = 'subMenuBox'))
-		|| ((sidebar = doc.getElementsByClassName('subMenuConf')[0]) && (boxClass = 'subMenuBox'));
+	var boxClass = 'sidebarBox';
+	var sidebar = doc.getElementById('sidebar');
+	if (!sidebar || forceLeft) {
+		if ((sidebar = doc.getElementsByClassName('subMenu')[0]))
+			boxClass = 'subMenuBox';
+		else if ((sidebar = doc.getElementsByClassName('subMenuConf')[0]))
+			boxClass = 'subMenuBox';
+	}
 
 	if (!sidebar)
 		return;
@@ -278,9 +284,9 @@ Foxtrick.addBoxToSidebar = function(doc, title, content, prec, forceLeft) {
 	}
 	// create new box if old one doesn't exist
 	if (!dest) {
-		var dest = doc.createElement('div');
+		dest = doc.createElement('div');
 		dest.className = boxClass;
-		Foxtrick.setAttribute(dest, 'x-precedence', prec);
+		dest.setAttribute('x-precedence', prec);
 		// boxHead
 		var boxHead = doc.createElement('div');
 		boxHead.className = 'boxHead';
@@ -311,11 +317,9 @@ Foxtrick.addBoxToSidebar = function(doc, title, content, prec, forceLeft) {
 		var inserted = false;
 		for (var i = 0; i < existings.length; ++i) {
 			// precedence of current box, hattrick boxes are set to 0
-			var curPrec = existings[i].hasAttribute('x-precedence')
-				? Number(existings[i].getAttribute('x-precedence'))
-				: 0;
+			var curPrec = parseInt(existings[i].hasAttribute('x-precedence'), 10) || 0;
 			if (curPrec > prec) {
-				if (i == 0 && curPrec == 0)
+				if (i === 0 && curPrec === 0)
 					// first to be added and placed before HT boxes. add it on top
 					// before possible updatepanel div (eg teampage challenge and mailto)
 					sidebar.insertBefore(dest, sidebar.firstChild);
@@ -335,37 +339,36 @@ Foxtrick.addBoxToSidebar = function(doc, title, content, prec, forceLeft) {
 	return dest;
 };
 
-Foxtrick.setActiveTextBox = function(field, cssClass, text) {
-	var fieldObj = document.getElementById(field);
-	fieldObj.className = cssClass;
-	if (fieldObj.value == text) {
-		fieldObj.value = '';
-		return true;
-	}
-};
-
-Foxtrick.setInactiveTextBox = function(field, cssClass, text) {
-	var fieldObj = document.getElementById(field);
-	if (fieldObj.value.length === 0) {
-		fieldObj.className = cssClass;
-		fieldObj.value = text;
+Foxtrick.setActiveTextBox = function(el, cssClass, text) {
+	el.className = cssClass;
+	if (el.value === text) {
+		el.value = '';
+		return false;
 	}
 	return true;
 };
 
+Foxtrick.setInactiveTextBox = function(el, cssClass, text) {
+	el.className = cssClass;
+	if (el.value === '') {
+		el.value = text;
+		return false;
+	}
+	return true;
+};
 
-Foxtrick.GetElementPosition = function(This, ref) {
-	var el = This; var pT = 0; var pL = 0;
-	while (el && el != ref) {
+Foxtrick.getElementPosition = function(el, ref) {
+	var pT = 0, pL = 0;
+	while (el && el !== ref) {
 		pT += el.offsetTop;
 		pL += el.offsetLeft;
 		el = el.offsetParent;
 	}
-	return { 'top': pT, 'left': pL };
+	return { top: pT, left: pL };
 };
 
-Foxtrick.GetDataURIText = function(filetext) {
-	return 'data:text/plain;charset=utf-8,' + encodeURIComponent(filetext);
+Foxtrick.getDataURIText = function(str) {
+	return 'data:text/plain;charset=utf-8,' + encodeURIComponent(str);
 };
 
 /**
@@ -377,25 +380,17 @@ Foxtrick.GetDataURIText = function(filetext) {
  *	@param insertBefore If appendChild is not what you want to do, use this
  *	@param callback When further steps are required, handle in this callback function expecting callback(imgElem)
  */
-Foxtrick.addImage = function(doc, elem, features, insertBefore, callback) {
+Foxtrick.addImage = function(doc, parent, features, insertBefore, callback) {
 	var img = doc.createElement('img');
-	var i;
-	for (i in features)
-		Foxtrick.setAttribute(img, i, features[i]);
+	for (var i in features)
+		img.setAttribute(i, features[i]);
 	if (insertBefore)
-		elem.insertBefore(img, insertBefore);
+		parent.insertBefore(img, insertBefore);
 	else
-		elem.appendChild(img);
+		parent.appendChild(img);
 
 	if (callback)
 		callback(img);
-};
-
-Foxtrick.getImageFeatures = function(features, callback) {
-	var img = {}, i;
-	for (i in features)
-		img[i] = features[i];
-	callback(img);
 };
 
 Foxtrick.getSelection = function(ta) {
@@ -412,12 +407,12 @@ Foxtrick.getSelection = function(ta) {
 			textAfterSelection: ''
 		};
 
-		if (ta.selectionStart || ta.selectionStart == '0') {
+		if (ta.selectionStart || ta.selectionStart === 0) {
 			textAreaContents.completeText = ta.value;
 			textAreaContents.selectionStart = ta.selectionStart;
 
 			if ((ta.selectionEnd - ta.selectionStart) !== 0) {
-				while (ta.value.charAt(ta.selectionEnd - 1) == ' ') {
+				while (ta.value.charAt(ta.selectionEnd - 1) === ' ') {
 					ta.selectionEnd--;
 				}
 			}
@@ -429,9 +424,10 @@ Foxtrick.getSelection = function(ta) {
 			var st = ta.value.substring(ta.selectionStart, ta.selectionEnd);
 
 			textAreaContents.selectedText = st;
-			textAreaContents.textAfterSelection = ta.value.substring(ta.selectionEnd,
-																	 ta.value.length);
+			textAreaContents.textAfterSelection =
+				ta.value.substring(ta.selectionEnd, ta.value.length);
 			return textAreaContents;
 		}
+		return null;
 	}
 };
