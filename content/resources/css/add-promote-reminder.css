@@ -1,0 +1,7 @@
+html[data-theme="standard"] .copyicon.ft-add-promote-reminder {
+	background-image: url("chrome://foxtrick/content/resources/img/copy/copyPlayerAd.png");
+}
+
+html[data-theme="simple"] .copyicon.ft-add-promote-reminder {
+	background-image: url("chrome://foxtrick/content/resources/img/copy/copyPlayerAd_s.png");
+}

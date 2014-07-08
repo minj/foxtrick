@@ -141,7 +141,8 @@ Foxtrick.ht_pages = {
 	'tournamentsCreate'			: '/Community/Tournaments/CreateTournament.aspx',
 	'tournamentsHistory'		: '/Community/Tournaments/TournamentHistory.aspx', //perhaps not identical to 'tournaments'
 	'ladders'					: '/World/Ladders/Ladder.aspx',
-	'world'						: '/World/$'
+	'world'						: '/World/$',
+	'reminders'					: '/MyHattrick/Reminders'
 };
 
 Foxtrick.pagesExcluded = {
