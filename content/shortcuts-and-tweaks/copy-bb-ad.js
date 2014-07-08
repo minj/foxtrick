@@ -34,8 +34,9 @@ Foxtrick.modules['CopyBBAd'] = {
 			var doc = ev.target.ownerDocument;
 			//try regular table first
 			var isYouth = Foxtrick.isPage(doc, 'youthSeries');
-			var leagueTableElem = doc.getElementById('ctl00_ctl00_CPContent_CPMain_' +
-													 (isYouth ? 'UpdatePanel1' : 'repLeagueTable'));
+			var tableId = isYouth ? 'ctl00_ctl00_CPContent_CPMain_UpdatePanel1' :
+				'ctl00_ctl00_CPContent_CPMain_repLeagueTable';
+			var leagueTableElem = doc.getElementById(tableId);
 
 			if (leagueTableElem) {
 				var leagueTable = leagueTableElem.getElementsByTagName('table')[0];

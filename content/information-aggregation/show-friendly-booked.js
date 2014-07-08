@@ -81,8 +81,8 @@ Foxtrick.modules['ShowFriendlyBooked'] = {
 				show();
 			});
 			if (Foxtrick.util.layout.isSupporter(doc)) {
-				var UpdatePanelLiveLeagueTable = doc.getElementById('ctl00_ctl00_CPContent_CPMain' +
-				                                                    '_UpdatePanelLiveLeagueTable');
+				var liveTableId = 'ctl00_ctl00_CPContent_CPMain_UpdatePanelLiveLeagueTable';
+				var UpdatePanelLiveLeagueTable = doc.getElementById(liveTableId);
 				UpdatePanelLiveLeagueTable.insertBefore(link, UpdatePanelLiveLeagueTable
 				                                        .getElementsByTagName('br')[0].nextSibling);
 			}

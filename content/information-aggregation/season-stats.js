@@ -70,9 +70,8 @@ Foxtrick.modules['SeasonStats'] = {
 			--s;
 		}
 		selectbox.value = selected_season;
-		doc.getElementById('mainBody').insertBefore(selectbox,
-		                                            doc.getElementById('ctl00_ctl00_CPContent' +
-		                                                               '_CPMain_ddlMatchType'));
+		var matchTypeSelect = doc.getElementById('ctl00_ctl00_CPContent_CPMain_ddlMatchType');
+		doc.getElementById('mainBody').insertBefore(selectbox, matchTypeSelect);
 
 
 		// ------------------------------ season stats --------------------------------------
