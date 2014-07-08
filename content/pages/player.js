@@ -65,13 +65,18 @@ Foxtrick.Pages.Player = {
 	 */
 	getName: function(doc) {
 		var name = null;
-		var links = Foxtrick.Pages.All.getBreadCrumbs(doc);
-		var player = Foxtrick.nth(function(link) {
-			return /PlayerID=\d+/i.test(link.href);
-		}, links);
-		if (player) {
-			// for some reason youth players have extended spaces
-			name = player.textContent.replace(/\s+/g, ' ');
+		try {
+			var links = Foxtrick.Pages.All.getBreadCrumbs(doc);
+			var player = Foxtrick.nth(function(link) {
+				return /PlayerID=\d+/i.test(link.href);
+			}, links);
+			if (player) {
+				// for some reason youth players have extended spaces
+				name = player.textContent.replace(/\s+/g, ' ');
+			}
+		}
+		catch (e) {
+			Foxtrick.log(e);
 		}
 		return name;
 	},
@@ -225,13 +230,19 @@ Foxtrick.Pages.Player = {
 	 * @return {Boolean}
 	 */
 	isBruised: function(doc) {
-		var infoTable = doc.querySelector('.playerInfo table');
-		var injuryCell = infoTable.rows[4].cells[1];
-		var injuryImages = injuryCell.getElementsByTagName('img');
-		if (injuryImages.length > 0) {
-			return /bruised.gif/i.test(injuryImages[0].src);
+		var bruised = false;
+		try {
+			var infoTable = doc.querySelector('.playerInfo table');
+			var injuryCell = infoTable.rows[4].cells[1];
+			var injuryImages = injuryCell.getElementsByTagName('img');
+			if (injuryImages.length > 0) {
+				bruised = /bruised.gif/i.test(injuryImages[0].src);
+			}
 		}
-		return false;
+		catch (e) {
+			Foxtrick.log(e);
+		}
+		return bruised;
 	},
 
 	/**
@@ -240,16 +251,22 @@ Foxtrick.Pages.Player = {
 	 * @return {Integer}
 	 */
 	getInjuryWeeks: function(doc) {
-		var infoTable = doc.querySelector('.playerInfo table');
-		var injuryCell = infoTable.rows[4].cells[1];
-		var injuryImages = injuryCell.getElementsByTagName('img');
-		if (injuryImages.length > 0) {
-			if (/injured.gif/i.test(injuryImages[0].src)) {
-				var length = injuryImages[0].nextSibling;
-				return parseInt(length.textContent.match(/\d+/), 10);
+		var weeks = 0;
+		try {
+			var infoTable = doc.querySelector('.playerInfo table');
+			var injuryCell = infoTable.rows[4].cells[1];
+			var injuryImages = injuryCell.getElementsByTagName('img');
+			if (injuryImages.length) {
+				if (/injured.gif/i.test(injuryImages[0].src)) {
+					var length = injuryImages[0].nextSibling;
+					weeks = parseInt(length.textContent.match(/\d+/), 10);
+				}
 			}
 		}
-		return 0;
+		catch (e) {
+			Foxtrick.log(e);
+		}
+		return weeks;
 	},
 
 	/**
@@ -318,11 +335,16 @@ Foxtrick.Pages.Player = {
 	 */
 	getSpeciality: function(doc) {
 		var speciality = null;
-		var infoTable = doc.querySelector('.playerInfo table');
-		var specRow = infoTable.rows[5];
-		if (specRow) {
-			var specText = specRow.cells[1].textContent.trim();
-			speciality = Foxtrick.L10n.getEnglishSpeciality(specText);
+		try {
+			var infoTable = doc.querySelector('.playerInfo table');
+			var specRow = infoTable.rows[5];
+			if (specRow) {
+				var specText = specRow.cells[1].textContent.trim();
+				speciality = Foxtrick.L10n.getEnglishSpeciality(specText);
+			}
+		}
+		catch (e) {
+			Foxtrick.log(e);
 		}
 		return speciality;
 	},
@@ -401,110 +423,110 @@ Foxtrick.Pages.Player = {
 				'setPieces',
 			],
 		};
-		try {
-			var found = true, regE = /ll=(\d+)/i;
-			var skills = {}, skillTexts = {}, skillNames = {};
-			var parseSeniorBars = function() {
-				var order = skillMap.senior_bars;
-				var rows = skillTable.rows;
-				for (var i = 0; i < order.length; ++i) {
-					var skillLink = rows[i].getElementsByTagName('a')[0];
-					if (!regE.test(skillLink.href)) {
-						found = false;
-						return; //skills are not visible
-					}
-					var skillValue = parseInt(skillLink.href.match(regE)[1], 10);
-					var skillText = skillLink.textContent.trim();
-					var skillContent = rows[i].cells[0].textContent;
-					var skillName = skillContent.replace(':', '').trim();
-					skills[order[i]] = skillValue;
-					skillTexts[order[i]] = skillText;
-					skillNames[order[i]] = skillName;
-				}
-			};
-			var parseSeniorTable = function() {
-				var order = skillMap.senior;
-				var cells = skillTable.getElementsByTagName('td');
-				for (var i = 0; i < order.length; ++i) {
-					var cell = cells[2 * i + 1];
-					if (!cell) {
-						found = false;
-						return; //skills are not visible
-					}
-					var skillLink = cell.getElementsByTagName('a')[0];
-					if (!regE.test(skillLink.href)) {
-						found = false;
-						return; //skills are not visible
-					}
-					var skillValue = parseInt(skillLink.href.match(regE)[1], 10);
-					var skillText = skillLink.textContent.trim();
-					var skillContent = cells[2 * i].textContent;
-					var skillName = skillContent.replace(':', '').trim();
-					skills[order[i]] = skillValue;
-					skillTexts[order[i]] = skillText;
-					skillNames[order[i]] = skillName;
-				}
-			};
-			var parseYouthBars = function() {
-				var order = skillMap.youth;
-				var rows = skillTable.rows;
-				if (rows.length < order.length) {
+		var found = true, regE = /ll=(\d+)/i;
+		var skills = {}, skillTexts = {}, skillNames = {};
+		var parseSeniorBars = function() {
+			var order = skillMap.senior_bars;
+			var rows = skillTable.rows;
+			for (var i = 0; i < order.length; ++i) {
+				var skillLink = rows[i].getElementsByTagName('a')[0];
+				if (!regE.test(skillLink.href)) {
 					found = false;
-					return;
+					return; //skills are not visible
 				}
-				for (var i = 0; i < order.length; ++i) {
-					var skill = skills[order[i]] = {};
-					var imgs = rows[i].getElementsByTagName('img');
-					if (imgs.length) {
-						// when max is unknown first title is empty
-						// second title is 'n/?'
-						// when current is unknown first title is 'm/8'
-						// second title is '-1/m'
-						// when both are known first title is 'm/8'
-						// second titile is 'n/m'
-						// when maxed out, first title is 'm/8'
-						// second title is empty
-						skill.maxed = false;
-						var max = parseInt(imgs[0].title.match(/\d/), 10);
-						var current = parseInt(imgs[1].title.match(/-?\d/), 10);
-						if (!current) {
-							skill.maxed = true;
-							current = max;
-						}
-						else if (current === -1)
-							current = 0;
-						// if current and/or max is unknown, mark it as 0
-						skill.current = current;
-						skill.max = max || 0;
-					}
-					else {
-						// no image is present, meaning nothing about
-						// that skill has been revealed
-						skill = { current: 0, max: 0, maxed: false };
-					}
-					var currentText = '';
-					var maxText = '';
-					var textCell = rows[i].cells[0];
-					var skillCell = rows[i].cells[1];
-					var bar = skillCell.getElementsByClassName('youthSkillBar')[0];
-					if (bar) {
-						// bar is present
-						// skills could either be a skill or unknown (span.shy)
-						var skillNodes = bar.querySelectorAll('.skill, .shy');
-						if (skillNodes.length > 1) {
-							currentText = skillNodes[0].textContent;
-							maxText = skillNodes[1].textContent;
-						}
-					}
-					else {
-						// no images, the cell says 'unknown'
-						currentText = maxText = skillCell.textContent.trim();
-					}
-					skillTexts[order[i]] = { current: currentText, max: maxText };
-					skillNames[order[i]] = textCell.textContent.replace(':', '').trim();
+				var skillValue = parseInt(skillLink.href.match(regE)[1], 10);
+				var skillText = skillLink.textContent.trim();
+				var skillContent = rows[i].cells[0].textContent;
+				var skillName = skillContent.replace(':', '').trim();
+				skills[order[i]] = skillValue;
+				skillTexts[order[i]] = skillText;
+				skillNames[order[i]] = skillName;
+			}
+		};
+		var parseSeniorTable = function() {
+			var order = skillMap.senior;
+			var cells = skillTable.getElementsByTagName('td');
+			for (var i = 0; i < order.length; ++i) {
+				var cell = cells[2 * i + 1];
+				if (!cell) {
+					found = false;
+					return; //skills are not visible
 				}
-			};
+				var skillLink = cell.getElementsByTagName('a')[0];
+				if (!regE.test(skillLink.href)) {
+					found = false;
+					return; //skills are not visible
+				}
+				var skillValue = parseInt(skillLink.href.match(regE)[1], 10);
+				var skillText = skillLink.textContent.trim();
+				var skillContent = cells[2 * i].textContent;
+				var skillName = skillContent.replace(':', '').trim();
+				skills[order[i]] = skillValue;
+				skillTexts[order[i]] = skillText;
+				skillNames[order[i]] = skillName;
+			}
+		};
+		var parseYouthBars = function() {
+			var order = skillMap.youth;
+			var rows = skillTable.rows;
+			if (rows.length < order.length) {
+				found = false;
+				return;
+			}
+			for (var i = 0; i < order.length; ++i) {
+				var skill = skills[order[i]] = {};
+				var imgs = rows[i].getElementsByTagName('img');
+				if (imgs.length) {
+					// when max is unknown first title is empty
+					// second title is 'n/?'
+					// when current is unknown first title is 'm/8'
+					// second title is '-1/m'
+					// when both are known first title is 'm/8'
+					// second titile is 'n/m'
+					// when maxed out, first title is 'm/8'
+					// second title is empty
+					skill.maxed = false;
+					var max = parseInt(imgs[0].title.match(/\d/), 10);
+					var current = parseInt(imgs[1].title.match(/-?\d/), 10);
+					if (!current) {
+						skill.maxed = true;
+						current = max;
+					}
+					else if (current === -1)
+						current = 0;
+					// if current and/or max is unknown, mark it as 0
+					skill.current = current;
+					skill.max = max || 0;
+				}
+				else {
+					// no image is present, meaning nothing about
+					// that skill has been revealed
+					skill = { current: 0, max: 0, maxed: false };
+				}
+				var currentText = '';
+				var maxText = '';
+				var textCell = rows[i].cells[0];
+				var skillCell = rows[i].cells[1];
+				var bar = skillCell.getElementsByClassName('youthSkillBar')[0];
+				if (bar) {
+					// bar is present
+					// skills could either be a skill or unknown (span.shy)
+					var skillNodes = bar.querySelectorAll('.skill, .shy');
+					if (skillNodes.length > 1) {
+						currentText = skillNodes[0].textContent;
+						maxText = skillNodes[1].textContent;
+					}
+				}
+				else {
+					// no images, the cell says 'unknown'
+					currentText = maxText = skillCell.textContent.trim();
+				}
+				skillTexts[order[i]] = { current: currentText, max: maxText };
+				skillNames[order[i]] = textCell.textContent.replace(':', '').trim();
+			}
+		};
 
+		try {
 			var skillTable = doc.querySelector('.mainBox table');
 			if (skillTable && this.isPlayerPage(doc)) {
 				if (this.isSeniorPlayerPage(doc)) {
