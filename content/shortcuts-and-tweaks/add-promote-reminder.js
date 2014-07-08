@@ -7,50 +7,52 @@
 
 Foxtrick.modules['AddPromoteReminder'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-	PAGES: ['youthPlayerDetails','reminders'],
+	PAGES: ['youthPlayerDetails', 'reminders'],
 
 
 	run: function(doc) {
-		var sendDate = Foxtrick.getParameterFromUrl(doc.location.href, 'sendDate')
-		var isReminders = Foxtrick.isPage(doc,"reminders");
-		var isYouthPlayerDetails = Foxtrick.isPage(doc,"youthPlayerDetails");
-		
-		if (sendDate && isReminders) {	
-			doc.getElementById("ctl00_ctl00_CPContent_CPMain_ddlSendAs").value = "2";	
+		var sendDate = Foxtrick.getParameterFromUrl(doc.location.href, 'sendDate');
+		var isReminders = Foxtrick.isPage(doc, 'reminders');
+		var isYouthPlayerDetails = Foxtrick.isPage(doc, 'youthPlayerDetails');
 
-		} else if (isYouthPlayerDetails) {
+		if (sendDate && isReminders) {
+			doc.getElementById('ctl00_ctl00_CPContent_CPMain_ddlSendAs').value = '2';
+
+		}
+		else if (isYouthPlayerDetails) {
 			var daysToPromote = Foxtrick.Pages.YouthPlayer.getDaysToPromote(doc);
 			var playerID = Foxtrick.Pages.Player.getId(doc);
 			if (daysToPromote > 0) {
-				var link = Foxtrick.createFeaturedElement(doc, this, 'a');;
-				Foxtrick.addClass(link,'ft-add-promote-reminder ft-link');
-			
+				var link = Foxtrick.createFeaturedElement(doc, this, 'a');
+				Foxtrick.addClass(link, 'ft-add-promote-reminder ft-link');
+
 				var button = Foxtrick.createFeaturedElement(doc, this, 'img');
 				button.src = '/Img/Icons/transparent.gif';
 				button.title = Foxtrick.L10n.getString('AddPromoteReminder.button');
 
 				link.appendChild(button);
 
-				var div = doc.getElementsByClassName("byline")[0];
+				var div = doc.getElementsByClassName('byline')[0];
 				div.appendChild(doc.createTextNode(' '));
 				div.appendChild(link);
 
-
-				var today = new Date();
-				today.setDate(today.getDate() + parseInt(daysToPromote)); 
-				var d = today.getDate();
-				var m = today.getMonth() + 1;
-				var y = today.getFullYear();
-				var promoteday = y + '-'+ m + '-'+ d + '+00%3a00%3a00';
+				var today = Foxtrick.util.time.getHtDate(doc);
+				var alarm = Foxtrick.util.time.addDaysToDate(today, daysToPromote);
+				var d = alarm.getDate();
+				var m = alarm.getMonth() + 1;
+				var y = alarm.getFullYear();
+				var promoteday = y + '-' + m + '-' + d + '+00%3a00%3a00';
 
 				var promotetext = Foxtrick.L10n.getString('AddPromoteReminder.text');
-				var promotetext = promotetext.replace('%s', '[youthplayerid=' + playerID + ']')
-				var reminderlink = '/MyHattrick/Reminders/default.aspx?sendDate=' + promoteday + '&reminderText=' + encodeURIComponent(promotetext);
-		
+				promotetext = promotetext.replace('%s', '[youthplayerid=' + playerID + ']');
+				var reminderlink = '/MyHattrick/Reminders/default.aspx?sendDate=' + promoteday +
+					'&reminderText=' + encodeURIComponent(promotetext);
+
 				if (button) {
 					Foxtrick.addClass(button, 'ft-add-promote-reminder reminder');
 					Foxtrick.onClick(link, function() {
-						doc.location.assign(reminderlink);})
+						doc.location.assign(reminderlink);
+					});
 				}
 			}
 		}
