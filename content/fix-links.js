@@ -191,6 +191,8 @@ Foxtrick.modules.FixLinks = {
 		Foxtrick.forEach(function(p) {
 			var pid = Foxtrick.util.id.findPlayerId(p);
 			var matchLink = p.querySelector('a[href^="/Club/Matches/Match.aspx"]');
+			if (!matchLink)
+				return;
 			module.fixLineupLink(matchLink, id, youthid);
 			module.addPlayerHighlight(matchLink, pid);
 		}, players);
