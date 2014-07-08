@@ -136,7 +136,7 @@ Foxtrick.Pages.Player = {
 		if (this.isSeniorPlayerPage(doc)) {
 			try {
 				var infoTable = doc.querySelector('.playerInfo table');
-				var rowIdx = this.getTeamName(doc) ? 1 : 0;
+				var rowIdx = this.isFreeAgent(doc) ? 0 : 1;
 				var tsiCell = infoTable.rows[rowIdx].cells[1];
 				var tsiString = tsiCell.textContent.replace(/\D/g, '');
 				tsi = parseInt(tsiString, 10);
@@ -207,8 +207,7 @@ Foxtrick.Pages.Player = {
 	 */
 	isBruised: function(doc) {
 		var infoTable = doc.querySelector('.playerInfo table');
-		var rowIdx = this.getTeamName(doc) ? 4 : 3;
-		var injuryCell = infoTable.rows[rowIdx].cells[1];
+		var injuryCell = infoTable.rows[4].cells[1];
 		var injuryImages = injuryCell.getElementsByTagName('img');
 		if (injuryImages.length > 0) {
 			return /bruised.gif/i.test(injuryImages[0].src);
@@ -235,21 +234,34 @@ Foxtrick.Pages.Player = {
 	},
 
 	/**
+	 * Test whether a player is a free agent.
+	 * Free agents are external coaches wit no club to coach.
+	 * .playerInfo table has a different structure in such a case.
+	 * E. g. [playerid=182715495]
+	 * @param  {document}  doc
+	 * @return {Boolean}
+	 */
+	isFreeAgent: function(doc) {
+		return this.getTeamName(doc) === null;
+	},
+
+	/**
 	 * Get the name of player's team.
 	 * Free agents have no team thus null is returned.
 	 * @param  {document} doc
 	 * @return {String}
 	 */
 	getTeamName: function(doc) {
+		var name = null;
 		try {
 			var links = Foxtrick.Pages.All.getBreadCrumbs(doc);
-			if (links.length < 2)
-				return null; // free agent
-			return links[0].textContent;
+			if (links.length >= 2)
+				name = links[0].textContent;
 		}
 		catch (e) {
-			return null;
+			Foxtrick.log(e);
 		}
+		return name;
 	},
 
 	/**
@@ -265,7 +277,7 @@ Foxtrick.Pages.Player = {
 			try {
 				var infoTable = doc.querySelector('.playerInfo table');
 				// wage position varies for free agents
-				var rowIdx = this.getTeamName(doc) ? 2 : 1;
+				var rowIdx = this.isFreeAgent(doc) ? 1 : 2;
 				var wageText = infoTable.rows[rowIdx].cells[1].textContent;
 				wageText = wageText.replace(/\s*(\d+)\s+/g, '$1');
 				var hasBonus = /%/.test(wageText);
@@ -288,8 +300,7 @@ Foxtrick.Pages.Player = {
 	getSpeciality: function(doc) {
 		var speciality = null;
 		var infoTable = doc.querySelector('.playerInfo table');
-		var rowIdx = this.getTeamName(doc) ? 5 : 4;
-		var specRow = infoTable.rows[rowIdx];
+		var specRow = infoTable.rows[5];
 		if (specRow) {
 			var specText = specRow.cells[1].textContent.trim();
 			speciality = Foxtrick.L10n.getEnglishSpeciality(specText);
