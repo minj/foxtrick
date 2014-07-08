@@ -23,7 +23,7 @@ Foxtrick.modules['AddPromoteReminder'] = {
 			var playerID = Foxtrick.Pages.Player.getId(doc);
 			if (daysToPromote > 0) {
 				var link = doc.createElement('a');
-				link.className = 'ft-add-promote-reminder';
+				link.className = 'ft-add-promote-reminder ft-link';
 				link.title = Foxtrick.L10n.getString('AddPromoteReminder.button');
 
 				var button = Foxtrick.createFeaturedElement(doc, this, 'img');
@@ -48,7 +48,7 @@ Foxtrick.modules['AddPromoteReminder'] = {
 		
 				if (button) {
 					Foxtrick.addClass(button, 'ft-add-promote-reminder reminder');
-					Foxtrick.onClick(button, function() {
+					Foxtrick.onClick(link, function() {
 						doc.location.assign(reminderlink);})
 				}
 			}
