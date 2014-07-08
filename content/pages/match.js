@@ -9,6 +9,11 @@ if (!Foxtrick.Pages)
 	Foxtrick.Pages = {};
 
 Foxtrick.Pages.Match = {
+	/**
+	 * Get home team link
+	 * @param  {document}          doc
+	 * @return {HTMLAnchorElement}
+	 */
 	getHomeTeam: function(doc) {
 		var homeIdx = Foxtrick.util.layout.isRtl(doc) ? 1 : 0;
 		var link;
@@ -22,6 +27,12 @@ Foxtrick.Pages.Match = {
 		}
 		return link;
 	},
+
+	/**
+	 * Get home team link
+	 * @param  {document}          doc
+	 * @return {HTMLAnchorElement}
+	 */
 	getAwayTeam: function(doc) {
 		var awayIdx = Foxtrick.util.layout.isRtl(doc) ? 0 : 1;
 		var link;
@@ -35,28 +46,70 @@ Foxtrick.Pages.Match = {
 		}
 		return link;
 	},
+
+	/**
+	 * Get home team ID
+	 * @param  {document} doc
+	 * @return {Integer}
+	 */
 	getHomeTeamId: function(doc) {
 		var team = this.getHomeTeam(doc);
 		return team ? Foxtrick.util.id.getTeamIdFromUrl(team.href) : null;
 	},
+
+	/**
+	 * Get home team ID
+	 * @param  {document} doc
+	 * @return {Integer}
+	 */
 	getAwayTeamId: function(doc) {
 		var team = this.getAwayTeam(doc);
 		return team ? Foxtrick.util.id.getTeamIdFromUrl(team.href) : null;
 	},
+
+	/**
+	 * Get home team name
+	 * @param  {document} doc
+	 * @return {String}
+	 */
 	getHomeTeamName: function(doc) {
 		var team = this.getHomeTeam(doc);
 		return team ? team.textContent : null;
 	},
+
+	/**
+	 * Get home team name
+	 * @param  {document} doc
+	 * @return {String}
+	 */
 	getAwayTeamName: function(doc) {
 		var team = this.getAwayTeam(doc);
 		return team ? team.textContent : null;
 	},
+
+	/**
+	 * Test whether match has not started
+	 * @param  {document} doc
+	 * @return {Boolean}
+	 */
 	isPrematch: function(doc) {
 		return doc.getElementById('ctl00_ctl00_CPContent_CPMain_pnlPreMatch') !== null;
 	},
+
+	/**
+	 * Test whether match report has advanced ratings
+	 * @param  {document} doc
+	 * @return {Boolean}
+	 */
 	hasRatingsTabs: function(doc) {
 		return doc.getElementById('divSectors') !== null;
 	},
+
+	/**
+	 * Get sourceSystem
+	 * @param  {document} doc
+	 * @return {String}
+	 */
 	getSourceSystem: function(doc) {
 		var SourceSystem = 'Hattrick';
 		var isYouth = this.isYouth(doc);
@@ -67,18 +120,41 @@ Foxtrick.Pages.Match = {
 			SourceSystem = 'HTOIntegrated';
 		return SourceSystem;
 	},
+
+	/**
+	 * Test whether it's a youth match
+	 * @param  {document} doc
+	 * @return {Boolean}
+	 */
 	isYouth: function(doc) {
 		return /isYouth=true|SourceSystem=Youth/i.test(doc.location.search);
 	},
+
+	/**
+	 * Test whether it's an HTO match
+	 * @param  {document} doc
+	 * @return {Boolean}
+	 */
 	isHTOIntegrated: function(doc) {
 		return /SourceSystem=HTOIntegrated/i.test(doc.location.search);
 	},
+
+	/**
+	 * Test whether it's an NT match
+	 * @param  {document} doc
+	 * @return {Boolean}
+	 */
 	isNT: function(doc) {
 		var homeId = this.getHomeTeamId(doc);
 		var awayId = this.getAwayTeamId(doc);
 		return homeId && awayId && homeId < 10000 && awayId < 10000 || false;
 	},
 
+	/**
+	 * Get match ID
+	 * @param  {document} doc
+	 * @return {Integer}
+	 */
 	getId: function(doc) {
 		var url;
 		if (Foxtrick.isPage(doc, 'matchesLive')) {
@@ -93,8 +169,9 @@ Foxtrick.Pages.Match = {
 		}
 		return Foxtrick.util.id.getMatchIdFromUrl(url);
 	},
+
 	/**
-	 * Get match date
+	 * Get match date object
 	 * @param  {document} doc
 	 * @return {Date}
 	 */
@@ -103,21 +180,41 @@ Foxtrick.Pages.Match = {
 		return Foxtrick.util.time.getDateFromText(date.textContent);
 	},
 
+	/**
+	 * Test whether match is in progress
+	 * @param  {document} doc
+	 * @return {Boolean}
+	 */
 	inProgress: function(doc) {
 		var matchStatus = doc.getElementById('ctl00_ctl00_CPContent_CPMain_lblMatchStatus');
 		return matchStatus !== null && matchStatus.textContent.trim() !== '';
 	},
 
+	/**
+	 * Get ratings table
+	 * @param  {document} doc
+	 * @return {HTMLAnchorElement}
+	 */
 	getRatingsTable: function(doc) {
 		return doc.querySelector('.teamMatchRatingsTable table');
 	},
 
+	/**
+	 * Test whether ratings table has indirect SP info
+	 * @param  {HTMLTableElement} ratingstable
+	 * @return {Boolean}
+	 */
 	hasIndSetPieces: function(ratingstable) {
 		// either iSP level link in that cell or for old matches tactic=no link
 		return ratingstable.rows.length > 10 && ratingstable.rows[10].cells.length > 1 &&
 			ratingstable.rows[10].cells[1].getElementsByTagName('a').length > 0;
 	},
 
+	/**
+	 * Test whether match is a walkover
+	 * @param  {HTMLTableElement} ratingstable
+	 * @return {Boolean}
+	 */
 	isWalkOver: function(ratingstable) {
 		try {
 			for (var i = 1; i <= 7; i++) {
@@ -135,6 +232,13 @@ Foxtrick.Pages.Match = {
 		return true;
 	},
 
+	/**
+	 * Get ratings in floats for both teams.
+	 * Returns an array map where first element is home team, away second:
+	 * {mf, rd, cd, ld, ra, ca, la}
+	 * @param  {HTMLTableElement}                ratingstable
+	 * @return {Object.<string, Array.<number>>}
+	 */
 	getRatingsByTeam: function(ratingstable) {
 		var getRatingFromCell = function(coords) {
 			var cell = ratingstable.rows[coords[0]].cells[coords[1]];
@@ -153,6 +257,12 @@ Foxtrick.Pages.Match = {
 		}
 		return ratings;
 	},
+
+	/**
+	 * Get tactics level value from a tactics cell
+	 * @param  {HTMLTableCellElement} cell
+	 * @return {Integer}
+	 */
 	getTacticsLevelFromCell: function(cell) {
 		var basevalue = 0;
 		var tacticsLink = cell.getElementsByTagName('a')[0];
@@ -162,6 +272,12 @@ Foxtrick.Pages.Match = {
 		return basevalue;
 	},
 
+	/**
+	 * Get tactics type from a tactics cell.
+	 * Returns one of normal, pressing, ca, aim, aow, creatively, longshots
+	 * @param  {HTMLTableCellElement} cell
+	 * @return {String}
+	 */
 	getTacticsFromCell: function(cell) {
 		var tactics = cell.textContent.trim();
 		var lang = Foxtrick.Prefs.getString('htLanguage');
@@ -181,8 +297,8 @@ Foxtrick.Pages.Match = {
 	/**
 	 * Get tactics data for home and away teams
 	 * E. g. { tactics: ['aow', 'normal'], level: [15, 0] }
-	 * @param  {HTMLTableElement}                                ratingstable
-	 * @return { tactics: Array.<string>, level: Array.<number>}
+	 * @param  {HTMLTableElement}                               ratingstable
+	 * @return {tactics: Array.<string>, level: Array.<number>}
 	 */
 	getTacticsByTeam: function(ratingstable) {
 		var tacticRow = 10, levelRow = 11;
@@ -240,13 +356,15 @@ Foxtrick.Pages.Match = {
 		}
 	},
 
-	/* modeled on Foxtrick.addBoxToSidebar
-	 * @desc add a box to the sidebar on the right
-	 * @param doc - HTML document the content is to be added on
-	 * @param title - the title of the box, will create one if inexists
-	 * @param content - HTML node of the content
-	 * @param prec - precedence of the box, smaller value will be placed higher
-	 * @return box to be added to
+	/**
+	 * Add a box to the sidebar on the right.
+	 * Returns the added box.
+	 * Modeled on Foxtrick.addBoxToSidebar.
+	 * @param  {document}    doc
+	 * @param  {String}      title   the title of the box, will create one if inexists
+	 * @param  {HTMLElement} content HTML node of the content
+	 * @param  {Integer}     prec    precedence of the box, the smaller, the higher
+	 * @return {HTMLElement}         box to be added to
 	 */
 	addBoxToSidebar: function(doc, title, content, prec) {
 		if (this.isPrematch(doc))
@@ -341,6 +459,15 @@ Foxtrick.Pages.Match = {
 
 		return dest;
 	},
+
+	/**
+	 * Modify player container in the lineup tab.
+	 * Calls func(playerDiv).
+	 * The right player is found with help of player links list.
+	 * @param  {Integer}               playerId
+	 * @param  {function(HTMLElement)} func
+	 * @param  {NodeList}              links
+	 */
 	modPlayerDiv: function(playerId, func, links) {
 		var link = Foxtrick.filter(function(link) {
 			return new RegExp(playerId).test(link.href);
@@ -348,6 +475,14 @@ Foxtrick.Pages.Match = {
 		if (link && typeof(func) == 'function')
 			func(link.parentNode.parentNode);
 	},
+
+	/**
+	 * Parse and return playerData object used by HT lineup utils.
+	 * Produces a list of player objects:
+	 * {ChartRatings, FirstName, LastName, NickName, PlayerId, ShirtNumber, SourcePlayerId}
+	 * @param  {document}       doc
+	 * @return {Array.<Object>}
+	 */
 	parsePlayerData: function(doc) {
 		var playerData = null;
 		try {
@@ -359,11 +494,12 @@ Foxtrick.Pages.Match = {
 		}
 		return playerData;
 	},
+
 	/**
-	 * get timeline data as array of {min, sec}
-	 * each minute/event has input.hidden[id$="_time"][value="min.sec"]
-	 * @param  {document} doc
-	 * @return {Array}        [{min: Integer, sec: Integer},..]
+	 * Get timeline data as an array of {min, sec}.
+	 * Each minute/event has input.hidden[id$="_time"][value="min.sec"]
+	 * @param  {document}                             doc
+	 * @return {Array.<{min: Integer, sec: Integer}>}
 	 */
 	getTimeline: function(doc) {
 		var timeline = Foxtrick.map(function(el) {
@@ -375,18 +511,19 @@ Foxtrick.Pages.Match = {
 		}, doc.querySelectorAll('input[id$="_time"]'));
 		return timeline;
 	},
+
 	/**
-	 * Get team ratings event by event
-	 * each minute has input.hidden[id$="_playerRatingsHome"][value="jsonArray"]
-	 * Returns an array of {players, source}
+	 * Get team ratings event by event.
+	 * Each minute has input.hidden[id$="_playerRatingsHome"][value="jsonArray"]
+	 * Returns an array of {players, source}.
 	 * Where source is the input element
 	 * and players is an array of Player objects
 	 * { Cards: 0,	FromMin: -1, InjuryLevel: 0, IsCaptain: false,
 	 * 	IsKicker: false, PlayerId: 360991810, PositionBehaviour: 0,
 	 * 	PositionID: 100, Stamina: 1, Stars: 3, ToMin: 90 }
-	 * @param  {document} doc
-	 * @param  {Boolean}  isHome
-	 * @return {Array}           [{players: Array, source: HTMLInputElement}]
+	 * @param  {document}                                                    doc
+	 * @param  {Boolean}                                                     isHome
+	 * @return {Array.<{players: Array.<Object>, source: HTMLInputElement}>}
 	 */
 	getTeamRatingsByEvent: function(doc, isHome) {
 		var playerRatings = doc.querySelectorAll('input[id$="_playerRatings' +
@@ -399,15 +536,15 @@ Foxtrick.Pages.Match = {
 		return playerRatingsByEvent;
 	},
 	/**
-	 * Get event indices event by event
-	 * doc.querySelectorAll('input[id$="_eventIndex"]') points to the report tab
-	 * Returns an array of {eventIdx, idx}
+	 * Get event indices event by event.
+	 * doc.querySelectorAll('input[id$="_eventIndex"]') points to the report tab.
+	 * Returns an array of {eventIdx, idx}.
 	 * Where eventIdx is the event index in the report (xml),
-	 * used ot match highlights (#matchEventIndex_ + eventIdx)
-	 * 5 minute updates have index=0, no event
+	 * used to match highlights (#matchEventIndex_ + eventIdx).
+	 * 5 minute updates have index=0, no event.
 	 * While idx is the timeline index (starts at 0, includes 5 minute updates)
-	 * @param  {document} doc
-	 * @return {Array}        [{eventIdx: Integer, idx: Integer},..]
+	 * @param  {document}                                  doc
+	 * @return {Array.<{eventIdx: Integer, idx: Integer}>}
 	 */
 	getEventIndicesByEvent: function(doc) {
 		var eventIndices = doc.querySelectorAll('input[id$="_eventIndex"]');
