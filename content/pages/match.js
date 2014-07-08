@@ -258,14 +258,13 @@ Foxtrick.Pages.Match = {
 		// destination box
 		var dest;
 
-		// existing sidebar boxes
-		var existings = sidebar.getElementsByClassName(boxClass + ', .rightHandBoxHeader');
-		for (var i = 0; i < existings.length; ++i) {
-			var box = existings[i];
-			var hdr = box.getElementsByClassName('rightHandBoxHeader')[0].textContent;
-			if (hdr == title)
-				dest = box; // found destination box
-		}
+		// for some strange reason HTs do not wrap sidebar boxes in their own div
+		// check for existing custom sidebar boxes only
+		var boxes = sidebar.getElementsByClassName(boxClass);
+		dest = Foxtrick.nth(function(box) {
+			var h = box.querySelector('h4');
+			return h.textContent == title;
+		}, boxes);
 		// create new box if old one doesn't exist
 		if (!dest) {
 			dest = doc.createElement('div');
@@ -285,29 +284,49 @@ Foxtrick.Pages.Match = {
 			dest.appendChild(boxBody);
 			// append content to boxBody
 			boxBody.appendChild(content);
+
 			// now we insert the newly created box
 			var inserted = false;
-			if (existings.length) {
-				for (var i = 0; i < existings.length; ++i) {
-					// precedence of current box, hattrick boxes are set to 0
-					var curPrec = parseInt(existings[i].getAttribute('x-precedence'), 10) || 0;
-					if (curPrec > prec) {
-						if (i === 0 && curPrec === 0)
-							// first to be added and placed before HT boxes. add it on top
-							// before possible updatepanel div (eg teampage challenge and mailto)
-							sidebar.insertBefore(dest, sidebar.firstChild);
-						else
-							existings[i].parentNode.insertBefore(dest, existings[i]);
-						inserted = true;
-						break;
+
+			// since HT structure does not fit us
+			// we need to handle top and bottom boxes separately
+
+			// list of top boxes
+			var topBoxes = Foxtrick.filter(function(box) {
+				return parseInt(box.getAttribute('x-precedence'), 10) <= 0;
+			}, boxes);
+			// list of buttom boxes
+			var bottomBoxes = Foxtrick.filter(function(box) {
+				return parseInt(box.getAttribute('x-precedence'), 10) > 0;
+			}, boxes);
+			var insertBox = function(box) {
+				// precedence of current box
+				var curPrec = parseInt(box.getAttribute('x-precedence'), 10) || 0;
+				if (curPrec > prec) {
+					box.parentNode.insertBefore(dest, box);
+					return true;
+				}
+				return false;
+			};
+
+			if (prec <= 0) {
+				if (!topBoxes.length) {
+					// first topBox, add up top
+					sidebar.insertBefore(dest, sidebar.firstChild);
+				}
+				else {
+					inserted = Foxtrick.any(insertBox, topBoxes);
+					if (!inserted) {
+						// insert after last top box
+						var lastTopBox = topBoxes.pop();
+						lastTopBox.parentNode.insertBefore(dest, lastTopBox.nextSibling);
 					}
 				}
-			}
-			else if (prec < 0) {
-				sidebar.insertBefore(dest, sidebar.firstChild);
 				inserted = true;
 			}
-
+			else {
+				inserted = Foxtrick.any(insertBox, bottomBoxes);
+			}
 			if (!inserted)
 				sidebar.appendChild(dest);
 		}
