@@ -12,7 +12,7 @@ Foxtrick.Pages.Player = {
 	 * @param  {document}  doc
 	 * @return {Boolean}
 	 */
-	isPlayerPage: function(doc) {
+	isPage: function(doc) {
 		return this.isSeniorPlayerPage(doc) || this.isYouthPlayerPage(doc);
 	},
 
@@ -549,7 +549,7 @@ Foxtrick.Pages.Player = {
 
 		try {
 			var skillTable = doc.querySelector('.mainBox table');
-			if (skillTable && this.isPlayerPage(doc)) {
+			if (skillTable && this.isPage(doc)) {
 				if (this.isSeniorPlayerPage(doc)) {
 					var hasBars = skillTable.querySelector('.percentImage, .ft-percentImage');
 					if (hasBars)
