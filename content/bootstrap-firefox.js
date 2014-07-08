@@ -64,7 +64,6 @@ FoxtrickFirefox.prototype = {
 
 		//<!-- page utilities -->
 		'pages/all.js',
-		'pages/country.js',
 		'pages/players.js',
 		'pages/player.js',
 		'pages/youth-player.js',

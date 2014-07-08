@@ -37,7 +37,7 @@ Foxtrick.modules['NtPeek'] = {
 			return container;
 		};
 
-		var leagueId = Foxtrick.Pages.Country.getId(doc);
+		var leagueId = Foxtrick.Pages.All.getId(doc);
 
 		var league = Foxtrick.XMLData.League[leagueId];
 		var ntName = league.LeagueName;

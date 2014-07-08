@@ -80,7 +80,6 @@ a good reason to. They are for version bumps in Makefile.
 
 				<!-- page utilities -->
 				<string>content/pages/all.js</string>
-				<string>content/pages/country.js</string>
 				<string>content/pages/players.js</string>
 				<string>content/pages/player.js</string>
 				<string>content/pages/youth-player.js</string>

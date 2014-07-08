@@ -76,7 +76,6 @@
 
 			//<!-- page utilities -->
 			"content/pages/all.js",
-			"content/pages/country.js",
 			"content/pages/players.js",
 			"content/pages/player.js",
 			"content/pages/youth-player.js",
