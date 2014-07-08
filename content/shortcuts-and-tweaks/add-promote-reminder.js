@@ -22,17 +22,18 @@ Foxtrick.modules['AddPromoteReminder'] = {
 			var daysToPromote = Foxtrick.Pages.YouthPlayer.getDaysToPromote(doc);
 			var playerID = Foxtrick.Pages.Player.getId(doc);
 			if (daysToPromote > 0) {
-				var link = doc.createElement('a');
-				link.className = 'ft-add-promote-reminder ft-link';
-				link.title = Foxtrick.L10n.getString('AddPromoteReminder.button');
-
+				var link = Foxtrick.createFeaturedElement(doc, this, 'a');;
+				Foxtrick.addClass(link,'ft-add-promote-reminder ft-link');
+			
 				var button = Foxtrick.createFeaturedElement(doc, this, 'img');
 				button.src = '/Img/Icons/transparent.gif';
+				button.title = Foxtrick.L10n.getString('AddPromoteReminder.button');
 
 				link.appendChild(button);
 
 				var div = doc.getElementsByClassName("byline")[0];
-				div.appendChild(link)
+				div.appendChild(doc.createTextNode(' '));
+				div.appendChild(link);
 
 
 				var today = new Date();
