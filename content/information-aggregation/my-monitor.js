@@ -284,7 +284,10 @@ Foxtrick.modules['MyMonitor'] = {
 				var type = 'nt';
 
 			var teams = getSavedTeams(doc);
-			var teamIdContainer = Foxtrick.Pages.All.getId(doc);
+			var teamIdContainer = {
+				id: Foxtrick.Pages.All.getTeamIdFromBC(doc),
+				name: Foxtrick.Pages.All.getTeamNameFromBC(doc),
+			};
 			var existing = Foxtrick.filter(function(n) {
 				return n.id == teamIdContainer.id && n.type == type;
 			}, teams);
