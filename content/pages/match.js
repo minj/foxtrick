@@ -143,8 +143,13 @@ Foxtrick.Pages.Match = {
 		var ratings = {};
 		// rows 1-7 contain numeric data (columns 3-4) for both team ratings in this order:
 		var order = ['mf', 'rd', 'cd', 'ld', 'ra', 'ca', 'la'];
-		for (var i = 1; i <= 7; i++) {
-			ratings[order[i - 1]] = Foxtrick.map(getRatingFromCell, [[i, 3], [i, 4]]);
+		try {
+			for (var i = 1; i <= 7; i++) {
+				ratings[order[i - 1]] = Foxtrick.map(getRatingFromCell, [[i, 3], [i, 4]]);
+			}
+		}
+		catch (e) {
+			Foxtrick.log(e);
 		}
 		return ratings;
 	},
@@ -363,7 +368,10 @@ Foxtrick.Pages.Match = {
 	getTimeline: function(doc) {
 		var timeline = Foxtrick.map(function(el) {
 			var time = el.value;
-			return { min: parseInt(time.match(/^\d+/), 10), sec: parseInt(time.match(/\d+$/), 10) };
+			return {
+				min: parseInt(time.match(/^\d+/), 10),
+				sec: parseInt(time.match(/\d+$/), 10)
+			};
 		}, doc.querySelectorAll('input[id$="_time"]'));
 		return timeline;
 	},
