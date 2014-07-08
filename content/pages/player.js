@@ -270,6 +270,27 @@ Foxtrick.Pages.Player = {
 	},
 
 	/**
+	 * Get the number of bookings player has accumulated.
+	 * Red card = 3.
+	 * @param  {document} doc
+	 * @return {Integer}
+	 */
+	getCards: function(doc) {
+		var cards = 0;
+		try {
+			var infoTable = doc.querySelector('.playerInfo table');
+			var cardCell = infoTable.rows[3].cells[1];
+			cards = parseInt(cardCell.textContent.trim(), 10);
+			if (isNaN(cards))
+				cards = 3;
+		}
+		catch (e) {
+			Foxtrick.log(e);
+		}
+		return cards;
+	},
+
+	/**
 	 * Test whether a player is a free agent.
 	 * Free agents are external coaches wit no club to coach.
 	 * .playerInfo table has a different structure in such a case.
