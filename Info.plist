@@ -240,6 +240,7 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/presentation/tabs-test.js</string>
 				<string>content/presentation/team-select-box.js</string>
 				<string>content/presentation/youth-skill-hide-unknown.js</string>
+				<string>content/shortcuts-and-tweaks/add-promote-reminder.js</string>
 				<string>content/shortcuts-and-tweaks/confirm-actions.js</string>
 				<string>content/shortcuts-and-tweaks/context-menu-copy.js</string>
 				<string>content/shortcuts-and-tweaks/copy-bb-ad.js</string>

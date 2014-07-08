@@ -24,7 +24,7 @@ Foxtrick.modules['AddPromoteReminder'] = {
 			var playerID = Foxtrick.Pages.Player.getId(doc);
 			if (daysToPromote > 0) {
 				var button = Foxtrick.util.copyButton.add(doc,
-					Foxtrick.L10n.getString('copy.playerad'));
+					Foxtrick.L10n.getString('add.promotereminder'));
 
 				var today = new Date();
 				today.setDate(today.getDate() + parseInt(daysToPromote)); 
@@ -33,8 +33,9 @@ Foxtrick.modules['AddPromoteReminder'] = {
 				var y = today.getFullYear();
 				var promoteday = y + '-'+ m + '-'+ d + '+00%3a00%3a00';
 
-				var promotetext = 'Your player '+ '[youthplayerid=' + playerID + '] is ready to promote';
-				var reminderlink = '/MyHattrick/Reminders/default.aspx?sendDate='+promoteday+'&reminderText='+promotetext
+				var promotetext = Foxtrick.L10n.getString('add.promotereminder.text');
+				var promotetext = promotetext.replace('%s', playerID)
+				var reminderlink = '/MyHattrick/Reminders/default.aspx?sendDate='+promoteday+'&reminderText='+promotetext;
 		
 				if (button) {
 					Foxtrick.addClass(button, 'ft-add-promote-reminder');

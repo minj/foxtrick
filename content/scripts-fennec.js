@@ -218,6 +218,7 @@ Foxtrick.loader.background.contentScriptManager = {
 		'presentation/tabs-test.js',
 		'presentation/team-select-box.js',
 		'presentation/youth-skill-hide-unknown.js',
+		'shortcuts-and-tweaks/add-promote-reminder.js',
 		'shortcuts-and-tweaks/confirm-actions.js',
 		'shortcuts-and-tweaks/context-menu-copy.js',
 		'shortcuts-and-tweaks/copy-bb-ad.js',
