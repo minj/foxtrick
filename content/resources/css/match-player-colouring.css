@@ -24,6 +24,9 @@
 	text-align: left !important;
 }
 
-.ft-match-event-away > td:first-child   {
+.ft-match-event-away > td:first-child {
 	text-align: right !important;
+}
+.main .RadTabStripVertical li.rtsLI {
+	line-height: initial !important;
 }
