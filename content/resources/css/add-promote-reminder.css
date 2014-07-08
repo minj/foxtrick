@@ -1,7 +1,0 @@
-html[data-theme="standard"] .ft-add-promote-reminder {
-	background-image: url("chrome://foxtrick/content/resources/img/reminder.png");
-}
-
-html[data-theme="simple"] .ft-add-promote-reminder {
-	background-image: url("chrome://foxtrick/content/resources/img/reminder.png");
-}

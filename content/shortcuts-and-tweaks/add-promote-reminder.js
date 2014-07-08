@@ -9,7 +9,6 @@ Foxtrick.modules['AddPromoteReminder'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES: ['youthPlayerDetails','reminders'],
 
-	CSS: Foxtrick.InternalPath + 'resources/css/add-promote-reminder.css',
 
 	run: function(doc) {
 		var sendDate = Foxtrick.getParameterFromUrl(doc.location.href, 'sendDate')
@@ -48,7 +47,7 @@ Foxtrick.modules['AddPromoteReminder'] = {
 				var reminderlink = '/MyHattrick/Reminders/default.aspx?sendDate=' + promoteday + '&reminderText=' + encodeURIComponent(promotetext);
 		
 				if (button) {
-					Foxtrick.addClass(button, 'ft-add-promote-reminder');
+					Foxtrick.addClass(button, 'ft-add-promote-reminder reminder');
 					Foxtrick.onClick(button, function() {
 						doc.location.assign(reminderlink);})
 				}
