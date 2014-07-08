@@ -5,55 +5,60 @@
  */
 
 Foxtrick.Pages.YouthPlayer = {
-	isYouthPlayerPage: function(doc) {
-		return Foxtrick.isPage(doc, 'youthPlayerDetails');
+	/**
+	 * Test whether it's youth player page
+	 * @param  {document}  doc
+	 * @return {Boolean}
+	 */
+	isPage: function(doc) {
+		return Foxtrick.Pages.Player.isYouthPlayerPage(doc);
 	},
 
+	/**
+	 * Return days since the player joined the team
+	 * @param  {document} doc
+	 * @return {Integer}
+	 */
 	getJoinedDays: function(doc) {
+		var joinedDays = 0;
 		try {
-			// we presume the dates are in this format:
-			// d/M/y/ h:m
-			// y: year, M: month, d: day, h: hour, m: minute
-			// it could be in formats like y/M/d or others, but it works all the same
-			// the `/' separator could be one of: `/', `.', or `-'.
-			// the `:' separator could be one of: `:', or `.'.
+			// the date separator could be one of: `/', `.', or `-'.
+			// the time separator could be one of: `:', or `.'.
 			// the separator following y could be omitted.
 			//
-			// for the likes of `16-01-2010 01.02 (3 days ago)':
-			var joinedRe1 = /\d+[\./\-]\d+[\./\-]\d+[\./\-]?\s+\d+[:\.]\d+.+?(\d+)/;
-			//               ^d ^sep   ^M ^sep   ^y ^sep       ^h ^sep ^m    ^join
-			// for the likes of `3 dage siden (16-01-2010 01.02)':
-			var joinedRe2 = /(\d+).+?\d+[\./\-]\d+[\./\-]\d+[\./\-]?\s+\d+[:\.]\d+/;
-			//               ^join   ^d ^sep   ^M ^sep   ^y ^sep       ^h ^sep ^m
-			var playerInfo = doc.getElementsByClassName('playerInfo')[0];
-			var playerTable = playerInfo.getElementsByTagName('table')[0];
-			var joinedCell = playerTable.getElementsByTagName('td')[5];
-			// if not joinedRe1, then joinedRe2
-			var joinedMatch = joinedRe1.exec(joinedCell.textContent);
-			if (joinedMatch === null) {
-				joinedMatch = joinedRe2.exec(joinedCell.textContent);
-			}
-			var joinedDays = parseInt(joinedMatch[1], 10);
-			return joinedDays;
+			// joinedDays can both precede and follow the date
+			var dateRe = /\d+[\.\/-]\d+[\.\/-]\d+[\.\/-]?\s+\d+[:\.]\d+/;
+			//               ^d ^sep   ^M ^sep   ^y ^sep       ^h ^sep ^m
+			var playerTable = doc.querySelector('.playerInfo table');
+			var joinedCell = playerTable.rows[2].cells[1];
+			var str = joinedCell.textContent.trim().replace(dateRe, '');
+			joinedDays = parseInt(str.match(/\d+/), 10);
 		}
 		catch (e) {
 			Foxtrick.log(e);
 		}
+		return joinedDays;
 	},
 
+	/**
+	 * Return days until promotion
+	 * @param  {document} doc
+	 * @return {Integer}
+	 */
 	getDaysToPromote: function(doc) {
+		var days = NaN;
 		try {
 			var joinedDays = this.getJoinedDays(doc);
 			var age = Foxtrick.Pages.Player.getAge(doc);
-			if (isNaN(joinedDays) || isNaN(age.years) || isNaN(age.days)) {
-				return NaN;
+			if (!isNaN(joinedDays) && age && !isNaN(age.years) && !isNaN(age.days)) {
+				var daysToSeventeen = (17 - 1 - age.years) * 112 + (112 - age.days);
+				var daysToOneSeason = 112 - joinedDays;
+				days = Math.max(daysToSeventeen, daysToOneSeason);
 			}
-			var daysToSeventeen = (17 - 1 - age.years) * 112 + (112 - age.days);
-			var daysToOneSeason = 112 - joinedDays;
-			return Math.max(daysToSeventeen, daysToOneSeason);
 		}
 		catch (e) {
 			Foxtrick.log(e);
 		}
+		return days;
 	}
 };
