@@ -5,10 +5,21 @@
  */
 
 Foxtrick.Pages.TransferSearchResults = {
-	isTransferSearchResultsPage: function(doc) {
-		return (doc.location.href.search(/TransfersSearchResult\.aspx/i) != -1);
+	/**
+	 * Test whether it's transfer search results
+	 * @param  {document}  doc
+	 * @return {Boolean}
+	 */
+	isPage: function(doc) {
+		return Foxtrick.isPage(doc, 'transferSearchResult');
 	},
 
+	/**
+	 * Get a list of player objects with the information in the result page.
+	 * Keep in mind that not all info might be available (e.g. after deadline).
+	 * @param  {document}       doc
+	 * @return {Array.<Object>}
+	 */
 	getPlayerList: function(doc) {
 		var players = doc.getElementsByClassName('transferPlayerInfo');
 
@@ -20,43 +31,35 @@ Foxtrick.Pages.TransferSearchResults = {
 				var divs = playerInfo.getElementsByTagName('div');
 
 				// first row - country, name, ID
-				player.countryId = Foxtrick.XMLData
-					.getCountryIdByLeagueId(divs[0].getElementsByClassName('flag')[0].href
-					                        .match(/leagueId=(\d+)/i)[1]);
-				player.nameLink = divs[0].getElementsByClassName('transfer_search_playername')[0]
-					.getElementsByTagName('a')[0].cloneNode(true);
-				player.id = player.nameLink.href.match(/.+playerID=(\d+)/i)[1];
-				// first row - bookmark link
-				var bookmarkLinks = Foxtrick.filter(function(l) {
-					return l.href.search(/Bookmarks/i) >= 0;
-				}, divs[0].getElementsByTagName('a'));
-				if (bookmarkLinks.length > 0)
-					player.bookmarkLink = bookmarkLinks[0].cloneNode(true);
-				// first row - hotlist link
-				var hotlistLinks = Foxtrick.filter(function(l) {
-					return l.href.search(/hotList/i) != -1;
-				}, divs[0].getElementsByTagName('a'));
-				if (hotlistLinks.length > 0)
-					player.hotlistLink = hotlistLinks[0].cloneNode(true);
-				// first row - cards, injury
+				var flag = playerInfo.querySelector('.flag');
+				var leagueId = Foxtrick.getParameterFromUrl(flag.href, 'leagueId');
+				player.countryId = Foxtrick.XMLData.getCountryIdByLeagueId(leagueId);
+				var nameLink = playerInfo.querySelector('.transfer_search_playername a');
+				player.nameLink = nameLink.cloneNode(true);
+				player.id = Foxtrick.getParameterFromUrl(player.nameLink.href, 'playerId');
+				var bookmarkLink = playerInfo.querySelector('.bookmarkSmall');
+				if (bookmarkLink)
+					player.bookmarkLink = bookmarkLink.cloneNode(true);
+				var hotlistLink = playerInfo.querySelector('a[href*="hotList"]');
+				if (hotlistLink)
+					player.hotlistLink = hotlistLink.cloneNode(true);
+
+				var htms = playerInfo.querySelector('.ft-htms-points span');
+				if (htms) {
+					var matched = htms.textContent.match(/(\d+).+?(\d+)/);
+					if (matched) {
+						player.htmsAbility = parseInt(matched[1], 10);
+						player.htmsPotential = parseInt(matched[2], 10);
+					}
+				}
+
 				player.redCard = 0;
 				player.yellowCard = 0;
 				player.bruised = false;
 				player.injured = false;
-				// first row - HTMS points
-				var htms;
-				if (htms = divs[0].getElementsByClassName('ft-htms-points')[0]) {
-					var htmsText = htms.getElementsByTagName('span')[0].textContent;
-					var matched = htmsText.match(/(\d+).+?(\d+)/);
-					if (matched) {
-						player.htmsAbility = Number(matched[1]);
-						player.htmsPotential = Number(matched[2]);
-					}
-				}
 
 				var imgs = divs[0].getElementsByTagName('img');
-				for (var i = 0; i < imgs.length; ++i) {
-					var img = imgs[i];
+				Foxtrick.forEach(function(img) {
 					if (img.className == 'cardsOne') {
 						if (img.src.search(/red_card/i) != -1) {
 							player.redCard = 1;
@@ -74,36 +77,37 @@ Foxtrick.Pages.TransferSearchResults = {
 					else if (img.className == 'injuryInjured') {
 						player.injured = true;
 					}
-				}
-				// first row - current bid, bidder
+				}, imgs);
+
 				var items = divs[0].getElementsByClassName('transferPlayerInfoItems');
-				player.currentBid = Foxtrick.trimnum(items[items.length - 3].textContent);
-				if (items[items.length - 2].getElementsByTagName('a').length == 1) {
-					player.currentBidderLink = items[items.length - 2].getElementsByTagName('a')[0];
-					player.currentBidderLinkShort = player.currentBidderLink.cloneNode(true);
+				var bid = items[items.length - 3];
+				player.currentBid = Foxtrick.trimnum(bid.textContent);
+				var bidder = items[items.length - 2];
+				var bidderLink = bidder.querySelector('a');
+				if (bidderLink) {
+					player.currentBidderLink = bidderLink;
+					player.currentBidderLinkShort = bidderLink.cloneNode(true);
 					player.currentBidderLinkShort.textContent = 'x';
 				}
 
 				// check if the player is sold, if he is, then following info
 				// are not available and we go to the finally block with
 				// return
-				if (playerInfo.getElementsByClassName('transferPlayerCharacteristics').length == 0)
+				var characteristics = playerInfo.querySelector('.transferPlayerCharacteristics');
+				if (!characteristics)
 					return;
 
 				// characteristics row - experience, leadership, form
-				// they have inserted some empty divs so it's actually divs[3]
-				var characteristics = playerInfo
-					.getElementsByClassName('transferPlayerCharacteristics')[0];
 				var links = characteristics.getElementsByTagName('a');
 				var order = ['experience', 'leadership', 'form'];
-				for (var i = 0; i < order.length; ++i)
-					player[order[i]] = Number(links[i].href.match(/ll=(\d+)/)[1]);
+				for (var i = 0; i < order.length; ++i) {
+					player[order[i]] = Foxtrick.util.id.getSkillLevelFromLink(links[i]);
+				}
 
 				// left info table - owner, age, TSI, speciality, deadline
-				var infoTable = playerInfo.getElementsByClassName('transferPlayerInformation')[0]
-					.getElementsByTagName('table')[0];
-				player.currentClubLink = infoTable.rows[0].cells[1].getElementsByTagName('a')[0]
-					.cloneNode(true);
+				var infoTable = playerInfo.querySelector('.transferPlayerInformation table');
+				var ownerCell = infoTable.rows[0].cells[1];
+				player.currentClubLink = ownerCell.querySelector('a').cloneNode(true);
 				player.ageText = infoTable.rows[1].cells[1].textContent;
 				var ageMatch = player.ageText.match(/(\d+)/g);
 				player.age = { years: parseInt(ageMatch[0], 10), days: parseInt(ageMatch[1], 10) };
@@ -112,25 +116,33 @@ Foxtrick.Pages.TransferSearchResults = {
 				player.speciality = (speciality == '-') ? '' : speciality;
 				player.deadline = infoTable.rows[4].cells[1].cloneNode(true);
 
-				player.transferCompare = doc.createElement('a');
-				player.transferCompare.textContent = Foxtrick.L10n.getString('TransferCompare.abbr');
-				player.transferCompare.title = Foxtrick.L10n.getString('TransferCompare');
-				player.transferCompare.href = player.nameLink.href
-					.replace('/Club/Players/Player.aspx', '/Club/Transfers/TransferCompare.aspx');
+				var tc = doc.createElement('a');
+				tc.textContent = Foxtrick.L10n.getString('TransferCompare.abbr');
+				tc.title = Foxtrick.L10n.getString('TransferCompare');
+				tc.href = player.nameLink.href.replace('/Club/Players/Player.aspx',
+				                                       '/Club/Transfers/TransferCompare.aspx');
+				player.TransferCompare = tc;
 
 				// right skill table - skills
-				var skillTable = playerInfo.getElementsByClassName('transferPlayerSkills')[0]
-					.getElementsByTagName('table')[0];
-				var skills = Foxtrick.map(function(e) {
-					return e;
-				}, skillTable.getElementsByTagName('a'));
-				if (skillTable.getElementsByClassName('findSimilarPlayers').length)
+				var skillTable = playerInfo.querySelector('.transferPlayerSkills table');
+				var skills = Foxtrick.toArray(skillTable.getElementsByTagName('a'));
+				if (skillTable.querySelector('.findSimilarPlayers'))
+					// similar player feature link
 					skills.shift();
-				var skillOrder = ['stamina', 'keeper', 'playmaking', 'passing', 'winger',
-					'defending', 'scoring', 'setPieces'];
+
+				var skillOrder = [
+					'stamina',
+					'keeper',
+					'playmaking',
+					'passing',
+					'winger',
+					'defending',
+					'scoring',
+					'setPieces'
+				];
 				var fullSkills = {};
 				for (var i = 0; i < skillOrder.length; ++i) {
-					player[skillOrder[i]] = Number(skills[i].href.match(/ll=(\d+)/)[1]);
+					player[skillOrder[i]] = Foxtrick.util.id.getSkillLevelFromLink(skills[i]);
 					fullSkills[skillOrder[i]] = player[skillOrder[i]];
 				}
 				var spec = Foxtrick.L10n.getEnglishSpeciality(player.speciality);

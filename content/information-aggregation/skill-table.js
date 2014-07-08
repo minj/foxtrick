@@ -17,7 +17,7 @@ Foxtrick.modules['SkillTable'] = {
 		var getFullType = function() {
 			var fullType = { type: '', subtype: '' };
 
-			if (Foxtrick.Pages.TransferSearchResults.isTransferSearchResultsPage(doc)) {
+			if (Foxtrick.Pages.TransferSearchResults.isPage(doc)) {
 				fullType.type = 'transfer';
 				return fullType;
 			}
@@ -1126,7 +1126,7 @@ Foxtrick.modules['SkillTable'] = {
 			var tablediv = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.SkillTable, 'div');
 			tablediv.id = 'ft_skilltablediv';
 			tablediv.className = 'ft_skilltablediv';
-			if (Foxtrick.Pages.TransferSearchResults.isTransferSearchResultsPage(doc)) {
+			if (Foxtrick.Pages.TransferSearchResults.isPage(doc)) {
 				Foxtrick.addClass(tablediv, 'transfer');
 			}
 
@@ -1365,7 +1365,7 @@ Foxtrick.modules['SkillTable'] = {
 			tablediv.appendChild(container);
 
 			// insert tablediv
-			if (Foxtrick.Pages.TransferSearchResults.isTransferSearchResultsPage(doc)) {
+			if (Foxtrick.Pages.TransferSearchResults.isPage(doc)) {
 				// on transfer search page, insert after first separator
 				var insertBefore = doc.getElementById('mainBody')
 					.getElementsByClassName('borderSeparator')[0].nextSibling;
