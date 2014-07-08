@@ -150,7 +150,7 @@ Foxtrick.Pages.Player = {
 
 	/**
 	 * Get player attributes.
-	 * Returns an object with leadership, experience, stamina, form, loyalty
+	 * Returns an object with leadership, experience, coachSkill, stamina, form, loyalty
 	 * and personality (gentleness, aggressiveness, honesty) fields.
 	 * Senior players only.
 	 * @param  {document} doc
@@ -175,29 +175,48 @@ Foxtrick.Pages.Player = {
 					attrs.form = num(links[0]);
 					attrs.stamina = num(links[1]);
 				}
+				// coaches have an additional link at this point
+				var offset = 0;
+				if (this.isCoach(doc)) {
+					offset = 1;
+					attrs.coachSkill = num(links[2]);
+				}
 				// personality:
 				// gentleness aggressiveness honesty
-				for (var i = 2; i < 5; i++) {
+				for (var i = 2 + offset; i < 5 + offset; i++) {
 					var attr = Foxtrick.getParameterFromUrl(links[i], 'lt');
 					attrs[attr] = num(links[i]);
 				}
 				// leadership vs experience
-				if (regE.test(links[6].href)) {
-					attrs.leadership = num(links[6]);
-					attrs.experience = num(links[5]);
+				if (regE.test(links[6 + offset].href)) {
+					attrs.leadership = num(links[6 + offset]);
+					attrs.experience = num(links[5 + offset]);
 				}
 				else {
-					attrs.leadership = num(links[5]);
-					attrs.experience = num(links[6]);
+					attrs.leadership = num(links[5 + offset]);
+					attrs.experience = num(links[6 + offset]);
 				}
 				// loyalty
-				attrs.loyalty = num(links[7]);
+				attrs.loyalty = num(links[7 + offset]);
 			}
 			catch (e) {
 				Foxtrick.log(e);
 			}
 		}
 		return attrs;
+	},
+	/**
+	 * Test whether player is a coach.
+	 * Seniors only.
+	 * @param  {document}  doc
+	 * @return {Boolean}
+	 */
+	isCoach: function(doc) {
+		var coach = false;
+		if (this.isSeniorPlayerPage(doc)) {
+			coach = doc.querySelectorAll('.playerInfo .skill').length > 8;
+		}
+		return coach;
 	},
 
 	/**
