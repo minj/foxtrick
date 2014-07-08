@@ -59,11 +59,11 @@ Foxtrick.modules['LinksPlayerDetail'] = {
 			var years = age.years;
 			var days = age.days;
 
-			var basicSkills = Foxtrick.Pages.Player.getBasicSkills(doc);
-			var form = basicSkills.form;
-			var stamina = basicSkills.stamina;
-			var exp = basicSkills.experience;
-			var ls = basicSkills.leadership;
+			var attrs = Foxtrick.Pages.Player.getAttributes(doc);
+			var form = attrs.form;
+			var stamina = attrs.stamina;
+			var exp = attrs.experience;
+			var ls = attrs.leadership;
 
 			var wageObj = Foxtrick.Pages.Player.getWage(doc);
 			var wage = Math.round(wageObj.base * rate);

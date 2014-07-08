@@ -93,9 +93,9 @@ Foxtrick.modules['PsicoTSI'] = {
 		p.salary = Foxtrick.Pages.Player.getWage(doc).base;
 		p.isAbroad = false;
 
-		var basicSkills = Foxtrick.Pages.Player.getBasicSkills(doc);
-		p.form = parseInt(basicSkills.form[0], 10);
-		p.stamina = parseInt(basicSkills.stamina[0], 10);
+		var attrs = Foxtrick.Pages.Player.getAttributes(doc);
+		p.form = attrs.form;
+		p.stamina = attrs.stamina;
 
 		var age = p.age.years;
 		var injured = Foxtrick.Pages.Player.getInjuryWeeks(doc) && true;

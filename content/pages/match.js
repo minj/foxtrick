@@ -152,8 +152,7 @@ Foxtrick.Pages.Match = {
 		var basevalue = 0;
 		var tacticsLink = cell.getElementsByTagName('a')[0];
 		if (tacticsLink) {
-			var level = Foxtrick.getParameterFromUrl(tacticsLink.href, 'll');
-			basevalue = parseInt(level, 10);
+			basevalue = Foxtrick.util.id.getSkillLevelFromLink(tacticsLink.href);
 		}
 		return basevalue;
 	},
