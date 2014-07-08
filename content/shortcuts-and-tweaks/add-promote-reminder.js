@@ -28,7 +28,7 @@ Foxtrick.modules['AddPromoteReminder'] = {
 
 				var button = Foxtrick.createFeaturedElement(doc, this, 'img');
 				button.src = '/Img/Icons/transparent.gif';
-				button.title = Foxtrick.L10n.getString('AddPromoteReminder.button');
+				button.title = button.alt = Foxtrick.L10n.getString('AddPromoteReminder.button');
 
 				link.appendChild(button);
 
