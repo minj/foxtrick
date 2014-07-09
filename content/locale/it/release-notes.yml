@@ -52,7 +52,7 @@ it:
       crowdin: '<header>Sono disponibili tante nuove traduzioni per i nostri utenti su <linkCrowdin>crowdin tool</linkCrowdin>. Anche tu puoi dare una mano!</header>'
       new: '<header>Nuovi moduli</header>'
       hy_skills: '<module>YouthSkills</module>: Migliora la pagina dei giocatori delle giovanili con informazioni fornite da hattrick youthclub. Solo per utenti di HY.'
-      ratings_tweaks: '<module>MatchRatingsTweaks</module>: Settaggi sulle valutazioni nella pagina del report della partita. Mostra le valutazioni numerica e segue i loro cambi quando si naviga durante la partita proprio come in <module>MatchSimulator</module>. Calcola le reali probabilità di  segnare/difendere/possesso palla in abse alle formule stabilite in  "unwritten manual": 15766691.221, 15766691.242'
+      ratings_tweaks: '<module>MatchRatingsTweaks</module>: Settaggi sulle valutazioni nella pagina del report della partita. Mostra le valutazioni numerica e segue i loro cambi quando si naviga durante la partita proprio come in <module>MatchSimulator</module>. Calcola le reali probabilità di  segnare/difendere/possesso palla in base alle formule stabilite in  "unwritten manual": 15766691.221, 15766691.242'
       match_weather: '<module>MatchWeather</module> mostra il meteo di oggi e domani dello stadio nella pagina della partita.'
       other: '<header>Altre modifiche</header>'
       ht_changes: "Foxtrick è stato aggiornato per supportare i recenti cambiamenti di Hattrick nei report delle partite delle giovanili, nella skin semplificata, e nell' interfaccia degli ordini della partita."
