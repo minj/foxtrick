@@ -53,7 +53,7 @@ Foxtrick.modules['TransferComparePlayers'] = {
 								if (xmls[i] && !errors[i]) {
 									var age = xmls[i].getElementsByTagName('Age')[0].innerHTML;
 									var days = xmls[i].getElementsByTagName('AgeDays')[0].innerHTML;
-									table.rows[5+i].cells[4].textContent = parseInt(age)+"."+days;
+									table.rows[5 + i].cells[4].textContent = parseInt(age) + "." + days;
 
 									var specialty = xmls[i].getElementsByTagName('Specialty')[0].innerHTML;
 									if (specialty != "0") {
@@ -61,9 +61,9 @@ Foxtrick.modules['TransferComparePlayers'] = {
 										var hidden = doc.createElement('span');
 										hidden.className = 'hidden';
 										hidden.textContent = spec;
-										table.rows[5+i].cells[0].appendChild(hidden);
+										table.rows[5 + i].cells[0].appendChild(hidden);
 										var specImageUrl = Foxtrick.getSpecialtyImagePathFromNumber(specialty);
-										Foxtrick.addImage(doc, table.rows[5+i].cells[0], {
+										Foxtrick.addImage(doc, table.rows[5 + i].cells[0], {
 											alt: spec,
 											title: spec,
 											src: specImageUrl
@@ -71,8 +71,7 @@ Foxtrick.modules['TransferComparePlayers'] = {
 									}	
 								}
 								else
-									Foxtrick.log('No XML in batchRetrieve', argsPlayers[i],
-												 errors[i]);
+									Foxtrick.log('No XML in batchRetrieve', argsPlayers[i], errors[i]);
 							}
 				});
 		});
