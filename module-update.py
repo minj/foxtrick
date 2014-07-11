@@ -115,7 +115,7 @@ def update(args=dict(sourcefile="modules", excludefile=None, dirfile=".")):
         lines[start+1:end] = modlines
 
         #write the new file
-        f_out = file(path+tar['file'], 'w')
+        f_out = file(path+tar['file'], 'wb')
         f_out.writelines(lines)
         f_out.close()
 
@@ -157,7 +157,7 @@ def rm_module(sourcefile, module):
         modules.sort()
 
         #write the new file
-        f_out = file(sourcefile,'w')
+        f_out = file(sourcefile,'wb')
         f_out.writelines(modules)
         f_out.close()
 
@@ -171,7 +171,7 @@ def add_module(sourcefile, module):
         modules.sort()
 
         #write the new file
-        f_out = file(sourcefile,'w')
+        f_out = file(sourcefile,'wb')
         f_out.writelines(modules)
 
 if __name__ == '__main__':
