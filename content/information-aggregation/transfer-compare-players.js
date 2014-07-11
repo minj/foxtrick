@@ -8,11 +8,33 @@
 Foxtrick.modules['TransferComparePlayers'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES: ['transferCompare'],
+	CSS: Foxtrick.InternalPath + 'resources/css/transfercompareplayers.css',
 
 	run: function(doc) {
 		var table = doc.querySelectorAll('#mainBody > table')[0];
 		if (!table) return;
 		if (table.rows[0].cells.length < 5) return;
+
+		var link = Foxtrick.createFeaturedElement(doc, this, 'a');
+		Foxtrick.addClass(link, 'ft-transfer-compare-players ft-link');
+
+		var button = Foxtrick.createFeaturedElement(doc, this, 'img');
+		button.title = button.alt = Foxtrick.L10n.getString('TransferComparePlayers.button');
+		link.appendChild(button);
+
+		var div = doc.getElementsByClassName('speedBrowser')[0].parentNode;
+		div.appendChild(doc.createTextNode(' '));
+		div.appendChild(link);
+
+		Foxtrick.addClass(button, 'ft-transfer-compare-players ft-img');
+		Foxtrick.onClick(link, function() {
+			var count = table.rows.length;
+			for (var i = 5; i < count; i++) {
+				var player = table.rows[i].cells[0].getElementsByTagName("a")[0];
+				var playerid = Foxtrick.getParameterFromUrl(player.href, 'playerId');
+			}
+		});
+
 		var ownplayer = table.rows[1].cells[0].getElementsByTagName("a")[0];
 
 		var count = table.rows.length;
