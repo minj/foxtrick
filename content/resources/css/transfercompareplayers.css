@@ -1,0 +1,7 @@
+html[data-theme="standard"] .ft-transfer-compare-players.ft-img {
+	background-image: url("chrome://foxtrick/content/resources/img/Aiga_downarrow_yellow.png");
+}
+
+html[data-theme="simple"] .ft-transfer-compare-players.ft-img {
+	background-image: url("chrome://foxtrick/content/resources/img/Aiga_downarrow_yellow.png");
+}
