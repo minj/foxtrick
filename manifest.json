@@ -136,7 +136,7 @@
 			"content/information-aggregation/htms-points.js",
 			"content/information-aggregation/last-login.js",
 			"content/information-aggregation/match-weather.js",
-			"content/information-aggregation/median-transfer-price.js",
+			"content/information-aggregation/transfer-compare-players.js",
 			"content/information-aggregation/my-monitor.js",
 			"content/information-aggregation/nt-peek.js",
 			"content/information-aggregation/player-birthday.js",

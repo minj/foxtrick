@@ -149,7 +149,7 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/information-aggregation/htms-points.js</string>
 				<string>content/information-aggregation/last-login.js</string>
 				<string>content/information-aggregation/match-weather.js</string>
-				<string>content/information-aggregation/median-transfer-price.js</string>
+				<string>content/information-aggregation/transfer-compare-players.js</string>
 				<string>content/information-aggregation/my-monitor.js</string>
 				<string>content/information-aggregation/nt-peek.js</string>
 				<string>content/information-aggregation/player-birthday.js</string>
