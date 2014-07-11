@@ -1,7 +1,8 @@
 'use strict';
 /**
  * transfer-compare-players.js
- * Foxtrick Shows a median and average value of price and tsi in transfer compare. Include players' details in table
+ * Shows median and average values in transfer compare.
+ * Fetch additional player information on request
  * @author bummerland - tasosventouris
  */
 
