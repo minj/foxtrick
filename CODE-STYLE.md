@@ -362,7 +362,7 @@ else {
  */
 if (true) {
 	(function(aLongVar,
-			  anEvenLongerVar) {})(); // 1 tab + spaces
+	          anEvenLongerVar) {})(); // 1 tab + spaces
 }
 ```
 
@@ -371,12 +371,12 @@ if (true) {
 ```js
 if (true) {
 	if (false) {
-		Foxtrick.log('spaces with 1 tab');
+    	Foxtrick.log('spaces with 1 tab');
 	}
 }
 if (true) {
 	if (false) {
-		Foxtrick.log('1 tab with spaces');
+	    Foxtrick.log('1 tab with spaces');
 	}
 }
 /* this one is caught only by google js linter */
