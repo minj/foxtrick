@@ -295,6 +295,9 @@ background-color: #eed;
 .ft-colorHigher {
 	color: #00A9E0;
 }
+.ft-tableHighlight {
+	background-color: yellow !important;
+}
 
 /* why use this shit anyway?! */
 .mainRegular > .boxBody {

@@ -13,8 +13,10 @@ Foxtrick.modules['TransferComparePlayers'] = {
 
 	run: function(doc) {
 		var table = doc.querySelectorAll('#mainBody > table')[0];
-		if (!table) return;
-		if (table.rows[0].cells.length < 5) return;
+		if (!table)
+			return;
+		if (table.rows[0].cells.length < 5)
+			return;
 
 		var link = Foxtrick.createFeaturedElement(doc, this, 'a');
 		Foxtrick.addClass(link, 'ft-transfer-compare-players ft-link');
@@ -31,27 +33,30 @@ Foxtrick.modules['TransferComparePlayers'] = {
 		Foxtrick.onClick(link, function() {
 			var count = table.rows.length;
 			for (var i = 5; i < count; i++) {
-				var player = table.rows[i].cells[0].getElementsByTagName("a")[0];
+				var player = table.rows[i].cells[0].getElementsByTagName('a')[0];
 				var playerid = Foxtrick.getParameterFromUrl(player.href, 'playerId');
 			}
 		});
 
-		var ownplayer = table.rows[1].cells[0].getElementsByTagName("a")[0];
+		var ownPlayer = table.rows[1].cells[0].getElementsByTagName('a')[0];
+		var ownPlayerId = Foxtrick.getParameterFromUrl(ownPlayer.href, 'playerId');
 
 		var count = table.rows.length;
 		var priceArray = [];
 		var tsiArray = [];
 		for (var i = 5; i < count; i++) {
-			if (table.rows[i].cells[0].getElementsByTagName("a")[0] == ownplayer) {
-				table.rows[i].style.backgroundColor = "yellow";
+			var thisPlayer = table.rows[i].cells[0].getElementsByTagName('a')[0];
+			var thisPlayerId = Foxtrick.getParameterFromUrl(thisPlayer.href, 'playerId');
+			if (thisPlayerId === ownPlayerId) {
+				Foxtrick.addClass(table.rows[i], 'ft-tableHighlight');
 			}
 			if (table.rows[i].cells[3].textContent.search(/\d/) != -1) {
 				var thisPrice = Foxtrick.trimnum(table.rows[i].cells[3].textContent);
 				priceArray.push(thisPrice);
-			};
+			}
 			if (table.rows[i].cells[2].textContent.search(/\d/) != -1) {
-				var thisPrice = Foxtrick.trimnum(table.rows[i].cells[2].textContent);
-				tsiArray.push(thisPrice);
+				var thisTsi = Foxtrick.trimnum(table.rows[i].cells[2].textContent);
+				tsiArray.push(thisTsi);
 			}
 		}
 
