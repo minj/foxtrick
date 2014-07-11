@@ -9,7 +9,7 @@
 Foxtrick.modules['TransferComparePlayers'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES: ['transferCompare'],
-	CSS: Foxtrick.InternalPath + 'resources/css/transfercompareplayers.css',
+	// CSS: Foxtrick.InternalPath + 'resources/css/transfercompareplayers.css',
 
 	run: function(doc) {
 		var table = doc.querySelectorAll('#mainBody > table')[0];
@@ -21,15 +21,21 @@ Foxtrick.modules['TransferComparePlayers'] = {
 		var link = Foxtrick.createFeaturedElement(doc, this, 'a');
 		Foxtrick.addClass(link, 'ft-transfer-compare-players ft-link');
 
-		var button = Foxtrick.createFeaturedElement(doc, this, 'img');
-		button.title = button.alt = Foxtrick.L10n.getString('TransferComparePlayers.button');
-		link.appendChild(button);
+		var title = Foxtrick.L10n.getString('TransferComparePlayers.fetch');
+		Foxtrick.addImage(doc, link, {
+			alt: title,
+			title: title,
+			height: 16,
+			width: 16,
+			src: Foxtrick.InternalPath + 'resources/img/Aiga_downarrow_yellow.png',
+		}, null, function(button) {
+			Foxtrick.addClass(button, 'ft-transfer-compare-players');
+		});
 
 		var div = doc.getElementsByClassName('speedBrowser')[0].parentNode;
 		div.appendChild(doc.createTextNode(' '));
 		div.appendChild(link);
 
-		Foxtrick.addClass(button, 'ft-transfer-compare-players ft-img');
 		Foxtrick.onClick(link, function() {
 			var count = table.rows.length;
 			for (var i = 5; i < count; i++) {
