@@ -362,7 +362,7 @@ else {
  */
 if (true) {
 	(function(aLongVar,
-	          anEvenLongerVar) {})(); // 1 tab + spaces
+			  anEvenLongerVar) {})(); // 1 tab + spaces
 }
 ```
 
@@ -371,12 +371,12 @@ if (true) {
 ```js
 if (true) {
 	if (false) {
-    	Foxtrick.log('spaces with 1 tab');
+		Foxtrick.log('spaces with 1 tab');
 	}
 }
 if (true) {
 	if (false) {
-	    Foxtrick.log('1 tab with spaces');
+		Foxtrick.log('1 tab with spaces');
 	}
 }
 /* this one is caught only by google js linter */
@@ -679,10 +679,60 @@ a = new this();
 a = new e();
 ```
 
+## Code Intel and Supported JSDoc
+Unfortunately due to limitations of SublimeCodeIntel, all namespaces must be 'defined' in all files where their members are added.
+```js
+if (!Foxtrick)
+	var Foxtrick = {};
+/** 
+ * foo description 
+ * @param  {Type}   arg1 param description
+ * @return {number}
+ */
+Foxtrick.foo = function(arg1) {
+	return 0;
+};
+```
+
+**Parameter descriptions are not displayed in SublimeText. Best to explain the tricky parts in function description.**
+
+`Type` examples:
+ - number, string, array, boolean, object
+ - Number, String, Array, Boolean, Object
+ - document, element, node
+ - HTMLTableElement
+ - MyClass
+ - `array|number` is detected as array
+ - `string[]` and anything else with '[' is also detected as array w/o element type hinting
+ - not possible to define nullability, optional params, default values etc
+
+#### Do
+```js
+Foxtrick.Bar = {};
+Foxtrick.Bar.foo = function(arg1) {
+	return 0;
+};
+Foxtrick.Bar.baz = function(arg1) {
+	return 0;
+};
+```
+
+#### Don't ====
+```js
+Foxtrick.Bar = {
+	foo: function(arg1) {
+		return 0;
+	},
+	baz: function(arg1) {
+		return 0;
+	}
+}
+```
 
 ## Sublime Text 3 Config
 ### Package list
 - DocBlockr
+- SublimeCodeIntel
 - SublimeLinter
 - SublimeLinter-gjslint
 - SublimeLinter-jscs
@@ -765,6 +815,41 @@ a = new e();
 					"Illegal comma at end of (object|array) literal"
 				]
 			}
+		}
+	}
+}
+```
+
+### SublimeCodeIntel.sublime-settings
+```json
+{
+	"codeintel": true,
+	"sublime_auto_complete": true,
+	"codeintel_tooltips": "popup",
+	"codeintel_snippets": true,
+	"codeintel_enabled_languages":
+	[
+		"JavaScript", "XUL", "Python", "HTML", "Python3",
+		"XML", "HTML5", "Perl", "CSS", "Node.js", "PHP"
+	],
+	"codeintel_live": true,
+	"codeintel_max_recursive_dir_depth": 10,
+	"codeintel_scan_files_in_project": true,
+
+	"codeintel_selected_catalogs": [
+		"jQuery", "HTML5", "Mozilla Toolkit", "Drupal"
+	],
+
+	"codeintel_config": {
+		"JavaScript": {
+			"javascriptExtraPaths": [],
+			"codeintel_scan_files_in_project": true,
+			"codeintel_max_recursive_dir_depth": 5
+		},
+		"PHP": {
+			"phpExtraPaths": [],
+			"codeintel_scan_files_in_project": true,
+			"codeintel_max_recursive_dir_depth": 5
 		}
 	}
 }
