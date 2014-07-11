@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 # Update module listing in manifest files
 #
 # Author: Anastasios Ventouris <tasosventouris@gmail.com>
