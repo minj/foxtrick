@@ -5,6 +5,8 @@
  * executed on extension load (on activate, reload and browser start)
  */
 
+if (!Foxtrick)
+	var Foxtrick = {};
 if (!Foxtrick.loader)
 	Foxtrick.loader = {};
 if (!Foxtrick.loader.background)

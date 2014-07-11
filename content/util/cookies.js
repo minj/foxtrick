@@ -4,6 +4,9 @@
  * cookie management
  */
 
+if (!Foxtrick)
+	var Foxtrick = {};
+
 (function() {
 	// cookies for external pages
 	var cookies = {

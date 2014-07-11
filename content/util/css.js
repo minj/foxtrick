@@ -4,8 +4,11 @@
  * css management utilities
  */
 
+if (!Foxtrick)
+	var Foxtrick = {};
 if (!Foxtrick.util)
 	Foxtrick.util = {};
+
 Foxtrick.util.css = {};
 
 // load images in background and convert them to dataUrl

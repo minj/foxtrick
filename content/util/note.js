@@ -6,6 +6,7 @@
 
 if (!Foxtrick.util)
 	Foxtrick.util = {};
+
 Foxtrick.util.note = {
 	BUTTON_OK: { name: 'button.ok' },
 	// BUTTON_CANCEL has a default event listener to remove the note if

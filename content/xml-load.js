@@ -5,6 +5,9 @@
  * @author convinced
  */
 
+if (!Foxtrick)
+	var Foxtrick = {};
+
 Foxtrick.XMLData = {
 	MODULE_NAME: 'XMLData',
 	PAGES: ['all'],

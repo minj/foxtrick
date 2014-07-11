@@ -4,6 +4,9 @@
  * Math and prediction utilities
  */
 
+if (!Foxtrick)
+	var Foxtrick = {};
+
 Foxtrick.Math = {};
 /**
  * Hyperbolic tangent (overflows ~700)

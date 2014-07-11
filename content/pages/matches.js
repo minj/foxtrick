@@ -6,6 +6,11 @@
  */
 ////////////////////////////////////////////////////////////////////////////////
 
+if (!Foxtrick)
+	var Foxtrick = {};
+if (!Foxtrick.Pages)
+	Foxtrick.Pages = {};
+
 Foxtrick.Pages.Matches = {
 	/**
 	 * Test whether it's a youth matches page

@@ -12,8 +12,10 @@
  * their first arguments need to be `doc'.
  */
 
-
-Foxtrick.Pages = {};
+if (!Foxtrick)
+	var Foxtrick = {};
+if (!Foxtrick.Pages)
+	Foxtrick.Pages = {};
 
 Foxtrick.Pages.All = {
 	/**

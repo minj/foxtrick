@@ -4,6 +4,11 @@
  * @author ryanli
  */
 
+if (!Foxtrick)
+	var Foxtrick = {};
+if (!Foxtrick.Pages)
+	Foxtrick.Pages = {};
+
 Foxtrick.Pages.YouthPlayer = {
 	/**
 	 * Test whether it's youth player page

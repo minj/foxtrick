@@ -5,8 +5,11 @@
  * @author unknown (NOTE - fill in yourself!)
  */
 
+if (!Foxtrick)
+	var Foxtrick = {};
 if (!Foxtrick.util)
 	Foxtrick.util = {};
+
 Foxtrick.util.layout = {};
 
 // Returns whether the HTML document uses standard theme

@@ -5,6 +5,9 @@
  * @author ryanli, convincedd
  */
 
+if (!Foxtrick)
+	var Foxtrick = {};
+
 /**
  * Log an error
  * @param  {string} err String to log. Will be converted into string if otherwise.

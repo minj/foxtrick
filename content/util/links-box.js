@@ -5,6 +5,8 @@
  * @author convinced
  */
 
+if (!Foxtrick)
+	var Foxtrick = {};
 if (!Foxtrick.util)
 	Foxtrick.util = {};
 

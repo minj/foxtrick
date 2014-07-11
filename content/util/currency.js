@@ -4,6 +4,8 @@
  * Utilities for handling currency
  */
 
+if (!Foxtrick)
+	var Foxtrick = {};
 if (!Foxtrick.util)
 	Foxtrick.util = {};
 

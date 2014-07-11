@@ -14,6 +14,9 @@
  *     namespace conflicts in Firefox.
  */
 
+if (!Foxtrick)
+	var Foxtrick = {};
+
 Foxtrick.SHA1 = {
 	/*
 	 * Configurable variables. You may need to tweak these to be compatible with

@@ -4,10 +4,12 @@
  * loading files
  */
 
+if (!Foxtrick)
+	var Foxtrick = {};
 if (!Foxtrick.util)
 	Foxtrick.util = {};
-if (!Foxtrick.util.load)
-	Foxtrick.util.load = {};
+
+Foxtrick.util.load = {};
 
 /**
  * Using XMLHttpRequest by a promise, on which listeners on success and

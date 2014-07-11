@@ -5,6 +5,9 @@
  * @author taised, Jestar, LA-MJ
  */
 ////////////////////////////////////////////////////////////////////////////////
+
+if (!Foxtrick)
+	var Foxtrick = {};
 if (!Foxtrick.Pages)
 	Foxtrick.Pages = {};
 

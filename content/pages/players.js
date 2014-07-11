@@ -4,6 +4,8 @@
  * @author convincedd, ryanli
  */
 
+if (!Foxtrick)
+	var Foxtrick = {};
 if (!Foxtrick.Pages)
 	Foxtrick.Pages = {};
 

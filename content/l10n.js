@@ -4,6 +4,9 @@
  * Localization tools.
  */
 ////////////////////////////////////////////////////////////////////////////////
+if (!Foxtrick)
+	var Foxtrick = {};
+
 Foxtrick.L10n = {
 	locales: [
 		// english names and ids are also in chpps worldlanguages.xml

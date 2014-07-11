@@ -5,6 +5,8 @@
  * @author ryanli
  */
 
+if (!Foxtrick)
+	var Foxtrick = {};
 if (!Foxtrick.util)
 	Foxtrick.util = {};
 

@@ -4,6 +4,8 @@
  * Utilities for date and time
  */
 
+if (!Foxtrick)
+	var Foxtrick = {};
 if (!Foxtrick.util)
 	Foxtrick.util = {};
 

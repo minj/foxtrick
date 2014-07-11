@@ -5,8 +5,11 @@
  * @author convincedd, ryanli
  */
 
+if (!Foxtrick)
+	var Foxtrick = {};
 if (!Foxtrick.util)
 	Foxtrick.util = {};
+
 Foxtrick.util.inject = {};
 
 Foxtrick.util.inject.cssLink = function(doc, url) {

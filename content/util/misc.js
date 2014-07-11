@@ -4,6 +4,9 @@
  * Miscellaneous utilities
  */
 
+if (!Foxtrick)
+	var Foxtrick = {};
+
 // global change listener.
 // uses setTimout to queue the change function call after
 // all current DOMNodeInserted events have passed.

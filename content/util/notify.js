@@ -4,8 +4,11 @@
  * Utilities for creating a notification
  */
 
+if (!Foxtrick)
+	var Foxtrick = {};
 if (!Foxtrick.util)
 	Foxtrick.util = {};
+
 Foxtrick.util.notify = {};
 
 if (Foxtrick.platform === 'Chrome' && chrome.notifications) {

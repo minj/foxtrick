@@ -3,6 +3,9 @@
  * Utilities on player page
  * @author ryanli, LA-MJ
  */
+
+if (!Foxtrick)
+	var Foxtrick = {};
 if (!Foxtrick.Pages)
 	Foxtrick.Pages = {};
 

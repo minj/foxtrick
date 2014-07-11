@@ -27,7 +27,7 @@
  * THE SOFTWARE.
  */
 
-if(!Foxtrick)
+if (!Foxtrick)
     Foxtrick = {};
 
 (function(container, undefined) {
@@ -370,12 +370,12 @@ if(!Foxtrick)
 
         TouchGroup : function(event) {
             var that = this;
-    
+
             var numTouches = event.touches.length;
-        
+
             var midpointX = 0;
             var midpointY = 0;
-    
+
             var scale = event.scale;
             var prevScale = scale;
             var deltaScale = scale;

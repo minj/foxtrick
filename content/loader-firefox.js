@@ -4,6 +4,9 @@
  * FoxTrick loader for Firefox/Seamonkey
  */
 
+
+if (!Foxtrick)
+	var Foxtrick = {};
 if (!Foxtrick.loader)
 	Foxtrick.loader = {};
 if (!Foxtrick.loader.firefox)

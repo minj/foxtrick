@@ -5,6 +5,9 @@
  * The stored value must be a JSON-serializable object, or of native types.
  */
 
+if (!Foxtrick)
+	var Foxtrick = {};
+
 // background
 if (Foxtrick.chromeContext() == 'background') {
 	if (Foxtrick.arch === 'Gecko') {

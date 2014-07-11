@@ -5,10 +5,12 @@
  * @author:  based on http://refactormycode.com/codes/333-sanitize-html
  */
 
+if (!Foxtrick)
+	var Foxtrick = {};
 if (!Foxtrick.util)
 	Foxtrick.util = {};
-Foxtrick.util.sanitize = {};
 
+Foxtrick.util.sanitize = {};
 
 Foxtrick.util.sanitize.addHTML = function(doc, html, target) {
 	if (Foxtrick.arch == 'Gecko') {

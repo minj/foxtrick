@@ -1,6 +1,9 @@
 'use strict';
+if (!Foxtrick)
+	var Foxtrick = {};
 if (!Foxtrick.util)
 	Foxtrick.util = {};
+
 Foxtrick.util.tabs = {};
 
 //first header is the starting point

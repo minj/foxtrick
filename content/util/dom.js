@@ -4,6 +4,9 @@
  * Utilities for HTML and DOM
  */
 
+if (!Foxtrick)
+	var Foxtrick = {};
+
 /**
  * Create an element with Foxtrick feature highlight enabled.
  * This and other similar functions must be used on the outer container
