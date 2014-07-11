@@ -38,10 +38,43 @@ Foxtrick.modules['TransferComparePlayers'] = {
 
 		Foxtrick.onClick(link, function() {
 			var count = table.rows.length;
+			var argsPlayers = [];
 			for (var i = 5; i < count; i++) {
 				var player = table.rows[i].cells[0].getElementsByTagName('a')[0];
-				var playerid = Foxtrick.getParameterFromUrl(player.href, 'playerId');
+				if (player) {
+					var playerid = Foxtrick.getParameterFromUrl(player.href, 'playerId');
+					argsPlayers.push([['file', 'playerdetails'],['version', '2.1'], ['playerId', parseInt(playerid,10)]]);
+				};
 			}
+			Foxtrick.util.api.batchRetrieve(doc, argsPlayers, { cache_lifetime: 'session' },
+				  function(xmls, errors) {
+					if (xmls)
+						for (i = 0; i < xmls.length; ++i) {
+								if (xmls[i] && !errors[i]) {
+									var age = xmls[i].getElementsByTagName('Age')[0].innerHTML;
+									var days = xmls[i].getElementsByTagName('AgeDays')[0].innerHTML;
+									table.rows[5+i].cells[4].textContent = parseInt(age)+"."+days;
+
+									var specialty = xmls[i].getElementsByTagName('Specialty')[0].innerHTML;
+									if (specialty != "0") {
+										var spec = Foxtrick.L10n.getSpecialityFromNumber(specialty);
+										var hidden = doc.createElement('span');
+										hidden.className = 'hidden';
+										hidden.textContent = spec;
+										table.rows[5+i].cells[0].appendChild(hidden);
+										var specImageUrl = Foxtrick.getSpecialtyImagePathFromNumber(specialty);
+										Foxtrick.addImage(doc, table.rows[5+i].cells[0], {
+											alt: spec,
+											title: spec,
+											src: specImageUrl
+										});
+									}	
+								}
+								else
+									Foxtrick.log('No XML in batchRetrieve', argsPlayers[i],
+												 errors[i]);
+							}
+				});
 		});
 
 		var ownPlayer = table.rows[1].cells[0].getElementsByTagName('a')[0];
