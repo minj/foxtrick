@@ -9,8 +9,8 @@ if (!Foxtrick)
 	var Foxtrick = {};
 if (!Foxtrick.loader)
 	Foxtrick.loader = {};
-if (!Foxtrick.loader.firefox)
-	Foxtrick.loader.firefox = {};
+
+Foxtrick.loader.firefox = {};
 
 // invoked after the browser chrome is loaded
 // variable *document* is predeclared and used here but means the

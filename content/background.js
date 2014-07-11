@@ -9,9 +9,8 @@ if (!Foxtrick)
 	var Foxtrick = {};
 if (!Foxtrick.loader)
 	Foxtrick.loader = {};
-if (!Foxtrick.loader.background)
-	Foxtrick.loader.background = {};
 
+Foxtrick.loader.background = {};
 
 // listener for request from content script
 Foxtrick.loader.background.contentRequestsListener = function(request, sender, sendResponse) {

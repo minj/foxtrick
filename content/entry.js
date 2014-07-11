@@ -7,8 +7,8 @@
 
 if (!Foxtrick)
 	var Foxtrick = {};
-Foxtrick.entry = {};
 
+Foxtrick.entry = {};
 
 // mapping from page name (defined in pages.js) to array of modules running
 // on it

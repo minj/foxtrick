@@ -9,8 +9,8 @@ if (!Foxtrick)
 	var Foxtrick = {};
 if (!Foxtrick.loader)
 	Foxtrick.loader = {};
-if (!Foxtrick.loader.chrome)
-	Foxtrick.loader.chrome = {};
+
+Foxtrick.loader.chrome = {};
 
 // invoked when an allowed HTML document (as defined by eg manifest.json) is load started
 // starts the content instances for chrome/safari (one per tab/peg. not persistant)
