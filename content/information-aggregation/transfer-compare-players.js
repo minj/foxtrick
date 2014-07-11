@@ -180,11 +180,15 @@ Foxtrick.modules['TransferComparePlayers'] = {
 					var dif = (next-last)/last;
 					Foxtrick.addClass(percentage, 'ft-player-transfer-history positive');
 					percentage.textContent = "(+" + Math.round(dif*100) + "%)";
-				} else {
+				} else if (next < last) {
 					var dif = (last-next)/next;
 					Foxtrick.addClass(percentage, 'ft-player-transfer-history negative');
 					percentage.textContent = "(-" + Math.round(dif*100) + "%)";
+				} else {
+					Foxtrick.addClass(percentage, 'ft-player-transfer-history');
+					percentage.textContent = "(0%)";
 				}
+
 
 				table.rows[i].insertCell(4);
 				table.rows[i].cells[4].appendChild(percentage);
