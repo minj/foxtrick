@@ -5,7 +5,7 @@
  * @author tasosventouris
  */
 
-Foxtrick.modules['AddPromoteReminder'] = {
+Foxtrick.modules['AddPromotionReminder'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES: ['youthPlayerDetails', 'reminders'],
 
