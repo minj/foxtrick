@@ -9,6 +9,8 @@
 Foxtrick.modules['PlayerPositionsEvaluations'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES: ['playerDetails'],
+  //Might be better to add this option as global because it used not only by this module
+  OPTIONS: ['Normalised'],
 
 	run: function(doc) {
 
@@ -19,6 +21,18 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 			if (!skills)
 				return;
 
+			// for testing specific players
+			/*
+			skills.keeper = 1;
+			skills.defending = 7;
+			skills.passing = 4;
+			skills.playmaking = 5;
+			skills.scoring = 5;
+			skills.setPieces = 4;
+			skills.winger = 4;
+			console.log(skills);
+			*/
+			
 			var contributions = Foxtrick.Pages.Player.getContributions(skills, speciality);
 			var feat_div = Foxtrick.createFeaturedElement(doc, this, 'div');
 			var entryPoint = doc.getElementById('mainBody');
@@ -38,7 +52,12 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 				Foxtrick.L10n.getString('module.PlayerPositionsEvaluations.contribution');
 			tr.appendChild(td);
 			tbody.appendChild(tr);
-			for (var name in contributions) {
+
+			var sortable = []
+			for (var name in contributions) sortable.push([name, contributions[name]]);
+			sortable.sort(function(a, b) {return b[1] - a[1]});
+			for (var item in sortable) {
+				name = sortable[item][0]
 				tr = doc.createElement('tr');
 				td = doc.createElement('td');
 				td.textContent = Foxtrick.L10n.getString(name + 'Position');

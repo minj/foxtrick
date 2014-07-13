@@ -702,6 +702,11 @@ Foxtrick.Pages.Player.getContributions = function(skills, spec) {
 		value += coefs[3] * skills.winger;
 		value += coefs[4] * skills.passing;
 		value += coefs[5] * skills.scoring;
+		
+		if(Foxtrick.Prefs.isModuleOptionEnabled('PlayerPositionsEvaluations', 'Normalised')) {
+				var normalisation = coefs[0] + coefs[1] + coefs[2] + coefs[3] + coefs[4] + coefs[5]
+				value /= normalisation
+		}
 
 		return parseFloat(value.toFixed(1));
 	};
