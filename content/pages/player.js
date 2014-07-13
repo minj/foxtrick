@@ -708,7 +708,7 @@ Foxtrick.Pages.Player.getContributions = function(skills, spec) {
 				value /= normalisation
 		}
 
-		return parseFloat(value.toFixed(1));
+		return parseFloat(value.toFixed(2));
 	};
 
 	// all coefficients taken from http://wiki.hattrick.org/wiki/Hattrick_-_Skill_positions

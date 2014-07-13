@@ -30,8 +30,10 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 			skills.scoring = 5;
 			skills.setPieces = 4;
 			skills.winger = 4;
+			speciality = ""
 			console.log(skills);
 			*/
+			
 			
 			var contributions = Foxtrick.Pages.Player.getContributions(skills, speciality);
 			var feat_div = Foxtrick.createFeaturedElement(doc, this, 'div');
