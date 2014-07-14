@@ -90,7 +90,7 @@ Foxtrick.Pages.Player.getName = function(doc) {
  * @param  {document} doc
  * @return {Inteber}
  */
-Foxtrick.Pages.Playehttp://www.gla.ac.uk/services/it/proxy/r.getId = function(doc) {
+Foxtrick.Pages.Player.getId = function(doc) {
 	var param = this.isSeniorPlayerPage(doc) ? 'playerId' : 'youthPlayerId';
 	var id = Foxtrick.getParameterFromUrl(doc.location.href, param);
 	return parseInt(id, 10) || null;
@@ -705,7 +705,7 @@ Foxtrick.Pages.Player.getContributions = function(skills, spec) {
 		
 		if(Foxtrick.Prefs.isModuleOptionEnabled('PlayerPositionsEvaluations', 'Normalised')) {
 				var normalisation = coefs[0] + coefs[1] + coefs[2] + coefs[3] + coefs[4] + coefs[5];
-				value /= normalisation;
+				value /= normalisation;	
 		}
 
 		return parseFloat(value.toFixed(2));
