@@ -145,13 +145,17 @@ firefox:
 	$(ZIP) -0 -r $(APP_NAME).jar `find . \( -path '*CVS*' -o -path \
 		'*.svn*' \) -prune -o -type f -print | grep -v \~ `; \
 	rm -rf content skin
-	# process manifest
+	# ditch the jar
 	cd $(BUILD_DIR); \
-	if test -f chrome.manifest; \
-		then \
-		sed -i -r 's|^(content\s+\S*\s+)(\S*/)(.*)$$|\1jar:chrome/'$(APP_NAME)'.jar!/\2\3|' chrome.manifest; \
-		sed -i -r 's|^(skin\|locale)(\s+\S*\s+\S*\s+)(.*/)$$|\1\2jar:chrome/'$(APP_NAME)'.jar!/\3|' chrome.manifest; \
-	fi
+	unzip -o chrome/$(APP_NAME).jar; \
+	rm -rf chrome
+	# process manifest
+	#cd $(BUILD_DIR); \
+	#if test -f chrome.manifest; \
+	#	then \
+	#	sed -i -r 's|^(content\s+\S*\s+)(\S*/)(.*)$$|\1jar:chrome/'$(APP_NAME)'.jar!/\2\3|' chrome.manifest; \
+	#	sed -i -r 's|^(skin\|locale)(\s+\S*\s+\S*\s+)(.*/)$$|\1\2jar:chrome/'$(APP_NAME)'.jar!/\3|' chrome.manifest; \
+	#fi
 	# set branch
 	cd $(BUILD_DIR); \
 	sed -i -r "/extensions\\.foxtrick\\.prefs\\.branch/s|\"svn\"|\"$(BRANCH) mozilla\"|" defaults/preferences/foxtrick.js
