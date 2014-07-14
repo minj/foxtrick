@@ -55,11 +55,11 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 			tr.appendChild(td);
 			tbody.appendChild(tr);
 
-			var sortable = []
+			var sortable = [];
 			for (var name in contributions) sortable.push([name, contributions[name]]);
 			sortable.sort(function(a, b) {return b[1] - a[1]});
 			for (var item in sortable) {
-				name = sortable[item][0]
+				name = sortable[item][0];
 				tr = doc.createElement('tr');
 				td = doc.createElement('td');
 				td.textContent = Foxtrick.L10n.getString(name + 'Position');
