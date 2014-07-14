@@ -1544,9 +1544,22 @@ function initLoader() {
 	// fennec runs init() from injected entry.js (injected)
 	// called directly, it'll run and save actually for some reason
 
-	// gecko, safari, chrome
+	// gecko, chrome
 	if (Foxtrick.arch === 'Gecko' || Foxtrick.chromeContext() === 'background')
 		init();
+	else
+		// safari prefs runs in content context for some people?!!
+		// add needed resources first
+		Foxtrick.SB.ext.sendRequest({ req: 'optionsPageLoad' },
+		  function(data) {
+			try {
+				Foxtrick.entry.contentScriptInit(data);
+				init();
+			}
+			catch (e) {
+				Foxtrick.log('initLoader: ', e);
+			}
+		});
 }
 // this is the preference script entry point for sandboxed arch
 initLoader();
