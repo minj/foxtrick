@@ -265,7 +265,7 @@ FoxtrickFirefox.prototype = {
 			}
 		}
 		catch (e) {
-			e.message = 'Foxtrick ERROR: ' + e.message;
+			e.message = 'Foxtrick ERROR: ' + e.message + '\n' + e.stack + '\n';
 			Services.console.logStringMessage(e);
 		}
 		// loading Foxtrick into window.Foxtrick
@@ -274,7 +274,7 @@ FoxtrickFirefox.prototype = {
 				Services.scriptloader.loadSubScript(PATH + this.scripts[i], this.owner, 'UTF-8');
 			}
 			catch (e) {
-				e.message = 'Foxtrick ERROR: ' + e.message;
+				e.message = 'Foxtrick ERROR: ' + e.message + '\n' + e.stack + '\n';
 				Services.console.logStringMessage(e);
 			}
 		}
@@ -447,8 +447,10 @@ function loadIntoWindow(window) {
 		window.Foxtrick.init();
 	}
 	catch (e) {
-		dump('FoxTrick error: ' + e + '\n');
-		Cu.reportError('FoxTrick error: ' + e);
+		let msg = 'FoxTrick error: ' + e + '\n' + e.stack + '\n';
+		dump(msg);
+		Services.console.logStringMessage(msg);
+		Cu.reportError(msg);
 	}
 }
 
