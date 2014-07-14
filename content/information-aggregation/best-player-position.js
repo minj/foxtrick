@@ -34,7 +34,11 @@ Foxtrick.modules['BestPlayerPosition'] = {
 
 		}
 		else if (Foxtrick.isPage(doc, 'transferSearchResult')) {
-			var players = Foxtrick.Pages.TransferSearchResults.getPlayerList(doc);
+			var list = Foxtrick.Pages.TransferSearchResults.getPlayerList(doc);
+			// filter out players with out skill data (after deadline)
+			var players = Foxtrick.filter(function(p) {
+				return typeof p.bestPositionValue !== 'undefined';
+			}, list);
 			var tables = doc.querySelectorAll('#mainBody .transferPlayerSkills table');
 			for (var i = 0; i < tables.length; ++i) {
 				var table = tables[i];
@@ -47,7 +51,8 @@ Foxtrick.modules['BestPlayerPosition'] = {
 				title.appendChild(b);
 				var bestPositionCell = row.insertCell(1);
 				bestPositionCell.colSpan = '2';
-				bestPositionCell.textContent = players[i].bestPositionLong;
+				bestPositionCell.textContent = players[i].bestPositionLong +
+					' (' + players[i].bestPositionValue.toFixed(1) + ')';
 			}
 		}
 		else if (Foxtrick.Pages.Players.isPlayersPage(doc) &&
