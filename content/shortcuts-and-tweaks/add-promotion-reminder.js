@@ -28,7 +28,7 @@ Foxtrick.modules['AddPromotionReminder'] = {
 
 				var button = Foxtrick.createFeaturedElement(doc, this, 'img');
 				button.src = '/Img/Icons/transparent.gif';
-				button.title = button.alt = Foxtrick.L10n.getString('AddPromoteReminder.button');
+				button.title = button.alt = Foxtrick.L10n.getString('AddPromotionReminder.button');
 
 				link.appendChild(button);
 
@@ -43,7 +43,7 @@ Foxtrick.modules['AddPromotionReminder'] = {
 				var y = alarm.getFullYear();
 				var promoteday = y + '-' + m + '-' + d + '+00%3a00%3a00';
 
-				var promotetext = Foxtrick.L10n.getString('AddPromoteReminder.text');
+				var promotetext = Foxtrick.L10n.getString('AddPromotionReminder.text');
 				promotetext = promotetext.replace('%s', '[youthplayerid=' + playerID + ']');
 				var reminderlink = '/MyHattrick/Reminders/default.aspx?sendDate=' + promoteday +
 					'&reminderText=' + encodeURIComponent(promotetext);
