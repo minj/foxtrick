@@ -325,7 +325,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 						Foxtrick.Pages.Player.getPlayer(doc, missing[j].id, makeCallback(j));
 					}
 				}
-			}, { teamid: teamid, current_squad: true, includeMatchInfo: true, isYouth: isYouth });
+			}, { teamid: teamid, current_squad: true, isYouth: isYouth });
 		};
 
 		addSpecialtiesByTeamId(homeTeamId, homePlayerLinks);
@@ -388,13 +388,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 					}
 				}
 				Foxtrick.startListenToChange(doc);
-			}, {
-				teamid: teamid,
-				current_squad: true,
-				includeMatchInfo: true,
-				NT: NT,
-				isYouth: isYouth
-			});
+			}, { teamid: teamid, current_squad: true, NT: NT, isYouth: isYouth });
 		};
 
 		addMissingByTeamId(homeTeamId, homePlayerLinks);
