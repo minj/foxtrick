@@ -401,7 +401,7 @@ Foxtrick.modules['MatchLineupFixes'] = {
 			// the conversion is handled in HT classes exclusively
 			// therefore we'll need some hack-work
 			if (SourceSystem == 'HTOIntegrated') {
-				var HTOPlayers = Foxtrick.Pages.Match.parsePlayerScript(doc);
+				var HTOPlayers = Foxtrick.Pages.Match.parsePlayerData(doc);
 				if (!HTOPlayers) {
 					Foxtrick.log('MatchLineupFixes: failed to fetch HTO info from the script tag');
 					return;
@@ -609,15 +609,11 @@ Foxtrick.modules['MatchLineupFixes'] = {
 		// there's only plaintext in orders tab
 		// let's add links
 		var addLinksInOrders = function() {
-			if (Foxtrick.Pages.Match.isYouth(doc))
-				// FIXME: no player script in youth
-				return;
-
 			var ordersTable = doc.querySelector('#ListPlayerOrders table');
 			if (!ordersTable)
 				return;
 
-			var playerData = Foxtrick.Pages.Match.parsePlayerScript(doc);
+			var playerData = Foxtrick.Pages.Match.parsePlayerData(doc);
 
 			if (!playerData || !playerData.length) {
 				Foxtrick.log('addLinksInOrders: failed to parse playerData');

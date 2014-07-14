@@ -355,23 +355,14 @@ Foxtrick.Pages.Match = {
 		if (link && typeof(func) == 'function')
 			func(link.parentNode.parentNode);
 	},
-	parsePlayerScript: function(doc) {
-		var scripts = doc.getElementsByTagName('script');
-		var regex = /ht\.matchAnalysis\.playerData\s*=\s*'([\s\S]+?)';/m;
+	parsePlayerData: function(doc) {
 		var playerData = null;
-		for (var i = 0; i < scripts.length; i++) {
-			if (regex.test(scripts[i].textContent)) {
-				var json = regex.exec(scripts[i].textContent)[1];
-				json = json.replace(/\\"(.*?)\\"(?=[:,}])/g, '"$1"');
-				try {
-					playerData = JSON.parse(json);
-				}
-				catch (e) {
-					Foxtrick.log('FAILED to parse player JSON', e);
-					return null;
-				}
-				break;
-			}
+		try {
+			var json = doc.querySelector('#matchdata [id$="lblPlayerData"]').textContent;
+			playerData = JSON.parse(json);
+		}
+		catch (e) {
+			Foxtrick.error('FAILED to parse player JSON', e);
 		}
 		return playerData;
 	},
