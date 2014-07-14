@@ -70,7 +70,7 @@ Foxtrick.Pages.Player.getAge = function(doc) {
 Foxtrick.Pages.Player.getName = function(doc) {
 	var name = null;
 	try {
-		var links = Foxtrick.Pages.Player.getBreadCrumbs(doc);
+		var links = Foxtrick.Pages.All.getBreadCrumbs(doc);
 		var player = Foxtrick.nth(function(link) {
 			return /PlayerID=\d+/i.test(link.href);
 		}, links);
@@ -316,7 +316,7 @@ Foxtrick.Pages.Player.isFreeAgent = function(doc) {
 Foxtrick.Pages.Player.getTeamName = function(doc) {
 	var name = null;
 	try {
-		var links = Foxtrick.Pages.Player.getBreadCrumbs(doc);
+		var links = Foxtrick.Pages.All.getBreadCrumbs(doc);
 		if (links.length >= 2)
 			name = links[0].textContent;
 	}
