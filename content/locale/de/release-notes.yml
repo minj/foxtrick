@@ -107,7 +107,7 @@ de:
       note_11: Hunderte andere Bugfixes für durch Hattrickänderungen verursachte Probleme.
     0.12.0:
       note_0: '<header>Eine Menge neue Übersetzungen von unseren geliebten <linkCrowdin>Crowdin</linkCrowdin> Nutzern. Du kannst übrigens auch ganz einfach mithelfen!</header>'
-      note_1: |
+      note_1: |2
         NEU: <module>MatchLineupTweaks</module>: Ersetzt die numerisch Dargestellten Stern durch eine, der ursprünglichen Ansicht ähnliche.
          Fügt Zähler für Kondition und Sterne hinzu. Zeigt Spezialfähigkeiten für alle Spieler und fügt den Teamnamen zum Aufstellungfeld hinzu. Spielergesichter können wieder angezeigt werden und für jeden Event werden die beteiligten Spieler hervorgehoben.
       note_2: Viele Bugfixes für unterschiedliche Module, die nicht mehr funktionierten nachdem der neue Hattrick-Shop eingeführt wurde.

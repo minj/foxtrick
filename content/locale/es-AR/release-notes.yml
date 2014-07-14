@@ -8,6 +8,7 @@ es-AR:
     0.14.0:
       important: '<header>Anuncios importantes</header>'
       crowdin: '<header>Muchas actualizaciones en las traducciones de nuestros colaboradores mediante <linkCrowdin> crowdin</linkCrowdin>. Usted también puede ayudarnos!</header>'
+      browsers: El soporte para Ópera 12 fue discontinuado. Firefox 26 y Safari 6 son ahora las versiones mínimas requeridas para ejecutar Foxtrick.
       twitter: 'Puedes seguir <linkTwitter>Foxtrick on Twitter</linkTwitter> para recibir las últimas noticias, actualizaciones y anuncios.'
       new: '<header>Nuevos módulos</header>'
       bugs: '<header>Corrección de errores</header>'
