@@ -274,7 +274,8 @@ FoxtrickFirefox.prototype = {
 				Services.scriptloader.loadSubScript(PATH + this.scripts[i], this.owner, 'UTF-8');
 			}
 			catch (e) {
-				e.message = 'Foxtrick ERROR: ' + e.message + '\n' + e.stack + '\n';
+				e.message = 'Foxtrick ERROR: ' + this.scripts[i] + ': ' + e.message + '\n' +
+					e.stack + '\n';
 				Services.console.logStringMessage(e);
 			}
 		}
