@@ -123,13 +123,13 @@ function startup(aData, aReason) {
 		win.Foxtrick.reloadAll();
 	}
 
+	// Load into any new windows
+	Services.wm.addListener(windowListener);
+
 	if (!isFennecNative()) {
 		// this needs to run after existed windows were loaded into
 		initAustralisUI();
 	}
-
-	// Load into any new windows
-	Services.wm.addListener(windowListener);
 }
 
 function shutdown(aData, aReason) {
