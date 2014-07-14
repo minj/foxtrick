@@ -153,7 +153,7 @@ Foxtrick.Pages.All.isLoggedIn = function(doc) {
  * @return {HTMLElement}
  */
 Foxtrick.Pages.All.getMainHeader = function(doc) {
-	return doc.querySelector('.mainRegular h2');
+	return doc.querySelector('.mainRegular h2, .mainWide h2');
 };
 
 /**
