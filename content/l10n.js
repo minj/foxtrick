@@ -405,6 +405,39 @@ Foxtrick.L10n = {
 		return number;
 	},
 
+	getPositionTypeById: function(id) {
+		var type = null;
+		var idToPosition = {
+			100: 'Keeper',
+			101: 'WingBack',
+			102: 'CentralDefender',
+			103: 'CentralDefender',
+			104: 'CentralDefender',
+			105: 'WingBack',
+			106: 'Winger',
+			107: 'InnerMidfield',
+			108: 'InnerMidfield',
+			109: 'InnerMidfield',
+			110: 'Winger',
+			111: 'Forward',
+			112: 'Forward',
+			113: 'Forward',
+			114: 'Substitution (Keeper)',
+			115: 'Substitution (Defender)',
+			116: 'InnerMidfield',
+			117: 'Substitution (Winger)',
+			118: 'Substitution (Forward)',
+			17: 'Set pieces',
+			18: 'Captain',
+			19: 'Replaced Player #1',
+			20: 'Replaced Player #2',
+			21: 'Replaced Player #3',
+		};
+		if (id in idToPosition)
+			type = idToPosition[id];
+		return type;
+	},
+
 	getPositionByType: function(val) {
 		var lang = Foxtrick.Prefs.getString('htLanguage');
 		var category = Foxtrick.L10n.htLanguagesJSON[lang].language['positions'];
@@ -424,6 +457,20 @@ Foxtrick.L10n = {
 			}
 		}
 		return text;
+	},
+	getPositionType: function(pos) {
+		var type = null;
+		var lang = Foxtrick.Prefs.getString('htLanguage');
+		var category = Foxtrick.L10n.htLanguagesJSON[lang].language['positions'];
+		try {
+			type = Foxtrick.nth(function(item) {
+				return item.value == pos;
+			}, category).type;
+		}
+		catch (e) {
+			Foxtrick.log(e);
+		}
+		return type;
 	},
 
 };
