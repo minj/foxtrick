@@ -49,13 +49,10 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 			if (hotlistLink)
 				player.hotlistLink = hotlistLink.cloneNode(true);
 
-			var htms = playerInfo.querySelector('.ft-htms-points span');
+			var htms = playerInfo.querySelector('.ft-htms-points');
 			if (htms) {
-				var matched = htms.textContent.match(/(\d+).+?(\d+)/);
-				if (matched) {
-					player.htmsAbility = parseInt(matched[1], 10);
-					player.htmsPotential = parseInt(matched[2], 10);
-				}
+				player.htmsAbility = parseInt(htms.getAttribute('data-htms-ability'), 10);
+				player.htmsPotential = parseInt(htms.getAttribute('data-htms-potential'), 10);
 			}
 
 			player.redCard = 0;
