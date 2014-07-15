@@ -88,7 +88,7 @@ Foxtrick.Pages.Player.getName = function(doc) {
 /**
  * Get player ID
  * @param  {document} doc
- * @return {Inteber}
+ * @return {Integer}
  */
 Foxtrick.Pages.Player.getId = function(doc) {
 	var param = this.isSeniorPlayerPage(doc) ? 'playerId' : 'youthPlayerId';
