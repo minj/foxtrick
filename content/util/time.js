@@ -52,7 +52,7 @@ Foxtrick.util.time = {
 		return { season: season, week: week };
 	},
 
-	getDateFromText: function(text, dateFormat) {
+	getDateFromText: function(text, dateFormat, noTime) {
 		/*
 			Returns Date object for given text.
 			Text could be like dd-mm-yyyy, mm-dd-yyyy or yyyy-mm-dd
@@ -73,7 +73,7 @@ Foxtrick.util.time = {
 				var reShort = /(\d{4})\D(\d{1,2})\D(\d{1,2})/;
 			}
 			var matches;
-			if (text.match(reLong))
+			if (text.match(reLong) && !noTime)
 				matches = text.match(reLong);
 			else if (text.match(reShort))
 				matches = text.match(reShort);
