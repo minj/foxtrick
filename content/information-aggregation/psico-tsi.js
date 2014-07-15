@@ -616,6 +616,8 @@ Foxtrick.modules['PsicoTSI'] = {
 		}
 
 		al_div.appendChild(psicotsi_info);
+		al_div.setAttribute('data-psico-skill', mainSkillText);
+		al_div.setAttribute('data-psico-avg', formAvg);
 		entryPoint.appendChild(al_div);
 	}
 };

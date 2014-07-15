@@ -106,22 +106,6 @@ Foxtrick.modules['SkillTable'] = {
 					var lastMatchDate = dates.lastMatchDate;
 					var secondLastMatchDate = dates.secondLastMatchDate;
 				}
-				if (fullType.type == 'transfer') {
-					allPlayerInfo = doc.getElementsByClassName('transferPlayerInfo');
-					for (i = 0; i < allPlayerInfo.length; ++i) {
-						pid = Foxtrick.Pages.Players.getPlayerId(allPlayerInfo[i]);
-						var divs = allPlayerInfo[i].getElementsByTagName('div');
-						var psicoTSIs = allPlayerInfo[i].textContent
-							.match(/\[[^\[]+=[^\[]+\]=(\d+\.\d+)/g);
-						if (psicoTSIs && psicoTSIs.length > 0) {
-							// second last is average form
-							var psicoTSI = psicoTSIs[psicoTSIs.length - 2].match(/\d+\.\d+/g);
-							Foxtrick.map(function(n) {
-								if (n.id == pid) n.psicoTSI = psicoTSI;
-							}, playerList);
-						}
-					}
-				}
 
 				// functions used to attach data to table cell
 				var category = function(cell, cat) {

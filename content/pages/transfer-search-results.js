@@ -149,6 +149,14 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 			}
 			player.skills = skills;
 
+			var psico = playerInfo.querySelector('.ft-psico');
+			if (psico) {
+				var psicoTSI = psico.getAttribute('data-psico-avg');
+				var psicoTitle = psico.getAttribute('data-psico-skill');
+				player.psicoTSI = psicoTSI;
+				player.psicoTitle = psicoTitle;
+			}
+
 			var spec = Foxtrick.L10n.getEnglishSpeciality(player.speciality);
 			var contributions = Foxtrick.Pages.Player.getContributions(skills, spec);
 			for (var name in contributions)
