@@ -29,7 +29,7 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 	var players = doc.getElementsByClassName('transferPlayerInfo');
 
 	return Foxtrick.map(function(playerInfo) {
-		var player = {};
+		var player = { playerNode: playerInfo };
 
 		// return player whenever we encounter a problem
 		try {
@@ -130,10 +130,10 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 
 			// right skill table - skills
 			var skillTable = playerInfo.querySelector('.transferPlayerSkills table');
-			var skills = Foxtrick.toArray(skillTable.getElementsByTagName('a'));
+			var skillLinks = Foxtrick.toArray(skillTable.getElementsByTagName('a'));
 			if (skillTable.querySelector('.findSimilarPlayers'))
 				// similar player feature link
-				skills.shift();
+				skillLinks.shift();
 
 			var skillOrder = [
 				'stamina',
@@ -145,13 +145,15 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 				'scoring',
 				'setPieces'
 			];
-			var fullSkills = {};
+			var skills = {};
 			for (var i = 0; i < skillOrder.length; ++i) {
-				player[skillOrder[i]] = Foxtrick.util.id.getSkillLevelFromLink(skills[i]);
-				fullSkills[skillOrder[i]] = player[skillOrder[i]];
+				player[skillOrder[i]] = Foxtrick.util.id.getSkillLevelFromLink(skillLinks[i]);
+				skills[skillOrder[i]] = player[skillOrder[i]];
 			}
+			player.skills = skills;
+
 			var spec = Foxtrick.L10n.getEnglishSpeciality(player.speciality);
-			var contributions = Foxtrick.Pages.Player.getContributions(fullSkills, spec);
+			var contributions = Foxtrick.Pages.Player.getContributions(skills, spec);
 			for (var name in contributions)
 				player[name] = contributions[name];
 
