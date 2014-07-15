@@ -137,7 +137,9 @@ Foxtrick.modules['YouthSkills'] = {
 					minLink.textContent = Foxtrick.L10n.getTextByLevel(level);
 					node.appendChild(minLink);
 				} else {
-					var minText = doc.createTextNode(UNKNOWNLEVELSYMBOL);
+					var minText = doc.createElement('span');
+					minText.className = 'shy';
+					minText.textContent = UNKNOWNLEVELSYMBOL;
 					node.appendChild(minText);
 				}
 			};
