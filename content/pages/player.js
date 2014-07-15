@@ -568,6 +568,7 @@ Foxtrick.Pages.Player.parseYouthSkills = function(table) {
 	};
 	var found = true;
 	var skills = {}, skillTexts = {}, skillNames = {};
+
 	var parseYouthBars = function(table) {
 		var order = skillMap.youth;
 		var rows = table.rows;
@@ -576,9 +577,18 @@ Foxtrick.Pages.Player.parseYouthSkills = function(table) {
 			return;
 		}
 		for (var i = 0; i < order.length; ++i) {
+			var textCell = rows[i].cells[0];
+			var skillCell = rows[i].cells[1];
 			var skill = skills[order[i]] = {};
-			var imgs = rows[i].getElementsByTagName('img');
-			if (imgs.length) {
+			var imgs = skillCell.getElementsByTagName('img');
+			var HYSkills = skillCell.querySelector('.ft-youthSkillBars');
+			if (HYSkills) {
+				var info = HYSkills.title.split('/');
+				skill.current = parseFloat(info[0]) || 0;
+				skill.max = parseFloat(info[1]) || 0;
+				skill.maxed = HYSkills.querySelector('.ft-skillbar-maxed').hasAttribute('style');
+			}
+			else if (imgs.length) {
 				// when max is unknown first title is empty
 				// second title is 'n/?'
 				// when current is unknown first title is 'm/8'
@@ -607,8 +617,6 @@ Foxtrick.Pages.Player.parseYouthSkills = function(table) {
 			}
 			var currentText = '';
 			var maxText = '';
-			var textCell = rows[i].cells[0];
-			var skillCell = rows[i].cells[1];
 			var bar = skillCell.getElementsByClassName('youthSkillBar')[0];
 			if (bar) {
 				// bar is present
