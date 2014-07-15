@@ -203,6 +203,25 @@ Foxtrick.util.api = {
 			doc.location.reload();
 		} catch (e) { Foxtrick.log(e); }
 	},
+	/**
+	 * Add helper functions node(), text() and num()
+	 * for easier data access.
+	 * @param {document} xml
+	 */
+	addHelpers: function(xml) {
+		if (!xml || typeof xml !== 'object')
+			return;
+		xml.node = function(tagName, container) {
+			container = container || this;
+			return container.getElementsByTagName(tagName)[0];
+		};
+		xml.text = function(tagName, container) {
+			return this.node(tagName, container).textContent;
+		};
+		xml.num = function(tagName, container) {
+			return parseInt(this.text(tagName, container), 10);
+		};
+	},
 
 	// options: { cache:'session' or 'default' or timestamp }
 	// session: take xml from this session. xml doesn't expire
@@ -217,6 +236,7 @@ Foxtrick.util.api = {
 	retrieve: function(doc, parameters, options, callback) {
 		var safeCallback = (function(parameters) {
 			return function() {
+				Foxtrick.util.api.addHelpers(arguments[0]);
 				try {
 					callback.apply(this, arguments);
 				}
@@ -422,6 +442,7 @@ Foxtrick.util.api = {
 		var processSingle = function(last_response, errorText) {
 			// collect responses
 			if (index !== 0) {
+				Foxtrick.util.api.addHelpers(last_response);
 				responses.push(last_response);
 				errors.push(errorText);
 			}

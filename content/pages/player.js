@@ -620,36 +620,25 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerid, callback) {
 			return;
 		}
 
-		var node = function(tagName) {
-			return xml.getElementsByTagName(tagName)[0];
-		};
-		var text = function(tagName) {
-			return node(tagName).textContent;
-		};
-		var num = function(tagName) {
-			return parseInt(text(tagName), 10);
-		};
-
-
 		var player = {};
-		player.PlayerID = num('PlayerID');
-		player.LastName = text('LastName');
-		player.FirstName = text('FirstName');
-		player.NickName = text('NickName');
-		if (node('PlayerNumber'))
-			player.PlayerNumber = num('PlayerNumber');
-		player.Age = num('Age');
-		player.AgeDays = num('AgeDays');
-		player.NextBirthDay = text('NextBirthDay');
-		player.PlayerForm = num('PlayerForm');
-		player.Cards = num('Cards');
-		player.InjuryLevel = num('InjuryLevel');
-		if (node('Statement'))
-			player.Statement = text('Statement');
-		if (node('PlayerLanguage'))
-			player.PlayerLanguage = text('PlayerLanguage');
-		if (node('PlayerLanguageID'))
-			player.PlayerLanguageID = num('PlayerLanguageID');
+		player.PlayerID = xml.num('PlayerID');
+		player.LastName = xml.text('LastName');
+		player.FirstName = xml.text('FirstName');
+		player.NickName = xml.text('NickName');
+		if (xml.node('PlayerNumber'))
+			player.PlayerNumber = xml.num('PlayerNumber');
+		player.Age = xml.num('Age');
+		player.AgeDays = xml.num('AgeDays');
+		player.NextBirthDay = xml.text('NextBirthDay');
+		player.PlayerForm = xml.num('PlayerForm');
+		player.Cards = xml.num('Cards');
+		player.InjuryLevel = xml.num('InjuryLevel');
+		if (xml.node('Statement'))
+			player.Statement = xml.text('Statement');
+		if (xml.node('PlayerLanguage'))
+			player.PlayerLanguage = xml.text('PlayerLanguage');
+		if (xml.node('PlayerLanguageID'))
+			player.PlayerLanguageID = xml.num('PlayerLanguageID');
 /*
   <TrainerData />
   <OwningTeam>
@@ -657,29 +646,29 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerid, callback) {
   <TeamName>FC Karbrüggen</TeamName>
   <LeagueID>3</LeagueID>
 </OwningTeam>*/
-		player.Salary = num('Salary');
-		player.IsAbroad = text('IsAbroad');
-		player.Agreeability = num('Agreeability');
-		player.Aggressiveness = num('Aggressiveness');
-		player.Honesty = num('Honesty');
-		player.Experience = num('Experience');
-		player.Loyalty = num('Loyalty');
-		player.MotherClubBonus = text('MotherClubBonus');
-		player.Leadership = num('Leadership');
-		player.Specialty = num('Specialty');
-		player.NativeCountryID = num('NativeCountryID');
-		player.NativeLeagueID = num('NativeLeagueID');
-		player.NativeLeagueName = text('NativeLeagueName');
-		player.TSI = num('TSI');
+		player.Salary = xml.num('Salary');
+		player.IsAbroad = xml.text('IsAbroad');
+		player.Agreeability = xml.num('Agreeability');
+		player.Aggressiveness = xml.num('Aggressiveness');
+		player.Honesty = xml.num('Honesty');
+		player.Experience = xml.num('Experience');
+		player.Loyalty = xml.num('Loyalty');
+		player.MotherClubBonus = xml.text('MotherClubBonus');
+		player.Leadership = xml.num('Leadership');
+		player.Specialty = xml.num('Specialty');
+		player.NativeCountryID = xml.num('NativeCountryID');
+		player.NativeLeagueID = xml.num('NativeLeagueID');
+		player.NativeLeagueName = xml.text('NativeLeagueName');
+		player.TSI = xml.num('TSI');
 //  <PlayerSkills>
-		player.StaminaSkill = num('StaminaSkill');
-		player.Caps = num('Caps');
-		player.CapsU20 = num('CapsU20');
-		player.CareerGoals = num('CareerGoals');
-		player.CareerHattricks = num('CareerHattricks');
-		player.LeagueGoals = num('LeagueGoals');
-		player.LeagueGoals = num('LeagueGoals');
-		player.TransferListed = text('TransferListed');
+		player.StaminaSkill = xml.num('StaminaSkill');
+		player.Caps = xml.num('Caps');
+		player.CapsU20 = xml.num('CapsU20');
+		player.CareerGoals = xml.num('CareerGoals');
+		player.CareerHattricks = xml.num('CareerHattricks');
+		player.LeagueGoals = xml.num('LeagueGoals');
+		player.LeagueGoals = xml.num('LeagueGoals');
+		player.TransferListed = xml.text('TransferListed');
 // LastMatch
 		callback(player);
 	});
