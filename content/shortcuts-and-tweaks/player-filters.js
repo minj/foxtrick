@@ -88,12 +88,9 @@ Foxtrick.modules['PlayerFilters'] = {
 
 				var lastMatch = 0;
 				for (var i = 0; i < playerList.length; ++i) {
-					if (playerList[i].lastMatch) {
-						var matchDate = Foxtrick.util.time
-							.getDateFromText(playerList[i].lastMatch.textContent).getTime();
-						if (matchDate > lastMatch) {
-							lastMatch = matchDate;
-						}
+					var matchDate = playerList[i].lastMatchDate;
+					if (matchDate && matchDate > lastMatch) {
+						lastMatch = matchDate;
 					}
 				}
 
@@ -127,10 +124,8 @@ Foxtrick.modules['PlayerFilters'] = {
 						                           'speciality-' + Foxtrick.L10n
 						                           .getEnglishSpeciality(player.speciality));
 					}
-					if (Foxtrick.Pages.Players.isPropertyInList(playerList, 'lastMatch')) {
-						if (player.lastMatch
-							&& (lastMatch === Foxtrick.util.time.getDateFromText(
-							    player.lastMatch.textContent).getTime())) {
+					if (Foxtrick.Pages.Players.isPropertyInList(playerList, 'lastMatchDate')) {
+						if (lastMatch === player.lastMatchDate) {
 							allPlayers[i].setAttribute('played-latest', 'true');
 						}
 						else {

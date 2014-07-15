@@ -298,10 +298,10 @@ Foxtrick.modules['SkillTable'] = {
 					}
 					cell.setAttribute('index', spec);
 				};
-				var lastMatch = function(cell, last) {
+				var lastMatch = function(cell, p) {
+					var last = p.lastMatch;
 					if (last) {
-						var matchDay = Foxtrick.util.time
-							.getDateFromText(last.textContent).getTime();
+						var matchDay = p.lastMatchDate.getTime();
 						cell.appendChild(last);
 						cell.setAttribute('index', matchDay);
 						if (matchDay == lastMatchDate) {
@@ -429,7 +429,8 @@ Foxtrick.modules['SkillTable'] = {
 					{ name: 'Agreeability', property: 'agreeability', method: skill },
 					{ name: 'Aggressiveness', property: 'aggressiveness', method: skill },
 					{ name: 'Honesty', property: 'honesty', method: skill },
-					{ name: 'Last_match', property: 'lastMatch', method: lastMatch },
+					{ name: 'Last_match', properties: ['lastMatch', 'lastMatchDate'],
+						method: lastMatch },
 					{ name: 'Last_stars', property: 'lastRating',
 						img: '/Img/Matches/star_yellow.png' },
 					{ name: 'Last_position', property: 'lastPosition',
