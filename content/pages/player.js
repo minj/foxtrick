@@ -419,6 +419,34 @@ Foxtrick.Pages.Player.getSkillsWithText = function(doc) {
 	// 		// ...
 	// 	}
 	// }
+
+	try {
+		var skillTable = doc.querySelector('.mainBox table');
+		if (skillTable && this.isPage(doc)) {
+			if (this.isSeniorPlayerPage(doc)) {
+				return this.parseSeniorSkills(skillTable);
+			}
+			else
+				return this.parseYouthSkills(skillTable);
+		}
+	}
+	catch (e) {
+		Foxtrick.log(e);
+		return null;
+	}
+};
+
+/**
+ * Parse senior player skills from skill table.
+ * Returns {values, texts, names} where texts and names are
+ * localized skill levels and names respectively.
+-	 * Each field is a skill map:
+ * {keeper, defending, playmaking, winger, passing, scoring, setPieces}.
+ * Texts may contain level numbers, e.g. 'weak (3)'.'
+ * @param  {HTMLTableElement} table
+ * @return {Object}
+ */
+Foxtrick.Pages.Player.parseSeniorSkills = function(table) {
 	var skillMap = {
 		senior_bars: [
 			'keeper',
@@ -439,21 +467,12 @@ Foxtrick.Pages.Player.getSkillsWithText = function(doc) {
 			'scoring',
 			'setPieces',
 		],
-		youth: [
-			'keeper',
-			'defending',
-			'playmaking',
-			'winger',
-			'passing',
-			'scoring',
-			'setPieces',
-		],
 	};
 	var found = true, regE = /ll=(\d+)/i;
 	var skills = {}, skillTexts = {}, skillNames = {};
-	var parseSeniorBars = function() {
+	var parseSeniorBars = function(table) {
 		var order = skillMap.senior_bars;
-		var rows = skillTable.rows;
+		var rows = table.rows;
 		for (var i = 0; i < order.length; ++i) {
 			var skillLink = rows[i].getElementsByTagName('a')[0];
 			if (!regE.test(skillLink.href)) {
@@ -469,9 +488,9 @@ Foxtrick.Pages.Player.getSkillsWithText = function(doc) {
 			skillNames[order[i]] = skillName;
 		}
 	};
-	var parseSeniorTable = function() {
+	var parseSeniorTable = function(table) {
 		var order = skillMap.senior;
-		var cells = skillTable.getElementsByTagName('td');
+		var cells = table.getElementsByTagName('td');
 		for (var i = 0; i < order.length; ++i) {
 			var cell = cells[2 * i + 1];
 			if (!cell) {
@@ -492,9 +511,66 @@ Foxtrick.Pages.Player.getSkillsWithText = function(doc) {
 			skillNames[order[i]] = skillName;
 		}
 	};
-	var parseYouthBars = function() {
+	try {
+		var hasBars = table.querySelector('.percentImage, .ft-percentImage');
+		if (hasBars)
+			parseSeniorBars(table);
+		else
+			parseSeniorTable(table);
+	}
+	catch (e) {
+		Foxtrick.log(e);
+		return null;
+	}
+
+	return found ? { values: skills, texts: skillTexts, names: skillNames } : null;
+};
+
+/**
+ * Parse youth player skills from skill table.
+ * Returns {values, texts, names} where texts and names are
+ * localized skill levels and names respectively.
+ * Each field is a skill map:
+ * {keeper, defending, playmaking, winger, passing, scoring, setPieces}.
+ * Each value is {current, max: Integer, maxed: Boolean}
+ * or an empty object if no data is known.
+ * Each text is {current, max: String}.
+ * Texts may contain level numbers, e.g. 'weak (3)'.'
+ * @param  {HTMLTableElement} table
+ * @return {Object}
+ */
+Foxtrick.Pages.Player.parseYouthSkills = function(table) {
+	// youth example
+	// {
+	// 	values: {
+	// 		keeper: { current: 4, max: 7, maxed: false },
+	// 		// ...
+	// 	},
+	// 	texts: {
+	// 		keeper: { current: 'weak (3)', max: 'solid (7)' },
+	// 		// ...
+	// 	},
+	// 	names: {
+	// 		keeper: 'Keeper',
+	// 		// ...
+	// 	}
+	// }
+	var skillMap = {
+		youth: [
+			'keeper',
+			'defending',
+			'playmaking',
+			'winger',
+			'passing',
+			'scoring',
+			'setPieces',
+		],
+	};
+	var found = true;
+	var skills = {}, skillTexts = {}, skillNames = {};
+	var parseYouthBars = function(table) {
 		var order = skillMap.youth;
-		var rows = skillTable.rows;
+		var rows = table.rows;
 		if (rows.length < order.length) {
 			found = false;
 			return;
@@ -551,29 +627,14 @@ Foxtrick.Pages.Player.getSkillsWithText = function(doc) {
 			skillNames[order[i]] = textCell.textContent.replace(':', '').trim();
 		}
 	};
-
 	try {
-		var skillTable = doc.querySelector('.mainBox table');
-		if (skillTable && this.isPage(doc)) {
-			if (this.isSeniorPlayerPage(doc)) {
-				var hasBars = skillTable.querySelector('.percentImage, .ft-percentImage');
-				if (hasBars)
-					parseSeniorBars();
-				else
-					parseSeniorTable();
-			}
-			else
-				parseYouthBars();
-		}
-		else
-			found = false;
-
-		return found ? { values: skills, texts: skillTexts, names: skillNames } : null;
+		parseYouthBars(table);
 	}
 	catch (e) {
 		Foxtrick.log(e);
 		return null;
 	}
+	return found ? { values: skills, texts: skillTexts, names: skillNames } : null;
 };
 
 /**
