@@ -405,6 +405,26 @@ Foxtrick.L10n = {
 		return number;
 	},
 
+	getCategoryId: function(cat) {
+		var categories = {
+			GK: 1,
+			WB: 2,
+			CD: 3,
+			W: 4,
+			IM: 5,
+			FW: 6,
+			S: 7,
+			R: 8,
+			E1: 9,
+			E2: 10
+		};
+		return categories[cat];
+	},
+	getCategoryById: function(id) {
+		var categories = [null, 'GK', 'WB', 'CD', 'W', 'IM', 'FW', 'S', 'R', 'E1', 'E2'];
+		return categories[id];
+	},
+
 	getPositionTypeById: function(id) {
 		var type = null;
 		var idToPosition = {
