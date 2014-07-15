@@ -365,22 +365,28 @@ Foxtrick.L10n = {
 		}
 	},
 
-	getSpecialityFromNumber: function(number) {
+	getEnglishSpecialityFromNumber: function(number) {
 		var specs = {
-			0: '', 1: 'Technical', 2: 'Quick', 3: 'Powerful', 4: 'Unpredictable',
-			5: 'Head', 6: 'Regainer'
+			0: '',
+			1: 'Technical',
+			2: 'Quick',
+			3: 'Powerful',
+			4: 'Unpredictable',
+			5: 'Head',
+			6: 'Regainer'
 		};
 		var spec = specs[number];
-		try {
-			var lang = Foxtrick.Prefs.getString('htLanguage');
-			var category = Foxtrick.L10n.htLanguagesJSON[lang].language['specialties'];
-			spec = Foxtrick.nth(function(item) {
-				return item.type == spec;
-			}, category).value;
-		}
-		catch (e) {
-			Foxtrick.log(e);
-		}
+		return spec;
+	},
+	getSpecialityFromNumber: function(number) {
+		var spec = this.getEnglishSpecialityFromNumber(number);
+		var lang = Foxtrick.Prefs.getString('htLanguage');
+		var category = Foxtrick.L10n.htLanguagesJSON[lang].language['specialties'];
+		var found = Foxtrick.nth(function(item) {
+			return item.type == spec;
+		}, category);
+		if (found)
+			spec = found.value;
 		return spec;
 	},
 
@@ -389,8 +395,13 @@ Foxtrick.L10n = {
 			return 0;
 		var engSpec = this.getEnglishSpeciality(speciality);
 		var specs = {
-			0: '', 1: 'Technical', 2: 'Quick', 3: 'Powerful', 4: 'Unpredictable',
-			5: 'Head', 6: 'Regainer'
+			0: '',
+			1: 'Technical',
+			2: 'Quick',
+			3: 'Powerful',
+			4: 'Unpredictable',
+			5: 'Head',
+			6: 'Regainer'
 		};
 		var number = 0;
 		var n;
