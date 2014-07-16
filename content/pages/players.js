@@ -132,6 +132,9 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 			var num = function(nodeName) {
 				return xml.num(nodeName, playerNode);
 			};
+			var money = function(nodeName) {
+				return xml.money(nodeName, playerNode);
+			};
 			var node = function(nodeName) {
 				return xml.node(nodeName, playerNode);
 			};
@@ -309,8 +312,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				}
 				// custom fields
 				if (node('Salary')) {
-					// from krone to € to user-defined
-					player.salary = Math.floor(num('Salary') / (10 * currencyRate));
+					player.salary = money('Salary');
 				}
 				if (node('Age') && node('AgeDays')) {
 					var age = {};
