@@ -282,19 +282,19 @@ Foxtrick.modules['PlayerFilters'] = {
 				if (xmls) {
 					for (var i = 0; i < xmls.length; ++i) {
 						var xml = xmls[i];
-						var errorText = error[i];
+						var errorText = errors[i];
 						if (!xml || errorText) {
 							Foxtrick.log('No XML in batchRetrieve', batchArgs[i], errorText);
 							continue;
 						}
-						var tid = Number(xml.getElementsByTagName('TeamID')[0].textContent);
-						var IsBot = xml.getElementsByTagName('IsBot')[0].textContent;
+						var tid = xml.num('TeamID');
+						var IsBot = xml.bool('IsBot');
 
 						// update playerInfo
 						Foxtrick.map(function(n) {
 							var currentClubId = Foxtrick.util.id.findTeamId(n);
 							if (tid == currentClubId)
-								n.setAttribute('active', (IsBot != 'True'));
+								n.setAttribute('active', !IsBot);
 						}, doc.getElementsByClassName('playerInfo'));
 
 						// update skilltable
@@ -303,7 +303,7 @@ Foxtrick.modules['PlayerFilters'] = {
 							Foxtrick.map(function(n) {
 								var currentClubId = Foxtrick.util.id.findTeamId(n);
 								if (tid == currentClubId)
-									n.setAttribute('active', (IsBot != 'True'));
+									n.setAttribute('active', !IsBot);
 							}, skilltable.rows);
 						}
 					}

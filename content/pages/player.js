@@ -716,13 +716,13 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerid, callback) {
   <LeagueID>3</LeagueID>
 </OwningTeam>*/
 		player.Salary = xml.num('Salary');
-		player.IsAbroad = xml.text('IsAbroad');
+		player.IsAbroad = xml.bool('IsAbroad');
 		player.Agreeability = xml.num('Agreeability');
 		player.Aggressiveness = xml.num('Aggressiveness');
 		player.Honesty = xml.num('Honesty');
 		player.Experience = xml.num('Experience');
 		player.Loyalty = xml.num('Loyalty');
-		player.MotherClubBonus = xml.text('MotherClubBonus');
+		player.MotherClubBonus = xml.bool('MotherClubBonus');
 		player.Leadership = xml.num('Leadership');
 		player.Specialty = xml.num('Specialty');
 		player.NativeCountryID = xml.num('NativeCountryID');
@@ -737,7 +737,7 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerid, callback) {
 		player.CareerHattricks = xml.num('CareerHattricks');
 		player.LeagueGoals = xml.num('LeagueGoals');
 		player.LeagueGoals = xml.num('LeagueGoals');
-		player.TransferListed = xml.text('TransferListed');
+		player.TransferListed = xml.bool('TransferListed');
 // LastMatch
 		callback(player);
 	});
@@ -760,10 +760,10 @@ Foxtrick.Pages.Player.getContributions = function(skills, spec) {
 		value += coefs[3] * skills.winger;
 		value += coefs[4] * skills.passing;
 		value += coefs[5] * skills.scoring;
-		
+
 		if(Foxtrick.Prefs.isModuleOptionEnabled('PlayerPositionsEvaluations', 'Normalised')) {
 				var normalisation = coefs[0] + coefs[1] + coefs[2] + coefs[3] + coefs[4] + coefs[5];
-				value /= normalisation;	
+				value /= normalisation;
 		}
 
 		return parseFloat(value.toFixed(2));

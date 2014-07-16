@@ -64,7 +64,7 @@ Foxtrick.util.matchView.fillMatches = function(container, xml, errorText) {
 
 	var teamId = xml.getElementsByTagName('TeamID')[0].textContent;
 	var teamName = xml.getElementsByTagName('TeamName')[0].textContent;
-	var isYouth = (xml.getElementsByTagName('IsYouth')[0].textContent == 'True');
+	var isYouth = xml.bool('IsYouth');
 	var matches = xml.getElementsByTagName('Match');
 	// add one played and one not played
 	var played = Foxtrick.filter(function(n) {

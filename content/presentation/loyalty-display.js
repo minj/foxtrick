@@ -43,7 +43,7 @@ Foxtrick.modules['LoyaltyDisplay'] = {
 		if (mcb === undefined)
 			mcb = player.motherClubBonus;
 
-		if (mcb === undefined || mcb == 'False') {
+		if (!mcb) {
 			if (loyalty !== undefined) {
 				//formula
 				// loyalty = 1 + sqrt(days/336)*19

@@ -141,6 +141,9 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 			var text = function(nodeName) {
 				return xml.text(nodeName, playerNode);
 			};
+			var bool = function(nodeName) {
+				return xml.bool(nodeName, playerNode);
+			};
 			var ifPositive = function(nodeName) {
 				var value = num(nodeName);
 				if (value > 0)
@@ -213,7 +216,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 						}
 
 						if (node('MotherClubBonus')) {
-							if (text('MotherClubBonus') == 'True') {
+							if (bool('MotherClubBonus')) {
 								player.motherClubBonus = doc.createElement('span');
 								player.motherClubBonus.textContent = '✔';
 								player.motherClubBonus.title =
