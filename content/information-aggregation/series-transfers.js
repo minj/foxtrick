@@ -139,9 +139,6 @@ Foxtrick.modules['SeriesTransfers'] = {
 		};
 
 		var processXMLs = function(xmls, errors, currencyRate) {
-			var getNumFromXML = function(field) {
-				return Number(player.getElementsByTagName(field)[0].textContent);
-			};
 			var injuryFunc = function(cell, injury) {
 				if (injury > -1) {
 					var img;
@@ -180,44 +177,45 @@ Foxtrick.modules['SeriesTransfers'] = {
 			};
 			var hasListedPlayers = false;
 			var oldestFile = Infinity;
-			for (var i = 0; i < xmls.length; ++i) {
-				var xml = xmls[i];
+			Foxtrick.forEach(function(xml, i) {
 				var errorText = errors[i];
 				if (!xml || errorText) {
 					Foxtrick.log('No XML in batchRetrieve', batchArgs[i], errorText);
-					continue;
+					return;
 				}
 				var fetchDate = xml.date('FetchedDate');
 				oldestFile = Math.min(fetchDate.valueOf(), oldestFile);
 
-				var tid = Number(xml.getElementsByTagName('TeamID')[0].textContent);
-				var teamName = xml.getElementsByTagName('TeamName')[0].textContent;
+				var tid = xml.num('TeamID');
+				var teamName = xml.text('TeamName');
 				var players = xml.getElementsByTagName('Player');
-				for (var p = 0; p < players.length; p++) {
-					var player = players[p];
-					var playerID = getNumFromXML('PlayerID');
-					var isTransferListed = getNumFromXML('TransferListed');
+				Foxtrick.forEach(function(player) {
+					var num = function(field) {
+						return xml.num(field, player);
+					};
+					var playerID = xml.num('PlayerID');
+					var isTransferListed = xml.num('TransferListed');
 
 					if (isTransferListed) {
 						hasListedPlayers = true;
 
-						var firstName = player.getElementsByTagName('FirstName')[0].textContent;
-						var lastName = player.getElementsByTagName('LastName')[0].textContent;
+						var firstName = xml.text('FirstName', player);
+						var lastName = xml.text('LastName', player);
 						var playerName = firstName + ' ' + lastName;
-						var playerTsi = getNumFromXML('TSI');
-						var specialty = getNumFromXML('Specialty');
-						var experience = getNumFromXML('Experience');
-						var age = getNumFromXML('Age');
-						var ageDays = getNumFromXML('AgeDays');
-						var form = getNumFromXML('PlayerForm');
-						var salary = Math.floor(getNumFromXML('Salary') / (10 * currencyRate));
-						// var agreeability = getNumFromXML('Agreeability');
-						// var aggressivness = getNumFromXML('Aggressiveness');
-						// var honesty = getNumFromXML('Honesty');
-						// var leadership = getNumFromXML('Leadership');
-						// var cards = getNumFromXML('Cards');
-						var countryID = getNumFromXML('CountryID');
-						var injuryLevel = getNumFromXML('InjuryLevel');
+						var playerTsi = num('TSI');
+						var specialty = num('Specialty');
+						var experience = num('Experience');
+						var age = num('Age');
+						var ageDays = num('AgeDays');
+						var form = num('PlayerForm');
+						var salary = xml.money('Salary', currencyRate, player);
+						// var agreeability = num('Agreeability');
+						// var aggressivness = num('Aggressiveness');
+						// var honesty = num('Honesty');
+						// var leadership = num('Leadership');
+						// var cards = num('Cards');
+						var countryID = num('CountryID');
+						var injuryLevel = num('InjuryLevel');
 
 						var tr = doc.createElement('tr');
 
@@ -266,8 +264,8 @@ Foxtrick.modules['SeriesTransfers'] = {
 
 						tbody.appendChild(tr);
 					}
-				}
-			}
+				}, players);
+			}, xmls);
 			Foxtrick.removeClass(table, 'hidden');
 			loading.parentNode.removeChild(loading);
 			if (!hasListedPlayers) {
