@@ -301,7 +301,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 					var fetched = Foxtrick.util.time.getDateFromText(date, 'yyyy-mm-dd', true);
 					var now = Foxtrick.util.time.getHtDate(doc);
 					var diffDays = -1;
-					while (fetched < now) {
+					while (fetched <= now) {
 						fetched = Foxtrick.util.time.addDaysToDate(fetched, 1);
 						++diffDays;
 					}
