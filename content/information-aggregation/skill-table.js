@@ -334,16 +334,14 @@ Foxtrick.modules['SkillTable'] = {
 					link.textContent = Foxtrick.XMLData.League[leagueId].LeagueName;
 					cell.appendChild(link);
 				};
-				var dateText = function(cell, deadline) {
-					var dateObj = Foxtrick.util.time.getDateFromText(deadline, 'yyyymmdd');
+				var dateDiff = function(cell, deadline) {
 					var htDate = Foxtrick.util.time.getHtDate(doc);
-					var joined_s = Math.floor((htDate.getTime() - dateObj.getTime()) / 1000); //Sec
-					var JoinedSpan = Foxtrick.util.time.timeDifferenceToElement(doc, joined_s,
-					                                                            true, false);
-					cell.appendChild(JoinedSpan);
-					cell.title = deadline;
+					var diff = Math.floor((htDate.getTime() - deadline.getTime()) / 1000); // Sec
+					var span = Foxtrick.util.time.timeDifferenceToElement(doc, diff, true, false);
+					cell.appendChild(span);
+					cell.title = Foxtrick.util.time.buildDate(deadline);
 					cell.setAttribute('class', 'align-left');
-					cell.setAttribute('index', joined_s);
+					cell.setAttribute('index', diff);
 				};
 				var dateCell = function(cell, deadline) {
 					deadline.setAttribute('index', Foxtrick.util.time
@@ -398,8 +396,8 @@ Foxtrick.modules['SkillTable'] = {
 					{ name: 'Hotlist', property: 'hotlistLink',
 						method: link, sortString: true },
 					{ name: 'Age', property: 'age', method: age, sortAsc: true },
-					{ name: 'JoinedSince', property: 'joinedSince', method: dateText},
-					{ name: 'CanBePromotedIn', property: 'canBePromotedIn'},
+					{ name: 'JoinedSince', property: 'joinedSince', method: dateDiff },
+					{ name: 'CanBePromotedIn', property: 'canBePromotedIn' },
 					{ name: 'TSI', property: 'tsi', alignRight: true, method: formatNum },
 					{ name: 'Status', properties: [
 						'yellowCard', 'redCard', 'bruised', 'injuredWeeks', 'transferListed'
@@ -916,9 +914,10 @@ Foxtrick.modules['SkillTable'] = {
 										 .textContent);
 					if (TeamId == buyerId) {
 						// legitimate transfer
-						var Deadline = Transfer.getElementsByTagName('Deadline')[0].textContent;
+						var Deadline = xml.time('Deadline', Transfer);
 						Foxtrick.map(function(n) {
-							if (n.id == player_id) n.joinedSince = Deadline;
+							if (n.id == player_id)
+								n.joinedSince = Deadline;
 						}, list);
 						return true;
 					}
@@ -958,10 +957,10 @@ Foxtrick.modules['SkillTable'] = {
 						// consider only the last coach contract
 						// is a coach
 						is_coach = true;
-						var coachDate =
-							PlayerEvent.getElementsByTagName('EventDate')[0].textContent;
+						var coachDate = xml.time('EventDate', PlayerEvent);
 						Foxtrick.map(function(n) {
-							if (n.id == pid) n.joinedSince = coachDate;
+							if (n.id == pid)
+								n.joinedSince = coachDate;
 						}, list);
 					}
 					if (PlayerEventTypeID == 20 || PlayerEventTypeID == 13) {
@@ -971,8 +970,7 @@ Foxtrick.modules['SkillTable'] = {
 											   .getTeamIdFromUrl(doc.location.href))) {
 							// cases 2) & 3) -> pullDate
 							pulled_here = true;
-							var PullDate = PlayerEvent.getElementsByTagName('EventDate')[0]
-								.textContent;
+							var PullDate = xml.time('EventDate', PlayerEvent);
 							Foxtrick.map(function(n) {
 								if (n.id == pid) {
 									n.joinedSince = PullDate;
@@ -1011,7 +1009,8 @@ Foxtrick.modules['SkillTable'] = {
 						if (teams[teamIdx].textContent == TeamId)
 							break;
 					}
-					var activationDate = xml.getElementsByTagName('FoundedDate')[teamIdx].textContent;
+					var activation = xml.getElementsByTagName('FoundedDate')[teamIdx];
+					var activationDate = xml.time('FoundedDate', activation.parentNode);
 					Foxtrick.Pages.Players.getPlayerList(doc,
 					  function(list) {
 						// first we check transfers
@@ -1057,7 +1056,8 @@ Foxtrick.modules['SkillTable'] = {
 											var pid = xmls[i].getElementsByTagName('PlayerID')[0]
 												.textContent;
 											Foxtrick.map(function(n) {
-												if (n.id == pid) n.joinedSince = activationDate;
+												if (n.id == pid)
+													n.joinedSince = activationDate;
 											}, list);
 										}
 									}

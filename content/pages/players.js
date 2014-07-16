@@ -155,6 +155,8 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 			var isYouth = (options && options.isYouth) ||
 				Foxtrick.Pages.Players.isYouthPlayersPage(doc) ||
 				Foxtrick.Pages.Players.isYouthMatchOrderPage(doc);
+			var fetchedDate = xml.date('FetchedDate');
+			var now = Foxtrick.util.time.getHtDate(doc);
 
 			var nodeName = !isYouth ? 'Player' : 'YouthPlayer';
 			var playerNodes = xml.getElementsByTagName(nodeName);
@@ -287,7 +289,6 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				Foxtrick.forEach(addProperty(player, num), xmlNums);
 
 				var texts = [
-					['joinedSince', 'ArrivalDate'], // README: youth only for some reason
 					'OwnerNotes', // README: youth only for some reason
 					'Statement',
 				];
@@ -301,19 +302,21 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				];
 				Foxtrick.forEach(addProperty(player, ifPositive), optionalNums);
 
+				// custom fields
+				if (node('ArrivalDate')) {
+					player.joinedSince = xml.time('ArrivalDate');
+					// README: youth only for some reason
+				}
 				if (node('CanBePromotedIn')) {
 					// adjust for cached time
-					var date = xml.text('FetchedDate');
-					var fetched = Foxtrick.util.time.getDateFromText(date, 'yyyy-mm-dd', true);
-					var now = Foxtrick.util.time.getHtDate(doc);
+					var cachedPromo = new Date(fetchedDate);
 					var diffDays = -1;
-					while (fetched <= now) {
-						fetched = Foxtrick.util.time.addDaysToDate(fetched, 1);
+					while (cachedPromo <= now) {
+						cachedPromo = Foxtrick.util.time.addDaysToDate(cachedPromo, 1);
 						++diffDays;
 					}
 					player.canBePromotedIn = num('CanBePromotedIn') - diffDays;
 				}
-				// custom fields
 				if (node('Salary')) {
 					player.salary = money('Salary');
 				}
@@ -353,9 +356,8 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 						else if (xml.node('YouthMatchID', LastMatch))
 							player.lastMatchId = xml.num('YouthMatchID', LastMatch);
 
-						var time = xml.text('Date', LastMatch);
-						var date = Foxtrick.util.time.getDateFromText(time, 'yyyy-mm-dd', true);
-						player.lastMatchDate = date;
+						var matchDate = xml.date('Date', LastMatch);
+						player.lastMatchDate = matchDate;
 
 						var link = doc.createElement('a');
 						link.href =
@@ -365,7 +367,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 							(isYouth ? '&youthTeamId=' +
 							 Foxtrick.Pages.All.getTeamIdFromBC(doc) : '') +
 							'&HighlightPlayerID=' + player.id + '#tab2';
-						link.textContent = Foxtrick.util.time.buildDate(date);
+						link.textContent = Foxtrick.util.time.buildDate(matchDate);
 						player.lastMatch = link;
 
 						var lastPositionCode = num('PositionCode', LastMatch);
@@ -396,8 +398,8 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 			}, playerList);
 			if (missingXML.length) {
 				Foxtrick.log('WARNING: New players in HTML', missingXML, 'resetting cache');
-				var now = Foxtrick.util.time.getHtTimeStamp(doc);
-				Foxtrick.util.api.setCacheLifetime(JSON.stringify(args), now);
+				var htTime = Foxtrick.util.time.getHtTimeStamp(doc);
+				Foxtrick.util.api.setCacheLifetime(JSON.stringify(args), htTime);
 			}
 		}
 		catch (e) { Foxtrick.log(e); }
