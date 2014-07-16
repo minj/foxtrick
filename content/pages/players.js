@@ -1,7 +1,7 @@
 'use strict';
 /* players.js
  * Utilities on players page
- * @author convincedd, ryanli
+ * @author convincedd, ryanli, LA-MJ
  */
 
 if (!Foxtrick)
@@ -264,7 +264,6 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				var xmlNums = [
 					'Agreeability',
 					'Aggressiveness',
-					'CanBePromotedIn', // youth
 					'CareerGoals',
 					'CareerHattricks',
 					['countryId', 'CountryID'],
@@ -296,6 +295,18 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				];
 				Foxtrick.forEach(addProperty(player, ifPositive), optionalNums);
 
+				if (node('CanBePromotedIn')) {
+					// adjust for cached time
+					var date = xml.text('FetchedDate');
+					var fetched = Foxtrick.util.time.getDateFromText(date, 'yyyy-mm-dd', true);
+					var now = Foxtrick.util.time.getHtDate(doc);
+					var diffDays = -1;
+					while (fetched < now) {
+						fetched = Foxtrick.util.time.addDaysToDate(fetched, 1);
+						++diffDays;
+					}
+					player.canBePromotedIn = num('CanBePromotedIn') - diffDays;
+				}
 				// custom fields
 				if (node('Salary')) {
 					// from krone to € to user-defined
