@@ -187,9 +187,8 @@ Foxtrick.modules['SeriesTransfers'] = {
 					Foxtrick.log('No XML in batchRetrieve', batchArgs[i], errorText);
 					continue;
 				}
-				var fetchedTime = xml.getElementsByTagName('FetchedDate')[0].textContent;
-				var fetchDate = Foxtrick.util.time.getDateFromText(fetchedTime, 'yyyy-mm-dd');
-				oldestFile = Math.min(new Date(fetchDate).valueOf(), oldestFile);
+				var fetchDate = xml.date('FetchedDate');
+				oldestFile = Math.min(fetchDate.valueOf(), oldestFile);
 
 				var tid = Number(xml.getElementsByTagName('TeamID')[0].textContent);
 				var teamName = xml.getElementsByTagName('TeamName')[0].textContent;

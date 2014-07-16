@@ -78,12 +78,11 @@ Foxtrick.util.matchView.fillMatches = function(container, xml, errorText) {
 		toAdd.push(played[played.length - 1]);
 	if (notPlayed.length > 0) {
 		toAdd.push(notPlayed[0]);
-		var nextmatchdate = notPlayed[0].getElementsByTagName('MatchDate')[0].textContent;
+		var nextmatchdate = xml.time('MatchDate', notPlayed[0]);
 	}
 	for (var i = 0; i < toAdd.length; ++i) {
 		var match = toAdd[i];
-		var dateText = match.getElementsByTagName('MatchDate')[0].textContent;
-		var date = Foxtrick.util.time.getDateFromText(dateText, 'yyyymmdd');
+		var date = xml.time('MatchDate', match);
 		var matchId = match.getElementsByTagName('MatchID')[0].textContent;
 		var homeTeam = match.getElementsByTagName('HomeTeamName')[0].textContent;
 		var awayTeam = match.getElementsByTagName('AwayTeamName')[0].textContent;

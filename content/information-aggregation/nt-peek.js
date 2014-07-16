@@ -75,8 +75,7 @@ Foxtrick.modules['NtPeek'] = {
 									xml,
 									errorText);
 			if (nextmatchdate) {
-				var expire = Foxtrick.util.time.getDateFromText(nextmatchdate, 'yyyymmdd');
-				Foxtrick.util.api.setCacheLifetime(parameters_nt_str, expire.getTime());
+				Foxtrick.util.api.setCacheLifetime(parameters_nt_str, nextmatchdate.getTime());
 			}
 		});
 
@@ -92,8 +91,7 @@ Foxtrick.modules['NtPeek'] = {
 									xml,
 									errorText);
 			if (nextmatchdate) {
-				var expire = Foxtrick.util.time.getDateFromText(nextmatchdate, 'yyyymmdd');
-				Foxtrick.util.api.setCacheLifetime(parameters_u20_str, expire.getTime());
+				Foxtrick.util.api.setCacheLifetime(parameters_u20_str, nextmatchdate.getTime());
 			}
 		});
 	}
