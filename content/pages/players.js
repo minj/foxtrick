@@ -133,7 +133,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				return xml.num(nodeName, playerNode);
 			};
 			var money = function(nodeName) {
-				return xml.money(nodeName, playerNode);
+				return xml.money(nodeName, currencyRate, playerNode);
 			};
 			var node = function(nodeName) {
 				return xml.node(nodeName, playerNode);
