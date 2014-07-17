@@ -31,14 +31,14 @@ Foxtrick.modules['TeamStats'] = {
 		var show = function(playerList) {
 		try {
 				var attributeOptions = [
-					{ category: 'TeamStats.General',	name: 'TSI.abbr', 		property: 'tsi', 		method: 'sum_avg',	pages: ['players', 'oldPlayers', 'ntPlayers'] },
+					{ category: 'TeamStats.General',	name: 'TSI.abbr', 		property: 'tsi', 		method: 'sum_avg',	pages: ['allPlayers'] },
 					//{ category: 'TeamStats.General',	name: 'Age', 			property: 'ageYears', 	method: 'age',		pages: ['players', 'youthPlayers'] },
-					{ category: 'TeamStats.General',	name: 'Salary', 		property: 'salary', 	method: 'sum_avg',	pages: ['players'] },
-					{ category: 'TeamStats.Attributes', name: 'Form', 			property: 'form', 		method: 'skill',	pages: ['players', 'oldPlayers', 'ntPlayers']},
-					{ category: 'TeamStats.Attributes', name: 'Stamina', 		property: 'stamina', 	method: 'skill',	pages: ['players', 'oldPlayers', 'ntPlayers']},
-					{ category: 'TeamStats.Attributes', name: 'Experience', 	property: 'experience', method: 'skill',	pages: ['players', 'oldPlayers', 'ntPlayers'] },
-					{ category: 'TeamStats.Attributes', name: 'Loyalty', 		property: 'loyalty', 	method: 'skill',	pages: ['players', 'oldPlayers']},
-					{ category: 'TeamStats.Attributes', name: 'Leadership', 	property: 'leadership', method: 'skill',	pages: ['players', 'oldPlayers', 'ntPlayers'] },
+					{ category: 'TeamStats.General',	name: 'Salary', 		property: 'salary', 	method: 'sum_avg',	pages: ['players', 'oldPlayers', 'oldCoaches'] },
+					{ category: 'TeamStats.Attributes', name: 'Form', 			property: 'form', 		method: 'skill',	pages: ['allPlayers']},
+					{ category: 'TeamStats.Attributes', name: 'Stamina', 		property: 'stamina', 	method: 'skill',	pages: ['allPlayers']},
+					{ category: 'TeamStats.Attributes', name: 'Experience', 	property: 'experience', method: 'skill',	pages: ['allPlayers'] },
+					{ category: 'TeamStats.Attributes', name: 'Loyalty', 		property: 'loyalty', 	method: 'skill',	pages: ['allPlayers']},
+					{ category: 'TeamStats.Attributes', name: 'Leadership', 	property: 'leadership', method: 'skill',	pages: ['allPlayers'] },
 					{ category: 'TeamStats.Skills', 	name: 'Keeper', 		property: 'keeper', 	method: 'skill',	pages: ['ownPlayers']},
 					{ category: 'TeamStats.Skills', 	name: 'Defending', 	property: 'defending', method: 'skill',	pages: ['ownPlayers']},
 					{ category: 'TeamStats.Skills', 	name: 'Playmaking', 	property: 'playmaking', method: 'skill',	pages: ['ownPlayers']},
