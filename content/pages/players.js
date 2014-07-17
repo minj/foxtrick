@@ -48,6 +48,7 @@ Foxtrick.Pages.Players.isCoachesPage = function(doc) {
 Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 	var playerList = [];
 	var args = [];
+	var isNT = false;
 
 	var findById = function(id) {
 		return function(p) {
@@ -73,6 +74,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 			args.push(['actionType', 'details']);
 		}
 		else if (Foxtrick.Pages.Players.isNtPlayersPage(doc) || (options && options.NT)) {
+			isNT = true;
 			var action = 'supporterstats', all = 'true';
 			if (options && options.NT && typeof(options.NT.action) != 'undefined')
 				action = options.NT.action;
@@ -394,7 +396,9 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 			}
 
 			var missingXML = Foxtrick.filter(function(p) {
-				return !p.inXML;
+				return !p.inXML && (!isNT || p.TSI > 10000);
+				// this is a somewhat arbitrary test
+				// in attempt to skip low-skill NT coaches from triggering a cache clear
 			}, playerList);
 			if (missingXML.length) {
 				Foxtrick.log('WARNING: New players in HTML', missingXML, 'resetting cache');
