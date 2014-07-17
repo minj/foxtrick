@@ -7,7 +7,7 @@
 
 Foxtrick.modules['OriginalFace'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.PRESENTATION,
-	PAGES: ['playerDetails', 'players', 'youthPlayer', 'youthPlayers'],
+	PAGES: ['playerDetails', 'players', 'youthPlayerDetails', 'youthPlayers'],
 	OPTIONS: ['HideTransfer', 'HideInjury', 'HideSuspended', 'ColouredYouth'],
 	OPTIONS_CSS: [
 		Foxtrick.InternalPath + 'resources/css/HideFaceTransferImages.css',
@@ -18,7 +18,7 @@ Foxtrick.modules['OriginalFace'] = {
 
 	run: function(doc) {
 		if (Foxtrick.Prefs.isModuleOptionEnabled('OriginalFace', 'ColouredYouth')) {
-			if (Foxtrick.isPage(doc, 'youthPlayer')
+			if (Foxtrick.isPage(doc, 'youthPlayerDetails')
 				|| Foxtrick.isPage(doc, 'youthPlayers')) {
 				var imgs = doc.getElementsByTagName('img');
 				var avatarImages = Foxtrick.filter(function(n) {

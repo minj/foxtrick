@@ -9,7 +9,7 @@ Foxtrick.modules['StaffMarker'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.FORUM,
 	PAGES: [
 		'forumViewThread', 'forumWritePost',
-		'teamPage', 'guestbook', 'supporters', 'series' // grouped by if/else
+		'teamPage', 'guestbook', 'supported', 'supporters', 'series' // grouped by if/else
 	],
 	OPTIONS: [
 		'officials',
@@ -118,13 +118,13 @@ Foxtrick.modules['StaffMarker'] = {
 		},
 		'supporter': function(data, id, object, icon, link) {
 			var doc = object.ownerDocument;
-			if (Foxtrick.isPage(doc, 'supporters'))
+			if (Foxtrick.isPage(doc, 'supported') || Foxtrick.isPage(doc, 'supporters'))
 				return false;
 			return true;
 		},
 		'supported': function(data, id, object, icon, link) {
 			var doc = object.ownerDocument;
-			if (Foxtrick.isPage(doc, 'supporters'))
+			if (Foxtrick.isPage(doc, 'supported') || Foxtrick.isPage(doc, 'supporters'))
 				return false;
 			return true;
 		},

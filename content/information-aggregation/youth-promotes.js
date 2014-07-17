@@ -7,7 +7,7 @@
 
 Foxtrick.modules['YouthPromotes'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
-	PAGES: ['youthPlayer'],
+	PAGES: ['youthPlayerDetails'],
 
 	run: function(doc) {
 		var daysToPromote = Foxtrick.Pages.YouthPlayer.getDaysToPromote(doc);

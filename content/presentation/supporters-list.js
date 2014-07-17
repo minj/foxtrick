@@ -7,7 +7,7 @@
 
 Foxtrick.modules['SupportersList'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.PRESENTATION,
-	PAGES: ['supporters'],
+	PAGES: ['supported', 'supporters'],
 	OPTIONS: ['SupporterBack', 'SupportedBack'],
 	CSS: Foxtrick.InternalPath + 'resources/css/supporters-list.css',
 

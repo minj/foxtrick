@@ -24,7 +24,7 @@ Foxtrick.modules['CountryList'] = {
 				this._changelist(doc, 'ctl00_ctl00_CPContent_CPMain_ucLeaguesDropdown_ddlLeagues',
 				                 0);
 			}
-			else if (Foxtrick.isPage(doc, 'press')) {
+			else if (Foxtrick.isPage(doc, 'htPress')) {
 				this._changelist(doc, 'ctl00_ctl00_CPContent_CPSidebar_ucLeagues2_ddlLeagues', 1);
 			}
 			else if (Foxtrick.isPage(doc, 'statsTransfersBuyers')) {
@@ -68,7 +68,7 @@ Foxtrick.modules['CountryList'] = {
 			else if (Foxtrick.isPage(doc, 'country')) {
 				this._activate(doc, 'ctl00_ctl00_CPContent_CPMain_ucLeaguesDropdown_ddlLeagues');
 			}
-			else if (Foxtrick.isPage(doc, 'press')) {
+			else if (Foxtrick.isPage(doc, 'htPress')) {
 				this._activate(doc, 'ctl00_ctl00_CPContent_CPSidebar_ucLeagues2_ddlLeagues');
 			}
 			else if (Foxtrick.isPage(doc, 'statsTransfersBuyers')) {
@@ -105,9 +105,6 @@ Foxtrick.modules['CountryList'] = {
 
 		if (Foxtrick.Prefs.isModuleOptionEnabled('CountryList', 'TeamPage')) {
 			if (Foxtrick.isPage(doc, 'teamPage')) {
-				this._placeCountry(doc, 'ctl00_ctl00_CPContent_CPMain_ddlLeagues', 1);
-			}
-			else if (Foxtrick.isPage(doc, 'teamPageBrowser')) {
 				this._placeCountry(doc, 'ctl00_ctl00_CPContent_CPMain_ddlLeagues', 1);
 			}
 		}

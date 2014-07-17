@@ -62,10 +62,9 @@ Foxtrick.modules['HTDateFormat'] = {
 		var pages = [
 			'transfersTeam', 'transfersPlayer', 'transfer',
 			'transferCompare', 'match', 'matches', 'matchesArchive',
-			'teamPageGeneral', 'achievements', 'playerEvents',
+			'teamPageAny', 'achievements', 'playerEvents',
 			'teamEvents', 'history', 'arena', 'country', 'hallOfFame',
 			'statsMatchesHeadToHead', 'seriesHistory', 'playerStats',
-			'tournamentsGeneral',
 		];
 		// don't show on where not needed and cluttering
 		if (!Foxtrick.any(function(page) {

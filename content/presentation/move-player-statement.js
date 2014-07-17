@@ -7,7 +7,7 @@
 
 Foxtrick.modules['MovePlayerStatement'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.PRESENTATION,
-	PAGES: ['playerDetails', 'youthPlayer'],
+	PAGES: ['playerDetails', 'youthPlayerDetails'],
 	OPTIONS: ['DeleteInstead'],
 
 	run: function(doc) {
