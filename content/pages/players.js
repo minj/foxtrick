@@ -321,7 +321,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 
 				// custom fields
 				if (node('ArrivalDate')) {
-					player.joinedSince = xml.time('ArrivalDate');
+					player.joinedSince = xml.time('ArrivalDate', playerNode);
 					// README: youth only for some reason
 				}
 				if (node('CanBePromotedIn')) {
