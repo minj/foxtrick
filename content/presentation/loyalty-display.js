@@ -82,10 +82,10 @@ Foxtrick.modules['LoyaltyDisplay'] = {
 	run: function(doc) {
 
 		//on players page, just run for the own team
-		if (Foxtrick.isPage(doc, 'players') && !Foxtrick.Pages.Players.isOwnPlayersPage(doc))
+		if (Foxtrick.isPage(doc, 'players') && !Foxtrick.Pages.All.isOwn(doc))
 			return;
 
-		if (Foxtrick.Pages.Players.isOwnPlayersPage(doc) && Foxtrick.isPage(doc, 'players')) {
+		if (Foxtrick.isPage(doc, 'players')) {
 			var playersNode = doc.getElementsByClassName('playerInfo');
 			Foxtrick.Pages.Players.getPlayerList(doc,
 			  function(playerInfo) {

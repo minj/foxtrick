@@ -22,7 +22,7 @@ Foxtrick.modules['SkillTable'] = {
 				return fullType;
 			}
 
-			var isOwn = Foxtrick.Pages.Players.isOwnPlayersPage(doc);
+			var isOwn = Foxtrick.Pages.All.isOwn(doc);
 
 			if (Foxtrick.Pages.Players.isSeniorPlayersPage(doc) ||
 			    Foxtrick.Pages.Players.isCoachesPage(doc)) {

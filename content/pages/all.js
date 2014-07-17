@@ -20,6 +20,16 @@ if (!Foxtrick.Pages)
 Foxtrick.Pages.All = {};
 
 /**
+ * Test whether this page belongs to our own team
+ * @param  {document}  doc
+ * @return {Boolean}
+ */
+Foxtrick.Pages.All.isOwn = function(doc) {
+	var ownTeamId = this.getOwnTeamId(doc);
+	var teamId = this.getTeamId(doc);
+	return ownTeamId === teamId && ownTeamId !== null;
+};
+/**
  * Get the page ID.
  * E. g. match, arena, series, team, player ID.
  * Defaults to own team ID where no ID is avalable.

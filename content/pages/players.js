@@ -30,11 +30,6 @@ Foxtrick.Pages.Players.isYouthMatchOrderPage = function(doc) {
 Foxtrick.Pages.Players.isSimpleMatchOrderPage = function(doc) {
 	return Foxtrick.isPage(doc, 'matchOrderSimple');
 };
-Foxtrick.Pages.Players.isOwnPlayersPage = function(doc) {
-	var ownTeamId = Foxtrick.Pages.All.getOwnTeamId(doc);
-	var teamId = Foxtrick.Pages.All.getTeamId(doc);
-	return (ownTeamId === teamId && ownTeamId !== null);
-};
 Foxtrick.Pages.Players.isNtPlayersPage = function(doc) {
 	return /NTPlayers/i.test(doc.location.href);
 };
@@ -422,7 +417,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 
 	var parseHtml = function() {
 		// preparation steps
-		var isOwn = Foxtrick.Pages.Players.isOwnPlayersPage(doc);
+		var isOwn = Foxtrick.Pages.All.isOwn(doc);
 
 		var playerNodes = doc.getElementsByClassName('playerInfo');
 		Foxtrick.forEach(function(playerNode, i) {
@@ -769,8 +764,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 	};
 	var addStamindaData = function(doc, playerList) {
 		// only for own seniors
-		if (Foxtrick.Pages.Players.isYouthPlayersPage(doc) ||
-		    !Foxtrick.Pages.Players.isOwnPlayersPage(doc))
+		if (Foxtrick.Pages.Players.isYouthPlayersPage(doc) || !Foxtrick.Pages.All.isOwn(doc))
 		    return;
 
 		var ownId = Foxtrick.util.id.getOwnTeamId();
