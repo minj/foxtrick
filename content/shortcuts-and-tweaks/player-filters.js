@@ -293,8 +293,10 @@ Foxtrick.modules['PlayerFilters'] = {
 						// update playerInfo
 						Foxtrick.map(function(n) {
 							var currentClubId = Foxtrick.util.id.findTeamId(n);
-							if (tid == currentClubId)
-								n.setAttribute('active', !IsBot);
+							if (tid == currentClubId) {
+								if (!IsBot)
+									n.setAttribute('active', !IsBot);
+							}
 						}, doc.getElementsByClassName('playerInfo'));
 
 						// update skilltable
@@ -302,8 +304,10 @@ Foxtrick.modules['PlayerFilters'] = {
 						if (skilltable) {
 							Foxtrick.map(function(n) {
 								var currentClubId = Foxtrick.util.id.findTeamId(n);
-								if (tid == currentClubId)
-									n.setAttribute('active', !IsBot);
+								if (tid == currentClubId) {
+									if (!IsBot)
+										n.setAttribute('active', 'true');
+								}
 							}, skilltable.rows);
 						}
 					}
