@@ -10,6 +10,7 @@ Foxtrick.modules['BestPlayerPosition'] = {
 	PAGES: ['playerDetails', 'transferSearchResult', 'players'],
 
 	run: function(doc) {
+		var module = this;
 		if (Foxtrick.Pages.Player.isSeniorPlayerPage(doc)) {
 			if (!doc.getElementsByClassName('playerInfo').length)
 				return;
@@ -20,8 +21,8 @@ Foxtrick.modules['BestPlayerPosition'] = {
 
 			// creating the new element
 			var table = doc.querySelector('#ctl00_ctl00_CPContent_CPMain_pnlplayerInfo table');
-			var row = Foxtrick.insertFeaturedRow(table, this, table.rows.length);
-			row.className = 'ft-best-player-position';
+			var row = Foxtrick.insertFeaturedRow(table, module, table.rows.length);
+			Foxtrick.addClass(row, 'ft-best-player-position');
 			var title = row.insertCell(0);
 			title.textContent = Foxtrick.L10n.getString('BestPlayerPosition.title');
 			var bestPositionCell = row.insertCell(1);
@@ -30,20 +31,19 @@ Foxtrick.modules['BestPlayerPosition'] = {
 			var bestPositionValue = Foxtrick.Pages.Player.getBestPosition(contributions);
 			bestPositionCell.textContent =
 				Foxtrick.L10n.getString(bestPositionValue.position + 'Position') +
-				' (' + bestPositionValue.value.toString() + ')';
+				' (' + bestPositionValue.value.toFixed(1) + ')';
 
 		}
 		else if (Foxtrick.isPage(doc, 'transferSearchResult')) {
 			var list = Foxtrick.Pages.TransferSearchResults.getPlayerList(doc);
 			// filter out players with out skill data (after deadline)
-			var players = Foxtrick.filter(function(p) {
+			var transfers = Foxtrick.filter(function(p) {
 				return typeof p.bestPositionValue !== 'undefined';
 			}, list);
-			var tables = doc.querySelectorAll('#mainBody .transferPlayerSkills table');
-			for (var i = 0; i < tables.length; ++i) {
-				var table = tables[i];
-				var row = Foxtrick.insertFeaturedRow(table, this, table.rows.length);
-				row.className = 'ft-best-player-position';
+			Foxtrick.forEach(function(p) {
+				var table = p.playerNode.querySelector('.transferPlayerSkills table');
+				var row = Foxtrick.insertFeaturedRow(table, module, table.rows.length);
+				Foxtrick.addClass(row, 'ft-best-player-position');
 				var title = row.insertCell(0);
 				title.colSpan = '2';
 				var b = doc.createElement('strong');
@@ -51,24 +51,23 @@ Foxtrick.modules['BestPlayerPosition'] = {
 				title.appendChild(b);
 				var bestPositionCell = row.insertCell(1);
 				bestPositionCell.colSpan = '2';
-				bestPositionCell.textContent = players[i].bestPositionLong +
-					' (' + players[i].bestPositionValue.toFixed(1) + ')';
-			}
+				bestPositionCell.textContent = p.bestPositionLong +
+					' (' + p.bestPositionValue.toFixed(1) + ')';
+			}, transfers);
 		}
-		else if (Foxtrick.Pages.Players.isPlayersPage(doc) &&
+		else if (Foxtrick.Pages.Players.isSeniorPlayersPage(doc) &&
 		         Foxtrick.Pages.Players.isOwnPlayersPage(doc)) {
-			var players = Foxtrick.Pages.Players.getPlayerList(doc, null, null);
-			var tables = doc.querySelectorAll('.playerInfo table:first-of-type');
-			for (var i = 0; i < tables.length; ++i) {
-				var container = Foxtrick.createFeaturedElement(doc, this, 'div');
-				container.className = 'ft-best-player-position';
-				container.textContent = Foxtrick.L10n.getString('BestPlayerPosition.title') + ' '
-					+ players[i].bestPositionLong;
+			var playerList = Foxtrick.Pages.Players.getPlayerList(doc);
+			Foxtrick.forEach(function(p) {
+				var table = p.playerNode.querySelector('table');
+				var container = Foxtrick.createFeaturedElement(doc, module, 'div');
+				Foxtrick.addClass(container, 'ft-best-player-position');
+				container.textContent = Foxtrick.L10n.getString('BestPlayerPosition.title') +
+					' ' + p.bestPositionLong + ' (' + p.bestPositionValue.toFixed(1) + ')';
 
-				var before = tables[i].nextSibling;
+				var before = table.nextSibling;
 				before.parentNode.insertBefore(container, before);
-			}
-
+			}, playerList);
 		}
 	}
-}
+};

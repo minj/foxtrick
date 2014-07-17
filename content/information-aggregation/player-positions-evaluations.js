@@ -9,8 +9,8 @@
 Foxtrick.modules['PlayerPositionsEvaluations'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES: ['playerDetails'],
-  //Might be better to add this option as global because it used not only by this module
-  OPTIONS: ['Normalised'],
+	//Might be better to add this option as global because it used not only by this module
+	OPTIONS: ['Normalised'],
 
 	run: function(doc) {
 
@@ -33,8 +33,7 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 			speciality = ""
 			console.log(skills);
 			*/
-			
-			
+
 			var contributions = Foxtrick.Pages.Player.getContributions(skills, speciality);
 			var feat_div = Foxtrick.createFeaturedElement(doc, this, 'div');
 			var entryPoint = doc.getElementById('mainBody');
@@ -56,8 +55,11 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 			tbody.appendChild(tr);
 
 			var sortable = [];
-			for (var name in contributions) sortable.push([name, contributions[name]]);
-			sortable.sort(function(a, b) {return b[1] - a[1]});
+			for (var name in contributions)
+				sortable.push([name, contributions[name]]);
+
+			sortable.sort(function(a, b) { return b[1] - a[1]; });
+
 			for (var item in sortable) {
 				name = sortable[item][0];
 				tr = doc.createElement('tr');
@@ -75,4 +77,4 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 			entryPoint.appendChild(feat_div);
 		}
 	},
-}
+};
