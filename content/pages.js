@@ -82,24 +82,31 @@ Foxtrick.ht_pages = {
 	'marathon'                  : '/World/Series/Marathon.aspx',
 	'promotion'                 : '/World/Series/Promotion.aspx',
 	'fixtures'                  : '/World/Series/Fixtures.aspx',
-	'players'                   : '/Club/Players/(Default.aspx|?|$)|' +
+	'allPlayers'                : '/Club/Players/(Default.aspx|?|$)|' +
+	                              '/Club/Players/KeyPlayers.aspx|' +
 	                              '/Club/NationalTeam/NTPlayers.aspx|' +
 	                              '/Club/Players/Oldies.aspx|' +
+	                              '/Club/Players/Coaches.aspx',
+	                              // all senior player pages
+	'players'                   : '/Club/Players/(Default.aspx|?|$)|' +
 	                              '/Club/Players/KeyPlayers.aspx',
+	                              // has last match link and ratings
+	                              // KeyPlayers have basically the same structure as regular page
 	'ownPlayers'                : '/Club/Players/(Default.aspx$|$)|' +
 	                              '/Club/Players/(Default.aspx?|?)teamid=[id]|' +
 	                              '/Club/Players/KeyPlayers.aspx($|?teamid=[id])',
-	                              // updated in core.js
-	'seniorPlayers'             : '/Club/Players/(Default.aspx|?|$)',
-	'ntPlayers'                 : '/Club/NationalTeam/NTPlayers.aspx',
+	                              // has visible skills
+	                              // KeyPlayers have basically the same structure as regular page
+	                              // updated in core.js so you cannot rely on it in PAGES
+	                              // use 'players' instead
+	'keyPlayers'                : '/Club/Players/KeyPlayers.aspx',
 	'oldPlayers'                : '/Club/Players/Oldies.aspx',
 	'oldCoaches'                : '/Club/Players/Coaches.aspx',
+	'ntPlayers'                 : '/Club/NationalTeam/NTPlayers.aspx',
 	'youthPlayers'              : '/Club/Players/YouthPlayers.aspx',
 	'ownYouthPlayers'           : '/Club/Players/YouthPlayers.aspx($|?YouthTeamId=[id])',
-	                              // updated in core.js
-	'keyPlayers'                : '/Club/Players/KeyPlayers.aspx',
-	'ownKeyPlayers'             : '/Club/Players/KeyPlayers.aspx($|?teamid=[id])',
-	                              // updated in core.js
+	                              // updated in core.js so you cannot rely on it in PAGES
+	                              // use 'youthPlayers' instead
 	'playerHistory'             : '/Club/Players/PlayerHistory.aspx',
 	'playerEvents'              : '/Club/Players/PlayerHistory.aspx?playerId=\\d+' +
 	                              '&actionType=playerevents',

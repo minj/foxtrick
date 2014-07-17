@@ -6,7 +6,7 @@
 
 Foxtrick.modules['ExtraPlayerInfo'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
-	PAGES: ['players'],
+	PAGES: ['allPlayers'],
 	OPTIONS: ['CoachInfo', 'Flag', 'Language'],
 
 	run: function(doc) {

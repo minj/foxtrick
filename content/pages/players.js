@@ -14,11 +14,20 @@ Foxtrick.Pages.Players = {};
 Foxtrick.Pages.Players.isPlayersPage = function(doc) {
 	return this.isSeniorPlayersPage(doc) || this.isYouthPlayersPage(doc);
 };
-Foxtrick.Pages.Players.isSeniorPlayersPage = function(doc) {
+Foxtrick.Pages.Players.isRegularPlayersPage = function(doc) {
 	return Foxtrick.isPage(doc, 'players');
+};
+Foxtrick.Pages.Players.isOwnPlayersPage = function(doc) {
+	return Foxtrick.isPage(doc, 'ownPlayers');
+};
+Foxtrick.Pages.Players.isSeniorPlayersPage = function(doc) {
+	return Foxtrick.isPage(doc, 'allPlayers');
 };
 Foxtrick.Pages.Players.isYouthPlayersPage = function(doc) {
 	return Foxtrick.isPage(doc, 'youthPlayers');
+};
+Foxtrick.Pages.Players.isOwnYouthPlayersPage = function(doc) {
+	return Foxtrick.isPage(doc, 'ownYouthPlayers');
 };
 Foxtrick.Pages.Players.isMatchOrderPage = function(doc) {
 	return Foxtrick.isPage(doc, 'matchOrder') || Foxtrick.isPage(doc, 'matchOrderSimple');
@@ -417,7 +426,8 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 
 	var parseHtml = function() {
 		// preparation steps
-		var isOwn = Foxtrick.Pages.All.isOwn(doc);
+		var isOwn = Foxtrick.Pages.Players.isOwnPlayersPage(doc);
+		var isOwnYouth = Foxtrick.Pages.Players.isOwnYouthPlayersPage(doc);
 
 		var playerNodes = doc.getElementsByClassName('playerInfo');
 		Foxtrick.forEach(function(playerNode, i) {
@@ -492,8 +502,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				player.ageYears = player.age.years;
 			}
 
-			if ((Foxtrick.Pages.Players.isSeniorPlayersPage(doc) ||
-				 Foxtrick.Pages.Players.isNtPlayersPage(doc)) && !player.tsi) {
+			if (Foxtrick.Pages.Players.isSeniorPlayersPage(doc) && !player.tsi) {
 				// youth players don't have TSI, and we can fetch directly
 				// from XML if it's there
 				var basicNumbers = basicHtml.replace(/\s+/g, '').match(/\d+/g);
@@ -551,8 +560,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				}, missingAttributes);
 			}
 
-			if (isOwn && !Foxtrick.Pages.Players.isOldiesPage(doc) &&
-			    !Foxtrick.Pages.Players.isCoachesPage(doc)) {
+			if (isOwn || isOwnYouth) {
 				var skillTable = playerNode.getElementsByTagName('table')[0];
 				var skillInfo;
 				if (Foxtrick.Pages.Players.isSeniorPlayersPage(doc)) {
@@ -665,8 +673,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				player.lastRatingDecline = rating - ratingYellow;
 			}
 
-			if (Foxtrick.Pages.Players.isSeniorPlayersPage(doc) &&
-				!Foxtrick.Pages.Players.isOldiesPage(doc)) {
+			if (Foxtrick.Pages.Players.isOwnPlayersPage(doc)) {
 				var tc = doc.createElement('a');
 				tc.textContent = Foxtrick.L10n.getString('TransferCompare.abbr');
 				tc.title = Foxtrick.L10n.getString('TransferCompare');
@@ -730,7 +737,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 	};
 
 	var addContributionsInfo = function(playerList) {
-		if (!Foxtrick.Pages.Players.isYouthPlayersPage(doc)) {
+		if (Foxtrick.Pages.Players.isOwnPlayersPage(doc)) {
 			for (var i = 0; i < playerList.length; ++i) {
 				var player = playerList[i];
 				var skills = {
@@ -763,8 +770,8 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 		}
 	};
 	var addStamindaData = function(doc, playerList) {
-		// only for own seniors
-		if (Foxtrick.Pages.Players.isYouthPlayersPage(doc) || !Foxtrick.Pages.All.isOwn(doc))
+		// only for own regular seniors
+		if (!Foxtrick.Pages.Players.isRegularPlayersPage(doc) || !Foxtrick.Pages.All.isOwn(doc))
 		    return;
 
 		var ownId = Foxtrick.util.id.getOwnTeamId();

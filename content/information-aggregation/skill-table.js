@@ -7,7 +7,7 @@
 
 Foxtrick.modules['SkillTable'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
-	PAGES: ['players', 'oldCoaches', 'youthPlayers', 'transferSearchResult'],
+	PAGES: ['allPlayers', 'youthPlayers', 'transferSearchResult'],
 	OPTIONS: ['OtherTeams', 'ColouredYouth'],
 	CSS: Foxtrick.InternalPath + 'resources/css/skilltable.css',
 
@@ -24,14 +24,13 @@ Foxtrick.modules['SkillTable'] = {
 
 			var isOwn = Foxtrick.Pages.All.isOwn(doc);
 
-			if (Foxtrick.Pages.Players.isSeniorPlayersPage(doc) ||
-			    Foxtrick.Pages.Players.isCoachesPage(doc)) {
+			if (Foxtrick.Pages.Players.isSeniorPlayersPage(doc)) {
 				fullType.type = 'senior';
 				if (Foxtrick.Pages.Players.isNtPlayersPage(doc)) {
 					fullType.subtype = 'nt';
 				}
-				else if (Foxtrick.Pages.Players.isOldiesPage(doc)
-					|| Foxtrick.Pages.Players.isCoachesPage(doc)) {
+				else if (Foxtrick.Pages.Players.isOldiesPage(doc) ||
+				         Foxtrick.Pages.Players.isCoachesPage(doc)) {
 					fullType.subtype = 'oldiesCoach';
 				}
 				else if (isOwn) {
@@ -1324,7 +1323,7 @@ Foxtrick.modules['SkillTable'] = {
 					options.appendChild(addHomegrownLink);
 
 				}
-				else if (Foxtrick.Pages.Players.isSeniorPlayersPage(doc)) {
+				else if (Foxtrick.Pages.Players.isRegularPlayersPage(doc)) {
 					var options = doc.createElement('div');
 					var addHomegrownLink = doc.createElement('a');
 					addHomegrownLink.appendChild(doc.createTextNode(Foxtrick.L10n

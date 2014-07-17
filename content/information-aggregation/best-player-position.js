@@ -55,8 +55,7 @@ Foxtrick.modules['BestPlayerPosition'] = {
 					' (' + p.bestPositionValue.toFixed(1) + ')';
 			}, transfers);
 		}
-		else if (Foxtrick.Pages.Players.isSeniorPlayersPage(doc) &&
-		         Foxtrick.Pages.All.isOwn(doc)) {
+		else if (Foxtrick.isPage(doc, 'ownPlayers')) {
 			var playerList = Foxtrick.Pages.Players.getPlayerList(doc);
 			Foxtrick.forEach(function(p) {
 				var table = p.playerNode.querySelector('table');

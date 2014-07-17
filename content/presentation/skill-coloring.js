@@ -378,7 +378,7 @@ Foxtrick.modules['SkillColoring'] = {
 		}
 
 		if (skill_number || skill_translated) {
-			var isProblemPage = (Foxtrick.isPage(doc, 'players') ||
+			var isProblemPage = (Foxtrick.isPage(doc, 'ownPlayers') ||
 			                     Foxtrick.isPage(doc, 'transferSearchResult'));
 			// too little space on these pages
 			var l = doc.getElementsByTagName('a');

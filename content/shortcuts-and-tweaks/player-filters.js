@@ -7,7 +7,7 @@
 
 Foxtrick.modules['PlayerFilters'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-	PAGES: ['players', 'youthPlayers'],
+	PAGES: ['allPlayers', 'youthPlayers'],
 
 	FILTER_SELECT_ID: 'foxtrick-filter-select',
 
@@ -206,7 +206,7 @@ Foxtrick.modules['PlayerFilters'] = {
 					filterSelect.appendChild(option);
 				}
 
-				if (Foxtrick.Pages.Players.isSeniorPlayersPage(doc)) {
+				if (Foxtrick.Pages.Players.isRegularPlayersPage(doc)) {
 					if (Foxtrick.Pages.Players.isPropertyInList(playerList, 'motherClubBonus')) {
 						var option = doc.createElement('option');
 						option.value = 'homegrown-player';
@@ -222,18 +222,18 @@ Foxtrick.modules['PlayerFilters'] = {
 
 				// adding attribute filters (senior pages)
 				var attributeOptions = [
-					{ name: 'TSI', property: 'tsi', pages: ['seniorPlayers', 'oldPlayers',
+					{ name: 'TSI', property: 'tsi', pages: ['players', 'oldPlayers',
 						'ntPlayers'] },
-					{ name: 'Age', property: 'ageYears', pages: ['players', 'youthPlayers'] },
-					{ name: 'Leadership', property: 'leadership', pages: ['seniorPlayers',
+					{ name: 'Age', property: 'ageYears', pages: ['allPlayers', 'youthPlayers'] },
+					{ name: 'Leadership', property: 'leadership', pages: ['players',
 						'oldPlayers', 'ntPlayers'] },
-					{ name: 'Experience', property: 'experience', pages: ['seniorPlayers',
+					{ name: 'Experience', property: 'experience', pages: ['players',
 						'oldPlayers', 'ntPlayers'] },
-					{ name: 'Form', property: 'form', pages: ['seniorPlayers', 'oldPlayers',
+					{ name: 'Form', property: 'form', pages: ['players', 'oldPlayers',
 						'ntPlayers']},
-					{ name: 'Stamina', property: 'stamina', pages: ['seniorPlayers', 'oldPlayers',
+					{ name: 'Stamina', property: 'stamina', pages: ['players', 'oldPlayers',
 						'ntPlayers']},
-					{ name: 'Loyalty', property: 'loyalty', pages: ['seniorPlayers', 'oldPlayers']},
+					{ name: 'Loyalty', property: 'loyalty', pages: ['players', 'oldPlayers']},
 					{ name: 'Keeper', property: 'keeper', pages: ['ownPlayers']},
 					{ name: 'Defending', property: 'defending', pages: ['ownPlayers']},
 					{ name: 'Playmaking', property: 'playmaking', pages: ['ownPlayers']},
@@ -241,12 +241,12 @@ Foxtrick.modules['PlayerFilters'] = {
 					{ name: 'Passing', property: 'passing', pages: ['ownPlayers']},
 					{ name: 'Scoring', property: 'scoring', pages: ['ownPlayers']},
 					{ name: 'Set_pieces', property: 'setPieces', pages: ['ownPlayers']},
-					/*{ name: 'HTMS_Ability', property: 'htmsAbility', pages: ['seniorPlayers'] },
-					{ name: 'HTMS_Potential', property: 'htmsPotential' , pages: ['seniorPlayers']},
-					{ name: 'Agreeability', property: 'agreeability', pages: ['seniorPlayers']},
-					{ name: 'Aggressiveness', property: 'aggressiveness', pages: ['seniorPlayers']},
-					{ name: 'Honesty', property: 'honesty', pages: ['seniorPlayers']},*/
-					{ name: 'Last_stars', property: 'lastRating', pages: ['seniorPlayers',
+					/*{ name: 'HTMS_Ability', property: 'htmsAbility', pages: ['players'] },
+					{ name: 'HTMS_Potential', property: 'htmsPotential' , pages: ['players']},
+					{ name: 'Agreeability', property: 'agreeability', pages: ['players']},
+					{ name: 'Aggressiveness', property: 'aggressiveness', pages: ['players']},
+					{ name: 'Honesty', property: 'honesty', pages: ['players']},*/
+					{ name: 'Last_stars', property: 'lastRating', pages: ['players',
 						'youthPlayers']}
 				];
 				var option = doc.createElement('option');
@@ -397,10 +397,7 @@ Foxtrick.modules['PlayerFilters'] = {
 					var container = faceCards[0].parentNode;
 					var cleaner = doc.createElement('div');
 					cleaner.className = 'clear';
-					if (Foxtrick.Pages.Players.isSeniorPlayersPage(doc)
-						&& !Foxtrick.Pages.Players.isNtPlayersPage(doc)
-						&& !Foxtrick.Pages.Players.isOldiesPage(doc)
-						&& !Foxtrick.Pages.Players.isCoachesPage(doc)) {
+					if (Foxtrick.Pages.Players.isRegularPlayersPage(doc)) {
 						// If it's normal senior players list, there is an
 						// a element in the bottom for navigating back to top,
 						// and the cleaner should be inserted before it.

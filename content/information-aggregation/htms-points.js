@@ -113,7 +113,7 @@ Foxtrick.modules['HTMSPoints'] = {
 				firstdiv.appendChild(container);
 			}, transferPlayers);
 		}
-		else if (Foxtrick.isPage(doc, 'players') && AddToPlayerList) {
+		else if (Foxtrick.isPage(doc, 'ownPlayers') && AddToPlayerList) {
 			var players = Foxtrick.modules.Core.getPlayerList();
 
 			Foxtrick.forEach(function(p) {

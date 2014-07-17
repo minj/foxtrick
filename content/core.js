@@ -22,7 +22,7 @@ Foxtrick.modules['Core'] = {
 
 	run: function(doc) {
 		this.parseSelfTeamInfo(doc);
-		if (Foxtrick.isPage(doc, 'players') || Foxtrick.isPage(doc, 'youthPlayers'))
+		if (Foxtrick.isPage(doc, 'allPlayers') || Foxtrick.isPage(doc, 'youthPlayers'))
 			this.parsePlayerList(doc);
 		if (Foxtrick.isPage(doc, 'matchOrder'))
 			Foxtrick.util.inject.jsLink(doc, Foxtrick.InternalPath +
@@ -121,8 +121,6 @@ Foxtrick.modules['Core'] = {
 			});
 			Foxtrick.ht_pages['ownPlayers'] =
 				Foxtrick.ht_pages['ownPlayers'].replace(/\[id\]/g, this.SELF_TEAM_INFO.teamId);
-			Foxtrick.ht_pages['ownKeyPlayers'] =
-				Foxtrick.ht_pages['ownKeyPlayers'].replace(/\[id\]/g, this.SELF_TEAM_INFO.teamId);
 			Foxtrick.addClass(doc.body, 'ft-teamID-' + this.SELF_TEAM_INFO.teamId);
 		}
 		var subMenu = doc.getElementsByClassName('subMenu')[0];

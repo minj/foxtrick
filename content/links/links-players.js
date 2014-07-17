@@ -7,7 +7,7 @@
 
 Foxtrick.modules['LinksPlayers'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
-	PAGES: ['players'],
+	PAGES: ['allPlayers'],
 	OPTION_FUNC: function(doc, callback) {
 		return Foxtrick.modules['Links']
 			.getOptionsHtml(doc, 'LinksPlayers', 'playerslink', callback);
