@@ -291,7 +291,7 @@ Foxtrick.modules['PlayerFilters'] = {
 							var currentClubId = Foxtrick.util.id.findTeamId(n);
 							if (tid == currentClubId) {
 								if (!IsBot)
-									n.setAttribute('active', !IsBot);
+									n.setAttribute('active', 'true');
 							}
 						}, doc.getElementsByClassName('playerInfo'));
 
