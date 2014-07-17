@@ -283,11 +283,6 @@ Foxtrick.branch = function() {
 	return Foxtrick.Prefs.getString('branch');
 };
 
-Foxtrick.isPageHref = function(page, href) {
-	var htpage_regexp = new RegExp(page.replace(/\./g, '\\.').replace(/\?/g, '\\?'), 'i');
-	return href.replace(/#.+/, '').search(htpage_regexp) > -1;
-};
-
 Foxtrick.getHref = function(doc) {
 	return doc.location.href;
 };
