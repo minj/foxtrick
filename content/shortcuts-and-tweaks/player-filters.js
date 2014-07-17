@@ -125,7 +125,8 @@ Foxtrick.modules['PlayerFilters'] = {
 						                           .getEnglishSpeciality(player.speciality));
 					}
 					if (Foxtrick.Pages.Players.isPropertyInList(playerList, 'lastMatchDate')) {
-						if (lastMatch === player.lastMatchDate) {
+						if (lastMatch && player.lastMatchDate &&
+						    lastMatch.getTime() === player.lastMatchDate.getTime()) {
 							allPlayers[i].setAttribute('played-latest', 'true');
 						}
 						else {
