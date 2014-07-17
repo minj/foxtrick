@@ -125,7 +125,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 						newName.replace(/Skill$/, '');
 						nodeName = name;
 					}
-					if (node(nodeName))
+					if (typeof player[newName] === 'undefined' && node(nodeName))
 						player[newName] = fn(nodeName);
 				};
 			};
@@ -181,29 +181,6 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 						player.currentSquad = true;
 						player.active = true;
 
-						player.skills = {};
-						var skills = [
-							['defending', 'DefenderSkill'],
-							'KeeperSkill',
-							'PassingSkill',
-							['playmaking', 'PlaymakerSkill'],
-							['scoring', 'ScorerSkill'],
-							'SetPiecesSkill',
-							'WingerSkill',
-						];
-						Foxtrick.forEach(addProperty(player.skills, num), skills);
-						for (var skill in player.skills) {
-							player[skill] = player.skills[skill];
-						}
-
-						var nums = [
-							'StaminaSkill',
-							['form', 'PlayerForm'],
-							'Loyalty',
-							'TransferListed',
-						];
-						Foxtrick.forEach(addProperty(player, num), nums);
-
 						if (node('PlayerNumber')) {
 							// only add if not present in HTML since HTML always has current data
 							// number = 100 means this player hasn't been assigned one
@@ -212,64 +189,98 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 								player.number = number;
 							}
 						}
-						if (node('Specialty')) {
-							var specNum = num('Specialty') || 0;
-							var spec = Foxtrick.L10n.getSpecialityFromNumber(specNum);
-							player.specialityNumber = specNum;
-							player.speciality = spec;
-						}
-
-						if (node('MotherClubBonus')) {
-							if (bool('MotherClubBonus')) {
-								player.motherClubBonus = doc.createElement('span');
-								player.motherClubBonus.textContent = '✔';
-								player.motherClubBonus.title =
-									Foxtrick.L10n.getString('skilltable.youthplayer');
-							}
-						}
-
-						if (node('Cards')) {
-							player.yellowCard = num('Cards');
-							if (player.yellowCard == 3) {
-								player.yellowCard = 0;
-								player.redCard = 1;
-							}
-							else
-								player.redCard = 0;
-
-							player.cards = player.yellowCard + player.redCard !== 0;
-						}
-
-						if (node('InjuryLevel')) {
-							player.injuredWeeks = num('InjuryLevel');
-							player.bruised = player.injuredWeeks ? 0 : 1;
-							if (player.injuredWeeks == -1)
-								player.injuredWeeks = 0;
-
-							player.injured = (player.bruised || player.injuredWeeks !== 0);
-						}
 					}
 				}
 
 				// we found this player in the XML file,
 				player.inXML = true;
 				// go on the retrieve information
-				player.nameLink = doc.createElement('a');
-				player.nameLink.href = '/Club/Players/' + (isYouth ? 'Youth' : '') +
-					'Player.aspx?' + (isYouth ? 'Youth' : '') + 'PlayerID=' + id;
-				if (node('PlayerName'))
-					player.nameLink.textContent = text('PlayerName');
-				else {
-					player.nameLink.textContent = text('FirstName').
-						replace(/(-[^\(])([^-\s]+)/g, '$1.'). // replaces first name
-						replace(/(\s[^\(])([^-\s]+)/g, '$1.'). // replace further first names
-						replace(/(\(.)([^-\)]+)/g, '$1.'). // non-latin in brackets
-						replace(/(^[^\(])([^-\s]+)/g, '$1.') + // replace names connected with '-'
-						' ' + text('LastName');
 
-					// keep full name in title
-					player.nameLink.title = text('FirstName') + ' ' + text('LastName');
+				// README: normally this section is already defined in HTML but
+				// sometimes part of it is not available
+				// we set it here if needed
+				if (!player.skills)
+					player.skills = {};
+				var skills = [
+					['defending', 'DefenderSkill'],
+					'KeeperSkill',
+					'PassingSkill',
+					['playmaking', 'PlaymakerSkill'],
+					['scoring', 'ScorerSkill'],
+					'SetPiecesSkill',
+					'WingerSkill',
+				];
+				Foxtrick.forEach(addProperty(player.skills, num), skills);
+				for (var skill in player.skills) {
+					if (typeof player[skill] === 'undefined')
+						player[skill] = player.skills[skill];
 				}
+
+				var nums = [
+					'StaminaSkill',
+					['form', 'PlayerForm'],
+					'Loyalty',
+					'TransferListed',
+				];
+				Foxtrick.forEach(addProperty(player, num), nums);
+
+				if (typeof player.speciality === 'undefined' && node('Specialty')) {
+					var specNum = num('Specialty') || 0;
+					var spec = Foxtrick.L10n.getSpecialityFromNumber(specNum);
+					player.specialityNumber = specNum;
+					player.speciality = spec;
+				}
+
+				if (typeof player.motherClubBonus === 'undefined' && node('MotherClubBonus')) {
+					if (bool('MotherClubBonus')) {
+						player.motherClubBonus = doc.createElement('span');
+						player.motherClubBonus.textContent = '✔';
+						player.motherClubBonus.title =
+							Foxtrick.L10n.getString('skilltable.youthplayer');
+					}
+				}
+
+				if (typeof player.cards === 'undefined' && node('Cards')) {
+					player.yellowCard = num('Cards');
+					if (player.yellowCard == 3) {
+						player.yellowCard = 0;
+						player.redCard = 1;
+					}
+					else
+						player.redCard = 0;
+
+					player.cards = player.yellowCard + player.redCard !== 0;
+				}
+
+				if (typeof player.injured === 'undefined' && node('InjuryLevel')) {
+					player.injuredWeeks = num('InjuryLevel');
+					player.bruised = player.injuredWeeks ? 0 : 1;
+					if (player.injuredWeeks == -1)
+						player.injuredWeeks = 0;
+
+					player.injured = (player.bruised || player.injuredWeeks !== 0);
+				}
+
+				if (typeof player.nameLink === 'undefined') {
+					player.nameLink = doc.createElement('a');
+					player.nameLink.href = '/Club/Players/' + (isYouth ? 'Youth' : '') +
+						'Player.aspx?' + (isYouth ? 'Youth' : '') + 'PlayerID=' + id;
+					if (node('PlayerName'))
+						player.nameLink.textContent = text('PlayerName');
+					else {
+						player.nameLink.textContent = text('FirstName').
+							replace(/(-[^\(])([^-\s]+)/g, '$1.'). // replaces first name
+							replace(/(\s[^\(])([^-\s]+)/g, '$1.'). // replace further first names
+							replace(/(\(.)([^-\)]+)/g, '$1.'). // non-latin in brackets
+							replace(/(^[^\(])([^-\s]+)/g, '$1.') + // replace names with '-'
+							' ' + text('LastName');
+
+						// keep full name in title
+						player.nameLink.title = text('FirstName') + ' ' + text('LastName');
+					}
+				}
+
+				// README: XML exclusive info starts here
 
 				var xmlNums = [
 					'Agreeability',
