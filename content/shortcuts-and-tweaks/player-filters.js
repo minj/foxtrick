@@ -222,17 +222,12 @@ Foxtrick.modules['PlayerFilters'] = {
 
 				// adding attribute filters (senior pages)
 				var attributeOptions = [
-					{ name: 'TSI', property: 'tsi', pages: ['players', 'oldPlayers',
-						'ntPlayers'] },
+					{ name: 'TSI', property: 'tsi', pages: ['allPlayers'] },
 					{ name: 'Age', property: 'ageYears', pages: ['allPlayers', 'youthPlayers'] },
-					{ name: 'Leadership', property: 'leadership', pages: ['players',
-						'oldPlayers', 'ntPlayers'] },
-					{ name: 'Experience', property: 'experience', pages: ['players',
-						'oldPlayers', 'ntPlayers'] },
-					{ name: 'Form', property: 'form', pages: ['players', 'oldPlayers',
-						'ntPlayers']},
-					{ name: 'Stamina', property: 'stamina', pages: ['players', 'oldPlayers',
-						'ntPlayers']},
+					{ name: 'Leadership', property: 'leadership', pages: ['allPlayers'] },
+					{ name: 'Experience', property: 'experience', pages: ['allPlayers'] },
+					{ name: 'Form', property: 'form', pages: ['allPlayers']},
+					{ name: 'Stamina', property: 'stamina', pages: ['allPlayers']},
 					{ name: 'Loyalty', property: 'loyalty', pages: ['players', 'oldPlayers']},
 					{ name: 'Keeper', property: 'keeper', pages: ['ownPlayers']},
 					{ name: 'Defending', property: 'defending', pages: ['ownPlayers']},
