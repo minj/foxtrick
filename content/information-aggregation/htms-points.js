@@ -7,7 +7,7 @@
 
 Foxtrick.modules['HTMSPoints'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
-	PAGES: ['playerDetails', 'transferSearchResult', 'players'],
+	PAGES: ['playerDetails', 'transferSearchResult', 'players', 'ntPlayers'],
 	OPTIONS: ['AddToPlayer', 'AddToSearchResult', 'AddToPlayerList'],
 
 	run: function(doc) {

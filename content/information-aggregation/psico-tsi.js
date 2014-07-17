@@ -65,7 +65,7 @@ Foxtrick.modules['PsicoTSI'] = {
 		Foxtrick.util.currency.establish(doc, function() {
 			if (Foxtrick.isPage(doc, 'playerDetails'))
 				module.runPlayer(doc);
-			if ((Foxtrick.isPage(doc, 'ownPlayers') || Foxtrick.isPage(doc, 'ntPlayers')) &&
+			if (Foxtrick.isPage(doc, 'ownPlayers') &&
 				Foxtrick.Prefs.isModuleOptionEnabled('PsicoTSI', 'enablePlayersPage'))
 				module.runPlayers(doc);
 			if (Foxtrick.isPage(doc, 'transferSearchResult') &&

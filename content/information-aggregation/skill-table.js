@@ -22,19 +22,17 @@ Foxtrick.modules['SkillTable'] = {
 				return fullType;
 			}
 
-			var isOwn = Foxtrick.Pages.All.isOwn(doc);
-
 			if (Foxtrick.Pages.Players.isSeniorPlayersPage(doc)) {
 				fullType.type = 'senior';
-				if (Foxtrick.Pages.Players.isNtPlayersPage(doc)) {
+				if (Foxtrick.Pages.Players.isOwnPlayersPage(doc)) {
+					fullType.subtype = 'own';
+				}
+				else if (Foxtrick.Pages.Players.isNtPlayersPage(doc)) {
 					fullType.subtype = 'nt';
 				}
 				else if (Foxtrick.Pages.Players.isOldiesPage(doc) ||
 				         Foxtrick.Pages.Players.isCoachesPage(doc)) {
 					fullType.subtype = 'oldiesCoach';
-				}
-				else if (isOwn) {
-					fullType.subtype = 'own';
 				}
 				else {
 					fullType.subtype = 'others';
@@ -42,7 +40,7 @@ Foxtrick.modules['SkillTable'] = {
 			}
 			else if (Foxtrick.Pages.Players.isYouthPlayersPage(doc)) {
 				fullType.type = 'youth';
-				if (isOwn) {
+				if (Foxtrick.isPage(doc, 'ownYouthPlayers')) {
 					fullType.subtype = 'own';
 				}
 				else {

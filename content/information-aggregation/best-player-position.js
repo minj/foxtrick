@@ -7,7 +7,7 @@
 
 Foxtrick.modules['BestPlayerPosition'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
-	PAGES: ['playerDetails', 'transferSearchResult', 'players'],
+	PAGES: ['playerDetails', 'transferSearchResult', 'players', 'ntPlayers'],
 
 	run: function(doc) {
 		var module = this;

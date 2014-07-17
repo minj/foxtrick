@@ -94,11 +94,12 @@ Foxtrick.ht_pages = {
 	                              // KeyPlayers have basically the same structure as regular page
 	'ownPlayers'                : '/Club/Players/(Default.aspx$|$)|' +
 	                              '/Club/Players/(Default.aspx?|?)teamid=[id]|' +
-	                              '/Club/Players/KeyPlayers.aspx($|?teamid=[id])',
+	                              '/Club/Players/KeyPlayers.aspx($|?teamid=[id])|' +
+	                              '/Club/NationalTeam/NTPlayers.aspx?teamId=[ntid]',
 	                              // has visible skills
 	                              // KeyPlayers have basically the same structure as regular page
 	                              // updated in core.js so you cannot rely on it in PAGES
-	                              // use 'players' instead
+	                              // use 'players' and 'ntPlayers' instead
 	'keyPlayers'                : '/Club/Players/KeyPlayers.aspx',
 	'oldPlayers'                : '/Club/Players/Oldies.aspx',
 	'oldCoaches'                : '/Club/Players/Coaches.aspx',

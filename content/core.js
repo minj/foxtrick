@@ -132,6 +132,16 @@ Foxtrick.modules['Core'] = {
 					this.SELF_TEAM_INFO.youthTeamId = youthId;
 					Foxtrick.ht_pages['ownYouthPlayers'] =
 						Foxtrick.ht_pages['ownYouthPlayers'].replace(/\[id\]/g, youthId);
+
+					var ntTeamLink = subMenu.querySelector('a[href^="/Club/NationalTeam/"]');
+					if (ntTeamLink) {
+						// NT coach
+						var ntId = Foxtrick.util.id.getTeamIdFromUrl(ntTeamLink.href);
+						if (ntId) {
+							Foxtrick.ht_pages['ownPlayers'] =
+								Foxtrick.ht_pages['ownPlayers'].replace(/\[ntid\]/g, ntId);
+						}
+					}
 				}
 			}
 		}

@@ -7,7 +7,7 @@
 
 Foxtrick.modules['LoyaltyDisplay'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.PRESENTATION,
-	PAGES: ['players', 'playerDetails'],
+	PAGES: ['players', 'ntPlayers', 'playerDetails'],
 	CSS: Foxtrick.InternalPath + 'resources/css/loyalty-display.css',
 
 	replacePercentageImage: function(player, node) {
@@ -99,7 +99,8 @@ Foxtrick.modules['LoyaltyDisplay'] = {
 				}
 			});
 
-		} else {
+		}
+		else if (Foxtrick.isPage(doc, 'playerDetails')) {
 			var div = doc.getElementsByClassName('playerInfo')[0];
 			if (!div)
 				return;
