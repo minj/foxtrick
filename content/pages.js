@@ -87,17 +87,18 @@ Foxtrick.ht_pages = {
 	                              '/Club/Players/Oldies.aspx|' +
 	                              '/Club/Players/KeyPlayers.aspx',
 	'ownPlayers'                : '/Club/Players/(Default.aspx$|$)|' +
-	                              '/Club/Players/KeyPlayers.aspx$',
+	                              '/Club/Players/(Default.aspx?|?)teamid=[id]|' +
+	                              '/Club/Players/KeyPlayers.aspx($|?teamid=[id])',
 	                              // updated in core.js
 	'seniorPlayers'             : '/Club/Players/(Default.aspx|?|$)',
 	'ntPlayers'                 : '/Club/NationalTeam/NTPlayers.aspx',
 	'oldPlayers'                : '/Club/Players/Oldies.aspx',
 	'oldCoaches'                : '/Club/Players/Coaches.aspx',
 	'youthPlayers'              : '/Club/Players/YouthPlayers.aspx',
-	'ownYouthPlayers'           : '/Club/Players/YouthPlayers.aspx$',
+	'ownYouthPlayers'           : '/Club/Players/YouthPlayers.aspx($|?YouthTeamId=[id])',
 	                              // updated in core.js
 	'keyPlayers'                : '/Club/Players/KeyPlayers.aspx',
-	'ownKeyPlayers'             : '/Club/Players/KeyPlayers.aspx$',
+	'ownKeyPlayers'             : '/Club/Players/KeyPlayers.aspx($|?teamid=[id])',
 	                              // updated in core.js
 	'playerHistory'             : '/Club/Players/PlayerHistory.aspx',
 	'playerEvents'              : '/Club/Players/PlayerHistory.aspx?playerId=\\d+' +
