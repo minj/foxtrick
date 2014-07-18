@@ -79,7 +79,8 @@ Foxtrick.modules['ExtraPlayerInfo'] = {
 				}
 
 				// experiment: add language
-				if (Foxtrick.Prefs.isModuleOptionEnabled('ExtraPlayerInfo', 'Language')) {
+				if (Foxtrick.Prefs.isModuleOptionEnabled('ExtraPlayerInfo', 'Language') &&
+				    Foxtrick.isPage(doc, 'ownPlayers')) {
 					var addPlayerLanguage = function(playerid, node) {
 						Foxtrick.Pages.Player.getPlayer(doc, playerid,
 						  function(player) {
