@@ -671,7 +671,8 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				player.lastRatingDecline = rating - ratingYellow;
 			}
 
-			if (Foxtrick.Pages.Players.isOwnPlayersPage(doc)) {
+			if (Foxtrick.Pages.Players.isOwnPlayersPage(doc) &&
+			    !Foxtrick.Pages.Players.isNtPlayersPage(doc)) {
 				var tc = doc.createElement('a');
 				tc.textContent = Foxtrick.L10n.getString('TransferCompare.abbr');
 				tc.title = Foxtrick.L10n.getString('TransferCompare');
