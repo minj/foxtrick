@@ -93,8 +93,8 @@ Foxtrick.modules['MainMenuDropDown'] = {
 		//	var menuLinks = doc.querySelectorAll('#menu a');
 		//	var ret = false;
 		//	Foxtrick.map(function(menuLink) {
-		//		if (Foxtrick.isPageHref(menuLink.href.replace(/^.*\/\/[^\/]+/, '') +'$',
-		//								doc.location.href))
+		//		if (Foxtrick.isPageHref(doc.location.href,
+		//		    menuLink.href.replace(/^.*\/\/[^\/]+/, '') +'$'))
 		//			ret = true;
 		//	}, menuLinks);
 		//	return ret;

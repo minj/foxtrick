@@ -663,7 +663,7 @@ function getPageIds() {
 		// ignore PAGE all, it's shown in universal tab
 		if (i == 'all')
 			continue;
-		if (Foxtrick.isPageHref(Foxtrick.ht_pages[i], lastPage))
+		if (Foxtrick.isPageHref(lastPage, Foxtrick.ht_pages[i]))
 			pageIds.push(i);
 	}
 }
