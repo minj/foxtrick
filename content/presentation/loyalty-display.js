@@ -7,7 +7,7 @@
 
 Foxtrick.modules['LoyaltyDisplay'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.PRESENTATION,
-	PAGES: ['players', 'ntPlayers', 'playerDetails'],
+	PAGES: ['players', 'playerDetails'],
 	CSS: Foxtrick.InternalPath + 'resources/css/loyalty-display.css',
 
 	replacePercentageImage: function(player, node) {
