@@ -410,9 +410,8 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 			}
 
 			var missingXML = Foxtrick.filter(function(p) {
-				return !p.inXML && (!isNT || p.TSI > 10000);
-				// this is a somewhat arbitrary test
-				// in attempt to skip low-skill NT coaches from triggering a cache clear
+				return !p.inXML && !isNT;
+				// NT players often are not available in XML
 			}, playerList);
 			if (missingXML.length) {
 				Foxtrick.log('WARNING: New players in HTML', missingXML, 'resetting cache');
