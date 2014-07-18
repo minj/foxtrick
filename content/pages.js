@@ -182,7 +182,7 @@ Foxtrick.isPage = function(doc, page) {
 	if (typeof Foxtrick.ht_pages[page] !== 'undefined')
 		return Foxtrick.isPageHref(Foxtrick.ht_pages[page], doc.location.href);
 	else {
-		Foxtrick.log('Requesting unknown page', page);
+		Foxtrick.error('Requesting unknown page: ' + page);
 		return false;
 	}
 };
@@ -193,7 +193,7 @@ Foxtrick.isPageHref = function(page, href) {
 };
 
 Foxtrick.isOneOfPages = function(pages, doc) {
-	if (pages instanceof Array) {
+	if (Array.isArray(pages)) {
 		for (var j = 0; j < pages.length; ++j) {
 			if (Foxtrick.isPage(doc, pages[j]))
 				return true;
@@ -205,9 +205,9 @@ Foxtrick.isOneOfPages = function(pages, doc) {
 Foxtrick.isExcluded = function(doc) {
 	var i;
 	for (i in Foxtrick.pagesExcluded) {
-		var excludeRe = new RegExp(Foxtrick.pagesExcluded[i], 'i');
+		var excludeRe = new RegExp(Foxtrick.pagesExcluded[i].replace(/([.?])/g, '\\$1'), 'i');
 		// page excluded, return
-		if (doc.location.href.search(excludeRe) > -1)
+		if (excludeRe.test(doc.location.href))
 			return true;
 	}
 	return false;
