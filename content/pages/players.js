@@ -773,14 +773,14 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 		    return;
 
 		var ownId = Foxtrick.util.id.getOwnTeamId();
-		var data, dataText = Foxtrick.Prefs.getString('StaminaData.' + ownId);
+		var data = null, dataText = Foxtrick.Prefs.getString('StaminaData.' + ownId);
 		try {
 			data = JSON.parse(dataText);
 		}
 		catch (e) {
 			Foxtrick.log(e);
 		}
-		if (typeof data === 'object') {
+		if (data && typeof data === 'object') {
 			Foxtrick.map(function(player) {
 				if (data[player.id]) {
 					player.staminaPrediction = {
