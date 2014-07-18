@@ -47,6 +47,7 @@ Foxtrick.Pages.Players = {
 	getPlayerList: function(doc, callback, options) {
 		var playerList = [];
 		var args = [];
+		var isNT = false;
 
 		var getXml = function(doc, callback) {
 
@@ -67,6 +68,7 @@ Foxtrick.Pages.Players = {
 			}
 			else if (Foxtrick.Pages.Players.isNtPlayersPage(doc) || (options && options.NT)) {
 				var action = 'supporterstats', all = 'true';
+				isNT = true;
 				if (options && options.NT && typeof(options.NT.action) != 'undefined')
 					action = options.NT.action;
 				if (options && options.NT && typeof(options.NT.all) != 'undefined')
@@ -495,7 +497,8 @@ Foxtrick.Pages.Players = {
 				}
 
 				var missingXML = Foxtrick.filter(function(p) {
-					return !p.inXML;
+					return !p.inXML && !isNT;
+					// NT players often are not available in XML
 				}, playerList);
 				if (missingXML.length) {
 					Foxtrick.log('WARNING: New players in HTML', missingXML, 'resetting cache');
