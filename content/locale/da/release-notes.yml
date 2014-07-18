@@ -4,12 +4,12 @@ da:
     nightly:
       note_0: 'Dette er Beta-versionen. Du bruger denne version på eget ansvar. Se venligst <linkSVN>commit history</linkSVN> på Google Code for nærmere oplysninger om ændringerne.'
     beta:
-      note_0: 'Dette er betaversionen af den næste udgave. Du kan hjælpe med at oversætte via vores super nemme crowd-oversættelse side <linkCrowdin>crowdin.net</linkCrowdin>. '
+      note_0: 'Dette er betaversionen af den næste udgave. Du kan hjælpe med at oversætte via vores super nemme oversættelses-side <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.14.0:
       important: '<header>Vigtige meddelelser</header>'
       crowdin: '<header>En stor tak til alle de hjælpsomme brugere, som oversætter ved hjælp af <linkCrowdin>crowdin </linkCrowdin>. Du kan også give en hånd!</header>'
       browsers: Der ydes ikke længere support for Opera 12. Du skal som minimum enten have Safari 6 eller FireFox 24 for at Foxtrick fungerer.
-      backend: Der er foretaget yderligere opdateringer og oprydning af kernen. Ændringerne påvirker en del sider, moduler og funktioner såsom kamprapport, HT-Live, kampordre interface, automatisk valuta tilvalg og Foxtrick cache. Hvis du støder på enhver slags fejl, brug fejl rapporterings linket i bunden af din HT side.
+      backend: Der er foretaget yderligere opdateringer og oprydning af kernen. Ændringerne påvirker en del sider, moduler og funktioner såvel som kamprapport, HT-Live, kampordre interface, automatisk valuta-tilvalg og Foxtrick cache. Hvis du støder på enhver slags fejl, brug fejl rapporterings linket i bunden af din HT side.
       bug_report: Hattricks fodnote indeholder nu et link for at rapportere Foxtrick fejl. Brug det på den side fejlen opstår og følg vejledningen.
       twitter: 'Du kan følge <linkTwitter>Foxtrick på Twitter</linkTwitter> for at modtage de seneste nyheder, opdateringer og meddelelser.'
       new: '<header>Nye moduler</header>'
@@ -39,7 +39,7 @@ da:
       other: '<header>Andre ændringer</header>'
       report_format: '<module>MatchReportFormat</module> og <module>LiveMatchReportFormat</module> moduler blev omskrevet og virker nu uden CHPP adgang.'
       attvsdef: 'Reelle sandsynligheder i <module>AttVsDef</module> modul påvirker nu også bold besiddelse barer.'
-      staff_marker: 'Brugerdefineret farve interface i <module>StaffMarker</module> er nu valgfri.'
+      staff_marker: 'Brugerdefineret farve-interface i <module>StaffMarker</module> er nu valgfri.'
       mmdd: 'Pilene i <module>MainMenuDropDown</module> menuer er nu valgfrie.'
       and_more: Forskellige små ændringer og rettelser.
     0.13.0:
@@ -232,7 +232,7 @@ da:
       note_11: Fennec indlæser staffmarker og link ressourcer fra interne kilder igen. Så de opdateres ikke dynamisk, men også sparer båndbredde.
     0.9.2:
       note_0: Endnu en massiv sprog opdatering. Tak igen til alle disse oversættere.
-      note_1: Omskrevet sprogregistrering. Bør aldrig fejle igen
+      note_1: Omskrevet registrering af sprog. Bør aldrig fejle igen
       note_2: 'NEW: <module>PlayerStatsExperience</module>: viser, hvor meget erfaring en spiller har opnået i de enkelte kampe, og viser aktuelle underniveauer'
       note_3: 'NEW: <module>TeamPopupLinks</module>:  tilføjede Turneringer. Eventuelt fremhæver nuværende hold i tabeller (standard aktiveret)'
       note_4: 'NEW: <module>RatingsDisplay</module>:desuden tilføjet Gennemsnitlig stjerner og ratings til serie statistik tabel'
