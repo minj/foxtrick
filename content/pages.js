@@ -178,6 +178,12 @@ Foxtrick.pagesExcluded = {
 	'logout'                    : '/Logout.aspx'
 };
 
+/**
+ * Test whether document belongs to a certain page type
+ * @param  {document} doc
+ * @param  {string}   page
+ * @return {Boolean}
+ */
 Foxtrick.isPage = function(doc, page) {
 	if (typeof Foxtrick.ht_pages[page] !== 'undefined')
 		return Foxtrick.isPageHref(doc.location.href, Foxtrick.ht_pages[page]);
@@ -187,23 +193,39 @@ Foxtrick.isPage = function(doc, page) {
 	}
 };
 
+/**
+ * Test whether URL belongs to a certain page type
+ * @param  {string}  href
+ * @param  {string}  page
+ * @return {Boolean}
+ */
 Foxtrick.isPageHref = function(href, page) {
 	var htpage_regexp = new RegExp(page.replace(/([.?])/g, '\\$1'), 'i');
 	return htpage_regexp.test(href.replace(/#.*$/, ''));
 };
 
+/**
+ * Test whether document belongs to one of page types
+ * @param  {document} doc
+ * @param  {string[]} pages Array.<string>
+ * @return {Boolean}
+ */
 Foxtrick.isOneOfPages = function(doc, pages) {
 	return Foxtrick.any(function(page) {
 		return Foxtrick.isPage(doc, page);
 	}, pages);
 };
 
+/**
+ * Test whether Foxtrick should not run on this document
+ * @param  {document} doc
+ * @return {Boolean}
+ */
 Foxtrick.isExcluded = function(doc) {
-	var i;
-	for (i in Foxtrick.pagesExcluded) {
+	for (var i in Foxtrick.pagesExcluded) {
 		var excludeRe = new RegExp(Foxtrick.pagesExcluded[i].replace(/([.?])/g, '\\$1'), 'i');
-		// page excluded, return
 		if (excludeRe.test(doc.location.href))
+			// page excluded, return
 			return true;
 	}
 	return false;
