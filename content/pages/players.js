@@ -265,27 +265,26 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 					player.injured = (player.bruised || player.injuredWeeks !== 0);
 				}
 
-				if (typeof player.nameLink === 'undefined') {
-					player.nameLink = doc.createElement('a');
-					player.nameLink.href = '/Club/Players/' + (isYouth ? 'Youth' : '') +
-						'Player.aspx?' + (isYouth ? 'Youth' : '') + 'PlayerID=' + id;
-					if (node('PlayerName'))
-						player.nameLink.textContent = text('PlayerName');
-					else {
-						player.nameLink.textContent = text('FirstName').
-							replace(/(-[^\(])([^-\s]+)/g, '$1.'). // replaces first name
-							replace(/(\s[^\(])([^-\s]+)/g, '$1.'). // replace further first names
-							replace(/(\(.)([^-\)]+)/g, '$1.'). // non-latin in brackets
-							replace(/(^[^\(])([^-\s]+)/g, '$1.') + // replace names with '-'
-							' ' + text('LastName');
-
-						// keep full name in title
-						player.nameLink.title = text('FirstName') + ' ' + text('LastName');
-					}
-				}
 
 				// README: XML exclusive info starts here
 
+				// first name stripping
+				player.nameLink = doc.createElement('a');
+				player.nameLink.href = '/Club/Players/' + (isYouth ? 'Youth' : '') +
+					'Player.aspx?' + (isYouth ? 'Youth' : '') + 'PlayerID=' + id;
+				if (node('PlayerName'))
+					player.nameLink.textContent = text('PlayerName');
+				else {
+					player.nameLink.textContent = text('FirstName').
+						replace(/(-[^\(])([^-\s]+)/g, '$1.'). // replaces first name
+						replace(/(\s[^\(])([^-\s]+)/g, '$1.'). // replace further first names
+						replace(/(\(.)([^-\)]+)/g, '$1.'). // non-latin in brackets
+						replace(/(^[^\(])([^-\s]+)/g, '$1.') + // replace names with '-'
+						' ' + text('LastName');
+
+					// keep full name in title
+					player.nameLink.title = text('FirstName') + ' ' + text('LastName');
+				}
 				var xmlNums = [
 					'Agreeability',
 					'Aggressiveness',
