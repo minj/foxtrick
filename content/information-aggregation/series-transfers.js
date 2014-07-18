@@ -183,7 +183,7 @@ Foxtrick.modules['SeriesTransfers'] = {
 					Foxtrick.log('No XML in batchRetrieve', batchArgs[i], errorText);
 					return;
 				}
-				var fetchDate = xml.date('FetchedDate');
+				var fetchDate = xml.time('FetchedDate');
 				oldestFile = Math.min(fetchDate.valueOf(), oldestFile);
 
 				var tid = xml.num('TeamID');
@@ -193,8 +193,8 @@ Foxtrick.modules['SeriesTransfers'] = {
 					var num = function(field) {
 						return xml.num(field, player);
 					};
-					var playerID = xml.num('PlayerID');
-					var isTransferListed = xml.num('TransferListed');
+					var playerID = num('PlayerID');
+					var isTransferListed = num('TransferListed');
 
 					if (isTransferListed) {
 						hasListedPlayers = true;
