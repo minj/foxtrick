@@ -122,6 +122,7 @@ pref("extensions.foxtrick.prefs.module.ForumAlterHeaderLine.TruncateLeagueName.e
 pref("extensions.foxtrick.prefs.module.ForumAlterHeaderLine.TruncateLongNick.enabled", false);
 pref("extensions.foxtrick.prefs.module.ForumLastPost.enabled", false);
 pref("extensions.foxtrick.prefs.module.ForumLastPost.lastpage.enabled", false);
+pref("extensions.foxtrick.prefs.module.ForumLastPost.unlessOpen.enabled", false);
 pref("extensions.foxtrick.prefs.module.ForumModeratorPopup.enabled", true);
 pref("extensions.foxtrick.prefs.module.ForumNextAndPrevious.enabled", true);
 pref("extensions.foxtrick.prefs.module.ForumPresentation.enabled", false);

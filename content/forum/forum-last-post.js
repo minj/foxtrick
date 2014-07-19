@@ -8,7 +8,7 @@
 Foxtrick.modules['ForumLastPost'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.FORUM,
 	PAGES: ['forum', 'forumSettings'],
-	OPTIONS: ['lastpage'],
+	OPTIONS: ['unlessOpen', 'lastpage'],
 
 	run: function(doc) {
 		this._change(doc);
@@ -24,6 +24,7 @@ Foxtrick.modules['ForumLastPost'] = {
 			if (!perpage)
 				perpage = 20;
 
+			var unlessOpen = Foxtrick.Prefs.isModuleOptionEnabled('ForumLastPost', 'unlessOpen');
 			var lastpage = Foxtrick.Prefs.isModuleOptionEnabled('ForumLastPost', 'lastpage');
 
 			var changeLinks = function(rowClass, countClass, linkClass) {
@@ -36,9 +37,10 @@ Foxtrick.modules['ForumLastPost'] = {
 
 					var url = row.querySelector('.' + linkClass + ' a');
 					if (url.getElementsByTagName('strong').length) {
-						// this thread is open now!
-						// default to first post
-						return;
+						if (unlessOpen)
+							// this thread is open now!
+							// default to first post
+							return;
 					}
 
 					var postNum = parseInt(div.textContent.trim(), 10);
