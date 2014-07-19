@@ -9,6 +9,8 @@ hr:
       important: '<header>Važne obavijesti</header>'
       crowdin: '<header>Mnogo prevoditeljskih nadogradnji od naših fantastičnih korisnika koristeći <linkCrowdin>crowdin alat</linkCrowdin>. I Vi možete pomoći!</header>'
       browsers: Ukinuta je podrška za operu 12. Safari 6 i Firefox 24 su sada minimalne verzije za pokretanje Foxtricka.
+      backend: Obavljeno je čišćenje i ažuriranje Foxtricka. Promjene utječu na mnogo stranica i funkcija, uključujući i izvještaj s utakmice, HT-Live, postavljanje taktike, automatskoj valuti i ostalome. Molimo prijavite greške ako ih pronađete.
+      bug_report: Hattrick podnožje će sadržavati poveznicu za učinkovito prijavljivanje Foxtrick grešaka. Koristite ju na stranici i pratite upute koje će se pojaviti.
       twitter: 'Možete pratiti <linkTwitter>Foxtrick na Twitteru</linkTwitter> kako biste dobili najnovije vijesti, ažuriranja i objave.'
       new: '<header>Novi moduli</header>'
       series_transfers: '<module>SeriesTransfers</module>: prikazuje listu igrača trenutno na prodaji na stranicama liga.'
@@ -23,6 +25,7 @@ hr:
       nav_fix: 'Navigacija u <module>GoToPostBox</module> i <module>MyMonitor</module> je popravljena u Firefoxu.'
       new_lineup: 'Moduli <module>MatchPlayerColouring</module>, <module>LineupShortcut</module>, <module>TeamPopupLinks</module> i <module>SeniorTeamShortCuts</module> će sad ispravno funkcionirati sa novom stranicom za postavu.'
       other: '<header>Ostale promjene</header>'
+      live_ratings: 'Ocjene uživo su dodane u <module>MatchLineupTweaks</module>, <module>MatchRatingsTweaks</module> i <module>MatchPlayerColouring</module>.'
       own_top_players: '<module>Filter</module> modul sada označava tvoje igrače na stranici Najbolji Igrači.'
       htev: htev.org više ne može izdržati teret zahtjeva Foxtricka stoga je modul HTEVPrediction uklonjen.
       removed: Moduli SmallerPages i MatchTables su uklonjeni zbog svoje beskorisnosti.
