@@ -177,14 +177,14 @@ Foxtrick.modules['TransferComparePlayers'] = {
 				return;
 
 			var ct = hTable.rows.length;
-			var th = doc.createElement('th');
+			var th = Foxtrick.createFeaturedElement(doc, this, 'th');
 			th.textContent = Foxtrick.L10n.getString('TransferComparePlayers.difference');
 			hTable.rows[0].insertBefore(th, hTable.rows[0].cells[4]);
 
 			for (var i = 1; i < ct - 1; i++) {
 				var next = Foxtrick.trimnum(hTable.rows[i].cells[3].textContent);
 				var last = Foxtrick.trimnum(hTable.rows[i + 1].cells[3].textContent);
-				var percentage = doc.createElement('span');
+				var percentage = Foxtrick.createFeaturedElement(doc, this, 'span');
 
 				var dif;
 				if (next > last) {
