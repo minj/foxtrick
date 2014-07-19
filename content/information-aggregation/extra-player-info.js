@@ -24,6 +24,8 @@ Foxtrick.modules['ExtraPlayerInfo'] = {
 			for (var i = 0; i < allPlayers.length; ++i) {
 				var id = Foxtrick.Pages.Players.getPlayerId(allPlayers[i]);
 				var player = Foxtrick.Pages.Players.getPlayerFromListById(playerList, id);
+				if (!player)
+					return;
 
 				var basics = allPlayers[i].getElementsByTagName('p')[0];
 
