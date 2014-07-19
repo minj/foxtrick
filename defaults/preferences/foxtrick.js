@@ -288,7 +288,6 @@ pref("extensions.foxtrick.prefs.module.MatchReportFormat.ShowEventIcons.enabled"
 pref("extensions.foxtrick.prefs.module.LiveMatchReportFormat.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchWeather.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchWeather.Irl.enabled", true);
-pref("extensions.foxtrick.prefs.module.TransferComparePlayers.enabled", true);
 pref("extensions.foxtrick.prefs.module.MoveLinks.enabled", false);
 pref("extensions.foxtrick.prefs.module.MoveManagerOnline.enabled", false);
 pref("extensions.foxtrick.prefs.module.MovePlayerSelectbox.enabled", false);
@@ -685,6 +684,8 @@ pref("extensions.foxtrick.prefs.module.TickerAlert.transfer.sound", "foxtrick://
 pref("extensions.foxtrick.prefs.module.TickerAlert.welcome.enabled", false);
 pref("extensions.foxtrick.prefs.module.TickerAlert.welcome.sound", "");
 pref("extensions.foxtrick.prefs.module.TickerColoring.enabled", true);
+pref("extensions.foxtrick.prefs.module.TransferComparePlayers.enabled", true);
+pref("extensions.foxtrick.prefs.module.TransferComparePlayers.ShowProfit.enabled", true);
 pref("extensions.foxtrick.prefs.module.TransferDeadline.enabled", true);
 pref("extensions.foxtrick.prefs.module.TransferHistoryFilters.enabled", true);
 pref("extensions.foxtrick.prefs.module.TransferSearchFilters.enabled", true);

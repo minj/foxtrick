@@ -9,6 +9,7 @@
 Foxtrick.modules['TransferComparePlayers'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES: ['transferCompare', 'transfersPlayer'],
+	OPTIONS: ['ShowProfit'],
 	// CSS: Foxtrick.InternalPath + 'resources/css/transfercompareplayers.css',
 
 	run: function(doc) {
@@ -174,6 +175,8 @@ Foxtrick.modules['TransferComparePlayers'] = {
 			}
 		}
 		else if (isHistory) {
+			if (!Foxtrick.Prefs.isModuleOptionEnabled('TransferComparePlayers', 'ShowProfit'))
+				return;
 			var hTable = doc.querySelectorAll('#mainBody > table')[0];
 			if (!hTable)
 				return;
