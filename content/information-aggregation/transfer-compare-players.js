@@ -13,6 +13,7 @@ Foxtrick.modules['TransferComparePlayers'] = {
 	// CSS: Foxtrick.InternalPath + 'resources/css/transfercompareplayers.css',
 
 	run: function(doc) {
+		var module = this;
 		var isCompare = Foxtrick.isPage(doc, 'transferCompare');
 		var isHistory = Foxtrick.isPage(doc, 'transfersPlayer');
 
@@ -67,10 +68,25 @@ Foxtrick.modules['TransferComparePlayers'] = {
 							Foxtrick.log('No XML in batchRetrieve', argsPlayers[i], errors[i]);
 							continue;
 						}
-						var age = xmls[i].num('Age');
-						var days = xmls[i].num('AgeDays');
-						table.rows[5 + i].cells[4].textContent =
-							parseInt(age, 10) + '.' + days;
+						var days = xmls[i].num('Age') * 112 + xmls[i].num('AgeDays');
+						var fetchDate = xmls[i].date('FetchedDate');
+						var transfer = table.rows[5 + i].cells[1].textContent;
+						var transferDate = Foxtrick.util.time.getDateFromText(transfer);
+
+						var diffDays = (fetchDate.getTime() - transferDate.getTime()) /
+							(24 * 60 * 60 * 1000);
+						days -= Math.round(diffDays);
+						var years = Foxtrick.Math.div(days, 112);
+						days %= 112;
+
+						var ageCell = table.rows[5 + i].cells[4];
+						ageCell.textContent = '';
+						Foxtrick.makeFeaturedElement(ageCell, module);
+						var ageSpan = doc.createElement('span');
+						ageSpan.textContent = years + '.' + days;
+						ageSpan.title =
+							Foxtrick.L10n.getString('TransferComparePlayers.transferAge');
+						ageCell.appendChild(ageSpan);
 
 						var specialty = xmls[i].num('Specialty');
 						if (specialty) {
