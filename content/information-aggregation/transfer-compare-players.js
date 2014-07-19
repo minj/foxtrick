@@ -8,7 +8,7 @@
 
 Foxtrick.modules['TransferComparePlayers'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
-	PAGES: ['transferCompare','transfersPlayer'],
+	PAGES: ['transferCompare', 'transfersPlayer'],
 	// CSS: Foxtrick.InternalPath + 'resources/css/transfercompareplayers.css',
 
 	run: function(doc) {
@@ -47,37 +47,46 @@ Foxtrick.modules['TransferComparePlayers'] = {
 					var player = table.rows[i].cells[0].getElementsByTagName('a')[0];
 					if (player) {
 						var playerid = Foxtrick.getParameterFromUrl(player.href, 'playerId');
-						argsPlayers.push([['file', 'playerdetails'],['version', '2.1'], ['playerId', parseInt(playerid,10)]]);
-					};
+						var args = [
+							['file', 'playerdetails'],
+							['version', '2.1'],
+							['playerId', parseInt(playerid, 10)]
+						];
+						argsPlayers.push(args);
+					}
 				}
 				Foxtrick.util.api.batchRetrieve(doc, argsPlayers, { cache_lifetime: 'session' },
-					function(xmls, errors) {
-						if (xmls)
-							for (i = 0; i < xmls.length; ++i) {
-								if (xmls[i] && !errors[i]) {
-									var age = xmls[i].getElementsByTagName('Age')[0].innerHTML;
-									var days = xmls[i].getElementsByTagName('AgeDays')[0].innerHTML;
-									table.rows[5 + i].cells[4].textContent = parseInt(age) + "." + days;
+				  function(xmls, errors) {
+					if (!xmls)
+						return;
+					for (i = 0; i < xmls.length; ++i) {
+						if (!xmls[i] || errors[i]) {
+							Foxtrick.log('No XML in batchRetrieve', argsPlayers[i], errors[i]);
+							continue;
+						}
+						var age = xmls[i].num('Age');
+						var days = xmls[i].num('AgeDays');
+						table.rows[5 + i].cells[4].textContent =
+							parseInt(age, 10) + '.' + days;
 
-									var specialty = xmls[i].getElementsByTagName('Specialty')[0].innerHTML;
-									if (specialty != "0") {
-										var spec = Foxtrick.L10n.getSpecialityFromNumber(specialty);
-										var hidden = doc.createElement('span');
-										hidden.className = 'hidden';
-										hidden.textContent = spec;
-										table.rows[5 + i].cells[0].appendChild(hidden);
-										var specImageUrl = Foxtrick.getSpecialtyImagePathFromNumber(specialty);
-										Foxtrick.addImage(doc, table.rows[5 + i].cells[0], {
-											alt: spec,
-											title: spec,
-											src: specImageUrl
-										});
-									}	
-								}
-								else
-									Foxtrick.log('No XML in batchRetrieve', argsPlayers[i], errors[i]);
-							}
-					});
+						var specialty = xmls[i].num('Specialty');
+						if (specialty) {
+							var spec =
+								Foxtrick.L10n.getSpecialityFromNumber(specialty);
+							var hidden = doc.createElement('span');
+							hidden.className = 'hidden';
+							hidden.textContent = spec;
+							table.rows[5 + i].cells[0].appendChild(hidden);
+							var specImageUrl =
+								Foxtrick.getSpecialtyImagePathFromNumber(specialty);
+							Foxtrick.addImage(doc, table.rows[5 + i].cells[0], {
+								alt: spec,
+								title: spec,
+								src: specImageUrl
+							});
+						}
+					}
+				});
 			});
 
 			var ownPlayer = table.rows[1].cells[0].getElementsByTagName('a')[0];
@@ -92,11 +101,11 @@ Foxtrick.modules['TransferComparePlayers'] = {
 				if (thisPlayerId === ownPlayerId) {
 					Foxtrick.addClass(table.rows[i], 'ft-tableHighlight');
 				}
-				if (table.rows[i].cells[3].textContent.search(/\d/) != -1) {
+				if (/\d/.test(table.rows[i].cells[3].textContent)) {
 					var thisPrice = Foxtrick.trimnum(table.rows[i].cells[3].textContent);
 					priceArray.push(thisPrice);
 				}
-				if (table.rows[i].cells[2].textContent.search(/\d/) != -1) {
+				if (/\d/.test(table.rows[i].cells[2].textContent)) {
 					var thisTsi = Foxtrick.trimnum(table.rows[i].cells[2].textContent);
 					tsiArray.push(thisTsi);
 				}
@@ -159,47 +168,50 @@ Foxtrick.modules['TransferComparePlayers'] = {
 				cell = row.insertCell(3);
 				cell.colSpan = 2;
 			}
-		} else if (isHistory) {
-			var table = doc.querySelectorAll('#mainBody > table')[0];
-			if (!table)
+		}
+		else if (isHistory) {
+			var hTable = doc.querySelectorAll('#mainBody > table')[0];
+			if (!hTable)
 				return;
-			if (table.rows[0].cells.length < 2)
+			if (hTable.rows[0].cells.length < 2)
 				return;
 
-			var count = table.rows.length;
+			var ct = hTable.rows.length;
 			var th = doc.createElement('th');
 			th.textContent = Foxtrick.L10n.getString('TransferComparePlayers.difference');
-			table.rows[0].insertBefore(th,table.rows[0].cells[4]);
+			hTable.rows[0].insertBefore(th, hTable.rows[0].cells[4]);
 
-			for (var i = 1; i < count-1; i++) {
-				var next = Foxtrick.trimnum(table.rows[i].cells[3].textContent);
-				var last = Foxtrick.trimnum(table.rows[i+1].cells[3].textContent);
+			for (var i = 1; i < ct - 1; i++) {
+				var next = Foxtrick.trimnum(hTable.rows[i].cells[3].textContent);
+				var last = Foxtrick.trimnum(hTable.rows[i + 1].cells[3].textContent);
 				var percentage = doc.createElement('span');
 
+				var dif;
 				if (next > last) {
-					var dif = (next-last)/last;
+					dif = (next - last) / last;
 					Foxtrick.addClass(percentage, 'ft-player-transfer-history positive');
-					percentage.textContent = "(+" + Math.round(dif*100) + "%)";
-				} else if (next < last) {
-					var dif = (last-next)/next;
+					percentage.textContent = '(+' + Math.round(dif * 100) + ' %)';
+				}
+				else if (next < last) {
+					dif = (last - next) / next;
 					Foxtrick.addClass(percentage, 'ft-player-transfer-history negative');
-					percentage.textContent = "(-" + Math.round(dif*100) + "%)";
-				} else {
+					percentage.textContent = '(-' + Math.round(dif * 100) + ' %)';
+				}
+				else {
 					Foxtrick.addClass(percentage, 'ft-player-transfer-history');
-					percentage.textContent = "(0%)";
+					percentage.textContent = '(0 %)';
 				}
 
+				hTable.rows[i].insertCell(4);
+				hTable.rows[i].cells[4].appendChild(percentage);
 
-				table.rows[i].insertCell(4);
-				table.rows[i].cells[4].appendChild(percentage);
-
-			};
-
-			var td = doc.createElement('td');
-			td.textContent = " ";
-			table.rows[i].insertBefore(td, table.rows[i].cells[4]);
 			}
 
+			var td = doc.createElement('td');
+			td.textContent = ' ';
+			hTable.rows[i].insertBefore(td, hTable.rows[i].cells[4]);
 		}
 
-	};
+	}
+
+};
