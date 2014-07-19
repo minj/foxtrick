@@ -482,9 +482,14 @@ Foxtrick.Pages.Players = {
 				// add stamina data
 				var ownId = Foxtrick.util.id.getOwnTeamId();
 				var teamid = xml.getElementsByTagName('TeamID')[0];
-				var data = {}, dataText = Foxtrick.Prefs.getString('StaminaData.' + ownId);
-				if (dataText && teamid && teamid.textContent == ownId) {
+				var data = null, dataText = Foxtrick.Prefs.getString('StaminaData.' + ownId);
+				try {
 					data = JSON.parse(dataText);
+				}
+				catch (e) {
+					Foxtrick.log(e);
+				}
+				if (data && typeof data === 'object' && teamid && teamid.textContent == ownId) {
 					Foxtrick.map(function(player) {
 						if (data.hasOwnProperty(player.id)) {
 							player.staminaPrediction = {
