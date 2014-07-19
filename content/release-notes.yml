@@ -11,7 +11,7 @@ en:
       important: '<header>Important announcements</header>'
       ff_cache: 'Foxtrick packages will no longer have extra compression in Firefox. This should prevent all kinds of weird problems users have experienced with version 0.14.0.'
       bugs: '<header>Bug fixes</header>'
-      safari_prefs: 'The Foxtruc preferences page could not be displayed for some users with Safari.'
+      safari_prefs: 'The Foxtrick preferences page could not be displayed for some users with Safari.'
       teamstats: 'Fixed a rare error that breaks <module>TeamStats</module> and other modules.'
       bpp: '<module>BestPlayerPosition</module> was showing wrong data in transfer search result page in some cases.'
       history_stats: '<module>HistoryStats</module> will now always order team performance by season.'
