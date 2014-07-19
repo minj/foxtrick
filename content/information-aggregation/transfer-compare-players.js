@@ -55,6 +55,8 @@ Foxtrick.modules['TransferComparePlayers'] = {
 						argsPlayers.push(args);
 					}
 				}
+				var loading = Foxtrick.util.note.createLoading(doc);
+				table.parentNode.insertBefore(loading, table);
 				Foxtrick.util.api.batchRetrieve(doc, argsPlayers, { cache_lifetime: 'session' },
 				  function(xmls, errors) {
 					if (!xmls)
@@ -86,7 +88,9 @@ Foxtrick.modules['TransferComparePlayers'] = {
 							});
 						}
 					}
+					loading.parentNode.removeChild(loading);
 				});
+				this.parentNode.removeChild(this);
 			});
 
 			var ownPlayer = table.rows[1].cells[0].getElementsByTagName('a')[0];
