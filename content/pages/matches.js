@@ -31,3 +31,18 @@ Foxtrick.Pages.Matches.isNtMatchesPage = function(doc) {
 	var teamId = Foxtrick.Pages.All.getTeamId(doc);
 	return teamId >= 3000 && teamId < 4000;
 };
+/**
+ * Possible match icon classes
+ * @type {Array}
+ */
+Foxtrick.Pages.Matches.Types = [
+	'matchLeague',
+	'matchQualification',
+	'matchCup',
+	'matchFriendly',
+	'matchMasters',
+	'matchTournament',
+	'matchTournamentLadder',
+	'matchSingleMatch',
+	'matchNewbie',
+];
