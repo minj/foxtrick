@@ -5,6 +5,9 @@ gl:
       note_0: 'Esta é a versión en proceso desenvolvemento. Úsaa baixo a túa responsabilidade. Podes ollar o <linkSVN>Historial de cambios</linkSVN> en Google Code para ver detalles dos mesmos.'
     beta:
       note_0: 'Esta é a versión beta do próximo lanzamento. Podes axudar a traducila na nosa marabillosa páxina de tradución en equipo <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.14.0.1:
+      important: '<header>Anuncios importantes</header>'
+      bugs: '<header>Solucións de erros</header>'
     0.14.0:
       important: '<header>Anuncios importantes</header>'
       crowdin: '<header>Unha morea de actualizacións das traducións realizadas polos nosos marabillosos usuarios a través da <linkCrowdin>ferramenta Crowdin</linkCrowdin>. Por certo, ti tamén podes colaborar!</header>'

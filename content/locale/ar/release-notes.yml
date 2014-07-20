@@ -5,6 +5,9 @@ ar:
       note_0: 'هذه النسخة تطويرية وأنت تستخدمها على مسؤوليتك. الرجاء مراجعة <linkSVN>تاريخ التغييرات</linkSVN> في Google Code لمعرفة تفاصيل التحديثات.'
     beta:
       note_0: 'هذه النسخة تجريبية للإصدار القادم. الرجاء المساعدة في ترجمة هذه النسخة في صفحة الترجمة السهلة جدا على <linkCrowdin>crowdin.net</linkCrowdin>.'
+    0.14.0.1:
+      important: '<header>إعلانات هامة</header>'
+      bugs: '<header>إصلاح الأخطاء التقنية</header>'
     0.14.0:
       important: '<header>إعلانات هامة</header>'
       crowdin: '<header>العديد من التحديثات اللغوية والترجمات بواسطة مستخدمينا الأعزاء عبر أداة<linkCrowdin>crowdin </linkCrowdin>. يمكنك مساعدتنا كذلك!</header>'
@@ -27,7 +30,7 @@ ar:
       and_more: والعديد من التغييرات والإصلاحات الصغيرة الأخرى.
     0.13.0:
       important: '<header>إعلانات هامة</header>'
-      opera: |
+      opera: |2
         <p>هذا هو الإصدار الأخير الذي يدعم متصفح Opera 12 والنسخ السابقة والإصدارات التي تدعم متصفح Foxtrick قد تتوقف من دون إشعار مسبق.</p>
          <p>الرجاء محاولة استخدام المتصفح <linkOperaNext>Opera Next</linkOperaNext> أو أي متصفح آخر مدعوم من إختيارك.</p>
       safari: الدعم لمتصفح Safari في الإصدارات 5.x سيتوقف قريبا.
@@ -52,7 +55,7 @@ ar:
       ff_button: شريط الأدوات في متصفح Firefox سوف يتفاعل بشكل أفضل الآن لعرض حالة برنامج Foxtrick.
       ff_disable: تعطيل Foxtrick في متصفح Firefox سوف يغلق التفضيلات إذا كانت مفتوحة وسوف يعيد تحميل كل تبويبات هاتريك لإزالة كل التعديلات التي يقوم بها البرنامج على صفحات اللعبة.
       bugs: '<header>إصلاح الأخطاء التقنية</header>'
-      android: |
+      android: |2
         <p>تم إصلاح العديد من الأخطاء التقنية في برنامج Foxtrick ليلائم الآن متصفح Firefox لأجهزة Android.</p>
          <p>الوظائف المحدثة: <module>MatchReportFormat</module> و <module>التقييمات</module> و <module>MatchSimulator</module> و <module>HTMSPrediction</module> <em>وغيرها</em>.</p>
       ff_cache: تم إصلاح مشكلة تقنية في متصفح Firefox كانت في بعض الحالات تمنع برنامج Foxtrick من تحديث نفسه.
