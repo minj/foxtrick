@@ -63,10 +63,11 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 	var getXml = function(doc, callback) {
 
 		var teamId = Foxtrick.util.id.getOwnTeamId();
-		if (options && options.teamid)
-			teamId = options.teamid;
+		if (options && options.teamId)
+			teamId = options.teamId;
 		else if (/teamid=(\d)/i.test(doc.location.href))
 			teamId = Foxtrick.util.id.getTeamIdFromUrl(doc.location.href);
+		teamId = parseInt(teamId, 10);
 
 		var isYouth = (options && options.isYouth) ||
 			Foxtrick.Pages.Players.isYouth(doc) ||
@@ -77,13 +78,13 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 			args.push(['youthTeamId', teamId]);
 			args.push(['actionType', 'details']);
 		}
-		else if (Foxtrick.Pages.Players.isNT(doc) || (options && options.NT)) {
+		else if (Foxtrick.Pages.Players.isNT(doc) || (options && options.isNT)) {
 			isNT = true;
-			var action = 'supporterstats', all = 'true';
-			if (options && options.NT && typeof(options.NT.action) != 'undefined')
-				action = options.NT.action;
-			if (options && options.NT && typeof(options.NT.all) != 'undefined')
-				all = options.NT.all;
+			var action = 'supporterstats', all = true;
+			if (options && options.currentSquad || !Foxtrick.util.layout.isSupporter(doc)) {
+				action = 'view';
+				all = false;
+			}
 			args.push(['file', 'nationalplayers']);
 			args.push(['teamId', teamId]);
 			args.push(['actionType', action]);
@@ -94,7 +95,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 			args.push(['version', '2.2']);
 			args.push(['teamId', teamId]);
 
-			if (!options || !options.current_squad) {
+			if (!options || !options.currentSquad) {
 				if (Foxtrick.Pages.Players.isOldies(doc))
 					args.push(['actionType', 'viewOldies']);
 				else if (Foxtrick.Pages.Players.isCoaches(doc))
@@ -175,7 +176,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				var player = Foxtrick.nth(findById(id), playerList);
 				if (!player) {
 					// player not present in HTML!
-					if (!options || !options.current_squad)
+					if (!options || !options.currentSquad)
 						continue;
 						// skip if not retrieving squad from other page
 					else {
@@ -803,7 +804,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				try {
 					// parse HTML first because players present in HTML may
 					// not present in XML (NT players)
-					if (!options || !options.current_squad)
+					if (!options || !options.currentSquad)
 						parseHtml();
 					if (xml)
 						parseXml(xml);
@@ -822,6 +823,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				}
 			});
 		}, 0);
+		return null;
 	}
 	else {
 		try {

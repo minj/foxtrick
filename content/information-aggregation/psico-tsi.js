@@ -135,7 +135,7 @@ Foxtrick.modules['PsicoTSI'] = {
 										pr.maxSkill, pr.formHigh, pr.formAvg, pr.formLow,
 										pr.wageLow, pr.limit);
 			}
-		}, { teamid: Foxtrick.Pages.All.getTeamId(doc) });
+		}, { teamId: Foxtrick.Pages.All.getTeamId(doc) });
 
 	},
 	/**

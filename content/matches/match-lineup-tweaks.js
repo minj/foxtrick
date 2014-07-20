@@ -325,7 +325,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 						Foxtrick.Pages.Player.getPlayer(doc, missing[j].id, makeCallback(j));
 					}
 				}
-			}, { teamid: teamid, current_squad: true, isYouth: isYouth });
+			}, { teamId: teamid, currentSquad: true, isYouth: isYouth });
 		};
 
 		addSpecialtiesByTeamId(homeTeamId, homePlayerLinks);
@@ -343,7 +343,6 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 
 		//get player list sucks for nt matches
 		var isNT = Foxtrick.Pages.Match.isNT(doc);
-		var NT = isNT ? { action: 'view', all: 'false' } : null;
 		var isYouth = Foxtrick.Pages.Match.isYouth(doc);
 		var param = (isYouth ? 'youth' : '') + 'playerid';
 
@@ -359,7 +358,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 
 		var alt = Foxtrick.L10n.getString('MatchLineupTweaks.missing');
 
-		var addMissingByTeamId = function(teamid, players) {
+		var addMissingByTeamId = function(teamId, players) {
 			Foxtrick.Pages.Players.getPlayerList(doc,
 			  function(playerInfo) {
 				if (!playerInfo || !playerInfo.length)
@@ -388,7 +387,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 					}
 				}
 				Foxtrick.startListenToChange(doc);
-			}, { teamid: teamid, current_squad: true, NT: NT, isYouth: isYouth });
+			}, { teamId: teamId, currentSquad: true, isNT: isNT, isYouth: isYouth });
 		};
 
 		addMissingByTeamId(homeTeamId, homePlayerLinks);

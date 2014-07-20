@@ -1082,26 +1082,26 @@ Foxtrick.modules['SkillTable'] = {
 			// get normal oldies into oldies_list
 			Foxtrick.Pages.Players.getPlayerList(doc,
 			  function(oldies_list) {
-				// then get current squad (last parameter true) into current_squad_list
+				// then get current squad (last parameter true) into currentSquadList
 				Foxtrick.Pages.Players.getPlayerList(doc,
-				  function(current_squad_list) {
+				  function(currentSquadList) {
 					var argsTransfersPlayer = [];
 					Foxtrick.map(function(player) {
 						argsTransfersPlayer.push([
 							['file', 'transfersplayer'], ['playerId', player.id]
 						]);
-					}, current_squad_list);
+					}, currentSquadList);
 					Foxtrick.util.api.batchRetrieve(doc, argsTransfersPlayer,
 					                                { cache_lifetime: 'session' },
 					  function(xmls, errors) {
 						// filter, concat with oldies and display
-						current_squad_list = Foxtrick.filter(function(n) {
+						currentSquadList = Foxtrick.filter(function(n) {
 							return n.motherClubBonus;
-						}, current_squad_list);
-						var full_list = oldies_list.concat(current_squad_list);
+						}, currentSquadList);
+						var full_list = oldies_list.concat(currentSquadList);
 						Foxtrick.preventChange(doc, showTable)(full_list);
 					});
-				}, { current_squad: 'true' });
+				}, { currentSquad: true });
 			});
 		};
 		var addTableDiv = function() {

@@ -415,7 +415,7 @@ Foxtrick.modules['MatchOrderInterface'] = {
 
 				if (hasInterface)
 					showPlayerInfo(doc.getElementById('orders'));
-			}, { teamid: teamid, current_squad: true, includeMatchInfo: true });
+			}, { teamId: teamid, currentSquad: true, includeMatchInfo: true });
 
 			Foxtrick.util.api.retrieve(doc, [
 				['file', (isYouth ? 'youth' : '') + 'avatars'],
