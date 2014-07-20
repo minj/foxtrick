@@ -76,32 +76,31 @@ Foxtrick.modules['SkillTable'] = {
 					old_notes.parentNode.removeChild(old_notes);
 
 				var fullType = getFullType(doc);
-				var allPlayerInfo, pid;
+				var players, pid;
 				var i, j;
 				// first determine lastMatchday
 				if (fullType.type != 'transfer'
 					&& fullType.subtype != 'nt'
 					&& fullType.subtype != 'oldiesCoach') {
-					var getLastMatchDates = function(PlayerInfo) {
+					var getMatchDate = function(PlayerInfo) {
 						pid = Foxtrick.Pages.Players.getPlayerId(PlayerInfo);
 						var as = PlayerInfo.getElementsByTagName('a');
 						for (j = 0; j < as.length; ++j) {
 							if (as[j].href.search(/matchid/i) != -1) {
-								return Foxtrick.util.time.getDateFromText(as[j].textContent)
-														 .getTime();
+								var date = Foxtrick.util.time.getDateFromText(as[j].textContent);
+								return date.getTime();
 							}
 						}
 						return 0;
 					};
 
-					allPlayerInfo = doc.getElementsByClassName('playerInfo');
+					players = doc.getElementsByClassName('playerInfo');
 					// (assumes that if there are less then 7 players at a match date
 					// that is was a transfer and disregards those)
-					var dates = Foxtrick.Pages.Players.getLastMatchDates(allPlayerInfo,
-					                                                     getLastMatchDates, 7);
+					var dates = Foxtrick.Pages.Players.getLastMatchDates(players, getMatchDate, 7);
 
-					var lastMatchDate = dates.lastMatchDate;
-					var secondLastMatchDate = dates.secondLastMatchDate;
+					var lastMatchDate = dates.last;
+					var secondLastMatchDate = dates.second;
 				}
 
 				// functions used to attach data to table cell

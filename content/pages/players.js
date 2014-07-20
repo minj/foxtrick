@@ -868,16 +868,11 @@ Foxtrick.Pages.Players.isPropertyInList = function(playerList, property) {
 	}, playerList);
 };
 
-// returns last and second last match dates from a list
-// @param players: array which contains matchdates somewhere in
-// @param getLastMatchDates: function which extract the matchdate from an array element
-// @param mincount: integer determining the minimum count for a date to be taken into account,
-// 							defaults to 1
-Foxtrick.Pages.Players.getLastMatchDates = function(players, getLastMatchDates, mincount) {
-	mincount = mincount || 1;
+Foxtrick.Pages.Players.getLastMatchDates = function(players, getMatchDate, playerLimit) {
+	playerLimit = playerLimit || 1;
 	var matchdays = [], matchdays_count = {}, lastMatch = 0, secondLastMatch = 0;
 	for (var i = 0; i < players.length; ++i) {
-		var thisMatchday = getLastMatchDates(players[i]);
+		var thisMatchday = getMatchDate(players[i]);
 		matchdays.push(thisMatchday);
 		if (!matchdays_count[thisMatchday])
 			matchdays_count[thisMatchday] = 1;
@@ -889,7 +884,7 @@ Foxtrick.Pages.Players.getLastMatchDates = function(players, getLastMatchDates, 
 
 	matchdays = Foxtrick.filter(function(n) {
 		// delete all older than a week and all with too few players (might be transfers)
-		return n > lastMatch - 7 * 24 * 60 * 60 * 1000 && matchdays_count[n] >= mincount;
+		return n > lastMatch - 7 * 24 * 60 * 60 * 1000 && matchdays_count[n] >= playerLimit;
 	}, matchdays);
 
 	if (matchdays.length)
@@ -904,5 +899,5 @@ Foxtrick.Pages.Players.getLastMatchDates = function(players, getLastMatchDates, 
 	else
 		secondLastMatch = 0;
 
-	return { lastMatchDate: lastMatch, secondLastMatchDate: secondLastMatch };
+	return { last: lastMatch, second: secondLastMatch };
 };
