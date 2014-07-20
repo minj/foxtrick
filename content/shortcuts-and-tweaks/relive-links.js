@@ -42,7 +42,6 @@ Foxtrick.modules['ReLiveLinks'] = {
 		img.alt = img.title = 'HT Re-Live';
 		img.className = 'matchHTReLive';
 
-		// var rows, row, liveTdIdx = 4, matchTdIdx = 5, tdCount = 7, scoreIdx = 3;
 		var rows, addAllLink, matches, insertCells = false, insertHeader = false;
 
 		if (Foxtrick.isPage(doc, 'series')) {
