@@ -1094,50 +1094,6 @@
 		"title": "HTEV Simulator",
 		"img": "http://htev.org/static/htevfavicon.gif"
 	},
-	"hcstats": {
-		"countrylink": {
-			"url": "http://hcstats.com/[countryid]/LeagueRank",
-			"filters": ["countryid"]
-		},
-		"leaguelink": {
-			"url": "http://hcstats.com/[countryid]/Series/[leagueid]",
-			"filters": ["countryid"]
-		},
-		"teamlink": {
-			"url": "http://hcstats.com/[countryid]/Team/[teamid]",
-			"filters": ["countryid"]
-		},
-		"playerlink": {
-			"url": "http://hcstats.com/Player/[playerid]",
-			"filters": ["nationality"]
-		},
-		"countryidranges": [
-			[3, 3],
-			[50, 50],
-			[68, 77],
-			[79, 81],
-			[83, 85],
-			[88, 89],
-			[91, 91],
-			[93, 107],
-			[110, 113],
-			[117, 148]
-		],
-		"nationalityranges": [
-			[3, 3],
-			[50, 50],
-			[68, 77],
-			[79, 81],
-			[83, 85],
-			[88, 89],
-			[91, 91],
-			[93, 107],
-			[110, 113],
-			[117, 148]
-		],
-		"title": "HCStats",
-		"img": "http://hcstats.com/favicon.ico"
-	},
 	"hatstatsnet": {
 		"leaguelink": {
 			"url": "http://hatstats.net/[countryid]/standings.php?series=[leagueid]"
