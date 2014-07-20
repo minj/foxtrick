@@ -11,44 +11,136 @@ if (!Foxtrick.Pages)
 
 Foxtrick.Pages.Players = {};
 
+/**
+ * Test whether this is a player list page.
+ * Applies to all possible senior and youth pages.
+ * @param  {document} doc
+ * @return {Boolean}
+ */
 Foxtrick.Pages.Players.isPage = function(doc) {
 	return this.isSenior(doc) || this.isYouth(doc);
 };
+
+/**
+ * Test whether this is regular senior player page.
+ * Key feature: last match link.
+ * Applies to KeyPlayers as well.
+ * @param  {document} doc
+ * @return {Boolean}
+ */
 Foxtrick.Pages.Players.isRegular = function(doc) {
 	return Foxtrick.isPage(doc, 'players');
 };
+
+/**
+ * Test whether this is own senior player page.
+ * Key feature: visible skills.
+ * Applies to KeyPlayers and NT coaches as well.
+ * @param  {document} doc
+ * @return {Boolean}
+ */
 Foxtrick.Pages.Players.isOwn = function(doc) {
 	return Foxtrick.isPage(doc, 'ownPlayers');
 };
+
+/**
+ * Test whether this is a senior player list page.
+ * Applies to all possible senior pages.
+ * @param  {document} doc
+ * @return {Boolean}
+ */
 Foxtrick.Pages.Players.isSenior = function(doc) {
 	return Foxtrick.isPage(doc, 'allPlayers');
 };
+
+/**
+ * Test whether this is an NT player page
+ * @param  {document} doc
+ * @return {Boolean}
+ */
 Foxtrick.Pages.Players.isNT = function(doc) {
 	return Foxtrick.isPage(doc, 'ntPlayers');
 };
+
+/**
+ * Test whether this is an oldies page
+ * @param  {document} doc
+ * @return {Boolean}
+ */
 Foxtrick.Pages.Players.isOldies = function(doc) {
 	return Foxtrick.isPage(doc, 'oldPlayers');
 };
+
+/**
+ * Test whether this is an old coaches page
+ * @param  {document} doc
+ * @return {Boolean}
+ */
 Foxtrick.Pages.Players.isCoaches = function(doc) {
 	return Foxtrick.isPage(doc, 'oldCoaches');
 };
+
+/**
+ * Test whether this is a youth player page
+ * @param  {document} doc
+ * @return {Boolean}
+ */
 Foxtrick.Pages.Players.isYouth = function(doc) {
 	return Foxtrick.isPage(doc, 'youthPlayers');
 };
+
+/**
+ * Test whether this is own youth player page
+ * @param  {document} doc
+ * @return {Boolean}
+ */
 Foxtrick.Pages.Players.isOwnYouth = function(doc) {
 	return Foxtrick.isPage(doc, 'ownYouthPlayers');
 };
+
+/**
+ * Test whether this is a match order page
+ * @param  {document} doc
+ * @return {Boolean}
+ */
 Foxtrick.Pages.Players.isMatchOrder = function(doc) {
 	return Foxtrick.isPage(doc, 'matchOrder') || Foxtrick.isPage(doc, 'matchOrderSimple');
 };
+
+/**
+ * Test whether this is a youth match order page
+ * @param  {document} doc
+ * @return {Boolean}
+ */
 Foxtrick.Pages.Players.isYouthMatchOrder = function(doc) {
 	return this.isMatchOrder(doc) &&
 		/isYouth=true|SourceSystem=Youth/i.test(doc.location.href);
 };
+
+/**
+ * Test whether this is a simple match order page
+ * @param  {document} doc
+ * @return {Boolean}
+ */
 Foxtrick.Pages.Players.isSimpleMatchOrder = function(doc) {
 	return Foxtrick.isPage(doc, 'matchOrderSimple');
 };
 
+/**
+ * Get player list.
+ * CHPP needs a callback and options.
+ * If callback is not provided, only HTML is parsed.
+ * Options is {teamId, isYouth, isNT, includeMatchInfo, currentSquad}
+ * First 3 are detected automatically from URL if possible.
+ * includeMatchInfo adds last match data.
+ * currentSquad is needed to fetch current player list (possibly from non-players page).
+ * HTML parsing and oldies page detection are bypassed in this case.
+ * It also limits NT player list for supporters.
+ * @param  {document} doc
+ * @param  {Function} callback function(Array.<object>)
+ * @param  {object}   options  {teamId, isYouth, isNT, includeMatchInfo, currentSquad}
+ * @return {array}
+ */
 Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 	var playerList = [];
 	var args = [];
@@ -839,12 +931,23 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 	}
 };
 
+/**
+ * Get player object from player list
+ * @param  {array}  list Array.<object>
+ * @param  {number} id
+ * @return {object}
+ */
 Foxtrick.Pages.Players.getPlayerFromListById = function(list, id) {
 	return Foxtrick.nth(function(p) {
 		return p.id === id;
 	}, list);
 };
 
+/**
+ * Get player ID from player container
+ * @param  {element} playerInfo .playerInfo container
+ * @return {number}
+ */
 Foxtrick.Pages.Players.getPlayerId = function(playerInfo) {
 	var id = null;
 	try {
@@ -862,12 +965,28 @@ Foxtrick.Pages.Players.getPlayerId = function(playerInfo) {
 	return id;
 };
 
+/**
+ * Test whether any players in the player list have a certain property
+ * @param  {array}   playerList Array.<object>
+ * @param  {string}  property
+ * @return {Boolean}
+ */
 Foxtrick.Pages.Players.isPropertyInList = function(playerList, property) {
 	return Foxtrick.any(function(player) {
 		return typeof player[property] !== 'undefined';
 	}, playerList);
 };
 
+/**
+ * Get the timestamps of 2 last matches played by players: {last, second}.
+ * players is an array of arbitrary objects.
+ * getMatchDate extracts matchDate as a timestamp from a player object.
+ * playerLimit is minimal player count for a match to be eligible.
+ * @param  {array}    players      Array.<T>
+ * @param  {Function} getMatchDate function(T): number
+ * @param  {number}   playerLimit
+ * @return {object}                {last:number, second:number}
+ */
 Foxtrick.Pages.Players.getLastMatchDates = function(players, getMatchDate, playerLimit) {
 	playerLimit = playerLimit || 1;
 	var matchdays = [], matchdays_count = {}, lastMatch = 0, secondLastMatch = 0;
