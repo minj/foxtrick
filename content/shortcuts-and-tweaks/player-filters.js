@@ -16,7 +16,7 @@ Foxtrick.modules['PlayerFilters'] = {
 			return;
 
 		var sortSelect = doc.getElementById('ctl00_ctl00_CPContent_CPMain_ucSorting_ddlSortBy');
-		if (Foxtrick.Pages.Players.isYouthPlayersPage(doc)) {
+		if (Foxtrick.Pages.Players.isYouth(doc)) {
 			sortSelect = doc.getElementById('ctl00_ctl00_CPContent_CPMain_ddlSortBy');
 		}
 
@@ -191,7 +191,7 @@ Foxtrick.modules['PlayerFilters'] = {
 					}
 				}
 
-				if (Foxtrick.Pages.Players.isOldiesPage(doc) && Foxtrick.util.api.authorized()) {
+				if (Foxtrick.Pages.Players.isOldies(doc) && Foxtrick.util.api.authorized()) {
 					var option = doc.createElement('option');
 					option.value = 'active';
 					option.textContent = Foxtrick.L10n.getString('TeamStats.ActivePlayers');
@@ -206,7 +206,7 @@ Foxtrick.modules['PlayerFilters'] = {
 					filterSelect.appendChild(option);
 				}
 
-				if (Foxtrick.Pages.Players.isRegularPlayersPage(doc)) {
+				if (Foxtrick.Pages.Players.isRegular(doc)) {
 					if (Foxtrick.Pages.Players.isPropertyInList(playerList, 'motherClubBonus')) {
 						var option = doc.createElement('option');
 						option.value = 'homegrown-player';
@@ -392,7 +392,7 @@ Foxtrick.modules['PlayerFilters'] = {
 					var container = faceCards[0].parentNode;
 					var cleaner = doc.createElement('div');
 					cleaner.className = 'clear';
-					if (Foxtrick.Pages.Players.isRegularPlayersPage(doc)) {
+					if (Foxtrick.Pages.Players.isRegular(doc)) {
 						// If it's normal senior players list, there is an
 						// a element in the bottom for navigating back to top,
 						// and the cleaner should be inserted before it.

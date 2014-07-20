@@ -22,23 +22,23 @@ Foxtrick.modules['SkillTable'] = {
 				return fullType;
 			}
 
-			if (Foxtrick.Pages.Players.isSeniorPlayersPage(doc)) {
+			if (Foxtrick.Pages.Players.isSenior(doc)) {
 				fullType.type = 'senior';
-				if (Foxtrick.Pages.Players.isOwnPlayersPage(doc)) {
+				if (Foxtrick.Pages.Players.isOwn(doc)) {
 					fullType.subtype = 'own';
 				}
-				else if (Foxtrick.Pages.Players.isNtPlayersPage(doc)) {
+				else if (Foxtrick.Pages.Players.isNT(doc)) {
 					fullType.subtype = 'nt';
 				}
-				else if (Foxtrick.Pages.Players.isOldiesPage(doc) ||
-				         Foxtrick.Pages.Players.isCoachesPage(doc)) {
+				else if (Foxtrick.Pages.Players.isOldies(doc) ||
+				         Foxtrick.Pages.Players.isCoaches(doc)) {
 					fullType.subtype = 'oldiesCoach';
 				}
 				else {
 					fullType.subtype = 'others';
 				}
 			}
-			else if (Foxtrick.Pages.Players.isYouthPlayersPage(doc)) {
+			else if (Foxtrick.Pages.Players.isYouth(doc)) {
 				fullType.type = 'youth';
 				if (Foxtrick.isPage(doc, 'ownYouthPlayers')) {
 					fullType.subtype = 'own';
@@ -859,7 +859,7 @@ Foxtrick.modules['SkillTable'] = {
 				var loading = Foxtrick.util.note.createLoading(doc);
 				doc.getElementsByClassName('ft_skilltable_wrapper')[0].appendChild(loading);
 				try {
-					if (Foxtrick.Pages.Players.isOldiesPage(doc) &&
+					if (Foxtrick.Pages.Players.isOldies(doc) &&
 					    fullType.type == 'oldiesAndOwn') {
 						showOldiesAndOwn(doc);
 					}
@@ -1309,7 +1309,7 @@ Foxtrick.modules['SkillTable'] = {
 			switchView.appendChild(switchViewLink);
 
 			if (Foxtrick.util.api.authorized()) {
-				if (Foxtrick.Pages.Players.isOldiesPage(doc)) {
+				if (Foxtrick.Pages.Players.isOldies(doc)) {
 					var options = doc.createElement('div');
 					var addHomegrownLink = doc.createElement('a');
 					addHomegrownLink.appendChild(doc.createTextNode(Foxtrick.L10n
@@ -1321,7 +1321,7 @@ Foxtrick.modules['SkillTable'] = {
 					options.appendChild(addHomegrownLink);
 
 				}
-				else if (Foxtrick.Pages.Players.isRegularPlayersPage(doc)) {
+				else if (Foxtrick.Pages.Players.isRegular(doc)) {
 					var options = doc.createElement('div');
 					var addHomegrownLink = doc.createElement('a');
 					addHomegrownLink.appendChild(doc.createTextNode(Foxtrick.L10n

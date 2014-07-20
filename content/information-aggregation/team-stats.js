@@ -226,7 +226,7 @@ Foxtrick.modules['TeamStats'] = {
 						addRow('TeamStats.General', Foxtrick.L10n.getString('Age'),
 							   avgYears + '.' + avgDays);
 					}
-					if (Foxtrick.Pages.Players.isYouthPlayersPage(doc)) {
+					if (Foxtrick.Pages.Players.isYouth(doc)) {
 						var youngerThanNineteen = numPlayers - olderThanNineteen;
 						var row = addRow('TeamStats.General', Foxtrick.L10n
 										 .getString('TeamStats.PlayerNotToOld'), youngerThanNineteen);
