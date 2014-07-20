@@ -17,7 +17,7 @@ Foxtrick.Pages.YouthPlayer = {};
  * @return {Boolean}
  */
 Foxtrick.Pages.YouthPlayer.isPage = function(doc) {
-	return Foxtrick.Pages.Player.isYouthPlayerPage(doc);
+	return Foxtrick.Pages.Player.isYouth(doc);
 };
 
 /**

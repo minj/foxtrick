@@ -11,7 +11,7 @@ Foxtrick.modules['BestPlayerPosition'] = {
 
 	run: function(doc) {
 		var module = this;
-		if (Foxtrick.Pages.Player.isSeniorPlayerPage(doc)) {
+		if (Foxtrick.Pages.Player.isSenior(doc)) {
 			if (!doc.getElementsByClassName('playerInfo').length)
 				return;
 

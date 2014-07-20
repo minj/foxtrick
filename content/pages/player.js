@@ -17,7 +17,7 @@ Foxtrick.Pages.Player = {};
  * @return {Boolean}
  */
 Foxtrick.Pages.Player.isPage = function(doc) {
-	return this.isSeniorPlayerPage(doc) || this.isYouthPlayerPage(doc);
+	return this.isSenior(doc) || this.isYouth(doc);
 };
 
 /**
@@ -25,7 +25,7 @@ Foxtrick.Pages.Player.isPage = function(doc) {
  * @param  {document}  doc
  * @return {Boolean}
  */
-Foxtrick.Pages.Player.isSeniorPlayerPage = function(doc) {
+Foxtrick.Pages.Player.isSenior = function(doc) {
 	return Foxtrick.isPage(doc, 'playerDetails');
 };
 
@@ -34,7 +34,7 @@ Foxtrick.Pages.Player.isSeniorPlayerPage = function(doc) {
  * @param  {document}  doc
  * @return {Boolean}
  */
-Foxtrick.Pages.Player.isYouthPlayerPage = function(doc) {
+Foxtrick.Pages.Player.isYouth = function(doc) {
 	return Foxtrick.isPage(doc, 'youthPlayerDetails');
 };
 
@@ -91,7 +91,7 @@ Foxtrick.Pages.Player.getName = function(doc) {
  * @return {Integer}
  */
 Foxtrick.Pages.Player.getId = function(doc) {
-	var param = this.isSeniorPlayerPage(doc) ? 'playerId' : 'youthPlayerId';
+	var param = this.isSenior(doc) ? 'playerId' : 'youthPlayerId';
 	var id = Foxtrick.getParameterFromUrl(doc.location.href, param);
 	return parseInt(id, 10) || null;
 };
@@ -104,7 +104,7 @@ Foxtrick.Pages.Player.getId = function(doc) {
 Foxtrick.Pages.Player.getNationalityId = function(doc) {
 	var id = null;
 	try {
-		var link = this.isSeniorPlayerPage(doc) ? doc.getElementsByClassName('flag')[0] :
+		var link = this.isSenior(doc) ? doc.getElementsByClassName('flag')[0] :
 			doc.querySelector('.playerInfo a[href^="/World/Leagues/League.aspx"]');
 
 		var val = Foxtrick.getParameterFromUrl(link.href, 'LeagueID');
@@ -142,7 +142,7 @@ Foxtrick.Pages.Player.getNationalityName = function(doc) {
  */
 Foxtrick.Pages.Player.getTsi = function(doc) {
 	var tsi = null;
-	if (this.isSeniorPlayerPage(doc)) {
+	if (this.isSenior(doc)) {
 		try {
 			var infoTable = doc.querySelector('.playerInfo table');
 			var rowIdx = this.isFreeAgent(doc) ? 0 : 1;
@@ -167,7 +167,7 @@ Foxtrick.Pages.Player.getTsi = function(doc) {
  */
 Foxtrick.Pages.Player.getAttributes = function(doc) {
 	var attrs = null;
-	if (this.isSeniorPlayerPage(doc)) {
+	if (this.isSenior(doc)) {
 		try {
 			var links = doc.querySelectorAll('.playerInfo .skill');
 			var regE = /skillshort/i;
@@ -223,7 +223,7 @@ Foxtrick.Pages.Player.getAttributes = function(doc) {
  */
 Foxtrick.Pages.Player.isCoach = function(doc) {
 	var coach = false;
-	if (this.isSeniorPlayerPage(doc)) {
+	if (this.isSenior(doc)) {
 		coach = doc.querySelectorAll('.playerInfo .skill').length > 8;
 	}
 	return coach;
@@ -335,7 +335,7 @@ Foxtrick.Pages.Player.getTeamName = function(doc) {
  */
 Foxtrick.Pages.Player.getWage = function(doc) {
 	var ret = null;
-	if (this.isSeniorPlayerPage(doc)) {
+	if (this.isSenior(doc)) {
 		try {
 			var infoTable = doc.querySelector('.playerInfo table');
 			// wage position varies for free agents
@@ -423,7 +423,7 @@ Foxtrick.Pages.Player.getSkillsWithText = function(doc) {
 	try {
 		var skillTable = doc.querySelector('.mainBox table');
 		if (skillTable && this.isPage(doc)) {
-			if (this.isSeniorPlayerPage(doc)) {
+			if (this.isSenior(doc)) {
 				return this.parseSeniorSkills(skillTable);
 			}
 			else

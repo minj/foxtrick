@@ -1353,7 +1353,7 @@ Foxtrick.modules['SkillTable'] = {
 					.getElementsByClassName('borderSeparator')[0].nextSibling;
 				insertBefore.parentNode.insertBefore(tablediv, insertBefore);
 			}
-			else if (Foxtrick.Pages.Player.isSeniorPlayerPage(doc)) {
+			else if (Foxtrick.Pages.Player.isSenior(doc)) {
 				var insertParent = doc.getElementById('mainBody');
 				insertParent.appendChild(tablediv);
 			}

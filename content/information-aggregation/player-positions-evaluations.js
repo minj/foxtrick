@@ -14,7 +14,7 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 
 	run: function(doc) {
 
-		if (Foxtrick.Pages.Player.isSeniorPlayerPage(doc)) {
+		if (Foxtrick.Pages.Player.isSenior(doc)) {
 			var speciality = Foxtrick.Pages.Player.getSpeciality(doc);
 			var skills = Foxtrick.Pages.Player.getSkills(doc);
 

@@ -42,7 +42,7 @@ Foxtrick.modules['CopyPlayerAd'] = {
 
 	createPlayerAd: function(ev) {
 		var doc = ev.target.ownerDocument;
-		var isSenior = Foxtrick.Pages.Player.isSeniorPlayerPage(doc);
+		var isSenior = Foxtrick.Pages.Player.isSenior(doc);
 		try {
 			var ad = '';
 
