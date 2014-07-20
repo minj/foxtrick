@@ -18,7 +18,7 @@ Foxtrick.Pages.Matches = {};
  * @param  {document}  doc
  * @return {Boolean}
  */
-Foxtrick.Pages.Matches.isYouthMatchesPage = function(doc) {
+Foxtrick.Pages.Matches.isYouth = function(doc) {
 	return /YouthTeamId=/i.test(doc.location.search);
 };
 
@@ -27,7 +27,7 @@ Foxtrick.Pages.Matches.isYouthMatchesPage = function(doc) {
  * @param  {document}  doc
  * @return {Boolean}
  */
-Foxtrick.Pages.Matches.isNtMatchesPage = function(doc) {
+Foxtrick.Pages.Matches.isNT = function(doc) {
 	var teamId = Foxtrick.Pages.All.getTeamId(doc);
 	return teamId >= 3000 && teamId < 4000;
 };
