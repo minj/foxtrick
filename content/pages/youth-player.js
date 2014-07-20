@@ -23,7 +23,7 @@ Foxtrick.Pages.YouthPlayer.isPage = function(doc) {
 /**
  * Return days since the player joined the team
  * @param  {document} doc
- * @return {Integer}
+ * @return {number}
  */
 Foxtrick.Pages.YouthPlayer.getJoinedDays = function(doc) {
 	var joinedDays = 0;
@@ -49,7 +49,7 @@ Foxtrick.Pages.YouthPlayer.getJoinedDays = function(doc) {
 /**
  * Return days until promotion
  * @param  {document} doc
- * @return {Integer}
+ * @return {number}
  */
 Foxtrick.Pages.YouthPlayer.getDaysToPromote = function(doc) {
 	var days = NaN;

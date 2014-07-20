@@ -34,7 +34,7 @@ Foxtrick.Pages.All.isOwn = function(doc) {
  * E. g. match, arena, series, team, player ID.
  * Defaults to own team ID where no ID is avalable.
  * @param  {document} doc
- * @return {Integer}
+ * @return {number}
  */
 Foxtrick.Pages.All.getId = function(doc) {
 	// defaults to own id
@@ -66,7 +66,7 @@ Foxtrick.Pages.All.getId = function(doc) {
 
 /**
  * Get own team ID
- * @return {Integer}
+ * @return {number}
  */
 Foxtrick.Pages.All.getOwnTeamId = function() {
 	return Foxtrick.util.id.getOwnTeamId();
@@ -77,7 +77,7 @@ Foxtrick.Pages.All.getOwnTeamId = function() {
  * Usually same as getTeamId,
  * except returns youth team ID in youth pages.
  * @param  {document} doc
- * @return {Integer}
+ * @return {number}
  */
 Foxtrick.Pages.All.getTeamIdFromBC = function(doc) {
 	var id = null;
@@ -97,7 +97,7 @@ Foxtrick.Pages.All.getTeamIdFromBC = function(doc) {
  * Get senior team ID for the page.
  * Use getTeamIdFromBC for youth team ID.
  * @param  {document} doc
- * @return {Integer}
+ * @return {number}
  */
 Foxtrick.Pages.All.getTeamId = function(doc) {
 	var id = null;
@@ -113,7 +113,7 @@ Foxtrick.Pages.All.getTeamId = function(doc) {
  * Usually same as getTeamName,
  * except returns youth team name in youth pages.
  * @param  {document} doc
- * @return {Integer}
+ * @return {number}
  */
 Foxtrick.Pages.All.getTeamNameFromBC = function(doc) {
 	var name = null;
@@ -130,7 +130,7 @@ Foxtrick.Pages.All.getTeamNameFromBC = function(doc) {
  * Get senior team name for the page.
  * Use getTeamNameFromBC for youth team name.
  * @param  {document} doc
- * @return {Integer}
+ * @return {number}
  */
 Foxtrick.Pages.All.getTeamName = function(doc) {
 	var name = null;
@@ -160,7 +160,7 @@ Foxtrick.Pages.All.isLoggedIn = function(doc) {
 /**
  * Get the header of mainBody
  * @param  {document}    doc
- * @return {HTMLElement}
+ * @return {element}
  */
 Foxtrick.Pages.All.getMainHeader = function(doc) {
 	return doc.querySelector('.mainRegular h2, .mainWide h2');
@@ -168,8 +168,8 @@ Foxtrick.Pages.All.getMainHeader = function(doc) {
 
 /**
  * Get bread crumb links
- * @param  {document}                doc
- * @return {Array<HTMLAnchorElement}
+ * @param  {document} doc
+ * @return {array}        Array.<HTMLAnchorElement>
  */
 Foxtrick.Pages.All.getBreadCrumbs = function(doc) {
 	var header = this.getMainHeader(doc);

@@ -54,7 +54,7 @@ Foxtrick.Pages.Match.getAwayTeam = function(doc) {
 /**
  * Get home team ID
  * @param  {document} doc
- * @return {Integer}
+ * @return {number}
  */
 Foxtrick.Pages.Match.getHomeTeamId = function(doc) {
 	var team = this.getHomeTeam(doc);
@@ -64,7 +64,7 @@ Foxtrick.Pages.Match.getHomeTeamId = function(doc) {
 /**
  * Get home team ID
  * @param  {document} doc
- * @return {Integer}
+ * @return {number}
  */
 Foxtrick.Pages.Match.getAwayTeamId = function(doc) {
 	var team = this.getAwayTeam(doc);
@@ -74,7 +74,7 @@ Foxtrick.Pages.Match.getAwayTeamId = function(doc) {
 /**
  * Get home team name
  * @param  {document} doc
- * @return {String}
+ * @return {string}
  */
 Foxtrick.Pages.Match.getHomeTeamName = function(doc) {
 	var team = this.getHomeTeam(doc);
@@ -84,7 +84,7 @@ Foxtrick.Pages.Match.getHomeTeamName = function(doc) {
 /**
  * Get home team name
  * @param  {document} doc
- * @return {String}
+ * @return {string}
  */
 Foxtrick.Pages.Match.getAwayTeamName = function(doc) {
 	var team = this.getAwayTeam(doc);
@@ -112,7 +112,7 @@ Foxtrick.Pages.Match.hasRatingsTabs = function(doc) {
 /**
  * Get sourceSystem
  * @param  {document} doc
- * @return {String}
+ * @return {string}
  */
 Foxtrick.Pages.Match.getSourceSystem = function(doc) {
 	var SourceSystem = 'Hattrick';
@@ -157,7 +157,7 @@ Foxtrick.Pages.Match.isNT = function(doc) {
 /**
  * Get match ID
  * @param  {document} doc
- * @return {Integer}
+ * @return {number}
  */
 Foxtrick.Pages.Match.getId = function(doc) {
 	var url;
@@ -240,8 +240,8 @@ Foxtrick.Pages.Match.isWalkOver = function(ratingstable) {
  * Get ratings in floats for both teams.
  * Returns an array map where first element is home team, away second:
  * {mf, rd, cd, ld, ra, ca, la}
- * @param  {HTMLTableElement}                ratingstable
- * @return {Object.<string, Array.<number>>}
+ * @param  {HTMLTableElement} ratingstable
+ * @return {object}                        Object.<string, Array.<number>>
  */
 Foxtrick.Pages.Match.getRatingsByTeam = function(ratingstable) {
 	var getRatingFromCell = function(coords) {
@@ -265,7 +265,7 @@ Foxtrick.Pages.Match.getRatingsByTeam = function(ratingstable) {
 /**
  * Get tactics level value from a tactics cell
  * @param  {HTMLTableCellElement} cell
- * @return {Integer}
+ * @return {number}
  */
 Foxtrick.Pages.Match.getTacticsLevelFromCell = function(cell) {
 	var basevalue = 0;
@@ -280,7 +280,7 @@ Foxtrick.Pages.Match.getTacticsLevelFromCell = function(cell) {
  * Get tactics type from a tactics cell.
  * Returns one of normal, pressing, ca, aim, aow, creatively, longshots
  * @param  {HTMLTableCellElement} cell
- * @return {String}
+ * @return {string}
  */
 Foxtrick.Pages.Match.getTacticsFromCell = function(cell) {
 	var tactics = cell.textContent.trim();
@@ -302,8 +302,8 @@ Foxtrick.Pages.Match.getTacticsFromCell = function(cell) {
 /**
  * Get tactics data for home and away teams
  * E. g. { tactics: ['aow', 'normal'], level: [15, 0] }
- * @param  {HTMLTableElement}                               ratingstable
- * @return {tactics: Array.<string>, level: Array.<number>}
+ * @param  {HTMLTableElement} ratingstable
+ * @return {object}                        {tactics: Array.<string>, level: Array.<number>}
  */
 Foxtrick.Pages.Match.getTacticsByTeam = function(ratingstable) {
 	var tacticRow = 10, levelRow = 11;
@@ -331,9 +331,9 @@ Foxtrick.Pages.Match.getTacticsByTeam = function(ratingstable) {
  * Cannot use subtree: true on the container because
  * change() would execute every second in FF.
  * This is because the match timer triggers childList changes in FF.
- * @param {HTMLDocument}           doc
- * @param {string}                 tabId    element to listen to
- * @param {function(HTMLDocument)} callback
+ * @param {document} doc
+ * @param {string}   tabId    element to listen to
+ * @param {Function} callback function(document)
  */
 Foxtrick.Pages.Match.addLiveTabListener = function(doc, tabId, callback) {
 	var registerTab = function(doc) {
@@ -365,11 +365,11 @@ Foxtrick.Pages.Match.addLiveTabListener = function(doc, tabId, callback) {
  * Add a box to the sidebar on the right.
  * Returns the added box.
  * Modeled on Foxtrick.addBoxToSidebar.
- * @param  {document}    doc
- * @param  {String}      title   the title of the box, will create one if inexists
- * @param  {HTMLElement} content HTML node of the content
- * @param  {Integer}     prec    precedence of the box, the smaller, the higher
- * @return {HTMLElement}         box to be added to
+ * @param  {document} doc
+ * @param  {string}   title   the title of the box, will create one if inexists
+ * @param  {element}  content HTML node of the content
+ * @param  {number}   prec    precedence of the box, the smaller, the higher
+ * @return {element}          box to be added to
  */
 Foxtrick.Pages.Match.addBoxToSidebar = function(doc, title, content, prec) {
 	if (this.isPrematch(doc))
@@ -469,9 +469,9 @@ Foxtrick.Pages.Match.addBoxToSidebar = function(doc, title, content, prec) {
  * Modify player container in the lineup tab.
  * Calls func(playerDiv).
  * The right player is found with help of player links list.
- * @param  {Integer}               playerId
- * @param  {function(HTMLElement)} func
- * @param  {NodeList}              links
+ * @param  {number}   playerId
+ * @param  {Function} func     function(element)
+ * @param  {NodeList} links
  */
 Foxtrick.Pages.Match.modPlayerDiv = function(playerId, func, links) {
 	var link = Foxtrick.filter(function(link) {
@@ -485,8 +485,8 @@ Foxtrick.Pages.Match.modPlayerDiv = function(playerId, func, links) {
  * Parse and return playerData object used by HT lineup utils.
  * Produces a list of player objects:
  * {ChartRatings, FirstName, LastName, NickName, PlayerId, ShirtNumber, SourcePlayerId}
- * @param  {document}       doc
- * @return {Array.<Object>}
+ * @param  {document} doc
+ * @return {array}        Array.<object>
  */
 Foxtrick.Pages.Match.parsePlayerData = function(doc) {
 	var playerData = null;
@@ -503,8 +503,8 @@ Foxtrick.Pages.Match.parsePlayerData = function(doc) {
 /**
  * Get timeline data as an array of {min, sec}.
  * Each minute/event has input.hidden[id$="_time"][value="min.sec"]
- * @param  {document}                             doc
- * @return {Array.<{min: Integer, sec: Integer}>}
+ * @param  {document} doc
+ * @return {array}        Array.<{min: number, sec: number}>
  */
 Foxtrick.Pages.Match.getTimeline = function(doc) {
 	var timeline = Foxtrick.map(function(el) {
@@ -526,9 +526,9 @@ Foxtrick.Pages.Match.getTimeline = function(doc) {
  * { Cards: 0,	FromMin: -1, InjuryLevel: 0, IsCaptain: false,
  * 	IsKicker: false, PlayerId: 360991810, PositionBehaviour: 0,
  * 	PositionID: 100, Stamina: 1, Stars: 3, ToMin: 90 }
- * @param  {document}                                                    doc
- * @param  {Boolean}                                                     isHome
- * @return {Array.<{players: Array.<Object>, source: HTMLInputElement}>}
+ * @param  {document} doc
+ * @param  {Boolean}  isHome
+ * @return {array}           Array.<{players: Array.<object>, source: HTMLInputElement}>
  */
 Foxtrick.Pages.Match.getTeamRatingsByEvent = function(doc, isHome) {
 	var playerRatings = doc.querySelectorAll('input[id$="_playerRatings' +
@@ -549,8 +549,8 @@ Foxtrick.Pages.Match.getTeamRatingsByEvent = function(doc, isHome) {
  * used to match highlights (#matchEventIndex_ + eventIdx).
  * 5 minute updates have index=0, no event.
  * While idx is the timeline index (starts at 0, includes 5 minute updates)
- * @param  {document}                                  doc
- * @return {Array.<{eventIdx: Integer, idx: Integer}>}
+ * @param  {document} doc
+ * @return {array}        Array.<{eventIdx: number, idx: number}>
  */
 Foxtrick.Pages.Match.getEventIndicesByEvent = function(doc) {
 	var eventIndices = doc.querySelectorAll('input[id$="_eventIndex"]');

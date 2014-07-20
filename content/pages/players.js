@@ -139,7 +139,7 @@ Foxtrick.Pages.Players.isSimpleMatchOrder = function(doc) {
  * @param  {document} doc
  * @param  {Function} callback function(Array.<object>)
  * @param  {object}   options  {teamId, isYouth, isNT, includeMatchInfo, currentSquad}
- * @return {array}
+ * @return {array}             Array.<object>
  */
 Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 	var playerList = [];

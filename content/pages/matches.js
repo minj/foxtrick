@@ -33,7 +33,7 @@ Foxtrick.Pages.Matches.isNT = function(doc) {
 };
 /**
  * Possible match icon classes
- * @type {Array}
+ * @type {array}
  */
 Foxtrick.Pages.Matches.Types = [
 	'matchLeague',

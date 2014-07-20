@@ -41,7 +41,7 @@ Foxtrick.Pages.Player.isYouth = function(doc) {
 /**
  * Get player age
  * @param  {document} doc
- * @return {Integer}
+ * @return {number}
  */
 Foxtrick.Pages.Player.getAge = function(doc) {
 	try {
@@ -65,7 +65,7 @@ Foxtrick.Pages.Player.getAge = function(doc) {
 /**
  * Get player name
  * @param  {document} doc
- * @return {String}
+ * @return {string}
  */
 Foxtrick.Pages.Player.getName = function(doc) {
 	var name = null;
@@ -88,7 +88,7 @@ Foxtrick.Pages.Player.getName = function(doc) {
 /**
  * Get player ID
  * @param  {document} doc
- * @return {Integer}
+ * @return {number}
  */
 Foxtrick.Pages.Player.getId = function(doc) {
 	var param = this.isSenior(doc) ? 'playerId' : 'youthPlayerId';
@@ -99,7 +99,7 @@ Foxtrick.Pages.Player.getId = function(doc) {
 /**
  * Get player nationality ID
  * @param  {document} doc
- * @return {Integer}
+ * @return {number}
  */
 Foxtrick.Pages.Player.getNationalityId = function(doc) {
 	var id = null;
@@ -120,7 +120,7 @@ Foxtrick.Pages.Player.getNationalityId = function(doc) {
  * Get player nationality name.
  * Returns country name in English.
  * @param  {document} doc
- * @return {String}
+ * @return {string}
  */
 Foxtrick.Pages.Player.getNationalityName = function(doc) {
 	var name = null;
@@ -138,7 +138,7 @@ Foxtrick.Pages.Player.getNationalityName = function(doc) {
  * Get player TSI.
  * Senior players only.
  * @param  {document} doc
- * @return {Integer}
+ * @return {number}
  */
 Foxtrick.Pages.Player.getTsi = function(doc) {
 	var tsi = null;
@@ -163,7 +163,7 @@ Foxtrick.Pages.Player.getTsi = function(doc) {
  * and personality (gentleness, aggressiveness, honesty) fields.
  * Senior players only.
  * @param  {document} doc
- * @return {Object}
+ * @return {object}
  */
 Foxtrick.Pages.Player.getAttributes = function(doc) {
 	var attrs = null;
@@ -253,7 +253,7 @@ Foxtrick.Pages.Player.isBruised = function(doc) {
 /**
  * Get the player injury length
  * @param  {document} doc
- * @return {Integer}
+ * @return {number}
  */
 Foxtrick.Pages.Player.getInjuryWeeks = function(doc) {
 	var weeks = 0;
@@ -278,7 +278,7 @@ Foxtrick.Pages.Player.getInjuryWeeks = function(doc) {
  * Get the number of bookings player has accumulated.
  * Red card = 3.
  * @param  {document} doc
- * @return {Integer}
+ * @return {number}
  */
 Foxtrick.Pages.Player.getCards = function(doc) {
 	var cards = 0;
@@ -311,7 +311,7 @@ Foxtrick.Pages.Player.isFreeAgent = function(doc) {
  * Get the name of player's team.
  * Free agents have no team thus null is returned.
  * @param  {document} doc
- * @return {String}
+ * @return {string}
  */
 Foxtrick.Pages.Player.getTeamName = function(doc) {
 	var name = null;
@@ -328,10 +328,10 @@ Foxtrick.Pages.Player.getTeamName = function(doc) {
 
 /**
  * Get the player wage.
- * Returns {base, bonus, total: Integer}.
+ * Returns {base, bonus, total: number}.
  * Senior player only.
  * @param  {document} doc
- * @return {{base: Integer, bonus: Integer, total: Integer}}
+ * @return {object}       {base: number, bonus: number, total: number}
  */
 Foxtrick.Pages.Player.getWage = function(doc) {
 	var ret = null;
@@ -357,7 +357,7 @@ Foxtrick.Pages.Player.getWage = function(doc) {
 /**
  * Get the player specialty name in English
  * @param  {document} doc
- * @return {String}
+ * @return {string}
  */
 Foxtrick.Pages.Player.getSpeciality = function(doc) {
 	var speciality = null;
@@ -379,10 +379,10 @@ Foxtrick.Pages.Player.getSpeciality = function(doc) {
  * Get player skills.
  * For senior players returns an integer skill map:
  * {keeper, defending, playmaking, winger, passing, scoring, setPieces}.
- * Youth player skill map contains {current, max: Integer, maxed: Boolean} or
+ * Youth player skill map contains {current, max: number, maxed: Boolean} or
  * an empty object if no data is known.
  * @param  {document} doc
- * @return {Object}
+ * @return {object}       {current: number, max: number, maxed: Boolean}
  */
 Foxtrick.Pages.Player.getSkills = function(doc) {
 	var skillsWithText = this.getSkillsWithText(doc);
@@ -396,12 +396,12 @@ Foxtrick.Pages.Player.getSkills = function(doc) {
 -	 * Each field is a skill map:
  * {keeper, defending, playmaking, winger, passing, scoring, setPieces}.
  * For seniors values are integers, while youth values are
- * {current, max: Integer, maxed: Boolean} or
+ * {current, max: number, maxed: Boolean} or
  * an empty object if no data is known.
- * For seniors texts are strings, while youth texts are {current, max: String}.
+ * For seniors texts are strings, while youth texts are {current, max: string}.
  * Texts may contain level numbers, e.g. 'weak (3)'.'
  * @param  {document} doc
- * @return {Object}
+ * @return {object}       {values, texts, names}
  */
 Foxtrick.Pages.Player.getSkillsWithText = function(doc) {
 	// youth example
@@ -444,7 +444,7 @@ Foxtrick.Pages.Player.getSkillsWithText = function(doc) {
  * {keeper, defending, playmaking, winger, passing, scoring, setPieces}.
  * Texts may contain level numbers, e.g. 'weak (3)'.'
  * @param  {HTMLTableElement} table
- * @return {Object}
+ * @return {object}                 {values, texts, names}
  */
 Foxtrick.Pages.Player.parseSeniorSkills = function(table) {
 	var skillMap = {
@@ -532,12 +532,12 @@ Foxtrick.Pages.Player.parseSeniorSkills = function(table) {
  * localized skill levels and names respectively.
  * Each field is a skill map:
  * {keeper, defending, playmaking, winger, passing, scoring, setPieces}.
- * Each value is {current, max: Integer, maxed: Boolean}
+ * Each value is {current, max: number, maxed: Boolean}
  * or an empty object if no data is known.
- * Each text is {current, max: String}.
+ * Each text is {current, max: string}.
  * Texts may contain level numbers, e.g. 'weak (3)'.'
  * @param  {HTMLTableElement} table
- * @return {Object}
+ * @return {object}                 {values, texts, names}
  */
 Foxtrick.Pages.Player.parseYouthSkills = function(table) {
 	// youth example
@@ -671,9 +671,9 @@ Foxtrick.Pages.Player.getTransferDeadline = function(doc) {
  * Get player object.
  * Calls callback(player) where player contains various fields from playerdetails.xml.
  * Seniors only.
- * @param  {document}   doc
- * @param  {Integer}   playerid
- * @param  {function(Object)} callback
+ * @param  {document} doc
+ * @param  {number}   playerid
+ * @param  {Function} callback function(object)
  */
 Foxtrick.Pages.Player.getPlayer = function(doc, playerid, callback) {
 	var args = [
@@ -748,9 +748,9 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerid, callback) {
  * Skill map must be {keeper, defending, playmaking, winger, passing, scoring, setPieces}.
  * Returns position contribution map.
  * @author Grebliux, LA-MJ
- * @param  {Object<String,Integer>} skills skill map
- * @param  {String}                 spec   English specialty
- * @return {Object<String,Number>}         position map
+ * @param  {object} skills Object<string, number> skill map
+ * @param  {string} spec   English specialty
+ * @return {object}        Object<string, number> position map
  */
 Foxtrick.Pages.Player.getContributions = function(skills, spec) {
 	var getValue = function(coefs, skills) {
@@ -813,8 +813,8 @@ Foxtrick.Pages.Player.getContributions = function(skills, spec) {
  * Find the highest contribution in a position map.
  * Returns {position, value}.
  * @author Grebliux
- * @param  {Object<String,Number>}             contributions position map
- * @return {{position: String, value: Number}}
+ * @param  {object} contributions Object<string, number> position map
+ * @return {object}               {position: string, value: number}
  */
 Foxtrick.Pages.Player.getBestPosition = function(contributions) {
 	var max = { position: '', value: 0 };

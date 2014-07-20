@@ -22,8 +22,8 @@ Foxtrick.Pages.TransferSearchResults.isPage = function(doc) {
 /**
  * Get a list of player objects with the information in the result page.
  * Keep in mind that not all info might be available (e.g. after deadline).
- * @param  {document}       doc
- * @return {Array.<Object>}
+ * @param  {document} doc
+ * @return {array}        Array.<object>
  */
 Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 	var players = doc.getElementsByClassName('transferPlayerInfo');
