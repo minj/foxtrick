@@ -375,10 +375,10 @@
 	},
 	"ht-dog": {
 		"teamlink": {
-			"url": "http://htdog-mikehell.rhcloud.com/ht-dog/?otherTeamID=[teamid]"
+			"url": "http://ht-dog.net/?otherTeamID=[teamid]"
 		},
 		"title": "HT-Dog",
-		"img": "http://htdog-mikehell.rhcloud.com/ht-dog/animated_favicon111.gif"
+		"img": "http://ht-dog.net/animated_favicon111.gif"
 	},
 	"healingkawasaki": {
 		"playerhealinglink": {
