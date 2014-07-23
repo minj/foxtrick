@@ -96,7 +96,7 @@ da:
       note_7: 'NEW: <module>Fans</module>: Tilføj live link ved siden af kommende kamp links. Tilføj udviklingen af antal fans under Fan-opdatering.'
       note_8: "Brugere med flere hold kan nu style Hattrick forskelligt ved hjælp af ' body.ft-teamID-0000000' vælgere i <module>SkinPlugin</module>."
       note_9: '<module>HeaderToggle</module> er gjort mere robust mod påvirkninger af andre moduler eller Hattrick.'
-      note_10: '<module>MatchSimulator</module> blev tilpasset til at omfatte oplysningerne om træner, når du kopierer ratings.'
+      note_10: '<module>MatchSimulator</module> blev tilpasset til at indeholde oplysningerne om træner, når du kopierer ratings.'
       note_11: '<header>Bugfixes</header>'
       note_12: 'Rettet TSI NaN fejl på spillere sider for landshold eller når XML-download er deaktiveret (<module>Skilltable</module>, <module>TeamStats</module> osv.)'
       note_13: "Spillere som ikke er i aktion vil ikke længere være inkluderet, når du bruger funktionen 'Fyld straffesparks skytter' i <module>MatchOrderInterface</module>."
@@ -134,8 +134,8 @@ da:
       note_3: 'NYT: <module>MatchLineupFixes</module>: Synkroniser tidslinje på tværs af spillere og sektorer faner. Viser spillernavne til vejr relaterede special-begivenheder (SE). Tilføjer links til spillere i din egen ordrer fane. Tilføjer sidste antal stjerner opnået til spillere på bænken. Retter flere begivenheder som sker på samme tid: spillerne ændre deres positioner trinvis i stedet for alle på én gang.'
       note_4: 'NYT: <module>ReLiveLinks</module>: Tilføjer links til HT re-live til færdigspillede kampe.'
       note_5: |
-        NYT: <module>CopyBBAd</module>: Kopiere forskellige annonceringer i BB-kode (ved merfis).
-        PS! Denne modul er beregnet for eksterne fora. BB-kode virker ikke i Hattrick Fora.
+        NYT: <module>CopyBBAd</module>: Kopierer forskellige annonceringer i BB-kode (ved merfis).
+        PS! Modullen er beregnet for eksterne fora. BB-kode virker ikke i Hattrick Fora.
       note_6: 'NYT: <module>DashboardCalendar</module>: Tilføjet en knap til at eksportere Hattrick uge i iCalendar-fil format (bør være forenelige med Google Kalender, Thunderbird + Lightning, MS Outlook, KOrganizer, Evolution, Apple iCal osv.)'
       note_7: '<module>LiveAlert</module>: Tilføjet forskellige lyde for hjemme/Ude/dit holds mål. Ved hjælp af lyde fra <linkHTLS>HTLiveSight</linkHTLS> som standard. Dit eget hold mål, bliver ikke genkendt i re-live tilstand i første omgang.'
       note_8: '<module>CopyYouth</module>: Hattrick youthclub brugere vil nu automatisk sende afviste spillere til HY'
@@ -176,7 +176,7 @@ da:
       note_20: '<module>CopyRatings</module>: Support til turnerings Kamp-ID.'
       note_21: '<module>CopyMatchID</module>: tilføjet understøttelse for enkelte kampe og deaktiveret på kamp siden, for at gøre plads til den nye HT link funktion'
       note_22: '<module>CopyPlayerAd</module>: rettet interferens med HT evne bjælker'
-      note_23: General HT-ML kopiering rettelser.
+      note_23: Generelle rettelser af HT-ML kopiering.
       note_24: '<header>Andre justeringer</header>'
       note_25: '<module>MatchOrderInterface</module>: Avatarer til ikke-supportere. Øget stabilitet.'
       note_26: '<module>MatchSimulator</module> bruger nu den nye kondi formel (af Senzascrupoli [post = 15917246.1]) i kondi discount.'
@@ -250,7 +250,7 @@ da:
       note_13: 'ForumStripHattrickLinks: bekræfte indstillingen er rettet'
       note_14: 'MatchSimulator: tilføje ikke-turneringens kampe er rettet'
       note_15: 'CopyYouth: forældede kopi-spiller-kilde fjernet'
-      note_16: 'CopyYouth: kopiere-trænings rapport og link til tilsvarende HT-Youthclub side'
+      note_16: 'CopyYouth: kopierer træningsrapport forbundet med tilsvarende HT-Youthclub side'
       note_17: 'ShowLineupSet: Er rettet efter nogen HT ændringer og enkel skin brudt layout er rettet'
       note_18: Mangler spiller-id for bogmærkede spillere er tilbage
       note_19: Median-transfer-prisen er rettet for nogle brugere
@@ -266,7 +266,7 @@ da:
       note_1: '<module>ForumYouthIcons</module>:tilføjet genveje til Turneringer'
       note_2: '<module>NewMail</module>: lyd indstilling tilbage'
       note_3: '<module>TeamPopupLinks</module>: Format til brugerdefinerede hyperlinks ændret'
-      note_4: '<module>MatchSimulator</module>: Kopier ratings er rettet og noget hjælp til  turnering'
+      note_4: '<module>MatchSimulator</module>: Kopiering af ratings er rettet og noget hjælp til turneringer'
       note_5: Tilføjede mulighed for alternative spiller specialitets ikoner under hoved fanen
       note_6: Flyttede aktivering/deaktivereings ikonet for fremhævning af funktioner, til Foxtricks værktøjslinjen, svarende til primær indstillings fane
       note_7: modul MatchTables fjernet da ingen brugte det
@@ -338,7 +338,7 @@ da:
       note_2: '<FTlinkMainTab>Option</FTlinkMainTab> for ikke at indlæse XML-data fra Hattrick. Også XMLs er nu cachelagret og en mulighed for at rydde cachen er blevet føjet til de relevante sider (convincedd)'
       note_3: 'Nyt modul <module>LocalTime</module> for at vise tid i den lokale tidszone. (ryanli)'
       note_4: 'Nyt modul <module>LinksYouthLeague</module> for links på ungdom liga side.(Parminu)'
-      note_5: 'Nyt modul <module>CopyYouth</module> fletter gamle ungdoms kopi moduler, og giver link til destinationer. Ny funktion til kopiering af ungdoms kampprogram. (ryanli, Parminu)'
+      note_5: 'Ny modul <module>CopyYouth</module> fletter gamle ungdoms-kopi moduler, og skaber et link til destinationer. Ny funktion til kopiering af ungdoms-kampprogram. (ryanli, Parminu)'
       note_6: 'Nyt modul <module>SupporterStatsEnhancements</module>, hvilket forbedrer visning i supporter statistik siden. (convincedd)'
       note_7: 'Mulighed for at skjule invitation boksen, synlig på venstre Sidepanel i modulet <module>FixcssProblems</module>. (ryanli)'
       note_8: 'Mulighed for at reducere højden af min kalender i modulet <module>FixcssProblems</module>. (ryanli)'
@@ -364,7 +364,7 @@ da:
       note_3: Nogle andre trivielle rettelser. (ryanli)
     0.7:
       note_0: Islandsk landestandard. (LA-LordBastard)
-      note_1: Vlaams landestandard kopieres fra hollandsk. (ryanli)
+      note_1: Vlaams landestandard kopierede fra Nederlandsk. (ryanli)
       note_2: 'Ny modul kategori, <FTlinkAggregation>Information Aggregation</FTlinkAggregation>. (ryanli)'
       note_3: 'Nyt modul <module>MyMonitor</module> til overvågning af de seneste kampe af udvalgte hold på Mit Hattrick. (ryanli)'
       note_4: 'Nyt modul <module>MarkAllAsRead</module>, en knap til at markere tråde i alle fora som læst. (ryanli)'
@@ -400,7 +400,7 @@ da:
       note_8: 'Modul HighlightBotTeams omdøbt til <module>HighlightOwnerless</module>. (ryanli)'
       note_9: Modul YouthSkillNotes og ShortPA fjernet. (ryanli)
       note_10: 'Mulighed for at skjule forum smug kig i <module>FixcssProblems</module>. (ljushaff)'
-      note_11: 'Mulighed for at kopiere annoncer i ikke-tabelformat i <module>CopyPlayerAd</module>. (ryanli)'
+      note_11: 'Mulighed for at kopiere annoncer uden tabelformat i <module>CopyPlayerAd</module>. (ryanli)'
       note_12: 'Mulighed for at vise HatStats pr. rating i <module>Ratings</module>. (taised)'
       note_13: Belarussiske landestandard. (LA-Stolik)
       note_14: 'Tilføjede nogle ofte stillede spørgsmål på <FTlinkHelp>hjælpe fane</FTlinkHelp>. (ryanli)'
