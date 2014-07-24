@@ -840,8 +840,8 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 					defending: player.defending,
 					scoring: player.scoring,
 				};
-				var spec = Foxtrick.L10n.getEnglishSpeciality(player.speciality);
-				var contributions = Foxtrick.Pages.Player.getContributions(skills, spec);
+
+				var contributions = Foxtrick.Pages.Player.getContributions(skills, player);
 				for (var name in contributions)
 					player[name] = contributions[name];
 

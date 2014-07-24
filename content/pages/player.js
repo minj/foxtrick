@@ -1,7 +1,7 @@
 'use strict';
 /* player.js
  * Utilities on player page
- * @author ryanli, LA-MJ
+ * @author ryanli, LA-MJ, Greblys
  */
 
 if (!Foxtrick)
@@ -744,15 +744,16 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerid, callback) {
 };
 
 /**
- * Get position contributions from skill map and English specialty.
+ * Get position contributions from skill map and player's attributes map
  * Skill map must be {keeper, defending, playmaking, winger, passing, scoring, setPieces}.
+ * Attributes map must be {form, experience, loyalty, spec }
  * Returns position contribution map.
  * @author Grebliux, LA-MJ
- * @param  {object} skills Object<string, number> skill map
- * @param  {string} spec   English specialty
- * @return {object}        Object<string, number> position map
+ * @param  {Object<String,Integer>} skills 			skill map
+ * @param  {Object<String,Mixed}  	attributes	attributes map
+ * @return {Object<String,Number>}         			position map
  */
-Foxtrick.Pages.Player.getContributions = function(skills, spec) {
+Foxtrick.Pages.Player.getContributions = function(skills, attrs) {
 	var getValue = function(coefs, skills) {
 		var value = coefs[0] * skills.keeper;
 		value += coefs[1] * skills.defending;
@@ -769,6 +770,21 @@ Foxtrick.Pages.Player.getContributions = function(skills, spec) {
 		return parseFloat(value.toFixed(2));
 	};
 
+	// for testing specific players
+	/*
+	skills.keeper = 1;
+	skills.defending = 7;
+	skills.passing = 4;
+	skills.playmaking = 5;
+	skills.scoring = 5;
+	skills.setPieces = 4;
+	skills.winger = 4;
+	speciality = ""
+	console.log(skills);
+	*/
+
+	if(!skills) return;
+	
 	// all coefficients taken from http://wiki.hattrick.org/wiki/Hattrick_-_Skill_positions
 	var coefs = {
 		//    kp      df     pm     w      ps     sc
@@ -794,18 +810,59 @@ Foxtrick.Pages.Player.getContributions = function(skills, spec) {
 		fwd:  [0,     0,     0.429, 0.124, 0.814, 0.729],
 	};
 
+	//	Source [post=16376110.4]
+	if(Foxtrick.Prefs.isModuleOptionEnabled('PlayerPositionsEvaluations', 'ExperienceIncluded')) {
+		var experience = typeof attrs.Experience !== 'undefined' ? attrs.Experience : attrs.experience;
+		var bonus = Math.log(experience) / Math.log(10) * 4.0/3.0;
+		for(var skill in skills) 
+			skills[skill] += bonus;
+	}
+
+	var loyalty = typeof attrs.Loyalty !== 'undefined' ? attrs.Loyalty : attrs.loyalty;
+	var mcb = typeof attrs.MotherClubBonus !== 'undefined' ? attrs.MotherClubBonus : attrs.motherClubBonus;
+	var transferListed = typeof attrs.TransferListed !== 'undefined' ? attrs.TransferListed : attrs.transferListed;
+	if(Foxtrick.Prefs.isModuleOptionEnabled('PlayerPositionsEvaluations', 'LoyaltyAndMotherClubBonusIncluded') 
+			&& typeof loyalty !== 'undefined' //loyalty can be undefined in transfer pages
+			&& !transferListed) { 	
+		var bonus = Math.max(0, loyalty - 1) / 19.0;
+		if(mcb) bonus += 0.5;
+		for(var skill in skills)
+			skills[skill] += bonus;
+	}
+
+	/**
+	 * Source [post=16376110.4]
+	 * Probably we will never know if the form affect needs to be calculated before or after
+	 * other bonuses' addition to the main skills.
+	 */
+	if(Foxtrick.Prefs.isModuleOptionEnabled('PlayerPositionsEvaluations', 'FormIncluded')) {
+		//							None	Disastrous	Wretched	Poor		Weak		Inadequate	Passable	Solid		Excellent		
+		var formInfls = [	0, 		0.305, 			0.5, 		0.629, 	0.732, 			0.82, 		0.897, 	0.967, 			1];
+		var form = typeof attrs.PlayerForm !== 'undefined' ? attrs.PlayerForm : attrs.form;
+		for(var skill in skills)
+			skills[skill] *= formInfls[form];
+	}
+
+	if(Foxtrick.Prefs.isModuleOptionEnabled('PlayerPositionsEvaluations', 'BruisedIncluded')) {
+		var bruised = typeof attrs.Bruised !== 'undefined' ? attrs.Bruised : attrs.bruised;
+		if(bruised)
+			for(var skill in skills)
+				skills[skill] *= 0.95; //source: http://www.hattrickinfo.com/en/training/284/#281
+	}
+
 	var cntrb = {};
 	for (var pos in coefs) {
 		cntrb[pos] = getValue(coefs[pos], skills);
 	}
-
-	if (spec === 'Technical') {
+	
+	var speciality = typeof attrs.Specialty !== 'undefined' ? attrs.Specialty : attrs.speciality;
+	speciality = Foxtrick.L10n.getEnglishSpeciality(speciality);
+	if (speciality == 'Technical') {
 		cntrb.fwd = 0;
 	}
 	else {
 		cntrb.tdf = 0;
 	}
-
 	return cntrb;
 };
 

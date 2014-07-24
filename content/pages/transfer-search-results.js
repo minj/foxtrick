@@ -1,7 +1,7 @@
 'use strict';
 /* transfer-search-results.js
  * Utilities on transfer search results page
- * @author convincedd, ryanli
+ * @author convincedd, ryanli, Greblys
  */
 
 if (!Foxtrick)
@@ -157,8 +157,7 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 				player.psicoTitle = psicoTitle;
 			}
 
-			var spec = Foxtrick.L10n.getEnglishSpeciality(player.speciality);
-			var contributions = Foxtrick.Pages.Player.getContributions(skills, spec);
+			var contributions = Foxtrick.Pages.Player.getContributions(skills, player);
 			for (var name in contributions)
 				player[name] = contributions[name];
 

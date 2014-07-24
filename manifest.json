@@ -124,7 +124,6 @@
 			"content/forum/mark-unread.js",
 			"content/forum/show-forum-pref-button.js",
 			"content/forum/staff-marker.js",
-			"content/information-aggregation/best-player-position.js",
 			"content/information-aggregation/cross-table.js",
 			"content/information-aggregation/dashboard-calendar.js",
 			"content/information-aggregation/election-table.js",

@@ -112,7 +112,6 @@ FoxtrickFirefox.prototype = {
 		'forum/mark-unread.js',
 		'forum/show-forum-pref-button.js',
 		'forum/staff-marker.js',
-		'information-aggregation/best-player-position.js',
 		'information-aggregation/cross-table.js',
 		'information-aggregation/dashboard-calendar.js',
 		'information-aggregation/election-table.js',
