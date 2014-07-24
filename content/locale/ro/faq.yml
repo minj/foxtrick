@@ -10,7 +10,7 @@ ro:
     sound-format:
       question: Ce formate de fișiere sunt permise pentru alertele de sunet?
       answer: |
-        <p>Diferite brosere permit diferite formate. Aici este o listă (formatele nelistate pot funcționa dacă plugin-urile necesare sunt instalate, de ex. Quicktime pentru a reda mp3 în Firefox):</p>
+        <p>Diferite browsere permit diferite formate. Iată o listă (formatele nelistate pot funcționa dacă plugin-urile necesare sunt instalate, de ex. Quicktime pentru a reda mp3 în Firefox):</p>
         
         <ul>
         <li>Mozilla: wav, ogg</li>

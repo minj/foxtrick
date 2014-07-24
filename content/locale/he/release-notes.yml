@@ -7,7 +7,12 @@ he:
       note_0: 'זוהי גירסת הבטא של המהדורה הבאה. נודה על עזרה בתרגום גירסה זו באתר התרגום המאוד נוח שלנו <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.14.0.1:
       important: '<header>הודעות חשובות</header>'
+      ff_cache: חבילות פוקסטריק לא יכללו יותר כיווץ עודף בפיירפוקס. הדבר אמור למנוע כל מיני בעיות מוזרות שהיו למשתמשים עם גירסה 0.14.0.
       bugs: '<header>תיקוני באגים</header>'
+      safari_prefs: דף ההעדפות של פוקסטריק לא הוצג למספר משתמשים שהשתמשו בדפדפן ספארי.
+      teamstats: 'תוקנה תקלה נדירה שפגעה במודול <module>TeamStats</module> ובמודולים אחרים.'
+      bpp: 'המודול <module>BestPlayerPosition</module> הציג במקרים מסוימים מידע שגוי בדף תוצאות חיפוש העברות.'
+      history_stats: 'מעתה <module>HistoryStats</module> יסדר תמיד את ביצועי הקבוצה לפי עונות.'
     0.14.0:
       important: '<header>הודעות חשובות</header>'
       crowdin: '<header>עדכוני תרגום רבים של המשתמשים המדהימים שלנו באמצעות <linkCrowdin>כלי ה-crowdin</linkCrowdin>. גם אתם יכולים לעזור!</header>'

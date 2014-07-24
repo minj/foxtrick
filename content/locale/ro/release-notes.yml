@@ -6,15 +6,20 @@ ro:
     beta:
       note_0: 'Aceasta este o versiune beta a următoarei versiuni care va fi lansată. Vă rugăm ajutați traducând această versiune utilizând pagina de traducere <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.14.0.1:
-      important: '<header>Anunţuri importante</header>'
-      bugs: '<header>Buguri reparate</header>'
+      important: '<header>Anunțuri importante</header>'
+      ff_cache: Pachetele Foxtrick nu vor mai avea compresii extra în Firefox. Asta ar trebui să prevină tot felul de probleme ciudate apărute în versiunea 0.14.0.
+      bugs: '<header>Erori reparate</header>'
+      safari_prefs: Pagina Foxtrick de preferințe nu a putut fi afișată tuturor utilizatorilor ce folosesc Safari.
+      teamstats: 'Am reparat o eroare din <module>TeamStats</module> și nu numai.'
+      bpp: '<module>BestPlayerPosition</module> arăta datele greșit pe pagina de căutare a transferurilor uneori.'
+      history_stats: '<module>HistoryStats</module> va ordona, de acum, performanțele echipei după sezoane.'
     0.14.0:
-      important: '<header>Anunţuri importante</header>'
-      crowdin: '<header>O mulțime de traduceri actualizate de către userii care folosesc <linkCrowdin> instrumentul crowdin</linkCrowdin>. Și tu poți ajuta!</header>'
+      important: '<header>Anunțuri importante</header>'
+      crowdin: '<header>O mulțime de traduceri actualizate de către userii care folosesc <linkCrowdin>instrumentul crowdin</linkCrowdin>. Și tu poți ajuta!</header>'
       browsers: Suportul pentru Opera 12 a încetat. Safari 6 și Firefox 24 sunt acum versiuni minime pentru a rula Foxtrick.
       backend: S-au făcut mai multe operațiuni de curățenie și actualizare la Foxtrick. Schimbările afectează multe pagini, module și funcționalități, inclusiv raportul de meci, HT-Live, interfața ordinelor de meci, detecția automată a monedei și cache-ul Foxtrick. Vă rugăm să ne raportați orice bug găsiți.
       bug_report: Footerul Hattrick va include acum și un link către raportarea bugurilor pe Foxtrick. Folosiți-l pe pagina afectată și urmați instrucțiunile care apar.
-      twitter: 'Puteţi urmări <linkTwitter>Foxtrick pe Twitter</linkTwitter> pentru a primi ultimele ştiri, actualizări şi anunţuri.'
+      twitter: 'Poți urmări <linkTwitter>Foxtrick pe Twitter</linkTwitter> pentru a primi ultimele știri, actualizări și anunţuri.'
       new: '<header>Module noi</header>'
       series_transfers: '<module>SeriesTransfers</module>: Arată o listă de jucători actualmente de vânzare pe pagina seriei.'
       player_positions: 'Modulele <module>PlayerPositionsEvaluations</module> și <module>BestPlayerPosition</module> calculează eficiența jucătorului pe diverse poziții în funcție de <linkContributionsWiki>Hattrick Wiki</linkContributionsWiki>.'
@@ -27,14 +32,14 @@ ro:
       forum_header: '<module>ForumAlterHeaderLine</module> a fost revizuit și ar trebui să meargă corect în toate cazurile.'
       nav_fix: 'Navigrea în <module>GoToPostBox</module> și <module>MyMonitor</module> a fost reparată în Firefox.'
       new_lineup: 'Modulele <module>MatchPlayerColouring</module>, <module>LineupShortcut</module>, <module>TeamPopupLinks</module> și <module>SeniorTeamShortCuts</module> vor funcționa acum corect cu noua pagină de aliniere jucători.'
-      other: '<header>Alte schimbări</header>'
+      other: '<header>Alte modificări</header>'
       live_ratings: 'Suportul pentru ratinguri live a fost adăugat în <module>MatchLineupTweaks</module>, <module>MatchRatingsTweaks</module> și <module>MatchPlayerColouring</module>.'
       own_top_players: 'Modulul <module>Filter</module> evidențiază acum jucătorii tăi în pagina de statistici Top Players.'
       htev: htev.org nu mai poate susține încărcarea de cereri Foxtrick și astfel că modulul HTEVPrediction a fost înlăturat.
       removed: Modulele SmallerPages și MatchTables au fost și ele eliminate din cauza lipsei de utilitate.
       and_more: Diverse alte mici modificări și reparații.
     0.13.0.1:
-      crowdin: '<header>O mulțime de traduceri actualizate de către userii care folosesc <linkCrowdin> instrumentul crowdin</linkCrowdin>. Și tu poți ajuta!</header>'
+      crowdin: '<header>O mulțime de traduceri actualizate de către userii care folosesc <linkCrowdin>instrumentul crowdin</linkCrowdin>. Și tu poți ajuta!</header>'
       bugs: '<header>Buguri reparate</header>'
       old_faces: '<module>OldStyleFace</module> nu funcționa corect pe interfața ordinelor de meci și pe paginile de liste de jucători din meci. Problema s-a remediat.'
       simulator_skills: 'Numele de subnivel din <module>MatchSimulator</module> au fost corectate în câteva limbi.'
@@ -52,7 +57,7 @@ ro:
         <p>Vă rugăm să vă gândiţi să treceţi la <linkOperaNext>Opera Next</linkOperaNext> sau la ce alt browser suportat doriţi.</p>
       safari: Suportul pentru Safari versiunea 5.x va înceta în curând.
       twitter: 'Puteţi urmări <linkTwitter>Foxtrick pe Twitter</linkTwitter> pentru a primi ultimele ştiri, actualizări şi anunţuri.'
-      crowdin: '<header>O mulțime de traduceri actualizate de către userii care folosesc <linkCrowdin> instrumentul crowdin</linkCrowdin>. Și tu poți ajuta!</header>'
+      crowdin: '<header>O mulțime de traduceri actualizate de către userii care folosesc <linkCrowdin>instrumentul crowdin</linkCrowdin>. Și tu poți ajuta!</header>'
       new: '<header>Module noi</header>'
       hy_skills: '<module>YouthSkills</module>: Îmbunătăţeşte pagina jucătorilor de tineret adăugând informaţii de la hattrick youthclub. Doar pentru utilizatori HY.'
       ratings_tweaks: '<module>MatchRatingsTweaks</module>: mici modificări la ratingurile de pe pagina raportului de meci. Afişează ratinguri numerice şi urmăreşte modificarea lor prin navigarea timeline-ului ca şi în <module>MatchSimulator</module>. Calculează probabilităţile reale de atac/apărare/posesie conform formulelor stabilite în manualul nescris: 15766691.221, 15766691.242'
