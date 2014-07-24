@@ -216,7 +216,7 @@ Foxtrick.modules['TransferComparePlayers'] = {
 					percentage.textContent = '(+' + Math.round(dif * 100) + ' %)';
 				}
 				else if (next < last) {
-					dif = (last - next) / next;
+					dif = (last - next) / last;
 					Foxtrick.addClass(percentage, 'ft-player-transfer-history negative');
 					percentage.textContent = '(-' + Math.round(dif * 100) + ' %)';
 				}
