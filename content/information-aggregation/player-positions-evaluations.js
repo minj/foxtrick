@@ -12,7 +12,7 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 	OPTIONS: ['ShowBestPosition', 'Normalised', 'FormIncluded', 'LoyaltyAndMotherClubBonusIncluded', 'ExperienceIncluded', 							'BruisedIncluded'],
 
 	insertEvaluationsTable: function(doc, contributions) {
-		
+
 		var feat_div = Foxtrick.createFeaturedElement(doc, this, 'div');
 		var entryPoint = doc.getElementById('mainBody');
 		var title = doc.createElement('h2');
@@ -57,7 +57,7 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 
 	insertBestPosition: function(module, doc, contributions) {
 		if(Foxtrick.Prefs.isModuleOptionEnabled('PlayerPositionsEvaluations', 'ShowBestPosition')) {
-			if (Foxtrick.Pages.Player.isSeniorPlayerPage(doc)) {
+			if (Foxtrick.Pages.Player.isSenior(doc)) {
 				if (!doc.getElementsByClassName('playerInfo').length)
 					return;
 
@@ -112,7 +112,7 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 	},
 
 	run: function(doc) {
-		if (Foxtrick.Pages.Player.isSeniorPlayerPage(doc)) {
+		if (Foxtrick.Pages.Player.isSenior(doc)) {
 			var id = Foxtrick.Pages.Player.getId(doc);
 			Foxtrick.Pages.Player.getPlayer(doc, id, function(player) {
 				var skills = Foxtrick.Pages.Player.getSkills(doc);
