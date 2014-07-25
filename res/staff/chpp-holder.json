@@ -20,7 +20,7 @@
 		{ "id": 653581, "name": "CHPP-teles", "appNames": [ "HTLoto", "PHT" ] },
 		{ "id": 10439897, "name": "Castor_paresseux", "appNames": [ "QCM-HT" ] },
 		{ "id": 9286790, "name": "Cis_Trans", "appNames": [ "SYL scanner" ] },
-		{ "id": 10800601, "name": "Dantekavala", "appNames": [ "HT-SpyMarket", "HT-Tools", "Hattrick Network Analysis" ] },
+		{ "id": 10800601, "name": "Dantekavala", "appNames": [ "HT-Tools", "Hattrick Network Analysis" ] },
 		{ "id": 2554426, "name": "DerKanzler", "appNames": [ "Maptrick" ] },
 		{ "id": 980430, "name": "DorkPower", "appNames": [ "Hattrick Stars" ] },
 		{ "id": 9069389, "name": "Drago81", "appNames": [ "HatLights" ] },
