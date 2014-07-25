@@ -12,7 +12,6 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 	OPTIONS: ['ShowBestPosition', 'Normalised', 'FormIncluded', 'LoyaltyAndMotherClubBonusIncluded', 'ExperienceIncluded', 							'BruisedIncluded'],
 
 	insertEvaluationsTable: function(doc, contributions) {
-
 		var feat_div = Foxtrick.createFeaturedElement(doc, this, 'div');
 		var entryPoint = doc.getElementById('mainBody');
 		var title = doc.createElement('h2');
@@ -117,6 +116,7 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 			Foxtrick.Pages.Player.getPlayer(doc, id, function(player) {
 				var skills = Foxtrick.Pages.Player.getSkills(doc);
 				player.bruised = player.InjuryLevel == 0;
+				if(!skills) return;
 				var contributions = Foxtrick.Pages.Player.getContributions(skills, player);
 				Foxtrick.modules['PlayerPositionsEvaluations'].insertEvaluationsTable(doc, contributions);
 				//lets reuse contributions and don't recalculate them for bestPosition
