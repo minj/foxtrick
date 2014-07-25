@@ -748,12 +748,12 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerid, callback) {
  * Skill map must be {keeper, defending, playmaking, winger, passing, scoring, setPieces}.
  * Attributes map must be {form, experience, loyalty, spec }
  * Returns position contribution map.
- * @author Grebliux, LA-MJ
- * @param  {Object<String,Integer>} skills 			skill map
- * @param  {Object<String,Mixed}  	attributes	attributes map
- * @return {Object<String,Number>}         			position map
+ * @author Greblys, LA-MJ
+ * @param  {Object<String,Integer>} playerSkills 			skill map
+ * @param  {Object<String,Mixed}  	playerAttributes	attributes map
+ * @return {Object<String,Number>}         						position map
  */
-Foxtrick.Pages.Player.getContributions = function(skills, attrs) {
+Foxtrick.Pages.Player.getContributions = function(playerSkills, playerAttrs) {
 	var getValue = function(coefs, skills) {
 		var value = coefs[0] * skills.keeper;
 		value += coefs[1] * skills.defending;
@@ -769,6 +769,16 @@ Foxtrick.Pages.Player.getContributions = function(skills, attrs) {
 
 		return parseFloat(value.toFixed(2));
 	};
+	
+	var copyObject = function(original){
+		var copy = {};
+		for (var property in original)
+			copy[property] = original[property];
+		return copy;
+	};
+
+	var skills = copyObject(playerSkills);
+	var attrs = copyObject(playerAttrs);
 
 	// for testing specific players
 	/*
@@ -782,7 +792,7 @@ Foxtrick.Pages.Player.getContributions = function(skills, attrs) {
 	speciality = ""
 	console.log(skills);
 	*/
-
+	
 	if(!skills) return;
 	
 	// all coefficients taken from http://wiki.hattrick.org/wiki/Hattrick_-_Skill_positions
@@ -869,7 +879,7 @@ Foxtrick.Pages.Player.getContributions = function(skills, attrs) {
 /**
  * Find the highest contribution in a position map.
  * Returns {position, value}.
- * @author Grebliux
+ * @author Greblys
  * @param  {object} contributions Object<string, number> position map
  * @return {object}               {position: string, value: number}
  */

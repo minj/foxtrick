@@ -1,7 +1,7 @@
 'use strict';
 /* transfer-search-results.js
  * Utilities on transfer search results page
- * @author convincedd, ryanli, Greblys
+ * @author convincedd, ryanli
  */
 
 if (!Foxtrick)
@@ -156,17 +156,18 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 				player.psicoTSI = psicoTSI;
 				player.psicoTitle = psicoTitle;
 			}
-
+			
 			var contributions = Foxtrick.Pages.Player.getContributions(skills, player);
 			for (var name in contributions)
 				player[name] = contributions[name];
-
+			
 			var bestPosition = Foxtrick.Pages.Player.getBestPosition(contributions);
 			player.bestPosition =
 				Foxtrick.L10n.getString(bestPosition.position + 'Position.abbr');
 			player.bestPositionLong =
 				Foxtrick.L10n.getString(bestPosition.position + 'Position');
 			player.bestPositionValue = bestPosition.value;
+			
 		}
 		catch (e) {
 			Foxtrick.log(e);
