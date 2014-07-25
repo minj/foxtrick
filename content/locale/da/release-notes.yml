@@ -29,7 +29,7 @@ da:
       new_lineup: 'Modulerne <module>MatchPlayerColouring</module>, <module>LineupShortcut</module>, <module>TeamPopupLinks</module> og <module>SeniorTeamShortCuts</module> vil nu fungere korrekt med den nye opstillings side.'
       other: '<header>Andre ændringer</header>'
       live_ratings: 'Support for Live Ratings blev tilføjet i <module>MatchLineupTweaks</module>, <module>MatchRatingsTweaks</module> og <module>MatchPlayerColouring</module>.'
-      own_top_players: '<module>Filter</module> modul fremhæver nu dine spillere i Top spillere statistik side.'
+      own_top_players: '<module>Filter</module> modul fremhæver nu dine spillere på siden med Topspillere .'
       htev: htev.org kan ikke længere opretholde belastning af Foxtrick anmodninger, dermed blev HTEVPrediction-modul fjernet.
       removed: SmallerPages og MatchTables moduler blev også fjernet på grund af deres ubrugelighed.
       and_more: Forskellige små ændringer og rettelser.
