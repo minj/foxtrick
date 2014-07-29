@@ -30,7 +30,7 @@ ro:
       train_est: Foxtrick nu mai interferă cu sortarea tabelului în noua funcționalitate de estimare a antrenamentului.
       mrf_fixes: '<module>MatchReportFormat</module> nu va mai avea afișarea stricată în unele meciuri. Adăugat mai multe pictograme de evenimente.'
       forum_header: '<module>ForumAlterHeaderLine</module> a fost revizuit și ar trebui să meargă corect în toate cazurile.'
-      nav_fix: 'Navigrea în <module>GoToPostBox</module> și <module>MyMonitor</module> a fost reparată în Firefox.'
+      nav_fix: 'Navigarea în <module>GoToPostBox</module> și <module>MyMonitor</module> a fost reparată în Firefox.'
       new_lineup: 'Modulele <module>MatchPlayerColouring</module>, <module>LineupShortcut</module>, <module>TeamPopupLinks</module> și <module>SeniorTeamShortCuts</module> vor funcționa acum corect cu noua pagină de aliniere jucători.'
       other: '<header>Alte modificări</header>'
       live_ratings: 'Suportul pentru ratinguri live a fost adăugat în <module>MatchLineupTweaks</module>, <module>MatchRatingsTweaks</module> și <module>MatchPlayerColouring</module>.'
