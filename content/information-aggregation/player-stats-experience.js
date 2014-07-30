@@ -32,7 +32,7 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 		xp.matchFriendly		= 0.2;
 		//
  		xp.matchLeague			= 1.0;
-		xp.matchCup				= 2.0;
+		xp.matchCupA				= 2.0;
 		xp.matchQualification	= 2.0;
 		xp.matchMasters			= 5.0;
 		//nt
@@ -51,7 +51,7 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 		this.store.matches = {};
 		this.store.matches.matchFriendly = { minutes: { min: 0, max: 0 }, count: { min: 0.0, max: 0.0 }, xp: { min: 0.0, max: 0.0 } };
 		this.store.matches.matchLeague = { minutes: { min: 0, max: 0 }, count: { min: 0.0, max: 0.0 }, xp: { min: 0.0, max: 0.0 } };
-		this.store.matches.matchCup = { minutes: { min: 0, max: 0 }, count: { min: 0.0, max: 0.0 }, xp: { min: 0.0, max: 0.0 } };
+		this.store.matches.matchCupA = { minutes: { min: 0, max: 0 }, count: { min: 0.0, max: 0.0 }, xp: { min: 0.0, max: 0.0 } };
 		this.store.matches.matchNtFriendly = { minutes: { min: 0, max: 0 }, count: { min: 0.0, max: 0.0 }, xp: { min: 0.0, max: 0.0 } };
 		this.store.matches.matchQualification = { minutes: { min: 0, max: 0 }, count: { min: 0.0, max: 0.0 }, xp:
 			{ min: 0.0, max: 0.0 } };
@@ -319,7 +319,7 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 		var navigation =
 			doc.getElementById('ctl00_ctl00_CPContent_CPMain_pnlMatchHistorySlideToggle');
 		var types = [
-			'matchFriendly', 'matchLeague', 'matchCup', 'matchMasters',
+			'matchFriendly', 'matchLeague', 'matchCupA', 'matchMasters',
 			'matchQualification', 'matchNtFriendly', 'matchNtLeague', 'matchNtFinals'
 		];
 
