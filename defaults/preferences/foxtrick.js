@@ -317,7 +317,7 @@ pref("extensions.foxtrick.prefs.module.PlayerPositionsEvaluations.ShowBestPositi
 pref("extensions.foxtrick.prefs.module.PlayerPositionsEvaluations.Normalised.enabled", true);
 pref("extensions.foxtrick.prefs.module.PlayerPositionsEvaluations.FormIncluded.enabled", true);
 pref("extensions.foxtrick.prefs.module.PlayerPositionsEvaluations.ExperienceIncluded.enabled", true);
-pref("extensions.foxtrick.prefs.module.PlayerPositionsEvaluations.LoyaltyAndMotherClubBonusIncluded.enabled", true);
+pref("extensions.foxtrick.prefs.module.PlayerPositionsEvaluations.LoyaltyAndMCBIncluded.enabled", true);
 pref("extensions.foxtrick.prefs.module.PlayerPositionsEvaluations.BruisedIncluded.enabled", true);
 pref("extensions.foxtrick.prefs.module.PlayerStatsExperience.enabled", true);
 pref("extensions.foxtrick.prefs.module.PlayerStatsExperience.AlwaysShowAll.enabled", true);

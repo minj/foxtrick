@@ -9,7 +9,10 @@
 Foxtrick.modules['PlayerPositionsEvaluations'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES: ['playerDetails', 'transferSearchResult', 'players', 'ntPlayers'],
-	OPTIONS: ['ShowBestPosition', 'Normalised', 'FormIncluded', 'LoyaltyAndMotherClubBonusIncluded', 'ExperienceIncluded', 							'BruisedIncluded'],
+	OPTIONS: [
+		'ShowBestPosition', 'Normalised',
+		'FormIncluded', 'LoyaltyAndMCBIncluded', 'ExperienceIncluded', 'BruisedIncluded',
+	],
 
 	insertEvaluationsTable: function(doc, contributions) {
 		var feat_div = Foxtrick.createFeaturedElement(doc, this, 'div');
@@ -54,8 +57,10 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 		entryPoint.appendChild(feat_div);
 	},
 
-	insertBestPosition: function(module, doc, contributions) {
-		if(Foxtrick.Prefs.isModuleOptionEnabled('PlayerPositionsEvaluations', 'ShowBestPosition')) {
+	insertBestPosition: function(doc, contributions) {
+		var module = this;
+		if (Foxtrick.Prefs.isModuleOptionEnabled('PlayerPositionsEvaluations',
+		                                         'ShowBestPosition')) {
 			if (Foxtrick.Pages.Player.isSenior(doc)) {
 				if (!doc.getElementsByClassName('playerInfo').length)
 					return;
@@ -111,18 +116,19 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 	},
 
 	run: function(doc) {
+		var module = this;
 		if (Foxtrick.Pages.Player.isSenior(doc)) {
 			var id = Foxtrick.Pages.Player.getId(doc);
 			Foxtrick.Pages.Player.getPlayer(doc, id, function(player) {
 				var skills = Foxtrick.Pages.Player.getSkills(doc);
-				player.bruised = player.InjuryLevel == 0;
-				if(!skills) return;
+				player.bruised = player.InjuryLevel === 0;
+				if (!skills)
+					return;
 				var contributions = Foxtrick.Pages.Player.getContributions(skills, player);
-				Foxtrick.modules['PlayerPositionsEvaluations'].insertEvaluationsTable(doc, contributions);
-				//lets reuse contributions and don't recalculate them for bestPosition
-				Foxtrick.modules['PlayerPositionsEvaluations'].insertBestPosition(this, doc, contributions);
+				module.insertEvaluationsTable(doc, contributions);
+				// lets reuse contributions and don't recalculate them for bestPosition
+				module.insertBestPosition(doc, contributions);
 			});
-		} else
-				Foxtrick.modules['PlayerPositionsEvaluations'].insertBestPosition(this, doc, {});
+		}
 	},
 };
