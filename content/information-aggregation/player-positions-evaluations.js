@@ -130,5 +130,7 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 				module.insertBestPosition(doc, contributions);
 			});
 		}
+		else
+			module.insertBestPosition(doc, {});
 	},
 };
