@@ -8,7 +8,7 @@
 Foxtrick.modules['CopyMatchID'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES: [
-		'matches', 'worldMatches', 'matchesArchive',
+		'matches', 'worldMatches', 'matchesArchive', 'matchesCup',
 		'matchesHistory', 'matchesLatest', 'arena'
 	],
 	//CSS: Foxtrick.InternalPath + 'resources/css/copy-match-id.css',

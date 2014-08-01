@@ -66,12 +66,19 @@ Foxtrick.modules['DashboardCalendar'] = {
 						var liveLink = links[links.length - 1];
 						if (liveLink.href.match(/SourceSystem=Youth/i))
 							ret.type = EVENTS.YOUTHFRIENDLY;
-						else	{
+						else {
 							hasMidWeekGame = true;
 							ret.type = EVENTS.FRIENDLY;
 						}
 					break;
-					case 'matchCup': ret.type = EVENTS.CUP; hasMidWeekGame = true; break;
+					case 'matchCupA':
+					case 'matchCupB1':
+					case 'matchCupB2':
+					case 'matchCupB3':
+					case 'matchCupB4':
+						ret.type = EVENTS.CUP;
+						hasMidWeekGame = true;
+					break;
 					case 'matchQualification': ret.type = EVENTS.QUALIFICATION; break;
 					case 'matchMasters': ret.type = EVENTS.MASTERS; break;
 					case 'matchTournament': ret.type = EVENTS.TOURNAMENT; break;

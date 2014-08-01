@@ -31,7 +31,7 @@ Foxtrick.util.matchView.fillMatches = function(container, xml, errorText) {
 		var mapping = {
 			'1': { key: 'league', className: 'matchLeague' },
 			'2': { key: 'qualification', className: 'matchQualification' },
-			'3': { key: 'cup', className: 'matchCup' },
+			'3': { key: 'cup', className: 'matchCupA' },
 			'4': { key: 'friendly', className: 'matchFriendly' },
 			'5': { key: 'friendly.cup', className: 'matchFriendly' },
 			'7': { key: 'masters', className: 'matchMasters' },

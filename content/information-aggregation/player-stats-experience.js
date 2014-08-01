@@ -24,41 +24,58 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 		// Hattrick Masters match	5
 		// U20/NT official match	10
 		// U20/NT World Cup (semi)final	20
+		//
+		this.matchTypes = [
+			'matchFriendly',
+			'matchLeague',
+			'matchCupA',
+			'matchCupB1',
+			'matchCupB2',
+			'matchCupB3',
+			'matchCupC',
+			'matchQualification',
+			'matchMasters',
+			'matchNtFriendly',
+			'matchNtLeague',
+			'matchNtFinals',
+		];
 
 		//don't randomly rename, parts of this are taken from hattrick using image classnames
-		var xp = {};
-		//assume international friendly as default, considered in min-max,
-		//minimum uses 1/2 of this value
-		xp.matchFriendly		= 0.2;
-		//
- 		xp.matchLeague			= 1.0;
-		xp.matchCupA				= 2.0;
-		xp.matchQualification	= 2.0;
-		xp.matchMasters			= 5.0;
-		//nt
-		xp.matchNtFriendly		= 2.0;
-		//fakename: we generate this type (iconsytle + gametype)
-		xp.matchNtLeague		= 10.0;
-		//fakename: we generate this type (iconsytle + gametype + match date)
-		xp.matchNtFinals		= 20.0;
-		//fakename: we generate this type (iconsytle + gametype + match date)
+		var xp = {
+			// assume international friendly as default, considered in min-max,
+			// minimum uses 1/2 of this value
+			matchFriendly: 0.2,
+ 			matchLeague: 1.0,
+			matchCupA: 2.0,
+			matchCupB1: 0.5,
+			matchCupB2: 0.5,
+			matchCupB3: 0.5,
+			matchCupC: 0.5,
+			matchQualification: 2.0,
+			matchMasters: 5.0,
+			// NT
+			// fakename: we generate this type (iconsytle + gametype)
+			matchNtFriendly: 2.0,
+			// fakename: we generate this type (iconsytle + gametype + match date)
+			matchNtLeague: 10.0,
+			// fakename: we generate this type (iconsytle + gametype + match date)
+			matchNtFinals: 20.0,
+		};
 
 		//setting for looking up values in the parsing process
 		var parserconfig = {};
 		parserconfig.xp = 6; //current xp is the <integer>-th column in the table
 
 		//setup the 'database'
-		this.store.matches = {};
-		this.store.matches.matchFriendly = { minutes: { min: 0, max: 0 }, count: { min: 0.0, max: 0.0 }, xp: { min: 0.0, max: 0.0 } };
-		this.store.matches.matchLeague = { minutes: { min: 0, max: 0 }, count: { min: 0.0, max: 0.0 }, xp: { min: 0.0, max: 0.0 } };
-		this.store.matches.matchCupA = { minutes: { min: 0, max: 0 }, count: { min: 0.0, max: 0.0 }, xp: { min: 0.0, max: 0.0 } };
-		this.store.matches.matchNtFriendly = { minutes: { min: 0, max: 0 }, count: { min: 0.0, max: 0.0 }, xp: { min: 0.0, max: 0.0 } };
-		this.store.matches.matchQualification = { minutes: { min: 0, max: 0 }, count: { min: 0.0, max: 0.0 }, xp:
-			{ min: 0.0, max: 0.0 } };
-		this.store.matches.matchMasters = { minutes: { min: 0, max: 0 }, count: { min: 0.0, max: 0.0 }, xp: { min: 0.0, max: 0.0 } };
-		this.store.matches.matchNtLeague = { minutes: { min: 0, max: 0 }, count: { min: 0.0, max: 0.0 }, xp: { min: 0.0, max: 0.0 } };
-		this.store.matches.matchNtFinals = { minutes: { min: 0, max: 0 }, count: { min: 0.0, max: 0.0 }, xp: { min: 0.0, max: 0.0 } };
-		this.store.xp = { points: { min: 0.0, max: 0.0 }, xp: { min: 0.0, max: 0.0 } };
+		var matches = this.store.matches = {};
+		Foxtrick.forEach(function(type) {
+			matches[type] = {
+				minutes: { min: 0, max: 0 },
+				count: { min: 0.0, max: 0.0 },
+				xp: { min: 0.0, max: 0.0 },
+			};
+		}, this.matchTypes);
+		this.store.xp = { points: { min: 0.0, max: 0.0 }, xp: { min: 0.0, max: 0.0 }};
 		this.store.currentSkill = null;
 		this.store.skillup = false;
 
@@ -73,12 +90,12 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 			}
 		};
 
-		//figure out if a match is a NT match, quite fragile i guess, only NT matches have styles atm
+		// figure out if a match is a NT match, quite fragile i guess,
+		// only NT matches have styles atm
 		var isNTmatch = function(node) {
 			var gametypeParent = node.getElementsByClassName('keyColumn')[0];
 			var gameTypeImage = gametypeParent.getElementsByClassName('iconMatchtype')[0]
 				.getElementsByTagName('img')[0];
-			var gameType = gameTypeImage.className;
 			return gameTypeImage.parentNode.getAttribute('style') != null;
 		};
 		// new W.O detection
@@ -318,10 +335,7 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 
 		var navigation =
 			doc.getElementById('ctl00_ctl00_CPContent_CPMain_pnlMatchHistorySlideToggle');
-		var types = [
-			'matchFriendly', 'matchLeague', 'matchCupA', 'matchMasters',
-			'matchQualification', 'matchNtFriendly', 'matchNtLeague', 'matchNtFinals'
-		];
+		var types = this.matchTypes;
 
 		var xp_header = doc.createElement('h2');
 		var headerTitle = doc.createTextNode(Foxtrick.L10n

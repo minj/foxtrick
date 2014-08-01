@@ -38,7 +38,11 @@ Foxtrick.Pages.Matches.isNT = function(doc) {
 Foxtrick.Pages.Matches.Types = [
 	'matchLeague',
 	'matchQualification',
-	'matchCup',
+	'matchCupA',
+	'matchCupB1',
+	'matchCupB2',
+	'matchCupB3',
+	'matchCupC',
 	'matchFriendly',
 	'matchMasters',
 	'matchTournament',

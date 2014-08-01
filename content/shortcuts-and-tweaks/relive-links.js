@@ -8,7 +8,7 @@
 Foxtrick.modules['ReLiveLinks'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES: [
-		'matches', 'worldMatches', 'matchesArchive', 'cupMatches',
+		'matches', 'worldMatches', 'matchesArchive', 'matchesCup', 'cupMatches',
 		'fixtures', 'youthFixtures', 'series'
 	],
 	NICE: -1, // before any modules that might change row count
@@ -89,7 +89,7 @@ Foxtrick.modules['ReLiveLinks'] = {
 			insertCells = true;
 		}
 		else {
-			rows = doc.querySelectorAll('table.naked > tbody > tr');
+			rows = doc.querySelectorAll('#mainBody tr');
 			if (Foxtrick.isPage(doc, 'worldMatches')) {
 				insertCells = true;
 			}

@@ -66,6 +66,7 @@ Foxtrick.ht_pages = {
 	'transferSearchResult'      : '/World/Transfers/TransfersSearchResult.aspx',
 	'match'                     : '/Club/Matches/Match.aspx|/Club/Matches/PreMatch.aspx',
 	'matches'                   : '/Club/Matches/(Default.aspx|?|$)',
+	'matchesCup'                : '/Club/Cup/(Default.aspx|?|$)',
 	'worldMatches'              : '/World/Matches/',
 	'matchesArchive'            : '/Club/Matches/Archive.aspx|' +
 	                              '/Club/Matches/YouthArchive.aspx',

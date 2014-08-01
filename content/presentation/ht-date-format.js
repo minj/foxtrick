@@ -61,7 +61,7 @@ Foxtrick.modules['HTDateFormat'] = {
 
 		var pages = [
 			'transfersTeam', 'transfersPlayer', 'transfer',
-			'transferCompare', 'match', 'matches', 'matchesArchive',
+			'transferCompare', 'match', 'matches', 'matchesCup', 'matchesArchive',
 			'teamPageAny', 'achievements', 'playerEvents',
 			'teamEvents', 'history', 'arena', 'country', 'hallOfFame',
 			'statsMatchesHeadToHead', 'seriesHistory', 'playerStats',
