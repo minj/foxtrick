@@ -22,6 +22,8 @@ Foxtrick.modules['ReLiveLinks'] = {
 		var matchSelector = 'a[href*="/Club/Matches/Match.aspx"]';
 		var liveSelector = 'a[href*="/Club/Matches/Live.aspx"]';
 		var findMatchTdIdx = function(rows) {
+			if (!rows[0])
+				return -1;
 			var tbody = rows[0].parentNode;
 			var matchLink = tbody.querySelector(matchSelector);
 			if (!matchLink)
