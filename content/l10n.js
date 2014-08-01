@@ -202,14 +202,12 @@ Foxtrick.L10n = {
 			lang = Foxtrick.Prefs.getString('htLanguage');
 		var text = this.getHTLangProperty(query, lang);
 		if (text === null) {
-			Foxtrick.error('Requested' + query.category + ':' + query.property +
-			             ' with ' + query.filter + '=' + query.value +
-			             ' does not exist in locale ' + lang + ', trying en instead.');
+			var header = 'Requested ' + query.category + ':' + query.property +
+				' with ' + query.filter + '=' + query.value;
+			Foxtrick.error(header + ' does not exist in locale ' + lang + ', trying en instead.');
 			text = this.getHTLangProperty(query, 'en');
 			if (text === null) {
-				Foxtrick.error('Requested' + query.category + ':' + query.property +
-				             ' with ' + query.filter + '=' + query.value +
-				             ' does not exist, returning raw value.');
+				Foxtrick.error(header + ' does not exist, returning raw value.');
 				text = query.value;
 			}
 		}
