@@ -749,9 +749,9 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerid, callback) {
  * Attributes map must be {form, experience, loyalty, spec }
  * Returns position contribution map.
  * @author Greblys, LA-MJ
- * @param  {Object<String,Integer>} playerSkills 			skill map
- * @param  {Object<String,Mixed}  	playerAttributes	attributes map
- * @return {Object<String,Number>}         						position map
+ * @param  {object} playerSkills skill map Object<string, number>
+ * @param  {object} playerAttrs  attributes map Object<string, ?>
+ * @return {object}              position map Object<string, number>
  */
 Foxtrick.Pages.Player.getContributions = function(playerSkills, playerAttrs) {
 	var getValue = function(coefs, skills) {
@@ -770,7 +770,7 @@ Foxtrick.Pages.Player.getContributions = function(playerSkills, playerAttrs) {
 		return parseFloat(value.toFixed(2));
 	};
 
-	var copyObject = function(original){
+	var copyObject = function(original) {
 		var copy = {};
 		for (var property in original)
 			copy[property] = original[property];
@@ -793,7 +793,8 @@ Foxtrick.Pages.Player.getContributions = function(playerSkills, playerAttrs) {
 	console.log(skills);
 	*/
 
-	if(!skills) return;
+	if (!skills)
+		return;
 
 	// all coefficients taken from http://wiki.hattrick.org/wiki/Hattrick_-_Skill_positions
 	var coefs = {
@@ -821,22 +822,36 @@ Foxtrick.Pages.Player.getContributions = function(playerSkills, playerAttrs) {
 	};
 
 	//	Source [post=16376110.4]
-	if(Foxtrick.Prefs.isModuleOptionEnabled('PlayerPositionsEvaluations', 'ExperienceIncluded')) {
-		var experience = typeof attrs.Experience !== 'undefined' ? attrs.Experience : attrs.experience;
-		var bonus = Math.log(experience) / Math.log(10) * 4.0/3.0;
-		for(var skill in skills)
+	var enabled = {};
+	Foxtrick.forEach(function(opt) {
+		enabled[opt] = Foxtrick.Prefs.isModuleOptionEnabled('PlayerPositionsEvaluations', opt);
+	}, [
+		'ExperienceIncluded',
+		'LoyaltyAndMCBIncluded',
+		'FormIncluded',
+		'BruisedIncluded',
+	]);
+	var bonus, skill;
+	if (enabled['ExperienceIncluded']) {
+		var experience = typeof attrs.Experience !== 'undefined' ? attrs.Experience :
+			attrs.experience;
+		bonus = Math.log(experience) / Math.log(10) * 4.0 / 3.0;
+		for (skill in skills)
 			skills[skill] += bonus;
 	}
 
 	var loyalty = typeof attrs.Loyalty !== 'undefined' ? attrs.Loyalty : attrs.loyalty;
-	var mcb = typeof attrs.MotherClubBonus !== 'undefined' ? attrs.MotherClubBonus : attrs.motherClubBonus;
-	var transferListed = typeof attrs.TransferListed !== 'undefined' ? attrs.TransferListed : attrs.transferListed;
-	if(Foxtrick.Prefs.isModuleOptionEnabled('PlayerPositionsEvaluations', 'LoyaltyAndMCBIncluded')
-			&& typeof loyalty !== 'undefined' //loyalty can be undefined in transfer pages
-			&& !transferListed) {
-		var bonus = Math.max(0, loyalty - 1) / 19.0;
-		if(mcb) bonus += 0.5;
-		for(var skill in skills)
+	var mcb = typeof attrs.MotherClubBonus !== 'undefined' ? attrs.MotherClubBonus :
+		attrs.motherClubBonus;
+	var transferListed = typeof attrs.TransferListed !== 'undefined' ? attrs.TransferListed :
+		attrs.transferListed;
+	if (enabled['LoyaltyAndMCBIncluded'] && typeof loyalty !== 'undefined' &&
+	    !transferListed) {
+		// loyalty can be undefined in transfer pages
+		bonus = Math.max(0, loyalty - 1) / 19.0;
+		if (mcb)
+			bonus += 0.5;
+		for (skill in skills)
 			skills[skill] += bonus;
 	}
 
@@ -845,19 +860,29 @@ Foxtrick.Pages.Player.getContributions = function(playerSkills, playerAttrs) {
 	 * Probably we will never know if the form affect needs to be calculated before or after
 	 * other bonuses' addition to the main skills.
 	 */
-	if(Foxtrick.Prefs.isModuleOptionEnabled('PlayerPositionsEvaluations', 'FormIncluded')) {
-		//							None	Disastrous	Wretched	Poor		Weak		Inadequate	Passable	Solid		Excellent
-		var formInfls = [	0, 		0.305, 			0.5, 		0.629, 	0.732, 			0.82, 		0.897, 	0.967, 			1];
+	if (enabled['FormIncluded']) {
+		var formInfls = [
+			0,
+			0.305,
+			0.5,
+			0.629,
+			0.732,
+			0.82,
+			0.897,
+			0.967,
+			1
+		];
 		var form = typeof attrs.PlayerForm !== 'undefined' ? attrs.PlayerForm : attrs.form;
-		for(var skill in skills)
+		for (skill in skills)
 			skills[skill] *= formInfls[form];
 	}
 
-	if(Foxtrick.Prefs.isModuleOptionEnabled('PlayerPositionsEvaluations', 'BruisedIncluded')) {
+	// source: http://www.hattrickinfo.com/en/training/284/#281-
+	if (enabled['BruisedIncluded']) {
 		var bruised = typeof attrs.Bruised !== 'undefined' ? attrs.Bruised : attrs.bruised;
-		if(bruised)
-			for(var skill in skills)
-				skills[skill] *= 0.95; //source: http://www.hattrickinfo.com/en/training/284/#281
+		if (bruised)
+			for (skill in skills)
+				skills[skill] *= 0.95;
 	}
 
 	var cntrb = {};
@@ -865,7 +890,8 @@ Foxtrick.Pages.Player.getContributions = function(playerSkills, playerAttrs) {
 		cntrb[pos] = getValue(coefs[pos], skills);
 	}
 
-	var speciality = typeof attrs.Specialty !== 'undefined' ? attrs.Specialty : attrs.speciality;
+	var speciality = typeof attrs.Specialty !== 'undefined' ? attrs.Specialty :
+		attrs.speciality;
 	speciality = Foxtrick.L10n.getEnglishSpeciality(speciality);
 	if (speciality == 'Technical') {
 		cntrb.fwd = 0;
