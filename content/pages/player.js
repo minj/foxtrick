@@ -794,7 +794,7 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerid, callback) {
 			Foxtrick.forEach(addProperty(player, bool), bools);
 
 			player.nextBirthDay = xml.date('NextBirthDay');
-			player.salary = money('Salary', currencyRate);
+			player.salary = money('Salary');
 
 			if (xml.node('PlayerNumber')) {
 				var number = xml.num('PlayerNumber');
