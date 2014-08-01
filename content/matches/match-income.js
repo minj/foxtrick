@@ -17,9 +17,9 @@ Foxtrick.modules['MatchIncome'] = {
 					return false;
 				if (n.rows[0].cells.length < 2)
 					return false;
-				if (n.rows[0].cells[0].textContent.search(/\d/) != -1)
+				if (/\d/.test(n.rows[0].cells[0].textContent))
 					return false;
-				if (n.rows[0].cells[1].textContent.search(/\d/) == -1)
+				if (!/\d/.test(n.rows[0].cells[1].textContent))
 					return false;
 				return true;
 			}, doc.querySelectorAll('div.reportHighlights > table'))[0];
@@ -29,26 +29,56 @@ Foxtrick.modules['MatchIncome'] = {
 			//find correct price for match
 			//based on research in post 15703189.1
 			var prices = [
-				{ from: '22.09.1997 00:00', until: '10.10.2004 23:59', terraces: 5, basicSeats: 7.5,
-					seatsUnderRoof: 10, vip: 25 },
-				{ from: '11.10.2004 00:00', until: '15.07.2007 23:59', terraces: 5.5, basicSeats: 8,
-					seatsUnderRoof: 11, vip: 27.5 },
-				{ from: '16.07.2007 00:00', until: '24.02.2008 23:59', terraces: 6.5, basicSeats: 9.5,
-					seatsUnderRoof: 13, vip: 32.5 },
-				{ from: '25.02.2008 00:00', until: '10.06.2012 23:59', terraces: 6.5, basicSeats: 9.5,
-					seatsUnderRoof: 18, vip: 32.5 },
-				{ from: '11.06.2012 00:00', until: null,			   terraces: 7, basicSeats: 10,
-					seatsUnderRoof: 19, vip: 35 },
+				{
+					from: '22.09.1997 00:00',
+					until: '10.10.2004 23:59',
+					terraces: 5,
+					basicSeats: 7.5,
+					seatsUnderRoof: 10,
+					vip: 25
+				},
+				{
+					from: '11.10.2004 00:00',
+					until: '15.07.2007 23:59',
+					terraces: 5.5,
+					basicSeats: 8,
+					seatsUnderRoof: 11,
+					vip: 27.5
+				},
+				{
+					from: '16.07.2007 00:00',
+					until: '24.02.2008 23:59',
+					terraces: 6.5,
+					basicSeats: 9.5,
+					seatsUnderRoof: 13,
+					vip: 32.5
+				},
+				{
+					from: '25.02.2008 00:00',
+					until: '10.06.2012 23:59',
+					terraces: 6.5,
+					basicSeats: 9.5,
+					seatsUnderRoof: 18,
+					vip: 32.5
+				},
+				{
+					from: '11.06.2012 00:00',
+					until: null,
+					terraces: 7,
+					basicSeats: 10,
+					seatsUnderRoof: 19,
+					vip: 35
+				},
 			];
 
-			var matchDate =
-				Foxtrick.util.time.getDateFromText(doc.getElementsByClassName('date')[0].textContent);
+			var dateText = doc.getElementsByClassName('date')[0].textContent;
+			var matchDate = Foxtrick.util.time.getDateFromText(dateText);
 			//use last if we find nothing
 			var priceIdx = prices.length - 1;
 			for (var i = 0; i < prices.length; i++) {
 				var from = Foxtrick.util.time.getDateFromText(prices[i].from, 'dd-mm-yyyy');
 				var until = Foxtrick.util.time.getDateFromText(prices[i].until, 'dd-mm-yyyy');
-				if (until != null) {
+				if (until !== null) {
 					var already = matchDate.getTime() - from.getTime();
 					var upcoming = until.getTime() - matchDate.getTime();
 					if (already >= 0 && upcoming >= 0) {
@@ -92,22 +122,22 @@ Foxtrick.modules['MatchIncome'] = {
 			td2b.className = 'nowrap';
 			td2b.textContent = Foxtrick.formatNumber(sum, ' ') + ' ' + symbol;
 
-			//display utilization percentage for games that happened after last arena change
-			if(Foxtrick.Prefs.isModuleOptionEnabled('MatchIncome', 'UtilizationPercentages')){
+			// display utilization percentage for games that happened after last arena change
+			if (Foxtrick.Prefs.isModuleOptionEnabled('MatchIncome', 'UtilizationPercentages')) {
 				var teamId = Foxtrick.util.id.getOwnTeamId();
 				var args = [['file', 'arenadetails'], ['version', '1.5'], ['teamId', teamId]];
 				Foxtrick.util.api.retrieve(doc, args, { cache_lifetime: 'session' },
-				function(xml, errorText) {
-					if(!xml || errorText) {
+				  function(xml, errorText) {
+					if (!xml || errorText) {
 						Foxtrick.log(errorText);
 						return;
 					}
 
-					//has the arena been altered?
+					// has the arena been altered?
 					var rebuildDateAvailable =
 						xml.node('RebuiltDate').getAttribute('Available') == 'True';
 					if (rebuildDateAvailable) {
-						//wether the arena has been rebuild after the match or not
+						// whether the arena has been rebuilt after the match or not
 						var rebuildDate = xml.time('RebuiltDate');
 						var playDate = Foxtrick.Pages.Match.getDate(doc);
 						var hasChanged = (playDate.getTime() - rebuildDate.getTime()) < 0;
@@ -115,26 +145,22 @@ Foxtrick.modules['MatchIncome'] = {
 						if (hasChanged)
 							return;
 					}
-					var availTerraces = parseInt(xml.getElementsByTagName('Terraces')[0].textContent,
-												 10);
-					var availRoof = parseInt(xml.getElementsByTagName('Roof')[0].textContent, 10);
-					var availVip = parseInt(xml.getElementsByTagName('VIP')[0].textContent, 10);
-					var availBasicSeats = parseInt(xml.getElementsByTagName('Basic')[0].textContent,
-												   10);
+					var availTerraces = xml.num('Terraces');
+					var availRoof = xml.num('Roof');
+					var availVip = xml.num('VIP');
+					var availBasicSeats = xml.num('Basic');
 
-					var addPercentage = function(idx, avail, usage){
+					var addPercentage = function(idx, avail, usage) {
 						var row = table.rows[idx];
-						var td = Foxtrick.insertFeaturedCell(row, Foxtrick.modules['MatchIncome'],
-															 -1);
+						var td = Foxtrick.insertFeaturedCell(row, module, -1);
 						td.textContent = avail ? (100 * usage / avail).toFixed(1) + '%' : '-';
-					}
+					};
 					addPercentage(0, availTerraces, visitorsTerraces);
 					addPercentage(1, availBasicSeats, visitorsBasicSeats);
 					addPercentage(2, availRoof, visitorsUnderRoof);
 					addPercentage(3, availVip, visitorsVip);
 				});
-			} // Option UtilizationPercentage
-
+			}
 		});
 	}
 };
