@@ -547,11 +547,13 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				var num = name_b.textContent.match(/(\d+)\./);
 				if (num)
 					player.number = parseInt(num[1], 10);
-				var cat = name_b.textContent.match(/\((.+)\)/);
-				if (cat) {
-					// stored as catergoy id
-					player.category = Foxtrick.L10n.getCategoryId(cat[1]);
-				}
+				// README: category detection in HTML needs info in htlang.json
+				// thus disabled for now
+				// var cat = name_b.textContent.match(/\((.+)\)/);
+				// if (cat) {
+				// 	// stored as catergoy id
+				// 	player.category = Foxtrick.L10n.getCategoryId(cat[1]);
+				// }
 			}
 
 			if (Foxtrick.hasClass(playerNode, 'hidden'))
