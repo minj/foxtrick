@@ -843,7 +843,7 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerid, callback) {
 	 */
 
 			callback(player);
-		}
+		});
 	});
 };
 
