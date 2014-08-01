@@ -156,15 +156,15 @@ Foxtrick.L10n = {
 
 	// this function returns level including decimal subs from text.
 	getLevelFromText: function(text) {
-		var level, sublevel = 0;
+		var level = null, sublevel = 0;
 		var lang = Foxtrick.Prefs.getString('htLanguage');
 		var json = Foxtrick.L10n.htLanguagesJSON[lang].language;
 
 		var levels = json.levels;
 		for (var i = 0; i < levels.length; ++i) {
 			var leveltext = levels[i].text;
-			if (RegExp('^' + leveltext, 'i').test(text)) {
-				level = Number(levels[i].value);
+			if (new RegExp('^' + leveltext, 'i').test(text)) {
+				level = parseInt(levels[i].value, 10);
 				break;
 			}
 		}
@@ -173,11 +173,10 @@ Foxtrick.L10n = {
 
 		var ratingSubLevels = json.ratingSubLevels;
 		for (var i = 0; i < ratingSubLevels.length; ++i) {
-			var subleveltext = ratingSubLevels[i].text
-				.replace('(', '\\(').replace(')', '\\)');
-			if (RegExp(subleveltext + '\\)?$', 'i').test(text)) {
+			var subleveltext = ratingSubLevels[i].text.replace(/([()])/g, '\\$1');
+			if (new RegExp(subleveltext + '\\)?$', 'i').test(text)) {
 				//using \)? in case LAs remove ) from subleveltext
-				sublevel = Number(ratingSubLevels[i].value);
+				sublevel = parseInt(ratingSubLevels[i].value, 10);
 				break;
 			}
 		}
@@ -186,31 +185,31 @@ Foxtrick.L10n = {
 	},
 
 	getTextByLevel: function(value) {
-		var level;
-		var lang = Foxtrick.Prefs.getString('htLanguage');
-		var json = Foxtrick.L10n.htLanguagesJSON[lang].language;
-
-		var levels = json.levels;
-		for (var i = 0; i < levels.length; ++i) {
-			var levelvalue = levels[i].value;
-			if (RegExp('^' + levelvalue, 'i').test(value)) {
-				level = levels[i].text;
-				break;
+		var getHTLangProperty = function(query, lang) {
+			var prop = null;
+			if (!lang)
+				lang = Foxtrick.Prefs.getString('htLanguage');
+			var json = Foxtrick.L10n.htLanguagesJSON[lang].language;
+			var array = json[query.category];
+			if (Array.isArray(array)) {
+				var el = Foxtrick.nth(function(e) {
+					return new RegExp('^' + e[query.filter], 'i').test(query.value);
+				}, array);
+				if (el && typeof el === 'object' && query.property in el)
+					prop = el[query.property];
 			}
-		}
-		if (level !== null)
-			return level;
+			return prop;
+		};
+		var query = {
+			category: 'levels',
+			property: 'text',
+			filter: 'value',
+			value: value,
+		};
+		var level = getHTLangProperty(query);
+		if (level === null)
+			level = getHTLangProperty(query, 'en');
 
-		var json = Foxtrick.L10n.htLanguagesJSON['en'].language;
-
-		var levels = json.levels;
-		for (var i = 0; i < levels.length; ++i) {
-			var levelvalue = levels[i].value;
-			if (RegExp('^' + levelvalue, 'i').test(value)) {
-				level = levels[i].text;
-				break;
-			}
-		}
 		return level;
 	},
 
