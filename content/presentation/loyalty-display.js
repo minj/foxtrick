@@ -35,13 +35,9 @@ Foxtrick.modules['LoyaltyDisplay'] = {
 			}
 		};
 
-		var loyalty = player.Loyalty;
-		if (loyalty === undefined)
-			loyalty = player.loyalty;
+		var loyalty = player.loyalty;
 
-		var mcb = player.MotherClubBonus;
-		if (mcb === undefined)
-			mcb = player.motherClubBonus;
+		var mcb = player.motherClubBonus;
 
 		if (!mcb) {
 			if (loyalty !== undefined) {
@@ -74,12 +70,14 @@ Foxtrick.modules['LoyaltyDisplay'] = {
 
 				replaceBars(node, skillUp, appendix);
 			}
-		} else {
+		}
+		else {
 			//homegrown, skillUp should be 1.5
 			replaceBars(node, 1.5, 'homegrown');
 		}
 	},
 	run: function(doc) {
+		var module = this;
 
 		if (Foxtrick.isPage(doc, 'ownPlayers')) {
 			var playersNode = doc.getElementsByClassName('playerInfo');
@@ -93,8 +91,7 @@ Foxtrick.modules['LoyaltyDisplay'] = {
 						var thisPlayerInfo =
 							Foxtrick.Pages.Players.getPlayerFromListById(playerInfo, playerid);
 						if (thisPlayerInfo)
-							Foxtrick.modules['LoyaltyDisplay']
-								.replacePercentageImage(thisPlayerInfo, playersNode[p]);
+							module.replacePercentageImage(thisPlayerInfo, playersNode[p]);
 					}
 				}
 			});
@@ -108,8 +105,7 @@ Foxtrick.modules['LoyaltyDisplay'] = {
 			Foxtrick.Pages.Player.getPlayer(doc, id, function(player) {
 				if (!player)
 					return;
-				Foxtrick.modules['LoyaltyDisplay']
-					.replacePercentageImage(player, doc.getElementById('mainBody'));
+				module.replacePercentageImage(player, doc.getElementById('mainBody'));
 			});
 		}
 	}

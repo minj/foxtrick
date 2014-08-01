@@ -688,57 +688,160 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerid, callback) {
 			callback(null);
 			return;
 		}
+		var addProperty = function(player, fn) {
+			return function(name) {
+				var newName, nodeName;
+				if (Array.isArray(name)) {
+					newName = name[0];
+					nodeName = name[1];
+				}
+				else {
+					newName = name.replace(/^./, function(m) {
+						return m.toLowerCase();
+					});
+					newName.replace(/Skill$/, '');
+					nodeName = name;
+				}
+				if (node(nodeName))
+					player[newName] = fn(nodeName);
+			};
+		};
+
+		var num = function(nodeName) {
+			return xml.num(nodeName);
+		};
+		var money = function(nodeName) {
+			return xml.money(nodeName, currencyRate);
+		};
+		var node = function(nodeName) {
+			return xml.node(nodeName);
+		};
+		var text = function(nodeName) {
+			return xml.text(nodeName);
+		};
+		var bool = function(nodeName) {
+			return xml.bool(nodeName);
+		};
+		var ifPositive = function(nodeName) {
+			var value = num(nodeName);
+			if (value > 0)
+				return value;
+			return undefined;
+		};
+		var currencyRate = Foxtrick.util.currency.getRate();
 
 		var player = {};
-		player.PlayerID = xml.num('PlayerID');
-		player.LastName = xml.text('LastName');
-		player.FirstName = xml.text('FirstName');
-		player.NickName = xml.text('NickName');
-		if (xml.node('PlayerNumber'))
-			player.PlayerNumber = xml.num('PlayerNumber');
-		player.Age = xml.num('Age');
-		player.AgeDays = xml.num('AgeDays');
-		player.NextBirthDay = xml.text('NextBirthDay');
-		player.PlayerForm = xml.num('PlayerForm');
-		player.Cards = xml.num('Cards');
-		player.InjuryLevel = xml.num('InjuryLevel');
-		if (xml.node('Statement'))
-			player.Statement = xml.text('Statement');
-		if (xml.node('PlayerLanguage'))
-			player.PlayerLanguage = xml.text('PlayerLanguage');
-		if (xml.node('PlayerLanguageID'))
-			player.PlayerLanguageID = xml.num('PlayerLanguageID');
+		player.skills = {};
+
+		var skills = [
+			['defending', 'DefenderSkill'],
+			'KeeperSkill',
+			'PassingSkill',
+			['playmaking', 'PlaymakerSkill'],
+			['scoring', 'ScorerSkill'],
+			'SetPiecesSkill',
+			'WingerSkill',
+		];
+		Foxtrick.forEach(addProperty(player.skills, num), skills);
+		for (var skill in player.skills) {
+			player[skill] = player.skills[skill];
+		}
+
+		var optionalNums = [
+			'Caps',
+			'CapsU20',
+			['category', 'PlayerCategoryId'],
+		];
+		Foxtrick.forEach(addProperty(player, ifPositive), optionalNums);
+
+		var nums = [
+			['countryId', 'NativeCountryID'],
+			['form', 'PlayerForm'],
+			['id', 'PlayerID'],
+			['tsi', 'TSI'],
+			'Aggressiveness',
+			'Agreeability',
+			'CareerGoals',
+			'CareerHattricks',
+			'CupGoals',
+			'Experience',
+			'Honesty',
+			'Leadership',
+			'LeagueGoals',
+			'Loyalty',
+			'NativeLeagueID',
+			'PlayerLanguageID',
+			'StaminaSkill',
+		];
+		Foxtrick.forEach(addProperty(player, num), nums);
+
+		var texts = [
+			'FirstName',
+			'LastName',
+			'NativeLeagueName',
+			'NickName',
+			'OwnerNotes',
+			'PlayerLanguage',
+			'Statement',
+		];
+		Foxtrick.forEach(addProperty(player, text), texts);
+
+		var bools = [
+			'IsAbroad',
+			'MotherClubBonus',
+			'TransferListed',
+		];
+		Foxtrick.forEach(addProperty(player, bool), bools);
+
+		player.nextBirthDay = xml.date('NextBirthDay');
+		player.salary = money('Salary', currencyRate);
+
+		if (xml.node('PlayerNumber')) {
+			var number = xml.num('PlayerNumber');
+			if (number >= 1 && number < 100)
+				player.number = number;
+		}
+
+		player.age = {
+			years: xml.num('Age'),
+			days: xml.num('AgeDays'),
+		};
+		player.ageYears = player.age.years;
+
+		player.yellowCard = xml.num('Cards');
+		if (player.yellowCard == 3) {
+			player.yellowCard = 0;
+			player.redCard = 1;
+		}
+		else
+			player.redCard = 0;
+		player.cards = player.yellowCard + player.redCard !== 0;
+
+		player.injuredWeeks = xml.num('InjuryLevel');
+		player.bruised = player.injuredWeeks === 0;
+		player.injuredWeeks = Math.max(player.injuredWeeks, 0);
+		player.injured = (player.bruised || player.injuredWeeks !== 0);
+
+		player.specialtyNumber = xml.num('Specialty');
+		player.specialty = Foxtrick.L10n.getSpecialityFromNumber(player.specialtyNumber);
+
 /*
-  <TrainerData />
-  <OwningTeam>
-  <TeamID>522356</TeamID>
-  <TeamName>FC Karbrüggen</TeamName>
-  <LeagueID>3</LeagueID>
-</OwningTeam>*/
-		player.Salary = xml.num('Salary');
-		player.IsAbroad = xml.bool('IsAbroad');
-		player.Agreeability = xml.num('Agreeability');
-		player.Aggressiveness = xml.num('Aggressiveness');
-		player.Honesty = xml.num('Honesty');
-		player.Experience = xml.num('Experience');
-		player.Loyalty = xml.num('Loyalty');
-		player.MotherClubBonus = xml.bool('MotherClubBonus');
-		player.Leadership = xml.num('Leadership');
-		player.Specialty = xml.num('Specialty');
-		player.NativeCountryID = xml.num('NativeCountryID');
-		player.NativeLeagueID = xml.num('NativeLeagueID');
-		player.NativeLeagueName = xml.text('NativeLeagueName');
-		player.TSI = xml.num('TSI');
-//  <PlayerSkills>
-		player.StaminaSkill = xml.num('StaminaSkill');
-		player.Caps = xml.num('Caps');
-		player.CapsU20 = xml.num('CapsU20');
-		player.CareerGoals = xml.num('CareerGoals');
-		player.CareerHattricks = xml.num('CareerHattricks');
-		player.LeagueGoals = xml.num('LeagueGoals');
-		player.LeagueGoals = xml.num('LeagueGoals');
-		player.TransferListed = xml.bool('TransferListed');
-// LastMatch
+    <TrainerData />
+    <OwningTeam>
+      <TeamID>672194</TeamID>
+      <TeamName>Strange quarks</TeamName>
+      <LeagueID>66</LeagueID>
+    </OwningTeam>
+    <LastMatch>
+      <Date>2014-07-26 15:20:00</Date>
+      <MatchId>483831455</MatchId>
+      <PositionCode>109</PositionCode>
+      <PlayedMinutes>90</PlayedMinutes>
+      <Rating>7</Rating>
+      <RatingEndOfGame>6</RatingEndOfGame>
+    </LastMatch>
+ */
+
 		callback(player);
 	});
 };
@@ -833,20 +936,16 @@ Foxtrick.Pages.Player.getContributions = function(playerSkills, playerAttrs) {
 	]);
 	var bonus, skill;
 	if (enabled['ExperienceIncluded']) {
-		var experience = typeof attrs.Experience !== 'undefined' ? attrs.Experience :
-			attrs.experience;
+		var experience = attrs.experience;
 		bonus = Math.log(experience) / Math.log(10) * 4.0 / 3.0;
 		for (skill in skills)
 			skills[skill] += bonus;
 	}
 
-	var loyalty = typeof attrs.Loyalty !== 'undefined' ? attrs.Loyalty : attrs.loyalty;
-	var mcb = typeof attrs.MotherClubBonus !== 'undefined' ? attrs.MotherClubBonus :
-		attrs.motherClubBonus;
-	var transferListed = typeof attrs.TransferListed !== 'undefined' ? attrs.TransferListed :
-		attrs.transferListed;
-	if (enabled['LoyaltyAndMCBIncluded'] && typeof loyalty !== 'undefined' &&
-	    !transferListed) {
+	var loyalty = attrs.loyalty;
+	var mcb = attrs.motherClubBonus;
+	var tl = attrs.transferListed;
+	if (enabled['LoyaltyAndMCBIncluded'] && typeof loyalty !== 'undefined' && !tl) {
 		// loyalty can be undefined in transfer pages
 		bonus = Math.max(0, loyalty - 1) / 19.0;
 		if (mcb)
@@ -872,14 +971,14 @@ Foxtrick.Pages.Player.getContributions = function(playerSkills, playerAttrs) {
 			0.967,
 			1
 		];
-		var form = typeof attrs.PlayerForm !== 'undefined' ? attrs.PlayerForm : attrs.form;
+		var form = attrs.form;
 		for (skill in skills)
 			skills[skill] *= formInfls[form];
 	}
 
 	// source: http://www.hattrickinfo.com/en/training/284/#281-
 	if (enabled['BruisedIncluded']) {
-		var bruised = typeof attrs.Bruised !== 'undefined' ? attrs.Bruised : attrs.bruised;
+		var bruised = attrs.bruised;
 		if (bruised)
 			for (skill in skills)
 				skills[skill] *= 0.95;
@@ -890,10 +989,9 @@ Foxtrick.Pages.Player.getContributions = function(playerSkills, playerAttrs) {
 		cntrb[pos] = getValue(coefs[pos], skills);
 	}
 
-	var speciality = typeof attrs.Specialty !== 'undefined' ? attrs.Specialty :
-		attrs.speciality;
-	speciality = Foxtrick.L10n.getEnglishSpeciality(speciality);
-	if (speciality == 'Technical') {
+	var speciality = attrs.specialityNumber;
+	if (speciality == 1) {
+		// Technical
 		cntrb.fwd = 0;
 	}
 	else {

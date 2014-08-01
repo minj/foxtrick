@@ -121,7 +121,6 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 			var id = Foxtrick.Pages.Player.getId(doc);
 			Foxtrick.Pages.Player.getPlayer(doc, id, function(player) {
 				var skills = Foxtrick.Pages.Player.getSkills(doc);
-				player.bruised = player.InjuryLevel === 0;
 				if (!skills)
 					return;
 				var contributions = Foxtrick.Pages.Player.getContributions(skills, player);

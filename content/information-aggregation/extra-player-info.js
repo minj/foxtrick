@@ -12,6 +12,7 @@ Foxtrick.modules['ExtraPlayerInfo'] = {
 	run: function(doc) {
 		// used for coloring NT players when AddFlags is enabled
 		var ntColor = '#ffcc00';
+		var module = this;
 
 		Foxtrick.Pages.Players.getPlayerList(doc,
 		  function(playerList) {
@@ -51,8 +52,7 @@ Foxtrick.modules['ExtraPlayerInfo'] = {
 					trainerSkillLink.className = 'skill';
 					trainerSkillLink.textContent = trainerSkillStr;
 
-					var div =
-						Foxtrick.createFeaturedElement(doc, Foxtrick.modules.ExtraPlayerInfo, 'div');
+					var div = Foxtrick.createFeaturedElement(doc, module, 'div');
 					div.appendChild(doc.createTextNode(trainerTypeStr[0]));
 					div.appendChild(trainerSkillLink);
 					div.appendChild(doc.createTextNode(trainerTypeStr[1]));
@@ -70,7 +70,7 @@ Foxtrick.modules['ExtraPlayerInfo'] = {
 						// to add flags for non-NT players
 						var flag = Foxtrick.util.id.createFlagFromCountryId(doc, player.countryId);
 						if (flag) {
-							Foxtrick.makeFeaturedElement(flag, Foxtrick.modules.ExtraPlayerInfo);
+							Foxtrick.makeFeaturedElement(flag, module);
 							nameLink.parentNode.insertBefore(flag, nameLink.parentNode.firstChild);
 						}
 					}
@@ -88,17 +88,15 @@ Foxtrick.modules['ExtraPlayerInfo'] = {
 						  function(player) {
 							if (!player)
 								return;
-							if (player.PlayerLanguage) {
-								var language =
-									Foxtrick.createFeaturedElement(doc, Foxtrick.modules
-									                               .ExtraPlayerInfo, 'em');
+							if (player.playerLanguage) {
+								var language = Foxtrick.createFeaturedElement(doc, module, 'em');
 								Foxtrick.addClass(language, 'shy');
 								language.setAttribute('style',
 								                      'font-weight:normal; margin-left:5px;');
-								language.textContent = player.PlayerLanguage;
+								language.textContent = player.playerLanguage;
 								if (player.PlayerLanguageID)
 									language.setAttribute('PlayerLanguageID',
-									                      player.PlayerLanguageID);
+									                      player.playerLanguageID);
 								node.appendChild(language);
 							}
 						});

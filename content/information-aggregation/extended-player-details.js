@@ -12,6 +12,7 @@ Foxtrick.modules['ExtendedPlayerDetails'] = {
 	OPTIONS: ['Language'],
 
 	run: function(doc) {
+		var module = this;
 		var div = doc.getElementsByClassName('playerInfo')[0];
 		if (!div)
 			return;
@@ -25,19 +26,17 @@ Foxtrick.modules['ExtendedPlayerDetails'] = {
 				  function(player) {
 					if (!player)
 						return;
-					if (player.PlayerLanguage) {
+					if (player.playerLanguage) {
 						var br = doc.createElement('br');
 						br.className = 'clear';
 						node.appendChild(br);
 
-						var language =
-							Foxtrick.createFeaturedElement(doc, Foxtrick.modules
-							                               .ExtendedPlayerDetails, 'em');
+						var language = Foxtrick.createFeaturedElement(doc, module, 'em');
 						Foxtrick.addClass(language, 'shy');
 						language.setAttribute('style', 'font-weight:normal; margin-left:5px;');
-						language.textContent = player.PlayerLanguage;
-						if (player.PlayerLanguageID)
-							language.setAttribute('PlayerLanguageID', player.PlayerLanguageID);
+						language.textContent = player.playerLanguage;
+						if (player.playerLanguageID)
+							language.setAttribute('PlayerLanguageID', player.playerLanguageID);
 						node.appendChild(language);
 					}
 				});

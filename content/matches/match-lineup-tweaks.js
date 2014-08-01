@@ -316,7 +316,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 							Foxtrick.stopListenToChange(doc);
 							var node = players[missing[j].i].parentNode.parentNode.
 								getElementsByClassName('ft-indicator-wrapper')[0];
-							addSpecialty(node, p ? { specialityNumber: p.Specialty } : null);
+							addSpecialty(node, p || null);
 							Foxtrick.startListenToChange(doc);
 						};
 					};
