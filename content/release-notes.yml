@@ -17,6 +17,16 @@ en:
       transfer_compare: 'MedianTransferPrice was renamed to <module>TransferComparePlayers</module>. Added TSI calculations and an ability to fetch more player data from CHPP. Shows price difference in player transfer history page.'
       and_more: 'Various other small changes and fixes.'
 
+    0.14.0.2:
+      bugs: '<header>Bug fixes</header>'
+      challenge_link: 'Challenge link in <module>TeamPopupLinks</module> now takes you to the team page and automatically opens the challenge menu.'
+      penalty_takers: 'Sorting by HO formula in <module>MatchOrderInterface</module> was broken due to HT changes.'
+      new_cups: 'New cup system support was implemented. This fixes new bugs in various modules, most importantly <module>PlayerStatsExperience</module>.'
+      other: '<header>Other changes</header>'
+      psico: '<module>PsicoTSI</module> wage prediction was updated.'
+      first_last_post: 'You can now optionally open first post when clicking again on already open threads with <module>ForumLastPost</module>.'
+      and_more: 'Various other small changes and fixes.'
+
     0.14.0.1:
       important: '<header>Important announcements</header>'
       ff_cache: 'Foxtrick packages will no longer have extra compression in Firefox. This should prevent all kinds of weird problems users have experienced with version 0.14.0.'
