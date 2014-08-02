@@ -304,15 +304,15 @@ Foxtrick.L10n = {
 
 	getTacticById: function(id) {
 		var tactics = [
-			'normal',		//:	0,
-			'pressing',		//:	1,
-			'ca',			//:	2,
-			'aim',			//:	3,
-			'aow',			//:	4,
-			'',				//: 5, (N/A)
-			'',				//: 6, (N/A)
-			'creatively',	//: 7,
-			'longshots',	//: 8
+			'normal', //: 0,
+			'pressing', //: 1,
+			'ca', //: 2,
+			'aim', //:3,
+			'aow', //: 4,
+			'', //: 5, (N/A)
+			'', //: 6, (N/A)
+			'creatively', //: 7,
+			'longshots', //: 8
 		];
 
 		var query = {
@@ -515,9 +515,10 @@ if (Foxtrick.arch === 'Gecko') {
 				createBundle('chrome://foxtrick/content/foxtrick.properties');
 
 			try {
-				this.plForm_default = Number(this._strings_bundle_default
-				                             .GetStringFromName('pluralFormRuleID').match(/\d+/));
-			} catch (e) {}
+				var rule = this._strings_bundle_default.GetStringFromName('pluralFormRuleID');
+				this.plForm_default = parseInt(rule.match(/\d+/), 10);
+			}
+			catch (e) {}
 
 			this.setUserLocaleGecko(Foxtrick.Prefs.getString('htLanguage'));
 
@@ -533,13 +534,14 @@ if (Foxtrick.arch === 'Gecko') {
 			}
 			catch (e) {
 				this._strings_bundle = this._strings_bundle_default;
-				Foxtrick.log('Use default properties for locale ', locale);
+				Foxtrick.log('Use default properties for locale ', localecode);
 			}
 
 			try {
-				this.plForm = Number(this._strings_bundle
-				                     .GetStringFromName('pluralFormRuleID').match(/\d+/));
-			} catch (e) {}
+				var rule = this._strings_bundle.GetStringFromName('pluralFormRuleID');
+				this.plForm = parseInt(rule.match(/\d+/), 10);
+			}
+			catch (e) {}
 
 			try {
 				this._strings_bundle_screenshots = Services.strings.
@@ -548,47 +550,47 @@ if (Foxtrick.arch === 'Gecko') {
 			}
 			catch (e) {
 				this._strings_bundle_screenshots = this._strings_bundle_screenshots_default;
-				Foxtrick.log('Use default screenshots for locale ', locale);
+				Foxtrick.log('Use default screenshots for locale ', localecode);
 			}
 		},
 
 		getString: function(str, num) {
+			var get, l10n;
 			try {
 				if (Foxtrick.Prefs.getBool('translationKeys'))
 					return str;
 
-				if (num !== undefined) {
-					//Foxtrick.log('getString plural: ', str, ' ',num);
-					var get = plScope.PluralForm.makeGetter(this.plForm)[0];
+				l10n = this._strings_bundle.GetStringFromName(str);
+				if (typeof num !== 'undefined') {
+					get = plScope.PluralForm.makeGetter(this.plForm)[0];
 					try {
-						return get(num, this._strings_bundle.GetStringFromName(str));
-					} catch (e) {
-						//Foxtrick.log('getString plural error. use last string');
-						return this._strings_bundle.GetStringFromName(str).replace(/.+;/g, '');
+						return get(num, l10n);
+					}
+					catch (e) {
+						return l10n.replace(/.+;/g, '');
 					}
 				}
-				return this._strings_bundle.GetStringFromName(str);
+				return l10n;
 			}
 			catch (e) {
 				try {
 					if (this._strings_bundle_default) {
-						if (num !== undefined) {
-							//Foxtrick.log('getString plural default: ', str, ' ',num);
-							var get = plScope.PluralForm.makeGetter(this.plForm_default)[0];
+						l10n = this._strings_bundle_default.GetStringFromName(str);
+						if (typeof num !== 'undefined') {
+							get = plScope.PluralForm.makeGetter(this.plForm_default)[0];
 							try {
-								return get(num, this._strings_bundle_default.GetStringFromName(str));
-							} catch (e) {
-								//Foxtrick.log('getString plural error. use last string');
-								return this._strings_bundle_default
-									.GetStringFromName(str).replace(/.+;/g, '');
+								return get(num, l10n);
+							}
+							catch (e) {
+								return l10n.replace(/.+;/g, '');
 							}
 						}
-						return this._strings_bundle_default.GetStringFromName(str);
+						return l10n;
 					}
 					return null;
 				}
 				catch (ee) {
-					Foxtrick.log(Error("Error getString('" + str + ")'"));
+					Foxtrick.error('Error getString(\'' + str + '\')');
 					return str;
 				}
 			}
@@ -597,11 +599,11 @@ if (Foxtrick.arch === 'Gecko') {
 		isStringAvailable: function(str) {
 			if (this._strings_bundle) {
 				try {
-					return this._strings_bundle.GetStringFromName(str) != null;
+					return this._strings_bundle.GetStringFromName(str) !== null;
 				}
 				catch (e) {
 					try {
-						return this._strings_bundle_default.GetStringFromName(str) != null;
+						return this._strings_bundle_default.GetStringFromName(str) !== null;
 					}
 					catch (ee) {
 						return false;
@@ -632,7 +634,7 @@ if (Foxtrick.arch === 'Gecko') {
 				catch (e) {
 				}
 			}
-			if (link == '') {
+			if (link === '') {
 				try {
 					if (this._strings_bundle_screenshots_default)
 						link = this._strings_bundle_screenshots_default.GetStringFromName(str);
@@ -666,30 +668,30 @@ if (Foxtrick.arch === 'Sandboxed') {
 
 		init: function() {
 			// get htlang.json for each locale
-			var i;
 			var locale;
-			for (i in Foxtrick.L10n.locales) {
+			for (var i in Foxtrick.L10n.locales) {
 				locale = Foxtrick.L10n.locales[i];
 				var url = Foxtrick.InternalPath + 'locale/' + locale + '/htlang.json';
 				var text = Foxtrick.util.load.sync(url);
 				this.htLanguagesJSON[Foxtrick.L10n.locales[i]] = JSON.parse(text);
 			}
 
-			this.properties_default = Foxtrick.util.load.sync(Foxtrick.InternalPath +
-			                                                  'foxtrick.properties');
-			this.screenshots_default = Foxtrick.util.load.sync(Foxtrick.InternalPath +
-			                                                   'foxtrick.screenshots');
+			this.properties_default =
+				Foxtrick.util.load.sync(Foxtrick.InternalPath + 'foxtrick.properties');
+			this.screenshots_default =
+				Foxtrick.util.load.sync(Foxtrick.InternalPath + 'foxtrick.screenshots');
 			try {
-				this.plForm_default = Number(this._getString(this.properties_default,
-				                             'pluralFormRuleID').match(/\d+/));
-			} catch (e) {}
+				var rule = this._getString(this.properties_default, 'pluralFormRuleID');
+				this.plForm_default = parseInt(rule.match(/\d+/), 10);
+			}
+			catch (e) {}
 
 			locale = Foxtrick.Prefs.getString('htLanguage');
 
 			try {
-				this.properties = Foxtrick.util.load.sync(Foxtrick.InternalPath + 'locale/' +
-				                                          locale + '/foxtrick.properties');
-				if (this.properties == null) {
+				var localUrl = Foxtrick.InternalPath + 'locale/' + locale + '/foxtrick.properties';
+				this.properties = Foxtrick.util.load.sync(localUrl);
+				if (this.properties === null) {
 					Foxtrick.log('Use default properties for locale ', locale);
 					this.properties = this.properties_default;
 				}
@@ -699,13 +701,14 @@ if (Foxtrick.arch === 'Sandboxed') {
 				this.properties = this.properties_default;
 			}
 			try {
-				this.plForm = Number(this._getString(this.properties,
-				                     'pluralFormRuleID').match(/\d+/));
-			} catch (e) {}
+				var localRule = this._getString(this.properties, 'pluralFormRuleID');
+				this.plForm = parseInt(localRule.match(/\d+/), 10);
+			}
+			catch (e) {}
 			try {
-				this.screenshots = Foxtrick.util.load.sync(Foxtrick.InternalPath + 'locale/' +
-				                                           locale + '/foxtrick.screenshots');
-				if (this.screenshots == null) {
+				var ssUrl = Foxtrick.InternalPath + 'locale/' + locale + '/foxtrick.screenshots';
+				this.screenshots = Foxtrick.util.load.sync(ssUrl);
+				if (this.screenshots === null) {
 					Foxtrick.log('Use default screenshots for locale ', locale);
 					this.screenshots = this.screenshots_default;
 				}
@@ -717,8 +720,8 @@ if (Foxtrick.arch === 'Sandboxed') {
 		},
 
 		_getString: function(properties, str) {
-			var string_regexp = RegExp('\\s' + str + '=(.+)\\s', 'i');
-			if (properties.search(string_regexp) != -1)
+			var string_regexp = new RegExp('^' + str + '=(.+)$', 'im');
+			if (string_regexp.test(properties))
 				return properties.match(string_regexp)[1];
 			return null;
 		},
@@ -738,49 +741,48 @@ if (Foxtrick.arch === 'Sandboxed') {
 					throw null;
 
 				// replace escaped characters as what Gecko does
-				value = value.replace(/\\n/g, '\n').replace(/\\:/g, ':')
-					.replace(/\\=/g, '=').replace(/\\#/g, '#').replace(/\\!/g, '!');
+				value = value.replace(/\\n/g, '\n').replace(/\\:/g, ':').
+					replace(/\\=/g, '=').replace(/\\#/g, '#').replace(/\\!/g, '!');
 				// get plurals
-				if (num !== undefined) {
-					//Foxtrick.log('getString plural: ', str, ' ',num);
+				if (typeof num !== 'undefined') {
 					var get = PluralForm.makeGetter(plForm)[0];
 					try {
 						return get(num, value);
-					} catch (e) {
-						//Foxtrick.log('getString plural error. use last string');
+					}
+					catch (e) {
 						return value.replace(/.+;/g, '');
 					}
 				}
 				return value;
 			}
 			catch (e) {
-				Foxtrick.log(Error("Error getString('" + str + "')"));
+				Foxtrick.error('Error getString(\'' + str + '\')');
 				return str.substr(str.lastIndexOf('.') + 1);
 			}
 		},
 
 		isStringAvailable: function(str) {
-			var string_regexp = new RegExp('\\s' + str + '=(.+)\\s', 'i');
-			return (Foxtrick.L10n.properties.search(string_regexp) != -1
-				|| Foxtrick.L10n.properties_default.search(string_regexp) != -1);
+			var string_regexp = new RegExp('^' + str + '=(.+)$', 'im');
+			return string_regexp.test(Foxtrick.L10n.properties) ||
+			       string_regexp.test(Foxtrick.L10n.properties_default);
 		},
 
 		isStringAvailableLocal: function(str) {
-			var string_regexp = new RegExp('\\s' + str + '=(.+)\\s', 'i');
-			return (Foxtrick.L10n.properties.search(string_regexp) != -1);
+			var string_regexp = new RegExp('^' + str + '=(.+)$', 'im');
+			return string_regexp.test(Foxtrick.L10n.properties);
 		},
 
 		getScreenshot: function(str) {
 			try {
-				var string_regexp = new RegExp('\\s' + str + '=(.+)\\s', 'i');
-				if (Foxtrick.L10n.screenshots && Foxtrick.L10n.screenshots.search(string_regexp) != -1)
+				var string_regexp = new RegExp('^' + str + '=(.+)$', 'im');
+				if (Foxtrick.L10n.screenshots && string_regexp.test(Foxtrick.L10n.screenshots))
 					return Foxtrick.L10n.screenshots.match(string_regexp)[1];
-				else if (Foxtrick.L10n.screenshots_default.search(string_regexp) != -1)
+				else if (string_regexp.test(Foxtrick.L10n.screenshots_default))
 					return Foxtrick.L10n.screenshots_default.match(string_regexp)[1];
 				return '';
 			}
 			catch (e) {
-				Foxtrick.log(Error("Error getScreenshot('" + str + "')"));
+				Foxtrick.error('Error getScreenshot(\'' + str + '\')');
 				return '';
 			}
 		},
