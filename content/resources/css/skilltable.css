@@ -5,6 +5,7 @@ html[dir="rtl"] .ft_skilltablediv { margin: 35px -8px 35px 0; }
 .ft_skilltable { width: auto !important; max-width: 100%; margin: 0.1em auto 0.5em auto; white-space: nowrap; border-collapse: collapse; border: 1px solid #dce0dc; }
 .ft_skilltable td:nth-child(even) { background-color: #eeeeee; }
 .ft_skilltable td:nth-child(odd) { background-color: white; }
+.ft_skilltable tr:hover td { background-color: yellow; }
 .ft_skilltable th { text-align: center !important; }
 .ft_skilltable th, .ft_skilltablediv table td { padding: 1px 2px !important; vertical-align: middle !important; }
 .ft_skilltable_container a, .ft_skilltable_links a { cursor: pointer; }
