@@ -45,7 +45,7 @@ Foxtrick.modules['TransferComparePlayers'] = {
 			Foxtrick.onClick(link, function() {
 				var count = table.rows.length;
 				var argsPlayers = [];
-				for (var i = 5; i < count; i++) {
+				for (var i = 0; i < count; i++) {
 					var player = table.rows[i].cells[0].getElementsByTagName('a')[0];
 					if (player) {
 						var playerid = Foxtrick.getParameterFromUrl(player.href, 'playerId');
@@ -68,18 +68,24 @@ Foxtrick.modules['TransferComparePlayers'] = {
 							Foxtrick.log('No XML in batchRetrieve', argsPlayers[i], errors[i]);
 							continue;
 						}
+						// original player is in row 1, others start 4 rows down
+						var rowIdx = i ? i + 4 : 1;
 						var days = xmls[i].num('Age') * 112 + xmls[i].num('AgeDays');
 						var fetchDate = xmls[i].date('FetchedDate');
-						var transfer = table.rows[5 + i].cells[1].textContent;
+						var now = Foxtrick.util.time.getHtDate(doc);
+						Foxtrick.util.time.setMidnight(now);
+						var transfer = table.rows[rowIdx].cells[1].textContent;
 						var transferDate = Foxtrick.util.time.getDateFromText(transfer);
+						// original player has no transferDate so now is used as reference
+						var refDate = i ? transferDate : now;
 
-						var diffDays = (fetchDate.getTime() - transferDate.getTime()) /
+						var diffDays = (fetchDate.getTime() - refDate.getTime()) /
 							(24 * 60 * 60 * 1000);
 						days -= Math.round(diffDays);
 						var years = Foxtrick.Math.div(days, 112);
 						days %= 112;
 
-						var ageCell = table.rows[5 + i].cells[4];
+						var ageCell = table.rows[rowIdx].cells[4];
 						ageCell.textContent = '';
 						Foxtrick.makeFeaturedElement(ageCell, module);
 						var ageSpan = doc.createElement('span');
@@ -95,10 +101,10 @@ Foxtrick.modules['TransferComparePlayers'] = {
 							var hidden = doc.createElement('span');
 							hidden.className = 'hidden';
 							hidden.textContent = spec;
-							table.rows[5 + i].cells[0].appendChild(hidden);
+							table.rows[rowIdx].cells[0].appendChild(hidden);
 							var specImageUrl =
 								Foxtrick.getSpecialtyImagePathFromNumber(specialty);
-							Foxtrick.addImage(doc, table.rows[5 + i].cells[0], {
+							Foxtrick.addImage(doc, table.rows[rowIdx].cells[0], {
 								alt: spec,
 								title: spec,
 								src: specImageUrl
