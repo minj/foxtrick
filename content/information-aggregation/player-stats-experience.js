@@ -380,7 +380,7 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 		thead.appendChild(thead_tr);
 		table.appendChild(thead);
 
-		var addRow = function(type, count, minutes, xp, i) {
+		var addRow = function(type, count, minutes, xp, i, hidden) {
 			var row = doc.createElement('tr');
 
 			if (i % 2)
@@ -423,6 +423,9 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 			cell.textContent = xp['max'];
 			row.appendChild(cell);
 
+			if(hidden)
+				Foxtrick.addClass(row, 'hidden');
+
 			tbody.appendChild(row);
 		};
 
@@ -440,7 +443,7 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 			xp['max'] = getPrettyValue( xp['max'] );
 			var type = types[i];
 
-			addRow(type, count, minutes, xp, i);
+			addRow(type, count, minutes, xp, i, xp['max'] === 0 );
 		}
 
 		//xp pts
