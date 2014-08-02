@@ -5,6 +5,9 @@ nl:
       note_0: 'Dit is een beta versie. Gebruik is voor eigen risico. Kijk alstublieft op <linkSVN>commit history</linkSVN> bij Google Code voor details over de veranderingen.'
     beta:
       note_0: 'Dit is een beta versie van de volgende release. Help alsjeblieft met vertalen van deze versie op de zeer gebruiksvriendelijke crowd-vertaal pagina <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.14.0.1:
+      important: '<header>Belangrijke aankondigingen</header>'
+      bugs: '<header>Fout herstel</header>'
     0.14.0:
       important: '<header>Belangrijke aankondigingen</header>'
       crowdin: '<header>Heel veel vertalingsupdates van onze geweldige gebruikers zijn gemaakt met behulp van de <linkCrowdin>crowdin tool</linkCrowdin>. Jij kan ons ook helpen!</header>'
