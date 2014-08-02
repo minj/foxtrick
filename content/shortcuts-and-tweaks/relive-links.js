@@ -51,7 +51,7 @@ Foxtrick.modules['ReLiveLinks'] = {
 			matches = [];
 			rows = doc.querySelectorAll('table.indent.left.thin > tbody > tr');
 
-			if (!rows)
+			if (!rows.length)
 				return;
 
 			img = doc.createDocumentFragment();
