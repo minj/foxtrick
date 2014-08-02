@@ -57,10 +57,9 @@ Foxtrick.modules['MatchIncome'] = {
 					}
 				}
 			}
-			var isCup = (doc.getElementById('mainBody').getElementsByClassName('matchCup')
-						 .length > 0);
-			var isFriendly = (doc.getElementById('mainBody')
-							  .getElementsByClassName('matchFriendly').length > 0);
+			var mainBody = doc.getElementById('mainBody');
+			var isCup = mainBody.querySelectorAll('*[class^="matchCup"]').length > 0;
+			var isFriendly = mainBody.getElementsByClassName('matchFriendly').length > 0;
 			var priceQ = isCup ? 0.67 : (isFriendly ? 0.5 : 1);
 
 			var visitorsTerraces = Foxtrick.trimnum(table.rows[0].cells[1].textContent);

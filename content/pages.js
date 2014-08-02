@@ -62,6 +62,7 @@ Foxtrick.ht_pages = {
 	'transferSearchResult'  	: '/World/Transfers/TransfersSearchResult.aspx',
 	'match' 					: '/Club/Matches/Match.aspx|/Club/Matches/PreMatch.aspx',
 	'matches'   				: '/Club/Matches/?TeamID=|/Club/Matches/$|/Club/Matches/Default|/World/Matches/$',
+	'matchesCup'                : '/Club/Cup/(Default.aspx|?|$)',
 	'matchesArchive' 			: '/Club/Matches/Archive.aspx|/Club/Matches/YouthArchive',
 	'matchStatus'				: '/Club/Matches/status.aspx',
 	'matchesLatest' 			: '/Club/Matches/LatestMatches.aspx',

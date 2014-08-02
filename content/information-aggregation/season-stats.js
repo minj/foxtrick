@@ -118,28 +118,20 @@ Foxtrick.modules['SeasonStats'] = {
 
 		for (var i = 0; i < matchestable.rows.length; ++i) {
 			var type = 0;
-			if (matchestable.rows[i].cells[1].getElementsByTagName('img')[0]
-			    .className == 'matchLeague')
+			var img = matchestable.rows[i].cells[1].getElementsByTagName('img')[0];
+			var span = matchestable.rows[i].cells[3].getElementsByTagName('span')[0];
+			var b = matchestable.rows[i].cells[3].getElementsByTagName('strong')[0];
+			if (img.className == 'matchLeague')
 				type = 0;
-			else if (matchestable.rows[i].cells[1]
-			         .getElementsByTagName('img')[0].className == 'matchFriendly')
+			else if (img.className == 'matchFriendly')
 				type = 1;
-			else if (matchestable.rows[i].cells[1]
-			         .getElementsByTagName('img')[0].className == 'matchCup')
+			else if (/matchCup/.test(img.className))
 				type = 2;
-			else if (matchestable.rows[i].cells[1]
-			         .getElementsByTagName('img')[0].className == 'matchMasters')
+			else if (img.className == 'matchMasters')
 				type = 3;
-			//var ishome = matchestable.rows[i].cells[2]
-			//	.getElementsByTagName('a')[0].title.replace(/\W/g, '').search(TeamName) == 0 ? 1 : 2;
-			var iswon = matchestable.rows[i].cells[3]
-				.getElementsByTagName('span')[0].className == 'won';
-			var islost = matchestable.rows[i].cells[3]
-				.getElementsByTagName('span')[0].className == 'lost';
-			var isdraw = matchestable.rows[i].cells[3]
-				.getElementsByTagName('span')[0].className == 'draw';
-			var goals = matchestable.rows[i].cells[3]
-				.getElementsByTagName('strong')[0].textContent.match(/\d+/g);
+			var islost = span.className == 'lost';
+			var isdraw = span.className == 'draw';
+			var goals = b.textContent.match(/\d+/g);
 			var goals0 = parseInt(goals[0], 10);
 			var goals1 = parseInt(goals[1], 10);
 			var ishome = 1;

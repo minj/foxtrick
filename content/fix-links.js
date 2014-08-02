@@ -9,7 +9,7 @@ Foxtrick.modules.FixLinks = {
 	CORE_MODULE: true,
 	PAGES: [
 		'match',
-		'matches', 'matchesArchive',
+		'matches', 'matchesArchive', 'matchesCup',
 		'playerStats',
 		'matchesLatest',
 		'players', 'youthPlayers'
@@ -201,7 +201,9 @@ Foxtrick.modules.FixLinks = {
 		if (Foxtrick.isPage(doc, 'match'))
 			this.parseMatchPage(doc);
 			// this might be a bit annoying as it causes match page to reload
-		else if (Foxtrick.isPage(doc, 'matches') || Foxtrick.isPage(doc, 'matchesArchive'))
+		else if (Foxtrick.any(function(page) {
+			return Foxtrick.isPage(doc, page);
+		  }, ['matches', 'matchesCup', 'matchesArchive']))
 			this.parseMatchesPage(doc);
 		else if (Foxtrick.isPage(doc, 'playerStats'))
 			this.parsePlayerStats(doc);

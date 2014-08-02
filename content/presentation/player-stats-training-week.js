@@ -1,7 +1,8 @@
 'use strict';
 /**
  * player-stats-training-week.js
- * Changes the match grouping in the player stats page according to the training week instead of the Hattrick week
+ * Changes the match grouping in the player stats page
+ * according to the training week instead of the Hattrick week
  * @author LA-MJ
  */
 
@@ -24,7 +25,7 @@ Foxtrick.modules['PlayerStatsTrainingWeek'] = {
 		var rows = doc.getElementById('matches').rows;
 		var statsrows = doc.getElementById('stats').rows;
 
-		for (var i = 0, row; row = rows[i]; ++i) {
+		for (var i = 0, row; (row = rows[i]); ++i) {
 			var statsrow = statsrows[i];
 			var leagueMonday = false, regularFriendly = false;
 			if (row.querySelector('img.matchLeague')) {
@@ -34,7 +35,8 @@ Foxtrick.modules['PlayerStatsTrainingWeek'] = {
 			}
 			else if (row.querySelector('img.matchFriendly') && !row.querySelector('span[style]'))
 				regularFriendly = true;
-			if (leagueMonday || regularFriendly || row.querySelector('img.matchCup, img.matchMasters')) {
+			if (leagueMonday || regularFriendly ||
+			    row.querySelector('img[class^="matchCup"], img.matchMasters')) {
 				Foxtrick.toggleClass(row, 'odd');
 				Foxtrick.toggleClass(row, 'darkereven');
 				Foxtrick.toggleClass(statsrow, 'odd');

@@ -7,7 +7,7 @@
 
 Foxtrick.modules['ReLiveLinks'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-	PAGES: ['matches', 'matchesArchive', 'cupMatches',
+	PAGES: ['matches', 'matchesArchive', 'matchesCup', 'cupMatches',
 			 'fixtures', 'youthFixtures', 'series'],
 	NICE: -1, //before any modules that might change row count
 	run: function(doc) {
@@ -109,7 +109,7 @@ Foxtrick.modules['ReLiveLinks'] = {
 				Foxtrick.insertFeaturedCell(row, this, liveTdIdx);
 			}
 		}
-		else rows = doc.querySelectorAll('table.naked > tbody > tr');
+		else rows = doc.querySelectorAll('#mainBody tr');
 
 		var tds, liveTd, address, id, source, links, link;
 

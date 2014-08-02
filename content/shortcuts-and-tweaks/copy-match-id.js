@@ -7,7 +7,7 @@
 
 Foxtrick.modules['CopyMatchID'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-	PAGES: ['matches', 'matchesArchive', 'matchesHistory',
+	PAGES: ['matches', 'matchesArchive', 'matchesHistory', 'matchesCup',
 					'matchesLatest', 'arena'],
 	//CSS: Foxtrick.InternalPath + 'resources/css/copy-match-id.css',
 
@@ -28,6 +28,7 @@ Foxtrick.modules['CopyMatchID'] = {
 
 		if (Foxtrick.isPage(doc, 'matchesArchive')
 			|| Foxtrick.isPage(doc, 'matches')
+			|| Foxtrick.isPage(doc, 'matchesCup')
 			|| Foxtrick.isPage(doc, 'matchesHistory')
 			|| Foxtrick.isPage(doc, 'matchesLatest')
 			|| Foxtrick.isPage(doc, 'arena')) {
