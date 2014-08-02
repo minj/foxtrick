@@ -57,10 +57,11 @@ Foxtrick.modules['MatchIncome'] = {
 					}
 				}
 			}
+			var isNeutral = doc.querySelector('#matchReport span[data-eventtype^="26"]');
 			var mainBody = doc.getElementById('mainBody');
 			var isCup = mainBody.querySelectorAll('*[class^="matchCup"]').length > 0;
 			var isFriendly = mainBody.getElementsByClassName('matchFriendly').length > 0;
-			var priceQ = isCup ? 0.67 : (isFriendly ? 0.5 : 1);
+			var priceQ = isFriendly || isNeutral ? 0.5 : (isCup ? 0.67 : 1);
 
 			var visitorsTerraces = Foxtrick.trimnum(table.rows[0].cells[1].textContent);
 			var visitorsBasicSeats = Foxtrick.trimnum(table.rows[1].cells[1].textContent);
