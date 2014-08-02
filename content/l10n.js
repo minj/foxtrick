@@ -668,12 +668,15 @@ if (Foxtrick.arch === 'Sandboxed') {
 
 		init: function() {
 			// get htlang.json for each locale
-			var locale;
-			for (var i in Foxtrick.L10n.locales) {
-				locale = Foxtrick.L10n.locales[i];
-				var url = Foxtrick.InternalPath + 'locale/' + locale + '/htlang.json';
-				var text = Foxtrick.util.load.sync(url);
-				this.htLanguagesJSON[Foxtrick.L10n.locales[i]] = JSON.parse(text);
+			if (!/\/preferences\.html$/.test(window.location.pathname)) {
+				// don't run in prefs
+				var locale;
+				for (var i in Foxtrick.L10n.locales) {
+					locale = Foxtrick.L10n.locales[i];
+					var url = Foxtrick.InternalPath + 'locale/' + locale + '/htlang.json';
+					var text = Foxtrick.util.load.sync(url);
+					this.htLanguagesJSON[Foxtrick.L10n.locales[i]] = JSON.parse(text);
+				}
 			}
 
 			this.properties_default =
