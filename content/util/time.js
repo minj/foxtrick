@@ -181,6 +181,15 @@ Foxtrick.util.time = {
 		ret.setTime(timestamp);
 		return ret;
 	},
+	/**
+	 * Adjust the clock to the previous midnight
+	 * @param {Date} date
+	 */
+	setMidnight: function(date) {
+		Foxtrick.forEach(function(part) {
+			date['set' + part](0);
+		}, ['Hours', 'Minutes', 'Seconds', 'Milliseconds']);
+	},
 
 	fill: function(str, length) {
 		var s = String(str);
