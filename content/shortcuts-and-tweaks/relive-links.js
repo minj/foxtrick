@@ -34,7 +34,7 @@ Foxtrick.modules['ReLiveLinks'] = {
 			scoreIdx = 1;
 			rows = doc.querySelectorAll('table.indent.left.thin > tbody > tr');
 
-			if (!rows)
+			if (!rows.length)
 				return;
 
 			img = doc.createDocumentFragment();
