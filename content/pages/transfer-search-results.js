@@ -113,6 +113,7 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 			player.ageText = infoTable.rows[1].cells[1].textContent;
 			var ageMatch = player.ageText.match(/(\d+)/g);
 			player.age = { years: parseInt(ageMatch[0], 10), days: parseInt(ageMatch[1], 10) };
+			player.ageYears = player.age.years;
 			player.tsi = Foxtrick.trimnum(infoTable.rows[2].cells[1].textContent);
 			var speciality = infoTable.rows[3].cells[1].textContent.trim();
 			player.speciality = (speciality == '-') ? '' : speciality;
@@ -156,18 +157,18 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 				player.psicoTSI = psicoTSI;
 				player.psicoTitle = psicoTitle;
 			}
-			
+
 			var contributions = Foxtrick.Pages.Player.getContributions(skills, player);
 			for (var name in contributions)
 				player[name] = contributions[name];
-			
+
 			var bestPosition = Foxtrick.Pages.Player.getBestPosition(contributions);
 			player.bestPosition =
 				Foxtrick.L10n.getString(bestPosition.position + 'Position.abbr');
 			player.bestPositionLong =
 				Foxtrick.L10n.getString(bestPosition.position + 'Position');
 			player.bestPositionValue = bestPosition.value;
-			
+
 		}
 		catch (e) {
 			Foxtrick.log(e);

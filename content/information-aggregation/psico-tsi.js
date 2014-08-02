@@ -97,7 +97,7 @@ Foxtrick.modules['PsicoTSI'] = {
 		p.form = attrs.form;
 		p.stamina = attrs.stamina;
 
-		var age = p.age.years;
+		var age = p.ageYears;
 		var injured = Foxtrick.Pages.Player.getInjuryWeeks(doc) && true;
 
 		var pr = this.getPrediction(p, Foxtrick.util.currency.getRate());
@@ -156,7 +156,7 @@ Foxtrick.modules['PsicoTSI'] = {
 			if (!entry.getElementsByClassName('transferPlayerCharacteristics').length)
 				continue;
 
-			var age = p.age.years;
+			var age = p.ageYears;
 			var injured = p.injured;
 
 			var pr = p.psico || this.getPrediction(p, 0);
@@ -215,7 +215,7 @@ Foxtrick.modules['PsicoTSI'] = {
 			return null;
 		}
 
-		var age = p.ageYears || p.age.years;
+		var age = p.ageYears;
 		var currTSI = p.tsi;
 		var currWAGE = (currRate) ? parseInt(p.salary / (p.isAbroad ? 1.2 : 1) * currRate, 10) : 0;
 
