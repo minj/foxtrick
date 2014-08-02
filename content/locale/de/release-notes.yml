@@ -8,6 +8,10 @@ de:
     0.14.0.1:
       important: '<header>Wichtige Ankündigungen</header>'
       bugs: '<header>Bugfixes</header>'
+      safari_prefs: Die Einstellungensseite konnte von manchen Safari-Nutzern nicht angezeigt werden.
+      teamstats: 'Kleinen Fehler behoben welcher<module>TeamStats</module> und andere Module betraf.'
+      bpp: '<module>BestPlayerPosition</module> zeigte bei der Transfersuche teilweise inkorrekte Daten an.'
+      history_stats: '<module>HistoryStats</module> sortiert nun die Mannschaftsleistung immer saisonal. '
     0.14.0:
       important: '<header>Wichtige Ankündigungen</header>'
       crowdin: '<header>Eine Menge neue Übersetzungen von unseren geliebten <linkCrowdin>Crowdin</linkCrowdin> Nutzern. Du kannst übrigens auch ganz einfach mithelfen!</header>'
