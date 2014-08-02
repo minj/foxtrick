@@ -68,7 +68,7 @@ Foxtrick.modules['TransferSearchResultFilters'] = {
 			Foxtrick.sessionGet('transfer-search-result-filters',
 			  function(n) {
 				try {
-					if (n === undefined) {
+					if (!n) {
 						// set default filters if not set
 						Foxtrick.sessionSet('transfer-search-result-filters', FILTER_VAL);
 						callback(FILTER_VAL);
