@@ -5,8 +5,13 @@ hr:
       note_0: 'Ovo je razvojna inačica. Koristiti na svoju odgovornost. Za detalje o promjenama pogledajte <linkSVN>commit history</linkSVN> na Google Code stranici.'
     beta:
       note_0: 'Ovo je beta inačica buduće nove verzije. Pomozite na prevoditi ovu verziju sa super lakim prevođenjem na <linkCrowdin>crowdin.net</linkCrowdin>.'
+    0.14.0.2:
+      bugs: '<header>Popravljene greške</header>'
+      other: '<header>Druge promjene</header>'
+      and_more: Razne druge male promjene i popravci.
     0.14.0.1:
       important: '<header>Važne obavijesti</header>'
+      ff_cache: Foxtrick paketi neće imati dodatne kompresije u Firefoxu. Ovo će spriječiti razne čudne probleme korisnicima koje su iskusili u inačici 0.14.0.
       bugs: '<header>Popravljene greške</header>'
     0.14.0:
       important: '<header>Važne obavijesti</header>'

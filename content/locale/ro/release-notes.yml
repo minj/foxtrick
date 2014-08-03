@@ -5,6 +5,15 @@ ro:
       note_0: 'Această versiune este în dezvoltare continuă. Utilizați-o după cum doriți. Vă rugăm să vizualizați <linkSVN>istoricul</linkSVN> de la Google Code pentru detalii cu privire la modificări.'
     beta:
       note_0: 'Aceasta este o versiune beta a următoarei versiuni care va fi lansată. Vă rugăm ajutați traducând această versiune utilizând pagina de traducere <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.14.0.2:
+      bugs: '<header>Buguri reparate</header>'
+      challenge_link: 'Link-ul de provocare din modulul <module>TeamPopupLinks</module> duce acum către pagina echipei și deschide automat meniul de provocare.'
+      penalty_takers: 'Sortarea după formula HO în modulul <module>MatchOrderInterface</module> avea erori datorate schimbărilor din HT.'
+      new_cups: 'A fost implementat suportul pentru noul sistem al cupei. Astfel, au fost corectate erorile noi din diferite module, în special <module>PlayerStatsExperience</module>.'
+      other: '<header>Alte schimbări</header>'
+      psico: 'Predicția salariului cu ajutorul <module>PsicoTSI</module> a fost actualizată.'
+      first_last_post: 'Acum poți deschide opțional primul post al unui subiect deja deschis, facând click din nou pe acesta, cu <module>ForumLastPost</module>.'
+      and_more: Diferite alte mici schimbări și reparații.
     0.14.0.1:
       important: '<header>Anunțuri importante</header>'
       ff_cache: Pachetele Foxtrick nu vor mai avea compresii extra în Firefox. Asta ar trebui să prevină tot felul de probleme ciudate apărute în versiunea 0.14.0.
@@ -108,7 +117,7 @@ ro:
       note_8: "Utilizatorii cu mai multe echipe pot seta teme de culori diferite folosind 'body.ft-teamID-0000000' în <module>SkinPlugin</module>."
       note_9: '<module>HeaderToggle</module> a fost făcut mai puternic împotriva influenţelor altor module sau chiar a Hattrickului însuşi.'
       note_10: '<module>MatchSimulator</module> a fost adaptat pentru a include informaţii despre noul tip de antrenor atunci când se copiază ratingurile.'
-      note_11: '<header>Corectări erori</header>'
+      note_11: '<header>Erori reparate</header>'
       note_12: 'Reparat eroarea TSI NaN pe paginile jucătorilor echipei naţionale sau când descărcarea xml este dezactivată (<module>Skilltable</module>, <module>TeamStats</module> etc.)'
       note_13: 'Jucătorii nefolosiţi nu vor mai fi incluşi atunci când se utilizează opţiunea "Umple lista executanților de penalty-uri" în <module>MatchOrderInterface</module>.'
       note_14: Am rezolvat o problemă legată de ID-urile jucătorilor.
@@ -217,7 +226,7 @@ ro:
       note_10: Posibilitatea de a testa sunete de alarmă în preferințe
       note_11: Câteva modificări interne legate de stocarea datelor
       note_12: Câteva modificări și remedieri pe care le-am uitat
-      note_13: '<header>Bug-uri rezolvate</header>'
+      note_13: '<header>Erori reparate</header>'
       note_14: '<module>ExtendedPlayerDetails</module>: Fixed wage per week and season beeing incorrect for korean and probably some other languages too'
       note_15: '<module>MatchOrderInterface</module>: Face will also show for replaced and highlighted players for past lineups'
       note_16: '<module>MatchPlayerColouring</module>: Now works properly for players that were put in and left the field before the game ended'

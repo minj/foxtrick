@@ -5,6 +5,10 @@ en:
       note_0: 'This is the development build. Use at your own discretion. Please view <linkSVN>commit history</linkSVN> at Google Code for details of the changes.'
     beta:
       note_0: 'This is the beta version of the next release. Please help translating this version at our super easy crowd-translation page <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.14.0.2:
+      bugs: '<header>Bug fixes</header>'
+      other: '<header>Other changes</header>'
+      and_more: Various other small changes and fixes.
     0.14.0.1:
       important: '<header>Important announcements</header>'
       bugs: '<header>Bug fixes</header>'

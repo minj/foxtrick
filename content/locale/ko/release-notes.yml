@@ -5,6 +5,15 @@ ko:
       note_0: '자세한 내용은 Google Code의 <linkSVN>보고 기록</linkSVN>을 참조하세요.'
     beta:
       note_0: '이것은 다음 배포의 beta 버전 입니다. 이 버전에서 저희 군중-번역 페이지를 통해 번역해주세요. <linkCrowdin>crowdin.net</linkCrowdin>'
+    0.14.0.2:
+      bugs: '<header>버그 수정</header>'
+      challenge_link: '<module>TeamPopupLinks</module>에서 도전 링크는 이제 팀 페이지로 이동하여 자동으로 도전 메뉴를 여는 기능을 합니다.'
+      penalty_takers: '<module>MatchOrderInterface</module> 모듈에서 HO 공식으로 정렬하는 것이 HT 변경에 따라 고장났습니다.'
+      new_cups: '새로운 컵 시스템 지원을 구현했습니다. 이를 통해 <module>PlayerStatsExperience</module> 모듈 등에 발생한 버그를 수정했습니다.'
+      other: '<header>기타 변경 사항</header>'
+      psico: '<module>PsicoTSI</module> 임금 예측이 업데이트되었습니다.'
+      first_last_post: '이미 열려있는 스레드를 <module>ForumLastPost</module> 모듈로 다시 클릭하면 첫 번째 게시물을 임의로 열 수 있습니다.'
+      and_more: 그 외에 작은 규모의 변화와 수정이 있었습니다.
     0.14.0.1:
       important: '<header>중요한 공지 사항</header>'
       ff_cache: Foxtrick 패키지는 Firefox에서 더 이상 추가 압축을 하지 않을 것입니다. 이를 통해 0.14.0. 버전 사용자들이 경험하는 모든 문제를 예방될 것입니다.

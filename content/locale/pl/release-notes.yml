@@ -5,9 +5,23 @@ pl:
       note_0: 'To jest wersja rozwojowa. Korzystaj według własnego uznania. Proszę sprawdź szczegóły zmian <linkSVN>historia zmian</linkSVN> w witrynie Google Code.'
     beta:
       note_0: 'To jest wersja beta następnego wydania. Proszę pomóż w tłumaczeniu tej wersji na naszej super łatwej stronie tłumaczeń <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.14.0.2:
+      bugs: '<header>Poprawki błędów</header>'
+      challenge_link: 'Link wyzwania w <module>TeamPopupLinks</module> zabierze Cię teraz na stronę drużyny i automatycznie otworzy menu wyzwań.'
+      penalty_takers: 'Sortowanie według formuły HO w <module>MatchOrderInterface</module> zostało popsute z powodu zmian w HT.'
+      new_cups: 'Wsparcie nowego systemu pucharów zostało wprowadzone. To naprawia błędy w różnych modułach, a przede wszystkim w <module>PlayerStatsExperience</module>.'
+      other: '<header>Inne zmiany</header>'
+      psico: '<module>PsicoTSI</module> przewidywanie płac zostało zaktualizowane.'
+      first_last_post: 'Możesz teraz opcjonalnie otworzyć pierwszy post po ponownym kliknięciu na już otwarte wątki z <module>ForumLastPost</module>.'
+      and_more: Różne inne małe zmiany i poprawki.
     0.14.0.1:
       important: '<header>Ważne ogłoszenia</header>'
+      ff_cache: Pakiety Foxtricka nie będą już miały dodatkowej kompresji w Firefoksie. To powinno zapobiec wszystkim dziwnym problemom, których doświadczyli użytkownicy wersji 0.14.0.
       bugs: '<header>Poprawki błędów</header>'
+      safari_prefs: Strona ustawień Foxtricka nie może być wyświetlona niektórym użytkownikom Safari.
+      teamstats: 'Naprawiono rzadki błąd, psuje <module>TeamStats</module> i inne moduły.'
+      bpp: '<module>BestPlayerPosition</module> pokazywał czasem złe dane w wynikach wyszukiwania transferów.'
+      history_stats: '<module>HistoryStats</module> będzie teraz porządkował wyniki drużyny sezonami.'
     0.14.0:
       important: '<header>Ważne ogłoszenia</header>'
       crowdin: '<header>Wiele tłumaczeń pochodzi od naszych niesamowitych użytkowników korzystających z <linkCrowdin>narzędzia crowdin</linkCrowdin>. Ty też możesz pomóc!</header>'

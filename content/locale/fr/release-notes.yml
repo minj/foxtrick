@@ -5,9 +5,23 @@ fr:
       note_0: "Il s'agit d'une version de développement. Utilisez la à votre propre discrétion. S'il vous plaît consultez <linkSVN>commit history</linkSVN> sur Google Code pour plus de détails sur les modifications."
     beta:
       note_0: "Il s'agit de la version bêta de la prochaine version. Veuillez nous aider à traduire cette version via un site ultra simple à utiliser <linkCrowdin>crowdin.net</linkCrowdin>. "
+    0.14.0.2:
+      bugs: '<header>Correctifs</header>'
+      challenge_link: "Le lien du défi dans <module>TeamPopupLinks</module> vous emmène à la page de l'équipe et ouvre le menu de défi automatiquement."
+      penalty_takers: "Le tri par la formule de HO dans <module>MatchOrderInterface</module> avait été corrompu par les modifications d'hattrick."
+      new_cups: 'Le nouveau  système de coupe est maintenant supporté. Cela corrige de nombreux bugs dans divers modules, notamment <module>PlayerStatsExperience</module>.'
+      other: '<header>Autres changements</header>'
+      psico: 'La prédiction via le salaire de <module>PsicoTSI</module> a été mis à jour.'
+      first_last_post: "Vous pouvez maintenant ouvrir le premier message d'un sujet en cliquant de nouveau sur ce sujet s'il est déjà ouvert <module>ForumLastPost</module>."
+      and_more: Divers autres petits changements et corrections.
     0.14.0.1:
       important: '<header>Annonces importantes</header>'
+      ff_cache: "FoxTrick n'utilise plus de compression supplémentaire dans Firefox. Cela devrait éviter toutes sortes de problèmes étranges que les utilisateurs ont rencontrés avec la version 0.14.0."
       bugs: '<header>Correctifs</header>'
+      safari_prefs: La page des préférences de Foxtrick ne pouvait pas être affichée pour quelques utilisateurs de Safari.
+      teamstats: "Correction d'une erreur exceptionnelle qui corrompait <module>TeamStats</module> et quelques autres modules."
+      bpp: '<module>BestPlayerPosition</module> montrait des données erronées dans les résultats de la recherche de transfert dans certains cas.'
+      history_stats: "<module>HistoryStats</module> affiche maintenant les performances de l'équipe par saison."
     0.14.0:
       important: '<header>Annonces importantes</header>'
       crowdin: '<header>Mise à jour des traductions de la part de nos fidèles utilisateurs via <linkCrowdin>crowdin tool</linkCrowdin>. Vous pouvez aussi nous donner un coup de main!</header>'

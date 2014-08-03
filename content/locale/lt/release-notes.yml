@@ -5,9 +5,23 @@ lt:
       note_0: 'Įdiegėte nestabilią versiją. Naudokite savo rizika. Peržiūrėkite „Google Code“ <linkSVN>pakeitimų sąrašą</linkSVN>.'
     beta:
       note_0: 'Įdiegėte išankstinę (beta) versiją. Prašome prisidėti prie jos vertimo į lietuvių kalbą ypatingai šauniame vertėjų savanorių portale „<linkCrowdin>crowdin.net</linkCrowdin>“. '
+    0.14.0.2:
+      bugs: '<header>Pataisytos klaidos</header>'
+      challenge_link: 'Nuoroda „Kviesti“ (<module>TeamPopupLinks</module>) nuo šiol veda į komandos puslapį ir automatiškai atidaro draugiškų rungtynių meniu.'
+      penalty_takers: 'Rikiavimas pagal HO formulę (<module>MatchOrderInterface</module>) buvo sugedęs dėl HT pokyčių.'
+      new_cups: 'Įgyvendintas naujosios taurių sistemos palaikymas. Tai sutaisė gedimus įvairiuose moduliuose, o svarbiausia <module>PlayerStatsExperience</module>.'
+      other: '<header>Kiti pakeitimai</header>'
+      psico: 'Atnaujintas <module>PsicoTSI</module> spėjimas pagal atlyginimą.'
+      first_last_post: 'Nuo šiol galima pasirinkti, kad <module>ForumLastPost</module> atidarytų pirmąją temos žinutę, jei tema jau atidaryta.'
+      and_more: Daugybė kitų smulkių pataisymų ir pakitimų.
     0.14.0.1:
       important: '<header>Svarbūs pranešimai</header>'
+      ff_cache: Foxtrick paketai Firefox naršyklei nebebus papildomai archyvuojami. Tai išvengia daugybės nepaaiškinamų gedimų, kurie persekiojo 0.14.0 versiją.
       bugs: '<header>Pataisytos klaidos</header>'
+      safari_prefs: Foxtrick nustatymų puslapis neveikė kai kuriems Safari naršyklės vartotojams.
+      teamstats: 'Sutaisyta retai pasitaikanti klaida <module>TeamStats</module> ir kituose moduliuose.'
+      bpp: '<module>BestPlayerPosition</module> kai kuriais atvejais rodė neteisingus duomenis sandorių paieškos rezultatų puslapyje.'
+      history_stats: '<module>HistoryStats</module> nuo šiol visada rikiuos komandos pasirodymus pagal sezono numerį.'
     0.14.0:
       important: '<header>Svarbūs pranešimai</header>'
       crowdin: '<header>Daugybė vertimo atnaujinimų. Dėkojame savo šauniems vartotojams, kurie naudojasi <linkCrowdin>crowdin portalu</linkCrowdin>. Ir Jūs galite prisidėti!</header>'
