@@ -360,24 +360,34 @@ Foxtrick.modules['MainMenuDropDown'] = {
 			};
 
 			var css = getCustomCss(doc);
-			var newcss = css.replace(/#menu\s*{/gi, '#menu h3, #menu ul, #menu {');
-			var newcss = newcss.replace(/#menu\s*a\s*{/gi, '#menu h3, #menu a {');
-			newcss = newcss.replace(/#menu\s*a\s*:\s*hover\s*{/gi, '#menu li:hover, #menu a:hover {');
+			// extract bg color
+			var bgColor = css.match(/background-color:\s*(.+?);/);
+			var hsl = Foxtrick.util.color.rgbToHsl(Foxtrick.util.color.hexToRgb(bgColor[1]));
+			// make light backgrounds darker, dark lighter on hover
+			hsl[2] += hsl[2] > 0.5 ? -0.08 : 0.08;
+			var hoverColor = Foxtrick.util.color.rgbToHex(Foxtrick.util.color.hslToRgb(hsl));
+
+			var newcss = css.replace(/#menu\s*\{/gi, '#menu h3, #menu ul, #menu {');
+			newcss = newcss.replace(/#menu\s*a\s*\{/gi, '#menu h3, #menu a {');
+			newcss = newcss.replace(/#menu\s*a\s*:\s*hover\s*\{(.+?)\}/gi, function() {
+				return '#menu li:hover, #menu a:hover {' +
+					arguments[1].replace(bgColor[1], hoverColor) + '}';
+			});
 			if (newcss != css) {
 				Foxtrick.util.inject.css(doc, newcss, 'modified-ht-style');
 			}
 		});
 
 		var textColorRe = /#menu\s*a\s*{.*\s*color:([^;]+);/i;
-		function textColor(text) {
+		var textColor = function(text) {
 			var matches = text.match(textColorRe);
 			if (matches) {
 				return matches[1];
 			}
 			return null;
-		}
+		};
 
-		function getMenuTextColor() {
+		var getMenuTextColor = function() {
 			var tcolor;
 			Foxtrick.map(function(styleSheet) {
 				if (styleSheet.cssRules) {
@@ -395,11 +405,11 @@ Foxtrick.modules['MainMenuDropDown'] = {
 				}
 			}, doc.styleSheets);
 			return tcolor;
-		}
+		};
 		var tc = getMenuTextColor();
 
 		var hrstyle = '#menu hr { background-color:' + tc +
 			' !important;} .ft-drop-down-submenu li span, #menu h3 {color:' + tc + ' !important;}';
 		Foxtrick.util.inject.css(doc, hrstyle, 'dynamic-mmmd-style');
 	}
-}
+};
