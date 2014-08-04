@@ -934,6 +934,7 @@ Foxtrick.Pages.Player.getContributions = function(playerSkills, playerAttrs) {
 		'LoyaltyAndMCBIncluded',
 		'FormIncluded',
 		'BruisedIncluded',
+		'StaminaIncluded',
 	]);
 	var bonus, skill;
 	if (enabled['ExperienceIncluded']) {
@@ -950,6 +951,13 @@ Foxtrick.Pages.Player.getContributions = function(playerSkills, playerAttrs) {
 		bonus = Foxtrick.Predict.loyaltyBonus(loyalty, mcb);
 		for (skill in skills)
 			skills[skill] += bonus;
+	}
+
+	var stamina = attrs.staminaSkill;
+	if (enabled['StaminaIncluded']) {
+		var energy = Foxtrick.Predict.averageEnergy90(stamina);
+		for (skill in skills)
+			skills[skill] *= energy;
 	}
 
 	/**

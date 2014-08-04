@@ -122,15 +122,15 @@ Foxtrick.Predict.stamina = function(energyAt90) {
 };
 /**
  * Predict bonus for each player skill based on loyalty level.
+ * formula
+ * loyalty = 1 + sqrt(days/336)*19
+ * bonus = sqrt(days/336)
+ * -> bonus = (loyalty - 1) / 19
  * @param {Number} loyaltyLevel Loyalty attribute value
  * @param {Boolean} isMotherClub Is player playing in mother club?
  * @returns {Number}  Bonus value for each skill
  */
 Foxtrick.Predict.loyaltyBonus = function(loyaltyLevel, isMotherClub) {
-	//formula
-	// loyalty = 1 + sqrt(days/336)*19
-	// bonus = sqrt(days/336)
-	// -> bonus = (loyalty - 1) / 19
 	if (isMotherClub)
 		return 1.5;
 	else if (loyaltyLevel !== undefined)

@@ -316,6 +316,7 @@ pref("extensions.foxtrick.prefs.module.PlayerPositionsEvaluations.enabled", true
 pref("extensions.foxtrick.prefs.module.PlayerPositionsEvaluations.ShowBestPosition.enabled", true);
 pref("extensions.foxtrick.prefs.module.PlayerPositionsEvaluations.Normalised.enabled", true);
 pref("extensions.foxtrick.prefs.module.PlayerPositionsEvaluations.FormIncluded.enabled", true);
+pref("extensions.foxtrick.prefs.module.PlayerPositionsEvaluations.StaminaIncluded.enabled", true);
 pref("extensions.foxtrick.prefs.module.PlayerPositionsEvaluations.ExperienceIncluded.enabled", true);
 pref("extensions.foxtrick.prefs.module.PlayerPositionsEvaluations.LoyaltyAndMCBIncluded.enabled", true);
 pref("extensions.foxtrick.prefs.module.PlayerPositionsEvaluations.BruisedIncluded.enabled", true);

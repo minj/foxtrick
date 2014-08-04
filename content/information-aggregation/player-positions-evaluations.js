@@ -13,7 +13,8 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 	PAGES: ['playerDetails', 'transferSearchResult', 'players', 'ntPlayers'],
 	OPTIONS: [
 		'ShowBestPosition', 'Normalised',
-		'FormIncluded', 'LoyaltyAndMCBIncluded', 'ExperienceIncluded', 'BruisedIncluded',
+		'FormIncluded', 'StaminaIncluded',
+		'LoyaltyAndMCBIncluded', 'ExperienceIncluded', 'BruisedIncluded',
 	],
 
 	insertEvaluationsTable: function(doc, contributions) {
