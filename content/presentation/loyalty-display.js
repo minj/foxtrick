@@ -39,38 +39,32 @@ Foxtrick.modules['LoyaltyDisplay'] = {
 
 		var mcb = player.motherClubBonus;
 
-		if (!mcb) {
-			if (loyalty !== undefined) {
-				var skillUp = Foxtrick.Predict.loyaltyBonus(loyalty)
+		var skillUp = Foxtrick.Predict.loyaltyBonus(loyalty, mcb)
 
-				var appendix;
-				//find correct style for this loyalty level
-				if (skillUp == 1)
-					appendix = '1000';
-				else if (skillUp >= 0.875)
-					appendix = '875';
-				else if (skillUp >= 0.75)
-					appendix = '750';
-				else if (skillUp >= 0.625)
-					appendix = '625';
-				else if (skillUp >= 0.50)
-					appendix = '500';
-				else if (skillUp >= 0.375)
-					appendix = '375';
-				else if (skillUp >= 0.25)
-					appendix = '250';
-				else if (skillUp >= 0.125)
-					appendix = '125';
-				else
-					return;
+		var appendix;
+		//find correct style for this loyalty level
+		if (skillUp == 1.5) 
+			appendix = 'homegrown'
+		else if (skillUp == 1)
+			appendix = '1000';
+		else if (skillUp >= 0.875)
+			appendix = '875';
+		else if (skillUp >= 0.75)
+			appendix = '750';
+		else if (skillUp >= 0.625)
+			appendix = '625';
+		else if (skillUp >= 0.50)
+			appendix = '500';
+		else if (skillUp >= 0.375)
+			appendix = '375';
+		else if (skillUp >= 0.25)
+			appendix = '250';
+		else if (skillUp >= 0.125)
+			appendix = '125';
+		else
+			return;
 
-				replaceBars(node, skillUp, appendix);
-			}
-		}
-		else {
-			//homegrown, skillUp should be 1.5
-			replaceBars(node, 1.5, 'homegrown');
-		}
+		replaceBars(node, skillUp, appendix);
 	},
 	run: function(doc) {
 		var module = this;

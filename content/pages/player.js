@@ -898,7 +898,7 @@ Foxtrick.Pages.Player.getContributions = function(playerSkills, playerAttrs) {
 	*/
 
 	if (!skills)
-		return;
+		return {};
 
 	// all coefficients taken from http://wiki.hattrick.org/wiki/Hattrick_-_Skill_positions
 	var coefs = {
@@ -947,10 +947,7 @@ Foxtrick.Pages.Player.getContributions = function(playerSkills, playerAttrs) {
 	var mcb = attrs.motherClubBonus;
 	var tl = attrs.transferListed; // loyalty can be undefined in transfer pages
 	if (enabled['LoyaltyAndMCBIncluded'] && typeof loyalty !== 'undefined' && !tl) {
-		if (mcb)
-			bonus = 1.5
-		else
-			bonus = Foxtrick.Predict.loyaltyBonus(loyalty);
+		bonus = Foxtrick.Predict.loyaltyBonus(loyalty, mcb);
 		for (skill in skills)
 			skills[skill] += bonus;
 	}

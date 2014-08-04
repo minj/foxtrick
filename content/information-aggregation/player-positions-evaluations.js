@@ -5,6 +5,8 @@
  * @author Greblys
  */
 
+if (!Foxtrick)
+	var Foxtrick = {};
 
 Foxtrick.modules['PlayerPositionsEvaluations'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
