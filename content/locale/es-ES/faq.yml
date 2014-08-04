@@ -27,7 +27,7 @@ es-ES:
         <p>El Mozilla también puede reproducir sonidos directamente desde tu disco duro sin límite de tamaño. La forma más fácil de obtener el formato apropiado: pulsa Ctrl+O en el navegador, busca el archivo de sonido y selecciónalo. En la barra de dirección de arriba aparecerá entonces el directorio en el que se encuentra el archivo local (por ejemplo: file:///c:/sound.wav). Copia y pega esto en el campo de edición para el sonido.</p>
     authorize:
       question: ¿Por qué debo autorizar a Foxtrick acceder a los datos de mi equipo?
-      answer: |
+      answer: |2
         <p>Aunque la mayoría de los datos necesarios por FoxTrick se puede obtener directamente de la página que estás viendo, algunos módulos requieren la descarga de datos de Hattrick para funcionar correctamente.</p>  
         
         <p>Para descargar datos de Hattrick, incluidos los datos de tu equipo, ligas y selecciones nacionales, necesitas autorizar a FoxTrick previamente.</p>  
