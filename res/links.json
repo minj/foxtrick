@@ -1058,13 +1058,6 @@
 		"title": "Hattrick Youthclub",
 		"img": "http://static.hattrick-youthclub.org/resources/image/favicon.ico"
 	},
-	"HT-NUT": {
-		"nationalteamlink": {
-			"url": "http://ht-nut.co.uk/nu/team.php?id=[ntteamid]"
-		},
-		"title": "HT-NUT",
-		"img": "http://ht-nut.co.uk/nu/img/htnut.png"
-	},
 	"htev": {
 		"teamlink": {
 			"url": "http://htev.org/team/[teamid]/"
