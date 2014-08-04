@@ -667,10 +667,10 @@ if (Foxtrick.arch === 'Sandboxed') {
 		screenshots: null,
 
 		init: function() {
+			var locale;
 			// get htlang.json for each locale
 			if (!/\/preferences\.html$/.test(window.location.pathname)) {
 				// don't run in prefs
-				var locale;
 				for (var i in Foxtrick.L10n.locales) {
 					locale = Foxtrick.L10n.locales[i];
 					var url = Foxtrick.InternalPath + 'locale/' + locale + '/htlang.json';
