@@ -362,16 +362,20 @@ Foxtrick.modules['MainMenuDropDown'] = {
 			var css = getCustomCss(doc);
 			// extract bg color
 			var bgColor = css.match(/background-color:\s*(.+?);/);
-			var hsl = Foxtrick.util.color.rgbToHsl(Foxtrick.util.color.hexToRgb(bgColor[1]));
-			// make light backgrounds darker, dark lighter on hover
-			hsl[2] += hsl[2] > 0.5 ? -0.08 : 0.08;
-			var hoverColor = Foxtrick.util.color.rgbToHex(Foxtrick.util.color.hslToRgb(hsl));
+			var hoverColor;
+			if (bgColor) {
+				bgColor = bgColor[1];
+				var hsl = Foxtrick.util.color.rgbToHsl(Foxtrick.util.color.hexToRgb(bgColor));
+				// make light backgrounds darker, dark lighter on hover
+				hsl[2] += hsl[2] > 0.5 ? -0.08 : 0.08;
+				hoverColor = Foxtrick.util.color.rgbToHex(Foxtrick.util.color.hslToRgb(hsl));
+			}
 
 			var newcss = css.replace(/#menu\s*\{/gi, '#menu h3, #menu ul, #menu {');
 			newcss = newcss.replace(/#menu\s*a\s*\{/gi, '#menu h3, #menu a {');
 			newcss = newcss.replace(/#menu\s*a\s*:\s*hover\s*\{(.+?)\}/gi, function() {
 				return '#menu li:hover, #menu a:hover {' +
-					arguments[1].replace(bgColor[1], hoverColor) + '}';
+					arguments[1].replace(bgColor, hoverColor) + '}';
 			});
 			if (newcss != css) {
 				Foxtrick.util.inject.css(doc, newcss, 'modified-ht-style');
