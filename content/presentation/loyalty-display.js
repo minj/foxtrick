@@ -41,11 +41,7 @@ Foxtrick.modules['LoyaltyDisplay'] = {
 
 		if (!mcb) {
 			if (loyalty !== undefined) {
-				//formula
-				// loyalty = 1 + sqrt(days/336)*19
-				// bonus = sqrt(days/336)
-				// -> bonus = (loyalty - 1) / 19
-				var skillUp = (loyalty - 1) / 19.0;
+				var skillUp = Foxtrick.Predict.loyaltyBonus(loyalty)
 
 				var appendix;
 				//find correct style for this loyalty level

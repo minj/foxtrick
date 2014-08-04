@@ -945,12 +945,12 @@ Foxtrick.Pages.Player.getContributions = function(playerSkills, playerAttrs) {
 
 	var loyalty = attrs.loyalty;
 	var mcb = attrs.motherClubBonus;
-	var tl = attrs.transferListed;
+	var tl = attrs.transferListed; // loyalty can be undefined in transfer pages
 	if (enabled['LoyaltyAndMCBIncluded'] && typeof loyalty !== 'undefined' && !tl) {
-		// loyalty can be undefined in transfer pages
-		bonus = Math.max(0, loyalty - 1) / 19.0;
 		if (mcb)
-			bonus += 0.5;
+			bonus = 1.5
+		else
+			bonus = Foxtrick.Predict.loyaltyBonus(loyalty);
 		for (skill in skills)
 			skills[skill] += bonus;
 	}

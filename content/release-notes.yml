@@ -15,6 +15,7 @@ en:
       bugs: '<header>Bug fixes</header>'
       other: '<header>Other changes</header>'
       transfer_compare: 'MedianTransferPrice was renamed to <module>TransferComparePlayers</module>. Added TSI calculations and an ability to fetch more player data from CHPP. Shows price difference in player transfer history page.'
+      player_positions: 'Improved <module>PlayerPositionsEvaluations</module> and added many options to it.'
       and_more: 'Various other small changes and fixes.'
 
     0.14.0.2:

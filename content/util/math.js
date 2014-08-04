@@ -120,3 +120,15 @@ Foxtrick.Predict.stamina = function(energyAt90) {
 	return energyAt90 <= 0.887 ? energyAt90 * 10.1341 - 0.9899 :
 		8 + (energyAt90 - 0.887) / 0.1792;
 };
+/**
+ * Predict bonus for each player skill based on loyalty level.
+ * @param {Number} loyaltyLevel Loyalty attribute value
+ * @returns {Number}  Bonus value for each skill
+ */
+Foxtrick.Predict.loyaltyBonus = function(loyaltyLevel) {
+	//formula
+	// loyalty = 1 + sqrt(days/336)*19
+	// bonus = sqrt(days/336)
+	// -> bonus = (loyalty - 1) / 19
+	return Math.max(0, loyaltyLevel - 1) / 19.0;
+};
