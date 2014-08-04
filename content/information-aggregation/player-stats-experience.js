@@ -139,9 +139,7 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 				if (gameType == 'matchFriendly')
 					return 'matchNtFriendly';
 				else if (gameType == 'matchLeague') {
-					var weekOffset = Foxtrick.Prefs
-						.getString('module.HTDateFormat.FirstDayOfWeekOffset_text');
-					var htDate = Foxtrick.util.time.gregorianToHT(date, weekOffset, false);
+					var htDate = Foxtrick.util.time.gregorianToHT(date);
 					//oldies wc finals are in odd seasons, u20 in even seasons
 					var isWcFinalSeason = (htDate.season % 2 && !u20) ||
 						(!(htDate.season % 2) && u20);
@@ -423,6 +421,9 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 			cell.textContent = xp['max'];
 			row.appendChild(cell);
 
+			if(hidden)
+				Foxtrick.addClass(row, 'hidden');
+
 			tbody.appendChild(row);
 		};
 
@@ -430,7 +431,7 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 			return ( value - Math.floor(value) ) > 0 ? value.toFixed(3) : Math.floor(value);
 		}
 
-		for (var i = 0; i < types.length; i++) {
+		for (var i = 0, j = 0; i < types.length; i++) {
 			var count = this.store.matches[types[i]]['count'];
 			count['min'] = getPrettyValue( count['min'] );
 			count['max'] = getPrettyValue( count['max'] );
@@ -440,7 +441,8 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 			xp['max'] = getPrettyValue( xp['max'] );
 			var type = types[i];
 
-			addRow(type, count, minutes, xp, i);
+			if (xp.max)
+				addRow(type, count, minutes, xp, j++);
 		}
 
 		//xp pts
