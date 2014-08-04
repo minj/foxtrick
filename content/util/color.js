@@ -26,6 +26,9 @@ Foxtrick.util.color = {};
  * @return  Array           The HSL representation
  */
 Foxtrick.util.color.rgbToHsl = function(r, g, b){
+    if (Array.isArray(r))
+        return this.rgbToHsl.apply(this, r);
+
     r /= 255, g /= 255, b /= 255;
     var max = Math.max(r, g, b), min = Math.min(r, g, b);
     var h, s, l = (max + min) / 2;
@@ -58,6 +61,9 @@ Foxtrick.util.color.rgbToHsl = function(r, g, b){
  * @return  Array           The RGB representation
  */
 Foxtrick.util.color.hslToRgb = function(h, s, l){
+    if (Array.isArray(h))
+        return this.hslToRgb.apply(this, h);
+
     var r, g, b;
 
     if(s == 0){
@@ -94,6 +100,9 @@ Foxtrick.util.color.hslToRgb = function(h, s, l){
  * @return  Array           The HSV representation
  */
 Foxtrick.util.color.rgbToHsv = function(r, g, b){
+    if (Array.isArray(r))
+        return this.rgbToHsv.apply(this, r);
+
     r = r/255, g = g/255, b = b/255;
     var max = Math.max(r, g, b), min = Math.min(r, g, b);
     var h, s, v = max;
@@ -127,6 +136,9 @@ Foxtrick.util.color.rgbToHsv = function(r, g, b){
  * @return  Array           The RGB representation
  */
 Foxtrick.util.color.hsvToRgb = function(h, s, v){
+    if (Array.isArray(h))
+        return this.hsvToRgb.apply(this, h);
+
     var r, g, b;
 
     var i = Math.floor(h * 6);
@@ -173,6 +185,9 @@ Foxtrick.util.color.hexToRgb = function(hex) {
  * @return  String          The hex representation
  */
 Foxtrick.util.color.rgbToHex = function(r, g, b) {
+    if (Array.isArray(r))
+        return this.rgbToHex.apply(this, r);
+
     var rgb = b | (g << 8) | (r << 16);
     return '#' + rgb.toString(16);
 }
