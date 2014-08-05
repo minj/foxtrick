@@ -77,6 +77,8 @@ Foxtrick.modules['RatingsDisplay'] = {
 			var averages_max = ['', '', 0, 0, 0, 0]; //#, rowstring, total, def, mid, att
 			var averages_avg = ['', '', 0, 0, 0, 0]; //#, rowstring, total, def, mid, att
 			var table = doc.getElementById('mainBody').getElementsByTagName('table')[0];
+			if (!table)
+				return;
 			for (var row = 1; row < table.rows.length; ++row) {
 				var mean_avg = 0, mean_max = 0;
 				for (var cells = table.rows[row].cells.length - 1; cells > 1; --cells) {
