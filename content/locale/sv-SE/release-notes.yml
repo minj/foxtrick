@@ -5,9 +5,23 @@ sv-SE:
       note_0: 'This is the development build. Use at your own discretion. Please view <linkSVN>commit history</linkSVN> at Google Code for details of the changes.'
     beta:
       note_0: 'Detta är BETA -versionen av nästa utgåva. Hjälp gärna till att översätta denna version via vårt superlätta översättningsverktyg på <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.14.0.2:
+      bugs: '<header>Buggfixar</header>'
+      challenge_link: 'Challenge link in <module>TeamPopupLinks</module> now takes you to the team page and automatically opens the challenge menu.'
+      penalty_takers: 'Sorting by HO formula in <module>MatchOrderInterface</module> was broken due to HT changes.'
+      new_cups: 'Support för nya cupsystemet har implementerats. Detta fixar nya buggar i olika moduler, framför allt <module>PlayerStatsExperience</module>.'
+      other: '<header>Andra ändringar</header>'
+      psico: '<module>PsicoTSI</module> Formeln för löneprognosen har uppdaterats.'
+      first_last_post: 'Nu kan du valfritt öppna första inlägget i tråden genom att klicka igen på en redan öppen tråd med <module>ForumLastPost</module>.'
+      and_more: Flera andra mindre ändringar och korrigeringar.
     0.14.0.1:
       important: '<header>Viktiga meddelanden</header>'
+      ff_cache: FoxTrick paket kommer inte längre ha extra kompression i Firefox. Detta hindra alla möjliga konstiga problem användare har upplevt med version 0.14.0
       bugs: '<header>Buggfixar</header>'
+      safari_prefs: The Foxtrick preferences page could not be displayed for some users with Safari.
+      teamstats: 'Fixed a rare error that breaks <module>TeamStats</module> and other modules.'
+      bpp: '<module>BestPlayerPosition</module> was showing wrong data in transfer search result page in some cases.'
+      history_stats: '<module>HistoryStats</module> will now always order team performance by season.'
     0.14.0:
       important: '<header>Viktiga meddelanden</header>'
       crowdin: '<header>En hel massa översättningsuppdateringar av användare via översättningsverktyget på <linkCrowdin>crowdin.net</linkCrowdin>. Du kan också hjälpa till!</header>'

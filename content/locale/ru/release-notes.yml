@@ -5,14 +5,23 @@ ru:
       note_0: 'Это сборка разрабатываемой версии. Используёте её на ваше собственное усмотрение. Пожалуйста, обращайтесь к <linkSVN>истории изменений</linkSVN> на сайте Google Code за подробностями.'
     beta:
       note_0: 'Это — бета-версия, основа следующего выпуска. Пожалуйста, помогите нам с переводом этой версии на краудсорсинговом сайте <linkCrowdin>crowdin.net</linkCrowdin>.'
+    0.14.0.2:
+      bugs: '<header>Исправленные ошибки</header>'
+      challenge_link: 'Ссылка "Пригласить" в модуле <module>TeamPopupLinks</module> теперь ведёт на страницу этой команды и открывает на ней меню для вызова на товарищеский матч.'
+      penalty_takers: 'Сортировка по формуле из HO в модуле <module>MatchOrderInterface</module> была сломана из-за изменений в дизайне HT.'
+      new_cups: 'Реализована поддержка новой системы кубков. Это исправляет ошибки во многих модулях, особенно в <module>PlayerStatsExperience</module>.'
+      other: '<header>Другие изменения</header>'
+      psico: 'В модуле <module>PsicoTSI</module> была изменена оценка навыка по зарплате.'
+      first_last_post: 'Модуль <module>ForumLastPost</module>: теперь вы можете по желанию открывать первое сообщение в уже частично прочитанной теме.'
+      and_more: Несколько других мелких изменений и исправлений.
     0.14.0.1:
       important: '<header>Важные объявления</header>'
-      ff_cache: Пакеты Foxtrick больше не будут дополнительно сжиматься в Firefox. Это должно предотвратить все проблемы, возникающие в версии 0.14.0.
+      ff_cache: Установочные пакеты Foxtrick для Firefox теперь не используют сильное сжатие. Это должно помочь избежать ряда странных проблем, с которыми столкнулись наши пользователь в версии 0.14.0.
       bugs: '<header>Исправленные ошибки</header>'
-      safari_prefs: Страница настроек Foxtrick может не отображаться у некоторых пользователей Safari.
-      teamstats: 'Исправлена редкая ошибка, вызывающая отказ <module>TeamStats</module> и прочих модулей.'
-      bpp: 'В некоторых случаях <module>BestPlayerPosition</module> показывал неправильные данные на странице поиска трансферов.'
-      history_stats: '<module>HistoryStats</module> теперь всегда будет располагать эффективность команды посезонно.'
+      safari_prefs: Страница настроек Foxtrick могла не отображаться у некоторых пользователей с браузером Safari.
+      teamstats: 'Исправлена редко проявлявшаяся ошибка, ломавшая модуль <module>TeamStats</module> и ряд других.'
+      bpp: 'Модуль <module>BestPlayerPosition</module> иногда показывал неверные данные на странице поиска трансферов.'
+      history_stats: 'Модуль <module>HistoryStats</module> теперь будет всегда корректно сортировать выступление команды в сезоне.'
     0.14.0:
       important: '<header>Важные объявления</header>'
       crowdin: '<header>Большое количество обновлений переводов от наших потрясающих пользователей, использующих <linkCrowdin>систему crowdin</linkCrowdin>. Вы можете в любой момент помочь нам!</header>'
@@ -32,7 +41,7 @@ ru:
       forum_header: 'Модуль <module>ForumAlterHeaderLine</module> был переписан и должен работать корректно во всех случаях.'
       nav_fix: 'В модулях <module>GoToPostBox</module> и <module>MyMonitor</module> для браузера Firefox была исправлена навигация.'
       new_lineup: 'Модули <module>MatchPlayerColouring</module>, <module>LineupShortcut</module>, <module>TeamPopupLinks</module> и <module>SeniorTeamShortCuts</module> теперь работают корректно и с новым отображением составов команд в матчах.'
-      other: '<header>другие изменения</header>'
+      other: '<header>Другие изменения</header>'
       live_ratings: 'В модули <module>MatchLineupTweaks</module>, <module>MatchRatingsTweaks</module> и <module>MatchPlayerColouring</module> была добавлена поддержка текущих ("мгновенных") рейтингов.'
       own_top_players: 'Модуль <module>Filter</module> теперь подсвещивает ваших игроков на странице лучших игроков страны.'
       htev: Поскольку ресурс htev.org не справляется с нагрузкой от запросов, генерируемых пользователями Foxtrick, модуль HTEVPrediction был удалён.
