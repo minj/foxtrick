@@ -953,7 +953,7 @@ Foxtrick.Pages.Player.getContributions = function(playerSkills, playerAttrs) {
 			skills[skill] += bonus;
 	}
 
-	var stamina = typeof attrs.staminaSkill === 'undefined' ? attrs.stamina : attrs.staminaSkill;
+	var stamina = attrs.staminaSkill;
 	if (enabled['StaminaIncluded']) {
 		var energy = Foxtrick.Predict.averageEnergy90(stamina);
 		for (skill in skills)
