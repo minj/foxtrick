@@ -119,9 +119,10 @@ Foxtrick.modules['Core'] = {
 				if (name)
 					Foxtrick.modules['Core'].SELF_TEAM_INFO.shortTeamName = name;
 			});
+			var teamId = this.SELF_TEAM_INFO.teamId;
 			Foxtrick.ht_pages['ownPlayers'] =
-				Foxtrick.ht_pages['ownPlayers'].replace(/\[id\]/g, this.SELF_TEAM_INFO.teamId);
-			Foxtrick.addClass(doc.body, 'ft-teamID-' + this.SELF_TEAM_INFO.teamId);
+				Foxtrick.ht_pages['ownPlayersTemplate'].replace(/\[id\]/g, teamId);
+			Foxtrick.addClass(doc.body, 'ft-teamID-' + teamId);
 		}
 		var subMenu = doc.getElementsByClassName('subMenu')[0];
 		if (subMenu) {
@@ -131,7 +132,7 @@ Foxtrick.modules['Core'] = {
 					var youthId = Foxtrick.util.id.findYouthTeamId(subMenu);
 					this.SELF_TEAM_INFO.youthTeamId = youthId;
 					Foxtrick.ht_pages['ownYouthPlayers'] =
-						Foxtrick.ht_pages['ownYouthPlayers'].replace(/\[id\]/g, youthId);
+						Foxtrick.ht_pages['ownYouthPlayersTemplate'].replace(/\[id\]/g, youthId);
 
 					var ntTeamLink = subMenu.querySelector('a[href^="/Club/NationalTeam/"]');
 					if (ntTeamLink) {

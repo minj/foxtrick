@@ -93,12 +93,13 @@ Foxtrick.ht_pages = {
 	                              '/Club/Players/KeyPlayers.aspx',
 	                              // has last match link and ratings
 	                              // KeyPlayers have basically the same structure as regular page
-	'ownPlayers'                : '/Club/Players/(Default.aspx$|$)|' +
+	'ownPlayersTemplate'        : '/Club/Players/(Default.aspx$|$)|' +
 	                              '/Club/Players/(Default.aspx?|?)teamid=[id]|' +
 	                              '/Club/Players/KeyPlayers.aspx($|?teamid=[id])|' +
 	                              '/Club/NationalTeam/NTPlayers.aspx?teamId=[ntid]',
 	                              // has visible skills
 	                              // KeyPlayers have basically the same structure as regular page
+	                              // README: don't use this! The correct value is 'ownPlayers'
 	                              // updated in core.js so you cannot rely on it in PAGES
 	                              // use 'players' and 'ntPlayers' instead
 	'keyPlayers'                : '/Club/Players/KeyPlayers.aspx',
@@ -106,7 +107,8 @@ Foxtrick.ht_pages = {
 	'oldCoaches'                : '/Club/Players/Coaches.aspx',
 	'ntPlayers'                 : '/Club/NationalTeam/NTPlayers.aspx',
 	'youthPlayers'              : '/Club/Players/YouthPlayers.aspx',
-	'ownYouthPlayers'           : '/Club/Players/YouthPlayers.aspx($|?YouthTeamId=[id])',
+	'ownYouthPlayersTemplate'           : '/Club/Players/YouthPlayers.aspx($|?YouthTeamId=[id])',
+	                              // README: don't use this! The correct value is 'ownYouthPlayers'
 	                              // updated in core.js so you cannot rely on it in PAGES
 	                              // use 'youthPlayers' instead
 	'playerHistory'             : '/Club/Players/PlayerHistory.aspx',
