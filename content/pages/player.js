@@ -700,7 +700,7 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerid, callback) {
 						newName = name.replace(/^./, function(m) {
 							return m.toLowerCase();
 						});
-						newName.replace(/Skill$/, '');
+						newName = newName.replace(/Skill$/, '');
 						nodeName = name;
 					}
 					if (node(nodeName))

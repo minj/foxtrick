@@ -219,7 +219,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 						newName = name.replace(/^./, function(m) {
 							return m.toLowerCase();
 						});
-						newName.replace(/Skill$/, '');
+						newName = newName.replace(/Skill$/, '');
 						nodeName = name;
 					}
 					if (typeof player[newName] === 'undefined' && node(nodeName))
