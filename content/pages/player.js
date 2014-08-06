@@ -898,7 +898,7 @@ Foxtrick.Pages.Player.getContributions = function(playerSkills, playerAttrs) {
 	*/
 
 	if (!skills)
-		return {};
+		return null;
 
 	// all coefficients taken from http://wiki.hattrick.org/wiki/Hattrick_-_Skill_positions
 	var coefs = {
