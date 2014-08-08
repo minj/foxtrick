@@ -7,11 +7,21 @@ nl:
       note_0: 'Dit is een beta versie van de volgende release. Help alsjeblieft met vertalen van deze versie op de zeer gebruiksvriendelijke crowd-vertaal pagina <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.14.0.2:
       bugs: '<header>Fout herstel</header>'
+      challenge_link: 'Uitdaging link in <module>TeamPopupLinks</module> brengt je nu naar de teampagina en opent automatisch het menu uitdaging.'
+      penalty_takers: 'Sorteren door HO formule in <module>MatchOrderInterface</module> werkte niet als gevolg van HT veranderingen.'
+      new_cups: 'Nieuwe beker systeemondersteuning was geïmplementeerd. Dit verhelpt nieuwe bugs in verschillende modules, vooral  in de <module>PlayerStatsExperience</module> module.'
       other: '<header>Andere veranderingen</header>'
+      psico: '<module>PsicoTSI</module> loon voorspelling werd bijgewerkt.'
+      first_last_post: 'U kunt nu desgewenst een eerste post openen, wanneer al geklikt is op een al bekeken onderwerp in<module>ForumLastPost</module>.'
       and_more: Diverse andere kleine veranderingen en correcties.
     0.14.0.1:
       important: '<header>Belangrijke aankondigingen</header>'
+      ff_cache: Foxtrick pakketten maken niet langer gebruik van extra compressie in Firefox. Dit moet voorkomen dat allerlei rare problemen ontstaan die gebruikers hebben ervaren met versie 0.14.0.
       bugs: '<header>Fout herstel</header>'
+      safari_prefs: De Foxtrick Voorkeurenpagina kon niet worden weergegeven voor sommige gebruikers met Safari.
+      teamstats: 'Een zeldzame fout is opgelost die <module>TeamStats</module> en andere modules niet deed laten functioneren.'
+      bpp: '<module>BestPlayerPosition</module> toonde verkeerde gegevens op de transferlijst zoekpagina in sommige gevallen.'
+      history_stats: '<module>HistoryStats</module> zal de prestaties van het team nu altijd per seizoen ordenen.'
     0.14.0:
       important: '<header>Belangrijke aankondigingen</header>'
       crowdin: '<header>Heel veel vertalingsupdates van onze geweldige gebruikers zijn gemaakt met behulp van de <linkCrowdin>crowdin tool</linkCrowdin>. Jij kan ons ook helpen!</header>'
@@ -27,6 +37,9 @@ nl:
       chrome_notes: Foxtrick meldingen zijn aangepast aan het nieuwe notificatie systeem in Google Chrome.
       player_cache: Foxtrick zal nu nieuwe spelers in jouw team opmerken en automatisch CHPP data vernieuwen.
       train_est: Foxtrick verstoort niet langer het sorteren in tabel van de nieuwe Schatting Trainingstijd feature.
+      mrf_fixes: '<module>MatchReportFormat</module> zal niet langer een verkeerde lay-out hebben bij sommige wedstrijden. Er zijn meer pictogrammen toegevoegd voor gebeurtenissen.'
+      forum_header: '<module>ForumAlterHeaderLine</module> werd nagekeken en moet nu correct werken in alle gevallen.'
+      nav_fix: 'Navigatie in <module>GoToPostBox</module> en <module>MyMonitor</module> werd opgelost in Firefox.'
       other: '<header>Andere veranderingen</header>'
       live_ratings: 'Live ratings ondersteuning is toegevoegd in <module>MatchLineupTweaks</module>, <module>MatchRatingsTweaks</module> en <module>MatchPlayerColouring</module>.'
       htev: htev.org zal niet langer de belasting aan kunne van de Foxtrick verzoeken, daarom is de HTEVPrediction verwijderd.
@@ -81,8 +94,13 @@ nl:
       note_1: '<module>PlayerStatsExperience</module>: Bij de ervarings berekening wordt ervan uitgegaan dat er 28,57 punten per niveau zijn (Zie 15766691.780).'
       note_2: 'Nieuw: De module <module>PsicoTSI</module> is in Foxtrick opgenomen.'
       note_3: '<module>ShowLineupSet</module>: optie toegevoegd om je eigen team te laten opvallen in de ranglijst.'
+      note_4: '<module>CopyYouth</module>: wijzigingen in de training van de jeugdopleiding zullen nu automatisch worden verzonden naar hattrick youthclub (alleen voor hattrick youthclub gebruikers).'
+      note_5: 'Nieuw: <module>SupportersList</module>: Toon wie uw team steunt  in uw lijst met supporter teams en vice versa'
+      note_10: '<module>MatchSimulator</module> werd aangepast om de nieuwe coach informatie bij het kopiëren van waarderingen mee te nemen.'
       note_11: '<header>Bugfixes</header>'
       note_12: "Het TSI NaN probleem op spelers pagina's of wanneer xml downloaden is uitgeschakeld is verholpen. (<module>Skilltable</module>, <module>TeamStats</module> etc.)"
+      note_13: "Ongebruikte spelers zullen niet langer worden opgenomen wanneer de functie 'Vul strafschopnemers' wordt gebruikt bij <module>MatchOrderInterface</module>."
+      note_14: "Een work-around voor negatieve speler-id's in de buurt-team wedstrijden (voorkomen van walkovers in vriendschappelijke wedstrijden) werd toegevoegd."
       note_15: 'De uitdaging snelkoppeling in <module>TeamPopupLinks</module> is opgelost.'
       note_16: Een bug in het voorkeuren zoek menu is verholpen.
     0.12.1.1:
@@ -91,8 +109,11 @@ nl:
       note_2: Kleine verbeteringen in toegankelijkheid.
       note_3: 'Verbeteringen voor <module>CopyPosting</module> en <module>StaffMarker</module>.'
       note_4: Oplossingen voor een aantal geluidsgerelateerde kwesties doorgevoerd.
+      note_5: Een probleem in Android dat er voor zorgde dat Foxtrick niet kon starten in een aantal gevallen is opgelost.
+      note_6: Regeleinden in forum en post sjablonen moeten nu correct wordt herkend bij het importeren van voorkeuren.
       note_7: Het ratings herken probleem voor de Friese instelling is opgelost.
       note_8: 'Verschillende problemen in <module>ForumAlterHeaderLine</module>, <module>ManagerButtons</module> en <module>HideSignatures</module> zijn opgelost.'
+      note_9: '<module>SkillTable</module> zal nu moeten werken voor gebruikers met een één team zonder Foxtrick autorisatie.'
     0.12.1:
       note_0: '<header>Heel veel vertalingsupdates van onze geweldige gebruikers zijn gemaakt met behulp van de <linkCrowdin>crowdin tool</linkCrowdin>. Jij kan ons ook helpen!</header>'
       note_1: 'Nieuw: <module>SupportershipExpirationDate</module>: Klik op de resterende dagen in je overzicht, zal er voor zorgen dat je de vervaldatum van je supporterlidmaatschap kan zien'
@@ -115,13 +136,19 @@ nl:
       note_6: 'Nieuw: <module>DashboardCalender</module>: knop toegevoegd om een Hattrick week te exporteren naar iCalender formaat (zou compatibel moeten zijn met Google Calender, Thunderbird+Lightning, MS Outlook, KOriganizer, Evolution, Apple iCal, etc).'
       note_7: '<module>LiveAlert</module>: verschillende geluiden toegevoegd voor thuis/uit/eigen team goals.  Gebruikt standaard geluiden van <linkHTLS>HTLiveSight</linkHTLS>. Goals van je eigen team zullen niet direct herkend worden in Re-Live.'
       note_8: '<module>CopyYouth</module>: hattrick youthclub gebruikers zullen nu de scout rapportage van geweigerde spelers automatisch verzenden aan HY'
+      note_9: '<module>CopyYouth</module>: hattrick youthclub gebruikers stuurt nu het rapport over de de training automatisch aan HY, wanneer ze deze voor het eerst lezen'
+      note_10: '<module>LineupShortcut</module> is nu gekoppeld aan het nieuwe teamopstelling pagina.'
       note_11: '<module>SkillTable</module> gebruikt nu pictogrammen voor specialiteiten en coaches.'
       note_12: 'AddLeaveConfButton is hernoemd naar <module>ForumLeaveButton</module>'
       note_13: Vanaf nu, zal je browser en je Hattrick lay out automatisch zijn bijgesloten in berichten die je post op het Foxtrick forum. Dit zal ons helpen om problemen eerder op te lossen. Delete deze informatie alstublieft niet als je een posting maakt.
       note_14: De add-on code is opgeruimd voor een betere leesbaarheid en is daardoor makkelijker te onderhouden.
+      note_15: 'Een aantal  kwesties met matige detectie in <module>PlayerStatsTrainingWeek</module> zijn opgelost.'
+      note_16: 'Er is een bug in <module>MatchSimulator</module>opgelost,  waardoor verkeerde ratings en voorspelling worden weergegeven wanneer aanval vs defensie optie uitgeschakeld was.'
       note_17: Safari updates lijken problemen te hebben. Gebruikers kunnen het beste de vorige Foxtrick versie verwijderen en de nieuwe installeren.
     0.11.0.1:
       note_0: '<header>Heel veel vertalingsupdates van onze geweldige gebruikers zijn gemaakt met behulp van de <linkCrowdin>crowdin tool</linkCrowdin>. Jij kan ons ook helpen!</header>'
+      note_1: 'Oplossen van kleine problemen in <module>ForumLastPost</module>, <module>ContextMenuCopy</module>, <module>PlayerFilters</module>, <module>SmallerPages</module>, <module>SkillTable</module>, <module>TeamPopupLinks</module>, <module>VergelijkSalaris</module> en <module>HTThreadMarker</module>.'
+      note_2: Voorkomen dat Firefox alle Hattrick tabbladen opnieuw ging laden wanneer een nieuw browservenster was geopend.
     0.11.0:
       note_0: 'Nieuw: <module>DirectPageLinks</module>: links toegevoegd om specifieke bladzijdes te benaderen in een forum topic'
       note_1: '<module>ForumModeratorPopup</module>: een dropdown menu is toegevoegd voor moderatoren aan de start van een discussie om moderatie te vereenvoudigen.'
@@ -136,7 +163,9 @@ nl:
       note_10: "<module>MovePlayerStatement</module>: Mogelijkheid toegevoegd om de gehele spelers' status te verwijderen."
       note_11: '<module>YouthTwins</module>: Handmatig geactiveerde wijzigingen op de HYC-website worden nu automatisch doorgegeven op de jeugdspelers pagina.'
       note_12: '<header>Bugfixes</header>'
+      note_13: 'Correctie verwerkt in <module>Filter</module>, <module>SupporterStatsEnhancements</module> en <module>YouthTwins</module>.'
       note_14: '<module>StaffMarker</module> en <module>HTThreadMarker</module> zullen nu op meerdere plaatsen werken.'
+      note_15: '<module>ConfirmActions</module>: ondersteuning voor een automatisch bod toegevoegd.'
       note_16: '<module>EmbedMedia</module>: meer veiligheid en betere detectie van links.'
       note_17: '<module>SkillTable</module> dient nu de juiste tijd te laten zien in het team in het overzicht van externe coaches.'
       note_18: BackgroundFixed module is verwijderd.
