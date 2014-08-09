@@ -78,7 +78,7 @@ Foxtrick.modules['PsicoTSI'] = {
 	 */
 	runPlayer: function(doc) {
 
-		if (!doc.getElementsByClassName('playerInfo').length)
+		if (Foxtrick.Pages.Player.wasFired(doc))
 			return;
 
 		var p = Foxtrick.Pages.Player.getSkills(doc);

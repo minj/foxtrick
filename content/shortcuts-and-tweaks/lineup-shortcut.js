@@ -26,6 +26,9 @@ Foxtrick.modules['LineupShortcut'] = {
 	},
 
 	_Analyze_Player_Page: function(doc) {
+		if (Foxtrick.Pages.Player.wasFired(doc))
+			return;
+
 		// to get match history table
 		var mainBody = doc.getElementById('mainBody');
 		var boxes = mainBody.getElementsByClassName('mainBox');

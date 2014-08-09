@@ -13,8 +13,7 @@ Foxtrick.modules['ExtendedPlayerDetails'] = {
 
 	run: function(doc) {
 		var module = this;
-		var div = doc.getElementsByClassName('playerInfo')[0];
-		if (!div)
+		if (Foxtrick.Pages.Player.wasFired(doc))
 			return;
 
 		this._Player_Joined(doc);

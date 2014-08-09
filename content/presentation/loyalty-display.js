@@ -88,9 +88,9 @@ Foxtrick.modules['LoyaltyDisplay'] = {
 
 		}
 		else if (Foxtrick.isPage(doc, 'playerDetails')) {
-			var div = doc.getElementsByClassName('playerInfo')[0];
-			if (!div)
+			if (Foxtrick.Pages.Player.wasFired(doc))
 				return;
+
 			var id = Foxtrick.Pages.Player.getId(doc);
 			Foxtrick.Pages.Player.getPlayer(doc, id, function(player) {
 				if (!player)

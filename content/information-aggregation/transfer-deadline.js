@@ -77,6 +77,9 @@ Foxtrick.modules['TransferDeadline'] = {
 	},
 
 	runPlayerDetail: function(doc) {
+		if (Foxtrick.Pages.Player.wasFired(doc))
+			return;
+
 		var htDate = Foxtrick.util.time.getHtDate(doc);
 		var htTime = htDate.getTime();
 		try {

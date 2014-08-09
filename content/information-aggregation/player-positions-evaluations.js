@@ -121,6 +121,9 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 	run: function(doc) {
 		var module = this;
 		if (Foxtrick.Pages.Player.isSenior(doc)) {
+			if (Foxtrick.Pages.Player.wasFired(doc))
+				return;
+
 			var id = Foxtrick.Pages.Player.getId(doc);
 			Foxtrick.Pages.Player.getPlayer(doc, id, function(player) {
 				var skills = Foxtrick.Pages.Player.getSkills(doc);

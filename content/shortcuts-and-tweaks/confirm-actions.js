@@ -39,6 +39,9 @@ Foxtrick.modules['ConfirmActions'] = {
 
 		// Bid, TransferList, NtChange, StaffChange
 		if (Foxtrick.isPage(doc, 'playerDetails')) {
+			if (Foxtrick.Pages.Player.wasFired(doc))
+				return;
+
 			if (Foxtrick.Prefs.isModuleOptionEnabled('ConfirmActions', 'Bid')) {
 				var bidButton = doc.getElementById(ids.BID.BUTTON_ID);
 				if (bidButton) {

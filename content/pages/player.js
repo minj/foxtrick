@@ -668,6 +668,16 @@ Foxtrick.Pages.Player.getTransferDeadline = function(doc) {
 };
 
 /**
+ * Test whether player was fired
+ * @param  {document} doc
+ * @return {Boolean}
+ */
+Foxtrick.Pages.Player.wasFired = function(doc) {
+	var div = doc.getElementsByClassName('playerInfo')[0];
+	return typeof div === 'undefined';
+};
+
+/**
  * Get player object.
  * Calls callback(player) where player contains various fields from playerdetails.xml.
  * Seniors only.
@@ -676,6 +686,9 @@ Foxtrick.Pages.Player.getTransferDeadline = function(doc) {
  * @param  {Function} callback function(object)
  */
 Foxtrick.Pages.Player.getPlayer = function(doc, playerid, callback) {
+	if (Foxtrick.Pages.Player.wasFired(doc))
+		return;
+
 	var args = [
 		['file', 'playerdetails'],
 		['version', '2.1'],

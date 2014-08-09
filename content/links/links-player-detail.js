@@ -27,10 +27,10 @@ Foxtrick.modules['LinksPlayerDetail'] = {
 	_run: function(doc) {
 		var module = this;
 		Foxtrick.util.currency.establish(doc, function(rate) {
-			//addExternalLinksToPlayerDetail
-			var playerInfo = doc.getElementsByClassName('playerInfo')[0];
-			if (!playerInfo)
+			if (Foxtrick.Pages.Player.wasFired(doc))
 				return;
+
+			var playerInfo = doc.getElementsByClassName('playerInfo')[0];
 			var infoTable = playerInfo.getElementsByTagName('table')[0];
 			var mainBox = doc.getElementsByClassName('mainBox')[0];
 			var skillTable = mainBox ? mainBox.getElementsByTagName('table')[0] : null;

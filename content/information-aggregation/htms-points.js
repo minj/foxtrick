@@ -41,7 +41,7 @@ Foxtrick.modules['HTMSPoints'] = {
 		};
 
 		if (Foxtrick.isPage(doc, 'playerDetails') && AddToPlayer) {
-			if (!doc.getElementsByClassName('playerInfo').length)
+			if (Foxtrick.Pages.Player.wasFired(doc))
 				return;
 			var skills = Foxtrick.Pages.Player.getSkills(doc);
 			if (skills === null) {

@@ -19,9 +19,10 @@ Foxtrick.modules['FriendlyInterface'] = {
 		if (Foxtrick.isPage(doc, 'playerDetails')
 			&& Foxtrick.Prefs.isModuleOptionEnabled('FriendlyInterface', 'NtLinkForNtPlayer')) {
 			// show national team names as links in national players' page
-			var playerInfo = doc.getElementsByClassName('playerInfo')[0];
-			if (!playerInfo)
+			if (Foxtrick.Pages.Player.wasFired(doc))
 				return;
+
+			var playerInfo = doc.getElementsByClassName('playerInfo')[0];
 			// a player has highlight <=> he is a national player
 			var highlight = playerInfo.getElementsByClassName('highlight')[0];
 			if (highlight) {
