@@ -109,6 +109,9 @@ Foxtrick.modules['LinksYouthPlayerDetail'] = {
 		if (teamid === '')
 			return;
 
+		if (Foxtrick.Pages.YouthPlayer.wasFired(doc))
+			return;
+
 		var main = doc.getElementById('ctl00_ctl00_CPContent_divStartMain');
 		var ownteamid = Foxtrick.util.id.getOwnTeamId();
 		var owncountryid = Foxtrick.util.id.getOwnLeagueId();

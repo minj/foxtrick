@@ -10,6 +10,9 @@ Foxtrick.modules['YouthPromotes'] = {
 	PAGES: ['youthPlayerDetails'],
 
 	run: function(doc) {
+		if (Foxtrick.Pages.YouthPlayer.wasFired(doc))
+			return;
+
 		var daysToPromote = Foxtrick.Pages.YouthPlayer.getDaysToPromote(doc);
 		if (!isNaN(daysToPromote)) {
 			var message = '';
@@ -17,9 +20,8 @@ Foxtrick.modules['YouthPromotes'] = {
 				var htDate = Foxtrick.util.time.getHtDate(doc);
 				var date = Foxtrick.util.time.addDaysToDate(htDate, daysToPromote);
 				date = Foxtrick.util.time.buildDate(date);
-				message = Foxtrick.L10n.getString('YouthPromotes.future', daysToPromote)
-					.replace(/%1/, daysToPromote)
-					.replace(/%2/, date);
+				message = Foxtrick.L10n.getString('YouthPromotes.future', daysToPromote);
+				message = message.replace(/%1/, daysToPromote).replace(/%2/, date);
 			}
 			else { // can be promoted already
 				message = Foxtrick.L10n.getString('YouthPromotes.today');

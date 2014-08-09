@@ -20,6 +20,9 @@ Foxtrick.modules['AddPromotionReminder'] = {
 
 		}
 		else if (isYouthPlayerDetails) {
+			if (Foxtrick.Pages.YouthPlayer.wasFired(doc))
+				return;
+
 			var daysToPromote = Foxtrick.Pages.YouthPlayer.getDaysToPromote(doc);
 			var playerID = Foxtrick.Pages.Player.getId(doc);
 			if (daysToPromote > 0) {

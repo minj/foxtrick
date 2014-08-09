@@ -279,6 +279,8 @@ Foxtrick.modules['CopyYouth'] = {
 
 			// add button
 			if (!doc.getElementById('ft-copy-scout-comment-button')) {
+				if (Foxtrick.Pages.YouthPlayer.wasFired(doc))
+					return;
 				var button = Foxtrick.util.copyButton.add(doc,
 					Foxtrick.L10n.getString('copy.scoutComment'));
 				if (button) {

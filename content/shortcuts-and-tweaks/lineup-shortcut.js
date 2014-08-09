@@ -158,8 +158,8 @@ Foxtrick.modules['LineupShortcut'] = {
 		var mainBody = doc.getElementById('mainBody');
 
 		var matchLink = Foxtrick.nth(function(n) {
-				return n.href.search(/\/Club\/Matches\/Match\.aspx/i) >= 0;
-			}, mainBody.getElementsByTagName('a'));
+			return /\/Club\/Matches\/Match\.aspx/i.test(n.href);
+		}, mainBody.getElementsByTagName('a'));
 		if (!matchLink)
 			return; // hasn't played a match yet
 
@@ -173,7 +173,7 @@ Foxtrick.modules['LineupShortcut'] = {
 		var playerid = Foxtrick.util.id.findYouthPlayerId(mainWrapper);
 		var teamid = Foxtrick.util.id.findYouthTeamId(mainWrapper);
 		for (var i = 0; i < matchTable.rows.length; i++) {
-			var link = matchTable.rows[i].cells[1].getElementsByTagName('a').item(0);
+			var link = matchTable.rows[i].cells[1].getElementsByTagName('a')[0];
 			link.href += '&HighlightPlayerID=' + playerid;
 			var matchid = Foxtrick.util.id.getMatchIdFromUrl(link.href);
 			this._Add_Lineup_Link(doc, matchTable.rows[i], teamid, playerid, matchid, 'youth');

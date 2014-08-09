@@ -67,3 +67,12 @@ Foxtrick.Pages.YouthPlayer.getDaysToPromote = function(doc) {
 	}
 	return days;
 };
+
+/**
+ * Test whether youth player no longer exists
+ * @param  {document} doc
+ * @return {Boolean}
+ */
+Foxtrick.Pages.YouthPlayer.wasFired = function(doc) {
+	return doc.querySelector('#mainBody .error') !== null;
+};
