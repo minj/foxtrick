@@ -177,6 +177,7 @@ Foxtrick.modules['SeriesTransfers'] = {
 			};
 			var hasListedPlayers = false;
 			var oldestFile = Infinity;
+			var idx = 0;
 			Foxtrick.forEach(function(xml, i) {
 				var errorText = errors[i];
 				if (!xml || errorText) {
@@ -218,6 +219,7 @@ Foxtrick.modules['SeriesTransfers'] = {
 						var injuryLevel = num('InjuryLevel');
 
 						var tr = doc.createElement('tr');
+						Foxtrick.addClass(tr, idx++ % 2 ? 'odd' : 'even');
 
 						// country + image
 						var countryTd = doc.createElement('td');
