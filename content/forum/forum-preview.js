@@ -8,8 +8,9 @@
 Foxtrick.modules['ForumPreview'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.FORUM,
 	PAGES: [
-		'forumWritePost', 'messageWritePost', 'guestbook', 'announcements', 'newsLetter',
-		'mailNewsLetter', 'forumSettings', 'forumModWritePost'
+		'forumWritePost', 'messageWritePost', 'guestbook', 'announcements',
+		'newsLetter', 'mailNewsLetter', 'ntNewsLetter',
+		'forumSettings', 'forumModWritePost'
 	],
 	CSS: Foxtrick.InternalPath + 'resources/css/forum-preview.css',
 
@@ -349,7 +350,7 @@ Foxtrick.modules['ForumPreview'] = {
 		while (div = divs[i++])
 			if (div.className == 'HTMLToolbar')
 				break;
-		if (Foxtrick.isPage(doc, 'newsLetter'))
+		if (Foxtrick.isPage(doc, 'newsLetter') || Foxtrick.isPage(doc, 'ntNewsLetter'))
 			div = doc.getElementById('ctl00_ctl00_CPContent_CPMain_txtMessage');
 		if (Foxtrick.isPage(doc, 'mailNewsLetter'))
 			div = doc.getElementById('ctl00_ctl00_CPContent_CPMain_tbNewsBody');

@@ -132,6 +132,7 @@ Foxtrick.ht_pages = {
 	'federation'                : '/Community/Federations/Federation.aspx',
 	'newsLetter'                : '/Community/Federations/SendMessage.aspx',
 	'mailNewsLetter'            : '/MyHattrick/Inbox/(Default.aspx?|?)actionType=newsLetter',
+	'ntNewsLetter'              : '/Club/NationalTeam/NTNotice.aspx',
 	'national'                  : '/Club/NationalTeam/NationalTeam.aspx',
 	'guestbook'                 : '/Club/Manager/Guestbook.aspx',
 	'announcements'             : '/Club/Announcements/New.aspx|' +

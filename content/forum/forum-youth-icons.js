@@ -9,7 +9,7 @@ Foxtrick.modules['ForumYouthIcons'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.FORUM,
 	PAGES: [
 		'forumWritePost', 'messageWritePost', 'guestbook',
-		'announcements', 'forumSettings', 'newsLetter', 'mailNewsLetter',
+		'announcements', 'forumSettings', 'newsLetter', 'mailNewsLetter', 'ntNewsLetter',
 		'forumModWritePost', 'ticket'
 	],
 	OPTIONS: [
@@ -45,6 +45,8 @@ Foxtrick.modules['ForumYouthIcons'] = {
 			{ page: 'newsLetter', 		textarea: 'ctl00_ctl00_CPContent_CPMain_txtMessage', 					counterfield: 'ctl00_ctl00_CPContent_CPMain_txtCharsLeft', 				length: 1000, 	add_quote: false },
 			// newsletter
 			{ page: 'mailNewsLetter',	textarea: 'ctl00_ctl00_CPContent_CPMain_tbNewsBody', 					counterfield: 'ctl00_ctl00_CPContent_CPMain_txtCharsLeft', 				length: 1000, 	add_quote: false },
+			// newsletter
+			{ page: 'ntNewsLetter',	textarea: 'ctl00_ctl00_CPContent_CPMain_txtMessage', 					counterfield: 'ctl00_ctl00_CPContent_CPMain_txtCharsLeft', 				length: 1000, 	add_quote: false },
 			// GB
 			{ page: 'guestbook',			textarea: 'ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody', 	counterfield: 'ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtRemLen',	length: 300, 	add_quote: false },
 			// PA
@@ -157,21 +159,25 @@ Foxtrick.modules['ForumYouthIcons'] = {
 		var enlarge = Foxtrick.Prefs.isModuleOptionEnabled('ForumYouthIcons', 'enlarge_input');
 
 		var div = doc.getElementById('ft_youth_icons');
-		if (div != null) return;
+		if (div)
+			return;
 		var textarea = doc.getElementsByTagName('textarea')[0];
-		if (textarea == null) return;
+		if (!textarea)
+			return;
 
-		if (Foxtrick.isPage(doc, 'newsLetter')
-			|| Foxtrick.isPage(doc, 'mailNewsLetter')) {
+		if (Foxtrick.isPage(doc, 'newsLetter') ||
+		    Foxtrick.isPage(doc, 'mailNewsLetter') ||
+		    Foxtrick.isPage(doc, 'ntNewsLetter')) {
 
-			if (Foxtrick.isPage(doc, 'newsLetter'))
-				var textbox = 'ctl00_ctl00_CPContent_CPMain_txtMessage';
+			var textbox;
+			if (Foxtrick.isPage(doc, 'newsLetter') || Foxtrick.isPage(doc, 'ntNewsLetter'))
+				textbox = 'ctl00_ctl00_CPContent_CPMain_txtMessage';
 			if (Foxtrick.isPage(doc, 'mailNewsLetter'))
-				var textbox = 'ctl00_ctl00_CPContent_CPMain_tbNewsBody';
+				textbox = 'ctl00_ctl00_CPContent_CPMain_tbNewsBody';
 
 			var anchor = doc.getElementById(textbox);
 
-			if (Foxtrick.isPage(doc, 'newsLetter')) {
+			if (Foxtrick.isPage(doc, 'newsLetter') || Foxtrick.isPage(doc, 'ntNewsLetter')) {
 				var count = 'ctl00_ctl00_CPContent_CPMain_txtCharsLeft';
 				var chars = 1000;
 				if (enlarge) {
