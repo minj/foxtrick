@@ -22,6 +22,11 @@ Foxtrick.Pages.Match.getTeams = function(doc) {
 	var teams = [], container;
 	if (Foxtrick.isPage(doc, 'matchesLive')) {
 		container = doc.querySelector('.rtsSelected .liveTabText');
+		if (!container) {
+			// no match open
+			return [null, null];
+		}
+
 		Foxtrick.forEach(function(child) {
 			if (child.textContent.trim() === '')
 				// skip empty
