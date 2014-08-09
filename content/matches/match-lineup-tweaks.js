@@ -288,7 +288,10 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			}
 		};
 
-		var addSpecialtiesByTeamId = function(teamid, players) {
+		var addSpecialtiesByTeamId = function(teamId, players) {
+			if (teamId === null)
+				return;
+
 			Foxtrick.Pages.Players.getPlayerList(doc,
 			  function(playerInfo) {
 				if (!playerInfo || !playerInfo.length)
@@ -325,7 +328,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 						Foxtrick.Pages.Player.getPlayer(doc, missing[j].id, makeCallback(j));
 					}
 				}
-			}, { teamId: teamid, currentSquad: true, isYouth: isYouth });
+			}, { teamId: teamId, currentSquad: true, isYouth: isYouth });
 		};
 
 		addSpecialtiesByTeamId(homeTeamId, homePlayerLinks);
@@ -359,6 +362,9 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		var alt = Foxtrick.L10n.getString('MatchLineupTweaks.missing');
 
 		var addMissingByTeamId = function(teamId, players) {
+			if (teamId === null)
+				return;
+
 			Foxtrick.Pages.Players.getPlayerList(doc,
 			  function(playerInfo) {
 				if (!playerInfo || !playerInfo.length)
@@ -402,7 +408,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		var isYouth = Foxtrick.Pages.Match.isYouth(doc);
 		var param = (isYouth ? 'youth' : '') + 'playerid';
 
-		var ownteamid = isYouth ? Foxtrick.util.id.getOwnYouthTeamId() :
+		var ownTeamId = isYouth ? Foxtrick.util.id.getOwnYouthTeamId() :
 			Foxtrick.util.id.getOwnTeamId();
 
 		var homeQuery =
@@ -514,14 +520,17 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			}
 		};
 
-		var addFacesByTeamId = function(teamid, players) {
+		var addFacesByTeamId = function(teamId, players) {
+			if (teamId === null)
+				return;
+
 			var avartarArgs = [
 				['file', (isYouth ? 'youth' : '') + 'avatars'],
 				['version', '1.1'],
-				[(isYouth ? 'youthT' : 't') + 'eamId', teamid],
+				[(isYouth ? 'youthT' : 't') + 'eamId', teamId],
 			];
 			// youthavatars only works for own team
-			if (isYouth && teamid != ownteamid)
+			if (isYouth && teamId != ownTeamId)
 				return;
 			Foxtrick.util.api.retrieve(doc, avartarArgs, { cache_lifetime: 'session' },
 			  function(xml, errorText) {

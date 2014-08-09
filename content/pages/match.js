@@ -14,22 +14,72 @@ if (!Foxtrick.Pages)
 Foxtrick.Pages.Match = {};
 
 /**
+ * Get team links
+ * @param  {document} doc
+ * @return {array}
+ */
+Foxtrick.Pages.Match.getTeams = function(doc) {
+	var teams = [], container;
+	if (Foxtrick.isPage(doc, 'matchesLive')) {
+		container = doc.querySelector('.rtsSelected .liveTabText');
+		Foxtrick.forEach(function(child) {
+			if (child.textContent.trim() === '')
+				// skip empty
+				return;
+			var team;
+			if (child.nodeType == Foxtrick.NodeTypes.TEXT_NODE) {
+				var name = child.textContent.replace(/\s+-\s+$/, '').trim();
+				if (name === '')
+					// hyphen for non-street teams
+					return;
+				// street team
+				team = doc.createTextNode(name);
+			}
+			else if (child.nodeName.toLowerCase() !== 'a')
+				// skip spans etc
+				return;
+			else
+				team = child;
+
+			teams.push(team);
+		}, container.childNodes);
+	}
+	else {
+		container = doc.querySelector('#mainBody h1');
+		Foxtrick.forEach(function(child) {
+			if (child.textContent.trim() === '')
+				// skip empty
+				return;
+			var team;
+			if (child.nodeType == Foxtrick.NodeTypes.TEXT_NODE) {
+				var name = child.textContent.replace(/\s+\d+\s+-\s+\d+\s+$/, '').trim();
+				if (name === '')
+					// hyphen for non-street teams
+					return;
+				// street team
+				team = doc.createTextNode(name);
+			}
+			else if (child.nodeName.toLowerCase() !== 'a')
+				// team popup
+				team = child.querySelector('a');
+			else
+				team = child;
+
+			teams.push(team);
+		}, container.childNodes);
+	}
+	return teams;
+};
+
+/**
  * Get home team link
  * @param  {document}          doc
  * @return {HTMLAnchorElement}
  */
 Foxtrick.Pages.Match.getHomeTeam = function(doc) {
 	var homeIdx = Foxtrick.util.layout.isRtl(doc) ? 1 : 0;
-	var link;
-	if (Foxtrick.isPage(doc, 'matchesLive')) {
-		link = doc.querySelectorAll('.liveTabText a')[homeIdx];
-	}
-	else {
-		var body = doc.getElementById('mainBody');
-		var teams = body.querySelectorAll('h1 > a, h1 > span > a');
-		link = teams[homeIdx];
-	}
-	return link;
+	var teams = this.getTeams(doc);
+	return teams[homeIdx];
 };
 
 /**
@@ -39,16 +89,8 @@ Foxtrick.Pages.Match.getHomeTeam = function(doc) {
  */
 Foxtrick.Pages.Match.getAwayTeam = function(doc) {
 	var awayIdx = Foxtrick.util.layout.isRtl(doc) ? 0 : 1;
-	var link;
-	if (Foxtrick.isPage(doc, 'matchesLive')) {
-		link = doc.querySelectorAll('.liveTabText a')[awayIdx];
-	}
-	else {
-		var body = doc.getElementById('mainBody');
-		var teams = body.querySelectorAll('h1 > a, h1 > span > a');
-		link = teams[awayIdx];
-	}
-	return link;
+	var teams = this.getTeams(doc);
+	return teams[awayIdx];
 };
 
 /**
@@ -58,7 +100,7 @@ Foxtrick.Pages.Match.getAwayTeam = function(doc) {
  */
 Foxtrick.Pages.Match.getHomeTeamId = function(doc) {
 	var team = this.getHomeTeam(doc);
-	return team ? Foxtrick.util.id.getTeamIdFromUrl(team.href) : null;
+	return team && team.href ? Foxtrick.util.id.getTeamIdFromUrl(team.href) : null;
 };
 
 /**
@@ -68,7 +110,7 @@ Foxtrick.Pages.Match.getHomeTeamId = function(doc) {
  */
 Foxtrick.Pages.Match.getAwayTeamId = function(doc) {
 	var team = this.getAwayTeam(doc);
-	return team ? Foxtrick.util.id.getTeamIdFromUrl(team.href) : null;
+	return team && team.href ? Foxtrick.util.id.getTeamIdFromUrl(team.href) : null;
 };
 
 /**
