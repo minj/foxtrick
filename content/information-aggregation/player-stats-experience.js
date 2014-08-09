@@ -421,9 +421,6 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 			cell.textContent = xp['max'];
 			row.appendChild(cell);
 
-			if(hidden)
-				Foxtrick.addClass(row, 'hidden');
-
 			tbody.appendChild(row);
 		};
 
