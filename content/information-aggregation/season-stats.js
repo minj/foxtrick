@@ -130,6 +130,7 @@ Foxtrick.modules['SeasonStats'] = {
 			else if (img.className == 'matchMasters')
 				type = 3;
 			var islost = span.className == 'lost';
+			var iswon = span.className == 'won';
 			var isdraw = span.className == 'draw';
 			var goals = b.textContent.match(/\d+/g);
 			var goals0 = parseInt(goals[0], 10);
