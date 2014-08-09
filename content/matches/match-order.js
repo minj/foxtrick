@@ -156,7 +156,7 @@ Foxtrick.modules['MatchOrderInterface'] = {
 			var players = {};
 			for (var i = 0, p, skill; p = playerList[i]; ++i) {
 				// formula by HO
-				skill = p.experience * 1.5 + p.setPiecesSkill * 0.7 + p.scoring * 0.3;
+				skill = p.experience * 1.5 + p.setPiecesSkill * 0.7 + p.scorerSkill * 0.3;
 				skill = (p.specialityNumber == 1) ? skill * 1.1 : skill;
 				players[p.id] = skill;
 			}
