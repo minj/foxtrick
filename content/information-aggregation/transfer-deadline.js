@@ -37,21 +37,23 @@ Foxtrick.modules['TransferDeadline'] = {
 			node.getElementsByClassName('date')[0];
 		if (!dateNode)
 			return;
+		var deadline;
 		if (dateNode.hasAttribute('x-ht-date')) {
 			// node displays local time instead of HT time as modified
 			// in LocalTime, HT time is saved in attribute x-ht-date
-			var deadline = new Date();
+			deadline = new Date();
 			deadline.setTime(dateNode.getAttribute('x-ht-date'));
 		}
 		else
-			var deadline = Foxtrick.util.time.getDateFromText(dateNode.textContent);
+			deadline = Foxtrick.util.time.getDateFromText(dateNode.textContent);
+
 		if (deadline) {
 			var countdown = Math.floor((deadline.getTime() - htTime) / 1000);
 			if (!isNaN(countdown) && countdown >= 0) {
 				var countdownNode = doc.createElement('span');
 				countdownNode.className = 'smallText ft-deadline nowrap';
-				countdownNode.textContent = '(' + Foxtrick.util.time.timeDifferenceToElement(doc,
-				                              countdown).textContent + ')';
+				countdownNode.textContent = '(' +
+					Foxtrick.util.time.timeDifferenceToElement(doc, countdown).textContent + ')';
 				Foxtrick.makeFeaturedElement(countdownNode, this);
 				node.appendChild(countdownNode);
 			}
@@ -70,9 +72,9 @@ Foxtrick.modules['TransferDeadline'] = {
 		var htDate = Foxtrick.util.time.getHtDate(doc);
 		var htTime = htDate.getTime();
 		var i = 0;
+		var idPrefix = 'ctl00_ctl00_CPContent_CPMain_lstBids_ctrl';
 		var element;
-		while (element = doc.getElementById('ctl00_ctl00_CPContent_CPMain_lstBids_ctrl' + (i++) +
-		       '_jsonDeadLine'))
+		while ((element = doc.getElementById(idPrefix + (i++) + '_jsonDeadLine')))
 			this.processNode(element, htTime);
 	},
 
@@ -82,10 +84,11 @@ Foxtrick.modules['TransferDeadline'] = {
 
 		var htDate = Foxtrick.util.time.getHtDate(doc);
 		var htTime = htDate.getTime();
+		var selltime_elm;
 		try {
 			var div = doc.getElementById('ctl00_ctl00_CPContent_CPMain_updBid');
 			var alert = div.getElementsByClassName('alert')[0];
-			var selltime_elm = alert.getElementsByTagName('p')[0];
+			selltime_elm = alert.getElementsByTagName('p')[0];
 		}
 		catch (e) {
 			// these may not be present

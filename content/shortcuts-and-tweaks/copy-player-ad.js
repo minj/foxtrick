@@ -18,8 +18,8 @@ Foxtrick.modules['CopyPlayerAd'] = {
 			var links = main.getElementsByTagName('a');
 			var empty = true;
 			for (var i = 0; i < links.length; i++) {
-				if (links[i].href.match(/Club\/\?TeamID/i)
-					|| links[i].href.match(/Youth\/(Default\.aspx)?\?YouthTeamID=/i)) {
+				if (/Club\/\?TeamID/i.test(links[i].href) ||
+				    /Youth\/(Default\.aspx)?\?YouthTeamID=/i.test(links[i].href)) {
 					empty = false;
 					break;
 				}
@@ -32,8 +32,7 @@ Foxtrick.modules['CopyPlayerAd'] = {
 			return;
 		}
 
-		var button = Foxtrick.util.copyButton.add(doc,
-			Foxtrick.L10n.getString('copy.playerad'));
+		var button = Foxtrick.util.copyButton.add(doc, Foxtrick.L10n.getString('copy.playerad'));
 		if (button) {
 			Foxtrick.addClass(button, 'ft-copy-player-ad');
 			Foxtrick.onClick(button, this.createPlayerAd);
@@ -54,19 +53,19 @@ Foxtrick.modules['CopyPlayerAd'] = {
 				ad += ' [youthplayerid=' + Foxtrick.Pages.Player.getId(doc) + ']\n';
 			}
 
-			//nationality, age and next birthday
+			// nationality, age and next birthday
 			var byLine = doc.getElementsByClassName('byline')[0];
 			// add new lines before <p> so that textContent would have breaks
 			// at <p>s.
 			var byLinePars = byLine.getElementsByTagName('p');
-			for (var i = 0; i < byLinePars.length; ++i) {
-				byLinePars[i].parentNode.insertBefore(doc.createTextNode('\n'), byLinePars[i]);
-			}
+			Foxtrick.forEach(function(p) {
+				p.parentNode.insertBefore(doc.createTextNode('\n'), p);
+			}, byLinePars);
 			ad += byLine.textContent.trim() + '\n\n';
 
-			if (Foxtrick.Pages.Player.getNationalityName(doc) !== null) {
-				ad += Foxtrick.L10n.getString('Nationality') + ': '
-					+ Foxtrick.Pages.Player.getNationalityName(doc) + '\n\n';
+			var nationality = Foxtrick.Pages.Player.getNationalityName(doc);
+			if (nationality) {
+				ad += Foxtrick.L10n.getString('Nationality') + ': ' + nationality + '\n\n';
 			}
 
 			var playerInfo = doc.getElementsByClassName('playerInfo')[0];
@@ -76,27 +75,27 @@ Foxtrick.modules['CopyPlayerAd'] = {
 			// form, stamina, experience, leadership, personality (always there)
 			// for youth players:
 			// speciality (only when he has a speciality)
+			var basicInfo;
 			if (isSenior) {
 				// add new lines before <br> so that textContent would have breaks
 				// at <br>s.
-				var basicInfo = playerInfo.cloneNode(true);
+				basicInfo = playerInfo.cloneNode(true);
 				basicInfo.removeChild(basicInfo.getElementsByTagName('table')[0]);
 				var basicInfoBreaks = basicInfo.getElementsByTagName('br');
-				for (var i = 0; i < basicInfoBreaks.length; ++i) {
-					basicInfoBreaks[i].parentNode.insertBefore(doc.createTextNode('\n'),
-					                                           basicInfoBreaks[i]);
-				}
+				Foxtrick.forEach(function(br) {
+					br.parentNode.insertBefore(doc.createTextNode('\n'), br);
+				}, basicInfoBreaks);
 				ad += basicInfo.textContent.trim() + '\n\n';
 			}
 			else {
-				// sometime ista string tag sometimes a paragraph seemingly
-				var basicInfo = playerInfo.getElementsByTagName('p')[0] ||
+				// sometime it's a string tag sometimes a paragraph seemingly
+				basicInfo = playerInfo.getElementsByTagName('p')[0] ||
 					playerInfo.getElementsByTagName('strong')[0];
 				if (basicInfo) {
 					var speciality = basicInfo.textContent.trim();
 					// we will bold the speciality part, right after
 					// colon plus space
-					var colonRe = new RegExp(':\\s*');
+					var colonRe = /:\s*/;
 					var colonIndex = speciality.search(colonRe);
 					var colonLength = speciality.match(colonRe)[0].length;
 					ad += speciality.substr(0, colonIndex + colonLength) + '[b]' +
@@ -117,9 +116,10 @@ Foxtrick.modules['CopyPlayerAd'] = {
 						popupLinks[j].textContent = '';
 					}
 					// bolding for speciality
-					ad += (i == 5 ? '[b]' : '') +
-						cellCopy.textContent.replace(/\n/g, '').replace(/\s+/g, ' ').trim() +
-						(i == 5 ? '[/b]' : '') + '\n';
+					var part = cellCopy.textContent.replace(/\n/g, '').replace(/\s+/g, ' ').trim();
+					if (i === 5)
+						part = '[b]' + part + '[/b]';
+					ad += part + '\n';
 				}
 				ad += '\n';
 			}
@@ -136,21 +136,19 @@ Foxtrick.modules['CopyPlayerAd'] = {
 
 			// skills
 			var skills = Foxtrick.Pages.Player.getSkillsWithText(doc);
-			var i;
 			if (skills !== null) {
+				var skillArray = [];
 				if (isSenior) {
-					var skillArray = [];
-					for (i in skills.names) {
-						skillArray.push(
-							{
-								name: skills.names[i],
-								value: skills.values[i],
-								text: skills.texts[i]
-							});
+					for (var i in skills.names) {
+						skillArray.push({
+							name: skills.names[i],
+							value: skills.values[i],
+							text: skills.texts[i]
+						});
 					}
-					if (Foxtrick.Prefs.isModuleOptionEnabled('CopyPlayerAd', 'Sorted')
-						|| doc.getElementsByClassName('percentImage').length > 0
-						|| doc.getElementsByClassName('ft-percentImage').length > 0) {
+					if (Foxtrick.Prefs.isModuleOptionEnabled('CopyPlayerAd', 'Sorted') ||
+					    doc.getElementsByClassName('percentImage').length > 0 ||
+					    doc.getElementsByClassName('ft-percentImage').length > 0) {
 						// if skills are sorted or skill bars are enabled,
 						// the skills are arranged in a table with one cell
 						// in each row
@@ -162,23 +160,24 @@ Foxtrick.modules['CopyPlayerAd'] = {
 							skillArray.sort(skillSort);
 						}
 
-						if (!Foxtrick.Prefs.isModuleOptionEnabled('CopyPlayerAd', 'NonTableStyle')) {
+						if (!Foxtrick.Prefs.isModuleOptionEnabled('CopyPlayerAd',
+						                                          'NonTableStyle')) {
 							ad += '[table]\n';
 							for (var i = 0; i < skillArray.length; ++i) {
-								ad += '[tr]'
-									+ '[th]' + skillArray[i].name + '[/th]'
-									+ '[td]' +
-									formatSkill(skillArray[i].text, skillArray[i].value)
-									+ '[/td]'
-									+ '[/tr]\n';
+								ad += '[tr]' +
+									'[th]' + skillArray[i].name + '[/th]' +
+									'[td]' +
+									formatSkill(skillArray[i].text, skillArray[i].value) +
+									'[/td]' +
+									'[/tr]\n';
 							}
 							ad += '[/table]';
 						}
 						else {
 							ad += '\n';
 							for (var i = 0; i < skillArray.length; ++i) {
-								ad += skillArray[i].name + ': '
-									+ formatSkill(skillArray[i].text, skillArray[i].value) + '\n';
+								ad += skillArray[i].name + ': ' +
+									formatSkill(skillArray[i].text, skillArray[i].value) + '\n';
 							}
 							ad += '\n';
 						}
@@ -186,32 +185,32 @@ Foxtrick.modules['CopyPlayerAd'] = {
 					else {
 						// otherwise, they are arranged in a table with two
 						// cells in each row
-						if (!Foxtrick.Prefs.isModuleOptionEnabled('CopyPlayerAd', 'NonTableStyle')) {
+						if (!Foxtrick.Prefs.isModuleOptionEnabled('CopyPlayerAd',
+						                                          'NonTableStyle')) {
 							ad += '[table]\n';
-							var index = 0;
 							for (var skill = 0; skill < skillArray.length; ++skill) {
-								if (index % 2 == 0)
+								if (skill % 2 === 0)
 									ad += '[tr]';
+
 								ad += '[th]' + skillArray[skill].name + '[/th]';
-								ad += '[td]' + formatSkill(skillArray[skill].text,
-								                           skillArray[skill].value) + '[/td]';
-								if (index % 2 == 1)
+								ad += '[td]' +
+									formatSkill(skillArray[skill].text, skillArray[skill].value) +
+									'[/td]';
+
+								if (skill % 2 == 1)
 									ad += '[/tr]\n';
-								++index;
 							}
 							ad += '[/table]';
 						}
 						else {
 							ad += '\n';
-							var index = 0;
-							for (var skill = 0; skill < skillArray.length; ++skill) {
+							for (var index = 0; index < skillArray.length; ++index) {
 								if (index % 2 == 1)
 									ad += ' ';
-								ad += skillArray[skill].name + ': '
-									+ formatSkill(skillArray[skill].text, skillArray[skill].value);
+								ad += skillArray[index].name + ': ' +
+									formatSkill(skillArray[index].text, skillArray[index].value);
 								if (index % 2 == 1)
 									ad += '\n';
-								++index;
 							}
 							ad += '\n';
 						}
@@ -220,20 +219,20 @@ Foxtrick.modules['CopyPlayerAd'] = {
 				else {
 					// for youth players, always in a table with one cell
 					// in each row
-					var skillArray = [];
-					for (i in skills.names) {
-						skillArray.push(
-							{
-								name: skills.names[i],
-								current: { value: skills.values[i].current,
-									text: skills.texts[i].current },
-								max: { value: skills.values[i].max, text: skills.texts[i].max },
-								maxed: skills.values[i].maxed
-							});
+					for (var i in skills.names) {
+						skillArray.push({
+							name: skills.names[i],
+							current: {
+								value: skills.values[i].current,
+								text: skills.texts[i].current
+							},
+							max: { value: skills.values[i].max, text: skills.texts[i].max },
+							maxed: skills.values[i].maxed
+						});
 					}
 
 					if (Foxtrick.Prefs.isModuleOptionEnabled('CopyPlayerAd', 'Sorted')) {
-						var skillSort = function(a, b) {
+						var sorter = function(a, b) {
 							if (a.current.value !== b.current.value) {
 								return b.current.value - a.current.value;
 							}
@@ -245,34 +244,29 @@ Foxtrick.modules['CopyPlayerAd'] = {
 						// sort skills by current level, maximum level,
 						// and whether the skill has reached the potential,
 						// descending
-						skillArray.sort(skillSort);
+						skillArray.sort(sorter);
 					}
 					if (!Foxtrick.Prefs.isModuleOptionEnabled('CopyPlayerAd', 'NonTableStyle')) {
 						ad += '[table]\n';
 						for (var i = 0; i < skillArray.length; ++i) {
-							ad += '[tr]'
-								+ '[th]' + skillArray[i].name + '[/th]'
-								+ '[td]'
-								+ (skillArray[i].maxed ? '[b]' : '')
-								+ skillArray[i].current.text
-								+ ' / '
-								+ skillArray[i].max.text
-								+ (skillArray[i].maxed ? '[/b]' : '')
-								+ '[/td]'
-								+ '[/tr]\n';
+							ad += '[tr]' +
+								'[th]' + skillArray[i].name + '[/th]' +
+								'[td]' + (skillArray[i].maxed ? '[b]' : '') +
+								skillArray[i].current.text + ' / ' + skillArray[i].max.text +
+								(skillArray[i].maxed ? '[/b]' : '') +
+								'[/td]' +
+								'[/tr]\n';
 						}
 						ad += '[/table]';
 					}
 					else {
 						ad += '\n';
 						for (var i = 0; i < skillArray.length; ++i) {
-							ad += skillArray[i].name + ': '
-								+ (skillArray[i].maxed ? '[b]' : '')
-								+ skillArray[i].current.text
-								+ ' / '
-								+ skillArray[i].max.text
-								+ (skillArray[i].maxed ? '[/b]' : '')
-								+ '\n';
+							ad += skillArray[i].name + ': ' +
+								(skillArray[i].maxed ? '[b]' : '') +
+								skillArray[i].current.text + ' / ' + skillArray[i].max.text +
+								(skillArray[i].maxed ? '[/b]' : '') +
+								'\n';
 						}
 						ad += '\n';
 					}
@@ -285,12 +279,12 @@ Foxtrick.modules['CopyPlayerAd'] = {
 				ad += '\n';
 				var paragraphs = bidDiv.getElementsByTagName('p');
 				for (var i = 0; i < paragraphs.length; i++) {
-					var cellCopy = paragraphs[i].cloneNode(true);
-					var popupLinks = cellCopy.getElementsByTagName('a');
-					for (var j = 1; j < popupLinks.length; j++) {
-						popupLinks[j].textContent = '';
+					var parCopy = paragraphs[i].cloneNode(true);
+					var links = parCopy.getElementsByTagName('a');
+					for (var j = 1; j < links.length; j++) {
+						links[j].textContent = '';
 					}
-					ad += cellCopy.textContent.trim();
+					ad += parCopy.textContent.trim();
 					ad += '\n';
 				}
 			}

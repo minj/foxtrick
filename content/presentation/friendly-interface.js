@@ -16,8 +16,9 @@ Foxtrick.modules['FriendlyInterface'] = {
 	],
 
 	run: function(doc) {
-		if (Foxtrick.isPage(doc, 'playerDetails')
-			&& Foxtrick.Prefs.isModuleOptionEnabled('FriendlyInterface', 'NtLinkForNtPlayer')) {
+		var module = this;
+		if (Foxtrick.isPage(doc, 'playerDetails') &&
+		    Foxtrick.Prefs.isModuleOptionEnabled('FriendlyInterface', 'NtLinkForNtPlayer')) {
 			// show national team names as links in national players' page
 			if (Foxtrick.Pages.Player.wasFired(doc))
 				return;
@@ -35,13 +36,12 @@ Foxtrick.modules['FriendlyInterface'] = {
 				var u20Id = league.U20TeamId;
 				var replace = function(team, id) {
 					highlight.textContent = text.substr(0, text.indexOf(team));
-					var link = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.FriendlyInterface,
-					                                          'a');
+					var link = Foxtrick.createFeaturedElement(doc, module, 'a');
 					link.textContent = team;
 					link.href = '/Club/NationalTeam/NationalTeam.aspx?teamId=' + id;
 					highlight.appendChild(link);
-					highlight.appendChild(doc.createTextNode(text.substr(text.indexOf(team) +
-					                                                     team.length)));
+					var suffix = doc.createTextNode(text.substr(text.indexOf(team) + team.length));
+					highlight.appendChild(suffix);
 				};
 				// find U20 first because generally NT name is a substring of U20 name
 				if (text.indexOf(u20Name) > -1) // u20 player
@@ -50,8 +50,8 @@ Foxtrick.modules['FriendlyInterface'] = {
 					replace(ntName, ntId);
 			}
 		}
-		else if (Foxtrick.isPage(doc, 'guestbook')
-			&& Foxtrick.Prefs.isModuleOptionEnabled('FriendlyInterface', 'HideAnswerTo')) {
+		else if (Foxtrick.isPage(doc, 'guestbook') &&
+		         Foxtrick.Prefs.isModuleOptionEnabled('FriendlyInterface', 'HideAnswerTo')) {
 			var links = doc.getElementById('mainBody').getElementsByTagName('a');
 			var answerToLinks = Foxtrick.filter(function(n) {
 				return (n.href.search(/Guestbook\.aspx/i) >= 0);
@@ -61,9 +61,9 @@ Foxtrick.modules['FriendlyInterface'] = {
 				Foxtrick.addClass(n.parentNode, 'ft-hiddenGBLinkContainer');
 			}, answerToLinks);
 		}
-		else if (Foxtrick.isPage(doc, 'dashboard')
-			&& Foxtrick.Prefs.isModuleOptionEnabled('FriendlyInterface',
-			                                       'HideSpeechlessSecretary')) {
+		else if (Foxtrick.isPage(doc, 'dashboard') &&
+		         Foxtrick.Prefs.isModuleOptionEnabled('FriendlyInterface',
+		                                              'HideSpeechlessSecretary')) {
 			if (doc.getElementsByClassName('pmNextMessageCounter').length)
 				return; // there are unread messages
 			// nothing new, container should be marked as hidden

@@ -1,7 +1,8 @@
 'use strict';
 /*
  * loyalty-display.js
- * Extends the skill bar representation with a version that reflects the Homegrown/loyalty bonus
+ * Extends the skill bar representation with a version
+ * that reflects the Homegrown/loyalty bonus
  * @author CatzHoek
  */
 
@@ -18,16 +19,17 @@ Foxtrick.modules['LoyaltyDisplay'] = {
 			var str = (skillUp == 1.5) ? str_mcb : str_lo;
 			var count = 0;
 			var bars = node.getElementsByTagName('img');
+			var className = 'ft-percentImage ft-percentImage-loyalty-' + appendix;
 			while (count < bars.length && count < 100) {
 				if (bars[count].parentNode.className != 'ratingInnerBox') {
 					if (Foxtrick.hasClass(bars[count], 'percentImage')) {
-						if (bars[count].getAttribute('title'))
-							bars[count].setAttribute('title', bars[count].getAttribute('title')
-							                         .match(/\S+/)[0] + '\u00a0+' +
-							                         String(skillUp).substring(0, 4) + '\u00a0' +
-							                         str);
-						Foxtrick.addClass(bars[count], 'ft-percentImage ft-percentImage-loyalty-' +
-						                  appendix);
+						var title = bars[count].title;
+						if (title) {
+							title = title.match(/\S+/)[0] + '\u00a0+' +
+								skillUp.toString().substring(0, 4) + '\u00a0' + str;
+							bars[count].title = title;
+						}
+						Foxtrick.addClass(bars[count], className);
 						Foxtrick.removeClass(bars[count], 'percentImage');
 					}
 				}
@@ -39,12 +41,12 @@ Foxtrick.modules['LoyaltyDisplay'] = {
 
 		var mcb = player.motherClubBonus;
 
-		var skillUp = Foxtrick.Predict.loyaltyBonus(loyalty, mcb)
+		var skillUp = Foxtrick.Predict.loyaltyBonus(loyalty, mcb);
 
 		var appendix;
 		//find correct style for this loyalty level
-		if (skillUp == 1.5) 
-			appendix = 'homegrown'
+		if (skillUp == 1.5)
+			appendix = 'homegrown';
 		else if (skillUp == 1)
 			appendix = '1000';
 		else if (skillUp >= 0.875)

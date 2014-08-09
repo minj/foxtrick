@@ -19,8 +19,8 @@ Foxtrick.modules['LargeFlags'] = {
 		var flag = doc.getElementsByClassName('flag')[0];
 		var img = flag.getElementsByTagName('img')[0];
 		var oldStyle = img.style.background;
-		var newStyle = 'transparent url(' + Foxtrick.ResourcePath + 'resources/img/largeflags.png)'
-			+ ' no-repeat scroll';
+		var newStyle = 'transparent url(' + Foxtrick.ResourcePath +
+			'resources/img/largeflags.png) no-repeat scroll';
 		var pos = oldStyle.match(/(\d+)px/)[1];
 		var newPos = -parseInt(pos, 10) / 20 * 105;
 		newStyle = newStyle + ' ' + newPos + 'px 0pt';

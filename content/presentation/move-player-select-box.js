@@ -12,9 +12,12 @@ Foxtrick.modules['MovePlayerSelectbox'] = {
 
 	run: function(doc) {
 		var select = doc.getElementById('ctl00_ctl00_CPContent_CPSidebar_ddlSquad');
-		if (!select) return;
+		if (!select)
+			return;
+
 		var box = select.parentNode;
-		if (box.className != 'sidebarBox') box = box.parentNode;
+		if (box.className != 'sidebarBox')
+			box = box.parentNode;
 		box = box.parentNode.removeChild(box);
 		var sidebar = doc.getElementById('ctl00_ctl00_CPContent_CPSidebar_pnlRight');
 		sidebar.insertBefore(box, sidebar.firstChild);

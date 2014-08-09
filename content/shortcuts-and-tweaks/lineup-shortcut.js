@@ -49,17 +49,19 @@ Foxtrick.modules['LineupShortcut'] = {
 
 		// get leagueId for ntName and u20Name
 		var leagueId = Foxtrick.Pages.Player.getNationalityId(doc);
+		var league, ntName, ntId, u20Name, u20Id;
 		if (leagueId) {
-			var league = Foxtrick.XMLData.League[leagueId];
-			var ntName = league.LeagueName;
-			var ntId = league.NationalTeamId;
-			var u20Name = 'U-20 ' + ntName;
-			var u20Id = league.U20TeamId;
+			league = Foxtrick.XMLData.League[leagueId];
+			ntName = league.LeagueName;
+			ntId = league.NationalTeamId;
+			u20Name = 'U-20 ' + ntName;
+			u20Id = league.U20TeamId;
 		}
 
 		var hasTransfer = false;
 		for (var i = 0; i < matchTable.rows.length; i++) {
-			var link = matchTable.rows[i].cells[1].getElementsByTagName('a')[0];
+			var row = matchTable.rows[i];
+			var link = row.cells[1].getElementsByTagName('a')[0];
 			var teamId = Foxtrick.util.id.getTeamIdFromUrl(link.href);
 			var matchId = Foxtrick.util.id.getMatchIdFromUrl(link.href);
 			link.href += '&HighlightPlayerID=' + playerId;
@@ -68,7 +70,7 @@ Foxtrick.modules['LineupShortcut'] = {
 			// \u00a0 is no-break space (entity &nbsp;)
 			// use textContent to deal with encoded entities (like &amp;)
 			// which innerHTML isn't capable of
-			var teamsTrimmed = link.textContent.split(new RegExp('\u00a0-\u00a0'));
+			var teamsTrimmed = link.textContent.split(/\u00a0-\u00a0/);
 			var teamsText = link.title;
 			var homeIdx = teamsText.indexOf(teamsTrimmed[0]);
 			var awayIdx = teamsText.indexOf(teamsTrimmed[1]);
@@ -77,52 +79,49 @@ Foxtrick.modules['LineupShortcut'] = {
 
 			if (Foxtrick.has(matchTeams, teamName)) {
 				if (!hasTransfer) {
-					this._Add_Lineup_Link(doc, matchTable.rows[i], teamId, playerId, matchId,
-					                      'normal');
+					this._Add_Lineup_Link(doc, row, teamId, playerId, matchId, 'normal');
 					hasMatch = true;
 				}
 			}
 			else if (leagueId && Foxtrick.has(matchTeams, ntName)) {
-				this._Add_Lineup_Link(doc, matchTable.rows[i], ntId, playerId, matchId, 'NT');
+				this._Add_Lineup_Link(doc, row, ntId, playerId, matchId, 'NT');
 				hasMatch = true;
 			}
 			else if (leagueId && Foxtrick.has(matchTeams, u20Name)) {
-				this._Add_Lineup_Link(doc, matchTable.rows[i], u20Id, playerId, matchId, 'U20');
+				this._Add_Lineup_Link(doc, row, u20Id, playerId, matchId, 'U20');
 				hasMatch = true;
 			}
 			if (!hasMatch)
 				hasTransfer = true;
 
-			if (!link.href.match(/#/))
+			if (!/#/.test(link.href))
 				link.href += '#tab2';
 		}
 	},
 
 	_Analyze_Stat_Page: function(doc) {
 		var teamid = doc.getElementById('ctl00_ctl00_CPContent_CPMain_ddlPreviousClubs').value;
-		//Now getting playerid from top of the page:
-		var element = doc.getElementById('ctl00_ctl00_CPContent_divStartMain');
-		var playerid = Foxtrick.util.id.findPlayerId(element);
+		// Now getting playerid from top of the page:
+		var playerid = Foxtrick.Pages.All.getId(doc);
 		var lineuplabel = Foxtrick.L10n.getString('LineupShortcut.lineup');
-		var matchtable = doc.getElementById('ctl00_ctl00_CPContent_CPMain_UpdatePanel1')
-			.getElementsByTagName('table').item(0);
+		var panel = doc.getElementById('ctl00_ctl00_CPContent_CPMain_UpdatePanel1');
+		var matchtable = panel.getElementsByTagName('table')[0];
 		// matchtable is `not present if the player hasn't played for a team
 		if (!matchtable)
 			return;
 		var checktables = matchtable.getElementsByClassName('ft_lineupheader');
-		if (checktables.length == 0)
-		{
-			//adding lineup to header row
+		if (checktables.length === 0) {
+			// adding lineup to header row
 			var newhead = Foxtrick.createFeaturedElement(doc, this, 'th');
 			newhead.className = 'ft_lineupheader';
 			newhead.textContent = lineuplabel;
 			matchtable.rows[0].appendChild(newhead);
-			//We start from second row because first is header
+			// We start from second row because first is header
 			for (var i = 1; i < matchtable.rows.length; i++) {
-				var link = matchtable.rows[i].cells[1].getElementsByTagName('a').item(0);
+				var row = matchtable.rows[i];
+				var link = row.cells[1].getElementsByTagName('a')[0];
 				var matchid = Foxtrick.util.id.getMatchIdFromUrl(link.href);
-				this._Add_Lineup_Link(doc, matchtable.rows[i], teamid, playerid, matchid,
-				                      'normal');
+				this._Add_Lineup_Link(doc, row, teamid, playerid, matchid, 'normal');
 			}
 		}
 	},
