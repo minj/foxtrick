@@ -210,37 +210,90 @@ Foxtrick.modules['TransferComparePlayers'] = {
 			th.textContent = Foxtrick.L10n.getString('TransferComparePlayers.difference');
 			hTable.rows[0].insertBefore(th, hTable.rows[0].cells[4]);
 
-			for (var i = 1; i < ct - 1; i++) {
-				var next = Foxtrick.trimnum(hTable.rows[i].cells[3].textContent);
-				var last = Foxtrick.trimnum(hTable.rows[i + 1].cells[3].textContent);
-				var percentage = Foxtrick.createFeaturedElement(doc, this, 'span');
+			var th = Foxtrick.createFeaturedElement(doc, this, 'th');
+			th.textContent = "Age" //Foxtrick.L10n.getString('TransferComparePlayers.age');
+			hTable.rows[0].insertBefore(th, hTable.rows[0].cells[1]);
 
-				var dif;
-				if (next > last) {
-					dif = (next - last) / last;
-					Foxtrick.addClass(percentage, 'ft-player-transfer-history positive');
-					percentage.textContent = '(+' + Math.round(dif * 100) + ' %)';
-				}
-				else if (next < last) {
-					dif = (last - next) / last;
-					Foxtrick.addClass(percentage, 'ft-player-transfer-history negative');
-					percentage.textContent = '(-' + Math.round(dif * 100) + ' %)';
-				}
-				else {
-					Foxtrick.addClass(percentage, 'ft-player-transfer-history');
-					percentage.textContent = '(0 %)';
+			var links = Foxtrick.Pages.All.getBreadCrumbs(doc);
+			var thisPlayerId = Foxtrick.getParameterFromUrl(links, 'playerId')
+
+			Foxtrick.util.api.retrieve(doc, [
+				['file', 'playerdetails'],
+				['version', '2.1'],
+				['playerId', thisPlayerId]
+		  		],
+		  		{ cache_lifetime: 'session' },
+		  		function(xml, errorText) {
+				if (!xml || errorText) {
+					Foxtrick.log(errorText);
+					return;
 				}
 
-				hTable.rows[i].insertCell(4);
-				hTable.rows[i].cells[4].appendChild(percentage);
+				var age = xml.num('Age');
+				var agedays = xml.num('AgeDays');
+				var fetchDate = xml.date('FetchedDate');
+				
+				for (var i = 1; i < ct; i++) {
+
+					if (i < ct - 1) {
+						var next = Foxtrick.trimnum(hTable.rows[i].cells[4].textContent);
+						var last = Foxtrick.trimnum(hTable.rows[i + 1].cells[4].textContent);
+						var percentage = doc.createElement('span');
+						var dif;
+
+						if (next > last) {
+							dif = (next - last) / last;
+							Foxtrick.addClass(percentage, 'ft-player-transfer-history positive');
+							percentage.textContent = '(+' + Math.round(dif * 100) + ' %)';
+						}
+						else if (next < last) {
+							dif = (last - next) / last;
+							Foxtrick.addClass(percentage, 'ft-player-transfer-history negative');
+							percentage.textContent = '(-' + Math.round(dif * 100) + ' %)';
+						}
+						else {
+							Foxtrick.addClass(percentage, 'ft-player-transfer-history');
+							percentage.textContent = '(0 %)';
+						}
+
+						Foxtrick.makeFeaturedElement(percentage, module)
+						hTable.rows[i].insertCell(4);
+						hTable.rows[i].cells[4].appendChild(percentage);
+
+					}
+
+					var days = age * 112 + agedays;
+					var now = Foxtrick.util.time.getHtDate(doc);
+					Foxtrick.util.time.setMidnight(now);
+					var transfer = hTable.rows[i].cells[0].textContent;
+					var transferDate = Foxtrick.util.time.getDateFromText(transfer);
+					// original player has no transferDate so now is used as reference
+
+					var diffDays = (fetchDate.getTime() - transferDate.getTime()) /
+						(24 * 60 * 60 * 1000);
+					days -= Math.round(diffDays);
+					var years = Foxtrick.Math.div(days, 112);
+					days %= 112;
+
+					hTable.rows[i].insertCell(1);
+					var ageCell = hTable.rows[i].cells[1];
+					ageCell.textContent = '';
+					Foxtrick.makeFeaturedElement(ageCell, module);
+					var ageSpan = doc.createElement('span');
+					ageSpan.textContent = years + '.' + days;
+					ageSpan.title =
+						Foxtrick.L10n.getString('TransferComparePlayers.transferAge');
+					ageCell.appendChild(ageSpan);
+
+				}
+
+				var td = doc.createElement('td');
+				td.textContent = ' ';
+				hTable.rows[i-1].insertBefore(td, hTable.rows[i-1].cells[5]);
 
 			}
-
-			var td = doc.createElement('td');
-			td.textContent = ' ';
-			hTable.rows[i].insertBefore(td, hTable.rows[i].cells[4]);
+			);
 		}
-
 	}
 
 };
