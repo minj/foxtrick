@@ -7,7 +7,12 @@ he:
       note_0: 'זוהי גירסת הבטא של המהדורה הבאה. נודה על עזרה בתרגום גירסה זו באתר התרגום המאוד נוח שלנו <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.14.0.2:
       bugs: '<header>תיקוני באגים</header>'
+      challenge_link: 'קישור ההזמנה במודול <module>TeamPopupLinks</module> לוקח אותך כעת לדף הקבוצה ופותח אוטומטית את תפריט ההזמנה למשחק ידידות.'
+      penalty_takers: 'בשל שינוים שביצעו מפתחי האטריק, המיון לפי הנוסחה של האטריק אורגנייזר לא עבד במודול  <module>MatchOrderInterface</module>.'
+      new_cups: 'יושמה תמיכה במערכת הגביעים החדשה. בכך תוקנו תקלות חדשות במודולים שונים, ובמיוחד ב-<module>PlayerStatsExperience</module>.'
       other: '<header>שינויים אחרים</header>'
+      psico: 'עודכנה הערכת השכר במודול <module>PsicoTSI</module>.'
+      first_last_post: 'כעת ניתן לבחור לפתוח את ההודעה הראשונה בדיון כשלוחצים שוב על דיון שכבר פתוח, באמצעות המודול <module>ForumLastPost</module>.'
       and_more: הרבה שינויים ותיקונים קטנים נוספים.
     0.14.0.1:
       important: '<header>הודעות חשובות</header>'
