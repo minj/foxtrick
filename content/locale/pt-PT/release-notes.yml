@@ -2,18 +2,50 @@
 pt-PT:
   versions:
     nightly:
-      note_0: 'Esta é a versão desenvolvida. Use consoante a sua vontade. Por favor veja o <linkSVN>Histórico de confirmação</linkSVN> no Google Code para mais detalhe sobre as alterações.'
+      note_0: 'Esta é uma versão de testes. Use à sua responsabilidade. Por favor veja o <linkSVN>Histórico de confirmação</linkSVN> no Google Code para mais detalhes sobre as alterações.'
     beta:
       note_0: 'O FoxTrick instalado é uma versão Beta do próximo lançamento. Contribuir para a tradução deste extra em <linkCrowdin>Crowdin.net</linkCrowdin> é muito fácil.'
+    0.14.0.2:
+      bugs: '<header>Correções de Erros</header>'
+      new_cups: 'Implementado o novo sistema da Taça. Corrige vários erros em vários módulos, sobretudo <module>PlayerStatsExperience</module>.'
+      other: '<header>Outras Alterações</header>'
+      psico: 'Previsão baseada no Salário <module>PsicoTSI</module> foi actualizada.'
+      and_more: Várias correções menores.
+    0.14.0.1:
+      important: '<header>Avisos Importantes</header>'
+      bugs: '<header>Correções de Erros</header>'
+    0.14.0:
+      important: '<header>Avisos Importantes</header>'
+      crowdin: '<header>Várias atualizações nas traduções dos nossos incríveis utilizadores através de <linkCrowdin>crowdin tool</linkCrowdin>. Também pode ajudar!</header>'
+      new: '<header>Módulos novos</header>'
+      series_transfers: '<module>SeriesTransfers</module>: Mostra uma lista com os jogadores atualmente à venda na Série.'
+      bugs: '<header>Correções de Erros</header>'
+      other: '<header>Outras alterações</header>'
+    0.13.0.1:
+      crowdin: '<header>Várias atualizações nas traduções dos nossos incríveis utilizadores através de <linkCrowdin>crowdin tool</linkCrowdin>. Também pode ajudar!</header>'
+      bugs: '<header>Correções de Erros</header>'
+      other: '<header>Outras alterações</header>'
+    0.13.0:
+      important: '<header>Avisos Importantes</header>'
+      crowdin: '<header>Várias atualizações nas traduções dos nossos incríveis utilizadores através de <linkCrowdin>crowdin tool</linkCrowdin>. Também pode ajudar!</header>'
+      new: '<header>Módulos novos</header>'
+      other: '<header>Outras alterações</header>'
+      bugs: '<header>Correções de Erros</header>'
     0.12.2:
+      note_0: '<header>Várias atualizações nas traduções dos nossos incríveis utilizadores através de <linkCrowdin>crowdin tool</linkCrowdin>. Também pode ajudar!</header>'
       note_11: '<header>Bugs Corrigidos</header>'
     0.12.1.1:
       note_0: Atualizações de tradução.
       note_2: Melhorias de acessibilidade menores.
       note_4: Corrigidos alguns problemas relacionados com som.
       note_5: Corrigido um problema que causava o Foxtrick a não iniciar em alguns casos no Android.
+    0.12.1:
+      note_0: '<header>Várias atualizações nas traduções dos nossos incríveis utilizadores através de <linkCrowdin>crowdin tool</linkCrowdin>. Também pode ajudar!</header>'
     0.12.0:
+      note_0: '<header>Várias atualizações nas traduções dos nossos incríveis utilizadores através de <linkCrowdin>crowdin tool</linkCrowdin>. Também pode ajudar!</header>'
       note_2: Várias correções em vários módulos que tiveram problemas, depois da introdução da nova loja de Hattrick.
+    0.11.0.1:
+      note_0: '<header>Várias atualizações nas traduções dos nossos incríveis utilizadores através de <linkCrowdin>crowdin tool</linkCrowdin>. Também pode ajudar!</header>'
     0.11.0:
       note_0: 'Novo: <module>DirectPageLinks</module> Links adicionados para aceder a páginas especificas num tópico'
       note_1: 'Novo: <module>ForumModeratorPopup</module>: Adicionámos um novo menu, no topo dos tópicos, para os moderadores dos fóruns terem a sua tarefa simplificada.'
@@ -31,6 +63,11 @@ pt-PT:
       note_11: '<module>YouthTwins</module>: Alterações feitas manualmente no Hattrick Youthclub serão agora reflectidas instantaneamente nas páginas dos jogadores.'
       note_12: '<header>Bugs Corrigidos</header>'
       note_18: Módulo BackgroundFixed foi removido.
+      note_19: '<header>Módulos de cópia</header>'
+      note_24: '<header>Outras melhorias</header>'
+      note_33: '<header>Suporte de Browsers</header>'
+      note_38: '<header>Várias atualizações nas traduções dos nossos incríveis utilizadores através de <linkCrowdin>crowdin tool</linkCrowdin>. Também pode ajudar!</header>'
+      note_39: '<header>A página de opções foi reestruturada.</header>'
     0.10.0:
       note_0: 'Novo: <module>TransferHistoryFilters</module>: Permite filtrar as transferências por venda ou compra apenas. Só disponível para o histórico da equipa, não de jogadores (activado por defeito)'
       note_1: 'Novo: <module>FriendlyPool</module>: Dá uma cor especifica aos países onde já disputou amigáveis internacionais (só para os sócios, activado por defeito)'
