@@ -282,7 +282,10 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			}
 		};
 
-		var addSpecialtiesByTeamId = function(teamid, players) {
+		var addSpecialtiesByTeamId = function(teamId, players) {
+			if (teamId === null)
+				return;
+
 			Foxtrick.Pages.Players.getPlayerList(doc,
 			  function(playerInfo) {
 				if (!playerInfo || !playerInfo.length)
@@ -320,7 +323,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 						})(j));
 					}
 				}
-			}, { teamid: teamid, current_squad: true, includeMatchInfo: true, isYouth: isYouth });
+			}, { teamid: teamId, current_squad: true, includeMatchInfo: true, isYouth: isYouth });
 		};
 
 		addSpecialtiesByTeamId(homeTeamId, homePlayerLinks);
@@ -351,7 +354,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 
 		var alt = Foxtrick.L10n.getString('MatchLineupTweaks.missing');
 
-		var addMissingByTeamId = function(teamid, players) {
+		var addMissingByTeamId = function(teamId, players) {
 			Foxtrick.Pages.Players.getPlayerList(doc,
 			  function(playerInfo) {
 				if (!playerInfo || !playerInfo.length)
@@ -380,7 +383,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 					}
 				}
 				Foxtrick.startListenToChange(doc);
-			}, { teamid: teamid, current_squad: true, includeMatchInfo: true, NT: NT, isYouth: isYouth});
+			}, { teamid: teamId, current_squad: true, includeMatchInfo: true, NT: NT, isYouth: isYouth});
 		};
 
 		addMissingByTeamId(homeTeamId, homePlayerLinks);
@@ -396,10 +399,10 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		var param = (isYouth ? 'youth' : '') + 'playerid';
 
 		if (isYouth) {
-			var ownteamid = Foxtrick.util.id.getOwnYouthTeamId();
+			var ownTeamId = Foxtrick.util.id.getOwnYouthTeamId();
 		}
 		else {
-			var ownteamid = Foxtrick.util.id.getOwnTeamId();
+			var ownTeamId = Foxtrick.util.id.getOwnTeamId();
 		}
 
 
@@ -509,14 +512,17 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			}
 		};
 
-		var addFacesByTeamId = function(teamid, players) {
+		var addFacesByTeamId = function(teamId, players) {
+			if (teamId === null)
+				return;
+
 			var avartarArgs = [
 				['file', (isYouth ? 'youth' : '') + 'avatars'],
 				['version', '1.1'],
-				[(isYouth ? 'youthT' : 't') + 'eamId', teamid],
+				[(isYouth ? 'youthT' : 't') + 'eamId', teamId],
 			];
 			// youthavatars only works for own team
-			if (isYouth && teamid != ownteamid)
+			if (isYouth && teamId != ownTeamId)
 				return;
 			Foxtrick.util.api.retrieve(doc, avartarArgs, { cache_lifetime: 'session' },
 			  function(xml, errorText) {
