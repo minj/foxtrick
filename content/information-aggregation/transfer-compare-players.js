@@ -236,10 +236,11 @@ Foxtrick.modules['TransferComparePlayers'] = {
 				for (var i = 1; i < ct; i++) {
 
 					if (i < ct - 1) {
-						var next = Foxtrick.trimnum(hTable.rows[i].cells[4].textContent);
-						var last = Foxtrick.trimnum(hTable.rows[i + 1].cells[4].textContent);
+						var next = Foxtrick.trimnum(hTable.rows[i].cells[3].textContent);
+						var last = Foxtrick.trimnum(hTable.rows[i + 1].cells[3].textContent);
 						var percentage = doc.createElement('span');
 						var dif;
+
 
 						if (next > last) {
 							dif = (next - last) / last;
