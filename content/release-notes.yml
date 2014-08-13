@@ -7,6 +7,15 @@ en:
     beta:
       note_0: 'This is the beta version of the next release. Please help translating this version at our super easy crowd-translation page <linkCrowdin>crowdin.net</linkCrowdin>.'
 
+    0.14.0.3:
+      important: '<header>Important announcements</header>'
+      sorry: "Apologies for the last 'bug-fix' release that actually broke more things than it fixed. This one should be better."
+      bugs: '<header>Bug fixes</header>'
+      street_teams: 'The introduction of street teams in the new cup system caused various weird problems that are now fixed.'
+      revert: '<module>PlayerStatsExperience</module> and penalty takers utilities in <module>MatchOrderInterface</module> should now be fixed for real.'
+      income: '<module>MatchIncome</module> should now display correct information for all matches. Please report any inconsistencies.'
+      stats: '<module>SeasonStats</module> was broken due to recent HT changes. All issues were fixed.'
+
     0.14.0.2:
       bugs: '<header>Bug fixes</header>'
       challenge_link: 'Challenge link in <module>TeamPopupLinks</module> now takes you to the team page and automatically opens the challenge menu.'
