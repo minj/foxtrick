@@ -88,7 +88,7 @@ Foxtrick.Pages.Match.getHomeTeam = function(doc) {
 };
 
 /**
- * Get home team link
+ * Get away team link
  * @param  {document}          doc
  * @return {HTMLAnchorElement}
  */
@@ -109,7 +109,7 @@ Foxtrick.Pages.Match.getHomeTeamId = function(doc) {
 };
 
 /**
- * Get home team ID
+ * Get away team ID
  * @param  {document} doc
  * @return {number}
  */
@@ -129,7 +129,7 @@ Foxtrick.Pages.Match.getHomeTeamName = function(doc) {
 };
 
 /**
- * Get home team name
+ * Get away team name
  * @param  {document} doc
  * @return {string}
  */
