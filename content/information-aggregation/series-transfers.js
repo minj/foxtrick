@@ -221,6 +221,7 @@ Foxtrick.modules['SeriesTransfers'] = {
 						var injuryLevel = getNumFromXML('InjuryLevel');
 
 						var tr = doc.createElement('tr');
+						Foxtrick.addClass(tr, idx++ % 2 ? 'odd' : 'even');
 
 						// country + image
 						var countryTd = doc.createElement('td');
