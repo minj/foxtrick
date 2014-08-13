@@ -180,6 +180,7 @@ Foxtrick.modules['SeriesTransfers'] = {
 			};
 			var hasListedPlayers = false;
 			var oldestFile = Infinity;
+			var idx = 0;
 			for (var i = 0; i < xmls.length; ++i) {
 				var xml = xmls[i];
 				var errorText = errors[i];
