@@ -7,11 +7,21 @@ gl:
       note_0: 'Esta é a versión beta do próximo lanzamento. Podes axudar a traducila na nosa marabillosa páxina de tradución en equipo <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.14.0.2:
       bugs: '<header>Solucións de erros</header>'
+      challenge_link: 'O ligazón de desafío no <module>TeamPopupLinks</module> levache agora á páxina do equipo e abre automáticamente o menú de desafíos.'
+      penalty_takers: 'Debido ós cambios no HT, o <module>MatchOrderInterface</module>rachaba ó tentar ordear pola fórmula do HO.'
+      new_cups: 'Introducíronse funcionalidades para o novo sistema de copa. Isto aranxa novos bugs en varios módulos, como no por exemplo no <module>PlayerStatsExperience</module>.'
       other: '<header>Outros cambios</header>'
+      psico: 'A predicción por salario no <module>PsicoTSI</module> foi actualizada.'
+      first_last_post: 'Agora se queres podes abrir o primeiro mensaxe ó clicar nos fíos que xa tiñas aberto co <module>ForumLastPost</module>.'
       and_more: Moitos outros cambios pequeniños por aquí e por alá.
     0.14.0.1:
       important: '<header>Anuncios importantes</header>'
+      ff_cache: Os paquetes do Foxtrick xa non terán compresión extra no Firefox. Isto debería aforrar a morea de problemas raros que a xente tivo coa versión 0.14.0.
       bugs: '<header>Solucións de erros</header>'
+      safari_prefs: A páxina de preferencias do Foxtrick non podía ser amosada a algúns usuarios do Safari.
+      teamstats: 'Arranxado un erro que rachaba co <module>TeamStats</module> e outros módulos.'
+      bpp: 'O <module>BestPlayerPosition</module> amosaba información incorrecta nalgúns casos na páxina de resultados da búsqueda de transferencias.'
+      history_stats: 'O <module>HistoryStats</module>agora sempre vai ordear a actuación do equipo por tempada.'
     0.14.0:
       important: '<header>Anuncios importantes</header>'
       crowdin: '<header>Unha morea de actualizacións das traducións realizadas polos nosos marabillosos usuarios a través da <linkCrowdin>ferramenta Crowdin</linkCrowdin>. Por certo, ti tamén podes colaborar!</header>'

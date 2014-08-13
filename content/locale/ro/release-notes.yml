@@ -427,5 +427,5 @@ ro:
       note_17: Majoritatea caracteristicilor funcționează cu Google Chrome. (ryanli)
       note_18: Some trivial fixes for latest Hattrick changes. (ryanli, taised, ljushaff)
       note_19: 'Module <module>TeamSelectBox</module> disabled by default. (ryanli)'
-      note_20: 'Modulul <module>SmallerPages</module> e dezactivat standard. (ljushaff)'
-      note_21: 'Opțiunile radio din <module>ExtraShortcuts</module> sunt dezactivate standard. (ryanli)'
+      note_20: 'Modulul <module>SmallerPages</module> e dezactivat implicit. (ljushaff)'
+      note_21: 'Opțiunile radio din <module>ExtraShortcuts</module> sunt dezactivate implicit. (ryanli)'
