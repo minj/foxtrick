@@ -117,7 +117,7 @@ Foxtrick.modules['SeasonStats'] = {
 		Foxtrick.log('TeamName: ', TeamName, '  TeamNameOld: ', TeamNameOld);
 
 		for (var i = 0; i < matchestable.rows.length; ++i) {
-			var type = 0;
+			var type;
 			var img = matchestable.rows[i].cells[1].getElementsByTagName('img')[0];
 			var span = matchestable.rows[i].cells[3].getElementsByTagName('span')[0];
 			var b = matchestable.rows[i].cells[3].getElementsByTagName('strong')[0];
@@ -129,6 +129,10 @@ Foxtrick.modules['SeasonStats'] = {
 				type = 2;
 			else if (img.className == 'matchMasters')
 				type = 3;
+			else
+				// skip other matches: HTO/qualifiers etc
+				continue;
+
 			var islost = span.className == 'lost';
 			var iswon = span.className == 'won';
 			var isdraw = span.className == 'draw';
