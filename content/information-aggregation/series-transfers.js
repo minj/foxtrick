@@ -177,7 +177,7 @@ Foxtrick.modules['SeriesTransfers'] = {
 			};
 			var hasListedPlayers = false;
 			var oldestFile = Infinity;
-			var idx = 0;
+			var idx = 1;
 			Foxtrick.forEach(function(xml, i) {
 				var errorText = errors[i];
 				if (!xml || errorText) {
