@@ -57,7 +57,7 @@ Foxtrick.modules['MatchIncome'] = {
 					}
 				}
 			}
-			var isNeutral = doc.querySelector('#matchReport span[data-eventtype^="26"]');
+			var isNeutral = doc.querySelector('#matchReport span[data-eventtype^="26_"]');
 			var mainBody = doc.getElementById('mainBody');
 			var isCup = mainBody.querySelectorAll('*[class^="matchCup"]').length > 0;
 			var isFriendly = mainBody.getElementsByClassName('matchFriendly').length > 0;
