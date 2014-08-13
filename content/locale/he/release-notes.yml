@@ -5,6 +5,9 @@ he:
       note_0: 'זהו עדכון בפיתוח. השימוש בו הוא לשיקולכם בלבד. לפרטים בנוגע לשינויים נא ראו <linkSVN>היסטוריה</linkSVN> בגוגל קוד.'
     beta:
       note_0: 'זוהי גירסת הבטא של המהדורה הבאה. נודה על עזרה בתרגום גירסה זו באתר התרגום המאוד נוח שלנו <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.14.0.3:
+      important: '<header>הודעות חשובות</header>'
+      bugs: '<header>תיקוני באגים</header>'
     0.14.0.2:
       bugs: '<header>תיקוני באגים</header>'
       challenge_link: 'קישור ההזמנה במודול <module>TeamPopupLinks</module> לוקח אותך כעת לדף הקבוצה ופותח אוטומטית את תפריט ההזמנה למשחק ידידות.'

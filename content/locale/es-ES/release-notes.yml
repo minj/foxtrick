@@ -5,6 +5,9 @@ es-ES:
       note_0: 'Esta es versión de desarrollo. Úsalo a tu propia discreción. Por favor, mira <linkSVN>commit history</linkSVN> en Google Code para los detalles de los cambios.'
     beta:
       note_0: 'Esta es la versión beta de la próxima release. Por favor, ayuda a traducir esta versión accediendo a nuestra super fácil de usar web de traducción <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.14.0.3:
+      important: '<header>Anuncios importantes</header>'
+      bugs: '<header>Corrección de errores</header>'
     0.14.0.2:
       bugs: '<header>Corrección de errores</header>'
       challenge_link: 'Enlace desafiar en <module>TeamPopupLinks</module> ahora os lleva a la página del equipo y abre automáticamente el menú de retos.'

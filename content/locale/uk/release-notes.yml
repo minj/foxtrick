@@ -5,6 +5,9 @@ uk:
       note_0: 'Це development build. Використовуйте його на свій розсуд. Будь ласка, подивіться <linkSVN>commit history</linkSVN> з Google Code, шоб дізнатися про зміни.'
     beta:
       note_0: 'Це beta версія наступного релізу. Будь ласка, допоможіть перекласти цю версію з дуже простим інструментом перекладу  <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.14.0.3:
+      important: '<header>Важливі зміни</header>'
+      bugs: '<header>Виправлення помилок</header>'
     0.14.0.2:
       bugs: '<header>Виправлення помилок</header>'
       other: '<header>Інші зміни</header>'

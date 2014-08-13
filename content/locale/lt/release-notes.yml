@@ -5,6 +5,9 @@ lt:
       note_0: 'Įdiegėte nestabilią versiją. Naudokite savo rizika. Peržiūrėkite „Google Code“ <linkSVN>pakeitimų sąrašą</linkSVN>.'
     beta:
       note_0: 'Įdiegėte išankstinę (beta) versiją. Prašome prisidėti prie jos vertimo į lietuvių kalbą ypatingai šauniame vertėjų savanorių portale „<linkCrowdin>crowdin.net</linkCrowdin>“. '
+    0.14.0.3:
+      important: '<header>Svarbūs pranešimai</header>'
+      bugs: '<header>Pataisytos klaidos</header>'
     0.14.0.2:
       bugs: '<header>Pataisytos klaidos</header>'
       challenge_link: 'Nuoroda „Kviesti“ (<module>TeamPopupLinks</module>) nuo šiol veda į komandos puslapį ir automatiškai atidaro draugiškų rungtynių meniu.'

@@ -5,6 +5,9 @@ hr:
       note_0: 'Ovo je razvojna inačica. Koristiti na svoju odgovornost. Za detalje o promjenama pogledajte <linkSVN>commit history</linkSVN> na Google Code stranici.'
     beta:
       note_0: 'Ovo je beta inačica buduće nove verzije. Pomozite na prevoditi ovu verziju sa super lakim prevođenjem na <linkCrowdin>crowdin.net</linkCrowdin>.'
+    0.14.0.3:
+      important: '<header>Važne obavijesti</header>'
+      bugs: '<header>Popravljene greške</header>'
     0.14.0.2:
       bugs: '<header>Popravljene greške</header>'
       other: '<header>Druge promjene</header>'

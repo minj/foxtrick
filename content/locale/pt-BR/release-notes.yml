@@ -5,6 +5,9 @@ pt-BR:
       note_0: 'Esta é a versão de desenvolvimento. Use a seu próprio critério. Veja <linkSVN>história de alterações</linkSVN> no Google Code para detalhes das mudanças.'
     beta:
       note_0: 'Esta é a versão beta do próximo lançamento. Por favor ajude a traduzir essa versão em nossa página de tradução comunitária super fácil <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.14.0.3:
+      important: '<header>Anúncios Importantes</header>'
+      bugs: '<header>Correções de bugs</header>'
     0.14.0.2:
       bugs: '<header>Correções de bugs</header>'
       other: '<header>Outras alterações</header>'

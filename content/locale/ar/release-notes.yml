@@ -5,6 +5,9 @@ ar:
       note_0: 'هذه النسخة تطويرية وأنت تستخدمها على مسؤوليتك. الرجاء مراجعة <linkSVN>تاريخ التغييرات</linkSVN> في Google Code لمعرفة تفاصيل التحديثات.'
     beta:
       note_0: 'هذه النسخة تجريبية للإصدار القادم. الرجاء المساعدة في ترجمة هذه النسخة في صفحة الترجمة السهلة جدا على <linkCrowdin>crowdin.net</linkCrowdin>.'
+    0.14.0.3:
+      important: '<header>إعلانات هامة</header>'
+      bugs: '<header>إصلاح الأخطاء التقنية</header>'
     0.14.0.2:
       bugs: '<header>إصلاح الأخطاء التقنية</header>'
       other: '<header>تغييرات أخرى</header>'

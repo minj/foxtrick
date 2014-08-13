@@ -5,6 +5,9 @@ ro:
       note_0: 'Această versiune este în dezvoltare continuă. Utilizați-o după cum doriți. Vă rugăm să vizualizați <linkSVN>istoricul</linkSVN> de la Google Code pentru detalii cu privire la modificări.'
     beta:
       note_0: 'Aceasta este o versiune beta a următoarei versiuni care va fi lansată. Vă rugăm ajutați traducând această versiune utilizând pagina de traducere <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.14.0.3:
+      important: '<header>Anunţuri importante</header>'
+      bugs: '<header>Buguri reparate</header>'
     0.14.0.2:
       bugs: '<header>Buguri reparate</header>'
       challenge_link: 'Link-ul de provocare din modulul <module>TeamPopupLinks</module> duce acum către pagina echipei și deschide automat meniul de provocare.'

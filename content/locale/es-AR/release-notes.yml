@@ -5,6 +5,9 @@ es-AR:
       note_0: 'Se trata de la version de desarrollo. Utilizar bajo su propio riesgo. Por favor ver <linkSVN>historial de commit</linkSVN> en Google Code para detalles de los cambios.'
     beta:
       note_0: 'Esta es la versión beta de la próxima versión. Por favor ayude a traducir esta versión en nuestra super-fácil página <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.14.0.3:
+      important: '<header>Anuncios importantes</header>'
+      bugs: '<header>Corrección de errores</header>'
     0.14.0.2:
       bugs: '<header>Corrección de errores</header>'
       challenge_link: 'El enlace retar en <module>TeamPopupLinks</module> ahora te lleva a la página del equipo y abre automáticamente el menú de retos.'
