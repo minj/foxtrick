@@ -7,9 +7,14 @@ ro:
       note_0: 'Aceasta este o versiune beta a următoarei versiuni care va fi lansată. Vă rugăm ajutați traducând această versiune utilizând pagina de traducere <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.14.0.3:
       important: '<header>Anunţuri importante</header>'
-      bugs: '<header>Buguri reparate</header>'
+      sorry: Ne cerem scuze pentru ultima versiune care a stricat mai multe lucruri decat a reparat. Actuala versiune ar trebui sa fie mai buna.
+      bugs: '<header>Erori reparate</header>'
+      street_teams: Introducerea de echipe ale strazii in noul sistem al cupelor a cauzat diferite probleme ciudate, probleme ce sunt acum rezolvate.
+      revert: '<module>PlayerStatsExperience</module> și utilitarele pentru executanții de lovituri de pedeapsă din <module>MatchOrderInterface</module> ar trebui să fie acum reparate pe bune.'
+      income: '<module>MatchIncome</module> ar trebui acum să afișeze informații corecte pentru toate meciurile. Te rugăm să raportezi orice probleme.'
+      stats: '<module>SeasonStats</module> avea erori din cauza recentelor modificări din HT. Toate problemele au fost rezolvate.'
     0.14.0.2:
-      bugs: '<header>Buguri reparate</header>'
+      bugs: '<header>Erori reparate</header>'
       challenge_link: 'Link-ul de provocare din modulul <module>TeamPopupLinks</module> duce acum către pagina echipei și deschide automat meniul de provocare.'
       penalty_takers: 'Sortarea după formula HO în modulul <module>MatchOrderInterface</module> avea erori datorate schimbărilor din HT.'
       new_cups: 'A fost implementat suportul pentru noul sistem al cupei. Astfel, au fost corectate erorile noi din diferite module, în special <module>PlayerStatsExperience</module>.'
@@ -88,7 +93,7 @@ ro:
       htms_points: '<module>HTMSPoints</module> a fost actualizat cu noile formule.'
       ff_button: Butonul din bara de utilități Firefox va fi acum mai rapid la răspuns și va reflecta mai bine starea Foxtrick.
       ff_disable: Dezactivarea Foxtrick în Firefox va închide acum preferințele Foxtrick (dacă pagina e deschisă) și va reîncărca toate taburile Hattrick pentru a elimina alte modificări efectuate de Foxtrick.
-      bugs: '<header>Buguri reparate</header>'
+      bugs: '<header>Erori reparate</header>'
       android: |
         <p>S-au efectuat reparații majore în core-ul Foxtrick pentru a adapta Firefox la Android. Ca urmare, Foxtrick rulează acum mult mai bine pe dispozitive mobile.</p>
         <p>Module afectate: <module>MatchReportFormat</module>, <module>Ratings</module>, <module>MatchSimulator</module>, <module>HTMSPrediction</module> <em>et al</em>.</p>
