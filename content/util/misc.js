@@ -305,22 +305,21 @@ Foxtrick.isHt = function(doc) {
 
 Foxtrick.isHtUrl = function(url) {
 	var htMatches = [
-		new RegExp('^http://hattrick\.org(/|$)', 'i'),
-		new RegExp('^http://www\\d{2}\.hattrick\.org(/|$)', 'i'),
-		new RegExp('^http://stage\.hattrick\.org(/|$)', 'i'),
-		new RegExp('^http://www\\d{2}\.hattrick\.interia\.pl(/|$)', 'i'),
-		new RegExp('^http://www\\d{2}\.hattrick\.uol\.com\.br(/|$)', 'i'),
-		new RegExp('^http://www\\d{2}\.hattrick\.ws(/|$)', 'i'),
-		new RegExp('^http://www\\d{2}\.hat-trick\.net(/|$)', 'i'),
-		new RegExp('^http://www\\d{2}\.hattrick\.name(/|$)', 'i'),
-		new RegExp('^http://www\\d{2}\.hattrick\.fm(/|$)', 'i'),
+		/^https?:\/\/(www\d{2}\.)?hattrick\.org(\/|$)/i,
+		/^https?:\/\/stage\.hattrick\.org(\/|$)/i,
+		/^https?:\/\/www\d{2}\.hattrick\.interia\.pl(\/|$)/i,
+		/^https?:\/\/www\d{2}\.hattrick\.uol\.com\.br(\/|$)/i,
+		/^https?:\/\/www\d{2}\.hattrick\.ws(\/|$)/i,
+		/^https?:\/\/www\d{2}\.hat-trick\.net(\/|$)/i,
+		/^https?:\/\/www\d{2}\.hattrick\.name(\/|$)/i,
+		/^https?:\/\/www\d{2}\.hattrick\.fm(\/|$)/i,
 	];
-	return Foxtrick.any(function(re) { return url.match(re) != null; }, htMatches);
+	return Foxtrick.any(function(re) { return re.test(url); }, htMatches);
 };
 
 Foxtrick.isStage = function(doc) {
-	var stage_regexp = /http:\/\/stage\.hattrick\.org/i;
-	return (Foxtrick.getHref(doc).search(stage_regexp) > -1);
+	var stage_regexp = /^https?:\/\/stage\.hattrick\.org(\/|$)/i;
+	return stage_regexp.test(Foxtrick.getHref(doc));
 };
 
 Foxtrick.isLoginPage = function(doc) {
