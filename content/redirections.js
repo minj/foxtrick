@@ -15,7 +15,7 @@ Foxtrick.modules['Redirections'] = {
 		if (!/make_challenge|redir_to_.+?\=true/i.test(doc.location.href))
 			return;
 
-		var serv = 'http://' + doc.location.hostname;
+		var serv = doc.location.protocol + '//' + doc.location.hostname;
 		var teamid = Foxtrick.util.id.findTeamId(doc.getElementsByClassName('subMenu')[0]);
 		var ownteamid = Foxtrick.util.id.getOwnTeamId();
 		var leagueid = Foxtrick.util.id
