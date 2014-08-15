@@ -7,7 +7,12 @@ pt-PT:
       note_0: 'O FoxTrick instalado é uma versão Beta do próximo lançamento. Contribuir para a tradução deste extra em <linkCrowdin>Crowdin.net</linkCrowdin> é muito fácil.'
     0.14.0.3:
       important: '<header>Avisos Importantes</header>'
+      sorry: 'Pedimos desculpa pelo último lançamento de "correção de erros" que na realidade criou mais problemas do que os que resolveu. Esta deve ser melhor.'
       bugs: '<header>Correções de Erros</header>'
+      street_teams: A introdução das equipas de rua no novo sistema da taça causou vários problemas estranhos que agora estão corrigidos.
+      revert: '<module>PlayerStatsExperience</module> e utilitário marcadores de penáltis em <module>MatchOrderInterface</module>  devem agora estar finalmente corrigidos.'
+      income: '<module>MatchIncome</module> deve agora mostrar a informação correta para todos os jogos. Por favor reporte alguma inconsistência.'
+      stats: '<module>SeasonStats</module> tinha problemas devido a recentes mudanças HT. Tudo está corrigido agora.'
     0.14.0.2:
       bugs: '<header>Correções de Erros</header>'
       new_cups: 'Implementado o novo sistema da Taça. Corrige vários erros em vários módulos, sobretudo <module>PlayerStatsExperience</module>.'

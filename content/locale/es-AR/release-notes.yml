@@ -7,7 +7,12 @@ es-AR:
       note_0: 'Esta es la versión beta de la próxima versión. Por favor ayude a traducir esta versión en nuestra super-fácil página <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.14.0.3:
       important: '<header>Anuncios importantes</header>'
+      sorry: "Disculpas por el último 'bug-fix' liberado que en realidad rompió más cosas de lo que arregló. Ésta debería ser mejor."
       bugs: '<header>Corrección de errores</header>'
+      street_teams: La introducción de equipos de la calle en el nuevo sistema Copa había causado diversos problemas extraños que ahora han sido solucionados.
+      revert: 'Las herramientas <module>PlayerStatsExperience</module> y la de pateadores de penales en <module>MatchOrderInterface</module> debería estar solucionada de una buena vez.'
+      income: '<module>MatchIncome</module> ahora debe mostrar la información correcta para todos los partidos. Por favor reportar cualquier inconsistencia.'
+      stats: '<module>SeasonStats</module> no funcionaba debido a recientes cambios en HT. Todos los problemas fueron solucionados.'
     0.14.0.2:
       bugs: '<header>Corrección de errores</header>'
       challenge_link: 'El enlace retar en <module>TeamPopupLinks</module> ahora te lleva a la página del equipo y abre automáticamente el menú de retos.'

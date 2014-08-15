@@ -14,17 +14,32 @@ bs:
       and_more: Razne druge male promjene i popravke.
     0.14.0.1:
       important: '<header>Važne obavijesti</header>'
+      ff_cache: Foxtrick paketi neće imati dodatne kompresije u Firefoxu. Ovo će spriječiti razne čudne probleme korisnicima koje su iskusili u verziji 0.14.0.
       bugs: '<header>Popravljene greške</header>'
     0.14.0:
       important: '<header>Važne obavijesti</header>'
       crowdin: '<header>Mnogo prevoditeljskih nadogradnji od naših fantastičnih korisnika koristeći <linkCrowdin>crowdin alat</linkCrowdin>. I Vi možete pomoći!</header>'
       browsers: Ukinuta je podrška za operu 12. Safari 6 i Firefox 24 su sada minimalne verzije pokrenuti Foxtrick.
       backend: Više čišćenje i ažuriranja Foxtrick jezgre smo napravili. Promjene utiču na puno stranica, modula i funkcionalnosti, uključujući izvještaje utakmica, HT-Live, utakmica reda sučelje, automatsko prepoznavanje valute i Foxtrick cache. Molimo prijavite sve bugove koje ste pronašli.
+      bug_report: Hattrick podnožje će sadržavati poveznicu za učinkovito prijavljivanje Foxtrick grešaka. Koristite je na stranici i pratite uputstva koja će se pojaviti.
       twitter: 'Možete pratiti <linkTwitter>Foxtrick na Twitteru</linkTwitter> kako biste dobili najnovije vijesti, ažuriranja i objave.'
       new: '<header>Novi moduli</header>'
+      series_transfers: '<module>SeriesTransfers</module>: prikazuje listu igrača trenutno na prodaji na stranicama liga.'
+      player_positions: '<module>PlayerPositionsEvaluations</module> i <module>BestPlayerPosition</module> moduli izračunavaju korisnost igrača na različitim pozicijama prema <linkContributionsWiki>Hattrick Wiki</linkContributionsWiki>.'
       bugs: '<header>Popravljene greške</header>'
+      australis: Ikona Firefox pretraživača je popravljena za rad s novom temom preglednika.
+      chrome_notes: Foxtrick obavijesti su promjenjene kako bi radile s novim sistemom obavijesti u Google Chrome-u.
+      player_cache: Foxtrick će od sada automatski prepoznavati nove igrače u tvojoj ekipi i ažurirati CHPP podatke.
+      train_est: Foxtrick više ne interferira sa razvrstavanjem tablice u novoj opciji za procjenu brzine treninga.
+      mrf_fixes: '<module>MatchReportFormat</module> neće se više događati greška u prikazu nekih utakmica. Dodano je još ikona za događaje.'
+      forum_header: '<module>ForumAlterHeaderLine</module> je preispitan i sada bi trebao ispravno raditi u svim slučajevima.'
       nav_fix: 'Nalazite se u <module> GoToPostBox </ modula> i <module> MyMonitor </ modula> fiksiran je u Firefoxu.'
+      new_lineup: 'Moduli <module>MatchPlayerColouring</module>, <module>LineupShortcut</module>, <module>TeamPopupLinks</module> i <module>SeniorTeamShortCuts</module> će sad ispravno funkcionisati sa novom stranicom za postavu.'
       other: '<header>Druge promjene</header>'
+      live_ratings: 'Ocjene uživo su dodane u <module>MatchLineupTweaks</module>, <module>MatchRatingsTweaks</module> i <module>MatchPlayerColouring</module>.'
+      own_top_players: '<module>Filter</module> modul sada označava tvoje igrače na stranici Najbolji Igrači.'
+      htev: htev.org više ne može izdržati teret zahtjeva Foxtricka stoga je modul HTEVPrediction uklonjen.
+      removed: Moduli SmallerPages i MatchTables su uklonjeni zbog svoje beskorisnosti.
       and_more: Razne druge male promjene i popravke.
     0.13.0.1:
       crowdin: '<header>Mnogo prevoditeljskih nadogradnji od naših fantastičnih korisnika koristeći <linkCrowdin>crowdin alat</linkCrowdin>. I Vi možete pomoći!</header>'
