@@ -22,26 +22,32 @@ Foxtrick.modules['PlayerStatsTrainingWeek'] = {
 		// in different countries while this code fixes it in a 'before training' position
 		// doesn't really matter as those games have no training anyway
 
-		var rows = doc.getElementById('matches').rows;
-		var statsrows = doc.getElementById('stats').rows;
+		var matches = doc.getElementById('matches');
+		var stats = doc.getElementById('stats');
+		if (!matches || !stats)
+			return;
 
-		for (var i = 0, row; (row = rows[i]); ++i) {
+		var rows = matches.rows;
+		var statsrows = stats.rows;
+
+		Foxtrick.forEach(function(row, i) {
 			var statsrow = statsrows[i];
-			var leagueMonday = false, regularFriendly = false;
+			var league = false, friendly = false;
+			var matchDay = row.cells[1].firstChild.nodeValue;
+			var weekDay = Foxtrick.util.time.getDateFromText(matchDay).getDay();
 			if (row.querySelector('img.matchLeague')) {
-				var matchDay = row.cells[1].firstChild.nodeValue;
-				if (Foxtrick.util.time.getDateFromText(matchDay).getDay() == 1)
-					leagueMonday = true;
+				league = true;
 			}
 			else if (row.querySelector('img.matchFriendly') && !row.querySelector('span[style]'))
-				regularFriendly = true;
-			if (leagueMonday || regularFriendly ||
+				friendly = true;
+
+			if (league && weekDay === 1 || friendly && (weekDay > 1 || weekDay < 5) ||
 			    row.querySelector('img[class^="matchCup"], img.matchMasters')) {
 				Foxtrick.toggleClass(row, 'odd');
 				Foxtrick.toggleClass(row, 'darkereven');
 				Foxtrick.toggleClass(statsrow, 'odd');
 				Foxtrick.toggleClass(statsrow, 'darkereven');
 			}
-		}
+		}, rows);
 	}
 };
