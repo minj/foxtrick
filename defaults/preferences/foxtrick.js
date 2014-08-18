@@ -322,7 +322,6 @@ pref("extensions.foxtrick.prefs.module.PlayerPositionsEvaluations.LoyaltyAndMCBI
 pref("extensions.foxtrick.prefs.module.PlayerPositionsEvaluations.BruisedIncluded.enabled", true);
 pref("extensions.foxtrick.prefs.module.PlayerStatsExperience.enabled", true);
 pref("extensions.foxtrick.prefs.module.PlayerStatsExperience.AlwaysShowAll.enabled", true);
-pref("extensions.foxtrick.prefs.module.PlayerStatsTrainingWeek.enabled", true);
 pref("extensions.foxtrick.prefs.module.PsicoTSI.enabled", true);
 pref("extensions.foxtrick.prefs.module.PsicoTSI.showOnLeft.enabled", false);
 pref("extensions.foxtrick.prefs.module.PsicoTSI.hideUnderSkills.enabled", true);
