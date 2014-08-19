@@ -31,6 +31,10 @@ Foxtrick.modules['PlayerStatsTrainingWeek'] = {
 		var statsrows = stats.rows;
 
 		Foxtrick.forEach(function(row, i) {
+			if (!i)
+				// skip header
+				return;
+
 			var statsrow = statsrows[i];
 			var league = false, friendly = false;
 			var matchDay = row.cells[1].firstChild.nodeValue;
@@ -41,7 +45,7 @@ Foxtrick.modules['PlayerStatsTrainingWeek'] = {
 			else if (row.querySelector('img.matchFriendly') && !row.querySelector('span[style]'))
 				friendly = true;
 
-			if (league && weekDay === 1 || friendly && (weekDay > 1 || weekDay < 5) ||
+			if (league && weekDay === 1 || friendly && weekDay > 0 && weekDay < 5 ||
 			    row.querySelector('img[class^="matchCup"], img.matchMasters')) {
 				Foxtrick.toggleClass(row, 'odd');
 				Foxtrick.toggleClass(row, 'darkereven');
