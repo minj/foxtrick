@@ -202,6 +202,7 @@ FoxtrickFirefox.prototype = {
 		'presentation/old-style-face.js',
 		'presentation/original-face.js',
 		'presentation/personality-images.js',
+		'presentation/player-stats-training-week.js',
 		'presentation/ratings-display.js',
 		'presentation/safe-for-work.js',
 		'presentation/simple-presentation.js',
