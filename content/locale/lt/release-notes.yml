@@ -7,7 +7,12 @@ lt:
       note_0: 'Įdiegėte išankstinę (beta) versiją. Prašome prisidėti prie jos vertimo į lietuvių kalbą ypatingai šauniame vertėjų savanorių portale „<linkCrowdin>crowdin.net</linkCrowdin>“. '
     0.14.0.3:
       important: '<header>Svarbūs pranešimai</header>'
+      sorry: Atsiprašome už paskutinę „pataisymų“ versiją, kuri sugadino daugiau negu pataisė. Ši turėtų būti geresnė.
       bugs: '<header>Pataisytos klaidos</header>'
+      street_teams: Gatvės komandų atsiradimas naujoje taurių sistemoje sukėlė įvairių keistų problemų, kurios buvo pašalintos.
+      revert: '<module>PlayerStatsExperience</module> modulis ir baudinių mušėjų įrankiai <module>MatchOrderInterface</module> modulyje turėtų būti galutinai sutaisyti.'
+      income: '<module>MatchIncome</module> nuo šiol turėtų rodyti teisingą informaciją visose rungtynėse. Praneškite apie rastus netikslumus.'
+      stats: '<module>SeasonStats</module> modulis buvo nustojęs teisingai veikti dėl HT pokyčių. Keblumai pašalinti.'
     0.14.0.2:
       bugs: '<header>Pataisytos klaidos</header>'
       challenge_link: 'Nuoroda „Kviesti“ (<module>TeamPopupLinks</module>) nuo šiol veda į komandos puslapį ir automatiškai atidaro draugiškų rungtynių meniu.'
