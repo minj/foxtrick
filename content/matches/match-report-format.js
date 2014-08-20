@@ -18,15 +18,17 @@ Foxtrick.modules.MatchReportFormat = {
 
 	run: function(doc) {
 
+		var module = this;
+
 		/*
 		 * Construct a table row that resembles a valid HT-Live Event
-		 * Has time, data-eventtype & event text
+		 * Has time, data-evnttype & event text
 		 */
-		var buildEventRow = function(doc, event) {
-			var isHomeEvent = Foxtrick.util.matchEvent.isHomeEvent(event);
-			var isAwayEvent = Foxtrick.util.matchEvent.isAwayEvent(event);
-			var eventMinute = Foxtrick.util.matchEvent.getEventMinute(event);
-			var eventId = Foxtrick.util.matchEvent.getEventId(event);
+		var buildEventRow = function(doc, evnt) {
+			var isHomeEvent = Foxtrick.util.matchEvent.isHomeEvent(evnt);
+			var isAwayEvent = Foxtrick.util.matchEvent.isAwayEvent(evnt);
+			var eventMinute = Foxtrick.util.matchEvent.getEventMinute(evnt);
+			var eventId = Foxtrick.util.matchEvent.getEventId(evnt);
 
 			var row = doc.createElement('tr');
 			row.setAttribute('data-eventtype', eventId);
@@ -44,24 +46,11 @@ Foxtrick.modules.MatchReportFormat = {
 			Foxtrick.addClass(eventCell, 'liveEvent');
 
 			dateCell.textContent = eventMinute + "'";
-			eventDiv.appendChild(event);
+			eventDiv.appendChild(evnt);
 
 			row.appendChild(dateCell);
 			eventCell.appendChild(eventDiv);
 			row.appendChild(eventCell);
-
-			/*
-				HT-Bodin:
-				550 is the ball possession.
-				It's an old hack having it reported in there.
-				It's my change to add span-elements around every event that made these appear,
-				I'll have them removed again.
-				---
-				@Todo: Remove this. Required until the change hits production next week or so
-
-			*/
-			if (eventId == 550)
-				Foxtrick.addClass(row, 'hidden');
 
 			return row;
 		};
@@ -70,21 +59,20 @@ Foxtrick.modules.MatchReportFormat = {
 		 * Construct HT-Live like table from all events on this site
 		 */
 		var buildEventTable = function(doc) {
-			var table = doc.createElement('table');
+			var table = Foxtrick.createFeaturedElement(doc, module, 'table');
 			var tbody = doc.createElement('tbody');
 			table.appendChild(tbody);
 
 			// work on the actual events
 			var events = doc.querySelectorAll('#matchReport > .matchevent');
-			for (var i = 0; i < events.length; i++) {
-				var event = events[i];
-				var clonedEvent = event.cloneNode(true);
+			Foxtrick.forEach(function(evnt) {
+				var clonedEvent = evnt.cloneNode(true);
 				var row = buildEventRow(doc, clonedEvent);
 				tbody.appendChild(row);
 
 				// hide the original event
-				Foxtrick.addClass(event, 'hidden');
-			}
+				Foxtrick.addClass(evnt, 'hidden');
+			}, events);
 			return table;
 		};
 
@@ -96,42 +84,36 @@ Foxtrick.modules.MatchReportFormat = {
 		 */
 		var fixHighlighting = function(doc) {
 			var addHighlight = function() {
-				var eventIdx = this.querySelector('td[id^=matchEventIndex_]')
-					.getAttribute('id').match(/\d+/)[0];
+				var eventIdx = this.querySelector('td[id^=matchEventIndex_]').id.match(/\d+/)[0];
 				var ft_event = doc.querySelector('[ht-event-idx="' + eventIdx + '"]');
 				Foxtrick.addClass(ft_event, 'highlightReportEvent');
 			};
 
 			var removeHighlight = function() {
-				var eventIdx = this.querySelector('td[id^=matchEventIndex_]')
-					.getAttribute('id').match(/\d+/)[0];
+				var eventIdx = this.querySelector('td[id^=matchEventIndex_]').id.match(/\d+/)[0];
 				var ft_event = doc.querySelector('[ht-event-idx="' + eventIdx + '"]');
 				Foxtrick.removeClass(ft_event, 'highlightReportEvent');
 			};
 
-			//register events for all rows in the sidebar that indicate events
+			// register events for all rows in the sidebar that indicate events
 			var eventHighlights = doc.querySelectorAll('.tblHighlights td[id^=matchEventIndex_]');
-			for (var ehl = 0; ehl < eventHighlights.length; ehl++) {
-				var row = eventHighlights[ehl].parentNode;
-				//Foxtrick.listen(row, 'mouseover', addHighlight, true);
-				//Foxtrick.listen(row, 'mouseout', removeHighlight, true);
-				row.addEventListener('mouseover', addHighlight, true);
-				row.addEventListener('mouseout', removeHighlight, true);
-			}
+			Foxtrick.forEach(function(hl) {
+				var row = hl.parentNode;
+				Foxtrick.listen(row, 'mouseover', addHighlight, true);
+				Foxtrick.listen(row, 'mouseout', removeHighlight, true);
+			}, eventHighlights);
 		};
 
 		var doMatchReport = function(doc, matchReport) {
-
 
 			// steal HT-Live styling
 			Foxtrick.addClass(matchReport, 'liveReport ft-matchReport');
 
 			// match report header
-			var reportHeader =
-				Foxtrick.createFeaturedElement(doc, Foxtrick.modules.MatchReportFormat, 'h2');
-			matchReport.parentNode.insertBefore(reportHeader, matchReport);
-			reportHeader.className = 'ft-expander-expanded';
+			var reportHeader = Foxtrick.createFeaturedElement(doc, module, 'h2');
+			Foxtrick.addClass(reportHeader, 'ft-expander-expanded');
 			reportHeader.textContent = Foxtrick.L10n.getString('MatchReportFormat.MatchReport');
+			matchReport.parentNode.insertBefore(reportHeader, matchReport);
 
 			Foxtrick.onClick(reportHeader, function() {
 				Foxtrick.toggleClass(reportHeader, 'ft-expander-unexpanded');

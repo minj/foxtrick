@@ -13,17 +13,15 @@ Foxtrick.modules['LiveMatchReportFormat'] = {
 	run: function(doc) {
 		var react = function(liveReport, indicators) {
 			var events = liveReport.getElementsByTagName('tr');
-			for (var i = 0; i < events.length; i++) {
-				var event = events[i];
-
+			Foxtrick.forEach(function(evnt) {
 				// no event, stuff like the indicators or our indicators
-				if (!event.getAttribute('data-eventtype')) {
-					event.firstChild.setAttribute('colspan', '4');
-					continue;
+				if (!evnt.getAttribute('data-eventtype')) {
+					evnt.firstChild.colSpan = 4;
+					return;
 				}
 
-				Foxtrick.util.matchEvent.addEventIcons(event);
-			}
+				Foxtrick.util.matchEvent.addEventIcons(evnt);
+			}, events);
 			if (indicators)
 				Foxtrick.util.matchEvent.addEventIndicators(liveReport);
 		};
@@ -37,8 +35,8 @@ Foxtrick.modules['LiveMatchReportFormat'] = {
 		// firstload
 		reactAll(doc);
 
-		var livereportsContainer =
-			doc.getElementById('ctl00_ctl00_CPContent_CPMain_UpdatePanelMatch');
+		var liveId = 'ctl00_ctl00_CPContent_CPMain_UpdatePanelMatch';
+		var livereportsContainer = doc.getElementById(liveId);
 		if (livereportsContainer)
 			Foxtrick.onChange(livereportsContainer, reactAll, { subtree: false });
 	},

@@ -484,38 +484,38 @@ Foxtrick.util.matchEvent.eventDescription = {
 	599:	'Match finished'
 };
 
-Foxtrick.util.matchEvent.isLiveEvent = function(event) {
-	return Foxtrick.hasClass(event, 'liveHomeEvent') ||
-		Foxtrick.hasClass(event, 'liveAwayEvent') ||
-		event.getElementsByClassName('liveEvent').length;
+Foxtrick.util.matchEvent.isLiveEvent = function(evnt) {
+	return Foxtrick.hasClass(evnt, 'liveHomeEvent') ||
+		Foxtrick.hasClass(evnt, 'liveAwayEvent') ||
+		evnt.getElementsByClassName('liveEvent').length;
 };
 
-Foxtrick.util.matchEvent.isHomeEvent = function(event) {
-	return Foxtrick.hasClass(event, 'liveHomeEvent') || Foxtrick.hasClass(event, 'homeevent');
+Foxtrick.util.matchEvent.isHomeEvent = function(evnt) {
+	return Foxtrick.hasClass(evnt, 'liveHomeEvent') || Foxtrick.hasClass(evnt, 'homeevent');
 };
 
-Foxtrick.util.matchEvent.isAwayEvent = function(event) {
-	return Foxtrick.hasClass(event, 'liveAwayEvent') || Foxtrick.hasClass(event, 'awayevent');
+Foxtrick.util.matchEvent.isAwayEvent = function(evnt) {
+	return Foxtrick.hasClass(evnt, 'liveAwayEvent') || Foxtrick.hasClass(evnt, 'awayevent');
 };
 
-Foxtrick.util.matchEvent.isNeutralEvent = function(event) {
-	return !Foxtrick.util.matchEvent.isHomeEvent(event) &&
-	!Foxtrick.util.matchEvent.isAwayEvent(event);
+Foxtrick.util.matchEvent.isNeutralEvent = function(evnt) {
+	return !Foxtrick.util.matchEvent.isHomeEvent(evnt) &&
+	!Foxtrick.util.matchEvent.isAwayEvent(evnt);
 };
 
-Foxtrick.util.matchEvent.getEventMinute = function(event) {
-	if (!Foxtrick.util.matchEvent.isLiveEvent(event))
-		return parseInt(event.getAttribute('data-match-minute').match(/\d+/)[0], 10);
+Foxtrick.util.matchEvent.getEventMinute = function(evnt) {
+	if (!Foxtrick.util.matchEvent.isLiveEvent(evnt))
+		return parseInt(evnt.getAttribute('data-match-minute').match(/\d+/)[0], 10);
 	else
-		return parseInt(event.firstChild.textContent.match(/\d+/)[0], 10);
+		return parseInt(evnt.firstChild.textContent.match(/\d+/)[0], 10);
 };
 
-Foxtrick.util.matchEvent.getEventId = function(event) {
-	return parseInt(event.getAttribute('data-eventtype').match(/\d+/)[0], 10);
+Foxtrick.util.matchEvent.getEventId = function(evnt) {
+	return parseInt(evnt.getAttribute('data-eventtype').match(/\d+/)[0], 10);
 };
 
-Foxtrick.util.matchEvent.isFirstEvent = function(event) {
-	var id = Foxtrick.util.matchEvent.getEventId(event);
+Foxtrick.util.matchEvent.isFirstEvent = function(evnt) {
+	var id = Foxtrick.util.matchEvent.getEventId(evnt);
 	// in HTO matches there is no weather event
 	// so lineup event 20 is first instead
 	// in neighborhood matches (friendly WOs) 22 is the first event
@@ -523,8 +523,8 @@ Foxtrick.util.matchEvent.isFirstEvent = function(event) {
 	return (id >= 30 && id <= 33 || id === 20 || id === 22 || id >= 700 && id < 710);
 };
 
-Foxtrick.util.matchEvent.getEventIcons = function(event, type) {
-	var eventId = Foxtrick.util.matchEvent.getEventId(event);
+Foxtrick.util.matchEvent.getEventIcons = function(evnt, type) {
+	var eventId = Foxtrick.util.matchEvent.getEventId(evnt);
 	if (Foxtrick.util.matchEvent.eventIcons[eventId] === undefined)
 		return ['transparent'];
 
@@ -542,38 +542,38 @@ Foxtrick.util.matchEvent.getEventIcons = function(event, type) {
 	return ['transparent'];
 };
 
-Foxtrick.util.matchEvent.getEventTeamIcons = function(event) {
-	return Foxtrick.util.matchEvent.getEventIcons(event, 'team');
+Foxtrick.util.matchEvent.getEventTeamIcons = function(evnt) {
+	return Foxtrick.util.matchEvent.getEventIcons(evnt, 'team');
 };
 
-Foxtrick.util.matchEvent.getOtherTeamIcons = function(event) {
-	return Foxtrick.util.matchEvent.getEventIcons(event, 'other');
+Foxtrick.util.matchEvent.getOtherTeamIcons = function(evnt) {
+	return Foxtrick.util.matchEvent.getEventIcons(evnt, 'other');
 };
 
-Foxtrick.util.matchEvent.getHomeIcons = function(event) {
-	if (Foxtrick.util.matchEvent.isHomeEvent(event))
-		return Foxtrick.util.matchEvent.getEventTeamIcons(event);
-	else if (Foxtrick.util.matchEvent.isAwayEvent(event))
-		return Foxtrick.util.matchEvent.getOtherTeamIcons(event);
+Foxtrick.util.matchEvent.getHomeIcons = function(evnt) {
+	if (Foxtrick.util.matchEvent.isHomeEvent(evnt))
+		return Foxtrick.util.matchEvent.getEventTeamIcons(evnt);
+	else if (Foxtrick.util.matchEvent.isAwayEvent(evnt))
+		return Foxtrick.util.matchEvent.getOtherTeamIcons(evnt);
 	else
 		return ['transparent'];
 };
 
-Foxtrick.util.matchEvent.getAwayIcons = function(event) {
-	if (Foxtrick.util.matchEvent.isAwayEvent(event))
-		return Foxtrick.util.matchEvent.getEventTeamIcons(event);
-	else if (Foxtrick.util.matchEvent.isHomeEvent(event))
-		return Foxtrick.util.matchEvent.getOtherTeamIcons(event);
+Foxtrick.util.matchEvent.getAwayIcons = function(evnt) {
+	if (Foxtrick.util.matchEvent.isAwayEvent(evnt))
+		return Foxtrick.util.matchEvent.getEventTeamIcons(evnt);
+	else if (Foxtrick.util.matchEvent.isHomeEvent(evnt))
+		return Foxtrick.util.matchEvent.getOtherTeamIcons(evnt);
 	else
 		return ['transparent'];
 };
 
 
-Foxtrick.util.matchEvent.addEventIcons = function(event) {
-	var doc = event.ownerDocument;
-	var eventId = Foxtrick.util.matchEvent.getEventId(event);
-	var homeIcons = Foxtrick.util.matchEvent.getHomeIcons(event);
-	var awayIcons = Foxtrick.util.matchEvent.getAwayIcons(event);
+Foxtrick.util.matchEvent.addEventIcons = function(evnt) {
+	var doc = evnt.ownerDocument;
+	var eventId = Foxtrick.util.matchEvent.getEventId(evnt);
+	var homeIcons = Foxtrick.util.matchEvent.getHomeIcons(evnt);
+	var awayIcons = Foxtrick.util.matchEvent.getAwayIcons(evnt);
 
 	// Event Icons
 	var homeIconContainer =
@@ -585,8 +585,8 @@ Foxtrick.util.matchEvent.addEventIcons = function(event) {
 	Foxtrick.util.matchEvent.appendIcons(doc, homeIconContainer, homeIcons, title);
 	Foxtrick.util.matchEvent.appendIcons(doc, awayIconContainer, awayIcons, title);
 
-	event.insertBefore(homeIconContainer, event.firstChild.nextSibling);
-	event.insertBefore(awayIconContainer, homeIconContainer.nextSibling);
+	evnt.insertBefore(homeIconContainer, evnt.firstChild.nextSibling);
+	evnt.insertBefore(awayIconContainer, homeIconContainer.nextSibling);
 };
 
 Foxtrick.util.matchEvent.appendIcons = function(doc, container, icons, title) {
@@ -618,11 +618,12 @@ Foxtrick.util.matchEvent.addEventIndicators = function(container) {
 		Foxtrick.util.matchEvent.addEventIndicator(eventRows[e], inverted);
 };
 
-Foxtrick.util.matchEvent.addEventIndicator = function(event, invert) {
-	var doc = event.ownerDocument;
-	var eventId = Foxtrick.util.matchEvent.getEventId(event);
-	var eventMinute = Foxtrick.util.matchEvent.getEventMinute(event);
+Foxtrick.util.matchEvent.addEventIndicator = function(evnt, invert) {
+	var doc = evnt.ownerDocument;
+	var eventId = Foxtrick.util.matchEvent.getEventId(evnt);
+	var eventMinute = Foxtrick.util.matchEvent.getEventMinute(evnt);
 	var eventType = Foxtrick.util.matchEvent.eventIcons[eventId];
+	var table = evnt.parentNode;
 
 	// indicators to be added
 	var indicatorList = [
@@ -631,15 +632,14 @@ Foxtrick.util.matchEvent.addEventIndicator = function(event, invert) {
 			text: 'kickOff',
 			before: true,
 			func: function() {
-				var koPending = event.parentNode
-					.getElementsByClassName('ft-match-report-kick-off').length <= 0;
+				var koPending = !table.getElementsByClassName('ft-match-report-kick-off').length;
 
 				if (koPending && !invert && eventMinute !== 0)
 					return true;
-				else if (koPending && invert && eventMinute !== 0 && event.nextSibling) {
+				else if (koPending && invert && eventMinute !== 0 && evnt.nextSibling) {
 					try {
 						var nextEventMinute =
-							Foxtrick.util.matchEvent.getEventMinute(event.nextSibling);
+							Foxtrick.util.matchEvent.getEventMinute(evnt.nextSibling);
 						return (nextEventMinute === 0);
 					}
 					catch (e) {
@@ -696,7 +696,7 @@ Foxtrick.util.matchEvent.addEventIndicator = function(event, invert) {
 		// found a matching indicator
 		var indicator = doc.createElement('tr');
 		var indicatorCell = doc.createElement('td');
-		indicatorCell.setAttribute('colspan', event.getElementsByTagName('td').length);
+		indicatorCell.setAttribute('colspan', evnt.getElementsByTagName('td').length);
 		indicator.appendChild(indicatorCell);
 		indicatorCell.textContent = Foxtrick.L10n.getString('MatchReportFormat.' + indType.text);
 		Foxtrick.addClass(indicator, 'ft-match-report-' + indType['class']);
@@ -707,13 +707,13 @@ Foxtrick.util.matchEvent.addEventIndicator = function(event, invert) {
 			before = !before;
 
 		if (before) {
-			event.parentNode.insertBefore(indicator, event);
+			table.insertBefore(indicator, evnt);
 		}
 		else {
-			if (event.nextSibling)
-				event.parentNode.insertBefore(indicator, event.nextSibling);
+			if (evnt.nextSibling)
+				table.insertBefore(indicator, evnt.nextSibling);
 			else
-				event.parentNode.appendChild(indicator);
+				table.appendChild(indicator);
 		}
 	}
 };
