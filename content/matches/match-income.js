@@ -71,8 +71,7 @@ Foxtrick.modules['MatchIncome'] = {
 				},
 			];
 
-			var dateText = doc.getElementsByClassName('date')[0].textContent;
-			var matchDate = Foxtrick.util.time.getDateFromText(dateText);
+			var matchDate = Foxtrick.Pages.Match.getDate(doc);
 			//use last if we find nothing
 			var priceIdx = prices.length - 1;
 			for (var i = 0; i < prices.length; i++) {
@@ -87,10 +86,9 @@ Foxtrick.modules['MatchIncome'] = {
 					}
 				}
 			}
-			var isNeutral = doc.querySelector('#matchReport span[data-eventtype^="26_"]');
-			var mainBody = doc.getElementById('mainBody');
-			var isCup = mainBody.querySelectorAll('*[class^="matchCup"]').length > 0;
-			var isFriendly = mainBody.getElementsByClassName('matchFriendly').length > 0;
+			var isNeutral = Foxtrick.Pages.Match.isNeutral(doc);
+			var isCup = Foxtrick.Pages.Match.isCup(doc);
+			var isFriendly = Foxtrick.Pages.Match.isFriendly(doc);
 			var priceQ = isFriendly || isNeutral ? 0.5 : (isCup ? 0.67 : 1);
 
 			var visitorsTerraces = Foxtrick.trimnum(table.rows[0].cells[1].textContent);

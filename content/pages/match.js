@@ -242,6 +242,49 @@ Foxtrick.Pages.Match.inProgress = function(doc) {
 };
 
 /**
+ * Test whether match is played in neutral grounds
+ * @param  {document} doc
+ * @return {Boolean}
+ */
+Foxtrick.Pages.Match.isNeutral = function(doc) {
+	var neutralEvent = doc.querySelector('#matchReport span[data-eventtype^="26_"]');
+	return neutralEvent !== null;
+};
+
+/**
+ * Test whether match is a league match
+ * @param  {document} doc
+ * @return {Boolean}
+ */
+Foxtrick.Pages.Match.isLeague = function(doc) {
+	var mainBody = doc.getElementById('mainBody');
+	var isLeague = mainBody.getElementsByClassName('matchLeague').length > 0;
+	return isLeague;
+};
+
+/**
+ * Test whether match is a cup match
+ * @param  {document} doc
+ * @return {Boolean}
+ */
+Foxtrick.Pages.Match.isCup = function(doc) {
+	var mainBody = doc.getElementById('mainBody');
+	var isCup = mainBody.querySelectorAll('*[class^="matchCup"]').length > 0;
+	return isCup;
+};
+
+/**
+ * Test whether match is a friendly match
+ * @param  {document} doc
+ * @return {Boolean}
+ */
+Foxtrick.Pages.Match.isFriendly = function(doc) {
+	var mainBody = doc.getElementById('mainBody');
+	var isFriendly = mainBody.getElementsByClassName('matchFriendly').length > 0;
+	return isFriendly;
+};
+
+/**
  * Get ratings table
  * @param  {document} doc
  * @return {HTMLAnchorElement}
