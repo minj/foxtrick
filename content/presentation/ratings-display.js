@@ -12,191 +12,180 @@ Foxtrick.modules['RatingsDisplay'] = {
 	NICE: 1, // after ratings modules: ratings, att-vs-def, htms-prediction
 
 	run: function(doc) {
+		var module = this;
+		// denominations display style
+		var denom = Foxtrick.Prefs.getInt('module.RatingsDisplay.value') === 0;
+		// hatstats style = module.RatingsDisplay.value == 1
+		var hatstats = Foxtrick.Prefs.getInt('module.RatingsDisplay.value') === 1;
+
 
 		var do_matchreport = function() {
-			var isprematch =
-				(doc.getElementById('ctl00_ctl00_CPContent_CPMain_pnlPreMatch') != null);
-			if (isprematch)
+			if (Foxtrick.Pages.Match.isPrematch(doc))
 				return;
 
 			var table = Foxtrick.Pages.Match.getRatingsTable(doc);
-			if (table == null) return;
-			if (Foxtrick.Pages.Match.isWalkOver(table)) return;
+			if (!table || Foxtrick.Pages.Match.isWalkOver(table))
+				return;
 
-			var mean_home = 0, mean_away = 0;
-			for (var row = 1; row < table.rows.length; ++row) {
-				if (table.rows[row].cells[3]) {
-					if (table.rows[row].cells[1].getElementsByTagName('a').length != 0 &&
-					    table.rows[row].cells[1].textContent !=
-					    table.rows[row].cells[1].getElementsByTagName('a')[0].textContent) {
-						Foxtrick.addClass(table.rows[row].cells[3], 'ft-dummy');
-						var val = Number(table.rows[row].cells[3].textContent.replace(',', '.'));
-						if (Foxtrick.Prefs.getInt('module.RatingsDisplay.value') == 0) {
-							table.rows[row].cells[3].textContent = (val / 4 + 0.75).toFixed(2);
-						}
-						else {
-							if (row == table.rows.length - 1) { // total average
-								table.rows[row].cells[3].textContent = mean_home;
+			var averageTable = doc.querySelector('.miscRatings');
+			var rows = Foxtrick.concat(table.rows, averageTable.rows);
+
+			Foxtrick.forEach(function(row, i, rows) {
+				var convertHTSums = function(textTd, valueTd) {
+					if (valueTd) {
+						// skip labels, headers, FT ratings etc
+						if (textTd.getElementsByTagName('a').length &&
+						    textTd.textContent.trim() !=
+						    textTd.getElementsByTagName('a')[0].textContent.trim()) {
+							// skip tactics level
+
+							Foxtrick.addClass(valueTd, 'ft-dummy');
+							var val = parseInt(valueTd.textContent, 10);
+							if (denom)
+								val = (val / 4 + 0.75).toFixed(2);
+							else if (hatstats) {
+								if (i === 1 || i >= rows.length - 4)
+									// midfield and averages
+									val = val * 3;
 							}
-							else if (row >= table.rows.length - 4) { // averages
-								mean_home += val * 3;
-								table.rows[row].cells[3].textContent = val * 3;
-							}
-						}
-					}
-				}
-				if (table.rows[row].cells[4]) {
-					if (table.rows[row].cells[2].getElementsByTagName('a').length != 0 &&
-					    table.rows[row].cells[2].textContent !=
-					    table.rows[row].cells[2].getElementsByTagName('a')[0].textContent) {
-						Foxtrick.addClass(table.rows[row].cells[4] , 'ft-dummy');
-						var val = Number(table.rows[row].cells[4].textContent.replace(',', '.'));
-						if (Foxtrick.Prefs.getInt('module.RatingsDisplay.value') == 0)
-							table.rows[row].cells[4].textContent = (val / 4 + 0.75).toFixed(2);
-						else if (Foxtrick.Prefs.getInt('module.RatingsDisplay.value') == 1)
-						{
-							if (row == table.rows.length - 1) { // total average
-								table.rows[row].cells[4].textContent = mean_away;
-							}
-							else if (row >= table.rows.length - 4) { // averages
-								mean_away += val * 3;
-								table.rows[row].cells[4].textContent = val * 3;
-							}
-						}
-						else {
-							// unchanged
+							valueTd.textContent = val;
 						}
 					}
-				}
-			}
+				};
+				var cell1 = row.cells[1]; // home text
+				var cell2 = row.cells[2]; // away text
+				var cell3 = row.cells[3]; // home value
+				var cell4 = row.cells[4]; // away value
+				convertHTSums(cell1, cell3);
+				convertHTSums(cell2, cell4);
+			}, rows);
 		};
 
-		//series stats
-		//e.g.: http://stage.hattrick.org/World/Series/Stats.aspx?LeagueLevelUnitID=25&TeamID=11598
+		// series stats
+		// e.g.: /World/Series/Stats.aspx?LeagueLevelUnitID=25&TeamID=11598
 		var do_seriesstats = function() {
-			var averages_max = ['', '', 0, 0, 0, 0]; //#, rowstring, total, def, mid, att
-			var averages_avg = ['', '', 0, 0, 0, 0]; //#, rowstring, total, def, mid, att
-			var table = doc.getElementById('mainBody').getElementsByTagName('table')[0];
-			if (!table)
-				return;
-			for (var row = 1; row < table.rows.length; ++row) {
-				var mean_avg = 0, mean_max = 0;
-				for (var cells = table.rows[row].cells.length - 1; cells > 1; --cells) {
-					Foxtrick.addClass(table.rows[row].cells[cells], 'ft-dummy');
-					var val_max = Number(table.rows[row].cells[cells].getElementsByTagName('a')[0]
-					                     .textContent.replace(',', '.'));
-					var val_avg = Number(table.rows[row].cells[cells].getElementsByTagName('span')[1]
-					                     .textContent.replace(',', '.'));
-					averages_max[cells] += val_max / 8;
-					averages_avg[cells] += val_avg / 8;
-					//denominations display style
-					if (Foxtrick.Prefs.getInt('module.RatingsDisplay.value') == 0) {
-						table.rows[row].cells[cells].getElementsByTagName('a')[0].textContent =
-							(val_max / 4 + 0.75).toFixed(2);
-						table.rows[row].cells[cells].getElementsByTagName('span')[1].textContent =
-							(val_avg / 4 + 0.75).toFixed(2);
-					}
-					//htstats style = module.RatingsDisplay.value == 1
-					else if (Foxtrick.Prefs.getInt('module.RatingsDisplay.value') == 1)
-					{
-						//the total average cell, multiply by 9 (3 x def, 3x mid, 3x forward)
-						if (cells == 2) {
-							table.rows[row].cells[cells].getElementsByTagName('a')[0]
-								.textContent = val_max * 9;
-							table.rows[row].cells[cells].getElementsByTagName('span')[1]
-								.textContent = val_avg * 9;
-						}
-						//individual cells for def, mid, fw ... each entry has a weight of 3
-						//-> multiply by 3
-						else
-						{
-							table.rows[row].cells[cells].getElementsByTagName('a')[0]
-								.textContent = val_max * 3;
-							table.rows[row].cells[cells].getElementsByTagName('span')[1]
-								.textContent = val_avg * 3;
-						}
-					} else {
-						// just leave it as it is
-					}
-				}
-			}
+			var mainBody = doc.getElementById('mainBody');
 
-			// add averages
-			var tbody = table.appendChild(doc.createElement('tbody'));
-			tbody.className = 'strong';
-			var sep = tbody.insertRow(-1).insertCell(-1);
-			sep.textContent = '\u00a0';
-			sep.setAttribute('style', 'visibility:hidden;');
-			var row = tbody.insertRow(-1);
-			var cell = row.insertCell(-1);
-			cell.setAttribute('style', 'visibility:hidden;');
-			var cell = row.insertCell(-1).textContent = Foxtrick.L10n.getString('rating.average');
-			for (var cells = 2; cells < 6; ++cells) {
-				var cell = row.insertCell(-1);
-				var spanavg = cell.appendChild(doc.createElement('span'));
-				spanavg.className = 'avgStat hidden';
-				var spanmax = cell.appendChild(doc.createElement('span'));
-				spanmax.className = 'maxStat';
-				if (Foxtrick.Prefs.getInt('module.RatingsDisplay.value') == 0) {
-					spanavg.textContent = (averages_avg[cells] / 4 + 0.75).toFixed(2);
-					spanmax.textContent = (averages_max[cells] / 4 + 0.75).toFixed(2);
-				}
-				//htstats style = module.RatingsDisplay.value == 1
-				else if (Foxtrick.Prefs.getInt('module.RatingsDisplay.value') == 1)
-				{
-					//the total average cell, multiply by 9 (3 x def, 3x mid, 3x forward)
-					if (cells == 2) {
-						spanavg.textContent = (averages_avg[cells] * 9).toFixed(1);
-						spanmax.textContent = (averages_max[cells] * 9).toFixed(1);
-					}
-					//individual cells for def, mid, fw ... each entry has a weight of 3
-					//-> multiply by 3
-					else
-					{
-						spanavg.textContent = (averages_avg[cells] * 3).toFixed(1);
-						spanmax.textContent = (averages_max[cells] * 3).toFixed(1);
-					}
-				}
-				// plain HT sums
-				else {
-					spanavg.textContent = averages_avg[cells].toFixed(2);
-					spanmax.textContent = averages_max[cells].toFixed(2);
-				}
-			}
+			var addRatingsAvgs = function() {
+				var ratingsTable = mainBody.getElementsByTagName('table')[0];
+				if (!ratingsTable)
+					return;
 
-			//stars
-			var averages_max = ['', '', 0, 0, 0, 0]; //#, rowstring, total, def, mid, att
-			var averages_avg = ['', '', 0, 0, 0, 0]; //#, rowstring, total, def, mid, att
-			var table = doc.getElementById('mainBody').getElementsByTagName('table')[1];
-			for (var row = 1; row < table.rows.length; ++row) {
-				var mean_avg = 0, mean_max = 0;
-				for (var cells = table.rows[row].cells.length - 1; cells > 1; --cells) {
-					var val_max = Number(table.rows[row].cells[cells].getElementsByTagName('a')[0]
-					                     .textContent.replace(',', '.'));
-					var val_avg = Number(table.rows[row].cells[cells].getElementsByTagName('span')[1]
-					                     .textContent.replace(',', '.'));
-					averages_max[cells] += val_max / 8;
-					averages_avg[cells] += val_avg / 8;
+				var averagesMax = [0, 0, 0, 0]; // total, def, mid, att
+				var averagesAvg = [0, 0, 0, 0]; // total, def, mid, att
+
+				Foxtrick.forEach(function(row) {
+					Foxtrick.forEach(function(cell, j) {
+						Foxtrick.addClass(cell, 'ft-dummy');
+						var elMax = cell.getElementsByTagName('a')[0];
+						var elAvg = cell.getElementsByTagName('span')[1];
+						var valMax = parseInt(elMax.textContent, 10);
+						var valAvg = parseInt(elAvg.textContent, 10);
+						averagesMax[j] += valMax / 8;
+						averagesAvg[j] += valAvg / 8;
+						if (denom) {
+							elMax.textContent = (valMax / 4 + 0.75).toFixed(2);
+							elAvg.textContent = (valAvg / 4 + 0.75).toFixed(2);
+						}
+						else if (hatstats) {
+							if (j === 0) {
+								// the total average cell,
+								// multiply by 9 (3 x def, 3x mid, 3x forward)
+								elMax.textContent = valMax * 9;
+								elAvg.textContent = valAvg * 9;
+							}
+							else {
+								// individual cells for def, mid, fw ...
+								// each entry has a weight of 3
+								// -> multiply by 3
+								elMax.textContent = valMax * 3;
+								elAvg.textContent = valAvg * 3;
+							}
+						}
+					}, Foxtrick.toArray(row.cells).slice(2)); // skip first two columns
+				}, Foxtrick.toArray(ratingsTable.rows).slice(1)); // skip header
+
+				// add averages
+				var tbody = ratingsTable.appendChild(doc.createElement('tbody'));
+				Foxtrick.makeFeaturedElement(tbody, module);
+				Foxtrick.addClass(tbody, 'strong');
+				var sep = tbody.insertRow(-1).insertCell(-1);
+				sep.textContent = '\u00a0';
+				sep.setAttribute('style', 'visibility:hidden;');
+				var row = tbody.insertRow(-1);
+				row.insertCell(-1).setAttribute('style', 'visibility:hidden;');
+				row.insertCell(-1).textContent = Foxtrick.L10n.getString('rating.average');
+				for (var cells = 0; cells < 4; ++cells) {
+					var cell = row.insertCell(-1);
+					var spanAvg = cell.appendChild(doc.createElement('span'));
+					spanAvg.className = 'avgStat hidden';
+					var spanMax = cell.appendChild(doc.createElement('span'));
+					spanMax.className = 'maxStat';
+					var avgText, maxText;
+					if (denom) {
+						avgText = (averagesAvg[cells] / 4 + 0.75).toFixed(2);
+						maxText = (averagesMax[cells] / 4 + 0.75).toFixed(2);
+					}
+					else if (hatstats) {
+						// the total average cell, multiply by 9 (3 x def, 3x mid, 3x forward)
+						if (cells === 0) {
+							avgText = (averagesAvg[cells] * 9).toFixed(1);
+							maxText = (averagesMax[cells] * 9).toFixed(1);
+						}
+						// individual cells for def, mid, fw ... each entry has a weight of 3
+						// -> multiply by 3
+						else {
+							avgText = (averagesAvg[cells] * 3).toFixed(1);
+							maxText = (averagesMax[cells] * 3).toFixed(1);
+						}
+					}
+					// plain HT sums
+					else {
+						avgText = averagesAvg[cells].toFixed(2);
+						maxText = averagesMax[cells].toFixed(2);
+					}
+					spanAvg.textContent = avgText;
+					spanMax.textContent = maxText;
 				}
-			}
-			var tbody = table.appendChild(doc.createElement('tbody'));
-			tbody.className = 'strong';
-			var sep = tbody.insertRow(-1).insertCell(-1);
-			sep.textContent = '\u00a0';
-			sep.setAttribute('style', 'visibility:hidden;');
-			var row = tbody.insertRow(-1);
-			var cell = row.insertCell(-1);
-			cell.setAttribute('style', 'visibility:hidden;');
-			var cell = row.insertCell(-1).textContent = Foxtrick.L10n.getString('rating.average');
-			for (var cells = 2; cells < 6; ++cells) {
-				var cell = row.insertCell(-1);
-				var spanavg = cell.appendChild(doc.createElement('span'));
-				spanavg.className = 'avgStat hidden';
-				var spanmax = cell.appendChild(doc.createElement('span'));
-				spanmax.className = 'maxStat';
-				spanavg.textContent = averages_avg[cells].toFixed(2);
-				spanmax.textContent = averages_max[cells].toFixed(2);
-			}
+			};
+
+			var addStarAvgs = function() {
+				var averagesMax = [0, 0, 0, 0]; // total, def, mid, att
+				var averagesAvg = [0, 0, 0, 0]; // total, def, mid, att
+				var starsTable = mainBody.getElementsByTagName('table')[1];
+				Foxtrick.forEach(function(row) {
+					Foxtrick.forEach(function(cell, j) {
+						var elMax = cell.getElementsByTagName('a')[0];
+						var elAvg = cell.getElementsByTagName('span')[1];
+						var valMax = parseFloat(elMax.textContent.replace(',', '.'));
+						var valAvg = parseFloat(elAvg.textContent.replace(',', '.'));
+						averagesMax[j] += valMax / 8;
+						averagesAvg[j] += valAvg / 8;
+					}, Foxtrick.toArray(row.cells).slice(2)); // skip first two columns
+				}, Foxtrick.toArray(starsTable.rows).slice(1)); // skip header
+
+				var tbody = starsTable.appendChild(doc.createElement('tbody'));
+				Foxtrick.makeFeaturedElement(tbody, module);
+				Foxtrick.addClass(tbody, 'strong');
+				var sep = tbody.insertRow(-1).insertCell(-1);
+				sep.textContent = '\u00a0';
+				sep.setAttribute('style', 'visibility:hidden;');
+				var row = tbody.insertRow(-1);
+				row.insertCell(-1).setAttribute('style', 'visibility:hidden;');
+				row.insertCell(-1).textContent = Foxtrick.L10n.getString('rating.average');
+				for (var cells = 0; cells < 4; ++cells) {
+					var cell = row.insertCell(-1);
+					var spanAvg = cell.appendChild(doc.createElement('span'));
+					spanAvg.className = 'avgStat hidden';
+					var spanMax = cell.appendChild(doc.createElement('span'));
+					spanMax.className = 'maxStat';
+					spanAvg.textContent = averagesAvg[cells].toFixed(2);
+					spanMax.textContent = averagesMax[cells].toFixed(2);
+				}
+			};
+
+			addRatingsAvgs();
+			addStarAvgs();
 		};
 
 		if (Foxtrick.isPage(doc, 'match'))
