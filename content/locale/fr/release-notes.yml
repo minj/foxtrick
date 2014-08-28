@@ -7,7 +7,12 @@ fr:
       note_0: "Il s'agit de la version bêta de la prochaine version. Veuillez nous aider à traduire cette version via un site ultra simple à utiliser <linkCrowdin>crowdin.net</linkCrowdin>. "
     0.14.0.3:
       important: '<header>Annonces importantes</header>'
+      sorry: Toutes nos excuses pour la dernière version qui a occasionnée plus de dégâts que de correctifs. Cette version devrait être bien mieux.
       bugs: '<header>Correctifs</header>'
+      street_teams: "L'introduction des équipes de rue dans le nouveau système de coupe a occasionné divers problèmes qui sont maintenant corrigés."
+      revert: '<module>PlayerStatsExperience</module> et la sélection des tireurs de penalty  dans <module>MatchOrderInterface</module> devrait maintenant fonctionner pour de bon.'
+      income: "<module>MatchIncome</module> doit maintenant afficher correctement les informations pour tous les matchs. S'il vous plaît signaler nous toutes incohérences."
+      stats: "<module>SeasonStats</module> a été corrompu par les récentes modifications d'hattrick. Tous les problèmes ont été résolus."
     0.14.0.2:
       bugs: '<header>Correctifs</header>'
       challenge_link: "Le lien du défi dans <module>TeamPopupLinks</module> vous emmène à la page de l'équipe et ouvre le menu de défi automatiquement."

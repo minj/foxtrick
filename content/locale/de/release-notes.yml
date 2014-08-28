@@ -7,7 +7,10 @@ de:
       note_0: 'Dies ist die Beta-Version der nächsten Veröffentlichung. Hilf bitte mit diese auf unserer extrem einfachen Übersetzungsseite <linkCrowdin>crowdin.net</linkCrowdin> ins Deutsche zu übersetzen falls euch Schreibfehler oder fehlende Einträge auffallen.'
     0.14.0.3:
       important: '<header>Wichtige Ankündigungen</header>'
+      sorry: 'Wir entschuldigen uns für den letzten sogenannten "Bug-Fix"-Release welcher dann doch leider mehr kaputtmachte als er reparierte. Diese Version sollte nun besser sein.'
       bugs: '<header>Bugfixes</header>'
+      income: '<module>MatchIncome</module> müsste nun für alle Spiele die korrekten Werte darstellen. Bitte meldet uns Ungereimtheiten.'
+      stats: '<module>SeasonStats</module> funktionierte wegen Änderungen auf HT-Seite nicht mehr. Diese Probleme wurden behoben.'
     0.14.0.2:
       bugs: '<header>Bugfixes</header>'
       other: '<header>Andere Änderungen</header>'
