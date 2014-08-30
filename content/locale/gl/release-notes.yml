@@ -7,7 +7,12 @@ gl:
       note_0: 'Esta é a versión beta do próximo lanzamento. Podes axudar a traducila na nosa marabillosa páxina de tradución en equipo <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.14.0.3:
       important: '<header>Anuncios importantes</header>'
+      sorry: 'Desculpas pola última "rolda de arranxo de bugs", que curiosamente rachou mais cousas das que arranxou. A de agora debería ir mellor.'
       bugs: '<header>Solucións de erros</header>'
+      street_teams: A introducción dos equipos da rúa no novo sistema da copa provocou varios problemas que foron xa arranxados.
+      revert: 'O módulo <module>PlayerStatsExperience</module> e as utilidades de lanzadores de penaltis no <module>MatchOrderInterface</module> deberían ter sido arranxados desta vez.'
+      income: 'O módulo <module>MatchIncome</module> debería agora amosar a información correcta para tódolos partidos. Por favor infórmanos se atopas inconsistencias.'
+      stats: 'O módulo <module>SeasonStats</module> rachou polos últimos cambios. Todo está xa arranxado.'
     0.14.0.2:
       bugs: '<header>Solucións de erros</header>'
       challenge_link: 'O ligazón de desafío no <module>TeamPopupLinks</module> levache agora á páxina do equipo e abre automáticamente o menú de desafíos.'
