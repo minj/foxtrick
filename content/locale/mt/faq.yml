@@ -1,1 +1,9 @@
 ---
+mt:
+  faq:
+    style:
+      question: "Kif nista' inbiddel id-dera tal-FoxTrick tiegħi?"
+    sound-format:
+      question: Liema fajl formats huma accetati ghas-sejhiet tal-allarms?
+    privacy:
+      question: FoxTrick, kif ħa jiproteġili il-privitezza tiegħi?
