@@ -7,10 +7,22 @@ da:
       note_0: 'Dette er betaversionen af den næste udgave. Du kan hjælpe med at oversætte via vores super nemme oversættelses-side <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.14.0.3:
       important: '<header>Vigtige meddelelser</header>'
+      sorry: Vi beklager de gener vores rettelser fra sidste udgave var skyld i. De seneste rettelser bør være bedre.
       bugs: '<header>Fejlrettelser</header>'
+      street_teams: Indførelsen af bot-hold i den nye pokalsystem forårsagede problemer af forskellige art, som skulle være udbedret.
+      revert: |
+        <module>PlayerStatsExperience</module> og straffesparkstager-funktionen under
+        <module>MatchOrderInterface</module> skulle nu fungere efter hensigten.
+      income: '<module>MatchIncome</module> viser nu korrekt info for alle kampe. Du bedes rapporter eventuelle uoverensstemmelser.'
+      stats: '<module>SeasonStats</module> fungerede ikke efter hensigten grundet ændringer fra HT. Alle funktioner er nu rettet.'
     0.14.0.2:
       bugs: '<header>Fejlrettelser</header>'
+      challenge_link: 'Genvejen til udfordringer i <module>TeamPopupLinks</module> omdirigere dig nu til den pågældende holds klubside og åbner automatisk menuen for udfordringer.'
+      penalty_takers: 'Sortering via HO formel i <module>MatchOrderInterface</module> fungere ikke på grund af ændringer fra HT.'
+      new_cups: 'Den nye pokalsystem er implementeret. Denne rettelse har udbedret fejl i forskellige moduller, især under <module>PlayerStatsExperience</module>.'
       other: '<header>Andre ændringer</header>'
+      psico: '<module>PsicoTSI</module> løn-prognose er opdateret.'
+      first_last_post: 'Du kan nu gå til første indlæg, når du igen klikker på en allerede åben tråd med <module>ForumLastPost</module>.'
       and_more: Forskellige små ændringer og rettelser.
     0.14.0.1:
       important: '<header>Vigtige meddelelser</header>'
