@@ -7,9 +7,14 @@ nl:
       note_0: 'Dit is een beta versie van de volgende release. Help alsjeblieft met vertalen van deze versie op de zeer gebruiksvriendelijke crowd-vertaal pagina <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.14.0.3:
       important: '<header>Belangrijke aankondigingen</header>'
+      sorry: "Excuses voor de laatste 'bug-fix' release. Deze deed meer kwaad dan goed. In deze versie doen we een betere poging."
       bugs: '<header>Fout herstel</header>'
+      street_teams: 'Het introduceren van straatteams in het nieuwe bekersysteem veroorzaakte meerdere vreemde problemen die nu zijn opgelost. '
+      revert: '<module>PlayerStatsExperience</module> en strafschopnemers hulpmiddelen in <module>MatchOrderInterface</module> zouden nu echt weer moeten werken.'
+      income: '<module>VergelijkSalaris</module> moet de juiste informatie voor alle wedstrijden nu wel weergegeven. Rapporteer eventuele fouten.'
+      stats: '<module>SeasonStats</module> werkte eerst niet goed door recente HT veranderingen. Alle problemen zijn nu opgelost.'
     0.14.0.2:
-      bugs: '<header>Fout herstel</header>'
+      bugs: '<header>Bug fixes</header>'
       challenge_link: 'Uitdaging link in <module>TeamPopupLinks</module> brengt je nu naar de teampagina en opent automatisch het menu uitdaging.'
       penalty_takers: 'Sorteren door HO formule in <module>MatchOrderInterface</module> werkte niet als gevolg van HT veranderingen.'
       new_cups: 'Nieuwe beker systeemondersteuning was geïmplementeerd. Dit verhelpt nieuwe bugs in verschillende modules, vooral  in de <module>PlayerStatsExperience</module> module.'
@@ -212,7 +217,7 @@ nl:
       note_39: '<header>De voorkeurenpagina is verbeterd.</header>'
       note_40: '<strong>En nog veel meer</strong>'
     0.10.0:
-      note_0: 'NEW: <module>TransferHistoryFilters</module>: Allows you to filter transfers for bought or sold players only. Only available for the team history, not players (default on)'
+      note_0: 'NEW: <module>TransferHistoryFilters</module>: Staat toe om transfers te filteren op alleen verkochte spelers. Alleen beschikbaar voor je team historie. Niet voor spelers (staat standaard aan)'
       note_1: 'NEW: <module>FriendlyPool</module>: Colorizes visited countries in the friendly pool (supporters only, default on)'
       note_2: 'NEW: <module>HTEVPrediction</module>: Displays match odds for league games provided by <linkHTEV>HTEV</linkHTEV> (default on)'
       note_3: '<module>PlayerStatsExperience</module>: A fancy new version with much more details and colored feedback if the data is reliable. (Thanks to SeanConnery (7751762) for testing the colors for red-green blind users)'

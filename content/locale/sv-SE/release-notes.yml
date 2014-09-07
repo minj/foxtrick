@@ -7,7 +7,12 @@ sv-SE:
       note_0: 'Detta är BETA -versionen av nästa utgåva. Hjälp gärna till att översätta denna version via vårt superlätta översättningsverktyg på <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.14.0.3:
       important: '<header>Viktiga meddelanden</header>'
+      sorry: 'Ber om ursäkt för den senaste "bug-fix"-utgåvan som faktiskt hade sönder fler saker än den fixade. Den här ska vara bättre.'
       bugs: '<header>Buggfixar</header>'
+      street_teams: Införandet av kvartersgäng i det nya cupsystemet orsakade olika konstiga problem som nu lösts.
+      revert: '<module>PlayerStatsExperience</module> och verktyg för straffskyttar i <module>MatchOrderInterface</module> ska nu en gång för alla vara fixade.'
+      income: '<module>MatchIncome</module> should now display correct information for all matches. Please report any inconsistencies.'
+      stats: '<module>SeasonStats</module> was broken due to recent HT changes. All issues were fixed.'
     0.14.0.2:
       bugs: '<header>Buggfixar</header>'
       challenge_link: 'Challenge link in <module>TeamPopupLinks</module> now takes you to the team page and automatically opens the challenge menu.'
