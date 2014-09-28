@@ -7,15 +7,29 @@ hr:
       note_0: 'Ovo je beta inačica buduće nove verzije. Pomozite na prevoditi ovu verziju sa super lakim prevođenjem na <linkCrowdin>crowdin.net</linkCrowdin>.'
     0.14.0.3:
       important: '<header>Važne obavijesti</header>'
+      sorry: 'Isprike za posljednji "bug-fix" koji je više stvari slomio nego što je ispravio. Ovaj bi trebao biti bolji.'
       bugs: '<header>Popravljene greške</header>'
+      street_teams: Uvođenje momčadi u kup sustav uzrokovao je razne čudne probleme te su sada riješeni.
+      revert: '<module>PlayerStatsExperience</module> i alati pucača kaznenih udaraca u <module>MatchOrderInterface</module> bi trebalo sada biti ispravljeno za stvarno.'
+      income: '<module>MatchIncome</module> trebao bi sada pokazati točne informacije za sve utakmice. Prijavite sve nedosljednosti.'
+      stats: '<module>SeasonStats</module> je slomljen zbog HT promjena. Sve greške su ispravljene.'
     0.14.0.2:
       bugs: '<header>Popravljene greške</header>'
+      challenge_link: 'Izazov link u <module>TeamPopupLinks</module> sada vodi vas na stranicu tima i automatski otvara izbornik izazova.'
+      penalty_takers: 'Sortiranje prema formuli HO u <module>MatchOrderInterface</module> je slomljena zbog promjene HT.'
+      new_cups: 'Provedena je nova podrška kup sistema. Ovo ispravlja nove greške u različitim modulima, najvažnije <module>PlayerStatsExperience</module>.'
       other: '<header>Druge promjene</header>'
+      psico: '<module>PsicoTSI</module> predviđanja plaća je obnovljeno.'
+      first_last_post: 'Sada možete po želji otvoriti prvi post kada kliknete opet na već otvorene teme sa <module>ForumLastPost</module>.'
       and_more: Razne druge male promjene i popravci.
     0.14.0.1:
       important: '<header>Važne obavijesti</header>'
       ff_cache: Foxtrick paketi neće imati dodatne kompresije u Firefoxu. Ovo će spriječiti razne čudne probleme korisnicima koje su iskusili u inačici 0.14.0.
       bugs: '<header>Popravljene greške</header>'
+      safari_prefs: Stranica Foxtrick postavki nije bila moguća prikazati za neke korisnike preglednika Safari.
+      teamstats: 'Ispravljena rijetka greška koja slomi <module>TeamStats</module> i ostale module.'
+      bpp: '<module>BestPlayerPosition</module> je pokazivao krive podatke u pretraživanju rezultata transfera u nekim slučajevima.'
+      history_stats: '<module>HistoryStats</module> će sada uvjek porediti učinak momčadi po sezoni.'
     0.14.0:
       important: '<header>Važne obavijesti</header>'
       crowdin: '<header>Mnogo prevoditeljskih nadogradnji od naših fantastičnih korisnika koristeći <linkCrowdin>crowdin alat</linkCrowdin>. I Vi možete pomoći!</header>'
