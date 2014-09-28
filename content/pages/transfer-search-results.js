@@ -127,6 +127,16 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 			                                       '/Club/Transfers/TransferCompare.aspx');
 			player.TransferCompare = tc;
 
+			// playerstats
+			var ps = doc.createElement('a');
+			ps.textContent = Foxtrick.L10n.getString('PerformanceHistory.abbr');
+			ps.title = Foxtrick.L10n.getString('PerformanceHistory');
+			var psUrl = player.nameLink.href;
+			psUrl = psUrl.replace('/Club/Players/Player.aspx',
+			                      '/Club/Players/PlayerStats.aspx') + '&ShowAll=true';
+			ps.href = psUrl;
+			player.performanceHistory = ps;
+
 			// right skill table - skills
 			var skillTable = playerInfo.querySelector('.transferPlayerSkills table');
 			var skillLinks = Foxtrick.toArray(skillTable.getElementsByTagName('a'));

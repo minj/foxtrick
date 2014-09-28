@@ -442,6 +442,7 @@ Foxtrick.modules['SkillTable'] = {
 					{ name: 'Current_league', property: 'currentLeagueId',
 						method: league, sortString: true },
 					{ name: 'TransferCompare', property: 'transferCompare', method: link },
+					{ name: 'PerformanceHistory', property: 'performanceHistory', method: link },
 					{ name: 'OwnerNotes', property: 'OwnerNotes' },
 					{ name: 'kpPosition', property: 'kp' },
 					{ name: 'wbdPosition', property: 'wbd' },

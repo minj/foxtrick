@@ -778,6 +778,18 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				player.transferCompare = tc;
 			}
 
+			// playerstats
+			if (!Foxtrick.Pages.Players.isYouth(doc)) {
+				var ps = doc.createElement('a');
+				ps.textContent = Foxtrick.L10n.getString('PerformanceHistory.abbr');
+				ps.title = Foxtrick.L10n.getString('PerformanceHistory');
+				var psUrl = player.nameLink.href;
+				psUrl = psUrl.replace('/Club/Players/Player.aspx',
+				                      '/Club/Players/PlayerStats.aspx') + '&ShowAll=true';
+				ps.href = psUrl;
+				player.performanceHistory = ps;
+			}
+
 			if (Foxtrick.Pages.Players.isOldies(doc) ||
 			    Foxtrick.Pages.Players.isCoaches(doc) ||
 			    Foxtrick.Pages.Players.isNT(doc)) {
@@ -827,6 +839,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				player.psicoTSI = psicoLink.textContent.match(/\d+\.\d+/)[0];
 				player.psicoTitle = psicoLink.textContent.match(/(.+)\s\[/)[1];
 			}
+
 		}, playerNodes);
 	};
 
