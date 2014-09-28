@@ -1,1 +1,65 @@
 ---
+en-US:
+  faq:
+    style:
+      question: How could I style my FoxTrick?
+      answer: |
+        <p>FoxTrick provides a set of presentation interfaces for users to customise their own styles. These interfaces are provided through HTML IDs and classes, and you can use CSS to define your preferred style.</p>
+        
+        <p>An example user style file can be found <linkCSSExample>here</linkCSSExample> or <linkCSSExampleGCode>here</linkCSSExampleGCode>, which you can modify to satisfy your need. After saving the file, you can use the <module>SkinPlugin</module> module for loading the CSS file to have the user style in effect.</p>
+    sound-format:
+      question: Which file formats are allowed for alert sounds?
+      answer: |
+        <p>Different browsers allow different file formats. Here's a list (non-listed formats may work if the appropriate plugins are installed, eg Quicktime to play mp3 in Firefox):</p>
+        
+        <ul>
+        <li>Mozilla: wav, ogg</li>
+        <li>Safari (may need Quicktime): wav, mp3</li>
+        <li>Chrome:  ogg, mp3, wav</li><li>Opera: wav, ogg</li>
+        </ul>
+    sound-location:
+      question: What is the size limit for alert sounds and where can they be located?
+      answer: |
+        <p>All browsers can play data urls. Those are the internally saved sounds when you use the load button provided in the preferences. Since they are converted and saved in your preferences, the size is limited to around 160kB per sound.</p>
+        
+        <p>All browsers also can play sounds directly from the internet (http urls). Just copy a link to a sound (eg http://foxtrick.org/sound.wav) into the edit field for sounds. No size limit.</p>
+        
+        <p>Mozilla browsers also can play sounds directly from your harddrive (file urls) with no size limit. Easiest way to get the right format: In the browser type Ctrl+o, browse to the sound file and select it. In the adress bar on top is now the right link to the local file (eg file:///c:/sound.wav). Copy and paste this into the edit field for the sounds.</p>
+    authorize:
+      question: Why should I authorize FoxTrick to access my team data?
+      answer: |
+        <p>Although most of the data needed by FoxTrick can be fetched directly from the page you are viewing, some modules do require downloading data from Hattrick to work properly.</p>
+        
+        <p>To download data from Hattrick, including data of your team, leagues, and national teams, you need to authorize FoxTrick in advance.</p>
+        
+        <p>You authorize FoxTrick by providing your username and password on chpp.hattrick.org in exchange of a verification code, which you provide to FoxTrick. FoxTrick will not know your username or your password in the whole process.</p>
+        
+        <p>To learn more about the authorize process, please read <linkCHPPDesc>CHPP - How it works</linkCHPPDesc> on Hattrick.</p>
+        
+        <p>Some modules require data access to work properly:</p>
+        
+        <ul>
+        <li><module>CrossTable</module></li>
+        <li><module>ExtraPlayerInfo</module></li>
+        <li><module>MatchPlayerColouring</module></li>
+        <li><module>MyMonitor</module></li>
+        <li><module>NtPeek</module></li>
+        <li><module>SeriesFlags</module></li>
+        </ul>
+        
+        <p>Some modules could provide extensive info if they can access data from Hattrick:</p>
+        
+        <ul>
+        <li><module>SkillTable</module></li>
+        <li><module>TeamStats</module></li>
+        </ul>
+    privacy:
+      question: How will FoxTrick protect my privacy?
+      answer: |
+        <p>FoxTrick will not upload any of your data or preferences to a server of FoxTrick; neither will FoxTrick send any of your private data, including but not restricted to your username, password, and player ID associated with skills to third parties.</p>
+        
+        <p>Most data passed to third parties, unless explicitly stated below, are sent with HTTP GET method, and will only be sent upon you clicking a link.</p>
+        
+        <p>That is, you will be able to see what data are passed by inspecting the URI (Uniform Resource Identifier) of an external link, and no data will be sent without your consent. As stated above, no private data is involved.</p>
+        
+        <p>The exceptions are modules <module>HTMSPrediction</module> and <module>HTEVPrediction</module>, where match ratings are passed to and recieved from the respective sites with XMLHttpRequest.</p>
