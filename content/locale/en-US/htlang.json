@@ -57,7 +57,7 @@
 			},
 			{
 				"type": "aim",
-				"value": "Attack in the Middle"
+				"value": "Attack in the middle"
 			},
 			{
 				"type": "aow",
@@ -159,7 +159,7 @@
 			},
 			{
 				"type": "Kicker",
-				"value": "Set pieces"
+				"value": "Set Pieces"
 			},
 			{
 				"type": "Passer",
@@ -181,15 +181,15 @@
 			},
 			{
 				"type": "WingBack",
-				"value": "Wing back"
+				"value": "Wing Back"
 			},
 			{
 				"type": "CentralDefender",
-				"value": "Central defender"
+				"value": "Central Defender"
 			},
 			{
 				"type": "InnerMidfield",
-				"value": "Inner midfielder"
+				"value": "Inner Midfielder"
 			},
 			{
 				"type": "Winger",
@@ -383,15 +383,15 @@
 			},
 			{
 				"type": "RightDefense",
-				"value": "Right defence"
+				"value": "Right defense"
 			},
 			{
 				"type": "CentralDefense",
-				"value": "Central defence"
+				"value": "Central defense"
 			},
 			{
 				"type": "LeftDefense",
-				"value": "Left defence"
+				"value": "Left defense"
 			},
 			{
 				"type": "RightAttack",
@@ -530,7 +530,7 @@
 				"value": "5"
 			}
 		],
-		"id": "2",
+		"id": "151",
 		"training": [
 			{
 				"type": "Gen",
@@ -603,7 +603,7 @@
 				"value": "2"
 			},
 			{
-				"text": "They are favourites",
+				"text": "They are favorites",
 				"value": "3"
 			},
 			{
@@ -619,7 +619,7 @@
 				"value": "6"
 			},
 			{
-				"text": "We are favourites",
+				"text": "We are favorites",
 				"value": "7"
 			},
 			{
@@ -627,7 +627,7 @@
 				"value": "8"
 			},
 			{
-				"text": "Piece of cake!",
+				"text": "Piece of cake",
 				"value": "9"
 			},
 			{
@@ -638,7 +638,7 @@
 		"name": "en-US",
 		"spirit": [
 			{
-				"text": "like the cold war",
+				"text": "like the Cold War",
 				"value": "0"
 			},
 			{
