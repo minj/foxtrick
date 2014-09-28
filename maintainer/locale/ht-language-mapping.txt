@@ -2,7 +2,7 @@
 No problem. It done "manually" in the code tho, so I'll just copy that piece of code and you'll have to parse it yourself. First just the languages and their IDs:
 
 1 Svenska
-2 English
+2 English (UK)
 3 Deutsch
 4 Italiano
 5 Français
@@ -53,6 +53,7 @@ No problem. It done "manually" in the code tho, so I'll just copy that piece of 
 111 Lëtzebuergesch
 113 Furlan
 136 Norsk, nynorsk
+151 English (US)
 
 Select Case lang.Substring(0, 2)
 Case "ar" 'Arabic

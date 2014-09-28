@@ -635,7 +635,7 @@
 				"value": "10"
 			}
 		],
-		"name": "en",
+		"name": "en-GB",
 		"spirit": [
 			{
 				"text": "like the cold war",
@@ -682,6 +682,6 @@
 				"value": "10"
 			}
 		],
-		"desc": "English"
+		"desc": "English (UK)"
 	}
 }

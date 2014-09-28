@@ -1,6 +1,6 @@
-Codes = {}	
+Codes = {}
 Codes[1]='sv-SE';	#swedish
-Codes[2]='en';		#english
+Codes[2]='en-GB';	#english
 Codes[3]='de';		#german
 Codes[4]='it';		#italian
 Codes[5]='fr';		#french
@@ -22,7 +22,7 @@ Codes[25]='is';		#island
 Codes[32]='sr';		#serbian
 Codes[33]='hu';		#hungarian
 Codes[34]='el';		#greek
-Codes[35]='cs';		#czech		
+Codes[35]='cs';		#czech
 Codes[36]='et';		#Eesti
 Codes[37]='lv';		#Latvian, Lettish
 Codes[39]='hr';		#croatian
@@ -45,13 +45,14 @@ Codes[84]='be';		#belarus
 Codes[85]='sq';		#Albanian
 Codes[87]='mt';		#Maltese, Malta
 Codes[90]='ka';		#georgian
-Codes[100]='az';	#Azerbaijani 
+Codes[100]='az';	#Azerbaijani
 Codes[103]='es-CR';	#spanish, central america, using sub-language es-MX for crowdin support
 Codes[109]='fy-NL';	#Frisian, east-netherland/north germany
 Codes[110]='eu';	#Euskara, basque
 Codes[111]='lb';	#Letzebuergesch
 Codes[113]='fur-IT';	#Furlan, northitaly
 Codes[136]='nn-NO';	#Norsk nynorsk
+Codes[151]='en-US'; #English (US)
 
 def getAll():
 	return Codes

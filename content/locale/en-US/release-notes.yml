@@ -1,5 +1,5 @@
 ---
-en:
+en-US:
   versions:
     nightly:
       note_0: 'This is the development build. Use at your own discretion. Please view <linkSVN>commit history</linkSVN> at Google Code for details of the changes.'

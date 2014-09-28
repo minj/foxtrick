@@ -20,7 +20,8 @@ Foxtrick.L10n = {
 		'da',	// Dansk, danish	8
 		'de',	// Deutsch, german	3
 		'el',	// Ελληνικά, greek	34
-		'en',	// english	2
+		'en-GB',	// English (UK)	2
+		'en-US',	// English (US) 151
 		'es-ES',	// Español	103
 		'es-CR',	//Español centro-americano	51
 		'es-AR',	// Español Sudamericano	6
@@ -76,7 +77,8 @@ Foxtrick.L10n = {
 		'da': 'da',	// Dansk, danish	8
 		'de': 'de',	// Deutsch, german	3
 		'el': 'el',	// Ελληνικά, greek	34
-		'en': 'en',	// english	2
+		'en': 'en-GB',	// english (UK)	2
+		'en-us': 'en-US',	// english (US)	151
 		'es': 'es-ES',	// Español	103
 		'es-mx': 'es-CR',	//Español centro-americano	51
 		'es-ar': 'es-AR',	// Español Sudamericano	6
