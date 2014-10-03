@@ -103,15 +103,11 @@ Foxtrick.Pages.Player.getId = function(doc) {
  */
 Foxtrick.Pages.Player.getNationalityId = function(doc) {
 	var id = null;
-	try {
-		var link = this.isSenior(doc) ? doc.getElementsByClassName('flag')[0] :
-			doc.querySelector('.playerInfo a[href^="/World/Leagues/League.aspx"]');
-
+	var link = this.isSenior(doc) ? doc.getElementsByClassName('flag')[0] :
+		doc.querySelector('.playerInfo a[href^="/World/Leagues/League.aspx"]');
+	if (link) {
 		var val = Foxtrick.getParameterFromUrl(link.href, 'LeagueID');
 		id = parseInt(val, 10);
-	}
-	catch (e) {
-		Foxtrick.log(e);
 	}
 	return id;
 };

@@ -17,6 +17,10 @@ Foxtrick.modules['LargeFlags'] = {
 			return;
 		}
 		var flag = doc.getElementsByClassName('flag')[0];
+		if (!flag)
+			// promoted/sold players have no flag
+			// seems HTs are not going to fix it
+			return;
 		var img = flag.getElementsByTagName('img')[0];
 		var oldStyle = img.style.background;
 		var newStyle = 'transparent url(' + Foxtrick.ResourcePath +
