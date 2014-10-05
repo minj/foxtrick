@@ -2,7 +2,7 @@
 pl:
   faq:
     style:
-      question: Jak mogę zmienić styl mojego FoxTricka?
+      question: Jak zmienić styl mojego FoxTricka?
       answer: '<p>FoxTrick dostarcza zestaw interfejsów prezentacji dla użytkowników, aby mogli dostosować swoje własne style. Te interfejsy są dostępne za pośrednictwem klas i identyfikatorów HTML, a CSS umożliwia określenie preferowanego stylu.</p>  <p>Przykładowy plik stylu użytkownika można znaleźć <linkCSSExample>tutaj</linkCSSExample> lub <linkCSSExampleGCode>tutaj</linkCSSExampleGCode>, które można modyfikować dla najlepszego efektu. Po zapisaniu pliku, można użyć modułu <module>SkinPlugin</module> do ładowania pliku CSS, by  styl użytkownika działał.</p>'
     sound-format:
       question: Jakie formaty plików są dozwolone na dźwięki powiadomień?
