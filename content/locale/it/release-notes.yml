@@ -7,7 +7,12 @@ it:
       note_0: 'Questa è la versione beta della prossima release. Per favore aiutaci a tradurre questa versione con la nostra semplicissima pagina di traduzione di Crowdin <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.14.0.3:
       important: '<header>Avvisi importanti</header>'
+      sorry: "Mi scuso per l'ultima release 'bug-fix' che in realtà ha creato più problemi di quanti ne doveva risolvere. Quest' ultima dovrebbe essere migliore."
       bugs: '<header>Correzioni di bug</header>'
+      street_teams: "L'introduzione di squadre nel nuovo sistema di gestione della coppa ha causato dei problemi imprevedibili che adesso sono stati risolti."
+      revert: '<module>PlayerStatsExperience</module> e gli strumenti per i rigoristi nel <module>MatchOrderInterface</module> dovrebbero funzionare adesso.'
+      income: '<module>MatchIncome</module> dovrebbe visualizzare le informazioni corrette per tutti le partite adesso. Si prega di segnalare eventuali incongruenze.'
+      stats: '<module>SeasonStats</module> era danneggiato a causa delle recenti modifiche di HT. Tutte le anomalie sono state risolte.'
     0.14.0.2:
       bugs: '<header>Correzioni di bug</header>'
       challenge_link: 'il collegamento per sfidare in <module>TeamPopupLinks</module> ora vi porterà alla pagina della squadra e aprirà automaticamente il menu di sfida.'
