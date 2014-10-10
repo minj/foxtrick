@@ -49,6 +49,7 @@ pref("extensions.foxtrick.prefs.module.CountryList.HideFlagOntop.enabled", false
 pref("extensions.foxtrick.prefs.module.CountryList.ManagerPage.enabled", true);
 pref("extensions.foxtrick.prefs.module.CountryList.SelectBoxes.enabled", true);
 pref("extensions.foxtrick.prefs.module.CountryList.TeamPage.enabled", true);
+pref("extensions.foxtrick.prefs.module.CountryList.UseEnglish.enabled", false);
 pref("extensions.foxtrick.prefs.module.CrossTable.enabled", true);
 pref("extensions.foxtrick.prefs.module.CurrencyConverter.enabled", false);
 pref("extensions.foxtrick.prefs.module.CurrencyConverter.to", "EUR");

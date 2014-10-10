@@ -8,7 +8,7 @@
 Foxtrick.modules['CountryList'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.PRESENTATION,
 	PAGES: ['all'],
-	OPTIONS: ['SelectBoxes', 'TeamPage', 'ManagerPage', 'HideFlagOntop'],
+	OPTIONS: ['SelectBoxes', 'TeamPage', 'ManagerPage', 'UseEnglish', 'HideFlagOntop'],
 	CSS: Foxtrick.InternalPath + 'resources/css/CountyList.css',
 
 	run: function(doc) {
@@ -70,24 +70,28 @@ Foxtrick.modules['CountryList'] = {
 
 	_placeCountry: function(doc) {
 		var cntr = doc.getElementById('ft_cntr_fix');
-		if (cntr == null) {
+		if (!cntr) {
 			var league = doc.getElementById('mainBody').getElementsByClassName('flag')[0];
-			if (!league) return;
+			if (!league)
+				return;
 			if (Foxtrick.Prefs.isModuleOptionEnabled('CountryList', 'HideFlagOntop')) {
 				league.setAttribute('style', 'display:none');
 			}
-			Foxtrick.dump(league.href + '\n');
+			Foxtrick.log(league.href + '\n');
+			var useEnglish = Foxtrick.Prefs.isModuleOptionEnabled('CountryList', 'UseEnglish');
 			var leagueId = league.href.match(/LeagueID=(\d+)/i)[1];
-			var htname = league.firstChild.title;
-			htname = Foxtrick.util.id.getLeagueDataFromId(leagueId).LeagueName;
-			league.firstChild.title = htname;
+			var info = Foxtrick.util.id.getLeagueDataFromId(leagueId);
+			var newName = info[useEnglish ? 'EnglishName' : 'LeagueName'];
+			if (!newName)
+				return -1;
+			league.firstChild.title = newName;
 
 			var byline = doc.getElementsByClassName('byline')[0];
 			var a = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.CountryList, 'a');
 			byline.insertBefore(a, byline.firstChild);
 			a.id = 'ft_cntr_fix';
 			a.href = league.href;
-			a.textContent = htname;
+			a.textContent = newName;
 			byline.insertBefore(doc.createTextNode(', '), a.nextSibling);
 		}
 	},
@@ -106,26 +110,24 @@ Foxtrick.modules['CountryList'] = {
 		}
 
 		var id = selectbox.id;
+		var useEnglish = Foxtrick.Prefs.isModuleOptionEnabled('CountryList', 'UseEnglish');
 		Foxtrick.log('id: ' + id + '   start: ' + start + '\n');
 		var options = selectbox.options;
 		var countries = options.length;
 		var id_sel = selectbox.value;
 		for (var i = start; i < countries; i++) {
-			try {
-				if (id.search(/leagues/i) != -1 || id.search(/zone/i) != -1) {
-					var league = options[i].value;
-				}
-				else {
-					var league = Foxtrick.XMLData.getLeagueIdByCountryId(options[i].value);
-				}
-				var nativeName = Foxtrick.util.id.getLeagueDataFromId(league).LeagueName;
-				if (!nativeName)
-					return -1;
-				options[i].text = nativeName;
-
-			} catch (exml) {
-				Foxtrick.log('country-list.js countries: ' + exml + '\n');
+			var league;
+			if (/leagues/i.test(id) || /zone/i.test(id)) {
+				league = options[i].value;
 			}
+			else {
+				league = Foxtrick.XMLData.getLeagueIdByCountryId(options[i].value);
+			}
+			var info = Foxtrick.util.id.getLeagueDataFromId(league);
+			var newName = info[useEnglish ? 'EnglishName' : 'LeagueName'];
+			if (!newName)
+				return -1;
+			options[i].text = newName;
 		}
 		Foxtrick.makeFeaturedElement(selectbox, Foxtrick.modules.CountryList);
 
@@ -138,15 +140,6 @@ Foxtrick.modules['CountryList'] = {
 		}
 
 		var sortByOptionText = function(a, b) {
-			// var x = a[1];
-			// x = (x.search(/.+sland/) == 0) ? 'Island' :
-			// 	((x.search(/.+esk.+republika/) != -1) ? 'Ceska republika' : x);
-			// var y = b[1];
-			// y = (y.search(/.+sland/) == 0) ? 'Island' :
-			// 	((y.search(/.+esk.+republika/) != -1) ? 'Ceska republika' : y);
-			// //if (parseInt(a[0]) <= 0 || parseInt(b[0]) <= 0) return -1;
-			// //not working well in chrome. should be compare values also
-			// return ((x < y) ? -1 : ((x > y) ? 1 : 0));
 			return a[1].localeCompare(b[1], 'sv');
 		};
 
@@ -174,6 +167,6 @@ Foxtrick.modules['CountryList'] = {
 		}
 
 		selectbox.style.display = 'inline';
-		Foxtrick.dump('country select activated.\n');
+		Foxtrick.log('country select activated.\n');
 	}
 };
