@@ -130,15 +130,16 @@ Foxtrick.Pages.Players.isSimpleMatchOrder = function(doc) {
  * Get player list.
  * CHPP needs a callback and options.
  * If callback is not provided, only HTML is parsed.
- * Options is {teamId, isYouth, isNT, includeMatchInfo, currentSquad}
+ * Options is {teamId, isYouth, isNT, includeMatchInfo, currentSquad, refresh}
  * First 3 are detected automatically from URL if possible.
  * includeMatchInfo adds last match data.
  * currentSquad is needed to fetch current player list (possibly from non-players page).
  * HTML parsing and oldies page detection are bypassed in this case.
  * It also limits NT player list for supporters.
+ * Refresh invalidates cache before fetching.
  * @param  {document} doc
  * @param  {Function} callback function(Array.<object>)
- * @param  {object}   options  {teamId, isYouth, isNT, includeMatchInfo, currentSquad}
+ * @param  {object}   options  {teamId, isYouth, isNT, includeMatchInfo, currentSquad, refresh}
  * @return {array}             Array.<object>
  */
 Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
@@ -197,6 +198,11 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 		if (options && options.includeMatchInfo) {
 			args.push(['includeMatchInfo', 'true']); // senior
 			args.push(['showLastMatch', 'true']); // youth
+		}
+
+		if (options && options.refresh) {
+			var now = Foxtrick.util.time.getHtTimeStamp(doc);
+			Foxtrick.util.api.setCacheLifetime(JSON.stringify(args), now);
 		}
 		Foxtrick.util.currency.establish(doc, function() {
 			Foxtrick.util.api.retrieve(doc, args, { cache_lifetime: 'session' }, callback);
