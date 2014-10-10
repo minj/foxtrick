@@ -88,7 +88,7 @@ Foxtrick.modules['SeasonStats'] = {
 				'draw': 0, 'goal0': 0, 'goal1': 0
 			};
 
-		var matchestable = doc.getElementById('mainBody').getElementsByTagName('table')[0];
+		var matchestable = Foxtrick.Pages.Matches.getTable(doc);
 
 		// get team name. start with current name, but try to get name of
 		// that season from first home game

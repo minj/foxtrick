@@ -31,6 +31,16 @@ Foxtrick.Pages.Matches.isNT = function(doc) {
 	var teamId = Foxtrick.Pages.All.getTeamId(doc);
 	return teamId >= 3000 && teamId < 4000;
 };
+
+/**
+ * Get the matches table
+ * @param  {document} doc
+ * @return {HTMLTableElement}
+ */
+Foxtrick.Pages.Matches.getTable = function(doc) {
+	return doc.querySelector('#mainBody table');
+};
+
 /**
  * Possible match icon classes
  * @type {array}
