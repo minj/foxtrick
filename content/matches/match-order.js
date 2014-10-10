@@ -35,6 +35,8 @@ Foxtrick.modules['MatchOrderInterface'] = {
 	],
 	run: function(doc) {
 		var module = this;
+		var avatarsParamsString;
+		var getAvatars;
 		var check_images = function(doc, target, avatarsXml, getID, scale) {
 			if (!Foxtrick.Prefs.isModuleOptionEnabled('MatchOrderInterface', 'ShowFaces'))
 				return;
@@ -42,7 +44,7 @@ Foxtrick.modules['MatchOrderInterface'] = {
 			var add_image = function(fieldplayer) {
 				var id = getID(fieldplayer);
 				if (!id)
-					return;
+					return false;
 
 				var elName = (isYouth ? 'Youth' : '') + 'Player';
 				var players = avatarsXml.getElementsByTagName(elName);
@@ -50,15 +52,21 @@ Foxtrick.modules['MatchOrderInterface'] = {
 					if (id === avatarsXml.num(elName + 'ID', players[i]))
 						break;
 				}
-				if (i == players.length)
-					return; // id not found
+				if (i == players.length) {
+					// id not found, possibly new player, invalidate cache and refetch
+					var now = Foxtrick.util.time.getHtTimeStamp(doc);
+					Foxtrick.util.api.setCacheLifetime(avatarsParamsString, now);
+					Foxtrick.log('New player found: refreshing avatar cache.');
+					getAvatars(JSON.parse(avatarsParamsString));
+					return true;
+				}
 
 				Foxtrick.addClass(fieldplayer, 'smallFaceCardBox');
 
 				var shirt = fieldplayer.getElementsByClassName('shirt')[0];
 
 				if (Foxtrick.hasClass(shirt, 'smallFaceCard'))
-					return;
+					return false;
 
 				Foxtrick.addClass(shirt, 'smallFaceCard');
 				var style = 'top:-20px; width:' + Math.round(100 / scale) + 'px; height:' +
@@ -66,11 +74,10 @@ Foxtrick.modules['MatchOrderInterface'] = {
 				shirt.setAttribute('style', style);
 
 				Foxtrick.Pages.Match.makeAvatar(shirt, players[i], scale);
+				return false;
 			};
 
-			var playerdivs = target.getElementsByClassName('player');
-			for (var k = 0; k < playerdivs.length; ++k)
-				add_image(playerdivs[k]);
+			Foxtrick.any(add_image, target.getElementsByClassName('player'));
 		};
 		var savePenaltySkills = function(playerList) {
 			var players = {};
@@ -308,7 +315,6 @@ Foxtrick.modules['MatchOrderInterface'] = {
 				return Number(node.parentNode.id.match(/list_playerID(\d+)/i)[1]);
 			};
 
-
 			// add extra info
 			var hasPlayerInfo = false;
 			var hasAvatars = false;
@@ -317,8 +323,6 @@ Foxtrick.modules['MatchOrderInterface'] = {
 			var avatarsXml = null;
 			var teamLink = Foxtrick.Pages.All.getBreadCrumbs(doc)[0];
 			var teamid = Foxtrick.util.id.getTeamIdFromUrl(teamLink.href);
-			//store most accurate list on first load
-			var lastMatchDates = null;
 
 			// load ahead players and then wait for interface loaded
 			Foxtrick.Pages.Players.getPlayerList(doc,
@@ -338,27 +342,27 @@ Foxtrick.modules['MatchOrderInterface'] = {
 					showPlayerInfo(doc.getElementById('orders'));
 			}, { teamId: teamid, currentSquad: true, includeMatchInfo: true });
 
-			Foxtrick.util.api.retrieve(doc, [
+			var avatarsParams = [
 				['file', (isYouth ? 'youth' : '') + 'avatars'],
 				['version', '1.1'],
 				[(isYouth ? 'youthT' : 't') + 'eamId', teamid]
-			  ],
-			  { cache_lifetime: 'session' },
-			  function(xml, errorText) {
-				if (!xml || errorText) {
-					/*if (loadingOtherMatches && loadingOtherMatches.parentNode) {
-						loadingOtherMatches.parentNode.removeChild(loadingOtherMatches);
-						loadingOtherMatches = null;
-					}*/
-					Foxtrick.log(errorText);
-					return;
-				}
-				Foxtrick.log('hasAvatars');
-				avatarsXml = xml;
-				hasAvatars = true;
-				if (hasInterface)
-					check_images(doc, doc.getElementById('field'), avatarsXml, getID, 3);
-			});
+			];
+			avatarsParamsString = JSON.stringify(avatarsParams); // save as string (immutable)
+			getAvatars = function(avatarsParams) {
+				Foxtrick.util.api.retrieve(doc, avatarsParams, { cache_lifetime: 'session' },
+				  function(xml, errorText) {
+					if (!xml || errorText) {
+						Foxtrick.log(errorText);
+						return;
+					}
+					Foxtrick.log('hasAvatars');
+					avatarsXml = xml;
+					hasAvatars = true;
+					if (hasInterface)
+						check_images(doc, doc.getElementById('field'), avatarsXml, getID, 3);
+				});
+			};
+			getAvatars(avatarsParams);
 
 			var loading = doc.getElementById('loading');
 			var waitForInterface = function(ev) {
