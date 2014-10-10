@@ -59,40 +59,45 @@ Foxtrick.modules['TransferSearchFilters'] = {
 			_59: FTPRE + 'hideOrdinary.check'
 
 		};
+		var NAME_PROMPT = Foxtrick.L10n.getString('TransferSearchFilters.enterName');
+		var DELETE_PROMPT = Foxtrick.L10n.getString('TransferSearchFilters.deleteFilter.ask');
 		var findFormElement = function(id) {
 			return doc.getElementById(id);
 		};
-		var addNewFilter = function() {
+		var addNewFilter = function(ev) {
 			try {
-				var filtername = prompt(Foxtrick.L10n.getString('TransferSearchFilters.enterName'));
-				if (filtername == '') return;
+				var filtername = ev.view.prompt(NAME_PROMPT);
+				if (filtername === '')
+					return;
 
+				var el;
 				var formString = '<root>';
-				var i;
-				for (i in backwardCompatibleCodes) {
-					var el = findFormElement(i);
-					if (el == null) {
+				for (var i in backwardCompatibleCodes) {
+					el = findFormElement(i);
+					if (!el) {
 						var subst = backwardCompatibleCodes[i];
-						if (typeof(subst) != 'undefined') {
+						if (typeof subst != 'undefined') {
 							el = findFormElement(subst);
 						}
 					}
-					if (el != null && el.type != 'radio' && el.type != 'checkbox') {
-						if (el.value.search('{') != -1) continue;  // don't save hidden imputs
-						formString = formString + '<elem>';
-						formString = formString + '<name>' + i + '</name>';
-						formString = formString + '<value>' + el.value + '</value>';
-						formString = formString + '</elem>';
+					if (el && el.type != 'radio' && el.type != 'checkbox') {
+						if (/\{/.test(el.value))
+							continue;  // don't save hidden imputs
+
+						formString += '<elem>';
+						formString += '<name>' + i + '</name>';
+						formString += '<value>' + el.value + '</value>';
+						formString += '</elem>';
 					}
 
-					if (el != null && el.type != 'radio' && el.type == 'checkbox') {
-						formString = formString + '<elem>';
-						formString = formString + '<name>' + i + '</name>';
-						formString = formString + '<value>' + el.checked + '</value>';
-						formString = formString + '</elem>';
+					if (el && el.type == 'checkbox') {
+						formString += '<elem>';
+						formString += '<name>' + i + '</name>';
+						formString += '<value>' + el.checked + '</value>';
+						formString += '</elem>';
 					}
 				}
-				formString = formString + '</root>';
+				formString += '</root>';
 
 				var namelist = Foxtrick.Prefs.getList('transferfilterlist');
 				var bExists = false;
@@ -105,9 +110,9 @@ Foxtrick.modules['TransferSearchFilters'] = {
 				Foxtrick.Prefs.setString('transferfilter.' + filtername, formString);
 				if (bExists) {
 					Foxtrick.Prefs.delListPref('transferfilterlist', filtername);
-					var el = doc.getElementById('filter_' + filtername);
-						if (el)
-							el.parentNode.removeChild(el);
+					el = doc.getElementById('filter_' + filtername);
+					if (el)
+						el.parentNode.removeChild(el);
 				}
 				Foxtrick.Prefs.addPrefToList('transferfilterlist', filtername);
 				var table = doc.getElementById('ft-transfer-search-filter-table');
@@ -142,18 +147,19 @@ Foxtrick.modules['TransferSearchFilters'] = {
 
 						// set the value in form
 						var el = findFormElement(id);
-						if (el == null) {
+						if (!el) {
 							var subst = backwardCompatibleCodes[id];
-							if (typeof(subst) != 'undefined') {
+							if (typeof subst !== 'undefined') {
 								el = findFormElement(subst);
 							}
 						}
-						if (el == null) continue;
+						if (!el)
+							continue;
 
 						if (el.type != 'radio') {
 							el.value = value;
 						}
-						el.checked = (el.type == 'checkbox' && value == 'true');
+						el.checked = (el.type == 'checkbox' && value === 'true');
 						el.disabled = false;
 					}
 				}
@@ -164,8 +170,7 @@ Foxtrick.modules['TransferSearchFilters'] = {
 				}
 			};
 			var deleteFilter = function(ev) {
-				if (Foxtrick.confirmDialog(
-				    Foxtrick.L10n.getString('TransferSearchFilters.deleteFilter.ask'))) {
+				if (Foxtrick.confirmDialog(DELETE_PROMPT)) {
 					Foxtrick.Prefs.delListPref('transferfilterlist', ev.target.msg);
 					Foxtrick.Prefs.deleteValue('transferfilter.' + ev.target.msg);
 					var el = doc.getElementById('filter_' + ev.target.msg);
@@ -175,9 +180,9 @@ Foxtrick.modules['TransferSearchFilters'] = {
 			};
 
 			var filter = Foxtrick.Prefs.getString('transferfilter.' + name);
-			if (filter === null) {
+			if (!filter) {
 				filter = Foxtrick.Prefs.getString(encodeURI('transferfilter.' + name));
-				if (filter === null)
+				if (!filter)
 					return;
 			}
 
