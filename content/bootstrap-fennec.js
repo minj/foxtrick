@@ -6,23 +6,21 @@ var FoxtrickFennec = function(window) {
 };
 FoxtrickFennec.prototype = {
 	scripts: [
-		//<!-- essential stuffs -->
+		//<!-- essential -->
 		'env.js',
 		'prefs.js',
 		'l10n.js',
 		'xml-load.js',
 		'pages.js',
 
-		//<!-- external libraries -->
+		//<!-- ext-lib -->
 		'lib/oauth.js',
 		'lib/sha1.js',
 		'lib/jester.js',
-		// 'lib/yaml.js',
-		// 'lib/FileSaver.js',
-		// 'lib/idbstore.js',
 		'lib/psico.js',
+		//<!-- end ext-lib -->
 
-		//<!-- utilities -->
+		//<!-- util -->
 		'util/api.js',
 		'util/array.js',
 		'util/color.js',
@@ -41,8 +39,8 @@ FoxtrickFennec.prototype = {
 		'util/log.js',
 		'util/match-event.js',
 		'util/match-view.js',
-		'util/misc.js',
 		'util/math.js',
+		'util/misc.js',
 		'util/module.js',
 		'util/note.js',
 		'util/notify.js',
@@ -52,13 +50,14 @@ FoxtrickFennec.prototype = {
 		'util/string.js',
 		'util/tabs.js',
 		'util/time.js',
+		//<!-- end util -->
 
 		//<!-- categorized modules with init functions -->
 		'forum/staff-marker.js',
 		'presentation/skin-plugin.js',
 		'links/links.js',
 
-		//<!-- browser specific -->
+		//<!-- platform-specific -->
 		'ui.js',
 		'entry.js',
 		'background.js',

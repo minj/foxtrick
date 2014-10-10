@@ -19,29 +19,30 @@
 	},
 	"content_scripts" : [ {
 		"js" : [
-			//<!-- essential stuffs -->
+			//<!-- essential -->
 			"content/env.js",
 			"content/prefs.js",
 			"content/l10n.js",
 			"content/xml-load.js",
 			"content/pages.js",
 
-			//<!-- external libraries -->
+			//<!-- ext-lib -->
 			"content/lib/oauth.js",
 			"content/lib/sha1.js",
 			"content/lib/PluralForm.js",
 			"content/lib/FileSaver.js",
 			"content/lib/psico.js",
 			"content/lib/integration.js",
+			//<!-- end ext-lib -->
 
-			//<!-- utilities -->
+			//<!-- util -->
 			"content/util/api.js",
 			"content/util/array.js",
 			"content/util/color.js",
 			"content/util/cookies.js",
 			"content/util/copy-button.js",
-			"content/util/currency.js",
 			"content/util/css.js",
+			"content/util/currency.js",
 			"content/util/dom.js",
 			"content/util/ht-ml.js",
 			"content/util/id.js",
@@ -51,10 +52,10 @@
 			"content/util/load.js",
 			"content/util/local-store.js",
 			"content/util/log.js",
-			"content/util/match-view.js",
-			"content/util/misc.js",
 			"content/util/match-event.js",
+			"content/util/match-view.js",
 			"content/util/math.js",
+			"content/util/misc.js",
 			"content/util/module.js",
 			"content/util/note.js",
 			"content/util/notify.js",
@@ -64,37 +65,41 @@
 			"content/util/string.js",
 			"content/util/tabs.js",
 			"content/util/time.js",
+			//<!-- end util -->
 
-			//<!-- core modules -->
-			"content/redirections.js",
-			"content/read-ht-prefs.js",
-			"content/forum-stage.js",
-			"content/core.js",
-			"content/add-class.js",
-			"content/fix-links.js",
-			"content/ui.js",
-
-			//<!-- page utilities -->
+			//<!-- page-util -->
 			"content/pages/all.js",
-			"content/pages/players.js",
-			"content/pages/player.js",
-			"content/pages/youth-player.js",
-			"content/pages/transfer-search-results.js",
 			"content/pages/match.js",
 			"content/pages/matches.js",
+			"content/pages/player.js",
+			"content/pages/players.js",
+			"content/pages/transfer-search-results.js",
+			"content/pages/youth-player.js",
+			//<!-- end page-util -->
 
-			//<!-- api utilities -->
+			//<!-- api-util -->
 			"content/api/hy/common.js",
-			"content/api/hy/user-id.js",
-			"content/api/hy/players-youth-skills.js",
-			"content/api/hy/players-twins-check.js",
-			"content/api/hy/players-youth-reject-call.js",
 			"content/api/hy/matches-report.js",
 			"content/api/hy/matches-training.js",
+			"content/api/hy/players-twins-check.js",
+			"content/api/hy/players-youth-reject-call.js",
+			"content/api/hy/players-youth-skills.js",
+			"content/api/hy/user-id.js",
 			"content/api/pastebin/common.js",
+			"content/api/pastebin/get.js",
 			"content/api/pastebin/login.js",
 			"content/api/pastebin/paste.js",
-			"content/api/pastebin/get.js",
+			//<!-- end api-util -->
+
+			//<!-- core -->
+			"content/add-class.js",
+			"content/core.js",
+			"content/fix-links.js",
+			"content/forum-stage.js",
+			"content/read-ht-prefs.js",
+			"content/redirections.js",
+			"content/ui.js",
+			//<!-- end core -->
 
 			//<!-- categorized modules -->
 			"content/access/aria-landmarks.js",
@@ -249,6 +254,7 @@
 			"content/shortcuts-and-tweaks/transfer-search-result-filters.js",
 			//<!-- end categorized modules -->
 
+			//<!-- platform-specific -->
 			"content/entry.js",
 			"content/loader-chrome.js"
 		],

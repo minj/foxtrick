@@ -8,22 +8,20 @@ FoxtrickFirefox.prototype = {
 	scripts: [
 		// loading Foxtrick into window.Foxtrick
 
-		//<!-- essential stuffs -->
+		//<!-- essential -->
 		'env.js',
 		'prefs.js',
 		'l10n.js',
 		'xml-load.js',
 		'pages.js',
 
-		//<!-- external libraries -->
+		//<!-- ext-lib -->
 		'lib/oauth.js',
 		'lib/sha1.js',
-		// 'lib/yaml.js',
-		//'lib/FileSaver.js',
-		// 'lib/idbstore.js',
 		'lib/psico.js',
+		//<!-- end ext-lib -->
 
-		//<!-- utilities -->
+		//<!-- util -->
 		'util/api.js',
 		'util/array.js',
 		'util/color.js',
@@ -42,8 +40,8 @@ FoxtrickFirefox.prototype = {
 		'util/log.js',
 		'util/match-event.js',
 		'util/match-view.js',
-		'util/misc.js',
 		'util/math.js',
+		'util/misc.js',
 		'util/module.js',
 		'util/note.js',
 		'util/notify.js',
@@ -53,36 +51,40 @@ FoxtrickFirefox.prototype = {
 		'util/string.js',
 		'util/tabs.js',
 		'util/time.js',
+		//<!-- end util -->
 
-		//<!-- core modules -->
-		'redirections.js',
-		'read-ht-prefs.js',
-		'forum-stage.js',
-		'core.js',
-		'add-class.js',
-		'fix-links.js',
-
-		//<!-- page utilities -->
+		//<!-- page-util -->
 		'pages/all.js',
-		'pages/players.js',
-		'pages/player.js',
-		'pages/youth-player.js',
-		'pages/transfer-search-results.js',
 		'pages/match.js',
 		'pages/matches.js',
+		'pages/player.js',
+		'pages/players.js',
+		'pages/transfer-search-results.js',
+		'pages/youth-player.js',
+		//<!-- end page-util -->
 
-		//<!-- api utilities -->
+		//<!-- api-util -->
 		'api/hy/common.js',
-		'api/hy/user-id.js',
-		'api/hy/players-youth-skills.js',
-		'api/hy/players-twins-check.js',
-		'api/hy/players-youth-reject-call.js',
 		'api/hy/matches-report.js',
 		'api/hy/matches-training.js',
+		'api/hy/players-twins-check.js',
+		'api/hy/players-youth-reject-call.js',
+		'api/hy/players-youth-skills.js',
+		'api/hy/user-id.js',
 		'api/pastebin/common.js',
+		'api/pastebin/get.js',
 		'api/pastebin/login.js',
 		'api/pastebin/paste.js',
-		'api/pastebin/get.js',
+		//<!-- end api-util -->
+
+		//<!-- core -->
+		'add-class.js',
+		'core.js',
+		'fix-links.js',
+		'forum-stage.js',
+		'read-ht-prefs.js',
+		'redirections.js',
+		//<!-- end core -->
 
 		//<!-- categorized modules -->
 		'access/aria-landmarks.js',
@@ -237,7 +239,7 @@ FoxtrickFirefox.prototype = {
 		'shortcuts-and-tweaks/transfer-search-result-filters.js',
 		//<!-- end categorized modules -->
 
-		//<!-- browser specific -->
+		//<!-- platform-specific -->
 		'ui.js',
 		'entry.js',
 		'loader-firefox.js'

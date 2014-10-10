@@ -33,37 +33,38 @@ a good reason to. They are for version bumps in Makefile.
 		<dict>
 			<key>Start</key>
 			<array>
-				<!-- essential stuffs -->
+				<!-- essential -->
 				<string>content/env.js</string>
 				<string>content/prefs.js</string>
 				<string>content/l10n.js</string>
 				<string>content/xml-load.js</string>
 				<string>content/pages.js</string>
 
-				<!-- utilities -->
+				<!-- ext-lib -->
 				<string>content/lib/oauth.js</string>
 				<string>content/lib/sha1.js</string>
 				<string>content/lib/PluralForm.js</string>
 				<string>content/lib/FileSaver.js</string>
 				<string>content/lib/psico.js</string>
 				<string>content/lib/integration.js</string>
+				<!-- end ext-lib -->
 
-				<!-- utilities -->
+				<!-- util -->
 				<string>content/util/api.js</string>
 				<string>content/util/array.js</string>
 				<string>content/util/color.js</string>
 				<string>content/util/cookies.js</string>
 				<string>content/util/copy-button.js</string>
-				<string>content/util/currency.js</string>
 				<string>content/util/css.js</string>
+				<string>content/util/currency.js</string>
 				<string>content/util/dom.js</string>
 				<string>content/util/ht-ml.js</string>
 				<string>content/util/id.js</string>
 				<string>content/util/inject.js</string>
 				<string>content/util/layout.js</string>
 				<string>content/util/links-box.js</string>
-				<string>content/util/local-store.js</string>
 				<string>content/util/load.js</string>
+				<string>content/util/local-store.js</string>
 				<string>content/util/log.js</string>
 				<string>content/util/match-event.js</string>
 				<string>content/util/match-view.js</string>
@@ -77,37 +78,41 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/util/session-store.js</string>
 				<string>content/util/string.js</string>
 				<string>content/util/time.js</string>
+				<!-- end util -->
 
-				<!-- page utilities -->
+				<!-- page-util -->
 				<string>content/pages/all.js</string>
-				<string>content/pages/players.js</string>
-				<string>content/pages/player.js</string>
-				<string>content/pages/youth-player.js</string>
-				<string>content/pages/transfer-search-results.js</string>
 				<string>content/pages/match.js</string>
 				<string>content/pages/matches.js</string>
+				<string>content/pages/player.js</string>
+				<string>content/pages/players.js</string>
+				<string>content/pages/transfer-search-results.js</string>
+				<string>content/pages/youth-player.js</string>
+				<!-- end page-util -->
 
-				<!-- api utilities -->
+				<!-- api-util -->
 				<string>content/api/hy/common.js</string>
-				<string>content/api/hy/user-id.js</string>
-				<string>content/api/hy/players-youth-skills.js</string>
-				<string>content/api/hy/players-twins-check.js</string>
-				<string>content/api/hy/players-youth-reject-call.js</string>
 				<string>content/api/hy/matches-report.js</string>
 				<string>content/api/hy/matches-training.js</string>
+				<string>content/api/hy/players-twins-check.js</string>
+				<string>content/api/hy/players-youth-reject-call.js</string>
+				<string>content/api/hy/players-youth-skills.js</string>
+				<string>content/api/hy/user-id.js</string>
 				<string>content/api/pastebin/common.js</string>
+				<string>content/api/pastebin/get.js</string>
 				<string>content/api/pastebin/login.js</string>
 				<string>content/api/pastebin/paste.js</string>
-				<string>content/api/pastebin/get.js</string>
+				<!-- end api-util -->
 
-				<!-- core modules -->
-				<string>content/redirections.js</string>
-				<string>content/read-ht-prefs.js</string>
-				<string>content/forum-stage.js</string>
-				<string>content/core.js</string>
+				<!-- core -->
 				<string>content/add-class.js</string>
+				<string>content/core.js</string>
 				<string>content/fix-links.js</string>
+				<string>content/forum-stage.js</string>
+				<string>content/read-ht-prefs.js</string>
+				<string>content/redirections.js</string>
 				<string>content/ui.js</string>
+				<!-- end core -->
 
 				<!-- categorized modules -->
 				<string>content/access/aria-landmarks.js</string>
@@ -137,7 +142,6 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/forum/mark-unread.js</string>
 				<string>content/forum/show-forum-pref-button.js</string>
 				<string>content/forum/staff-marker.js</string>
-				<string>content/information-aggregation/best-player-position.js</string>
 				<string>content/information-aggregation/cross-table.js</string>
 				<string>content/information-aggregation/dashboard-calendar.js</string>
 				<string>content/information-aggregation/election-table.js</string>
@@ -263,6 +267,7 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/shortcuts-and-tweaks/transfer-search-result-filters.js</string>
 				<!-- end categorized modules -->
 
+				<!-- platform-specific -->
 				<string>content/entry.js</string>
 				<string>content/loader-chrome.js</string>
 			</array>
