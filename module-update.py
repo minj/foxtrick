@@ -3,60 +3,56 @@
 # Update module listing in manifest files
 #
 # Author: Anastasios Ventouris <tasosventouris@gmail.com>
+# LA-MJ <4mr.minj@gmail.com>
 
 import re
 import argparse
 import os
 import sys
 
-def build(args=dict(sourcefile="modules", excludefile=None, dirfile=".")):
-    sourcefile = args['sourcefile']
-    excludefile = args['excludefile']
-    dirfile = args['dirfile']
-    targets = [
+tag = '<!-- %s -->'
+targets = [
 	{
 		"file" : "manifest.json",
-		"from" : "//<!-- categorized modules -->",
-		"to" : "//<!-- end categorized modules -->",
 		"prefix" : "\t\t\t\"content/",
 		"suffix" : "\",\n"
 	},
 	{
 		"file" : "Info.plist",
-		"from" : "<!-- categorized modules -->",
-		"to" : "<!-- end categorized modules -->",
 		"prefix" : "\t\t\t\t<string>content/",
 		"suffix" : "</string>\n"
 	},
 	{
 		"file" : "content/scripts-fennec.js",
-		"from" : "//<!-- categorized modules -->",
-		"to" : "//<!-- end categorized modules -->",
 		"prefix" : "\t\t'",
 		"suffix" : "',\n"
 	},
 	{
 		"file" : "content/bootstrap-firefox.js",
-		"from" : "<!-- categorized modules -->",
-		"to" : "<!-- end categorized modules -->",
 		"prefix" : "\t\t'",
 		"suffix" : "',\n"
 	},
+    {
+        "file" : "content/bootstrap-fennec.js",
+        "prefix" : "\t\t'",
+        "suffix" : "',\n"
+    },
 	{
 		"file" : "content/preferences.html",
-		"from" : "<!-- categorized modules -->",
-		"to" : "<!-- end categorized modules -->",
 		"prefix" : "\t<script type=\"application/x-javascript\" src=\"./",
 		"suffix" : "\"></script>\n"
 	},
 	{
 		"file" : "content/background.html",
-		"from" : "<!-- categorized modules -->",
-		"to" : "<!-- end categorized modules -->",
 		"prefix" : "\t<script type=\"application/x-javascript\" src=\"./",
 		"suffix" : "\"></script>\n"
 	}
-    ]
+]
+
+def build(args=dict(sourcefile="modules", excludefile=None, dirfile=".")):
+    sourcefile = args['sourcefile']
+    excludefile = args['excludefile']
+    dirfile = args['dirfile']
 
     if dirfile.endswith('/'):
         path = dirfile
@@ -97,14 +93,20 @@ def build(args=dict(sourcefile="modules", excludefile=None, dirfile=".")):
         lines = fh.read().splitlines(True)
         fh.close()
 
-        #find the index of *from* and *to*
-        start = 0
-        end = 0
+        #find the index of start and end tags
+        start_tag = tag % 'categorized modules'
+        end_tag = tag % 'end categorized modules'
+        start = -1
+        end = -1
         for step in lines:
-            if tar['from'] in step:
+            if start_tag in step:
                 start = lines.index(step)
-            elif tar['to'] in step:
+            elif end_tag in step:
                 end = lines.index(step)
+
+        if start == -1 or end == -1:
+            print('No \'%s\' in %s. Skipping.' % (start_tag, pathfile))
+            continue
 
         #create the text with the modules list
         modlines = []
@@ -145,7 +147,7 @@ def rm(args):
 def normalize_path(path):
     #convert  '/path/to/foxtrick/content/category/module.js' to 'category/module.js
     r = re.compile('^(.*?/)?content/')
-    path = r.sub('', path) + '\n'
+    path = r.sub('', path)
     return path
 
 
@@ -154,6 +156,7 @@ def rm_module(sourcefile, module):
     modules = open(sourcefile, "r").read()
     #take \n
     modules = modules.splitlines(True)
+    module += '\n'
     if module in modules:
         modules.remove(module)
         modules.sort()
@@ -168,6 +171,7 @@ def add_module(sourcefile, module):
     modules = open(sourcefile, "r").read()
     #take \n
     modules = modules.splitlines(True)
+    module += '\n'
     if module not in modules:
         modules.append(module)
         modules.sort()
@@ -176,9 +180,96 @@ def add_module(sourcefile, module):
         f_out = file(sourcefile,'wb')
         f_out.writelines(modules)
 
+def add_util(args):
+
+    # util types that should not be sorted (due to dependencies)
+    NO_SORT_TYPES = ['ext-lib']
+
+    filename = args['filename']
+    util_type = args['type']
+
+    util = normalize_path(filename)
+
+    #iterate through targets
+    for tar in targets:
+        #check if file exists
+        pathfile = tar['file']
+        if not os.path.isfile(pathfile):
+            continue
+
+        #open the file and copy the content to a list variable
+        fh = file(pathfile, 'r')
+        #keep \n
+        lines = fh.read().splitlines(True)
+        fh.close()
+
+        #find the index of start and end tags
+        start_tag = tag % util_type
+        end_tag = tag % ('end ' + util_type)
+        start = -1
+        end = -1
+        for step in lines:
+            if start_tag in step:
+                start = lines.index(step)
+            elif end_tag in step:
+                end = lines.index(step)
+
+        if start == -1 or end == -1:
+            print('No \'%s\' in %s. Skipping.' % (start_tag, pathfile))
+            continue
+
+        #create a copy of utils
+        utils = lines[start+1:end]
+        #create the new line and add it
+        utils.append(tar['prefix'] + util + tar['suffix'])
+        #sort and replace
+        if util_type not in NO_SORT_TYPES:
+            utils.sort()
+        lines[start+1:end] = utils
+
+        #write the new file
+        f_out = file(pathfile, 'wb')
+        f_out.writelines(lines)
+        f_out.close()
+        print('%s updated.' % pathfile)
+
+def rm_util(args):
+    filename = args['filename']
+    util = normalize_path(filename)
+
+    #iterate through targets
+    for tar in targets:
+        #check if file exists
+        pathfile = tar['file']
+        if not os.path.isfile(pathfile):
+            continue
+
+        #open the file and copy the content to a list variable
+        fh = file(pathfile, 'r')
+        #keep \n
+        lines = fh.read().splitlines(True)
+        fh.close()
+
+        search = tar['prefix'] + util + tar['suffix']
+        try:
+            pos = lines.index(search)
+        except:
+            print('No \'%s\' in %s. Skipping.' % (util, pathfile))
+            continue
+
+        #remove
+        lines[pos:pos+1] = []
+
+        #write the new file
+        f_out = file(pathfile, 'wb')
+        f_out.writelines(lines)
+        f_out.close()
+        print('%s updated.' % pathfile)
+
+
 if __name__ == '__main__':
 
-    parser = argparse.ArgumentParser(description='Update module listings in manifest files. Author: Anastasios Ventouris')
+    parser = argparse.ArgumentParser(description='Update module listings in manifest files. Author: Anastasios Ventouris, LA-MJ')
     subparsers = parser.add_subparsers(help='Available commands:')
 
     parser_build = subparsers.add_parser('build', help='Update manifest files (default action). Optionally removes excluded modules.')
@@ -196,6 +287,14 @@ if __name__ == '__main__':
     parser_rm.add_argument('filename', help='The module file you want to unlink.')
     parser_rm.set_defaults(func=rm)
 
+    parser_add_util = subparsers.add_parser('add-util', help='Link an util.')
+    parser_add_util.add_argument('-t', '--type', dest='type', help='Type of util to add: util (default), ext-lib, page-util, api-util, core.', required=False, action='store', default='util')
+    parser_add_util.add_argument('filename', help='The util file you want to link.')
+    parser_add_util.set_defaults(func=add_util)
+
+    parser_rm_util = subparsers.add_parser('rm-util', help='Unlink an util')
+    parser_rm_util.add_argument('filename', help='The util file you want to unlink.')
+    parser_rm_util.set_defaults(func=rm_util)
 
     if (len(sys.argv) < 2):
         args = parser.parse_args(['build'])
