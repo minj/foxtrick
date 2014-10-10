@@ -7,7 +7,7 @@
 
 Foxtrick.modules['SeasonStats'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
-	PAGES: ['matchesArchive', 'matches'],
+	PAGES: ['matchesArchive'],
 	NICE: -1, // before FoxtrickCopyMatchID
 	CSS: Foxtrick.InternalPath + 'resources/css/seasonstats.css',
 
