@@ -572,6 +572,75 @@ Foxtrick.Pages.Match.modPlayerDiv = function(playerId, func, links) {
 };
 
 /**
+ * Make the player avatar and append it to shirtDiv
+ * @param  {element} shirtDiv
+ * @param  {element} avatarXml
+ * @param  {number} scale
+ */
+Foxtrick.Pages.Match.makeAvatar = function(shirtDiv, avatarXml, scale) {
+	var doc = shirtDiv.ownerDocument;
+	var sizes = {
+		backgrounds: [0, 0],// don't show
+		kits: [92, 123],
+		bodies: [92, 123],
+		faces: [92, 123],
+		eyes: [60, 60],
+		mouths: [50, 50],
+		goatees: [70, 70],
+		noses: [70, 70],
+		hair: [92, 123],
+		misc: [0, 0] // don't show (eg cards)
+	};
+	var sizesOld = {
+		backgrounds: [0, 0],// don't show
+		faces: [47, 49],
+		eyes: [47, 49],
+		mouths: [47, 49],
+		noses: [47, 49],
+		hair: [47, 49],
+		misc: [0, 0] // don't show (eg cards)
+	};
+	var oldFaces = Foxtrick.Prefs.isModuleEnabled('OldStyleFace');
+	if (oldFaces)
+		scale = 1;
+
+	var sz = oldFaces ? sizesOld : sizes;
+
+	var layers = avatarXml.getElementsByTagName('Layer');
+	for (var j = 0; j < layers.length; ++j) {
+		var src = avatarXml.ownerDocument.text('Image', layers[j]);
+		for (var bodypart in sz) {
+			if (src.search(bodypart) != -1)
+				break;
+		}
+		if (!bodypart)
+			continue;
+
+		var styleString = '';
+		if (!oldFaces) {
+			var x = Math.round(parseInt(layers[j].getAttribute('x'), 10) / scale);
+			var y = Math.round(parseInt(layers[j].getAttribute('y'), 10) / scale);
+			styleString = 'top:' + y + 'px;left:' + x + 'px;position:absolute;';
+		}
+		var width = Math.round(sz[bodypart][0] / scale);
+		var height = Math.round(sz[bodypart][1] / scale);
+
+		if (Foxtrick.Prefs.isModuleOptionEnabled('OriginalFace', 'ColouredYouth'))
+			src = src.replace(/y_/, '');
+
+		// use protocol agnostic URLs
+		src = src.replace(/^https?:/, '');
+
+		var img = doc.createElement('img');
+		img.setAttribute('style', styleString);
+		img.src = src;
+		img.width = width;
+		img.height = height;
+		shirtDiv.appendChild(img);
+	}
+};
+
+/**
  * Parse and return playerData object used by HT lineup utils.
  * Produces a list of player objects:
  * {ChartRatings, FirstName, LastName, NickName, PlayerId, ShirtNumber, SourcePlayerId}

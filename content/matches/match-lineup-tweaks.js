@@ -421,15 +421,14 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			'div#playersBenchAway > div.playerBoxAway > div > a';
 		var awayPlayerLinks = doc.querySelectorAll(awayQuery);
 
-		var scale = 3;
 		var addFace = function(fieldplayer, id, avatarsXml) {
 			if (avatarsXml) {
 				if (!id)
 					return;
-				var players = avatarsXml.getElementsByTagName((isYouth ? 'Youth' : '') + 'Player');
+				var elName = (isYouth ? 'Youth' : '') + 'Player';
+				var players = avatarsXml.getElementsByTagName(elName);
 				for (var i = 0; i < players.length; ++i) {
-					if (id == Number(players[i].getElementsByTagName((isYouth ? 'Youth' : '') +
-					    'PlayerID')[0].textContent))
+					if (id === avatarsXml.num(elName + 'ID', players[i]))
 						break;
 				}
 				if (i == players.length)
@@ -438,85 +437,12 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 				Foxtrick.addClass(fieldplayer, 'smallFaceCardBox');
 
 				var shirt = fieldplayer.getElementsByClassName('sectorShirt')[0];
-
-				var kiturl = shirt.getAttribute('kiturl');
-				if (!kiturl && !isYouth) {
-					var kitRe = /http:\/\/res.hattrick.org\/kits\/\d+\/\d+\/\d+\/\d+\//;
-					var shirtstyle = shirt.getAttribute('style');
-					kiturl = shirtstyle.match(kitRe)[0];
-					shirt.setAttribute('kiturl', kiturl);
-				}
-
 				if (Foxtrick.hasClass(shirt, 'ft-smallFaceCard'))
 					return;
 
 				Foxtrick.addClass(shirt, 'ft-smallFaceCard');
-
-				var sizes = {
-					//backgrounds: [0, 0],// don't show
-					kits: [92, 123],
-					bodies: [92, 123],
-					faces: [92, 123],
-					eyes: [60, 60],
-					mouths: [50, 50],
-					goatees: [70, 70],
-					noses: [70, 70],
-					hair: [92, 123],
-					//misc: [0, 0] // don't show (eg cards)
-				};
-				var sizesOld = {
-					faces: [47, 49],
-					eyes: [47, 49],
-					mouths: [47, 49],
-					noses: [47, 49],
-					hair: [47, 49],
-				};
-
-				var oldFaces = Foxtrick.Prefs.isModuleEnabled('OldStyleFace');
-				var sz = oldFaces ? sizesOld : sizes;
-
-				var layers = players[i].getElementsByTagName('Layer');
-				for (var j = 0; j < layers.length; ++j) {
-					var src = layers[j].getElementsByTagName('Image')[0].textContent;
-					var show = false, bodypart;
-					for (bodypart in sz) {
-						if (src.search(bodypart) != -1) {
-							show = true;
-							break;
-						}
-					}
-					if (!bodypart || !show)
-						continue;
-
-					if (kiturl && bodypart == 'kits') {
-						var body = src.match(/([^\/]+)(\w+$)/)[0];
-						src = kiturl + body;
-					}
-
-					var styleString;
-					if (!oldFaces) {
-						var x = Math.round(Number(layers[j].getAttribute('x')) / scale);
-						var y = Math.round(Number(layers[j].getAttribute('y')) / scale);
-						styleString = 'top:' + y + 'px;left:' + x + 'px;position:absolute;';
-					}
-					else {
-						styleString = '';
-						scale = 1;
-					}
-					var width = Math.round(sz[bodypart][0] / scale);
-					var height = Math.round(sz[bodypart][1] / scale);
-
-					if (Foxtrick.Prefs.isModuleOptionEnabled('OriginalFace', 'ColouredYouth'))
-						src = src.replace(/y_/, '');
-
-					Foxtrick.addImage(doc, shirt, {
-						alt: '',
-						src: src,
-						style: styleString,
-						width: width,
-						height: height
-					});
-				}
+				var scale = 3;
+				Foxtrick.Pages.Match.makeAvatar(shirt, players[i], scale);
 			}
 		};
 
