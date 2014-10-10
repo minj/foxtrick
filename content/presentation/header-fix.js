@@ -26,12 +26,16 @@ Foxtrick.modules['HeaderFix'] = {
 		if (doc.location.href.search(/Youth/i) != -1)
 			return;
 
-		var panel =
-			doc.getElementById('ctl00_ctl00_CPContent_CPMain_pnlPreMatch');
+		var panel;
 		if (isArena)
+			// main container in #mainBody
+			// arena page only, only used here
 			panel = doc.getElementById('ctl00_ctl00_CPContent_CPMain_pnlMain');
-		var panelTeamInfo = doc.getElementById('ctl00_ctl00_CPContent_CPMain_pnlTeamInfo');
-		var panelArenaFlash = doc.getElementById('ctl00_ctl00_CPContent_CPMain_pnlArenaFlash');
+		else
+			panel = Foxtrick.Pages.Match.getPreMatchPanel(doc);
+
+		var panelTeamInfo = Foxtrick.Pages.Match.getPreMatchSummary(doc);
+		var panelArenaFlash = Foxtrick.Pages.Match.getArenaContainer(doc);
 
 		// check right page and is supporter
 		if (isMatch && (!panel || !panelTeamInfo))

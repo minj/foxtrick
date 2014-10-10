@@ -35,8 +35,7 @@ Foxtrick.modules['LiveMatchReportFormat'] = {
 		// firstload
 		reactAll(doc);
 
-		var liveId = 'ctl00_ctl00_CPContent_CPMain_UpdatePanelMatch';
-		var livereportsContainer = doc.getElementById(liveId);
+		var livereportsContainer = Foxtrick.Pages.Match.getLiveContainer(doc);
 		if (livereportsContainer)
 			Foxtrick.onChange(livereportsContainer, reactAll, { subtree: false });
 	},

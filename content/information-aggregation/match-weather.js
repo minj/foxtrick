@@ -50,7 +50,8 @@ Foxtrick.modules['MatchWeather'] = {
 		var irlNowText = Foxtrick.L10n.getString('matchWeather.irltoday');
 		var irlTomorrowText = Foxtrick.L10n.getString('matchWeather.irltomorrow');
 
-		var div = doc.querySelector('#ctl00_ctl00_CPContent_CPMain_pnlPreMatch > div');
+		var preMatchPanel = Foxtrick.Pages.Match.getPreMatchPanel(doc);
+		var div = preMatchPanel.querySelector('div');
 		var img = div.querySelector('p:last-child img');
 		if (img)
 			img.parentNode.appendChild(doc.createTextNode(' ' + expectedText));

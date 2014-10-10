@@ -27,8 +27,7 @@ Foxtrick.modules.MatchPlayerColouring = {
 				watchHighlights.bind(this)(doc);
 			};
 
-			var livereportsContainer =
-				doc.getElementById('ctl00_ctl00_CPContent_CPMain_UpdatePanelMatch');
+			var livereportsContainer = Foxtrick.Pages.Match.getLiveContainer(doc);
 			if (livereportsContainer)
 				Foxtrick.onChange(livereportsContainer, react.bind(this), { subtree: false });
 		}

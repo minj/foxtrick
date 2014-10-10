@@ -144,7 +144,7 @@ Foxtrick.Pages.Match.getAwayTeamName = function(doc) {
  * @return {Boolean}
  */
 Foxtrick.Pages.Match.isPrematch = function(doc) {
-	return doc.getElementById('ctl00_ctl00_CPContent_CPMain_pnlPreMatch') !== null;
+	return this.getPreMatchPanel(doc) !== null;
 };
 
 /**
@@ -444,9 +444,9 @@ Foxtrick.Pages.Match.addLiveTabListener = function(doc, tabId, callback) {
 	};
 	// start everything onLoad
 	registerMatch(doc);
-	var liveContainer = doc.getElementById('ctl00_ctl00_CPContent_CPMain_UpdatePanelMatch');
+	var liveContainer = this.getLiveContainer(doc);
 	if (liveContainer) {
-		// this the largest container that contains overview OR match view
+		// this is the smallest container that contains overview OR match view
 		Foxtrick.onChange(liveContainer, registerMatch, { subtree: false });
 	}
 };
@@ -648,4 +648,51 @@ Foxtrick.Pages.Match.getEventIndicesByEvent = function(doc) {
 		return { eventIdx: index.value, idx: i };
 	}, eventIndices);
 	return eventIndexByEvent;
+};
+
+/**
+ * Get the smallest HT-Live container that includes
+ * both the single match view and the match list view
+ * @param  {document} doc
+ * @return {element}
+ */
+Foxtrick.Pages.Match.getLiveContainer = function(doc) {
+	return doc.getElementById('ctl00_ctl00_CPContent_CPMain_UpdatePanelMatch');
+};
+
+/**
+ * Get the pre-match panel that contains tabs for Head-To-Head,
+ * stadium, fans, referee info, etc
+ * @param  {document} doc
+ * @return {element}
+ */
+Foxtrick.Pages.Match.getPreMatchPanel = function(doc) {
+	return doc.getElementById('ctl00_ctl00_CPContent_CPMain_pnlPreMatch');
+};
+
+/**
+ * Get the pre-match container with team summary (coach, fans, etc)
+ * @param  {document} doc
+ * @return {element}
+ */
+Foxtrick.Pages.Match.getPreMatchSummary = function(doc) {
+	return doc.getElementById('ctl00_ctl00_CPContent_CPMain_pnlTeamInfo');
+};
+
+/**
+ * Get the arena flash container
+ * @param  {document} doc
+ * @return {element}
+ */
+Foxtrick.Pages.Match.getArenaContainer = function(doc) {
+	return doc.getElementById('ctl00_ctl00_CPContent_CPMain_pnlArenaFlash');
+};
+
+/**
+ * Get tabs from the match report
+ * @param  {document} doc
+ * @return {element}
+ */
+Foxtrick.Pages.Match.getReportTabs = function(doc) {
+	return doc.getElementById('ctl00_ctl00_CPContent_CPMain_ucMatchTabs_ulTabs');
 };
