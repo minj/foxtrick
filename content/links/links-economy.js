@@ -30,13 +30,12 @@ Foxtrick.modules['LinksEconomy'] = {
 
 		//addExternalLinksToEconomyDetail
 		var Cash = 0, newCash = 1;
-		var main = doc.getElementById('ctl00_ctl00_CPContent_divStartMain');
 		var ownBoxBody = null;
-		var thisdiv = main.getElementsByTagName('div')[0];
+		var main = doc.getElementById('mainBody');
 		var CashTable = main.getElementsByTagName('table')[0];
 		var nums = CashTable.rows[0].cells[1].textContent.replace(/\u00a0/g, '').match(/\d+/g);
 		Cash = nums[0];
-		newCash = nums[1];
+		newCash = nums[nums.length > 2 ? 2 : 1];
 
 		// symbol maybe undefined here, #care
 		var currencySymbol = Foxtrick.util.currency.getSymbol();

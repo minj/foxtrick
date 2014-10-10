@@ -155,7 +155,6 @@ Foxtrick.modules['LineupShortcut'] = {
 
 	//***************** YOUTH TEAM ********************
 	_Analyze_Youth_Player_Page: function(doc) {
-		var mainWrapper = doc.getElementById('ctl00_ctl00_CPContent_divStartMain');
 		var mainBody = doc.getElementById('mainBody');
 
 		var matchLink = Foxtrick.nth(function(n) {
@@ -171,8 +170,9 @@ Foxtrick.modules['LineupShortcut'] = {
 		if (matchTable.tagName.toLowerCase() != 'table')
 			return;
 
-		var playerid = Foxtrick.util.id.findYouthPlayerId(mainWrapper);
-		var teamid = Foxtrick.util.id.findYouthTeamId(mainWrapper);
+		var crumbs = Foxtrick.Pages.All.getBreadCrumbs(doc);
+		var teamid = Foxtrick.util.id.getYouthTeamIdFromUrl(crumbs[0].href);
+		var playerid = Foxtrick.Pages.All.getId(doc);
 		for (var i = 0; i < matchTable.rows.length; i++) {
 			var link = matchTable.rows[i].cells[1].getElementsByTagName('a')[0];
 			link.href += '&HighlightPlayerID=' + playerid;

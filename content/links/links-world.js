@@ -22,8 +22,6 @@ Foxtrick.modules['LinksWorld'] = {
 
 	_run: function(doc) {
 		var ownBoxBody = null;
-		var main = doc.getElementById('ctl00_ctl00_CPContent_divStartMain');
-
 		var links = Foxtrick.modules['Links'].getLinks('worldlink', {}, doc, this);
 		if (links.length > 0) {
 			ownBoxBody = Foxtrick.createFeaturedElement(doc, this, 'div');

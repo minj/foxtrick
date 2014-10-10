@@ -128,8 +128,8 @@ Foxtrick.modules['SeriesFlags'] = {
 		if (Foxtrick.Prefs.isModuleOptionEnabled('SeriesFlags', 'Guestbook')
 			&& Foxtrick.isPage(doc, 'guestbook')) {
 			// add to guest managers
-			var mainWrapper = doc.getElementById('ctl00_ctl00_CPContent_divStartMain');
-			var links = mainWrapper.getElementsByTagName('a');
+			var wrapper = doc.getElementById('ctl00_ctl00_CPContent_CPMain_upGB');
+			var links = wrapper.getElementsByTagName('a');
 			var userLinks = Foxtrick.filter(function(n) {
 				return (n.href.search(/userId=/i) >= 0 &&
 				        !Foxtrick.hasClass(n.parentNode.parentNode, 'ft-popup-list'));
@@ -139,7 +139,7 @@ Foxtrick.modules['SeriesFlags'] = {
 		//We add also flag to the guestbook entry in teamPage, but we have to skip the own user link
 		if (Foxtrick.Prefs.isModuleOptionEnabled('SeriesFlags', 'Guestbook')
 			&& Foxtrick.isPage(doc, 'teamPage')) {
-			var mainBoxes = doc.getElementById('ctl00_ctl00_CPContent_divStartMain').getElementsByClassName('mainBox');
+			var mainBoxes = doc.getElementById('mainBody').getElementsByClassName('mainBox');
 			Foxtrick.map(function(b) {
 				var links = b.getElementsByTagName('a');
 				var userLinks = Foxtrick.filter(function(n) {
@@ -195,7 +195,7 @@ Foxtrick.modules['SeriesFlags'] = {
 
 
 			// add to tournaments table
-			var mainWrapper = doc.getElementById('ctl00_ctl00_CPContent_divStartMain');
+			var mainWrapper = doc.getElementById('mainBody');
 			var links = mainWrapper.getElementsByTagName('a');
 			var teamLinks = Foxtrick.filter(function(n) {
 				return (n.href.search(/matchId=/i) == -1

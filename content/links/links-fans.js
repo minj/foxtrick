@@ -21,12 +21,13 @@ Foxtrick.modules['LinksFans'] = {
 
 	_run: function(doc) {
 		var ownBoxBody = null;
-		var main = doc.getElementById('ctl00_ctl00_CPContent_divStartMain');
 
-		var teamid = Foxtrick.util.id.findTeamId(main);
+		var teamid = Foxtrick.Pages.All.getId(doc);
 		var teamname = Foxtrick.Pages.All.getTeamName(doc);
 		var fanmood = '';
-		var fans = main.getElementsByTagName('td')[1].textContent.match(/\d+/);
+		var main = doc.getElementById('mainBody');
+		var fansText = main.getElementsByTagName('td')[1].textContent;
+		var fans = Foxtrick.trimnum(fansText);
 
 		var links = main.getElementsByTagName('a');
 		var i = 0, link;

@@ -33,7 +33,7 @@ Foxtrick.modules['LinksTeam'] = {
 	},
 
 	AddLinksRight: function(doc) {
-		var main = doc.getElementById('ctl00_ctl00_CPContent_divStartMain');
+		var main = doc.getElementById('mainBody');
 		var ownBoxBody = null;
 		var teaminfo = this.gatherLinks(main, doc);
 
@@ -55,9 +55,9 @@ Foxtrick.modules['LinksTeam'] = {
 	},
 
 	gatherLinks: function(thisdiv, doc) {
-		var countryid = Foxtrick.util.id.findLeagueId(thisdiv);
-		var teamid = Foxtrick.util.id.findTeamId(thisdiv);
+		var teamid = Foxtrick.Pages.All.getId(doc);
 		var teamname = Foxtrick.Pages.All.getTeamName(doc);
+		var countryid = Foxtrick.util.id.findLeagueId(thisdiv);
 		var leaguename = Foxtrick.util.id.extractLeagueName(thisdiv);
 		var levelnum = Foxtrick.util.id.getLevelNum(leaguename, countryid);
 		var leagueid = Foxtrick.util.id.findLeagueLeveUnitId(thisdiv);
@@ -67,7 +67,7 @@ Foxtrick.modules['LinksTeam'] = {
 		}
 		var leaguepos = 0, fans = 0;
 		try {
-			var teamInfo = doc.getElementById('mainBody').getElementsByTagName('h2')[0].parentNode;
+			var teamInfo = thisdiv.querySelector('.teamInfo');
 			var ps = teamInfo.getElementsByTagName('p');
 			try { leaguepos = ps[0].textContent.match(/(\d)/)[1]; }
 			catch (e) {} // running game, leaguepos not known
@@ -75,6 +75,8 @@ Foxtrick.modules['LinksTeam'] = {
 			var child, i = 0, infocount = 0;
 			while (child = children[i++]) {
 				if (infocount == 2 && child.nodeName == 'P') {
+					// README: does not work when fan club name includes numbers
+					// nothing we can do
 					fans = children[i + 1].textContent.replace(/\u00a0/g, '').match(/(\d+)/)[1];
 					break;
 				}

@@ -14,6 +14,9 @@ Foxtrick.modules['LinksPlayers'] = {
 	},
 
 	run: function(doc) {
+		if (Foxtrick.isPage(doc, 'keyPlayers'))
+			return;
+
 		var module = this;
 		Foxtrick.modules.Links.getCollection(function(collection) {
 			module._run(doc);
@@ -22,19 +25,14 @@ Foxtrick.modules['LinksPlayers'] = {
 
 	_run: function(doc) {
 		var ownBoxBody = null;
-		var main = doc.getElementById('ctl00_ctl00_CPContent_divStartMain');
 
-		var teamid = Foxtrick.util.id.findTeamId(main);
+		var teamid = Foxtrick.Pages.All.getId(doc);
 		var teamname = Foxtrick.Pages.All.getTeamName(doc);
 		var playerids = '';
-		var players = main.getElementsByTagName('a');
-		var i = 0, player;
-		while (player = players[i++]) {
-			if (player.href.search(/BrowseIds/i) != -1) {
-				playerids += player.href.replace(/.+BrowseIds=/i, '');
-				break;
-			}
-		}
+		var main = doc.getElementById('mainBody');
+		var player = main.querySelector('a[href*="BrowseIds"]');
+		playerids += player.href.replace(/.+BrowseIds=/i, '');
+
 
 		var links = Foxtrick.modules['Links'].getLinks('playerslink', {
 			'teamid': teamid,

@@ -311,9 +311,9 @@ Foxtrick.modules.MatchSimulator = {
 				                         .textContent);
 				var AwayTeamID = Number(selectedMatchXML.getElementsByTagName('AwayTeamID')[0]
 				                         .textContent);
-				var h2 = doc.getElementById('ctl00_ctl00_CPContent_divStartMain').getElementsByTagName('h2')[0];
-				var thisTeamID = Foxtrick.util.id.getTeamIdFromUrl(h2.getElementsByTagName('a')[0]
-				                                                   .href);
+				var teamLink = Foxtrick.Pages.All.getBreadCrumbs(doc)[0];
+				var thisTeamID = Foxtrick.util.id.getTeamIdFromUrl(teamLink.href);
+
 				if (homeAway == 'home' ||
 					(homeAway != 'away' &&	(otherTeamID == HomeTeamID ||
 					 thisTeamID == AwayTeamID))) {
@@ -470,10 +470,9 @@ Foxtrick.modules.MatchSimulator = {
 				var text = '';
 
 				// the teams. highlight own team
-				var h2 = doc.getElementById('ctl00_ctl00_CPContent_divStartMain').getElementsByTagName('h2')[0];
-				var thisTeam = h2.getElementsByTagName('a')[0].textContent;
-				var bothTeams = h2.getElementsByTagName('a')[1].textContent
-					.replace(thisTeam, '[b]' + thisTeam + '[/b]');
+				var crumbs = Foxtrick.Pages.All.getBreadCrumbs(doc);
+				var thisTeam = crumbs[0].textContent;
+				var bothTeams = crumbs[1].textContent.replace(thisTeam, '[b]' + thisTeam + '[/b]');
 				text += bothTeams;
 
 				// match link
@@ -714,9 +713,8 @@ Foxtrick.modules.MatchSimulator = {
 					                        .textContent);
 					var AwayTeamID = Number(orderMatchXml.getElementsByTagName('AwayTeamID')[0]
 					                        .textContent);
-					var h2 = doc.getElementById('ctl00_ctl00_CPContent_divStartMain').getElementsByTagName('h2')[0];
-					var thisTeamID = Foxtrick.util.id
-						.getTeamIdFromUrl(h2.getElementsByTagName('a')[0].href);
+					var crumbs = Foxtrick.Pages.All.getBreadCrumbs(doc);
+					var thisTeamID = Foxtrick.util.id.getTeamIdFromUrl(crumbs[0].href);
 					if (thisTeamID == HomeTeamID) {
 						isHome = true;
 						var otherTeamID = AwayTeamID;

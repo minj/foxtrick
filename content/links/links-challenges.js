@@ -23,7 +23,7 @@ Foxtrick.modules['LinksChallenges'] = {
 
 	_run: function(doc) {
 		var teamid = Foxtrick.util.id.findTeamId(doc.getElementsByClassName('subMenu')[0]);
-		var main = doc.getElementById('ctl00_ctl00_CPContent_divStartMain');
+		var main = Foxtrick.Pages.All.getMainHeader(doc);
 		var youthteamid = Foxtrick.util.id.findYouthTeamId(main);
 		var ownteamid = Foxtrick.util.id.getOwnLeagueId();
 

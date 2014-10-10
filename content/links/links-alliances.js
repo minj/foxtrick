@@ -21,12 +21,8 @@ Foxtrick.modules['LinksAlliances'] = {
 	},
 
 	_run: function(doc) {
-		var main = doc.getElementById('ctl00_ctl00_CPContent_divStartMain');
 		var ownBoxBody = null;
-		var thisdiv = main.getElementsByTagName('div')[0];
-		var allianceLink = thisdiv.getElementsByTagName('a')[2];
-		var startPos = allianceLink.href.search('=') + 1;
-		var allianceId = allianceLink.href.substr(startPos);
+		var allianceId = Foxtrick.Pages.All.getId(doc);
 
 		var links = Foxtrick.modules['Links'].getLinks('federationlink', {
 			'federationid': allianceId

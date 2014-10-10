@@ -21,9 +21,8 @@ Foxtrick.modules['LinksLeague'] = {
 
 	_run: function(doc) {
 		//addExternalLinksToLeagueDetail
-		var main = doc.getElementById('ctl00_ctl00_CPContent_divStartMain');
 		var ownBoxBody = null;
-		var thisdiv = main.getElementsByTagName('div')[0];
+		var thisdiv = Foxtrick.Pages.All.getMainHeader(doc);
 		var leagueid = Foxtrick.util.id.findLeagueLeveUnitId(thisdiv);
 		var countryid = Foxtrick.util.id.findLeagueId(thisdiv);
 

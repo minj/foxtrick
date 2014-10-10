@@ -13,9 +13,9 @@ Foxtrick.modules['TableOfStatisticalTruth'] = {
 	run: function(doc) {
 
 		var season = doc.getElementById('mainBody').getElementsByTagName('select')[0].value;
-		var serie = Foxtrick.util.id.getLeagueLeveUnitIdFromUrl(doc.getElementById('ctl00_ctl00_CPContent_divStartMain')
-		                                                        .getElementsByTagName('h2')[0]
-		                                                        .getElementsByTagName('a')[1].href);
+		var crumbs = Foxtrick.Pages.All.getBreadCrumbs(doc);
+		var serieLink = crumbs[1];
+		var serie = Foxtrick.util.id.getLeagueLeveUnitIdFromUrl(serieLink.href);
 		var lang = Foxtrick.Prefs.getString('htLanguage');
 
 		var leaguetable = doc.getElementById('mainBody').getElementsByTagName('table')[0];

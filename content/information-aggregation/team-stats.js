@@ -173,7 +173,7 @@ Foxtrick.modules['TeamStats'] = {
 						filterSelect.dispatchEvent(new Event('change'));
 
 						win.scroll(0, 0);
-						var main = doc.getElementById('ctl00_ctl00_CPContent_divStartMain');
+						var main = doc.getElementById('mainBody');
 						win.scrollBy(0, main.offsetTop);
 					});
 				};

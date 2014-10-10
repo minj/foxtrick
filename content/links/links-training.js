@@ -26,16 +26,11 @@ Foxtrick.modules['LinksTraining'] = {
 			return;
 		//addExternalLinksToCoachPage
 
-		var main = doc.getElementById('ctl00_ctl00_CPContent_divStartMain');
+		var main = doc.getElementById('mainBody');
 		var ownBoxBody = null;
 		var Coach, TI, STA, TrainingType, owncountryid;
-		var alllinks = main.getElementsByTagName('a');
-		for (var i = 0; i < alllinks.length; i++) {
-			if (alllinks[i].href.match(/skillshort/i)) {
-				Coach = Foxtrick.util.id.getSkillLevelFromLink(alllinks[i]);
-				break;
-			}
-		}
+		var coachLink = main.querySelector('a[href^="/Help/Rules/AppDenominations"]');
+		Coach = Foxtrick.util.id.getSkillLevelFromLink(coachLink);
 		STA = doc.getElementById('ctl00_ctl00_CPContent_CPMain_txtTrainingLevelStamina').value;
 		TI = doc.getElementById('ctl00_ctl00_CPContent_CPMain_txtTrainingLevel').value;
 		TrainingType = doc.getElementById('ctl00_ctl00_CPContent_CPMain_ddlTrainingType').value;

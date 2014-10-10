@@ -18,10 +18,7 @@ Foxtrick.util.copyButton = {};
  */
 Foxtrick.util.copyButton.add = function(doc, text) {
 	if (Foxtrick.Prefs.getBool('smallcopyicons')) {
-		var mainWrapper = doc.getElementById('ctl00_ctl00_CPContent_divStartMain');
 		var mainBody = doc.getElementById('mainBody');
-
-		var boxHead = mainWrapper.getElementsByClassName('boxHead')[0];
 
 		if (Foxtrick.util.layout.isStandard(doc))
 			mainBody.style.paddingTop = '10px';

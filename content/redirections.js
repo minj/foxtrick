@@ -26,8 +26,7 @@ Foxtrick.modules['Redirections'] = {
 		var tar = '';
 		// redirect from manager
 		if (doc.location.href.search(/\/Club\/Manager/i) != -1) {
-			var userid = doc.getElementById('ctl00_ctl00_CPContent_divStartMain')
-				.getElementsByTagName('a')[1].href.replace(/.+userid=/i, '');
+			var userid = Foxtrick.Pages.All.getId(doc);
 
 			var target = '_self';
 			if (doc.location.href.search(/redir_to_team=true/i) != -1)

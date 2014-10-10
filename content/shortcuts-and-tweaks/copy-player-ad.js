@@ -13,24 +13,11 @@ Foxtrick.modules['CopyPlayerAd'] = {
 	CSS: Foxtrick.InternalPath + 'resources/css/copy-player-ad.css',
 
 	run: function(doc) {
-		try {
-			var main = doc.getElementById('ctl00_ctl00_CPContent_divStartMain');
-			var links = main.getElementsByTagName('a');
-			var empty = true;
-			for (var i = 0; i < links.length; i++) {
-				if (/Club\/\?TeamID/i.test(links[i].href) ||
-				    /Youth\/(Default\.aspx)?\?YouthTeamID=/i.test(links[i].href)) {
-					empty = false;
-					break;
-				}
-			}
-			if (empty) {
-				return;
-			}
-		}
-		catch (e) {
+		// skip non-existent and free agents
+		var header = Foxtrick.Pages.All.getMainHeader(doc);
+		var link = Foxtrick.util.id.findTeamId(header);
+		if (!link)
 			return;
-		}
 
 		var button = Foxtrick.util.copyButton.add(doc, Foxtrick.L10n.getString('copy.playerad'));
 		if (button) {
