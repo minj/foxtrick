@@ -13,6 +13,11 @@ Foxtrick.modules['SeasonStats'] = {
 
 
 	run: function(doc) {
+
+		if (Foxtrick.Pages.All.isYouth(doc))
+			// don't run on youth
+			return;
+
 		try {
 			// get current season
 			var htDate = Foxtrick.util.time.getHtDate(doc);
