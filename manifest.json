@@ -73,6 +73,7 @@
 			"content/pages/matches.js",
 			"content/pages/player.js",
 			"content/pages/players.js",
+			"content/pages/series.js",
 			"content/pages/transfer-search-results.js",
 			"content/pages/youth-player.js",
 			//<!-- end page-util -->

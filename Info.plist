@@ -86,6 +86,7 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/pages/matches.js</string>
 				<string>content/pages/player.js</string>
 				<string>content/pages/players.js</string>
+				<string>content/pages/series.js</string>
 				<string>content/pages/transfer-search-results.js</string>
 				<string>content/pages/youth-player.js</string>
 				<!-- end page-util -->

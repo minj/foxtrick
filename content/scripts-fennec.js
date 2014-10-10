@@ -67,6 +67,7 @@ Foxtrick.loader.background.contentScriptManager = {
 		'pages/matches.js',
 		'pages/player.js',
 		'pages/players.js',
+		'pages/series.js',
 		'pages/transfer-search-results.js',
 		'pages/youth-player.js',
 		//<!-- end page-util -->
