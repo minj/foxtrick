@@ -37,6 +37,7 @@ Foxtrick.modules['MatchOrderInterface'] = {
 		var module = this;
 		var avatarsParamsString;
 		var getAvatars;
+		var getPlayers;
 		var check_images = function(doc, target, avatarsXml, getID, scale) {
 			if (!Foxtrick.Prefs.isModuleOptionEnabled('MatchOrderInterface', 'ShowFaces'))
 				return;
@@ -56,8 +57,9 @@ Foxtrick.modules['MatchOrderInterface'] = {
 					// id not found, possibly new player, invalidate cache and refetch
 					var now = Foxtrick.util.time.getHtTimeStamp(doc);
 					Foxtrick.util.api.setCacheLifetime(avatarsParamsString, now);
-					Foxtrick.log('New player found: refreshing avatar cache.');
+					Foxtrick.log('New player found: refreshing player cache.');
 					getAvatars(JSON.parse(avatarsParamsString));
+					getPlayers(true);
 					return true;
 				}
 
@@ -325,22 +327,25 @@ Foxtrick.modules['MatchOrderInterface'] = {
 			var teamid = Foxtrick.util.id.getTeamIdFromUrl(teamLink.href);
 
 			// load ahead players and then wait for interface loaded
-			Foxtrick.Pages.Players.getPlayerList(doc,
-			  function(playerInfo) {
-				if (!playerInfo || playerInfo.length == 0) {
-					Foxtrick.log('unable to retrieve player list.');
-					return;
-				}
+			getPlayers = function(fresh) {
+				Foxtrick.Pages.Players.getPlayerList(doc,
+				  function(playerInfo) {
+					if (!playerInfo || playerInfo.length == 0) {
+						Foxtrick.log('unable to retrieve player list.');
+						return;
+					}
 
-				Foxtrick.log('hasPlayerInfo');
-				hasPlayerInfo = true;
-				playerList = playerInfo;
+					Foxtrick.log('hasPlayerInfo');
+					hasPlayerInfo = true;
+					playerList = playerInfo;
 
-				savePenaltySkills(playerList);
+					savePenaltySkills(playerList);
 
-				if (hasInterface)
-					showPlayerInfo(doc.getElementById('orders'));
-			}, { teamId: teamid, currentSquad: true, includeMatchInfo: true });
+					if (hasInterface)
+						showPlayerInfo(doc.getElementById('orders'));
+				}, { teamId: teamid, currentSquad: true, includeMatchInfo: true, refresh: fresh });
+			};
+			getPlayers();
 
 			var avatarsParams = [
 				['file', (isYouth ? 'youth' : '') + 'avatars'],
