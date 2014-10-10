@@ -15,6 +15,7 @@ Foxtrick.modules['LinksPlayers'] = {
 
 	run: function(doc) {
 		if (Foxtrick.isPage(doc, 'keyPlayers'))
+			// README: keyPlayers has no browseIDs
 			return;
 
 		var module = this;
