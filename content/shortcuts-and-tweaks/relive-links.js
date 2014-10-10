@@ -14,7 +14,7 @@ Foxtrick.modules['ReLiveLinks'] = {
 	NICE: -1, // before any modules that might change row count
 	run: function(doc) {
 		// don't run on live table
-		var liveSeriesLink = doc.getElementById('ctl00_ctl00_CPContent_CPMain_hlLive');
+		var liveSeriesLink = Foxtrick.getMBElement(doc, 'hlLive');
 		if (liveSeriesLink && liveSeriesLink.hasAttribute('disabled')) {
 			return;
 		}
@@ -75,7 +75,8 @@ Foxtrick.modules['ReLiveLinks'] = {
 				rows[0].cells[0].appendChild(addAllSpan);
 		}
 		else if (Foxtrick.isPage(doc, 'fixtures') || Foxtrick.isPage(doc, 'youthFixtures')) {
-			rows = doc.querySelectorAll('#ctl00_ctl00_CPContent_CPMain_repFixtures tr');
+			var fixtures = Foxtrick.getMBElement(doc, 'repFixtures');
+			rows = fixtures.querySelectorAll('tr');
 
 			if (Foxtrick.isPage(doc, 'youthFixtures')) {
 				insertCells = true;

@@ -353,6 +353,7 @@ Foxtrick.modules['StaffMarker'] = {
 
 	run: function(doc) {
 		var module = this;
+		var MAIN = '#' + Foxtrick.getMainIDPrefix();
 		if (Foxtrick.isPage(doc, 'forumViewThread') &&
 			doc.getElementsByClassName('ft-staff-marker-opts').length === 0 &&
 			Foxtrick.Prefs.isModuleOptionEnabled('StaffMarker', 'forumInterface'))
@@ -463,13 +464,9 @@ Foxtrick.modules['StaffMarker'] = {
 
 				// mark staffs in thread
 				var markThread = function() {
-					//var userDivs = doc.getElementById('mainBody').parentNode
-					//	.getElementsByClassName('float_left');
-					var userDivs =
-						doc.querySelectorAll('#mainBody .float_left, #sidebar, .mainBox, ' +
-											 '#ctl00_ctl00_CPContent_CPMain_pnlSupportedTeams, ' +
-											 '#ctl00_ctl00_CPContent_CPMain_pnlMySupporters, ' +
-											 '#ctl00_ctl00_CPContent_CPMain_upGB');
+					var query = '#mainBody .float_left, #sidebar, .mainBox, ' +
+						MAIN + 'pnlSupportedTeams, ' + MAIN + 'pnlMySupporters, ' + MAIN + 'upGB';
+					var userDivs = doc.querySelectorAll(query);
 
 					Foxtrick.map(function(user) {
 						var links = user.getElementsByTagName('a');
@@ -484,8 +481,7 @@ Foxtrick.modules['StaffMarker'] = {
 						}, links);
 					}, userDivs);
 					if (Foxtrick.isPage(doc, 'guestbook')) {
-						var id = 'ctl00_ctl00_CPContent_CPMain_upGB';
-						var gb = doc.getElementById(id);
+						var gb = Foxtrick.getMBElement(doc, 'upGB');
 						Foxtrick.onChange(gb, function() {
 							if (gb.getElementsByClassName('ft-staff').length)
 								return;
@@ -495,8 +491,9 @@ Foxtrick.modules['StaffMarker'] = {
 				};
 				// mark staffs in select box
 				var markSelect = function() {
-					var selects = doc.getElementById('mainBody').parentNode
-						.querySelectorAll('select.threadPagingFilter, select[id$="_ddlRecipient"]');
+					var body = doc.getElementById('mainBody');
+					var query = MAIN + 'ucThread_ucPagerTop_filterUser, ' + MAIN + 'ddlRecipient';
+					var selects = body.querySelectorAll(query);
 					Foxtrick.map(function(select) {
 						// to avoid select box which don't contains users
 						if (select.id.search(/filter/i) == -1

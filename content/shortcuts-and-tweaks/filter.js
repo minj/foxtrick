@@ -12,6 +12,7 @@ Foxtrick.modules['Filter'] = {
 	OPTIONS: ['ShowOwned'],
 
 	run: function(doc) {
+		var MAIN = Foxtrick.getMainIDPrefix();
 		var FILTER_FUNC = {
 			'category': function(val, category) {
 				if (category == 'Filters.noFilter')
@@ -37,7 +38,7 @@ Foxtrick.modules['Filter'] = {
 			{
 				toBeFiltered: { nodeName: 'table', index: 2, rowType: 'tr', cellType: 'td',
 					rowStartIndex: 1 },
-				insertFilterWhere: {id: 'ctl00_ctl00_CPContent_CPMain_btnSearch', insertAfter: true},
+				insertFilterWhere: { id: MAIN + 'btnSearch', insertAfter: true },
 				filters: [
 					{ key: 'name', 		filtertype: null},
 					{ key: 'days', 		filtertype: 'minmax', min: null, max: null,	type: 'days'},

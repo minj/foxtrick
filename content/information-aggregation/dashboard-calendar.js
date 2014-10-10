@@ -240,7 +240,8 @@ Foxtrick.modules['DashboardCalendar'] = {
 			var blob = new ev.view.Blob(cal, { type: 'text/calendar;charset=utf-8' });
 			Foxtrick.saveAs(blob, 'ht-cal-' + todayString + '.ics');
 		});
-		var br = doc.querySelector('#ctl00_ctl00_CPContent_CPMain_lnkArchive + br');
+		var MAIN = Foxtrick.getMainIDPrefix();
+		var br = doc.querySelector('#' + MAIN + 'lnkArchive + br');
 		br.parentNode.insertBefore(newLink, br);
 	},
 };

@@ -27,7 +27,7 @@ Foxtrick.modules['BookmarkAdjust'] = {
 	},
 
 	_adjust_bookmarks: function(doc) {
-		var spanObj = doc.getElementById('ctl00_ctl00_CPContent_CPMain_repB');
+		var spanObj = Foxtrick.getMBElement(doc, 'repB');
 		var tableObj = spanObj.getElementsByTagName('table').item(0);
 
 		//checking if deadline already set

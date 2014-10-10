@@ -562,3 +562,40 @@ Foxtrick.getSelection = function(ta) {
 		return null;
 	}
 };
+
+/**
+ * Get the mainBody HT ID prefix.
+ * @return {string}
+ */
+Foxtrick.getMainIDPrefix = function() {
+	return 'ctl00_ctl00_CPContent_CPMain_';
+};
+
+/**
+ * Get main body HT element by the relevant part of its ID.
+ * I. e. ctl00_ctl00_CPContent_CPMain_$ID.
+ * @param  {document}    doc
+ * @param  {string}      ID
+ * @return {HTMLElement}
+ */
+Foxtrick.getMBElement = function(doc, ID) {
+	var PRE = this.getMainIDPrefix();
+	var el = doc.getElementById(PRE + ID);
+	return el;
+};
+
+/**
+ * Get HT Button by the relevant part of its ID.
+ * Supports ctl00_ctl00_CPContent_CPMain_btn$ID and
+ * ctl00_ctl00_CPContent_CPMain_but$ID.
+ * @param  {document}    doc
+ * @param  {string}      ID
+ * @return {HTMLElement}
+ */
+Foxtrick.getButton = function(doc, ID) {
+	var PRE = this.getMainIDPrefix();
+	var btn = doc.getElementById(PRE + 'btn' + ID);
+	if (!btn)
+		btn = doc.getElementById(PRE + 'but' + ID);
+	return btn;
+};

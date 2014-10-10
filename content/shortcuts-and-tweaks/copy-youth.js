@@ -95,12 +95,12 @@ Foxtrick.modules['CopyYouth'] = {
 
 
 		//if training report unread mark dirty on click so auto send to HY can kick in
-		var readBtn = doc.getElementById('ctl00_ctl00_CPContent_CPMain_butReadAll');
+		var readBtn = Foxtrick.getButton(doc, 'ReadAll');
 		if (readBtn) {
 			if (Foxtrick.Prefs.isModuleOptionEnabled('CopyYouth', 'AutoSendTrainingReportToHY')) {
 				var mainBody = doc.getElementById('mainBody');
 				var matchid = Foxtrick.util.id.findMatchId(mainBody);
-				var readBtn = doc.getElementById('ctl00_ctl00_CPContent_CPMain_butReadAll');
+				var readBtn = Foxtrick.getButton(doc, 'ReadAll');
 
 				Foxtrick.onClick(readBtn, function() {
 					Foxtrick.log('Marked');
@@ -232,13 +232,12 @@ Foxtrick.modules['CopyYouth'] = {
 
 		var has_report = false;
 		if (Foxtrick.isPage(doc, 'youthOverview')) {
-			has_report = doc.getElementById('ctl00_ctl00_CPContent_CPMain_butScoutPropYes') != null;
+			has_report = Foxtrick.getButton(doc, 'ScoutPropYes') !== null;
 		}
 
 		if (Foxtrick.isPage(doc, 'youthPlayerDetails') || has_report) {
 			if (has_report) {
-				var alertdiv =
-					doc.getElementById('ctl00_ctl00_CPContent_CPMain_butScoutPropYes').parentNode;
+				var alertdiv = Foxtrick.getButton(doc, 'ScoutPropYes').parentNode;
 
 
 				//auto send rejected players to HY, api see above
@@ -312,7 +311,7 @@ Foxtrick.modules['CopyYouth'] = {
 			});
 		};
 
-		var changeBtn = doc.getElementById('ctl00_ctl00_CPContent_CPMain_butChangeTraining');
+		var changeBtn = Foxtrick.getButton(doc, 'ChangeTraining');
 		var training = doc.querySelectorAll('#mainBody table.form select');
 		if (!changeBtn || training.length != 2)
 			return;

@@ -14,7 +14,7 @@ Foxtrick.modules['TransferHistoryFilters'] = {
 
 		var options = ['all', 'bought', 'sold'];
 
-		var before = doc.getElementById('ctl00_ctl00_CPContent_CPMain_ucPagerTop_divWrapper');
+		var before = Foxtrick.getMBElement(doc, 'ucPagerTop_divWrapper');
 
 		var container = Foxtrick.createFeaturedElement(doc, this, 'div');
 		var select = doc.createElement('select');

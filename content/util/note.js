@@ -55,8 +55,7 @@ Foxtrick.util.note.add = function(doc, msg, id, options) {
 	}
 	else {
 		// default insert position
-		var appendTo = doc.getElementById('ctl00_updNotifications') ||
-			doc.getElementById('ctl00_ctl00_CPContent_ucNotifications_updNotifications');
+		var appendTo = Foxtrick.Pages.All.getNotes(doc);
 		appendTo.appendChild(note);
 	}
 

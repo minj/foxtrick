@@ -69,7 +69,8 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 					return;
 
 				// creating the new element
-				var table = doc.querySelector('#ctl00_ctl00_CPContent_CPMain_pnlplayerInfo table');
+				var panel = Foxtrick.getMBElement(doc, 'pnlplayerInfo');
+				var table = panel.querySelector('table');
 				var row = Foxtrick.insertFeaturedRow(table, module, table.rows.length);
 				Foxtrick.addClass(row, 'ft-best-player-position');
 				var title = row.insertCell(0);

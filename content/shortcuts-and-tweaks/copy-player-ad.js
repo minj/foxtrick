@@ -261,7 +261,7 @@ Foxtrick.modules['CopyPlayerAd'] = {
 			}
 
 			// current bid information
-			var bidDiv = doc.getElementById('ctl00_ctl00_CPContent_CPMain_updBid');
+			var bidDiv = Foxtrick.Pages.Player.getBidInfo(doc);
 			if (bidDiv) {
 				ad += '\n';
 				var paragraphs = bidDiv.getElementsByTagName('p');

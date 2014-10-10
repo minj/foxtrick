@@ -12,7 +12,7 @@ Foxtrick.modules['FriendlyPool'] = {
 	OPTIONS: ['ExpandCountrySelection'],
 
 	run: function(doc) {
-		var leagueSelect = doc.getElementById('ctl00_ctl00_CPContent_CPMain_ddlPoolLeagues');
+		var leagueSelect = Foxtrick.getMBElement(doc, 'ddlPoolLeagues');
 		if (!leagueSelect)
 			return;
 

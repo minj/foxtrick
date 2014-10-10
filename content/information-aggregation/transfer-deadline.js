@@ -72,7 +72,8 @@ Foxtrick.modules['TransferDeadline'] = {
 		var htDate = Foxtrick.util.time.getHtDate(doc);
 		var htTime = htDate.getTime();
 		var i = 0;
-		var idPrefix = 'ctl00_ctl00_CPContent_CPMain_lstBids_ctrl';
+		var MAIN = Foxtrick.getMainIDPrefix();
+		var idPrefix = MAIN + 'lstBids_ctrl';
 		var element;
 		while ((element = doc.getElementById(idPrefix + (i++) + '_jsonDeadLine')))
 			this.processNode(element, htTime);
@@ -86,7 +87,7 @@ Foxtrick.modules['TransferDeadline'] = {
 		var htTime = htDate.getTime();
 		var selltime_elm;
 		try {
-			var div = doc.getElementById('ctl00_ctl00_CPContent_CPMain_updBid');
+			var div = Foxtrick.Pages.Player.getBidInfo(doc);
 			var alert = div.getElementsByClassName('alert')[0];
 			selltime_elm = alert.getElementsByTagName('p')[0];
 		}

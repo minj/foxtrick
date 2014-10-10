@@ -237,7 +237,7 @@ Foxtrick.Pages.Match.getDate = function(doc) {
  * @return {Boolean}
  */
 Foxtrick.Pages.Match.inProgress = function(doc) {
-	var matchStatus = doc.getElementById('ctl00_ctl00_CPContent_CPMain_lblMatchStatus');
+	var matchStatus = Foxtrick.getMBElement(doc, 'lblMatchStatus');
 	return matchStatus !== null && matchStatus.textContent.trim() !== '';
 };
 
@@ -436,7 +436,7 @@ Foxtrick.Pages.Match.addLiveTabListener = function(doc, tabId, callback) {
 	};
 	var registerMatch = function(doc) {
 		registerTab(doc);
-		var target = doc.getElementById('ctl00_ctl00_CPContent_CPMain_phLiveStatusPanel');
+		var target = Foxtrick.getMBElement(doc, 'phLiveStatusPanel');
 		if (target) {
 			// found match view
 			Foxtrick.onChange(target, registerTab, { subtree: false });
@@ -657,7 +657,7 @@ Foxtrick.Pages.Match.getEventIndicesByEvent = function(doc) {
  * @return {element}
  */
 Foxtrick.Pages.Match.getLiveContainer = function(doc) {
-	return doc.getElementById('ctl00_ctl00_CPContent_CPMain_UpdatePanelMatch');
+	return Foxtrick.getMBElement(doc, 'UpdatePanelMatch');
 };
 
 /**
@@ -667,7 +667,7 @@ Foxtrick.Pages.Match.getLiveContainer = function(doc) {
  * @return {element}
  */
 Foxtrick.Pages.Match.getPreMatchPanel = function(doc) {
-	return doc.getElementById('ctl00_ctl00_CPContent_CPMain_pnlPreMatch');
+	return Foxtrick.getMBElement(doc, 'pnlPreMatch');
 };
 
 /**
@@ -676,7 +676,7 @@ Foxtrick.Pages.Match.getPreMatchPanel = function(doc) {
  * @return {element}
  */
 Foxtrick.Pages.Match.getPreMatchSummary = function(doc) {
-	return doc.getElementById('ctl00_ctl00_CPContent_CPMain_pnlTeamInfo');
+	return Foxtrick.getMBElement(doc, 'pnlTeamInfo');
 };
 
 /**
@@ -685,7 +685,7 @@ Foxtrick.Pages.Match.getPreMatchSummary = function(doc) {
  * @return {element}
  */
 Foxtrick.Pages.Match.getArenaContainer = function(doc) {
-	return doc.getElementById('ctl00_ctl00_CPContent_CPMain_pnlArenaFlash');
+	return Foxtrick.getMBElement(doc, 'pnlArenaFlash');
 };
 
 /**
@@ -694,5 +694,5 @@ Foxtrick.Pages.Match.getArenaContainer = function(doc) {
  * @return {element}
  */
 Foxtrick.Pages.Match.getReportTabs = function(doc) {
-	return doc.getElementById('ctl00_ctl00_CPContent_CPMain_ucMatchTabs_ulTabs');
+	return Foxtrick.getMBElement(doc, 'ucMatchTabs_ulTabs');
 };

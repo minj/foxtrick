@@ -34,9 +34,7 @@ Foxtrick.modules['HistoryStats'] = {
 			// try to get current page number
 			var page;
 			try {
-				var pagerId =
-					'ctl00_ctl00_CPContent_CPMain_ucOtherEvents_ucPagerBottom_divWrapper';
-				var pager = doc.getElementById(pagerId);
+				var pager = Foxtrick.getMBElement(doc, 'ucOtherEvents_ucPagerBottom_divWrapper');
 				page = parseInt(pager.getElementsByTagName('strong')[0].textContent, 10);
 			}
 			catch (e) {
@@ -44,7 +42,7 @@ Foxtrick.modules['HistoryStats'] = {
 			}
 			if (!Foxtrick.has(this.Pages[teamId], page)) {
 				this.Pages[teamId].push(page);
-				var log = doc.getElementById('ctl00_ctl00_CPContent_CPMain_ucOtherEvents_ctl00');
+				var log = Foxtrick.getMBElement(doc, 'ucOtherEvents_ctl00');
 				// get season offset
 				var feeds = log.getElementsByClassName('feedItem');
 				var found = Foxtrick.any(function(feed) {

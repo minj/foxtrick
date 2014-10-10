@@ -99,11 +99,11 @@ Foxtrick.modules['LineupShortcut'] = {
 	},
 
 	_Analyze_Stat_Page: function(doc) {
-		var teamid = doc.getElementById('ctl00_ctl00_CPContent_CPMain_ddlPreviousClubs').value;
+		var teamid = Foxtrick.getMBElement(doc, 'ddlPreviousClubs').value;
 		// Now getting playerid from top of the page:
 		var playerid = Foxtrick.Pages.All.getId(doc);
 		var lineuplabel = Foxtrick.L10n.getString('LineupShortcut.lineup');
-		var panel = doc.getElementById('ctl00_ctl00_CPContent_CPMain_UpdatePanel1');
+		var panel = Foxtrick.getMBElement(doc, 'UpdatePanel1');
 		var matchtable = panel.getElementsByTagName('table')[0];
 		// matchtable is `not present if the player hasn't played for a team
 		if (!matchtable)

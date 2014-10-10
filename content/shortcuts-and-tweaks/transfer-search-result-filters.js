@@ -86,10 +86,9 @@ Foxtrick.modules['TransferSearchResultFilters'] = {
 			Foxtrick.sessionSet('transfer-search-result-filters', filters);
 		};
 		var showHTSearchProfileComment = function() {
-			var HTProfileRow = doc.getElementById('ctl00_ctl00_CPContent_CPMain_rowProfiles');
+			var HTProfileRow = Foxtrick.getMBElement(doc, 'rowProfiles');
 			if (HTProfileRow) {
-				var HTProfileSelect =
-					doc.getElementById('ctl00_ctl00_CPContent_CPMain_ddlSearchProfile');
+				var HTProfileSelect = Foxtrick.getMBElement(doc, 'ddlSearchProfile');
 				var tr = Foxtrick.createFeaturedElement(doc,
 					Foxtrick.modules.TransferSearchResultFilters, 'tr');
 				var td = doc.createElement('td');
@@ -135,7 +134,7 @@ Foxtrick.modules['TransferSearchResultFilters'] = {
 				td.appendChild(input);
 			}
 			else if (filter.type == 'skillselect') {
-				var steal = doc.getElementById('ctl00_ctl00_CPContent_CPMain_ddlSkill1Min');
+				var steal = Foxtrick.getMBElement(doc, 'ddlSkill1Min');
 				//element to steal from
 
 				var td = doc.createElement('td');
@@ -201,7 +200,7 @@ Foxtrick.modules['TransferSearchResultFilters'] = {
 		var addExtraFilters = function() {
 			getFilters(
 			  function(filters) {
-				var tableAdvanced = doc.getElementById('ctl00_ctl00_CPContent_CPMain_tblAdvanced');
+				var tableAdvanced = Foxtrick.getMBElement(doc, 'tblAdvanced');
 				if (tableAdvanced === null) {
 					return;  //only show if advanced filters is on
 				}
@@ -222,7 +221,7 @@ Foxtrick.modules['TransferSearchResultFilters'] = {
 				}
 				tableAdvanced.parentNode.insertBefore(table, tableAdvanced.nextSibling);
 
-				var buttonClear = doc.getElementById('ctl00_ctl00_CPContent_CPMain_butClear');
+				var buttonClear = Foxtrick.getButton(doc, 'Clear');
 				Foxtrick.onClick(buttonClear, function() {
 					getFilters(function(filters) {
 						for (var j = 0; j < filters.length; ++j) {
@@ -252,7 +251,7 @@ Foxtrick.modules['TransferSearchResultFilters'] = {
 						setFilters(filters);
 					});
 				});
-				var buttonSearch = doc.getElementById('ctl00_ctl00_CPContent_CPMain_butSearch');
+				var buttonSearch = Foxtrick.getButton(doc, 'Search');
 				Foxtrick.onClick(buttonSearch, function(ev) {
 					// we can't get to localStore in async mode before the page
 					// navigates away in opera so we need some fake click logic;

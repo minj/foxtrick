@@ -18,8 +18,7 @@ Foxtrick.modules['LiveAlert'] = {
 
 	run: function(doc) {
 		this.alert(doc);
-		var scoreBoard = 'ctl00_ctl00_CPContent_CPMain_UpdatePanelPopupMessages';
-		var results = doc.getElementById(scoreBoard);
+		var results = Foxtrick.getMBElement(doc, 'UpdatePanelPopupMessages');
 		Foxtrick.onChange(results, this.alert.bind(this));
 	},
 

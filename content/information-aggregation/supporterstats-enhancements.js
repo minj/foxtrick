@@ -11,8 +11,7 @@ Foxtrick.modules['SupporterStatsEnhancements'] = {
 	run: function(doc) {
 		// get selected teamid
 		var teamid = 0;
-		var options = doc.getElementById('ctl00_ctl00_CPContent_CPMain_ddlTeams')
-			.getElementsByTagName('option');
+		var options = Foxtrick.getMBElement(doc, 'ddlTeams').getElementsByTagName('option');
 		for (var i = 0; i < options.length; ++i) {
 			if (options[i].getAttribute('selected') == 'selected') {
 				teamid = Number(options[i].value);

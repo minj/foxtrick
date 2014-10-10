@@ -45,8 +45,7 @@ Foxtrick.modules['NtPeek'] = {
 		var u20Name = 'U-20 ' + ntName;
 		var u20Id = league.U20TeamId;
 
-		var targetId = 'ctl00_ctl00_CPContent_CPMain_ucForumSneakpeek_updSneakpeek';
-		var insertBefore = doc.getElementById(targetId);
+		var insertBefore = Foxtrick.getMBElement(doc, 'ucForumSneakpeek_updSneakpeek');
 
 		var container = Foxtrick.createFeaturedElement(doc, this, 'div');
 		container.className = 'ft-nt-peek';

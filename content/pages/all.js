@@ -177,6 +177,16 @@ Foxtrick.Pages.All.getMainHeader = function(doc) {
 };
 
 /**
+ * Get the default notification area
+ * @param  {document}    doc
+ * @return {element}
+ */
+Foxtrick.Pages.All.getNotes = function(doc) {
+	return doc.getElementById('ctl00_updNotifications') ||
+		doc.getElementById('ctl00_ctl00_CPContent_ucNotifications_updNotifications');
+};
+
+/**
  * Get bread crumb links
  * @param  {document} doc
  * @return {array}        Array.<HTMLAnchorElement>

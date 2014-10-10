@@ -43,7 +43,7 @@ Foxtrick.modules['SeasonStats'] = {
 		  function(ev) {
 			try {
 				var actiontype = '';
-				var select = doc.getElementById('ctl00_ctl00_CPContent_CPMain_ddlMatchType');
+				var select = Foxtrick.getMBElement(doc, 'ddlMatchType');
 				var options = select.getElementsByTagName('option');
 				for (var i = 0; i < options.length; ++i) {
 					if (options[i].hasAttribute('selected')) {
@@ -75,7 +75,7 @@ Foxtrick.modules['SeasonStats'] = {
 			--s;
 		}
 		selectbox.value = selected_season;
-		var matchTypeSelect = doc.getElementById('ctl00_ctl00_CPContent_CPMain_ddlMatchType');
+		var matchTypeSelect = Foxtrick.getMBElement(doc, 'ddlMatchType');
 		doc.getElementById('mainBody').insertBefore(selectbox, matchTypeSelect);
 
 

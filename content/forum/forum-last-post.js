@@ -60,8 +60,7 @@ Foxtrick.modules['ForumLastPost'] = {
 			changeLinks('folderitem', 'fplThreadInfo', 'fplLongThreadName');
 		}
 		else {
-			var selectId = 'ctl00_ctl00_CPContent_CPMain_ucForumPreferences_ddlMessagesPerPage';
-			var select = doc.getElementById(selectId);
+			var select = Foxtrick.getMBElement(doc, 'ucForumPreferences_ddlMessagesPerPage');
 			if (!select)
 				return;
 

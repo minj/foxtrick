@@ -31,9 +31,9 @@ Foxtrick.modules['LinksTraining'] = {
 		var Coach, TI, STA, TrainingType, owncountryid;
 		var coachLink = main.querySelector('a[href^="/Help/Rules/AppDenominations"]');
 		Coach = Foxtrick.util.id.getSkillLevelFromLink(coachLink);
-		STA = doc.getElementById('ctl00_ctl00_CPContent_CPMain_txtTrainingLevelStamina').value;
-		TI = doc.getElementById('ctl00_ctl00_CPContent_CPMain_txtTrainingLevel').value;
-		TrainingType = doc.getElementById('ctl00_ctl00_CPContent_CPMain_ddlTrainingType').value;
+		STA = Foxtrick.getMBElement(doc, 'txtTrainingLevelStamina').value;
+		TI = Foxtrick.getMBElement(doc, 'txtTrainingLevel').value;
+		TrainingType = Foxtrick.getMBElement(doc, 'ddlTrainingType').value;
 		owncountryid = Foxtrick.util.id.getOwnLeagueId();
 
 

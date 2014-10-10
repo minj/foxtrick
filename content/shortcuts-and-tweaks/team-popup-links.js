@@ -156,7 +156,7 @@ Foxtrick.modules['TeamPopupLinks'] = {
 		var sUrl = Foxtrick.getHref(doc);
 		// show last 5 logins
 		if (sUrl.search(/ShowOldConnections=true/i) != -1) {
-			var a = doc.getElementById('ctl00_ctl00_CPContent_CPMain_lnkShowLogins');
+			var a = Foxtrick.getMBElement(doc, 'lnkShowLogins');
 			if (a) {
 				var func = a.href;
 				if (func) {

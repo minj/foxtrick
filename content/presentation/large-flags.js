@@ -10,7 +10,7 @@ Foxtrick.modules['LargeFlags'] = {
 	PAGES: ['playerDetails'],
 
 	run: function(doc) {
-		var faceCard = doc.getElementById('ctl00_ctl00_CPContent_CPMain_ucPlayerFace_pnlAvatar');
+		var faceCard = Foxtrick.getMBElement(doc, 'ucPlayerFace_pnlAvatar');
 		if (!faceCard) {
 			// if player faces aren't shown, remain with tiny flags
 			// since large flags breaks page layout

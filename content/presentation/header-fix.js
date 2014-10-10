@@ -30,7 +30,7 @@ Foxtrick.modules['HeaderFix'] = {
 		if (isArena)
 			// main container in #mainBody
 			// arena page only, only used here
-			panel = doc.getElementById('ctl00_ctl00_CPContent_CPMain_pnlMain');
+			panel = Foxtrick.getMBElement(doc, 'pnlMain');
 		else
 			panel = Foxtrick.Pages.Match.getPreMatchPanel(doc);
 

@@ -32,7 +32,7 @@ Foxtrick.modules['CrossTable'] = {
 		var roundsPlayed = 0;
 
 		// insert graph and table
-		var insertBefore = doc.getElementById('ctl00_ctl00_CPContent_CPMain_repFixtures');
+		var insertBefore = Foxtrick.getMBElement(doc, 'repFixtures');
 
 		// season graph
 		var graphHeader = Foxtrick.createFeaturedElement(doc, this, 'h2');
@@ -314,8 +314,7 @@ Foxtrick.modules['CrossTable'] = {
 		var leagueId = doc.location.href.match(/leagueLevelUnitID=(\d+)/i)[1];
 		// get season from select since the URL doesn't change when
 		// switching different seasons
-		var season =
-			doc.getElementById('ctl00_ctl00_CPContent_CPMain_ucSeasonsDropdown_ddlSeasons').value;
+		var season = Foxtrick.getMBElement(doc, 'ucSeasonsDropdown_ddlSeasons').value;
 		var args = [
 			['file', 'leaguefixtures'],
 			['leagueLevelUnitId', leagueId],

@@ -23,7 +23,7 @@ Foxtrick.modules.AddClass = {
 		else if (Foxtrick.isPage(doc, 'playerHistory'))
 			this.addDateForFeed(doc);
 		else if (Foxtrick.isPage(doc, 'search')) {
-			var table = doc.getElementById('ctl00_ctl00_CPContent_CPMain_grdYouthSeries_ctl00');
+			var table = Foxtrick.getMBElement(doc, 'grdYouthSeries_ctl00');
 			this.addDateForTable(doc, table);
 		}
 		else if (Foxtrick.isPage(doc, 'transferCompare'))
@@ -114,7 +114,7 @@ Foxtrick.modules.AddClass = {
 
 	// add date class for transfer-list
 	addDateForTl: function(doc) {
-		var transferList = doc.getElementById('ctl00_ctl00_CPContent_CPMain_updBid');
+		var transferList = Foxtrick.Pages.Player.getBidInfo(doc);
 		if (!transferList)
 			return;
 

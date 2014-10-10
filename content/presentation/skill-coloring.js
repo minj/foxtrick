@@ -365,16 +365,18 @@ Foxtrick.modules['SkillColoring'] = {
 		}
 
 		if (skill_select && Foxtrick.isPage(doc, 'transferSearchForm')) {
-			var skills = doc.querySelectorAll('#mainBody select[id*="Skill"][id$="Min"]>option, '
-											+ '#mainBody select[id*="Skill"][id$="Max"]>option');
-			for (var i = 0, skill; skill = skills[i]; ++i) {
+			var body = doc.getElementById('mainBody');
+			var query = 'select[id*="Skill"][id$="Min"]>option, ' +
+				'select[id*="Skill"][id$="Max"]>option';
+			var skills = body.querySelectorAll(query);
+			Foxtrick.forEach(function(skill) {
 				if (skill.value != -1) {
 					var level = doc.createElement('span');
 					Foxtrick.addClass(level, 'ft-tl-search-skill');
 					level.textContent = ' (' + skill.value + ')';
 					skill.appendChild(level);
 				}
-			}
+			}, skills);
 		}
 
 		if (skill_number || skill_translated) {

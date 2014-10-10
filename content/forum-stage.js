@@ -32,7 +32,7 @@ Foxtrick.modules['ForumStage'] = {
 			textarea.parentNode.insertBefore(divalert, textarea.nextSibling);
 
 			// checkbox
-			var button_ok = doc.getElementById('ctl00_ctl00_CPContent_CPMain_btnOK');
+			var button_ok = Foxtrick.getButton(doc, 'OK');
 			button_ok.setAttribute('disabled', true);
 
 			var checkdiv = doc.createElement('div');
@@ -49,7 +49,7 @@ Foxtrick.modules['ForumStage'] = {
 			Foxtrick.onClick(check, function(ev) {
 				var doc = ev.target.ownerDocument;
 				var checked = ev.target.checked;
-				var button_ok = doc.getElementById('ctl00_ctl00_CPContent_CPMain_btnOK');
+				var button_ok = Foxtrick.getButton(doc, 'OK');
 				if (checked) button_ok.removeAttribute('disabled');
 				else button_ok.setAttribute('disabled', true);
 			});

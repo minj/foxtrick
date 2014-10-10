@@ -13,105 +13,57 @@ Foxtrick.modules['CountryList'] = {
 
 	run: function(doc) {
 		var list = doc.getElementById('ft_countrylist');
-		if (list != null)
+		if (list !== null)
 			return;
+		var lgs = Foxtrick.getMBElement(doc, 'ddlLeagues');
+		var lgs_lgs = Foxtrick.getMBElement(doc, 'ddlLeagues_ddlLeagues');
+		var lgs2_lgs =
+			doc.getElementById('ctl00_ctl00_CPContent_CPSidebar_ucLeagues2_ddlLeagues');
+		var lgsDd_lgs = Foxtrick.getMBElement(doc, 'ucLeaguesDropdown_ddlLeagues');
+		var ddlZone = Foxtrick.getMBElement(doc, 'ddlZone');
+
+		var ddlBornIn = Foxtrick.getMBElement(doc, 'ddlBornIn');
+
+		var action;
 		if (Foxtrick.Prefs.isModuleOptionEnabled('CountryList', 'SelectBoxes')) {
-			if (Foxtrick.isPage(doc, 'transferSearchForm')) {
-				this._changelist(doc, 'ctl00_ctl00_CPContent_CPMain_ddlZone', 10);
-				this._changelist(doc, 'ctl00_ctl00_CPContent_CPMain_ddlBornIn', 1);
-			}
-			else if (Foxtrick.isPage(doc, 'country')) {
-				this._changelist(doc, 'ctl00_ctl00_CPContent_CPMain_ucLeaguesDropdown_ddlLeagues',
-				                 0);
-			}
-			else if (Foxtrick.isPage(doc, 'htPress')) {
-				this._changelist(doc, 'ctl00_ctl00_CPContent_CPSidebar_ucLeagues2_ddlLeagues', 1);
-			}
-			else if (Foxtrick.isPage(doc, 'statsTransfersBuyers')) {
-				this._changelist(doc, 'ctl00_ctl00_CPContent_CPMain_ddlLeagues', 1);
-			}
-			else if (Foxtrick.isPage(doc, 'statsTeams')) {
-				this._changelist(doc, 'ctl00_ctl00_CPContent_CPMain_ddlLeagues_ddlLeagues', 0);
-			}
-			else if (Foxtrick.isPage(doc, 'statsPlayers')) {
-				this._changelist(doc, 'ctl00_ctl00_CPContent_CPMain_ddlLeagues_ddlLeagues', 0);
-			}
-			else if (Foxtrick.isPage(doc, 'statsRegions')) {
-				this._changelist(doc, 'ctl00_ctl00_CPContent_CPMain_ddlLeagues_ddlLeagues', 0);
-			}
-			else if (Foxtrick.isPage(doc, 'statsNationalTeams')) {
-				this._changelist(doc, 'ctl00_ctl00_CPContent_CPMain_ddlLeagues_ddlLeagues', 0);
-			}
-			else if (Foxtrick.isPage(doc, 'statsConfs')) {
-				this._changelist(doc, 'ctl00_ctl00_CPContent_CPMain_ddlLeagues_ddlLeagues', 0);
-			}
-			else if (Foxtrick.isPage(doc, 'statsBookmarks')) {
-				this._changelist(doc, 'ctl00_ctl00_CPContent_CPMain_ddlLeagues_ddlLeagues', 0);
-			}
-			else if (Foxtrick.isPage(doc, 'trainingStats')) {
-				this._changelist(doc, 'ctl00_ctl00_CPContent_CPMain_ddlLeagues', 1);
-			}
-			else if (Foxtrick.isPage(doc, 'statsArena')) {
-				this._changelist(doc, 'ctl00_ctl00_CPContent_CPMain_ucLeaguesDropdown_ddlLeagues',
-				                 0);
-			}
-			else if (Foxtrick.isPage(doc, 'helpContact')) {
-				this._changelist(doc, 'ctl00_ctl00_CPContent_CPMain_ucLeaguesDropdown_ddlLeagues',
-				                 3);
-			}
+			action = this._changelist;
 		}
 		else {
-			if (Foxtrick.isPage(doc, 'transferSearchForm')) {
-				this._activate(doc, 'ctl00_ctl00_CPContent_CPMain_ddlZone');
-				this._activate(doc, 'ctl00_ctl00_CPContent_CPMain_ddlBornIn');
-			}
-			else if (Foxtrick.isPage(doc, 'country')) {
-				this._activate(doc, 'ctl00_ctl00_CPContent_CPMain_ucLeaguesDropdown_ddlLeagues');
-			}
-			else if (Foxtrick.isPage(doc, 'htPress')) {
-				this._activate(doc, 'ctl00_ctl00_CPContent_CPSidebar_ucLeagues2_ddlLeagues');
-			}
-			else if (Foxtrick.isPage(doc, 'statsTransfersBuyers')) {
-				this._activate(doc, 'ctl00_ctl00_CPContent_CPMain_ddlLeagues');
-			}
-			else if (Foxtrick.isPage(doc, 'statsTeams')) {
-				this._activate(doc, 'ctl00_ctl00_CPContent_CPMain_ddlLeagues_ddlLeagues');
-			}
-			else if (Foxtrick.isPage(doc, 'statsPlayers')) {
-				this._activate(doc, 'ctl00_ctl00_CPContent_CPMain_ddlLeagues_ddlLeagues');
-			}
-			else if (Foxtrick.isPage(doc, 'statsRegions')) {
-				this._activate(doc, 'ctl00_ctl00_CPContent_CPMain_ddlLeagues_ddlLeagues');
-			}
-			else if (Foxtrick.isPage(doc, 'statsNationalTeams')) {
-				this._activate(doc, 'ctl00_ctl00_CPContent_CPMain_ddlLeagues_ddlLeagues');
-			}
-			else if (Foxtrick.isPage(doc, 'statsConfs')) {
-				this._activate(doc, 'ctl00_ctl00_CPContent_CPMain_ddlLeagues_ddlLeagues');
-			}
-			else if (Foxtrick.isPage(doc, 'statsBookmarks')) {
-				this._activate(doc, 'ctl00_ctl00_CPContent_CPMain_ddlLeagues_ddlLeagues');
-			}
-			else if (Foxtrick.isPage(doc, 'trainingStats')) {
-				this._activate(doc, 'ctl00_ctl00_CPContent_CPMain_ddlLeagues');
-			}
-			else if (Foxtrick.isPage(doc, 'statsArena')) {
-				this._activate(doc, 'ctl00_ctl00_CPContent_CPMain_ucLeaguesDropdown_ddlLeagues');
-			}
-			else if (Foxtrick.isPage(doc, 'helpContact')) {
-				this._activate(doc, 'ctl00_ctl00_CPContent_CPMain_ucLeaguesDropdown_ddlLeagues');
+			action = this._activate;
+		}
+
+		var pageMap = {
+			transferSearchForm: [[ddlZone, 10], [ddlBornIn, 1]],
+			country: [lgsDd_lgs, 0],
+			htPress: [lgs2_lgs, 1],
+			statsTransfersBuyers: [lgs, 1],
+			statsTeams: [lgs_lgs, 0],
+			statsPlayers: [lgs_lgs, 0],
+			statsRegions: [lgs_lgs, 0],
+			statsNationalTeams: [lgs_lgs, 0],
+			statsConfs: [lgs_lgs, 0],
+			statsBookmarks: [lgs_lgs, 0],
+			trainingStats: [lgs, 1],
+			statsArena: [lgsDd_lgs, 0],
+			helpContact: [lgsDd_lgs, 3],
+		};
+
+		for (var page in pageMap) {
+			if (Foxtrick.isPage(doc, page)) {
+				action.apply(this, pageMap[page]);
+				break;
 			}
 		}
 
 		if (Foxtrick.Prefs.isModuleOptionEnabled('CountryList', 'TeamPage')) {
 			if (Foxtrick.isPage(doc, 'teamPage')) {
-				this._placeCountry(doc, 'ctl00_ctl00_CPContent_CPMain_ddlLeagues', 1);
+				this._placeCountry(doc);
 			}
 		}
 
 		if (Foxtrick.Prefs.isModuleOptionEnabled('CountryList', 'ManagerPage')) {
 			if (Foxtrick.isPage(doc, 'managerPage'))
-				this._placeCountry(doc, 'ctl00_ctl00_CPContent_CPMain_ddlLeagues', 1);
+				this._placeCountry(doc);
 		}
 
 	},
@@ -140,10 +92,20 @@ Foxtrick.modules['CountryList'] = {
 		}
 	},
 
-	_changelist: function(doc, id, start) {
-		var selectbox = doc.getElementById(id);
-		if (selectbox == null)
+	_changelist: function(selectbox, start) {
+		var module = this;
+		if (!selectbox)
 			return;
+
+		if (Array.isArray(selectbox)) {
+			// redirect multiple selects
+			Foxtrick.map(function(args) {
+				module._changelist.apply(module, args);
+			}, arguments);
+			return;
+		}
+
+		var id = selectbox.id;
 		Foxtrick.log('id: ' + id + '   start: ' + start + '\n');
 		var options = selectbox.options;
 		var countries = options.length;
@@ -198,9 +160,19 @@ Foxtrick.modules['CountryList'] = {
 		selectbox.style.display = 'inline';
 	},
 
-	_activate: function(doc, id) {
-		var selectbox = doc.getElementById(id);
-		if (selectbox == null) return;
+	_activate: function(selectbox) {
+		var module = this;
+		if (!selectbox)
+			return;
+
+		if (Array.isArray(selectbox)) {
+			// redirect multiple selects
+			Foxtrick.map(function(args) {
+				module._activate.apply(module, args);
+			}, arguments);
+			return;
+		}
+
 		selectbox.style.display = 'inline';
 		Foxtrick.dump('country select activated.\n');
 	}

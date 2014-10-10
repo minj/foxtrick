@@ -10,11 +10,9 @@ Foxtrick.modules['YouthSeriesEstimation'] = {
 	PAGES: ['search'],
 	CSS: Foxtrick.InternalPath + 'resources/css/youth-series-estimation.css',
 
-	TABLE_ID: 'ctl00_ctl00_CPContent_CPMain_grdYouthSeries_ctl00',
 	ATTRIB_NAME: 'estimated',
-
 	run: function(doc) {
-		var table = doc.getElementById(this.TABLE_ID);
+		var table = Foxtrick.getMBElement(doc, 'grdYouthSeries_ctl00');
 		if (!table || table.hasAttribute(this.ATTRIB_NAME)) {
 			return;
 		}

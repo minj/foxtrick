@@ -21,8 +21,7 @@ Foxtrick.modules['ARIALandmarks'] = {
 
 			//Foxtrick needs auth
 			try {
-				doc.getElementById('ctl00_ctl00_CPContent_ucNotifications_updNotifications')
-					.setAttribute('role', 'main');
+				Foxtrick.Pages.All.getNotes(doc).setAttribute('role', 'main');
 			} catch (e) {}
 
 			//main navigation

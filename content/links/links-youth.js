@@ -29,7 +29,7 @@ Foxtrick.modules['LinksYouthOverview'] = {
 			return;
 		var ownteamid = Foxtrick.util.id.getOwnTeamId();
 		var owncountryid = Foxtrick.util.id.getOwnLeagueId();
-		var youthSummary = doc.getElementById('ctl00_ctl00_CPContent_CPMain_tblInfo');
+		var youthSummary = Foxtrick.getMBElement(doc, 'tblInfo');
 		var countryid = Foxtrick.util.id.findLeagueId(youthSummary);
 		var youthteamid = Foxtrick.Pages.All.getId(doc);
 		var server = Foxtrick.Prefs.getBool('hty-stage') ? 'stage' : 'www';

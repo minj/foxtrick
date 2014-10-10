@@ -17,8 +17,8 @@ Foxtrick.Pages.Series = {};
  * @return {HTMLTableElement}
  */
 Foxtrick.Pages.Series.getTable = function(doc) {
-	var parent = doc.getElementById('ctl00_ctl00_CPContent_CPMain_UpdatePanel1') ||
-		doc.getElementById('ctl00_ctl00_CPContent_CPMain_repLeagueTable');
+	var parent = Foxtrick.getMBElement(doc, 'UpdatePanel1') ||
+		Foxtrick.getMBElement(doc, 'repLeagueTable');
 	return parent.querySelector('table');
 };
 
@@ -28,7 +28,7 @@ Foxtrick.Pages.Series.getTable = function(doc) {
  * @return {element}
  */
 Foxtrick.Pages.Series.getLiveTable = function(doc) {
-	return doc.getElementById('ctl00_ctl00_CPContent_CPMain_UpdatePanelLiveLeagueTable');
+	return Foxtrick.getMBElement(doc, 'UpdatePanelLiveLeagueTable');
 };
 
 /**
@@ -37,5 +37,5 @@ Foxtrick.Pages.Series.getLiveTable = function(doc) {
  * @return {element}
  */
 Foxtrick.Pages.Series.getNewsFeed = function(doc) {
-	return doc.getElementById('ctl00_ctl00_CPContent_CPMain_repLLUFeed');
+	return Foxtrick.getMBElement(doc, 'repLLUFeed');
 };

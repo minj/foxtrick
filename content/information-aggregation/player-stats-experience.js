@@ -492,8 +492,7 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 		var commentDiv = Foxtrick.createFeaturedElement(doc, module, 'div');
 		addComments(commentDiv, showAllLink);
 
-		var navId = 'ctl00_ctl00_CPContent_CPMain_pnlMatchHistorySlideToggle';
-		var entry = doc.getElementById(navId);
+		var entry = Foxtrick.getMBElement(doc, 'pnlMatchHistorySlideToggle');
 
 		var xp_header = doc.createElement('h2');
 		var headerTitle = Foxtrick.L10n.getString('PlayerStatsExperience.Experience');

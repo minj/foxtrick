@@ -642,6 +642,15 @@ Foxtrick.Pages.Player.parseYouthSkills = function(table) {
 };
 
 /**
+ * Get the container with bidding information
+ * @param  {document}    doc
+ * @return {HTMLElement}
+ */
+Foxtrick.Pages.Player.getBidInfo = function(doc) {
+	return Foxtrick.getMBElement(doc, 'updBid');
+};
+
+/**
  * Get player transfer deadline, if any.
  * Returns a date object.
  * Seniors only.
@@ -651,7 +660,7 @@ Foxtrick.Pages.Player.parseYouthSkills = function(table) {
 Foxtrick.Pages.Player.getTransferDeadline = function(doc) {
 	var deadline = null;
 	try {
-		var bidDiv = doc.getElementById('ctl00_ctl00_CPContent_CPMain_updBid');
+		var bidDiv = this.getBidInfo(doc);
 		if (bidDiv) {
 			var bidPara = bidDiv.getElementsByTagName('p')[0];
 			deadline = Foxtrick.util.time.getDateFromText(bidPara.textContent);

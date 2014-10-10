@@ -35,7 +35,7 @@ Foxtrick.modules['AutoPostSpecs'] = {
 			if(!link.href.match('f=173635'))
 				return;
 
-			var textarea = doc.getElementById('ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody');
+			var textarea = Foxtrick.getMBElement(doc, 'ucHattrickMLEditor_txtBody');
 			var txt = textarea.value;
 
 			//super simple check if the spoiler is already present, but seems sufficient

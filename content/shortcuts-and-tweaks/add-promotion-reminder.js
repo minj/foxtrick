@@ -16,7 +16,7 @@ Foxtrick.modules['AddPromotionReminder'] = {
 		var isYouthPlayerDetails = Foxtrick.isPage(doc, 'youthPlayerDetails');
 
 		if (sendDate && isReminders) {
-			doc.getElementById('ctl00_ctl00_CPContent_CPMain_ddlSendAs').value = '2';
+			Foxtrick.getMBElement(doc, 'ddlSendAs').value = '2';
 
 		}
 		else if (isYouthPlayerDetails) {

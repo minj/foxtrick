@@ -66,8 +66,7 @@ Foxtrick.modules['SeriesTransfers'] = {
 		// create html
 		var div = Foxtrick.createFeaturedElement(doc, this, 'div');
 		var mainBody = doc.getElementById('mainBody');
-		var beforeId = 'ctl00_ctl00_CPContent_CPMain_ucForumSneakpeek_updSneakpeek';
-		var before = doc.getElementById(beforeId);
+		var before = Foxtrick.getMBElement(doc, 'ucForumSneakpeek_updSneakpeek');
 		mainBody.insertBefore(div, before);
 
 		var mainBox = doc.createElement('div');

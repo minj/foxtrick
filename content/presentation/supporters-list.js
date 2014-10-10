@@ -22,7 +22,7 @@ Foxtrick.modules['SupportersList'] = {
 
 		if (Foxtrick.Prefs.getBool('xmlLoad')) {
 			var entry = doc.querySelector('#mainBody table') ||
-				doc.querySelector('#ctl00_ctl00_CPContent_CPMain_pnlMySupporters > br');
+				Foxtrick.getMBElement(doc, 'pnlMySupporters').querySelector('br');
 			var loading = Foxtrick.util.note.createLoading(doc);
 			entry.parentNode.insertBefore(loading, entry);
 		}

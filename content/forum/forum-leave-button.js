@@ -38,8 +38,7 @@ Foxtrick.modules['ForumLeaveButton'] = {
 			if (confPos > -1) {
 				var confName = Foxtrick.getParameterFromUrl(sUrl, 'LeaveConf');
 				confName = confName.replace(/\%20/g, ' ');
-				var ulId = 'ctl00_ctl00_CPContent_CPMain_ucForumPreferences_rlFolders__rbl';
-				var ul = doc.getElementById(ulId);
+				var ul = Foxtrick.getMBElement(doc, 'ucForumPreferences_rlFolders__rbl');
 				var names = ul.getElementsByClassName('prioFolderName');
 				Foxtrick.any(function(div) {
 					if (div.textContent.trim() === confName) {

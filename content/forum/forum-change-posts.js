@@ -249,7 +249,7 @@ Foxtrick.modules['ForumChangePosts'] = {
 				Foxtrick.Prefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'HighlightThreadOpener');
 
 		var hasScroll = Foxtrick.util.layout.mainBodyHasScroll(doc);
-		var notif = doc.getElementById('ctl00_ctl00_CPContent_ucNotifications_updNotifications');
+		var notif = Foxtrick.Pages.All.getNotes(doc);
 		// archived threads will have this message: 'This thread is closed!'
 		var isArchive = notif.getElementsByClassName('error').length > 0;
 

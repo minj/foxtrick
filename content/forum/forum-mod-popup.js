@@ -29,7 +29,6 @@ Foxtrick.modules['ForumModeratorPopup'] = {
 
 			var ul = doc.createElement('ul');
 			Foxtrick.addClass(ul, 'ft-pop right');
-			var content = doc.getElementById('ctl00_ctl00_CPContent_pnlScrollContent');
 			var links = modoption.getElementsByTagName('a');
 			for (var l = 0; l < links.length; l++) {
 				if (links[l].href.search('actionTypeFunctions') > -1) {

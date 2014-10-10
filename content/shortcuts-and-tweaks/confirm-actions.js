@@ -14,12 +14,12 @@ Foxtrick.modules['ConfirmActions'] = {
 	 * @param	{document}	doc
 	 */
 	run: function(doc) {
+		var MAIN = Foxtrick.getMainIDPrefix();
 		var ids = {
 			BID: {
-				ALERT_ID: 'ctl00_ctl00_CPContent_CPMain_updBid',
-				BUTTON_ID: 'ctl00_ctl00_CPContent_CPMain_btnBid',
-				TEXT_ID: ['ctl00_ctl00_CPContent_CPMain_txtBid',
-						  'ctl00_ctl00_CPContent_CPMain_txtMaxBid'],
+				ALERT_ID: MAIN + 'updBid',
+				BUTTON_ID: MAIN + 'btnBid',
+				TEXT_ID: [MAIN + 'txtBid', MAIN + 'txtMaxBid'],
 				CONFIRM_ID: 'ft-bid-confirm'
 			},
 			SELL: {
@@ -29,10 +29,10 @@ Foxtrick.modules['ConfirmActions'] = {
 				CONFIRM_ID: 'ft-sell-confirm'
 			},
 			STAFF: {
-				SUBMIT_BUTTON_ID: 'ctl00_ctl00_CPContent_CPMain_btnStaffAction',
-				ACTION_SELECT_ID: 'ctl00_ctl00_CPContent_CPMain_ddlStaffAction',
-				AMOUNT_TEXT_ID: 'ctl00_ctl00_CPContent_CPMain_txtAmount',
-				ROLE_SELECT_ID: 'ctl00_ctl00_CPContent_CPMain_ddlStaffRole',
+				SUBMIT_BUTTON_ID: MAIN + 'btnStaffAction',
+				ACTION_SELECT_ID: MAIN + 'ddlStaffAction',
+				AMOUNT_TEXT_ID: MAIN + 'txtAmount',
+				ROLE_SELECT_ID: MAIN + 'ddlStaffRole',
 				CONFIRM_ID: 'ft-staff-confirm'
 			}
 		};

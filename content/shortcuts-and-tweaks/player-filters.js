@@ -15,9 +15,9 @@ Foxtrick.modules['PlayerFilters'] = {
 		if (doc.getElementById(this.FILTER_SELECT_ID))
 			return;
 
-		var sortSelect = doc.getElementById('ctl00_ctl00_CPContent_CPMain_ucSorting_ddlSortBy');
+		var sortSelect = Foxtrick.getMBElement(doc, 'ucSorting_ddlSortBy');
 		if (Foxtrick.Pages.Players.isYouth(doc)) {
-			sortSelect = doc.getElementById('ctl00_ctl00_CPContent_CPMain_ddlSortBy');
+			sortSelect = Foxtrick.getMBElement(doc, 'ddlSortBy');
 		}
 
 		if (!sortSelect)

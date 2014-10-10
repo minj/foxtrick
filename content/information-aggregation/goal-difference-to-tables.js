@@ -17,7 +17,7 @@ Foxtrick.modules['GoalDifferenceToTables'] = {
 			return;
 
 		var goalcell = 2;
-		var div = doc.getElementById('ctl00_ctl00_CPContent_CPMain_pnlViewPromotion');
+		var div = Foxtrick.getMBElement(doc, 'pnlViewPromotion');
 		if (!div) {
 			div = doc.getElementById('mainBody');
 			goalcell = 3;

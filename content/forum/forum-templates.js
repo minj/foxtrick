@@ -13,30 +13,40 @@ Foxtrick.modules['ForumTemplates'] = {
 	CSS: Foxtrick.InternalPath + 'resources/css/forum-templates.css',
 
 	run: function(doc) {
-		var templatesDivId = 'post_templates';
-		var templatesPrefList = 'post_templates';
-		var newMsgWindow = 'ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody';
-		if (Foxtrick.isPage(doc, 'forumWritePost')) {
-			var templatesDivId = 'post_templates';
-			var templatesPrefList = 'post_templates';
-			var newMsgWindow = 'ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody';
+		var MAIN = Foxtrick.getMainIDPrefix();
+		var PAGES = {
+			forumWritePost: {
+				templatesDivId: 'post_templates',
+				templatesPrefList: 'post_templates',
+				newMsgWindow: MAIN + 'ucHattrickMLEditor_txtBody',
+			},
+			forumModWritePost: {
+				templatesDivId: 'post_mod_templates',
+				templatesPrefList: 'post_mod_templates',
+				newMsgWindow: MAIN + 'ucHattrickMLEditor_txtBody',
+			},
+			messageWritePost: {
+				templatesDivId: 'mail_templates',
+				templatesPrefList: 'mail_templates',
+				newMsgWindow: MAIN + 'ucEditorMain_txtBody',
+			},
+			htPress: {
+				// For Staff! Users have another  MESSAGE_WINDOW ID !
+				newMsgWindow: MAIN + 'txtComment',
+				templatesDivId: 'htpress_templates',
+				templatesPrefList: 'htpress_templates',
+			}
+		};
+		var PAGE;
+		for (var p in PAGES) {
+			if (Foxtrick.isPage(doc, p)) {
+				PAGE = PAGES[p];
+				break;
+			}
 		}
-		else if (Foxtrick.isPage(doc, 'forumModWritePost')) {
-			var templatesDivId = 'post_mod_templates';
-			var templatesPrefList = 'post_mod_templates';
-			var newMsgWindow = 'ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody';
-		}
-		else if (Foxtrick.isPage(doc, 'messageWritePost')) {
-			var newMsgWindow = 'ctl00_ctl00_CPContent_CPMain_ucEditorMain_txtBody';
-			var templatesDivId = 'mail_templates';
-			var templatesPrefList = 'mail_templates';
-		}
-		else if (Foxtrick.isPage(doc, 'htPress')) {
-			// For Staff! Users have another  MESSAGE_WINDOW ID !
-			var newMsgWindow = 'ctl00_ctl00_CPContent_CPMain_txtComment';
-			var templatesDivId = 'htpress_templates';
-			var templatesPrefList = 'htpress_templates';
-		}
+		var templatesDivId = PAGE.templatesDivId;
+		var templatesPrefList = PAGE.templatesPrefList;
+		// var newMsgWindow = PAGE.newMsgWindow;
 
 		var addNewTemplate = function() {
 			var msg_window = doc.getElementById('mainBody').getElementsByTagName('textarea')[0];

@@ -10,12 +10,10 @@ Foxtrick.modules['MarkUnread'] = {
 	PAGES: ['forumViewThread'],
 
 	run: function(doc) {
-		var PAGER_ACTION_ID =
-			'ctl00_ctl00_CPContent_CPMain_ucThread_ucPagerTop_ddlAction';
-		var PAGER_NUMBER_ID =
-			'ctl00_ctl00_CPContent_CPMain_ucThread_ucPagerTop_txtMessageNumber';
-		var PAGER_BUTTON_ID =
-			'ctl00_ctl00_CPContent_CPMain_ucThread_ucPagerTop_btnGo';
+		var MAIN = Foxtrick.getMainIDPrefix();
+		var PAGER_ACTION_ID = MAIN + 'ucThread_ucPagerTop_ddlAction';
+		var PAGER_NUMBER_ID = MAIN + 'ucThread_ucPagerTop_txtMessageNumber';
+		var PAGER_BUTTON_ID = MAIN + 'ucThread_ucPagerTop_btnGo';
 
 		var makeListener = function(nr) {
 			return function(ev) {
