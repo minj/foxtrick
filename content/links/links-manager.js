@@ -25,7 +25,7 @@ Foxtrick.modules['LinksManager'] = {
 		var mainBody = doc.getElementById('mainBody');
 
 		var teamid = Foxtrick.util.id.findTeamId(mainBody);
-		var teamname = Foxtrick.util.id.extractTeamName(mainBody);
+		var teamname = Foxtrick.Pages.All.getTeamName(doc);
 		var userid = Foxtrick.util.id.findUserId(mainBody);
 		var leaguename = Foxtrick.util.id.extractLeagueName(mainBody);
 		var leagueid = Foxtrick.util.id.findLeagueLeveUnitId(mainBody);

@@ -92,9 +92,7 @@ Foxtrick.modules['SeasonStats'] = {
 
 		// get team name. start with current name, but try to get name of
 		// that season from first home game
-		var TeamName = Foxtrick.util.id.extractTeamName(doc.getElementById('ctl00_ctl00_CPContent_divStartMain'))
-			.substr(0, 15);
-		//.replace(/\W/g,'');
+		var TeamName = Foxtrick.Pages.All.getTeamName(doc).substr(0, 15);
 		var TeamNameOld = null;
 		for (var i = 0; i < matchestable.rows.length; ++i) {
 			var iswon = matchestable.rows[i].cells[3]

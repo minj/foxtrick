@@ -30,7 +30,7 @@ Foxtrick.modules['LinksAchievements'] = {
 		var main = doc.getElementById('ctl00_ctl00_CPContent_divStartMain');
 
 		var teamid = Foxtrick.util.id.findTeamId(main);
-		var teamname = Foxtrick.util.id.extractTeamName(main);
+		var teamname = Foxtrick.Pages.All.getTeamName(doc);
 		var userid = Foxtrick.util.id.findUserId(main);
 
 		var links = Foxtrick.modules['Links'].getLinks('achievementslink', {

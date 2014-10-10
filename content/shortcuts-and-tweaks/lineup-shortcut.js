@@ -43,9 +43,8 @@ Foxtrick.modules['LineupShortcut'] = {
 			return;
 
 		// get player ID from top of the page:
-		var mainWrapper = doc.getElementById('ctl00_ctl00_CPContent_divStartMain');
-		var playerId = Foxtrick.util.id.findPlayerId(mainWrapper);
-		var teamName = Foxtrick.util.id.extractTeamName(mainWrapper);
+		var playerId = Foxtrick.Pages.All.getId(doc);
+		var teamName = Foxtrick.Pages.All.getTeamName(doc);
 
 		// get leagueId for ntName and u20Name
 		var leagueId = Foxtrick.Pages.Player.getNationalityId(doc);

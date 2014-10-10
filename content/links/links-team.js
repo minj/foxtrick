@@ -57,7 +57,7 @@ Foxtrick.modules['LinksTeam'] = {
 	gatherLinks: function(thisdiv, doc) {
 		var countryid = Foxtrick.util.id.findLeagueId(thisdiv);
 		var teamid = Foxtrick.util.id.findTeamId(thisdiv);
-		var teamname = Foxtrick.util.id.extractTeamName(thisdiv);
+		var teamname = Foxtrick.Pages.All.getTeamName(doc);
 		var leaguename = Foxtrick.util.id.extractLeagueName(thisdiv);
 		var levelnum = Foxtrick.util.id.getLevelNum(leaguename, countryid);
 		var leagueid = Foxtrick.util.id.findLeagueLeveUnitId(thisdiv);
