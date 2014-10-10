@@ -29,6 +29,16 @@ Foxtrick.Pages.All.isOwn = function(doc) {
 	var teamId = this.getTeamId(doc);
 	return ownTeamId === teamId && ownTeamId !== null;
 };
+
+/**
+ * Test whether this page is a youth page
+ * @param  {document}  doc
+ * @return {Boolean}
+ */
+Foxtrick.Pages.All.isYouth = function(doc) {
+	return /youth/i.test(doc.location.href);
+};
+
 /**
  * Get the page ID.
  * E. g. match, arena, series, team, player ID.
