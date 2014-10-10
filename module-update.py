@@ -7,8 +7,9 @@
 import re
 import argparse
 import os
+import sys
 
-def update(args=dict(sourcefile="modules", excludefile=None, dirfile=".")):
+def build(args=dict(sourcefile="modules", excludefile=None, dirfile=".")):
     sourcefile = args['sourcefile']
     excludefile = args['excludefile']
     dirfile = args['dirfile']
@@ -115,9 +116,10 @@ def update(args=dict(sourcefile="modules", excludefile=None, dirfile=".")):
         lines[start+1:end] = modlines
 
         #write the new file
-        f_out = file(path+tar['file'], 'wb')
+        f_out = file(pathfile, 'wb')
         f_out.writelines(lines)
         f_out.close()
+        print('%s updated.' % pathfile)
 
 def add(args):
     filename = args['filename']
@@ -129,7 +131,7 @@ def add(args):
     if light:
         add_module('included-modules-light', module)
 
-    update()
+    build()
 
 def rm(args):
     filename = args['filename']
@@ -138,7 +140,7 @@ def rm(args):
     rm_module('modules', module)
     rm_module('included-modules-light', module)
 
-    update()
+    build()
 
 def normalize_path(path):
     #convert  '/path/to/foxtrick/content/category/module.js' to 'category/module.js
@@ -179,6 +181,12 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Update module listings in manifest files. Author: Anastasios Ventouris')
     subparsers = parser.add_subparsers(help='Available commands:')
 
+    parser_build = subparsers.add_parser('build', help='Update manifest files (default action). Optionally removes excluded modules.')
+    parser_build.add_argument('-s','--sources-file', dest='sourcefile', help='The name of the sources file. Default value = modules', required=False, default="modules")
+    parser_build.add_argument('-e','--excludes-file', dest='excludefile', help='The name of the file with sources to ignore when building. Default value = None', default=None, required=False)
+    parser_build.add_argument('-d','--build-dir', dest='dirfile', help='The path to the new working directory. Default value = CWD', default=".", required=False)
+    parser_build.set_defaults(func=build)
+
     parser_add = subparsers.add_parser('add', help='Link a module. The file will be loaded in Foxtrick.')
     parser_add.add_argument('-l', '--light-module', dest='light', help='Also include this module in Foxtrick Light.', required=False, action='store_true')
     parser_add.add_argument('filename', help='The module file you want to link.')
@@ -188,11 +196,10 @@ if __name__ == '__main__':
     parser_rm.add_argument('filename', help='The module file you want to unlink.')
     parser_rm.set_defaults(func=rm)
 
-    parser_up = subparsers.add_parser('build', help='Update manifest files and optionally remove excluded modules.')
-    parser_up.add_argument('-s','--sources-file', dest='sourcefile', help='The name of the sources file. Default value = modules', required=False, default="modules")
-    parser_up.add_argument('-e','--excludes-file', dest='excludefile', help='The name of the file with sources to ignore when building. Default value = None', default=None, required=False)
-    parser_up.add_argument('-d','--build-dir', dest='dirfile', help='The path to the new working directory. Default value = CWD', default=".", required=False)
-    parser_up.set_defaults(func=update)
 
-    args = parser.parse_args()
+    if (len(sys.argv) < 2):
+        args = parser.parse_args(['build'])
+    else:
+        args = parser.parse_args()
+
     args.func(vars(args))
