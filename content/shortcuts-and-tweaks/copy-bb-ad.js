@@ -34,12 +34,9 @@ Foxtrick.modules['CopyBBAd'] = {
 			var doc = ev.target.ownerDocument;
 			//try regular table first
 			var isYouth = Foxtrick.isPage(doc, 'youthSeries');
-			var tableId = isYouth ? 'ctl00_ctl00_CPContent_CPMain_UpdatePanel1' :
-				'ctl00_ctl00_CPContent_CPMain_repLeagueTable';
-			var leagueTableElem = doc.getElementById(tableId);
+			var leagueTable = Foxtrick.Pages.Series.getTable(doc);
 
-			if (leagueTableElem) {
-				var leagueTable = leagueTableElem.getElementsByTagName('table')[0];
+			if (leagueTable) {
 				var posRnkg = 0;
 				var posTeam = 2;
 				//youth table doesn't has a manager online icon

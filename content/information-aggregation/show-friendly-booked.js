@@ -13,8 +13,7 @@ Foxtrick.modules['ShowFriendlyBooked'] = {
 
 	run: function(doc) {
 		var show = function() {
-			var leagueTableSpan = doc.getElementById('ctl00_ctl00_CPContent_CPMain_repLeagueTable');
-			var leagueTable = leagueTableSpan.getElementsByTagName('table')[0];
+			var leagueTable = Foxtrick.Pages.Series.getTable(doc);
 			var rows = leagueTable.getElementsByTagName('tr');
 			// remove header row and ownerless teams
 			rows = Foxtrick.filter(function(n) {
@@ -81,18 +80,18 @@ Foxtrick.modules['ShowFriendlyBooked'] = {
 				show();
 			});
 			if (Foxtrick.util.layout.isSupporter(doc)) {
-				var liveTableId = 'ctl00_ctl00_CPContent_CPMain_UpdatePanelLiveLeagueTable';
-				var UpdatePanelLiveLeagueTable = doc.getElementById(liveTableId);
+				var UpdatePanelLiveLeagueTable = Foxtrick.Pages.Series.getLiveTable(doc);
 				UpdatePanelLiveLeagueTable.insertBefore(link, UpdatePanelLiveLeagueTable
 				                                        .getElementsByTagName('br')[0].nextSibling);
 			}
 			else {
-				var table = doc.getElementById('ctl00_ctl00_CPContent_CPMain_repLeagueTable');
-				table.parentNode.insertBefore(link, table);
+				var table = Foxtrick.Pages.Series.getTable(doc);
+				var parent = table.parentNode;
+				parent.parentNode.insertBefore(link, parent);
 				// style.clear needed before the table
 				var clear = doc.createElement('div');
 				clear.className = 'clear';
-				table.parentNode.insertBefore(clear, table);
+				parent.parentNode.insertBefore(clear, parent);
 			}
 		}
 		else {

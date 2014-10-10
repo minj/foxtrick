@@ -10,8 +10,7 @@ Foxtrick.modules['HighlightOwnerless'] = {
 	PAGES: ['series'],
 
 	run: function(doc) {
-		var span = doc.getElementById('ctl00_ctl00_CPContent_CPMain_repLeagueTable');
-		var table = span.getElementsByTagName('table')[0];
+		var table = Foxtrick.Pages.Series.getTable(doc);
 		var ownerless = table.getElementsByClassName('shy');
 		for (var i = 0; i < ownerless.length; ++i) {
 			Foxtrick.addClass(ownerless[i], 'ft-ownerless');

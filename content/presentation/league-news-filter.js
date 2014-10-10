@@ -12,7 +12,7 @@ Foxtrick.modules['LeagueNewsFilter'] = {
 
 	run: function(doc) {
 		var showHide = function() {
-			var newsfeed = doc.getElementById('ctl00_ctl00_CPContent_CPMain_repLLUFeed');
+			var newsfeed = Foxtrick.Pages.Series.getNewsFeed(doc);
 			var selected = doc.getElementById('ft_ownselectboxID').value;
 
 			var feed_count = 0;
@@ -47,7 +47,7 @@ Foxtrick.modules['LeagueNewsFilter'] = {
 			}
 		};
 
-		var newsfeed = doc.getElementById('ctl00_ctl00_CPContent_CPMain_repLLUFeed');
+		var newsfeed = Foxtrick.Pages.Series.getNewsFeed(doc);
 		var selectdiv = Foxtrick.createFeaturedElement(doc, this, 'div');
 		selectdiv.appendChild(doc.createTextNode(Foxtrick.L10n.getString('LeagueNewsFilter.label')));
 		selectdiv.appendChild(doc.createTextNode(' '));

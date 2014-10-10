@@ -21,7 +21,7 @@ Foxtrick.modules['ShowLineupSet'] = {
 		// check teams that have set a lineup
 		if (Foxtrick.Prefs.isModuleOptionEnabled('ShowLineupSet', 'LineupSet') &&
 			Foxtrick.isPage(doc, 'series')) {
-			var newsFeed = doc.getElementById('ctl00_ctl00_CPContent_CPMain_repLLUFeed');
+			var newsFeed = Foxtrick.Pages.Series.getNewsFeed(doc);
 			var items = newsFeed.getElementsByClassName('feedItem');
 			// check whether an item is a set-lineup item, if is, return team
 			// name, otherwise return null
