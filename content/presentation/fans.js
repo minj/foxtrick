@@ -34,14 +34,22 @@ Foxtrick.modules['Fans'] = {
 		}
 
 		if (Foxtrick.Prefs.isModuleOptionEnabled('Fans', 'ShowSumFans')) {
-			var nums = doc.querySelectorAll('#members .inc, #members .dec');
+			var main = doc.getElementById('mainBody');
+			var fansText = main.getElementsByTagName('td')[1].textContent;
+			var fansNow = Foxtrick.trimnum(fansText);
+
+			var nums = Foxtrick.toArray(doc.querySelectorAll('#members .inc, #members .dec'));
+			nums.reverse();
 			var total = 0;
 			Foxtrick.forEach(function(num) {
 				var text = num.textContent;
 				var n = parseInt(text, 10);
-				if (/%/.test(text))
-					return; // we may have "-10%" as value, then we can't calculate total
-				total += n;
+				if (/%/.test(text)) {
+					var untilThen = fansNow - total;
+					total += Math.round(untilThen / (100 + n) * n);
+				}
+				else
+					total += n;
 			}, nums);
 
 			var table = doc.querySelector('#members .thin');
