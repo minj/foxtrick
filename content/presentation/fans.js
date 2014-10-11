@@ -46,10 +46,10 @@ Foxtrick.modules['Fans'] = {
 				var n = parseInt(text, 10);
 				if (/%/.test(text)) {
 					var untilThen = fansNow - total;
-					total += Math.round(untilThen / (100 + n) * n);
+					n = Math.round(untilThen / (100 + n) * n);
+					num.textContent += ' (' + Math.abs(n) + ')';
 				}
-				else
-					total += n;
+				total += n;
 			}, nums);
 
 			var table = doc.querySelector('#members .thin');
