@@ -45,6 +45,8 @@ pref("extensions.foxtrick.prefs.module.CopyYouth.ScoutComment.enabled", true);
 pref("extensions.foxtrick.prefs.module.CopyYouth.AutoSendRejectedToHY.enabled", true);
 pref("extensions.foxtrick.prefs.module.CopyYouth.FixturesSource.enabled", true);
 pref("extensions.foxtrick.prefs.module.CountryList.enabled", true);
+pref("extensions.foxtrick.prefs.module.CountryList.Flags.enabled", true);
+pref("extensions.foxtrick.prefs.module.CountryList.FlagSort.enabled", true);
 pref("extensions.foxtrick.prefs.module.CountryList.HideFlagOntop.enabled", false);
 pref("extensions.foxtrick.prefs.module.CountryList.ManagerPage.enabled", true);
 pref("extensions.foxtrick.prefs.module.CountryList.SelectBoxes.enabled", true);

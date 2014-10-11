@@ -8,7 +8,12 @@
 Foxtrick.modules['CountryList'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.PRESENTATION,
 	PAGES: ['all'],
-	OPTIONS: ['SelectBoxes', 'TeamPage', 'ManagerPage', 'UseEnglish', 'HideFlagOntop'],
+	OPTIONS: [
+		'SelectBoxes',
+		['Flags', 'FlagSort'],
+		'UseEnglish',
+		'TeamPage', 'ManagerPage', 'HideFlagOntop'
+	],
 	CSS: Foxtrick.InternalPath + 'resources/css/CountyList.css',
 
 	run: function(doc) {
@@ -64,6 +69,11 @@ Foxtrick.modules['CountryList'] = {
 		if (Foxtrick.Prefs.isModuleOptionEnabled('CountryList', 'ManagerPage')) {
 			if (Foxtrick.isPage(doc, 'managerPage'))
 				this._placeCountry(doc);
+		}
+
+		if (Foxtrick.Prefs.isModuleOptionEnabled('CountryList', 'Flags')) {
+			if (Foxtrick.isPage(doc, 'flagCollection'))
+				this._changeFlags(doc);
 		}
 
 	},
@@ -151,6 +161,44 @@ Foxtrick.modules['CountryList'] = {
 			options[i].text = opt_array[i - start][1];
 		}
 		selectbox.style.display = 'inline';
+	},
+
+	_changeFlags: function(doc) {
+		var flags = doc.getElementsByClassName('flag');
+		var useEnglish = Foxtrick.Prefs.isModuleOptionEnabled('CountryList', 'UseEnglish');
+
+		// due to idiotic site layout by HTs
+		// we have to resort to hack-work to group flags and sort them
+		var flagGroups = [];
+		var flagGroup = [];
+		Foxtrick.forEach(function(link) {
+			var leagueId = link.href.match(/LeagueID=(\d+)/i)[1];
+			var info = Foxtrick.util.id.getLeagueDataFromId(leagueId);
+			var img = link.querySelector('img');
+			img.alt = img.title = info[useEnglish ? 'EnglishName' : 'LeagueName'];
+
+			if (link.previousElementSibling.nodeName === 'P') {
+				// new flag group
+				flagGroups.push(flagGroup = []);
+			}
+			flagGroup.push(link);
+		}, flags);
+
+		if (Foxtrick.Prefs.isModuleOptionEnabled('CountryList', 'FlagSort')) {
+			Foxtrick.forEach(function(group) {
+				var insertBefore = group[group.length - 1].nextSibling;
+				group.sort(function(a, b) {
+					var imgA = a.querySelector('img');
+					var imgB = b.querySelector('img');
+					return imgA.alt.localeCompare(imgB.alt);
+				});
+				var wrapper = doc.createDocumentFragment();
+				Foxtrick.forEach(function(link) {
+					wrapper.appendChild(link);
+				}, group);
+				insertBefore.parentNode.insertBefore(wrapper, insertBefore);
+			}, flagGroups);
+		}
 	},
 
 	_activate: function(selectbox) {
