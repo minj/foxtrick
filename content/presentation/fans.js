@@ -38,8 +38,7 @@ Foxtrick.modules['Fans'] = {
 			var fansText = main.getElementsByTagName('td')[1].textContent;
 			var fansNow = Foxtrick.trimnum(fansText);
 
-			var nums = Foxtrick.toArray(doc.querySelectorAll('#members .inc, #members .dec'));
-			nums.reverse();
+			var nums = doc.querySelectorAll('#members .inc, #members .dec');
 			var total = 0;
 			Foxtrick.forEach(function(num) {
 				var text = num.textContent;
