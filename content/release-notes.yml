@@ -21,7 +21,7 @@ en:
       other: '<header>Other changes</header>'
       transfer_compare: 'MedianTransferPrice was renamed to <module>TransferComparePlayers</module>. Added TSI calculations and an ability to fetch more player data from CHPP. Shows price difference in player transfer history page.'
       player_positions: 'Improved <module>PlayerPositionsEvaluations</module> and added many options where you can choose to include form, stamina, loyalty, experience and bruised effects into calculations.'
-      country_list: '<module>CountryList</module> now can change country names in the flag collection. It is possible to use English country names instead of native ones.'
+      country_list: '<module>CountryList</module> can now change country names in the flag collection. It is possible to use English country names instead of native ones.'
       best_player_position: 'BestPlayerPosition module was merged into <module>PlayerPositionsEvaluations</module>.'
       nt: 'Fixed a lot of functionalities that were previously not working correctly for NT coaches.'
       en-US: 'Added proper support for US English language.'
