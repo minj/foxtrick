@@ -15,8 +15,9 @@ Foxtrick.modules['MyMonitor'] = {
 	run: function(doc) {
 		var getSavedTeams = function() {
 			var savedTeams = Foxtrick.Prefs.getString('MyMonitor.teams');
+			var teams = null;
 			try {
-				var teams = JSON.parse(savedTeams);
+				teams = JSON.parse(savedTeams);
 			}
 			catch (e) {
 				Foxtrick.log('Cannot parse saved teams: ' + savedTeams + '.');
@@ -25,10 +26,11 @@ Foxtrick.modules['MyMonitor'] = {
 				// return national teams if first run
 				var leagueId = Foxtrick.util.id.getOwnLeagueId();
 				var league = Foxtrick.XMLData.League[leagueId];
-				var ntName = league.LeagueName;
 				var ntId = league.NationalTeamId;
-				var u20Name = 'U-20 ' + ntName;
 				var u20Id = league.U20TeamId;
+				var ntName = Foxtrick.XMLData.getNTNameByLeagueId(leagueId);
+				var u20Name = 'U-20 ' + ntName;
+
 				teams = [
 					{ id: ntId, name: ntName, type: 'nt' },
 					{ id: u20Id, name: u20Name, type: 'nt' }

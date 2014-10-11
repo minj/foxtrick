@@ -40,10 +40,10 @@ Foxtrick.modules['NtPeek'] = {
 		var leagueId = Foxtrick.Pages.All.getId(doc);
 
 		var league = Foxtrick.XMLData.League[leagueId];
-		var ntName = league.LeagueName;
 		var ntId = league.NationalTeamId;
-		var u20Name = 'U-20 ' + ntName;
 		var u20Id = league.U20TeamId;
+		var ntName = Foxtrick.XMLData.getNTNameByLeagueId(leagueId);
+		var u20Name = 'U-20 ' + ntName;
 
 		var insertBefore = Foxtrick.getMBElement(doc, 'ucForumSneakpeek_updSneakpeek');
 

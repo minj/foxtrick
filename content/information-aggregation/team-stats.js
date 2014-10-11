@@ -394,18 +394,20 @@ Foxtrick.modules['TeamStats'] = {
 						}
 						var isLeague = false;
 						var category = 'Nationality';
-						if (Foxtrick.Pages.Players.isPropertyInList(playerList, 'currentLeagueId')) {
+						var cli = Foxtrick.Pages.Players.isPropertyInList(playerList,
+						                                                  'currentLeagueId');
+						if (cli) {
 							isLeague = true;
 							category = 'Current_league';
 						}
-						var leagueSummary = [], i;
-						for (i in leagues) {
+						var leagueSummary = [], name;
+						for (var i in leagues) {
 							if (isLeague)
-								var name = Foxtrick.XMLData.League[i].LeagueName;
-							else
-								var name = Foxtrick.XMLData.League[
-									Foxtrick.XMLData.countryToLeague[i]
-								].LeagueName;
+								name = Foxtrick.XMLData.League[i].LeagueName;
+							else {
+								var leagueId = Foxtrick.XMLData.getLeagueIdByCountryId(i);
+								name = Foxtrick.XMLData.League[leagueId].LeagueName;
+							}
 							leagueSummary.push({ name: name, count: leagues[i] });
 						}
 						leagueSummary.sort(function(a, b) { return a.name.localeCompare(b.name) });

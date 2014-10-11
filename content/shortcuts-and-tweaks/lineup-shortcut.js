@@ -51,10 +51,10 @@ Foxtrick.modules['LineupShortcut'] = {
 		var league, ntName, ntId, u20Name, u20Id;
 		if (leagueId) {
 			league = Foxtrick.XMLData.League[leagueId];
-			ntName = league.LeagueName;
 			ntId = league.NationalTeamId;
-			u20Name = 'U-20 ' + ntName;
 			u20Id = league.U20TeamId;
+			ntName = Foxtrick.XMLData.getNTNameByLeagueId(leagueId);
+			u20Name = 'U-20 ' + ntName;
 		}
 
 		var hasTransfer = false;

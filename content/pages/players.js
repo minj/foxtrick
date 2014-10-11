@@ -823,7 +823,8 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 								}
 							}, currentPara.childNodes);
 							for (var j in Foxtrick.XMLData.League) {
-								var re = new RegExp(Foxtrick.XMLData.League[j].LeagueName);
+								// README: this will break with localized country names
+								var re = new RegExp(Foxtrick.XMLData.getNTNameByLeagueId(j));
 								if (re.test(leagueText)) {
 									player.currentLeagueId = j;
 									break;
