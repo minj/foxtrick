@@ -13,7 +13,7 @@ Foxtrick.util.tabs.initialize = function(doc) {
 	if (!Foxtrick.util.tabs.hasTabSupport(doc))
 		return;
 
-	var header = doc.getElementsByTagName('h1')[1];
+	var header = doc.querySelector('#mainBody h1');
 	var hasByLine = Foxtrick.hasClass(header, 'hasByline');
 	var byline = doc.getElementsByClassName('byline')[0];
 	var contentNode = header.nextSibling;
@@ -88,7 +88,7 @@ Foxtrick.util.tabs.getTabs = function(doc) {
 
 //private, creates the tab bar and add it's after the h1 header or it's byline
 Foxtrick.util.tabs._create = function(doc) {
-	var header = doc.getElementsByTagName('h1')[1];
+	var header = doc.querySelector('#mainBody h1');
 	if (!header)
 		return;
 
@@ -107,7 +107,7 @@ Foxtrick.util.tabs._create = function(doc) {
 
 //support only for pages with a h1 header atm
 Foxtrick.util.tabs.hasTabSupport = function(doc) {
-	var h1 = doc.getElementsByTagName('h1')[1];
+	var h1 = doc.querySelector('#mainBody h1');
 	if (h1) {
 		var content = h1.textContent;
 		return content.replace(/ /g, '').replace(/\n/g, '') != '';
@@ -187,7 +187,7 @@ Foxtrick.util.tabs.show = function(doc, id) {
 Foxtrick.util.tabs.addElementToTab = function(doc, elem, tab) {
 	Foxtrick.addClass(elem, 'tab-content');
 	Foxtrick.addAttributeValue(elem, 'tabs', tab);
-	var parent = doc.getElementsByTagName('h1')[1].parentNode;
+	var parent = doc.querySelector('#mainBody h1').parentNode;
 	var elemParent = elem.parentNode;
 	while (elemParent != parent) {
 		Foxtrick.addAttributeValue(elemParent, 'tabs', tab);

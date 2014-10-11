@@ -35,7 +35,7 @@ Foxtrick.modules['CopyRatings'] = {
 				var _a = Foxtrick.L10n.getString('match.ratings.attack') + ':';
 				var _t = Foxtrick.L10n.getString('match.ratings.total') + ':';
 
-				var headder = doc.getElementsByTagName('h1')[1].textContent;
+				var headder = doc.querySelector('#mainBody h1').textContent;
 				headder = headder.trim();
 				var start = Foxtrick.strrpos(headder, '<span>(') + 7;
 				var end = Foxtrick.strrpos(headder, ')</span>');

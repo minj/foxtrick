@@ -10,7 +10,7 @@ Foxtrick.modules['TabsTest'] = {
 			return;
 		Foxtrick.util.tabs.initialize(doc);
 
-		var h1 = doc.getElementsByTagName('h1')[1].textContent;
+		var h1 = doc.querySelector('#mainBody h1').textContent;
 
 		/*Foxtrick.util.tabs.addHandle(doc, h1, { alt: h1, title: h1,
 			src: '/Img/Icons/cross_small.png'}, 'tab-main');*/
