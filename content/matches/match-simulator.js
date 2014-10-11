@@ -484,14 +484,17 @@ Foxtrick.modules.MatchSimulator = {
 				text += formations + '\n';
 
 				// pic/mots
-				var speechLevel_select = doc.getElementById('speechLevel');
-				var speechLevel = speechLevel_select.options[speechLevel_select.selectedIndex]
-					.textContent;
-				text += speechLevelTitle;
-				text += '[u]' + speechLevel + '[/u]\n';
+				var speechLevelWrapper = doc.querySelector('.speechLevel');
+				if (speechLevelWrapper.style.display !== 'none') {
+					var speechLevel_select = doc.getElementById('speechLevel');
+					var speechLevel =
+						speechLevel_select.options[speechLevel_select.selectedIndex].textContent;
+					text += speechLevelTitle;
+					text += '[u]' + speechLevel + '[/u]\n';
+				}
 
 				// coach type
-				text += doc.getElementById('trainerTypeLabel').textContent + '\n'
+				text += doc.getElementById('trainerTypeLabel').textContent + '\n';
 
 				// tactics
 				var teamtactics_select = doc.getElementById('teamtactics');
