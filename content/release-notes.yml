@@ -10,13 +10,22 @@ en:
     0.15.0:
       important: '<header>Important announcements</header>'
       crowdin: '<header>A lot of translation updates from our awesome users using the <linkCrowdin>crowdin tool</linkCrowdin>. You can help out as well!</header>'
+      twitter: 'You can follow <linkTwitter>Foxtrick on Twitter</linkTwitter> to receive the latest news, updates, and announcements.'
       new: '<header>New modules</header>'
       promotion_reminder: '<module>AddPromotionReminder</module>: Add a button to create a reminder for the day when you can promote a youth player'
       bugs: '<header>Bug fixes</header>'
+      https: 'Foxtrick should again work correctly on Hattrick Stage.'
+      avatars: 'Player avatar cache in <module>MatchOrderInterface</module> will now be refreshed automatically when new players arrive on your team.'
+      fans: 'Fan evolution in <module>Fans</module> will now be calculated correctly when your team is promoted or demoted.'
+      player_stats: '<module>PlayerStatsTrainingWeek</module> should now correctly recognize weekend friendlies.'
       other: '<header>Other changes</header>'
       transfer_compare: 'MedianTransferPrice was renamed to <module>TransferComparePlayers</module>. Added TSI calculations and an ability to fetch more player data from CHPP. Shows price difference in player transfer history page.'
       player_positions: 'Improved <module>PlayerPositionsEvaluations</module> and added many options where you can choose to include form, stamina, loyalty, experience and bruised effects into calculations.'
-      best_player_position: 'BestPlayerPosition module merged into <module>PlayerPositionsEvaluations</module>.'
+      country_list: '<module>CountryList</module> now can change country names in the flag collection. It is possible to use English country names instead of native ones.'
+      best_player_position: 'BestPlayerPosition module was merged into <module>PlayerPositionsEvaluations</module>.'
+      nt: 'Fixed a lot of functionalities that were previously not working correctly for NT coaches.'
+      en-US: 'Added proper support for US English language.'
+      code: 'A lot more maintenance was done on Foxtrick code. This allows us to find and fix hidden bugs, improve add-on stability and ease its further development.'
       and_more: 'Various other small changes and fixes.'
 
     0.14.0.3:
