@@ -424,7 +424,7 @@ Foxtrick.modules['FlagCollectionToMap'] = {
 		img.onload = img.onerror = function() {
 			if (this.height < 300 || this.width < 300) {
 				var msg = Foxtrick.L10n.getString('resource.error');
-				msg = msg.replace(/%s/, 'chart.apis.google.com');
+				msg = msg.replace(/%s/, 'chart.googleapis.com');
 				Foxtrick.util.note.add(doc, msg, 'ft-flag-map-failed-note', { to: map });
 			}
 		};
@@ -440,7 +440,7 @@ Foxtrick.modules['FlagCollectionToMap'] = {
 	 */
 	//* @param: title, ISO 3166-2 countrycodes, gradient codes (0-100), lang-long box, x*y
 	getMapUrl: function(title, countryCodes, colorOrder, areaParam, size) {
-		var base = 'http://chart.apis.google.com/chart';
+		var base = '//chart.googleapis.com/chart';
 		var chartType = '?cht=map:fixed=' + areaParam; // lang long: bottom,left,top,right
 		var dimensions = '&chs=' + size;
 

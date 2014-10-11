@@ -282,7 +282,7 @@ Foxtrick.modules['CrossTable'] = {
 				graph.onload = graph.onerror = function() {
 					if (this.height < 200 || this.width < 200) {
 						var msg = Foxtrick.L10n.getString('resource.error');
-						msg = msg.replace(/%s/, 'chart.apis.google.com');
+						msg = msg.replace(/%s/, 'chart.googleapis.com');
 						Foxtrick.util.note.add(doc, msg, 'ft-flag-map-failed-note',
 						                       { to: graphContainer });
 					}
@@ -290,7 +290,7 @@ Foxtrick.modules['CrossTable'] = {
 				// Google Chart API documentation:
 				// Line charts:
 				// http://code.google.com/apis/chart/docs/gallery/line_charts.html
-				var url = 'http://chart.apis.google.com/chart'
+				var url = '//chart.googleapis.com/chart'
 					+ '?cht=lc' // chart type=line chart
 					+ '&chs=' + width + 'x200' // chart size=widthÃ—20
 					+ '&chds=0.5,8.5' // chart data series range=[0.5,8.5]
