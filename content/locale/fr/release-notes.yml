@@ -5,6 +5,26 @@ fr:
       note_0: "Il s'agit d'une version de développement. Utilisez la à votre propre discrétion. S'il vous plaît consultez <linkSVN>commit history</linkSVN> sur Google Code pour plus de détails sur les modifications."
     beta:
       note_0: "Il s'agit de la version bêta de la prochaine version. Veuillez nous aider à traduire cette version via un site ultra simple à utiliser <linkCrowdin>crowdin.net</linkCrowdin>. "
+    0.15.0:
+      important: '<header>Annonces importantes</header>'
+      crowdin: '<header>Mise à jour des traductions de la part de nos fidèles utilisateurs via <linkCrowdin>crowdin tool</linkCrowdin>. Vous pouvez aussi nous donner un coup de main!</header>'
+      twitter: 'Vous pouvez suivre <linkTwitter>Foxtrick sur Twitter</linkTwitter>pour recevoir les dernières nouvelles, mises à jour et annonces.'
+      new: '<header>Nouveaux modules</header>'
+      promotion_reminder: '<module>AddPromotionReminder</module>: Ajouter un bouton pour créer un rappel pour le jour où vous pouvez promouvoir un jeune joueur'
+      bugs: '<header>Correctifs</header>'
+      https: Foxtrick devrait à nouveau fonctionner correctement sur Hattrick Stage.
+      avatars: 'Le cache des avatars de vos joueurs dans <module>MatchOrderInterface</module> doit maintenant prendre en compte automatiquement les nouveaux joueurs de votre équipe.'
+      fans: "L'évolution des supporters dans <module>Fans</module> sera maintenant calculé correctement quand votre équipe est promue ou reléguée."
+      player_stats: '<module>PlayerStatsTrainingWeek</module> devrait maintenant reconnaître correctement les amicaux du week-end.'
+      other: '<header>Autres changements</header>'
+      transfer_compare: "MedianTransferPrice a été renommé dans <module>TransferComparePlayers</module>. Ajout d'un calcul sur le TSI et d'une possibilité d'aller chercher plus de données sur les joueurs par le CHPP. Affichage de la différence de prix de vente dans la page de l'historique des transferts des joueurs."
+      player_positions: "Amélioration de <module>PlayerPositionsEvaluations</module> et ajout de nombreuses options où vous pouvez choisir d'inclure forme, endurance, fidélité, expérience et effets des blessures dans le calcul."
+      country_list: "<module>CountryList</module> peut maintenant changer le nom des pays dans la collection de drapeaux. Il est possible d'utiliser le nom anglais des pays à la place du nom local du pays."
+      best_player_position: 'Le module BestPlayerPosition a fusionné avec <module>PlayerPositionsEvaluations</module>.'
+      nt: "Correction d'un grand nombre de fonctionnalités qui ne fonctionnaient pas correctement pour les sélectionneurs NT."
+      en-US: Ajout du support de la langue English US.
+      code: "Une maintenance énorme a été effectuée sur le code de Foxtrick. Cela nous permet de trouver et de corriger les bugs cachés, d'améliorer la stabilité de l'extension et de faciliter son développement."
+      and_more: Divers autres petits changements et corrections.
     0.14.0.3:
       important: '<header>Annonces importantes</header>'
       sorry: Toutes nos excuses pour la dernière version qui a occasionnée plus de dégâts que de correctifs. Cette version devrait être bien mieux.

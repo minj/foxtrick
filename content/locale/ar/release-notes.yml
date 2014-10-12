@@ -5,6 +5,14 @@ ar:
       note_0: 'هذه النسخة تطويرية وأنت تستخدمها على مسؤوليتك. الرجاء مراجعة <linkSVN>تاريخ التغييرات</linkSVN> في Google Code لمعرفة تفاصيل التحديثات.'
     beta:
       note_0: 'هذه النسخة تجريبية للإصدار القادم. الرجاء المساعدة في ترجمة هذه النسخة في صفحة الترجمة السهلة جدا على <linkCrowdin>crowdin.net</linkCrowdin>.'
+    0.15.0:
+      important: '<header>إعلانات هامة</header>'
+      crowdin: '<header>العديد من التحديثات اللغوية والترجمات بواسطة مستخدمينا الأعزاء عبر أداة<linkCrowdin>crowdin </linkCrowdin>. يمكنك مساعدتنا كذلك!</header>'
+      twitter: 'يمكنك متابعة  <linkTwitter>Foxtrick على Twitter</linkTwitter> لمعرفة آخر الأخبار والتحديثات والإعلانات.'
+      new: '<header>وظائف جديدة</header>'
+      bugs: '<header>إصلاح الأخطاء التقنية</header>'
+      other: '<header>تغييرات أخرى</header>'
+      and_more: والعديد من التغييرات والإصلاحات الصغيرة الأخرى.
     0.14.0.3:
       important: '<header>إعلانات هامة</header>'
       bugs: '<header>إصلاح الأخطاء التقنية</header>'

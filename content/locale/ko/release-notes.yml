@@ -5,6 +5,14 @@ ko:
       note_0: '자세한 내용은 Google Code의 <linkSVN>보고 기록</linkSVN>을 참조하세요.'
     beta:
       note_0: '이것은 다음 배포의 beta 버전 입니다. 이 버전에서 저희 군중-번역 페이지를 통해 번역해주세요. <linkCrowdin>crowdin.net</linkCrowdin>'
+    0.15.0:
+      important: '<header>중요한 공지 사항</header>'
+      crowdin: '<header>저희 뛰어난 사용자들이 <linkCrowdin>crowdin tool</linkCrowdin>을 사용하여 수많은 번역 업데이트가 있었습니다. 당신도 도울 수 있습니다!</header>'
+      twitter: '<linkTwitter>Foxtrick on Twitter</linkTwitter>을 팔로우하면 최신 뉴스 및 업데이트와 공지를 받을 수 있습니다.'
+      new: '<header>새로운 모듈</header>'
+      bugs: '<header>버그 수정</header>'
+      other: '<header>기타 변경 사항</header>'
+      and_more: 그 외에 작은 규모의 변화와 수정이 있었습니다.
     0.14.0.3:
       important: '<header>중요한 공지 사항</header>'
       sorry: "지난 '버그 수정'에서 알려드린 부분보다 더 많은 부분이 실제로 고장 났음을 사과드립니다. 새로운 버전에서는 이 부분들이 개선되었을 것입니다."

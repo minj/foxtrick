@@ -5,6 +5,26 @@ bs:
       note_0: 'Ovo je razvojna inačica. Koristiti na svoju odgovornost. Za detalje o promjenama pogledajte na <linkSVN>Google Code</linkSVN> stranici.'
     beta:
       note_0: 'Ovo je beta inačica buduće nove verzije. Pomozite na prevoditi ovu verziju sa super lakim prevođenjem na <linkCrowdin>crowdin.net</linkCrowdin>.'
+    0.15.0:
+      important: '<header>Važne obavijesti</header>'
+      crowdin: '<header>Mnogo prevoditeljskih nadogradnji od naših fantastičnih korisnika koristeći <linkCrowdin>crowdin alat</linkCrowdin>. I Vi možete pomoći!</header>'
+      twitter: 'Možete pratiti <linkTwitter>Foxtrick na Twitteru</linkTwitter> kako biste dobili najnovije vijesti, ažuriranja i objave.'
+      new: '<header>Novi moduli</header>'
+      promotion_reminder: '<module>AddPromotionReminder</module>: Dodajte gumb želite li stvoriti podsjetnik za dan kada možete promovisati mladog igrača'
+      bugs: '<header>Popravljene greške</header>'
+      https: Foxtrick opet bi trebao funkcionisati ispravno na pozornici Hattrick.
+      avatars: 'Predmemorija avatara igrača u <module>MatchOrderInterface</module> će odmah osvježiti automatski kada novi igrači stižu u vaš tim.'
+      fans: 'Ventilator evolucija u <module>fanovi</module> sada uključuje se ispravno kada vaš tim promoviše ili ispada.'
+      player_stats: '<module>PlayerStatsTrainingWeek</module> sada bi trebao ispravno prepoznati vikend prijateljske utakmice.'
+      other: '<header>Druge promjene</header>'
+      transfer_compare: 'MedianTransferPrice je preimenovana u <module>TransferComparePlayers</module>. Dodano TSI izračune i sposobnost za preuzimanje više igrača podataka iz CHPP. Pokazuje razlike cijena na stranici historija transfera igrača.'
+      player_positions: 'Poboljšani <module>PlayerPositionsEvaluations</module> i dodao mnoge opcije gdje možete uključiti obrazac, izdržljivost, vjernost, iskustvo i modricama efekata u kalkulacije.'
+      country_list: '<module>CountryList</module> sada možete promijeniti imena država u zbirci zastava. To je moguće koristiti engleski imena umjesto izvornih.'
+      best_player_position: 'Najbolja igračeva pozicija modul se spojio u <module>PlayerPositionsEvaluations</module>.'
+      nt: Čvrst puno funkcionalnosti koje prije toga nije radilo ispravno za izbornici.
+      en-US: Pravilno dodana podrška za američki engleski jezik.
+      code: Puno više održavanja je učinjeno na Foxtrick kod. To nam omogućuje da pronaći i popraviti skrivene greške, poboljšati stabilnost dodatak i ublažiti njezin daljnji razvoj.
+      and_more: Razne druge male promjene i popravke.
     0.14.0.3:
       important: '<header>Važne obavijesti</header>'
       sorry: 'Izvinjenje za posljednji "bug-fix" izdanje koje se raspalo više stvari nego što to fiksni. Ovo bi trebao biti bolje.'

@@ -5,6 +5,14 @@ gl:
       note_0: 'Esta é a versión en proceso desenvolvemento. Úsaa baixo a túa responsabilidade. Podes ollar o <linkSVN>Historial de cambios</linkSVN> en Google Code para ver detalles dos mesmos.'
     beta:
       note_0: 'Esta é a versión beta do próximo lanzamento. Podes axudar a traducila na nosa marabillosa páxina de tradución en equipo <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.15.0:
+      important: '<header>Anuncios importantes</header>'
+      crowdin: '<header>Unha morea de actualizacións das traducións realizadas polos nosos marabillosos usuarios a través da <linkCrowdin>ferramenta Crowdin</linkCrowdin>. Por certo, ti tamén podes colaborar!</header>'
+      twitter: 'Podes seguir a <linkTwitter>FoxTrick en Twitter</linkTwitter> para recibir as noticias, as novidades e os anuncios máis recentes.'
+      new: '<header>Módulos novos</header>'
+      bugs: '<header>Solucións de erros</header>'
+      other: '<header>Outros cambios</header>'
+      and_more: Moitos outros cambios pequeniños por aquí e por alá.
     0.14.0.3:
       important: '<header>Anuncios importantes</header>'
       sorry: 'Desculpas pola última "rolda de arranxo de bugs", que curiosamente rachou mais cousas das que arranxou. A de agora debería ir mellor.'

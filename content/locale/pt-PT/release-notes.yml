@@ -5,6 +5,12 @@ pt-PT:
       note_0: 'Esta é uma versão de testes. Use à sua responsabilidade. Por favor veja o <linkSVN>Histórico de confirmação</linkSVN> no Google Code para mais detalhes sobre as alterações.'
     beta:
       note_0: 'O FoxTrick instalado é uma versão Beta do próximo lançamento. Contribuir para a tradução deste extra em <linkCrowdin>Crowdin.net</linkCrowdin> é muito fácil.'
+    0.15.0:
+      important: '<header>Avisos Importantes</header>'
+      crowdin: '<header>Várias atualizações nas traduções dos nossos incríveis utilizadores através de <linkCrowdin>crowdin tool</linkCrowdin>. Também pode ajudar!</header>'
+      new: '<header>Módulos novos</header>'
+      bugs: '<header>Correções de Erros</header>'
+      other: '<header>Outras alterações</header>'
     0.14.0.3:
       important: '<header>Avisos Importantes</header>'
       sorry: 'Pedimos desculpa pelo último lançamento de "correção de erros" que na realidade criou mais problemas do que os que resolveu. Esta deve ser melhor.'

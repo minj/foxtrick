@@ -5,6 +5,14 @@ ro:
       note_0: 'Această versiune este în dezvoltare continuă. Utilizați-o după cum doriți. Vă rugăm să vizualizați <linkSVN>istoricul</linkSVN> de la Google Code pentru detalii cu privire la modificări.'
     beta:
       note_0: 'Aceasta este o versiune beta a următoarei versiuni care va fi lansată. Vă rugăm ajutați traducând această versiune utilizând pagina de traducere <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.15.0:
+      important: '<header>Anunţuri importante</header>'
+      crowdin: '<header>O mulțime de traduceri actualizate de către userii care folosesc <linkCrowdin> instrumentul crowdin</linkCrowdin>. Și tu poți ajuta!</header>'
+      twitter: 'Puteţi urmări <linkTwitter>Foxtrick pe Twitter</linkTwitter> pentru a primi ultimele ştiri, actualizări şi anunţuri.'
+      new: '<header>Module noi</header>'
+      bugs: '<header>Erori reparate</header>'
+      other: '<header>Alte schimbări</header>'
+      and_more: Diferite alte mici schimbări și reparații.
     0.14.0.3:
       important: '<header>Anunţuri importante</header>'
       sorry: Ne cerem scuze pentru ultima versiune care a stricat mai multe lucruri decat a reparat. Actuala versiune ar trebui sa fie mai buna.

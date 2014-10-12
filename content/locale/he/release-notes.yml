@@ -5,9 +5,34 @@ he:
       note_0: 'זהו עדכון בפיתוח. השימוש בו הוא לשיקולכם בלבד. לפרטים בנוגע לשינויים נא ראו <linkSVN>היסטוריה</linkSVN> בגוגל קוד.'
     beta:
       note_0: 'זוהי גירסת הבטא של המהדורה הבאה. נודה על עזרה בתרגום גירסה זו באתר התרגום המאוד נוח שלנו <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.15.0:
+      important: '<header>הודעות חשובות</header>'
+      crowdin: '<header>עדכוני תרגום רבים של המשתמשים המדהימים שלנו באמצעות <linkCrowdin>כלי ה-crowdin</linkCrowdin>. גם אתם יכולים לעזור!</header>'
+      twitter: 'באפשרותך לעקוב אחר עדכוני <linkTwitter>פוקסטריק בטוויטר</linkTwitter> על מנת לקבל את החדשות, העדכונים וההודעות האחרונים.'
+      new: '<header>מודולים חדשים</header>'
+      promotion_reminder: '<module>AddPromotionReminder</module>: הוספת כפתור ליצירת תזכורת ליום בו תוכל לקדם שחקן נוער'
+      bugs: '<header>תיקוני באגים</header>'
+      https: Foxtrick צריך שוב לפעול כהלכה על במת האטריק.
+      avatars: 'מטמון צלמית השחקן ב <module>MatchOrderInterface</module> כעת יתרענן אוטומטית כאשר שחקנים חדשים מגיעים לקבוצה שלך.'
+      fans: 'חישוב האוהדים ב <module>Fans</module> יחושבו כעת כראוי כאשר הקבוצה שלך מעפילה או יורדת.'
+      player_stats: '<module>PlayerStatsTrainingWeek</module> כעת אמור לזהות כראוי משחקים ידידותיים בסופשבוע.'
+      other: '<header>שינויים אחרים</header>'
+      transfer_compare: 'MedianTransferPrice שונה ל- <module>TransferComparePlayers</module>. נוספו חישובי TSI ויכולת להביא יותר נתוני שחקן מ CHPP. מציג הבדלי מחיר בדף היסטוריית העברת שחקן.'
+      player_positions: 'שיפור <module>PlayerPositionsEvaluations</module> והוספת אפשרויות רבות בהן באפשרותך לבחור לכלול כושר משחק, כושר גופני, נאמנות, ניסיון והשפעת ירידה בביצועים לשחקן חבול לתוך החישובים.'
+      country_list: '<module>CountryList</module> כעת ניתן לשנות את שמות המדינות באוסף הדגלים. ניתן להשתמש בשמות באנגלית במקום את השמות המקוריים שלהם.'
+      best_player_position: 'BestPlayerPosition מודול מוזג לתוך <module>PlayerPositionsEvaluations</module>.'
+      nt: 'תוקנו פונקצינאליות רבות אשר בעבר  לא עבדו כשורה עבור מאמני נבחרת.'
+      en-US: 'נוספה תמיכה נאותה עבור שפת אנגלית ארה"ב (US English).'
+      code: תחזוקה רבה נעשתה על קוד Foxtrick. זה מאפשר לנו למצוא ולתקן באגים נסתרים, לשפר את היציבות ולהקל על המשך פיתוח שלה.
+      and_more: הרבה שינויים ותיקונים קטנים נוספים.
     0.14.0.3:
       important: '<header>הודעות חשובות</header>'
+      sorry: "אני מתנצל על שחרור 'תיקון באג' האחרון שבאמת שבר דברים יותר ממה שתיקן. הנוכחי צריך להיות טוב יותר."
       bugs: '<header>תיקוני באגים</header>'
+      street_teams: ההצגה של קבוצות רחוב במערכת הגביע החדשה גרמה לבעיות שונות ומוזרות שתוקנו עכשיו.
+      revert: '<module>PlayerStatsExperience</module> וכלי עזר לבועטי פנדלים ב <module>MatchOrderInterface</module> אמורים להיות עכשיו מתוקנים באמת.'
+      income: '<module>MatchIncome</module> כעת צריך להציג את המידע הנכון עבור כל המשחקים. נא לדווח על כל חוסר עקביות.'
+      stats: '<module>SeasonStats</module> נשבר בשל השינויים האחרונים של HT. כל הבעיות נפתרו.'
     0.14.0.2:
       bugs: '<header>תיקוני באגים</header>'
       challenge_link: 'קישור ההזמנה במודול <module>TeamPopupLinks</module> לוקח אותך כעת לדף הקבוצה ופותח אוטומטית את תפריט ההזמנה למשחק ידידות.'

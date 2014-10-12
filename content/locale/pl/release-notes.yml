@@ -5,6 +5,14 @@ pl:
       note_0: 'To jest wersja rozwojowa. Korzystaj według własnego uznania. Proszę sprawdź szczegóły zmian <linkSVN>historia zmian</linkSVN> w witrynie Google Code.'
     beta:
       note_0: 'To jest wersja beta następnego wydania. Proszę pomóż w tłumaczeniu tej wersji na naszej super łatwej stronie tłumaczeń <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.15.0:
+      important: '<header>Ważne ogłoszenia</header>'
+      crowdin: '<header>Wiele tłumaczeń pochodzi od naszych niesamowitych użytkowników korzystających z <linkCrowdin>narzędzia crowdin</linkCrowdin>. Ty też możesz pomóc!</header>'
+      twitter: 'Możesz śledzić <linkTwitter>Foxtrick na Twitterze</linkTwitter>, aby otrzymywać najnowsze wiadomości, aktualizacje i ogłoszenia.'
+      new: '<header>Nowe moduły</header>'
+      bugs: '<header>Poprawki błędów</header>'
+      other: '<header>Inne zmiany</header>'
+      and_more: Różne inne małe zmiany i poprawki.
     0.14.0.3:
       important: '<header>Ważne ogłoszenia</header>'
       sorry: Przepraszamy za ostatni patch, który tak naprawdę popsuł więcej, niż naprawił. Ten powinien być lepszy.
