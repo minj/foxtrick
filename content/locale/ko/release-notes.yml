@@ -10,8 +10,20 @@ ko:
       crowdin: '<header>저희 뛰어난 사용자들이 <linkCrowdin>crowdin tool</linkCrowdin>을 사용하여 수많은 번역 업데이트가 있었습니다. 당신도 도울 수 있습니다!</header>'
       twitter: '<linkTwitter>Foxtrick on Twitter</linkTwitter>을 팔로우하면 최신 뉴스 및 업데이트와 공지를 받을 수 있습니다.'
       new: '<header>새로운 모듈</header>'
+      promotion_reminder: '<module>AddPromotionReminder</module>: 유소년 선수가 승격할 수 있늘 날짜 알림을 생성하는 버튼을 추가합니다'
       bugs: '<header>버그 수정</header>'
+      https: Hattrick Stage에서 Foxtrick이 다시 제대로 동작할 것입니다.
+      avatars: '이제 새로운 선수들이 팀에 왔을 때 <module>MatchOrderInterface</module> 모듈의 선수 아바타 캐시가 자동으로 새로 고쳐질 것입니다.'
+      fans: '이제 <module>Fans</module> 모듈의 팬 진화도가 팀이 승격되거나 강등될 때 올바르게 계산될 것입니다.'
+      player_stats: '이제 <module>PlayerStatsTrainingWeek</module> 모듈을 주말 친선 경기를 제대로 인식할 것입니다.'
       other: '<header>기타 변경 사항</header>'
+      transfer_compare: 'MedianTransferPrice 모듈은 <module>TransferComparePlayers</module> 모듈으로 명칭이 변경되었습니다. TSI 계산과 CHPP로부터 선수의 추가 정보를 추출하는 기능이 추가되었습니다. 선수 이적 기록 페이지에는 이적료 차이를 표시합니다.'
+      player_positions: '<module>PlayerPositionsEvaluations</module> 모듈을 개선하여 많은 옵션을 추가했습니다. 이제 계산에 Form, 체력, 충성도, 경험 및 부상 페널티를 포함시킬 수 있습니다.'
+      country_list: '이제 <module>CountryList</module> 모듈은 깃발 모음의 국가 명칭을 변경할 수 있습니다. 토착 명칭 대신에 영어식 국가 명칭을 사용할 수 있습니다.'
+      best_player_position: 'BestPlayerPosition 모듈은 <module>PlayerPositionsEvaluations</module> 모듈에 합병되었습니다.'
+      nt: 과거에 NT 감독에게 제대로 동작하지 않았던 많은 기능들을 고쳤습니다.
+      en-US: 미국식 영어 언어에 적절한 지원을 추가했습니다.
+      code: Foxtrick 코드의 수많은 유지 보수가 끝났습니다. 이를 통해 저희는 숨겨진 버그를 찾아 해결하였고 애드온 안정성 및 추가 개발의 용이성을 향상시켰습니다.
       and_more: 그 외에 작은 규모의 변화와 수정이 있었습니다.
     0.14.0.3:
       important: '<header>중요한 공지 사항</header>'

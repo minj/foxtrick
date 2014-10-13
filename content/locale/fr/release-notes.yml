@@ -14,7 +14,7 @@ fr:
       bugs: '<header>Correctifs</header>'
       https: Foxtrick devrait à nouveau fonctionner correctement sur Hattrick Stage.
       avatars: 'Le cache des avatars de vos joueurs dans <module>MatchOrderInterface</module> doit maintenant prendre en compte automatiquement les nouveaux joueurs de votre équipe.'
-      fans: "L'évolution des supporters dans <module>Fans</module> sera maintenant calculé correctement quand votre équipe est promue ou reléguée."
+      fans: "L'évolution des supporters dans <module>Fans</module> sera maintenant calculée correctement quand votre équipe est promue ou reléguée."
       player_stats: '<module>PlayerStatsTrainingWeek</module> devrait maintenant reconnaître correctement les amicaux du week-end.'
       other: '<header>Autres changements</header>'
       transfer_compare: "MedianTransferPrice a été renommé dans <module>TransferComparePlayers</module>. Ajout d'un calcul sur le TSI et d'une possibilité d'aller chercher plus de données sur les joueurs par le CHPP. Affichage de la différence de prix de vente dans la page de l'historique des transferts des joueurs."

@@ -10,8 +10,20 @@ ro:
       crowdin: '<header>O mulțime de traduceri actualizate de către userii care folosesc <linkCrowdin> instrumentul crowdin</linkCrowdin>. Și tu poți ajuta!</header>'
       twitter: 'Puteţi urmări <linkTwitter>Foxtrick pe Twitter</linkTwitter> pentru a primi ultimele ştiri, actualizări şi anunţuri.'
       new: '<header>Module noi</header>'
+      promotion_reminder: '<module>AddPromotionReminder</module>: Adauga un buton pentru a crea un memento pentru ziua când pot promova un jucător de tineret'
       bugs: '<header>Erori reparate</header>'
+      https: Foxtrick ar trebui să funcţioneze corect, din nou, pe Hattrick Stage.
+      avatars: 'Avatarul jucătorului în <module>MatchOrderInterface</module>  va fi reîmprospătat automat, atunci când un nou jucător sosește la echipa ta.'
+      fans: 'Evoluția fanilor în <module>Fans</module> va fi calculată corect când echipa ta e promovată sau retrogradată.'
+      player_stats: '<module>PlayerStatsTrainingWeek</module> acum ar trebui să recunoască corect amicalele din week-end.'
       other: '<header>Alte schimbări</header>'
+      transfer_compare: 'MedianTransferPrice a fost redenumit în <module>TransferComparePlayers</module>. Am adăugat calcule ITC-ului şi abilitatea de a descărca mai multe date despre jucător de la CHPP. Arată diferenţa de preţ în pagina Istoricului Transferurilor a unui jucător.'
+      player_positions: 'Am îmbunătățit <module>PlayerPositionsEvaluations</module> și am adăugat multe opțiuni de unde poți alege să incluzi forma, rezistența, loialitatea, precum și experiența în calcul.'
+      country_list: '<module>CountryList</module> schimbă acum numele ţării în colecția de stegulețe. Este posibil să fie utilizate numele țării în Limba Engleză, decât numele nativ.'
+      best_player_position: 'Modulul BestPlayerPosition a fost fuzionat cu <module>PlayerPositionsEvaluations</module>.'
+      nt: Am reparat multe funcționalități care nu funcționau corect pentru selecționeri.
+      en-US: Adăugat suport adecvat pentru Limba Engleză (US).
+      code: S-a lucrat mult la codul Foxtrick-ului. Acest lucru ne perimte să găsim și să rezolvăm bug-urile, să îmbunătățim stabilitatea și să ușurăm dezvoltarea ulterioară a Foxtrick-ului.
       and_more: Diferite alte mici schimbări și reparații.
     0.14.0.3:
       important: '<header>Anunţuri importante</header>'

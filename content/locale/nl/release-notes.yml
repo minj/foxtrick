@@ -10,8 +10,20 @@ nl:
       crowdin: '<header>Heel veel vertalingsupdates van onze geweldige gebruikers zijn gemaakt met behulp van de <linkCrowdin>crowdin tool</linkCrowdin>. Jij kan ons ook helpen!</header>'
       twitter: 'Je kan <linkTwitter> Foxtrick volgen op Twitter </linkTwitter> om de laatste update, nieuwtjes en berichten te ontvangen.'
       new: '<header>Nieuwe modules</header>'
-      bugs: '<header>Fout herstel</header>'
+      promotion_reminder: '<module>AddPromotionReminder</module>: Voeg een knop toe om een herinnering in te stellen voor de dag waarop je een jeugdspeler gepromoveerd kan worden'
+      bugs: '<header>Herstelde fouten</header>'
+      https: Foxtrick zou nu weer goed moeten werken op Hattrick Stage.
+      avatars: 'Speler avatar cache in <module>MatchOrderInterface</module> zal nu automatisch worden vernieuwd wanneer nieuwe spelers bij je team komen.'
+      fans: 'Fan evolutie in <module>Fans</module> zal nu correct worden berekend wanneer jouw team promoveert of degradeert.'
+      player_stats: '<module>PlayerStatsTrainingWeek</module> herkent nu vriendschappelijke wedstrijden in het weekend correct.'
       other: '<header>Andere veranderingen</header>'
+      transfer_compare: 'MedianTransferPrice is omgedoopt tot <module>TransferComparePlayers</module>. TSI berekeningen en de mogelijkheid om meer spelergegevens op te halen via CHPP zijn toegevoegd. Toont prijsverschil op de transfergeschiedenis pagina.'
+      player_positions: 'Verbeterde <module>PlayerPositionsEvaluations</module> en vele opties toegevoegd waarmee je kunt kiezen om vorm, uithoudingsvermogen, clubtrouw, ervaring en blessure effecten in berekeningen mee te nemen.'
+      country_list: '<module>Landenlijst</module> kan nu landnamen in de vlaggenverzameling wijzigen. Het is mogelijk om Engelse landnamen te gebruiken in plaats van de oorspronkelijke.'
+      best_player_position: 'BestPlayerPosition module is toegevoegd aan <module>PlayerPositionsEvaluations</module>.'
+      nt: Veel functionaliteit gerepareerd die hiervoor niet goed werkte voor NT coaches.
+      en-US: Goede ondersteuning voor US English toegevoegd.
+      code: Veel onderhoud gedaan op de Foxtrick code. Hierdoor wisten we verborgen bugs te vinden en repareren, stabiliteit te verbeteren en de toekomstige ontwikkelingen gemakkelijker te maken.
       and_more: Diverse andere kleine veranderingen en correcties.
     0.14.0.3:
       important: '<header>Belangrijke aankondigingen</header>'

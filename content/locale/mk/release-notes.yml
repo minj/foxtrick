@@ -8,7 +8,9 @@ mk:
       other: '<header>Други промени</header>'
     0.14.0.2:
       other: '<header>Други промени</header>'
+      and_more: Разни други мали измени и поправки.
     0.14.0:
+      browsers: Поддршката за Opera 12 беше прекината. Safari 6 и Firefox 24 се минималните верзии на кои што работи Foxtrick.
       new: '<header>Нови модули</header>'
       other: '<header>Други промени</header>'
     0.13.0.1:

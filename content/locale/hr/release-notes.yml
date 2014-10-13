@@ -10,8 +10,20 @@ hr:
       crowdin: '<header>Mnogo prevoditeljskih nadogradnji od naših fantastičnih korisnika koristeći <linkCrowdin>crowdin alat</linkCrowdin>. I Vi možete pomoći!</header>'
       twitter: 'Možete pratiti <linkTwitter>Foxtrick na Twitteru</linkTwitter> kako biste dobili najnovije vijesti, ažuriranja i objave.'
       new: '<header>Novi moduli</header>'
+      promotion_reminder: '<module>AddPromotionReminder</module>: Dodajte gumb želite li stvoriti podsjetnik za dan kada možete promovirati juniora'
       bugs: '<header>Popravljene greške</header>'
+      https: Foxtrick bi opet trebao funkcionirati ispravno na Hattrick Stage.
+      avatars: 'Predmemorija avatara igrača u <module>MatchOrderInterface</module> će se odmah osvježiti automatski kada novi igrači stignu u vašu momčad.'
+      fans: 'Kretanje broja navijača u <module>Fans</module> će sada biti ispravno izračunato kada vaša momčad bude promovirana ili kada ispadne.'
+      player_stats: '<module>PlayerStatsTrainingWeek</module> sada bi trebao ispravno prepoznati vikend prijateljske utakmice.'
       other: '<header>Druge promjene</header>'
+      transfer_compare: 'MedianTransferPrice je preimenovano u <module>TransferComparePlayers</module>. Dodan TSI izračun i sposobnost za preuzimanje više igrača podataka iz CHPP. Pokazuje razlike cijena na stranici povijesti transfera igrača.'
+      player_positions: 'Poboljšani <module>PlayerPositionsEvaluations</module> i dodane mnoge opcije gdje možete uključiti obrazac, izdržljivost, privrženost, iskustvo i lakše ozlijeđene igrače u proračune.'
+      country_list: 'U <module>CountryList</module> sada možete promijeniti imena država u zbirci zastava. Moguće je koristiti engleska imena umjesto izvornih.'
+      best_player_position: 'BestPlayerPosition modul se spojio u <module>PlayerPositionsEvaluations</module>.'
+      nt: Popravljeno puno funkcionalnosti koje prije toga nisu radile ispravno za izbornike.
+      en-US: Dodana podrška za američki engleski jezik.
+      code: Puno više održavanja je učinjeno na Foxtrick kodu. To nam omogućuje da pronađemo i popravimo skrivene greške, poboljšamo stabilnost dodatka i olakšamo njegov daljnji razvoj.
       and_more: Razne druge male promjene i popravci.
     0.14.0.3:
       important: '<header>Važne obavijesti</header>'
