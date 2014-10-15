@@ -256,7 +256,7 @@ da:
       note_24: Hvis du har yderligere forslag så tøv ikke med at kontakte os. Vi gennemser også Hattrick Access fora.
     0.9.3:
       note_0: 'En masse sproglige opdateringer, fordi Foxtrick brugere er fantastiske. Mange tak. Vi håber du bliver ved med at give din bidrag via <linkCrowdin>http://www.crowdin.net</linkCrowdin>'
-      note_1: 'NEW: <module>YouthTwins</module>: Viser mængden af ​​mulige / markerede / ikke tvillinger på ungdomsspillere oversigtssiden for supportere (i forbindelse med Hattrick Youthclub)'
+      note_1: 'NEW: <module>YouthTwins</module>: Viser mængden af ​​mulige, markerede  og ikke egnet som tvillinger på oversigtssiden for ungdomsspillere. Kun for supportere (sammenholdt med Hattrick Youthclub)'
       note_2: '<module>MatchOrderInterface</module>: Mulighed for at vise spillere ansigter i sted for dragter for kommende og tidligere holdopstillinger  (aktiveret som standard)'
       note_3: '<module>MatchOrderInterface</module>: Mulighed for at deaktivere sidste kamp information og fremhævning af tilføjet turnerings kampe (aktiveret som standard)'
       note_4: '<module>MatchIncome</module>: Støtte til øgede billetpriser i sæsonen 49. Indkomst beregnes nu af billetpriserne, der var aktive, da kampen blev spillet.'

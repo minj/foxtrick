@@ -10,12 +10,29 @@ es-ES:
       crowdin: '<header>AMuchas actualizaciones de la traducción de nuestros asombrosos usuarios, mediante la <linkCrowdin>herramienta CrowdIn</linkCrowdin>. ¡Tu puedes contribuir también si quieres!</header>'
       twitter: 'Puedes seguir <linkTwitter>Foxtrick on Twitter</linkTwitter> para recibir las últimas noticias, actualizaciones y anuncios.'
       new: '<header>Nuevos módulos</header>'
+      promotion_reminder: '<module>AddPromotionReminder</module>: añade un botón para crear un recordatorio para el día cuando podeis promover un jugador juvenil'
       bugs: '<header>Corrección de errores</header>'
+      https: Foxtrick debería funcionar correctamente de nuevo en Hattrick Stage.
+      avatars: 'Caché de avatar de jugador en <module>MatchOrderInterface</module> ahora se actualizará automáticamente cuando lleguen nuevos jugadores a vuestro equipo.'
+      fans: 'Evolución de fanáticos en <module>ventiladores</module> ahora se calcularán correctamente cuando vuestro equipo es promovido o degradado.'
+      player_stats: '<module>PlayerStatsTrainingWeek</module> debería reconocer correctamente amistosos de fin de semana.'
       other: '<header>Otros cambios</header>'
+      transfer_compare: 'MedianTransferPrice fue renombrada a <module>TransferComparePlayers</module>. Cálculos de TSI añadidos y una habilidad para recoger más datos del jugador CHPP. Muestra la diferencia de precio en la página de la historia de transferencia de jugador.'
+      player_positions: 'Mejora <module>PlayerPositionsEvaluations</module> y añadidos muchas opciones donde puede elegir incluir forma, fuerza, lealtad, experiencia y efectos de lesiones en los cálculos.'
+      country_list: '<module>CountryList</module> ahora puede cambiar nombres de países en la colección de banderas. Es posible utilizar nombres en inglés en lugar de nativos.'
+      best_player_position: 'BestPlayerPosition módulo se fusionó con <module>PlayerPositionsEvaluations</module>.'
+      nt: Arregladas correctamente un montón de funcionalidades que previamente no estaban trabajando para los entrenadores de NT.
+      en-US: Añadido soporte adecuado para el idioma Inglés de Estados Unidos.
+      code: Se hizo mucho más mantenimiento al código Foxtrick. Esto nos permite encontrar y corregir errores ocultos, mejorar la estabilidad adicional y facilitar su desarrollo posterior.
       and_more: Otros pequeños cambios y correcciones.
     0.14.0.3:
       important: '<header>Anuncios importantes</header>'
+      sorry: "Disculpas por la última versión de 'corrección' que en realidad rompió más cosas de lo que arregló. Ésta versión debería ser mejor."
       bugs: '<header>Corrección de errores</header>'
+      street_teams: La introducción de equipos callejeros en el nuevo sistema de Copa había causado diversos problemas extraños que ahora se han reparado.
+      revert: 'Utilidades de <module>PlayerStatsExperience</module> y tiradores de penales en <module>MatchOrderInterface</module> ahora deben funcionar efectivamente.'
+      income: '<module>CoincidirIngresos</module> ahora debe mostrar la información correcta para todos los partidos. Por favor informar cualquier inconsistencia.'
+      stats: '<module>SeasonStats</module> se rompió debido a recientes cambios HT. Todos los temas fueron arreglados.'
     0.14.0.2:
       bugs: '<header>Corrección de errores</header>'
       challenge_link: 'Enlace desafiar en <module>TeamPopupLinks</module> ahora os lleva a la página del equipo y abre automáticamente el menú de retos.'
