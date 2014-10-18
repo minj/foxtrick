@@ -250,9 +250,9 @@ FoxtrickFirefox.prototype = {
 		try {
 			// lib scope integration
 			let libMap = {
-				'saveAs': 'FileSaver.js',
-				'YAML': 'yaml.js',
-				'IDBStore': 'idbstore.js',
+				saveAs: 'FileSaver.js',
+				YAML: 'yaml.js',
+				IDBStore: 'idbstore.js',
 			};
 			let scope = {
 				self: this.owner,
@@ -261,9 +261,10 @@ FoxtrickFirefox.prototype = {
 				module: { exports: true },
 				require: {}
 			};
-			for (let lib in libMap) {
-				Services.scriptloader.loadSubScript(PATH + 'lib/' + libMap[lib], scope, 'UTF-8');
-				this.owner.Foxtrick[lib] = scope.module.exports;
+			for (let i in libMap) {
+				let lib = libMap[i];
+				Services.scriptloader.loadSubScript(PATH + 'lib/' + lib, scope, 'UTF-8');
+				this.owner.Foxtrick[i] = scope.module.exports;
 			}
 		}
 		catch (e) {
@@ -272,12 +273,12 @@ FoxtrickFirefox.prototype = {
 		}
 		// loading Foxtrick into window.Foxtrick
 		for (var i = 0; i < this.scripts.length; ++i) {
+			var script = this.scripts[i];
 			try {
-				Services.scriptloader.loadSubScript(PATH + this.scripts[i], this.owner, 'UTF-8');
+				Services.scriptloader.loadSubScript(PATH + script, this.owner, 'UTF-8');
 			}
 			catch (e) {
-				e.message = 'Foxtrick ERROR: ' + this.scripts[i] + ': ' + e.message + '\n' +
-					e.stack + '\n';
+				e.message = 'Foxtrick ERROR: ' + script + ': ' + e.message + '\n' + e.stack + '\n';
 				Services.console.logStringMessage(e);
 			}
 		}
@@ -409,6 +410,7 @@ FoxtrickFirefox.prototype = {
 
 	init: function() {
 		// load foxtrick files
+		// debugger;
 		this.loadScript();
 		// add ui
 		this.loadUI();
