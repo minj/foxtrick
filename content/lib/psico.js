@@ -23,7 +23,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 if (!Foxtrick)
-	var Foxtrick = {};
+	var Foxtrick = this.Foxtrick;
 
 Foxtrick.psico = {
 	/**

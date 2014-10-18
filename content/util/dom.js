@@ -5,7 +5,7 @@
  */
 
 if (!Foxtrick)
-	var Foxtrick = {};
+	var Foxtrick = this.Foxtrick;
 
 /**
  * Create an element with Foxtrick feature highlight enabled.

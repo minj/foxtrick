@@ -18,7 +18,7 @@
  */
 
 if (!Foxtrick)
-	var Foxtrick = {};
+	var Foxtrick = this.Foxtrick;
 
 Foxtrick.ht_pages = {
 	// following are mainly used for information gathering. keep on top
