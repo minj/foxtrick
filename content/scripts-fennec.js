@@ -4,8 +4,8 @@
  * content script inject for fennec
  */
 
-// if (!this.Foxtrick)
-	// var Foxtrick = {};
+if (!Foxtrick)
+	var Foxtrick = {};
 if (!Foxtrick.loader)
 	Foxtrick.loader = {};
 if (!Foxtrick.loader.background)

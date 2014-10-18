@@ -6,15 +6,15 @@
 
 
 if (!Foxtrick)
-	var Foxtrick = this.Foxtrick;
+	var Foxtrick = {};
 if (!Foxtrick.loader)
 	Foxtrick.loader = {};
 
 if (Foxtrick.platform == 'Android') {
 
 	// window in content fennec script is named 'content'
-	// if (!window)
-		// var window = content;
+	if (!window)
+		var window = content;
 
 	// fennec tab load. starts the content instances for fennec (one per tab. persistant)
 	Foxtrick.loader.fennec = {

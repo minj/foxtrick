@@ -5,7 +5,7 @@
  */
 
 if (!Foxtrick)
-	var Foxtrick = this.Foxtrick;
+	var Foxtrick = {};
 
 // global change listener.
 // uses setTimout to queue the change function call after

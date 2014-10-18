@@ -6,7 +6,7 @@
  */
 
 if (!Foxtrick)
-	var Foxtrick = this.Foxtrick;
+	var Foxtrick = {};
 
 Foxtrick.modules['PlayerPositionsEvaluations'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,

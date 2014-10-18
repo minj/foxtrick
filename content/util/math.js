@@ -5,7 +5,7 @@
  */
 
 if (!Foxtrick)
-	var Foxtrick = this.Foxtrick;
+	var Foxtrick = {};
 
 Foxtrick.Math = {};
 /**

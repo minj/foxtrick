@@ -13,7 +13,7 @@
  */
 
 if (!Foxtrick)
-	var Foxtrick = this.Foxtrick;
+	var Foxtrick = {};
 if (!Foxtrick.Pages)
 	Foxtrick.Pages = {};
 

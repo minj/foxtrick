@@ -6,7 +6,7 @@
  */
 
 if (!Foxtrick)
-	var Foxtrick = this.Foxtrick;
+	var Foxtrick = {};
 
 Foxtrick.XMLData = {
 	MODULE_NAME: 'XMLData',

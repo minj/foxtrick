@@ -7,7 +7,7 @@
 'use strict';
 
 if (!Foxtrick)
-	var Foxtrick = this.Foxtrick;
+	var Foxtrick = {};
 if (!Foxtrick.util)
 	Foxtrick.util = {};
 

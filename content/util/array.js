@@ -7,7 +7,7 @@
  */
 
 if (!Foxtrick)
-	var Foxtrick = this.Foxtrick;
+	var Foxtrick = {};
 
 /**
  * Convert an array-like object to an array

@@ -5,7 +5,7 @@
  */
 
 if (!Foxtrick)
-	var Foxtrick = this.Foxtrick;
+	var Foxtrick = {};
 
 /** Remove any occurences of tags ('<something>') from text */
 Foxtrick.stripHTML = function(text) {

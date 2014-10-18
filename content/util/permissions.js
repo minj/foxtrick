@@ -7,7 +7,7 @@
  */
 
 if (!Foxtrick)
-	var Foxtrick = this.Foxtrick;
+	var Foxtrick = {};
 
 (function() {
 	Foxtrick.containsPermission = function(types, callback){

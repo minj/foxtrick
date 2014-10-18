@@ -6,7 +6,7 @@
  */
 
 if (!Foxtrick)
-	var Foxtrick = this.Foxtrick;
+	var Foxtrick = {};
 
 // background
 if (Foxtrick.chromeContext() == 'background') {

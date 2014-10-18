@@ -6,7 +6,7 @@
  */
 
 if (!Foxtrick)
-	var Foxtrick = this.Foxtrick = {};
+	var Foxtrick = {};
 
 
 // sandboxed object for chrome, safari and fennec
@@ -584,7 +584,7 @@ Foxtrick.moduleCategories = {
 })();
 
 if (Foxtrick.arch === 'Gecko') {
-	this.Cc = Components.classes, this.Ci = Components.interfaces, this.Cu = Components.utils;
+	var Cc = Components.classes, Ci = Components.interfaces, Cu = Components.utils;
 }
 
 // this is external URL for builds
