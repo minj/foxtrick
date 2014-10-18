@@ -257,12 +257,12 @@ Foxtrick.loader.background.contentScriptManager = {
 	load: function() {
 		// load content scripts into content pages. those start running in loader-fennec
 		for (var i = 0; i < this.contentScripts.length; ++i) {
+			var script = this.contentScripts[i];
 			try {
-				messageManager.loadFrameScript('chrome://foxtrick/content/' +
-				                               this.contentScripts[i], true);
+				messageManager.loadFrameScript('chrome://foxtrick/content/' + script, true);
 			}
 			catch (e) {
-				e.message = 'Foxtrick ERROR: ' + e.message;
+				e.message = 'Foxtrick ERROR: ' + script + ': ' + e.message + '\n' + e.stack + '\n';
 				Services.console.logStringMessage(e);
 			}
 		}
@@ -274,8 +274,15 @@ Foxtrick.loader.background.contentScriptManager = {
 		Foxtrick.saveAs.unload();
 
 		// unload content scripts
-		for (var i = 0; i < this.contentScripts.length; ++i)
-			messageManager.removeDelayedFrameScript('chrome://foxtrick/content/' +
-			                                        this.contentScripts[i]);
+		for (var i = 0; i < this.contentScripts.length; ++i) {
+			var script = this.contentScripts[i];
+			try {
+				messageManager.removeDelayedFrameScript('chrome://foxtrick/content/' + script);
+			}
+			catch (e) {
+				e.message = 'Foxtrick ERROR: ' + script + ': ' + e.message + '\n' + e.stack + '\n';
+				Services.console.logStringMessage(e);
+			}
+		}
 	},
 };
