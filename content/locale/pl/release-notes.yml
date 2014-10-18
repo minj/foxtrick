@@ -10,8 +10,14 @@ pl:
       crowdin: '<header>Wiele tłumaczeń pochodzi od naszych niesamowitych użytkowników korzystających z <linkCrowdin>narzędzia crowdin</linkCrowdin>. Ty też możesz pomóc!</header>'
       twitter: 'Możesz śledzić <linkTwitter>Foxtrick na Twitterze</linkTwitter>, aby otrzymywać najnowsze wiadomości, aktualizacje i ogłoszenia.'
       new: '<header>Nowe moduły</header>'
+      promotion_reminder: '<module>AddPromotionReminder</module>: dodaje przycisk do tworzenia przypomnienia dla  dnia, kiedy można promować juniora'
       bugs: '<header>Poprawki błędów</header>'
+      https: Foxtrick ponownie powinien działać poprawnie na Hattrick Stage.
+      avatars: 'Pamięć podręczna awatarów zawodników w  <module>MatchOrderInterface</module> będzie teraz automatycznie odświeżana po przyjściu nowych graczy do zespołu.'
+      fans: 'Zmiana ilości fanów w <module>Fans</module> będzie obliczana poprawnie, gdy zespół zostanie promowany lub zdegradowanu.'
+      player_stats: '<module>PlayerStatsTrainingWeek</module> powinien teraz poprawnie rozpoznać weekendowe mecze towarzyskie.'
       other: '<header>Inne zmiany</header>'
+      best_player_position: 'Moduł BestPlayerPosition został scalony z <module>PlayerPositionsEvaluations</module>.'
       and_more: Różne inne małe zmiany i poprawki.
     0.14.0.3:
       important: '<header>Ważne ogłoszenia</header>'
