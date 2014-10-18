@@ -113,7 +113,7 @@ if (typeof(safari) == 'object') {
 
 			sendRequest: (function() {
 				// The function we'll return at the end of all this
-				function theFunction(data, callback) {
+				var theFunction = function(data, callback) {
 					var callbackToken = 'callback' + Math.random();
 
 					// Listen for a response for our specific request token.
@@ -124,12 +124,12 @@ if (typeof(safari) == 'object') {
 						data: data,
 						callbackToken: callbackToken
 					});
-				}
+				};
 
 				// Make a listener that, when it hears sendResponse for the given
 				// callbackToken, calls callback(resultData) and deregisters the
 				// listener.
-				function addOneTimeResponseListener(callbackToken, callback) {
+				var addOneTimeResponseListener= function(callbackToken, callback) {
 
 					var responseHandler = function(messageEvent) {
 						if (messageEvent.name != 'response')
@@ -142,7 +142,7 @@ if (typeof(safari) == 'object') {
 					};
 
 					addListener(responseHandler);
-				}
+				};
 
 				return theFunction;
 			})(),
@@ -171,7 +171,7 @@ if (typeof(safari) == 'object') {
 			// sending to just all tabs
 			broadcastMessage: (function() {
 				// The function we'll return at the end of all this
-				function theFunction(data, callback) {
+				var theFunction = function(data, callback) {
 					for (var i = 0; i < safari.application.activeBrowserWindow.tabs.length; ++i) {
 						var callbackToken = 'callback' + Math.random();
 
@@ -184,12 +184,12 @@ if (typeof(safari) == 'object') {
 							callbackToken: callbackToken
 						});
 					}
-				}
+				};
 
 				// Make a listener that, when it hears sendResponse for the given
 				// callbackToken, calls callback(resultData) and deregisters the
 				// listener.
-				function addOneTimeResponseListener(callbackToken, callback) {
+				var addOneTimeResponseListener = function(callbackToken, callback) {
 
 					var responseHandler = function(messageEvent) {
 						if (messageEvent.name != 'response')
@@ -203,7 +203,7 @@ if (typeof(safari) == 'object') {
 					};
 
 					addListener(responseHandler);
-				}
+				};
 
 				return theFunction;
 			})(),
@@ -256,12 +256,12 @@ else if (typeof(chrome) == 'object') {
 			// send message to all registered tabs
 			broadcastMessage: (function() {
 				// The function we'll return at the end of all this
-				function theFunction(data, callback) {
+				var theFunction = function(data, callback) {
 					var i;
 					for (i in Foxtrick.SB.tabs.tab) {
 						chrome.tabs.sendRequest(Number(i), data, callback);
 					}
-				}
+				};
 
 				return theFunction;
 			})(),
@@ -299,7 +299,7 @@ else if (typeof(chrome) == 'object') {
 	else if (Foxtrick.chromeContext() == 'background') {
 		(function() {
 			// request tabs to confirm being alive
-			function updateTabList(senderid) {
+			var updateTabList = function(senderid) {
 				var tabListCopy = Foxtrick.SB.tabs.tab, i;
 				// clear list and add alive tabs again
 				Foxtrick.SB.tabs.tab = {};
@@ -423,7 +423,7 @@ else {
 
 				sendRequest: (function() {
 					// The function we'll return at the end of all this
-					function theFunction(data, callback) {
+					var theFunction = function(data, callback) {
 						var callbackToken = 'callback' + Math.random();
 
 						// Listen for a response for our specific request token.
@@ -438,12 +438,12 @@ else {
 							data: data,
 							callbackToken: callbackToken
 						});
-					}
+					};
 
 					// Make a listener that, when it hears sendResponse for the given
 					// callbackToken, calls callback(resultData) and deregisters the
 					// listener.
-					function addOneTimeResponseListener(callbackToken, callback) {
+					var addOneTimeResponseListener = function(callbackToken, callback) {
 
 						var responseHandler = function(messageEvent) {
 							try {
