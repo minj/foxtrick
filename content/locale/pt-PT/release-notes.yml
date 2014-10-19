@@ -8,9 +8,23 @@ pt-PT:
     0.15.0:
       important: '<header>Avisos Importantes</header>'
       crowdin: '<header>Várias atualizações nas traduções dos nossos incríveis utilizadores através de <linkCrowdin>crowdin tool</linkCrowdin>. Também pode ajudar!</header>'
+      twitter: 'Pode seguir <linkTwitter>Foxtrick no Twitter</linkTwitter> para receber as últimas novidades, atualizaçõess, e informações.'
       new: '<header>Módulos novos</header>'
+      promotion_reminder: '<module>AddPromotionReminder</module>: Adicionar um botão para criar um lembrete para o dia quando pode promover um jogador júnior'
       bugs: '<header>Correções de Erros</header>'
+      https: Foxtrick deve novamente estar a funcionar corretamente no Hattrick Stage.
+      avatars: 'Cache dos avatar dos jogadores em <module>MatchOrderInterface</module> será agora atualizado automaticamente quando novos jogadores chegam à equipa.'
+      fans: 'Evolução dos adeptos em <module>Fans</module> será agora calculada corretamente quando a sua equipa é promovida ou despromovida.'
+      player_stats: '<module>PlayerStatsTrainingWeek</module> deverá agora reconhecer corretamente amigáveis de fim de semana.'
       other: '<header>Outras alterações</header>'
+      transfer_compare: 'MedianTransferPrice foi renomeado para <module>TransferComparePlayers</module>. Adicionados cálculos de TSI e capacidade para recolher mais dados do jogador via CHPP. Mostra diferença de preços na página do histórico de transferências do jogador.'
+      player_positions: 'Melhorado <module>PlayerPositionsEvaluations</module> e adicionadas muitas opções onde pode escolher incluir forma, resistência, lealdade, experiência e efeitos de lesões nos cálculos.'
+      country_list: '<module>CountryList</module> pode agora mostras nomes dos países na coleção de bandeiras. É possível usar nomes em Inglês em vez da língua nativa.'
+      best_player_position: 'Módulo BestPlayerPosition foi integrado no <module>PlayerPositionsEvaluations</module>.'
+      nt: Corrigidas várias funcionalidades que não estavam a funcionar corretamente para os selecionadores nacionais.
+      en-US: Adicionado suporte para a língua US English.
+      code: Muita mais manutenção foi efetuada no código Foxtrick. Isto permite-nos encontrar e corrigir erros escondidos, melhorar a estabilidade dos extras e tornar mais fáceis futuros desenvolvimentos.
+      and_more: Várias outras pequenas correções.
     0.14.0.3:
       important: '<header>Avisos Importantes</header>'
       sorry: 'Pedimos desculpa pelo último lançamento de "correção de erros" que na realidade criou mais problemas do que os que resolveu. Esta deve ser melhor.'
@@ -31,6 +45,7 @@ pt-PT:
     0.14.0:
       important: '<header>Avisos Importantes</header>'
       crowdin: '<header>Várias atualizações nas traduções dos nossos incríveis utilizadores através de <linkCrowdin>crowdin tool</linkCrowdin>. Também pode ajudar!</header>'
+      twitter: 'Pode seguir <linkTwitter>Foxtrick no Twitter</linkTwitter> para receber as últimas novidades, atualizaçõess, e informações.'
       new: '<header>Módulos novos</header>'
       series_transfers: '<module>SeriesTransfers</module>: Mostra uma lista com os jogadores atualmente à venda na Série.'
       bugs: '<header>Correções de Erros</header>'
@@ -41,6 +56,7 @@ pt-PT:
       other: '<header>Outras alterações</header>'
     0.13.0:
       important: '<header>Avisos Importantes</header>'
+      twitter: 'Pode seguir <linkTwitter>Foxtrick no Twitter</linkTwitter> para receber as últimas novidades, atualizaçõess, e informações.'
       crowdin: '<header>Várias atualizações nas traduções dos nossos incríveis utilizadores através de <linkCrowdin>crowdin tool</linkCrowdin>. Também pode ajudar!</header>'
       new: '<header>Módulos novos</header>'
       other: '<header>Outras alterações</header>'
