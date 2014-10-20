@@ -355,7 +355,7 @@ else {
 	}
 
 	if (Foxtrick.platform == 'Android') {
-		Foxtrick.DataPath = 'chrome://foxtrick/content/res/';
+		Foxtrick.DataPath = 'chrome://foxtrick_resources/content/';
 
 		if (typeof(addMessageListener) !== 'undefined' || typeof(messageManager) !== 'undefined') {
 			var addListener = function(name, handler) {
