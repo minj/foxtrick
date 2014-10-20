@@ -33,8 +33,12 @@ def xml_to_python(el, parent):
 		dest[key] = el.get(key)
 
 	if len(childs) == 0 and len(attrs) == 0:
-		# text-only element
-		dest = text
+		# text-only element: no dest
+		if type(parent[tag]) is not list:
+			parent[tag] = text
+		else:
+			parent[tag][-1] = text
+
 	elif text:
 		# add textContent
 		dest['textContent'] = text
