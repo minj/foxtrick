@@ -65,10 +65,6 @@ html[dir="ltr"][data-theme="simple"] #shortcuts {
 	right:11px !important;
 }
 
-html[dir="rtl"][data-theme="standard"] #sidebar {
-	margin-left: 14px !important;
-}
-
 /* add whitespace below header */
 html[data-theme="standard"] #menu {
 	margin-bottom: 6px !important;

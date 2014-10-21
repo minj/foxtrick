@@ -25,7 +25,3 @@ html[dir="ltr"] #content #mainWrapper {
 html[dir="rtl"] #content #mainWrapper {
 	float:left;
 }
-
-html[dir="rtl"] #sidebar {
-	margin-right: 10px;
-}
