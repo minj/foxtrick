@@ -75,34 +75,34 @@ Foxtrick.entry.contentScriptInit = function(data) {
 		Foxtrick.modules[i].MODULE_NAME = i;
 
 	if (Foxtrick.platform != 'Android') {
-			Foxtrick.Prefs._prefs_chrome_user = data._prefs_chrome_user;
-			Foxtrick.Prefs._prefs_chrome_default = data._prefs_chrome_default;
+		Foxtrick.Prefs._prefs_chrome_user = data._prefs_chrome_user;
+		Foxtrick.Prefs._prefs_chrome_default = data._prefs_chrome_default;
 
-			Foxtrick.L10n.properties_default = data.properties_default;
-			Foxtrick.L10n.properties = data.properties;
-			Foxtrick.L10n.screenshots_default = data.screenshots_default;
-			Foxtrick.L10n.screenshots = data.screenshots;
-			Foxtrick.L10n.plForm_default = data.plForm_default;
-			Foxtrick.L10n.plForm = data.plForm;
+		Foxtrick.L10n.properties_default = data.properties_default;
+		Foxtrick.L10n.properties = data.properties;
+		Foxtrick.L10n.screenshots_default = data.screenshots_default;
+		Foxtrick.L10n.screenshots = data.screenshots;
+		Foxtrick.L10n.plForm_default = data.plForm_default;
+		Foxtrick.L10n.plForm = data.plForm;
+	}
+	else {
+		// fennec can access them from context, but they still need to get initilized
+		// xmldata has nothing to init only fetch
+		var coreModules = [Foxtrick.Prefs, Foxtrick.L10n];
+		for (var i = 0; i < coreModules.length; ++i) {
+			if (typeof(coreModules[i].init) == 'function')
+				coreModules[i].init();
 		}
-		else {
-			// fennec can access them from context, but they still need to get initilized
-			// xmldata has nothing to init only fetch
-			var coreModules = [Foxtrick.Prefs, Foxtrick.L10n];
-			for (var i = 0; i < coreModules.length; ++i) {
-				if (typeof(coreModules[i].init) == 'function')
-					coreModules[i].init();
-			}
-		}
-		for (i in data.htLangJSON) {
-			Foxtrick.L10n.htLanguagesJSON[i] = JSON.parse(data.htLangJSON[i]);
-		}
+	}
+	for (i in data.htLangJSON) {
+		Foxtrick.L10n.htLanguagesJSON[i] = JSON.parse(data.htLangJSON[i]);
+	}
 
-		Foxtrick.XMLData.htCurrencyJSON = JSON.parse(data.currencyJSON);
-		Foxtrick.XMLData.aboutJSON = JSON.parse(data.aboutJSON);
-		Foxtrick.XMLData.worldDetailsJSON = JSON.parse(data.worldDetailsJSON);
-		Foxtrick.XMLData.League = data.league;
-		Foxtrick.XMLData.countryToLeague = data.countryToLeague;
+	Foxtrick.XMLData.htCurrencyJSON = JSON.parse(data.currencyJSON);
+	Foxtrick.XMLData.aboutJSON = JSON.parse(data.aboutJSON);
+	Foxtrick.XMLData.worldDetailsJSON = JSON.parse(data.worldDetailsJSON);
+	Foxtrick.XMLData.League = data.league;
+	Foxtrick.XMLData.countryToLeague = data.countryToLeague;
 };
 
 // called on browser load and after preferences changes (background side for sandboxed, fennec)
