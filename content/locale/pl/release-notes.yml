@@ -14,10 +14,16 @@ pl:
       bugs: '<header>Poprawki błędów</header>'
       https: Foxtrick ponownie powinien działać poprawnie na Hattrick Stage.
       avatars: 'Pamięć podręczna awatarów zawodników w  <module>MatchOrderInterface</module> będzie teraz automatycznie odświeżana po przyjściu nowych graczy do zespołu.'
-      fans: 'Zmiana ilości fanów w <module>Fans</module> będzie obliczana poprawnie, gdy zespół zostanie promowany lub zdegradowanu.'
+      fans: 'Zmiana ilości fanów w <module>Fans</module> będzie obliczana poprawnie, gdy zespół zostanie promowany lub zdegradowany.'
       player_stats: '<module>PlayerStatsTrainingWeek</module> powinien teraz poprawnie rozpoznać weekendowe mecze towarzyskie.'
       other: '<header>Inne zmiany</header>'
+      transfer_compare: 'MedianTransferPrice został przemianowany na <module>TransferComparePlayers</module>. Dodano obliczenia TSI oraz możliwość pobrania większej ilości danych gracza z CHPP. Pokazuje różnicę w cenie na stronie historii transferów danego gracza.'
+      player_positions: 'Usprawniono <module>PlayerPositionsEvaluations</module> i dodano wiele opcji, dzięki którym w obliczeniach można brać pod uwagę efekty formy, kondycji, lojalności, doświadczenia i lekkich kontuzji.'
+      country_list: '<module>CountryList</module> może teraz zmienić nazwy krajów w kolekcji flag. Możliwe jest korzystanie z angielskich nazw krajów zamiast nazw rodzimych.'
       best_player_position: 'Moduł BestPlayerPosition został scalony z <module>PlayerPositionsEvaluations</module>.'
+      nt: Naprawiono wiele funkcji, które do tej pory nie działały poprawnie dla trenerów drużyn narodowych.
+      en-US: Dodano odpowiednie wsparcie dla wersji amerykańskiej języka angielskiego.
+      code: "Znacznie usprawniono kod Foxtrick'a, co pozwala znajdować i naprawiać ukryte błędy, poprawia stabilność dodatków i ułatwia jego dalszy rozwój."
       and_more: Różne inne małe zmiany i poprawki.
     0.14.0.3:
       important: '<header>Ważne ogłoszenia</header>'
