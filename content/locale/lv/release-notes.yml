@@ -1,7 +1,41 @@
 ---
 lv:
   versions:
+    0.15.0:
+      important: '<header>Svarīgi paziņojumi</header>'
+      bugs: '<header>Kļūdu labojumi</header>'
+      other: '<header>Citas izmaiņas</header>'
+      and_more: Dažādas citas nelielas izmaiņas un labojumi.
+    0.14.0.3:
+      important: '<header>Svarīgi paziņojumi</header>'
+      bugs: '<header>Kļūdu labojumi</header>'
+    0.14.0.2:
+      bugs: '<header>Kļūdu labojumi</header>'
+      other: '<header>Citas izmaiņas</header>'
+      and_more: Dažādas citas nelielas izmaiņas un labojumi.
+    0.14.0.1:
+      important: '<header>Svarīgi paziņojumi</header>'
+      bugs: '<header>Kļūdu labojumi</header>'
+    0.14.0:
+      important: '<header>Svarīgi paziņojumi</header>'
+      bugs: '<header>Kļūdu labojumi</header>'
+      other: '<header>Citas izmaiņas</header>'
+      and_more: Dažādas citas nelielas izmaiņas un labojumi.
+    0.13.0.1:
+      bugs: '<header>Kļūdu labojumi</header>'
+      other: '<header>Citas izmaiņas</header>'
+      and_more: Dažādas citas nelielas izmaiņas un labojumi.
+    0.13.0:
+      important: '<header>Svarīgi paziņojumi</header>'
+      other: '<header>Citas izmaiņas</header>'
+      bugs: '<header>Kļūdu labojumi</header>'
+    0.12.2:
+      note_11: '<header>Kļūdu labojumi</header>'
+    0.12.1.1:
+      note_0: Tulkošanas atjauninājumi.
     0.11.0:
+      note_12: '<header>Kļūdu labojumi</header>'
+      note_18: BackgroundFixed modulis tika noņemts.
       note_31: Pievienots atbalsts www.hattrick.fm
       note_32: 'No <module>Links</module> moduļa zzvāktas neeksistējošās ārējās saites. Ja iespējams, tiks izmantotas ārējās ikonas.'
       note_33: '<header>Pārlūku atbalsts</header>'

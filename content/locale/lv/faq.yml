@@ -5,6 +5,14 @@ lv:
       question: Kā es varu stilizēt FoxTrick?
     sound-format:
       question: Kuri failu formāti ir pieļaujami, lietojot brīdinājuma skaņas?
+      answer: |
+        <p>Dažādas pārlūkprogrammas pieļauj dažādus failu formātus. Lūk, saraksts (neuzskaitītie formāti var strādāt, ja ir uzstādīti attiecīgie spraudņi, piemēram, lai Quicktime atskaņotu mp3 iekš Firefox):</p>
+        
+        <ul>
+        <li>Mozilla: wav, ogg</li>
+        <li>Safari (var būt nepieciešams Quicktime): wav, mp3</li>
+        <li>Chrome: ogg, mp3, wav</li><li>Opera: wav, ogg</li>
+        </ul>
     sound-location:
       question: Kāds ir brīdinājuma skaņu lieluma ierobežojums un kur tās var atrast?
     authorize:
