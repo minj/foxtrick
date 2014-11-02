@@ -10,8 +10,20 @@ it:
       crowdin: '<header>Sono disponibili tante nuove traduzioni per i nostri utenti su <linkCrowdin>crowdin tool</linkCrowdin>. Anche tu puoi dare una mano!</header>'
       twitter: 'Puoi seguire <linkTwitter>Foxtrick su Twitter</linkTwitter> per ricevere le ultime notizie, aggiornamenti e annunci.'
       new: '<header>Nuovi moduli</header>'
+      promotion_reminder: '<module>AddPromotionReminder</module>: aggiunge un pulsante per creare un promemoria per il giorno in cui è possibile promuovere un giocatore dalle giovanili'
       bugs: '<header>Correzioni di bug</header>'
+      https: Foxtrick dovrebbe nuovamente funzionare correttamente con lo stage di Hattrick.
+      avatars: "La cache dell'avatar del giocatore in <module>MatchOrderInterface</module> verrà ora aggiornata automaticamente quando nuovi giocatori arrivano nella tua squadra."
+      fans: 'Le variazioni del club tifosi in <module>tifosi</module> saranno ora calcolate correttamente quando la tua squadra è promossa o retrocessa.'
+      player_stats: '<module>PlayerStatsTrainingWeek</module> ora dovrebbe riconoscere correttamente le amichevoli del fine settimana.'
       other: '<header>Altre modifiche</header>'
+      transfer_compare: 'MedianTransferPrice è stato rinominato in <module>TransferComparePlayers</module>. Aggiunto il calcolo del TSI e la capacità di recuperare più dati dei giocatori dal server CHPP. Mostra la differenza di prezzo nella pagina storia di giocatore trasferimento.'
+      player_positions: 'Migliorato <module>PlayerPositionsEvaluations</module> e aggiunte molte opzioni con le quali è possibile scegliere di includere gli effetti della forma, resistenza, fedeltà, esperienza e contusioni nei calcoli.'
+      country_list: '<module>CountryList</module> ora possibile modificare i nomi dei paese nella raccolta bandiera. È possibile utilizzare nomi inglesi invece di quelli nativi.'
+      best_player_position: 'Il modulo BestPlayerPosition è stato incluso in <module>PlayerPositionsEvaluations</module>.'
+      nt: Ripristinate diverse funzionalità che non erano funzionanti correttamente per gli allenatori delle nazionali.
+      en-US: Aggiunto il supporto corretto per la lingua inglese degli Stati Uniti.
+      code: Parecchia manutenzione è stata fatta sul codice Foxtrick. Questo ci permette di trovare e correggere i bug nascosti, migliorare la stabilità del componente aggiuntivo e facilitare il suo ulteriore sviluppo.
       and_more: Varie altre piccole modifiche e correzioni.
     0.14.0.3:
       important: '<header>Avvisi importanti</header>'
