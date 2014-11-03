@@ -939,6 +939,23 @@
 		"countryidranges": [[28, 28]],
 		"nationalityranges": [[28, 28]]
 	},
+	"tnt_youth": {
+		"youthlink": {
+			"url": "http://www.tnt-youth.ca.vu",
+			"filters": ["owncountryid"]
+		},
+		"youthplayerlistlink": {
+			"url": "http://www.tnt-youth.ca.vu",
+			"filters": ["owncountryid"]
+		},
+		"youthplayerdetaillink": {
+			"url": "http://www.tnt-youth.ca.vu/addplayer.php",
+			"filters": ["owncountryid"]
+		},
+		"owncountryidranges": [[110, 110]],
+		"title": "Trinidad & Tobago Youth Academy Guide",
+		"img": "http://www.dasmagischedreieck.de/DivBilder/ateam.ico"
+	},
 	"ht-ys": {
 		"youthleaguelink": {
 			"url": "http://www.ht-ys.org/?league_id=[youthleagueid]"
