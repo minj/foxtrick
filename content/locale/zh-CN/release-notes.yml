@@ -5,6 +5,22 @@ zh-CN:
       note_0: '请查阅 Google Code 上的<linkSVN>版本历史</linkSVN>.'
     beta:
       note_0: '这是下一个版本的beta测试版。请在我们超级容易的大众翻译页面 <linkCrowdin>crowdin.net</linkCrowdin>帮助翻译此版本。'
+    0.15.0:
+      twitter: '你可以关注<linkTwitter>Foxtrick on Twitter</linkTwitter> 接收最新的新闻、 更新和公告。'
+      new: '<header>新的模块</header>'
+      promotion_reminder: '<module>增加晋升提醒</module>： 添加一个按钮以创建提醒，当你可以提升青年球员的那天进行提醒'
+      bugs: '<header>Bug 修复</header>'
+      https: Foxtrick 应该可以再次在Hattrick测试服务器上正常工作。
+      avatars: '在<module>MatchOrderInterface</module>中球员头像的缓存，将会在新球员加入你的队伍时自动刷新。'
+      fans: '在你的球队升级或者降级时，<module>Fans</module>中球迷的变化将会正确计算。'
+      player_stats: '<module>PlayerStatsTrainingWeek</module> 现在应该能正确辨识出周末友谊赛。'
+      transfer_compare: 'MedianTransferPrice 更名为 <module>TransferComparePlayers</module>。添加 TSI 计算和从CHPP中获取更多球员数据的能力。显示球员转会历史记录页面的价格差异。'
+      player_positions: '改进的 <module>PlayerPositionsEvaluations</module> 增加了许多选项，在那里你可以选择将状态、 体能、 忠诚度、 经验和瘀伤的影响纳入计算。'
+      country_list: '<module>CountryList</module> 现在可以在旗帜收集中更改国家/地区名称。可以使用英语的国家名称而不是本土的名称。'
+      best_player_position: 'BestPlayerPosition 模块被并入 <module>PlayerPositionsEvaluations</module>。'
+      nt: 为 NT 教练修正了大量以前没有正确工作的功能。
+      en-US: 添加了对美式英语语言的适当支持。
+      code: Foxtrick 代码进行了更多的维护。这使我们能够找到和修复隐藏的 bug， 提高插件稳定性和增进Foxtrick进一步的发展。
     0.12.0:
       note_2: 对许多模块的大量修正，以适应新的Hattrick商店推出。
     0.10.0:
