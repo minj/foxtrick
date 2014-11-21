@@ -163,13 +163,13 @@
 			"approved": "0"
 		},
 		{
-			"approved_progress": "99",
+			"approved_progress": "100",
 			"code": "fr",
 			"name": "French",
 			"phrases": "1811",
 			"translated_progress": "100",
 			"translated": "1811",
-			"approved": "1808"
+			"approved": "1811"
 		},
 		{
 			"approved_progress": "0",
