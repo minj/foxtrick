@@ -224,13 +224,6 @@
 		"title": "htms predictor",
 		"img": "http://www.fantamondi.it/HTMS/images/icon.ico"
 	},
-	"htloto": {
-		"teamlink": {
-			"url": "http://www.htloto.org/"
-		},
-		"title": "HTLoto",
-		"img": "http://www.htloto.org/publicmedia/original/175/en/favicon.ico"
-	},
 	"ht_deutschland": {
 		"leaguelink": {
 			"url": "http://www.ht-deutschland.de/liga.php?leagueLevelUnitName=[leaguename]&leagueLevel=[levelnum]",
@@ -617,13 +610,6 @@
 		},
 		"title": "Gham live",
 		"img": "http://gham.hattrickitalia.org/favicon.ico"
-	},
-	"ht_bet": {
-		"leaguelink": {
-			"url": "http://www.ht-bet.org/predict.php?league_id=[leagueid]"
-		},
-		"title": "HT-bet",
-		"img": "http://www.ht-bet.org/favicon.ico"
 	},
 	"frenchtracker":  {
 		"img": "http://www.ht-fff.org/favicon.ico",
