@@ -153,6 +153,8 @@ Foxtrick.modules['RatingsDisplay'] = {
 				var averagesMax = [0, 0, 0, 0]; // total, def, mid, att
 				var averagesAvg = [0, 0, 0, 0]; // total, def, mid, att
 				var starsTable = mainBody.getElementsByTagName('table')[1];
+				if (!starsTable)
+					return;
 				Foxtrick.forEach(function(row) {
 					Foxtrick.forEach(function(cell, j) {
 						var elMax = cell.getElementsByTagName('a')[0];
