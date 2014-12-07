@@ -99,9 +99,9 @@ Foxtrick.modules['EmbedMedia'] = {
 
 		// native and fallback support, base urls to be used when the video ID has been extracted.
 		var iframe_urls = {
-			'vimeo': 'http://player.vimeo.com/video/',
-			'youtube': 'http://www.youtube.com/embed/',
-			'dailymotion': 'http://www.dailymotion.com/embed/video/'
+			'vimeo': '//player.vimeo.com/video/',
+			'youtube': '//www.youtube.com/embed/',
+			'dailymotion': '//www.dailymotion.com/embed/video/'
 		};
 
 		var do_iframe_embed = function(target) {
@@ -323,7 +323,9 @@ Foxtrick.modules['EmbedMedia'] = {
 			if (Foxtrick.hasClass(target, 'ft-media-site-imageshack')) {
 				oEmbedRequest(target.nextSibling.firstChild.href,
 				  function(response, status) {
-					target.nextSibling.firstChild.href = response.match(/\?"(.*)":/)[1];
+					var url = response.match(/\?"(.*)":/)[1];
+					url = url.replace(/^(https?:)?\/\//, '//');
+					target.nextSibling.firstChild.href = url;
 					doEmbedActualImageUrl(target);
 				});
 				return;
