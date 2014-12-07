@@ -140,6 +140,9 @@ Foxtrick.modules['EmbedMedia'] = {
 				if (Foxtrick.isHtUrl(src) || !src.match(/^(https?:)?\/\//))
 					return empty;
 
+				// always use relative protocol
+				src = src.replace(/^(https?:)?\/\//, '//');
+
 				var h = iframe.match(/height="(\d+)"/i);
 				var w = iframe.match(/width="(\d+)"/i);
 
