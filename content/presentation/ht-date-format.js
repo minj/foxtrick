@@ -51,6 +51,11 @@ Foxtrick.modules['HTDateFormat'] = {
 		};
 
 		var now = Foxtrick.util.time.getHtDate(doc);
+		if (!now) {
+			Foxtrick.log('HT time missing');
+			return;
+		}
+
 		var htDate = Foxtrick.util.time.gregorianToHT(now, weekOffset, useLocal);
 		var online = doc.getElementById('online');
 		online.textContent = online.textContent.trim().replace(/\d+$/, htDate.week);
