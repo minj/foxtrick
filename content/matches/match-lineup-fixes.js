@@ -169,7 +169,12 @@ Foxtrick.modules['MatchLineupFixes'] = {
 				var evtType = parseInt(evt.dataset.eventtype, 10);
 				if (evtType > 300 && evtType < 310) {
 					// weather events
-					var playerLink = evt.getElementsByTagName('a')[0].cloneNode(true);
+					var playerLink = evt.getElementsByTagName('a')[0];
+					if (!playerLink)
+						// kid from the hood
+						return;
+
+					playerLink = playerLink.cloneNode(true);
 					// let's inject a hidden row into
 					// match highlights table (report tab)
 					var table = doc.querySelector('table.tblHighlights');
