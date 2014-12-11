@@ -157,6 +157,16 @@ Foxtrick.Pages.Match.hasRatingsTabs = function(doc) {
 };
 
 /**
+ * Test whether match report has a valid timeline
+ * @param  {document} doc
+ * @return {Boolean}
+ */
+Foxtrick.Pages.Match.hasTimeline = function(doc) {
+	var timeline = doc.getElementById('timeline');
+	return timeline && !Foxtrick.hasClass(timeline, 'hidden');
+};
+
+/**
  * Get sourceSystem
  * @param  {document} doc
  * @return {string}
