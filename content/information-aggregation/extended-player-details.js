@@ -92,6 +92,7 @@ Foxtrick.modules['ExtendedPlayerDetailsWage'] = {
 	OPTIONS: ['WageWithoutBonus', 'SeasonWage'],
 
 	run: function(doc) {
+		var module = this;
 		Foxtrick.util.currency.establish(doc, function(rate, symbol) {
 			var div = doc.getElementById('ft_bonuswage');
 			if (div != null) return;
@@ -142,7 +143,7 @@ Foxtrick.modules['ExtendedPlayerDetailsWage'] = {
 				span.textContent = '(' + formattedWage + '\u00a0' + symbol + ')';
 				wageElm.appendChild(span);
 				wageElm.appendChild(doc.createTextNode(part2));
-				Foxtrick.makeFeaturedElement(span, this);
+				Foxtrick.makeFeaturedElement(span, module);
 			}
 			if (Foxtrick.Prefs.isModuleOptionEnabled('ExtendedPlayerDetailsWage', 'SeasonWage')) {
 				wageElm.appendChild(doc.createElement('br'));
@@ -152,7 +153,7 @@ Foxtrick.modules['ExtendedPlayerDetailsWage'] = {
 					Foxtrick.formatNumber(wage * 16, '\u00a0') + '\u00a0' + symbol +
 					Foxtrick.L10n.getString('ExtendedPlayerDetails.perseason');
 				wageElm.appendChild(span);
-				Foxtrick.makeFeaturedElement(span, this);
+				Foxtrick.makeFeaturedElement(span, module);
 			}
 		});
 	}
