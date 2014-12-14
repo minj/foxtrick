@@ -840,8 +840,8 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerid, callback) {
 			player.injuredWeeks = Math.max(player.injuredWeeks, 0);
 			player.injured = (player.bruised || player.injuredWeeks !== 0);
 
-			player.specialtyNumber = xml.num('Specialty');
-			player.specialty = Foxtrick.L10n.getSpecialityFromNumber(player.specialtyNumber);
+			player.specialityNumber = xml.num('Specialty');
+			player.specialty = Foxtrick.L10n.getSpecialityFromNumber(player.specialityNumber);
 
 	/*
 	    <TrainerData />
