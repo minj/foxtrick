@@ -1,5 +1,7 @@
 .ft-popup-span {
 	position: relative;
+}
+#sidebar .ft-popup-span {
 	display:inline-block;
 }
 
