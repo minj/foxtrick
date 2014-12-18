@@ -1036,7 +1036,7 @@ Foxtrick.modules.MatchSimulator = {
 		});
 
 		// -- stamina discount --
-		function getStaminaFactor(stamina, staminaPrediction) {
+		var getStaminaFactor = function(stamina, staminaPrediction) {
 			// formula by lizardopoli/Senzascrupoli/Pappagallopoli et al
 			// [post=15917246.1]
 			// latest data:
