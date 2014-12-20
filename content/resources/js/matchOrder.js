@@ -1,14 +1,25 @@
 'use strict';
 /* fixing ht function to raise and custom event after init of interface */
-ht.orders.handleDataOrg = ht.orders.handleData;
-ht.orders.handleData = function(arg) {
-	// all org
-	ht.orders.handleDataOrg.apply(this, arguments);
-	// raise event after
+function ft_init() {
 	document.body.dispatchEvent(new Event('interface_ready', { bubbles: true }));
-	// restore old
-	ht.orders.handleData = ht.orders.handleDataOrg;
-};
+}
+
+if (ht.txt) {
+	// README: this is the first object defined by ht.orders.handleData
+	// need to check this in case we run too slow
+	ft_init();
+}
+else {
+	ht.orders.handleDataOrg = ht.orders.handleData;
+	ht.orders.handleData = function(arg) {
+		// all org
+		ht.orders.handleDataOrg.apply(this, arguments);
+		// raise event after
+		ft_init();
+		// restore old
+		ht.orders.handleData = ht.orders.handleDataOrg;
+	};
+}
 
 /* function to swap players left to right including their orientation */
 function ft_swap_positions() {
