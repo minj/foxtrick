@@ -35,26 +35,52 @@ if (Foxtrick.chromeContext() == 'background') {
 		setQueue: [],
 	};
 	try {
-		Foxtrick.localStore = new Foxtrick.IDBStore({
-			storeName: 'localStore',
-			storePrefix: 'Foxtrick',
-			keyPath: null,
-			autoIncrement: true,
-			indexes: [],
-			onStoreReady: function() {
-				var ls = Foxtrick._localStore;
-				ls.ready = true;
-				for (var i = 0; i < ls.setQueue.length; ++i) {
-					Foxtrick.localSet(ls.setQueue[i][0], ls.setQueue[i][1]);
+		if (indexedDB !== null) {
+			Foxtrick.localStore = new Foxtrick.IDBStore({
+				storeName: 'localStore',
+				storePrefix: 'Foxtrick',
+				keyPath: null,
+				autoIncrement: true,
+				indexes: [],
+				onStoreReady: function() {
+					var ls = Foxtrick._localStore;
+					ls.ready = true;
+					for (var i = 0; i < ls.setQueue.length; ++i) {
+						Foxtrick.localSet(ls.setQueue[i][0], ls.setQueue[i][1]);
+					}
+					for (var i = 0; i < ls.getQueue.length; ++i) {
+						Foxtrick.localGet(ls.getQueue[i][0], ls.getQueue[i][1]);
+					}
+					ls.setQueue = [];
+					ls.getQueue = [];
+				},
+				onError: function(error) { throw error; }
+			});
+		}
+		else if (window.localStorage) {
+			Foxtrick.localStore = {
+				put: function(key, value) {
+					window.localStorage.setItem('localStore.' + key, JSON.stringify(value));
+				},
+				get: function(key, callback) {
+					callback(JSON.parse(window.localStorage.getItem('localStore.' + key)));
+				},
+				iterate: function(cb, options) {
+					// fake, only implements deletion
+					var branch = options.keyRange.lower;
+					for (var key in window.localStorage) {
+						if (key.indexOf('localStore.' + branch) === 0)
+							// key already contains localStore.
+							window.localStorage.removeItem(key);
+					}
+				},
+				makeKeyRange: function(opts) {
+					// fake
+					return opts;
 				}
-				for (var i = 0; i < ls.getQueue.length; ++i) {
-					Foxtrick.localGet(ls.getQueue[i][0], ls.getQueue[i][1]);
-				}
-				ls.setQueue = [];
-				ls.getQueue = [];
-			},
-			onError: function(error) { throw error; }
-		});
+			};
+			Foxtrick._localStore.ready = true;
+		}
 	}
 	catch (e) {}
 	Foxtrick.localSet = function(key, value) {
@@ -112,37 +138,6 @@ if (Foxtrick.chromeContext() == 'background') {
 			cursor.delete();
 		}, options);
 	};
-
-// purge localStorage
-	if (Foxtrick.arch === 'Sandboxed') {
-		(function(localStorage) {
-
-			for (var key in localStorage) {
-				if (key.indexOf('localStore.') === 0)
-					localStorage.removeItem(key); // <- key already contains localStore.
-			}
-		})(localStorage);
-	}
-	else if (Foxtrick.arch === 'Gecko') {
-
-		(function() {
-			var url = 'http://localStore.foxtrick.org';
-
-			var ssm = Services.scriptSecurityManager;
-
-			var uri = Services.io.newURI(url, '', null);
-			var principal = ssm.getCodebasePrincipal ? ssm.getCodebasePrincipal(uri) :
-				ssm.getNoAppCodebasePrincipal(uri);
-			var localStorage =
-				Services.domStorageManager.getLocalStorageForPrincipal(principal, '');
-			var key;
-			for (key in localStorage) {
-				if (key.indexOf('localStore.') === 0)
-					localStorage.removeItem(key); // <- key already contains localStore.
-			}
-		})();
-
-	}
 
 }
 
