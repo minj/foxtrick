@@ -1,6 +1,6 @@
 'use strict';
 /**
- * add-promote-reminder.js
+ * add-promotion-reminder.js
  * Add a reminder in the day that you can promote a Youth Player
  * @author tasosventouris
  */
@@ -8,8 +8,7 @@
 Foxtrick.modules['AddPromotionReminder'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES: ['youthPlayerDetails', 'reminders'],
-
-
+	CSS: Foxtrick.InternalPath + 'resources/css/add-promotion-reminder.css',
 	run: function(doc) {
 		var sendDate = Foxtrick.getParameterFromUrl(doc.location.href, 'sendDate');
 		var isReminders = Foxtrick.isPage(doc, 'reminders');
@@ -17,7 +16,6 @@ Foxtrick.modules['AddPromotionReminder'] = {
 
 		if (sendDate && isReminders) {
 			Foxtrick.getMBElement(doc, 'ddlSendAs').value = '2';
-
 		}
 		else if (isYouthPlayerDetails) {
 			if (Foxtrick.Pages.YouthPlayer.wasFired(doc))
@@ -26,19 +24,6 @@ Foxtrick.modules['AddPromotionReminder'] = {
 			var daysToPromote = Foxtrick.Pages.YouthPlayer.getDaysToPromote(doc);
 			var playerID = Foxtrick.Pages.Player.getId(doc);
 			if (daysToPromote > 0) {
-				var link = Foxtrick.createFeaturedElement(doc, this, 'a');
-				Foxtrick.addClass(link, 'ft-add-promote-reminder ft-link');
-
-				var button = Foxtrick.createFeaturedElement(doc, this, 'img');
-				button.src = '/Img/Icons/transparent.gif';
-				button.title = button.alt = Foxtrick.L10n.getString('AddPromotionReminder.button');
-
-				link.appendChild(button);
-
-				var div = doc.getElementsByClassName('byline')[0];
-				div.appendChild(doc.createTextNode(' '));
-				div.appendChild(link);
-
 				var today = Foxtrick.util.time.getHtDate(doc);
 				var alarm = Foxtrick.util.time.addDaysToDate(today, daysToPromote);
 				var d = alarm.getDate();
@@ -51,9 +36,12 @@ Foxtrick.modules['AddPromotionReminder'] = {
 				var reminderlink = '/MyHattrick/Reminders/default.aspx?sendDate=' + promoteday +
 					'&reminderText=' + encodeURIComponent(promotetext);
 
+				var title = Foxtrick.L10n.getString('AddPromotionReminder.button');
+				var button = Foxtrick.util.copyButton.add(doc, title);
 				if (button) {
-					Foxtrick.addClass(button, 'ft-add-promote-reminder reminder');
-					Foxtrick.onClick(link, function() {
+					Foxtrick.makeFeaturedElement(button, this);
+					button.id = 'ft-promotion-button';
+					Foxtrick.onClick(button, function() {
 						doc.location.assign(reminderlink);
 					});
 				}
