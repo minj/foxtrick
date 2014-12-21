@@ -17,6 +17,7 @@ Foxtrick.util.copyButton = {};
  * @returns HTML node of the button
  */
 Foxtrick.util.copyButton.add = function(doc, text) {
+	var link, img;
 	if (Foxtrick.Prefs.getBool('smallcopyicons')) {
 		var mainBody = doc.getElementById('mainBody');
 
@@ -27,7 +28,7 @@ Foxtrick.util.copyButton.add = function(doc, text) {
 		// icons: contains a list of icons which is a list of classes
 		// that can occupy the header
 		// so, take first unoccupied by us or any HT icon
-		var icons =	[
+		var icons = [
 			'ci_first', 'ci_second', 'ci_third', 'ci_fourth', 'ci_fifth', 'ci_sixth', 'ci_seventh',
 			'bookmark', 'backIcon', 'statsIcon', 'alltidIcon', 'forumSettings', 'forumSearch',
 			'forumStats', 'forumSearch2'
@@ -38,11 +39,11 @@ Foxtrick.util.copyButton.add = function(doc, text) {
 			}, icons)
 		];
 
-		var link = doc.createElement('a');
+		link = doc.createElement('a');
 		link.className = 'inner copyicon ' + orderClass;
 		link.title = text;
 
-		var img = doc.createElement('img');
+		img = doc.createElement('img');
 		img.alt = text;
 		img.src = '/Img/Icons/transparent.gif';
 
@@ -50,12 +51,12 @@ Foxtrick.util.copyButton.add = function(doc, text) {
 		mainBody.insertBefore(link, mainBody.firstChild);
 	}
 	else {
-		var link = doc.createElement('a');
+		link = doc.createElement('a');
 		link.title = text;
 
 		if (Foxtrick.util.layout.isStandard(doc)) {
 			link.className = 'inner copyicon';
-			var img = doc.createElement('img');
+			img = doc.createElement('img');
 			img.src = '/Img/Icons/transparent.gif';
 			img.className = 'actionIcon';
 			img.alt = text;
