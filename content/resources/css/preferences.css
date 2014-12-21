@@ -128,7 +128,7 @@ table {
 }
 
 table.maxed {
-	/*width: 100%;*/
+	width: 100%;
 }
 
 table th:first-child {

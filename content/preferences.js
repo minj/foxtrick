@@ -1467,6 +1467,21 @@ function initTextAndValues() {
 			}
 		}
 	}
+
+	// initialize currency display
+	var currencyKeys = Foxtrick.Prefs.getAllKeysOfBranch('Currency.Code');
+	Foxtrick.forEach(function(key) {
+		var id = parseInt(key.match(/\d+$/), 10);
+		if (!isNaN(id) && id) {
+			var code = Foxtrick.Prefs.getString('Currency.Code.' + id);
+			var rate = Foxtrick.util.currency.getRateByCode(code);
+			var row = document.createElement('tr');
+			row.appendChild(document.createElement('td')).textContent = id;
+			row.appendChild(document.createElement('td')).textContent = code;
+			row.appendChild(document.createElement('td')).textContent = rate;
+			$('#pref-setup-currency').append($(row));
+		}
+	}, currencyKeys);
 }
 
 function init() {
