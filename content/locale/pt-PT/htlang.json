@@ -1,5 +1,71 @@
 {
 	"language": {
+		"aggressiveness": [
+			{
+				"text": "tranquila",
+				"value": "0"
+			},
+			{
+				"text": "calma",
+				"value": "1"
+			},
+			{
+				"text": "equilibrada",
+				"value": "2"
+			},
+			{
+				"text": "temperamental",
+				"value": "3"
+			},
+			{
+				"text": "nervosa",
+				"value": "4"
+			},
+			{
+				"text": "instável",
+				"value": "5"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "pessoa antipática",
+				"value": "0"
+			},
+			{
+				"text": "pessoa controversa",
+				"value": "1"
+			},
+			{
+				"text": "pessoa agradável",
+				"value": "2"
+			},
+			{
+				"text": "pessoa simpática",
+				"value": "3"
+			},
+			{
+				"text": "pessoa popular",
+				"value": "4"
+			},
+			{
+				"text": "pessoa adorável",
+				"value": "5"
+			}
+		],
+		"attitude": [
+			{
+				"text": "Jogar com calma",
+				"value": "-1"
+			},
+			{
+				"text": "Normal",
+				"value": "0"
+			},
+			{
+				"text": "Jogo da época",
+				"value": "1"
+			}
+		],
 		"confidence": [
 			{
 				"text": "Inexistente",
@@ -42,162 +108,101 @@
 				"value": "9"
 			}
 		],
-		"tactics": [
+		"desc": "Português",
+		"fans": [
 			{
-				"type": "normal",
-				"value": "Normal"
-			},
-			{
-				"type": "pressing",
-				"value": "Pressing"
-			},
-			{
-				"type": "ca",
-				"value": "Contra-ataque"
-			},
-			{
-				"type": "aim",
-				"value": "Ataque pelo meio"
-			},
-			{
-				"type": "aow",
-				"value": "Ataque pelas alas"
-			},
-			{
-				"type": "",
-				"value": "Desconhecido"
-			},
-			{
-				"type": "",
-				"value": "Desconhecido"
-			},
-			{
-				"type": "creatively",
-				"value": "Espontaneidade"
-			},
-			{
-				"type": "longshots",
-				"value": "Remates de longe"
-			}
-		],
-		"honesty": [
-			{
-				"text": "infame",
+				"text": "Desesperados",
 				"value": "0"
 			},
 			{
-				"text": "desonesta",
+				"text": "Furiosos",
 				"value": "1"
 			},
 			{
-				"text": "decente",
+				"text": "Coléricos",
 				"value": "2"
 			},
 			{
-				"text": "honesta",
+				"text": "Irritados",
 				"value": "3"
 			},
 			{
-				"text": "íntegra",
+				"text": "Desiludidos",
 				"value": "4"
 			},
 			{
-				"text": "exemplar",
+				"text": "Calmos",
 				"value": "5"
+			},
+			{
+				"text": "Satisfeitos",
+				"value": "6"
+			},
+			{
+				"text": "Contentes",
+				"value": "7"
+			},
+			{
+				"text": "Em delírio",
+				"value": "8"
+			},
+			{
+				"text": "Eufóricos",
+				"value": "9"
+			},
+			{
+				"text": "Nas nuvens",
+				"value": "10"
+			},
+			{
+				"text": "A enviarem-lhe cartas de amor",
+				"value": "11"
 			}
 		],
-		"agreeability": [
+		"fans_match": [
 			{
-				"text": "pessoa antipática",
+				"text": "Vamos ser massacrados",
 				"value": "0"
 			},
 			{
-				"text": "pessoa controversa",
+				"text": "Não temos hipóteses",
 				"value": "1"
 			},
 			{
-				"text": "pessoa agradável",
+				"text": "Vamos perder",
 				"value": "2"
 			},
 			{
-				"text": "pessoa simpática",
+				"text": "Eles são favoritos",
 				"value": "3"
 			},
 			{
-				"text": "pessoa popular",
+				"text": "Eles têm vantagem",
 				"value": "4"
 			},
 			{
-				"text": "pessoa adorável",
+				"text": "Vai ser equilibrado",
 				"value": "5"
-			}
-		],
-		"skills": [
-			{
-				"type": "Keeper",
-				"value": "Guarda-Redes"
 			},
 			{
-				"type": "Stamina",
-				"value": "Resistência"
+				"text": "Temos vantagem",
+				"value": "6"
 			},
 			{
-				"type": "Defender",
-				"value": "Defesa"
+				"text": "Somos favoritos",
+				"value": "7"
 			},
 			{
-				"type": "Playmaker",
-				"value": "Criatividade"
+				"text": "Vamos ganhar",
+				"value": "8"
 			},
 			{
-				"type": "Winger",
-				"value": "Ala"
+				"text": "Vai ser um passeio",
+				"value": "9"
 			},
 			{
-				"type": "Scorer",
-				"value": "Finalização"
-			},
-			{
-				"type": "Kicker",
-				"value": "Bolas Paradas"
-			},
-			{
-				"type": "Passer",
-				"value": "Assistências"
-			},
-			{
-				"type": "Experience",
-				"value": "Experiência"
-			},
-			{
-				"type": "LeaderShip",
-				"value": "Liderança"
-			}
-		],
-		"positions": [
-			{
-				"type": "Keeper",
-				"value": "Guarda-Redes"
-			},
-			{
-				"type": "WingBack",
-				"value": "Defesa Lateral"
-			},
-			{
-				"type": "CentralDefender",
-				"value": "Defesa Central"
-			},
-			{
-				"type": "InnerMidfield",
-				"value": "Médio Centro"
-			},
-			{
-				"type": "Winger",
-				"value": "Ala"
-			},
-			{
-				"type": "Forward",
-				"value": "Avançado"
+				"text": "Vamos humilhá-los",
+				"value": "10"
 			}
 		],
 		"fans_season": [
@@ -234,20 +239,33 @@
 				"value": "7"
 			}
 		],
-		"attitude": [
+		"honesty": [
 			{
-				"text": "Jogar com calma",
-				"value": "-1"
-			},
-			{
-				"text": "Normal",
+				"text": "infame",
 				"value": "0"
 			},
 			{
-				"text": "Jogo da época",
+				"text": "desonesta",
 				"value": "1"
+			},
+			{
+				"text": "decente",
+				"value": "2"
+			},
+			{
+				"text": "honesta",
+				"value": "3"
+			},
+			{
+				"text": "íntegra",
+				"value": "4"
+			},
+			{
+				"text": "exemplar",
+				"value": "5"
 			}
 		],
+		"id": "11",
 		"levels": [
 			{
 				"text": "inexistente",
@@ -334,6 +352,199 @@
 				"value": "20"
 			}
 		],
+		"name": "pt-PT",
+		"positions": [
+			{
+				"type": "Keeper",
+				"value": "Guarda-Redes"
+			},
+			{
+				"type": "WingBack",
+				"value": "Defesa Lateral"
+			},
+			{
+				"type": "CentralDefender",
+				"value": "Defesa Central"
+			},
+			{
+				"type": "InnerMidfield",
+				"value": "Médio Centro"
+			},
+			{
+				"type": "Winger",
+				"value": "Ala"
+			},
+			{
+				"type": "Forward",
+				"value": "Avançado"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "mt baixo",
+				"value": "0"
+			},
+			{
+				"text": "baixo",
+				"value": "0.25"
+			},
+			{
+				"text": "alto",
+				"value": "0.5"
+			},
+			{
+				"text": "mt alto",
+				"value": "0.75"
+			}
+		],
+		"sectors": [
+			{
+				"type": "Midfield",
+				"value": "Meio Campo"
+			},
+			{
+				"type": "RightDefense",
+				"value": "Defesa (dir.)"
+			},
+			{
+				"type": "CentralDefense",
+				"value": "Defesa (cen.)"
+			},
+			{
+				"type": "LeftDefense",
+				"value": "Defesa (esq.)"
+			},
+			{
+				"type": "RightAttack",
+				"value": "Ataque (dir.)"
+			},
+			{
+				"type": "CentralAttack",
+				"value": "Ataque (cen.)"
+			},
+			{
+				"type": "LeftAttack",
+				"value": "Ataque (esq.)"
+			}
+		],
+		"skills": [
+			{
+				"type": "Keeper",
+				"value": "Guarda-Redes"
+			},
+			{
+				"type": "Stamina",
+				"value": "Resistência"
+			},
+			{
+				"type": "Defender",
+				"value": "Defesa"
+			},
+			{
+				"type": "Playmaker",
+				"value": "Criatividade"
+			},
+			{
+				"type": "Winger",
+				"value": "Ala"
+			},
+			{
+				"type": "Scorer",
+				"value": "Finalização"
+			},
+			{
+				"type": "Kicker",
+				"value": "Bolas Paradas"
+			},
+			{
+				"type": "Passer",
+				"value": "Assistências"
+			},
+			{
+				"type": "Experience",
+				"value": "Experiência"
+			},
+			{
+				"type": "LeaderShip",
+				"value": "Liderança"
+			}
+		],
+		"specialties": [
+			{
+				"type": "None",
+				"value": "Nenhuma"
+			},
+			{
+				"type": "Technical",
+				"value": "Técnica"
+			},
+			{
+				"type": "Quick",
+				"value": "Velocidade"
+			},
+			{
+				"type": "Powerful",
+				"value": "Força"
+			},
+			{
+				"type": "Unpredictable",
+				"value": "Imprevisível"
+			},
+			{
+				"type": "Head",
+				"value": "Jogo aéreo"
+			},
+			{
+				"type": "Regainer",
+				"value": "Reabilitação"
+			}
+		],
+		"spirit": [
+			{
+				"text": "De cortar à faca",
+				"value": "0"
+			},
+			{
+				"text": "Descontrolados",
+				"value": "1"
+			},
+			{
+				"text": "Furiosos",
+				"value": "2"
+			},
+			{
+				"text": "Irritados",
+				"value": "3"
+			},
+			{
+				"text": "Conformados",
+				"value": "4"
+			},
+			{
+				"text": "Calmos",
+				"value": "5"
+			},
+			{
+				"text": "Contentes",
+				"value": "6"
+			},
+			{
+				"text": "Bom",
+				"value": "7"
+			},
+			{
+				"text": "Em delírio",
+				"value": "8"
+			},
+			{
+				"text": "Nas nuvens",
+				"value": "9"
+			},
+			{
+				"text": "Paradisíaco",
+				"value": "10"
+			}
+		],
 		"sponsors": [
 			{
 				"text": "Desesperados",
@@ -376,161 +587,44 @@
 				"value": "9"
 			}
 		],
-		"sectors": [
+		"tactics": [
 			{
-				"type": "Midfield",
-				"value": "Meio Campo"
+				"type": "normal",
+				"value": "Normal"
 			},
 			{
-				"type": "RightDefense",
-				"value": "Defesa (dir.)"
+				"type": "pressing",
+				"value": "Pressing"
 			},
 			{
-				"type": "CentralDefense",
-				"value": "Defesa (cen.)"
+				"type": "ca",
+				"value": "Contra-ataque"
 			},
 			{
-				"type": "LeftDefense",
-				"value": "Defesa (esq.)"
+				"type": "aim",
+				"value": "Ataque pelo meio"
 			},
 			{
-				"type": "RightAttack",
-				"value": "Ataque (dir.)"
+				"type": "aow",
+				"value": "Ataque pelas alas"
 			},
 			{
-				"type": "CentralAttack",
-				"value": "Ataque (cen.)"
+				"type": "",
+				"value": "Desconhecido"
 			},
 			{
-				"type": "LeftAttack",
-				"value": "Ataque (esq.)"
+				"type": "",
+				"value": "Desconhecido"
+			},
+			{
+				"type": "creatively",
+				"value": "Espontaneidade"
+			},
+			{
+				"type": "longshots",
+				"value": "Remates de longe"
 			}
 		],
-		"ratingSubLevels": [
-			{
-				"text": "mt baixo",
-				"value": "0"
-			},
-			{
-				"text": "baixo",
-				"value": "0.25"
-			},
-			{
-				"text": "alto",
-				"value": "0.5"
-			},
-			{
-				"text": "mt alto",
-				"value": "0.75"
-			}
-		],
-		"fans": [
-			{
-				"text": "Desesperados",
-				"value": "0"
-			},
-			{
-				"text": "Furiosos",
-				"value": "1"
-			},
-			{
-				"text": "Coléricos",
-				"value": "2"
-			},
-			{
-				"text": "Irritados",
-				"value": "3"
-			},
-			{
-				"text": "Desiludidos",
-				"value": "4"
-			},
-			{
-				"text": "Calmos",
-				"value": "5"
-			},
-			{
-				"text": "Satisfeitos",
-				"value": "6"
-			},
-			{
-				"text": "Contentes",
-				"value": "7"
-			},
-			{
-				"text": "Em delírio",
-				"value": "8"
-			},
-			{
-				"text": "Eufóricos",
-				"value": "9"
-			},
-			{
-				"text": "Nas nuvens",
-				"value": "10"
-			},
-			{
-				"text": "A enviarem-lhe cartas de amor",
-				"value": "11"
-			}
-		],
-		"specialties": [
-			{
-				"type": "None",
-				"value": "Nenhuma"
-			},
-			{
-				"type": "Technical",
-				"value": "Técnica"
-			},
-			{
-				"type": "Quick",
-				"value": "Velocidade"
-			},
-			{
-				"type": "Powerful",
-				"value": "Força"
-			},
-			{
-				"type": "Unpredictable",
-				"value": "Imprevisível"
-			},
-			{
-				"type": "Head",
-				"value": "Jogo aéreo"
-			},
-			{
-				"type": "Regainer",
-				"value": "Reabilitação"
-			}
-		],
-		"aggressiveness": [
-			{
-				"text": "tranquila",
-				"value": "0"
-			},
-			{
-				"text": "calma",
-				"value": "1"
-			},
-			{
-				"text": "equilibrada",
-				"value": "2"
-			},
-			{
-				"text": "temperamental",
-				"value": "3"
-			},
-			{
-				"text": "nervosa",
-				"value": "4"
-			},
-			{
-				"text": "instável",
-				"value": "5"
-			}
-		],
-		"id": "11",
 		"training": [
 			{
 				"type": "Gen",
@@ -588,100 +682,6 @@
 				"type": "Indiv",
 				"value": "Individual"
 			}
-		],
-		"fans_match": [
-			{
-				"text": "Vamos ser massacrados",
-				"value": "0"
-			},
-			{
-				"text": "Não temos hipóteses",
-				"value": "1"
-			},
-			{
-				"text": "Vamos perder",
-				"value": "2"
-			},
-			{
-				"text": "Eles são favoritos",
-				"value": "3"
-			},
-			{
-				"text": "Eles têm vantagem",
-				"value": "4"
-			},
-			{
-				"text": "Vai ser equilibrado",
-				"value": "5"
-			},
-			{
-				"text": "Temos vantagem",
-				"value": "6"
-			},
-			{
-				"text": "Somos favoritos",
-				"value": "7"
-			},
-			{
-				"text": "Vamos ganhar",
-				"value": "8"
-			},
-			{
-				"text": "Vai ser um passeio",
-				"value": "9"
-			},
-			{
-				"text": "Vamos humilhá-los",
-				"value": "10"
-			}
-		],
-		"name": "pt-PT",
-		"spirit": [
-			{
-				"text": "De cortar à faca",
-				"value": "0"
-			},
-			{
-				"text": "Descontrolados",
-				"value": "1"
-			},
-			{
-				"text": "Furiosos",
-				"value": "2"
-			},
-			{
-				"text": "Irritados",
-				"value": "3"
-			},
-			{
-				"text": "Conformados",
-				"value": "4"
-			},
-			{
-				"text": "Calmos",
-				"value": "5"
-			},
-			{
-				"text": "Contentes",
-				"value": "6"
-			},
-			{
-				"text": "Bom",
-				"value": "7"
-			},
-			{
-				"text": "Em delírio",
-				"value": "8"
-			},
-			{
-				"text": "Nas nuvens",
-				"value": "9"
-			},
-			{
-				"text": "Paradisíaco",
-				"value": "10"
-			}
-		],
-		"desc": "Português"
+		]
 	}
 }

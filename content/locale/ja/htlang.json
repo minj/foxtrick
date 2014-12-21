@@ -1,5 +1,71 @@
 {
 	"language": {
+		"aggressiveness": [
+			{
+				"text": "もの静か",
+				"value": "0"
+			},
+			{
+				"text": "穏やか",
+				"value": "1"
+			},
+			{
+				"text": "冷静",
+				"value": "2"
+			},
+			{
+				"text": "気分屋",
+				"value": "3"
+			},
+			{
+				"text": "激情家",
+				"value": "4"
+			},
+			{
+				"text": "不安定",
+				"value": "5"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "嫌われ者",
+				"value": "0"
+			},
+			{
+				"text": "問題の多い",
+				"value": "1"
+			},
+			{
+				"text": "感じよい",
+				"value": "2"
+			},
+			{
+				"text": "思いやりある",
+				"value": "3"
+			},
+			{
+				"text": "人気者",
+				"value": "4"
+			},
+			{
+				"text": "皆に愛されている",
+				"value": "5"
+			}
+		],
+		"attitude": [
+			{
+				"text": "冷静な試合運び",
+				"value": "-1"
+			},
+			{
+				"text": "普段どおり",
+				"value": "0"
+			},
+			{
+				"text": "最高の試合を目指す",
+				"value": "1"
+			}
+		],
 		"confidence": [
 			{
 				"text": "無価値",
@@ -42,162 +108,101 @@
 				"value": "9"
 			}
 		],
-		"tactics": [
+		"desc": "日本語 (Japanese)",
+		"fans": [
 			{
-				"type": "normal",
-				"value": "通常"
-			},
-			{
-				"type": "pressing",
-				"value": "プレス"
-			},
-			{
-				"type": "ca",
-				"value": "カウンター攻撃"
-			},
-			{
-				"type": "aim",
-				"value": "中央突破"
-			},
-			{
-				"type": "aow",
-				"value": "サイド攻撃"
-			},
-			{
-				"type": "",
-				"value": "未定"
-			},
-			{
-				"type": "",
-				"value": "未定"
-			},
-			{
-				"type": "creatively",
-				"value": "創造プレイ"
-			},
-			{
-				"type": "longshots",
-				"value": "ロングシュート"
-			}
-		],
-		"honesty": [
-			{
-				"text": "悪評高い",
+				"text": "殺意を抱いている",
 				"value": "0"
 			},
 			{
-				"text": "不正直",
+				"text": "怒り狂っている",
 				"value": "1"
 			},
 			{
-				"text": "正直",
+				"text": "腹を立てている",
 				"value": "2"
 			},
 			{
-				"text": "正義漢",
+				"text": "苛立っている",
 				"value": "3"
 			},
 			{
-				"text": "高潔",
+				"text": "がっかりしている",
 				"value": "4"
 			},
 			{
-				"text": "聖人のよう",
+				"text": "落ち着いている",
 				"value": "5"
+			},
+			{
+				"text": "許容している",
+				"value": "6"
+			},
+			{
+				"text": "満足している",
+				"value": "7"
+			},
+			{
+				"text": "喜んでいる",
+				"value": "8"
+			},
+			{
+				"text": "興奮している",
+				"value": "9"
+			},
+			{
+				"text": "狂喜乱舞している",
+				"value": "10"
+			},
+			{
+				"text": "愛の歌を歌っている",
+				"value": "11"
 			}
 		],
-		"agreeability": [
+		"fans_match": [
 			{
-				"text": "嫌われ者",
+				"text": "試合放棄した方がましかも",
 				"value": "0"
 			},
 			{
-				"text": "問題の多い",
+				"text": "次元が違う",
 				"value": "1"
 			},
 			{
-				"text": "感じよい",
+				"text": "我々は負けるだろう",
 				"value": "2"
 			},
 			{
-				"text": "思いやりある",
+				"text": "彼らが有利だろう",
 				"value": "3"
 			},
 			{
-				"text": "人気者",
+				"text": "彼らが少し有利だろう",
 				"value": "4"
 			},
 			{
-				"text": "皆に愛されている",
+				"text": "接戦になるだろう",
 				"value": "5"
-			}
-		],
-		"skills": [
-			{
-				"type": "Keeper",
-				"value": "キーパー"
 			},
 			{
-				"type": "Stamina",
-				"value": "スタミナ"
+				"text": "我々が少し有利だろう",
+				"value": "6"
 			},
 			{
-				"type": "Defender",
-				"value": "ディフェンス"
+				"text": "我々が有利だろう",
+				"value": "7"
 			},
 			{
-				"type": "Playmaker",
-				"value": "ゲームメイク"
+				"text": "我々が勝つだろう",
+				"value": "8"
 			},
 			{
-				"type": "Winger",
-				"value": "ウインガー"
+				"text": "朝飯前だ！",
+				"value": "9"
 			},
 			{
-				"type": "Scorer",
-				"value": "ストライカー"
-			},
-			{
-				"type": "Kicker",
-				"value": "プレイスキック"
-			},
-			{
-				"type": "Passer",
-				"value": "パス"
-			},
-			{
-				"type": "Experience",
-				"value": "経験"
-			},
-			{
-				"type": "LeaderShip",
-				"value": "リーダーシップ"
-			}
-		],
-		"positions": [
-			{
-				"type": "Keeper",
-				"value": "キーパー"
-			},
-			{
-				"type": "WingBack",
-				"value": "ウイングバック"
-			},
-			{
-				"type": "CentralDefender",
-				"value": "セントラルディフェンダー"
-			},
-			{
-				"type": "InnerMidfield",
-				"value": "インナーミッドフィルダー"
-			},
-			{
-				"type": "Winger",
-				"value": "ウインガー"
-			},
-			{
-				"type": "Forward",
-				"value": "フォワード"
+				"text": "恥をかかせよう！",
+				"value": "10"
 			}
 		],
 		"fans_season": [
@@ -234,20 +239,33 @@
 				"value": "7"
 			}
 		],
-		"attitude": [
+		"honesty": [
 			{
-				"text": "冷静な試合運び",
-				"value": "-1"
-			},
-			{
-				"text": "普段どおり",
+				"text": "悪評高い",
 				"value": "0"
 			},
 			{
-				"text": "最高の試合を目指す",
+				"text": "不正直",
 				"value": "1"
+			},
+			{
+				"text": "正直",
+				"value": "2"
+			},
+			{
+				"text": "正義漢",
+				"value": "3"
+			},
+			{
+				"text": "高潔",
+				"value": "4"
+			},
+			{
+				"text": "聖人のよう",
+				"value": "5"
 			}
 		],
+		"id": "12",
 		"levels": [
 			{
 				"text": "無価値",
@@ -334,6 +352,199 @@
 				"value": "20"
 			}
 		],
+		"name": "ja",
+		"positions": [
+			{
+				"type": "Keeper",
+				"value": "キーパー"
+			},
+			{
+				"type": "WingBack",
+				"value": "ウイングバック"
+			},
+			{
+				"type": "CentralDefender",
+				"value": "セントラルディフェンダー"
+			},
+			{
+				"type": "InnerMidfield",
+				"value": "インナーミッドフィルダー"
+			},
+			{
+				"type": "Winger",
+				"value": "ウインガー"
+			},
+			{
+				"type": "Forward",
+				"value": "フォワード"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "非常に低い",
+				"value": "0"
+			},
+			{
+				"text": "低い",
+				"value": "0.25"
+			},
+			{
+				"text": "高い",
+				"value": "0.5"
+			},
+			{
+				"text": "非常に高い",
+				"value": "0.75"
+			}
+		],
+		"sectors": [
+			{
+				"type": "Midfield",
+				"value": "ミッドフィールド"
+			},
+			{
+				"type": "RightDefense",
+				"value": "右ディフェンス"
+			},
+			{
+				"type": "CentralDefense",
+				"value": "中央ディフェンス"
+			},
+			{
+				"type": "LeftDefense",
+				"value": "左ディフェンス"
+			},
+			{
+				"type": "RightAttack",
+				"value": "右オフェンス"
+			},
+			{
+				"type": "CentralAttack",
+				"value": "中央オフェンス"
+			},
+			{
+				"type": "LeftAttack",
+				"value": "左オフェンス"
+			}
+		],
+		"skills": [
+			{
+				"type": "Keeper",
+				"value": "キーパー"
+			},
+			{
+				"type": "Stamina",
+				"value": "スタミナ"
+			},
+			{
+				"type": "Defender",
+				"value": "ディフェンス"
+			},
+			{
+				"type": "Playmaker",
+				"value": "ゲームメイク"
+			},
+			{
+				"type": "Winger",
+				"value": "ウインガー"
+			},
+			{
+				"type": "Scorer",
+				"value": "ストライカー"
+			},
+			{
+				"type": "Kicker",
+				"value": "プレイスキック"
+			},
+			{
+				"type": "Passer",
+				"value": "パス"
+			},
+			{
+				"type": "Experience",
+				"value": "経験"
+			},
+			{
+				"type": "LeaderShip",
+				"value": "リーダーシップ"
+			}
+		],
+		"specialties": [
+			{
+				"type": "None",
+				"value": "なし"
+			},
+			{
+				"type": "Technical",
+				"value": "テクニシャン"
+			},
+			{
+				"type": "Quick",
+				"value": "すばやい"
+			},
+			{
+				"type": "Powerful",
+				"value": "パワフル"
+			},
+			{
+				"type": "Unpredictable",
+				"value": "意外性"
+			},
+			{
+				"type": "Head",
+				"value": "ヘディング"
+			},
+			{
+				"type": "Regainer",
+				"value": "リゲイナー"
+			}
+		],
+		"spirit": [
+			{
+				"text": "冷戦",
+				"value": "0"
+			},
+			{
+				"text": "殺意",
+				"value": "1"
+			},
+			{
+				"text": "狂乱",
+				"value": "2"
+			},
+			{
+				"text": "苛立ち",
+				"value": "3"
+			},
+			{
+				"text": "冷静",
+				"value": "4"
+			},
+			{
+				"text": "平穏",
+				"value": "5"
+			},
+			{
+				"text": "許容",
+				"value": "6"
+			},
+			{
+				"text": "満足",
+				"value": "7"
+			},
+			{
+				"text": "熱狂",
+				"value": "8"
+			},
+			{
+				"text": "有頂天",
+				"value": "9"
+			},
+			{
+				"text": "敵知らず",
+				"value": "10"
+			}
+		],
 		"sponsors": [
 			{
 				"text": "殺意を抱いている",
@@ -376,161 +587,44 @@
 				"value": "9"
 			}
 		],
-		"sectors": [
+		"tactics": [
 			{
-				"type": "Midfield",
-				"value": "ミッドフィールド"
+				"type": "normal",
+				"value": "通常"
 			},
 			{
-				"type": "RightDefense",
-				"value": "右ディフェンス"
+				"type": "pressing",
+				"value": "プレス"
 			},
 			{
-				"type": "CentralDefense",
-				"value": "中央ディフェンス"
+				"type": "ca",
+				"value": "カウンター攻撃"
 			},
 			{
-				"type": "LeftDefense",
-				"value": "左ディフェンス"
+				"type": "aim",
+				"value": "中央突破"
 			},
 			{
-				"type": "RightAttack",
-				"value": "右オフェンス"
+				"type": "aow",
+				"value": "サイド攻撃"
 			},
 			{
-				"type": "CentralAttack",
-				"value": "中央オフェンス"
+				"type": "",
+				"value": "未定"
 			},
 			{
-				"type": "LeftAttack",
-				"value": "左オフェンス"
+				"type": "",
+				"value": "未定"
+			},
+			{
+				"type": "creatively",
+				"value": "創造プレイ"
+			},
+			{
+				"type": "longshots",
+				"value": "ロングシュート"
 			}
 		],
-		"ratingSubLevels": [
-			{
-				"text": "非常に低い",
-				"value": "0"
-			},
-			{
-				"text": "低い",
-				"value": "0.25"
-			},
-			{
-				"text": "高い",
-				"value": "0.5"
-			},
-			{
-				"text": "非常に高い",
-				"value": "0.75"
-			}
-		],
-		"fans": [
-			{
-				"text": "殺意を抱いている",
-				"value": "0"
-			},
-			{
-				"text": "怒り狂っている",
-				"value": "1"
-			},
-			{
-				"text": "腹を立てている",
-				"value": "2"
-			},
-			{
-				"text": "苛立っている",
-				"value": "3"
-			},
-			{
-				"text": "がっかりしている",
-				"value": "4"
-			},
-			{
-				"text": "落ち着いている",
-				"value": "5"
-			},
-			{
-				"text": "許容している",
-				"value": "6"
-			},
-			{
-				"text": "満足している",
-				"value": "7"
-			},
-			{
-				"text": "喜んでいる",
-				"value": "8"
-			},
-			{
-				"text": "興奮している",
-				"value": "9"
-			},
-			{
-				"text": "狂喜乱舞している",
-				"value": "10"
-			},
-			{
-				"text": "愛の歌を歌っている",
-				"value": "11"
-			}
-		],
-		"specialties": [
-			{
-				"type": "None",
-				"value": "なし"
-			},
-			{
-				"type": "Technical",
-				"value": "テクニシャン"
-			},
-			{
-				"type": "Quick",
-				"value": "すばやい"
-			},
-			{
-				"type": "Powerful",
-				"value": "パワフル"
-			},
-			{
-				"type": "Unpredictable",
-				"value": "意外性"
-			},
-			{
-				"type": "Head",
-				"value": "ヘディング"
-			},
-			{
-				"type": "Regainer",
-				"value": "リゲイナー"
-			}
-		],
-		"aggressiveness": [
-			{
-				"text": "もの静か",
-				"value": "0"
-			},
-			{
-				"text": "穏やか",
-				"value": "1"
-			},
-			{
-				"text": "冷静",
-				"value": "2"
-			},
-			{
-				"text": "気分屋",
-				"value": "3"
-			},
-			{
-				"text": "激情家",
-				"value": "4"
-			},
-			{
-				"text": "不安定",
-				"value": "5"
-			}
-		],
-		"id": "12",
 		"training": [
 			{
 				"type": "Gen",
@@ -588,100 +682,6 @@
 				"type": "Indiv",
 				"value": "個人"
 			}
-		],
-		"fans_match": [
-			{
-				"text": "試合放棄した方がましかも",
-				"value": "0"
-			},
-			{
-				"text": "次元が違う",
-				"value": "1"
-			},
-			{
-				"text": "我々は負けるだろう",
-				"value": "2"
-			},
-			{
-				"text": "彼らが有利だろう",
-				"value": "3"
-			},
-			{
-				"text": "彼らが少し有利だろう",
-				"value": "4"
-			},
-			{
-				"text": "接戦になるだろう",
-				"value": "5"
-			},
-			{
-				"text": "我々が少し有利だろう",
-				"value": "6"
-			},
-			{
-				"text": "我々が有利だろう",
-				"value": "7"
-			},
-			{
-				"text": "我々が勝つだろう",
-				"value": "8"
-			},
-			{
-				"text": "朝飯前だ！",
-				"value": "9"
-			},
-			{
-				"text": "恥をかかせよう！",
-				"value": "10"
-			}
-		],
-		"name": "ja",
-		"spirit": [
-			{
-				"text": "冷戦",
-				"value": "0"
-			},
-			{
-				"text": "殺意",
-				"value": "1"
-			},
-			{
-				"text": "狂乱",
-				"value": "2"
-			},
-			{
-				"text": "苛立ち",
-				"value": "3"
-			},
-			{
-				"text": "冷静",
-				"value": "4"
-			},
-			{
-				"text": "平穏",
-				"value": "5"
-			},
-			{
-				"text": "許容",
-				"value": "6"
-			},
-			{
-				"text": "満足",
-				"value": "7"
-			},
-			{
-				"text": "熱狂",
-				"value": "8"
-			},
-			{
-				"text": "有頂天",
-				"value": "9"
-			},
-			{
-				"text": "敵知らず",
-				"value": "10"
-			}
-		],
-		"desc": "日本語 (Japanese)"
+		]
 	}
 }

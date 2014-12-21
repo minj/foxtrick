@@ -1,5 +1,71 @@
 {
 	"language": {
+		"aggressiveness": [
+			{
+				"text": "opušten",
+				"value": "0"
+			},
+			{
+				"text": "miran",
+				"value": "1"
+			},
+			{
+				"text": "uravnotežen",
+				"value": "2"
+			},
+			{
+				"text": "temperamentan",
+				"value": "3"
+			},
+			{
+				"text": "prgav",
+				"value": "4"
+			},
+			{
+				"text": "nestabilan",
+				"value": "5"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "gadan tip",
+				"value": "0"
+			},
+			{
+				"text": "kontroverzan lik",
+				"value": "1"
+			},
+			{
+				"text": "ugodan tip",
+				"value": "2"
+			},
+			{
+				"text": "simpatičan tip",
+				"value": "3"
+			},
+			{
+				"text": "popularan tip",
+				"value": "4"
+			},
+			{
+				"text": "omiljeni član tima",
+				"value": "5"
+			}
+		],
+		"attitude": [
+			{
+				"text": "Igrajte opušteno",
+				"value": "-1"
+			},
+			{
+				"text": "Normalno",
+				"value": "0"
+			},
+			{
+				"text": "Utakmica sezone",
+				"value": "1"
+			}
+		],
 		"confidence": [
 			{
 				"text": "nepostojeće",
@@ -42,162 +108,101 @@
 				"value": "9"
 			}
 		],
-		"tactics": [
+		"desc": "Bosnian",
+		"fans": [
 			{
-				"type": "normal",
-				"value": "Normalno"
-			},
-			{
-				"type": "pressing",
-				"value": "Presing"
-			},
-			{
-				"type": "ca",
-				"value": "Kontranapadi"
-			},
-			{
-				"type": "aim",
-				"value": "Napad kroz sredinu"
-			},
-			{
-				"type": "aow",
-				"value": "Napad preko krila"
-			},
-			{
-				"type": "",
-				"value": "Nepoznato"
-			},
-			{
-				"type": "",
-				"value": "Nepoznato"
-			},
-			{
-				"type": "creatively",
-				"value": "Igraj kreativno"
-			},
-			{
-				"type": "longshots",
-				"value": "Dalekometni šutevi"
-			}
-		],
-		"honesty": [
-			{
-				"text": "ozloglašen",
+				"text": "ubitačni",
 				"value": "0"
 			},
 			{
-				"text": "neiskren",
+				"text": "bijesni",
 				"value": "1"
 			},
 			{
-				"text": "iskren",
+				"text": "ljuti",
 				"value": "2"
 			},
 			{
-				"text": "pošten",
+				"text": "iznervirani",
 				"value": "3"
 			},
 			{
-				"text": "pravedan",
+				"text": "razočarani",
 				"value": "4"
 			},
 			{
-				"text": "duša od čovjeka",
+				"text": "mirni",
 				"value": "5"
+			},
+			{
+				"text": "zadovoljni",
+				"value": "6"
+			},
+			{
+				"text": "sretni",
+				"value": "7"
+			},
+			{
+				"text": "zaneseni",
+				"value": "8"
+			},
+			{
+				"text": "pali u sevdah",
+				"value": "9"
+			},
+			{
+				"text": "plešu na ulicama",
+				"value": "10"
+			},
+			{
+				"text": "Pjevaju pobjedničke pjesme",
+				"value": "11"
 			}
 		],
-		"agreeability": [
+		"fans_match": [
 			{
-				"text": "gadan tip",
+				"text": "Bolje da se ne pojavljujemo!",
 				"value": "0"
 			},
 			{
-				"text": "kontroverzan lik",
+				"text": "Jarane, ovi će nas rasturit",
 				"value": "1"
 			},
 			{
-				"text": "ugodan tip",
+				"text": "Gubimo sigurno",
 				"value": "2"
 			},
 			{
-				"text": "simpatičan tip",
+				"text": "Oni su favoriti",
 				"value": "3"
 			},
 			{
-				"text": "popularan tip",
+				"text": "Oni imaju prednost",
 				"value": "4"
 			},
 			{
-				"text": "omiljeni član tima",
+				"text": "Izjednačena tekma",
 				"value": "5"
-			}
-		],
-		"skills": [
-			{
-				"type": "Keeper",
-				"value": "Golman"
 			},
 			{
-				"type": "Stamina",
-				"value": "Izdržljivost"
+				"text": "Mi imamo prednost",
+				"value": "6"
 			},
 			{
-				"type": "Defender",
-				"value": "Odbrana"
+				"text": "Mi smo favoriti",
+				"value": "7"
 			},
 			{
-				"type": "Playmaker",
-				"value": "Veza"
+				"text": "Pobjeda je sigurna",
+				"value": "8"
 			},
 			{
-				"type": "Winger",
-				"value": "Krilo"
+				"text": "Ma ništa lakše",
+				"value": "9"
 			},
 			{
-				"type": "Scorer",
-				"value": "Napad"
-			},
-			{
-				"type": "Kicker",
-				"value": "Prekidi"
-			},
-			{
-				"type": "Passer",
-				"value": "Dodavanje"
-			},
-			{
-				"type": "Experience",
-				"value": "Iskustvo"
-			},
-			{
-				"type": "LeaderShip",
-				"value": "Vodstvo"
-			}
-		],
-		"positions": [
-			{
-				"type": "Keeper",
-				"value": "Golman"
-			},
-			{
-				"type": "WingBack",
-				"value": "Bek"
-			},
-			{
-				"type": "CentralDefender",
-				"value": "Centralni odbrambeni"
-			},
-			{
-				"type": "InnerMidfield",
-				"value": "Vezni"
-			},
-			{
-				"type": "Winger",
-				"value": "Krilo"
-			},
-			{
-				"type": "Forward",
-				"value": "Napadač"
+				"text": "Haj'mo ih poderat",
+				"value": "10"
 			}
 		],
 		"fans_season": [
@@ -234,20 +239,33 @@
 				"value": "7"
 			}
 		],
-		"attitude": [
+		"honesty": [
 			{
-				"text": "Igrajte opušteno",
-				"value": "-1"
-			},
-			{
-				"text": "Normalno",
+				"text": "ozloglašen",
 				"value": "0"
 			},
 			{
-				"text": "Utakmica sezone",
+				"text": "neiskren",
 				"value": "1"
+			},
+			{
+				"text": "iskren",
+				"value": "2"
+			},
+			{
+				"text": "pošten",
+				"value": "3"
+			},
+			{
+				"text": "pravedan",
+				"value": "4"
+			},
+			{
+				"text": "duša od čovjeka",
+				"value": "5"
 			}
 		],
+		"id": "58",
 		"levels": [
 			{
 				"text": "nepostojeći",
@@ -334,6 +352,199 @@
 				"value": "20"
 			}
 		],
+		"name": "bs",
+		"positions": [
+			{
+				"type": "Keeper",
+				"value": "Golman"
+			},
+			{
+				"type": "WingBack",
+				"value": "Bek"
+			},
+			{
+				"type": "CentralDefender",
+				"value": "Centralni odbrambeni"
+			},
+			{
+				"type": "InnerMidfield",
+				"value": "Vezni"
+			},
+			{
+				"type": "Winger",
+				"value": "Krilo"
+			},
+			{
+				"type": "Forward",
+				"value": "Napadač"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "Veoma nisko",
+				"value": "0"
+			},
+			{
+				"text": "Nisko",
+				"value": "0.25"
+			},
+			{
+				"text": "Visoko",
+				"value": "0.5"
+			},
+			{
+				"text": "Veoma visoko",
+				"value": "0.75"
+			}
+		],
+		"sectors": [
+			{
+				"type": "Midfield",
+				"value": "Veza"
+			},
+			{
+				"type": "RightDefense",
+				"value": "Desna odbrana"
+			},
+			{
+				"type": "CentralDefense",
+				"value": "Centralna odbrana"
+			},
+			{
+				"type": "LeftDefense",
+				"value": "Lijeva odbrana"
+			},
+			{
+				"type": "RightAttack",
+				"value": "Desni napad"
+			},
+			{
+				"type": "CentralAttack",
+				"value": "Centralni napad"
+			},
+			{
+				"type": "LeftAttack",
+				"value": "Lijevi napad"
+			}
+		],
+		"skills": [
+			{
+				"type": "Keeper",
+				"value": "Golman"
+			},
+			{
+				"type": "Stamina",
+				"value": "Izdržljivost"
+			},
+			{
+				"type": "Defender",
+				"value": "Odbrana"
+			},
+			{
+				"type": "Playmaker",
+				"value": "Veza"
+			},
+			{
+				"type": "Winger",
+				"value": "Krilo"
+			},
+			{
+				"type": "Scorer",
+				"value": "Napad"
+			},
+			{
+				"type": "Kicker",
+				"value": "Prekidi"
+			},
+			{
+				"type": "Passer",
+				"value": "Dodavanje"
+			},
+			{
+				"type": "Experience",
+				"value": "Iskustvo"
+			},
+			{
+				"type": "LeaderShip",
+				"value": "Vodstvo"
+			}
+		],
+		"specialties": [
+			{
+				"type": "None",
+				"value": "Nikakva"
+			},
+			{
+				"type": "Technical",
+				"value": "Tehničar"
+			},
+			{
+				"type": "Quick",
+				"value": "Brz"
+			},
+			{
+				"type": "Powerful",
+				"value": "Snažan"
+			},
+			{
+				"type": "Unpredictable",
+				"value": "Nepredvidiv"
+			},
+			{
+				"type": "Head",
+				"value": "Glavonja"
+			},
+			{
+				"type": "Regainer",
+				"value": "Nesalomljiv"
+			}
+		],
+		"spirit": [
+			{
+				"text": "kao hladni rat",
+				"value": "0"
+			},
+			{
+				"text": "ubitačni",
+				"value": "1"
+			},
+			{
+				"text": "bijesni",
+				"value": "2"
+			},
+			{
+				"text": "iznervirani",
+				"value": "3"
+			},
+			{
+				"text": "staloženi",
+				"value": "4"
+			},
+			{
+				"text": "mirni",
+				"value": "5"
+			},
+			{
+				"text": "zadovoljni",
+				"value": "6"
+			},
+			{
+				"text": "sretni",
+				"value": "7"
+			},
+			{
+				"text": "u delirijumu",
+				"value": "8"
+			},
+			{
+				"text": "u oblacima",
+				"value": "9"
+			},
+			{
+				"text": "k'o u raju!",
+				"value": "10"
+			}
+		],
 		"sponsors": [
 			{
 				"text": "ubitačni",
@@ -376,161 +587,44 @@
 				"value": "9"
 			}
 		],
-		"sectors": [
+		"tactics": [
 			{
-				"type": "Midfield",
-				"value": "Veza"
+				"type": "normal",
+				"value": "Normalno"
 			},
 			{
-				"type": "RightDefense",
-				"value": "Desna odbrana"
+				"type": "pressing",
+				"value": "Presing"
 			},
 			{
-				"type": "CentralDefense",
-				"value": "Centralna odbrana"
+				"type": "ca",
+				"value": "Kontranapadi"
 			},
 			{
-				"type": "LeftDefense",
-				"value": "Lijeva odbrana"
+				"type": "aim",
+				"value": "Napad kroz sredinu"
 			},
 			{
-				"type": "RightAttack",
-				"value": "Desni napad"
+				"type": "aow",
+				"value": "Napad preko krila"
 			},
 			{
-				"type": "CentralAttack",
-				"value": "Centralni napad"
+				"type": "",
+				"value": "Nepoznato"
 			},
 			{
-				"type": "LeftAttack",
-				"value": "Lijevi napad"
+				"type": "",
+				"value": "Nepoznato"
+			},
+			{
+				"type": "creatively",
+				"value": "Igraj kreativno"
+			},
+			{
+				"type": "longshots",
+				"value": "Dalekometni šutevi"
 			}
 		],
-		"ratingSubLevels": [
-			{
-				"text": "Veoma nisko",
-				"value": "0"
-			},
-			{
-				"text": "Nisko",
-				"value": "0.25"
-			},
-			{
-				"text": "Visoko",
-				"value": "0.5"
-			},
-			{
-				"text": "Veoma visoko",
-				"value": "0.75"
-			}
-		],
-		"fans": [
-			{
-				"text": "ubitačni",
-				"value": "0"
-			},
-			{
-				"text": "bijesni",
-				"value": "1"
-			},
-			{
-				"text": "ljuti",
-				"value": "2"
-			},
-			{
-				"text": "iznervirani",
-				"value": "3"
-			},
-			{
-				"text": "razočarani",
-				"value": "4"
-			},
-			{
-				"text": "mirni",
-				"value": "5"
-			},
-			{
-				"text": "zadovoljni",
-				"value": "6"
-			},
-			{
-				"text": "sretni",
-				"value": "7"
-			},
-			{
-				"text": "zaneseni",
-				"value": "8"
-			},
-			{
-				"text": "pali u sevdah",
-				"value": "9"
-			},
-			{
-				"text": "plešu na ulicama",
-				"value": "10"
-			},
-			{
-				"text": "Pjevaju pobjedničke pjesme",
-				"value": "11"
-			}
-		],
-		"specialties": [
-			{
-				"type": "None",
-				"value": "Nikakva"
-			},
-			{
-				"type": "Technical",
-				"value": "Tehničar"
-			},
-			{
-				"type": "Quick",
-				"value": "Brz"
-			},
-			{
-				"type": "Powerful",
-				"value": "Snažan"
-			},
-			{
-				"type": "Unpredictable",
-				"value": "Nepredvidiv"
-			},
-			{
-				"type": "Head",
-				"value": "Glavonja"
-			},
-			{
-				"type": "Regainer",
-				"value": "Nesalomljiv"
-			}
-		],
-		"aggressiveness": [
-			{
-				"text": "opušten",
-				"value": "0"
-			},
-			{
-				"text": "miran",
-				"value": "1"
-			},
-			{
-				"text": "uravnotežen",
-				"value": "2"
-			},
-			{
-				"text": "temperamentan",
-				"value": "3"
-			},
-			{
-				"text": "prgav",
-				"value": "4"
-			},
-			{
-				"text": "nestabilan",
-				"value": "5"
-			}
-		],
-		"id": "58",
 		"training": [
 			{
 				"type": "Gen",
@@ -588,100 +682,6 @@
 				"type": "Indiv",
 				"value": "Individualni"
 			}
-		],
-		"fans_match": [
-			{
-				"text": "Bolje da se ne pojavljujemo!",
-				"value": "0"
-			},
-			{
-				"text": "Jarane, ovi će nas rasturit",
-				"value": "1"
-			},
-			{
-				"text": "Gubimo sigurno",
-				"value": "2"
-			},
-			{
-				"text": "Oni su favoriti",
-				"value": "3"
-			},
-			{
-				"text": "Oni imaju prednost",
-				"value": "4"
-			},
-			{
-				"text": "Izjednačena tekma",
-				"value": "5"
-			},
-			{
-				"text": "Mi imamo prednost",
-				"value": "6"
-			},
-			{
-				"text": "Mi smo favoriti",
-				"value": "7"
-			},
-			{
-				"text": "Pobjeda je sigurna",
-				"value": "8"
-			},
-			{
-				"text": "Ma ništa lakše",
-				"value": "9"
-			},
-			{
-				"text": "Haj'mo ih poderat",
-				"value": "10"
-			}
-		],
-		"name": "bs",
-		"spirit": [
-			{
-				"text": "kao hladni rat",
-				"value": "0"
-			},
-			{
-				"text": "ubitačni",
-				"value": "1"
-			},
-			{
-				"text": "bijesni",
-				"value": "2"
-			},
-			{
-				"text": "iznervirani",
-				"value": "3"
-			},
-			{
-				"text": "staloženi",
-				"value": "4"
-			},
-			{
-				"text": "mirni",
-				"value": "5"
-			},
-			{
-				"text": "zadovoljni",
-				"value": "6"
-			},
-			{
-				"text": "sretni",
-				"value": "7"
-			},
-			{
-				"text": "u delirijumu",
-				"value": "8"
-			},
-			{
-				"text": "u oblacima",
-				"value": "9"
-			},
-			{
-				"text": "k'o u raju!",
-				"value": "10"
-			}
-		],
-		"desc": "Bosnian"
+		]
 	}
 }

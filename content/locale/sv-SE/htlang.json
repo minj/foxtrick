@@ -1,5 +1,71 @@
 {
 	"language": {
+		"aggressiveness": [
+			{
+				"text": "lugn som en filbunke",
+				"value": "0"
+			},
+			{
+				"text": "stillsam",
+				"value": "1"
+			},
+			{
+				"text": "balanserad",
+				"value": "2"
+			},
+			{
+				"text": "temperamentsfull",
+				"value": "3"
+			},
+			{
+				"text": "eldfängd",
+				"value": "4"
+			},
+			{
+				"text": "instabil",
+				"value": "5"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "otrevlig typ",
+				"value": "0"
+			},
+			{
+				"text": "kontroversiell person",
+				"value": "1"
+			},
+			{
+				"text": "sympatisk kille",
+				"value": "2"
+			},
+			{
+				"text": "genomsympatisk kille",
+				"value": "3"
+			},
+			{
+				"text": "populär kille",
+				"value": "4"
+			},
+			{
+				"text": "älskad lagkamrat",
+				"value": "5"
+			}
+		],
+		"attitude": [
+			{
+				"text": "Ta det lugnt",
+				"value": "-1"
+			},
+			{
+				"text": "Normal",
+				"value": "0"
+			},
+			{
+				"text": "Säsongens viktigaste match",
+				"value": "1"
+			}
+		],
 		"confidence": [
 			{
 				"text": "obefintligt",
@@ -42,162 +108,101 @@
 				"value": "9"
 			}
 		],
-		"tactics": [
+		"desc": "Svenska",
+		"fans": [
 			{
-				"type": "normal",
-				"value": "Normal"
-			},
-			{
-				"type": "pressing",
-				"value": "Press"
-			},
-			{
-				"type": "ca",
-				"value": "Kontringsspel"
-			},
-			{
-				"type": "aim",
-				"value": "Anfall i mitten"
-			},
-			{
-				"type": "aow",
-				"value": "Anfall på kanterna"
-			},
-			{
-				"type": "",
-				"value": "Okänd"
-			},
-			{
-				"type": "",
-				"value": "Okänd"
-			},
-			{
-				"type": "creatively",
-				"value": "Spela kreativt"
-			},
-			{
-				"type": "longshots",
-				"value": "Långskott"
-			}
-		],
-		"honesty": [
-			{
-				"text": "skandalomsusad",
+				"text": "lynchstämning",
 				"value": "0"
 			},
 			{
-				"text": "inte alltid helt ärlig",
+				"text": "rasande",
 				"value": "1"
 			},
 			{
-				"text": "hederlig",
+				"text": "ilskna",
 				"value": "2"
 			},
 			{
-				"text": "ärlig",
+				"text": "irriterade",
 				"value": "3"
 			},
 			{
-				"text": "genomärlig",
+				"text": "besvikna",
 				"value": "4"
 			},
 			{
-				"text": "helgonlik",
+				"text": "lugna",
 				"value": "5"
+			},
+			{
+				"text": "tillfreds",
+				"value": "6"
+			},
+			{
+				"text": "belåtna",
+				"value": "7"
+			},
+			{
+				"text": "lyriska",
+				"value": "8"
+			},
+			{
+				"text": "svävar på små moln",
+				"value": "9"
+			},
+			{
+				"text": "badar i fontänerna",
+				"value": "10"
+			},
+			{
+				"text": "skickar dig kärleksdikter",
+				"value": "11"
 			}
 		],
-		"agreeability": [
+		"fans_match": [
 			{
-				"text": "otrevlig typ",
+				"text": "Bäst att inte ställa upp",
 				"value": "0"
 			},
 			{
-				"text": "kontroversiell person",
+				"text": "Vi har ingen chans",
 				"value": "1"
 			},
 			{
-				"text": "sympatisk kille",
+				"text": "Vi förlorar",
 				"value": "2"
 			},
 			{
-				"text": "genomsympatisk kille",
+				"text": "De är favoriter",
 				"value": "3"
 			},
 			{
-				"text": "populär kille",
+				"text": "Det lutar åt deras håll",
 				"value": "4"
 			},
 			{
-				"text": "älskad lagkamrat",
+				"text": "Ser ut att bli jämnt",
 				"value": "5"
-			}
-		],
-		"skills": [
-			{
-				"type": "Keeper",
-				"value": "Målvakt"
 			},
 			{
-				"type": "Stamina",
-				"value": "Kondition"
+				"text": "Det lutar åt vårt håll",
+				"value": "6"
 			},
 			{
-				"type": "Defender",
-				"value": "Försvar"
+				"text": "Vi är favoriter",
+				"value": "7"
 			},
 			{
-				"type": "Playmaker",
-				"value": "Spelupplägg"
+				"text": "Vi vinner detta",
+				"value": "8"
 			},
 			{
-				"type": "Winger",
-				"value": "Ytter"
+				"text": "Lätt som en plätt",
+				"value": "9"
 			},
 			{
-				"type": "Scorer",
-				"value": "Målgörare"
-			},
-			{
-				"type": "Kicker",
-				"value": "Fasta sit."
-			},
-			{
-				"type": "Passer",
-				"value": "Framspel"
-			},
-			{
-				"type": "Experience",
-				"value": "Rutin"
-			},
-			{
-				"type": "LeaderShip",
-				"value": "Ledarförmåga"
-			}
-		],
-		"positions": [
-			{
-				"type": "Keeper",
-				"value": "Målvakt"
-			},
-			{
-				"type": "WingBack",
-				"value": "Ytterback"
-			},
-			{
-				"type": "CentralDefender",
-				"value": "Innerback"
-			},
-			{
-				"type": "InnerMidfield",
-				"value": "Innermittfältare"
-			},
-			{
-				"type": "Winger",
-				"value": "Yttermittfält"
-			},
-			{
-				"type": "Forward",
-				"value": "Forward"
+				"text": "Nu ska vi krossa dem",
+				"value": "10"
 			}
 		],
 		"fans_season": [
@@ -234,20 +239,33 @@
 				"value": "7"
 			}
 		],
-		"attitude": [
+		"honesty": [
 			{
-				"text": "Ta det lugnt",
-				"value": "-1"
-			},
-			{
-				"text": "Normal",
+				"text": "skandalomsusad",
 				"value": "0"
 			},
 			{
-				"text": "Säsongens viktigaste match",
+				"text": "inte alltid helt ärlig",
 				"value": "1"
+			},
+			{
+				"text": "hederlig",
+				"value": "2"
+			},
+			{
+				"text": "ärlig",
+				"value": "3"
+			},
+			{
+				"text": "genomärlig",
+				"value": "4"
+			},
+			{
+				"text": "helgonlik",
+				"value": "5"
 			}
 		],
+		"id": "1",
 		"levels": [
 			{
 				"text": "obefintlig",
@@ -334,6 +352,199 @@
 				"value": "20"
 			}
 		],
+		"name": "sv-SE",
+		"positions": [
+			{
+				"type": "Keeper",
+				"value": "Målvakt"
+			},
+			{
+				"type": "WingBack",
+				"value": "Ytterback"
+			},
+			{
+				"type": "CentralDefender",
+				"value": "Innerback"
+			},
+			{
+				"type": "InnerMidfield",
+				"value": "Innermittfältare"
+			},
+			{
+				"type": "Winger",
+				"value": "Yttermittfält"
+			},
+			{
+				"type": "Forward",
+				"value": "Forward"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "mkt låg",
+				"value": "0"
+			},
+			{
+				"text": "låg",
+				"value": "0.25"
+			},
+			{
+				"text": "hög",
+				"value": "0.5"
+			},
+			{
+				"text": "mkt hög",
+				"value": "0.75"
+			}
+		],
+		"sectors": [
+			{
+				"type": "Midfield",
+				"value": "Mittfält"
+			},
+			{
+				"type": "RightDefense",
+				"value": "Högerförsvar"
+			},
+			{
+				"type": "CentralDefense",
+				"value": "Mittförsvar"
+			},
+			{
+				"type": "LeftDefense",
+				"value": "Vänsterförsvar"
+			},
+			{
+				"type": "RightAttack",
+				"value": "Högeranfall"
+			},
+			{
+				"type": "CentralAttack",
+				"value": "Mittanfall"
+			},
+			{
+				"type": "LeftAttack",
+				"value": "Vänsteranfall"
+			}
+		],
+		"skills": [
+			{
+				"type": "Keeper",
+				"value": "Målvakt"
+			},
+			{
+				"type": "Stamina",
+				"value": "Kondition"
+			},
+			{
+				"type": "Defender",
+				"value": "Försvar"
+			},
+			{
+				"type": "Playmaker",
+				"value": "Spelupplägg"
+			},
+			{
+				"type": "Winger",
+				"value": "Ytter"
+			},
+			{
+				"type": "Scorer",
+				"value": "Målgörare"
+			},
+			{
+				"type": "Kicker",
+				"value": "Fasta sit."
+			},
+			{
+				"type": "Passer",
+				"value": "Framspel"
+			},
+			{
+				"type": "Experience",
+				"value": "Rutin"
+			},
+			{
+				"type": "LeaderShip",
+				"value": "Ledarförmåga"
+			}
+		],
+		"specialties": [
+			{
+				"type": "None",
+				"value": "Ingen"
+			},
+			{
+				"type": "Technical",
+				"value": "Teknisk"
+			},
+			{
+				"type": "Quick",
+				"value": "Snabb"
+			},
+			{
+				"type": "Powerful",
+				"value": "Kraftfull"
+			},
+			{
+				"type": "Unpredictable",
+				"value": "Oförutsägbar"
+			},
+			{
+				"type": "Head",
+				"value": "Nickskicklig"
+			},
+			{
+				"type": "Regainer",
+				"value": "Återhämtare"
+			}
+		],
+		"spirit": [
+			{
+				"text": "som kalla kriget",
+				"value": "0"
+			},
+			{
+				"text": "katastrofal",
+				"value": "1"
+			},
+			{
+				"text": "usel",
+				"value": "2"
+			},
+			{
+				"text": "dålig",
+				"value": "3"
+			},
+			{
+				"text": "hyfsad",
+				"value": "4"
+			},
+			{
+				"text": "bra",
+				"value": "5"
+			},
+			{
+				"text": "ypperlig",
+				"value": "6"
+			},
+			{
+				"text": "enastående",
+				"value": "7"
+			},
+			{
+				"text": "fenomenal",
+				"value": "8"
+			},
+			{
+				"text": "himmelriket på jorden",
+				"value": "9"
+			},
+			{
+				"text": "bättre än himmelriket på jorden",
+				"value": "10"
+			}
+		],
 		"sponsors": [
 			{
 				"text": "lynchstämning",
@@ -376,161 +587,44 @@
 				"value": "9"
 			}
 		],
-		"sectors": [
+		"tactics": [
 			{
-				"type": "Midfield",
-				"value": "Mittfält"
+				"type": "normal",
+				"value": "Normal"
 			},
 			{
-				"type": "RightDefense",
-				"value": "Högerförsvar"
+				"type": "pressing",
+				"value": "Press"
 			},
 			{
-				"type": "CentralDefense",
-				"value": "Mittförsvar"
+				"type": "ca",
+				"value": "Kontringsspel"
 			},
 			{
-				"type": "LeftDefense",
-				"value": "Vänsterförsvar"
+				"type": "aim",
+				"value": "Anfall i mitten"
 			},
 			{
-				"type": "RightAttack",
-				"value": "Högeranfall"
+				"type": "aow",
+				"value": "Anfall på kanterna"
 			},
 			{
-				"type": "CentralAttack",
-				"value": "Mittanfall"
+				"type": "",
+				"value": "Okänd"
 			},
 			{
-				"type": "LeftAttack",
-				"value": "Vänsteranfall"
+				"type": "",
+				"value": "Okänd"
+			},
+			{
+				"type": "creatively",
+				"value": "Spela kreativt"
+			},
+			{
+				"type": "longshots",
+				"value": "Långskott"
 			}
 		],
-		"ratingSubLevels": [
-			{
-				"text": "mkt låg",
-				"value": "0"
-			},
-			{
-				"text": "låg",
-				"value": "0.25"
-			},
-			{
-				"text": "hög",
-				"value": "0.5"
-			},
-			{
-				"text": "mkt hög",
-				"value": "0.75"
-			}
-		],
-		"fans": [
-			{
-				"text": "lynchstämning",
-				"value": "0"
-			},
-			{
-				"text": "rasande",
-				"value": "1"
-			},
-			{
-				"text": "ilskna",
-				"value": "2"
-			},
-			{
-				"text": "irriterade",
-				"value": "3"
-			},
-			{
-				"text": "besvikna",
-				"value": "4"
-			},
-			{
-				"text": "lugna",
-				"value": "5"
-			},
-			{
-				"text": "tillfreds",
-				"value": "6"
-			},
-			{
-				"text": "belåtna",
-				"value": "7"
-			},
-			{
-				"text": "lyriska",
-				"value": "8"
-			},
-			{
-				"text": "svävar på små moln",
-				"value": "9"
-			},
-			{
-				"text": "badar i fontänerna",
-				"value": "10"
-			},
-			{
-				"text": "skickar dig kärleksdikter",
-				"value": "11"
-			}
-		],
-		"specialties": [
-			{
-				"type": "None",
-				"value": "Ingen"
-			},
-			{
-				"type": "Technical",
-				"value": "Teknisk"
-			},
-			{
-				"type": "Quick",
-				"value": "Snabb"
-			},
-			{
-				"type": "Powerful",
-				"value": "Kraftfull"
-			},
-			{
-				"type": "Unpredictable",
-				"value": "Oförutsägbar"
-			},
-			{
-				"type": "Head",
-				"value": "Nickskicklig"
-			},
-			{
-				"type": "Regainer",
-				"value": "Återhämtare"
-			}
-		],
-		"aggressiveness": [
-			{
-				"text": "lugn som en filbunke",
-				"value": "0"
-			},
-			{
-				"text": "stillsam",
-				"value": "1"
-			},
-			{
-				"text": "balanserad",
-				"value": "2"
-			},
-			{
-				"text": "temperamentsfull",
-				"value": "3"
-			},
-			{
-				"text": "eldfängd",
-				"value": "4"
-			},
-			{
-				"text": "instabil",
-				"value": "5"
-			}
-		],
-		"id": "1",
 		"training": [
 			{
 				"type": "Gen",
@@ -588,100 +682,6 @@
 				"type": "Indiv",
 				"value": "Individuell"
 			}
-		],
-		"fans_match": [
-			{
-				"text": "Bäst att inte ställa upp",
-				"value": "0"
-			},
-			{
-				"text": "Vi har ingen chans",
-				"value": "1"
-			},
-			{
-				"text": "Vi förlorar",
-				"value": "2"
-			},
-			{
-				"text": "De är favoriter",
-				"value": "3"
-			},
-			{
-				"text": "Det lutar åt deras håll",
-				"value": "4"
-			},
-			{
-				"text": "Ser ut att bli jämnt",
-				"value": "5"
-			},
-			{
-				"text": "Det lutar åt vårt håll",
-				"value": "6"
-			},
-			{
-				"text": "Vi är favoriter",
-				"value": "7"
-			},
-			{
-				"text": "Vi vinner detta",
-				"value": "8"
-			},
-			{
-				"text": "Lätt som en plätt",
-				"value": "9"
-			},
-			{
-				"text": "Nu ska vi krossa dem",
-				"value": "10"
-			}
-		],
-		"name": "sv-SE",
-		"spirit": [
-			{
-				"text": "som kalla kriget",
-				"value": "0"
-			},
-			{
-				"text": "katastrofal",
-				"value": "1"
-			},
-			{
-				"text": "usel",
-				"value": "2"
-			},
-			{
-				"text": "dålig",
-				"value": "3"
-			},
-			{
-				"text": "hyfsad",
-				"value": "4"
-			},
-			{
-				"text": "bra",
-				"value": "5"
-			},
-			{
-				"text": "ypperlig",
-				"value": "6"
-			},
-			{
-				"text": "enastående",
-				"value": "7"
-			},
-			{
-				"text": "fenomenal",
-				"value": "8"
-			},
-			{
-				"text": "himmelriket på jorden",
-				"value": "9"
-			},
-			{
-				"text": "bättre än himmelriket på jorden",
-				"value": "10"
-			}
-		],
-		"desc": "Svenska"
+		]
 	}
 }

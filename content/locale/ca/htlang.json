@@ -1,5 +1,71 @@
 {
 	"language": {
+		"aggressiveness": [
+			{
+				"text": "tranquil",
+				"value": "0"
+			},
+			{
+				"text": "calmat",
+				"value": "1"
+			},
+			{
+				"text": "estable",
+				"value": "2"
+			},
+			{
+				"text": "temperamental",
+				"value": "3"
+			},
+			{
+				"text": "iracund",
+				"value": "4"
+			},
+			{
+				"text": "rabiós",
+				"value": "5"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "noi malintencionat",
+				"value": "0"
+			},
+			{
+				"text": "noi polèmic",
+				"value": "1"
+			},
+			{
+				"text": "noi agradable",
+				"value": "2"
+			},
+			{
+				"text": "noi carismàtic",
+				"value": "3"
+			},
+			{
+				"text": "noi popular",
+				"value": "4"
+			},
+			{
+				"text": "apreciat company d'equip",
+				"value": "5"
+			}
+		],
+		"attitude": [
+			{
+				"text": "Relaxat",
+				"value": "-1"
+			},
+			{
+				"text": "Normal",
+				"value": "0"
+			},
+			{
+				"text": "Partit de la temporada",
+				"value": "1"
+			}
+		],
 		"confidence": [
 			{
 				"text": "inexistent",
@@ -42,162 +108,101 @@
 				"value": "9"
 			}
 		],
-		"tactics": [
+		"desc": "Català",
+		"fans": [
 			{
-				"type": "normal",
-				"value": "Normal"
-			},
-			{
-				"type": "pressing",
-				"value": "Pressió"
-			},
-			{
-				"type": "ca",
-				"value": "Contraatacs"
-			},
-			{
-				"type": "aim",
-				"value": "Atac pel centre"
-			},
-			{
-				"type": "aow",
-				"value": "Atac per les bandes"
-			},
-			{
-				"type": "",
-				"value": "Desconegut"
-			},
-			{
-				"type": "",
-				"value": "Desconegut"
-			},
-			{
-				"type": "creatively",
-				"value": "Joc d'especialitats"
-			},
-			{
-				"type": "longshots",
-				"value": "Xuts llunyans"
-			}
-		],
-		"honesty": [
-			{
-				"text": "infame",
+				"text": "sanguinaris",
 				"value": "0"
 			},
 			{
-				"text": "deshonest",
+				"text": "furiosos",
 				"value": "1"
 			},
 			{
-				"text": "honest",
+				"text": "emprenyats",
 				"value": "2"
 			},
 			{
-				"text": "just",
+				"text": "irritats",
 				"value": "3"
 			},
 			{
-				"text": "honorable",
+				"text": "desmoralitzats",
 				"value": "4"
 			},
 			{
-				"text": "un sant",
+				"text": "calmats",
 				"value": "5"
+			},
+			{
+				"text": "conformes",
+				"value": "6"
+			},
+			{
+				"text": "satisfets",
+				"value": "7"
+			},
+			{
+				"text": "encantats",
+				"value": "8"
+			},
+			{
+				"text": "feliços",
+				"value": "9"
+			},
+			{
+				"text": "ballant als carrers",
+				"value": "10"
+			},
+			{
+				"text": "enviant-te poemes d'amor",
+				"value": "11"
 			}
 		],
-		"agreeability": [
+		"fans_match": [
 			{
-				"text": "noi malintencionat",
+				"text": "millor que no el mireu!",
 				"value": "0"
 			},
 			{
-				"text": "noi polèmic",
+				"text": "ens superen clarament",
 				"value": "1"
 			},
 			{
-				"text": "noi agradable",
+				"text": "perdrem",
 				"value": "2"
 			},
 			{
-				"text": "noi carismàtic",
+				"text": "són els favorits",
 				"value": "3"
 			},
 			{
-				"text": "noi popular",
+				"text": "tenen l'avantatge",
 				"value": "4"
 			},
 			{
-				"text": "apreciat company d'equip",
+				"text": "estarà ajustat",
 				"value": "5"
-			}
-		],
-		"skills": [
-			{
-				"type": "Keeper",
-				"value": "Porteria"
 			},
 			{
-				"type": "Stamina",
-				"value": "Resistència"
+				"text": "tenim l'avantatge",
+				"value": "6"
 			},
 			{
-				"type": "Defender",
-				"value": "Defensa"
+				"text": "som els favorits",
+				"value": "7"
 			},
 			{
-				"type": "Playmaker",
-				"value": "Creativitat"
+				"text": "guanyarem",
+				"value": "8"
 			},
 			{
-				"type": "Winger",
-				"value": "Extrem"
+				"text": "bufar i fer ampolles!",
+				"value": "9"
 			},
 			{
-				"type": "Scorer",
-				"value": "Anotació"
-			},
-			{
-				"type": "Kicker",
-				"value": "Pilota aturada"
-			},
-			{
-				"type": "Passer",
-				"value": "Passades"
-			},
-			{
-				"type": "Experience",
-				"value": "Experiència"
-			},
-			{
-				"type": "LeaderShip",
-				"value": "Lideratge"
-			}
-		],
-		"positions": [
-			{
-				"type": "Keeper",
-				"value": "Porter"
-			},
-			{
-				"type": "WingBack",
-				"value": "Defensa lateral"
-			},
-			{
-				"type": "CentralDefender",
-				"value": "Defensa central"
-			},
-			{
-				"type": "InnerMidfield",
-				"value": "Mig centre"
-			},
-			{
-				"type": "Winger",
-				"value": "Extrem"
-			},
-			{
-				"type": "Forward",
-				"value": "Davanter"
+				"text": "humiliem-los",
+				"value": "10"
 			}
 		],
 		"fans_season": [
@@ -234,20 +239,33 @@
 				"value": "7"
 			}
 		],
-		"attitude": [
+		"honesty": [
 			{
-				"text": "Relaxat",
-				"value": "-1"
-			},
-			{
-				"text": "Normal",
+				"text": "infame",
 				"value": "0"
 			},
 			{
-				"text": "Partit de la temporada",
+				"text": "deshonest",
 				"value": "1"
+			},
+			{
+				"text": "honest",
+				"value": "2"
+			},
+			{
+				"text": "just",
+				"value": "3"
+			},
+			{
+				"text": "honorable",
+				"value": "4"
+			},
+			{
+				"text": "un sant",
+				"value": "5"
 			}
 		],
+		"id": "66",
 		"levels": [
 			{
 				"text": "inexistent",
@@ -334,6 +352,199 @@
 				"value": "20"
 			}
 		],
+		"name": "ca",
+		"positions": [
+			{
+				"type": "Keeper",
+				"value": "Porter"
+			},
+			{
+				"type": "WingBack",
+				"value": "Defensa lateral"
+			},
+			{
+				"type": "CentralDefender",
+				"value": "Defensa central"
+			},
+			{
+				"type": "InnerMidfield",
+				"value": "Mig centre"
+			},
+			{
+				"type": "Winger",
+				"value": "Extrem"
+			},
+			{
+				"type": "Forward",
+				"value": "Davanter"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "molt baix",
+				"value": "0"
+			},
+			{
+				"text": "baix",
+				"value": "0.25"
+			},
+			{
+				"text": "alt",
+				"value": "0.5"
+			},
+			{
+				"text": "molt alt",
+				"value": "0.75"
+			}
+		],
+		"sectors": [
+			{
+				"type": "Midfield",
+				"value": "Mig camp"
+			},
+			{
+				"type": "RightDefense",
+				"value": "Defensa dreta"
+			},
+			{
+				"type": "CentralDefense",
+				"value": "Defensa central"
+			},
+			{
+				"type": "LeftDefense",
+				"value": "Defensa esquerra"
+			},
+			{
+				"type": "RightAttack",
+				"value": "Atac dret"
+			},
+			{
+				"type": "CentralAttack",
+				"value": "Atac central"
+			},
+			{
+				"type": "LeftAttack",
+				"value": "Atac esquerre"
+			}
+		],
+		"skills": [
+			{
+				"type": "Keeper",
+				"value": "Porteria"
+			},
+			{
+				"type": "Stamina",
+				"value": "Resistència"
+			},
+			{
+				"type": "Defender",
+				"value": "Defensa"
+			},
+			{
+				"type": "Playmaker",
+				"value": "Creativitat"
+			},
+			{
+				"type": "Winger",
+				"value": "Extrem"
+			},
+			{
+				"type": "Scorer",
+				"value": "Anotació"
+			},
+			{
+				"type": "Kicker",
+				"value": "Pilota aturada"
+			},
+			{
+				"type": "Passer",
+				"value": "Passades"
+			},
+			{
+				"type": "Experience",
+				"value": "Experiència"
+			},
+			{
+				"type": "LeaderShip",
+				"value": "Lideratge"
+			}
+		],
+		"specialties": [
+			{
+				"type": "None",
+				"value": "Sense especialitat"
+			},
+			{
+				"type": "Technical",
+				"value": "Tècnic"
+			},
+			{
+				"type": "Quick",
+				"value": "Ràpid"
+			},
+			{
+				"type": "Powerful",
+				"value": "Potent"
+			},
+			{
+				"type": "Unpredictable",
+				"value": "Imprevisible"
+			},
+			{
+				"type": "Head",
+				"value": "Joc aeri"
+			},
+			{
+				"type": "Regainer",
+				"value": "Cura ràpida"
+			}
+		],
+		"spirit": [
+			{
+				"text": "com a la guerra freda",
+				"value": "0"
+			},
+			{
+				"text": "mala maror",
+				"value": "1"
+			},
+			{
+				"text": "desil·lusionats",
+				"value": "2"
+			},
+			{
+				"text": "pessimistes",
+				"value": "3"
+			},
+			{
+				"text": "serens",
+				"value": "4"
+			},
+			{
+				"text": "optimistes",
+				"value": "5"
+			},
+			{
+				"text": "il·lusionats",
+				"value": "6"
+			},
+			{
+				"text": "entusiasmats",
+				"value": "7"
+			},
+			{
+				"text": "eufòrics",
+				"value": "8"
+			},
+			{
+				"text": "als núvols",
+				"value": "9"
+			},
+			{
+				"text": "paradís terrenal!",
+				"value": "10"
+			}
+		],
 		"sponsors": [
 			{
 				"text": "sanguinaris",
@@ -376,161 +587,44 @@
 				"value": "9"
 			}
 		],
-		"sectors": [
+		"tactics": [
 			{
-				"type": "Midfield",
-				"value": "Mig camp"
+				"type": "normal",
+				"value": "Normal"
 			},
 			{
-				"type": "RightDefense",
-				"value": "Defensa dreta"
+				"type": "pressing",
+				"value": "Pressió"
 			},
 			{
-				"type": "CentralDefense",
-				"value": "Defensa central"
+				"type": "ca",
+				"value": "Contraatacs"
 			},
 			{
-				"type": "LeftDefense",
-				"value": "Defensa esquerra"
+				"type": "aim",
+				"value": "Atac pel centre"
 			},
 			{
-				"type": "RightAttack",
-				"value": "Atac dret"
+				"type": "aow",
+				"value": "Atac per les bandes"
 			},
 			{
-				"type": "CentralAttack",
-				"value": "Atac central"
+				"type": "",
+				"value": "Desconegut"
 			},
 			{
-				"type": "LeftAttack",
-				"value": "Atac esquerre"
+				"type": "",
+				"value": "Desconegut"
+			},
+			{
+				"type": "creatively",
+				"value": "Joc d'especialitats"
+			},
+			{
+				"type": "longshots",
+				"value": "Xuts llunyans"
 			}
 		],
-		"ratingSubLevels": [
-			{
-				"text": "molt baix",
-				"value": "0"
-			},
-			{
-				"text": "baix",
-				"value": "0.25"
-			},
-			{
-				"text": "alt",
-				"value": "0.5"
-			},
-			{
-				"text": "molt alt",
-				"value": "0.75"
-			}
-		],
-		"fans": [
-			{
-				"text": "sanguinaris",
-				"value": "0"
-			},
-			{
-				"text": "furiosos",
-				"value": "1"
-			},
-			{
-				"text": "emprenyats",
-				"value": "2"
-			},
-			{
-				"text": "irritats",
-				"value": "3"
-			},
-			{
-				"text": "desmoralitzats",
-				"value": "4"
-			},
-			{
-				"text": "calmats",
-				"value": "5"
-			},
-			{
-				"text": "conformes",
-				"value": "6"
-			},
-			{
-				"text": "satisfets",
-				"value": "7"
-			},
-			{
-				"text": "encantats",
-				"value": "8"
-			},
-			{
-				"text": "feliços",
-				"value": "9"
-			},
-			{
-				"text": "ballant als carrers",
-				"value": "10"
-			},
-			{
-				"text": "enviant-te poemes d'amor",
-				"value": "11"
-			}
-		],
-		"specialties": [
-			{
-				"type": "None",
-				"value": "Sense especialitat"
-			},
-			{
-				"type": "Technical",
-				"value": "Tècnic"
-			},
-			{
-				"type": "Quick",
-				"value": "Ràpid"
-			},
-			{
-				"type": "Powerful",
-				"value": "Potent"
-			},
-			{
-				"type": "Unpredictable",
-				"value": "Imprevisible"
-			},
-			{
-				"type": "Head",
-				"value": "Joc aeri"
-			},
-			{
-				"type": "Regainer",
-				"value": "Cura ràpida"
-			}
-		],
-		"aggressiveness": [
-			{
-				"text": "tranquil",
-				"value": "0"
-			},
-			{
-				"text": "calmat",
-				"value": "1"
-			},
-			{
-				"text": "estable",
-				"value": "2"
-			},
-			{
-				"text": "temperamental",
-				"value": "3"
-			},
-			{
-				"text": "iracund",
-				"value": "4"
-			},
-			{
-				"text": "rabiós",
-				"value": "5"
-			}
-		],
-		"id": "66",
 		"training": [
 			{
 				"type": "Gen",
@@ -588,100 +682,6 @@
 				"type": "Indiv",
 				"value": "Individual"
 			}
-		],
-		"fans_match": [
-			{
-				"text": "millor que no el mireu!",
-				"value": "0"
-			},
-			{
-				"text": "ens superen clarament",
-				"value": "1"
-			},
-			{
-				"text": "perdrem",
-				"value": "2"
-			},
-			{
-				"text": "són els favorits",
-				"value": "3"
-			},
-			{
-				"text": "tenen l'avantatge",
-				"value": "4"
-			},
-			{
-				"text": "estarà ajustat",
-				"value": "5"
-			},
-			{
-				"text": "tenim l'avantatge",
-				"value": "6"
-			},
-			{
-				"text": "som els favorits",
-				"value": "7"
-			},
-			{
-				"text": "guanyarem",
-				"value": "8"
-			},
-			{
-				"text": "bufar i fer ampolles!",
-				"value": "9"
-			},
-			{
-				"text": "humiliem-los",
-				"value": "10"
-			}
-		],
-		"name": "ca",
-		"spirit": [
-			{
-				"text": "com a la guerra freda",
-				"value": "0"
-			},
-			{
-				"text": "mala maror",
-				"value": "1"
-			},
-			{
-				"text": "desil·lusionats",
-				"value": "2"
-			},
-			{
-				"text": "pessimistes",
-				"value": "3"
-			},
-			{
-				"text": "serens",
-				"value": "4"
-			},
-			{
-				"text": "optimistes",
-				"value": "5"
-			},
-			{
-				"text": "il·lusionats",
-				"value": "6"
-			},
-			{
-				"text": "entusiasmats",
-				"value": "7"
-			},
-			{
-				"text": "eufòrics",
-				"value": "8"
-			},
-			{
-				"text": "als núvols",
-				"value": "9"
-			},
-			{
-				"text": "paradís terrenal!",
-				"value": "10"
-			}
-		],
-		"desc": "Català"
+		]
 	}
 }

@@ -1,5 +1,71 @@
 {
 	"language": {
+		"aggressiveness": [
+			{
+				"text": "i urtë",
+				"value": "0"
+			},
+			{
+				"text": "i qetë",
+				"value": "1"
+			},
+			{
+				"text": "harmonik",
+				"value": "2"
+			},
+			{
+				"text": "tekanjoz",
+				"value": "3"
+			},
+			{
+				"text": "agresiv",
+				"value": "4"
+			},
+			{
+				"text": "i zjarrtë",
+				"value": "5"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "djalë i ndyrë",
+				"value": "0"
+			},
+			{
+				"text": "mistrec",
+				"value": "1"
+			},
+			{
+				"text": "djalë i këndshëm",
+				"value": "2"
+			},
+			{
+				"text": "djalë miqësor",
+				"value": "3"
+			},
+			{
+				"text": "djalë i dashur",
+				"value": "4"
+			},
+			{
+				"text": "si pëllumb",
+				"value": "5"
+			}
+		],
+		"attitude": [
+			{
+				"text": "Luani Qetë",
+				"value": "-1"
+			},
+			{
+				"text": "Normal",
+				"value": "0"
+			},
+			{
+				"text": "Ndeshja e Sezonit",
+				"value": "1"
+			}
+		],
 		"confidence": [
 			{
 				"text": "nuk ekziston",
@@ -42,162 +108,101 @@
 				"value": "9"
 			}
 		],
-		"tactics": [
+		"desc": "Albanian",
+		"fans": [
 			{
-				"type": "normal",
-				"value": "Normal"
-			},
-			{
-				"type": "pressing",
-				"value": "Presing"
-			},
-			{
-				"type": "ca",
-				"value": "Kundër-sulme"
-			},
-			{
-				"type": "aim",
-				"value": "Sulmoni në Qëndër"
-			},
-			{
-				"type": "aow",
-				"value": "Sulmoni nga Krahët"
-			},
-			{
-				"type": "",
-				"value": "E paditur"
-			},
-			{
-				"type": "",
-				"value": "E paditur"
-			},
-			{
-				"type": "creatively",
-				"value": "Luani me kreativitet"
-			},
-			{
-				"type": "longshots",
-				"value": "Goditje nga distanca"
-			}
-		],
-		"honesty": [
-			{
-				"text": "mashtrues",
+				"text": "për të vrarë",
 				"value": "0"
 			},
 			{
-				"text": "dallaveraxhi",
+				"text": "të tërbuar",
 				"value": "1"
 			},
 			{
-				"text": "i ndershëm",
+				"text": "të inatosur",
 				"value": "2"
 			},
 			{
-				"text": "i saktë",
+				"text": "të bezdisur",
 				"value": "3"
 			},
 			{
-				"text": "i drejtë",
+				"text": "të zhgënjyer",
 				"value": "4"
 			},
 			{
-				"text": "shejntor",
+				"text": "të qetë",
 				"value": "5"
+			},
+			{
+				"text": "të kënaqur",
+				"value": "6"
+			},
+			{
+				"text": "të lumtur",
+				"value": "7"
+			},
+			{
+				"text": "në delir",
+				"value": "8"
+			},
+			{
+				"text": "të stërkënaqur",
+				"value": "9"
+			},
+			{
+				"text": "duke hedhur valle",
+				"value": "10"
+			},
+			{
+				"text": "duke ju bërë urata",
+				"value": "11"
 			}
 		],
-		"agreeability": [
+		"fans_match": [
 			{
-				"text": "djalë i ndyrë",
+				"text": "Me mirë të mos paraqitemi fare!",
 				"value": "0"
 			},
 			{
-				"text": "mistrec",
+				"text": "Do na shkelin me këmbë",
 				"value": "1"
 			},
 			{
-				"text": "djalë i këndshëm",
+				"text": "Do humbasim",
 				"value": "2"
 			},
 			{
-				"text": "djalë miqësor",
+				"text": "Ata janë favoritë",
 				"value": "3"
 			},
 			{
-				"text": "djalë i dashur",
+				"text": "Peshorja anon nga ata",
 				"value": "4"
 			},
 			{
-				"text": "si pëllumb",
+				"text": "Do hahemi dhëmb për dhëmb",
 				"value": "5"
-			}
-		],
-		"skills": [
-			{
-				"type": "Keeper",
-				"value": "Portier"
 			},
 			{
-				"type": "Stamina",
-				"value": "Rrezistenca"
+				"text": "Peshorja anon nga ne",
+				"value": "6"
 			},
 			{
-				"type": "Defender",
-				"value": "Mbrojtje"
+				"text": "Ne jemi favoritë",
+				"value": "7"
 			},
 			{
-				"type": "Playmaker",
-				"value": "Organizim"
+				"text": "Do fitojmë",
+				"value": "8"
 			},
 			{
-				"type": "Winger",
-				"value": "Në Krah"
+				"text": "Bukë me djathë!",
+				"value": "9"
 			},
 			{
-				"type": "Scorer",
-				"value": "Shënim"
-			},
-			{
-				"type": "Kicker",
-				"value": "Goditje Standarte"
-			},
-			{
-				"type": "Passer",
-				"value": "Pasim"
-			},
-			{
-				"type": "Experience",
-				"value": "Eksperienca"
-			},
-			{
-				"type": "LeaderShip",
-				"value": "Karizma"
-			}
-		],
-		"positions": [
-			{
-				"type": "Keeper",
-				"value": "Portier"
-			},
-			{
-				"type": "WingBack",
-				"value": "Mbrojtës Krahu"
-			},
-			{
-				"type": "CentralDefender",
-				"value": "Qendër Mbrojtës"
-			},
-			{
-				"type": "InnerMidfield",
-				"value": "Qendër Mesfushor"
-			},
-			{
-				"type": "Winger",
-				"value": "Mesfushor krahu"
-			},
-			{
-				"type": "Forward",
-				"value": "Sulmues"
+				"text": "Do t'i turpërojmë",
+				"value": "10"
 			}
 		],
 		"fans_season": [
@@ -234,20 +239,33 @@
 				"value": "7"
 			}
 		],
-		"attitude": [
+		"honesty": [
 			{
-				"text": "Luani Qetë",
-				"value": "-1"
-			},
-			{
-				"text": "Normal",
+				"text": "mashtrues",
 				"value": "0"
 			},
 			{
-				"text": "Ndeshja e Sezonit",
+				"text": "dallaveraxhi",
 				"value": "1"
+			},
+			{
+				"text": "i ndershëm",
+				"value": "2"
+			},
+			{
+				"text": "i saktë",
+				"value": "3"
+			},
+			{
+				"text": "i drejtë",
+				"value": "4"
+			},
+			{
+				"text": "shejntor",
+				"value": "5"
 			}
 		],
+		"id": "85",
 		"levels": [
 			{
 				"text": "zero me xhufkë",
@@ -334,6 +352,199 @@
 				"value": "20"
 			}
 		],
+		"name": "sq",
+		"positions": [
+			{
+				"type": "Keeper",
+				"value": "Portier"
+			},
+			{
+				"type": "WingBack",
+				"value": "Mbrojtës Krahu"
+			},
+			{
+				"type": "CentralDefender",
+				"value": "Qendër Mbrojtës"
+			},
+			{
+				"type": "InnerMidfield",
+				"value": "Qendër Mesfushor"
+			},
+			{
+				"type": "Winger",
+				"value": "Mesfushor krahu"
+			},
+			{
+				"type": "Forward",
+				"value": "Sulmues"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "Sh. ulët",
+				"value": "0"
+			},
+			{
+				"text": "Ulët",
+				"value": "0.25"
+			},
+			{
+				"text": "Lartë",
+				"value": "0.5"
+			},
+			{
+				"text": "Sh. lartë",
+				"value": "0.75"
+			}
+		],
+		"sectors": [
+			{
+				"type": "Midfield",
+				"value": "Mesfusha"
+			},
+			{
+				"type": "RightDefense",
+				"value": "Mbrojtja Djathtas"
+			},
+			{
+				"type": "CentralDefense",
+				"value": "Mbrojtja Qëndrore"
+			},
+			{
+				"type": "LeftDefense",
+				"value": "Mbrojtja Majtas"
+			},
+			{
+				"type": "RightAttack",
+				"value": "Sulmi Djathtas"
+			},
+			{
+				"type": "CentralAttack",
+				"value": "Sulmi Qëndror"
+			},
+			{
+				"type": "LeftAttack",
+				"value": "Sulmi Majtas"
+			}
+		],
+		"skills": [
+			{
+				"type": "Keeper",
+				"value": "Portier"
+			},
+			{
+				"type": "Stamina",
+				"value": "Rrezistenca"
+			},
+			{
+				"type": "Defender",
+				"value": "Mbrojtje"
+			},
+			{
+				"type": "Playmaker",
+				"value": "Organizim"
+			},
+			{
+				"type": "Winger",
+				"value": "Në Krah"
+			},
+			{
+				"type": "Scorer",
+				"value": "Shënim"
+			},
+			{
+				"type": "Kicker",
+				"value": "Goditje Standarte"
+			},
+			{
+				"type": "Passer",
+				"value": "Pasim"
+			},
+			{
+				"type": "Experience",
+				"value": "Eksperienca"
+			},
+			{
+				"type": "LeaderShip",
+				"value": "Karizma"
+			}
+		],
+		"specialties": [
+			{
+				"type": "None",
+				"value": "Asnjë gjë"
+			},
+			{
+				"type": "Technical",
+				"value": "Teknik"
+			},
+			{
+				"type": "Quick",
+				"value": "I shpejtë"
+			},
+			{
+				"type": "Powerful",
+				"value": "I fuqishëm"
+			},
+			{
+				"type": "Unpredictable",
+				"value": "I paparashikueshëm"
+			},
+			{
+				"type": "Head",
+				"value": "Me Kokë"
+			},
+			{
+				"type": "Regainer",
+				"value": "Ripërtëritës"
+			}
+		],
+		"spirit": [
+			{
+				"text": "si Lufta e Ftohtë",
+				"value": "0"
+			},
+			{
+				"text": "të xhindosur",
+				"value": "1"
+			},
+			{
+				"text": "të furishëm",
+				"value": "2"
+			},
+			{
+				"text": "të acaruar",
+				"value": "3"
+			},
+			{
+				"text": "të përmbajtur",
+				"value": "4"
+			},
+			{
+				"text": "të qetë",
+				"value": "5"
+			},
+			{
+				"text": "të kënaqur",
+				"value": "6"
+			},
+			{
+				"text": "të lumtur",
+				"value": "7"
+			},
+			{
+				"text": "në delir",
+				"value": "8"
+			},
+			{
+				"text": "në qiellin e shtatë",
+				"value": "9"
+			},
+			{
+				"text": "Parajsa në Tokë!",
+				"value": "10"
+			}
+		],
 		"sponsors": [
 			{
 				"text": "për të vrarë",
@@ -376,161 +587,44 @@
 				"value": "9"
 			}
 		],
-		"sectors": [
+		"tactics": [
 			{
-				"type": "Midfield",
-				"value": "Mesfusha"
+				"type": "normal",
+				"value": "Normal"
 			},
 			{
-				"type": "RightDefense",
-				"value": "Mbrojtja Djathtas"
+				"type": "pressing",
+				"value": "Presing"
 			},
 			{
-				"type": "CentralDefense",
-				"value": "Mbrojtja Qëndrore"
+				"type": "ca",
+				"value": "Kundër-sulme"
 			},
 			{
-				"type": "LeftDefense",
-				"value": "Mbrojtja Majtas"
+				"type": "aim",
+				"value": "Sulmoni në Qëndër"
 			},
 			{
-				"type": "RightAttack",
-				"value": "Sulmi Djathtas"
+				"type": "aow",
+				"value": "Sulmoni nga Krahët"
 			},
 			{
-				"type": "CentralAttack",
-				"value": "Sulmi Qëndror"
+				"type": "",
+				"value": "E paditur"
 			},
 			{
-				"type": "LeftAttack",
-				"value": "Sulmi Majtas"
+				"type": "",
+				"value": "E paditur"
+			},
+			{
+				"type": "creatively",
+				"value": "Luani me kreativitet"
+			},
+			{
+				"type": "longshots",
+				"value": "Goditje nga distanca"
 			}
 		],
-		"ratingSubLevels": [
-			{
-				"text": "Sh. ulët",
-				"value": "0"
-			},
-			{
-				"text": "Ulët",
-				"value": "0.25"
-			},
-			{
-				"text": "Lartë",
-				"value": "0.5"
-			},
-			{
-				"text": "Sh. lartë",
-				"value": "0.75"
-			}
-		],
-		"fans": [
-			{
-				"text": "për të vrarë",
-				"value": "0"
-			},
-			{
-				"text": "të tërbuar",
-				"value": "1"
-			},
-			{
-				"text": "të inatosur",
-				"value": "2"
-			},
-			{
-				"text": "të bezdisur",
-				"value": "3"
-			},
-			{
-				"text": "të zhgënjyer",
-				"value": "4"
-			},
-			{
-				"text": "të qetë",
-				"value": "5"
-			},
-			{
-				"text": "të kënaqur",
-				"value": "6"
-			},
-			{
-				"text": "të lumtur",
-				"value": "7"
-			},
-			{
-				"text": "në delir",
-				"value": "8"
-			},
-			{
-				"text": "të stërkënaqur",
-				"value": "9"
-			},
-			{
-				"text": "duke hedhur valle",
-				"value": "10"
-			},
-			{
-				"text": "duke ju bërë urata",
-				"value": "11"
-			}
-		],
-		"specialties": [
-			{
-				"type": "None",
-				"value": "Asnjë gjë"
-			},
-			{
-				"type": "Technical",
-				"value": "Teknik"
-			},
-			{
-				"type": "Quick",
-				"value": "I shpejtë"
-			},
-			{
-				"type": "Powerful",
-				"value": "I fuqishëm"
-			},
-			{
-				"type": "Unpredictable",
-				"value": "I paparashikueshëm"
-			},
-			{
-				"type": "Head",
-				"value": "Me Kokë"
-			},
-			{
-				"type": "Regainer",
-				"value": "Ripërtëritës"
-			}
-		],
-		"aggressiveness": [
-			{
-				"text": "i urtë",
-				"value": "0"
-			},
-			{
-				"text": "i qetë",
-				"value": "1"
-			},
-			{
-				"text": "harmonik",
-				"value": "2"
-			},
-			{
-				"text": "tekanjoz",
-				"value": "3"
-			},
-			{
-				"text": "agresiv",
-				"value": "4"
-			},
-			{
-				"text": "i zjarrtë",
-				"value": "5"
-			}
-		],
-		"id": "85",
 		"training": [
 			{
 				"type": "Gen",
@@ -588,100 +682,6 @@
 				"type": "Indiv",
 				"value": "Individuale"
 			}
-		],
-		"fans_match": [
-			{
-				"text": "Me mirë të mos paraqitemi fare!",
-				"value": "0"
-			},
-			{
-				"text": "Do na shkelin me këmbë",
-				"value": "1"
-			},
-			{
-				"text": "Do humbasim",
-				"value": "2"
-			},
-			{
-				"text": "Ata janë favoritë",
-				"value": "3"
-			},
-			{
-				"text": "Peshorja anon nga ata",
-				"value": "4"
-			},
-			{
-				"text": "Do hahemi dhëmb për dhëmb",
-				"value": "5"
-			},
-			{
-				"text": "Peshorja anon nga ne",
-				"value": "6"
-			},
-			{
-				"text": "Ne jemi favoritë",
-				"value": "7"
-			},
-			{
-				"text": "Do fitojmë",
-				"value": "8"
-			},
-			{
-				"text": "Bukë me djathë!",
-				"value": "9"
-			},
-			{
-				"text": "Do t'i turpërojmë",
-				"value": "10"
-			}
-		],
-		"name": "sq",
-		"spirit": [
-			{
-				"text": "si Lufta e Ftohtë",
-				"value": "0"
-			},
-			{
-				"text": "të xhindosur",
-				"value": "1"
-			},
-			{
-				"text": "të furishëm",
-				"value": "2"
-			},
-			{
-				"text": "të acaruar",
-				"value": "3"
-			},
-			{
-				"text": "të përmbajtur",
-				"value": "4"
-			},
-			{
-				"text": "të qetë",
-				"value": "5"
-			},
-			{
-				"text": "të kënaqur",
-				"value": "6"
-			},
-			{
-				"text": "të lumtur",
-				"value": "7"
-			},
-			{
-				"text": "në delir",
-				"value": "8"
-			},
-			{
-				"text": "në qiellin e shtatë",
-				"value": "9"
-			},
-			{
-				"text": "Parajsa në Tokë!",
-				"value": "10"
-			}
-		],
-		"desc": "Albanian"
+		]
 	}
 }

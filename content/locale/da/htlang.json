@@ -1,5 +1,71 @@
 {
 	"language": {
+		"aggressiveness": [
+			{
+				"text": "stille",
+				"value": "0"
+			},
+			{
+				"text": "rolig",
+				"value": "1"
+			},
+			{
+				"text": "balanceret",
+				"value": "2"
+			},
+			{
+				"text": "temperamentsfuld",
+				"value": "3"
+			},
+			{
+				"text": "ilter",
+				"value": "4"
+			},
+			{
+				"text": "ustabil",
+				"value": "5"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "ubehagelig type",
+				"value": "0"
+			},
+			{
+				"text": "kontroversiel person",
+				"value": "1"
+			},
+			{
+				"text": "behagelig fyr",
+				"value": "2"
+			},
+			{
+				"text": "sympatisk fyr",
+				"value": "3"
+			},
+			{
+				"text": "populær fyr",
+				"value": "4"
+			},
+			{
+				"text": "elsket holdkammerat",
+				"value": "5"
+			}
+		],
+		"attitude": [
+			{
+				"text": "Tag det roligt",
+				"value": "-1"
+			},
+			{
+				"text": "Normal",
+				"value": "0"
+			},
+			{
+				"text": "Sæsonens vigtigste kamp",
+				"value": "1"
+			}
+		],
 		"confidence": [
 			{
 				"text": "håbløs",
@@ -42,162 +108,101 @@
 				"value": "9"
 			}
 		],
-		"tactics": [
+		"desc": "Dansk",
+		"fans": [
 			{
-				"type": "normal",
-				"value": "Normal"
-			},
-			{
-				"type": "pressing",
-				"value": "Presspil"
-			},
-			{
-				"type": "ca",
-				"value": "Kontraangreb"
-			},
-			{
-				"type": "aim",
-				"value": "Angrib fra midten"
-			},
-			{
-				"type": "aow",
-				"value": "Angrib fra fløjene"
-			},
-			{
-				"type": "",
-				"value": "Ukendt"
-			},
-			{
-				"type": "",
-				"value": "Ukendt"
-			},
-			{
-				"type": "creatively",
-				"value": "Spil kreativt"
-			},
-			{
-				"type": "longshots",
-				"value": "Langskud"
-			}
-		],
-		"honesty": [
-			{
-				"text": "berygtet",
+				"text": "morderiske",
 				"value": "0"
 			},
 			{
-				"text": "uærlig",
+				"text": "rasende",
 				"value": "1"
 			},
 			{
-				"text": "hæderlig",
+				"text": "vrede",
 				"value": "2"
 			},
 			{
-				"text": "ærlig",
+				"text": "irriterede",
 				"value": "3"
 			},
 			{
-				"text": "retskaffen",
+				"text": "skuffede",
 				"value": "4"
 			},
 			{
-				"text": "helgenagtig",
+				"text": "rolige",
 				"value": "5"
+			},
+			{
+				"text": "tilfredse",
+				"value": "6"
+			},
+			{
+				"text": "glade",
+				"value": "7"
+			},
+			{
+				"text": "henrykte",
+				"value": "8"
+			},
+			{
+				"text": "euforiske",
+				"value": "9"
+			},
+			{
+				"text": "i syvende himmel",
+				"value": "10"
+			},
+			{
+				"text": "sender dig kærlighedsdigte",
+				"value": "11"
 			}
 		],
-		"agreeability": [
+		"fans_match": [
 			{
-				"text": "ubehagelig type",
+				"text": "Bedre at blive hjemme",
 				"value": "0"
 			},
 			{
-				"text": "kontroversiel person",
+				"text": "De er klasser bedre end os",
 				"value": "1"
 			},
 			{
-				"text": "behagelig fyr",
+				"text": "Vi taber",
 				"value": "2"
 			},
 			{
-				"text": "sympatisk fyr",
+				"text": "De er favoritter",
 				"value": "3"
 			},
 			{
-				"text": "populær fyr",
+				"text": "De har fordelen",
 				"value": "4"
 			},
 			{
-				"text": "elsket holdkammerat",
+				"text": "Det bliver et tæt opgør",
 				"value": "5"
-			}
-		],
-		"skills": [
-			{
-				"type": "Keeper",
-				"value": "Målmandsspil"
 			},
 			{
-				"type": "Stamina",
-				"value": "Kondition"
+				"text": "Vi har fordelen",
+				"value": "6"
 			},
 			{
-				"type": "Defender",
-				"value": "Forsvarsspil"
+				"text": "Vi er favoritter",
+				"value": "7"
 			},
 			{
-				"type": "Playmaker",
-				"value": "Spilfordeling"
+				"text": "Vi vinder",
+				"value": "8"
 			},
 			{
-				"type": "Winger",
-				"value": "Fløjspil"
+				"text": "Så let som ingenting",
+				"value": "9"
 			},
 			{
-				"type": "Scorer",
-				"value": "Målscoring"
-			},
-			{
-				"type": "Kicker",
-				"value": "Dødbolde"
-			},
-			{
-				"type": "Passer",
-				"value": "Pasningsspil"
-			},
-			{
-				"type": "Experience",
-				"value": "Rutine"
-			},
-			{
-				"type": "LeaderShip",
-				"value": "Lederskab"
-			}
-		],
-		"positions": [
-			{
-				"type": "Keeper",
-				"value": "Målmand"
-			},
-			{
-				"type": "WingBack",
-				"value": "Back"
-			},
-			{
-				"type": "CentralDefender",
-				"value": "Central forsvarsspiller"
-			},
-			{
-				"type": "InnerMidfield",
-				"value": "Central midtbanespiller"
-			},
-			{
-				"type": "Winger",
-				"value": "Fløj"
-			},
-			{
-				"type": "Forward",
-				"value": "Angriber"
+				"text": "Lad os ydmyge dem",
+				"value": "10"
 			}
 		],
 		"fans_season": [
@@ -234,20 +239,33 @@
 				"value": "7"
 			}
 		],
-		"attitude": [
+		"honesty": [
 			{
-				"text": "Tag det roligt",
-				"value": "-1"
-			},
-			{
-				"text": "Normal",
+				"text": "berygtet",
 				"value": "0"
 			},
 			{
-				"text": "Sæsonens vigtigste kamp",
+				"text": "uærlig",
 				"value": "1"
+			},
+			{
+				"text": "hæderlig",
+				"value": "2"
+			},
+			{
+				"text": "ærlig",
+				"value": "3"
+			},
+			{
+				"text": "retskaffen",
+				"value": "4"
+			},
+			{
+				"text": "helgenagtig",
+				"value": "5"
 			}
 		],
+		"id": "8",
 		"levels": [
 			{
 				"text": "håbløs",
@@ -334,6 +352,199 @@
 				"value": "20"
 			}
 		],
+		"name": "da",
+		"positions": [
+			{
+				"type": "Keeper",
+				"value": "Målmand"
+			},
+			{
+				"type": "WingBack",
+				"value": "Back"
+			},
+			{
+				"type": "CentralDefender",
+				"value": "Central forsvarsspiller"
+			},
+			{
+				"type": "InnerMidfield",
+				"value": "Central midtbanespiller"
+			},
+			{
+				"type": "Winger",
+				"value": "Fløj"
+			},
+			{
+				"type": "Forward",
+				"value": "Angriber"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "meget lav",
+				"value": "0"
+			},
+			{
+				"text": "lav",
+				"value": "0.25"
+			},
+			{
+				"text": "høj",
+				"value": "0.5"
+			},
+			{
+				"text": "meget høj",
+				"value": "0.75"
+			}
+		],
+		"sectors": [
+			{
+				"type": "Midfield",
+				"value": "Midtbane"
+			},
+			{
+				"type": "RightDefense",
+				"value": "Højreforsvar"
+			},
+			{
+				"type": "CentralDefense",
+				"value": "Midterforsvar"
+			},
+			{
+				"type": "LeftDefense",
+				"value": "Venstreforsvar"
+			},
+			{
+				"type": "RightAttack",
+				"value": "Højreangreb"
+			},
+			{
+				"type": "CentralAttack",
+				"value": "Centerangreb"
+			},
+			{
+				"type": "LeftAttack",
+				"value": "Venstreangreb"
+			}
+		],
+		"skills": [
+			{
+				"type": "Keeper",
+				"value": "Målmandsspil"
+			},
+			{
+				"type": "Stamina",
+				"value": "Kondition"
+			},
+			{
+				"type": "Defender",
+				"value": "Forsvarsspil"
+			},
+			{
+				"type": "Playmaker",
+				"value": "Spilfordeling"
+			},
+			{
+				"type": "Winger",
+				"value": "Fløjspil"
+			},
+			{
+				"type": "Scorer",
+				"value": "Målscoring"
+			},
+			{
+				"type": "Kicker",
+				"value": "Dødbolde"
+			},
+			{
+				"type": "Passer",
+				"value": "Pasningsspil"
+			},
+			{
+				"type": "Experience",
+				"value": "Rutine"
+			},
+			{
+				"type": "LeaderShip",
+				"value": "Lederskab"
+			}
+		],
+		"specialties": [
+			{
+				"type": "None",
+				"value": "Ingen"
+			},
+			{
+				"type": "Technical",
+				"value": "Tekniker"
+			},
+			{
+				"type": "Quick",
+				"value": "Hurtig"
+			},
+			{
+				"type": "Powerful",
+				"value": "Kraftfuld"
+			},
+			{
+				"type": "Unpredictable",
+				"value": "Uberegnelig"
+			},
+			{
+				"type": "Head",
+				"value": "Hovedstød"
+			},
+			{
+				"type": "Regainer",
+				"value": "Regainer"
+			}
+		],
+		"spirit": [
+			{
+				"text": "koldkrigsagtig",
+				"value": "0"
+			},
+			{
+				"text": "morderisk",
+				"value": "1"
+			},
+			{
+				"text": "rasende",
+				"value": "2"
+			},
+			{
+				"text": "irriteret",
+				"value": "3"
+			},
+			{
+				"text": "fattet",
+				"value": "4"
+			},
+			{
+				"text": "rolig",
+				"value": "5"
+			},
+			{
+				"text": "tilfreds",
+				"value": "6"
+			},
+			{
+				"text": "glad",
+				"value": "7"
+			},
+			{
+				"text": "ekstatisk",
+				"value": "8"
+			},
+			{
+				"text": "svæver på en sky",
+				"value": "9"
+			},
+			{
+				"text": "paradis på jord",
+				"value": "10"
+			}
+		],
 		"sponsors": [
 			{
 				"text": "morderiske",
@@ -376,161 +587,44 @@
 				"value": "9"
 			}
 		],
-		"sectors": [
+		"tactics": [
 			{
-				"type": "Midfield",
-				"value": "Midtbane"
+				"type": "normal",
+				"value": "Normal"
 			},
 			{
-				"type": "RightDefense",
-				"value": "Højreforsvar"
+				"type": "pressing",
+				"value": "Presspil"
 			},
 			{
-				"type": "CentralDefense",
-				"value": "Midterforsvar"
+				"type": "ca",
+				"value": "Kontraangreb"
 			},
 			{
-				"type": "LeftDefense",
-				"value": "Venstreforsvar"
+				"type": "aim",
+				"value": "Angrib fra midten"
 			},
 			{
-				"type": "RightAttack",
-				"value": "Højreangreb"
+				"type": "aow",
+				"value": "Angrib fra fløjene"
 			},
 			{
-				"type": "CentralAttack",
-				"value": "Centerangreb"
+				"type": "",
+				"value": "Ukendt"
 			},
 			{
-				"type": "LeftAttack",
-				"value": "Venstreangreb"
+				"type": "",
+				"value": "Ukendt"
+			},
+			{
+				"type": "creatively",
+				"value": "Spil kreativt"
+			},
+			{
+				"type": "longshots",
+				"value": "Langskud"
 			}
 		],
-		"ratingSubLevels": [
-			{
-				"text": "meget lav",
-				"value": "0"
-			},
-			{
-				"text": "lav",
-				"value": "0.25"
-			},
-			{
-				"text": "høj",
-				"value": "0.5"
-			},
-			{
-				"text": "meget høj",
-				"value": "0.75"
-			}
-		],
-		"fans": [
-			{
-				"text": "morderiske",
-				"value": "0"
-			},
-			{
-				"text": "rasende",
-				"value": "1"
-			},
-			{
-				"text": "vrede",
-				"value": "2"
-			},
-			{
-				"text": "irriterede",
-				"value": "3"
-			},
-			{
-				"text": "skuffede",
-				"value": "4"
-			},
-			{
-				"text": "rolige",
-				"value": "5"
-			},
-			{
-				"text": "tilfredse",
-				"value": "6"
-			},
-			{
-				"text": "glade",
-				"value": "7"
-			},
-			{
-				"text": "henrykte",
-				"value": "8"
-			},
-			{
-				"text": "euforiske",
-				"value": "9"
-			},
-			{
-				"text": "i syvende himmel",
-				"value": "10"
-			},
-			{
-				"text": "sender dig kærlighedsdigte",
-				"value": "11"
-			}
-		],
-		"specialties": [
-			{
-				"type": "None",
-				"value": "Ingen"
-			},
-			{
-				"type": "Technical",
-				"value": "Tekniker"
-			},
-			{
-				"type": "Quick",
-				"value": "Hurtig"
-			},
-			{
-				"type": "Powerful",
-				"value": "Kraftfuld"
-			},
-			{
-				"type": "Unpredictable",
-				"value": "Uberegnelig"
-			},
-			{
-				"type": "Head",
-				"value": "Hovedstød"
-			},
-			{
-				"type": "Regainer",
-				"value": "Regainer"
-			}
-		],
-		"aggressiveness": [
-			{
-				"text": "stille",
-				"value": "0"
-			},
-			{
-				"text": "rolig",
-				"value": "1"
-			},
-			{
-				"text": "balanceret",
-				"value": "2"
-			},
-			{
-				"text": "temperamentsfuld",
-				"value": "3"
-			},
-			{
-				"text": "ilter",
-				"value": "4"
-			},
-			{
-				"text": "ustabil",
-				"value": "5"
-			}
-		],
-		"id": "8",
 		"training": [
 			{
 				"type": "Gen",
@@ -588,100 +682,6 @@
 				"type": "Indiv",
 				"value": "Individuel"
 			}
-		],
-		"fans_match": [
-			{
-				"text": "Bedre at blive hjemme",
-				"value": "0"
-			},
-			{
-				"text": "De er klasser bedre end os",
-				"value": "1"
-			},
-			{
-				"text": "Vi taber",
-				"value": "2"
-			},
-			{
-				"text": "De er favoritter",
-				"value": "3"
-			},
-			{
-				"text": "De har fordelen",
-				"value": "4"
-			},
-			{
-				"text": "Det bliver et tæt opgør",
-				"value": "5"
-			},
-			{
-				"text": "Vi har fordelen",
-				"value": "6"
-			},
-			{
-				"text": "Vi er favoritter",
-				"value": "7"
-			},
-			{
-				"text": "Vi vinder",
-				"value": "8"
-			},
-			{
-				"text": "Så let som ingenting",
-				"value": "9"
-			},
-			{
-				"text": "Lad os ydmyge dem",
-				"value": "10"
-			}
-		],
-		"name": "da",
-		"spirit": [
-			{
-				"text": "koldkrigsagtig",
-				"value": "0"
-			},
-			{
-				"text": "morderisk",
-				"value": "1"
-			},
-			{
-				"text": "rasende",
-				"value": "2"
-			},
-			{
-				"text": "irriteret",
-				"value": "3"
-			},
-			{
-				"text": "fattet",
-				"value": "4"
-			},
-			{
-				"text": "rolig",
-				"value": "5"
-			},
-			{
-				"text": "tilfreds",
-				"value": "6"
-			},
-			{
-				"text": "glad",
-				"value": "7"
-			},
-			{
-				"text": "ekstatisk",
-				"value": "8"
-			},
-			{
-				"text": "svæver på en sky",
-				"value": "9"
-			},
-			{
-				"text": "paradis på jord",
-				"value": "10"
-			}
-		],
-		"desc": "Dansk"
+		]
 	}
 }

@@ -1,5 +1,71 @@
 {
 	"language": {
+		"aggressiveness": [
+			{
+				"text": "тих",
+				"value": "0"
+			},
+			{
+				"text": "спокоен",
+				"value": "1"
+			},
+			{
+				"text": "уравновесен",
+				"value": "2"
+			},
+			{
+				"text": "темпераментен",
+				"value": "3"
+			},
+			{
+				"text": "сприхав",
+				"value": "4"
+			},
+			{
+				"text": "неуравновесен",
+				"value": "5"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "неприятен човек",
+				"value": "0"
+			},
+			{
+				"text": "противоречив човек",
+				"value": "1"
+			},
+			{
+				"text": "приятен човек",
+				"value": "2"
+			},
+			{
+				"text": "симпатичен човек",
+				"value": "3"
+			},
+			{
+				"text": "популярен човек",
+				"value": "4"
+			},
+			{
+				"text": "любимец на отбора",
+				"value": "5"
+			}
+		],
+		"attitude": [
+			{
+				"text": "Играй спокойно",
+				"value": "-1"
+			},
+			{
+				"text": "Нормално",
+				"value": "0"
+			},
+			{
+				"text": "Мач на сезона",
+				"value": "1"
+			}
+		],
 		"confidence": [
 			{
 				"text": "липсващо",
@@ -42,162 +108,101 @@
 				"value": "9"
 			}
 		],
-		"tactics": [
+		"desc": "Bulgarian",
+		"fans": [
 			{
-				"type": "normal",
-				"value": "Нормална"
-			},
-			{
-				"type": "pressing",
-				"value": "Преса"
-			},
-			{
-				"type": "ca",
-				"value": "Контраатаки"
-			},
-			{
-				"type": "aim",
-				"value": "Атака в средата"
-			},
-			{
-				"type": "aow",
-				"value": "Атака по крилата"
-			},
-			{
-				"type": "",
-				"value": "Неизвестен"
-			},
-			{
-				"type": "",
-				"value": "Неизвестен"
-			},
-			{
-				"type": "creatively",
-				"value": "Играй креативно"
-			},
-			{
-				"type": "longshots",
-				"value": "Далечни удари"
-			}
-		],
-		"honesty": [
-			{
-				"text": "непочтен",
+				"text": "готови да убиват",
 				"value": "0"
 			},
 			{
-				"text": "некоректен",
+				"text": "бесни",
 				"value": "1"
 			},
 			{
-				"text": "почтен",
+				"text": "ядосани",
 				"value": "2"
 			},
 			{
-				"text": "добър",
+				"text": "раздразнени",
 				"value": "3"
 			},
 			{
-				"text": "честен",
+				"text": "разочаровани",
 				"value": "4"
 			},
 			{
-				"text": "като светец",
+				"text": "спокойни",
 				"value": "5"
+			},
+			{
+				"text": "удовлетворени",
+				"value": "6"
+			},
+			{
+				"text": "доволни",
+				"value": "7"
+			},
+			{
+				"text": "в делириум",
+				"value": "8"
+			},
+			{
+				"text": "на седмото небе",
+				"value": "9"
+			},
+			{
+				"text": "танцуващи по улиците",
+				"value": "10"
+			},
+			{
+				"text": "изпращат Ви любовни стихове",
+				"value": "11"
 			}
 		],
-		"agreeability": [
+		"fans_match": [
 			{
-				"text": "неприятен човек",
+				"text": "По-добре да не играем!",
 				"value": "0"
 			},
 			{
-				"text": "противоречив човек",
+				"text": "Не сме от тяхната класа",
 				"value": "1"
 			},
 			{
-				"text": "приятен човек",
+				"text": "Ще загубим",
 				"value": "2"
 			},
 			{
-				"text": "симпатичен човек",
+				"text": "Те са фаворити",
 				"value": "3"
 			},
 			{
-				"text": "популярен човек",
+				"text": "Те имат предимство",
 				"value": "4"
 			},
 			{
-				"text": "любимец на отбора",
+				"text": "Ще е оспорвано",
 				"value": "5"
-			}
-		],
-		"skills": [
-			{
-				"type": "Keeper",
-				"value": "Пазене"
 			},
 			{
-				"type": "Stamina",
-				"value": "Издръжл."
+				"text": "Ние имаме предимство",
+				"value": "6"
 			},
 			{
-				"type": "Defender",
-				"value": "Защита"
+				"text": "Ние сме фаворити",
+				"value": "7"
 			},
 			{
-				"type": "Playmaker",
-				"value": "Разиграване"
+				"text": "Ще спечелим",
+				"value": "8"
 			},
 			{
-				"type": "Winger",
-				"value": "Крило"
+				"text": "Лесна работа",
+				"value": "9"
 			},
 			{
-				"type": "Scorer",
-				"value": "Голов нюх"
-			},
-			{
-				"type": "Kicker",
-				"value": "Статични"
-			},
-			{
-				"type": "Passer",
-				"value": "Подаване"
-			},
-			{
-				"type": "Experience",
-				"value": "Опит"
-			},
-			{
-				"type": "LeaderShip",
-				"value": "Лидерство"
-			}
-		],
-		"positions": [
-			{
-				"type": "Keeper",
-				"value": "Вратар"
-			},
-			{
-				"type": "WingBack",
-				"value": "Бек"
-			},
-			{
-				"type": "CentralDefender",
-				"value": "Защитник"
-			},
-			{
-				"type": "InnerMidfield",
-				"value": "Полузащитник"
-			},
-			{
-				"type": "Winger",
-				"value": "Крило"
-			},
-			{
-				"type": "Forward",
-				"value": "Нападател"
+				"text": "Да ги унижим!",
+				"value": "10"
 			}
 		],
 		"fans_season": [
@@ -234,20 +239,33 @@
 				"value": "7"
 			}
 		],
-		"attitude": [
+		"honesty": [
 			{
-				"text": "Играй спокойно",
-				"value": "-1"
-			},
-			{
-				"text": "Нормално",
+				"text": "непочтен",
 				"value": "0"
 			},
 			{
-				"text": "Мач на сезона",
+				"text": "некоректен",
 				"value": "1"
+			},
+			{
+				"text": "почтен",
+				"value": "2"
+			},
+			{
+				"text": "добър",
+				"value": "3"
+			},
+			{
+				"text": "честен",
+				"value": "4"
+			},
+			{
+				"text": "като светец",
+				"value": "5"
 			}
 		],
+		"id": "43",
 		"levels": [
 			{
 				"text": "липсващо",
@@ -334,6 +352,199 @@
 				"value": "20"
 			}
 		],
+		"name": "bg",
+		"positions": [
+			{
+				"type": "Keeper",
+				"value": "Вратар"
+			},
+			{
+				"type": "WingBack",
+				"value": "Бек"
+			},
+			{
+				"type": "CentralDefender",
+				"value": "Защитник"
+			},
+			{
+				"type": "InnerMidfield",
+				"value": "Полузащитник"
+			},
+			{
+				"type": "Winger",
+				"value": "Крило"
+			},
+			{
+				"type": "Forward",
+				"value": "Нападател"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "мн. ниско",
+				"value": "0"
+			},
+			{
+				"text": "ниско",
+				"value": "0.25"
+			},
+			{
+				"text": "високо",
+				"value": "0.5"
+			},
+			{
+				"text": "мн. високо",
+				"value": "0.75"
+			}
+		],
+		"sectors": [
+			{
+				"type": "Midfield",
+				"value": "Полузащита"
+			},
+			{
+				"type": "RightDefense",
+				"value": "Защита отдясно"
+			},
+			{
+				"type": "CentralDefense",
+				"value": "Защита в средата"
+			},
+			{
+				"type": "LeftDefense",
+				"value": "Защита отляво"
+			},
+			{
+				"type": "RightAttack",
+				"value": "Нападение отдясно"
+			},
+			{
+				"type": "CentralAttack",
+				"value": "Нападение в средата"
+			},
+			{
+				"type": "LeftAttack",
+				"value": "Нападение отляво"
+			}
+		],
+		"skills": [
+			{
+				"type": "Keeper",
+				"value": "Пазене"
+			},
+			{
+				"type": "Stamina",
+				"value": "Издръжл."
+			},
+			{
+				"type": "Defender",
+				"value": "Защита"
+			},
+			{
+				"type": "Playmaker",
+				"value": "Разиграване"
+			},
+			{
+				"type": "Winger",
+				"value": "Крило"
+			},
+			{
+				"type": "Scorer",
+				"value": "Голов нюх"
+			},
+			{
+				"type": "Kicker",
+				"value": "Статични"
+			},
+			{
+				"type": "Passer",
+				"value": "Подаване"
+			},
+			{
+				"type": "Experience",
+				"value": "Опит"
+			},
+			{
+				"type": "LeaderShip",
+				"value": "Лидерство"
+			}
+		],
+		"specialties": [
+			{
+				"type": "None",
+				"value": "Няма"
+			},
+			{
+				"type": "Technical",
+				"value": "Техничен"
+			},
+			{
+				"type": "Quick",
+				"value": "Бърз"
+			},
+			{
+				"type": "Powerful",
+				"value": "Сила"
+			},
+			{
+				"type": "Unpredictable",
+				"value": "Непредвидим"
+			},
+			{
+				"type": "Head",
+				"value": "Игра с глава"
+			},
+			{
+				"type": "Regainer",
+				"value": "Възстановяване"
+			}
+		],
+		"spirit": [
+			{
+				"text": "като през война",
+				"value": "0"
+			},
+			{
+				"text": "убийствено",
+				"value": "1"
+			},
+			{
+				"text": "бясно",
+				"value": "2"
+			},
+			{
+				"text": "раздразнено",
+				"value": "3"
+			},
+			{
+				"text": "сдържано",
+				"value": "4"
+			},
+			{
+				"text": "спокойно",
+				"value": "5"
+			},
+			{
+				"text": "удовлетворено",
+				"value": "6"
+			},
+			{
+				"text": "доволно",
+				"value": "7"
+			},
+			{
+				"text": "в делириум",
+				"value": "8"
+			},
+			{
+				"text": "на седмото небе",
+				"value": "9"
+			},
+			{
+				"text": "Рай на земята",
+				"value": "10"
+			}
+		],
 		"sponsors": [
 			{
 				"text": "готови да убиват",
@@ -376,161 +587,44 @@
 				"value": "9"
 			}
 		],
-		"sectors": [
+		"tactics": [
 			{
-				"type": "Midfield",
-				"value": "Полузащита"
+				"type": "normal",
+				"value": "Нормална"
 			},
 			{
-				"type": "RightDefense",
-				"value": "Защита отдясно"
+				"type": "pressing",
+				"value": "Преса"
 			},
 			{
-				"type": "CentralDefense",
-				"value": "Защита в средата"
+				"type": "ca",
+				"value": "Контраатаки"
 			},
 			{
-				"type": "LeftDefense",
-				"value": "Защита отляво"
+				"type": "aim",
+				"value": "Атака в средата"
 			},
 			{
-				"type": "RightAttack",
-				"value": "Нападение отдясно"
+				"type": "aow",
+				"value": "Атака по крилата"
 			},
 			{
-				"type": "CentralAttack",
-				"value": "Нападение в средата"
+				"type": "",
+				"value": "Неизвестен"
 			},
 			{
-				"type": "LeftAttack",
-				"value": "Нападение отляво"
+				"type": "",
+				"value": "Неизвестен"
+			},
+			{
+				"type": "creatively",
+				"value": "Играй креативно"
+			},
+			{
+				"type": "longshots",
+				"value": "Далечни удари"
 			}
 		],
-		"ratingSubLevels": [
-			{
-				"text": "мн. ниско",
-				"value": "0"
-			},
-			{
-				"text": "ниско",
-				"value": "0.25"
-			},
-			{
-				"text": "високо",
-				"value": "0.5"
-			},
-			{
-				"text": "мн. високо",
-				"value": "0.75"
-			}
-		],
-		"fans": [
-			{
-				"text": "готови да убиват",
-				"value": "0"
-			},
-			{
-				"text": "бесни",
-				"value": "1"
-			},
-			{
-				"text": "ядосани",
-				"value": "2"
-			},
-			{
-				"text": "раздразнени",
-				"value": "3"
-			},
-			{
-				"text": "разочаровани",
-				"value": "4"
-			},
-			{
-				"text": "спокойни",
-				"value": "5"
-			},
-			{
-				"text": "удовлетворени",
-				"value": "6"
-			},
-			{
-				"text": "доволни",
-				"value": "7"
-			},
-			{
-				"text": "в делириум",
-				"value": "8"
-			},
-			{
-				"text": "на седмото небе",
-				"value": "9"
-			},
-			{
-				"text": "танцуващи по улиците",
-				"value": "10"
-			},
-			{
-				"text": "изпращат Ви любовни стихове",
-				"value": "11"
-			}
-		],
-		"specialties": [
-			{
-				"type": "None",
-				"value": "Няма"
-			},
-			{
-				"type": "Technical",
-				"value": "Техничен"
-			},
-			{
-				"type": "Quick",
-				"value": "Бърз"
-			},
-			{
-				"type": "Powerful",
-				"value": "Сила"
-			},
-			{
-				"type": "Unpredictable",
-				"value": "Непредвидим"
-			},
-			{
-				"type": "Head",
-				"value": "Игра с глава"
-			},
-			{
-				"type": "Regainer",
-				"value": "Възстановяване"
-			}
-		],
-		"aggressiveness": [
-			{
-				"text": "тих",
-				"value": "0"
-			},
-			{
-				"text": "спокоен",
-				"value": "1"
-			},
-			{
-				"text": "уравновесен",
-				"value": "2"
-			},
-			{
-				"text": "темпераментен",
-				"value": "3"
-			},
-			{
-				"text": "сприхав",
-				"value": "4"
-			},
-			{
-				"text": "неуравновесен",
-				"value": "5"
-			}
-		],
-		"id": "43",
 		"training": [
 			{
 				"type": "Gen",
@@ -588,100 +682,6 @@
 				"type": "Indiv",
 				"value": "Индивидуална"
 			}
-		],
-		"fans_match": [
-			{
-				"text": "По-добре да не играем!",
-				"value": "0"
-			},
-			{
-				"text": "Не сме от тяхната класа",
-				"value": "1"
-			},
-			{
-				"text": "Ще загубим",
-				"value": "2"
-			},
-			{
-				"text": "Те са фаворити",
-				"value": "3"
-			},
-			{
-				"text": "Те имат предимство",
-				"value": "4"
-			},
-			{
-				"text": "Ще е оспорвано",
-				"value": "5"
-			},
-			{
-				"text": "Ние имаме предимство",
-				"value": "6"
-			},
-			{
-				"text": "Ние сме фаворити",
-				"value": "7"
-			},
-			{
-				"text": "Ще спечелим",
-				"value": "8"
-			},
-			{
-				"text": "Лесна работа",
-				"value": "9"
-			},
-			{
-				"text": "Да ги унижим!",
-				"value": "10"
-			}
-		],
-		"name": "bg",
-		"spirit": [
-			{
-				"text": "като през война",
-				"value": "0"
-			},
-			{
-				"text": "убийствено",
-				"value": "1"
-			},
-			{
-				"text": "бясно",
-				"value": "2"
-			},
-			{
-				"text": "раздразнено",
-				"value": "3"
-			},
-			{
-				"text": "сдържано",
-				"value": "4"
-			},
-			{
-				"text": "спокойно",
-				"value": "5"
-			},
-			{
-				"text": "удовлетворено",
-				"value": "6"
-			},
-			{
-				"text": "доволно",
-				"value": "7"
-			},
-			{
-				"text": "в делириум",
-				"value": "8"
-			},
-			{
-				"text": "на седмото небе",
-				"value": "9"
-			},
-			{
-				"text": "Рай на земята",
-				"value": "10"
-			}
-		],
-		"desc": "Bulgarian"
+		]
 	}
 }

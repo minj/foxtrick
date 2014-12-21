@@ -1,5 +1,71 @@
 {
 	"language": {
+		"aggressiveness": [
+			{
+				"text": "спокојан",
+				"value": "0"
+			},
+			{
+				"text": "миран",
+				"value": "1"
+			},
+			{
+				"text": "уравнотежен",
+				"value": "2"
+			},
+			{
+				"text": "темпераментан",
+				"value": "3"
+			},
+			{
+				"text": "пргав",
+				"value": "4"
+			},
+			{
+				"text": "нестабилан",
+				"value": "5"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "незгодан момак",
+				"value": "0"
+			},
+			{
+				"text": "контроверзна особа",
+				"value": "1"
+			},
+			{
+				"text": "пријатан дечко",
+				"value": "2"
+			},
+			{
+				"text": "симпатичан тип",
+				"value": "3"
+			},
+			{
+				"text": "популаран лик",
+				"value": "4"
+			},
+			{
+				"text": "вољени члан тима",
+				"value": "5"
+			}
+		],
+		"attitude": [
+			{
+				"text": "(PIC) Само опуштено",
+				"value": "-1"
+			},
+			{
+				"text": "Нормалан",
+				"value": "0"
+			},
+			{
+				"text": "(MOTS) Меч сезоне",
+				"value": "1"
+			}
+		],
 		"confidence": [
 			{
 				"text": "непостојећи",
@@ -42,162 +108,101 @@
 				"value": "9"
 			}
 		],
-		"tactics": [
+		"desc": "Српски (Serbian)",
+		"fans": [
 			{
-				"type": "normal",
-				"value": "Нормално"
-			},
-			{
-				"type": "pressing",
-				"value": "Пресинг"
-			},
-			{
-				"type": "ca",
-				"value": "Контранапади"
-			},
-			{
-				"type": "aim",
-				"value": "Напад по средини"
-			},
-			{
-				"type": "aow",
-				"value": "Напад преко крила"
-			},
-			{
-				"type": "",
-				"value": "Непознато"
-			},
-			{
-				"type": "",
-				"value": "Непознато"
-			},
-			{
-				"type": "creatively",
-				"value": "Креативна игра"
-			},
-			{
-				"type": "longshots",
-				"value": "Шутеви из даљине"
-			}
-		],
-		"honesty": [
-			{
-				"text": "озлоглашен",
+				"text": "крвожедни",
 				"value": "0"
 			},
 			{
-				"text": "нечастан",
+				"text": "бесни",
 				"value": "1"
 			},
 			{
-				"text": "частан",
+				"text": "љути",
 				"value": "2"
 			},
 			{
-				"text": "праведан",
+				"text": "изнервирани",
 				"value": "3"
 			},
 			{
-				"text": "честит",
+				"text": "разочарани",
 				"value": "4"
 			},
 			{
-				"text": "као светац",
+				"text": "смирени",
 				"value": "5"
+			},
+			{
+				"text": "расположени",
+				"value": "6"
+			},
+			{
+				"text": "задовољни",
+				"value": "7"
+			},
+			{
+				"text": "усхићени",
+				"value": "8"
+			},
+			{
+				"text": "уживају у животу",
+				"value": "9"
+			},
+			{
+				"text": "играју на улици",
+				"value": "10"
+			},
+			{
+				"text": "певају \"Оду радости\"",
+				"value": "11"
 			}
 		],
-		"agreeability": [
+		"fans_match": [
 			{
-				"text": "незгодан момак",
+				"text": "Боље бисмо прошли када се не бисмо ни појавили!",
 				"value": "0"
 			},
 			{
-				"text": "контроверзна особа",
+				"text": "За класу смо лошији",
 				"value": "1"
 			},
 			{
-				"text": "пријатан дечко",
+				"text": "Изгубићемо",
 				"value": "2"
 			},
 			{
-				"text": "симпатичан тип",
+				"text": "Они су фаворити",
 				"value": "3"
 			},
 			{
-				"text": "популаран лик",
+				"text": "Они имају предност",
 				"value": "4"
 			},
 			{
-				"text": "вољени члан тима",
+				"text": "Биће неизвесно",
 				"value": "5"
-			}
-		],
-		"skills": [
-			{
-				"type": "Keeper",
-				"value": "На голу"
 			},
 			{
-				"type": "Stamina",
-				"value": "Кондиција"
+				"text": "Имамо предност",
+				"value": "6"
 			},
 			{
-				"type": "Defender",
-				"value": "Одбрана"
+				"text": "Ми смо фаворити",
+				"value": "7"
 			},
 			{
-				"type": "Playmaker",
-				"value": "Плејмејкинг"
+				"text": "Победићемо",
+				"value": "8"
 			},
 			{
-				"type": "Winger",
-				"value": "Крило"
+				"text": "Опуштено добијамо!",
+				"value": "9"
 			},
 			{
-				"type": "Scorer",
-				"value": "Напад"
-			},
-			{
-				"type": "Kicker",
-				"value": "Прекиди"
-			},
-			{
-				"type": "Passer",
-				"value": "Додавање"
-			},
-			{
-				"type": "Experience",
-				"value": "Искуство"
-			},
-			{
-				"type": "LeaderShip",
-				"value": "Вођа"
-			}
-		],
-		"positions": [
-			{
-				"type": "Keeper",
-				"value": "Голман"
-			},
-			{
-				"type": "WingBack",
-				"value": "Бек"
-			},
-			{
-				"type": "CentralDefender",
-				"value": "Штопер"
-			},
-			{
-				"type": "InnerMidfield",
-				"value": "Везни играч"
-			},
-			{
-				"type": "Winger",
-				"value": "Крило"
-			},
-			{
-				"type": "Forward",
-				"value": "Нападач"
+				"text": "Има да их растуримо",
+				"value": "10"
 			}
 		],
 		"fans_season": [
@@ -234,20 +239,33 @@
 				"value": "7"
 			}
 		],
-		"attitude": [
+		"honesty": [
 			{
-				"text": "(PIC) Само опуштено",
-				"value": "-1"
-			},
-			{
-				"text": "Нормалан",
+				"text": "озлоглашен",
 				"value": "0"
 			},
 			{
-				"text": "(MOTS) Меч сезоне",
+				"text": "нечастан",
 				"value": "1"
+			},
+			{
+				"text": "частан",
+				"value": "2"
+			},
+			{
+				"text": "праведан",
+				"value": "3"
+			},
+			{
+				"text": "честит",
+				"value": "4"
+			},
+			{
+				"text": "као светац",
+				"value": "5"
 			}
 		],
+		"id": "32",
 		"levels": [
 			{
 				"text": "непостојећи",
@@ -334,6 +352,199 @@
 				"value": "20"
 			}
 		],
+		"name": "sr",
+		"positions": [
+			{
+				"type": "Keeper",
+				"value": "Голман"
+			},
+			{
+				"type": "WingBack",
+				"value": "Бек"
+			},
+			{
+				"type": "CentralDefender",
+				"value": "Штопер"
+			},
+			{
+				"type": "InnerMidfield",
+				"value": "Везни играч"
+			},
+			{
+				"type": "Winger",
+				"value": "Крило"
+			},
+			{
+				"type": "Forward",
+				"value": "Нападач"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "Веома низак",
+				"value": "0"
+			},
+			{
+				"text": "Низак",
+				"value": "0.25"
+			},
+			{
+				"text": "Висок",
+				"value": "0.5"
+			},
+			{
+				"text": "Веома висок",
+				"value": "0.75"
+			}
+		],
+		"sectors": [
+			{
+				"type": "Midfield",
+				"value": "Средина терена"
+			},
+			{
+				"type": "RightDefense",
+				"value": "Десна страна одбране"
+			},
+			{
+				"type": "CentralDefense",
+				"value": "Централна одбрана"
+			},
+			{
+				"type": "LeftDefense",
+				"value": "Лева страна одбране"
+			},
+			{
+				"type": "RightAttack",
+				"value": "Десна страна напада"
+			},
+			{
+				"type": "CentralAttack",
+				"value": "Централни напад"
+			},
+			{
+				"type": "LeftAttack",
+				"value": "Лева страна напада"
+			}
+		],
+		"skills": [
+			{
+				"type": "Keeper",
+				"value": "На голу"
+			},
+			{
+				"type": "Stamina",
+				"value": "Кондиција"
+			},
+			{
+				"type": "Defender",
+				"value": "Одбрана"
+			},
+			{
+				"type": "Playmaker",
+				"value": "Плејмејкинг"
+			},
+			{
+				"type": "Winger",
+				"value": "Крило"
+			},
+			{
+				"type": "Scorer",
+				"value": "Напад"
+			},
+			{
+				"type": "Kicker",
+				"value": "Прекиди"
+			},
+			{
+				"type": "Passer",
+				"value": "Додавање"
+			},
+			{
+				"type": "Experience",
+				"value": "Искуство"
+			},
+			{
+				"type": "LeaderShip",
+				"value": "Вођа"
+			}
+		],
+		"specialties": [
+			{
+				"type": "None",
+				"value": "Без специјалности"
+			},
+			{
+				"type": "Technical",
+				"value": "Техничар"
+			},
+			{
+				"type": "Quick",
+				"value": "Брз"
+			},
+			{
+				"type": "Powerful",
+				"value": "Снажан"
+			},
+			{
+				"type": "Unpredictable",
+				"value": "Непредвидив"
+			},
+			{
+				"type": "Head",
+				"value": "Игра главом"
+			},
+			{
+				"type": "Regainer",
+				"value": "Регенерисање"
+			}
+		],
+		"spirit": [
+			{
+				"text": "као хладни рат",
+				"value": "0"
+			},
+			{
+				"text": "крвожедни",
+				"value": "1"
+			},
+			{
+				"text": "бесни",
+				"value": "2"
+			},
+			{
+				"text": "изнервирани",
+				"value": "3"
+			},
+			{
+				"text": "сталожени",
+				"value": "4"
+			},
+			{
+				"text": "мирни",
+				"value": "5"
+			},
+			{
+				"text": "расположени",
+				"value": "6"
+			},
+			{
+				"text": "задовољни",
+				"value": "7"
+			},
+			{
+				"text": "у делиријуму",
+				"value": "8"
+			},
+			{
+				"text": "на седмом небу",
+				"value": "9"
+			},
+			{
+				"text": "Рај на земљи!",
+				"value": "10"
+			}
+		],
 		"sponsors": [
 			{
 				"text": "крвожедни",
@@ -376,161 +587,44 @@
 				"value": "9"
 			}
 		],
-		"sectors": [
+		"tactics": [
 			{
-				"type": "Midfield",
-				"value": "Средина терена"
+				"type": "normal",
+				"value": "Нормално"
 			},
 			{
-				"type": "RightDefense",
-				"value": "Десна страна одбране"
+				"type": "pressing",
+				"value": "Пресинг"
 			},
 			{
-				"type": "CentralDefense",
-				"value": "Централна одбрана"
+				"type": "ca",
+				"value": "Контранапади"
 			},
 			{
-				"type": "LeftDefense",
-				"value": "Лева страна одбране"
+				"type": "aim",
+				"value": "Напад по средини"
 			},
 			{
-				"type": "RightAttack",
-				"value": "Десна страна напада"
+				"type": "aow",
+				"value": "Напад преко крила"
 			},
 			{
-				"type": "CentralAttack",
-				"value": "Централни напад"
+				"type": "",
+				"value": "Непознато"
 			},
 			{
-				"type": "LeftAttack",
-				"value": "Лева страна напада"
+				"type": "",
+				"value": "Непознато"
+			},
+			{
+				"type": "creatively",
+				"value": "Креативна игра"
+			},
+			{
+				"type": "longshots",
+				"value": "Шутеви из даљине"
 			}
 		],
-		"ratingSubLevels": [
-			{
-				"text": "Веома низак",
-				"value": "0"
-			},
-			{
-				"text": "Низак",
-				"value": "0.25"
-			},
-			{
-				"text": "Висок",
-				"value": "0.5"
-			},
-			{
-				"text": "Веома висок",
-				"value": "0.75"
-			}
-		],
-		"fans": [
-			{
-				"text": "крвожедни",
-				"value": "0"
-			},
-			{
-				"text": "бесни",
-				"value": "1"
-			},
-			{
-				"text": "љути",
-				"value": "2"
-			},
-			{
-				"text": "изнервирани",
-				"value": "3"
-			},
-			{
-				"text": "разочарани",
-				"value": "4"
-			},
-			{
-				"text": "смирени",
-				"value": "5"
-			},
-			{
-				"text": "расположени",
-				"value": "6"
-			},
-			{
-				"text": "задовољни",
-				"value": "7"
-			},
-			{
-				"text": "усхићени",
-				"value": "8"
-			},
-			{
-				"text": "уживају у животу",
-				"value": "9"
-			},
-			{
-				"text": "играју на улици",
-				"value": "10"
-			},
-			{
-				"text": "певају \"Оду радости\"",
-				"value": "11"
-			}
-		],
-		"specialties": [
-			{
-				"type": "None",
-				"value": "Без специјалности"
-			},
-			{
-				"type": "Technical",
-				"value": "Техничар"
-			},
-			{
-				"type": "Quick",
-				"value": "Брз"
-			},
-			{
-				"type": "Powerful",
-				"value": "Снажан"
-			},
-			{
-				"type": "Unpredictable",
-				"value": "Непредвидив"
-			},
-			{
-				"type": "Head",
-				"value": "Игра главом"
-			},
-			{
-				"type": "Regainer",
-				"value": "Регенерисање"
-			}
-		],
-		"aggressiveness": [
-			{
-				"text": "спокојан",
-				"value": "0"
-			},
-			{
-				"text": "миран",
-				"value": "1"
-			},
-			{
-				"text": "уравнотежен",
-				"value": "2"
-			},
-			{
-				"text": "темпераментан",
-				"value": "3"
-			},
-			{
-				"text": "пргав",
-				"value": "4"
-			},
-			{
-				"text": "нестабилан",
-				"value": "5"
-			}
-		],
-		"id": "32",
 		"training": [
 			{
 				"type": "Gen",
@@ -588,100 +682,6 @@
 				"type": "Indiv",
 				"value": "Индивидуално"
 			}
-		],
-		"fans_match": [
-			{
-				"text": "Боље бисмо прошли када се не бисмо ни појавили!",
-				"value": "0"
-			},
-			{
-				"text": "За класу смо лошији",
-				"value": "1"
-			},
-			{
-				"text": "Изгубићемо",
-				"value": "2"
-			},
-			{
-				"text": "Они су фаворити",
-				"value": "3"
-			},
-			{
-				"text": "Они имају предност",
-				"value": "4"
-			},
-			{
-				"text": "Биће неизвесно",
-				"value": "5"
-			},
-			{
-				"text": "Имамо предност",
-				"value": "6"
-			},
-			{
-				"text": "Ми смо фаворити",
-				"value": "7"
-			},
-			{
-				"text": "Победићемо",
-				"value": "8"
-			},
-			{
-				"text": "Опуштено добијамо!",
-				"value": "9"
-			},
-			{
-				"text": "Има да их растуримо",
-				"value": "10"
-			}
-		],
-		"name": "sr",
-		"spirit": [
-			{
-				"text": "као хладни рат",
-				"value": "0"
-			},
-			{
-				"text": "крвожедни",
-				"value": "1"
-			},
-			{
-				"text": "бесни",
-				"value": "2"
-			},
-			{
-				"text": "изнервирани",
-				"value": "3"
-			},
-			{
-				"text": "сталожени",
-				"value": "4"
-			},
-			{
-				"text": "мирни",
-				"value": "5"
-			},
-			{
-				"text": "расположени",
-				"value": "6"
-			},
-			{
-				"text": "задовољни",
-				"value": "7"
-			},
-			{
-				"text": "у делиријуму",
-				"value": "8"
-			},
-			{
-				"text": "на седмом небу",
-				"value": "9"
-			},
-			{
-				"text": "Рај на земљи!",
-				"value": "10"
-			}
-		],
-		"desc": "Српски (Serbian)"
+		]
 	}
 }

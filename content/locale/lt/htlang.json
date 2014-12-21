@@ -1,5 +1,71 @@
 {
 	"language": {
+		"aggressiveness": [
+			{
+				"text": "pasyvus",
+				"value": "0"
+			},
+			{
+				"text": "ramus",
+				"value": "1"
+			},
+			{
+				"text": "subalansuotas",
+				"value": "2"
+			},
+			{
+				"text": "temperamentingas",
+				"value": "3"
+			},
+			{
+				"text": "karštakošis",
+				"value": "4"
+			},
+			{
+				"text": "nepastovus",
+				"value": "5"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "bjaurus vaikinas",
+				"value": "0"
+			},
+			{
+				"text": "kontroversiška asmenybė",
+				"value": "1"
+			},
+			{
+				"text": "malonus vaikinas",
+				"value": "2"
+			},
+			{
+				"text": "simpatiškas vaikinas",
+				"value": "3"
+			},
+			{
+				"text": "populiarus vaikinas",
+				"value": "4"
+			},
+			{
+				"text": "mylimas komandos narys",
+				"value": "5"
+			}
+		],
+		"attitude": [
+			{
+				"text": "Žaiskit atsipalaidavę",
+				"value": "-1"
+			},
+			{
+				"text": "Normaliai",
+				"value": "0"
+			},
+			{
+				"text": "Lemiamos rungtynės",
+				"value": "1"
+			}
+		],
 		"confidence": [
 			{
 				"text": "neegzistuojantis",
@@ -42,162 +108,101 @@
 				"value": "9"
 			}
 		],
-		"tactics": [
+		"desc": "Lietuvių",
+		"fans": [
 			{
-				"type": "normal",
-				"value": "Normaliai"
-			},
-			{
-				"type": "pressing",
-				"value": "Spaudimas"
-			},
-			{
-				"type": "ca",
-				"value": "Kontratakos"
-			},
-			{
-				"type": "aim",
-				"value": "Atakos centru"
-			},
-			{
-				"type": "aow",
-				"value": "Atakos kraštais"
-			},
-			{
-				"type": "",
-				"value": "Nežinomas"
-			},
-			{
-				"type": "",
-				"value": "Nežinomas"
-			},
-			{
-				"type": "creatively",
-				"value": "Žaisti išradingai"
-			},
-			{
-				"type": "longshots",
-				"value": "Tolimi smūgiai"
-			}
-		],
-		"honesty": [
-			{
-				"text": "prastos reputacijos",
+				"text": "kraugeriški",
 				"value": "0"
 			},
 			{
-				"text": "nesąžiningas",
+				"text": "įniršę",
 				"value": "1"
 			},
 			{
-				"text": "sąžiningas",
+				"text": "pikti",
 				"value": "2"
 			},
 			{
-				"text": "doras",
+				"text": "suirzę",
 				"value": "3"
 			},
 			{
-				"text": "teisingas",
+				"text": "nusivylę",
 				"value": "4"
 			},
 			{
-				"text": "šventasis",
+				"text": "ramūs",
 				"value": "5"
+			},
+			{
+				"text": "patenkinti",
+				"value": "6"
+			},
+			{
+				"text": "laimingi",
+				"value": "7"
+			},
+			{
+				"text": "pamišę dėl futbolo",
+				"value": "8"
+			},
+			{
+				"text": "visiškai atsipalaidavę",
+				"value": "9"
+			},
+			{
+				"text": "šokantys gatvėse",
+				"value": "10"
+			},
+			{
+				"text": "siunčia Jums meilės eilėraščius",
+				"value": "11"
 			}
 		],
-		"agreeability": [
+		"fans_match": [
 			{
-				"text": "bjaurus vaikinas",
+				"text": "Geriau išvis nesirodyti aikštelėje!",
 				"value": "0"
 			},
 			{
-				"text": "kontroversiška asmenybė",
+				"text": "Mes ne to lygio",
 				"value": "1"
 			},
 			{
-				"text": "malonus vaikinas",
+				"text": "Mes pralaimėsime",
 				"value": "2"
 			},
 			{
-				"text": "simpatiškas vaikinas",
+				"text": "Jie yra favoritai",
 				"value": "3"
 			},
 			{
-				"text": "populiarus vaikinas",
+				"text": "Jie yra pranašesni",
 				"value": "4"
 			},
 			{
-				"text": "mylimas komandos narys",
+				"text": "Bus lygi kova",
 				"value": "5"
-			}
-		],
-		"skills": [
-			{
-				"type": "Keeper",
-				"value": "Vartininkas"
 			},
 			{
-				"type": "Stamina",
-				"value": "Ištvermė"
+				"text": "Mes esame pranašesni",
+				"value": "6"
 			},
 			{
-				"type": "Defender",
-				"value": "Gynyba"
+				"text": "Mes esam favoritai",
+				"value": "7"
 			},
 			{
-				"type": "Playmaker",
-				"value": "Žaidimo org."
+				"text": "Mes nugalėsim",
+				"value": "8"
 			},
 			{
-				"type": "Winger",
-				"value": "Skersavimas"
+				"text": "Lengvas kąsnis!",
+				"value": "9"
 			},
 			{
-				"type": "Scorer",
-				"value": "Puolimas"
-			},
-			{
-				"type": "Kicker",
-				"value": "St. padėtys"
-			},
-			{
-				"type": "Passer",
-				"value": "Perdavimai"
-			},
-			{
-				"type": "Experience",
-				"value": "Patirtis"
-			},
-			{
-				"type": "LeaderShip",
-				"value": "Vadovavimas"
-			}
-		],
-		"positions": [
-			{
-				"type": "Keeper",
-				"value": "Vartininkas"
-			},
-			{
-				"type": "WingBack",
-				"value": "Krašto gynėjas"
-			},
-			{
-				"type": "CentralDefender",
-				"value": "Vidurio gynėjas"
-			},
-			{
-				"type": "InnerMidfield",
-				"value": "Saugas"
-			},
-			{
-				"type": "Winger",
-				"value": "Krašto saugas"
-			},
-			{
-				"type": "Forward",
-				"value": "Puolėjas"
+				"text": "Nušluosim juos nuo kelio",
+				"value": "10"
 			}
 		],
 		"fans_season": [
@@ -234,20 +239,33 @@
 				"value": "7"
 			}
 		],
-		"attitude": [
+		"honesty": [
 			{
-				"text": "Žaiskit atsipalaidavę",
-				"value": "-1"
-			},
-			{
-				"text": "Normaliai",
+				"text": "prastos reputacijos",
 				"value": "0"
 			},
 			{
-				"text": "Lemiamos rungtynės",
+				"text": "nesąžiningas",
 				"value": "1"
+			},
+			{
+				"text": "sąžiningas",
+				"value": "2"
+			},
+			{
+				"text": "doras",
+				"value": "3"
+			},
+			{
+				"text": "teisingas",
+				"value": "4"
+			},
+			{
+				"text": "šventasis",
+				"value": "5"
 			}
 		],
+		"id": "56",
 		"levels": [
 			{
 				"text": "neegzistuojantis",
@@ -334,6 +352,199 @@
 				"value": "20"
 			}
 		],
+		"name": "lt",
+		"positions": [
+			{
+				"type": "Keeper",
+				"value": "Vartininkas"
+			},
+			{
+				"type": "WingBack",
+				"value": "Krašto gynėjas"
+			},
+			{
+				"type": "CentralDefender",
+				"value": "Vidurio gynėjas"
+			},
+			{
+				"type": "InnerMidfield",
+				"value": "Saugas"
+			},
+			{
+				"type": "Winger",
+				"value": "Krašto saugas"
+			},
+			{
+				"type": "Forward",
+				"value": "Puolėjas"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "min.",
+				"value": "0"
+			},
+			{
+				"text": "žemas",
+				"value": "0.25"
+			},
+			{
+				"text": "aukštas",
+				"value": "0.5"
+			},
+			{
+				"text": "maks.",
+				"value": "0.75"
+			}
+		],
+		"sectors": [
+			{
+				"type": "Midfield",
+				"value": "Saugų linija"
+			},
+			{
+				"type": "RightDefense",
+				"value": "Dešinė gynybos pusė"
+			},
+			{
+				"type": "CentralDefense",
+				"value": "Centrinė gynyba"
+			},
+			{
+				"type": "LeftDefense",
+				"value": "Kairė gynybos pusė"
+			},
+			{
+				"type": "RightAttack",
+				"value": "Dešinė atakos pusė"
+			},
+			{
+				"type": "CentralAttack",
+				"value": "Centrinė ataka"
+			},
+			{
+				"type": "LeftAttack",
+				"value": "Kairė atakos pusė"
+			}
+		],
+		"skills": [
+			{
+				"type": "Keeper",
+				"value": "Vartininkas"
+			},
+			{
+				"type": "Stamina",
+				"value": "Ištvermė"
+			},
+			{
+				"type": "Defender",
+				"value": "Gynyba"
+			},
+			{
+				"type": "Playmaker",
+				"value": "Žaidimo org."
+			},
+			{
+				"type": "Winger",
+				"value": "Skersavimas"
+			},
+			{
+				"type": "Scorer",
+				"value": "Puolimas"
+			},
+			{
+				"type": "Kicker",
+				"value": "St. padėtys"
+			},
+			{
+				"type": "Passer",
+				"value": "Perdavimai"
+			},
+			{
+				"type": "Experience",
+				"value": "Patirtis"
+			},
+			{
+				"type": "LeaderShip",
+				"value": "Vadovavimas"
+			}
+		],
+		"specialties": [
+			{
+				"type": "None",
+				"value": "Nėra"
+			},
+			{
+				"type": "Technical",
+				"value": "Techniškas"
+			},
+			{
+				"type": "Quick",
+				"value": "Greitas"
+			},
+			{
+				"type": "Powerful",
+				"value": "Stiprus"
+			},
+			{
+				"type": "Unpredictable",
+				"value": "Nenuspėjamas"
+			},
+			{
+				"type": "Head",
+				"value": "Aukštas"
+			},
+			{
+				"type": "Regainer",
+				"value": "Atsigaunantis"
+			}
+		],
+		"spirit": [
+			{
+				"text": "kaip šaltajame kare",
+				"value": "0"
+			},
+			{
+				"text": "kraugeriški",
+				"value": "1"
+			},
+			{
+				"text": "įniršę",
+				"value": "2"
+			},
+			{
+				"text": "suirzę",
+				"value": "3"
+			},
+			{
+				"text": "santūrūs",
+				"value": "4"
+			},
+			{
+				"text": "ramūs",
+				"value": "5"
+			},
+			{
+				"text": "patenkinti",
+				"value": "6"
+			},
+			{
+				"text": "laimingi",
+				"value": "7"
+			},
+			{
+				"text": "pamišusiai laimingi",
+				"value": "8"
+			},
+			{
+				"text": "skraidantys padebesiais",
+				"value": "9"
+			},
+			{
+				"text": "Rojus Žemėje!",
+				"value": "10"
+			}
+		],
 		"sponsors": [
 			{
 				"text": "kraugeriški",
@@ -376,161 +587,44 @@
 				"value": "9"
 			}
 		],
-		"sectors": [
+		"tactics": [
 			{
-				"type": "Midfield",
-				"value": "Saugų linija"
+				"type": "normal",
+				"value": "Normaliai"
 			},
 			{
-				"type": "RightDefense",
-				"value": "Dešinė gynybos pusė"
+				"type": "pressing",
+				"value": "Spaudimas"
 			},
 			{
-				"type": "CentralDefense",
-				"value": "Centrinė gynyba"
+				"type": "ca",
+				"value": "Kontratakos"
 			},
 			{
-				"type": "LeftDefense",
-				"value": "Kairė gynybos pusė"
+				"type": "aim",
+				"value": "Atakos centru"
 			},
 			{
-				"type": "RightAttack",
-				"value": "Dešinė atakos pusė"
+				"type": "aow",
+				"value": "Atakos kraštais"
 			},
 			{
-				"type": "CentralAttack",
-				"value": "Centrinė ataka"
+				"type": "",
+				"value": "Nežinomas"
 			},
 			{
-				"type": "LeftAttack",
-				"value": "Kairė atakos pusė"
+				"type": "",
+				"value": "Nežinomas"
+			},
+			{
+				"type": "creatively",
+				"value": "Žaisti išradingai"
+			},
+			{
+				"type": "longshots",
+				"value": "Tolimi smūgiai"
 			}
 		],
-		"ratingSubLevels": [
-			{
-				"text": "min.",
-				"value": "0"
-			},
-			{
-				"text": "žemas",
-				"value": "0.25"
-			},
-			{
-				"text": "aukštas",
-				"value": "0.5"
-			},
-			{
-				"text": "maks.",
-				"value": "0.75"
-			}
-		],
-		"fans": [
-			{
-				"text": "kraugeriški",
-				"value": "0"
-			},
-			{
-				"text": "įniršę",
-				"value": "1"
-			},
-			{
-				"text": "pikti",
-				"value": "2"
-			},
-			{
-				"text": "suirzę",
-				"value": "3"
-			},
-			{
-				"text": "nusivylę",
-				"value": "4"
-			},
-			{
-				"text": "ramūs",
-				"value": "5"
-			},
-			{
-				"text": "patenkinti",
-				"value": "6"
-			},
-			{
-				"text": "laimingi",
-				"value": "7"
-			},
-			{
-				"text": "pamišę dėl futbolo",
-				"value": "8"
-			},
-			{
-				"text": "visiškai atsipalaidavę",
-				"value": "9"
-			},
-			{
-				"text": "šokantys gatvėse",
-				"value": "10"
-			},
-			{
-				"text": "siunčia Jums meilės eilėraščius",
-				"value": "11"
-			}
-		],
-		"specialties": [
-			{
-				"type": "None",
-				"value": "Nėra"
-			},
-			{
-				"type": "Technical",
-				"value": "Techniškas"
-			},
-			{
-				"type": "Quick",
-				"value": "Greitas"
-			},
-			{
-				"type": "Powerful",
-				"value": "Stiprus"
-			},
-			{
-				"type": "Unpredictable",
-				"value": "Nenuspėjamas"
-			},
-			{
-				"type": "Head",
-				"value": "Aukštas"
-			},
-			{
-				"type": "Regainer",
-				"value": "Atsigaunantis"
-			}
-		],
-		"aggressiveness": [
-			{
-				"text": "pasyvus",
-				"value": "0"
-			},
-			{
-				"text": "ramus",
-				"value": "1"
-			},
-			{
-				"text": "subalansuotas",
-				"value": "2"
-			},
-			{
-				"text": "temperamentingas",
-				"value": "3"
-			},
-			{
-				"text": "karštakošis",
-				"value": "4"
-			},
-			{
-				"text": "nepastovus",
-				"value": "5"
-			}
-		],
-		"id": "56",
 		"training": [
 			{
 				"type": "Gen",
@@ -588,100 +682,6 @@
 				"type": "Indiv",
 				"value": "Asmeninės treniruotės"
 			}
-		],
-		"fans_match": [
-			{
-				"text": "Geriau išvis nesirodyti aikštelėje!",
-				"value": "0"
-			},
-			{
-				"text": "Mes ne to lygio",
-				"value": "1"
-			},
-			{
-				"text": "Mes pralaimėsime",
-				"value": "2"
-			},
-			{
-				"text": "Jie yra favoritai",
-				"value": "3"
-			},
-			{
-				"text": "Jie yra pranašesni",
-				"value": "4"
-			},
-			{
-				"text": "Bus lygi kova",
-				"value": "5"
-			},
-			{
-				"text": "Mes esame pranašesni",
-				"value": "6"
-			},
-			{
-				"text": "Mes esam favoritai",
-				"value": "7"
-			},
-			{
-				"text": "Mes nugalėsim",
-				"value": "8"
-			},
-			{
-				"text": "Lengvas kąsnis!",
-				"value": "9"
-			},
-			{
-				"text": "Nušluosim juos nuo kelio",
-				"value": "10"
-			}
-		],
-		"name": "lt",
-		"spirit": [
-			{
-				"text": "kaip šaltajame kare",
-				"value": "0"
-			},
-			{
-				"text": "kraugeriški",
-				"value": "1"
-			},
-			{
-				"text": "įniršę",
-				"value": "2"
-			},
-			{
-				"text": "suirzę",
-				"value": "3"
-			},
-			{
-				"text": "santūrūs",
-				"value": "4"
-			},
-			{
-				"text": "ramūs",
-				"value": "5"
-			},
-			{
-				"text": "patenkinti",
-				"value": "6"
-			},
-			{
-				"text": "laimingi",
-				"value": "7"
-			},
-			{
-				"text": "pamišusiai laimingi",
-				"value": "8"
-			},
-			{
-				"text": "skraidantys padebesiais",
-				"value": "9"
-			},
-			{
-				"text": "Rojus Žemėje!",
-				"value": "10"
-			}
-		],
-		"desc": "Lietuvių"
+		]
 	}
 }

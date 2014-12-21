@@ -1,5 +1,71 @@
 {
 	"language": {
+		"aggressiveness": [
+			{
+				"text": "γαλήνιος",
+				"value": "0"
+			},
+			{
+				"text": "ήρεμος",
+				"value": "1"
+			},
+			{
+				"text": "ισορροπημένος",
+				"value": "2"
+			},
+			{
+				"text": "οξύθυμος",
+				"value": "3"
+			},
+			{
+				"text": "βίαιος",
+				"value": "4"
+			},
+			{
+				"text": "ασταθής",
+				"value": "5"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "κακός τύπος",
+				"value": "0"
+			},
+			{
+				"text": "αμφιλεγόμενος τύπος",
+				"value": "1"
+			},
+			{
+				"text": "ευχάριστος τύπος",
+				"value": "2"
+			},
+			{
+				"text": "συμπαθητικός τύπος",
+				"value": "3"
+			},
+			{
+				"text": "δημοφιλής τύπος",
+				"value": "4"
+			},
+			{
+				"text": "αγαπημένος συμπαίκτης",
+				"value": "5"
+			}
+		],
+		"attitude": [
+			{
+				"text": "Παίξτε Χαλαρά",
+				"value": "-1"
+			},
+			{
+				"text": "Φυσιολογικά",
+				"value": "0"
+			},
+			{
+				"text": "Παιχνίδι της Χρονιάς",
+				"value": "1"
+			}
+		],
 		"confidence": [
 			{
 				"text": "ανύπαρκτη",
@@ -42,162 +108,101 @@
 				"value": "9"
 			}
 		],
-		"tactics": [
+		"desc": "Ελληνικά (Greek)",
+		"fans": [
 			{
-				"type": "normal",
-				"value": "Κανονικά"
-			},
-			{
-				"type": "pressing",
-				"value": "Πρεσάρισμα"
-			},
-			{
-				"type": "ca",
-				"value": "Αντεπιθέσεις"
-			},
-			{
-				"type": "aim",
-				"value": "Επίθεση από το κέντρο"
-			},
-			{
-				"type": "aow",
-				"value": "Επίθεση από τα πλάγια"
-			},
-			{
-				"type": "",
-				"value": "Άγνωστο"
-			},
-			{
-				"type": "",
-				"value": "Άγνωστο"
-			},
-			{
-				"type": "creatively",
-				"value": "Δημιουργικό Παιχνίδι"
-			},
-			{
-				"type": "longshots",
-				"value": "Μακρινά σουτ"
-			}
-		],
-		"honesty": [
-			{
-				"text": "αχρείος",
+				"text": "Δολοφόνοι έτοιμοι για όλα",
 				"value": "0"
 			},
 			{
-				"text": "ανέντιμος",
+				"text": "Έξω φρενών",
 				"value": "1"
 			},
 			{
-				"text": "έντιμος",
+				"text": "θυμωμένοι",
 				"value": "2"
 			},
 			{
-				"text": "ευθύς",
+				"text": "Ενοχλημένοι",
 				"value": "3"
 			},
 			{
-				"text": "δίκαιος",
+				"text": "απογοητευμένοι",
 				"value": "4"
 			},
 			{
-				"text": "σαν άγιος",
+				"text": "Ήρεμοι",
 				"value": "5"
+			},
+			{
+				"text": "Ικανοποιημένοι",
+				"value": "6"
+			},
+			{
+				"text": "Ευχαριστημένοι",
+				"value": "7"
+			},
+			{
+				"text": "Πανευτυχείς",
+				"value": "8"
+			},
+			{
+				"text": "Εκστασιασμένοι",
+				"value": "9"
+			},
+			{
+				"text": "Χορεύουν στους δρόμους",
+				"value": "10"
+			},
+			{
+				"text": "Σας στέλνουν ερωτικά ποιήματα",
+				"value": "11"
 			}
 		],
-		"agreeability": [
+		"fans_match": [
 			{
-				"text": "κακός τύπος",
+				"text": "Καλύτερα να μην κατεβούμε!",
 				"value": "0"
 			},
 			{
-				"text": "αμφιλεγόμενος τύπος",
+				"text": "Υπερέχουν σημαντικά",
 				"value": "1"
 			},
 			{
-				"text": "ευχάριστος τύπος",
+				"text": "Θα χάσουμε",
 				"value": "2"
 			},
 			{
-				"text": "συμπαθητικός τύπος",
+				"text": "Είναι το φαβορί",
 				"value": "3"
 			},
 			{
-				"text": "δημοφιλής τύπος",
+				"text": "Έχουν το πλεονέκτημα",
 				"value": "4"
 			},
 			{
-				"text": "αγαπημένος συμπαίκτης",
+				"text": "Θα είναι αμφίρροπη αναμέτρηση",
 				"value": "5"
-			}
-		],
-		"skills": [
-			{
-				"type": "Keeper",
-				"value": "Τέρμα"
 			},
 			{
-				"type": "Stamina",
-				"value": "Αντοχή"
+				"text": "Έχουμε το πλεονέκτημα",
+				"value": "6"
 			},
 			{
-				"type": "Defender",
-				"value": "Άμυνα"
+				"text": "Είμαστε το φαβορί",
+				"value": "7"
 			},
 			{
-				"type": "Playmaker",
-				"value": "Οργάνωση"
+				"text": "Θα νικήσουμε",
+				"value": "8"
 			},
 			{
-				"type": "Winger",
-				"value": "Πλάγια"
+				"text": "Πανεύκολο!",
+				"value": "9"
 			},
 			{
-				"type": "Scorer",
-				"value": "Σκοράρισμα"
-			},
-			{
-				"type": "Kicker",
-				"value": "Στημ. Φάσεις"
-			},
-			{
-				"type": "Passer",
-				"value": "Πάσα"
-			},
-			{
-				"type": "Experience",
-				"value": "Εμπειρία"
-			},
-			{
-				"type": "LeaderShip",
-				"value": "Ηγεσία"
-			}
-		],
-		"positions": [
-			{
-				"type": "Keeper",
-				"value": "Τερματοφύλακας"
-			},
-			{
-				"type": "WingBack",
-				"value": "Πλάγιος Αμυντικός"
-			},
-			{
-				"type": "CentralDefender",
-				"value": "Κεντρικός Αμυντικός"
-			},
-			{
-				"type": "InnerMidfield",
-				"value": "Κεντρικός Μέσος"
-			},
-			{
-				"type": "Winger",
-				"value": "Πλάγιος Μέσος"
-			},
-			{
-				"type": "Forward",
-				"value": "Επιθετικός"
+				"text": "Ας τους ξεφτιλίσουμε",
+				"value": "10"
 			}
 		],
 		"fans_season": [
@@ -234,20 +239,33 @@
 				"value": "7"
 			}
 		],
-		"attitude": [
+		"honesty": [
 			{
-				"text": "Παίξτε Χαλαρά",
-				"value": "-1"
-			},
-			{
-				"text": "Φυσιολογικά",
+				"text": "αχρείος",
 				"value": "0"
 			},
 			{
-				"text": "Παιχνίδι της Χρονιάς",
+				"text": "ανέντιμος",
 				"value": "1"
+			},
+			{
+				"text": "έντιμος",
+				"value": "2"
+			},
+			{
+				"text": "ευθύς",
+				"value": "3"
+			},
+			{
+				"text": "δίκαιος",
+				"value": "4"
+			},
+			{
+				"text": "σαν άγιος",
+				"value": "5"
 			}
 		],
+		"id": "34",
 		"levels": [
 			{
 				"text": "ανύπαρκτος",
@@ -334,6 +352,199 @@
 				"value": "20"
 			}
 		],
+		"name": "el",
+		"positions": [
+			{
+				"type": "Keeper",
+				"value": "Τερματοφύλακας"
+			},
+			{
+				"type": "WingBack",
+				"value": "Πλάγιος Αμυντικός"
+			},
+			{
+				"type": "CentralDefender",
+				"value": "Κεντρικός Αμυντικός"
+			},
+			{
+				"type": "InnerMidfield",
+				"value": "Κεντρικός Μέσος"
+			},
+			{
+				"type": "Winger",
+				"value": "Πλάγιος Μέσος"
+			},
+			{
+				"type": "Forward",
+				"value": "Επιθετικός"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "(πολύ χαμηλό)",
+				"value": "0"
+			},
+			{
+				"text": "(χαμηλό)",
+				"value": "0.25"
+			},
+			{
+				"text": "(υψηλό)",
+				"value": "0.5"
+			},
+			{
+				"text": "(πολύ υψηλό)",
+				"value": "0.75"
+			}
+		],
+		"sectors": [
+			{
+				"type": "Midfield",
+				"value": "Κέντρο"
+			},
+			{
+				"type": "RightDefense",
+				"value": "Δεξιά Αμυνα"
+			},
+			{
+				"type": "CentralDefense",
+				"value": "Κεντρική Αμυνα"
+			},
+			{
+				"type": "LeftDefense",
+				"value": "Αριστερή Αμυνα"
+			},
+			{
+				"type": "RightAttack",
+				"value": "Δεξιά  Επίθεση"
+			},
+			{
+				"type": "CentralAttack",
+				"value": "Κεντρική Επίθεση"
+			},
+			{
+				"type": "LeftAttack",
+				"value": "Αριστερή Επίθεση"
+			}
+		],
+		"skills": [
+			{
+				"type": "Keeper",
+				"value": "Τέρμα"
+			},
+			{
+				"type": "Stamina",
+				"value": "Αντοχή"
+			},
+			{
+				"type": "Defender",
+				"value": "Άμυνα"
+			},
+			{
+				"type": "Playmaker",
+				"value": "Οργάνωση"
+			},
+			{
+				"type": "Winger",
+				"value": "Πλάγια"
+			},
+			{
+				"type": "Scorer",
+				"value": "Σκοράρισμα"
+			},
+			{
+				"type": "Kicker",
+				"value": "Στημ. Φάσεις"
+			},
+			{
+				"type": "Passer",
+				"value": "Πάσα"
+			},
+			{
+				"type": "Experience",
+				"value": "Εμπειρία"
+			},
+			{
+				"type": "LeaderShip",
+				"value": "Ηγεσία"
+			}
+		],
+		"specialties": [
+			{
+				"type": "None",
+				"value": "Καμία"
+			},
+			{
+				"type": "Technical",
+				"value": "Τεχνικός"
+			},
+			{
+				"type": "Quick",
+				"value": "Γρήγορος"
+			},
+			{
+				"type": "Powerful",
+				"value": "Δυνατός"
+			},
+			{
+				"type": "Unpredictable",
+				"value": "Απρόβλεπτος"
+			},
+			{
+				"type": "Head",
+				"value": "Κεφαλιά"
+			},
+			{
+				"type": "Regainer",
+				"value": "Ταχυθεραπεύσιμος"
+			}
+		],
+		"spirit": [
+			{
+				"text": "έχουν Ψυχρό Πόλεμο",
+				"value": "0"
+			},
+			{
+				"text": "δολοφονικό",
+				"value": "1"
+			},
+			{
+				"text": "εξοργισμένο",
+				"value": "2"
+			},
+			{
+				"text": "εκνευρισμένο",
+				"value": "3"
+			},
+			{
+				"text": "νηφάλιο",
+				"value": "4"
+			},
+			{
+				"text": "ήρεμο",
+				"value": "5"
+			},
+			{
+				"text": "ικανοποιητικό",
+				"value": "6"
+			},
+			{
+				"text": "ανεβασμένο",
+				"value": "7"
+			},
+			{
+				"text": "ξέφρενο",
+				"value": "8"
+			},
+			{
+				"text": "περπατάνε στα σύννεφα",
+				"value": "9"
+			},
+			{
+				"text": "Παράδεισος στη Γη!",
+				"value": "10"
+			}
+		],
 		"sponsors": [
 			{
 				"text": "Δολοφόνοι έτοιμοι για όλα",
@@ -376,161 +587,44 @@
 				"value": "9"
 			}
 		],
-		"sectors": [
+		"tactics": [
 			{
-				"type": "Midfield",
-				"value": "Κέντρο"
+				"type": "normal",
+				"value": "Κανονικά"
 			},
 			{
-				"type": "RightDefense",
-				"value": "Δεξιά Αμυνα"
+				"type": "pressing",
+				"value": "Πρεσάρισμα"
 			},
 			{
-				"type": "CentralDefense",
-				"value": "Κεντρική Αμυνα"
+				"type": "ca",
+				"value": "Αντεπιθέσεις"
 			},
 			{
-				"type": "LeftDefense",
-				"value": "Αριστερή Αμυνα"
+				"type": "aim",
+				"value": "Επίθεση από το κέντρο"
 			},
 			{
-				"type": "RightAttack",
-				"value": "Δεξιά  Επίθεση"
+				"type": "aow",
+				"value": "Επίθεση από τα πλάγια"
 			},
 			{
-				"type": "CentralAttack",
-				"value": "Κεντρική Επίθεση"
+				"type": "",
+				"value": "Άγνωστο"
 			},
 			{
-				"type": "LeftAttack",
-				"value": "Αριστερή Επίθεση"
+				"type": "",
+				"value": "Άγνωστο"
+			},
+			{
+				"type": "creatively",
+				"value": "Δημιουργικό Παιχνίδι"
+			},
+			{
+				"type": "longshots",
+				"value": "Μακρινά σουτ"
 			}
 		],
-		"ratingSubLevels": [
-			{
-				"text": "(πολύ χαμηλό)",
-				"value": "0"
-			},
-			{
-				"text": "(χαμηλό)",
-				"value": "0.25"
-			},
-			{
-				"text": "(υψηλό)",
-				"value": "0.5"
-			},
-			{
-				"text": "(πολύ υψηλό)",
-				"value": "0.75"
-			}
-		],
-		"fans": [
-			{
-				"text": "Δολοφόνοι έτοιμοι για όλα",
-				"value": "0"
-			},
-			{
-				"text": "Έξω φρενών",
-				"value": "1"
-			},
-			{
-				"text": "θυμωμένοι",
-				"value": "2"
-			},
-			{
-				"text": "Ενοχλημένοι",
-				"value": "3"
-			},
-			{
-				"text": "απογοητευμένοι",
-				"value": "4"
-			},
-			{
-				"text": "Ήρεμοι",
-				"value": "5"
-			},
-			{
-				"text": "Ικανοποιημένοι",
-				"value": "6"
-			},
-			{
-				"text": "Ευχαριστημένοι",
-				"value": "7"
-			},
-			{
-				"text": "Πανευτυχείς",
-				"value": "8"
-			},
-			{
-				"text": "Εκστασιασμένοι",
-				"value": "9"
-			},
-			{
-				"text": "Χορεύουν στους δρόμους",
-				"value": "10"
-			},
-			{
-				"text": "Σας στέλνουν ερωτικά ποιήματα",
-				"value": "11"
-			}
-		],
-		"specialties": [
-			{
-				"type": "None",
-				"value": "Καμία"
-			},
-			{
-				"type": "Technical",
-				"value": "Τεχνικός"
-			},
-			{
-				"type": "Quick",
-				"value": "Γρήγορος"
-			},
-			{
-				"type": "Powerful",
-				"value": "Δυνατός"
-			},
-			{
-				"type": "Unpredictable",
-				"value": "Απρόβλεπτος"
-			},
-			{
-				"type": "Head",
-				"value": "Κεφαλιά"
-			},
-			{
-				"type": "Regainer",
-				"value": "Ταχυθεραπεύσιμος"
-			}
-		],
-		"aggressiveness": [
-			{
-				"text": "γαλήνιος",
-				"value": "0"
-			},
-			{
-				"text": "ήρεμος",
-				"value": "1"
-			},
-			{
-				"text": "ισορροπημένος",
-				"value": "2"
-			},
-			{
-				"text": "οξύθυμος",
-				"value": "3"
-			},
-			{
-				"text": "βίαιος",
-				"value": "4"
-			},
-			{
-				"text": "ασταθής",
-				"value": "5"
-			}
-		],
-		"id": "34",
 		"training": [
 			{
 				"type": "Gen",
@@ -588,100 +682,6 @@
 				"type": "Indiv",
 				"value": "Ατομική"
 			}
-		],
-		"fans_match": [
-			{
-				"text": "Καλύτερα να μην κατεβούμε!",
-				"value": "0"
-			},
-			{
-				"text": "Υπερέχουν σημαντικά",
-				"value": "1"
-			},
-			{
-				"text": "Θα χάσουμε",
-				"value": "2"
-			},
-			{
-				"text": "Είναι το φαβορί",
-				"value": "3"
-			},
-			{
-				"text": "Έχουν το πλεονέκτημα",
-				"value": "4"
-			},
-			{
-				"text": "Θα είναι αμφίρροπη αναμέτρηση",
-				"value": "5"
-			},
-			{
-				"text": "Έχουμε το πλεονέκτημα",
-				"value": "6"
-			},
-			{
-				"text": "Είμαστε το φαβορί",
-				"value": "7"
-			},
-			{
-				"text": "Θα νικήσουμε",
-				"value": "8"
-			},
-			{
-				"text": "Πανεύκολο!",
-				"value": "9"
-			},
-			{
-				"text": "Ας τους ξεφτιλίσουμε",
-				"value": "10"
-			}
-		],
-		"name": "el",
-		"spirit": [
-			{
-				"text": "έχουν Ψυχρό Πόλεμο",
-				"value": "0"
-			},
-			{
-				"text": "δολοφονικό",
-				"value": "1"
-			},
-			{
-				"text": "εξοργισμένο",
-				"value": "2"
-			},
-			{
-				"text": "εκνευρισμένο",
-				"value": "3"
-			},
-			{
-				"text": "νηφάλιο",
-				"value": "4"
-			},
-			{
-				"text": "ήρεμο",
-				"value": "5"
-			},
-			{
-				"text": "ικανοποιητικό",
-				"value": "6"
-			},
-			{
-				"text": "ανεβασμένο",
-				"value": "7"
-			},
-			{
-				"text": "ξέφρενο",
-				"value": "8"
-			},
-			{
-				"text": "περπατάνε στα σύννεφα",
-				"value": "9"
-			},
-			{
-				"text": "Παράδεισος στη Γη!",
-				"value": "10"
-			}
-		],
-		"desc": "Ελληνικά (Greek)"
+		]
 	}
 }

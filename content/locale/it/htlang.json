@@ -1,5 +1,71 @@
 {
 	"language": {
+		"aggressiveness": [
+			{
+				"text": "tranquilla",
+				"value": "0"
+			},
+			{
+				"text": "calma",
+				"value": "1"
+			},
+			{
+				"text": "equilibrata",
+				"value": "2"
+			},
+			{
+				"text": "impulsiva",
+				"value": "3"
+			},
+			{
+				"text": "irascibile",
+				"value": "4"
+			},
+			{
+				"text": "lunatica",
+				"value": "5"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "attaccabrighe",
+				"value": "0"
+			},
+			{
+				"text": "scontrosa",
+				"value": "1"
+			},
+			{
+				"text": "gradevole",
+				"value": "2"
+			},
+			{
+				"text": "simpatica",
+				"value": "3"
+			},
+			{
+				"text": "popolare",
+				"value": "4"
+			},
+			{
+				"text": "amata",
+				"value": "5"
+			}
+		],
+		"attitude": [
+			{
+				"text": "Partitella",
+				"value": "-1"
+			},
+			{
+				"text": "Normale",
+				"value": "0"
+			},
+			{
+				"text": "Partita della stagione",
+				"value": "1"
+			}
+		],
 		"confidence": [
 			{
 				"text": "inesistente",
@@ -42,162 +108,101 @@
 				"value": "9"
 			}
 		],
-		"tactics": [
+		"desc": "Italiano",
+		"fans": [
 			{
-				"type": "normal",
-				"value": "Normale"
-			},
-			{
-				"type": "pressing",
-				"value": "Pressing"
-			},
-			{
-				"type": "ca",
-				"value": "Contropiede"
-			},
-			{
-				"type": "aim",
-				"value": "Attacco al centro"
-			},
-			{
-				"type": "aow",
-				"value": "Attacco sulle fasce"
-			},
-			{
-				"type": "",
-				"value": "Sconosciuto"
-			},
-			{
-				"type": "",
-				"value": "Sconosciuto"
-			},
-			{
-				"type": "creatively",
-				"value": "Libertà d'inventiva"
-			},
-			{
-				"type": "longshots",
-				"value": "Tiri da fuori"
-			}
-		],
-		"honesty": [
-			{
-				"text": "infame",
+				"text": "inferociti",
 				"value": "0"
 			},
 			{
-				"text": "disonesta",
+				"text": "furiosi",
 				"value": "1"
 			},
 			{
-				"text": "onesta",
+				"text": "arrabbiati",
 				"value": "2"
 			},
 			{
-				"text": "retta",
+				"text": "irritati",
 				"value": "3"
 			},
 			{
-				"text": "virtuosa",
+				"text": "delusi",
 				"value": "4"
 			},
 			{
-				"text": "quasi santa",
+				"text": "calmi",
 				"value": "5"
+			},
+			{
+				"text": "contenti",
+				"value": "6"
+			},
+			{
+				"text": "soddisfatti",
+				"value": "7"
+			},
+			{
+				"text": "in delirio",
+				"value": "8"
+			},
+			{
+				"text": "sulle stelle",
+				"value": "9"
+			},
+			{
+				"text": "danzano per le strade",
+				"value": "10"
+			},
+			{
+				"text": "mandano poesie d'amore",
+				"value": "11"
 			}
 		],
-		"agreeability": [
+		"fans_match": [
 			{
-				"text": "attaccabrighe",
+				"text": "Meglio non presentarsi nemmeno",
 				"value": "0"
 			},
 			{
-				"text": "scontrosa",
+				"text": "Siamo nettamente inferiori",
 				"value": "1"
 			},
 			{
-				"text": "gradevole",
+				"text": "Perderemo",
 				"value": "2"
 			},
 			{
-				"text": "simpatica",
+				"text": "Sono i favoriti",
 				"value": "3"
 			},
 			{
-				"text": "popolare",
+				"text": "Avranno un certo vantaggio",
 				"value": "4"
 			},
 			{
-				"text": "amata",
+				"text": "Partita aperta a qualsiasi risultato",
 				"value": "5"
-			}
-		],
-		"skills": [
-			{
-				"type": "Keeper",
-				"value": "Parate"
 			},
 			{
-				"type": "Stamina",
-				"value": "Resistenza"
+				"text": "Avremo un certo vantaggio",
+				"value": "6"
 			},
 			{
-				"type": "Defender",
-				"value": "Difesa"
+				"text": "Siamo i favoriti",
+				"value": "7"
 			},
 			{
-				"type": "Playmaker",
-				"value": "Regia"
+				"text": "Vinceremo",
+				"value": "8"
 			},
 			{
-				"type": "Winger",
-				"value": "Cross"
+				"text": "Sarà una passeggiata",
+				"value": "9"
 			},
 			{
-				"type": "Scorer",
-				"value": "Attacco"
-			},
-			{
-				"type": "Kicker",
-				"value": "Calci piazzati"
-			},
-			{
-				"type": "Passer",
-				"value": "Passaggi"
-			},
-			{
-				"type": "Experience",
-				"value": "Esperienza"
-			},
-			{
-				"type": "LeaderShip",
-				"value": "Carisma"
-			}
-		],
-		"positions": [
-			{
-				"type": "Keeper",
-				"value": "Portiere"
-			},
-			{
-				"type": "WingBack",
-				"value": "Terzino"
-			},
-			{
-				"type": "CentralDefender",
-				"value": "Difensore centrale"
-			},
-			{
-				"type": "InnerMidfield",
-				"value": "Centrocampista"
-			},
-			{
-				"type": "Winger",
-				"value": "Ala"
-			},
-			{
-				"type": "Forward",
-				"value": "Attaccante"
+				"text": "Umiliamoli!",
+				"value": "10"
 			}
 		],
 		"fans_season": [
@@ -234,20 +239,33 @@
 				"value": "7"
 			}
 		],
-		"attitude": [
+		"honesty": [
 			{
-				"text": "Partitella",
-				"value": "-1"
-			},
-			{
-				"text": "Normale",
+				"text": "infame",
 				"value": "0"
 			},
 			{
-				"text": "Partita della stagione",
+				"text": "disonesta",
 				"value": "1"
+			},
+			{
+				"text": "onesta",
+				"value": "2"
+			},
+			{
+				"text": "retta",
+				"value": "3"
+			},
+			{
+				"text": "virtuosa",
+				"value": "4"
+			},
+			{
+				"text": "quasi santa",
+				"value": "5"
 			}
 		],
+		"id": "4",
 		"levels": [
 			{
 				"text": "inesistente",
@@ -334,6 +352,199 @@
 				"value": "20"
 			}
 		],
+		"name": "it",
+		"positions": [
+			{
+				"type": "Keeper",
+				"value": "Portiere"
+			},
+			{
+				"type": "WingBack",
+				"value": "Terzino"
+			},
+			{
+				"type": "CentralDefender",
+				"value": "Difensore centrale"
+			},
+			{
+				"type": "InnerMidfield",
+				"value": "Centrocampista"
+			},
+			{
+				"type": "Winger",
+				"value": "Ala"
+			},
+			{
+				"type": "Forward",
+				"value": "Attaccante"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "molto basso",
+				"value": "0"
+			},
+			{
+				"text": "basso",
+				"value": "0.25"
+			},
+			{
+				"text": "alto",
+				"value": "0.5"
+			},
+			{
+				"text": "molto alto",
+				"value": "0.75"
+			}
+		],
+		"sectors": [
+			{
+				"type": "Midfield",
+				"value": "Centrocampo"
+			},
+			{
+				"type": "RightDefense",
+				"value": "Difesa Destra"
+			},
+			{
+				"type": "CentralDefense",
+				"value": "Difesa Centrale"
+			},
+			{
+				"type": "LeftDefense",
+				"value": "Difesa Sinistra"
+			},
+			{
+				"type": "RightAttack",
+				"value": "Attacco Destro"
+			},
+			{
+				"type": "CentralAttack",
+				"value": "Attacco Centrale"
+			},
+			{
+				"type": "LeftAttack",
+				"value": "Attacco Sinistro"
+			}
+		],
+		"skills": [
+			{
+				"type": "Keeper",
+				"value": "Parate"
+			},
+			{
+				"type": "Stamina",
+				"value": "Resistenza"
+			},
+			{
+				"type": "Defender",
+				"value": "Difesa"
+			},
+			{
+				"type": "Playmaker",
+				"value": "Regia"
+			},
+			{
+				"type": "Winger",
+				"value": "Cross"
+			},
+			{
+				"type": "Scorer",
+				"value": "Attacco"
+			},
+			{
+				"type": "Kicker",
+				"value": "Calci piazzati"
+			},
+			{
+				"type": "Passer",
+				"value": "Passaggi"
+			},
+			{
+				"type": "Experience",
+				"value": "Esperienza"
+			},
+			{
+				"type": "LeaderShip",
+				"value": "Carisma"
+			}
+		],
+		"specialties": [
+			{
+				"type": "None",
+				"value": "Nessuna"
+			},
+			{
+				"type": "Technical",
+				"value": "Tecnico"
+			},
+			{
+				"type": "Quick",
+				"value": "Veloce"
+			},
+			{
+				"type": "Powerful",
+				"value": "Potente"
+			},
+			{
+				"type": "Unpredictable",
+				"value": "Imprevedibile"
+			},
+			{
+				"type": "Head",
+				"value": "Colpo di testa"
+			},
+			{
+				"type": "Regainer",
+				"value": "Guarigione Veloce"
+			}
+		],
+		"spirit": [
+			{
+				"text": "guerra aperta",
+				"value": "0"
+			},
+			{
+				"text": "in rivolta",
+				"value": "1"
+			},
+			{
+				"text": "furiosi",
+				"value": "2"
+			},
+			{
+				"text": "irritati",
+				"value": "3"
+			},
+			{
+				"text": "composti",
+				"value": "4"
+			},
+			{
+				"text": "calmi",
+				"value": "5"
+			},
+			{
+				"text": "contenti",
+				"value": "6"
+			},
+			{
+				"text": "soddisfatti",
+				"value": "7"
+			},
+			{
+				"text": "in delirio",
+				"value": "8"
+			},
+			{
+				"text": "sulle stelle",
+				"value": "9"
+			},
+			{
+				"text": "al settimo cielo!",
+				"value": "10"
+			}
+		],
 		"sponsors": [
 			{
 				"text": "inferociti",
@@ -376,161 +587,44 @@
 				"value": "9"
 			}
 		],
-		"sectors": [
+		"tactics": [
 			{
-				"type": "Midfield",
-				"value": "Centrocampo"
+				"type": "normal",
+				"value": "Normale"
 			},
 			{
-				"type": "RightDefense",
-				"value": "Difesa Destra"
+				"type": "pressing",
+				"value": "Pressing"
 			},
 			{
-				"type": "CentralDefense",
-				"value": "Difesa Centrale"
+				"type": "ca",
+				"value": "Contropiede"
 			},
 			{
-				"type": "LeftDefense",
-				"value": "Difesa Sinistra"
+				"type": "aim",
+				"value": "Attacco al centro"
 			},
 			{
-				"type": "RightAttack",
-				"value": "Attacco Destro"
+				"type": "aow",
+				"value": "Attacco sulle fasce"
 			},
 			{
-				"type": "CentralAttack",
-				"value": "Attacco Centrale"
+				"type": "",
+				"value": "Sconosciuto"
 			},
 			{
-				"type": "LeftAttack",
-				"value": "Attacco Sinistro"
+				"type": "",
+				"value": "Sconosciuto"
+			},
+			{
+				"type": "creatively",
+				"value": "Libertà d'inventiva"
+			},
+			{
+				"type": "longshots",
+				"value": "Tiri da fuori"
 			}
 		],
-		"ratingSubLevels": [
-			{
-				"text": "molto basso",
-				"value": "0"
-			},
-			{
-				"text": "basso",
-				"value": "0.25"
-			},
-			{
-				"text": "alto",
-				"value": "0.5"
-			},
-			{
-				"text": "molto alto",
-				"value": "0.75"
-			}
-		],
-		"fans": [
-			{
-				"text": "inferociti",
-				"value": "0"
-			},
-			{
-				"text": "furiosi",
-				"value": "1"
-			},
-			{
-				"text": "arrabbiati",
-				"value": "2"
-			},
-			{
-				"text": "irritati",
-				"value": "3"
-			},
-			{
-				"text": "delusi",
-				"value": "4"
-			},
-			{
-				"text": "calmi",
-				"value": "5"
-			},
-			{
-				"text": "contenti",
-				"value": "6"
-			},
-			{
-				"text": "soddisfatti",
-				"value": "7"
-			},
-			{
-				"text": "in delirio",
-				"value": "8"
-			},
-			{
-				"text": "sulle stelle",
-				"value": "9"
-			},
-			{
-				"text": "danzano per le strade",
-				"value": "10"
-			},
-			{
-				"text": "mandano poesie d'amore",
-				"value": "11"
-			}
-		],
-		"specialties": [
-			{
-				"type": "None",
-				"value": "Nessuna"
-			},
-			{
-				"type": "Technical",
-				"value": "Tecnico"
-			},
-			{
-				"type": "Quick",
-				"value": "Veloce"
-			},
-			{
-				"type": "Powerful",
-				"value": "Potente"
-			},
-			{
-				"type": "Unpredictable",
-				"value": "Imprevedibile"
-			},
-			{
-				"type": "Head",
-				"value": "Colpo di testa"
-			},
-			{
-				"type": "Regainer",
-				"value": "Guarigione Veloce"
-			}
-		],
-		"aggressiveness": [
-			{
-				"text": "tranquilla",
-				"value": "0"
-			},
-			{
-				"text": "calma",
-				"value": "1"
-			},
-			{
-				"text": "equilibrata",
-				"value": "2"
-			},
-			{
-				"text": "impulsiva",
-				"value": "3"
-			},
-			{
-				"text": "irascibile",
-				"value": "4"
-			},
-			{
-				"text": "lunatica",
-				"value": "5"
-			}
-		],
-		"id": "4",
 		"training": [
 			{
 				"type": "Gen",
@@ -588,100 +682,6 @@
 				"type": "Indiv",
 				"value": "Individuale"
 			}
-		],
-		"fans_match": [
-			{
-				"text": "Meglio non presentarsi nemmeno",
-				"value": "0"
-			},
-			{
-				"text": "Siamo nettamente inferiori",
-				"value": "1"
-			},
-			{
-				"text": "Perderemo",
-				"value": "2"
-			},
-			{
-				"text": "Sono i favoriti",
-				"value": "3"
-			},
-			{
-				"text": "Avranno un certo vantaggio",
-				"value": "4"
-			},
-			{
-				"text": "Partita aperta a qualsiasi risultato",
-				"value": "5"
-			},
-			{
-				"text": "Avremo un certo vantaggio",
-				"value": "6"
-			},
-			{
-				"text": "Siamo i favoriti",
-				"value": "7"
-			},
-			{
-				"text": "Vinceremo",
-				"value": "8"
-			},
-			{
-				"text": "Sarà una passeggiata",
-				"value": "9"
-			},
-			{
-				"text": "Umiliamoli!",
-				"value": "10"
-			}
-		],
-		"name": "it",
-		"spirit": [
-			{
-				"text": "guerra aperta",
-				"value": "0"
-			},
-			{
-				"text": "in rivolta",
-				"value": "1"
-			},
-			{
-				"text": "furiosi",
-				"value": "2"
-			},
-			{
-				"text": "irritati",
-				"value": "3"
-			},
-			{
-				"text": "composti",
-				"value": "4"
-			},
-			{
-				"text": "calmi",
-				"value": "5"
-			},
-			{
-				"text": "contenti",
-				"value": "6"
-			},
-			{
-				"text": "soddisfatti",
-				"value": "7"
-			},
-			{
-				"text": "in delirio",
-				"value": "8"
-			},
-			{
-				"text": "sulle stelle",
-				"value": "9"
-			},
-			{
-				"text": "al settimo cielo!",
-				"value": "10"
-			}
-		],
-		"desc": "Italiano"
+		]
 	}
 }

@@ -1,5 +1,71 @@
 {
 	"language": {
+		"aggressiveness": [
+			{
+				"text": "tichý",
+				"value": "0"
+			},
+			{
+				"text": "chladný",
+				"value": "1"
+			},
+			{
+				"text": "vyrovnaný",
+				"value": "2"
+			},
+			{
+				"text": "temperamentný",
+				"value": "3"
+			},
+			{
+				"text": "výbušný",
+				"value": "4"
+			},
+			{
+				"text": "nestabilný",
+				"value": "5"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "Protivný chlap",
+				"value": "0"
+			},
+			{
+				"text": "Hašterivý človek",
+				"value": "1"
+			},
+			{
+				"text": "Príjemný chlapík",
+				"value": "2"
+			},
+			{
+				"text": "Sympaťák",
+				"value": "3"
+			},
+			{
+				"text": "Obľúbený chlapík",
+				"value": "4"
+			},
+			{
+				"text": "Miláčik tímu",
+				"value": "5"
+			}
+		],
+		"attitude": [
+			{
+				"text": "Uvoľnený",
+				"value": "-1"
+			},
+			{
+				"text": "Normálny",
+				"value": "0"
+			},
+			{
+				"text": "Zápas sezóny",
+				"value": "1"
+			}
+		],
 		"confidence": [
 			{
 				"text": "neexistujúca",
@@ -42,162 +108,101 @@
 				"value": "9"
 			}
 		],
-		"tactics": [
+		"desc": "Slovenčina",
+		"fans": [
 			{
-				"type": "normal",
-				"value": "Normálna"
-			},
-			{
-				"type": "pressing",
-				"value": "Pressing"
-			},
-			{
-				"type": "ca",
-				"value": "Protiútoky"
-			},
-			{
-				"type": "aim",
-				"value": "Útok stredom"
-			},
-			{
-				"type": "aow",
-				"value": "Útok po krídlach"
-			},
-			{
-				"type": "",
-				"value": "Neznáma"
-			},
-			{
-				"type": "",
-				"value": "Neznáma"
-			},
-			{
-				"type": "creatively",
-				"value": "Kreatívna hra"
-			},
-			{
-				"type": "longshots",
-				"value": "Strely z diaľky"
-			}
-		],
-		"honesty": [
-			{
-				"text": "hanebný",
+				"text": "vražední",
 				"value": "0"
 			},
 			{
-				"text": "nečestný",
+				"text": "zúriví",
 				"value": "1"
 			},
 			{
-				"text": "čestný",
+				"text": "nahnevaní",
 				"value": "2"
 			},
 			{
-				"text": "férový",
+				"text": "podráždení",
 				"value": "3"
 			},
 			{
-				"text": "spravodlivý",
+				"text": "sklamaní",
 				"value": "4"
 			},
 			{
-				"text": "svätec",
+				"text": "chladní",
 				"value": "5"
+			},
+			{
+				"text": "pokojní",
+				"value": "6"
+			},
+			{
+				"text": "šťastní",
+				"value": "7"
+			},
+			{
+				"text": "nadšení",
+				"value": "8"
+			},
+			{
+				"text": "úplne bez seba",
+				"value": "9"
+			},
+			{
+				"text": "tancujú v uliciach",
+				"value": "10"
+			},
+			{
+				"text": "Skladajú o tebe básne",
+				"value": "11"
 			}
 		],
-		"agreeability": [
+		"fans_match": [
 			{
-				"text": "Protivný chlap",
+				"text": "Radšej nenastúpime!",
 				"value": "0"
 			},
 			{
-				"text": "Hašterivý človek",
+				"text": "Nemáme na nich",
 				"value": "1"
 			},
 			{
-				"text": "Príjemný chlapík",
+				"text": "Prehráme",
 				"value": "2"
 			},
 			{
-				"text": "Sympaťák",
+				"text": "Sú favoriti",
 				"value": "3"
 			},
 			{
-				"text": "Obľúbený chlapík",
+				"text": "Sú o trochu lepší",
 				"value": "4"
 			},
 			{
-				"text": "Miláčik tímu",
+				"text": "Bude to tesný zápas",
 				"value": "5"
-			}
-		],
-		"skills": [
-			{
-				"type": "Keeper",
-				"value": "Chytanie"
 			},
 			{
-				"type": "Stamina",
-				"value": "Kondícia"
+				"text": "Sme o trochu lepší",
+				"value": "6"
 			},
 			{
-				"type": "Defender",
-				"value": "Bránenie"
+				"text": "Sme favoriti",
+				"value": "7"
 			},
 			{
-				"type": "Playmaker",
-				"value": "Tvorba hry"
+				"text": "Zvíťazíme",
+				"value": "8"
 			},
 			{
-				"type": "Winger",
-				"value": "Krídelná hra"
+				"text": "Niet o čom!",
+				"value": "9"
 			},
 			{
-				"type": "Scorer",
-				"value": "Zakončovanie"
-			},
-			{
-				"type": "Kicker",
-				"value": "Štandardky"
-			},
-			{
-				"type": "Passer",
-				"value": "Prihrávky"
-			},
-			{
-				"type": "Experience",
-				"value": "Skúsenosti"
-			},
-			{
-				"type": "LeaderShip",
-				"value": "Vodcovstvo"
-			}
-		],
-		"positions": [
-			{
-				"type": "Keeper",
-				"value": "Brankár"
-			},
-			{
-				"type": "WingBack",
-				"value": "Krajný obranca"
-			},
-			{
-				"type": "CentralDefender",
-				"value": "Stredný obranca"
-			},
-			{
-				"type": "InnerMidfield",
-				"value": "Záložník"
-			},
-			{
-				"type": "Winger",
-				"value": "Krajný záložník"
-			},
-			{
-				"type": "Forward",
-				"value": "Útočník"
+				"text": "Ponížime ich",
+				"value": "10"
 			}
 		],
 		"fans_season": [
@@ -234,20 +239,33 @@
 				"value": "7"
 			}
 		],
-		"attitude": [
+		"honesty": [
 			{
-				"text": "Uvoľnený",
-				"value": "-1"
-			},
-			{
-				"text": "Normálny",
+				"text": "hanebný",
 				"value": "0"
 			},
 			{
-				"text": "Zápas sezóny",
+				"text": "nečestný",
 				"value": "1"
+			},
+			{
+				"text": "čestný",
+				"value": "2"
+			},
+			{
+				"text": "férový",
+				"value": "3"
+			},
+			{
+				"text": "spravodlivý",
+				"value": "4"
+			},
+			{
+				"text": "svätec",
+				"value": "5"
 			}
 		],
+		"id": "53",
 		"levels": [
 			{
 				"text": "neexistujúci",
@@ -334,6 +352,199 @@
 				"value": "20"
 			}
 		],
+		"name": "sk",
+		"positions": [
+			{
+				"type": "Keeper",
+				"value": "Brankár"
+			},
+			{
+				"type": "WingBack",
+				"value": "Krajný obranca"
+			},
+			{
+				"type": "CentralDefender",
+				"value": "Stredný obranca"
+			},
+			{
+				"type": "InnerMidfield",
+				"value": "Záložník"
+			},
+			{
+				"type": "Winger",
+				"value": "Krajný záložník"
+			},
+			{
+				"type": "Forward",
+				"value": "Útočník"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "veľmi nízky",
+				"value": "0"
+			},
+			{
+				"text": "nízky",
+				"value": "0.25"
+			},
+			{
+				"text": "vysoký",
+				"value": "0.5"
+			},
+			{
+				"text": "veľmi vysoký",
+				"value": "0.75"
+			}
+		],
+		"sectors": [
+			{
+				"type": "Midfield",
+				"value": "Záloha"
+			},
+			{
+				"type": "RightDefense",
+				"value": "Pravá strana obrany"
+			},
+			{
+				"type": "CentralDefense",
+				"value": "Stred obrany"
+			},
+			{
+				"type": "LeftDefense",
+				"value": "Ľavá strana obrany"
+			},
+			{
+				"type": "RightAttack",
+				"value": "Pravá strana útoku"
+			},
+			{
+				"type": "CentralAttack",
+				"value": "Stred útoku"
+			},
+			{
+				"type": "LeftAttack",
+				"value": "Ľavá strana útoku"
+			}
+		],
+		"skills": [
+			{
+				"type": "Keeper",
+				"value": "Chytanie"
+			},
+			{
+				"type": "Stamina",
+				"value": "Kondícia"
+			},
+			{
+				"type": "Defender",
+				"value": "Bránenie"
+			},
+			{
+				"type": "Playmaker",
+				"value": "Tvorba hry"
+			},
+			{
+				"type": "Winger",
+				"value": "Krídelná hra"
+			},
+			{
+				"type": "Scorer",
+				"value": "Zakončovanie"
+			},
+			{
+				"type": "Kicker",
+				"value": "Štandardky"
+			},
+			{
+				"type": "Passer",
+				"value": "Prihrávky"
+			},
+			{
+				"type": "Experience",
+				"value": "Skúsenosti"
+			},
+			{
+				"type": "LeaderShip",
+				"value": "Vodcovstvo"
+			}
+		],
+		"specialties": [
+			{
+				"type": "None",
+				"value": "Žiadna"
+			},
+			{
+				"type": "Technical",
+				"value": "Technický"
+			},
+			{
+				"type": "Quick",
+				"value": "Rýchly"
+			},
+			{
+				"type": "Powerful",
+				"value": "Silový"
+			},
+			{
+				"type": "Unpredictable",
+				"value": "Nepredvídateľný"
+			},
+			{
+				"type": "Head",
+				"value": "Hlavičkár"
+			},
+			{
+				"type": "Regainer",
+				"value": "Nezmar"
+			}
+		],
+		"spirit": [
+			{
+				"text": "na bode mrazu",
+				"value": "0"
+			},
+			{
+				"text": "vražedná",
+				"value": "1"
+			},
+			{
+				"text": "zúrivá",
+				"value": "2"
+			},
+			{
+				"text": "podráždená",
+				"value": "3"
+			},
+			{
+				"text": "chladná",
+				"value": "4"
+			},
+			{
+				"text": "pokojná",
+				"value": "5"
+			},
+			{
+				"text": "uspokojivá",
+				"value": "6"
+			},
+			{
+				"text": "spokojná",
+				"value": "7"
+			},
+			{
+				"text": "plná nadšenia",
+				"value": "8"
+			},
+			{
+				"text": "prechádzka v oblakoch",
+				"value": "9"
+			},
+			{
+				"text": "Raj na Zemi!",
+				"value": "10"
+			}
+		],
 		"sponsors": [
 			{
 				"text": "vražední",
@@ -376,161 +587,44 @@
 				"value": "9"
 			}
 		],
-		"sectors": [
+		"tactics": [
 			{
-				"type": "Midfield",
-				"value": "Záloha"
+				"type": "normal",
+				"value": "Normálna"
 			},
 			{
-				"type": "RightDefense",
-				"value": "Pravá strana obrany"
+				"type": "pressing",
+				"value": "Pressing"
 			},
 			{
-				"type": "CentralDefense",
-				"value": "Stred obrany"
+				"type": "ca",
+				"value": "Protiútoky"
 			},
 			{
-				"type": "LeftDefense",
-				"value": "Ľavá strana obrany"
+				"type": "aim",
+				"value": "Útok stredom"
 			},
 			{
-				"type": "RightAttack",
-				"value": "Pravá strana útoku"
+				"type": "aow",
+				"value": "Útok po krídlach"
 			},
 			{
-				"type": "CentralAttack",
-				"value": "Stred útoku"
+				"type": "",
+				"value": "Neznáma"
 			},
 			{
-				"type": "LeftAttack",
-				"value": "Ľavá strana útoku"
+				"type": "",
+				"value": "Neznáma"
+			},
+			{
+				"type": "creatively",
+				"value": "Kreatívna hra"
+			},
+			{
+				"type": "longshots",
+				"value": "Strely z diaľky"
 			}
 		],
-		"ratingSubLevels": [
-			{
-				"text": "veľmi nízky",
-				"value": "0"
-			},
-			{
-				"text": "nízky",
-				"value": "0.25"
-			},
-			{
-				"text": "vysoký",
-				"value": "0.5"
-			},
-			{
-				"text": "veľmi vysoký",
-				"value": "0.75"
-			}
-		],
-		"fans": [
-			{
-				"text": "vražední",
-				"value": "0"
-			},
-			{
-				"text": "zúriví",
-				"value": "1"
-			},
-			{
-				"text": "nahnevaní",
-				"value": "2"
-			},
-			{
-				"text": "podráždení",
-				"value": "3"
-			},
-			{
-				"text": "sklamaní",
-				"value": "4"
-			},
-			{
-				"text": "chladní",
-				"value": "5"
-			},
-			{
-				"text": "pokojní",
-				"value": "6"
-			},
-			{
-				"text": "šťastní",
-				"value": "7"
-			},
-			{
-				"text": "nadšení",
-				"value": "8"
-			},
-			{
-				"text": "úplne bez seba",
-				"value": "9"
-			},
-			{
-				"text": "tancujú v uliciach",
-				"value": "10"
-			},
-			{
-				"text": "Skladajú o tebe básne",
-				"value": "11"
-			}
-		],
-		"specialties": [
-			{
-				"type": "None",
-				"value": "Žiadna"
-			},
-			{
-				"type": "Technical",
-				"value": "Technický"
-			},
-			{
-				"type": "Quick",
-				"value": "Rýchly"
-			},
-			{
-				"type": "Powerful",
-				"value": "Silový"
-			},
-			{
-				"type": "Unpredictable",
-				"value": "Nepredvídateľný"
-			},
-			{
-				"type": "Head",
-				"value": "Hlavičkár"
-			},
-			{
-				"type": "Regainer",
-				"value": "Nezmar"
-			}
-		],
-		"aggressiveness": [
-			{
-				"text": "tichý",
-				"value": "0"
-			},
-			{
-				"text": "chladný",
-				"value": "1"
-			},
-			{
-				"text": "vyrovnaný",
-				"value": "2"
-			},
-			{
-				"text": "temperamentný",
-				"value": "3"
-			},
-			{
-				"text": "výbušný",
-				"value": "4"
-			},
-			{
-				"text": "nestabilný",
-				"value": "5"
-			}
-		],
-		"id": "53",
 		"training": [
 			{
 				"type": "Gen",
@@ -588,100 +682,6 @@
 				"type": "Indiv",
 				"value": "individuálny"
 			}
-		],
-		"fans_match": [
-			{
-				"text": "Radšej nenastúpime!",
-				"value": "0"
-			},
-			{
-				"text": "Nemáme na nich",
-				"value": "1"
-			},
-			{
-				"text": "Prehráme",
-				"value": "2"
-			},
-			{
-				"text": "Sú favoriti",
-				"value": "3"
-			},
-			{
-				"text": "Sú o trochu lepší",
-				"value": "4"
-			},
-			{
-				"text": "Bude to tesný zápas",
-				"value": "5"
-			},
-			{
-				"text": "Sme o trochu lepší",
-				"value": "6"
-			},
-			{
-				"text": "Sme favoriti",
-				"value": "7"
-			},
-			{
-				"text": "Zvíťazíme",
-				"value": "8"
-			},
-			{
-				"text": "Niet o čom!",
-				"value": "9"
-			},
-			{
-				"text": "Ponížime ich",
-				"value": "10"
-			}
-		],
-		"name": "sk",
-		"spirit": [
-			{
-				"text": "na bode mrazu",
-				"value": "0"
-			},
-			{
-				"text": "vražedná",
-				"value": "1"
-			},
-			{
-				"text": "zúrivá",
-				"value": "2"
-			},
-			{
-				"text": "podráždená",
-				"value": "3"
-			},
-			{
-				"text": "chladná",
-				"value": "4"
-			},
-			{
-				"text": "pokojná",
-				"value": "5"
-			},
-			{
-				"text": "uspokojivá",
-				"value": "6"
-			},
-			{
-				"text": "spokojná",
-				"value": "7"
-			},
-			{
-				"text": "plná nadšenia",
-				"value": "8"
-			},
-			{
-				"text": "prechádzka v oblakoch",
-				"value": "9"
-			},
-			{
-				"text": "Raj na Zemi!",
-				"value": "10"
-			}
-		],
-		"desc": "Slovenčina"
+		]
 	}
 }

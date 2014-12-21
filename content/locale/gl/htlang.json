@@ -1,5 +1,71 @@
 {
 	"language": {
+		"aggressiveness": [
+			{
+				"text": "tranquilo",
+				"value": "0"
+			},
+			{
+				"text": "calmo",
+				"value": "1"
+			},
+			{
+				"text": "equilibrado",
+				"value": "2"
+			},
+			{
+				"text": "temperamental",
+				"value": "3"
+			},
+			{
+				"text": "rabudo",
+				"value": "4"
+			},
+			{
+				"text": "inestable",
+				"value": "5"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "porcallán",
+				"value": "0"
+			},
+			{
+				"text": "polémico",
+				"value": "1"
+			},
+			{
+				"text": "agradable",
+				"value": "2"
+			},
+			{
+				"text": "simpático",
+				"value": "3"
+			},
+			{
+				"text": "popular",
+				"value": "4"
+			},
+			{
+				"text": "querido compañeiro de equipo",
+				"value": "5"
+			}
+		],
+		"attitude": [
+			{
+				"text": "Xogar Relaxados",
+				"value": "-1"
+			},
+			{
+				"text": "Normal",
+				"value": "0"
+			},
+			{
+				"text": "Encontro da Tempada",
+				"value": "1"
+			}
+		],
 		"confidence": [
 			{
 				"text": "Nula",
@@ -42,162 +108,101 @@
 				"value": "9"
 			}
 		],
-		"tactics": [
+		"desc": "Galego",
+		"fans": [
 			{
-				"type": "normal",
-				"value": "Normal"
-			},
-			{
-				"type": "pressing",
-				"value": "Presión"
-			},
-			{
-				"type": "ca",
-				"value": "Contraataques"
-			},
-			{
-				"type": "aim",
-				"value": "Atacar polo centro"
-			},
-			{
-				"type": "aow",
-				"value": "Atacar polas bandas"
-			},
-			{
-				"type": "",
-				"value": "Descoñecido"
-			},
-			{
-				"type": "",
-				"value": "Descoñecido"
-			},
-			{
-				"type": "creatively",
-				"value": "Xogar creativamente"
-			},
-			{
-				"type": "longshots",
-				"value": "Tiros de lonxe"
-			}
-		],
-		"honesty": [
-			{
-				"text": "infame",
+				"text": "montando disturbios",
 				"value": "0"
 			},
 			{
-				"text": "deshonesto",
+				"text": "furiosos",
 				"value": "1"
 			},
 			{
-				"text": "honesto",
+				"text": "anoxados",
 				"value": "2"
 			},
 			{
-				"text": "xusto",
+				"text": "irritados",
 				"value": "3"
 			},
 			{
-				"text": "honorable",
+				"text": "desenganados",
 				"value": "4"
 			},
 			{
-				"text": "santo",
+				"text": "calmos",
 				"value": "5"
+			},
+			{
+				"text": "satisfeitos",
+				"value": "6"
+			},
+			{
+				"text": "ledos",
+				"value": "7"
+			},
+			{
+				"text": "eufóricos",
+				"value": "8"
+			},
+			{
+				"text": "cantando a rianxeira",
+				"value": "9"
+			},
+			{
+				"text": "bailando a muiñeira",
+				"value": "10"
+			},
+			{
+				"text": "Adicándoche cantigas de amor",
+				"value": "11"
 			}
 		],
-		"agreeability": [
+		"fans_match": [
 			{
-				"text": "porcallán",
+				"text": "Mellor quedar na casa!",
 				"value": "0"
 			},
 			{
-				"text": "polémico",
+				"text": "Hai que roelo!",
 				"value": "1"
 			},
 			{
-				"text": "agradable",
+				"text": "Abofé que perdemos",
 				"value": "2"
 			},
 			{
-				"text": "simpático",
+				"text": "Eles son favoritos",
 				"value": "3"
 			},
 			{
-				"text": "popular",
+				"text": "Talvez perdamos",
 				"value": "4"
 			},
 			{
-				"text": "querido compañeiro de equipo",
+				"text": "Cheira a empate",
 				"value": "5"
-			}
-		],
-		"skills": [
-			{
-				"type": "Keeper",
-				"value": "Portería"
 			},
 			{
-				"type": "Stamina",
-				"value": "Resistencia"
+				"text": "Talvez gañemos",
+				"value": "6"
 			},
 			{
-				"type": "Defender",
-				"value": "Defensa"
+				"text": "Somos favoritos",
+				"value": "7"
 			},
 			{
-				"type": "Playmaker",
-				"value": "Xogadas"
+				"text": "Abofé que gañamos",
+				"value": "8"
 			},
 			{
-				"type": "Winger",
-				"value": "Extremo"
+				"text": "Arrasamos!!",
+				"value": "9"
 			},
 			{
-				"type": "Scorer",
-				"value": "Anotación"
-			},
-			{
-				"type": "Kicker",
-				"value": "Balón Parado"
-			},
-			{
-				"type": "Passer",
-				"value": "Pases"
-			},
-			{
-				"type": "Experience",
-				"value": "Experiencia"
-			},
-			{
-				"type": "LeaderShip",
-				"value": "Liderado"
-			}
-		],
-		"positions": [
-			{
-				"type": "Keeper",
-				"value": "Porteiro"
-			},
-			{
-				"type": "WingBack",
-				"value": "Defensa Lateral"
-			},
-			{
-				"type": "CentralDefender",
-				"value": "Defensa Central"
-			},
-			{
-				"type": "InnerMidfield",
-				"value": "Mediocentro"
-			},
-			{
-				"type": "Winger",
-				"value": "Extremo"
-			},
-			{
-				"type": "Forward",
-				"value": "Dianteiro"
+				"text": "A mallar neles!!!",
+				"value": "10"
 			}
 		],
 		"fans_season": [
@@ -234,20 +239,33 @@
 				"value": "7"
 			}
 		],
-		"attitude": [
+		"honesty": [
 			{
-				"text": "Xogar Relaxados",
-				"value": "-1"
-			},
-			{
-				"text": "Normal",
+				"text": "infame",
 				"value": "0"
 			},
 			{
-				"text": "Encontro da Tempada",
+				"text": "deshonesto",
 				"value": "1"
+			},
+			{
+				"text": "honesto",
+				"value": "2"
+			},
+			{
+				"text": "xusto",
+				"value": "3"
+			},
+			{
+				"text": "honorable",
+				"value": "4"
+			},
+			{
+				"text": "santo",
+				"value": "5"
 			}
 		],
+		"id": "74",
 		"levels": [
 			{
 				"text": "nulo",
@@ -334,6 +352,199 @@
 				"value": "20"
 			}
 		],
+		"name": "gl",
+		"positions": [
+			{
+				"type": "Keeper",
+				"value": "Porteiro"
+			},
+			{
+				"type": "WingBack",
+				"value": "Defensa Lateral"
+			},
+			{
+				"type": "CentralDefender",
+				"value": "Defensa Central"
+			},
+			{
+				"type": "InnerMidfield",
+				"value": "Mediocentro"
+			},
+			{
+				"type": "Winger",
+				"value": "Extremo"
+			},
+			{
+				"type": "Forward",
+				"value": "Dianteiro"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "Moi baixo",
+				"value": "0"
+			},
+			{
+				"text": "Baixo",
+				"value": "0.25"
+			},
+			{
+				"text": "Alto",
+				"value": "0.5"
+			},
+			{
+				"text": "Moi alto",
+				"value": "0.75"
+			}
+		],
+		"sectors": [
+			{
+				"type": "Midfield",
+				"value": "Mediocampo"
+			},
+			{
+				"type": "RightDefense",
+				"value": "Defensa Dereita"
+			},
+			{
+				"type": "CentralDefense",
+				"value": "Defensa Central"
+			},
+			{
+				"type": "LeftDefense",
+				"value": "Defensa Esquerda"
+			},
+			{
+				"type": "RightAttack",
+				"value": "Ataque Dereito"
+			},
+			{
+				"type": "CentralAttack",
+				"value": "Ataque Central"
+			},
+			{
+				"type": "LeftAttack",
+				"value": "Ataque Esquerdo"
+			}
+		],
+		"skills": [
+			{
+				"type": "Keeper",
+				"value": "Portería"
+			},
+			{
+				"type": "Stamina",
+				"value": "Resistencia"
+			},
+			{
+				"type": "Defender",
+				"value": "Defensa"
+			},
+			{
+				"type": "Playmaker",
+				"value": "Xogadas"
+			},
+			{
+				"type": "Winger",
+				"value": "Extremo"
+			},
+			{
+				"type": "Scorer",
+				"value": "Anotación"
+			},
+			{
+				"type": "Kicker",
+				"value": "Balón Parado"
+			},
+			{
+				"type": "Passer",
+				"value": "Pases"
+			},
+			{
+				"type": "Experience",
+				"value": "Experiencia"
+			},
+			{
+				"type": "LeaderShip",
+				"value": "Liderado"
+			}
+		],
+		"specialties": [
+			{
+				"type": "None",
+				"value": "Ningunha"
+			},
+			{
+				"type": "Technical",
+				"value": "Técnico"
+			},
+			{
+				"type": "Quick",
+				"value": "Rápido"
+			},
+			{
+				"type": "Powerful",
+				"value": "Potente"
+			},
+			{
+				"type": "Unpredictable",
+				"value": "Imprevisible"
+			},
+			{
+				"type": "Head",
+				"value": "Xogo aéreo"
+			},
+			{
+				"type": "Regainer",
+				"value": "Recuperador"
+			}
+		],
+		"spirit": [
+			{
+				"text": "Mal de Carallo",
+				"value": "0"
+			},
+			{
+				"text": "Sanguinarios",
+				"value": "1"
+			},
+			{
+				"text": "Cabreados",
+				"value": "2"
+			},
+			{
+				"text": "Molestos",
+				"value": "3"
+			},
+			{
+				"text": "Indiferentes",
+				"value": "4"
+			},
+			{
+				"text": "Calmos",
+				"value": "5"
+			},
+			{
+				"text": "Satisfeitos",
+				"value": "6"
+			},
+			{
+				"text": "Ledos",
+				"value": "7"
+			},
+			{
+				"text": "Delirando",
+				"value": "8"
+			},
+			{
+				"text": "Polas nubes",
+				"value": "9"
+			},
+			{
+				"text": "Paraíso na Terra!",
+				"value": "10"
+			}
+		],
 		"sponsors": [
 			{
 				"text": "montando disturbios",
@@ -376,161 +587,44 @@
 				"value": "9"
 			}
 		],
-		"sectors": [
+		"tactics": [
 			{
-				"type": "Midfield",
-				"value": "Mediocampo"
+				"type": "normal",
+				"value": "Normal"
 			},
 			{
-				"type": "RightDefense",
-				"value": "Defensa Dereita"
+				"type": "pressing",
+				"value": "Presión"
 			},
 			{
-				"type": "CentralDefense",
-				"value": "Defensa Central"
+				"type": "ca",
+				"value": "Contraataques"
 			},
 			{
-				"type": "LeftDefense",
-				"value": "Defensa Esquerda"
+				"type": "aim",
+				"value": "Atacar polo centro"
 			},
 			{
-				"type": "RightAttack",
-				"value": "Ataque Dereito"
+				"type": "aow",
+				"value": "Atacar polas bandas"
 			},
 			{
-				"type": "CentralAttack",
-				"value": "Ataque Central"
+				"type": "",
+				"value": "Descoñecido"
 			},
 			{
-				"type": "LeftAttack",
-				"value": "Ataque Esquerdo"
+				"type": "",
+				"value": "Descoñecido"
+			},
+			{
+				"type": "creatively",
+				"value": "Xogar creativamente"
+			},
+			{
+				"type": "longshots",
+				"value": "Tiros de lonxe"
 			}
 		],
-		"ratingSubLevels": [
-			{
-				"text": "Moi baixo",
-				"value": "0"
-			},
-			{
-				"text": "Baixo",
-				"value": "0.25"
-			},
-			{
-				"text": "Alto",
-				"value": "0.5"
-			},
-			{
-				"text": "Moi alto",
-				"value": "0.75"
-			}
-		],
-		"fans": [
-			{
-				"text": "montando disturbios",
-				"value": "0"
-			},
-			{
-				"text": "furiosos",
-				"value": "1"
-			},
-			{
-				"text": "anoxados",
-				"value": "2"
-			},
-			{
-				"text": "irritados",
-				"value": "3"
-			},
-			{
-				"text": "desenganados",
-				"value": "4"
-			},
-			{
-				"text": "calmos",
-				"value": "5"
-			},
-			{
-				"text": "satisfeitos",
-				"value": "6"
-			},
-			{
-				"text": "ledos",
-				"value": "7"
-			},
-			{
-				"text": "eufóricos",
-				"value": "8"
-			},
-			{
-				"text": "cantando a rianxeira",
-				"value": "9"
-			},
-			{
-				"text": "bailando a muiñeira",
-				"value": "10"
-			},
-			{
-				"text": "Adicándoche cantigas de amor",
-				"value": "11"
-			}
-		],
-		"specialties": [
-			{
-				"type": "None",
-				"value": "Ningunha"
-			},
-			{
-				"type": "Technical",
-				"value": "Técnico"
-			},
-			{
-				"type": "Quick",
-				"value": "Rápido"
-			},
-			{
-				"type": "Powerful",
-				"value": "Potente"
-			},
-			{
-				"type": "Unpredictable",
-				"value": "Imprevisible"
-			},
-			{
-				"type": "Head",
-				"value": "Xogo aéreo"
-			},
-			{
-				"type": "Regainer",
-				"value": "Recuperador"
-			}
-		],
-		"aggressiveness": [
-			{
-				"text": "tranquilo",
-				"value": "0"
-			},
-			{
-				"text": "calmo",
-				"value": "1"
-			},
-			{
-				"text": "equilibrado",
-				"value": "2"
-			},
-			{
-				"text": "temperamental",
-				"value": "3"
-			},
-			{
-				"text": "rabudo",
-				"value": "4"
-			},
-			{
-				"text": "inestable",
-				"value": "5"
-			}
-		],
-		"id": "74",
 		"training": [
 			{
 				"type": "Gen",
@@ -588,100 +682,6 @@
 				"type": "Indiv",
 				"value": "Individual"
 			}
-		],
-		"fans_match": [
-			{
-				"text": "Mellor quedar na casa!",
-				"value": "0"
-			},
-			{
-				"text": "Hai que roelo!",
-				"value": "1"
-			},
-			{
-				"text": "Abofé que perdemos",
-				"value": "2"
-			},
-			{
-				"text": "Eles son favoritos",
-				"value": "3"
-			},
-			{
-				"text": "Talvez perdamos",
-				"value": "4"
-			},
-			{
-				"text": "Cheira a empate",
-				"value": "5"
-			},
-			{
-				"text": "Talvez gañemos",
-				"value": "6"
-			},
-			{
-				"text": "Somos favoritos",
-				"value": "7"
-			},
-			{
-				"text": "Abofé que gañamos",
-				"value": "8"
-			},
-			{
-				"text": "Arrasamos!!",
-				"value": "9"
-			},
-			{
-				"text": "A mallar neles!!!",
-				"value": "10"
-			}
-		],
-		"name": "gl",
-		"spirit": [
-			{
-				"text": "Mal de Carallo",
-				"value": "0"
-			},
-			{
-				"text": "Sanguinarios",
-				"value": "1"
-			},
-			{
-				"text": "Cabreados",
-				"value": "2"
-			},
-			{
-				"text": "Molestos",
-				"value": "3"
-			},
-			{
-				"text": "Indiferentes",
-				"value": "4"
-			},
-			{
-				"text": "Calmos",
-				"value": "5"
-			},
-			{
-				"text": "Satisfeitos",
-				"value": "6"
-			},
-			{
-				"text": "Ledos",
-				"value": "7"
-			},
-			{
-				"text": "Delirando",
-				"value": "8"
-			},
-			{
-				"text": "Polas nubes",
-				"value": "9"
-			},
-			{
-				"text": "Paraíso na Terra!",
-				"value": "10"
-			}
-		],
-		"desc": "Galego"
+		]
 	}
 }

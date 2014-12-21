@@ -1,5 +1,71 @@
 {
 	"language": {
+		"aggressiveness": [
+			{
+				"text": "خونسرد",
+				"value": "0"
+			},
+			{
+				"text": "آرام",
+				"value": "1"
+			},
+			{
+				"text": "متعادل",
+				"value": "2"
+			},
+			{
+				"text": "عصبی",
+				"value": "3"
+			},
+			{
+				"text": "تند مزاج",
+				"value": "4"
+			},
+			{
+				"text": "یاغی",
+				"value": "5"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "بداخلاق",
+				"value": "0"
+			},
+			{
+				"text": "جنجالی",
+				"value": "1"
+			},
+			{
+				"text": "خوش‌‌‌‌‌‌برخورد",
+				"value": "2"
+			},
+			{
+				"text": "مهربان",
+				"value": "3"
+			},
+			{
+				"text": "محبوب",
+				"value": "4"
+			},
+			{
+				"text": "دوست داشتنی",
+				"value": "5"
+			}
+		],
+		"attitude": [
+			{
+				"text": "بازی دست گرمی",
+				"value": "-1"
+			},
+			{
+				"text": "عادی",
+				"value": "0"
+			},
+			{
+				"text": "بازی فصل",
+				"value": "1"
+			}
+		],
 		"confidence": [
 			{
 				"text": "صفر!",
@@ -42,162 +108,101 @@
 				"value": "9"
 			}
 		],
-		"tactics": [
+		"desc": "Persian",
+		"fans": [
 			{
-				"type": "normal",
-				"value": "عادی"
-			},
-			{
-				"type": "pressing",
-				"value": "پرسینگ"
-			},
-			{
-				"type": "ca",
-				"value": "ضد حمله"
-			},
-			{
-				"type": "aim",
-				"value": "حمله از عمق"
-			},
-			{
-				"type": "aow",
-				"value": "حمله از جناحین"
-			},
-			{
-				"type": "",
-				"value": "نامعلوم"
-			},
-			{
-				"type": "",
-				"value": "نامعلوم"
-			},
-			{
-				"type": "creatively",
-				"value": "بازی خلاقانه"
-			},
-			{
-				"type": "longshots",
-				"value": "شوت از راه دور"
-			}
-		],
-		"honesty": [
-			{
-				"text": "بدنام",
+				"text": "خون جلوی چشمانشان را گرفته!",
 				"value": "0"
 			},
 			{
-				"text": "غیرقابل اعتماد",
+				"text": "خشمگین",
 				"value": "1"
 			},
 			{
-				"text": "درستکار",
+				"text": "عصبانی",
 				"value": "2"
 			},
 			{
-				"text": "سر به زیر",
+				"text": "ناراضی",
 				"value": "3"
 			},
 			{
-				"text": "نیکوکار",
+				"text": "ناامید",
 				"value": "4"
 			},
 			{
-				"text": "پاک سرشت",
+				"text": "آرام",
 				"value": "5"
+			},
+			{
+				"text": "راضی",
+				"value": "6"
+			},
+			{
+				"text": "خشنود",
+				"value": "7"
+			},
+			{
+				"text": "هیجان‌زده",
+				"value": "8"
+			},
+			{
+				"text": "از شادی در پوست خود نمی‌گنجند",
+				"value": "9"
+			},
+			{
+				"text": "در خیابان‌ها، جشن و پایکوبی به راه انداخته‌اند",
+				"value": "10"
+			},
+			{
+				"text": "از فرط خوشحالی، برایتان نامه‌های عاشقانه می‌فرستند",
+				"value": "11"
 			}
 		],
-		"agreeability": [
+		"fans_match": [
 			{
-				"text": "بداخلاق",
+				"text": "بهتر است در زمین حاضر نشویم",
 				"value": "0"
 			},
 			{
-				"text": "جنجالی",
+				"text": "به سختی مغلوب می‌‌شویم",
 				"value": "1"
 			},
 			{
-				"text": "خوش‌‌‌‌‌‌برخورد",
+				"text": "شکست می‌‌خوریم",
 				"value": "2"
 			},
 			{
-				"text": "مهربان",
+				"text": "آنها برتر از ما هستند",
 				"value": "3"
 			},
 			{
-				"text": "محبوب",
+				"text": "آنها شانس بیشتری دارند",
 				"value": "4"
 			},
 			{
-				"text": "دوست داشتنی",
+				"text": "بازی نزدیکی خواهد بود",
 				"value": "5"
-			}
-		],
-		"skills": [
-			{
-				"type": "Keeper",
-				"value": "دروازه‌بانی"
 			},
 			{
-				"type": "Stamina",
-				"value": "قدرت بدنی"
+				"text": "شانس ما برای برد، بیشتر است",
+				"value": "6"
 			},
 			{
-				"type": "Defender",
-				"value": "دفاع"
+				"text": "ما بهتر از حریف هستیم",
+				"value": "7"
 			},
 			{
-				"type": "Playmaker",
-				"value": "بازی‌سازی"
+				"text": "برنده‌‌ی این بازی، ما هستیم",
+				"value": "8"
 			},
 			{
-				"type": "Winger",
-				"value": "بازی در کنار"
+				"text": "مثل آب خوردن می‌‌بریم",
+				"value": "9"
 			},
 			{
-				"type": "Scorer",
-				"value": "گلزنی"
-			},
-			{
-				"type": "Kicker",
-				"value": "ضربات ایستگاهی"
-			},
-			{
-				"type": "Passer",
-				"value": "پاس"
-			},
-			{
-				"type": "Experience",
-				"value": "تجربه"
-			},
-			{
-				"type": "LeaderShip",
-				"value": "قدرت رهبری تیم"
-			}
-		],
-		"positions": [
-			{
-				"type": "Keeper",
-				"value": "دروازه‌بان"
-			},
-			{
-				"type": "WingBack",
-				"value": "مدافع کنار"
-			},
-			{
-				"type": "CentralDefender",
-				"value": "مدافع وسط"
-			},
-			{
-				"type": "InnerMidfield",
-				"value": "هافبک وسط"
-			},
-			{
-				"type": "Winger",
-				"value": "هافبک کنار"
-			},
-			{
-				"type": "Forward",
-				"value": "مهاجم"
+				"text": "باید تحقیرشان کنیم",
+				"value": "10"
 			}
 		],
 		"fans_season": [
@@ -234,20 +239,33 @@
 				"value": "7"
 			}
 		],
-		"attitude": [
+		"honesty": [
 			{
-				"text": "بازی دست گرمی",
-				"value": "-1"
-			},
-			{
-				"text": "عادی",
+				"text": "بدنام",
 				"value": "0"
 			},
 			{
-				"text": "بازی فصل",
+				"text": "غیرقابل اعتماد",
 				"value": "1"
+			},
+			{
+				"text": "درستکار",
+				"value": "2"
+			},
+			{
+				"text": "سر به زیر",
+				"value": "3"
+			},
+			{
+				"text": "نیکوکار",
+				"value": "4"
+			},
+			{
+				"text": "پاک سرشت",
+				"value": "5"
 			}
 		],
+		"id": "75",
 		"levels": [
 			{
 				"text": "بدون مهارت",
@@ -334,6 +352,199 @@
 				"value": "20"
 			}
 		],
+		"name": "fa",
+		"positions": [
+			{
+				"type": "Keeper",
+				"value": "دروازه‌بان"
+			},
+			{
+				"type": "WingBack",
+				"value": "مدافع کنار"
+			},
+			{
+				"type": "CentralDefender",
+				"value": "مدافع وسط"
+			},
+			{
+				"type": "InnerMidfield",
+				"value": "هافبک وسط"
+			},
+			{
+				"type": "Winger",
+				"value": "هافبک کنار"
+			},
+			{
+				"type": "Forward",
+				"value": "مهاجم"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "خیلی کم",
+				"value": "0"
+			},
+			{
+				"text": "کم",
+				"value": "0.25"
+			},
+			{
+				"text": "زیاد",
+				"value": "0.5"
+			},
+			{
+				"text": "خیلی زیاد",
+				"value": "0.75"
+			}
+		],
+		"sectors": [
+			{
+				"type": "Midfield",
+				"value": "هافبک"
+			},
+			{
+				"type": "RightDefense",
+				"value": "دفاع راست"
+			},
+			{
+				"type": "CentralDefense",
+				"value": "دفاع میانی"
+			},
+			{
+				"type": "LeftDefense",
+				"value": "دفاع چپ"
+			},
+			{
+				"type": "RightAttack",
+				"value": "حمله از راست"
+			},
+			{
+				"type": "CentralAttack",
+				"value": "حمله از وسط"
+			},
+			{
+				"type": "LeftAttack",
+				"value": "حمله از چپ"
+			}
+		],
+		"skills": [
+			{
+				"type": "Keeper",
+				"value": "دروازه‌بانی"
+			},
+			{
+				"type": "Stamina",
+				"value": "قدرت بدنی"
+			},
+			{
+				"type": "Defender",
+				"value": "دفاع"
+			},
+			{
+				"type": "Playmaker",
+				"value": "بازی‌سازی"
+			},
+			{
+				"type": "Winger",
+				"value": "بازی در کنار"
+			},
+			{
+				"type": "Scorer",
+				"value": "گلزنی"
+			},
+			{
+				"type": "Kicker",
+				"value": "ضربات ایستگاهی"
+			},
+			{
+				"type": "Passer",
+				"value": "پاس"
+			},
+			{
+				"type": "Experience",
+				"value": "تجربه"
+			},
+			{
+				"type": "LeaderShip",
+				"value": "قدرت رهبری تیم"
+			}
+		],
+		"specialties": [
+			{
+				"type": "None",
+				"value": "بدون تخصص"
+			},
+			{
+				"type": "Technical",
+				"value": "تکنیکی"
+			},
+			{
+				"type": "Quick",
+				"value": "سرعتی"
+			},
+			{
+				"type": "Powerful",
+				"value": "قدرتی"
+			},
+			{
+				"type": "Unpredictable",
+				"value": "غیرقابل پیش‌بینی"
+			},
+			{
+				"type": "Head",
+				"value": "سرزن"
+			},
+			{
+				"type": "Regainer",
+				"value": "تندرست"
+			}
+		],
+		"spirit": [
+			{
+				"text": "مثل جنگ سرد!",
+				"value": "0"
+			},
+			{
+				"text": "بسیار خشمگین",
+				"value": "1"
+			},
+			{
+				"text": "عصبانی",
+				"value": "2"
+			},
+			{
+				"text": "ناراضی",
+				"value": "3"
+			},
+			{
+				"text": "خونسرد",
+				"value": "4"
+			},
+			{
+				"text": "آرام",
+				"value": "5"
+			},
+			{
+				"text": "راضی",
+				"value": "6"
+			},
+			{
+				"text": "خشنود",
+				"value": "7"
+			},
+			{
+				"text": "خیلی خوشحال",
+				"value": "8"
+			},
+			{
+				"text": "روی ابرها سیر می‌کنند",
+				"value": "9"
+			},
+			{
+				"text": "رؤیایی",
+				"value": "10"
+			}
+		],
 		"sponsors": [
 			{
 				"text": "خون جلوی چشمانشان را گرفته!",
@@ -376,161 +587,44 @@
 				"value": "9"
 			}
 		],
-		"sectors": [
+		"tactics": [
 			{
-				"type": "Midfield",
-				"value": "هافبک"
+				"type": "normal",
+				"value": "عادی"
 			},
 			{
-				"type": "RightDefense",
-				"value": "دفاع راست"
+				"type": "pressing",
+				"value": "پرسینگ"
 			},
 			{
-				"type": "CentralDefense",
-				"value": "دفاع میانی"
+				"type": "ca",
+				"value": "ضد حمله"
 			},
 			{
-				"type": "LeftDefense",
-				"value": "دفاع چپ"
+				"type": "aim",
+				"value": "حمله از عمق"
 			},
 			{
-				"type": "RightAttack",
-				"value": "حمله از راست"
+				"type": "aow",
+				"value": "حمله از جناحین"
 			},
 			{
-				"type": "CentralAttack",
-				"value": "حمله از وسط"
+				"type": "",
+				"value": "نامعلوم"
 			},
 			{
-				"type": "LeftAttack",
-				"value": "حمله از چپ"
+				"type": "",
+				"value": "نامعلوم"
+			},
+			{
+				"type": "creatively",
+				"value": "بازی خلاقانه"
+			},
+			{
+				"type": "longshots",
+				"value": "شوت از راه دور"
 			}
 		],
-		"ratingSubLevels": [
-			{
-				"text": "خیلی کم",
-				"value": "0"
-			},
-			{
-				"text": "کم",
-				"value": "0.25"
-			},
-			{
-				"text": "زیاد",
-				"value": "0.5"
-			},
-			{
-				"text": "خیلی زیاد",
-				"value": "0.75"
-			}
-		],
-		"fans": [
-			{
-				"text": "خون جلوی چشمانشان را گرفته!",
-				"value": "0"
-			},
-			{
-				"text": "خشمگین",
-				"value": "1"
-			},
-			{
-				"text": "عصبانی",
-				"value": "2"
-			},
-			{
-				"text": "ناراضی",
-				"value": "3"
-			},
-			{
-				"text": "ناامید",
-				"value": "4"
-			},
-			{
-				"text": "آرام",
-				"value": "5"
-			},
-			{
-				"text": "راضی",
-				"value": "6"
-			},
-			{
-				"text": "خشنود",
-				"value": "7"
-			},
-			{
-				"text": "هیجان‌زده",
-				"value": "8"
-			},
-			{
-				"text": "از شادی در پوست خود نمی‌گنجند",
-				"value": "9"
-			},
-			{
-				"text": "در خیابان‌ها، جشن و پایکوبی به راه انداخته‌اند",
-				"value": "10"
-			},
-			{
-				"text": "از فرط خوشحالی، برایتان نامه‌های عاشقانه می‌فرستند",
-				"value": "11"
-			}
-		],
-		"specialties": [
-			{
-				"type": "None",
-				"value": "بدون تخصص"
-			},
-			{
-				"type": "Technical",
-				"value": "تکنیکی"
-			},
-			{
-				"type": "Quick",
-				"value": "سرعتی"
-			},
-			{
-				"type": "Powerful",
-				"value": "قدرتی"
-			},
-			{
-				"type": "Unpredictable",
-				"value": "غیرقابل پیش‌بینی"
-			},
-			{
-				"type": "Head",
-				"value": "سرزن"
-			},
-			{
-				"type": "Regainer",
-				"value": "تندرست"
-			}
-		],
-		"aggressiveness": [
-			{
-				"text": "خونسرد",
-				"value": "0"
-			},
-			{
-				"text": "آرام",
-				"value": "1"
-			},
-			{
-				"text": "متعادل",
-				"value": "2"
-			},
-			{
-				"text": "عصبی",
-				"value": "3"
-			},
-			{
-				"text": "تند مزاج",
-				"value": "4"
-			},
-			{
-				"text": "یاغی",
-				"value": "5"
-			}
-		],
-		"id": "75",
 		"training": [
 			{
 				"type": "Gen",
@@ -588,100 +682,6 @@
 				"type": "Indiv",
 				"value": "انفرادی"
 			}
-		],
-		"fans_match": [
-			{
-				"text": "بهتر است در زمین حاضر نشویم",
-				"value": "0"
-			},
-			{
-				"text": "به سختی مغلوب می‌‌شویم",
-				"value": "1"
-			},
-			{
-				"text": "شکست می‌‌خوریم",
-				"value": "2"
-			},
-			{
-				"text": "آنها برتر از ما هستند",
-				"value": "3"
-			},
-			{
-				"text": "آنها شانس بیشتری دارند",
-				"value": "4"
-			},
-			{
-				"text": "بازی نزدیکی خواهد بود",
-				"value": "5"
-			},
-			{
-				"text": "شانس ما برای برد، بیشتر است",
-				"value": "6"
-			},
-			{
-				"text": "ما بهتر از حریف هستیم",
-				"value": "7"
-			},
-			{
-				"text": "برنده‌‌ی این بازی، ما هستیم",
-				"value": "8"
-			},
-			{
-				"text": "مثل آب خوردن می‌‌بریم",
-				"value": "9"
-			},
-			{
-				"text": "باید تحقیرشان کنیم",
-				"value": "10"
-			}
-		],
-		"name": "fa",
-		"spirit": [
-			{
-				"text": "مثل جنگ سرد!",
-				"value": "0"
-			},
-			{
-				"text": "بسیار خشمگین",
-				"value": "1"
-			},
-			{
-				"text": "عصبانی",
-				"value": "2"
-			},
-			{
-				"text": "ناراضی",
-				"value": "3"
-			},
-			{
-				"text": "خونسرد",
-				"value": "4"
-			},
-			{
-				"text": "آرام",
-				"value": "5"
-			},
-			{
-				"text": "راضی",
-				"value": "6"
-			},
-			{
-				"text": "خشنود",
-				"value": "7"
-			},
-			{
-				"text": "خیلی خوشحال",
-				"value": "8"
-			},
-			{
-				"text": "روی ابرها سیر می‌کنند",
-				"value": "9"
-			},
-			{
-				"text": "رؤیایی",
-				"value": "10"
-			}
-		],
-		"desc": "Persian"
+		]
 	}
 }

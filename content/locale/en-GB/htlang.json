@@ -1,5 +1,71 @@
 {
 	"language": {
+		"aggressiveness": [
+			{
+				"text": "tranquil",
+				"value": "0"
+			},
+			{
+				"text": "calm",
+				"value": "1"
+			},
+			{
+				"text": "balanced",
+				"value": "2"
+			},
+			{
+				"text": "temperamental",
+				"value": "3"
+			},
+			{
+				"text": "fiery",
+				"value": "4"
+			},
+			{
+				"text": "unstable",
+				"value": "5"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "nasty fellow",
+				"value": "0"
+			},
+			{
+				"text": "controversial person",
+				"value": "1"
+			},
+			{
+				"text": "pleasant guy",
+				"value": "2"
+			},
+			{
+				"text": "sympathetic guy",
+				"value": "3"
+			},
+			{
+				"text": "popular guy",
+				"value": "4"
+			},
+			{
+				"text": "beloved team member",
+				"value": "5"
+			}
+		],
+		"attitude": [
+			{
+				"text": "Play it Cool",
+				"value": "-1"
+			},
+			{
+				"text": "Normal",
+				"value": "0"
+			},
+			{
+				"text": "Match of the Season",
+				"value": "1"
+			}
+		],
 		"confidence": [
 			{
 				"text": "non-existent",
@@ -42,162 +108,101 @@
 				"value": "9"
 			}
 		],
-		"tactics": [
+		"desc": "English (UK)",
+		"fans": [
 			{
-				"type": "normal",
-				"value": "Normal"
-			},
-			{
-				"type": "pressing",
-				"value": "Pressing"
-			},
-			{
-				"type": "ca",
-				"value": "Counter-attacks"
-			},
-			{
-				"type": "aim",
-				"value": "Attack in the Middle"
-			},
-			{
-				"type": "aow",
-				"value": "Attack on wings"
-			},
-			{
-				"type": "",
-				"value": "Unknown"
-			},
-			{
-				"type": "",
-				"value": "Unknown"
-			},
-			{
-				"type": "creatively",
-				"value": "Play creatively"
-			},
-			{
-				"type": "longshots",
-				"value": "Long shots"
-			}
-		],
-		"honesty": [
-			{
-				"text": "infamous",
+				"text": "murderous",
 				"value": "0"
 			},
 			{
-				"text": "dishonest",
+				"text": "furious",
 				"value": "1"
 			},
 			{
-				"text": "honest",
+				"text": "angry",
 				"value": "2"
 			},
 			{
-				"text": "upright",
+				"text": "irritated",
 				"value": "3"
 			},
 			{
-				"text": "righteous",
+				"text": "disappointed",
 				"value": "4"
 			},
 			{
-				"text": "saintly",
+				"text": "calm",
 				"value": "5"
+			},
+			{
+				"text": "content",
+				"value": "6"
+			},
+			{
+				"text": "satisfied",
+				"value": "7"
+			},
+			{
+				"text": "delirious",
+				"value": "8"
+			},
+			{
+				"text": "high on life",
+				"value": "9"
+			},
+			{
+				"text": "dancing in the streets",
+				"value": "10"
+			},
+			{
+				"text": "Sending love poems to you",
+				"value": "11"
 			}
 		],
-		"agreeability": [
+		"fans_match": [
 			{
-				"text": "nasty fellow",
+				"text": "Better not show up",
 				"value": "0"
 			},
 			{
-				"text": "controversial person",
+				"text": "We are outclassed",
 				"value": "1"
 			},
 			{
-				"text": "pleasant guy",
+				"text": "We will lose",
 				"value": "2"
 			},
 			{
-				"text": "sympathetic guy",
+				"text": "They are favourites",
 				"value": "3"
 			},
 			{
-				"text": "popular guy",
+				"text": "They have the edge",
 				"value": "4"
 			},
 			{
-				"text": "beloved team member",
+				"text": "It will be a close affair",
 				"value": "5"
-			}
-		],
-		"skills": [
-			{
-				"type": "Keeper",
-				"value": "Keeper"
 			},
 			{
-				"type": "Stamina",
-				"value": "Stamina"
+				"text": "We have the edge",
+				"value": "6"
 			},
 			{
-				"type": "Defender",
-				"value": "Defending"
+				"text": "We are favourites",
+				"value": "7"
 			},
 			{
-				"type": "Playmaker",
-				"value": "Playmaking"
+				"text": "We will win",
+				"value": "8"
 			},
 			{
-				"type": "Winger",
-				"value": "Winger"
+				"text": "Piece of cake!",
+				"value": "9"
 			},
 			{
-				"type": "Scorer",
-				"value": "Scoring"
-			},
-			{
-				"type": "Kicker",
-				"value": "Set pieces"
-			},
-			{
-				"type": "Passer",
-				"value": "Passing"
-			},
-			{
-				"type": "Experience",
-				"value": "Experience"
-			},
-			{
-				"type": "LeaderShip",
-				"value": "Leadership"
-			}
-		],
-		"positions": [
-			{
-				"type": "Keeper",
-				"value": "Keeper"
-			},
-			{
-				"type": "WingBack",
-				"value": "Wing back"
-			},
-			{
-				"type": "CentralDefender",
-				"value": "Central defender"
-			},
-			{
-				"type": "InnerMidfield",
-				"value": "Inner midfielder"
-			},
-			{
-				"type": "Winger",
-				"value": "Winger"
-			},
-			{
-				"type": "Forward",
-				"value": "Forward"
+				"text": "Let's humiliate them",
+				"value": "10"
 			}
 		],
 		"fans_season": [
@@ -234,20 +239,33 @@
 				"value": "7"
 			}
 		],
-		"attitude": [
+		"honesty": [
 			{
-				"text": "Play it Cool",
-				"value": "-1"
-			},
-			{
-				"text": "Normal",
+				"text": "infamous",
 				"value": "0"
 			},
 			{
-				"text": "Match of the Season",
+				"text": "dishonest",
 				"value": "1"
+			},
+			{
+				"text": "honest",
+				"value": "2"
+			},
+			{
+				"text": "upright",
+				"value": "3"
+			},
+			{
+				"text": "righteous",
+				"value": "4"
+			},
+			{
+				"text": "saintly",
+				"value": "5"
 			}
 		],
+		"id": "2",
 		"levels": [
 			{
 				"text": "non-existent",
@@ -334,6 +352,199 @@
 				"value": "20"
 			}
 		],
+		"name": "en-GB",
+		"positions": [
+			{
+				"type": "Keeper",
+				"value": "Keeper"
+			},
+			{
+				"type": "WingBack",
+				"value": "Wing back"
+			},
+			{
+				"type": "CentralDefender",
+				"value": "Central defender"
+			},
+			{
+				"type": "InnerMidfield",
+				"value": "Inner midfielder"
+			},
+			{
+				"type": "Winger",
+				"value": "Winger"
+			},
+			{
+				"type": "Forward",
+				"value": "Forward"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "very low",
+				"value": "0"
+			},
+			{
+				"text": "low",
+				"value": "0.25"
+			},
+			{
+				"text": "high",
+				"value": "0.5"
+			},
+			{
+				"text": "very high",
+				"value": "0.75"
+			}
+		],
+		"sectors": [
+			{
+				"type": "Midfield",
+				"value": "Midfield"
+			},
+			{
+				"type": "RightDefense",
+				"value": "Right defence"
+			},
+			{
+				"type": "CentralDefense",
+				"value": "Central defence"
+			},
+			{
+				"type": "LeftDefense",
+				"value": "Left defence"
+			},
+			{
+				"type": "RightAttack",
+				"value": "Right attack"
+			},
+			{
+				"type": "CentralAttack",
+				"value": "Central attack"
+			},
+			{
+				"type": "LeftAttack",
+				"value": "Left attack"
+			}
+		],
+		"skills": [
+			{
+				"type": "Keeper",
+				"value": "Keeper"
+			},
+			{
+				"type": "Stamina",
+				"value": "Stamina"
+			},
+			{
+				"type": "Defender",
+				"value": "Defending"
+			},
+			{
+				"type": "Playmaker",
+				"value": "Playmaking"
+			},
+			{
+				"type": "Winger",
+				"value": "Winger"
+			},
+			{
+				"type": "Scorer",
+				"value": "Scoring"
+			},
+			{
+				"type": "Kicker",
+				"value": "Set pieces"
+			},
+			{
+				"type": "Passer",
+				"value": "Passing"
+			},
+			{
+				"type": "Experience",
+				"value": "Experience"
+			},
+			{
+				"type": "LeaderShip",
+				"value": "Leadership"
+			}
+		],
+		"specialties": [
+			{
+				"type": "None",
+				"value": "None"
+			},
+			{
+				"type": "Technical",
+				"value": "Technical"
+			},
+			{
+				"type": "Quick",
+				"value": "Quick"
+			},
+			{
+				"type": "Powerful",
+				"value": "Powerful"
+			},
+			{
+				"type": "Unpredictable",
+				"value": "Unpredictable"
+			},
+			{
+				"type": "Head",
+				"value": "Head"
+			},
+			{
+				"type": "Regainer",
+				"value": "Regainer"
+			}
+		],
+		"spirit": [
+			{
+				"text": "like the cold war",
+				"value": "0"
+			},
+			{
+				"text": "murderous",
+				"value": "1"
+			},
+			{
+				"text": "furious",
+				"value": "2"
+			},
+			{
+				"text": "irritated",
+				"value": "3"
+			},
+			{
+				"text": "composed",
+				"value": "4"
+			},
+			{
+				"text": "calm",
+				"value": "5"
+			},
+			{
+				"text": "content",
+				"value": "6"
+			},
+			{
+				"text": "satisfied",
+				"value": "7"
+			},
+			{
+				"text": "delirious",
+				"value": "8"
+			},
+			{
+				"text": "walking on clouds",
+				"value": "9"
+			},
+			{
+				"text": "paradise on earth!",
+				"value": "10"
+			}
+		],
 		"sponsors": [
 			{
 				"text": "murderous",
@@ -376,161 +587,44 @@
 				"value": "9"
 			}
 		],
-		"sectors": [
+		"tactics": [
 			{
-				"type": "Midfield",
-				"value": "Midfield"
+				"type": "normal",
+				"value": "Normal"
 			},
 			{
-				"type": "RightDefense",
-				"value": "Right defence"
+				"type": "pressing",
+				"value": "Pressing"
 			},
 			{
-				"type": "CentralDefense",
-				"value": "Central defence"
+				"type": "ca",
+				"value": "Counter-attacks"
 			},
 			{
-				"type": "LeftDefense",
-				"value": "Left defence"
+				"type": "aim",
+				"value": "Attack in the Middle"
 			},
 			{
-				"type": "RightAttack",
-				"value": "Right attack"
+				"type": "aow",
+				"value": "Attack on wings"
 			},
 			{
-				"type": "CentralAttack",
-				"value": "Central attack"
+				"type": "",
+				"value": "Unknown"
 			},
 			{
-				"type": "LeftAttack",
-				"value": "Left attack"
+				"type": "",
+				"value": "Unknown"
+			},
+			{
+				"type": "creatively",
+				"value": "Play creatively"
+			},
+			{
+				"type": "longshots",
+				"value": "Long shots"
 			}
 		],
-		"ratingSubLevels": [
-			{
-				"text": "very low",
-				"value": "0"
-			},
-			{
-				"text": "low",
-				"value": "0.25"
-			},
-			{
-				"text": "high",
-				"value": "0.5"
-			},
-			{
-				"text": "very high",
-				"value": "0.75"
-			}
-		],
-		"fans": [
-			{
-				"text": "murderous",
-				"value": "0"
-			},
-			{
-				"text": "furious",
-				"value": "1"
-			},
-			{
-				"text": "angry",
-				"value": "2"
-			},
-			{
-				"text": "irritated",
-				"value": "3"
-			},
-			{
-				"text": "disappointed",
-				"value": "4"
-			},
-			{
-				"text": "calm",
-				"value": "5"
-			},
-			{
-				"text": "content",
-				"value": "6"
-			},
-			{
-				"text": "satisfied",
-				"value": "7"
-			},
-			{
-				"text": "delirious",
-				"value": "8"
-			},
-			{
-				"text": "high on life",
-				"value": "9"
-			},
-			{
-				"text": "dancing in the streets",
-				"value": "10"
-			},
-			{
-				"text": "Sending love poems to you",
-				"value": "11"
-			}
-		],
-		"specialties": [
-			{
-				"type": "None",
-				"value": "None"
-			},
-			{
-				"type": "Technical",
-				"value": "Technical"
-			},
-			{
-				"type": "Quick",
-				"value": "Quick"
-			},
-			{
-				"type": "Powerful",
-				"value": "Powerful"
-			},
-			{
-				"type": "Unpredictable",
-				"value": "Unpredictable"
-			},
-			{
-				"type": "Head",
-				"value": "Head"
-			},
-			{
-				"type": "Regainer",
-				"value": "Regainer"
-			}
-		],
-		"aggressiveness": [
-			{
-				"text": "tranquil",
-				"value": "0"
-			},
-			{
-				"text": "calm",
-				"value": "1"
-			},
-			{
-				"text": "balanced",
-				"value": "2"
-			},
-			{
-				"text": "temperamental",
-				"value": "3"
-			},
-			{
-				"text": "fiery",
-				"value": "4"
-			},
-			{
-				"text": "unstable",
-				"value": "5"
-			}
-		],
-		"id": "2",
 		"training": [
 			{
 				"type": "Gen",
@@ -588,100 +682,6 @@
 				"type": "Indiv",
 				"value": "Individual"
 			}
-		],
-		"fans_match": [
-			{
-				"text": "Better not show up",
-				"value": "0"
-			},
-			{
-				"text": "We are outclassed",
-				"value": "1"
-			},
-			{
-				"text": "We will lose",
-				"value": "2"
-			},
-			{
-				"text": "They are favourites",
-				"value": "3"
-			},
-			{
-				"text": "They have the edge",
-				"value": "4"
-			},
-			{
-				"text": "It will be a close affair",
-				"value": "5"
-			},
-			{
-				"text": "We have the edge",
-				"value": "6"
-			},
-			{
-				"text": "We are favourites",
-				"value": "7"
-			},
-			{
-				"text": "We will win",
-				"value": "8"
-			},
-			{
-				"text": "Piece of cake!",
-				"value": "9"
-			},
-			{
-				"text": "Let's humiliate them",
-				"value": "10"
-			}
-		],
-		"name": "en-GB",
-		"spirit": [
-			{
-				"text": "like the cold war",
-				"value": "0"
-			},
-			{
-				"text": "murderous",
-				"value": "1"
-			},
-			{
-				"text": "furious",
-				"value": "2"
-			},
-			{
-				"text": "irritated",
-				"value": "3"
-			},
-			{
-				"text": "composed",
-				"value": "4"
-			},
-			{
-				"text": "calm",
-				"value": "5"
-			},
-			{
-				"text": "content",
-				"value": "6"
-			},
-			{
-				"text": "satisfied",
-				"value": "7"
-			},
-			{
-				"text": "delirious",
-				"value": "8"
-			},
-			{
-				"text": "walking on clouds",
-				"value": "9"
-			},
-			{
-				"text": "paradise on earth!",
-				"value": "10"
-			}
-		],
-		"desc": "English (UK)"
+		]
 	}
 }

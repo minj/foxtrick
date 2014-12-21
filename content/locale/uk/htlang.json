@@ -1,5 +1,71 @@
 {
 	"language": {
+		"aggressiveness": [
+			{
+				"text": "врівноважений",
+				"value": "0"
+			},
+			{
+				"text": "добрий",
+				"value": "1"
+			},
+			{
+				"text": "спокійний",
+				"value": "2"
+			},
+			{
+				"text": "темпераментний",
+				"value": "3"
+			},
+			{
+				"text": "нестриманий",
+				"value": "4"
+			},
+			{
+				"text": "нестабільний",
+				"value": "5"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "Бридкий тип",
+				"value": "0"
+			},
+			{
+				"text": "Сумнівна особа",
+				"value": "1"
+			},
+			{
+				"text": "Приємний хлопець",
+				"value": "2"
+			},
+			{
+				"text": "Симпатичний хлопець",
+				"value": "3"
+			},
+			{
+				"text": "Популярна людина",
+				"value": "4"
+			},
+			{
+				"text": "Улюблений член команди",
+				"value": "5"
+			}
+		],
+		"attitude": [
+			{
+				"text": "Грати спокійно",
+				"value": "-1"
+			},
+			{
+				"text": "Звичайний",
+				"value": "0"
+			},
+			{
+				"text": "Матч Сезону",
+				"value": "1"
+			}
+		],
 		"confidence": [
 			{
 				"text": "не існує",
@@ -42,162 +108,101 @@
 				"value": "9"
 			}
 		],
-		"tactics": [
+		"desc": "Українська (Ukrainian)",
+		"fans": [
 			{
-				"type": "normal",
-				"value": "Нормально"
-			},
-			{
-				"type": "pressing",
-				"value": "Пресинг"
-			},
-			{
-				"type": "ca",
-				"value": "Контратаки"
-			},
-			{
-				"type": "aim",
-				"value": "Атака по центру"
-			},
-			{
-				"type": "aow",
-				"value": "Атака по флангах"
-			},
-			{
-				"type": "",
-				"value": "Невідомо"
-			},
-			{
-				"type": "",
-				"value": "Невідомо"
-			},
-			{
-				"type": "creatively",
-				"value": "Грати творчо"
-			},
-			{
-				"type": "longshots",
-				"value": "Дальні удари"
-			}
-		],
-		"honesty": [
-			{
-				"text": "безчесний",
+				"text": "кровожерні",
 				"value": "0"
 			},
 			{
-				"text": "непорядний",
+				"text": "люті",
 				"value": "1"
 			},
 			{
-				"text": "щирий",
+				"text": "розлючені",
 				"value": "2"
 			},
 			{
-				"text": "чесний",
+				"text": "роздратовані",
 				"value": "3"
 			},
 			{
-				"text": "праведний",
+				"text": "засмучені",
 				"value": "4"
 			},
 			{
-				"text": "майже святий",
+				"text": "спокійні",
 				"value": "5"
+			},
+			{
+				"text": "стримані",
+				"value": "6"
+			},
+			{
+				"text": "задоволені",
+				"value": "7"
+			},
+			{
+				"text": "божеволіють",
+				"value": "8"
+			},
+			{
+				"text": "в захваті від життя",
+				"value": "9"
+			},
+			{
+				"text": "танцюють на вулицях",
+				"value": "10"
+			},
+			{
+				"text": "Шлють вам поеми про любов",
+				"value": "11"
 			}
 		],
-		"agreeability": [
+		"fans_match": [
 			{
-				"text": "Бридкий тип",
+				"text": "Краще цього не бачити!",
 				"value": "0"
 			},
 			{
-				"text": "Сумнівна особа",
+				"text": "Нас декласують",
 				"value": "1"
 			},
 			{
-				"text": "Приємний хлопець",
+				"text": "Ми програємо",
 				"value": "2"
 			},
 			{
-				"text": "Симпатичний хлопець",
+				"text": "Суперник є фаворитом",
 				"value": "3"
 			},
 			{
-				"text": "Популярна людина",
+				"text": "Суперник має перевагу",
 				"value": "4"
 			},
 			{
-				"text": "Улюблений член команди",
+				"text": "Буде рівна боротьба",
 				"value": "5"
-			}
-		],
-		"skills": [
-			{
-				"type": "Keeper",
-				"value": "Воротарство"
 			},
 			{
-				"type": "Stamina",
-				"value": "Витривалість"
+				"text": "У нас є перевага",
+				"value": "6"
 			},
 			{
-				"type": "Defender",
-				"value": "Захист"
+				"text": "Ми фаворити",
+				"value": "7"
 			},
 			{
-				"type": "Playmaker",
-				"value": "Створення гри"
+				"text": "Повинні перемогти",
+				"value": "8"
 			},
 			{
-				"type": "Winger",
-				"value": "Гра на краю"
+				"text": "Перемогти без напруження",
+				"value": "9"
 			},
 			{
-				"type": "Scorer",
-				"value": "Напад"
-			},
-			{
-				"type": "Kicker",
-				"value": "Стандарти"
-			},
-			{
-				"type": "Passer",
-				"value": "Пас"
-			},
-			{
-				"type": "Experience",
-				"value": "Досвід"
-			},
-			{
-				"type": "LeaderShip",
-				"value": "Лідерські якості"
-			}
-		],
-		"positions": [
-			{
-				"type": "Keeper",
-				"value": "Воротар"
-			},
-			{
-				"type": "WingBack",
-				"value": "Крайній Захисник"
-			},
-			{
-				"type": "CentralDefender",
-				"value": "Центральний Захисник"
-			},
-			{
-				"type": "InnerMidfield",
-				"value": "Півзахисник"
-			},
-			{
-				"type": "Winger",
-				"value": "Вінгер"
-			},
-			{
-				"type": "Forward",
-				"value": "Нападник"
+				"text": "Знищити їх!",
+				"value": "10"
 			}
 		],
 		"fans_season": [
@@ -234,20 +239,33 @@
 				"value": "7"
 			}
 		],
-		"attitude": [
+		"honesty": [
 			{
-				"text": "Грати спокійно",
-				"value": "-1"
-			},
-			{
-				"text": "Звичайний",
+				"text": "безчесний",
 				"value": "0"
 			},
 			{
-				"text": "Матч Сезону",
+				"text": "непорядний",
 				"value": "1"
+			},
+			{
+				"text": "щирий",
+				"value": "2"
+			},
+			{
+				"text": "чесний",
+				"value": "3"
+			},
+			{
+				"text": "праведний",
+				"value": "4"
+			},
+			{
+				"text": "майже святий",
+				"value": "5"
 			}
 		],
+		"id": "57",
 		"levels": [
 			{
 				"text": "не існує",
@@ -334,6 +352,199 @@
 				"value": "20"
 			}
 		],
+		"name": "uk",
+		"positions": [
+			{
+				"type": "Keeper",
+				"value": "Воротар"
+			},
+			{
+				"type": "WingBack",
+				"value": "Крайній Захисник"
+			},
+			{
+				"type": "CentralDefender",
+				"value": "Центральний Захисник"
+			},
+			{
+				"type": "InnerMidfield",
+				"value": "Півзахисник"
+			},
+			{
+				"type": "Winger",
+				"value": "Вінгер"
+			},
+			{
+				"type": "Forward",
+				"value": "Нападник"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "Дуже низький",
+				"value": "0"
+			},
+			{
+				"text": "Низький",
+				"value": "0.25"
+			},
+			{
+				"text": "Високий",
+				"value": "0.5"
+			},
+			{
+				"text": "Дуже високий",
+				"value": "0.75"
+			}
+		],
+		"sectors": [
+			{
+				"type": "Midfield",
+				"value": "Півзахист"
+			},
+			{
+				"type": "RightDefense",
+				"value": "Захист праворуч"
+			},
+			{
+				"type": "CentralDefense",
+				"value": "Захист по центру"
+			},
+			{
+				"type": "LeftDefense",
+				"value": "Захист ліворуч"
+			},
+			{
+				"type": "RightAttack",
+				"value": "Напад праворуч"
+			},
+			{
+				"type": "CentralAttack",
+				"value": "Напад по центру"
+			},
+			{
+				"type": "LeftAttack",
+				"value": "Напад ліворуч"
+			}
+		],
+		"skills": [
+			{
+				"type": "Keeper",
+				"value": "Воротарство"
+			},
+			{
+				"type": "Stamina",
+				"value": "Витривалість"
+			},
+			{
+				"type": "Defender",
+				"value": "Захист"
+			},
+			{
+				"type": "Playmaker",
+				"value": "Створення гри"
+			},
+			{
+				"type": "Winger",
+				"value": "Гра на краю"
+			},
+			{
+				"type": "Scorer",
+				"value": "Напад"
+			},
+			{
+				"type": "Kicker",
+				"value": "Стандарти"
+			},
+			{
+				"type": "Passer",
+				"value": "Пас"
+			},
+			{
+				"type": "Experience",
+				"value": "Досвід"
+			},
+			{
+				"type": "LeaderShip",
+				"value": "Лідерські якості"
+			}
+		],
+		"specialties": [
+			{
+				"type": "None",
+				"value": "Немає"
+			},
+			{
+				"type": "Technical",
+				"value": "Технічний"
+			},
+			{
+				"type": "Quick",
+				"value": "Швидкий"
+			},
+			{
+				"type": "Powerful",
+				"value": "Могутній"
+			},
+			{
+				"type": "Unpredictable",
+				"value": "Непередбачуваний"
+			},
+			{
+				"type": "Head",
+				"value": "Гра головою"
+			},
+			{
+				"type": "Regainer",
+				"value": "Міцне здоров'я"
+			}
+		],
+		"spirit": [
+			{
+				"text": "за залізною завісою",
+				"value": "0"
+			},
+			{
+				"text": "вбивчий",
+				"value": "1"
+			},
+			{
+				"text": "лютий",
+				"value": "2"
+			},
+			{
+				"text": "роздратований",
+				"value": "3"
+			},
+			{
+				"text": "незворушний",
+				"value": "4"
+			},
+			{
+				"text": "стриманий",
+				"value": "5"
+			},
+			{
+				"text": "спокійний",
+				"value": "6"
+			},
+			{
+				"text": "задоволений",
+				"value": "7"
+			},
+			{
+				"text": "божевільний",
+				"value": "8"
+			},
+			{
+				"text": "вище хмар",
+				"value": "9"
+			},
+			{
+				"text": "Рай на землі!",
+				"value": "10"
+			}
+		],
 		"sponsors": [
 			{
 				"text": "кровожерні",
@@ -376,161 +587,44 @@
 				"value": "9"
 			}
 		],
-		"sectors": [
+		"tactics": [
 			{
-				"type": "Midfield",
-				"value": "Півзахист"
+				"type": "normal",
+				"value": "Нормально"
 			},
 			{
-				"type": "RightDefense",
-				"value": "Захист праворуч"
+				"type": "pressing",
+				"value": "Пресинг"
 			},
 			{
-				"type": "CentralDefense",
-				"value": "Захист по центру"
+				"type": "ca",
+				"value": "Контратаки"
 			},
 			{
-				"type": "LeftDefense",
-				"value": "Захист ліворуч"
+				"type": "aim",
+				"value": "Атака по центру"
 			},
 			{
-				"type": "RightAttack",
-				"value": "Напад праворуч"
+				"type": "aow",
+				"value": "Атака по флангах"
 			},
 			{
-				"type": "CentralAttack",
-				"value": "Напад по центру"
+				"type": "",
+				"value": "Невідомо"
 			},
 			{
-				"type": "LeftAttack",
-				"value": "Напад ліворуч"
+				"type": "",
+				"value": "Невідомо"
+			},
+			{
+				"type": "creatively",
+				"value": "Грати творчо"
+			},
+			{
+				"type": "longshots",
+				"value": "Дальні удари"
 			}
 		],
-		"ratingSubLevels": [
-			{
-				"text": "Дуже низький",
-				"value": "0"
-			},
-			{
-				"text": "Низький",
-				"value": "0.25"
-			},
-			{
-				"text": "Високий",
-				"value": "0.5"
-			},
-			{
-				"text": "Дуже високий",
-				"value": "0.75"
-			}
-		],
-		"fans": [
-			{
-				"text": "кровожерні",
-				"value": "0"
-			},
-			{
-				"text": "люті",
-				"value": "1"
-			},
-			{
-				"text": "розлючені",
-				"value": "2"
-			},
-			{
-				"text": "роздратовані",
-				"value": "3"
-			},
-			{
-				"text": "засмучені",
-				"value": "4"
-			},
-			{
-				"text": "спокійні",
-				"value": "5"
-			},
-			{
-				"text": "стримані",
-				"value": "6"
-			},
-			{
-				"text": "задоволені",
-				"value": "7"
-			},
-			{
-				"text": "божеволіють",
-				"value": "8"
-			},
-			{
-				"text": "в захваті від життя",
-				"value": "9"
-			},
-			{
-				"text": "танцюють на вулицях",
-				"value": "10"
-			},
-			{
-				"text": "Шлють вам поеми про любов",
-				"value": "11"
-			}
-		],
-		"specialties": [
-			{
-				"type": "None",
-				"value": "Немає"
-			},
-			{
-				"type": "Technical",
-				"value": "Технічний"
-			},
-			{
-				"type": "Quick",
-				"value": "Швидкий"
-			},
-			{
-				"type": "Powerful",
-				"value": "Могутній"
-			},
-			{
-				"type": "Unpredictable",
-				"value": "Непередбачуваний"
-			},
-			{
-				"type": "Head",
-				"value": "Гра головою"
-			},
-			{
-				"type": "Regainer",
-				"value": "Міцне здоров'я"
-			}
-		],
-		"aggressiveness": [
-			{
-				"text": "врівноважений",
-				"value": "0"
-			},
-			{
-				"text": "добрий",
-				"value": "1"
-			},
-			{
-				"text": "спокійний",
-				"value": "2"
-			},
-			{
-				"text": "темпераментний",
-				"value": "3"
-			},
-			{
-				"text": "нестриманий",
-				"value": "4"
-			},
-			{
-				"text": "нестабільний",
-				"value": "5"
-			}
-		],
-		"id": "57",
 		"training": [
 			{
 				"type": "Gen",
@@ -588,100 +682,6 @@
 				"type": "Indiv",
 				"value": "Індивідуальне"
 			}
-		],
-		"fans_match": [
-			{
-				"text": "Краще цього не бачити!",
-				"value": "0"
-			},
-			{
-				"text": "Нас декласують",
-				"value": "1"
-			},
-			{
-				"text": "Ми програємо",
-				"value": "2"
-			},
-			{
-				"text": "Суперник є фаворитом",
-				"value": "3"
-			},
-			{
-				"text": "Суперник має перевагу",
-				"value": "4"
-			},
-			{
-				"text": "Буде рівна боротьба",
-				"value": "5"
-			},
-			{
-				"text": "У нас є перевага",
-				"value": "6"
-			},
-			{
-				"text": "Ми фаворити",
-				"value": "7"
-			},
-			{
-				"text": "Повинні перемогти",
-				"value": "8"
-			},
-			{
-				"text": "Перемогти без напруження",
-				"value": "9"
-			},
-			{
-				"text": "Знищити їх!",
-				"value": "10"
-			}
-		],
-		"name": "uk",
-		"spirit": [
-			{
-				"text": "за залізною завісою",
-				"value": "0"
-			},
-			{
-				"text": "вбивчий",
-				"value": "1"
-			},
-			{
-				"text": "лютий",
-				"value": "2"
-			},
-			{
-				"text": "роздратований",
-				"value": "3"
-			},
-			{
-				"text": "незворушний",
-				"value": "4"
-			},
-			{
-				"text": "стриманий",
-				"value": "5"
-			},
-			{
-				"text": "спокійний",
-				"value": "6"
-			},
-			{
-				"text": "задоволений",
-				"value": "7"
-			},
-			{
-				"text": "божевільний",
-				"value": "8"
-			},
-			{
-				"text": "вище хмар",
-				"value": "9"
-			},
-			{
-				"text": "Рай на землі!",
-				"value": "10"
-			}
-		],
-		"desc": "Українська (Ukrainian)"
+		]
 	}
 }

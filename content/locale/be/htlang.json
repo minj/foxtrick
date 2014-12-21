@@ -1,5 +1,71 @@
 {
 	"language": {
+		"aggressiveness": [
+			{
+				"text": "ціхамірны",
+				"value": "0"
+			},
+			{
+				"text": "стрыманы",
+				"value": "1"
+			},
+			{
+				"text": "памяркоўны",
+				"value": "2"
+			},
+			{
+				"text": "тэмпэрамэнтны",
+				"value": "3"
+			},
+			{
+				"text": "зласьлівы",
+				"value": "4"
+			},
+			{
+				"text": "нестабільны",
+				"value": "5"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "мярзотны тып",
+				"value": "0"
+			},
+			{
+				"text": "непрыемны тып",
+				"value": "1"
+			},
+			{
+				"text": "прыемны хлапец",
+				"value": "2"
+			},
+			{
+				"text": "абаяльны хлапец",
+				"value": "3"
+			},
+			{
+				"text": "папулярны хлапец",
+				"value": "4"
+			},
+			{
+				"text": "усеагульны фаварыт",
+				"value": "5"
+			}
+		],
+		"attitude": [
+			{
+				"text": "Гуляць напаўсілы",
+				"value": "-1"
+			},
+			{
+				"text": "Звычайны",
+				"value": "0"
+			},
+			{
+				"text": "Матч сэзону",
+				"value": "1"
+			}
+		],
 		"confidence": [
 			{
 				"text": "няісная",
@@ -42,162 +108,101 @@
 				"value": "9"
 			}
 		],
-		"tactics": [
+		"desc": "Беларуская (Belarusian)",
+		"fans": [
 			{
-				"type": "normal",
-				"value": "Нармальна"
-			},
-			{
-				"type": "pressing",
-				"value": "Прэсінг"
-			},
-			{
-				"type": "ca",
-				"value": "Контар-атака"
-			},
-			{
-				"type": "aim",
-				"value": "Атакаваць праз цэнтар"
-			},
-			{
-				"type": "aow",
-				"value": "Атакаваць праз краі"
-			},
-			{
-				"type": "",
-				"value": "Невядома"
-			},
-			{
-				"type": "",
-				"value": "Невядома"
-			},
-			{
-				"type": "creatively",
-				"value": "Гуляць творча"
-			},
-			{
-				"type": "longshots",
-				"value": "Удары здалёк"
-			}
-		],
-		"honesty": [
-			{
-				"text": "паскудны",
+				"text": "крыважэрныя",
 				"value": "0"
 			},
 			{
-				"text": "несумленны",
+				"text": "раззлаваныя",
 				"value": "1"
 			},
 			{
-				"text": "сумленны",
+				"text": "раззлаваныя",
 				"value": "2"
 			},
 			{
-				"text": "справядлівы",
+				"text": "абураныя",
 				"value": "3"
 			},
 			{
-				"text": "дабрачынны",
+				"text": "расчараваныя",
 				"value": "4"
 			},
 			{
-				"text": "сьвяты",
+				"text": "абыякавыя",
 				"value": "5"
+			},
+			{
+				"text": "спакойныя",
+				"value": "6"
+			},
+			{
+				"text": "задаволеныя",
+				"value": "7"
+			},
+			{
+				"text": "сьвяточныя",
+				"value": "8"
+			},
+			{
+				"text": "апантаныя",
+				"value": "9"
+			},
+			{
+				"text": "танчаць на вуліцах",
+				"value": "10"
+			},
+			{
+				"text": "Складаюць аб Вас паэмы",
+				"value": "11"
 			}
 		],
-		"agreeability": [
+		"fans_match": [
 			{
-				"text": "мярзотны тып",
+				"text": "Можа не паедзем?!",
 				"value": "0"
 			},
 			{
-				"text": "непрыемны тып",
+				"text": "Мы ніжэй класам",
 				"value": "1"
 			},
 			{
-				"text": "прыемны хлапец",
+				"text": "Мы прайграем",
 				"value": "2"
 			},
 			{
-				"text": "абаяльны хлапец",
+				"text": "Яны фаварыты",
 				"value": "3"
 			},
 			{
-				"text": "папулярны хлапец",
+				"text": "Перавага на іх баку",
 				"value": "4"
 			},
 			{
-				"text": "усеагульны фаварыт",
+				"text": "Падобна на цалкам роўны матч",
 				"value": "5"
-			}
-		],
-		"skills": [
-			{
-				"type": "Keeper",
-				"value": "Брамніцтва"
 			},
 			{
-				"type": "Stamina",
-				"value": "Трываласьць"
+				"text": "Перавага на нашым баку",
+				"value": "6"
 			},
 			{
-				"type": "Defender",
-				"value": "Абарона"
+				"text": "Мы фаварыты",
+				"value": "7"
 			},
 			{
-				"type": "Playmaker",
-				"value": "Паўабарона"
+				"text": "Мы пераможам",
+				"value": "8"
 			},
 			{
-				"type": "Winger",
-				"value": "Фланг"
+				"text": "Як два пальцы..!",
+				"value": "9"
 			},
 			{
-				"type": "Scorer",
-				"value": "Нападзеньне"
-			},
-			{
-				"type": "Kicker",
-				"value": "Стандарты"
-			},
-			{
-				"type": "Passer",
-				"value": "Пас"
-			},
-			{
-				"type": "Experience",
-				"value": "Вопыт"
-			},
-			{
-				"type": "LeaderShip",
-				"value": "Лідэрства"
-			}
-		],
-		"positions": [
-			{
-				"type": "Keeper",
-				"value": "Брамнік"
-			},
-			{
-				"type": "WingBack",
-				"value": "Крайні абаронца"
-			},
-			{
-				"type": "CentralDefender",
-				"value": "Цэнтральны абаронца"
-			},
-			{
-				"type": "InnerMidfield",
-				"value": "Паўабаронца"
-			},
-			{
-				"type": "Winger",
-				"value": "Вінгер"
-			},
-			{
-				"type": "Forward",
-				"value": "Форвард"
+				"text": "Давайце пазьдзекваемся зь іх",
+				"value": "10"
 			}
 		],
 		"fans_season": [
@@ -234,20 +239,33 @@
 				"value": "7"
 			}
 		],
-		"attitude": [
+		"honesty": [
 			{
-				"text": "Гуляць напаўсілы",
-				"value": "-1"
-			},
-			{
-				"text": "Звычайны",
+				"text": "паскудны",
 				"value": "0"
 			},
 			{
-				"text": "Матч сэзону",
+				"text": "несумленны",
 				"value": "1"
+			},
+			{
+				"text": "сумленны",
+				"value": "2"
+			},
+			{
+				"text": "справядлівы",
+				"value": "3"
+			},
+			{
+				"text": "дабрачынны",
+				"value": "4"
+			},
+			{
+				"text": "сьвяты",
+				"value": "5"
 			}
 		],
+		"id": "84",
 		"levels": [
 			{
 				"text": "няісна",
@@ -334,6 +352,199 @@
 				"value": "20"
 			}
 		],
+		"name": "be",
+		"positions": [
+			{
+				"type": "Keeper",
+				"value": "Брамнік"
+			},
+			{
+				"type": "WingBack",
+				"value": "Крайні абаронца"
+			},
+			{
+				"type": "CentralDefender",
+				"value": "Цэнтральны абаронца"
+			},
+			{
+				"type": "InnerMidfield",
+				"value": "Паўабаронца"
+			},
+			{
+				"type": "Winger",
+				"value": "Вінгер"
+			},
+			{
+				"type": "Forward",
+				"value": "Форвард"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "надта нізкі",
+				"value": "0"
+			},
+			{
+				"text": "нізкі",
+				"value": "0.25"
+			},
+			{
+				"text": "высокі",
+				"value": "0.5"
+			},
+			{
+				"text": "вельмі высокі",
+				"value": "0.75"
+			}
+		],
+		"sectors": [
+			{
+				"type": "Midfield",
+				"value": "Паўабарона"
+			},
+			{
+				"type": "RightDefense",
+				"value": "Правы край абароны"
+			},
+			{
+				"type": "CentralDefense",
+				"value": "Цэнтральная абарона"
+			},
+			{
+				"type": "LeftDefense",
+				"value": "Левы край абароны"
+			},
+			{
+				"type": "RightAttack",
+				"value": "Правы край атакі"
+			},
+			{
+				"type": "CentralAttack",
+				"value": "Атака па цэнтры"
+			},
+			{
+				"type": "LeftAttack",
+				"value": "Левы край атакі"
+			}
+		],
+		"skills": [
+			{
+				"type": "Keeper",
+				"value": "Брамніцтва"
+			},
+			{
+				"type": "Stamina",
+				"value": "Трываласьць"
+			},
+			{
+				"type": "Defender",
+				"value": "Абарона"
+			},
+			{
+				"type": "Playmaker",
+				"value": "Паўабарона"
+			},
+			{
+				"type": "Winger",
+				"value": "Фланг"
+			},
+			{
+				"type": "Scorer",
+				"value": "Нападзеньне"
+			},
+			{
+				"type": "Kicker",
+				"value": "Стандарты"
+			},
+			{
+				"type": "Passer",
+				"value": "Пас"
+			},
+			{
+				"type": "Experience",
+				"value": "Вопыт"
+			},
+			{
+				"type": "LeaderShip",
+				"value": "Лідэрства"
+			}
+		],
+		"specialties": [
+			{
+				"type": "None",
+				"value": "Няма"
+			},
+			{
+				"type": "Technical",
+				"value": "Тэхнічны"
+			},
+			{
+				"type": "Quick",
+				"value": "Хуткі"
+			},
+			{
+				"type": "Powerful",
+				"value": "Магутны"
+			},
+			{
+				"type": "Unpredictable",
+				"value": "Непрадказальны"
+			},
+			{
+				"type": "Head",
+				"value": "Гульня галавою"
+			},
+			{
+				"type": "Regainer",
+				"value": "Адраджэнец"
+			}
+		],
+		"spirit": [
+			{
+				"text": "ваяўнічыя",
+				"value": "0"
+			},
+			{
+				"text": "крыважэрныя",
+				"value": "1"
+			},
+			{
+				"text": "раззлаваныя",
+				"value": "2"
+			},
+			{
+				"text": "абураныя",
+				"value": "3"
+			},
+			{
+				"text": "абыякавыя",
+				"value": "4"
+			},
+			{
+				"text": "спакойныя",
+				"value": "5"
+			},
+			{
+				"text": "задаволеныя",
+				"value": "6"
+			},
+			{
+				"text": "сьвяточныя",
+				"value": "7"
+			},
+			{
+				"text": "апантаныя",
+				"value": "8"
+			},
+			{
+				"text": "лятуць у вырай",
+				"value": "9"
+			},
+			{
+				"text": "Рай на Зямлі!",
+				"value": "10"
+			}
+		],
 		"sponsors": [
 			{
 				"text": "крыважэрныя",
@@ -376,161 +587,44 @@
 				"value": "9"
 			}
 		],
-		"sectors": [
+		"tactics": [
 			{
-				"type": "Midfield",
-				"value": "Паўабарона"
+				"type": "normal",
+				"value": "Нармальна"
 			},
 			{
-				"type": "RightDefense",
-				"value": "Правы край абароны"
+				"type": "pressing",
+				"value": "Прэсінг"
 			},
 			{
-				"type": "CentralDefense",
-				"value": "Цэнтральная абарона"
+				"type": "ca",
+				"value": "Контар-атака"
 			},
 			{
-				"type": "LeftDefense",
-				"value": "Левы край абароны"
+				"type": "aim",
+				"value": "Атакаваць праз цэнтар"
 			},
 			{
-				"type": "RightAttack",
-				"value": "Правы край атакі"
+				"type": "aow",
+				"value": "Атакаваць праз краі"
 			},
 			{
-				"type": "CentralAttack",
-				"value": "Атака па цэнтры"
+				"type": "",
+				"value": "Невядома"
 			},
 			{
-				"type": "LeftAttack",
-				"value": "Левы край атакі"
+				"type": "",
+				"value": "Невядома"
+			},
+			{
+				"type": "creatively",
+				"value": "Гуляць творча"
+			},
+			{
+				"type": "longshots",
+				"value": "Удары здалёк"
 			}
 		],
-		"ratingSubLevels": [
-			{
-				"text": "надта нізкі",
-				"value": "0"
-			},
-			{
-				"text": "нізкі",
-				"value": "0.25"
-			},
-			{
-				"text": "высокі",
-				"value": "0.5"
-			},
-			{
-				"text": "вельмі высокі",
-				"value": "0.75"
-			}
-		],
-		"fans": [
-			{
-				"text": "крыважэрныя",
-				"value": "0"
-			},
-			{
-				"text": "раззлаваныя",
-				"value": "1"
-			},
-			{
-				"text": "раззлаваныя",
-				"value": "2"
-			},
-			{
-				"text": "абураныя",
-				"value": "3"
-			},
-			{
-				"text": "расчараваныя",
-				"value": "4"
-			},
-			{
-				"text": "абыякавыя",
-				"value": "5"
-			},
-			{
-				"text": "спакойныя",
-				"value": "6"
-			},
-			{
-				"text": "задаволеныя",
-				"value": "7"
-			},
-			{
-				"text": "сьвяточныя",
-				"value": "8"
-			},
-			{
-				"text": "апантаныя",
-				"value": "9"
-			},
-			{
-				"text": "танчаць на вуліцах",
-				"value": "10"
-			},
-			{
-				"text": "Складаюць аб Вас паэмы",
-				"value": "11"
-			}
-		],
-		"specialties": [
-			{
-				"type": "None",
-				"value": "Няма"
-			},
-			{
-				"type": "Technical",
-				"value": "Тэхнічны"
-			},
-			{
-				"type": "Quick",
-				"value": "Хуткі"
-			},
-			{
-				"type": "Powerful",
-				"value": "Магутны"
-			},
-			{
-				"type": "Unpredictable",
-				"value": "Непрадказальны"
-			},
-			{
-				"type": "Head",
-				"value": "Гульня галавою"
-			},
-			{
-				"type": "Regainer",
-				"value": "Адраджэнец"
-			}
-		],
-		"aggressiveness": [
-			{
-				"text": "ціхамірны",
-				"value": "0"
-			},
-			{
-				"text": "стрыманы",
-				"value": "1"
-			},
-			{
-				"text": "памяркоўны",
-				"value": "2"
-			},
-			{
-				"text": "тэмпэрамэнтны",
-				"value": "3"
-			},
-			{
-				"text": "зласьлівы",
-				"value": "4"
-			},
-			{
-				"text": "нестабільны",
-				"value": "5"
-			}
-		],
-		"id": "84",
 		"training": [
 			{
 				"type": "Gen",
@@ -588,100 +682,6 @@
 				"type": "Indiv",
 				"value": "Індывідуальная"
 			}
-		],
-		"fans_match": [
-			{
-				"text": "Можа не паедзем?!",
-				"value": "0"
-			},
-			{
-				"text": "Мы ніжэй класам",
-				"value": "1"
-			},
-			{
-				"text": "Мы прайграем",
-				"value": "2"
-			},
-			{
-				"text": "Яны фаварыты",
-				"value": "3"
-			},
-			{
-				"text": "Перавага на іх баку",
-				"value": "4"
-			},
-			{
-				"text": "Падобна на цалкам роўны матч",
-				"value": "5"
-			},
-			{
-				"text": "Перавага на нашым баку",
-				"value": "6"
-			},
-			{
-				"text": "Мы фаварыты",
-				"value": "7"
-			},
-			{
-				"text": "Мы пераможам",
-				"value": "8"
-			},
-			{
-				"text": "Як два пальцы..!",
-				"value": "9"
-			},
-			{
-				"text": "Давайце пазьдзекваемся зь іх",
-				"value": "10"
-			}
-		],
-		"name": "be",
-		"spirit": [
-			{
-				"text": "ваяўнічыя",
-				"value": "0"
-			},
-			{
-				"text": "крыважэрныя",
-				"value": "1"
-			},
-			{
-				"text": "раззлаваныя",
-				"value": "2"
-			},
-			{
-				"text": "абураныя",
-				"value": "3"
-			},
-			{
-				"text": "абыякавыя",
-				"value": "4"
-			},
-			{
-				"text": "спакойныя",
-				"value": "5"
-			},
-			{
-				"text": "задаволеныя",
-				"value": "6"
-			},
-			{
-				"text": "сьвяточныя",
-				"value": "7"
-			},
-			{
-				"text": "апантаныя",
-				"value": "8"
-			},
-			{
-				"text": "лятуць у вырай",
-				"value": "9"
-			},
-			{
-				"text": "Рай на Зямлі!",
-				"value": "10"
-			}
-		],
-		"desc": "Беларуская (Belarusian)"
+		]
 	}
 }

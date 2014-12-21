@@ -1,5 +1,71 @@
 {
 	"language": {
+		"aggressiveness": [
+			{
+				"text": "trancuil",
+				"value": "0"
+			},
+			{
+				"text": "cuiet",
+				"value": "1"
+			},
+			{
+				"text": "ecuilibrat",
+				"value": "2"
+			},
+			{
+				"text": "impulsîf",
+				"value": "3"
+			},
+			{
+				"text": "scjaldinôs",
+				"value": "4"
+			},
+			{
+				"text": "lunatic",
+				"value": "5"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "sticeboris",
+				"value": "0"
+			},
+			{
+				"text": "storpeôs",
+				"value": "1"
+			},
+			{
+				"text": "plasevul",
+				"value": "2"
+			},
+			{
+				"text": "simpatic",
+				"value": "3"
+			},
+			{
+				"text": "popolâr",
+				"value": "4"
+			},
+			{
+				"text": "amât",
+				"value": "5"
+			}
+		],
+		"attitude": [
+			{
+				"text": "Cjapile cun calme",
+				"value": "-1"
+			},
+			{
+				"text": "Normâl",
+				"value": "0"
+			},
+			{
+				"text": "Partide de stagjon",
+				"value": "1"
+			}
+		],
 		"confidence": [
 			{
 				"text": "inesistente",
@@ -42,162 +108,101 @@
 				"value": "9"
 			}
 		],
-		"tactics": [
+		"desc": "Furlan",
+		"fans": [
 			{
-				"type": "normal",
-				"value": "Normâl"
-			},
-			{
-				"type": "pressing",
-				"value": "Pressing"
-			},
-			{
-				"type": "ca",
-				"value": "Cuintripît"
-			},
-			{
-				"type": "aim",
-				"value": "Atac tal mieç"
-			},
-			{
-				"type": "aow",
-				"value": "Atac su lis fasis"
-			},
-			{
-				"type": "",
-				"value": "Scognossût"
-			},
-			{
-				"type": "",
-				"value": "Scognossût"
-			},
-			{
-				"type": "creatively",
-				"value": "Zuiâ cun creativitât"
-			},
-			{
-				"type": "longshots",
-				"value": "Tîrs di lontan"
-			}
-		],
-		"honesty": [
-			{
-				"text": "carogne",
+				"text": "imbesteâts",
 				"value": "0"
 			},
 			{
-				"text": "disonest",
+				"text": "rabiôs",
 				"value": "1"
 			},
 			{
-				"text": "onest",
+				"text": "scjaldinôs",
 				"value": "2"
 			},
 			{
-				"text": "leâl",
+				"text": "iritâts",
 				"value": "3"
 			},
 			{
-				"text": "virtuôs",
+				"text": "malapaiâts",
 				"value": "4"
 			},
 			{
-				"text": "farine di fâ ostiis",
+				"text": "calms",
 				"value": "5"
+			},
+			{
+				"text": "contents",
+				"value": "6"
+			},
+			{
+				"text": "Sodisfats",
+				"value": "7"
+			},
+			{
+				"text": "in deliri",
+				"value": "8"
+			},
+			{
+				"text": "a van di lus",
+				"value": "9"
+			},
+			{
+				"text": "A balin pe strade",
+				"value": "10"
+			},
+			{
+				"text": "Ti mandin poesiis d’amôr",
+				"value": "11"
 			}
 		],
-		"agreeability": [
+		"fans_match": [
 			{
-				"text": "sticeboris",
+				"text": "Miôr no presentâsi",
 				"value": "0"
 			},
 			{
-				"text": "storpeôs",
+				"text": "Nus daran une tabacade",
 				"value": "1"
 			},
 			{
-				"text": "plasevul",
+				"text": "O pierdarin",
 				"value": "2"
 			},
 			{
-				"text": "simpatic",
+				"text": "A son favorîts",
 				"value": "3"
 			},
 			{
-				"text": "popolâr",
+				"text": "A àn un ciert vantaç",
 				"value": "4"
 			},
 			{
-				"text": "amât",
+				"text": "Mi sa che o impatarin",
 				"value": "5"
-			}
-		],
-		"skills": [
-			{
-				"type": "Keeper",
-				"value": "Paradis"
 			},
 			{
-				"type": "Stamina",
-				"value": "Resistence"
+				"text": "O vin un ciert vantaç",
+				"value": "6"
 			},
 			{
-				"type": "Defender",
-				"value": "Difese"
+				"text": "O sin favorîts",
+				"value": "7"
 			},
 			{
-				"type": "Playmaker",
-				"value": "Regjie"
+				"text": "O vinçarìn",
+				"value": "8"
 			},
 			{
-				"type": "Winger",
-				"value": "Cross"
+				"text": "Tant che bevi une tace di aghe",
+				"value": "9"
 			},
 			{
-				"type": "Scorer",
-				"value": "Atac"
-			},
-			{
-				"type": "Kicker",
-				"value": "Tîrs plaçats"
-			},
-			{
-				"type": "Passer",
-				"value": "Passaçs"
-			},
-			{
-				"type": "Experience",
-				"value": "Mistîr"
-			},
-			{
-				"type": "LeaderShip",
-				"value": "Carisme"
-			}
-		],
-		"positions": [
-			{
-				"type": "Keeper",
-				"value": "Portîr"
-			},
-			{
-				"type": "WingBack",
-				"value": "Tiercin"
-			},
-			{
-				"type": "CentralDefender",
-				"value": "Difensôr centrâl"
-			},
-			{
-				"type": "InnerMidfield",
-				"value": "Centricjampist"
-			},
-			{
-				"type": "Winger",
-				"value": "Ale"
-			},
-			{
-				"type": "Forward",
-				"value": "Tacant"
+				"text": "Anin a umiliâju",
+				"value": "10"
 			}
 		],
 		"fans_season": [
@@ -234,20 +239,33 @@
 				"value": "7"
 			}
 		],
-		"attitude": [
+		"honesty": [
 			{
-				"text": "Cjapile cun calme",
-				"value": "-1"
-			},
-			{
-				"text": "Normâl",
+				"text": "carogne",
 				"value": "0"
 			},
 			{
-				"text": "Partide de stagjon",
+				"text": "disonest",
 				"value": "1"
+			},
+			{
+				"text": "onest",
+				"value": "2"
+			},
+			{
+				"text": "leâl",
+				"value": "3"
+			},
+			{
+				"text": "virtuôs",
+				"value": "4"
+			},
+			{
+				"text": "farine di fâ ostiis",
+				"value": "5"
 			}
 		],
+		"id": "113",
 		"levels": [
 			{
 				"text": "inesistent",
@@ -334,6 +352,199 @@
 				"value": "20"
 			}
 		],
+		"name": "fur-IT",
+		"positions": [
+			{
+				"type": "Keeper",
+				"value": "Portîr"
+			},
+			{
+				"type": "WingBack",
+				"value": "Tiercin"
+			},
+			{
+				"type": "CentralDefender",
+				"value": "Difensôr centrâl"
+			},
+			{
+				"type": "InnerMidfield",
+				"value": "Centricjampist"
+			},
+			{
+				"type": "Winger",
+				"value": "Ale"
+			},
+			{
+				"type": "Forward",
+				"value": "Tacant"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "Une vore bas",
+				"value": "0"
+			},
+			{
+				"text": "Bas",
+				"value": "0.25"
+			},
+			{
+				"text": "Alt",
+				"value": "0.5"
+			},
+			{
+				"text": "Une vore alt",
+				"value": "0.75"
+			}
+		],
+		"sectors": [
+			{
+				"type": "Midfield",
+				"value": "Centricjamp"
+			},
+			{
+				"type": "RightDefense",
+				"value": "Difese Diestre"
+			},
+			{
+				"type": "CentralDefense",
+				"value": "Difese Centrâl"
+			},
+			{
+				"type": "LeftDefense",
+				"value": "Difese Çampe"
+			},
+			{
+				"type": "RightAttack",
+				"value": "Atac Diestri"
+			},
+			{
+				"type": "CentralAttack",
+				"value": "Atac Centrâl"
+			},
+			{
+				"type": "LeftAttack",
+				"value": "Atac Çampe"
+			}
+		],
+		"skills": [
+			{
+				"type": "Keeper",
+				"value": "Paradis"
+			},
+			{
+				"type": "Stamina",
+				"value": "Resistence"
+			},
+			{
+				"type": "Defender",
+				"value": "Difese"
+			},
+			{
+				"type": "Playmaker",
+				"value": "Regjie"
+			},
+			{
+				"type": "Winger",
+				"value": "Cross"
+			},
+			{
+				"type": "Scorer",
+				"value": "Atac"
+			},
+			{
+				"type": "Kicker",
+				"value": "Tîrs plaçats"
+			},
+			{
+				"type": "Passer",
+				"value": "Passaçs"
+			},
+			{
+				"type": "Experience",
+				"value": "Mistîr"
+			},
+			{
+				"type": "LeaderShip",
+				"value": "Carisme"
+			}
+		],
+		"specialties": [
+			{
+				"type": "None",
+				"value": "Nissune"
+			},
+			{
+				"type": "Technical",
+				"value": "Tecnic"
+			},
+			{
+				"type": "Quick",
+				"value": "Svelt"
+			},
+			{
+				"type": "Powerful",
+				"value": "Potent"
+			},
+			{
+				"type": "Unpredictable",
+				"value": "Imprevedibil"
+			},
+			{
+				"type": "Head",
+				"value": "Cjavade"
+			},
+			{
+				"type": "Regainer",
+				"value": "Svelt a vuarî"
+			}
+		],
+		"spirit": [
+			{
+				"text": "Vuere cidine",
+				"value": "0"
+			},
+			{
+				"text": "imbesteâts",
+				"value": "1"
+			},
+			{
+				"text": "rabiôs",
+				"value": "2"
+			},
+			{
+				"text": "iritâts",
+				"value": "3"
+			},
+			{
+				"text": "pacjifics",
+				"value": "4"
+			},
+			{
+				"text": "calms",
+				"value": "5"
+			},
+			{
+				"text": "contents",
+				"value": "6"
+			},
+			{
+				"text": "sodisfats",
+				"value": "7"
+			},
+			{
+				"text": "in Deliri",
+				"value": "8"
+			},
+			{
+				"text": "su lis stelis",
+				"value": "9"
+			},
+			{
+				"text": "Paradîs in Tiere!",
+				"value": "10"
+			}
+		],
 		"sponsors": [
 			{
 				"text": "imbesteâts",
@@ -376,161 +587,44 @@
 				"value": "9"
 			}
 		],
-		"sectors": [
+		"tactics": [
 			{
-				"type": "Midfield",
-				"value": "Centricjamp"
+				"type": "normal",
+				"value": "Normâl"
 			},
 			{
-				"type": "RightDefense",
-				"value": "Difese Diestre"
+				"type": "pressing",
+				"value": "Pressing"
 			},
 			{
-				"type": "CentralDefense",
-				"value": "Difese Centrâl"
+				"type": "ca",
+				"value": "Cuintripît"
 			},
 			{
-				"type": "LeftDefense",
-				"value": "Difese Çampe"
+				"type": "aim",
+				"value": "Atac tal mieç"
 			},
 			{
-				"type": "RightAttack",
-				"value": "Atac Diestri"
+				"type": "aow",
+				"value": "Atac su lis fasis"
 			},
 			{
-				"type": "CentralAttack",
-				"value": "Atac Centrâl"
+				"type": "",
+				"value": "Scognossût"
 			},
 			{
-				"type": "LeftAttack",
-				"value": "Atac Çampe"
+				"type": "",
+				"value": "Scognossût"
+			},
+			{
+				"type": "creatively",
+				"value": "Zuiâ cun creativitât"
+			},
+			{
+				"type": "longshots",
+				"value": "Tîrs di lontan"
 			}
 		],
-		"ratingSubLevels": [
-			{
-				"text": "Une vore bas",
-				"value": "0"
-			},
-			{
-				"text": "Bas",
-				"value": "0.25"
-			},
-			{
-				"text": "Alt",
-				"value": "0.5"
-			},
-			{
-				"text": "Une vore alt",
-				"value": "0.75"
-			}
-		],
-		"fans": [
-			{
-				"text": "imbesteâts",
-				"value": "0"
-			},
-			{
-				"text": "rabiôs",
-				"value": "1"
-			},
-			{
-				"text": "scjaldinôs",
-				"value": "2"
-			},
-			{
-				"text": "iritâts",
-				"value": "3"
-			},
-			{
-				"text": "malapaiâts",
-				"value": "4"
-			},
-			{
-				"text": "calms",
-				"value": "5"
-			},
-			{
-				"text": "contents",
-				"value": "6"
-			},
-			{
-				"text": "Sodisfats",
-				"value": "7"
-			},
-			{
-				"text": "in deliri",
-				"value": "8"
-			},
-			{
-				"text": "a van di lus",
-				"value": "9"
-			},
-			{
-				"text": "A balin pe strade",
-				"value": "10"
-			},
-			{
-				"text": "Ti mandin poesiis d’amôr",
-				"value": "11"
-			}
-		],
-		"specialties": [
-			{
-				"type": "None",
-				"value": "Nissune"
-			},
-			{
-				"type": "Technical",
-				"value": "Tecnic"
-			},
-			{
-				"type": "Quick",
-				"value": "Svelt"
-			},
-			{
-				"type": "Powerful",
-				"value": "Potent"
-			},
-			{
-				"type": "Unpredictable",
-				"value": "Imprevedibil"
-			},
-			{
-				"type": "Head",
-				"value": "Cjavade"
-			},
-			{
-				"type": "Regainer",
-				"value": "Svelt a vuarî"
-			}
-		],
-		"aggressiveness": [
-			{
-				"text": "trancuil",
-				"value": "0"
-			},
-			{
-				"text": "cuiet",
-				"value": "1"
-			},
-			{
-				"text": "ecuilibrat",
-				"value": "2"
-			},
-			{
-				"text": "impulsîf",
-				"value": "3"
-			},
-			{
-				"text": "scjaldinôs",
-				"value": "4"
-			},
-			{
-				"text": "lunatic",
-				"value": "5"
-			}
-		],
-		"id": "113",
 		"training": [
 			{
 				"type": "Gen",
@@ -588,100 +682,6 @@
 				"type": "Indiv",
 				"value": "Individuâl"
 			}
-		],
-		"fans_match": [
-			{
-				"text": "Miôr no presentâsi",
-				"value": "0"
-			},
-			{
-				"text": "Nus daran une tabacade",
-				"value": "1"
-			},
-			{
-				"text": "O pierdarin",
-				"value": "2"
-			},
-			{
-				"text": "A son favorîts",
-				"value": "3"
-			},
-			{
-				"text": "A àn un ciert vantaç",
-				"value": "4"
-			},
-			{
-				"text": "Mi sa che o impatarin",
-				"value": "5"
-			},
-			{
-				"text": "O vin un ciert vantaç",
-				"value": "6"
-			},
-			{
-				"text": "O sin favorîts",
-				"value": "7"
-			},
-			{
-				"text": "O vinçarìn",
-				"value": "8"
-			},
-			{
-				"text": "Tant che bevi une tace di aghe",
-				"value": "9"
-			},
-			{
-				"text": "Anin a umiliâju",
-				"value": "10"
-			}
-		],
-		"name": "fur-IT",
-		"spirit": [
-			{
-				"text": "Vuere cidine",
-				"value": "0"
-			},
-			{
-				"text": "imbesteâts",
-				"value": "1"
-			},
-			{
-				"text": "rabiôs",
-				"value": "2"
-			},
-			{
-				"text": "iritâts",
-				"value": "3"
-			},
-			{
-				"text": "pacjifics",
-				"value": "4"
-			},
-			{
-				"text": "calms",
-				"value": "5"
-			},
-			{
-				"text": "contents",
-				"value": "6"
-			},
-			{
-				"text": "sodisfats",
-				"value": "7"
-			},
-			{
-				"text": "in Deliri",
-				"value": "8"
-			},
-			{
-				"text": "su lis stelis",
-				"value": "9"
-			},
-			{
-				"text": "Paradîs in Tiere!",
-				"value": "10"
-			}
-		],
-		"desc": "Furlan"
+		]
 	}
 }

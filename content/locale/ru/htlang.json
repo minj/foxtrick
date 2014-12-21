@@ -1,5 +1,71 @@
 {
 	"language": {
+		"aggressiveness": [
+			{
+				"text": "безмятежный",
+				"value": "0"
+			},
+			{
+				"text": "спокойный",
+				"value": "1"
+			},
+			{
+				"text": "уравновешенный",
+				"value": "2"
+			},
+			{
+				"text": "темпераментный",
+				"value": "3"
+			},
+			{
+				"text": "вспыльчивый",
+				"value": "4"
+			},
+			{
+				"text": "агрессивный",
+				"value": "5"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "мерзкий тип",
+				"value": "0"
+			},
+			{
+				"text": "неприятный человек",
+				"value": "1"
+			},
+			{
+				"text": "приятный парень",
+				"value": "2"
+			},
+			{
+				"text": "обаятельный парень",
+				"value": "3"
+			},
+			{
+				"text": "популярный парень",
+				"value": "4"
+			},
+			{
+				"text": "всеобщий любимец",
+				"value": "5"
+			}
+		],
+		"attitude": [
+			{
+				"text": "Играть вполсилы",
+				"value": "-1"
+			},
+			{
+				"text": "Обычный",
+				"value": "0"
+			},
+			{
+				"text": "Матч сезона",
+				"value": "1"
+			}
+		],
 		"confidence": [
 			{
 				"text": "отсутствует",
@@ -42,162 +108,101 @@
 				"value": "9"
 			}
 		],
-		"tactics": [
+		"desc": "Русский (Russian)",
+		"fans": [
 			{
-				"type": "normal",
-				"value": "Нормально"
-			},
-			{
-				"type": "pressing",
-				"value": "Прессинг"
-			},
-			{
-				"type": "ca",
-				"value": "Контратаки"
-			},
-			{
-				"type": "aim",
-				"value": "Атака в центре"
-			},
-			{
-				"type": "aow",
-				"value": "Атака по флангам"
-			},
-			{
-				"type": "",
-				"value": "Неизвестно"
-			},
-			{
-				"type": "",
-				"value": "Неизвестно"
-			},
-			{
-				"type": "creatively",
-				"value": "Играть творчески"
-			},
-			{
-				"type": "longshots",
-				"value": "Дальние удары"
-			}
-		],
-		"honesty": [
-			{
-				"text": "подлый",
+				"text": "в ярости",
 				"value": "0"
 			},
 			{
-				"text": "нечестный",
+				"text": "разгневаны",
 				"value": "1"
 			},
 			{
-				"text": "честный",
+				"text": "рассержены",
 				"value": "2"
 			},
 			{
-				"text": "справедливый",
+				"text": "раздражены",
 				"value": "3"
 			},
 			{
-				"text": "праведный",
+				"text": "разочарованы",
 				"value": "4"
 			},
 			{
-				"text": "святой",
+				"text": "спокойны",
 				"value": "5"
+			},
+			{
+				"text": "довольны",
+				"value": "6"
+			},
+			{
+				"text": "радостны",
+				"value": "7"
+			},
+			{
+				"text": "счастливы",
+				"value": "8"
+			},
+			{
+				"text": "тают от восторга",
+				"value": "9"
+			},
+			{
+				"text": "танцуют на улицах",
+				"value": "10"
+			},
+			{
+				"text": "слагают о Вас поэмы",
+				"value": "11"
 			}
 		],
-		"agreeability": [
+		"fans_match": [
 			{
-				"text": "мерзкий тип",
+				"text": "Лучше не позориться",
 				"value": "0"
 			},
 			{
-				"text": "неприятный человек",
+				"text": "Не разгромили бы нас",
 				"value": "1"
 			},
 			{
-				"text": "приятный парень",
+				"text": "Наверняка проиграем",
 				"value": "2"
 			},
 			{
-				"text": "обаятельный парень",
+				"text": "Фаворит - соперник",
 				"value": "3"
 			},
 			{
-				"text": "популярный парень",
+				"text": "Небольшое преимущество у соперника",
 				"value": "4"
 			},
 			{
-				"text": "всеобщий любимец",
+				"text": "Соперники равны",
 				"value": "5"
-			}
-		],
-		"skills": [
-			{
-				"type": "Keeper",
-				"value": "Вратарь"
 			},
 			{
-				"type": "Stamina",
-				"value": "Выносливость"
+				"text": "Небольшое преимущество у нас",
+				"value": "6"
 			},
 			{
-				"type": "Defender",
-				"value": "Защита"
+				"text": "Мы фавориты",
+				"value": "7"
 			},
 			{
-				"type": "Playmaker",
-				"value": "Полузащита"
+				"text": "Должны побеждать",
+				"value": "8"
 			},
 			{
-				"type": "Winger",
-				"value": "Фланг"
+				"text": "Легкая победа",
+				"value": "9"
 			},
 			{
-				"type": "Scorer",
-				"value": "Нападение"
-			},
-			{
-				"type": "Kicker",
-				"value": "Стандарты"
-			},
-			{
-				"type": "Passer",
-				"value": "Пас"
-			},
-			{
-				"type": "Experience",
-				"value": "Опыт"
-			},
-			{
-				"type": "LeaderShip",
-				"value": "Лидерство"
-			}
-		],
-		"positions": [
-			{
-				"type": "Keeper",
-				"value": "Вратарь"
-			},
-			{
-				"type": "WingBack",
-				"value": "Крайний защитник"
-			},
-			{
-				"type": "CentralDefender",
-				"value": "Центральный защитник"
-			},
-			{
-				"type": "InnerMidfield",
-				"value": "Центральный полузащитник"
-			},
-			{
-				"type": "Winger",
-				"value": "Крайний полузащитник"
-			},
-			{
-				"type": "Forward",
-				"value": "Нападающий"
+				"text": "Обязаны разгромить",
+				"value": "10"
 			}
 		],
 		"fans_season": [
@@ -234,20 +239,33 @@
 				"value": "7"
 			}
 		],
-		"attitude": [
+		"honesty": [
 			{
-				"text": "Играть вполсилы",
-				"value": "-1"
-			},
-			{
-				"text": "Обычный",
+				"text": "подлый",
 				"value": "0"
 			},
 			{
-				"text": "Матч сезона",
+				"text": "нечестный",
 				"value": "1"
+			},
+			{
+				"text": "честный",
+				"value": "2"
+			},
+			{
+				"text": "справедливый",
+				"value": "3"
+			},
+			{
+				"text": "праведный",
+				"value": "4"
+			},
+			{
+				"text": "святой",
+				"value": "5"
 			}
 		],
+		"id": "14",
 		"levels": [
 			{
 				"text": "отсутствует",
@@ -334,6 +352,199 @@
 				"value": "20"
 			}
 		],
+		"name": "ru",
+		"positions": [
+			{
+				"type": "Keeper",
+				"value": "Вратарь"
+			},
+			{
+				"type": "WingBack",
+				"value": "Крайний защитник"
+			},
+			{
+				"type": "CentralDefender",
+				"value": "Центральный защитник"
+			},
+			{
+				"type": "InnerMidfield",
+				"value": "Центральный полузащитник"
+			},
+			{
+				"type": "Winger",
+				"value": "Крайний полузащитник"
+			},
+			{
+				"type": "Forward",
+				"value": "Нападающий"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "низкий",
+				"value": "0"
+			},
+			{
+				"text": "средний",
+				"value": "0.25"
+			},
+			{
+				"text": "высокий",
+				"value": "0.5"
+			},
+			{
+				"text": "очень высокий",
+				"value": "0.75"
+			}
+		],
+		"sectors": [
+			{
+				"type": "Midfield",
+				"value": "Полузащита"
+			},
+			{
+				"type": "RightDefense",
+				"value": "Защита справа"
+			},
+			{
+				"type": "CentralDefense",
+				"value": "Защита по центру"
+			},
+			{
+				"type": "LeftDefense",
+				"value": "Защита слева"
+			},
+			{
+				"type": "RightAttack",
+				"value": "Атака справа"
+			},
+			{
+				"type": "CentralAttack",
+				"value": "Атака по центру"
+			},
+			{
+				"type": "LeftAttack",
+				"value": "Атака слева"
+			}
+		],
+		"skills": [
+			{
+				"type": "Keeper",
+				"value": "Вратарь"
+			},
+			{
+				"type": "Stamina",
+				"value": "Выносливость"
+			},
+			{
+				"type": "Defender",
+				"value": "Защита"
+			},
+			{
+				"type": "Playmaker",
+				"value": "Полузащита"
+			},
+			{
+				"type": "Winger",
+				"value": "Фланг"
+			},
+			{
+				"type": "Scorer",
+				"value": "Нападение"
+			},
+			{
+				"type": "Kicker",
+				"value": "Стандарты"
+			},
+			{
+				"type": "Passer",
+				"value": "Пас"
+			},
+			{
+				"type": "Experience",
+				"value": "Опыт"
+			},
+			{
+				"type": "LeaderShip",
+				"value": "Лидерство"
+			}
+		],
+		"specialties": [
+			{
+				"type": "None",
+				"value": "Без специализации"
+			},
+			{
+				"type": "Technical",
+				"value": "Техничный"
+			},
+			{
+				"type": "Quick",
+				"value": "Быстрый"
+			},
+			{
+				"type": "Powerful",
+				"value": "Мощный"
+			},
+			{
+				"type": "Unpredictable",
+				"value": "Непредсказуемый"
+			},
+			{
+				"type": "Head",
+				"value": "Игра головой"
+			},
+			{
+				"type": "Regainer",
+				"value": "Крепкое здоровье"
+			}
+		],
+		"spirit": [
+			{
+				"text": "холодная война",
+				"value": "0"
+			},
+			{
+				"text": "в ярости",
+				"value": "1"
+			},
+			{
+				"text": "разгневаны",
+				"value": "2"
+			},
+			{
+				"text": "раздражены",
+				"value": "3"
+			},
+			{
+				"text": "равнодушны",
+				"value": "4"
+			},
+			{
+				"text": "спокойны",
+				"value": "5"
+			},
+			{
+				"text": "довольны",
+				"value": "6"
+			},
+			{
+				"text": "радостны",
+				"value": "7"
+			},
+			{
+				"text": "счастливы",
+				"value": "8"
+			},
+			{
+				"text": "на седьмом небе",
+				"value": "9"
+			},
+			{
+				"text": "рай на земле!",
+				"value": "10"
+			}
+		],
 		"sponsors": [
 			{
 				"text": "в ярости",
@@ -376,161 +587,44 @@
 				"value": "9"
 			}
 		],
-		"sectors": [
+		"tactics": [
 			{
-				"type": "Midfield",
-				"value": "Полузащита"
+				"type": "normal",
+				"value": "Нормально"
 			},
 			{
-				"type": "RightDefense",
-				"value": "Защита справа"
+				"type": "pressing",
+				"value": "Прессинг"
 			},
 			{
-				"type": "CentralDefense",
-				"value": "Защита по центру"
+				"type": "ca",
+				"value": "Контратаки"
 			},
 			{
-				"type": "LeftDefense",
-				"value": "Защита слева"
+				"type": "aim",
+				"value": "Атака в центре"
 			},
 			{
-				"type": "RightAttack",
-				"value": "Атака справа"
+				"type": "aow",
+				"value": "Атака по флангам"
 			},
 			{
-				"type": "CentralAttack",
-				"value": "Атака по центру"
+				"type": "",
+				"value": "Неизвестно"
 			},
 			{
-				"type": "LeftAttack",
-				"value": "Атака слева"
+				"type": "",
+				"value": "Неизвестно"
+			},
+			{
+				"type": "creatively",
+				"value": "Играть творчески"
+			},
+			{
+				"type": "longshots",
+				"value": "Дальние удары"
 			}
 		],
-		"ratingSubLevels": [
-			{
-				"text": "низкий",
-				"value": "0"
-			},
-			{
-				"text": "средний",
-				"value": "0.25"
-			},
-			{
-				"text": "высокий",
-				"value": "0.5"
-			},
-			{
-				"text": "очень высокий",
-				"value": "0.75"
-			}
-		],
-		"fans": [
-			{
-				"text": "в ярости",
-				"value": "0"
-			},
-			{
-				"text": "разгневаны",
-				"value": "1"
-			},
-			{
-				"text": "рассержены",
-				"value": "2"
-			},
-			{
-				"text": "раздражены",
-				"value": "3"
-			},
-			{
-				"text": "разочарованы",
-				"value": "4"
-			},
-			{
-				"text": "спокойны",
-				"value": "5"
-			},
-			{
-				"text": "довольны",
-				"value": "6"
-			},
-			{
-				"text": "радостны",
-				"value": "7"
-			},
-			{
-				"text": "счастливы",
-				"value": "8"
-			},
-			{
-				"text": "тают от восторга",
-				"value": "9"
-			},
-			{
-				"text": "танцуют на улицах",
-				"value": "10"
-			},
-			{
-				"text": "слагают о Вас поэмы",
-				"value": "11"
-			}
-		],
-		"specialties": [
-			{
-				"type": "None",
-				"value": "Без специализации"
-			},
-			{
-				"type": "Technical",
-				"value": "Техничный"
-			},
-			{
-				"type": "Quick",
-				"value": "Быстрый"
-			},
-			{
-				"type": "Powerful",
-				"value": "Мощный"
-			},
-			{
-				"type": "Unpredictable",
-				"value": "Непредсказуемый"
-			},
-			{
-				"type": "Head",
-				"value": "Игра головой"
-			},
-			{
-				"type": "Regainer",
-				"value": "Крепкое здоровье"
-			}
-		],
-		"aggressiveness": [
-			{
-				"text": "безмятежный",
-				"value": "0"
-			},
-			{
-				"text": "спокойный",
-				"value": "1"
-			},
-			{
-				"text": "уравновешенный",
-				"value": "2"
-			},
-			{
-				"text": "темпераментный",
-				"value": "3"
-			},
-			{
-				"text": "вспыльчивый",
-				"value": "4"
-			},
-			{
-				"text": "агрессивный",
-				"value": "5"
-			}
-		],
-		"id": "14",
 		"training": [
 			{
 				"type": "Gen",
@@ -588,100 +682,6 @@
 				"type": "Indiv",
 				"value": "Индивидуальная"
 			}
-		],
-		"fans_match": [
-			{
-				"text": "Лучше не позориться",
-				"value": "0"
-			},
-			{
-				"text": "Не разгромили бы нас",
-				"value": "1"
-			},
-			{
-				"text": "Наверняка проиграем",
-				"value": "2"
-			},
-			{
-				"text": "Фаворит - соперник",
-				"value": "3"
-			},
-			{
-				"text": "Небольшое преимущество у соперника",
-				"value": "4"
-			},
-			{
-				"text": "Соперники равны",
-				"value": "5"
-			},
-			{
-				"text": "Небольшое преимущество у нас",
-				"value": "6"
-			},
-			{
-				"text": "Мы фавориты",
-				"value": "7"
-			},
-			{
-				"text": "Должны побеждать",
-				"value": "8"
-			},
-			{
-				"text": "Легкая победа",
-				"value": "9"
-			},
-			{
-				"text": "Обязаны разгромить",
-				"value": "10"
-			}
-		],
-		"name": "ru",
-		"spirit": [
-			{
-				"text": "холодная война",
-				"value": "0"
-			},
-			{
-				"text": "в ярости",
-				"value": "1"
-			},
-			{
-				"text": "разгневаны",
-				"value": "2"
-			},
-			{
-				"text": "раздражены",
-				"value": "3"
-			},
-			{
-				"text": "равнодушны",
-				"value": "4"
-			},
-			{
-				"text": "спокойны",
-				"value": "5"
-			},
-			{
-				"text": "довольны",
-				"value": "6"
-			},
-			{
-				"text": "радостны",
-				"value": "7"
-			},
-			{
-				"text": "счастливы",
-				"value": "8"
-			},
-			{
-				"text": "на седьмом небе",
-				"value": "9"
-			},
-			{
-				"text": "рай на земле!",
-				"value": "10"
-			}
-		],
-		"desc": "Русский (Russian)"
+		]
 	}
 }

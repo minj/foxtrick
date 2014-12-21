@@ -1,5 +1,71 @@
 {
 	"language": {
+		"aggressiveness": [
+			{
+				"text": "hiền lành",
+				"value": "0"
+			},
+			{
+				"text": "điềm tĩnh",
+				"value": "1"
+			},
+			{
+				"text": "ôn hòa",
+				"value": "2"
+			},
+			{
+				"text": "thất thường",
+				"value": "3"
+			},
+			{
+				"text": "dễ nổi giận",
+				"value": "4"
+			},
+			{
+				"text": "thiếu tự chủ",
+				"value": "5"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "kẻ cáu bẳn",
+				"value": "0"
+			},
+			{
+				"text": "người thích tranh cãi",
+				"value": "1"
+			},
+			{
+				"text": "người dễ chịu",
+				"value": "2"
+			},
+			{
+				"text": "người đáng mến",
+				"value": "3"
+			},
+			{
+				"text": "người được ngưỡng mộ",
+				"value": "4"
+			},
+			{
+				"text": "thành viên được yêu mến",
+				"value": "5"
+			}
+		],
+		"attitude": [
+			{
+				"text": "Tâm lý thoải mái",
+				"value": "-1"
+			},
+			{
+				"text": "Bình thường",
+				"value": "0"
+			},
+			{
+				"text": "Trận đấu sinh tử",
+				"value": "1"
+			}
+		],
 		"confidence": [
 			{
 				"text": "không có",
@@ -42,162 +108,101 @@
 				"value": "9"
 			}
 		],
-		"tactics": [
+		"desc": "Tiếng Việt",
+		"fans": [
 			{
-				"type": "normal",
-				"value": "Bình thường"
-			},
-			{
-				"type": "pressing",
-				"value": "Kèm chặt"
-			},
-			{
-				"type": "ca",
-				"value": "Phòng thủ phản công"
-			},
-			{
-				"type": "aim",
-				"value": "Tấn công trung lộ"
-			},
-			{
-				"type": "aow",
-				"value": "Tấn công cánh"
-			},
-			{
-				"type": "",
-				"value": "Không biết"
-			},
-			{
-				"type": "",
-				"value": "Không biết"
-			},
-			{
-				"type": "creatively",
-				"value": "Chơi sáng tạo"
-			},
-			{
-				"type": "longshots",
-				"value": "Sút xa"
-			}
-		],
-		"honesty": [
-			{
-				"text": "gian lận",
+				"text": "đằng đằng sát khí",
 				"value": "0"
 			},
 			{
-				"text": "thiếu trung thực",
+				"text": "giận dữ",
 				"value": "1"
 			},
 			{
-				"text": "trung thực",
+				"text": "tức giận",
 				"value": "2"
 			},
 			{
-				"text": "chính trực",
+				"text": "bực dọc",
 				"value": "3"
 			},
 			{
-				"text": "cao thượng",
+				"text": "thất vọng",
 				"value": "4"
 			},
 			{
-				"text": "thánh thiện",
+				"text": "bình tĩnh",
 				"value": "5"
+			},
+			{
+				"text": "hài lòng",
+				"value": "6"
+			},
+			{
+				"text": "thỏa mãn",
+				"value": "7"
+			},
+			{
+				"text": "cuồng nhiệt",
+				"value": "8"
+			},
+			{
+				"text": "lâng lâng",
+				"value": "9"
+			},
+			{
+				"text": "nhảy múa trên đường",
+				"value": "10"
+			},
+			{
+				"text": "Gởi bạn thư hâm mộ",
+				"value": "11"
 			}
 		],
-		"agreeability": [
+		"fans_match": [
 			{
-				"text": "kẻ cáu bẳn",
+				"text": "Tốt nhất là đừng tới!",
 				"value": "0"
 			},
 			{
-				"text": "người thích tranh cãi",
+				"text": "Họ vượt trội so với chúng ta",
 				"value": "1"
 			},
 			{
-				"text": "người dễ chịu",
+				"text": "Mình thua là cái chắc",
 				"value": "2"
 			},
 			{
-				"text": "người đáng mến",
+				"text": "Họ được đánh giá cao hơn",
 				"value": "3"
 			},
 			{
-				"text": "người được ngưỡng mộ",
+				"text": "Họ có chút lợi thế",
 				"value": "4"
 			},
 			{
-				"text": "thành viên được yêu mến",
+				"text": "Có lẽ là hòa",
 				"value": "5"
-			}
-		],
-		"skills": [
-			{
-				"type": "Keeper",
-				"value": "Chụp bóng"
 			},
 			{
-				"type": "Stamina",
-				"value": "Thể lực"
+				"text": "Ta có chút lợi thế",
+				"value": "6"
 			},
 			{
-				"type": "Defender",
-				"value": "Phòng thủ"
+				"text": "Ta được đánh giá cao hơn",
+				"value": "7"
 			},
 			{
-				"type": "Playmaker",
-				"value": "Kiến thiết"
+				"text": "Ta sẽ thắng",
+				"value": "8"
 			},
 			{
-				"type": "Winger",
-				"value": "Chạy cánh"
+				"text": "Chuyện nhỏ!",
+				"value": "9"
 			},
 			{
-				"type": "Scorer",
-				"value": "Ghi bàn"
-			},
-			{
-				"type": "Kicker",
-				"value": "Đá phạt"
-			},
-			{
-				"type": "Passer",
-				"value": "Chuyền bóng"
-			},
-			{
-				"type": "Experience",
-				"value": "Kinh nghiệm"
-			},
-			{
-				"type": "LeaderShip",
-				"value": "Khả năng lãnh đạo"
-			}
-		],
-		"positions": [
-			{
-				"type": "Keeper",
-				"value": "Thủ môn"
-			},
-			{
-				"type": "WingBack",
-				"value": "Hậu vệ cánh"
-			},
-			{
-				"type": "CentralDefender",
-				"value": "Trung vệ"
-			},
-			{
-				"type": "InnerMidfield",
-				"value": "Tiền vệ trung tâm"
-			},
-			{
-				"type": "Winger",
-				"value": "Tiền vệ cánh"
-			},
-			{
-				"type": "Forward",
-				"value": "Tiền đạo"
+				"text": "Làm thịt bọn nó thôi",
+				"value": "10"
 			}
 		],
 		"fans_season": [
@@ -234,20 +239,33 @@
 				"value": "7"
 			}
 		],
-		"attitude": [
+		"honesty": [
 			{
-				"text": "Tâm lý thoải mái",
-				"value": "-1"
-			},
-			{
-				"text": "Bình thường",
+				"text": "gian lận",
 				"value": "0"
 			},
 			{
-				"text": "Trận đấu sinh tử",
+				"text": "thiếu trung thực",
 				"value": "1"
+			},
+			{
+				"text": "trung thực",
+				"value": "2"
+			},
+			{
+				"text": "chính trực",
+				"value": "3"
+			},
+			{
+				"text": "cao thượng",
+				"value": "4"
+			},
+			{
+				"text": "thánh thiện",
+				"value": "5"
 			}
 		],
+		"id": "55",
 		"levels": [
 			{
 				"text": "bất tài",
@@ -334,6 +352,199 @@
 				"value": "20"
 			}
 		],
+		"name": "vi",
+		"positions": [
+			{
+				"type": "Keeper",
+				"value": "Thủ môn"
+			},
+			{
+				"type": "WingBack",
+				"value": "Hậu vệ cánh"
+			},
+			{
+				"type": "CentralDefender",
+				"value": "Trung vệ"
+			},
+			{
+				"type": "InnerMidfield",
+				"value": "Tiền vệ trung tâm"
+			},
+			{
+				"type": "Winger",
+				"value": "Tiền vệ cánh"
+			},
+			{
+				"type": "Forward",
+				"value": "Tiền đạo"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "Rất thấp",
+				"value": "0"
+			},
+			{
+				"text": "Thấp",
+				"value": "0.25"
+			},
+			{
+				"text": "Cao",
+				"value": "0.5"
+			},
+			{
+				"text": "Rất cao",
+				"value": "0.75"
+			}
+		],
+		"sectors": [
+			{
+				"type": "Midfield",
+				"value": "Trung tuyến"
+			},
+			{
+				"type": "RightDefense",
+				"value": "Phòng ngự cánh phải"
+			},
+			{
+				"type": "CentralDefense",
+				"value": "Phòng ngự trung lộ"
+			},
+			{
+				"type": "LeftDefense",
+				"value": "Phòng ngự cánh trái"
+			},
+			{
+				"type": "RightAttack",
+				"value": "Tấn công cánh phải"
+			},
+			{
+				"type": "CentralAttack",
+				"value": "Tấn công trung lộ"
+			},
+			{
+				"type": "LeftAttack",
+				"value": "Tấn công cánh trái"
+			}
+		],
+		"skills": [
+			{
+				"type": "Keeper",
+				"value": "Chụp bóng"
+			},
+			{
+				"type": "Stamina",
+				"value": "Thể lực"
+			},
+			{
+				"type": "Defender",
+				"value": "Phòng thủ"
+			},
+			{
+				"type": "Playmaker",
+				"value": "Kiến thiết"
+			},
+			{
+				"type": "Winger",
+				"value": "Chạy cánh"
+			},
+			{
+				"type": "Scorer",
+				"value": "Ghi bàn"
+			},
+			{
+				"type": "Kicker",
+				"value": "Đá phạt"
+			},
+			{
+				"type": "Passer",
+				"value": "Chuyền bóng"
+			},
+			{
+				"type": "Experience",
+				"value": "Kinh nghiệm"
+			},
+			{
+				"type": "LeaderShip",
+				"value": "Khả năng lãnh đạo"
+			}
+		],
+		"specialties": [
+			{
+				"type": "None",
+				"value": "Không có"
+			},
+			{
+				"type": "Technical",
+				"value": "Kỹ thuật"
+			},
+			{
+				"type": "Quick",
+				"value": "Nhanh nhẹn"
+			},
+			{
+				"type": "Powerful",
+				"value": "Sức mạnh"
+			},
+			{
+				"type": "Unpredictable",
+				"value": "Ngẫu hứng"
+			},
+			{
+				"type": "Head",
+				"value": "Đánh đầu"
+			},
+			{
+				"type": "Regainer",
+				"value": "Hồi phục nhanh"
+			}
+		],
+		"spirit": [
+			{
+				"text": "như chiến tranh lạnh",
+				"value": "0"
+			},
+			{
+				"text": "đằng đằng sát khí",
+				"value": "1"
+			},
+			{
+				"text": "giận dữ",
+				"value": "2"
+			},
+			{
+				"text": "bực dọc",
+				"value": "3"
+			},
+			{
+				"text": "điềm tĩnh",
+				"value": "4"
+			},
+			{
+				"text": "bình thường",
+				"value": "5"
+			},
+			{
+				"text": "hài lòng",
+				"value": "6"
+			},
+			{
+				"text": "thỏa mãn",
+				"value": "7"
+			},
+			{
+				"text": "cuồng nhiệt",
+				"value": "8"
+			},
+			{
+				"text": "lâng lâng",
+				"value": "9"
+			},
+			{
+				"text": "Thiên đường trần gian!",
+				"value": "10"
+			}
+		],
 		"sponsors": [
 			{
 				"text": "đằng đằng sát khí",
@@ -376,161 +587,44 @@
 				"value": "9"
 			}
 		],
-		"sectors": [
+		"tactics": [
 			{
-				"type": "Midfield",
-				"value": "Trung tuyến"
+				"type": "normal",
+				"value": "Bình thường"
 			},
 			{
-				"type": "RightDefense",
-				"value": "Phòng ngự cánh phải"
+				"type": "pressing",
+				"value": "Kèm chặt"
 			},
 			{
-				"type": "CentralDefense",
-				"value": "Phòng ngự trung lộ"
+				"type": "ca",
+				"value": "Phòng thủ phản công"
 			},
 			{
-				"type": "LeftDefense",
-				"value": "Phòng ngự cánh trái"
-			},
-			{
-				"type": "RightAttack",
-				"value": "Tấn công cánh phải"
-			},
-			{
-				"type": "CentralAttack",
+				"type": "aim",
 				"value": "Tấn công trung lộ"
 			},
 			{
-				"type": "LeftAttack",
-				"value": "Tấn công cánh trái"
+				"type": "aow",
+				"value": "Tấn công cánh"
+			},
+			{
+				"type": "",
+				"value": "Không biết"
+			},
+			{
+				"type": "",
+				"value": "Không biết"
+			},
+			{
+				"type": "creatively",
+				"value": "Chơi sáng tạo"
+			},
+			{
+				"type": "longshots",
+				"value": "Sút xa"
 			}
 		],
-		"ratingSubLevels": [
-			{
-				"text": "Rất thấp",
-				"value": "0"
-			},
-			{
-				"text": "Thấp",
-				"value": "0.25"
-			},
-			{
-				"text": "Cao",
-				"value": "0.5"
-			},
-			{
-				"text": "Rất cao",
-				"value": "0.75"
-			}
-		],
-		"fans": [
-			{
-				"text": "đằng đằng sát khí",
-				"value": "0"
-			},
-			{
-				"text": "giận dữ",
-				"value": "1"
-			},
-			{
-				"text": "tức giận",
-				"value": "2"
-			},
-			{
-				"text": "bực dọc",
-				"value": "3"
-			},
-			{
-				"text": "thất vọng",
-				"value": "4"
-			},
-			{
-				"text": "bình tĩnh",
-				"value": "5"
-			},
-			{
-				"text": "hài lòng",
-				"value": "6"
-			},
-			{
-				"text": "thỏa mãn",
-				"value": "7"
-			},
-			{
-				"text": "cuồng nhiệt",
-				"value": "8"
-			},
-			{
-				"text": "lâng lâng",
-				"value": "9"
-			},
-			{
-				"text": "nhảy múa trên đường",
-				"value": "10"
-			},
-			{
-				"text": "Gởi bạn thư hâm mộ",
-				"value": "11"
-			}
-		],
-		"specialties": [
-			{
-				"type": "None",
-				"value": "Không có"
-			},
-			{
-				"type": "Technical",
-				"value": "Kỹ thuật"
-			},
-			{
-				"type": "Quick",
-				"value": "Nhanh nhẹn"
-			},
-			{
-				"type": "Powerful",
-				"value": "Sức mạnh"
-			},
-			{
-				"type": "Unpredictable",
-				"value": "Ngẫu hứng"
-			},
-			{
-				"type": "Head",
-				"value": "Đánh đầu"
-			},
-			{
-				"type": "Regainer",
-				"value": "Hồi phục nhanh"
-			}
-		],
-		"aggressiveness": [
-			{
-				"text": "hiền lành",
-				"value": "0"
-			},
-			{
-				"text": "điềm tĩnh",
-				"value": "1"
-			},
-			{
-				"text": "ôn hòa",
-				"value": "2"
-			},
-			{
-				"text": "thất thường",
-				"value": "3"
-			},
-			{
-				"text": "dễ nổi giận",
-				"value": "4"
-			},
-			{
-				"text": "thiếu tự chủ",
-				"value": "5"
-			}
-		],
-		"id": "55",
 		"training": [
 			{
 				"type": "Gen",
@@ -588,100 +682,6 @@
 				"type": "Indiv",
 				"value": "Cá nhân"
 			}
-		],
-		"fans_match": [
-			{
-				"text": "Tốt nhất là đừng tới!",
-				"value": "0"
-			},
-			{
-				"text": "Họ vượt trội so với chúng ta",
-				"value": "1"
-			},
-			{
-				"text": "Mình thua là cái chắc",
-				"value": "2"
-			},
-			{
-				"text": "Họ được đánh giá cao hơn",
-				"value": "3"
-			},
-			{
-				"text": "Họ có chút lợi thế",
-				"value": "4"
-			},
-			{
-				"text": "Có lẽ là hòa",
-				"value": "5"
-			},
-			{
-				"text": "Ta có chút lợi thế",
-				"value": "6"
-			},
-			{
-				"text": "Ta được đánh giá cao hơn",
-				"value": "7"
-			},
-			{
-				"text": "Ta sẽ thắng",
-				"value": "8"
-			},
-			{
-				"text": "Chuyện nhỏ!",
-				"value": "9"
-			},
-			{
-				"text": "Làm thịt bọn nó thôi",
-				"value": "10"
-			}
-		],
-		"name": "vi",
-		"spirit": [
-			{
-				"text": "như chiến tranh lạnh",
-				"value": "0"
-			},
-			{
-				"text": "đằng đằng sát khí",
-				"value": "1"
-			},
-			{
-				"text": "giận dữ",
-				"value": "2"
-			},
-			{
-				"text": "bực dọc",
-				"value": "3"
-			},
-			{
-				"text": "điềm tĩnh",
-				"value": "4"
-			},
-			{
-				"text": "bình thường",
-				"value": "5"
-			},
-			{
-				"text": "hài lòng",
-				"value": "6"
-			},
-			{
-				"text": "thỏa mãn",
-				"value": "7"
-			},
-			{
-				"text": "cuồng nhiệt",
-				"value": "8"
-			},
-			{
-				"text": "lâng lâng",
-				"value": "9"
-			},
-			{
-				"text": "Thiên đường trần gian!",
-				"value": "10"
-			}
-		],
-		"desc": "Tiếng Việt"
+		]
 	}
 }

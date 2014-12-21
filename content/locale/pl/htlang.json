@@ -1,5 +1,71 @@
 {
 	"language": {
+		"aggressiveness": [
+			{
+				"text": "spokojny",
+				"value": "0"
+			},
+			{
+				"text": "opanowany",
+				"value": "1"
+			},
+			{
+				"text": "zrównoważony",
+				"value": "2"
+			},
+			{
+				"text": "z charakterem",
+				"value": "3"
+			},
+			{
+				"text": "porywczy",
+				"value": "4"
+			},
+			{
+				"text": "niezrównoważony",
+				"value": "5"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "złośliwy",
+				"value": "0"
+			},
+			{
+				"text": "kontrowersyjny",
+				"value": "1"
+			},
+			{
+				"text": "przyjemny",
+				"value": "2"
+			},
+			{
+				"text": "sympatyczny",
+				"value": "3"
+			},
+			{
+				"text": "popularny",
+				"value": "4"
+			},
+			{
+				"text": "uwielbiany przez zespół",
+				"value": "5"
+			}
+		],
+		"attitude": [
+			{
+				"text": "gra na luzie (PIC)",
+				"value": "-1"
+			},
+			{
+				"text": "normalne spotkanie",
+				"value": "0"
+			},
+			{
+				"text": "mecz sezonu (MOTS)",
+				"value": "1"
+			}
+		],
 		"confidence": [
 			{
 				"text": "beznadziejna",
@@ -42,162 +108,101 @@
 				"value": "9"
 			}
 		],
-		"tactics": [
+		"desc": "Polski",
+		"fans": [
 			{
-				"type": "normal",
-				"value": "normalny"
-			},
-			{
-				"type": "pressing",
-				"value": "Pressing"
-			},
-			{
-				"type": "ca",
-				"value": "Gra z kontry"
-			},
-			{
-				"type": "aim",
-				"value": "Atak środkiem"
-			},
-			{
-				"type": "aow",
-				"value": "Atak skrzydłami"
-			},
-			{
-				"type": "",
-				"value": "nieznany"
-			},
-			{
-				"type": "",
-				"value": "nieznany"
-			},
-			{
-				"type": "creatively",
-				"value": "Gra kreatywna"
-			},
-			{
-				"type": "longshots",
-				"value": "Strzały z dystansu"
-			}
-		],
-		"honesty": [
-			{
-				"text": "podły",
+				"text": "żądni krwi",
 				"value": "0"
 			},
 			{
-				"text": "nieuczciwy",
+				"text": "wściekli",
 				"value": "1"
 			},
 			{
-				"text": "uczciwy",
+				"text": "rozzłoszczeni",
 				"value": "2"
 			},
 			{
-				"text": "prawy",
+				"text": "zirytowani",
 				"value": "3"
 			},
 			{
-				"text": "szlachetny",
+				"text": "zawiedzeni",
 				"value": "4"
 			},
 			{
-				"text": "świątobliwy",
+				"text": "obojętni",
 				"value": "5"
+			},
+			{
+				"text": "spokojni",
+				"value": "6"
+			},
+			{
+				"text": "zadowoleni",
+				"value": "7"
+			},
+			{
+				"text": "zachwyceni",
+				"value": "8"
+			},
+			{
+				"text": "szaleją z radości",
+				"value": "9"
+			},
+			{
+				"text": "w siódmym niebie",
+				"value": "10"
+			},
+			{
+				"text": "przysyłają poematy miłosne",
+				"value": "11"
 			}
 		],
-		"agreeability": [
+		"fans_match": [
 			{
-				"text": "złośliwy",
+				"text": "lepiej się nie pokazujmy!",
 				"value": "0"
 			},
 			{
-				"text": "kontrowersyjny",
+				"text": "nie mamy szans",
 				"value": "1"
 			},
 			{
-				"text": "przyjemny",
+				"text": "przegramy",
 				"value": "2"
 			},
 			{
-				"text": "sympatyczny",
+				"text": "to oni są faworytami",
 				"value": "3"
 			},
 			{
-				"text": "popularny",
+				"text": "to oni mają przewagę",
 				"value": "4"
 			},
 			{
-				"text": "uwielbiany przez zespół",
+				"text": "szanse są wyrównane",
 				"value": "5"
-			}
-		],
-		"skills": [
-			{
-				"type": "Keeper",
-				"value": "Bramkarz"
 			},
 			{
-				"type": "Stamina",
-				"value": "Kondycja"
+				"text": "mamy przewagę",
+				"value": "6"
 			},
 			{
-				"type": "Defender",
-				"value": "Defensywa"
+				"text": "jesteśmy faworytami",
+				"value": "7"
 			},
 			{
-				"type": "Playmaker",
-				"value": "Rozgrywanie"
+				"text": "wygramy",
+				"value": "8"
 			},
 			{
-				"type": "Winger",
-				"value": "Skrzydłowy"
+				"text": "bułka z masłem!",
+				"value": "9"
 			},
 			{
-				"type": "Scorer",
-				"value": "Skuteczność"
-			},
-			{
-				"type": "Kicker",
-				"value": "St.fragmenty"
-			},
-			{
-				"type": "Passer",
-				"value": "Podania"
-			},
-			{
-				"type": "Experience",
-				"value": "Doświadczenie"
-			},
-			{
-				"type": "LeaderShip",
-				"value": "Przywódca"
-			}
-		],
-		"positions": [
-			{
-				"type": "Keeper",
-				"value": "bramkarz"
-			},
-			{
-				"type": "WingBack",
-				"value": "boczny obrońca"
-			},
-			{
-				"type": "CentralDefender",
-				"value": "stoper"
-			},
-			{
-				"type": "InnerMidfield",
-				"value": "pomocnik"
-			},
-			{
-				"type": "Winger",
-				"value": "skrzydłowy"
-			},
-			{
-				"type": "Forward",
-				"value": "napastnik"
+				"text": "poniżmy ich",
+				"value": "10"
 			}
 		],
 		"fans_season": [
@@ -234,20 +239,33 @@
 				"value": "7"
 			}
 		],
-		"attitude": [
+		"honesty": [
 			{
-				"text": "gra na luzie (PIC)",
-				"value": "-1"
-			},
-			{
-				"text": "normalne spotkanie",
+				"text": "podły",
 				"value": "0"
 			},
 			{
-				"text": "mecz sezonu (MOTS)",
+				"text": "nieuczciwy",
 				"value": "1"
+			},
+			{
+				"text": "uczciwy",
+				"value": "2"
+			},
+			{
+				"text": "prawy",
+				"value": "3"
+			},
+			{
+				"text": "szlachetny",
+				"value": "4"
+			},
+			{
+				"text": "świątobliwy",
+				"value": "5"
 			}
 		],
+		"id": "13",
 		"levels": [
 			{
 				"text": "beznadziejny",
@@ -334,6 +352,199 @@
 				"value": "20"
 			}
 		],
+		"name": "pl",
+		"positions": [
+			{
+				"type": "Keeper",
+				"value": "bramkarz"
+			},
+			{
+				"type": "WingBack",
+				"value": "boczny obrońca"
+			},
+			{
+				"type": "CentralDefender",
+				"value": "stoper"
+			},
+			{
+				"type": "InnerMidfield",
+				"value": "pomocnik"
+			},
+			{
+				"type": "Winger",
+				"value": "skrzydłowy"
+			},
+			{
+				"type": "Forward",
+				"value": "napastnik"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "min.",
+				"value": "0"
+			},
+			{
+				"text": "niski",
+				"value": "0.25"
+			},
+			{
+				"text": "wysoki",
+				"value": "0.5"
+			},
+			{
+				"text": "maks.",
+				"value": "0.75"
+			}
+		],
+		"sectors": [
+			{
+				"type": "Midfield",
+				"value": "Pomoc"
+			},
+			{
+				"type": "RightDefense",
+				"value": "Prawa obrona"
+			},
+			{
+				"type": "CentralDefense",
+				"value": "Środek obrony"
+			},
+			{
+				"type": "LeftDefense",
+				"value": "Lewa obrona"
+			},
+			{
+				"type": "RightAttack",
+				"value": "Prawy atak"
+			},
+			{
+				"type": "CentralAttack",
+				"value": "Środkowy atak"
+			},
+			{
+				"type": "LeftAttack",
+				"value": "Lewy atak"
+			}
+		],
+		"skills": [
+			{
+				"type": "Keeper",
+				"value": "Bramkarz"
+			},
+			{
+				"type": "Stamina",
+				"value": "Kondycja"
+			},
+			{
+				"type": "Defender",
+				"value": "Defensywa"
+			},
+			{
+				"type": "Playmaker",
+				"value": "Rozgrywanie"
+			},
+			{
+				"type": "Winger",
+				"value": "Skrzydłowy"
+			},
+			{
+				"type": "Scorer",
+				"value": "Skuteczność"
+			},
+			{
+				"type": "Kicker",
+				"value": "St.fragmenty"
+			},
+			{
+				"type": "Passer",
+				"value": "Podania"
+			},
+			{
+				"type": "Experience",
+				"value": "Doświadczenie"
+			},
+			{
+				"type": "LeaderShip",
+				"value": "Przywódca"
+			}
+		],
+		"specialties": [
+			{
+				"type": "None",
+				"value": "brak"
+			},
+			{
+				"type": "Technical",
+				"value": "techniczny"
+			},
+			{
+				"type": "Quick",
+				"value": "szybki"
+			},
+			{
+				"type": "Powerful",
+				"value": "atletyczny"
+			},
+			{
+				"type": "Unpredictable",
+				"value": "nieprzewidywalny"
+			},
+			{
+				"type": "Head",
+				"value": "gra głową"
+			},
+			{
+				"type": "Regainer",
+				"value": "witalny"
+			}
+		],
+		"spirit": [
+			{
+				"text": "jak w czasie Zimnej Wojny",
+				"value": "0"
+			},
+			{
+				"text": "żądni krwi",
+				"value": "1"
+			},
+			{
+				"text": "wściekli",
+				"value": "2"
+			},
+			{
+				"text": "zirytowani",
+				"value": "3"
+			},
+			{
+				"text": "opanowani",
+				"value": "4"
+			},
+			{
+				"text": "obojętni",
+				"value": "5"
+			},
+			{
+				"text": "spokojni",
+				"value": "6"
+			},
+			{
+				"text": "zadowoleni",
+				"value": "7"
+			},
+			{
+				"text": "zachwyceni",
+				"value": "8"
+			},
+			{
+				"text": "w siódmym niebie",
+				"value": "9"
+			},
+			{
+				"text": "Raj na Ziemi!",
+				"value": "10"
+			}
+		],
 		"sponsors": [
 			{
 				"text": "żądni krwi",
@@ -376,161 +587,44 @@
 				"value": "9"
 			}
 		],
-		"sectors": [
+		"tactics": [
 			{
-				"type": "Midfield",
-				"value": "Pomoc"
+				"type": "normal",
+				"value": "normalny"
 			},
 			{
-				"type": "RightDefense",
-				"value": "Prawa obrona"
+				"type": "pressing",
+				"value": "Pressing"
 			},
 			{
-				"type": "CentralDefense",
-				"value": "Środek obrony"
+				"type": "ca",
+				"value": "Gra z kontry"
 			},
 			{
-				"type": "LeftDefense",
-				"value": "Lewa obrona"
+				"type": "aim",
+				"value": "Atak środkiem"
 			},
 			{
-				"type": "RightAttack",
-				"value": "Prawy atak"
+				"type": "aow",
+				"value": "Atak skrzydłami"
 			},
 			{
-				"type": "CentralAttack",
-				"value": "Środkowy atak"
+				"type": "",
+				"value": "nieznany"
 			},
 			{
-				"type": "LeftAttack",
-				"value": "Lewy atak"
+				"type": "",
+				"value": "nieznany"
+			},
+			{
+				"type": "creatively",
+				"value": "Gra kreatywna"
+			},
+			{
+				"type": "longshots",
+				"value": "Strzały z dystansu"
 			}
 		],
-		"ratingSubLevels": [
-			{
-				"text": "min.",
-				"value": "0"
-			},
-			{
-				"text": "niski",
-				"value": "0.25"
-			},
-			{
-				"text": "wysoki",
-				"value": "0.5"
-			},
-			{
-				"text": "maks.",
-				"value": "0.75"
-			}
-		],
-		"fans": [
-			{
-				"text": "żądni krwi",
-				"value": "0"
-			},
-			{
-				"text": "wściekli",
-				"value": "1"
-			},
-			{
-				"text": "rozzłoszczeni",
-				"value": "2"
-			},
-			{
-				"text": "zirytowani",
-				"value": "3"
-			},
-			{
-				"text": "zawiedzeni",
-				"value": "4"
-			},
-			{
-				"text": "obojętni",
-				"value": "5"
-			},
-			{
-				"text": "spokojni",
-				"value": "6"
-			},
-			{
-				"text": "zadowoleni",
-				"value": "7"
-			},
-			{
-				"text": "zachwyceni",
-				"value": "8"
-			},
-			{
-				"text": "szaleją z radości",
-				"value": "9"
-			},
-			{
-				"text": "w siódmym niebie",
-				"value": "10"
-			},
-			{
-				"text": "przysyłają poematy miłosne",
-				"value": "11"
-			}
-		],
-		"specialties": [
-			{
-				"type": "None",
-				"value": "brak"
-			},
-			{
-				"type": "Technical",
-				"value": "techniczny"
-			},
-			{
-				"type": "Quick",
-				"value": "szybki"
-			},
-			{
-				"type": "Powerful",
-				"value": "atletyczny"
-			},
-			{
-				"type": "Unpredictable",
-				"value": "nieprzewidywalny"
-			},
-			{
-				"type": "Head",
-				"value": "gra głową"
-			},
-			{
-				"type": "Regainer",
-				"value": "witalny"
-			}
-		],
-		"aggressiveness": [
-			{
-				"text": "spokojny",
-				"value": "0"
-			},
-			{
-				"text": "opanowany",
-				"value": "1"
-			},
-			{
-				"text": "zrównoważony",
-				"value": "2"
-			},
-			{
-				"text": "z charakterem",
-				"value": "3"
-			},
-			{
-				"text": "porywczy",
-				"value": "4"
-			},
-			{
-				"text": "niezrównoważony",
-				"value": "5"
-			}
-		],
-		"id": "13",
 		"training": [
 			{
 				"type": "Gen",
@@ -588,100 +682,6 @@
 				"type": "Indiv",
 				"value": "indywidualny"
 			}
-		],
-		"fans_match": [
-			{
-				"text": "lepiej się nie pokazujmy!",
-				"value": "0"
-			},
-			{
-				"text": "nie mamy szans",
-				"value": "1"
-			},
-			{
-				"text": "przegramy",
-				"value": "2"
-			},
-			{
-				"text": "to oni są faworytami",
-				"value": "3"
-			},
-			{
-				"text": "to oni mają przewagę",
-				"value": "4"
-			},
-			{
-				"text": "szanse są wyrównane",
-				"value": "5"
-			},
-			{
-				"text": "mamy przewagę",
-				"value": "6"
-			},
-			{
-				"text": "jesteśmy faworytami",
-				"value": "7"
-			},
-			{
-				"text": "wygramy",
-				"value": "8"
-			},
-			{
-				"text": "bułka z masłem!",
-				"value": "9"
-			},
-			{
-				"text": "poniżmy ich",
-				"value": "10"
-			}
-		],
-		"name": "pl",
-		"spirit": [
-			{
-				"text": "jak w czasie Zimnej Wojny",
-				"value": "0"
-			},
-			{
-				"text": "żądni krwi",
-				"value": "1"
-			},
-			{
-				"text": "wściekli",
-				"value": "2"
-			},
-			{
-				"text": "zirytowani",
-				"value": "3"
-			},
-			{
-				"text": "opanowani",
-				"value": "4"
-			},
-			{
-				"text": "obojętni",
-				"value": "5"
-			},
-			{
-				"text": "spokojni",
-				"value": "6"
-			},
-			{
-				"text": "zadowoleni",
-				"value": "7"
-			},
-			{
-				"text": "zachwyceni",
-				"value": "8"
-			},
-			{
-				"text": "w siódmym niebie",
-				"value": "9"
-			},
-			{
-				"text": "Raj na Ziemi!",
-				"value": "10"
-			}
-		],
-		"desc": "Polski"
+		]
 	}
 }

@@ -1,5 +1,71 @@
 {
 	"language": {
+		"aggressiveness": [
+			{
+				"text": "introvertiert",
+				"value": "0"
+			},
+			{
+				"text": "ruhig",
+				"value": "1"
+			},
+			{
+				"text": "ausgeglichen",
+				"value": "2"
+			},
+			{
+				"text": "temperamentvoll",
+				"value": "3"
+			},
+			{
+				"text": "aufbrausend",
+				"value": "4"
+			},
+			{
+				"text": "hitzköpfig",
+				"value": "5"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "ein Ekel",
+				"value": "0"
+			},
+			{
+				"text": "eine umstrittene Person",
+				"value": "1"
+			},
+			{
+				"text": "ein angenehmer Zeitgenosse",
+				"value": "2"
+			},
+			{
+				"text": "ein sympathischer Mensch",
+				"value": "3"
+			},
+			{
+				"text": "ein beliebter Spieler",
+				"value": "4"
+			},
+			{
+				"text": "eine Integrationsfigur",
+				"value": "5"
+			}
+		],
+		"attitude": [
+			{
+				"text": "Kraft sparen",
+				"value": "-1"
+			},
+			{
+				"text": "normal",
+				"value": "0"
+			},
+			{
+				"text": "Spiel des Jahres",
+				"value": "1"
+			}
+		],
 		"confidence": [
 			{
 				"text": "nicht vorhanden",
@@ -42,162 +108,101 @@
 				"value": "9"
 			}
 		],
-		"tactics": [
+		"desc": "Deutsch",
+		"fans": [
 			{
-				"type": "normal",
-				"value": "normal"
-			},
-			{
-				"type": "pressing",
-				"value": "Pressing"
-			},
-			{
-				"type": "ca",
-				"value": "auf Konter spielen"
-			},
-			{
-				"type": "aim",
-				"value": "Angriff durch die Mitte"
-			},
-			{
-				"type": "aow",
-				"value": "Angriff über die Flügel"
-			},
-			{
-				"type": "",
-				"value": "Unbekannt"
-			},
-			{
-				"type": "",
-				"value": "Unbekannt"
-			},
-			{
-				"type": "creatively",
-				"value": "kreativ spielen"
-			},
-			{
-				"type": "longshots",
-				"value": "Weitschüsse"
-			}
-		],
-		"honesty": [
-			{
-				"text": "niederträchtig",
+				"text": "blutdürstig",
 				"value": "0"
 			},
 			{
-				"text": "unehrlich",
+				"text": "wütend",
 				"value": "1"
 			},
 			{
-				"text": "ehrlich",
+				"text": "verärgert",
 				"value": "2"
 			},
 			{
-				"text": "aufrichtig",
+				"text": "irritiert",
 				"value": "3"
 			},
 			{
-				"text": "rechtschaffen",
+				"text": "enttäuscht",
 				"value": "4"
 			},
 			{
-				"text": "herzensgut",
+				"text": "ruhig",
 				"value": "5"
+			},
+			{
+				"text": "zufrieden",
+				"value": "6"
+			},
+			{
+				"text": "glücklich",
+				"value": "7"
+			},
+			{
+				"text": "überglücklich",
+				"value": "8"
+			},
+			{
+				"text": "euphorisch",
+				"value": "9"
+			},
+			{
+				"text": "im siebten Himmel",
+				"value": "10"
+			},
+			{
+				"text": "vergöttern dich",
+				"value": "11"
 			}
 		],
-		"agreeability": [
+		"fans_match": [
 			{
-				"text": "ein Ekel",
+				"text": "Wir treten wohl besser gar nicht erst an!",
 				"value": "0"
 			},
 			{
-				"text": "eine umstrittene Person",
+				"text": "Oh je, da werden wir garantiert deklassiert.",
 				"value": "1"
 			},
 			{
-				"text": "ein angenehmer Zeitgenosse",
+				"text": "Das wird nichts.",
 				"value": "2"
 			},
 			{
-				"text": "ein sympathischer Mensch",
+				"text": "Wir sind Außenseiter.",
 				"value": "3"
 			},
 			{
-				"text": "ein beliebter Spieler",
+				"text": "Wir sind etwas unterlegen.",
 				"value": "4"
 			},
 			{
-				"text": "eine Integrationsfigur",
+				"text": "Das wird eine knappe Angelegenheit.",
 				"value": "5"
-			}
-		],
-		"skills": [
-			{
-				"type": "Keeper",
-				"value": "Torwart"
 			},
 			{
-				"type": "Stamina",
-				"value": "Kondition"
+				"text": "Wir sind leicht überlegen.",
+				"value": "6"
 			},
 			{
-				"type": "Defender",
-				"value": "Verteidigung"
+				"text": "Wir sind die Favoriten.",
+				"value": "7"
 			},
 			{
-				"type": "Playmaker",
-				"value": "Spielaufbau"
+				"text": "Wir werden gewinnen!",
+				"value": "8"
 			},
 			{
-				"type": "Winger",
-				"value": "Flügelspiel"
+				"text": "Das wird ein Kinderspiel!",
+				"value": "9"
 			},
 			{
-				"type": "Scorer",
-				"value": "Torschuss"
-			},
-			{
-				"type": "Kicker",
-				"value": "Standards"
-			},
-			{
-				"type": "Passer",
-				"value": "Passspiel"
-			},
-			{
-				"type": "Experience",
-				"value": "Erfahrung"
-			},
-			{
-				"type": "LeaderShip",
-				"value": "Führungsqualitäten"
-			}
-		],
-		"positions": [
-			{
-				"type": "Keeper",
-				"value": "Torwart"
-			},
-			{
-				"type": "WingBack",
-				"value": "Außenverteidiger"
-			},
-			{
-				"type": "CentralDefender",
-				"value": "Innenverteidiger"
-			},
-			{
-				"type": "InnerMidfield",
-				"value": "zentrales Mittelfeld"
-			},
-			{
-				"type": "Winger",
-				"value": "Flügelspieler"
-			},
-			{
-				"type": "Forward",
-				"value": "Stürmer"
+				"text": "Demütigen wir sie!",
+				"value": "10"
 			}
 		],
 		"fans_season": [
@@ -234,20 +239,33 @@
 				"value": "7"
 			}
 		],
-		"attitude": [
+		"honesty": [
 			{
-				"text": "Kraft sparen",
-				"value": "-1"
-			},
-			{
-				"text": "normal",
+				"text": "niederträchtig",
 				"value": "0"
 			},
 			{
-				"text": "Spiel des Jahres",
+				"text": "unehrlich",
 				"value": "1"
+			},
+			{
+				"text": "ehrlich",
+				"value": "2"
+			},
+			{
+				"text": "aufrichtig",
+				"value": "3"
+			},
+			{
+				"text": "rechtschaffen",
+				"value": "4"
+			},
+			{
+				"text": "herzensgut",
+				"value": "5"
 			}
 		],
+		"id": "3",
 		"levels": [
 			{
 				"text": "nicht vorhanden",
@@ -334,6 +352,199 @@
 				"value": "20"
 			}
 		],
+		"name": "de",
+		"positions": [
+			{
+				"type": "Keeper",
+				"value": "Torwart"
+			},
+			{
+				"type": "WingBack",
+				"value": "Außenverteidiger"
+			},
+			{
+				"type": "CentralDefender",
+				"value": "Innenverteidiger"
+			},
+			{
+				"type": "InnerMidfield",
+				"value": "zentrales Mittelfeld"
+			},
+			{
+				"type": "Winger",
+				"value": "Flügelspieler"
+			},
+			{
+				"type": "Forward",
+				"value": "Stürmer"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "min.",
+				"value": "0"
+			},
+			{
+				"text": "tief",
+				"value": "0.25"
+			},
+			{
+				"text": "hoch",
+				"value": "0.5"
+			},
+			{
+				"text": "max.",
+				"value": "0.75"
+			}
+		],
+		"sectors": [
+			{
+				"type": "Midfield",
+				"value": "Mittelfeld"
+			},
+			{
+				"type": "RightDefense",
+				"value": "Abwehr rechts"
+			},
+			{
+				"type": "CentralDefense",
+				"value": "Abwehr zentral"
+			},
+			{
+				"type": "LeftDefense",
+				"value": "Abwehr links"
+			},
+			{
+				"type": "RightAttack",
+				"value": "Angriff rechts"
+			},
+			{
+				"type": "CentralAttack",
+				"value": "Angriff zentral"
+			},
+			{
+				"type": "LeftAttack",
+				"value": "Angriff links"
+			}
+		],
+		"skills": [
+			{
+				"type": "Keeper",
+				"value": "Torwart"
+			},
+			{
+				"type": "Stamina",
+				"value": "Kondition"
+			},
+			{
+				"type": "Defender",
+				"value": "Verteidigung"
+			},
+			{
+				"type": "Playmaker",
+				"value": "Spielaufbau"
+			},
+			{
+				"type": "Winger",
+				"value": "Flügelspiel"
+			},
+			{
+				"type": "Scorer",
+				"value": "Torschuss"
+			},
+			{
+				"type": "Kicker",
+				"value": "Standards"
+			},
+			{
+				"type": "Passer",
+				"value": "Passspiel"
+			},
+			{
+				"type": "Experience",
+				"value": "Erfahrung"
+			},
+			{
+				"type": "LeaderShip",
+				"value": "Führungsqualitäten"
+			}
+		],
+		"specialties": [
+			{
+				"type": "None",
+				"value": "keine"
+			},
+			{
+				"type": "Technical",
+				"value": "Ballzauberer"
+			},
+			{
+				"type": "Quick",
+				"value": "schnell"
+			},
+			{
+				"type": "Powerful",
+				"value": "durchsetzungsstark"
+			},
+			{
+				"type": "Unpredictable",
+				"value": "unberechenbar"
+			},
+			{
+				"type": "Head",
+				"value": "Kopfballstärke"
+			},
+			{
+				"type": "Regainer",
+				"value": "Geneser"
+			}
+		],
+		"spirit": [
+			{
+				"text": "wie im Kalten Krieg",
+				"value": "0"
+			},
+			{
+				"text": "blutrünstig",
+				"value": "1"
+			},
+			{
+				"text": "wütend",
+				"value": "2"
+			},
+			{
+				"text": "irritiert",
+				"value": "3"
+			},
+			{
+				"text": "ruhig",
+				"value": "4"
+			},
+			{
+				"text": "zufrieden",
+				"value": "5"
+			},
+			{
+				"text": "gut",
+				"value": "6"
+			},
+			{
+				"text": "ausgezeichnet",
+				"value": "7"
+			},
+			{
+				"text": "euphorisch",
+				"value": "8"
+			},
+			{
+				"text": "auf Wolke Sieben",
+				"value": "9"
+			},
+			{
+				"text": "paradiesisch!",
+				"value": "10"
+			}
+		],
 		"sponsors": [
 			{
 				"text": "blutdürstig",
@@ -376,161 +587,44 @@
 				"value": "9"
 			}
 		],
-		"sectors": [
+		"tactics": [
 			{
-				"type": "Midfield",
-				"value": "Mittelfeld"
+				"type": "normal",
+				"value": "normal"
 			},
 			{
-				"type": "RightDefense",
-				"value": "Abwehr rechts"
+				"type": "pressing",
+				"value": "Pressing"
 			},
 			{
-				"type": "CentralDefense",
-				"value": "Abwehr zentral"
+				"type": "ca",
+				"value": "auf Konter spielen"
 			},
 			{
-				"type": "LeftDefense",
-				"value": "Abwehr links"
+				"type": "aim",
+				"value": "Angriff durch die Mitte"
 			},
 			{
-				"type": "RightAttack",
-				"value": "Angriff rechts"
+				"type": "aow",
+				"value": "Angriff über die Flügel"
 			},
 			{
-				"type": "CentralAttack",
-				"value": "Angriff zentral"
+				"type": "",
+				"value": "Unbekannt"
 			},
 			{
-				"type": "LeftAttack",
-				"value": "Angriff links"
+				"type": "",
+				"value": "Unbekannt"
+			},
+			{
+				"type": "creatively",
+				"value": "kreativ spielen"
+			},
+			{
+				"type": "longshots",
+				"value": "Weitschüsse"
 			}
 		],
-		"ratingSubLevels": [
-			{
-				"text": "min.",
-				"value": "0"
-			},
-			{
-				"text": "tief",
-				"value": "0.25"
-			},
-			{
-				"text": "hoch",
-				"value": "0.5"
-			},
-			{
-				"text": "max.",
-				"value": "0.75"
-			}
-		],
-		"fans": [
-			{
-				"text": "blutdürstig",
-				"value": "0"
-			},
-			{
-				"text": "wütend",
-				"value": "1"
-			},
-			{
-				"text": "verärgert",
-				"value": "2"
-			},
-			{
-				"text": "irritiert",
-				"value": "3"
-			},
-			{
-				"text": "enttäuscht",
-				"value": "4"
-			},
-			{
-				"text": "ruhig",
-				"value": "5"
-			},
-			{
-				"text": "zufrieden",
-				"value": "6"
-			},
-			{
-				"text": "glücklich",
-				"value": "7"
-			},
-			{
-				"text": "überglücklich",
-				"value": "8"
-			},
-			{
-				"text": "euphorisch",
-				"value": "9"
-			},
-			{
-				"text": "im siebten Himmel",
-				"value": "10"
-			},
-			{
-				"text": "vergöttern dich",
-				"value": "11"
-			}
-		],
-		"specialties": [
-			{
-				"type": "None",
-				"value": "keine"
-			},
-			{
-				"type": "Technical",
-				"value": "Ballzauberer"
-			},
-			{
-				"type": "Quick",
-				"value": "schnell"
-			},
-			{
-				"type": "Powerful",
-				"value": "durchsetzungsstark"
-			},
-			{
-				"type": "Unpredictable",
-				"value": "unberechenbar"
-			},
-			{
-				"type": "Head",
-				"value": "Kopfballstärke"
-			},
-			{
-				"type": "Regainer",
-				"value": "Geneser"
-			}
-		],
-		"aggressiveness": [
-			{
-				"text": "introvertiert",
-				"value": "0"
-			},
-			{
-				"text": "ruhig",
-				"value": "1"
-			},
-			{
-				"text": "ausgeglichen",
-				"value": "2"
-			},
-			{
-				"text": "temperamentvoll",
-				"value": "3"
-			},
-			{
-				"text": "aufbrausend",
-				"value": "4"
-			},
-			{
-				"text": "hitzköpfig",
-				"value": "5"
-			}
-		],
-		"id": "3",
 		"training": [
 			{
 				"type": "Gen",
@@ -588,100 +682,6 @@
 				"type": "Indiv",
 				"value": "Einzeltraining"
 			}
-		],
-		"fans_match": [
-			{
-				"text": "Wir treten wohl besser gar nicht erst an!",
-				"value": "0"
-			},
-			{
-				"text": "Oh je, da werden wir garantiert deklassiert.",
-				"value": "1"
-			},
-			{
-				"text": "Das wird nichts.",
-				"value": "2"
-			},
-			{
-				"text": "Wir sind Außenseiter.",
-				"value": "3"
-			},
-			{
-				"text": "Wir sind etwas unterlegen.",
-				"value": "4"
-			},
-			{
-				"text": "Das wird eine knappe Angelegenheit.",
-				"value": "5"
-			},
-			{
-				"text": "Wir sind leicht überlegen.",
-				"value": "6"
-			},
-			{
-				"text": "Wir sind die Favoriten.",
-				"value": "7"
-			},
-			{
-				"text": "Wir werden gewinnen!",
-				"value": "8"
-			},
-			{
-				"text": "Das wird ein Kinderspiel!",
-				"value": "9"
-			},
-			{
-				"text": "Demütigen wir sie!",
-				"value": "10"
-			}
-		],
-		"name": "de",
-		"spirit": [
-			{
-				"text": "wie im Kalten Krieg",
-				"value": "0"
-			},
-			{
-				"text": "blutrünstig",
-				"value": "1"
-			},
-			{
-				"text": "wütend",
-				"value": "2"
-			},
-			{
-				"text": "irritiert",
-				"value": "3"
-			},
-			{
-				"text": "ruhig",
-				"value": "4"
-			},
-			{
-				"text": "zufrieden",
-				"value": "5"
-			},
-			{
-				"text": "gut",
-				"value": "6"
-			},
-			{
-				"text": "ausgezeichnet",
-				"value": "7"
-			},
-			{
-				"text": "euphorisch",
-				"value": "8"
-			},
-			{
-				"text": "auf Wolke Sieben",
-				"value": "9"
-			},
-			{
-				"text": "paradiesisch!",
-				"value": "10"
-			}
-		],
-		"desc": "Deutsch"
+		]
 	}
 }

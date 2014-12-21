@@ -1,5 +1,71 @@
 {
 	"language": {
+		"aggressiveness": [
+			{
+				"text": "tranquilo",
+				"value": "0"
+			},
+			{
+				"text": "calmado",
+				"value": "1"
+			},
+			{
+				"text": "estable",
+				"value": "2"
+			},
+			{
+				"text": "temperamental",
+				"value": "3"
+			},
+			{
+				"text": "iracundo",
+				"value": "4"
+			},
+			{
+				"text": "inestable",
+				"value": "5"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "malintencionado",
+				"value": "0"
+			},
+			{
+				"text": "polémico",
+				"value": "1"
+			},
+			{
+				"text": "agradable",
+				"value": "2"
+			},
+			{
+				"text": "carismático",
+				"value": "3"
+			},
+			{
+				"text": "popular",
+				"value": "4"
+			},
+			{
+				"text": "querido compañero de equipo",
+				"value": "5"
+			}
+		],
+		"attitude": [
+			{
+				"text": "Jugar relajados",
+				"value": "-1"
+			},
+			{
+				"text": "Jugar normal",
+				"value": "0"
+			},
+			{
+				"text": "¡El partido de la temporada!",
+				"value": "1"
+			}
+		],
 		"confidence": [
 			{
 				"text": "Inexistente",
@@ -42,162 +108,101 @@
 				"value": "9"
 			}
 		],
-		"tactics": [
+		"desc": "Español, Rioplatense",
+		"fans": [
 			{
-				"type": "normal",
-				"value": "Normal"
-			},
-			{
-				"type": "pressing",
-				"value": "Presionar"
-			},
-			{
-				"type": "ca",
-				"value": "Contraatacar"
-			},
-			{
-				"type": "aim",
-				"value": "Atacar por el centro"
-			},
-			{
-				"type": "aow",
-				"value": "Atacar por las bandas"
-			},
-			{
-				"type": "",
-				"value": "Desconocida"
-			},
-			{
-				"type": "",
-				"value": "Desconocida"
-			},
-			{
-				"type": "creatively",
-				"value": "Jugar creativamente"
-			},
-			{
-				"type": "longshots",
-				"value": "Tiros lejanos"
-			}
-		],
-		"honesty": [
-			{
-				"text": "infame",
+				"text": "En sus días",
 				"value": "0"
 			},
 			{
-				"text": "deshonesto",
+				"text": "Furiosos",
 				"value": "1"
 			},
 			{
-				"text": "honesto",
+				"text": "Enojados",
 				"value": "2"
 			},
 			{
-				"text": "justo",
+				"text": "Irritados",
 				"value": "3"
 			},
 			{
-				"text": "honorable",
+				"text": "Decepcionados",
 				"value": "4"
 			},
 			{
-				"text": "santo",
+				"text": "Calmados",
 				"value": "5"
+			},
+			{
+				"text": "Satisfechos",
+				"value": "6"
+			},
+			{
+				"text": "Alegres",
+				"value": "7"
+			},
+			{
+				"text": "Encantados",
+				"value": "8"
+			},
+			{
+				"text": "Felices",
+				"value": "9"
+			},
+			{
+				"text": "Bailando en una pata",
+				"value": "10"
+			},
+			{
+				"text": "Escribiéndote poemas de amor",
+				"value": "11"
 			}
 		],
-		"agreeability": [
+		"fans_match": [
 			{
-				"text": "malintencionado",
+				"text": "¡Mejor no presentarse!",
 				"value": "0"
 			},
 			{
-				"text": "polémico",
+				"text": "Nos superan en todo",
 				"value": "1"
 			},
 			{
-				"text": "agradable",
+				"text": "Perderemos",
 				"value": "2"
 			},
 			{
-				"text": "carismático",
+				"text": "Ellos son favoritos",
 				"value": "3"
 			},
 			{
-				"text": "popular",
+				"text": "Ellos tienen la ventaja",
 				"value": "4"
 			},
 			{
-				"text": "querido compañero de equipo",
+				"text": "Será un encuentro muy parejo.",
 				"value": "5"
-			}
-		],
-		"skills": [
-			{
-				"type": "Keeper",
-				"value": "Arquero"
 			},
 			{
-				"type": "Stamina",
-				"value": "Condición"
+				"text": "Tenemos la ventaja",
+				"value": "6"
 			},
 			{
-				"type": "Defender",
-				"value": "Defensa"
+				"text": "Somos favoritos",
+				"value": "7"
 			},
 			{
-				"type": "Playmaker",
-				"value": "Jugadas"
+				"text": "Ganaremos",
+				"value": "8"
 			},
 			{
-				"type": "Winger",
-				"value": "Lateral"
+				"text": "¡Nuestro rival es pan comido!",
+				"value": "9"
 			},
 			{
-				"type": "Scorer",
-				"value": "Anotación"
-			},
-			{
-				"type": "Kicker",
-				"value": "Pelota Parada"
-			},
-			{
-				"type": "Passer",
-				"value": "Asistencias"
-			},
-			{
-				"type": "Experience",
-				"value": "Experiencia"
-			},
-			{
-				"type": "LeaderShip",
-				"value": "Liderazgo"
-			}
-		],
-		"positions": [
-			{
-				"type": "Keeper",
-				"value": "Arquero"
-			},
-			{
-				"type": "WingBack",
-				"value": "Defensor lateral"
-			},
-			{
-				"type": "CentralDefender",
-				"value": "Defensor central"
-			},
-			{
-				"type": "InnerMidfield",
-				"value": "Medio central"
-			},
-			{
-				"type": "Winger",
-				"value": "Medio lateral"
-			},
-			{
-				"type": "Forward",
-				"value": "Delantero"
+				"text": "¡Vamos a humillarlos!",
+				"value": "10"
 			}
 		],
 		"fans_season": [
@@ -234,20 +239,33 @@
 				"value": "7"
 			}
 		],
-		"attitude": [
+		"honesty": [
 			{
-				"text": "Jugar relajados",
-				"value": "-1"
-			},
-			{
-				"text": "Jugar normal",
+				"text": "infame",
 				"value": "0"
 			},
 			{
-				"text": "¡El partido de la temporada!",
+				"text": "deshonesto",
 				"value": "1"
+			},
+			{
+				"text": "honesto",
+				"value": "2"
+			},
+			{
+				"text": "justo",
+				"value": "3"
+			},
+			{
+				"text": "honorable",
+				"value": "4"
+			},
+			{
+				"text": "santo",
+				"value": "5"
 			}
 		],
+		"id": "51",
 		"levels": [
 			{
 				"text": "inexistente",
@@ -334,6 +352,199 @@
 				"value": "20"
 			}
 		],
+		"name": "es-AR",
+		"positions": [
+			{
+				"type": "Keeper",
+				"value": "Arquero"
+			},
+			{
+				"type": "WingBack",
+				"value": "Defensor lateral"
+			},
+			{
+				"type": "CentralDefender",
+				"value": "Defensor central"
+			},
+			{
+				"type": "InnerMidfield",
+				"value": "Medio central"
+			},
+			{
+				"type": "Winger",
+				"value": "Medio lateral"
+			},
+			{
+				"type": "Forward",
+				"value": "Delantero"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "muy bajo",
+				"value": "0"
+			},
+			{
+				"text": "bajo",
+				"value": "0.25"
+			},
+			{
+				"text": "alto",
+				"value": "0.5"
+			},
+			{
+				"text": "muy alto",
+				"value": "0.75"
+			}
+		],
+		"sectors": [
+			{
+				"type": "Midfield",
+				"value": "Mediocampo"
+			},
+			{
+				"type": "RightDefense",
+				"value": "Defensa der."
+			},
+			{
+				"type": "CentralDefense",
+				"value": "Defensa central"
+			},
+			{
+				"type": "LeftDefense",
+				"value": "Defensa izq."
+			},
+			{
+				"type": "RightAttack",
+				"value": "Ataque der."
+			},
+			{
+				"type": "CentralAttack",
+				"value": "Ataque central"
+			},
+			{
+				"type": "LeftAttack",
+				"value": "Ataque izq."
+			}
+		],
+		"skills": [
+			{
+				"type": "Keeper",
+				"value": "Arquero"
+			},
+			{
+				"type": "Stamina",
+				"value": "Condición"
+			},
+			{
+				"type": "Defender",
+				"value": "Defensa"
+			},
+			{
+				"type": "Playmaker",
+				"value": "Jugadas"
+			},
+			{
+				"type": "Winger",
+				"value": "Lateral"
+			},
+			{
+				"type": "Scorer",
+				"value": "Anotación"
+			},
+			{
+				"type": "Kicker",
+				"value": "Pelota Parada"
+			},
+			{
+				"type": "Passer",
+				"value": "Asistencias"
+			},
+			{
+				"type": "Experience",
+				"value": "Experiencia"
+			},
+			{
+				"type": "LeaderShip",
+				"value": "Liderazgo"
+			}
+		],
+		"specialties": [
+			{
+				"type": "None",
+				"value": "Ninguno"
+			},
+			{
+				"type": "Technical",
+				"value": "Técnico"
+			},
+			{
+				"type": "Quick",
+				"value": "Rápido"
+			},
+			{
+				"type": "Powerful",
+				"value": "Potente"
+			},
+			{
+				"type": "Unpredictable",
+				"value": "Impredecible"
+			},
+			{
+				"type": "Head",
+				"value": "Cabeceador"
+			},
+			{
+				"type": "Regainer",
+				"value": "Regenerador"
+			}
+		],
+		"spirit": [
+			{
+				"text": "Como la Guerra Fría",
+				"value": "0"
+			},
+			{
+				"text": "Muy agresivos",
+				"value": "1"
+			},
+			{
+				"text": "Furiosos",
+				"value": "2"
+			},
+			{
+				"text": "Irritados",
+				"value": "3"
+			},
+			{
+				"text": "Indiferentes",
+				"value": "4"
+			},
+			{
+				"text": "Calmados",
+				"value": "5"
+			},
+			{
+				"text": "Satisfechos",
+				"value": "6"
+			},
+			{
+				"text": "Felices",
+				"value": "7"
+			},
+			{
+				"text": "Eufóricos",
+				"value": "8"
+			},
+			{
+				"text": "Caminando en las nubes",
+				"value": "9"
+			},
+			{
+				"text": "¡Paraíso en la Tierra!",
+				"value": "10"
+			}
+		],
 		"sponsors": [
 			{
 				"text": "En sus días",
@@ -376,161 +587,44 @@
 				"value": "9"
 			}
 		],
-		"sectors": [
+		"tactics": [
 			{
-				"type": "Midfield",
-				"value": "Mediocampo"
+				"type": "normal",
+				"value": "Normal"
 			},
 			{
-				"type": "RightDefense",
-				"value": "Defensa der."
+				"type": "pressing",
+				"value": "Presionar"
 			},
 			{
-				"type": "CentralDefense",
-				"value": "Defensa central"
+				"type": "ca",
+				"value": "Contraatacar"
 			},
 			{
-				"type": "LeftDefense",
-				"value": "Defensa izq."
+				"type": "aim",
+				"value": "Atacar por el centro"
 			},
 			{
-				"type": "RightAttack",
-				"value": "Ataque der."
+				"type": "aow",
+				"value": "Atacar por las bandas"
 			},
 			{
-				"type": "CentralAttack",
-				"value": "Ataque central"
+				"type": "",
+				"value": "Desconocida"
 			},
 			{
-				"type": "LeftAttack",
-				"value": "Ataque izq."
+				"type": "",
+				"value": "Desconocida"
+			},
+			{
+				"type": "creatively",
+				"value": "Jugar creativamente"
+			},
+			{
+				"type": "longshots",
+				"value": "Tiros lejanos"
 			}
 		],
-		"ratingSubLevels": [
-			{
-				"text": "muy bajo",
-				"value": "0"
-			},
-			{
-				"text": "bajo",
-				"value": "0.25"
-			},
-			{
-				"text": "alto",
-				"value": "0.5"
-			},
-			{
-				"text": "muy alto",
-				"value": "0.75"
-			}
-		],
-		"fans": [
-			{
-				"text": "En sus días",
-				"value": "0"
-			},
-			{
-				"text": "Furiosos",
-				"value": "1"
-			},
-			{
-				"text": "Enojados",
-				"value": "2"
-			},
-			{
-				"text": "Irritados",
-				"value": "3"
-			},
-			{
-				"text": "Decepcionados",
-				"value": "4"
-			},
-			{
-				"text": "Calmados",
-				"value": "5"
-			},
-			{
-				"text": "Satisfechos",
-				"value": "6"
-			},
-			{
-				"text": "Alegres",
-				"value": "7"
-			},
-			{
-				"text": "Encantados",
-				"value": "8"
-			},
-			{
-				"text": "Felices",
-				"value": "9"
-			},
-			{
-				"text": "Bailando en una pata",
-				"value": "10"
-			},
-			{
-				"text": "Escribiéndote poemas de amor",
-				"value": "11"
-			}
-		],
-		"specialties": [
-			{
-				"type": "None",
-				"value": "Ninguno"
-			},
-			{
-				"type": "Technical",
-				"value": "Técnico"
-			},
-			{
-				"type": "Quick",
-				"value": "Rápido"
-			},
-			{
-				"type": "Powerful",
-				"value": "Potente"
-			},
-			{
-				"type": "Unpredictable",
-				"value": "Impredecible"
-			},
-			{
-				"type": "Head",
-				"value": "Cabeceador"
-			},
-			{
-				"type": "Regainer",
-				"value": "Regenerador"
-			}
-		],
-		"aggressiveness": [
-			{
-				"text": "tranquilo",
-				"value": "0"
-			},
-			{
-				"text": "calmado",
-				"value": "1"
-			},
-			{
-				"text": "estable",
-				"value": "2"
-			},
-			{
-				"text": "temperamental",
-				"value": "3"
-			},
-			{
-				"text": "iracundo",
-				"value": "4"
-			},
-			{
-				"text": "inestable",
-				"value": "5"
-			}
-		],
-		"id": "51",
 		"training": [
 			{
 				"type": "Gen",
@@ -588,100 +682,6 @@
 				"type": "Indiv",
 				"value": "Individual"
 			}
-		],
-		"fans_match": [
-			{
-				"text": "¡Mejor no presentarse!",
-				"value": "0"
-			},
-			{
-				"text": "Nos superan en todo",
-				"value": "1"
-			},
-			{
-				"text": "Perderemos",
-				"value": "2"
-			},
-			{
-				"text": "Ellos son favoritos",
-				"value": "3"
-			},
-			{
-				"text": "Ellos tienen la ventaja",
-				"value": "4"
-			},
-			{
-				"text": "Será un encuentro muy parejo.",
-				"value": "5"
-			},
-			{
-				"text": "Tenemos la ventaja",
-				"value": "6"
-			},
-			{
-				"text": "Somos favoritos",
-				"value": "7"
-			},
-			{
-				"text": "Ganaremos",
-				"value": "8"
-			},
-			{
-				"text": "¡Nuestro rival es pan comido!",
-				"value": "9"
-			},
-			{
-				"text": "¡Vamos a humillarlos!",
-				"value": "10"
-			}
-		],
-		"name": "es-AR",
-		"spirit": [
-			{
-				"text": "Como la Guerra Fría",
-				"value": "0"
-			},
-			{
-				"text": "Muy agresivos",
-				"value": "1"
-			},
-			{
-				"text": "Furiosos",
-				"value": "2"
-			},
-			{
-				"text": "Irritados",
-				"value": "3"
-			},
-			{
-				"text": "Indiferentes",
-				"value": "4"
-			},
-			{
-				"text": "Calmados",
-				"value": "5"
-			},
-			{
-				"text": "Satisfechos",
-				"value": "6"
-			},
-			{
-				"text": "Felices",
-				"value": "7"
-			},
-			{
-				"text": "Eufóricos",
-				"value": "8"
-			},
-			{
-				"text": "Caminando en las nubes",
-				"value": "9"
-			},
-			{
-				"text": "¡Paraíso en la Tierra!",
-				"value": "10"
-			}
-		],
-		"desc": "Español, Rioplatense"
+		]
 	}
 }

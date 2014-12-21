@@ -1,5 +1,71 @@
 {
 	"language": {
+		"aggressiveness": [
+			{
+				"text": "durgun",
+				"value": "0"
+			},
+			{
+				"text": "sakin",
+				"value": "1"
+			},
+			{
+				"text": "dengeli",
+				"value": "2"
+			},
+			{
+				"text": "huysuz",
+				"value": "3"
+			},
+			{
+				"text": "ateşli",
+				"value": "4"
+			},
+			{
+				"text": "dengesiz",
+				"value": "5"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "pislik bir oyuncu",
+				"value": "0"
+			},
+			{
+				"text": "kavgacı bir oyuncu",
+				"value": "1"
+			},
+			{
+				"text": "canayakın bir oyuncu",
+				"value": "2"
+			},
+			{
+				"text": "sempatik bir oyuncu",
+				"value": "3"
+			},
+			{
+				"text": "popüler bir oyuncu",
+				"value": "4"
+			},
+			{
+				"text": "sevilen takım arkadaşı",
+				"value": "5"
+			}
+		],
+		"attitude": [
+			{
+				"text": "Sakin Oyna",
+				"value": "-1"
+			},
+			{
+				"text": "Normal",
+				"value": "0"
+			},
+			{
+				"text": "Sezonun Maçı",
+				"value": "1"
+			}
+		],
 		"confidence": [
 			{
 				"text": "yok",
@@ -42,162 +108,101 @@
 				"value": "9"
 			}
 		],
-		"tactics": [
+		"desc": "Türkçe",
+		"fans": [
 			{
-				"type": "normal",
-				"value": "Normal"
-			},
-			{
-				"type": "pressing",
-				"value": "Pres"
-			},
-			{
-				"type": "ca",
-				"value": "Kontra atak"
-			},
-			{
-				"type": "aim",
-				"value": "Ortadan Atak"
-			},
-			{
-				"type": "aow",
-				"value": "Kanattan Atak"
-			},
-			{
-				"type": "",
-				"value": "Bilinmeyen"
-			},
-			{
-				"type": "",
-				"value": "Bilinmeyen"
-			},
-			{
-				"type": "creatively",
-				"value": "Yaratıcı oyna"
-			},
-			{
-				"type": "longshots",
-				"value": "Uzaktan şutlar"
-			}
-		],
-		"honesty": [
-			{
-				"text": "çirkef",
+				"text": "cinnet geçiriyorlar",
 				"value": "0"
 			},
 			{
-				"text": "sahtekar",
+				"text": "köpürmüş",
 				"value": "1"
 			},
 			{
-				"text": "dürüst",
+				"text": "öfkeli",
 				"value": "2"
 			},
 			{
-				"text": "güvenilir",
+				"text": "rahatsız",
 				"value": "3"
 			},
 			{
-				"text": "erdemli",
+				"text": "düş kırıklığına uğramış",
 				"value": "4"
 			},
 			{
-				"text": "aziz gibi",
+				"text": "sakin",
 				"value": "5"
+			},
+			{
+				"text": "hoşnut",
+				"value": "6"
+			},
+			{
+				"text": "memnun",
+				"value": "7"
+			},
+			{
+				"text": "coşkulu",
+				"value": "8"
+			},
+			{
+				"text": "uçmuş",
+				"value": "9"
+			},
+			{
+				"text": "sokaklarda halay çekiyorlar",
+				"value": "10"
+			},
+			{
+				"text": "antrenmana baklava yolluyorlar",
+				"value": "11"
 			}
 		],
-		"agreeability": [
+		"fans_match": [
 			{
-				"text": "pislik bir oyuncu",
+				"text": "Sahaya çıkmamak en iyisi!",
 				"value": "0"
 			},
 			{
-				"text": "kavgacı bir oyuncu",
+				"text": "Bizden iki gömlek üstünler",
 				"value": "1"
 			},
 			{
-				"text": "canayakın bir oyuncu",
+				"text": "Kaybedeceğiz",
 				"value": "2"
 			},
 			{
-				"text": "sempatik bir oyuncu",
+				"text": "Bahisler onlardan yana",
 				"value": "3"
 			},
 			{
-				"text": "popüler bir oyuncu",
+				"text": "Bizden biraz iyiler",
 				"value": "4"
 			},
 			{
-				"text": "sevilen takım arkadaşı",
+				"text": "Dişe diş bir mücadele olur",
 				"value": "5"
-			}
-		],
-		"skills": [
-			{
-				"type": "Keeper",
-				"value": "Kalecilik"
 			},
 			{
-				"type": "Stamina",
-				"value": "Kondisyon"
+				"text": "Onlardan biraz iyiyiz",
+				"value": "6"
 			},
 			{
-				"type": "Defender",
-				"value": "Defans"
+				"text": "Bahisler bizden yana",
+				"value": "7"
 			},
 			{
-				"type": "Playmaker",
-				"value": "Oyunkuruculuk"
+				"text": "Bu maçı alırız",
+				"value": "8"
 			},
 			{
-				"type": "Winger",
-				"value": "Kanat"
+				"text": "Çantada keklik!",
+				"value": "9"
 			},
 			{
-				"type": "Scorer",
-				"value": "Golcülük"
-			},
-			{
-				"type": "Kicker",
-				"value": "Duran Toplar"
-			},
-			{
-				"type": "Passer",
-				"value": "Pas"
-			},
-			{
-				"type": "Experience",
-				"value": "Tecrübe"
-			},
-			{
-				"type": "LeaderShip",
-				"value": "Liderlik"
-			}
-		],
-		"positions": [
-			{
-				"type": "Keeper",
-				"value": "Kaleci"
-			},
-			{
-				"type": "WingBack",
-				"value": "Bek"
-			},
-			{
-				"type": "CentralDefender",
-				"value": "Stoper"
-			},
-			{
-				"type": "InnerMidfield",
-				"value": "İç Ortasaha"
-			},
-			{
-				"type": "Winger",
-				"value": "Kanat"
-			},
-			{
-				"type": "Forward",
-				"value": "Forvet"
+				"text": "Sahaya gömeriz!",
+				"value": "10"
 			}
 		],
 		"fans_season": [
@@ -234,20 +239,33 @@
 				"value": "7"
 			}
 		],
-		"attitude": [
+		"honesty": [
 			{
-				"text": "Sakin Oyna",
-				"value": "-1"
-			},
-			{
-				"text": "Normal",
+				"text": "çirkef",
 				"value": "0"
 			},
 			{
-				"text": "Sezonun Maçı",
+				"text": "sahtekar",
 				"value": "1"
+			},
+			{
+				"text": "dürüst",
+				"value": "2"
+			},
+			{
+				"text": "güvenilir",
+				"value": "3"
+			},
+			{
+				"text": "erdemli",
+				"value": "4"
+			},
+			{
+				"text": "aziz gibi",
+				"value": "5"
 			}
 		],
+		"id": "19",
 		"levels": [
 			{
 				"text": "kazma",
@@ -334,6 +352,199 @@
 				"value": "20"
 			}
 		],
+		"name": "tr",
+		"positions": [
+			{
+				"type": "Keeper",
+				"value": "Kaleci"
+			},
+			{
+				"type": "WingBack",
+				"value": "Bek"
+			},
+			{
+				"type": "CentralDefender",
+				"value": "Stoper"
+			},
+			{
+				"type": "InnerMidfield",
+				"value": "İç Ortasaha"
+			},
+			{
+				"type": "Winger",
+				"value": "Kanat"
+			},
+			{
+				"type": "Forward",
+				"value": "Forvet"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "çok düşük",
+				"value": "0"
+			},
+			{
+				"text": "düşük",
+				"value": "0.25"
+			},
+			{
+				"text": "yüksek",
+				"value": "0.5"
+			},
+			{
+				"text": "çok yüksek",
+				"value": "0.75"
+			}
+		],
+		"sectors": [
+			{
+				"type": "Midfield",
+				"value": "Orta Saha"
+			},
+			{
+				"type": "RightDefense",
+				"value": "Sağ Defans"
+			},
+			{
+				"type": "CentralDefense",
+				"value": "Göbek Defans"
+			},
+			{
+				"type": "LeftDefense",
+				"value": "Sol Defans"
+			},
+			{
+				"type": "RightAttack",
+				"value": "Sağ Atak"
+			},
+			{
+				"type": "CentralAttack",
+				"value": "Göbek Atak"
+			},
+			{
+				"type": "LeftAttack",
+				"value": "Sol Atak"
+			}
+		],
+		"skills": [
+			{
+				"type": "Keeper",
+				"value": "Kalecilik"
+			},
+			{
+				"type": "Stamina",
+				"value": "Kondisyon"
+			},
+			{
+				"type": "Defender",
+				"value": "Defans"
+			},
+			{
+				"type": "Playmaker",
+				"value": "Oyunkuruculuk"
+			},
+			{
+				"type": "Winger",
+				"value": "Kanat"
+			},
+			{
+				"type": "Scorer",
+				"value": "Golcülük"
+			},
+			{
+				"type": "Kicker",
+				"value": "Duran Toplar"
+			},
+			{
+				"type": "Passer",
+				"value": "Pas"
+			},
+			{
+				"type": "Experience",
+				"value": "Tecrübe"
+			},
+			{
+				"type": "LeaderShip",
+				"value": "Liderlik"
+			}
+		],
+		"specialties": [
+			{
+				"type": "None",
+				"value": "Yok"
+			},
+			{
+				"type": "Technical",
+				"value": "Teknik"
+			},
+			{
+				"type": "Quick",
+				"value": "Hızlı"
+			},
+			{
+				"type": "Powerful",
+				"value": "Güçlü"
+			},
+			{
+				"type": "Unpredictable",
+				"value": "Kestirilemez"
+			},
+			{
+				"type": "Head",
+				"value": "Kafa"
+			},
+			{
+				"type": "Regainer",
+				"value": "Çabuk İyileşen"
+			}
+		],
+		"spirit": [
+			{
+				"text": "soğuk savaş gibi",
+				"value": "0"
+			},
+			{
+				"text": "öldürücü",
+				"value": "1"
+			},
+			{
+				"text": "köpürmüş",
+				"value": "2"
+			},
+			{
+				"text": "rahatsız",
+				"value": "3"
+			},
+			{
+				"text": "kaynaşık",
+				"value": "4"
+			},
+			{
+				"text": "huzurlu",
+				"value": "5"
+			},
+			{
+				"text": "hoşnut",
+				"value": "6"
+			},
+			{
+				"text": "memnun",
+				"value": "7"
+			},
+			{
+				"text": "coşkulu",
+				"value": "8"
+			},
+			{
+				"text": "bulutların üzerinde",
+				"value": "9"
+			},
+			{
+				"text": "Yeryüzündeki Cennet!",
+				"value": "10"
+			}
+		],
 		"sponsors": [
 			{
 				"text": "cinnet geçiriyorlar",
@@ -376,161 +587,44 @@
 				"value": "9"
 			}
 		],
-		"sectors": [
+		"tactics": [
 			{
-				"type": "Midfield",
-				"value": "Orta Saha"
+				"type": "normal",
+				"value": "Normal"
 			},
 			{
-				"type": "RightDefense",
-				"value": "Sağ Defans"
+				"type": "pressing",
+				"value": "Pres"
 			},
 			{
-				"type": "CentralDefense",
-				"value": "Göbek Defans"
+				"type": "ca",
+				"value": "Kontra atak"
 			},
 			{
-				"type": "LeftDefense",
-				"value": "Sol Defans"
+				"type": "aim",
+				"value": "Ortadan Atak"
 			},
 			{
-				"type": "RightAttack",
-				"value": "Sağ Atak"
+				"type": "aow",
+				"value": "Kanattan Atak"
 			},
 			{
-				"type": "CentralAttack",
-				"value": "Göbek Atak"
+				"type": "",
+				"value": "Bilinmeyen"
 			},
 			{
-				"type": "LeftAttack",
-				"value": "Sol Atak"
+				"type": "",
+				"value": "Bilinmeyen"
+			},
+			{
+				"type": "creatively",
+				"value": "Yaratıcı oyna"
+			},
+			{
+				"type": "longshots",
+				"value": "Uzaktan şutlar"
 			}
 		],
-		"ratingSubLevels": [
-			{
-				"text": "çok düşük",
-				"value": "0"
-			},
-			{
-				"text": "düşük",
-				"value": "0.25"
-			},
-			{
-				"text": "yüksek",
-				"value": "0.5"
-			},
-			{
-				"text": "çok yüksek",
-				"value": "0.75"
-			}
-		],
-		"fans": [
-			{
-				"text": "cinnet geçiriyorlar",
-				"value": "0"
-			},
-			{
-				"text": "köpürmüş",
-				"value": "1"
-			},
-			{
-				"text": "öfkeli",
-				"value": "2"
-			},
-			{
-				"text": "rahatsız",
-				"value": "3"
-			},
-			{
-				"text": "düş kırıklığına uğramış",
-				"value": "4"
-			},
-			{
-				"text": "sakin",
-				"value": "5"
-			},
-			{
-				"text": "hoşnut",
-				"value": "6"
-			},
-			{
-				"text": "memnun",
-				"value": "7"
-			},
-			{
-				"text": "coşkulu",
-				"value": "8"
-			},
-			{
-				"text": "uçmuş",
-				"value": "9"
-			},
-			{
-				"text": "sokaklarda halay çekiyorlar",
-				"value": "10"
-			},
-			{
-				"text": "antrenmana baklava yolluyorlar",
-				"value": "11"
-			}
-		],
-		"specialties": [
-			{
-				"type": "None",
-				"value": "Yok"
-			},
-			{
-				"type": "Technical",
-				"value": "Teknik"
-			},
-			{
-				"type": "Quick",
-				"value": "Hızlı"
-			},
-			{
-				"type": "Powerful",
-				"value": "Güçlü"
-			},
-			{
-				"type": "Unpredictable",
-				"value": "Kestirilemez"
-			},
-			{
-				"type": "Head",
-				"value": "Kafa"
-			},
-			{
-				"type": "Regainer",
-				"value": "Çabuk İyileşen"
-			}
-		],
-		"aggressiveness": [
-			{
-				"text": "durgun",
-				"value": "0"
-			},
-			{
-				"text": "sakin",
-				"value": "1"
-			},
-			{
-				"text": "dengeli",
-				"value": "2"
-			},
-			{
-				"text": "huysuz",
-				"value": "3"
-			},
-			{
-				"text": "ateşli",
-				"value": "4"
-			},
-			{
-				"text": "dengesiz",
-				"value": "5"
-			}
-		],
-		"id": "19",
 		"training": [
 			{
 				"type": "Gen",
@@ -588,100 +682,6 @@
 				"type": "Indiv",
 				"value": "Bireysel"
 			}
-		],
-		"fans_match": [
-			{
-				"text": "Sahaya çıkmamak en iyisi!",
-				"value": "0"
-			},
-			{
-				"text": "Bizden iki gömlek üstünler",
-				"value": "1"
-			},
-			{
-				"text": "Kaybedeceğiz",
-				"value": "2"
-			},
-			{
-				"text": "Bahisler onlardan yana",
-				"value": "3"
-			},
-			{
-				"text": "Bizden biraz iyiler",
-				"value": "4"
-			},
-			{
-				"text": "Dişe diş bir mücadele olur",
-				"value": "5"
-			},
-			{
-				"text": "Onlardan biraz iyiyiz",
-				"value": "6"
-			},
-			{
-				"text": "Bahisler bizden yana",
-				"value": "7"
-			},
-			{
-				"text": "Bu maçı alırız",
-				"value": "8"
-			},
-			{
-				"text": "Çantada keklik!",
-				"value": "9"
-			},
-			{
-				"text": "Sahaya gömeriz!",
-				"value": "10"
-			}
-		],
-		"name": "tr",
-		"spirit": [
-			{
-				"text": "soğuk savaş gibi",
-				"value": "0"
-			},
-			{
-				"text": "öldürücü",
-				"value": "1"
-			},
-			{
-				"text": "köpürmüş",
-				"value": "2"
-			},
-			{
-				"text": "rahatsız",
-				"value": "3"
-			},
-			{
-				"text": "kaynaşık",
-				"value": "4"
-			},
-			{
-				"text": "huzurlu",
-				"value": "5"
-			},
-			{
-				"text": "hoşnut",
-				"value": "6"
-			},
-			{
-				"text": "memnun",
-				"value": "7"
-			},
-			{
-				"text": "coşkulu",
-				"value": "8"
-			},
-			{
-				"text": "bulutların üzerinde",
-				"value": "9"
-			},
-			{
-				"text": "Yeryüzündeki Cennet!",
-				"value": "10"
-			}
-		],
-		"desc": "Türkçe"
+		]
 	}
 }
