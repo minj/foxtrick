@@ -115,6 +115,7 @@ Foxtrick.modules['ExtendedPlayerDetailsWage'] = {
 			if (!wageText.match(curRe)) {
 				// bad currency
 				Foxtrick.util.currency.reset();
+				Foxtrick.util.currency.displaySelector(doc, { reason: 'symbol' });
 				return;
 			}
 			var currencyLen = symbol.length;

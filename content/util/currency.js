@@ -44,7 +44,7 @@ Foxtrick.util.currency = {
 				if (!teamXml || errorText) {
 					Foxtrick.log('[ERROR] Currency detection failed:', errorText);
 					// can't detect if CHPP is disabled with multiple teams
-					Foxtrick.util.currency.displaySelector(doc);
+					Foxtrick.util.currency.displaySelector(doc, { reason: 'chpp' });
 					return;
 				}
 				// set the correct currency
@@ -70,7 +70,14 @@ Foxtrick.util.currency = {
 		}
 	},
 
-	displaySelector: function(doc) {
+	/**
+	 * Display manual currency selector.
+	 * info is { reason: string }.
+	 * reason: 'chpp' is off or 'symbol' was not found
+	 * @param  {document} doc
+	 * @param  {object} info { reason: string }
+	 */
+	displaySelector: function(doc, info) {
 		var selectId = 'ft-currency-selector';
 		var noteId = 'ft-currency-selector-note';
 		if (doc.getElementById(noteId))
@@ -96,9 +103,11 @@ Foxtrick.util.currency = {
 		var h3 = doc.createElement('h3');
 		h3.textContent = Foxtrick.L10n.getString('currency.failed');
 		cont.appendChild(h3);
-		var p = doc.createElement('p');
-		p.textContent = Foxtrick.L10n.getString('currency.chpp');
-		cont.appendChild(p);
+		if (typeof info === 'object' && 'reason' in info) {
+			var reason = doc.createElement('p');
+			reason.textContent = Foxtrick.L10n.getString('currency.' + info.reason);
+			cont.appendChild(reason);
+		}
 		var span = doc.createElement('span');
 		span.textContent = Foxtrick.L10n.getString('currency.select');
 		cont.appendChild(span);
@@ -114,6 +123,9 @@ Foxtrick.util.currency = {
 			note.parentNode.removeChild(note);
 		});
 		cont.appendChild(button);
+		var report = doc.createElement('p');
+		report.textContent = Foxtrick.L10n.getString('currency.bugReport');
+		cont.appendChild(report);
 
 		Foxtrick.util.note.add(doc, cont, noteId, { closable: false });
 
