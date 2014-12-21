@@ -14,6 +14,7 @@ en:
       new: '<header>New modules</header>'
       promotion_reminder: '<module>AddPromotionReminder</module>: Add a button to create a reminder for the day when you can promote a youth player'
       bugs: '<header>Bug fixes</header>'
+      breakages: 'Foxtrick should now work correctly on Safari 7.1+ and Firefox for Android.'
       https: 'Foxtrick should again work correctly on Hattrick Stage.'
       avatars: 'Player avatar cache in <module>MatchOrderInterface</module> will now be refreshed automatically when new players arrive on your team.'
       fans: 'Fan evolution in <module>Fans</module> will now be calculated correctly when your team is promoted or demoted.'
