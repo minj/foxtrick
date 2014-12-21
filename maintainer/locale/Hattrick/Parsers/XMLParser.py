@@ -57,7 +57,7 @@ def python_to_json(obj):
 	"""
 	turns python dictionary into JSON
 	"""
-	ret = json.dumps(obj, ensure_ascii=False, indent=1, separators=(',', ': '))
+	ret = json.dumps(obj, ensure_ascii=False, indent=1, separators=(',', ': '), sort_keys=True)
 	p = re.compile('^ +', re.M)
 	# add tabs
 	return p.sub((lambda m: (m.end() - m.start()) * '\t'), ret) + '\n'
