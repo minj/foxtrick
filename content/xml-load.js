@@ -50,7 +50,7 @@ Foxtrick.XMLData = {
 	},
 
 	getNTNameByLeagueId: function(id) {
-		var NT_BY_LEAGUE = {
+		var NT_BY_COUNTRY = {
 			// 'Al Maghrib': 'Al Maghrib ', // oh yes, there's a space here!
 			'Panamá': 'Panama',
 			'Shqipëria': 'Shqiperia',
@@ -59,7 +59,7 @@ Foxtrick.XMLData = {
 			'Kampuchea': 'Prateh Kampuchea',
 			'O’zbekiston': 'O\'zbekiston',
 		};
-		var league = this.League[id].LeagueName;
-		return league in NT_BY_LEAGUE ? NT_BY_LEAGUE[league] : league;
+		var country = this.League[id].Country.CountryName; // NATIVE
+		return country in NT_BY_COUNTRY ? NT_BY_COUNTRY[country] : country;
 	},
 };

@@ -114,7 +114,8 @@ Foxtrick.modules['MatchWeather'] = {
 			data.weatherNow = xml.num('WeatherID');
 			data.weatherTomorrow = xml.num('TomorrowWeatherID');
 			data.regionName = xml.text('RegionName').replace("'", '').replace(/ ,/g, '-');
-			data.country = xml.text('LeagueName');
+			var league = xml.text('LeagueID');
+			data.country = Foxtrick.XMLData.League[league].EnglishName;
 
 			if (Foxtrick.Prefs.isModuleOptionEnabled('MatchWeather', 'Irl')) {
 				var uri = 'http://api.openweathermap.org/data/2.5/forecast/daily?q=' +

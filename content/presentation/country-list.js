@@ -93,7 +93,7 @@ Foxtrick.modules['CountryList'] = {
 			var useEnglish = Foxtrick.Prefs.isModuleOptionEnabled('CountryList', 'UseEnglish');
 			var leagueId = league.href.match(/LeagueID=(\d+)/i)[1];
 			var info = Foxtrick.util.id.getLeagueDataFromId(leagueId);
-			var newName = info[useEnglish ? 'EnglishName' : 'LeagueName'];
+			var newName = useEnglish ? info.EnglishName : info.Country.CountryName;
 			if (!newName)
 				return -1;
 			league.firstChild.title = newName;
@@ -136,7 +136,7 @@ Foxtrick.modules['CountryList'] = {
 				league = Foxtrick.XMLData.getLeagueIdByCountryId(options[i].value);
 			}
 			var info = Foxtrick.util.id.getLeagueDataFromId(league);
-			var newName = info[useEnglish ? 'EnglishName' : 'LeagueName'];
+			var newName = useEnglish ? info.EnglishName : info.Country.CountryName;
 			if (!newName)
 				return -1;
 			options[i].text = newName;
@@ -177,7 +177,7 @@ Foxtrick.modules['CountryList'] = {
 			var leagueId = link.href.match(/LeagueID=(\d+)/i)[1];
 			var info = Foxtrick.util.id.getLeagueDataFromId(leagueId);
 			var img = link.querySelector('img');
-			img.alt = img.title = info[useEnglish ? 'EnglishName' : 'LeagueName'];
+			img.alt = img.title = useEnglish ? info.EnglishName : info.Country.CountryName;
 
 			if (link.previousElementSibling.nodeName === 'P') {
 				// new flag group

@@ -268,8 +268,7 @@ Foxtrick.util.id.findLeagueLeveUnitId = function(element) {
 };
 
 Foxtrick.util.id.countryNameEnglishToLocal = function(engName) {
-	var i;
-	for (i in Foxtrick.XMLData.League) {
+	for (var i in Foxtrick.XMLData.League) {
 		if (Foxtrick.XMLData.League[i].EnglishName === engName) {
 			return Foxtrick.XMLData.League[i].LeagueName;
 		}
@@ -278,9 +277,26 @@ Foxtrick.util.id.countryNameEnglishToLocal = function(engName) {
 };
 
 Foxtrick.util.id.countryNameLocalToEnglish = function(localName) {
-	var i;
-	for (i in Foxtrick.XMLData.League) {
+	for (var i in Foxtrick.XMLData.League) {
 		if (Foxtrick.XMLData.League[i].LeagueName === localName) {
+			return Foxtrick.XMLData.League[i].EnglishName;
+		}
+	}
+	return null;
+};
+
+Foxtrick.util.id.countryNameEnglishToNative = function(engName) {
+	for (var i in Foxtrick.XMLData.League) {
+		if (Foxtrick.XMLData.League[i].EnglishName === engName) {
+			return Foxtrick.XMLData.League[i].Country.CountryName;
+		}
+	}
+	return null;
+};
+
+Foxtrick.util.id.countryNameNativeToEnglish = function(localName) {
+	for (var i in Foxtrick.XMLData.League) {
+		if (Foxtrick.XMLData.League[i].Country.CountryName === localName) {
 			return Foxtrick.XMLData.League[i].EnglishName;
 		}
 	}
