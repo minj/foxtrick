@@ -2,7 +2,7 @@
 /**
  * add-promotion-reminder.js
  * Add a reminder in the day that you can promote a Youth Player
- * @author tasosventouris
+ * @author tasosventouris, LA-MJ
  */
 
 Foxtrick.modules['AddPromotionReminder'] = {
