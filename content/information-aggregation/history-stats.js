@@ -128,15 +128,19 @@ Foxtrick.modules['HistoryStats'] = {
 						table[i].textContent =
 							table[i].textContent.replace(season - this.Offset[teamId], '').trim();
 						var pos = table[i].textContent.match(/\d{1}/);
-						buff = season + '|' + league + '|' + pos + '|' + leagueN;
-						if (!Foxtrick.has(this.Buffer[teamId], buff))
-							this.Buffer[teamId].push(buff);
+						buff += season + '|' + league + '|' + pos + '|' + leagueN;
 					}
 					else if (cup != -1) {
-						buff = season + '|' + cup;
-						if (!Foxtrick.has(this.Buffer[teamId], buff))
-							this.Buffer[teamId].push(buff);
+						buff += season + '|' + cup + '||';
 					}
+					else
+						// unimportant event
+						continue;
+
+					// add a short timestamp
+					buff += '|' + date.valueOf() / 100000;
+					if (!Foxtrick.has(this.Buffer[teamId], buff))
+						this.Buffer[teamId].push(buff);
 				}
 			}
 		}
@@ -175,11 +179,13 @@ Foxtrick.modules['HistoryStats'] = {
 		tbody.appendChild(tr);
 
 		for (var i = 0; i < this.Buffer[teamId].length; i++) {
-			var info = this.Buffer[teamId][i].split('|');
+			var buffer = this.Buffer[teamId][i];
+			var info = buffer.split('|');
 			var season = parseInt(info[0], 10) - this.Offset[teamId];
 			var cup = info[1];
 			var position = info[2];
 			var league = info[3];
+			var timestamp = info[4];
 			var className = 'ft-history-stats-row-' + season;
 			var row = tbody.querySelector('.' + className);
 
@@ -199,8 +205,15 @@ Foxtrick.modules['HistoryStats'] = {
 				row.cells[3].textContent = position;
 			}
 			else {
-				if (cup != '!')
+				// only regard the first cup of the season = main cup
+				var timestampPrev = row.cells[1].getAttribute('data-timestamp') || Infinity;
+				if (timestampPrev < timestamp)
+					continue;
+
+				row.cells[1].setAttribute('data-timestamp', timestamp);
+				if (cup != '!') {
 					row.cells[1].textContent = cup;
+				}
 				else {
 					row.cells[1].textContent = '';
 					var b = doc.createElement('strong');
