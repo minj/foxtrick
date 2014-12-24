@@ -12,6 +12,7 @@ pl:
       new: '<header>Nowe moduły</header>'
       promotion_reminder: '<module>AddPromotionReminder</module>: dodaje przycisk do tworzenia przypomnienia dla  dnia, kiedy można promować juniora'
       bugs: '<header>Poprawki błędów</header>'
+      breakages: Foxtrick powinien teraz działać poprawnie na Safari 7.1 + i Firefoksie dla systemu Android.
       https: Foxtrick ponownie powinien działać poprawnie na Hattrick Stage.
       avatars: 'Pamięć podręczna awatarów zawodników w  <module>MatchOrderInterface</module> będzie teraz automatycznie odświeżana po przyjściu nowych graczy do zespołu.'
       fans: 'Zmiana ilości fanów w <module>Fans</module> będzie obliczana poprawnie, gdy zespół zostanie promowany lub zdegradowany.'
