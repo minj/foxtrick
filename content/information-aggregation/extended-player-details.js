@@ -108,12 +108,14 @@ Foxtrick.modules['ExtendedPlayerDetailsWage'] = {
 			if (!Foxtrick.util.id.findTeamId(div.getElementsByTagName('table')[0]))
 				return; // player has no team
 
+			symbol = symbol.replace('$', '\\$');
 			var wageText = wageElm.textContent;
 			var hasBonus = wageText.indexOf('%') > 0;
 			var curRe = new RegExp('\\d+' + '\u00a0' + symbol);
 
 			if (!wageText.match(curRe)) {
 				// bad currency
+				Foxtrick.log(symbol, 'NOT FOUND');
 				Foxtrick.util.currency.reset();
 				Foxtrick.util.currency.displaySelector(doc, { reason: 'symbol' });
 				return;
