@@ -1478,7 +1478,7 @@ function initTextAndValues() {
 			var row = document.createElement('tr');
 			row.appendChild(document.createElement('td')).textContent = id;
 			row.appendChild(document.createElement('td')).textContent = code;
-			row.appendChild(document.createElement('td')).textContent = rate;
+			row.appendChild(document.createElement('td')).textContent = rate || '-';
 			$('#pref-setup-currency').append($(row));
 		}
 	}, currencyKeys);

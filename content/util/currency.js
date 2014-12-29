@@ -136,10 +136,14 @@ Foxtrick.util.currency = {
 		Foxtrick.Prefs.deleteValue('Currency.Code.' + ownTeamId);
 	},
 	getSymbolByCode: function(lookup) {
+		var ret = null;
 		var category = Foxtrick.XMLData.htCurrencyJSON.hattrickcurrencies;
-		return Foxtrick.nth(function(item) {
+		var cur = Foxtrick.nth(function(item) {
 			return item.code == lookup;
-		}, category).symbol;
+		}, category);
+		if (cur)
+			ret = cur.symbol;
+		return ret;
 	},
 
 	isValidCode: function(code) {
@@ -150,10 +154,14 @@ Foxtrick.util.currency = {
 	},
 
 	getRateByCode: function(lookup) {
+		var ret = null;
 		var category = Foxtrick.XMLData.htCurrencyJSON.hattrickcurrencies;
-		return parseFloat(Foxtrick.nth(function(item) {
+		var curr = Foxtrick.nth(function(item) {
 			return item.code == lookup;
-		}, category).eurorate);
+		}, category);
+		if (curr)
+			ret = parseFloat(curr.eurorate);
+		return ret;
 	},
 	/**
 	 * get saved currency code
