@@ -1858,8 +1858,8 @@
 				"Country": {
 					"CountryID": "61",
 					"CountryName": "Lietuva",
-					"CurrencyName": "Lt",
-					"CurrencyRate": "2,5",
+					"CurrencyName": "€",
+					"CurrencyRate": "10",
 					"DateFormat": "YYYY-MM-DD",
 					"TimeFormat": "hh:mm"
 				},

@@ -314,12 +314,6 @@
 			"name": "Som (Kyrgyzstani)"
 		},
 		{
-			"eurorate": "0.25",
-			"symbol": "Lt",
-			"code": "LTL",
-			"name": "Lt (Lithuanian litas)"
-		},
-		{
 			"eurorate": "0.0005",
 			"symbol": "LBP",
 			"code": "LBP",
