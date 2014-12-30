@@ -8,6 +8,7 @@
 // ==/UserScript==
 
 (function() {
+'use strict';
 
 	var SCRIPT_NAME = 'HT HTP Editor Crawler';
 	var LEAGUE_SELECT_ID = 'ctl00_ctl00_CPContent_CPMain_ucLeagues_ddlLeagues';
@@ -33,7 +34,7 @@
 			typeSelect.value = TYPE_SELECT_VALUE;
 			var e = new Event('change');
 			typeSelect.dispatchEvent(e);
-		})
+		});
 	}
 	else {
 		var staffTable = document.querySelector(STAFF_TABLE_SELECTOR);

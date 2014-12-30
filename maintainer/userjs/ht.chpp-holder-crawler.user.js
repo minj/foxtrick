@@ -8,6 +8,7 @@
 // ==/UserScript==
 
 (function() {
+'use strict';
 
 	var SCRIPT_NAME = 'HT CHPP Holder Crawler';
 	var CHPP_APP_SELECTOR = '#approvedApplications td:first-child';
