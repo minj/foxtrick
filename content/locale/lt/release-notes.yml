@@ -10,8 +10,21 @@ lt:
       crowdin: '<header>Daugybė vertimo atnaujinimų. Dėkojame savo šauniems vartotojams, kurie naudojasi <linkCrowdin>crowdin portalu</linkCrowdin>. Ir Jūs galite prisidėti!</header>'
       twitter: "Paskutines Foxtrick naujienas, atnaujinimus ir pranešimus gausite sekdami <linkTwitter>Foxtrick Twitter'yje</linkTwitter>."
       new: '<header>Nauji moduliai</header>'
+      promotion_reminder: '<module>AddPromotionReminder</module>: prideda mygtuką priminimui apie jaunio paaukštinimo datą sukurti'
       bugs: '<header>Pataisytos klaidos</header>'
+      breakages: Foxtrick vėl turėtų gerai veikti Safari 7.1+ ir Firefox (androidams) naršyklėse.
+      https: Foxtrick vėl turėtų gerai veikti Hattrick Stage serveryje.
+      avatars: 'Žaidėjų veidų podėlis modulyje <module>MatchOrderInterface</module> automatiškai atsinaujins, jei komandoje atsiras naujų žaidėjų.'
+      fans: 'Sirgalių klubo pokyčių suma modulyje <module>Fans</module> bus apskaičiuojama net jei Jūsų komanda pakeitė divizioną.'
+      player_stats: '<module>PlayerStatsTrainingWeek</module> modulis sėkmingai atpažins savaitgalio draugiškas rungtynes.'
       other: '<header>Kiti pakeitimai</header>'
+      transfer_compare: 'Modulis MedianTransferPrice pervadintas į <module>TransferComparePlayers</module>. Apskaičiavimai taikomi ir TSI. Galima parsiųsti daugiau duomenų iš CHPP. Žaidėjo sandorių istorijos puslapyje rodo kainos pokyčius.'
+      player_positions: 'Pagerintas <module>PlayerPositionsEvaluations</module> modulis: atsirado daugiau nustatymų skaičiuojant atsižvelgti į žaidėjo formą, ištvermę, lojalumą, patirtį ir sveikatą.'
+      country_list: '<module>CountryList</module> dabar gali pataisyti šalių pavadinimus vėliavų kolekcijoje. Vietoj vietinių galima naudoti ir angliškus pavadinimus.'
+      best_player_position: 'Modulis BestPlayerPosition sujungtas su <module>PlayerPositionsEvaluations</module>.'
+      nt: Sutaisyta daug funkcijų neveikusių rinktinių treneriams.
+      en-US: Sutvarkytas JAV anglų kalbos palaikymas.
+      code: Foxtrick kodo pertvarkymai tęsiasi. Taip aptinkamos įvairios klaidos, pagerinamas stabilumas ir palengvinama tolesnė Foxtrick plėtra.
       and_more: Daugybė kitų smulkių pataisymų ir pakitimų.
     0.14.0.3:
       important: '<header>Svarbūs pranešimai</header>'
