@@ -7,11 +7,13 @@ nl:
       note_0: 'Dit is een beta versie van de volgende release. Help alsjeblieft met vertalen van deze versie op de zeer gebruiksvriendelijke crowd-vertaal pagina <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.15.0:
       important: '<header>Belangrijke aankondigingen</header>'
+      support: '<header>Waardeer je wat wij doen? Steun ons dan aub<linkContribute>Steun Foxtrick</linkContribute>.</header>'
       crowdin: '<header>Heel veel vertalingsupdates van onze geweldige gebruikers zijn gemaakt met behulp van de <linkCrowdin>crowdin tool</linkCrowdin>. Jij kan ons ook helpen!</header>'
       twitter: 'Je kan <linkTwitter> Foxtrick volgen op Twitter </linkTwitter> om de laatste update, nieuwtjes en berichten te ontvangen.'
       new: '<header>Nieuwe modules</header>'
       promotion_reminder: '<module>AddPromotionReminder</module>: Voeg een knop toe om een herinnering in te stellen voor de dag waarop je een jeugdspeler gepromoveerd kan worden'
       bugs: '<header>Herstelde fouten</header>'
+      breakages: Foxtrick zou nu ook correct moeten werken voor Safari 7.1+ en op Firefox voor Android.
       https: Foxtrick zou nu weer goed moeten werken op Hattrick Stage.
       avatars: 'Speler avatar cache in <module>MatchOrderInterface</module> zal nu automatisch worden vernieuwd wanneer nieuwe spelers bij je team komen.'
       fans: 'Fan evolutie in <module>Fans</module> zal nu correct worden berekend wanneer jouw team promoveert of degradeert.'

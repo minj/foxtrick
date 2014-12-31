@@ -7,11 +7,13 @@ ro:
       note_0: 'Aceasta este o versiune beta a următoarei versiuni care va fi lansată. Vă rugăm ajutați traducând această versiune utilizând pagina de traducere <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.15.0:
       important: '<header>Anunţuri importante</header>'
+      support: '<header>Îți place ceea ce facem? Vă rugăm să <linkContribute>suport Foxtrick</linkContribute>.</header>'
       crowdin: '<header>O mulțime de traduceri actualizate de către userii care folosesc <linkCrowdin> instrumentul crowdin</linkCrowdin>. Și tu poți ajuta!</header>'
       twitter: 'Puteţi urmări <linkTwitter>Foxtrick pe Twitter</linkTwitter> pentru a primi ultimele ştiri, actualizări şi anunţuri.'
       new: '<header>Module noi</header>'
       promotion_reminder: '<module>AddPromotionReminder</module>: Adauga un buton pentru a crea un memento pentru ziua când pot promova un jucător de tineret'
       bugs: '<header>Erori reparate</header>'
+      breakages: Foxtrick acum ar trebui să funcţioneze corect pe Safari 7.1 + și Firefox pentru Android.
       https: Foxtrick ar trebui să funcţioneze corect, din nou, pe Hattrick Stage.
       avatars: 'Avatarul jucătorului în <module>MatchOrderInterface</module>  va fi reîmprospătat automat, atunci când un nou jucător sosește la echipa ta.'
       fans: 'Evoluția fanilor în <module>Fans</module> va fi calculată corect când echipa ta e promovată sau retrogradată.'

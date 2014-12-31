@@ -7,11 +7,13 @@ es-AR:
       note_0: 'Esta es la versión beta de la próxima versión. Por favor ayude a traducir esta versión en nuestra super-fácil página <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.15.0:
       important: '<header>Anuncios importantes</header>'
+      support: '¿<header>Qué estamos haciendo? Por favor <linkContribute>ayuda a Foxtrick</linkContribute>.</header>'
       crowdin: '<header>Muchas actualizaciones en las traducciones de nuestros colaboradores mediante <linkCrowdin> crowdin</linkCrowdin>. Usted también puede ayudarnos!</header>'
       twitter: 'Puedes seguir <linkTwitter>Foxtrick on Twitter</linkTwitter> para recibir las últimas noticias, actualizaciones y anuncios.'
       new: '<header>Nuevos módulos</header>'
       promotion_reminder: '<module>AddPromotionReminder</module>: añade un botón para crear un recordatorio para el día cuando podés promover un jugador juvenil'
       bugs: '<header>Corrección de errores</header>'
+      breakages: Foxtrick ahora debería funcionar correctamente en Safari 7.1+ y Firefox para Android.
       https: 'Foxtrick  debería otra vez funcionar correctamente en Stage.'
       avatars: 'Caché de avatar de jugador en <module>MatchOrderInterface</module> ahora se actualizará automáticamente cuando lleguen nuevos jugadores a tu equipo.'
       fans: 'Evolución de hinchas en <module>ventiladores</module> ahora se calcularán correctamente cuando tu equipo es promovido o degradado.'

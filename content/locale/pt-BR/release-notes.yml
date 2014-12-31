@@ -7,10 +7,14 @@ pt-BR:
       note_0: 'Esta é a versão beta do próximo lançamento. Por favor ajude a traduzir essa versão em nossa página de tradução comunitária super fácil <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.15.0:
       important: '<header>Anúncios Importantes</header>'
+      support: '<header>Como o que estamos fazendo? Por favor <linkContribute>apoio Foxtrick</linkContribute>.</header>'
       crowdin: '<header>Várias atualizações de traduções de nossos fantásticos usuários que usam o <linkCrowdin>crowdin tool</linkCrowdin>. Você também pode ajudar!</header>'
       twitter: 'Você pode seguir <linkTwitter>Foxtrick no Twitter</linkTwitter>para receber as últimas notícias, informações e anúncios.'
       new: '<header>Novos módulos</header>'
+      promotion_reminder: '<module>AddPromotionReminder</module>: Adicionar um botão para criar um lembrete para o dia quando pode promover um jogador júnior'
       bugs: '<header>Correções de bugs</header>'
+      breakages: FoxTrick agora deve funcionar corretamente no Safari 7.1 + e o Firefox para Android.
+      https: Foxtrick deve novamente estar a funcionar corretamente no Hattrick Stage.
       other: '<header>Outras alterações</header>'
       and_more: Várias outras pequenas alterações e correções.
     0.14.0.3:

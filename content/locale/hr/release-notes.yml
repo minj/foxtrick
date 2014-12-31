@@ -7,11 +7,13 @@ hr:
       note_0: 'Ovo je beta inačica buduće nove verzije. Pomozite na prevoditi ovu verziju sa super lakim prevođenjem na <linkCrowdin>crowdin.net</linkCrowdin>.'
     0.15.0:
       important: '<header>Važne obavijesti</header>'
+      support: '<header>Sviđa Vam se što radimo? Molim Vas da <linkContribute>podržite Foxtrick</linkContribute>.</header>'
       crowdin: '<header>Mnogo prevoditeljskih nadogradnji od naših fantastičnih korisnika koristeći <linkCrowdin>crowdin alat</linkCrowdin>. I Vi možete pomoći!</header>'
       twitter: 'Možete pratiti <linkTwitter>Foxtrick na Twitteru</linkTwitter> kako biste dobili najnovije vijesti, ažuriranja i objave.'
       new: '<header>Novi moduli</header>'
       promotion_reminder: '<module>AddPromotionReminder</module>: Dodajte gumb želite li stvoriti podsjetnik za dan kada možete promovirati juniora'
       bugs: '<header>Popravljene greške</header>'
+      breakages: 'Foxtrick bi sada trebao raditi ispravno na Safari 7.1+  te na Firefox za Android.'
       https: Foxtrick bi opet trebao funkcionirati ispravno na Hattrick Stage.
       avatars: 'Predmemorija avatara igrača u <module>MatchOrderInterface</module> će se odmah osvježiti automatski kada novi igrači stignu u vašu momčad.'
       fans: 'Kretanje broja navijača u <module>Fans</module> će sada biti ispravno izračunato kada vaša momčad bude promovirana ili kada ispadne.'
