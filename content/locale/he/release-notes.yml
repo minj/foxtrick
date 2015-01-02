@@ -7,11 +7,13 @@ he:
       note_0: 'זוהי גירסת הבטא של המהדורה הבאה. נודה על עזרה בתרגום גירסה זו באתר התרגום המאוד נוח שלנו <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.15.0:
       important: '<header>הודעות חשובות</header>'
+      support: '<header>אוהב את מה שאנחנו עושים? בבקשה <linkContribute>תרום ל  Foxtrick</linkContribute>.</header>'
       crowdin: '<header>עדכוני תרגום רבים של המשתמשים המדהימים שלנו באמצעות <linkCrowdin>כלי ה-crowdin</linkCrowdin>. גם אתם יכולים לעזור!</header>'
       twitter: 'באפשרותך לעקוב אחר עדכוני <linkTwitter>פוקסטריק בטוויטר</linkTwitter> על מנת לקבל את החדשות, העדכונים וההודעות האחרונים.'
       new: '<header>מודולים חדשים</header>'
       promotion_reminder: '<module>AddPromotionReminder</module>: הוספת כפתור ליצירת תזכורת ליום בו תוכל לקדם שחקן נוער'
       bugs: '<header>תיקוני באגים</header>'
+      breakages: 'Foxtrick צריך עכשיו לעבוד כראוי על ספארי 7.1 + ו- Firefox עבור אנדרואיד.'
       https: Foxtrick צריך שוב לפעול כהלכה על במת האטריק.
       avatars: 'מטמון צלמית השחקן ב <module>MatchOrderInterface</module> כעת יתרענן אוטומטית כאשר שחקנים חדשים מגיעים לקבוצה שלך.'
       fans: 'חישוב האוהדים ב <module>Fans</module> יחושבו כעת כראוי כאשר הקבוצה שלך מעפילה או יורדת.'

@@ -7,11 +7,13 @@ sv-SE:
       note_0: 'Detta är BETA -versionen av nästa utgåva. Hjälp gärna till att översätta denna version via vårt superlätta översättningsverktyg på <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.15.0:
       important: '<header>Viktiga meddelanden</header>'
+      support: '<header>Gillar du vad vi gör? Vänligen <linkContribute>Stöd Foxtrick</linkContribute>.</header>'
       crowdin: '<header>En hel massa översättningsuppdateringar av användare via översättningsverktyget på <linkCrowdin>crowdin.net</linkCrowdin>. Du kan också hjälpa till!</header>'
       twitter: 'Du kan följa <linkTwitter>Foxtrick på Twitter</linkTwitter> för att få senaste nytt, uppdateringar och meddelanden.'
       new: '<header>Nya moduler</header>'
       promotion_reminder: '<module>AddPromotionReminder</module>: Lägg till en knapp för att skapa en påminnelse om dagen du kan plocka upp juniorspelaren till seniorlaget'
       bugs: '<header>Buggfixar</header>'
+      breakages: FoxTrick bör nu fungera korrekt på Safari 7.1 + och Firefox för Android.
       https: Foxtrick skall åter igen fungera korrekt på Hattrick Stage.
       avatars: 'Player avatar cache in <module>MatchOrderInterface</module> will now be refreshed automatically when new players arrive on your team.'
       fans: 'Fan evolution in <module>Fans</module> will now be calculated correctly when your team is promoted or demoted.'
