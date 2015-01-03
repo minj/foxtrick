@@ -135,7 +135,7 @@ Foxtrick.modules['DashboardCalendar'] = {
 					text: '18:00 » ' +
 						Foxtrick.L10n.getString('dashBoardCalendar.events.' + EVENTS.INTFRREMINDER +
 						                       '.alarm'),
-					URL: 'http://www.hattrick.org/Club/Challenges/'
+					URL: 'https://www.hattrick.org/goto.ashx?path=/Club/Challenges/'
 				});
 			}
 			for (var j = 0, z = eventDays[day].length; j < z; j++) {
@@ -199,7 +199,7 @@ Foxtrick.modules['DashboardCalendar'] = {
 				'SUMMARY:' + Foxtrick.foldLines(Foxtrick.L10n.getString('dashBoardCalendar.events.' +
 				                                events[i].type + '.summary').replace(/\n/mg, ''), 75,
 												'\r\n', '\t', true) + '' +
-				'LOCATION:http://www.hattrick.org\r\n' +
+				'LOCATION:https://www.hattrick.org/goto.ashx?path=/\r\n' +
 				'CATEGORIES:Personal\r\n' +
 				'DTSTART;TZID=Europe/Zurich:' + events[i].time + '\r\n' +
 				'DTEND;TZID=Europe/Zurich:' + (events[i].end || events[i].time) + '\r\n' +
