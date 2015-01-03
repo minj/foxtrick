@@ -3,6 +3,9 @@ tr:
   faq:
     style:
       question: "FoxTrick'i nasıl biçimlendirebilirim?"
+      answer: |
+        <p>FoxTrick kullanıcaların kendi biçimlerini özelleştirmeleri için sunum arabirimleri kümesi sağlar. Bu arabirimler HTML ID'ler ve sınıflar tarafından sağlanır ve tercih ettiğiniz biçimi tanımlamak için CSS kullanabilirsiniz.</p>
+        <p>İhtiyacınıza göre değiştirebileceğiniz örnek kullanıcı biçim dosyasını <linkCSSExample>buradan</linkCSSExample> veya <linkCSSExampleGCode>buradan</linkCSSExampleGCode> bulabilirsiniz. Dosyayı kaydettikten sonra kullanıcı biçiminizin etkin olmasını sağlayacak CSS dosyasını  <module>SkinPlugin</module> modülünü kullanarak yükleyebilirsiniz.</p>
     sound-format:
       question: Uyarı sesleri için hangi dosya türleri kullanılabilir ?
       answer: |
@@ -16,7 +19,7 @@ tr:
     sound-location:
       question: Uyarı sesleri için boyut sınırları nedir ve onları nerede bulabilirim?
     authorize:
-      question: "Takım bilgilerime erişmesi için neden Foxtrick'e izin vermeliyim?"
+      question: "Neden takım bilgilerime erişmesi için Foxtrick'e yetki vermeliyim?"
       answer: |
         FoxTrick ihtiyaç duyduğu verilerin çoğu görüntülediğiniz sayfadan doğrudan zorlama ile olabilir <p> bazı modüller düzgün çalışması için Hattrick indirirken veri-akışı gereklidir. </ p>
         

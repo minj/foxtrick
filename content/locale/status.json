@@ -486,11 +486,11 @@
 			"code": "pt-PT",
 			"name": "Portuguese",
 			"phrases": "1817",
-			"translated": "1631",
+			"translated": "1633",
 			"translated_progress": "76",
 			"words": "12824",
 			"words_approved": "0",
-			"words_translated": "9826"
+			"words_translated": "9853"
 		},
 		{
 			"approved": "0",
@@ -517,16 +517,16 @@
 			"words_translated": "12824"
 		},
 		{
-			"approved": "1811",
-			"approved_progress": "99",
+			"approved": "1817",
+			"approved_progress": "100",
 			"code": "ru",
 			"name": "Russian",
 			"phrases": "1817",
-			"translated": "1811",
-			"translated_progress": "99",
+			"translated": "1817",
+			"translated_progress": "100",
 			"words": "12824",
-			"words_approved": "12769",
-			"words_translated": "12769"
+			"words_approved": "12824",
+			"words_translated": "12824"
 		},
 		{
 			"approved": "1700",
@@ -618,11 +618,11 @@
 			"code": "tr",
 			"name": "Turkish",
 			"phrases": "1817",
-			"translated": "1312",
+			"translated": "1313",
 			"translated_progress": "59",
 			"words": "12824",
 			"words_approved": "0",
-			"words_translated": "7582"
+			"words_translated": "7656"
 		},
 		{
 			"approved": "0",
