@@ -24,7 +24,7 @@ echo 'update crowdin'
 cd $BETA || log "Cannot cd to $BETA"
 git stash
 git svn rebase || log "Cannot git-svn rebase"
-cd maintainer/locate || log "Cannot cd to maintainer/locale"
+cd maintainer/locale || log "Cannot cd to maintainer/locale"
 python updateFTStaff.py
 git commit -a -m "*automated* supporter update"
 git svn dcommit
