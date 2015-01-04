@@ -19,7 +19,7 @@ import xml.etree.ElementTree as ET
 if len(sys.argv) > 1:
 	FT_JSON = sys.argv[1]
 else:
-	FT_JSON = '~/trunk/res/staff/foxtrick.json'
+	FT_JSON = '/home/foxtrick/trunk/res/staff/foxtrick.json'
 
 SUPPORTER_JSON = 'https://www.foxtrick.org/paypal/list.php'
 
