@@ -570,11 +570,11 @@
 			"code": "es-ES",
 			"name": "Spanish",
 			"phrases": "1817",
-			"translated": "1811",
-			"translated_progress": "99",
+			"translated": "1817",
+			"translated_progress": "100",
 			"words": "12824",
 			"words_approved": "1",
-			"words_translated": "12769"
+			"words_translated": "12824"
 		},
 		{
 			"approved": "0",
@@ -594,11 +594,11 @@
 			"code": "es-CR",
 			"name": "Spanish, Costa Rica",
 			"phrases": "1817",
-			"translated": "1811",
+			"translated": "1814",
 			"translated_progress": "99",
 			"words": "12824",
 			"words_approved": "0",
-			"words_translated": "12769"
+			"words_translated": "12779"
 		},
 		{
 			"approved": "1817",
