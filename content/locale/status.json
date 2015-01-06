@@ -217,16 +217,16 @@
 			"words_translated": "6220"
 		},
 		{
-			"approved": "1815",
-			"approved_progress": "99",
+			"approved": "1817",
+			"approved_progress": "100",
 			"code": "fr",
 			"name": "French",
 			"phrases": "1817",
-			"translated": "1815",
-			"translated_progress": "99",
+			"translated": "1817",
+			"translated_progress": "100",
 			"words": "12824",
-			"words_approved": "12800",
-			"words_translated": "12800"
+			"words_approved": "12824",
+			"words_translated": "12824"
 		},
 		{
 			"approved": "0",
@@ -270,11 +270,11 @@
 			"code": "ka",
 			"name": "Georgian",
 			"phrases": "1817",
-			"translated": "1146",
+			"translated": "1148",
 			"translated_progress": "49",
 			"words": "12824",
 			"words_approved": "0",
-			"words_translated": "6347"
+			"words_translated": "6381"
 		},
 		{
 			"approved": "7",
@@ -546,11 +546,11 @@
 			"code": "sk",
 			"name": "Slovak",
 			"phrases": "1817",
-			"translated": "1287",
-			"translated_progress": "54",
+			"translated": "1360",
+			"translated_progress": "57",
 			"words": "12824",
 			"words_approved": "0",
-			"words_translated": "7032"
+			"words_translated": "7434"
 		},
 		{
 			"approved": "0",
@@ -594,11 +594,11 @@
 			"code": "es-CR",
 			"name": "Spanish, Costa Rica",
 			"phrases": "1817",
-			"translated": "1814",
-			"translated_progress": "99",
+			"translated": "1817",
+			"translated_progress": "100",
 			"words": "12824",
 			"words_approved": "0",
-			"words_translated": "12779"
+			"words_translated": "12824"
 		},
 		{
 			"approved": "1817",
