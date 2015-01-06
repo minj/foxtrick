@@ -400,14 +400,15 @@ Foxtrick.modules['TeamStats'] = {
 							isLeague = true;
 							category = 'Current_league';
 						}
-						var leagueSummary = [], name;
+						var leagueSummary = [];
 						for (var i in leagues) {
+							var leagueId;
 							if (isLeague)
-								name = Foxtrick.XMLData.League[i].LeagueName;
-							else {
-								var leagueId = Foxtrick.XMLData.getLeagueIdByCountryId(i);
-								name = Foxtrick.XMLData.League[leagueId].LeagueName;
-							}
+								leagueId = i;
+							else
+								leagueId = Foxtrick.XMLData.getLeagueIdByCountryId(i);
+
+							var name = Foxtrick.L10n.getCountryName(leagueId);
 							leagueSummary.push({ name: name, count: leagues[i] });
 						}
 						leagueSummary.sort(function(a, b) { return a.name.localeCompare(b.name) });

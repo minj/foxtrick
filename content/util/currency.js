@@ -210,7 +210,7 @@ Foxtrick.util.currency = {
 	 */
 	findSymbol: function(id) {
 		var leagueId = id || Foxtrick.util.id.getOwnLeagueId();
-		var name = Foxtrick.util.id.getLeagueDataFromId(leagueId).Country.CurrencyName;
+		var name = Foxtrick.XMLData.League[leagueId].Country.CurrencyName;
 		return name.replace(/000 /, '');
 	},
 	/**

@@ -59,7 +59,7 @@ Foxtrick.XMLData = {
 			'Kampuchea': 'Prateh Kampuchea',
 			'O’zbekiston': 'O\'zbekiston',
 		};
-		var country = this.League[id].Country.CountryName; // NATIVE
+		var country = Foxtrick.L10n.getCountryNameNative(id);
 		return country in NT_BY_COUNTRY ? NT_BY_COUNTRY[country] : country;
 	},
 };

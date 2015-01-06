@@ -90,12 +90,11 @@ Foxtrick.modules['CountryList'] = {
 				league.setAttribute('style', 'display:none');
 			}
 			Foxtrick.log(league.href + '\n');
-			var useEnglish = Foxtrick.Prefs.isModuleOptionEnabled('CountryList', 'UseEnglish');
 			var leagueId = league.href.match(/LeagueID=(\d+)/i)[1];
-			var info = Foxtrick.util.id.getLeagueDataFromId(leagueId);
-			var newName = useEnglish ? info.EnglishName : info.Country.CountryName;
-			if (!newName)
+			var newName = Foxtrick.L10n.getCountryName(leagueId);
+			if (newName === 'New Moon')
 				return -1;
+
 			league.firstChild.title = newName;
 
 			var byline = doc.getElementsByClassName('byline')[0];
@@ -122,23 +121,22 @@ Foxtrick.modules['CountryList'] = {
 		}
 
 		var id = selectbox.id;
-		var useEnglish = Foxtrick.Prefs.isModuleOptionEnabled('CountryList', 'UseEnglish');
 		Foxtrick.log('id: ' + id + '   start: ' + start + '\n');
 		var options = selectbox.options;
 		var countries = options.length;
 		var id_sel = selectbox.value;
 		for (var i = start; i < countries; i++) {
-			var league;
+			var leagueId;
 			if (/league|zone|pool/i.test(id)) {
-				league = options[i].value;
+				leagueId = options[i].value;
 			}
 			else {
-				league = Foxtrick.XMLData.getLeagueIdByCountryId(options[i].value);
+				leagueId = Foxtrick.XMLData.getLeagueIdByCountryId(options[i].value);
 			}
-			var info = Foxtrick.util.id.getLeagueDataFromId(league);
-			var newName = useEnglish ? info.EnglishName : info.Country.CountryName;
-			if (!newName)
+			var newName = Foxtrick.L10n.getCountryName(leagueId);
+			if (newName === 'New Moon')
 				return -1;
+
 			options[i].text = newName;
 		}
 		Foxtrick.makeFeaturedElement(selectbox, Foxtrick.modules.CountryList);
@@ -167,7 +165,6 @@ Foxtrick.modules['CountryList'] = {
 
 	_changeFlags: function(doc) {
 		var flags = doc.getElementsByClassName('flag');
-		var useEnglish = Foxtrick.Prefs.isModuleOptionEnabled('CountryList', 'UseEnglish');
 
 		// due to idiotic site layout by HTs
 		// we have to resort to hack-work to group flags and sort them
@@ -175,9 +172,8 @@ Foxtrick.modules['CountryList'] = {
 		var flagGroup = [];
 		Foxtrick.forEach(function(link) {
 			var leagueId = link.href.match(/LeagueID=(\d+)/i)[1];
-			var info = Foxtrick.util.id.getLeagueDataFromId(leagueId);
 			var img = link.querySelector('img');
-			img.alt = img.title = useEnglish ? info.EnglishName : info.Country.CountryName;
+			img.alt = img.title = Foxtrick.L10n.getCountryName(leagueId);
 
 			if (link.previousElementSibling.nodeName === 'P') {
 				// new flag group

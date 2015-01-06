@@ -114,7 +114,6 @@ Foxtrick.Pages.Player.getNationalityId = function(doc) {
 
 /**
  * Get player nationality name.
- * Returns country name in English.
  * @param  {document} doc
  * @return {string}
  */
@@ -122,7 +121,7 @@ Foxtrick.Pages.Player.getNationalityName = function(doc) {
 	var name = null;
 	try {
 		var id = this.getNationalityId(doc);
-		name = Foxtrick.XMLData.League[id].EnglishName;
+		name = Foxtrick.L10n.getCountryName(id);
 	}
 	catch (e) {
 		Foxtrick.log(e);

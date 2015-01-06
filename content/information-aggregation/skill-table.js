@@ -327,7 +327,7 @@ Foxtrick.modules['SkillTable'] = {
 				var league = function(cell, leagueId) {
 					var link = doc.createElement('a');
 					link.href = '/World/Leagues/League.aspx?LeagueID=' + leagueId;
-					link.textContent = Foxtrick.XMLData.League[leagueId].LeagueName;
+					link.textContent = Foxtrick.L10n.getCountryName(leagueId);
 					cell.appendChild(link);
 				};
 				var dateDiff = function(cell, deadline) {

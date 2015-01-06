@@ -480,6 +480,82 @@ Foxtrick.L10n = {
 		return this.getHTLangProperty(query);
 	},
 
+	/**
+	 * Get country name for display purposes.
+	 * Honors language settings in CountryList.
+	 * Returns 'New Moon' if the method fails.
+	 * @param  {number} leagueId
+	 * @return {string}
+	 */
+	getCountryName: function(leagueId) {
+		var method = this.getCountryNameLocal;
+		if (Foxtrick.Prefs.isModuleEnabled('CountryList')) {
+			if (Foxtrick.Prefs.isModuleOptionEnabled('CountryList', 'UseEnglish'))
+				method = this.getCountryNameEnglish;
+			else
+				method = this.getCountryNameNative;
+		}
+		return method(leagueId);
+	},
+
+	/**
+	 * Get English country name.
+	 * Returns 'New Moon' if the method fails.
+	 * @param  {number} leagueId
+	 * @return {string}
+	 */
+	getCountryNameEnglish: function(leagueId) {
+		var ret = 'New Moon';
+		try {
+			ret = Foxtrick.XMLData.League[leagueId].EnglishName;
+		}
+		catch (e) {
+			Foxtrick.log('getCountryNameEnglish:', leagueId, e);
+		}
+		return ret;
+	},
+
+	/**
+	 * Get native country name.
+	 * Returns 'New Moon' if the method fails.
+	 * @param  {number} leagueId
+	 * @return {string}
+	 */
+	getCountryNameNative: function(leagueId) {
+		var ret = 'New Moon';
+		try {
+			ret = Foxtrick.XMLData.League[leagueId].Country.CountryName;
+		}
+		catch (e) {
+			Foxtrick.log('getCountryNameNative:', leagueId, e);
+		}
+		return ret;
+	},
+
+	/**
+	 * Get localized country name.
+	 * Returns 'New Moon' if the method fails.
+	 * @param  {number} leagueId
+	 * @param  {string} lang     language (optional)
+	 * @return {string}
+	 */
+	getCountryNameLocal: function(leagueId, lang) {
+		var ret = 'New Moon';
+		try {
+			if (!lang)
+				lang = Foxtrick.Prefs.getString('htLanguage');
+			var json = Foxtrick.L10n.htLanguagesJSON[lang].language;
+			if (leagueId in json.leagueNames)
+				ret = json.leagueNames[leagueId];
+			else
+				throw new Error('no leagueId in json.leagueNames');
+		}
+		catch (e) {
+			Foxtrick.log('getCountryNameLocal:', lang, leagueId, e);
+		}
+		return ret;
+	},
+
 };
 
 // ----------------------  Gecko specific get/set preferences --------------------------

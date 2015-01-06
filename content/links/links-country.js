@@ -24,7 +24,7 @@ Foxtrick.modules['LinksCountry'] = {
 		var leagueId = Foxtrick.util.id.findLeagueId(flag.parentNode);
 
 		// get English name
-		var nameShort = Foxtrick.XMLData.League[leagueId].ShortName;
+		var englishName = Foxtrick.L10n.getCountryNameEnglish(leagueId);
 
 		var ownBoxBody = Foxtrick.createFeaturedElement(doc, this, 'div');
 		var header = Foxtrick.L10n.getString('links.boxheader');
@@ -35,7 +35,7 @@ Foxtrick.modules['LinksCountry'] = {
 
 		var links = Foxtrick.modules['Links'].getLinks('countrylink', {
 			'countryid': leagueId,
-			'english_name': nameShort
+			'english_name': englishName
 		}, doc, this);
 
 		if (links.length > 0) {

@@ -267,62 +267,6 @@ Foxtrick.util.id.findLeagueLeveUnitId = function(element) {
 	return null;
 };
 
-Foxtrick.util.id.countryNameEnglishToLocal = function(engName) {
-	for (var i in Foxtrick.XMLData.League) {
-		if (Foxtrick.XMLData.League[i].EnglishName === engName) {
-			return Foxtrick.XMLData.League[i].LeagueName;
-		}
-	}
-	return null;
-};
-
-Foxtrick.util.id.countryNameLocalToEnglish = function(localName) {
-	for (var i in Foxtrick.XMLData.League) {
-		if (Foxtrick.XMLData.League[i].LeagueName === localName) {
-			return Foxtrick.XMLData.League[i].EnglishName;
-		}
-	}
-	return null;
-};
-
-Foxtrick.util.id.countryNameEnglishToNative = function(engName) {
-	for (var i in Foxtrick.XMLData.League) {
-		if (Foxtrick.XMLData.League[i].EnglishName === engName) {
-			return Foxtrick.XMLData.League[i].Country.CountryName;
-		}
-	}
-	return null;
-};
-
-Foxtrick.util.id.countryNameNativeToEnglish = function(localName) {
-	for (var i in Foxtrick.XMLData.League) {
-		if (Foxtrick.XMLData.League[i].Country.CountryName === localName) {
-			return Foxtrick.XMLData.League[i].EnglishName;
-		}
-	}
-	return null;
-};
-
-Foxtrick.util.id.getLeagueDataFromId = function(id) {
-	var data = null;
-	try { data = Foxtrick.XMLData.League[id];}
-	catch (e) {}
-
-	if (data == null)
-		Foxtrick.log('getLeagueDataFromId error. id: ' + id + '\n');
-	return data;
-};
-
-Foxtrick.util.id.getCurrencyRateFromId = function(id) {
-	try {
-		Foxtrick.dump(Foxtrick.util.id.getLeagueDataFromId(id).Country.CurrencyRate
-		              .replace(',', '.') + '\n');
-		return parseFloat(Foxtrick.util.id.getLeagueDataFromId(id).Country.CurrencyRate
-		                  .replace(',', '.')) / 10;
-	}
-	catch (e) {}
-	Foxtrick.dump('getCurrencyRate error. id: ' + id + '\n');
-};
 /**
  * Returns a flag as a link element
  * link href and img title may optionally override defaults:
@@ -332,12 +276,12 @@ Foxtrick.util.id.getCurrencyRateFromId = function(id) {
  * @param	{String}	href		optional
  * @param	{String}	title		optional
  * @param	{Boolean}	imgOnly		return image only
- * @returns	{element}		flag
+ * @return	{element}		flag
  */
 Foxtrick.util.id.createFlagFromCountryId = function(doc, countryId, href, title, imgOnly) {
 	var leagueId = Foxtrick.XMLData.getLeagueIdByCountryId(countryId);
 	return Foxtrick.util.id.createFlagFromLeagueId(doc, leagueId, href, title, imgOnly);
-}
+};
 /**
  * Returns a flag as a link element
  * link href and img title may optionally override defaults:
@@ -347,17 +291,15 @@ Foxtrick.util.id.createFlagFromCountryId = function(doc, countryId, href, title,
  * @param	{String}	href		optional
  * @param	{String}	title		optional
  * @param	{Boolean}	imgOnly		return image only
- * @returns	{element}		flag
+ * @return	{element}		flag
  */
 Foxtrick.util.id.createFlagFromLeagueId = function(doc, leagueId, href, title, imgOnly) {
-	var leagueName = 'New Moon';
-	if (leagueId) {
-		leagueName = Foxtrick.util.id.getLeagueDataFromId(leagueId).LeagueName;
-	}
+	var leagueName = Foxtrick.L10n.getCountryName(leagueId);
 	var a = doc.createElement('a');
 	if (href)
 		a.href = href;
-	else a.href = '/World/Leagues/League.aspx?LeagueID=' + leagueId;
+	else
+		a.href = '/World/Leagues/League.aspx?LeagueID=' + leagueId;
 
 	if (imgOnly)
 		a = doc.createElement('span');
@@ -366,7 +308,8 @@ Foxtrick.util.id.createFlagFromLeagueId = function(doc, leagueId, href, title, i
 	img.className = 'flag' + leagueId;
 	if (title)
 		img.alt = img.title = title;
-	else img.alt = img.title = leagueName;
+	else
+		img.alt = img.title = leagueName;
 	img.src = '/Img/Icons/transparent.gif';
 	a.appendChild(img);
 	return a;

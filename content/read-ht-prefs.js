@@ -66,12 +66,11 @@ Foxtrick.modules['ReadHtPrefs'] = {
 	},
 
 	readCountry: function(doc) {
-		var header = doc.getElementById('header');
 		var teamLinks = doc.getElementById('teamLinks').getElementsByTagName('a');
 
-		var CountryLink = teamLinks[2];
-		var LeagueId = CountryLink.href.replace(/.+leagueid=/i, '').match(/^\d+/)[0];
-		var country = Foxtrick.util.id.getLeagueDataFromId(LeagueId).EnglishName;
+		var leagueLink = teamLinks[2];
+		var leagueId = leagueLink.href.replace(/.+leagueid=/i, '').match(/^\d+/)[0];
+		var country = Foxtrick.L10n.getCountryNameEnglish(leagueId);
 		Foxtrick.Prefs.setString('htCountry', country);
 	},
 
