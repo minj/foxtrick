@@ -66,7 +66,7 @@ def getTrainingTypeById(id):
 	return training[int(id, 10)]
 
 def getLanguage(id):
-	response = chpp.getFile('translations', params={'version':'1.0', 'languageId': id })
+	response = chpp.getFile('translations', params={'version':'1.1', 'languageId': id })
 	xml = ET.fromstring(response.content)
 	obj = {}
 	XMLParser.xml_to_python(xml, obj)
