@@ -927,15 +927,15 @@
 	},
 	"tnt_youth": {
 		"youthlink": {
-			"url": "http://www.tnt-youth.ca.vu",
+			"url": "http://dasmagischedreieck.de/tnt/",
 			"filters": ["owncountryid"]
 		},
 		"youthplayerlistlink": {
-			"url": "http://www.tnt-youth.ca.vu",
+			"url": "http://www.dasmagischedreieck.de/tnt/",
 			"filters": ["owncountryid"]
 		},
 		"youthplayerdetaillink": {
-			"url": "http://www.tnt-youth.ca.vu/addplayer.php",
+			"url": "http://www.dasmagischedreieck.de/tnt/addplayer.php",
 			"filters": ["owncountryid"]
 		},
 		"owncountryidranges": [[110, 110]],
