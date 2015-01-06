@@ -155,6 +155,14 @@ def parseLanguage(o, code):
 		item['value'] = t['SkillSubLevels'][i]['Value'].replace(',', '.')
 		out['ratingSubLevels'].append(item)
 
+	out['leagueNames'] = {}
+	for i in range(len(t['LeagueNames'])):
+		lId = t['LeagueNames'][i]['LeagueId']
+		item = {}
+		item['local'] = t['LeagueNames'][i]['LanguageLeagueName']
+		item['native'] = t['LeagueNames'][i]['LocalLeagueName']
+		out['leagueNames'][lId] = item
+
 	out['desc'] = o['Language']['textContent']
 	out['name'] = code
 	out['id'] = o['Language']['Id']
