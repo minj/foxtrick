@@ -20,7 +20,7 @@ cd "$DIR"
 . cron-config.sh
 cd ..
 
-echo 'update crowdin'
+echo 'update supporters'
 cd $BETA || log "Cannot cd to $BETA"
 git stash
 git svn rebase || log "Cannot git-svn rebase"
