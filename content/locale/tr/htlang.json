@@ -266,6 +266,520 @@
 			}
 		],
 		"id": "19",
+		"leagueNames": {
+			"1": {
+				"local": "İsveç",
+				"native": "Sverige"
+			},
+			"100": {
+				"local": "El Salvador",
+				"native": "El Salvador"
+			},
+			"101": {
+				"local": "Malta",
+				"native": "Malta"
+			},
+			"102": {
+				"local": "Kırgızistan",
+				"native": "Kyrgyzstan"
+			},
+			"103": {
+				"local": "Moldova",
+				"native": "Moldova"
+			},
+			"104": {
+				"local": "Gürcistan",
+				"native": "Sakartvelo"
+			},
+			"105": {
+				"local": "Andorra",
+				"native": "Andorra"
+			},
+			"106": {
+				"local": "Ürdün",
+				"native": "Al Urdun"
+			},
+			"107": {
+				"local": "Guatemala",
+				"native": "Guatemala"
+			},
+			"11": {
+				"local": "Danimarka",
+				"native": "Danmark"
+			},
+			"110": {
+				"local": "Trinidad & Tobago",
+				"native": "Trinidad & Tobago"
+			},
+			"111": {
+				"local": "Nikaragua",
+				"native": "Nicaragua"
+			},
+			"112": {
+				"local": "Kazakistan",
+				"native": "Kazakhstan"
+			},
+			"113": {
+				"local": "Surinam",
+				"native": "Suriname"
+			},
+			"117": {
+				"local": "Lihtenştayn",
+				"native": "Liechtenstein"
+			},
+			"118": {
+				"local": "Cezayir",
+				"native": "Algérie"
+			},
+			"119": {
+				"local": "Moğolistan",
+				"native": "Mongol Uls"
+			},
+			"12": {
+				"local": "Finlandiya",
+				"native": "Suomi"
+			},
+			"120": {
+				"local": "Lübnan",
+				"native": "Lubnan"
+			},
+			"121": {
+				"local": "Senegal",
+				"native": "Sénégal"
+			},
+			"122": {
+				"local": "Ermenistan",
+				"native": "Hayastan"
+			},
+			"123": {
+				"local": "Bahreyn",
+				"native": "Bahrain"
+			},
+			"124": {
+				"local": "Barbados",
+				"native": "Barbados"
+			},
+			"125": {
+				"local": "Yeşil Burun Adaları",
+				"native": "Cabo Verde"
+			},
+			"126": {
+				"local": "Fildişi Sahili",
+				"native": "Côte d’Ivoire"
+			},
+			"127": {
+				"local": "Kuveyt",
+				"native": "Al Kuwayt"
+			},
+			"128": {
+				"local": "Irak",
+				"native": "Al Iraq"
+			},
+			"129": {
+				"local": "Azerbaycan",
+				"native": "Azərbaycan"
+			},
+			"130": {
+				"local": "Angola",
+				"native": "Angola"
+			},
+			"131": {
+				"local": "Karadağ",
+				"native": "Crna Gora"
+			},
+			"132": {
+				"local": "Bangladeş",
+				"native": "Bangladesh"
+			},
+			"133": {
+				"local": "Yemen",
+				"native": "Al Yaman"
+			},
+			"134": {
+				"local": "Umman",
+				"native": "Oman"
+			},
+			"135": {
+				"local": "Mozambik",
+				"native": "Moçambique"
+			},
+			"136": {
+				"local": "Brunei",
+				"native": "Brunei"
+			},
+			"137": {
+				"local": "Gana",
+				"native": "Ghana"
+			},
+			"138": {
+				"local": "Kamboçya",
+				"native": "Kampuchea"
+			},
+			"139": {
+				"local": "Benin",
+				"native": "Bénin"
+			},
+			"14": {
+				"local": "Hollanda",
+				"native": "Nederland"
+			},
+			"140": {
+				"local": "Suriye",
+				"native": "Suriyah"
+			},
+			"141": {
+				"local": "Katar",
+				"native": "Dawlat Qatar"
+			},
+			"142": {
+				"local": "Tanzanya",
+				"native": "Tanzania"
+			},
+			"143": {
+				"local": "Uganda",
+				"native": "Uganda"
+			},
+			"144": {
+				"local": "Maldivler",
+				"native": "Dhivehi Raajje"
+			},
+			"145": {
+				"local": "Özbekistan",
+				"native": "O’zbekiston"
+			},
+			"146": {
+				"local": "Kamerun",
+				"native": "Cameroon"
+			},
+			"147": {
+				"local": "Küba",
+				"native": "Cuba"
+			},
+			"148": {
+				"local": "Filistin",
+				"native": "Palestine"
+			},
+			"15": {
+				"local": "Okyanusya",
+				"native": "Oceania"
+			},
+			"16": {
+				"local": "Brezilya",
+				"native": "Brasil"
+			},
+			"17": {
+				"local": "Kanada",
+				"native": "Canada"
+			},
+			"18": {
+				"local": "Şili",
+				"native": "Chile"
+			},
+			"19": {
+				"local": "Kolombiya",
+				"native": "Colombia"
+			},
+			"2": {
+				"local": "İngiltere",
+				"native": "England"
+			},
+			"20": {
+				"local": "Hindistan",
+				"native": "India"
+			},
+			"21": {
+				"local": "İrlanda",
+				"native": "Ireland"
+			},
+			"22": {
+				"local": "Japonya",
+				"native": "Nippon"
+			},
+			"23": {
+				"local": "Peru",
+				"native": "Perú"
+			},
+			"24": {
+				"local": "Polonya",
+				"native": "Polska"
+			},
+			"25": {
+				"local": "Portekiz",
+				"native": "Portugal"
+			},
+			"26": {
+				"local": "İskoçya",
+				"native": "Scotland"
+			},
+			"27": {
+				"local": "Güney Afrika",
+				"native": "South Africa"
+			},
+			"28": {
+				"local": "Uruguay",
+				"native": "Uruguay"
+			},
+			"29": {
+				"local": "Venezuela",
+				"native": "Venezuela"
+			},
+			"3": {
+				"local": "Almanya",
+				"native": "Deutschland"
+			},
+			"30": {
+				"local": "Güney Kore",
+				"native": "Hanguk"
+			},
+			"31": {
+				"local": "Tayland",
+				"native": "Prathet Thai"
+			},
+			"32": {
+				"local": "Türkiye",
+				"native": "Türkiye"
+			},
+			"33": {
+				"local": "Mısır",
+				"native": "Misr"
+			},
+			"34": {
+				"local": "Çin Halk Cumhuriyeti",
+				"native": "China"
+			},
+			"35": {
+				"local": "Rusya",
+				"native": "Rossiya"
+			},
+			"36": {
+				"local": "İspanya",
+				"native": "España"
+			},
+			"37": {
+				"local": "Romanya",
+				"native": "România"
+			},
+			"38": {
+				"local": "İzlanda",
+				"native": "Ísland"
+			},
+			"39": {
+				"local": "Avusturya",
+				"native": "Österreich"
+			},
+			"4": {
+				"local": "İtalya",
+				"native": "Italia"
+			},
+			"44": {
+				"local": "Belçika",
+				"native": "Belgium"
+			},
+			"45": {
+				"local": "Malezya",
+				"native": "Malaysia"
+			},
+			"46": {
+				"local": "İsviçre",
+				"native": "Schweiz"
+			},
+			"47": {
+				"local": "Singapur",
+				"native": "Singapore"
+			},
+			"5": {
+				"local": "Fransa",
+				"native": "France"
+			},
+			"50": {
+				"local": "Yunanistan",
+				"native": "Hellas"
+			},
+			"51": {
+				"local": "Macaristan",
+				"native": "Magyarország"
+			},
+			"52": {
+				"local": "Çek Cumhuriyeti",
+				"native": "Česká republika"
+			},
+			"53": {
+				"local": "Letonya",
+				"native": "Latvija"
+			},
+			"54": {
+				"local": "Endonezya",
+				"native": "Indonesia"
+			},
+			"55": {
+				"local": "Filipinler",
+				"native": "Pilipinas"
+			},
+			"56": {
+				"local": "Estonya",
+				"native": "Eesti"
+			},
+			"57": {
+				"local": "Sırbistan",
+				"native": "Srbija"
+			},
+			"58": {
+				"local": "Hırvatistan",
+				"native": "Hrvatska"
+			},
+			"59": {
+				"local": "Hong Kong",
+				"native": "Hong Kong"
+			},
+			"6": {
+				"local": "Meksika",
+				"native": "México"
+			},
+			"60": {
+				"local": "Chinese Taipei",
+				"native": "Chinese Taipei"
+			},
+			"61": {
+				"local": "Galler",
+				"native": "Cymru"
+			},
+			"62": {
+				"local": "Bulgaristan",
+				"native": "Bulgaria"
+			},
+			"63": {
+				"local": "İsrail",
+				"native": "Israel"
+			},
+			"64": {
+				"local": "Slovenya",
+				"native": "Slovenija"
+			},
+			"66": {
+				"local": "Litvanya",
+				"native": "Lietuva"
+			},
+			"67": {
+				"local": "Slovakya",
+				"native": "Slovensko"
+			},
+			"68": {
+				"local": "Ukrayna",
+				"native": "Ukraina"
+			},
+			"69": {
+				"local": "Bosna-Hersek",
+				"native": "Bosna i Hercegovina"
+			},
+			"7": {
+				"local": "Arjantin",
+				"native": "Argentina"
+			},
+			"70": {
+				"local": "Vietnam",
+				"native": "Việt Nam"
+			},
+			"71": {
+				"local": "Pakistan",
+				"native": "Pakistan"
+			},
+			"72": {
+				"local": "Paraguay",
+				"native": "Paraguay"
+			},
+			"73": {
+				"local": "Ekvador",
+				"native": "Ecuador"
+			},
+			"74": {
+				"local": "Bolivya",
+				"native": "Bolivia"
+			},
+			"75": {
+				"local": "Nijerya",
+				"native": "Nigeria"
+			},
+			"76": {
+				"local": "Faroe Adaları",
+				"native": "Føroyar"
+			},
+			"77": {
+				"local": "Fas",
+				"native": "Al Maghrib"
+			},
+			"79": {
+				"local": "Suudi Arabistan",
+				"native": "Saudi Arabia"
+			},
+			"8": {
+				"local": "ABD",
+				"native": "USA"
+			},
+			"80": {
+				"local": "Tunus",
+				"native": "Tounes"
+			},
+			"81": {
+				"local": "Kosta Rika",
+				"native": "Costa Rica"
+			},
+			"83": {
+				"local": "Birleşik Arap Emirlikleri",
+				"native": "United Arab Emirates"
+			},
+			"84": {
+				"local": "Lüksemburg",
+				"native": "Lëtzebuerg"
+			},
+			"85": {
+				"local": "İran",
+				"native": "Iran"
+			},
+			"88": {
+				"local": "Dominik Cumhuriyeti",
+				"native": "República Dominicana"
+			},
+			"89": {
+				"local": "Güney Kıbrıs Yönetimi",
+				"native": "Cyprus"
+			},
+			"9": {
+				"local": "Norveç",
+				"native": "Norge"
+			},
+			"91": {
+				"local": "Beyaz Rusya",
+				"native": "Belarus"
+			},
+			"93": {
+				"local": "Kuzey İrlanda",
+				"native": "Northern Ireland"
+			},
+			"94": {
+				"local": "Jamaika",
+				"native": "Jamaica"
+			},
+			"95": {
+				"local": "Kenya",
+				"native": "Kenya"
+			},
+			"96": {
+				"local": "Panama",
+				"native": "Panamá"
+			},
+			"97": {
+				"local": "Makedonya",
+				"native": "Makedonija"
+			},
+			"98": {
+				"local": "Arnavutluk",
+				"native": "Shqipëria"
+			},
+			"99": {
+				"local": "Honduras",
+				"native": "Honduras"
+			}
+		},
 		"levels": [
 			{
 				"text": "kazma",

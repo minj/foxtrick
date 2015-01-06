@@ -266,6 +266,520 @@
 			}
 		],
 		"id": "40",
+		"leagueNames": {
+			"1": {
+				"local": "שוודיה",
+				"native": "Sverige"
+			},
+			"100": {
+				"local": "אל סלוודור",
+				"native": "El Salvador"
+			},
+			"101": {
+				"local": "מלטה",
+				"native": "Malta"
+			},
+			"102": {
+				"local": "קירגיזסטן",
+				"native": "Kyrgyzstan"
+			},
+			"103": {
+				"local": "מולדובה",
+				"native": "Moldova"
+			},
+			"104": {
+				"local": "גאורגיה",
+				"native": "Sakartvelo"
+			},
+			"105": {
+				"local": "אנדורה",
+				"native": "Andorra"
+			},
+			"106": {
+				"local": "ירדן",
+				"native": "Al Urdun"
+			},
+			"107": {
+				"local": "גואטמלה",
+				"native": "Guatemala"
+			},
+			"11": {
+				"local": "דנמרק",
+				"native": "Danmark"
+			},
+			"110": {
+				"local": "טרינידד וטובגו",
+				"native": "Trinidad & Tobago"
+			},
+			"111": {
+				"local": "ניקרגואה",
+				"native": "Nicaragua"
+			},
+			"112": {
+				"local": "קזחסטן",
+				"native": "Kazakhstan"
+			},
+			"113": {
+				"local": "סורינאם",
+				"native": "Suriname"
+			},
+			"117": {
+				"local": "ליכטנשטיין",
+				"native": "Liechtenstein"
+			},
+			"118": {
+				"local": "אלג'יריה",
+				"native": "Algérie"
+			},
+			"119": {
+				"local": "מונגוליה",
+				"native": "Mongol Uls"
+			},
+			"12": {
+				"local": "פינלנד",
+				"native": "Suomi"
+			},
+			"120": {
+				"local": "לבנון",
+				"native": "Lubnan"
+			},
+			"121": {
+				"local": "סנגל",
+				"native": "Sénégal"
+			},
+			"122": {
+				"local": "ארמניה",
+				"native": "Hayastan"
+			},
+			"123": {
+				"local": "בחריין",
+				"native": "Bahrain"
+			},
+			"124": {
+				"local": "ברבדוס",
+				"native": "Barbados"
+			},
+			"125": {
+				"local": "כף ורדה",
+				"native": "Cabo Verde"
+			},
+			"126": {
+				"local": "חוף השנהב",
+				"native": "Côte d’Ivoire"
+			},
+			"127": {
+				"local": "כווית",
+				"native": "Al Kuwayt"
+			},
+			"128": {
+				"local": "עיראק",
+				"native": "Al Iraq"
+			},
+			"129": {
+				"local": "אזרבייג'ן",
+				"native": "Azərbaycan"
+			},
+			"130": {
+				"local": "אנגולה",
+				"native": "Angola"
+			},
+			"131": {
+				"local": "מונטנגרו",
+				"native": "Crna Gora"
+			},
+			"132": {
+				"local": "בנגלדש",
+				"native": "Bangladesh"
+			},
+			"133": {
+				"local": "תימן",
+				"native": "Al Yaman"
+			},
+			"134": {
+				"local": "עומאן",
+				"native": "Oman"
+			},
+			"135": {
+				"local": "מוזמביק",
+				"native": "Moçambique"
+			},
+			"136": {
+				"local": "ברוניי",
+				"native": "Brunei"
+			},
+			"137": {
+				"local": "גאנה",
+				"native": "Ghana"
+			},
+			"138": {
+				"local": "קמבודיה",
+				"native": "Kampuchea"
+			},
+			"139": {
+				"local": "בנין",
+				"native": "Bénin"
+			},
+			"14": {
+				"local": "הולנד",
+				"native": "Nederland"
+			},
+			"140": {
+				"local": "סוריה",
+				"native": "Suriyah"
+			},
+			"141": {
+				"local": "קטאר",
+				"native": "Dawlat Qatar"
+			},
+			"142": {
+				"local": "טנזניה",
+				"native": "Tanzania"
+			},
+			"143": {
+				"local": "אוגנדה",
+				"native": "Uganda"
+			},
+			"144": {
+				"local": "האיים המלדיביים",
+				"native": "Dhivehi Raajje"
+			},
+			"145": {
+				"local": "אוזבקיסטן",
+				"native": "O’zbekiston"
+			},
+			"146": {
+				"local": "קמרון",
+				"native": "Cameroon"
+			},
+			"147": {
+				"local": "קובה",
+				"native": "Cuba"
+			},
+			"148": {
+				"local": "פלסטין",
+				"native": "Palestine"
+			},
+			"15": {
+				"local": "אוקיאניה",
+				"native": "Oceania"
+			},
+			"16": {
+				"local": "ברזיל",
+				"native": "Brasil"
+			},
+			"17": {
+				"local": "קנדה",
+				"native": "Canada"
+			},
+			"18": {
+				"local": "צ'ילה",
+				"native": "Chile"
+			},
+			"19": {
+				"local": "קולומביה",
+				"native": "Colombia"
+			},
+			"2": {
+				"local": "אנגליה",
+				"native": "England"
+			},
+			"20": {
+				"local": "הודו",
+				"native": "India"
+			},
+			"21": {
+				"local": "אירלנד",
+				"native": "Ireland"
+			},
+			"22": {
+				"local": "יפן",
+				"native": "Nippon"
+			},
+			"23": {
+				"local": "פרו",
+				"native": "Perú"
+			},
+			"24": {
+				"local": "פולין",
+				"native": "Polska"
+			},
+			"25": {
+				"local": "פורטוגל",
+				"native": "Portugal"
+			},
+			"26": {
+				"local": "סקוטלנד",
+				"native": "Scotland"
+			},
+			"27": {
+				"local": "דרום אפריקה",
+				"native": "South Africa"
+			},
+			"28": {
+				"local": "אורוגוואי",
+				"native": "Uruguay"
+			},
+			"29": {
+				"local": "ונצואלה",
+				"native": "Venezuela"
+			},
+			"3": {
+				"local": "גרמניה",
+				"native": "Deutschland"
+			},
+			"30": {
+				"local": "דרום קוריאה",
+				"native": "Hanguk"
+			},
+			"31": {
+				"local": "תאילנד",
+				"native": "Prathet Thai"
+			},
+			"32": {
+				"local": "טורקיה",
+				"native": "Türkiye"
+			},
+			"33": {
+				"local": "מצרים",
+				"native": "Misr"
+			},
+			"34": {
+				"local": "סין",
+				"native": "China"
+			},
+			"35": {
+				"local": "רוסיה",
+				"native": "Rossiya"
+			},
+			"36": {
+				"local": "ספרד",
+				"native": "España"
+			},
+			"37": {
+				"local": "רומניה",
+				"native": "România"
+			},
+			"38": {
+				"local": "איסלנד",
+				"native": "Ísland"
+			},
+			"39": {
+				"local": "אוסטריה",
+				"native": "Österreich"
+			},
+			"4": {
+				"local": "איטליה",
+				"native": "Italia"
+			},
+			"44": {
+				"local": "בלגיה",
+				"native": "Belgium"
+			},
+			"45": {
+				"local": "מלזיה",
+				"native": "Malaysia"
+			},
+			"46": {
+				"local": "שווייץ",
+				"native": "Schweiz"
+			},
+			"47": {
+				"local": "סינגפור",
+				"native": "Singapore"
+			},
+			"5": {
+				"local": "צרפת",
+				"native": "France"
+			},
+			"50": {
+				"local": "יוון",
+				"native": "Hellas"
+			},
+			"51": {
+				"local": "הונגריה",
+				"native": "Magyarország"
+			},
+			"52": {
+				"local": "צ'כיה",
+				"native": "Česká republika"
+			},
+			"53": {
+				"local": "לטביה",
+				"native": "Latvija"
+			},
+			"54": {
+				"local": "אינדונזיה",
+				"native": "Indonesia"
+			},
+			"55": {
+				"local": "הפיליפינים",
+				"native": "Pilipinas"
+			},
+			"56": {
+				"local": "אסטוניה",
+				"native": "Eesti"
+			},
+			"57": {
+				"local": "סרביה",
+				"native": "Srbija"
+			},
+			"58": {
+				"local": "קרואטיה",
+				"native": "Hrvatska"
+			},
+			"59": {
+				"local": "הונג קונג",
+				"native": "Hong Kong"
+			},
+			"6": {
+				"local": "מקסיקו",
+				"native": "México"
+			},
+			"60": {
+				"local": "טאיוואן",
+				"native": "Chinese Taipei"
+			},
+			"61": {
+				"local": "וויילס",
+				"native": "Cymru"
+			},
+			"62": {
+				"local": "בולגריה",
+				"native": "Bulgaria"
+			},
+			"63": {
+				"local": "ישראל",
+				"native": "Israel"
+			},
+			"64": {
+				"local": "סלובניה",
+				"native": "Slovenija"
+			},
+			"66": {
+				"local": "ליטא",
+				"native": "Lietuva"
+			},
+			"67": {
+				"local": "סלובקיה",
+				"native": "Slovensko"
+			},
+			"68": {
+				"local": "אוקראינה",
+				"native": "Ukraina"
+			},
+			"69": {
+				"local": "בוסניה והרצגובינה",
+				"native": "Bosna i Hercegovina"
+			},
+			"7": {
+				"local": "ארגנטינה",
+				"native": "Argentina"
+			},
+			"70": {
+				"local": "וייטנאם",
+				"native": "Việt Nam"
+			},
+			"71": {
+				"local": "פקיסטן",
+				"native": "Pakistan"
+			},
+			"72": {
+				"local": "פרגוואי",
+				"native": "Paraguay"
+			},
+			"73": {
+				"local": "אקוודור",
+				"native": "Ecuador"
+			},
+			"74": {
+				"local": "בוליביה",
+				"native": "Bolivia"
+			},
+			"75": {
+				"local": "ניגריה",
+				"native": "Nigeria"
+			},
+			"76": {
+				"local": "איי פארו",
+				"native": "Føroyar"
+			},
+			"77": {
+				"local": "מרוקו",
+				"native": "Al Maghrib"
+			},
+			"79": {
+				"local": "ערב הסעודית",
+				"native": "Saudi Arabia"
+			},
+			"8": {
+				"local": "ארה\"ב",
+				"native": "USA"
+			},
+			"80": {
+				"local": "תוניסיה",
+				"native": "Tounes"
+			},
+			"81": {
+				"local": "קוסטה ריקה",
+				"native": "Costa Rica"
+			},
+			"83": {
+				"local": "איחוד האמירויות הערביות",
+				"native": "United Arab Emirates"
+			},
+			"84": {
+				"local": "לוקסמבורג",
+				"native": "Lëtzebuerg"
+			},
+			"85": {
+				"local": "איראן",
+				"native": "Iran"
+			},
+			"88": {
+				"local": "הרפובליקה הדומיניקנית",
+				"native": "República Dominicana"
+			},
+			"89": {
+				"local": "קפריסין",
+				"native": "Cyprus"
+			},
+			"9": {
+				"local": "נורווגיה",
+				"native": "Norge"
+			},
+			"91": {
+				"local": "בלארוס",
+				"native": "Belarus"
+			},
+			"93": {
+				"local": "צפון אירלנד",
+				"native": "Northern Ireland"
+			},
+			"94": {
+				"local": "ג'מייקה",
+				"native": "Jamaica"
+			},
+			"95": {
+				"local": "קניה",
+				"native": "Kenya"
+			},
+			"96": {
+				"local": "פנמה",
+				"native": "Panamá"
+			},
+			"97": {
+				"local": "מקדוניה",
+				"native": "Makedonija"
+			},
+			"98": {
+				"local": "אלבניה",
+				"native": "Shqipëria"
+			},
+			"99": {
+				"local": "הונדורס",
+				"native": "Honduras"
+			}
+		},
 		"levels": [
 			{
 				"text": "לא קיים",
