@@ -158,10 +158,11 @@ def parseLanguage(o, code):
 	out['leagueNames'] = {}
 	for i in range(len(t['LeagueNames'])):
 		lId = t['LeagueNames'][i]['LeagueId']
-		item = {}
-		item['local'] = t['LeagueNames'][i]['LanguageLeagueName']
-		item['native'] = t['LeagueNames'][i]['LocalLeagueName']
-		out['leagueNames'][lId] = item
+		out['leagueNames'][lId] = t['LeagueNames'][i]['LanguageLeagueName']
+		# item = {}
+		# item['local'] = t['LeagueNames'][i]['LanguageLeagueName']
+		# item['native'] = t['LeagueNames'][i]['LocalLeagueName']
+		# out['leagueNames'][lId] = item
 
 	out['desc'] = o['Language']['textContent']
 	out['name'] = code
