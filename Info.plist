@@ -213,6 +213,7 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/presentation/country-list.js</string>
 				<string>content/presentation/currency-converter.js</string>
 				<string>content/presentation/custom-medals.js</string>
+				<string>content/presentation/embed-media-htpress.js</string>
 				<string>content/presentation/fans.js</string>
 				<string>content/presentation/fix-css-problems.js</string>
 				<string>content/presentation/friendly-interface.js</string>

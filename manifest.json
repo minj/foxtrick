@@ -200,6 +200,7 @@
 			"content/presentation/country-list.js",
 			"content/presentation/currency-converter.js",
 			"content/presentation/custom-medals.js",
+			"content/presentation/embed-media-htpress.js",
 			"content/presentation/fans.js",
 			"content/presentation/fix-css-problems.js",
 			"content/presentation/friendly-interface.js",
