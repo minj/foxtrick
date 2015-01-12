@@ -342,11 +342,11 @@
 			"code": "it",
 			"name": "Italian",
 			"phrases": "1817",
-			"translated": "1811",
-			"translated_progress": "99",
+			"translated": "1817",
+			"translated_progress": "100",
 			"words": "12824",
 			"words_approved": "0",
-			"words_translated": "12769"
+			"words_translated": "12824"
 		},
 		{
 			"approved": "0",
@@ -414,11 +414,11 @@
 			"code": "mk",
 			"name": "Macedonian (FYROM)",
 			"phrases": "1817",
-			"translated": "1474",
-			"translated_progress": "70",
+			"translated": "1573",
+			"translated_progress": "73",
 			"words": "12824",
 			"words_approved": "0",
-			"words_translated": "9009"
+			"words_translated": "9430"
 		},
 		{
 			"approved": "0",
