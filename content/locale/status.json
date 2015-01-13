@@ -133,16 +133,16 @@
 			"words_translated": "10608"
 		},
 		{
-			"approved": "1703",
+			"approved": "1700",
 			"approved_progress": "89",
 			"code": "da",
 			"name": "Danish",
 			"phrases": "1817",
-			"translated": "1803",
-			"translated_progress": "98",
+			"translated": "1817",
+			"translated_progress": "100",
 			"words": "12824",
-			"words_approved": "11458",
-			"words_translated": "12612"
+			"words_approved": "11419",
+			"words_translated": "12824"
 		},
 		{
 			"approved": "574",
@@ -414,11 +414,11 @@
 			"code": "mk",
 			"name": "Macedonian (FYROM)",
 			"phrases": "1817",
-			"translated": "1573",
-			"translated_progress": "73",
+			"translated": "1626",
+			"translated_progress": "78",
 			"words": "12824",
 			"words_approved": "0",
-			"words_translated": "9430"
+			"words_translated": "10051"
 		},
 		{
 			"approved": "0",

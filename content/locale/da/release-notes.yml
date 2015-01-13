@@ -7,11 +7,25 @@ da:
       note_0: 'Dette er betaversionen af den næste udgave. Du kan hjælpe med at oversætte via vores super nemme oversættelses-side <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.15.0:
       important: '<header>Vigtige meddelelser</header>'
+      support: '<header>Støt Foxtrick via Flattr mikrodonationer <linkContribute>Donér</linkContribute>.</header>'
       crowdin: '<header>En stor tak til alle de hjælpsomme brugere, som oversætter ved hjælp af <linkCrowdin>crowdin </linkCrowdin>. Du kan også give en hånd!</header>'
       twitter: 'Du kan følge <linkTwitter>Foxtrick på Twitter</linkTwitter> for at modtage de seneste nyheder, opdateringer og meddelelser.'
       new: '<header>Nye moduler</header>'
+      promotion_reminder: '<module>AddPromotionReminder</module>: Tilføj en knap for at oprette en påmindelse for den dag, hvor du kan rykke en ungdomsspiller op'
       bugs: '<header>Fejlrettelser</header>'
+      breakages: Foxtrick burde fungere fejlfrit på Safari 7.1+ og Firefox til andriod enheder.
+      https: FoxTrick bør igen fungerer fejlfrit på Hattrick Stage.
+      avatars: 'Spiller avatar cache i <module>MatchOrderInterface</module> bliver nu opdateret automatisk når nye spillere ankommer på dit hold.'
+      fans: 'Tilgang og afgang af fans i <module>Fans</module> bliver nu beregnet korrekt, når dit hold rykker op eller ned.'
+      player_stats: '<module>PlayerStatsTrainingWeek</module> bør nu genkende weekend venskabskampe korrekt.'
       other: '<header>Andre ændringer</header>'
+      transfer_compare: 'MedianTransferPrice er omdøbt til <module>TransferComparePlayers</module>. Desuden er der tilføjet TSI beregninger og muligheden til at hente flere spillerdata fra CHPP. Viser også prisforskel på transferhistorik side for alle spillere.'
+      player_positions: '<module>PlayerPositionsEvaluations</module> er forbedret og flere indstillinger er tilføjet, hvor du kan vælge at medtage effekten af form, kondition, loyalitet, rutine og når en spiller er mærket i beregninger.'
+      country_list: '<module>CountryList</module> ændrer landenavne under flagsamlingen. Det er muligt, at bruge engelsk landenavne i stedet for de lokale navne.'
+      best_player_position: 'BestPlayerPosition modul er sammenlagt med <module>PlayerPositionsEvaluations</module>.'
+      nt: En del fejl vedr. funktionaliteter som ikke fungerede korrekt for landsholdsmanagere er nu rettet.
+      en-US: Bedre support for amerikansk engelsk er nu tilgængelig.
+      code: En del vedligeholdelse er udført på Foxtrick koden. Dette gør det muligt for os at finde og rette skjulte fejl, forbedre stabilitet for tilføjelsen og lette videre udviklingen af produktet.
       and_more: Forskellige små ændringer og rettelser.
     0.14.0.3:
       important: '<header>Vigtige meddelelser</header>'
