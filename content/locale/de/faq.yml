@@ -25,7 +25,7 @@ de:
         
         <p>-Mozilla-Browser können auch Töne direkt von Ihrer Festplatte (Datei-Urls) belibeiger Größen widergeben. Der einfachste Weg, um das richtige Link-Format zu erhalten ist: Mit dem Browser durch drücken von Strg + o im Auswahlfenster die Audio-Datei auswählen. Die Adresse erscheint dann in der Adresszeile und kann in der Form direkt als Link zu der lokalen Datei (z.B. file:///c:/sound.wav) verwendet werden. Diese Adresse können Sie einfach durch kopieren und einfügen in das Eingabefeld für den Klang übertragen.</p>
     authorize:
-      question: Warum sollte ich Foxtrick zugriff auf meine Mannschaftsdaten geben?
+      question: Warum sollte ich Foxtrick Zugriff auf meine Mannschaftsdaten geben?
       answer: |
         <p>Obwohl die meisten Daten, die Foxtrick benötigt direkt von der Seite geladen werden könne, die Du in dem Moment vor Dir siehst, ist es für manche Module erforderlich, dass Daten von Hattrick heruntergeladen werden damit sie ordentlich funktionieren</p>
         
@@ -53,7 +53,7 @@ de:
         <li><module>TeamStats</module></li>
         </ul>
     privacy:
-      question: Wie sieht es bezüglich des Datenschutzes aus?
+      question: Wie schützt Foxtrick meine Privatsphäre?
       answer: |
         <p>FoxTrick lädt keine Deiner Daten oder Einstellungen auf einen Foxtrick-Server; FoxTrick versendet auch keinerlei private Daten inklusive Benutzernamen, Passwort und Spieler ID mit den Fähigkeiten etc. an Dritte.</p>
         
