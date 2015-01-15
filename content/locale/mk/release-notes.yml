@@ -1,10 +1,17 @@
 ---
 mk:
   versions:
+    nightly:
+      note_0: 'Ова е верзија во развој. Само за лична употреба. За детаљи околу промените ja посетете <linkSVN>Google Code</linkSVN> страницата.'
     beta:
       note_0: 'Ова е бета верзијата од следното издание. Ве молиме помогнете во преводот на оваа верзија на нашата едноставна crowd-веб страничка за преведување <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.15.0:
+      important: '<header>Важни најави</header>'
+      support: '<header>Ви се допаѓа што работиме? Ве молиме <linkContribute>подржете го Foxtrick</linkContribute>.</header>'
       new: '<header>Нови модули</header>'
+      bugs: '<header>Поправени багови</header>'
+      breakages: Фокстрик сега треба да работи безпрекорно на Safari 7.1+ и Firefox за Android.
+      https: Фокстрик повторно би требало да работи безпрекопрно на Hattrick Stage.
       other: '<header>Други промени</header>'
     0.14.0.2:
       other: '<header>Други промени</header>'
@@ -14,6 +21,8 @@ mk:
       new: '<header>Нови модули</header>'
       other: '<header>Други промени</header>'
     0.13.0.1:
+      bugs: '<header>Поправени багови</header>'
+      old_faces: 'Модулот <module>OldStyleFace</module> не работеше како што треба во интерфејсот за налози за натпревар. Тоа сега е преправено.'
       other: '<header>Други промени</header>'
     0.13.0:
       new: '<header>Нови модули</header>'
@@ -96,7 +105,7 @@ mk:
       note_3: 'NEW: <module>TeamPopupLinks</module>: added Tournaments. Optionally highlights current team in tables (default on)'
       note_4: 'NEW: <module>RatingsDisplay</module>: additonally addes average stars and ratings to series stats table'
       note_5: 'НОВО: <module>TeamStats</module>: апдејти со филтери и повеќе секции'
-      note_6: PlayerFilters has more filter options now
+      note_6: PlayerFilters сега има повеќе опции
       note_7: 'Skilltable for transferlist search: injured fixed'
       note_8: 'MatchReportFormat: negative SE icons added'
       note_9: 'Links: make dynamic added links default on'
