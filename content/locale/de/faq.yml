@@ -18,7 +18,7 @@ de:
         <li>Chrome:  ogg, mp3, wav</li><li>Opera: wav, ogg</li>
         </ul>
     sound-location:
-      question: Wie ist das Limit bei der Dateigröße und wo befinden sich die Dateien?
+      question: Wie hoch ist das Limit bei der Dateigröße und wo befinden sich diese Dateien?
       answer: |
         <p>Alle Browser können Daten-URLs abspielen. Dies sind intern gespeicherte Sounds, die über die Schaltfläche Laden in den Voreinstellungen verfügbar sind. Da diese konvertiert und in den Einstellungen gespeichert sind, ist die Größe  auf rund 160 kb pro Ton beschränkt.</p>  
         <p>Alle Browser können auch Sounds direkt aus dem Internet (http-URL) abspielen. Kopieren Sie einfach einen Link zu einem Ton (zB http://foxtrick.org/sound.wav) in das Eingabefeld für Sounds. Dabei gibt es keine Größenbeschränkung.</p>  
