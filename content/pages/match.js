@@ -64,9 +64,10 @@ Foxtrick.Pages.Match.getTeams = function(doc) {
 				// street team
 				team = doc.createTextNode(name);
 			}
-			else if (child.nodeName.toLowerCase() !== 'a')
+			else if (child.nodeName.toLowerCase() !== 'a') {
 				// team popup
-				team = child.querySelector('a');
+				team = child.querySelector('a[href*="TeamID"]');
+			}
 			else
 				team = child;
 
