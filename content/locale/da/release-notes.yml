@@ -85,7 +85,7 @@ da:
       crowdin: '<header>En stor tak til alle de hjælpsomme brugere, som oversætter ved hjælp af <linkCrowdin>crowdin </linkCrowdin>. Du kan også give en hånd!</header>'
       bugs: '<header>Fejlrettelser</header>'
       old_faces: '<module>OldStyleFace</module> fungerede ikke korrekt på kamp ordre og opstillings sider. Dette er nu rettet.'
-      simulator_skills: 'Evne underniveau navne i <module>MatchSimulator</module> blev korrigeret for nogle få sprog.'
+      simulator_skills: 'Evne-subniveau navne i <module>MatchSimulator</module> er korrigeret for nogle få sprog.'
       embed_media: '<module>PsicoTSI</module> og <module>EmbedMedia</module> blev gjort mere sikker.'
       other: '<header>Andre ændringer</header>'
       report_format: '<module>MatchReportFormat</module> og <module>LiveMatchReportFormat</module> moduler blev omskrevet og virker nu uden CHPP adgang.'
@@ -284,7 +284,7 @@ da:
     0.9.2:
       note_0: Endnu en massiv sprog opdatering. Tak igen til alle disse oversættere.
       note_1: Omskrevet registrering af sprog. Bør aldrig fejle igen
-      note_2: 'NEW: <module>PlayerStatsExperience</module>: viser, hvor meget erfaring en spiller har opnået i de enkelte kampe, og viser aktuelle underniveauer'
+      note_2: 'NEW: <module>PlayerStatsExperience</module>: viser, hvor meget rutine en spiller har opnået i de enkelte kampe, og viser aktuelle subniveauer'
       note_3: 'NEW: <module>TeamPopupLinks</module>:  tilføjede Turneringer. Eventuelt fremhæver nuværende hold i tabeller (standard aktiveret)'
       note_4: 'NEW: <module>RatingsDisplay</module>:desuden tilføjet Gennemsnitlig stjerner og ratings til serie statistik tabel'
       note_5: 'NEW: <module>TeamStats</module>: opdateringer med filtre og flere sektioner'
