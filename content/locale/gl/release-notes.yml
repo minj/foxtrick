@@ -7,11 +7,25 @@ gl:
       note_0: 'Esta é a versión beta do próximo lanzamento. Podes axudar a traducila na nosa marabillosa páxina de tradución en equipo <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.15.0:
       important: '<header>Anuncios importantes</header>'
+      support: '<header>¿Gústache o noso traballo? Podes <linkContribute>colaborar con FoxTrick</linkContribute>.</header>'
       crowdin: '<header>Unha morea de actualizacións das traducións realizadas polos nosos marabillosos usuarios a través da <linkCrowdin>ferramenta Crowdin</linkCrowdin>. Por certo, ti tamén podes colaborar!</header>'
       twitter: 'Podes seguir a <linkTwitter>FoxTrick en Twitter</linkTwitter> para recibir as noticias, as novidades e os anuncios máis recentes.'
       new: '<header>Módulos novos</header>'
+      promotion_reminder: '<module>AddPromotionReminder</module>: permite engadir un botón para crear un recordatorio sobre o día a partir do que podes promocionar un xuvenil.'
       bugs: '<header>Solucións de erros</header>'
+      breakages: Cambios para que FoxTrick funcione correctamente en Safari 7.1 ou superior e Firefox para Android.
+      https: Melloras para que FoxTrick volva funcionar correctamente en Hattrick Stage.
+      avatars: 'Agora, os avatares dos xogadores almacenados en caché en <module>MatchOrderInterface</module> actualizaranse automaticamente cando o teu equipo reciba xogadores novos.'
+      fans: 'Agora, a evolución dos seareiros que aparece en <module>Fans</module> calcularase correctamente cando o teu equipo ascenda ou descenda.'
+      player_stats: 'Agora, <module>PlayerStatsTrainingWeek</module> recoñecerá correctamente os amigables das fins de semana.'
       other: '<header>Outros cambios</header>'
+      transfer_compare: 'Cambiouse o nome de MedianTransferPrice por <module>TransferComparePlayers</module>. Engadíronse cálculos de TSI e a posibilidade de obter máis datos de xogadores mediante CHPP. Amosa a diferenza de prezo na páxina do historial de traspasos dos xogadores.'
+      player_positions: 'Mellorouse <module>PlayerPositionsEvaluations</module> e engadíronse moitas opcións que se poden escoller incluír nos cálculos, como a forma, a resistencia, a lealdade, a experiencia e as magoaduras.'
+      country_list: 'Agora, <module>CountryList</module> pode cambiar os nomes dos países na colección de bandeiras. Pódense utilizar os nomes en inglés en lugar dos nomes nos seus idiomas oficiais.'
+      best_player_position: 'O módulo BestPlayerPosition fusionouse con <module>PlayerPositionsEvaluations</module>.'
+      nt: Arranxáronse moitas funcións que antes non funcionaban correctamente para os adestradores das seleccións.
+      en-US: Mellorouse a compatibilidade co inglés dos EE. UU.
+      code: Perfeccionouse moito o código de FoxTrick, o que nos permite atopar e arranxar erros ocultos, mellorar a estabilidade da extensión e facilitar a súa futura programación.
       and_more: Moitos outros cambios pequeniños por aquí e por alá.
     0.14.0.3:
       important: '<header>Anuncios importantes</header>'

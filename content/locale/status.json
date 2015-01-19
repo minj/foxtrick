@@ -90,11 +90,11 @@
 			"code": "ca",
 			"name": "Catalan",
 			"phrases": "1817",
-			"translated": "821",
-			"translated_progress": "40",
+			"translated": "843",
+			"translated_progress": "41",
 			"words": "12824",
 			"words_approved": "0",
-			"words_translated": "5149"
+			"words_translated": "5386"
 		},
 		{
 			"approved": "0",
@@ -258,11 +258,11 @@
 			"code": "gl",
 			"name": "Galician",
 			"phrases": "1817",
-			"translated": "1803",
-			"translated_progress": "98",
+			"translated": "1817",
+			"translated_progress": "100",
 			"words": "12824",
 			"words_approved": "0",
-			"words_translated": "12612"
+			"words_translated": "12824"
 		},
 		{
 			"approved": "0",
