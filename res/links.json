@@ -224,23 +224,6 @@
 		"title": "htms predictor",
 		"img": "http://www.fantamondi.it/HTMS/images/icon.ico"
 	},
-	"ht_deutschland": {
-		"leaguelink": {
-			"url": "http://www.ht-deutschland.de/liga.php?leagueLevelUnitName=[leaguename]&leagueLevel=[levelnum]",
-			"filters": ["countryid"]
-		},
-		"teamlink": {
-			"url": "http://www.ht-deutschland.de/teamview.php?teamID=[teamid]",
-			"filters": ["countryid"]
-		},
-		"countrylink": {
-			"url": "http://www.ht-deutschland.de/overview.php",
-			"filters": ["countryid"]
-		},
-		"countryidranges": [[3, 3]],
-		"title": "HT-Deutschland",
-		"img": "http://www.ht-deutschland.de/images/images/system/favicon.ico"
-	},
 	"htstats": {
 		"leaguelink": {
 			"url": "http://htstats.com/liga.php?htliga=[leagueid]&setlang=[lang]",
@@ -358,13 +341,6 @@
 		},
 		"title": "Maptrick Botmap",
 		"img": "http://www.maptrick.org/favicon.ico"
-	},
-	"ht_deutschland_coolness": {
-		"teamlink": {
-			"url": "http://www.ht-deutschland.de/usercoolness.php?teamID=[teamid]#login"
-		},
-		"title": "Ht-Deutschland Coolness",
-		"img": "http://www.ht-deutschland.de/images/images/system/favicon.ico"
 	},
 	"ht-dog": {
 		"teamlink": {
@@ -982,16 +958,6 @@
 			"sum_deffor_skills",
 			"sum_non_deffor_skills"
 		]
-	},
-	"htworld": {
-		"title": "HT-World NT/U20 tracker",
-		"img": "http://www.ht-world.org/shared/favicon.ico",
-		"trackernationalteamlink": {
-			"url": "http://www.ht-world.org/index.php?language=2"
-		},
-		"trackerplayerlink": {
-			"url": "http://www.ht-world.org/global/scouting.php?language=2"
-		}
 	},
 	"hattrickportal": {
 		"title": "Hattrick Portal NT/U20 tracker",
