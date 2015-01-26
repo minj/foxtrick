@@ -29,29 +29,29 @@ gl:
       and_more: Moitos outros cambios pequeniños por aquí e por alá.
     0.14.0.3:
       important: '<header>Anuncios importantes</header>'
-      sorry: 'Desculpas pola última "rolda de arranxo de bugs", que curiosamente rachou mais cousas das que arranxou. A de agora debería ir mellor.'
+      sorry: Pedímosvos desculpas pola última versión que lanzamos para solucionar erros, que ó final estragaba máis do que arranxaba. A nova debería funcionar mellor.
       bugs: '<header>Solucións de erros</header>'
-      street_teams: A introducción dos equipos da rúa no novo sistema da copa provocou varios problemas que foron xa arranxados.
-      revert: 'O módulo <module>PlayerStatsExperience</module> e as utilidades de lanzadores de penaltis no <module>MatchOrderInterface</module> deberían ter sido arranxados desta vez.'
-      income: 'O módulo <module>MatchIncome</module> debería agora amosar a información correcta para tódolos partidos. Por favor infórmanos se atopas inconsistencias.'
-      stats: 'O módulo <module>SeasonStats</module> rachou polos últimos cambios. Todo está xa arranxado.'
+      street_teams: 'A introdución dos equipos co nome "Equipo callejero" no novo sistema copeiro provocou varios problemas que xa se arranxaron.'
+      revert: 'Agora, o módulo <module>PlayerStatsExperience</module> e as utilidades de lanzadores de penaltis do módulo <module>MatchOrderInterface</module> deberían funcionar ben definitivamente.'
+      income: 'Agora, o módulo <module>MatchIncome</module> debería amosar a información correcta para todos os partidos. Agradeceríamosche que nos informases de calquera incoherencia que vexas.'
+      stats: 'O módulo <module>SeasonStats</module> non funcionaba correctamente debido ós últimos cambios de HT, pero xa se solucionaron todos os problemas.'
     0.14.0.2:
       bugs: '<header>Solucións de erros</header>'
-      challenge_link: 'O ligazón de desafío no <module>TeamPopupLinks</module> levache agora á páxina do equipo e abre automáticamente o menú de desafíos.'
-      penalty_takers: 'Debido ós cambios no HT, o <module>MatchOrderInterface</module>rachaba ó tentar ordear pola fórmula do HO.'
-      new_cups: 'Introducíronse funcionalidades para o novo sistema de copa. Isto aranxa novos bugs en varios módulos, como no por exemplo no <module>PlayerStatsExperience</module>.'
+      challenge_link: 'Agora, a ligazón dos desafíos do módulo <module>TeamPopupLinks</module> dirixe á páxina do equipo e abre o menú dos desafíos automaticamente.'
+      penalty_takers: 'Debido ós cambios do HT, a función de ordenar segundo a fórmula de HO do módulo <module>MatchOrderInterface</module> non funcionaba.'
+      new_cups: 'Implementouse a compatibilidade co novo sistema copeiro. Solucionáronse erros novos en varios módulos, especialmente no <module>PlayerStatsExperience</module>.'
       other: '<header>Outros cambios</header>'
-      psico: 'A predicción por salario no <module>PsicoTSI</module> foi actualizada.'
-      first_last_post: 'Agora se queres podes abrir o primeiro mensaxe ó clicar nos fíos que xa tiñas aberto co <module>ForumLastPost</module>.'
+      psico: 'Actualizouse a predición do salario do módulo <module>PsicoTSI</module>.'
+      first_last_post: 'Se queres, agora podes abrir a primeira mensaxe ó facer clic outra vez nos fíos que xa estean abertos co módulo <module>ForumLastPost</module>.'
       and_more: Moitos outros cambios pequeniños por aquí e por alá.
     0.14.0.1:
       important: '<header>Anuncios importantes</header>'
-      ff_cache: Os paquetes do Foxtrick xa non terán compresión extra no Firefox. Isto debería aforrar a morea de problemas raros que a xente tivo coa versión 0.14.0.
+      ff_cache: Os paquetes do Foxtrick xa non terán compresión extra no Firefox. Deste xeito, solucionaranse os problemas raros que xurdiron coa versión 0.14.0.
       bugs: '<header>Solucións de erros</header>'
-      safari_prefs: A páxina de preferencias do Foxtrick non podía ser amosada a algúns usuarios do Safari.
-      teamstats: 'Arranxado un erro que rachaba co <module>TeamStats</module> e outros módulos.'
-      bpp: 'O <module>BestPlayerPosition</module> amosaba información incorrecta nalgúns casos na páxina de resultados da búsqueda de transferencias.'
-      history_stats: 'O <module>HistoryStats</module>agora sempre vai ordear a actuación do equipo por tempada.'
+      safari_prefs: Algúns usuarios de Safari non podían ver a páxina de preferencias do Foxtrick.
+      teamstats: 'Arranxouse un erro estraño que provocaba un mal funcionamento de <module>TeamStats</module> e outros módulos.'
+      bpp: 'Nalgúns casos, o módulo <module>BestPlayerPosition</module> amosaba datos incorrectos na páxina de resultados da búsqueda de traspasos.'
+      history_stats: 'Agora, <module>HistoryStats</module> sempre ordenará o rendemento do equipo por tempada.'
     0.14.0:
       important: '<header>Anuncios importantes</header>'
       crowdin: '<header>Unha morea de actualizacións das traducións realizadas polos nosos marabillosos usuarios a través da <linkCrowdin>ferramenta Crowdin</linkCrowdin>. Por certo, ti tamén podes colaborar!</header>'
@@ -67,15 +67,15 @@ gl:
       chrome_notes: As notificacións do Foxtrick foron arranxadas para empregar o novo sistema de notificacións no Google Chrome.
       player_cache: O Foxtrick detectará agora novos xogadores no teu equipo e actualizará os datos CHPP automáticamente.
       train_est: O Foxtrick xa non interferirá coa ordenación da taboa na nova funcionalidade de estimación do adestramento.
-      mrf_fixes: 'O <module>MatchReportFormat</module> xa non amosará un deseño escangallado nalgúns partidos. Tamén engadíronse mais iconas de eventos.'
+      mrf_fixes: 'O deseño do módulo <module>MatchReportFormat</module> deixará de amosarse con erros nalgúns partidos. Tamén se engadiron máis iconas de eventos.'
       forum_header: 'O <module>ForumAlterHeaderLine</module> foi revisado e agora debería funcionar ben en tódolos casos.'
       nav_fix: 'A navegación no <module>GoToPostBox</module> e no <module>MyMonitor</module> foi arranxada no Firefox.'
       new_lineup: 'Os módulos <module>MatchPlayerColouring</module>, <module>LineupShortcut</module>, <module>TeamPopupLinks</module> e <module>SeniorTeamShortCuts</module> funcionarán agora correctamente coa nova páxina de ordes do partido.'
       other: '<header>Outros cambios</header>'
       live_ratings: 'O soporte para as calificacións en vivo foi engadido no<module>MatchLineupTweaks</module>, no <module>MatchRatingsTweaks</module> e no <module>MatchPlayerColouring</module>.'
       own_top_players: 'O módulo <module>Filter</module> salienta agora ós teus xogadores na páxina de Mellores Xogadores.'
-      htev: Xa que htev.org non podía aturar a carga de peticións do Foxtrick, o módulo HTEVPrediction foi eliminado.
-      removed: Os módulos SmallerPages e MatchTables foron suprimidos xa que non valían para moito.
+      htev: Xa que htev.org non podía seguir soportando a carga de solicitudes do Foxtrick, eliminouse o módulo HTEVPrediction.
+      removed: Elimináronse os módulos SmallerPages e MatchTables, xa que non valían para moito.
       and_more: Moitos outros cambios pequeniños por aquí e por alá.
     0.13.0.1:
       crowdin: '<header>Unha morea de actualizacións das traducións realizadas polos nosos marabillosos usuarios a través da <linkCrowdin>ferramenta Crowdin</linkCrowdin>. Por certo, ti tamén podes colaborar!</header>'
