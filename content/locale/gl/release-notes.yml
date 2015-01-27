@@ -55,25 +55,25 @@ gl:
     0.14.0:
       important: '<header>Anuncios importantes</header>'
       crowdin: '<header>Unha morea de actualizacións das traducións realizadas polos nosos marabillosos usuarios a través da <linkCrowdin>ferramenta Crowdin</linkCrowdin>. Por certo, ti tamén podes colaborar!</header>'
-      browsers: Rematou a compatibilidade con Opera 12. Agora as versións mínimas para executar o Foxtrick son Safari 6 e Firefox 24.
-      backend: Fixemos limpa e actualización do núcleo do Foxtrick. Os trocos afectan a unha morea de páxinas, módulos e funcionalidades, como o reporte do partido, o HT-Live, a pantalla de ordes do partido, a detección automática de divisa e o caché do Foxtrick. Se atopas algún bug, non dubides en informarnos!
-      bug_report: No pé de páxina do Hattrick atoparás a partir de agora unha ligazón para informar dos bugs do Foxtrick. Emprégao cando estés na páxina na que detectaches o bug, e segue as instruccións que aparecerán.
-      twitter: 'Podes seguir a <linkTwitter>FoxTrick no Twitter</linkTwitter> para recibir as noticias, as novidades e os anuncios máis recentes.'
+      browsers: Abandónase a compatibilidade con Opera 12. Agora, as versións mínimas para executar o Foxtrick son Safari 6 e Firefox 24.
+      backend: Limpamos e actualizamos o núcleo do Foxtrick. Os afectan afectan a unha morea de páxinas, módulos e funcionalidades, como os informes dos partidos, o HT-Live, a interface de ordes do partido, a detección automática de divisa e a caché do Foxtrick. Se detectas algún erro, non dubides en informarnos.
+      bug_report: 'Agora, fornecerase unha ligazón no pé da páxina do Hattrick  para informar dos erros do Foxtrick. Fai clic nela desde a páxina na que se produza o erro e sigue as instrucións que se indiquen.'
+      twitter: 'Podes seguir a <linkTwitter>Foxtrick no Twitter</linkTwitter> para recibir as noticias, as novidades e os anuncios máis recentes.'
       new: '<header>Módulos novos</header>'
-      series_transfers: '<module>SeriesTransfers</module>: Amosa unha lista dos xogadores que estean nese momento á venda na páxina da túa liga.'
-      player_positions: 'O módulo <module>PlayerPositionsEvaluations</module> e o <module>BestPlayerPosition</module> calculan a efectividade en varias posicións, dacordo co <linkContributionsWiki>Hattrick Wiki</linkContributionsWiki>.'
+      series_transfers: '<module>SeriesTransfers</module>: amosa unha lista de xogadores que estean á venda na páxina da liga.'
+      player_positions: 'Os módulos <module>PlayerPositionsEvaluations</module> e <module>BestPlayerPosition</module> calculan o rendemento dos xogadores en varias posicións segundo <linkContributionsWiki>Hattrick Wiki</linkContributionsWiki>.'
       bugs: '<header>Solucións de erros</header>'
-      australis: A icona do Firefox foi arranxada para que traballase ben co novo tema do navegador.
-      chrome_notes: As notificacións do Foxtrick foron arranxadas para empregar o novo sistema de notificacións no Google Chrome.
-      player_cache: O Foxtrick detectará agora novos xogadores no teu equipo e actualizará os datos CHPP automáticamente.
-      train_est: O Foxtrick xa non interferirá coa ordenación da taboa na nova funcionalidade de estimación do adestramento.
+      australis: Arranxouse a icona do Firefox foi para que funcione ben co novo tema do navegador.
+      chrome_notes: Arranxáronse as notificacións do Foxtrick para empregar o novo sistema de notificacións do Google Chrome.
+      player_cache: Agora, o Foxtrick detectará os xogadores novos do teu equipo e actualizará os datos CHPP automaticamente.
+      train_est: O Foxtrick xa non inflúe na ordenación da táboa da nova función de estimación do adestramento.
       mrf_fixes: 'O deseño do módulo <module>MatchReportFormat</module> deixará de amosarse con erros nalgúns partidos. Tamén se engadiron máis iconas de eventos.'
-      forum_header: 'O <module>ForumAlterHeaderLine</module> foi revisado e agora debería funcionar ben en tódolos casos.'
-      nav_fix: 'A navegación no <module>GoToPostBox</module> e no <module>MyMonitor</module> foi arranxada no Firefox.'
-      new_lineup: 'Os módulos <module>MatchPlayerColouring</module>, <module>LineupShortcut</module>, <module>TeamPopupLinks</module> e <module>SeniorTeamShortCuts</module> funcionarán agora correctamente coa nova páxina de ordes do partido.'
+      forum_header: 'Revisouse o módulo <module>ForumAlterHeaderLine</module>, polo que agora debería funcionar ben en todos os casos.'
+      nav_fix: 'Arranxáronse os problemas de navegación de Firefox nos módulos <module>GoToPostBox</module> e <module>MyMonitor</module>.'
+      new_lineup: 'Agora, os módulos <module>MatchPlayerColouring</module>, <module>LineupShortcut</module>, <module>TeamPopupLinks</module> e <module>SeniorTeamShortCuts</module> funcionarán correctamente coa nova páxina de aliñación.'
       other: '<header>Outros cambios</header>'
-      live_ratings: 'O soporte para as calificacións en vivo foi engadido no<module>MatchLineupTweaks</module>, no <module>MatchRatingsTweaks</module> e no <module>MatchPlayerColouring</module>.'
-      own_top_players: 'O módulo <module>Filter</module> salienta agora ós teus xogadores na páxina de Mellores Xogadores.'
+      live_ratings: 'Implementouse a compatibilidade coas cualificacións en directo nos módulos <module>MatchLineupTweaks</module>, <module>MatchRatingsTweaks</module> e <module>MatchPlayerColouring</module>.'
+      own_top_players: 'Agora, o módulo <module>Filter</module> salienta os teus xogadores na páxina de estatísticas dos mellores xogadores.'
       htev: Xa que htev.org non podía seguir soportando a carga de solicitudes do Foxtrick, eliminouse o módulo HTEVPrediction.
       removed: Elimináronse os módulos SmallerPages e MatchTables, xa que non valían para moito.
       and_more: Moitos outros cambios pequeniños por aquí e por alá.
