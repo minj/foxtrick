@@ -5,6 +5,7 @@ from Hattrick.CHPP import Credentials
 from Hattrick.CHPP import AccessToken
 
 import xml.etree.ElementTree as ET
+import os
 
 CONSUMER_KEY = Credentials.KEY
 CONSUMER_SECRET = Credentials.SECRET
@@ -40,7 +41,7 @@ def getCoaches(id):
 			t['CoachId'] = int(iCoach.find('NationalCoachUserID').text)
 			t['CoachName'] = iCoach.find('NationalCoachLoginname').text
 			if t['CoachId']:
-				teams_with_coaches.append(t)	
+				teams_with_coaches.append(t)
 
 	return teams_with_coaches
 
@@ -61,8 +62,8 @@ def run():
 	u20 = sorted(u20, key=lambda x: x["LeagueId"])
 	nt = sorted(nt, key=lambda x: x["LeagueId"])
 
-	saveCoaches(u20, '/home/foxtrick/trunk/res/staff/u20.json')
-	saveCoaches(nt, '/home/foxtrick/trunk/res/staff/nt.json')
+	saveCoaches(u20, os.path.expanduser('~/trunk/res/staff/u20.json'))
+	saveCoaches(nt, os.path.expanduser('~/trunk/res/staff/nt.json'))
 
 if __name__ == '__main__':
 	run();

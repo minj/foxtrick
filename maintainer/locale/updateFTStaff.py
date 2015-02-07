@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 from __future__ import print_function
-import sys
+import sys, os
 import json
 import codecs
 
@@ -19,7 +19,7 @@ import xml.etree.ElementTree as ET
 if len(sys.argv) > 1:
 	FT_JSON = sys.argv[1]
 else:
-	FT_JSON = '/home/foxtrick/trunk/res/staff/foxtrick.json'
+	FT_JSON = os.path.expanduser('~/trunk/res/staff/foxtrick.json')
 
 SUPPORTER_JSON = 'https://www.foxtrick.org/paypal/list.php'
 

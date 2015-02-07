@@ -1,6 +1,7 @@
 from __future__ import print_function
 from Hattrick.Web import HattrickWeb
 from Hattrick.Parsers import CHPPHolderParser
+import os
 import getpass
 import json
 
@@ -16,7 +17,7 @@ def login(username, password):
 		ht.login()
 	except Exception as e:
 		return False, None
-	
+
 	return True, ht;
 
 def getList(username, password):
@@ -25,12 +26,12 @@ def getList(username, password):
 		ht.open("/Community/CHPP/ChppPrograms.aspx")
 		chppHolderParser = CHPPHolderParser.CHPPHolderParser()
 		chppHolderParser.feed(ht.body)
-		return chppHolderParser.get() 
+		return chppHolderParser.get()
 	else:
 		print('Login failed!')
 		return []
 
-def saveJson(list, filename):	
+def saveJson(list, filename):
 	file = open( filename, "w")
 	file.write('{\n')
 	file.write('\t"type": "%s",\n' % "chpp-holder")
@@ -45,7 +46,7 @@ def run(username, password):
 	editors = getList(username, password);
 	editors = sorted(editors, key=lambda x: x["name"])
 	if len(editors):
-		saveJson(editors, '/home/foxtrick/trunk/res/staff/chpp-holder.json')
+		saveJson(editors, os.path.expanduser('~/trunk/res/staff/chpp-holder.json'))
 
 if __name__ == "__main__":
 	user = input("Login:");

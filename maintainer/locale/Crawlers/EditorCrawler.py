@@ -1,6 +1,7 @@
 from __future__ import print_function
 from Hattrick.Web import HattrickWeb
 from Hattrick.Parsers import EditorParser
+import os
 import json
 import getpass
 
@@ -16,7 +17,7 @@ def login(username, password):
 		ht.login()
 	except Exception as e:
 		return False, None
-	
+
 	return True, ht;
 
 def getList(username, password):
@@ -32,7 +33,7 @@ def getList(username, password):
 		print('Login failed!')
 		return []
 
-def saveJson(list, filename):	
+def saveJson(list, filename):
 	file = open( filename, "w")
 	file.write('{\n')
 	file.write('\t"type": "%s",\n' % "editor")
@@ -47,7 +48,7 @@ def run(username, password):
 	editors = getList(username, password);
 	editors = sorted(editors, key=lambda x: x["name"])
 	if len(editors):
-		saveJson(editors, '/home/foxtrick/trunk/res/staff/editor.json')
+		saveJson(editors, os.path.expanduser('~/trunk/res/staff/editor.json'))
 
 if __name__ == "__main__":
 	user = input("Login:");
