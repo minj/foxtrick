@@ -89,6 +89,11 @@ Foxtrick.modules['YouthTwins'] = {
 						//HY determines on its own
 					}
 					// load and callback
+
+					var entry = doc.getElementById('mainBody');
+					var loading = Foxtrick.util.note.createLoading(doc);
+					entry.insertBefore(loading, entry.firstChild);
+
 					Foxtrick.api.hy.getYouthTwins(function(json) {
 						// update the userId on _real_ successful request
 						// therefore need to use the request time, not current time
@@ -110,7 +115,14 @@ Foxtrick.modules['YouthTwins'] = {
 						}
 						// proceed as normally
 						callback(json);
-					}, params);
+					}, params,
+					  function(response, status) {
+						var msg = 'Error ' + status + ': ' + JSON.parse(response).error;
+						Foxtrick.util.note.add(doc, msg);
+					  },
+					  function() {
+						entry.removeChild(loading);
+					});
 				});
 			});
 		};

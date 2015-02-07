@@ -83,13 +83,21 @@ Foxtrick.modules['CopyYouth'] = {
 				Foxtrick.modules['ReadHtPrefs'].readLanguageFromMetaTag(doc);
 			params = params + '&primaryTraining=' + training[0].value;
 			params = params + '&secondaryTraining=' + training[1].value;
-			var ok = Foxtrick.L10n.getString('module.CopyYouth.AutoSendTrainingReportToHY.success');
+			var ok = 'module.CopyYouth.AutoSendTrainingReportToHY.success';
+			ok = Foxtrick.L10n.getString(ok);
+
+			var entry = doc.getElementById('mainBody');
+			var loading = Foxtrick.util.note.createLoading(doc);
+			entry.insertBefore(loading, entry.firstChild);
 
 			Foxtrick.api.hy.postMatchReport(function() {
 				module.addNode(doc, ok, 3000);
 			  }, params,
 			  function(response, status) {
 				module.addNode(doc, 'Error ' + status + ': ' + JSON.parse(response).error);
+			  },
+			  function() {
+				entry.removeChild(loading);
 			});
 		};
 
@@ -201,15 +209,21 @@ Foxtrick.modules['CopyYouth'] = {
 						var params = 'scoutcall=' + encodeURIComponent(reportNode.innerHTML);
 						params = params + '&lang=' +
 							Foxtrick.modules['ReadHtPrefs'].readLanguageFromMetaTag(doc);
-						var ok = Foxtrick.L10n
-							.getString('module.CopyYouth.AutoSendRejectedToHY.success');
+						var ok = 'module.CopyYouth.AutoSendRejectedToHY.success';
+						ok = Foxtrick.L10n.getString(ok);
 
+						var entry = doc.getElementById('mainBody');
+						var loading = Foxtrick.util.note.createLoading(doc);
+						entry.insertBefore(loading, entry.firstChild);
 
 						Foxtrick.api.hy.postScoutCall(function() {
 							module.addNode(doc, ok, 3000);
 						  }, params,
 						  function(response, status) {
 							module.addNode(doc, 'Error ' + status + ': ' + JSON.parse(response).error);
+						  },
+						  function() {
+							entry.removeChild(loading);
 						});
 					};
 
@@ -301,13 +315,21 @@ Foxtrick.modules['CopyYouth'] = {
 			// assemble param string
 			var params = 'primaryTraining=' + training[0].value;
 			params = params + '&secondaryTraining=' + training[1].value;
-			var ok = Foxtrick.L10n.getString('module.CopyYouth.AutoSendTrainingChangesToHY.success');
+			var ok = 'module.CopyYouth.AutoSendTrainingChangesToHY.success';
+			ok = Foxtrick.L10n.getString(ok);
+
+			var entry = doc.getElementById('mainBody');
+			var loading = Foxtrick.util.note.createLoading(doc);
+			entry.insertBefore(loading, entry.firstChild);
 
 			Foxtrick.api.hy.postTrainingChange(function() {
 				module.addNode(doc, ok, 3000);
 			  }, params,
 			  function(response, status) {
 				module.addNode(doc, 'Error ' + status + ': ' + JSON.parse(response).error);
+			  },
+			  function() {
+				entry.removeChild(loading);
 			});
 		};
 
