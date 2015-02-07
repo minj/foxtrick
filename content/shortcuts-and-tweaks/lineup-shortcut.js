@@ -111,9 +111,6 @@ Foxtrick.modules['LineupShortcut'] = {
 			}
 			if (!hasMatch)
 				hasTransfer = true;
-
-			if (!/#/.test(link.href))
-				link.href += '#tab2';
 		}
 	},
 
