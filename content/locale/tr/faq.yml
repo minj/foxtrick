@@ -18,21 +18,27 @@ tr:
         </ul>
     sound-location:
       question: Uyarı sesleri için boyut sınırları nedir ve onları nerede bulabilirim?
+      answer: |
+        Tüm tarayıcılar url verisini oynatabilir. Bunlar, yükle butonunu tıkladığınız zaman tercihlerden sağlanan dahili seslerdir. Bu sesler tercihler bölümüne, dönüştürülüp kaydedilebildiği için her ses için boyut 160 kb civarlarında sınırlandırılmıştır. 
+        
+        Aynı zamanda tüm tarayıcılar sesleri direkt olarak internetten oynatabilir (http linkleri). Sesler için alanı düzelt butonuna tıklayarak bir linki içine kopyalayabilirsiniz ( örneğin http://foxtrick.org/sound.wav). Bunun için limit sınırlaması yoktur.
+        
+        Mozilla tarayıcısı aynı zamanda harddiskinizdeki sesleri, limit sınırlaması olmadan direkt olarak oynatabilir. Doğru formatı seçmek için en kolay yol: tarayıcınız açıkken Ctrl+o butonunu tıklayın, ses dosyasını seçin. Yukarıdaki adres satırında sağdaki gibi bir link olacaktır (örneğin file:///c:/sound.wav). Bu linki kopyalayın ve sesler için alanı düzelt bölümüne yapıştırın.
     authorize:
       question: "Neden takım bilgilerime erişmesi için Foxtrick'e yetki vermeliyim?"
       answer: |
-        FoxTrick ihtiyaç duyduğu verilerin çoğu görüntülediğiniz sayfadan doğrudan zorlama ile olabilir <p> bazı modüller düzgün çalışması için Hattrick indirirken veri-akışı gereklidir. </ p>
+        FoxTrick ihtiyaç duyduğu verilerin çoğu görüntülediğiniz sayfadan doğrudan zorlama ile olabilir <p> bazı modüller düzgün çalışması için Hattrick ile veri-akışı gereklidir. </ p>
         
-        <p> ekibinizin veri, ligler ve milli takımlar da dahil olmak üzere Hattrick veri, indirmek için, önceden FoxTrick yetki gerekir. </ p>
+        <p> Hattrick'den takım verileriniz, ligler ve Milli Takımlara erişim gibi bilgiler içeren verileri indirmek için FoxTrick'e yetki vermeniz gerekir. </ p>
         
-        <p> Sen FoxTrick sağlamak bir doğrulama kodu, karşılığında chpp.hattrick.org kullanıcı adınızı ve şifrenizi sağlayarak FoxTrick yetki. FoxTrick tüm süreç içinde kullanıcı adınızı veya şifrenizi bilemezsiniz. </ P>
+        <p> Foxtrick'i chpp.hattrick.org'dan kullanıcı adı ve şifrenizi kullanarak yetkilendirebilirsiniz. Bu işlemler yapılırken foxtrick kullanıcı adınızı ve şifrenizi bilmeyecek.</ P>
         
-        yetki süreci hakkında daha fazla bilgi için <p>, <linkCHPPDesc> CHPP okuyun - bu Hattrick üzerinde </ linkCHPPDesc> Nasıl çalışıyor </ p>.
+        Yetkilendirme süreci hakkında daha fazla bilgi için <p>, <linkCHPPDesc> CHPP okuyun - bu Hattrick üzerinde </ linkCHPPDesc> şeklinde çalışır </ p>.
         
-        <p> Bazı modüller veri erişimi düzgün çalışması için gerekli: </ p>
+        <p> Bazı modüllerin düzgün çalışması için veri erişimi gereklidir: </ p>
         
         <ul>
-        <li> <module> carsaftablo </ module> </ li>
+        <li> <module> CrossTable </ module> </ li>
         <li> <module> ExtraPlayerInfo </ module> </ li>
         <li> <module> MatchPlayerColouring </ module> </ li>
         <li> <module> MyMonitor </ module> </ li>
@@ -40,7 +46,7 @@ tr:
         <li> <module> SeriesFlags </ module> </ li>
         </ ul>
         
-        onlar Hattrick veri erişebilirsiniz <p> Bazı modüller geniş bilgi sağlayabilir: </ p>
+        <p> Hattrick'e giriş izni verirseniz bazı modüller size detaylı bilgi sağlayabilir: </ p>
         
         <ul>
         <li> <module> SkillTable </ module> </ li>
