@@ -15,20 +15,45 @@ pt-BR:
       bugs: '<header>Correções de bugs</header>'
       breakages: FoxTrick agora deve funcionar corretamente no Safari 7.1 + e o Firefox para Android.
       https: Foxtrick deve novamente estar a funcionar corretamente no Hattrick Stage.
+      avatars: 'Cache dos avatar dos jogadores em <module>MatchOrderInterface</module> agora será atualizado automaticamente quando novos jogadores chegam à equipe.'
+      fans: 'Evolução da torcida em <module>Fans</module> agora será calculada corretamente quando a sua equipa é promovida ou rebaixada.'
+      player_stats: '<module>PlayerStatsTrainingWeek</module> deverá agora reconhecer corretamente amistosos de fim de semana.'
       other: '<header>Outras alterações</header>'
-      and_more: Várias outras pequenas alterações e correções.
+      transfer_compare: 'MedianTransferPrice foi renomeado para <module>TransferComparePlayers</module>. Adicionados cálculos de TSI e capacidade para buscar mais dados do jogador via CHPP. Mostra diferença de preços na página do histórico de transferências do jogador.'
+      player_positions: 'Melhorado <module>PlayerPositionsEvaluations</module> e adicionadas muitas opções onde pode escolher incluir forma, resistência, lealdade, experiência e efeitos de lesões nos cálculos.'
+      country_list: '<module>CountryList</module> pode agora mudar nomes dos países na coleção de bandeiras. É possível usar nomes dos países em Inglês ao invés da língua nativa.'
+      best_player_position: 'Módulo BestPlayerPosition foi integrado no <module>PlayerPositionsEvaluations</module>.'
+      nt: Corrigidas muitas funcionalidades que não estavam funcionando corretamente para os treinadores das seleções nacionais.
+      en-US: Adicionado suporte para a língua US English.
+      code: Muita mais manutenção foi feita no código Foxtrick. Isto nos permite encontrar e corrigir erros escondidos, melhorar a estabilidade dos extras e tornar mais fáceis futuros desenvolvimentos.
+      and_more: Muitas outras pequenas correções.
     0.14.0.3:
-      important: '<header>Anúncios Importantes</header>'
-      bugs: '<header>Correções de bugs</header>'
+      important: '<header>Avisos importantes</header>'
+      sorry: 'Pedimos desculpas pelo último lançamento de "correção de erros" que na realidade criou mais problemas do que os que resolveu. Esta deverá ser melhor.'
+      bugs: '<header>Correções de erros</header>'
+      street_teams: A introdução das equipes de rua no novo sistema da copa causou vários problemas estranhos que agora estão corrigidos.
+      revert: '<module>PlayerStatsExperience</module> e ferramenta de batedores de penalties em <module>MatchOrderInterface</module>  devem agora estar finalmente corrigidos.'
+      income: '<module>MatchIncome</module> deve agora mostrar a informação correta para todos os jogos. Por favor reporte alguma inconsistência.'
+      stats: '<module>SeasonStats</module> tinha problemas devido a recentes mudanças do HT. Tudo está corrigido agora.'
     0.14.0.2:
-      bugs: '<header>Correções de bugs</header>'
+      bugs: '<header>Correções de erros</header>'
+      challenge_link: 'Link do desafios em <module>TeamPopupLinks</module> agora leva você para a página do time e automaticamente abre o menu de desafio.'
+      penalty_takers: 'Classificação pela fórmula do HO em <module>MatchOrderInterface</module> foi interrompida devido a alterações do HT.'
+      new_cups: 'Novo sistema da Copa foi implementado. Corrige novos erros em vários módulos, sobretudo <module>PlayerStatsExperience</module>.'
       other: '<header>Outras alterações</header>'
+      psico: 'Previsão baseada no salário <module>PsicoTSI</module> foi atualizada.'
+      first_last_post: 'Agora opcionalmente você pode abrir o primeiro post ao clicar novamente em tópicos abertos com <module>ForumLastPost</module>.'
       and_more: Várias outras pequenas alterações e correções.
     0.14.0.1:
-      important: '<header>Anúncios Importantes</header>'
+      important: '<header>Avisos importantes</header>'
+      ff_cache: Pacotes do FoxTrick deixarão de ter compressão extra no Firefox. Isto deve prevenir todos os tipos de problemas estranhos que os usuários têm experimentado com versão 0.14.0.
       bugs: '<header>Correções de bugs</header>'
+      safari_prefs: Não foi possível exibir a página de preferências do Foxtrick para alguns usuários com Safari.
+      teamstats: 'Corrigido um erro raro que interrompe <module>TeamStats</module> e outros módulos.'
+      bpp: '<module>BestPlayerPosition</module> estava mostrando dados errados na página de resultado da pesquisa de transferência em alguns casos.'
+      history_stats: '<module>HistoryStats</module> agora requisitará sempre desempenho da equipe por temporada.'
     0.14.0:
-      important: '<header>Anúncios Importantes</header>'
+      important: '<header>Anúncios importantes</header>'
       crowdin: '<header>Várias atualizações de traduções de nossos fantásticos usuários que usam o <linkCrowdin>crowdin tool</linkCrowdin>. Você também pode ajudar!</header>'
       browsers: Suporte ao Opera 12 foi descontinuado. Safari 6 e Firefox 24 agora são versões mínimas para executar Foxtrick.
       backend: Foram feitas mais limpezas e atualizações para o núcleo do Foxtrick. As alterações afetam um monte de páginas, módulos e funcionalidades, incluindo o relatório do jogo, HT-Live, interface da ordem de jogo, detecção automática de moeda e cache do Foxtrick. Por favor reporte quaisquer erros que você encontrar.
