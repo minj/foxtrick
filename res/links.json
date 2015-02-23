@@ -535,13 +535,6 @@
 		"title": "Treenikoira - treenilaskuri",
 		"img": "resources/linkicons/puhuvakoira.png"
 	},
-	"htarena": {
-		"arenalink": {
-			"url": "http://www.htarena.se/"
-		},
-		"title": "HTArena - the calculator",
-		"img": "resources/linkicons/htarena.png"
-	},
 	"nrg_eco": {
 		"arenalink": {
 			"url": "http://nrgjack.altervista.org/eco.php?t=[terraces]&b=[basic]&r=[roof]&v=[vip]"
