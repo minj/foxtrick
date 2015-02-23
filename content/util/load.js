@@ -223,8 +223,8 @@ Foxtrick.util.load.xml = function(url, callback) {
 			var errorCode = 503;
 			if (text.search(/<title>\d+/i) !== -1)
 				errorCode = text.match(/<title>(\d+)/i)[1];
-			Foxtrick.log(url + 'returned an html page. Server could be down. Assumed errorCode: '
-			             + errorCode);
+			Foxtrick.log(url, '\nreturned an html page.',
+			             'Server could be down. Assumed errorCode:', errorCode);
 			callback(null, errorCode);
 			return;
 		}
