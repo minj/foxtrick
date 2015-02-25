@@ -87,6 +87,7 @@ if (Foxtrick.chromeContext() == 'background') {
 		if (Foxtrick._localStore.ready)
 			Foxtrick.localStore.put(key, value);
 		else {
+			Foxtrick.log('WARNING: localStore has not been initialized.');
 			Foxtrick._localStore.setQueue.push([key, value]);
 		}
 	};
@@ -103,8 +104,10 @@ if (Foxtrick.chromeContext() == 'background') {
 				}
 			});
 		}
-		else
+		else {
+			Foxtrick.log('WARNING: localStore has not been initialized.');
 			Foxtrick._localStore.getQueue.push([key, callback]);
+		}
 	};
 	Foxtrick.localDeleteBranch = function(branch) {
 		if (typeof branch === 'undefined' || branch === null)
