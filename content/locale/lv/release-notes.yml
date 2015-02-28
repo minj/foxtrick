@@ -3,6 +3,7 @@ lv:
   versions:
     0.15.0:
       important: '<header>Svarīgi paziņojumi</header>'
+      twitter: 'Jūs varat sekot <linkTwitter>Foxtrick Twiterī</linkTwitter>, lai saņemtu jaunākās ziņas, atjauninājumus un paziņojumus.'
       bugs: '<header>Kļūdu labojumi</header>'
       other: '<header>Citas izmaiņas</header>'
       and_more: Dažādas citas nelielas izmaiņas un labojumi.
@@ -16,6 +17,7 @@ lv:
     0.14.0.1:
       important: '<header>Svarīgi paziņojumi</header>'
       bugs: '<header>Kļūdu labojumi</header>'
+      safari_prefs: Foxtrick preferenču lapu var nerādīt dažiem Safari lietotājiem.
     0.14.0:
       important: '<header>Svarīgi paziņojumi</header>'
       bugs: '<header>Kļūdu labojumi</header>'
@@ -36,6 +38,7 @@ lv:
     0.11.0:
       note_12: '<header>Kļūdu labojumi</header>'
       note_18: BackgroundFixed modulis tika noņemts.
+      note_27: '<module>MatchReportFormat</module> izmanto jaunas HT ikonas.'
       note_31: Pievienots atbalsts www.hattrick.fm
       note_32: 'No <module>Links</module> moduļa zzvāktas neeksistējošās ārējās saites. Ja iespējams, tiks izmantotas ārējās ikonas.'
       note_33: '<header>Pārlūku atbalsts</header>'
