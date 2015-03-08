@@ -208,7 +208,7 @@ Foxtrick.modules['StaffMarker'] = {
 			// all your data are belong to us
 			if (--todo == 0) {
 				Foxtrick.sessionSet('staff-marker-data.' +
-									Foxtrick.modules['Core'].getSelfTeamInfo().teamId, obj);
+									Foxtrick.modules.Core.TEAM.teamId, obj);
 				Foxtrick.log('Staff marker data loaded.');
 
 				// at start run() is performed without data
@@ -359,7 +359,7 @@ Foxtrick.modules['StaffMarker'] = {
 			Foxtrick.Prefs.isModuleOptionEnabled('StaffMarker', 'forumInterface'))
 			this.addForumInterface(doc);
 
-		Foxtrick.sessionGet('staff-marker-data.' + Foxtrick.modules['Core'].getSelfTeamInfo().teamId,
+		Foxtrick.sessionGet('staff-marker-data.' + Foxtrick.modules.Core.TEAM.teamId,
 		  function(data) {
 			Foxtrick.sessionGet('staff-marker-reset', function(reset) {
 				if (!data || reset) {

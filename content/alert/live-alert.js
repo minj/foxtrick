@@ -82,7 +82,7 @@ Foxtrick.modules['LiveAlert'] = {
 			var awayScored = this.store[teamsText][1] < score[1];
 			if (homeScored || awayScored) {
 				// score has changed, alert
-				var own = Foxtrick.modules['Core'].getSelfTeamInfo().shortTeamName;
+				var own = Foxtrick.modules.Core.TEAM.shortTeamName;
 				var ownScored = own && (
 					own == teams[0] && homeScored ||
 					own == teams[1] && awayScored

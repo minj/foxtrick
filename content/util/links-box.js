@@ -14,7 +14,7 @@ Foxtrick.util.links = {
 	add: function(doc, ownBoxBody, pagemodule, info, isNewSidebar) {
 		try {
 			Foxtrick.util.links._info = info;
-			var ownTeam = Foxtrick.modules['Core'].getSelfTeamInfo(), ownInfo = {}, key;
+			var ownTeam = Foxtrick.modules.Core.TEAM, ownInfo = {}, key;
 			for (key in ownTeam)
 				ownInfo['own' + key] = ownTeam[key];
 

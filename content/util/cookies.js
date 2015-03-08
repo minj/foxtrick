@@ -65,7 +65,7 @@ if (!Foxtrick)
 		var name;
 		if (cookies[where].addId)
 			name = cookies[where].name + '_' +
-				Foxtrick.modules['Core'].getSelfTeamInfo().teamId;
+				Foxtrick.modules.Core.TEAM.teamId;
 		else
 			name = cookies[where].name;
 
@@ -160,7 +160,7 @@ if (!Foxtrick)
 		var name;
 		if (cookies[where].addId)
 			name = cookies[where].name + '_' +
-				Foxtrick.modules['Core'].getSelfTeamInfo().teamId;
+				Foxtrick.modules.Core.TEAM.teamId;
 		else
 			name = cookies[where].name;
 

@@ -107,11 +107,11 @@ Foxtrick.modules['MainMenuDropDown'] = {
 				secondary: []
 			}
 			this.save = function() {
-				Foxtrick.localSet('Menu.v4.' + Foxtrick.modules['Core'].getSelfTeamInfo().teamId +
+				Foxtrick.localSet('Menu.v4.' + Foxtrick.modules.Core.TEAM.teamId +
 								  '.' + Foxtrick.Prefs.getString('htLanguage'), { menus: this.menus });
 			}
 			this.load = function(func) {
-				Foxtrick.localGet('Menu.v4.' + Foxtrick.modules['Core'].getSelfTeamInfo().teamId +
+				Foxtrick.localGet('Menu.v4.' + Foxtrick.modules.Core.TEAM.teamId +
 								  '.' + Foxtrick.Prefs.getString('htLanguage'),
 				  function(menu) {
 					if (!menu) {

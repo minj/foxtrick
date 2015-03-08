@@ -386,7 +386,7 @@ Foxtrick.modules['Filter'] = {
 	 */
 	showOwned: function(doc) {
 
-		var teamId = Foxtrick.modules.Core.getSelfTeamInfo().teamId;
+		var teamId = Foxtrick.modules.Core.TEAM.teamId;
 		var ids = [];
 
 		Foxtrick.util.api.retrieve(doc, [

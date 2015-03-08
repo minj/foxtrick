@@ -55,7 +55,7 @@ if (!Foxtrick.api.hy)
  */
 Foxtrick.api.hy._buildParams = function(callback, params, teamId) {
 	if (typeof(teamId) == 'undefined' || teamId === null)
-		teamId = Foxtrick.modules['Core'].getSelfTeamInfo().teamId;
+		teamId = Foxtrick.modules.Core.TEAM.teamId;
 	//assemble param string
 	params = params ? params + '&' : '';
 	params += 'teamId=' + teamId;
@@ -92,7 +92,7 @@ Foxtrick.api.hy._fetchViaCache = function(cacheDays, api, params, fetch,
 	var now = new Date().valueOf();
 	// this produces a valid UNIX timestamp that can be compared to HY
 	if (typeof(teamId) == 'undefined' || teamId === null)
-		teamId = Foxtrick.modules['Core'].getSelfTeamInfo().teamId;
+		teamId = Foxtrick.modules.Core.TEAM.teamId;
 
 	var do_fetch = function(cached_data) {
 		fetch(function(data) {
@@ -184,12 +184,12 @@ Foxtrick.api.hy._fetchViaCache = function(cacheDays, api, params, fetch,
 Foxtrick.api.hy._fetchOrIgnore = function(api, url, params,
 										  success, failure, finalize, teamId) {
 	if (typeof(teamId) == 'undefined' || teamId === null)
-		teamId = Foxtrick.modules['Core'].getSelfTeamInfo().teamId;
+		teamId = Foxtrick.modules.Core.TEAM.teamId;
 
 	var ignoreHours = this.ignoreHours;
 	var buildParams = this._buildParams;
 	Foxtrick.localGet('YouthClub.ignoreUntil', function(ignored) {
-		var now = Foxtrick.modules['Core'].HT_TIME + 59000;
+		var now = Foxtrick.modules.Core.HT_TIME + 59000;
 		if (now > ignored) {
 			buildParams(function(params) {
 				Foxtrick.util.load.async(url,
@@ -248,7 +248,7 @@ Foxtrick.api.hy._fetchOrIgnore = function(api, url, params,
  */
 Foxtrick.api.hy._fetchGeneric = function(api, callback, params, failure, finalize, teamId) {
 	if (typeof(teamId) == 'undefined' || teamId === null)
-		teamId = Foxtrick.modules['Core'].getSelfTeamInfo().teamId;
+		teamId = Foxtrick.modules.Core.TEAM.teamId;
 
 	Foxtrick.log('[HY_API][' + api + '] _fetch:', [params], teamId);
 	var url = Foxtrick.api.hy.URL[api];

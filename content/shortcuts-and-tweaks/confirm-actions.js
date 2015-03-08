@@ -66,7 +66,7 @@ Foxtrick.modules['ConfirmActions'] = {
 							if (Foxtrick.util.layout.hasMultipleTeams(doc)) {
 								var cont = doc.createElement('strong');
 								cont.textContent =
-									Foxtrick.modules['Core'].getSelfTeamInfo().teamName + ': ';
+									Foxtrick.modules.Core.TEAM.teamName + ': ';
 								msgPara.appendChild(cont);
 							}
 							msgPara.appendChild(doc.createTextNode(msg));
@@ -141,7 +141,7 @@ Foxtrick.modules['ConfirmActions'] = {
 							if (Foxtrick.util.layout.hasMultipleTeams(doc)) {
 								var cont = doc.createElement('strong');
 								cont.textContent =
-									Foxtrick.modules['Core'].getSelfTeamInfo().teamName + ': ';
+									Foxtrick.modules.Core.TEAM.teamName + ': ';
 								msgPara.appendChild(cont);
 							}
 							msgPara.appendChild(doc.createTextNode(msg));

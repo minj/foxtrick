@@ -101,7 +101,7 @@ Foxtrick.modules['YouthTwins'] = {
 						var userId = json.userId;
 						if (typeof(userId) == 'number') {
 							var then = json.fetchTime * 1000; // JS vs PHP
-							var teamId = Foxtrick.modules['Core'].getSelfTeamInfo().teamId;
+							var teamId = Foxtrick.modules.Core.TEAM.teamId;
 							Foxtrick.localGet('YouthClub.' + teamId + '.userId.fetchTime',
 							  function (saved) {
 								if (saved >= then)

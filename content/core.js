@@ -5,7 +5,7 @@
 * @author ryanli
 */
 
-Foxtrick.modules['Core'] = {
+Foxtrick.modules.Core = {
 	CORE_MODULE: true,
 	OUTSIDE_MAINBODY: true,
 	PAGES: ['all'],
@@ -16,7 +16,7 @@ Foxtrick.modules['Core'] = {
 		Foxtrick.InternalPath + 'resources/css/flags.css',
 	],
 
-	SELF_TEAM_INFO: {},
+	TEAM: {},
 	PLAYER_LIST: {},
 	HT_TIME: 0,
 
@@ -100,37 +100,37 @@ Foxtrick.modules['Core'] = {
 	},
 
 	parseSelfTeamInfo: function(doc) {
+		var CORE = this;
 		var teamLinks = doc.getElementById('teamLinks');
 		if (teamLinks && teamLinks.getElementsByTagName('a').length > 0) {
-			this.SELF_TEAM_INFO = {
+			CORE.TEAM = {
 				teamId: Foxtrick.util.id.findTeamId(teamLinks),
 				leagueId: Foxtrick.util.id.findLeagueId(teamLinks),
 				teamName: Foxtrick.util.id.extractTeamName(teamLinks),
 				seriesId: Foxtrick.util.id.findLeagueLeveUnitId(teamLinks),
 			};
-			Foxtrick.localGet('shortTeamName.' + this.SELF_TEAM_INFO.teamId,
+			Foxtrick.localGet('shortTeamName.' + CORE.TEAM.teamId,
 			  function(name) {
 				if (doc.querySelector('.ongoingEvents a[href*="/Club/Matches/Live.aspx"]')) {
-					name = Foxtrick.modules['Core'].SELF_TEAM_INFO.teamName;
-					Foxtrick.localSet('shortTeamName.' +
-									  Foxtrick.modules['Core'].SELF_TEAM_INFO.teamId, name);
+					name = CORE.TEAM.teamName;
+					Foxtrick.localSet('shortTeamName.' + CORE.TEAM.teamId, name);
 					Foxtrick.log('Short team name found!', name);
 				}
 				if (name)
-					Foxtrick.modules['Core'].SELF_TEAM_INFO.shortTeamName = name;
+					CORE.TEAM.shortTeamName = name;
 			});
-			var teamId = this.SELF_TEAM_INFO.teamId;
+			var teamId = CORE.TEAM.teamId;
 			Foxtrick.ht_pages['ownPlayers'] =
 				Foxtrick.ht_pages['ownPlayersTemplate'].replace(/\[id\]/g, teamId);
 			Foxtrick.addClass(doc.body, 'ft-teamID-' + teamId);
 		}
 		var subMenu = doc.getElementsByClassName('subMenu')[0];
 		if (subMenu) {
-			if (!this.SELF_TEAM_INFO.youthTeamId) {
+			if (!CORE.TEAM.youthTeamId) {
 				var leftMenuTeamId = Foxtrick.util.id.findTeamId(subMenu);
-				if (this.SELF_TEAM_INFO.teamId == leftMenuTeamId) {
+				if (CORE.TEAM.teamId == leftMenuTeamId) {
 					var youthId = Foxtrick.util.id.findYouthTeamId(subMenu);
-					this.SELF_TEAM_INFO.youthTeamId = youthId;
+					CORE.TEAM.youthTeamId = youthId;
 					Foxtrick.ht_pages['ownYouthPlayers'] =
 						Foxtrick.ht_pages['ownYouthPlayersTemplate'].replace(/\[id\]/g, youthId);
 
@@ -148,10 +148,6 @@ Foxtrick.modules['Core'] = {
 		}
 	},
 
-	getSelfTeamInfo: function() {
-		return this.SELF_TEAM_INFO;
-	},
-
 	/**
 	 * Adds a link to send Foxtrick log to pastebin
 	 * @param {document} doc
@@ -165,8 +161,8 @@ Foxtrick.modules['Core'] = {
 				if (log === '')
 					return;
 
-				var team = CORE.getSelfTeamInfo().teamName;
-				var id = CORE.getSelfTeamInfo().teamId;
+				var team = CORE.TEAM.teamName;
+				var id = CORE.TEAM.teamId;
 				var url = doc.location.pathname + doc.location.search;
 				var nonce = Math.random().toString(16).substr(2).toUpperCase();
 

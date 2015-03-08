@@ -301,7 +301,7 @@ Foxtrick.modules['SeriesTransfers'] = {
 
 		var sidebar = doc.getElementById('sidebar');
 		var seriesId = Foxtrick.util.id.findLeagueLeveUnitId(sidebar);
-		var ownSeriesId = Foxtrick.modules.Core.getSelfTeamInfo().seriesId;
+		var ownSeriesId = Foxtrick.modules.Core.TEAM.seriesId;
 		Foxtrick.localGet('series_transfers.' + seriesId, function(time) {
 			if (time || seriesId === ownSeriesId) {
 				// we follow this series
