@@ -3,7 +3,7 @@
 Foxtrick code is in a git repo at https://github.com/minj/foxtrick/.
 Build scripts are in the `build` branch.
 
-Foxtrick runs on a few different browsers that have significantly different environments, persistence and messaging models. These things are handled by the so-called back-end. Once all files are loaded and the back-end is set up, a `DOMContentLoaded` handler is attached to the content (Hattrick) pages. The handler detects what HT page was loaded, finds modules working (and enabled) on that page and executes them. See the [back-end mechanism in detail](wiki/FoxtrickCallStack).
+Foxtrick runs on a few different browsers that have significantly different environments, persistence and messaging models. These things are handled by the so-called back-end. Once all files are loaded and the back-end is set up, a `DOMContentLoaded` handler is attached to the content (Hattrick) pages. The handler detects what HT page was loaded, finds modules working (and enabled) on that page and executes them. See the [back-end mechanism in detail](https://github.com/minj/foxtrick/wiki/FoxtrickCallStack).
 
 ## Module Overview
 A module is a piece of Foxtrick functionality that works independently from other modules thus modules can usually be disabled freely. Modules are typically stored one per file and arranged in certain folders in `content` according to their category (functionality type).
@@ -26,26 +26,26 @@ Most utilities are arranged in folders in `content`:
 * files in `api` folder define external APIs as `Foxtrick.api.*`, e. g. youthclub access as `Foxtrick.api.hy.*`.
 * files in `pages` folder define common functions for certain pages in HT, e.g. `Foxtrick.Pages.Player.*` for common tasks on player details page.
 * files in `util` define general purpose functions. Some of the most important:
-	* [api.js](content/util/api.js): CHPP access
-	* [array.js](content/util/array.js) for working with arrays, nodeLists and similar
-	* [cookies.js](content/util/cookies.js): manage cookies for external sites
-	* [currency.js](content/util/currency.js) essential for anything currency related
-	* [dom.js](content/util/dom.js) for creating functionality containers and images, managing classes and DOM relationships, adding event handlers
-	* [id.js](content/util/id.js) to retrieve IDs
-	* [layout.js](content/util/layout.js) to detect layout
-	* [load.js](content/util/load.js) to fetch files
-	* [local-store.js](content/util/local-store.js) to store persistent data
-	* [log.js](content/util/log.js) to log messages
-	* [math.js](content/util/math.js) for various calculations and predictions
-	* [misc.js](content/util/misc.js) contains a mixed bag of helpers
-	* [note.js](content/util/note.js) to add inline notification messages
-	* [session-store.js](content/util/session-store.js) to store temporary data
-	* [time.js](content/util/time.js) for working with time
+	* [api.js](/content/util/api.js): CHPP access
+	* [array.js](/content/util/array.js) for working with arrays, nodeLists and similar
+	* [cookies.js](/content/util/cookies.js): manage cookies for external sites
+	* [currency.js](/content/util/currency.js) essential for anything currency related
+	* [dom.js](/content/util/dom.js) for creating functionality containers and images, managing classes and DOM relationships, adding event handlers
+	* [id.js](/content/util/id.js) to retrieve IDs
+	* [layout.js](/content/util/layout.js) to detect layout
+	* [load.js](/content/util/load.js) to fetch files
+	* [local-store.js](/content/util/local-store.js) to store persistent data
+	* [log.js](/content/util/log.js) to log messages
+	* [math.js](/content/util/math.js) for various calculations and predictions
+	* [misc.js](/content/util/misc.js) contains a mixed bag of helpers
+	* [note.js](/content/util/note.js) to add inline notification messages
+	* [session-store.js](/content/util/session-store.js) to store temporary data
+	* [time.js](/content/util/time.js) for working with time
 * Additionally some core features are defined in:
-	* [l10n.js](content/util/l10n.js): localization (Foxtrick.L10n.*)
-	* [pages.js](content/util/pages.js): HT page detection
-	* [prefs.js](content/util/prefs.js): settings value access (Foxtrick.Prefs.*)
-	* [xml-load.js](content/util/xml-load.js): HT countries and leagues
+	* [l10n.js](/content/util/l10n.js): localization (Foxtrick.L10n.*)
+	* [pages.js](/content/util/pages.js): HT page detection
+	* [prefs.js](/content/util/prefs.js): settings value access (Foxtrick.Prefs.*)
+	* [xml-load.js](/content/util/xml-load.js): HT countries and leagues
 
 ## Adding new functionality
 All modules must be linked and internationalized. Modules default to being completely off thus more appropriate default settings need to be defined as well.
@@ -89,7 +89,7 @@ Foxtrick.modules['AdvancedModule'] = {
 When a new module is created, it must be added to `modules` file. Executing `python module-update.py add category/module.js` does that for you and effectively links the module for all browsers. 
 
 ### Internationalization
-Base strings reside in [content/foxtrick.properties](content/foxtrick.properties) file. Localized strings are imported from `content/locale/*/foxtrick.properties` (they are imported from crowdin and should not be touched). 
+Base strings reside in [content/foxtrick.properties](/content/foxtrick.properties) file. Localized strings are imported from `content/locale/*/foxtrick.properties` (they are imported from crowdin and should not be touched). 
 
 Each module and module option must be specified in the base strings file:
 ```properties
@@ -100,7 +100,7 @@ module.AdvancedModule.SubOption.desc=SubOption description
 Additional strings used in the module are specified without the `module.` prefix, e. g. `AdvancedModule.SomeString=Some string`.
 
 ### Default settings
-Default settings must be specified in [defaults/preferences/foxtrick.js](defaults/preferences/foxtrick.js).
+Default settings must be specified in [defaults/preferences/foxtrick.js](/defaults/preferences/foxtrick.js).
 ```js
 pref("extensions.foxtrick.prefs.module.AdvancedModule.enabled", true);
 pref("extensions.foxtrick.prefs.module.AdvancedModule.Option.enabled", true);
