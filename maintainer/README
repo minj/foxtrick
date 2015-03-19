@@ -1,22 +1,14 @@
-This file is intended for maintainers of FoxTrick, including notes for
-version and releasing.
+This file is intended for maintainers of FoxTrick, including notes for version and releasing.
 
+## Version Scheme
+FoxTrick has two major channels of versions, one is stable version for daily use and another is beta version for testing.
 
-Version Scheme
-==============
-FoxTrick has two major channels of versions, one is stable version for daily
-use and another is nightly version for testing.
+The major version number has two digits separated by dot, like 0.7, 0.8, and 1.0.
+For minor version over major stable releases, a number starting from 1 is appended, like: 0.7.1, 0.7.2, etc.
 
-The major version number has two digits separated by dot, like 0.7, 0.8, and
-1.0.
-For minor version over major stable releases, a number starting from 1 is
-appended, like: 0.7.1, 0.7.2, etc.
-As for nightly builds, take an example to demonstrate: the nightlies before
-0.7 is 0.6.9 plus revision, like: 0.6.9.6345. When 0.7 is released it's then
-like 0.7.9.6653.
+Beta channel uses a custom versioning scheme.
 
-Version Bump
-============
+### Version Bump
 A version bump comes after the release of a major stable version
 
 Keep in mind to modify the following files: (version.sh can/should be used for that)
@@ -25,23 +17,18 @@ Keep in mind to modify the following files: (version.sh can/should be used for t
 * Info.plist (For Safari)
 * default/preferences/foxtrick.js (For Foxtrick.version())
 
-Releasing Nightly Versions
-==========================
-These are uploaded to foxtrick.foundationhorizont.org (thanks to ljushaff
-for providing the space!) automatically (thanks to convincedd for providing
-the server!) at 12:00 CET everyday.
+### Releasing Beta Versions
+These are uploaded to foxtrick.org automatically (thanks to CatzHoek for providing the server!) at 13:00 CET everyday.
+Chrome Web Store does not allow automatic uploads therefore it needs to be done manually.
 
-Releasing Stable Versions
-=========================
-Do these things in order:
-* Bump version.
-* Set URL to 'http://foxtrick.foundationhorizont.org/release' & DEST and DIST to 'release' in upload.conf.sh
-  * Build and upload to foxtrick.org using upload-nightly.sh
-* Build with `make DIST_TYPE=hosting`,
-  * Gecko: Upload foxtrick.xpi to addons.mozilla.org
-  * Chrome: Upload foxtrick.zip to Chrome extension hosting (https://chrome.google.com/webstore/developer/edit/bpfbbngccefbbndginomofgpagkjckik)
-* Edit homepage at Google Code and foxtrick.org.
+### Releasing Stable Versions
+* Run build scripts
+* Upload to CWS
 * Write a new post at Hattrick forum.
 
+<pre>
 Ryan Li <ryan@ryanium.com>
 23 Aug 2011
+
+Revised 19 March (LA-MJ)
+</pre>

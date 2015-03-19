@@ -362,7 +362,7 @@ else {
  */
 if (true) {
 	(function(aLongVar,
-	          anEvenLongerVar) {})(); // 1 tab + spaces
+			  anEvenLongerVar) {})(); // 1 tab + spaces
 }
 ```
 
@@ -371,12 +371,12 @@ if (true) {
 ```js
 if (true) {
 	if (false) {
-    	Foxtrick.log('spaces with 1 tab');
+		Foxtrick.log('spaces with 1 tab');
 	}
 }
 if (true) {
 	if (false) {
-	    Foxtrick.log('1 tab with spaces');
+		Foxtrick.log('1 tab with spaces');
 	}
 }
 /* this one is caught only by google js linter */
@@ -837,19 +837,16 @@ Foxtrick.Bar = {
 	"codeintel_scan_files_in_project": true,
 
 	"codeintel_selected_catalogs": [
-		"jQuery", "HTML5", "Mozilla Toolkit", "Drupal"
+		"jQuery", "HTML5", "Mozilla Toolkit"
 	],
 
 	"codeintel_config": {
 		"JavaScript": {
-			"javascriptExtraPaths": [],
+			"codeintel_scan_extra_dir": [],
+			"codeintel_scan_exclude_dir":["/build/", "/min/"],
 			"codeintel_scan_files_in_project": true,
-			"codeintel_max_recursive_dir_depth": 5
-		},
-		"PHP": {
-			"phpExtraPaths": [],
-			"codeintel_scan_files_in_project": true,
-			"codeintel_max_recursive_dir_depth": 5
+			"codeintel_max_recursive_dir_depth": 5,
+			"codeintel_selected_catalogs": ["jQuery", "HTML5", "Mozilla Toolkit"]
 		}
 	}
 }

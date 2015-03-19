@@ -1,17 +1,20 @@
-===Browser===
+===Browser architecture===
+
+See FoxtrickCallStack in the wiki
 
 ==firefox/seamonkey==
-single threaded
+one thread per window
 =rights=
 	all
 =script loading=
-	overlay.xul
+	bootstrap-firefox.js
 =content starter=
 	loader-gecko.js
 =preferences page=
 	as is
 =prefs=
-	gecko preferences
+	read: gecko preferences
+	write: gecko preferences via background
 =l10n=
 	gecko strings manager
 =xml_resources_load=
@@ -21,18 +24,18 @@ single threaded
 =sessionStore=
 	directly
 =log=
-	dump directly
+	Browser console
 
 
 ==fennec==
-one background thread and one for each tab (persistant with page reload)
+one background thread and one for each tab (persistent with page reload)
 =rights=
 	xml and pref setting via background
 =script loading=
-	overlay_fennec.xul (background)
-	background.js (content)
+	bootstrap-firefox.js (background)
+	scripts-fennec.js (content)
 =content starter=
-	loader-gecko.js
+	loader-fennec.js
 =preferences page=
 	as is
 =prefs=
@@ -47,13 +50,13 @@ one background thread and one for each tab (persistant with page reload)
 =sessionStore=
 	updates via background
 =log=
-	dump via background
+	Extension process via Remote debugging
 
 
-==chrome==
-one background thread and one for each page (non-persistant with page reload)
+==chrome and opera==
+one background thread and one for each page (non-persistent with page reload)
 =rights=
-	content scripts can't access extension diretory
+	content scripts can't access extension directory
 =script loading=
 	background.html (background)
 	manifest.json (content)
@@ -72,12 +75,13 @@ one background thread and one for each page (non-persistant with page reload)
 =sessionStore=
 	updates via background
 =log=
-	console.log directly
+	console.log directly both in content and background
+
 
 ==safari==
-one background thread and one for each page (non-persistant with page reload)
+one background thread and one for each page (non-persistent with page reload)
 =rights=
-	content scripts can't access extension diretory
+	content scripts can't access extension directory
 =script loading=
 	background.html (background)
 	Info.plist (content)

@@ -48,11 +48,15 @@ ROOT_FILES_FIREFOX = chrome.manifest \
 	bootstrap.js \
 	icon.png \
 	COPYING \
-	HACKING
-ROOT_FILES_CHROME = manifest.json
+	HACKING.md
+ROOT_FILES_CHROME = manifest.json \
+	COPYING \
+	HACKING.md
 ROOT_FILES_SAFARI = Info.plist \
 	Settings.plist \
-	skin/icon.png
+	skin/icon.png \
+	COPYING \
+	HACKING.md
 ROOT_FOLDERS_FIREFOX = defaults/
 ROOT_FOLDERS_CHROME = defaults/ skin/
 ROOT_FOLDERS_SAFARI = defaults/ skin/
