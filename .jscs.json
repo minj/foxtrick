@@ -1,0 +1,48 @@
+{
+	"requireCurlyBraces": [
+		"try", "catch", "do"
+	]
+	,"requireSpaceAfterKeywords": [
+		"if", "else", "for", "while", "do", "switch", "return", "try", "catch", "case"
+	]
+	,"requireParenthesesAroundIIFE": true
+	,"disallowEmptyBlocks": true
+	,"disallowSpacesInsideArrayBrackets": true
+	,"disallowSpacesInsideParentheses": true
+	,"requireSpacesInsideObjectBrackets": "allButNested"
+	,"disallowQuotedKeysInObjects": "allButReserved"
+	,"disallowSpaceAfterObjectKeys": true
+	,"requireCommaBeforeLineBreak": true
+	,"requireOperatorBeforeLineBreak": [
+		"?", ":", "+", "/", "*", "%", "=", "+=", "-=", "/=", "*=", "%=", "==", "===", "!=", "!==", ">", ">=", "<", "<=", "&&", "||", "."
+	]
+	,"disallowLeftStickedOperators": [
+		"?", "+", "/", "*", "%", "=", "+=", "-=", "/=", "*=", "%=", "==", "===", "!=", "!==", ">", ">=", "<", "<=", "&&", "||"
+	]
+	,"disallowRightStickedOperators": [
+		"?", ",", ":", "+", "/", "*", "%", "=", "+=", "-=", "/=", "*=", "%=", "==", "===", "!=", "!==", ">", ">=", "<", "<=", "&&", "||"
+	]
+	,"requireRightStickedOperators": ["!"]
+	,"requireLeftStickedOperators": [","]
+	,"disallowSpaceAfterPrefixUnaryOperators": ["++", "--", "+", "-", "~", "!"]
+	,"disallowSpaceBeforePostfixUnaryOperators": ["++", "--"]
+	,"requireSpaceBeforeBinaryOperators": [
+		"+", "-", "/", "*", "%", "=", "+=", "-=", "/=", "*=", "%=", "==", "===", "!=", "!==", ">", ">=", "<", "<=", "&&", "||"
+	]
+	,"requireSpaceAfterBinaryOperators": [
+		"+", "-", "/", "*", "%", "=", "+=", "-=", "/=", "*=", "%=", "==", "===", "!=", "!==", ">", ">=", "<", "<=", "&&", "||"
+	]
+	,"disallowKeywords": ["with"]
+	,"disallowMultipleLineStrings": true
+	,"validateLineBreaks": "LF"
+	,"validateIndentation": "\t"
+	,"disallowTrailingWhitespace": true
+	,"requireKeywordsOnNewLine": ["else", "catch"]
+	,"requireLineFeedAtFileEnd": true
+	,"requireCapitalizedConstructors": true
+	,"validateJSDoc": {
+		"checkParamNames": true,
+		"checkRedundantParams": true,
+		"requireParamTypes": true
+	}
+}
