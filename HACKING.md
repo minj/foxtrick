@@ -29,7 +29,7 @@ For now we will be using the [github flow](https://guides.github.com/introductio
 * add and push changes
 * submit pull requests with your improvements
 
-** NB: ** import this preference to enable Foxtrick logging:
+**NB:** import this preference to enable Foxtrick logging:
 `user_pref("extensions.foxtrick.prefs.logDisabled",false);`
 
 ### Code style
