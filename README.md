@@ -8,7 +8,7 @@ Homepage: https://www.foxtrick.org
 
 ## Feedback
 * [Trouble shooting](https://www.foxtrick.org/trouble-shooting)
-* [Known bugs](https://github.com/minj/foxtrick/issues?q=is%3Aissue+is%3Aopen+label%3Abug")
+* [Known bugs](https://github.com/minj/foxtrick/issues?q=is%3Aissue+is%3Aopen+label%3Abug)
 * [Feature requests](https://github.com/minj/foxtrick/issues?q=is%3Aissue+is%3Aopen+label%3Afeature)
 
 ## Contributing
