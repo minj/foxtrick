@@ -2,7 +2,7 @@
 FTlinkMainTab: '#tab=main'
 FTlinkAggregation: '#tab=information_aggregation'
 FTlinkHelp: '#tab=help'
-linkSVN: 'https://code.google.com/p/foxtrick/source/list'
+linkSVN: 'https://github.com/minj/foxtrick/'
 linkCrowdin: 'https://crowdin.com/project/foxtrick/'
 linkHTMS: 'http://www.fantamondi.it/HTMS'
 linkFT: 'https://www.foxtrick.org'
