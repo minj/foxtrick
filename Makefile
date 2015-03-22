@@ -147,7 +147,7 @@ firefox:
 	# build jar
 	cd $(BUILD_DIR)/chrome; \
 	$(ZIP) -0 -r $(APP_NAME).jar `find . \( -path '*CVS*' -o -path \
-		'*.svn*' \) -prune -o -type f -print | grep -v \~ `; \
+		'*.git*' \) -prune -o -type f -print | grep -v \~ `; \
 	rm -rf content skin
 	# ditch the jar
 	cd $(BUILD_DIR); \
@@ -162,7 +162,7 @@ firefox:
 	#fi
 	# set branch
 	cd $(BUILD_DIR); \
-	sed -i -r "/extensions\\.foxtrick\\.prefs\\.branch/s|\"svn\"|\"$(BRANCH) mozilla\"|" defaults/preferences/foxtrick.js
+	sed -i -r "/extensions\\.foxtrick\\.prefs\\.branch/s|\"dev\"|\"$(BRANCH) mozilla\"|" defaults/preferences/foxtrick.js
 	# modify according to dist type
 ifeq ($(DIST_TYPE),nightly)
 	cd $(BUILD_DIR); \
@@ -207,7 +207,7 @@ chrome:
 	sed -i -r '/\/\* <BUILD>|<\/BUILD> \*\//d' content/env.js
 	# set branch
 	cd $(BUILD_DIR); \
-	sed -i -r "/extensions\\.foxtrick\\.prefs\\.branch/s|\"svn\"|\"$(BRANCH) chrome\"|" defaults/preferences/foxtrick.js
+	sed -i -r "/extensions\\.foxtrick\\.prefs\\.branch/s|\"dev\"|\"$(BRANCH) chrome\"|" defaults/preferences/foxtrick.js
 	# modify according to dist type
 ifeq ($(DIST_TYPE),nightly)
 	cd $(BUILD_DIR); \
@@ -263,7 +263,7 @@ safari:
 	sed -i -r '/\/\* <BUILD>|<\/BUILD> \*\//d' content/env.js
 	# set branch
 	cd $(SAFARI_BUILD_DIR); \
-	sed -i -r "/extensions\\.foxtrick\\.prefs\\.branch/s|\"svn\"|\"$(BRANCH) safari\"|" defaults/preferences/foxtrick.js
+	sed -i -r "/extensions\\.foxtrick\\.prefs\\.branch/s|\"dev\"|\"$(BRANCH) safari\"|" defaults/preferences/foxtrick.js
 	# modify according to dist type
 ifeq ($(DIST_TYPE),nightly)
 	# version bump for nightly
