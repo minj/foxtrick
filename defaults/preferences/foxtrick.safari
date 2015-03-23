@@ -1,9 +1,0 @@
-pref("extensions.foxtrick.prefs.module.LiveAlert.Sound_text", "https://foxtrick.googlecode.com/svn/trunk/content/resources/sounds/DingLing.wav");
-pref("extensions.foxtrick.prefs.module.TickerAlert.challenge.sound", "https://foxtrick.googlecode.com/svn/trunk/content/resources/sounds/DingLing.wav");
-pref("extensions.foxtrick.prefs.module.TickerAlert.forum.sound", "https://foxtrick.googlecode.com/svn/trunk/content/resources/sounds/DingLing.wav");
-pref("extensions.foxtrick.prefs.module.TickerAlert.guestbook.sound", "https://foxtrick.googlecode.com/svn/trunk/content/resources/sounds/DingLing.wav");
-pref("extensions.foxtrick.prefs.module.TickerAlert.mail.sound", "https://foxtrick.googlecode.com/svn/trunk/content/resources/sounds/DingLing.wav");
-pref("extensions.foxtrick.prefs.module.TickerAlert.myht.sound", "https://foxtrick.googlecode.com/svn/trunk/content/resources/sounds/DingLing.wav");
-pref("extensions.foxtrick.prefs.module.TickerAlert.others.sound", "https://foxtrick.googlecode.com/svn/trunk/content/resources/sounds/DingLing.wav");
-pref("extensions.foxtrick.prefs.module.TickerAlert.supporter.sound", "https://foxtrick.googlecode.com/svn/trunk/content/resources/sounds/DingLing.wav");
-pref("extensions.foxtrick.prefs.module.TickerAlert.transfer.sound", "https://foxtrick.googlecode.com/svn/trunk/content/resources/sounds/DingLing.wav");
