@@ -23,7 +23,7 @@
 		collection = {};
 		// load links from external feeds
 		var feeds = Foxtrick.Prefs.getString('module.Links.feeds') || '';
-		feeds = feeds.split(/(\n|\r)+/);
+		feeds = feeds.split(/(\n|\r|\\n|\\r)+/);
 		feeds = Foxtrick.filter(function(n) { return n.trim() !== ''; }, feeds);
 		// add default feed if no feeds set or using svn
 		if (feeds.length === 0 || Foxtrick.branch() === 'svn')
