@@ -7,7 +7,7 @@
 /*
  * Match examples:
  * Match with penalty shoot-out:
- * http://www.hattrick.org/Club/Matches/Match.aspx?matchID=347558980
+ * https://www.hattrick.org/goto.ashx?path=/Club/Matches/Match.aspx?matchID=347558980
  */
 
 Foxtrick.modules.MatchReportFormat = {

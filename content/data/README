@@ -1,5 +1,5 @@
 worlddetails.xml:
-https://stage.hattrick.org/Community/CHPP/NewDocs/Example.aspx?file=worlddetails&version=1.5
+https://www.hattrick.org/goto.ashx?path=/Community/CHPP/NewDocs/Example.aspx?file=worlddetails%26version=1.5
 country/league names:
 native=Country.CountryName
 native, short=ShortName

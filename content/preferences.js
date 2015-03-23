@@ -1303,7 +1303,7 @@ function initAboutTab()
 		if (id) {
 			item.appendChild(document.createTextNode(' '));
 			var link = document.createElement('a');
-			link.href = 'http://www.hattrick.org/Club/Manager/?userId=' + id;
+			link.href = 'https://www.hattrick.org/goto.ashx?path=/Club/Manager/?userId=' + id;
 			link.textContent = '(%s)'.replace(/%s/, id);
 			item.appendChild(link);
 		}
