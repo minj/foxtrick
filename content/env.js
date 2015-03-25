@@ -591,5 +591,5 @@ if (Foxtrick.arch === 'Gecko') {
 // uncommented in MakeFile
 /* <BUILD>
 if (Foxtrick.platform !== 'Android')
-	Foxtrick.DataPath = 'https://foxtrick.googlecode.com/svn/trunk/res/';
+	Foxtrick.DataPath = 'https://cdn.rawgit.com/minj/foxtrick/cdn/%d/res/';
 </BUILD> */
