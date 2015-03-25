@@ -7,5 +7,5 @@ DIR=$(cd $(dirname $0); pwd)
 cd "$DIR" || log "Cannot cd to $DIR"
 
 git stash
-git svn rebase || log "Cannot git-svn rebase"
+git pull --rebase || log "Cannot git pull rebase"
 log "Success build script update."

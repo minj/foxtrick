@@ -7,7 +7,7 @@ DIR=$(cd $(dirname $0); pwd)
 cd "$DIR/../$BETA" || log "Cannot cd to $BETA"
 
 git stash
-git svn rebase || log "Cannot git-svn rebase"
+git pull --rebase || log "Cannot git pull rebase"
 cd maintainer || log "Cannot cd to maintainer"
 ./upload-nightly.sh -c upload.ixweb.beta.conf.sh BRANCH=beta XAR=/usr/local/bin/xar || log "Cannot upload beta to ixweb"
 

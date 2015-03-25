@@ -7,7 +7,7 @@ DIR=$(cd $(dirname $0); pwd)
 cd "$DIR/../$NIGHTLY" || log "Cannot cd to $NIGHTLY"
 
 git stash
-git svn rebase || log "Cannot git-svn rebase"
+git pull --rebase || log "Cannot git pull rebase"
 cd maintainer || log "Cannot cd to maintainer"
 ./upload-nightly.sh -c upload.ixweb.conf.sh XAR=/usr/local/bin/xar || log "Cannot upload nightly to ixweb"
 cd ..
