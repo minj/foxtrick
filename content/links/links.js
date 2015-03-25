@@ -22,7 +22,7 @@
 		}
 		collection = {};
 		// load links from external feeds
-		var feeds = Foxtrick.Prefs.getString('module.Links.feeds') || '';
+		var feeds = Foxtrick.Prefs.getString('module.Links.feedList') || '';
 		feeds = feeds.split(/(\n|\r)+/);
 		feeds = Foxtrick.filter(function(n) { return n.trim() !== ''; }, feeds);
 		// add default feed if no feeds set or using dev
@@ -112,11 +112,12 @@
 			var cont = doc.createElement('div');
 
 			var label = doc.createElement('p');
+			// README: not using Links.feedList to preserve translations
 			label.setAttribute('data-text', 'Links.feeds');
 			cont.appendChild(label);
 
 			var textarea = doc.createElement('textarea');
-			textarea.setAttribute('pref', 'module.Links.feeds');
+			textarea.setAttribute('pref', 'module.Links.feedList');
 			cont.appendChild(textarea);
 
 			var button = doc.createElement('button');
