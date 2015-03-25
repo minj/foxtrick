@@ -8,18 +8,18 @@ JSONDATE=$(date --date="1 day ago" -u +%Y%m%d)
 echo "do $JSONDATE"
 echo "updating JSON"
 # update the json logs from ftp
-for log in stats-archive-update stats-archive-foxtrick
+for logfile in stats-archive-update stats-archive-foxtrick
 do
 	cp access-ftp-tmpl access-ftp-down
 	sed -i "s|{HOST}|${HOST}|" access-ftp-down
 	sed -i "s|{USER}|${USER}|" access-ftp-down
 	sed -i "s|{PSWD}|${PASSWORD}|" access-ftp-down
 	sed -i "s|{DIR}|htdocs|" access-ftp-down
-	sed -i "s|{FILE}|${log}|" access-ftp-down
+	sed -i "s|{FILE}|${logfile}|" access-ftp-down
 	lftp -f access-ftp-down || exit 3
 	rm access-ftp-down
 	# exit if date already exists
-	grep -c $JSONDATE $log && echo "$JSONDATE already exists" && exit
+	grep -c $JSONDATE $logfile && echo "$JSONDATE already exists" && exit
 done
 
 # get yesterday info and add it to stats archive
