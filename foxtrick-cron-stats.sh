@@ -6,6 +6,6 @@ DIR=$(cd $(dirname $0); pwd)
 . "$DIR"/cron-config.sh || (echo "==============ERROR=========== cron-config.sh" && exit -1)
 cd "$DIR/stats" || log "Cannot cd to stats"
 
-./stats.sh || log "Cannot upload stats"
+. stats.sh || log "Cannot upload stats"
 cd ..
 log "Success stats update."

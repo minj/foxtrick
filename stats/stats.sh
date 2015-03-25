@@ -1,15 +1,6 @@
 #!/bin/bash
 
-#####################
-# 
-#
-####################
-DIR=$(cd $(dirname $0); pwd)
-USER=''
-PASSWORD=''
-HOST=''
-echo $DIR
-. "$DIR/../../trunk/maintainer/upload.conf.sh"
+. "$DIR/../$NIGHTLY/maintainer/upload.conf.sh"
 
 LOGDATE=$(date --date="1 day ago" -u +%d/%b/%Y)
 JSONDATE=$(date --date="1 day ago" -u +%Y%m%d)
