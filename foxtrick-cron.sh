@@ -37,6 +37,5 @@ cd maintainer || log "Cannot cd to maintainer"
 #./crowdin-download.sh || echo "Cannot download external translations"
 #./commit.locale.sh || echo "Cannot commit locale"
 ./upload-nightly.sh XAR=/usr/local/bin/xar || log "Cannot upload nightly"
-cd ..
-#git stash apply
+
 log "Success nightly upload."

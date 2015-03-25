@@ -21,4 +21,4 @@ git tag cdn/$tomorrow cdn || log "Cannot create cdn/$tomorrow"
 git tag --delete cdn/$ago || log "Cannot delete cdn/$ago"
 git push --tags origin :cdn/$ago || log "Cannot push tags to origin"
 
-echo 'success rotate cdn tags'
+log 'success rotate cdn tags'

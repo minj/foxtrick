@@ -11,5 +11,5 @@ git svn rebase || log "Cannot git-svn rebase"
 cd maintainer || log "Cannot cd to maintainer"
 ./upload-nightly.sh -c upload.ixweb.conf.sh XAR=/usr/local/bin/xar || log "Cannot upload nightly to ixweb"
 cd ..
-#git stash apply
+
 log "Success ixweb nightly upload."

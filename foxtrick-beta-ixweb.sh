@@ -10,6 +10,5 @@ git stash
 git svn rebase || log "Cannot git-svn rebase"
 cd maintainer || log "Cannot cd to maintainer"
 ./upload-nightly.sh -c upload.ixweb.beta.conf.sh BRANCH=beta XAR=/usr/local/bin/xar || log "Cannot upload beta to ixweb"
-cd ..
-#git stash apply
+
 log "Success ixweb beta upload."

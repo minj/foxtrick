@@ -12,12 +12,5 @@ cd maintainer || log "Cannot cd to maintainer"
 #./crowdin-upload.sh || echo "Cannot upload external translations"
 ./crowdin-download.sh || echo "Cannot download external translations"
 ./commit.locale.sh || echo "Cannot commit locale"
-cd ../..
-echo "Success crowdin update."
-cd $NIGHTLY || log "Cannot cd to $NIGHTLY"
-git stash
-git svn rebase || log "Cannot git-svn rebase"
-cd maintainer || log "Cannot cd to maintainer"
-cd ..
-#git stash apply
+
 log "Success crowdin update."

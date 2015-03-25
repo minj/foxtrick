@@ -7,5 +7,5 @@ DIR=$(cd $(dirname $0); pwd)
 cd "$DIR/stats" || log "Cannot cd to stats"
 
 . stats.sh || log "Cannot upload stats"
-cd ..
+
 log "Success stats update."
