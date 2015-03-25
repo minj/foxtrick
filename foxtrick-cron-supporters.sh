@@ -1,27 +1,11 @@
 #!/bin/bash
+echo 'update supporters'
 
 DIR=$(cd $(dirname $0); pwd)
-LOG_FILE="$DIR"/foxtrick-cron.log
-ERROR_FILE="$DIR"/error
-VERBATIM_FILE="$DIR"/verbatim
+. "$DIR"/include.sh || (echo "==============ERROR=========== include.sh" && exit -1)
+. "$DIR"/cron-config.sh || (echo "==============ERROR=========== cron-config.sh" && exit -1)
+cd "$DIR/../$BETA" || log "Cannot cd to $BETA"
 
-function log {
-	echo "[`date`] $1" >> $LOG_FILE
-	echo "################ [`date`] $1 ###############" >> $ERROR_FILE
-	echo "################ [`date`] $1 ###############" >> $VERBATIM_FILE
-	exit 1
-}
-
-. ~/.bashrc
-LANG=en_US.utf-8
-LC_ALL=en_US.utf-8
-
-cd "$DIR"
-. cron-config.sh
-cd ..
-
-echo 'update supporters'
-cd $BETA || log "Cannot cd to $BETA"
 git stash
 git svn rebase || log "Cannot git-svn rebase"
 cd maintainer/locale || log "Cannot cd to maintainer/locale"

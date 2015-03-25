@@ -1,26 +1,11 @@
 #!/bin/bash
+echo 'upload release'
 
 DIR=$(cd $(dirname $0); pwd)
-LOG_FILE="$DIR"/foxtrick-cron.log
-ERROR_FILE="$DIR"/error
-VERBATIM_FILE="$DIR"/verbatim
+. "$DIR"/include.sh || (echo "==============ERROR=========== include.sh" && exit -1)
+. "$DIR"/cron-config.sh || (echo "==============ERROR=========== cron-config.sh" && exit -1)
+cd "$DIR/../$RELEASE" || log "Cannot cd to $RELEASE"
 
-function log {
-	echo "[`date`] $1" >> $LOG_FILE
-	echo "################ [`date`] $1 ###############" >> $ERROR_FILE
-	echo "################ [`date`] $1 ###############" >> $VERBATIM_FILE
-	exit 1
-}
-
-. ~/.bashrc
-LANG=en_US.utf-8
-LC_ALL=en_US.utf-8
-
-cd "$DIR"
-. cron-config.sh
-cd ..
-
-cd $RELEASE || log "Cannot cd to $RELEASE"
 git stash
 git svn rebase || log "Cannot git-svn rebase"
 ./version.sh 0.14.0.3
@@ -37,4 +22,4 @@ echo "--- foxtrick.org release---"
 #./upload-nightly.sh -c upload.ixweb.hosting.conf.sh BRANCH=hosted WEBSTORE=true XAR=/usr/local/bin/xar || log "Cannot upload ixweb hosted"
 cd ..
 git stash
-log "Success."
+log "Success release upload."

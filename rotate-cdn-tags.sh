@@ -1,4 +1,6 @@
 #!/bin/bash
+echo 'rotate cdn tags'
+
 DIR=$(cd $(dirname $0); pwd)
 . "$DIR"/include.sh || (echo "==============ERROR=========== include.sh" && exit -1)
 
@@ -18,3 +20,5 @@ git checkout "$branch" || log "Cannot checkout $branch"
 git tag cdn/$tomorrow cdn || log "Cannot create cdn/$tomorrow"
 git tag --delete cdn/$ago || log "Cannot delete cdn/$ago"
 git push --tags origin :cdn/$ago || log "Cannot push tags to origin"
+
+echo 'success rotate cdn tags'
