@@ -9,6 +9,10 @@ function log {
 	exit 1
 }
 
+function git-branch {
+	echo $(git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
+}
+
 . ~/.bashrc
 LANG=en_US.utf-8
 LC_ALL=en_US.utf-8
