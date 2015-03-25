@@ -1,6 +1,6 @@
 #!/bin/bash
 DIR=$(cd $(dirname $0); pwd)
-. "$DIR"/include.sh
+. "$DIR"/include.sh || (echo "==============ERROR=========== include.sh" && exit -1)
 
 ago=$(date -d '2 days ago' +'%y%m%d')
 tomorrow=$(date -d 'tomorrow' +'%y%m%d')
