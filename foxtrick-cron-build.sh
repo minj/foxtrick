@@ -1,20 +1,11 @@
 #!/bin/bash
+echo 'update build scripts'
 
 DIR=$(cd $(dirname $0); pwd)
-LOG_FILE="$DIR"/foxtrick-cron.log
-ERROR_FILE="$DIR"/error
-VERBATIM_FILE="$DIR"/verbatim
-
-function log {
-	echo "[`date`] $1" >> $LOG_FILE
-	echo "################ [`date`] $1 ###############" >> $ERROR_FILE
-	echo "################ [`date`] $1 ###############" >> $VERBATIM_FILE
-	exit 1
-}
-
-. ~/.bashrc
-cd "$DIR"
+. "$DIR"/include.sh || (echo "==============ERROR=========== include.sh" && exit -1)
+. "$DIR"/cron-config.sh || (echo "==============ERROR=========== cron-config.sh" && exit -1)
+cd "$DIR" || log "Cannot cd to $DIR"
 
 git stash
-git svn rebase || log "Cannot git-svn rebase"
+git pull --rebase || log "Cannot git pull rebase"
 log "Success build script update."
