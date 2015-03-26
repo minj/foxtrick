@@ -6,6 +6,7 @@ from Hattrick.CHPP import AccessToken
 
 import xml.etree.ElementTree as ET
 import os
+import sys
 
 CONSUMER_KEY = Credentials.KEY
 CONSUMER_SECRET = Credentials.SECRET
@@ -55,15 +56,18 @@ def saveCoaches(coaches, filename):
 	file.close()
 	print(filename, 'written')
 
-def run():
+def run(cwd='~/trunk/res/staff'):
 	u20 = getCoaches(4);
 	nt = getCoaches(2);
 
 	u20 = sorted(u20, key=lambda x: x["LeagueId"])
 	nt = sorted(nt, key=lambda x: x["LeagueId"])
 
-	saveCoaches(u20, os.path.expanduser('~/trunk/res/staff/u20.json'))
-	saveCoaches(nt, os.path.expanduser('~/trunk/res/staff/nt.json'))
+	saveCoaches(u20, os.path.expanduser(cwd + '/u20.json'))
+	saveCoaches(nt, os.path.expanduser(cwd + '/nt.json'))
 
 if __name__ == '__main__':
-	run();
+	if len(sys.argv) > 1:
+		run(sys.argv[1])
+	else:
+		run()
