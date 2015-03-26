@@ -1,4 +1,11 @@
 {
+	"ht_tools_subskill": {
+		"playerlink": {
+			"url": "http://www.ht-tools.eu/subskill?playerid=[playerid]&teamid=[teamid]"
+		},
+		"title": "HT-Tools Subskill",
+		"img": "http://www.ht-tools.eu/static/img/favicon.png"
+	},
 	"ht_tools_training_estimation": {
 		"playerlink": {
 			"url": "http://www.ht-tools.eu/training"
@@ -7,13 +14,6 @@
 			"url": "http://www.ht-tools.eu/training"
 		},
 		"title": "HT-Tools Training Estimation",
-		"img": "http://www.ht-tools.eu/static/img/favicon.png"
-	},
-	"ht_tools_subskill": {
-		"playerlink": {
-			"url": "http://www.ht-tools.eu/subskill?playerid=[playerid]&teamid=[teamid]"
-		},
-		"title": "HT-Tools Subskill",
 		"img": "http://www.ht-tools.eu/static/img/favicon.png"
 	},
 	"ht_tools_arena_optimizer": {
