@@ -25,9 +25,10 @@ endif
 
 ifeq ($(DIST_TYPE),nightly)
 	VERSION = $(REV_VERSION)
-	BRANCH := $(BRANCH)-$(HASH)
+	BRANCH_FULL = $(BRANCH)-$(HASH)
 else
 	VERSION = $(MAJOR_VERSION)
+	BRANCH_FULL = $(BRANCH)
 endif
 
 
@@ -162,7 +163,7 @@ firefox:
 	#fi
 	# set branch
 	cd $(BUILD_DIR); \
-	sed -i -r "/extensions\\.foxtrick\\.prefs\\.branch/s|\"dev\"|\"$(BRANCH) mozilla\"|" defaults/preferences/foxtrick.js
+	sed -i -r "/extensions\\.foxtrick\\.prefs\\.branch/s|\"dev\"|\"$(BRANCH_FULL) mozilla\"|" defaults/preferences/foxtrick.js
 	# modify according to dist type
 ifeq ($(DIST_TYPE),nightly)
 	cd $(BUILD_DIR); \
@@ -207,7 +208,7 @@ chrome:
 	sed -i -r '/\/\* <BUILD>|<\/BUILD> \*\//d' content/env.js
 	# set branch
 	cd $(BUILD_DIR); \
-	sed -i -r "/extensions\\.foxtrick\\.prefs\\.branch/s|\"dev\"|\"$(BRANCH) chrome\"|" defaults/preferences/foxtrick.js
+	sed -i -r "/extensions\\.foxtrick\\.prefs\\.branch/s|\"dev\"|\"$(BRANCH_FULL) chrome\"|" defaults/preferences/foxtrick.js
 	# modify according to dist type
 ifeq ($(DIST_TYPE),nightly)
 	cd $(BUILD_DIR); \
@@ -263,7 +264,7 @@ safari:
 	sed -i -r '/\/\* <BUILD>|<\/BUILD> \*\//d' content/env.js
 	# set branch
 	cd $(SAFARI_BUILD_DIR); \
-	sed -i -r "/extensions\\.foxtrick\\.prefs\\.branch/s|\"dev\"|\"$(BRANCH) safari\"|" defaults/preferences/foxtrick.js
+	sed -i -r "/extensions\\.foxtrick\\.prefs\\.branch/s|\"dev\"|\"$(BRANCH_FULL) safari\"|" defaults/preferences/foxtrick.js
 	# modify according to dist type
 ifeq ($(DIST_TYPE),nightly)
 	# version bump for nightly
