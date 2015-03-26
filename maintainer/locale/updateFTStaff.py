@@ -62,7 +62,7 @@ for person in old_staff:
 		if not ht_id in supporters:
 			# skip no longer valid supporters
 			continue
-		else
+		else:
 			# remove already existing ID
 			supporters.remove(ht_id)
 
