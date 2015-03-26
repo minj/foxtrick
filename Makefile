@@ -5,10 +5,9 @@ APP_NAME = foxtrick
 # Safari: nightly, release
 DIST_TYPE = nightly
 
-# Subversion revision, this is only available with git-svn
-REVISION := $(shell git svn find-rev HEAD)
 MAJOR_VERSION := $(shell ./version.sh)
-REV_VERSION := $(MAJOR_VERSION).$(REVISION)
+REV_VERSION := $(shell git describe --tags --long | sed -E 's/([^-]+)-g.*/\1/;s/-/./g')
+HASH := $(shell git rev-parse --short HEAD)
 BRANCH = nightly
 
 # URL prefix of update manifest
@@ -26,6 +25,7 @@ endif
 
 ifeq ($(DIST_TYPE),nightly)
 	VERSION = $(REV_VERSION)
+	BRANCH := $(BRANCH)-$(HASH)
 else
 	VERSION = $(MAJOR_VERSION)
 endif

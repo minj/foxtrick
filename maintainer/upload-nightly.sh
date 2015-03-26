@@ -55,8 +55,7 @@ fi
 # version settings
 MAJOR_VERSION=$(cd ${SRC_DIR} && ./version.sh)
 if [ "$DIST" == "nightly" ]; then
-	REVISION=$(cd "$SRC_DIR" && git svn find-rev HEAD)
-	VERSION="$MAJOR_VERSION.$REVISION"
+	VERSION=$(git describe --tags --long | sed -E 's/([^-]+)-g.*/\1/;s/-/./g')
 else
 	VERSION="$MAJOR_VERSION"
 fi
