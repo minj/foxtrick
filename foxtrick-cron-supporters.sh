@@ -8,8 +8,7 @@ cd "$DIR/../cdn" || log "Cannot cd to cdn"
 
 git stash
 git pull --rebase || log "Cannot git pull rebase"
-cd maintainer/locale || log "Cannot cd to maintainer/locale"
-python updateFTStaff.py || log "Cannot update staff"
+python "$DIR/../$NIGHTLY/maintainer/locale/updateFTStaff.py" 'res/staff/foxtrick.json' || log "Cannot update staff"
 git commit -a -m "*automated* supporter update"
 git push origin cdn || log "Cannot push cdn"
 log "Success supporter update."
