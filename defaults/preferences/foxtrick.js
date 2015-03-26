@@ -1,7 +1,7 @@
 pref("extensions.foxtrick.prefs.CopyPostingStyle", "ht-ml");
 pref("extensions.foxtrick.prefs.copyratings.teams", "both");
 pref("extensions.foxtrick.prefs.version", "0.15.0");
-pref("extensions.foxtrick.prefs.branch", "svn");
+pref("extensions.foxtrick.prefs.branch", "dev");
 pref("extensions.foxtrick.prefs.disableOnStage", false);
 pref("extensions.foxtrick.prefs.disableTemporary", false);
 pref("extensions.foxtrick.prefs.DisplayHTMLDebugOutput", false);
@@ -209,7 +209,7 @@ pref("extensions.foxtrick.prefs.module.LeagueNewsFilter.enabled", true);
 pref("extensions.foxtrick.prefs.module.LeagueNewsFilter.value", 0);
 pref("extensions.foxtrick.prefs.module.LineupShortcut.enabled", true);
 pref("extensions.foxtrick.prefs.module.LineupShortcut.HighlightPlayer.enabled", false);
-pref("extensions.foxtrick.prefs.module.Links.feeds", "https://foxtrick.googlecode.com/svn/trunk/res/links.json");
+pref("extensions.foxtrick.prefs.module.Links.feedList", "https://cdn.rawgit.com/minj/foxtrick/cdn/%d/res/links.json");
 pref("extensions.foxtrick.prefs.module.Links.ReuseTab.enabled", false);
 pref("extensions.foxtrick.prefs.module.LinksAchievements.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksAlliances.enabled", true);

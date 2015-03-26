@@ -6,7 +6,7 @@
 		},
 		{
 			"id": "bugTracker",
-			"href": "https://code.google.com/p/foxtrick/issues/"
+			"href": "https://github.com/minj/foxtrick/issues"
 		},
 		{
 			"id": "hattrickForum",
@@ -22,7 +22,7 @@
 		},
 		{
 			"id": "recentChanges",
-			"href": "https://code.google.com/p/foxtrick/source/list"
+			"href": "https://github.com/minj/foxtrick"
 		}
 	],
 	"maintainers": [

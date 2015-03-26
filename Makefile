@@ -5,10 +5,9 @@ APP_NAME = foxtrick
 # Safari: nightly, release
 DIST_TYPE = nightly
 
-# Subversion revision, this is only available with git-svn
-REVISION := $(shell git svn find-rev HEAD)
 MAJOR_VERSION := $(shell ./version.sh)
-REV_VERSION := $(MAJOR_VERSION).$(REVISION)
+REV_VERSION := $(shell git describe --tags --long | sed -E 's/([^-]+)-g.*/\1/;s/-/./g')
+HASH := $(shell git rev-parse --short HEAD)
 BRANCH = nightly
 
 # URL prefix of update manifest
@@ -26,6 +25,7 @@ endif
 
 ifeq ($(DIST_TYPE),nightly)
 	VERSION = $(REV_VERSION)
+	BRANCH := $(BRANCH)-$(HASH)
 else
 	VERSION = $(MAJOR_VERSION)
 endif
@@ -147,7 +147,7 @@ firefox:
 	# build jar
 	cd $(BUILD_DIR)/chrome; \
 	$(ZIP) -0 -r $(APP_NAME).jar `find . \( -path '*CVS*' -o -path \
-		'*.svn*' \) -prune -o -type f -print | grep -v \~ `; \
+		'*.git*' \) -prune -o -type f -print | grep -v \~ `; \
 	rm -rf content skin
 	# ditch the jar
 	cd $(BUILD_DIR); \
@@ -162,7 +162,7 @@ firefox:
 	#fi
 	# set branch
 	cd $(BUILD_DIR); \
-	sed -i -r "/extensions\\.foxtrick\\.prefs\\.branch/s|\"svn\"|\"$(BRANCH) mozilla\"|" defaults/preferences/foxtrick.js
+	sed -i -r "/extensions\\.foxtrick\\.prefs\\.branch/s|\"dev\"|\"$(BRANCH) mozilla\"|" defaults/preferences/foxtrick.js
 	# modify according to dist type
 ifeq ($(DIST_TYPE),nightly)
 	cd $(BUILD_DIR); \
@@ -207,7 +207,7 @@ chrome:
 	sed -i -r '/\/\* <BUILD>|<\/BUILD> \*\//d' content/env.js
 	# set branch
 	cd $(BUILD_DIR); \
-	sed -i -r "/extensions\\.foxtrick\\.prefs\\.branch/s|\"svn\"|\"$(BRANCH) chrome\"|" defaults/preferences/foxtrick.js
+	sed -i -r "/extensions\\.foxtrick\\.prefs\\.branch/s|\"dev\"|\"$(BRANCH) chrome\"|" defaults/preferences/foxtrick.js
 	# modify according to dist type
 ifeq ($(DIST_TYPE),nightly)
 	cd $(BUILD_DIR); \
@@ -263,7 +263,7 @@ safari:
 	sed -i -r '/\/\* <BUILD>|<\/BUILD> \*\//d' content/env.js
 	# set branch
 	cd $(SAFARI_BUILD_DIR); \
-	sed -i -r "/extensions\\.foxtrick\\.prefs\\.branch/s|\"svn\"|\"$(BRANCH) safari\"|" defaults/preferences/foxtrick.js
+	sed -i -r "/extensions\\.foxtrick\\.prefs\\.branch/s|\"dev\"|\"$(BRANCH) safari\"|" defaults/preferences/foxtrick.js
 	# modify according to dist type
 ifeq ($(DIST_TYPE),nightly)
 	# version bump for nightly

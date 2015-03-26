@@ -1,4 +1,4 @@
 #use FTlink_something for links that should open in the same tab
 linkCSSExample: '/content/resources/css/user-content-example.css'
-linkCSSExampleGCode: 'https://foxtrick.googlecode.com/svn/trunk/content/resources/css/user-content-example.css'
+linkCSSExampleGCode: 'https://github.com/minj/foxtrick/blob/master/content/resources/css/user-content-example.css'
 linkCHPPDesc: 'https://www.hattrick.org/goto.ashx?path=/Community/CHPP/ChppUserDescription.aspx'

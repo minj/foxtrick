@@ -62,7 +62,7 @@ Foxtrick.modules['ForumStripHattrickLinks'] = {
 						// all gecko
 				];
 				// assume svn users post only FT links
-				if (Foxtrick.branch() == 'svn')
+				if (Foxtrick.branch() == 'dev')
 					urls.push({
 						reg: /\[link=chrome-extension:\/\/\w+\/content\//g,
 						repl: '[link=foxtrick://'

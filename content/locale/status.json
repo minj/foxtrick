@@ -90,11 +90,11 @@
 			"code": "ca",
 			"name": "Catalan",
 			"phrases": "1817",
-			"translated": "843",
-			"translated_progress": "41",
+			"translated": "914",
+			"translated_progress": "45",
 			"words": "12824",
 			"words_approved": "0",
-			"words_translated": "5386"
+			"words_translated": "5897"
 		},
 		{
 			"approved": "0",
@@ -133,7 +133,7 @@
 			"words_translated": "10608"
 		},
 		{
-			"approved": "1681",
+			"approved": "1679",
 			"approved_progress": "87",
 			"code": "da",
 			"name": "Danish",
@@ -141,7 +141,7 @@
 			"translated": "1817",
 			"translated_progress": "100",
 			"words": "12824",
-			"words_approved": "11229",
+			"words_approved": "11215",
 			"words_translated": "12824"
 		},
 		{

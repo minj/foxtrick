@@ -12,6 +12,17 @@ if (!Foxtrick.util)
 Foxtrick.util.load = {};
 
 /**
+ * Pre-process a URL to insert variables
+ * @param  {string} url
+ * @return {string}
+ */
+Foxtrick.util.load._parseUrl = function(url) {
+	// get a timestamp in the form 150324, i. e. $(date +'%y%m%d')
+	var date = new Date().toISOString().slice(2, 10).replace(/\D/g, '');
+	return url.replace(/\/cdn\/%d\//, '/cdn/' + date + '/');
+};
+
+/**
  * Using XMLHttpRequest by a promise, on which listeners on success and
  * failure status can be registered.
  *
@@ -31,6 +42,7 @@ Foxtrick.util.load.get = function(url, params) {
 	// status: String, either 'success' or 'failure'
 	// code: Integer, HTTP status code
 	// text: String, response text
+	url = this._parseUrl(url);
 	var loadImpl;
 	if (Foxtrick.chromeContext() == 'content') {
 		loadImpl = function(cb) {
@@ -143,6 +155,7 @@ Foxtrick.util.load.get = function(url, params) {
  */
 
 Foxtrick.util.load.async = function(url, callback, params) {
+	url = this._parseUrl(url);
 	if (Foxtrick.chromeContext() == 'content') {
 		// background script for xml requests
 		Foxtrick.SB.ext.sendRequest({ req: 'getXml', url: url, params: params },

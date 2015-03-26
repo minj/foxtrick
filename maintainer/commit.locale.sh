@@ -1,26 +1,16 @@
 #!/bin/bash
 
-SVN_FILES=../content
+GIT_FILES=../content
 EXTERNAL_LOCALE_FOLDER=crowdin/locale
-#space seperated blacklist of locales which only use svn 
-IGNORELIST=""
 
 # load configuration, probably overwriting defaults above
 . ./upload.conf.sh
 
-#remove blacklisted from crowdin folder
-for LOC in $IGNORELIST
-do
-   echo "Skipping ignorelist"
-   #echo "rm -rf $EXTERNAL_LOCALE_FOLDER/$LOC"
-   #rm -rfv "$EXTERNAL_LOCALE_FOLDER/$LOC"
-done
-
 #copy crowdin locale to svn folder
-cp -rf "$EXTERNAL_LOCALE_FOLDER" "$SVN_FILES"
+cp -rf "$EXTERNAL_LOCALE_FOLDER" "$GIT_FILES"
 
-#commit crowdin to svn
+#commit crowdin
 git commit -a -m "*automated* crowdin locale update"
-git svn dcommit 
+git push
 
 rm -rf "$EXTERNAL_LOCALE_FOLDER"

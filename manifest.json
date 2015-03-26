@@ -285,7 +285,6 @@
 		"clipboardWrite",
 		"*://chpp.hattrick.org/*",
 		"*://*.foxtrick.org/*",
-		"*://foxtrick.googlecode.com/svn/*",
 		"http://www.fantamondi.it/*",
 		"http://pastebin.com/api/*"
 	],
