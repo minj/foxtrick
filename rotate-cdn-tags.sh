@@ -7,7 +7,7 @@ DIR=$(cd $(dirname $0); pwd)
 ago=$(date -d '2 days ago' +'%y%m%d')
 tomorrow=$(date -d 'tomorrow' +'%y%m%d')
 
-cd "$DIR../cdn" || log "Cannot cd to cdn"
+cd "$DIR/../cdn" || log "Cannot cd to cdn"
 
 git stash
 git fetch --prune origin "+refs/tags/*:refs/tags/*" || log "Cannot update tags"
