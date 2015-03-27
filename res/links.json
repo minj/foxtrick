@@ -877,18 +877,18 @@
 		"nationalityranges": [[37, 37]]
 	},
 	"uruguaytracker": {
-		"img": "http://www.sisu-ht.tk/SISU/images/Logo.ico",
+		"img": "http://www.sisu-ht.com/SISU/images/Logo.ico",
 		"title": "Sistema Integral de la Seleccion Uruguaya (SISU)",
 		"trackernationalteamlink": {
-			"url": "http://www.sisu-ht.tk/",
+			"url": "http://www.sisu-ht.com/",
 			"filters": ["countryid"]
 		},
 		"trackerplayerlink": {
-			"url": "http://www.sisu-ht.tk/",
+			"url": "http://www.sisu-ht.com/",
 			"filters": ["nationality"]
 		},
 		"trackeryouthlink": {
-			"url": "http://www.sisu-ht.tk/",
+			"url": "http://www.sisu-ht.com/",
 			"filters": ["countryid"]
 		},
 		"countryidranges": [[28, 28]],
