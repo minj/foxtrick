@@ -190,7 +190,7 @@ Foxtrick.modules['ForumChangePosts'] = {
 						headstr += '| to = ' + (poster_link2 ? poster_link2.title : 'Everyone') + '\n';
 						headstr += '| msgid = ' + post_id1 + '\n';
 						headstr += '| prevmsgid = ' + (post_id2 ? post_id2 : '') + '\n';
-						headstr += '| datetime = ' + fulldate.replace(/(.+)(\d+:\d+)/, '$1' + 'at ' +
+						headstr += '| datetime = ' + fulldate.replace(/(.+?)(\d+:\d+)/, '$1' + 'at ' +
 						                                              '$2') + '\n';
 						headstr += '| keywords = \n';
 						headstr += '| text =\n';
