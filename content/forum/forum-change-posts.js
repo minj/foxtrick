@@ -11,7 +11,6 @@ Foxtrick.modules['ForumChangePosts'] = {
 	CSS: Foxtrick.InternalPath + 'resources/css/forum-change-post.css',
 
 	run: function(doc) {
-		var bDetailedHeader = true;
 		var addCopyPostId = function(idLink) {
 			// part of copypostid
 			var link = doc.createElement('a');
@@ -39,179 +38,160 @@ Foxtrick.modules['ForumChangePosts'] = {
 		var copy_posting_to_clipboard = function(ev) {
 			try {
 				var doc = ev.target.ownerDocument;
-				var is_archive_link = (ev.target.getAttribute('is_archive_link') == 'true');
+				var copy_style = 'ht-ml';
+				var header = null;
 
+				// find header
+				var is_archive_link = ev.target.getAttribute('is_archive_link') == 'true';
 				if (!is_archive_link) {
-					var copy_style = ev.target.getAttribute('copy_style');
+					var post_nr = ev.target.getAttribute('post_nr');
+					header = doc.getElementById('ft_copy_posting_link_id' + post_nr);
+					while (header && !Foxtrick.hasClass(header, 'cfHeader')) {
+						header = header.parentNode;
+					}
+
+					copy_style = ev.target.getAttribute('copy_style');
 					if (copy_style == 'last')
 						Foxtrick.Prefs.getString('CopyPostingStyle');
 					else
 						Foxtrick.Prefs.setString('CopyPostingStyle', copy_style);
-					var post_nr = ev.target.getAttribute('post_nr');
-					var header = doc.getElementById('ft_copy_posting_link_id' + post_nr).parentNode
-						.parentNode.parentNode;
-					if (header.className.search('cfHeader') == -1) header = header.parentNode;
-					// detailed header is one up
 				}
 				else {
-					var copy_style = 'ht-ml';
-					var header = ev.target.parentNode.parentNode.parentNode
-						.getElementsByTagName('div')[0];
-					if (header.className.search('cfHeader') == -1)
-						header = header.nextSibling;
-					// official. detailed header is one down
-					Foxtrick.log(header.className, '\n');
-				}
-
-				var header_left = null;
-				var header_right = null;
-
-				var k = 0, header_part;
-				while (header_part = header.childNodes[k++]) {
-					if (header_part.className.search(/float_left/) != -1)
-						header_left = header_part;
-					if (header_part.className.search(/float_right/) != -1) {
-						if (header_right == null)
-							header_right = header_part;
+					var cfWrapper = ev.target;
+					while (cfWrapper && !Foxtrick.hasClass(cfWrapper, 'cfWrapper')) {
+						cfWrapper = cfWrapper.parentNode;
 					}
+					if (cfWrapper)
+						header = cfWrapper.getElementsByClassName('cfHeader')[0];
 				}
-
-				// the only text node of head_right, which contains date and time
-				var header_right_text = '';
-				for (var i = 0; i < header_right.childNodes.length; ++i) {
-					if (header_right.childNodes[i].nodeType === Foxtrick.NodeTypes.TEXT_NODE) {
-						header_right_text = header_right.childNodes[i].textContent;
-						break;
-					}
-				}
-
-				// get post_links, poster_links, poster_id from header
-				var header_left_links = header_left.getElementsByTagName('a');
-				var post_link1 = null;
-				var poster_link1 = null;
-				var poster_id1 = null;
-				var post_link2 = null;
-				var poster_link2 = null;
-				var poster_id2 = null;
-				var supporter_link1 = null;
-				var supporter_link2 = null;
-				var series_link1 = null;
-				var series_link2 = null;
-				var post_id1 = null;
-				var post_id2 = null;
-
-				var k = 0, header_left_link;
-				if (header_left_links[0].href.search(/showMInd/) == -1)
-					bDetailedHeader = true;
-				else
-					bDetailedHeader = false;
-				while (header_left_link = header_left_links[k++]) {
-
-					if (!poster_link1) {
-						if (header_left_link.href.search(/javascript/) != -1) {
-							if (header_left_link.href.search(/showMInd/) != -1)
-								post_id1 = header_left_link.href.match(/(\d+\.\d+)/)[1];
-								//header_left_link.href.match(/(\d+)-\d+/)[1]+ '.'
-								//+header_left_link.href.match(/\d+-(\d+)/, '')[1];
-							else
-								post_id1 = header_left_link.title.match(/(\d+\.\d+)/)[1];
-							post_link1 = header_left_link;
-						}
-						else if (header_left_link.href.search(/Forum\/Read\.aspx/) != -1) {
-							post_id1 = header_left_link.title;
-							post_link1 = header_left_link;
-						}
-						else if (header_left_link.href.search(/Club\/Manager\/\?userId=/i) != -1
-								 && header_left_link.parentNode.tagName != 'LI') { //skip popup-links
-							poster_link1 = header_left_link;
-							poster_id1 = poster_link1.href.match(/\?userId=(\d+)/i)[1];
-							if (header_left_links[k]
-								&& header_left_links[k].href.search(/Supporter/i) != -1) {
-									supporter_link1 = header_left_links[k];
-							}
-						}
-					} else if (!poster_link2 || !post_link2) {
-						if (header_left_link.href.search(/javascript/) != -1) {
-							if (header_left_link.href.search(/showMInd/) != -1)
-								post_id2 = header_left_link.href.match(/(\d+\.\d+)/)[1];
-								//header_left_link.href.match(/(\d+)-\d+/)[1]+ '.'
-								//+header_left_link.href.match(/\d+-(\d+)/, '')[1];
-							else
-								post_id2 = header_left_link.title.match(/(\d+\.\d+)/)[1];
-							post_link2 = header_left_link;
-						}
-						else if (header_left_link.href.search(/Forum\/Read\.aspx/) != -1) {
-							post_id2 = header_left_link.title;
-							post_link2 = header_left_link;
-						}
-						else if (post_link2 && header_left_link.href
-						         .search(/Club\/Manager\/\?userId=/i) != -1
-								 && header_left_link.parentNode.tagName != 'LI') { //skip popup-links
-							poster_link2 = header_left_link;
-							poster_id2 = poster_link2.href.match(/\d+$/);
-							if (header_left_links[k]
-								&& header_left_links[k].href.search(/Supporter/i) != -1) {
-									supporter_link2 = header_left_links[k];
-							}
-						}
-					}
-				}
-
-				// make header
-				var headstr = post_id1 + ': ' + poster_link1.title + ' » ';
-				if (poster_link2 && post_link2)
-					headstr += post_id2 + ': ' + poster_link2.title + '\n';
-				else
-					headstr += 'all\n';
-				if (copy_style == 'ht-ml')
-					headstr = '[q=' + poster_link1.title + '][post=' + post_id1 + ']\n';
-
-				// get date+time
-				var date = header_right_text.replace(/^ /, '');
-				var time = '';
-				if (date.search(/\d+:\d+/) == 0) {  // time unaltered
-					var cur_time = doc.getElementById('time').textContent;
-					var hi = cur_time.search(/\d+:\d+/);
-					time = date;
-					date = cur_time.substring(0, hi);
-				}
-				else if (date.search(/\d+:\d+/) == -1) { // date hidden by forumalterheaderline
-					var span = header_right.getElementsByTagName('span')[0];
-					if (span) time = span.title;
-					else time = date;
-				}
-
-				var fulldate = date + time;
-				if (copy_style != 'ht-ml') headstr = fulldate + '  \n' + headstr + '';
-
-				if (copy_style == 'wiki') {
-					var headstr = '{{forum_message|\n';
-						headstr += '| from = [ [ ' + poster_link1.title + ' ] ]\n';
-						headstr += '| to = ' + (poster_link2 ? poster_link2.title : 'Everyone') + '\n';
-						headstr += '| msgid = ' + post_id1 + '\n';
-						headstr += '| prevmsgid = ' + (post_id2 ? post_id2 : '') + '\n';
-						headstr += '| datetime = ' + fulldate.replace(/(.+?)(\d+:\d+)/, '$1' + 'at ' +
-						                                              '$2') + '\n';
-						headstr += '| keywords = \n';
-						headstr += '| text =\n';
+				if (!header) {
+					Foxtrick.error('CopyPosting: post header not found');
+					return;
 				}
 
 				// get message content
 				var msg = header.parentNode.getElementsByClassName('message')[0];
 				var message = Foxtrick.util.htMl.getMarkupFromNode(msg);
-				message = headstr + message;
 
-				// complete message
-				if (copy_style == 'wiki')
-					message += '}}';
-				else if (copy_style == 'ht-ml')
-					message += '[/q]';
+				// parse header
+				var header_left = null;
+				var header_right = null;
+				var k = 0, header_part;
+				while ((header_part = header.childNodes[k++])) {
+					if (Foxtrick.hasClass(header_part, 'float_left'))
+						header_left = header_part;
+					if (!header_right && Foxtrick.hasClass(header_part, 'float_right')) {
+						header_right = header_part;
+					}
+				}
 
-				Foxtrick.copyStringToClipboard(message);
+				// the only text node of head_right, which contains date and time
+				var header_right_text = '';
+				var header_right_text_node = Foxtrick.nth(function(node) {
+					return node.nodeType === Foxtrick.NodeTypes.TEXT_NODE;
+				}, header_right.childNodes);
+				if (header_right_text_node)
+					header_right_text = header_right_text_node.textContent;
+
+				// get datetime
+				var date = header_right_text.replace(/^ /, '');
+				var time = '';
+				// time unaltered
+				if (date.search(/\d+:\d+/) === 0) {
+					var cur_time = doc.getElementById('time').textContent;
+					var hi = cur_time.search(/\d+:\d+/);
+					time = date;
+					date = cur_time.substring(0, hi);
+				}
+				// date hidden by forumalterheaderline
+				else if (!/\d+:\d+/.test(date)) {
+					var span = header_right.getElementsByTagName('span')[0];
+					if (span)
+						time = span.title;
+					else
+						time = date;
+				}
+				var fulldate = date + time;
+
+				var post_1 = {};
+				var post_2 = {};
+				var post = post_1;
+				var author_1 = {};
+				var author_2 = {};
+				var author = author_1;
+
+				// get post_links, poster_links, poster_id from header
+				var header_left_links = header_left.getElementsByTagName('a');
+				var k = 0, header_left_link;
+				while ((header_left_link = header_left_links[k++])) {
+
+					var isJsLink = /javascript/.test(header_left_link.href);
+					var isShowMInd = /showMInd/.test(header_left_link.href);
+					var isPostLink = /Forum\/Read\.aspx/.test(header_left_link.href);
+					var isManagerLink = /Club\/Manager\/\?userId=/i.test(header_left_link.href);
+					var isPopupLink = header_left_link.parentNode.tagName == 'LI';
+					// test if next link is a supporter link
+					var hasSupporter = header_left_links[k] &&
+						/Supporter/i.test(header_left_links[k].href);
+
+					if (isJsLink) {
+						var post_id = isShowMInd ? header_left_link.href : header_left_link.title;
+						post.id = post_id.match(/(\d+\.\d+)/)[1];
+						post.link = header_left_link;
+						post = post_2;
+					}
+					else if (isPostLink) {
+						post.id = header_left_link.title;
+						post.link = header_left_link;
+						post = post_2;
+					}
+					else if (isManagerLink && !isPopupLink) {
+						author.link = header_left_link;
+						author.id = author.link.href.match(/\?userId=(\d+)/i)[1];
+						if (hasSupporter) {
+							author.sup = header_left_links[k];
+						}
+						author = author_2;
+					}
+				}
+
+				var template = '';
+				var args = {};
+
+				if (copy_style == 'raw') {
+					template = '{}\n{}: {} » {}\n{}\n';
+					args = [
+						fulldate,
+						post_1.id,
+						author_1.link.title,
+						author_2.link ? author_2.link.title : 'Everyone',
+						message
+					];
+				}
+				else if (copy_style == 'ht-ml') {
+					template = '[q={}][post={}]\n{}\n[/q]\n';
+					args = [author_1.link.title, post_1.id, message];
+				}
+				else if (copy_style == 'wiki') {
+					template = '{{forum_message|\n| from = [ [ {poster1} ] ]\n| to = {poster2}\n' +
+						'| msgid = {post_id1}\n| prevmsgid = {post_id2}\n' +
+						'| datetime = {datetime}\n| keywords = \n| text =\n{message}\n}}\n';
+					args = {
+						poster1: author_1.link.title,
+						post_id1: post_1.id,
+						poster2: author_2.link ? author_2.link.title : 'Everyone',
+						post_id2: post_2.id || post_1.id,
+						datetime: fulldate,
+						message: message
+					};
+				}
+
+				var copy = Foxtrick.format(template, args);
+				Foxtrick.copyStringToClipboard(copy);
 
 				var insertBefore = header.parentNode;
-				var id = 'ft-posting-copy-note- ' + post_id1.replace(/\D/, ' - ');
-				var note = Foxtrick.L10n.getString('copy.posting.copied').replace('%s', post_id1);
+				var id = 'ft-posting-copy-note- ' + post_1.id.replace(/\D/, ' - ');
+				var note = Foxtrick.L10n.getString('copy.posting.copied').replace('%s', post_1.id);
 				Foxtrick.util.note.add(doc, note, id, { at: insertBefore });
 			}
 			catch (e) {
@@ -432,10 +412,7 @@ Foxtrick.modules['ForumChangePosts'] = {
 			}
 
 			var k = 0, header_left_link;
-			if (header_left_links[0].href.search(/showMInd/) == -1)
-				bDetailedHeader = true;
-			else
-				bDetailedHeader = false;
+			var bDetailedHeader = !/showMInd/.test(header_left_links[0].href);
 			while (header_left_link = header_left_links[k++]) {
 				if (!poster_link1) {
 					if (header_left_link.href.search(/showMInd|Forum\/Read\.aspx/) != -1)
