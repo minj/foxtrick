@@ -155,7 +155,30 @@ Foxtrick.foldLines = function(string, length, lineEnd, lineStart, recursive) {
 	return ret;
 };
 
-
+/**
+ * Format a string by replacing instances of '{}' with arbitrary values.
+ * Works similarly to python's string.format:
+ * If args is an array, replaces '{}', '{0}', '{1}', etc.
+ * If args is an object, replaces '{property1}', '{property2}', etc
+ * @param  {string}       str
+ * @param  {array|object} args array or object
+ * @return {string}
+ */
+Foxtrick.format = function(str, args) {
+	if (Array.isArray(args)) {
+		Foxtrick.forEach(function(arg, i) {
+			str = str.replace('{}', arg);
+			str = str.replace(new RegExp('\\{' + i + '\\}', 'g'), arg);
+		}, args);
+	}
+	else {
+		for (var arg in args) {
+			if (args.hasOwnProperty(arg))
+				str = str.replace(new RegExp('\\{' + arg + '\\}', 'g'), args[arg]);
+		}
+	}
+	return str;
+};
 
 /*
  * A JavaScript implementation of the Secure Hash Algorithm, SHA-1, as defined
