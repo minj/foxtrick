@@ -180,6 +180,20 @@ Foxtrick.format = function(str, args) {
 	return str;
 };
 
+/**
+ * Convert a HT URL to a domain agnostic (goto.ashx?path=) URL.
+ * Non-HT URLs are left unchanged.
+ * @param  {string} url
+ * @return {string}
+ */
+Foxtrick.goToUrl = function(url) {
+	if (Foxtrick.isHtUrl(url)) {
+		var path = url.replace(/^\w+:\/\/.+?\//, '/');
+		url = 'https://www.hattrick.org/goto.ashx?path=' + encodeURIComponent(path);
+	}
+	return url;
+};
+
 /*
  * A JavaScript implementation of the Secure Hash Algorithm, SHA-1, as defined
  * in FIPS PUB 180-1
