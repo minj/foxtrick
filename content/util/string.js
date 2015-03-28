@@ -194,6 +194,22 @@ Foxtrick.goToUrl = function(url) {
 	return url;
 };
 
+/**
+ * Get a HT URL to a specific post in the forum.
+ * postId ex: 123456.1
+ * @param  {string} postId 123456.1
+ * @return {string}
+ */
+Foxtrick.getForumUrl = function(postId) {
+	var template = 'https://stage.hattrick.org/Forum/Read.aspx?t={}&n={}&v=0';
+	var post = postId.match(/(\d+)\.(\d+)/);
+	if (!post)
+		return null;
+
+	var url = Foxtrick.format(template, Foxtrick.toArray(post).slice(1));
+	return Foxtrick.goToUrl(url);
+};
+
 /*
  * A JavaScript implementation of the Secure Hash Algorithm, SHA-1, as defined
  * in FIPS PUB 180-1
