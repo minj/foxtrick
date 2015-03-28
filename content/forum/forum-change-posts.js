@@ -70,8 +70,12 @@ Foxtrick.modules['ForumChangePosts'] = {
 				}
 
 				// get message content
+				var opts = {
+					external: copy_style == 'wiki' || copy_style == 'md',
+					format: copy_style != 'md' ? 'htMl' : 'md',
+				};
 				var msg = header.parentNode.getElementsByClassName('message')[0];
-				var message = Foxtrick.util.htMl.getMarkupFromNode(msg);
+				var message = Foxtrick.util.htMl.getMarkupFromNode(msg, opts);
 
 				// parse header
 				var header_left = null;
@@ -185,6 +189,21 @@ Foxtrick.modules['ForumChangePosts'] = {
 						message: message
 					};
 				}
+				else if (copy_style == 'md') {
+					template = '**From:** {poster1}\n**PostID:** [{post_id1}]({post_url1})\n' +
+						'**To:** {poster2}\n**Re:** [{post_id2}]({post_url2})\n' +
+						'**Datetime:** {datetime}\n**Message:**\n\n{message}\n';
+					args = {
+						poster1: author_1.link.title,
+						post_id1: post_1.id,
+						post_url1: Foxtrick.getForumUrl(post_1.id),
+						poster2: author_2.link ? author_2.link.title : 'Everyone',
+						post_id2: post_2.id || post_1.id,
+						post_url2: Foxtrick.getForumUrl(post_2.id || post_1.id),
+						datetime: fulldate,
+						message: message
+					};
+				}
 
 				var copy = Foxtrick.format(template, args);
 				Foxtrick.copyStringToClipboard(copy);
@@ -248,7 +267,7 @@ Foxtrick.modules['ForumChangePosts'] = {
 			copy_posting_div.className = 'ft-pop-up-container ft-copy-small';
 		copy_posting_div.appendChild(copy_posting_img);
 
-		var possibleStyles = ['ht-ml', 'wiki', 'raw'];
+		var possibleStyles = ['ht-ml', 'wiki', 'raw', 'md'];
 		var list = doc.createElement('ul');
 		list.className = 'ft-pop right top';
 		for (var i = 0; i < possibleStyles.length; ++i) {
