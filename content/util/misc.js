@@ -346,6 +346,41 @@ Foxtrick.getPanel = function(doc) {
 	}
 };
 
+
+/**
+ * Copy all members from modified to original.
+ * Modifies original.
+ * @param {object} original
+ * @param {object} modified
+ */
+Foxtrick.mergeAll = function(original, modified) {
+	if (original && typeof original === 'object' &&
+	    modified && typeof modified === 'object') {
+		for (var mem in modified) {
+			if (modified.hasOwnProperty(mem)) {
+				original[mem] = modified[mem];
+			}
+		}
+	}
+};
+
+/**
+ * Overwrite members in original with members from modified.
+ * Modifies original. No new members added.
+ * @param  {object} original
+ * @param  {object} modified
+ */
+Foxtrick.mergeValid = function(original, modified) {
+	if (original && typeof original === 'object' &&
+	    modified && typeof modified === 'object') {
+		for (var mem in original) {
+			if (modified.hasOwnProperty(mem)) {
+				original[mem] = modified[mem];
+			}
+		}
+	}
+};
+
 Foxtrick.setLastHost = function(host) {
 	Foxtrick.Prefs.setString('last-host', String(host));
 };
