@@ -59,6 +59,9 @@ Foxtrick.util.htMl.getFormat = (function() {
 			br: function() {
 				return '\n';
 			},
+			pre: function(node) {
+				return Foxtrick.format('[pre]{}[/pre]', [node.textContent]);
+			},
 		},
 		/**
 		 * These nodes are considered element containers
@@ -363,6 +366,8 @@ Foxtrick.util.htMl.getMarkupFromNode = function(node, options) {
 	// reference to format definition
 	var format = Foxtrick.util.htMl.getFormat(opts.format);
 	var ret = Foxtrick.util.htMl._getMarkupRec(node, format, opts);
+	// deprotect pre
+	ret = ret.replace(/\u2060\/?pre\u2060/g, '\n');
 	return ret.trim();
 };
 
@@ -403,6 +408,23 @@ Foxtrick.util.htMl._getMarkupRec = function(node, def, opts) {
 		return '';
 	}
 	else {
+		if (nodeName === 'pre') {
+			// special treatment for pre
+			// replace line breaks added by HT and take everything else as text
+			var pre = Foxtrick.map(function(child) {
+				if (child.nodeName.toLowerCase() == 'br') {
+					return '\n';
+				}
+				return child.textContent;
+			}, node.childNodes).join('');
+			// protect pre by marking it with special 'tags'
+			// using u2060 'word joiner' zero-width space
+			var mark = String.fromCharCode(8288);
+			// trimming only new-lines to prevent their proliferation
+			var args = { m: mark, content: pre.replace(/^\n+|\n+$/g, '') };
+			// rebind node so that original DOM is untouched
+			node = doc.createTextNode(Foxtrick.format('{m}pre{m}{content}{m}/pre{m}', args));
+		}
 		// elements
 		if (typeof def.el[nodeName] === 'function') {
 			var elementMarkup = def.el[nodeName](node);
@@ -451,13 +473,22 @@ Foxtrick.util.htMl._getMarkupRec = function(node, def, opts) {
 		ret = ret + '\n';
 	}
 
-	// standardize white-space (except LF)
-	ret = ret.replace(/[ \f\r\t\v]+/g, ' ');
-	// trim white-space around LFs
-	ret = ret.replace(/\n /g, '\n').replace(/ \n/g, '\n');
-	// no more than 2 LFs in a row
-	ret = ret.replace(/\n{3,}/g, '\n\n');
-	return ret;
+	// protect pre
+	var parts = Foxtrick.map(function(ret) {
+		if (/^\u2060pre\u2060/.test(ret)) {
+			// no stripping in pre
+			// restore end tag
+			return ret += '\u2060/pre\u2060';
+		}
+		// standardize white-space (except LF)
+		ret = ret.replace(/[ \f\r\t\v]+/g, ' ');
+		// trim white-space around LFs
+		ret = ret.replace(/\n /g, '\n').replace(/ \n/g, '\n');
+		// no more than 2 LFs in a row
+		ret = ret.replace(/\n{3,}/g, '\n\n');
+		return ret;
+	}, ret.split(/(?=\u2060pre\u2060)|\u2060\/pre\u2060/));
+	return parts.join('');
 };
 
 /**
