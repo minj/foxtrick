@@ -80,6 +80,10 @@ Foxtrick.util.htMl.getFormat = (function() {
 				if (node.href) {
 					var a = Foxtrick.util.htMl._parseLink(node);
 					if (!a.type) {
+						// stop if we care about links only
+						if (opts.linksOnly) {
+							return null;
+						}
 						content = a.text || content || '';
 						if (content && /^javascript:/.test(node.href)) {
 							content = '[u]' + content + '[/u]';
@@ -89,7 +93,7 @@ Foxtrick.util.htMl.getFormat = (function() {
 						a.url = opts.external ? Foxtrick.goToUrl(a.url) : a.url;
 						content = Foxtrick.format('[{}={}]', [a.type, a.id || a.url]);
 						// add text if interesting
-						if (a.type == 'link' && a.text) {
+						if (!opts.linksOnly && a.type == 'link' && a.text) {
 							// strip surrounding '(' and '...blabla)' that's used to shorten urls
 							var stripped = a.text.replace(/^\(|(\.\.\..*)?\)$/g, '');
 							var path = stripped.replace(/^(\w+:)?\/\/.+?(\/.*)/, '$1');
@@ -241,47 +245,31 @@ Foxtrick.util.htMl.getId = function(node) {
 	return null;
 };
 
-// @param node: a DOM node which is an <a> element or an <a>'s child node
-// @returns a string link like '[matchid=123456789]'
-// or '[link=/Club/…]' or '[link=ftp://example.org/…]'
-Foxtrick.util.htMl.getLink = function(node) {
-	var idObj = Foxtrick.util.htMl.getId(node);
-	var link = null;
-	var currentObj = node;
-	while (currentObj) {
-		if (currentObj.href !== undefined) {
-			link = currentObj.href;
-			break;
-		}
-		currentObj = currentObj.parentNode;
-	}
-	var markup = null;
-	if (idObj !== null && idObj.tag !== undefined) {
-		markup = '[' + idObj.tag + '=' + idObj.id + ']';
-	}
-	else if (typeof(link) === 'string') {
-		// ignoring boring links
-		var ignore = ['/Help/Rules/AppDenominations.aspx', '/Help/Supporter/', 'javascript'];
-		for (var i = 0; i < ignore.length; ++i)
-			if (link.indexOf(ignore[i]) > -1)
-				return null;
-
-		var relRe = new RegExp('https?://[^/]+(/.+)', 'i');
-		if (link.match(relRe) !== null) {
-			var matched = link.match(relRe);
-			var relLink = matched[1];
-			// if it's relative link of Hattrick, remove the host
-			if (Foxtrick.isHtUrl(link))
-				markup = '[link=' + relLink + ']';
-			else
-				markup = '[link=' + link + ']';
-		}
-	}
-	else if (link !== null && typeof(link) === 'object') {
-		// svg anchor
-		markup = currentObj.getAttribute('title');
-	}
-	return { copyTitle: Foxtrick.L10n.getString('copy.link'), markup: markup };
+/**
+ * Get markup from a link node.
+ * Returns a string or null if no valid markup was generated.
+ * options is { external, linksOnly: boolean, format: string }.
+ * external sets whether relative HT links are not used (defaults to false).
+ * linksOnly is whether to reject non-link markup generated.
+ * format is the markup language to use (defaults to htMl).
+ * @param  {element} node
+ * @param  {object}  options {external, linksOnly: boolean, format: string}
+ * @return {string}          {?string}
+ */
+Foxtrick.util.htMl.getLink = function(node, options) {
+	var opts = {
+		external: false,
+		format: 'htMl',
+		linksOnly: true,
+	};
+	Foxtrick.mergeValid(opts, options);
+	// reference to format definition
+	var format = Foxtrick.util.htMl.getFormat(opts.format);
+	var markup = format.cont.a('', node, opts);
+	if (markup)
+		return { copyTitle: Foxtrick.L10n.getString('copy.link'), markup: markup };
+	else
+		return null;
 };
 
 /**
