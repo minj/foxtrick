@@ -156,6 +156,16 @@ Foxtrick.foldLines = function(string, length, lineEnd, lineStart, recursive) {
 };
 
 /**
+ * Pre-pad each line in a given textblock with pre
+ * @param  {string} textblock
+ * @param  {string} pre
+ * @return {string}
+ */
+Foxtrick.prepad = function(textblock, pre) {
+	return textblock.trim().replace(/^/mg, pre);
+};
+
+/**
  * Format a string by replacing instances of '{}' with arbitrary values.
  * Works similarly to python's string.format:
  * If args is an array, replaces '{}', '{0}', '{1}', etc.
@@ -183,11 +193,12 @@ Foxtrick.format = function(str, args) {
 /**
  * Convert a HT URL to a domain agnostic (goto.ashx?path=) URL.
  * Non-HT URLs are left unchanged.
+ * Domain-relative URLs are always considered HT URLs.
  * @param  {string} url
  * @return {string}
  */
 Foxtrick.goToUrl = function(url) {
-	if (Foxtrick.isHtUrl(url)) {
+	if (Foxtrick.isHtUrl(url) || /^\/(?!\/)/.test(url)) {
 		var path = url.replace(/^\w+:\/\/.+?\//, '/');
 		url = 'https://www.hattrick.org/goto.ashx?path=' + encodeURIComponent(path);
 	}
