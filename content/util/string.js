@@ -212,8 +212,12 @@ Foxtrick.format = function(str, args) {
  * @return {string}
  */
 Foxtrick.goToUrl = function(url) {
-	if (Foxtrick.isHtUrl(url) || /^\/(?!\/)/.test(url)) {
-		var path = url.replace(/^\w+:\/\/.+?\//, '/');
+	if (/^\/\//.test(url)) {
+		// revert domain-agnostic URLs for easier handling
+		url = 'https:' + url;
+	}
+	if (Foxtrick.isHtUrl(url) || /^\//.test(url)) {
+		var path = url.replace(/^\w+:\/\/.+?(\/|$)/, '/');
 		url = 'https://www.hattrick.org/goto.ashx?path=' + encodeURIComponent(path);
 	}
 	return url;
