@@ -166,6 +166,20 @@ Foxtrick.prepad = function(textblock, pre) {
 };
 
 /**
+ * Repeat str num times
+ * @param  {string} str
+ * @param  {number} num
+ * @return {string}
+ */
+Foxtrick.repeat = function(str, num) {
+	var ret = '';
+	str = String(str);
+	for (var i = 0; i < num; i++)
+		ret += str;
+	return ret;
+};
+
+/**
  * Format a string by replacing instances of '{}' with arbitrary values.
  * Works similarly to python's string.format:
  * If args is an array, replaces '{}', '{0}', '{1}', etc.
