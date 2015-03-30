@@ -553,7 +553,8 @@ Foxtrick.util.htMl._getMarkupRec = function(node, def, opts) {
 		computedStyle = win.getComputedStyle(node, null);
 	}
 
-	if (computedStyle && computedStyle.getPropertyValue('display') === 'none') {
+	var display = computedStyle && computedStyle.getPropertyValue('display');
+	if (display === 'none') {
 		return '';
 	}
 
@@ -602,6 +603,7 @@ Foxtrick.util.htMl._getMarkupRec = function(node, def, opts) {
 			if (ret.length) {
 				// if valid text
 				// add space if text does not start with punctuation
+				// prepended white-space separates this element from other nodes
 				ret = ret.replace(/^(?!["',.?!])/, ' ');
 			}
 		}
@@ -621,12 +623,14 @@ Foxtrick.util.htMl._getMarkupRec = function(node, def, opts) {
 		var containerMarkup = def.cont[nodeName](ret, node, opts);
 		if (containerMarkup === null)
 			containerMarkup = '';
+
+		// prepend white-space to separate this container from other nodes
 		ret = ' ' + containerMarkup;
 	}
 
-	var display = computedStyle && computedStyle.getPropertyValue('display');
+	var blocks = ['h1', 'h2', 'h3', 'h4'];
 	if (display === 'block' ||
-	    nodeName === 'h1' || nodeName === 'h2' || nodeName === 'h3' || nodeName === 'h4') {
+	    Foxtrick.any(function(t) { return nodeName === t; }, blocks)) {
 		ret = '\n' + ret + '\n';
 	}
 	else if (display === 'list-item') {
