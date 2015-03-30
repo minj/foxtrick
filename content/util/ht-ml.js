@@ -159,6 +159,178 @@ Foxtrick.util.htMl.getFormat = (function() {
 			},
 		},
 	};
+
+	/**
+	 * Markdown language definition.
+	 * @type {object}
+	 */
+	formats['md'] = {
+		/**
+		 * These nodes are considered stand-alone elements
+		 * They are called as tag(node).
+		 * returning null here falls back to recursive (container) mode.
+		 * @type {object}
+		 */
+		el: {
+			/**
+			 * function called for each element.
+			 * returning null falls back to recursive (container) mode
+			 * @param  {element} node
+			 * @return {string}       {?string}
+			 */
+			img: function(node) {
+				var alt = '';
+				if (node.hasAttribute('alt') && node.getAttribute('alt') !== '') {
+					alt = node.alt;
+				}
+				else if (node.hasAttribute('title') && node.getAttribute('title') !== '') {
+					alt = node.title;
+				}
+				return Foxtrick.format('![{}]({})', [alt, node.src]);
+			},
+			hr: function() {
+				return '\n---';
+			},
+			br: function() {
+				return '\n';
+			},
+			pre: function(node) {
+				return Foxtrick.format('```{}```', [node.textContent]);
+			},
+		},
+		/**
+		 * These nodes are considered element containers
+		 * They are called as tag(content, node, opts).
+		 * @type {object}
+		 */
+		cont: {
+			/**
+			 * function called for each container
+			 * @param  {string}  content
+			 * @param  {element} node
+			 * @param  {object}  opts
+			 * @return {string}          {?string}
+			 */
+			a: function(content, node, opts) {
+				if (node.href) {
+					var a = Foxtrick.util.htMl._parseLink(node);
+					if (!a.type) {
+						// stop if we care about links only
+						if (opts.linksOnly) {
+							return null;
+						}
+						content = content || a.text || '';
+						if (content && /^javascript:/.test(node.href)) {
+							content = '_' + content.trim() + '_ ';
+						}
+					}
+					else {
+						a.url = opts.external ? Foxtrick.goToUrl(a.url) : a.url;
+						var text = a.id ? '(' + a.id + ')' : a.text || content;
+						content = Foxtrick.format('[{}]({})', [text, a.url]);
+					}
+				}
+				return content;
+			},
+			li: function(content) {
+				// README: this does not really work with the aggressive trimming strategy
+				// multi-line and multi-level LIs are messed up
+				return '* ' + Foxtrick.prepad(content, '  ').trim();
+			},
+			h1: function(content, node) {
+				var hCt = parseInt(node.nodeName.match(/\d/), 10);
+				var heading = Foxtrick.repeat('#', hCt);
+
+				return heading + ' ' + content.replace(/\n/g, ' ');
+			},
+			td: function(content, node) {
+				var nodeName = node.nodeName.toLowerCase();
+				// README: colspan and rowspan do not work in MD
+				// align works on th only
+
+				// no line-feeds in md tables!
+				content = content.replace(/\n/g, ' ');
+				var ret = content.trim().replace(/\|/g, '\\|');
+				if (nodeName == 'th') {
+					if (Foxtrick.hasClass(node, 'center')) {
+						ret = ':' + ret + ':';
+					}
+					else if (Foxtrick.hasClass(node, 'right')) {
+						ret = ret + ':';
+					}
+					else {
+						ret = ':' + ret;
+					}
+				}
+				// outer loop also adds ' ' to the left
+				return '\u2060\u2060' + ret;
+			},
+			tr: function(content) {
+				var header = null;
+				content += ' \u2060\u2060';
+				var cells = content.split(/ \u2060\u2060/g).slice(1, -1);
+				if (/ \u2060{2}:|: \u2060{2}/.test(content)) {
+					// header row
+					header = cells.reduce(function(h, cell, i, cells) {
+						// generate header cell
+						var ret = '---';
+						ret = cell.replace(/^(:?)(.*?)(:?)$/, '$1' + ret + '$3');
+						// fix original
+						cells[i] = cells[i].replace(/^:|:$/g, '');
+						// append
+						return h + ret + ' | ';
+					}, '| ');
+				}
+				var ret = '| ' + cells.join(' | ') + ' |\n';
+				if (header)
+					ret += header + '\n';
+				return ret;
+			},
+			table: function(content) {
+				var lines = content.split(/\n/);
+				if (!/\| :?---:? \|/.test(lines[1])) {
+					// no header, generate fake
+					var cellCts = Foxtrick.map(function(line) {
+						var m = line.match(/\| /g);
+						if (m)
+							return m.length;
+						return 0;
+					}, lines);
+					var cellCt = Math.max.apply(null, cellCts);
+					var line0 = Foxtrick.repeat('| ', cellCt) + '|';
+					var line1 = Foxtrick.repeat('| --- ', cellCt) + '|';
+					lines.unshift(line0, line1);
+					content = lines.join('\n');
+				}
+				return '\n' + content + '\n';
+			},
+			blockquote: function(content) {
+				return Foxtrick.prepad(content, '> ');
+			},
+			b: function(content) {
+				return '**' + content.trim() + '**';
+			},
+			i: function(content) {
+				return '*' + content.trim() + '*';
+			},
+			u: function(content) {
+				return '_' + content.trim() + '_';
+			},
+			s: function(content) {
+				return '~~' + content.trim() + '~~';
+			},
+			_needsInit: true,
+			_init: function() {
+				this.ul = this.p;
+				this.th = this.td;
+				this.strong = this.b;
+				this.h2 = this.h3 = this.h4 = this.h1;
+				this.em = this.i;
+				this.strike = this.del = this.s;
+				this._needsInit = false;
+			},
+		},
+	};
 	return function(format) {
 		var def = formats[format];
 		if (def) {
