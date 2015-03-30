@@ -151,6 +151,7 @@ Foxtrick.modules['ForumChangePosts'] = {
 					}
 					else if (isManagerLink && !isPopupLink) {
 						author.link = header_left_link;
+						author.name = author.link.title;
 						author.id = author.link.href.match(/\?userId=(\d+)/i)[1];
 						if (hasSupporter) {
 							author.sup = header_left_links[k];
@@ -158,6 +159,10 @@ Foxtrick.modules['ForumChangePosts'] = {
 						author = author_2;
 					}
 				}
+				if (!('name' in author_2))
+					author_2.name = 'Everyone';
+				if (!('id' in post_2))
+					post_2.id = post_1.id;
 
 				var template = '';
 				var args = {};
@@ -167,24 +172,24 @@ Foxtrick.modules['ForumChangePosts'] = {
 					args = [
 						fulldate,
 						post_1.id,
-						author_1.link.title,
-						author_2.link ? author_2.link.title : 'Everyone',
+						author_1.name,
+						author_2.name,
 						message
 					];
 				}
 				else if (copy_style == 'ht-ml') {
 					template = '[q={}][post={}]\n{}\n[/q]\n';
-					args = [author_1.link.title, post_1.id, message];
+					args = [author_1.name, post_1.id, message];
 				}
 				else if (copy_style == 'wiki') {
 					template = '{{forum_message|\n| from = [ [ {poster1} ] ]\n| to = {poster2}\n' +
 						'| msgid = {post_id1}\n| prevmsgid = {post_id2}\n' +
 						'| datetime = {datetime}\n| keywords = \n| text =\n{message}\n}}\n';
 					args = {
-						poster1: author_1.link.title,
+						poster1: author_1.name,
 						post_id1: post_1.id,
-						poster2: author_2.link ? author_2.link.title : 'Everyone',
-						post_id2: post_2.id || post_1.id,
+						poster2: author_2.name,
+						post_id2: post_2.id,
 						datetime: fulldate,
 						message: message
 					};
@@ -194,12 +199,12 @@ Foxtrick.modules['ForumChangePosts'] = {
 						'**To:** {poster2}\n**Re:** [{post_id2}]({post_url2})\n' +
 						'**Datetime:** {datetime}\n**Message:**\n\n{message}\n';
 					args = {
-						poster1: author_1.link.title,
+						poster1: author_1.name,
 						post_id1: post_1.id,
 						post_url1: Foxtrick.getForumUrl(post_1.id),
-						poster2: author_2.link ? author_2.link.title : 'Everyone',
-						post_id2: post_2.id || post_1.id,
-						post_url2: Foxtrick.getForumUrl(post_2.id || post_1.id),
+						poster2: author_2.name,
+						post_id2: post_2.id,
+						post_url2: Foxtrick.getForumUrl(post_2.id),
 						datetime: fulldate,
 						message: message
 					};
