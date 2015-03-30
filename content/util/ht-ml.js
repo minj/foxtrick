@@ -678,7 +678,7 @@ Foxtrick.util.htMl.getHtMl = function(node, options) {
 		return { copyTitle: Foxtrick.L10n.getString('copy.ht-ml'), markup: markup };
 	}
 	else {
-		markup = Foxtrick.util.htMl.getMarkupFromNode(node);
+		markup = Foxtrick.util.htMl.getMarkupFromNode(node, options);
 		markup = markup.trim();
 		return { copyTitle: Foxtrick.L10n.getString('copy.ht-ml'), markup: markup };
 	}
