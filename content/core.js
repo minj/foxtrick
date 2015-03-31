@@ -48,9 +48,6 @@ Foxtrick.modules.Core = {
 			if (Foxtrick.Prefs.getString('oldVersion') === null ||
 			    Foxtrick.Prefs.getString('oldVersion').match(/\d+\.\d+(\.\d+)?/)[0] !==
 			    Foxtrick.version().match(/\d+\.\d+(\.\d+)?/)[0]) {
-				// set showReleaseNotes true for this version to get the new  beta changes shown
-				Foxtrick.Prefs.setBool('showReleaseNotes', true);
-
 				if (Foxtrick.Prefs.getBool('showReleaseNotes')) {
 					Foxtrick.Prefs.show('#tab=changes');
 				}
