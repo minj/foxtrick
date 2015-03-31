@@ -599,3 +599,99 @@ Foxtrick.getButton = function(doc, ID) {
 		btn = doc.getElementById(PRE + 'but' + ID);
 	return btn;
 };
+
+/**
+ * Make and display a modal dialog.
+ * Handles foxtrick:// links automatically
+ * content can either be a string or an element/fragment
+ * buttons is {Array.<{title:string, handler:function}>} (optional)
+ * @param {document} doc
+ * @param {string}   title
+ * @param {element}  content {element|string}
+ * @param {array}    buttons {?Array.<{title:string, handler:function}>}
+ */
+Foxtrick.makeModal = function(doc, title, content, buttons) {
+	var DEFAULT_HANDLER = function(ev) {
+		var doc = ev.target.ownerDocument;
+		var dialog = doc.getElementById('foxtrick-modal-dialog');
+		doc.body.removeChild(dialog);
+		var scr = doc.getElementById('foxtrick-modal-screen');
+		doc.body.removeChild(scr);
+	};
+	var DEFAULT_BUTTON = { title: Foxtrick.L10n.getString('button.close') };
+
+	var createButton = function(button) {
+		var btn = doc.createElement('button');
+		btn.type = 'button';
+		Foxtrick.addClass(btn, 'ft-dialog-button ft-rborder');
+
+		var text = doc.createElement('span');
+		Foxtrick.addClass(text, 'ft-dialog-button-text');
+		text.textContent = button.title;
+		btn.appendChild(text);
+
+		if (typeof button.handler !== 'function') {
+			button.handler = DEFAULT_HANDLER;
+		}
+		Foxtrick.onClick(btn, button.handler);
+
+		return btn;
+	};
+
+	var dialog = doc.createElement('div');
+	dialog.id = 'foxtrick-modal-dialog';
+
+	// handle foxtrick:// links
+	// TODO refactor into an util
+	var listener = Foxtrick.modules['ForumStripHattrickLinks'].changeLinks;
+	Foxtrick.listen(dialog, 'mousedown', listener);
+
+	var hdrWrapper = doc.createElement('div');
+	Foxtrick.addClass(hdrWrapper, 'ft-dialog-hdrWrapper');
+	dialog.appendChild(hdrWrapper);
+
+	var header = doc.createElement('div');
+	Foxtrick.addClass(header, 'ft-dialog-header ft-clearfix ft-rborder');
+	hdrWrapper.appendChild(header);
+
+	var titleHeader = doc.createElement('h1');
+	Foxtrick.addClass(titleHeader, 'ft-dialog-title');
+	titleHeader.textContent = 'Foxtrick » ' + title;
+	titleHeader.title = title;
+	header.appendChild(titleHeader);
+
+	var contentDiv = doc.createElement('div');
+	Foxtrick.addClass(contentDiv, 'ft-dialog-content');
+	dialog.appendChild(contentDiv);
+
+	if (typeof content !== 'object' || content === null) {
+		var p = doc.createElement('p');
+		p.textContent = content;
+		content = p;
+	}
+	contentDiv.appendChild(content);
+
+	var btnWrapper = doc.createElement('div');
+	Foxtrick.addClass(btnWrapper, 'ft-dialog-btnWrapper');
+	dialog.appendChild(btnWrapper);
+
+	var btnRow = doc.createElement('div');
+	Foxtrick.addClass(btnRow, 'ft-dialog-button-row ft-clearfix');
+	btnWrapper.appendChild(btnRow);
+
+	var btns = doc.createElement('div');
+	Foxtrick.addClass(btns, 'ft-dialog-buttons');
+	btnRow.appendChild(btns);
+
+	buttons = Array.isArray(buttons) ? buttons : [];
+	buttons.push(DEFAULT_BUTTON);
+	Foxtrick.forEach(function(button) {
+		var btn = createButton(button);
+		btns.appendChild(btn);
+	}, buttons);
+
+	var scr = doc.createElement('div');
+	scr.id = 'foxtrick-modal-screen';
+	doc.body.appendChild(dialog);
+	doc.body.appendChild(scr);
+};

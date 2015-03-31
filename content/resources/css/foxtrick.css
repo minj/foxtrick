@@ -27,6 +27,134 @@ html[data-theme="simple"][firefox] #logo, html[data-theme="simple"][android] #lo
 	background-image: url('chrome://foxtrick/content/resources/img/logo_green_foxtrick_simple.png') !important;
 }
 
+/* start ft-modal-dialog */
+.ft-clearfix:before,
+.ft-clearfix:after {
+	content: '';
+	display: table;
+	border-collapse: collapse;
+}
+.ft-clearfix:after {
+	clear: both;
+}
+.ft-clearfix {
+	min-height: 0;
+}
+.ft-rborder {
+	border-radius: 10px;
+}
+
+#foxtrick-modal-screen {
+	z-index: 100000;
+	background-color: hsl(0, 0%, 67%);
+	opacity: 0.4;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+#foxtrick-modal-dialog {
+	position: fixed;
+	z-index: 100001;
+	width: 600px;
+	height: 50%;
+	top: 0; right: 0; left: 0; bottom: 0; margin: auto;
+	color: black;
+}
+
+#foxtrick-modal-dialog h2 {
+	color: hsl(0, 0%, 13%) !important;
+	border: 0 !important;
+	margin: 0.6em 0 !important;
+	font-size: 1.6em !important;
+}
+
+.ft-dialog-hdrWrapper {
+	position: absolute;
+	width: 100%;
+	background: white;
+	border: 1px solid hsl(0, 0%, 67%);
+	border-width: 1px 1px 0 1px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+}
+
+.ft-dialog-header {
+	padding: .4em 1em;
+	border: 1px solid hsl(0, 0%, 67%);
+	background: linear-gradient(to bottom, hsl(210, 100%, 74%) 0%, hsl(210, 92%, 67%) 44%,
+	                            hsl(210, 84%, 59%) 100%);
+	margin: 0.2em 0.2em 0.8em 0.2em;
+}
+
+.ft-dialog-title {
+	float: left;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	font-weight: bold;
+	font-size: 2em !important;
+	width: 100% !important;
+	margin: .1em 0 !important;
+	color: hsl(0, 0%, 13%) !important;
+	border: 0 !important;
+	line-height: 1.3em;
+}
+
+.ft-dialog-content {
+	background: white;
+	padding: 5em 1em 1em 1em;
+	margin-right: -2px;
+	overflow-y: auto;
+	max-height: 100%;
+	border: 1px solid hsl(0, 0%, 67%);
+	border-width: 1px 1px 0 1px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+}
+
+.ft-dialog-btnWrapper {
+	background: white;
+	margin-right: -2px;
+	border: 1px solid hsl(0, 0%, 67%);
+	border-width: 0 1px 1px 1px;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+
+.ft-dialog-button-row {
+	border: 1px solid hsl(0, 0%, 67%);
+	border-width: 1px 0 0 0;
+	margin: 0 0.4em;
+}
+
+.ft-dialog-buttons {
+	float: right;
+}
+
+.ft-dialog-button {
+	padding: 0;
+	margin: .5em .4em .5em 0;
+	cursor: pointer;
+	border: 1px solid hsl(0, 0%, 83%);
+	color: hsl(0, 0%, 33%);
+	background: hsl(0, 0%, 90%);
+	font-size: 1.3em;
+}
+
+.ft-dialog-button-text {
+	padding: 0.4em 1em;
+	display: block;
+}
+
+.ft-dialog-button:hover {
+	border: 1px solid hsl(0, 0%, 60%);
+	background: white;
+}
+/* end ft-modal-dialog */
+
 /* faux-link */
 .ft-link { cursor: pointer; text-decoration: underline; }
 
