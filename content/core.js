@@ -34,6 +34,53 @@ Foxtrick.modules.Core = {
 		this.HT_TIME = Foxtrick.util.time.getHtTimeStamp(doc);
 		this.addBugReportLink(doc);
 	},
+	showReleaseModal: function(doc) {
+		// TODO: this needs maintenance:
+		// use release-notes-links.yml directly
+		// write a better parser for {links}
+		var content = doc.createDocumentFragment();
+		var header = doc.createElement('h2');
+		header.textContent = Foxtrick.L10n.getString('changes.announcement');
+		content.appendChild(header);
+		header = doc.createElement('h3');
+		header.textContent = Foxtrick.L10n.getString('changes.newVersion');
+		content.appendChild(header);
+
+		var p = doc.createElement('p');
+		var text = Foxtrick.L10n.getString('changes.support');
+		var parts = text.match(/.+?(?=\{)|\{.*?\}|.+/g);
+		p.appendChild(doc.createTextNode(parts[0]));
+		var link = doc.createElement('a');
+		// TODO: update
+		link.href = 'https://www.foxtrick.org';
+		link.target = '_blank';
+		link.textContent = parts[1].replace(/[{}]/g, '');
+		p.appendChild(link);
+		p.appendChild(doc.createTextNode(parts[2]));
+		content.appendChild(p);
+
+		p = doc.createElement('p');
+		link = doc.createElement('a');
+		link.href = 'foxtrick://preferences.html#tab=changes';
+		// TODO: change to 'changes.open'
+		link.textContent = Foxtrick.L10n.getString('link.recentChanges');
+		link.target = '_blank';
+		content.appendChild(link);
+
+		p = doc.createElement('p');
+		text = Foxtrick.L10n.getString('changes.updates');
+		parts = text.match(/.+?(?=\{)|\{.*?\}|.+/g);
+		p.appendChild(doc.createTextNode(parts[0]));
+		link = doc.createElement('a');
+		link.href = 'https://twitter.com/Foxtrick';
+		link.target = '_blank';
+		link.textContent = parts[1].replace(/[{}]/g, '');
+		p.appendChild(link);
+		p.appendChild(doc.createTextNode(parts[2]));
+		content.appendChild(p);
+
+		Foxtrick.makeModal(doc, Foxtrick.version(), content);
+	},
 
 	updateLastHost: function(doc) {
 		// update Foxtrick.lastHost, which is used when opening links
@@ -51,6 +98,7 @@ Foxtrick.modules.Core = {
 				if (Foxtrick.Prefs.getBool('showReleaseNotes')) {
 					Foxtrick.Prefs.show('#tab=changes');
 				}
+				this.showReleaseModal(doc);
 				Foxtrick.Prefs.setString('oldVersion', Foxtrick.version());
 			}
 		}
