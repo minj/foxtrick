@@ -18,11 +18,11 @@
 			"code": "ar",
 			"name": "Arabic",
 			"phrases": "1823",
-			"translated": "1676",
+			"translated": "1677",
 			"translated_progress": "89",
 			"words": "12875",
 			"words_approved": "11513",
-			"words_translated": "11532"
+			"words_translated": "11545"
 		},
 		{
 			"approved": "0",
@@ -210,11 +210,11 @@
 			"code": "vls-BE",
 			"name": "Flemish",
 			"phrases": "1823",
-			"translated": "951",
+			"translated": "952",
 			"translated_progress": "48",
 			"words": "12875",
 			"words_approved": "0",
-			"words_translated": "6203"
+			"words_translated": "6222"
 		},
 		{
 			"approved": "1812",
@@ -450,11 +450,11 @@
 			"code": "nn-NO",
 			"name": "Norwegian Nynorsk",
 			"phrases": "1823",
-			"translated": "806",
+			"translated": "804",
 			"translated_progress": "39",
 			"words": "12875",
 			"words_approved": "0",
-			"words_translated": "5107"
+			"words_translated": "5075"
 		},
 		{
 			"approved": "0",
@@ -606,11 +606,11 @@
 			"code": "sv-SE",
 			"name": "Swedish",
 			"phrases": "1823",
-			"translated": "1816",
+			"translated": "1817",
 			"translated_progress": "99",
 			"words": "12875",
 			"words_approved": "12732",
-			"words_translated": "12815"
+			"words_translated": "12834"
 		},
 		{
 			"approved": "0",
