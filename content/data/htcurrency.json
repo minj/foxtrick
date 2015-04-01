@@ -39,13 +39,13 @@
 		{
 			"code": "DOL",
 			"comment": "Benin, Ecuador, Syria, Taiwan, Tanzania",
-			"eurorate": "1",
+			"eurorate": "1.0",
 			"name": "$ (Generic dollar)",
 			"symbol": "$"
 		},
 		{
 			"code": "CUP",
-			"eurorate": "1",
+			"eurorate": "1.0",
 			"name": "$ (Cuban peso)",
 			"symbol": "$"
 		},
@@ -117,19 +117,19 @@
 		},
 		{
 			"code": "ARS",
-			"eurorate": "1",
+			"eurorate": "1.0",
 			"name": "Peso (Argentinian)",
 			"symbol": "Pesos"
 		},
 		{
 			"code": "AZN",
-			"eurorate": "1",
+			"eurorate": "1.0",
 			"name": "AZN (Azerbaijani manat)",
 			"symbol": "AZN"
 		},
 		{
 			"code": "BHD",
-			"eurorate": "2",
+			"eurorate": "2.0",
 			"name": "BHD (Bahraini dinar)",
 			"symbol": "BHD"
 		},
@@ -219,7 +219,7 @@
 		},
 		{
 			"code": "QAR",
-			"eurorate": "1",
+			"eurorate": "1.0",
 			"name": "QAR (Qatari Riyal)",
 			"symbol": "QAR"
 		},
@@ -231,7 +231,7 @@
 		},
 		{
 			"code": "GTQ",
-			"eurorate": "1",
+			"eurorate": "1.0",
 			"name": "Quetzal (Guatemalan)",
 			"symbol": "Q"
 		},
@@ -327,7 +327,7 @@
 		},
 		{
 			"code": "HUF",
-			"eurorate": "5",
+			"eurorate": "5.0",
 			"name": "eFt (Hungarian forint)",
 			"symbol": "eFt"
 		},
@@ -405,7 +405,7 @@
 		},
 		{
 			"code": "OMR",
-			"eurorate": "2",
+			"eurorate": "2.0",
 			"name": "Rial (Omani)",
 			"symbol": "rial"
 		},
@@ -417,7 +417,7 @@
 		},
 		{
 			"code": "PAB",
-			"eurorate": "1",
+			"eurorate": "1.0",
 			"name": "฿ (Panamanian balboa)",
 			"symbol": "฿"
 		},
@@ -453,7 +453,7 @@
 		},
 		{
 			"code": "GHS",
-			"eurorate": "1",
+			"eurorate": "1.0",
 			"name": "Cedis (Ghanese)",
 			"symbol": "cedis"
 		},
@@ -543,7 +543,7 @@
 		},
 		{
 			"code": "TRY",
-			"eurorate": "1",
+			"eurorate": "1.0",
 			"name": "TL (Turkish new lira)",
 			"symbol": "TL"
 		},
@@ -561,7 +561,7 @@
 		},
 		{
 			"code": "VEB",
-			"eurorate": "1",
+			"eurorate": "1.0",
 			"name": "Bs (Venezuelan bolívar)",
 			"symbol": "Bs"
 		},
