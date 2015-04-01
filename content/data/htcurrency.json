@@ -314,12 +314,6 @@
 			"symbol": "som"
 		},
 		{
-			"code": "LTL",
-			"eurorate": "0.25",
-			"name": "Lt (Lithuanian litas)",
-			"symbol": "Lt"
-		},
-		{
 			"code": "LBP",
 			"eurorate": "0.0005",
 			"name": "LBP (Lebanese pound)",
@@ -570,6 +564,12 @@
 			"eurorate": "0.1",
 			"name": "Đồng (Vietnamese)",
 			"symbol": "đồng"
+		},
+		{
+			"code": "LTL",
+			"eurorate": "0.25",
+			"name": "Lt (Lithuanian litas)",
+			"symbol": "Lt"
 		}
 	]
 }
