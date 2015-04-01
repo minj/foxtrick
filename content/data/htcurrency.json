@@ -93,7 +93,7 @@
 				"139": "Benin",
 				"140": "Syria",
 				"142": "Tanzania",
-				"147": "Cuba"
+				"#147": "Cuba"
 			},
 			"name": "$ (Generic dollar)",
 			"symbol": "$"
@@ -102,11 +102,11 @@
 			"code": "CUP",
 			"eurorate": "1.0",
 			"leagues": {
-				"60": "Chinese Taipei",
-				"73": "Ecuador",
-				"139": "Benin",
-				"140": "Syria",
-				"142": "Tanzania",
+				"#60": "Chinese Taipei",
+				"#73": "Ecuador",
+				"#139": "Benin",
+				"#140": "Syria",
+				"#142": "Tanzania",
 				"147": "Cuba"
 			},
 			"name": "$ (Cuban peso)",
@@ -117,7 +117,7 @@
 			"eurorate": "0.1",
 			"leagues": {
 				"6": "Mexico",
-				"28": "Uruguay"
+				"#28": "Uruguay"
 			},
 			"name": "Peso (Mexican)",
 			"symbol": "Pesos"
@@ -126,7 +126,7 @@
 			"code": "UYU",
 			"eurorate": "0.1",
 			"leagues": {
-				"6": "Mexico",
+				"#6": "Mexico",
 				"28": "Uruguay"
 			},
 			"name": "Peso (Uruguayan)",
@@ -136,7 +136,7 @@
 			"code": "DKK",
 			"eurorate": "0.1",
 			"leagues": {
-				"9": "Norway",
+				"#9": "Norway",
 				"11": "Denmark",
 				"76": "Faroe Islands"
 			},
@@ -148,8 +148,8 @@
 			"eurorate": "0.1",
 			"leagues": {
 				"9": "Norway",
-				"11": "Denmark",
-				"76": "Faroe Islands"
+				"#11": "Denmark",
+				"#76": "Faroe Islands"
 			},
 			"name": "Krone (Norwegian)",
 			"symbol": "Kroner"
