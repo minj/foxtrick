@@ -139,6 +139,15 @@ html[dir="rtl"] table th:first-child {
 	text-align: right;
 }
 
+table.decorated th {
+	text-align: center;
+	border-radius: 4px 4px 0px 0px;
+	border-bottom: none;
+	background-color: hsl(202, 66%, 79%);
+	background: linear-gradient(top, #7abcff 0%, #60abf8 44%, #4096ee 100%);
+	background: linear-gradient(to bottom, hsl(210, 100%, 74%) 0%,hsl(210, 92%, 67%) 44%,hsl(210, 84%, 59%) 100%);
+}
+
 table.center td {
 	text-align: center;
 }
