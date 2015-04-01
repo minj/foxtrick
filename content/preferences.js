@@ -959,10 +959,9 @@ function initModules() {
 
 function initMainTab() {
 	// setup
-	var gcUrl = '<a href="https://github.com/minj/foxtrick/issues" ' +
-		'target="_blank">$1</a>';
-	var desc = Foxtrick.L10n.getString('prefs.setup.desc').replace(/{(.+)}/, gcUrl);
-	$('#pref-setup-desc').html(desc);
+	var desc = $('#pref-setup-desc')[0];
+	var ISSUES_URL = 'https://github.com/minj/foxtrick/issues';
+	Foxtrick.L10n.appendLink('prefs.setup.desc', desc, ISSUES_URL);
 
 	// add links to main tab prefs
 	$('#pane > div[x-on*="main"] h3').each(function() {
@@ -1438,12 +1437,12 @@ function initTextAndValues() {
 	// show page IDs in view-by-page
 	$('#view-by-page a').text($('#view-by-page a').text() + ' (' + pageIds.join(', ') + ')');
 
+	// delete-token description
+	var CHPP_URL = Foxtrick.goToUrl('/MyHattrick/Preferences/ExternalAccessGrants.aspx');
+	var delDesc = $('#pref-delete-token-desc')[0];
+	Foxtrick.L10n.appendLink('prefs.storedData.oauth.delete.desc', delDesc, CHPP_URL);
+
 	// initialize delete-token
-	var chpp_url = Foxtrick.Prefs.getString('last-host') +
-		'/MyHattrick/Preferences/ExternalAccessGrants.aspx';
-	var delDesc = $('#pref-delete-token-desc').text().
-		replace(/\{(.+)\}/, '<a href="' + chpp_url + '" target="_blank">$1</a>');
-	$('#pref-delete-token-desc').html(delDesc);
 	var oauth_keys = Foxtrick.Prefs.getAllKeysOfBranch('oauth');
 	if (oauth_keys) {
 		var teamids = Foxtrick.map(function(n) {

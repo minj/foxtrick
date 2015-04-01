@@ -37,7 +37,12 @@ Foxtrick.modules.Core = {
 	showReleaseModal: function(doc) {
 		// TODO: this needs maintenance:
 		// use release-notes-links.yml directly
-		// write a better parser for {links}
+
+		// TODO: update SUPPORT_URL
+		var SUPPORT_URL = 'https://www.foxtrick.org';
+		var CHANGES_URL = 'foxtrick://preferences.html#tab=changes';
+		var UPDATES_URL = 'https://twitter.com/Foxtrick';
+
 		var content = doc.createDocumentFragment();
 		var header = doc.createElement('h2');
 		header.textContent = Foxtrick.L10n.getString('changes.announcement');
@@ -46,38 +51,20 @@ Foxtrick.modules.Core = {
 		header.textContent = Foxtrick.L10n.getString('changes.newVersion');
 		content.appendChild(header);
 
-		var p = doc.createElement('p');
-		var text = Foxtrick.L10n.getString('changes.support');
-		var parts = text.match(/.+?(?=\{)|\{.*?\}|.+/g);
-		p.appendChild(doc.createTextNode(parts[0]));
-		var link = doc.createElement('a');
-		// TODO: update
-		link.href = 'https://www.foxtrick.org';
-		link.target = '_blank';
-		link.textContent = parts[1].replace(/[{}]/g, '');
-		p.appendChild(link);
-		p.appendChild(doc.createTextNode(parts[2]));
-		content.appendChild(p);
+		var pSupport = doc.createElement('p');
+		Foxtrick.L10n.appendLink('changes.support', pSupport, SUPPORT_URL);
+		content.appendChild(pSupport);
 
-		p = doc.createElement('p');
-		link = doc.createElement('a');
-		link.href = 'foxtrick://preferences.html#tab=changes';
+		var link = doc.createElement('a');
+		link.href = CHANGES_URL;
 		// TODO: change to 'changes.open'
 		link.textContent = Foxtrick.L10n.getString('link.recentChanges');
 		link.target = '_blank';
 		content.appendChild(link);
 
-		p = doc.createElement('p');
-		text = Foxtrick.L10n.getString('changes.updates');
-		parts = text.match(/.+?(?=\{)|\{.*?\}|.+/g);
-		p.appendChild(doc.createTextNode(parts[0]));
-		link = doc.createElement('a');
-		link.href = 'https://twitter.com/Foxtrick';
-		link.target = '_blank';
-		link.textContent = parts[1].replace(/[{}]/g, '');
-		p.appendChild(link);
-		p.appendChild(doc.createTextNode(parts[2]));
-		content.appendChild(p);
+		var pUpdates = doc.createElement('p');
+		Foxtrick.L10n.appendLink('changes.updates', pUpdates, UPDATES_URL);
+		content.appendChild(pUpdates);
 
 		Foxtrick.makeModal(doc, Foxtrick.version(), content);
 	},
@@ -234,58 +221,36 @@ Foxtrick.modules.Core = {
 				bug = Foxtrick.log.header(doc) + 'BUG URL: ' + url + '\n\n' + bug;
 
 				var showNote = function(url) {
+					var MANUAL_URL = 'http://pastebin.com/';
+					var FORUM_URL = '/Forum/Overview.aspx?v=0&f=173635';
+
 					var info = doc.createDocumentFragment();
 
-					var text, parts, link;
-
-					var copied;
 					if (/^https?:/.test(url)) {
 						// upload successful
 						Foxtrick.copyStringToClipboard('[link=' + url + ']');
-						copied = doc.createElement('p');
-						copied.textContent = Foxtrick.L10n.getString('reportBug.link.copied');
-						info.appendChild(copied);
+						var upload = doc.createElement('p');
+						upload.textContent = Foxtrick.L10n.getString('reportBug.link.copied');
+						info.appendChild(upload);
+
 						var captcha = doc.createElement('p');
-						text = Foxtrick.L10n.getString('reportBug.captcha');
-						parts = text.match(/.+?(?=\{)|\{.*?\}|.+/g);
-						captcha.appendChild(doc.createTextNode(parts[0]));
-						link = doc.createElement('a');
-						link.href = url;
-						link.target = '_blank';
-						link.textContent = parts[1].replace(/[{}]/g, '');
-						captcha.appendChild(link);
-						captcha.appendChild(doc.createTextNode(parts[2]));
+						Foxtrick.L10n.appendLink('reportBug.captcha', captcha, url);
 						info.appendChild(captcha);
 					}
 					else {
 						// too many pastes
 						Foxtrick.copyStringToClipboard(bug);
-						copied = doc.createElement('p');
+						var copied = doc.createElement('p');
 						copied.textContent = Foxtrick.L10n.getString('reportBug.log.copied');
 						info.appendChild(copied);
+
 						var pastebin = doc.createElement('p');
-						text = Foxtrick.L10n.getString('reportBug.pastebin');
-						parts = text.match(/.+?(?=\{)|\{.*?\}|.+/g);
-						pastebin.appendChild(doc.createTextNode(parts[0]));
-						link = doc.createElement('a');
-						link.href = 'http://pastebin.com/';
-						link.target = '_blank';
-						link.textContent = parts[1].replace(/[{}]/g, '');
-						pastebin.appendChild(link);
-						pastebin.appendChild(doc.createTextNode(parts[2]));
+						Foxtrick.L10n.appendLink('reportBug.pastebin', pastebin, MANUAL_URL);
 						info.appendChild(pastebin);
 					}
 
 					var forum = doc.createElement('p');
-					text = Foxtrick.L10n.getString('reportBug.forum');
-					parts = text.match(/.+?(?=\{)|\{.*?\}|.+/g);
-					forum.appendChild(doc.createTextNode(parts[0]));
-					link = doc.createElement('a');
-					link.href = '/Forum/Overview.aspx?v=0&f=173635';
-					link.target = '_blank';
-					link.textContent = parts[1].replace(/[{}]/g, '');
-					forum.appendChild(link);
-					forum.appendChild(doc.createTextNode(parts[2]));
+					Foxtrick.L10n.appendLink('reportBug.forum', forum, FORUM_URL);
 					info.appendChild(forum);
 
 					Foxtrick.util.note.add(doc, info, 'ft-bug-report-link-note',
