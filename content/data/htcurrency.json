@@ -3,36 +3,83 @@
 		{
 			"code": "EUR",
 			"eurorate": "1.0",
+			"leagues": {
+				"3": "Germany",
+				"4": "Italy",
+				"5": "France",
+				"12": "Finland",
+				"14": "Netherlands",
+				"21": "Ireland",
+				"25": "Portugal",
+				"36": "Spain",
+				"39": "Austria",
+				"44": "Belgium",
+				"50": "Greece",
+				"53": "Latvia",
+				"56": "Estonia",
+				"64": "Slovenia",
+				"66": "Lithuania",
+				"67": "Slovakia",
+				"84": "Luxembourg",
+				"89": "Cyprus",
+				"101": "Malta",
+				"105": "Andorra",
+				"131": "Montenegro"
+			},
 			"name": "€ (Euro)",
 			"symbol": "€"
 		},
 		{
 			"code": "GBP",
 			"eurorate": "1.5",
+			"leagues": {
+				"2": "England",
+				"26": "Scotland",
+				"61": "Wales",
+				"93": "Northern Ireland"
+			},
 			"name": "£ (British pound sterling)",
 			"symbol": "£"
 		},
 		{
 			"code": "XOF",
 			"eurorate": "0.002",
+			"leagues": {
+				"121": "Senegal",
+				"126": "Côte d’Ivoire"
+			},
 			"name": "XOF (West African CFA franc)",
 			"symbol": "XOF"
 		},
 		{
 			"code": "NIS",
 			"eurorate": "0.2",
+			"leagues": {
+				"63": "Israel",
+				"148": "Palestine"
+			},
 			"name": "NIS (Israeli new sheqel)",
 			"symbol": "NIS"
 		},
 		{
 			"code": "CHF",
 			"eurorate": "0.5",
+			"leagues": {
+				"46": "Switzerland",
+				"117": "Liechtenstein"
+			},
 			"name": "CHF (Swiss franc)",
 			"symbol": "CHF"
 		},
 		{
 			"code": "USD",
 			"eurorate": "1.0",
+			"leagues": {
+				"8": "USA",
+				"19": "Colombia",
+				"23": "Peru",
+				"100": "El Salvador"
+			},
 			"name": "US$ (US dollar)",
 			"symbol": "US$"
 		},
@@ -40,528 +87,808 @@
 			"code": "DOL",
 			"comment": "Benin, Ecuador, Syria, Taiwan, Tanzania",
 			"eurorate": "1.0",
+			"leagues": {
+				"60": "Chinese Taipei",
+				"73": "Ecuador",
+				"139": "Benin",
+				"140": "Syria",
+				"142": "Tanzania",
+				"147": "Cuba"
+			},
 			"name": "$ (Generic dollar)",
 			"symbol": "$"
 		},
 		{
 			"code": "CUP",
 			"eurorate": "1.0",
+			"leagues": {
+				"60": "Chinese Taipei",
+				"73": "Ecuador",
+				"139": "Benin",
+				"140": "Syria",
+				"142": "Tanzania",
+				"147": "Cuba"
+			},
 			"name": "$ (Cuban peso)",
 			"symbol": "$"
 		},
 		{
 			"code": "MXN",
 			"eurorate": "0.1",
+			"leagues": {
+				"6": "Mexico",
+				"28": "Uruguay"
+			},
 			"name": "Peso (Mexican)",
 			"symbol": "Pesos"
 		},
 		{
 			"code": "UYU",
 			"eurorate": "0.1",
+			"leagues": {
+				"6": "Mexico",
+				"28": "Uruguay"
+			},
 			"name": "Peso (Uruguayan)",
 			"symbol": "Pesos"
 		},
 		{
 			"code": "DKK",
 			"eurorate": "0.1",
+			"leagues": {
+				"9": "Norway",
+				"11": "Denmark",
+				"76": "Faroe Islands"
+			},
 			"name": "Krone (Danish)",
 			"symbol": "Kroner"
 		},
 		{
 			"code": "NOK",
 			"eurorate": "0.1",
+			"leagues": {
+				"9": "Norway",
+				"11": "Denmark",
+				"76": "Faroe Islands"
+			},
 			"name": "Krone (Norwegian)",
 			"symbol": "Kroner"
 		},
 		{
 			"code": "IQD",
 			"eurorate": "0.5",
+			"leagues": {
+				"128": "Iraq"
+			},
 			"name": "Dinar (Iraqi)",
 			"symbol": "dinar"
 		},
 		{
 			"code": "DZD",
 			"eurorate": "0.01",
+			"leagues": {
+				"118": "Algeria"
+			},
 			"name": "DZD (Algerian dinar)",
 			"symbol": "DZD"
 		},
 		{
 			"code": "KWD",
 			"eurorate": "2.5",
+			"leagues": {
+				"127": "Kuwait"
+			},
 			"name": "Dinar (Kuwaiti)",
 			"symbol": "dinar"
 		},
 		{
 			"code": "MAD",
 			"eurorate": "0.1",
+			"leagues": {
+				"77": "Morocco"
+			},
 			"name": "Dirham (Moroccan)",
 			"symbol": "dirhams"
 		},
 		{
 			"code": "JOD",
 			"eurorate": "0.5",
+			"leagues": {
+				"106": "Jordan"
+			},
 			"name": "JOD (Jordanian dinar)",
 			"symbol": "JOD"
 		},
 		{
 			"code": "YER",
 			"eurorate": "0.01",
+			"leagues": {
+				"133": "Yemen"
+			},
 			"name": "Rial (Yemeni)",
 			"symbol": "rial"
 		},
 		{
 			"code": "AOA",
 			"eurorate": "0.01",
+			"leagues": {
+				"130": "Angola"
+			},
 			"name": "Kwanza (Angolan)",
 			"symbol": "kwanza"
 		},
 		{
 			"code": "ARS",
 			"eurorate": "1.0",
+			"leagues": {
+				"7": "Argentina"
+			},
 			"name": "Peso (Argentinian)",
 			"symbol": "Pesos"
 		},
 		{
 			"code": "AZN",
 			"eurorate": "1.0",
+			"leagues": {
+				"129": "Azerbaijan"
+			},
 			"name": "AZN (Azerbaijani manat)",
 			"symbol": "AZN"
 		},
 		{
 			"code": "BHD",
 			"eurorate": "2.0",
+			"leagues": {
+				"123": "Bahrain"
+			},
 			"name": "BHD (Bahraini dinar)",
 			"symbol": "BHD"
 		},
 		{
 			"code": "BDT",
 			"eurorate": "0.02",
+			"leagues": {
+				"132": "Bangladesh"
+			},
 			"name": "Taka (Bangladeshi)",
 			"symbol": "taka"
 		},
 		{
 			"code": "BBD",
 			"eurorate": "0.5",
+			"leagues": {
+				"124": "Barbados"
+			},
 			"name": "BBD (Barbados dollar)",
 			"symbol": "BBD"
 		},
 		{
 			"code": "BYR",
 			"eurorate": "0.0005",
+			"leagues": {
+				"91": "Belarus"
+			},
 			"name": "Ruble (Belarusian)",
 			"symbol": "BYR"
 		},
 		{
 			"code": "BOB",
 			"eurorate": "0.1",
+			"leagues": {
+				"74": "Bolivia"
+			},
 			"name": "Bs (Bolivian boliviano)",
 			"symbol": "Bs"
 		},
 		{
 			"code": "BAM",
 			"eurorate": "0.5",
+			"leagues": {
+				"69": "Bosnia and Herzegovina"
+			},
 			"name": "KM (Bosnia and Herzegovina Convertible Mark)",
 			"symbol": "KM"
 		},
 		{
 			"code": "BRL",
 			"eurorate": "0.5",
+			"leagues": {
+				"16": "Brazil"
+			},
 			"name": "Real (Brazilian)",
 			"symbol": "reais"
 		},
 		{
 			"code": "BGN",
 			"eurorate": "0.5",
+			"leagues": {
+				"62": "Bulgaria"
+			},
 			"name": "Lv (Bulgarian lev)",
 			"symbol": "lv"
 		},
 		{
 			"code": "CVE",
 			"eurorate": "0.01",
+			"leagues": {
+				"125": "Cape Verde"
+			},
 			"name": "Escudo (Cape Verdean)",
 			"symbol": "Esc."
 		},
 		{
 			"code": "XAF",
 			"eurorate": "0.002",
+			"leagues": {
+				"146": "Cameroon"
+			},
 			"name": "XAF (Central African CFA franc)",
 			"symbol": "XAF"
 		},
 		{
 			"code": "CAD",
 			"eurorate": "0.5",
+			"leagues": {
+				"17": "Canada"
+			},
 			"name": "C$ (Canadian dollar)",
 			"symbol": "C$"
 		},
 		{
 			"code": "CZK",
 			"eurorate": "0.025",
+			"leagues": {
+				"52": "Czech Republic"
+			},
 			"name": "Kč (Česká koruna)",
 			"symbol": "Kč"
 		},
 		{
 			"code": "CLP",
 			"eurorate": "0.005",
+			"leagues": {
+				"18": "Chile"
+			},
 			"name": "Peso (Chilean)",
 			"symbol": "Pesos"
 		},
 		{
 			"code": "CNY",
 			"eurorate": "0.1",
+			"leagues": {
+				"34": "People's Republic of China"
+			},
 			"name": "Yuan (Chinese)",
 			"symbol": "Yuan"
 		},
 		{
 			"code": "CRC",
 			"eurorate": "0.02",
+			"leagues": {
+				"81": "Costa Rica"
+			},
 			"name": "Colón (Costa Rican)",
 			"symbol": "Colones"
 		},
 		{
 			"code": "QAR",
 			"eurorate": "1.0",
+			"leagues": {
+				"141": "Qatar"
+			},
 			"name": "QAR (Qatari Riyal)",
 			"symbol": "QAR"
 		},
 		{
 			"code": "MVR",
 			"eurorate": "0.05",
+			"leagues": {
+				"144": "Maldives"
+			},
 			"name": "Rufiyaa (Maldivian)",
 			"symbol": "rufiyaa"
 		},
 		{
 			"code": "GTQ",
 			"eurorate": "1.0",
+			"leagues": {
+				"107": "Guatemala"
+			},
 			"name": "Quetzal (Guatemalan)",
 			"symbol": "Q"
 		},
 		{
 			"code": "KRW",
 			"eurorate": "0.001",
+			"leagues": {
+				"30": "South Korea"
+			},
 			"name": "Won (South Korean)",
 			"symbol": "Won"
 		},
 		{
 			"code": "AMD",
 			"eurorate": "0.002",
+			"leagues": {
+				"122": "Armenia"
+			},
 			"name": "Dram (Armenian)",
 			"symbol": "dram"
 		},
 		{
 			"code": "HNL",
 			"eurorate": "0.5",
+			"leagues": {
+				"99": "Honduras"
+			},
 			"name": "HNL (Honduran lempira)",
 			"symbol": "HNL"
 		},
 		{
 			"code": "KHD",
 			"eurorate": "0.1",
+			"leagues": {
+				"59": "Hong Kong"
+			},
 			"name": "HKD (Hong Kong dollar)",
 			"symbol": "HKD"
 		},
 		{
 			"code": "HRK",
 			"eurorate": "0.1",
+			"leagues": {
+				"58": "Croatia"
+			},
 			"name": "Kuna (Croatian)",
 			"symbol": "kuna"
 		},
 		{
 			"code": "INR",
 			"eurorate": "0.025",
+			"leagues": {
+				"20": "India"
+			},
 			"name": "Ruppe (Indian)",
 			"symbol": "Rupees"
 		},
 		{
 			"code": "IDR",
 			"eurorate": "0.0001",
+			"leagues": {
+				"54": "Indonesia"
+			},
 			"name": "Rp (Indonesian rupiah)",
 			"symbol": "Rp"
 		},
 		{
 			"code": "IRR",
 			"eurorate": "0.0001",
+			"leagues": {
+				"85": "Iran"
+			},
 			"name": "Rial (Iranian)",
 			"symbol": "Rial"
 		},
 		{
 			"code": "ISK",
 			"eurorate": "0.01",
+			"leagues": {
+				"38": "Iceland"
+			},
 			"name": "Ikr (Icelandic króna)",
 			"symbol": "Ikr"
 		},
 		{
 			"code": "JMD",
 			"eurorate": "0.05",
+			"leagues": {
+				"94": "Jamaica"
+			},
 			"name": "JMD (Jamaican dollar)",
 			"symbol": "JMD"
 		},
 		{
 			"code": "KZT",
 			"eurorate": "0.01",
+			"leagues": {
+				"112": "Kazakhstan"
+			},
 			"name": "Tenge (Kazakhstan)",
 			"symbol": "tenge"
 		},
 		{
 			"code": "KES",
 			"eurorate": "0.05",
+			"leagues": {
+				"95": "Kenya"
+			},
 			"name": "KES (Kenyan shilling)",
 			"symbol": "KES"
 		},
 		{
 			"code": "KGS",
 			"eurorate": "0.02",
+			"leagues": {
+				"102": "Kyrgyzstan"
+			},
 			"name": "Som (Kyrgyzstani)",
 			"symbol": "som"
 		},
 		{
 			"code": "LBP",
 			"eurorate": "0.0005",
+			"leagues": {
+				"120": "Lebanon"
+			},
 			"name": "LBP (Lebanese pound)",
 			"symbol": "LBP"
 		},
 		{
 			"code": "HUF",
 			"eurorate": "5.0",
+			"leagues": {
+				"51": "Hungary"
+			},
 			"name": "eFt (Hungarian forint)",
 			"symbol": "eFt"
 		},
 		{
 			"code": "MKD",
 			"eurorate": "0.05",
+			"leagues": {
+				"97": "FYR Macedonia"
+			},
 			"name": "MKD (Macedonian denar)",
 			"symbol": "MKD"
 		},
 		{
 			"code": "MYR",
 			"eurorate": "0.25",
+			"leagues": {
+				"45": "Malaysia"
+			},
 			"name": "MYR (Malaysian ringgit)",
 			"symbol": "MYR"
 		},
 		{
 			"code": "EGP",
 			"eurorate": "0.25",
+			"leagues": {
+				"33": "Egypt"
+			},
 			"name": "E£ (Egyptian pound)",
 			"symbol": "E£"
 		},
 		{
 			"code": "MZM",
 			"eurorate": "0.04",
+			"leagues": {
+				"135": "Mozambique"
+			},
 			"name": "Metical (Moçambique)",
 			"symbol": "metical"
 		},
 		{
 			"code": "MDL",
 			"eurorate": "0.05",
+			"leagues": {
+				"103": "Moldova"
+			},
 			"name": "Lei (Moldavian)",
 			"symbol": "lei"
 		},
 		{
 			"code": "MNT",
 			"eurorate": "0.0005",
+			"leagues": {
+				"119": "Mongolia"
+			},
 			"name": "Tugrug (Mongolian)",
 			"symbol": "tugrik"
 		},
 		{
 			"code": "BND",
 			"eurorate": "0.5",
+			"leagues": {
+				"136": "Brunei"
+			},
 			"name": "BND (Bruneian dollar)",
 			"symbol": "BND"
 		},
 		{
 			"code": "NIO",
 			"eurorate": "0.05",
+			"leagues": {
+				"111": "Nicaragua"
+			},
 			"name": "NIO (Nicaraguan córdoba)",
 			"symbol": "NIO"
 		},
 		{
 			"code": "NGN",
 			"eurorate": "0.01",
+			"leagues": {
+				"75": "Nigeria"
+			},
 			"name": "kNaira (Nigerian)",
 			"symbol": "kNaira"
 		},
 		{
 			"code": "JPY",
 			"eurorate": "0.01",
+			"leagues": {
+				"22": "Japan"
+			},
 			"name": "Yen (Japanese)",
 			"symbol": "Yen"
 		},
 		{
 			"code": "UZS",
 			"eurorate": "0.001",
+			"leagues": {
+				"145": "Uzbekistan"
+			},
 			"name": "Som (Uzbekistani)",
 			"symbol": "som"
 		},
 		{
 			"code": "AUD",
 			"eurorate": "0.5",
+			"leagues": {
+				"15": "Oceania"
+			},
 			"name": "AU$ (Australian dollar)",
 			"symbol": "AU$"
 		},
 		{
 			"code": "OMR",
 			"eurorate": "2.0",
+			"leagues": {
+				"134": "Oman"
+			},
 			"name": "Rial (Omani)",
 			"symbol": "rial"
 		},
 		{
 			"code": "PKR",
 			"eurorate": "0.02",
+			"leagues": {
+				"71": "Pakistan"
+			},
 			"name": "Rupee (Pakistani)",
 			"symbol": "rupee"
 		},
 		{
 			"code": "PAB",
 			"eurorate": "1.0",
+			"leagues": {
+				"96": "Panama"
+			},
 			"name": "฿ (Panamanian balboa)",
 			"symbol": "฿"
 		},
 		{
 			"code": "PYG",
 			"eurorate": "0.0002",
+			"leagues": {
+				"72": "Paraguay"
+			},
 			"name": "PYG (Paraguayan guaraní)",
 			"symbol": "PYG"
 		},
 		{
 			"code": "PHP",
 			"eurorate": "0.025",
+			"leagues": {
+				"55": "Philippines"
+			},
 			"name": "Pesos (Philippinian)",
 			"symbol": "Pesos"
 		},
 		{
 			"code": "PLN",
 			"eurorate": "0.25",
+			"leagues": {
+				"24": "Poland"
+			},
 			"name": "Zł (Polish złoty)",
 			"symbol": "zł"
 		},
 		{
 			"code": "KHR",
 			"eurorate": "0.00025",
+			"leagues": {
+				"138": "Cambodia"
+			},
 			"name": "Riel (Cambodian)",
 			"symbol": "Riel"
 		},
 		{
 			"code": "THB",
 			"eurorate": "0.025",
+			"leagues": {
+				"31": "Thailand"
+			},
 			"name": "Baht (Thai)",
 			"symbol": "Baht"
 		},
 		{
 			"code": "GHS",
 			"eurorate": "1.0",
+			"leagues": {
+				"137": "Ghana"
+			},
 			"name": "Cedis (Ghanese)",
 			"symbol": "cedis"
 		},
 		{
 			"code": "UGX",
 			"eurorate": "0.0005",
+			"leagues": {
+				"143": "Uganda"
+			},
 			"name": "Shilling (Ugandan)",
 			"symbol": "shill"
 		},
 		{
 			"code": "DOP",
 			"eurorate": "0.05",
+			"leagues": {
+				"88": "Dominican Republic"
+			},
 			"name": "Peso (Dominican)",
 			"symbol": "pesos"
 		},
 		{
 			"code": "RON",
 			"eurorate": "0.05",
+			"leagues": {
+				"37": "Romania"
+			},
 			"name": "Lei (Romanian)",
 			"symbol": "Lei"
 		},
 		{
 			"code": "RUB",
 			"eurorate": "0.025",
+			"leagues": {
+				"35": "Russia"
+			},
 			"name": "Roubel (Russian ruble)",
 			"symbol": "Roubel"
 		},
 		{
 			"code": "GEL",
 			"eurorate": "0.5",
+			"leagues": {
+				"104": "Georgia"
+			},
 			"name": "Lari (Georgian)",
 			"symbol": "Lari"
 		},
 		{
 			"code": "SAR",
 			"eurorate": "0.25",
+			"leagues": {
+				"79": "Saudi Arabia"
+			},
 			"name": "SAR (Saudi riyal)",
 			"symbol": "SAR"
 		},
 		{
 			"code": "ALL",
 			"eurorate": "0.005",
+			"leagues": {
+				"98": "Albania"
+			},
 			"name": "Lek (Albanian)",
 			"symbol": "lek"
 		},
 		{
 			"code": "SGD",
 			"eurorate": "0.5",
+			"leagues": {
+				"47": "Singapore"
+			},
 			"name": "SG$ (Singapore dollar)",
 			"symbol": "SG$"
 		},
 		{
 			"code": "ZAR",
 			"eurorate": "0.125",
+			"leagues": {
+				"27": "South Africa"
+			},
 			"name": "Rand (South Africa)",
 			"symbol": "Rand"
 		},
 		{
 			"code": "RSD",
 			"eurorate": "0.1",
+			"leagues": {
+				"57": "Serbia"
+			},
 			"name": "Dinar (Serbian)",
 			"symbol": "dinar"
 		},
 		{
 			"code": "SRD",
 			"eurorate": "0.5",
+			"leagues": {
+				"113": "Suriname"
+			},
 			"name": "SRD (Surinami dollar)",
 			"symbol": "SRD"
 		},
 		{
 			"code": "SEK",
 			"eurorate": "0.1",
+			"leagues": {
+				"1": "Sweden"
+			},
 			"name": "Kr (Swedish krona)",
 			"symbol": "kr"
 		},
 		{
 			"code": "TND",
 			"eurorate": "0.8",
+			"leagues": {
+				"80": "Tunisia"
+			},
 			"name": "Dinar (Tunisian)",
 			"symbol": "Dinars"
 		},
 		{
 			"code": "TTD",
 			"eurorate": "0.1",
+			"leagues": {
+				"110": "Trinidad & Tobago"
+			},
 			"name": "TTD (Trinidad and Tobago dollar)",
 			"symbol": "TTD"
 		},
 		{
 			"code": "TRY",
 			"eurorate": "1.0",
+			"leagues": {
+				"32": "Turkey"
+			},
 			"name": "TL (Turkish new lira)",
 			"symbol": "TL"
 		},
 		{
 			"code": "UAH",
 			"eurorate": "0.2",
+			"leagues": {
+				"68": "Ukraine"
+			},
 			"name": "Hryvnia (Ukrainian)",
 			"symbol": "hryvnia"
 		},
 		{
 			"code": "AED",
 			"eurorate": "0.4",
+			"leagues": {
+				"83": "United Arab Emirates"
+			},
 			"name": "Dirham (United Arab Emirates)",
 			"symbol": "Dirham"
 		},
 		{
 			"code": "VEB",
 			"eurorate": "1.0",
+			"leagues": {
+				"29": "Venezuela"
+			},
 			"name": "Bs (Venezuelan bolívar)",
 			"symbol": "Bs"
 		},
 		{
 			"code": "VND",
 			"eurorate": "0.1",
+			"leagues": {
+				"70": "Vietnam"
+			},
 			"name": "Đồng (Vietnamese)",
 			"symbol": "đồng"
 		},
