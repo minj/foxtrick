@@ -157,6 +157,28 @@ Foxtrick.L10n = {
 	getString: function(str, num) {},
 
 	/**
+	 * Generate a link from a l10n str with a link tag and append it to parent
+	 * @param {string}  str    locale key
+	 * @param {element} parent
+	 * @param {string}  url
+	 */
+	appendLink: function(str, parent, url) {
+		var doc = parent.ownerDocument;
+		var text = this.getString(str);
+		var parts = text.split(/<\/?a>/ig);
+		parent.appendChild(doc.createTextNode(parts[0]));
+		if (parts.length > 1) {
+			var link = doc.createElement('a');
+			link.href = url;
+			link.target = '_blank';
+			link.textContent = parts[1];
+			parent.appendChild(link);
+		}
+		if (parts.length > 2)
+			parent.appendChild(doc.createTextNode(parts[2]));
+	},
+
+	/**
 	 * Get the value of a certain property from htlang.json.
 	 * The query object {category, filter, value, property}
 	 * specifies search parameters:
