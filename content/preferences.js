@@ -1475,7 +1475,11 @@ function initTextAndValues() {
 			var code = Foxtrick.Prefs.getString('Currency.Code.' + id);
 			var rate = Foxtrick.util.currency.getRateByCode(code);
 			var row = document.createElement('tr');
-			row.appendChild(document.createElement('td')).textContent = id;
+			var tdId = row.appendChild(document.createElement('td'));
+			var aId = tdId.appendChild(document.createElement('a'));
+			aId.href = Foxtrick.goToUrl('/Club/?TeamID=' + id);
+			aId.target = '_blank';
+			aId.textContent = id;
 			row.appendChild(document.createElement('td')).textContent = code;
 			row.appendChild(document.createElement('td')).textContent = rate || '-';
 			$('#pref-setup-currency').append($(row));
