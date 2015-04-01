@@ -1,575 +1,575 @@
 {
 	"hattrickcurrencies": [
 		{
-			"eurorate": "1.0",
-			"symbol": "€",
 			"code": "EUR",
-			"name": "€ (Euro)"
-		},
-		{
-			"eurorate": "1.5",
-			"symbol": "£",
-			"code": "GBP",
-			"name": "£ (British pound sterling)"
-		},
-		{
-			"eurorate": "0.002",
-			"symbol": "XOF",
-			"code": "XOF",
-			"name": "XOF (West African CFA franc)"
-		},
-		{
-			"eurorate": "0.2",
-			"symbol": "NIS",
-			"code": "NIS",
-			"name": "NIS (Israeli new sheqel)"
-		},
-		{
-			"eurorate": "0.5",
-			"symbol": "CHF",
-			"code": "CHF",
-			"name": "CHF (Swiss franc)"
-		},
-		{
 			"eurorate": "1.0",
-			"symbol": "US$",
-			"code": "USD",
-			"name": "US$ (US dollar)"
+			"name": "€ (Euro)",
+			"symbol": "€"
 		},
 		{
-			"eurorate": "1",
-			"symbol": "$",
-			"code": "DOL",
-			"name": "$ (Generic dollar)",
-			"comment": "Benin, Ecuador, Syria, Taiwan, Tanzania"
+			"code": "GBP",
+			"eurorate": "1.5",
+			"name": "£ (British pound sterling)",
+			"symbol": "£"
 		},
 		{
-			"eurorate": "1",
-			"symbol": "$",
-			"code": "CUP",
-			"name": "$ (Cuban peso)"
-		},
-		{
-			"eurorate": "0.1",
-			"symbol": "Pesos",
-			"code": "MXN",
-			"name": "Peso (Mexican)"
-		},
-		{
-			"eurorate": "0.1",
-			"symbol": "Pesos",
-			"code": "UYU",
-			"name": "Peso (Uruguayan)"
-		},
-		{
-			"eurorate": "0.1",
-			"symbol": "Kroner",
-			"code": "DKK",
-			"name": "Krone (Danish)"
-		},
-		{
-			"eurorate": "0.1",
-			"symbol": "Kroner",
-			"code": "NOK",
-			"name": "Krone (Norwegian)"
-		},
-		{
-			"eurorate": "0.5",
-			"symbol": "dinar",
-			"code": "IQD",
-			"name": "Dinar (Iraqi)"
-		},
-		{
-			"eurorate": "0.01",
-			"symbol": "DZD",
-			"code": "DZD",
-			"name": "DZD (Algerian dinar)"
-		},
-		{
-			"eurorate": "2.5",
-			"symbol": "dinar",
-			"code": "KWD",
-			"name": "Dinar (Kuwaiti)"
-		},
-		{
-			"eurorate": "0.1",
-			"symbol": "dirhams",
-			"code": "MAD",
-			"name": "Dirham (Moroccan)"
-		},
-		{
-			"eurorate": "0.5",
-			"symbol": "JOD",
-			"code": "JOD",
-			"name": "JOD (Jordanian dinar)"
-		},
-		{
-			"eurorate": "0.01",
-			"symbol": "rial",
-			"code": "YER",
-			"name": "Rial (Yemeni)"
-		},
-		{
-			"eurorate": "0.01",
-			"symbol": "kwanza",
-			"code": "AOA",
-			"name": "Kwanza (Angolan)"
-		},
-		{
-			"eurorate": "1",
-			"symbol": "Pesos",
-			"code": "ARS",
-			"name": "Peso (Argentinian)"
-		},
-		{
-			"eurorate": "1",
-			"symbol": "AZN",
-			"code": "AZN",
-			"name": "AZN (Azerbaijani manat)"
-		},
-		{
-			"eurorate": "2",
-			"symbol": "BHD",
-			"code": "BHD",
-			"name": "BHD (Bahraini dinar)"
-		},
-		{
-			"eurorate": "0.02",
-			"symbol": "taka",
-			"code": "BDT",
-			"name": "Taka (Bangladeshi)"
-		},
-		{
-			"eurorate": "0.5",
-			"symbol": "BBD",
-			"code": "BBD",
-			"name": "BBD (Barbados dollar)"
-		},
-		{
-			"eurorate": "0.0005",
-			"symbol": "BYR",
-			"code": "BYR",
-			"name": "Ruble (Belarusian)"
-		},
-		{
-			"eurorate": "0.1",
-			"symbol": "Bs",
-			"code": "BOB",
-			"name": "Bs (Bolivian boliviano)"
-		},
-		{
-			"eurorate": "0.5",
-			"symbol": "KM",
-			"code": "BAM",
-			"name": "KM (Bosnia and Herzegovina Convertible Mark)"
-		},
-		{
-			"eurorate": "0.5",
-			"symbol": "reais",
-			"code": "BRL",
-			"name": "Real (Brazilian)"
-		},
-		{
-			"eurorate": "0.5",
-			"symbol": "lv",
-			"code": "BGN",
-			"name": "Lv (Bulgarian lev)"
-		},
-		{
-			"eurorate": "0.01",
-			"symbol": "Esc.",
-			"code": "CVE",
-			"name": "Escudo (Cape Verdean)"
-		},
-		{
+			"code": "XOF",
 			"eurorate": "0.002",
-			"symbol": "XAF",
-			"code": "XAF",
-			"name": "XAF (Central African CFA franc)"
+			"name": "XOF (West African CFA franc)",
+			"symbol": "XOF"
 		},
 		{
-			"eurorate": "0.5",
-			"symbol": "C$",
-			"code": "CAD",
-			"name": "C$ (Canadian dollar)"
-		},
-		{
-			"eurorate": "0.025",
-			"symbol": "Kč",
-			"code": "CZK",
-			"name": "Kč (Česká koruna)"
-		},
-		{
-			"eurorate": "0.005",
-			"symbol": "Pesos",
-			"code": "CLP",
-			"name": "Peso (Chilean)"
-		},
-		{
-			"eurorate": "0.1",
-			"symbol": "Yuan",
-			"code": "CNY",
-			"name": "Yuan (Chinese)"
-		},
-		{
-			"eurorate": "0.02",
-			"symbol": "Colones",
-			"code": "CRC",
-			"name": "Colón (Costa Rican)"
-		},
-		{
-			"eurorate": "1",
-			"symbol": "QAR",
-			"code": "QAR",
-			"name": "QAR (Qatari Riyal)"
-		},
-		{
-			"eurorate": "0.05",
-			"symbol": "rufiyaa",
-			"code": "MVR",
-			"name": "Rufiyaa (Maldivian)"
-		},
-		{
-			"eurorate": "1",
-			"symbol": "Q",
-			"code": "GTQ",
-			"name": "Quetzal (Guatemalan)"
-		},
-		{
-			"eurorate": "0.001",
-			"symbol": "Won",
-			"code": "KRW",
-			"name": "Won (South Korean)"
-		},
-		{
-			"eurorate": "0.002",
-			"symbol": "dram",
-			"code": "AMD",
-			"name": "Dram (Armenian)"
-		},
-		{
-			"eurorate": "0.5",
-			"symbol": "HNL",
-			"code": "HNL",
-			"name": "HNL (Honduran lempira)"
-		},
-		{
-			"eurorate": "0.1",
-			"symbol": "HKD",
-			"code": "KHD",
-			"name": "HKD (Hong Kong dollar)"
-		},
-		{
-			"eurorate": "0.1",
-			"symbol": "Kuna",
-			"code": "HRK",
-			"name": "Kuna (Croatian)"
-		},
-		{
-			"eurorate": "0.025",
-			"symbol": "Rupees",
-			"code": "INR",
-			"name": "Ruppe (Indian)"
-		},
-		{
-			"eurorate": "0.0001",
-			"symbol": "Rp",
-			"code": "IDR",
-			"name": "Rp (Indonesian rupiah)"
-		},
-		{
-			"eurorate": "0.0001",
-			"symbol": "Rial",
-			"code": "IRR",
-			"name": "Rial (Iranian)"
-		},
-		{
-			"eurorate": "0.01",
-			"symbol": "Ikr",
-			"code": "ISK",
-			"name": "Ikr (Icelandic króna)"
-		},
-		{
-			"eurorate": "0.05",
-			"symbol": "JMD",
-			"code": "JMD",
-			"name": "JMD (Jamaican dollar)"
-		},
-		{
-			"eurorate": "0.01",
-			"symbol": "tenge",
-			"code": "KZT",
-			"name": "Tenge (Kazakhstan)"
-		},
-		{
-			"eurorate": "0.05",
-			"symbol": "KES",
-			"code": "KES",
-			"name": "KES (Kenyan shilling)"
-		},
-		{
-			"eurorate": "0.02",
-			"symbol": "som",
-			"code": "KGS",
-			"name": "Som (Kyrgyzstani)"
-		},
-		{
-			"eurorate": "0.25",
-			"symbol": "Lt",
-			"code": "LTL",
-			"name": "Lt (Lithuanian litas)"
-		},
-		{
-			"eurorate": "0.0005",
-			"symbol": "LBP",
-			"code": "LBP",
-			"name": "LBP (Lebanese pound)"
-		},
-		{
-			"eurorate": "5",
-			"symbol": "eFt",
-			"code": "HUF",
-			"name": "eFt (Hungarian forint)"
-		},
-		{
-			"eurorate": "0.05",
-			"symbol": "MKD",
-			"code": "MKD",
-			"name": "MKD (Macedonian denar)"
-		},
-		{
-			"eurorate": "0.25",
-			"symbol": "MYR",
-			"code": "MYR",
-			"name": "MYR (Malaysian ringgit)"
-		},
-		{
-			"eurorate": "0.25",
-			"symbol": "E£",
-			"code": "EGP",
-			"name": "E£ (Egyptian pound)"
-		},
-		{
-			"eurorate": "0.04",
-			"symbol": "metical",
-			"code": "MZM",
-			"name": "Metical (Moçambique)"
-		},
-		{
-			"eurorate": "0.05",
-			"symbol": "lei",
-			"code": "MDL",
-			"name": "Lei (Moldavian)"
-		},
-		{
-			"eurorate": "0.0005",
-			"symbol": "tugrik",
-			"code": "MNT",
-			"name": "Tugrug (Mongolian)"
-		},
-		{
-			"eurorate": "0.5",
-			"symbol": "BND",
-			"code": "BND",
-			"name": "BND (Bruneian dollar)"
-		},
-		{
-			"eurorate": "0.05",
-			"symbol": "NIO",
-			"code": "NIO",
-			"name": "NIO (Nicaraguan córdoba)"
-		},
-		{
-			"eurorate": "0.01",
-			"symbol": "kNaira",
-			"code": "NGN",
-			"name": "kNaira (Nigerian)"
-		},
-		{
-			"eurorate": "0.01",
-			"symbol": "Yen",
-			"code": "JPY",
-			"name": "Yen (Japanese)"
-		},
-		{
-			"eurorate": "0.001",
-			"symbol": "som",
-			"code": "UZS",
-			"name": "Som (Uzbekistani)"
-		},
-		{
-			"eurorate": "0.5",
-			"symbol": "AU$",
-			"code": "AUD",
-			"name": "AU$ (Australian dollar)"
-		},
-		{
-			"eurorate": "2",
-			"symbol": "rial",
-			"code": "OMR",
-			"name": "Rial (Omani)"
-		},
-		{
-			"eurorate": "0.02",
-			"symbol": "rupee",
-			"code": "PKR",
-			"name": "Rupee (Pakistani)"
-		},
-		{
-			"eurorate": "1",
-			"symbol": "฿",
-			"code": "PAB",
-			"name": "฿ (Panamanian balboa)"
-		},
-		{
-			"eurorate": "0.0002",
-			"symbol": "PYG",
-			"code": "PYG",
-			"name": "PYG (Paraguayan guaraní)"
-		},
-		{
-			"eurorate": "0.025",
-			"symbol": "Pesos",
-			"code": "PHP",
-			"name": "Pesos (Philippinian)"
-		},
-		{
-			"eurorate": "0.25",
-			"symbol": "zł",
-			"code": "PLN",
-			"name": "Zł (Polish złoty)"
-		},
-		{
-			"eurorate": "0.00025",
-			"symbol": "Riel",
-			"code": "KHR",
-			"name": "Riel (Cambodian)"
-		},
-		{
-			"eurorate": "0.025",
-			"symbol": "Baht",
-			"code": "THB",
-			"name": "Baht (Thai)"
-		},
-		{
-			"eurorate": "1",
-			"symbol": "cedis",
-			"code": "GHS",
-			"name": "Cedis (Ghanese)"
-		},
-		{
-			"eurorate": "0.0005",
-			"symbol": "shill",
-			"code": "UGX",
-			"name": "Shilling (Ugandan)"
-		},
-		{
-			"eurorate": "0.05",
-			"symbol": "pesos",
-			"code": "DOP",
-			"name": "Peso (Dominican)"
-		},
-		{
-			"eurorate": "0.05",
-			"symbol": "Lei",
-			"code": "RON",
-			"name": "Lei (Romanian)"
-		},
-		{
-			"eurorate": "0.025",
-			"symbol": "Roubel",
-			"code": "RUB",
-			"name": "Roubel (Russian ruble)"
-		},
-		{
-			"eurorate": "0.5",
-			"symbol": "Lari",
-			"code": "GEL",
-			"name": "Lari (Georgian)"
-		},
-		{
-			"eurorate": "0.25",
-			"symbol": "SAR",
-			"code": "SAR",
-			"name": "SAR (Saudi riyal)"
-		},
-		{
-			"eurorate": "0.005",
-			"symbol": "lek",
-			"code": "ALL",
-			"name": "Lek (Albanian)"
-		},
-		{
-			"eurorate": "0.5",
-			"symbol": "SG$",
-			"code": "SGD",
-			"name": "SG$ (Singapore dollar)"
-		},
-		{
-			"eurorate": "0.125",
-			"symbol": "Rand",
-			"code": "ZAR",
-			"name": "Rand (South Africa)"
-		},
-		{
-			"eurorate": "0.1",
-			"symbol": "dinar",
-			"code": "RSD",
-			"name": "Dinar (Serbian)"
-		},
-		{
-			"eurorate": "0.5",
-			"symbol": "SRD",
-			"code": "SRD",
-			"name": "SRD (Surinami dollar)"
-		},
-		{
-			"eurorate": "0.1",
-			"symbol": "kr",
-			"code": "SEK",
-			"name": "Kr (Swedish krona)"
-		},
-		{
-			"eurorate": "0.8",
-			"symbol": "Dinars",
-			"code": "TND",
-			"name": "Dinar (Tunisian)"
-		},
-		{
-			"eurorate": "0.1",
-			"symbol": "TTD",
-			"code": "TTD",
-			"name": "TTD (Trinidad and Tobago dollar)"
-		},
-		{
-			"eurorate": "1",
-			"symbol": "TL",
-			"code": "TRY",
-			"name": "TL (Turkish new lira)"
-		},
-		{
+			"code": "NIS",
 			"eurorate": "0.2",
-			"symbol": "hryvnia",
-			"code": "UAH",
-			"name": "Hryvnia (Ukrainian)"
+			"name": "NIS (Israeli new sheqel)",
+			"symbol": "NIS"
 		},
 		{
-			"eurorate": "0.4",
-			"symbol": "Dirham",
-			"code": "AED",
-			"name": "Dirham (United Arab Emirates)"
+			"code": "CHF",
+			"eurorate": "0.5",
+			"name": "CHF (Swiss franc)",
+			"symbol": "CHF"
 		},
 		{
+			"code": "USD",
+			"eurorate": "1.0",
+			"name": "US$ (US dollar)",
+			"symbol": "US$"
+		},
+		{
+			"code": "DOL",
+			"comment": "Benin, Ecuador, Syria, Taiwan, Tanzania",
 			"eurorate": "1",
-			"symbol": "Bs",
-			"code": "VEB",
-			"name": "Bs (Venezuelan bolívar)"
+			"name": "$ (Generic dollar)",
+			"symbol": "$"
 		},
 		{
+			"code": "CUP",
+			"eurorate": "1",
+			"name": "$ (Cuban peso)",
+			"symbol": "$"
+		},
+		{
+			"code": "MXN",
 			"eurorate": "0.1",
-			"symbol": "đồng",
+			"name": "Peso (Mexican)",
+			"symbol": "Pesos"
+		},
+		{
+			"code": "UYU",
+			"eurorate": "0.1",
+			"name": "Peso (Uruguayan)",
+			"symbol": "Pesos"
+		},
+		{
+			"code": "DKK",
+			"eurorate": "0.1",
+			"name": "Krone (Danish)",
+			"symbol": "Kroner"
+		},
+		{
+			"code": "NOK",
+			"eurorate": "0.1",
+			"name": "Krone (Norwegian)",
+			"symbol": "Kroner"
+		},
+		{
+			"code": "IQD",
+			"eurorate": "0.5",
+			"name": "Dinar (Iraqi)",
+			"symbol": "dinar"
+		},
+		{
+			"code": "DZD",
+			"eurorate": "0.01",
+			"name": "DZD (Algerian dinar)",
+			"symbol": "DZD"
+		},
+		{
+			"code": "KWD",
+			"eurorate": "2.5",
+			"name": "Dinar (Kuwaiti)",
+			"symbol": "dinar"
+		},
+		{
+			"code": "MAD",
+			"eurorate": "0.1",
+			"name": "Dirham (Moroccan)",
+			"symbol": "dirhams"
+		},
+		{
+			"code": "JOD",
+			"eurorate": "0.5",
+			"name": "JOD (Jordanian dinar)",
+			"symbol": "JOD"
+		},
+		{
+			"code": "YER",
+			"eurorate": "0.01",
+			"name": "Rial (Yemeni)",
+			"symbol": "rial"
+		},
+		{
+			"code": "AOA",
+			"eurorate": "0.01",
+			"name": "Kwanza (Angolan)",
+			"symbol": "kwanza"
+		},
+		{
+			"code": "ARS",
+			"eurorate": "1",
+			"name": "Peso (Argentinian)",
+			"symbol": "Pesos"
+		},
+		{
+			"code": "AZN",
+			"eurorate": "1",
+			"name": "AZN (Azerbaijani manat)",
+			"symbol": "AZN"
+		},
+		{
+			"code": "BHD",
+			"eurorate": "2",
+			"name": "BHD (Bahraini dinar)",
+			"symbol": "BHD"
+		},
+		{
+			"code": "BDT",
+			"eurorate": "0.02",
+			"name": "Taka (Bangladeshi)",
+			"symbol": "taka"
+		},
+		{
+			"code": "BBD",
+			"eurorate": "0.5",
+			"name": "BBD (Barbados dollar)",
+			"symbol": "BBD"
+		},
+		{
+			"code": "BYR",
+			"eurorate": "0.0005",
+			"name": "Ruble (Belarusian)",
+			"symbol": "BYR"
+		},
+		{
+			"code": "BOB",
+			"eurorate": "0.1",
+			"name": "Bs (Bolivian boliviano)",
+			"symbol": "Bs"
+		},
+		{
+			"code": "BAM",
+			"eurorate": "0.5",
+			"name": "KM (Bosnia and Herzegovina Convertible Mark)",
+			"symbol": "KM"
+		},
+		{
+			"code": "BRL",
+			"eurorate": "0.5",
+			"name": "Real (Brazilian)",
+			"symbol": "reais"
+		},
+		{
+			"code": "BGN",
+			"eurorate": "0.5",
+			"name": "Lv (Bulgarian lev)",
+			"symbol": "lv"
+		},
+		{
+			"code": "CVE",
+			"eurorate": "0.01",
+			"name": "Escudo (Cape Verdean)",
+			"symbol": "Esc."
+		},
+		{
+			"code": "XAF",
+			"eurorate": "0.002",
+			"name": "XAF (Central African CFA franc)",
+			"symbol": "XAF"
+		},
+		{
+			"code": "CAD",
+			"eurorate": "0.5",
+			"name": "C$ (Canadian dollar)",
+			"symbol": "C$"
+		},
+		{
+			"code": "CZK",
+			"eurorate": "0.025",
+			"name": "Kč (Česká koruna)",
+			"symbol": "Kč"
+		},
+		{
+			"code": "CLP",
+			"eurorate": "0.005",
+			"name": "Peso (Chilean)",
+			"symbol": "Pesos"
+		},
+		{
+			"code": "CNY",
+			"eurorate": "0.1",
+			"name": "Yuan (Chinese)",
+			"symbol": "Yuan"
+		},
+		{
+			"code": "CRC",
+			"eurorate": "0.02",
+			"name": "Colón (Costa Rican)",
+			"symbol": "Colones"
+		},
+		{
+			"code": "QAR",
+			"eurorate": "1",
+			"name": "QAR (Qatari Riyal)",
+			"symbol": "QAR"
+		},
+		{
+			"code": "MVR",
+			"eurorate": "0.05",
+			"name": "Rufiyaa (Maldivian)",
+			"symbol": "rufiyaa"
+		},
+		{
+			"code": "GTQ",
+			"eurorate": "1",
+			"name": "Quetzal (Guatemalan)",
+			"symbol": "Q"
+		},
+		{
+			"code": "KRW",
+			"eurorate": "0.001",
+			"name": "Won (South Korean)",
+			"symbol": "Won"
+		},
+		{
+			"code": "AMD",
+			"eurorate": "0.002",
+			"name": "Dram (Armenian)",
+			"symbol": "dram"
+		},
+		{
+			"code": "HNL",
+			"eurorate": "0.5",
+			"name": "HNL (Honduran lempira)",
+			"symbol": "HNL"
+		},
+		{
+			"code": "KHD",
+			"eurorate": "0.1",
+			"name": "HKD (Hong Kong dollar)",
+			"symbol": "HKD"
+		},
+		{
+			"code": "HRK",
+			"eurorate": "0.1",
+			"name": "Kuna (Croatian)",
+			"symbol": "Kuna"
+		},
+		{
+			"code": "INR",
+			"eurorate": "0.025",
+			"name": "Ruppe (Indian)",
+			"symbol": "Rupees"
+		},
+		{
+			"code": "IDR",
+			"eurorate": "0.0001",
+			"name": "Rp (Indonesian rupiah)",
+			"symbol": "Rp"
+		},
+		{
+			"code": "IRR",
+			"eurorate": "0.0001",
+			"name": "Rial (Iranian)",
+			"symbol": "Rial"
+		},
+		{
+			"code": "ISK",
+			"eurorate": "0.01",
+			"name": "Ikr (Icelandic króna)",
+			"symbol": "Ikr"
+		},
+		{
+			"code": "JMD",
+			"eurorate": "0.05",
+			"name": "JMD (Jamaican dollar)",
+			"symbol": "JMD"
+		},
+		{
+			"code": "KZT",
+			"eurorate": "0.01",
+			"name": "Tenge (Kazakhstan)",
+			"symbol": "tenge"
+		},
+		{
+			"code": "KES",
+			"eurorate": "0.05",
+			"name": "KES (Kenyan shilling)",
+			"symbol": "KES"
+		},
+		{
+			"code": "KGS",
+			"eurorate": "0.02",
+			"name": "Som (Kyrgyzstani)",
+			"symbol": "som"
+		},
+		{
+			"code": "LTL",
+			"eurorate": "0.25",
+			"name": "Lt (Lithuanian litas)",
+			"symbol": "Lt"
+		},
+		{
+			"code": "LBP",
+			"eurorate": "0.0005",
+			"name": "LBP (Lebanese pound)",
+			"symbol": "LBP"
+		},
+		{
+			"code": "HUF",
+			"eurorate": "5",
+			"name": "eFt (Hungarian forint)",
+			"symbol": "eFt"
+		},
+		{
+			"code": "MKD",
+			"eurorate": "0.05",
+			"name": "MKD (Macedonian denar)",
+			"symbol": "MKD"
+		},
+		{
+			"code": "MYR",
+			"eurorate": "0.25",
+			"name": "MYR (Malaysian ringgit)",
+			"symbol": "MYR"
+		},
+		{
+			"code": "EGP",
+			"eurorate": "0.25",
+			"name": "E£ (Egyptian pound)",
+			"symbol": "E£"
+		},
+		{
+			"code": "MZM",
+			"eurorate": "0.04",
+			"name": "Metical (Moçambique)",
+			"symbol": "metical"
+		},
+		{
+			"code": "MDL",
+			"eurorate": "0.05",
+			"name": "Lei (Moldavian)",
+			"symbol": "lei"
+		},
+		{
+			"code": "MNT",
+			"eurorate": "0.0005",
+			"name": "Tugrug (Mongolian)",
+			"symbol": "tugrik"
+		},
+		{
+			"code": "BND",
+			"eurorate": "0.5",
+			"name": "BND (Bruneian dollar)",
+			"symbol": "BND"
+		},
+		{
+			"code": "NIO",
+			"eurorate": "0.05",
+			"name": "NIO (Nicaraguan córdoba)",
+			"symbol": "NIO"
+		},
+		{
+			"code": "NGN",
+			"eurorate": "0.01",
+			"name": "kNaira (Nigerian)",
+			"symbol": "kNaira"
+		},
+		{
+			"code": "JPY",
+			"eurorate": "0.01",
+			"name": "Yen (Japanese)",
+			"symbol": "Yen"
+		},
+		{
+			"code": "UZS",
+			"eurorate": "0.001",
+			"name": "Som (Uzbekistani)",
+			"symbol": "som"
+		},
+		{
+			"code": "AUD",
+			"eurorate": "0.5",
+			"name": "AU$ (Australian dollar)",
+			"symbol": "AU$"
+		},
+		{
+			"code": "OMR",
+			"eurorate": "2",
+			"name": "Rial (Omani)",
+			"symbol": "rial"
+		},
+		{
+			"code": "PKR",
+			"eurorate": "0.02",
+			"name": "Rupee (Pakistani)",
+			"symbol": "rupee"
+		},
+		{
+			"code": "PAB",
+			"eurorate": "1",
+			"name": "฿ (Panamanian balboa)",
+			"symbol": "฿"
+		},
+		{
+			"code": "PYG",
+			"eurorate": "0.0002",
+			"name": "PYG (Paraguayan guaraní)",
+			"symbol": "PYG"
+		},
+		{
+			"code": "PHP",
+			"eurorate": "0.025",
+			"name": "Pesos (Philippinian)",
+			"symbol": "Pesos"
+		},
+		{
+			"code": "PLN",
+			"eurorate": "0.25",
+			"name": "Zł (Polish złoty)",
+			"symbol": "zł"
+		},
+		{
+			"code": "KHR",
+			"eurorate": "0.00025",
+			"name": "Riel (Cambodian)",
+			"symbol": "Riel"
+		},
+		{
+			"code": "THB",
+			"eurorate": "0.025",
+			"name": "Baht (Thai)",
+			"symbol": "Baht"
+		},
+		{
+			"code": "GHS",
+			"eurorate": "1",
+			"name": "Cedis (Ghanese)",
+			"symbol": "cedis"
+		},
+		{
+			"code": "UGX",
+			"eurorate": "0.0005",
+			"name": "Shilling (Ugandan)",
+			"symbol": "shill"
+		},
+		{
+			"code": "DOP",
+			"eurorate": "0.05",
+			"name": "Peso (Dominican)",
+			"symbol": "pesos"
+		},
+		{
+			"code": "RON",
+			"eurorate": "0.05",
+			"name": "Lei (Romanian)",
+			"symbol": "Lei"
+		},
+		{
+			"code": "RUB",
+			"eurorate": "0.025",
+			"name": "Roubel (Russian ruble)",
+			"symbol": "Roubel"
+		},
+		{
+			"code": "GEL",
+			"eurorate": "0.5",
+			"name": "Lari (Georgian)",
+			"symbol": "Lari"
+		},
+		{
+			"code": "SAR",
+			"eurorate": "0.25",
+			"name": "SAR (Saudi riyal)",
+			"symbol": "SAR"
+		},
+		{
+			"code": "ALL",
+			"eurorate": "0.005",
+			"name": "Lek (Albanian)",
+			"symbol": "lek"
+		},
+		{
+			"code": "SGD",
+			"eurorate": "0.5",
+			"name": "SG$ (Singapore dollar)",
+			"symbol": "SG$"
+		},
+		{
+			"code": "ZAR",
+			"eurorate": "0.125",
+			"name": "Rand (South Africa)",
+			"symbol": "Rand"
+		},
+		{
+			"code": "RSD",
+			"eurorate": "0.1",
+			"name": "Dinar (Serbian)",
+			"symbol": "dinar"
+		},
+		{
+			"code": "SRD",
+			"eurorate": "0.5",
+			"name": "SRD (Surinami dollar)",
+			"symbol": "SRD"
+		},
+		{
+			"code": "SEK",
+			"eurorate": "0.1",
+			"name": "Kr (Swedish krona)",
+			"symbol": "kr"
+		},
+		{
+			"code": "TND",
+			"eurorate": "0.8",
+			"name": "Dinar (Tunisian)",
+			"symbol": "Dinars"
+		},
+		{
+			"code": "TTD",
+			"eurorate": "0.1",
+			"name": "TTD (Trinidad and Tobago dollar)",
+			"symbol": "TTD"
+		},
+		{
+			"code": "TRY",
+			"eurorate": "1",
+			"name": "TL (Turkish new lira)",
+			"symbol": "TL"
+		},
+		{
+			"code": "UAH",
+			"eurorate": "0.2",
+			"name": "Hryvnia (Ukrainian)",
+			"symbol": "hryvnia"
+		},
+		{
+			"code": "AED",
+			"eurorate": "0.4",
+			"name": "Dirham (United Arab Emirates)",
+			"symbol": "Dirham"
+		},
+		{
+			"code": "VEB",
+			"eurorate": "1",
+			"name": "Bs (Venezuelan bolívar)",
+			"symbol": "Bs"
+		},
+		{
 			"code": "VND",
-			"name": "Đồng (Vietnamese)"
+			"eurorate": "0.1",
+			"name": "Đồng (Vietnamese)",
+			"symbol": "đồng"
 		}
 	]
 }
