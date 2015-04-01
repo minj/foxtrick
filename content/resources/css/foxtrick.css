@@ -90,7 +90,6 @@ html[data-theme="simple"][firefox] #logo, html[data-theme="simple"][android] #lo
 }
 
 .ft-dialog-title {
-	float: left;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -130,13 +129,9 @@ html[data-theme="simple"][firefox] #logo, html[data-theme="simple"][android] #lo
 	margin: 0 0.4em;
 }
 
-.ft-dialog-buttons {
-	float: right;
-}
-
 .ft-dialog-button {
 	padding: 0;
-	margin: .5em .4em .5em 0;
+	margin: .5em .4em;
 	cursor: pointer;
 	border: 1px solid hsl(0, 0%, 83%);
 	color: hsl(0, 0%, 33%);

@@ -655,7 +655,7 @@ Foxtrick.makeModal = function(doc, title, content, buttons) {
 	hdrWrapper.appendChild(header);
 
 	var titleHeader = doc.createElement('h1');
-	Foxtrick.addClass(titleHeader, 'ft-dialog-title');
+	Foxtrick.addClass(titleHeader, 'ft-dialog-title float_left');
 	titleHeader.textContent = 'Foxtrick » ' + title;
 	titleHeader.title = title;
 	header.appendChild(titleHeader);
@@ -680,7 +680,7 @@ Foxtrick.makeModal = function(doc, title, content, buttons) {
 	btnWrapper.appendChild(btnRow);
 
 	var btns = doc.createElement('div');
-	Foxtrick.addClass(btns, 'ft-dialog-buttons');
+	Foxtrick.addClass(btns, 'ft-dialog-buttons float_right');
 	btnRow.appendChild(btns);
 
 	buttons = Array.isArray(buttons) ? buttons : [];
