@@ -47,7 +47,7 @@ Foxtrick.modules['ForumStripHattrickLinks'] = {
 				reg: /\[link=chrome-extension:\/\/bcbhbklnhonhojfmkobhhjkfaggkoali\/content\//g,
 				repl: '[link=foxtrick://'
 			},
-			// beta chrome
+			// foxtrick.org chrome (beta/release)
 			{
 				reg: /\[link=chrome-extension:\/\/gpfggkkkmpaalfemiafhfobkfnadeegj\/content\//g,
 				repl: '[link=foxtrick://'
