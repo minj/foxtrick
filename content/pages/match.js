@@ -243,6 +243,24 @@ Foxtrick.Pages.Match.getDate = function(doc) {
 };
 
 /**
+ * Get the ArenaID where the match took place
+ * @param  {document} doc
+ * @return {number}       {?number}
+ */
+Foxtrick.Pages.Match.getArenaId = function(doc) {
+	var arenaId = null;
+	try {
+		var matchReport = doc.getElementById('matchReport');
+		var arena = matchReport.querySelector('a[href^="/Club/Arena/"]');
+		arenaId = parseInt(Foxtrick.getParameterFromUrl(arena.href, 'ArenaID'), 10);
+	}
+	catch (e) {
+		Foxtrick.log(e);
+	}
+	return arenaId;
+};
+
+/**
  * Test whether match is in progress
  * @param  {document} doc
  * @return {Boolean}

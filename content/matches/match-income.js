@@ -122,8 +122,11 @@ Foxtrick.modules['MatchIncome'] = {
 
 			// display utilization percentage for games that happened after last arena change
 			if (Foxtrick.Prefs.isModuleOptionEnabled('MatchIncome', 'UtilizationPercentages')) {
-				var teamId = Foxtrick.util.id.getOwnTeamId();
-				var args = [['file', 'arenadetails'], ['version', '1.5'], ['teamId', teamId]];
+				var arenaId = Foxtrick.Pages.Match.getArenaId(doc);
+				if (!arenaId)
+					return;
+
+				var args = [['file', 'arenadetails'], ['version', '1.5'], ['arenaId', arenaId]];
 				Foxtrick.util.api.retrieve(doc, args, { cache_lifetime: 'session' },
 				  function(xml, errorText) {
 					if (!xml || errorText) {
