@@ -90,11 +90,11 @@
 			"code": "ca",
 			"name": "Catalan",
 			"phrases": "1823",
-			"translated": "914",
-			"translated_progress": "45",
+			"translated": "928",
+			"translated_progress": "46",
 			"words": "12875",
 			"words_approved": "0",
-			"words_translated": "5897"
+			"words_translated": "6007"
 		},
 		{
 			"approved": "0",
@@ -510,11 +510,11 @@
 			"code": "ro",
 			"name": "Romanian",
 			"phrases": "1823",
-			"translated": "1817",
+			"translated": "1822",
 			"translated_progress": "99",
 			"words": "12875",
 			"words_approved": "3388",
-			"words_translated": "12834"
+			"words_translated": "12874"
 		},
 		{
 			"approved": "1812",
