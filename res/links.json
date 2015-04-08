@@ -894,6 +894,20 @@
 		"countryidranges": [[28, 28]],
 		"nationalityranges": [[28, 28]]
 	},
+	"chiletracker": {
+		"img": "http://www.botrick.altirogames.com/images/favicon.ico",
+		"title": "Botrick, Chilean Hattrick NT/U20 Tracker",
+		"trackernationalteamlink": {
+			"url": "http://www.botrick.altirogames.com/",
+			"filters": ["countryid"]
+		},
+		"trackerplayerlink": {
+			"url": "http://www.botrick.altirogames.com/",
+			"filters": ["nationality"]
+		},
+		"countryidranges": [[18, 18]],
+		"nationalityranges": [[18, 18]]
+	},
 	"tnt_youth": {
 		"youthlink": {
 			"url": "http://dasmagischedreieck.de/tnt/",
