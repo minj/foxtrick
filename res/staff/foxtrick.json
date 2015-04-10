@@ -171,6 +171,11 @@
 			"name": "Stolik"
 		},
 		{
+			"duty": "supporter",
+			"id": "16",
+			"name": "----------"
+		},
+		{
 			"duty": "translator",
 			"id": "1641271",
 			"name": "jaymz69"
@@ -211,6 +216,16 @@
 			"name": "LA-OReiDasSachadas"
 		},
 		{
+			"duty": "supporter",
+			"id": "24",
+			"name": "----------"
+		},
+		{
+			"duty": "supporter",
+			"id": "256",
+			"name": "----------"
+		},
+		{
 			"duty": "translator",
 			"id": "2689296",
 			"name": "Pyntsa"
@@ -239,6 +254,11 @@
 			"duty": "translator",
 			"id": "2915990",
 			"name": "GZ-grobas"
+		},
+		{
+			"duty": "supporter",
+			"id": "32",
+			"name": "----------"
 		},
 		{
 			"duty": "translator",
