@@ -341,6 +341,11 @@
 			"name": "GTTWINS"
 		},
 		{
+			"duty": "supporter",
+			"id": "512",
+			"name": "----------"
+		},
+		{
 			"duty": "translator",
 			"id": "5193223",
 			"name": "ironm-DETISTE"
