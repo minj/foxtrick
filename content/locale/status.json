@@ -18,11 +18,11 @@
 			"code": "ar",
 			"name": "Arabic",
 			"phrases": "1823",
-			"translated": "1677",
+			"translated": "1678",
 			"translated_progress": "89",
 			"words": "12875",
 			"words_approved": "11513",
-			"words_translated": "11545"
+			"words_translated": "11561"
 		},
 		{
 			"approved": "0",
@@ -66,11 +66,11 @@
 			"code": "bs",
 			"name": "Bosnian",
 			"phrases": "1823",
-			"translated": "1817",
+			"translated": "1818",
 			"translated_progress": "99",
 			"words": "12875",
 			"words_approved": "0",
-			"words_translated": "12834"
+			"words_translated": "12850"
 		},
 		{
 			"approved": "0",
@@ -102,11 +102,11 @@
 			"code": "zh-CN",
 			"name": "Chinese Simplified",
 			"phrases": "1823",
-			"translated": "1615",
-			"translated_progress": "78",
+			"translated": "1616",
+			"translated_progress": "79",
 			"words": "12875",
 			"words_approved": "0",
-			"words_translated": "10170"
+			"words_translated": "10186"
 		},
 		{
 			"approved": "1812",
@@ -114,11 +114,11 @@
 			"code": "hr",
 			"name": "Croatian",
 			"phrases": "1823",
-			"translated": "1817",
+			"translated": "1818",
 			"translated_progress": "99",
 			"words": "12875",
 			"words_approved": "12732",
-			"words_translated": "12834"
+			"words_translated": "12850"
 		},
 		{
 			"approved": "1638",
@@ -138,11 +138,11 @@
 			"code": "da",
 			"name": "Danish",
 			"phrases": "1823",
-			"translated": "1817",
+			"translated": "1818",
 			"translated_progress": "99",
 			"words": "12875",
 			"words_approved": "11161",
-			"words_translated": "12834"
+			"words_translated": "12850"
 		},
 		{
 			"approved": "789",
@@ -150,11 +150,11 @@
 			"code": "nl",
 			"name": "Dutch",
 			"phrases": "1823",
-			"translated": "1817",
+			"translated": "1818",
 			"translated_progress": "99",
 			"words": "12875",
 			"words_approved": "7919",
-			"words_translated": "12834"
+			"words_translated": "12850"
 		},
 		{
 			"approved": "0",
@@ -222,11 +222,11 @@
 			"code": "fr",
 			"name": "French",
 			"phrases": "1823",
-			"translated": "1817",
+			"translated": "1818",
 			"translated_progress": "99",
 			"words": "12875",
 			"words_approved": "12732",
-			"words_translated": "12834"
+			"words_translated": "12850"
 		},
 		{
 			"approved": "0",
@@ -258,11 +258,11 @@
 			"code": "gl",
 			"name": "Galician",
 			"phrases": "1823",
-			"translated": "1817",
+			"translated": "1818",
 			"translated_progress": "99",
 			"words": "12875",
 			"words_approved": "0",
-			"words_translated": "12834"
+			"words_translated": "12850"
 		},
 		{
 			"approved": "0",
@@ -282,11 +282,11 @@
 			"code": "de",
 			"name": "German",
 			"phrases": "1823",
-			"translated": "1823",
-			"translated_progress": "100",
+			"translated": "1822",
+			"translated_progress": "99",
 			"words": "12875",
 			"words_approved": "13",
-			"words_translated": "12875"
+			"words_translated": "12868"
 		},
 		{
 			"approved": "0",
@@ -306,11 +306,11 @@
 			"code": "he",
 			"name": "Hebrew",
 			"phrases": "1823",
-			"translated": "1817",
+			"translated": "1818",
 			"translated_progress": "99",
 			"words": "12875",
 			"words_approved": "0",
-			"words_translated": "12834"
+			"words_translated": "12850"
 		},
 		{
 			"approved": "202",
@@ -318,11 +318,11 @@
 			"code": "hu",
 			"name": "Hungarian",
 			"phrases": "1823",
-			"translated": "1505",
+			"translated": "1509",
 			"translated_progress": "65",
 			"words": "12875",
 			"words_approved": "398",
-			"words_translated": "8392"
+			"words_translated": "8403"
 		},
 		{
 			"approved": "0",
@@ -342,11 +342,11 @@
 			"code": "it",
 			"name": "Italian",
 			"phrases": "1823",
-			"translated": "1823",
-			"translated_progress": "100",
+			"translated": "1822",
+			"translated_progress": "99",
 			"words": "12875",
 			"words_approved": "0",
-			"words_translated": "12875"
+			"words_translated": "12868"
 		},
 		{
 			"approved": "0",
@@ -366,11 +366,11 @@
 			"code": "ko",
 			"name": "Korean",
 			"phrases": "1823",
-			"translated": "1817",
+			"translated": "1818",
 			"translated_progress": "99",
 			"words": "12875",
 			"words_approved": "0",
-			"words_translated": "12834"
+			"words_translated": "12850"
 		},
 		{
 			"approved": "0",
@@ -378,11 +378,11 @@
 			"code": "lv",
 			"name": "Latvian",
 			"phrases": "1823",
-			"translated": "1105",
+			"translated": "1106",
 			"translated_progress": "37",
 			"words": "12875",
 			"words_approved": "0",
-			"words_translated": "4869"
+			"words_translated": "4885"
 		},
 		{
 			"approved": "1507",
@@ -390,11 +390,11 @@
 			"code": "lt",
 			"name": "Lithuanian",
 			"phrases": "1823",
-			"translated": "1821",
+			"translated": "1822",
 			"translated_progress": "99",
 			"words": "12875",
 			"words_approved": "9062",
-			"words_translated": "12849"
+			"words_translated": "12868"
 		},
 		{
 			"approved": "0",
@@ -474,11 +474,11 @@
 			"code": "pl",
 			"name": "Polish",
 			"phrases": "1823",
-			"translated": "1817",
+			"translated": "1818",
 			"translated_progress": "99",
 			"words": "12875",
 			"words_approved": "0",
-			"words_translated": "12834"
+			"words_translated": "12850"
 		},
 		{
 			"approved": "0",
@@ -486,11 +486,11 @@
 			"code": "pt-PT",
 			"name": "Portuguese",
 			"phrases": "1823",
-			"translated": "1633",
+			"translated": "1634",
 			"translated_progress": "76",
 			"words": "12875",
 			"words_approved": "0",
-			"words_translated": "9863"
+			"words_translated": "9879"
 		},
 		{
 			"approved": "0",
@@ -498,11 +498,11 @@
 			"code": "pt-BR",
 			"name": "Portuguese, Brazilian",
 			"phrases": "1823",
-			"translated": "1796",
+			"translated": "1797",
 			"translated_progress": "98",
 			"words": "12875",
 			"words_approved": "0",
-			"words_translated": "12715"
+			"words_translated": "12731"
 		},
 		{
 			"approved": "805",
@@ -510,11 +510,11 @@
 			"code": "ro",
 			"name": "Romanian",
 			"phrases": "1823",
-			"translated": "1823",
-			"translated_progress": "100",
+			"translated": "1822",
+			"translated_progress": "99",
 			"words": "12875",
 			"words_approved": "3388",
-			"words_translated": "12875"
+			"words_translated": "12868"
 		},
 		{
 			"approved": "1812",
@@ -522,11 +522,11 @@
 			"code": "ru",
 			"name": "Russian",
 			"phrases": "1823",
-			"translated": "1817",
+			"translated": "1818",
 			"translated_progress": "99",
 			"words": "12875",
 			"words_approved": "12732",
-			"words_translated": "12834"
+			"words_translated": "12850"
 		},
 		{
 			"approved": "1695",
@@ -570,11 +570,11 @@
 			"code": "es-ES",
 			"name": "Spanish",
 			"phrases": "1823",
-			"translated": "1817",
+			"translated": "1818",
 			"translated_progress": "99",
 			"words": "12875",
 			"words_approved": "1",
-			"words_translated": "12834"
+			"words_translated": "12850"
 		},
 		{
 			"approved": "0",
@@ -582,11 +582,11 @@
 			"code": "es-AR",
 			"name": "Spanish, Argentina",
 			"phrases": "1823",
-			"translated": "1817",
+			"translated": "1818",
 			"translated_progress": "99",
 			"words": "12875",
 			"words_approved": "0",
-			"words_translated": "12834"
+			"words_translated": "12850"
 		},
 		{
 			"approved": "0",
@@ -594,11 +594,11 @@
 			"code": "es-CR",
 			"name": "Spanish, Costa Rica",
 			"phrases": "1823",
-			"translated": "1817",
+			"translated": "1818",
 			"translated_progress": "99",
 			"words": "12875",
 			"words_approved": "0",
-			"words_translated": "12834"
+			"words_translated": "12850"
 		},
 		{
 			"approved": "1812",
@@ -606,11 +606,11 @@
 			"code": "sv-SE",
 			"name": "Swedish",
 			"phrases": "1823",
-			"translated": "1817",
+			"translated": "1818",
 			"translated_progress": "99",
 			"words": "12875",
 			"words_approved": "12732",
-			"words_translated": "12834"
+			"words_translated": "12850"
 		},
 		{
 			"approved": "0",
