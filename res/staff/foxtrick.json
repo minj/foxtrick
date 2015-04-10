@@ -191,11 +191,6 @@
 			"name": "SLV-Ferovejecs"
 		},
 		{
-			"duty": "supporter",
-			"id": "2048",
-			"name": "PG5381"
-		},
-		{
 			"duty": "translator",
 			"id": "2090503",
 			"name": "--Eagle--"
