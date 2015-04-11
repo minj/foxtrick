@@ -150,11 +150,11 @@
 			"code": "nl",
 			"name": "Dutch",
 			"phrases": "1823",
-			"translated": "1818",
-			"translated_progress": "99",
+			"translated": "1823",
+			"translated_progress": "100",
 			"words": "12875",
 			"words_approved": "7919",
-			"words_translated": "12850"
+			"words_translated": "12875"
 		},
 		{
 			"approved": "0",
@@ -258,11 +258,11 @@
 			"code": "gl",
 			"name": "Galician",
 			"phrases": "1823",
-			"translated": "1818",
-			"translated_progress": "99",
+			"translated": "1823",
+			"translated_progress": "100",
 			"words": "12875",
 			"words_approved": "0",
-			"words_translated": "12850"
+			"words_translated": "12875"
 		},
 		{
 			"approved": "0",
@@ -601,15 +601,15 @@
 			"words_translated": "12850"
 		},
 		{
-			"approved": "1812",
-			"approved_progress": "98",
+			"approved": "1818",
+			"approved_progress": "99",
 			"code": "sv-SE",
 			"name": "Swedish",
 			"phrases": "1823",
 			"translated": "1818",
 			"translated_progress": "99",
 			"words": "12875",
-			"words_approved": "12732",
+			"words_approved": "12850",
 			"words_translated": "12850"
 		},
 		{
