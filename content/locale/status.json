@@ -318,11 +318,11 @@
 			"code": "hu",
 			"name": "Hungarian",
 			"phrases": "1823",
-			"translated": "1509",
+			"translated": "1510",
 			"translated_progress": "65",
 			"words": "12875",
 			"words_approved": "398",
-			"words_translated": "8403"
+			"words_translated": "8413"
 		},
 		{
 			"approved": "0",
@@ -390,11 +390,11 @@
 			"code": "lt",
 			"name": "Lithuanian",
 			"phrases": "1823",
-			"translated": "1822",
-			"translated_progress": "99",
+			"translated": "1823",
+			"translated_progress": "100",
 			"words": "12875",
 			"words_approved": "9062",
-			"words_translated": "12868"
+			"words_translated": "12875"
 		},
 		{
 			"approved": "0",
