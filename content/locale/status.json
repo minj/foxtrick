@@ -217,16 +217,16 @@
 			"words_translated": "6222"
 		},
 		{
-			"approved": "1812",
-			"approved_progress": "98",
+			"approved": "1822",
+			"approved_progress": "99",
 			"code": "fr",
 			"name": "French",
 			"phrases": "1823",
-			"translated": "1818",
+			"translated": "1822",
 			"translated_progress": "99",
 			"words": "12875",
-			"words_approved": "12732",
-			"words_translated": "12850"
+			"words_approved": "12874",
+			"words_translated": "12874"
 		},
 		{
 			"approved": "0",
@@ -342,11 +342,11 @@
 			"code": "it",
 			"name": "Italian",
 			"phrases": "1823",
-			"translated": "1822",
-			"translated_progress": "99",
+			"translated": "1823",
+			"translated_progress": "100",
 			"words": "12875",
 			"words_approved": "0",
-			"words_translated": "12868"
+			"words_translated": "12875"
 		},
 		{
 			"approved": "0",
@@ -366,11 +366,11 @@
 			"code": "ko",
 			"name": "Korean",
 			"phrases": "1823",
-			"translated": "1818",
-			"translated_progress": "99",
+			"translated": "1823",
+			"translated_progress": "100",
 			"words": "12875",
 			"words_approved": "0",
-			"words_translated": "12850"
+			"words_translated": "12875"
 		},
 		{
 			"approved": "0",
@@ -601,16 +601,16 @@
 			"words_translated": "12850"
 		},
 		{
-			"approved": "1818",
-			"approved_progress": "99",
+			"approved": "1823",
+			"approved_progress": "100",
 			"code": "sv-SE",
 			"name": "Swedish",
 			"phrases": "1823",
-			"translated": "1818",
-			"translated_progress": "99",
+			"translated": "1823",
+			"translated_progress": "100",
 			"words": "12875",
-			"words_approved": "12850",
-			"words_translated": "12850"
+			"words_approved": "12875",
+			"words_translated": "12875"
 		},
 		{
 			"approved": "0",
