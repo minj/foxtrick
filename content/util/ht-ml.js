@@ -554,7 +554,8 @@ Foxtrick.util.htMl._getMarkupRec = function(node, def, opts) {
 	}
 
 	var display = computedStyle && computedStyle.getPropertyValue('display');
-	if (display === 'none') {
+	if (display === 'none' && !Foxtrick.hasClass(node, 'spoiler')) {
+		// don't skip hidden spoilers
 		return '';
 	}
 
@@ -566,6 +567,10 @@ Foxtrick.util.htMl._getMarkupRec = function(node, def, opts) {
 	}
 	else if (nodeName === 'desc') {
 		// svg description, useless in HT
+		return '';
+	}
+	else if (nodeName === 'blockquote' && node.className === 'spoiler') {
+		// skip spoiler teasers
 		return '';
 	}
 	else {
