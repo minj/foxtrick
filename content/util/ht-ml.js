@@ -104,8 +104,10 @@ Foxtrick.util.htMl.getFormat = (function() {
 				}
 				return content;
 			},
-			blockquote: function(content) {
-				return '[q]' + content.trim() + '[/q]';
+			blockquote: function(content, node) {
+				var tag = Foxtrick.hasClass(node, 'spoiler') ? 'spoiler' : 'q';
+				return Foxtrick.format('[{}]', [tag]) + content.trim() +
+					Foxtrick.format('[/{}]', [tag]);
 			},
 			b: function(content) {
 				return '[b]' + content.trim() + '[/b]';
