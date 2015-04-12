@@ -271,17 +271,26 @@ Foxtrick.util.htMl.getFormat = (function() {
 				var header = null;
 				content += ' \u2060\u2060';
 				var cells = content.split(/ \u2060\u2060/g).slice(1, -1);
-				if (/ \u2060{2}:|: \u2060{2}/.test(content)) {
-					// header row
-					header = cells.reduce(function(h, cell, i, cells) {
-						// generate header cell
-						var ret = '---';
-						ret = cell.replace(/^(:?)(.*?)(:?)$/, '$1' + ret + '$3');
-						// fix original
-						cells[i] = cells[i].replace(/^:|:$/g, '');
-						// append
-						return h + ret + ' | ';
-					}, '| ');
+				var headers = content.match(/ \u2060{2}:|: \u2060{2}/g);
+				if (headers) {
+					if (headers.length == cells.length) {
+						// full header row
+						header = cells.reduce(function(h, cell, i, cells) {
+							// generate header cell
+							var ret = '---';
+							ret = cell.replace(/^(:?)(.*?)(:?)$/, '$1' + ret + '$3');
+							// fix original
+							cells[i] = cells[i].replace(/^:|:$/g, '');
+							// append
+							return h + ret + ' | ';
+						}, '| ');
+					}
+					else {
+						// skip incomplete headers: remove header markers
+						cells = Foxtrick.map(function(cell) {
+							return cell.replace(/^:|:$/g, '');
+						}, cells);
+					}
 				}
 				var ret = '| ' + cells.join(' | ') + ' |\n';
 				if (header)
