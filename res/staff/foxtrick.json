@@ -8,12 +8,12 @@
 			"alt": "Foxtrick helper",
 			"url": "chrome://foxtrick/content/resources/img/staff/foxtrick.png"
 		},
-		"translator": {
-			"alt": "Foxtrick translator",
-			"url": "chrome://foxtrick/content/resources/img/staff/foxtrick.png"
-		},
 		"supporter": {
 			"alt": "Foxtrick Supporter",
+			"url": "chrome://foxtrick/content/resources/img/staff/foxtrick.png"
+		},
+		"translator": {
+			"alt": "Foxtrick translator",
 			"url": "chrome://foxtrick/content/resources/img/staff/foxtrick.png"
 		}
 	},
@@ -60,9 +60,19 @@
 			"name": "dritte333"
 		},
 		{
+			"duty": "supporter",
+			"id": "10775786",
+			"name": "Ucha_Cuervo"
+		},
+		{
 			"duty": "developer",
 			"id": "10800601",
 			"name": "HPE-Dantekavala"
+		},
+		{
+			"duty": "supporter",
+			"id": "10808283",
+			"name": "ypo333"
 		},
 		{
 			"duty": "translator",
@@ -162,7 +172,7 @@
 		{
 			"duty": "translator",
 			"id": "12975827",
-			"name": "MartinsPF"
+			"name": "MartinsPF_"
 		},
 		{
 			"duty": "translator",
@@ -573,6 +583,11 @@
 			"duty": "translator",
 			"id": "9100817",
 			"name": "DavidatorusF"
+		},
+		{
+			"duty": "supporter",
+			"id": "916222",
+			"name": "_Domingo"
 		},
 		{
 			"duty": "translator",
