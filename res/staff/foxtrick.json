@@ -190,6 +190,11 @@
 			"name": "Max_Schreck"
 		},
 		{
+			"duty": "supporter",
+			"id": "1693272",
+			"name": "Max_Schreck"
+		},
+		{
 			"duty": "translator",
 			"id": "1957756",
 			"name": "llramone_nonumber"
@@ -457,7 +462,7 @@
 		{
 			"duty": "translator",
 			"id": "7135171",
-			"name": "McTripas"
+			"name": "NTA-Tripas"
 		},
 		{
 			"duty": "translator",
