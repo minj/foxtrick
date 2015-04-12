@@ -7,7 +7,7 @@ DIR=$(cd $(dirname $0); pwd)
 cd "$DIR/../$RELEASE" || log "Cannot cd to $RELEASE"
 
 git stash
-git pull origin --rebase || log "Cannot git pull rebase"
+git pull --rebase origin || log "Cannot git pull rebase"
 ./version.sh 0.15.0
 ./version.sh
 cd maintainer || log "Cannot cd to maintainer"
