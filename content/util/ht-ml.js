@@ -644,7 +644,7 @@ Foxtrick.util.htMl._getMarkupRec = function(node, def, opts) {
 		ret = ' ' + containerMarkup;
 	}
 
-	var blocks = ['h1', 'h2', 'h3', 'h4'];
+	var blocks = ['h1', 'h2', 'h3', 'h4', 'blockquote'];
 	if (display === 'block' ||
 	    Foxtrick.any(function(t) { return nodeName === t; }, blocks)) {
 		ret = '\n' + ret + '\n';
