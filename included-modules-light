@@ -9,7 +9,6 @@ forum/forum-thread-auto-ignore.js
 forum/forum-youth-icons.js
 forum/mark-all-as-read.js
 forum/mark-unread.js
-information-aggregation/best-player-position.js
 information-aggregation/dashboard-calendar.js
 information-aggregation/extended-player-details.js
 information-aggregation/extra-player-info.js
@@ -17,7 +16,6 @@ information-aggregation/goal-difference-to-tables.js
 information-aggregation/history-stats.js
 information-aggregation/htms-points.js
 information-aggregation/last-login.js
-information-aggregation/median-transfer-price.js
 information-aggregation/my-monitor.js
 information-aggregation/nt-peek.js
 information-aggregation/player-birthday.js
@@ -25,12 +23,14 @@ information-aggregation/player-positions-evaluations.js
 information-aggregation/player-stats-experience.js
 information-aggregation/psico-tsi.js
 information-aggregation/season-stats.js
+information-aggregation/series-transfers.js
 information-aggregation/show-friendly-booked.js
 information-aggregation/team-stats.js
+information-aggregation/transfer-compare-players.js
 information-aggregation/transfer-deadline.js
-information-aggregation/youth-skills.js
 information-aggregation/youth-promotes.js
 information-aggregation/youth-series-estimation.js
+information-aggregation/youth-skills.js
 links/links-achievements.js
 links/links-alliances.js
 links/links-arena.js
@@ -40,7 +40,6 @@ links/links-coach.js
 links/links-country.js
 links/links-economy.js
 links/links-fans.js
-links/links.js
 links/links-league.js
 links/links-manager.js
 links/links-match.js
@@ -50,8 +49,9 @@ links/links-players.js
 links/links-team.js
 links/links-tracker.js
 links/links-training.js
-links/links-youth.js
 links/links-world.js
+links/links-youth.js
+links/links.js
 matches/copy-ratings.js
 matches/htms-prediction.js
 matches/match-income.js
@@ -66,6 +66,7 @@ presentation/ratings-display.js
 presentation/safe-for-work.js
 presentation/supporters-list.js
 presentation/youth-skill-hide-unknown.js
+shortcuts-and-tweaks/add-promotion-reminder.js
 shortcuts-and-tweaks/confirm-actions.js
 shortcuts-and-tweaks/context-menu-copy.js
 shortcuts-and-tweaks/copy-bb-ad.js
