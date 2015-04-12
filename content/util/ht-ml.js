@@ -191,7 +191,7 @@ Foxtrick.util.htMl.getFormat = (function() {
 				return Foxtrick.format('![{}]({})', [alt, node.src]);
 			},
 			hr: function() {
-				return '\n---';
+				return '\n---\n';
 			},
 			br: function() {
 				return '\n';
