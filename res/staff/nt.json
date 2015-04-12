@@ -66,7 +66,7 @@
 		{ "LeagueId": 72, "TeamId": 3124, "TeamName": "Paraguay", "id": 10716861, "name": "Serg_Floyd" },
 		{ "LeagueId": 73, "TeamId": 3128, "TeamName": "Ecuador", "id": 4383806, "name": "Carlos_Jugon" },
 		{ "LeagueId": 74, "TeamId": 3130, "TeamName": "Bolivia", "id": 4393033, "name": "LordSpy" },
-		{ "LeagueId": 75, "TeamId": 3126, "TeamName": "Nigeria", "id": 10117775, "name": "Goriola" },
+		{ "LeagueId": 75, "TeamId": 3126, "TeamName": "Nigeria", "id": 10117775, "name": "Goriola_WONT_PAY" },
 		{ "LeagueId": 76, "TeamId": 3132, "TeamName": "Føroyar", "id": 3707255, "name": "Roadmap" },
 		{ "LeagueId": 77, "TeamId": 3134, "TeamName": "Al Maghrib ", "id": 9156678, "name": "puissanton" },
 		{ "LeagueId": 79, "TeamId": 3144, "TeamName": "Saudi Arabia", "id": 8730300, "name": "Casale79" },
@@ -128,6 +128,6 @@
 		{ "LeagueId": 145, "TeamId": 3260, "TeamName": "O'zbekiston", "id": 11359388, "name": "Limberg" },
 		{ "LeagueId": 146, "TeamId": 3254, "TeamName": "Cameroon", "id": 11622933, "name": "Zimbabwe-Harare" },
 		{ "LeagueId": 147, "TeamId": 3256, "TeamName": "Cuba", "id": 3501427, "name": "MESSI7777" },
-		{ "LeagueId": 148, "TeamId": 3258, "TeamName": "Palestine", "id": 1331096, "name": "Martin_in_I" }
+		{ "LeagueId": 148, "TeamId": 3258, "TeamName": "Palestine", "id": 1331096, "name": "Martin_in_Masters" }
 	]
 }
