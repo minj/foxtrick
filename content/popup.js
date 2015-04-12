@@ -30,7 +30,7 @@ function init()
 
 	label = document.getElementById('foxtrick-toolbar-homepage-label');
 	label.textContent = BackgroundPage.Foxtrick.L10n.getString('link.homepage');
-	label.addEventListener('click', visitHomePage);
+	label.addEventListener('click', visitLink);
 
 	label = document.getElementById('foxtrick-toolbar-clearCache-label');
 	label.textContent = BackgroundPage.Foxtrick.L10n.getString('api.clearCache');
@@ -70,10 +70,10 @@ function openPrefs()
 {
 	document.location.href = 'preferences.html?width=600';
 }
-function visitHomePage()
+function visitLink()
 {
 	if (isChrome) {
-		chrome.tabs.create({ 'url': 'https://www.foxtrick.org/' });
+		chrome.tabs.create({ 'url': this.href });
 		window.close();
 		return false;
 	}
