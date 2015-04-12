@@ -57,8 +57,7 @@ Foxtrick.modules.Core = {
 
 		var link = doc.createElement('a');
 		link.href = CHANGES_URL;
-		// TODO: change to 'changes.open'
-		link.textContent = Foxtrick.L10n.getString('link.recentChanges');
+		link.textContent = Foxtrick.L10n.getString('changes.open');
 		link.target = '_blank';
 		content.appendChild(link);
 
