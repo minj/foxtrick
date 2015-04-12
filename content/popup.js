@@ -32,6 +32,15 @@ function init()
 	label.textContent = BackgroundPage.Foxtrick.L10n.getString('link.homepage');
 	label.addEventListener('click', visitLink);
 
+	label = document.getElementById('foxtrick-toolbar-contribute-label');
+	var temp = document.createElement('div');
+	BackgroundPage.Foxtrick.L10n.appendLink('changes.support', temp, label.href);
+	var link = temp.getElementsByTagName('a')[0];
+	if (link) {
+		label.textContent = link.textContent;
+	}
+	label.addEventListener('click', visitLink);
+
 	label = document.getElementById('foxtrick-toolbar-clearCache-label');
 	label.textContent = BackgroundPage.Foxtrick.L10n.getString('api.clearCache');
 	label.title = BackgroundPage.Foxtrick.L10n.getString('api.clearCache.title');

@@ -38,8 +38,7 @@ Foxtrick.modules.Core = {
 		// TODO: this needs maintenance:
 		// use release-notes-links.yml directly
 
-		// TODO: update SUPPORT_URL
-		var SUPPORT_URL = 'https://www.foxtrick.org';
+		var CONTRIBUTE_URL = 'https://www.foxtrick.org/contribute';
 		var CHANGES_URL = 'foxtrick://preferences.html#tab=changes';
 		var UPDATES_URL = 'https://twitter.com/Foxtrick';
 
@@ -52,7 +51,7 @@ Foxtrick.modules.Core = {
 		content.appendChild(header);
 
 		var pSupport = doc.createElement('p');
-		Foxtrick.L10n.appendLink('changes.support', pSupport, SUPPORT_URL);
+		Foxtrick.L10n.appendLink('changes.support', pSupport, CONTRIBUTE_URL);
 		content.appendChild(pSupport);
 
 		var link = doc.createElement('a');
