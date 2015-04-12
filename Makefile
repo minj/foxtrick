@@ -6,7 +6,7 @@ APP_NAME = foxtrick
 DIST_TYPE = nightly
 
 MAJOR_VERSION := $(shell ./version.sh)
-REV_VERSION := $(shell git describe --tags --long | sed -E 's/([^-]+)-g.*/\1/;s/-/./g')
+REV_VERSION := $(shell git describe --long | sed -E 's/([^-]+)-g.*/\1/;s/-/./g')
 HASH := $(shell git rev-parse --short HEAD)
 BRANCH = nightly
 

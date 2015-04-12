@@ -55,7 +55,7 @@ fi
 # version settings
 MAJOR_VERSION=$(cd ${SRC_DIR} && ./version.sh)
 if [ "$DIST" == "nightly" ]; then
-	VERSION=$(git describe --tags --long | sed -E 's/([^-]+)-g.*/\1/;s/-/./g')
+	VERSION=$(git describe --long | sed -E 's/([^-]+)-g.*/\1/;s/-/./g')
 else
 	VERSION="$MAJOR_VERSION"
 fi
