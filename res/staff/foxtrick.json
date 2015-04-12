@@ -11,6 +11,10 @@
 		"translator": {
 			"alt": "Foxtrick translator",
 			"url": "chrome://foxtrick/content/resources/img/staff/foxtrick.png"
+		},
+		"supporter": {
+			"alt": "Foxtrick Supporter",
+			"url": "chrome://foxtrick/content/resources/img/staff/foxtrick.png"
 		}
 	},
 	"internal": "true",
