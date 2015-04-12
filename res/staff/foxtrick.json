@@ -55,6 +55,11 @@
 			"name": "GM-Romanolus"
 		},
 		{
+			"duty": "translator",
+			"id": "10621734",
+			"name": "dritte333"
+		},
+		{
 			"duty": "developer",
 			"id": "10800601",
 			"name": "HPE-Dantekavala"
@@ -153,6 +158,11 @@
 			"duty": "translator",
 			"id": "12960779",
 			"name": "puttfarken01"
+		},
+		{
+			"duty": "translator",
+			"id": "12975827",
+			"name": "MartinsPF"
 		},
 		{
 			"duty": "translator",
