@@ -138,11 +138,11 @@
 			"code": "da",
 			"name": "Danish",
 			"phrases": "1823",
-			"translated": "1818",
-			"translated_progress": "99",
+			"translated": "1823",
+			"translated_progress": "100",
 			"words": "12875",
 			"words_approved": "11161",
-			"words_translated": "12850"
+			"words_translated": "12875"
 		},
 		{
 			"approved": "789",
@@ -162,11 +162,11 @@
 			"code": "en-GB",
 			"name": "English, United Kingdom",
 			"phrases": "1823",
-			"translated": "1750",
+			"translated": "1752",
 			"translated_progress": "93",
 			"words": "12875",
 			"words_approved": "0",
-			"words_translated": "12013"
+			"words_translated": "12031"
 		},
 		{
 			"approved": "0",
@@ -217,16 +217,16 @@
 			"words_translated": "6222"
 		},
 		{
-			"approved": "1822",
-			"approved_progress": "99",
+			"approved": "1823",
+			"approved_progress": "100",
 			"code": "fr",
 			"name": "French",
 			"phrases": "1823",
-			"translated": "1822",
-			"translated_progress": "99",
+			"translated": "1823",
+			"translated_progress": "100",
 			"words": "12875",
-			"words_approved": "12874",
-			"words_translated": "12874"
+			"words_approved": "12875",
+			"words_translated": "12875"
 		},
 		{
 			"approved": "0",
@@ -414,11 +414,11 @@
 			"code": "mk",
 			"name": "Macedonian (FYROM)",
 			"phrases": "1823",
-			"translated": "1643",
+			"translated": "1644",
 			"translated_progress": "79",
 			"words": "12875",
 			"words_approved": "0",
-			"words_translated": "10292"
+			"words_translated": "10297"
 		},
 		{
 			"approved": "0",
@@ -462,11 +462,11 @@
 			"code": "fa",
 			"name": "Persian",
 			"phrases": "1823",
-			"translated": "1421",
-			"translated_progress": "63",
+			"translated": "1437",
+			"translated_progress": "65",
 			"words": "12875",
 			"words_approved": "0",
-			"words_translated": "8219"
+			"words_translated": "8401"
 		},
 		{
 			"approved": "0",
@@ -570,11 +570,11 @@
 			"code": "es-ES",
 			"name": "Spanish",
 			"phrases": "1823",
-			"translated": "1818",
-			"translated_progress": "99",
+			"translated": "1823",
+			"translated_progress": "100",
 			"words": "12875",
 			"words_approved": "1",
-			"words_translated": "12850"
+			"words_translated": "12875"
 		},
 		{
 			"approved": "0",
@@ -582,11 +582,11 @@
 			"code": "es-AR",
 			"name": "Spanish, Argentina",
 			"phrases": "1823",
-			"translated": "1818",
-			"translated_progress": "99",
+			"translated": "1823",
+			"translated_progress": "100",
 			"words": "12875",
 			"words_approved": "0",
-			"words_translated": "12850"
+			"words_translated": "12875"
 		},
 		{
 			"approved": "0",
@@ -594,11 +594,11 @@
 			"code": "es-CR",
 			"name": "Spanish, Costa Rica",
 			"phrases": "1823",
-			"translated": "1818",
-			"translated_progress": "99",
+			"translated": "1823",
+			"translated_progress": "100",
 			"words": "12875",
 			"words_approved": "0",
-			"words_translated": "12850"
+			"words_translated": "12875"
 		},
 		{
 			"approved": "1823",
