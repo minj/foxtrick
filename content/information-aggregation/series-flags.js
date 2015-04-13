@@ -152,6 +152,12 @@ Foxtrick.modules['SeriesFlags'] = {
 		if (Foxtrick.Prefs.isModuleOptionEnabled('SeriesFlags', 'Supporters')
 			&& Foxtrick.isPage(doc, 'teamPage')) {
 			// add to supporters
+			if (!Foxtrick.Pages.All.getMainHeader(doc)) {
+				// no team
+				// e. g. https://www.hattrick.org/goto.ashx?path=/Club/?TeamID=9999999
+				return;
+			}
+
 			var sideBar = doc.getElementById('sidebar');
 			var sideBarBoxes = sideBar.getElementsByClassName('sidebarBox');
 			// supporters box is among the boxes without a table
