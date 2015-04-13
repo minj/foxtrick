@@ -284,11 +284,18 @@ Foxtrick.modules['MyMonitor'] = {
 			else if (Foxtrick.isPage(doc, 'national'))
 				var type = 'nt';
 
+			if (!Foxtrick.Pages.All.getMainHeader(doc)) {
+				// no team
+				// e. g. https://www.hattrick.org/goto.ashx?path=/Club/?TeamID=9999999
+				return;
+			}
+
 			var teams = getSavedTeams(doc);
 			var teamIdContainer = {
 				id: Foxtrick.Pages.All.getTeamIdFromBC(doc),
 				name: Foxtrick.Pages.All.getTeamNameFromBC(doc),
 			};
+
 			var existing = Foxtrick.filter(function(n) {
 				return n.id == teamIdContainer.id && n.type == type;
 			}, teams);
