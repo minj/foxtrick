@@ -137,6 +137,8 @@ This is due to the way `git describe` works (used for versioning). If you happen
 
 Lightweight (not annotated) tags like `cdn/*` are OK as they are not used unless you run `git describe --tags`.
 
+**This means tags like `0.x.1` for point releases should be lightweight.**
+
 ### Upload hosted builds
 Chrome hosted version is uploaded to [/release/chrome/webstore](https://www.foxtrick.org/release/chrome/webstore)
 
