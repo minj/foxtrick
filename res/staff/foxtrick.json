@@ -8,12 +8,12 @@
 			"alt": "Foxtrick helper",
 			"url": "chrome://foxtrick/content/resources/img/staff/foxtrick.png"
 		},
-		"translator": {
-			"alt": "Foxtrick translator",
-			"url": "chrome://foxtrick/content/resources/img/staff/foxtrick.png"
-		},
 		"supporter": {
 			"alt": "Foxtrick Supporter",
+			"url": "chrome://foxtrick/content/resources/img/staff/foxtrick.png"
+		},
+		"translator": {
+			"alt": "Foxtrick translator",
 			"url": "chrome://foxtrick/content/resources/img/staff/foxtrick.png"
 		}
 	},
@@ -60,9 +60,19 @@
 			"name": "dritte333"
 		},
 		{
+			"duty": "supporter",
+			"id": "10775786",
+			"name": "Ucha_Cuervo"
+		},
+		{
 			"duty": "developer",
 			"id": "10800601",
 			"name": "HPE-Dantekavala"
+		},
+		{
+			"duty": "supporter",
+			"id": "10808283",
+			"name": "ypo333"
 		},
 		{
 			"duty": "translator",
@@ -125,6 +135,11 @@
 			"name": "LucaXVI"
 		},
 		{
+			"duty": "supporter",
+			"id": "12068053",
+			"name": "Sellas"
+		},
+		{
 			"duty": "translator",
 			"id": "12166",
 			"name": "murko"
@@ -162,7 +177,12 @@
 		{
 			"duty": "translator",
 			"id": "12975827",
-			"name": "MartinsPF"
+			"name": "MartinsPF_"
+		},
+		{
+			"duty": "supporter",
+			"id": "13049551",
+			"name": "Timey-Wimey"
 		},
 		{
 			"duty": "translator",
@@ -193,6 +213,11 @@
 			"duty": "supporter",
 			"id": "1693272",
 			"name": "Max_Schreck"
+		},
+		{
+			"duty": "supporter",
+			"id": "191061",
+			"name": "MHawk"
 		},
 		{
 			"duty": "translator",
@@ -395,6 +420,11 @@
 			"name": "GM-eekels"
 		},
 		{
+			"duty": "supporter",
+			"id": "5717080",
+			"name": "kondeswoasei"
+		},
+		{
 			"duty": "translator",
 			"id": "621456",
 			"name": "_KOHb_"
@@ -573,6 +603,11 @@
 			"duty": "translator",
 			"id": "9100817",
 			"name": "DavidatorusF"
+		},
+		{
+			"duty": "supporter",
+			"id": "916222",
+			"name": "_Domingo"
 		},
 		{
 			"duty": "translator",
