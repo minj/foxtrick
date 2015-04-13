@@ -90,6 +90,16 @@
 			"name": "aaa-aaa"
 		},
 		{
+			"duty": "supporter",
+			"id": "11290737",
+			"name": "Kaleb_D"
+		},
+		{
+			"duty": "supporter",
+			"id": "11315240",
+			"name": "aleksi_h"
+		},
+		{
 			"duty": "translator",
 			"id": "1132186",
 			"name": "LA-gucan"
@@ -123,6 +133,11 @@
 			"duty": "translator",
 			"id": "11758667",
 			"name": "Alan_Smithee"
+		},
+		{
+			"duty": "supporter",
+			"id": "11765709",
+			"name": "visviva"
 		},
 		{
 			"duty": "translator",
@@ -220,6 +235,11 @@
 			"name": "MHawk"
 		},
 		{
+			"duty": "supporter",
+			"id": "192461",
+			"name": "dedo_uluk"
+		},
+		{
 			"duty": "translator",
 			"id": "1957756",
 			"name": "llramone_nonumber"
@@ -310,6 +330,11 @@
 			"name": "OBarros"
 		},
 		{
+			"duty": "supporter",
+			"id": "381349",
+			"name": "eranzw"
+		},
+		{
 			"duty": "translator",
 			"id": "3911874",
 			"name": "mr_freeze_"
@@ -348,6 +373,11 @@
 			"duty": "translator",
 			"id": "4417979",
 			"name": "Aze-maestro"
+		},
+		{
+			"duty": "supporter",
+			"id": "4451958",
+			"name": "Fangio"
 		},
 		{
 			"duty": "translator",
@@ -425,6 +455,11 @@
 			"name": "kondeswoasei"
 		},
 		{
+			"duty": "supporter",
+			"id": "589379",
+			"name": "BaDWiCk"
+		},
+		{
 			"duty": "translator",
 			"id": "621456",
 			"name": "_KOHb_"
@@ -492,7 +527,7 @@
 		{
 			"duty": "translator",
 			"id": "7135171",
-			"name": "NTA-Tripas"
+			"name": "McTripas"
 		},
 		{
 			"duty": "translator",
@@ -545,6 +580,11 @@
 			"name": "convincedd"
 		},
 		{
+			"duty": "supporter",
+			"id": "777893",
+			"name": "Hocke"
+		},
+		{
 			"duty": "translator",
 			"id": "7873605",
 			"name": "JAM3SoN"
@@ -563,6 +603,11 @@
 			"duty": "developer",
 			"id": "8107197",
 			"name": "Greblys"
+		},
+		{
+			"duty": "supporter",
+			"id": "8216321",
+			"name": "pucciozzo"
 		},
 		{
 			"duty": "translator",
@@ -673,6 +718,11 @@
 			"duty": "translator",
 			"id": "9930684",
 			"name": "LordBastard"
+		},
+		{
+			"duty": "supporter",
+			"id": "9999999",
+			"name": "kickoff98"
 		}
 	],
 	"type": "foxtrick",
