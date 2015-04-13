@@ -114,11 +114,11 @@
 			"code": "hr",
 			"name": "Croatian",
 			"phrases": "1823",
-			"translated": "1818",
-			"translated_progress": "99",
+			"translated": "1823",
+			"translated_progress": "100",
 			"words": "12875",
 			"words_approved": "12732",
-			"words_translated": "12850"
+			"words_translated": "12875"
 		},
 		{
 			"approved": "1638",
@@ -141,7 +141,7 @@
 			"translated": "1823",
 			"translated_progress": "100",
 			"words": "12875",
-			"words_approved": "11161",
+			"words_approved": "11157",
 			"words_translated": "12875"
 		},
 		{
@@ -306,11 +306,11 @@
 			"code": "he",
 			"name": "Hebrew",
 			"phrases": "1823",
-			"translated": "1818",
-			"translated_progress": "99",
+			"translated": "1823",
+			"translated_progress": "100",
 			"words": "12875",
 			"words_approved": "0",
-			"words_translated": "12850"
+			"words_translated": "12875"
 		},
 		{
 			"approved": "202",
