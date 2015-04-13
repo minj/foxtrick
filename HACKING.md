@@ -25,9 +25,11 @@ We use [crowdin](https://crowdin.com/project/foxtrick) for localization. Please 
 
 For now we will be using the [github flow](https://guides.github.com/introduction/flow/index.html) for development:
 * fork the repo and check it out locally
-* create a topic branch off of `master`
+* create a topic branch off of `master`*
 * add and push changes
 * submit pull requests with your improvements
+
+\* Bug fixes for release versions should be based of the last release branch. They will be merged into `master` later.
 
 **NB:** import this preference to enable Foxtrick logging:
 `user_pref("extensions.foxtrick.prefs.logDisabled",false);`
