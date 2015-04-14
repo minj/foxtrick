@@ -25,6 +25,14 @@ if (Foxtrick.platform != 'Android')
 			item: null,
 			copyText: null
 		},
+		'foxtrick-popup-copy-external-link': {
+			option: 'external',
+			func: function(node) {
+				return Foxtrick.util.htMl.getLink(node, { external: true, linksOnly: false });
+			},
+			item: null,
+			copyText: null
+		},
 		'foxtrick-popup-copy-ht-ml': {
 			option: 'HtMl',
 			func: Foxtrick.util.htMl.getHtMl,

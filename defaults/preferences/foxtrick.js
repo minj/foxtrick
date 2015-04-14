@@ -20,6 +20,7 @@ pref("extensions.foxtrick.prefs.module.ConfirmActions.enabled", true);
 pref("extensions.foxtrick.prefs.module.ConfirmActions.NtChange.enabled", true);
 pref("extensions.foxtrick.prefs.module.ConfirmActions.TransferList.enabled", true);
 pref("extensions.foxtrick.prefs.module.ContextMenuCopy.enabled", true);
+pref("extensions.foxtrick.prefs.module.ContextMenuCopy.external.enabled", true);
 pref("extensions.foxtrick.prefs.module.ContextMenuCopy.HtMl.enabled", true);
 pref("extensions.foxtrick.prefs.module.ContextMenuCopy.Id.enabled", true);
 pref("extensions.foxtrick.prefs.module.ContextMenuCopy.Link.enabled", true);

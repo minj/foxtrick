@@ -90,15 +90,30 @@ Foxtrick.util.htMl.getFormat = (function() {
 						}
 					}
 					else {
-						a.url = opts.external ? Foxtrick.goToUrl(a.url) : a.url;
-						content = Foxtrick.format('[{}={}]', [a.type, a.id || a.url]);
+						if (opts.external) {
+							a.url = Foxtrick.goToUrl(a.url);
+							content = Foxtrick.format('[link={}]', [a.url]);
+						}
+						else {
+							content = Foxtrick.format('[{}={}]', [a.type, a.id || a.url]);
+						}
 						// add text if interesting
-						if (!opts.linksOnly && a.type == 'link' && a.text) {
+						if (!opts.linksOnly && a.text) {
 							// strip surrounding '(' and '...blabla)' that's used to shorten urls
 							var stripped = a.text.replace(/^\(|(\.\.\..*)?\)$/g, '');
 							var path = stripped.replace(/^(\w+:)?\/\/.+?(\/.*)/, '$1');
-							if (a.url.indexOf(path) === -1)
-								content += Foxtrick.format('({})', [stripped]);
+							if (a.type === 'link') {
+								if (a.url.indexOf(path) === -1) {
+									// link text is not a URL
+									content += Foxtrick.format('({})', [stripped]);
+								}
+							}
+							else if (stripped !== a.id) {
+								// link text is not an ID
+								// e. g. <a href="?playerid=1">Name Surname</a> ->
+								// Name Surname [playerid=1]
+								content = Foxtrick.format('{} {}', [stripped, content]);
+							}
 						}
 					}
 				}
@@ -440,17 +455,23 @@ Foxtrick.util.htMl.getId = function(node) {
  * @return {string}          {?string}
  */
 Foxtrick.util.htMl.getLink = function(node, options) {
+	node = Foxtrick.util.htMl._findNode(node);
+	if (node.nodeName.toLowerCase() !== 'a')
+		return null;
+
 	var opts = {
 		external: false,
 		format: 'htMl',
 		linksOnly: true,
 	};
 	Foxtrick.mergeValid(opts, options);
+
+	var copyTitle = opts.external ? 'copy.external' : 'copy.link';
 	// reference to format definition
 	var format = Foxtrick.util.htMl.getFormat(opts.format);
 	var markup = format.cont.a('', node, opts);
 	if (markup)
-		return { copyTitle: Foxtrick.L10n.getString('copy.link'), markup: markup };
+		return { copyTitle: Foxtrick.L10n.getString(copyTitle), markup: markup };
 	else
 		return null;
 };
@@ -520,6 +541,21 @@ Foxtrick.util.htMl._parseLink = function(node) {
 };
 
 /**
+ * Find an appropriate node to start copying from
+ * @param  {element} node
+ * @return {element}
+ */
+Foxtrick.util.htMl._findNode = function(node) {
+	if (node.nodeName.toLowerCase() === 'bdo') {
+		// id links in forums use bdo wrappers that catch click events
+		if (node.childNodes.length == 1 &&
+		    node.firstChild.nodeType == Foxtrick.NodeTypes.TEXT_NODE)
+			node = node.parentNode;
+	}
+	return node;
+};
+
+/**
  * Get markup from node.
  * Options is { external: boolean, format: string }.
  * external sets whether relative HT links are not used (defaults to false).
@@ -529,6 +565,7 @@ Foxtrick.util.htMl._parseLink = function(node) {
  * @return {string}
  */
 Foxtrick.util.htMl.getMarkupFromNode = function(node, options) {
+	node = Foxtrick.util.htMl._findNode(node);
 	var opts = {
 		external: false,
 		format: 'htMl'
