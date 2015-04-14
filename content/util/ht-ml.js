@@ -98,12 +98,22 @@ Foxtrick.util.htMl.getFormat = (function() {
 							content = Foxtrick.format('[{}={}]', [a.type, a.id || a.url]);
 						}
 						// add text if interesting
-						if (!opts.linksOnly && a.type == 'link' && a.text) {
+						if (!opts.linksOnly && a.text) {
 							// strip surrounding '(' and '...blabla)' that's used to shorten urls
 							var stripped = a.text.replace(/^\(|(\.\.\..*)?\)$/g, '');
 							var path = stripped.replace(/^(\w+:)?\/\/.+?(\/.*)/, '$1');
-							if (a.url.indexOf(path) === -1)
-								content += Foxtrick.format('({})', [stripped]);
+							if (a.type === 'link') {
+								if (a.url.indexOf(path) === -1) {
+									// link text is not a URL
+									content += Foxtrick.format('({})', [stripped]);
+								}
+							}
+							else if (stripped !== a.id) {
+								// link text is not an ID
+								// e. g. <a href="?playerid=1">Name Surname</a> ->
+								// Name Surname [playerid=1]
+								content = Foxtrick.format('{} {}', [stripped, content]);
+							}
 						}
 					}
 				}
