@@ -90,8 +90,13 @@ Foxtrick.util.htMl.getFormat = (function() {
 						}
 					}
 					else {
-						a.url = opts.external ? Foxtrick.goToUrl(a.url) : a.url;
-						content = Foxtrick.format('[{}={}]', [a.type, a.id || a.url]);
+						if (opts.external) {
+							a.url = Foxtrick.goToUrl(a.url);
+							content = Foxtrick.format('[link={}]', [a.url]);
+						}
+						else {
+							content = Foxtrick.format('[{}={}]', [a.type, a.id || a.url]);
+						}
 						// add text if interesting
 						if (!opts.linksOnly && a.type == 'link' && a.text) {
 							// strip surrounding '(' and '...blabla)' that's used to shorten urls
@@ -446,11 +451,12 @@ Foxtrick.util.htMl.getLink = function(node, options) {
 		linksOnly: true,
 	};
 	Foxtrick.mergeValid(opts, options);
+	var copyTitle = opts.external ? 'copy.external' : 'copy.link';
 	// reference to format definition
 	var format = Foxtrick.util.htMl.getFormat(opts.format);
 	var markup = format.cont.a('', node, opts);
 	if (markup)
-		return { copyTitle: Foxtrick.L10n.getString('copy.link'), markup: markup };
+		return { copyTitle: Foxtrick.L10n.getString(copyTitle), markup: markup };
 	else
 		return null;
 };
