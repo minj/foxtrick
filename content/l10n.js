@@ -844,7 +844,7 @@ if (Foxtrick.arch === 'Sandboxed') {
 					throw null;
 
 				// replace escaped characters as what Gecko does
-				value = value.replace(/\\n/g, '\n').replace(/\\:/g, ':').
+				value = value.replace(/^\\ /, ' ').replace(/\\n/g, '\n').replace(/\\:/g, ':').
 					replace(/\\=/g, '=').replace(/\\#/g, '#').replace(/\\!/g, '!');
 				// get plurals
 				if (typeof num !== 'undefined') {
