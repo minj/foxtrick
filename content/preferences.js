@@ -1469,12 +1469,14 @@ function initTextAndValues() {
 
 	// initialize currency display
 	var currencyKeys = Foxtrick.Prefs.getAllKeysOfBranch('Currency.Code');
+	var rmText = Foxtrick.L10n.getString('button.remove');
 	Foxtrick.forEach(function(key) {
 		var id = parseInt(key.match(/\d+$/), 10);
 		if (!isNaN(id) && id) {
 			var code = Foxtrick.Prefs.getString('Currency.Code.' + id);
 			var rate = Foxtrick.util.currency.getRateByCode(code);
 			var row = document.createElement('tr');
+			row.id = 'team-currency-row-' + id;
 			var tdId = row.appendChild(document.createElement('td'));
 			var aId = tdId.appendChild(document.createElement('a'));
 			aId.href = Foxtrick.goToUrl('/Club/?TeamID=' + id);
@@ -1482,6 +1484,16 @@ function initTextAndValues() {
 			aId.textContent = id;
 			row.appendChild(document.createElement('td')).textContent = code;
 			row.appendChild(document.createElement('td')).textContent = rate || '-';
+			var rmCell = row.appendChild(document.createElement('td'));
+			var rmBtn = rmCell.appendChild(document.createElement('button'));
+			rmBtn.textContent = rmText;
+			rmBtn.setAttribute('data-id', id);
+			Foxtrick.onClick(rmBtn, function(ev) {
+				var id = this.getAttribute('data-id');
+				Foxtrick.Prefs.deleteValue('Currency.Code.' + id);
+				var row = ev.target.ownerDocument.getElementById('team-currency-row-' + id);
+				row.parentNode.removeChild(row);
+			});
 			$('#pref-setup-currency').append($(row));
 		}
 	}, currencyKeys);
