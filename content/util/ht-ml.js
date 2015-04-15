@@ -380,9 +380,9 @@ Foxtrick.util.htMl.getFormat = (function() {
 // otherwise, return null
 Foxtrick.util.htMl.getId = function(node) {
 	var idTypes = [
-		{ type: 'Player', re: /[\?|&]playerId=(\d+)/i, tag: 'playerid' },
+		{ type: 'Player', re: /[?&]playerId=(\d+)/i, tag: 'playerid' },
 		{ type: 'Youth Player', re: /YouthPlayerID=(\d+)/i, tag: 'youthplayerid' },
-		{ type: 'Team', re: /\/Club\/\?TeamID=(\d+)/i, tag: 'teamid' },
+		{ type: 'Team', re: /\/Club\/(?:Default\.aspx)?\?TeamID=(\d+)/i, tag: 'teamid' },
 		{ type: 'Youth Team', re: /\/Club\/Youth\/(?:Default\.aspx)?\?YouthTeamID=(\d+)/i, tag: 'youthteamid' },
 		{ type: 'Youth Match', re: /\?matchID=(\d+).*?&SourceSystem=Youth/i, tag: 'youthmatchid' },
 		{ type: 'Tournament Match', re: /\?matchID=(\d+).*?SourceSystem=HTOIntegrated/i,
@@ -399,7 +399,7 @@ Foxtrick.util.htMl.getId = function(node) {
 		{ type: 'Tournament', re: /\?tournamentId=(\d+)/i, tag: 'tournamentid' },
 		{ type: 'Arena', re: /\/Club\/Arena\/(?:Default\.aspx)?\?ArenaID=(\d+)/i, tag: 'arenaid' },
 		{ type: 'League', re: /\/World\/Leagues\/League\.aspx\?LeagueID=(\d+)/i },
-		{ type: 'Cup', re: /\/World\/Cup\/\?CupID=(\d+)/i },
+		{ type: 'Cup', re: /\/World\/Cup\/(?:Default\.aspx)?\?CupID=(\d+)/i },
 		{ type: 'Region', re: /\/World\/Regions\/Region\.aspx\?RegionID=(\d+)/i },
 		{ type: 'National Team', re: /\/Club\/NationalTeam\/NationalTeam\.aspx\?teamId=(\d+)/i }
 	];
