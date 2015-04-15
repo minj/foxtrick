@@ -324,7 +324,8 @@ Foxtrick.modules['MatchOrderInterface'] = {
 			var playerList = null;
 			var avatarsXml = null;
 			var teamLink = Foxtrick.Pages.All.getBreadCrumbs(doc)[0];
-			var teamid = Foxtrick.util.id.getTeamIdFromUrl(teamLink.href);
+			// NT team ID can only be found in URL it seems
+			var teamid = Foxtrick.util.id.getTeamIdFromUrl(doc.location.href);
 
 			// load ahead players and then wait for interface loaded
 			getPlayers = function(fresh) {
