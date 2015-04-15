@@ -380,10 +380,10 @@ Foxtrick.util.htMl.getFormat = (function() {
 // otherwise, return null
 Foxtrick.util.htMl.getId = function(node) {
 	var idTypes = [
-		{ type: 'Player', re: /[\?|&]playerId=(\d+)/i, tag: 'playerid' },
+		{ type: 'Player', re: /[?&]playerId=(\d+)/i, tag: 'playerid' },
 		{ type: 'Youth Player', re: /YouthPlayerID=(\d+)/i, tag: 'youthplayerid' },
-		{ type: 'Team', re: /\/Club\/\?TeamID=(\d+)/i, tag: 'teamid' },
-		{ type: 'Youth Team', re: /\?YouthTeamID=(\d+)/i, tag: 'youthteamid' },
+		{ type: 'Team', re: /\/Club\/(?:Default\.aspx)?\?TeamID=(\d+)/i, tag: 'teamid' },
+		{ type: 'Youth Team', re: /\/Club\/Youth\/(?:Default\.aspx)?\?YouthTeamID=(\d+)/i, tag: 'youthteamid' },
 		{ type: 'Youth Match', re: /\?matchID=(\d+).*?&SourceSystem=Youth/i, tag: 'youthmatchid' },
 		{ type: 'Tournament Match', re: /\?matchID=(\d+).*?SourceSystem=HTOIntegrated/i,
 			tag: 'tournamentmatchid' },
@@ -397,9 +397,9 @@ Foxtrick.util.htMl.getId = function(node) {
 		{ type: 'Article', re: /\?ArticleID=(\d+)/i, tag: 'articleid' },
 		{ type: 'Post', re: /\/Forum\/Read\.aspx\?t=(\d+).*&n=(\d+)/i, tag: 'post' },
 		{ type: 'Tournament', re: /\?tournamentId=(\d+)/i, tag: 'tournamentid' },
-		{ type: 'Arena', re: /\/Club\/Arena\/(Default\.aspx)?\?ArenaID=(\d+)/i },
+		{ type: 'Arena', re: /\/Club\/Arena\/(?:Default\.aspx)?\?ArenaID=(\d+)/i, tag: 'arenaid' },
 		{ type: 'League', re: /\/World\/Leagues\/League\.aspx\?LeagueID=(\d+)/i },
-		{ type: 'Cup', re: /\/World\/Cup\/\?CupID=(\d+)/i },
+		{ type: 'Cup', re: /\/World\/Cup\/(?:Default\.aspx)?\?CupID=(\d+)/i },
 		{ type: 'Region', re: /\/World\/Regions\/Region\.aspx\?RegionID=(\d+)/i },
 		{ type: 'National Team', re: /\/Club\/NationalTeam\/NationalTeam\.aspx\?teamId=(\d+)/i }
 	];
@@ -686,7 +686,7 @@ Foxtrick.util.htMl._getMarkupRec = function(node, def, opts) {
 	    Foxtrick.any(function(t) { return nodeName === t; }, blocks)) {
 		ret = '\n' + ret + '\n';
 	}
-	else if (display === 'list-item') {
+	else if (display === 'list-item' || nodeName === 'li') {
 		ret = ret + '\n';
 	}
 
