@@ -686,7 +686,7 @@ Foxtrick.util.htMl._getMarkupRec = function(node, def, opts) {
 	    Foxtrick.any(function(t) { return nodeName === t; }, blocks)) {
 		ret = '\n' + ret + '\n';
 	}
-	else if (display === 'list-item') {
+	else if (display === 'list-item' || nodeName === 'li') {
 		ret = ret + '\n';
 	}
 
