@@ -472,6 +472,7 @@ if (Foxtrick.arch === 'Gecko') {
 		},
 
 		setString: function(key, value) {
+			value = String(value);
 			value = value.replace(/\\./g, unescape);
 			if (Foxtrick.chromeContext() === 'content')
 				Foxtrick.SB.ext.sendRequest({
