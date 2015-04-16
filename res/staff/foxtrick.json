@@ -200,11 +200,6 @@
 			"name": "larsw84"
 		},
 		{
-			"duty": "supporter",
-			"id": "128641",
-			"name": "DEL_DEL_DEL_DEL_DEL_DEL_DEL_DEL_DEL_DEL_DEL_Aieen"
-		},
-		{
 			"duty": "translator",
 			"id": "12960779",
 			"name": "puttfarken01"
@@ -378,6 +373,11 @@
 			"duty": "translator",
 			"id": "4149232",
 			"name": "saviour26"
+		},
+		{
+			"duty": "supporter",
+			"id": "4149601",
+			"name": "Triplex1963"
 		},
 		{
 			"duty": "developer",
