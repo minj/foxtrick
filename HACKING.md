@@ -29,7 +29,7 @@ For now we will be using the [github flow](https://guides.github.com/introductio
 * add and push changes
 * submit pull requests with your improvements
 
-\* Bug fixes for release versions should be based of the last release branch. They will be merged into `master` later.
+\* Bug fixes for release versions should be based on he release tag. They will be merged into release branch and `master` later.
 
 **NB:** import this preference to enable Foxtrick logging:
 `user_pref("extensions.foxtrick.prefs.logDisabled",false);`
