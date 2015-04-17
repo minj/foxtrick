@@ -217,16 +217,16 @@
 			"words_translated": "6224"
 		},
 		{
-			"approved": "1824",
-			"approved_progress": "99",
+			"approved": "1826",
+			"approved_progress": "100",
 			"code": "fr",
 			"name": "French",
 			"phrases": "1826",
-			"translated": "1824",
-			"translated_progress": "99",
+			"translated": "1826",
+			"translated_progress": "100",
 			"words": "12891",
-			"words_approved": "12879",
-			"words_translated": "12879"
+			"words_approved": "12891",
+			"words_translated": "12891"
 		},
 		{
 			"approved": "0",
@@ -318,11 +318,11 @@
 			"code": "hu",
 			"name": "Hungarian",
 			"phrases": "1826",
-			"translated": "1510",
-			"translated_progress": "65",
+			"translated": "1603",
+			"translated_progress": "73",
 			"words": "12891",
 			"words_approved": "396",
-			"words_translated": "8415"
+			"words_translated": "9446"
 		},
 		{
 			"approved": "0",
