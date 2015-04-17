@@ -91,6 +91,9 @@ Foxtrick.util.htMl.getFormat = (function() {
 					}
 					else {
 						if (opts.external) {
+							if (/^foxtrick:/.test(a.url)) {
+								return a.url;
+							}
 							a.url = Foxtrick.goToUrl(a.url);
 							content = Foxtrick.format('[link={}]', [a.url]);
 						}
@@ -242,7 +245,12 @@ Foxtrick.util.htMl.getFormat = (function() {
 						}
 					}
 					else {
-						a.url = opts.external ? Foxtrick.goToUrl(a.url) : a.url;
+						if (opts.external) {
+							if (/^foxtrick:/.test(a.url)) {
+								return a.url;
+							}
+							a.url = Foxtrick.goToUrl(a.url);
+						}
 						var text = a.id ? '(' + a.id + ')' : a.text || content;
 						content = Foxtrick.format('[{}]({})', [text, a.url]);
 					}
