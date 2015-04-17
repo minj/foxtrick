@@ -166,13 +166,17 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 			Foxtrick.Pages.Players.isYouth(doc) ||
 			Foxtrick.Pages.Players.isYouthMatchOrder(doc);
 
+		if (options && typeof options.isNT !== 'undefined')
+			isNT = options.isNT;
+		else if (teamId > 3000 && teamId < 4000 || Foxtrick.Pages.Players.isNT(doc))
+			isNT = true;
+
 		if (isYouth) {
 			args.push(['file', 'youthplayerlist']);
 			args.push(['youthTeamId', teamId]);
 			args.push(['actionType', 'details']);
 		}
-		else if (Foxtrick.Pages.Players.isNT(doc) || (options && options.isNT)) {
-			isNT = true;
+		else if (isNT) {
 			var action = 'supporterstats', all = true;
 			if (options && options.currentSquad || !Foxtrick.util.layout.isSupporter(doc)) {
 				action = 'view';

@@ -38,7 +38,7 @@ Foxtrick.modules['MatchOrderInterface'] = {
 		var avatarsParamsString;
 		var getAvatars;
 		var getPlayers;
-		var check_images = function(doc, target, avatarsXml, getID, scale) {
+		var check_images = function(doc, target, avatarsXml, getID, scale, recursion) {
 			if (!Foxtrick.Prefs.isModuleOptionEnabled('MatchOrderInterface', 'ShowFaces'))
 				return;
 			var isYouth = (doc.location.href.search(/isYouth=true|SourceSystem=Youth/i) != -1);
@@ -55,11 +55,16 @@ Foxtrick.modules['MatchOrderInterface'] = {
 				}
 				if (i == players.length) {
 					// id not found, possibly new player, invalidate cache and refetch
-					var now = Foxtrick.util.time.getHtTimeStamp(doc);
-					Foxtrick.util.api.setCacheLifetime(avatarsParamsString, now);
-					Foxtrick.log('New player found: refreshing player cache.');
-					getAvatars(JSON.parse(avatarsParamsString));
-					getPlayers(true);
+					if (!recursion) {
+						var now = Foxtrick.util.time.getHtTimeStamp(doc);
+						Foxtrick.util.api.setCacheLifetime(avatarsParamsString, now);
+						Foxtrick.log('New player found: refreshing player cache.');
+						getPlayers(true);
+						getAvatars(JSON.parse(avatarsParamsString), { recursion: true });
+					}
+					else {
+						Foxtrick.error('Infinite recursion in MatchOrderInterface');
+					}
 					return true;
 				}
 
@@ -324,7 +329,8 @@ Foxtrick.modules['MatchOrderInterface'] = {
 			var playerList = null;
 			var avatarsXml = null;
 			var teamLink = Foxtrick.Pages.All.getBreadCrumbs(doc)[0];
-			var teamid = Foxtrick.util.id.getTeamIdFromUrl(teamLink.href);
+			// NT team ID can only be found in URL it seems
+			var teamid = Foxtrick.util.id.getTeamIdFromUrl(doc.location.href);
 
 			// load ahead players and then wait for interface loaded
 			getPlayers = function(fresh) {
@@ -353,7 +359,7 @@ Foxtrick.modules['MatchOrderInterface'] = {
 				[(isYouth ? 'youthT' : 't') + 'eamId', teamid]
 			];
 			avatarsParamsString = JSON.stringify(avatarsParams); // save as string (immutable)
-			getAvatars = function(avatarsParams) {
+			getAvatars = function(avatarsParams, opts) {
 				Foxtrick.util.api.retrieve(doc, avatarsParams, { cache_lifetime: 'session' },
 				  function(xml, errorText) {
 					if (!xml || errorText) {
@@ -363,8 +369,10 @@ Foxtrick.modules['MatchOrderInterface'] = {
 					Foxtrick.log('hasAvatars');
 					avatarsXml = xml;
 					hasAvatars = true;
+					var field = doc.getElementById('field');
+					var rec = opts && opts.recursion;
 					if (hasInterface)
-						check_images(doc, doc.getElementById('field'), avatarsXml, getID, 3);
+						check_images(doc, field, avatarsXml, getID, 3, rec);
 				});
 			};
 			getAvatars(avatarsParams);
