@@ -190,6 +190,11 @@
 			"name": "RoLitoral"
 		},
 		{
+			"duty": "supporter",
+			"id": "1254141",
+			"name": "timone"
+		},
+		{
 			"duty": "translator",
 			"id": "12593452",
 			"name": "coluccia94"
@@ -293,11 +298,6 @@
 			"duty": "supporter",
 			"id": "245173",
 			"name": "Dikkiedick"
-		},
-		{
-			"duty": "supporter",
-			"id": "255225",
-			"name": "DEL_r3voc"
 		},
 		{
 			"duty": "translator",
