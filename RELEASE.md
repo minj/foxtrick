@@ -9,8 +9,8 @@
     - [L10n](#l10n)
     - [Other](#other)
 - [Release procedure](#release-procedure)
-    - [master branch](#master-branch)
     - [cdn branch](#cdn-branch)
+    - [master branch](#master-branch)
     - [new release branch 0.x.0](#new-release-branch-0x0)
     - [build branch](#build-branch)
     - [IMPORTANT re branching](#important-re-branching)
@@ -67,6 +67,19 @@ Update:
 - `~/trunk/included-modules-light`
 
 ## Release procedure
+### cdn branch
+```sh
+cd ~/cdn
+git checkout cdn
+git stash
+git pull --rebase origin cdn
+# update to master
+git merge origin/master
+# rewrite cdn tag for tomorrow
+git tag -d $(git tag -l cdn/*)
+git tag cdn/$(date -d 'tomorrow' +'%y%m%d') cdn
+git push --tags origin cdn
+```
 ### master branch
 ```sh
 cd ~/trunk
@@ -82,19 +95,6 @@ git tag -a -m 'start 0.x.9 beta' 0.x.9
 # clean used cdn tags before pushing
 git tag -d $(git tag -l cdn/*)
 git push --tags origin master
-```
-### cdn branch
-```sh
-cd ~/cdn
-git checkout cdn
-git stash
-git pull --rebase origin cdn
-# update to master
-git merge origin/master
-# rewrite cdn tag for tomorrow
-git tag -d $(git tag -l cdn/*)
-git tag cdn/$(date -d 'tomorrow' +'%y%m%d') cdn
-git push --tags origin cdn
 ```
 ### new release branch 0.x.0
 ```sh
@@ -138,6 +138,8 @@ This is due to the way `git describe` works (used for versioning). If you happen
 Lightweight (not annotated) tags like `cdn/*` are OK as they are not used unless you run `git describe --tags`.
 
 **This means tags like `0.x.1` for point releases should be lightweight.**
+
+**NB:** do NOT merge `master` into `cdn` if release branch is still live.
 
 ### Upload hosted builds
 Chrome hosted version is uploaded to [/release/chrome/webstore](https://www.foxtrick.org/release/chrome/webstore)
