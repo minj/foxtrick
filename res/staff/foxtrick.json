@@ -180,6 +180,11 @@
 			"name": "gomago"
 		},
 		{
+			"duty": "supporter",
+			"id": "12408163",
+			"name": "broda210"
+		},
+		{
 			"duty": "translator",
 			"id": "12533508",
 			"name": "RoLitoral"
@@ -288,6 +293,11 @@
 			"duty": "supporter",
 			"id": "245173",
 			"name": "Dikkiedick"
+		},
+		{
+			"duty": "supporter",
+			"id": "255225",
+			"name": "DEL_r3voc"
 		},
 		{
 			"duty": "translator",
