@@ -4,7 +4,7 @@ echo 'rotate cdn tags'
 DIR=$(cd $(dirname $0); pwd)
 . "$DIR"/include.sh || (echo "==============ERROR=========== include.sh" && exit -1)
 
-ago=$(date -d '2 days ago' +'%y%m%d')
+ago=$(date -d '1 days ago' +'%y%m%d')
 tomorrow=$(date -d 'tomorrow' +'%y%m%d')
 
 cd "$DIR/../cdn" || log "Cannot cd to cdn"
