@@ -5,6 +5,14 @@ fr:
       note_0: "Il s'agit d'une version de développement. Utilisez la à votre propre discrétion. S'il vous plaît consultez <linkSVN>commit history</linkSVN> sur Google Code pour plus de détails sur les modifications."
     beta:
       note_0: "Il s'agit de la version bêta de la prochaine version. Veuillez nous aider à traduire cette version via un site ultra simple à utiliser <linkCrowdin>crowdin.net</linkCrowdin>. "
+    0.15.1:
+      bugs: '<header>Correctifs</header>'
+      nt_crash: "Correction d'un problème de performance menant à un blocage du navigateur pour les NT dans <module>MatchOrderInterface</module>."
+      copy_htMl: "Correctif pour <module>ContextMenuCopy</module>, le lien n'est plus copié en texte en HT-ML."
+      resource_fix: '<module>Links</module> et <module>StaffMarker</module> ont cessés de fonctionner pour les utilisateurs de certains pays. Cela devrait être corrigé dans quelques jours.'
+      other: '<header>Autres changements</header>'
+      extarnal_url: "Ajout d'une option pour copier un lien d'Hattrick sur d'autres sites Web dans <module>ContextMenuCopy</module>. Ces liens sont indépendant du serveur HT sur lequel l'utilisateur est connecté."
+      and_more: Divers autres petits changements et corrections.
     0.15.0:
       important: '<header>Annonces importantes</header>'
       support: "<header>Vous aimez ce que nous faisons ? S'il vous plaît <linkContribute>Support Foxtrick</linkContribute>.</header>"

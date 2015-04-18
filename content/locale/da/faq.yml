@@ -5,10 +5,10 @@ da:
       question: Hvordan kan jeg style FoxTrick?
       answer: "<p>FoxTrick tilbyder et sæt præsentation værktøjer for at man kan tilpasse sine egne design. Disse værktøjer leveres via HTML-ID'er og kategorier, og du kan bruge CSS til at definere din foretrukne designs.</p>  <p>Eksempler på bruger design kan findes <linkCSSExample>her</linkCSSExample> eller <linkCSSExampleGCode>her</linkCSSExampleGCode>, som du kan redigere efter eget ønske. Når du har gemt filen, kan du bruge modulet <module>SkinPlugin</module>, til indlæsning af CSS fil, for at bruger designet er i brug.</p>"
     sound-format:
-      question: 'Hvilke filformater er tilladt for lydmeddelelse? '
+      question: Hvilke filformater er tilladt for lydmeddelelser?
       answer: '<p>Forskellige browsere tillader forskellige filformater. Her er en liste (formater der ikke er på listen kan fungere, hvis de relevante plugins er installeret, eg Quicktime til at afspille mp3 i Firefox):</p> <ul><li>Mozilla: wav, ogg</li> <li>Safari (muligvis med Quicktime): wav, mp3</li> <li>Chrome: ogg, mp3, wav</li> <li>Opera: wav, ogg</li></ul>'
     sound-location:
-      question: Hvad er grænsen for størrelsen af ​​lydmeddelelse og hvor kan de findes?
+      question: Hvad er grænsen for størrelsen af ​​lydmeddelelser og hvor kan de findes?
       answer: |
         <p>Alle browsere kan afspille data urls. Det er de internt gemte lyde, når du bruger load knappen via indstillingerne. Da de er konverteret og gemt i dine indstillinger, er størrelsen begrænset til omkring 160KB per lyd.</p>
         

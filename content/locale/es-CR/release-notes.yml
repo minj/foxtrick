@@ -5,6 +5,10 @@ es-CR:
       note_0: 'Esta es la versión de desarrollo. Utilízala bajo tu riego. Por favor revisa el <linkSVN>historial de commit</linkSVN> en Google Code para detalles de los cambios.'
     beta:
       note_0: 'Esta es la beta de la próxima versión. Por favor ayuda a traducir esta versión en nuestra super fácil página de traducción <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.15.1:
+      bugs: '<header>Corrección de errores</header>'
+      other: '<header>Otros cambios</header>'
+      and_more: Varios pequeños cambios y correcciones.
     0.15.0:
       important: '<header>Anuncios importantes</header>'
       support: '¿<header>Te gusta como lo estamos haciendo? Por favor <linkContribute>Ayuda Foxtrick</linkContribute>.</header>'
