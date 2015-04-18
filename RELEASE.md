@@ -75,10 +75,7 @@ git stash
 git pull --rebase origin cdn
 # update to master
 git merge origin/master
-# rewrite cdn tag for tomorrow
-git tag -d $(git tag -l cdn/*)
-git tag cdn/$(date -d 'tomorrow' +'%y%m%d') cdn
-git push --tags origin cdn
+git push origin cdn
 ```
 ### master branch
 ```sh
