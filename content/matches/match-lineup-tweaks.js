@@ -554,9 +554,6 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		if (!doc.querySelectorAll('.playersField > .playerBoxHome').length)
 			return; // we're not ready yet
 
-		if (!Foxtrick.Pages.Match.hasTimeline(doc))
-			return;
-
 		var staminaHome = getStaminaAverage(doc, 'Home');
 		var staminaAway = getStaminaAverage(doc, 'Away');
 
