@@ -125,6 +125,11 @@
 			"name": "Limonada123"
 		},
 		{
+			"duty": "supporter",
+			"id": "11616717",
+			"name": "nic016"
+		},
+		{
 			"duty": "translator",
 			"id": "11703834",
 			"name": "Estupor"
@@ -180,9 +185,19 @@
 			"name": "gomago"
 		},
 		{
+			"duty": "supporter",
+			"id": "12408163",
+			"name": "broda210"
+		},
+		{
 			"duty": "translator",
 			"id": "12533508",
 			"name": "RoLitoral"
+		},
+		{
+			"duty": "supporter",
+			"id": "1254141",
+			"name": "timone"
 		},
 		{
 			"duty": "translator",
