@@ -5,6 +5,10 @@ da:
       note_0: 'Dette er Beta-versionen. Du bruger denne version på eget ansvar. Se venligst <linkSVN>commit history</linkSVN> på Google Code for nærmere oplysninger om ændringerne.'
     beta:
       note_0: 'Dette er betaversionen af den næste udgave. Du kan hjælpe med at oversætte via vores super nemme oversættelses-side <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.15.1:
+      bugs: '<header>Fejlrettelser</header>'
+      other: '<header>Andre ændringer</header>'
+      and_more: Forskellige små ændringer og rettelser.
     0.15.0:
       important: '<header>Vigtige meddelelser</header>'
       support: '<header>Støt Foxtrick via Flattr mikrodonationer eller giv et bidrag med Paypal <linkContribute>Donér</linkContribute>.</header>'

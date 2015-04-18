@@ -5,6 +5,14 @@ hr:
       note_0: 'Ovo je razvojna inačica. Koristiti na svoju odgovornost. Za detalje o promjenama pogledajte <linkSVN>commit history</linkSVN> na Google Code stranici.'
     beta:
       note_0: 'Ovo je beta inačica buduće nove verzije. Pomozite na prevoditi ovu verziju sa super lakim prevođenjem na <linkCrowdin>crowdin.net</linkCrowdin>.'
+    0.15.1:
+      bugs: '<header>Popravljene greške</header>'
+      nt_crash: 'Popravljen problem koji dovodi do rušenja preglednika za NT u <module>MatchOrderInterface</module>.'
+      copy_htMl: 'Popravljen <module>ContextMenuCopy</module> koji nije kopirao tekst veze za HT-ML.'
+      resource_fix: '<module>Veze</module> i <module>StaffMarker</module> je prestao raditi za korisnike u nekim zemljama. Ovo bi trebalo biti popravljeno za nekoliko dana.'
+      other: '<header>Druge promjene</header>'
+      extarnal_url: 'Dodana opcija za kopiranje Hattrick linkova za druge web stranice u <module>ContextMenuCopy</module>. Ove veze rade bez obzira na koji HT server je korisnik prijavljen.'
+      and_more: Razne druge male promjene i popravci.
     0.15.0:
       important: '<header>Važne obavijesti</header>'
       support: '<header>Sviđa Vam se što radimo? Molim Vas da <linkContribute>podržite Foxtrick</linkContribute>.</header>'

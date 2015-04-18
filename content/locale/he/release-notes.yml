@@ -5,6 +5,14 @@ he:
       note_0: 'זהו עדכון בפיתוח. השימוש בו הוא לשיקולכם בלבד. לפרטים בנוגע לשינויים נא ראו <linkSVN>היסטוריה</linkSVN> בגוגל קוד.'
     beta:
       note_0: 'זוהי גירסת הבטא של המהדורה הבאה. נודה על עזרה בתרגום גירסה זו באתר התרגום המאוד נוח שלנו <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.15.1:
+      bugs: '<header>תיקוני באגים</header>'
+      nt_crash: 'תיקון בעיית ביצועים שמוביל לקריסה של הדפדפן עבור NTs ב- <module>MatchOrderInterface</module>.'
+      copy_htMl: 'תיקון <module>ContextMenuCopy</module> כבר לא מעתיק טקסט של לינקים עבור HT-ML.'
+      resource_fix: '<module>קישורים</module> ו- <module>StaffMarker</module> הפסיק לעבוד עבור משתמשים במדינות מסוימות. זה יתוקן בימים הקרובים.'
+      other: '<header>שינויים אחרים</header>'
+      extarnal_url: 'הוספת אפשרות להעתקת לינקים של האטריק לאתרי אינטרנט אחרים ב- <module>ContextMenuCopy</module>. קישורים אלה יעבדו, ללא קשר לאיזה שרת HT אתה מחובר.'
+      and_more: הרבה שינויים ותיקונים קטנים נוספים.
     0.15.0:
       important: '<header>הודעות חשובות</header>'
       support: '<header>מוצא חן בעיניך מה שאנחנו עושים? נודה על <linkContribute>תרומתך ל- Foxtrick</linkContribute>.</header>'

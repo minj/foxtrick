@@ -5,6 +5,14 @@ lt:
       note_0: 'Įdiegėte nestabilią versiją. Naudokite savo rizika. Peržiūrėkite „Google Code“ <linkSVN>pakeitimų sąrašą</linkSVN>.'
     beta:
       note_0: 'Įdiegėte išankstinę (beta) versiją. Prašome prisidėti prie jos vertimo į lietuvių kalbą ypatingai šauniame vertėjų savanorių portale „<linkCrowdin>crowdin.net</linkCrowdin>“. '
+    0.15.1:
+      bugs: '<header>Pataisytos klaidos</header>'
+      nt_crash: 'Sutvarkyta <module>MatchOrderInterface</module> našumo problema, dėl kurios naršyklės galėjo nulužti nacionalinių rinktinių treneriams.'
+      copy_htMl: 'Sutaisyta <module>ContextMenuCopy</module> klaida, dėl kurios nuorodų pavadinimai buvo nebekopijuojami HT-ML formatu.'
+      resource_fix: '<module>Links</module> ir <module>StaffMarker</module> liovėsi veikti vartotojams kai kurios šalyse. Problema turėtų būti sutvarkyta po kelių dienų.'
+      other: '<header>Kiti pakeitimai</header>'
+      extarnal_url: '<module>ContextMenuCopy</module> modulyje atsirado galimybė kopijuoti Hattrick nuorodas kitiems tinklalapiams. Šios nuorodos veikia nepriklausomai nuo to, prie kurio HT serverio vartotojas yra prisijungęs.'
+      and_more: Daugybė kitų smulkių pataisymų ir pakitimų.
     0.15.0:
       important: '<header>Svarbūs pranešimai</header>'
       support: '<header>Patinka šis projektas? Prašome <linkContribute>pagelbėti Foxtrick</linkContribute>.</header>'
