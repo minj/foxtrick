@@ -211,7 +211,8 @@ Foxtrick.modules['TransferComparePlayers'] = {
 			hTable.rows[0].insertBefore(th, hTable.rows[0].cells[4]);
 
 			var th = Foxtrick.createFeaturedElement(doc, this, 'th');
-			th.textContent = "Age" //Foxtrick.L10n.getString('TransferComparePlayers.age');
+			th.textContent = Foxtrick.L10n.getString('Age.abbr');
+			th.title = Foxtrick.L10n.getString('Age');
 			hTable.rows[0].insertBefore(th, hTable.rows[0].cells[1]);
 
 			var links = Foxtrick.Pages.All.getBreadCrumbs(doc);
