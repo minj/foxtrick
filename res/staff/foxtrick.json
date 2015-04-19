@@ -595,6 +595,11 @@
 			"name": "Mod-Transy"
 		},
 		{
+			"duty": "supporter",
+			"id": "7197589",
+			"name": "il-padrone"
+		},
+		{
 			"duty": "translator",
 			"id": "7230071",
 			"name": "TheZayc"
