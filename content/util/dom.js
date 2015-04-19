@@ -601,6 +601,23 @@ Foxtrick.getButton = function(doc, ID) {
 };
 
 /**
+ * Get all text nodes in the node tree
+ * @param  {element} parent
+ * @return {array}          Array.<element>
+ */
+Foxtrick.getTextNodes = function(parent) {
+	var ret = [];
+	var doc = parent.ownerDocument;
+	var win = doc.defaultView;
+	var walker = doc.createTreeWalker(parent, win.NodeFilter.SHOW_TEXT, null, false);
+	var node;
+	while ((node = walker.nextNode())) {
+		ret.push(node);
+	}
+	return ret;
+};
+
+/**
  * Make and display a modal dialog.
  * Handles foxtrick:// links automatically
  * content can either be a string or an element/fragment
