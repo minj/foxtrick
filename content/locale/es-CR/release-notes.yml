@@ -7,7 +7,11 @@ es-CR:
       note_0: 'Esta es la beta de la próxima versión. Por favor ayuda a traducir esta versión en nuestra super fácil página de traducción <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.15.1:
       bugs: '<header>Corrección de errores</header>'
+      nt_crash: 'Arreglado un problema de desempeño que ocasionaba caídas del navegador para NTs en <module>MatchOrderInterface</module>.'
+      copy_htMl: 'Arreglado <module>ContextMenuCopy</module> ya no se copia el texto de enlace para HT-ML.'
+      resource_fix: '<module>Enlaces</module> y <module>StaffMarker</module> dejaron de funcionar para usuarios en algunos países. Esto se arreglará en unos pocos días.'
       other: '<header>Otros cambios</header>'
+      extarnal_url: 'Añadida la opción para copiar enlaces de Hattrick a otros sitios web en <module>ContextMenuCopy</module>. Estos enlaces funcionan sin importar en qué servidor HT un usuario ha iniciado la sesión.'
       and_more: Varios pequeños cambios y correcciones.
     0.15.0:
       important: '<header>Anuncios importantes</header>'

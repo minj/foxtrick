@@ -7,7 +7,7 @@ nl:
       note_0: 'Dit is een beta versie van de volgende release. Help alsjeblieft met vertalen van deze versie op de zeer gebruiksvriendelijke crowd-vertaal pagina <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.15.1:
       bugs: '<header>Fout herstel</header>'
-      nt_crash: 'Performance probleem opgelost wat leidde tot een crash van de browser in <module>MatchOrderInterface</module>.'
+      nt_crash: 'Performance probleem opgelost wat leidde tot een crash van de browser bij Nationale teams in <module>MatchOrderInterface</module>.'
       copy_htMl: 'Probleem opgelost met <module>ContextMenuCopy</module> wat geen link kopieerde naar HTML.'
       resource_fix: '<module>Links</module> en <module>StaffMarker</module> stopten voor gebruikers in sommige landen. Dit zou binnen enkele dagen opgelost moeten zijn.'
       other: '<header>Andere veranderingen</header>'
@@ -255,9 +255,9 @@ nl:
       note_5: '<module>YouthTwins</module>: Option added to hide the information link about twins (default off)'
       note_6: '<module>StaffMarker</module>: Er wordt gebruik gemaakt van Using Google Code voor hattrick youthclub personeelsinformatie om te HY servers vanaf nu minder te belasten'
       note_7: '<module>TeamPopupLinks</module>: Some restyling to integrate better with the overall look and feel of hattrick.org'
-      note_8: Support for the KeyPlayer page
+      note_8: Ondersteuning voor de sleutelspeler-pagina
       note_9: Enkele verbeteringen voor Firefox op Android
-      note_10: Possibility to test alert sounds in the preferences
+      note_10: Mogelijkheid om meldingsgeluiden te testen in de voorkeuren
       note_11: Some internal changes related to data storage
       note_12: Kleine veranderingen en oplossingen die we zijn vergeten te vermelden
       note_13: '<header>Bugfixes</header>'
