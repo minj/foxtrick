@@ -56,16 +56,20 @@ Foxtrick.modules['FormatPostingText'] = {
 
 		// add to all targets. send button unclear (eg MyHattrick/Inbox/Default.
 		// aspx?actionType=readMail) . doesn't harm to add it to all
-		var targets = doc.getElementById('mainBody').getElementsByTagName('input');  // Forum
-		for (var i = 0; i < targets.length; ++i) {
-			if (targets[i].type == 'submit') {
-				Foxtrick.onClick(targets[i], function() {
-					var textarea = doc.getElementById('mainBody')
-						.getElementsByTagName('textarea')[0];
-					textarea.value = format(textarea.value);
-				});
+		var targets = doc.querySelectorAll('#mainBody input[type="submit"]');
+		var handler = function(ev) {
+			var doc = ev.target.ownerDocument;
+			var textarea = doc.querySelector('#mainBody textarea');
+			if (textarea) {
+				// remove escaping if any (e. g. from quote tag)
+				var value = reformat(textarea.value);
+				// reapply correct escaping
+				textarea.value = format(value);
 			}
-		}
+		};
+		Foxtrick.forEach(function(target) {
+			Foxtrick.onClick(target, handler);
+		}, targets);
 	},
 	// FIXME - also used by other modules, should extract to util/
 	reformat: function(string) {
