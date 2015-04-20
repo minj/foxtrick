@@ -32,21 +32,13 @@ Foxtrick.modules['FormatPostingText'] = {
 					messages = doc.getElementsByClassName('mainBox');
 				else
 					messages = doc.getElementsByClassName('feedItem');
-				for (var i = 0; i < messages.length; i++) {
-					var count_pre = Foxtrick.substr_count(messages[i].textContent, '[pre');
-					var org = [
-						/\[pre\](.*?)\[\/pre\]/gi ,
-						new RegExp(String.fromCharCode(8288), 'gi')
-					];
-					var rep = ["<pre class='ft-dummy'>$1</pre>", ''];
-					for (var j = 0; j <= count_pre; j++) {
-						for (var k = 0; k < org.length; k++) {
-							messages[i].innerHTML = messages[i].innerHTML.replace(org[k], rep[k]);
-						}
-					}
-				}
-			} catch (e_format) {
-				Foxtrick.dump('FormatPostingText: FORMAT TEXT ' + e_format + '\n');
+
+				Foxtrick.forEach(function(message) {
+					Foxtrick.renderPre(message);
+				}, messages);
+			}
+			catch (e) {
+				Foxtrick.log('FormatPostingText: FORMAT TEXT ', e);
 			}
 		}
 		else { // reformat edit

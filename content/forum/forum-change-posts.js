@@ -325,7 +325,7 @@ Foxtrick.modules['ForumChangePosts'] = {
 					Foxtrick.Prefs.getString('module.FormatPostingText.NestedQuotesAsSpoilers_text');
 				var numSpoilerQuotes = 0;
 
-				var getQuotes = function(node, level) {
+				var getQuotes = function(node, level, spoilers) {
 					if (level == HideLevel && node.getElementsByClassName('quote').length >= 0) {
 						var spoiler_show = Foxtrick
 							.createFeaturedElement(doc, Foxtrick.modules.FormatPostingText,
@@ -357,37 +357,26 @@ Foxtrick.modules['ForumChangePosts'] = {
 					else {
 						var quoteNodes = node.getElementsByClassName('quote');
 						for (var j = 0; j < quoteNodes.length; ++j)
-							getQuotes(quoteNodes[j], level + 1);
+							getQuotes(quoteNodes[j], level + 1, spoilers);
 					}
 				};
 
 				var messages = doc.getElementsByClassName('message');
-				for (var i = 0; i < messages.length; ++i) {
-					var count_pre = Foxtrick.substr_count(messages[i].textContent, '[pre');
-					// using u2060 'word joiner' zero-width space
-					var org = [
-						/\[pre\](.*?)\[\/pre\]/gi ,
-						new RegExp(String.fromCharCode(8288), 'gi')
-					];
-					var rep = ["<pre class='ft-dummy'>$1</pre>", ''];
-					for (var j = 0; j <= count_pre; ++j) {
-						for (var k = 0; k < org.length; ++k) {
-							messages[i].innerHTML = messages[i].innerHTML.replace(org[k], rep[k]);
-						}
-					}
+				Foxtrick.forEach(function(message) {
+					Foxtrick.renderPre(message);
 
 					if (Foxtrick.Prefs.isModuleOptionEnabled('FormatPostingText',
 					    'NestedQuotesAsSpoilers')) {
 						var spoilers = [];
 
-						getQuotes(messages[i], -1);
+						getQuotes(message, -1, spoilers);
 
 						for (var j = 0; j < spoilers.length; ++j) {
 							spoilers[j][0].parentNode.insertBefore(spoilers[j][1],
 							                                       spoilers[j][0].nextSibling);
 						}
 					}
-				}
+				}, messages);
 
 			} catch (e) {
 				Foxtrick.log('FORMAT TEXT ', e);
