@@ -328,15 +328,16 @@ Foxtrick.modules['MatchOrderInterface'] = {
 			var hasInterface = false;
 			var playerList = null;
 			var avatarsXml = null;
-			var teamLink = Foxtrick.Pages.All.getBreadCrumbs(doc)[0];
 			// NT team ID can only be found in URL it seems
-			var teamid = Foxtrick.util.id.getTeamIdFromUrl(doc.location.href);
+			var seniorId = Foxtrick.util.id.getTeamIdFromUrl(doc.location.href);
+			var youthId = Foxtrick.util.id.getYouthTeamIdFromUrl(doc.location.href);
+			var teamId = isYouth ? youthId : seniorId;
 
 			// load ahead players and then wait for interface loaded
 			getPlayers = function(fresh) {
 				Foxtrick.Pages.Players.getPlayerList(doc,
 				  function(playerInfo) {
-					if (!playerInfo || playerInfo.length == 0) {
+					if (!playerInfo || playerInfo.length === 0) {
 						Foxtrick.log('unable to retrieve player list.');
 						return;
 					}
@@ -349,14 +350,14 @@ Foxtrick.modules['MatchOrderInterface'] = {
 
 					if (hasInterface)
 						showPlayerInfo(doc.getElementById('orders'));
-				}, { teamId: teamid, currentSquad: true, includeMatchInfo: true, refresh: fresh });
+				}, { teamId: teamId, currentSquad: true, includeMatchInfo: true, refresh: fresh });
 			};
 			getPlayers();
 
 			var avatarsParams = [
 				['file', (isYouth ? 'youth' : '') + 'avatars'],
 				['version', '1.1'],
-				[(isYouth ? 'youthT' : 't') + 'eamId', teamid]
+				[(isYouth ? 'youthT' : 't') + 'eamId', teamId]
 			];
 			avatarsParamsString = JSON.stringify(avatarsParams); // save as string (immutable)
 			getAvatars = function(avatarsParams, opts) {
