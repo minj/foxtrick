@@ -238,6 +238,17 @@ Foxtrick.insertAfter = function(newNode, sibling) {
 };
 
 /**
+ * Append an array of elements to a container
+ * @param {element} parent
+ * @param {array}   children Array.<element>
+ */
+Foxtrick.appendChildren = function(parent, children) {
+	Foxtrick.forEach(function(child) {
+		parent.appendChild(child);
+	}, children);
+};
+
+/**
  * Adds a click event listener to an element.
  * Sets tabindex=0 and role=button if these attributes have no value.
  * The callback is executed with global change listeners stopped.
