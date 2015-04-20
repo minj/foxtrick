@@ -71,15 +71,6 @@ Foxtrick.modules['CopyRatings'] = {
 				var copyNumRating = Foxtrick.hasClass(doc.getElementById('sortByTextIcon'),
 				                                      'disabled') ? false : true;
 
-				/* needs to be in mouseover or click
-				var copylinks = doc.getElementsByClassName('ft_copy_rating');
-				for (var j = 0; j < copylinks.length; ++j) {
-					if (copyTextRating)
-						copylinks.title = Foxtrick.L10n.getString('ratings.text');
-					if (copyTextRating)
-						copylinks.title += ' ' + Foxtrick.L10n.getString('ratings.number');
-				}*/
-
 				// head row
 				ad += '[tr]\n\n[th]';
 				if ((table.rows[0].cells[0])) {

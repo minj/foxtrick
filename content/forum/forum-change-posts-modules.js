@@ -8,7 +8,7 @@
 Foxtrick.modules['FormatPostingText'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.FORUM,
 	PAGES: [
-		'forumWritePost', 'messageWritePost', 'guestbook', 'announcements',
+		'forumWritePost', 'messageWritePost', 'guestbook', 'announcements', 'teamPage',
 		'newsLetter', 'mailNewsLetter', 'ntNewsLetter',
 		'forumModWritePost'
 	],
@@ -16,88 +16,50 @@ Foxtrick.modules['FormatPostingText'] = {
 	OPTION_EDITS: true,
 
 	run: function(doc) {
-		var format = this.format;
-		var reformat = this.reformat;
-		//format view
-		if (Foxtrick.isPage(doc, 'messageWritePost')
-			|| Foxtrick.isPage(doc, 'guestbook')
-			|| Foxtrick.isPage(doc, 'forumWritePost')) {
+		// format view
+		var VIEW_PAGES = [
+			'forumWritePost', 'messageWritePost', 'guestbook', // view + edit
+			'announcements', 'teamPage' // view-only
+		];
+		if (Foxtrick.any(function(page) { return Foxtrick.isPage(doc, page); }, VIEW_PAGES)) {
 			try {
+				var messages;
 				if (Foxtrick.isPage(doc, 'forumWritePost'))
-					var messages = doc.getElementsByClassName('message');
+					messages = doc.getElementsByClassName('message');
+				else if (Foxtrick.isPage(doc, 'teamPage'))
+					messages = doc.getElementsByClassName('mainBox');
 				else
-					var messages = doc.getElementsByClassName('feedItem');
-				for (var i = 0; i < messages.length; i++) {
-					var count_pre = Foxtrick.substr_count(messages[i].textContent, '[pre');
-					var org = [
-						/\[pre\](.*?)\[\/pre\]/gi ,
-						new RegExp(String.fromCharCode(8288), 'gi')
-					];
-					var rep = ["<pre class='ft-dummy'>$1</pre>", ''];
-					for (var j = 0; j <= count_pre; j++) {
-						for (var k = 0; k < org.length; k++) {
-							messages[i].innerHTML = messages[i].innerHTML.replace(org[k], rep[k]);
-						}
-					}
-				}
-			} catch (e_format) {
-				Foxtrick.dump('FormatPostingText: FORMAT TEXT ' + e_format + '\n');
+					messages = doc.getElementsByClassName('feedItem');
+
+				Foxtrick.forEach(function(message) {
+					Foxtrick.renderPre(message);
+				}, messages);
+			}
+			catch (e) {
+				Foxtrick.log('FormatPostingText: FORMAT TEXT ', e);
 			}
 		}
-		else { // reformat edit
-			var textarea = doc.getElementById('mainBody').getElementsByTagName('textarea')[0];
-			if (textarea) textarea.value = reformat(textarea.value);
-		}
+		// unescape edit area
+		var textarea = doc.getElementById('mainBody').getElementsByTagName('textarea')[0];
+		if (textarea)
+			textarea.value = Foxtrick.unescapePre(textarea.value);
 
 		// add to all targets. send button unclear (eg MyHattrick/Inbox/Default.
 		// aspx?actionType=readMail) . doesn't harm to add it to all
-		var targets = doc.getElementById('mainBody').getElementsByTagName('input');  // Forum
-		for (var i = 0; i < targets.length; ++i) {
-			if (targets[i].type == 'submit') {
-				Foxtrick.onClick(targets[i], function() {
-					var textarea = doc.getElementById('mainBody')
-						.getElementsByTagName('textarea')[0];
-					textarea.value = format(textarea.value);
-				});
+		var targets = doc.querySelectorAll('#mainBody input[type="submit"]');
+		var handler = function(ev) {
+			var doc = ev.target.ownerDocument;
+			var textarea = doc.querySelector('#mainBody textarea');
+			if (textarea) {
+				// remove escaping if any (e. g. from quote tag)
+				var value = Foxtrick.unescapePre(textarea.value);
+				// reapply correct escaping
+				textarea.value = Foxtrick.escapePre(value);
 			}
-		}
-	},
-	// FIXME - also used by other modules, should extract to util/
-	reformat: function(string) {
-		// using u2060 'word joiner' zero-width space
-		var org = [
-			/\[pre\](.*?)\[\/pre\]/gi ,
-			new RegExp(String.fromCharCode(8288), 'gi')
-		];
-		var rep = ['[pre]$1[/pre]', ''];
-		var count_pre = Foxtrick.substr_count(string, '[pre');
-		for (var j = 0; j <= count_pre; j++) {
-			for (var k = 0; k < org.length; k++) {
-					string = string.replace(org[k], rep[k]);
-			}
-		}
-		return string;
-	},
-	// FIXME - also used by other modules, should extract to util/
-	format: function(string) {
-		string = string.replace(new RegExp(String.fromCharCode(8288), 'gi'), '')
-			.replace(/(\<)(\S)/gi, '<' + String.fromCharCode(8288) + '$2');
-
-			var vstring = string.split('[pre]');
-			var r_string = vstring[0];
-			var remain = 0;
-			for (var j = 1; j < vstring.length; j++) {
-				r_string += '[pre]';
-				var ivstring = vstring[j].split('[/pre]');
-				var num_do = Math.min(ivstring.length - 1, remain + 1);
-				remain -= (num_do - 1);
-				for (var i = 0; i < num_do; ++i)
-					r_string += ivstring[i].replace(/\[/g, '[' + String.fromCharCode(8288)) + '[/pre]';
-				for (var k = num_do; k < ivstring.length; k++) {
-					r_string += ivstring[k];
-				}
-			}
-		return r_string;
+		};
+		Foxtrick.forEach(function(target) {
+			Foxtrick.onClick(target, handler);
+		}, targets);
 	}
 };
 

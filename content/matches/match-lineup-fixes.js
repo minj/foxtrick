@@ -627,19 +627,68 @@ Foxtrick.modules['MatchLineupFixes'] = {
 			var isYouth = Foxtrick.Pages.Match.isYouth(doc);
 			var pl = isYouth ? 'YouthPlayer' : 'Player';
 
-			var html = ordersTable.innerHTML;
-			for (var i = 0; i < playerData.length; i++) {
-				var p = playerData[i];
-				var id = Number(p.SourcePlayerId);
-				var fullName = p.FirstName +
-					(p.NickName ? " '" + p.NickName + "' " : ' ') +
-					p.LastName;
-				var link = '<a id="playerLink" href="/Club/Players/' + pl + '.aspx?' + pl + 'Id=' +
-					id + '">' + fullName + '</a>';
-				// use negative lookahead in case HTs actually shape up
-				html = html.replace(new RegExp(fullName + '(?!</a>)', 'g'), link);
-			}
-			ordersTable.innerHTML = html;
+			var links = {};
+			var names = Foxtrick.map(function(p) {
+				var nick = p.NickName ? ' \'' + p.NickName + '\' ' : ' ';
+				var fullName = p.FirstName + nick + p.LastName;
+
+				// create a player link for replacements
+				var link = Foxtrick.createFeaturedElement(doc, module, 'a');
+				var id = parseInt(p.SourcePlayerId, 10);
+				var url = '/Club/Players/' + pl + '.aspx?' + pl + 'Id=' + id;
+				link.href = url;
+				link.id = 'playerLink';
+				link.textContent = fullName;
+				links[fullName] = link;
+
+				return fullName;
+			}, playerData);
+			// create a RegExp for all player names
+			var namesRE = new RegExp(names.join('|'), 'g');
+
+			var tNodes = Foxtrick.getTextNodes(ordersTable);
+			Foxtrick.forEach(function(node) {
+				if (node.parentNode.nodeName.toLowerCase() === 'a') {
+					// skip if inside a link already
+					return;
+				}
+
+				var text = node.textContent.trim();
+				if (text === '')
+					return;
+
+				var mArray, nodes = [], prevIndex = 0;
+				while ((mArray = namesRE.exec(text))) {
+					var name = mArray[0];
+					var start = namesRE.lastIndex - name.length;
+					if (start > prevIndex) {
+						// add any previous text as a text node
+						var previousText = text.slice(prevIndex, start);
+						nodes.push(doc.createTextNode(previousText));
+					}
+					// add matched player link
+					var link = links[name];
+					if (link) {
+						nodes.push(link.cloneNode(true));
+					}
+					else {
+						Foxtrick.error('Incorrectly escaped name in regex: ' + name);
+					}
+					prevIndex = namesRE.lastIndex;
+				}
+
+				if (nodes.length) {
+					if (prevIndex < text.length) {
+						// add any ending text
+						var endText = text.slice(prevIndex);
+						nodes.push(doc.createTextNode(endText));
+					}
+
+					var frag = doc.createDocumentFragment();
+					Foxtrick.appendChildren(frag, nodes);
+					node.parentNode.replaceChild(frag, node);
+				}
+			}, tNodes);
 		};
 
 

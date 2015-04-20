@@ -2,7 +2,9 @@
 div[class="cfHeader ftdoubleLine"]  {height:30px !important;}
 div[class="cfHeader ftdoubleLine"] b:after {content:" " !important;}
 div[class="cfHeader ftdoubleLine"] br {display:none !important; padding: 5px;}
-div.message pre, #ft-forum-preview-area  pre, div.feedItem pre {font-size:12px; white-space:pre-wrap;border: 1px dotted #ABCDEF;padding:2px; margin:2px;}
+div.message pre, #ft-forum-preview-area  pre, div.feedItem pre, div.mainBox pre {
+	font-size:12px; white-space:pre-wrap;border: 1px dotted #ABCDEF;padding:2px; margin:2px;
+}
 
 .cfWrapper div.ft-copy img {
 	background: url('chrome://foxtrick/content/resources/img/copy/copyNormal_s.png') no-repeat scroll 0 0 transparent;
