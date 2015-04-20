@@ -7,6 +7,101 @@
 if (!Foxtrick)
 	var Foxtrick = {};
 
+/**
+ * Prepare a string to be used as regex.
+ * Escapes some trivial cases of special regex characters.
+ * @param  {string} str
+ * @return {string}
+ */
+Foxtrick.strToRe = function(str) {
+	return str.replace(/([[\](){}?+*.|])/g, '\\$1');
+};
+
+/**
+ * Get a nested array representation of a nested tag in str.
+ * Array elements are either strings (perhaps empty) or other arrays.
+ * Strings may contain instances of nested tag in case they were unmatched.
+ * opts is {start, end: string} (required)
+ * @param  {string} str
+ * @param  {object} opts {start, end: str}
+ * @return {array}
+ */
+Foxtrick.parseNestedTag = function(str, opts) {
+	var mArray, tag;
+	if (!opts.re) {
+		// initialize
+		var start = Foxtrick.strToRe(opts.start);
+		var end = Foxtrick.strToRe(opts.end);
+		opts.re = new RegExp(start + '|' + end, 'g');
+		opts.prevIndex = 0;
+
+		// pre-pass to find unmatched starting tags
+		var level = 0, maxLevel = 0;
+		while ((mArray = opts.re.exec(str))) {
+			tag = mArray[0];
+			if (tag === opts.start) {
+				level += 1;
+				maxLevel = Math.max(maxLevel, level);
+			}
+			else if (tag === opts.end) {
+				if (level) {
+					// skip unmatched ending tags
+					level -= 1;
+				}
+			}
+			else {
+				Foxtrick.error('parseNestedTag: incorrectly escaped regex for tag ' + tag);
+				return [''];
+			}
+		}
+		if (level) {
+			// unmatched starting tags
+			maxLevel -= level;
+		}
+		opts.maxLevel = maxLevel;
+		opts.level = 0;
+	}
+
+	var nodes = [];
+	while ((mArray = opts.re.exec(str))) {
+		tag = mArray[0];
+		var startIndex = opts.re.lastIndex - tag.length;
+		// add any previous str (even if empty)
+		var previousText = str.slice(opts.prevIndex, startIndex);
+		nodes.push(previousText);
+		opts.prevIndex = opts.re.lastIndex;
+		if (tag === opts.start) {
+			if (opts.level < opts.maxLevel) {
+				opts.level += 1;
+				// continue recursively
+				nodes.push(Foxtrick.parseNestedTag(str, opts));
+				opts.level -= 1;
+				// update where recursion left off
+				opts.prevIndex = opts.re.lastIndex;
+			}
+			else {
+				// unmatched starting tag
+				nodes.push(tag);
+			}
+		}
+		else if (tag === opts.end) {
+			if (!opts.level) {
+				// unmatched ending tag
+				nodes.push(tag);
+			}
+			else {
+				// tag level finished, returning to previous stack frame
+				return nodes;
+			}
+		}
+	}
+	// no more tags in str
+	// add any ending text
+	var endText = str.slice(opts.prevIndex);
+	nodes.push(endText);
+	return nodes;
+};
+
 /** Remove any occurences of tags ('<something>') from text */
 Foxtrick.stripHTML = function(text) {
 	return text.replace(/(<([^>]+)>)/ig, '');
