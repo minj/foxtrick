@@ -106,37 +106,28 @@ Foxtrick.modules['ForumPreview'] = {
 				[/\<tbody\>\s*\<br \/\>/gi, '<tbody>']
 			];
 
+			var msg_window;
 			try {
-				var msg_window = doc.getElementById('mainBody').getElementsByTagName('textarea')[0];
+				msg_window = doc.getElementById('mainBody').getElementsByTagName('textarea')[0];
 			}
 			catch (e) {
-				Foxtrick.dump('FoxtrickForumPreview' + e);
+				Foxtrick.log(e);
+				return;
 			}
 
 			try {
-				var prev_div = doc.getElementById('ft-forum-preview-area');
-				var text = String(msg_window.value);
+				var text = msg_window.value;
 
 				var formatter = Foxtrick.modules['FormatPostingText'];
+
+				// escape HTML for preview
+				text = text.replace(/&/g, '&amp;');
+				text = text.replace(/</g, '&lt;');
 
 				// format within pre
 				text = formatter.format(text);
 
-				// replace &
-				text = text.replace(/\&/g, '&amp;');
-				// < with space after is allowed
-				text = text.replace(/< /g, '&lt; ');
-
-				// strip links. replace <· with &lt;
-				// using u2060 'word joiner' zero-width space instead!
-				//text = text.replace(/<Â·/g, '&lt;');
-				// who know why that Â is needed there. i think that happens at times
-				// with uft8 vs ansi
-				// i don't, so just lets do both
-				text = text.replace(new RegExp('<' + String.fromCharCode(8288), 'g'), '&lt;');
-				text = Foxtrick.stripHTML(text);
-
-				text = text.replace(/\n/g, ' <br />');
+				text = text.replace(/\n/g, '<br />');
 				text = text.replace(/\r/g, '');
 
 				var nested = ['[q', '[b', '[i', '[u', '[spoil', '[table', '[pre'];
@@ -156,7 +147,7 @@ Foxtrick.modules['ForumPreview'] = {
 					}
 				}
 
-				// reformat with pre
+				// remove HT-ML escaping but leave HTML
 				text = formatter.reformat(text);
 
 				var preview_message = doc.createElement('div');
