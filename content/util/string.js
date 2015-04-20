@@ -102,6 +102,62 @@ Foxtrick.parseNestedTag = function(str, opts) {
 	return nodes;
 };
 
+/**
+ * Remove escaping symbols used inside pre tags
+ * @param  {string} string
+ * @return {string}
+ */
+Foxtrick.unescapePre = function(string) {
+	return string.replace(/([\[<])\u2060/g, '$1');
+};
+
+/**
+ * Add escaping symbols inside pre tags
+ * @param  {string} string
+ * @return {string}
+ */
+Foxtrick.escapePre = function(string) {
+	var joinNestedPre = function(arr) {
+		var ret = '[pre]';
+		Foxtrick.forEach(function(el) {
+			if (typeof el === 'string') {
+				ret += el;
+				return;
+			}
+			// add pre tags recursively
+			ret += joinNestedPre(el);
+		}, arr);
+		ret += '[/pre]';
+		return ret;
+	};
+
+	var tokens = Foxtrick.parseNestedTag(string, { start: '[pre]', end: '[/pre]' });
+	tokens = Foxtrick.map(function(token) {
+		// unescaped level
+		if (typeof token === 'string') {
+			// deal with unmatched pre tags but leave others as is
+			return token.replace(/\[(\/)?(?=pre\])/g, '[\u2060$1');
+		}
+		// join array
+		var ret = Foxtrick.map(function(nToken) {
+			// escaped level (inside pre)
+			var ret;
+			if (typeof nToken === 'string') {
+				ret = nToken;
+			}
+			else {
+				// add pre tags recursively
+				ret = joinNestedPre(nToken);
+			}
+			// escape every tag inside pre
+			return ret.replace(/([\[<])(?=\S)/g, '$1\u2060');
+		}, token).join('');
+		// wrap with first-level pre tags
+		return Foxtrick.format('[pre]{}[/pre]', [ret]);
+	}, tokens);
+	return tokens.join('');
+};
+
 /** Remove any occurences of tags ('<something>') from text */
 Foxtrick.stripHTML = function(text) {
 	return text.replace(/(<([^>]+)>)/ig, '');

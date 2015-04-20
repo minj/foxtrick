@@ -118,14 +118,12 @@ Foxtrick.modules['ForumPreview'] = {
 			try {
 				var text = msg_window.value;
 
-				var formatter = Foxtrick.modules['FormatPostingText'];
-
 				// escape HTML for preview
 				text = text.replace(/&/g, '&amp;');
 				text = text.replace(/</g, '&lt;');
 
 				// format within pre
-				text = formatter.format(text);
+				text = Foxtrick.escapePre(text);
 
 				text = text.replace(/\n/g, '<br />');
 				text = text.replace(/\r/g, '');
@@ -148,7 +146,7 @@ Foxtrick.modules['ForumPreview'] = {
 				}
 
 				// remove HT-ML escaping but leave HTML
-				text = formatter.reformat(text);
+				text = Foxtrick.unescapePre(text);
 
 				var preview_message = doc.createElement('div');
 				preview_message.id = 'message_preview';
