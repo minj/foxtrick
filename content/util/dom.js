@@ -224,6 +224,20 @@ Foxtrick.getChildIndex = function(element) {
 };
 
 /**
+ * Insert newNode after sibling
+ * @param {element} newNode
+ * @param {element} sibling
+ */
+Foxtrick.insertAfter = function(newNode, sibling) {
+	if (sibling.nextSibling) {
+		sibling.parentNode.insertBefore(newNode, sibling.nextSibling);
+	}
+	else {
+		sibling.parentNode.appendChild(newNode);
+	}
+};
+
+/**
  * Adds a click event listener to an element.
  * Sets tabindex=0 and role=button if these attributes have no value.
  * The callback is executed with global change listeners stopped.
