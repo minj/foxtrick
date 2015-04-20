@@ -41,10 +41,10 @@ Foxtrick.modules['FormatPostingText'] = {
 				Foxtrick.log('FormatPostingText: FORMAT TEXT ', e);
 			}
 		}
-		else { // reformat edit
-			var textarea = doc.getElementById('mainBody').getElementsByTagName('textarea')[0];
-			if (textarea) textarea.value = reformat(textarea.value);
-		}
+		// unescape edit area
+		var textarea = doc.getElementById('mainBody').getElementsByTagName('textarea')[0];
+		if (textarea)
+			textarea.value = reformat(textarea.value);
 
 		// add to all targets. send button unclear (eg MyHattrick/Inbox/Default.
 		// aspx?actionType=readMail) . doesn't harm to add it to all
@@ -65,40 +65,49 @@ Foxtrick.modules['FormatPostingText'] = {
 	},
 	// FIXME - also used by other modules, should extract to util/
 	reformat: function(string) {
-		// using u2060 'word joiner' zero-width space
-		var org = [
-			/\[pre\](.*?)\[\/pre\]/gi ,
-			new RegExp(String.fromCharCode(8288), 'gi')
-		];
-		var rep = ['[pre]$1[/pre]', ''];
-		var count_pre = Foxtrick.substr_count(string, '[pre');
-		for (var j = 0; j <= count_pre; j++) {
-			for (var k = 0; k < org.length; k++) {
-					string = string.replace(org[k], rep[k]);
-			}
-		}
-		return string;
+		return string.replace(/([\[<])\u2060/g, '$1');
 	},
 	// FIXME - also used by other modules, should extract to util/
 	format: function(string) {
-		string = string.replace(new RegExp(String.fromCharCode(8288), 'gi'), '')
-			.replace(/(\<)(\S)/gi, '<' + String.fromCharCode(8288) + '$2');
-
-			var vstring = string.split('[pre]');
-			var r_string = vstring[0];
-			var remain = 0;
-			for (var j = 1; j < vstring.length; j++) {
-				r_string += '[pre]';
-				var ivstring = vstring[j].split('[/pre]');
-				var num_do = Math.min(ivstring.length - 1, remain + 1);
-				remain -= (num_do - 1);
-				for (var i = 0; i < num_do; ++i)
-					r_string += ivstring[i].replace(/\[/g, '[' + String.fromCharCode(8288)) + '[/pre]';
-				for (var k = num_do; k < ivstring.length; k++) {
-					r_string += ivstring[k];
+		var joinNestedPre = function(arr) {
+			var ret = '[pre]';
+			Foxtrick.forEach(function(el) {
+				if (typeof el === 'string') {
+					ret += el;
+					return;
 				}
+				// add pre tags recursively
+				ret += joinNestedPre(el);
+			}, arr);
+			ret += '[/pre]';
+			return ret;
+		};
+
+		var tokens = Foxtrick.parseNestedTag(string, { start: '[pre]', end: '[/pre]' });
+		tokens = Foxtrick.map(function(token) {
+			// unescaped level
+			if (typeof token === 'string') {
+				// deal with unmatched pre tags but leave others as is
+				return token.replace(/\[(\/)?(?=pre\])/g, '[\u2060$1');
 			}
-		return r_string;
+			// join array
+			var ret = Foxtrick.map(function(nToken) {
+				// escaped level (inside pre)
+				var ret;
+				if (typeof nToken === 'string') {
+					ret = nToken;
+				}
+				else {
+					// add pre tags recursively
+					ret = joinNestedPre(nToken);
+				}
+				// escape every tag inside pre
+				return ret.replace(/([\[<])(?=\S)/g, '$1\u2060');
+			}, token).join('');
+			// wrap with first-level pre tags
+			return Foxtrick.format('[pre]{}[/pre]', [ret]);
+		}, tokens);
+		return tokens.join('');
 	}
 };
 
