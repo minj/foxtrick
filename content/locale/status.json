@@ -66,11 +66,11 @@
 			"code": "bs",
 			"name": "Bosnian",
 			"phrases": "1833",
-			"translated": "1821",
+			"translated": "1829",
 			"translated_progress": "99",
 			"words": "12980",
 			"words_approved": "0",
-			"words_translated": "12866"
+			"words_translated": "12905"
 		},
 		{
 			"approved": "0",
@@ -133,16 +133,16 @@
 			"words_translated": "10624"
 		},
 		{
-			"approved": "1826",
-			"approved_progress": "99",
+			"approved": "1833",
+			"approved_progress": "100",
 			"code": "da",
 			"name": "Danish",
 			"phrases": "1833",
-			"translated": "1826",
-			"translated_progress": "99",
+			"translated": "1833",
+			"translated_progress": "100",
 			"words": "12980",
-			"words_approved": "12891",
-			"words_translated": "12891"
+			"words_approved": "12980",
+			"words_translated": "12980"
 		},
 		{
 			"approved": "1265",
