@@ -19,7 +19,7 @@ Foxtrick.util.load = {};
 Foxtrick.util.load._parseUrl = function(url) {
 	// get a timestamp in the form 150324, i. e. $(date +'%y%m%d')
 	var date = new Date().toISOString().slice(2, 10).replace(/\D/g, '');
-	return url.replace(/\/cdn\/%d\//, '/cdn/' + date + '/');
+	return url.replace(/\/res\/%d\//, '/res/' + date + '/');
 };
 
 /**
