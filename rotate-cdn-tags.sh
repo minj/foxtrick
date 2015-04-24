@@ -14,6 +14,8 @@ git fetch --prune origin "+refs/tags/*:refs/tags/*" || log "Cannot update tags"
 git pull --rebase || log "Cannot pull rebase"
 git tag cdn/$tomorrow cdn || log "Cannot create cdn/$tomorrow"
 git tag --delete cdn/$ago || log "Cannot delete cdn/$ago"
-git push --tags origin cdn :cdn/$ago || log "Cannot push tags to origin"
+git tag res/$tomorrow cdn || log "Cannot create res/$tomorrow"
+git tag --delete res/$ago || log "Cannot delete res/$ago"
+git push --tags origin cdn :cdn/$ago :res/$ago || log "Cannot push tags to origin"
 
 log 'success rotate cdn tags'
