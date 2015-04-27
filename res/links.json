@@ -868,6 +868,10 @@
 			"url": "http://ht-tracker.rakoczif.hu/",
 			"filters": ["countryid"]
 		},
+		"trackeryouthplayerlink": {
+			"url": "http://ht-tracker.rakoczif.hu/",
+			"filters": ["nationality"]
+		},
 		"countryidranges": [[51, 51]],
 		"nationalityranges": [[51, 51]]
 	},
@@ -967,6 +971,10 @@
 		"trackeryouthlink": {
 			"url": "http://www.sisu-ht.com/",
 			"filters": ["countryid"]
+		},
+		"trackeryouthplayerlink": {
+			"url": "http://www.sisu-ht.com/",
+			"filters": ["nationality"]
 		},
 		"countryidranges": [[28, 28]],
 		"nationalityranges": [[28, 28]]
