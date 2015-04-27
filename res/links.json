@@ -580,6 +580,10 @@
 			"url": "http://www.ht-fff.org/?server=[server]",
 			"filters": ["countryid"]
 		},
+		"trackercountrylink": {
+			"url": "http://www.ht-fff.org/?server=[server]",
+			"filters": ["countryid"]
+		},
 		"trackerplayerlink": {
 			"url": "http://www.ht-fff.org/?server=[server]",
 			"filters": ["nationality"]
@@ -591,6 +595,10 @@
 		"img": "http://hattrickscotland.org/favicon.png",
 		"title": "Scotland U20/NT Tracker",
 		"trackernationalteamlink": {
+			"url": "http://hattrickscotland.org/nationalteams.php",
+			"filters": ["countryid"]
+		},
+		"trackercountrylink": {
 			"url": "http://hattrickscotland.org/nationalteams.php",
 			"filters": ["countryid"]
 		},
@@ -608,6 +616,10 @@
 			"url": "http://canada.htravenia.com/?server=[server]",
 			"filters": ["countryid"]
 		},
+		"trackercountrylink": {
+			"url": "http://canada.htravenia.com/?server=[server]",
+			"filters": ["countryid"]
+		},
 		"trackerplayerlink": {
 			"url": "http://canada.htravenia.com/players/?id=[playerid]&server=[server]",
 			"filters": ["nationality"]
@@ -619,6 +631,10 @@
 		"img": "http://htbenin.athost.fr/img/beninDB.ico",
 		"title": "Benin NT/U20 Tracker",
 		"trackernationalteamlink": {
+			"url": "http://htbenin.athost.fr/index.php",
+			"filters": ["countryid"]
+		},
+		"trackercountrylink": {
 			"url": "http://htbenin.athost.fr/index.php",
 			"filters": ["countryid"]
 		},
@@ -636,6 +652,10 @@
 			"url": "http://cro-tracker.com/index.php",
 			"filters": ["countryid"]
 		},
+		"trackercountrylink": {
+			"url": "http://cro-tracker.com/index.php",
+			"filters": ["countryid"]
+		},
 		"trackerplayerlink": {
 			"url": "http://cro-tracker.com/index.php",
 			"filters": ["nationality"]
@@ -647,6 +667,10 @@
 		"img": "resources/linkicons/tracker.png",
 		"title": "Colombia U20/NT Tracker",
 		"trackernationalteamlink": {
+			"url": "http://seleccion.htcolombia.org/",
+			"filters": ["countryid"]
+		},
+		"trackercountrylink": {
 			"url": "http://seleccion.htcolombia.org/",
 			"filters": ["countryid"]
 		},
@@ -664,6 +688,10 @@
 			"url": "http://www.realfootball.co.uk/hattrick/tracker",
 			"filters": ["countryid"]
 		},
+		"trackercountrylink": {
+			"url": "http://www.realfootball.co.uk/hattrick/tracker",
+			"filters": ["countryid"]
+		},
 		"trackerplayerlink": {
 			"url": "http://www.realfootball.co.uk/hattrick/tracker",
 			"filters": ["nationality"]
@@ -675,6 +703,10 @@
 		"img": "resources/linkicons/tracker.png",
 		"title": "Nederland U20/NT Tracker",
 		"trackernationalteamlink": {
+			"url": "http://www.dutchscouts.nl/",
+			"filters": ["countryid"]
+		},
+		"trackercountrylink": {
 			"url": "http://www.dutchscouts.nl/",
 			"filters": ["countryid"]
 		},
@@ -692,6 +724,10 @@
 			"url": "http://www.tracker.comyr.com/",
 			"filters": ["countryid"]
 		},
+		"trackercountrylink": {
+			"url": "http://www.tracker.comyr.com/",
+			"filters": ["countryid"]
+		},
 		"trackerplayerlink": {
 			"url": "http://www.tracker.comyr.com/",
 			"filters": ["nationality"]
@@ -703,6 +739,10 @@
 		"img": "http://www.htsweden.se/Content/Images/htsv-favicon.ico",
 		"title": "Sweden U20/NT Tracker",
 		"trackernationalteamlink": {
+			"url": "http://htsweden.htsv.se",
+			"filters": ["countryid"]
+		},
+		"trackercountrylink": {
 			"url": "http://htsweden.htsv.se",
 			"filters": ["countryid"]
 		},
@@ -720,6 +760,10 @@
 			"url": "http://hattricktanzania.ic.cz",
 			"filters": ["countryid"]
 		},
+		"trackercountrylink": {
+			"url": "http://hattricktanzania.ic.cz",
+			"filters": ["countryid"]
+		},
 		"trackerplayerlink": {
 			"url": "http://hattricktanzania.ic.cz",
 			"filters": ["nationality"]
@@ -731,6 +775,10 @@
 		"img": "resources/linkicons/tracker.png",
 		"title": "Türkiye & Azebaycan Player Database",
 		"trackernationalteamlink": {
+			"url": "http://www.ht-turkiye.com",
+			"filters": ["countryid"]
+		},
+		"trackercountrylink": {
 			"url": "http://www.ht-turkiye.com",
 			"filters": ["countryid"]
 		},
@@ -754,6 +802,10 @@
 			"url": "http://players.pp.ua/",
 			"filters": ["countryid"]
 		},
+		"trackercountrylink": {
+			"url": "http://players.pp.ua/",
+			"filters": ["countryid"]
+		},
 		"trackerplayerlink": {
 			"url": "http://players.pp.ua/update",
 			"filters": ["nationality"]
@@ -765,6 +817,10 @@
 		"img": "http://www.htspain.es/img/favicon.ico",
 		"title": "Espana NT/U-20 DB",
 		"trackernationalteamlink": {
+			"url": "http://www.htspain.es/",
+			"filters": ["countryid"]
+		},
+		"trackercountrylink": {
 			"url": "http://www.htspain.es/",
 			"filters": ["countryid"]
 		},
@@ -782,6 +838,10 @@
 			"url": "http://www.ntdb.pl/",
 			"filters": ["countryid"]
 		},
+		"trackercountrylink": {
+			"url": "http://www.ntdb.pl/",
+			"filters": ["countryid"]
+		},
 		"trackerplayerlink": {
 			"url": "http://www.ntdb.pl/index.php?page=Logging",
 			"filters": ["nationality"]
@@ -793,6 +853,10 @@
 		"img": "http://ht-tracker.rakoczif.hu/pics/favicon.ico",
 		"title": "Hungary National Tracker",
 		"trackernationalteamlink": {
+			"url": "http://ht-tracker.rakoczif.hu/",
+			"filters": ["countryid"]
+		},
+		"trackercountrylink": {
 			"url": "http://ht-tracker.rakoczif.hu/",
 			"filters": ["countryid"]
 		},
@@ -811,6 +875,10 @@
 		"img": "resources/linkicons/tracker.png",
 		"title": "Russia + Kyrgyzstan NT/U-20 DB",
 		"trackernationalteamlink": {
+			"url": "http://www.hattricker.ru/tracker/",
+			"filters": ["countryid"]
+		},
+		"trackercountrylink": {
 			"url": "http://www.hattricker.ru/tracker/",
 			"filters": ["countryid"]
 		},
@@ -834,6 +902,10 @@
 			"url": "http://htnorway.com/tracker/",
 			"filters": ["countryid"]
 		},
+		"trackercountrylink": {
+			"url": "http://htnorway.com/tracker/",
+			"filters": ["countryid"]
+		},
 		"trackerplayerlink": {
 			"url": "http://htnorway.com/tracker/",
 			"filters": ["nationality"]
@@ -845,6 +917,10 @@
 		"img": "http://www.sloscfan.com/favicon.ico",
 		"title": "HTSlo - Slovenian Hattrick U-20/NT tracker",
 		"trackernationalteamlink": {
+			"url": "http://www.sloscfan.com/hattrick/",
+			"filters": ["countryid"]
+		},
+		"trackercountrylink": {
 			"url": "http://www.sloscfan.com/hattrick/",
 			"filters": ["countryid"]
 		},
@@ -862,6 +938,10 @@
 			"url": "http://www.ht-ro.org",
 			"filters": ["countryid"]
 		},
+		"trackercountrylink": {
+			"url": "http://www.ht-ro.org",
+			"filters": ["countryid"]
+		},
 		"trackerplayerlink": {
 			"url": "http://www.ht-ro.org",
 			"filters": ["nationality"]
@@ -873,6 +953,10 @@
 		"img": "http://www.sisu-ht.com/SISU/images/Logo.ico",
 		"title": "Sistema Integral de la Seleccion Uruguaya (SISU)",
 		"trackernationalteamlink": {
+			"url": "http://www.sisu-ht.com/",
+			"filters": ["countryid"]
+		},
+		"trackercountrylink": {
 			"url": "http://www.sisu-ht.com/",
 			"filters": ["countryid"]
 		},
@@ -891,6 +975,10 @@
 		"img": "http://www.botrick.altirogames.com/images/favicon.ico",
 		"title": "Botrick, Chilean Hattrick NT/U20 Tracker",
 		"trackernationalteamlink": {
+			"url": "http://www.botrick.altirogames.com/",
+			"filters": ["countryid"]
+		},
+		"trackercountrylink": {
 			"url": "http://www.botrick.altirogames.com/",
 			"filters": ["countryid"]
 		},
@@ -962,6 +1050,9 @@
 	"hattrickportal": {
 		"title": "Hattrick Portal NT/U20 tracker",
 		"img": "http://hattrickportal.pro/favicon.ico",
+		"trackercountrylink": {
+			"url": "http://hattrickportal.pro/Tracker"
+		},
 		"trackernationalteamlink": {
 			"url": "http://hattrickportal.pro/Tracker"
 		},
