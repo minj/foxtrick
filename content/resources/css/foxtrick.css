@@ -254,6 +254,11 @@ span.flag img {
 	margin: 0 2px 2px 0;
 }
 
+.ft-link-span a.flag img {
+	vertical-align: baseline !important;
+	margin: 0 !important;
+}
+
 /* FoxTrick note */
 .ft-note {
 	background-color: #efefff;
