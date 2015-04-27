@@ -573,13 +573,6 @@
 		"title": "ArgenStat",
 		"img": "resources/linkicons/argenstat.png"
 	},
-	"gham": {
-		"matchlink": {
-			"url": "http://hattrickitalia.org/gham/live/?matchId=[matchid]"
-		},
-		"title": "Gham live",
-		"img": "http://gham.hattrickitalia.org/favicon.ico"
-	},
 	"frenchtracker":  {
 		"img": "http://www.ht-fff.org/favicon.ico",
 		"title": "French U20/NT Tracker",
