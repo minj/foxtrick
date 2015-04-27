@@ -32,6 +32,7 @@ Foxtrick.modules.Core = {
 		this.featureHighlight(doc);
 		this.showChangeLog(doc);
 		this.HT_TIME = Foxtrick.util.time.getHtTimeStamp(doc);
+		Foxtrick.Prefs.setString('lastTime', this.HT_TIME);
 		this.addBugReportLink(doc);
 	},
 	showReleaseModal: function(doc) {

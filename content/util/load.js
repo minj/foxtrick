@@ -17,9 +17,15 @@ Foxtrick.util.load = {};
  * @return {string}
  */
 Foxtrick.util.load._parseUrl = function(url) {
-	// get a timestamp in the form 150324, i. e. $(date +'%y%m%d')
-	var date = new Date().toISOString().slice(2, 10).replace(/\D/g, '');
-	return url.replace(/\/cdn\/%d\//, '/cdn/' + date + '/');
+	url = url.replace(/\/cdn\/%d\//, function() {
+		// get a timestamp in the form 150324, i. e. $(date +'%y%m%d')
+		// use HT date or -1 so as not to mess up due to wrong system time (in the future)
+		// -1 refers to 691231 which was tagged for default cases
+		var time = parseInt(Foxtrick.Prefs.getString('lastTime'), 10) || -1;
+		var date = new Date(time).toISOString().slice(2, 10).replace(/\D/g, '');
+		return '/cdn/' + date + '/';
+	});
+	return url;
 };
 
 /**

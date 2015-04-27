@@ -36,6 +36,8 @@ Foxtrick.modules['LinksTeam'] = {
 		var main = doc.getElementById('mainBody');
 		var ownBoxBody = null;
 		var teaminfo = this.gatherLinks(main, doc);
+		if (!teaminfo)
+			return;
 
 		var links = Foxtrick.modules['Links'].getLinks('teamlink', teaminfo, doc, this);
 		if (links.length > 0) {
@@ -56,6 +58,9 @@ Foxtrick.modules['LinksTeam'] = {
 
 	gatherLinks: function(thisdiv, doc) {
 		var teamid = Foxtrick.Pages.All.getId(doc);
+		if (!teamid)
+			return;
+
 		var teamname = Foxtrick.Pages.All.getTeamName(doc);
 		var countryid = Foxtrick.util.id.findLeagueId(thisdiv);
 		var leaguename = Foxtrick.util.id.extractLeagueName(thisdiv);

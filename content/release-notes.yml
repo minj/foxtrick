@@ -7,6 +7,15 @@ en:
     beta:
       note_0: 'This is the beta version of the next release. Please help translating this version at our super easy crowd-translation page <linkCrowdin>crowdin.net</linkCrowdin>.'
 
+    0.15.1:
+      bugs: '<header>Bug fixes</header>'
+      nt_crash: 'Fixed a performance problem leading to browser crashes for NTs in <module>MatchOrderInterface</module>.'
+      copy_htMl: 'Fixed <module>ContextMenuCopy</module> no longer copying link text for HT-ML.'
+      resource_fix: '<module>Links</module> and <module>StaffMarker</module> stopped working for users in some countries. This should be fixed in a few days.'
+      other: '<header>Other changes</header>'
+      extarnal_url: 'Added an option to copy Hattrick links for other websites in <module>ContextMenuCopy</module>. These links work no matter which HT server a user is logged in with.'
+      and_more: 'Various other small changes and fixes.'
+
     0.15.0:
       important: '<header>Important announcements</header>'
       support: '<header>Like what we are doing? Please <linkContribute>Support Foxtrick</linkContribute>.</header>'

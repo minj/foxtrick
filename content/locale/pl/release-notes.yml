@@ -5,6 +5,10 @@ pl:
       note_0: 'To jest wersja rozwojowa. Korzystaj według własnego uznania. Proszę sprawdź szczegóły zmian <linkSVN>historia zmian</linkSVN> w witrynie Google Code.'
     beta:
       note_0: 'To jest wersja beta następnego wydania. Proszę pomóż w tłumaczeniu tej wersji na naszej super łatwej stronie tłumaczeń <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.15.1:
+      bugs: '<header>Poprawki błędów</header>'
+      other: '<header>Inne zmiany</header>'
+      and_more: Różne inne małe zmiany i poprawki.
     0.15.0:
       important: '<header>Ważne ogłoszenia</header>'
       support: '<header>Jeżeli lubisz to co robimy? Proszę <linkContribute>Wspomóż Foxtrick</linkContribute>.</header>'

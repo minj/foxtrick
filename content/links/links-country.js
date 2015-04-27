@@ -47,7 +47,7 @@ Foxtrick.modules['LinksCountry'] = {
 		}
 
 		if (Foxtrick.Prefs.isModuleEnabled('LinksTracker')) {
-			var links2 = Foxtrick.modules['Links'].getLinks('trackernationalteamlink', {
+			var links2 = Foxtrick.modules['Links'].getLinks('trackercountrylink', {
 				'countryid': leagueId,
 			}, doc, Foxtrick.modules['LinksTracker']);
 			for (var k = 0; k < links2.length; k++) {
