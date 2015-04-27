@@ -135,18 +135,19 @@ Foxtrick.modules['LinksYouthPlayerDetail'] = {
 		var ownBoxBodyId = 'foxtrick_links_content';
 		ownBoxBody.id = ownBoxBodyId;
 
-		var links = Foxtrick.modules['Links'].getLinks('youthplayerdetaillink', {
-			'ownteamid': ownteamid,
-			'teamid': teamid,
-			'youthteamid': youthteamid,
-			'playerid': playerid,
-			'playername': playername,
-			'age': years,
-			'age_days': days,
-			'owncountryid': owncountryid,
-			'nationality': countryid,
-			'server': server
-		}, doc, this);
+		var info = {
+			ownteamid: ownteamid,
+			teamid: teamid,
+			youthteamid: youthteamid,
+			playerid: playerid,
+			playername: playername,
+			age: years,
+			age_days: days,
+			owncountryid: owncountryid,
+			nationality: countryid,
+			server: server
+		};
+		var links = Foxtrick.modules['Links'].getLinks('youthplayerdetaillink', info, doc, this);
 		if (links.length > 0) {
 			for (var k = 0; k < links.length; k++) {
 				links[k].link.className = 'inner';
@@ -155,9 +156,9 @@ Foxtrick.modules['LinksYouthPlayerDetail'] = {
 			}
 		}
 		if (Foxtrick.Prefs.isModuleEnabled('LinksTracker')) {
-			var links2 = Foxtrick.modules['Links'].getLinks('trackeryouthlink', {
-				'countryid': countryid,
-			}, doc, Foxtrick.modules['LinksTracker']);
+			var mod = Foxtrick.modules['LinksTracker'];
+			var links2 =
+				Foxtrick.modules['Links'].getLinks('trackeryouthplayerlink', info, doc, mod);
 			if (links2.length > 0) {
 				for (var i = 0; i < links2.length; ++i) {
 					links2[i].link.className = 'flag inner';
