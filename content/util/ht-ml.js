@@ -94,8 +94,7 @@ Foxtrick.util.htMl.getFormat = (function() {
 							if (/^foxtrick:/.test(a.url)) {
 								return a.url;
 							}
-							a.url = Foxtrick.goToUrl(a.url);
-							content = Foxtrick.format('[link={}]', [a.url]);
+							content = Foxtrick.goToUrl(a.url);
 						}
 						else {
 							content = Foxtrick.format('[{}={}]', [a.type, a.id || a.url]);
@@ -108,7 +107,7 @@ Foxtrick.util.htMl.getFormat = (function() {
 							if (a.type === 'link') {
 								if (a.url.indexOf(path) === -1) {
 									// link text is not a URL
-									content += Foxtrick.format('({})', [stripped]);
+									content = Foxtrick.format('{} {}', [stripped, content]);
 								}
 							}
 							else if (stripped !== a.id) {
