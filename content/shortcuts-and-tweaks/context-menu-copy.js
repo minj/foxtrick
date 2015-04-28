@@ -28,7 +28,7 @@ if (Foxtrick.platform != 'Android')
 		'foxtrick-popup-copy-external-link': {
 			option: 'external',
 			func: function(node) {
-				return Foxtrick.util.htMl.getLink(node, { external: true, linksOnly: false });
+				return Foxtrick.util.htMl.getLink(node, { external: true });
 			},
 			item: null,
 			copyText: null
