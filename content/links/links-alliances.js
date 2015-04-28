@@ -2,47 +2,33 @@
 /**
  * linksyouthoverview.js
  * Foxtrick add links to arena pages
- * @author larsw84
+ * @author larsw84, LA-MJ
  */
 
 Foxtrick.modules['LinksAlliances'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
 	PAGES: ['federation'],
-	OPTION_FUNC: function(doc, callback) {
-		return Foxtrick.modules['Links']
-			.getOptionsHtml(doc, 'LinksAlliances', 'federationlink', callback);
+	/**
+	 * return HTML for FT prefs
+	 * @param  {document}         doc
+	 * @param  {function}         cb
+	 * @return {HTMLUListElement}
+	 */
+	OPTION_FUNC: function(doc, cb) {
+		var name = this.MODULE_NAME;
+		return Foxtrick.modules['Links'].getOptionsHtml(doc, name, 'federationlink', cb);
 	},
 
 	run: function(doc) {
-		var module = this;
-		Foxtrick.modules.Links.getCollection(function(collection) {
-			module._run(doc);
-		});
+		Foxtrick.util.links.run(doc, this);
 	},
 
-	_run: function(doc) {
-		var ownBoxBody = null;
+	links: function(doc) {
 		var allianceId = Foxtrick.Pages.All.getId(doc);
-
-		var links = Foxtrick.modules['Links'].getLinks('federationlink', {
-			'federationid': allianceId
-		}, doc, this);
-		if (links.length > 0) {
-			ownBoxBody = Foxtrick.createFeaturedElement(doc, this, 'div');
-			var header = Foxtrick.L10n.getString('links.boxheader');
-			var ownBoxBodyId = 'foxtrick_links_content';
-			ownBoxBody.setAttribute('id', ownBoxBodyId);
-
-			for (var k = 0; k < links.length; k++) {
-				links[k].link.className = 'inner';
-				ownBoxBody.appendChild(links[k].link);
-			}
-
-			var box = Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, -20);
-			box.id = 'ft-links-box';
-		}
-		Foxtrick.util.links.add(doc, ownBoxBody, this.MODULE_NAME, {
-			'AllianceID': allianceId
-		});
+		var info = {
+			federationid: allianceId,
+		};
+		var types = ['federationlink'];
+		return { types: types, info: info };
 	}
 };

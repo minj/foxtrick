@@ -2,63 +2,45 @@
 /**
  * linksyouthoverview.js
  * Foxtrick add links to arena pages
- * @author convinced
+ * @author convinced, LA-MJ
  */
 
 Foxtrick.modules['LinksArena'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
 	PAGES: ['arena'],
-	OPTION_FUNC: function(doc, callback) {
-		return Foxtrick.modules['Links'].getOptionsHtml(doc, 'LinksArena', 'arenalink', callback);
+	/**
+	 * return HTML for FT prefs
+	 * @param  {document}         doc
+	 * @param  {function}         cb
+	 * @return {HTMLUListElement}
+	 */
+	OPTION_FUNC: function(doc, cb) {
+		var name = this.MODULE_NAME;
+		return Foxtrick.modules['Links'].getOptionsHtml(doc, name, 'arenalink', cb);
 	},
 
 	run: function(doc) {
-		var module = this;
-		Foxtrick.modules.Links.getCollection(function(collection) {
-			module._run(doc);
-		});
+		Foxtrick.util.links.run(doc, this);
 	},
 
-	_run: function(doc) {
-		var alldivs = doc.getElementsByTagName('div');
-		var ownBoxBody = null;
-		for (var j = 0; j < alldivs.length; j++) {
-			if (alldivs[j].className == 'arenaInfo') {
-				var thisdiv = alldivs[j];
-				var arenaTable = thisdiv.getElementsByTagName('table')[0];
-				var teamid = Foxtrick.Pages.All.getTeamId(doc);
+	links: function(doc) {
+		var arenaInfo = doc.querySelector('div.arenaInfo');
+		if (!arenaInfo)
+			return;
 
-				var links = Foxtrick.modules['Links'].getLinks('arenalink', {
-					'terraces': Foxtrick.trimnum(arenaTable.rows[3].cells[1].textContent),
-					'basic': Foxtrick.trimnum(arenaTable.rows[4].cells[1].textContent),
-					'roof': Foxtrick.trimnum(arenaTable.rows[5].cells[1].textContent),
-					'vip': Foxtrick.trimnum(arenaTable.rows[6].cells[1].textContent),
-					'teamid': teamid
-				}, doc, this);
-				if (links.length > 0) {
-					ownBoxBody = Foxtrick.createFeaturedElement(doc, this, 'div');
-					var header = Foxtrick.L10n.getString('links.boxheader');
-					var ownBoxId = 'ft-links-box';
-					var ownBoxBodyId = 'foxtrick_links_content';
-					ownBoxBody.setAttribute('id', ownBoxBodyId);
+		var arenaId = Foxtrick.Pages.All.getId(doc);
+		var teamId = Foxtrick.Pages.All.getTeamId(doc);
 
-					for (var k = 0; k < links.length; k++) {
-						links[k].link.className = 'inner';
-						ownBoxBody.appendChild(links[k].link);
-					}
-
-					var box = Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, -20);
-					box.id = 'ft-links-box';
-				}
-				Foxtrick.util.links.add(doc, ownBoxBody, this.MODULE_NAME, {
-					'terraces': Foxtrick.trimnum(arenaTable.rows[3].cells[1].textContent),
-					'basic': Foxtrick.trimnum(arenaTable.rows[4].cells[1].textContent),
-					'roof': Foxtrick.trimnum(arenaTable.rows[5].cells[1].textContent),
-					'vip': Foxtrick.trimnum(arenaTable.rows[6].cells[1].textContent)
-				});
-
-				break;
-			}
-		}
+		var arenaTable = arenaInfo.getElementsByTagName('table')[0];
+		var info = {
+			terraces: Foxtrick.trimnum(arenaTable.rows[3].cells[1].textContent),
+			basic: Foxtrick.trimnum(arenaTable.rows[4].cells[1].textContent),
+			roof: Foxtrick.trimnum(arenaTable.rows[5].cells[1].textContent),
+			vip: Foxtrick.trimnum(arenaTable.rows[6].cells[1].textContent),
+			teamid: teamId,
+			arenaid: arenaId,
+		};
+		var types = ['arenalink'];
+		return { types: types, info: info };
 	}
 };

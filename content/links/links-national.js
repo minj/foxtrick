@@ -2,78 +2,49 @@
 /**
  * links-national.js
  * Foxtrick add links to national pages
- * @author convinced
+ * @author convinced, LA-MJ
  */
 
 Foxtrick.modules['LinksNational'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
 	PAGES: ['national'],
-	OPTION_FUNC: function(doc, callback) {
-		return Foxtrick.modules['Links']
-			.getOptionsHtml(doc, 'LinksNational', 'nationalteamlink', callback);
+	/**
+	 * return HTML for FT prefs
+	 * @param  {document}         doc
+	 * @param  {function}         cb
+	 * @return {HTMLUListElement}
+	 */
+	OPTION_FUNC: function(doc, cb) {
+		var name = this.MODULE_NAME;
+		return Foxtrick.modules['Links'].getOptionsHtml(doc, name, 'nationalteamlink', cb);
 	},
 
 	run: function(doc) {
-		var module = this;
-		Foxtrick.modules.Links.getCollection(function(collection) {
-			module._run(doc);
-		});
+		Foxtrick.util.links.run(doc, this);
 	},
 
-	_run: function(doc) {
+	links: function(doc) {
 		var main = doc.getElementById('mainBody');
 		var header = main.getElementsByTagName('h1')[0];
-		var LeagueOfficeTypeID = header.textContent.match('U-20') ? 4 : 2;
-		var countryid = Foxtrick.util.id.findLeagueId(main);
+		var LeagueOfficeTypeID = /U-20/.test(header.textContent) ? 4 : 2;
+		var leagueid = Foxtrick.util.id.findLeagueId(main);
 		var ntteamid = Foxtrick.Pages.All.getId(doc);
-		var ownBoxBody = null;
 
-		var links = Foxtrick.modules['Links'].getLinks('nationalteamlink', {
-			'countryid': countryid,
-			'ntteamid': ntteamid,
-			'LeagueOfficeTypeID': LeagueOfficeTypeID
-		}, doc, this);
-
-		var added = 0;
-		ownBoxBody = Foxtrick.createFeaturedElement(doc, this, 'div');
-		var header = Foxtrick.L10n.getString('links.boxheader');
-		var ownBoxBodyId = 'foxtrick_links_content';
-		ownBoxBody.setAttribute('id', ownBoxBodyId);
-
-		for (var k = 0; k < links.length; k++) {
-			links[k].link.className = 'inner';
-			ownBoxBody.appendChild(links[k].link);
-			++added;
-		}
+		var info = {
+			leagueid: leagueid,
+			ntteamid: ntteamid,
+			LeagueOfficeTypeID: LeagueOfficeTypeID
+		};
+		var types = ['nationalteamlink'];
 
 		if (Foxtrick.Prefs.isModuleEnabled('LinksTracker')) {
-			var links2 = Foxtrick.modules['Links'].getLinks('trackernationalteamlink', {
-				'countryid': countryid,
-				'ntteamid': ntteamid,
-				'LeagueOfficeTypeID': LeagueOfficeTypeID
-			}, doc, Foxtrick.modules['LinksTracker']);
-			for (var k = 0; k < links2.length; k++) {
-				links2[k].link.className = 'flag inner';
-				var img = links2[k].link.getElementsByTagName('img')[0];
-				var style = 'vertical-align:top; margin-top:1px; background: ' +
-					'transparent url(/Img/Flags/flags.gif) no-repeat scroll ' + (-20) * countryid +
-					'px 0pt; background-clip: -moz-initial; background-origin: ' +
-					'-moz-initial; background-inline-policy: -moz-initial;';
-				img.setAttribute('style', style);
-				img.src = '/Img/Icons/transparent.gif';
-				ownBoxBody.appendChild(links2[k].link);
-				++added;
-			}
-		}
-		if (added) {
-			var box = Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, -20);
-			box.id = 'ft-links-box';
+			var tracker = {
+				type: 'trackernationalteamlink',
+				module: 'LinksTracker',
+			};
+			types.push(tracker);
 		}
 
-		Foxtrick.util.links.add(doc, ownBoxBody, this.MODULE_NAME, {
-			'countryid': countryid,
-			'ntteamid': ntteamid,
-			'LeagueOfficeTypeID': LeagueOfficeTypeID
-		});
+		return { types: types, info: info };
 	}
 };

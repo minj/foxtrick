@@ -2,7 +2,7 @@
 /**
  * links-box.js
  * Utilities for adding link-boxes
- * @author convinced
+ * @author convinced, LA-MJ
  */
 
 if (!Foxtrick)
@@ -11,27 +11,17 @@ if (!Foxtrick.util)
 	Foxtrick.util = {};
 
 Foxtrick.util.links = {
-	add: function(doc, ownBoxBody, pagemodule, info, isNewSidebar) {
+	add: function(ownBoxBody, customLinkSet, info, hasNewSidebar) {
 		try {
+			var doc = ownBoxBody.ownerDocument;
 			Foxtrick.util.links._info = info;
 			var ownTeam = Foxtrick.modules.Core.TEAM, ownInfo = {}, key;
 			for (key in ownTeam)
-				ownInfo['own' + key] = ownTeam[key];
+				ownInfo['own' + key.toLowerCase()] = ownTeam[key];
 
 			Foxtrick.util.links._ownInfo = ownInfo;
 
-			var basepref = 'module.LinksCustom.' + pagemodule;
-
-			if (ownBoxBody == null) {
-				ownBoxBody =
-					Foxtrick.createFeaturedElement(doc, Foxtrick.modules[pagemodule],'div');
-				var ownBoxBodyId = 'foxtrick_links_content';
-				var header = Foxtrick.L10n.getString('links.boxheader');
-				ownBoxBody.id = ownBoxBodyId;
-
-				var box = Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, -20);
-				box.id = 'ft-links-box';
-			}
+			var basepref = 'module.LinksCustom.' + customLinkSet;
 
 			var expanded = false;
 			var headerClick = function() {
@@ -78,10 +68,10 @@ Foxtrick.util.links = {
 			};
 
 			Foxtrick.stopListenToChange(doc);
-			var alldivs = doc.querySelectorAll(isNewSidebar ? 'div.ft-newSidebarBox' :
+			var alldivs = doc.querySelectorAll(hasNewSidebar ? 'div.ft-newSidebarBox' :
 											   'div.sidebarBox');
 			for (var j = 0; j < alldivs.length; j++) {
-				var header = alldivs[j].getElementsByTagName(isNewSidebar ? 'h4' : 'h2')[0];
+				var header = alldivs[j].getElementsByTagName(hasNewSidebar ? 'h4' : 'h2')[0];
 				if (header.textContent == Foxtrick.L10n.getString('links.boxheader')) {
 					var hh = header.cloneNode(true);
 					var div = doc.createElement('div');
@@ -168,7 +158,7 @@ Foxtrick.util.links = {
 				if (mykeytag && mykeytag.length > 0) {
 					for (var i = 0; i < mykeytag.length; i++) {
 						var mykey = mykeytag[i].replace(/[[\]]/g, '');
-						if (Foxtrick.util.links._info[mykey])
+						if (mykey in Foxtrick.util.links._info)
 							href = href.replace(mykeytag[i], Foxtrick.util.links._info[mykey]);
 						else {
 							href = href.replace(mykeytag[i], Foxtrick.util.links._ownInfo[mykey]);
@@ -586,4 +576,58 @@ Foxtrick.util.links = {
 			Foxtrick.log(e);
 		}
 	}
+};
+
+Foxtrick.util.links.makeUrl = function(url, args) {
+	for (var i in args) {
+		url = url.replace(new RegExp('\\[' + i + '\\]', 'ig'), args[i]);
+	}
+	return url;
+};
+
+Foxtrick.util.links.run = function(doc, module) {
+	var HEADER = Foxtrick.L10n.getString('links.boxheader');
+	var LINK_CLASS = 'inner';
+	var BOX_ID = 'foxtrick_links_content';
+
+	var ownTeam = Foxtrick.modules.Core.TEAM, info = {};
+	for (var key in ownTeam)
+		info['own' + key.toLowerCase()] = ownTeam[key];
+
+	var run = function() {
+		var o = module.links(doc);
+		if (!o)
+			return;
+
+		Foxtrick.mergeAll(info, o.info);
+
+		var box = Foxtrick.createFeaturedElement(doc, module, 'div');
+		box.id = BOX_ID;
+
+		Foxtrick.forEach(function(type) {
+			var opts = {
+				module: module.MODULE_NAME,
+				className: LINK_CLASS,
+				type: type,
+				parent: box,
+				info: info,
+			};
+
+			if (typeof type !== 'string') {
+				Foxtrick.mergeValid(opts, type);
+			}
+			var anchors = Foxtrick.modules['Links'].getLinks(doc, opts);
+			Foxtrick.appendChildren(opts.parent, anchors);
+		}, o.types);
+
+		var adder = o.hasNewSidebar ? Foxtrick.Pages.Match : Foxtrick;
+		var wrapper = adder.addBoxToSidebar(doc, HEADER, box, -20);
+		wrapper.id = 'ft-links-box';
+
+		var customLinkSet = o.customLinkSet || module.MODULE_NAME;
+		Foxtrick.util.links.add(box, customLinkSet, o.info, o.hasNewSidebar);
+
+	};
+
+	Foxtrick.modules['Links'].getCollection(run);
 };

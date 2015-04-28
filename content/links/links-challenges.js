@@ -2,61 +2,42 @@
 /**
  * linkschallnges.js
  * Foxtrick add links to challenges pages
- * @author convinced
+ * @author convinced, LA-MJ
  */
 
 Foxtrick.modules['LinksChallenges'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
 	PAGES: ['challenges', 'youthChallenges'],
 	LINK_TYPES: ['challengeslink', 'youthchallengeslink'],
-	OPTION_FUNC: function(doc, callback) {
-		return Foxtrick.modules['Links']
-			.getOptionsHtml(doc, 'LinksChallenges', this.LINK_TYPES, callback);
+	/**
+	 * return HTML for FT prefs
+	 * @param  {document}         doc
+	 * @param  {function}         cb
+	 * @return {HTMLUListElement}
+	 */
+	OPTION_FUNC: function(doc, cb) {
+		var name = this.MODULE_NAME;
+		return Foxtrick.modules['Links'].getOptionsHtml(doc, name, this.LINK_TYPES, cb);
 	},
 
 	run: function(doc) {
-		var module = this;
-		Foxtrick.modules.Links.getCollection(function(collection) {
-			module._run(doc);
-		});
+		Foxtrick.util.links.run(doc, this);
 	},
 
-	_run: function(doc) {
-		var teamid = Foxtrick.util.id.findTeamId(doc.getElementsByClassName('subMenu')[0]);
-		var main = Foxtrick.Pages.All.getMainHeader(doc);
-		var youthteamid = Foxtrick.util.id.findYouthTeamId(main);
-		var ownteamid = Foxtrick.util.id.getOwnLeagueId();
+	links: function(doc) {
+		var teamId = Foxtrick.Pages.All.getTeamId(doc);
+		var youthTeamId = Foxtrick.Pages.All.getTeamIdFromBC(doc);
 
-		//addExternalLinksToChallengesDetail
-		var links;
-		if (Foxtrick.isPage(doc, 'challenges'))
-			links = Foxtrick.modules['Links'].getLinks('challengeslink', {
-				'teamid': teamid,
-				'ownteamid': ownteamid
-			}, doc, this);
-		else
-			links = Foxtrick.modules['Links'].getLinks('youthchallengeslink', {
-				'teamid': teamid,
-				'youthteamid': youthteamid,
-				'ownteamid': ownteamid
-			}, doc, this);
-		var ownBoxBody = null;
+		var types = ['challengeslink'];
+		var info = { teamid: teamId };
+		var customLinkSet = this.MODULE_NAME;
 
-		if (links.length > 0) {
-			ownBoxBody = Foxtrick.createFeaturedElement(doc, this, 'div');
-			var header = Foxtrick.L10n.getString('links.boxheader');
-
-			var ownBoxBodyId = 'foxtrick_links_content';
-			ownBoxBody.setAttribute('id', ownBoxBodyId);
-
-			for (var k = 0; k < links.length; k++) {
-				links[k].link.className = 'inner';
-				ownBoxBody.appendChild(links[k].link);
-			}
-
-			var box = Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, -20);
-			box.id = 'ft-links-box';
+		if (Foxtrick.isPage(doc, 'youthChallenges')) {
+			types = ['youthchallengeslink'];
+			info.youthteamid = youthTeamId;
+			customLinkSet += '.youth';
 		}
-		Foxtrick.util.links.add(doc, ownBoxBody, this.MODULE_NAME, {});
+
+		return { types: types, info: info, customLinkSet: customLinkSet };
 	}
 };

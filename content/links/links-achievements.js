@@ -2,61 +2,40 @@
 /**
  * links-achievements.js
  * Foxtrick add links to manager pages
- * @author convinced
+ * @author convinced, LA-MJ
  */
 
 Foxtrick.modules['LinksAchievements'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
 	PAGES: ['achievements'],
-
-	OPTION_FUNC: function(doc, callback) {
-		return Foxtrick.modules['Links']
-			.getOptionsHtml(doc, 'LinksAchievements', 'achievementslink', callback);
+	/**
+	 * return HTML for FT prefs
+	 * @param  {document}         doc
+	 * @param  {function}         cb
+	 * @return {HTMLUListElement}
+	 */
+	OPTION_FUNC: function(doc, cb) {
+		var name = this.MODULE_NAME;
+		return Foxtrick.modules['Links'].getOptionsHtml(doc, name, 'achievementslink', cb);
 	},
 
 	run: function(doc) {
-		var module = this;
-		Foxtrick.modules.Links.getCollection(function(collection) {
-			module._run(doc);
-		});
+		Foxtrick.util.links.run(doc, this);
 	},
 
-	_run: function(doc) {
-
-		//addExternalLinksToManagerPage
-		var owncountryid = Foxtrick.util.id.getOwnLeagueId();
-
-		var ownBoxBody = null;
+	links: function(doc) {
 		var main = Foxtrick.Pages.All.getMainHeader(doc);
 
 		var teamid = Foxtrick.util.id.findTeamId(main);
 		var teamname = Foxtrick.Pages.All.getTeamName(doc);
 		var userid = Foxtrick.util.id.findUserId(main);
 
-		var links = Foxtrick.modules['Links'].getLinks('achievementslink', {
-			'teamid': teamid,
-			'teamname': teamname,
-			'userid': userid,
-			'owncountryid': owncountryid
-		}, doc, this);
-		if (links.length > 0) {
-			ownBoxBody = Foxtrick.createFeaturedElement(doc, this, 'div');
-			var header = Foxtrick.L10n.getString('links.boxheader');
-			var ownBoxBodyId = 'foxtrick_links_content';
-			ownBoxBody.setAttribute('id', ownBoxBodyId);
-
-			for (var k = 0; k < links.length; k++) {
-				links[k].link.className = 'inner';
-				ownBoxBody.appendChild(links[k].link);
-			}
-
-			var box = Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, -20);
-			box.id = 'ft-links-box';
-		}
-		Foxtrick.util.links.add(doc, ownBoxBody, this.MODULE_NAME, {
-			'teamid': teamid,
-			'teamname': teamname,
-			'userid': userid
-		});
+		var info = {
+			teamid: teamid,
+			teamname: teamname,
+			userid: userid,
+		};
+		var types = ['achievementslink'];
+		return { types: types, info: info };
 	}
 };

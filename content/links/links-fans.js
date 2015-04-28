@@ -2,66 +2,47 @@
 /**
  * links-players.js
  * Foxtrick add links to fans pages
- * @author convinced
+ * @author convinced, LA-MJ
  */
 
 Foxtrick.modules['LinksFans'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
 	PAGES: ['fans'],
-	OPTION_FUNC: function(doc, callback) {
-		return Foxtrick.modules['Links'].getOptionsHtml(doc, 'LinksFans', 'fanlink', callback);
+	/**
+	 * return HTML for FT prefs
+	 * @param  {document}         doc
+	 * @param  {function}         cb
+	 * @return {HTMLUListElement}
+	 */
+	OPTION_FUNC: function(doc, cb) {
+		var name = this.MODULE_NAME;
+		return Foxtrick.modules['Links'].getOptionsHtml(doc, name, 'fanlink', cb);
 	},
 
 	run: function(doc) {
-		var module = this;
-		Foxtrick.modules.Links.getCollection(function(collection) {
-			module._run(doc);
-		});
+		Foxtrick.util.links.run(doc, this);
 	},
 
-	_run: function(doc) {
-		var ownBoxBody = null;
-
-		var teamid = Foxtrick.Pages.All.getId(doc);
-		var teamname = Foxtrick.Pages.All.getTeamName(doc);
+	links: function(doc) {
 		var fanmood = '';
 		var main = doc.getElementById('mainBody');
 		var fansText = main.getElementsByTagName('td')[1].textContent;
 		var fans = Foxtrick.trimnum(fansText);
 
 		var links = main.getElementsByTagName('a');
-		var i = 0, link;
-		while (link = links[i++]) {
-			if (link.href.search(/FanMood/i) != -1) {
-				fanmood += link.href.match(/ll=(\d+)/)[1];
-				break;
+		Foxtrick.any(function(link) {
+			if (/FanMood/i.test(link.href)) {
+				fanmood = link.href.match(/ll=(\d+)/)[1];
+				return true;
 			}
-		}
+			return false;
+		}, links);
 
-		var links = Foxtrick.modules['Links'].getLinks('fanlink', {
-			'teamid': teamid,
-			'teamname': teamname,
-			'fanmood': fanmood
-		}, doc, this);
-		if (links.length > 0) {
-			ownBoxBody = Foxtrick.createFeaturedElement(doc, this, 'div');
-			var header = Foxtrick.L10n.getString('links.boxheader');
-			var ownBoxBodyId = 'foxtrick_links_content';
-			ownBoxBody.setAttribute('id', ownBoxBodyId);
-
-			for (var k = 0; k < links.length; k++) {
-				links[k].link.className = 'inner';
-				ownBoxBody.appendChild(links[k].link);
-			}
-
-			var box = Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, -20);
-			box.id = 'ft-links-box';
-		}
-		Foxtrick.util.links.add(doc, ownBoxBody, this.MODULE_NAME, {
-			'teamid': teamid,
-			'teamname': teamname,
-			'fans': fans,
-			'fanmood': fanmood
-		});
+		var info = {
+			fanmood: fanmood,
+			fans: fans,
+		};
+		var types = ['fanlink'];
+		return { types: types, info: info };
 	}
 };
