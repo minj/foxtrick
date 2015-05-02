@@ -335,6 +335,11 @@
 			"name": "GZ-grobas"
 		},
 		{
+			"duty": "supporter",
+			"id": "3080979",
+			"name": "Manuz"
+		},
+		{
 			"duty": "translator",
 			"id": "335181",
 			"name": "Baler0"
@@ -618,6 +623,11 @@
 			"duty": "translator",
 			"id": "7439277",
 			"name": "white_eagle"
+		},
+		{
+			"duty": "supporter",
+			"id": "7486920",
+			"name": "Kira_Luke"
 		},
 		{
 			"duty": "translator",
