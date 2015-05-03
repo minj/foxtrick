@@ -599,11 +599,21 @@ Foxtrick.util.links.run = function(doc, module) {
 		if (!o)
 			return;
 
+		if (!o.info)
+			o.info = {};
+
 		Foxtrick.mergeAll(info, o.info);
 
 		var box = Foxtrick.createFeaturedElement(doc, module, 'div');
 		box.id = BOX_ID;
 
+		if (!o.types) {
+			// default link types
+			if (module.LINK_TYPES)
+				o.types = module.LINK_TYPES;
+			else
+				o.types = [module.LINK_TYPE];
+		}
 		Foxtrick.forEach(function(type) {
 			var opts = {
 				module: module.MODULE_NAME,
@@ -630,4 +640,72 @@ Foxtrick.util.links.run = function(doc, module) {
 	};
 
 	Foxtrick.modules['Links'].getCollection(run);
+};
+
+Foxtrick.util.links.getPrefs = function(doc, module, cb) {
+	var types = module.LINK_TYPES || [module.LINK_TYPE];
+	var m_name = module.MODULE_NAME;
+	var parseCollection = function(collection) {
+		if (!collection)
+			return;
+
+		var hasOpts = false;
+		var generateOpts = function(type) {
+			try {
+				if (collection[type]) {
+					var links = collection[type];
+					for (var key in links) {
+						var link = links[key];
+						var item = doc.createElement('li');
+						list.appendChild(item);
+
+						var label = doc.createElement('label');
+						item.appendChild(label);
+
+						var check = doc.createElement('input');
+						check.type = 'checkbox';
+						check.setAttribute('module', m_name);
+						check.setAttribute('option', key);
+
+						// since this is appended asynchronously, we set
+						// the checked attribute manually
+						if (Foxtrick.Prefs.isModuleOptionEnabled(m_name, key) ||
+						    !Foxtrick.Prefs.isModuleOptionSet(m_name, key)) {
+							check.setAttribute('checked', 'checked');
+							var pref = m_name + '.' + key;
+							Foxtrick.Prefs.setModuleEnableState(pref, true);
+							hasOpts = true;
+						}
+						label.appendChild(check);
+						label.appendChild(doc.createTextNode(link.title));
+					}
+				}
+				if (hasOpts && Foxtrick.Prefs.isModuleEnabled(m_name) === null) {
+					var moduleCheck = doc.getElementById('pref-' + m_name + '-check');
+					moduleCheck.setAttribute('checked', 'checked');
+					var moduleOpts = doc.getElementById('pref-' + m_name + '-options');
+					moduleOpts.setAttribute('style', '');
+					Foxtrick.Prefs.setModuleEnableState(m_name, true);
+				}
+			}
+			catch (e) {
+				Foxtrick.log(e);
+			}
+		};
+
+		Foxtrick.map(generateOpts, types);
+
+		if (cb) {
+			try {
+				cb();
+			}
+			catch (e) {
+				Foxtrick.log(e);
+			}
+		}
+	};
+
+	var list = doc.createElement('ul');
+	Foxtrick.modules['Links'].getCollection(parseCollection);
+	return list;
 };

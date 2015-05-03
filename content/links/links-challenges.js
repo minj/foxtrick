@@ -16,8 +16,7 @@ Foxtrick.modules['LinksChallenges'] = {
 	 * @return {HTMLUListElement}
 	 */
 	OPTION_FUNC: function(doc, cb) {
-		var name = this.MODULE_NAME;
-		return Foxtrick.modules['Links'].getOptionsHtml(doc, name, this.LINK_TYPES, cb);
+		return Foxtrick.util.links.getPrefs(doc, this, cb);
 	},
 
 	run: function(doc) {

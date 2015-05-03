@@ -8,6 +8,7 @@
 Foxtrick.modules['LinksEconomy'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
 	PAGES: ['finances'],
+	LINK_TYPE: 'economylink',
 	/**
 	 * return HTML for FT prefs
 	 * @param  {document}         doc
@@ -15,8 +16,7 @@ Foxtrick.modules['LinksEconomy'] = {
 	 * @return {HTMLUListElement}
 	 */
 	OPTION_FUNC: function(doc, cb) {
-		var name = this.MODULE_NAME;
-		return Foxtrick.modules['Links'].getOptionsHtml(doc, name, 'economylink', cb);
+		return Foxtrick.util.links.getPrefs(doc, this, cb);
 	},
 
 	run: function(doc) {
@@ -45,7 +45,6 @@ Foxtrick.modules['LinksEconomy'] = {
 			newcash: newCash,
 			currency: currencySymbol,
 		};
-		var types = ['economylink'];
-		return { types: types, info: info };
+		return { info: info };
 	}
 };

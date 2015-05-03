@@ -8,7 +8,7 @@
 Foxtrick.modules['LinksMatch'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
 	PAGES: ['match'],
-	LINK_LIST: [
+	LINK_TYPES: [
 		'playedmatchlink',
 		'playedyouthmatchlink',
 		'nextmatchlink',
@@ -21,8 +21,7 @@ Foxtrick.modules['LinksMatch'] = {
 	 * @return {HTMLUListElement}
 	 */
 	OPTION_FUNC: function(doc, cb) {
-		var name = this.MODULE_NAME;
-		return Foxtrick.modules['Links'].getOptionsHtml(doc, name, this.LINK_LIST, cb);
+		return Foxtrick.util.links.getPrefs(doc, this, cb);
 	},
 
 	run: function(doc) {

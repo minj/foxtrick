@@ -8,6 +8,7 @@
 Foxtrick.modules['LinksTraining'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
 	PAGES: ['training'],
+	LINK_TYPE: 'traininglink',
 	/**
 	 * return HTML for FT prefs
 	 * @param  {document}         doc
@@ -15,8 +16,7 @@ Foxtrick.modules['LinksTraining'] = {
 	 * @return {HTMLUListElement}
 	 */
 	OPTION_FUNC: function(doc, cb) {
-		var name = this.MODULE_NAME;
-		return Foxtrick.modules['Links'].getOptionsHtml(doc, name, 'traininglink', cb);
+		return Foxtrick.util.links.getPrefs(doc, this, cb);
 	},
 
 	run: function(doc) {
@@ -37,7 +37,6 @@ Foxtrick.modules['LinksTraining'] = {
 			sta: sta,
 			trainingtype: trainingtype,
 		};
-		var types = ['traininglink'];
-		return { types: types, info: info };
+		return { info: info };
 	}
 };

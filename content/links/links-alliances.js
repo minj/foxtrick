@@ -8,6 +8,7 @@
 Foxtrick.modules['LinksAlliances'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
 	PAGES: ['federation'],
+	LINK_TYPE: 'federationlink',
 	/**
 	 * return HTML for FT prefs
 	 * @param  {document}         doc
@@ -15,8 +16,7 @@ Foxtrick.modules['LinksAlliances'] = {
 	 * @return {HTMLUListElement}
 	 */
 	OPTION_FUNC: function(doc, cb) {
-		var name = this.MODULE_NAME;
-		return Foxtrick.modules['Links'].getOptionsHtml(doc, name, 'federationlink', cb);
+		return Foxtrick.util.links.getPrefs(doc, this, cb);
 	},
 
 	run: function(doc) {
@@ -28,7 +28,6 @@ Foxtrick.modules['LinksAlliances'] = {
 		var info = {
 			federationid: allianceId,
 		};
-		var types = ['federationlink'];
-		return { types: types, info: info };
+		return { info: info };
 	}
 };

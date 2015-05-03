@@ -8,6 +8,7 @@
 Foxtrick.modules['LinksLeague'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
 	PAGES: ['series'],
+	LINK_TYPE: 'serieslink',
 	/**
 	 * return HTML for FT prefs
 	 * @param  {document}         doc
@@ -15,8 +16,7 @@ Foxtrick.modules['LinksLeague'] = {
 	 * @return {HTMLUListElement}
 	 */
 	OPTION_FUNC: function(doc, cb) {
-		var name = this.MODULE_NAME;
-		return Foxtrick.modules['Links'].getOptionsHtml(doc, name, 'serieslink', cb);
+		return Foxtrick.util.links.getPrefs(doc, this, cb);
 	},
 
 	run: function(doc) {
@@ -49,7 +49,6 @@ Foxtrick.modules['LinksLeague'] = {
 			seriesname2: seriesname2,
 			seriesname3: seriesname3
 		};
-		var types = ['serieslink'];
-		return { types: types, info: info };
+		return { info: info };
 	}
 };

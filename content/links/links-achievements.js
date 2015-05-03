@@ -8,6 +8,7 @@
 Foxtrick.modules['LinksAchievements'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
 	PAGES: ['achievements'],
+	LINK_TYPE: 'achievementslink',
 	/**
 	 * return HTML for FT prefs
 	 * @param  {document}         doc
@@ -15,8 +16,7 @@ Foxtrick.modules['LinksAchievements'] = {
 	 * @return {HTMLUListElement}
 	 */
 	OPTION_FUNC: function(doc, cb) {
-		var name = this.MODULE_NAME;
-		return Foxtrick.modules['Links'].getOptionsHtml(doc, name, 'achievementslink', cb);
+		return Foxtrick.util.links.getPrefs(doc, this, cb);
 	},
 
 	run: function(doc) {
@@ -35,7 +35,6 @@ Foxtrick.modules['LinksAchievements'] = {
 			teamname: teamname,
 			userid: userid,
 		};
-		var types = ['achievementslink'];
-		return { types: types, info: info };
+		return { info: info };
 	}
 };

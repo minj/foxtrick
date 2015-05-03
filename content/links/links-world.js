@@ -8,6 +8,7 @@
 Foxtrick.modules['LinksWorld'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
 	PAGES: ['world'],
+	LINK_TYPE: 'worldlink',
 	/**
 	 * return HTML for FT prefs
 	 * @param  {document}         doc
@@ -15,8 +16,7 @@ Foxtrick.modules['LinksWorld'] = {
 	 * @return {HTMLUListElement}
 	 */
 	OPTION_FUNC: function(doc, cb) {
-		var name = this.MODULE_NAME;
-		return Foxtrick.modules['Links'].getOptionsHtml(doc, name, 'worldlink', cb);
+		return Foxtrick.util.links.getPrefs(doc, this, cb);
 	},
 
 	run: function(doc) {
@@ -24,8 +24,6 @@ Foxtrick.modules['LinksWorld'] = {
 	},
 
 	links: function() {
-		var info = {};
-		var types = ['worldlink'];
-		return { types: types, info: info };
+		return {};
 	}
 };

@@ -8,6 +8,7 @@
 Foxtrick.modules['LinksClubTransfers'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
 	PAGES: ['transfer'],
+	LINK_TYPE: 'clubtransferslink',
 	/**
 	 * return HTML for FT prefs
 	 * @param  {document}         doc
@@ -15,8 +16,7 @@ Foxtrick.modules['LinksClubTransfers'] = {
 	 * @return {HTMLUListElement}
 	 */
 	OPTION_FUNC: function(doc, cb) {
-		var name = this.MODULE_NAME;
-		return Foxtrick.modules['Links'].getOptionsHtml(doc, name, 'clubtransferslink', cb);
+		return Foxtrick.util.links.getPrefs(doc, this, cb);
 	},
 
 	run: function(doc) {
@@ -24,8 +24,6 @@ Foxtrick.modules['LinksClubTransfers'] = {
 	},
 
 	links: function() {
-		var info = {};
-		var types = ['clubtransferslink'];
-		return { types: types, info: info };
+		return {};
 	}
 };

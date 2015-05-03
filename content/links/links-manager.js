@@ -8,6 +8,7 @@
 Foxtrick.modules['LinksManager'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
 	PAGES: ['managerPage'],
+	LINK_TYPE: 'managerlink',
 	/**
 	 * return HTML for FT prefs
 	 * @param  {document}         doc
@@ -15,8 +16,7 @@ Foxtrick.modules['LinksManager'] = {
 	 * @return {HTMLUListElement}
 	 */
 	OPTION_FUNC: function(doc, cb) {
-		var name = this.MODULE_NAME;
-		return Foxtrick.modules['Links'].getOptionsHtml(doc, name, 'managerlink', cb);
+		return Foxtrick.util.links.getPrefs(doc, this, cb);
 	},
 
 	run: function(doc) {
@@ -43,7 +43,6 @@ Foxtrick.modules['LinksManager'] = {
 			seriesid: seriesid,
 			seriesname: seriesname,
 		};
-		var types = ['managerlink'];
-		return { types: types, info: info };
+		return { info: info };
 	}
 };

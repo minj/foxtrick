@@ -8,6 +8,7 @@
 Foxtrick.modules['LinksYouthOverview'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
 	PAGES: ['youthOverview'],
+	LINK_TYPE: 'youthlink',
 	/**
 	 * return HTML for FT prefs
 	 * @param  {document}         doc
@@ -15,8 +16,7 @@ Foxtrick.modules['LinksYouthOverview'] = {
 	 * @return {HTMLUListElement}
 	 */
 	OPTION_FUNC: function(doc, cb) {
-		var name = this.MODULE_NAME;
-		return Foxtrick.modules['Links'].getOptionsHtml(doc, name, 'youthlink', cb);
+		return Foxtrick.util.links.getPrefs(doc, this, cb);
 	},
 
 	run: function(doc) {
@@ -53,6 +53,7 @@ Foxtrick.modules['LinksYouthOverview'] = {
 Foxtrick.modules['LinksYouthPlayerDetail'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
 	PAGES: ['youthPlayerDetails'],
+	LINK_TYPE: 'youthplayerdetaillink',
 	/**
 	 * return HTML for FT prefs
 	 * @param  {document}         doc
@@ -60,8 +61,7 @@ Foxtrick.modules['LinksYouthPlayerDetail'] = {
 	 * @return {HTMLUListElement}
 	 */
 	OPTION_FUNC: function(doc, cb) {
-		var name = this.MODULE_NAME;
-		return Foxtrick.modules['Links'].getOptionsHtml(doc, name, 'youthplayerdetaillink', cb);
+		return Foxtrick.util.links.getPrefs(doc, this, cb);
 	},
 
 	run: function(doc) {
@@ -113,6 +113,7 @@ Foxtrick.modules['LinksYouthPlayerDetail'] = {
 Foxtrick.modules['LinksYouthTraining'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
 	PAGES: ['youthTraining'],
+	LINK_TYPE: 'youthtraininglink',
 	/**
 	 * return HTML for FT prefs
 	 * @param  {document}         doc
@@ -120,8 +121,7 @@ Foxtrick.modules['LinksYouthTraining'] = {
 	 * @return {HTMLUListElement}
 	 */
 	OPTION_FUNC: function(doc, cb) {
-		var name = this.MODULE_NAME;
-		return Foxtrick.modules['Links'].getOptionsHtml(doc, name, 'youthtraininglink', cb);
+		return Foxtrick.util.links.getPrefs(doc, this, cb);
 	},
 
 	run: function(doc) {
@@ -139,8 +139,7 @@ Foxtrick.modules['LinksYouthTraining'] = {
 			teamid: teamid,
 			youthteamid: youthteamid,
 		};
-		var types = ['youthtraininglink'];
-		return { types: types, info: info };
+		return { info: info };
 	},
 
 };
@@ -149,6 +148,7 @@ Foxtrick.modules['LinksYouthTraining'] = {
 Foxtrick.modules['LinksYouthPlayerList'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
 	PAGES: ['youthPlayers'],
+	LINK_TYPE: 'youthplayerlistlink',
 	/**
 	 * return HTML for FT prefs
 	 * @param  {document}         doc
@@ -156,8 +156,7 @@ Foxtrick.modules['LinksYouthPlayerList'] = {
 	 * @return {HTMLUListElement}
 	 */
 	OPTION_FUNC: function(doc, cb) {
-		var name = this.MODULE_NAME;
-		return Foxtrick.modules['Links'].getOptionsHtml(doc, name, 'youthplayerlistlink', cb);
+		return Foxtrick.util.links.getPrefs(doc, this, cb);
 	},
 
 	run: function(doc) {
@@ -175,8 +174,7 @@ Foxtrick.modules['LinksYouthPlayerList'] = {
 			teamid: teamid,
 			youthteamid: youthteamid,
 		};
-		var types = ['youthplayerlistlink'];
-		return { types: types, info: info };
+		return { info: info };
 	},
 
 };
@@ -185,6 +183,7 @@ Foxtrick.modules['LinksYouthPlayerList'] = {
 Foxtrick.modules['LinksYouthMatchList'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
 	PAGES: ['youthMatchList'],
+	LINK_TYPE: 'youthmatchlistlink',
 	/**
 	 * return HTML for FT prefs
 	 * @param  {document}         doc
@@ -192,8 +191,7 @@ Foxtrick.modules['LinksYouthMatchList'] = {
 	 * @return {HTMLUListElement}
 	 */
 	OPTION_FUNC: function(doc, cb) {
-		var name = this.MODULE_NAME;
-		return Foxtrick.modules['Links'].getOptionsHtml(doc, name, 'youthmatchlistlink', cb);
+		return Foxtrick.util.links.getPrefs(doc, this, cb);
 	},
 
 	run: function(doc) {
@@ -211,8 +209,7 @@ Foxtrick.modules['LinksYouthMatchList'] = {
 			teamid: teamid,
 			youthteamid: youthteamid,
 		};
-		var types = ['youthmatchlistlink'];
-		return { types: types, info: info };
+		return { info: info };
 	},
 
 };
@@ -221,6 +218,7 @@ Foxtrick.modules['LinksYouthMatchList'] = {
 Foxtrick.modules['LinksYouthLeague'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
 	PAGES: ['youthSeries'],
+	LINK_TYPE: 'youthserieslink',
 	/**
 	 * return HTML for FT prefs
 	 * @param  {document}         doc
@@ -228,8 +226,7 @@ Foxtrick.modules['LinksYouthLeague'] = {
 	 * @return {HTMLUListElement}
 	 */
 	OPTION_FUNC: function(doc, cb) {
-		var name = this.MODULE_NAME;
-		return Foxtrick.modules['Links'].getOptionsHtml(doc, name, 'youthserieslink', cb);
+		return Foxtrick.util.links.getPrefs(doc, this, cb);
 	},
 
 	run: function(doc) {
@@ -252,8 +249,7 @@ Foxtrick.modules['LinksYouthLeague'] = {
 			teamid: teamid,
 			youthteamid: youthteamid,
 		};
-		var types = ['youthserieslink'];
-		return { types: types, info: info };
+		return { info: info };
 	},
 
 };

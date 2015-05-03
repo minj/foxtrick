@@ -8,6 +8,7 @@
 Foxtrick.modules['LinksTeam'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
 	PAGES: ['teamPage'],
+	LINK_TYPE: 'teamlink',
 	/**
 	 * return HTML for FT prefs
 	 * @param  {document}         doc
@@ -15,8 +16,7 @@ Foxtrick.modules['LinksTeam'] = {
 	 * @return {HTMLUListElement}
 	 */
 	OPTION_FUNC: function(doc, cb) {
-		var name = this.MODULE_NAME;
-		return Foxtrick.modules['Links'].getOptionsHtml(doc, name, 'teamlink', cb);
+		return Foxtrick.util.links.getPrefs(doc, this, cb);
 	},
 
 	run: function(doc) {
@@ -88,9 +88,8 @@ Foxtrick.modules['LinksTeam'] = {
 			levelnum: levelnum,
 			seriespos: seriespos,
 		};
-		var types = ['teamlink'];
 
-		return { types: types, info: info };
+		return { info: info };
 	},
 
 };

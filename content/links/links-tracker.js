@@ -7,9 +7,14 @@
 
 Foxtrick.modules['LinksTracker'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
-
+	LINK_TYPE: 'trackerplayerlink',
+	/**
+	 * return HTML for FT prefs
+	 * @param  {document}         doc
+	 * @param  {function}         cb
+	 * @return {HTMLUListElement}
+	 */
 	OPTION_FUNC: function(doc, cb) {
-		var name = this.MODULE_NAME;
-		return Foxtrick.modules['Links'].getOptionsHtml(doc, name, 'trackerplayerlink', cb);
-	}
+		return Foxtrick.util.links.getPrefs(doc, this, cb);
+	},
 };

@@ -8,6 +8,7 @@
 Foxtrick.modules['LinksArena'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
 	PAGES: ['arena'],
+	LINK_TYPE: 'arenalink',
 	/**
 	 * return HTML for FT prefs
 	 * @param  {document}         doc
@@ -15,8 +16,7 @@ Foxtrick.modules['LinksArena'] = {
 	 * @return {HTMLUListElement}
 	 */
 	OPTION_FUNC: function(doc, cb) {
-		var name = this.MODULE_NAME;
-		return Foxtrick.modules['Links'].getOptionsHtml(doc, name, 'arenalink', cb);
+		return Foxtrick.util.links.getPrefs(doc, this, cb);
 	},
 
 	run: function(doc) {
@@ -40,7 +40,6 @@ Foxtrick.modules['LinksArena'] = {
 			teamid: teamId,
 			arenaid: arenaId,
 		};
-		var types = ['arenalink'];
-		return { types: types, info: info };
+		return { info: info };
 	}
 };
