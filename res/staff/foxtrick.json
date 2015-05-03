@@ -161,6 +161,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "11916705",
+			"name": "papi_"
+		},
+		{
+			"duty": "supporter",
 			"id": "12066737",
 			"name": "pimhitv"
 		},
@@ -338,6 +343,11 @@
 			"duty": "supporter",
 			"id": "3080979",
 			"name": "Manuz"
+		},
+		{
+			"duty": "supporter",
+			"id": "3150937",
+			"name": "Hidetoschi"
 		},
 		{
 			"duty": "translator",
