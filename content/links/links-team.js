@@ -19,46 +19,29 @@ Foxtrick.modules['LinksTeam'] = {
 		return Foxtrick.modules['Links'].getOptionsHtml(doc, name, 'teamlink', cb);
 	},
 
-	running: false,
 	run: function(doc) {
-		this.running = true;
 		Foxtrick.util.links.run(doc, this);
-	},
-	change: function(doc) {
-		// challenging etc removes box. need to re-add it
-		if (doc.getElementById('ft-links-box') === null && !this.running)
-			this.run(doc);
 	},
 
 	links: function(doc) {
-		var main = doc.getElementById('mainBody');
-		var info = this.gatherLinks(main, doc);
-		if (!info)
-			return;
-
-		var types = ['teamlink'];
-
-		this.running = false;
-		return { types: types, info: info };
-	},
-
-	gatherLinks: function(thisdiv, doc) {
 		var teamid = Foxtrick.Pages.All.getId(doc);
 		if (!teamid)
 			return;
 
+		var main = doc.getElementById('mainBody');
+
 		var teamname = Foxtrick.Pages.All.getTeamName(doc);
-		var leagueid = Foxtrick.util.id.findLeagueId(thisdiv);
-		var seriesname = Foxtrick.util.id.extractLeagueName(thisdiv);
+		var leagueid = Foxtrick.util.id.findLeagueId(main);
+		var seriesname = Foxtrick.util.id.extractLeagueName(main);
 		var levelnum = Foxtrick.util.id.getLevelNum(seriesname, leagueid);
-		var seriesid = Foxtrick.util.id.findLeagueLeveUnitId(thisdiv);
-		var userid = Foxtrick.util.id.findUserId(thisdiv);
+		var seriesid = Foxtrick.util.id.findLeagueLeveUnitId(main);
+		var userid = Foxtrick.util.id.findUserId(main);
 		if (!seriesname.match(/^[A-Z]+\.\d+/i)) {
 			seriesname = 'I';
 		}
 		var seriespos = 0, fans = 0;
 		try {
-			var teamInfo = thisdiv.querySelector('.teamInfo');
+			var teamInfo = main.querySelector('.teamInfo');
 
 			var fanLink = teamInfo.querySelector('a[href^="/Club/Fans/"]');
 			if (fanLink) {
@@ -94,7 +77,8 @@ Foxtrick.modules['LinksTeam'] = {
 		catch (e) {
 			Foxtrick.log('seriespos/fans:', e);
 		}
-		return {
+
+		var info = {
 			userid: userid,
 			teamid: teamid,
 			teamname: teamname,
@@ -104,5 +88,9 @@ Foxtrick.modules['LinksTeam'] = {
 			levelnum: levelnum,
 			seriespos: seriespos,
 		};
-	}
+		var types = ['teamlink'];
+
+		return { types: types, info: info };
+	},
+
 };
