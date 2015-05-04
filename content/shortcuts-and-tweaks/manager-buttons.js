@@ -109,7 +109,7 @@ Foxtrick.modules['ManagerButtons'] = {
 				guestbookLink.className = 'inner';
 				Foxtrick.addImage(doc, guestbookLink, {
 					style: 'padding: 0px 5px 0px 0px',
-					className: 'actionIcon',
+					class: 'actionIcon',
 					alt: Foxtrick.L10n.getString('ManagerButtons.writeInGuestbook'),
 					src: Foxtrick.InternalPath + 'resources/img/guestbook.png'
 				});
