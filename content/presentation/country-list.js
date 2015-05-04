@@ -29,6 +29,7 @@ Foxtrick.modules['CountryList'] = {
 
 		var ddlBornIn = Foxtrick.getMBElement(doc, 'ddlBornIn');
 		var poolLeague = Foxtrick.getMBElement(doc, 'ddlPoolSettingRequestLeague');
+		var poolLeagues = Foxtrick.getMBElement(doc, 'ddlPoolLeagues');
 
 		var action;
 		if (Foxtrick.Prefs.isModuleOptionEnabled('CountryList', 'SelectBoxes')) {
@@ -52,7 +53,7 @@ Foxtrick.modules['CountryList'] = {
 			trainingStats: [lgs, 1],
 			statsArena: [lgsDd_lgs, 0],
 			helpContact: [lgsDd_lgs, 3],
-			challengesPool: [poolLeague, 2],
+			challenges: [[poolLeague, 2], [poolLeagues, 0]],
 		};
 
 		for (var page in pageMap) {
