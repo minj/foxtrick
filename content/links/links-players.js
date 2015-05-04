@@ -25,14 +25,14 @@ Foxtrick.modules['LinksPlayers'] = {
 
 	links: function(doc) {
 		if (Foxtrick.isPage(doc, 'keyPlayers'))
-			// README: keyPlayers has no browseIDs
+			// README: keyPlayers has no browseIds
 			return;
 
 		var teamid = Foxtrick.Pages.All.getId(doc);
 		var teamname = Foxtrick.Pages.All.getTeamName(doc);
 		var main = doc.getElementById('mainBody');
-		var player = main.querySelector('a[href*="BrowseIds"]');
-		var playerids = player.href.replace(/.+BrowseIds=/i, '');
+		var player = main.querySelector('a[href*="rowseI"]');
+		var playerids = Foxtrick.getParameterFromUrl(player.href, 'browseIds');
 
 		var info = {
 			teamid: teamid,
