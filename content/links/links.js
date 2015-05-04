@@ -175,15 +175,11 @@
 						linkNode.textContent = link.shorttitle;
 					}
 					else {
-						var height = 16;
-						if (type === 'playerhealinglink')
-							height = 8;
-
 						var img = {
 							alt: link.shorttitle || link.title,
 							title: link.title,
 							src: link.img,
-							height: height
+							class: 'ft-link-icon',
 						};
 
 						Foxtrick.addImage(doc, linkNode, img);

@@ -309,6 +309,13 @@ span.flag img {
 	display: inline-block;
 }
 
+.ft-link-icon {
+	height: 16px;
+}
+.ft-link-injury .ft-link-icon, .ft-link-keeper .ft-link-icon {
+	height: 12px;
+}
+
 .ft-links-custom-icon-edit {
 	display: inline-block;
 	width: 16px;
