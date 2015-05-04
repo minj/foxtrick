@@ -17,6 +17,11 @@ Foxtrick.modules['MatchWeather'] = {
 			return;
 
 		var arenaLink = doc.querySelector('#mainBody a[href*="ArenaID="]');
+		if (!arenaLink) {
+			// tournaments have no arena
+			return;
+		}
+
 		var arenaId = Foxtrick.getParameterFromUrl(arenaLink.href, 'arenaId');
 		var parameters = [
 			['file', 'arenadetails'],
