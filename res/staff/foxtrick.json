@@ -391,6 +391,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "3745622",
+			"name": "kikindas"
+		},
+		{
+			"duty": "supporter",
 			"id": "381349",
 			"name": "eranzw"
 		},
@@ -593,6 +598,11 @@
 			"duty": "translator",
 			"id": "6927256",
 			"name": "ElChiquitin"
+		},
+		{
+			"duty": "supporter",
+			"id": "6944890",
+			"name": "guttusangolo-GIGA"
 		},
 		{
 			"duty": "translator",
