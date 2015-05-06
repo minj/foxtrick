@@ -344,13 +344,7 @@ Foxtrick.Prefs = {
 			prefs: true, // other prefs
 			skipFiles: false, // whether to exclude dataURIs
 		};
-		if (options && typeof options === 'object') {
-			for (var o in opts) {
-				if (o in options) {
-					opts[o] = options[o];
-				}
-			}
-		}
+		Foxtrick.mergeValid(opts, options);
 		try {
 			var ret = '';
 			var array = Foxtrick.Prefs.getAllKeysOfBranch('');
