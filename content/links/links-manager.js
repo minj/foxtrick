@@ -28,21 +28,25 @@ Foxtrick.modules['LinksManager'] = {
 		var bcs = Foxtrick.Pages.All.getBreadCrumbs(doc);
 		var username = bcs[1].textContent;
 
-		// primary team only
-		var mainBody = doc.getElementById('mainBody');
-		var teamid = Foxtrick.util.id.findTeamId(mainBody);
-		var teamname = Foxtrick.util.id.extractTeamName(mainBody);
-		var seriesname = Foxtrick.util.id.extractLeagueName(mainBody);
-		var seriesid = Foxtrick.util.id.findLeagueLeveUnitId(mainBody);
-
 		var info = {
-			teamid: teamid,
-			teamname: teamname,
 			userid: userid,
 			username: username,
-			seriesid: seriesid,
-			seriesname: seriesname,
 		};
+
+		var playerInfo = doc.querySelector('.playerInfo');
+		var teams = playerInfo.querySelectorAll('a[href^="/Club/?TeamID"]');
+		var series = playerInfo.querySelectorAll('a[href^="/World/Series/?"]');
+		var leagues = playerInfo.querySelectorAll('a[href^="/World/Leagues/League.aspx"]');
+		var ct = Math.min(teams.length, series.length, leagues.length);
+		for (var i = 0; i < ct; i++) {
+			var idx = i ? (i + 1) : '';
+			info['teamid' + idx] = Foxtrick.getParameterFromUrl(teams[i], 'teamId');
+			info['teamname' + idx] = teams[i].textContent;
+			info['seriesid' + idx] = Foxtrick.getParameterFromUrl(series[i], 'leagueLevelUnitId');
+			info['seriesname' + idx] = series[i].textContent;
+			info['leagueid' + idx] = Foxtrick.getParameterFromUrl(leagues[i], 'leagueId');
+		}
+
 		return { info: info };
 	}
 };
