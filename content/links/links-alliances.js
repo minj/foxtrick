@@ -24,9 +24,9 @@ Foxtrick.modules['LinksAlliances'] = {
 	},
 
 	links: function(doc) {
-		var allianceId = Foxtrick.Pages.All.getId(doc);
+		var federationId = Foxtrick.Pages.All.getId(doc);
 		var info = {
-			federationid: allianceId,
+			federationId: federationId,
 		};
 		return { info: info };
 	}

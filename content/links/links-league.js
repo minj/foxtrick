@@ -24,22 +24,22 @@ Foxtrick.modules['LinksLeague'] = {
 	},
 
 	links: function(doc) {
-		var thisdiv = Foxtrick.Pages.All.getMainHeader(doc);
-		var seriesid = Foxtrick.util.id.findLeagueLeveUnitId(thisdiv);
-		var leagueid = Foxtrick.util.id.findLeagueId(thisdiv);
+		var thisDiv = Foxtrick.Pages.All.getMainHeader(doc);
+		var seriesId = Foxtrick.util.id.findLeagueLeveUnitId(thisDiv);
+		var leagueId = Foxtrick.util.id.findLeagueId(thisDiv);
 
-		var seriesname = Foxtrick.util.id.extractLeagueName(thisdiv);
+		var seriesName = Foxtrick.util.id.extractLeagueName(thisDiv);
 
-		var series = Foxtrick.util.id.parseSeries(seriesname, leagueid);
-		var levelnum = series[0];
-		var seriesnum = series[1];
+		var series = Foxtrick.util.id.parseSeries(seriesName, leagueId);
+		var levelNum = series[0];
+		var seriesNum = series[1];
 
 		var info = {
-			leagueid: leagueid,
-			seriesid: seriesid,
-			levelnum: levelnum,
-			seriesnum: seriesnum,
-			seriesname: seriesname,
+			leagueId: leagueId,
+			seriesId: seriesId,
+			levelNum: levelNum,
+			seriesNum: seriesNum,
+			seriesName: seriesName,
 		};
 		return { info: info };
 	}

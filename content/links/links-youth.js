@@ -24,18 +24,18 @@ Foxtrick.modules['LinksYouthOverview'] = {
 	},
 
 	links: function(doc) {
-		var teamid = Foxtrick.Pages.All.getTeamId(doc);
-		if (!teamid)
+		var teamId = Foxtrick.Pages.All.getTeamId(doc);
+		if (!teamId)
 			return;
 
 		var youthSummary = Foxtrick.getMBElement(doc, 'tblInfo');
-		var countryid = Foxtrick.util.id.findLeagueId(youthSummary);
-		var youthteamid = Foxtrick.Pages.All.getId(doc);
+		var leagueId = Foxtrick.util.id.findLeagueId(youthSummary);
+		var youthTeamId = Foxtrick.Pages.All.getId(doc);
 
 		var info = {
-			teamid: teamid,
-			youthteamid: youthteamid,
-			countryid: countryid,
+			teamId: teamId,
+			youthTeamId: youthTeamId,
+			leagueId: leagueId,
 		};
 		var types = ['youthlink'];
 		if (Foxtrick.Prefs.isModuleEnabled('LinksTracker')) {
@@ -69,19 +69,19 @@ Foxtrick.modules['LinksYouthPlayerDetail'] = {
 	},
 
 	links: function(doc) {
-		var teamid = Foxtrick.Pages.All.getTeamId(doc);
-		if (!teamid)
+		var teamId = Foxtrick.Pages.All.getTeamId(doc);
+		if (!teamId)
 			return;
 
 		if (Foxtrick.Pages.YouthPlayer.wasFired(doc))
 			return;
 
-		var playerid = Foxtrick.Pages.All.getId(doc);
-		var youthteamid = Foxtrick.Pages.All.getTeamIdFromBC(doc);
-		var playername = Foxtrick.Pages.Player.getName(doc);
+		var playerId = Foxtrick.Pages.All.getId(doc);
+		var youthTeamId = Foxtrick.Pages.All.getTeamIdFromBC(doc);
+		var playerName = Foxtrick.Pages.Player.getName(doc);
 
 		var main = doc.getElementById('mainBody');
-		var countryid = Foxtrick.util.id.findLeagueId(main);
+		var leagueId = Foxtrick.util.id.findLeagueId(main);
 
 		// age
 		var age = Foxtrick.Pages.Player.getAge(doc);
@@ -89,13 +89,13 @@ Foxtrick.modules['LinksYouthPlayerDetail'] = {
 		var days = age.days;
 
 		var info = {
-			teamid: teamid,
-			youthteamid: youthteamid,
-			playerid: playerid,
-			playername: playername,
-			nationality: countryid,
+			teamId: teamId,
+			youthTeamId: youthTeamId,
+			playerId: playerId,
+			playerName: playerName,
+			nationality: leagueId,
 			age: years,
-			age_days: days,
+			ageDays: days,
 		};
 		var types = ['youthplayerdetaillink'];
 		if (Foxtrick.Prefs.isModuleEnabled('LinksTracker')) {
@@ -129,18 +129,18 @@ Foxtrick.modules['LinksYouthTraining'] = {
 	},
 
 	links: function(doc) {
-		var teamid = Foxtrick.Pages.All.getTeamId(doc);
-		if (!teamid)
+		var teamId = Foxtrick.Pages.All.getTeamId(doc);
+		if (!teamId)
 			return;
 
-		var youthteamid = Foxtrick.Pages.All.getTeamIdFromBC(doc);
+		var youthTeamId = Foxtrick.Pages.All.getTeamIdFromBC(doc);
 		var trTypes = doc.querySelectorAll('#mainBody table.form select');
 		var training1 = trTypes[0].value;
 		var training2 = trTypes[1].value;
 
 		var info = {
-			teamid: teamid,
-			youthteamid: youthteamid,
+			teamId: teamId,
+			youthTeamId: youthTeamId,
 			training1: training1,
 			training2: training2,
 		};
@@ -169,20 +169,20 @@ Foxtrick.modules['LinksYouthPlayerList'] = {
 	},
 
 	links: function(doc) {
-		var teamid = Foxtrick.Pages.All.getTeamId(doc);
-		if (!teamid)
+		var teamId = Foxtrick.Pages.All.getTeamId(doc);
+		if (!teamId)
 			return;
 
-		var youthteamid = Foxtrick.Pages.All.getTeamIdFromBC(doc);
+		var youthTeamId = Foxtrick.Pages.All.getTeamIdFromBC(doc);
 
 		var main = doc.getElementById('mainBody');
 		var player = main.querySelector('a[href*="rowseI"]');
-		var playerids = Foxtrick.getParameterFromUrl(player.href, 'browseIds');
+		var playerIds = Foxtrick.getParameterFromUrl(player.href, 'browseIds');
 
 		var info = {
-			teamid: teamid,
-			youthteamid: youthteamid,
-			playerids: playerids,
+			teamId: teamId,
+			youthTeamId: youthTeamId,
+			playerIds: playerIds,
 		};
 		return { info: info };
 	},
@@ -209,15 +209,15 @@ Foxtrick.modules['LinksYouthMatchList'] = {
 	},
 
 	links: function(doc) {
-		var teamid = Foxtrick.Pages.All.getTeamId(doc);
-		if (!teamid)
+		var teamId = Foxtrick.Pages.All.getTeamId(doc);
+		if (!teamId)
 			return;
 
-		var youthteamid = Foxtrick.Pages.All.getTeamIdFromBC(doc);
+		var youthTeamId = Foxtrick.Pages.All.getTeamIdFromBC(doc);
 
 		var info = {
-			teamid: teamid,
-			youthteamid: youthteamid,
+			teamId: teamId,
+			youthTeamId: youthTeamId,
 		};
 		return { info: info };
 	},
@@ -244,20 +244,20 @@ Foxtrick.modules['LinksYouthLeague'] = {
 	},
 
 	links: function(doc) {
-		var teamid = Foxtrick.Pages.All.getTeamId(doc);
-		if (!teamid)
+		var teamId = Foxtrick.Pages.All.getTeamId(doc);
+		if (!teamId)
 			return;
 
 		// youthTeamId unavailable in series main header
 		var subMenu = doc.querySelector('.subMenu');
-		var youthteamid = Foxtrick.util.id.findYouthTeamId(subMenu);
+		var youthTeamId = Foxtrick.util.id.findYouthTeamId(subMenu);
 
-		var youthseriesid = Foxtrick.Pages.All.getId(doc);
+		var youthSeriesId = Foxtrick.Pages.All.getId(doc);
 
 		var info = {
-			youthseriesid: youthseriesid,
-			teamid: teamid,
-			youthteamid: youthteamid,
+			youthSeriesId: youthSeriesId,
+			teamId: teamId,
+			youthTeamId: youthTeamId,
 		};
 		return { info: info };
 	},

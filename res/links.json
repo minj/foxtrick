@@ -372,7 +372,7 @@
 	},
 	"htbox_training": {
 		"playerlink": {
-			"url": "http://www.ht-box.ru/training.php?yr=[age]&dy=[age_days]&goalkeeping=[goalkeeping]&defending=[defending]&playmaking=[playmaking]&winger=[winger]&passing=[passing]&scoring=[scoring]&setpieces=[setpieces]"
+			"url": "http://www.ht-box.ru/training.php?yr=[age]&dy=[agedays]&goalkeeping=[goalkeeping]&defending=[defending]&playmaking=[playmaking]&winger=[winger]&passing=[passing]&scoring=[scoring]&setpieces=[setpieces]"
 		},
 		"traininglink": {
 			"url": "http://www.ht-box.ru/training.php?coach=[Coach]&ti=[TI]&ko=[STA]&type=[TrainingType]"
@@ -405,11 +405,11 @@
 	},
   "ht-u20": {
 		"playerlink": {
-			"url": "http://age.ht-u20.com/?years=[age]&days=[age_days]",
+			"url": "http://age.ht-u20.com/?years=[age]&days=[agedays]",
 			"filters": ["age"]
 		},
 		"youthplayerdetaillink": {
-			"url": "http://age.ht-u20.com/?years=[age]&days=[age_days]"
+			"url": "http://age.ht-u20.com/?years=[age]&days=[agedays]"
 		},
 		"ageranges": [[15, 20]],
 		"title": "HT-U20 Check age vs U-20 matches",

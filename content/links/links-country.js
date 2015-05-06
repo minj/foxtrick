@@ -31,8 +31,8 @@ Foxtrick.modules['LinksCountry'] = {
 		var englishName = Foxtrick.L10n.getCountryNameEnglish(leagueId);
 
 		var info = {
-			leagueid: leagueId,
-			english_name: englishName
+			leagueId: leagueId,
+			englishName: englishName
 		};
 		var types = ['leaguelink'];
 		if (Foxtrick.Prefs.isModuleEnabled('LinksTracker')) {

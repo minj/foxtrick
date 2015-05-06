@@ -37,10 +37,10 @@ Foxtrick.modules['LinksPlayerDetail'] = {
 		var mainBox = doc.getElementsByClassName('mainBox')[0];
 		var skillTable = mainBox ? mainBox.getElementsByTagName('table')[0] : null;
 
-		var teamid = Foxtrick.Pages.All.getTeamId(doc);
-		var teamname = Foxtrick.Pages.All.getTeamName(doc);
-		var playerid = Foxtrick.Pages.Player.getId(doc);
-		var playername = Foxtrick.Pages.Player.getName(doc);
+		var teamId = Foxtrick.Pages.All.getTeamId(doc);
+		var teamName = Foxtrick.Pages.All.getTeamName(doc);
+		var playerId = Foxtrick.Pages.Player.getId(doc);
+		var playerName = Foxtrick.Pages.Player.getName(doc);
 		var nationality = Foxtrick.Pages.Player.getNationalityId(doc);
 
 		var tsi = Foxtrick.Pages.Player.getTsi(doc);
@@ -56,22 +56,22 @@ Foxtrick.modules['LinksPlayerDetail'] = {
 		var exp = attrs.experience;
 		var ls = attrs.leadership;
 
-		var injuredweeks = Foxtrick.Pages.Player.getInjuryWeeks(doc);
+		var injuredWeeks = Foxtrick.Pages.Player.getInjuryWeeks(doc);
 
 		var types = ['playerlink'];
 		var params = {
-			teamid: teamid, teamname: teamname,
-			playerid: playerid, playername: playername, nationality: nationality,
-			tsi: tsi, age: years, age_days: days,
+			teamId: teamId, teamName: teamName,
+			playerId: playerId, playerName: playerName, nationality: nationality,
+			tsi: tsi, age: years, ageDays: days,
 			form: form, exp: exp, leadership: ls, stamina: stamina,
-			injuredweeks: injuredweeks, deadline: '',
+			injuredWeeks: injuredWeeks, deadline: '',
 		};
 
 		var rate = Foxtrick.util.currency.getRate();
 		if (rate) {
 			var wageObj = Foxtrick.Pages.Player.getWage(doc);
 			params.wage = Math.round(wageObj.base * rate);
-			params.wagebonus = Math.round(wageObj.bonus * rate);
+			params.wageBonus = Math.round(wageObj.bonus * rate);
 		}
 
 		var deadlineDate = Foxtrick.Pages.Player.getTransferDeadline(doc);
@@ -94,7 +94,7 @@ Foxtrick.modules['LinksPlayerDetail'] = {
 				'winger',
 				'defending',
 				'scoring',
-				['setpieces', 'setPieces']
+				'setPieces',
 			];
 			Foxtrick.forEach(function(skill) {
 				if (typeof skill === 'string')
@@ -105,20 +105,20 @@ Foxtrick.modules['LinksPlayerDetail'] = {
 
 			types.push('transfercomparelink');
 			if (skills.keeper > 3 && skillTable) {
-				var newtable = (skillTable.rows.length === 7);
-				var goalkeeperskillnode = newtable ? skillTable.rows[0].cells[1] :
+				var newTable = (skillTable.rows.length === 7);
+				var keeperSkillNode = newTable ? skillTable.rows[0].cells[1] :
 					skillTable.rows[0].cells[3];
-				goalkeeperskillnode = goalkeeperskillnode.getElementsByTagName('a')[0];
+				keeperSkillNode = keeperSkillNode.getElementsByTagName('a')[0];
 
 				var keeperLinks = {
 					type: 'keeperlink',
-					parent: goalkeeperskillnode.parentNode,
+					parent: keeperSkillNode.parentNode,
 					className: 'ft-link-keeper',
 				};
 				types.push(keeperLinks);
 			}
 		}
-		if (injuredweeks > 0) {
+		if (injuredWeeks > 0) {
 			var injuryLinks = {
 				type: 'playerhealinglink',
 				parent: infoTable.rows[4].cells[1],

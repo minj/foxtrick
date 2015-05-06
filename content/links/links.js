@@ -155,7 +155,7 @@
 		},
 
 		getLinks: function(doc, options) {
-			var reUseTab = Foxtrick.Prefs.isModuleOptionEnabled('Links', 'ReuseTab');
+			var reuseTab = Foxtrick.Prefs.isModuleOptionEnabled('Links', 'ReuseTab');
 			var opts = { type: '', info: {}, module: '', className: '' };
 			Foxtrick.mergeValid(opts, options);
 			var args = opts.info, type = opts.type, module = opts.module;
@@ -187,7 +187,7 @@
 				}
 
 				if (typeof link.openinthesamewindow === 'undefined') {
-					linkNode.target = reUseTab ? '_ftlinks' : '_blank';
+					linkNode.target = reuseTab ? '_ftlinks' : '_blank';
 				}
 
 				linkNode.setAttribute('key', key);

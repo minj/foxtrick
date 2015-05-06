@@ -26,14 +26,14 @@ Foxtrick.modules['LinksAchievements'] = {
 	links: function(doc) {
 		var main = Foxtrick.Pages.All.getMainHeader(doc);
 
-		var teamid = Foxtrick.util.id.findTeamId(main);
-		var teamname = Foxtrick.Pages.All.getTeamName(doc);
-		var userid = Foxtrick.util.id.findUserId(main);
+		var teamId = Foxtrick.util.id.findTeamId(main);
+		var teamName = Foxtrick.Pages.All.getTeamName(doc);
+		var userId = Foxtrick.util.id.findUserId(main);
 
 		var info = {
-			teamid: teamid,
-			teamname: teamname,
-			userid: userid,
+			teamId: teamId,
+			teamName: teamName,
+			userId: userId,
 		};
 		return { info: info };
 	}

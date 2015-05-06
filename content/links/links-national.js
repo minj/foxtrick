@@ -27,12 +27,12 @@ Foxtrick.modules['LinksNational'] = {
 		var main = doc.getElementById('mainBody');
 		var header = main.getElementsByTagName('h1')[0];
 		var LeagueOfficeTypeID = /U-20/.test(header.textContent) ? 4 : 2;
-		var leagueid = Foxtrick.util.id.findLeagueId(main);
-		var ntteamid = Foxtrick.Pages.All.getId(doc);
+		var leagueId = Foxtrick.util.id.findLeagueId(main);
+		var ntTeamId = Foxtrick.Pages.All.getId(doc);
 
 		var info = {
-			leagueid: leagueid,
-			ntteamid: ntteamid,
+			leagueId: leagueId,
+			ntTeamId: ntTeamId,
 			LeagueOfficeTypeID: LeagueOfficeTypeID
 		};
 		var types = ['nationalteamlink'];

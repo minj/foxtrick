@@ -24,7 +24,7 @@ Foxtrick.modules['LinksFans'] = {
 	},
 
 	links: function(doc) {
-		var fanmood = '';
+		var fanMood = '';
 		var main = doc.getElementById('mainBody');
 		var fansText = main.getElementsByTagName('td')[1].textContent;
 		var fans = Foxtrick.trimnum(fansText);
@@ -32,14 +32,14 @@ Foxtrick.modules['LinksFans'] = {
 		var links = main.getElementsByTagName('a');
 		Foxtrick.any(function(link) {
 			if (/FanMood/i.test(link.href)) {
-				fanmood = link.href.match(/ll=(\d+)/)[1];
+				fanMood = link.href.match(/ll=(\d+)/)[1];
 				return true;
 			}
 			return false;
 		}, links);
 
 		var info = {
-			fanmood: fanmood,
+			fanMood: fanMood,
 			fans: fans,
 		};
 		return { info: info };

@@ -30,47 +30,47 @@ Foxtrick.modules['LinksMatch'] = {
 
 	links: function(doc) {
 		// get ids
-		var teamid, teamid2;
+		var teamId, teamId2;
 
-		var youthmatch = Foxtrick.Pages.Match.isYouth(doc);
-		var matchid = Foxtrick.Pages.Match.getId(doc);
-		var isarchivedmatch = !Foxtrick.Pages.Match.isPrematch(doc);
+		var isYouth = Foxtrick.Pages.Match.isYouth(doc);
+		var matchId = Foxtrick.Pages.Match.getId(doc);
+		var isPlayed = !Foxtrick.Pages.Match.isPrematch(doc);
 
-		if (isarchivedmatch) {
-			teamid = Foxtrick.Pages.Match.getHomeTeamId(doc);
-			teamid2 = Foxtrick.Pages.Match.getAwayTeamId(doc);
+		if (isPlayed) {
+			teamId = Foxtrick.Pages.Match.getHomeTeamId(doc);
+			teamId2 = Foxtrick.Pages.Match.getAwayTeamId(doc);
 		}
 		else {
-			var sidediv = Foxtrick.Pages.Match.getPreMatchSummary(doc);
-			if (!sidediv)
-				sidediv = doc.getElementById('sidebar');
-			teamid = Foxtrick.util.id.findTeamId(sidediv);
-			teamid2 = Foxtrick.util.id.findSecondTeamId(sidediv, teamid);
+			var sideDiv = Foxtrick.Pages.Match.getPreMatchSummary(doc);
+			if (!sideDiv)
+				sideDiv = doc.getElementById('sidebar');
+			teamId = Foxtrick.util.id.findTeamId(sideDiv);
+			teamId2 = Foxtrick.util.id.findSecondTeamId(sideDiv, teamId);
 		}
 		var info = {
-			matchid: matchid,
-			teamid: teamid,
-			teamid2: teamid2,
+			matchId: matchId,
+			teamId: teamId,
+			teamId2: teamId2,
 		};
 
 		var subMenu = doc.querySelector('.subMenu');
 		var menuTeam = Foxtrick.util.id.findTeamId(subMenu);
-		if (menuTeam == teamid2) {
-			info.thisteamid = teamid2;
-			info.opponentid = teamid;
+		if (menuTeam == teamId2) {
+			info.thisTeamId = teamId2;
+			info.opponentId = teamId;
 		}
 		else {
-			info.thisteamid = teamid;
-			info.opponentid = teamid2;
+			info.thisTeamId = teamId;
+			info.opponentId = teamId2;
 		}
 
 		var types = [];
 		var hasNewSidebar = false;
 		var customLinkSet = this.MODULE_NAME;
 
-		if (isarchivedmatch) {
+		if (isPlayed) {
 			hasNewSidebar = true;
-			if (youthmatch) {
+			if (isYouth) {
 				types = ['playedyouthmatchlink'];
 				customLinkSet += '.youth.played';
 			}
@@ -79,7 +79,7 @@ Foxtrick.modules['LinksMatch'] = {
 				customLinkSet += '.played';
 			}
 		}
-		else if (!youthmatch) {
+		else if (!isYouth) {
 			// using two types for backwards-compatibility
 			types = ['nextmatchlink', 'matchlink'];
 			customLinkSet += '.coming';

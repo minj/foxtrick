@@ -24,13 +24,13 @@ Foxtrick.modules['LinksManager'] = {
 	},
 
 	links: function(doc) {
-		var userid = Foxtrick.Pages.All.getId(doc);
+		var userId = Foxtrick.Pages.All.getId(doc);
 		var bcs = Foxtrick.Pages.All.getBreadCrumbs(doc);
-		var username = bcs[1].textContent;
+		var userName = bcs[1].textContent;
 
 		var info = {
-			userid: userid,
-			username: username,
+			userId: userId,
+			userName: userName,
 		};
 
 		var playerInfo = doc.querySelector('.playerInfo');
@@ -40,11 +40,11 @@ Foxtrick.modules['LinksManager'] = {
 		var ct = Math.min(teams.length, series.length, leagues.length);
 		for (var i = 0; i < ct; i++) {
 			var idx = i ? (i + 1) : '';
-			info['teamid' + idx] = Foxtrick.getParameterFromUrl(teams[i], 'teamId');
-			info['teamname' + idx] = teams[i].textContent;
-			info['seriesid' + idx] = Foxtrick.getParameterFromUrl(series[i], 'leagueLevelUnitId');
-			info['seriesname' + idx] = series[i].textContent;
-			info['leagueid' + idx] = Foxtrick.getParameterFromUrl(leagues[i], 'leagueId');
+			info['teamId' + idx] = Foxtrick.getParameterFromUrl(teams[i], 'teamId');
+			info['teamName' + idx] = teams[i].textContent;
+			info['seriesId' + idx] = Foxtrick.getParameterFromUrl(series[i], 'leagueLevelUnitId');
+			info['seriesName' + idx] = series[i].textContent;
+			info['leagueId' + idx] = Foxtrick.getParameterFromUrl(leagues[i], 'leagueId');
 		}
 
 		return { info: info };

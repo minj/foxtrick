@@ -24,22 +24,22 @@ Foxtrick.modules['LinksTeam'] = {
 	},
 
 	links: function(doc) {
-		var teamid = Foxtrick.Pages.All.getId(doc);
-		if (!teamid)
+		var teamId = Foxtrick.Pages.All.getId(doc);
+		if (!teamId)
 			return;
 
 		var main = doc.getElementById('mainBody');
 
-		var userid = Foxtrick.util.id.findUserId(main);
-		var teamname = Foxtrick.Pages.All.getTeamName(doc);
-		var leagueid = Foxtrick.util.id.findLeagueId(main);
-		var seriesname = Foxtrick.util.id.extractLeagueName(main);
-		var seriesid = Foxtrick.util.id.findLeagueLeveUnitId(main);
+		var userId = Foxtrick.util.id.findUserId(main);
+		var teamName = Foxtrick.Pages.All.getTeamName(doc);
+		var leagueId = Foxtrick.util.id.findLeagueId(main);
+		var seriesName = Foxtrick.util.id.extractLeagueName(main);
+		var seriesId = Foxtrick.util.id.findLeagueLeveUnitId(main);
 
-		var series = Foxtrick.util.id.parseSeries(seriesname, leagueid);
-		var levelnum = series[0];
-		var seriesnum = series[1];
-		var seriespos = 0, fans = 0;
+		var series = Foxtrick.util.id.parseSeries(seriesName, leagueId);
+		var levelNum = series[0];
+		var seriesNum = series[1];
+		var seriesPos = 0, fans = 0;
 		try {
 			var teamInfo = main.querySelector('.teamInfo');
 
@@ -68,26 +68,26 @@ Foxtrick.modules['LinksTeam'] = {
 
 			var seriesLink = teamInfo.querySelector('a[href^="/World/Series/"]');
 			if (seriesLink) {
-				// seriespos is not known during a game
+				// seriesPos is not known during a game
 				var seriesP = seriesLink.parentNode.cloneNode(true);
 				seriesP.removeChild(seriesP.querySelector('a'));
-				seriespos = seriesP.textContent.match(/\d/).toString();
+				seriesPos = seriesP.textContent.match(/\d/).toString();
 			}
 		}
 		catch (e) {
-			Foxtrick.log('seriespos/fans:', e);
+			Foxtrick.log('seriesPos/fans:', e);
 		}
 
 		var info = {
-			userid: userid,
-			teamid: teamid,
-			teamname: teamname,
+			userId: userId,
+			teamId: teamId,
+			teamName: teamName,
 			fans: fans,
-			leagueid: leagueid,
-			seriesid: seriesid,
-			levelnum: levelnum,
-			seriesnum: seriesnum,
-			seriespos: seriespos,
+			leagueId: leagueId,
+			seriesId: seriesId,
+			levelNum: levelNum,
+			seriesNum: seriesNum,
+			seriesPos: seriesPos,
 		};
 
 		return { info: info };

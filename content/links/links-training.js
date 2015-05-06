@@ -29,13 +29,13 @@ Foxtrick.modules['LinksTraining'] = {
 		var coach = Foxtrick.util.id.getSkillLevelFromLink(coachLink);
 		var sta = Foxtrick.getMBElement(doc, 'txtTrainingLevelStamina').value;
 		var ti = Foxtrick.getMBElement(doc, 'txtTrainingLevel').value;
-		var trainingtype = Foxtrick.getMBElement(doc, 'ddlTrainingType').value;
+		var trainingType = Foxtrick.getMBElement(doc, 'ddlTrainingType').value;
 
 		var info = {
 			coach: coach,
 			ti: ti,
 			sta: sta,
-			trainingtype: trainingtype,
+			trainingType: trainingType,
 		};
 		return { info: info };
 	}

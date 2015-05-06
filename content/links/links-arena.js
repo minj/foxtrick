@@ -37,8 +37,8 @@ Foxtrick.modules['LinksArena'] = {
 			basic: Foxtrick.trimnum(arenaTable.rows[4].cells[1].textContent),
 			roof: Foxtrick.trimnum(arenaTable.rows[5].cells[1].textContent),
 			vip: Foxtrick.trimnum(arenaTable.rows[6].cells[1].textContent),
-			teamid: teamId,
-			arenaid: arenaId,
+			teamId: teamId,
+			arenaId: arenaId,
 		};
 		return { info: info };
 	}

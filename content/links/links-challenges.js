@@ -28,12 +28,12 @@ Foxtrick.modules['LinksChallenges'] = {
 		var youthTeamId = Foxtrick.Pages.All.getTeamIdFromBC(doc);
 
 		var types = ['challengeslink'];
-		var info = { teamid: teamId };
+		var info = { teamId: teamId };
 		var customLinkSet = this.MODULE_NAME;
 
 		if (Foxtrick.isPage(doc, 'youthChallenges')) {
 			types = ['youthchallengeslink'];
-			info.youthteamid = youthTeamId;
+			info.youthTeamId = youthTeamId;
 			customLinkSet += '.youth';
 		}
 

@@ -42,7 +42,7 @@ Foxtrick.modules['LinksEconomy'] = {
 		var currencySymbol = Foxtrick.util.currency.getSymbol();
 		var info = {
 			cash: cash,
-			newcash: newCash,
+			newCash: newCash,
 			currency: currencySymbol,
 		};
 		return { info: info };

@@ -28,16 +28,16 @@ Foxtrick.modules['LinksPlayers'] = {
 			// README: keyPlayers has no browseIds
 			return;
 
-		var teamid = Foxtrick.Pages.All.getId(doc);
-		var teamname = Foxtrick.Pages.All.getTeamName(doc);
+		var teamId = Foxtrick.Pages.All.getId(doc);
+		var teamName = Foxtrick.Pages.All.getTeamName(doc);
 		var main = doc.getElementById('mainBody');
 		var player = main.querySelector('a[href*="rowseI"]');
-		var playerids = Foxtrick.getParameterFromUrl(player.href, 'browseIds');
+		var playerIds = Foxtrick.getParameterFromUrl(player.href, 'browseIds');
 
 		var info = {
-			teamid: teamid,
-			teamname: teamname,
-			playerids: playerids
+			teamId: teamId,
+			teamName: teamName,
+			playerIds: playerIds
 		};
 
 		return { info: info };
