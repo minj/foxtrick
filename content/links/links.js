@@ -201,10 +201,6 @@
 				return [];
 			}
 
-			// add current server to args first
-			args.server = doc.location.hostname;
-			args.lang = Foxtrick.Prefs.getString('htLanguage');
-
 			var addUp = function(sum, prop) {
 				var num = parseInt(args[prop], 10) || 0;
 				return sum + num;

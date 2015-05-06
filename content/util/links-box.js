@@ -15,11 +15,6 @@ Foxtrick.util.links = {
 		try {
 			var doc = ownBoxBody.ownerDocument;
 			Foxtrick.util.links._info = info;
-			var ownTeam = Foxtrick.modules.Core.TEAM, ownInfo = {}, key;
-			for (key in ownTeam)
-				ownInfo['own' + key.toLowerCase()] = ownTeam[key];
-
-			Foxtrick.util.links._ownInfo = ownInfo;
 
 			var basepref = 'module.LinksCustom.' + customLinkSet;
 
@@ -143,8 +138,8 @@ Foxtrick.util.links = {
 				else
 					continue;
 			}
-			var key;
-			for (key in keys) {
+
+			for (var key in keys) {
 				var href = Foxtrick.Prefs.getString(basepref + '.' + key + '.href');
 				var imgref = Foxtrick.Prefs.getString(basepref + '.' + key + '.img');
 				var title = Foxtrick.Prefs.getString(basepref + '.' + key + '.title');
@@ -152,19 +147,10 @@ Foxtrick.util.links = {
 					Foxtrick.dump('customLink ' + key + ' incomplete\n');
 					continue;
 				}
-				// replace tags
 
-				var mykeytag = href.match(/\[\w+\]/g);
-				if (mykeytag && mykeytag.length > 0) {
-					for (var i = 0; i < mykeytag.length; i++) {
-						var mykey = mykeytag[i].replace(/[[\]]/g, '');
-						if (mykey in Foxtrick.util.links._info)
-							href = href.replace(mykeytag[i], Foxtrick.util.links._info[mykey]);
-						else {
-							href = href.replace(mykeytag[i], Foxtrick.util.links._ownInfo[mykey]);
-						}
-					}
-				}
+				// replace tags
+				href = Foxtrick.util.links.makeUrl(href, Foxtrick.util.links._info);
+
 				try { // add icons
 					var a = doc.createElement('a');
 					a.id = 'LinksCustomLinkID' + key;
@@ -356,11 +342,7 @@ Foxtrick.util.links = {
 				option.setAttribute('style', 'width:100%;');
 				selectbox.appendChild(option);
 			};
-			var key;
-			for (key in Foxtrick.util.links._info) {
-				addTagToList(key);
-			}
-			for (key in Foxtrick.util.links._ownInfo) {
+			for (var key in Foxtrick.util.links._info) {
 				addTagToList(key);
 			}
 
@@ -590,19 +572,30 @@ Foxtrick.util.links.run = function(doc, module) {
 	var LINK_CLASS = 'inner';
 	var BOX_ID = 'foxtrick_links_content';
 
-	var ownTeam = Foxtrick.modules.Core.TEAM, info = {};
-	for (var key in ownTeam)
-		info['own' + key.toLowerCase()] = ownTeam[key];
+
+	var ownInfo = {
+		server: doc.location.hostname,
+		lang: Foxtrick.Prefs.getString('htLanguage')
+	};
+
+	var ownTeam = Foxtrick.modules.Core.TEAM;
+	for (var key in ownTeam) {
+		ownInfo['own' + key] = ownTeam[key];
+	}
 
 	var run = function() {
 		var o = module.links(doc);
 		if (!o)
 			return;
 
-		if (!o.info)
-			o.info = {};
+		var output = o.info || {};
+		Foxtrick.mergeAll(output, ownInfo);
 
-		Foxtrick.mergeAll(info, o.info);
+		var info = {};
+		for (var key in output) {
+			// convert all tags to lower case
+			info[key.toLowerCase()] = output[key];
+		}
 
 		var box = Foxtrick.createFeaturedElement(doc, module, 'div');
 		box.id = BOX_ID;
@@ -635,7 +628,7 @@ Foxtrick.util.links.run = function(doc, module) {
 		wrapper.id = 'ft-links-box';
 
 		var customLinkSet = o.customLinkSet || module.MODULE_NAME;
-		Foxtrick.util.links.add(box, customLinkSet, o.info, o.hasNewSidebar);
+		Foxtrick.util.links.add(box, customLinkSet, info, o.hasNewSidebar);
 
 	};
 
