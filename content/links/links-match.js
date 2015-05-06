@@ -52,6 +52,18 @@ Foxtrick.modules['LinksMatch'] = {
 			teamid: teamid,
 			teamid2: teamid2,
 		};
+
+		var subMenu = doc.querySelector('.subMenu');
+		var menuTeam = Foxtrick.util.id.findTeamId(subMenu);
+		if (menuTeam == teamid2) {
+			info.thisteamid = teamid2;
+			info.opponentid = teamid;
+		}
+		else {
+			info.thisteamid = teamid;
+			info.opponentid = teamid2;
+		}
+
 		var types = [];
 		var hasNewSidebar = false;
 		var customLinkSet = this.MODULE_NAME;
