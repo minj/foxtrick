@@ -21,7 +21,7 @@ Foxtrick.modules['SupportershipExpirationDate'] = {
 		var endDate = Foxtrick.util.time.addDaysToDate(now, days);
 
 		//get date in localized/correct format
-		var printDate = Foxtrick.util.time.buildDate(endDate, 0, 0);
+		var printDate = Foxtrick.util.time.buildDate(endDate, { showTime: false });
 		var newText = doc.createTextNode(printDate);
 
 		//grab original text

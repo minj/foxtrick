@@ -279,7 +279,7 @@ Foxtrick.modules['SeriesTransfers'] = {
 			Foxtrick.localSet('series_transfers.' + seriesId, oldestFile);
 			var infoDiv = doc.createElement('div');
 			var info = Foxtrick.L10n.getString('SeriesTransfers.lastFetch');
-			var dateText = Foxtrick.util.time.buildDate(new Date(oldestFile), true);
+			var dateText = Foxtrick.util.time.buildDate(new Date(oldestFile));
 			infoDiv.textContent = info.replace(/%s/, dateText);
 			infoDiv.id = timeId;
 			fetchDiv.insertBefore(infoDiv, fetchLink);

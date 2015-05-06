@@ -811,7 +811,9 @@ Foxtrick.modules.MatchSimulator = {
 									                       .textContent);
 									option.className = 'ftOptionIcon ' + Foxtrick.modules
 										.MatchSimulator.MatchTypes[MatchType].className;
-									var MatchDate = Foxtrick.util.time.buildDate(selectedMatchXML.time('MatchDate'));
+									var date = selectedMatchXML.time('MatchDate');
+									var MatchDate =
+										Foxtrick.util.time.buildDate(date, { showTime: false });
 									var howeAwayStr =
 										Foxtrick.L10n.getString('matchOrder.default.abbr');
 									if (homeAway == 'home')
@@ -872,7 +874,9 @@ Foxtrick.modules.MatchSimulator = {
 								option.setAttribute('SourceSystem', SourceSystem);
 								option.className = 'ftOptionIcon ' +
 									Foxtrick.modules.MatchSimulator.MatchTypes[MatchType].className;
-								var MatchDate = Foxtrick.util.time.buildDate(otherMatchesXml.time('MatchDate', otherMatchesNodes[i]));
+								var date = otherMatchesXml.time('MatchDate', otherMatchesNodes[i]);
+								var MatchDate =
+									Foxtrick.util.time.buildDate(date, { showTime: false });
 								option.textContent =
 									MatchDate + ': ' + otherMatchesNodes[i]
 									.getElementsByTagName('HomeTeamName')[0]
