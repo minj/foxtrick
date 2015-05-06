@@ -45,7 +45,7 @@ Foxtrick.util.links = {
 						var href = Foxtrick.Prefs.getString(basepref + '.' + key + '.href');
 						var imgref = Foxtrick.Prefs.getString(basepref + '.' + key + '.img');
 						var title = Foxtrick.Prefs.getString(basepref + '.' + key + '.title');
-						if (href == null || imgref == null || title == null)
+						if (href == null || title == null)
 							continue;
 						var mylink = doc.getElementById('LinksCustomLinkID' + key);
 						if (mylink)
@@ -147,7 +147,7 @@ Foxtrick.util.links = {
 				var href = Foxtrick.Prefs.getString(basepref + '.' + key + '.href');
 				var imgref = Foxtrick.Prefs.getString(basepref + '.' + key + '.img');
 				var title = Foxtrick.Prefs.getString(basepref + '.' + key + '.title');
-				if (href == null || imgref == null || title == null) {
+				if (href == null || title == null) {
 					Foxtrick.dump('customLink ' + key + ' incomplete\n');
 					continue;
 				}
@@ -165,7 +165,9 @@ Foxtrick.util.links = {
 					var img = doc.createElement('img');
 					//img.style.width = img.style.height = '16px';
 					// undefined is a string here: comes from prefs
-					img.src = imgref !== 'undefined' ? imgref : null;
+					if (imgref && imgref !== 'null' && imgref !== 'undefined')
+						img.src = imgref;
+
 					img.alt = title;
 					a.appendChild(img);
 					ownBoxBody.appendChild(a);
@@ -235,7 +237,8 @@ Foxtrick.util.links = {
 				a.target = '_blank';
 				var img = doc.createElement('img');
 				img.className = 'ft-links-custom-icon-edit';
-				img.src = imgref;
+				if (imgref && imgref !== 'null' && imgref !== 'undefined')
+					img.src = imgref;
 				img.alt = title;
 				a.appendChild(img);
 
@@ -442,8 +445,10 @@ Foxtrick.util.links = {
 				Foxtrick.Prefs.getString(baseprefnl + '.title');
 			var imgref = Foxtrick.Prefs.getString(baseprefnl + '.img');
 			var img = doc.getElementById('inputImgDivID');
-			img.style.backgroundImage = "url('" + imgref + "')";
-			img.imgref = imgref;
+			if (imgref && imgref !== 'null' && imgref !== 'undefined') {
+				img.style.backgroundImage = "url('" + imgref + "')";
+				img.setAttribute('data-imgref', imgref);
+			}
 		}
 		catch (e) {
 			Foxtrick.log(e);
@@ -461,7 +466,8 @@ Foxtrick.util.links = {
 
 			var href = doc.getElementById('inputHrefID').value;
 			var title = doc.getElementById('inputTitleID').value;
-			var imgref = String(doc.getElementById('inputImgDivID').imgref);
+			var inputImg = doc.getElementById('inputImgDivID');
+			var imgref = inputImg.getAttribute('data-imgref');
 
 			Foxtrick.Prefs.setString(baseprefnl + '.href', href);
 			Foxtrick.Prefs.setString(baseprefnl + '.title', title);
@@ -473,8 +479,11 @@ Foxtrick.util.links = {
 			a.target = '_blank';
 			var img = doc.createElement('img');
 			img.className = 'ft-links-custom-icon-edit';
-			img.src = imgref;
 			img.alt = title;
+
+			if (imgref)
+				img.src = imgref;
+
 			a.appendChild(img);
 
 			var tr1 = doc.createElement('tr');
@@ -543,7 +552,7 @@ Foxtrick.util.links = {
 		  function(url) {
 			//if (url.length>5000) { Foxtrick.alert('Image too large.'); return; }
 			var div = doc.getElementById('inputImgDivID');
-			div.imgref = url;
+			div.setAttribute('data-imgref', url);
 			div.style.backgroundImage = "url('" + url + "')";
 		});
 		divED.appendChild(form);
