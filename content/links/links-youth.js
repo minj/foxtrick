@@ -134,10 +134,15 @@ Foxtrick.modules['LinksYouthTraining'] = {
 			return;
 
 		var youthteamid = Foxtrick.Pages.All.getTeamIdFromBC(doc);
+		var trTypes = doc.querySelectorAll('#mainBody table.form select');
+		var training1 = trTypes[0].value;
+		var training2 = trTypes[1].value;
 
 		var info = {
 			teamid: teamid,
 			youthteamid: youthteamid,
+			training1: training1,
+			training2: training2,
 		};
 		return { info: info };
 	},
