@@ -1118,6 +1118,10 @@
 				"EQUAL",
 				"teamid2",
 				"ownyouthteamid"
+			],
+			[
+				"EXISTS",
+				"playerid"
 			]
 		],
 		"title": "Hattrick Youthclub",

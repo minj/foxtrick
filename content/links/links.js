@@ -219,6 +219,9 @@
 				}, ranges);
 			};
 			var COMPARE = {
+				EXISTS: function(test) {
+					return typeof args[test[1]] !== 'undefined';
+				},
 				GREATER: function(test) {
 					var first = args[test[1]];
 					var second = args[test[2]];
