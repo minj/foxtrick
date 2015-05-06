@@ -29,16 +29,10 @@ Foxtrick.modules['LinksLeague'] = {
 		var leagueid = Foxtrick.util.id.findLeagueId(thisdiv);
 
 		var seriesname = Foxtrick.util.id.extractLeagueName(thisdiv);
-		var seriesname2 = seriesname;
-		var seriesname3 = seriesname;
 
-		var seriesnum = Foxtrick.util.id.getSeriesNum(seriesname);
-		var levelnum = Foxtrick.util.id.getLevelNum(seriesname, leagueid);
-
-		if (!seriesname.match(/^[A-Z]+\.\d+/i)) {
-			seriesname2 = 'I';
-			seriesname3 = '1';
-		}
+		var series = Foxtrick.util.id.parseSeries(seriesname, leagueid);
+		var levelnum = series[0];
+		var seriesnum = series[1];
 
 		var info = {
 			leagueid: leagueid,
@@ -46,8 +40,6 @@ Foxtrick.modules['LinksLeague'] = {
 			levelnum: levelnum,
 			seriesnum: seriesnum,
 			seriesname: seriesname,
-			seriesname2: seriesname2,
-			seriesname3: seriesname3
 		};
 		return { info: info };
 	}

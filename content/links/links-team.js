@@ -30,15 +30,15 @@ Foxtrick.modules['LinksTeam'] = {
 
 		var main = doc.getElementById('mainBody');
 
+		var userid = Foxtrick.util.id.findUserId(main);
 		var teamname = Foxtrick.Pages.All.getTeamName(doc);
 		var leagueid = Foxtrick.util.id.findLeagueId(main);
 		var seriesname = Foxtrick.util.id.extractLeagueName(main);
-		var levelnum = Foxtrick.util.id.getLevelNum(seriesname, leagueid);
 		var seriesid = Foxtrick.util.id.findLeagueLeveUnitId(main);
-		var userid = Foxtrick.util.id.findUserId(main);
-		if (!seriesname.match(/^[A-Z]+\.\d+/i)) {
-			seriesname = 'I';
-		}
+
+		var series = Foxtrick.util.id.parseSeries(seriesname, leagueid);
+		var levelnum = series[0];
+		var seriesnum = series[1];
 		var seriespos = 0, fans = 0;
 		try {
 			var teamInfo = main.querySelector('.teamInfo');
@@ -86,6 +86,7 @@ Foxtrick.modules['LinksTeam'] = {
 			leagueid: leagueid,
 			seriesid: seriesid,
 			levelnum: levelnum,
+			seriesnum: seriesnum,
 			seriespos: seriespos,
 		};
 
