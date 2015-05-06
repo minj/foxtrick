@@ -220,13 +220,28 @@
 			};
 			var COMPARE = {
 				GREATER: function(test) {
-					return args[test[1]] > args[test[2]];
+					var first = args[test[1]];
+					var second = args[test[2]];
+					if (typeof first === 'undefined' || typeof second === 'undefined')
+						return false;
+
+					return first > second;
 				},
 				SMALLER: function(test) {
-					return args[test[1]] < args[test[2]];
+					var first = args[test[1]];
+					var second = args[test[2]];
+					if (typeof first === 'undefined' || typeof second === 'undefined')
+						return false;
+
+					return first < second;
 				},
 				EQUAL: function(test) {
-					return args[test[1]] == args[test[2]];
+					var first = args[test[1]];
+					var second = args[test[2]];
+					if (typeof first === 'undefined' || typeof second === 'undefined')
+						return false;
+
+					return first == second;
 				},
 				OR: function(test) {
 					var result = false;
