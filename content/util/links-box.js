@@ -14,7 +14,9 @@ Foxtrick.util.links = {
 	add: function(ownBoxBody, customLinkSet, info, hasNewSidebar) {
 		try {
 			var doc = ownBoxBody.ownerDocument;
-			Foxtrick.util.links._info = info;
+
+			// save info for reuse
+			ownBoxBody.setAttribute('data-link-info', JSON.stringify(info));
 
 			var basepref = 'module.LinksCustom.' + customLinkSet;
 
@@ -139,6 +141,8 @@ Foxtrick.util.links = {
 					continue;
 			}
 
+			var args = JSON.parse(ownBoxBody.getAttribute('data-link-info'));
+
 			for (var key in keys) {
 				var href = Foxtrick.Prefs.getString(basepref + '.' + key + '.href');
 				var imgref = Foxtrick.Prefs.getString(basepref + '.' + key + '.img');
@@ -149,7 +153,7 @@ Foxtrick.util.links = {
 				}
 
 				// replace tags
-				href = Foxtrick.util.links.makeUrl(href, Foxtrick.util.links._info);
+				href = Foxtrick.util.links.makeUrl(href, args);
 
 				try { // add icons
 					var a = doc.createElement('a');
@@ -342,7 +346,10 @@ Foxtrick.util.links = {
 				option.setAttribute('style', 'width:100%;');
 				selectbox.appendChild(option);
 			};
-			for (var key in Foxtrick.util.links._info) {
+
+			var args = JSON.parse(ownBoxBody.getAttribute('data-link-info'));
+
+			for (var key in args) {
 				addTagToList(key);
 			}
 
