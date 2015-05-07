@@ -216,6 +216,7 @@ Foxtrick.util.links = {
 			});
 			inputTitle.type = 'text';
 			inputTitle.maxLength = 100;
+			inputTitle.className = 'ft-expand';
 			var trn4 = doc.createElement('tr');
 			var tdn4 = doc.createElement('td');
 			tdn4.colSpan = 2;
@@ -234,7 +235,7 @@ Foxtrick.util.links = {
 			});
 			inputHref.type = 'text';
 			inputHref.maxLength = 5000;
-			inputHref.className = 'inner';
+			inputHref.className = 'inner ft-expand';
 			var trn3 = doc.createElement('tr');
 			var tdn3 = doc.createElement('td');
 			tdn3.colSpan = 2;
