@@ -162,7 +162,7 @@ Foxtrick.modules['SeriesFlags'] = {
 			var sideBarBoxes = sideBar.getElementsByClassName('sidebarBox');
 			// supporters box is among the boxes without a table
 			var nonVisitorsBoxes = Foxtrick.filter(function(n) {
-				return n.getElementsByTagName('table').length == 0;
+				return n.getElementsByTagName('table').length == 0 && n.id != 'ft-links-box';
 			}, sideBarBoxes);
 			Foxtrick.map(function(b) {
 				var links = b.getElementsByTagName('a');
@@ -181,17 +181,17 @@ Foxtrick.modules['SeriesFlags'] = {
 			var sideBar = doc.getElementById('sidebar');
 			var sideBarBoxes = sideBar.getElementsByClassName('sidebarBox');
 			// visitors box is the box with a table
+			var visitorsBoxes = Foxtrick.filter(function(n) {
+				return n.getElementsByTagName('table').length > 0 && n.id != 'ft-links-box';
+			}, sideBarBoxes);
 			Foxtrick.map(function(n) {
-					var links = n.getElementsByTagName('a');
-					var userLinks = Foxtrick.filter(function(n) {
-						return (n.href.search(/userId=/i) >= 0 &&
-						        !Foxtrick.hasClass(n.parentNode.parentNode, 'ft-popup-list'));
-					}, links);
-					modifyUserLinks(userLinks);
-				},
-				Foxtrick.filter(function(n) { return n.getElementsByTagName('table').length > 0; },
-					sideBarBoxes)
-			);
+				var links = n.getElementsByTagName('a');
+				var userLinks = Foxtrick.filter(function(n) {
+					return (n.href.search(/userId=/i) >= 0 &&
+					        !Foxtrick.hasClass(n.parentNode.parentNode, 'ft-popup-list'));
+				}, links);
+				modifyUserLinks(userLinks);
+			}, visitorsBoxes);
 		}
 
 		if (Foxtrick.Prefs.isModuleOptionEnabled('SeriesFlags', 'Tournaments')
