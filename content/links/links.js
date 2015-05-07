@@ -13,6 +13,7 @@
 		callbackStack.push(callback);
 		if (callbackStack.length != 1)
 			return;
+
 		if (collection && typeof callback === 'undefined') {
 			// callback is defined => sessionstore is null
 			// probably cache was cleared
@@ -30,28 +31,28 @@
 			feeds = [Foxtrick.DataPath + 'links.json'];
 
 		var parseFeed = function(text) {
-			var key, prop;
-
+			var links;
 			try {
-				//Foxtrick.log('parseFeed: ', text.substr(0,200));
-				var links = JSON.parse(text);
+				// Foxtrick.log('parseFeed: ', text.slice(0, 200));
+				links = JSON.parse(text);
 			}
 			catch (e) {
-				Foxtrick.log('Failure parsing links file: ', text.substr(0, 200));
+				Foxtrick.log('Failure parsing links file: ', text.slice(0, 200), e);
 				return;
 			}
-			for (key in links) {
+			for (var key in links) {
 				var link = links[key];
 				if (link.img) {
-					// add path to internal images
-					if (link.img.indexOf('resources') == 0)
+					if (link.img.indexOf('resources') === 0) {
+						// add path to internal images
 						link.img = Foxtrick.InternalPath + link.img;
+					}
 					link.img = Foxtrick.util.sanitize.parseUrl(link.img);
 				}
-				for (prop in link) {
-					if (prop.indexOf('link') >= 0) {
+				for (var prop in link) {
+					if (/link/.test(prop)) {
 						link[prop].url = Foxtrick.util.sanitize.parseUrl(link[prop].url);
-						if (typeof(collection[prop]) == 'undefined') {
+						if (typeof collection[prop] === 'undefined') {
 							collection[prop] = {};
 						}
 						collection[prop][key] = link;
@@ -59,35 +60,42 @@
 				}
 			}
 			Foxtrick.sessionSet('links-collection', collection);
-			if (todo == 0 && callbackStack.length) {
+			if (todo === 0) {
+				Foxtrick.log('Link feeds loaded');
 				for (var i = 0; i < callbackStack.length; ++i) {
-					if (typeof callbackStack[i] == 'function')
-						callbackStack[i](collection);
+					if (typeof callbackStack[i] === 'function') {
+						try {
+							callbackStack[i](collection);
+						}
+						catch (e) {
+							Foxtrick.log('Error in callback for getCollection', e);
+						}
+					}
 				}
 				callbackStack = [];
-				Foxtrick.log('Links feeds loaded');
 			}
 		};
 
 		// now load the feeds
-		Foxtrick.log('Loading link feeds from: ', feeds, ' length: ', feeds.length);
 		var todo = feeds.length;
+		Foxtrick.log('Loading', todo, 'link feeds from:', feeds);
 		Foxtrick.map(function(feed) {
-			// kick zip if still there
-			feed = feed.replace(/\.json\.zip/i, '.json');
-			Foxtrick.log('do feeds: ', feed);
+			Foxtrick.log('loading feed:', feed);
 			// load plain text
 			Foxtrick.util.load.get(feed)('success',
 			  function(text) {
 				--todo;
-				if (text == null)
-					text = Foxtrick.Prefs.getString('LinksFeed.' + feed);
-				//Foxtrick.log('parse ', feed);
+				if (!text) {
+					Foxtrick.log('Error loading links from:', feed,
+					             '. Received empty response. Using cached feed.');
+					Foxtrick.localGet('LinksFeed.' + feed, function(text) { parseFeed(text); });
+				}
+				// Foxtrick.log('parsing', feed);
 				parseFeed(text);
 				Foxtrick.localSet('LinksFeed.' + feed, text);
 			})('failure', function(code) {
 				--todo;
-				Foxtrick.log('Error loading links feed: ', feed, '. Using cached feed.');
+				Foxtrick.log('Error', code, 'loading links from:', feed, '. Using cached feed.');
 				Foxtrick.localGet('LinksFeed.' + feed, function(text) { parseFeed(text); });
 			});
 		}, feeds);
