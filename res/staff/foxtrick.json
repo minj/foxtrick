@@ -81,6 +81,11 @@
 		},
 		{
 			"duty": "translator",
+			"id": "10968856",
+			"name": "serjhanti"
+		},
+		{
+			"duty": "translator",
 			"id": "11006315",
 			"name": "timh1704"
 		},
@@ -161,6 +166,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "11916705",
+			"name": "papi_"
+		},
+		{
+			"duty": "supporter",
 			"id": "12066737",
 			"name": "pimhitv"
 		},
@@ -227,7 +237,7 @@
 		{
 			"duty": "supporter",
 			"id": "13049551",
-			"name": "Timey-Wimey"
+			"name": "Timey_"
 		},
 		{
 			"duty": "translator",
@@ -335,6 +345,16 @@
 			"name": "GZ-grobas"
 		},
 		{
+			"duty": "supporter",
+			"id": "3080979",
+			"name": "Manuz"
+		},
+		{
+			"duty": "supporter",
+			"id": "3150937",
+			"name": "Hidetoschi"
+		},
+		{
 			"duty": "translator",
 			"id": "335181",
 			"name": "Baler0"
@@ -368,6 +388,11 @@
 			"duty": "developer",
 			"id": "3737795",
 			"name": "OBarros"
+		},
+		{
+			"duty": "supporter",
+			"id": "3745622",
+			"name": "kikindas"
 		},
 		{
 			"duty": "supporter",
@@ -575,6 +600,11 @@
 			"name": "ElChiquitin"
 		},
 		{
+			"duty": "supporter",
+			"id": "6944890",
+			"name": "guttusangolo-GIGA"
+		},
+		{
 			"duty": "translator",
 			"id": "7126492",
 			"name": "CoRrRan"
@@ -595,6 +625,11 @@
 			"name": "Mod-Transy"
 		},
 		{
+			"duty": "supporter",
+			"id": "7197589",
+			"name": "il-padrone"
+		},
+		{
 			"duty": "translator",
 			"id": "7230071",
 			"name": "TheZayc"
@@ -613,6 +648,11 @@
 			"duty": "translator",
 			"id": "7439277",
 			"name": "white_eagle"
+		},
+		{
+			"duty": "supporter",
+			"id": "7486920",
+			"name": "Kira_Luke"
 		},
 		{
 			"duty": "translator",
@@ -648,6 +688,11 @@
 			"duty": "translator",
 			"id": "7873658",
 			"name": "apatka"
+		},
+		{
+			"duty": "supporter",
+			"id": "7944716",
+			"name": "Gts-twojstary"
 		},
 		{
 			"duty": "translator",
@@ -755,9 +800,19 @@
 			"name": "dzsoo"
 		},
 		{
+			"duty": "supporter",
+			"id": "9720897",
+			"name": "NEOS1"
+		},
+		{
 			"duty": "translator",
 			"id": "9724171",
 			"name": "LuizGreg"
+		},
+		{
+			"duty": "supporter",
+			"id": "9818296",
+			"name": "relon"
 		},
 		{
 			"duty": "translator",

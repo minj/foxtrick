@@ -167,11 +167,6 @@
 			"duty": "translator"
 		},
 		{
-			"id": "6164874",
-			"name": "kostadinn",
-			"duty": "translator"
-		},
-		{
 			"id": "5135274",
 			"name": "Mravenec",
 			"duty": "translator"
@@ -237,11 +232,6 @@
 			"duty": "translator"
 		},
 		{
-			"id": "9331457",
-			"name": "GM-Nestoras",
-			"duty": "translator"
-		},
-		{
 			"id": "9845514",
 			"name": "LA-SI-CH",
 			"duty": "translator"
@@ -253,27 +243,12 @@
 		},
 		{
 			"id": "9793408",
-			"name": "keebak",
-			"duty": "translator"
-		},
-		{
-			"id": "10012932",
-			"name": "O_Valente",
+			"name": "LA-keebak",
 			"duty": "translator"
 		},
 		{
 			"id": "9668661",
 			"name": "dzsoo",
-			"duty": "translator"
-		},
-		{
-			"id": "6116217",
-			"name": "nuburu_ueda",
-			"duty": "translator"
-		},
-		{
-			"id": "7865524",
-			"name": "Dovco_HandF",
 			"duty": "translator"
 		},
 		{
@@ -319,11 +294,6 @@
 		{
 			"id": "7360875",
 			"name": "MOD-emevev",
-			"duty": "translator"
-		},
-		{
-			"id": "8135142",
-			"name": "Sir-Henrik",
 			"duty": "translator"
 		},
 		{

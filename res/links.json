@@ -295,23 +295,6 @@
 		"title": "Hattrick Gazette",
 		"img": "http://www.hattrickgazette.org/favicon.png"
 	},
-	"akickku": {
-		"leaguelink": {
-			"url": "http://www.akickku.com/series.php?seriesname=[leaguename]",
-			"filters": ["countryid"]
-		},
-		"teamlink": {
-			"url": "http://www.akickku.com/team.php?id=[teamid]&name=[teamname]",
-			"filters": ["countryid"]
-		},
-		"countrylink": {
-			"url": "http://www.akickku.com/",
-			"filters": ["countryid"]
-		},
-		"countryidranges": [[8, 8]],
-		"title": "Akickku",
-		"img": "resources/linkicons/akickku.png"
-	},
 	"maptrick_coolness": {
 		"teamlink": {
 			"url": "http://www.maptrick.org/coolness.php?team=[teamid]#results"
