@@ -486,7 +486,8 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 							(isYouth ? '&youthTeamId=' +
 							 Foxtrick.Pages.All.getTeamIdFromBC(doc) : '') +
 							'&HighlightPlayerID=' + player.id + '#tab2';
-						link.textContent = Foxtrick.util.time.buildDate(matchDate);
+						link.textContent =
+							Foxtrick.util.time.buildDate(matchDate, { showTime: false });
 						player.lastMatch = link;
 
 						var lastPositionCode = num('PositionCode', LastMatch);
@@ -501,7 +502,8 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 
 					player.lastPlayedMinutes = num('PlayedMinutes', LastMatch);
 
-					var dateText = Foxtrick.util.time.buildDate(player.lastMatchDate);
+					var dateText =
+						Foxtrick.util.time.buildDate(player.lastMatchDate, { showTime: false });
 					var str = Foxtrick.L10n.getString('Last_match_played_as_at',
 					                                  player.lastPlayedMinutes);
 					player.lastMatchText = str.replace('%1', player.lastPlayedMinutes).

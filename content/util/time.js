@@ -200,25 +200,36 @@ Foxtrick.util.time = {
 		return s;
 	},
 
-	/* returns a string representing date given as argument
-	 * if date is not set, return current date
-	 * showTime specifies whether to show time
-	 * showSecs specifies whether to show seconds
+	/**
+	 * Convert a date object into string.
+	 * options: { format: string, showTime, showSecs: boolean }
+	 * By default uses localized format, no secs.
+	 * @param  {Date}   date   	?Date
+	 * @param  {object} options { format: string, showTime, showSecs: boolean }
+	 * @return {string}
 	 */
-	buildDate: function(date, showTime, showSecs) {
-		var format = this.getPrintDateFormat();
+	buildDate: function(date, options) {
+		var opts = {
+			format: this.getPrintDateFormat(),
+			showTime: true,
+			showSecs: false,
+		};
+		Foxtrick.mergeValid(opts, options);
+
 		if (!date)
 			date = new Date();
-		if (!showTime) {
+
+		var string;
+		if (!opts.showTime) {
 			// presume date is before time in format
-			var string = format.replace(/\s+.+$/, '');
+			string = opts.format.replace(/\s+.+$/, '');
 		}
-		else if (!showSecs) {
+		else if (!opts.showSecs) {
 			// presume seconds are in final position with only one separator
-			var string = format.replace(/.S+$/, '');
+			string = opts.format.replace(/.S+$/, '');
 		}
 		else
-			var string = format;
+			string = opts.format;
 
 		string = string.replace(/YYYY/g, date.getFullYear());
 		string = string.replace(/mm/g, this.fill(date.getMonth() + 1, 2));

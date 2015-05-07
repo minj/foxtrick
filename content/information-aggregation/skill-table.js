@@ -269,7 +269,7 @@ Foxtrick.modules['SkillTable'] = {
 				var staminaPrediction = function(cell, pred) {
 					if (pred) {
 						cell.textContent = pred.value;
-						cell.title = Foxtrick.util.time.buildDate(new Date(pred.date), true, false);
+						cell.title = Foxtrick.util.time.buildDate(new Date(pred.date));
 						cell.setAttribute('index', parseFloat(pred.value));
 					}
 					else {
