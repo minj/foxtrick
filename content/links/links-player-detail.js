@@ -76,13 +76,8 @@ Foxtrick.modules['LinksPlayerDetail'] = {
 
 		var deadlineDate = Foxtrick.Pages.Player.getTransferDeadline(doc);
 		if (deadlineDate) {
-			var parts = [
-				deadlineDate.getFullYear(), '-',
-				(deadlineDate.getMonth() + 1), '-', // getMonth() returns 0-11
-				deadlineDate.getDate(), ' ',
-				deadlineDate.getHours(), ':', deadlineDate.getMinutes(),
-			];
-			params.deadline = parts.join('');
+			var format = 'YYYY-mm-dd HH:MM:SS';
+			params.deadline = Foxtrick.util.time.buildDate(deadlineDate, { format: format });
 		}
 
 		var skills = Foxtrick.Pages.Player.getSkills(doc);
