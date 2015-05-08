@@ -145,6 +145,11 @@
 			"name": "Mod-t54g05"
 		},
 		{
+			"duty": "supporter",
+			"id": "11749650",
+			"name": "Elle2-GIGA"
+		},
+		{
 			"duty": "translator",
 			"id": "11758667",
 			"name": "Alan_Smithee"
@@ -266,6 +271,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "1806088",
+			"name": "GeissbockHennes"
+		},
+		{
+			"duty": "supporter",
 			"id": "191061",
 			"name": "MHawk"
 		},
@@ -323,6 +333,11 @@
 			"duty": "translator",
 			"id": "2765378",
 			"name": "summercloud"
+		},
+		{
+			"duty": "supporter",
+			"id": "2787409",
+			"name": "gia73"
 		},
 		{
 			"duty": "translator",
@@ -605,6 +620,11 @@
 			"name": "guttusangolo-GIGA"
 		},
 		{
+			"duty": "supporter",
+			"id": "6977975",
+			"name": "cicix-GIGA"
+		},
+		{
 			"duty": "translator",
 			"id": "7126492",
 			"name": "CoRrRan"
@@ -612,7 +632,7 @@
 		{
 			"duty": "translator",
 			"id": "7135171",
-			"name": "Xenofago-Tripas"
+			"name": "McTripas"
 		},
 		{
 			"duty": "translator",
@@ -678,6 +698,11 @@
 			"duty": "supporter",
 			"id": "777893",
 			"name": "Hocke"
+		},
+		{
+			"duty": "supporter",
+			"id": "7865524",
+			"name": "Dovco_HandF"
 		},
 		{
 			"duty": "translator",
