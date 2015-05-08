@@ -312,6 +312,7 @@ Foxtrick.util.matchEvent.eventDescription = {
 	72: 'Extra time decided',
 	73: 'After 22 penalties tossing coin!',
 	80: 'New captain',
+	81: 'New set pieces taker',
 	90: 'Injured but keeps playing',
 	91: 'Moderately injured, leaves field',
 	92: 'Badly injured, leaves field',
@@ -481,7 +482,12 @@ Foxtrick.util.matchEvent.eventDescription = {
 	512: 'Red card (2nd warning) nasty play',
 	513: 'Red card (2nd warning) cheating',
 	514: 'Red card without warning',
-	599: 'Match finished'
+	599: 'Match finished',
+	700: 'Event-o-Matic: Taunt Opponent',
+	701: 'Event-o-Matic: Praise Opponent',
+	702: 'Event-o-Matic: Plead for Fan Support',
+	703: 'Event-o-Matic: Build Positive Atmosphere',
+	704: 'Event-o-Matic: Honour Club Legacy',
 };
 
 Foxtrick.util.matchEvent.isLiveEvent = function(evnt) {
