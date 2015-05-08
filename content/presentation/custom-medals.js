@@ -3,7 +3,7 @@
  * custom-medals.js
  * Replaces medals with old Hattrick medals
  * Intention is to have this module expanded later to allow more medal sets
- * @author larsw84
+ * @author larsw84, LA-MJ
  */
 
 Foxtrick.modules['CustomMedals'] = {
@@ -13,28 +13,35 @@ Foxtrick.modules['CustomMedals'] = {
 	run: function(doc) {
 		var officalTrophiesNodes = doc.getElementsByClassName('officalTrophies');
 		if (officalTrophiesNodes.length) {
+			var classRe = /trophy/;
+			var swedenRe = /trophySeries(\d+)_s/i;
+			var template = 'background:url("{}/{}.gif") 50% no-repeat;' +
+				'padding:0;height:30px;width:30px;';
+
+			var customMedals = 'oldhtmedals';
+			var path = Foxtrick.ResourcePath + 'resources/img/custommedals/' + customMedals;
+			template = Foxtrick.format(template, [path]);
+
 			var images = officalTrophiesNodes[0].getElementsByTagName('img');
 			for (var i = 0; i < images.length; i++) {
 				var img = images[i];
 				var imgClass = img.className;
 
-				// sweden fix
-				var s_num = imgClass.match(/trophySeries(\d+)_s/i);
-				if (s_num != null) {
-					var num = s_num[1] - 1;
-					if (num == 0) imgClass = 'trophySeries1';
-					else if (num == 1) imgClass = 'trophySeries1_s';
-					else imgClass = 'trophySeries' + num;
+				// Sweden fix
+				var s_num = imgClass.match(swedenRe);
+				if (s_num) {
+					var num = parseInt(s_num[1], 10) - 1;
+					if (num === 0)
+						imgClass = 'trophySeries1';
+					else if (num === 1)
+						imgClass = 'trophySeries1_s';
+					else
+						imgClass = 'trophySeries' + num;
 				}
 
-				var customMedals = 'oldhtmedals';
-				var oldString = 'trophy';
-				var newString = Foxtrick.ResourcePath + 'resources/img/'
-					+ 'custommedals/' + customMedals + '/';
-				if (imgClass.search(oldString) != -1) {
-					newString = 'background-image: url(' + newString + imgClass +
-						'.gif' + '); padding: 0px; height:30px; width:30px;';
-					img.setAttribute('style', newString);
+				if (classRe.test(imgClass)) {
+					var style = Foxtrick.format(template, [imgClass]);
+					img.setAttribute('style', style);
 				}
 			}
 		}
