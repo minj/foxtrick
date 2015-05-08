@@ -204,34 +204,39 @@ Foxtrick.util.matchEvent.eventIcons = {
 	599: 'result'
 };
 Foxtrick.util.matchEvent.eventIconDefinition = {
-	bruised: '/Img/Icons/bruised.gif',
 	best_player: '/Img/Matches/star_yellow.png',
+	bruised: '/Img/Icons/bruised.gif',
 	change_tactics: '/Img/Matches/behaviorchange.gif',
+	confusion: '/Club/Matches/images/confusion.png',
+	corner: Foxtrick.InternalPath + 'resources/img/matches/corner.png',
+	counter_attack: Foxtrick.InternalPath + 'resources/img/matches/ca.png',
+	experience: Foxtrick.InternalPath + 'resources/img/matches/exp.png',
 	formation: '/Img/Matches/formation.gif',
 	goal: Foxtrick.InternalPath + 'resources/img/matches/ball.png',
 	goal_C: Foxtrick.InternalPath + 'resources/img/matches/ball_C.png',
-	goal_R: Foxtrick.InternalPath + 'resources/img/matches/ball_R.png',
 	goal_L: Foxtrick.InternalPath + 'resources/img/matches/ball_L.png',
+	goal_R: Foxtrick.InternalPath + 'resources/img/matches/ball_R.png',
+	indirect: Foxtrick.InternalPath + 'resources/img/matches/indirect.png',
 	injured: '/Img/Icons/injured.gif',
 	injured_leaves: ['/Img/Icons/injured.gif', '/Img/Matches/substitution.gif'],
+	left_wing: '/Img/Matches/sub_in.gif',
+	longshot: Foxtrick.InternalPath + 'resources/img/matches/longshot.png',
+	middle: Foxtrick.InternalPath + 'resources/img/matches/middle.png',
 	miss: Foxtrick.InternalPath + 'resources/img/matches/redball.png',
 	miss_C: Foxtrick.InternalPath + 'resources/img/matches/red_ball_C.png',
-	miss_R: Foxtrick.InternalPath + 'resources/img/matches/red_ball_R.png',
 	miss_L: Foxtrick.InternalPath + 'resources/img/matches/red_ball_L.png',
+	miss_R: Foxtrick.InternalPath + 'resources/img/matches/red_ball_R.png',
+	penalty: Foxtrick.InternalPath + 'resources/img/matches/penalty.png',
 	pressing: Foxtrick.InternalPath + 'resources/img/matches/press.png',
+	pullback: '/Club/Matches/images/pullback.png',
 	rain: '/Club/Matches/images/weather0.png',
 	red_card: '/Img/Icons/red_card.gif',
-	se_technical: function() {
-		return Foxtrick.getSpecialtyImagePathFromNumber(1, false);
+	right_wing: '/Img/Matches/sub_out.gif',
+	se_head_specialist: function() {
+		return Foxtrick.getSpecialtyImagePathFromNumber(5, false);
 	},
-	se_technical_negative: function() {
-		return Foxtrick.getSpecialtyImagePathFromNumber(1, true);
-	},
-	se_quick: function() {
-		return Foxtrick.getSpecialtyImagePathFromNumber(2, false);
-	},
-	se_quick_negative: function() {
-		return Foxtrick.getSpecialtyImagePathFromNumber(2, true);
+	se_head_specialist_negative: function() {
+		return Foxtrick.getSpecialtyImagePathFromNumber(5, true);
 	},
 	se_powerful: function() {
 		return Foxtrick.getSpecialtyImagePathFromNumber(3, false);
@@ -239,40 +244,35 @@ Foxtrick.util.matchEvent.eventIconDefinition = {
 	se_powerful_negative: function() {
 		return Foxtrick.getSpecialtyImagePathFromNumber(3, true);
 	},
+	se_quick: function() {
+		return Foxtrick.getSpecialtyImagePathFromNumber(2, false);
+	},
+	se_quick_negative: function() {
+		return Foxtrick.getSpecialtyImagePathFromNumber(2, true);
+	},
+	se_technical: function() {
+		return Foxtrick.getSpecialtyImagePathFromNumber(1, false);
+	},
+	se_technical_negative: function() {
+		return Foxtrick.getSpecialtyImagePathFromNumber(1, true);
+	},
 	se_unpredictable: function() {
 		return Foxtrick.getSpecialtyImagePathFromNumber(4, false);
 	},
 	se_unpredictable_negative: function() {
 		return Foxtrick.getSpecialtyImagePathFromNumber(4, true);
 	},
-	se_head_specialist: function() {
-		return Foxtrick.getSpecialtyImagePathFromNumber(5, false);
-	},
-	se_head_specialist_negative: function() {
-		return Foxtrick.getSpecialtyImagePathFromNumber(5, true);
-	},
-	substitution: '/Img/Matches/substitution.gif',
 	sub_out: '/Img/Matches/sub_out.gif',
+	substitution: '/Img/Matches/substitution.gif',
 	sun: '/Club/Matches/images/weather3.png',
 	swap: '/Img/Matches/player_swap.gif',
 	tired: Foxtrick.InternalPath + 'resources/img/matches/tired.png',
+	tossing_coin: Foxtrick.InternalPath + 'resources/img/matches/coin.png',
+	transparent: Foxtrick.InternalPath + 'resources/img/matches/trans_14x14.png',
 	whistle: Foxtrick.InternalPath + 'resources/img/matches/whistle.png',
+	winger: Foxtrick.InternalPath + 'resources/img/matches/winger.png',
 	worst_player: '/Img/Matches/star_brown.png',
 	yellow_card: '/Img/Icons/yellow_card.gif',
-	left_wing: '/Img/Matches/sub_in.gif',
-	right_wing: '/Img/Matches/sub_out.gif',
-	middle: Foxtrick.InternalPath + 'resources/img/matches/middle.png',
-	counter_attack: Foxtrick.InternalPath + 'resources/img/matches/ca.png',
-	indirect: Foxtrick.InternalPath + 'resources/img/matches/indirect.png',
-	confusion: '/Club/Matches/images/confusion.png',
-	penalty: Foxtrick.InternalPath + 'resources/img/matches/penalty.png',
-	pullback: '/Club/Matches/images/pullback.png',
-	longshot: Foxtrick.InternalPath + 'resources/img/matches/longshot.png',
-	corner: Foxtrick.InternalPath + 'resources/img/matches/corner.png',
-	experience: Foxtrick.InternalPath + 'resources/img/matches/exp.png',
-	winger: Foxtrick.InternalPath + 'resources/img/matches/winger.png',
-	tossing_coin: Foxtrick.InternalPath + 'resources/img/matches/coin.png',
-	transparent: Foxtrick.InternalPath + 'resources/img/matches/trans_14x14.png'
 };
 
 Foxtrick.util.matchEvent.eventDescription = {
