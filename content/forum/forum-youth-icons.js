@@ -555,67 +555,58 @@ Foxtrick.modules['ForumYouthIcons'] = {
 
 					if (replaceText == 'ttt') {
 						// table
+
 						Foxtrick.log('separator', separator);
 
 						if (separator == tab)
-							separator = '\\t';
-						if (separator == '|')
-							separator = '\\|';
-						if (separator == '+')
-							separator = '\\+';
-						if (separator == '.')
-							separator = '\\.';
+							separator = '\t';
+
+						separator = Foxtrick.strToRe(separator);
+
 						if (separator == ' ')
 							separator = ' +';
 
-						// deal with some nested tags
-						var myReg;
-						myReg = new RegExp('\\[i\\](.+)(' + separator + ')(.+)\\[\\/i\\]', 'g');
-						newText = newText.replace(myReg, '[i]$1[/i]$2[i]$3[/i]');
-						myReg = new RegExp('\\[u\\](.+)(' + separator + ')(.+)\\[\\/u\\]', 'g');
-						newText = newText.replace(myReg, '[u]$1[/u]$2[u]$3[/u]');
-						myReg = new RegExp('\\[b\\](.+)(' + separator + ')(.+)\\[\\/b\\]', 'g');
-						newText = newText.replace(myReg, '[b]$1[/b]$2[b]$3[/b]');
-
 						// make the table
-						myReg = new RegExp(separator, 'g');
+						var myReg = new RegExp(separator, 'g');
 						newText = newText.replace(myReg, '[/td][td]');
 						newText = newText.replace(/\n/g, '[/td][/tr][tr][td]');
 
 						// add some colspan for too short rows
-						var rows = newText.split('[/tr]');
-						var max_cells = 0;
-						for (var i = 0; i < rows.length - 1; ++i) {
-							max_cells = Math.max(max_cells, rows[i].split('[/td]').length - 1);
-						}
-						for (var i = 0; i < rows.length - 1; ++i) {
-							var missing_col = max_cells - (rows[i].split('[/td]').length - 1);
+						var rows = newText.split('[/tr]').slice(0, -1);
+						var cellCts = Foxtrick.map(function(row) {
+							return row.split('[/td]').length - 1;
+						}, rows);
+						var max_cells = Math.max.apply(null, cellCts);
+
+						rows = Foxtrick.map(function(row, i) {
+							var colCt = cellCts[i];
+							var missing_col = max_cells - colCt;
 							if (missing_col !== 0) {
 								var last_td = rows[i].lastIndexOf('[td');
-								rows[i] = rows[i].substring(0, last_td + 3) + ' colspan=' +
-									(missing_col + 1) + rows[i].substr(last_td + 3);
+								row = row.slice(0, last_td + 3) +
+									' colspan=' + (missing_col + 1) +
+									row.slice(last_td + 3);
 							}
-						}
-						// add header if first row is bold to some part
-						if (/\[b\].+\[\/b\]/.test(rows[0])) {
-							rows[0] = rows[0].replace(/\[\/?b\]/g, '').replace(/td\]/g, 'th]');
-						}
-						newText = '';
-						for (var i = 0; i < rows.length - 1; ++i) {
-							newText += rows[i] + '[/tr]';
-						}
-						newText += '[/table]';
+							return row;
+						}, rows);
+
+						// always add header for first row
+						rows[0] = rows[0].replace(/\[\/?b\]/g, '').replace(/td\]/g, 'th]');
+
+						newText = rows.join('[/tr]');
+						newText += '[/tr][/table]';
+
 						if (s.selectionLength === 0)
-							newText = '[table][tr][td]cell1[/td]' +
-								'[td]cell2[/td][/tr][tr][td]cell3[/td][td]cell4[/td][/tr][/table]';
+							newText = '[table][tr][td]cell1[/td][td]cell2[/td][/tr]' +
+								'[tr][td]cell3[/td][td]cell4[/td][/tr][/table]';
 
 						// some formating
 						newText = newText.replace(/table\]/g, 'table]\n').
 							replace(/\/tr\]/g, '/tr]\n').
-							replace(/\[td/g, ' [td').
-							replace(/\[\/td\]/g, '[/td] ').
-							replace(/\[th/g, ' [th').
-							replace(/\[\/th\]/g, '[/th] ');
+							replace(/\[td/g, '[td').
+							replace(/\[\/td\]/g, '[/td]').
+							replace(/\[th/g, '[th').
+							replace(/\[\/th\]/g, '[/th]');
 					}
 
 					if (ta.selectionStart || ta.selectionStart == '0') {
