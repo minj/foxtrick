@@ -135,7 +135,8 @@ Foxtrick.ht_pages = {
 	'national'                  : '/Club/NationalTeam/NationalTeam.aspx',
 	'guestbook'                 : '/Club/Manager/Guestbook.aspx',
 	'announcements'             : '/Club/Announcements/New.aspx|' +
-	                              '/Club/Announcements/Edit.aspx',
+	                              '/Club/Announcements/Edit.aspx|' +
+	                              '/Club/Announcements/(Default.aspx?|?)',
 	'htPress'                   : '/Community/Press/(Default.aspx|?|$)',
 	'cupMatches'                : '/World/Cup/CupMatches.aspx',
 	'cupOverview'               : '/World/Cup/(Default.aspx|?|$)',
