@@ -58,7 +58,7 @@ ROOT_FILES_SAFARI = Info.plist \
 	skin/icon.png \
 	COPYING \
 	HACKING.md
-ROOT_FOLDERS_FIREFOX = defaults/
+ROOT_FOLDERS_FIREFOX = defaults/ res/
 ROOT_FOLDERS_CHROME = defaults/ skin/
 ROOT_FOLDERS_SAFARI = defaults/ skin/
 SCRIPT_FOLDERS = alert/ \
