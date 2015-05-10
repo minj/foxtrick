@@ -191,6 +191,7 @@ Foxtrick.modules['DirectPageLinks'] = {
 					a.textContent = '1';
 					a.href = href;
 					Foxtrick.addClass(a, 'oneDigit');
+					num = 1;
 				}
 				// always include last page
 				else if (p == end) {
@@ -198,6 +199,7 @@ Foxtrick.modules['DirectPageLinks'] = {
 					href = href.replace(/n=\d+/i, 'n=' + lastPagePostId);
 					a.textContent = maxPage;
 					a.href = href;
+					num = lastPagePostId;
 				}
 				// represent gaps using '...'
 				else if (p == start + 1 && start != 1 || p == end - 1 && end != maxPage) {
@@ -211,6 +213,10 @@ Foxtrick.modules['DirectPageLinks'] = {
 					a.textContent = p;
 					a.href = href;
 				}
+
+				if (a.href)
+					a.title = num + '-' + (num + postsPerPage - 1);
+
 				div.appendChild(a);
 			}
 			if (left || right)
