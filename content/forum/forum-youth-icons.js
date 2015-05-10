@@ -612,10 +612,10 @@ Foxtrick.modules['ForumYouthIcons'] = {
 						// some formating
 						newText = newText.replace(/table\]/g, 'table]\n').
 							replace(/\/tr\]/g, '/tr]\n').
-							replace(/\[td/g, ' [td').
-							replace(/\[\/td\]/g, '[/td] ').
-							replace(/\[th/g, ' [th').
-							replace(/\[\/th\]/g, '[/th] ');
+							replace(/\[td/g, '[td').
+							replace(/\[\/td\]/g, '[/td]').
+							replace(/\[th/g, '[th').
+							replace(/\[\/th\]/g, '[/th]');
 					}
 
 					if (ta.selectionStart || ta.selectionStart == '0') {
