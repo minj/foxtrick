@@ -26,8 +26,9 @@
 		var feeds = Foxtrick.Prefs.getString('module.Links.feedList') || '';
 		feeds = feeds.split(/(\n|\r|\\n|\\r)+/);
 		feeds = Foxtrick.filter(function(n) { return n.trim() !== ''; }, feeds);
-		// add default feed if no feeds set or using dev
-		if (feeds.length === 0 || Foxtrick.branch() === 'dev')
+		// add default feed if no feeds set or using dev/android
+		if (feeds.length === 0 ||
+		    Foxtrick.platform === 'Android' || Foxtrick.branch() === 'dev')
 			feeds = [Foxtrick.DataPath + 'links.json'];
 
 		var parseFeed = function(text) {
