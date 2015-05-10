@@ -15,6 +15,10 @@ Foxtrick.modules['YouthPromotes'] = {
 
 		var daysToPromote = Foxtrick.Pages.YouthPlayer.getDaysToPromote(doc);
 		if (!isNaN(daysToPromote)) {
+
+			var birthdayCell = doc.querySelector('#mainBody div.byline');
+			var promotionCell = Foxtrick.createFeaturedElement(doc, this, 'p');
+
 			var message = '';
 			if (daysToPromote > 0) { // you have to wait to promote
 				var htDate = Foxtrick.util.time.getHtDate(doc);
@@ -22,20 +26,13 @@ Foxtrick.modules['YouthPromotes'] = {
 				date = Foxtrick.util.time.buildDate(date, { showTime: false });
 				message = Foxtrick.L10n.getString('YouthPromotes.future', daysToPromote);
 				message = message.replace(/%1/, daysToPromote).replace(/%2/, date);
+				promotionCell.textContent = message;
 			}
 			else { // can be promoted already
 				message = Foxtrick.L10n.getString('YouthPromotes.today');
+				promotionCell.textContent = message;
 			}
 
-			var birthdayCell;
-			var allDivs = doc.getElementsByTagName('div');
-			for (var i = 0; i < allDivs.length; i++) {
-				if (allDivs[i].className == 'byline') {
-					birthdayCell = allDivs[i];
-				}
-			}
-			var promotionCell = Foxtrick.createFeaturedElement(doc, this, 'p');
-			promotionCell.appendChild(doc.createTextNode(message));
 			birthdayCell.appendChild(promotionCell);
 		}
 	}
