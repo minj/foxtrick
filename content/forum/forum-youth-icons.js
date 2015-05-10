@@ -596,10 +596,9 @@ Foxtrick.modules['ForumYouthIcons'] = {
 									(missing_col + 1) + rows[i].substr(last_td + 3);
 							}
 						}
-						// add header if first row is bold to some part
-						if (/\[b\].+\[\/b\]/.test(rows[0])) {
-							rows[0] = rows[0].replace(/\[\/?b\]/g, '').replace(/td\]/g, 'th]');
-						}
+						// always add header for first row
+						rows[0] = rows[0].replace(/\[\/?b\]/g, '').replace(/td\]/g, 'th]');
+
 						newText = '';
 						for (var i = 0; i < rows.length - 1; ++i) {
 							newText += rows[i] + '[/tr]';
