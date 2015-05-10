@@ -568,15 +568,6 @@ Foxtrick.modules['ForumYouthIcons'] = {
 						if (separator == ' ')
 							separator = ' +';
 
-						// deal with some nested tags
-						var myReg;
-						myReg = new RegExp('\\[i\\](.+)(' + separator + ')(.+)\\[\\/i\\]', 'g');
-						newText = newText.replace(myReg, '[i]$1[/i]$2[i]$3[/i]');
-						myReg = new RegExp('\\[u\\](.+)(' + separator + ')(.+)\\[\\/u\\]', 'g');
-						newText = newText.replace(myReg, '[u]$1[/u]$2[u]$3[/u]');
-						myReg = new RegExp('\\[b\\](.+)(' + separator + ')(.+)\\[\\/b\\]', 'g');
-						newText = newText.replace(myReg, '[b]$1[/b]$2[b]$3[/b]');
-
 						// make the table
 						myReg = new RegExp(separator, 'g');
 						newText = newText.replace(myReg, '[/td][td]');
