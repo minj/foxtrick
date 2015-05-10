@@ -555,49 +555,50 @@ Foxtrick.modules['ForumYouthIcons'] = {
 
 					if (replaceText == 'ttt') {
 						// table
+
 						Foxtrick.log('separator', separator);
 
 						if (separator == tab)
-							separator = '\\t';
-						if (separator == '|')
-							separator = '\\|';
-						if (separator == '+')
-							separator = '\\+';
-						if (separator == '.')
-							separator = '\\.';
+							separator = '\t';
+
+						separator = Foxtrick.strToRe(separator);
+
 						if (separator == ' ')
 							separator = ' +';
 
 						// make the table
-						myReg = new RegExp(separator, 'g');
+						var myReg = new RegExp(separator, 'g');
 						newText = newText.replace(myReg, '[/td][td]');
 						newText = newText.replace(/\n/g, '[/td][/tr][tr][td]');
 
 						// add some colspan for too short rows
-						var rows = newText.split('[/tr]');
-						var max_cells = 0;
-						for (var i = 0; i < rows.length - 1; ++i) {
-							max_cells = Math.max(max_cells, rows[i].split('[/td]').length - 1);
-						}
-						for (var i = 0; i < rows.length - 1; ++i) {
-							var missing_col = max_cells - (rows[i].split('[/td]').length - 1);
+						var rows = newText.split('[/tr]').slice(0, -1);
+						var cellCts = Foxtrick.map(function(row) {
+							return row.split('[/td]').length - 1;
+						}, rows);
+						var max_cells = Math.max.apply(null, cellCts);
+
+						rows = Foxtrick.map(function(row, i) {
+							var colCt = cellCts[i];
+							var missing_col = max_cells - colCt;
 							if (missing_col !== 0) {
 								var last_td = rows[i].lastIndexOf('[td');
-								rows[i] = rows[i].substring(0, last_td + 3) + ' colspan=' +
-									(missing_col + 1) + rows[i].substr(last_td + 3);
+								row = row.slice(0, last_td + 3) +
+									' colspan=' + (missing_col + 1) +
+									row.slice(last_td + 3);
 							}
-						}
+							return row;
+						}, rows);
+
 						// always add header for first row
 						rows[0] = rows[0].replace(/\[\/?b\]/g, '').replace(/td\]/g, 'th]');
 
-						newText = '';
-						for (var i = 0; i < rows.length - 1; ++i) {
-							newText += rows[i] + '[/tr]';
-						}
-						newText += '[/table]';
+						newText = rows.join('[/tr]');
+						newText += '[/tr][/table]';
+
 						if (s.selectionLength === 0)
-							newText = '[table][tr][td]cell1[/td]' +
-								'[td]cell2[/td][/tr][tr][td]cell3[/td][td]cell4[/td][/tr][/table]';
+							newText = '[table][tr][td]cell1[/td][td]cell2[/td][/tr]' +
+								'[tr][td]cell3[/td][td]cell4[/td][/tr][/table]';
 
 						// some formating
 						newText = newText.replace(/table\]/g, 'table]\n').
