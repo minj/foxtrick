@@ -666,7 +666,7 @@ Foxtrick.getNodes = function(parent) {
  */
 Foxtrick.renderPre = function(parent) {
 	var doc = parent.ownerDocument;
-	var testRE = /\[\/?pre\]/ig;
+	var testRE = /\[\/?pre\]/i;
 	if (testRE.test(parent.textContent)) {
 		// valid pre found
 		var allNodes = Foxtrick.getNodes(parent);
