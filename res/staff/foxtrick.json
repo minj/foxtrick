@@ -250,6 +250,11 @@
 			"name": "playMaker-"
 		},
 		{
+			"duty": "supporter",
+			"id": "1458669",
+			"name": "----------"
+		},
+		{
 			"duty": "translator",
 			"id": "1494131",
 			"name": "a_cardoso"
