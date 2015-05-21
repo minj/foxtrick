@@ -1,6 +1,15 @@
 ---
 "no":
   versions:
+    beta:
+      note_0: 'Dette er betaversjonen av den neste utgaven. Hjelp oss med å oversette den på vår superlettvinte  åpne oversettelsesside <linkCrowdin>crowdin.net</linkCrowdin>.'
+    0.15.1:
+      other: '<header>Andre endringer</header>'
+      and_more: Diverse andre små endringer og reparasjoner.
+    0.15.0:
+      important: '<header>Viktige kunngjøringer</header>'
+      breakages: Foxtrick skal nå fungere korrekt på Safari 7.1+ og Firefox for Android.
+      https: Foxtrick burde igjen virke som det skal på Hattrick Stage.
     0.10.0:
       note_0: 'NEW: <module>TransferHistoryFilters</module>: Allows you to filter transfers for bought or sold players only. Only available for the team history, not players (default on)'
       note_1: 'NEW: <module>FriendlyPool</module>: Colorizes visited countries in the friendly pool (supporters only, default on)'
