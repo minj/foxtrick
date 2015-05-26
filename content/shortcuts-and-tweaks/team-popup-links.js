@@ -206,9 +206,9 @@ Foxtrick.modules['TeamPopupLinks'] = {
 					&& !Foxtrick.isPage(doc, 'region')
 					&& (Foxtrick.util.layout.isStandard(doc) || aLink.parentNode.nodeName != 'TD'))
 					//Foxtrick.addClass(aLink, 'ft-nowrap');
-					Foxtrick.addClass(aLink, 'ft-dummy');
+					Foxtrick.addClass(aLink, 'ft-tpl');
 				else {
-					Foxtrick.addClass(aLink, 'ft-dummy');
+					Foxtrick.addClass(aLink, 'ft-tpl');
 				}
 				par.insertBefore(span, aLink);
 
