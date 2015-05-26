@@ -66,7 +66,7 @@ Foxtrick.Pages.Match.getTeams = function(doc) {
 			}
 			else if (child.nodeName.toLowerCase() !== 'a') {
 				// team popup
-				team = child.querySelector('a[href*="TeamID"]');
+				team = child.querySelector('a.ft-tpl');
 			}
 			else
 				team = child;
