@@ -4,12 +4,65 @@
     beta:
       note_0: 'Dette er betaversjonen av den neste utgaven. Hjelp oss med å oversette den på vår superlettvinte  åpne oversettelsesside <linkCrowdin>crowdin.net</linkCrowdin>.'
     0.15.1:
+      bugs: '<header>Bug-reparasjoner</header>'
+      nt_crash: 'Reparerte et ytelsesproblem som førte til at nettleser for landslag i <module>KampordreInterfase</module> krasjet.'
+      copy_htMl: 'Reparert <module>KontekstMenyKopi</module> kopierer nå ikke linktekst for HT-ML.'
+      resource_fix: '<module>Linker</module> og <module>AnsatteMarkør</module> slutett å virke for brukere i noen land. Dette burde være fikset i løpet av noen få dager.'
       other: '<header>Andre endringer</header>'
+      extarnal_url: 'La til et en mulighet til å kopiere Hattrick-linker til ande nettsteder i <module>KontekstMenyKopier</module>. Disse linkene virker uansett hvilken HT-server en bruker er pålogget med.'
       and_more: Diverse andre små endringer og reparasjoner.
     0.15.0:
       important: '<header>Viktige kunngjøringer</header>'
+      support: '<header>Liker du det vi gjør? Vær så snill <linkContribute>Støtt Foxtrick</linkContribute>.</header>'
+      crowdin: '<header>Mange oppdaterte oversettelser fra våre fantastiske brukere, som brukte <linkCrowdin>crowdin verktøy</linkCrowdin>. Du kan også hjelpe!</header>'
+      twitter: 'Du kan følge <linkTwitter>Foxtrick på Twitter</linkTwitter> for å motta siste nytt, oppdateringer og kunngjøringer.'
+      new: '<header>Nye moduler</header>'
+      promotion_reminder: '<module>LeggTilForfremmelsespåminnelse</module>: Legg til en knapp for å lege en påminnelse for dagen du kan forfremme en ungdomsspiller'
+      bugs: '<header>Bug-reparasjoner</header>'
       breakages: Foxtrick skal nå fungere korrekt på Safari 7.1+ og Firefox for Android.
       https: Foxtrick burde igjen virke som det skal på Hattrick Stage.
+      avatars: 'Hurtigbufferen for spillerbilder i <module>KampordreInterfase</module> blir nå automatisk oppdatert når nye spillere ankommer laget ditt.'
+      fans: 'Supporterutvikling i <module>Supportere</module> vil nå kalkuleres korrekt når laget ditt rykker opp eller ned.'
+      player_stats: '<module>SpillerStatistikkTreningUke</module> burde nå korrekt gjenkjenne helgetreningskamper.'
+      other: '<header>Andre endringer</header>'
+      transfer_compare: 'MedianTransferPrice ble omdøpt til <module>OvergangSammenlignSpillere</module>. lagt til TSI-beregninger og en evne til å hente mere spillerdata fra CHPP. Viser prisforskjell i overgangshistorikk-siden.'
+      player_positions: 'Forbedret <module>SpillerPositionerEvalueringer</module> og la til mange valgmuligheter hvor du kan velge å inkludere form, kondisjon, loyalitet, erfaring forslått-effekter i beregninger.'
+      country_list: '<module>NasjonListe</module> kan nå endre navn på nasjoner i flaggsamlingen. Det er mulig å bruke engelske navn i stedet for de opprinnelige.'
+      best_player_position: 'BestPlayerPosition modul ble omgjort til <module>SpillerPositionerEvalueringer</module>.'
+      nt: Reparerte mange funksjoner som tidligere ikke virket for NT-trenere.
+      en-US: La til skikkelig støtte for amerikansk engelsk språk.
+      code: Mye mer vedlikehold ble gjort på Foxtrick-kode. Dette tillater oss å finne og reparere skjulte bugs, samt forbedre tilleggs-stabilitet og forenkle dens videre utvikling.
+      and_more: Diverse andre små endringer og reparasjoner.
+    0.14.0.3:
+      important: '<header>Viktige kunngjøringer</header>'
+      sorry: "Beklager den siste 'bug-reparasjons-utgivelsen' som faktisk ødela flere ting enn den reparerte. Denne burde være bedre."
+      bugs: '<header>Bug-reparasjoner</header>'
+      street_teams: Introduksjonen av gatelag i det nye cup-systemet forårsaket diverse merkelige problemer som nå er reparert.
+      revert: '<module>SpillerStatistikkErfaring</module> og straffetakers verktøy i <module>KampOrdreInterfase</module> burde nå være reparert på ordentlig.'
+      income: '<module>Kampinntekt</module> burde nå vise riktig informasjon for alle kamper. Vær så snill å rapporter eventuelle avvik.'
+      stats: '<module>SesongStatistikk</module> var ødelagt på grunn av nylige HT-endringer. Alle problemer ble løst.'
+    0.14.0.2:
+      bugs: '<header>Bug-reparasjoner</header>'
+      challenge_link: 'Utfordringslink i <module>LagPopupLinker</module> tar deg nå til lagsiden og åpner automatisk utfordringsmenyen.'
+      penalty_takers: 'Sorterer ut fra HO-formel i <module>KampOrdreInterfase</module> ble ødelagt på grunn av HT-endringer.'
+      new_cups: 'Ny støtte for cup-system ble implementert. Deter reparerer nye bugs i diverse moduler, viktigst <module>SpillerStatistikkErfaring</module>.'
+      other: '<header>Andre endringer</header>'
+      psico: '<module>PsicoTSI</module> lønnsforutsigelse ble oppdatert.'
+      first_last_post: 'Du kan nå valgfritt åpne første innlegg når du klikker igjen på allerede åpne tråder med <module>ForumSisteInnlegg</module>.'
+      and_more: Diverse andre små endringer og reparasjoner.
+    0.14.0.1:
+      important: '<header>Viktige kunngjøringer</header>'
+      ff_cache: Foxtrick-pakker vil ikke lengre ha ekstra komprimering i Firefox. Dette burde forhindre alle slags rare problemer brukere har opplevd med versjon 0.14.0.
+      bugs: '<header>Bug-reparasjoner</header>'
+      safari_prefs: Preferanser-siden i Foxtrick kunne ikke vises for noen brukere med Safari.
+      teamstats: 'Reparerte en sjelden feil som ødelegger <module>lagStatistikk</module> og andre moduler.'
+      bpp: '<module>BesteSpillerPosisjon</module> viste i noen tilfeller feil data i resultetsiden for overgangsøk.'
+      history_stats: '<module>HistorieStatistikk</module> vil nå alltid rangere lagets prestasjoner etter sesong.'
+    0.14.0:
+      important: '<header>Viktige kunngjøringer</header>'
+      crowdin: '<header>Mange oppdaterte oversettelser fra våre fantastiske brukere, som brukte <linkCrowdin>crowdin verktøy</linkCrowdin>. Du kan også hjelpe!</header>'
+      browsers: Støtet for Opera 12 ble avviklet. Safari 6 og Firefox 24 minstekravet til versjoner for å kunne kjøre Foxtrick.
+      backend: Mer opprydding og flere oppdateringer til Foxtrick-kjerne ble gjort. Endringer påvirker mange sider, moduler og funksjoner, inkludert kamprapport, HT-Live, interfase for kampordre, automatisk valutaoppdagelse og Foxtrick-buffer. Vennligst rapporter enhver bug du finner.
     0.10.0:
       note_0: 'NEW: <module>TransferHistoryFilters</module>: Allows you to filter transfers for bought or sold players only. Only available for the team history, not players (default on)'
       note_1: 'NEW: <module>FriendlyPool</module>: Colorizes visited countries in the friendly pool (supporters only, default on)'
