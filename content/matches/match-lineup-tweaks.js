@@ -220,6 +220,11 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			var pIds = Foxtrick.map(function(link) {
 				return Math.abs(Foxtrick.getParameterFromUrl(link, param));
 			}, subLinks);
+
+			if (!pIds.length)
+				// neighborhood kids
+				return;
+
 			var isSubject = true, sbjPid = pIds[0], objPid = pIds[1] || 0;
 			addSubDiv(sbjPid, time, type, isSubject, objPid);
 
