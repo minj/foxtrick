@@ -593,6 +593,9 @@ Foxtrick.Pages.Match.addBoxToSidebar = function(doc, title, content, prec) {
  * @param  {NodeList} links
  */
 Foxtrick.Pages.Match.modPlayerDiv = function(playerId, func, links) {
+	if (!playerId)
+		return;
+
 	var link = Foxtrick.filter(function(link) {
 		return new RegExp(playerId).test(link.href);
 	}, links)[0];
