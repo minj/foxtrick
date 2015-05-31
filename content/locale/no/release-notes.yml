@@ -63,6 +63,8 @@
       crowdin: '<header>Mange oppdaterte oversettelser fra våre fantastiske brukere, som brukte <linkCrowdin>crowdin verktøy</linkCrowdin>. Du kan også hjelpe!</header>'
       browsers: Støtet for Opera 12 ble avviklet. Safari 6 og Firefox 24 minstekravet til versjoner for å kunne kjøre Foxtrick.
       backend: Mer opprydding og flere oppdateringer til Foxtrick-kjerne ble gjort. Endringer påvirker mange sider, moduler og funksjoner, inkludert kamprapport, HT-Live, interfase for kampordre, automatisk valutaoppdagelse og Foxtrick-buffer. Vennligst rapporter enhver bug du finner.
+    0.13.0:
+      htms_points: '<module>HTMSPoeng</module> ble oppdatert for å bruke de nye formlene.'
     0.10.0:
       note_0: 'NEW: <module>TransferHistoryFilters</module>: Allows you to filter transfers for bought or sold players only. Only available for the team history, not players (default on)'
       note_1: 'NEW: <module>FriendlyPool</module>: Colorizes visited countries in the friendly pool (supporters only, default on)'
