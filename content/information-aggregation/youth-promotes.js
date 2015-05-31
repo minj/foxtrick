@@ -19,19 +19,18 @@ Foxtrick.modules['YouthPromotes'] = {
 		if (!isNaN(daysToPromote)) {
 
 			var birthdayCell = doc.querySelector('#mainBody div.byline');
-			var promotion = doc.createDocumentFragment();
 
-			var message = '';
+			var promotion = doc.createDocumentFragment();
+			var promotionCounter = Foxtrick.createFeaturedElement(doc, this, 'p');
+			promotion.appendChild(promotionCounter);
+
 			if (daysToPromote > 0) { // you have to wait to promote
 				var htDate = Foxtrick.util.time.getHtDate(doc);
 				var date = Foxtrick.util.time.addDaysToDate(htDate, daysToPromote);
 				date = Foxtrick.util.time.buildDate(date, { showTime: false });
-				message = Foxtrick.L10n.getString('YouthPromotes.future', daysToPromote);
+				var message = Foxtrick.L10n.getString('YouthPromotes.future', daysToPromote);
 				message = message.replace(/%1/, daysToPromote).replace(/%2/, date);
-
-				var promotionCounter = Foxtrick.createFeaturedElement(doc, this, 'p');
 				promotionCounter.textContent = message;
-				promotion.appendChild(promotionCounter);
 
 				var age = Foxtrick.Pages.Player.getAge(doc);
 				var days = age.years * DAYS_IN_YEAR + age.days + daysToPromote;
@@ -52,9 +51,9 @@ Foxtrick.modules['YouthPromotes'] = {
 				promotionAge.textContent = old;
 				promotion.appendChild(promotionAge);
 			}
-			else { // can be promoted already
-				message = Foxtrick.L10n.getString('YouthPromotes.today');
-				promotion.textContent = message;
+			else {
+				// can be promoted already
+				promotionCounter.textContent = Foxtrick.L10n.getString('YouthPromotes.today');
 			}
 
 			birthdayCell.appendChild(promotion);
