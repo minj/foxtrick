@@ -7,7 +7,11 @@ ro:
       note_0: 'Aceasta este o versiune beta a următoarei versiuni care va fi lansată. Vă rugăm ajutați traducând această versiune utilizând pagina de traducere <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.15.1:
       bugs: '<header>Erori reparate</header>'
+      nt_crash: 'Am rezolvat o problemă ce ducea ca browser-ul să se blocheze la Echipele Naționale în <module>MatchOrderInterface</module>.'
+      copy_htMl: 'Am rezolvat problema din <module>ContextMenuCopy</module>.'
+      resource_fix: '<module>Links</module> și <module>StaffMarker</module> nu mai funcționau pentru utilizatorii din câteva țări. Problema ar trebui să dispară în câteva zile.'
       other: '<header>Alte schimbări</header>'
+      extarnal_url: 'Am adăugat opțiunea de a copia link-urile din Hattrick pentru alte site-uri în <module>ContextMenuCopy</module>. Aceste link-uri funcționează pe orice server Hattrick vă veți conecta.'
       and_more: Diferite alte mici schimbări și reparații.
     0.15.0:
       important: '<header>Anunţuri importante</header>'

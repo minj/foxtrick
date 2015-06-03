@@ -258,11 +258,11 @@
 			"code": "gl",
 			"name": "Galician",
 			"phrases": "1837",
-			"translated": "1829",
+			"translated": "1833",
 			"translated_progress": "99",
 			"words": "12994",
 			"words_approved": "0",
-			"words_translated": "12905"
+			"words_translated": "12919"
 		},
 		{
 			"approved": "0",
@@ -510,11 +510,11 @@
 			"code": "ro",
 			"name": "Romanian",
 			"phrases": "1837",
-			"translated": "1829",
-			"translated_progress": "99",
+			"translated": "1837",
+			"translated_progress": "100",
 			"words": "12994",
 			"words_approved": "4451",
-			"words_translated": "12905"
+			"words_translated": "12994"
 		},
 		{
 			"approved": "1837",
