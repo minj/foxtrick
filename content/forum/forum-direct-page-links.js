@@ -214,8 +214,7 @@ Foxtrick.modules['DirectPageLinks'] = {
 					a.href = href;
 				}
 
-				if (a.href)
-					a.title = num + '-' + (num + postsPerPage - 1);
+				a.title = num + '-' + (num + postsPerPage - 1);
 
 				div.appendChild(a);
 			}
