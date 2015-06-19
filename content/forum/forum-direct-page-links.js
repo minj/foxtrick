@@ -114,7 +114,7 @@ Foxtrick.modules['DirectPageLinks'] = {
 			if (postsPerPage % 10 !== 0) {
 				// currently postsPerPage can only be one of 10, 20, 30, 40
 				// 20 is default
-				postsPerPage = 20;
+				postsPerPage = Foxtrick.Prefs.getInt('perpage') || 20;
 			}
 
 			var prevPost = currentPostId - 1;
