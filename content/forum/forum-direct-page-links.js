@@ -34,17 +34,15 @@ Foxtrick.modules['DirectPageLinks'] = {
 		};
 
 		// Figure out the maximum amount of pages in this thread
-		var getMaxPost = function(prevNodes, lastNodes, postsPerPage) {
+		var getMaxPost = function(lastLinks, lastInPage, postsPerPage) {
 			var posts = postsPerPage;
-			if (lastNodes.length) {
-				var lastUrl = lastNodes[0].parentNode.href;
+			if (lastLinks.length) {
+				var lastUrl = lastLinks[0].parentNode.href;
 				var lastN = parseInt(Foxtrick.getParameterFromUrl(lastUrl, 'n'), 10);
 				posts = lastN + postsPerPage - 1;
 			}
-			else if (prevNodes.length) {
-				var prevUrl = prevNodes[0].parentNode.href;
-				var prevN = parseInt(Foxtrick.getParameterFromUrl(prevUrl, 'n'), 10);
-				posts = prevN + postsPerPage * 2 - 1;
+			else {
+				posts = lastInPage;
 			}
 			return posts;
 		};
@@ -118,9 +116,10 @@ Foxtrick.modules['DirectPageLinks'] = {
 			}
 
 			var prevPost = currentPostId - 1;
+			var lastInPage = prevPost + postsPerPage;
 			var currentPage = Math.ceil(prevPost / postsPerPage) + 1;
-			var posts = getMaxPost(prev, last, postsPerPage);
-			var lastInPage = currentPostId + postsPerPage - 1;
+
+			var posts = getMaxPost(last, lastInPage, postsPerPage);
 			var maxPage = Math.ceil((posts - lastInPage) / postsPerPage) + currentPage;
 
 			// Everything below is basically visual configuration
