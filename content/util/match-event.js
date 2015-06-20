@@ -512,14 +512,28 @@ Foxtrick.util.matchEvent.isNeutralEvent = function(evnt) {
 };
 
 Foxtrick.util.matchEvent.getEventMinute = function(evnt) {
-	if (!Foxtrick.util.matchEvent.isLiveEvent(evnt))
-		return parseInt(evnt.getAttribute('data-match-minute').match(/\d+/)[0], 10);
-	else
-		return parseInt(evnt.firstChild.textContent.match(/\d+/)[0], 10);
+	var min = 0;
+	var minute;
+	if (!Foxtrick.util.matchEvent.isLiveEvent(evnt)) {
+		minute = evnt.getAttribute('data-match-minute');
+		if (minute)
+			min = parseInt(minute.match(/\d+/)[0], 10);
+	}
+	else {
+		minute = evnt.firstChild;
+		if (minute)
+			min = parseInt(minute.textContent.match(/\d+/)[0], 10);
+	}
+	return min;
 };
 
 Foxtrick.util.matchEvent.getEventId = function(evnt) {
-	return parseInt(evnt.getAttribute('data-eventtype').match(/\d+/)[0], 10);
+	var id = 0;
+	var type = evnt.getAttribute('data-eventtype');
+	if (type) {
+		id = parseInt(type.match(/\d+/)[0], 10);
+	}
+	return id;
 };
 
 Foxtrick.util.matchEvent.isFirstEvent = function(evnt) {
