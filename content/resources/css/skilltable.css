@@ -17,7 +17,7 @@ html[dir="rtl"] .ft_skilltablediv { margin: 35px -8px 35px 0; }
 .ft_skilltable_links.customizing a { display: inline; }
 .ft_skilltable_links.customizing .customize_item { display: none; }
 .ft_skilltable_container { background-color: #fff; }
-.ft_skilltable_container.on_top { position: absolute; z-index: 100; padding: 1em; border: 2px solid #888; }
+.ft_skilltable_container.on_top { position: absolute; z-index: 98; padding: 1em; border: 2px solid #888; }
 .ft_skilltable th { cursor: pointer; }
 .ft_skilltable td { border-bottom: 1px solid #dce0dc; }
 .ft_skilltable td.align-right { text-align: right !important; }
