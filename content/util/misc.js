@@ -116,7 +116,8 @@ Foxtrick.playSound = function(doc, url) {
 				return;
 			}
 		}
-		Foxtrick.log('play: ' + url.slice(0, 100));
+		var volume = parseInt(Foxtrick.Prefs.getString('volume'), 10) / 100;
+		Foxtrick.log('play', volume, url.slice(0, 100));
 		try {
 			var music = new Audio();
 			var canPlay = music.canPlayType('audio/' + type);
@@ -126,6 +127,7 @@ Foxtrick.playSound = function(doc, url) {
 				// try overwrite mime type (in case server says wrongly
 				// it's a generic application/octet-stream)
 				music.type = 'audio/' + type;
+				music.volume = volume;
 				music.play();
 			}
 			else {
@@ -135,6 +137,7 @@ Foxtrick.playSound = function(doc, url) {
 				videoElement.setAttribute('width', '1');
 				videoElement.setAttribute('height', '1');
 				videoElement.setAttribute('autoplay', 'true');
+				videoElement.setAttribute('volume', volume);
 				videoElement.setAttribute('type', 'audio/' + type);
 				videoElement.setAttribute('src', url);
 				doc.getElementsByTagName('body')[0].appendChild(videoElement);
@@ -150,6 +153,7 @@ Foxtrick.playSound = function(doc, url) {
 				Foxtrick.log(e, 'try play with audio tag in document');
 				var music = doc.createElement('audio');
 				music.setAttribute('autoplay', 'autoplay');
+				music.setAttribute('volume', volume);
 				var source = doc.createElement('source');
 				source.setAttribute('src', url);
 				source.setAttribute('type', 'audio/' + type);
