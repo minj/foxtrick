@@ -46,11 +46,11 @@ Foxtrick.util.matchView.fillMatches = function(container, xml, errorText) {
 			106: { key: 'youth.friendly.cup', className: 'matchFriendly' },
 		};
 		var cups = {
-			4: { key: 'cup', className: 'matchCupA' },
-			7: { key: 'cup', className: 'matchCupB1' },
-			8: { key: 'cup', className: 'matchCupB2' },
-			9: { key: 'cup', className: 'matchCupB3' },
-			10: { key: 'cup', className: 'matchCupC' },
+			4: { key: 'cupA', className: 'matchCupA' },
+			7: { key: 'cupB1', className: 'matchCupB1' },
+			8: { key: 'cupB2', className: 'matchCupB2' },
+			9: { key: 'cupB3', className: 'matchCupB3' },
+			10: { key: 'cupC', className: 'matchCupC' },
 		};
 		var obj = type == 3 ? cups[cup] : mapping[type];
 
