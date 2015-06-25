@@ -24,14 +24,13 @@ Foxtrick.util.matchView.fillMatches = function(container, xml, errorText) {
 		return;
 	}
 
-	var type2info = function(type) {
+	var type2info = function(type, cup) {
 		// convert match type integer to match type info
 		// source:
 		// https://www.hattrick.org/goto.ashx?path=/Community/CHPP/NewDocs/DataTypes.aspx%23matchTypeID
 		var mapping = {
 			1: { key: 'league', className: 'matchLeague' },
 			2: { key: 'qualification', className: 'matchQualification' },
-			3: { key: 'cup', className: 'matchCupA' },
 			4: { key: 'friendly', className: 'matchFriendly' },
 			5: { key: 'friendly.cup', className: 'matchFriendly' },
 			7: { key: 'masters', className: 'matchMasters' },
@@ -46,7 +45,15 @@ Foxtrick.util.matchView.fillMatches = function(container, xml, errorText) {
 			105: { key: 'youth.friendly', className: 'matchFriendly' },
 			106: { key: 'youth.friendly.cup', className: 'matchFriendly' },
 		};
-		var obj = mapping[type];
+		var cups = {
+			4: { key: 'cup', className: 'matchCupA' },
+			7: { key: 'cup', className: 'matchCupB1' },
+			8: { key: 'cup', className: 'matchCupB2' },
+			9: { key: 'cup', className: 'matchCupB3' },
+			10: { key: 'cup', className: 'matchCupC' },
+		};
+		var obj = type == 3 ? cups[cup] : mapping[type];
+
 		if (obj) {
 			return {
 				str: Foxtrick.L10n.getString('match.type.' + obj.key),
@@ -90,7 +97,10 @@ Foxtrick.util.matchView.fillMatches = function(container, xml, errorText) {
 		var awayId = match.getElementsByTagName('AwayTeamID')[0].textContent;
 		var side = (teamId == homeId) ? 'home' : 'away';
 		var type = match.getElementsByTagName('MatchType')[0].textContent;
-		var typeInfo = type2info(type);
+		var cupLvl = match.getElementsByTagName('CupLevel')[0].textContent;
+		var cupIdx = match.getElementsByTagName('CupLevelIndex')[0].textContent;
+		var cup = parseInt(cupLvl, 10) * 3 + parseInt(cupIdx, 10);
+		var typeInfo = type2info(type, cup);
 		var status = match.getElementsByTagName('Status')[0].textContent;
 		if (status == 'FINISHED') {
 			var homeGoals = match.getElementsByTagName('HomeGoals')[0].textContent;
