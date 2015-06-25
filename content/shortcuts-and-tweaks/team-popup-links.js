@@ -34,6 +34,10 @@ Foxtrick.modules['TeamPopupLinks'] = {
 			linkByTeam: '/Club/Players/?teamId=[teamid]',
 			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_players=true'
 		},
+		Series: {
+			linkByTeam: '/Club/Manager/?teamId=[teamid]&redir_to_series=true',
+			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_series=true'
+		},
 		last_5_ips: {
 			linkByTeam: '/Club/Manager/?teamId=[teamid]&ShowOldConnections=true',
 			linkByUser: '/Club/Manager/?userId=[userid]&ShowOldConnections=true'
