@@ -444,6 +444,35 @@ Foxtrick.Pages.Match.getTacticsByTeam = function(ratingstable) {
 // START NEW RATINGS UTILS
 
 /**
+ * Add a listener to changes on HT-Live page.
+ * Calls callback(document) on mutation.
+ * Cannot use subtree: true on the container because
+ * change() would execute every second in FF.
+ * This is because the match timer triggers childList changes in FF.
+ * @param {document} doc
+ * @param {Function} callback function(document)
+ */
+Foxtrick.Pages.Match.addLiveListener = function(doc, callback) {
+	var safeCallback = function(doc) {
+		try {
+			callback(doc);
+		}
+		catch (e) {
+			Foxtrick.log('Uncaught exception in callback', e);
+		}
+	};
+
+	// start everything onLoad
+	safeCallback(doc);
+	var liveContainer = this.getLiveContainer(doc);
+	if (liveContainer) {
+		// this is the smallest container that contains overview OR match view
+		Foxtrick.onChange(liveContainer, safeCallback, { subtree: false });
+	}
+};
+
+
+/**
  * Add a listener to changes of tabId in HT-Live matches.
  * Calls callback(doc) on mutation.
  * Registers a chain of MOs to by-pass the Live timer.
