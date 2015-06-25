@@ -803,7 +803,7 @@ function getModule(module) {
 		};
 		var makePlayListener = function(input) {
 			return function() {
-				Foxtrick.playSound(input.value, this.ownerDocument);
+				Foxtrick.playSound(this.ownerDocument, input.value);
 			};
 		};
 
@@ -812,7 +812,7 @@ function getModule(module) {
 				input.value = url;
 				input.dispatchEvent(new Event('change'));
 				if (isSound)
-					Foxtrick.playSound(url, input.ownerDocument);
+					Foxtrick.playSound(input.ownerDocument, url);
 			};
 		};
 

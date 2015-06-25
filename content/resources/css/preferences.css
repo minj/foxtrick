@@ -99,6 +99,71 @@ input[type] /* only set width for text input */
 	width: auto;
 }
 
+/* slider */
+input[type=range] {
+	-webkit-appearance: none;
+	width: 200px;
+	border-radius: 0px;
+	vertical-align: middle;
+	margin: -2px 0 0 0;
+	padding: 0;
+	position: relative;
+	vertical-align: middle;
+	overflow-x: hidden;
+	overflow-y: visible;
+	background: transparent;
+	border: none;
+}
+input[type=range]::-webkit-slider-thumb {
+	-webkit-appearance: none !important;
+	position: relative;
+	pointer-events: none;
+	width: 8px;
+	height: 100%;
+}
+input[type=range]::-webkit-slider-runnable-track {
+	background: #757575;
+	height: 8px;
+	margin: 12px 0;
+}
+input[type=range]::-webkit-slider-thumb:before {
+	content:"-";
+	font-style: 0;
+	line-height:0;
+	position: absolute;
+	left:-3000px;
+	right:0;
+	top:0;
+	bottom:0;
+	background: #4096ee;
+}
+input[type=range]::-webkit-slider-thumb:after {
+	content: "";
+	position: absolute;
+	left:-4px;
+	right:-4px;
+	top:-4px;
+	bottom:-4px;
+	background: #aaa;
+	border-radius: 50%;
+	border:5px solid #eee;
+	z-index: 10;
+}
+input[type=range]:focus {
+	outline:none;
+}
+input[type=range]:hover::-webkit-slider-thumb:after,
+input[type=range]:focus::-webkit-slider-thumb:after {
+	background: #4096ee;
+}
+input[type=range]:disabled::-webkit-slider-thumb:before {
+	background-color: #aaa;
+}
+input[type=range]:disabled::-webkit-slider-thumb:after {
+	background: #aaa !important;
+}
+/* slider */
+
 textarea {
 	width: 99%;
 	min-width: 50%;
