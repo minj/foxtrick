@@ -518,6 +518,42 @@ Foxtrick.Pages.Match.addLiveTabListener = function(doc, tabId, callback) {
 };
 
 /**
+ * Add a listener to changes of HT-Live overview.
+ * Calls callback(overview) on mutation.
+ * Cannot use subtree: true on the container because
+ * change() would execute every second in FF.
+ * This is because the match timer triggers childList changes in FF.
+ * @param {document} doc
+ * @param {Function} callback function(HTMLElement)
+ */
+Foxtrick.Pages.Match.addLiveOverviewListener = function(doc, callback) {
+	var safeCallback = function(overview) {
+		try {
+			callback(overview);
+		}
+		catch (e) {
+			Foxtrick.log('Uncaught exception in callback', e);
+		}
+	};
+
+	var findOverview = function(doc) {
+		var overview = Foxtrick.getMBElement(doc, 'repM');
+		if (overview) {
+			safeCallback(overview);
+		}
+	};
+
+	// start everything onLoad
+	findOverview(doc);
+	var liveContainer = this.getLiveContainer(doc);
+	if (liveContainer) {
+		// this is the smallest container that contains overview OR match view
+		Foxtrick.onChange(liveContainer, findOverview, { subtree: false });
+	}
+};
+
+
+/**
  * Add a box to the sidebar on the right.
  * Returns the added box.
  * Modeled on Foxtrick.addBoxToSidebar.
