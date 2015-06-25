@@ -455,12 +455,20 @@ Foxtrick.Pages.Match.getTacticsByTeam = function(ratingstable) {
  * @param {Function} callback function(document)
  */
 Foxtrick.Pages.Match.addLiveTabListener = function(doc, tabId, callback) {
+	var safeCallback = function(doc) {
+		try {
+			callback(doc);
+		}
+		catch (e) {
+			Foxtrick.log('Uncaught exception in callback', e);
+		}
+	};
 	var registerTab = function(doc) {
-		callback(doc);
+		safeCallback(doc);
 		var target = doc.getElementById(tabId);
 		if (target) {
 			// found the right tab
-			Foxtrick.onChange(target, callback);
+			Foxtrick.onChange(target, safeCallback);
 		}
 	};
 	var registerMatch = function(doc) {
