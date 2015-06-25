@@ -9,10 +9,82 @@ Foxtrick.modules['ReLiveLinks'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES: [
 		'matches', 'worldMatches', 'matchesArchive', 'matchesCup', 'cupMatches',
-		'fixtures', 'youthFixtures', 'series'
+		'fixtures', 'youthFixtures', 'series',
+		'matchesLive'
 	],
 	NICE: -1, // before any modules that might change row count
+	OPTIONS: ['ReLive', 'Live'],
 	run: function(doc) {
+		if (Foxtrick.isPage(doc, 'matchesLive') &&
+		    Foxtrick.Prefs.isModuleOptionEnabled('ReLiveLinks', 'Live'))
+			this.live(doc);
+		else if (Foxtrick.Prefs.isModuleOptionEnabled('ReLiveLinks', 'ReLive'))
+			this.reLive(doc);
+	},
+	live: function(doc) {
+		var module = this;
+		var LINK_TEMPLATE = '[link=/Club/Matches/Live.aspx' +
+			'?matchID={}&actionType=addMatch&SourceSystem={}]\n';
+		var COPY = Foxtrick.L10n.getString('copy.asLink');
+		var SUCCESS = Foxtrick.L10n.getString('copy.asLink.copied');
+		var BUTTON_ID = 'ft-bulk-live-link';
+
+		var getSourceFromUId = function(uid) {
+			switch (uid[0]) {
+				case 'X': return 'HTOIntegrated';
+				case 'Y': return 'Youth';
+				default: return 'Hattrick';
+			}
+		};
+
+		var copyBulkLinks = function() {
+			var doc = this.ownerDocument;
+			var links = doc.getElementsByClassName('removeTab2');
+			if (!links.length)
+				return;
+
+			var matches = {};
+			Foxtrick.forEach(function(link) {
+				var url = link.getAttribute('onclick');
+				var uid = Foxtrick.getParameterFromUrl(url, 'UniqueMatchId');
+				var source = getSourceFromUId(uid);
+				if (!matches[source])
+					matches[source] = [];
+
+				var id = uid.match(/\d+/)[0];
+				matches[source].push(id);
+			}, links);
+
+			var text = '';
+			for (var type in matches) {
+				var list = matches[type].toString();
+				text += Foxtrick.format(LINK_TEMPLATE, [list, type]);
+			}
+
+			Foxtrick.copyStringToClipboard(text);
+			Foxtrick.util.note.add(doc, SUCCESS, 'ft-relive-copy-note');
+		};
+
+		var addBulkButton = function() {
+			var button = doc.getElementById(BUTTON_ID);
+			if (button)
+				button.parentNode.removeChild(button);
+
+			var target = doc.querySelector('.liveConfLink');
+			if (!target)
+				return;
+
+			button = Foxtrick.createFeaturedElement(doc, module, 'a');
+			button.id = BUTTON_ID;
+			button.className = 'ft-link liveConfLink shy right';
+			button.textContent = COPY;
+			Foxtrick.onClick(button, copyBulkLinks);
+			target.parentNode.insertBefore(button, target);
+		};
+
+		Foxtrick.Pages.Match.addLiveListener(doc, addBulkButton);
+	},
+	reLive: function(doc) {
 		// don't run on live table
 		var liveSeriesLink = Foxtrick.getMBElement(doc, 'hlLive');
 		if (liveSeriesLink && liveSeriesLink.hasAttribute('disabled')) {
@@ -154,5 +226,5 @@ Foxtrick.modules['ReLiveLinks'] = {
 		if (addAllLink)
 			addAllLink.href = '/Club/Matches/Live.aspx?matchID=' + matches.join(',') +
 				'&actionType=addMatch&SourceSystem=' + source;
-		}
+	}
 };
