@@ -92,11 +92,12 @@ if (!Foxtrick)
 	};
 })();
 
-
-// Play the sound with URL given as parameter.
-// Gecko only supports WAV format at the moment.
-// May throw an error if unable to play the sound.
-Foxtrick.playSound = function(url, doc) {
+/**
+ * Try playing an audio url
+ * @param  {document} doc
+ * @param  {string} url
+ */
+Foxtrick.playSound = function(doc, url) {
 	try {
 		if (typeof url !== 'string') {
 			Foxtrick.log('Bad sound:', url);
@@ -104,7 +105,7 @@ Foxtrick.playSound = function(url, doc) {
 		}
 		url = url.replace(/^foxtrick:\/\//, Foxtrick.ResourcePath);
 		var type = 'wav';
-		if (url.indexOf('data:audio') == 0)
+		if (url.indexOf('data:audio') === 0)
 			type = url.match(/data:audio\/(.+);/)[1];
 		else {
 			var ext = url.match(/\.([^\.]+)$/);
@@ -115,17 +116,17 @@ Foxtrick.playSound = function(url, doc) {
 				return;
 			}
 		}
-		Foxtrick.log('play: ' + url.substring(0, 100));
+		Foxtrick.log('play: ' + url.slice(0, 100));
 		try {
 			var music = new Audio();
 			var canPlay = music.canPlayType('audio/' + type);
-			Foxtrick.log('can play ' + type + ':' + (canPlay == '' ? 'no' : canPlay));
+			Foxtrick.log('can play', type, ':', (canPlay === '' ? 'no' : canPlay));
 			if (canPlay == 'maybe' || canPlay == 'probably') {
-					music.src = url;
-					// try overwrite mime type (in case server says wrongly
-					// it's a generic application/octet-stream)
-					music.type = 'audio/' + type;
-					music.play();
+				music.src = url;
+				// try overwrite mime type (in case server says wrongly
+				// it's a generic application/octet-stream)
+				music.type = 'audio/' + type;
+				music.play();
 			}
 			else {
 				Foxtrick.log('try embeded using plugin');
@@ -137,34 +138,16 @@ Foxtrick.playSound = function(url, doc) {
 				videoElement.setAttribute('type', 'audio/' + type);
 				videoElement.setAttribute('src', url);
 				doc.getElementsByTagName('body')[0].appendChild(videoElement);
-				/*
-				flash need media/OriginalMusicPlayer.swf shipped i guess
-				var videoElement = doc.createElement('object');
-				videoElement.setAttribute('style','visibility:hidden');
-				videoElement.setAttribute('width','1');
-				videoElement.setAttribute('height','1');
-				videoElement.setAttribute('autoplay', 'true');
-				videoElement.setAttribute('type', 'application/x-shockwave-flash');
-				videoElement.setAttribute('data', 'media/OriginalMusicPlayer.swf');
-				var param = doc.createElement('param');
-				param.setAttribute('name', 'movie');
-				param.setAttribute('value', 'media/OriginalMusicPlayer.swf');
-				videoElement.appendChild(param);
-				var param = doc.createElement('param');
-				param.setAttribute('name', 'FlashVars');
-				param.setAttribute('value', 'mediaPath='+url);
-				videoElement.appendChild(param);
-				doc.getElementsByTagName('body')[0].appendChild(videoElement);*/
 			}
-		} catch (e) {
+		}
+		catch (e) {
 			if (Foxtrick.chromeContext() == 'content') {
 				// via background since internal sounds might not be acessible
 				// from the html page itself
-				Foxtrick.SB.ext.sendRequest({req: 'playSound', url: url});
+				Foxtrick.SB.ext.sendRequest({ req: 'playSound', url: url });
 			}
-			else
-			{
-				Foxtrick.log(e, '\ntry play with audio tag in document');
+			else {
+				Foxtrick.log(e, 'try play with audio tag in document');
 				var music = doc.createElement('audio');
 				music.setAttribute('autoplay', 'autoplay');
 				var source = doc.createElement('source');
@@ -174,8 +157,9 @@ Foxtrick.playSound = function(url, doc) {
 				doc.getElementsByTagName('body')[0].appendChild(music);
 			}
 		}
-	} catch (e) {
-		Foxtrick.log('Cannot play sound: ', url.substring(0, 100));
+	}
+	catch (e) {
+		Foxtrick.log('Cannot play sound: ', url.slice(0, 100));
 		Foxtrick.log(e);
 	}
 };
