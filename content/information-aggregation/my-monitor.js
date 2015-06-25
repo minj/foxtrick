@@ -248,6 +248,7 @@ Foxtrick.modules['MyMonitor'] = {
 
 				var args = [
 					['file', 'matches'],
+					['version', '2.8'],
 					['teamId', parseInt(team.id, 10)]
 				];
 				if (team.type == 'youth')
