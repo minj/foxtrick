@@ -29,22 +29,22 @@ Foxtrick.util.matchView.fillMatches = function(container, xml, errorText) {
 		// source:
 		// https://www.hattrick.org/goto.ashx?path=/Community/CHPP/NewDocs/DataTypes.aspx%23matchTypeID
 		var mapping = {
-			'1': { key: 'league', className: 'matchLeague' },
-			'2': { key: 'qualification', className: 'matchQualification' },
-			'3': { key: 'cup', className: 'matchCupA' },
-			'4': { key: 'friendly', className: 'matchFriendly' },
-			'5': { key: 'friendly.cup', className: 'matchFriendly' },
-			'7': { key: 'masters', className: 'matchMasters' },
-			'8': { key: 'friendly', className: 'matchFriendly' },
-			'9': { key: 'friendly.cup', className: 'matchFriendly' },
-			'10': { key: 'nt.competitive', className: ' matchLeague' },
-			'11': { key: 'nt.competitive', className: ' matchLeague' },
-			'12': { key: 'nt.friendly', className: ' matchFriendly' },
-			'100': { key: 'youth.league', className: 'matchLeague' },
-			'101': { key: 'youth.friendly', className: 'matchFriendly' },
-			'103': { key: 'youth.friendly.cup', className: 'matchFriendly' },
-			'105': { key: 'youth.friendly', className: 'matchFriendly' },
-			'106': { key: 'youth.friendly.cup', className: 'matchFriendly' },
+			1: { key: 'league', className: 'matchLeague' },
+			2: { key: 'qualification', className: 'matchQualification' },
+			3: { key: 'cup', className: 'matchCupA' },
+			4: { key: 'friendly', className: 'matchFriendly' },
+			5: { key: 'friendly.cup', className: 'matchFriendly' },
+			7: { key: 'masters', className: 'matchMasters' },
+			8: { key: 'friendly', className: 'matchFriendly' },
+			9: { key: 'friendly.cup', className: 'matchFriendly' },
+			10: { key: 'nt.competitive', className: ' matchLeague' },
+			11: { key: 'nt.competitive', className: ' matchLeague' },
+			12: { key: 'nt.friendly', className: ' matchFriendly' },
+			100: { key: 'youth.league', className: 'matchLeague' },
+			101: { key: 'youth.friendly', className: 'matchFriendly' },
+			103: { key: 'youth.friendly.cup', className: 'matchFriendly' },
+			105: { key: 'youth.friendly', className: 'matchFriendly' },
+			106: { key: 'youth.friendly.cup', className: 'matchFriendly' },
 		};
 		var obj = mapping[type];
 		if (obj) {
