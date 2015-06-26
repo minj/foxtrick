@@ -214,13 +214,15 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 		var matchId = Foxtrick.Pages.Match.getId(doc);
 		var data = this.sectorRatings[matchId], dataExists = false;
 		if (typeof this.sectorRatings[matchId] === 'undefined') {
-			this.sectorRatings[matchId] = data = { values: [], pctgs: [] };
+			this.sectorRatings[matchId] = data = { values: [], oldValues: [] };
 		}
 		else {
 			dataExists = true;
 		}
 
-		for (var i = 0; i < ratings.length; ++i) {
+		var SECTOR_RATINGS_ID = 'ft-sector-ratings-';
+		var SECTOR_RESULT_ID = 'ft-sector-result-';
+		var values = Foxtrick.map(function(nrRating, i, ratings) {
 			var num = getRating(ratings, i);
 			var value = num / 4 + 0.75;
 
@@ -228,9 +230,11 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 			var ratio = num / (num + numOther);
 			var pctg = Math.round(ratio * 100);
 
-			var box = ratings[i].parentNode;
+			var box = nrRating.parentNode;
+			box.id = SECTOR_RATINGS_ID + i;
 			var sector = box.parentNode;
 			var result = sector.getElementsByClassName('sectorResult')[0];
+			result.id = SECTOR_RESULT_ID + i;
 
 			if (doProb) {
 				var prob;
@@ -257,7 +261,48 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 				result.setAttribute('aria-label', result.title);
 			}
 
-			if (doChanges) {
+			return {
+				value: value,
+				pctg: pctg,
+			};
+		}, ratings);
+
+		if (doChanges) {
+
+			var oldData = data.values;
+			var newData = values;
+
+			if (dataExists) {
+				// try to maintain previous changes if nothing changed
+				var same = Foxtrick.all(function(new_, i) {
+					var old = oldData[i];
+					return old.value == new_.value && old.pctg == new_.pctg;
+				}, newData);
+				if (same && data.oldValues.length) {
+					Foxtrick.log('reusing previous ratings');
+					oldData = data.oldValues;
+					newData = data.values;
+				}
+			}
+			else {
+				oldData = newData;
+			}
+
+			Foxtrick.forEach(function(sector, i) {
+				var old = oldData[i];
+
+				var value = sector.value;
+				var pctg = sector.pctg;
+
+				var box = doc.getElementById(SECTOR_RATINGS_ID + i);
+				var result = doc.getElementById(SECTOR_RESULT_ID + i);
+
+				if (!box || !result) {
+					Foxtrick.log(box, result);
+					Foxtrick.error('Broken layout in mrt');
+					return;
+				}
+
 				var calcBox = Foxtrick.createFeaturedElement(doc, module, 'div');
 				Foxtrick.addClass(calcBox, 'ft-mrt-rating-calc');
 				calcBox.textContent = value.toFixed(2) + ' ';
@@ -271,7 +316,7 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 				sectorLabel.textContent = module.sectorAbbrs[i];
 
 				if (dataExists) {
-					var diff = value - data.values[i];
+					var diff = value - old.value;
 					var type;
 					if (diff) {
 						type = diff < 0 ? 'Lower' : 'Higher';
@@ -283,7 +328,7 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 						rDiff.setAttribute('aria-label', rDiff.title);
 						calcBox.appendChild(rDiff);
 					}
-					diff = pctg - data.pctgs[i];
+					diff = pctg - old.pctg;
 					if (diff) {
 						type = diff < 0 ? 'Lower' : 'Higher';
 						var pctgDiff = signedInt(diff);
@@ -295,9 +340,9 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 						result.appendChild(sDiff);
 					}
 				}
-				data.values[i] = value;
-				data.pctgs[i] = pctg;
-			}
+			}, newData);
+			data.oldValues = oldData;
+			data.values = newData;
 		}
 
 		Foxtrick.startListenToChange(doc);
