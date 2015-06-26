@@ -302,8 +302,8 @@ Foxtrick.util.css.getCssFileArrayToString = function(cssUrls) {
 	}
 	if (Foxtrick.arch === 'Gecko') {
 		cssTextCollection =
-			'@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), ' +
-			'domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), ' +
+			'@-moz-document domain(hattrick.org), domain(hattrick.ws), domain(hattrick.bz), ' +
+			'domain(hat-trick.net), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), ' +
 			'domain(hattrick.name), domain(hattrick.fm) {\n' +
 				cssTextCollection +
 			'\n}\n\n/*# sourceURL=ft.ft-module-css.css */\n';

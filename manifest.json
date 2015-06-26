@@ -261,12 +261,13 @@
 		],
 		"matches" : [
 			"*://*.hattrick.org/*",
-			"*://*.hattrick.fm/*",
 			"*://*.hattrick.ws/*",
-			"*://*.hattrick.name/*",
+			"*://*.hattrick.bz/*",
 			"*://*.hat-trick.net/*",
+			"*://*.hattrick.uol.com.br/*",
 			"*://*.hattrick.interia.pl/*",
-			"*://*.hattrick.uol.com.br/*"
+			"*://*.hattrick.name/*",
+			"*://*.hattrick.fm/*"
 		],
 		"run_at" : "document_start"
 	} ],
