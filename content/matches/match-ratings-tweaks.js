@@ -143,7 +143,7 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 		for (var i = 0, s; i < sectorOrder.length && (s = sectorOrder[i]); ++i) {
 			this.sectorAbbrs[i] = Foxtrick.L10n.getString('match.sector.' + s + '.abbr');
 		}
-		var l10n = [ 'change.title', 'probability.title', ];
+		var l10n = ['change.title', 'probability.title'];
 		for (var i = 0, s; i < l10n.length && (s = l10n[i]); ++i) {
 			this.l10n[s] = Foxtrick.L10n.getString('MatchRatingsTweaks.' + s);
 		}
@@ -158,6 +158,7 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 	 * @param	{document}	doc
 	 */
 	onChange: function(doc) {
+		var module = this;
 		if (!Foxtrick.Pages.Match.hasRatingsTabs(doc))
 			return;
 
@@ -191,23 +192,6 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 
 		Foxtrick.stopListenToChange(doc);
 
-		if (doChanges) {
-			var signedFloat = function(num) {
-				return num >= 0 ? '+' + num.toFixed(2) : num.toFixed(2);
-			};
-			var signedInt = function(num) {
-				return num >= 0 ? '+' + num : num;
-			};
-
-			var matchId = Foxtrick.Pages.Match.getId(doc);
-			var data = this.sectorRatings[matchId], dataExists = false;
-			if (typeof this.sectorRatings[matchId] === 'undefined') {
-				this.sectorRatings[matchId] = data = { values: [], pctgs: [] };
-			}
-			else
-				dataExists = true;
-
-		}
 		/**
 		 * get the ith numeric rating or opponent rating in that sector
 		 * opponent index is i + 1 if i is even, i - 1 if odd
@@ -220,15 +204,37 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 			var j = isOpponentRating ? (i % 2 ? i - 1 : i + 1) : i;
 			return parseInt(ratings[j].textContent, 10);
 		};
+		var signedFloat = function(num) {
+			return num >= 0 ? '+' + num.toFixed(2) : num.toFixed(2);
+		};
+		var signedInt = function(num) {
+			return num >= 0 ? '+' + num : num;
+		};
 
-		for (var i = 0; i < ratings.length; ++i) {
+		var matchId = Foxtrick.Pages.Match.getId(doc);
+		var data = this.sectorRatings[matchId], dataExists = false;
+		if (typeof this.sectorRatings[matchId] === 'undefined') {
+			this.sectorRatings[matchId] = data = { values: [], oldValues: [] };
+		}
+		else {
+			dataExists = true;
+		}
+
+		var SECTOR_RATINGS_ID = 'ft-sector-ratings-';
+		var SECTOR_RESULT_ID = 'ft-sector-result-';
+		var values = Foxtrick.map(function(nrRating, i, ratings) {
 			var num = getRating(ratings, i);
+			var value = num / 4 + 0.75;
+
 			var numOther = getRating(ratings, i, true);
 			var ratio = num / (num + numOther);
+			var pctg = Math.round(ratio * 100);
 
-			var box = ratings[i].parentNode;
+			var box = nrRating.parentNode;
+			box.id = SECTOR_RATINGS_ID + i;
 			var sector = box.parentNode;
 			var result = sector.getElementsByClassName('sectorResult')[0];
+			result.id = SECTOR_RESULT_ID + i;
 
 			if (doProb) {
 				var prob;
@@ -239,24 +245,66 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 				}
 				else {
 					// [post=15766691.221]
-					if (i < 6 && i % 2 || i > 7 && i % 2 == 0)
+					if (i < 6 && i % 2 || i > 7 && i % 2 === 0)
 						// doing attack
 						prob = Foxtrick.Predict.attack(ratio);
 					else
 						// doing defence
 						prob = Foxtrick.Predict.defence(ratio);
 				}
+				pctg = Math.round(prob * 100);
+
 				var orig = result.textContent;
-				result.textContent = Math.round(prob * 100) + '%';
-				Foxtrick.makeFeaturedElement(result, this);
-				result.setAttribute('aria-label', result.title =
-									this.l10n['probability.title'].replace(/%s/, orig));
+				result.textContent = pctg + '%';
+				Foxtrick.makeFeaturedElement(result, module);
+				result.title = module.l10n['probability.title'].replace(/%s/, orig);
+				result.setAttribute('aria-label', result.title);
 			}
 
-			if (doChanges) {
-				var calcBox = Foxtrick.createFeaturedElement(doc, this, 'div');
+			return {
+				value: value,
+				pctg: pctg,
+			};
+		}, ratings);
+
+		if (doChanges) {
+
+			var oldData = data.values;
+			var newData = values;
+
+			if (dataExists) {
+				// try to maintain previous changes if nothing changed
+				var same = Foxtrick.all(function(new_, i) {
+					var old = oldData[i];
+					return old.value == new_.value && old.pctg == new_.pctg;
+				}, newData);
+				if (same && data.oldValues.length) {
+					Foxtrick.log('reusing previous ratings');
+					oldData = data.oldValues;
+					newData = data.values;
+				}
+			}
+			else {
+				oldData = newData;
+			}
+
+			Foxtrick.forEach(function(sector, i) {
+				var old = oldData[i];
+
+				var value = sector.value;
+				var pctg = sector.pctg;
+
+				var box = doc.getElementById(SECTOR_RATINGS_ID + i);
+				var result = doc.getElementById(SECTOR_RESULT_ID + i);
+
+				if (!box || !result) {
+					Foxtrick.log(box, result);
+					Foxtrick.error('Broken layout in mrt');
+					return;
+				}
+
+				var calcBox = Foxtrick.createFeaturedElement(doc, module, 'div');
 				Foxtrick.addClass(calcBox, 'ft-mrt-rating-calc');
-				var value = num / 4 + 0.75;
 				calcBox.textContent = value.toFixed(2) + ' ';
 				var text = box.getElementsByClassName('teamTextRatings')[0];
 				box.insertBefore(calcBox, text);
@@ -265,33 +313,36 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 				var fullSector = sectorLabel.textContent;
 				sectorLabel.title = fullSector;
 				sectorLabel.setAttribute('aria-label', fullSector);
-				sectorLabel.textContent = this.sectorAbbrs[i];
-
-				var pctg = parseInt(result.textContent, 10);
+				sectorLabel.textContent = module.sectorAbbrs[i];
 
 				if (dataExists) {
-					var diff = value - data.values[i];
+					var diff = value - old.value;
+					var type;
 					if (diff) {
+						type = diff < 0 ? 'Lower' : 'Higher';
 						var valueDiff = signedFloat(diff);
-						var rDiff = Foxtrick.createFeaturedElement(doc, this, 'span');
-						Foxtrick.addClass(rDiff, 'ft-mrt-rating-diff ft-color' + (diff < 0 ? 'Lower' : 'Higher'));
+						var rDiff = Foxtrick.createFeaturedElement(doc, module, 'span');
+						Foxtrick.addClass(rDiff, 'ft-mrt-rating-diff ft-color' + type);
 						rDiff.textContent = '(' + valueDiff + ')';
-						rDiff.setAttribute('aria-label', rDiff.title = this.l10n['change.title']);
+						rDiff.title = module.l10n['change.title'];
+						rDiff.setAttribute('aria-label', rDiff.title);
 						calcBox.appendChild(rDiff);
 					}
-					diff = pctg - data.pctgs[i];
+					diff = pctg - old.pctg;
 					if (diff) {
+						type = diff < 0 ? 'Lower' : 'Higher';
 						var pctgDiff = signedInt(diff);
-						var sDiff = Foxtrick.createFeaturedElement(doc, this, 'div');
-						Foxtrick.addClass(sDiff, 'ft-mrt-sector-diff ft-color' + (diff < 0 ? 'Lower' : 'Higher'));
+						var sDiff = Foxtrick.createFeaturedElement(doc, module, 'div');
+						Foxtrick.addClass(sDiff, 'ft-mrt-sector-diff ft-color' + type);
 						sDiff.textContent = '(' + pctgDiff + '%)';
-						sDiff.setAttribute('aria-label', sDiff.title = this.l10n['change.title']);
+						sDiff.title = module.l10n['change.title'];
+						sDiff.setAttribute('aria-label', sDiff.title);
 						result.appendChild(sDiff);
 					}
 				}
-				data.values[i] = value;
-				data.pctgs[i] = pctg;
-			}
+			}, newData);
+			data.oldValues = oldData;
+			data.values = newData;
 		}
 
 		Foxtrick.startListenToChange(doc);
