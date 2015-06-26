@@ -23,6 +23,7 @@
 	]
 	,"requireParenthesesAroundIIFE": true
 	,"disallowEmptyBlocks": true
+	,"disallowKeywordsInComments": true
 	,"disallowYodaConditions": true
 	,"disallowFunctionDeclarations": true
 	,"disallowSpacesInCallExpression": true
