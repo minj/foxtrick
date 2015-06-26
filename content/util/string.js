@@ -390,6 +390,7 @@ Foxtrick.getForumUrl = function(postId) {
 	return Foxtrick.goToUrl(url);
 };
 
+/* jshint -W016 */
 /*
  * A JavaScript implementation of the Secure Hash Algorithm, SHA-1, as defined
  * in FIPS PUB 180-1
@@ -584,3 +585,4 @@ Foxtrick.hash = function(s) {
 
 	return rstr2hex(rstr_sha1(str2rstr_utf8(s)));
 };
+/* jshint +W016 */

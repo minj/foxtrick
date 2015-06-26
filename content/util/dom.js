@@ -651,7 +651,9 @@ Foxtrick.getNodes = function(parent) {
 	var ret = [];
 	var doc = parent.ownerDocument;
 	var win = doc.defaultView;
+	/* jshint -W016 */
 	var bitMask = win.NodeFilter.SHOW_TEXT | win.NodeFilter.SHOW_ELEMENT;
+	/* jshint +W016 */
 	var walker = doc.createTreeWalker(parent, bitMask, null, false);
 	var node;
 	while ((node = walker.nextNode())) {
