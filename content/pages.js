@@ -39,7 +39,8 @@ Foxtrick.ht_pages = {
 	                              '/MyHattrick/Inbox/(Default.aspx?|?)actionType=readMail',
 	'ticket'                    : '/MyHattrick/Inbox/(Default.aspx?|?)' +
 	                              'actionType=viewInfoTicket',
-	'forumSettings'             : '/MyHattrick/Preferences/ForumSettings.aspx',
+	'forumSettings'             : '/Forum/ForumUserPreferences.aspx|' +
+	                              '/MyHattrick/Preferences/ForumSettings.aspx',
 	'prefSettings'              : '/MyHattrick/Preferences/ProfileSettings.aspx',
 	'bookmarks'                 : '/MyHattrick/Bookmarks/(Default.aspx|?|$)',
 	'series'                    : '/World/Series/(Default.aspx|?|$)',
