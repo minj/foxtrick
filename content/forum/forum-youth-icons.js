@@ -37,6 +37,8 @@ Foxtrick.modules['ForumYouthIcons'] = {
 		var MAIN = Foxtrick.getMainIDPrefix();
 		var HMLtxtBody = MAIN + 'ucHattrickMLEditor_txtBody';
 		var HMLtxtRemLen = MAIN + 'ucHattrickMLEditor_txtRemLen';
+		var PrefsHMLtxtBody = MAIN + 'ucForumPreferences_ucHattrickMLEditor_txtBody';
+		var PrefsHMLtxtRemLen = MAIN + 'ucForumPreferences_ucHattrickMLEditor_txtRemLen';
 		var EMtxtBody = MAIN + 'ucEditorMain_txtBody';
 		var EMtxtRemLen = MAIN + 'ucEditorMain_txtRemLen';
 		var AEtxtBody = MAIN + 'ucActionEditor_txtBody';
@@ -120,8 +122,8 @@ Foxtrick.modules['ForumYouthIcons'] = {
 			// signatur
 			{
 				page: 'forumSettings',
-				textarea: HMLtxtBody,
-				counterfield: HMLtxtRemLen,
+				textarea: PrefsHMLtxtBody,
+				counterfield: PrefsHMLtxtRemLen,
 				length: 500,
 				add_quote: false,
 			},
