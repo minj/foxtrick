@@ -19,7 +19,7 @@ Foxtrick.modules['ForumLastPost'] = {
 	},
 
 	_change: function(doc) {
-		if (Foxtrick.isPage(doc, 'forum')) {
+		if (!Foxtrick.isPage(doc, 'forumSettings')) {
 			var perpage = Foxtrick.Prefs.getInt('perpage');
 			if (!perpage)
 				perpage = 20;
