@@ -150,12 +150,26 @@ Foxtrick.modules.FixLinks = {
 		}
 	},
 	parsePlayerStats: function(doc) {
+		var OPEN_NEW = Foxtrick.L10n.getString('button.open_new');
+		var iconListener = function() {
+			Foxtrick.newTab(this.getAttribute('data-url'));
+		};
+		var addLinkToMatchIcon = function(icon, url) {
+			// don't modify icon className so as not to interfere with player-stats-xp
+			Foxtrick.addClass(icon.parentNode, 'ft-link');
+			icon.title += '\n' + OPEN_NEW;
+			icon.setAttribute('data-url', url);
+			Foxtrick.onClick(icon, iconListener);
+		};
+
 		var id = this.getDefaultTeamId(doc);
 		var pid = Foxtrick.getParameterFromUrl(doc.location.href, 'PlayerID');
 		var links = doc.querySelectorAll('#matches a');
+		var icons = doc.querySelectorAll('#stats .iconMatchtype img');
 		for (var i = 0; i < links.length; i++) {
 			this.fixLineupLink(links[i], id);
 			this.addPlayerHighlight(links[i], pid);
+			addLinkToMatchIcon(icons[i], links[i].href);
 		}
 	},
 	parseH2HLatestMatches: function(doc) {
