@@ -201,6 +201,8 @@ Foxtrick.util.color.rgbToHex = function(r, g, b) {
 	if (Array.isArray(r))
 		return this.rgbToHex.apply(this, r);
 
+	/* jshint -W016 */
 	var rgb = b | (g << 8) | (r << 16);
+	/* jshint +W016 */
 	return '#' + rgb.toString(16);
 };
