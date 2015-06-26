@@ -125,7 +125,7 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 			tc.title = Foxtrick.L10n.getString('TransferCompare');
 			tc.href = player.nameLink.href.replace('/Club/Players/Player.aspx',
 			                                       '/Club/Transfers/TransferCompare.aspx');
-			player.TransferCompare = tc;
+			player.transferCompare = tc;
 
 			// playerstats
 			var ps = doc.createElement('a');
