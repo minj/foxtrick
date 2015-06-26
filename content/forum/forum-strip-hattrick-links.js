@@ -29,7 +29,7 @@ Foxtrick.modules['ForumStripHattrickLinks'] = {
 	run: function(doc) {
 		var URLs = [
 			{
-				reg: /\[link=https?:\/\/(www(\d+)?|stage)\.hattrick\.(org|fm|ws|interia\.pl)(\/.+?)\]/g,
+				reg: /\[link=https?:\/\/(www(\d+)?|stage)\.hattrick\.(org|ws|bz|uol\.com\.br|interia\.pl|name|fm)(\/.+?)\]/g,
 				repl: '[link=$4]'
 			},
 			// safari nightly

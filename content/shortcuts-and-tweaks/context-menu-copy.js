@@ -79,12 +79,13 @@ if (Foxtrick.platform != 'Android')
 				  function(request, sender, sendResponse) {
 					var documentUrlPatterns = [
 						'*://*.hattrick.org/*',
-						'*://*.hattrick.fm/*',
 						'*://*.hattrick.ws/*',
-						'*://*.hattrick.name/*',
+						'*://*.hattrick.bz/*',
 						'*://*.hat-trick.net/*',
+						'*://*.hattrick.uol.com.br/*',
 						'*://*.hattrick.interia.pl/*',
-						'*://*.hattrick.uol.com.br/*'
+						'*://*.hattrick.name/*',
+						'*://*.hattrick.fm/*',
 					];
 					if (request.req === 'updateContextMenu') {
 						// remove old entries
