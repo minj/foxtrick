@@ -285,12 +285,13 @@ a good reason to. They are for version bumps in Makefile.
 			<key>Allowed Domains</key>
 			<array>
 				<string>*.hattrick.org</string>
-				<string>*.hattrick.fm</string>
-				<string>*.hattrick.name</string>
 				<string>*.hattrick.ws</string>
+				<string>*.hattrick.bz</string>
 				<string>*.hat-trick.net</string>
-				<string>*.hattrick.interia.pl</string>
 				<string>*.hattrick.uol.com.br</string>
+				<string>*.hattrick.interia.pl</string>
+				<string>*.hattrick.name</string>
+				<string>*.hattrick.fm</string>
 				<string>*.foxtrick.org</string>
 				<string>*.hattrick-youthclub.org</string>
 				<string>www.fantamondi.it</string>

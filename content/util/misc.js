@@ -268,10 +268,11 @@ Foxtrick.isHtUrl = function(url) {
 	var htMatches = [
 		/^https?:\/\/(www\d{2}\.)?hattrick\.org(\/|$)/i,
 		/^https?:\/\/stage\.hattrick\.org(\/|$)/i,
-		/^https?:\/\/www\d{2}\.hattrick\.interia\.pl(\/|$)/i,
-		/^https?:\/\/www\d{2}\.hattrick\.uol\.com\.br(\/|$)/i,
 		/^https?:\/\/www\d{2}\.hattrick\.ws(\/|$)/i,
+		/^https?:\/\/www\d{2}\.hattrick\.bz(\/|$)/i,
 		/^https?:\/\/www\d{2}\.hat-trick\.net(\/|$)/i,
+		/^https?:\/\/www\d{2}\.hattrick\.uol\.com\.br(\/|$)/i,
+		/^https?:\/\/www\d{2}\.hattrick\.interia\.pl(\/|$)/i,
 		/^https?:\/\/www\d{2}\.hattrick\.name(\/|$)/i,
 		/^https?:\/\/www\d{2}\.hattrick\.fm(\/|$)/i,
 	];
