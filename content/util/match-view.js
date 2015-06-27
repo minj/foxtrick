@@ -62,6 +62,13 @@ Foxtrick.util.matchView.fillMatches = function(container, xml, errorText) {
 		}
 		return null;
 	};
+	var getMatchInfo = function(match) {
+		var type = match.getElementsByTagName('MatchType')[0].textContent;
+		var cupLvl = match.getElementsByTagName('CupLevel')[0].textContent;
+		var cupIdx = match.getElementsByTagName('CupLevelIndex')[0].textContent;
+		var cup = parseInt(cupLvl, 10) * 3 + parseInt(cupIdx, 10);
+		return type2info(type, cup);
+	};
 
 	var doc = container.ownerDocument;
 
@@ -80,27 +87,27 @@ Foxtrick.util.matchView.fillMatches = function(container, xml, errorText) {
 	var notPlayed = Foxtrick.filter(function(n) {
 		return n.getElementsByTagName('Status')[0].textContent != 'FINISHED';
 	}, matches);
-	var toAdd = [];
-	if (played.length > 0)
-		toAdd.push(played[played.length - 1]);
-	if (notPlayed.length > 0) {
-		toAdd.push(notPlayed[0]);
-		var nextmatchdate = xml.time('MatchDate', notPlayed[0]);
-	}
+
+	// get one previous and one future match
+	var toAdd = Foxtrick.map(function(type) {
+		// only supported types (no HTO)
+		return Foxtrick.nth(getMatchInfo, type);
+	}, [played, notPlayed]);
+
+	var nextmatchdate = toAdd[1] ? xml.time('MatchDate', toAdd[1]) : null;
+
 	for (var i = 0; i < toAdd.length; ++i) {
 		var match = toAdd[i];
-		var date = xml.time('MatchDate', match);
+		if (!match)
+			continue;
+
 		var matchId = match.getElementsByTagName('MatchID')[0].textContent;
 		var homeTeam = match.getElementsByTagName('HomeTeamName')[0].textContent;
 		var awayTeam = match.getElementsByTagName('AwayTeamName')[0].textContent;
 		var homeId = match.getElementsByTagName('HomeTeamID')[0].textContent;
 		var awayId = match.getElementsByTagName('AwayTeamID')[0].textContent;
 		var side = (teamId == homeId) ? 'home' : 'away';
-		var type = match.getElementsByTagName('MatchType')[0].textContent;
-		var cupLvl = match.getElementsByTagName('CupLevel')[0].textContent;
-		var cupIdx = match.getElementsByTagName('CupLevelIndex')[0].textContent;
-		var cup = parseInt(cupLvl, 10) * 3 + parseInt(cupIdx, 10);
-		var typeInfo = type2info(type, cup);
+		var typeInfo = getMatchInfo(match);
 		var status = match.getElementsByTagName('Status')[0].textContent;
 		if (status == 'FINISHED') {
 			var homeGoals = match.getElementsByTagName('HomeGoals')[0].textContent;
