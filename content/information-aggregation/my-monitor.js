@@ -9,11 +9,13 @@ Foxtrick.modules['MyMonitor'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES: ['myHattrick', 'dashboard', 'teamPage', 'youthOverview', 'national'],
 	OPTIONS: ['TeamIcons'],
+	RADIO_OPTIONS: ['ManualSort', 'SortByName', 'SortByID'],
 	CSS: Foxtrick.InternalPath + 'resources/css/my-monitor.css',
 	NICE: -1, // add it before links for consistent sidebar placement
 
 	run: function(doc) {
 		var module = this;
+		var SORT = Foxtrick.Prefs.getModuleValue('MyMonitor');
 		var getSavedTeams = function() {
 			var savedTeams = Foxtrick.Prefs.getString('MyMonitor.teams');
 			var teams = null;
@@ -36,6 +38,17 @@ Foxtrick.modules['MyMonitor'] = {
 					{ id: ntId, name: ntName, type: 'nt' },
 					{ id: u20Id, name: u20Name, type: 'nt' }
 				];
+			}
+			if (SORT) {
+				var sorter = function(a, b) {
+					if (SORT == 1){
+						return a.name.localeCompare(b.name);
+					}
+					else {
+						return parseInt(a.id, 10) - parseInt(b.id, 10);
+					}
+				};
+				teams.sort(sorter);
 			}
 			return teams;
 		};
@@ -229,6 +242,8 @@ Foxtrick.modules['MyMonitor'] = {
 								neworder.push(teams[i]);
 						}
 						setSavedTeams(neworder);
+						// ensure manual
+						Foxtrick.Prefs.setModuleValue('MyMonitor', 0);
 					};
 				};
 
