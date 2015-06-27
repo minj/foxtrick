@@ -204,16 +204,25 @@ Foxtrick.modules['MyMonitor'] = {
 				img.src = '../../Img/Icons/transparent.gif';
 				sortdiv.appendChild(img);
 
-				var move = function(direction, id) {
-					return function() {
+				var move = function(direction) {
+					return function(ev) {
+						ev.preventDefault();
+						ev.stopPropagation();
+
 						var teams = getSavedTeams(doc);
+						var frames = doc.getElementsByClassName('ft-monitor-frame');
+						frames = Foxtrick.toArray(frames);
+						var thisFrame = this.parentNode.parentNode.parentNode;
+						var parent = thisFrame.parentNode;
+
 						var neworder = [];
 						for (var i = 0; i < teams.length; ++i) {
-							if ((i != teams.length - 1)
-								&& ((direction == 'up' && teams[i + 1].id == id)
-									|| (direction == 'down' && teams[i].id == id))) {
+							if ((i != teams.length - 1) &&
+							    (direction == 'up' && frames[i + 1] == thisFrame ||
+							     direction == 'down' && frames[i] == thisFrame)) {
 								neworder.push(teams[i + 1]);
 								neworder.push(teams[i]);
+								parent.insertBefore(frames[i + 1], frames[i]);
 								i++;
 							}
 							else
