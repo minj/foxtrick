@@ -13,6 +13,7 @@ Foxtrick.modules['MyMonitor'] = {
 	NICE: -1, // add it before links for consistent sidebar placement
 
 	run: function(doc) {
+		var module = this;
 		var getSavedTeams = function() {
 			var savedTeams = Foxtrick.Prefs.getString('MyMonitor.teams');
 			var teams = null;
@@ -52,7 +53,7 @@ Foxtrick.modules['MyMonitor'] = {
 		};
 		// display my monitor on myhattrick=news and dashboard page
 		var display = function() {
-			var mydiv = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.MyMonitor, 'div');
+			var mydiv = Foxtrick.createFeaturedElement(doc, module, 'div');
 			mydiv.id = 'ft-monitor-div';
 			if (Foxtrick.isPage(doc, 'myHattrick')) {
 				var h1 = doc.querySelector('#mainBody h1');
@@ -70,7 +71,7 @@ Foxtrick.modules['MyMonitor'] = {
 			mydiv.appendChild(header);
 
 			// line containing add/remove links
-			var addRemove = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.MyMonitor, 'div');
+			var addRemove = Foxtrick.createFeaturedElement(doc, module, 'div');
 			addRemove.id = 'ft-monitor-add-remove';
 			mydiv.appendChild(addRemove);
 
@@ -136,7 +137,7 @@ Foxtrick.modules['MyMonitor'] = {
 			addRemove.appendChild(removeLink);
 
 			// container for the teams
-			var container = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.MyMonitor, 'div');
+			var container = Foxtrick.createFeaturedElement(doc, module, 'div');
 			container.id = 'ft-monitor-container';
 			mydiv.appendChild(container);
 
@@ -321,7 +322,7 @@ Foxtrick.modules['MyMonitor'] = {
 			}
 
 
-			var container = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.MyMonitor, 'div');
+			var container = Foxtrick.createFeaturedElement(doc, module, 'div');
 			container.id = 'ft-monitor-sidebar-box-container';
 			// link to add team
 			var addLink = doc.createElement('a');
