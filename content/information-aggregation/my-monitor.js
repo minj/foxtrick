@@ -83,6 +83,30 @@ Foxtrick.modules['MyMonitor'] = {
 			header.textContent = Foxtrick.L10n.getString('MyMonitor.header');
 			mydiv.appendChild(header);
 
+			// automatic sorters
+			var sortDiv = Foxtrick.createFeaturedElement(doc, module, 'div');
+			sortDiv.id = 'ft-monitor-sort';
+			Foxtrick.addClass(sortDiv, 'float_left');
+			mydiv.appendChild(sortDiv);
+
+			var sortAndReload = function(order) {
+				return function() {
+					Foxtrick.Prefs.setModuleValue('MyMonitor', order);
+					this.ownerDocument.location.reload();
+				};
+			};
+
+			var addSortLink = function(id, value) {
+				var sortLink = doc.createElement('a');
+				sortLink.id = 'ft-monitor-sort-' + id;
+				Foxtrick.addClass(sortLink, 'ft-link');
+				sortLink.textContent = Foxtrick.L10n.getString('module.MyMonitor.' + id + '.desc');
+				Foxtrick.onClick(sortLink, sortAndReload(value));
+				sortDiv.appendChild(sortLink);
+				sortDiv.appendChild(doc.createTextNode(' '));
+			};
+			Foxtrick.forEach(addSortLink, module.RADIO_OPTIONS);
+
 			// line containing add/remove links
 			var addRemove = Foxtrick.createFeaturedElement(doc, module, 'div');
 			addRemove.id = 'ft-monitor-add-remove';
