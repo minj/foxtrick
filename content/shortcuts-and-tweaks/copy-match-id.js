@@ -28,7 +28,7 @@ Foxtrick.modules['CopyMatchID'] = {
 		};
 
 		var mainBody = doc.getElementById('mainBody');
-		var matches = '.' + Foxtrick.Pages.Matches.Types.join(', .');
+		var matches = '.' + Foxtrick.Pages.Matches.IconTypes.join(', .');
 		var count = 0;
 
 		var images = mainBody.querySelectorAll(matches);

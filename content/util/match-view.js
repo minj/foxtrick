@@ -123,6 +123,7 @@ Foxtrick.util.matchView.fillMatches = function(container, xml, errorText) {
 
 			var row = doc.createElement('tr');
 
+			var type = match.getElementsByTagName('MatchType')[0].textContent;
 			var matchTypeCell = doc.createElement('td');
 			if (typeInfo) {
 				var typeImg = doc.createElement('img');
@@ -135,6 +136,7 @@ Foxtrick.util.matchView.fillMatches = function(container, xml, errorText) {
 
 			var matchCell = doc.createElement('td');
 			var matchLink = doc.createElement('a');
+			matchLink.setAttribute('data-match-type', type);
 			matchLink.href = '/Club/Matches/Match.aspx?matchID=' + matchId
 				+ (isYouth ? '&SourceSystem=Youth' : '&SourceSystem=Hattrick');
 			// get in one line for standard theme while won't fit in one
@@ -184,6 +186,7 @@ Foxtrick.util.matchView.fillMatches = function(container, xml, errorText) {
 				}
 			}
 			else {
+				matchLink.setAttribute('data-live', '');
 				// add HT-Live
 				var liveLink = doc.createElement('a');
 				liveLink.href = '/Club/Matches/Live.aspx?actionType=addMatch&matchID=' + matchId
