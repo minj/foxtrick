@@ -10,7 +10,7 @@ Foxtrick.modules['ForumPreview'] = {
 	PAGES: [
 		'forumWritePost', 'messageWritePost', 'guestbook', 'announcements',
 		'newsLetter', 'mailNewsLetter', 'ntNewsLetter',
-		'forumSettings', 'forumModWritePost'
+		'forumSettings', 'forumModWritePost', 'ticket',
 	],
 	NICE: 1, // after ForumYouthIcons
 	CSS: Foxtrick.InternalPath + 'resources/css/forum-preview.css',
