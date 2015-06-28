@@ -110,6 +110,7 @@ Foxtrick.modules['MyMonitor'] = {
 			// line containing add/remove links
 			var addRemove = Foxtrick.createFeaturedElement(doc, module, 'div');
 			addRemove.id = 'ft-monitor-add-remove';
+			Foxtrick.addClass(addRemove, 'float_right');
 			mydiv.appendChild(addRemove);
 
 			// link for adding a team
