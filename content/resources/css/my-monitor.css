@@ -7,6 +7,18 @@
 	clear: both;
 }
 
+#ft-monitor-live-links {
+	background-color: #EDF1ED;
+	border-bottom: solid 2px #DCE0DC;
+}
+#ft-monitor-live-links td {
+	vertical-align: middle !important;
+}
+#ft-monitor-live-info {
+	color: red;
+	width: 100%;
+}
+
 .ft-monitor-frame {
 	width: 48%;
 	margin: 0 1%;
