@@ -10,7 +10,7 @@ Foxtrick.modules['ForumYouthIcons'] = {
 	PAGES: [
 		'forumWritePost', 'messageWritePost', 'guestbook',
 		'announcements', 'forumSettings', 'newsLetter', 'mailNewsLetter', 'ntNewsLetter',
-		'forumModWritePost', 'ticket'
+		'forumModWritePost', 'ticket', 'helpContact',
 	],
 	OPTIONS: [
 		'q', 'user_id', 'kit_id', 'article_id', 'line_br', 'clock', 'spoiler',
@@ -114,6 +114,14 @@ Foxtrick.modules['ForumYouthIcons'] = {
 				page: 'ticket',
 				textarea: AEtxtBody,
 				counterfield: AEtxtRemLen,
+				length: 2950,
+				add_quote: false,
+			},
+			// contact
+			{
+				page: 'helpContact',
+				textarea: HMLtxtBody,
+				counterfield: HMLtxtRemLen,
 				length: 2950,
 				add_quote: false,
 			},
