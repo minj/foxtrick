@@ -922,26 +922,8 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			Foxtrick.Prefs.setString('StaminaData.' + ownId, JSON.stringify(data));
 	},
 
-	onChange: function(doc) {
-		if (!Foxtrick.Pages.Match.hasRatingsTabs(doc))
-			return;
-
-		var isYouth = Foxtrick.Pages.Match.isYouth(doc);
-
-		Foxtrick.stopListenToChange(doc);
-
-		this.addSplitLineupToggle(doc);
-		var playerDivs = doc.querySelectorAll('div.playerDiv');
-		if (playerDivs.length &&
-		    playerDivs[0].getElementsByClassName('ft-indicator-wrapper').length)
-			// been here before
-			return;
-
-		if (Foxtrick.Prefs.isModuleOptionEnabled('MatchLineupTweaks', 'SplitLineup'))
-			this.splitLineup(doc);
-
-		for (var i = 0; i < playerDivs.length; i++) {
-			var player = playerDivs[i];
+	flipStaminaBar: function(doc, playerDivs) {
+		Foxtrick.forEach(function(player) {
 			var ftdiv = Foxtrick.createFeaturedElement(doc, this, 'div');
 			Foxtrick.addClass(ftdiv, 'ft-indicator-wrapper');
 			var staminaDiv = player.querySelector('div.sectorShirt + div > div');
@@ -961,7 +943,28 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 				ftdiv.appendChild(staminaSpan);
 			}
 			player.appendChild(ftdiv);
-		}
+		}, playerDivs);
+	},
+
+	onChange: function(doc) {
+		if (!Foxtrick.Pages.Match.hasRatingsTabs(doc))
+			return;
+
+		var isYouth = Foxtrick.Pages.Match.isYouth(doc);
+
+		Foxtrick.stopListenToChange(doc);
+
+		this.addSplitLineupToggle(doc);
+		var playerDivs = doc.querySelectorAll('div.playerDiv');
+		if (playerDivs.length &&
+		    playerDivs[0].getElementsByClassName('ft-indicator-wrapper').length)
+			// been here before
+			return;
+
+		if (Foxtrick.Prefs.isModuleOptionEnabled('MatchLineupTweaks', 'SplitLineup'))
+			this.splitLineup(doc);
+
+		this.flipStaminaBar(doc, playerDivs);
 
 		// add ft-stars="N" to ratings spans for possible styling
 		var ratings = doc.querySelectorAll('div.playerRating > span');
