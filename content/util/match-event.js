@@ -38,6 +38,7 @@ Foxtrick.util.matchEvent.eventIcons = {
 	40: 'possession',
 	41: 'best_player',
 	42: 'worst_player',
+	46: 'hattrick',
 	47: 'possession',
 	55: { team: ['goal', 'se_technical'] },
 	56: 'goal',
@@ -51,6 +52,8 @@ Foxtrick.util.matchEvent.eventIcons = {
 	70: 'extraTime',
 	71: 'penaltyShootOut',
 	73: 'tossing_coin',
+	80: 'captain',
+	81: 'setPieces',
 	90: 'bruised',
 	91: { team: ['injured', 'substitution'] },
 	92: { team: ['injured', 'substitution'] },
@@ -211,6 +214,7 @@ Foxtrick.util.matchEvent.eventIcons = {
 Foxtrick.util.matchEvent.eventIconDefinition = {
 	best_player: '/Img/Matches/star_yellow.png',
 	bruised: '/Img/Icons/bruised.gif',
+	captain: '/Club/Matches/images/captain.png',
 	change_tactics: '/Img/Matches/behaviorchange.gif',
 	confusion: '/Club/Matches/images/confusion.png',
 	corner: Foxtrick.InternalPath + 'resources/img/matches/corner.png',
@@ -221,6 +225,7 @@ Foxtrick.util.matchEvent.eventIconDefinition = {
 	goal_C: Foxtrick.InternalPath + 'resources/img/matches/ball_C.png',
 	goal_L: Foxtrick.InternalPath + 'resources/img/matches/ball_L.png',
 	goal_R: Foxtrick.InternalPath + 'resources/img/matches/ball_R.png',
+	hattrick: '/favicon.ico',
 	indirect: Foxtrick.InternalPath + 'resources/img/matches/indirect.png',
 	injured: '/Img/Icons/injured.gif',
 	injured_leaves: ['/Img/Icons/injured.gif', '/Img/Matches/substitution.gif'],
@@ -267,6 +272,7 @@ Foxtrick.util.matchEvent.eventIconDefinition = {
 	se_unpredictable_negative: function() {
 		return Foxtrick.getSpecialtyImagePathFromNumber(4, true);
 	},
+	setPieces: '/Club/Matches/images/set_Pieces.png',
 	sub_out: '/Img/Matches/sub_out.gif',
 	substitution: '/Img/Matches/substitution.gif',
 	swap: '/Img/Matches/player_swap.gif',
