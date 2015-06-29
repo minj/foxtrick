@@ -558,13 +558,21 @@ Foxtrick.util.matchEvent.getOtherTeamIcons = function(evnt) {
 	return Foxtrick.util.matchEvent.getEventIcons(evnt, 'other');
 };
 
+Foxtrick.util.matchEvent.getGeneralIconsHome = function(evnt) {
+	return Foxtrick.util.matchEvent.getEventIcons(evnt, 'home');
+};
+
+Foxtrick.util.matchEvent.getGeneralIconsAway = function(evnt) {
+	return Foxtrick.util.matchEvent.getEventIcons(evnt, 'away');
+};
+
 Foxtrick.util.matchEvent.getHomeIcons = function(evnt) {
 	if (Foxtrick.util.matchEvent.isHomeEvent(evnt))
 		return Foxtrick.util.matchEvent.getEventTeamIcons(evnt);
 	else if (Foxtrick.util.matchEvent.isAwayEvent(evnt))
 		return Foxtrick.util.matchEvent.getOtherTeamIcons(evnt);
 	else
-		return ['transparent'];
+		return Foxtrick.util.matchEvent.getGeneralIconsHome(evnt);
 };
 
 Foxtrick.util.matchEvent.getAwayIcons = function(evnt) {
@@ -573,7 +581,7 @@ Foxtrick.util.matchEvent.getAwayIcons = function(evnt) {
 	else if (Foxtrick.util.matchEvent.isHomeEvent(evnt))
 		return Foxtrick.util.matchEvent.getOtherTeamIcons(evnt);
 	else
-		return ['transparent'];
+		return Foxtrick.util.matchEvent.getGeneralIconsAway(evnt);
 };
 
 
