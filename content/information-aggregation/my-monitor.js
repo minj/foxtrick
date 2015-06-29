@@ -321,10 +321,6 @@ Foxtrick.modules['MyMonitor'] = {
 				// team header
 				var header = doc.createElement('h3');
 				frame.appendChild(header);
-				// link containing team name
-				var nameLink = doc.createElement('a');
-				buildLink(team, nameLink);
-
 				if (Foxtrick.Prefs.isModuleOptionEnabled('MyMonitor', 'TeamIcons')) {
 					var height = '24';
 					if (team.logo) {
@@ -352,7 +348,13 @@ Foxtrick.modules['MyMonitor'] = {
 					header.appendChild(img);
 				}
 
-				header.appendChild(nameLink);
+				var teamCont = doc.createElement('div');
+				Foxtrick.addClass(teamCont, 'ft-monitor-team-name');
+				header.appendChild(teamCont);
+				// link containing team name
+				var nameLink = doc.createElement('a');
+				buildLink(team, nameLink);
+				teamCont.appendChild(nameLink);
 
 				var sortdiv = doc.createElement('div');
 				sortdiv.className = 'ft_sort';

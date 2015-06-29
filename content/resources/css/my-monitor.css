@@ -44,6 +44,11 @@
 	/*display:none; hiding controls is against accessibility*/
 }
 
+.ft-monitor-team-name {
+	width: 70%;
+	display: inline-block;
+}
+
 .ft-monitor-remove {
 	background-image: url("chrome://foxtrick/content/resources/img/cross_small.png");
 	width: 12px;
