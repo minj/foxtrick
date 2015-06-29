@@ -26,8 +26,6 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 	run: function(doc) {
 		// run change now as sometimes we are too slow to init the listener
 		// causing display to be broken on first load
-		// this.change(doc);
-		//this.onChange(doc);
 		this.registerListener(doc);
 
 		if (!Foxtrick.Pages.Match.hasRatingsTabs(doc))
@@ -186,7 +184,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 				});
 				if (otherId) {
 					// highlight other player on click
-					Foxtrick.onClick(subDiv, function(ev) {
+					Foxtrick.onClick(subDiv, function() {
 						highlightSub(otherId);
 					});
 				}
@@ -252,7 +250,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		doc.getElementById('playersField').appendChild(awaySpan);
 
 	},
-	//adds apecialty icons for all players, on field and on bench
+	// adds apecialty icons for all players, on field and on bench
 	runSpecialties: function(doc) {
 		if (!Foxtrick.Pages.Match.getHomeTeam(doc))
 			return; // we're not ready yet
@@ -649,7 +647,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 				});
 				newDiv.appendChild(star5container);
 			}
-			for (var j = 0; j < stars2; j++) {
+			for (var k = 0; k < stars2; k++) {
 				Foxtrick.addImage(doc, smallDiv, {
 					src: Foxtrick.InternalPath + 'resources/img/matches/2stars' + color + '.png',
 					alt: '2*'
@@ -700,7 +698,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			alt: alt,
 		});
 		Foxtrick.onClick(div, (function(module) {
-			return function(e) {
+			return function() {
 				Foxtrick.stopListenToChange(doc);
 				module.showAway = !module.showAway;
 				module.hideOtherTeam(doc);
@@ -727,8 +725,8 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 				Foxtrick.addClass(hideDivs[i], 'hidden');
 		}
 		var showDivs = doc.querySelectorAll('div.playerBox' + (this.showAway ? 'Away' : 'Home'));
-		for (var i = 0; i < showDivs.length; i++) {
-			Foxtrick.removeClass(showDivs[i], 'hidden');
+		for (var j = 0; j < showDivs.length; j++) {
+			Foxtrick.removeClass(showDivs[j], 'hidden');
 		}
 		var f = doc.getElementById('playersField');
 		if (undo)
@@ -765,6 +763,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			debug = true;
 		}
 
+		/* jshint ignore:start */
 		var getStamina = function(lastEnergy, checkpoints, isRested) {
 			// these formulas are derrived from the formula used in match-simulator
 			// currently they seem to have low accuracy :(
@@ -788,13 +787,15 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			}
 			return stamina;
 		};
+		var hasRest = function(from, to) {
+			return from < 45 && to > 45;
+		};
+		/* jshint ignore:end */
+
 		var getCheckpointCount = function(from, to) {
 			var ct = Foxtrick.Math.div(to - 1, 5) - Foxtrick.Math.div(from - 1, 5) +
 				(from > 0 ? 0 : 1) - (to > 0 ? 0 : 1);
 			return ct;
-		};
-		var hasRest = function(from, to) {
-			return from < 45 && to > 45;
 		};
 		var findEvent = function(minute) {
 			for (var i = 0, event; i < timeline.length && (event = timeline[i]); ++i) {
@@ -965,9 +966,9 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 
 		// add ft-stars="N" to ratings spans for possible styling
 		var ratings = doc.querySelectorAll('div.playerRating > span');
-		for (var i = 0; i < ratings.length; i++) {
-			var count = Number(ratings[i].textContent);
-			ratings[i].setAttribute('ft-stars', count);
+		for (var j = 0; j < ratings.length; j++) {
+			var count = Number(ratings[j].textContent);
+			ratings[j].setAttribute('ft-stars', count);
 		}
 
 		var hId = doc.location.search.match(/HighlightPlayerID=(\d+)/i);
