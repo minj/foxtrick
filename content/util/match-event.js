@@ -195,6 +195,14 @@ Foxtrick.util.matchEvent.eventIcons = {
 	304: { team: ['se_powerful_negative', 'weather_sunny'] },
 	305: { team: ['se_quick_negative', 'weather_rainy'] },
 	306: { team: ['se_quick_negative', 'weather_sunny'] },
+	331: 'pressing',
+	332: 'counter_attack',
+	333: 'aim',
+	334: 'aow',
+	335: 'creative',
+	336: 'longshot',
+	343: 'aim',
+	344: 'aow',
 	350: 'substitution',
 	351: 'substitution',
 	352: 'substitution',
@@ -212,6 +220,8 @@ Foxtrick.util.matchEvent.eventIcons = {
 	599: 'result'
 };
 Foxtrick.util.matchEvent.eventIconDefinition = {
+	aow: Foxtrick.InternalPath + 'resources/img/matches/aow.png',
+	aim: Foxtrick.InternalPath + 'resources/img/matches/aim.png',
 	best_player: '/Img/Matches/star_yellow.png',
 	bruised: '/Img/Icons/bruised.gif',
 	captain: '/Club/Matches/images/captain.png',
@@ -219,6 +229,7 @@ Foxtrick.util.matchEvent.eventIconDefinition = {
 	confusion: '/Club/Matches/images/confusion.png',
 	corner: Foxtrick.InternalPath + 'resources/img/matches/corner.png',
 	counter_attack: Foxtrick.InternalPath + 'resources/img/matches/ca.png',
+	creative: Foxtrick.InternalPath + 'resources/img/matches/pc.png',
 	experience: Foxtrick.InternalPath + 'resources/img/matches/exp.png',
 	formation: '/Img/Matches/formation.gif',
 	goal: Foxtrick.InternalPath + 'resources/img/matches/ball.png',
