@@ -9,7 +9,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.MATCHES,
 	PAGES: ['match', 'matchesLive'],
 	OPTIONS: [
-		'DisplayTeamNameOnField', 'ShowSpecialties',
+		'DisplayTeamNameOnField', 'ShowSpecialties', 'ShowNumbers',
 		'ConvertStars',
 		'SplitLineup',
 		'ShowFaces', 'StarCounter', 'StaminaCounter', 'HighlighEventPlayers',
@@ -18,7 +18,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		'GatherStaminaData',
 	],
 	OPTIONS_CSS: [
-		null, null,
+		null, null, Foxtrick.InternalPath + 'resources/css/match-lineup-numbers.css',
 		Foxtrick.InternalPath + 'resources/css/match-lineup-convert-stars.css',
 		null,
 	],
@@ -331,6 +331,56 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 
 		addSpecialtiesByTeamId(homeTeamId, homePlayerLinks);
 		addSpecialtiesByTeamId(awayTeamId, awayPlayerLinks);
+	},
+	// adds player numbers for all players, on field and on bench
+	runNumbers: function(doc) {
+		var module = this;
+		if (!Foxtrick.Pages.Match.getHomeTeam(doc))
+			return; // we're not ready yet
+
+		var homeTeamId = Foxtrick.Pages.Match.getHomeTeamId(doc);
+		var awayTeamId = Foxtrick.Pages.Match.getAwayTeamId(doc);
+		var isYouth = Foxtrick.Pages.Match.isYouth(doc);
+		var param = (isYouth ? 'youth' : '') + 'playerid';
+
+		var homeQuery =
+			'.playersField > div.playerBoxHome > div > a, ' +
+			'#playersBench > div#playersBenchHome > div.playerBoxHome > div > a';
+		var homePlayerLinks = doc.querySelectorAll(homeQuery);
+
+		var awayQuery =
+			'.playersField > div.playerBoxAway > div > a, #playersBench > ' +
+			'div#playersBenchAway > div.playerBoxAway > div > a';
+		var awayPlayerLinks = doc.querySelectorAll(awayQuery);
+
+		var addByTeamId = function(teamId, players) {
+			if (teamId === null)
+				return;
+
+			Foxtrick.Pages.Players.getPlayerList(doc,
+			  function(playerInfo) {
+				if (!playerInfo || !playerInfo.length)
+					return;
+
+				Foxtrick.stopListenToChange(doc);
+				Foxtrick.forEach(function(link) {
+					link.title = link.textContent;
+					var id = Math.abs(Foxtrick.getParameterFromUrl(link.href, param));
+					var player = Foxtrick.Pages.Players.getPlayerFromListById(playerInfo, id);
+					if (player && player.number) {
+						var node = link.parentNode.parentNode;
+						var span = Foxtrick.createFeaturedElement(doc, module, 'span');
+						Foxtrick.addClass(span, 'ft-mlt-player-nr');
+						span.textContent = player.number;
+						node.insertBefore(span, node.firstChild);
+					}
+				}, players);
+				Foxtrick.startListenToChange(doc);
+			}, { teamId: teamId, currentSquad: true, isYouth: isYouth });
+		};
+
+		addByTeamId(homeTeamId, homePlayerLinks);
+		addByTeamId(awayTeamId, awayPlayerLinks);
 	},
 	runMissing: function(doc) {
 		if (!Foxtrick.Pages.Match.getHomeTeam(doc))
@@ -1011,6 +1061,8 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		Foxtrick.startListenToChange(doc);
 
 		//add async shit last
+		if (Foxtrick.Prefs.isModuleOptionEnabled('MatchLineupTweaks', 'ShowNumbers'))
+			this.runNumbers(doc);
 
 		if (Foxtrick.Prefs.isModuleOptionEnabled('MatchLineupTweaks', 'ShowSpecialties'))
 			this.runSpecialties(doc);
