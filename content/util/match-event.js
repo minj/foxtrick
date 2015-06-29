@@ -31,22 +31,39 @@ Foxtrick.util.matchEvent = {};
 Foxtrick.util.matchEvent.eventIcons = {
 	20: 'formation',
 	21: 'formation',
+	22: 'kids',
+	25: { away: ['derby'] },
+	26: { home: ['neutral'] },
+	27: { away: ['home'] },
+	30: { home: ['weather_rainy'] },
+	31: { home: ['weather_cloudy'] },
+	32: { home: ['weather_fair'] },
+	33: { home: ['weather_sunny'] },
 	40: 'possession',
 	41: 'best_player',
 	42: 'worst_player',
+	46: 'hattrick',
 	47: 'possession',
 	55: { team: ['goal', 'se_technical'] },
 	56: 'goal',
 	57: 'goal',
 	58: 'miss',
 	59: 'miss',
+	60: 'underestimation',
 	61: 'confusion',
 	62: 'pullback',
+	63: 'underest_gone',
+	64: 'reorganize',
 	65: 'nerves',
+	66: 'underest_decr',
+	67: 'underest_decr',
 	68: 'pressing',
+	69: 'underest_gone',
 	70: 'extraTime',
 	71: 'penaltyShootOut',
 	73: 'tossing_coin',
+	80: 'captain',
+	81: 'setPieces',
 	90: 'bruised',
 	91: { team: ['injured', 'substitution'] },
 	92: { team: ['injured', 'substitution'] },
@@ -182,12 +199,20 @@ Foxtrick.util.matchEvent.eventIcons = {
 	287: { team: ['miss', 'longshot'] },
 	288: { team: ['miss', 'longshot'] },
 	289: { team: ['se_quick_negative'], other: ['se_quick'] },
-	301: { team: ['se_technical_negative', 'rain'] },
-	302: { team: ['se_powerful', 'rain'] },
-	303: { team: ['se_technical', 'sun'] },
-	304: { team: ['se_powerful_negative', 'sun'] },
-	305: { team: ['se_quick_negative', 'rain'] },
-	306: { team: ['se_quick_negative', 'sun'] },
+	301: { team: ['se_technical_negative', 'weather_rainy'] },
+	302: { team: ['se_powerful', 'weather_rainy'] },
+	303: { team: ['se_technical', 'weather_sunny'] },
+	304: { team: ['se_powerful_negative', 'weather_sunny'] },
+	305: { team: ['se_quick_negative', 'weather_rainy'] },
+	306: { team: ['se_quick_negative', 'weather_sunny'] },
+	331: 'pressing',
+	332: 'counter_attack',
+	333: 'aim',
+	334: 'aow',
+	335: 'creative',
+	336: 'longshot',
+	343: 'aim',
+	344: 'aow',
 	350: 'substitution',
 	351: 'substitution',
 	352: 'substitution',
@@ -197,29 +222,50 @@ Foxtrick.util.matchEvent.eventIcons = {
 	370: 'swap',
 	371: 'swap',
 	372: 'swap',
+	500: { home: ['stop'], away: ['stop'] },
+	501: { home: ['stop'] },
+	502: { away: ['stop'] },
+	503: { home: ['stop'], away: ['stop'] },
+	504: { home: ['stop'] },
+	505: { away: ['stop'] },
 	510: 'yellow_card',
 	511: 'yellow_card',
 	512: { team: ['yellow_card', 'red_card'] },
 	513: { team: ['yellow_card', 'red_card'] },
 	514: 'red_card',
-	599: 'result'
+	599: 'result',
+	700: 'thumb_down',
+	701: 'thumb_up',
+	702: 'fan',
+	703: 'fire',
+	704: 'thumb_up',
 };
 Foxtrick.util.matchEvent.eventIconDefinition = {
+	aow: Foxtrick.InternalPath + 'resources/img/matches/aow.png',
+	aim: Foxtrick.InternalPath + 'resources/img/matches/aim.png',
 	best_player: '/Img/Matches/star_yellow.png',
 	bruised: '/Img/Icons/bruised.gif',
+	captain: '/Club/Matches/images/captain.png',
 	change_tactics: '/Img/Matches/behaviorchange.gif',
 	confusion: '/Club/Matches/images/confusion.png',
 	corner: Foxtrick.InternalPath + 'resources/img/matches/corner.png',
 	counter_attack: Foxtrick.InternalPath + 'resources/img/matches/ca.png',
+	creative: Foxtrick.InternalPath + 'resources/img/matches/pc.png',
+	derby: Foxtrick.InternalPath + 'resources/img/matches/derby.png',
 	experience: Foxtrick.InternalPath + 'resources/img/matches/exp.png',
+	fan: Foxtrick.InternalPath + 'resources/img/fan.png',
+	fire: Foxtrick.InternalPath + 'resources/img/fire.png',
 	formation: '/Img/Matches/formation.gif',
 	goal: Foxtrick.InternalPath + 'resources/img/matches/ball.png',
 	goal_C: Foxtrick.InternalPath + 'resources/img/matches/ball_C.png',
 	goal_L: Foxtrick.InternalPath + 'resources/img/matches/ball_L.png',
 	goal_R: Foxtrick.InternalPath + 'resources/img/matches/ball_R.png',
+	hattrick: '/favicon.ico',
+	home: Foxtrick.InternalPath + 'resources/img/matches/home.png',
 	indirect: Foxtrick.InternalPath + 'resources/img/matches/indirect.png',
 	injured: '/Img/Icons/injured.gif',
 	injured_leaves: ['/Img/Icons/injured.gif', '/Img/Matches/substitution.gif'],
+	kids: Foxtrick.InternalPath + 'resources/img/matches/kids.png',
 	left_wing: '/Img/Matches/sub_in.gif',
 	longshot: Foxtrick.InternalPath + 'resources/img/matches/longshot.png',
 	middle: Foxtrick.InternalPath + 'resources/img/matches/middle.png',
@@ -228,11 +274,12 @@ Foxtrick.util.matchEvent.eventIconDefinition = {
 	miss_L: Foxtrick.InternalPath + 'resources/img/matches/red_ball_L.png',
 	miss_R: Foxtrick.InternalPath + 'resources/img/matches/red_ball_R.png',
 	nerves: '/Club/Matches/images/nerves.png',
+	neutral: Foxtrick.InternalPath + 'resources/img/matches/neutral.png',
 	penalty: Foxtrick.InternalPath + 'resources/img/matches/penalty.png',
 	pressing: Foxtrick.InternalPath + 'resources/img/matches/press.png',
 	pullback: '/Club/Matches/images/pullback.png',
-	rain: '/Club/Matches/images/weather0.png',
 	red_card: '/Img/Icons/red_card.gif',
+	reorganize: Foxtrick.InternalPath + 'resources/img/matches/reorg.png',
 	right_wing: '/Img/Matches/sub_out.gif',
 	se_head_specialist: function() {
 		return Foxtrick.getSpecialtyImagePathFromNumber(5, false);
@@ -264,13 +311,24 @@ Foxtrick.util.matchEvent.eventIconDefinition = {
 	se_unpredictable_negative: function() {
 		return Foxtrick.getSpecialtyImagePathFromNumber(4, true);
 	},
+	setPieces: '/Club/Matches/images/set_Pieces.png',
+	stop: Foxtrick.InternalPath + 'resources/img/stop.png',
 	sub_out: '/Img/Matches/sub_out.gif',
 	substitution: '/Img/Matches/substitution.gif',
-	sun: '/Club/Matches/images/weather3.png',
 	swap: '/Img/Matches/player_swap.gif',
+	thumb_down: Foxtrick.InternalPath + 'resources/img/thumb_down.png',
+	thumb_up: Foxtrick.InternalPath + 'resources/img/thumb_up.png',
 	tired: Foxtrick.InternalPath + 'resources/img/matches/tired.png',
 	tossing_coin: Foxtrick.InternalPath + 'resources/img/matches/coin.png',
 	transparent: Foxtrick.InternalPath + 'resources/img/matches/trans_14x14.png',
+	trophy: Foxtrick.InternalPath + 'resources/img/trophy.png',
+	underestimation: Foxtrick.InternalPath + 'resources/img/matches/underest.png',
+	underest_decr: Foxtrick.InternalPath + 'resources/img/matches/underest_decr.png',
+	underest_gone: Foxtrick.InternalPath + 'resources/img/matches/underest_gone.png',
+	weather_cloudy: '/Club/Matches/images/weather1.png',
+	weather_fair: '/Club/Matches/images/weather2.png',
+	weather_rainy: '/Club/Matches/images/weather0.png',
+	weather_sunny: '/Club/Matches/images/weather3.png',
 	whistle: Foxtrick.InternalPath + 'resources/img/matches/whistle.png',
 	winger: Foxtrick.InternalPath + 'resources/img/matches/winger.png',
 	worst_player: '/Img/Matches/star_brown.png',
@@ -572,13 +630,21 @@ Foxtrick.util.matchEvent.getOtherTeamIcons = function(evnt) {
 	return Foxtrick.util.matchEvent.getEventIcons(evnt, 'other');
 };
 
+Foxtrick.util.matchEvent.getGeneralIconsHome = function(evnt) {
+	return Foxtrick.util.matchEvent.getEventIcons(evnt, 'home');
+};
+
+Foxtrick.util.matchEvent.getGeneralIconsAway = function(evnt) {
+	return Foxtrick.util.matchEvent.getEventIcons(evnt, 'away');
+};
+
 Foxtrick.util.matchEvent.getHomeIcons = function(evnt) {
 	if (Foxtrick.util.matchEvent.isHomeEvent(evnt))
 		return Foxtrick.util.matchEvent.getEventTeamIcons(evnt);
 	else if (Foxtrick.util.matchEvent.isAwayEvent(evnt))
 		return Foxtrick.util.matchEvent.getOtherTeamIcons(evnt);
 	else
-		return ['transparent'];
+		return Foxtrick.util.matchEvent.getGeneralIconsHome(evnt);
 };
 
 Foxtrick.util.matchEvent.getAwayIcons = function(evnt) {
@@ -587,7 +653,7 @@ Foxtrick.util.matchEvent.getAwayIcons = function(evnt) {
 	else if (Foxtrick.util.matchEvent.isHomeEvent(evnt))
 		return Foxtrick.util.matchEvent.getOtherTeamIcons(evnt);
 	else
-		return ['transparent'];
+		return Foxtrick.util.matchEvent.getGeneralIconsAway(evnt);
 };
 
 
