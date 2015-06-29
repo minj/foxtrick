@@ -933,10 +933,19 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 	},
 
 	flipStaminaBar: function(doc, playerDivs) {
-		Foxtrick.forEach(function(player) {
-			var ftdiv = Foxtrick.createFeaturedElement(doc, this, 'div');
+		var module = this;
+		var homePlayers = module.getPlayersWithStamina(doc, 'home');
+		var awayPlayers = module.getPlayersWithStamina(doc, 'away');
+		var players = Foxtrick.concat(homePlayers, awayPlayers);
+		var playersById = {};
+		Foxtrick.forEach(function(p) {
+			playersById[p.PlayerId] = p;
+		}, players);
+
+		Foxtrick.forEach(function(playerDiv) {
+			var ftdiv = Foxtrick.createFeaturedElement(doc, module, 'div');
 			Foxtrick.addClass(ftdiv, 'ft-indicator-wrapper');
-			var staminaDiv = player.querySelector('div.sectorShirt + div > div');
+			var staminaDiv = playerDiv.querySelector('div.sectorShirt + div > div');
 			Foxtrick.addClass(staminaDiv, 'ft-staminaDiv');
 			if (staminaDiv) {
 				var stamina = staminaDiv.title.match(/\d+/)[0];
@@ -949,10 +958,19 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 				staminaSpan.textContent = (stamina != 100) ? stamina : '00';
 				if (stamina == 100)
 					staminaSpan.style.color = staminaSpan.style.backgroundColor;
-				staminaSpan.title = staminaDiv.title;
+
+				var staminaText = staminaDiv.title;
+				var link = playerDiv.querySelector('#playerLink');
+				if (link) {
+					var id = Foxtrick.getParameterFromUrl(link.href, 'PlayerId');
+					var player = playersById[id];
+					if (player && player.stamina)
+						staminaText += Foxtrick.format(' ({})', [player.stamina]);
+				}
+				staminaSpan.title = staminaText;
 				ftdiv.appendChild(staminaSpan);
 			}
-			player.appendChild(ftdiv);
+			playerDiv.appendChild(ftdiv);
 		}, playerDivs);
 	},
 
