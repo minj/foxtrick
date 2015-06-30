@@ -745,6 +745,10 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 	gatherStaminaData: function(doc) {
 		if (Foxtrick.Pages.Match.isYouth(doc))
 			return;
+
+		if (Foxtrick.Pages.Match.getLiveContainer(doc))
+			return;
+
 		var team = 'away';
 		var ownId = Foxtrick.util.id.getOwnTeamId();
 		// only gather data for own team
