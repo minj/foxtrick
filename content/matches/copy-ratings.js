@@ -21,6 +21,10 @@ Foxtrick.modules['CopyRatings'] = {
 		if (!table)
 			return;
 
+		this.copyRatingsTable(table);
+	},
+	copyRatingsTable: function(table) {
+		var doc = table.ownerDocument;
 		var createRatings = function(place, teams) {
 			try {
 				var insertBefore = null;
@@ -239,5 +243,5 @@ Foxtrick.modules['CopyRatings'] = {
 			}
 			button.appendChild(list);
 		}
-	}
+	},
 };
