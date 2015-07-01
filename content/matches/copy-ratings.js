@@ -61,8 +61,11 @@ Foxtrick.modules['CopyRatings'] = {
 				var gameresult_h = results[1];
 				var gameresult_a = results[2];
 
+				// team name links in result table no longer lead to team pages
+				// however getTeams returns short team names
+				var teamNames = doc.querySelectorAll('.teamName a');
 				var teamLinks = Foxtrick.Pages.Match.getTeams(doc);
-				var teamLink, id, result;
+				var teamLink, id, name, result;
 
 				var ad = '[table]\n';
 				// head row
@@ -71,20 +74,22 @@ Foxtrick.modules['CopyRatings'] = {
 				ad += '[/th][th]';
 				if (team1) {
 					teamLink = teamLinks[0];
+					name = teamNames[0];
 					if (teamLink) {
 						id = Foxtrick.util.id.getTeamIdFromUrl(teamLink.href);
 						result = (teams == 'both') ? ' - ' + gameresult_h : '';
-						ad += teamLink.textContent + result + '\n[' + youth + 'teamid=' + id + ']';
+						ad += name.textContent + result + '\n[' + youth + 'teamid=' + id + ']';
 					}
 				}
 				if (team1 && team2)
 					ad += '[/th][th]';
 				if (team2) {
 					teamLink = teamLinks[1];
+					name = teamNames[1];
 					if (teamLink) {
 						id = Foxtrick.util.id.getTeamIdFromUrl(teamLink.href);
 						result = (teams == 'both') ? ' - ' + gameresult_a : '';
-						ad += teamLink.textContent + result + '\n[' + youth + 'teamid=' + id + ']';
+						ad += name.textContent + result + '\n[' + youth + 'teamid=' + id + ']';
 					}
 				}
 				ad += '[/th][/tr]\n';
