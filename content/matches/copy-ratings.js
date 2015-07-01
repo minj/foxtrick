@@ -93,17 +93,17 @@ Foxtrick.modules['CopyRatings'] = {
 				Foxtrick.forEach(function(row) {
 					ad += '[tr][th]';
 					if (row.cells[0]) {
-						ad += row.cells[0].textContent;
+						ad += row.cells[0].textContent.trim();
 					}
 					ad += '[/th][td]';
 
 					if (team1) {
 						if (Foxtrick.hasClass(row, 'ft_rating_table_row') ||
 						    copyTextRating && row.cells[1]) {
-							ad += row.cells[1].textContent;
+							ad += row.cells[1].textContent.trim();
 						}
 						if (copyNumRating && row.cells[3]) {
-							ad += ' (' + row.cells[3].textContent.replace(',', '.') + ')';
+							ad += ' (' + row.cells[3].textContent.trim().replace(',', '.') + ')';
 						}
 					}
 					if (team1 && team2)
@@ -111,10 +111,10 @@ Foxtrick.modules['CopyRatings'] = {
 					if (team2) {
 						if (Foxtrick.hasClass(row, 'ft_rating_table_row') ||
 						    copyTextRating && row.cells[2]) {
-							ad += row.cells[2].textContent;
+							ad += row.cells[2].textContent.trim();
 						}
 						if (copyNumRating && row.cells[4]) {
-							ad += ' (' + row.cells[4].textContent.replace(',', '.') + ')';
+							ad += ' (' + row.cells[4].textContent.trim().replace(',', '.') + ')';
 						}
 					}
 					ad += '[/td][/tr]\n';
