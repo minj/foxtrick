@@ -64,40 +64,38 @@ Foxtrick.modules['CopyRatings'] = {
 				var teamLinks = Foxtrick.Pages.Match.getTeams(doc);
 				var teamLink, id, result;
 
-				var ad = '\n[table]\n';
+				var ad = '[table]\n';
 				// head row
-				ad += '[tr]\n\n[th]';
+				ad += '[tr][th]';
 				ad += '[' + youth + hto + 'matchid=' + gameid + ']';
-				ad += '[/th]\n[th]';
+				ad += '[/th][th]';
 				if (team1) {
 					teamLink = teamLinks[0];
 					if (teamLink) {
 						id = Foxtrick.util.id.getTeamIdFromUrl(teamLink.href);
 						result = (teams == 'both') ? ' - ' + gameresult_h : '';
-						ad += teamLink.textContent + result +
-							'[br][' + youth + 'teamid=' + id + ']';
+						ad += teamLink.textContent + result + '\n[' + youth + 'teamid=' + id + ']';
 					}
 				}
 				if (team1 && team2)
-					ad += '[/th]\n[th]';
+					ad += '[/th][th]';
 				if (team2) {
 					teamLink = teamLinks[1];
 					if (teamLink) {
 						id = Foxtrick.util.id.getTeamIdFromUrl(teamLink.href);
 						result = (teams == 'both') ? ' - ' + gameresult_a : '';
-						ad += teamLink.textContent + result +
-							'[br][' + youth + 'teamid=' + id + ']';
+						ad += teamLink.textContent + result + '\n[' + youth + 'teamid=' + id + ']';
 					}
 				}
-				ad += '[/th]\n\n[/tr]\n';
+				ad += '[/th][/tr]\n';
 
 				var rows = Foxtrick.toArray(table.rows).slice(1); // skip team names
 				Foxtrick.forEach(function(row) {
-					ad += '[tr]\n\n[th]';
+					ad += '[tr][th]';
 					if (row.cells[0]) {
 						ad += row.cells[0].textContent;
 					}
-					ad += '[/th]\n[td]';
+					ad += '[/th][td]';
 
 					if (team1) {
 						if (Foxtrick.hasClass(row, 'ft_rating_table_row') ||
@@ -109,7 +107,7 @@ Foxtrick.modules['CopyRatings'] = {
 						}
 					}
 					if (team1 && team2)
-						ad += '[/td]\n[td]';
+						ad += '[/td][td]';
 					if (team2) {
 						if (Foxtrick.hasClass(row, 'ft_rating_table_row') ||
 						    copyTextRating && row.cells[2]) {
@@ -119,11 +117,11 @@ Foxtrick.modules['CopyRatings'] = {
 							ad += ' (' + row.cells[4].textContent.replace(',', '.') + ')';
 						}
 					}
-					ad += '[/td]\n\n[/tr]\n';
+					ad += '[/td][/tr]\n';
 				}, rows);
 
 				ad = ad.replace(/\[td\]###\[\/td\]/gi, '');
-				ad += '\n[/table]\n';
+				ad += '[/table]\n';
 
 				// copy htms prediction.
 				if (team1 && team2) {
