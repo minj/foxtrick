@@ -91,11 +91,19 @@ Foxtrick.modules['CopyRatings'] = {
 
 				var rows = Foxtrick.toArray(table.rows).slice(1); // skip team names
 				Foxtrick.forEach(function(row) {
-					ad += '[tr][th]';
+					ad += '[tr]';
 					if (row.cells[0]) {
-						ad += row.cells[0].textContent.trim();
+						var colSpan = row.cells[0].colSpan;
+						var cSpan = colSpan > 1 ? ' colspan=' + colSpan : '';
+
+						ad += '[th' + cSpan + ']' + row.cells[0].textContent.trim() + '[/th]';
+						if (colSpan > 1) {
+							// assume the whole row is spanned and skip it
+							ad += '[/tr]\n';
+							return;
+						}
+						ad += '[td]';
 					}
-					ad += '[/th][td]';
 
 					if (team1) {
 						if (Foxtrick.hasClass(row, 'ft_rating_table_row') ||
