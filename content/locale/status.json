@@ -133,16 +133,16 @@
 			"words_translated": "10626"
 		},
 		{
-			"approved": "1844",
-			"approved_progress": "99",
+			"approved": "1859",
+			"approved_progress": "100",
 			"code": "da",
 			"name": "Danish",
 			"phrases": "1859",
-			"translated": "1844",
-			"translated_progress": "99",
+			"translated": "1859",
+			"translated_progress": "100",
 			"words": "13069",
-			"words_approved": "13012",
-			"words_translated": "13012"
+			"words_approved": "13069",
+			"words_translated": "13069"
 		},
 		{
 			"approved": "1270",
@@ -594,23 +594,23 @@
 			"code": "es-CR",
 			"name": "Spanish, Costa Rica",
 			"phrases": "1859",
-			"translated": "1843",
-			"translated_progress": "99",
+			"translated": "1859",
+			"translated_progress": "100",
 			"words": "13069",
 			"words_approved": "0",
-			"words_translated": "13007"
+			"words_translated": "13069"
 		},
 		{
-			"approved": "1843",
-			"approved_progress": "99",
+			"approved": "1859",
+			"approved_progress": "100",
 			"code": "sv-SE",
 			"name": "Swedish",
 			"phrases": "1859",
-			"translated": "1843",
-			"translated_progress": "99",
+			"translated": "1859",
+			"translated_progress": "100",
 			"words": "13069",
-			"words_approved": "13007",
-			"words_translated": "13007"
+			"words_approved": "13069",
+			"words_translated": "13069"
 		},
 		{
 			"approved": "0",
