@@ -2,7 +2,7 @@
 /**
  * copy-ratings.js
  * Copies match ratings (HT-ML style)
- * @author spambot, ryanli
+ * @author spambot, ryanli, LA-MJ
  */
 
 Foxtrick.modules['CopyRatings'] = {
@@ -56,17 +56,28 @@ Foxtrick.modules['CopyRatings'] = {
 
 				var matchlink = Foxtrick.Pages.All.getBreadCrumbs(doc)[0];
 				var gameid = Foxtrick.util.id.getMatchIdFromUrl(matchlink.href);
-
-				var headder = doc.querySelector('#mainBody h1').textContent.trim();
-				var results = headder.match(/^.+(\d+) - (\d+).+$/);
-				var gameresult_h = results[1];
-				var gameresult_a = results[2];
+				var gameResult = Foxtrick.Pages.Match.getResult(doc);
 
 				// team name links in result table no longer lead to team pages
 				// however getTeams returns short team names
 				var teamNames = doc.querySelectorAll('.teamName a');
 				var teamLinks = Foxtrick.Pages.Match.getTeams(doc);
-				var teamLink, id, name, result;
+
+				var addTeamInfo = function(idx) {
+					var ret = '';
+					var teamLink = teamLinks[idx];
+					var name = teamNames[idx];
+					if (teamLink) {
+						var id = Foxtrick.util.id.getTeamIdFromUrl(teamLink.href);
+						var result = (teams == 'both') ? ' - ' + gameResult[idx] : '';
+						ret = name.textContent + result + '\n';
+						if (isNT)
+							ret += '[link=/Club/NationalTeam/NationalTeam.aspx?teamId=' + id + ']';
+						else
+							ret += '[' + youth + 'teamid=' + id + ']';
+					}
+					return ret;
+				};
 
 				var ad = '[table]\n';
 				// head row
@@ -74,34 +85,28 @@ Foxtrick.modules['CopyRatings'] = {
 				ad += '[' + youth + hto + 'matchid=' + gameid + ']';
 				ad += '[/th][th]';
 				if (team1) {
-					teamLink = teamLinks[0];
-					name = teamNames[0];
-					if (teamLink) {
-						id = Foxtrick.util.id.getTeamIdFromUrl(teamLink.href);
-						result = (teams == 'both') ? ' - ' + gameresult_h : '';
-						ad += name.textContent + result + '\n';
-						if (isNT)
-							ad += '[link=/Club/NationalTeam/NationalTeam.aspx?teamId=' + id + ']';
-						else
-							ad += '[' + youth + 'teamid=' + id + ']';
-					}
+					ad += addTeamInfo(0);
 				}
 				if (team1 && team2)
 					ad += '[/th][th]';
 				if (team2) {
-					teamLink = teamLinks[1];
-					name = teamNames[1];
-					if (teamLink) {
-						id = Foxtrick.util.id.getTeamIdFromUrl(teamLink.href);
-						result = (teams == 'both') ? ' - ' + gameresult_a : '';
-						ad += name.textContent + result + '\n';
-						if (isNT)
-							ad += '[link=/Club/NationalTeam/NationalTeam.aspx?teamId=' + id + ']';
-						else
-							ad += '[' + youth + 'teamid=' + id + ']';
-					}
+					ad += addTeamInfo(1);
 				}
 				ad += '[/th][/tr]\n';
+
+				var addRowForTeam = function(row, idx) {
+					var ret = '';
+					var textCell = row.cells[1 + idx];
+					var numCell = row.cells[3 + idx];
+					if (textCell && (copyTextRating ||
+					    Foxtrick.hasClass(row, 'ft_rating_table_row'))) {
+						ret += textCell.textContent.trim();
+					}
+					if (numCell && copyNumRating) {
+						ret += ' (' + numCell.textContent.trim().replace(',', '.') + ')';
+					}
+					return ret;
+				};
 
 				var rows = Foxtrick.toArray(table.rows).slice(1); // skip team names
 				Foxtrick.forEach(function(row) {
@@ -120,24 +125,12 @@ Foxtrick.modules['CopyRatings'] = {
 					}
 
 					if (team1) {
-						if (Foxtrick.hasClass(row, 'ft_rating_table_row') ||
-						    copyTextRating && row.cells[1]) {
-							ad += row.cells[1].textContent.trim();
-						}
-						if (copyNumRating && row.cells[3]) {
-							ad += ' (' + row.cells[3].textContent.trim().replace(',', '.') + ')';
-						}
+						ad += addRowForTeam(row, 0);
 					}
 					if (team1 && team2)
 						ad += '[/td][td]';
 					if (team2) {
-						if (Foxtrick.hasClass(row, 'ft_rating_table_row') ||
-						    copyTextRating && row.cells[2]) {
-							ad += row.cells[2].textContent.trim();
-						}
-						if (copyNumRating && row.cells[4]) {
-							ad += ' (' + row.cells[4].textContent.trim().replace(',', '.') + ')';
-						}
+						ad += addRowForTeam(row, 1);
 					}
 					ad += '[/td][/tr]\n';
 				}, rows);
