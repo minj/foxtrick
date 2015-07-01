@@ -37,11 +37,6 @@ Foxtrick.modules['CopyRatings'] = {
 				var team1 = (teams == 'both') || (teams == 'home');
 				var team2 = (teams == 'both') || (teams == 'away');
 
-				var _d = Foxtrick.L10n.getString('match.ratings.defence') + ':';
-				var _m = Foxtrick.L10n.getString('match.ratings.midfield') + ':';
-				var _a = Foxtrick.L10n.getString('match.ratings.attack') + ':';
-				var _t = Foxtrick.L10n.getString('match.ratings.total') + ':';
-
 				var matchlink = Foxtrick.Pages.All.getBreadCrumbs(doc)[0];
 				var gameid = Foxtrick.util.id.getMatchIdFromUrl(matchlink.href);
 
@@ -100,53 +95,37 @@ Foxtrick.modules['CopyRatings'] = {
 				}
 				ad += '[/th]\n\n[/tr]\n';
 
-				for (var row = 1; row < table.rows.length; ++row) {
-					try {
-						ad += '[tr]\n\n[th]';
-						if (table.rows[row].cells[0]) {
-							ad += table.rows[row].cells[0].textContent;
-						}
-						ad += '[/th]\n[td]';
-
-						if (team1) {
-							if (Foxtrick.hasClass(table.rows[row], 'ft_rating_table_row'))
-								ad += table.rows[row].cells[1].textContent.replace(_d, '[br]' + _d)
-									.replace(_m, '[br]' + _m).replace(_a, '[br]' + _a)
-									.replace(_t, '[br]' + _t);
-							else {
-								if (copyTextRating && table.rows[row].cells[1]) {
-									ad += table.rows[row].cells[1].textContent
-										.replace(_d, '[br]' + _d).replace(_m, '[br]' + _m)
-										.replace(_a, '[br]' + _a).replace(_t, '[br]' + _t);
-								}
-								if (copyNumRating && table.rows[row].cells[3]) {
-									ad += ' (' + table.rows[row].cells[3].textContent
-									    .replace(',', '.') + ')';
-								}
-							}
-						}
-						if (team1 && team2)
-							ad += '[/td]\n[td]';
-						if (team2) {
-							if (Foxtrick.hasClass(table.rows[row], 'ft_rating_table_row'))
-								ad += table.rows[row].cells[2].textContent.replace(_d, '[br]' + _d)
-									.replace(_m, '[br]' + _m).replace(_a, '[br]' + _a)
-									.replace(_t, '[br]' + _t);
-							else {
-								if (copyTextRating && table.rows[row].cells[2]) {
-									ad += table.rows[row].cells[2].textContent
-									.replace(_d, '[br]' + _d).replace(_m, '[br]' + _m)
-									.replace(_a, '[br]' + _a).replace(_t, '[br]' + _t);
-								}
-								if (copyNumRating && table.rows[row].cells[4]) {
-									ad += ' (' + table.rows[row].cells[4].textContent + ')';
-								}
-							}
-						}
-						ad += '[/td]\n\n[/tr]\n';
+				var rows = Foxtrick.toArray(table.rows).slice(1); // skip team names
+				Foxtrick.forEach(function(row) {
+					ad += '[tr]\n\n[th]';
+					if (row.cells[0]) {
+						ad += row.cells[0].textContent;
 					}
-					catch (e) { Foxtrick.log(e); }
-				}
+					ad += '[/th]\n[td]';
+
+					if (team1) {
+						if (Foxtrick.hasClass(row, 'ft_rating_table_row') ||
+						    copyTextRating && row.cells[1]) {
+							ad += row.cells[1].textContent;
+						}
+						if (copyNumRating && row.cells[3]) {
+							ad += ' (' + row.cells[3].textContent.replace(',', '.') + ')';
+						}
+					}
+					if (team1 && team2)
+						ad += '[/td]\n[td]';
+					if (team2) {
+						if (Foxtrick.hasClass(row, 'ft_rating_table_row') ||
+						    copyTextRating && row.cells[2]) {
+							ad += row.cells[2].textContent;
+						}
+						if (copyNumRating && row.cells[4]) {
+							ad += ' (' + row.cells[4].textContent.replace(',', '.') + ')';
+						}
+					}
+					ad += '[/td]\n\n[/tr]\n';
+				}, rows);
+
 				ad = ad.replace(/\[td\]###\[\/td\]/gi, '');
 				ad += '\n[/table]\n';
 
