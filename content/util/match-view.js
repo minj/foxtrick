@@ -80,6 +80,7 @@ Foxtrick.util.matchView.fillMatches = function(container, xml, errorText) {
 	var teamName = xml.getElementsByTagName('TeamName')[0].textContent;
 	var isYouth = xml.bool('IsYouth');
 	var matches = xml.getElementsByTagName('Match');
+
 	// add one played and one not played
 	var played = Foxtrick.filter(function(n) {
 		return n.getElementsByTagName('Status')[0].textContent == 'FINISHED';
@@ -88,7 +89,8 @@ Foxtrick.util.matchView.fillMatches = function(container, xml, errorText) {
 		return n.getElementsByTagName('Status')[0].textContent != 'FINISHED';
 	}, matches);
 
-	// get one previous and one future match
+	// get last previous and first future match
+	played.reverse();
 	var toAdd = Foxtrick.map(function(type) {
 		// only supported types (no HTO)
 		return Foxtrick.nth(getMatchInfo, type);
