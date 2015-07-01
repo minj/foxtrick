@@ -52,6 +52,7 @@ Foxtrick.modules['CopyRatings'] = {
 
 				var youth = Foxtrick.Pages.Match.isYouth(doc) ? 'youth' : '';
 				var hto = Foxtrick.Pages.Match.isHTOIntegrated(doc) ? 'tournament' : '';
+				var isNT = Foxtrick.Pages.Match.isNT(doc);
 
 				var matchlink = Foxtrick.Pages.All.getBreadCrumbs(doc)[0];
 				var gameid = Foxtrick.util.id.getMatchIdFromUrl(matchlink.href);
@@ -78,7 +79,11 @@ Foxtrick.modules['CopyRatings'] = {
 					if (teamLink) {
 						id = Foxtrick.util.id.getTeamIdFromUrl(teamLink.href);
 						result = (teams == 'both') ? ' - ' + gameresult_h : '';
-						ad += name.textContent + result + '\n[' + youth + 'teamid=' + id + ']';
+						ad += name.textContent + result + '\n';
+						if (isNT)
+							ad += '[link=/Club/NationalTeam/NationalTeam.aspx?teamId=' + id + ']';
+						else
+							ad += '[' + youth + 'teamid=' + id + ']';
 					}
 				}
 				if (team1 && team2)
@@ -89,7 +94,11 @@ Foxtrick.modules['CopyRatings'] = {
 					if (teamLink) {
 						id = Foxtrick.util.id.getTeamIdFromUrl(teamLink.href);
 						result = (teams == 'both') ? ' - ' + gameresult_a : '';
-						ad += name.textContent + result + '\n[' + youth + 'teamid=' + id + ']';
+						ad += name.textContent + result + '\n';
+						if (isNT)
+							ad += '[link=/Club/NationalTeam/NationalTeam.aspx?teamId=' + id + ']';
+						else
+							ad += '[' + youth + 'teamid=' + id + ']';
 					}
 				}
 				ad += '[/th][/tr]\n';
