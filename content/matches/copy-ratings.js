@@ -37,15 +37,11 @@ Foxtrick.modules['CopyRatings'] = {
 				var team1 = (teams == 'both') || (teams == 'home');
 				var team2 = (teams == 'both') || (teams == 'away');
 
-				var matchlink = Foxtrick.Pages.All.getBreadCrumbs(doc)[0];
-				var gameid = Foxtrick.util.id.getMatchIdFromUrl(matchlink.href);
+				var byNumber = doc.getElementById('sortByNumberIcon');
+				var byText = doc.getElementById('sortByTextIcon');
+				var copyTextRating = !Foxtrick.hasClass(byNumber, 'disabled');
+				var copyNumRating = !Foxtrick.hasClass(byText, 'disabled');
 
-				var headder = doc.querySelector('#mainBody h1').textContent.trim();
-				var start = Foxtrick.strrpos(headder, ' - ');
-				var gameresult_h = headder.substr(start - 2, 2).trim();
-				var gameresult_a = headder.substr(start + 3, 2).trim();
-
-				var ad = '\n[table]\n';
 				var table = Foxtrick.Pages.Match.getRatingsTable(doc).cloneNode(true);
 				Foxtrick.forEach(function(row) {
 					if (!team1 && row.cells.length >= 2)
@@ -54,30 +50,30 @@ Foxtrick.modules['CopyRatings'] = {
 						row.cells[2].textContent = '###';
 				}, table.rows);
 
-				var youth = '';
-				if (matchlink.href.search(/isYouth=true|SourceSystem=Youth/i) != -1)
-					youth = 'youth';
+				var youth = Foxtrick.Pages.Match.isYouth(doc) ? 'youth' : '';
+				var hto = Foxtrick.Pages.Match.isHTOIntegrated(doc) ? 'tournament' : '';
 
-				var hto = '';
-				if (matchlink.href.search(/SourceSystem=HTOIntegrated/i) != -1)
-					hto = 'tournament';
+				var matchlink = Foxtrick.Pages.All.getBreadCrumbs(doc)[0];
+				var gameid = Foxtrick.util.id.getMatchIdFromUrl(matchlink.href);
 
-				var byNumber = doc.getElementById('sortByNumberIcon');
-				var byText = doc.getElementById('sortByTextIcon');
-				var copyTextRating = !Foxtrick.hasClass(byNumber, 'disabled');
-				var copyNumRating = !Foxtrick.hasClass(byText, 'disabled');
-				var body = doc.getElementById('mainBody');
+				var headder = doc.querySelector('#mainBody h1').textContent.trim();
+				var results = headder.match(/^.+(\d+) - (\d+).+$/);
+				var gameresult_h = results[1];
+				var gameresult_a = results[2];
+
+				var teamLinks = Foxtrick.Pages.Match.getTeams(doc);
 				var teamLink, id, result;
 
+				var ad = '\n[table]\n';
 				// head row
 				ad += '[tr]\n\n[th]';
 				ad += '[' + youth + hto + 'matchid=' + gameid + ']';
 				ad += '[/th]\n[th]';
 				if (team1) {
-					teamLink = body.querySelectorAll('h1 > a, h1 > span > a')[0];
+					teamLink = teamLinks[0];
 					if (teamLink) {
 						id = Foxtrick.util.id.getTeamIdFromUrl(teamLink.href);
-						result = team2 ? ' - ' + gameresult_h : '';
+						result = (teams == 'both') ? ' - ' + gameresult_h : '';
 						ad += teamLink.textContent + result +
 							'[br][' + youth + 'teamid=' + id + ']';
 					}
@@ -85,10 +81,10 @@ Foxtrick.modules['CopyRatings'] = {
 				if (team1 && team2)
 					ad += '[/th]\n[th]';
 				if (team2) {
-					teamLink = body.querySelectorAll('h1 > a, h1 > span > a')[1];
+					teamLink = teamLinks[1];
 					if (teamLink) {
 						id = Foxtrick.util.id.getTeamIdFromUrl(teamLink.href);
-						result = team1 ? ' - ' + gameresult_a : '';
+						result = (teams == 'both') ? ' - ' + gameresult_a : '';
 						ad += teamLink.textContent + result +
 							'[br][' + youth + 'teamid=' + id + ']';
 					}
