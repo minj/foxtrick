@@ -7,7 +7,7 @@
 
 Foxtrick.modules['CopyRatings'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.MATCHES,
-	PAGES: ['match'],
+	PAGES: ['match', 'matchesLive'],
 
 	NICE: 1, // after MatchReportFormat.
 
@@ -17,7 +17,11 @@ Foxtrick.modules['CopyRatings'] = {
 		if (Foxtrick.Pages.Match.isPrematch(doc))
 			return;
 
-		this.copyRatingDetails(doc);
+		if (Foxtrick.isPage(doc, 'matchesLive'))
+			Foxtrick.Pages.Match.addLiveTabListener(doc, 'divSectors',
+			                                        this.copyRatingDetails.bind(this));
+		else
+			this.copyRatingDetails(doc);
 
 		var table = Foxtrick.Pages.Match.getRatingsTable(doc);
 		if (!table)
@@ -29,6 +33,9 @@ Foxtrick.modules['CopyRatings'] = {
 		var module = this;
 
 		if (!Foxtrick.Pages.Match.hasRatingsTabs(doc))
+			return;
+
+		if (doc.getElementById('ft-copy-rating-details'))
 			return;
 
 		var inProgress = Foxtrick.Pages.Match.inProgress(doc);
@@ -141,7 +148,7 @@ Foxtrick.modules['CopyRatings'] = {
 			}
 			else if (isLive) {
 				var timer = doc.getElementById('match');
-				map.match_time = timer.textContent.trim().match(/^\d+/)[0];
+				map.match_time = timer.textContent.trim().match(/^\d+/)[0] + '\'';
 			}
 
 			map.sectors = Foxtrick.format(SECTORS_TEMPLATE, map);
