@@ -171,8 +171,9 @@ Foxtrick.modules['CopyRatings'] = {
 			map.home_goals = score[0];
 			map.away_goals = score[1];
 
+			var ret;
 			if (isLive || inProgress) {
-				Foxtrick.copyStringToClipboard(Foxtrick.format(LIVE_TEMPLATE, map));
+				ret = Foxtrick.format(LIVE_TEMPLATE, map);
 			}
 			else {
 				var headers = doc.querySelectorAll('.miscRatings h2');
@@ -194,9 +195,15 @@ Foxtrick.modules['CopyRatings'] = {
 				map.home_tct_lvl = tacticLvls[0].textContent.trim();
 				map.away_tct_lvl = tacticLvls[1].textContent.trim();
 
-				Foxtrick.copyStringToClipboard(Foxtrick.format(TEMPLATE, map));
+				ret = Foxtrick.format(TEMPLATE, map);
+			}
+			var ftRatings = doc.getElementById('ft-mrt-ratings');
+			if (ftRatings) {
+				var table = Foxtrick.util.htMl.getTable(ftRatings);
+				ret += table.markup + '\n';
 			}
 
+			Foxtrick.copyStringToClipboard(ret);
 			Foxtrick.util.note.add(doc, COPIED, 'ft-ratings-copy-note');
 		};
 
