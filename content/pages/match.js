@@ -145,11 +145,19 @@ Foxtrick.Pages.Match.getAwayTeamName = function(doc) {
  * @return {array}        {Array.<number>}
  */
 Foxtrick.Pages.Match.getResult = function(doc) {
-	var headder = doc.querySelector('#mainBody h1').textContent.trim();
-	var result = headder.match(/^.+(\d+) - (\d+).+$/);
-	var ret = Foxtrick.toArray(result).slice(1).map(function(s) { return parseInt(s, 10); });
-	if (Foxtrick.util.layout.isRtl(doc))
-		ret.reverse();
+	var ret = null;
+	if (Foxtrick.isPage(doc, 'matchesLive')) {
+		var score = doc.querySelector('.rtsSelected .liveTabScore');
+		var goals = score.textContent.match(/(\d+) - (\d+)/);
+		ret = Foxtrick.toArray(goals).slice(1).map(function(s) { return parseInt(s, 10); });
+	}
+	else {
+		var headder = doc.querySelector('#mainBody h1').textContent.trim();
+		var result = headder.match(/^.+(\d+) - (\d+).+$/);
+		ret = Foxtrick.toArray(result).slice(1).map(function(s) { return parseInt(s, 10); });
+		if (Foxtrick.util.layout.isRtl(doc))
+			ret.reverse();
+	}
 	return ret;
 };
 

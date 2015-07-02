@@ -7,7 +7,7 @@
 
 Foxtrick.modules['CopyRatings'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.MATCHES,
-	PAGES: ['match'],
+	PAGES: ['match', 'matchesLive'],
 
 	NICE: 1, // after MatchReportFormat.
 
@@ -17,7 +17,10 @@ Foxtrick.modules['CopyRatings'] = {
 		if (Foxtrick.Pages.Match.isPrematch(doc))
 			return;
 
-		if (Foxtrick.Pages.Match.hasRatingsTabs(doc))
+		if (Foxtrick.isPage(doc, 'matchesLive'))
+			Foxtrick.Pages.Match.addLiveTabListener(doc, 'divSectors',
+			                                        this.copyRatingDetails.bind(this));
+		else
 			this.copyRatingDetails(doc);
 
 		var table = Foxtrick.Pages.Match.getRatingsTable(doc);
@@ -28,15 +31,15 @@ Foxtrick.modules['CopyRatings'] = {
 	},
 	copyRatingDetails: function(doc) {
 		var module = this;
-		if (!Foxtrick.Pages.Match.getReportTabs(doc))
+
+		if (!Foxtrick.Pages.Match.hasRatingsTabs(doc))
 			return;
 
-		var isLive = Foxtrick.Pages.Match.inProgress(doc) ||
-			Foxtrick.Pages.Match.getLiveContainer(doc);
-
-		// disabled on Live for now
-		if (isLive)
+		if (doc.getElementById('ft-copy-rating-details'))
 			return;
+
+		var inProgress = Foxtrick.Pages.Match.inProgress(doc);
+		var isLive = Foxtrick.isPage(doc, 'matchesLive');
 
 		var SECTORS = {
 			home_rd_: 0,
@@ -60,8 +63,8 @@ Foxtrick.modules['CopyRatings'] = {
 
 		var SECTORS_TEMPLATE = '[tr][th colspan=3 align=center]{sectors_title}[/th][/tr]\n[tr]\n[td align=center][b]{home_rd_lbl}[/b]\n{home_rd_txt}\n[{home_rd_val}][/td]\n[td align=center][b]{home_cd_lbl}[/b]\n{home_cd_txt}\n[{home_cd_val}][/td]\n[td align=center][b]{home_ld_lbl}[/b]\n{home_ld_txt}\n[{home_ld_val}][/td]\n[/tr]\n[tr]\n[td align=center][q]{away_la_pct}[/q][/td]\n[td align=center][q]{away_ca_pct}[/q][/td]\n[td align=center][q]{away_ra_pct}[/q][/td]\n[/tr]\n[tr]\n[td align=center][b]{away_la_lbl}[/b]\n{away_la_txt}\n[{away_la_val}][/td]\n[td align=center][b]{away_ca_lbl}[/b]\n{away_ca_txt}\n[{away_ca_val}][/td]\n[td align=center][b]{away_ra_lbl}[/b]\n{away_ra_txt}\n[{away_ra_val}][/td]\n[/tr]\n[tr][td colspan=3 align=center][b]{home_mf_lbl}[/b]\n{home_mf_txt}\n[{home_mf_val}][/td][/tr]\n[tr][td colspan=3 align=center][q]{home_mf_pct}[/q][/td][/tr]\n[tr][td colspan=3 align=center][b]{away_mf_lbl}[/b]\n{away_mf_txt}\n[{away_mf_val}][/td][/tr]\n[tr]\n[td align=center][b]{home_ra_lbl}[/b]\n{home_ra_txt}\n[{home_ra_val}][/td]\n[td align=center][b]{home_ca_lbl}[/b]\n{home_ca_txt}\n[{home_ca_val}][/td]\n[td align=center][b]{home_la_lbl}[/b]\n{home_la_txt}\n[{home_la_val}][/td]\n[/tr]\n[tr]\n[td align=center][q]{home_ra_pct}[/q][/td]\n[td align=center][q]{home_ca_pct}[/q][/td]\n[td align=center][q]{home_la_pct}[/q][/td]\n[/tr]\n[tr]\n[td align=center][b]{away_ld_lbl}[/b]\n{away_ld_txt}\n[{away_ld_val}][/td]\n[td align=center][b]{away_cd_lbl}[/b]\n{away_cd_txt}\n[{away_cd_val}][/td]\n[td align=center][b]{away_rd_lbl}[/b]\n{away_rd_txt}\n[{away_rd_val}][/td]\n[/tr]\n[tr][td colspan=3]{prob_desc}[/td][/tr]';
 
-		var TEMPLATE = '[table]\n[tr][td align=center]{home_team}\n{home_link}[/td]\n[th align=center]{match_link}\n{home_goals} - {away_goals}\n{match_time}[/th]\n[td align=center]{away_team}\n{away_link}[/td][/tr]\n[tr][td align=center]{home_atd}[/td][th align=center]{attitude_lbl}[/th][td align=center]{away_atd}[/td][/tr]\n[tr][td align=center][u]{home_tct_txt}[/u][/td][th align=center]{tactic_lbl}[/th][td align=center][u]{away_tct_txt}[/u][/td][/tr]\n[tr][td align=center]{home_tct_lvl}[/td][th align=center]{tactic_lvl_lbl}[/th][td align=center]{away_tct_lvl}[/td][/tr]\n{sectors}\n[/table]';
-		var LIVE_TEMPLATE = '[table]\n[tr][td align=center]{home_team}\n{home_link}[/td]\n[th align=center]{match_link}\n{home_goals} - {away_goals}\n{match_time}[/th]\n[td align=center]{away_team}\n{away_link}[/td][/tr]\n{sectors}\n[/table]';
+		var TEMPLATE = '[table]\n[tr][td align=center]{home_team}\n{home_link}[/td]\n[th align=center]{match_link}\n{home_goals} - {away_goals}\n{match_time}[/th]\n[td align=center]{away_team}\n{away_link}[/td][/tr]\n[tr][td align=center]{home_atd}[/td][th align=center]{attitude_lbl}[/th][td align=center]{away_atd}[/td][/tr]\n[tr][td align=center][u]{home_tct_txt}[/u][/td][th align=center]{tactic_lbl}[/th][td align=center][u]{away_tct_txt}[/u][/td][/tr]\n[tr][td align=center]{home_tct_lvl}[/td][th align=center]{tactic_lvl_lbl}[/th][td align=center]{away_tct_lvl}[/td][/tr]\n{sectors}\n[/table]\n';
+		var LIVE_TEMPLATE = '[table]\n[tr][td align=center]{home_team}\n{home_link}[/td]\n[th align=center]{match_link}\n{home_goals} - {away_goals}\n{match_time}[/th]\n[td align=center]{away_team}\n{away_link}[/td][/tr]\n{sectors}\n[/table]\n';
 
 		var listener = function(ev) {
 			var doc = ev.target.ownerDocument;
@@ -76,11 +79,11 @@ Foxtrick.modules['CopyRatings'] = {
 			}, doc.querySelectorAll('.overlaySector .teamTextRatings'));
 
 			var numberRatings = Foxtrick.map(function(text) {
-				return parseInt(text.textContent.trim(), 10);
+				return text.textContent.trim();
 			}, doc.querySelectorAll('.overlaySector .teamNumberRatings'));
 
 			var ratings = Foxtrick.map(function(number) {
-				return number / 4 + 0.75;
+				return Foxtrick.Math.hsToFloat(number, true).toFixed(2);
 			}, numberRatings);
 
 			var sectorResults = Foxtrick.map(function(text) {
@@ -110,11 +113,43 @@ Foxtrick.modules['CopyRatings'] = {
 			var title = doc.querySelector('#divSectors h4');
 			map.sectors_title = title.textContent.trim();
 
-			var time = doc.querySelector('.currentEvent .timelineEventTimeStamp');
-			var eventDetails = doc.getElementById('timelineEventDetails').firstChild;
-			var match_time = time ? time.textContent.trim()
-				: eventDetails.textContent.trim().match(/^\d+/)[0];
-			map.match_time = isNaN(parseInt(match_time, 10)) ? match_time : match_time + '\'';
+			if (!inProgress && !isLive) {
+				var time = doc.querySelector('.currentEvent .timelineEventTimeStamp');
+				var eventDetails = doc.getElementById('timelineEventDetails').firstChild;
+				var match_time = time ? time.textContent.trim()
+					: eventDetails.textContent.trim().match(/^\d+/)[0];
+				map.match_time = isNaN(parseInt(match_time, 10)) ? match_time : match_time + '\'';
+			}
+			else if (inProgress) {
+				// README: this is fragile match minute detection
+				// matchdetails:154-7
+				var minute = 0;
+				var isSecondHalf = doc.querySelector('#matchReport span[data-eventtype^="45"]');
+				if (isSecondHalf)
+					minute += 45;
+
+				// assuming 156 (extra time) is not used
+				// var isExtraTime = doc.querySelector('#matchReport span[data-eventtype^="70"]');
+
+				var progress = Foxtrick.getMBElement(doc, 'lblMatchStatus');
+				// assuming no numbers before match minute
+				// lookahead defeats references to 11 meters (Azer & Vietnamese)
+				var min = progress.textContent.match(/\d+(?= )/);
+				if (min)
+					minute += parseInt(min[0], 10);
+
+				var events = doc.querySelectorAll('#matchReport span[data-match-minute]');
+				var lastEvent = events[events.length - 1];
+				var lastMinute = parseInt(lastEvent.dataset.matchMinute, 10);
+				if (lastMinute > minute)
+					minute = lastMinute;
+
+				map.match_time = minute + '\'';
+			}
+			else if (isLive) {
+				var timer = doc.getElementById('match');
+				map.match_time = timer.textContent.trim().match(/^\d+/)[0] + '\'';
+			}
 
 			map.sectors = Foxtrick.format(SECTORS_TEMPLATE, map);
 
@@ -136,8 +171,9 @@ Foxtrick.modules['CopyRatings'] = {
 			map.home_goals = score[0];
 			map.away_goals = score[1];
 
-			if (isLive) {
-				Foxtrick.copyStringToClipboard(Foxtrick.format(LIVE_TEMPLATE, map));
+			var ret;
+			if (isLive || inProgress) {
+				ret = Foxtrick.format(LIVE_TEMPLATE, map);
 			}
 			else {
 				var headers = doc.querySelectorAll('.miscRatings h2');
@@ -159,9 +195,15 @@ Foxtrick.modules['CopyRatings'] = {
 				map.home_tct_lvl = tacticLvls[0].textContent.trim();
 				map.away_tct_lvl = tacticLvls[1].textContent.trim();
 
-				Foxtrick.copyStringToClipboard(Foxtrick.format(TEMPLATE, map));
+				ret = Foxtrick.format(TEMPLATE, map);
+			}
+			var ftRatings = doc.getElementById('ft-mrt-ratings');
+			if (ftRatings) {
+				var table = Foxtrick.util.htMl.getTable(ftRatings);
+				ret += table.markup + '\n';
 			}
 
+			Foxtrick.copyStringToClipboard(ret);
 			Foxtrick.util.note.add(doc, COPIED, 'ft-ratings-copy-note');
 		};
 
