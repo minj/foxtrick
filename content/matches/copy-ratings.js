@@ -54,8 +54,8 @@ Foxtrick.modules['CopyRatings'] = {
 				var hto = Foxtrick.Pages.Match.isHTOIntegrated(doc) ? 'tournament' : '';
 				var isNT = Foxtrick.Pages.Match.isNT(doc);
 
-				var matchlink = Foxtrick.Pages.All.getBreadCrumbs(doc)[0];
-				var gameid = Foxtrick.util.id.getMatchIdFromUrl(matchlink.href);
+				var matchLink = Foxtrick.Pages.All.getBreadCrumbs(doc)[0];
+				var gameId = Foxtrick.util.id.getMatchIdFromUrl(matchLink.href);
 				var gameResult = Foxtrick.Pages.Match.getResult(doc);
 
 				// team name links in result table no longer lead to team pages
@@ -82,7 +82,7 @@ Foxtrick.modules['CopyRatings'] = {
 				var ad = '[table]\n';
 				// head row
 				ad += '[tr][th]';
-				ad += '[' + youth + hto + 'matchid=' + gameid + ']';
+				ad += '[' + youth + hto + 'matchid=' + gameId + ']';
 				ad += '[/th][th]';
 				if (team1) {
 					ad += addTeamInfo(0);
