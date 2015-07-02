@@ -2,7 +2,7 @@
 /**
  * copy-ratings.js
  * Copies match ratings (HT-ML style)
- * @author spambot, ryanli
+ * @author spambot, ryanli, LA-MJ
  */
 
 Foxtrick.modules['CopyRatings'] = {
@@ -17,10 +17,168 @@ Foxtrick.modules['CopyRatings'] = {
 		if (Foxtrick.Pages.Match.isPrematch(doc))
 			return;
 
+		if (Foxtrick.Pages.Match.hasRatingsTabs(doc))
+			this.copyRatingDetails(doc);
+
 		var table = Foxtrick.Pages.Match.getRatingsTable(doc);
 		if (!table)
 			return;
 
+		this.copyRatingsTable(table);
+	},
+	copyRatingDetails: function(doc) {
+		var module = this;
+		if (!Foxtrick.Pages.Match.getReportTabs(doc))
+			return;
+
+		var isLive = Foxtrick.Pages.Match.inProgress(doc) ||
+			Foxtrick.Pages.Match.getLiveContainer(doc);
+
+		// disabled on Live for now
+		if (isLive)
+			return;
+
+		var SECTORS = {
+			home_rd_: 0,
+			away_la_: 1,
+			home_cd_: 2,
+			away_ca_: 3,
+			home_ld_: 4,
+			away_ra_: 5,
+			home_mf_: 6,
+			away_mf_: 7,
+			home_ra_: 8,
+			away_ld_: 9,
+			home_ca_: 10,
+			away_cd_: 11,
+			home_la_: 12,
+			away_rd_: 13,
+		};
+
+		var COPIED = Foxtrick.L10n.getString('copy.ratings.copied');
+		var COPY = Foxtrick.L10n.getString('button.copy');
+
+		var SECTORS_TEMPLATE = '[tr][th colspan=3 align=center]{sectors_title}[/th][/tr]\n[tr]\n[td align=center][b]{home_rd_lbl}[/b]\n{home_rd_txt}\n[{home_rd_val}][/td]\n[td align=center][b]{home_cd_lbl}[/b]\n{home_cd_txt}\n[{home_cd_val}][/td]\n[td align=center][b]{home_ld_lbl}[/b]\n{home_ld_txt}\n[{home_ld_val}][/td]\n[/tr]\n[tr]\n[td align=center][q]{away_la_pct}[/q][/td]\n[td align=center][q]{away_ca_pct}[/q][/td]\n[td align=center][q]{away_ra_pct}[/q][/td]\n[/tr]\n[tr]\n[td align=center][b]{away_la_lbl}[/b]\n{away_la_txt}\n[{away_la_val}][/td]\n[td align=center][b]{away_ca_lbl}[/b]\n{away_ca_txt}\n[{away_ca_val}][/td]\n[td align=center][b]{away_ra_lbl}[/b]\n{away_ra_txt}\n[{away_ra_val}][/td]\n[/tr]\n[tr][td colspan=3 align=center][b]{home_mf_lbl}[/b]\n{home_mf_txt}\n[{home_mf_val}][/td][/tr]\n[tr][td colspan=3 align=center][q]{home_mf_pct}[/q][/td][/tr]\n[tr][td colspan=3 align=center][b]{away_mf_lbl}[/b]\n{away_mf_txt}\n[{away_mf_val}][/td][/tr]\n[tr]\n[td align=center][b]{home_ra_lbl}[/b]\n{home_ra_txt}\n[{home_ra_val}][/td]\n[td align=center][b]{home_ca_lbl}[/b]\n{home_ca_txt}\n[{home_ca_val}][/td]\n[td align=center][b]{home_la_lbl}[/b]\n{home_la_txt}\n[{home_la_val}][/td]\n[/tr]\n[tr]\n[td align=center][q]{home_ra_pct}[/q][/td]\n[td align=center][q]{home_ca_pct}[/q][/td]\n[td align=center][q]{home_la_pct}[/q][/td]\n[/tr]\n[tr]\n[td align=center][b]{away_ld_lbl}[/b]\n{away_ld_txt}\n[{away_ld_val}][/td]\n[td align=center][b]{away_cd_lbl}[/b]\n{away_cd_txt}\n[{away_cd_val}][/td]\n[td align=center][b]{away_rd_lbl}[/b]\n{away_rd_txt}\n[{away_rd_val}][/td]\n[/tr]\n[tr][td colspan=3]{prob_desc}[/td][/tr]';
+
+		var TEMPLATE = '[table]\n[tr][td align=center]{home_team}\n{home_link}[/td]\n[th align=center]{match_link}\n{home_goals} - {away_goals}\n{match_time}[/th]\n[td align=center]{away_team}\n{away_link}[/td][/tr]\n[tr][td align=center]{home_atd}[/td][th align=center]{attitude_lbl}[/th][td align=center]{away_atd}[/td][/tr]\n[tr][td align=center][u]{home_tct_txt}[/u][/td][th align=center]{tactic_lbl}[/th][td align=center][u]{away_tct_txt}[/u][/td][/tr]\n[tr][td align=center]{home_tct_lvl}[/td][th align=center]{tactic_lvl_lbl}[/th][td align=center]{away_tct_lvl}[/td][/tr]\n{sectors}\n[/table]';
+		var LIVE_TEMPLATE = '[table]\n[tr][td align=center]{home_team}\n{home_link}[/td]\n[th align=center]{match_link}\n{home_goals} - {away_goals}\n{match_time}[/th]\n[td align=center]{away_team}\n{away_link}[/td][/tr]\n{sectors}\n[/table]';
+
+		var listener = function(ev) {
+			var doc = ev.target.ownerDocument;
+
+			var labels = Foxtrick.map(function(label) {
+				// MatchRatingsTweaks.FollowChanges moves full sector name to title
+				return label.title.trim() || label.textContent.trim();
+			}, doc.querySelectorAll('.posLabel'));
+
+			var textRatings = Foxtrick.map(function(text) {
+				return text.textContent.trim();
+			}, doc.querySelectorAll('.overlaySector .teamTextRatings'));
+
+			var numberRatings = Foxtrick.map(function(text) {
+				return parseInt(text.textContent.trim(), 10);
+			}, doc.querySelectorAll('.overlaySector .teamNumberRatings'));
+
+			var ratings = Foxtrick.map(function(number) {
+				return number / 4 + 0.75;
+			}, numberRatings);
+
+			var sectorResults = Foxtrick.map(function(text) {
+				// using '[42%]' for HT values
+				// while '(42%)' for real probabilities (adds title attribute)
+				var template = text.title ? '({})' : '[{}]';
+				var pct = text.firstChild; // skipping FollowChanges
+				return Foxtrick.format(template, [pct.textContent.trim()]);
+			}, doc.querySelectorAll('.sectorResult'));
+
+			var map = {};
+			for (var sector in SECTORS) {
+				var order = SECTORS[sector];
+				map[sector + 'lbl'] = labels[order];
+				map[sector + 'txt'] = textRatings[order];
+				map[sector + 'val'] = ratings[order];
+				map[sector + 'pct'] = sectorResults[order];
+			}
+
+			var realProb = doc.getElementById('ft-probabilityDesc');
+			var htProb = doc.getElementById('ht-probabilityDesc');
+			if (realProb && !Foxtrick.hasClass(realProb, 'hidden'))
+				map.prob_desc = realProb.textContent.trim();
+			else if (htProb && !Foxtrick.hasClass(htProb, 'hidden'))
+				map.prob_desc = htProb.textContent.trim();
+
+			var title = doc.querySelector('#divSectors h4');
+			map.sectors_title = title.textContent.trim();
+
+			var time = doc.querySelector('.currentEvent .timelineEventTimeStamp');
+			var eventDetails = doc.getElementById('timelineEventDetails').firstChild;
+			var match_time = time ? time.textContent.trim()
+				: eventDetails.textContent.trim().match(/^\d+/)[0];
+			map.match_time = isNaN(parseInt(match_time, 10)) ? match_time : match_time + '\'';
+
+			map.sectors = Foxtrick.format(SECTORS_TEMPLATE, map);
+
+			var youth = Foxtrick.Pages.Match.isYouth(doc) ? 'youth' : '';
+			var hto = Foxtrick.Pages.Match.isHTOIntegrated(doc) ? 'tournament' : '';
+			var isNT = Foxtrick.Pages.Match.isNT(doc);
+			var gameId = Foxtrick.Pages.Match.getId(doc);
+
+			map.match_link = '[' + youth + hto + 'matchid=' + gameId + ']';
+			map.home_team = Foxtrick.Pages.Match.getHomeTeamName(doc);
+			var homeId = Foxtrick.Pages.Match.getHomeTeamId(doc);
+			map.home_link = !isNT ? '[' + youth + 'teamid=' + homeId + ']' : '(' + homeId + ')';
+			// : '[link=/Club/NationalTeam/NationalTeam.aspx?teamId=' + homeId + ']';
+			map.away_team = Foxtrick.Pages.Match.getAwayTeamName(doc);
+			var awayId = Foxtrick.Pages.Match.getAwayTeamId(doc);
+			map.away_link = !isNT ? '[' + youth + 'teamid=' + awayId + ']' : '(' + awayId + ')';
+			// : '[link=/Club/NationalTeam/NationalTeam.aspx?teamId=' + awayId + ']';
+			var score = Foxtrick.Pages.Match.getResult(doc);
+			map.home_goals = score[0];
+			map.away_goals = score[1];
+
+			if (isLive) {
+				Foxtrick.copyStringToClipboard(Foxtrick.format(LIVE_TEMPLATE, map));
+			}
+			else {
+				var headers = doc.querySelectorAll('.miscRatings h2');
+				var miscRow = headers[1].parentNode.parentNode;
+
+				var attitudeRow = miscRow.nextElementSibling;
+				map.attitude_lbl = attitudeRow.cells[0].textContent.trim();
+				map.home_atd = attitudeRow.cells[1].textContent.trim() || '-';
+				map.away_atd = attitudeRow.cells[2].textContent.trim() || '-';
+
+				var tacticsRow = attitudeRow.nextElementSibling;
+				map.tactic_lbl = tacticsRow.cells[0].textContent.trim();
+				map.home_tct_txt = tacticsRow.cells[1].textContent.trim();
+				map.away_tct_txt = tacticsRow.cells[2].textContent.trim();
+
+				var tacticsLvlRow = tacticsRow.nextElementSibling;
+				map.tactic_lvl_lbl = tacticsLvlRow.cells[0].textContent.trim();
+				var tacticLvls = tacticsLvlRow.getElementsByClassName('teamTextRatings');
+				map.home_tct_lvl = tacticLvls[0].textContent.trim();
+				map.away_tct_lvl = tacticLvls[1].textContent.trim();
+
+				Foxtrick.copyStringToClipboard(Foxtrick.format(TEMPLATE, map));
+			}
+
+			Foxtrick.util.note.add(doc, COPIED, 'ft-ratings-copy-note');
+		};
+
+		var button = Foxtrick.createFeaturedElement(doc, module, 'span');
+		button.id = 'ft-copy-rating-details';
+		button.textContent = COPY;
+		Foxtrick.onClick(button, listener);
+
+		var title = doc.querySelector('#divSectors h4');
+		var actions = title.parentNode;
+		actions.appendChild(button);
+	},
+	copyRatingsTable: function(table) {
+		var doc = table.ownerDocument;
+		var COPIED = Foxtrick.L10n.getString('copy.ratings.copied');
+		var COPY = Foxtrick.L10n.getString('button.copy');
+		var COPY_BOTH = Foxtrick.L10n.getString('copy.ratings.both');
 		var createRatings = function(place, teams) {
 			try {
 				var insertBefore = null;
@@ -30,135 +188,106 @@ Foxtrick.modules['CopyRatings'] = {
 				var team1 = (teams == 'both') || (teams == 'home');
 				var team2 = (teams == 'both') || (teams == 'away');
 
-				var _d = Foxtrick.L10n.getString('match.ratings.defence') + ':';
-				var _m = Foxtrick.L10n.getString('match.ratings.midfield') + ':';
-				var _a = Foxtrick.L10n.getString('match.ratings.attack') + ':';
-				var _t = Foxtrick.L10n.getString('match.ratings.total') + ':';
+				var byNumber = doc.getElementById('sortByNumberIcon');
+				var byText = doc.getElementById('sortByTextIcon');
+				var copyTextRating = !Foxtrick.hasClass(byNumber, 'disabled');
+				var copyNumRating = !Foxtrick.hasClass(byText, 'disabled');
 
-				var headder = doc.querySelector('#mainBody h1').textContent;
-				headder = headder.trim();
-				var start = Foxtrick.strrpos(headder, '<span>(') + 7;
-				var end = Foxtrick.strrpos(headder, ')</span>');
-
-				var matchlink = Foxtrick.Pages.All.getBreadCrumbs(doc)[0];
-				var gameid = Foxtrick.util.id.getMatchIdFromUrl(matchlink.href);
-				// headder.substr(start, end-start);
-
-				start = Foxtrick.strrpos(headder, ' - ');
-				var gameresult_h = headder.substr(start - 2, 2).trim();
-				var gameresult_a = headder.substr(start + 3, 2).trim();
-
-				var ad = '\n[table]\n';
 				var table = Foxtrick.Pages.Match.getRatingsTable(doc).cloneNode(true);
-				for (var row = 0; row < table.rows.length; ++row) {
-					if (!team1 && table.rows[row].cells.length >= 2)
-						table.rows[row].cells[1].textContent = '###';
-					if (!team2 && table.rows[row].cells.length >= 3)
-						table.rows[row].cells[2].textContent = '###';
-				}
+				Foxtrick.forEach(function(row) {
+					if (!team1 && row.cells.length >= 2)
+						row.cells[1].textContent = '###';
+					if (!team2 && row.cells.length >= 3)
+						row.cells[2].textContent = '###';
+				}, table.rows);
 
-				var youth = '';
-				if (matchlink.href.search(/isYouth=true|SourceSystem=Youth/i) != -1)
-					youth = 'youth';
+				var youth = Foxtrick.Pages.Match.isYouth(doc) ? 'youth' : '';
+				var hto = Foxtrick.Pages.Match.isHTOIntegrated(doc) ? 'tournament' : '';
+				var isNT = Foxtrick.Pages.Match.isNT(doc);
 
-				var HTO = '';
-				if (matchlink.href.search(/SourceSystem=HTOIntegrated/i) != -1)
-					HTO = 'tournament';
+				var matchLink = Foxtrick.Pages.All.getBreadCrumbs(doc)[0];
+				var gameId = Foxtrick.util.id.getMatchIdFromUrl(matchLink.href);
+				var gameResult = Foxtrick.Pages.Match.getResult(doc);
 
-				var toggleTabHolder = doc.getElementsByClassName('toggleTabHolder')[0];
-				var copyTextRating = Foxtrick.hasClass(doc.getElementById('sortByNumberIcon'),
-				                                       'disabled') ? false : true;
-				var copyNumRating = Foxtrick.hasClass(doc.getElementById('sortByTextIcon'),
-				                                      'disabled') ? false : true;
+				// team name links in result table no longer lead to team pages
+				// however getTeams returns short team names
+				var teamNames = doc.querySelectorAll('.teamName a');
+				var teamLinks = Foxtrick.Pages.Match.getTeams(doc);
 
+				var addTeamInfo = function(idx) {
+					var ret = '';
+					var teamLink = teamLinks[idx];
+					var name = teamNames[idx];
+					if (teamLink) {
+						var id = Foxtrick.util.id.getTeamIdFromUrl(teamLink.href);
+						var result = (teams == 'both') ? ' - ' + gameResult[idx] : '';
+						ret = name.textContent + result + '\n';
+						if (isNT)
+							ret += '[link=/Club/NationalTeam/NationalTeam.aspx?teamId=' + id + ']';
+						else
+							ret += '[' + youth + 'teamid=' + id + ']';
+					}
+					return ret;
+				};
+
+				var ad = '[table]\n';
 				// head row
-				ad += '[tr]\n\n[th]';
-				if ((table.rows[0].cells[0])) {
-					ad += '[' + youth + HTO + 'matchid=' + gameid + ']';
-				}
-				ad += '[/th]\n[th]';
-				if (team1 && table.rows[0].cells[1]) {
-					var body = doc.getElementById('mainBody');
-					var teamlink = body.querySelectorAll('h1 > a, h1 > span > a')[0];
-					if (teamlink)
-						ad += teamlink.textContent + ((team2) ? (' - ' + gameresult_h) : '') +
-							'[br][' + youth + 'teamid=' +
-							Foxtrick.util.id.getTeamIdFromUrl(teamlink.href) + ']';
+				ad += '[tr][th]';
+				ad += '[' + youth + hto + 'matchid=' + gameId + ']';
+				ad += '[/th][th]';
+				if (team1) {
+					ad += addTeamInfo(0);
 				}
 				if (team1 && team2)
-					ad += '[/th]\n[th]';
-				if (team2 && table.rows[0].cells[2]) {
-					var body = doc.getElementById('mainBody');
-					var teamlink = body.querySelectorAll('h1 > a, h1 > span > a')[1];
-					if (teamlink)
-						ad += teamlink.textContent + ((team1) ? (' - ' + gameresult_a) : '') +
-							'[br][' + youth + 'teamid=' +
-							Foxtrick.util.id.getTeamIdFromUrl(teamlink.href) + ']';
+					ad += '[/th][th]';
+				if (team2) {
+					ad += addTeamInfo(1);
 				}
-				ad += '[/th]\n\n[/tr]\n';
+				ad += '[/th][/tr]\n';
 
-				for (var row = 1; row < table.rows.length; ++row) {
-					try {
-						ad += '[tr]\n\n[th]';
-						if (table.rows[row].cells[0]) {
-							ad += table.rows[row].cells[0].textContent;
-						}
-						ad += '[/th]\n[td]';
+				var addRowForTeam = function(row, idx) {
+					var ret = '';
+					var textCell = row.cells[1 + idx];
+					var numCell = row.cells[3 + idx];
+					if (textCell && (copyTextRating ||
+					    Foxtrick.hasClass(row, 'ft_rating_table_row'))) {
+						ret += textCell.textContent.trim();
+					}
+					if (numCell && copyNumRating) {
+						ret += ' (' + numCell.textContent.trim().replace(',', '.') + ')';
+					}
+					return ret;
+				};
 
-						/*var copyTextRating = table.rows[row].cells[1] !== undefined
-										&& (table.rows[row].cells[1].getAttribute('style') == null
-											|| table.rows[row].cells[1].getAttribute('style')
-											.indexOf('display: none') == -1
-											|| table.rows[row].cells[5].getAttribute('style')
-											.indexOf('display: none') == -1);
+				var rows = Foxtrick.toArray(table.rows).slice(1); // skip team names
+				Foxtrick.forEach(function(row) {
+					ad += '[tr]';
+					if (row.cells[0]) {
+						var colSpan = row.cells[0].colSpan;
+						var cSpan = colSpan > 1 ? ' colspan=' + colSpan : '';
 
-						var copyNumRating = table.rows[row].cells[4] !== undefined
-										&& (table.rows[row].cells[4].getAttribute('style') == null
-											|| table.rows[row].cells[4].getAttribute('style')
-											.indexOf('display: none') == -1
-											|| table.rows[row].cells[6].getAttribute('style')
-											.indexOf('display: none') == -1);
-						*/
-						if (team1) {
-							if (Foxtrick.hasClass(table.rows[row], 'ft_rating_table_row'))
-								ad += table.rows[row].cells[1].textContent.replace(_d, '[br]' + _d)
-									.replace(_m, '[br]' + _m).replace(_a, '[br]' + _a)
-									.replace(_t, '[br]' + _t);
-							else {
-								if (copyTextRating && table.rows[row].cells[1] !== undefined) {
-									ad += table.rows[row].cells[1].textContent
-										.replace(_d, '[br]' + _d).replace(_m, '[br]' + _m)
-										.replace(_a, '[br]' + _a).replace(_t, '[br]' + _t);
-								}
-								if (copyNumRating && table.rows[row].cells[3] !== undefined) {
-									ad += ' (' + table.rows[row].cells[3].textContent
-									         .replace(',', '.') + ')';
-								}
-							}
+						ad += '[th' + cSpan + ']' + row.cells[0].textContent.trim() + '[/th]';
+						if (colSpan > 1) {
+							// assume the whole row is spanned and skip it
+							ad += '[/tr]\n';
+							return;
 						}
-						if (team1 && team2)
-							ad += '[/td]\n[td]';
-						if (team2) {
-							if (Foxtrick.hasClass(table.rows[row], 'ft_rating_table_row'))
-								ad += table.rows[row].cells[2].textContent.replace(_d, '[br]' + _d)
-									.replace(_m, '[br]' + _m).replace(_a, '[br]' + _a)
-									.replace(_t, '[br]' + _t);
-							else {
-								if (copyTextRating && table.rows[row].cells[2] !== undefined) {
-									ad += table.rows[row].cells[2].textContent
-									.replace(_d, '[br]' + _d).replace(_m, '[br]' + _m)
-									.replace(_a, '[br]' + _a).replace(_t, '[br]' + _t);
-								}
-								if (copyNumRating && table.rows[row].cells[4] !== undefined) {
-									ad += ' (' + table.rows[row].cells[4].textContent + ')';
-								}
-							}
-						}
-						ad += '[/td]\n\n[/tr]\n';
-					} catch (e) { Foxtrick.log(e); }
-				}
+						ad += '[td]';
+					}
+
+					if (team1) {
+						ad += addRowForTeam(row, 0);
+					}
+					if (team1 && team2)
+						ad += '[/td][td]';
+					if (team2) {
+						ad += addRowForTeam(row, 1);
+					}
+					ad += '[/td][/tr]\n';
+				}, rows);
+
 				ad = ad.replace(/\[td\]###\[\/td\]/gi, '');
-				ad += '\n[/table]\n';
+				ad += '[/table]\n';
 
 				// copy htms prediction.
 				if (team1 && team2) {
@@ -169,8 +298,7 @@ Foxtrick.modules['CopyRatings'] = {
 				}
 
 				Foxtrick.copyStringToClipboard(ad);
-				Foxtrick.util.note.add(doc, Foxtrick.L10n.getString('copy.ratings.copied'),
-				                       'ft-ratings-copy-note', { at: insertBefore });
+				Foxtrick.util.note.add(doc, COPIED, 'ft-ratings-copy-note', { at: insertBefore });
 			}
 			catch (e) {
 				Foxtrick.log(e);
@@ -184,51 +312,44 @@ Foxtrick.modules['CopyRatings'] = {
 
 		var copyBoth = Foxtrick.createFeaturedElement(doc, this, 'span');
 		copyBoth.className = 'ft_copy_rating';
-		copyBoth.appendChild(doc.createTextNode(Foxtrick.L10n.getString('button.copy')));
-		copyBoth.setAttribute('teams', 'both');
-		copyBoth.setAttribute('place', 'table');
+		copyBoth.textContent = COPY;
 		Foxtrick.onClick(copyBoth, function() { createRatings('table', 'both'); });
 		tableHeader.appendChild(copyBoth);
 
 		var copyHome = Foxtrick.createFeaturedElement(doc, this, 'span');
 		copyHome.className = 'ft_copy_rating';
-		copyHome.appendChild(doc.createTextNode('(' + Foxtrick.L10n.getString('button.copy') + ')'));
-		copyHome.setAttribute('teams', 'home');
-		copyHome.setAttribute('place', 'table');
+		copyHome.textContent = '(' + COPY + ')';
 		Foxtrick.onClick(copyHome, function() { createRatings('table', 'home'); });
 		homeHeader.appendChild(copyHome);
 
 		var copyAway = Foxtrick.createFeaturedElement(doc, this, 'span');
 		copyAway.className = 'ft_copy_rating';
-		copyAway.appendChild(doc.createTextNode('(' + Foxtrick.L10n.getString('button.copy') + ')'));
-		copyAway.setAttribute('teams', 'away');
-		copyAway.setAttribute('place', 'table');
+		copyAway.textContent = '(' + COPY + ')';
 		Foxtrick.onClick(copyAway, function() { createRatings('table', 'away'); });
 		awayHeader.appendChild(copyAway);
 
-		var button = Foxtrick.util.copyButton.add(doc,
-			Foxtrick.L10n.getString('copy.ratings.both'));
+		var makeBoxListener = function(team) {
+			// to keep team variable here
+			return function() { createRatings('box', team); };
+		};
+		var button = Foxtrick.util.copyButton.add(doc, COPY_BOTH);
 		if (button) {
 			button.title = '';
 			button = Foxtrick.makeFeaturedElement(button, this);
 			Foxtrick.addClass(button, 'ft-copy-ratings ft-pop-up-container');
 
-			var versions = ['both', 'home', 'away'];
 			var list = doc.createElement('ul');
 			list.className = 'ft-pop';
-			for (var j = 0; j < versions.length; ++j) {
+			var versions = ['both', 'home', 'away'];
+			Foxtrick.forEach(function(version) {
 				var item = doc.createElement('li');
 				var link = doc.createElement('span');
-				Foxtrick.onClick(link, (function(team) {
-					// to keep team variable here
-					return function() { createRatings('box', team); };
-				})(versions[j]));
-				link.setAttribute('teams', versions[j]);
-				link.textContent = Foxtrick.L10n.getString('copy.ratings.' + versions[j]);
+				Foxtrick.onClick(link, makeBoxListener(version));
+				link.textContent = Foxtrick.L10n.getString('copy.ratings.' + version);
 				item.appendChild(link);
 				list.appendChild(item);
-			}
+			}, versions);
 			button.appendChild(list);
 		}
-	}
+	},
 };

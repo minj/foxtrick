@@ -140,6 +140,20 @@ Foxtrick.Pages.Match.getAwayTeamName = function(doc) {
 };
 
 /**
+ * Get the game result as an array [home, away]
+ * @param  {document} doc
+ * @return {array}        {Array.<number>}
+ */
+Foxtrick.Pages.Match.getResult = function(doc) {
+	var headder = doc.querySelector('#mainBody h1').textContent.trim();
+	var result = headder.match(/^.+(\d+) - (\d+).+$/);
+	var ret = Foxtrick.toArray(result).slice(1).map(function(s) { return parseInt(s, 10); });
+	if (Foxtrick.util.layout.isRtl(doc))
+		ret.reverse();
+	return ret;
+};
+
+/**
  * Test whether match has not started
  * @param  {document} doc
  * @return {Boolean}
