@@ -17,11 +17,162 @@ Foxtrick.modules['CopyRatings'] = {
 		if (Foxtrick.Pages.Match.isPrematch(doc))
 			return;
 
+		if (Foxtrick.Pages.Match.hasRatingsTabs(doc))
+			this.copyRatingDetails(doc);
+
 		var table = Foxtrick.Pages.Match.getRatingsTable(doc);
 		if (!table)
 			return;
 
 		this.copyRatingsTable(table);
+	},
+	copyRatingDetails: function(doc) {
+		var module = this;
+		if (!Foxtrick.Pages.Match.getReportTabs(doc))
+			return;
+
+		var isLive = Foxtrick.Pages.Match.inProgress(doc) ||
+			Foxtrick.Pages.Match.getLiveContainer(doc);
+
+		// disabled on Live for now
+		if (isLive)
+			return;
+
+		var SECTORS = {
+			home_rd_: 0,
+			away_la_: 1,
+			home_cd_: 2,
+			away_ca_: 3,
+			home_ld_: 4,
+			away_ra_: 5,
+			home_mf_: 6,
+			away_mf_: 7,
+			home_ra_: 8,
+			away_ld_: 9,
+			home_ca_: 10,
+			away_cd_: 11,
+			home_la_: 12,
+			away_rd_: 13,
+		};
+
+		var COPIED = Foxtrick.L10n.getString('copy.ratings.copied');
+		var COPY = Foxtrick.L10n.getString('button.copy');
+
+		var SECTORS_TEMPLATE = '[tr][th colspan=3 align=center]{sectors_title}[/th][/tr]\n[tr]\n[td align=center][b]{home_rd_lbl}[/b]\n{home_rd_txt}\n[{home_rd_val}][/td]\n[td align=center][b]{home_cd_lbl}[/b]\n{home_cd_txt}\n[{home_cd_val}][/td]\n[td align=center][b]{home_ld_lbl}[/b]\n{home_ld_txt}\n[{home_ld_val}][/td]\n[/tr]\n[tr]\n[td align=center][q]{away_la_pct}[/q][/td]\n[td align=center][q]{away_ca_pct}[/q][/td]\n[td align=center][q]{away_ra_pct}[/q][/td]\n[/tr]\n[tr]\n[td align=center][b]{away_la_lbl}[/b]\n{away_la_txt}\n[{away_la_val}][/td]\n[td align=center][b]{away_ca_lbl}[/b]\n{away_ca_txt}\n[{away_ca_val}][/td]\n[td align=center][b]{away_ra_lbl}[/b]\n{away_ra_txt}\n[{away_ra_val}][/td]\n[/tr]\n[tr][td colspan=3 align=center][b]{home_mf_lbl}[/b]\n{home_mf_txt}\n[{home_mf_val}][/td][/tr]\n[tr][td colspan=3 align=center][q]{home_mf_pct}[/q][/td][/tr]\n[tr][td colspan=3 align=center][b]{away_mf_lbl}[/b]\n{away_mf_txt}\n[{away_mf_val}][/td][/tr]\n[tr]\n[td align=center][b]{home_ra_lbl}[/b]\n{home_ra_txt}\n[{home_ra_val}][/td]\n[td align=center][b]{home_ca_lbl}[/b]\n{home_ca_txt}\n[{home_ca_val}][/td]\n[td align=center][b]{home_la_lbl}[/b]\n{home_la_txt}\n[{home_la_val}][/td]\n[/tr]\n[tr]\n[td align=center][q]{home_ra_pct}[/q][/td]\n[td align=center][q]{home_ca_pct}[/q][/td]\n[td align=center][q]{home_la_pct}[/q][/td]\n[/tr]\n[tr]\n[td align=center][b]{away_ld_lbl}[/b]\n{away_ld_txt}\n[{away_ld_val}][/td]\n[td align=center][b]{away_cd_lbl}[/b]\n{away_cd_txt}\n[{away_cd_val}][/td]\n[td align=center][b]{away_rd_lbl}[/b]\n{away_rd_txt}\n[{away_rd_val}][/td]\n[/tr]\n[tr][td colspan=3]{prob_desc}[/td][/tr]';
+
+		var TEMPLATE = '[table]\n[tr][td align=center]{home_team}\n{home_link}[/td]\n[th align=center]{match_link}\n{home_goals} - {away_goals}\n{match_time}[/th]\n[td align=center]{away_team}\n{away_link}[/td][/tr]\n[tr][td align=center]{home_atd}[/td][th align=center]{attitude_lbl}[/th][td align=center]{away_atd}[/td][/tr]\n[tr][td align=center][u]{home_tct_txt}[/u][/td][th align=center]{tactic_lbl}[/th][td align=center][u]{away_tct_txt}[/u][/td][/tr]\n[tr][td align=center]{home_tct_lvl}[/td][th align=center]{tactic_lvl_lbl}[/th][td align=center]{away_tct_lvl}[/td][/tr]\n{sectors}\n[/table]';
+		var LIVE_TEMPLATE = '[table]\n[tr][td align=center]{home_team}\n{home_link}[/td]\n[th align=center]{match_link}\n{home_goals} - {away_goals}\n{match_time}[/th]\n[td align=center]{away_team}\n{away_link}[/td][/tr]\n{sectors}\n[/table]';
+
+		var listener = function(ev) {
+			var doc = ev.target.ownerDocument;
+
+			var labels = Foxtrick.map(function(label) {
+				// MatchRatingsTweaks.FollowChanges moves full sector name to title
+				return label.title.trim() || label.textContent.trim();
+			}, doc.querySelectorAll('.posLabel'));
+
+			var textRatings = Foxtrick.map(function(text) {
+				return text.textContent.trim();
+			}, doc.querySelectorAll('.overlaySector .teamTextRatings'));
+
+			var numberRatings = Foxtrick.map(function(text) {
+				return parseInt(text.textContent.trim(), 10);
+			}, doc.querySelectorAll('.overlaySector .teamNumberRatings'));
+
+			var ratings = Foxtrick.map(function(number) {
+				return number / 4 + 0.75;
+			}, numberRatings);
+
+			var sectorResults = Foxtrick.map(function(text) {
+				// using '[42%]' for HT values
+				// while '(42%)' for real probabilities (adds title attribute)
+				var template = text.title ? '({})' : '[{}]';
+				var pct = text.firstChild; // skipping FollowChanges
+				return Foxtrick.format(template, [pct.textContent.trim()]);
+			}, doc.querySelectorAll('.sectorResult'));
+
+			var map = {};
+			for (var sector in SECTORS) {
+				var order = SECTORS[sector];
+				map[sector + 'lbl'] = labels[order];
+				map[sector + 'txt'] = textRatings[order];
+				map[sector + 'val'] = ratings[order];
+				map[sector + 'pct'] = sectorResults[order];
+			}
+
+			var realProb = doc.getElementById('ft-probabilityDesc');
+			var htProb = doc.getElementById('ht-probabilityDesc');
+			if (realProb && !Foxtrick.hasClass(realProb, 'hidden'))
+				map.prob_desc = realProb.textContent.trim();
+			else if (htProb && !Foxtrick.hasClass(htProb, 'hidden'))
+				map.prob_desc = htProb.textContent.trim();
+
+			var title = doc.querySelector('#divSectors h4');
+			map.sectors_title = title.textContent.trim();
+
+			var time = doc.querySelector('.currentEvent .timelineEventTimeStamp');
+			var eventDetails = doc.getElementById('timelineEventDetails').firstChild;
+			var match_time = time ? time.textContent.trim()
+				: eventDetails.textContent.trim().match(/^\d+/)[0];
+			map.match_time = isNaN(parseInt(match_time, 10)) ? match_time : match_time + '\'';
+
+			map.sectors = Foxtrick.format(SECTORS_TEMPLATE, map);
+
+			var youth = Foxtrick.Pages.Match.isYouth(doc) ? 'youth' : '';
+			var hto = Foxtrick.Pages.Match.isHTOIntegrated(doc) ? 'tournament' : '';
+			var isNT = Foxtrick.Pages.Match.isNT(doc);
+			var gameId = Foxtrick.Pages.Match.getId(doc);
+
+			map.match_link = '[' + youth + hto + 'matchid=' + gameId + ']';
+			map.home_team = Foxtrick.Pages.Match.getHomeTeamName(doc);
+			var homeId = Foxtrick.Pages.Match.getHomeTeamId(doc);
+			map.home_link = !isNT ? '[' + youth + 'teamid=' + homeId + ']' : '(' + homeId + ')';
+			// : '[link=/Club/NationalTeam/NationalTeam.aspx?teamId=' + homeId + ']';
+			map.away_team = Foxtrick.Pages.Match.getAwayTeamName(doc);
+			var awayId = Foxtrick.Pages.Match.getAwayTeamId(doc);
+			map.away_link = !isNT ? '[' + youth + 'teamid=' + awayId + ']' : '(' + awayId + ')';
+			// : '[link=/Club/NationalTeam/NationalTeam.aspx?teamId=' + awayId + ']';
+			var score = Foxtrick.Pages.Match.getResult(doc);
+			map.home_goals = score[0];
+			map.away_goals = score[1];
+
+			if (isLive) {
+				Foxtrick.copyStringToClipboard(Foxtrick.format(LIVE_TEMPLATE, map));
+			}
+			else {
+				var headers = doc.querySelectorAll('.miscRatings h2');
+				var miscRow = headers[1].parentNode.parentNode;
+
+				var attitudeRow = miscRow.nextElementSibling;
+				map.attitude_lbl = attitudeRow.cells[0].textContent.trim();
+				map.home_atd = attitudeRow.cells[1].textContent.trim() || '-';
+				map.away_atd = attitudeRow.cells[2].textContent.trim() || '-';
+
+				var tacticsRow = attitudeRow.nextElementSibling;
+				map.tactic_lbl = tacticsRow.cells[0].textContent.trim();
+				map.home_tct_txt = tacticsRow.cells[1].textContent.trim();
+				map.away_tct_txt = tacticsRow.cells[2].textContent.trim();
+
+				var tacticsLvlRow = tacticsRow.nextElementSibling;
+				map.tactic_lvl_lbl = tacticsLvlRow.cells[0].textContent.trim();
+				var tacticLvls = tacticsLvlRow.getElementsByClassName('teamTextRatings');
+				map.home_tct_lvl = tacticLvls[0].textContent.trim();
+				map.away_tct_lvl = tacticLvls[1].textContent.trim();
+
+				Foxtrick.copyStringToClipboard(Foxtrick.format(TEMPLATE, map));
+			}
+
+			Foxtrick.util.note.add(doc, COPIED, 'ft-ratings-copy-note');
+		};
+
+		var button = Foxtrick.createFeaturedElement(doc, module, 'span');
+		button.id = 'ft-copy-rating-details';
+		button.textContent = COPY;
+		Foxtrick.onClick(button, listener);
+
+		var title = doc.querySelector('#divSectors h4');
+		var actions = title.parentNode;
+		actions.appendChild(button);
 	},
 	copyRatingsTable: function(table) {
 		var doc = table.ownerDocument;
