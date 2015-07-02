@@ -217,16 +217,16 @@
 			"words_translated": "6227"
 		},
 		{
-			"approved": "1858",
-			"approved_progress": "99",
+			"approved": "1859",
+			"approved_progress": "100",
 			"code": "fr",
 			"name": "French",
 			"phrases": "1859",
-			"translated": "1858",
-			"translated_progress": "99",
+			"translated": "1859",
+			"translated_progress": "100",
 			"words": "13069",
-			"words_approved": "13066",
-			"words_translated": "13066"
+			"words_approved": "13069",
+			"words_translated": "13069"
 		},
 		{
 			"approved": "0",
