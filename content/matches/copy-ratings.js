@@ -79,11 +79,11 @@ Foxtrick.modules['CopyRatings'] = {
 			}, doc.querySelectorAll('.overlaySector .teamTextRatings'));
 
 			var numberRatings = Foxtrick.map(function(text) {
-				return parseInt(text.textContent.trim(), 10);
+				return text.textContent.trim();
 			}, doc.querySelectorAll('.overlaySector .teamNumberRatings'));
 
 			var ratings = Foxtrick.map(function(number) {
-				return number / 4 + 0.75;
+				return Foxtrick.Math.hsToFloat(number, true).toFixed(2);
 			}, numberRatings);
 
 			var sectorResults = Foxtrick.map(function(text) {

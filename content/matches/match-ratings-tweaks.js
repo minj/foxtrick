@@ -256,7 +256,7 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 			if (doChanges) {
 				var calcBox = Foxtrick.createFeaturedElement(doc, this, 'div');
 				Foxtrick.addClass(calcBox, 'ft-mrt-rating-calc');
-				var value = num / 4 + 0.75;
+				var value = Foxtrick.Math.hsToFloat(num, true);
 				calcBox.textContent = value.toFixed(2) + ' ';
 				var text = box.getElementsByClassName('teamTextRatings')[0];
 				box.insertBefore(calcBox, text);
