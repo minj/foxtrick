@@ -17,8 +17,7 @@ Foxtrick.modules['CopyRatings'] = {
 		if (Foxtrick.Pages.Match.isPrematch(doc))
 			return;
 
-		if (Foxtrick.Pages.Match.hasRatingsTabs(doc))
-			this.copyRatingDetails(doc);
+		this.copyRatingDetails(doc);
 
 		var table = Foxtrick.Pages.Match.getRatingsTable(doc);
 		if (!table)
@@ -28,15 +27,12 @@ Foxtrick.modules['CopyRatings'] = {
 	},
 	copyRatingDetails: function(doc) {
 		var module = this;
-		if (!Foxtrick.Pages.Match.getReportTabs(doc))
+
+		if (!Foxtrick.Pages.Match.hasRatingsTabs(doc))
 			return;
 
-		var isLive = Foxtrick.Pages.Match.inProgress(doc) ||
-			Foxtrick.Pages.Match.getLiveContainer(doc);
-
-		// disabled on Live for now
-		if (isLive)
-			return;
+		var inProgress = Foxtrick.Pages.Match.inProgress(doc);
+		var isLive = Foxtrick.isPage(doc, 'matchesLive');
 
 		var SECTORS = {
 			home_rd_: 0,
@@ -110,11 +106,43 @@ Foxtrick.modules['CopyRatings'] = {
 			var title = doc.querySelector('#divSectors h4');
 			map.sectors_title = title.textContent.trim();
 
-			var time = doc.querySelector('.currentEvent .timelineEventTimeStamp');
-			var eventDetails = doc.getElementById('timelineEventDetails').firstChild;
-			var match_time = time ? time.textContent.trim()
-				: eventDetails.textContent.trim().match(/^\d+/)[0];
-			map.match_time = isNaN(parseInt(match_time, 10)) ? match_time : match_time + '\'';
+			if (!inProgress && !isLive) {
+				var time = doc.querySelector('.currentEvent .timelineEventTimeStamp');
+				var eventDetails = doc.getElementById('timelineEventDetails').firstChild;
+				var match_time = time ? time.textContent.trim()
+					: eventDetails.textContent.trim().match(/^\d+/)[0];
+				map.match_time = isNaN(parseInt(match_time, 10)) ? match_time : match_time + '\'';
+			}
+			else if (inProgress) {
+				// README: this is fragile match minute detection
+				// matchdetails:154-7
+				var minute = 0;
+				var isSecondHalf = doc.querySelector('#matchReport span[data-eventtype^="45"]');
+				if (isSecondHalf)
+					minute += 45;
+
+				// assuming 156 (extra time) is not used
+				// var isExtraTime = doc.querySelector('#matchReport span[data-eventtype^="70"]');
+
+				var progress = Foxtrick.getMBElement(doc, 'lblMatchStatus');
+				// assuming no numbers before match minute
+				// lookahead defeats references to 11 meters (Azer & Vietnamese)
+				var min = progress.textContent.match(/\d+(?= )/);
+				if (min)
+					minute += parseInt(min[0], 10);
+
+				var events = doc.querySelectorAll('#matchReport span[data-match-minute]');
+				var lastEvent = events[events.length - 1];
+				var lastMinute = parseInt(lastEvent.dataset.matchMinute, 10);
+				if (lastMinute > minute)
+					minute = lastMinute;
+
+				map.match_time = minute + '\'';
+			}
+			else if (isLive) {
+				var timer = doc.getElementById('match');
+				map.match_time = timer.textContent.trim().match(/^\d+/)[0];
+			}
 
 			map.sectors = Foxtrick.format(SECTORS_TEMPLATE, map);
 
@@ -136,7 +164,7 @@ Foxtrick.modules['CopyRatings'] = {
 			map.home_goals = score[0];
 			map.away_goals = score[1];
 
-			if (isLive) {
+			if (isLive || inProgress) {
 				Foxtrick.copyStringToClipboard(Foxtrick.format(LIVE_TEMPLATE, map));
 			}
 			else {
