@@ -26,17 +26,16 @@ Foxtrick.modules['ExtendedPlayerDetails'] = {
 					if (!player)
 						return;
 					if (player.playerLanguage) {
-						var br = doc.createElement('br');
-						br.className = 'clear';
-						node.appendChild(br);
-
-						var language = Foxtrick.createFeaturedElement(doc, module, 'em');
+						var language = doc.createElement('em');
 						Foxtrick.addClass(language, 'shy');
 						language.setAttribute('style', 'font-weight:normal; margin-left:5px;');
 						language.textContent = player.playerLanguage;
 						if (player.playerLanguageID)
 							language.setAttribute('PlayerLanguageID', player.playerLanguageID);
-						node.appendChild(language);
+
+						var langPara = Foxtrick.createFeaturedElement(doc, module, 'p');
+						langPara.appendChild(language);
+						node.appendChild(langPara);
 					}
 				});
 			};
