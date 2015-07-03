@@ -102,11 +102,6 @@
 			"duty": "translator"
 		},
 		{
-			"id": "8407292",
-			"name": "Axdon",
-			"duty": "translator"
-		},
-		{
 			"id": "1570740",
 			"name": "Thelonius",
 			"duty": "translator"
@@ -212,11 +207,6 @@
 			"duty": "translator"
 		},
 		{
-			"id": "9104493",
-			"name": "chembalo",
-			"duty": "translator"
-		},
-		{
 			"id": "6127012",
 			"name": "popolonator",
 			"duty": "translator"
@@ -309,11 +299,6 @@
 		{
 			"id": "2848855",
 			"name": "LA-Willte",
-			"duty": "translator"
-		},
-		{
-			"id": "11607799",
-			"name": "dmsjzb",
 			"duty": "translator"
 		},
 		{
@@ -454,16 +439,6 @@
 		{
 			"id": "12858567",
 			"name": "Engin_Altiok",
-			"duty": "translator"
-		},
-		{
-			"id": "6796224",
-			"name": "Fella",
-			"duty": "translator"
-		},
-		{
-			"id": "6483801",
-			"name": "onderin111",
 			"duty": "translator"
 		}
 	]
