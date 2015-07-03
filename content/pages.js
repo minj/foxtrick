@@ -20,6 +20,8 @@
 if (!Foxtrick)
 	var Foxtrick = {};
 
+// jscs:disable disallowSpaceAfterObjectKeys, disallowQuotedKeysInObjects
+// jscs:disable disallowMultipleSpaces
 Foxtrick.ht_pages = {
 	// following are mainly used for information gathering. keep on top
 	'myHattrick'                : '/MyHattrick/$',  // that's the news page
@@ -182,8 +184,10 @@ Foxtrick.pagesExcluded = {
 	'offline'                   : '/down.aspx',
 	'oath'                      : 'chpp.hattrick.org/',
 	'error'                     : '/Errors/',
-	'logout'                    : '/Logout.aspx'
+	'logout'                    : '/Logout.aspx',
 };
+// jscs:enable disallowSpaceAfterObjectKeys, disallowQuotedKeysInObjects
+// jscs:enable disallowMultipleSpaces
 
 /**
  * Test whether document belongs to a certain page type
