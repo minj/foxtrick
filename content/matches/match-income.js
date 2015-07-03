@@ -126,6 +126,9 @@ Foxtrick.modules['MatchIncome'] = {
 				if (!arenaId)
 					return;
 
+				// expand income row
+				td2b.colSpan = 2;
+
 				var args = [['file', 'arenadetails'], ['version', '1.5'], ['arenaId', arenaId]];
 				Foxtrick.util.api.retrieve(doc, args, { cache_lifetime: 'session' },
 				  function(xml, errorText) {
