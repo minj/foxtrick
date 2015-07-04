@@ -243,10 +243,13 @@ else if (typeof(chrome) == 'object') {
 	Foxtrick.SB = {
 		ext: {
 			sendRequest: function(data, callback) {
-				if (callback)
-					chrome.extension.sendRequest(data, callback);
-				else
-					chrome.extension.sendRequest(data);
+				try {
+					if (callback)
+						chrome.extension.sendRequest(data, callback);
+					else
+						chrome.extension.sendRequest(data);
+				}
+				catch (e) {}
 			},
 			onRequest: {
 				addListener: function(listener) {
