@@ -35,6 +35,8 @@ Foxtrick.modules['ForumLeaveButton'] = {
 
 				Foxtrick.onClick(leaveConf, function() {
 					if (Foxtrick.confirmDialog(alertText)) {
+						var folder = this.parentNode.parentNode;
+						folder.parentNode.removeChild(folder);
 						Foxtrick.newTab(url);
 					}
 				});
