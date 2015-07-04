@@ -10,12 +10,42 @@ Foxtrick.modules['ForumLeaveButton'] = {
 	PAGES: ['forum', 'forumSettings'],
 
 	run: function(doc) {
+		var module = this;
 		if (Foxtrick.isPage(doc, 'forum')) {
-			var vValue = this.getVValue(doc);
+			var LEAVE = Foxtrick.L10n.getString('ForumLeaveButton.LeaveForum');
+			var ALERT = Foxtrick.L10n.getString('ForumLeaveButton.alert');
+			var host = Foxtrick.getLastHost();
+			var URL = host + '/MyHattrick/Preferences/ForumSettings.aspx?LeaveConf=';
 
+			var addButton = function(folderHeader) {
+				var doc = folderHeader.ownerDocument;
+				if (folderHeader.querySelector('.foxtrickRemove'))
+					return;
+
+				var link = folderHeader.querySelector('a[onclick]');
+				var forumId = Foxtrick.getParameterFromUrl(link.href, 'f');
+				var url = URL + forumId;
+
+				var forumName = link.textContent.trim();
+				var alertText = ALERT.replace('%s', forumName);
+
+				var leaveConf = Foxtrick.createFeaturedElement(doc, module, 'div');
+				Foxtrick.addClass(leaveConf, 'ft_actionicon foxtrickRemove float_right');
+				leaveConf.title = LEAVE;
+
+				Foxtrick.onClick(leaveConf, function() {
+					if (Foxtrick.confirmDialog(alertText)) {
+						Foxtrick.newTab(url);
+					}
+				});
+				var markAsReadButton = folderHeader.firstChild;
+				folderHeader.insertBefore(leaveConf, markAsReadButton);
+			};
+
+			var vValue = this.getVValue(doc);
 			if (vValue != '2') {
 				var headers = doc.querySelectorAll('.folderHeader, .folderHeaderHighlight');
-				Foxtrick.forEach(this.addButton.bind(this), headers);
+				Foxtrick.forEach(addButton, headers);
 			}
 		}
 		else if (Foxtrick.isPage(doc, 'forumSettings')) {
@@ -54,30 +84,5 @@ Foxtrick.modules['ForumLeaveButton'] = {
 	getVValue: function(doc) {
 		var sUrl = Foxtrick.getHref(doc);
 		return Foxtrick.getParameterFromUrl(sUrl, 'v') || '1';
-	},
-
-	addButton: function(folderHeader) {
-		var doc = folderHeader.ownerDocument;
-		if (folderHeader.querySelector('.foxtrickRemove'))
-			return;
-
-		var link = folderHeader.querySelector('a[onclick]');
-		var forumId = Foxtrick.getParameterFromUrl(link.href, 'f');
-		var forumName = link.textContent.trim();
-
-		var leaveConf = Foxtrick.createFeaturedElement(doc, this, 'div');
-		Foxtrick.addClass(leaveConf, 'ft_actionicon foxtrickRemove float_right');
-		leaveConf.title = Foxtrick.L10n.getString('ForumLeaveButton.LeaveForum');
-		var alertText = Foxtrick.L10n.getString('ForumLeaveButton.alert');
-
-		Foxtrick.onClick(leaveConf, function() {
-			if (confirm(alertText.replace('%s', forumName))) {
-				var host = Foxtrick.getLastHost();
-				var url = host + '/MyHattrick/Preferences/ForumSettings.aspx?LeaveConf=' + forumId;
-				Foxtrick.newTab(url);
-			}
-		});
-		var markAsReadButton = folderHeader.firstChild;
-		folderHeader.insertBefore(leaveConf, markAsReadButton);
 	},
 };
