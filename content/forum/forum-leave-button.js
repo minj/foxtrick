@@ -24,7 +24,7 @@ Foxtrick.modules['ForumLeaveButton'] = {
 			if (forumId) {
 				var ul = Foxtrick.getMBElement(doc, 'ucForumPreferences_rlFolders__rbl');
 				var forums = ul.querySelectorAll('.prioFolderName a');
-				Foxtrick.any(function(forum) {
+				var found = Foxtrick.any(function(forum) {
 					if (forum.href.match(forumId)) {
 						var actions = forum.parentNode.parentNode;
 						var leave = actions.querySelector('.leave');
@@ -33,6 +33,15 @@ Foxtrick.modules['ForumLeaveButton'] = {
 					}
 					return false;
 				}, forums);
+				if (found) {
+					// need to wait for removal otherwise it results in a continuous reload loop
+					var cont = Foxtrick.getMBElement(doc, 'ucForumPreferences_pnlFolders');
+					Foxtrick.onChange(cont, function(doc) {
+						var save = Foxtrick.getMBElement(doc, 'ucForumPreferences_btnSave');
+						save.click();
+						return true;
+					});
+				}
 			}
 		}
 	},
@@ -54,12 +63,15 @@ Foxtrick.modules['ForumLeaveButton'] = {
 
 		var link = folderHeader.querySelector('a[onclick]');
 		var forumId = Foxtrick.getParameterFromUrl(link.href, 'f');
+		var forumName = link.textContent.trim();
 
 		var leaveConf = Foxtrick.createFeaturedElement(doc, this, 'div');
 		Foxtrick.addClass(leaveConf, 'ft_actionicon foxtrickRemove float_right');
 		leaveConf.title = Foxtrick.L10n.getString('ForumLeaveButton.LeaveForum');
+		var alertText = Foxtrick.L10n.getString('ForumLeaveButton.alert');
+
 		Foxtrick.onClick(leaveConf, function() {
-			if (confirm(Foxtrick.L10n.getString('ForumLeaveButton.alert'))) {
+			if (confirm(alertText.replace('%s', forumName))) {
 				var host = Foxtrick.getLastHost();
 				var url = host + '/MyHattrick/Preferences/ForumSettings.aspx?LeaveConf=' + forumId;
 				Foxtrick.newTab(url);
