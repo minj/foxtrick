@@ -90,7 +90,7 @@ CONTENT_FILES = add-class.js \
 	forum-stage.js \
 	l10n.js \
 	pages.js \
-	prefs.js \
+	prefs-util.js \
 	read-ht-prefs.js \
 	redirections.js \
 	ui.js \

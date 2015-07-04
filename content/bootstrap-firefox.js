@@ -10,7 +10,7 @@ FoxtrickFirefox.prototype = {
 
 		//<!-- essential -->
 		'env.js',
-		'prefs.js',
+		'prefs-util.js',
 		'l10n.js',
 		'xml-load.js',
 		'pages.js',
