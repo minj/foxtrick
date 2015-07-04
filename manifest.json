@@ -21,7 +21,7 @@
 		"js" : [
 			//<!-- essential -->
 			"content/env.js",
-			"content/prefs.js",
+			"content/prefs-util.js",
 			"content/l10n.js",
 			"content/xml-load.js",
 			"content/pages.js",

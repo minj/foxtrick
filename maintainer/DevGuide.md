@@ -44,7 +44,7 @@ Most utilities are arranged in folders in `content`:
 * Additionally some core features are defined in:
 	* [l10n.js](/content/util/l10n.js): localization (Foxtrick.L10n.*)
 	* [pages.js](/content/util/pages.js): HT page detection
-	* [prefs.js](/content/util/prefs.js): settings value access (Foxtrick.Prefs.*)
+	* [prefs-util.js](/content/util/prefs-util.js): settings value access (Foxtrick.Prefs.*)
 	* [xml-load.js](/content/util/xml-load.js): HT countries and leagues
 
 ## Adding new functionality

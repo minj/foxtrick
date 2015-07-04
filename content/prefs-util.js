@@ -1,6 +1,6 @@
 'use strict';
 /**
- * preferences.js
+ * prefs-util.js
  * Foxtrick preferences service
  * @author Mod-PaV, ryanli, convincedd
  */

@@ -35,7 +35,7 @@ a good reason to. They are for version bumps in Makefile.
 			<array>
 				<!-- essential -->
 				<string>content/env.js</string>
-				<string>content/prefs.js</string>
+				<string>content/prefs-util.js</string>
 				<string>content/l10n.js</string>
 				<string>content/xml-load.js</string>
 				<string>content/pages.js</string>
