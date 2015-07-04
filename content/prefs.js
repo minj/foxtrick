@@ -187,56 +187,83 @@ Foxtrick.Prefs = {
 		return true;
 	},
 
-	isModuleEnabled: function(moduleName) {
-		// core modules must be executed no matter what user's preference is
-		var obj = Foxtrick.modules[moduleName];
-		if (!obj)
+	isModuleEnabled: function(module) {
+		if (typeof module === 'string')
+			module = Foxtrick.modules[module];
+		if (!module)
 			return false;
-		if (obj.CORE_MODULE)
+
+		// core modules must be executed no matter what user's preference is
+		if (module.CORE_MODULE)
 			return true;
-		return Foxtrick.Prefs.getBool('module.' + moduleName + '.enabled');
+
+		return Foxtrick.Prefs.getBool('module.' + module.MODULE_NAME + '.enabled');
 	},
 
-	isModuleOptionEnabled: function(moduleName, option) {
-		return Foxtrick.Prefs.getBool('module.' + moduleName + '.' + option + '.enabled');
+	isModuleOptionEnabled: function(module, option) {
+		if (typeof module !== 'string')
+			module = module.MODULE_NAME;
+
+		return Foxtrick.Prefs.getBool('module.' + module + '.' + option + '.enabled');
 	},
 
-	isModuleOptionSet: function(moduleName, option) {
-		return Foxtrick.Prefs.prefHasUserValue('module.' + moduleName + '.' + option + '.enabled');
+	isModuleOptionSet: function(module, option) {
+		if (typeof module !== 'string')
+			module = module.MODULE_NAME;
+
+		return Foxtrick.Prefs.prefHasUserValue('module.' + module + '.' + option + '.enabled');
 	},
 
-	setModuleEnableState: function(moduleName, value) {
-		Foxtrick.Prefs.setBool('module.' + moduleName + '.enabled', value);
+	setModuleEnableState: function(module, value) {
+		if (typeof module !== 'string')
+			module = module.MODULE_NAME;
+
+		Foxtrick.Prefs.setBool('module.' + module + '.enabled', value);
 	},
 
-	setModuleOptionsText: function(moduleName, value) {
-		Foxtrick.Prefs.setString('module.' + moduleName, value);
+	setModuleOptionsText: function(module, value) {
+		if (typeof module !== 'string')
+			module = module.MODULE_NAME;
+
+		Foxtrick.Prefs.setString('module.' + module, value);
 	},
 
-	getModuleValue: function(moduleName) {
-		return Foxtrick.Prefs.getInt('module.' + moduleName + '.value');
+	getModuleValue: function(module) {
+		if (typeof module !== 'string')
+			module = module.MODULE_NAME;
+
+		return Foxtrick.Prefs.getInt('module.' + module + '.value');
 	},
 
-	setModuleValue: function(moduleName, value) {
-		Foxtrick.Prefs.setInt('module.' + moduleName + '.value', value);
+	setModuleValue: function(module, value) {
+		if (typeof module !== 'string')
+			module = module.MODULE_NAME;
+
+		Foxtrick.Prefs.setInt('module.' + module + '.value', value);
 	},
 
-	getModuleDescription: function(moduleName) {
-		var name = 'module.' + moduleName + '.desc';
+	getModuleDescription: function(module) {
+		if (typeof module !== 'string')
+			module = module.MODULE_NAME;
+
+		var name = 'module.' + module + '.desc';
 		if (Foxtrick.L10n.isStringAvailable(name))
 			return Foxtrick.L10n.getString(name);
 		else {
-			Foxtrick.log('Module not localized: ' + moduleName + '.');
-			return moduleName;
+			Foxtrick.log('Module not localized: ' + module + '.');
+			return module;
 		}
 	},
 
-	getModuleElementDescription: function(moduleName, option) {
-		var name = 'module.' + moduleName + '.' + option + '.desc';
+	getModuleElementDescription: function(module, option) {
+		if (typeof module !== 'string')
+			module = module.MODULE_NAME;
+
+		var name = 'module.' + module + '.' + option + '.desc';
 		if (Foxtrick.L10n.isStringAvailable(name))
 			return Foxtrick.L10n.getString(name);
 		else {
-			Foxtrick.log('Module option not localized: ' + moduleName + '.' + option + '.');
+			Foxtrick.log('Module option not localized: ' + module + '.' + option + '.');
 			return option;
 		}
 	},
@@ -317,13 +344,7 @@ Foxtrick.Prefs = {
 			prefs: true, // other prefs
 			skipFiles: false, // whether to exclude dataURIs
 		};
-		if (options && typeof options === 'object') {
-			for (var o in opts) {
-				if (o in options) {
-					opts[o] = options[o];
-				}
-			}
-		}
+		Foxtrick.mergeValid(opts, options);
 		try {
 			var ret = '';
 			var array = Foxtrick.Prefs.getAllKeysOfBranch('');
