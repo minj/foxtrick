@@ -2,7 +2,7 @@
 /**
  * forum-leave-button.js
  * Foxtrick Leave Conference module
- * @author larsw84
+ * @author larsw84, LA-MJ
  */
 
 Foxtrick.modules['ForumLeaveButton'] = {
