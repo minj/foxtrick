@@ -7,6 +7,29 @@ en:
     beta:
       note_0: 'This is the beta version of the next release. Please help translating this version at our super easy crowd-translation page <linkCrowdin>crowdin.net</linkCrowdin>.'
 
+    0.15.2:
+      important: '<header>Important announcements</header>'
+      links: '<module>Links</module> functionality was rewritten to fix a few bugs and improve maintenance. More tags will now be available for custom links. Some tags were renamed to reflect their true meaning. Please clear your Foxtrick cache, test your custom links and update them accordingly.'
+      support: '<header>Like what we are doing? Please <linkContribute>Support Foxtrick</linkContribute>.</header>'
+      crowdin: '<header>A lot of translation updates from our awesome users using the <linkCrowdin>crowdin tool</linkCrowdin>. You can help out as well!</header>'
+      twitter: 'You can follow <linkTwitter>Foxtrick on Twitter</linkTwitter> to receive the latest news, updates, and announcements.'
+      bugs: '<header>Bug fixes</header>'
+      youth_avatars: 'Fixed missing youth avatars in <module>MatchOrderInterface</module>.'
+      preserve_changes: '<module>MatchRatingsTweaks</module> should now preserve last rating changes during live games. Previously the changes in ratings (colored numbers) would disappear on each update even if that update had no effect on ratings.'
+      leave_forum: '<module>ForumLeaveButton</module> was totally broken and should now be fixed.'
+      monitor_cups: '<module>MyMonitor</module> should now show the correct secondary cup icons.'
+      other: '<header>Other changes</header>'
+      volume: 'Added a global Foxtrick sound volume slider in the <FTlinkMainTab>general settings section</FTlinkMainTab>.'
+      mlt_upgrade: '<module>MatchLineupTweaks</module> module should now display player numbers on the match lineup. Additionally, you will see stamina skill prediction (if available) when hovering your mouse over the player energy value.'
+      mrt_ratings: '<module>Ratings</module> module was integrated into <module>MatchRatingsTweaks</module> and now has a limited functionality even in HT-Live (for HT Supporters-only).'
+      copy_ratings: '<module>CopyRatings</module> was rewritten and can now copy minute-based ratings from the rating details tab, even in HT-Live.'
+      monitor_update: '<module>MyMonitor</module> now includes more intelligent team sorting and an ability add matches to HT-Live based on their type.'
+      promote_age: '<module>YouthPromotes</module> now shows player age on promotion day.'
+      export_live: 'Added a button to export your HT-Live match list as a link in <module>ReLiveLinks</module>.'
+      match_icons: 'More match event icons were added to <module>MatchReportFormat</module>. All important events should now be covered.'
+      retro_cups: 'Retro cup icons were added for new cup types in <module>CustomMedals</module>.'
+      and_more: 'Various other small changes and fixes.'
+
     0.15.1:
       bugs: '<header>Bug fixes</header>'
       nt_crash: 'Fixed a performance problem leading to browser crashes for NTs in <module>MatchOrderInterface</module>.'
