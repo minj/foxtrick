@@ -5,6 +5,14 @@ es-ES:
       note_0: 'Esta es versión de desarrollo. Úsalo a tu propia discreción. Por favor, mira <linkSVN>commit history</linkSVN> en Google Code para los detalles de los cambios.'
     beta:
       note_0: 'Esta es la versión beta de la próxima release. Por favor, ayuda a traducir esta versión accediendo a nuestra super fácil de usar web de traducción <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.15.2:
+      important: '<header>Anuncios importantes</header>'
+      support: '¿<header>Como lo estamos haciendo? Por favor <linkContribute>ayuda Foxtrick</linkContribute>.</header>'
+      crowdin: '<header>AMuchas actualizaciones de la traducción de nuestros asombrosos usuarios, mediante la <linkCrowdin>herramienta CrowdIn</linkCrowdin>. ¡Tu puedes contribuir también si quieres!</header>'
+      twitter: 'Puedes seguir <linkTwitter>Foxtrick on Twitter</linkTwitter> para recibir las últimas noticias, actualizaciones y anuncios.'
+      bugs: '<header>Corrección de errores</header>'
+      other: '<header>Otros cambios</header>'
+      and_more: Otros pequeños cambios y correcciones.
     0.15.1:
       bugs: '<header>Corrección de errores</header>'
       nt_crash: 'Arreglado un problema de desempeño que conduce a accidentes de navegador para NTs en <module>MatchOrderInterface</module>.'

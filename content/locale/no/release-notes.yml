@@ -3,6 +3,8 @@
   versions:
     beta:
       note_0: 'Dette er betaversjonen av den neste utgaven. Hjelp oss med å oversette den på vår superlettvinte  åpne oversettelsesside <linkCrowdin>crowdin.net</linkCrowdin>.'
+    0.15.2:
+      support: '<header>Liker du det vi gjør? Vær så snill <linkContribute>Støtt Foxtrick</linkContribute>.</header>'
     0.15.1:
       bugs: '<header>Bug-reparasjoner</header>'
       nt_crash: 'Reparerte et ytelsesproblem som førte til at nettleser for landslag i <module>KampordreInterfase</module> krasjet.'
