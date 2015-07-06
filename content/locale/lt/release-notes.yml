@@ -7,11 +7,25 @@ lt:
       note_0: 'Įdiegėte išankstinę (beta) versiją. Prašome prisidėti prie jos vertimo į lietuvių kalbą ypatingai šauniame vertėjų savanorių portale „<linkCrowdin>crowdin.net</linkCrowdin>“. '
     0.15.2:
       important: '<header>Svarbūs pranešimai</header>'
+      links: 'Išorinių nuorodų (<module>Links</module> modulis) funkcija perdaryta, kad būtų galima ištaisyti keletą klaidų ir palengvinti modulio priežiūrą. Nuo šiol bus galima naudoti daugiau žymų vartotojo sukurtoms nuorodoms. Kai kurios žymos buvo pervadintos, kad geriau atitiktų jų reikšmę. Prašome išvalyti Foxtrick podėlį ir patikrinti bei atnaujinti savo sukurtas nuorodas (jei tokių turite).'
       support: '<header>Patinka šis projektas? Prašome <linkContribute>pagelbėti Foxtrick</linkContribute>.</header>'
       crowdin: '<header>Daugybė vertimo atnaujinimų. Dėkojame savo šauniems vartotojams, kurie naudojasi <linkCrowdin>crowdin portalu</linkCrowdin>. Ir Jūs galite prisidėti!</header>'
       twitter: "Paskutines Foxtrick naujienas, atnaujinimus ir pranešimus gausite sekdami <linkTwitter>Foxtrick Twitter'yje</linkTwitter>."
       bugs: '<header>Pataisytos klaidos</header>'
+      youth_avatars: 'Sutvarkyti pradingę jaunių veidai (<module>MatchOrderInterface</module> modulis).'
+      preserve_changes: '<module>MatchRatingsTweaks</module> modulis dabar turėtų įsiminti paskutinius reitingų pokyčius stebint rungtynes HT-Live. Iki šiol reitingų pokyčiai (rodomi spalvotais skaičiais) pranykdavo po kiekvieno HT-Live atnaujinimo, net jei tas atnaujinimas nepakeisdavo reitingų.'
+      leave_forum: '<module>ForumLeaveButton</module> modulis buvo nustojęs veikti, todėl dabar pataisytas.'
+      monitor_cups: '<module>MyMonitor</module> modulyje nuo šiol matysite teisingas antrinių taurių piktogramas.'
       other: '<header>Kiti pakeitimai</header>'
+      volume: 'Pridėjome Foxtrick garsinių pranešimų garsumo slankiklį <FTlinkMainTab>bendrųjų nustatymų skirsnyje</FTlinkMainTab>.'
+      mlt_upgrade: '<module>MatchLineupTweaks</module> modulis nuo šiol rodys žaidėjų marškinėlių numerius rungtynių ataskaitos sudėties kortelėje. Taip pat užvedę pelės žymeklį ant žaidėjo energijos vertės matysite ištvermės įgūdžio spėjimą (jei įmanoma).'
+      mrt_ratings: '<module>Ratings</module> modulis integruotas į <module>MatchRatingsTweaks</module> ir dabar iš dalies veiks net stebint rungtynes HT-Live (tik HT-Rėmėjams).'
+      copy_ratings: '<module>CopyRatings</module> modulis perrašytas: dabar galėsite kopijuoti minutinius reitingus kortelėje „Detalūs reitingai“, net jei stebėsite rungtynes HT-Live.'
+      monitor_update: 'Nuo šiol <module>MyMonitor</module> modulyje galėsite lengviau rikiuoti stebimas komandas. Taip pat galėsite pridėti rungtynes į HT-Live pagal jų tipą.'
+      promote_age: '<module>YouthPromotes</module> modulis dabar rodys žaidėjo amžių paaukštinant.'
+      export_live: 'Atsirado mygtukas, kuriuo galėsite nukopijuoti HT-Live stebimų rungtynių sąrašą kaip nuorodą (<module>ReLiveLinks</module> modulis).'
+      match_icons: '<module>MatchReportFormat</module> modulyje atsirado daugiau rungtynių įvykių piktogramų. Nuo šiol  bus pažymėti visi svarbiausiai įvykiai.'
+      retro_cups: '<module>CustomMedals</module> modulis nuo šiol rodys „senovines“ apdovanojimų piktogramas ir naujųjų taurių trofėjams.'
       and_more: Daugybė kitų smulkių pataisymų ir pakitimų.
     0.15.1:
       bugs: '<header>Pataisytos klaidos</header>'

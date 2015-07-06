@@ -7,11 +7,21 @@ ro:
       note_0: 'Aceasta este o versiune beta a următoarei versiuni care va fi lansată. Vă rugăm ajutați traducând această versiune utilizând pagina de traducere <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.15.2:
       important: '<header>Anunţuri importante</header>'
+      links: 'Funcționalitatea <module>Links</module> a fost rescrisă pentru a reyolva unele bug-uri. Vor fi disponibile mai multe etichete pentru link-urile personalizate. Unele etichete au fost redenumite pentru a le refelcta mai bine logica. Vă rugăm să goliți chache-ul Foxtrick, să vă testați și să vă actualizați link-urile personalizate.'
       support: '<header>Îți place ceea ce facem? Vă rugăm să <linkContribute>suport Foxtrick</linkContribute>.</header>'
       crowdin: '<header>O mulțime de traduceri actualizate de către userii care folosesc <linkCrowdin> instrumentul crowdin</linkCrowdin>. Și tu poți ajuta!</header>'
       twitter: 'Puteţi urmări <linkTwitter>Foxtrick pe Twitter</linkTwitter> pentru a primi ultimele ştiri, actualizări şi anunţuri.'
       bugs: '<header>Erori reparate</header>'
+      youth_avatars: 'Rezolvată lipsa avatarului la jucătorii de la echipa de juniori, în <module>MatchOrderInterface</module>.'
+      leave_forum: 'Butonul <module>ForumLeaveButton</module> era nefuncțional, dar problema a fost rezolvată.'
+      monitor_cups: '<module>MyMonitor</module> acum arată icoana corectă a cupelor de consolare.'
       other: '<header>Alte schimbări</header>'
+      volume: 'Adăugat un cursos global pentru sunetele din Foxtrick, in <FTlinkMainTab> sectiunea setări generale </FTlinkMainTab>.'
+      mrt_ratings: 'Modulul <module>Ratings</module> a fost integrat în <module>MatchRatingsTweaks</module>, iar acum are o funcționalitate limitată chiar și în HT-Live (doar pentru suporteri).'
+      monitor_update: '<module>MyMonitor</module> include acum mai multe posibilități inteligente de sortare a echipelor și posibilitatea de a adăuga meciuri la HT-Live pe baza tipului de meci.'
+      promote_age: '<module>YouthPromotes</module> arată acum vărsta jucătorului din ziua promovării.'
+      export_live: 'Adăugat un buton pentru e exporta meciurile HT-Live ca link, în <module>ReLiveLinks</module>.'
+      retro_cups: 'Au fost adăugate icoane retro pentru noile tipuri de cupe, în <module>CustomMedals</module>.'
       and_more: Diferite alte mici schimbări și reparații.
     0.15.1:
       bugs: '<header>Erori reparate</header>'

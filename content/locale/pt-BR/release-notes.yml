@@ -11,7 +11,11 @@ pt-BR:
       crowdin: '<header>Várias atualizações de traduções de nossos fantásticos usuários que usam o <linkCrowdin>crowdin tool</linkCrowdin>. Você também pode ajudar!</header>'
       twitter: 'Você pode seguir <linkTwitter>Foxtrick no Twitter</linkTwitter>para receber as últimas notícias, informações e anúncios.'
       bugs: '<header>Correções de bugs</header>'
+      youth_avatars: 'Corrigida a falta de avatar de juniores em <module>MatchOrderInterface</module>.'
+      leave_forum: '<module>ForumLeaveButton</module> Estava totalmente qubradoe agora deve estar corrigido.'
+      monitor_cups: '<module>MyMonitor</module>deve mostrar os ícones corretos das copas de consolação agora.'
       other: '<header>Outras alterações</header>'
+      volume: 'Colocamos um controlador de volume geral para o foxtrick, está em <FTlinkMainTab>general settings section</FTlinkMainTab>.'
       and_more: Várias outras pequenas alterações e correções.
     0.15.1:
       bugs: '<header>Correções de bugs</header>'
