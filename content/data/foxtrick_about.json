@@ -976,12 +976,24 @@
 	],
 	"donators": [
 		{
+			"id": "9100817",
+			"name": "DavidatorusF"
+		},
+		{
 			"id": "10808283",
 			"name": "ypo333"
 		},
 		{
 			"id": "12068053",
 			"name": "Sellas"
+		},
+		{
+			"id": "1806088",
+			"name": "GeissbockHennes"
+		},
+		{
+			"id": "3150937",
+			"name": "Hidetoschi"
 		},
 		{
 			"id": "4149601",
@@ -1011,6 +1023,22 @@
 		{
 			"id": "916222",
 			"name": "_Domingo"
+		},
+		{
+			"id": "2787409",
+			"name": "gia73"
+		},
+		{
+			"id": "6977975",
+			"name": "cicix-GIGA"
+		},
+		{
+			"id": "7197589",
+			"name": "il-padrone"
+		},
+		{
+			"id": "11749650",
+			"name": "Elle2-GIGA"
 		}
 	]
 }
