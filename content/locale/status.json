@@ -486,11 +486,11 @@
 			"code": "pt-PT",
 			"name": "Portuguese",
 			"phrases": "1882",
-			"translated": "1703",
+			"translated": "1704",
 			"translated_progress": "77",
 			"words": "13408",
 			"words_approved": "0",
-			"words_translated": "10436"
+			"words_translated": "10437"
 		},
 		{
 			"approved": "0",
@@ -570,11 +570,11 @@
 			"code": "es-ES",
 			"name": "Spanish",
 			"phrases": "1882",
-			"translated": "1846",
-			"translated_progress": "97",
+			"translated": "1882",
+			"translated_progress": "100",
 			"words": "13408",
 			"words_approved": "1",
-			"words_translated": "13052"
+			"words_translated": "13408"
 		},
 		{
 			"approved": "0",
@@ -582,11 +582,11 @@
 			"code": "es-AR",
 			"name": "Spanish, Argentina",
 			"phrases": "1882",
-			"translated": "1846",
-			"translated_progress": "97",
+			"translated": "1882",
+			"translated_progress": "100",
 			"words": "13408",
 			"words_approved": "0",
-			"words_translated": "13052"
+			"words_translated": "13408"
 		},
 		{
 			"approved": "0",
@@ -594,11 +594,11 @@
 			"code": "es-CR",
 			"name": "Spanish, Costa Rica",
 			"phrases": "1882",
-			"translated": "1866",
-			"translated_progress": "97",
+			"translated": "1882",
+			"translated_progress": "100",
 			"words": "13408",
 			"words_approved": "0",
-			"words_translated": "13128"
+			"words_translated": "13408"
 		},
 		{
 			"approved": "1882",
