@@ -60,6 +60,7 @@ Change files in `cdn` branch with:
 
 ### Other
 Update:
+- major donators in `~/trunk/content/data/foxtrick_about.json`
 - Firefox versions in `~/trunk/install.rdf`
 - `~/trunk/ignored-modules-nightly`
 - `~/trunk/ignored-modules-hosting`
