@@ -475,6 +475,11 @@
 			"name": "Fangio"
 		},
 		{
+			"duty": "helper",
+			"id": "4416087",
+			"name": "ratsrats"
+		},
+		{
 			"duty": "translator",
 			"id": "4577648",
 			"name": "ampulka"
