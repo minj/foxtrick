@@ -190,6 +190,8 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 			// not ready yet
 			return;
 
+		var isLive = Foxtrick.isPage(doc, 'matchesLive');
+
 		Foxtrick.stopListenToChange(doc);
 
 		/**
@@ -273,15 +275,17 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 			var newData = values;
 
 			if (dataExists) {
-				// try to maintain previous changes if nothing changed
-				var same = Foxtrick.all(function(new_, i) {
-					var old = oldData[i];
-					return old.value == new_.value && old.pctg == new_.pctg;
-				}, newData);
-				if (same && data.oldValues.length) {
-					Foxtrick.log('reusing previous ratings');
-					oldData = data.oldValues;
-					newData = data.values;
+				// try to maintain previous changes if nothing changed in HT-Live
+				if (isLive) {
+					var same = Foxtrick.all(function(new_, i) {
+						var old = oldData[i];
+						return old.value == new_.value && old.pctg == new_.pctg;
+					}, newData);
+					if (same && data.oldValues.length) {
+						Foxtrick.log('reusing previous ratings');
+						oldData = data.oldValues;
+						newData = data.values;
+					}
 				}
 			}
 			else {
