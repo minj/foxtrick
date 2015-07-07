@@ -2,42 +2,28 @@
 /**
  * linksClubTransfers.js
  * Foxtrick add links to arena pages
- * @author convincedd
+ * @author convincedd, LA-MJ
  */
 
 Foxtrick.modules['LinksClubTransfers'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
 	PAGES: ['transfer'],
-	OPTION_FUNC: function(doc, callback) {
-		return Foxtrick.modules['Links']
-			.getOptionsHtml(doc, 'LinksClubTransfers', 'clubtransferslink', callback);
+	LINK_TYPE: 'clubtransferslink',
+	/**
+	 * return HTML for FT prefs
+	 * @param  {document}         doc
+	 * @param  {function}         cb
+	 * @return {HTMLUListElement}
+	 */
+	OPTION_FUNC: function(doc, cb) {
+		return Foxtrick.util.links.getPrefs(doc, this, cb);
 	},
 
 	run: function(doc) {
-		var module = this;
-		Foxtrick.modules.Links.getCollection(function(collection) {
-			module._run(doc);
-		});
+		Foxtrick.util.links.run(doc, this);
 	},
 
-	_run: function(doc) {
-		var ownBoxBody = null;
-
-		var links = Foxtrick.modules['Links'].getLinks('clubtransferslink', {}, doc, this);
-		if (links.length > 0) {
-			ownBoxBody = Foxtrick.createFeaturedElement(doc, this, 'div');
-			var header = Foxtrick.L10n.getString('links.boxheader');
-			var ownBoxBodyId = 'foxtrick_links_content';
-			ownBoxBody.setAttribute('id', ownBoxBodyId);
-
-			for (var k = 0; k < links.length; k++) {
-				links[k].link.className = 'inner';
-				ownBoxBody.appendChild(links[k].link);
-			}
-
-			var box = Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, -20);
-			box.id = 'ft-links-box';
-		}
-		Foxtrick.util.links.add(doc, ownBoxBody, this.MODULE_NAME, {});
+	links: function() {
+		return {};
 	}
 };

@@ -2,70 +2,49 @@
 /**
  * linkschallnges.js
  * Foxtrick add links to challenges pages
- * @author convinced
+ * @author convinced, LA-MJ
  */
 
 Foxtrick.modules['LinksEconomy'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
 	PAGES: ['finances'],
-	OPTION_FUNC: function(doc, callback) {
-		return Foxtrick.modules['Links']
-			.getOptionsHtml(doc, 'LinksEconomy', 'economylink', callback);
+	LINK_TYPE: 'economylink',
+	/**
+	 * return HTML for FT prefs
+	 * @param  {document}         doc
+	 * @param  {function}         cb
+	 * @return {HTMLUListElement}
+	 */
+	OPTION_FUNC: function(doc, cb) {
+		return Foxtrick.util.links.getPrefs(doc, this, cb);
 	},
 
 	run: function(doc) {
-		var module = this;
-		Foxtrick.modules.Links.getCollection(function(collection) {
-			module._run(doc);
-		});
+		Foxtrick.util.links.run(doc, this);
 	},
 
-	_run: function(doc) {
-		var owncountryid = Foxtrick.util.id.getOwnLeagueId();
-
+	links: function(doc) {
 		// only on current finances
 		var links = doc.getElementById('mainBody').getElementsByTagName('a');
-		if (links[0] && links[0].href.search('season') != -1)
+		if (links[0] && /season/.test(links[0].href))
 			return;
 
-		//addExternalLinksToEconomyDetail
-		var Cash = 0, newCash = 1;
-		var ownBoxBody = null;
+		var cash = 0, newCash = 0;
 		var main = doc.getElementById('mainBody');
-		var CashTable = main.getElementsByTagName('table')[0];
-		var nums = CashTable.rows[0].cells[1].textContent.replace(/\u00a0/g, '').match(/\d+/g);
-		Cash = nums[0];
+		var cashTable = main.getElementsByTagName('table')[0];
+
+		var nums = cashTable.rows[0].cells[1].textContent.replace(/\u00a0/g, '').match(/\d+/g);
+		cash = nums[0];
+		// deal with currency converter
 		newCash = nums[nums.length > 2 ? 2 : 1];
 
-		// symbol maybe undefined here, #care
+		// symbol may be undefined here, #care
 		var currencySymbol = Foxtrick.util.currency.getSymbol();
-		var teamid = Foxtrick.Pages.All.getTeamId(doc);
-		var links = Foxtrick.modules['Links'].getLinks('economylink', {
-			'Cash': Cash,
-			'newCash': newCash,
-			'Currency': currencySymbol,
-			'owncountryid': owncountryid,
-			'teamid': teamid
-		}, doc, this);
-		var ownBoxBody = null;
-		if (links.length > 0) {
-			ownBoxBody = Foxtrick.createFeaturedElement(doc, this, 'div');
-			var header = Foxtrick.L10n.getString('links.boxheader');
-			var ownBoxBodyId = 'foxtrick_links_content';
-			ownBoxBody.setAttribute('id', ownBoxBodyId);
-
-			for (var k = 0; k < links.length; k++) {
-				links[k].link.className = 'inner';
-				ownBoxBody.appendChild(links[k].link);
-			}
-
-			var box = Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, -20);
-			box.id = 'ft-links-box';
-		}
-		Foxtrick.util.links.add(doc, ownBoxBody, this.MODULE_NAME, {
-			'Cash': Cash,
-			'Currency': currencySymbol,
-			'newCash': newCash
-		});
+		var info = {
+			cash: cash,
+			newCash: newCash,
+			currency: currencySymbol,
+		};
+		return { info: info };
 	}
 };

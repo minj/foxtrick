@@ -61,6 +61,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "10621822",
+			"name": "Baldruus"
+		},
+		{
+			"duty": "supporter",
 			"id": "10775786",
 			"name": "Ucha_Cuervo"
 		},
@@ -248,11 +253,6 @@
 			"duty": "translator",
 			"id": "1425439",
 			"name": "playMaker-"
-		},
-		{
-			"duty": "supporter",
-			"id": "10621822",
-			"name": "Baldruus"
 		},
 		{
 			"duty": "translator",
@@ -473,6 +473,11 @@
 			"duty": "supporter",
 			"id": "4451958",
 			"name": "Fangio"
+		},
+		{
+			"duty": "helper",
+			"id": "4416087",
+			"name": "ratsrats"
 		},
 		{
 			"duty": "translator",
