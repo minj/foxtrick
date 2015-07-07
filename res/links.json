@@ -469,13 +469,6 @@
 		"title": "HT-Links.de - Errungenschaften",
 		"img": "http://www.ht-links.de/favicon.ico"
 	},
-	"Hattrick_training_speed_tool": {
-		"traininglink": {
-			"url": "http://trainingspeed.freehostia.com/?Coach=[Coach]&TI=[TI]&KO=[STA]&TrainingType=[TrainingType]"
-		},
-		"title": "Hattrick training speed tool",
-		"img": "resources/linkicons/trainingspeed.png"
-	},
 	"GOInternationals": {
 		"nationalteamlink": {
 			"url": "http://www.goanoei.nl/goht/gonat/?server=[server]&ntteamid=[ntteamid]"
