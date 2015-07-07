@@ -167,7 +167,7 @@ div.playerDiv .sectorShirt.ft-smallFaceCard img[src^="/Img/Avatar/hair/"] {
 	display: block;
 	position: absolute;
 	left: -8px; /* 0 for rtl */
-	top: -30px;
+	top: -32px;
 	background-color: #295223 !important;
 	border: 1px solid #79A777 !important;
 	border-radius: 3px;
