@@ -470,6 +470,11 @@
 			"name": "ratsrats"
 		},
 		{
+			"duty": "helper",
+			"id": "4416087",
+			"name": "ratsrats"
+		},
+		{
 			"duty": "translator",
 			"id": "4417979",
 			"name": "Aze-maestro"
@@ -478,11 +483,6 @@
 			"duty": "supporter",
 			"id": "4451958",
 			"name": "Fangio"
-		},
-		{
-			"duty": "helper",
-			"id": "4416087",
-			"name": "ratsrats"
 		},
 		{
 			"duty": "translator",
