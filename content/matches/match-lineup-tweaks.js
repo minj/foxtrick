@@ -33,8 +33,6 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 
 		if (Foxtrick.Prefs.isModuleOptionEnabled('MatchLineupTweaks', 'GatherStaminaData')) {
 			this.gatherStaminaData(doc);
-			// debug mode for home (true) or away (false)
-			// this.gatherStaminaData(doc, true);
 		}
 	},
 	/**
@@ -796,27 +794,62 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 	/**
 	 * Gather stamina data to be used for match-simulator and player table
 	 * @param {document} doc
-	 * @param {boolean}  forceHome a flag to enable debug mode for home/away
 	 */
-	gatherStaminaData: function(doc, forceHome) {
+	gatherStaminaData: function(doc) {
 		if (Foxtrick.Pages.Match.isYouth(doc))
 			return;
-		var debug = false;
-		var isHome = false;
+
+		if (Foxtrick.Pages.Match.getLiveContainer(doc))
+			return;
+
+		var team = 'away';
 		var ownId = Foxtrick.util.id.getOwnTeamId();
-		if (typeof forceHome === 'undefined') {
-			// only gather data for own team
-			var homeId = Foxtrick.Pages.Match.getHomeTeamId(doc);
-			var awayId = Foxtrick.Pages.Match.getAwayTeamId(doc);
-			if (homeId == ownId)
-				isHome = true;
-			else if (awayId != ownId)
-				return;
+		// only gather data for own team
+		var homeId = Foxtrick.Pages.Match.getHomeTeamId(doc);
+		var awayId = Foxtrick.Pages.Match.getAwayTeamId(doc);
+		if (homeId == ownId)
+			team = 'home';
+		else if (awayId != ownId)
+			return;
+
+		var data = {}, dataText = Foxtrick.Prefs.getString('StaminaData.' + ownId);
+		if (dataText) {
+			try {
+				data = JSON.parse(dataText);
+			}
+			catch (e) {
+				Foxtrick.log('Error parsing StaminaData, data will be reset', e);
+			}
 		}
-		else {
-			isHome = forceHome;
-			debug = true;
-		}
+
+		var matchDate = Foxtrick.Pages.Match.getDate(doc);
+		var players = this.getPlayersWithStamina(doc, team);
+
+		Foxtrick.map(function(player) {
+			if (player.stamina) {
+				if (!data.hasOwnProperty(player.PlayerId))
+					data[player.PlayerId] = [];
+
+				if (data[player.PlayerId].length &&
+					data[player.PlayerId][0] >= matchDate.valueOf())
+					// we have more recent data
+					return;
+
+				data[player.PlayerId][0] = matchDate.valueOf();
+				data[player.PlayerId][1] = player.stamina;
+			}
+		}, players);
+
+		Foxtrick.log('StaminaData:', matchDate, players, data);
+		Foxtrick.Prefs.setString('StaminaData.' + ownId, JSON.stringify(data));
+	},
+
+	getPlayersWithStamina: function(doc, team) {
+		var EMPTY = [];
+		if (Foxtrick.Pages.Match.isYouth(doc))
+			return EMPTY;
+
+		var isHome = team == 'home';
 
 		/* jshint ignore:start */
 		var getStamina = function(lastEnergy, checkpoints, isRested) {
@@ -866,7 +899,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		if (!playerRatings.length) {
 			// most likely WO, or match in progress
 			// abort
-			return;
+			return EMPTY;
 		}
 		// info for CHPP
 		var SourceSystem = Foxtrick.Pages.Match.getSourceSystem(doc);
@@ -888,27 +921,17 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 
 			if (!HTOPlayers) {
 				Foxtrick.log('gatherStaminaData: failed to parse playerData');
-				return;
-			}
-		}
-		var data = {}, dataText = Foxtrick.Prefs.getString('StaminaData.' + ownId);
-		if (dataText && !debug) {
-			try {
-				data = JSON.parse(dataText);
-			}
-			catch (e) {
-				Foxtrick.log('Error parsing StaminaData, data will be reset', e);
+				return EMPTY;
 			}
 		}
 
-		Foxtrick.log('Existing StaminaData', data);
 		var table = Foxtrick.Pages.Match.getRatingsTable(doc);
-		var tactics = Foxtrick.Pages.Match.getTacticsByTeam(table).tactics[Number(!isHome)];
+		var teamNr = Number(!isHome);
+		var tactics = Foxtrick.Pages.Match.getTacticsByTeam(table).tactics[teamNr];
 		// don't parse pressing: affects stamina
 		if (tactics == 'pressing')
-			return;
+			return EMPTY;
 
-		var matchDate = Foxtrick.Pages.Match.getDate(doc);
 		var affectedPlayerID = '0';
 		var events = doc.getElementsByClassName('matchevent');
 		// should not be more than one SE with same type
@@ -925,13 +948,14 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 
 		var players = Foxtrick.filter(function(player, i) {
 			// need to parse player data and change PlayerIds to HT Ids
-			if (typeof (HTOPlayers) != 'undefined') {
-				for (var j = 0; j < HTOPlayers.length; j++) {
-					if (HTOPlayers[j].PlayerId == player.PlayerId) {
-						player.PlayerId = HTOPlayers[j].SourcePlayerId;
-						break;
+			if (typeof HTOPlayers != 'undefined') {
+				Foxtrick.any(function(HTOPlayer) {
+					if (HTOPlayer.PlayerId == player.PlayerId) {
+						player.PlayerId = HTOPlayer.SourcePlayerId;
+						return true;
 					}
-				}
+					return false;
+				}, HTOPlayers);
 			}
 
 			// disregard extra time data
@@ -943,7 +967,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			return player.ToMin > 0 && player.PlayerId != affectedPlayerID;
 		}, playerRatings[0].players);
 
-		Foxtrick.map(function(player) {
+		Foxtrick.forEach(function(player) {
 			player.checkpoints = getCheckpointCount(player.FromMin, player.ToMin);
 			player.lastEvent = findEvent(player.ToMin);
 			player.lastEnergy = playerRatings[player.lastEvent].players[player.ftIdx].Stamina;
@@ -960,22 +984,51 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 					player.stamina = Foxtrick.Predict.stamina(player.lastEnergy).toFixed(2);
 				else
 					player.stamina = '8.63+';
-
-				if (!data.hasOwnProperty(player.PlayerId))
-					data[player.PlayerId] = [];
-
-				if (data[player.PlayerId].length &&
-					data[player.PlayerId][0] >= matchDate.valueOf())
-					// we have more recent data
-					return;
-
-				data[player.PlayerId][0] = matchDate.valueOf();
-				data[player.PlayerId][1] = player.stamina;
 			}
 		}, players);
-		Foxtrick.log('StaminaData:', matchDate, players, data);
-		if (!debug)
-			Foxtrick.Prefs.setString('StaminaData.' + ownId, JSON.stringify(data));
+		return players;
+	},
+
+	flipStaminaBar: function(doc, playerDivs) {
+		var module = this;
+		var homePlayers = module.getPlayersWithStamina(doc, 'home');
+		var awayPlayers = module.getPlayersWithStamina(doc, 'away');
+		var players = Foxtrick.concat(homePlayers, awayPlayers);
+		var playersById = {};
+		Foxtrick.forEach(function(p) {
+			playersById[p.PlayerId] = p;
+		}, players);
+
+		Foxtrick.forEach(function(playerDiv) {
+			var ftdiv = Foxtrick.createFeaturedElement(doc, module, 'div');
+			Foxtrick.addClass(ftdiv, 'ft-indicator-wrapper');
+			var staminaDiv = playerDiv.querySelector('div.sectorShirt + div > div');
+			Foxtrick.addClass(staminaDiv, 'ft-staminaDiv');
+			if (staminaDiv) {
+				var stamina = staminaDiv.title.match(/\d+/)[0];
+				var fatigue = 100 - Number(stamina);
+				staminaDiv.firstChild.style.height = fatigue + '%';
+				var staminaSpan = doc.createElement('span');
+				Foxtrick.addClass(staminaSpan, 'ft-staminaText');
+				staminaSpan.style.backgroundColor = staminaDiv.style.backgroundColor;
+				// let's 'hide' 100
+				staminaSpan.textContent = (stamina != 100) ? stamina : '00';
+				if (stamina == 100)
+					staminaSpan.style.color = staminaSpan.style.backgroundColor;
+
+				var staminaText = staminaDiv.title;
+				var link = playerDiv.querySelector('#playerLink');
+				if (link) {
+					var id = Foxtrick.getParameterFromUrl(link.href, 'PlayerId');
+					var player = playersById[id];
+					if (player && player.stamina)
+						staminaText += Foxtrick.format(' ({})', [player.stamina]);
+				}
+				staminaSpan.title = staminaText;
+				ftdiv.appendChild(staminaSpan);
+			}
+			playerDiv.appendChild(ftdiv);
+		}, playerDivs);
 	},
 
 	onChange: function(doc) {
@@ -996,28 +1049,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		if (Foxtrick.Prefs.isModuleOptionEnabled('MatchLineupTweaks', 'SplitLineup'))
 			this.splitLineup(doc);
 
-		for (var i = 0; i < playerDivs.length; i++) {
-			var player = playerDivs[i];
-			var ftdiv = Foxtrick.createFeaturedElement(doc, this, 'div');
-			Foxtrick.addClass(ftdiv, 'ft-indicator-wrapper');
-			var staminaDiv = player.querySelector('div.sectorShirt + div > div');
-			Foxtrick.addClass(staminaDiv, 'ft-staminaDiv');
-			if (staminaDiv) {
-				var stamina = staminaDiv.title.match(/\d+/)[0];
-				var fatigue = 100 - Number(stamina);
-				staminaDiv.firstChild.style.height = fatigue + '%';
-				var staminaSpan = doc.createElement('span');
-				Foxtrick.addClass(staminaSpan, 'ft-staminaText');
-				staminaSpan.style.backgroundColor = staminaDiv.style.backgroundColor;
-				// let's 'hide' 100
-				staminaSpan.textContent = (stamina != 100) ? stamina : '00';
-				if (stamina == 100)
-					staminaSpan.style.color = staminaSpan.style.backgroundColor;
-				staminaSpan.title = staminaDiv.title;
-				ftdiv.appendChild(staminaSpan);
-			}
-			player.appendChild(ftdiv);
-		}
+		this.flipStaminaBar(doc, playerDivs);
 
 		// add ft-stars="N" to ratings spans for possible styling
 		var ratings = doc.querySelectorAll('div.playerRating > span');
