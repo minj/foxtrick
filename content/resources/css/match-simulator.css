@@ -160,7 +160,9 @@ html[dir="ltr"] .overlayMidDefense, .overlayMidAttack {
 	position: relative;
 	top: 630px !important;
 }
-
+#fieldOverlay.displayBelow.newME {
+	top: 650px !important;
+}
 #fieldOverlay.displayRight {
 	height: 520px;
 	position: relative;
