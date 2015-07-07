@@ -11,7 +11,8 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 	CSS: Foxtrick.InternalPath + 'resources/css/match-ratings-tweaks.css',
 	OPTIONS: [
 		'FollowChanges',
-		'RealProbabilities'
+		'RealProbabilities',
+		'Ratings',
 	],
 	OPTIONS_CSS: [
 		Foxtrick.InternalPath + 'resources/css/match-ratings-follow.css',
@@ -256,7 +257,7 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 			if (doChanges) {
 				var calcBox = Foxtrick.createFeaturedElement(doc, this, 'div');
 				Foxtrick.addClass(calcBox, 'ft-mrt-rating-calc');
-				var value = num / 4 + 0.75;
+				var value = Foxtrick.Math.hsToFloat(num, true);
 				calcBox.textContent = value.toFixed(2) + ' ';
 				var text = box.getElementsByClassName('teamTextRatings')[0];
 				box.insertBefore(calcBox, text);
@@ -294,6 +295,73 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 			}
 		}
 
+		if (Foxtrick.Prefs.isModuleOptionEnabled('MatchRatingsTweaks', 'Ratings'))
+			this.addRatings(doc);
+
 		Foxtrick.startListenToChange(doc);
+	},
+
+	addRatings: function(doc) {
+		var SECTORS = {
+			home_rd: 0,
+			away_la: 1,
+			home_cd: 2,
+			away_ca: 3,
+			home_ld: 4,
+			away_ra: 5,
+			home_mf: 6,
+			away_mf: 7,
+			home_ra: 8,
+			away_ld: 9,
+			home_ca: 10,
+			away_cd: 11,
+			home_la: 12,
+			away_rd: 13,
+		};
+
+		var numberRatings = Foxtrick.map(function(text) {
+			return text.textContent.trim();
+		}, doc.querySelectorAll('.overlaySector .teamNumberRatings'));
+
+		var r = Foxtrick.map(function(number) {
+			return Foxtrick.Math.hsToFloat(number);
+		}, numberRatings);
+
+		var mf = [r[SECTORS.home_mf], r[SECTORS.away_mf]];
+		var rd = [r[SECTORS.home_rd], r[SECTORS.away_rd]];
+		var cd = [r[SECTORS.home_cd], r[SECTORS.away_cd]];
+		var ld = [r[SECTORS.home_ld], r[SECTORS.away_ld]];
+		var ra = [r[SECTORS.home_ra], r[SECTORS.away_ra]];
+		var ca = [r[SECTORS.home_ca], r[SECTORS.away_ca]];
+		var la = [r[SECTORS.home_la], r[SECTORS.away_la]];
+
+		var ta, tl;
+
+		if (Foxtrick.isPage(doc, 'matchesLive') || Foxtrick.Pages.Match.inProgress(doc)) {
+			// tactic level unknown
+			ta = ['normal', 'normal'];
+			tl = [0, 0];
+		}
+		else {
+			var ratingsTable = Foxtrick.Pages.Match.getRatingsTable(doc);
+			var tactics = Foxtrick.Pages.Match.getTacticsByTeam(ratingsTable);
+			ta = tactics.tactics;
+			tl = tactics.level;
+		}
+
+		var targetTable = doc.getElementById('ft-mrt-ratings');
+		if (targetTable)
+			targetTable.parentNode.removeChild(targetTable);
+
+		targetTable = Foxtrick.createFeaturedElement(doc, this, 'table');
+		targetTable.id = 'ft-mrt-ratings';
+		var insertBefore = doc.querySelector('.miscRatings');
+		if (insertBefore)
+			insertBefore.parentNode.insertBefore(targetTable, insertBefore);
+		else
+			doc.getElementById('divSectors').appendChild(targetTable);
+
+		var RATINGS = Foxtrick.modules['Ratings'];
+		RATINGS.addRatings(doc, targetTable, mf, rd, cd, ld, ra, ca, la, ta, tl, true);
 	},
 };

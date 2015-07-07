@@ -371,9 +371,7 @@ Foxtrick.modules.MatchSimulator = {
 					}
 					else {
 						// adjust scale. non-existant has no sublevels
-						selectedratings[i].value = htvalue / 4;
-						if (selectedratings[i].value != 0)
-							selectedratings[i].value += 0.75;
+						selectedratings[i].value = Foxtrick.Math.hsToFloat(htvalue, true);
 
 						selectedratings[i].text = Foxtrick.L10n
 							.getFullLevelByValue(selectedratings[i].value);
