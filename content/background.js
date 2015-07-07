@@ -136,7 +136,7 @@ Foxtrick.loader.background.browserLoad = function() {
 		Foxtrick.loader.background.requests.register = function(request, sender, sendResponse) {};
 
 
-		// from prefs.js
+		// from prefs-util.js
 		Foxtrick.loader.background.requests.setValue = function(request, sender, sendResponse) {
 			if (Foxtrick.Prefs.get(request.key) == request.value)
 				return;
