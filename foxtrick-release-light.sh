@@ -8,7 +8,7 @@ cd "$DIR/../$RELEASE" || log "Cannot cd to $RELEASE"
 
 git stash
 git pull --rebase || log "Cannot git pull rebase"
-./version.sh 0.15.1
+./version.sh 0.15.2
 ./version.sh
 cd maintainer || log "Cannot cd to maintainer"
 #./crowdin-upload.sh || echo "Cannot upload external translations"
