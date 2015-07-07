@@ -349,20 +349,6 @@
 		"title": "HT-Dog",
 		"img": "http://ht-dog.net/animated_favicon111.gif"
 	},
-	"healingkawasaki": {
-		"playerhealinglink": {
-			"url": "http://av.hattricknippon.org"
-		},
-		"title": "Kawasaki Tigers Injury Healing Time Prediction Tool",
-		"img": "resources/linkicons/redcross_small.png"
-	},
-	"healingkawasaki2": {
-		"playerhealinglink": {
-			"url": "http://av2.hattricknippon.org"
-		},
-		"title": "Kawasaki Tigers Injury Healing Time Prediction Tool 2",
-		"img": "resources/linkicons/redcross_small.png"
-	},
 	"htbox_heal": {
 		"playerhealinglink": {
 			"url": "http://www.ht-box.ru/healing.php?age=[age]&inj=[injuredweeks]&tsi=[tsi]"
@@ -428,13 +414,6 @@
 		},
 		"title": "Substitutions calculator tool",
 		"img": "http://lizardopoli.altervista.org/staminia/img/staminia_favicon.png"
-	},
-	"htnipponkeeper": {
-		"keeperlink": {
-			"url": "http://keeper.hattricknippon.org/?tsi=[tsi]&form=[form]"
-		},
-		"title": "Keeper Level Prediction Tool",
-		"img": "resources/linkicons/hattricknippon_small.png"
 	},
 	"coachexperience": {
 		"coachlink": {
