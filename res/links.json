@@ -382,14 +382,7 @@
 		"title": "Team Spirit Calculator",
 		"img": "resources/linkicons/Ht4u.png"
 	},
-	"confidence": {
-		"traininglink": {
-			"url": "http://fptsj.brinkster.net/confianca.aspx"
-		},
-		"title": "Team Confidence Calculator",
-		"img": "resources/linkicons/confidence.png"
-	},
-  "ht-u20": {
+	"ht-u20": {
 		"playerlink": {
 			"url": "http://age.ht-u20.com/?years=[age]&days=[agedays]",
 			"filters": ["age"]
