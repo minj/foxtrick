@@ -2,7 +2,7 @@
 /**
  * links.js
  * External links collection
- * @author others, convinced, ryanli
+ * @author others, convinced, ryanli, LA-MJ
  */
 
 (function() {
@@ -13,6 +13,7 @@
 		callbackStack.push(callback);
 		if (callbackStack.length != 1)
 			return;
+
 		if (collection && typeof callback === 'undefined') {
 			// callback is defined => sessionstore is null
 			// probably cache was cleared
@@ -25,33 +26,34 @@
 		var feeds = Foxtrick.Prefs.getString('module.Links.feedList') || '';
 		feeds = feeds.split(/(\n|\r|\\n|\\r)+/);
 		feeds = Foxtrick.filter(function(n) { return n.trim() !== ''; }, feeds);
-		// add default feed if no feeds set or using dev
-		if (feeds.length === 0 || Foxtrick.branch() === 'dev')
+		// add default feed if no feeds set or using dev/android
+		if (feeds.length === 0 ||
+		    Foxtrick.platform === 'Android' || Foxtrick.branch() === 'dev')
 			feeds = [Foxtrick.DataPath + 'links.json'];
 
 		var parseFeed = function(text) {
-			var key, prop;
-
+			var links;
 			try {
-				//Foxtrick.log('parseFeed: ', text.substr(0,200));
-				var links = JSON.parse(text);
+				// Foxtrick.log('parseFeed: ', text.slice(0, 200));
+				links = JSON.parse(text);
 			}
 			catch (e) {
-				Foxtrick.log('Failure parsing links file: ', text.substr(0, 200));
+				Foxtrick.log('Failure parsing links file: ', text.slice(0, 200), e);
 				return;
 			}
-			for (key in links) {
+			for (var key in links) {
 				var link = links[key];
 				if (link.img) {
-					// add path to internal images
-					if (link.img.indexOf('resources') == 0)
+					if (link.img.indexOf('resources') === 0) {
+						// add path to internal images
 						link.img = Foxtrick.InternalPath + link.img;
+					}
 					link.img = Foxtrick.util.sanitize.parseUrl(link.img);
 				}
-				for (prop in link) {
-					if (prop.indexOf('link') >= 0) {
+				for (var prop in link) {
+					if (/link/.test(prop)) {
 						link[prop].url = Foxtrick.util.sanitize.parseUrl(link[prop].url);
-						if (typeof(collection[prop]) == 'undefined') {
+						if (typeof collection[prop] === 'undefined') {
 							collection[prop] = {};
 						}
 						collection[prop][key] = link;
@@ -59,35 +61,42 @@
 				}
 			}
 			Foxtrick.sessionSet('links-collection', collection);
-			if (todo == 0 && callbackStack.length) {
+			if (todo === 0) {
+				Foxtrick.log('Link feeds loaded');
 				for (var i = 0; i < callbackStack.length; ++i) {
-					if (typeof callbackStack[i] == 'function')
-						callbackStack[i](collection);
+					if (typeof callbackStack[i] === 'function') {
+						try {
+							callbackStack[i](collection);
+						}
+						catch (e) {
+							Foxtrick.log('Error in callback for getCollection', e);
+						}
+					}
 				}
 				callbackStack = [];
-				Foxtrick.log('Links feeds loaded');
 			}
 		};
 
 		// now load the feeds
-		Foxtrick.log('Loading link feeds from: ', feeds, ' length: ', feeds.length);
 		var todo = feeds.length;
+		Foxtrick.log('Loading', todo, 'link feeds from:', feeds);
 		Foxtrick.map(function(feed) {
-			// kick zip if still there
-			feed = feed.replace(/\.json\.zip/i, '.json');
-			Foxtrick.log('do feeds: ', feed);
+			Foxtrick.log('loading feed:', feed);
 			// load plain text
 			Foxtrick.util.load.get(feed)('success',
 			  function(text) {
 				--todo;
-				if (text == null)
-					text = Foxtrick.Prefs.getString('LinksFeed.' + feed);
-				//Foxtrick.log('parse ', feed);
+				if (!text) {
+					Foxtrick.log('Error loading links from:', feed,
+					             '. Received empty response. Using cached feed.');
+					Foxtrick.localGet('LinksFeed.' + feed, function(text) { parseFeed(text); });
+				}
+				// Foxtrick.log('parsing', feed);
 				parseFeed(text);
 				Foxtrick.localSet('LinksFeed.' + feed, text);
 			})('failure', function(code) {
 				--todo;
-				Foxtrick.log('Error loading links feed: ', feed, '. Using cached feed.');
+				Foxtrick.log('Error', code, 'loading links from:', feed, '. Using cached feed.');
 				Foxtrick.localGet('LinksFeed.' + feed, function(text) { parseFeed(text); });
 			});
 		}, feeds);
@@ -154,45 +163,44 @@
 			storeCollection();
 		},
 
-		getLinks: function(type, args, doc, module) {
-			var makeLink = function(url) {
-				var i;
-				for (i in args) {
-					url = url.replace(RegExp('\\[' + i + '\\]', 'g'), args[i]);
-				}
-				return url;
-			};
-			var getLinkElement = function(link, url, key, module) {
+		getLinks: function(doc, options) {
+			var reuseTab = Foxtrick.Prefs.isModuleOptionEnabled('Links', 'ReuseTab');
+			var opts = { type: '', info: {}, module: '', className: '' };
+			Foxtrick.mergeValid(opts, options);
+			var args = opts.info, type = opts.type, module = opts.module;
+			var isTracker = /^tracker/.test(type);
+
+			var makeAnchorElement = function(link, url, key) {
 				var linkNode = doc.createElement('a');
-
-				linkNode.href = url;
-				if (link.openinthesamewindow == undefined) {
-					if (Foxtrick.Prefs.isModuleOptionEnabled('Links', 'ReuseTab'))
-						linkNode.target = '_ftlinks';
-					else
-						linkNode.target = '_blank';
-				}
-
-				linkNode.title = link.title;
-				linkNode.setAttribute('key', key);
-				linkNode.setAttribute('module', module);
-
-				if (link.img == undefined) {
-					linkNode.appendChild(doc.createTextNode(link.shorttitle));
+				if (isTracker) {
+					var id = args.nationality || args.leagueid;
+					linkNode = Foxtrick.util.id.createFlagFromLeagueId(doc, id, url, link.title);
 				}
 				else {
-					// add img for tracker flags
-					if (module === 'LinksTracker')
-						linkNode.appendChild(doc.createElement('img'));
+					linkNode.title = link.title;
+					linkNode.href = url;
+					linkNode.className = opts.className;
+					if (typeof link.img === 'undefined') {
+						linkNode.textContent = link.shorttitle;
+					}
 					else {
-						var height = 16;
-						if (type == 'playerhealinglink')
-							height = 8;
-						Foxtrick.addImage(doc, linkNode, { alt: link.shorttitle || link.title,
-							title: link.title, src: link.img, height: height });
+						var img = {
+							alt: link.shorttitle || link.title,
+							title: link.title,
+							src: link.img,
+							class: 'ft-link-icon',
+						};
+
+						Foxtrick.addImage(doc, linkNode, img);
 					}
 				}
 
+				if (typeof link.openinthesamewindow === 'undefined') {
+					linkNode.target = reuseTab ? '_ftlinks' : '_blank';
+				}
+
+				linkNode.setAttribute('key', key);
+				linkNode.setAttribute('module', module);
 				return linkNode;
 			};
 
@@ -202,182 +210,122 @@
 				return [];
 			}
 
-			// add current server to args first
-			args.server = doc.location.hostname;
-			args.lang = Foxtrick.Prefs.getString('htLanguage');
+			var addUp = function(sum, prop) {
+				var num = parseInt(args[prop], 10) || 0;
+				return sum + num;
+			};
+			var testFilter = function(filter) {
+				// ranges to determine whether to show
+				var ranges = link[filter + 'ranges'];
+
+				return Foxtrick.any(function(range) {
+					return (args[filter] >= range[0]) &&
+						(args[filter] <= range[1]);
+				}, ranges);
+			};
+			var COMPARE = {
+				EXISTS: function(test) {
+					return typeof args[test[1]] !== 'undefined';
+				},
+				GREATER: function(test) {
+					var first = args[test[1]];
+					var second = args[test[2]];
+					if (typeof first === 'undefined' || typeof second === 'undefined')
+						return false;
+
+					return first > second;
+				},
+				SMALLER: function(test) {
+					var first = args[test[1]];
+					var second = args[test[2]];
+					if (typeof first === 'undefined' || typeof second === 'undefined')
+						return false;
+
+					return first < second;
+				},
+				EQUAL: function(test) {
+					var first = args[test[1]];
+					var second = args[test[2]];
+					if (typeof first === 'undefined' || typeof second === 'undefined')
+						return false;
+
+					return first == second;
+				},
+				OR: function(test) {
+					var result = false;
+					for (var i = 1; i < test.length; ++i) {
+						result = result || COMPARE[test[i][0]](test[i]);
+					}
+					return result;
+				},
+				AND: function(test) {
+					var result = true;
+					for (var i = 1; i < test.length; ++i) {
+						result = result && COMPARE[test[i][0]](test[i]);
+					}
+					return result;
+				}
+			};
 
 			// links to return
 			var links = [];
 
-			var key;
-			for (key in collection[type]) {
+			for (var key in collection[type]) {
 				var link = collection[type][key];
 				var urlTmpl = link[type].url;
 				var filters = link[type].filters;
 
-				var values = args;
-				if (link.SUM != undefined) {
+				if (typeof link.SUM !== 'undefined') {
 					// makes calculation of requested parameteres and place values
 					// with the others in params
-					var sum, i;
 					if (link.SUM) {
-						for (sum in link.SUM) {
-							values[sum] = 0;
-							for (i = 0; i < link.SUM[sum].length; ++i)
-								values[sum] += Number(args[link.SUM[sum][i]]);
+						for (var sum in link.SUM) {
+							args[sum] = link.SUM[sum].reduce(addUp, 0);
 						}
 					}
 				}
 
 				var allowed = true;
-				if (!Foxtrick.Prefs.isModuleOptionEnabled(module.MODULE_NAME, key) &&
-					Foxtrick.Prefs.isModuleOptionSet(module.MODULE_NAME, key)) {
+				if (!Foxtrick.Prefs.isModuleOptionEnabled(module, key) &&
+					Foxtrick.Prefs.isModuleOptionSet(module, key)) {
 					// enable all by default unless set otherwise by user
 					allowed = false;
 				}
 				else if (filters && filters.length > 0) {
-					// ranges to determine whether to show
-					var i, j;
-					for (i = 0; i < filters.length; i++) {
-						var filtertype = filters[i];
-						var filterranges = link[filtertype + 'ranges'];
-						var temp = false;
-
-						for (j = 0; j < filterranges.length; j++) {
-							if ((args[filtertype] >= filterranges[j][0]) &&
-							    (args[filtertype] <= filterranges[j][1])) {
-								temp = true;
-								break;
-							}
-						}
-						if (!temp) {
-							allowed = false;
-							break;
-						}
-					}
+					allowed = Foxtrick.all(testFilter, filters);
 				}
 				// check allowed based on value comparison
-				else if (link.allow != undefined) {
-
-					var comparisons = {
-						GREATER: function(test) {
-							return values[test[1]] > values[test[2]];
-						},
-						SMALLER: function(test) {
-							return values[test[1]] < values[test[2]];
-						},
-						EQUAL: function(test) {
-							return values[test[1]] == values[test[2]];
-						},
-						OR: function(test) {
-							var result = false;
-							for (var i = 1; i < test.length; ++i) {
-								result = result || comparisons[test[i][0]](test[i]);
-							}
-							return result;
-						},
-						AND: function(test) {
-							var result = true;
-							for (var i = 1; i < test.length; ++i) {
-								result = result && comparisons[test[i][0]](test[i]);
-							}
-							return result;
-						}
-					};
+				else if (typeof link.allow !== 'undefined') {
 					var test = link.allow;
-					allowed = comparisons[test[0]](test);
-				}
-				else {
-					// alway shown
-					allowed = true;
+					allowed = COMPARE[test[0]](test);
 				}
 
 				if (allowed) {
-					var url = makeLink(urlTmpl);
-					if (url != null) {
-						links.push({ 'link': getLinkElement(link, url, key, module.MODULE_NAME),
-						           'obj': link });
+					var url = Foxtrick.util.links.makeUrl(urlTmpl, args);
+					if (url) {
+						links.push({
+							anchor: makeAnchorElement(link, url, key),
+							obj: link
+						});
 					}
 				}
 			}
 			links.sort(function(a, b) {
-				if (a.obj.img == undefined && b.obj.img == undefined)
+				var noA = typeof a.obj.img === 'undefined';
+				var noB = typeof b.obj.img === 'undefined';
+				if (noA && noB)
 					return 0;
-				else if (a.obj.img == undefined)
+				else if (noA)
 					return 1;
-				else if (b.obj.img == undefined)
+				else if (noB)
 					return -1;
 				else
 					return a.obj.title.localeCompare(b.obj.title);
 			});
-			return links;
+			var anchors = Foxtrick.map(function(link) {
+				return link.anchor;
+			}, links);
+			return anchors;
 		},
-
-		getOptionsHtml: function(doc, module, linkType, callback) {
-			try {
-				var list = doc.createElement('ul');
-				this.getCollection(
-				  function(collection) {
-					try {
-						var hasOption = false;
-						var types = (linkType instanceof Array) ? linkType : [linkType];
-						//Foxtrick.log('types ', types)
-						Foxtrick.map(function(type) {
-							try {
-								//Foxtrick.log(module, ' ', linkType, ' ', type);
-								if (collection[type]) {
-									var links = collection[type];
-									var key;
-									for (key in links) {
-										//Foxtrick.log(type, ' ', key);
-										var link = links[key];
-										var item = doc.createElement('li');
-										list.appendChild(item);
-
-										var label = doc.createElement('label');
-										item.appendChild(label);
-
-										var check = doc.createElement('input');
-										check.type = 'checkbox';
-										check.setAttribute('module', module);
-										check.setAttribute('option', key);
-										// since this is appended asychronously, we set
-										// the checked attribute manually
-										if (Foxtrick.Prefs.isModuleOptionEnabled(module, key) === null
-										||	Foxtrick.Prefs.isModuleOptionEnabled(module, key)) {
-											check.setAttribute('checked', 'checked');
-											Foxtrick.Prefs.setModuleEnableState(module + '.' + key,
-											                                   true);
-											hasOption = true;
-										}
-										label.appendChild(check);
-										label.appendChild(doc.createTextNode(link.title));
-									}
-								}
-								if (hasOption && Foxtrick.Prefs.isModuleEnabled(module) === null) {
-									doc.getElementById('pref-' + module + '-check')
-										.setAttribute('checked', 'checked');
-									doc.getElementById('pref-' + module + '-options')
-										.setAttribute('style', '');
-									Foxtrick.Prefs.setModuleEnableState(module, true);
-								}
-							}
-							catch (e) {
-								Foxtrick.log(e);
-							}
-						}, types);
-						if (callback)
-							callback();
-					}
-					catch (e) {
-						Foxtrick.log(e);
-					}
-				});
-				return list;
-			}
-			catch (e) {
-				Foxtrick.log(e);
-			}
-		}
 	};
 }());

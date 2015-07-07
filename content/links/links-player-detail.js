@@ -2,195 +2,132 @@
 /**
  * linksplayer.js
  * Foxtrick add links to team pages
- * @author convinced
+ * @author convinced, LA-MJ
  */
 
 Foxtrick.modules['LinksPlayerDetail'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
 	PAGES: ['playerDetails'],
-	OPTION_FUNC: function(doc, callback) {
-		return Foxtrick.modules['Links'].getOptionsHtml(doc, 'LinksPlayerDetail', [
-			'playerhealinglink',
-			'playerlink',
-			'keeperlink',
-			'transfercomparelink'
-		], callback);
+	LINK_TYPES: [
+		'playerhealinglink',
+		'playerlink',
+		'keeperlink',
+		'transfercomparelink',
+	],
+	/**
+	 * return HTML for FT prefs
+	 * @param  {document}         doc
+	 * @param  {function}         cb
+	 * @return {HTMLUListElement}
+	 */
+	OPTION_FUNC: function(doc, cb) {
+		return Foxtrick.util.links.getPrefs(doc, this, cb);
 	},
 
 	run: function(doc) {
-		var module = this;
-		Foxtrick.modules.Links.getCollection(function(collection) {
-			module._run(doc);
-		});
+		Foxtrick.util.links.run(doc, this);
 	},
 
-	_run: function(doc) {
-		var module = this;
-		Foxtrick.util.currency.establish(doc, function(rate) {
-			if (Foxtrick.Pages.Player.wasFired(doc))
-				return;
+	links: function(doc) {
+		if (Foxtrick.Pages.Player.wasFired(doc))
+			return;
 
-			var playerInfo = doc.getElementsByClassName('playerInfo')[0];
-			var infoTable = playerInfo.getElementsByTagName('table')[0];
-			var mainBox = doc.getElementsByClassName('mainBox')[0];
-			var skillTable = mainBox ? mainBox.getElementsByTagName('table')[0] : null;
+		var playerInfo = doc.getElementsByClassName('playerInfo')[0];
+		var infoTable = playerInfo.getElementsByTagName('table')[0];
+		var mainBox = doc.getElementsByClassName('mainBox')[0];
+		var skillTable = mainBox ? mainBox.getElementsByTagName('table')[0] : null;
 
-			var owncountryid = Foxtrick.util.id.getOwnLeagueId();
+		var teamId = Foxtrick.Pages.All.getTeamId(doc);
+		var teamName = Foxtrick.Pages.All.getTeamName(doc);
+		var playerId = Foxtrick.Pages.Player.getId(doc);
+		var playerName = Foxtrick.Pages.Player.getName(doc);
+		var nationality = Foxtrick.Pages.Player.getNationalityId(doc);
 
-			var deadlineDate = Foxtrick.Pages.Player.getTransferDeadline(doc);
-			var deadline = '';
-			if (deadlineDate !== null) {
-				deadline = deadlineDate.getFullYear() + '-'
-					+ (deadlineDate.getMonth() + 1) + '-' // getMonth() returns 0-11
-					+ deadlineDate.getDate() + ' '
-					+ deadlineDate.getHours() + ':'
-					+ deadlineDate.getMinutes();
-			}
+		var tsi = Foxtrick.Pages.Player.getTsi(doc);
 
-			var teamid = Foxtrick.Pages.All.getTeamId(doc);
-			var teamname = Foxtrick.Pages.All.getTeamName(doc);
-			var nationality = Foxtrick.Pages.Player.getNationalityId(doc);
-			var playerid = Foxtrick.Pages.Player.getId(doc);
-			var playername = Foxtrick.Pages.Player.getName(doc);
-			var tsi = Foxtrick.Pages.Player.getTsi(doc);
+		// age
+		var age = Foxtrick.Pages.Player.getAge(doc);
+		var years = age.years;
+		var days = age.days;
 
-			// age
-			var age = Foxtrick.Pages.Player.getAge(doc);
-			var years = age.years;
-			var days = age.days;
+		var attrs = Foxtrick.Pages.Player.getAttributes(doc);
+		var form = attrs.form;
+		var stamina = attrs.stamina;
+		var exp = attrs.experience;
+		var ls = attrs.leadership;
 
-			var attrs = Foxtrick.Pages.Player.getAttributes(doc);
-			var form = attrs.form;
-			var stamina = attrs.stamina;
-			var exp = attrs.experience;
-			var ls = attrs.leadership;
+		var injuredWeeks = Foxtrick.Pages.Player.getInjuryWeeks(doc);
 
+		var types = ['playerlink'];
+		var params = {
+			teamId: teamId, teamName: teamName,
+			playerId: playerId, playerName: playerName, nationality: nationality,
+			tsi: tsi, age: years, ageDays: days,
+			form: form, exp: exp, leadership: ls, stamina: stamina,
+			injuredWeeks: injuredWeeks, deadline: '',
+		};
+
+		var rate = Foxtrick.util.currency.getRate();
+		if (rate) {
 			var wageObj = Foxtrick.Pages.Player.getWage(doc);
-			var wage = Math.round(wageObj.base * rate);
-			var wagebonus = Math.round(wageObj.bonus * rate);
+			params.wage = Math.round(wageObj.base * rate);
+			params.wageBonus = Math.round(wageObj.bonus * rate);
+		}
 
-			var injuredweeks = Foxtrick.Pages.Player.getInjuryWeeks(doc);
-			if (injuredweeks > 0) {
-				var ilinks = Foxtrick.modules['Links'].getLinks('playerhealinglink', {
-					'teamid': teamid,
-					'playerid': playerid,
-					'form': form,
-					'age': years,
-					'injuredweeks': injuredweeks,
-					'tsi': tsi
-				}, doc, module);
-				for (var i = 0; i < ilinks.length; ++i) {
-					ilinks[i].link.className = 'ft-link-injury';
-					infoTable.rows[4].cells[1].appendChild(ilinks[i].link);
-				}
-			}
+		var deadlineDate = Foxtrick.Pages.Player.getTransferDeadline(doc);
+		if (deadlineDate) {
+			var format = 'YYYY-mm-dd HH:MM:SS';
+			params.deadline = Foxtrick.util.time.buildDate(deadlineDate, { format: format });
+		}
 
-			var skills = Foxtrick.Pages.Player.getSkills(doc);
+		var skills = Foxtrick.Pages.Player.getSkills(doc);
+		if (skills) {
+			var copy = [
+				['goalkeeping', 'keeper'],
+				'playmaking',
+				'passing',
+				'winger',
+				'defending',
+				'scoring',
+				'setPieces',
+			];
+			Foxtrick.forEach(function(skill) {
+				if (typeof skill === 'string')
+					params[skill] = skills[skill];
+				else
+					params[skill[0]] = skills[skill[1]];
+			}, copy);
 
-			var ownBoxBody = null;
-			var added = 0;
-			// links
-			var params = [];
-			var links = new Array(2);
-			if (skills) {
-				var goalkeeping = skills.keeper;
-				var playmaking = skills.playmaking;
-				var passing = skills.passing;
-				var winger = skills.winger;
-				var defending = skills.defending;
-				var scoring = skills.scoring;
-				var setpieces = skills.setPieces;
+			types.push('transfercomparelink');
+			if (skills.keeper > 3 && skillTable) {
+				var newTable = (skillTable.rows.length === 7);
+				var keeperSkillNode = newTable ? skillTable.rows[0].cells[1] :
+					skillTable.rows[0].cells[3];
+				keeperSkillNode = keeperSkillNode.getElementsByTagName('a')[0];
 
-				params = {
-					'teamid': teamid, 'teamname': teamname, 'playerid': playerid,
-					'playername': playername, 'nationality': nationality,
-					'tsi': tsi, 'age': years, 'age_days': days, 'form': form, 'exp': exp,
-					'leadership': ls, 'stamina': stamina, 'goalkeeping': goalkeeping,
-					'playmaking': playmaking, 'passing': passing, 'winger': winger,
-					'defending': defending, 'scoring': scoring, 'setpieces': setpieces, 'wage': wage,
-					'wagebonus': wagebonus, 'owncountryid': owncountryid, 'deadline': deadline,
-					'lang': Foxtrick.Prefs.getString('htLanguage')
+				var keeperLinks = {
+					type: 'keeperlink',
+					parent: keeperSkillNode.parentNode,
+					className: 'ft-link-keeper',
 				};
-				links[0] = Foxtrick.modules['Links'].getLinks('playerlink', params, doc, module);
-				links[1] = Foxtrick.modules['Links'].getLinks('transfercomparelink', params,
-															  doc, module);
-				if (goalkeeping > 3 && skillTable) {
-					var newtable = (skillTable.rows.length === 7);
-					var goalkeeperskillnode = newtable ? skillTable.rows[0].cells[1] :
-						skillTable.rows[0].cells[3];
-					goalkeeperskillnode = goalkeeperskillnode.getElementsByTagName('a')[0];
-
-					// keeper links
-					var klinks = Foxtrick.modules['Links'].getLinks('keeperlink', {
-						'playerid': playerid,
-						'tsi': tsi,
-						'form': form,
-						'goalkeeping': goalkeeping,
-						'age': years,
-						'owncountryid': owncountryid
-					}, doc, module);
-					for (var i = 0; i < klinks.length; ++i) {
-						klinks[i].link.className = 'ft-link-keeper';
-						if (goalkeeperskillnode) {
-							goalkeeperskillnode.parentNode.appendChild(klinks[i].link);
-						}
-					}
-				}
+				types.push(keeperLinks);
 			}
-			else {
-				params = {
-					'teamid': teamid, 'playerid': playerid, 'nationality': nationality,
-					'tsi': tsi, 'age': years, 'age_days': days, 'form': form, 'exp': exp,
-					'leadership': ls, 'stamina': stamina, 'wage': wage, 'wagebonus': wagebonus,
-					'owncountryid': owncountryid, 'lang': Foxtrick.Prefs.getString('htLanguage')
-				};
-				links[0] = Foxtrick.modules['Links'].getLinks('playerlink', params, doc, module);
-			}
-			var num_links = links[0].length;
-			if (links[1] != null) {
-				num_links += links[1].length;
-			}
-			ownBoxBody = Foxtrick.createFeaturedElement(doc, module, 'div');
-			var header = Foxtrick.L10n.getString('links.boxheader');
-			var ownBoxId = 'ft-links-box';
-			var ownBoxBodyId = 'foxtrick_links_content';
-			ownBoxBody.id = ownBoxBodyId;
-			if (num_links > 0) {
-				for (var i = 0; i < links.length; ++i) {
-					if (links[i] != null) {
-						for (var j = 0; j < links[i].length; ++j) {
-							links[i][j].link.className = 'inner';
-							ownBoxBody.appendChild(links[i][j].link);
-							++added;
-						}
-					}
-				}
-			}
-
-			if (Foxtrick.Prefs.isModuleEnabled('LinksTracker')) {
-				var links2 = Foxtrick.modules['Links'].getLinks('trackerplayerlink',
-					params, doc,
-					Foxtrick.modules['LinksTracker']);
-				if (links2.length > 0) {
-					for (var i = 0; i < links2.length; ++i) {
-						links2[i].link.className = 'flag inner';
-						var img = links2[i].link.getElementsByTagName('img')[0];
-						var style = 'vertical-align:top; margin-top:1px; background: transparent ' +
-							'url(/Img/Flags/flags.gif) no-repeat scroll ' + (-20) * nationality +
-							'px 0pt; background-clip: -moz-initial; background-origin: ' +
-							'-moz-initial; background-inline-policy: -moz-initial;';
-						img.setAttribute('style', style);
-						img.src = '/Img/Icons/transparent.gif';
-						ownBoxBody.appendChild(links2[i].link);
-						++added;
-					}
-				}
-			}
-			if (added) {
-				var box = Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, -20);
-				box.id = 'ft-links-box';
-				Foxtrick.util.links.add(doc, ownBoxBody, module.MODULE_NAME, params);
-			}
-		});
+		}
+		if (injuredWeeks > 0) {
+			var injuryLinks = {
+				type: 'playerhealinglink',
+				parent: infoTable.rows[4].cells[1],
+				className: 'ft-link-injury',
+			};
+			types.push(injuryLinks);
+		}
+		if (Foxtrick.Prefs.isModuleEnabled('LinksTracker')) {
+			var tracker = {
+				type: 'trackerplayerlink',
+				module: 'LinksTracker',
+			};
+			types.push(tracker);
+		}
+		return { types: types, info: params };
 	}
 };

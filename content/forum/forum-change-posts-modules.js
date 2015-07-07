@@ -8,7 +8,7 @@
 Foxtrick.modules['FormatPostingText'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.FORUM,
 	PAGES: [
-		'forumWritePost', 'messageWritePost', 'guestbook', 'announcements',
+		'forumWritePost', 'messageWritePost', 'guestbook', 'announcements', 'teamPage',
 		'newsLetter', 'mailNewsLetter', 'ntNewsLetter',
 		'forumModWritePost'
 	],
@@ -18,15 +18,20 @@ Foxtrick.modules['FormatPostingText'] = {
 	run: function(doc) {
 		var format = this.format;
 		var reformat = this.reformat;
-		//format view
-		if (Foxtrick.isPage(doc, 'messageWritePost')
-			|| Foxtrick.isPage(doc, 'guestbook')
-			|| Foxtrick.isPage(doc, 'forumWritePost')) {
+		// format view
+		var VIEW_PAGES = [
+			'forumWritePost', 'messageWritePost', 'guestbook', // view + edit
+			'announcements', 'teamPage' // view-only
+		];
+		if (Foxtrick.any(function(page) { return Foxtrick.isPage(doc, page); }, VIEW_PAGES)) {
 			try {
+				var messages;
 				if (Foxtrick.isPage(doc, 'forumWritePost'))
-					var messages = doc.getElementsByClassName('message');
+					messages = doc.getElementsByClassName('message');
+				else if (Foxtrick.isPage(doc, 'teamPage'))
+					messages = doc.getElementsByClassName('mainBox');
 				else
-					var messages = doc.getElementsByClassName('feedItem');
+					messages = doc.getElementsByClassName('feedItem');
 				for (var i = 0; i < messages.length; i++) {
 					var count_pre = Foxtrick.substr_count(messages[i].textContent, '[pre');
 					var org = [
@@ -51,16 +56,20 @@ Foxtrick.modules['FormatPostingText'] = {
 
 		// add to all targets. send button unclear (eg MyHattrick/Inbox/Default.
 		// aspx?actionType=readMail) . doesn't harm to add it to all
-		var targets = doc.getElementById('mainBody').getElementsByTagName('input');  // Forum
-		for (var i = 0; i < targets.length; ++i) {
-			if (targets[i].type == 'submit') {
-				Foxtrick.onClick(targets[i], function() {
-					var textarea = doc.getElementById('mainBody')
-						.getElementsByTagName('textarea')[0];
-					textarea.value = format(textarea.value);
-				});
+		var targets = doc.querySelectorAll('#mainBody input[type="submit"]');
+		var handler = function(ev) {
+			var doc = ev.target.ownerDocument;
+			var textarea = doc.querySelector('#mainBody textarea');
+			if (textarea) {
+				// remove escaping if any (e. g. from quote tag)
+				var value = reformat(textarea.value);
+				// reapply correct escaping
+				textarea.value = format(value);
 			}
-		}
+		};
+		Foxtrick.forEach(function(target) {
+			Foxtrick.onClick(target, handler);
+		}, targets);
 	},
 	// FIXME - also used by other modules, should extract to util/
 	reformat: function(string) {

@@ -2,100 +2,95 @@
 /**
  * links-team.js
  * Foxtrick add links to team pages
- * @author convinced
+ * @author convinced, LA-MJ
  */
 
 Foxtrick.modules['LinksTeam'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
 	PAGES: ['teamPage'],
-	OPTION_FUNC: function(doc, callback) {
-		return Foxtrick.modules['Links'].getOptionsHtml(doc, 'LinksTeam', 'teamlink', callback);
+	LINK_TYPE: 'teamlink',
+	/**
+	 * return HTML for FT prefs
+	 * @param  {document}         doc
+	 * @param  {function}         cb
+	 * @return {HTMLUListElement}
+	 */
+	OPTION_FUNC: function(doc, cb) {
+		return Foxtrick.util.links.getPrefs(doc, this, cb);
 	},
-	running: false,
 
 	run: function(doc) {
-		var module = this;
-		module.running = true;
-		Foxtrick.modules.Links.getCollection(function(collection) {
-			module._run(doc);
-		});
+		Foxtrick.util.links.run(doc, this);
 	},
 
-	_run: function(doc) {
-		this.AddLinksRight(doc);
-		this.running = false;
-	},
+	links: function(doc) {
+		var teamId = Foxtrick.Pages.All.getId(doc);
+		if (!teamId)
+			return;
 
-	change: function(doc) {
-		// challenging etc removes box. need to re-add it
-		if (doc.getElementById('ft-links-box') === null && !this.running)
-			this.run(doc);
-	},
-
-	AddLinksRight: function(doc) {
 		var main = doc.getElementById('mainBody');
-		var ownBoxBody = null;
-		var teaminfo = this.gatherLinks(main, doc);
-		if (!teaminfo)
-			return;
 
-		var links = Foxtrick.modules['Links'].getLinks('teamlink', teaminfo, doc, this);
-		if (links.length > 0) {
-			ownBoxBody = Foxtrick.createFeaturedElement(doc, this, 'div');
-			var header = Foxtrick.L10n.getString('links.boxheader');
-			var ownBoxBodyId = 'foxtrick_links_content';
-			ownBoxBody.id = ownBoxBodyId;
+		var userId = Foxtrick.util.id.findUserId(main);
+		var teamName = Foxtrick.Pages.All.getTeamName(doc);
+		var leagueId = Foxtrick.util.id.findLeagueId(main);
+		var seriesName = Foxtrick.util.id.extractLeagueName(main);
+		var seriesId = Foxtrick.util.id.findLeagueLeveUnitId(main);
 
-			for (var k = 0; k < links.length; k++) {
-				links[k].link.className = 'inner';
-				ownBoxBody.appendChild(links[k].link);
-			}
-			var box = Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, -20);
-			box.id = 'ft-links-box';
-		}
-		Foxtrick.util.links.add(doc, ownBoxBody, this.MODULE_NAME, teaminfo);
-	},
-
-	gatherLinks: function(thisdiv, doc) {
-		var teamid = Foxtrick.Pages.All.getId(doc);
-		if (!teamid)
-			return;
-
-		var teamname = Foxtrick.Pages.All.getTeamName(doc);
-		var countryid = Foxtrick.util.id.findLeagueId(thisdiv);
-		var leaguename = Foxtrick.util.id.extractLeagueName(thisdiv);
-		var levelnum = Foxtrick.util.id.getLevelNum(leaguename, countryid);
-		var leagueid = Foxtrick.util.id.findLeagueLeveUnitId(thisdiv);
-		var userid = Foxtrick.util.id.findUserId(thisdiv);
-		if (!leaguename.match(/^[A-Z]+\.\d+/i)) {
-			leaguename = 'I';
-		}
-		var leaguepos = 0, fans = 0;
+		var series = Foxtrick.util.id.parseSeries(seriesName, leagueId);
+		var levelNum = series[0];
+		var seriesNum = series[1];
+		var seriesPos = 0, fans = 0;
 		try {
-			var teamInfo = thisdiv.querySelector('.teamInfo');
-			var ps = teamInfo.getElementsByTagName('p');
-			try { leaguepos = ps[0].textContent.match(/(\d)/)[1]; }
-			catch (e) {} // running game, leaguepos not known
-			var children = teamInfo.childNodes;
-			var child, i = 0, infocount = 0;
-			while (child = children[i++]) {
-				if (infocount == 2 && child.nodeName == 'P') {
-					// README: does not work when fan club name includes numbers
-					// nothing we can do
-					fans = children[i + 1].textContent.replace(/\u00a0/g, '').match(/(\d+)/)[1];
-					break;
+			var teamInfo = main.querySelector('.teamInfo');
+
+			var fanLink = teamInfo.querySelector('a[href^="/Club/Fans/"]');
+			if (fanLink) {
+				// supporter
+				var fanP = fanLink.parentNode.cloneNode(true);
+				fanP.removeChild(fanP.querySelector('a'));
+				fans = Foxtrick.trimnum(fanP.textContent);
+			}
+			else {
+				var pCount = 0;
+				var child = teamInfo.getElementsByTagName('h2')[1];
+				while ((child = child.nextElementSibling)) {
+					if (child.tagName === 'P') {
+						if (++pCount == 2) {
+							// README: fan clubs with numbers cause problems
+							// no way to distinguish them from fanCount
+							var num = child.textContent.match(/\d\u00a0\d{3}/);
+							fans = Foxtrick.trimnum(num || child.textContent);
+							break;
+						}
+					}
 				}
-				if (child.className && child.className == 'info')
-					infocount++;
+			}
+
+			var seriesLink = teamInfo.querySelector('a[href^="/World/Series/"]');
+			if (seriesLink) {
+				// seriesPos is not known during a game
+				var seriesP = seriesLink.parentNode.cloneNode(true);
+				seriesP.removeChild(seriesP.querySelector('a'));
+				seriesPos = seriesP.textContent.match(/\d/).toString();
 			}
 		}
 		catch (e) {
-			Foxtrick.dump('leaguepos/fans: ' + e + '\n');
+			Foxtrick.log('seriesPos/fans:', e);
 		}
-		return {
-			'teamid': teamid, 'teamname': teamname, 'countryid': countryid,
-			'levelnum': levelnum, 'leagueid': leagueid, 'userid': userid,
-			'fans': fans, 'leaguepos': leaguepos
+
+		var info = {
+			userId: userId,
+			teamId: teamId,
+			teamName: teamName,
+			fans: fans,
+			leagueId: leagueId,
+			seriesId: seriesId,
+			levelNum: levelNum,
+			seriesNum: seriesNum,
+			seriesPos: seriesPos,
 		};
-	}
+
+		return { info: info };
+	},
+
 };

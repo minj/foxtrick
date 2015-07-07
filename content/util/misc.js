@@ -8,46 +8,7 @@ if (!Foxtrick)
 	var Foxtrick = {};
 
 // global change listener.
-// uses setTimout to queue the change function call after
-// all current DOMNodeInserted events have passed.
 (function() {
-	// var changeQueued = false;
-
-	// var waitForChanges = function(ev) {
-	// 	// we ignore further events
-	// 	if (changeQueued)
-	// 		return;
-
-	// 	// first call. queue our change function call
-	// 	changeQueued = true;
-	// 	Foxtrick.stopListenToChange(ev.target.ownerDocument);
-	// 	window.setTimeout(function() {
-	// 		// all events have passed. run change function now and restart listening to changes
-	// 		Foxtrick.entry.change(ev);
-	// 		Foxtrick.startListenToChange(ev.target.ownerDocument);
-	// 		changeQueued = false;
-	// 	}, 0);
-	// };
-
-	// Foxtrick.startListenToChange = function(doc) {
-	// 	if (!Foxtrick.isHt(doc))
-	// 		return;
-	// 	var content = doc.getElementById('content');
-	// 	content.addEventListener('DOMNodeInserted', waitForChanges, true);
-	// };
-
-	// Foxtrick.stopListenToChange = function(doc) {
-	// 	var content = doc.getElementById('content');
-	// 	content.removeEventListener('DOMNodeInserted', waitForChanges, true);
-	// };
-
-	// Foxtrick.preventChange = function(doc, func) {
-	// 	return function() {
-	// 		Foxtrick.stopListenToChange(doc);
-	// 		func.apply(this, arguments);
-	// 		Foxtrick.startListenToChange(doc);
-	// 	};
-	// };
 	var waitForChanges = function(changes) {
 		var doc = changes[0].ownerDocument;
 		Foxtrick.stopListenToChange(doc);

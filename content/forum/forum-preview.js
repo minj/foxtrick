@@ -12,6 +12,7 @@ Foxtrick.modules['ForumPreview'] = {
 		'newsLetter', 'mailNewsLetter', 'ntNewsLetter',
 		'forumSettings', 'forumModWritePost'
 	],
+	NICE: 1, // after ForumYouthIcons
 	CSS: Foxtrick.InternalPath + 'resources/css/forum-preview.css',
 
 	run: function(doc) {
@@ -341,15 +342,13 @@ Foxtrick.modules['ForumPreview'] = {
 		preview_message.setAttribute('class', 'message');
 		preview_div.appendChild(preview_message);
 
-		var divs = doc.getElementById('mainBody').getElementsByTagName('div');
-		var i = 0, div;
-		while (div = divs[i++])
-			if (div.className == 'HTMLToolbar')
-				break;
-		if (Foxtrick.isPage(doc, 'newsLetter') || Foxtrick.isPage(doc, 'ntNewsLetter'))
-			div = Foxtrick.getMBElement(doc, 'txtMessage');
-		if (Foxtrick.isPage(doc, 'mailNewsLetter'))
-			div = Foxtrick.getMBElement(doc, 'tbNewsBody');
+		var div = doc.querySelector('.HTMLToolbar');
+		if (!div) {
+			if (Foxtrick.isPage(doc, 'newsLetter') || Foxtrick.isPage(doc, 'ntNewsLetter'))
+				div = Foxtrick.getMBElement(doc, 'txtMessage');
+			if (Foxtrick.isPage(doc, 'mailNewsLetter'))
+				div = Foxtrick.getMBElement(doc, 'tbNewsBody');
+		}
 
 		div.parentNode.insertBefore(preview_div, div);
 	},

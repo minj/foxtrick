@@ -224,6 +224,31 @@ Foxtrick.getChildIndex = function(element) {
 };
 
 /**
+ * Insert newNode after sibling
+ * @param {element} newNode
+ * @param {element} sibling
+ */
+Foxtrick.insertAfter = function(newNode, sibling) {
+	if (sibling.nextSibling) {
+		sibling.parentNode.insertBefore(newNode, sibling.nextSibling);
+	}
+	else {
+		sibling.parentNode.appendChild(newNode);
+	}
+};
+
+/**
+ * Append an array of elements to a container
+ * @param {element} parent
+ * @param {array}   children Array.<element>
+ */
+Foxtrick.appendChildren = function(parent, children) {
+	Foxtrick.forEach(function(child) {
+		parent.appendChild(child);
+	}, children);
+};
+
+/**
  * Adds a click event listener to an element.
  * Sets tabindex=0 and role=button if these attributes have no value.
  * The callback is executed with global change listeners stopped.
@@ -598,6 +623,23 @@ Foxtrick.getButton = function(doc, ID) {
 	if (!btn)
 		btn = doc.getElementById(PRE + 'but' + ID);
 	return btn;
+};
+
+/**
+ * Get all text nodes in the node tree
+ * @param  {element} parent
+ * @return {array}          Array.<element>
+ */
+Foxtrick.getTextNodes = function(parent) {
+	var ret = [];
+	var doc = parent.ownerDocument;
+	var win = doc.defaultView;
+	var walker = doc.createTreeWalker(parent, win.NodeFilter.SHOW_TEXT, null, false);
+	var node;
+	while ((node = walker.nextNode())) {
+		ret.push(node);
+	}
+	return ret;
 };
 
 /**

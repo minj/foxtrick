@@ -150,6 +150,10 @@ html[data-theme="simple"][firefox] #logo, html[data-theme="simple"][android] #lo
 }
 /* end ft-modal-dialog */
 
+.ft-expand {
+	width: 100%;
+}
+
 /* faux-link */
 .ft-link { cursor: pointer; text-decoration: underline; }
 
@@ -167,11 +171,18 @@ html[data-theme="simple"][firefox] #logo, html[data-theme="simple"][android] #lo
 .foxtrickRemove { background-image: url('chrome://foxtrick/content/resources/img/cross_small.png'); width: 12px; height: 12px; margin-top: 2px; cursor: pointer; }
 .foxtrickRemove:hover { background-image: url('chrome://foxtrick/content/resources/img/crossRed_small.png'); }
 .subMenuConf .foxtrickRemove { margin-left: 10px; }
+.foxtrickRemove img {
+  width: 12px;
+}
 .foxtrickInfo {background-image: url('chrome://foxtrick/content/resources/img/info.png'); width: 16px; }
 .foxtrickInfo:hover {background-image: url('chrome://foxtrick/content/resources/img/info-hover.png'); width: 16px; }
 .foxtrickScreenshot { background-image: url("chrome://foxtrick/content/resources/img/screenshot.png"); width: 16px; }
 .foxtrickScreenshot:hover { background-image: url("chrome://foxtrick/content/resources/img/screenshot-hover.png"); width: 16px; }
-.foxtrickBrowse { background-image: url("chrome://foxtrick/content/resources/img/browse.png"); width: 16px; padding:2px; }
+.foxtrickBrowse { background-image: url("chrome://foxtrick/content/resources/img/browse.png"); padding:2px; }
+
+.foxtrickBrowse img {
+	width: 16px;
+}
 
 div.rightHandBoxBody > div {
 	margin: 10px 0;
@@ -309,11 +320,22 @@ span.flag img {
 	display: inline-block;
 }
 
+.ft-link-icon {
+	height: 16px;
+}
+.ft-link-injury .ft-link-icon, .ft-link-keeper .ft-link-icon {
+	height: 12px;
+}
+
 .ft-links-custom-icon-edit {
 	display: inline-block;
 	width: 16px;
 	height: 16px;
 	overflow: hidden;
+}
+
+#ft-custom-links-table td {
+	vertical-align: middle;
 }
 
 .ft-last-login-diff {
