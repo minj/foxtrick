@@ -111,7 +111,7 @@ Foxtrick.modules['LiveAlert'] = {
 						sound = Foxtrick.Prefs.getString('module.LiveAlert.away_text');
 
 					if (sound)
-						Foxtrick.playSound(sound, doc);
+						Foxtrick.playSound(doc, sound);
 				}
 			}
 		}

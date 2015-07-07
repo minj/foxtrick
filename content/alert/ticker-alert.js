@@ -76,7 +76,7 @@
 					return function(url) {
 						sound.value = url;
 						sound.dispatchEvent(new Event('change'));
-						Foxtrick.playSound(url, doc);
+						Foxtrick.playSound(doc, url);
 					};
 				})(sound));
 				filec.appendChild(input);
@@ -88,7 +88,7 @@
 				playButton.setAttribute('soundId', 'module.TickerAlert.' + type + '.id');
 				playButton.addEventListener('click', function(ev) {
 					var url = doc.getElementById(ev.target.getAttribute('soundId')).value;
-					Foxtrick.playSound(url, doc);
+					Foxtrick.playSound(doc, url);
 				}, false);
 				playc.appendChild(playButton);
 			}
@@ -170,7 +170,7 @@
 							});
 							var sound = Foxtrick.Prefs.getString('module.TickerAlert.' + type + '.sound');
 							if (sound) {
-								Foxtrick.playSound(sound, doc);
+								Foxtrick.playSound(doc, sound);
 							}
 						}
 					}, newTickers);
