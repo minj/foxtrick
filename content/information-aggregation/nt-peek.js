@@ -64,6 +64,7 @@ Foxtrick.modules['NtPeek'] = {
 
 		var ntArgs = [
 			['file', 'matches'],
+			['version', '2.8'],
 			['teamId', parseInt(ntId, 10)]
 		];
 		var parameters_nt_str = JSON.stringify(ntArgs);
@@ -80,6 +81,7 @@ Foxtrick.modules['NtPeek'] = {
 
 		var u20Args = [
 			['file', 'matches'],
+			['version', '2.8'],
 			['teamId', parseInt(u20Id, 10)]
 		];
 		var parameters_u20_str = JSON.stringify(u20Args);

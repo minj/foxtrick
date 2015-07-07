@@ -9,10 +9,13 @@ Foxtrick.modules['MyMonitor'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES: ['myHattrick', 'dashboard', 'teamPage', 'youthOverview', 'national'],
 	OPTIONS: ['TeamIcons'],
+	RADIO_OPTIONS: ['ManualSort', 'SortByName', 'SortByID'],
 	CSS: Foxtrick.InternalPath + 'resources/css/my-monitor.css',
 	NICE: -1, // add it before links for consistent sidebar placement
 
 	run: function(doc) {
+		var module = this;
+		var SORT = Foxtrick.Prefs.getModuleValue('MyMonitor');
 		var getSavedTeams = function() {
 			var savedTeams = Foxtrick.Prefs.getString('MyMonitor.teams');
 			var teams = null;
@@ -36,6 +39,17 @@ Foxtrick.modules['MyMonitor'] = {
 					{ id: u20Id, name: u20Name, type: 'nt' }
 				];
 			}
+			if (SORT) {
+				var sorter = function(a, b) {
+					if (SORT == 1){
+						return a.name.localeCompare(b.name);
+					}
+					else {
+						return parseInt(a.id, 10) - parseInt(b.id, 10);
+					}
+				};
+				teams.sort(sorter);
+			}
 			return teams;
 		};
 		var setSavedTeams = function(teams) {
@@ -50,9 +64,135 @@ Foxtrick.modules['MyMonitor'] = {
 			else // default as senior
 				return '/Club/?TeamID=' + team.id;
 		};
+
+		var addBulkLiveSelect = function(div) {
+			var URL_TEMPLATE = Foxtrick.getLastHost() + '/Club/Matches/Live.aspx' +
+				'?matchID={}&actionType=addMatch&SourceSystem={}';
+
+			var tbl = doc.createElement('table');
+			tbl.id = 'ft-monitor-live-links';
+			var row = tbl.insertRow(-1);
+
+			var th = row.appendChild(doc.createElement('td'));
+			var liveImg = doc.createElement('img');
+			liveImg.className = 'matchHTLive';
+			liveImg.src = '/Img/Icons/transparent.gif';
+			liveImg.alt = liveImg.title = Foxtrick.L10n.getString('MyMonitor.htLive');
+			th.appendChild(liveImg);
+
+			var selectCell = row.appendChild(doc.createElement('td'));
+			var liveSelect = doc.createElement('select');
+			liveSelect.id = 'ft-monitor-live-select';
+			var opt = doc.createElement('option');
+			opt.textContent = Foxtrick.L10n.getString('MyMonitor.selectType');
+			liveSelect.appendChild(opt);
+			selectCell.appendChild(liveSelect);
+
+			var matchesBySource = [
+				{ source: 'Hattrick', type: 'senior' },
+				{ source: 'Youth', type: 'youth' },
+				// README: HTO matches currently disabled in my monitor
+				// { source: 'HTOIntegrated', type: 'hto' },
+			];
+
+			Foxtrick.forEach(function(t) {
+				var sourceOpt = doc.createElement('option');
+				sourceOpt.textContent = Foxtrick.L10n.getString('matches.' + t.type);
+				sourceOpt.setAttribute('data-source', t.source);
+				liveSelect.appendChild(sourceOpt);
+			}, matchesBySource);
+
+			var matchesByType = [
+				'Official',
+				'NT',
+			];
+
+			Foxtrick.forEach(function(t) {
+				var typeOpt = doc.createElement('option');
+				typeOpt.textContent = Foxtrick.L10n.getString('matches.' + t.toLowerCase());
+				typeOpt.setAttribute('data-type', t);
+				liveSelect.appendChild(typeOpt);
+			}, matchesByType);
+
+			var buttonCell = row.appendChild(doc.createElement('td'));
+			var button = doc.createElement('button');
+			button.textContent = Foxtrick.L10n.getString('button.import');
+			buttonCell.appendChild(button);
+
+			var infoCell = row.appendChild(doc.createElement('td'));
+			infoCell.id = 'ft-monitor-live-info';
+
+			Foxtrick.onClick(button, function(ev) {
+				ev.preventDefault();
+				ev.stopPropagation();
+				var doc = this.ownerDocument;
+
+				var liveLinks = doc.querySelectorAll('a[data-live]');
+				if (!liveLinks.length)
+					return;
+
+				var liveSelect = doc.getElementById('ft-monitor-live-select');
+				var idx = liveSelect.selectedIndex;
+				if (!idx)
+					return;
+
+				var opt = liveSelect.options[idx];
+				var source = opt.getAttribute('data-source');
+				var type = opt.getAttribute('data-type');
+
+				var url;
+
+				if (source) {
+					var re = new RegExp(source, 'i');
+					var sourceMatches = Foxtrick.filter(function(link) {
+						return re.test(link.href);
+					}, liveLinks);
+					if (sourceMatches.length) {
+						var sourceIds = Foxtrick.map(function(link) {
+							return Foxtrick.util.id.getMatchIdFromUrl(link.href);
+						}, sourceMatches).toString();
+						url = Foxtrick.format(URL_TEMPLATE, [sourceIds, source]);
+					}
+				}
+				else if (type) {
+					var types = Foxtrick.Pages.Matches[type];
+					var typeMatches = Foxtrick.filter(function(link) {
+						var mType = link.getAttribute('data-match-type');
+						return Foxtrick.any(function(type) {
+							return type == mType;
+						}, types);
+					}, liveLinks);
+					if (typeMatches.length) {
+						var typeIds = Foxtrick.map(function(link) {
+							return Foxtrick.util.id.getMatchIdFromUrl(link.href);
+						}, typeMatches).toString();
+						url = Foxtrick.format(URL_TEMPLATE, [typeIds, 'Hattrick']);
+					}
+				}
+
+				var info = doc.getElementById('ft-monitor-live-info');
+
+				if (url) {
+					Foxtrick.newTab(url);
+					info.textContent = '';
+				}
+				else {
+					info.textContent = Foxtrick.L10n.getString('MyMonitor.noMatches');
+				}
+
+			});
+
+			div.appendChild(tbl);
+
+			// separator at the bottom
+			var separator = doc.createElement('div');
+			separator.className = 'separator';
+			div.appendChild(separator);
+		};
+
 		// display my monitor on myhattrick=news and dashboard page
 		var display = function() {
-			var mydiv = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.MyMonitor, 'div');
+			var mydiv = Foxtrick.createFeaturedElement(doc, module, 'div');
 			mydiv.id = 'ft-monitor-div';
 			if (Foxtrick.isPage(doc, 'myHattrick')) {
 				var h1 = doc.querySelector('#mainBody h1');
@@ -69,9 +209,34 @@ Foxtrick.modules['MyMonitor'] = {
 			header.textContent = Foxtrick.L10n.getString('MyMonitor.header');
 			mydiv.appendChild(header);
 
+			// automatic sorters
+			var sortDiv = Foxtrick.createFeaturedElement(doc, module, 'div');
+			sortDiv.id = 'ft-monitor-sort';
+			Foxtrick.addClass(sortDiv, 'float_left');
+			mydiv.appendChild(sortDiv);
+
+			var sortAndReload = function(order) {
+				return function() {
+					Foxtrick.Prefs.setModuleValue('MyMonitor', order);
+					this.ownerDocument.location.reload();
+				};
+			};
+
+			var addSortLink = function(id, value) {
+				var sortLink = doc.createElement('a');
+				sortLink.id = 'ft-monitor-sort-' + id;
+				Foxtrick.addClass(sortLink, 'ft-link');
+				sortLink.textContent = Foxtrick.L10n.getString('module.MyMonitor.' + id + '.desc');
+				Foxtrick.onClick(sortLink, sortAndReload(value));
+				sortDiv.appendChild(sortLink);
+				sortDiv.appendChild(doc.createTextNode(' '));
+			};
+			Foxtrick.forEach(addSortLink, module.RADIO_OPTIONS);
+
 			// line containing add/remove links
-			var addRemove = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.MyMonitor, 'div');
+			var addRemove = Foxtrick.createFeaturedElement(doc, module, 'div');
 			addRemove.id = 'ft-monitor-add-remove';
+			Foxtrick.addClass(addRemove, 'float_right');
 			mydiv.appendChild(addRemove);
 
 			// link for adding a team
@@ -136,14 +301,9 @@ Foxtrick.modules['MyMonitor'] = {
 			addRemove.appendChild(removeLink);
 
 			// container for the teams
-			var container = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.MyMonitor, 'div');
+			var container = Foxtrick.createFeaturedElement(doc, module, 'div');
 			container.id = 'ft-monitor-container';
 			mydiv.appendChild(container);
-
-			// separator at the bottom
-			var separator = doc.createElement('div');
-			separator.className = 'separator';
-			container.appendChild(separator);
 
 			// add the teams
 			var teams = getSavedTeams(doc);
@@ -156,15 +316,11 @@ Foxtrick.modules['MyMonitor'] = {
 				// frame for each team
 				var frame = doc.createElement('div');
 				frame.className = 'ft-monitor-frame';
-				container.insertBefore(frame, separator);
+				container.appendChild(frame);
 
 				// team header
 				var header = doc.createElement('h3');
 				frame.appendChild(header);
-				// link containing team name
-				var nameLink = doc.createElement('a');
-				buildLink(team, nameLink);
-
 				if (Foxtrick.Prefs.isModuleOptionEnabled('MyMonitor', 'TeamIcons')) {
 					var height = '24';
 					if (team.logo) {
@@ -192,7 +348,13 @@ Foxtrick.modules['MyMonitor'] = {
 					header.appendChild(img);
 				}
 
-				header.appendChild(nameLink);
+				var teamCont = doc.createElement('div');
+				Foxtrick.addClass(teamCont, 'ft-monitor-team-name');
+				header.appendChild(teamCont);
+				// link containing team name
+				var nameLink = doc.createElement('a');
+				buildLink(team, nameLink);
+				teamCont.appendChild(nameLink);
 
 				var sortdiv = doc.createElement('div');
 				sortdiv.className = 'ft_sort';
@@ -203,22 +365,33 @@ Foxtrick.modules['MyMonitor'] = {
 				img.src = '../../Img/Icons/transparent.gif';
 				sortdiv.appendChild(img);
 
-				var move = function(direction, id) {
-					return function() {
+				var move = function(direction) {
+					return function(ev) {
+						ev.preventDefault();
+						ev.stopPropagation();
+
 						var teams = getSavedTeams(doc);
+						var frames = doc.getElementsByClassName('ft-monitor-frame');
+						frames = Foxtrick.toArray(frames);
+						var thisFrame = this.parentNode.parentNode.parentNode;
+						var parent = thisFrame.parentNode;
+
 						var neworder = [];
 						for (var i = 0; i < teams.length; ++i) {
-							if ((i != teams.length - 1)
-								&& ((direction == 'up' && teams[i + 1].id == id)
-									|| (direction == 'down' && teams[i].id == id))) {
+							if ((i != teams.length - 1) &&
+							    (direction == 'up' && frames[i + 1] == thisFrame ||
+							     direction == 'down' && frames[i] == thisFrame)) {
 								neworder.push(teams[i + 1]);
 								neworder.push(teams[i]);
+								parent.insertBefore(frames[i + 1], frames[i]);
 								i++;
 							}
 							else
 								neworder.push(teams[i]);
 						}
 						setSavedTeams(neworder);
+						// ensure manual
+						Foxtrick.Prefs.setModuleValue('MyMonitor', 0);
 					};
 				};
 
@@ -248,6 +421,7 @@ Foxtrick.modules['MyMonitor'] = {
 
 				var args = [
 					['file', 'matches'],
+					['version', '2.8'],
 					['teamId', parseInt(team.id, 10)]
 				];
 				if (team.type == 'youth')
@@ -274,6 +448,8 @@ Foxtrick.modules['MyMonitor'] = {
 
 			};
 			Foxtrick.map(addTeam, teams);
+
+			addBulkLiveSelect(mydiv);
 		};
 		// show my monitor shortcuts in sidebar
 		var showSidebar = function() {
@@ -320,7 +496,7 @@ Foxtrick.modules['MyMonitor'] = {
 			}
 
 
-			var container = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.MyMonitor, 'div');
+			var container = Foxtrick.createFeaturedElement(doc, module, 'div');
 			container.id = 'ft-monitor-sidebar-box-container';
 			// link to add team
 			var addLink = doc.createElement('a');
