@@ -92,21 +92,8 @@ Foxtrick.modules['DirectPageLinks'] = {
 				div.appendChild(rr);
 			}
 
-			var currentPostId, lastPostId;
-
 			var nparam = Foxtrick.getParameterFromUrl(Foxtrick.getHref(doc), 'n');
-			currentPostId = parseInt(nparam, 10) || 1;
-			if (isNaN(currentPostId)) {
-				Foxtrick.log(new Error('Error detecting N in forum-direct-page-links'));
-				return;
-			}
-			if (!currentPostId)
-				currentPostId = 1;
-
-			if (last.length) {
-				var lastUrl = last[0].parentNode.href;
-				lastPostId = parseInt(Foxtrick.getParameterFromUrl(lastUrl, 'n'), 10);
-			}
+			var currentPostId = parseInt(nparam, 10) || 1;
 
 			var postsPerPage = getPostPerPage(next, prev, currentPostId);
 			if (postsPerPage % 10 !== 0) {
@@ -220,5 +207,5 @@ Foxtrick.modules['DirectPageLinks'] = {
 			if (left || right)
 				parent.appendChild(div);
 		}
-	}
+	},
 };
