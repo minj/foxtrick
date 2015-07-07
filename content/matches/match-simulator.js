@@ -59,6 +59,11 @@ Foxtrick.modules.MatchSimulator = {
 		else if (displayOption == 2)
 			Foxtrick.addClass(fieldOverlay, 'displayRight');
 
+		// TODO: remove once new match engine alert is gone
+		var newME = doc.querySelector('#order_tabs div.alert');
+		if (newME)
+			Foxtrick.addClass(fieldOverlay, 'newME');
+
 		// ratings and tactic for predicted and for selected others team match
 		var currentRatings = new Array(9), orgRatings = new Array(9), oldRatings = new Array(9),
 			currentRatingsOther = new Array(9), teamNames = new Array(2), isHome;
