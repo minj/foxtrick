@@ -66,11 +66,11 @@
 			"code": "bs",
 			"name": "Bosnian",
 			"phrases": "1882",
-			"translated": "1842",
-			"translated_progress": "96",
+			"translated": "1860",
+			"translated_progress": "97",
 			"words": "13408",
 			"words_approved": "0",
-			"words_translated": "12977"
+			"words_translated": "13051"
 		},
 		{
 			"approved": "0",
@@ -133,16 +133,16 @@
 			"words_translated": "10643"
 		},
 		{
-			"approved": "1866",
+			"approved": "1868",
 			"approved_progress": "97",
 			"code": "da",
 			"name": "Danish",
 			"phrases": "1882",
-			"translated": "1866",
+			"translated": "1868",
 			"translated_progress": "97",
 			"words": "13408",
-			"words_approved": "13128",
-			"words_translated": "13128"
+			"words_approved": "13138",
+			"words_translated": "13138"
 		},
 		{
 			"approved": "1277",
@@ -306,11 +306,11 @@
 			"code": "he",
 			"name": "Hebrew",
 			"phrases": "1882",
-			"translated": "1850",
+			"translated": "1868",
 			"translated_progress": "97",
 			"words": "13408",
 			"words_approved": "0",
-			"words_translated": "13066"
+			"words_translated": "13138"
 		},
 		{
 			"approved": "202",
@@ -474,11 +474,11 @@
 			"code": "pl",
 			"name": "Polish",
 			"phrases": "1882",
-			"translated": "1846",
-			"translated_progress": "97",
+			"translated": "1882",
+			"translated_progress": "100",
 			"words": "13408",
 			"words_approved": "0",
-			"words_translated": "13052"
+			"words_translated": "13408"
 		},
 		{
 			"approved": "0",
