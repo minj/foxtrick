@@ -38,9 +38,9 @@
 		{ "LeagueId": 37, "TeamId": 3020, "TeamName": "România", "id": 702868, "name": "pasadia" },
 		{ "LeagueId": 38, "TeamId": 3021, "TeamName": "Ísland", "id": 2963025, "name": "Limafox" },
 		{ "LeagueId": 39, "TeamId": 3039, "TeamName": "Österreich", "id": 5368205, "name": "Grabner" },
-		{ "LeagueId": 44, "TeamId": 3037, "TeamName": "Belgium", "id": 102034, "name": "Ariel_De_Zeemeermin" },
+		{ "LeagueId": 44, "TeamId": 3037, "TeamName": "Belgium", "id": 102034, "name": "Marcel_de_Bosnimf" },
 		{ "LeagueId": 45, "TeamId": 3040, "TeamName": "Malaysia", "id": 4893848, "name": "mickey82" },
-		{ "LeagueId": 46, "TeamId": 3038, "TeamName": "Schweiz", "id": 1069736, "name": "Maximus44" },
+		{ "LeagueId": 46, "TeamId": 3038, "TeamName": "Schweiz", "id": 4706445, "name": "Yippe" },
 		{ "LeagueId": 47, "TeamId": 3036, "TeamName": "Singapore", "id": 3057711, "name": "Darth_Hansen" },
 		{ "LeagueId": 50, "TeamId": 3089, "TeamName": "Hellas", "id": 6115753, "name": "kapaki" },
 		{ "LeagueId": 51, "TeamId": 3082, "TeamName": "Magyarország", "id": 2503676, "name": "sattikz" },
@@ -68,7 +68,7 @@
 		{ "LeagueId": 74, "TeamId": 3130, "TeamName": "Bolivia", "id": 4393033, "name": "LordSpy" },
 		{ "LeagueId": 75, "TeamId": 3126, "TeamName": "Nigeria", "id": 10117775, "name": "Goriola_WONT_PAY" },
 		{ "LeagueId": 76, "TeamId": 3132, "TeamName": "Føroyar", "id": 3707255, "name": "Roadmap" },
-		{ "LeagueId": 77, "TeamId": 3134, "TeamName": "Al Maghrib ", "id": 9156678, "name": "puissanton" },
+		{ "LeagueId": 77, "TeamId": 3134, "TeamName": "Al Maghrib ", "id": 9156678, "name": "Puissanton" },
 		{ "LeagueId": 79, "TeamId": 3144, "TeamName": "Saudi Arabia", "id": 8730300, "name": "Casale79" },
 		{ "LeagueId": 80, "TeamId": 3148, "TeamName": "Tounes", "id": 8574773, "name": "slimovic" },
 		{ "LeagueId": 81, "TeamId": 3138, "TeamName": "Costa Rica", "id": 9906246, "name": "grsanchez" },
@@ -94,7 +94,7 @@
 		{ "LeagueId": 106, "TeamId": 3180, "TeamName": "Al Urdun", "id": 4360461, "name": "Darkbear" },
 		{ "LeagueId": 107, "TeamId": 3184, "TeamName": "Guatemala", "id": 11898902, "name": "DoctorDestiny" },
 		{ "LeagueId": 110, "TeamId": 3194, "TeamName": "Trinidad & Tobago", "id": 9010407, "name": "dottwatson" },
-		{ "LeagueId": 111, "TeamId": 3190, "TeamName": "Nicaragua", "id": 6661894, "name": "mUr-C" },
+		{ "LeagueId": 111, "TeamId": 3190, "TeamName": "Nicaragua", "id": 9078107, "name": "Die_Katze_Nic" },
 		{ "LeagueId": 112, "TeamId": 3188, "TeamName": "Kazakhstan", "id": 11485082, "name": "Bagamak" },
 		{ "LeagueId": 113, "TeamId": 3192, "TeamName": "Suriname", "id": 10054459, "name": "Barry86" },
 		{ "LeagueId": 117, "TeamId": 3204, "TeamName": "Liechtenstein", "id": 6161206, "name": "Larock" },
@@ -117,7 +117,7 @@
 		{ "LeagueId": 134, "TeamId": 3230, "TeamName": "Oman", "id": 814469, "name": "UkkoMaahinen" },
 		{ "LeagueId": 135, "TeamId": 3232, "TeamName": "Moçambique", "id": 10316689, "name": "Apangaia" },
 		{ "LeagueId": 136, "TeamId": 3234, "TeamName": "Brunei", "id": 11141529, "name": "New_Bavaria" },
-		{ "LeagueId": 137, "TeamId": 3236, "TeamName": "Ghana", "id": 9789840, "name": "cucu7te" },
+		{ "LeagueId": 137, "TeamId": 3236, "TeamName": "Ghana", "id": 10028912, "name": "joebuddengh" },
 		{ "LeagueId": 138, "TeamId": 3238, "TeamName": "Prateh Kampuchea", "id": 11421007, "name": "HF2004" },
 		{ "LeagueId": 139, "TeamId": 3240, "TeamName": "Bénin", "id": 5017318, "name": "airmess" },
 		{ "LeagueId": 140, "TeamId": 3242, "TeamName": "Suriyah", "id": 11335989, "name": "Speedy_Gonzales_" },
@@ -128,6 +128,6 @@
 		{ "LeagueId": 145, "TeamId": 3260, "TeamName": "O'zbekiston", "id": 11359388, "name": "Limberg" },
 		{ "LeagueId": 146, "TeamId": 3254, "TeamName": "Cameroon", "id": 11622933, "name": "Zimbabwe-Harare" },
 		{ "LeagueId": 147, "TeamId": 3256, "TeamName": "Cuba", "id": 3501427, "name": "MESSI7777" },
-		{ "LeagueId": 148, "TeamId": 3258, "TeamName": "Palestine", "id": 1331096, "name": "Martin_in_Masters" }
+		{ "LeagueId": 148, "TeamId": 3258, "TeamName": "Palestine", "id": 1331096, "name": "Martin_in_I" }
 	]
 }

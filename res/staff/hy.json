@@ -58,7 +58,7 @@
 		},
 		{
 			"id": "8652247",
-			"name": "Gorschi",
+			"name": "GM-Gorschi",
 			"duty": "helper"
 		},
 		{
@@ -69,11 +69,6 @@
 		{
 			"id": "11006315",
 			"name": "timh1704",
-			"duty": "helper"
-		},
-		{
-			"id": "11335334",
-			"name": "CatzHoek",
 			"duty": "helper"
 		},
 		{
@@ -102,18 +97,8 @@
 			"duty": "translator"
 		},
 		{
-			"id": "2993390",
-			"name": "Stalkers",
-			"duty": "translator"
-		},
-		{
 			"id": "6734724",
 			"name": "statkar",
-			"duty": "translator"
-		},
-		{
-			"id": "8407292",
-			"name": "Axdon",
 			"duty": "translator"
 		},
 		{
@@ -164,11 +149,6 @@
 		{
 			"id": "3920552",
 			"name": "GM-Korkpleesis",
-			"duty": "translator"
-		},
-		{
-			"id": "6164874",
-			"name": "kostadinn",
 			"duty": "translator"
 		},
 		{
@@ -227,18 +207,8 @@
 			"duty": "translator"
 		},
 		{
-			"id": "9104493",
-			"name": "chembalo",
-			"duty": "translator"
-		},
-		{
 			"id": "6127012",
 			"name": "popolonator",
-			"duty": "translator"
-		},
-		{
-			"id": "9331457",
-			"name": "GM-Nestoras",
 			"duty": "translator"
 		},
 		{
@@ -253,27 +223,12 @@
 		},
 		{
 			"id": "9793408",
-			"name": "keebak",
-			"duty": "translator"
-		},
-		{
-			"id": "10012932",
-			"name": "O_Valente",
+			"name": "LA-keebak",
 			"duty": "translator"
 		},
 		{
 			"id": "9668661",
 			"name": "dzsoo",
-			"duty": "translator"
-		},
-		{
-			"id": "6116217",
-			"name": "nuburu_ueda",
-			"duty": "translator"
-		},
-		{
-			"id": "7865524",
-			"name": "Dovco_HandF",
 			"duty": "translator"
 		},
 		{
@@ -322,11 +277,6 @@
 			"duty": "translator"
 		},
 		{
-			"id": "8135142",
-			"name": "Sir-Henrik",
-			"duty": "translator"
-		},
-		{
 			"id": "3589747",
 			"name": "tjeken",
 			"duty": "translator"
@@ -352,11 +302,6 @@
 			"duty": "translator"
 		},
 		{
-			"id": "11607799",
-			"name": "dmsjzb",
-			"duty": "translator"
-		},
-		{
 			"id": "5601852",
 			"name": "LA-vikingcliff",
 			"duty": "translator"
@@ -369,11 +314,6 @@
 		{
 			"id": "9984109",
 			"name": "tut4nk4m0n",
-			"duty": "translator"
-		},
-		{
-			"id": "10879089",
-			"name": "r0by-",
 			"duty": "translator"
 		},
 		{
@@ -499,16 +439,6 @@
 		{
 			"id": "12858567",
 			"name": "Engin_Altiok",
-			"duty": "translator"
-		},
-		{
-			"id": "6796224",
-			"name": "Fella",
-			"duty": "translator"
-		},
-		{
-			"id": "6483801",
-			"name": "onderin111",
 			"duty": "translator"
 		}
 	]
