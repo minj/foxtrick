@@ -5,17 +5,43 @@ pl:
       note_0: 'To jest wersja rozwojowa. Korzystaj według własnego uznania. Proszę sprawdź szczegóły zmian <linkSVN>historia zmian</linkSVN> w witrynie Google Code.'
     beta:
       note_0: 'To jest wersja beta następnego wydania. Proszę pomóż w tłumaczeniu tej wersji na naszej super łatwej stronie tłumaczeń <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.15.2:
+      important: '<header>Ważne ogłoszenia</header>'
+      links: 'Funkcjonalność <module>Linki</module> została przepisana, by naprawić kilka błędów i poprawić obsługę. Więcej tagów będzie teraz dostępnych dla linków niestandardowych. Nazwy niektórych tagów zostały zmienione, by odzwierciedlały ich prawdziwe znaczenie. Proszę wyczyścić pamięć podręczną Foxtricka, przetestować  linki niestandardowe i odpowiednio je zaktualizować.'
+      support: '<header>Podoba ci się to, co robimy? Proszę <linkContribute>Wesprzyj Foxtrick</linkContribute>.</header>'
+      crowdin: '<header>Wiele tłumaczeń pochodzi od naszych niesamowitych użytkowników korzystających z <linkCrowdin>narzędzia crowdin</linkCrowdin>. Ty też możesz pomóc!</header>'
+      twitter: 'Możesz śledzić <linkTwitter>Foxtrick na Twitterze</linkTwitter>, aby otrzymywać najnowsze wiadomości, aktualizacje i ogłoszenia.'
+      bugs: '<header>Poprawki błędów</header>'
+      youth_avatars: 'Naprawiono brakujące awatary juniorów w <module>MatchOrderInterface</module>.'
+      preserve_changes: '<module>MatchRatingsTweaks</module> powinien teraz zachować ostatnią zmianę ocen podczas meczów na żywo. Poprzednio zmiany ocen (kolorowe cyfry) znikały przy każdej aktualizacji, nawet jeśli ta aktualizacja nie miała żadnego wpływu na oceny.'
+      leave_forum: '<module>ForumLeaveButton</module> powinien teraz działać poprawnie.'
+      monitor_cups: '<module>MyMonitor</module> powinien teraz pokazywać prawidłowe ikony pucharu drugiej szansy.'
+      other: '<header>Inne zmiany</header>'
+      volume: 'Dodano suwak suwak głośności dźwięków Foxtricka w <FTlinkMainTab>sekcji ustawienia ogólne</FTlinkMainTab>.'
+      mlt_upgrade: '<module>MatchLineupTweaks</module> moduł powinien teraz wyświetlić numery graczy na stronie ustawienia składu. Dodatkowo widać przeiwdywany poziom kondycji (jeśli dostępny) po najechaniu wskaźnikiem myszy na wartość stanu energii gracza.'
+      mrt_ratings: 'Moduł <module>Oceny</module> został włączony do <module>MatchRatingsTweaks</module> i teraz ma ograniczoną funkcjonalność nawet w HT-Live (tylko dla Supporterów HT).'
+      copy_ratings: '<module>CopyRatings</module> został napisany od nowa, dlatego można teraz skopiować oceny cominutowe z karty szczegółów ocen, nawet w HT-Live.'
+      monitor_update: '<module>MyMonitor</module> zawiera teraz bardziej inteligentny sposób sortowania zespołu i możliwość dodawania meczy do HT-Live na podstawie ich typu.'
+      promote_age: '<module>YouthPromotes</module> pokazuje teraz wiek gracza w dniu promowania.'
+      export_live: 'Dodano przycisk eksportowania listy meczy HT-Live jako linku w <module>ReLiveLinks</module>.'
+      match_icons: 'Do <module>MatchReportFormat</module> dodano więcej ikon zdarzeń meczowych. Teraz wszystkie ważne zdarzenia powinny mieć swoje ikony.'
+      retro_cups: 'Do <module>CustomMedals</module> dodano ikony pucharu retro dla nowych rodzajów pucharów.'
+      and_more: Różne inne małe zmiany i poprawki.
     0.15.1:
       bugs: '<header>Poprawki błędów</header>'
+      nt_crash: 'Naprawiono problem z wydajnością, który prowadzi do zawieszania przeglądarek dla Drużyn Narodowych w <module>MatchOrderInterface</module>.'
+      copy_htMl: 'Naprawiono <module>ContextMenuCopy</module>, który przestał kopiować tekst linku dla HT-ML.'
+      resource_fix: '<module>Linki</module> i <module>StaffMarker</module> przestały działać u użytkowników w niektórych krajach. Powinny zostać naprawione w ciągu kilku dni.'
       other: '<header>Inne zmiany</header>'
+      extarnal_url: 'Dodano możliwość kopiowania linków Hattricka na innych stronach internetowych w <module>ContextMenuCopy</module>. Te linki działają, niezależnie od tego, na który serwer HT użytkownik jest zalogowany.'
       and_more: Różne inne małe zmiany i poprawki.
     0.15.0:
       important: '<header>Ważne ogłoszenia</header>'
-      support: '<header>Jeżeli lubisz to co robimy? Proszę <linkContribute>Wspomóż Foxtrick</linkContribute>.</header>'
+      support: '<header>Podoba ci się to, co robimy? Proszę <linkContribute>Wesprzyj Foxtrick</linkContribute>.</header>'
       crowdin: '<header>Wiele tłumaczeń pochodzi od naszych niesamowitych użytkowników korzystających z <linkCrowdin>narzędzia crowdin</linkCrowdin>. Ty też możesz pomóc!</header>'
       twitter: 'Możesz śledzić <linkTwitter>Foxtrick na Twitterze</linkTwitter>, aby otrzymywać najnowsze wiadomości, aktualizacje i ogłoszenia.'
       new: '<header>Nowe moduły</header>'
-      promotion_reminder: '<module>AddPromotionReminder</module>: dodaje przycisk do tworzenia przypomnienia dla  dnia, kiedy można promować juniora'
+      promotion_reminder: '<module>AddPromotionReminder</module>: dodaje przycisk do tworzenia przypomnienia dla dnia, kiedy można promować juniora'
       bugs: '<header>Poprawki błędów</header>'
       breakages: Foxtrick powinien teraz działać poprawnie na Safari 7.1 + i Firefoksie dla systemu Android.
       https: Foxtrick ponownie powinien działać poprawnie na Hattrick Stage.

@@ -5,9 +5,21 @@ da:
       note_0: 'Dette er Beta-versionen. Du bruger denne version på eget ansvar. Se venligst <linkSVN>commit history</linkSVN> på Google Code for nærmere oplysninger om ændringerne.'
     beta:
       note_0: 'Dette er betaversionen af den næste udgave. Du kan hjælpe med at oversætte via vores super nemme oversættelses-side <linkCrowdin>crowdin.net</linkCrowdin>. '
-    0.15.1:
+    0.15.2:
+      important: '<header>Vigtige meddelelser</header>'
+      support: '<header>Støt Foxtrick via Flattr mikrodonationer eller giv et bidrag med Paypal <linkContribute>Donér</linkContribute>.</header>'
+      crowdin: '<header>En stor tak til alle de hjælpsomme brugere, som oversætter ved hjælp af <linkCrowdin>crowdin </linkCrowdin>. Du kan også give en hånd!</header>'
+      twitter: 'Du kan følge <linkTwitter>Foxtrick på Twitter</linkTwitter> for at modtage de seneste nyheder, opdateringer og meddelelser.'
       bugs: '<header>Fejlrettelser</header>'
       other: '<header>Andre ændringer</header>'
+      and_more: Forskellige små ændringer og rettelser.
+    0.15.1:
+      bugs: '<header>Fejlrettelser</header>'
+      nt_crash: 'Rettet et ydelsesproblem som førte til nedbrud af browser for landshold under <module>MatchOrderInterface</module>.'
+      copy_htMl: 'Rettet <module>ContextMenuCopy</module> der ikke længere kopierede linkteksten for HT-ML.'
+      resource_fix: '<module>Links</module> og <module>StaffMarker</module> holdt op med at virke for brugere i nogle lande. Dette bliver rettet i løbet af få dage.'
+      other: '<header>Andre ændringer</header>'
+      extarnal_url: 'Det er nu muligt at kopiere links til brug for eksterne sider under <module>ContextMenuCopy</module>. Disse links fungerer uanset hvilken HT-server en bruger er logget ind på.'
       and_more: Forskellige små ændringer og rettelser.
     0.15.0:
       important: '<header>Vigtige meddelelser</header>'

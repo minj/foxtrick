@@ -5,6 +5,12 @@ zh-CN:
       note_0: '请查阅 Google Code 上的<linkSVN>版本历史</linkSVN>.'
     beta:
       note_0: '这是下一个版本的beta测试版。请在我们超级容易的大众翻译页面 <linkCrowdin>crowdin.net</linkCrowdin>帮助翻译此版本。'
+    0.15.1:
+      bugs: '<header>Bug 修复</header>'
+      nt_crash: '在 NT的<module>MatchOrderInterface</module>中修复了一个导致浏览器崩溃的性能问题。'
+      copy_htMl: '修复了<module>ContextMenuCopy</module> 不再为 HT-ML 复制链接文本。'
+      resource_fix: '<module>链接</module> 和 <module>StaffMarker</module> 对一些国家的用户不起作用。这应该在几天内就会修复。'
+      other: '<header>其他更改</header>'
     0.15.0:
       twitter: '你可以关注<linkTwitter>Foxtrick on Twitter</linkTwitter> 接收最新的新闻、 更新和公告。'
       new: '<header>新的模块</header>'

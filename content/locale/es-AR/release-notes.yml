@@ -5,9 +5,35 @@ es-AR:
       note_0: 'Se trata de la version de desarrollo. Utilizar bajo su propio riesgo. Por favor ver <linkSVN>historial de commit</linkSVN> en Google Code para detalles de los cambios.'
     beta:
       note_0: 'Esta es la versión beta de la próxima versión. Por favor ayude a traducir esta versión en nuestra super-fácil página <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.15.2:
+      important: '<header>Anuncios importantes</header>'
+      links: '<module>Enlaces</module> la funcionalidad fue reescrita para arreglar algunos errores y mejorar el mantenimiento. Más etiquetas estarán ahora disponibles para enlaces personalizados. Algunas etiquetas fueron renombradas para reflejar su verdadero significado. Por favor vacía la caché de Foxtrick, probá tus enlaces personalizados y actualizalos adecuadamente.'
+      support: '¿<header>Qué estamos haciendo? Por favor <linkContribute>ayuda a Foxtrick</linkContribute>.</header>'
+      crowdin: '<header>Muchas actualizaciones en las traducciones de nuestros colaboradores mediante <linkCrowdin> crowdin</linkCrowdin>. Usted también puede ayudarnos!</header>'
+      twitter: 'Puedes seguir <linkTwitter>Foxtrick on Twitter</linkTwitter> para recibir las últimas noticias, actualizaciones y anuncios.'
+      bugs: '<header>Corrección de errores</header>'
+      youth_avatars: 'Reparados avatares de juveniles faltantes en <module>MatchOrderInterface</module>.'
+      preserve_changes: '<module>MatchRatingsTweaks</module> ahora debe preservar los últimos cambios de las calificaciones durante los partidos en vivo. Anteriormente los cambios en las calificaciones (números de color) desaparecerían en cada actualización incluso si esa actualización no tenía ningún efecto en las calificaciones.'
+      leave_forum: '<module>ForumLeaveButton</module> estaba totalmente malo y ahora se encuentra corregido.'
+      monitor_cups: '<module>MyMonitor</module> ahora debería mostrar los iconos correctos de copas secundarias.'
+      other: '<header>Otros cambios</header>'
+      volume: 'Un deslizador de volumen del sonido global de Foxtrick ha sido añadido en la <FTlinkMainTab>sección de ajustes generales</FTlinkMainTab>.'
+      mlt_upgrade: '<module>MatchLineupTweaks</module> módulo ahora debería mostrar los números de jugador en la alineación del partido. Además, verás la predicción de habilidades de resistencia (si está disponible) cuando se pasa el ratón sobre el valor de energía del jugador.'
+      mrt_ratings: '<module>Calificaciones</module> módulo se integró con <module>MatchRatingsTweaks</module> y ahora tiene una funcionalidad limitada incluso en HT-Live (sólo para HT supporters).'
+      copy_ratings: '<module>CopyRatings</module> fue reescrito y ahora puede copiar calificaciones minuto a minuto desde la ficha de información de calificación, incluso en HT-Live.'
+      monitor_update: '<module>MyMonitor</module> ahora incluye clasificación de equipo más inteligente y la capacidad de añadir partidos a HT-Live basado en este tipo.'
+      promote_age: '<module>YouthPromotes</module> ahora muestra la edad del jugador en el día de la promoción.'
+      export_live: 'Añadido un botón para exportar la lista de vuestro partido de HT-Live como un enlace en <module>ReLiveLinks</module>.'
+      match_icons: 'Más iconos de eventos de partido fueron agregados a <module>MatchReportFormat</module>. Ahora deben cubrirse todos los eventos importantes.'
+      retro_cups: 'Íconos de copa "retro" fueron agregados para los nuevos tipos de copa en <module>CustomMedals</module>.'
+      and_more: Otros pequeños cambios y correcciones.
     0.15.1:
       bugs: '<header>Corrección de errores</header>'
+      nt_crash: 'Arreglado un problema de desempeño conducente a accidentes del navegador para NTs en <module>MatchOrderInterface</module>.'
+      copy_htMl: 'Arreglado <module>ContextMenuCopy</module> ya no copia el texto para enlaces HT-ML.'
+      resource_fix: '<module>Enlaces</module> y <module>StaffMarker</module> dejaron de funcionar para algunos usuarios de algunos países. Esto debería ser arreglado en unos pocos días.'
       other: '<header>Otros cambios</header>'
+      extarnal_url: 'Añadida la opción para copiar enlaces de Hattrick a otros sitios en <module>ContextMenuCopy</module>. Estos enlaces funcionan sin importar en qué servidor HT el usuario haya iniciado la sesión.'
       and_more: Otros pequeños cambios y correcciones.
     0.15.0:
       important: '<header>Anuncios importantes</header>'

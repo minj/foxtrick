@@ -3,11 +3,64 @@ hu:
   faq:
     style:
       question: Hogyan alakíthatom a saját Foxtrickem stílusát?
+      answer: |2
+        <p>A felhasználók számára a Foxtrick egy kiváló felületet biztosít saját stílusunk létrehozásához. HTML ID-ken, osztályokon és saját stílusodhoz létrehozott CSS-eken keresztül ad lehetőséget interfészünk az átalakításhoz.</p>
+        
+        <p><linkCSSExample>Itt</linkCSSExample> vagy <linkCSSExampleGCode>itt</linkCSSExampleGCode>
+         találsz egy felhasználói stílusokat tartalmazó példafájlt, amely igény szerint módosítható. Fájl mentése után használd a <module>SkinPlugin</module> modult a CSS file betöltéséhez és saját kinézeted alkalmazásához.</p>
     sound-format:
       question: Mely fájlformátumok engedélyezettek a figyelmeztető hangjelzésekhez?
+      answer: |
+        <p>Egyes böngészők különböző fájlformátumokat használnak. Tessék, egy lista (a nem felsorolt formátumok is működhetnek ha a megfelelő bővítmény telepítve van, pl. Quicktime mp3 lejátszó Firefoxban):</p>
+        
+        <ul>
+        <li>Mozilla: wav, ogg</li>
+        <li>Safari (Quicktime szükséges): wav, mp3</li>
+        <li>Chrome:  ogg, mp3, wav</li><li>Opera: wav, ogg</li>
+        </ul>
     sound-location:
       question: Mi a maximális fájlméret és hol találhatóak a hangjelzéshez használatos állományok?
+      answer: |
+        <p>Az összes böngésző képes adat-hivatkozáson keresztül is lejátszani. A beállításoknál használt Betöltés gombbal a hangok a böngészőn belül kerülnek mentésre. Átalakítás és mentés után legfeljebb 160kB méret korláttal</p>
+        
+        <p>Közvetlen az internetről is képesek (http hivatkozások) a böngészők hanglejátszásra. Egyszerűen másold be a hangra mutató hivatkozást (pl.:  http://foxtrick.org/sound.wav) a hangok  beviteli mezőjébe. Méretkorlát nincs.</p>
+        
+        <p>A Mozilla böngészők a saját meghajtóról való lejátszást (fájl hivatkozások) méretkorlát nélkül támogatják. Legegyszerűbben a  Ctrl+o lenyomásával keresheted és választhatod ki a hangállományt. A böngésző címsorában - felül - megjelenik a pontos hivatkozás a helyi hangfájlodhoz (pl.: file:///c:/sound.wav). Másold ki és illeszd be a már ismert hang beállításához tartozó beviteli mezőbe.</p>
     authorize:
       question: Miért kell engedélyeznem a Foxtrick számára, hogy hozzáférhessen a csapatom adataihoz?
+      answer: |
+        <p>Bár a legtöbb szükséges adatot letölti a megnyitott oldalról a Foxtrick, de néhány modul megfelelő működéséhez szükséges a Hattrickről is adatokat letölteni.</p>
+        
+        <p>A csapat, bajnokság és nemzeti csapatok adatait magában foglaló Hattrick adatok letöltését engedélyezned kell a Foxtrick számára.</p>
+        
+        <p>A chpp.hattrick.org oldalon beszerzett kóddal engedélyezheted a Foxtrick hozzáférését, felhasználóneved és jelszavad megadásával. A FoxTrick nem fogja megismerni a felhasználónevedet és jelszavad sem a folyamat során.</p>
+        
+        <p>To learn more about the authorize process, please read <linkCHPPDesc>CHPP - How it works</linkCHPPDesc> on Hattrick.</p>
+        
+        <p>Some modules require data access to work properly:</p>
+        
+        <ul>
+        <li><module>CrossTable</module></li>
+        <li><module>ExtraPlayerInfo</module></li>
+        <li><module>MatchPlayerColouring</module></li>
+        <li><module>MyMonitor</module></li>
+        <li><module>NtPeek</module></li>
+        <li><module>SeriesFlags</module></li>
+        </ul>
+        
+        <p>Some modules could provide extensive info if they can access data from Hattrick:</p>
+        
+        <ul>
+        <li><module>SkillTable</module></li>
+        <li><module>TeamStats</module></li>
+        </ul>
     privacy:
       question: Hogyan védi meg a Foxtrick az adataimat?
+      answer: |
+        <p>FoxTrick will not upload any of your data or preferences to a server of FoxTrick; neither will FoxTrick send any of your private data, including but not restricted to your username, password, and player ID associated with skills to third parties.</p>
+        
+        <p>Most data passed to third parties, unless explicitly stated below, are sent with HTTP GET method, and will only be sent upon you clicking a link.</p>
+        
+        <p>That is, you will be able to see what data are passed by inspecting the URI (Uniform Resource Identifier) of an external link, and no data will be sent without your consent. As stated above, no private data is involved.</p>
+        
+        <p>The exceptions are modules <module>HTMSPrediction</module> and <module>HTEVPrediction</module>, where match ratings are passed to and recieved from the respective sites with XMLHttpRequest.</p>
