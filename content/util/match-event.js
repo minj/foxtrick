@@ -238,7 +238,7 @@ Foxtrick.util.matchEvent.eventIcons = {
 	701: 'thumb_up',
 	702: 'fan',
 	703: 'fire',
-	704: 'thumb_up',
+	704: 'trophy',
 };
 Foxtrick.util.matchEvent.eventIconDefinition = {
 	aow: Foxtrick.InternalPath + 'resources/img/matches/aow.png',
