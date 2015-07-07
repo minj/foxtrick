@@ -95,7 +95,7 @@ Foxtrick.modules['DirectPageLinks'] = {
 			var currentPostId, lastPostId;
 
 			var nparam = Foxtrick.getParameterFromUrl(Foxtrick.getHref(doc), 'n');
-			currentPostId = parseInt(nparam, 10);
+			currentPostId = parseInt(nparam, 10) || 1;
 			if (isNaN(currentPostId)) {
 				Foxtrick.log(new Error('Error detecting N in forum-direct-page-links'));
 				return;
