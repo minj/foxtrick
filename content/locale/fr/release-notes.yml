@@ -7,11 +7,25 @@ fr:
       note_0: "Il s'agit de la version bêta de la prochaine version. Veuillez nous aider à traduire cette version via un site ultra simple à utiliser <linkCrowdin>crowdin.net</linkCrowdin>. "
     0.15.2:
       important: '<header>Annonces importantes</header>'
+      links: "<module>Links</module> les fonctionnalité a été réécrites pour corriger quelques bugs et améliorer l'entretien. Plusieurs balises seront désormais disponibles pour les liens personnalisés. Certaines balises ont été renommées afin de tenir compte de leur véritable signification. S'il vous plaît effacez votre cache Foxtrick, testez vos liens personnalisés et mettez les à jour au besoin."
       support: "<header>Vous aimez ce que nous faisons ? S'il vous plaît <linkContribute>Support Foxtrick</linkContribute>.</header>"
       crowdin: '<header>Mise à jour des traductions de la part de nos fidèles utilisateurs via <linkCrowdin>crowdin tool</linkCrowdin>. Vous pouvez aussi nous donner un coup de main!</header>'
       twitter: 'Vous pouvez suivre <linkTwitter>Foxtrick sur Twitter</linkTwitter>pour recevoir les dernières nouvelles, mises à jour et annonces.'
       bugs: '<header>Correctifs</header>'
+      youth_avatars: 'Correctifs pour bien afficher les avatars des jeunes dans <module>MatchOrderInterface</module>.'
+      preserve_changes: "<module>MatchRatingsTweaks</module> doit maintenant préserver les dernières modifications de notes lors des matchs en direct. Auparavant, les modifications de notes (chiffres colorés) disparaissaient à chaque mise à jour, même si cette mise à jour n'avait aucun effet sur les notes."
+      leave_forum: '<module>ForumLeaveButton</module> doit de nouveau fonctionner correctement.'
+      monitor_cups: '<module>MyMonitor</module> doit maintenant afficher correctement les icônes des coupes secondaires.'
       other: '<header>Autres changements</header>'
+      volume: "Ajout d'un curseur de volume des sons de foxtrick dans <FTlinkMainTab>general settings section</FTlinkMainTab>."
+      mlt_upgrade: "<module>MatchLineupTweaks</module> affiche maintenant le numéro des maillots des joueurs sur la composition de match. En plus, vous pouvez voir les prédictions d'endurance (si disponible) en plaçant votre souris sur la barre d'endurance du joueur."
+      mrt_ratings: 'Le module <module>Ratings</module> a été intégré dans le module <module>MatchRatingsTweaks</module> et a maintenant une fonctionnalité limitée dans le HT-Live (pour HT Supporters uniquement).'
+      copy_ratings: "<module>CopyRatings</module> a été réécrit et peut maintenant copier les notes à la minute de l'onglet notes détaillées, aussi en direct."
+      monitor_update: "<module>MyMonitor</module> comprend maintenant un système de tri plus intelligent et une capacité d'ajouter des matchs au HT-Live selon leur type."
+      promote_age: "<module>YouthPromotes</module> affiche maintenant l'âge de joueur au moment de sa promotion possible."
+      export_live: "Ajout d'un bouton pour exporter votre liste de match du HT-Live comme un lien dans <module>ReLiveLinks</module>."
+      match_icons: "Des icônes d'événements de match ont été ajoutés à <module>MatchReportFormat</module>. Tous les événements importants devraient maintenant être couverts."
+      retro_cups: 'Des icônes de coupe rétro ont été ajoutées pour les nouveaux types de coupe dans <module>CustomMedals</module>.'
       and_more: Divers autres petits changements et corrections.
     0.15.1:
       bugs: '<header>Correctifs</header>'
