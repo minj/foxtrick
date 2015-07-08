@@ -9,6 +9,7 @@ import re
 import argparse
 import os
 import sys
+import codecs
 
 tag = '<!-- %s -->'
 targets = [
@@ -60,13 +61,15 @@ def build(args=dict(sourcefile="modules", excludefile=None, dirfile=".")):
         path = dirfile+"/"
 
     #get module file list from file *modules*
-    modules = open(sourcefile, "r").read()
-    modules = modules.splitlines()
+    source = codecs.open(sourcefile, mode='r', encoding='utf-8')
+    modules = source.read().splitlines()
+    source.close()
 
     #if exclude file in fuction, read the file
     if excludefile:
-        ignorelist = open(excludefile, "r").read()
-        ignorelist = ignorelist.splitlines()
+        ignore = codecs.open(excludefile, mode='r', encoding='utf-8')
+        ignorelist = ignore.read().splitlines()
+        ignore.close()
 
         for mod in ignorelist:
             #remove mod from modules
@@ -88,10 +91,10 @@ def build(args=dict(sourcefile="modules", excludefile=None, dirfile=".")):
             continue
 
         #open the file and copy the content to a list variable
-        fh = file(pathfile, 'r')
+        target = codecs.open(pathfile, mode='r', encoding='utf-8')
         #keep \n
-        lines = fh.read().splitlines(True)
-        fh.close()
+        lines = target.read().splitlines(True)
+        target.close()
 
         #find the index of start and end tags
         start_tag = tag % 'categorized modules'
@@ -118,7 +121,7 @@ def build(args=dict(sourcefile="modules", excludefile=None, dirfile=".")):
         lines[start+1:end] = modlines
 
         #write the new file
-        f_out = file(pathfile, 'wb')
+        f_out = codecs.open(pathfile, mode='w', encoding='utf-8')
         f_out.writelines(lines)
         f_out.close()
         print('%s updated.' % pathfile)
