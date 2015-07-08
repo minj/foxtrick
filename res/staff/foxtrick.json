@@ -30,6 +30,11 @@
 			"name": "qoomis"
 		},
 		{
+			"duty": "supporter",
+			"id": "10245282",
+			"name": "marcolav"
+		},
+		{
 			"duty": "translator",
 			"id": "10246801",
 			"name": "silkevicious"
@@ -310,6 +315,11 @@
 			"name": "csajszi"
 		},
 		{
+			"duty": "supporter",
+			"id": "2178948",
+			"name": "stuhlgang"
+		},
+		{
 			"duty": "developer",
 			"id": "2336766",
 			"name": "spambot"
@@ -323,6 +333,11 @@
 			"duty": "translator",
 			"id": "2363296",
 			"name": "LA-OReiDasSachadas"
+		},
+		{
+			"duty": "supporter",
+			"id": "2398346",
+			"name": "CarlesWhisper"
 		},
 		{
 			"duty": "supporter",
