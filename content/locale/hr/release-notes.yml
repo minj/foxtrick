@@ -7,7 +7,7 @@ hr:
       note_0: 'Ovo je beta inačica buduće nove verzije. Pomozite na prevoditi ovu verziju sa super lakim prevođenjem na <linkCrowdin>crowdin.net</linkCrowdin>.'
     0.15.2:
       important: '<header>Važne obavijesti</header>'
-      links: '<module>Veze</module> funkcionalnost je bila napisana izpočetka s ciljem ispravljanja greški i unaprijeđenja održavanja. Više oznaka će sada biti dostupno za prilagođene veze. Neke oznake su preimenovane da prikažu njihovo pravo značenje. Molimo obrišite Foxtrick predmemoriju, testirajte svoje prilagođene veze i ažurirajte ih u skladu sa tim.'
+      links: '<module>Links</module> funkcionalnost je bila napisana iznova s ciljem ispravljanja greški i unaprijeđenja održavanja. Više oznaka će sada biti dostupno za prilagođene veze. Neke oznake su preimenovane da prikažu njihovo pravo značenje. Molimo obrišite Foxtrick predmemoriju, testirajte svoje prilagođene veze i ažurirajte ih u skladu sa tim.'
       support: '<header>Sviđa Vam se što radimo? Molim Vas da <linkContribute>podržite Foxtrick</linkContribute>.</header>'
       crowdin: '<header>Mnogo prevoditeljskih nadogradnji od naših fantastičnih korisnika koristeći <linkCrowdin>crowdin alat</linkCrowdin>. I Vi možete pomoći!</header>'
       twitter: 'Možete pratiti <linkTwitter>Foxtrick na Twitteru</linkTwitter> kako biste dobili najnovije vijesti, ažuriranja i objave.'
@@ -31,7 +31,7 @@ hr:
       bugs: '<header>Popravljene greške</header>'
       nt_crash: 'Popravljen problem koji dovodi do rušenja preglednika za NT u <module>MatchOrderInterface</module>.'
       copy_htMl: 'Popravljen <module>ContextMenuCopy</module> koji nije kopirao tekst veze za HT-ML.'
-      resource_fix: '<module>Veze</module> i <module>StaffMarker</module> je prestao raditi za korisnike u nekim zemljama. Ovo bi trebalo biti popravljeno za nekoliko dana.'
+      resource_fix: '<module>Links</module> i <module>StaffMarker</module> je prestao raditi za korisnike u nekim zemljama. Ovo bi trebalo biti popravljeno za nekoliko dana.'
       other: '<header>Druge promjene</header>'
       extarnal_url: 'Dodana opcija za kopiranje Hattrick linkova za druge web stranice u <module>ContextMenuCopy</module>. Ove veze rade bez obzira na koji HT server je korisnik prijavljen.'
       and_more: Razne druge male promjene i popravci.

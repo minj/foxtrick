@@ -109,15 +109,15 @@
 			"words_translated": "10299"
 		},
 		{
-			"approved": "1882",
-			"approved_progress": "100",
+			"approved": "1881",
+			"approved_progress": "99",
 			"code": "hr",
 			"name": "Croatian",
 			"phrases": "1882",
 			"translated": "1882",
 			"translated_progress": "100",
 			"words": "13408",
-			"words_approved": "13408",
+			"words_approved": "13363",
 			"words_translated": "13408"
 		},
 		{
@@ -145,15 +145,15 @@
 			"words_translated": "13138"
 		},
 		{
-			"approved": "1277",
-			"approved_progress": "70",
+			"approved": "1296",
+			"approved_progress": "71",
 			"code": "nl",
 			"name": "Dutch",
 			"phrases": "1882",
 			"translated": "1882",
 			"translated_progress": "100",
 			"words": "13408",
-			"words_approved": "9468",
+			"words_approved": "9535",
 			"words_translated": "13408"
 		},
 		{
@@ -517,16 +517,16 @@
 			"words_translated": "13308"
 		},
 		{
-			"approved": "1868",
-			"approved_progress": "97",
+			"approved": "1882",
+			"approved_progress": "100",
 			"code": "ru",
 			"name": "Russian",
 			"phrases": "1882",
-			"translated": "1868",
-			"translated_progress": "97",
+			"translated": "1882",
+			"translated_progress": "100",
 			"words": "13408",
-			"words_approved": "13138",
-			"words_translated": "13138"
+			"words_approved": "13408",
+			"words_translated": "13408"
 		},
 		{
 			"approved": "1735",
