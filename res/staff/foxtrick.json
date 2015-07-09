@@ -255,6 +255,11 @@
 			"name": "Timey_"
 		},
 		{
+			"duty": "supporter",
+			"id": "1360148",
+			"name": "Stipe_GAK"
+		},
+		{
 			"duty": "translator",
 			"id": "1425439",
 			"name": "playMaker-"
@@ -755,6 +760,11 @@
 			"name": "bigpapy"
 		},
 		{
+			"duty": "supporter",
+			"id": "80899",
+			"name": "steelbow"
+		},
+		{
 			"duty": "developer",
 			"id": "8107197",
 			"name": "Greblys"
@@ -763,6 +773,11 @@
 			"duty": "supporter",
 			"id": "8216321",
 			"name": "pucciozzo"
+		},
+		{
+			"duty": "supporter",
+			"id": "824951",
+			"name": "DEL_Molzur_20060105024921943868903"
 		},
 		{
 			"duty": "translator",
