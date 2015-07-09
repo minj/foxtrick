@@ -156,32 +156,37 @@ def normalize_path(path):
 
 def rm_module(sourcefile, module):
     #get module file list from file *sourcefile*
-    modules = open(sourcefile, "r").read()
+    source = codecs.open(sourcefile, mode='r', encoding='utf-8')
     #take \n
-    modules = modules.splitlines(True)
+    modules = source.read().splitlines(True)
+    source.close()
+
     module += '\n'
     if module in modules:
         modules.remove(module)
         modules.sort()
 
         #write the new file
-        f_out = file(sourcefile,'wb')
+        f_out = codecs.open(sourcefile, mode='w', encoding='utf-8')
         f_out.writelines(modules)
         f_out.close()
 
 def add_module(sourcefile, module):
     #get module file list from file *sourcefile*
-    modules = open(sourcefile, "r").read()
+    source = codecs.open(sourcefile, mode='r', encoding='utf-8')
     #take \n
-    modules = modules.splitlines(True)
+    modules = source.read().splitlines(True)
+    source.close()
+
     module += '\n'
     if module not in modules:
         modules.append(module)
         modules.sort()
 
         #write the new file
-        f_out = file(sourcefile,'wb')
+        f_out = codecs.open(sourcefile, mode='w', encoding='utf-8')
         f_out.writelines(modules)
+        f_out.close()
 
 def add_util(args):
 
@@ -201,7 +206,7 @@ def add_util(args):
             continue
 
         #open the file and copy the content to a list variable
-        fh = file(pathfile, 'r')
+        fh = codecs.open(pathfile, mode='r', encoding='utf-8')
         #keep \n
         lines = fh.read().splitlines(True)
         fh.close()
@@ -231,7 +236,7 @@ def add_util(args):
         lines[start+1:end] = utils
 
         #write the new file
-        f_out = file(pathfile, 'wb')
+        f_out = codecs.open(pathfile, mode='w', encoding='utf-8')
         f_out.writelines(lines)
         f_out.close()
         print('%s updated.' % pathfile)
@@ -248,7 +253,7 @@ def rm_util(args):
             continue
 
         #open the file and copy the content to a list variable
-        fh = file(pathfile, 'r')
+        fh = codecs.open(pathfile, mode='w', encoding='utf-8')
         #keep \n
         lines = fh.read().splitlines(True)
         fh.close()
@@ -264,7 +269,7 @@ def rm_util(args):
         lines[pos:pos+1] = []
 
         #write the new file
-        f_out = file(pathfile, 'wb')
+        f_out = codecs.open(pathfile, mode='w', encoding='utf-8')
         f_out.writelines(lines)
         f_out.close()
         print('%s updated.' % pathfile)
