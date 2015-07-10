@@ -562,8 +562,8 @@ Foxtrick.modules['MatchOrderInterface'] = {
 
 				if (Foxtrick.Prefs.isModuleOptionEnabled('MatchOrderInterface', 'StayOnPage')) {
 					var stayJS =
-						'document.getElementById("send").' +
-							'addEventListener("click", ft_stay_on_page);';
+						'var ftSend = document.getElementById("send");\n' +
+						'if (ftSend) ftSend.addEventListener("click", ft_stay_on_page);';
 					Foxtrick.util.inject.js(doc, stayJS, 'ft-stay-on-page');
 				}
 				if (Foxtrick.Prefs.isModuleOptionEnabled('MatchOrderInterface',
