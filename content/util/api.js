@@ -469,9 +469,11 @@ Foxtrick.util.api = {
 			// return if finished
 			if (index == batchParameters.length)
 				callback(responses, errors);
-			else
+			else {
 				// load next file
-				Foxtrick.util.api.retrieve(doc, batchParameters[index++], options, processSingle);
+				var opts = Array.isArray(options) ? options[index] : options;
+				Foxtrick.util.api.retrieve(doc, batchParameters[index++], opts, processSingle);
+			}
 		};
 		processSingle();
 	},

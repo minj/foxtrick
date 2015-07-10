@@ -144,6 +144,7 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/forum/show-forum-pref-button.js</string>
 				<string>content/forum/staff-marker.js</string>
 				<string>content/information-aggregation/cross-table.js</string>
+				<string>content/information-aggregation/current-transfers.js</string>
 				<string>content/information-aggregation/dashboard-calendar.js</string>
 				<string>content/information-aggregation/election-table.js</string>
 				<string>content/information-aggregation/extended-player-details.js</string>
