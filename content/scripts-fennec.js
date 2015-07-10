@@ -124,6 +124,7 @@ Foxtrick.loader.background.contentScriptManager = {
 		'forum/show-forum-pref-button.js',
 		'forum/staff-marker.js',
 		'information-aggregation/cross-table.js',
+		'information-aggregation/current-transfers.js',
 		'information-aggregation/dashboard-calendar.js',
 		'information-aggregation/election-table.js',
 		'information-aggregation/extended-player-details.js',
