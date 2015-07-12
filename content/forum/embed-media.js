@@ -71,7 +71,8 @@ Foxtrick.modules['EmbedMedia'] = {
 				'(?:youtu\\.be/|youtube\\.\\w{2,3}(?:/embed/|/v/|/watch\\?(?:.+?&)?v=))' +
 				'([\\w\\d-]{11})(?:.*)$',
 			'vimeo': '^(?:https?://)?(?:\\w{2,3}\\.)?vimeo\\.com/(\\d+)',
-			'flickr': '^(?:https?://)?(?:\\w{2,3}\\.)?flickr\\.com/',
+			'flickr': '^(?:https?://)?(?:(?:\\w{2,3}\\.)?flickr\\.com/photos/[^/]+/[0-9]+/|' +
+				'flic\\.kr/p/[\\w\\d]+$)',
 			'dailymotion': '^(?:https?://)?(?:\\w{2,3}\\.)?dailymotion\\.com/' +
 				'video/([\\w\\d-]+)',
 			'imgur': '^(?:https?://)?imgur.com/([\\w\\d]+)$',
