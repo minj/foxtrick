@@ -30,6 +30,11 @@
 			"name": "qoomis"
 		},
 		{
+			"duty": "supporter",
+			"id": "10245282",
+			"name": "marcolav"
+		},
+		{
 			"duty": "translator",
 			"id": "10246801",
 			"name": "silkevicious"
@@ -250,6 +255,16 @@
 			"name": "Timey_"
 		},
 		{
+			"duty": "supporter",
+			"id": "13102527",
+			"name": "TomTrader"
+		},
+		{
+			"duty": "supporter",
+			"id": "1360148",
+			"name": "Stipe_GAK"
+		},
+		{
 			"duty": "translator",
 			"id": "1425439",
 			"name": "playMaker-"
@@ -310,6 +325,11 @@
 			"name": "csajszi"
 		},
 		{
+			"duty": "supporter",
+			"id": "2178948",
+			"name": "stuhlgang"
+		},
+		{
 			"duty": "developer",
 			"id": "2336766",
 			"name": "spambot"
@@ -326,8 +346,18 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "2398346",
+			"name": "CarlesWhisper"
+		},
+		{
+			"duty": "supporter",
 			"id": "245173",
 			"name": "Dikkiedick"
+		},
+		{
+			"duty": "supporter",
+			"id": "2552246",
+			"name": "bigos11"
 		},
 		{
 			"duty": "translator",
@@ -363,6 +393,11 @@
 			"duty": "translator",
 			"id": "2915990",
 			"name": "GZ-grobas"
+		},
+		{
+			"duty": "supporter",
+			"id": "3013185",
+			"name": "AfroSeb"
 		},
 		{
 			"duty": "supporter",
@@ -470,6 +505,11 @@
 			"name": "ratsrats"
 		},
 		{
+			"duty": "helper",
+			"id": "4416087",
+			"name": "ratsrats"
+		},
+		{
 			"duty": "translator",
 			"id": "4417979",
 			"name": "Aze-maestro"
@@ -478,11 +518,6 @@
 			"duty": "supporter",
 			"id": "4451958",
 			"name": "Fangio"
-		},
-		{
-			"duty": "helper",
-			"id": "4416087",
-			"name": "ratsrats"
 		},
 		{
 			"duty": "translator",
@@ -503,6 +538,11 @@
 			"duty": "translator",
 			"id": "48207",
 			"name": "stefkor"
+		},
+		{
+			"duty": "supporter",
+			"id": "486061",
+			"name": "lanuscero"
 		},
 		{
 			"duty": "translator",
@@ -740,6 +780,11 @@
 			"name": "bigpapy"
 		},
 		{
+			"duty": "supporter",
+			"id": "80899",
+			"name": "steelbow"
+		},
+		{
 			"duty": "developer",
 			"id": "8107197",
 			"name": "Greblys"
@@ -748,6 +793,11 @@
 			"duty": "supporter",
 			"id": "8216321",
 			"name": "pucciozzo"
+		},
+		{
+			"duty": "supporter",
+			"id": "824951",
+			"name": "DEL_Molzur_20060105024921943868903"
 		},
 		{
 			"duty": "translator",
