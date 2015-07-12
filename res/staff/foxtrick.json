@@ -580,6 +580,11 @@
 			"name": "gkon13"
 		},
 		{
+			"duty": "supporter",
+			"id": "5413446",
+			"name": "tjahe"
+		},
+		{
 			"duty": "translator",
 			"id": "552640",
 			"name": "slader"
@@ -793,11 +798,6 @@
 			"duty": "supporter",
 			"id": "8216321",
 			"name": "pucciozzo"
-		},
-		{
-			"duty": "supporter",
-			"id": "824951",
-			"name": "DEL_Molzur_20060105024921943868903"
 		},
 		{
 			"duty": "translator",
