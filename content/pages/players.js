@@ -243,6 +243,8 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				// deal with goals being undefined during matches
 				if (isNaN(value))
 					return undefined;
+
+				return value;
 			};
 			var money = function(nodeName) {
 				return xml.money(nodeName, currencyRate, playerNode);
