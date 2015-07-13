@@ -530,8 +530,13 @@ Foxtrick.getDataURIText = function(str) {
  */
 Foxtrick.addImage = function(doc, parent, features, insertBefore, callback) {
 	var img = doc.createElement('img');
-	for (var i in features)
-		img.setAttribute(i, features[i]);
+	if (typeof features.onError === 'function')
+		Foxtrick.listen(img, 'error', features.onError);
+
+	for (var i in features) {
+		if (i !== 'onError')
+			img.setAttribute(i, features[i]);
+	}
 	if (insertBefore)
 		parent.insertBefore(img, insertBefore);
 	else
