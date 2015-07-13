@@ -122,8 +122,8 @@ Foxtrick.util.css.unload_css_permanent = function(cssList) {
 				return;
 			}
 			// try unload
-			if (sss.sheetRegistered(uri, sss.USER_SHEET)) {
-				sss.unregisterSheet(uri, sss.USER_SHEET);
+			if (sss.sheetRegistered(uri, sss.AUTHOR_SHEET)) {
+				sss.unregisterSheet(uri, sss.AUTHOR_SHEET);
 			}
 		}
 		catch (e) {
@@ -228,8 +228,8 @@ Foxtrick.util.css.load_css_permanent = function(css) {
 			return;
 		}
 		// load
-		if (!sss.sheetRegistered(uri, sss.USER_SHEET)) {
-			sss.loadAndRegisterSheet(uri, sss.USER_SHEET); // unregistered in unload_css_permanent
+		if (!sss.sheetRegistered(uri, sss.AUTHOR_SHEET)) {
+			sss.loadAndRegisterSheet(uri, sss.AUTHOR_SHEET); // unregistered in unload_css_permanent
 		}
 	}
 	catch (e) {
