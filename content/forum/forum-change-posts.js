@@ -300,7 +300,6 @@ Foxtrick.modules['ForumChangePosts'] = {
 		// part of alter header
 		var trunclength = 14;
 
-		var doubleHeaderStyle = 'height:30px !important; ';
 		var alt_supporter = doc.createElement('a');
 		alt_supporter.href = '/Help/Supporter/';
 		alt_supporter.textContent = ' * ';
@@ -669,7 +668,7 @@ Foxtrick.modules['ForumChangePosts'] = {
 			}
 
 			if (do_single_header && is_ignored && header.className == 'cfHeader doubleLine') {
-				wrapper.setAttribute('style', 'margin-bottom: 20px !important;');
+				wrapper.setAttribute('style', 'margin-bottom: 20px');
 			}
 			// end single header line
 
