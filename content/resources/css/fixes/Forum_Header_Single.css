@@ -1,30 +1,30 @@
-#aspnetForm[action*="Read.aspx"] .cfHeader a[class="flag inner"] img
+#aspnetForm[action*="Read.aspx"] .cfHeader a.flag.inner img
 { margin: 0 0px 2px 0 !important; }
 
-#aspnetForm[action*="Read.aspx"]  div[class="cfHeader doubleLine"] b:after {content:" " !important;}
+#aspnetForm[action*="Read.aspx"]  div.cfHeader.doubleLine b:after {content:" " !important;}
 
-#aspnetForm[action*="Read.aspx"]  .cfHeader a[class="bookmarkMessage"] img
+#aspnetForm[action*="Read.aspx"]  .cfHeader a.bookmarkMessage img
 {margin: 0 0px -2px 0 !important;}
 
-#aspnetForm[action*="Read.aspx"] div[class="cfHeader doubleLine"]
+#aspnetForm[action*="Read.aspx"] div.cfHeader.doubleLine
 {height:14px!important;}
 
-#aspnetForm[action*="Read.aspx"] div[class="cfHeader doubleLine"] br
+#aspnetForm[action*="Read.aspx"] div.cfHeader.doubleLine br
 {display:none !important; padding: 5px;}
 
-div[class="cfHeader ftdoubleLine"]
+div.cfHeader.ftdoubleLine
 {height:30px !important;}
 
-div[class="cfHeader ftdoubleLine"] b:after {content:" " !important;}
+div.cfHeader.ftdoubleLine b:after {content:" " !important;}
 
-/*obsoltete div[class="cfHeader ftdoubleLine"] br
+/*obsoltete div.cfHeader.ftdoubleLine br
 {display:none !important; padding: 5px;}*/
 
-#aspnetForm[action*="Read.aspx"] div[class="cfHeader doubleLine"] p {display:inline;}
+#aspnetForm[action*="Read.aspx"] div.cfHeader.doubleLine p {display:inline;}
 
 
 /* broken dsign workaround*/
-#aspnetForm[action*="Read.aspx"] div.cfHeader>div[class="float_right right"]
+#aspnetForm[action*="Read.aspx"] div.cfHeader>div.float_right.right
 {padding: 0px 2px 1px;}
 
 #aspnetForm[action*="Read.aspx"] .cfHeader
@@ -39,7 +39,7 @@ div[class="cfHeader ftdoubleLine"] b:after {content:" " !important;}
 #aspnetForm[action*="Read.aspx"] div.mainConf div.cfInnerWrapperRed
 {margin-top:18px;}
 
-#aspnetForm[action*="Read.aspx"] div.cfHeader>div[class="float_right right"]
+#aspnetForm[action*="Read.aspx"] div.cfHeader>div.float_right.right
 {background: inherit;/* #849D84;*/}
 
 #aspnetForm[action*="Read.aspx"] div.mainConf div.cfMessage,

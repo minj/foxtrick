@@ -1,1 +1,1 @@
-#aspnetForm[action*="Read.aspx"] div.mainConf  div.cfHeader a[class="flag inner"] + a {display:none;}
+#aspnetForm[action*="Read.aspx"] div.mainConf  div.cfHeader a.flag.inner + a {display:none;}

@@ -1,4 +1,3 @@
-
-/* broken dsign workaround*/
-html[data-theme="simple"] #aspnetForm[action*="Read.aspx"] div.cfHeader>div[class="float_right right"]
+/* broken design workaround*/
+html[data-theme="simple"] #aspnetForm[action*="Read.aspx"] div.cfHeader>div.float_right.right
 {background: inherit;/* #999999 !important;*/}

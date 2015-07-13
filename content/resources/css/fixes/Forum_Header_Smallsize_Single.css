@@ -1,4 +1,4 @@
-#aspnetForm[action*="Read.aspx"] .cfHeader a[class="flag inner"] img
+#aspnetForm[action*="Read.aspx"] .cfHeader a.flag.inner img
 { border: 0px solid #DDDDDD !important; }
 
 #aspnetForm[action*="Read.aspx"] .cfHeader
