@@ -261,6 +261,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "13111549",
+			"name": "Svethovid"
+		},
+		{
+			"duty": "supporter",
 			"id": "1360148",
 			"name": "Stipe_GAK"
 		},
@@ -718,6 +723,11 @@
 			"duty": "translator",
 			"id": "7249130",
 			"name": "Mod-kirjakas"
+		},
+		{
+			"duty": "supporter",
+			"id": "7269920",
+			"name": "TheChef-GIGA"
 		},
 		{
 			"duty": "developer",
