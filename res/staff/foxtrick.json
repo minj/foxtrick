@@ -261,6 +261,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "13111549",
+			"name": "Svethovid"
+		},
+		{
+			"duty": "supporter",
 			"id": "1360148",
 			"name": "Stipe_GAK"
 		},
@@ -580,6 +585,11 @@
 			"name": "gkon13"
 		},
 		{
+			"duty": "supporter",
+			"id": "5413446",
+			"name": "tjahe"
+		},
+		{
 			"duty": "translator",
 			"id": "552640",
 			"name": "slader"
@@ -715,6 +725,11 @@
 			"name": "Mod-kirjakas"
 		},
 		{
+			"duty": "supporter",
+			"id": "7269920",
+			"name": "TheChef-GIGA"
+		},
+		{
 			"duty": "developer",
 			"id": "7409095",
 			"name": "stephan57"
@@ -793,11 +808,6 @@
 			"duty": "supporter",
 			"id": "8216321",
 			"name": "pucciozzo"
-		},
-		{
-			"duty": "supporter",
-			"id": "824951",
-			"name": "DEL_Molzur_20060105024921943868903"
 		},
 		{
 			"duty": "translator",
