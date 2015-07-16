@@ -1,17 +1,17 @@
 .pager a.page {
-	line-height:22px !important;
+	line-height:22px;
 	margin-left: 1px;
 }
 .pager a.page.oneDigit {
-	padding-left: 8px !important;
-	padding-right: 8px !important;
+	padding-left: 8px;
+	padding-right: 8px;
 }
 
 .pager {
 	text-align:center;
-	margin-bottom: 6px !important;
+	margin-bottom: 6px;
 }
 
 .pager img {
-	margin-right: 0px !important;
+	margin-right: 0px;
 }

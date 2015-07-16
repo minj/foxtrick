@@ -48,12 +48,12 @@
 
 /* the link to ownerless teams at league page */
 .ft-ownerless {
-	color: white !important;
+	color: white;
 	background-color: gray;
 }
 
 
-/* Module htmsstatistics */
+/* Module HTMSPrediction */
 
 /* the graph */
 .ft-htms-graph {
@@ -79,242 +79,201 @@
 /* Module HTThreadMarker */
 
 /* Link of threads by HT */
-.ft-ht-thread {
+a[data-author^="HT-"] {
 	background: #ff7a7a;
 }
-
-
-/* Module MatchReportFormat */
-
-.ft-match-report-team-home, .ft-match-report-team-away, .ft-match-report-team-mine {
-	font-weight: bold;
-}
-
-/* link or text of home team */
-.ft-match-report-team-home {
-	color: #9f0202 !important;
-}
-
-/* link or text of away team */
-.ft-match-report-team-away {
-	color: #16029f !important;
-}
-
-/* link or text of my team */
-.ft-match-report-team-mine {
-	color: #55f !important;
-}
-
-/* normal events, involving players */
-.ft-match-report-event-normal {
-	background-color: #f5f5f5;
-}
-
-/* special events, team events */
-.ft-match-report-event-special {
-	background-color: #e0e0e0;
-}
-
-/* goal scored by my team */
-.ft-match-report-goal-mine {
-	background-color: #e3e9ff;
-	border: 1px royalblue solid;
-}
-
-/* goal scored by home team */
-.ft-match-report-goal-home {
-	background-color: #ffe8e8;
-	border: 1px yellow solid;
-}
-
-/* goal scored by away team */
-.ft-match-report-goal-away {
-	background-color: #e0efe0;
-	border: 1px pink solid;
-}
-
-/* separates different parts, eg half time */
-.ft-match-report-separator {
-	border-bottom: 1px solid #849D84;
-	margin-bottom:30px !important;
-	margin-top:10px !important;
-}
-
 
 /* Module MatchPlayerColouring */
 
 /* general styles for team names on the sidebar */
 .sidebarBox .ft-match-player-home, .sidebarBox .ft-match-player-away,
-.sidebarBox .ft-match-player-mine, .sidebarBox .ft-match-player-unknown {
+.sidebarBox .ft-match-player-mine {
 	border: 1px solid #ccc;
 }
 
 /* general styles for all players */
 .ft-match-player-home, .ft-match-player-away,
-.ft-match-player-mine, .ft-match-player-unknown {
-	padding: 0 2px !important;
+.ft-match-player-mine {
+	padding: 0 2px;
 }
 
 /* styles for home players */
 .ft-match-player-home {
 	background: #ffcdcd;
-	color: black !important;
+	color: black;
 	border: 1px solid #CF8181;
 }
 
 /* styles for away players */
 .ft-match-player-away {
 	background: #d2cdff;
-	color: black !important;
+	color: black;
 	border: 1px solid #8981CF;
 }
 
 /* styles for my players */
 .ft-match-player-mine {
 	background: white;
-	color: black !important;
+	color: black;
 	border: none;
 }
 
-/* styles for players of unknown team */
-.ft-match-player-unknown {
-	background: #f0f0f0;
-}
-
-
 /* Module StaffMarker */
 /* Order by ascending priority since an element may have more than one class
-   so that the last declared one wins.
-   Last number of padding is the size of the icon + .*/
+   so that the last declared one wins. */
+.ft-staff-icon {
+	width: 18px;
+	height: 16px;
+}
 
-.ft-staff-hty {
+.ft-staff-icon.ft-staff-supported {
+	background-image: url("chrome://foxtrick/content/resources/img/staff/supported.png");
+}
+
+.ft-staff-icon.ft-staff-supporter {
+	background-image: url("chrome://foxtrick/content/resources/img/staff/supporter.png");
+}
+
+.ft-staff-icon.ft-staff-htls {
+	background-image: url("chrome://foxtrick/content/resources/img/staff/htls.png");
+}
+.ft-staff-icon.ft-staff-ho {
+	background-image: url("chrome://foxtrick/content/resources/img/staff/ho.png");
+}
+.ft-staff-icon.ft-staff-hy {
 	background-image: url("chrome://foxtrick/content/resources/img/staff/hyouthclub.png");
-	background-repeat: no-repeat;
-	padding: 1px 1px 1px 18px !important;
 }
 
-.ft-staff-foxtrick {
+.ft-staff-icon.ft-staff-foxtrick{
 	background-image: url("chrome://foxtrick/content/resources/img/staff/foxtrick.png");
-	background-repeat: no-repeat;
-	padding: 1px 1px 1px 18px !important;
 }
 
-.ft-staff-chpp-holder {
+.ft-staff-icon.ft-staff-chpp-holder {
 	background-image: url("chrome://foxtrick/content/resources/img/staff/chpp.png");
-	background-repeat: no-repeat;
-	padding: 1px 1px 1px 24px !important;
+	width: 24px;
 }
 
-.ft-staff-editor {
-	background-color: #7BB300;
-	color: white !important;
+.ft-staff-icon.ft-staff-editor {
+	background-image: url("chrome://foxtrick/content/resources/img/staff/editor.png");
 }
 
 .ft-staff-chpp {
-	background-color: green;
-	color: white !important;
+	background-color:green;
+	color:white !important;
+	font-weight:700;
+	padding:1px;
+	text-decoration:none;
 }
 
 .ft-staff-la {
-	background-color: white;
-	color: green !important;
+	background-color:white;
+	color:green !important;
+	font-weight:700;
+	padding:1px;
+	text-decoration:none;
 }
 
 .ft-staff-mod {
-	background-color: yellow;
-	color: black !important;
+	background-color:yellow;
+	color:black !important;
+	font-weight:700;
+	padding:1px;
+	text-decoration:none;
 }
 
 .ft-staff-gm {
-	background-color: orange;
-	color: black !important;
+	background-color:orange;
+	color:black !important;
+	font-weight:700;
+	padding:1px;
+	text-decoration:none;
 }
 
 .ft-staff-ht {
 	background-color: red;
+	color:white !important;
+	font-weight:700;
+	padding:1px;
+	text-decoration:none;
 }
 
 
 /* Module TickerColoring */
+/* Module TickerColoring */
 
 /* ticker links */
-.ft-ticker-link {
-	margin: 2px;
+#ticker a {
 	color: black;
 }
-
 /* on mouse hover */
-.ft-ticker-link:hover {
+#ticker a:hover {
 	background-color: transparent;
 }
 
 /* login welcome */
-.ft-ticker-welcome {
+#ticker a[href^="/MyHattrick/Dashboard.aspx"], #ticker a[href^="/Myhattrick/Dashboard.aspx"] {
 	background-color: #dfefc2;
 }
-
+/* My Hattrick message. being after login style it should take precedence */
+#ticker a[href^="/MyHattrick/Dashboard.aspx?actionType"], #ticker a[href^="/Myhattrick/Dashboard.aspx?actionType"] {
+	background-color: #dfdfdf;
+}
 /* supporter login */
-.ft-ticker-supporter {
+#ticker a[href^="/Club/Manager/?teamId="], #ticker a[href^="/Club/Manager/?TeamID="] {
 	background-color: #ffe8cf;
 }
-
-/* forum reply */
-.ft-ticker-forum {
+/* forum reply - full url: /Forum/Read.aspx?t=... */
+#ticker a[href^="/Forum/"] {
 	background-color: #dfeeff;
 }
-
-/* transfer */
-.ft-ticker-transfer {
+/* transfer and training pop */
+#ticker a[href^="/Club/Players/"] {
 	background-color: #fffbcf;
 }
-
-/* challenge */
-.ft-ticker-challenge {
+/* single match challenge for non-supporters */
+#ticker a[href^="/Club/Challenges/"] {
 	background-color: #ffdfe0;
 }
-
 /* guestbook */
-.ft-ticker-guestbook {
+#ticker a[href^="/Club/Manager/Guestbook.aspx"] {
 	background-color: #dffffd;
 }
-
-/* mail */
-.ft-ticker-mail {
+/* mail - full url: /MyHattrick/Inbox/Default.aspx?actionType=readMail&messageID=... */
+#ticker a[href^="/MyHattrick/Inbox/Default.aspx"], #ticker a[href^="/Myhattrick/Inbox/Default.aspx"],
+#ticker a[href^="/MyHattrick/Inbox/?actionType=readMail"], #ticker a[href^="/Myhattrick/Inbox/?actionType=readMail"]{
 	background-color: #eedfff;
 }
-
-/* My Hattrick message */
-.ft-ticker-myht {
-	background-color: #dfdfdf;
+/* match info: single match accepted, match statement */
+#ticker a[href^="/Club/Matches/Match.aspx"] {
+	background-color: #fff799;
+}
+/* team info: single match declined, PA */
+#ticker a[href^="/Club/?"], #ticker a[href^="/Club/Default.aspx"] {
+	background-color: #9999ff;
+}
+/* PA comments */
+#ticker a[href^="/Club/Announcements"] {
+	background-color: #ff99cc;
+}
+/* sys info */
+#ticker a[href^="/Help/SystemStatus"] {
+	background-color: #d1d1ff;
 }
 
 /* New HT mail */
 .ft-new-mail {
-color: yellow !important;
-font-weight: bold !important;
+	color: yellow;
+	font-weight: bold;
 }
 
 /* New Forum repply to me */
 .ft-new-forum-msg {
-color: blue !important;
-font-weight: bold !important;
-}
-
-/* Lineup prediction*/
-
-div#ft-full-level0 span,
-div#ft-full-level1 span,
-div#ft-full-level2 span,
-div#ft-full-level3 span,
-div#ft-full-level4 span,
-div#ft-full-level5 span,
-div#ft-full-level6 span  {
-background: none repeat scroll 0 0 white !important;
-font-weight: bold !important;
+	color: blue;
+	font-weight: bold;
 }
 
 /* friendly pool colors */
-.ft-home {background-color:#FC0 !important;} /* played home */
-.ft-away {background-color:#F74 !important;} /* played away */
-.ft-home.ft-away {background-color:#7F0 !important;} /*played both */
-.ft-own {background-color:#DDD !important;} /* own country */
+.ft-home {background-color:#FC0;} /* played home */
+.ft-away {background-color:#F74;} /* played away */
+.ft-home.ft-away {background-color:#7F0;} /*played both */
+.ft-own {background-color:#DDD;} /* own country */

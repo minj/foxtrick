@@ -412,8 +412,8 @@ Foxtrick.modules['MainMenuDropDown'] = {
 		};
 		var tc = getMenuTextColor();
 
-		var hrstyle = '#menu hr { background-color:' + tc +
-			' !important;} .ft-drop-down-submenu li span, #menu h3 {color:' + tc + ' !important;}';
+		var hrstyle = '#menu hr { background-color:' + tc + ';}\n' +
+			'.ft-drop-down-submenu li span, #menu h3 {color:' + tc + ';}';
 		Foxtrick.util.inject.css(doc, hrstyle, 'dynamic-mmmd-style');
 	}
 };

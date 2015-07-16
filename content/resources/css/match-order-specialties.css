@@ -67,21 +67,6 @@ html[dir="ltr"] #field #list img.specialty {
 	margin: 40px 0 0 2px !important;
 }
 
-.box_replaced  .ft-specialty, .box_highlighted  .ft-specialty, .box_lineup  .ft-specialty, .box_substitute  .ft-specialty {
-	top: 25px;
-	position: relative;
-	left: 28px;
-}
-.box_replaced  .smallFaceCardOuter+.ft-specialty, .box_highlighted  .smallFaceCardOuter+.ft-specialty, .box_lineup  .smallFaceCardOuter+.ft-specialty, .box_substitute  .smallFaceCardOuter+.ft-specialty {
-	top: -6px;
-	position: relative;
-	left: 28px;
-}
-
-.box_replaced.ft-specialty .name, .box_highlighted.ft-specialty .name, .box_lineup.ft-specialty .name, .box_substitute.ft-specialty .name{
-	max-width: 50px !important;
-}
-
 html[dir="ltr"] #fieldplayers .cards_health > img, #fieldplayers  .ft-specialty > img {
 	float: right;
 }
@@ -90,16 +75,16 @@ html[dir="rtl"] #fieldplayers .cards_health > img, #fieldplayers  .ft-specialty 
 }
 
 #orders #list .player.ui-draggable-dragging .cards_health {
-display: block !important;
-top: 36px;
-position: relative;
+	display: block !important;
+	top: 36px;
+	position: relative;
 }
 html[dir="ltr"] #orders #list .player.ui-draggable-dragging .cards_health {
-float: right;
-right: 5px;
+	float: right;
+	right: 5px;
 }
 
 html[dir="rtl"] #orders #list .player.ui-draggable-dragging .cards_health {
-float: ltr;
-left: 5px;
+	float: left;
+	left: 5px;
 }

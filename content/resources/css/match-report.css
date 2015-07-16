@@ -16,7 +16,7 @@
 .ft-match-report-result {
 	color: white;
 	background-color: #849D84;
-	padding: 2px 0 2px 5px !important;
+	padding: 2px 0 2px 5px;
 	border: 1px solid #ccc;
 	margin: 5px 0;
 	font-size: 115%;

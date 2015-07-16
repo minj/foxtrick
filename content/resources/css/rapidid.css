@@ -1,5 +1,9 @@
 html[data-theme="standard"] #ft_rapidid { margin-top: 9px; margin-left: 7px; }
-html[data-theme="simple"] #ft_rapidid { margin-top: 20px; margin-left: 5px; }
+html[data-theme="simple"] #ft_rapidid { margin-top: 24px; margin-left: 5px; }
+/* Fix for ongoing matches and rapidID in simple theme*/
+html[data-theme="simple"] .ongoingEvents {
+	margin-top: 24px;
+}
 
 #ft_rapidid a { cursor: pointer; text-decoration: underline; }
 
@@ -8,3 +12,4 @@ html[data-theme="simple"] #ft_rapidid_container { font-size: 100%; }
 
 html[data-theme="simple"] #ft_rapidid_form { z-index: 999; position: relative; bottom: 10px; background-color: white;}
 html[data-theme="standard"] #ft_rapidid_form { position: relative; bottom: 6px; }
+

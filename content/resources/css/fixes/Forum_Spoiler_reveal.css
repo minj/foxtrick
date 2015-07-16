@@ -1,7 +1,7 @@
 blockquote.spoiler {
-    display: none!important;
+    display: none;
 }
 
 blockquote.spoiler.hidden {
-    display: block!important;
+    display: block;
 }

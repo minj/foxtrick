@@ -6,8 +6,8 @@
 }
 
 h1 > span.ft-popup-span {
-	font-weight: inherit !important;
-	font-size: inherit !important;
+	font-weight: inherit;
+	font-size: inherit;
 }
 
 
@@ -55,29 +55,24 @@ h1 ul.ft-popup-list-down {
 }
 
 .ft-popup-span:hover ul.ft-popup-list {
-	display: block !important;
-}
-
-/* just not in messages*/
-.message:hover ul.ft-popup-list {
-	display: none !important;
+	display: block;
 }
 
 ul.ft-popup-list > li {
 	white-space: nowrap;
 	height: 20px;
-	line-height: 20px !important;
-	padding: 0px 2px !important;
-	margin: 0px !important;
+	line-height: 20px;
+	padding: 0px 2px;
+	margin: 0px;
 }
 
 ul.ft-popup-list > li > a, ul.ft-popup-list > li > span {
 	cursor: pointer;
-	display: block !important;
-	font-weight: normal !important;
-	text-decoration: underline !important;
-	color: #3f7137 !important;
-	padding: 0 !important;
+	display: block;
+	font-weight: normal;
+	text-decoration: underline;
+	color: #3f7137;
+	padding: 0;
 }
 
 .sidebarBox span.ft-popup-span > a {
@@ -93,7 +88,7 @@ html[dir="rtl"] ul.ft-popup-list > li > a, html[dir="rtl"] ul.ft-popup-list > li
 }
 
 ul.ft-popup-list > li:hover {
-	background-color: #c3e7c7 !important;
+	background-color: #c3e7c7;
 }
 
 #ticker div ul.ft-popup-list, div.message span.ft-popup-span:hover ul.ft-popup-list, div.signature-trunc span.ft-popup-span:hover ul.ft-popup-list {
@@ -102,7 +97,7 @@ ul.ft-popup-list > li:hover {
 
 div.cfMessage, div.edited, div.cfHeader, div.feedItem, div.cfUserInfo, div.signature,
 div.playerInfo, .alert, .tournamentInvite, .frontPageList, .teamName {
-	overflow: visible !important;
+	overflow: visible;
 }
 
 .tournamentInvite::after {

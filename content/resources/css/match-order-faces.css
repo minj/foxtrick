@@ -1,22 +1,5 @@
-/* old lineup */
-.field .box_highlighted.smallFaceCardBox {
-	background-image:url("chrome://foxtrick/content/resources/img/box_lineup.png") !important;
-	border: 1px solid #5f3;
-}
-
-.field .box_replaced.smallFaceCardBox, .field .box_lineup.smallFaceCardBox, .field .box_substitute.smallFaceCardBox {
-	background-image:url("chrome://foxtrick/content/resources/img/box_lineup.png") !important;
-}
-
-.field  .smallFaceCardOuter {
-	position: relative;
-	top: -10px;
-	left: 0px;
-}
-
-/* current linup */
 #field .shirt .nr {
-  z-index: 9;
+  z-index: 9 !important;
   top: 31px !important;
   left: 0px !important;
 }

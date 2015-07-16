@@ -12,7 +12,7 @@
 	border-bottom: solid 2px #DCE0DC;
 }
 #ft-monitor-live-links td {
-	vertical-align: middle !important;
+	vertical-align: middle;
 }
 #ft-monitor-live-info {
 	color: red;
@@ -41,7 +41,6 @@
 
 .ft-monitor-frame > h3 > div.ft_sort {
 	float:right;
-	/*display:none; hiding controls is against accessibility*/
 }
 
 .ft-monitor-team-name {
@@ -63,7 +62,7 @@
 }
 
 #ft-monitor-sidebar-box .hidden {
-	display: none !important; /* need to overwrite */
+	display: none;
 }
 
 .teamicon {
@@ -75,6 +74,6 @@
 	margin-top:-2px;
 }
 #eventList {
-	min-height: 0px !important;
+	min-height: 0px;
 }
 

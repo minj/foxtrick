@@ -14,19 +14,6 @@ html[data-theme="simple"] #logo {
 	background-image: url('chrome://foxtrick/content/resources/img/logo_green_foxtrick_simple.png');
 }
 
-html[data-theme="standard"][firefox] #stageLogo, html[data-theme="standard"][android] #stageLogo {
-	background-image: url('chrome://foxtrick/content/resources/img/logo_green_stage_foxtrick.png') !important;
-}
-html[data-theme="standard"][firefox] #logo, html[data-theme="standard"][android] #logo {
-	background-image: url('chrome://foxtrick/content/resources/img/logo_green_foxtrick.png') !important;
-}
-html[data-theme="simple"][firefox] #stageLogo, html[data-theme="simple"][android] #stageLogo {
-	background-image: url('chrome://foxtrick/content/resources/img/logo_green_stage_foxtrick_simple.png') !important;
-}
-html[data-theme="simple"][firefox] #logo, html[data-theme="simple"][android] #logo {
-	background-image: url('chrome://foxtrick/content/resources/img/logo_green_foxtrick_simple.png') !important;
-}
-
 /* start ft-modal-dialog */
 .ft-clearfix:before,
 .ft-clearfix:after {
@@ -65,10 +52,10 @@ html[data-theme="simple"][firefox] #logo, html[data-theme="simple"][android] #lo
 }
 
 #foxtrick-modal-dialog h2 {
-	color: hsl(0, 0%, 13%) !important;
-	border: 0 !important;
-	margin: 0.6em 0 !important;
-	font-size: 1.6em !important;
+	color: hsl(0, 0%, 13%);
+	border: 0;
+	margin: 0.6em 0;
+	font-size: 1.6em;
 }
 
 .ft-dialog-hdrWrapper {
@@ -94,11 +81,11 @@ html[data-theme="simple"][firefox] #logo, html[data-theme="simple"][android] #lo
 	overflow: hidden;
 	text-overflow: ellipsis;
 	font-weight: bold;
-	font-size: 2em !important;
-	width: 100% !important;
-	margin: .1em 0 !important;
-	color: hsl(0, 0%, 13%) !important;
-	border: 0 !important;
+	font-size: 2em;
+	width: 100%;
+	margin: .1em 0;
+	color: hsl(0, 0%, 13%);
+	border: 0;
 	line-height: 1.3em;
 }
 
@@ -197,27 +184,27 @@ div.ft-expander-unexpanded h2, div.ft-expander-expanded h2,
 h4.ft-expander-unexpanded, h4.ft-expander-expanded,
 div.ft-expander-unexpanded h4, div.ft-expander-expanded h4 {
 	cursor: pointer;
-	background-repeat: no-repeat !important;
+	background-repeat: no-repeat;
 }
 html[dir="ltr"] h2.ft-expander-unexpanded, html[dir="ltr"] h2.ft-expander-expanded,
 html[dir="ltr"] div.ft-expander-unexpanded h2, html[dir="ltr"] div.ft-expander-expanded h2,
 html[dir="ltr"] h4.ft-expander-unexpanded, html[dir="ltr"] h4.ft-expander-expanded,
 html[dir="ltr"] div.ft-expander-unexpanded h4, html[dir="ltr"] div.ft-expander-expanded h4 {
-	background-position: right !important;
+	background-position: right;
 }
 html[dir="rtl"] h2.ft-expander-unexpanded, html[dir="rtl"] h2.ft-expander-expanded,
 html[dir="rtl"] div.ft-expander-unexpanded h2, html[dir="rtl"] div.ft-expander-expanded h2,
 html[dir="rtl"] h4.ft-expander-unexpanded, html[dir="rtl"] h4.ft-expander-expanded,
 html[dir="rtl"] div.ft-expander-unexpanded h4, html[dir="rtl"] div.ft-expander-expanded h4 {
-	background-position: left !important;
+	background-position: left;
 }
 
 /* div expanders */
 div.ft-expander-unexpanded h2, div.ft-expander-unexpanded h4 {
-	background-image: url("chrome://foxtrick/content/resources/img/link-down.png") !important;
+	background-image: url("chrome://foxtrick/content/resources/img/link-down.png");
 }
 div.ft-expander-expanded h2, div.ft-expander-expanded h4 {
-	background-image: url("chrome://foxtrick/content/resources/img/link-up.png") !important;
+	background-image: url("chrome://foxtrick/content/resources/img/link-up.png");
 }
 
 /* h2/h3 expanders */
@@ -228,14 +215,14 @@ h2.ft-expander-expanded, h3.ft-expander-expanded {
 	background-image: url("chrome://foxtrick/content/resources/img/up.gif");
 }
 html[dir="ltr"] h3.ft-expander-unexpanded, html[dir="ltr"] h3.ft-expander-expanded {
-	padding-right: 20px !important;
+	padding-right: 20px;
 }
 html[dir="rtl"] h3.ft-expander-unexpanded, html[dir="rtl"] h3.ft-expander-expanded {
-	padding-right: 20px !important;
+	padding-right: 20px;
 }
 
 /*Forum HighlighthreadOpener PostID*/
-.ft_slH_PID_right, .ft_slH_PID_left {background-color:#000000!important;}
+.ft_slH_PID_right, .ft_slH_PID_left {background-color:#000000;}
 
 .sidebarBox h5 { font-size: 100%; margin: 0.5em 0; }
 
@@ -243,17 +230,14 @@ html[dir="rtl"] h3.ft-expander-unexpanded, html[dir="rtl"] h3.ft-expander-expand
 .ft-personality-img { height: 8px; width: 8px; margin-left: 0.1em;}
 
 /* lineup shortcut */
-td.ft-lineup-cell { vertical-align: middle !important; }
+td.ft-lineup-cell { vertical-align: middle }
 
 /* history stats */
-.historystats th {text-align:left!important;padding:2px!important;}
-.historystats td {text-align:left!important;padding:2px!important;}
-
-.bold{font-weight:700 !important;}
+.historystats th, .historystats td { text-align:left; padding:2px; }
 
 /* TeamStats filter */
 .ft-select-container { float: right; width: auto; }
-.ft-select-container > select { display: block; margin: 0 !important; clear: right; }
+.ft-select-container > select { display: block; margin: 0; clear: right; }
 #foxtrick-filter-select option[value="attribute-all"] {background-color:#ccc;}
 
 /* same style as HT's a.flag img */
@@ -266,8 +250,8 @@ span.flag img {
 }
 
 .ft-link-span a.flag img {
-	vertical-align: baseline !important;
-	margin: 0 !important;
+	vertical-align: baseline;
+	margin: 0;
 }
 
 /* FoxTrick note */
@@ -295,30 +279,30 @@ span.flag img {
 #ft-log {
 	background: #dce2dc;
 	border: 1px solid #abcdef;
-	font-size: 12px !important;
+	font-size: 12px;
 	max-height: 250px;
 	overflow: auto;
 }
 
 /* max-height no good for mobile devices */
 #ctl00_ctl00_pnlMobileLink+form #ft-log {
-	max-height: none !important;
+	max-height: none;
 }
 
 #ft-log h2 {
-	margin: 6px 0 15px 6px !important;
+	margin: 6px 0 15px 6px;
 }
 
-#ft-log pre {
-	width: auto !important;
+#ft-log-pre {
+	width: auto;
 }
 
 #foxtrick_links_content a, a.ft-link-keeper, a.ft-link-injury {
-	padding: 0 2px !important;
+	padding: 0 2px;
 }
 
 #foxtrick_links_content div.ft_actionicon {
-	padding-right: 5px !important;
+	padding-right: 5px;
 }
 
 .ft-link-span {
@@ -401,7 +385,7 @@ ul.ft-pop.top {
 }
 ul.ft-pop > li {
 	white-space: nowrap;
-	padding: 2px 2px !important;
+	padding: 2px 2px;
 	border-bottom: solid 1px #aaa;
 	margin: 0px 0px;
 }
@@ -451,7 +435,7 @@ background-color: #eed;
 
 /* why use this shit anyway?! */
 .mainRegular > .boxBody {
-	overflow: visible !important;
+	overflow: visible;
 }
 /* disable useless block styling for SVG pie charts */
 .percentage {
