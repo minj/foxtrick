@@ -1,5 +1,5 @@
 #field .shirt .nr {
-  z-index: 9;
+  z-index: 9 !important;
   top: 31px !important;
   left: 0px !important;
 }

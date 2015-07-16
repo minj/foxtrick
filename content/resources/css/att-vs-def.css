@@ -1,6 +1,6 @@
 #ft-attvsdefOptionsTable td {
-	padding: 2px !important;
-	vertical-align: middle !important;
+	padding: 2px;
+	vertical-align: middle;
 }
 #ft-attvsdefOptionsTable td:first-child {
 	width: 15px;

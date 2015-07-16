@@ -1,12 +1,12 @@
 html[dir="rtl"] #timelineEventDetails {
-	top: 243px !important;
-	left: 166px !important;
-	right: auto !important;
+	top: 243px;
+	left: 166px;
+	right: auto;
 }
 html[dir="ltr"] #timelineEventDetails {
-	top: 245px !important;
-	right: 166px !important;
-	left: auto !important;
+	top: 245px;
+	right: 166px;
+	left: auto;
 }
 
 .ft-match-lineup-tweaks-teamname {
@@ -152,24 +152,24 @@ div.playerDiv .sectorShirt.ft-smallFaceCard {
 	background-image: url() !important;
 }
 html[dir="rtl"] div.playerDiv .sectorShirt.ft-smallFaceCard {
-	top: -18px !important;
-	right: -3px !important;
+	top: -18px;
+	right: -3px;
 }
 html[dir="ltr"] div.playerDiv .sectorShirt.ft-smallFaceCard {
-	top: -18px !important;
-	left: -3px !important;
+	top: -18px;
+	left: -3px;
 }
 /* the 'wall' */
 div.playerDiv .sectorShirt.ft-smallFaceCard img[src^="/Img/Avatar/hair/"] {
-	border-bottom: solid 2px #79A777 !important;
+	border-bottom: solid 2px #79A777;
 }
 .ft-match-lineup-tweaks-specialty-icon {
 	display: block;
 	position: absolute;
-	left: -8px; /* 0 for rtl */
+	left: -8px;
 	top: -32px;
-	background-color: #295223 !important;
-	border: 1px solid #79A777 !important;
+	background-color: #295223;
+	border: 1px solid #79A777;
 	border-radius: 3px;
 }
 
@@ -192,7 +192,7 @@ div.playerDiv .sectorShirt.ft-smallFaceCard img[src^="/Img/Avatar/hair/"] {
 	width: 4px !important;
 	height: 50px !important;
 	left: auto !important;
-	right: -5px !important;
+	right: -5px;
 	top: -10px !important;
 	z-index: 1 !important;
 }
@@ -208,7 +208,7 @@ div.playerDiv .sectorShirt.ft-smallFaceCard img[src^="/Img/Avatar/hair/"] {
 }
 .statsPlayer {
 	top: -6px !important;
-	margin-right: 3px !important;
+	margin-right: 3px;
 }
 .goRight::after {
 	left: 94px !important;
@@ -228,7 +228,7 @@ div.playerDiv .sectorShirt.ft-smallFaceCard img[src^="/Img/Avatar/hair/"] {
 /* split lineup */
 
 #playersField.ft-field-split {
-	min-height: 430px !important;
+	min-height: 430px;
 }
 .ft-field-away {
 	background-position: bottom !important;

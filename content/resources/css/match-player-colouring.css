@@ -1,10 +1,10 @@
-.ft-match-player-home, .ft-match-player-away, .ft-match-player-minem,
+.ft-match-player-home, .ft-match-player-away, .ft-match-player-mine,
 .ft-match-player-hl {
-	padding: 0 2px !important;
+	padding: 0 2px;
 }
 
 .ft-match-player-home {
-	color: #849D84 !important;
+	color: #849D84;
 	border: 1px solid #849D84;
 	background-color: white;
 }
@@ -12,21 +12,21 @@
 .ft-match-player-away {
 	border: 1px solid white;
 	background: #849D84;
-	color:white !important;
+	color:white;
 }
 
 .ft-match-player-hl {
 	background-color: hsl(270, 40%, 40%);
-	color: white !important;
+	color: white;
 }
 
 .ft-match-event-home > td:first-child {
-	text-align: left !important;
+	text-align: left;
 }
 
 .ft-match-event-away > td:first-child {
-	text-align: right !important;
+	text-align: right;
 }
 .main .RadTabStripVertical li.rtsLI {
-	line-height: initial !important;
+	line-height: initial;
 }

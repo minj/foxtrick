@@ -1,53 +1,20 @@
-/*no @moz-doc since it's inject and only on that page anyway.adding @moz-doc will break sandboxed version */
-
-
-/*div.foxtrick-showgraph {
- float:right;
-}
-
-a.foxtrick-showgraphs {
- font-size: 9px !important;
- color: #000000 !important;
-}
-
-a.foxtrick-showgraphs:hover {
- font-size: 9px !important;
- color: #000000 !important;
- background-color: inherit !important;
- border-style: none !important;
-
-}*/
-
 div.foxtrick-showgraphs {
- background-color: #FFFFFF !important;
+ background-color: #FFFFFF;
   text-align:center;
- color: #000000 !important;
+ color: #000000;
  padding-left: 2px; padding-right: 2px;
 }
-
-/*------------------------*/
-
-/*
-div.foxtrick-graphs {
-  width: 203;
-  display: none;
-  text-align:center;
-  margin: 0px;
-  padding: 0px;
-}*/
 
 div.foxtrick-graphs-table {
   width: 100%;
   display: table;
   margin-bottom: 1px;
   border-spacing :2px;
-/*  border:1px solid blue;*/
 }
 
 div.foxtrick-graphs-header {
   padding: 0px;
   margin: 0px;
-/*  border: 1px solid red;*/
   clear:both;
   font-weight:bold;
 }

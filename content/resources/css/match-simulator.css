@@ -97,41 +97,41 @@ html[data-theme="standard"] #ft-overlayBottom {
 	visibility: visible !important;
 }
 #fieldOverlay .ratingInnerBox {
-	margin: 10px 3px 0px 3px !important;
-	padding: 0px !important;
+	margin: 10px 3px 0px 3px;
+	padding: 0px;
 }
 #fieldOverlay .ratingInnerBox div[id$="Rating"], .overlayRatingsOther, .overlayRatingsDiscounted {
-	font-weight: normal !important;
+	font-weight: normal;
 }
 #fieldOverlay.not_flipped .overlayRightDefense, #fieldOverlay.not_flipped .overlayMidDefense, #fieldOverlay.not_flipped .overlayLeftDefense {
-	top: 9px !important;
+	top: 9px;
 }
 #fieldOverlay.not_flipped .overlayMidfield {
-	top: 160px !important;
+	top: 160px;
 }
 #fieldOverlay.not_flipped .overlayRightAttack, #fieldOverlay.not_flipped .overlayMidAttack, #fieldOverlay.not_flipped .overlayLeftAttack {
-	top: 310px !important;
+	top: 310px;
 }
 #fieldOverlay.flipped .overlayRightDefense, #fieldOverlay.flipped .overlayMidDefense, #fieldOverlay.flipped .overlayLeftDefense {
-	top: 310px !important;
+	top: 310px;
 }
 #fieldOverlay.flipped .overlayMidfield {
-	top: 160px !important;
+	top: 160px;
 }
 #fieldOverlay.flipped .overlayRightAttack, #fieldOverlay.flipped .overlayMidAttack, #fieldOverlay.flipped .overlayLeftAttack {
-	top: 9px !important;
+	top: 9px;
 }
 html[dir="rtl"] .overlayMidDefense, .overlayMidAttack {
-	right: 202px !important;
+	right: 202px;
 }
 html[dir="ltr"] .overlayMidDefense, .overlayMidAttack {
-	left: 202px !important;
+	left: 202px;
 }
 #fieldOverlay .overlaySector {
-	height: 150px !important;
+	height: 150px;
 }
 #fieldOverlay .ratingInnerBox img{
-	margin-top:7px !important;
+	margin-top:7px;
 }
 .posLabel  {
 	padding-top: 3px;
@@ -147,7 +147,7 @@ html[dir="ltr"] .overlayMidDefense, .overlayMidAttack {
 
 }
 #ft_matchsimulator_options {
-	left: 395px !important;
+	left: 395px;
 }
 #ft_matchsimulator_options div{
 	float:left;
@@ -158,21 +158,21 @@ html[dir="ltr"] .overlayMidDefense, .overlayMidAttack {
 #fieldOverlay.displayBelow {
 	height: 520px;
 	position: relative;
-	top: 630px !important;
+	top: 630px;
 }
 #fieldOverlay.displayBelow.newME {
-	top: 650px !important;
+	top: 650px;
 }
 #fieldOverlay.displayRight {
 	height: 520px;
 	position: relative;
-	top: -80px !important;
+	top: -80px;
 }
 html[dir="rtl"] #fieldOverlay.displayRight {
-	right: 775px !important;
+	right: 775px;
 }
 html[dir="ltr"] #fieldOverlay.displayRight {
-	left: 775px !important;
+	left: 775px;
 }
 
 #ft-copyRatingsButton {
