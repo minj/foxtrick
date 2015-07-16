@@ -141,7 +141,7 @@ Foxtrick.modules['ExtendedPlayerDetailsWage'] = {
 				wageElm.textContent = part1 + '\u00a0';
 				var span = doc.createElement('span');
 				span.setAttribute('id', 'ft_bonuswage');
-				span.setAttribute('style', 'direction: ltr !important; color:#666666;');
+				span.setAttribute('style', 'direction: ltr; color:#666666;');
 				span.textContent = '(' + formattedWage + '\u00a0' + symbol + ')';
 				wageElm.appendChild(span);
 				wageElm.appendChild(doc.createTextNode(part2));

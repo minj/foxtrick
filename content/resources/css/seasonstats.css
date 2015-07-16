@@ -1,12 +1,12 @@
 .ft_seasonstats_td {
-    padding: 0 1px !important;
+    padding: 0 1px;
 }
 .ft_seasonstats_border_left {
-	border-left: 1px solid #849D84 !important;
+	border-left: 1px solid #849D84;
 }
 
 #foxtrick_seasonstats_content th {
-	border-bottom: 2px solid #849D84 !important;
+	border-bottom: 2px solid #849D84;
 }
 
 #ft_season_selectboxID {

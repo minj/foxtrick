@@ -1,8 +1,8 @@
 .ft-new-mail, .ft-new-forum-msg {
-	color: red !important;
-	font-weight: bold !important;
+	color: red;
+	font-weight: bold;
 }
 
 img.scNewMail {
-	background: url("chrome://foxtrick/content/resources/img/new_mail.png") !important;
+	background: url("chrome://foxtrick/content/resources/img/new_mail.png");
 }

@@ -37,10 +37,10 @@ html[dir="ltr"][data-theme="simple"] #ft-local-time {
 
 /* reserve space for background */
 html[dir="ltr"] .date[x-ht-date], html[dir="ltr"] #ft-local-time, html[dir="ltr"] #time {
-	padding-left: 14px !important;
+	padding-left: 14px;
 	background-position: left center;
 }
 html[dir="rtl"] .date[x-ht-date], html[dir="rtl"] #ft-local-time, html[dir="rtl"] #time {
-	padding-right: 14px !important;
+	padding-right: 14px;
 	background-position: right center;
 }

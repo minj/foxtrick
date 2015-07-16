@@ -1,24 +1,24 @@
 /* HeaderFix by Catalyst2950 */
 /* Fix the header on screen */
 #header {
-	position: fixed !important;
+	position: fixed;
 	top: 0px;
 	z-index: 10001;
 }
 html[data-multiple] #header {
-	top: 20px !important;
+	top: 20px;
 }
 html[data-multiple][data-theme="simple"] #header {
-	top: 18px !important;
+	top: 18px;
 }
 
 #ctl00_ctl00_ucClubSwitcher_btnSwitchClub {
-	position: fixed !important;
+	position: fixed;
 	top: 0px;
 	z-index: 10001;
 }
 #ctl00_ctl00_ucClubSwitcher_pnlSwitchClub {
-	margin-top: 0px !important;
+	margin-top: 0px;
 }
 
 html[data-theme="standard"] #header {
@@ -27,11 +27,11 @@ html[data-theme="standard"] #header {
 
 html[data-theme="simple"] #header {
 	width: 980px;
-	background-color: white !important;
+	background-color: white;
 	border-color: #DDDDDD;
 	border-style: solid;
 	border-width:  0 1px 0 1px;
-	height: 103px !important
+	height: 103px;
 }
 
 html[dir="ltr"][data-theme="simple"] #header {
@@ -49,62 +49,62 @@ html[dir="rtl"][data-theme="simple"] #header {
 
 /* compensate for fixed header, move menu from the edge */
 html[data-theme="standard"] #menu {
-	width: 953px !important;
-	padding:0px 0px 0px 4px !important;
-	margin-left:0px !important;
-	border-radius-topright: 10px;
-	border-radius-bottomright: 10px;
+	width: 953px;
+	padding:0px 0px 0px 4px;
+	margin-left:0px;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
 }
 
 html[data-theme="simple"] #menu {
-	margin-left:10px !important;
-	width: 980px !important;
+	margin-left:10px;
+	width: 980px;
 }
 
 html[dir="ltr"][data-theme="simple"] #shortcuts {
-	right:11px !important;
+	right:11px;
 }
 
 /* add whitespace below header */
 html[data-theme="standard"] #menu {
-	margin-bottom: 6px !important;
+	margin-bottom: 6px;
 }
 
 html[data-theme="simple"] #menu {
-	margin-bottom: 2px !important;
+	margin-bottom: 2px;
 }
 
 /* Logout botton +radius */
 html[dir="ltr"][data-theme="standard"] #menu .logout {
-	margin-right: 11px !important;
+	margin-right: 11px;
 }
 
 html[dir="rtl"][data-theme="standard"] #menu .logout {
-	margin-left: 11px !important;
+	margin-left: 11px;
 }
 
 /* compensate for fixed header */
 #content {
-	padding-top: 105px !important;
+	padding-top: 105px;
 }
 html[data-multiple] #content {
-	padding-top: 125px !important;
+	padding-top: 125px;
 }
 
 /* fix for forumbookmark z-index 99999 */
 .cfWrapper .bookmarkMessage {
-	z-index: 0 !important;
+	z-index: 0;
 }
 
 /*forum search fix*/
 #ctl00_ctl00_CPContent_CPMain_updSearch {
-	z-index:9999 !important;
+	z-index:9999;
 }
 
 /* prematch arena */
 div.arenaInfo {
-	width: 100% !important;
-	float: none !important;
+	width: 100%;
+	float: none;
 }
 #ctl00_ctl00_CPContent_CPMain_pnlArenaFlash object {
 	display: block;
@@ -113,9 +113,5 @@ div.arenaInfo {
 
 /* fix for popup shop*/
 .ui-widget {
-	z-index:10002 !important;
-}
-/* Fix for ongoing matches and rapidID in simple theme*/
-html[data-theme="simple"] .ongoingEvents, html[data-theme="simple"] #ft_rapidid {
-	margin-top: 24px !important;
+	z-index:10002;
 }
