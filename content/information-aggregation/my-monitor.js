@@ -36,12 +36,28 @@ Foxtrick.modules['MyMonitor'] = {
 
 				teams = [
 					{ id: ntId, name: ntName, type: 'nt' },
-					{ id: u20Id, name: u20Name, type: 'nt' }
+					{ id: u20Id, name: u20Name, type: 'nt' },
 				];
 			}
+
+			// TODO: fix team names never being updated in prefs
+			// rewrite into a general mechanism with Promises
+			// FT <0.16 escaped team names
+			var isEscaped = false;
+			teams = Foxtrick.map(function(team) {
+				var unicode = unescape(team.name);
+				if (unicode != team.name) {
+					isEscaped = true;
+					team.name = unicode;
+				}
+				return team;
+			}, teams);
+			if (isEscaped)
+				setSavedTeams(teams);
+
 			if (SORT) {
 				var sorter = function(a, b) {
-					if (SORT == 1){
+					if (SORT == 1) {
 						return a.name.localeCompare(b.name);
 					}
 					else {
@@ -504,7 +520,7 @@ Foxtrick.modules['MyMonitor'] = {
 			addLink.textContent = Foxtrick.L10n.getString('MyMonitor.add');
 			Foxtrick.onClick(addLink, function() {
 				teams.push({
-					id: teamIdContainer.id, type: type, name: escape(teamIdContainer.name),
+					id: teamIdContainer.id, type: type, name: teamIdContainer.name,
 					logo: teamIdContainer.logo, country: teamIdContainer.country
 				});
 				setSavedTeams(teams);
@@ -545,7 +561,7 @@ Foxtrick.modules['MyMonitor'] = {
 				// now add the teams
 				Foxtrick.map(function(n) {
 					var option = doc.createElement('option');
-					option.textContent = unescape(n.name);
+					option.textContent = n.name;
 					option.value = getLink(n);
 					select.appendChild(option);
 				}, teams);
