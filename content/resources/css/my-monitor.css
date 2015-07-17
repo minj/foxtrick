@@ -68,7 +68,9 @@
 
 .teamicon {
 	padding: 0 5px 0 0;
-	margin:0 0 -2px
+	margin:0 0 -2px;
+	max-height: 24px;
+	max-width: 36px;
 }
 
 .ft-monitor-frame > h3 > a.flag + img {

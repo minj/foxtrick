@@ -321,12 +321,11 @@ Foxtrick.modules['MyMonitor'] = {
 				// team header
 				var header = doc.createElement('h3');
 				frame.appendChild(header);
+				var HEIGHT = '24';
 				if (Foxtrick.Prefs.isModuleOptionEnabled('MyMonitor', 'TeamIcons')) {
-					var height = '24';
 					if (team.logo) {
 						var img = doc.createElement('img');
 						img.title = team.name;
-						img.height = height;
 						img.className = 'teamicon';
 						img.src = team.logo;
 						header.appendChild(img);
@@ -342,7 +341,7 @@ Foxtrick.modules['MyMonitor'] = {
 					}
 					// dummy for icons alignment
 					var img = doc.createElement('img');
-					img.height = height;
+					img.height = HEIGHT;
 					img.width = 0;
 					img.src = '../../Img/Icons/transparent.gif';
 					header.appendChild(img);
@@ -360,7 +359,7 @@ Foxtrick.modules['MyMonitor'] = {
 				sortdiv.className = 'ft_sort';
 
 				var img = doc.createElement('img');
-				img.height = height;
+				img.height = HEIGHT;
 				img.width = 0;
 				img.src = '../../Img/Icons/transparent.gif';
 				sortdiv.appendChild(img);
