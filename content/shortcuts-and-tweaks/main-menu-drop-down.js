@@ -360,9 +360,9 @@ Foxtrick.modules['MainMenuDropDown'] = {
 			};
 
 			var css = getCustomCss(doc);
-			// extract bg color
-			var bgColor = css.match(/background-color:\s*(.+?);/);
+			// extract bg color to replace default hoverColor with a generated one
 			var hoverColor;
+			var bgColor = css.match(/#menu\s*\{[^}]*background-color:\s*(.+?);/);
 			if (bgColor) {
 				bgColor = bgColor[1];
 				var hsl = Foxtrick.util.color.rgbToHsl(Foxtrick.util.color.hexToRgb(bgColor));
@@ -373,9 +373,10 @@ Foxtrick.modules['MainMenuDropDown'] = {
 
 			var newcss = css.replace(/#menu\s*\{/gi, '#menu h3, #menu ul, #menu {');
 			newcss = newcss.replace(/#menu\s*a\s*\{/gi, '#menu h3, #menu a {');
-			newcss = newcss.replace(/#menu\s*a\s*:\s*hover\s*\{(.+?)\}/gi, function() {
-				return '#menu li:hover, #menu a:hover {' +
-					arguments[1].replace(bgColor, hoverColor) + '}';
+			newcss = newcss.replace(/#menu\s*a\s*:\s*hover\s*\{(.+?)\}/gi, function(css, hover) {
+				var newColor = hover.replace(bgColor, hoverColor);
+				var ret = '#menu li:hover, #menu a:hover {' + newColor + '}';
+				return ret;
 			});
 			if (newcss != css) {
 				Foxtrick.util.inject.css(doc, newcss, 'modified-ht-style');
