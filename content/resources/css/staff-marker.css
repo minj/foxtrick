@@ -7,12 +7,10 @@
 	vertical-align: top !important;
 	background-repeat: no-repeat;
 }
-.ft-staff-style {
+a.ft-staff-style {
 	display: inline-block;
 	min-height: 16px;
 	padding:1px;
-}
-a.ft-staff-style {
 	font-weight:700;
 	text-decoration:none;
 }
