@@ -70,3 +70,9 @@ html[dir="rtl"] #skills img[class*="youthSkillBar"]{
 #list .ui-draggable-dragging .shirt {
 	display: block;
 }
+
+/* compact saved lineups */
+#editLineups .savedLineup {
+	display: inline-block;
+	margin: 5px;
+}
