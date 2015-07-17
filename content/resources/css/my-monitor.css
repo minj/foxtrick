@@ -45,8 +45,14 @@
 }
 
 .ft-monitor-team-name {
-	width: 70%;
+	width: 85%;
 	display: inline-block;
+}
+.teamicon + .ft-monitor-team-name  {
+	width: 70%;
+}
+.flag + .ft-monitor-team-name {
+	width: 75%;
 }
 
 .ft-monitor-remove {

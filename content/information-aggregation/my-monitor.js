@@ -323,6 +323,13 @@ Foxtrick.modules['MyMonitor'] = {
 				frame.appendChild(header);
 				var HEIGHT = '24';
 				if (Foxtrick.Prefs.isModuleOptionEnabled('MyMonitor', 'TeamIcons')) {
+					// dummy for icons alignment
+					var img = doc.createElement('img');
+					img.height = HEIGHT;
+					img.width = 0;
+					img.src = '../../Img/Icons/transparent.gif';
+					header.appendChild(img);
+
 					if (team.logo) {
 						var img = doc.createElement('img');
 						img.title = team.name;
@@ -339,12 +346,6 @@ Foxtrick.modules['MyMonitor'] = {
 						a.appendChild(img);
 						header.appendChild(a);
 					}
-					// dummy for icons alignment
-					var img = doc.createElement('img');
-					img.height = HEIGHT;
-					img.width = 0;
-					img.src = '../../Img/Icons/transparent.gif';
-					header.appendChild(img);
 				}
 
 				var teamCont = doc.createElement('div');
