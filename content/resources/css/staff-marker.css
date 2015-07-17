@@ -7,9 +7,14 @@
 	vertical-align: top !important;
 	background-repeat: no-repeat;
 }
-a.ft-staff-style {
+.ft-staff-style {
 	display: inline-block;
 	min-height: 16px;
+	padding:1px;
+}
+a.ft-staff-style {
+	font-weight:700;
+	text-decoration:none;
 }
 .ft-staff-icon.ft-staff-supported {
 	background-image: url("chrome://foxtrick/content/resources/img/staff/supported.png");
@@ -42,53 +47,40 @@ a.ft-staff-style {
 	background-image: url("chrome://foxtrick/content/resources/img/staff/editor.png");
 }
 
-.ft-staff-chpp {
+a.ft-staff-chpp, a.ft-staff-chpp:hover, option.ft-staff-chpp {
 	background-color:green;
-	color:white !important;
-	font-weight:700;
-	padding:1px;
-	text-decoration:none;
+	color:white;
 }
 
-
-.ft-staff-la {
+a.ft-staff-la, a.ft-staff-la:hover, option.ft-staff-la {
 	background-color:white;
-	color:green !important;
-	font-weight:700;
-	padding:1px;
-	text-decoration:none;
+	color:green;
 }
 
-.ft-staff-mod {
+a.ft-staff-mod, a.ft-staff-mod:hover, option.ft-staff-mod {
 	background-color:yellow;
-	color:black !important;
-	font-weight:700;
-	padding:1px;
-	text-decoration:none;
+	color:black;
 }
 
-.ft-staff-gm {
+a.ft-staff-gm, a.ft-staff-gm:hover, option.ft-staff-gm {
 	background-color:orange;
-	color:black !important;
-	font-weight:700;
-	padding:1px;
-	text-decoration:none;
+	color:black;
 }
 
-.ft-staff-ht {
+a.ft-staff-ht, a.ft-staff-ht:hover, option.ft-staff-ht {
 	background-color: red;
-	color:white !important;
-	font-weight:700;
-	padding:1px;
-	text-decoration:none;
+	color:white;
 }
 
+/* select options */
 .ft-staff-official {
 	background-color: #FFBA00;
+	color: black;
 }
 
 .ft-staff-seperator {
 	background-color: #DDD;
+	color: black;
 }
 
 .boxBody .teamInfo a:hover,
