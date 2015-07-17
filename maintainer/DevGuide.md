@@ -132,7 +132,5 @@ Firefox development is messy. Code changes need a browser restart/opening a new 
 * First you need to [set up an extension development environment](https://developer.mozilla.org/en/docs/Setting_up_extension_development_environment).
 * Foxtrick can then be debugged with the [Browser Debugger](https://developer.mozilla.org/en-US/docs/Tools/Debugger).
 
-Historically FF order extension CSS before content CSS, hence the same style rules collide and Foxtrick styles are overridden with HT-authored styles. Therefore such rules need an `!important` declaration. This will be fixed in the future.
-
 ## Module API documentation
 `TODO`
