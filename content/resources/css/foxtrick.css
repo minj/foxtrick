@@ -235,6 +235,9 @@ td.ft-lineup-cell { vertical-align: middle }
 /* history stats */
 .historystats th, .historystats td { text-align:left; padding:2px; }
 
+/* showlineupset */
+.bold{ font-weight:700; }
+
 /* TeamStats filter */
 .ft-select-container { float: right; width: auto; }
 .ft-select-container > select { display: block; margin: 0; clear: right; }
