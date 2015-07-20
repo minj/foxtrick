@@ -50,11 +50,14 @@ Foxtrick.modules['CurrentTransfers'] = {
 	getPlayers: function(doc) {
 		var NOW = Foxtrick.util.time.getHtTimeStamp(doc);
 
+		var table = doc.querySelector('#mainBody table.naked');
+		if (!table)
+			return;
+
 		// transfers table is the worst DOM ever created
 		// some rows include <h2> for player grouping
 		// other rows .even .odd are for players:
 		// two rows per player: 1) player & price; 2) deadline
-		var table = doc.querySelector('#mainBody table.naked');
 		var playerRows = Foxtrick.filter(function(row, i) {
 			return i % 2 === 0;
 		}, table.querySelectorAll('.odd, .even'));
