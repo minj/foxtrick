@@ -322,14 +322,14 @@ Foxtrick.modules['MyMonitor'] = {
 				var header = doc.createElement('h3');
 				frame.appendChild(header);
 				var HEIGHT = '24';
-				if (Foxtrick.Prefs.isModuleOptionEnabled('MyMonitor', 'TeamIcons')) {
-					// dummy for icons alignment
-					var img = doc.createElement('img');
-					img.height = HEIGHT;
-					img.width = 0;
-					img.src = '../../Img/Icons/transparent.gif';
-					header.appendChild(img);
+				// dummy for icons alignment
+				var img = doc.createElement('img');
+				img.height = HEIGHT;
+				img.width = 0;
+				img.src = '../../Img/Icons/transparent.gif';
+				header.appendChild(img);
 
+				if (Foxtrick.Prefs.isModuleOptionEnabled('MyMonitor', 'TeamIcons')) {
 					if (team.logo) {
 						var img = doc.createElement('img');
 						img.title = team.name;
