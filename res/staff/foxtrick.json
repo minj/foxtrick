@@ -97,7 +97,7 @@
 		{
 			"duty": "translator",
 			"id": "11006315",
-			"name": "timh1704"
+			"name": "GM-timh1704"
 		},
 		{
 			"duty": "supporter",
@@ -843,6 +843,11 @@
 			"duty": "translator",
 			"id": "8816281",
 			"name": "margaale"
+		},
+		{
+			"duty": "supporter",
+			"id": "8919275",
+			"name": "Leymi"
 		},
 		{
 			"duty": "translator",
