@@ -19,6 +19,9 @@ Foxtrick.modules['CurrentTransfers'] = {
 		this.OPENING_PRICE = Foxtrick.L10n.getString('CurrentTransfers.openingPrice');
 
 		var players = module.getPlayers(doc);
+		if (!players.length)
+			return;
+
 		var argsPlayers = [], optsPlayers = [];
 		Foxtrick.forEach(function(player) {
 			var args = [
@@ -52,7 +55,7 @@ Foxtrick.modules['CurrentTransfers'] = {
 
 		var table = doc.querySelector('#mainBody table.naked');
 		if (!table)
-			return;
+			return [];
 
 		// transfers table is the worst DOM ever created
 		// some rows include <h2> for player grouping
