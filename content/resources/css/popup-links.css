@@ -96,7 +96,7 @@ ul.ft-popup-list > li:hover {
 }
 
 div.cfMessage, div.edited, div.cfHeader, div.feedItem, div.cfUserInfo, div.signature,
-div.playerInfo, .alert, .tournamentInvite, .frontPageList, .teamName {
+div.playerInfo, .alert, .tournamentInvite, .frontPageList, .teamName, .fplMessageAuthor {
 	overflow: visible;
 }
 

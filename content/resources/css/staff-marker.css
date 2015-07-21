@@ -95,3 +95,23 @@ a.ft-staff-ht, a.ft-staff-ht:hover, option.ft-staff-ht {
 #sidebar a.ft-no-popup {
 	display: inline;
 }
+
+#ctl00_ctl00_CPContent_CPMain_ucForumSneakpeek_updSneakpeek .frontPageList {
+	margin-left: -18px;
+}
+#ctl00_ctl00_CPContent_CPMain_ucForumSneakpeek_updSneakpeek .fplThreadInfo {
+	width: 35px;
+	text-overflow: ellipsis;
+}
+.fplThreadName {
+	width: 140px;
+	text-overflow: ellipsis;
+}
+.fplMessageAuthor {
+	width: 175px;
+}
+.fplPreview, .fplRead {
+	width: 12px;
+	position: relative;
+	z-index: 1;
+}
