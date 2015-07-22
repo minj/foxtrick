@@ -165,7 +165,7 @@ Foxtrick.modules['MatchLineupFixes'] = {
 			events = Foxtrick.filter(function(evt) {
 				return !Foxtrick.hasClass(evt, 'hidden');
 			}, events);
-			Foxtrick.forEach(function(evt, i) {
+			Foxtrick.forEach(function(evt) {
 				var evtType = parseInt(evt.dataset.eventtype, 10);
 				if (evtType > 300 && evtType < 310) {
 					// weather events
@@ -189,11 +189,13 @@ Foxtrick.modules['MatchLineupFixes'] = {
 					 * getEventTypeHighlightClass returns undefined for weather SEs
 					 * so we need to fake this cell accordingly to be picked up by HTs ;)
 					 */
-					cell.id = 'matchEventIndex_' + i;
-					// README: match event index is assumed to be i here
-					// it normally works for regular events
-					// but might break in the future
-					// just like all things in HT :P
+
+					// README: time line match event index no longer matches match report idx
+					var sel = Foxtrick.format('[id$="_matchEventTypeId"][value="{}"]', [evtType]);
+					var evtTypeInput = doc.querySelector(sel);
+					var timelineEvent = evtTypeInput.parentNode;
+					var evtIdxInput = timelineEvent.querySelector('[id$="_eventIndex"]');
+					cell.id = 'matchEventIndex_' + evtIdxInput.value;
 					Foxtrick.addClass(cell, 'undefined');
 					cell.appendChild(playerLink);
 				}
