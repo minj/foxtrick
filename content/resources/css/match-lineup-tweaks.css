@@ -183,6 +183,7 @@ div.playerDiv .sectorShirt.ft-smallFaceCard img[src^="/Img/Avatar/hair/"] {
 .ft-indicator {
 	display: inline-block;
 	background-color: #ffcc00;
+	cursor: pointer;
 }
 .isYouthMatch .ft-indicator{
 	background-color: #cccccc;
