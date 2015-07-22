@@ -302,7 +302,7 @@ Foxtrick.modules['ForumChangePosts'] = {
 
 		var doubleHeaderStyle = 'height:30px !important; ';
 		var alt_supporter = doc.createElement('a');
-		alt_supporter.href = '/Help/Supporter/';
+		alt_supporter.href = '/Help/Supporter/About.aspx';
 		alt_supporter.textContent = ' * ';
 		alt_supporter.title = 'Hattrick Supporter';
 
