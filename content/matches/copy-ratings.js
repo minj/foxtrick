@@ -171,8 +171,9 @@ Foxtrick.modules['CopyRatings'] = {
 				if (isSecondHalf)
 					minute += 45;
 
-				// assuming 156 (extra time) is not used
-				// var isExtraTime = doc.querySelector('#matchReport span[data-eventtype^="70"]');
+				var isExtraTime = doc.querySelector('#matchReport span[data-eventtype^="70"]');
+				if (isExtraTime)
+					minute += 45;
 
 				var progress = Foxtrick.getMBElement(doc, 'lblMatchStatus');
 				// assuming no numbers before match minute
