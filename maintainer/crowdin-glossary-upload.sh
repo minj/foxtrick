@@ -13,7 +13,7 @@ grep -oP "(?<=^module\.)[^\.]+(?=\.desc)" ../content/foxtrick.properties > modul
 sed -i '/^[A-Z][a-z]\+$/d' module-names # remove single-word modules
 
 # make tbx glossary from module names
-perl crowdin-module-glossary-update.pl
+python crowdin-module-glossary-update.py
 
 #upload glossary
 re="$(curl \
