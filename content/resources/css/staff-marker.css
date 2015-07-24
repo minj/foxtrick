@@ -103,11 +103,11 @@ a.ft-staff-ht, a.ft-staff-ht:hover, option.ft-staff-ht {
 	width: 35px;
 	text-overflow: ellipsis;
 }
-.fplThreadName {
+#ctl00_ctl00_CPContent_CPMain_ucForumSneakpeek_updSneakpeek .fplThreadName {
 	width: 140px;
 	text-overflow: ellipsis;
 }
-.fplMessageAuthor {
+#ctl00_ctl00_CPContent_CPMain_ucForumSneakpeek_updSneakpeek .fplMessageAuthor {
 	width: 175px;
 }
 .fplPreview, .fplRead {
