@@ -104,11 +104,14 @@ a.ft-staff-ht, a.ft-staff-ht:hover, option.ft-staff-ht {
 	text-overflow: ellipsis;
 }
 #ctl00_ctl00_CPContent_CPMain_ucForumSneakpeek_updSneakpeek .fplThreadName {
-	width: 140px;
+	width: 136px;
 	text-overflow: ellipsis;
 }
 #ctl00_ctl00_CPContent_CPMain_ucForumSneakpeek_updSneakpeek .fplMessageAuthor {
 	width: 175px;
+}
+#ctl00_ctl00_CPContent_CPMain_ucForumSneakpeek_updSneakpeek td.date {
+	min-width: 155px;
 }
 .fplPreview, .fplRead {
 	width: 12px;
