@@ -7,18 +7,18 @@ pt-PT:
       note_0: 'Esta é uma versão beta do próximo lançamento. Por favor ajude na tradução desta versão na nossa página <linkCrowdin>crowdin.net</linkCrowdin>, é bastante fácil.'
     0.15.2:
       important: '<header>Avisos Importantes</header>'
-      links: 'Funcionalidade <module>Atalhos</module> foi reescrita para corrigir alguns erros e melhorar a manutenção. Mais etiquetas estarão agora disponíveis para atalhos personalizados. Algumas etiquetas foram renomeadas para refletir seu verdadeiro significado. Por favor limpe o cache do Foxtrick, teste os seus atalhos personalizados e atualize-os em conformidade.'
-      support: '<header>Gosta do que estamos a fazer? Por favor <linkContribute>apoie</linkContribute>o Foxtrick.</header>'
+      links: 'Funcionalidade <module>Links</module> foi reescrita para corrigir alguns erros e melhorar a manutenção. Mais etiquetas estarão agora disponíveis para atalhos personalizados. Algumas etiquetas foram renomeadas para refletir seu verdadeiro significado. Por favor limpe o cache do FoxTrick, teste os seus atalhos personalizados e atualize-os em conformidade.'
+      support: '<header>Gosta do que estamos a fazer? Por favor <linkContribute>apoie</linkContribute> o FoxTrick.</header>'
       crowdin: '<header>Várias atualizações nas traduções dos nossos utilizadores incríveis usando a ferramenta <linkCrowdin>Crowdin</linkCrowdin>. Venha daí, também pode ajudar!</header>'
-      twitter: 'Pode seguir o Foxtrick no <linkTwitter>Twitter</linkTwitter> para receber as últimas novidades, atualizações, e informações.'
+      twitter: 'Pode seguir o FoxTrick no <linkTwitter>Twitter</linkTwitter> para receber as últimas novidades, atualizações, e informações.'
       bugs: '<header>Correções de Erros</header>'
       youth_avatars: 'Corrigidos avatares em falta dos juniores em <module>MatchOrderInterface</module>.'
       preserve_changes: '<module>MatchRatingsTweaks</module> deve agora preservar as últimas mudanças de classificações durante jogos ao vivo. Anteriormente as mudanças nas classificações (números coloridos) desapareciam a cada atualização mesmo que essa atualização não tivesse efeito sobre elas.'
       leave_forum: '<module>ForumLeaveButton</module> estava totalmente inoperacional e deve agora estar corrigido.'
       monitor_cups: '<module>MyMonitor</module> deve agora mostrar os ícones corretos das taças secundárias.'
       other: '<header>Outras alterações</header>'
-      volume: 'Adicionado um controle de volume global do Foxtrick nas <FTlinkMainTab>Opções Gerais</FTlinkMainTab>.'
-      mlt_upgrade: 'Módulo<module>MatchLineupTweaks</module> deve agora mostrar os números dos jogadores na formação de jogo. Adicionalmente, verá a previsão da Resistência (se disponível) quando passar o rato por cima do valor da energia desse jogador.'
+      volume: 'Adicionado um controle de volume global do FoxTrick nas <FTlinkMainTab>Opções Gerais</FTlinkMainTab>.'
+      mlt_upgrade: 'Módulo <module>MatchLineupTweaks</module> deve agora mostrar os números dos jogadores na formação de jogo. Adicionalmente, verá a previsão da Resistência (se disponível) quando passar o rato por cima do valor da energia desse jogador.'
       mrt_ratings: 'Módulo <module>Ratings</module> foi integrado no módulo <module>MatchRatingsTweaks</module> e tem agora funcionalidade limitada mesmo em HT-Live (apenas para Sócio-HT).'
       copy_ratings: 'Módulo <module>CopyRatings</module> foi reescrito e pode agora copiar classificações ao minuto do separador Detalhes de Classificação, mesmo em HT-Live.'
       monitor_update: 'Módulo <module>MyMonitor</module> agora inclui uma ordenação mais inteligente das equipas e com possibilidade de adicionar jogos ao HT-Live baseado no seu tipo.'
@@ -31,31 +31,31 @@ pt-PT:
       bugs: '<header>Correções de Erros</header>'
       nt_crash: 'Corrigido um problema de performance que levava a bloqueios no navegador para Seleções Nacionais em <module>MatchOrderInterface</module>.'
       copy_htMl: 'Corrigido <module>ContextMenuCopy</module> que não copiava o texto do atalho para HT-ML.'
-      resource_fix: '<module>Atalhos</module> e <module>StaffMarker</module> deixaram de funcionar para utilizadores de alguns países. Isto deverá estar corrigido dentro de poucos dias.'
+      resource_fix: '<module>Links</module> e <module>StaffMarker</module> deixaram de funcionar para utilizadores de alguns países. Isto deverá estar corrigido dentro de poucos dias.'
       other: '<header>Outras alterações</header>'
-      extarnal_url: 'Adicionada opção para copiar atalhos Hattrick para outros sites. em <module>ContextMenuCopy</module>. Estes atalhos funcionarão independentemente do servidor HT que o utilizador esteja ligado.'
+      extarnal_url: 'Adicionada opção para copiar atalhos Hattrick para outros sites em <module>ContextMenuCopy</module>. Estes atalhos funcionarão independentemente do servidor HT que o utilizador esteja ligado.'
       and_more: Diversas pequenas correções e alterações.
     0.15.0:
       important: '<header>Avisos Importantes</header>'
-      support: '<header>Gosta do que estamos a fazer? Por favor <linkContribute>apoie</linkContribute>o Foxtrick.</header>'
+      support: '<header>Gosta do que estamos a fazer? Por favor <linkContribute>apoie</linkContribute> o FoxTrick.</header>'
       crowdin: '<header>Várias atualizações nas traduções dos nossos utilizadores incríveis usando a ferramenta <linkCrowdin>Crowdin</linkCrowdin>. Venha daí, também pode ajudar!</header>'
-      twitter: 'Pode seguir o Foxtrick no <linkTwitter>Twitter</linkTwitter> para receber as últimas novidades, atualizações, e informações.'
+      twitter: 'Pode seguir o FoxTrickno <linkTwitter>Twitter</linkTwitter> para receber as últimas novidades, atualizações, e informações.'
       new: '<header>Módulos novos</header>'
       promotion_reminder: '<module>AddPromotionReminder</module>: Adicionar um botão para criar um lembrete para o dia quando pode promover um jogador júnior'
       bugs: '<header>Correções de Erros</header>'
-      breakages: Foxtrick deve agora funcionar corretamente no Safari 7.1+ e Firefox em Android.
-      https: Foxtrick deve novamente estar a funcionar corretamente no Hattrick Stage.
+      breakages: FoxTrick deve agora funcionar corretamente no Safari 7.1+ e Firefox em Android.
+      https: FoxTrick deve novamente estar a funcionar corretamente no Hattrick Stage.
       avatars: 'Cache dos avatares dos jogadores em <module>MatchOrderInterface</module> será agora atualizado automaticamente quando novos jogadores chegam à equipa.'
-      fans: 'Evolução dos adeptos em <module>Adeptos</module> será agora calculada corretamente quando a sua equipa é promovida ou despromovida.'
+      fans: 'Evolução dos adeptos em <module>Fans</module> será agora calculada corretamente quando a sua equipa é promovida ou despromovida.'
       player_stats: '<module>PlayerStatsTrainingWeek</module> deverá agora reconhecer corretamente amigáveis de fim de semana.'
       other: '<header>Outras alterações</header>'
       transfer_compare: 'MedianTransferPrice foi renomeado para <module>TransferComparePlayers</module>. Adicionados cálculos TSI e capacidade para recolher mais dados do jogador via CHPP. Mostra diferença de preços na página do histórico de transferências.'
       player_positions: 'Melhorado <module>PlayerPositionsEvaluations</module> e adicionadas muitas opções onde pode escolher incluir forma, resistência, lealdade, experiência e efeitos de lesões nos cálculos.'
-      country_list: '<module>CountryList</module> pode agora mostras nomes dos países na coleção de bandeiras. É possível usar nomes em Inglês em vez da língua nativa.'
+      country_list: '<module>CountryList</module> pode agora mostrar nomes dos países na coleção de bandeiras. É possível usar nomes em Inglês em vez da língua nativa.'
       best_player_position: 'Módulo BestPlayerPosition foi integrado no <module>PlayerPositionsEvaluations</module>.'
       nt: Corrigidas várias funcionalidades que não estavam a funcionar corretamente para os selecionadores nacionais.
       en-US: Adicionado suporte para a língua US English.
-      code: Muita mais manutenção foi efetuada no código Foxtrick. Isto permite-nos encontrar e corrigir erros escondidos, melhorar a estabilidade dos extras e tornar mais fáceis futuros desenvolvimentos.
+      code: Muita mais manutenção foi efetuada no código FoxTrick. Isto permite-nos encontrar e corrigir erros escondidos, melhorar a estabilidade dos extras e tornar mais fáceis futuros desenvolvimentos.
       and_more: Diversas pequenas correções e alterações.
     0.14.0.3:
       important: '<header>Avisos Importantes</header>'
@@ -77,7 +77,7 @@ pt-PT:
     0.14.0:
       important: '<header>Avisos Importantes</header>'
       crowdin: '<header>Várias atualizações nas traduções dos nossos utilizadores incríveis usando a ferramenta <linkCrowdin>Crowdin</linkCrowdin>. Venha daí, também pode ajudar!</header>'
-      twitter: 'Pode seguir o Foxtrick no <linkTwitter>Twitter</linkTwitter> para receber as últimas novidades, atualizações, e informações.'
+      twitter: 'Pode seguir o FoxTrick no <linkTwitter>Twitter</linkTwitter> para receber as últimas novidades, atualizações, e informações.'
       new: '<header>Módulos novos</header>'
       series_transfers: '<module>SeriesTransfers</module>: Mostra uma lista com os jogadores atualmente à venda na Série.'
       bugs: '<header>Correções de Erros</header>'
@@ -90,20 +90,20 @@ pt-PT:
       and_more: Diversas pequenas correções e alterações.
     0.13.0:
       important: '<header>Avisos Importantes</header>'
-      twitter: 'Pode seguir o Foxtrick no <linkTwitter>Twitter</linkTwitter> para receber as últimas novidades, atualizações, e informações.'
+      twitter: 'Pode seguir o FoxTrick no <linkTwitter>Twitter</linkTwitter> para receber as últimas novidades, atualizações, e informações.'
       crowdin: '<header>Várias atualizações nas traduções dos nossos utilizadores incríveis usando a ferramenta <linkCrowdin>Crowdin</linkCrowdin>. Venha daí, também pode ajudar!</header>'
       new: '<header>Módulos novos</header>'
       other: '<header>Outras alterações</header>'
       bugs: '<header>Correções de Erros</header>'
     0.12.2:
       note_0: '<header>Várias atualizações nas traduções dos nossos utilizadores incríveis usando a ferramenta <linkCrowdin>Crowdin</linkCrowdin>. Venha daí, também pode ajudar!</header>'
-      note_7: 'NOVO: <module>Adeptos</module>: Adicionar atalho HT-Live junto aos atalhos de jogos futuros. Adicionar a evolução do total de adeptos na barra lateral.'
+      note_7: 'NOVO: <module>Fans</module>: Adicionar atalho HT-Live junto aos atalhos de jogos futuros. Adicionar a evolução do total de adeptos na barra lateral.'
       note_11: '<header>Bugs Corrigidos</header>'
     0.12.1.1:
       note_0: Atualizações de tradução.
       note_2: Melhorias de acessibilidade menores.
       note_4: Corrigidos alguns problemas relacionados com som.
-      note_5: Corrigido um problema que causava o Foxtrick a não iniciar em alguns casos no Android.
+      note_5: Corrigido um problema que causava o FoxTrick a não iniciar em alguns casos no Android.
     0.12.1:
       note_0: '<header>Várias atualizações nas traduções dos nossos utilizadores incríveis usando a ferramenta <linkCrowdin>Crowdin</linkCrowdin>. Venha daí, também pode ajudar!</header>'
       note_5: '<module>MatchOrderInterface</module>: agora mostra avatares para múltiplas equipas.'
@@ -185,7 +185,7 @@ pt-PT:
       note_7: 'Skilltable for transferlist search: injured fixed'
       note_8: 'MatchReportFormat: negative SE icons added'
       note_9: 'Links: make dynamic added links default on'
-      note_10: 'Atalhos e staffmarker: carregamento comprimido (zip) para poupar largura de banda'
+      note_10: 'Links e staffmarker: carregamento comprimido (zip) para poupar largura de banda'
       note_11: 'Links: Fixed removing custom links not working'
       note_12: 'ForumAlterHeaderLine: Highlight thread opener and remove postid for simple header fixed'
       note_13: 'ForumStripHattrickLinks: confirm option fixed'
@@ -251,7 +251,7 @@ pt-PT:
       note_14: '<module>LoyaltyDisplay</module>: Adds skill increases by loyalty and mother club bonus to the skillbar representation (Catzhoek)'
       note_15: '<module>EmbedMedia</module>: Displays several (linked) medias directly in the forum posts (Catzhoek)'
       note_16: '<module>HeaderToggle</module>: Allows to show/hide any content in Hattrick that has an header h2 (convincedd)'
-      note_17: '<module>Atalhos</module> e <module>StaffMarker</module> são agora carregados de <linkFT>foxtrick.org</linkFT>. Portanto, agora podemos atualizar atalhos sem necessitar de atualizar o FoxTrick'
+      note_17: '<module>Links</module> e <module>StaffMarker</module> são agora carregados de <linkFT>FoxTrick.org</linkFT>. Portanto, agora podemos atualizar atalhos sem necessitar de atualizar o FoxTrick'
       note_18: '<module>StaffMarker</module>: Updated data about CHPP license owners and editors (Catzhoek)'
       note_19: '<module>StaffMarker</module>: Tooltip for CHPP license owners now shows the corresponding application names (Catzhoek)'
       note_20: Links to matches adapted to Hattrick changes (Catzhoek)
