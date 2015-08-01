@@ -101,7 +101,7 @@ pt-PT:
       note_11: '<header>Bugs Corrigidos</header>'
     0.12.1.1:
       note_0: Atualizações de tradução.
-      note_2: Melhorias de acessibilidade menores.
+      note_2: Pequenos melhoramentos de acessibilidade.
       note_4: Corrigidos alguns problemas relacionados com som.
       note_5: Corrigido um problema que causava o FoxTrick a não iniciar em alguns casos no Android.
     0.12.1:

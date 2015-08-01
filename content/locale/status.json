@@ -162,11 +162,11 @@
 			"code": "en-GB",
 			"name": "English, United Kingdom",
 			"phrases": "1882",
-			"translated": "1763",
+			"translated": "1772",
 			"translated_progress": "90",
 			"words": "13408",
 			"words_approved": "0",
-			"words_translated": "12096"
+			"words_translated": "12116"
 		},
 		{
 			"approved": "0",
@@ -174,11 +174,11 @@
 			"code": "en-US",
 			"name": "English, United States",
 			"phrases": "1882",
-			"translated": "1761",
+			"translated": "1769",
 			"translated_progress": "90",
 			"words": "13408",
 			"words_approved": "0",
-			"words_translated": "12078"
+			"words_translated": "12097"
 		},
 		{
 			"approved": "0",
@@ -498,11 +498,11 @@
 			"code": "pt-BR",
 			"name": "Portuguese, Brazilian",
 			"phrases": "1882",
-			"translated": "1850",
+			"translated": "1856",
 			"translated_progress": "97",
 			"words": "13408",
 			"words_approved": "0",
-			"words_translated": "13096"
+			"words_translated": "13112"
 		},
 		{
 			"approved": "922",
