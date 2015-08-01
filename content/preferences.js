@@ -1130,9 +1130,10 @@ function initChangesTab() {
 			// IMPORTANT!!! branch note must always be 'note_0'
 			var note = (notesLocalized && notesLocalized['note_0']) || notes['note_0'];
 			addNote(note, list, releaseNotesLinks);
-			$('#translator_note').attr('style', 'display:block;');
 			if (version == 'beta')
-				$('#translator_note').append(statusText);
+				$('#translator_note').append(' ' + statusText);
+
+			$('#translator_note').attr('style', 'display:block;');
 		}
 	}
 
