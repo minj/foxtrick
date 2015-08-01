@@ -71,7 +71,12 @@ Foxtrick.modules['CurrentTransfers'] = {
 			var playerCell = row.cells[0];
 			var playerLink = playerCell.querySelector('a');
 			var playerId = Foxtrick.getParameterFromUrl(playerLink.href, 'playerId');
-			row.id = 'ft-transfer-' + playerId;
+			Foxtrick.addClass(row, 'ft-transfer-' + playerId);
+
+			if (Foxtrick.any(function(p) { return p.id === playerId; }, players)) {
+				// same player on different lists
+				return;
+			}
 
 			var deadline = NOW;
 			var deadlineCell = row.nextElementSibling.cells[0];
@@ -92,17 +97,21 @@ Foxtrick.modules['CurrentTransfers'] = {
 		return players;
 	},
 	processXML: function(doc, xml, opts) {
+		var module = this;
+
 		var id = xml.num('PlayerID');
 		var price = xml.money('AskingPrice', opts.rate);
 		var result = Foxtrick.formatNumber(price, '\u00a0') + ' ' + opts.symbol;
 
-		var row = doc.getElementById('ft-transfer-' + id);
-		var bidCell = row.cells[1];
-		var resultDiv = bidCell.querySelector('.float_right');
+		var rows = doc.getElementsByClassName('ft-transfer-' + id);
+		Foxtrick.forEach(function(row) {
+			var bidCell = row.cells[1];
+			var resultDiv = bidCell.querySelector('.float_right');
 
-		Foxtrick.makeFeaturedElement(resultDiv, this);
-		Foxtrick.addClass(resultDiv, 'ft-transfers-price');
-		resultDiv.textContent = this.OPENING_PRICE + ': ' + result;
-		bidCell.appendChild(resultDiv);
+			Foxtrick.makeFeaturedElement(resultDiv, module);
+			Foxtrick.addClass(resultDiv, 'ft-transfers-price');
+			resultDiv.textContent = module.OPENING_PRICE + ': ' + result;
+			bidCell.appendChild(resultDiv);
+		}, rows);
 	},
 };
