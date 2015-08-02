@@ -288,7 +288,6 @@ nl:
       note_16: '<module>MatchPlayerColouring</module>: Now works properly for players that were put in and left the field before the game ended'
       note_17: '<module>HideSignatures</module>: Did not work when HT setting was set to truncated signatures, fixed that'
       note_18: '<module>PlayerStatsExperience</module>: Fixed NT/U-20 final and semi-final detection'
-      note_19: '<module>TeamPopupLinks</module>: Fixed infinite creating of tabs on the guestbook'
       note_20: Fixed RTL language issues with the median transfer price
       note_21: '<header>For visually/hearing impaired users</header>'
       note_22: We added a new section to the settings page that will contain all modules that are related to accessibility.
@@ -360,8 +359,8 @@ nl:
       note_0: Fixed latest Chrome update causing LoyaltyDisplay to crash
       note_1: Corrected lineup links for youth-players in MatchReportFormat
       note_2: MatchSimulator stamina effect tweaked
-      note_3: New symbols for specialties
-      note_4: Several translation updates
+      note_3: Nieuw symbolen voor specialiteiten
+      note_4: Verschillende updates van de vertaling
     0.9.0.1:
       note_0: Fixed (accidental) excessive permissions for Chrome
       note_1: 'Fixed LiveAlert '
@@ -369,8 +368,8 @@ nl:
     0.9:
       note_0: '<header>Localization:</header>'
       note_1: 'Integration of the crowdsourcing translation service <linkCrowdin>http://www.crowdin.net</linkCrowdin>. (CatzHoek, Convincedd)'
-      note_2: 'Many translation updates. (Catzhoek and many translators. Amoung others: GM-murko, LambdaB, Paulo Francisco Martins, MEO_Comandante, Jānis Pamiljans, GZ-grobas, SI-CH, bigpapy, edzus, silkevicious, Max_Schreck, TheZayc, -Iuve-, Mcload, Polytropos, MrAli, ripaldo, Ryo567, Louzao, kirja, MartinsPF)'
-      note_3: 'Thanks all. Please continue to help translate FoxTrick at <linkCrowdin>http://crowdin.net/project/foxtrick</linkCrowdin>'
+      note_2: 'Veel updates van de vertalingen. (Catzhoek en vele andere vertalers. Onder andere: GM-murko, LambdaB, Paulo Francisco Martins, MEO_Comandante, Jānis Pamiljans, GZ-grobas, SI-CH, bigpapy, edzus, silkevicious, Max_Schreck, TheZayc, -Iuve-, Mcload, Polytropos, MrAli, ripaldo, Ryo567, Louzao, kirja, MartinsPF)'
+      note_3: 'Bedankt allemaal. Help mee om FoxTrick te vertalen via <linkCrowdin>http://crowdin.net/project/foxtrick</linkCrowdin>'
       note_4: 'For some info about translations see [post=15466991.1] or [post=15466972.1]'
       note_5: '<header>Feature highlight</header>'
       note_6: We included a feature highlight for easier detection of FoxTrick features and the responsible modules. You can turn this on/off by clicking on the FoxTrick version info down right on every page. After first reload it shows the responsible module in the hover tooltip.

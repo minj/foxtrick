@@ -13,14 +13,18 @@ ro:
       twitter: 'Puteţi urmări <linkTwitter>Foxtrick pe Twitter</linkTwitter> pentru a primi ultimele ştiri, actualizări şi anunţuri.'
       bugs: '<header>Erori reparate</header>'
       youth_avatars: 'Rezolvată lipsa avatarului la jucătorii de la echipa de juniori, în <module>MatchOrderInterface</module>.'
+      preserve_changes: '<module>MatchRatingsTweaks</module> trebuie să păstreze de acum ultimele modificări de rating-uri în timpul meciurilor. Înainte, modificările de rating-uri (numerele colorate) dispăreau la fiecare actualizare, chiar dacă acea actualizare nu avea niciun efect asupra rating-urilor.'
       leave_forum: 'Butonul <module>ForumLeaveButton</module> era nefuncțional, dar problema a fost rezolvată.'
       monitor_cups: '<module>MyMonitor</module> acum arată icoana corectă a cupelor de consolare.'
       other: '<header>Alte schimbări</header>'
       volume: 'Adăugat un cursos global pentru sunetele din Foxtrick, in <FTlinkMainTab> sectiunea setări generale </FTlinkMainTab>.'
+      mlt_upgrade: '<module>MatchLineupTweaks</module> ar trebui acum să afişeze numerele jucătorilor în line-up-ul meciului. În plus, veți putea vedea predicția rezistenței (dacă se poate) când treci cu mouse-ul peste valoarea nivelului de energie a unui jucător.'
       mrt_ratings: 'Modulul <module>Ratings</module> a fost integrat în <module>MatchRatingsTweaks</module>, iar acum are o funcționalitate limitată chiar și în HT-Live (doar pentru suporteri).'
+      copy_ratings: '<module>CopyRatings</module> a fost rescris și puteți copia, de acum, rating-urile fiecăror minute, chiar și în HT-Live.'
       monitor_update: '<module>MyMonitor</module> include acum mai multe posibilități inteligente de sortare a echipelor și posibilitatea de a adăuga meciuri la HT-Live pe baza tipului de meci.'
       promote_age: '<module>YouthPromotes</module> arată acum vărsta jucătorului din ziua promovării.'
       export_live: 'Adăugat un buton pentru e exporta meciurile HT-Live ca link, în <module>ReLiveLinks</module>.'
+      match_icons: 'Mai multe iconițe pentru evenimente au fost adăugate în <module>MatchReportFormat</module>. Toate evenimentele importante ar trebui, de acum, să fie punctate prin intermediul iconițelor.'
       retro_cups: 'Au fost adăugate icoane retro pentru noile tipuri de cupe, în <module>CustomMedals</module>.'
       and_more: Diferite alte mici schimbări și reparații.
     0.15.1:
