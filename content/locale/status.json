@@ -486,11 +486,11 @@
 			"code": "pt-PT",
 			"name": "Portuguese",
 			"phrases": "1884",
-			"translated": "1748",
-			"translated_progress": "83",
+			"translated": "1753",
+			"translated_progress": "85",
 			"words": "13420",
 			"words_approved": "0",
-			"words_translated": "11149"
+			"words_translated": "11442"
 		},
 		{
 			"approved": "0",
@@ -601,16 +601,16 @@
 			"words_translated": "13408"
 		},
 		{
-			"approved": "1883",
-			"approved_progress": "99",
+			"approved": "1884",
+			"approved_progress": "100",
 			"code": "sv-SE",
 			"name": "Swedish",
 			"phrases": "1884",
-			"translated": "1883",
-			"translated_progress": "99",
+			"translated": "1884",
+			"translated_progress": "100",
 			"words": "13420",
-			"words_approved": "13410",
-			"words_translated": "13410"
+			"words_approved": "13420",
+			"words_translated": "13420"
 		},
 		{
 			"approved": "0",

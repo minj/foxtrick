@@ -94,6 +94,7 @@ pt-PT:
       crowdin: '<header>Várias atualizações nas traduções dos nossos utilizadores incríveis usando a ferramenta <linkCrowdin>Crowdin</linkCrowdin>. Venha daí, também pode ajudar!</header>'
       new: '<header>Módulos novos</header>'
       other: '<header>Outras alterações</header>'
+      htms_points: '<module>HTMSPoints</module> foi atualizado para usar as novas formulas.'
       bugs: '<header>Correções de Erros</header>'
     0.12.2:
       note_0: '<header>Várias atualizações nas traduções dos nossos utilizadores incríveis usando a ferramenta <linkCrowdin>Crowdin</linkCrowdin>. Venha daí, também pode ajudar!</header>'
@@ -268,7 +269,7 @@ pt-PT:
     0.8.1:
       note_0: '<module>ElectionTable</module>: adapted to new election page layout. (convincedd, ryanli)'
       note_1: '<module>HTThreadMarker</module>: new style. (convincedd, ryanli)'
-      note_2: "<module>TableSort</module>: prevent conflicting with Hattrick's sorting. (convincedd)"
+      note_2: '<module>TableSort</module>: Prevenir conflitos com a ordenação do Hattrick. (convincedd)'
       note_3: '<module>HTMSPrediction</module>, <module>CopyRatings</module>: adapted to new match report layout. (convincedd)'
       note_4: '<module>LineupShortcut</module>: also show for non-supporters now. (ryanli)'
       note_5: '<module>TransferSearchResultFilters</module>: fix after latest changes. (convincedd)'
