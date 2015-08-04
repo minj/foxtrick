@@ -217,16 +217,16 @@
 			"words_translated": "6227"
 		},
 		{
-			"approved": "1882",
-			"approved_progress": "99",
+			"approved": "1884",
+			"approved_progress": "100",
 			"code": "fr",
 			"name": "French",
 			"phrases": "1884",
-			"translated": "1882",
-			"translated_progress": "99",
+			"translated": "1884",
+			"translated_progress": "100",
 			"words": "13420",
-			"words_approved": "13408",
-			"words_translated": "13408"
+			"words_approved": "13420",
+			"words_translated": "13420"
 		},
 		{
 			"approved": "0",
@@ -529,16 +529,16 @@
 			"words_translated": "13408"
 		},
 		{
-			"approved": "1738",
+			"approved": "1740",
 			"approved_progress": "85",
 			"code": "sr",
 			"name": "Serbian (Cyrillic)",
 			"phrases": "1884",
-			"translated": "1755",
+			"translated": "1757",
 			"translated_progress": "86",
 			"words": "13420",
-			"words_approved": "11436",
-			"words_translated": "11612"
+			"words_approved": "11448",
+			"words_translated": "11624"
 		},
 		{
 			"approved": "0",
@@ -582,11 +582,11 @@
 			"code": "es-AR",
 			"name": "Spanish, Argentina",
 			"phrases": "1884",
-			"translated": "1882",
-			"translated_progress": "99",
+			"translated": "1884",
+			"translated_progress": "100",
 			"words": "13420",
 			"words_approved": "0",
-			"words_translated": "13408"
+			"words_translated": "13420"
 		},
 		{
 			"approved": "0",
