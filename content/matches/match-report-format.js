@@ -76,34 +76,6 @@ Foxtrick.modules.MatchReportFormat = {
 			return table;
 		};
 
-		/*
-		 * Rebuild HT hover highlighting.
-		 * HT works on the n-th child of the report
-		 * which doesn't work for us we we can't easily hack their approach
-		 * to work with the new report
-		 */
-		var fixHighlighting = function(doc) {
-			var addHighlight = function() {
-				var eventIdx = this.querySelector('td[id^=matchEventIndex_]').id.match(/\d+/)[0];
-				var ft_event = doc.querySelector('[ht-event-idx="' + eventIdx + '"]');
-				Foxtrick.addClass(ft_event, 'highlightReportEvent');
-			};
-
-			var removeHighlight = function() {
-				var eventIdx = this.querySelector('td[id^=matchEventIndex_]').id.match(/\d+/)[0];
-				var ft_event = doc.querySelector('[ht-event-idx="' + eventIdx + '"]');
-				Foxtrick.removeClass(ft_event, 'highlightReportEvent');
-			};
-
-			// register events for all rows in the sidebar that indicate events
-			var eventHighlights = doc.querySelectorAll('.tblHighlights td[id^=matchEventIndex_]');
-			Foxtrick.forEach(function(hl) {
-				var row = hl.parentNode;
-				Foxtrick.listen(row, 'mouseover', addHighlight, true);
-				Foxtrick.listen(row, 'mouseout', removeHighlight, true);
-			}, eventHighlights);
-		};
-
 		var doMatchReport = function(doc, matchReport) {
 
 			// steal HT-Live styling
@@ -130,9 +102,6 @@ Foxtrick.modules.MatchReportFormat = {
 			for (var i = 0; i < events.length; i++) {
 				if (Foxtrick.Prefs.isModuleOptionEnabled('MatchReportFormat', 'ShowEventIcons'))
 					Foxtrick.util.matchEvent.addEventIcons(events[i]);
-
-				// remember original event index to re-create HT event highlighting feature
-				events[i].setAttribute('ht-event-idx', i);
 			}
 
 			matchReport.insertBefore(table, matchReport.firstChild);
@@ -145,6 +114,5 @@ Foxtrick.modules.MatchReportFormat = {
 		var matchReport = doc.getElementById('matchReport');
 		doMatchReport(doc, matchReport);
 		Foxtrick.util.matchEvent.addEventIndicators(matchReport);
-		fixHighlighting(doc);
 	}
 };
