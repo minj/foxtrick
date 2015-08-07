@@ -273,7 +273,7 @@ Foxtrick.onClick = function(el, listener) {
  */
 Foxtrick.listen = function(el, type, listener, useCapture) {
 	el.addEventListener(type, function(ev) {
-		var doc = ev.target.ownerDocument;
+		var doc = ev.target.ownerDocument || ev.target;
 		Foxtrick.stopListenToChange(doc);
 		listener.bind(this)(ev);
 		Foxtrick.log.flush(doc);
