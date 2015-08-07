@@ -251,6 +251,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "13035182",
+			"name": "Feodrov"
+		},
+		{
+			"duty": "supporter",
 			"id": "13049551",
 			"name": "Timey_"
 		},
@@ -607,7 +612,7 @@
 		{
 			"duty": "translator",
 			"id": "5577946",
-			"name": "GM-eekels"
+			"name": "eekels"
 		},
 		{
 			"duty": "supporter",
