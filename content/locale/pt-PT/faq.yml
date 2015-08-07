@@ -10,7 +10,7 @@ pt-PT:
     sound-format:
       question: Que tipo de ficheiros são permitidos para som de alerta?
       answer: |
-        <p>Diferentes navegadores permitem diferentes formatos de ficheiros. Aqui está uma lista (formatos não referidos podem funcionar se os plugins necessários estiverem instalados, como por exemplo, o Quicktime para reproduzir mp3 no Firefox):</p>
+        <p>Diferentes navegadores permitem diferentes formatos de ficheiros. Aqui está uma lista (formatos não referidos podem funcionar se os plugins necessários estiverem instalados, ex: o Quicktime para reproduzir mp3 no Firefox):</p>
         
         <ul>
         <li>Mozilla: wav, ogg</li>
