@@ -392,22 +392,32 @@ Foxtrick.modules['MainMenuDropDown'] = {
 			return null;
 		};
 
+		var hasCssRules = function(sheet) {
+			try {
+				if (sheet.cssRules)
+					return true;
+			}
+			catch (e) {}
+			return false;
+		};
+
 		var getMenuTextColor = function() {
 			var tcolor;
 			Foxtrick.map(function(styleSheet) {
-				if (styleSheet.cssRules) {
-					Foxtrick.any(function(rule) {
-						var c = textColor(rule.cssText);
+				if (!hasCssRules(styleSheet))
+					return;
 
-						if (c) {
-							tcolor = c;
-							return true;
-						}
-						else
-							return false;
+				Foxtrick.any(function(rule) {
+					var c = textColor(rule.cssText);
 
-					}, styleSheet.cssRules);
-				}
+					if (c) {
+						tcolor = c;
+						return true;
+					}
+					else
+						return false;
+
+				}, styleSheet.cssRules);
 			}, doc.styleSheets);
 			return tcolor;
 		};
