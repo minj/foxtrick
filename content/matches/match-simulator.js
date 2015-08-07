@@ -479,8 +479,8 @@ Foxtrick.modules.MatchSimulator = {
 				text += bothTeams;
 
 				// match link
-				var matchid = Foxtrick.util.id.getMatchIdFromUrl(doc.location.href);
-				text += ' [matchid=' + matchid + ']' + '\n';
+				if (matchid)
+					text += ' [matchid=' + matchid + ']' + '\n';
 
 				// formation
 				var formations = doc.getElementById('formations').textContent;
@@ -657,6 +657,10 @@ Foxtrick.modules.MatchSimulator = {
 				}
 			}
 
+			var matchid = Foxtrick.util.id.getMatchIdFromUrl(doc.location.href);
+			if (!matchid)
+				return;
+
 			updateBarsAndHTMSPrediction();
 
 			if (updateOther && currentMatchXML)
@@ -693,7 +697,6 @@ Foxtrick.modules.MatchSimulator = {
 				else
 					doc.getElementById('field').appendChild(loadingOtherMatches);
 
-				var matchid = Foxtrick.util.id.getMatchIdFromUrl(doc.location.href);
 				var SourceSystem = 'Hattrick';
 				if (isHTOIntegrated)
 					SourceSystem = 'HTOIntegrated';
