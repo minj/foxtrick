@@ -335,6 +335,11 @@
 			"name": "stuhlgang"
 		},
 		{
+			"duty": "supporter",
+			"id": "2247",
+			"name": "carlerik"
+		},
+		{
 			"duty": "developer",
 			"id": "2336766",
 			"name": "spambot"
