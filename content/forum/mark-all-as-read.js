@@ -24,11 +24,12 @@ Foxtrick.modules['MarkAllAsRead'] = {
 		var threadIds = Foxtrick.map(function(n) {
 			return n.href.match(/\/Forum\/Read\.aspx\?t=(\d+)/)[1];
 		}, threadLinks);
-		var threadList = threadIds.join(', ');
+		var threadList = threadIds.join(',');
 
 		var container = doc.createElement('span');
 		container.className = 'ft-mark-all-as-read';
 		container.title = Foxtrick.L10n.getString('MarkAllAsRead.title');
+		container.dataset.threadList = threadList;
 
 		container = Foxtrick.makeFeaturedElement(container, this);
 
@@ -37,12 +38,6 @@ Foxtrick.modules['MarkAllAsRead'] = {
 		else
 			var target = doc.getElementById('myForums').previousSibling;
 		target.appendChild(container);
-		var js =
-			'document.getElementsByClassName("ft-mark-all-as-read")[0].' +
-				'addEventListener("click", function() {\n' +
-					'__doPostBack("ctl00$ctl00$CPContent$ucLeftMenu$ucNewPosts", "mrk|%s");\n' +
-				'}, false);';
-		js = js.replace(/%s/, threadList);
-		Foxtrick.util.inject.js(doc, js, 'ft-mark-all-as-read');
+		Foxtrick.util.inject.jsLink(doc, Foxtrick.InternalPath + 'resources/js/MarkAllAsRead.js');
 	}
 };
