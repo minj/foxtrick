@@ -3,6 +3,8 @@ Cu.import('resource://gre/modules/Services.jsm');
 
 var FoxtrickFennec = function(window) {
 	this.owner = window;
+	window.FOXTRICK_RUNTIME = FOXTRICK_RUNTIME;
+	window.FOXTRICK_PATH = PATH;
 };
 FoxtrickFennec.prototype = {
 	scripts: [

@@ -259,7 +259,8 @@ Foxtrick.loader.background.contentScriptManager = {
 		for (var i = 0; i < this.contentScripts.length; ++i) {
 			var script = this.contentScripts[i];
 			try {
-				messageManager.loadFrameScript('chrome://foxtrick/content/' + script, true, true);
+				var url = FOXTRICK_PATH + script + '?t=' + FOXTRICK_RUNTIME;
+				messageManager.loadFrameScript(url, true, true);
 			}
 			catch (e) {
 				e.message = 'Foxtrick ERROR: ' + script + ': ' + e.message + '\n' + e.stack + '\n';
