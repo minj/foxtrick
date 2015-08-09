@@ -71,5 +71,5 @@ html[dir="rtl"] #skills img[class*="youthSkillBar"]{
 /* compact saved lineups */
 #editLineups .savedLineup {
 	display: inline-block;
-	margin: 5px;
+	margin: 5px !important;
 }
