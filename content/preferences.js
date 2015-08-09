@@ -992,16 +992,18 @@ function initMainTab() {
 	$('#pref-load-do').click(function() {
 		Foxtrick.Prefs.load($('#pref-load-text').val());
 		$('#pref-load-text').val('');
-		window.location.href = window.location.href + '&imported=true';
-		window.location.reload();
+		window.setTimeout(function() {
+			window.location.reload();
+		}, 1000);
 	});
 
 	// restore to default
 	$('#pref-stored-restore').click(function() {
 		if (Foxtrick.confirmDialog(Foxtrick.L10n.getString('prefs.restoreDefault.ask'))) {
 			Foxtrick.Prefs.cleanupBranch();
-			window.location.href = window.location.href + '&imported=true';
-			window.location.reload();
+			window.setTimeout(function() {
+				window.location.reload();
+			}, 1000);
 		}
 	});
 
