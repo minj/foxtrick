@@ -201,49 +201,49 @@ Foxtrick.Prefs = {
 	},
 
 	isModuleOptionEnabled: function(module, option) {
-		if (typeof module !== 'string')
+		if (module && typeof module === 'object')
 			module = module.MODULE_NAME;
 
 		return Foxtrick.Prefs.getBool('module.' + module + '.' + option + '.enabled');
 	},
 
 	isModuleOptionSet: function(module, option) {
-		if (typeof module !== 'string')
+		if (module && typeof module === 'object')
 			module = module.MODULE_NAME;
 
 		return Foxtrick.Prefs.prefHasUserValue('module.' + module + '.' + option + '.enabled');
 	},
 
 	setModuleEnableState: function(module, value) {
-		if (typeof module !== 'string')
+		if (module && typeof module === 'object')
 			module = module.MODULE_NAME;
 
 		Foxtrick.Prefs.setBool('module.' + module + '.enabled', value);
 	},
 
 	setModuleOptionsText: function(module, value) {
-		if (typeof module !== 'string')
+		if (module && typeof module === 'object')
 			module = module.MODULE_NAME;
 
 		Foxtrick.Prefs.setString('module.' + module, value);
 	},
 
 	getModuleValue: function(module) {
-		if (typeof module !== 'string')
+		if (module && typeof module === 'object')
 			module = module.MODULE_NAME;
 
 		return Foxtrick.Prefs.getInt('module.' + module + '.value');
 	},
 
 	setModuleValue: function(module, value) {
-		if (typeof module !== 'string')
+		if (module && typeof module === 'object')
 			module = module.MODULE_NAME;
 
 		Foxtrick.Prefs.setInt('module.' + module + '.value', value);
 	},
 
 	getModuleDescription: function(module) {
-		if (typeof module !== 'string')
+		if (module && typeof module === 'object')
 			module = module.MODULE_NAME;
 
 		var name = 'module.' + module + '.desc';
@@ -256,7 +256,7 @@ Foxtrick.Prefs = {
 	},
 
 	getModuleElementDescription: function(module, option) {
-		if (typeof module !== 'string')
+		if (module && typeof module === 'object')
 			module = module.MODULE_NAME;
 
 		var name = 'module.' + module + '.' + option + '.desc';

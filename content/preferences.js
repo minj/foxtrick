@@ -992,18 +992,14 @@ function initMainTab() {
 	$('#pref-load-do').click(function() {
 		Foxtrick.Prefs.load($('#pref-load-text').val());
 		$('#pref-load-text').val('');
-		window.setTimeout(function() {
-			window.location.reload();
-		}, 1000);
+		window.location.reload();
 	});
 
 	// restore to default
 	$('#pref-stored-restore').click(function() {
 		if (Foxtrick.confirmDialog(Foxtrick.L10n.getString('prefs.restoreDefault.ask'))) {
 			Foxtrick.Prefs.cleanupBranch();
-			window.setTimeout(function() {
-				window.location.reload();
-			}, 1000);
+			window.location.reload();
 		}
 	});
 
@@ -1016,7 +1012,6 @@ function initMainTab() {
 			for (var i = 0; i < array.length; i++) {
 				Foxtrick.Prefs.deleteValue(array[i]);
 			}
-			window.location.href = window.location.href + '&imported=true';
 			window.location.reload();
 		}
 	});
@@ -1026,7 +1021,6 @@ function initMainTab() {
 		if (Foxtrick.confirmDialog(Foxtrick.L10n.getString('prefs.disableAllModules.ask'))) {
 			Foxtrick.log('preferences: diable all');
 			Foxtrick.Prefs.disableAllModules();
-			window.location.href = window.location.href + '&imported=true';
 			window.location.reload();
 		}
 	});
