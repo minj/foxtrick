@@ -270,20 +270,20 @@ Foxtrick.loader.background.contentScriptManager = {
 	},
 
 	unload: function() {
-		// tell content script to unload
-		Foxtrick.SB.ext.broadcastMessage('unload');
-		Foxtrick.saveAs.unload();
-
-		// unload content scripts
+		// stop loading content scripts
 		for (var i = 0; i < this.contentScripts.length; ++i) {
 			var script = this.contentScripts[i];
 			try {
-				messageManager.removeDelayedFrameScript('chrome://foxtrick/content/' + script);
+				var url = FOXTRICK_PATH + script + '?t=' + FOXTRICK_RUNTIME;
+				messageManager.removeDelayedFrameScript(url);
 			}
 			catch (e) {
 				e.message = 'Foxtrick ERROR: ' + script + ': ' + e.message + '\n' + e.stack + '\n';
 				Services.console.logStringMessage(e);
 			}
 		}
+		// tell running content scripts to unload
+		Foxtrick.SB.ext.broadcastMessage('unload');
+		Foxtrick.saveAs.unload();
 	},
 };
