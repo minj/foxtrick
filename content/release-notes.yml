@@ -9,8 +9,8 @@ en:
 
     0.15.2.1:
       important: '<header>Important announcements</header>'
-      signed: 'All Firefox add-ons now need to be digitally signed by Mozilla. This is mostly a signed update to ensure compatibility.'
-      signing: 'Due to problems caused by mandatory add-on signing policy we chose to unlist Foxtrick from <linkAMO>Mozilla add-ons</linkAMO> portal. More details in the <linkUnlistPost>Global Foxtrick announcement</linkUnlistPost>.'
+      signed: 'All Firefox add-ons now need to be digitally signed by Mozilla. This is mostly a signed update to ensure Foxtrick compatibility.'
+      signing: 'Due to disruptions caused by mandatory add-on signing policy we chose to unlist Foxtrick from <linkAMO>Mozilla add-ons</linkAMO> portal. More details in the <linkUnlistPost>Global Foxtrick announcement</linkUnlistPost>.'
       bugs: '<header>Bug fixes</header>'
       weatherSE: 'Listing weather SE players in match timeline was broken in <module>MatchLineupFixes</module> due to HT changes. The problem is now fixed.'
       other: '<header>Other changes</header>'
