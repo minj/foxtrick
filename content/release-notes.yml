@@ -7,6 +7,17 @@ en:
     beta:
       note_0: 'This is the beta version of the next release. Please help translating this version at our super easy crowd-translation page <linkCrowdin>crowdin.net</linkCrowdin>.'
 
+    0.15.2.1:
+      important: '<header>Important announcements</header>'
+      signed: 'All Firefox add-ons now need to be digitally signed by Mozilla. This is mostly a signed update to ensure compatibility.'
+      signing: 'Due to problems caused by mandatory add-on signing policy we chose to unlist Foxtrick from <linkAMO>Mozilla add-ons</linkAMO> portal. More details in the <linkUnlistPost>Global Foxtrick announcement</linkUnlistPost>.'
+      bugs: '<header>Bug fixes</header>'
+      weatherSE: 'Listing weather SE players in match timeline was broken in <module>MatchLineupFixes</module> due to HT changes. The problem is now fixed.'
+      other: '<header>Other changes</header>'
+      sandbox: 'Added support for the upcoming Hattrick match sandbox feature.'
+      compact_lineups: 'Saved lineup names will now be compacted with <module>MatchOrderInterface</module>. This will allow you to use more saved lineups without running into space issues.'
+      and_more: 'Various other small changes and fixes.'
+
     0.15.2:
       important: '<header>Important announcements</header>'
       links: '<module>Links</module> functionality was rewritten to fix a few bugs and improve maintenance. More tags will now be available for custom links. Some tags were renamed to reflect their true meaning. Please clear your Foxtrick cache, test your custom links and update them accordingly.'
