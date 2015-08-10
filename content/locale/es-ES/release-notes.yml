@@ -5,6 +5,16 @@ es-ES:
       note_0: 'Esta es versión de desarrollo. Úsalo a tu propia discreción. Por favor, mira <linkSVN>commit history</linkSVN> en Google Code para los detalles de los cambios.'
     beta:
       note_0: 'Esta es la versión beta de la próxima release. Por favor, ayuda a traducir esta versión accediendo a nuestra super fácil de usar web de traducción <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.15.2.1:
+      important: '<header>Anuncios importantes</header>'
+      signed: Ahora todas las extensiones de Firefox deben estar firmadas digitalmente por Mozilla. Esta actualización de la firma es principalmente para garantizar la compatibilidad con Firefox.
+      signing: 'Debido a los problemas causados por la política obligatoria de la firma en la extensión, hemos quitado Foxtrick de la lista de <linkAMO>extensiones de Mozilla</linkAMO> del portal. Si quieres ver más detalles visita el <linkUnlistPost>anuncio de Foxtrick</linkUnlistPost>.'
+      bugs: '<header>Corrección de errores</header>'
+      weatherSE: 'El listado de jugadores SE en el la línea de tiempo del partido se dividió en <module>MatchLineupFixes</module> debido a los cambios de HT. Ahora se ha solucionado el problema.'
+      other: '<header>Otros cambios</header>'
+      sandbox: Se ha añadido soporte de compatibilidad para la característica de partidos sandbox de Hattrick.
+      compact_lineups: 'Ahora los nombres de formaciones guardadas se comprimirán con <module>MatchOrderInterface</module>. Esto te permitirá utilizar más formaciones guardadas sin problemas de espacio.'
+      and_more: Otros pequeños cambios y correcciones.
     0.15.2:
       important: '<header>Anuncios importantes</header>'
       links: '<module>Enlaces</module> la funcionalidad fue reescrita para arreglar algunos errores y mejorar el mantenimiento. Más etiquetas estarán ahora disponibles para enlaces personalizados. Algunas etiquetas fueron renombradas para reflejar su verdadero significado. Por favor vaciar la caché de Foxtrick, prueba tus enlaces personalizados y actualizarlos adecuadamente.'

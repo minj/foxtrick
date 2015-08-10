@@ -5,6 +5,16 @@ hr:
       note_0: 'Ovo je razvojna inačica. Koristiti na svoju odgovornost. Za detalje o promjenama pogledajte <linkSVN>commit history</linkSVN> na Google Code stranici.'
     beta:
       note_0: 'Ovo je beta inačica buduće nove verzije. Pomozite na prevoditi ovu verziju sa super lakim prevođenjem na <linkCrowdin>crowdin.net</linkCrowdin>.'
+    0.15.2.1:
+      important: '<header>Važne obavijesti</header>'
+      signed: Svi Firefox dodaci sada moraju biti digitalno potpisani od strane Mozille. Ovo je uglavnom potpisana nadogradnja da bi se osigurala Foxtrick-ova kompatibilnost.
+      signing: 'Zbog poremećaja uzrokovanih obaveznim potpisivanjem dodataka, odlučili smo maknuti Foxtrick s <linkAMO>Mozilla add-ons</linkAMO> portala. Više detalja u <linkUnlistPost>globalnim Foxtrick najavama</linkUnlistPost>.'
+      bugs: '<header>Popravljene greške</header>'
+      weatherSE: 'Popis vremenskih specijalnih događaja tijekom utakmice je bio pokvaren u <module>MatchLineupFixes</module> zbog HT promjena. To je sada popravljeno.'
+      other: '<header>Druge promjene</header>'
+      sandbox: Dodana podrška za predstojeće HT opcije tijekom utakmice.
+      compact_lineups: 'Spremanje imena postava je sada usklađeno s <module>MatchOrderInterface</module>. Ovo će vam omogućiti da koristite više spremljenih postava bez pojave problema s imenovanjem.'
+      and_more: Razne druge male promjene i popravci.
     0.15.2:
       important: '<header>Važne obavijesti</header>'
       links: '<module>Links</module> funkcionalnost je bila napisana iznova s ciljem ispravljanja greški i unaprijeđenja održavanja. Više oznaka će sada biti dostupno za prilagođene veze. Neke oznake su preimenovane da prikažu njihovo pravo značenje. Molimo obrišite Foxtrick predmemoriju, testirajte svoje prilagođene veze i ažurirajte ih u skladu sa tim.'

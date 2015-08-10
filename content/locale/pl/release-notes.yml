@@ -5,6 +5,11 @@ pl:
       note_0: 'To jest wersja rozwojowa. Korzystaj według własnego uznania. Proszę sprawdź szczegóły zmian <linkSVN>historia zmian</linkSVN> w witrynie Google Code.'
     beta:
       note_0: 'To jest wersja beta następnego wydania. Proszę pomóż w tłumaczeniu tej wersji na naszej super łatwej stronie tłumaczeń <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.15.2.1:
+      important: '<header>Ważne ogłoszenia</header>'
+      bugs: '<header>Poprawki błędów</header>'
+      other: '<header>Inne zmiany</header>'
+      and_more: Różne inne małe zmiany i poprawki.
     0.15.2:
       important: '<header>Ważne ogłoszenia</header>'
       links: 'Funkcjonalność <module>Linki</module> została przepisana, by naprawić kilka błędów i poprawić obsługę. Więcej tagów będzie teraz dostępnych dla linków niestandardowych. Nazwy niektórych tagów zostały zmienione, by odzwierciedlały ich prawdziwe znaczenie. Proszę wyczyścić pamięć podręczną Foxtricka, przetestować  linki niestandardowe i odpowiednio je zaktualizować.'

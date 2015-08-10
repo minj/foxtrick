@@ -5,6 +5,15 @@ ro:
       note_0: 'Această versiune este în dezvoltare continuă. Utilizați-o după cum doriți. Vă rugăm să vizualizați <linkSVN>istoricul</linkSVN> de la Google Code pentru detalii cu privire la modificări.'
     beta:
       note_0: 'Aceasta este o versiune beta a următoarei versiuni care va fi lansată. Vă rugăm ajutați traducând această versiune utilizând pagina de traducere <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.15.2.1:
+      important: '<header>Anunţuri importante</header>'
+      signed: Toate add-on-urile pentru Firefox, de acum inainte, trebuie sa aibe semnatura digitala Mozilla. Acest update are semnatura digitala necesara pentru comatibilitatea cu Foxtrick.
+      signing: 'Datirta disfunctionalitatilor cauzate de politica privind semnatura digitala, a mdecis sa retragem Foxtrick din portalul <linkAMO>Mozilla add-ons</linkAMO>. Mai multe detalii aici: <linkUnlistPost>Global Foxtrick announcement</linkUnlistPost>.'
+      bugs: '<header>Erori reparate</header>'
+      weatherSE: 'Afisarea in raportul de meci a evenimentelor spediale generate de conditiile meteo nu functiona in <module>MatchLineupFixes</module>, din cauza schimbarilor din HT. Problema a fost rezolvata.'
+      other: '<header>Alte schimbări</header>'
+      compact_lineups: 'Numele salvate pentru asezarile din teren este de-acum compactat in <module>MatchOrderInterface</module>. Aceasta va permite salvarea mai multor asezari, fara a mai avea probleme de spatiu.'
+      and_more: Diferite alte mici schimbări și reparații.
     0.15.2:
       important: '<header>Anunţuri importante</header>'
       links: 'Funcționalitatea <module>Links</module> a fost rescrisă pentru a reyolva unele bug-uri. Vor fi disponibile mai multe etichete pentru link-urile personalizate. Unele etichete au fost redenumite pentru a le refelcta mai bine logica. Vă rugăm să goliți chache-ul Foxtrick, să vă testați și să vă actualizați link-urile personalizate.'

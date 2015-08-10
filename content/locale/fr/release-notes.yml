@@ -5,6 +5,16 @@ fr:
       note_0: "Il s'agit d'une version de développement. Utilisez la à votre propre discrétion. S'il vous plaît consultez <linkSVN>commit history</linkSVN> sur Google Code pour plus de détails sur les modifications."
     beta:
       note_0: "Il s'agit de la version bêta de la prochaine version. Veuillez nous aider à traduire cette version via un site ultra simple à utiliser <linkCrowdin>crowdin.net</linkCrowdin>. "
+    0.15.2.1:
+      important: '<header>Annonces importantes</header>'
+      signed: "Toutes les extensions de Firefox doivent maintenant être signés numériquement par Mozilla. Il s'agit surtout d'une mise à jour signée pour assurer la compatibilité de Foxtrick."
+      signing: 'En raison de perturbations causées par la politique de signature obligatoire des extensions nous avons choisis de retirer Foxtrick de la liste des <linkAMO>modules de Mozilla add-ons</linkAMO>. Plus de détail dans le sujet <linkUnlistPost>Global Foxtrick announcement</linkUnlistPost>.'
+      bugs: '<header>Correctifs</header>'
+      weatherSE: 'La liste des SE météo des joueurs dans la chronologie des matchs a été corrompu dans <module>MatchLineupFixes</module> en raison des modifications de HT. Le problème est maintenant résolu.'
+      other: '<header>Autres changements</header>'
+      sandbox: "Ajout du support pour la prochaine fonctionnalité d'Hattrick dans le calendrier des matchs."
+      compact_lineups: "Les noms des compositions sauvegardées seront maintenant compactés avec <module>MatchOrderInterface</module>. Cela vous permettra d’enregistrer plus de compositions sans avoir de problèmes d'espace."
+      and_more: Divers autres petits changements et corrections.
     0.15.2:
       important: '<header>Annonces importantes</header>'
       links: "<module>Links</module> les fonctionnalité a été réécrites pour corriger quelques bugs et améliorer l'entretien. Plusieurs balises seront désormais disponibles pour les liens personnalisés. Certaines balises ont été renommées afin de tenir compte de leur véritable signification. S'il vous plaît effacez votre cache Foxtrick, testez vos liens personnalisés et mettez les à jour au besoin."

@@ -5,6 +5,16 @@ pt-PT:
       note_0: 'Esta é uma versão de testes. Use à sua responsabilidade. Por favor veja o <linkSVN>Histórico de confirmação</linkSVN> no Google Code para mais detalhes sobre as alterações.'
     beta:
       note_0: 'Esta é uma versão beta do próximo lançamento. Por favor ajude na tradução desta versão na nossa página <linkCrowdin>crowdin.net</linkCrowdin>, é bastante fácil.'
+    0.15.2.1:
+      important: '<header>Avisos Importantes</header>'
+      signed: Todos os extras do Firefox agora necessitam de estar assinados digitalmente pela Mozilla. Este é apenas uma atualização assinada para garantir a compatibilidade.
+      signing: 'Devido a interferências causadas pela obrigação da política de assinatura digital decidimos tirar o Foxtrick da lista do portal <linkAMO>Mozilla add-ons</linkAMO>. Mais detalhes em <linkUnlistPost>Global Foxtrick announcement</linkUnlistPost>.'
+      bugs: '<header>Correções de Erros</header>'
+      weatherSE: 'Listar os jogadores com evento especial meteorológico no relatório de jogo tinha problemas em <module>MatchLineupFixes</module> devido a alterações do Hattrick. O problema está agora corrigido.'
+      other: '<header>Outras alterações</header>'
+      sandbox: Adicionado suporte para a função anunciada do Hattrick Match Sandbox.
+      compact_lineups: 'Os nomes das Formações gravadas serão agora compactados com <module>MatchOrderInterface</module>. isto permitirá que consiga ter mais formações gravadas.'
+      and_more: Diversas pequenas correções e alterações.
     0.15.2:
       important: '<header>Avisos Importantes</header>'
       links: 'Funcionalidade <module>Links</module> foi reescrita para corrigir alguns erros e melhorar a manutenção. Mais etiquetas estarão agora disponíveis para atalhos personalizados. Algumas etiquetas foram renomeadas para refletir seu verdadeiro significado. Por favor limpe o cache do FoxTrick, teste os seus atalhos personalizados e atualize-os em conformidade.'

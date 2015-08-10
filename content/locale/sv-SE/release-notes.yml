@@ -5,6 +5,16 @@ sv-SE:
       note_0: 'This is the development build. Use at your own discretion. Please view <linkSVN>commit history</linkSVN> at Google Code for details of the changes.'
     beta:
       note_0: 'Detta är BETA -versionen av nästa utgåva. Hjälp gärna till att översätta denna version via vårt superlätta översättningsverktyg på <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.15.2.1:
+      important: '<header>Viktiga meddelanden</header>'
+      signed: Alla tillägg till Firefox måste nu vara digitalt signerade av Mozilla. Detta är till stor del bara en signerad uppdatering för att säkerställa att Foxtrick är kompatibelt.
+      signing: 'Due to disruptions caused by mandatory add-on signing policy we chose to unlist Foxtrick from <linkAMO>Mozilla add-ons</linkAMO> portal. More details in the <linkUnlistPost>Global Foxtrick announcement</linkUnlistPost>.'
+      bugs: '<header>Buggfixar</header>'
+      weatherSE: 'Listing weather SE players in match timeline was broken in <module>MatchLineupFixes</module> due to HT changes. The problem is now fixed.'
+      other: '<header>Andra ändringar</header>'
+      sandbox: Added support for the upcoming Hattrick match sandbox feature.
+      compact_lineups: 'Saved lineup names will now be compacted with <module>MatchOrderInterface</module>. This will allow you to use more saved lineups without running into space issues.'
+      and_more: Flera andra mindre ändringar och korrigeringar.
     0.15.2:
       important: '<header>Viktiga meddelanden</header>'
       links: '<module>Links</module> funktionalitet har gjorts om för att fixa en del buggar samt för att förbättra och förenkla underhåll. Fler etiketter kommer nu att finnas tillgängliga för att skapa egna länkar. En del etiketter har döpts om för att bättre reflektera deras verkliga innebörd. Vänligen rensa först din Foxtrick cache, testa dina egna länkar och uppdatera dem vid behov därefter.'
@@ -351,7 +361,7 @@ sv-SE:
       note_10: Matchreport now shows tooltips for all events
       note_11: Links resources moved to yet another server
       note_12: Some internal changes to improve AMO compliance
-      note_13: "A huge ammount of translation updates by: aegeansailor, brauxx, Mod-Utku, ebitechv, Polytropos, gkon13, SOLARIS1973, Fieras, margaale, ipefix, stephan.cardot, OmaniMilani, LambdaB, SI-CH, Convincedd, margaale, ljushaff, serjhanti, playMaker, CoRrRan, Aristodemos, margaale, spider007, FeritAkarsu and probably some people i missed, please drop us a msg if you feel unrespected, it's kinda hard to keep tracking all of you guys. This is awesome! Thanks to all of you!"
+      note_13: 'Massor av uppdaterade översättningar av bl.a: aegeansailor, brauxx, Mod-Utku, ebitechv, Polytropos, gkon13, SOLARIS1973, Fieras, margaale, ipefix, stephan.cardot, OmaniMilani, LambdaB, SI-CH, Convincedd, margaale, ljushaff, serjhanti, playMaker, CoRrRan, Aristodemos, margaale, spider007, FeritAkarsu och garanterat en massa andra personer jag missar. Hör gärna av dig om du inte känner dig uppmärksammad. Det är inte lätt att hålla koll på er allihop. Det här är häftigt! Tack till er alla!'
     0.9.0.4:
       note_0: Links resources moved to another server
       note_1: "Added basic english event texts to the icons' titles in MatchReportFormat"
