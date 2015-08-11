@@ -799,7 +799,9 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		if (Foxtrick.Pages.Match.isYouth(doc))
 			return;
 
-		if (Foxtrick.Pages.Match.getLiveContainer(doc))
+		var inProgress = Foxtrick.Pages.Match.inProgress(doc);
+		var isLive = Foxtrick.isPage(doc, 'matchesLive');
+		if (inProgress || isLive)
 			return;
 
 		var team = 'away';
@@ -991,13 +993,18 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 
 	flipStaminaBar: function(doc, playerDivs) {
 		var module = this;
-		var homePlayers = module.getPlayersWithStamina(doc, 'home');
-		var awayPlayers = module.getPlayersWithStamina(doc, 'away');
-		var players = Foxtrick.concat(homePlayers, awayPlayers);
 		var playersById = {};
-		Foxtrick.forEach(function(p) {
-			playersById[p.PlayerId] = p;
-		}, players);
+
+		var inProgress = Foxtrick.Pages.Match.inProgress(doc);
+		var isLive = Foxtrick.isPage(doc, 'matchesLive');
+		if (!isLive && !inProgress) {
+			var homePlayers = module.getPlayersWithStamina(doc, 'home');
+			var awayPlayers = module.getPlayersWithStamina(doc, 'away');
+			var players = Foxtrick.concat(homePlayers, awayPlayers);
+			Foxtrick.forEach(function(p) {
+				playersById[p.PlayerId] = p;
+			}, players);
+		}
 
 		Foxtrick.forEach(function(playerDiv) {
 			var ftdiv = Foxtrick.createFeaturedElement(doc, module, 'div');
