@@ -30,10 +30,10 @@ es-ES:
       volume: 'Un deslizador de volumen del sonido global de Foxtrick ha sido añadido en la <FTlinkMainTab>sección de ajustes generales</FTlinkMainTab>.'
       mlt_upgrade: '<module>MatchLineupTweaks</module> módulo ahora debería mostrar los números de jugador en la alineación del partido. Además, vereis la predicción de habilidades de resistencia (si está disponible) cuando se pasa el ratón sobre el valor de energía del jugador.'
       mrt_ratings: '<module>Calificaciones</module> módulo se integró con <module>MatchRatingsTweaks</module> y ahora tiene una funcionalidad limitada incluso en HT-Live (sólo para HT supporters).'
-      copy_ratings: '<module>CopyRatings</module> fue reescrito y ahora puede copiar clasificaciones basadas en minutos desde la ficha de información de calificación, incluso en HT-Live.'
+      copy_ratings: '<module>CopyRatings</module> fue reescrito y ahora puede copiar calificaciones basadas en minutos desde la ficha de información de calificaciones, incluso en HT-Live.'
       monitor_update: '<module>MyMonitor</module> ahora incluye clasificación de equipo más inteligentes y la capacidad de añadir partidos a HT-Live basado en este tipo.'
-      promote_age: '<module>YouthPromotes</module> ahora muestra la edad del jugador en el día de la promoción.'
-      export_live: 'Añadido un botón para exportar la lista de partido HT-Live como un enlace en <module>ReLiveLinks</module>.'
+      promote_age: '<module>YouthPromotes</module> ahora muestra la edad del jugador en el día de su promoción.'
+      export_live: 'Añadido un botón para exportar la lista de tu partido en HT-Live como un enlace en <module>ReLiveLinks</module>.'
       match_icons: 'Más iconos de eventos de partido fueron agregados a <module>MatchReportFormat</module>. Ahora debe cubrir todos los eventos importantes.'
       retro_cups: 'Íconos de copa retro fueron agregados para los nuevos tipos de copa en <module>CustomMedals</module>.'
       and_more: Otros pequeños cambios y correcciones.
@@ -53,13 +53,13 @@ es-ES:
       new: '<header>Nuevos módulos</header>'
       promotion_reminder: '<module>AddPromotionReminder</module>: añade un botón para crear un recordatorio para el día cuando podeis promover un jugador juvenil'
       bugs: '<header>Corrección de errores</header>'
-      breakages: Foxtrick ahora debería funcionar correctamente en Firefox y Safari 7.1 + para Android.
+      breakages: Foxtrick ahora debería funcionar correctamente en Firefox y Safari 7.1+ para Android.
       https: Foxtrick debería funcionar correctamente de nuevo en Hattrick Stage.
       avatars: 'Caché de avatar de jugador en <module>MatchOrderInterface</module> ahora se actualizará automáticamente cuando lleguen nuevos jugadores a vuestro equipo.'
       fans: 'Evolución de fanáticos en <module>ventiladores</module> ahora se calcularán correctamente cuando vuestro equipo es promovido o degradado.'
       player_stats: '<module>PlayerStatsTrainingWeek</module> debería reconocer correctamente amistosos de fin de semana.'
       other: '<header>Otros cambios</header>'
-      transfer_compare: 'MedianTransferPrice fue renombrada a <module>TransferComparePlayers</module>. Cálculos de TSI añadidos y una habilidad para recoger más datos del jugador CHPP. Muestra la diferencia de precio en la página de la historia de transferencia de jugador.'
+      transfer_compare: 'MedianTransferPrice fue renombrada a <module>TransferComparePlayers</module>. Cálculos de TSI añadidos y una habilidad para recoger más datos del jugador desde CHPP. Muestra la diferencia de precio en la página de la historia de transferencia de jugador.'
       player_positions: 'Mejora <module>PlayerPositionsEvaluations</module> y añadidos muchas opciones donde puede elegir incluir forma, fuerza, lealtad, experiencia y efectos de lesiones en los cálculos.'
       country_list: '<module>CountryList</module> ahora puede cambiar nombres de países en la colección de banderas. Es posible utilizar nombres en inglés en lugar de nativos.'
       best_player_position: 'BestPlayerPosition módulo se fusionó con <module>PlayerPositionsEvaluations</module>.'
@@ -190,7 +190,7 @@ es-ES:
     0.12.1.1:
       note_0: Actualizaciones de la traducción.
       note_1: 'Se ha aumentado el rendimiento de <module>MainMenuDropDown</module>.'
-      note_2: Mejoras de menor importancia de la accesibilidad.
+      note_2: Mejoras de menor importancia de accesibilidad.
       note_3: 'Se ha arreglado: <module>CopyPosting</module> y <module>StaffMarker</module>.'
       note_4: Se han arreglado algunos problemas relacionados con el sonido.
       note_5: Se ha arreglado un problema de Android por el cual Foxtrick no funcionaba en algunos casos.

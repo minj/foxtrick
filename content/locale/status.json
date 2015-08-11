@@ -102,11 +102,11 @@
 			"code": "zh-CN",
 			"name": "Chinese Simplified",
 			"phrases": "1893",
-			"translated": "1639",
-			"translated_progress": "76",
+			"translated": "1666",
+			"translated_progress": "77",
 			"words": "13544",
 			"words_approved": "0",
-			"words_translated": "10299"
+			"words_translated": "10476"
 		},
 		{
 			"approved": "1890",
@@ -145,15 +145,15 @@
 			"words_translated": "13156"
 		},
 		{
-			"approved": "1398",
-			"approved_progress": "74",
+			"approved": "1449",
+			"approved_progress": "75",
 			"code": "nl",
 			"name": "Dutch",
 			"phrases": "1893",
 			"translated": "1887",
 			"translated_progress": "99",
 			"words": "13544",
-			"words_approved": "10024",
+			"words_approved": "10192",
 			"words_translated": "13429"
 		},
 		{
@@ -342,11 +342,11 @@
 			"code": "it",
 			"name": "Italian",
 			"phrases": "1893",
-			"translated": "1850",
-			"translated_progress": "96",
+			"translated": "1882",
+			"translated_progress": "97",
 			"words": "13544",
 			"words_approved": "0",
-			"words_translated": "13070"
+			"words_translated": "13268"
 		},
 		{
 			"approved": "0",
@@ -474,11 +474,11 @@
 			"code": "pl",
 			"name": "Polish",
 			"phrases": "1893",
-			"translated": "1886",
+			"translated": "1887",
 			"translated_progress": "99",
 			"words": "13544",
 			"words_approved": "0",
-			"words_translated": "13426"
+			"words_translated": "13447"
 		},
 		{
 			"approved": "0",
@@ -582,11 +582,11 @@
 			"code": "es-AR",
 			"name": "Spanish, Argentina",
 			"phrases": "1893",
-			"translated": "1892",
-			"translated_progress": "99",
+			"translated": "1893",
+			"translated_progress": "100",
 			"words": "13544",
 			"words_approved": "0",
-			"words_translated": "13522"
+			"words_translated": "13544"
 		},
 		{
 			"approved": "0",
@@ -594,11 +594,11 @@
 			"code": "es-CR",
 			"name": "Spanish, Costa Rica",
 			"phrases": "1893",
-			"translated": "1886",
-			"translated_progress": "99",
+			"translated": "1893",
+			"translated_progress": "100",
 			"words": "13544",
 			"words_approved": "0",
-			"words_translated": "13426"
+			"words_translated": "13544"
 		},
 		{
 			"approved": "1893",

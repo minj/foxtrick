@@ -7,6 +7,7 @@ pl:
       note_0: 'To jest wersja beta następnego wydania. Proszę pomóż w tłumaczeniu tej wersji na naszej super łatwej stronie tłumaczeń <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.15.2.1:
       important: '<header>Ważne ogłoszenia</header>'
+      signed: Obecnie wszystkie dodatki Firefoxa muszą być podpisane cyfrowo przez Mozillę. Jest to głównie aktualizacja podpisów w celu zapewnienia zgodności Foxtricka.
       bugs: '<header>Poprawki błędów</header>'
       other: '<header>Inne zmiany</header>'
       and_more: Różne inne małe zmiany i poprawki.

@@ -10,6 +10,7 @@ es-AR:
       signed: Todos los complementos de Firefox ahora necesitan ser firmados digitalmente por Mozilla. Esta es principalmente una actualización para garantizar la compatibilidad de Foxtrick.
       signing: 'Debido a las interrupciones causadas por la política de firma complementos obligatorios elegimos ocultar Foxtrick del portal <linkAMO>de add-ons de Mozilla</linkAMO>. Más detalles en el <linkUnlistPost>anuncio Global de Foxtrick</linkUnlistPost>.'
       bugs: '<header>Corrección de errores</header>'
+      weatherSE: 'El listado de jugadores SE en la línea de tiempo del partido se dividió en <module>MatchLineupFixes</module> debido a los cambios de HT. Ahora se ha solucionado el problema.'
       other: '<header>Otros cambios</header>'
       sandbox: Añadido soporte para la próxima función de sandbox Hattrick match.
       compact_lineups: |

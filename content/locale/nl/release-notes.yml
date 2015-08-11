@@ -275,7 +275,7 @@ nl:
       note_40: '<strong>En nog veel meer</strong>'
     0.10.0:
       note_0: 'NEW: <module>TransferHistoryFilters</module>: Staat toe om transfers te filteren op alleen verkochte spelers. Alleen beschikbaar voor je team historie. Niet voor spelers (staat standaard aan)'
-      note_1: 'NEW: <module>FriendlyPool</module>: Colorizes visited countries in the friendly pool (supporters only, default on)'
+      note_1: 'Nieuw: <module>FriendlyPool</module>: Geeft de landen die zijn bezocht een kleur (supporter feature, die standaard aan staat)'
       note_2: 'NEW: <module>HTEVPrediction</module>: Displays match odds for league games provided by <linkHTEV>HTEV</linkHTEV> (default on)'
       note_3: '<module>PlayerStatsExperience</module>: A fancy new version with much more details and colored feedback if the data is reliable. (Thanks to SeanConnery (7751762) for testing the colors for red-green blind users)'
       note_4: '<module>MatchOrderInterface</module>: Possibility to clone or clone and convert an existing order. Players will not be filled in on purpose.'
@@ -337,7 +337,7 @@ nl:
       note_22: '<header>For Google Chrome users</header>'
       note_23: "Seems that Chrome 18's optional permissions system is buggy. Feature which require those (HTY staffmarker and EmbedMedia) might not work currently."
     0.9.1:
-      note_0: 'HTMS: tactics used again'
+      note_0: 'HTMS: Tactieken worden weer gebruikt'
       note_1: 'Tablesort: sort floating numbers'
     0.9.0.5:
       note_0: 'New module <module>SafeForWork</module> to camouflage Hattrick tabs by changing icon and description'
@@ -347,7 +347,7 @@ nl:
       note_4: '<module>MatchSimulator</module>: Copy ratings fixed and some tournament support'
       note_5: Added option for alternative player specialties icons in the main tab
       note_6: Moved the highlight feature toggle to the FoxTrick toolbar icon resp. preferences main tab
-      note_7: module MatchTables removed since no one used it
+      note_7: module MatchTables verwijderd omdat deze niet gebruikt werd
       note_8: 'MatchSimulator stamina effect: show texts rounded and values not rounded'
       note_9: 'preference linking "foxtrick://"-style fixed'
       note_10: Matchreport now shows tooltips for all events
