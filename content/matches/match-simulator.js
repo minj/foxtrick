@@ -871,6 +871,12 @@ Foxtrick.modules.MatchSimulator = {
 									loadingMatch = null;
 								}
 
+								if (!selectedMatchXML.node('HomeGoals')) {
+									// game not played
+									select.value = -1;
+									return;
+								}
+
 								// update match select
 								if (isNew) {
 									var option = doc.createElement('option');
@@ -981,7 +987,11 @@ Foxtrick.modules.MatchSimulator = {
 
 								var tacticLevelLabelOther =
 									doc.getElementById('tacticLevelLabelOther');
-								tacticLevelLabelOther.parentNode.removeChild(tacticLevelLabelOther);
+
+								if (tacticLevelLabelOther) {
+									var labelParent = tacticLevelLabelOther.parentNode;
+									labelParent.removeChild(tacticLevelLabelOther);
+								}
 
 								updateBarsAndHTMSPrediction();
 
