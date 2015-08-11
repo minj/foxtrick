@@ -64,6 +64,7 @@ Foxtrick.modules.MatchSimulator = {
 		var teamNames = new Array(2); // global var to be used for HTMS
 		// matchId automatically imported when loading the lineup of already played match
 		var oldLineupId = null;
+		var oldLineupSource = 'Hattrick';
 
 		var isHTOIntegrated = Foxtrick.Pages.Match.isHTOIntegrated(doc);
 		var useRatings = Foxtrick.Prefs.isModuleEnabled('Ratings') &&
@@ -1020,12 +1021,6 @@ Foxtrick.modules.MatchSimulator = {
 						var addMatchText = doc.createElement('input');
 						addMatchText.id = 'addMatchText';
 						addMatchText.type = 'text';
-						if (oldLineupId) {
-							// FIXME: debug this for HTO etc
-							addMatchText.value = oldLineupId;
-							Foxtrick.removeClass(addMatchDiv, 'hidden');
-							Foxtrick.addClass(select, 'hidden');
-						}
 						addMatchText.size = 10;
 						addMatchDiv.appendChild(addMatchText);
 
@@ -1066,6 +1061,15 @@ Foxtrick.modules.MatchSimulator = {
 						addMatchCheckLabel.textContent =
 							Foxtrick.L10n.getString('matchOrder.tournamentMatch');
 						addMatchDiv.appendChild(addMatchCheckLabel);
+
+						if (oldLineupId) {
+							addMatchText.value = oldLineupId;
+							if (oldLineupSource === 'HTOIntegrated')
+								addMatchCheck.checked = true;
+
+							Foxtrick.removeClass(addMatchDiv, 'hidden');
+							Foxtrick.addClass(select, 'hidden');
+						}
 
 						var addMatchButtonOk = doc.createElement('input');
 						addMatchButtonOk.id = 'addMatchButton';
@@ -1131,10 +1135,28 @@ Foxtrick.modules.MatchSimulator = {
 				return;
 
 			oldLineupId = target.id.match(/matchlineup_(\d+)/)[1];
+			oldLineupSource = 'Hattrick';
+			var matchIcon = target.querySelector('.matchTypeIcon img');
+			var matchClass = matchIcon.className;
+			var type = Foxtrick.Pages.Matches.getTypeFromIcon(matchClass);
+			if (type) {
+				var isHTO = Foxtrick.any(function(htoType) {
+					return htoType === type;
+				}, Foxtrick.Pages.Matches.HTO);
+				if (isHTO)
+					oldLineupSource = 'HTOIntegrated';
+			}
+			else {
+				Foxtrick.error('Failed to detect matchTypeIcon type: ' + matchClass);
+			}
 
 			var addMatchText = doc.getElementById('addMatchText');
 			if (addMatchText) {
 				addMatchText.value = oldLineupId;
+
+				var addMatchCheck = doc.getElementById('addMatchIsHTO');
+				addMatchCheck.checked = oldLineupSource === 'HTOIntegrated';
+
 				Foxtrick.removeClass(doc.getElementById('addMatchDiv'), 'hidden');
 				Foxtrick.addClass(doc.getElementById('ft-matchSelect'), 'hidden');
 			}
