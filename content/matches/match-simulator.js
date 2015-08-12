@@ -179,13 +179,7 @@ Foxtrick.modules.MatchSimulator = {
 			var updatePctgDiff = target.id != 'ft_attVsDef_check';
 
 			// Foxtrick.log('showLevelNumbers')
-			var posLabel = fieldOverlay.getElementsByClassName('posLabel');
 			var tacticLevelLabel = doc.getElementById('tacticLevelLabel');
-
-			var teamTacticsDiv = doc.getElementById('tactics').cloneNode(true);
-			teamTacticsDiv.removeChild(teamTacticsDiv.getElementsByClassName('speechLevel')[0]);
-			teamTacticsDiv.removeChild(teamTacticsDiv.getElementsByTagName('select')[0]);
-			var teamTacticsTitle = teamTacticsDiv.textContent.trim();
 
 			var attVsDef = doc.getElementById('ft_attVsDef_check');
 			Foxtrick.Prefs.setBool('MatchSimulator.attVsDefOn', attVsDef.checked);
@@ -193,256 +187,6 @@ Foxtrick.modules.MatchSimulator = {
 			var realProb = doc.getElementById('ft_realProbabilities_check');
 			Foxtrick.Prefs.setBool('MatchSimulator.realProbabilitiesOn', realProb.checked);
 
-			// change bars to represent percentage of ratings comparison between predicted ratings
-			// and selected other team's match ratings and update HTMSPrediction
-			var updateBarsAndHTMSPrediction = function() {
-				if (updateHTMS && useHTMS)
-					module.updateHTMS(doc, teamNames, currentRatings, currentRatingsOther);
-
-				if (useRatings)
-					module.addRatings(doc, currentRatings, currentRatingsOther);
-
-				var attVsDefCheck = doc.getElementById('ft_attVsDef_check');
-				var realProbabilitiesCheck = doc.getElementById('ft_realProbabilities_check');
-				var doRealProb = attVsDefCheck.checked && realProbabilitiesCheck.checked;
-				var realProbTitle = Foxtrick.L10n.getString('matchOrder.probability.title');
-
-				var percentImages = fieldOverlay.getElementsByClassName('percentImage');
-				Foxtrick.forEach(function(percentImage, i) {
-					var percentNumber;
-					if (typeof currentRatingsOther[i] !== 'undefined') {
-						// change to zero-based ratings
-						var curr = currentRatings[i] ? currentRatings[i] - 1 : 0;
-						var other = currentRatingsOther[i] ? currentRatingsOther[i] - 1 : 0;
-						var percent = curr / (curr + other);
-
-						var oldVal;
-						if (doRealProb) {
-							oldVal = Math.floor(percent * 100) + '%';
-							if (i < 3) {
-								// defence
-								// [post=15766691.221]
-								percent = Foxtrick.Predict.defence(percent);
-							}
-							else if (i == 3) {
-								// midfield
-								// [post=15766691.242]
-								percent = Foxtrick.Predict.possession(percent);
-							}
-							else {
-								// attack
-								// [post=15766691.221]
-								percent = Foxtrick.Predict.attack(percent);
-							}
-						}
-
-						var title = Math.floor(percent * 100) + '%';
-						var barPos;
-						if (Foxtrick.util.layout.isStandard(doc))
-							barPos = Math.floor(-315 + (315 - 156) * percent);
-						else
-							barPos = Math.floor(-235 + (235 - 116) * percent);
-						percentImage.style.backgroundPosition = barPos + 'px';
-						percentImage.title = title;
-						percentImage.alt = title;
-						Foxtrick.removeClass(percentImage, 'hidden');
-
-						if (percentImage.nextSibling.className != 'percentNumber') {
-							percentNumber = doc.createElement('div');
-							percentNumber.textContent = title;
-							percentNumber.title = doRealProb ?
-								realProbTitle.replace(/%s/, oldVal) : '';
-							percentNumber.className = 'percentNumber';
-							var before = percentImage.nextSibling;
-							percentImage.parentNode.insertBefore(percentNumber, before);
-						}
-						else {
-							percentNumber = percentImage.nextSibling;
-							percentNumber.textContent = title;
-							percentNumber.title = doRealProb ?
-								realProbTitle.replace(/%s/, oldVal) : '';
-
-							if (updatePctgDiff) {
-								var newPctg = Math.floor(percent * 100);
-								var oldPercent = parseFloat(percentNumber.getAttribute('percent'));
-								var oldPctg = Math.floor(oldPercent * 100);
-								var diff = newPctg - oldPctg;
-
-								var span = doc.createElement('span');
-								span.textContent = ' (' + diff + '%)';
-								if (diff < 0) {
-									span.className = 'ft-colorLower ft-percentChange';
-									percentNumber.appendChild(span);
-								}
-								else if (diff > 0) {
-									span.className = 'ft-colorHigher ft-percentChange';
-									percentNumber.appendChild(span);
-								}
-							}
-						}
-						percentNumber.setAttribute('percent', percent);
-					}
-					else {
-						if (percentImage.nextSibling &&
-						    percentImage.nextSibling.className == 'percentNumber') {
-							percentNumber = percentImage.nextSibling;
-							percentNumber.parentNode.removeChild(percentNumber);
-						}
-						Foxtrick.addClass(percentImage[i], 'hidden');
-					}
-				}, percentImages);
-			};
-
-			var updateOtherRatings = function(selectedMatchXML, otherTeamID, homeAway) {
-				// select team node
-				var teamLink = Foxtrick.Pages.All.getBreadCrumbs(doc)[0];
-				var thisTeamID = Foxtrick.util.id.getTeamIdFromUrl(teamLink.href);
-
-				var HomeTeamID = selectedMatchXML.num('HomeTeamID');
-				var AwayTeamID = selectedMatchXML.num('AwayTeamID');
-
-				var doHome = true;
-				if (homeAway == 'away' || // chose away
-				    (homeAway != 'home' && // auto detect away
-				     (otherTeamID == AwayTeamID || thisTeamID == HomeTeamID || // one of the teams
-				      isHome && otherTeamID != HomeTeamID && thisTeamID != AwayTeamID)
-				      // none of the teams match + playing home
-				    )) {
-					doHome = false;
-				}
-
-				var teamNode;
-				if (doHome) {
-					teamNode = selectedMatchXML.node('HomeTeam');
-					teamNames[1] = selectedMatchXML.text('HomeTeamName');
-				}
-				else {
-					teamNode = selectedMatchXML.node('AwayTeam');
-					teamNames[1] = selectedMatchXML.text('AwayTeamName');
-				}
-				// get ratings
-				var selectedRatings = [
-					{ type: 'RatingLeftAtt' },
-					{ type: 'RatingMidAtt' },
-					{ type: 'RatingRightAtt' },
-					{ type: 'RatingMidfield' },
-					{ type: 'RatingLeftDef' },
-					{ type: 'RatingMidDef' },
-					{ type: 'RatingRightDef' },
-					{ type: 'TacticType' },
-					{ type: 'TacticSkill' },
-				];
-
-				// get ratings and ratings text
-				Foxtrick.forEach(function(rating) {
-					var htValue = selectedMatchXML.num(rating.type, teamNode);
-					if (rating.type == 'TacticType') {
-						rating.value = htValue;
-						rating.text = Foxtrick.L10n.getTacticById(htValue);
-					}
-					else if (rating.type == 'TacticSkill') {
-						rating.value = htValue;
-						rating.text = Foxtrick.L10n.getLevelByTypeAndValue('levels', htValue);
-					}
-					else {
-						// adjust scale: non-existent has no sublevels
-						rating.value = Foxtrick.Math.hsToFloat(htValue, true);
-						rating.text = Foxtrick.L10n.getFullLevelByValue(rating.value);
-					}
-				}, selectedRatings);
-
-				// display other teams ratings
-				var attVsDefCheck = doc.getElementById('ft_attVsDef_check');
-				var ratingBoxes = doc.getElementsByClassName('ratingInnerBox');
-				for (var i = 0; i < ratingBoxes.length; ++i) {
-					var j = attVsDefCheck.checked ? i : ratingBoxes.length - 1 - i;
-					// reverse order?
-
-					var fullLevel = selectedRatings[j].value;
-					var levelText = '[' + fullLevel.toFixed(2) + ']';
-
-					var label, overlayOther;
-
-					var id = 'ft-full-level-other' + i;
-					var div = doc.getElementById(id);
-					if (div) {
-						// there was another match selected before. show ratings and differences
-						div.textContent = levelText;
-						if (!updateOther) {
-							var diff = fullLevel - currentRatingsOther[j];
-							var span = doc.createElement('span');
-							span.textContent = ' (' + diff.toFixed(2) + ')';
-							if (diff < 0) {
-								span.className = 'ft-colorLower ft-otherChange';
-								div.appendChild(span);
-							}
-							else if (diff > 0) {
-								span.className = 'ft-colorHigher ft-otherChange';
-								div.appendChild(span);
-							}
-						}
-						label = ratingBoxes[i].querySelector('.posLabelOther');
-						label.textContent = posLabel[6 - j].textContent;
-						overlayOther = ratingBoxes[i].querySelector('.overlayRatingsOther');
-					}
-					else {
-						// no other match ratings had been shown
-						// add other rating containers and their ratings
-						var otherWrapper = doc.createElement('div');
-						otherWrapper.className = 'ft-otherWrapper';
-
-						label = doc.createElement('div');
-						label.className = 'posLabelOther';
-						otherWrapper.appendChild(label);
-						label.textContent = attVsDefCheck.checked ? posLabel[6 - i].textContent :
-							posLabel[i].textContent; // reverse order?
-
-						overlayOther = doc.createElement('div');
-						overlayOther.className = 'overlayRatingsOther';
-						otherWrapper.appendChild(overlayOther);
-
-						var overlayNumOther = doc.createElement('div');
-						overlayNumOther.id = id;
-						overlayNumOther.className = 'overlayRatingsNumOther';
-						overlayNumOther.textContent = levelText;
-						otherWrapper.appendChild(overlayNumOther);
-
-						ratingBoxes[i].appendChild(otherWrapper);
-					}
-					overlayOther.textContent = selectedRatings[j].text;
-
-					// README: index must match to fullLevel definition above
-					currentRatingsOther[j] = fullLevel;
-				}
-
-				// add tactics
-				var TACTIC_LABEL_TMPL = '{label}{type} / {levelLabel}: {level} ({num})';
-				var tacticLevelLabel = doc.getElementById('tacticLevelLabel');
-				var tacticLevelLabelOther = doc.getElementById('tacticLevelLabelOther');
-				if (!tacticLevelLabelOther) {
-					tacticLevelLabelOther = doc.createElement('div');
-					tacticLevelLabelOther.id = 'tacticLevelLabelOther';
-					Foxtrick.insertAfter(tacticLevelLabelOther, tacticLevelLabel);
-				}
-				var tacticLevelLabelTitle = tacticLevelLabel.textContent.split(':')[0];
-				currentRatingsOther[7] = selectedRatings[7].value;
-				currentRatingsOther[8] = selectedRatings[8].value;
-
-				var info = {
-					label: teamTacticsTitle,
-					levelLabel: tacticLevelLabelTitle,
-					type: selectedRatings[7].text,
-					level: selectedRatings[8].text,
-					num: selectedRatings[8].value,
-				};
-				tacticLevelLabelOther.textContent = Foxtrick.format(TACTIC_LABEL_TMPL, info);
-
-				// remove my rating changes for clarity
-				var ratingChanges = fieldOverlay.getElementsByClassName('ft-ratingChange');
-				Foxtrick.forEach(function(change) {
-					change.textContent = '';
-				}, ratingChanges);
-			};
 			// get levels from ratings text and display them
 			var ratingInnerBoxes = doc.getElementsByClassName('ratingInnerBox');
 			Foxtrick.forEach(function(box, i) {
@@ -520,10 +264,23 @@ Foxtrick.modules.MatchSimulator = {
 			if (!matchId)
 				return;
 
-			updateBarsAndHTMSPrediction();
+			var htmsOpts = {
+				updateHTMS: updateHTMS,
+				updatePctgDiff: updatePctgDiff,
+				teamNames: teamNames,
+			};
+			module.updateBarsAndHTMS(doc, currentRatings, currentRatingsOther, htmsOpts);
 
-			if (updateOther && currentMatchXML)
-				updateOtherRatings(currentMatchXML, currentOtherTeamID, currentHomeAway);
+			if (updateOther && currentMatchXML) {
+				var otherOpts = {
+					teamId: currentOtherTeamID,
+					homeAway: currentHomeAway,
+					isHome: isHome,
+					update: updateOther,
+					teamNames: teamNames,
+				};
+				module.updateOtherRatings(doc, currentRatingsOther, currentMatchXML, otherOpts);
+			}
 
 			// keep it visible till closed
 			Foxtrick.addClass(fieldOverlay, 'visible');
@@ -703,9 +460,23 @@ Foxtrick.modules.MatchSimulator = {
 								currentMatchXML = selectedMatchXML;
 								currentHomeAway = homeAway;
 								currentOtherTeamID = otherTeamID;
-								updateOtherRatings(selectedMatchXML, otherTeamID, homeAway);
+								var otherOpts = {
+									teamId: otherTeamID,
+									homeAway: homeAway,
+									isHome: isHome,
+									update: updateOther,
+									teamNames: teamNames,
+								};
+								module.updateOtherRatings(doc, currentRatingsOther,
+								                          selectedMatchXML, otherOpts);
 
-								updateBarsAndHTMSPrediction();
+								var htmsOpts = {
+									updateHTMS: updateHTMS,
+									updatePctgDiff: updatePctgDiff,
+									teamNames: teamNames,
+								};
+								module.updateBarsAndHTMS(doc, currentRatings,
+								                         currentRatingsOther, htmsOpts);
 							});
 						};
 
@@ -785,8 +556,14 @@ Foxtrick.modules.MatchSimulator = {
 									labelParent.removeChild(tacticLevelLabelOther);
 								}
 
-								updateBarsAndHTMSPrediction();
+								var htmsOpts = {
+									updateHTMS: updateHTMS,
+									updatePctgDiff: updatePctgDiff,
+									teamNames: teamNames,
+								};
 
+								module.updateBarsAndHTMS(doc, currentRatings,
+								                         currentRatingsOther, htmsOpts);
 								return;
 							}
 							// add a matchId manually
@@ -1139,6 +916,114 @@ Foxtrick.modules.MatchSimulator = {
 		var copied = Foxtrick.L10n.getString('copy.ratings.copied');
 		Foxtrick.util.note.add(doc, copied, 'ft-ratings-copy-note', { to: target });
 	},
+	// change bars to represent percentage of ratings comparison between predicted ratings
+	// and selected other team's match ratings and update HTMSPrediction
+	updateBarsAndHTMS: function(doc, ratings, ratingsOther, opts) {
+		var module = this;
+
+		var updateHTMS = opts.updateHTMS;
+		var updatePctgDiff = opts.updatePctgDiff;
+		var teamNames = opts.teamNames;
+
+		var useHTMS = Foxtrick.Prefs.isModuleOptionEnabled('MatchSimulator', 'HTMSPrediction');
+		var useRatings = Foxtrick.Prefs.isModuleEnabled('Ratings') &&
+			Foxtrick.Prefs.isModuleOptionEnabled('MatchSimulator', 'UseRatingsModule');
+
+		if (updateHTMS && useHTMS)
+			module.updateHTMS(doc, ratings, ratingsOther, teamNames);
+
+		if (useRatings)
+			module.addRatings(doc, ratings, ratingsOther);
+
+		var attVsDefCheck = doc.getElementById('ft_attVsDef_check');
+		var realProbabilitiesCheck = doc.getElementById('ft_realProbabilities_check');
+		var doRealProb = attVsDefCheck.checked && realProbabilitiesCheck.checked;
+		var realProbTitle = Foxtrick.L10n.getString('matchOrder.probability.title');
+
+		var fieldOverlay = doc.getElementById(module.FIELD_OVERLAY_ID);
+		var percentImages = fieldOverlay.getElementsByClassName('percentImage');
+		Foxtrick.forEach(function(percentImage, i) {
+			var percentNumber;
+			if (typeof ratingsOther[i] !== 'undefined') {
+				// change to zero-based ratings
+				var curr = ratings[i] ? ratings[i] - 1 : 0;
+				var other = ratingsOther[i] ? ratingsOther[i] - 1 : 0;
+				var percent = curr / (curr + other);
+
+				var oldVal;
+				if (doRealProb) {
+					oldVal = Math.floor(percent * 100) + '%';
+					if (i < 3) {
+						// defence
+						// [post=15766691.221]
+						percent = Foxtrick.Predict.defence(percent);
+					}
+					else if (i == 3) {
+						// midfield
+						// [post=15766691.242]
+						percent = Foxtrick.Predict.possession(percent);
+					}
+					else {
+						// attack
+						// [post=15766691.221]
+						percent = Foxtrick.Predict.attack(percent);
+					}
+				}
+
+				var title = Math.floor(percent * 100) + '%';
+				var barPos;
+				if (Foxtrick.util.layout.isStandard(doc))
+					barPos = Math.floor(-315 + (315 - 156) * percent);
+				else
+					barPos = Math.floor(-235 + (235 - 116) * percent);
+				percentImage.style.backgroundPosition = barPos + 'px';
+				percentImage.title = title;
+				percentImage.alt = title;
+				Foxtrick.removeClass(percentImage, 'hidden');
+
+				if (percentImage.nextSibling.className != 'percentNumber') {
+					percentNumber = doc.createElement('div');
+					percentNumber.textContent = title;
+					percentNumber.title = doRealProb ? realProbTitle.replace(/%s/, oldVal) : '';
+					percentNumber.className = 'percentNumber';
+					var before = percentImage.nextSibling;
+					percentImage.parentNode.insertBefore(percentNumber, before);
+				}
+				else {
+					percentNumber = percentImage.nextSibling;
+					percentNumber.textContent = title;
+					percentNumber.title = doRealProb ? realProbTitle.replace(/%s/, oldVal) : '';
+
+					if (updatePctgDiff) {
+						var newPctg = Math.floor(percent * 100);
+						var oldPercent = parseFloat(percentNumber.getAttribute('percent'));
+						var oldPctg = Math.floor(oldPercent * 100);
+						var diff = newPctg - oldPctg;
+
+						var span = doc.createElement('span');
+						span.textContent = ' (' + diff + '%)';
+						if (diff < 0) {
+							span.className = 'ft-colorLower ft-percentChange';
+							percentNumber.appendChild(span);
+						}
+						else if (diff > 0) {
+							span.className = 'ft-colorHigher ft-percentChange';
+							percentNumber.appendChild(span);
+						}
+					}
+				}
+				percentNumber.setAttribute('percent', percent);
+			}
+			else {
+				if (percentImage.nextSibling &&
+				    percentImage.nextSibling.className == 'percentNumber') {
+					percentNumber = percentImage.nextSibling;
+					percentNumber.parentNode.removeChild(percentNumber);
+				}
+				Foxtrick.addClass(percentImage[i], 'hidden');
+			}
+		}, percentImages);
+	},
 	// updating or adding HTMS prediction based on rating prediction
 	// and selected match of another team
 	updateHTMS: function(doc, ratings, ratingsOther, teamNames) {
@@ -1211,6 +1096,167 @@ Foxtrick.modules.MatchSimulator = {
 			if (overlayHTMS)
 				overlayHTMS.textContent = '';
 		}
+	},
+	updateOtherRatings: function(doc, ratings, xml, opts) {
+		var module = this;
+
+		var teamId = opts.teamId; // opponent
+		var homeAway = opts.homeAway; // selected match
+		var isHome = opts.isHome; // simulated match
+		var update = opts.update;
+		var teamNames = opts.teamNames;
+
+		// select team node
+		var teamLink = Foxtrick.Pages.All.getBreadCrumbs(doc)[0];
+		var thisTeamID = Foxtrick.util.id.getTeamIdFromUrl(teamLink.href);
+
+		var HomeTeamID = xml.num('HomeTeamID');
+		var AwayTeamID = xml.num('AwayTeamID');
+
+		var doHome = true;
+		if (homeAway == 'away' || // chose away
+		    (homeAway != 'home' && // auto detect away
+		     (teamId == AwayTeamID || thisTeamID == HomeTeamID || // one of the teams
+		      isHome && teamId != HomeTeamID && thisTeamID != AwayTeamID)
+		      // none of the teams match + playing home
+		    )) {
+			doHome = false;
+		}
+
+		var teamNode;
+		if (doHome) {
+			teamNode = xml.node('HomeTeam');
+			teamNames[1] = xml.text('HomeTeamName');
+		}
+		else {
+			teamNode = xml.node('AwayTeam');
+			teamNames[1] = xml.text('AwayTeamName');
+		}
+		// get ratings
+		var selectedRatings = [
+			{ type: 'RatingLeftAtt' },
+			{ type: 'RatingMidAtt' },
+			{ type: 'RatingRightAtt' },
+			{ type: 'RatingMidfield' },
+			{ type: 'RatingLeftDef' },
+			{ type: 'RatingMidDef' },
+			{ type: 'RatingRightDef' },
+			{ type: 'TacticType' },
+			{ type: 'TacticSkill' },
+		];
+
+		// get ratings and ratings text
+		Foxtrick.forEach(function(rating) {
+			var htValue = xml.num(rating.type, teamNode);
+			if (rating.type == 'TacticType') {
+				rating.value = htValue;
+				rating.text = Foxtrick.L10n.getTacticById(htValue);
+			}
+			else if (rating.type == 'TacticSkill') {
+				rating.value = htValue;
+				rating.text = Foxtrick.L10n.getLevelByTypeAndValue('levels', htValue);
+			}
+			else {
+				// adjust scale: non-existent has no sublevels
+				rating.value = Foxtrick.Math.hsToFloat(htValue, true);
+				rating.text = Foxtrick.L10n.getFullLevelByValue(rating.value);
+			}
+		}, selectedRatings);
+
+		var fieldOverlay = doc.getElementById(module.FIELD_OVERLAY_ID);
+
+		// display other teams ratings
+		var attVsDefCheck = doc.getElementById('ft_attVsDef_check');
+		var ratingBoxes = doc.getElementsByClassName('ratingInnerBox');
+		for (var i = 0; i < ratingBoxes.length; ++i) {
+			var j = attVsDefCheck.checked ? i : ratingBoxes.length - 1 - i;
+			// reverse order?
+
+			var fullLevel = selectedRatings[j].value;
+			var levelText = '[' + fullLevel.toFixed(2) + ']';
+
+			var posLabel = fieldOverlay.getElementsByClassName('posLabel');
+			var label, overlayOther;
+
+			var id = 'ft-full-level-other' + i;
+			var div = doc.getElementById(id);
+			if (div) {
+				// there was another match selected before. show ratings and differences
+				div.textContent = levelText;
+				if (!update) {
+					var diff = fullLevel - ratings[j];
+					var span = doc.createElement('span');
+					span.textContent = ' (' + diff.toFixed(2) + ')';
+					if (diff < 0) {
+						span.className = 'ft-colorLower ft-otherChange';
+						div.appendChild(span);
+					}
+					else if (diff > 0) {
+						span.className = 'ft-colorHigher ft-otherChange';
+						div.appendChild(span);
+					}
+				}
+				label = ratingBoxes[i].querySelector('.posLabelOther');
+				label.textContent = posLabel[6 - j].textContent;
+				overlayOther = ratingBoxes[i].querySelector('.overlayRatingsOther');
+			}
+			else {
+				// no other match ratings had been shown
+				// add other rating containers and their ratings
+				var otherWrapper = doc.createElement('div');
+				otherWrapper.className = 'ft-otherWrapper';
+
+				label = doc.createElement('div');
+				label.className = 'posLabelOther';
+				otherWrapper.appendChild(label);
+				label.textContent = posLabel[6 - j].textContent;
+
+				overlayOther = doc.createElement('div');
+				overlayOther.className = 'overlayRatingsOther';
+				otherWrapper.appendChild(overlayOther);
+
+				var overlayNumOther = doc.createElement('div');
+				overlayNumOther.id = id;
+				overlayNumOther.className = 'overlayRatingsNumOther';
+				overlayNumOther.textContent = levelText;
+				otherWrapper.appendChild(overlayNumOther);
+
+				ratingBoxes[i].appendChild(otherWrapper);
+			}
+			overlayOther.textContent = selectedRatings[j].text;
+
+			// README: index must match to fullLevel definition above
+			ratings[j] = fullLevel;
+		}
+
+		// add tactics
+		var TACTIC_LABEL_TMPL = '{label}{type} / {levelLabel}: {level} ({num})';
+		var tacticLevelLabel = doc.getElementById('tacticLevelLabel');
+		var tacticLevelLabelOther = doc.getElementById('tacticLevelLabelOther');
+		if (!tacticLevelLabelOther) {
+			tacticLevelLabelOther = doc.createElement('div');
+			tacticLevelLabelOther.id = 'tacticLevelLabelOther';
+			Foxtrick.insertAfter(tacticLevelLabelOther, tacticLevelLabel);
+		}
+		var tacticLevelLabelTitle = tacticLevelLabel.textContent.split(':')[0];
+		ratings[7] = selectedRatings[7].value;
+		ratings[8] = selectedRatings[8].value;
+
+		var teamTacticsTitle = module.getTacticsLabel(doc);
+		var info = {
+			label: teamTacticsTitle,
+			levelLabel: tacticLevelLabelTitle,
+			type: selectedRatings[7].text,
+			level: selectedRatings[8].text,
+			num: selectedRatings[8].value,
+		};
+		tacticLevelLabelOther.textContent = Foxtrick.format(TACTIC_LABEL_TMPL, info);
+
+		// remove my rating changes for clarity
+		var ratingChanges = fieldOverlay.getElementsByClassName('ft-ratingChange');
+		Foxtrick.forEach(function(change) {
+			change.textContent = '';
+		}, ratingChanges);
 	},
 	// add Ratings module functionality
 	addRatings: function(doc, ratings, ratingsOther) {
