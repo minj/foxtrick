@@ -829,7 +829,7 @@ Foxtrick.modules.MatchSimulator = {
 			var selectedSpeech = speechLevelSelect.options[speechLevelSelect.selectedIndex];
 			var speechLevel = selectedSpeech.textContent;
 			text += speechLevelTitle;
-			text += '[u]' + speechLevel + '[/u]\n';
+			text += ' [u]' + speechLevel + '[/u]\n';
 		}
 
 		// coach type
@@ -841,7 +841,7 @@ Foxtrick.modules.MatchSimulator = {
 		var selectedTactics = teamTacticsSelect.options[teamTacticsSelect.selectedIndex];
 		var tactics = selectedTactics.textContent;
 		text += teamTacticsTitle;
-		text += '[u]' + tactics + '[/u] / ';
+		text += ' [u]' + tactics + '[/u] / ';
 		text += doc.getElementById('tacticLevelLabel').textContent + '\n\n';
 
 		// add other match info if appropriate
@@ -859,7 +859,7 @@ Foxtrick.modules.MatchSimulator = {
 		}
 
 		// ratings
-		var calcRatings = doc.getElementById('calcRatings').value;
+		var calcRatings = doc.getElementById('calcRatings').value.trim();
 		text += '[table][tr][th colspan=3 align=center]' + calcRatings + '[/th][/tr]\n';
 		for (var i = 0, count = 0; i < 14; ++i) {
 
@@ -883,28 +883,28 @@ Foxtrick.modules.MatchSimulator = {
 
 			if (Foxtrick.hasClass(overlayRatings[i], 'posLabel')) {
 				// sector label
-				text += '[b]' + overlayRatings[i].textContent + '[/b]\n';
+				text += '[b]' + overlayRatings[i].textContent.trim() + '[/b]\n';
 			}
 			else {
 				// sector rating
 				if (!Foxtrick.hasClass(overlayRatings[i], 'hidden')) {
-					text += overlayRatings[i].textContent + '\n';
+					text += overlayRatings[i].textContent.trim() + '\n';
 				}
 				else {
 					// stamina discounted
-					text += overlayRatings[i].nextSibling.textContent + '\n';
+					text += overlayRatings[i].nextSibling.textContent.trim() + '\n';
 				}
-				text += doc.getElementById('ft-full-level' + count++).textContent + '\n';
+				text += doc.getElementById('ft-full-level' + count++).textContent.trim() + '\n';
 
 				// add other teams ratings if appropriate
 				if (otherMatchId > 0) {
 					var ratingInnerBox = overlayRatings[i].parentNode;
 					var rating = ratingInnerBox.querySelector('.percentNumber');
-					text += '[q]' + rating.textContent + '[/q]';
+					text += '[q]' + rating.textContent.trim() + '[/q]';
 					var divs = ratingInnerBox.querySelectorAll('.ft-otherWrapper div');
-					text += '[b]' + divs[0].textContent + '[/b]\n';
-					text += divs[1].textContent + '\n';
-					text += divs[2].textContent + '\n';
+					text += '[b]' + divs[0].textContent.trim() + '[/b]\n';
+					text += divs[1].textContent.trim() + '\n';
+					text += divs[2].textContent.trim() + '\n';
 				}
 				text += '[/td]';
 			}
@@ -1245,7 +1245,7 @@ Foxtrick.modules.MatchSimulator = {
 		}
 
 		// add tactics
-		var TACTIC_LABEL_TMPL = '{label}{type} / {levelLabel}: {level} ({num})';
+		var TACTIC_LABEL_TMPL = '{label} {type} / {levelLabel}: {level} ({num})';
 		var tacticLevelLabel = doc.getElementById('tacticLevelLabel');
 		var tacticLevelLabelOther = doc.getElementById('tacticLevelLabelOther');
 		if (!tacticLevelLabelOther) {
