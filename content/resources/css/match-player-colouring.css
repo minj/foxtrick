@@ -8,15 +8,24 @@
 	border: 1px solid #849D84;
 	background-color: white;
 }
+.ft-match-player-home:hover {
+	color: #849D84;
+}
 
 .ft-match-player-away {
 	border: 1px solid white;
 	background: #849D84;
 	color:white;
 }
+.ft-match-player-away:hover {
+	color: white;
+}
 
 .ft-match-player-hl {
 	background-color: hsl(270, 40%, 40%);
+	color: white;
+}
+.ft-match-player-hl:hover {
 	color: white;
 }
 
