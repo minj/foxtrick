@@ -623,10 +623,14 @@ Foxtrick.modules.MatchSimulator = {
 
 			// store tactics for HTMS
 			var teamTacticsSelect = doc.getElementById('teamtactics');
-			currentRatings[7] = teamTacticsSelect.selectedIndex;
-			if (teamTacticsSelect.value !== '0' && teamTacticsSelect.value !== '7') {
+			var tactics = currentRatings[7] = parseInt(teamTacticsSelect.value, 10);
+			if (tactics !== 0 && tactics !== 7) {
 				var tacticsSpan = tacticLevelLabel.querySelector('span[data-tacticlevel]');
-				currentRatings[8] = tacticsSpan.getAttribute('data-tacticlevel');
+				currentRatings[8] = tacticsSpan.dataset.tacticlevel;
+			}
+			else {
+				// normal/creatively
+				currentRatings[8] = 0;
 			}
 
 			// remove other changes for clarity
@@ -1088,7 +1092,7 @@ Foxtrick.modules.MatchSimulator = {
 		// if there are numbers from other team's match,
 		// collect and submit them to HTMS, else clear overlays
 		if (typeof ratingsOther[0] !== 'undefined') {
-			var tacticAbbr = ['', 'pressing', 'ca', 'aim', 'aow', 'cre', 'long'];
+			var tacticAbbr = ['', 'pressing', 'ca', 'aim', 'aow', '', '', 'cre', 'long'];
 			var midfieldLevel = [normalizeRatings(ratings[3]) - 1, ratingsOther[3] - 1];
 			var rdefence = [normalizeRatings(ratings[0]) - 1, ratingsOther[6] - 1];
 			var cdefence = [normalizeRatings(ratings[1]) - 1, ratingsOther[5] - 1];
@@ -1283,7 +1287,12 @@ Foxtrick.modules.MatchSimulator = {
 		var module = this;
 
 		var normalizeRatings = module.normalizeRatings;
-		var tacticNames = ['normal', 'pressing', 'ca', 'aim', 'aow', 'creatively', 'longshots'];
+		var tacticNames = [
+			'normal', 'pressing',
+			'ca', 'aim', 'aow',
+			'', '',
+			'creatively', 'longshots',
+		];
 
 		var midfieldLevel = [normalizeRatings(ratings[3]) - 1, ratingsOther[3] - 1];
 		var rdefence = [normalizeRatings(ratings[0]) - 1, ratingsOther[6] - 1];
