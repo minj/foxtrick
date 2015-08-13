@@ -649,14 +649,16 @@ Foxtrick.modules.MatchSimulator = {
 					var id = 'ft-full-level' + i;
 					var div = doc.getElementById(id);
 					var diff = currentRatings[i] - oldRatings[i];
+					var diffStr = diff.toFixed(2);
+					var diffTrunc = parseFloat(diffStr);
 
 					var span = doc.createElement('span');
-					span.textContent = ' (' + diff.toFixed(2) + ')';
-					if (diff < 0) {
+					span.textContent = ' (' + diffStr + ')';
+					if (diffTrunc < 0) {
 						span.className = 'ft-colorLower ft-ratingChange';
 						div.appendChild(span);
 					}
-					else if (diff > 0) {
+					else if (diffTrunc > 0) {
 						span.className = 'ft-colorHigher ft-ratingChange';
 						div.appendChild(span);
 					}
@@ -1200,13 +1202,16 @@ Foxtrick.modules.MatchSimulator = {
 				div.textContent = levelText;
 				if (!update) {
 					var diff = fullLevel - ratings[j];
+					var diffStr = diff.toFixed(2);
+					var diffTrunc = parseFloat(diffStr);
+
 					var span = doc.createElement('span');
-					span.textContent = ' (' + diff.toFixed(2) + ')';
-					if (diff < 0) {
+					span.textContent = ' (' + diffStr + ')';
+					if (diffTrunc < 0) {
 						span.className = 'ft-colorLower ft-otherChange';
 						div.appendChild(span);
 					}
-					else if (diff > 0) {
+					else if (diffTrunc > 0) {
 						span.className = 'ft-colorHigher ft-otherChange';
 						div.appendChild(span);
 					}
