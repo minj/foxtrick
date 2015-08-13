@@ -270,11 +270,11 @@
 			"code": "ka",
 			"name": "Georgian",
 			"phrases": "1893",
-			"translated": "1175",
+			"translated": "1178",
 			"translated_progress": "49",
 			"words": "13544",
 			"words_approved": "0",
-			"words_translated": "6668"
+			"words_translated": "6676"
 		},
 		{
 			"approved": "9",
@@ -517,16 +517,16 @@
 			"words_translated": "13535"
 		},
 		{
-			"approved": "1888",
-			"approved_progress": "99",
+			"approved": "1893",
+			"approved_progress": "100",
 			"code": "ru",
 			"name": "Russian",
 			"phrases": "1893",
-			"translated": "1888",
-			"translated_progress": "99",
+			"translated": "1893",
+			"translated_progress": "100",
 			"words": "13544",
-			"words_approved": "13438",
-			"words_translated": "13438"
+			"words_approved": "13544",
+			"words_translated": "13544"
 		},
 		{
 			"approved": "1740",
