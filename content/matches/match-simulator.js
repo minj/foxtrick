@@ -273,30 +273,23 @@ Foxtrick.modules.MatchSimulator = {
 		};
 		// var getMatchDetails = function(selectedMatchid, sourceSystem, homeAway, isNew) {
 		var getMatchDetails = function(matchId, sourceSystem, opts) {
-			var loadingMatchList = opts.loading;
 			var isNew = opts.isNew;
 			var homeAway = opts.homeAway;
 
-			if (loadingMatchList && loadingMatchList.parentNode) {
-				loadingMatchList.parentNode.removeChild(loadingMatchList);
-				loadingMatchList = null;
-			}
-
 			// get selected match
-			var loading;
-			if ((loading = doc.getElementById('loadingMatchID'))) {
+			var loading = doc.getElementById('loadingMatchID');
+			if (loading) {
 				loading.parentNode.removeChild(loading);
 			}
 
-			var loadingMatch = Foxtrick.util.note.createLoading(doc);
-			loadingMatch.id = 'loadingMatchID';
-			opts.loading = loadingMatch;
+			loading = Foxtrick.util.note.createLoading(doc);
+			loading.id = 'loadingMatchID';
 
 			var overlayHTMS = doc.getElementById('ft-overlayHTMS');
 			if (overlayHTMS)
-				overlayHTMS.insertBefore(loadingMatch, overlayHTMS.firstChild);
+				overlayHTMS.insertBefore(loading, overlayHTMS.firstChild);
 			else
-				doc.getElementById('field').appendChild(loadingMatch);
+				doc.getElementById('field').appendChild(loading);
 
 			var selectedMatchArgs = [
 				['file', 'matchdetails'],
@@ -309,16 +302,15 @@ Foxtrick.modules.MatchSimulator = {
 			  function(matchXML, errorText) {
 				var select = doc.getElementById(MATCH_SELECT_ID);
 				if (errorText || !matchXML) {
-					if (loadingMatch && loadingMatch.parentNode) {
-						loadingMatch.textContent = errorText;
+					if (loading) {
+						loading.textContent = errorText;
 					}
 					Foxtrick.log(errorText);
 					select.value = -1;
 					return;
 				}
-				if (loadingMatch && loadingMatch.parentNode) {
-					loadingMatch.parentNode.removeChild(loadingMatch);
-					loadingMatch = null;
+				if (loading && loading.parentNode) {
+					loading.parentNode.removeChild(loading);
 				}
 
 				if (!matchXML.node('HomeGoals')) {
@@ -487,7 +479,7 @@ Foxtrick.modules.MatchSimulator = {
 				}
 				else if (loadingMatchList && loadingMatchList.parentNode) {
 					loadingMatchList.parentNode.removeChild(loadingMatchList);
-					loadingMatchList = null;
+					opts.loading = null;
 				}
 				if (!matchesXML)
 					return;
@@ -541,9 +533,8 @@ Foxtrick.modules.MatchSimulator = {
 			Foxtrick.util.api.retrieve(doc, orderMatchArgs, { cache_lifetime: 'session' },
 			  function(orderMatchXml, errorText) {
 				if (!orderMatchXml || errorText) {
-					if (loadingMatchList && loadingMatchList.parentNode) {
-						loadingMatchList.parentNode.removeChild(loadingMatchList);
-						loadingMatchList = null;
+					if (loadingMatchList) {
+						loadingMatchList.textContent = errorText;
 					}
 					Foxtrick.log(errorText);
 					return;
