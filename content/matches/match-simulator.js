@@ -12,44 +12,6 @@ Foxtrick.modules.MatchSimulator = {
 	OPTIONS: ['HTMSPrediction', 'UseRatingsModule', 'StaminaPrediction'],
 	CSS: Foxtrick.InternalPath + 'resources/css/match-simulator.css',
 
-	MatchTypes: {
-		1: { className: 'ftMatchLeague', title: 'League match' },
-		2: { className: 'ftMatchQualification', title: 'Qualification match' },
-		3: { className: 'ftMatchCup', title: 'Cup match (standard league match)' },
-		4: { className: 'ftMatchFriendly', title: 'Friendly (normal rules)' },
-		5: { className: 'ftMatchFriendly', title: 'Friendly (cup rules)' },
-		6: {
-			className: '',
-			title: 'Not currently in use, but reserved for international ' +
-				'competition matches with normal rules (may or may not be implemented at some ' +
-				'future point).',
-		},
-		7: { className: 'ftMatchMasters', title: 'Hattrick Masters' },
-		8: { className: 'ftMatchFriendly', title: 'International friendly (normal rules)' },
-		9: { className: 'ftMatchFriendly', title: 'International friendly (cup rules)' },
-		10: {
-			className: 'ftUpcomingNationalIcon',
-			title: 'National teams competition match (normal rules)',
-		},
-		11: {
-			className: 'ftUpcomingNationalIcon',
-			title: 'National teams competition match (cup rules)',
-		},
-		12: { className: 'ftMatchFriendly', title: 'National teams friendly' },
-		50: { className: 'ftMatchTournament', title: 'Tournament match  (normal rules)' },
-		51: { className: 'ftMatchTournament', title: 'Tournament match  (cup rules)' },
-		100: { className: 'ftMatchLeague', title: 'Youth league match' },
-		101: { className: 'ftMatchFriendly', title: 'Youth friendly match' },
-		102: { className: '', title: 'RESERVED' },
-		103: { className: 'ftMatchFriendly', title: 'Youth friendly match (cup rules)' },
-		104: { className: '', title: 'RESERVED' },
-		105: { className: 'ftMatchFriendly', title: 'Youth international friendly match' },
-		106: {
-			className: 'ftMatchFriendly',
-			title: 'Youth international friendly match (Cup rules)',
-		},
-		107: { className: '', title: 'RESERVED' },
-	},
 	FIELD_OVERLAY_ID: 'fieldOverlay',
 	run: function(doc) {
 		var module = this;
@@ -198,7 +160,7 @@ Foxtrick.modules.MatchSimulator = {
 			option.setAttribute('SourceSystem', SourceSystem);
 			option.setAttribute('homeAway', homeAway);
 			var MatchType = matchXML.num('MatchType');
-			option.className = 'ftOptionIcon ' + module.MatchTypes[MatchType].className;
+			option.className = module.getIconClass(MatchType);
 
 			var MatchDate = matchXML.time('MatchDate');
 			var date = Foxtrick.util.time.buildDate(MatchDate, { showTime: false });
@@ -358,8 +320,7 @@ Foxtrick.modules.MatchSimulator = {
 				var MatchID = matchesXML.text('MatchID', match);
 
 				var option = doc.createElement('option');
-				var className = module.MatchTypes[MatchType].className;
-				option.className = 'ftOptionIcon ' + className;
+				option.className = module.getIconClass(MatchType);
 				option.setAttribute('SourceSystem', SourceSystem);
 				option.value = MatchID;
 
@@ -783,6 +744,18 @@ Foxtrick.modules.MatchSimulator = {
 		teamTacticsDiv.removeChild(teamTacticsDiv.getElementsByClassName('speechLevel')[0]);
 		teamTacticsDiv.removeChild(teamTacticsDiv.getElementsByTagName('select')[0]);
 		return teamTacticsDiv.textContent.trim();
+	},
+	getIconClass: function(type) {
+		var icon = Foxtrick.Pages.Matches.IconsByType[type];
+		var iconClass = 'ftM' + icon.slice(1);
+
+		var isNT = Foxtrick.any(function(ntType) {
+			return ntType === type;
+		}, Foxtrick.Pages.Matches.NT);
+		if (isNT)
+			iconClass += 'NT';
+
+		return 'ftOptionIcon ' + iconClass;
 	},
 	normalizeRatings: function(level) {
 		return Math.floor((level + 0.125) * 4) / 4;
