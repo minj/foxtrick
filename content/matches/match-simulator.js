@@ -1310,6 +1310,7 @@ Foxtrick.modules.MatchSimulator = {
 		ratingsTable.parentNode.replaceChild(newTable, ratingsTable);
 	},
 	staminaDiscount: function(doc, orgRatings, currentRatings) {
+		var module = this;
 
 		var getStaminaFactor = function(stamina, staminaPrediction) {
 			// formula by lizardopoli/Senzascrupoli/Pappagallopoli et al
@@ -1342,67 +1343,72 @@ Foxtrick.modules.MatchSimulator = {
 			// return 1 - 0.0072415286 * Math.pow(9 - stamina, 1.9369819898);
 		};
 
-		var staminaData = this.STAMINA_DATA;
+		var staminaData = module.STAMINA_DATA;
 
 		try {
 			var overlayRatingsNums = doc.getElementsByClassName('overlayRatingsNum');
 			var overlayRatings = doc.getElementsByClassName('overlayRatings');
 			var positionDivs = doc.querySelectorAll('#fieldplayers .position');
-			for (var sector = 0; sector < overlayRatingsNums.length; ++sector) {
-				var old_rating = orgRatings[sector];
-				var sum_sq_c_ij_times_func_of_s_i = 0;
-				var sum_sq_c_ij = 0;
-				for (var position = 0; position < 14; ++position) {
-					var positionDiv = positionDivs[position];
+			var positions = Foxtrick.toArray(positionDivs).slice(0, 14); // truncate bench
+			Foxtrick.forEach(function(ratingsNum, sector) {
+				var sumSquareVEnergy = 0;
+				var sumSquareV = 0;
+				Foxtrick.forEach(function(positionDiv, pos) {
 					var playerDiv = positionDiv.getElementsByClassName('player')[0];
 					if (!playerDiv)
-						continue;
+						return;
+
 					var id = playerDiv.id.match(/\d+/)[0];
 					var playerStrip = doc.querySelector('#players #list_playerID' + id);
 					// HTs use the same ID for elements in '#players' and in '.position'
 					var player = JSON.parse(playerStrip.dataset.json);
 					if (!player.stamina)
-						continue;
-					if (typeof (staminaData) == 'object' &&
-						staminaData.hasOwnProperty(player.id)) {
-						player.staminaPrediction = parseFloat(staminaData[player.id][1]);
-					}
-					else
-						player.staminaPrediction = null;
+						return;
 
-					var tactics = this.TACTICS, tactic = 'normal';
-					for (var t in tactics) {
-						if (Foxtrick.hasClass(positionDiv, t)) {
-							tactic = t;
+					var staminaPrediction = null;
+					if (staminaData[player.id]) {
+						staminaPrediction = parseFloat(staminaData[player.id][1]);
+					}
+
+					var tacticClass = 'normal'; // default to normal player tactic
+					var tacticAbbrs = module.TACTICS;
+					for (var cls in tacticAbbrs) {
+						if (Foxtrick.hasClass(positionDiv, cls)) {
+							tacticClass = cls;
 						}
 					}
+					var tacticAbbr = tacticAbbrs[tacticClass];
 
-					var contribs = this.CONTRIBUTIONS;
-					for (var i = 0; i < contribs.length; ++i) {
-						if (contribs[i].p == position && contribs[i].t == tactics[tactic]) {
-							for (var j = 0; j < contribs[i].c.length; ++j) {
-								if (contribs[i].c[j].s == sector) {
-									var sq_c_ij = contribs[i].c[j].v * contribs[i].c[j].v;
+					var position = Foxtrick.nth(function(p) {
+						return p.p == pos && p.t == tacticAbbr;
+					}, module.CONTRIBUTIONS);
 
-									var staQ =
-										getStaminaFactor(player.stamina, player.staminaPrediction);
-									sum_sq_c_ij_times_func_of_s_i += sq_c_ij * staQ;
-									sum_sq_c_ij += sq_c_ij;
-								}
-							}
-						}
-					}
-				}
-				var new_rating = old_rating * sum_sq_c_ij_times_func_of_s_i / sum_sq_c_ij;
-				var new_rating_rounded = Math.floor((new_rating + 0.125) * 4.0) / 4.0;
-				var div = doc.createElement('div');
-				div.className = 'overlayRatingsDiscounted';
-				div.textContent = Foxtrick.L10n.getFullLevelByValue(new_rating_rounded);
-				Foxtrick.insertAfter(div, overlayRatings[sector * 2 + 1]);
+					var contributions = Foxtrick.filter(function(c) {
+						return c.s == sector;
+					}, position.c);
+
+					Foxtrick.forEach(function(c) {
+						var squareV = c.v * c.v;
+						var energy = getStaminaFactor(player.stamina, staminaPrediction);
+						sumSquareVEnergy += squareV * energy;
+						sumSquareV += squareV;
+					}, contributions);
+
+				}, positions);
+
+				var oldRating = orgRatings[sector];
+				var newRating = oldRating * sumSquareVEnergy / sumSquareV;
+				var newRatingNorm = module.normalizeRatings(newRating);
+				var discount = doc.createElement('div');
+				discount.className = 'overlayRatingsDiscounted';
+				discount.textContent = Foxtrick.L10n.getFullLevelByValue(newRatingNorm);
+
+				Foxtrick.insertAfter(discount, overlayRatings[sector * 2 + 1]);
 				Foxtrick.addClass(overlayRatings[sector * 2 + 1], 'hidden');
-				overlayRatingsNums[sector].textContent = '[' + new_rating.toFixed(2) + ']';
-				currentRatings[sector] = new_rating;
-			}
+
+				ratingsNum.textContent = '[' + newRating.toFixed(2) + ']';
+				currentRatings[sector] = newRating;
+			}, overlayRatingsNums);
 		}
 		catch (e) {
 			Foxtrick.log(e);
