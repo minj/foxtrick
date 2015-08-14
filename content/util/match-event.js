@@ -725,14 +725,13 @@ Foxtrick.util.matchEvent.addEventIndicator = function(evnt, invert) {
 				if (koPending && !invert && eventMinute !== 0)
 					return true;
 				else if (koPending && invert && eventMinute !== 0 && evnt.nextSibling) {
-					try {
-						var nextEventMinute =
-							Foxtrick.util.matchEvent.getEventMinute(evnt.nextSibling);
-						return (nextEventMinute === 0);
+					var node = evnt.nextElementSibling;
+					if (node) {
+						var nextEventMinute = Foxtrick.util.matchEvent.getEventMinute(node);
+						return nextEventMinute === 0;
 					}
-					catch (e) {
+					else
 						return false;
-					}
 				}
 				else
 					return false;
