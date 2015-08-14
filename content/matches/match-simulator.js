@@ -290,60 +290,7 @@ Foxtrick.modules.MatchSimulator = {
 				processMatch(matchXML, opts);
 			});
 		};
-		var buildMatchList = function(matchesXML, opts) {
-			var select = doc.createElement('select');
-			select.id = module.MATCH_SELECT_ID;
-			var optionNoMatch = doc.createElement('option');
-			optionNoMatch.value = -1;
-			optionNoMatch.textContent = Foxtrick.L10n.getString('matchOrder.noMatchSelected');
-			select.appendChild(optionNoMatch);
-
-			var option = doc.createElement('option');
-			option.value = 0;
-			option.textContent = Foxtrick.L10n.getString('matchOrder.AddMatchManually');
-			select.appendChild(option);
-
-			var matchNodes = matchesXML.getElementsByTagName('Match');
-			Foxtrick.forEach(function(match) {
-				// README: no HTO in match archive
-				var SourceSystem = 'Hattrick';
-				// var SourceSystem = matchesXML.text('SourceSystem', match);
-				var MatchType = matchesXML.num('MatchType', match);
-
-				// skip friendlies
-				var isFriendly = Foxtrick.any(function(type) {
-					return type === MatchType;
-				}, Foxtrick.Pages.Matches.Friendly);
-				if (isFriendly)
-					return;
-
-				var MatchDate = matchesXML.time('MatchDate', match);
-				var date = Foxtrick.util.time.buildDate(MatchDate, { showTime: false });
-				var MatchID = matchesXML.text('MatchID', match);
-
-				var option = doc.createElement('option');
-				option.className = module.getIconClass(MatchType);
-				option.dataset.SourceSystem = SourceSystem;
-				option.value = MatchID;
-
-				var info = {
-					date: date,
-					HomeTeamName: matchesXML.text('HomeTeamName', match).slice(0, 20),
-					AwayTeamName: matchesXML.text('AwayTeamName', match).slice(0, 20),
-					HomeGoals: matchesXML.text('HomeGoals', match),
-					AwayGoals: matchesXML.text('AwayGoals', match),
-				};
-				option.textContent = Foxtrick.format(MATCH_LIST_TMPL, info);
-
-				select.appendChild(option);
-			}, matchNodes);
-
-			Foxtrick.listen(select, 'change', function(ev) {
-				onMatchSelect(ev, opts);
-			});
-			var fieldOverlay = doc.getElementById(module.FIELD_OVERLAY_ID);
-			fieldOverlay.appendChild(select);
-
+		var buildAddMatch = function(select, opts) {
 			// manual add a match
 			var addMatchDiv = doc.createElement('div');
 			addMatchDiv.className = 'hidden';
@@ -424,62 +371,7 @@ Foxtrick.modules.MatchSimulator = {
 			Foxtrick.onClick(addMatchButtonCancel, addMatchCancel);
 			addMatchDiv.appendChild(addMatchButtonCancel);
 		};
-		var buildAddTeam = function(select, opts) {
-			var addTeamOption = doc.createElement('option');
-			addTeamOption.id = 'addTeamOption';
-			addTeamOption.value = -2;
-			addTeamOption.textContent = Foxtrick.L10n.getString('matchOrder.addTeam');
-			select.appendChild(addTeamOption);
-
-			// add team
-			var addTeamDiv = doc.createElement('div');
-			addTeamDiv.className = 'hidden';
-			addTeamDiv.id = 'addTeamDiv';
-			fieldOverlay.appendChild(addTeamDiv);
-
-			var addTeamLabel = doc.createElement('label');
-			addTeamLabel.setAttribute('for', 'addTeamText');
-			addTeamLabel.textContent = Foxtrick.L10n.getString('matchOrder.enterTeamId');
-			addTeamDiv.appendChild(addTeamLabel);
-
-			var addTeamText = doc.createElement('input');
-			addTeamText.id = 'addTeamText';
-			addTeamText.type = 'text';
-			addTeamText.size = 10;
-			addTeamDiv.appendChild(addTeamText);
-
-			var addTeamButtonOk = doc.createElement('input');
-			addTeamButtonOk.id = 'addTeamButton';
-			addTeamButtonOk.type = 'button';
-			addTeamButtonOk.value = Foxtrick.L10n.getString('button.ok');
-			addTeamDiv.appendChild(addTeamButtonOk);
-
-			Foxtrick.onClick(addTeamButtonOk, function(ev) {
-				addTeam(ev, opts);
-			});
-
-			var addTeamButtonCancel = doc.createElement('input');
-			addTeamButtonCancel.id = 'addTeamButtonCancel';
-			addTeamButtonCancel.type = 'button';
-			addTeamButtonCancel.value = Foxtrick.L10n.getString('button.cancel');
-			var addTeamCancel = function(ev) {
-				var doc = ev.target.ownerDocument;
-				var addTeamDiv = doc.getElementById('addTeamDiv');
-				var select = doc.getElementById(module.MATCH_SELECT_ID);
-				Foxtrick.addClass(addTeamDiv, 'hidden');
-				Foxtrick.removeClass(select, 'hidden');
-				select.selectedIndex = 0;
-			};
-			Foxtrick.onClick(addTeamButtonCancel, addTeamCancel);
-			addTeamDiv.appendChild(addTeamButtonCancel);
-		};
 		var buildMatchSimulator = function(matchesXML, opts) {
-			if (opts.matchesOnly) {
-				// called from addTeam: skip building
-				addMatches(matchesXML);
-				return;
-			}
-
 			var select = doc.createElement('select');
 			select.id = module.MATCH_SELECT_ID;
 			var optionNoMatch = doc.createElement('option');
@@ -495,13 +387,7 @@ Foxtrick.modules.MatchSimulator = {
 			var fieldOverlay = doc.getElementById(module.FIELD_OVERLAY_ID);
 			fieldOverlay.appendChild(select);
 
-			if (!matchesXML) {
-				// no XML: match sandbox
-				buildAddTeam(select, opts);
-			}
-			else {
-				addMatches(matchesXML);
-			}
+			addMatches(matchesXML);
 
 			buildAddMatch(select, opts);
 
@@ -570,7 +456,7 @@ Foxtrick.modules.MatchSimulator = {
 				if (!matchesXML)
 					return;
 
-				buildMatchList(matchesXML, opts);
+				buildMatchSimulator(matchesXML, opts);
 			});
 		};
 
