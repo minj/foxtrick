@@ -260,7 +260,7 @@ Foxtrick.modules.MatchSimulator = {
 			currentHomeAway = opts.homeAway;
 			currentOtherTeamID = opts.teamId;
 
-			module.updateOtherRatings(doc, currentRatingsOther, matchXML, opts);
+			module.updateOtherRatings(doc, currentRatingsOther, matchXML, isHome, opts);
 			module.updateBarsAndHTMS(doc, currentRatings, currentRatingsOther, opts);
 		};
 		var getMatchDetails = function(matchId, sourceSystem, opts) {
@@ -574,6 +574,7 @@ Foxtrick.modules.MatchSimulator = {
 
 			if (!matchId) {
 				// no matchId: match sandbox
+				isHome = true;
 				buildMatchSimulator(null, opts);
 				return;
 			}
@@ -734,7 +735,6 @@ Foxtrick.modules.MatchSimulator = {
 			var updatePctgDiff = target.id != 'ft_attVsDef_check';
 
 			var opts = {
-				isHome: isHome,
 				teamNames: teamNames,
 				update: {
 					other: updateOther,
@@ -761,7 +761,8 @@ Foxtrick.modules.MatchSimulator = {
 				if (updateOther && currentMatchXML) {
 					opts.teamId = currentOtherTeamID;
 					opts.homeAway = currentHomeAway;
-					module.updateOtherRatings(doc, currentRatingsOther, currentMatchXML, opts);
+					module.updateOtherRatings(doc, currentRatingsOther, currentMatchXML,
+					                          isHome, opts);
 				}
 			}
 		};
@@ -1197,12 +1198,11 @@ Foxtrick.modules.MatchSimulator = {
 				overlayHTMS.textContent = '';
 		}
 	},
-	updateOtherRatings: function(doc, ratings, xml, opts) {
+	updateOtherRatings: function(doc, ratings, xml, isHome, opts) {
 		var module = this;
 
 		var teamId = opts.teamId; // opponent
 		var homeAway = opts.homeAway; // selected match
-		var isHome = opts.isHome; // simulated match
 		var update = opts.update.other;
 		var teamNames = opts.teamNames;
 
