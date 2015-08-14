@@ -152,6 +152,8 @@ Foxtrick.modules.MatchSimulator = {
 
 			// add a flag for buildMatchSimulator to skip recreating everything
 			opts.matchesOnly = true;
+			// set opts to ensure auto-detect works properly
+			opts.teamId = teamId;
 			getMatchList(teamId, opts);
 		};
 		var addMatch = function(ev, opts) {
@@ -487,6 +489,7 @@ Foxtrick.modules.MatchSimulator = {
 		var addMatches = function(matchesXML) {
 			var select = doc.getElementById(module.MATCH_SELECT_ID);
 
+			var thisTeamID = matchesXML.text('TeamID');
 			var matchNodes = matchesXML.getElementsByTagName('Match');
 			Foxtrick.forEach(function(match) {
 				// README: no HTO in match archive
@@ -504,10 +507,13 @@ Foxtrick.modules.MatchSimulator = {
 				var MatchDate = matchesXML.time('MatchDate', match);
 				var date = Foxtrick.util.time.buildDate(MatchDate, { showTime: false });
 				var MatchID = matchesXML.text('MatchID', match);
+				var AwayTeamID = matchesXML.text('AwayTeamID', match);
 
 				var option = doc.createElement('option');
 				option.className = module.getIconClass(MatchType);
 				option.dataset.SourceSystem = SourceSystem;
+				// ensure homeAway exists for automatically added matches
+				option.dataset.homeAway = thisTeamID == AwayTeamID ? 'away' : 'home';
 				option.value = MatchID;
 
 				var info = {
