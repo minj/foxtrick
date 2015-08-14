@@ -133,6 +133,27 @@ Foxtrick.modules.MatchSimulator = {
 
 		var currentMatchXML = null, currentOtherTeamID = null, currentHomeAway = null;
 
+		var addTeam = function(ev, opts) {
+			var doc = ev.target.ownerDocument;
+
+			var addTeamText = doc.getElementById('addTeamText');
+			var teamId = parseInt(addTeamText.value, 10);
+			if (isNaN(teamId))
+				return;
+
+			var addTeamDiv = doc.getElementById('addTeamDiv');
+			Foxtrick.addClass(addTeamDiv, 'hidden');
+			var select = doc.getElementById(module.MATCH_SELECT_ID);
+			select.selectedIndex = 0;
+			Foxtrick.removeClass(select, 'hidden');
+
+			// var addTeamOption = doc.getElementById('addTeamOption');
+			// addTeamOption.parentNode.removeChild(addTeamOption);
+
+			// add a flag for buildMatchSimulator to skip recreating everything
+			opts.matchesOnly = true;
+			getMatchList(teamId, opts);
+		};
 		var addMatch = function(ev, opts) {
 			var doc = ev.target.ownerDocument;
 
@@ -195,10 +216,17 @@ Foxtrick.modules.MatchSimulator = {
 			var SourceSystem = selectedOption.dataset.SourceSystem;
 			var homeAway = selectedOption.dataset.homeAway;
 
+			// add team
+			if (selectedMatchId == -2) {
+				Foxtrick.addClass(ev.target, 'hidden');
+				var addTeamDiv = doc.getElementById('addTeamDiv');
+				Foxtrick.removeClass(addTeamDiv, 'hidden');
+				return;
+			}
 			// if no match selected,
 			// cleanup old ratings display and reset currentRatingsOther,
 			// so that percentBars and HTMS gets cleaned as well
-			if (selectedMatchId == -1) {
+			else if (selectedMatchId == -1) {
 				var otherWrappers = fieldOverlay.getElementsByClassName('ft-otherWrapper');
 
 				Foxtrick.forEach(function(wrapper, i) {
@@ -371,7 +399,62 @@ Foxtrick.modules.MatchSimulator = {
 			Foxtrick.onClick(addMatchButtonCancel, addMatchCancel);
 			addMatchDiv.appendChild(addMatchButtonCancel);
 		};
+		var buildAddTeam = function(select, opts) {
+			var addTeamOption = doc.createElement('option');
+			addTeamOption.id = 'addTeamOption';
+			addTeamOption.value = -2;
+			addTeamOption.textContent = Foxtrick.L10n.getString('matchOrder.addTeam');
+			select.appendChild(addTeamOption);
+
+			// add team
+			var addTeamDiv = doc.createElement('div');
+			addTeamDiv.className = 'hidden';
+			addTeamDiv.id = 'addTeamDiv';
+			fieldOverlay.appendChild(addTeamDiv);
+
+			var addTeamLabel = doc.createElement('label');
+			addTeamLabel.setAttribute('for', 'addTeamText');
+			addTeamLabel.textContent = Foxtrick.L10n.getString('matchOrder.enterTeamId');
+			addTeamDiv.appendChild(addTeamLabel);
+
+			var addTeamText = doc.createElement('input');
+			addTeamText.id = 'addTeamText';
+			addTeamText.type = 'text';
+			addTeamText.size = 10;
+			addTeamDiv.appendChild(addTeamText);
+
+			var addTeamButtonOk = doc.createElement('input');
+			addTeamButtonOk.id = 'addTeamButton';
+			addTeamButtonOk.type = 'button';
+			addTeamButtonOk.value = Foxtrick.L10n.getString('button.ok');
+			addTeamDiv.appendChild(addTeamButtonOk);
+
+			Foxtrick.onClick(addTeamButtonOk, function(ev) {
+				addTeam(ev, opts);
+			});
+
+			var addTeamButtonCancel = doc.createElement('input');
+			addTeamButtonCancel.id = 'addTeamButtonCancel';
+			addTeamButtonCancel.type = 'button';
+			addTeamButtonCancel.value = Foxtrick.L10n.getString('button.cancel');
+			var addTeamCancel = function(ev) {
+				var doc = ev.target.ownerDocument;
+				var addTeamDiv = doc.getElementById('addTeamDiv');
+				var select = doc.getElementById(module.MATCH_SELECT_ID);
+				Foxtrick.addClass(addTeamDiv, 'hidden');
+				Foxtrick.removeClass(select, 'hidden');
+				select.selectedIndex = 0;
+			};
+			Foxtrick.onClick(addTeamButtonCancel, addTeamCancel);
+			addTeamDiv.appendChild(addTeamButtonCancel);
+		};
 		var buildMatchSimulator = function(matchesXML, opts) {
+			if (opts.matchesOnly) {
+				// called from addTeam: skip building
+				addMatches(matchesXML);
+				return;
+			}
+
 			var select = doc.createElement('select');
 			select.id = module.MATCH_SELECT_ID;
 			var optionNoMatch = doc.createElement('option');
@@ -387,7 +470,13 @@ Foxtrick.modules.MatchSimulator = {
 			var fieldOverlay = doc.getElementById(module.FIELD_OVERLAY_ID);
 			fieldOverlay.appendChild(select);
 
-			addMatches(matchesXML);
+			if (!matchesXML) {
+				// no XML: match sandbox
+				buildAddTeam(select, opts);
+			}
+			else {
+				addMatches(matchesXML);
+			}
 
 			buildAddMatch(select, opts);
 
@@ -482,6 +571,12 @@ Foxtrick.modules.MatchSimulator = {
 
 			var fieldOverlay = doc.getElementById(module.FIELD_OVERLAY_ID);
 			fieldOverlay.appendChild(copyButton);
+
+			if (!matchId) {
+				// no matchId: match sandbox
+				buildMatchSimulator(null, opts);
+				return;
+			}
 
 			// display selection of matches to compare to
 			// first, get team id of other team
@@ -656,10 +751,7 @@ Foxtrick.modules.MatchSimulator = {
 			// this injects Ratings module so should always run
 			module.updateBarsAndHTMS(doc, currentRatings, currentRatingsOther, opts);
 
-			// FIXME: match sandbox support
 			var matchId = Foxtrick.util.id.getMatchIdFromUrl(doc.location.href);
-			if (!matchId)
-				return;
 
 			if (!simulatorReady) {
 				// opened first time

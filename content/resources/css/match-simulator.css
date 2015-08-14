@@ -187,14 +187,13 @@ html[dir="ltr"] #fieldOverlay.displayRight {
 	left: 80px;
 }
 
-#addMatchDiv {
+#addMatchDiv, #addTeamDiv {
 	float: left;
 	left: 80px;
 	position: absolute;
 	bottom: 0px;
 }
 
-#addMatchhomeAwayLabel, #addMatchisHTOIntegrated, #addMatchButton {
+#addMatchhomeAwayLabel, #addMatchisHTOIntegrated, #addMatchButton, #addTeamText, #addTeamButton {
 	margin-left: 20px;
 }
-
