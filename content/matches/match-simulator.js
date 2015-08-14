@@ -472,15 +472,12 @@ Foxtrick.modules.MatchSimulator = {
 			var fieldOverlay = doc.getElementById(module.FIELD_OVERLAY_ID);
 			fieldOverlay.appendChild(select);
 
-			if (!matchesXML) {
-				// no XML: match sandbox
-				buildAddTeam(select, opts);
-			}
-			else {
+			buildAddMatch(select, opts);
+			buildAddTeam(select, opts);
+
+			if (matchesXML) {
 				addMatches(matchesXML);
 			}
-
-			buildAddMatch(select, opts);
 
 			Foxtrick.listen(select, 'change', function(ev) {
 				onMatchSelect(ev, opts);
