@@ -572,9 +572,13 @@ Foxtrick.modules.MatchSimulator = {
 			var fieldOverlay = doc.getElementById(module.FIELD_OVERLAY_ID);
 			fieldOverlay.appendChild(copyButton);
 
+			var crumbs = Foxtrick.Pages.All.getBreadCrumbs(doc);
+			var thisTeamID = Foxtrick.util.id.getTeamIdFromUrl(crumbs[0].href);
+
 			if (!matchId) {
 				// no matchId: match sandbox
 				isHome = true;
+				teamNames[0] = crumbs[0].textContent.trim();
 				buildMatchSimulator(null, opts);
 				return;
 			}
@@ -612,8 +616,6 @@ Foxtrick.modules.MatchSimulator = {
 				// determine otherTeamId
 				var HomeTeamID = orderMatchXml.num('HomeTeamID');
 				var AwayTeamID = orderMatchXml.num('AwayTeamID');
-				var crumbs = Foxtrick.Pages.All.getBreadCrumbs(doc);
-				var thisTeamID = Foxtrick.util.id.getTeamIdFromUrl(crumbs[0].href);
 
 				var teamId;
 				if (thisTeamID == HomeTeamID) {
