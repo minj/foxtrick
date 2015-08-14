@@ -47,15 +47,22 @@ html[dir="ltr"] #tacticLevelLabelOther {
 .ftMatchLeague { background-image: url("chrome://foxtrick/content/resources/img/matches/matchLeague.png"); }
 .ftMatchQualification { background-image: url("chrome://foxtrick/content/resources/img/matches/matchQualification.png"); }
 .ftMatchCupA { background-image: url("chrome://foxtrick/content/resources/img/matches/matchCup.png"); }
-.ftMatchFriendly { background-image: url("chrome://foxtrick/content/resources/img/matches/matchFriendly.png"); }
+.ftMatchMasters { background-image: url("chrome://foxtrick/content/resources/img/matches/matchMasters.png"); }
+.ftMatchFriendly, .ftMatchFriendlyNT { background-image: url("chrome://foxtrick/content/resources/img/matches/matchFriendly.png"); }
+.ftMatchSingle { background-image: url("chrome://foxtrick/content/resources/img/matches/matchSingle.png"); }
 .ftMatchTournament { background-image: url("chrome://foxtrick/content/resources/img/matches/matchTournament.png"); }
+.ftMatchTournamentLadder { background-image: url("chrome://foxtrick/content/resources/img/matches/matchTournamentLadder.png"); }
 .ftMatchLeagueNT { background-image: url("chrome://foxtrick/content/resources/img/matches/upcomingNationalIcon.png"); }
 
 
 html[safari] .ftMatchLeague , html[chrome] .ftMatchLeague  { background-color: #C7FBBB}
-html[safari] .ftMatchQualification , html[chrome] .ftMatchQualification  { background-color: #B7EBBB}
+html[safari] .ftMatchQualification , html[chrome] .ftMatchQualification  { background-color: #66CC66}
+html[safari] .ftMatchMasters , html[chrome] .ftMatchMasters  { background-color: #FF9999}
 html[safari] .ftMatchCupA , html[chrome] .ftMatchCupA  { background-color: #CCD2CC}
+html[safari] .ftMatchFriendlyNT , html[chrome] .ftMatchFriendlyNT ,
 html[safari] .ftMatchFriendly , html[chrome] .ftMatchFriendly  { background-color: white}
+html[safari] .ftMatchSingle , html[chrome] .ftMatchSingle ,
+html[safari] .ftMatchTournamentLadder , html[chrome] .ftMatchTournamentLadder ,
 html[safari] .ftMatchTournament , html[chrome] .ftMatchTournament  { background-color: #FFC880}
 html[safari] .ftMatchLeagueNT , html[chrome] .ftMatchLeagueNT  { background-color: #FFC880}
 
