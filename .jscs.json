@@ -16,7 +16,7 @@
 	,"disallowTrailingWhitespace": true
 	,"disallowKeywords": ["with"]
 	,"requireCurlyBraces": ["try", "catch", "do"]
-	,"requireKeywordsOnNewLine": ["else", "catch"]
+	,"requireKeywordsOnNewLine": ["else", "catch", "return"]
 	,"safeContextKeyword": ["module"]
 	,"requireSpaceAfterKeywords": [
 		"if", "else", "for", "while", "do", "switch", "return", "try", "catch", "case", "void", "return", "typeof"
