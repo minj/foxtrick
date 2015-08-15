@@ -150,11 +150,11 @@
 			"code": "nl",
 			"name": "Dutch",
 			"phrases": "1894",
-			"translated": "1886",
+			"translated": "1887",
 			"translated_progress": "99",
 			"words": "13529",
 			"words_approved": "10172",
-			"words_translated": "13409"
+			"words_translated": "13412"
 		},
 		{
 			"approved": "0",
@@ -174,11 +174,11 @@
 			"code": "en-US",
 			"name": "English, United States",
 			"phrases": "1894",
-			"translated": "1772",
+			"translated": "1776",
 			"translated_progress": "89",
 			"words": "13529",
 			"words_approved": "0",
-			"words_translated": "12095"
+			"words_translated": "12102"
 		},
 		{
 			"approved": "0",
@@ -486,11 +486,11 @@
 			"code": "pt-PT",
 			"name": "Portuguese",
 			"phrases": "1894",
-			"translated": "1892",
-			"translated_progress": "99",
+			"translated": "1894",
+			"translated_progress": "100",
 			"words": "13529",
 			"words_approved": "0",
-			"words_translated": "13524"
+			"words_translated": "13529"
 		},
 		{
 			"approved": "0",
