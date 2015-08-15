@@ -69,7 +69,7 @@ if [ "$UPLOAD_UPDATE_FILES" == "true" ]; then
 	cp update-tmpl-firefox.rdf update-firefox.rdf
 	GECKO_SHA1SUM=`sha1sum "${SRC_DIR}/foxtrick.xpi" | sed -r 's/\s+.+$//g'`
 	sed -i "s|{UPDATE_LINK}|${URL_BASE}/foxtrick-${VERSION}.xpi|g" update-firefox.rdf
-	sed -i "s|{UPDATE_HASH}|sha1:${GECKO_SHA1SUM}|g" update-firefox.rdf
+	sed -i "s|{UPDATE_HASH}|sha1:|g" update-firefox.rdf
 	sed -i "s|{VERSION}|${VERSION}|g" update-firefox.rdf
 
 	# modify update-chrome.xml for Google Chrome
