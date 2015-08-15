@@ -5,13 +5,26 @@ it:
       note_0: 'Questa è la versione di sviluppo. Utilizzala a tua discrezione. per favore visita <linkSVN>commit history</linkSVN> su Google code per dettagli sui cambiamenti.'
     beta:
       note_0: 'Questa è la versione beta della prossima release. Per favore aiutaci a tradurre questa versione con la nostra semplicissima pagina di traduzione di Crowdin <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.15.2.1:
+      important: '<header>Avvisi importanti</header>'
+      bugs: '<header>Correzioni di bug</header>'
+      other: '<header>Altre modifiche</header>'
+      and_more: Varie altre piccole modifiche e correzioni.
     0.15.2:
       important: '<header>Avvisi importanti</header>'
       support: '<header>Ti piace quello che stiamo facendo? Si prega di <linkContribute>supportare Foxtrick</linkContribute>.</header>'
       crowdin: '<header>Sono disponibili tante nuove traduzioni per i nostri utenti su <linkCrowdin>crowdin tool</linkCrowdin>. Anche tu puoi dare una mano!</header>'
       twitter: 'Puoi seguire <linkTwitter>Foxtrick su Twitter</linkTwitter> per ricevere le ultime notizie, aggiornamenti e annunci.'
       bugs: '<header>Correzioni di bug</header>'
+      youth_avatars: 'Risolto il problema degli avatar delle giovanili mancanti in <module>MatchOrderInterface</module>.'
+      leave_forum: 'Il pulsante <module>ForumLeaveButton</module> era non funzionante, ora dovrebbe essere ripristinato.'
+      monitor_cups: '<module>MyMonitor</module> dovrebbe ora mostrare le icone corrette delle coppe secondarie.'
       other: '<header>Altre modifiche</header>'
+      volume: 'Aggiunto il regolatore di volume per i suoni di Foxtrick nella <FTlinkMainTab>sezione Impostazioni generali</FTlinkMainTab>.'
+      promote_age: "<module>YouthPromotes</module> ora mostra l'età del giocatore nel giorno della promozione."
+      export_live: "Aggiunto un pulsante per esportare l'elenco delle partite in HT-Live come un link in <module>ReLiveLinks</module>."
+      match_icons: 'Sono state aggiunte altre icone per gli eventi in <module>MatchReportFormat</module>. Tutti gli eventi importanti dovrebbero essere coperti in questo momento.'
+      retro_cups: 'Le vecchie icone sono state aggiunte per nuovi tipi di Coppa in <module>CustomMedals</module>.'
       and_more: Varie altre piccole modifiche e correzioni.
     0.15.1:
       bugs: '<header>Correzioni di bug</header>'

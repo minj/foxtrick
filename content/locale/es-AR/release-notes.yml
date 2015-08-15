@@ -5,6 +5,18 @@ es-AR:
       note_0: 'Se trata de la version de desarrollo. Utilizar bajo su propio riesgo. Por favor ver <linkSVN>historial de commit</linkSVN> en Google Code para detalles de los cambios.'
     beta:
       note_0: 'Esta es la versión beta de la próxima versión. Por favor ayude a traducir esta versión en nuestra super-fácil página <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.15.2.1:
+      important: '<header>Anuncios importantes</header>'
+      signed: Todos los complementos de Firefox ahora necesitan ser firmados digitalmente por Mozilla. Esta es principalmente una actualización para garantizar la compatibilidad de Foxtrick.
+      signing: 'Debido a las interrupciones causadas por la política de firma complementos obligatorios elegimos ocultar Foxtrick del portal <linkAMO>de add-ons de Mozilla</linkAMO>. Más detalles en el <linkUnlistPost>anuncio Global de Foxtrick</linkUnlistPost>.'
+      bugs: '<header>Corrección de errores</header>'
+      weatherSE: 'El listado de jugadores SE en la línea de tiempo del partido se dividió en <module>MatchLineupFixes</module> debido a los cambios de HT. Ahora se ha solucionado el problema.'
+      other: '<header>Otros cambios</header>'
+      sandbox: Añadido soporte para la próxima función de sandbox Hattrick match.
+      compact_lineups: |
+        Los nombres de las alineaciones guardadas ahora serán compactadas con <module>MatchOrderInterface</module>.
+        Esto te va a permitir usar mas alineaciones sin tener problemas de espacio.
+      and_more: Otros pequeños cambios y correcciones.
     0.15.2:
       important: '<header>Anuncios importantes</header>'
       links: '<module>Enlaces</module> la funcionalidad fue reescrita para arreglar algunos errores y mejorar el mantenimiento. Más etiquetas estarán ahora disponibles para enlaces personalizados. Algunas etiquetas fueron renombradas para reflejar su verdadero significado. Por favor vacía la caché de Foxtrick, probá tus enlaces personalizados y actualizalos adecuadamente.'

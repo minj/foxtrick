@@ -5,6 +5,16 @@ ko:
       note_0: '자세한 내용은 Google Code의 <linkSVN>보고 기록</linkSVN>을 참조하세요.'
     beta:
       note_0: '이것은 다음 배포의 beta 버전 입니다. 이 버전에서 저희 군중-번역 페이지를 통해 번역해주세요. <linkCrowdin>crowdin.net</linkCrowdin>'
+    0.15.2.1:
+      important: '<header>중요한 공지 사항</header>'
+      signed: 이제 모든 Firefox 추가 기능들은 Mozilla에 의한 디지털 서명이 필요합니다. 이는 Foxtrick 호환성을 보장하기 위한 서명 업데이트 입니다.
+      signing: '법으로 정해진 추가 기능 서명 정책에 의해 발생한 중단들 때문에 <linkAMO>Mozilla 추가 기능</linkAMO>포털에서 Foxtrick을 제거하기로 결정 했습니다. <linkUnlistPost>Global Foxtrick 공지사항</linkUnlistPost>에 자세한 설명이 있습니다.'
+      bugs: '<header>버그 수정</header>'
+      weatherSE: 'HT 업데이트 때문에 <module>MatchLineupFixes</module>에서 경기 타임 라인의 날씨 SE 선수를 목록화 하는 것이 고장났습니다. 이제 이 문제는 수정되었습니다.'
+      other: '<header>기타 변경 사항</header>'
+      sandbox: 앞으로 추가될 Hattrick 경기 샌드 박스 기능에 대한 지원을 추가했습니다.
+      compact_lineups: '이제 저장된 라인업 이름은 <module>MatchOrderInterface</module>으로 압축됩니다. 이를 통해 여러분은 앞으로 공간 문제를 걱정하지 않고 더 많은 저장된 라인업을 쓸 수 있습니다.'
+      and_more: 그 외에 작은 규모의 변화와 수정이 있었습니다.
     0.15.2:
       important: '<header>중요한 공지 사항</header>'
       links: '<module>링크</module> 기능이 몇 가지 버그를 수정하고 유지 보수를 향상시키기 위해 다시 작성되었습니다. 이제 커스텀 링크에서 더 많은 태그를 사용할 수 있습니다. 일부 태그는 실제 의미를 반영하기 위해 이름을 변경했습니다. Foxtrick 캐시를 지우고, 귀하의 커스텀 링크를 테스트한 다음, 그들을 적절하게 갱신해주세요.'

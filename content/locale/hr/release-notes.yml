@@ -5,9 +5,19 @@ hr:
       note_0: 'Ovo je razvojna inačica. Koristiti na svoju odgovornost. Za detalje o promjenama pogledajte <linkSVN>commit history</linkSVN> na Google Code stranici.'
     beta:
       note_0: 'Ovo je beta inačica buduće nove verzije. Pomozite na prevoditi ovu verziju sa super lakim prevođenjem na <linkCrowdin>crowdin.net</linkCrowdin>.'
+    0.15.2.1:
+      important: '<header>Važne obavijesti</header>'
+      signed: Svi Firefox dodaci sada moraju biti digitalno potpisani od strane Mozille. Ovo je uglavnom potpisana nadogradnja da bi se osigurala Foxtrick-ova kompatibilnost.
+      signing: 'Zbog poremećaja uzrokovanih obaveznim potpisivanjem dodataka, odlučili smo maknuti Foxtrick s <linkAMO>Mozilla add-ons</linkAMO> portala. Više detalja u <linkUnlistPost>globalnim Foxtrick najavama</linkUnlistPost>.'
+      bugs: '<header>Popravljene greške</header>'
+      weatherSE: 'Popis vremenskih specijalnih događaja tijekom utakmice je bio pokvaren u <module>MatchLineupFixes</module> zbog HT promjena. To je sada popravljeno.'
+      other: '<header>Druge promjene</header>'
+      sandbox: Dodana podrška za predstojeće HT opcije tijekom utakmice.
+      compact_lineups: 'Spremanje imena postava je sada usklađeno s <module>MatchOrderInterface</module>. Ovo će vam omogućiti da koristite više spremljenih postava bez pojave problema s imenovanjem.'
+      and_more: Razne druge male promjene i popravci.
     0.15.2:
       important: '<header>Važne obavijesti</header>'
-      links: '<module>Veze</module> funkcionalnost je bila napisana izpočetka s ciljem ispravljanja greški i unaprijeđenja održavanja. Više oznaka će sada biti dostupno za prilagođene veze. Neke oznake su preimenovane da prikažu njihovo pravo značenje. Molimo obrišite Foxtrick predmemoriju, testirajte svoje prilagođene veze i ažurirajte ih u skladu sa tim.'
+      links: '<module>Links</module> funkcionalnost je bila napisana iznova s ciljem ispravljanja greški i unaprijeđenja održavanja. Više oznaka će sada biti dostupno za prilagođene veze. Neke oznake su preimenovane da prikažu njihovo pravo značenje. Molimo obrišite Foxtrick predmemoriju, testirajte svoje prilagođene veze i ažurirajte ih u skladu sa tim.'
       support: '<header>Sviđa Vam se što radimo? Molim Vas da <linkContribute>podržite Foxtrick</linkContribute>.</header>'
       crowdin: '<header>Mnogo prevoditeljskih nadogradnji od naših fantastičnih korisnika koristeći <linkCrowdin>crowdin alat</linkCrowdin>. I Vi možete pomoći!</header>'
       twitter: 'Možete pratiti <linkTwitter>Foxtrick na Twitteru</linkTwitter> kako biste dobili najnovije vijesti, ažuriranja i objave.'
@@ -31,7 +41,7 @@ hr:
       bugs: '<header>Popravljene greške</header>'
       nt_crash: 'Popravljen problem koji dovodi do rušenja preglednika za NT u <module>MatchOrderInterface</module>.'
       copy_htMl: 'Popravljen <module>ContextMenuCopy</module> koji nije kopirao tekst veze za HT-ML.'
-      resource_fix: '<module>Veze</module> i <module>StaffMarker</module> je prestao raditi za korisnike u nekim zemljama. Ovo bi trebalo biti popravljeno za nekoliko dana.'
+      resource_fix: '<module>Links</module> i <module>StaffMarker</module> je prestao raditi za korisnike u nekim zemljama. Ovo bi trebalo biti popravljeno za nekoliko dana.'
       other: '<header>Druge promjene</header>'
       extarnal_url: 'Dodana opcija za kopiranje Hattrick linkova za druge web stranice u <module>ContextMenuCopy</module>. Ove veze rade bez obzira na koji HT server je korisnik prijavljen.'
       and_more: Razne druge male promjene i popravci.

@@ -5,6 +5,15 @@ ro:
       note_0: 'Această versiune este în dezvoltare continuă. Utilizați-o după cum doriți. Vă rugăm să vizualizați <linkSVN>istoricul</linkSVN> de la Google Code pentru detalii cu privire la modificări.'
     beta:
       note_0: 'Aceasta este o versiune beta a următoarei versiuni care va fi lansată. Vă rugăm ajutați traducând această versiune utilizând pagina de traducere <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.15.2.1:
+      important: '<header>Anunţuri importante</header>'
+      signed: Toate add-on-urile pentru Firefox, de acum inainte, trebuie sa aibe semnatura digitala Mozilla. Acest update are semnatura digitala necesara pentru comatibilitatea cu Foxtrick.
+      signing: 'Datirta disfunctionalitatilor cauzate de politica privind semnatura digitala, a mdecis sa retragem Foxtrick din portalul <linkAMO>Mozilla add-ons</linkAMO>. Mai multe detalii aici: <linkUnlistPost>Global Foxtrick announcement</linkUnlistPost>.'
+      bugs: '<header>Erori reparate</header>'
+      weatherSE: 'Afisarea in raportul de meci a evenimentelor spediale generate de conditiile meteo nu functiona in <module>MatchLineupFixes</module>, din cauza schimbarilor din HT. Problema a fost rezolvata.'
+      other: '<header>Alte schimbări</header>'
+      compact_lineups: 'Numele salvate pentru asezarile din teren este de-acum compactat in <module>MatchOrderInterface</module>. Aceasta va permite salvarea mai multor asezari, fara a mai avea probleme de spatiu.'
+      and_more: Diferite alte mici schimbări și reparații.
     0.15.2:
       important: '<header>Anunţuri importante</header>'
       links: 'Funcționalitatea <module>Links</module> a fost rescrisă pentru a reyolva unele bug-uri. Vor fi disponibile mai multe etichete pentru link-urile personalizate. Unele etichete au fost redenumite pentru a le refelcta mai bine logica. Vă rugăm să goliți chache-ul Foxtrick, să vă testați și să vă actualizați link-urile personalizate.'
@@ -13,14 +22,18 @@ ro:
       twitter: 'Puteţi urmări <linkTwitter>Foxtrick pe Twitter</linkTwitter> pentru a primi ultimele ştiri, actualizări şi anunţuri.'
       bugs: '<header>Erori reparate</header>'
       youth_avatars: 'Rezolvată lipsa avatarului la jucătorii de la echipa de juniori, în <module>MatchOrderInterface</module>.'
+      preserve_changes: '<module>MatchRatingsTweaks</module> trebuie să păstreze de acum ultimele modificări de rating-uri în timpul meciurilor. Înainte, modificările de rating-uri (numerele colorate) dispăreau la fiecare actualizare, chiar dacă acea actualizare nu avea niciun efect asupra rating-urilor.'
       leave_forum: 'Butonul <module>ForumLeaveButton</module> era nefuncțional, dar problema a fost rezolvată.'
       monitor_cups: '<module>MyMonitor</module> acum arată icoana corectă a cupelor de consolare.'
       other: '<header>Alte schimbări</header>'
       volume: 'Adăugat un cursos global pentru sunetele din Foxtrick, in <FTlinkMainTab> sectiunea setări generale </FTlinkMainTab>.'
+      mlt_upgrade: '<module>MatchLineupTweaks</module> ar trebui acum să afişeze numerele jucătorilor în line-up-ul meciului. În plus, veți putea vedea predicția rezistenței (dacă se poate) când treci cu mouse-ul peste valoarea nivelului de energie a unui jucător.'
       mrt_ratings: 'Modulul <module>Ratings</module> a fost integrat în <module>MatchRatingsTweaks</module>, iar acum are o funcționalitate limitată chiar și în HT-Live (doar pentru suporteri).'
+      copy_ratings: '<module>CopyRatings</module> a fost rescris și puteți copia, de acum, rating-urile fiecăror minute, chiar și în HT-Live.'
       monitor_update: '<module>MyMonitor</module> include acum mai multe posibilități inteligente de sortare a echipelor și posibilitatea de a adăuga meciuri la HT-Live pe baza tipului de meci.'
       promote_age: '<module>YouthPromotes</module> arată acum vărsta jucătorului din ziua promovării.'
       export_live: 'Adăugat un buton pentru e exporta meciurile HT-Live ca link, în <module>ReLiveLinks</module>.'
+      match_icons: 'Mai multe iconițe pentru evenimente au fost adăugate în <module>MatchReportFormat</module>. Toate evenimentele importante ar trebui, de acum, să fie punctate prin intermediul iconițelor.'
       retro_cups: 'Au fost adăugate icoane retro pentru noile tipuri de cupe, în <module>CustomMedals</module>.'
       and_more: Diferite alte mici schimbări și reparații.
     0.15.1:

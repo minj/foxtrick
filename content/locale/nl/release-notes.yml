@@ -5,6 +5,11 @@ nl:
       note_0: 'Dit is een beta versie. Gebruik is voor eigen risico. Kijk alstublieft op <linkSVN>commit history</linkSVN> bij Google Code voor details over de veranderingen.'
     beta:
       note_0: 'Dit is een beta versie van de volgende release. Help alsjeblieft met vertalen van deze versie op de zeer gebruiksvriendelijke crowd-vertaal pagina <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.15.2.1:
+      important: '<header>Belangrijke aankondigingen</header>'
+      bugs: '<header>Fout herstel</header>'
+      other: '<header>Andere veranderingen</header>'
+      and_more: Diverse andere kleine veranderingen en correcties.
     0.15.2:
       important: '<header>Belangrijke aankondigingen</header>'
       links: '<module>Links</module> functionaliteit was herschreven om bugs te verhelpen en onderhoud te verbeteren. Meer tags zullen beschikbaar komen voor eigen links. Sommige tags zijn hernoemd om hun gebruik weer te geven. Schoon het Foxtrick cache op, test je eigen links en werk deze hierna bij.'
@@ -270,7 +275,7 @@ nl:
       note_40: '<strong>En nog veel meer</strong>'
     0.10.0:
       note_0: 'NEW: <module>TransferHistoryFilters</module>: Staat toe om transfers te filteren op alleen verkochte spelers. Alleen beschikbaar voor je team historie. Niet voor spelers (staat standaard aan)'
-      note_1: 'NEW: <module>FriendlyPool</module>: Colorizes visited countries in the friendly pool (supporters only, default on)'
+      note_1: 'Nieuw: <module>FriendlyPool</module>: Geeft de landen die zijn bezocht een kleur (supporter feature, die standaard aan staat)'
       note_2: 'NEW: <module>HTEVPrediction</module>: Displays match odds for league games provided by <linkHTEV>HTEV</linkHTEV> (default on)'
       note_3: '<module>PlayerStatsExperience</module>: A fancy new version with much more details and colored feedback if the data is reliable. (Thanks to SeanConnery (7751762) for testing the colors for red-green blind users)'
       note_4: '<module>MatchOrderInterface</module>: Possibility to clone or clone and convert an existing order. Players will not be filled in on purpose.'
@@ -288,7 +293,6 @@ nl:
       note_16: '<module>MatchPlayerColouring</module>: Now works properly for players that were put in and left the field before the game ended'
       note_17: '<module>HideSignatures</module>: Did not work when HT setting was set to truncated signatures, fixed that'
       note_18: '<module>PlayerStatsExperience</module>: Fixed NT/U-20 final and semi-final detection'
-      note_19: '<module>TeamPopupLinks</module>: Fixed infinite creating of tabs on the guestbook'
       note_20: Fixed RTL language issues with the median transfer price
       note_21: '<header>For visually/hearing impaired users</header>'
       note_22: We added a new section to the settings page that will contain all modules that are related to accessibility.
@@ -333,7 +337,7 @@ nl:
       note_22: '<header>For Google Chrome users</header>'
       note_23: "Seems that Chrome 18's optional permissions system is buggy. Feature which require those (HTY staffmarker and EmbedMedia) might not work currently."
     0.9.1:
-      note_0: 'HTMS: tactics used again'
+      note_0: 'HTMS: Tactieken worden weer gebruikt'
       note_1: 'Tablesort: sort floating numbers'
     0.9.0.5:
       note_0: 'New module <module>SafeForWork</module> to camouflage Hattrick tabs by changing icon and description'
@@ -343,7 +347,7 @@ nl:
       note_4: '<module>MatchSimulator</module>: Copy ratings fixed and some tournament support'
       note_5: Added option for alternative player specialties icons in the main tab
       note_6: Moved the highlight feature toggle to the FoxTrick toolbar icon resp. preferences main tab
-      note_7: module MatchTables removed since no one used it
+      note_7: module MatchTables verwijderd omdat deze niet gebruikt werd
       note_8: 'MatchSimulator stamina effect: show texts rounded and values not rounded'
       note_9: 'preference linking "foxtrick://"-style fixed'
       note_10: Matchreport now shows tooltips for all events
@@ -360,8 +364,8 @@ nl:
       note_0: Fixed latest Chrome update causing LoyaltyDisplay to crash
       note_1: Corrected lineup links for youth-players in MatchReportFormat
       note_2: MatchSimulator stamina effect tweaked
-      note_3: New symbols for specialties
-      note_4: Several translation updates
+      note_3: Nieuw symbolen voor specialiteiten
+      note_4: Verschillende updates van de vertaling
     0.9.0.1:
       note_0: Fixed (accidental) excessive permissions for Chrome
       note_1: 'Fixed LiveAlert '
@@ -369,8 +373,8 @@ nl:
     0.9:
       note_0: '<header>Localization:</header>'
       note_1: 'Integration of the crowdsourcing translation service <linkCrowdin>http://www.crowdin.net</linkCrowdin>. (CatzHoek, Convincedd)'
-      note_2: 'Many translation updates. (Catzhoek and many translators. Amoung others: GM-murko, LambdaB, Paulo Francisco Martins, MEO_Comandante, Jānis Pamiljans, GZ-grobas, SI-CH, bigpapy, edzus, silkevicious, Max_Schreck, TheZayc, -Iuve-, Mcload, Polytropos, MrAli, ripaldo, Ryo567, Louzao, kirja, MartinsPF)'
-      note_3: 'Thanks all. Please continue to help translate FoxTrick at <linkCrowdin>http://crowdin.net/project/foxtrick</linkCrowdin>'
+      note_2: 'Veel updates van de vertalingen. (Catzhoek en vele andere vertalers. Onder andere: GM-murko, LambdaB, Paulo Francisco Martins, MEO_Comandante, Jānis Pamiljans, GZ-grobas, SI-CH, bigpapy, edzus, silkevicious, Max_Schreck, TheZayc, -Iuve-, Mcload, Polytropos, MrAli, ripaldo, Ryo567, Louzao, kirja, MartinsPF)'
+      note_3: 'Bedankt allemaal. Help mee om FoxTrick te vertalen via <linkCrowdin>http://crowdin.net/project/foxtrick</linkCrowdin>'
       note_4: 'For some info about translations see [post=15466991.1] or [post=15466972.1]'
       note_5: '<header>Feature highlight</header>'
       note_6: We included a feature highlight for easier detection of FoxTrick features and the responsible modules. You can turn this on/off by clicking on the FoxTrick version info down right on every page. After first reload it shows the responsible module in the hover tooltip.

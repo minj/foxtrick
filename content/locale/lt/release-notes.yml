@@ -5,6 +5,16 @@ lt:
       note_0: 'Įdiegėte nestabilią versiją. Naudokite savo rizika. Peržiūrėkite „Google Code“ <linkSVN>pakeitimų sąrašą</linkSVN>.'
     beta:
       note_0: 'Įdiegėte išankstinę (beta) versiją. Prašome prisidėti prie jos vertimo į lietuvių kalbą ypatingai šauniame vertėjų savanorių portale „<linkCrowdin>crowdin.net</linkCrowdin>“. '
+    0.15.2.1:
+      important: '<header>Svarbūs pranešimai</header>'
+      signed: Visi Firefox plėtiniai nuo šiol privalo turėti Mozilla elektroninį parašą. Šis Foxtrick atnaujinimas iš esmės skirtas šiam parašui pridėti, kad būtų užtikrintas sklandus plėtinio darbas.
+      signing: 'Dėl privalomojo priedėlių elektroninio parašo tvarkos sukeltų nesklandumų nusprendėme išimti Foxtrick iš <linkAMO>Mozilla pridėlių portalo</linkAMO>. Detalus paaiškinimas globaliajame forume esančiame <linkUnlistPost>Foxtrick pranešime</linkUnlistPost>.'
+      bugs: '<header>Pataisytos klaidos</header>'
+      weatherSE: 'Orų įvykių žaidėjų pavardžių vaizdavimas rungtynių laiko skalėje (<module>MatchLineupFixes</module> modulis) buvo sutrikęs dėl HT pokyčių. Problema pašalinta.'
+      other: '<header>Kiti pakeitimai</header>'
+      sandbox: Sutvarkytas palaikymas naujajai Hattrick sudėties simuliatoriaus funkcijai.
+      compact_lineups: 'Išsaugotų sudėčių pavadinimai užims mažiau vietos įjungus <module>MatchOrderInterface</module> modulį, todėl galėsite sąraše sutalpinti daugiau išsaugotų sudėčių.'
+      and_more: Daugybė kitų smulkių pataisymų ir pakitimų.
     0.15.2:
       important: '<header>Svarbūs pranešimai</header>'
       links: 'Išorinių nuorodų (<module>Links</module> modulis) funkcija perdaryta, kad būtų galima ištaisyti keletą klaidų ir palengvinti modulio priežiūrą. Nuo šiol bus galima naudoti daugiau žymų vartotojo sukurtoms nuorodoms. Kai kurios žymos buvo pervadintos, kad geriau atitiktų jų reikšmę. Prašome išvalyti Foxtrick podėlį ir patikrinti bei atnaujinti savo sukurtas nuorodas (jei tokių turite).'

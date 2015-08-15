@@ -5,9 +5,21 @@ sr:
       note_0: 'За детаље о променама погледајте  на <linkSVN>Google Code</linkSVN> сајту.'
     beta:
       note_0: 'Ово је бета верзија наредне званичне верзије. Уколико желите да помогнете у превођењу посетите нашу страницу за преводиоце на <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.15.2.1:
+      important: '<header>Важна обавештења</header>'
     0.15.2:
       important: '<header>Важна обавештења</header>'
+      links: 'Код за персонализоване линкове <module>Links</module> је преуређен како би се исправиле грешке и олакшало одржавање. Од сада ће бити доступни и нови тагови. Неки од тагова су преименовани ради усклађивања са њиховим правим значењем. Молимо вас да освежите Foxtrick кеш меморију, затим испробајте ваше персонализоване линкове па их потом ажурирајте у складу са новим променама.'
+      support: '<header>Допада вам се оно што радимо? Молимо вас <linkContribute>Подржите Foxtrick</linkContribute>.</header>'
       crowdin: '<header>Ажурирани преводи на многобројне језике уз помоћ <linkCrowdin>crowdin алата</linkCrowdin>. Ако и Ви хоћете да помогнете, само изволите!</header>'
+      twitter: 'Можете нас пратити на  <linkTwitter>Foxtrick on Twitter</linkTwitter>  да сазнате најновије вести ажурирања и објаве.'
+      bugs: '<header>Исправке багова</header>'
+      youth_avatars: 'Аватари за омладинце у  <module>MatchOrderInterface</module>.'
+      preserve_changes: '<module>MatchRatingsTweaks</module> би од сада  требало да приказује текуће промене оцена за време мечева.'
+      leave_forum: '<module>ForumLeaveButton</module> поново ради како треба.'
+      monitor_cups: '<module>MyMonitor</module> сада правилно приказује иконице за све купове.'
+      other: '<header>Остале промене</header>'
+      volume: 'Додато дугме за подешавање јачине звука за обавештења у <FTlinkMainTab>Главним опцијама</FTlinkMainTab>.'
     0.15.1:
       bugs: '<header>Исправке багова</header>'
     0.15.0:

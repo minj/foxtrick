@@ -5,6 +5,14 @@ zh-CN:
       note_0: '请查阅 Google Code 上的<linkSVN>版本历史</linkSVN>.'
     beta:
       note_0: '这是下一个版本的beta测试版。请在我们超级容易的大众翻译页面 <linkCrowdin>crowdin.net</linkCrowdin>帮助翻译此版本。'
+    0.15.2.1:
+      important: '<header>重要公告</header>'
+      signed: 火狐浏览器的所有附加程序现在都需要由 Mozilla 进行数字签名。这大部分是签名的更新，以确保 Foxtrick 兼容性。
+      signing: '由于强制性附加签名策略，我们选择不列出 Foxtrick 在 <linkAMO>Mozilla 扩展</linkAMO> 门户。在 <linkUnlistPost>全球 Foxtrick 公告</linkUnlistPost> 可查看到更多细节。'
+      bugs: '<header>Bug 修复</header>'
+      weatherSE: '在比赛时间轴中列出天气 SE 球员在 <module>MatchLineupFixes</module>中因为 HT 的变化被打断了。这个问题现在被修复。'
+      other: '<header>其他更改</header>'
+      sandbox: 添加了对即将到来的Hattrick比赛沙盒功能的支持。
     0.15.1:
       bugs: '<header>Bug 修复</header>'
       nt_crash: '在 NT的<module>MatchOrderInterface</module>中修复了一个导致浏览器崩溃的性能问题。'

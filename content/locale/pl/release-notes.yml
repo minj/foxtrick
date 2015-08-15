@@ -5,6 +5,16 @@ pl:
       note_0: 'To jest wersja rozwojowa. Korzystaj według własnego uznania. Proszę sprawdź szczegóły zmian <linkSVN>historia zmian</linkSVN> w witrynie Google Code.'
     beta:
       note_0: 'To jest wersja beta następnego wydania. Proszę pomóż w tłumaczeniu tej wersji na naszej super łatwej stronie tłumaczeń <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.15.2.1:
+      important: '<header>Ważne ogłoszenia</header>'
+      signed: Obecnie wszystkie dodatki Firefoxa muszą być podpisane cyfrowo przez Mozillę. Jest to głównie aktualizacja podpisów w celu zapewnienia zgodności Foxtricka.
+      signing: 'Ze względu na zakłócenia spowodowane przez politykę podpisywania dodatków zdecydowaliśmy usunąć Foxtrick z witryny <linkAMO>Dodatki dla programu Firefox</linkAMO>. Więcej szczegółów pod <linkUnlistPost>Global Foxtrick announcement</linkUnlistPost>.'
+      bugs: '<header>Poprawki błędów</header>'
+      weatherSE: 'Z powodu zmian w HT, zawodnicy uzależnieni od wydarzeń pogodowych byli nieprawidłowo wspominani na osi czasu meczu w <module>MatchLineupFixes</module>. Problem jest już naprawiony.'
+      other: '<header>Inne zmiany</header>'
+      sandbox: Dodano wsparcie dla nadchodzącej funkcji piaskownicy meczów Hattricka.
+      compact_lineups: 'Zapisane nazwy składów meczowych zostaną obecnie spakowane z <module>MatchOrderInterface</module>. Pozwoli to skorzystać z większej ilości zapisanych składów, bo zajmą one mniej miejsca.'
+      and_more: Różne inne małe zmiany i poprawki.
     0.15.2:
       important: '<header>Ważne ogłoszenia</header>'
       links: 'Funkcjonalność <module>Linki</module> została przepisana, by naprawić kilka błędów i poprawić obsługę. Więcej tagów będzie teraz dostępnych dla linków niestandardowych. Nazwy niektórych tagów zostały zmienione, by odzwierciedlały ich prawdziwe znaczenie. Proszę wyczyścić pamięć podręczną Foxtricka, przetestować  linki niestandardowe i odpowiednio je zaktualizować.'
