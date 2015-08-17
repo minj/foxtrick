@@ -200,6 +200,11 @@
 			"name": "murko"
 		},
 		{
+			"duty": "supporter",
+			"id": "12220830",
+			"name": "Alienjake"
+		},
+		{
 			"duty": "translator",
 			"id": "12378459",
 			"name": "ASTND"
@@ -618,6 +623,11 @@
 			"duty": "supporter",
 			"id": "5717080",
 			"name": "kondeswoasei"
+		},
+		{
+			"duty": "supporter",
+			"id": "575455",
+			"name": "Bephep"
 		},
 		{
 			"duty": "supporter",
