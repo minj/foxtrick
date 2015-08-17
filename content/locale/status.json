@@ -138,11 +138,11 @@
 			"code": "da",
 			"name": "Danish",
 			"phrases": "1894",
-			"translated": "1871",
+			"translated": "1875",
 			"translated_progress": "97",
 			"words": "13529",
 			"words_approved": "13136",
-			"words_translated": "13136"
+			"words_translated": "13153"
 		},
 		{
 			"approved": "1448",
@@ -306,11 +306,11 @@
 			"code": "he",
 			"name": "Hebrew",
 			"phrases": "1894",
-			"translated": "1871",
+			"translated": "1877",
 			"translated_progress": "97",
 			"words": "13529",
 			"words_approved": "0",
-			"words_translated": "13136"
+			"words_translated": "13203"
 		},
 		{
 			"approved": "202",
