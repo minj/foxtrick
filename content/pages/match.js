@@ -797,9 +797,10 @@ Foxtrick.Pages.Match.getTimeline = function(doc) {
 		var time = el.value;
 		return {
 			min: parseInt(time.match(/^\d+/), 10),
-			sec: parseInt(time.match(/\d+$/), 10)
+			sec: parseInt(time.match(/\d+$/), 10),
 		};
 	}, doc.querySelectorAll('input[id$="_time"]'));
+	timeline.unshift({ min: -1, sec: 0 });
 	return timeline;
 };
 
