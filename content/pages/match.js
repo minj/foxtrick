@@ -841,9 +841,13 @@ Foxtrick.Pages.Match.getTeamRatingsByEvent = function(doc, isHome) {
  */
 Foxtrick.Pages.Match.getEventIndicesByEvent = function(doc) {
 	var eventIndices = doc.querySelectorAll('input[id$="_eventIndex"]');
-	var eventIndexByEvent = Foxtrick.map(function(index, i) {
-		return { eventIdx: index.value, idx: i };
+	var eventIndexByEvent = Foxtrick.map(function(index) {
+		return { eventIdx: index.value };
 	}, eventIndices);
+	eventIndexByEvent.unshift({ eventIdx: -1 }); // timeline average
+	Foxtrick.forEach(function(evnt, i) {
+		evnt.idx = i;
+	}, eventIndexByEvent);
 	return eventIndexByEvent;
 };
 
