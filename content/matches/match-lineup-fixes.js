@@ -121,10 +121,13 @@ Foxtrick.modules['MatchLineupFixes'] = {
 		];
 
 		var timelineEvents = doc.querySelectorAll('input[id$="_timelineEventType"]');
-		var tEventTypeByEvent = [];
-		for (var i = 0; i < timelineEvents.length; i++) {
-			tEventTypeByEvent.push({ type: Number(timelineEvents[i].value), idx: i });
-		}
+		var tEventTypeByEvent = Foxtrick.map(function(evTypeEl) {
+			return { type: parseInt(evTypeEl.value, 10) };
+		}, timelineEvents);
+		tEventTypeByEvent.unshift({ type: -1 }); // timeline average
+		Foxtrick.forEach(function(evnt, i) {
+			evnt.idx = i;
+		}, tEventTypeByEvent);
 
 		var lineupEvents = Foxtrick.filter(function(event) {
 			return Foxtrick.has(lineupEventTypes, event.type);
