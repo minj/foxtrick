@@ -835,16 +835,40 @@ Foxtrick.Pages.Match.getTeamRatingsByEvent = function(doc, isHome) {
  * Where eventIdx is the event index in the report (xml),
  * used to match highlights (#matchEventIndex_ + eventIdx).
  * 5 minute updates have index=0, no event.
- * While idx is the timeline index (starts at 0, includes 5 minute updates)
+ * While idx is the timeline index (starts at average, includes 5 minute updates)
  * @param  {document} doc
  * @return {array}        Array.<{eventIdx: number, idx: number}>
  */
 Foxtrick.Pages.Match.getEventIndicesByEvent = function(doc) {
 	var eventIndices = doc.querySelectorAll('input[id$="_eventIndex"]');
-	var eventIndexByEvent = Foxtrick.map(function(index, i) {
-		return { eventIdx: index.value, idx: i };
+	var eventIndexByEvent = Foxtrick.map(function(index) {
+		return { eventIdx: index.value };
 	}, eventIndices);
+	eventIndexByEvent.unshift({ eventIdx: -1 }); // timeline average
+	Foxtrick.forEach(function(evnt, i) {
+		evnt.idx = i;
+	}, eventIndexByEvent);
 	return eventIndexByEvent;
+};
+
+/**
+ * Get event types event by event.
+ * Returns an array of {type, idx}.
+ * Where type is event type ID;
+ * Where idx is the timeline index (starts at average, includes 5 minute updates).
+ * @param  {document} doc
+ * @return {array}        Array.<{type: number, idx: number}>
+ */
+Foxtrick.Pages.Match.getEventTypesByEvent = function(doc) {
+	var timelineEvents = doc.querySelectorAll('input[id$="_timelineEventType"]');
+	var tEventTypeByEvent = Foxtrick.map(function(evTypeEl) {
+		return { type: parseInt(evTypeEl.value, 10) };
+	}, timelineEvents);
+	tEventTypeByEvent.unshift({ type: -1 }); // timeline average
+	Foxtrick.forEach(function(evnt, i) {
+		evnt.idx = i;
+	}, tEventTypeByEvent);
+	return tEventTypeByEvent;
 };
 
 /**
