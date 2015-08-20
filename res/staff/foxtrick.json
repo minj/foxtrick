@@ -430,6 +430,11 @@
 			"name": "Hidetoschi"
 		},
 		{
+			"duty": "supporter",
+			"id": "32722",
+			"name": "FaderMerrin"
+		},
+		{
 			"duty": "translator",
 			"id": "335181",
 			"name": "Baler0"
@@ -953,6 +958,11 @@
 			"duty": "translator",
 			"id": "9724171",
 			"name": "LuizGreg"
+		},
+		{
+			"duty": "supporter",
+			"id": "9786585",
+			"name": "dual-core"
 		},
 		{
 			"duty": "supporter",
