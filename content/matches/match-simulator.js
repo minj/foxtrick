@@ -639,14 +639,14 @@ Foxtrick.modules.MatchSimulator = {
 			});
 		};
 
-		var showLevelNumbers = function(target) {
+		var updateUI = function(target) {
 			if (!Foxtrick.hasClass(target, 'posLabel') &&
 			    target.id != 'ft_stamina_discount_check' &&
 			    target.id != 'ft_attVsDef_check' &&
 			    target.id != 'ft_realProbabilities_check')
 				return;
 
-			// Foxtrick.log('showLevelNumbers')
+			// Foxtrick.log('updateUI')
 			var tacticLevelLabel = doc.getElementById('tacticLevelLabel');
 
 			var attVsDef = doc.getElementById('ft_attVsDef_check');
@@ -776,7 +776,7 @@ Foxtrick.modules.MatchSimulator = {
 			// run once and only if posLabels change
 			Foxtrick.any(function(node) {
 				if (Foxtrick.hasClass(node, 'posLabel')) {
-					showLevelNumbers(node);
+					updateUI(node);
 					return true;
 				}
 				return false;
@@ -784,7 +784,7 @@ Foxtrick.modules.MatchSimulator = {
 		});
 
 		var clickHandler = function(ev) {
-			showLevelNumbers(ev.target);
+			updateUI(ev.target);
 		};
 		module.buildOptions(doc, clickHandler);
 	},
