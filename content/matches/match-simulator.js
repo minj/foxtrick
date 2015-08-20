@@ -94,9 +94,6 @@ Foxtrick.modules.MatchSimulator = {
 
 				var addMatchCheck = doc.getElementById('addMatchIsHTO');
 				addMatchCheck.checked = oldLineupSource === 'HTOIntegrated';
-
-				Foxtrick.removeClass(doc.getElementById('addMatchDiv'), 'hidden');
-				Foxtrick.addClass(doc.getElementById(module.MATCH_SELECT_ID), 'hidden');
 			}
 		});
 
@@ -371,9 +368,6 @@ Foxtrick.modules.MatchSimulator = {
 			if (oldLineupId) {
 				addMatchText.value = oldLineupId;
 				addMatchCheck.checked = oldLineupSource === 'HTOIntegrated';
-
-				Foxtrick.removeClass(addMatchDiv, 'hidden');
-				Foxtrick.addClass(select, 'hidden');
 			}
 
 			var addMatchButtonOk = doc.createElement('input');
