@@ -6,6 +6,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 
 import os
@@ -26,11 +27,18 @@ def login(driver):
         EC.visibility_of_element_located((By.NAME, 'Email'))
     )
     elem.send_keys(LOGIN)
-    elem.send_keys(Keys.ENTER)
-    elem = WebDriverWait(driver, 30).until(
-        EC.visibility_of_element_located((By.NAME, 'Passwd'))
-    )
-    elem.send_keys(PASS)
+    try:
+        # two-field login
+        driver.find_element_by_name('Passwd')
+        elem.send_keys(PASS)
+    except NoSuchElementException:
+        # single-field login
+        elem.send_keys(Keys.ENTER)
+        elem = WebDriverWait(driver, 30).until(
+            EC.visibility_of_element_located((By.NAME, 'Passwd'))
+        )
+        elem.send_keys(PASS)
+
     elem.send_keys(Keys.ENTER)
     print('Submitting ...')
 
