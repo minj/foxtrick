@@ -24,6 +24,7 @@ DEST='.'
 DO_MAKE='true'
 UPLOAD_UPDATE_FILES='true'
 MODULES=modules
+CHROME_ID='gpfggkkkmpaalfemiafhfobkfnadeegj'
 
 # update manifest settings
 URL_BASE='http://foxtrick.foundationhorizont.org/nightly'
@@ -64,6 +65,9 @@ if [ "$DO_MAKE" == "true" ]; then
 	(cd "$SRC_DIR" && make DIST_TYPE="$DIST" MODULES="$MODULES" UPDATE_URL="$URL_BASE" "$@")|| exit 2
 fi
 
+if [ -f "${SRC_DIR}/foxtrick.zip" ]; then
+	DISPLAY=:89 python dist/cws_upload.py ${CHROME_ID} "${SRC_DIR}/foxtrick.zip" || exit 2
+fi
 DISPLAY=:89 python dist/amo_upload.py "${SRC_DIR}/foxtrick.xpi" || exit 2
 
 if [ "$UPLOAD_UPDATE_FILES" == "true" ]; then
