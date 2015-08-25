@@ -430,6 +430,11 @@
 			"name": "Hidetoschi"
 		},
 		{
+			"duty": "supporter",
+			"id": "32722",
+			"name": "FaderMerrin"
+		},
+		{
 			"duty": "translator",
 			"id": "335181",
 			"name": "Baler0"
@@ -925,6 +930,11 @@
 			"name": "Mod-Comandante"
 		},
 		{
+			"duty": "supporter",
+			"id": "9474452",
+			"name": "Zami1981"
+		},
+		{
 			"duty": "translator",
 			"id": "9511330",
 			"name": "Vosco"
@@ -953,6 +963,11 @@
 			"duty": "translator",
 			"id": "9724171",
 			"name": "LuizGreg"
+		},
+		{
+			"duty": "supporter",
+			"id": "9786585",
+			"name": "dual-core"
 		},
 		{
 			"duty": "supporter",
