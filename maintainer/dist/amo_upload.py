@@ -93,9 +93,9 @@ def download(driver, path):
     print('Success.')
 
 def run(infile, outfile):
+    ff_bin = FirefoxBinary(FF_PATH)
+    driver = webdriver.Firefox(firefox_binary=ff_bin)
     try:
-        ff_bin = FirefoxBinary(FF_PATH)
-        driver = webdriver.Firefox(firefox_binary=ff_bin)
         login(driver)
         upload(driver, infile)
         download(driver, outfile)
