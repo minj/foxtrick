@@ -29,7 +29,7 @@ def login(driver):
     elem.send_keys(LOGIN)
     try:
         # two-field login
-        driver.find_element_by_name('Passwd')
+        elem = driver.find_element_by_name('Passwd')
         elem.send_keys(PASS)
     except NoSuchElementException:
         # single-field login
