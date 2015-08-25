@@ -64,6 +64,8 @@ if [ "$DO_MAKE" == "true" ]; then
 	(cd "$SRC_DIR" && make DIST_TYPE="$DIST" MODULES="$MODULES" UPDATE_URL="$URL_BASE" "$@")|| exit 2
 fi
 
+DISPLAY=:89 python dist/amo_upload.py "${SRC_DIR}/foxtrick.xpi" || exit 2
+
 if [ "$UPLOAD_UPDATE_FILES" == "true" ]; then
 	# modify update-firefox.rdf for Gecko
 	cp update-tmpl-firefox.rdf update-firefox.rdf
