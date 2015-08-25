@@ -10,8 +10,7 @@ maintainer/upload.*conf.sh
 maintainer/*.pem
 maintainer/*.der
 maintainer/locale/crowdinKey.py
-maintainer/locale/ftp/Credentials.py
-maintainer/locale/Hattrick/CHPP/Credentials.py
+Credentials.py
 maintainer/locale/Hattrick/CHPP/AccessToken.py
 build/
 content/locale/af/
