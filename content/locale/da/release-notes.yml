@@ -7,8 +7,12 @@ da:
       note_0: 'Dette er betaversionen af den næste udgave. Du kan hjælpe med at oversætte via vores super nemme oversættelses-side <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.15.2.1:
       important: '<header>Vigtige meddelelser</header>'
+      signed: Alle Firefox add-ons skal nu være digitalt signeret af Mozilla. Dette er for det meste en signeret opdatering for at sikre Foxtrick kompatibilitet.
+      signing: 'På grund af ændringer i politikken omkring obligatorisk signeringsgrænse for tilføjelser, valgte vi at fjerne Foxtrick fra <linkAMO>Mozilla add-ons</linkAMO> portalen. Du kan finde flere detaljer i <linkUnlistPost>globale Foxtrick meddelelse</linkUnlistPost>.'
       bugs: '<header>Fejlrettelser</header>'
+      weatherSE: 'Grundet ændringer fra Hattrick, har der været visuelle problemer af speciellebegivenheder ifm. spillere under kamptidslinjen ved <module>MatchLineupFixes</module>. Problemet er nu løst.'
       other: '<header>Andre ændringer</header>'
+      sandbox: Support for den kommende arbejdsfunktion for kampordre er nu tilføjet.
       and_more: Forskellige små ændringer og rettelser.
     0.15.2:
       important: '<header>Vigtige meddelelser</header>'
