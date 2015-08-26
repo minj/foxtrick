@@ -42,7 +42,7 @@ Foxtrick.modules['CountryList'] = {
 		var pageMap = {
 			transferSearchForm: [[ddlZone, 10], [ddlBornIn, 1]],
 			country: [lgsDd_lgs, 0],
-			htPress: [lgs2_lgs, 1],
+			htPress: [lgs2_lgs, 2],
 			statsTransfersBuyers: [lgs, 1],
 			statsTeams: [lgs_lgs, 0],
 			statsPlayers: [lgs_lgs, 0],
