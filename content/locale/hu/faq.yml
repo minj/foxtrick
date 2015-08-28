@@ -19,7 +19,7 @@ hu:
         <li>Chrome:  ogg, mp3, wav</li><li>Opera: wav, ogg</li>
         </ul>
     sound-location:
-      question: Mi a maximális fájlméret és hol találhatóak a hangjelzéshez használatos állományok?
+      question: Mennyi a maximális fájlméret és hol találhatóak a hangjelzéshez használatos állományok?
       answer: |
         <p>Az összes böngésző képes adat-hivatkozáson keresztül is lejátszani. A beállításoknál használt Betöltés gombbal a hangok a böngészőn belül kerülnek mentésre. Átalakítás és mentés után legfeljebb 160kB méret korláttal</p>
         
