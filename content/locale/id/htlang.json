@@ -1,0 +1,817 @@
+{
+	"language": {
+		"aggressiveness": [
+			{
+				"text": "tranquil",
+				"value": "0"
+			},
+			{
+				"text": "calm",
+				"value": "1"
+			},
+			{
+				"text": "balanced",
+				"value": "2"
+			},
+			{
+				"text": "temperamental",
+				"value": "3"
+			},
+			{
+				"text": "fiery",
+				"value": "4"
+			},
+			{
+				"text": "unstable",
+				"value": "5"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "nasty fellow",
+				"value": "0"
+			},
+			{
+				"text": "controversial person",
+				"value": "1"
+			},
+			{
+				"text": "pleasant guy",
+				"value": "2"
+			},
+			{
+				"text": "sympathetic guy",
+				"value": "3"
+			},
+			{
+				"text": "popular guy",
+				"value": "4"
+			},
+			{
+				"text": "beloved team member",
+				"value": "5"
+			}
+		],
+		"attitude": [
+			{
+				"text": "Play it Cool",
+				"value": "-1"
+			},
+			{
+				"text": "Normal",
+				"value": "0"
+			},
+			{
+				"text": "Match of the Season",
+				"value": "1"
+			}
+		],
+		"confidence": [
+			{
+				"text": "non-existent",
+				"value": "0"
+			},
+			{
+				"text": "disastrous",
+				"value": "1"
+			},
+			{
+				"text": "wretched",
+				"value": "2"
+			},
+			{
+				"text": "poor",
+				"value": "3"
+			},
+			{
+				"text": "decent",
+				"value": "4"
+			},
+			{
+				"text": "strong",
+				"value": "5"
+			},
+			{
+				"text": "wonderful",
+				"value": "6"
+			},
+			{
+				"text": "slightly exaggerated",
+				"value": "7"
+			},
+			{
+				"text": "exaggerated",
+				"value": "8"
+			},
+			{
+				"text": "completely exaggerated",
+				"value": "9"
+			}
+		],
+		"desc": "Indonesian",
+		"fans": [
+			{
+				"text": "murderous",
+				"value": "0"
+			},
+			{
+				"text": "furious",
+				"value": "1"
+			},
+			{
+				"text": "angry",
+				"value": "2"
+			},
+			{
+				"text": "irritated",
+				"value": "3"
+			},
+			{
+				"text": "disappointed",
+				"value": "4"
+			},
+			{
+				"text": "calm",
+				"value": "5"
+			},
+			{
+				"text": "content",
+				"value": "6"
+			},
+			{
+				"text": "satisfied",
+				"value": "7"
+			},
+			{
+				"text": "delirious",
+				"value": "8"
+			},
+			{
+				"text": "high on life",
+				"value": "9"
+			},
+			{
+				"text": "dancing in the streets",
+				"value": "10"
+			},
+			{
+				"text": "Sending love poems to you",
+				"value": "11"
+			}
+		],
+		"fans_match": [
+			{
+				"text": "Better not show up",
+				"value": "0"
+			},
+			{
+				"text": "We are outclassed",
+				"value": "1"
+			},
+			{
+				"text": "We will lose",
+				"value": "2"
+			},
+			{
+				"text": "They are favourites",
+				"value": "3"
+			},
+			{
+				"text": "They have the edge",
+				"value": "4"
+			},
+			{
+				"text": "It will be a close affair",
+				"value": "5"
+			},
+			{
+				"text": "We have the edge",
+				"value": "6"
+			},
+			{
+				"text": "We are favourites",
+				"value": "7"
+			},
+			{
+				"text": "We will win",
+				"value": "8"
+			},
+			{
+				"text": "Piece of cake!",
+				"value": "9"
+			},
+			{
+				"text": "Let's humiliate them",
+				"value": "10"
+			}
+		],
+		"fans_season": [
+			{
+				"text": "We are not worthy of this division",
+				"value": "0"
+			},
+			{
+				"text": "Every day in this division is a bonus",
+				"value": "1"
+			},
+			{
+				"text": "We will have to fight to stay up",
+				"value": "2"
+			},
+			{
+				"text": "A mid table finish is nice",
+				"value": "3"
+			},
+			{
+				"text": "We belong in the top 4",
+				"value": "4"
+			},
+			{
+				"text": "Aim for the title!",
+				"value": "5"
+			},
+			{
+				"text": "We have to win this season",
+				"value": "6"
+			},
+			{
+				"text": "We are so much better than this division!",
+				"value": "7"
+			}
+		],
+		"honesty": [
+			{
+				"text": "infamous",
+				"value": "0"
+			},
+			{
+				"text": "dishonest",
+				"value": "1"
+			},
+			{
+				"text": "honest",
+				"value": "2"
+			},
+			{
+				"text": "upright",
+				"value": "3"
+			},
+			{
+				"text": "righteous",
+				"value": "4"
+			},
+			{
+				"text": "saintly",
+				"value": "5"
+			}
+		],
+		"id": "38",
+		"leagueNames": {
+			"1": "Sweden",
+			"100": "El Salvador",
+			"101": "Malta",
+			"102": "Kyrgyzstan",
+			"103": "Moldova",
+			"104": "Georgia",
+			"105": "Andorra",
+			"106": "Jordan",
+			"107": "Guatemala",
+			"11": "Denmark",
+			"110": "Trinidad & Tobago",
+			"111": "Nicaragua",
+			"112": "Kazakhstan",
+			"113": "Suriname",
+			"117": "Liechtenstein",
+			"118": "Algeria",
+			"119": "Mongolia",
+			"12": "Finland",
+			"120": "Lebanon",
+			"121": "Senegal",
+			"122": "Armenia",
+			"123": "Bahrain",
+			"124": "Barbados",
+			"125": "Cape Verde",
+			"126": "Côte d’Ivoire",
+			"127": "Kuwait",
+			"128": "Iraq",
+			"129": "Azerbaijan",
+			"130": "Angola",
+			"131": "Montenegro",
+			"132": "Bangladesh",
+			"133": "Yemen",
+			"134": "Oman",
+			"135": "Mozambique",
+			"136": "Brunei",
+			"137": "Ghana",
+			"138": "Cambodia",
+			"139": "Benin",
+			"14": "Netherlands",
+			"140": "Syria",
+			"141": "Qatar",
+			"142": "Tanzania",
+			"143": "Uganda",
+			"144": "Maldives",
+			"145": "Uzbekistan",
+			"146": "Cameroon",
+			"147": "Cuba",
+			"148": "Palestine",
+			"15": "Oceania",
+			"16": "Brazil",
+			"17": "Canada",
+			"18": "Chile",
+			"19": "Colombia",
+			"2": "England",
+			"20": "India",
+			"21": "Ireland",
+			"22": "Japan",
+			"23": "Peru",
+			"24": "Poland",
+			"25": "Portugal",
+			"26": "Scotland",
+			"27": "South Africa",
+			"28": "Uruguay",
+			"29": "Venezuela",
+			"3": "Germany",
+			"30": "South Korea",
+			"31": "Thailand",
+			"32": "Turkey",
+			"33": "Egypt",
+			"34": "People's Republic of China",
+			"35": "Russia",
+			"36": "Spain",
+			"37": "Romania",
+			"38": "Iceland",
+			"39": "Austria",
+			"4": "Italy",
+			"44": "Belgium",
+			"45": "Malaysia",
+			"46": "Switzerland",
+			"47": "Singapore",
+			"5": "France",
+			"50": "Greece",
+			"51": "Hungary",
+			"52": "Czech Republic",
+			"53": "Latvia",
+			"54": "Indonesia",
+			"55": "Philippines",
+			"56": "Estonia",
+			"57": "Serbia",
+			"58": "Croatia",
+			"59": "Hong Kong",
+			"6": "Mexico",
+			"60": "Chinese Taipei",
+			"61": "Wales",
+			"62": "Bulgaria",
+			"63": "Israel",
+			"64": "Slovenia",
+			"66": "Lithuania",
+			"67": "Slovakia",
+			"68": "Ukraine",
+			"69": "Bosnia and Herzegovina",
+			"7": "Argentina",
+			"70": "Vietnam",
+			"71": "Pakistan",
+			"72": "Paraguay",
+			"73": "Ecuador",
+			"74": "Bolivia",
+			"75": "Nigeria",
+			"76": "Faroe Islands",
+			"77": "Morocco",
+			"79": "Saudi Arabia",
+			"8": "USA",
+			"80": "Tunisia",
+			"81": "Costa Rica",
+			"83": "United Arab Emirates",
+			"84": "Luxembourg",
+			"85": "Iran",
+			"88": "Dominican Republic",
+			"89": "Cyprus",
+			"9": "Norway",
+			"91": "Belarus",
+			"93": "Northern Ireland",
+			"94": "Jamaica",
+			"95": "Kenya",
+			"96": "Panama",
+			"97": "FYR Macedonia",
+			"98": "Albania",
+			"99": "Honduras"
+		},
+		"levels": [
+			{
+				"text": "non-existent",
+				"value": "0"
+			},
+			{
+				"text": "disastrous",
+				"value": "1"
+			},
+			{
+				"text": "wretched",
+				"value": "2"
+			},
+			{
+				"text": "poor",
+				"value": "3"
+			},
+			{
+				"text": "weak",
+				"value": "4"
+			},
+			{
+				"text": "inadequate",
+				"value": "5"
+			},
+			{
+				"text": "passable",
+				"value": "6"
+			},
+			{
+				"text": "solid",
+				"value": "7"
+			},
+			{
+				"text": "excellent",
+				"value": "8"
+			},
+			{
+				"text": "formidable",
+				"value": "9"
+			},
+			{
+				"text": "outstanding",
+				"value": "10"
+			},
+			{
+				"text": "brilliant",
+				"value": "11"
+			},
+			{
+				"text": "magnificent",
+				"value": "12"
+			},
+			{
+				"text": "world class",
+				"value": "13"
+			},
+			{
+				"text": "supernatural",
+				"value": "14"
+			},
+			{
+				"text": "titanic",
+				"value": "15"
+			},
+			{
+				"text": "extra-terrestrial",
+				"value": "16"
+			},
+			{
+				"text": "mythical",
+				"value": "17"
+			},
+			{
+				"text": "magical",
+				"value": "18"
+			},
+			{
+				"text": "utopian",
+				"value": "19"
+			},
+			{
+				"text": "divine",
+				"value": "20"
+			}
+		],
+		"name": "id",
+		"positions": [
+			{
+				"type": "Keeper",
+				"value": "Keeper"
+			},
+			{
+				"type": "WingBack",
+				"value": "Wing back"
+			},
+			{
+				"type": "CentralDefender",
+				"value": "Central defender"
+			},
+			{
+				"type": "InnerMidfield",
+				"value": "Inner midfielder"
+			},
+			{
+				"type": "Winger",
+				"value": "Winger"
+			},
+			{
+				"type": "Forward",
+				"value": "Forward"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "very low",
+				"value": "0"
+			},
+			{
+				"text": "low",
+				"value": "0.25"
+			},
+			{
+				"text": "high",
+				"value": "0.5"
+			},
+			{
+				"text": "very high",
+				"value": "0.75"
+			}
+		],
+		"sectors": [
+			{
+				"type": "Midfield",
+				"value": "Midfield"
+			},
+			{
+				"type": "RightDefense",
+				"value": "Right defence"
+			},
+			{
+				"type": "CentralDefense",
+				"value": "Central defence"
+			},
+			{
+				"type": "LeftDefense",
+				"value": "Left defence"
+			},
+			{
+				"type": "RightAttack",
+				"value": "Right attack"
+			},
+			{
+				"type": "CentralAttack",
+				"value": "Central attack"
+			},
+			{
+				"type": "LeftAttack",
+				"value": "Left attack"
+			}
+		],
+		"skills": [
+			{
+				"type": "Keeper",
+				"value": "Keeper"
+			},
+			{
+				"type": "Stamina",
+				"value": "Stamina"
+			},
+			{
+				"type": "Defender",
+				"value": "Defending"
+			},
+			{
+				"type": "Playmaker",
+				"value": "Playmaking"
+			},
+			{
+				"type": "Winger",
+				"value": "Winger"
+			},
+			{
+				"type": "Scorer",
+				"value": "Scoring"
+			},
+			{
+				"type": "Kicker",
+				"value": "Set pieces"
+			},
+			{
+				"type": "Passer",
+				"value": "Passing"
+			},
+			{
+				"type": "Experience",
+				"value": "Experience"
+			},
+			{
+				"type": "LeaderShip",
+				"value": "Leadership"
+			}
+		],
+		"specialties": [
+			{
+				"type": "None",
+				"value": "None"
+			},
+			{
+				"type": "Technical",
+				"value": "Technical"
+			},
+			{
+				"type": "Quick",
+				"value": "Quick"
+			},
+			{
+				"type": "Powerful",
+				"value": "Powerful"
+			},
+			{
+				"type": "Unpredictable",
+				"value": "Unpredictable"
+			},
+			{
+				"type": "Head",
+				"value": "Head"
+			},
+			{
+				"type": "Regainer",
+				"value": "Regainer"
+			}
+		],
+		"spirit": [
+			{
+				"text": "like the cold war",
+				"value": "0"
+			},
+			{
+				"text": "murderous",
+				"value": "1"
+			},
+			{
+				"text": "furious",
+				"value": "2"
+			},
+			{
+				"text": "irritated",
+				"value": "3"
+			},
+			{
+				"text": "composed",
+				"value": "4"
+			},
+			{
+				"text": "calm",
+				"value": "5"
+			},
+			{
+				"text": "content",
+				"value": "6"
+			},
+			{
+				"text": "satisfied",
+				"value": "7"
+			},
+			{
+				"text": "delirious",
+				"value": "8"
+			},
+			{
+				"text": "walking on clouds",
+				"value": "9"
+			},
+			{
+				"text": "paradise on earth!",
+				"value": "10"
+			}
+		],
+		"sponsors": [
+			{
+				"text": "murderous",
+				"value": "0"
+			},
+			{
+				"text": "furious",
+				"value": "1"
+			},
+			{
+				"text": "irritated",
+				"value": "2"
+			},
+			{
+				"text": "calm",
+				"value": "3"
+			},
+			{
+				"text": "content",
+				"value": "4"
+			},
+			{
+				"text": "satisfied",
+				"value": "5"
+			},
+			{
+				"text": "delirious",
+				"value": "6"
+			},
+			{
+				"text": "high on life",
+				"value": "7"
+			},
+			{
+				"text": "dancing in the streets",
+				"value": "8"
+			},
+			{
+				"text": "Sending love poems to you",
+				"value": "9"
+			}
+		],
+		"tactics": [
+			{
+				"type": "normal",
+				"value": "Normal"
+			},
+			{
+				"type": "pressing",
+				"value": "Pressing"
+			},
+			{
+				"type": "ca",
+				"value": "Counter-attacks"
+			},
+			{
+				"type": "aim",
+				"value": "Attack in the Middle"
+			},
+			{
+				"type": "aow",
+				"value": "Attack on wings"
+			},
+			{
+				"type": "",
+				"value": "Unknown"
+			},
+			{
+				"type": "",
+				"value": "Unknown"
+			},
+			{
+				"type": "creatively",
+				"value": "Play creatively"
+			},
+			{
+				"type": "longshots",
+				"value": "Long shots"
+			}
+		],
+		"training": [
+			{
+				"type": "Gen",
+				"value": "General (form)"
+			},
+			{
+				"type": "Sta",
+				"value": "Stamina"
+			},
+			{
+				"type": "SP",
+				"value": "Set pieces"
+			},
+			{
+				"type": "Def",
+				"value": "Defending"
+			},
+			{
+				"type": "Sco",
+				"value": "Scoring"
+			},
+			{
+				"type": "Cross",
+				"value": "Crossing (winger)"
+			},
+			{
+				"type": "Shoot",
+				"value": "Shooting"
+			},
+			{
+				"type": "Pass",
+				"value": "Short passes"
+			},
+			{
+				"type": "PM",
+				"value": "Playmaking"
+			},
+			{
+				"type": "GK",
+				"value": "Goalkeeping"
+			},
+			{
+				"type": "ThPass",
+				"value": "Through passes"
+			},
+			{
+				"type": "DefPos",
+				"value": "Defensive positions"
+			},
+			{
+				"type": "WingAtt",
+				"value": "Wing attacks"
+			},
+			{
+				"type": "Indiv",
+				"value": "Individual"
+			}
+		]
+	}
+}
