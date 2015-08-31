@@ -25,6 +25,7 @@ Codes[34] = 'el'      # Greek
 Codes[35] = 'cs'      # Czech
 Codes[36] = 'et'      # Eesti
 Codes[37] = 'lv'      # Latvian, Lettish
+Codes[38] = 'id'      # Indonesian
 Codes[39] = 'hr'      # Croatian
 Codes[40] = 'he'      # Hebrew
 Codes[43] = 'bg'      # Bulgarian

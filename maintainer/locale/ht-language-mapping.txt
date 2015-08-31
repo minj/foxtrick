@@ -27,6 +27,7 @@ No problem. It done "manually" in the code tho, so I'll just copy that piece of 
 35 Cesky
 36 Estonian
 37 Latviešu
+38 Indonesian
 39 Hrvatski
 40 Hebrew
 43 Bulgarian
