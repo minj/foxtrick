@@ -174,11 +174,11 @@
 			"code": "en-US",
 			"name": "English, United States",
 			"phrases": "1894",
-			"translated": "1776",
-			"translated_progress": "89",
+			"translated": "1841",
+			"translated_progress": "93",
 			"words": "13529",
 			"words_approved": "0",
-			"words_translated": "12102"
+			"words_translated": "12645"
 		},
 		{
 			"approved": "0",
@@ -570,11 +570,11 @@
 			"code": "es-ES",
 			"name": "Spanish",
 			"phrases": "1894",
-			"translated": "1892",
-			"translated_progress": "99",
+			"translated": "1894",
+			"translated_progress": "100",
 			"words": "13529",
 			"words_approved": "1",
-			"words_translated": "13524"
+			"words_translated": "13529"
 		},
 		{
 			"approved": "0",
