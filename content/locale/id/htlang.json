@@ -2,59 +2,59 @@
 	"language": {
 		"aggressiveness": [
 			{
-				"text": "tranquil",
+				"text": "sangat tenang",
 				"value": "0"
 			},
 			{
-				"text": "calm",
+				"text": "tenang",
 				"value": "1"
 			},
 			{
-				"text": "balanced",
+				"text": "seimbang",
 				"value": "2"
 			},
 			{
-				"text": "temperamental",
+				"text": "tempramental",
 				"value": "3"
 			},
 			{
-				"text": "fiery",
+				"text": "menakutkan",
 				"value": "4"
 			},
 			{
-				"text": "unstable",
+				"text": "labil",
 				"value": "5"
 			}
 		],
 		"agreeability": [
 			{
-				"text": "nasty fellow",
+				"text": "sangat nakal",
 				"value": "0"
 			},
 			{
-				"text": "controversial person",
+				"text": "kontroversial",
 				"value": "1"
 			},
 			{
-				"text": "pleasant guy",
+				"text": "menyenangkan",
 				"value": "2"
 			},
 			{
-				"text": "sympathetic guy",
+				"text": "simpatik",
 				"value": "3"
 			},
 			{
-				"text": "popular guy",
+				"text": "populer",
 				"value": "4"
 			},
 			{
-				"text": "beloved team member",
+				"text": "disukai anggota tim",
 				"value": "5"
 			}
 		],
 		"attitude": [
 			{
-				"text": "Play it Cool",
+				"text": "Bermain santai",
 				"value": "-1"
 			},
 			{
@@ -62,423 +62,423 @@
 				"value": "0"
 			},
 			{
-				"text": "Match of the Season",
+				"text": "Bermain semangat sekali",
 				"value": "1"
 			}
 		],
 		"confidence": [
 			{
-				"text": "non-existent",
+				"text": "kosong",
 				"value": "0"
 			},
 			{
-				"text": "disastrous",
+				"text": "hancur",
 				"value": "1"
 			},
 			{
-				"text": "wretched",
+				"text": "parah",
 				"value": "2"
 			},
 			{
-				"text": "poor",
+				"text": "buruk",
 				"value": "3"
 			},
 			{
-				"text": "decent",
+				"text": "lumayan",
 				"value": "4"
 			},
 			{
-				"text": "strong",
+				"text": "kuat",
 				"value": "5"
 			},
 			{
-				"text": "wonderful",
+				"text": "hebat",
 				"value": "6"
 			},
 			{
-				"text": "slightly exaggerated",
+				"text": "sedikit berlebihan",
 				"value": "7"
 			},
 			{
-				"text": "exaggerated",
+				"text": "berlebihan",
 				"value": "8"
 			},
 			{
-				"text": "completely exaggerated",
+				"text": "sangat Berlebihan",
 				"value": "9"
 			}
 		],
 		"desc": "Indonesian",
 		"fans": [
 			{
-				"text": "murderous",
+				"text": "mengamuk",
 				"value": "0"
 			},
 			{
-				"text": "furious",
+				"text": "marah Besar",
 				"value": "1"
 			},
 			{
-				"text": "angry",
+				"text": "marah",
 				"value": "2"
 			},
 			{
-				"text": "irritated",
+				"text": "jengkel",
 				"value": "3"
 			},
 			{
-				"text": "disappointed",
+				"text": "kecewa",
 				"value": "4"
 			},
 			{
-				"text": "calm",
+				"text": "tenang",
 				"value": "5"
 			},
 			{
-				"text": "content",
+				"text": "senang",
 				"value": "6"
 			},
 			{
-				"text": "satisfied",
+				"text": "puas",
 				"value": "7"
 			},
 			{
-				"text": "delirious",
+				"text": "tergila-gila",
 				"value": "8"
 			},
 			{
-				"text": "high on life",
+				"text": "melayang",
 				"value": "9"
 			},
 			{
-				"text": "dancing in the streets",
+				"text": "menari di jalanan",
 				"value": "10"
 			},
 			{
-				"text": "Sending love poems to you",
+				"text": "mengirimkan puisi cinta kepadamu",
 				"value": "11"
 			}
 		],
 		"fans_match": [
 			{
-				"text": "Better not show up",
+				"text": "Lebih baik tidak tampil",
 				"value": "0"
 			},
 			{
-				"text": "We are outclassed",
+				"text": "Kita kalah kelas",
 				"value": "1"
 			},
 			{
-				"text": "We will lose",
+				"text": "Kita akan kalah",
 				"value": "2"
 			},
 			{
-				"text": "They are favourites",
+				"text": "Mereka difavoritkan",
 				"value": "3"
 			},
 			{
-				"text": "They have the edge",
+				"text": "Mereka punya peluang",
 				"value": "4"
 			},
 			{
-				"text": "It will be a close affair",
+				"text": "Sepertinya imbang",
 				"value": "5"
 			},
 			{
-				"text": "We have the edge",
+				"text": "Kita punya peluang",
 				"value": "6"
 			},
 			{
-				"text": "We are favourites",
+				"text": "Kita difavoritkan",
 				"value": "7"
 			},
 			{
-				"text": "We will win",
+				"text": "Kita akan menang",
 				"value": "8"
 			},
 			{
-				"text": "Piece of cake!",
+				"text": "Terlalu gampang",
 				"value": "9"
 			},
 			{
-				"text": "Let's humiliate them",
+				"text": "Ayo gilas mereka",
 				"value": "10"
 			}
 		],
 		"fans_season": [
 			{
-				"text": "We are not worthy of this division",
+				"text": "Kami tidak layak divisi ini",
 				"value": "0"
 			},
 			{
-				"text": "Every day in this division is a bonus",
+				"text": "Setiap hari di divisi ini adalah bonus",
 				"value": "1"
 			},
 			{
-				"text": "We will have to fight to stay up",
+				"text": "Kami akan harus berjuang untuk tetap bertahan",
 				"value": "2"
 			},
 			{
-				"text": "A mid table finish is nice",
+				"text": "Selesai di papan tengah cukup bagus",
 				"value": "3"
 			},
 			{
-				"text": "We belong in the top 4",
+				"text": "Kami termasuk dalam 4 besar",
 				"value": "4"
 			},
 			{
-				"text": "Aim for the title!",
+				"text": "Mengincar untuk juara!",
 				"value": "5"
 			},
 			{
-				"text": "We have to win this season",
+				"text": "Kami harus menang musim ini",
 				"value": "6"
 			},
 			{
-				"text": "We are so much better than this division!",
+				"text": "Kami jauh lebih baik daripada divisi ini!",
 				"value": "7"
 			}
 		],
 		"honesty": [
 			{
-				"text": "infamous",
+				"text": "tidak terkenal",
 				"value": "0"
 			},
 			{
-				"text": "dishonest",
+				"text": "tidak jujur",
 				"value": "1"
 			},
 			{
-				"text": "honest",
+				"text": "benar",
 				"value": "2"
 			},
 			{
-				"text": "upright",
+				"text": "jujur",
 				"value": "3"
 			},
 			{
-				"text": "righteous",
+				"text": "budiman",
 				"value": "4"
 			},
 			{
-				"text": "saintly",
+				"text": "seperti malaikat",
 				"value": "5"
 			}
 		],
 		"id": "38",
 		"leagueNames": {
-			"1": "Sweden",
+			"1": "Swedia",
 			"100": "El Salvador",
 			"101": "Malta",
-			"102": "Kyrgyzstan",
+			"102": "Krigizstan",
 			"103": "Moldova",
 			"104": "Georgia",
 			"105": "Andorra",
-			"106": "Jordan",
+			"106": "Yordania",
 			"107": "Guatemala",
 			"11": "Denmark",
-			"110": "Trinidad & Tobago",
-			"111": "Nicaragua",
+			"110": "Trinidad dan Tobago",
+			"111": "Nikaragua",
 			"112": "Kazakhstan",
 			"113": "Suriname",
 			"117": "Liechtenstein",
 			"118": "Algeria",
 			"119": "Mongolia",
-			"12": "Finland",
+			"12": "Finlandia",
 			"120": "Lebanon",
 			"121": "Senegal",
 			"122": "Armenia",
 			"123": "Bahrain",
 			"124": "Barbados",
-			"125": "Cape Verde",
-			"126": "Côte d’Ivoire",
+			"125": "Tanjung Verde",
+			"126": "Pantai Gading",
 			"127": "Kuwait",
-			"128": "Iraq",
+			"128": "Irak",
 			"129": "Azerbaijan",
 			"130": "Angola",
 			"131": "Montenegro",
 			"132": "Bangladesh",
-			"133": "Yemen",
+			"133": "Yaman",
 			"134": "Oman",
-			"135": "Mozambique",
+			"135": "Mozambik",
 			"136": "Brunei",
 			"137": "Ghana",
-			"138": "Cambodia",
+			"138": "Kamboja",
 			"139": "Benin",
-			"14": "Netherlands",
-			"140": "Syria",
+			"14": "Belanda",
+			"140": "Suriah",
 			"141": "Qatar",
 			"142": "Tanzania",
 			"143": "Uganda",
 			"144": "Maldives",
 			"145": "Uzbekistan",
-			"146": "Cameroon",
-			"147": "Cuba",
-			"148": "Palestine",
-			"15": "Oceania",
-			"16": "Brazil",
+			"146": "Kamerun",
+			"147": "Kuba",
+			"148": "Palestina",
+			"15": "Oseania",
+			"16": "Brasil",
 			"17": "Canada",
-			"18": "Chile",
-			"19": "Colombia",
-			"2": "England",
+			"18": "Chili",
+			"19": "Kolombia",
+			"2": "Inggris",
 			"20": "India",
-			"21": "Ireland",
-			"22": "Japan",
+			"21": "Irlandia",
+			"22": "Jepang",
 			"23": "Peru",
-			"24": "Poland",
+			"24": "Polandia",
 			"25": "Portugal",
-			"26": "Scotland",
-			"27": "South Africa",
+			"26": "Skotlandia",
+			"27": "Afrika Selatan",
 			"28": "Uruguay",
 			"29": "Venezuela",
-			"3": "Germany",
-			"30": "South Korea",
+			"3": "Jerman",
+			"30": "Korea Selatan",
 			"31": "Thailand",
-			"32": "Turkey",
-			"33": "Egypt",
-			"34": "People's Republic of China",
-			"35": "Russia",
-			"36": "Spain",
+			"32": "Turki",
+			"33": "Mesir",
+			"34": "Republik Rakyat Tiongkok",
+			"35": "Rusia",
+			"36": "Spanyol",
 			"37": "Romania",
-			"38": "Iceland",
+			"38": "Islandia",
 			"39": "Austria",
-			"4": "Italy",
-			"44": "Belgium",
+			"4": "Italia",
+			"44": "Belgia",
 			"45": "Malaysia",
-			"46": "Switzerland",
-			"47": "Singapore",
-			"5": "France",
-			"50": "Greece",
-			"51": "Hungary",
-			"52": "Czech Republic",
+			"46": "Swiss",
+			"47": "Singapura",
+			"5": "Prancis",
+			"50": "Yunani",
+			"51": "Hungaria",
+			"52": "Ceko",
 			"53": "Latvia",
 			"54": "Indonesia",
-			"55": "Philippines",
+			"55": "Filipina",
 			"56": "Estonia",
 			"57": "Serbia",
-			"58": "Croatia",
-			"59": "Hong Kong",
-			"6": "Mexico",
-			"60": "Chinese Taipei",
+			"58": "Kroasia",
+			"59": "HongKong",
+			"6": "Meksiko",
+			"60": "Taiwan",
 			"61": "Wales",
 			"62": "Bulgaria",
 			"63": "Israel",
 			"64": "Slovenia",
-			"66": "Lithuania",
-			"67": "Slovakia",
-			"68": "Ukraine",
-			"69": "Bosnia and Herzegovina",
+			"66": "Lituania",
+			"67": "Slowakia",
+			"68": "Ukraina",
+			"69": "Bosnia dan Herzegovina",
 			"7": "Argentina",
 			"70": "Vietnam",
 			"71": "Pakistan",
 			"72": "Paraguay",
-			"73": "Ecuador",
+			"73": "Ekuador",
 			"74": "Bolivia",
 			"75": "Nigeria",
-			"76": "Faroe Islands",
-			"77": "Morocco",
-			"79": "Saudi Arabia",
-			"8": "USA",
+			"76": "Kepulauan Faroe",
+			"77": "Maroko",
+			"79": "Arab Saudio",
+			"8": "Amerika Serikat",
 			"80": "Tunisia",
-			"81": "Costa Rica",
-			"83": "United Arab Emirates",
-			"84": "Luxembourg",
+			"81": "Kosta Rika",
+			"83": "Uni Emirat Arab",
+			"84": "Luksemburg",
 			"85": "Iran",
-			"88": "Dominican Republic",
-			"89": "Cyprus",
-			"9": "Norway",
-			"91": "Belarus",
-			"93": "Northern Ireland",
-			"94": "Jamaica",
+			"88": "Republik Dominika",
+			"89": "Siprus",
+			"9": "Norwegia",
+			"91": "Belarusia",
+			"93": "Irlandia Utara",
+			"94": "Jamaika",
 			"95": "Kenya",
 			"96": "Panama",
-			"97": "FYR Macedonia",
+			"97": "Makedonia",
 			"98": "Albania",
 			"99": "Honduras"
 		},
 		"levels": [
 			{
-				"text": "non-existent",
+				"text": "kosong",
 				"value": "0"
 			},
 			{
-				"text": "disastrous",
+				"text": "hancur",
 				"value": "1"
 			},
 			{
-				"text": "wretched",
+				"text": "parah",
 				"value": "2"
 			},
 			{
-				"text": "poor",
+				"text": "buruk",
 				"value": "3"
 			},
 			{
-				"text": "weak",
+				"text": "payah",
 				"value": "4"
 			},
 			{
-				"text": "inadequate",
+				"text": "kurang",
 				"value": "5"
 			},
 			{
-				"text": "passable",
+				"text": "lumayan",
 				"value": "6"
 			},
 			{
-				"text": "solid",
+				"text": "baik",
 				"value": "7"
 			},
 			{
-				"text": "excellent",
+				"text": "mantap",
 				"value": "8"
 			},
 			{
-				"text": "formidable",
+				"text": "hebat",
 				"value": "9"
 			},
 			{
-				"text": "outstanding",
+				"text": "luar biasa",
 				"value": "10"
 			},
 			{
-				"text": "brilliant",
+				"text": "istimewa",
 				"value": "11"
 			},
 			{
-				"text": "magnificent",
+				"text": "jenius",
 				"value": "12"
 			},
 			{
-				"text": "world class",
+				"text": "kelas dunia",
 				"value": "13"
 			},
 			{
-				"text": "supernatural",
+				"text": "elit",
 				"value": "14"
 			},
 			{
-				"text": "titanic",
+				"text": "master",
 				"value": "15"
 			},
 			{
-				"text": "extra-terrestrial",
+				"text": "pahlawan",
 				"value": "16"
 			},
 			{
-				"text": "mythical",
+				"text": "legenda",
 				"value": "17"
 			},
 			{
-				"text": "magical",
+				"text": "sakti",
 				"value": "18"
 			},
 			{
-				"text": "utopian",
+				"text": "mistis",
 				"value": "19"
 			},
 			{
-				"text": "divine",
+				"text": "dewa",
 				"value": "20"
 			}
 		],
@@ -486,81 +486,81 @@
 		"positions": [
 			{
 				"type": "Keeper",
-				"value": "Keeper"
+				"value": "Kiper"
 			},
 			{
 				"type": "WingBack",
-				"value": "Wing back"
+				"value": "Bek Sayap"
 			},
 			{
 				"type": "CentralDefender",
-				"value": "Central defender"
+				"value": "Bek Tengah"
 			},
 			{
 				"type": "InnerMidfield",
-				"value": "Inner midfielder"
+				"value": "Gelandang Tengah"
 			},
 			{
 				"type": "Winger",
-				"value": "Winger"
+				"value": "Sayap"
 			},
 			{
 				"type": "Forward",
-				"value": "Forward"
+				"value": "Penyerang"
 			}
 		],
 		"ratingSubLevels": [
 			{
-				"text": "very low",
+				"text": "Sangat Rendah",
 				"value": "0"
 			},
 			{
-				"text": "low",
+				"text": "Rendah",
 				"value": "0.25"
 			},
 			{
-				"text": "high",
+				"text": "Tinggi",
 				"value": "0.5"
 			},
 			{
-				"text": "very high",
+				"text": "Sangat Tinggi",
 				"value": "0.75"
 			}
 		],
 		"sectors": [
 			{
 				"type": "Midfield",
-				"value": "Midfield"
+				"value": "Tengah"
 			},
 			{
 				"type": "RightDefense",
-				"value": "Right defence"
+				"value": "Pertahanan sisi kanan"
 			},
 			{
 				"type": "CentralDefense",
-				"value": "Central defence"
+				"value": "Pertahanan tengah"
 			},
 			{
 				"type": "LeftDefense",
-				"value": "Left defence"
+				"value": "Pertahanan sisi kiri"
 			},
 			{
 				"type": "RightAttack",
-				"value": "Right attack"
+				"value": "Serangan sisi kanan"
 			},
 			{
 				"type": "CentralAttack",
-				"value": "Central attack"
+				"value": "Serangan tengah"
 			},
 			{
 				"type": "LeftAttack",
-				"value": "Left attack"
+				"value": "Serangan sisi kiri"
 			}
 		],
 		"skills": [
 			{
 				"type": "Keeper",
-				"value": "Keeper"
+				"value": "Kiper"
 			},
 			{
 				"type": "Stamina",
@@ -568,7 +568,7 @@
 			},
 			{
 				"type": "Defender",
-				"value": "Defending"
+				"value": "Bertahan"
 			},
 			{
 				"type": "Playmaker",
@@ -576,11 +576,11 @@
 			},
 			{
 				"type": "Winger",
-				"value": "Winger"
+				"value": "Sayap"
 			},
 			{
 				"type": "Scorer",
-				"value": "Scoring"
+				"value": "menyerang"
 			},
 			{
 				"type": "Kicker",
@@ -592,128 +592,128 @@
 			},
 			{
 				"type": "Experience",
-				"value": "Experience"
+				"value": "Pengalaman"
 			},
 			{
 				"type": "LeaderShip",
-				"value": "Leadership"
+				"value": "Kepemimpinan"
 			}
 		],
 		"specialties": [
 			{
 				"type": "None",
-				"value": "None"
+				"value": "Tidak ada"
 			},
 			{
 				"type": "Technical",
-				"value": "Technical"
+				"value": "Teknikal"
 			},
 			{
 				"type": "Quick",
-				"value": "Quick"
+				"value": "Lincah"
 			},
 			{
 				"type": "Powerful",
-				"value": "Powerful"
+				"value": "Tangguh"
 			},
 			{
 				"type": "Unpredictable",
-				"value": "Unpredictable"
+				"value": "Tak Terduga"
 			},
 			{
 				"type": "Head",
-				"value": "Head"
+				"value": "Sundul"
 			},
 			{
 				"type": "Regainer",
-				"value": "Regainer"
+				"value": "Pemulihan"
 			}
 		],
 		"spirit": [
 			{
-				"text": "like the cold war",
+				"text": "seperti Perang Dingin",
 				"value": "0"
 			},
 			{
-				"text": "murderous",
+				"text": "mengamuk",
 				"value": "1"
 			},
 			{
-				"text": "furious",
+				"text": "marah besar",
 				"value": "2"
 			},
 			{
-				"text": "irritated",
+				"text": "jengkel",
 				"value": "3"
 			},
 			{
-				"text": "composed",
+				"text": "datar",
 				"value": "4"
 			},
 			{
-				"text": "calm",
+				"text": "tenang",
 				"value": "5"
 			},
 			{
-				"text": "content",
+				"text": "senang",
 				"value": "6"
 			},
 			{
-				"text": "satisfied",
+				"text": "puas",
 				"value": "7"
 			},
 			{
-				"text": "delirious",
+				"text": "tergila-gila",
 				"value": "8"
 			},
 			{
-				"text": "walking on clouds",
+				"text": "melayang di awan",
 				"value": "9"
 			},
 			{
-				"text": "paradise on earth!",
+				"text": "Surga di Bumi!",
 				"value": "10"
 			}
 		],
 		"sponsors": [
 			{
-				"text": "murderous",
+				"text": "mengamuk",
 				"value": "0"
 			},
 			{
-				"text": "furious",
+				"text": "marah besar",
 				"value": "1"
 			},
 			{
-				"text": "irritated",
+				"text": "jengkel",
 				"value": "2"
 			},
 			{
-				"text": "calm",
+				"text": "tenang",
 				"value": "3"
 			},
 			{
-				"text": "content",
+				"text": "senang",
 				"value": "4"
 			},
 			{
-				"text": "satisfied",
+				"text": "puas",
 				"value": "5"
 			},
 			{
-				"text": "delirious",
+				"text": "tergila-gila",
 				"value": "6"
 			},
 			{
-				"text": "high on life",
+				"text": "melayang",
 				"value": "7"
 			},
 			{
-				"text": "dancing in the streets",
+				"text": "menari di jalanan",
 				"value": "8"
 			},
 			{
-				"text": "Sending love poems to you",
+				"text": "Mengirimkan puisi cinta kepadamu",
 				"value": "9"
 			}
 		],
@@ -728,23 +728,23 @@
 			},
 			{
 				"type": "ca",
-				"value": "Counter-attacks"
+				"value": "Serangan balik"
 			},
 			{
 				"type": "aim",
-				"value": "Attack in the Middle"
+				"value": "Serangan dari tengah"
 			},
 			{
 				"type": "aow",
-				"value": "Attack on wings"
+				"value": "Serangan dari sayap"
 			},
 			{
 				"type": "",
-				"value": "Unknown"
+				"value": "Tidak diketahui"
 			},
 			{
 				"type": "",
-				"value": "Unknown"
+				"value": "Tidak diketahui"
 			},
 			{
 				"type": "creatively",
@@ -752,13 +752,13 @@
 			},
 			{
 				"type": "longshots",
-				"value": "Long shots"
+				"value": "Tendangan jarak jauh"
 			}
 		],
 		"training": [
 			{
 				"type": "Gen",
-				"value": "General (form)"
+				"value": "Umum (Performa)"
 			},
 			{
 				"type": "Sta",
@@ -766,51 +766,51 @@
 			},
 			{
 				"type": "SP",
-				"value": "Set pieces"
+				"value": "Bola Mati"
 			},
 			{
 				"type": "Def",
-				"value": "Defending"
+				"value": "Bertahan"
 			},
 			{
 				"type": "Sco",
-				"value": "Scoring"
+				"value": "Mencetak Gol"
 			},
 			{
 				"type": "Cross",
-				"value": "Crossing (winger)"
+				"value": "Umpan Silang (Sayap)"
 			},
 			{
 				"type": "Shoot",
-				"value": "Shooting"
+				"value": "Menembak"
 			},
 			{
 				"type": "Pass",
-				"value": "Short passes"
+				"value": "Umpan Pendek"
 			},
 			{
 				"type": "PM",
-				"value": "Playmaking"
+				"value": "Olah Bola"
 			},
 			{
 				"type": "GK",
-				"value": "Goalkeeping"
+				"value": "Mencegah Gol"
 			},
 			{
 				"type": "ThPass",
-				"value": "Through passes"
+				"value": "Umpan Terobosan"
 			},
 			{
 				"type": "DefPos",
-				"value": "Defensive positions"
+				"value": "Posisi Bertahan"
 			},
 			{
 				"type": "WingAtt",
-				"value": "Wing attacks"
+				"value": "Serangan Sayap"
 			},
 			{
 				"type": "Indiv",
-				"value": "Individual"
+				"value": "Individu"
 			}
 		]
 	}
