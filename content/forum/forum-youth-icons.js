@@ -593,7 +593,7 @@ Foxtrick.modules['ForumYouthIcons'] = {
 							var colCt = cellCts[i];
 							var missing_col = max_cells - colCt;
 							if (missing_col !== 0) {
-								var last_td = rows[i].lastIndexOf('[td');
+								var last_td = row.lastIndexOf('[td');
 								row = row.slice(0, last_td + 3) +
 									' colspan=' + (missing_col + 1) +
 									row.slice(last_td + 3);
@@ -602,7 +602,8 @@ Foxtrick.modules['ForumYouthIcons'] = {
 						}, rows);
 
 						// always add header for first row
-						rows[0] = rows[0].replace(/\[\/?b\]/g, '').replace(/td\]/g, 'th]');
+						rows[0] = rows[0].replace(/\[\/?b\]/g, '');
+						rows[0] = rows[0].replace(/\[(\/)?td( colspan=\d+)?\]/g, '[$1th$2]');
 
 						newText = rows.join('[/tr]');
 						newText += '[/tr][/table]';
