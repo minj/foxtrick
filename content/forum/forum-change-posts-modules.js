@@ -8,7 +8,9 @@
 Foxtrick.modules['FormatPostingText'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.FORUM,
 	PAGES: [
-		'forumWritePost', 'messageWritePost', 'guestbook', 'announcements', 'teamPage',
+		'forumWritePost', 'messageWritePost', 'guestbook',
+		'announcementsView', 'announcementsWrite',
+		'teamPage',
 		'newsLetter', 'mailNewsLetter', 'ntNewsLetter',
 		'forumModWritePost'
 	],
@@ -19,7 +21,7 @@ Foxtrick.modules['FormatPostingText'] = {
 		// format view
 		var VIEW_PAGES = [
 			'forumWritePost', 'messageWritePost', 'guestbook', // view + edit
-			'announcements', 'teamPage' // view-only
+			'announcementsView', 'teamPage' // view-only
 		];
 		if (Foxtrick.any(function(page) { return Foxtrick.isPage(doc, page); }, VIEW_PAGES)) {
 			try {
