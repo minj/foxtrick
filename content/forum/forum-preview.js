@@ -8,7 +8,7 @@
 Foxtrick.modules['ForumPreview'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.FORUM,
 	PAGES: [
-		'forumWritePost', 'messageWritePost', 'guestbook', 'announcements',
+		'forumWritePost', 'messageWritePost', 'guestbook', 'announcementsWrite',
 		'newsLetter', 'mailNewsLetter', 'ntNewsLetter',
 		'forumSettings', 'forumModWritePost', 'ticket',
 	],
@@ -339,7 +339,8 @@ Foxtrick.modules['ForumPreview'] = {
 				div = Foxtrick.getMBElement(doc, 'tbNewsBody');
 		}
 
-		div.parentNode.insertBefore(preview_div, div);
+		if (div)
+			div.parentNode.insertBefore(preview_div, div);
 	},
 
 	change: function(doc) {

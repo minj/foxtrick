@@ -137,9 +137,8 @@ Foxtrick.ht_pages = {
 	'ntNewsLetter'              : '/Club/NationalTeam/NTNotice.aspx',
 	'national'                  : '/Club/NationalTeam/NationalTeam.aspx',
 	'guestbook'                 : '/Club/Manager/Guestbook.aspx',
-	'announcements'             : '/Club/Announcements/New.aspx|' +
-	                              '/Club/Announcements/Edit.aspx|' +
-	                              '/Club/Announcements/(Default.aspx?|?)',
+	'announcementsView'         : '/Club/Announcements/(Default.aspx?|?)',
+	'announcementsWrite'        : '/Club/Announcements/(New|Edit).aspx',
 	'htPress'                   : '/Community/Press/(Default.aspx|?|$)',
 	'cupMatches'                : '/World/Cup/CupMatches.aspx',
 	'cupOverview'               : '/World/Cup/(Default.aspx|?|$)',

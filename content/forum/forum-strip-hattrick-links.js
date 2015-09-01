@@ -8,7 +8,7 @@
 Foxtrick.modules['ForumStripHattrickLinks'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.FORUM,
 	PAGES: [
-		'forumWritePost', 'messageWritePost', 'guestbook', 'announcements',
+		'forumWritePost', 'messageWritePost', 'guestbook', 'announcementsWrite',
 		'newsLetter', 'mailNewsLetter', 'ntNewsLetter',
 		'forumModWritePost', 'forumViewThread', 'ticket', 'helpContact',
 	],

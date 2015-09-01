@@ -9,7 +9,7 @@ Foxtrick.modules['ForumYouthIcons'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.FORUM,
 	PAGES: [
 		'forumWritePost', 'messageWritePost', 'guestbook',
-		'announcements', 'forumSettings', 'newsLetter', 'mailNewsLetter', 'ntNewsLetter',
+		'announcementsWrite', 'forumSettings', 'newsLetter', 'mailNewsLetter', 'ntNewsLetter',
 		'forumModWritePost', 'ticket', 'helpContact',
 	],
 	OPTIONS: [
@@ -105,7 +105,7 @@ Foxtrick.modules['ForumYouthIcons'] = {
 			},
 			// PA
 			{
-				page: 'announcements',
+				page: 'announcementsWrite',
 				textarea: HMLtxtBody,
 				counterfield: HMLtxtRemLen,
 				length: 1000,
@@ -495,9 +495,10 @@ Foxtrick.modules['ForumYouthIcons'] = {
 			anchor.style.height = '300px';
 		}
 
-		if (Foxtrick.isPage(doc, 'announcements') && enlarge) {
+		if (Foxtrick.isPage(doc, 'announcementsWrite') && enlarge) {
 			anchor = doc.getElementById(HMLtxtBody);
-			anchor.style.height = '300px';
+			if (anchor)
+				anchor.style.height = '300px';
 		}
 		var toolbars = doc.getElementsByClassName('HTMLToolbar');
 		if (!toolbars[0])
