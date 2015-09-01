@@ -339,6 +339,18 @@
 		{
 			"approved": "0",
 			"approved_progress": "0",
+			"code": "id",
+			"name": "Indonesian",
+			"phrases": "1894",
+			"translated": "416",
+			"translated_progress": "36",
+			"words": "13529",
+			"words_approved": "0",
+			"words_translated": "4930"
+		},
+		{
+			"approved": "0",
+			"approved_progress": "0",
 			"code": "it",
 			"name": "Italian",
 			"phrases": "1894",
