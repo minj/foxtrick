@@ -74,6 +74,11 @@
 			}
 		}
 	};
+	var enable_swap = function() {
+		var target = document.getElementById('ft_swap_positions');
+		if (target)
+			target.addEventListener('click', ft_swap_positions);
+	};
 
 	var ft_fix_penalty_takers = function() {
 		// based on matchorder_1_0_7.js:1691
@@ -107,39 +112,58 @@
 		});
 		ht.field.ft_kickersFixed = true;
 	};
-
-	document.addEventListener('ft_enable_swap', function() {
-		var target = this.getElementById('ft_swap_positions');
-		if (target)
-			target.addEventListener('click', ft_swap_positions);
-	});
-
-	document.addEventListener('ft_enable_penalties_fix', function() {
-		var target = this.querySelector('#li_tab_subs + li > a');
+	var enable_fix = function() {
+		var target = document.querySelector('#li_tab_subs + li > a');
 		if (target)
 			target.addEventListener('click', ft_fix_penalty_takers);
-	});
+	};
 
-	document.addEventListener('ft_enable_penalty_controls', function() {
-		var target = this.getElementById('ft_clear_penalty_takers');
+	var ft_clear_penalties = function() {
+		ht.$.each(ht.field.positions, function(i, item) {
+			if (i > 20)
+				item.reset();
+		});
+		ht.field.updateFormation();
+	};
+	var enable_clear = function() {
+		var target = document.getElementById('ft_clear_penalty_takers');
 		if (target) {
-			target.addEventListener('click', function() {
-				ht.$.each(ht.field.positions, function(i, item) {
-					if (i > 20)
-						item.reset();
-				});
-				ht.field.updateFormation();
-			});
+			target.addEventListener('click', ft_clear_penalties);
 		}
-	});
+	};
 
-	document.addEventListener('ft_enable_stay', function() {
-		var target = this.getElementById('send');
+	var enable_stay = function() {
+		var target = document.getElementById('send');
 		if (target) {
 			target.addEventListener('click', function() {
 				ht.orders.doneURL = document.location.href;
 			});
 		}
-	});
+	};
+
+
+	if (document.documentElement.dataset.ft_enable_swap)
+		enable_swap();
+	else {
+		document.addEventListener('ft_enable_swap', enable_swap);
+	}
+
+	if (document.documentElement.dataset.ft_enable_penalties_fix)
+		enable_fix();
+	else {
+		document.addEventListener('ft_enable_penalties_fix', enable_fix);
+	}
+
+	if (document.documentElement.dataset.ft_enable_penalty_controls)
+		enable_clear();
+	else {
+		document.addEventListener('ft_enable_penalty_controls', enable_clear);
+	}
+
+	if (document.documentElement.dataset.ft_enable_stay)
+		enable_stay();
+	else {
+		document.addEventListener('ft_enable_stay', enable_stay);
+	}
 
 })();
