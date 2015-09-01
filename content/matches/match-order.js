@@ -403,6 +403,7 @@ Foxtrick.modules['MatchOrderInterface'] = {
 					var formations = doc.getElementById('formations');
 					formations.parentNode.insertBefore(swapPositionsDiv, formations.nextSibling);
 					doc.dispatchEvent(new Event('ft_enable_swap'));
+					doc.documentElement.dataset.ft_enable_swap = true;
 				}
 
 
@@ -551,14 +552,17 @@ Foxtrick.modules['MatchOrderInterface'] = {
 					var penalties = doc.getElementById('tab_penaltytakers');
 					penalties.appendChild(frag);
 					doc.dispatchEvent(new Event('ft_enable_penalty_controls'));
+					doc.documentElement.dataset.ft_enable_penalty_controls = true;
 				}
 
 				if (Foxtrick.Prefs.isModuleOptionEnabled('MatchOrderInterface', 'StayOnPage')) {
 					doc.dispatchEvent(new Event('ft_enable_stay'));
+					doc.documentElement.dataset.ft_enable_stay = true;
 				}
 				if (Foxtrick.Prefs.isModuleOptionEnabled('MatchOrderInterface',
 				    'FixPenaltyTakers')) {
 					doc.dispatchEvent(new Event('ft_enable_penalties_fix'));
+					doc.documentElement.dataset.ft_enable_penalties_fix = true;
 				}
 
 				// add playerid to details
