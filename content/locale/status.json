@@ -174,11 +174,11 @@
 			"code": "en-US",
 			"name": "English, United States",
 			"phrases": "1894",
-			"translated": "1841",
-			"translated_progress": "93",
+			"translated": "1894",
+			"translated_progress": "100",
 			"words": "13529",
 			"words_approved": "0",
-			"words_translated": "12645"
+			"words_translated": "13529"
 		},
 		{
 			"approved": "0",
@@ -630,11 +630,11 @@
 			"code": "tr",
 			"name": "Turkish",
 			"phrases": "1894",
-			"translated": "1366",
+			"translated": "1369",
 			"translated_progress": "60",
 			"words": "13529",
 			"words_approved": "0",
-			"words_translated": "8175"
+			"words_translated": "8183"
 		},
 		{
 			"approved": "0",

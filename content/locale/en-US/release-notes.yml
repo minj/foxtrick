@@ -7,38 +7,91 @@ en-US:
       note_0: 'This is the beta version of the next release. Please help translating this version at our super easy crowd-translation page <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.15.2.1:
       important: '<header>Important announcements</header>'
+      signed: All Firefox add-ons now need to be digitally signed by Mozilla. This is mostly a signed update to ensure Foxtrick compatibility.
+      signing: 'Due to disruptions caused by mandatory add-on signing policy we chose to unlist Foxtrick from <linkAMO>Mozilla add-ons</linkAMO> portal. More details in the <linkUnlistPost>Global Foxtrick announcement</linkUnlistPost>.'
       bugs: '<header>Bug fixes</header>'
+      weatherSE: 'Listing weather SE players in match timeline was broken in <module>MatchLineupFixes</module> due to HT changes. The problem is now fixed.'
       other: '<header>Other changes</header>'
+      sandbox: Added support for the upcoming Hattrick match sandbox feature.
+      compact_lineups: 'Saved lineup names will now be compacted with <module>MatchOrderInterface</module>. This will allow you to use more saved lineups without running into space issues.'
       and_more: Various other small changes and fixes.
     0.15.2:
       important: '<header>Important announcements</header>'
+      links: '<module>Links</module> functionality was rewritten to fix a few bugs and improve maintenance. More tags will now be available for custom links. Some tags were renamed to reflect their true meaning. Please clear your Foxtrick cache, test your custom links and update them accordingly.'
+      support: '<header>Like what we are doing? Please <linkContribute>Support Foxtrick</linkContribute>.</header>'
       crowdin: '<header>A lot of translation updates from our awesome users using the <linkCrowdin>crowdin tool</linkCrowdin>. You can help out as well!</header>'
       twitter: 'You can follow <linkTwitter>Foxtrick on Twitter</linkTwitter> to receive the latest news, updates, and announcements.'
       bugs: '<header>Bug fixes</header>'
+      youth_avatars: 'Fixed missing youth avatars in <module>MatchOrderInterface</module>.'
+      preserve_changes: '<module>MatchRatingsTweaks</module> should now preserve last rating changes during live games. Previously the changes in ratings (colored numbers) would disappear on each update even if that update had no effect on ratings.'
+      leave_forum: '<module>ForumLeaveButton</module> was totally broken and should now be fixed.'
+      monitor_cups: '<module>MyMonitor</module> should now show the correct secondary cup icons.'
       other: '<header>Other changes</header>'
+      volume: 'Added a global Foxtrick sound volume slider in the <FTlinkMainTab>general settings section</FTlinkMainTab>.'
+      mlt_upgrade: '<module>MatchLineupTweaks</module> module should now display player numbers on the match lineup. Additionally, you will see stamina skill prediction (if available) when hovering your mouse over the player energy value.'
+      mrt_ratings: '<module>Ratings</module> module was integrated into <module>MatchRatingsTweaks</module> and now has a limited functionality even in HT-Live (for HT Supporters-only).'
+      copy_ratings: '<module>CopyRatings</module> was rewritten and can now copy minute-based ratings from the rating details tab, even in HT-Live.'
+      monitor_update: '<module>MyMonitor</module> now includes more intelligent team sorting and an ability add matches to HT-Live based on their type.'
+      promote_age: '<module>YouthPromotes</module> now shows player age on promotion day.'
+      export_live: 'Added a button to export your HT-Live match list as a link in <module>ReLiveLinks</module>.'
+      match_icons: 'More match event icons were added to <module>MatchReportFormat</module>. All important events should now be covered.'
+      retro_cups: 'Retro cup icons were added for new cup types in <module>CustomMedals</module>.'
       and_more: Various other small changes and fixes.
     0.15.1:
       bugs: '<header>Bug fixes</header>'
+      nt_crash: 'Fixed a performance problem leading to browser crashes for NTs in <module>MatchOrderInterface</module>.'
+      copy_htMl: 'Fixed <module>ContextMenuCopy</module> no longer copying link text for HT-ML.'
+      resource_fix: '<module>Links</module> and <module>StaffMarker</module> stopped working for users in some countries. This should be fixed in a few days.'
       other: '<header>Other changes</header>'
+      extarnal_url: 'Added an option to copy Hattrick links for other websites in <module>ContextMenuCopy</module>. These links work no matter which HT server a user is logged in with.'
       and_more: Various other small changes and fixes.
     0.15.0:
       important: '<header>Important announcements</header>'
+      support: '<header>Like what we are doing? Please <linkContribute>Support Foxtrick</linkContribute>.</header>'
       crowdin: '<header>A lot of translation updates from our awesome users using the <linkCrowdin>crowdin tool</linkCrowdin>. You can help out as well!</header>'
       twitter: 'You can follow <linkTwitter>Foxtrick on Twitter</linkTwitter> to receive the latest news, updates, and announcements.'
       new: '<header>New modules</header>'
+      promotion_reminder: '<module>AddPromotionReminder</module>: Add a button to create a reminder for the day when you can promote a youth player'
       bugs: '<header>Bug fixes</header>'
+      breakages: Foxtrick should now work correctly on Safari 7.1+ and Firefox for Android.
+      https: Foxtrick should again work correctly on Hattrick Stage.
+      avatars: 'Player avatar cache in <module>MatchOrderInterface</module> will now be refreshed automatically when new players arrive on your team.'
+      fans: 'Fan evolution in <module>Fans</module> will now be calculated correctly when your team is promoted or demoted.'
+      player_stats: '<module>PlayerStatsTrainingWeek</module> should now correctly recognize weekend friendlies.'
       other: '<header>Other changes</header>'
+      transfer_compare: 'MedianTransferPrice was renamed to <module>TransferComparePlayers</module>. Added TSI calculations and an ability to fetch more player data from CHPP. Shows price difference in player transfer history page.'
+      player_positions: 'Improved <module>PlayerPositionsEvaluations</module> and added many options where you can choose to include form, stamina, loyalty, experience and bruised effects into calculations.'
+      country_list: '<module>CountryList</module> can now change country names in the flag collection. It is possible to use English country names instead of native ones.'
+      best_player_position: 'BestPlayerPosition module was merged into <module>PlayerPositionsEvaluations</module>.'
+      nt: Fixed a lot of functionalities that were previously not working correctly for NT coaches.
+      en-US: Added proper support for US English language.
+      code: A lot more maintenance was done on Foxtrick code. This allows us to find and fix hidden bugs, improve add-on stability and ease its further development.
       and_more: Various other small changes and fixes.
     0.14.0.3:
       important: '<header>Important announcements</header>'
+      sorry: "Apologies for the last 'bug-fix' release that actually broke more things than it fixed. This one should be better."
       bugs: '<header>Bug fixes</header>'
+      street_teams: The introduction of street teams in the new cup system caused various weird problems that are now fixed.
+      revert: '<module>PlayerStatsExperience</module> and penalty takers utilities in <module>MatchOrderInterface</module> should now be fixed for real.'
+      income: '<module>MatchIncome</module> should now display correct information for all matches. Please report any inconsistencies.'
+      stats: '<module>SeasonStats</module> was broken due to recent HT changes. All issues were fixed.'
     0.14.0.2:
       bugs: '<header>Bug fixes</header>'
+      challenge_link: 'Challenge link in <module>TeamPopupLinks</module> now takes you to the team page and automatically opens the challenge menu.'
+      penalty_takers: 'Sorting by HO formula in <module>MatchOrderInterface</module> was broken due to HT changes.'
+      new_cups: 'New cup system support was implemented. This fixes new bugs in various modules, most importantly <module>PlayerStatsExperience</module>.'
       other: '<header>Other changes</header>'
+      psico: '<module>PsicoTSI</module> wage prediction was updated.'
+      first_last_post: 'You can now optionally open first post when clicking again on already open threads with <module>ForumLastPost</module>.'
       and_more: Various other small changes and fixes.
     0.14.0.1:
       important: '<header>Important announcements</header>'
+      ff_cache: Foxtrick packages will no longer have extra compression in Firefox. This should prevent all kinds of weird problems users have experienced with version 0.14.0.
       bugs: '<header>Bug fixes</header>'
+      safari_prefs: The Foxtrick preferences page could not be displayed for some users with Safari.
+      teamstats: 'Fixed a rare error that breaks <module>TeamStats</module> and other modules.'
+      bpp: '<module>BestPlayerPosition</module> was showing wrong data in transfer search result page in some cases.'
+      history_stats: '<module>HistoryStats</module> will now always order team performance by season.'
     0.14.0:
       important: '<header>Important announcements</header>'
       crowdin: '<header>A lot of translation updates from our awesome users using the <linkCrowdin>crowdin tool</linkCrowdin>. You can help out as well!</header>'
