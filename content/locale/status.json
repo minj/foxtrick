@@ -313,16 +313,16 @@
 			"words_translated": "13203"
 		},
 		{
-			"approved": "202",
+			"approved": "200",
 			"approved_progress": "2",
 			"code": "hu",
 			"name": "Hungarian",
 			"phrases": "1894",
-			"translated": "1634",
+			"translated": "1639",
 			"translated_progress": "74",
 			"words": "13529",
-			"words_approved": "398",
-			"words_translated": "10029"
+			"words_approved": "396",
+			"words_translated": "10048"
 		},
 		{
 			"approved": "0",
