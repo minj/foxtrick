@@ -7,8 +7,11 @@ nl:
       note_0: 'Dit is een beta versie van de volgende release. Help alsjeblieft met vertalen van deze versie op de zeer gebruiksvriendelijke crowd-vertaal pagina <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.15.2.1:
       important: '<header>Belangrijke aankondigingen</header>'
+      signed: Alle Firefox add-ons moeten nu digitaal worden ondertekend door Mozilla. Dit is meestal een ondertekende update om compatibiliteit met Foxtrick te garanderen.
       bugs: '<header>Fout herstel</header>'
       other: '<header>Andere veranderingen</header>'
+      sandbox: Toegevoegde ondersteuning voor de aanstaande Hattrick match sandbox functie.
+      compact_lineups: 'Opgeslagen opstellingsnamen worden gecomprimeerd met <module>MatchOrderInterface</module>. Hierdoor kun je meer opgeslagen opstellingen gebruiken zonder in de problemen te komen qua ruimte.'
       and_more: Diverse andere kleine veranderingen en correcties.
     0.15.2:
       important: '<header>Belangrijke aankondigingen</header>'
@@ -293,6 +296,7 @@ nl:
       note_16: '<module>MatchPlayerColouring</module>: Now works properly for players that were put in and left the field before the game ended'
       note_17: '<module>HideSignatures</module>: Did not work when HT setting was set to truncated signatures, fixed that'
       note_18: '<module>PlayerStatsExperience</module>: Fixed NT/U-20 final and semi-final detection'
+      note_19: '<module>TeamPopupLinks</module>: Oneindig creëren van tabbladen in het gastenboek opgelost'
       note_20: Fixed RTL language issues with the median transfer price
       note_21: '<header>For visually/hearing impaired users</header>'
       note_22: We added a new section to the settings page that will contain all modules that are related to accessibility.
