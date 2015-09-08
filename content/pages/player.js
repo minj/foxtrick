@@ -875,19 +875,40 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerid, callback) {
  * @return {object}              position map Object<string, number>
  */
 Foxtrick.Pages.Player.getContributions = function(playerSkills, playerAttrs) {
+	var MF_VS_ATT = 4 / 3;
+	var DF_VS_ATT = 4 / 3;
+	var CNTR_VS_WING = 35 / 25;
+	var WBD_VS_CD = 1.6;
+	var WO_VS_FW = 1.25;
 	var getValue = function(coefs, skills) {
-		var value = coefs[0] * skills.keeper;
-		value += coefs[1] * skills.defending;
-		value += coefs[2] * skills.playmaking;
-		value += coefs[3] * skills.winger;
-		value += coefs[4] * skills.passing;
-		value += coefs[5] * skills.scoring;
-
+		var value = 0;
+		var sum = 0;
+		for (var skill in skills) {
+			if (skills.hasOwnProperty(skill) && skill in coefs) {
+				var defence = skill === 'defending' || skill === 'keeper';
+				var contr = coefs[skill];
+				var coef;
+				if (Array.isArray(contr)) {
+					var center = contr[0];
+					var wing = contr[1];
+					wing *= defence ? WBD_VS_CD : WO_VS_FW;
+					// weighted average for 3 sectors
+					coef = (center + wing / CNTR_VS_WING) / (1 + 2 / CNTR_VS_WING);
+					if (defence)
+						coef *= DF_VS_ATT;
+				}
+				else {
+					// PM
+					coef = contr * MF_VS_ATT;
+				}
+				value += skills[skill] * coef;
+				sum += coef;
+				// Foxtrick.log(skill, coef);
+			}
+		}
 		if (Foxtrick.Prefs.isModuleOptionEnabled('PlayerPositionsEvaluations', 'Normalised')) {
-			var sum = coefs.reduce(function(ct, coef) { return ct + coef; }, 0);
 			value /= sum;
 		}
-
 		return parseFloat(value.toFixed(2));
 	};
 
@@ -917,32 +938,121 @@ Foxtrick.Pages.Player.getContributions = function(playerSkills, playerAttrs) {
 	if (!skills)
 		return null;
 
-	// all coefficients taken from http://wiki.hattrick.org/wiki/Hattrick_-_Skill_positions
+	// all coefficients taken from https://docs.google.com/spreadsheets/d/1bNwtBdOxbY8pdY7uAx0boqHwRtJgj7tNpcFtDsP9Wq8/edit#gid=0
+	// format: [middle, sides]
 	var coefs = {
-		//    kp      df     pm     w      ps     sc
-		kp:   [1.468, 0.701, 0,     0,     0,     0],
-		wbd:  [0,     1.479, 0.066, 0.323, 0,     0],
-		wb:   [0,     1.368, 0.167, 0.506, 0,     0],
-		wbtm: [0,     1.37,  0.167, 0.276, 0,     0],
-		wbo:  [0,     1.079, 0.23,  0.618, 0,     0],
-		cd:   [0,     1.516, 0.244, 0,     0,     0],
-		cdtw: [0,     1.492, 0.171, 0.252, 0,     0],
-		cdo:  [0,     1.103, 0.329, 0,     0,     0],
-		wd:   [0,     0.738, 0.381, 0.723, 0.223, 0],
-		w:    [0,     0.55,  0.455, 0.854, 0.311, 0],
-		wtm:  [0,     0.528, 0.574, 0.564, 0.278, 0],
-		wo:   [0,     0.268, 0.381, 1,     0.378, 0],
-		imd:  [0,     0.864, 0.944, 0,     0.358, 0],
-		im:   [0,     0.589, 1,     0,     0.541, 0],
-		imtw: [0,     0.597, 0.881, 0.489, 0.496, 0],
-		imo:  [0,     0.318, 0.944, 0,     0.697, 0],
-		fw:   [0,     0,     0,     0.18,  0.49,  1.221],
-		fwtw: [0,     0,     0,     0.524, 0.339, 1.236],
-		tdf:  [0,     0,     0.429, 0.124, 0.885, 0.729],
-		fwd:  [0,     0,     0.429, 0.124, 0.814, 0.729],
+		kp: {
+			keeper: [0.87, 0.61 * 2],
+			defending: [0.35, 0.25 * 2],
+		},
+		cd: {
+			defending: [1, 0.26 * 2],
+			playmaking: 0.25,
+		},
+		cdo: {
+			defending: [0.73, 0.20 * 2],
+			playmaking: 0.40,
+		},
+		cdtw: {
+			defending: [0.67, 0.81],
+			playmaking: 0.15,
+			winger: [0, 0.26],
+		},
+		wb: {
+			defending: [0.38, 0.92],
+			playmaking: 0.15,
+			winger: [0, 0.59],
+		},
+		wbd: {
+			defending: [0.43, 1],
+			playmaking: 0.10,
+			winger: [0, 0.45],
+		},
+		wbo: {
+			defending: [0.35, 0.74],
+			playmaking: 0.20,
+			winger: [0, 0.69],
+		},
+		wbtm: {
+			defending: [0.70, 0.75],
+			playmaking: 0.20,
+			winger: [0, 0.35],
+		},
+		w: {
+			defending: [0.20, 0.35],
+			playmaking: 0.45,
+			passing: [0.11, 0.26],
+			winger: [0, 0.86],
+		},
+		wd: {
+			defending: [0.25, 0.61],
+			playmaking: 0.30,
+			passing: [0.05, 0.21],
+			winger: [0, 0.69],
+		},
+		wo: {
+			defending: [0.13, 0.22],
+			playmaking: 0.30,
+			passing: [0.13, 0.29],
+			winger: [0, 1],
+		},
+		wtm: {
+			defending: [0.25, 0.29],
+			playmaking: 0.55,
+			passing: [0.16, 0.15],
+			winger: [0, 0.74],
+		},
+		im: {
+			defending: [0.40, 0.09 * 2],
+			playmaking: 1,
+			passing: [0.33, 0.13 * 2],
+			scoring: [0.22, 0],
+		},
+		imd: {
+			defending: [0.58, 0.14 * 2],
+			playmaking: 0.95,
+			passing: [0.18, 0.07 * 2],
+			scoring: [0.13, 0],
+		},
+		imo: {
+			defending: [0.16, 0.04 * 2],
+			playmaking: 0.95,
+			passing: [0.49, 0.18 * 2],
+			scoring: [0.31, 0],
+		},
+		imtw: {
+			defending: [0.33, 0.24],
+			playmaking: 0.90,
+			passing: [0.23, 0.31],
+			winger: [0, 0.59],
+		},
+		fw: {
+			playmaking: 0.25,
+			passing: [0.33, 0.14 * 2],
+			scoring: [1, 0.27 * 2],
+			winger: [0, 0.24 * 2],
+		},
+		fwd: {
+			playmaking: 0.35,
+			passing: [0.53, 0.31 * 2],
+			scoring: [0.56, 0.13 * 2],
+			winger: [0, 0.13 * 2],
+		},
+		tdf: {
+			playmaking: 0.35,
+			passing: [0.53, 0.41 * 2],
+			scoring: [0.56, 0.13 * 2],
+			winger: [0, 0.13 * 2],
+		},
+		fwtw: {
+			playmaking: 0.15,
+			passing: [0.23, 0.21 + 0.06],
+			scoring: [0.66, 0.51 + 0.19],
+			winger: [0, 0.64 + 0.21],
+		},
 	};
 
-	//	Source [post=16376110.4]
+	// Source [post=16376110.4]
 	var enabled = {};
 	Foxtrick.forEach(function(opt) {
 		enabled[opt] = Foxtrick.Prefs.isModuleOptionEnabled('PlayerPositionsEvaluations', opt);
@@ -993,7 +1103,7 @@ Foxtrick.Pages.Player.getContributions = function(playerSkills, playerAttrs) {
 			0.82,
 			0.897,
 			0.967,
-			1
+			1,
 		];
 		var form = attrs.form;
 		for (skill in skills)
@@ -1010,6 +1120,7 @@ Foxtrick.Pages.Player.getContributions = function(playerSkills, playerAttrs) {
 
 	var cntrb = {};
 	for (var pos in coefs) {
+		// Foxtrick.log(pos);
 		cntrb[pos] = getValue(coefs[pos], skills);
 	}
 
