@@ -43,6 +43,11 @@ Foxtrick.modules['ShowLineupSet'] = {
 
 		// check ownerless teams
 		var leagueTable = doc.getElementById('mainBody').getElementsByTagName('table')[0];
+		if (!leagueTable) {
+			Foxtrick.log('league table not found. Tournament has not started yet?');
+			return;
+		}
+
 		// checks whether a team is ownerless
 		var isOwnerless = function(link) { return Foxtrick.hasClass(link, 'shy'); };
 		// get bots/ownerless
