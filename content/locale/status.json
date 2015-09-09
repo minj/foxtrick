@@ -522,11 +522,11 @@
 			"code": "ro",
 			"name": "Romanian",
 			"phrases": "1894",
-			"translated": "1891",
-			"translated_progress": "99",
+			"translated": "1894",
+			"translated_progress": "100",
 			"words": "13529",
 			"words_approved": "4506",
-			"words_translated": "13515"
+			"words_translated": "13529"
 		},
 		{
 			"approved": "1894",
@@ -541,16 +541,16 @@
 			"words_translated": "13529"
 		},
 		{
-			"approved": "1739",
+			"approved": "1741",
 			"approved_progress": "84",
 			"code": "sr",
 			"name": "Serbian (Cyrillic)",
 			"phrases": "1894",
-			"translated": "1757",
+			"translated": "1759",
 			"translated_progress": "85",
 			"words": "13529",
-			"words_approved": "11428",
-			"words_translated": "11608"
+			"words_approved": "11433",
+			"words_translated": "11613"
 		},
 		{
 			"approved": "0",
@@ -642,11 +642,11 @@
 			"code": "uk",
 			"name": "Ukrainian",
 			"phrases": "1894",
-			"translated": "1629",
+			"translated": "1631",
 			"translated_progress": "77",
 			"words": "13529",
 			"words_approved": "0",
-			"words_translated": "10445"
+			"words_translated": "10452"
 		},
 		{
 			"approved": "0",

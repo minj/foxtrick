@@ -12,6 +12,7 @@ ro:
       bugs: '<header>Erori reparate</header>'
       weatherSE: 'Afisarea in raportul de meci a evenimentelor spediale generate de conditiile meteo nu functiona in <module>MatchLineupFixes</module>, din cauza schimbarilor din HT. Problema a fost rezolvata.'
       other: '<header>Alte schimbări</header>'
+      sandbox: Am adăugat opțiuni ajutătoare pentru simulatorul așezărilor.
       compact_lineups: 'Numele salvate pentru asezarile din teren este de-acum compactat in <module>MatchOrderInterface</module>. Aceasta va permite salvarea mai multor asezari, fara a mai avea probleme de spatiu.'
       and_more: Diferite alte mici schimbări și reparații.
     0.15.2:
