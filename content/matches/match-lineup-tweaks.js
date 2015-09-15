@@ -588,7 +588,13 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 
 			var getStaminaFromNode = function(node) {
 				var parent = node.getElementsByClassName('sectorShirt')[0].nextSibling;
-				var staminaTitle = parent.firstChild.title;
+				var child = parent.firstChild;
+				if (!child) {
+					// probably old match like 177995984#
+					return 0;
+				}
+
+				var staminaTitle = child.title;
 				var stamina = staminaTitle.match(/\d+/);
 				return parseInt(stamina, 10);
 			};
