@@ -216,7 +216,8 @@ Foxtrick.util.api = {
 			return container.getElementsByTagName(tagName)[0];
 		};
 		xml.text = function(tagName, container) {
-			return this.node(tagName, container).textContent;
+			var node = this.node(tagName, container);
+			return node.textContent;
 		};
 		xml.bool = function(tagName, container) {
 			var text = this.text(tagName, container);
@@ -235,7 +236,8 @@ Foxtrick.util.api = {
 			return Foxtrick.util.time.getDateFromText(text, 'yyyymmdd', true);
 		};
 		xml.num = function(tagName, container) {
-			return parseInt(this.text(tagName, container), 10);
+			var text = this.text(tagName, container);
+			return parseInt(text, 10);
 		};
 		xml.money = function(tagName, rate, container) {
 			var sek = this.num(tagName, container);
