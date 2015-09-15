@@ -216,7 +216,8 @@ Foxtrick.util.api = {
 			return container.getElementsByTagName(tagName)[0];
 		};
 		xml.text = function(tagName, container) {
-			return this.node(tagName, container).textContent;
+			var node = this.node(tagName, container);
+			return node.textContent;
 		};
 		xml.bool = function(tagName, container) {
 			var text = this.text(tagName, container);
@@ -235,7 +236,8 @@ Foxtrick.util.api = {
 			return Foxtrick.util.time.getDateFromText(text, 'yyyymmdd', true);
 		};
 		xml.num = function(tagName, container) {
-			return parseInt(this.text(tagName, container), 10);
+			var text = this.text(tagName, container);
+			return parseInt(text, 10);
 		};
 		xml.money = function(tagName, rate, container) {
 			var sek = this.num(tagName, container);
@@ -307,6 +309,23 @@ Foxtrick.util.api = {
 					             'current timestamp: ', new Date(HT_date).toString());
 				}
 
+				var getError = function(x, status) {
+					var errorText = null;
+					if (x == null)
+						errorText = Foxtrick.L10n.getString('api.failure');
+					else {
+						var ErrorNode = x.getElementsByTagName('Error')[0];
+						if (typeof(ErrorNode) !== 'undefined') {
+							// chpp api return error xml
+							errorText = ErrorNode.textContent;
+							x = null;
+						}
+					}
+					if (status == 503)
+						errorText = Foxtrick.L10n.getString('api.serverUnavailable');
+
+					return errorText;
+				};
 				// check file cache next
 				// numetical cache time overrides 'session'
 				if (xml_cache && xml_cache.xml_string && options &&
@@ -322,8 +341,9 @@ Foxtrick.util.api = {
 					}
 
 					var parser = new doc.defaultView.DOMParser();
-					safeCallback(parser.parseFromString(JSON.parse(xml_cache.xml_string),
-						         'text/xml'));
+					var xml = parser.parseFromString(JSON.parse(xml_cache.xml_string), 'text/xml');
+					var errorText = getError(xml, status);
+					safeCallback(xml, errorText);
 				}
 				else {
 					// add to or create queue
@@ -338,19 +358,7 @@ Foxtrick.util.api = {
 
 					// process queued requested
 					var process_queued = function(x, status) {
-						var errorText = null;
-						if (x == null)
-							errorText = Foxtrick.L10n.getString('api.failure');
-						else {
-							var ErrorNode = x.getElementsByTagName('Error')[0];
-							if (typeof(ErrorNode) !== 'undefined') {
-								// chpp api return error xml
-								errorText = ErrorNode.textContent;
-								x = null;
-							}
-						}
-						if (status == 503)
-							errorText = Foxtrick.L10n.getString('api.serverUnavailable');
+						var errorText = getError(x, status);
 						for (var i = 0; i < Foxtrick.util.api.queue[parameters_str].length; ++i)
 							Foxtrick.util.api.queue[parameters_str][i](x, errorText);
 						delete (Foxtrick.util.api.queue[parameters_str]);
