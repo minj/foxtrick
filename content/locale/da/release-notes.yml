@@ -13,9 +13,11 @@ da:
       weatherSE: 'Grundet ændringer fra Hattrick, har der været visuelle problemer af speciellebegivenheder ifm. spillere under kamptidslinjen ved <module>MatchLineupFixes</module>. Problemet er nu løst.'
       other: '<header>Andre ændringer</header>'
       sandbox: Support for den kommende arbejdsfunktion for kampordre er nu tilføjet.
+      compact_lineups: 'Titlerne for holdopstillinger, ved kampordre siden under fanen gemt, vil nu blive komprimeret med <module>MatchOrderInterface</module>. Dette giver mere plads og mulighed for at gemme flere forskellige hold ordrer.'
       and_more: Forskellige små ændringer og rettelser.
     0.15.2:
       important: '<header>Vigtige meddelelser</header>'
+      links: 'Funktionaliteten af modulen <module>Links</module> er omskrevet for at rette nogle få fejl og forbedre vedligeholdelsen af den. Det er nu muligt at vælge mellem flere etiketter for brugerdefinerede hyperlinks. Nogle etiketter er omdøbt for at afspejle deres betydning bedre. Du skal rydde din Foxtrick cache, test din brugerdefinerede links og opdatere dem i overensstemmelse hermed.'
       support: '<header>Støt Foxtrick via Flattr mikrodonationer eller giv et bidrag med Paypal <linkContribute>Donér</linkContribute>.</header>'
       crowdin: '<header>En stor tak til alle de hjælpsomme brugere, som oversætter ved hjælp af <linkCrowdin>crowdin </linkCrowdin>. Du kan også give en hånd!</header>'
       twitter: 'Du kan følge <linkTwitter>Foxtrick på Twitter</linkTwitter> for at modtage de seneste nyheder, opdateringer og meddelelser.'
