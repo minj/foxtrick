@@ -956,7 +956,8 @@ Foxtrick.Pages.Player.getContributions = function(playerSkills, playerAttrs) {
 	var bonus, skill;
 	if (enabled['ExperienceIncluded']) {
 		var experience = attrs.experience;
-		bonus = Math.log(experience) / Math.log(10) * 4.0 / 3.0;
+		// don't do log 0
+		bonus = experience ? Math.log(experience) / Math.log(10) * 4.0 / 3.0 : 0;
 		for (skill in skills)
 			skills[skill] += bonus;
 	}
