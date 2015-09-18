@@ -1,3 +1,10 @@
+#tactics {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	background: initial !important;
+}
+
 /* our ratings as number */
 .overlayRatingsNum {
 	border-bottom: 1px solid #79A777;
