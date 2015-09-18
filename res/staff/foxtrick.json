@@ -695,6 +695,11 @@
 			"name": "Nanouk"
 		},
 		{
+			"duty": "supporter",
+			"id": "6723161",
+			"name": "LA-LeChatPotte"
+		},
+		{
 			"duty": "translator",
 			"id": "6779565",
 			"name": "LasseSvendsen"
