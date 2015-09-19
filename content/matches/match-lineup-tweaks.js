@@ -940,7 +940,12 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			// powerfull suffers in sun (loses stamina)
 			if (evtType == 304) {
 				var playerLink = evt.getElementsByTagName('a')[0];
-				affectedPlayerID = Foxtrick.getParameterFromUrl(playerLink.href, 'playerId');
+				if (!playerLink) {
+					// street
+					affectedPlayerID = 0;
+				}
+				else
+					affectedPlayerID = Foxtrick.getParameterFromUrl(playerLink.href, 'playerId');
 				return true;
 			}
 			return false;
