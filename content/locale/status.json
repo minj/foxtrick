@@ -121,16 +121,16 @@
 			"words_translated": "13524"
 		},
 		{
-			"approved": "1642",
+			"approved": "1639",
 			"approved_progress": "77",
 			"code": "cs",
 			"name": "Czech",
 			"phrases": "1894",
-			"translated": "1650",
-			"translated_progress": "78",
+			"translated": "1743",
+			"translated_progress": "82",
 			"words": "13529",
-			"words_approved": "10506",
-			"words_translated": "10627"
+			"words_approved": "10503",
+			"words_translated": "11223"
 		},
 		{
 			"approved": "1873",
