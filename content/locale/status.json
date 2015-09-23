@@ -114,11 +114,11 @@
 			"code": "hr",
 			"name": "Croatian",
 			"phrases": "1894",
-			"translated": "1892",
-			"translated_progress": "99",
+			"translated": "1894",
+			"translated_progress": "100",
 			"words": "13529",
 			"words_approved": "13468",
-			"words_translated": "13524"
+			"words_translated": "13529"
 		},
 		{
 			"approved": "1639",
@@ -342,11 +342,11 @@
 			"code": "id",
 			"name": "Indonesian",
 			"phrases": "1894",
-			"translated": "440",
-			"translated_progress": "37",
+			"translated": "445",
+			"translated_progress": "38",
 			"words": "13529",
 			"words_approved": "0",
-			"words_translated": "5131"
+			"words_translated": "5188"
 		},
 		{
 			"approved": "0",
