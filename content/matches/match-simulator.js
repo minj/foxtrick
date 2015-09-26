@@ -847,10 +847,8 @@ Foxtrick.modules.MatchSimulator = {
 		// TODO: replace with L10n string
 		try {
 			var teamTacticsDiv = doc.getElementById('tactics').cloneNode(true);
-			var speechLevelTxt = teamTacticsDiv.getElementsByClassName('speechLevel')[0];
-			speechLevelTxt.parentNode.removeChild(speechLevelTxt);
-			var speechLevel = teamTacticsDiv.getElementsByTagName('select')[0];
-			speechLevel.parentNode.removeChild(speechLevel);
+			teamTacticsDiv.removeChild(teamTacticsDiv.getElementsByClassName('speechLevel')[0]);
+			teamTacticsDiv.removeChild(teamTacticsDiv.getElementsByTagName('select')[0]);
 			return teamTacticsDiv.textContent.trim();
 		}
 		catch (e) {
