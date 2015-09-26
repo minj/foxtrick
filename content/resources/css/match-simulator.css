@@ -1,10 +1,9 @@
-#tactics {
-	position: absolute;
-	bottom: 0;
-	right: 0;
-	background: initial !important;
+.dimmedOverlay {
+	display: none;
 }
-
+#coachModifierTr {
+	visibility: visible !important;
+}
 /* our ratings as number */
 .overlayRatingsNum {
 	border-bottom: 1px solid #79A777;
@@ -172,10 +171,10 @@ html[dir="ltr"] .overlayMidDefense, .overlayMidAttack {
 #fieldOverlay.displayBelow {
 	height: 520px;
 	position: relative;
-	top: 630px;
+	top: 700px;
 }
 #fieldOverlay.displayBelow.newME {
-	top: 650px;
+	top: 720px;
 }
 #fieldOverlay.displayRight {
 	height: 520px;
