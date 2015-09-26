@@ -4,7 +4,9 @@
 	right: 0;
 	background: initial !important;
 }
-
+.dimmedOverlay {
+	display: none;
+}
 /* our ratings as number */
 .overlayRatingsNum {
 	border-bottom: 1px solid #79A777;
