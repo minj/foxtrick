@@ -1,9 +1,6 @@
 .dimmedOverlay {
 	display: none;
 }
-#coachModifierTr {
-	visibility: visible !important;
-}
 /* our ratings as number */
 .overlayRatingsNum {
 	border-bottom: 1px solid #79A777;
