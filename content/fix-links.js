@@ -51,10 +51,13 @@ Foxtrick.modules.FixLinks = {
 		var url = this.addParam(link.href, 'HighlightPlayerID', playerId);
 		link.href = url;
 	},
+	getMenuTeamId: function(doc) {
+		return Foxtrick.util.id.getTeamIdFromUrl(doc.querySelector('div.subMenu a').href);
+	},
 	getDefaultTeamId: function(doc) {
 		var teamId = Foxtrick.util.id.getTeamIdFromUrl(doc.location.href);
 		if (!teamId) {
-			teamId = Foxtrick.util.id.getTeamIdFromUrl(doc.querySelector('div.subMenu a').href);
+			teamId = this.getMenuTeamId(doc);
 			if (!teamId)
 				teamId = Foxtrick.util.id.getOwnTeamId();
 		}
@@ -198,7 +201,7 @@ Foxtrick.modules.FixLinks = {
 	},
 	parsePlayers: function(doc) {
 		var module = this;
-		var id = this.getDefaultTeamId(doc);
+		var id = this.getMenuTeamId(doc);
 		var isYouth = Foxtrick.isPage(doc, 'youthPlayers');
 		var youthid = isYouth ? this.getYouthTeamId(doc) : null;
 		var players = doc.getElementsByClassName('playerInfo');
