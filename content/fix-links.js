@@ -12,7 +12,7 @@ Foxtrick.modules.FixLinks = {
 		'matches', 'matchesArchive', 'matchesCup',
 		'playerStats',
 		'matchesLatest',
-		'players', 'youthPlayers'
+		'players', 'youthPlayers',
 	],
 	NICE: -20, // place before all DOM mutating modules
 	addParam: function(url, param, value, replace) {
@@ -27,9 +27,9 @@ Foxtrick.modules.FixLinks = {
 			return newUrl;
 		newUrl = urlParts[0] + (hasQuery ? '&' : '?') + param + '=' + value +
 			(urlParts[1] ? '#' + urlParts[1] : '');
-		//else
-		//	newUrl = url.replace(new RegExp('([&?])' + param + '=[^&]*', 'i'),
-		//						 '$1' + param + '=' + value);
+		// else
+		// 	newUrl = url.replace(new RegExp('([&?])' + param + '=[^&]*', 'i'),
+		// 						 '$1' + param + '=' + value);
 		return newUrl;
 	},
 	addAnchor: function(url, anchor) {
@@ -64,12 +64,12 @@ Foxtrick.modules.FixLinks = {
 		return teamId;
 	},
 	getYouthTeamId: function(doc) {
-		var youthid = Foxtrick.util.id.getYouthTeamIdFromUrl(doc.location.href);
-		if (!youthid) {
+		var youthId = Foxtrick.util.id.getYouthTeamIdFromUrl(doc.location.href);
+		if (!youthId) {
 			var menu = doc.getElementsByClassName('subMenu')[0];
-			youthid = menu ? Foxtrick.util.id.findYouthTeamId(menu) : null;
+			youthId = menu ? Foxtrick.util.id.findYouthTeamId(menu) : null;
 		}
-		return youthid;
+		return youthId;
 	},
 	parseMatchPage: function(doc) {
 		if (Foxtrick.Pages.Match.isPrematch(doc) || Foxtrick.Pages.Match.inProgress(doc))
@@ -134,21 +134,21 @@ Foxtrick.modules.FixLinks = {
 		var lineupImgs = table.querySelectorAll('img.matchOrder');
 		var id = this.getDefaultTeamId(doc);
 		var isYouth = /Youth/i.test(doc.location.href);
-		var youthid = isYouth ? this.getYouthTeamId(doc) : null;
+		var youthId = isYouth ? this.getYouthTeamId(doc) : null;
 		var isReportLink = function(a) {
 			return a.href && /Match\.aspx/.test(a.href) && !/#/.test(a.href);
 		};
 
 		for (var i = 0; i < lineupImgs.length; i++) {
 			var link = lineupImgs[i].parentNode;
-			this.fixLineupLink(link, id, youthid);
+			this.fixLineupLink(link, id, youthId);
 			if (browseIds)
 				link.href = this.addParam(link.href, 'BrowseIds', browseIds);
-			if (youthid) {
-				// add youthteamid to report link
+			if (youthId) {
+				// add youthTeamId to report link
 				var row = link.parentNode.parentNode;
 				var reportLink = Foxtrick.nth(isReportLink, row.getElementsByTagName('a'));
-				reportLink.href = this.addParam(reportLink.href, 'youthTeamId', youthid);
+				reportLink.href = this.addParam(reportLink.href, 'youthTeamId', youthId);
 			}
 		}
 	},
@@ -203,21 +203,22 @@ Foxtrick.modules.FixLinks = {
 		var module = this;
 		var id = this.getMenuTeamId(doc);
 		var isYouth = Foxtrick.isPage(doc, 'youthPlayers');
-		var youthid = isYouth ? this.getYouthTeamId(doc) : null;
+		var youthId = isYouth ? this.getYouthTeamId(doc) : null;
 		var players = doc.getElementsByClassName('playerInfo');
 		Foxtrick.forEach(function(p) {
 			var pid = Foxtrick.util.id.findPlayerId(p);
 			var matchLink = p.querySelector('a[href^="/Club/Matches/Match.aspx"]');
 			if (!matchLink)
 				return;
-			module.fixLineupLink(matchLink, id, youthid);
+			module.fixLineupLink(matchLink, id, youthId);
 			module.addPlayerHighlight(matchLink, pid);
 		}, players);
 	},
 	run: function(doc) {
-		if (Foxtrick.isPage(doc, 'match'))
+		if (Foxtrick.isPage(doc, 'match')) {
 			this.parseMatchPage(doc);
 			// this might be a bit annoying as it causes match page to reload
+		}
 		else if (Foxtrick.any(function(page) {
 			return Foxtrick.isPage(doc, page);
 		  }, ['matches', 'matchesCup', 'matchesArchive']))
