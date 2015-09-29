@@ -122,7 +122,7 @@ i have no idea what i am doing, but just setting those ridiculously high values 
 ul.ui-tabs-nav, #loading {
 	z-index: 2 !important;
 }
-#orders .position .player, #orders #field .player .shirt, .hf .arrow {
+#orders .position .player, #orders #field .player .shirt, .hf .arrow, #tab_order {
 	z-index: 1 !important;
 }
 #orders .position .player.ui-draggable-dragging {
