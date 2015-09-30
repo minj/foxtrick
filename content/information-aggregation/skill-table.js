@@ -713,27 +713,7 @@ Foxtrick.modules['SkillTable'] = {
 				}
 			};
 
-			try {
-				var tableDiv = doc.getElementById(TABLE_DIV_ID);
-
-				var fullType = getFullType(doc);
-
-				// first determine lastMatchday
-				var lastMatchDate, secondLastMatchDate;
-				if (fullType.type != 'transfer' &&
-				    fullType.subtype != 'nt' && fullType.subtype != 'oldiesCoach') {
-					var dates = getLastMatchDates();
-					lastMatchDate = dates.last;
-					secondLastMatchDate = dates.second;
-				}
-
-				checkAvailableColumns();
-
-				removeOldElements();
-
-				var customizeTable = createCustomizeTable(COLUMNS);
-				Foxtrick.addClass(customizeTable, 'hidden');
-
+			var createSkillTable = function() {
 				var table = doc.createElement('table');
 				table.id = 'ft_skilltable';
 				table.className = 'ft_skilltable';
@@ -835,7 +815,33 @@ Foxtrick.modules['SkillTable'] = {
 						}
 					}, COLUMNS);
 				}, playerList);
+
+				return table;
+			};
+
+			try {
+				var tableDiv = doc.getElementById(TABLE_DIV_ID);
+
+				var fullType = getFullType(doc);
+
+				// first determine lastMatchday
+				var lastMatchDate, secondLastMatchDate;
+				if (fullType.type != 'transfer' &&
+				    fullType.subtype != 'nt' && fullType.subtype != 'oldiesCoach') {
+					var dates = getLastMatchDates();
+					lastMatchDate = dates.last;
+					secondLastMatchDate = dates.second;
+				}
+
+				checkAvailableColumns();
+
+				removeOldElements();
+
+				var customizeTable = createCustomizeTable(COLUMNS);
+				Foxtrick.addClass(customizeTable, 'hidden');
 				insertCustomizeTable(customizeTable);
+
+				var table = createSkillTable();
 				insertSkillTable(table);
 
 				setViewMode();
