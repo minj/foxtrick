@@ -68,6 +68,22 @@ Foxtrick.modules['SkillTable'] = {
 			var type = fullTypeToString(fullType);
 			Foxtrick.Prefs.setBool('module.SkillTable.' + type + '.' + name, enabled);
 		};
+		var getLastMatchDates = function() {
+			var getMatchDate = function(playerInfo) {
+				var links = playerInfo.getElementsByTagName('a');
+				return Foxtrick.nth(function(link) {
+					if (/matchid/i.test(link.href)) {
+						var date = Foxtrick.util.time.getDateFromText(link.textContent);
+						return date.getTime();
+					}
+				}, links) || 0;
+			};
+
+			var players = doc.getElementsByClassName('playerInfo');
+			// (assumes that if there are less then 3 players at a match date
+			// those were transfers and disregards them)
+			return Foxtrick.Pages.Players.getLastMatchDates(players, getMatchDate, 3);
+		};
 		var showTable = function(playerList) {
 			// columns used for table information
 			// name: name of the column, used for fetching l10n string
@@ -432,6 +448,44 @@ Foxtrick.modules['SkillTable'] = {
 				},
 			};
 
+			var checkAvailableColumns = function() {
+				Foxtrick.forEach(function(column) {
+					column.available = false;
+					if (column.properties) {
+						Foxtrick.any(function(prop) {
+							if (Foxtrick.Pages.Players.isPropertyInList(playerList, prop)) {
+								column.available = true;
+								column.enabled = getColumnEnabled(fullType, column.name);
+								return true;
+							}
+							return false;
+						}, column.properties);
+					}
+					else if (column.property) {
+						if (Foxtrick.Pages.Players.isPropertyInList(playerList,
+						    column.property)) {
+							column.available = true;
+							column.enabled = getColumnEnabled(fullType, column.name);
+						}
+					}
+				}, COLUMNS);
+			};
+
+			var removeOldElements = function() {
+				// clear old tables and loading note
+				var oldTable = doc.getElementById('ft_skilltable');
+				if (oldTable)
+					oldTable.parentNode.removeChild(oldTable);
+
+				var oldNotes = doc.querySelector('.ft_skilltable_wrapper .ft-note');
+				if (oldNotes)
+					oldNotes.parentNode.removeChild(oldNotes);
+
+				var oldcustomizeTable = doc.querySelector('.ft_skilltable_customizetable');
+				if (oldcustomizeTable)
+					oldcustomizeTable.parentNode.removeChild(oldcustomizeTable);
+			};
+
 			var createCustomizeTable = function(properties) {
 				var table = doc.createElement('table');
 				table.className = 'ft_skilltable_customizetable';
@@ -668,58 +722,14 @@ Foxtrick.modules['SkillTable'] = {
 				var lastMatchDate, secondLastMatchDate;
 				if (fullType.type != 'transfer' &&
 				    fullType.subtype != 'nt' && fullType.subtype != 'oldiesCoach') {
-					var getMatchDate = function(playerInfo) {
-						var links = playerInfo.getElementsByTagName('a');
-						return Foxtrick.nth(function(link) {
-							if (/matchid/i.test(link.href)) {
-								var date = Foxtrick.util.time.getDateFromText(link.textContent);
-								return date.getTime();
-							}
-						}, links) || 0;
-					};
-
-					var players = doc.getElementsByClassName('playerInfo');
-					// (assumes that if there are less then 3 players at a match date
-					// those were transfers and disregards them)
-					var dates = Foxtrick.Pages.Players.getLastMatchDates(players, getMatchDate, 3);
-
+					var dates = getLastMatchDates();
 					lastMatchDate = dates.last;
 					secondLastMatchDate = dates.second;
 				}
 
-				Foxtrick.forEach(function(column) {
-					column.available = false;
-					if (column.properties) {
-						Foxtrick.any(function(prop) {
-							if (Foxtrick.Pages.Players.isPropertyInList(playerList, prop)) {
-								column.available = true;
-								column.enabled = getColumnEnabled(fullType, column.name);
-								return true;
-							}
-							return false;
-						}, column.properties);
-					}
-					else if (column.property) {
-						if (Foxtrick.Pages.Players.isPropertyInList(playerList,
-						    column.property)) {
-							column.available = true;
-							column.enabled = getColumnEnabled(fullType, column.name);
-						}
-					}
-				}, COLUMNS);
+				checkAvailableColumns();
 
-				// clear old table and loading note
-				var oldTable = doc.getElementById('ft_skilltable');
-				if (oldTable)
-					oldTable.parentNode.removeChild(oldTable);
-
-				var oldNotes = doc.querySelector('.ft_skilltable_wrapper .ft-note');
-				if (oldNotes)
-					oldNotes.parentNode.removeChild(oldNotes);
-
-				var oldcustomizeTable = doc.querySelector('.ft_skilltable_customizetable');
-				if (oldcustomizeTable)
-					oldcustomizeTable.parentNode.removeChild(oldcustomizeTable);
+				removeOldElements();
 
 				var customizeTable = createCustomizeTable(COLUMNS);
 				Foxtrick.addClass(customizeTable, 'hidden');
