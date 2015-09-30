@@ -432,15 +432,235 @@ Foxtrick.modules['SkillTable'] = {
 				},
 			};
 
-			try {
-				// clear old table and loading note
-				var oldTable = doc.getElementById('ft_skilltable');
-				if (oldTable)
-					oldTable.parentNode.removeChild(oldTable);
+			var createCustomizeTable = function(properties) {
+				var table = doc.createElement('table');
+				table.className = 'ft_skilltable_customizetable';
+				var thead = doc.createElement('thead');
+				var tbody = doc.createElement('tbody');
+				var headRow = doc.createElement('tr');
+				var checkRow = doc.createElement('tr');
+				table.appendChild(thead);
+				table.appendChild(tbody);
+				thead.appendChild(headRow);
+				tbody.appendChild(checkRow);
+				Foxtrick.forEach(function(prop) {
+					if (prop.available) {
+						var th = doc.createElement('th');
 
-				var oldNotes = doc.querySelector('.ft_skilltable_wrapper .ft-note');
-				if (oldNotes)
-					oldNotes.parentNode.removeChild(oldNotes);
+						renderTH(th, prop);
+						var td = doc.createElement('td');
+						var check = doc.createElement('input');
+						check.id = prop.name;
+						check.type = 'checkbox';
+						if (prop.enabled) {
+							check.setAttribute('checked', 'checked');
+						}
+						td.appendChild(check);
+						headRow.appendChild(th);
+						checkRow.appendChild(td);
+					}
+				}, properties);
+				return table;
+			};
+
+			var insertCustomizeTable = function(customizeTable) {
+				var wrapper = tableDiv.querySelector('.ft_skilltable_customizewrapper');
+				wrapper.appendChild(customizeTable);
+			};
+
+			var insertSkillTable = function(skillTable) {
+				var wrapper = tableDiv.querySelector('.ft_skilltable_wrapper');
+				wrapper.appendChild(skillTable);
+			};
+
+			var setViewMode = function() {
+				var container = tableDiv.querySelector('.ft_skilltable_container');
+				if (Foxtrick.Prefs.getBool('module.SkillTable.top')) {
+					Foxtrick.addClass(container, 'on_top');
+				}
+			};
+
+			var sortClick = function(ev) {
+				var modifierPressed = ev.ctrlKey;
+				try {
+					var head = ev.currentTarget;
+
+					var table = doc.getElementById('ft_skilltable');
+					// determine sort direction
+					var lastSortIndex = table.getAttribute('lastSortIndex');
+					var sortIndex = Foxtrick.getChildIndex(head);
+					var sortAsc = head.hasAttribute('sort-asc');
+					if (sortIndex == lastSortIndex) {
+						if (sortAsc)
+							head.removeAttribute('sort-asc');
+						else
+							head.setAttribute('sort-asc', 'true');
+						sortAsc = !Boolean(sortAsc);
+					}
+					if (!modifierPressed)
+						table.setAttribute('lastSortIndex', sortIndex);
+
+					var sortString = head.hasAttribute('sort-string');
+
+					var getSortByIndex = function(index) {
+						var res = Foxtrick.any(function(n) {
+							return n.cells[index].hasAttribute('index');
+						}, table.rows);
+						return res;
+					};
+					var sortByIndex = getSortByIndex(sortIndex);
+
+					var rows = Foxtrick.map(function(row) {
+						return row.cloneNode(true);
+					}, table.rows).slice(1); // skipping header
+
+					/* sortCompare
+						sortClick() will first check whether every cell in that column has the
+						attribute 'index'. If so, they will be ordered with that attribute as
+						key. Otherwise, we use their textContent.
+					*/
+					var sortCompare = function(a, b) {
+						var doSort = function(aa, bb) {
+							var aContent, bContent;
+							var lastSort = Number(aa.getAttribute('lastSort')) -
+								Number(bb.getAttribute('lastSort'));
+
+							if (sortByIndex) {
+								aContent = aa.cells[sortIndex].getAttribute('index');
+								bContent = bb.cells[sortIndex].getAttribute('index');
+							}
+							else {
+								aContent = aa.cells[sortIndex].textContent;
+								bContent = bb.cells[sortIndex].textContent;
+							}
+
+							if (aContent === bContent) {
+								return 0;
+							}
+							// place empty cells at the bottom
+							if (aContent === '' || aContent === 'X' ||
+							    aContent === null || aContent === undefined) {
+								return 1;
+							}
+							if (bContent === '' || bContent === 'X' ||
+							    bContent === null || bContent === undefined) {
+								return -1;
+							}
+							if (sortString) {
+								// always sort by ascending order
+								// why? This works perfectly, doesn't it?
+								var res = aContent.localeCompare(bContent);
+								if (sortAsc)
+									res = bContent.localeCompare(aContent);
+
+								return res;
+							}
+							else {
+								aContent = parseFloat(aContent);
+								bContent = parseFloat(bContent);
+								aContent = isNaN(aContent) ? lastSort : aContent;
+								bContent = isNaN(bContent) ? lastSort : bContent;
+								if (aContent === bContent) {
+									return 0;
+								}
+								if (sortAsc) {
+									return aContent - bContent;
+								}
+								else {
+									return bContent - aContent;
+								}
+							}
+						};
+
+						var getSortStringByIndex = function(n) {
+							var table = doc.getElementById('ft_skilltable');
+							var head = table.rows[0].cells[n];
+							return head.hasAttribute('sort-string');
+						};
+
+						if (modifierPressed) {
+							var tmp = {
+								sortIndex: sortIndex,
+								sortString: sortString,
+								sortByIndex: sortByIndex,
+							};
+							sortString = getSortStringByIndex(lastSortIndex);
+							sortIndex = lastSortIndex;
+							sortByIndex = getSortByIndex(lastSortIndex);
+							var result = doSort(a, b);
+							sortByIndex = tmp.sortByIndex;
+							sortIndex = tmp.sortIndex;
+							sortString = tmp.sortString;
+							if (result === 0) {
+								var sortResult = doSort(a, b);
+								return sortResult;
+							}
+							else {
+								return result;
+							}
+						}
+						else {
+							return doSort(a, b);
+						}
+					};
+
+					rows.sort(sortCompare);
+
+					Foxtrick.forEach(function(row, i) {
+						row.setAttribute('lastSort', i);
+						// rows.length < table.rows.length because header was skipped
+						table.rows[i + 1].parentNode.replaceChild(row, table.rows[i + 1]);
+					}, rows);
+				}
+				catch (e) {
+					Foxtrick.log(e);
+				}
+				finally {
+					if (ev)
+						ev.stopPropagation();
+				}
+				Foxtrick.log.flush(doc);
+			};
+
+			var renderTH = function(th, column) {
+				var fullName = Foxtrick.L10n.getString(column.name);
+				var abbrName = Foxtrick.L10n.getString(column.name + '.abbr');
+				var useAbbr = true;
+				if (!abbrName || fullName === abbrName) {
+					useAbbr = false;
+				}
+				var img;
+				if (useAbbr) {
+					if (column.img) {
+						img = doc.createElement('img');
+						img.src = column.img;
+						img.alt = abbrName;
+						img.title = fullName;
+						th.appendChild(img);
+					}
+					else {
+						var abbr = doc.createElement('abbr');
+						abbr.title = fullName;
+						abbr.textContent = abbrName;
+						th.appendChild(abbr);
+					}
+				}
+				else {
+					if (column.img) {
+						img = doc.createElement('img');
+						img.src = column.img;
+						img.alt = fullName;
+						img.title = fullName;
+						th.appendChild(img);
+					}
+					else {
+						th.textContent = fullName;
+					}
+				}
+			};
+
+			try {
+				var tableDiv = doc.getElementById(TABLE_DIV_ID);
 
 				var fullType = getFullType(doc);
 
@@ -488,77 +708,19 @@ Foxtrick.modules['SkillTable'] = {
 					}
 				}, COLUMNS);
 
-				var renderTH = function(th, column) {
-					var fullName = Foxtrick.L10n.getString(column.name);
-					var abbrName = Foxtrick.L10n.getString(column.name + '.abbr');
-					var useAbbr = true;
-					if (!abbrName || fullName === abbrName) {
-						useAbbr = false;
-					}
-					var img;
-					if (useAbbr) {
-						if (column.img) {
-							img = doc.createElement('img');
-							img.src = column.img;
-							img.alt = abbrName;
-							img.title = fullName;
-							th.appendChild(img);
-						}
-						else {
-							var abbr = doc.createElement('abbr');
-							abbr.title = fullName;
-							abbr.textContent = abbrName;
-							th.appendChild(abbr);
-						}
-					}
-					else {
-						if (column.img) {
-							img = doc.createElement('img');
-							img.src = column.img;
-							img.alt = fullName;
-							img.title = fullName;
-							th.appendChild(img);
-						}
-						else {
-							th.textContent = fullName;
-						}
-					}
-				};
+				// clear old table and loading note
+				var oldTable = doc.getElementById('ft_skilltable');
+				if (oldTable)
+					oldTable.parentNode.removeChild(oldTable);
 
-				var createCustomizeTable = function(properties) {
-					var table = doc.createElement('table');
-					table.className = 'ft_skilltable_customizetable';
-					var thead = doc.createElement('thead');
-					var tbody = doc.createElement('tbody');
-					var headRow = doc.createElement('tr');
-					var checkRow = doc.createElement('tr');
-					table.appendChild(thead);
-					table.appendChild(tbody);
-					thead.appendChild(headRow);
-					tbody.appendChild(checkRow);
-					Foxtrick.forEach(function(prop) {
-						if (prop.available) {
-							var th = doc.createElement('th');
-
-							renderTH(th, prop);
-							var td = doc.createElement('td');
-							var check = doc.createElement('input');
-							check.id = prop.name;
-							check.type = 'checkbox';
-							if (prop.enabled) {
-								check.setAttribute('checked', 'checked');
-							}
-							td.appendChild(check);
-							headRow.appendChild(th);
-							checkRow.appendChild(td);
-						}
-					}, properties);
-					return table;
-				};
+				var oldNotes = doc.querySelector('.ft_skilltable_wrapper .ft-note');
+				if (oldNotes)
+					oldNotes.parentNode.removeChild(oldNotes);
 
 				var oldcustomizeTable = doc.querySelector('.ft_skilltable_customizetable');
 				if (oldcustomizeTable)
 					oldcustomizeTable.parentNode.removeChild(oldcustomizeTable);
+
 				var customizeTable = createCustomizeTable(COLUMNS);
 				Foxtrick.addClass(customizeTable, 'hidden');
 
@@ -570,147 +732,7 @@ Foxtrick.modules['SkillTable'] = {
 				var tr = doc.createElement('tr');
 				thead.appendChild(tr);
 				table.appendChild(thead);
-				var sortClick = function(ev) {
-					var modifierPressed = ev.ctrlKey;
-					try {
-						var head = ev.currentTarget;
 
-						var table = doc.getElementById('ft_skilltable');
-						// determine sort direction
-						var lastSortIndex = table.getAttribute('lastSortIndex');
-						var sortIndex = Foxtrick.getChildIndex(head);
-						var sortAsc = head.hasAttribute('sort-asc');
-						if (sortIndex == lastSortIndex) {
-							if (sortAsc)
-								head.removeAttribute('sort-asc');
-							else
-								head.setAttribute('sort-asc', 'true');
-							sortAsc = !Boolean(sortAsc);
-						}
-						if (!modifierPressed)
-							table.setAttribute('lastSortIndex', sortIndex);
-
-						var sortString = head.hasAttribute('sort-string');
-
-						var getSortByIndex = function(index) {
-							var res = Foxtrick.any(function(n) {
-								return n.cells[index].hasAttribute('index');
-							}, table.rows);
-							return res;
-						};
-						var sortByIndex = getSortByIndex(sortIndex);
-
-						var rows = Foxtrick.map(function(row) {
-							return row.cloneNode(true);
-						}, table.rows).slice(1); // skipping header
-
-						/* sortCompare
-							sortClick() will first check whether every cell in that column has the
-							attribute 'index'. If so, they will be ordered with that attribute as
-							key. Otherwise, we use their textContent.
-						*/
-						var sortCompare = function(a, b) {
-							var doSort = function(aa, bb) {
-								var aContent, bContent;
-								var lastSort = Number(aa.getAttribute('lastSort')) -
-									Number(bb.getAttribute('lastSort'));
-
-								if (sortByIndex) {
-									aContent = aa.cells[sortIndex].getAttribute('index');
-									bContent = bb.cells[sortIndex].getAttribute('index');
-								}
-								else {
-									aContent = aa.cells[sortIndex].textContent;
-									bContent = bb.cells[sortIndex].textContent;
-								}
-
-								if (aContent === bContent) {
-									return 0;
-								}
-								// place empty cells at the bottom
-								if (aContent === '' || aContent === 'X' ||
-								    aContent === null || aContent === undefined) {
-									return 1;
-								}
-								if (bContent === '' || bContent === 'X' ||
-								    bContent === null || bContent === undefined) {
-									return -1;
-								}
-								if (sortString) {
-									// always sort by ascending order
-									// why? This works perfectly, doesn't it?
-									var res = aContent.localeCompare(bContent);
-									if (sortAsc)
-										res = bContent.localeCompare(aContent);
-
-									return res;
-								}
-								else {
-									aContent = parseFloat(aContent);
-									bContent = parseFloat(bContent);
-									aContent = isNaN(aContent) ? lastSort : aContent;
-									bContent = isNaN(bContent) ? lastSort : bContent;
-									if (aContent === bContent) {
-										return 0;
-									}
-									if (sortAsc) {
-										return aContent - bContent;
-									}
-									else {
-										return bContent - aContent;
-									}
-								}
-							};
-
-							var getSortStringByIndex = function(n) {
-								var table = doc.getElementById('ft_skilltable');
-								var head = table.rows[0].cells[n];
-								return head.hasAttribute('sort-string');
-							};
-
-							if (modifierPressed) {
-								var tmp = {
-									sortIndex: sortIndex,
-									sortString: sortString,
-									sortByIndex: sortByIndex,
-								};
-								sortString = getSortStringByIndex(lastSortIndex);
-								sortIndex = lastSortIndex;
-								sortByIndex = getSortByIndex(lastSortIndex);
-								var result = doSort(a, b);
-								sortByIndex = tmp.sortByIndex;
-								sortIndex = tmp.sortIndex;
-								sortString = tmp.sortString;
-								if (result === 0) {
-									var sortResult = doSort(a, b);
-									return sortResult;
-								}
-								else {
-									return result;
-								}
-							}
-							else {
-								return doSort(a, b);
-							}
-						};
-
-						rows.sort(sortCompare);
-
-						Foxtrick.forEach(function(row, i) {
-							row.setAttribute('lastSort', i);
-							// rows.length < table.rows.length because header was skipped
-							table.rows[i + 1].parentNode.replaceChild(row, table.rows[i + 1]);
-						}, rows);
-					}
-					catch (e) {
-						Foxtrick.log(e);
-					}
-					finally {
-						if (ev)
-							ev.stopPropagation();
-					}
-					Foxtrick.log.flush(doc);
-				};
 				Foxtrick.forEach(function(column) {
 					if (column.enabled) {
 						var th = doc.createElement('th');
@@ -803,25 +825,10 @@ Foxtrick.modules['SkillTable'] = {
 						}
 					}, COLUMNS);
 				}, playerList);
-
-				var tableDiv = doc.getElementById(TABLE_DIV_ID);
-				var insertCustomizeTable = function(customizeTable) {
-					var wrapper = tableDiv.querySelector('.ft_skilltable_customizewrapper');
-					wrapper.appendChild(customizeTable);
-				};
-
-				var insertSkillTable = function(skillTable) {
-					var wrapper = tableDiv.querySelector('.ft_skilltable_wrapper');
-					wrapper.appendChild(skillTable);
-				};
-
 				insertCustomizeTable(customizeTable);
 				insertSkillTable(table);
 
-				var container = tableDiv.querySelector('.ft_skilltable_container');
-				if (Foxtrick.Prefs.getBool('module.SkillTable.top')) {
-					Foxtrick.addClass(container, 'on_top');
-				}
+				setViewMode();
 			}
 			catch (e) {
 				Foxtrick.log(e);
