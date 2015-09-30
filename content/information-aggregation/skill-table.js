@@ -222,12 +222,13 @@ Foxtrick.modules['SkillTable'] = {
 							cell.textContent = current + '/' + max;
 							// and we deal with colors
 							if (Foxtrick.Prefs.isModuleOptionEnabled(module, 'ColouredYouth')) {
-								if (skill.max > 3) {
+								if (skill.max > 3 || skill.current > 3) {
 									// normalized values for convenience in further calculations
 									var skillBase = {};
 									// skills below 4 are not regarded as interesting
-									skillBase.max = skill.max > 3 ? skill.max - 3 : 0;
 									skillBase.current = skill.current > 3 ? skill.current - 3 : 0;
+									skillBase.max = skill.max > 3 ? skill.max - 3 :
+										skillBase.current; // default to current
 
 									// calculate color for capability of improvement
 									var r = 0;
