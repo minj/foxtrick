@@ -84,7 +84,7 @@ Foxtrick.modules['SkillTable'] = {
 			// those were transfers and disregards them)
 			return Foxtrick.Pages.Players.getLastMatchDates(players, getMatchDate, 3);
 		};
-		var showTable = function(playerList) {
+		var generateTable = function(playerList) {
 			// columns used for table information
 			// name: name of the column, used for fetching l10n string
 			// property: value used to retrieve data from Foxtrick.Pages.Players.getPlayerList()
@@ -861,7 +861,7 @@ Foxtrick.modules['SkillTable'] = {
 				fullType = getFullType(doc);
 			if (fullType.type == 'transfer') {
 				var playerList = Foxtrick.Pages.TransferSearchResults.getPlayerList(doc);
-				showTable(playerList);
+				generateTable(playerList);
 			}
 			else {
 				var loading = Foxtrick.util.note.createLoading(doc);
@@ -873,7 +873,7 @@ Foxtrick.modules['SkillTable'] = {
 					}
 					else {
 						Foxtrick.Pages.Players.getPlayerList(doc, function(list) {
-							showTable(list);
+							generateTable(list);
 						});
 					}
 				}
@@ -1055,7 +1055,7 @@ Foxtrick.modules['SkillTable'] = {
 								}, xmls);
 
 								// finished. now display results
-								Foxtrick.preventChange(doc, showTable)(list);
+								Foxtrick.preventChange(doc, generateTable)(list);
 							});
 						});
 					});
@@ -1081,7 +1081,7 @@ Foxtrick.modules['SkillTable'] = {
 						return n.motherClubBonus;
 					}, currentSquadList);
 					var fullList = oldiesList.concat(currentSquadList);
-					Foxtrick.preventChange(doc, showTable)(fullList);
+					Foxtrick.preventChange(doc, generateTable)(fullList);
 				}, { currentSquad: true });
 			});
 		};
