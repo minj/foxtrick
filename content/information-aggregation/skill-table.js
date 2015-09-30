@@ -714,16 +714,7 @@ Foxtrick.modules['SkillTable'] = {
 			};
 
 			var createSkillTable = function() {
-				var table = doc.createElement('table');
-				table.id = 'ft_skilltable';
-				table.className = 'ft_skilltable';
-
-				var thead = doc.createElement('thead');
-				var tr = doc.createElement('tr');
-				thead.appendChild(tr);
-				table.appendChild(thead);
-
-				Foxtrick.forEach(function(column) {
+				var addTH = function(column) {
 					if (column.enabled) {
 						var th = doc.createElement('th');
 						if (column.sortString) {
@@ -738,12 +729,45 @@ Foxtrick.modules['SkillTable'] = {
 
 						tr.appendChild(th);
 					}
-				}, COLUMNS);
+				};
 
-				var tbody = doc.createElement('tbody');
-				table.appendChild(tbody);
+				var addRow = function(player) {
+					var addCell = function(column) {
+						if (column.enabled) {
+							var method = column.method;
+							var property = column.property;
+							var value = player[property];
 
-				Foxtrick.forEach(function(player) {
+							var cell = doc.createElement('td');
+							row.appendChild(cell);
+							if (column.properties) {
+								if (method) {
+									RENDERERS[method](cell, player);
+								}
+								else {
+									var texts = Foxtrick.map(function(prop) {
+										return player[prop];
+									}, column.properties);
+									cell.textContent = texts.join(', ');
+								}
+							}
+							else if (property && typeof value !== 'undefined') {
+								if (method) {
+									RENDERERS[column.method](cell, value, property);
+								}
+								else {
+									cell.textContent = value;
+								}
+								if (column.title) {
+									cell.title = player[column.title];
+								}
+							}
+							if (column.alignRight) {
+								Foxtrick.addClass(cell, 'align-right');
+							}
+						}
+					};
+
 					var row = doc.createElement('tr');
 
 					// set row attributes for filter module
@@ -779,42 +803,24 @@ Foxtrick.modules['SkillTable'] = {
 
 					tbody.appendChild(row);
 
-					Foxtrick.forEach(function(column) {
-						if (column.enabled) {
-							var method = column.method;
-							var property = column.property;
-							var value = player[property];
+					Foxtrick.forEach(addCell, COLUMNS);
+				};
 
-							var cell = doc.createElement('td');
-							row.appendChild(cell);
-							if (column.properties) {
-								if (method) {
-									RENDERERS[method](cell, player);
-								}
-								else {
-									var texts = Foxtrick.map(function(prop) {
-										return player[prop];
-									}, column.properties);
-									cell.textContent = texts.join(', ');
-								}
-							}
-							else if (property && typeof value !== 'undefined') {
-								if (method) {
-									RENDERERS[column.method](cell, value, property);
-								}
-								else {
-									cell.textContent = value;
-								}
-								if (column.title) {
-									cell.title = player[column.title];
-								}
-							}
-							if (column.alignRight) {
-								Foxtrick.addClass(cell, 'align-right');
-							}
-						}
-					}, COLUMNS);
-				}, playerList);
+				var table = doc.createElement('table');
+				table.id = 'ft_skilltable';
+				table.className = 'ft_skilltable';
+
+				var thead = doc.createElement('thead');
+				var tr = doc.createElement('tr');
+				thead.appendChild(tr);
+				table.appendChild(thead);
+
+				Foxtrick.forEach(addTH, COLUMNS);
+
+				var tbody = doc.createElement('tbody');
+				table.appendChild(tbody);
+
+				Foxtrick.forEach(addRow, playerList);
 
 				return table;
 			};
