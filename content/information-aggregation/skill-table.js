@@ -527,6 +527,7 @@ Foxtrick.modules['SkillTable'] = {
 									img.src = prop.img;
 									img.alt = fullName;
 									img.title = fullName;
+									th.appendChild(img);
 								}
 								else {
 									th.textContent = fullName;
@@ -741,6 +742,7 @@ Foxtrick.modules['SkillTable'] = {
 								img.src = column.img;
 								img.alt = fullName;
 								img.title = fullName;
+								th.appendChild(img);
 							}
 							else {
 								th.textContent = fullName;
