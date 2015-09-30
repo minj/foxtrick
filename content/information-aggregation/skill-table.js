@@ -485,6 +485,43 @@ Foxtrick.modules['SkillTable'] = {
 					}
 				}, columns);
 
+				var renderTH = function(th, column) {
+					var fullName = Foxtrick.L10n.getString(column.name);
+					var abbrName = Foxtrick.L10n.getString(column.name + '.abbr');
+					var useAbbr = true;
+					if (!abbrName || fullName === abbrName) {
+						useAbbr = false;
+					}
+					var img;
+					if (useAbbr) {
+						if (column.img) {
+							img = doc.createElement('img');
+							img.src = column.img;
+							img.alt = abbrName;
+							img.title = fullName;
+							th.appendChild(img);
+						}
+						else {
+							var abbr = doc.createElement('abbr');
+							abbr.title = fullName;
+							abbr.textContent = abbrName;
+							th.appendChild(abbr);
+						}
+					}
+					else {
+						if (column.img) {
+							img = doc.createElement('img');
+							img.src = column.img;
+							img.alt = fullName;
+							img.title = fullName;
+							th.appendChild(img);
+						}
+						else {
+							th.textContent = fullName;
+						}
+					}
+				};
+
 				var createCustomizeTable = function(properties) {
 					var table = doc.createElement('table');
 					table.className = 'ft_skilltable_customizetable';
@@ -500,40 +537,7 @@ Foxtrick.modules['SkillTable'] = {
 						if (prop.available) {
 							var th = doc.createElement('th');
 
-							var fullName = Foxtrick.L10n.getString(prop.name);
-							var abbrName = Foxtrick.L10n.getString(prop.name + '.abbr');
-							var useAbbr = true;
-							if (!abbrName || fullName === abbrName) {
-								useAbbr = false;
-							}
-							var img;
-							if (useAbbr) {
-								if (prop.img) {
-									img = doc.createElement('img');
-									img.src = prop.img;
-									img.alt = abbrName;
-									img.title = fullName;
-									th.appendChild(img);
-								}
-								else {
-									var abbr = doc.createElement('abbr');
-									abbr.title = fullName;
-									abbr.textContent = abbrName;
-									th.appendChild(abbr);
-								}
-							}
-							else {
-								if (prop.img) {
-									img = doc.createElement('img');
-									img.src = prop.img;
-									img.alt = fullName;
-									img.title = fullName;
-									th.appendChild(img);
-								}
-								else {
-									th.textContent = fullName;
-								}
-							}
+							renderTH(th, prop);
 							var td = doc.createElement('td');
 							var check = doc.createElement('input');
 							check.id = prop.name;
@@ -715,40 +719,8 @@ Foxtrick.modules['SkillTable'] = {
 						}
 						Foxtrick.onClick(th, sortClick);
 
-						var fullName = Foxtrick.L10n.getString(column.name);
-						var abbrName = Foxtrick.L10n.getString(column.name + '.abbr');
-						var useAbbr = true;
-						if (!abbrName || fullName === abbrName) {
-							useAbbr = false;
-						}
-						var img;
-						if (useAbbr) {
-							if (column.img) {
-								img = doc.createElement('img');
-								img.src = column.img;
-								img.alt = abbrName;
-								img.title = fullName;
-								th.appendChild(img);
-							}
-							else {
-								var abbr = doc.createElement('abbr');
-								abbr.title = fullName;
-								abbr.textContent = abbrName;
-								th.appendChild(abbr);
-							}
-						}
-						else {
-							if (column.img) {
-								img = doc.createElement('img');
-								img.src = column.img;
-								img.alt = fullName;
-								img.title = fullName;
-								th.appendChild(img);
-							}
-							else {
-								th.textContent = fullName;
-							}
-						}
+						renderTH(th, column);
+
 						tr.appendChild(th);
 					}
 				}, columns);
