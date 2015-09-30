@@ -71,13 +71,13 @@ Foxtrick.modules['SkillTable'] = {
 		var showTable = function(playerList) {
 			try {
 				// clear old table and loading note
-				var old_table = doc.getElementById('ft_skilltable');
-				if (old_table)
-					old_table.parentNode.removeChild(old_table);
+				var oldTable = doc.getElementById('ft_skilltable');
+				if (oldTable)
+					oldTable.parentNode.removeChild(oldTable);
 
-				var old_notes = doc.querySelector('.ft_skilltable_wrapper .ft-note');
-				if (old_notes)
-					old_notes.parentNode.removeChild(old_notes);
+				var oldNotes = doc.querySelector('.ft_skilltable_wrapper .ft-note');
+				if (oldNotes)
+					oldNotes.parentNode.removeChild(oldNotes);
 
 				var fullType = getFullType(doc);
 
@@ -660,16 +660,18 @@ Foxtrick.modules['SkillTable'] = {
 							};
 
 							if (modifierPressed) {
-								var tmp_sortIndex = sortIndex;
-								var tmp_sortString = sortString;
-								var tmp_sortByIndex = sortByIndex;
+								var tmp = {
+									sortIndex: sortIndex,
+									sortString: sortString,
+									sortByIndex: sortByIndex,
+								};
 								sortString = getSortStringByIndex(lastSortIndex);
 								sortIndex = lastSortIndex;
 								sortByIndex = getSortByIndex(lastSortIndex);
 								var result = doSort(a, b);
-								sortByIndex = tmp_sortByIndex;
-								sortIndex = tmp_sortIndex;
-								sortString = tmp_sortString;
+								sortByIndex = tmp.sortByIndex;
+								sortIndex = tmp.sortIndex;
+								sortString = tmp.sortString;
 								if (result === 0) {
 									var sortResult = doSort(a, b);
 									return sortResult;
@@ -821,21 +823,21 @@ Foxtrick.modules['SkillTable'] = {
 					}, columns);
 				}, playerList);
 
-				var tablediv = doc.getElementById(TABLE_DIV_ID);
+				var tableDiv = doc.getElementById(TABLE_DIV_ID);
 				var insertCustomizeTable = function(customizeTable) {
-					var wrapper = tablediv.querySelector('.ft_skilltable_customizewrapper');
+					var wrapper = tableDiv.querySelector('.ft_skilltable_customizewrapper');
 					wrapper.appendChild(customizeTable);
 				};
 
 				var insertSkillTable = function(skillTable) {
-					var wrapper = tablediv.querySelector('.ft_skilltable_wrapper');
+					var wrapper = tableDiv.querySelector('.ft_skilltable_wrapper');
 					wrapper.appendChild(skillTable);
 				};
 
 				insertCustomizeTable(customizeTable);
 				insertSkillTable(table);
 
-				var container = tablediv.querySelector('.ft_skilltable_container');
+				var container = tableDiv.querySelector('.ft_skilltable_container');
 				if (Foxtrick.Prefs.getBool('module.SkillTable.top')) {
 					Foxtrick.addClass(container, 'on_top');
 				}
@@ -1008,9 +1010,9 @@ Foxtrick.modules['SkillTable'] = {
 									if (!hasTransfers) {
 										// so, he's from home.
 										// need to get pull date from playerevents below
-										var pid = xml.num('PlayerID');
+										var PlayerID = xml.num('PlayerID');
 										argsPlayerevents.push([
-											['file', 'playerevents'], ['playerId', pid],
+											['file', 'playerevents'], ['playerId', PlayerID],
 										]);
 									}
 								}
@@ -1025,13 +1027,13 @@ Foxtrick.modules['SkillTable'] = {
 								Foxtrick.forEach(function(xml, i) {
 									var error = errors[i];
 									if (xml && !error) {
-										var was_pulled = setJoinedSinceFromPullDate(xml, list);
-										if (!was_pulled) {
+										var wasPulled = setJoinedSinceFromPullDate(xml, list);
+										if (!wasPulled) {
 											// no pull date = from starting squad.
 											// joinedSince = activationDate
-											var pid = xml.num('PlayerID');
+											var PlayerID = xml.num('PlayerID');
 											Foxtrick.map(function(p) {
-												if (p.id == pid)
+												if (p.id == PlayerID)
 													p.joinedSince = activationDate;
 											}, list);
 										}
@@ -1058,9 +1060,9 @@ Foxtrick.modules['SkillTable'] = {
 			});
 		};
 		var showOldiesAndOwn = function(doc) {
-			// get normal oldies into oldies_list
+			// get normal oldies into oldiesList
 			Foxtrick.Pages.Players.getPlayerList(doc,
-			  function(oldies_list) {
+			  function(oldiesList) {
 				// then get current squad (last parameter true) into currentSquadList
 				Foxtrick.Pages.Players.getPlayerList(doc,
 				  function(currentSquadList) {
@@ -1073,18 +1075,18 @@ Foxtrick.modules['SkillTable'] = {
 						currentSquadList = Foxtrick.filter(function(n) {
 							return n.motherClubBonus;
 						}, currentSquadList);
-						var full_list = oldies_list.concat(currentSquadList);
-						Foxtrick.preventChange(doc, showTable)(full_list);
+						var fullList = oldiesList.concat(currentSquadList);
+						Foxtrick.preventChange(doc, showTable)(fullList);
 					});
 				}, { currentSquad: true });
 			});
 		};
 		var addTableDiv = function() {
-			var tablediv = Foxtrick.createFeaturedElement(doc, module, 'div');
-			tablediv.id = TABLE_DIV_ID;
-			Foxtrick.addClass(tablediv, TABLE_DIV_ID);
+			var tableDiv = Foxtrick.createFeaturedElement(doc, module, 'div');
+			tableDiv.id = TABLE_DIV_ID;
+			Foxtrick.addClass(tableDiv, TABLE_DIV_ID);
 			if (Foxtrick.Pages.TransferSearchResults.isPage(doc)) {
-				Foxtrick.addClass(tablediv, 'transfer');
+				Foxtrick.addClass(tableDiv, 'transfer');
 			}
 
 			var tableCreated = false;
@@ -1104,7 +1106,7 @@ Foxtrick.modules['SkillTable'] = {
 					Foxtrick.toggleClass(h2, 'ft-expander-unexpanded');
 					var show = Foxtrick.hasClass(h2, 'ft-expander-expanded');
 
-					var customizeTable = tablediv.querySelector('.ft_skilltable_customizetable');
+					var customizeTable = tableDiv.querySelector('.ft_skilltable_customizetable');
 					if (show) {
 						// show the objects
 						Foxtrick.removeClass(links, 'hidden');
@@ -1123,7 +1125,7 @@ Foxtrick.modules['SkillTable'] = {
 				}
 			};
 			Foxtrick.onClick(h2, toggleDisplay);
-			tablediv.appendChild(h2);
+			tableDiv.appendChild(h2);
 
 			// links
 			var links = doc.createElement('div');
@@ -1229,8 +1231,8 @@ Foxtrick.modules['SkillTable'] = {
 			Foxtrick.onClick(save, function() {
 				var fullType = getFullType(doc);
 
-				var tablediv = doc.getElementById(TABLE_DIV_ID);
-				var inputs = tablediv.getElementsByTagName('input');
+				var tableDiv = doc.getElementById(TABLE_DIV_ID);
+				var inputs = tableDiv.getElementsByTagName('input');
 				Foxtrick.forEach(function(input) {
 					setColumnEnabled(fullType, input.id, input.checked);
 				}, inputs);
@@ -1241,10 +1243,10 @@ Foxtrick.modules['SkillTable'] = {
 			var cancel = doc.createElement('a');
 			cancel.textContent = Foxtrick.L10n.getString('button.cancel');
 			Foxtrick.onClick(cancel, function() {
-				var tablediv = doc.getElementById(TABLE_DIV_ID);
-				var links = tablediv.querySelector('.ft_skilltable_links');
-				var customizeTable = tablediv.querySelector('.ft_skilltable_customizetable');
-				var container = tablediv.querySelector('.ft_skilltable_container');
+				var tableDiv = doc.getElementById(TABLE_DIV_ID);
+				var links = tableDiv.querySelector('.ft_skilltable_links');
+				var customizeTable = tableDiv.querySelector('.ft_skilltable_customizetable');
+				var container = tableDiv.querySelector('.ft_skilltable_container');
 				Foxtrick.removeClass(links, 'customizing');
 				Foxtrick.addClass(customizeTable, 'hidden');
 				Foxtrick.removeClass(container, 'hidden');
@@ -1271,8 +1273,8 @@ Foxtrick.modules['SkillTable'] = {
 			switchViewLink.textContent = Foxtrick.L10n.getString('SkillTable.switchView');
 			switchViewLink.title = Foxtrick.L10n.getString('SkillTable.switchView.title');
 			Foxtrick.onClick(switchViewLink, function() {
-				var tablediv = doc.getElementById(TABLE_DIV_ID);
-				var container = tablediv.querySelector('.ft_skilltable_container');
+				var tableDiv = doc.getElementById(TABLE_DIV_ID);
+				var container = tableDiv.querySelector('.ft_skilltable_container');
 				Foxtrick.toggleClass(container, 'on_top');
 
 				var onTop = Foxtrick.hasClass(container, 'on_top');
@@ -1316,21 +1318,21 @@ Foxtrick.modules['SkillTable'] = {
 			if (options)
 				container.appendChild(options);
 
-			tablediv.appendChild(h2);
-			tablediv.appendChild(links);
-			tablediv.appendChild(customizeWrapper);
-			tablediv.appendChild(container);
+			tableDiv.appendChild(h2);
+			tableDiv.appendChild(links);
+			tableDiv.appendChild(customizeWrapper);
+			tableDiv.appendChild(container);
 
-			// insert tablediv
+			// insert tableDiv
 			if (Foxtrick.Pages.TransferSearchResults.isPage(doc)) {
 				// on transfer search page, insert after first separator
 				var separator = doc.querySelector('#mainBody .borderSeparator');
 				var insertBefore = separator.nextSibling;
-				insertBefore.parentNode.insertBefore(tablediv, insertBefore);
+				insertBefore.parentNode.insertBefore(tableDiv, insertBefore);
 			}
 			else if (Foxtrick.Pages.Player.isSenior(doc)) {
 				var insertParent = doc.getElementById('mainBody');
-				insertParent.appendChild(tablediv);
+				insertParent.appendChild(tableDiv);
 			}
 			else {
 				var playerList = doc.querySelector('.playerList');
@@ -1340,7 +1342,7 @@ Foxtrick.modules['SkillTable'] = {
 					// for supporters, inserting before the first player would clutter
 					// up with the headers. Additionally, inserting before the list
 					// would be organized in a better way.
-					playerList.parentNode.insertBefore(tablediv, playerList);
+					playerList.parentNode.insertBefore(tableDiv, playerList);
 				}
 				else {
 					// otherwise, insert before the first player if there is any
@@ -1348,18 +1350,18 @@ Foxtrick.modules['SkillTable'] = {
 					if (firstFace) {
 						// without playerList, players would have faces shown before
 						// playerInfo, if user enabled faces
-						firstFace.parentNode.insertBefore(tablediv, firstFace);
+						firstFace.parentNode.insertBefore(tableDiv, firstFace);
 					}
 					else {
 						var firstPlayer = doc.querySelector('.playerInfo');
 						if (firstPlayer) {
 							// or... users haven't enabled faces
-							firstPlayer.parentNode.insertBefore(tablediv, firstPlayer);
+							firstPlayer.parentNode.insertBefore(tableDiv, firstPlayer);
 						}
 					}
 				}
 			}
-			return tablediv;
+			return tableDiv;
 		};
 
 		if (doc.getElementById(TABLE_DIV_ID))
