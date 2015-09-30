@@ -148,6 +148,7 @@ Foxtrick.modules['SkillTable'] = {
 				else
 					return false;
 			};
+
 			// return false if from own starting squad
 			var setJoinedSinceFromPullDate = function(xml, list) {
 				// check PlayerEventTypeID==20 -> pulled from YA, 13->pulled from SN, 12->coach
@@ -207,6 +208,84 @@ Foxtrick.modules['SkillTable'] = {
 				return pulledElsewhere || !hasMCBonus;
 			};
 
+			var updatePlayers = function(doc, activationDate) {
+				var display = function(doc, list) {
+					Foxtrick.preventChange(doc, generateTable)(list);
+				};
+
+				var parseEvents = function(doc, list, missing) {
+					var argsPlayerevents = Foxtrick.map(function(id) {
+						return [['file', 'playerevents'], ['playerId', id]];
+					}, missing);
+					// try set joined date from pull date
+					Foxtrick.util.api.batchRetrieve(doc, argsPlayerevents, DEFAULT_CACHE,
+					  function(xmls, errors) {
+						Foxtrick.forEach(function(xml, i) {
+							var error = errors[i];
+							if (xml && !error) {
+								var wasPulled = setJoinedSinceFromPullDate(xml, list);
+								if (!wasPulled) {
+									// no pull date = from starting squad.
+									// joinedSince = activationDate
+									var pid = missing[i];
+									var p = Foxtrick.Pages.Players.getPlayerFromListById(list, pid);
+									p.joinedSince = activationDate;
+								}
+							}
+							else {
+								Foxtrick.log('No XML in batchRetrieve', error, xml,
+								             argsPlayerevents[i]);
+							}
+						}, xmls);
+
+						// finished. now display results
+						display(doc, list);
+					});
+				};
+
+				var parseTransfers = function(doc, list) {
+					// first we check transfers
+					var argsTransfersPlayer = Foxtrick.map(function(player) {
+						return [['file', 'transfersplayer'], ['playerId', player.id]];
+					}, list);
+
+					Foxtrick.util.api.batchRetrieve(doc, argsTransfersPlayer, DEFAULT_CACHE,
+					  function(xmls, errors) {
+						var missing = [];
+						Foxtrick.forEach(function(xml, i) {
+							var error = errors[i];
+							if (xml && !error) {
+								// if there is a transfer, we are finished with this player
+								var hasTransfers =
+									setHomeGrownAndJoinedSinceFromTransfers(xml, list);
+								if (!hasTransfers) {
+									// so, he's from home.
+									// need to get pull date from playerevents below
+									var PlayerID = xml.num('PlayerID');
+									missing.push(PlayerID);
+								}
+							}
+							else {
+								Foxtrick.log('No XML in batchRetrieve', error, xml,
+								             argsTransfersPlayer[i]);
+							}
+						}, xmls);
+
+						if (missing.length) {
+							parseEvents(doc, list, missing);
+						}
+						else {
+							display(doc, list);
+						}
+					});
+				};
+
+				Foxtrick.Pages.Players.getPlayerList(doc,
+				  function(list) {
+					parseTransfers(doc, list);
+				});
+			};
+
 			// first get teams activation date. we'll need it later
 			var teamId = Foxtrick.Pages.All.getTeamId(doc);
 			var args = [['file', 'teamdetails'], ['version', '2.9'], ['teamId', teamId]];
@@ -221,64 +300,7 @@ Foxtrick.modules['SkillTable'] = {
 					}, teams);
 					var Team = TeamIDEl.parentNode;
 					var activationDate = xml.time('FoundedDate', Team);
-					Foxtrick.Pages.Players.getPlayerList(doc,
-					  function(list) {
-						// first we check transfers
-						var argsTransfersPlayer = Foxtrick.map(function(player) {
-							return [['file', 'transfersplayer'], ['playerId', player.id]];
-						}, list);
-
-						Foxtrick.util.api.batchRetrieve(doc, argsTransfersPlayer, DEFAULT_CACHE,
-						  function(xmls, errors) {
-							var argsPlayerevents = [];
-							Foxtrick.forEach(function(xml, i) {
-								var error = errors[i];
-								if (xml && !error) {
-									// if there is a transfer, we are finished with this player
-									var hasTransfers =
-										setHomeGrownAndJoinedSinceFromTransfers(xml, list);
-									if (!hasTransfers) {
-										// so, he's from home.
-										// need to get pull date from playerevents below
-										var PlayerID = xml.num('PlayerID');
-										argsPlayerevents.push([
-											['file', 'playerevents'], ['playerId', PlayerID],
-										]);
-									}
-								}
-								else {
-									Foxtrick.log('No XML in batchRetrieve', error, xml,
-									             argsTransfersPlayer[i]);
-								}
-							}, xmls);
-							// try set joined date from pull date
-							Foxtrick.util.api.batchRetrieve(doc, argsPlayerevents, DEFAULT_CACHE,
-							  function(xmls, errors) {
-								Foxtrick.forEach(function(xml, i) {
-									var error = errors[i];
-									if (xml && !error) {
-										var wasPulled = setJoinedSinceFromPullDate(xml, list);
-										if (!wasPulled) {
-											// no pull date = from starting squad.
-											// joinedSince = activationDate
-											var PlayerID = xml.num('PlayerID');
-											Foxtrick.map(function(p) {
-												if (p.id == PlayerID)
-													p.joinedSince = activationDate;
-											}, list);
-										}
-									}
-									else {
-										Foxtrick.log('No XML in batchRetrieve', error, xml,
-										             argsPlayerevents[i]);
-									}
-								}, xmls);
-
-								// finished. now display results
-								Foxtrick.preventChange(doc, generateTable)(list);
-							});
-						});
-					});
+					updatePlayers(doc, activationDate);
 				}
 				else {
 					loading.parentNode.removeChild(loading);
