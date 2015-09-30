@@ -2,7 +2,7 @@
 /**
  * skill-table.js
  * Show a skill table on players list page
- * @author	convincedd, ryanli
+ * @author convincedd, ryanli, LA-MJ
  */
 
 Foxtrick.modules['SkillTable'] = {
@@ -1114,19 +1114,46 @@ Foxtrick.modules['SkillTable'] = {
 		};
 
 		var addTableDiv = function() {
-			var tableDiv = Foxtrick.createFeaturedElement(doc, module, 'div');
-			tableDiv.id = TABLE_DIV_ID;
-			Foxtrick.addClass(tableDiv, TABLE_DIV_ID);
-			if (Foxtrick.Pages.TransferSearchResults.isPage(doc)) {
-				Foxtrick.addClass(tableDiv, 'transfer');
-			}
+			var insertTableDiv = function(tableDiv) {
+				if (Foxtrick.Pages.TransferSearchResults.isPage(doc)) {
+					// on transfer search page, insert after first separator
+					var separator = doc.querySelector('#mainBody .borderSeparator');
+					var insertBefore = separator.nextSibling;
+					insertBefore.parentNode.insertBefore(tableDiv, insertBefore);
+				}
+				else if (Foxtrick.Pages.Player.isSenior(doc)) {
+					var insertParent = doc.getElementById('mainBody');
+					insertParent.appendChild(tableDiv);
+				}
+				else {
+					var playerList = doc.querySelector('.playerList');
+					if (playerList) {
+						// If there is playerList, as there is in youth/senior teams,
+						// insert before it. In such cases, there would be category headers
+						// for supporters, inserting before the first player would clutter
+						// up with the headers. Additionally, inserting before the list
+						// would be organized in a better way.
+						playerList.parentNode.insertBefore(tableDiv, playerList);
+					}
+					else {
+						// otherwise, insert before the first player if there is any
+						var firstFace = doc.querySelector('.faceCard');
+						if (firstFace) {
+							// without playerList, players would have faces shown before
+							// playerInfo, if user enabled faces
+							firstFace.parentNode.insertBefore(tableDiv, firstFace);
+						}
+						else {
+							var firstPlayer = doc.querySelector('.playerInfo');
+							if (firstPlayer) {
+								// or... users haven't enabled faces
+								firstPlayer.parentNode.insertBefore(tableDiv, firstPlayer);
+							}
+						}
+					}
+				}
+			};
 
-			var tableCreated = false;
-
-			// table div head
-			var h2 = doc.createElement('h2');
-			h2.className = 'ft-expander-unexpanded';
-			h2.textContent = Foxtrick.L10n.getString('SkillTable.header');
 			var toggleDisplay = function() {
 				try {
 					if (!tableCreated) {
@@ -1156,26 +1183,15 @@ Foxtrick.modules['SkillTable'] = {
 					Foxtrick.log(e);
 				}
 			};
-			Foxtrick.onClick(h2, toggleDisplay);
-			tableDiv.appendChild(h2);
 
-			// links
-			var links = doc.createElement('div');
-			links.className = 'ft_skilltable_links';
-			Foxtrick.addClass(links, 'hidden');
+			var copyTable = function() {
+				var YOUTH_PLAYER_RE = /YouthPlayerID=(\d+)/i;
+				var PLAYER_RE = /PlayerID=(\d+)/i;
 
-			// links: copy
-			var copy = doc.createElement('a');
-			copy.className = 'customize_item secondary';
-			copy.textContent = Foxtrick.L10n.getString('button.copy');
-			copy.title = Foxtrick.L10n.getString('copy.skilltable.title');
-			Foxtrick.onClick(copy, function() {
 				/* get the text content in a node and return it.
 				 * for player links, append the [playerid] HT-ML tag
 				 * for images, return its alt attribute
 				 */
-				var YOUTH_PLAYER_RE = /YouthPlayerID=(\d+)/i;
-				var PLAYER_RE = /PlayerID=(\d+)/i;
 				var getNode = function(node) {
 					var nodeName = node.nodeName.toLowerCase();
 					var ret = '';
@@ -1235,64 +1251,130 @@ Foxtrick.modules['SkillTable'] = {
 					ret += '[/table]';
 					return ret;
 				};
+
 				var table = doc.querySelector('.ft_skilltable');
 				Foxtrick.copyStringToClipboard(toHtMl(table));
 
 				Foxtrick.util.note.add(doc, Foxtrick.L10n.getString('copy.skilltable.copied'),
 				                       'ft-skilltable-copy-note', { at: table });
-			});
+			};
 
-			// links: customize
-			var customize = doc.createElement('a');
-			customize.className = 'customize_item';
-			customize.textContent = Foxtrick.L10n.getString('button.customize');
-			Foxtrick.onClick(customize, function() {
-				var links = doc.querySelector('.ft_skilltable_links');
-				Foxtrick.addClass(links, 'customizing');
+			var makeLinks = function() {
+				// linkslinks
+				var links = doc.createElement('div');
+				links.className = 'ft_skilltable_links';
+				Foxtrick.addClass(links, 'hidden');
 
-				var customizeTable = doc.querySelector('.ft_skilltable_customizetable');
-				Foxtrick.removeClass(customizeTable, 'hidden');
+				// links: copy
+				var copy = doc.createElement('a');
+				copy.className = 'customize_item secondary';
+				copy.textContent = Foxtrick.L10n.getString('button.copy');
+				copy.title = Foxtrick.L10n.getString('copy.skilltable.title');
+				Foxtrick.onClick(copy, copyTable);
 
-				var container = doc.querySelector('.ft_skilltable_container');
-				Foxtrick.addClass(container, 'hidden');
-			});
+				// links: customize
+				var customize = doc.createElement('a');
+				customize.className = 'customize_item';
+				customize.textContent = Foxtrick.L10n.getString('button.customize');
+				Foxtrick.onClick(customize, function() {
+					var links = doc.querySelector('.ft_skilltable_links');
+					Foxtrick.addClass(links, 'customizing');
 
-			// links: save
-			var save = doc.createElement('a');
-			save.textContent = Foxtrick.L10n.getString('button.save');
-			Foxtrick.onClick(save, function() {
-				var fullType = getFullType(doc);
+					var customizeTable = doc.querySelector('.ft_skilltable_customizetable');
+					Foxtrick.removeClass(customizeTable, 'hidden');
 
-				var tableDiv = doc.getElementById(TABLE_DIV_ID);
-				var inputs = tableDiv.getElementsByTagName('input');
-				Foxtrick.forEach(function(input) {
-					setColumnEnabled(fullType, input.id, input.checked);
-				}, inputs);
-				doc.location.reload();
-			});
+					var container = doc.querySelector('.ft_skilltable_container');
+					Foxtrick.addClass(container, 'hidden');
+				});
 
-			// links: cancel
-			var cancel = doc.createElement('a');
-			cancel.textContent = Foxtrick.L10n.getString('button.cancel');
-			Foxtrick.onClick(cancel, function() {
-				var tableDiv = doc.getElementById(TABLE_DIV_ID);
-				var links = tableDiv.querySelector('.ft_skilltable_links');
-				var customizeTable = tableDiv.querySelector('.ft_skilltable_customizetable');
-				var container = tableDiv.querySelector('.ft_skilltable_container');
-				Foxtrick.removeClass(links, 'customizing');
-				Foxtrick.addClass(customizeTable, 'hidden');
-				Foxtrick.removeClass(container, 'hidden');
-			});
+				// links: cancel
+				var cancel = doc.createElement('a');
+				cancel.textContent = Foxtrick.L10n.getString('button.cancel');
+				Foxtrick.onClick(cancel, function() {
+					var tableDiv = doc.getElementById(TABLE_DIV_ID);
+					var links = tableDiv.querySelector('.ft_skilltable_links');
+					var customizeTable = tableDiv.querySelector('.ft_skilltable_customizetable');
+					var container = tableDiv.querySelector('.ft_skilltable_container');
+					Foxtrick.removeClass(links, 'customizing');
+					Foxtrick.addClass(customizeTable, 'hidden');
+					Foxtrick.removeClass(container, 'hidden');
+				});
 
-			// links: add all children
-			links.appendChild(copy);
-			links.appendChild(customize);
-			links.appendChild(save);
-			links.appendChild(cancel);
+				// links: save
+				var save = doc.createElement('a');
+				save.textContent = Foxtrick.L10n.getString('button.save');
+				Foxtrick.onClick(save, function() {
+					var fullType = getFullType(doc);
+
+					var tableDiv = doc.getElementById(TABLE_DIV_ID);
+					var inputs = tableDiv.getElementsByTagName('input');
+					Foxtrick.forEach(function(input) {
+						setColumnEnabled(fullType, input.id, input.checked);
+					}, inputs);
+					doc.location.reload();
+				});
+
+				// links: add all children
+				links.appendChild(copy);
+				links.appendChild(customize);
+				links.appendChild(save);
+				links.appendChild(cancel);
+
+				return links;
+			};
+
+			var makeOptions = function() {
+				var options;
+				if (Foxtrick.util.api.authorized()) {
+					options = doc.createElement('div');
+					if (Foxtrick.Pages.Players.isOldies(doc)) {
+						var addHomegrownLink = doc.createElement('a');
+						addHomegrownLink.textContent =
+							Foxtrick.L10n.getString('SkillTable.addHomegrown');
+						addHomegrownLink.title =
+							Foxtrick.L10n.getString('SkillTable.addHomegrown.title');
+						addHomegrownLink.id = 'skilltable_addHomegrownId';
+						Foxtrick.onClick(addHomegrownLink, addHomegrown);
+						options.appendChild(addHomegrownLink);
+					}
+					else if (Foxtrick.Pages.Players.isRegular(doc)) {
+						options = doc.createElement('div');
+						var showTimeLink = doc.createElement('a');
+						showTimeLink.textContent =
+							Foxtrick.L10n.getString('SkillTable.showTimeInClub');
+						showTimeLink.title =
+							Foxtrick.L10n.getString('SkillTable.showTimeInClub.title');
+						showTimeLink.id = 'skilltable_showTimeInClubId';
+						Foxtrick.onClick(showTimeLink, showTimeInClub);
+						options.appendChild(showTimeLink);
+					}
+				}
+				return options;
+			};
+
+			var tableCreated = false;
+
+			var tableDiv = Foxtrick.createFeaturedElement(doc, module, 'div');
+			tableDiv.id = TABLE_DIV_ID;
+			Foxtrick.addClass(tableDiv, TABLE_DIV_ID);
+			if (Foxtrick.Pages.TransferSearchResults.isPage(doc)) {
+				Foxtrick.addClass(tableDiv, 'transfer');
+			}
+
+			// table div head
+			var h2 = doc.createElement('h2');
+			h2.className = 'ft-expander-unexpanded';
+			h2.textContent = Foxtrick.L10n.getString('SkillTable.header');
+			Foxtrick.onClick(h2, toggleDisplay);
+			tableDiv.appendChild(h2);
+
+			var links = makeLinks();
+			tableDiv.appendChild(links);
 
 			// customize table wrapper
 			var customizeWrapper = doc.createElement('div');
 			customizeWrapper.className = 'ft_skilltable_customizewrapper';
+			tableDiv.appendChild(customizeWrapper);
 
 			// table container
 			var container = doc.createElement('div');
@@ -1314,85 +1396,21 @@ Foxtrick.modules['SkillTable'] = {
 			});
 			switchView.appendChild(switchViewLink);
 
-			var options;
-			if (Foxtrick.util.api.authorized()) {
-				options = doc.createElement('div');
-				if (Foxtrick.Pages.Players.isOldies(doc)) {
-					var addHomegrownLink = doc.createElement('a');
-					addHomegrownLink.textContent =
-						Foxtrick.L10n.getString('SkillTable.addHomegrown');
-					addHomegrownLink.title =
-						Foxtrick.L10n.getString('SkillTable.addHomegrown.title');
-					addHomegrownLink.id = 'skilltable_addHomegrownId';
-					Foxtrick.onClick(addHomegrownLink, addHomegrown);
-					options.appendChild(addHomegrownLink);
-				}
-				else if (Foxtrick.Pages.Players.isRegular(doc)) {
-					options = doc.createElement('div');
-					var showTimeLink = doc.createElement('a');
-					showTimeLink.textContent =
-						Foxtrick.L10n.getString('SkillTable.showTimeInClub');
-					showTimeLink.title =
-						Foxtrick.L10n.getString('SkillTable.showTimeInClub.title');
-					showTimeLink.id = 'skilltable_showTimeInClubId';
-					Foxtrick.onClick(showTimeLink, showTimeInClub);
-					options.appendChild(showTimeLink);
-				}
-			}
+			container.appendChild(switchView);
 
 			// table container: table wrapper
 			var wrapper = doc.createElement('div');
 			wrapper.className = 'ft_skilltable_wrapper';
 
-			// table container: add all children
-			container.appendChild(switchView);
 			container.appendChild(wrapper);
+
+			var options = makeOptions();
 			if (options)
 				container.appendChild(options);
 
-			tableDiv.appendChild(h2);
-			tableDiv.appendChild(links);
-			tableDiv.appendChild(customizeWrapper);
 			tableDiv.appendChild(container);
 
-			// insert tableDiv
-			if (Foxtrick.Pages.TransferSearchResults.isPage(doc)) {
-				// on transfer search page, insert after first separator
-				var separator = doc.querySelector('#mainBody .borderSeparator');
-				var insertBefore = separator.nextSibling;
-				insertBefore.parentNode.insertBefore(tableDiv, insertBefore);
-			}
-			else if (Foxtrick.Pages.Player.isSenior(doc)) {
-				var insertParent = doc.getElementById('mainBody');
-				insertParent.appendChild(tableDiv);
-			}
-			else {
-				var playerList = doc.querySelector('.playerList');
-				if (playerList) {
-					// If there is playerList, as there is in youth/senior teams,
-					// insert before it. In such cases, there would be category headers
-					// for supporters, inserting before the first player would clutter
-					// up with the headers. Additionally, inserting before the list
-					// would be organized in a better way.
-					playerList.parentNode.insertBefore(tableDiv, playerList);
-				}
-				else {
-					// otherwise, insert before the first player if there is any
-					var firstFace = doc.querySelector('.faceCard');
-					if (firstFace) {
-						// without playerList, players would have faces shown before
-						// playerInfo, if user enabled faces
-						firstFace.parentNode.insertBefore(tableDiv, firstFace);
-					}
-					else {
-						var firstPlayer = doc.querySelector('.playerInfo');
-						if (firstPlayer) {
-							// or... users haven't enabled faces
-							firstPlayer.parentNode.insertBefore(tableDiv, firstPlayer);
-						}
-					}
-				}
-			}
+			insertTableDiv(tableDiv);
 			return tableDiv;
 		};
 
