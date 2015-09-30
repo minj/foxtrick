@@ -69,59 +69,136 @@ Foxtrick.modules['SkillTable'] = {
 			Foxtrick.Prefs.setBool('module.SkillTable.' + type + '.' + name, enabled);
 		};
 		var showTable = function(playerList) {
-			try {
-				// clear old table and loading note
-				var oldTable = doc.getElementById('ft_skilltable');
-				if (oldTable)
-					oldTable.parentNode.removeChild(oldTable);
+			// columns used for table information
+			// name: name of the column, used for fetching l10n string
+			// property: value used to retrieve data from Foxtrick.Pages.Players.getPlayerList()
+			// method: which RENDERER function to use in order to attach data to cell,
+			//   should be a function with two arguments,
+			//   first is table cell(td), second is raw data from playerList.
+			//   If properties is given (multiple column),
+			//   then the player is given as date; if property is given instead
+			//   (single column), the specified property is given. By default the
+			//   data is treated as plain text and appended to the cell.
+			// sortAsc: whether to sort the column in ascending order, default is in
+			//   descending order.
+			// sortString: whether to sort the column with values as string, default is as
+			//   numbers. If set to true, sortAsc is always on.
+			// alignRight: whether to align the data cells to the right
+			// img: images used in table headers as substitution of text
+			var COLUMNS = [
+				{ name: 'PlayerNumber', property: 'number', sortAsc: true },
+				{ name: 'PlayerCategory', property: 'category',
+					method: 'category', sortAsc: true, },
+				{ name: 'Nationality', property: 'countryId',
+					method: 'nationality', sortString: true, },
+				{ name: 'Player', properties: ['nameLink', 'nationalTeamId', 'trainerData'],
+					method: 'playerName', sortString: true, },
+				{ name: 'Bookmark', property: 'bookmarkLink', method: 'link',
+					sortString: true, },
+				{ name: 'CurrentBid', property: 'currentBid',
+					method: 'formatNum', alignRight: true, },
+				{ name: 'CurrentBidder', property: 'currentBidderLink',
+					method: 'link', sortString: true, },
+				{ name: 'CurrentBidderShort', property: 'currentBidderLinkShort',
+					method: 'link', sortString: true, },
+				{ name: 'Hotlist', property: 'hotlistLink',
+					method: 'link', sortString: true, },
+				{ name: 'Age', property: 'age', method: 'age', sortAsc: true, },
+				{ name: 'JoinedSince', property: 'joinedSince', method: 'dateDiff', },
+				{ name: 'CanBePromotedIn', property: 'canBePromotedIn', },
+				{ name: 'TSI', property: 'tsi', alignRight: true, method: 'formatNum', },
+				{ name: 'Status', properties: [
+					'yellowCard', 'redCard', 'bruised', 'injuredWeeks', 'transferListed',
+				], method: 'status', },
+				{ name: 'Speciality', property: 'speciality',
+					method: 'speciality', sortString: true, },
+				{ name: 'Leadership', property: 'leadership', method: 'skill', },
+				{ name: 'Experience', property: 'experience', method: 'skill', },
+				{ name: 'Form', property: 'form', method: 'skill', },
+				{ name: 'Stamina', property: 'stamina', method: 'skill', },
+				{ name: 'StaminaPrediction', property: 'staminaPrediction',
+					method: 'staminaPrediction', },
+				{ name: 'Loyalty', property: 'loyalty', method: 'skill', },
+				{ name: 'MotherClubBonus', property: 'motherClubBonus',
+					method: 'object', sortString: true, },
+				{ name: 'Keeper', property: 'keeper', method: 'skill', },
+				{ name: 'Defending', property: 'defending', method: 'skill', },
+				{ name: 'Playmaking', property: 'playmaking', method: 'skill', },
+				{ name: 'Winger', property: 'winger', method: 'skill', },
+				{ name: 'Passing', property: 'passing', method: 'skill', },
+				{ name: 'Scoring', property: 'scoring', method: 'skill', },
+				{ name: 'Set_pieces', property: 'setPieces', method: 'skill', },
+				{ name: 'PsicoTSI', property: 'psicoTSI', alignRight: true,
+					method: 'formatNum', title: 'psicoTitle', },
+				{ name: 'HTMS_Ability', property: 'htmsAbility', },
+				{ name: 'HTMS_Potential', property: 'htmsPotential', },
+				{ name: 'Agreeability', property: 'agreeability', method: 'skill', },
+				{ name: 'Aggressiveness', property: 'aggressiveness', method: 'skill', },
+				{ name: 'Honesty', property: 'honesty', method: 'skill', },
+				{ name: 'Last_match', properties: ['lastMatch', 'lastMatchDate'],
+					method: 'lastMatch', },
+				{ name: 'Last_stars', property: 'lastRating',
+					img: '/Img/Matches/star_yellow.png', },
+				{ name: 'Last_position', property: 'lastPosition',
+					method: 'position', sortString: true, },
+				{ name: 'Salary', property: 'salary', alignRight: true, method: 'formatNum', },
+				{ name: 'NrOfMatches', property: 'matchCount', },
+				{ name: 'LeagueGoals', property: 'leagueGoals', },
+				{ name: 'CupGoals', property: 'cupGoals', },
+				{ name: 'FriendliesGoals', property: 'friendliesGoals', },
+				{ name: 'CareerGoals', property: 'careerGoals', },
+				{ name: 'Hattricks', property: 'hattricks', },
+				{ name: 'Deadline', property: 'deadline', method: 'dateCell', },
+				{ name: 'Current_club', property: 'currentClubLink',
+					method: 'link', sortString: true, },
+				{ name: 'Current_league', property: 'currentLeagueId',
+					method: 'league', sortString: true, },
+				{ name: 'TransferCompare', property: 'transferCompare', method: 'link', },
+				{ name: 'PerformanceHistory', property: 'performanceHistory', method: 'link', },
+				{ name: 'OwnerNotes', property: 'OwnerNotes', },
+				{ name: 'kpPosition', property: 'kp', },
+				{ name: 'wbdPosition', property: 'wbd', },
+				{ name: 'wbPosition', property: 'wb', },
+				{ name: 'wbtmPosition', property: 'wbtm', },
+				{ name: 'wboPosition', property: 'wbo', },
+				{ name: 'cdPosition', property: 'cd', },
+				{ name: 'cdtwPosition', property: 'cdtw', },
+				{ name: 'cdoPosition', property: 'cdo', },
+				{ name: 'wdPosition', property: 'wd', },
+				{ name: 'wPosition', property: 'w', },
+				{ name: 'wtmPosition', property: 'wtm', },
+				{ name: 'woPosition', property: 'wo', },
+				{ name: 'imdPosition', property: 'imd', },
+				{ name: 'imPosition', property: 'im', },
+				{ name: 'imtwPosition', property: 'imtw', },
+				{ name: 'imoPosition', property: 'imo', },
+				{ name: 'fwPosition', property: 'fw', },
+				{ name: 'fwdPosition', property: 'fwd', },
+				{ name: 'fwtwPosition', property: 'fwtw', },
+				{ name: 'tdfPosition', property: 'tdf', },
+				{ name: 'BestPosition', property: 'bestPosition', sortString: true, },
+				{ name: 'BestPositionValue', property: 'bestPositionValue', },
+			];
 
-				var oldNotes = doc.querySelector('.ft_skilltable_wrapper .ft-note');
-				if (oldNotes)
-					oldNotes.parentNode.removeChild(oldNotes);
-
-				var fullType = getFullType(doc);
-
-				// first determine lastMatchday
-				var lastMatchDate, secondLastMatchDate;
-				if (fullType.type != 'transfer' &&
-				    fullType.subtype != 'nt' && fullType.subtype != 'oldiesCoach') {
-					var getMatchDate = function(playerInfo) {
-						var links = playerInfo.getElementsByTagName('a');
-						return Foxtrick.nth(function(link) {
-							if (/matchid/i.test(link.href)) {
-								var date = Foxtrick.util.time.getDateFromText(link.textContent);
-								return date.getTime();
-							}
-						}, links) || 0;
-					};
-
-					var players = doc.getElementsByClassName('playerInfo');
-					// (assumes that if there are less then 3 players at a match date
-					// those were transfers and disregards them)
-					var dates = Foxtrick.Pages.Players.getLastMatchDates(players, getMatchDate, 3);
-
-					lastMatchDate = dates.last;
-					secondLastMatchDate = dates.second;
-				}
-
-				// functions used to attach data to table cell
-				var category = function(cell, cat) {
+			// functions used to attach data to table cell
+			var RENDERERS = {
+				category: function(cell, cat) {
 					var categories = ['GK', 'WB', 'CD', 'W', 'IM', 'FW', 'S', 'R', 'E1', 'E2'];
 					cell.textContent = Foxtrick.L10n.getString('categories.' + categories[cat - 1]);
 					cell.setAttribute('index', cat);
-				};
-				var link = function(cell, link) {
+				},
+				link: function(cell, link) {
 					cell.appendChild(link.cloneNode(true));
-				};
-				var nationality = function(cell, countryId) {
+				},
+				nationality: function(cell, countryId) {
 					var flag = Foxtrick.util.id.createFlagFromCountryId(doc, countryId);
 					if (flag) {
 						cell.appendChild(flag);
 						// League name is a -> img.title
 						cell.setAttribute('index', flag.firstChild.title);
 					}
-				};
-				var playerName = function(cell, player) {
+				},
+				playerName: function(cell, player) {
 					cell.appendChild(player.nameLink.cloneNode(true));
 					if (player.nationalTeamId) {
 						cell.appendChild(doc.createTextNode(' (NT)'));
@@ -134,13 +211,13 @@ Foxtrick.modules['SkillTable'] = {
 							src: Foxtrick.InternalPath + 'resources/img/cap.png',
 						});
 					}
-				};
-				var age = function(cell, age) {
+				},
+				age: function(cell, age) {
 					Foxtrick.addClass(cell, 'align-left');
 					cell.textContent = age.years + '.' + age.days;
 					cell.setAttribute('index', age.years * 112 + age.days);
-				};
-				var status = function(cell, player) {
+				},
+				status: function(cell, player) {
 					var index = 0;
 					var img;
 					if (player.yellowCard) {
@@ -202,8 +279,8 @@ Foxtrick.modules['SkillTable'] = {
 					}
 					Foxtrick.addClass(cell, 'status');
 					cell.setAttribute('index', index);
-				};
-				var skill = function(cell, skill, property) {
+				},
+				skill: function(cell, skill, property) {
 					if (typeof skill === 'object') {
 						// in youth team, returned skill is an object
 
@@ -268,8 +345,8 @@ Foxtrick.modules['SkillTable'] = {
 						}
 						cell.title = Foxtrick.L10n.getLevelByTypeAndValue(property, skill);
 					}
-				};
-				var staminaPrediction = function(cell, pred) {
+				},
+				staminaPrediction: function(cell, pred) {
 					if (pred) {
 						cell.textContent = pred.value;
 						cell.title = Foxtrick.util.time.buildDate(new Date(pred.date));
@@ -280,8 +357,8 @@ Foxtrick.modules['SkillTable'] = {
 						cell.title = Foxtrick.L10n.getString('StaminaPrediction.na');
 						cell.setAttribute('index', '0');
 					}
-				};
-				var speciality = function(cell, spec) {
+				},
+				speciality: function(cell, spec) {
 					var specIdx = Foxtrick.L10n.getNumberFromSpeciality(spec);
 					if (specIdx) {
 						var specImageUrl = Foxtrick.getSpecialtyImagePathFromNumber(specIdx);
@@ -292,8 +369,8 @@ Foxtrick.modules['SkillTable'] = {
 						});
 					}
 					cell.setAttribute('index', spec);
-				};
-				var lastMatch = function(cell, p) {
+				},
+				lastMatch: function(cell, p) {
 					var last = p.lastMatch;
 					if (last) {
 						var matchDay = p.lastMatchDate.getTime();
@@ -314,22 +391,22 @@ Foxtrick.modules['SkillTable'] = {
 					else {
 						cell.setAttribute('index', 0);
 					}
-				};
-				var position = function(cell, pos) {
+				},
+				position: function(cell, pos) {
 					var shortPos = Foxtrick.L10n.getShortPosition(pos);
 					var abbr = doc.createElement('abbr');
 					abbr.textContent = shortPos;
 					abbr.title = pos;
 					cell.appendChild(abbr);
 					cell.setAttribute('index', pos);
-				};
-				var league = function(cell, leagueId) {
+				},
+				league: function(cell, leagueId) {
 					var link = doc.createElement('a');
 					link.href = '/World/Leagues/League.aspx?LeagueID=' + leagueId;
 					link.textContent = Foxtrick.L10n.getCountryName(leagueId);
 					cell.appendChild(link);
-				};
-				var dateDiff = function(cell, deadline) {
+				},
+				dateDiff: function(cell, deadline) {
 					var htDate = Foxtrick.util.time.getHtDate(doc);
 					var diff = Math.floor((htDate.getTime() - deadline.getTime()) / 1000); // Sec
 					var span = Foxtrick.util.time.timeDifferenceToElement(doc, diff, true, false);
@@ -337,132 +414,58 @@ Foxtrick.modules['SkillTable'] = {
 					cell.title = Foxtrick.util.time.buildDate(deadline);
 					Foxtrick.addClass(cell, 'align-left');
 					cell.setAttribute('index', diff);
-				};
-				var dateCell = function(cell, deadline) {
+				},
+				dateCell: function(cell, deadline) {
 					var date = Foxtrick.util.time.getDateFromText(deadline.textContent);
 					var index = date.getTime();
 					deadline.setAttribute('index', index);
 					cell.parentNode.replaceChild(deadline, cell);
-				};
-				var formatNum = function(cell, num) {
+				},
+				formatNum: function(cell, num) {
 					cell.className = 'formatted-num';
 					cell.textContent = Foxtrick.formatNumber(num, '\u00a0');
 					cell.setAttribute('index', num);
-				};
-				var object = function(cell, val) {
+				},
+				object: function(cell, val) {
 					if (val)
 						cell.appendChild(val);
-				};
+				},
+			};
 
-				// columns used for table information
-				// name: name of the column, used for fetching l10n string
-				// property: value used to retrieve data from Foxtrick.Pages.Players.getPlayerList()
-				// method: which function to use in order to attach data to cell, should be a
-				//   function with two arguments, first is table cell(td), second is
-				//   raw data from playerList. If properties is given (multiple column),
-				//   then the player is given as date; if property is given instead
-				//   (single column), the specified property is given. By default the
-				//   data is treated as plain text and appended to the cell.
-				// sortAsc: whether to sort the column in ascending order, default is in
-				//   descending order.
-				// sortString: whether to sort the column with values as string, default is as
-				//   numbers. If set to true, sortAsc is always on.
-				// alignRight: whether to align the data cells to the right
-				// img: images used in table headers as substitution of text
+			try {
+				// clear old table and loading note
+				var oldTable = doc.getElementById('ft_skilltable');
+				if (oldTable)
+					oldTable.parentNode.removeChild(oldTable);
 
-				var columns = [
-					{ name: 'PlayerNumber', property: 'number', sortAsc: true },
-					{ name: 'PlayerCategory', property: 'category',
-						method: category, sortAsc: true, },
-					{ name: 'Nationality', property: 'countryId',
-						method: nationality, sortString: true, },
-					{ name: 'Player', properties: ['nameLink', 'nationalTeamId', 'trainerData'],
-						method: playerName, sortString: true, },
-					{ name: 'Bookmark', property: 'bookmarkLink', method: link, sortString: true, },
-					{ name: 'CurrentBid', property: 'currentBid',
-						method: formatNum, alignRight: true, },
-					{ name: 'CurrentBidder', property: 'currentBidderLink',
-						method: link, sortString: true, },
-					{ name: 'CurrentBidderShort', property: 'currentBidderLinkShort',
-						method: link, sortString: true, },
-					{ name: 'Hotlist', property: 'hotlistLink',
-						method: link, sortString: true, },
-					{ name: 'Age', property: 'age', method: age, sortAsc: true, },
-					{ name: 'JoinedSince', property: 'joinedSince', method: dateDiff, },
-					{ name: 'CanBePromotedIn', property: 'canBePromotedIn', },
-					{ name: 'TSI', property: 'tsi', alignRight: true, method: formatNum, },
-					{ name: 'Status', properties: [
-						'yellowCard', 'redCard', 'bruised', 'injuredWeeks', 'transferListed',
-					], method: status, },
-					{ name: 'Speciality', property: 'speciality',
-						method: speciality, sortString: true, },
-					{ name: 'Leadership', property: 'leadership', method: skill, },
-					{ name: 'Experience', property: 'experience', method: skill, },
-					{ name: 'Form', property: 'form', method: skill, },
-					{ name: 'Stamina', property: 'stamina', method: skill, },
-					{ name: 'StaminaPrediction', property: 'staminaPrediction',
-						method: staminaPrediction, },
-					{ name: 'Loyalty', property: 'loyalty', method: skill, },
-					{ name: 'MotherClubBonus', property: 'motherClubBonus',
-						method: object, sortString: true, },
-					{ name: 'Keeper', property: 'keeper', method: skill, },
-					{ name: 'Defending', property: 'defending', method: skill, },
-					{ name: 'Playmaking', property: 'playmaking', method: skill, },
-					{ name: 'Winger', property: 'winger', method: skill, },
-					{ name: 'Passing', property: 'passing', method: skill, },
-					{ name: 'Scoring', property: 'scoring', method: skill, },
-					{ name: 'Set_pieces', property: 'setPieces', method: skill, },
-					{ name: 'PsicoTSI', property: 'psicoTSI', alignRight: true,
-						method: formatNum, title: 'psicoTitle', },
-					{ name: 'HTMS_Ability', property: 'htmsAbility', },
-					{ name: 'HTMS_Potential', property: 'htmsPotential', },
-					{ name: 'Agreeability', property: 'agreeability', method: skill, },
-					{ name: 'Aggressiveness', property: 'aggressiveness', method: skill, },
-					{ name: 'Honesty', property: 'honesty', method: skill, },
-					{ name: 'Last_match', properties: ['lastMatch', 'lastMatchDate'],
-						method: lastMatch, },
-					{ name: 'Last_stars', property: 'lastRating',
-						img: '/Img/Matches/star_yellow.png', },
-					{ name: 'Last_position', property: 'lastPosition',
-						method: position, sortString: true, },
-					{ name: 'Salary', property: 'salary', alignRight: true, method: formatNum, },
-					{ name: 'NrOfMatches', property: 'matchCount', },
-					{ name: 'LeagueGoals', property: 'leagueGoals', },
-					{ name: 'CupGoals', property: 'cupGoals', },
-					{ name: 'FriendliesGoals', property: 'friendliesGoals', },
-					{ name: 'CareerGoals', property: 'careerGoals', },
-					{ name: 'Hattricks', property: 'hattricks', },
-					{ name: 'Deadline', property: 'deadline', method: dateCell, },
-					{ name: 'Current_club', property: 'currentClubLink',
-						method: link, sortString: true, },
-					{ name: 'Current_league', property: 'currentLeagueId',
-						method: league, sortString: true, },
-					{ name: 'TransferCompare', property: 'transferCompare', method: link, },
-					{ name: 'PerformanceHistory', property: 'performanceHistory', method: link, },
-					{ name: 'OwnerNotes', property: 'OwnerNotes', },
-					{ name: 'kpPosition', property: 'kp', },
-					{ name: 'wbdPosition', property: 'wbd', },
-					{ name: 'wbPosition', property: 'wb', },
-					{ name: 'wbtmPosition', property: 'wbtm', },
-					{ name: 'wboPosition', property: 'wbo', },
-					{ name: 'cdPosition', property: 'cd', },
-					{ name: 'cdtwPosition', property: 'cdtw', },
-					{ name: 'cdoPosition', property: 'cdo', },
-					{ name: 'wdPosition', property: 'wd', },
-					{ name: 'wPosition', property: 'w', },
-					{ name: 'wtmPosition', property: 'wtm', },
-					{ name: 'woPosition', property: 'wo', },
-					{ name: 'imdPosition', property: 'imd', },
-					{ name: 'imPosition', property: 'im', },
-					{ name: 'imtwPosition', property: 'imtw', },
-					{ name: 'imoPosition', property: 'imo', },
-					{ name: 'fwPosition', property: 'fw', },
-					{ name: 'fwdPosition', property: 'fwd', },
-					{ name: 'fwtwPosition', property: 'fwtw', },
-					{ name: 'tdfPosition', property: 'tdf', },
-					{ name: 'BestPosition', property: 'bestPosition', sortString: true, },
-					{ name: 'BestPositionValue', property: 'bestPositionValue', },
-				];
+				var oldNotes = doc.querySelector('.ft_skilltable_wrapper .ft-note');
+				if (oldNotes)
+					oldNotes.parentNode.removeChild(oldNotes);
+
+				var fullType = getFullType(doc);
+
+				// first determine lastMatchday
+				var lastMatchDate, secondLastMatchDate;
+				if (fullType.type != 'transfer' &&
+				    fullType.subtype != 'nt' && fullType.subtype != 'oldiesCoach') {
+					var getMatchDate = function(playerInfo) {
+						var links = playerInfo.getElementsByTagName('a');
+						return Foxtrick.nth(function(link) {
+							if (/matchid/i.test(link.href)) {
+								var date = Foxtrick.util.time.getDateFromText(link.textContent);
+								return date.getTime();
+							}
+						}, links) || 0;
+					};
+
+					var players = doc.getElementsByClassName('playerInfo');
+					// (assumes that if there are less then 3 players at a match date
+					// those were transfers and disregards them)
+					var dates = Foxtrick.Pages.Players.getLastMatchDates(players, getMatchDate, 3);
+
+					lastMatchDate = dates.last;
+					secondLastMatchDate = dates.second;
+				}
 
 				Foxtrick.forEach(function(column) {
 					column.available = false;
@@ -483,7 +486,7 @@ Foxtrick.modules['SkillTable'] = {
 							column.enabled = getColumnEnabled(fullType, column.name);
 						}
 					}
-				}, columns);
+				}, COLUMNS);
 
 				var renderTH = function(th, column) {
 					var fullName = Foxtrick.L10n.getString(column.name);
@@ -556,7 +559,7 @@ Foxtrick.modules['SkillTable'] = {
 				var oldcustomizeTable = doc.querySelector('.ft_skilltable_customizetable');
 				if (oldcustomizeTable)
 					oldcustomizeTable.parentNode.removeChild(oldcustomizeTable);
-				var customizeTable = createCustomizeTable(columns);
+				var customizeTable = createCustomizeTable(COLUMNS);
 				Foxtrick.addClass(customizeTable, 'hidden');
 
 				var table = doc.createElement('table');
@@ -723,7 +726,7 @@ Foxtrick.modules['SkillTable'] = {
 
 						tr.appendChild(th);
 					}
-				}, columns);
+				}, COLUMNS);
 
 				var tbody = doc.createElement('tbody');
 				table.appendChild(tbody);
@@ -766,11 +769,15 @@ Foxtrick.modules['SkillTable'] = {
 
 					Foxtrick.forEach(function(column) {
 						if (column.enabled) {
+							var method = column.method;
+							var property = column.property;
+							var value = player[property];
+
 							var cell = doc.createElement('td');
 							row.appendChild(cell);
 							if (column.properties) {
-								if (column.method) {
-									column.method(cell, player);
+								if (method) {
+									RENDERERS[method](cell, player);
 								}
 								else {
 									var texts = Foxtrick.map(function(prop) {
@@ -779,13 +786,12 @@ Foxtrick.modules['SkillTable'] = {
 									cell.textContent = texts.join(', ');
 								}
 							}
-							else if (column.property &&
-							         typeof player[column.property] !== 'undefined') {
-								if (column.method) {
-									column.method(cell, player[column.property], column.property);
+							else if (property && typeof value !== 'undefined') {
+								if (method) {
+									RENDERERS[column.method](cell, value, property);
 								}
 								else {
-									cell.textContent = player[column.property];
+									cell.textContent = value;
 								}
 								if (column.title) {
 									cell.title = player[column.title];
@@ -795,7 +801,7 @@ Foxtrick.modules['SkillTable'] = {
 								Foxtrick.addClass(cell, 'align-right');
 							}
 						}
-					}, columns);
+					}, COLUMNS);
 				}, playerList);
 
 				var tableDiv = doc.getElementById(TABLE_DIV_ID);
