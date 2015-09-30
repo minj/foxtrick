@@ -12,6 +12,10 @@ Foxtrick.modules['SkillTable'] = {
 	CSS: Foxtrick.InternalPath + 'resources/css/skilltable.css',
 
 	run: function(doc) {
+		var module = this;
+		var DEFAULT_CACHE = { cache_lifetime: 'session' };
+		var TABLE_DIV_ID = 'ft_skilltablediv';
+
 		// returns full type of the document in this format:
 		// { type: ['senior'|'youth'|'transfer'], subtype: ['own'|'others'|'nt'|'oldiesCoach'] }
 		var getFullType = function() {
@@ -57,12 +61,12 @@ Foxtrick.modules['SkillTable'] = {
 			return fullType.type;
 		};
 		var getColumnEnabled = function(fullType, name) {
-			return Foxtrick.Prefs.getBool('module.SkillTable.' +
-			                             fullTypeToString(fullType) + '.' + name);
+			var type = fullTypeToString(fullType);
+			return Foxtrick.Prefs.getBool('module.SkillTable.' + type + '.' + name);
 		};
 		var setColumnEnabled = function(fullType, name, enabled) {
-			Foxtrick.Prefs.setBool('module.SkillTable.' +
-			                      fullTypeToString(fullType) + '.' + name, enabled);
+			var type = fullTypeToString(fullType);
+			Foxtrick.Prefs.setBool('module.SkillTable.' + type + '.' + name, enabled);
 		};
 		var showTable = function(playerList) {
 			try {
@@ -70,44 +74,40 @@ Foxtrick.modules['SkillTable'] = {
 				var old_table = doc.getElementById('ft_skilltable');
 				if (old_table)
 					old_table.parentNode.removeChild(old_table);
-				var old_notes = doc.getElementsByClassName('ft_skilltable_wrapper')[0]
-								   .getElementsByClassName('ft-note')[0];
+
+				var old_notes = doc.querySelector('.ft_skilltable_wrapper .ft-note');
 				if (old_notes)
 					old_notes.parentNode.removeChild(old_notes);
 
 				var fullType = getFullType(doc);
-				var players, pid;
-				var i, j;
+
 				// first determine lastMatchday
-				if (fullType.type != 'transfer'
-					&& fullType.subtype != 'nt'
-					&& fullType.subtype != 'oldiesCoach') {
-					var getMatchDate = function(PlayerInfo) {
-						pid = Foxtrick.Pages.Players.getPlayerId(PlayerInfo);
-						var as = PlayerInfo.getElementsByTagName('a');
-						for (j = 0; j < as.length; ++j) {
-							if (as[j].href.search(/matchid/i) != -1) {
-								var date = Foxtrick.util.time.getDateFromText(as[j].textContent);
+				var lastMatchDate, secondLastMatchDate;
+				if (fullType.type != 'transfer' &&
+				    fullType.subtype != 'nt' && fullType.subtype != 'oldiesCoach') {
+					var getMatchDate = function(playerInfo) {
+						var links = playerInfo.getElementsByTagName('a');
+						return Foxtrick.nth(function(link) {
+							if (/matchid/i.test(link.href)) {
+								var date = Foxtrick.util.time.getDateFromText(link.textContent);
 								return date.getTime();
 							}
-						}
-						return 0;
+						}, links) || 0;
 					};
 
-					players = doc.getElementsByClassName('playerInfo');
+					var players = doc.getElementsByClassName('playerInfo');
 					// (assumes that if there are less then 3 players at a match date
-					// that is was a transfer and disregards those)
+					// those were transfers and disregards them)
 					var dates = Foxtrick.Pages.Players.getLastMatchDates(players, getMatchDate, 3);
 
-					var lastMatchDate = dates.last;
-					var secondLastMatchDate = dates.second;
+					lastMatchDate = dates.last;
+					secondLastMatchDate = dates.second;
 				}
 
 				// functions used to attach data to table cell
 				var category = function(cell, cat) {
 					var categories = ['GK', 'WB', 'CD', 'W', 'IM', 'FW', 'S', 'R', 'E1', 'E2'];
-					cell.appendChild(doc.createTextNode(Foxtrick.L10n.getString('categories.' +
-					                 categories[cat - 1])));
+					cell.textContent = Foxtrick.L10n.getString('categories.' + categories[cat - 1]);
 					cell.setAttribute('index', cat);
 				};
 				var link = function(cell, link) {
@@ -131,27 +131,28 @@ Foxtrick.modules['SkillTable'] = {
 						Foxtrick.addImage(doc, cell, {
 							alt: coach,
 							title: coach,
-							src: Foxtrick.InternalPath + 'resources/img/cap.png'
+							src: Foxtrick.InternalPath + 'resources/img/cap.png',
 						});
 					}
 				};
 				var age = function(cell, age) {
-					cell.setAttribute('class', 'align-left');
-					cell.appendChild(doc.createTextNode(age.years + '.' + age.days));
+					Foxtrick.addClass(cell, 'align-left');
+					cell.textContent = age.years + '.' + age.days;
 					cell.setAttribute('index', age.years * 112 + age.days);
 				};
 				var status = function(cell, player) {
 					var index = 0;
+					var img;
 					if (player.yellowCard) {
 						if (player.yellowCard === 1) {
-							var img = doc.createElement('img');
+							img = doc.createElement('img');
 							img.src = '/Img/Icons/yellow_card.gif';
 							img.alt = Foxtrick.L10n.getString('Yellow_card.abbr') + '×1';
 							img.title = Foxtrick.L10n.getString('Yellow_card') + '×1';
 							cell.appendChild(img);
 						}
 						else if (player.yellowCard === 2) {
-							var img = doc.createElement('img');
+							img = doc.createElement('img');
 							img.src = '/Img/Icons/dual_yellow_card.gif';
 							img.alt = Foxtrick.L10n.getString('Yellow_card.abbr') + '×2';
 							img.title = Foxtrick.L10n.getString('Yellow_card') + '×2';
@@ -159,8 +160,8 @@ Foxtrick.modules['SkillTable'] = {
 						}
 						index += 10 * player.yellowCard;
 					}
-					if (player.redCard) {
-						var img = doc.createElement('img');
+					else if (player.redCard) {
+						img = doc.createElement('img');
 						img.src = '/Img/Icons/red_card.gif';
 						img.alt = Foxtrick.L10n.getString('Red_card.abbr');
 						img.title = Foxtrick.L10n.getString('Red_card');
@@ -168,21 +169,22 @@ Foxtrick.modules['SkillTable'] = {
 						index += 30;
 					}
 					if (player.bruised) {
-						var img = doc.createElement('img');
+						img = doc.createElement('img');
 						img.src = '/Img/Icons/bruised.gif';
 						img.alt = Foxtrick.L10n.getString('Bruised.abbr');
 						img.title = Foxtrick.L10n.getString('Bruised');
 						cell.appendChild(img);
 						index += 50;
-					} else if (player.injuredWeeks || player.injured) {
-						var img = doc.createElement('img');
+					}
+					else if (player.injuredWeeks || player.injured) {
+						img = doc.createElement('img');
 						img.src = '/Img/Icons/injured.gif';
 						img.alt = Foxtrick.L10n.getString('Injured.abbr');
 						img.title = Foxtrick.L10n.getString('Injured');
 						cell.appendChild(img);
 						// player.injured is number from players page,
 						// or boolean from transfer result page.
-						if (typeof(player.injuredWeeks) == 'number') {
+						if (typeof player.injuredWeeks === 'number') {
 							cell.appendChild(doc.createTextNode(player.injuredWeeks));
 							index += player.injuredWeeks * 100;
 						}
@@ -191,7 +193,7 @@ Foxtrick.modules['SkillTable'] = {
 						}
 					}
 					if (player.transferListed) {
-						var img = doc.createElement('img');
+						img = doc.createElement('img');
 						img.src = '/Img/Icons/dollar.gif';
 						img.alt = Foxtrick.L10n.getString('TransferListed.abbr');
 						img.title = Foxtrick.L10n.getString('TransferListed');
@@ -202,24 +204,24 @@ Foxtrick.modules['SkillTable'] = {
 					cell.setAttribute('index', index);
 				};
 				var skill = function(cell, skill, property) {
-					if (typeof(skill) === 'object') {
+					if (typeof skill === 'object') {
 						// in youth team, returned skill is an object
 
 						// First we sort by the max of current and max skill,
 						// (multiplied by 10 since maximum is 9 for youth players)
 						// then only the current skill, finally whether it's maxed
-						cell.setAttribute('index', Math.max(skill.current, skill.max) * 10 +
-						                  skill.current + !skill.maxed);
+						var index = Math.max(skill.current, skill.max) * 10 +
+							skill.current + !skill.maxed;
+						cell.setAttribute('index', index);
 						if (skill.maxed) {
 							cell.className = 'maxed';
 						}
 						if (skill.current !== 0 || skill.max !== 0) {
 							var current = skill.current || '-';
 							var max = skill.max || '-';
-							cell.appendChild(doc.createTextNode(current + '/' + max));
-							// and we deal with colours
-							if (Foxtrick.Prefs.isModuleOptionEnabled('SkillTable',
-							    'ColouredYouth')) {
+							cell.textContent = current + '/' + max;
+							// and we deal with colors
+							if (Foxtrick.Prefs.isModuleOptionEnabled(module, 'ColouredYouth')) {
 								if (skill.max > 3) {
 									// normalized values for convenience in further calculations
 									var skillBase = {};
@@ -229,25 +231,26 @@ Foxtrick.modules['SkillTable'] = {
 
 									// calculate color for capability of improvement
 									var r = 0;
-									if (skillBase.max > skillBase.current)
-										r = ((skillBase.max - skillBase.current) / skillBase.max)
-											* 255 + 51;
+									if (skillBase.max > skillBase.current) {
+										var diff = skillBase.max - skillBase.current;
+										r = diff / skillBase.max * 255 + 51;
+									}
 									var g = 255;
 									var b = 0;
 
 									// apply alpha, indicating max skill
 									var a = 1 - skillBase.max / 5;
 									// assuming max skill will never exceed 8...
-									a = (a < 0) ? 0 : a; //... but just to be sure
+									a = a < 0 ? 0 : a; // but just to be sure
 									if (a != 1) {
 										r = Math.round(r + (255 - r) * a);
 										g = Math.round(g + (255 - g) * a);
 										b = Math.round(b + (255 - b) * a);
 									}
-									cell.style.backgroundColor = 'rgb(' + r + ',' + g +
-									                                  ',' + b + ')';
+									var rgbStr = 'rgb(' + r + ',' + g + ',' + b + ')';
+									cell.style.backgroundColor = rgbStr;
 								}
-								else if (skill.max != 0) {
+								else if (skill.max !== 0) {
 									// display unimportant skills/low capabilities in gray
 									cell.style.backgroundColor = 'rgb(204,204,204)';
 									cell.style.color = 'rgb(102,102,102)';
@@ -256,12 +259,11 @@ Foxtrick.modules['SkillTable'] = {
 						}
 					}
 					else {
-						cell.appendChild(doc.createTextNode(skill));
-						var lang = Foxtrick.Prefs.getString('htLanguage');
+						cell.textContent = skill;
 						if (property != 'agreeability' &&
-							property != 'aggressiveness' &&
-							property != 'honesty') {
-								property = 'levels';
+						    property != 'aggressiveness' &&
+						    property != 'honesty') {
+							property = 'levels';
 						}
 						cell.title = Foxtrick.L10n.getLevelByTypeAndValue(property, skill);
 					}
@@ -285,7 +287,7 @@ Foxtrick.modules['SkillTable'] = {
 						Foxtrick.addImage(doc, cell, {
 							alt: spec,
 							title: spec,
-							src: specImageUrl
+							src: specImageUrl,
 						});
 					}
 					cell.setAttribute('index', spec);
@@ -304,9 +306,9 @@ Foxtrick.modules['SkillTable'] = {
 							Foxtrick.addClass(cell, 'second-latest-match');
 							cell.parentNode.setAttribute('not-played-latest', true);
 						}
-						else
+						else {
 							cell.parentNode.setAttribute('not-played-latest', true);
-
+						}
 					}
 					else {
 						cell.setAttribute('index', 0);
@@ -315,7 +317,7 @@ Foxtrick.modules['SkillTable'] = {
 				var position = function(cell, pos) {
 					var shortPos = Foxtrick.L10n.getShortPosition(pos);
 					var abbr = doc.createElement('abbr');
-					abbr.appendChild(doc.createTextNode(shortPos));
+					abbr.textContent = shortPos;
 					abbr.title = pos;
 					cell.appendChild(abbr);
 					cell.setAttribute('index', pos);
@@ -332,12 +334,13 @@ Foxtrick.modules['SkillTable'] = {
 					var span = Foxtrick.util.time.timeDifferenceToElement(doc, diff, true, false);
 					cell.appendChild(span);
 					cell.title = Foxtrick.util.time.buildDate(deadline);
-					cell.setAttribute('class', 'align-left');
+					Foxtrick.addClass(cell, 'align-left');
 					cell.setAttribute('index', diff);
 				};
 				var dateCell = function(cell, deadline) {
-					deadline.setAttribute('index', Foxtrick.util.time
-					                      .getDateFromText(deadline.textContent).getTime());
+					var date = Foxtrick.util.time.getDateFromText(deadline.textContent);
+					var index = date.getTime();
+					deadline.setAttribute('index', index);
 					cell.parentNode.replaceChild(deadline, cell);
 				};
 				var formatNum = function(cell, num) {
@@ -347,15 +350,11 @@ Foxtrick.modules['SkillTable'] = {
 				};
 				var object = function(cell, val) {
 					if (val)
-						cell.appendChild(playerList[i][columns[j].property]);
-				};
-				var date = function(cell, val) {
-					cell.textContent = val;
-					cell.setAttribute('date', 'true');
+						cell.appendChild(val);
 				};
 
 				// columns used for table information
-				// name: name of the column, used for fetching l10nized string
+				// name: name of the column, used for fetching l10n string
 				// property: value used to retrieve data from Foxtrick.Pages.Players.getPlayerList()
 				// method: which function to use in order to attach data to cell, should be a
 				//   function with two arguments, first is table cell(td), second is
@@ -373,118 +372,117 @@ Foxtrick.modules['SkillTable'] = {
 				var columns = [
 					{ name: 'PlayerNumber', property: 'number', sortAsc: true },
 					{ name: 'PlayerCategory', property: 'category',
-						method: category, sortAsc: true },
+						method: category, sortAsc: true, },
 					{ name: 'Nationality', property: 'countryId',
-						method: nationality, sortString: true },
+						method: nationality, sortString: true, },
 					{ name: 'Player', properties: ['nameLink', 'nationalTeamId', 'trainerData'],
-						method: playerName, sortString: true },
-					{ name: 'Bookmark', property: 'bookmarkLink', method: link, sortString: true },
+						method: playerName, sortString: true, },
+					{ name: 'Bookmark', property: 'bookmarkLink', method: link, sortString: true, },
 					{ name: 'CurrentBid', property: 'currentBid',
-						method: formatNum, alignRight: true },
+						method: formatNum, alignRight: true, },
 					{ name: 'CurrentBidder', property: 'currentBidderLink',
-						method: link, sortString: true },
+						method: link, sortString: true, },
 					{ name: 'CurrentBidderShort', property: 'currentBidderLinkShort',
-						method: link, sortString: true },
+						method: link, sortString: true, },
 					{ name: 'Hotlist', property: 'hotlistLink',
-						method: link, sortString: true },
-					{ name: 'Age', property: 'age', method: age, sortAsc: true },
-					{ name: 'JoinedSince', property: 'joinedSince', method: dateDiff },
-					{ name: 'CanBePromotedIn', property: 'canBePromotedIn' },
-					{ name: 'TSI', property: 'tsi', alignRight: true, method: formatNum },
+						method: link, sortString: true, },
+					{ name: 'Age', property: 'age', method: age, sortAsc: true, },
+					{ name: 'JoinedSince', property: 'joinedSince', method: dateDiff, },
+					{ name: 'CanBePromotedIn', property: 'canBePromotedIn', },
+					{ name: 'TSI', property: 'tsi', alignRight: true, method: formatNum, },
 					{ name: 'Status', properties: [
-						'yellowCard', 'redCard', 'bruised', 'injuredWeeks', 'transferListed'
-					], method: status },
+						'yellowCard', 'redCard', 'bruised', 'injuredWeeks', 'transferListed',
+					], method: status, },
 					{ name: 'Speciality', property: 'speciality',
-						method: speciality, sortString: true },
-					{ name: 'Leadership', property: 'leadership', method: skill },
-					{ name: 'Experience', property: 'experience', method: skill },
-					{ name: 'Form', property: 'form', method: skill },
-					{ name: 'Stamina', property: 'stamina', method: skill },
+						method: speciality, sortString: true, },
+					{ name: 'Leadership', property: 'leadership', method: skill, },
+					{ name: 'Experience', property: 'experience', method: skill, },
+					{ name: 'Form', property: 'form', method: skill, },
+					{ name: 'Stamina', property: 'stamina', method: skill, },
 					{ name: 'StaminaPrediction', property: 'staminaPrediction',
-						method: staminaPrediction },
-					{ name: 'Loyalty', property: 'loyalty', method: skill },
+						method: staminaPrediction, },
+					{ name: 'Loyalty', property: 'loyalty', method: skill, },
 					{ name: 'MotherClubBonus', property: 'motherClubBonus',
-						method: object, sortString: true },
-					{ name: 'Keeper', property: 'keeper', method: skill },
-					{ name: 'Defending', property: 'defending', method: skill },
-					{ name: 'Playmaking', property: 'playmaking', method: skill },
-					{ name: 'Winger', property: 'winger', method: skill },
-					{ name: 'Passing', property: 'passing', method: skill },
-					{ name: 'Scoring', property: 'scoring', method: skill },
-					{ name: 'Set_pieces', property: 'setPieces', method: skill },
+						method: object, sortString: true, },
+					{ name: 'Keeper', property: 'keeper', method: skill, },
+					{ name: 'Defending', property: 'defending', method: skill, },
+					{ name: 'Playmaking', property: 'playmaking', method: skill, },
+					{ name: 'Winger', property: 'winger', method: skill, },
+					{ name: 'Passing', property: 'passing', method: skill, },
+					{ name: 'Scoring', property: 'scoring', method: skill, },
+					{ name: 'Set_pieces', property: 'setPieces', method: skill, },
 					{ name: 'PsicoTSI', property: 'psicoTSI', alignRight: true,
-						method: formatNum, title: 'psicoTitle' },
-					{ name: 'HTMS_Ability', property: 'htmsAbility' },
-					{ name: 'HTMS_Potential', property: 'htmsPotential' },
-					{ name: 'Agreeability', property: 'agreeability', method: skill },
-					{ name: 'Aggressiveness', property: 'aggressiveness', method: skill },
-					{ name: 'Honesty', property: 'honesty', method: skill },
+						method: formatNum, title: 'psicoTitle', },
+					{ name: 'HTMS_Ability', property: 'htmsAbility', },
+					{ name: 'HTMS_Potential', property: 'htmsPotential', },
+					{ name: 'Agreeability', property: 'agreeability', method: skill, },
+					{ name: 'Aggressiveness', property: 'aggressiveness', method: skill, },
+					{ name: 'Honesty', property: 'honesty', method: skill, },
 					{ name: 'Last_match', properties: ['lastMatch', 'lastMatchDate'],
-						method: lastMatch },
+						method: lastMatch, },
 					{ name: 'Last_stars', property: 'lastRating',
-						img: '/Img/Matches/star_yellow.png' },
+						img: '/Img/Matches/star_yellow.png', },
 					{ name: 'Last_position', property: 'lastPosition',
-						method: position, sortString: true },
-					{ name: 'Salary', property: 'salary', alignRight: true, method: formatNum },
-					{ name: 'NrOfMatches', property: 'matchCount' },
-					{ name: 'LeagueGoals', property: 'leagueGoals' },
-					{ name: 'CupGoals', property: 'cupGoals' },
-					{ name: 'FriendliesGoals', property: 'friendliesGoals' },
-					{ name: 'CareerGoals', property: 'careerGoals' },
-					{ name: 'Hattricks', property: 'hattricks' },
-					{ name: 'Deadline', property: 'deadline', method: dateCell },
+						method: position, sortString: true, },
+					{ name: 'Salary', property: 'salary', alignRight: true, method: formatNum, },
+					{ name: 'NrOfMatches', property: 'matchCount', },
+					{ name: 'LeagueGoals', property: 'leagueGoals', },
+					{ name: 'CupGoals', property: 'cupGoals', },
+					{ name: 'FriendliesGoals', property: 'friendliesGoals', },
+					{ name: 'CareerGoals', property: 'careerGoals', },
+					{ name: 'Hattricks', property: 'hattricks', },
+					{ name: 'Deadline', property: 'deadline', method: dateCell, },
 					{ name: 'Current_club', property: 'currentClubLink',
-						method: link, sortString: true },
+						method: link, sortString: true, },
 					{ name: 'Current_league', property: 'currentLeagueId',
-						method: league, sortString: true },
-					{ name: 'TransferCompare', property: 'transferCompare', method: link },
-					{ name: 'PerformanceHistory', property: 'performanceHistory', method: link },
-					{ name: 'OwnerNotes', property: 'OwnerNotes' },
-					{ name: 'kpPosition', property: 'kp' },
-					{ name: 'wbdPosition', property: 'wbd' },
-					{ name: 'wbPosition', property: 'wb' },
-					{ name: 'wbtmPosition', property: 'wbtm' },
-					{ name: 'wboPosition', property: 'wbo' },
-					{ name: 'cdPosition', property: 'cd' },
-					{ name: 'cdtwPosition', property: 'cdtw' },
-					{ name: 'cdoPosition', property: 'cdo' },
-					{ name: 'wdPosition', property: 'wd' },
-					{ name: 'wPosition', property: 'w' },
-					{ name: 'wtmPosition', property: 'wtm' },
-					{ name: 'woPosition', property: 'wo' },
-					{ name: 'imdPosition', property: 'imd' },
-					{ name: 'imPosition', property: 'im' },
-					{ name: 'imtwPosition', property: 'imtw' },
-					{ name: 'imoPosition', property: 'imo' },
-					{ name: 'fwPosition', property: 'fw' },
-					{ name: 'fwdPosition', property: 'fwd' },
-					{ name: 'fwtwPosition', property: 'fwtw' },
-					{ name: 'tdfPosition', property: 'tdf' },
-					{ name: 'BestPosition', property: 'bestPosition', sortString: true },
-					{ name: 'BestPositionValue', property: 'bestPositionValue' },
+						method: league, sortString: true, },
+					{ name: 'TransferCompare', property: 'transferCompare', method: link, },
+					{ name: 'PerformanceHistory', property: 'performanceHistory', method: link, },
+					{ name: 'OwnerNotes', property: 'OwnerNotes', },
+					{ name: 'kpPosition', property: 'kp', },
+					{ name: 'wbdPosition', property: 'wbd', },
+					{ name: 'wbPosition', property: 'wb', },
+					{ name: 'wbtmPosition', property: 'wbtm', },
+					{ name: 'wboPosition', property: 'wbo', },
+					{ name: 'cdPosition', property: 'cd', },
+					{ name: 'cdtwPosition', property: 'cdtw', },
+					{ name: 'cdoPosition', property: 'cdo', },
+					{ name: 'wdPosition', property: 'wd', },
+					{ name: 'wPosition', property: 'w', },
+					{ name: 'wtmPosition', property: 'wtm', },
+					{ name: 'woPosition', property: 'wo', },
+					{ name: 'imdPosition', property: 'imd', },
+					{ name: 'imPosition', property: 'im', },
+					{ name: 'imtwPosition', property: 'imtw', },
+					{ name: 'imoPosition', property: 'imo', },
+					{ name: 'fwPosition', property: 'fw', },
+					{ name: 'fwdPosition', property: 'fwd', },
+					{ name: 'fwtwPosition', property: 'fwtw', },
+					{ name: 'tdfPosition', property: 'tdf', },
+					{ name: 'BestPosition', property: 'bestPosition', sortString: true, },
+					{ name: 'BestPositionValue', property: 'bestPositionValue', },
 				];
 
-				for (j = 0; j < columns.length; ++j) {
-					columns[j].available = false;
-					if (columns[j].properties) {
-						var pIndex;
-						for (pIndex in columns[j].properties) {
-							if (Foxtrick.Pages.Players.isPropertyInList(playerList,
-							    columns[j].properties[pIndex])) {
-								columns[j].available = true;
-								columns[j].enabled = getColumnEnabled(fullType, columns[j].name);
-								break;
+				Foxtrick.forEach(function(column) {
+					column.available = false;
+					if (column.properties) {
+						Foxtrick.any(function(prop) {
+							if (Foxtrick.Pages.Players.isPropertyInList(playerList, prop)) {
+								column.available = true;
+								column.enabled = getColumnEnabled(fullType, column.name);
+								return true;
 							}
-						}
+							return false;
+						}, column.properties);
 					}
-					else if (columns[j].property) {
+					else if (column.property) {
 						if (Foxtrick.Pages.Players.isPropertyInList(playerList,
-						    columns[j].property)) {
-							columns[j].available = true;
-							columns[j].enabled = getColumnEnabled(fullType, columns[j].name);
+						    column.property)) {
+							column.available = true;
+							column.enabled = getColumnEnabled(fullType, column.name);
 						}
 					}
-				}
+				}, columns);
 
 				var createCustomizeTable = function(properties) {
 					var table = doc.createElement('table');
@@ -497,60 +495,61 @@ Foxtrick.modules['SkillTable'] = {
 					table.appendChild(tbody);
 					thead.appendChild(headRow);
 					tbody.appendChild(checkRow);
-					for (i = 0; i < properties.length; ++i) {
-						if (properties[i].available) {
+					Foxtrick.forEach(function(prop) {
+						if (prop.available) {
 							var th = doc.createElement('th');
 
-							var fullName = Foxtrick.L10n.getString(properties[i].name);
-							var abbrName = Foxtrick.L10n.getString(properties[i].name + '.abbr');
-							var abbr = true;
+							var fullName = Foxtrick.L10n.getString(prop.name);
+							var abbrName = Foxtrick.L10n.getString(prop.name + '.abbr');
+							var useAbbr = true;
 							if (!abbrName || fullName === abbrName) {
-								abbr = false;
+								useAbbr = false;
 							}
-							if (abbr) {
-								if (properties[i].img) {
-									var img = doc.createElement('img');
-									img.setAttribute('src', properties[i].img);
-									img.setAttribute('alt', abbrName);
-									img.setAttribute('title', fullName);
+							var img;
+							if (useAbbr) {
+								if (prop.img) {
+									img = doc.createElement('img');
+									img.src = prop.img;
+									img.alt = abbrName;
+									img.title = fullName;
 									th.appendChild(img);
 								}
 								else {
 									var abbr = doc.createElement('abbr');
-									abbr.setAttribute('title', fullName);
-									abbr.appendChild(doc.createTextNode(abbrName));
+									abbr.title = fullName;
+									abbr.textContent = abbrName;
 									th.appendChild(abbr);
 								}
 							}
 							else {
-								if (properties[i].img) {
-									var img = doc.createElement('img');
-									img.setAttribute('src', properties[i].img);
-									img.setAttribute('alt', fullName);
-									img.setAttribute('title', fullName);
+								if (prop.img) {
+									img = doc.createElement('img');
+									img.src = prop.img;
+									img.alt = fullName;
+									img.title = fullName;
 								}
 								else {
-									th.appendChild(doc.createTextNode(fullName));
+									th.textContent = fullName;
 								}
 							}
 							var td = doc.createElement('td');
 							var check = doc.createElement('input');
-							check.id = properties[i].name;
-							check.setAttribute('type', 'checkbox');
-							if (properties[i].enabled) {
+							check.id = prop.name;
+							check.type = 'checkbox';
+							if (prop.enabled) {
 								check.setAttribute('checked', 'checked');
 							}
 							td.appendChild(check);
 							headRow.appendChild(th);
 							checkRow.appendChild(td);
 						}
-					}
+					}, properties);
 					return table;
 				};
 
-				var oldcustomizeTable =
-					doc.getElementsByClassName('ft_skilltable_customizetable')[0];
-				if (oldcustomizeTable) oldcustomizeTable.parentNode.removeChild(oldcustomizeTable);
+				var oldcustomizeTable = doc.querySelector('.ft_skilltable_customizetable');
+				if (oldcustomizeTable)
+					oldcustomizeTable.parentNode.removeChild(oldcustomizeTable);
 				var customizeTable = createCustomizeTable(columns);
 				Foxtrick.addClass(customizeTable, 'hidden');
 
@@ -573,16 +572,16 @@ Foxtrick.modules['SkillTable'] = {
 						var sortIndex = Foxtrick.getChildIndex(head);
 						var sortAsc = head.hasAttribute('sort-asc');
 						if (sortIndex == lastSortIndex) {
-							if (sortAsc) head.removeAttribute('sort-asc');
-							else head.setAttribute('sort-asc', 'true');
+							if (sortAsc)
+								head.removeAttribute('sort-asc');
+							else
+								head.setAttribute('sort-asc', 'true');
 							sortAsc = !Boolean(sortAsc);
 						}
 						if (!modifierPressed)
 							table.setAttribute('lastSortIndex', sortIndex);
 
 						var sortString = head.hasAttribute('sort-string');
-
-						var rows = [];
 
 						var getSortByIndex = function(index) {
 							var res = Foxtrick.any(function(n) {
@@ -592,8 +591,9 @@ Foxtrick.modules['SkillTable'] = {
 						};
 						var sortByIndex = getSortByIndex(sortIndex);
 
-						for (i = 1; i < table.rows.length; ++i)
-							rows.push(table.rows[i].cloneNode(true));
+						var rows = Foxtrick.map(function(row) {
+							return row.cloneNode(true);
+						}, table.rows).slice(1); // skipping header
 
 						/* sortCompare
 							sortClick() will first check whether every cell in that column has the
@@ -645,7 +645,7 @@ Foxtrick.modules['SkillTable'] = {
 										return 0;
 									}
 									if (sortAsc) {
-										return (aContent - bContent);
+										return aContent - bContent;
 									}
 									else {
 										return bContent - aContent;
@@ -673,7 +673,8 @@ Foxtrick.modules['SkillTable'] = {
 								if (result === 0) {
 									var sortResult = doSort(a, b);
 									return sortResult;
-								} else {
+								}
+								else {
 									return result;
 								}
 							}
@@ -684,10 +685,11 @@ Foxtrick.modules['SkillTable'] = {
 
 						rows.sort(sortCompare);
 
-						for (i = 0; i < rows.length; ++i) {
-							rows[i].setAttribute('lastSort', i);
-							table.rows[i + 1].parentNode.replaceChild(rows[i], table.rows[i + 1]);
-						}
+						Foxtrick.forEach(function(row, i) {
+							row.setAttribute('lastSort', i);
+							// rows.length < table.rows.length because header was skipped
+							table.rows[i + 1].parentNode.replaceChild(row, table.rows[i + 1]);
+						}, rows);
 					}
 					catch (e) {
 						Foxtrick.log(e);
@@ -698,144 +700,142 @@ Foxtrick.modules['SkillTable'] = {
 					}
 					Foxtrick.log.flush(doc);
 				};
-				for (j = 0; j < columns.length; j++) {
-					if (columns[j].enabled) {
+				Foxtrick.forEach(function(column) {
+					if (column.enabled) {
 						var th = doc.createElement('th');
-						if (columns[j].sortString) {
+						if (column.sortString) {
 							th.setAttribute('sort-string', true);
 						}
-						if (columns[j].sortAsc) {
+						if (column.sortAsc) {
 							th.setAttribute('sort-asc', true);
 						}
 						Foxtrick.onClick(th, sortClick);
 
-						var fullName = Foxtrick.L10n.getString(columns[j].name);
-						var abbrName = Foxtrick.L10n.getString(columns[j].name + '.abbr');
-						var abbr = true;
+						var fullName = Foxtrick.L10n.getString(column.name);
+						var abbrName = Foxtrick.L10n.getString(column.name + '.abbr');
+						var useAbbr = true;
 						if (!abbrName || fullName === abbrName) {
-							abbr = false;
+							useAbbr = false;
 						}
-						if (abbr) {
-							if (columns[j].img) {
-								var img = doc.createElement('img');
-								img.setAttribute('src', columns[j].img);
-								img.setAttribute('alt', abbrName);
-								img.setAttribute('title', fullName);
+						var img;
+						if (useAbbr) {
+							if (column.img) {
+								img = doc.createElement('img');
+								img.src = column.img;
+								img.alt = abbrName;
+								img.title = fullName;
 								th.appendChild(img);
 							}
 							else {
 								var abbr = doc.createElement('abbr');
-								abbr.setAttribute('title', fullName);
-								abbr.appendChild(doc.createTextNode(abbrName));
+								abbr.title = fullName;
+								abbr.textContent = abbrName;
 								th.appendChild(abbr);
 							}
 						}
 						else {
-							if (columns[j].img) {
-								var img = doc.createElement('img');
-								img.setAttribute('src', columns[j].img);
-								img.setAttribute('alt', fullName);
-								img.setAttribute('title', fullName);
+							if (column.img) {
+								img = doc.createElement('img');
+								img.src = column.img;
+								img.alt = fullName;
+								img.title = fullName;
 							}
 							else {
-								th.appendChild(doc.createTextNode(fullName));
+								th.textContent = fullName;
 							}
 						}
 						tr.appendChild(th);
 					}
-				}
+				}, columns);
 
 				var tbody = doc.createElement('tbody');
 				table.appendChild(tbody);
 
-				for (var i = 0; i < playerList.length; ++i) {
+				Foxtrick.forEach(function(player) {
 					var row = doc.createElement('tr');
 
 					// set row attributes for filter module
-					row.setAttribute('playerid', playerList[i].id);
-					if (playerList[i].hidden)
+					row.setAttribute('playerid', player.id);
+					if (player.hidden)
 						Foxtrick.addClass(row, 'hidden');
-					if (playerList[i].currentSquad)
-						row.setAttribute('currentsquad', playerList[i].currentSquad);
-					if (playerList[i].currentClubLink)
-						row.setAttribute('currentclub', playerList[i].currentClubLink.href
-						                 .match(/\/Club\/\?TeamID=(\d+)/i)[1]);
-					if (playerList[i].injured)
-						row.setAttribute('injured', playerList[i].injured);
-					if (playerList[i].cards)
-						row.setAttribute('cards', playerList[i].cards);
-					if (playerList[i].transferListed)
+					if (player.currentSquad)
+						row.setAttribute('currentsquad', player.currentSquad);
+					if (player.currentClubLink) {
+						var clubM = player.currentClubLink.href.match(/\/Club\/\?TeamID=(\d+)/i);
+						if (clubM) {
+							row.setAttribute('currentclub', clubM[1]);
+						}
+					}
+					if (player.injured)
+						row.setAttribute('injured', player.injured);
+					if (player.cards)
+						row.setAttribute('cards', player.cards);
+					if (player.transferListed)
 						row.setAttribute('transfer-listed', 'true');
 					else
 						row.setAttribute('not-transfer-listed', 'true');
-					if (playerList[i].speciality)
-						row.setAttribute('speciality-' + Foxtrick.L10n
-						                 .getEnglishSpeciality(playerList[i].speciality), true);
-					if (playerList[i].active)
-						row.setAttribute('active', playerList[i].active);
-					if (playerList[i].motherClubBonus)
+					if (player.speciality) {
+						var spec = Foxtrick.L10n.getEnglishSpeciality(player.speciality);
+						row.setAttribute('speciality-' + spec, true);
+					}
+					if (player.active)
+						row.setAttribute('active', player.active);
+					if (player.motherClubBonus)
 						row.setAttribute('homegrown-player', 'true');
 					else
 						row.setAttribute('purchased-player', 'true');
 
 					tbody.appendChild(row);
 
-					for (var j = 0; j < columns.length; j++) {
-						if (columns[j].enabled) {
+					Foxtrick.forEach(function(column) {
+						if (column.enabled) {
 							var cell = doc.createElement('td');
 							row.appendChild(cell);
-							if (columns[j].properties) {
-								if (columns[j].method) {
-									columns[j].method(cell, playerList[i]);
+							if (column.properties) {
+								if (column.method) {
+									column.method(cell, player);
 								}
 								else {
-									var pIndex;
-									for (pIndex = 0; pIndex < columns[j].properties.length;
-									     ++pIndex) {
-										cell.appendChild(doc.createTextNode(playerList[i][columns[j]
-										                 .properties[pIndex]]));
-										if (pIndex !== columns[j].properties.length) {
-											cell.appendChild(doc.createTextNode(', '));
-										}
-									}
+									var texts = Foxtrick.map(function(prop) {
+										return player[prop];
+									}, column.properties);
+									cell.textContent = texts.join(', ');
 								}
 							}
-							else if (columns[j].property &&
-							         playerList[i][columns[j].property] !== undefined) {
-								if (columns[j].method) {
-									columns[j].method(cell, playerList[i][columns[j].property],
-									                  columns[j].property);
+							else if (column.property &&
+							         typeof player[column.property] !== 'undefined') {
+								if (column.method) {
+									column.method(cell, player[column.property], column.property);
 								}
 								else {
-									cell.textContent = playerList[i][columns[j].property];
+									cell.textContent = player[column.property];
 								}
-								if (columns[j].title) {
-									cell.title = playerList[i][columns[j].title];
+								if (column.title) {
+									cell.title = player[column.title];
 								}
 							}
-							if (columns[j].alignRight) {
+							if (column.alignRight) {
 								Foxtrick.addClass(cell, 'align-right');
 							}
 						}
-					}
-				}
+					}, columns);
+				}, playerList);
 
-				var tablediv = doc.getElementById('ft_skilltablediv');
+				var tablediv = doc.getElementById(TABLE_DIV_ID);
 				var insertCustomizeTable = function(customizeTable) {
-					var wrapper =
-						tablediv.getElementsByClassName('ft_skilltable_customizewrapper')[0];
+					var wrapper = tablediv.querySelector('.ft_skilltable_customizewrapper');
 					wrapper.appendChild(customizeTable);
 				};
 
 				var insertSkillTable = function(skillTable) {
-					var wrapper = tablediv.getElementsByClassName('ft_skilltable_wrapper')[0];
+					var wrapper = tablediv.querySelector('.ft_skilltable_wrapper');
 					wrapper.appendChild(skillTable);
 				};
 
 				insertCustomizeTable(customizeTable);
 				insertSkillTable(table);
 
-				var container = tablediv.getElementsByClassName('ft_skilltable_container')[0];
+				var container = tablediv.querySelector('.ft_skilltable_container');
 				if (Foxtrick.Prefs.getBool('module.SkillTable.top')) {
 					Foxtrick.addClass(container, 'on_top');
 				}
@@ -853,10 +853,10 @@ Foxtrick.modules['SkillTable'] = {
 			}
 			else {
 				var loading = Foxtrick.util.note.createLoading(doc);
-				doc.getElementsByClassName('ft_skilltable_wrapper')[0].appendChild(loading);
+				var wrapper = doc.querySelector('.ft_skilltable_wrapper');
+				wrapper.appendChild(loading);
 				try {
-					if (Foxtrick.Pages.Players.isOldies(doc) &&
-					    fullType.type == 'oldiesAndOwn') {
+					if (Foxtrick.Pages.Players.isOldies(doc) && fullType.type == 'oldiesAndOwn') {
 						showOldiesAndOwn(doc);
 					}
 					else {
@@ -864,58 +864,51 @@ Foxtrick.modules['SkillTable'] = {
 							showTable(list);
 						});
 					}
-				} catch (e) {
+				}
+				catch (e) {
 					Foxtrick.log(e);
-					doc.getElementsByClassName('ft_skilltable_wrapper')[0].removeChild(loading);
+					wrapper.removeChild(loading);
 				}
 			}
 		};
-		var AddHomegrown = function() {
-			Foxtrick.toggleClass(doc.getElementById('skilltable_addHomegrownId'), 'hidden');
+		var addHomegrown = function() {
+			Foxtrick.toggleClass(this, 'hidden');
 
-			var fullType = { type: 'oldiesAndOwn'};
+			var fullType = { type: 'oldiesAndOwn' };
 			createTable(fullType);
 		};
 		var showTimeInClub = function() {
-			Foxtrick.toggleClass(doc.getElementById('skilltable_showTimeInClubId'), 'hidden');
+			Foxtrick.toggleClass(this, 'hidden');
 
 			var loading = Foxtrick.util.note.createLoading(doc);
-			doc.getElementsByClassName('ft_skilltable_wrapper')[0].appendChild(loading);
+			var wrapper = doc.querySelector('.ft_skilltable_wrapper');
+			wrapper.appendChild(loading);
 
 			var setHomeGrownAndJoinedSinceFromTransfers = function(xml, list) {
-				var player_id = xml.getElementsByTagName('PlayerID')[0].textContent;
-				var TeamId = xml.getElementsByTagName('TeamId')[0].textContent;
+				var PlayerID = xml.num('PlayerID');
+				var player = Foxtrick.Pages.Players.getPlayerFromListById(list, PlayerID);
+				var TeamId = xml.num('TeamId');
 				var Transfers = xml.getElementsByTagName('Transfer');
 				if (Transfers.length > 0) {
-					var Transfer = Transfers[Transfers.length - 1]; // oldest and first transfer
-					var seller =
-						Number(Transfer.getElementsByTagName('SellerTeamID')[0].textContent);
-					if (seller == TeamId) {
-						Foxtrick.map(function(n) {
-							if (n.id == player_id) {
-								n.motherClubBonus = doc.createElement('span');
-								n.motherClubBonus.textContent = '*';
-								n.motherClubBonus.title = Foxtrick.L10n
-									.getString('skilltable.rebought_youthplayer');
-							}
-						}, list);
+					var FirstTransfer = Transfers[Transfers.length - 1];
+					var seller = xml.num('SellerTeamID', FirstTransfer);
+					if (seller === TeamId) {
+						player.motherClubBonus = doc.createElement('span');
+						player.motherClubBonus.textContent = '*';
+						player.motherClubBonus.title =
+							Foxtrick.L10n.getString('skilltable.rebought_youthplayer');
 					}
 
-
-					var Transfer = Transfers[0]; //last transfer
-					var buyerId = Number(Transfer.getElementsByTagName('BuyerTeamID')[0]
-										 .textContent);
-					if (TeamId == buyerId) {
+					var LastTransfer = Transfers[0];
+					var BuyerTeamID = xml.num('BuyerTeamID', LastTransfer);
+					if (TeamId === BuyerTeamID) {
 						// legitimate transfer
-						var Deadline = xml.time('Deadline', Transfer);
-						Foxtrick.map(function(n) {
-							if (n.id == player_id)
-								n.joinedSince = Deadline;
-						}, list);
+						var Deadline = xml.time('Deadline', LastTransfer);
+						player.joinedSince = Deadline;
 						return true;
 					}
 					else {
-						// prolly external coach
+						// probably external coach
 						// let setJoinedSinceFromPullDate handle it
 						return false;
 					}
@@ -926,7 +919,7 @@ Foxtrick.modules['SkillTable'] = {
 			// return false if from own starting squad
 			var setJoinedSinceFromPullDate = function(xml, list) {
 				// check PlayerEventTypeID==20 -> pulled from YA, 13->pulled from SN, 12->coach
-				// posibilities:
+				// possibilities:
 				// 1) external coach pulled elsewhere
 				// 2) player pulled here (never sold)
 				// 3) internal coach pulled here
@@ -936,128 +929,118 @@ Foxtrick.modules['SkillTable'] = {
 				// 7) external coach from starting squad (is that even possible? let's hope not)*
 				// 8) external coach from someone else's starting squad
 				// * not taken care off
-				var pulled_here = false;
-				var pulled_elsewhere = false;
-				var is_coach = false;
-				var pid = xml.getElementsByTagName('PlayerID')[0].textContent;
+				var teamId = Foxtrick.Pages.All.getId(doc);
+				var pulledHere = false;
+				var pulledElsewhere = false;
+				var isCoach = false;
+				var PlayerID = xml.num('PlayerID');
+				var player = Foxtrick.Pages.Players.getPlayerFromListById(list, PlayerID);
 				var PlayerEvents = xml.getElementsByTagName('PlayerEvent');
-				for (var i = 0; i < PlayerEvents.length; ++i) {
-					var PlayerEvent = PlayerEvents[i];
-					var PlayerEventTypeID = Number(PlayerEvent
-					                               .getElementsByTagName('PlayerEventTypeID')[0]
-					                               .textContent);
-					if (PlayerEventTypeID == 12 && !is_coach) {
+
+				var done = Foxtrick.any(function(PlayerEvent) {
+					var PlayerEventTypeID = xml.num('PlayerEventTypeID', PlayerEvent);
+					if (PlayerEventTypeID == 12 && !isCoach) {
 						// consider only the last coach contract
-						// is a coach
-						is_coach = true;
+						isCoach = true;
 						var coachDate = xml.time('EventDate', PlayerEvent);
-						Foxtrick.map(function(n) {
-							if (n.id == pid)
-								n.joinedSince = coachDate;
-						}, list);
+						player.joinedSince = coachDate;
 					}
 					if (PlayerEventTypeID == 20 || PlayerEventTypeID == 13) {
 						// check to see if pulled from this team
-						if (PlayerEvent.getElementsByTagName('EventText')[0]
-							.textContent.match(Foxtrick.util.id
-											   .getTeamIdFromUrl(doc.location.href))) {
+						var evnt = xml.text('EventText', PlayerEvent);
+						if (evnt.match(teamId)) {
 							// cases 2) & 3) -> pullDate
-							pulled_here = true;
-							var PullDate = xml.time('EventDate', PlayerEvent);
-							Foxtrick.map(function(n) {
-								if (n.id == pid) {
-									n.joinedSince = PullDate;
-								}
-							}, list);
+							pulledHere = true;
+							var EventDate = xml.time('EventDate', PlayerEvent);
+							player.joinedSince = EventDate;
 							// pull is a last-ish and most important event
-							// we can safely return
+							// we are done
 							return true;
 						}
 						else
-							pulled_elsewhere = true;
+							pulledElsewhere = true;
 					}
-				}
-				// pulled_here already dealt with above
+					// not done yet
+					return false;
+				}, PlayerEvents);
+
+				if (done)
+					return;
+
+				// pulledHere already dealt with above
 				// it's either pulled elsewhere which is 1): should have event 12 -> coachDate
 				// or starting in other team 8): motherClubBonus is undefined -> also coachDate
 				// or starting in own team  5) & 6): return false -> activationDate
-				var hasMCBonus = true;
-				Foxtrick.map(function(n) {
-					if (n.id == pid && typeof(n.motherClubBonus) == 'undefined') {
-						hasMCBonus = false;
-					}
-				}, list);
-				return pulled_elsewhere || !hasMCBonus;
+				var hasMCBonus = typeof player.motherClubBonus !== 'undefined';
+				return pulledElsewhere || !hasMCBonus;
 			};
 
 			// first get teams activation date. we'll need it later
-			var TeamId = Foxtrick.Pages.All.getTeamId(doc);
-			var args = [['file', 'teamdetails'], ['version', '2.9'], ['teamId', TeamId]];
-			Foxtrick.util.api.retrieve(doc, args, { cache_lifetime: 'session' },
+			var teamId = Foxtrick.Pages.All.getTeamId(doc);
+			var args = [['file', 'teamdetails'], ['version', '2.9'], ['teamId', teamId]];
+			Foxtrick.util.api.retrieve(doc, args, DEFAULT_CACHE,
 			  function(xml, errorText) {
 				if (xml && !errorText) {
 					var teams = xml.getElementsByTagName('TeamID');
-					var teamIdx = 0;
-					for (; teamIdx < teams.length; ++teamIdx) {
-						if (teams[teamIdx].textContent == TeamId)
-							break;
-					}
-					var activation = xml.getElementsByTagName('FoundedDate')[teamIdx];
-					var activationDate = xml.time('FoundedDate', activation.parentNode);
+					var TeamIDEl = Foxtrick.nth(function(team) {
+						if (team.textContent === teamId.toString())
+							return true;
+						return false;
+					}, teams);
+					var Team = TeamIDEl.parentNode;
+					var activationDate = xml.time('FoundedDate', Team);
 					Foxtrick.Pages.Players.getPlayerList(doc,
 					  function(list) {
 						// first we check transfers
-						var argsTransfersPlayer = [];
-						Foxtrick.map(function(player) {
-							argsTransfersPlayer.push([
-								['file', 'transfersplayer'], ['playerId', player.id]
-							]);
+						var argsTransfersPlayer = Foxtrick.map(function(player) {
+							return [['file', 'transfersplayer'], ['playerId', player.id]];
 						}, list);
-						Foxtrick.util.api.batchRetrieve(doc, argsTransfersPlayer,
-						                                { cache_lifetime: 'session' },
+
+						Foxtrick.util.api.batchRetrieve(doc, argsTransfersPlayer, DEFAULT_CACHE,
 						  function(xmls, errors) {
-							var argsPlayerevents = [], i;
-							for (i = 0; i < xmls.length; ++i) {
-								if (xmls[i] && !errors[i]) {
+							var argsPlayerevents = [];
+							Foxtrick.forEach(function(xml, i) {
+								var error = errors[i];
+								if (xml && !error) {
 									// if there is a transfer, we are finished with this player
 									var hasTransfers =
-										setHomeGrownAndJoinedSinceFromTransfers(xmls[i], list);
+										setHomeGrownAndJoinedSinceFromTransfers(xml, list);
 									if (!hasTransfers) {
 										// so, he's from home.
 										// need to get pull date from playerevents below
-										var pid = xmls[i].getElementsByTagName('PlayerID')[0]
-											.textContent;
+										var pid = xml.num('PlayerID');
 										argsPlayerevents.push([
-											['file', 'playerevents'], ['playerId', pid]
+											['file', 'playerevents'], ['playerId', pid],
 										]);
 									}
 								}
-								else
-									Foxtrick.log('No XML in batchRetrieve', argsTransfersPlayer[i],
-												 errors[i]);
-							}
+								else {
+									Foxtrick.log('No XML in batchRetrieve', error, xml,
+									             argsTransfersPlayer[i]);
+								}
+							}, xmls);
 							// try set joined date from pull date
-							Foxtrick.util.api.batchRetrieve(doc, argsPlayerevents,
-							                                { cache_lifetime: 'session' },
+							Foxtrick.util.api.batchRetrieve(doc, argsPlayerevents, DEFAULT_CACHE,
 							  function(xmls, errors) {
-								for (i = 0; i < xmls.length; ++i) {
-									if (xmls[i] && !errors[i]) {
-										var was_pulled = setJoinedSinceFromPullDate(xmls[i], list);
+								Foxtrick.forEach(function(xml, i) {
+									var error = errors[i];
+									if (xml && !error) {
+										var was_pulled = setJoinedSinceFromPullDate(xml, list);
 										if (!was_pulled) {
 											// no pull date = from starting squad.
-											// JoinedSince=activationDate
-											var pid = xmls[i].getElementsByTagName('PlayerID')[0]
-												.textContent;
-											Foxtrick.map(function(n) {
-												if (n.id == pid)
-													n.joinedSince = activationDate;
+											// joinedSince = activationDate
+											var pid = xml.num('PlayerID');
+											Foxtrick.map(function(p) {
+												if (p.id == pid)
+													p.joinedSince = activationDate;
 											}, list);
 										}
 									}
-									else
-										Foxtrick.log('No XML in batchRetrieve', argsPlayerevents[i],
-													 errors[i]);
-								}
+									else {
+										Foxtrick.log('No XML in batchRetrieve', error, xml,
+										             argsPlayerevents[i]);
+									}
+								}, xmls);
 
 								// finished. now display results
 								Foxtrick.preventChange(doc, showTable)(list);
@@ -1067,8 +1050,8 @@ Foxtrick.modules['SkillTable'] = {
 				}
 				else {
 					loading.parentNode.removeChild(loading);
-					var target = doc.getElementsByClassName('ft_skilltable_wrapper')[0];
-					var str = (status == 503) ? 'api.serverUnavailable' : 'error';
+					var target = doc.querySelector('.ft_skilltable_wrapper');
+					var str = status == 503 ? 'api.serverUnavailable' : 'error';
 					var msg = Foxtrick.L10n.getString(str);
 					Foxtrick.util.note.add(doc, msg, null, { to: target });
 				}
@@ -1081,14 +1064,10 @@ Foxtrick.modules['SkillTable'] = {
 				// then get current squad (last parameter true) into currentSquadList
 				Foxtrick.Pages.Players.getPlayerList(doc,
 				  function(currentSquadList) {
-					var argsTransfersPlayer = [];
-					Foxtrick.map(function(player) {
-						argsTransfersPlayer.push([
-							['file', 'transfersplayer'], ['playerId', player.id]
-						]);
+					var argsTransfersPlayer = Foxtrick.map(function(player) {
+						return [['file', 'transfersplayer'], ['playerId', player.id]];
 					}, currentSquadList);
-					Foxtrick.util.api.batchRetrieve(doc, argsTransfersPlayer,
-					                                { cache_lifetime: 'session' },
+					Foxtrick.util.api.batchRetrieve(doc, argsTransfersPlayer, DEFAULT_CACHE,
 					  function(xmls, errors) {
 						// filter, concat with oldies and display
 						currentSquadList = Foxtrick.filter(function(n) {
@@ -1101,9 +1080,9 @@ Foxtrick.modules['SkillTable'] = {
 			});
 		};
 		var addTableDiv = function() {
-			var tablediv = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.SkillTable, 'div');
-			tablediv.id = 'ft_skilltablediv';
-			tablediv.className = 'ft_skilltablediv';
+			var tablediv = Foxtrick.createFeaturedElement(doc, module, 'div');
+			tablediv.id = TABLE_DIV_ID;
+			Foxtrick.addClass(tablediv, TABLE_DIV_ID);
 			if (Foxtrick.Pages.TransferSearchResults.isPage(doc)) {
 				Foxtrick.addClass(tablediv, 'transfer');
 			}
@@ -1113,7 +1092,7 @@ Foxtrick.modules['SkillTable'] = {
 			// table div head
 			var h2 = doc.createElement('h2');
 			h2.className = 'ft-expander-unexpanded';
-			h2.appendChild(doc.createTextNode(Foxtrick.L10n.getString('SkillTable.header')));
+			h2.textContent = Foxtrick.L10n.getString('SkillTable.header');
 			var toggleDisplay = function() {
 				try {
 					if (!tableCreated) {
@@ -1125,8 +1104,7 @@ Foxtrick.modules['SkillTable'] = {
 					Foxtrick.toggleClass(h2, 'ft-expander-unexpanded');
 					var show = Foxtrick.hasClass(h2, 'ft-expander-expanded');
 
-					var customizeTable =
-						tablediv.getElementsByClassName('ft_skilltable_customizetable')[0];
+					var customizeTable = tablediv.querySelector('.ft_skilltable_customizetable');
 					if (show) {
 						// show the objects
 						Foxtrick.removeClass(links, 'hidden');
@@ -1151,129 +1129,128 @@ Foxtrick.modules['SkillTable'] = {
 			var links = doc.createElement('div');
 			links.className = 'ft_skilltable_links';
 			Foxtrick.addClass(links, 'hidden');
+
 			// links: copy
 			var copy = doc.createElement('a');
 			copy.className = 'customize_item secondary';
-			copy.appendChild(doc.createTextNode(Foxtrick.L10n.getString('button.copy')));
-			copy.setAttribute('title', Foxtrick.L10n.getString('copy.skilltable.title'));
+			copy.textContent = Foxtrick.L10n.getString('button.copy');
+			copy.title = Foxtrick.L10n.getString('copy.skilltable.title');
 			Foxtrick.onClick(copy, function() {
-					/* get the text content in a node and return it.
-					 * for player links, append the [playerid] HT-ML tag
-					 * for images, return its alt attribute
-					 */
-					var getNode = function(node) {
-						var youthPlayerRe = new RegExp('YouthPlayerID=(\\d+)', 'i');
-						var playerRe = new RegExp('PlayerID=(\\d+)', 'i');
-						if (node.nodeName.toLowerCase() == 'a' &&
-						    node.href.search(youthPlayerRe) != -1) {
-							var ret = node.textContent;
-							ret += ' [youthplayerid=';
-							ret += node.href.match(youthPlayerRe)[1];
-							ret += ']';
-							return ret;
-						}
-						else if (node.nodeName.toLowerCase() == 'a' &&
-						         node.href.search(playerRe) != -1) {
-							var ret = node.textContent;
-							ret += ' [playerid=';
-							ret += node.href.match(playerRe)[1];
-							ret += ']';
-							return ret;
-						}
-						else if (node.hasChildNodes()) {
-							var children = node.childNodes;
-							var ret = '';
-							var i;
-							for (i = 0; i < children.length; ++i) {
-								// recursively get the content of child nodes
-								ret += getNode(children[i]) + ' ';
-							}
-							return ret.trim();
+				/* get the text content in a node and return it.
+				 * for player links, append the [playerid] HT-ML tag
+				 * for images, return its alt attribute
+				 */
+				var YOUTH_PLAYER_RE = /YouthPlayerID=(\d+)/i;
+				var PLAYER_RE = /PlayerID=(\d+)/i;
+				var getNode = function(node) {
+					var nodeName = node.nodeName.toLowerCase();
+					var ret = '';
+					if (nodeName == 'a' && YOUTH_PLAYER_RE.test(node.href)) {
+						ret = node.textContent;
+						ret += ' [youthplayerid=';
+						ret += node.href.match(YOUTH_PLAYER_RE)[1];
+						ret += ']';
+						return ret;
+					}
+					else if (nodeName == 'a' && PLAYER_RE.test(node.href)) {
+						ret = node.textContent;
+						ret += ' [playerid=';
+						ret += node.href.match(PLAYER_RE)[1];
+						ret += ']';
+						return ret;
+					}
+					else if (node.hasChildNodes()) {
+						Foxtrick.forEach(function(child) {
+							// recursively get the content of child nodes
+							ret += getNode(child) + ' ';
+						}, node.childNodes);
+						return ret.trim();
+					}
+					else {
+						if (nodeName == 'img') {
+							return node.alt;
 						}
 						else {
-							if (node.nodeName.toLowerCase() == 'img') {
-								return node.getAttribute('alt');
-							}
-							else {
-								return node.textContent;
-							}
+							return node.textContent;
 						}
-					};
-					var toHtMl = function(table) {
-						var ret = '[table]\n';
-						var rowIndex;
-						for (rowIndex = 0; rowIndex < table.rows.length; ++rowIndex) {
-							var row = table.rows[rowIndex];
-							if (Foxtrick.hasClass(row, 'hidden'))
-								continue;
-							ret += '[tr]';
-							var cellIndex;
-							for (cellIndex = 0; cellIndex < row.cells.length; ++cellIndex) {
-								var cell = row.cells[cellIndex];
-								var cellName = cell.tagName.toLowerCase();
-								var cellContent = getNode(cell);
-								if (Foxtrick.hasClass(cell, 'maxed')) {
-									cellContent = '[b]' + getNode(cell) + '[/b]';
-								}
-								else if (Foxtrick.hasClass(cell, 'formatted-num')) {
-									cellContent = Foxtrick.trimnum(getNode(cell));
-								}
-								ret += '[' + cellName + ']' + cellContent + '[/' + cellName + ']';
-							}
-							ret += '[/tr]\n';
-						}
-						ret += '[/table]';
-						return ret;
-					};
-					var table = doc.getElementsByClassName('ft_skilltable')[0];
-					Foxtrick.copyStringToClipboard(toHtMl(table));
+					}
+				};
+				var toHtMl = function(table) {
+					var ret = '[table]\n';
+					Foxtrick.forEach(function(row) {
+						if (Foxtrick.hasClass(row, 'hidden'))
+							return;
 
-					Foxtrick.util.note.add(doc, Foxtrick.L10n.getString('copy.skilltable.copied'),
-					                       'ft-skilltable-copy-note', { at: table });
-				});
+						ret += '[tr]';
+
+						Foxtrick.forEach(function(cell) {
+							var cellName = cell.tagName.toLowerCase();
+							var cellContent = getNode(cell);
+							if (Foxtrick.hasClass(cell, 'maxed')) {
+								cellContent = '[b]' + cellContent + '[/b]';
+							}
+							else if (Foxtrick.hasClass(cell, 'formatted-num')) {
+								cellContent = Foxtrick.trimnum(cellContent);
+							}
+							ret += '[' + cellName + ']' + cellContent + '[/' + cellName + ']';
+						}, row.cells);
+
+						ret += '[/tr]\n';
+					}, table.rows);
+
+					ret += '[/table]';
+					return ret;
+				};
+				var table = doc.querySelector('.ft_skilltable');
+				Foxtrick.copyStringToClipboard(toHtMl(table));
+
+				Foxtrick.util.note.add(doc, Foxtrick.L10n.getString('copy.skilltable.copied'),
+				                       'ft-skilltable-copy-note', { at: table });
+			});
+
 			// links: customize
 			var customize = doc.createElement('a');
 			customize.className = 'customize_item';
-			customize.appendChild(doc.createTextNode(Foxtrick.L10n.getString('button.customize')));
+			customize.textContent = Foxtrick.L10n.getString('button.customize');
 			Foxtrick.onClick(customize, function() {
-					var links = doc.getElementsByClassName('ft_skilltable_links')[0];
-					Foxtrick.addClass(links, 'customizing');
+				var links = doc.querySelector('.ft_skilltable_links');
+				Foxtrick.addClass(links, 'customizing');
 
-					var customizeTable =
-						doc.getElementsByClassName('ft_skilltable_customizetable')[0];
-					Foxtrick.removeClass(customizeTable, 'hidden');
+				var customizeTable = doc.querySelector('.ft_skilltable_customizetable');
+				Foxtrick.removeClass(customizeTable, 'hidden');
 
-					var container = doc.getElementsByClassName('ft_skilltable_container')[0];
-					Foxtrick.addClass(container, 'hidden');
-				});
+				var container = doc.querySelector('.ft_skilltable_container');
+				Foxtrick.addClass(container, 'hidden');
+			});
+
 			// links: save
 			var save = doc.createElement('a');
-			save.appendChild(doc.createTextNode(Foxtrick.L10n.getString('button.save')));
+			save.textContent = Foxtrick.L10n.getString('button.save');
 			Foxtrick.onClick(save, function() {
-					var fullType = getFullType(doc);
+				var fullType = getFullType(doc);
 
-					var tablediv = doc.getElementById('ft_skilltablediv');
-					var input = tablediv.getElementsByTagName('input');
-					var i;
-					for (i = 0; i < input.length; ++i) {
-						setColumnEnabled(fullType, input[i].id, input[i].checked);
-					}
-					doc.location.reload();
-				});
+				var tablediv = doc.getElementById(TABLE_DIV_ID);
+				var inputs = tablediv.getElementsByTagName('input');
+				Foxtrick.forEach(function(input) {
+					setColumnEnabled(fullType, input.id, input.checked);
+				}, inputs);
+				doc.location.reload();
+			});
+
 			// links: cancel
 			var cancel = doc.createElement('a');
-			cancel.appendChild(doc.createTextNode(Foxtrick.L10n.getString('button.cancel')));
+			cancel.textContent = Foxtrick.L10n.getString('button.cancel');
 			Foxtrick.onClick(cancel, function() {
-					var tablediv = doc.getElementById('ft_skilltablediv');
-					var links = tablediv.getElementsByClassName('ft_skilltable_links')[0];
-					var customizeTable =
-						tablediv.getElementsByClassName('ft_skilltable_customizetable')[0];
-					var container = tablediv.getElementsByClassName('ft_skilltable_container')[0];
-					Foxtrick.removeClass(links, 'customizing');
-					Foxtrick.addClass(customizeTable, 'hidden');
-					Foxtrick.removeClass(container, 'hidden');
-				});
-			// links: all children
+				var tablediv = doc.getElementById(TABLE_DIV_ID);
+				var links = tablediv.querySelector('.ft_skilltable_links');
+				var customizeTable = tablediv.querySelector('.ft_skilltable_customizetable');
+				var container = tablediv.querySelector('.ft_skilltable_container');
+				Foxtrick.removeClass(links, 'customizing');
+				Foxtrick.addClass(customizeTable, 'hidden');
+				Foxtrick.removeClass(container, 'hidden');
+			});
+
+			// links: add all children
 			links.appendChild(copy);
 			links.appendChild(customize);
 			links.appendChild(save);
@@ -1287,55 +1264,57 @@ Foxtrick.modules['SkillTable'] = {
 			var container = doc.createElement('div');
 			container.className = 'ft_skilltable_container';
 			Foxtrick.addClass(container, 'hidden');
+
 			// table container: switch view
 			var switchView = doc.createElement('div');
 			var switchViewLink = doc.createElement('a');
-			switchViewLink.appendChild(doc.createTextNode(Foxtrick.L10n
-			                           .getString('SkillTable.switchView')));
-			switchViewLink.setAttribute('title', Foxtrick.L10n
-			                            .getString('SkillTable.switchView.title'));
+			switchViewLink.textContent = Foxtrick.L10n.getString('SkillTable.switchView');
+			switchViewLink.title = Foxtrick.L10n.getString('SkillTable.switchView.title');
 			Foxtrick.onClick(switchViewLink, function() {
-					var tablediv = doc.getElementById('ft_skilltablediv');
-					var container = tablediv.getElementsByClassName('ft_skilltable_container')[0];
-					Foxtrick.toggleClass(container, 'on_top');
+				var tablediv = doc.getElementById(TABLE_DIV_ID);
+				var container = tablediv.querySelector('.ft_skilltable_container');
+				Foxtrick.toggleClass(container, 'on_top');
 
-					Foxtrick.Prefs.setBool('module.SkillTable.top',
-					                      Foxtrick.hasClass(container, 'on_top'));
-				});
+				var onTop = Foxtrick.hasClass(container, 'on_top');
+				Foxtrick.Prefs.setBool('module.SkillTable.top', onTop);
+			});
 			switchView.appendChild(switchViewLink);
 
+			var options;
 			if (Foxtrick.util.api.authorized()) {
+				options = doc.createElement('div');
 				if (Foxtrick.Pages.Players.isOldies(doc)) {
-					var options = doc.createElement('div');
 					var addHomegrownLink = doc.createElement('a');
-					addHomegrownLink.appendChild(doc.createTextNode(Foxtrick.L10n
-					                             .getString('SkillTable.addHomegrown')));
-					addHomegrownLink.setAttribute('title', Foxtrick.L10n
-					                              .getString('SkillTable.addHomegrown.title'));
-					addHomegrownLink.setAttribute('id', 'skilltable_addHomegrownId');
-					Foxtrick.onClick(addHomegrownLink, AddHomegrown);
+					addHomegrownLink.textContent =
+						Foxtrick.L10n.getString('SkillTable.addHomegrown');
+					addHomegrownLink.title =
+						Foxtrick.L10n.getString('SkillTable.addHomegrown.title');
+					addHomegrownLink.id = 'skilltable_addHomegrownId';
+					Foxtrick.onClick(addHomegrownLink, addHomegrown);
 					options.appendChild(addHomegrownLink);
-
 				}
 				else if (Foxtrick.Pages.Players.isRegular(doc)) {
-					var options = doc.createElement('div');
-					var addHomegrownLink = doc.createElement('a');
-					addHomegrownLink.appendChild(doc.createTextNode(Foxtrick.L10n
-					                             .getString('SkillTable.showTimeInClub')));
-					addHomegrownLink.setAttribute('title', Foxtrick.L10n
-					                              .getString('SkillTable.showTimeInClub.title'));
-					addHomegrownLink.setAttribute('id', 'skilltable_showTimeInClubId');
-					Foxtrick.onClick(addHomegrownLink, showTimeInClub);
-					options.appendChild(addHomegrownLink);
+					options = doc.createElement('div');
+					var showTimeLink = doc.createElement('a');
+					showTimeLink.textContent =
+						Foxtrick.L10n.getString('SkillTable.showTimeInClub');
+					showTimeLink.title =
+						Foxtrick.L10n.getString('SkillTable.showTimeInClub.title');
+					showTimeLink.id = 'skilltable_showTimeInClubId';
+					Foxtrick.onClick(showTimeLink, showTimeInClub);
+					options.appendChild(showTimeLink);
 				}
 			}
+
 			// table container: table wrapper
 			var wrapper = doc.createElement('div');
 			wrapper.className = 'ft_skilltable_wrapper';
-			// table container: all children
+
+			// table container: add all children
 			container.appendChild(switchView);
 			container.appendChild(wrapper);
-			if (options) container.appendChild(options);
+			if (options)
+				container.appendChild(options);
 
 			tablediv.appendChild(h2);
 			tablediv.appendChild(links);
@@ -1345,8 +1324,8 @@ Foxtrick.modules['SkillTable'] = {
 			// insert tablediv
 			if (Foxtrick.Pages.TransferSearchResults.isPage(doc)) {
 				// on transfer search page, insert after first separator
-				var insertBefore = doc.getElementById('mainBody')
-					.getElementsByClassName('borderSeparator')[0].nextSibling;
+				var separator = doc.querySelector('#mainBody .borderSeparator');
+				var insertBefore = separator.nextSibling;
 				insertBefore.parentNode.insertBefore(tablediv, insertBefore);
 			}
 			else if (Foxtrick.Pages.Player.isSenior(doc)) {
@@ -1354,7 +1333,7 @@ Foxtrick.modules['SkillTable'] = {
 				insertParent.appendChild(tablediv);
 			}
 			else {
-				var playerList = doc.getElementsByClassName('playerList')[0];
+				var playerList = doc.querySelector('.playerList');
 				if (playerList) {
 					// If there is playerList, as there is in youth/senior teams,
 					// insert before it. In such cases, there would be category headers
@@ -1365,14 +1344,14 @@ Foxtrick.modules['SkillTable'] = {
 				}
 				else {
 					// otherwise, insert before the first player if there is any
-					var firstFace = doc.getElementsByClassName('faceCard')[0];
+					var firstFace = doc.querySelector('.faceCard');
 					if (firstFace) {
 						// without playerList, players would have faces shown before
 						// playerInfo, if user enabled faces
 						firstFace.parentNode.insertBefore(tablediv, firstFace);
 					}
 					else {
-						var firstPlayer = doc.getElementsByClassName('playerInfo')[0];
+						var firstPlayer = doc.querySelector('.playerInfo');
 						if (firstPlayer) {
 							// or... users haven't enabled faces
 							firstPlayer.parentNode.insertBefore(tablediv, firstPlayer);
@@ -1383,12 +1362,12 @@ Foxtrick.modules['SkillTable'] = {
 			return tablediv;
 		};
 
-		if (doc.getElementById('ft_skilltablediv'))
+		if (doc.getElementById(TABLE_DIV_ID))
 			return;
 
-		if (Foxtrick.isPage(doc, 'transferSearchResult')
-			|| getFullType().subtype != 'others'
-			|| Foxtrick.Prefs.isModuleOptionEnabled('SkillTable', 'OtherTeams')) {
+		if (Foxtrick.isPage(doc, 'transferSearchResult') ||
+		    getFullType().subtype != 'others' ||
+		    Foxtrick.Prefs.isModuleOptionEnabled('SkillTable', 'OtherTeams')) {
 
 			addTableDiv();
 		}
