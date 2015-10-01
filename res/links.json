@@ -336,6 +336,9 @@
 		"teamlink": {
 			"url": "http://ht-dog.net/?otherTeamID=[teamid]"
 		},
+		"nextmatchlink": {
+			"url": "http://ht-dog.net/?otherTeamID=[opponentid]"
+		},
 		"title": "HT-Dog",
 		"img": "http://ht-dog.net/animated_favicon111.gif"
 	},
