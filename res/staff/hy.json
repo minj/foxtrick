@@ -357,11 +357,6 @@
 			"duty": "translator"
 		},
 		{
-			"id": "9806667",
-			"name": "texas91",
-			"duty": "translator"
-		},
-		{
 			"id": "11902787",
 			"name": "edub0mb3r",
 			"duty": "translator"
@@ -414,6 +409,11 @@
 		{
 			"id": "9220100",
 			"name": "tamjan",
+			"duty": "translator"
+		},
+		{
+			"id": "6263697",
+			"name": "LA-Ron__Manager",
 			"duty": "translator"
 		},
 		{
