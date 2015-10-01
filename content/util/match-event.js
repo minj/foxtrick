@@ -669,7 +669,7 @@ Foxtrick.util.matchEvent.addEventIcons = function(evnt) {
 	var awayIconContainer =
 		Foxtrick.createFeaturedElement(doc, Foxtrick.modules.MatchReportFormat, 'td');
 
-	var title = Foxtrick.util.matchEvent.eventDescription[eventId] + ' (' + eventId + ')';
+	var title = Foxtrick.L10n.getString('match.events.' + eventId) + ' (' + eventId + ')';
 	Foxtrick.util.matchEvent.appendIcons(doc, homeIconContainer, homeIcons, title);
 	Foxtrick.util.matchEvent.appendIcons(doc, awayIconContainer, awayIcons, title);
 
