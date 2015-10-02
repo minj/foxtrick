@@ -8,7 +8,9 @@ nl:
     0.15.2.1:
       important: '<header>Belangrijke aankondigingen</header>'
       signed: Alle Firefox add-ons moeten nu digitaal worden ondertekend door Mozilla. Dit is meestal een ondertekende update om compatibiliteit met Foxtrick te garanderen.
+      signing: 'Wegens verstoring veroorzaakt door add-on verificatie verplichtingen hebben we besloten om Foxtrick te verwijderen van de <linkAMO>Mozilla add-ons</linkAMO> portal. meer details zijn te vinden in <linkUnlistPost>Global Foxtrick announcement</linkUnlistPost>.'
       bugs: '<header>Fout herstel</header>'
+      weatherSE: 'Het sorteren van weer SE Speler in de wedstrijd tijdlijn was defect in <module>MatchLineupFixes</module> na wijzigingen door Hattrick. Dit probleem is nu opgelost.'
       other: '<header>Andere veranderingen</header>'
       sandbox: Toegevoegde ondersteuning voor de aanstaande Hattrick match sandbox functie.
       compact_lineups: 'Opgeslagen opstellingsnamen worden gecomprimeerd met <module>MatchOrderInterface</module>. Hierdoor kun je meer opgeslagen opstellingen gebruiken zonder in de problemen te komen qua ruimte.'
