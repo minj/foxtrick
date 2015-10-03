@@ -541,6 +541,9 @@ Foxtrick.modules['SkillTable'] = {
 						var current = skill.current || '-';
 						var max = skill.max || '-';
 						cell.textContent = current + '/' + max;
+						if (skill.top3) {
+							Foxtrick.addClass(cell, 'ft-hy-top3-skill');
+						}
 						// and we deal with colors
 						if (Foxtrick.Prefs.isModuleOptionEnabled(module, 'ColouredYouth')) {
 							if (skill.max > 3 || skill.current > 3) {
