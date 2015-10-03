@@ -66,11 +66,11 @@
 			"code": "bs",
 			"name": "Bosnian",
 			"phrases": "2106",
-			"translated": "1863",
+			"translated": "1866",
 			"translated_progress": "88",
 			"words": "14708",
 			"words_approved": "0",
-			"words_translated": "13049"
+			"words_translated": "13056"
 		},
 		{
 			"approved": "0",
@@ -90,11 +90,11 @@
 			"code": "ca",
 			"name": "Catalan",
 			"phrases": "2106",
-			"translated": "1894",
-			"translated_progress": "91",
+			"translated": "2106",
+			"translated_progress": "100",
 			"words": "14708",
 			"words_approved": "0",
-			"words_translated": "13529"
+			"words_translated": "14708"
 		},
 		{
 			"approved": "0",
@@ -114,11 +114,11 @@
 			"code": "hr",
 			"name": "Croatian",
 			"phrases": "2106",
-			"translated": "1894",
-			"translated_progress": "91",
+			"translated": "1917",
+			"translated_progress": "92",
 			"words": "14708",
 			"words_approved": "13468",
-			"words_translated": "13529"
+			"words_translated": "13614"
 		},
 		{
 			"approved": "1639",
@@ -126,11 +126,11 @@
 			"code": "cs",
 			"name": "Czech",
 			"phrases": "2106",
-			"translated": "1772",
-			"translated_progress": "77",
+			"translated": "1904",
+			"translated_progress": "82",
 			"words": "14708",
 			"words_approved": "10503",
-			"words_translated": "11332"
+			"words_translated": "12066"
 		},
 		{
 			"approved": "1873",
@@ -222,11 +222,11 @@
 			"code": "fr",
 			"name": "French",
 			"phrases": "2106",
-			"translated": "1895",
-			"translated_progress": "91",
+			"translated": "2056",
+			"translated_progress": "98",
 			"words": "14708",
 			"words_approved": "13529",
-			"words_translated": "13531"
+			"words_translated": "14460"
 		},
 		{
 			"approved": "0",
@@ -258,11 +258,11 @@
 			"code": "gl",
 			"name": "Galician",
 			"phrases": "2106",
-			"translated": "1869",
+			"translated": "1870",
 			"translated_progress": "88",
 			"words": "14708",
 			"words_approved": "0",
-			"words_translated": "13073"
+			"words_translated": "13075"
 		},
 		{
 			"approved": "0",
@@ -486,11 +486,11 @@
 			"code": "pl",
 			"name": "Polish",
 			"phrases": "2106",
-			"translated": "1892",
-			"translated_progress": "91",
+			"translated": "1977",
+			"translated_progress": "94",
 			"words": "14708",
 			"words_approved": "0",
-			"words_translated": "13524"
+			"words_translated": "13909"
 		},
 		{
 			"approved": "0",
@@ -522,11 +522,11 @@
 			"code": "ro",
 			"name": "Romanian",
 			"phrases": "2106",
-			"translated": "1894",
-			"translated_progress": "91",
+			"translated": "1917",
+			"translated_progress": "92",
 			"words": "14708",
 			"words_approved": "4506",
-			"words_translated": "13529"
+			"words_translated": "13627"
 		},
 		{
 			"approved": "1894",
