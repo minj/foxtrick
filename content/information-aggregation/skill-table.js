@@ -538,46 +538,44 @@ Foxtrick.modules['SkillTable'] = {
 						if (skill.maxed) {
 							cell.className = 'maxed';
 						}
-						if (skill.current !== 0 || skill.max !== 0) {
-							var current = skill.current || '-';
-							var max = skill.max || '-';
-							cell.textContent = current + '/' + max;
-							// and we deal with colors
-							if (Foxtrick.Prefs.isModuleOptionEnabled(module, 'ColouredYouth')) {
-								if (skill.max > 3 || skill.current > 3) {
-									// normalized values for convenience in further calculations
-									var skillBase = {};
-									// skills below 4 are not regarded as interesting
-									skillBase.current = skill.current > 3 ? skill.current - 3 : 0;
-									skillBase.max = skill.max > 3 ? skill.max - 3 :
-										skillBase.current; // default to current
+						var current = skill.current || '-';
+						var max = skill.max || '-';
+						cell.textContent = current + '/' + max;
+						// and we deal with colors
+						if (Foxtrick.Prefs.isModuleOptionEnabled(module, 'ColouredYouth')) {
+							if (skill.max > 3 || skill.current > 3) {
+								// normalized values for convenience in further calculations
+								var skillBase = {};
+								// skills below 4 are not regarded as interesting
+								skillBase.current = skill.current > 3 ? skill.current - 3 : 0;
+								skillBase.max = skill.max > 3 ? skill.max - 3 :
+									skillBase.current; // default to current
 
-									// calculate color for capability of improvement
-									var r = 0;
-									if (skillBase.max > skillBase.current) {
-										var diff = skillBase.max - skillBase.current;
-										r = diff / skillBase.max * 255 + 51;
-									}
-									var g = 255;
-									var b = 0;
+								// calculate color for capability of improvement
+								var r = 0;
+								if (skillBase.max > skillBase.current) {
+									var diff = skillBase.max - skillBase.current;
+									r = diff / skillBase.max * 255 + 51;
+								}
+								var g = 255;
+								var b = 0;
 
-									// apply alpha, indicating max skill
-									var a = 1 - skillBase.max / 5;
-									// assuming max skill will never exceed 8...
-									a = a < 0 ? 0 : a; // but just to be sure
-									if (a != 1) {
-										r = Math.round(r + (255 - r) * a);
-										g = Math.round(g + (255 - g) * a);
-										b = Math.round(b + (255 - b) * a);
-									}
-									var rgbStr = 'rgb(' + r + ',' + g + ',' + b + ')';
-									cell.style.backgroundColor = rgbStr;
+								// apply alpha, indicating max skill
+								var a = 1 - skillBase.max / 5;
+								// assuming max skill will never exceed 8...
+								a = a < 0 ? 0 : a; // but just to be sure
+								if (a != 1) {
+									r = Math.round(r + (255 - r) * a);
+									g = Math.round(g + (255 - g) * a);
+									b = Math.round(b + (255 - b) * a);
 								}
-								else if (skill.max !== 0) {
-									// display unimportant skills/low capabilities in gray
-									cell.style.backgroundColor = 'rgb(204,204,204)';
-									cell.style.color = 'rgb(102,102,102)';
-								}
+								var rgbStr = 'rgb(' + r + ',' + g + ',' + b + ')';
+								cell.style.backgroundColor = rgbStr;
+							}
+							else if (skill.max !== 0) {
+								// display unimportant skills/low capabilities in gray
+								cell.style.backgroundColor = 'rgb(204,204,204)';
+								cell.style.color = 'rgb(102,102,102)';
 							}
 						}
 					}
