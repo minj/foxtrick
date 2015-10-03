@@ -5,6 +5,9 @@
 .ft-hy-spec {
 	color: red;
 }
+.ft-hy-top3-skill {
+	color: #f42525;
+}
 .ft-skillbar-bg {
 	background: url(chrome://foxtrick/content/resources/img/skillbars/bg.png) top left no-repeat;
 	width: 93px;
