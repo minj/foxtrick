@@ -399,6 +399,7 @@ Foxtrick.modules['SkillTable'] = {
 					method: 'league', sortString: true, },
 				{ name: 'TransferCompare', property: 'transferCompare', method: 'link', },
 				{ name: 'PerformanceHistory', property: 'performanceHistory', method: 'link', },
+				{ name: 'HyLink', property: 'hyLink', method: 'link', },
 				{ name: 'OwnerNotes', property: 'OwnerNotes', },
 				{ name: 'kpPosition', property: 'kp', },
 				{ name: 'wbdPosition', property: 'wbd', },
