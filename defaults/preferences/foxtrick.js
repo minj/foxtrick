@@ -560,6 +560,7 @@ pref("extensions.foxtrick.prefs.module.SkillTable.transfer.fwtwPosition", false)
 pref("extensions.foxtrick.prefs.module.SkillTable.transfer.tdfPosition", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.transfer.BestPosition", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.youth.others.Age", true);
+pref("extensions.foxtrick.prefs.module.SkillTable.youth.others.HyLink", false);
 pref("extensions.foxtrick.prefs.module.SkillTable.youth.others.Last_match", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.youth.others.Last_position", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.youth.others.Last_stars", true);
@@ -570,6 +571,7 @@ pref("extensions.foxtrick.prefs.module.SkillTable.youth.others.Speciality", true
 pref("extensions.foxtrick.prefs.module.SkillTable.youth.others.Status", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.youth.own.Age", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.youth.own.Defending", true);
+pref("extensions.foxtrick.prefs.module.SkillTable.youth.own.HyLink", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.youth.own.Keeper", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.youth.own.Last_match", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.youth.own.Last_position", true);

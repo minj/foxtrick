@@ -223,6 +223,16 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 		ps.href = psUrl;
 		player.performanceHistory = ps;
 	};
+	var addHYLink = function(doc, player) {
+		var hyUrl = 'http://www.hattrick-youthclub.org/redirect/type/player_details/ht_id/' +
+			player.id;
+
+		var hyLink = doc.createElement('a');
+		hyLink.textContent = Foxtrick.L10n.getString('HyLink.abbr');
+		hyLink.title = Foxtrick.L10n.getString('HyLink');
+		hyLink.href = hyUrl;
+		player.hyLink = hyLink;
+	};
 
 	var parseXml = function(xml) {
 		try {
@@ -433,8 +443,14 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 					player.nameLink.title = text('FirstName') + ' ' + text('LastName');
 				}
 
-				if (!isYouth && typeof player.performanceHistory === 'undefined')
-					addPerfHistLink(doc, player);
+				if (!isYouth) {
+					if (typeof player.performanceHistory === 'undefined')
+						addPerfHistLink(doc, player);
+				}
+				else {
+					if (typeof player.hyLink === 'undefined')
+						addHYLink(doc, player);
+				}
 
 				if ((Foxtrick.Pages.Players.isOldies(doc) ||
 				    Foxtrick.Pages.Players.isCoaches(doc) ||
@@ -843,6 +859,9 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 			// playerstats
 			if (!Foxtrick.Pages.Players.isYouth(doc)) {
 				addPerfHistLink(doc, player);
+			}
+			else {
+				addHYLink(doc, player);
 			}
 
 			if (Foxtrick.Pages.Players.isOldies(doc) ||
