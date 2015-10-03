@@ -221,6 +221,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 		psUrl = psUrl.replace('/Club/Players/Player.aspx',
 		                      '/Club/Players/PlayerStats.aspx') + '&ShowAll=true';
 		ps.href = psUrl;
+		ps.target = '_blank';
 		player.performanceHistory = ps;
 	};
 	var addHYLink = function(doc, player) {
@@ -231,6 +232,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 		hyLink.textContent = Foxtrick.L10n.getString('HyLink.abbr');
 		hyLink.title = Foxtrick.L10n.getString('HyLink');
 		hyLink.href = hyUrl;
+		hyLink.target = '_blank';
 		player.hyLink = hyLink;
 	};
 
@@ -294,6 +296,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 			var currentClubLink = doc.createElement('a');
 			currentClubLink.textContent = xml.text(isYouth ? 'YouthTeamName' : 'TeamName');
 			currentClubLink.href = currentClubUrl;
+			currentClubLink.target = '_blank';
 
 			var nodeName = !isYouth ? 'Player' : 'YouthPlayer';
 			var playerNodes = xml.getElementsByTagName(nodeName);
@@ -429,6 +432,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				player.nameLink = doc.createElement('a');
 				player.nameLink.href = '/Club/Players/' + (isYouth ? 'Youth' : '') +
 					'Player.aspx?' + (isYouth ? 'Youth' : '') + 'PlayerID=' + id;
+				player.nameLink.target = '_blank';
 				if (node('PlayerName'))
 					player.nameLink.textContent = text('PlayerName');
 				else {
@@ -554,6 +558,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 							'&HighlightPlayerID=' + player.id + '#tab2';
 						link.textContent =
 							Foxtrick.util.time.buildDate(matchDate, { showTime: false });
+						link.target = '_blank';
 						player.lastMatch = link;
 
 						var lastPositionCode = num('PositionCode', LastMatch);
@@ -808,6 +813,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				var matchRatingCell = matchDateCell.nextElementSibling;
 
 				player.lastMatch = matchLink.cloneNode(true);
+				player.lastMatch.target = '_blank';
 				player.lastMatchDate = Foxtrick.util.time.getDateFromText(matchLink.textContent);
 
 				var matchId = Foxtrick.getParameterFromUrl(matchLink.href, 'matchId');
@@ -853,6 +859,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				tcUrl = tcUrl.replace('/Club/Players/Player.aspx',
 				                      '/Club/Transfers/TransferCompare.aspx');
 				tc.href = tcUrl;
+				tc.target = '_blank';
 				player.transferCompare = tc;
 			}
 
@@ -876,6 +883,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 					if (currentClubLink) {
 						currentClubId = Foxtrick.util.id.getTeamIdFromUrl(currentClubLink.href);
 						player.currentClubLink = currentClubLink.cloneNode(true);
+						player.currentClubLink.target = '_blank';
 						player.currentClubId = currentClubId;
 
 						if (!Foxtrick.Pages.Players.isNT(doc)) {
