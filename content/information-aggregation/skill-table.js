@@ -330,22 +330,22 @@ Foxtrick.modules['SkillTable'] = {
 			// alignRight: whether to align the data cells to the right
 			// img: images used in table headers as substitution of text
 			var COLUMNS = [
-				{ name: 'PlayerNumber', property: 'number', sortAsc: true },
+				{ name: 'PlayerNumber', property: 'number', sortAsc: true, frozen: true, },
 				{ name: 'PlayerCategory', property: 'category',
-					method: 'category', sortAsc: true, },
+					method: 'category', sortAsc: true, frozen: true, },
 				{ name: 'Nationality', property: 'countryId',
-					method: 'nationality', sortString: true, },
+					method: 'nationality', sortString: true, frozen: true, },
 				{ name: 'Player', properties: ['nameLink', 'nationalTeamId', 'trainerData'],
-					method: 'playerName', sortString: true, },
-				{ name: 'Bookmark', property: 'bookmarkLink', method: 'link',
-					sortString: true, },
+					method: 'playerName', sortString: true, frozen: true, },
 				{ name: 'CurrentBid', property: 'currentBid',
-					method: 'formatNum', alignRight: true, },
+					method: 'formatNum', alignRight: true, frozen: true, },
+				{ name: 'Bookmark', property: 'bookmarkLink', method: 'link',
+					sortString: true, frozen: true, },
+				{ name: 'Hotlist', property: 'hotlistLink',
+					method: 'link', sortString: true, frozen: true, },
 				{ name: 'CurrentBidder', property: 'currentBidderLink',
 					method: 'link', sortString: true, },
 				{ name: 'CurrentBidderShort', property: 'currentBidderLinkShort',
-					method: 'link', sortString: true, },
-				{ name: 'Hotlist', property: 'hotlistLink',
 					method: 'link', sortString: true, },
 				{ name: 'Age', property: 'age', method: 'age', sortAsc: true, },
 				{ name: 'JoinedSince', property: 'joinedSince', method: 'dateDiff', },
@@ -453,6 +453,7 @@ Foxtrick.modules['SkillTable'] = {
 						Foxtrick.addImage(doc, cell, {
 							alt: coach,
 							title: coach,
+							class: 'ft-coach',
 							src: Foxtrick.InternalPath + 'resources/img/cap.png',
 						});
 					}
@@ -703,9 +704,10 @@ Foxtrick.modules['SkillTable'] = {
 
 			var removeOldElements = function() {
 				// clear old tables and loading note
-				var oldTable = doc.getElementById('ft_skilltable');
-				if (oldTable)
+				var oldTables = doc.querySelectorAll('.ft_skilltable');
+				Foxtrick.forEach(function(oldTable) {
 					oldTable.parentNode.removeChild(oldTable);
+				}, oldTables);
 
 				var oldNotes = doc.querySelector('.ft_skilltable_wrapper .ft-note');
 				if (oldNotes)
@@ -752,8 +754,8 @@ Foxtrick.modules['SkillTable'] = {
 				wrapper.appendChild(customizeTable);
 			};
 
-			var insertSkillTable = function(skillTable) {
-				var wrapper = tableDiv.querySelector('.ft_skilltable_wrapper');
+			var insertSkillTable = function(skillTable, type) {
+				var wrapper = tableDiv.querySelector('.ft_skilltable_wrapper' + type);
 				wrapper.appendChild(skillTable);
 			};
 
@@ -943,116 +945,126 @@ Foxtrick.modules['SkillTable'] = {
 				}
 			};
 
-			var createSkillTable = function() {
-				var addTH = function(column) {
-					if (column.enabled) {
-						var th = doc.createElement('th');
-						if (column.sortString) {
-							th.setAttribute('sort-string', true);
-						}
-						if (column.sortAsc) {
-							th.setAttribute('sort-asc', true);
-						}
-						Foxtrick.onClick(th, sortClick);
+			var createSkillTables = function() {
 
-						renderTH(th, column);
-
-						tr.appendChild(th);
-					}
-				};
-
-				var addRow = function(player) {
-					var addCell = function(column) {
+				var assemble = function(table, columns) {
+					var addTH = function(column) {
 						if (column.enabled) {
-							var method = column.method;
-							var property = column.property;
-							var value = player[property];
+							var th = doc.createElement('th');
+							if (column.sortString) {
+								th.setAttribute('sort-string', true);
+							}
+							if (column.sortAsc) {
+								th.setAttribute('sort-asc', true);
+							}
+							Foxtrick.onClick(th, sortClick);
 
-							var cell = doc.createElement('td');
-							row.appendChild(cell);
-							if (column.properties) {
-								if (method) {
-									RENDERERS[method](cell, player);
-								}
-								else {
-									var texts = Foxtrick.map(function(prop) {
-										return player[prop];
-									}, column.properties);
-									cell.textContent = texts.join(', ');
-								}
-							}
-							else if (property && typeof value !== 'undefined') {
-								if (method) {
-									RENDERERS[column.method](cell, value, property);
-								}
-								else {
-									cell.textContent = value;
-								}
-								if (column.title) {
-									cell.title = player[column.title];
-								}
-							}
-							if (column.alignRight) {
-								Foxtrick.addClass(cell, 'align-right');
-							}
+							renderTH(th, column);
+
+							tr.appendChild(th);
 						}
 					};
 
-					var row = doc.createElement('tr');
+					var addRow = function(player) {
+						var addCell = function(column) {
+							if (column.enabled) {
+								var method = column.method;
+								var property = column.property;
+								var value = player[property];
 
-					// set row attributes for filter module
-					row.setAttribute('playerid', player.id);
-					if (player.hidden)
-						Foxtrick.addClass(row, 'hidden');
-					if (player.currentSquad)
-						row.setAttribute('currentsquad', player.currentSquad);
-					if (player.currentClubLink) {
-						var clubM = player.currentClubLink.href.match(/\/Club\/\?TeamID=(\d+)/i);
-						if (clubM) {
-							row.setAttribute('currentclub', clubM[1]);
+								var cell = doc.createElement('td');
+								row.appendChild(cell);
+								if (column.properties) {
+									if (method) {
+										RENDERERS[method](cell, player);
+									}
+									else {
+										var texts = Foxtrick.map(function(prop) {
+											return player[prop];
+										}, column.properties);
+										cell.textContent = texts.join(', ');
+									}
+								}
+								else if (property && typeof value !== 'undefined') {
+									if (method) {
+										RENDERERS[column.method](cell, value, property);
+									}
+									else {
+										cell.textContent = value;
+									}
+									if (column.title) {
+										cell.title = player[column.title];
+									}
+								}
+								if (column.alignRight) {
+									Foxtrick.addClass(cell, 'align-right');
+								}
+							}
+						};
+
+						var row = doc.createElement('tr');
+
+						// set row attributes for filter module
+						row.setAttribute('playerid', player.id);
+						if (player.hidden)
+							Foxtrick.addClass(row, 'hidden');
+						if (player.currentSquad)
+							row.setAttribute('currentsquad', player.currentSquad);
+						if (player.currentClubLink) {
+							var m = player.currentClubLink.href.match(/\/Club\/\?TeamID=(\d+)/i);
+							if (m) {
+								row.setAttribute('currentclub', m[1]);
+							}
 						}
-					}
-					if (player.injured)
-						row.setAttribute('injured', player.injured);
-					if (player.cards)
-						row.setAttribute('cards', player.cards);
-					if (player.transferListed)
-						row.setAttribute('transfer-listed', 'true');
-					else
-						row.setAttribute('not-transfer-listed', 'true');
-					if (player.speciality) {
-						var spec = Foxtrick.L10n.getEnglishSpeciality(player.speciality);
-						row.setAttribute('speciality-' + spec, true);
-					}
-					if (player.active)
-						row.setAttribute('active', player.active);
-					if (player.motherClubBonus)
-						row.setAttribute('homegrown-player', 'true');
-					else
-						row.setAttribute('purchased-player', 'true');
+						if (player.injured)
+							row.setAttribute('injured', player.injured);
+						if (player.cards)
+							row.setAttribute('cards', player.cards);
+						if (player.transferListed)
+							row.setAttribute('transfer-listed', 'true');
+						else
+							row.setAttribute('not-transfer-listed', 'true');
+						if (player.speciality) {
+							var spec = Foxtrick.L10n.getEnglishSpeciality(player.speciality);
+							row.setAttribute('speciality-' + spec, true);
+						}
+						if (player.active)
+							row.setAttribute('active', player.active);
+						if (player.motherClubBonus)
+							row.setAttribute('homegrown-player', 'true');
+						else
+							row.setAttribute('purchased-player', 'true');
 
-					tbody.appendChild(row);
+						tbody.appendChild(row);
 
-					Foxtrick.forEach(addCell, COLUMNS);
+						Foxtrick.forEach(addCell, columns);
+					};
+					var thead = doc.createElement('thead');
+					var tr = doc.createElement('tr');
+					thead.appendChild(tr);
+					table.appendChild(thead);
+
+					Foxtrick.forEach(addTH, columns);
+
+					var tbody = doc.createElement('tbody');
+					table.appendChild(tbody);
+
+					Foxtrick.forEach(addRow, playerList);
 				};
 
-				var table = doc.createElement('table');
-				table.id = 'ft_skilltable';
-				table.className = 'ft_skilltable';
+				var frozenColumns = Foxtrick.filter(function(c) { return c.frozen; }, COLUMNS);
+				var otherColumns = Foxtrick.filter(function(c) { return !c.frozen; }, COLUMNS);
 
-				var thead = doc.createElement('thead');
-				var tr = doc.createElement('tr');
-				thead.appendChild(tr);
-				table.appendChild(thead);
+				var tableLeft = doc.createElement('table');
+				tableLeft.id = 'ft_skilltableLeft';
+				tableLeft.className = 'ft_skilltable ft_skilltableLeft';
+				assemble(tableLeft, frozenColumns);
 
-				Foxtrick.forEach(addTH, COLUMNS);
-
-				var tbody = doc.createElement('tbody');
-				table.appendChild(tbody);
-
-				Foxtrick.forEach(addRow, playerList);
-
-				return table;
+				var tableRight = doc.createElement('table');
+				tableRight.id = 'ft_skilltableRight';
+				tableRight.className = 'ft_skilltable ft_skilltableRight';
+				assemble(tableRight, otherColumns);
+				return [tableLeft, tableRight];
 			};
 
 			try {
@@ -1077,8 +1089,11 @@ Foxtrick.modules['SkillTable'] = {
 				Foxtrick.addClass(customizeTable, 'hidden');
 				insertCustomizeTable(customizeTable);
 
-				var table = createSkillTable();
-				insertSkillTable(table);
+				var tables = createSkillTables();
+				var tableLeft = tables[0];
+				var tableRight = tables[1];
+				insertSkillTable(tableLeft, 'Left');
+				insertSkillTable(tableRight, 'Right');
 
 				setViewMode();
 			}
@@ -1403,8 +1418,13 @@ Foxtrick.modules['SkillTable'] = {
 			// table container: table wrapper
 			var wrapper = doc.createElement('div');
 			wrapper.className = 'ft_skilltable_wrapper';
-
 			container.appendChild(wrapper);
+			var wrapperLeft = doc.createElement('div');
+			wrapperLeft.className = 'ft_skilltable_wrapperLeft';
+			wrapper.appendChild(wrapperLeft);
+			var wrapperRight = doc.createElement('div');
+			wrapperRight.className = 'ft_skilltable_wrapperRight';
+			wrapper.appendChild(wrapperRight);
 
 			var options = makeOptions();
 			if (options)

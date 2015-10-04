@@ -1,11 +1,72 @@
+.ft_skilltable_container { background-color: #fff; }
+.ft_skilltable_container.on_top {
+	position: absolute;
+	z-index: 98;
+	padding: 1em;
+	border: 2px solid #888;
+}
+.ft_skilltable_wrapper {
+	position: relative;
+}
+.on_top .ft_skilltable_wrapper {
+	position: initial;
+}
+.ft_skilltable_wrapperLeft {
+	margin: 0.1em auto 0.5em auto;
+}
+.on_top .ft_skilltable_wrapperLeft {
+	float: left;
+}
+.ft_skilltable_wrapperRight {
+	max-width: 370px;
+	overflow: auto;
+	position: absolute;
+	top: -1px;
+	left: 162px;
+}
+.transfer .ft_skilltable_wrapperRight {
+	max-width: 410px;
+	left: 322px;
+}
+.on_top .ft_skilltable_wrapperRight {
+	overflow: hidden;
+	max-width: initial;
+	position: initial;
+}
+.ft_skilltable {
+	width: auto !important;
+	max-width: 100%;
+	margin: 2px auto 0.5em auto;
+	white-space: nowrap;
+	border-collapse: collapse;
+	border: 1px solid #dce0dc;
+}
+.ft_skilltableLeft {
+	width: 162px !important;
+	margin: 0 0 2em 0;
+	border-right-width: 4px;
+}
+.transfer .ft_skilltableLeft {
+	width: 322px !important;
+}
+.on_top .ft_skilltableLeft {
+	margin: 0;
+}
+.on_top .ft_skilltableRight {
+	margin: 1px 164px 0 0;
+}
+.transfer .on_top .ft_skilltableRight {
+	margin: 1px 324px 0 0;
+}
+.ft_skilltablediv h2 { margin: 10px 0; }
+.ft_skilltablediv.transfer { margin: 35px 0; }
 html[dir="ltr"] .ft_skilltablediv { margin: 35px 0 35px -8px; }
 html[dir="rtl"] .ft_skilltablediv { margin: 35px -8px 35px 0; }
-.ft_skilltablediv.transfer { margin: 35px 0; }
-.ft_skilltablediv h2 { margin: 10px 0; }
-.ft_skilltable { width: auto !important; max-width: 100%; margin: 0.1em auto 0.5em auto; white-space: nowrap; border-collapse: collapse; border: 1px solid #dce0dc; }
 .ft_skilltable td:nth-child(even) { background-color: #eeeeee; }
 .ft_skilltable td:nth-child(odd) { background-color: white; }
-.ft_skilltable tr:hover td { background-color: yellow; }
+.ft_skilltable tr { height: 19px; }
+.transfer .ft_skilltable tr { height: 21px; }
+.ft_skilltableRight tr:hover td { background-color: yellow; }
 .ft_skilltable th { text-align: center; }
 .ft_skilltable th, .ft_skilltablediv table td { padding: 1px 2px; vertical-align: middle; }
 .ft_skilltable_container a, .ft_skilltable_links a { cursor: pointer; }
@@ -16,9 +77,7 @@ html[dir="rtl"] .ft_skilltablediv { margin: 35px -8px 35px 0; }
 .ft_skilltable_links .customize_item { display: inline; }
 .ft_skilltable_links.customizing a { display: inline; }
 .ft_skilltable_links.customizing .customize_item { display: none; }
-.ft_skilltable_container { background-color: #fff; }
-.ft_skilltable_container.on_top { position: absolute; z-index: 98; padding: 1em; border: 2px solid #888; }
-.ft_skilltable th { cursor: pointer; }
+.ft_skilltable th { cursor: pointer; height: 22px; vertical-align: middle; }
 .ft_skilltable td { border-bottom: 1px solid #dce0dc; }
 .ft_skilltable td.align-right { text-align: right; }
 .ft_skilltable td.align-left { text-align: left; }
@@ -31,3 +90,6 @@ html[dir="ltr"] .ft_skilltable td.status img { margin-left: 0.5em; }
 html[dir="rtl"] .ft_skilltable td.status img { margin-left: 0.5em; }
 html[dir="rtl"] .ft_skilltable td.formatted-num { direction: ltr; }
 #ft_skilltable img { vertical-align: middle; }
+.ft-coach {
+	vertical-align: bottom;
+}
