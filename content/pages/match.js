@@ -123,6 +123,10 @@ Foxtrick.Pages.Match.getResult = function(doc) {
 	var score;
 	if (isLive) {
 		score = doc.querySelector('.rtsSelected .liveTabScore');
+		if (!score) {
+			// no match open
+			return null;
+		}
 	}
 	else {
 		score = doc.querySelector('#mainBody h1 [class="notByLine"]');
