@@ -79,6 +79,9 @@ html[dir="rtl"] .on_top .ft_skilltableRight {
 html[dir="rtl"] .transfer.on_top .ft_skilltableRight {
 	margin: 1px 0 0 442px;
 }
+html[firefox] .on_top .ft_skilltableRight {
+	margin-top: 2px;
+}
 .ft-skilltable_player {
 	overflow: hidden;
 	text-overflow: ellipsis;
