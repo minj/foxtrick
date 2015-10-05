@@ -922,7 +922,17 @@ Foxtrick.modules.MatchSimulator = {
 		}
 
 		// coach type
-		text += doc.getElementById('trainerTypeLabel').textContent + '\n';
+		var coachTypeModifier = doc.getElementById('coachTypeModifier');
+		if (coachTypeModifier) {
+			// new tactic assistant type coach modifier
+			var coachModifierTitle = doc.getElementById('coachModifierTitle');
+			var coachModifierLabel = doc.getElementById('coachModifierLabel');
+			text += coachModifierTitle.textContent + ': ' + coachModifierLabel.textContent + '\n';
+		}
+		else {
+			// old style
+			text += doc.getElementById('trainerTypeLabel').textContent + '\n';
+		}
 
 		// tactics
 		var teamTacticsTitle = module.getTacticsLabel(doc);
