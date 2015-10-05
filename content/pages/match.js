@@ -19,62 +19,18 @@ Foxtrick.Pages.Match = {};
  * @return {array}
  */
 Foxtrick.Pages.Match.getTeams = function(doc) {
-	var teams = [], container;
+	var container;
 	if (Foxtrick.isPage(doc, 'matchesLive')) {
 		container = doc.querySelector('.rtsSelected .liveTabText');
 		if (!container) {
 			// no match open
 			return [null, null];
 		}
-
-		Foxtrick.forEach(function(child) {
-			if (child.textContent.trim() === '')
-				// skip empty
-				return;
-			var team;
-			if (child.nodeType == Foxtrick.NodeTypes.TEXT_NODE) {
-				var name = child.textContent.replace(/\s+-\s+$/, '').trim();
-				if (name === '')
-					// hyphen for non-street teams
-					return;
-				// street team
-				team = doc.createTextNode(name);
-			}
-			else if (child.nodeName.toLowerCase() !== 'a')
-				// skip spans etc
-				return;
-			else
-				team = child;
-
-			teams.push(team);
-		}, container.childNodes);
 	}
 	else {
 		container = doc.querySelector('#mainBody h1');
-		Foxtrick.forEach(function(child) {
-			if (child.textContent.trim() === '')
-				// skip empty
-				return;
-			var team;
-			if (child.nodeType == Foxtrick.NodeTypes.TEXT_NODE) {
-				var name = child.textContent.replace(/\s+\d+\s+-\s+\d+\s+$/, '').trim();
-				if (name === '')
-					// hyphen for non-street teams
-					return;
-				// street team
-				team = doc.createTextNode(name);
-			}
-			else if (child.nodeName.toLowerCase() !== 'a') {
-				// team popup
-				team = child.querySelector('a.ft-tpl');
-			}
-			else
-				team = child;
-
-			teams.push(team);
-		}, container.childNodes);
 	}
-	return teams;
+	return [container.querySelector('.hometeam'), container.querySelector('.awayteam')];
 };
 
 /**
@@ -83,9 +39,18 @@ Foxtrick.Pages.Match.getTeams = function(doc) {
  * @return {HTMLAnchorElement}
  */
 Foxtrick.Pages.Match.getHomeTeam = function(doc) {
-	var homeIdx = Foxtrick.util.layout.isRtl(doc) ? 1 : 0;
-	var teams = this.getTeams(doc);
-	return teams[homeIdx];
+	var container;
+	if (Foxtrick.isPage(doc, 'matchesLive')) {
+		container = doc.querySelector('.rtsSelected .liveTabText');
+		if (!container) {
+			// no match open
+			return null;
+		}
+	}
+	else {
+		container = doc.querySelector('#mainBody h1');
+	}
+	return container.querySelector('.hometeam');
 };
 
 /**
@@ -94,9 +59,18 @@ Foxtrick.Pages.Match.getHomeTeam = function(doc) {
  * @return {HTMLAnchorElement}
  */
 Foxtrick.Pages.Match.getAwayTeam = function(doc) {
-	var awayIdx = Foxtrick.util.layout.isRtl(doc) ? 0 : 1;
-	var teams = this.getTeams(doc);
-	return teams[awayIdx];
+	var container;
+	if (Foxtrick.isPage(doc, 'matchesLive')) {
+		container = doc.querySelector('.rtsSelected .liveTabText');
+		if (!container) {
+			// no match open
+			return null;
+		}
+	}
+	else {
+		container = doc.querySelector('#mainBody h1');
+	}
+	return container.querySelector('.awayteam');
 };
 
 /**
@@ -145,19 +119,24 @@ Foxtrick.Pages.Match.getAwayTeamName = function(doc) {
  * @return {array}        {Array.<number>}
  */
 Foxtrick.Pages.Match.getResult = function(doc) {
-	var ret = null;
-	if (Foxtrick.isPage(doc, 'matchesLive')) {
-		var score = doc.querySelector('.rtsSelected .liveTabScore');
-		var goals = score.textContent.match(/(\d+) - (\d+)/);
-		ret = Foxtrick.toArray(goals).slice(1).map(function(s) { return parseInt(s, 10); });
+	var isLive = Foxtrick.isPage(doc, 'matchesLive');
+	var score;
+	if (isLive) {
+		score = doc.querySelector('.rtsSelected .liveTabScore');
+		if (!score) {
+			// no match open
+			return null;
+		}
 	}
 	else {
-		var headder = doc.querySelector('#mainBody h1').textContent.trim();
-		var result = headder.match(/^.+(\d+) - (\d+).+$/);
-		ret = Foxtrick.toArray(result).slice(1).map(function(s) { return parseInt(s, 10); });
-		if (Foxtrick.util.layout.isRtl(doc))
-			ret.reverse();
+		score = doc.querySelector('#mainBody h1 [class="notByLine"]');
 	}
+	var match = score.textContent.trim().match(/^(\d+) - (\d+)$/);
+	var goals = Foxtrick.toArray(match).slice(1);
+	var ret = goals.map(function(s) { return parseInt(s, 10); });
+
+	if (!isLive && Foxtrick.util.layout.isRtl(doc))
+		ret.reverse();
 	return ret;
 };
 
