@@ -31,11 +31,6 @@ Foxtrick.modules.MatchSimulator = {
 		else if (displayOption == 2)
 			Foxtrick.addClass(fieldOverlay, 'displayRight');
 
-		// TODO: remove once new match engine alert is gone
-		var newME = doc.querySelector('#order_tabs div.alert');
-		if (newME)
-			Foxtrick.addClass(fieldOverlay, 'newME');
-
 		var useRatings = Foxtrick.Prefs.isModuleEnabled('Ratings') &&
 			Foxtrick.Prefs.isModuleOptionEnabled(module, 'UseRatingsModule');
 		var useHTMS = Foxtrick.Prefs.isModuleOptionEnabled(module, 'HTMSPrediction');
@@ -319,6 +314,12 @@ Foxtrick.modules.MatchSimulator = {
 		};
 		var buildAddMatch = function(select, opts) {
 			// manual add a match
+
+			var option = doc.createElement('option');
+			option.value = 0;
+			option.textContent = Foxtrick.L10n.getString('matchOrder.AddMatchManually');
+			select.appendChild(option);
+
 			var addMatchDiv = doc.createElement('div');
 			addMatchDiv.className = 'hidden';
 			addMatchDiv.id = 'addMatchDiv';
@@ -342,10 +343,10 @@ Foxtrick.modules.MatchSimulator = {
 			addMatchHomeAwaySelect.title = HOME_AWAY_DESC;
 			addMatchDiv.appendChild(addMatchHomeAwaySelect);
 
-			var optionDefault = doc.createElement('option');
-			optionDefault.value = 'default';
-			optionDefault.textContent = Foxtrick.L10n.getString('matchOrder.default');
-			addMatchHomeAwaySelect.appendChild(optionDefault);
+			var optionAuto = doc.createElement('option');
+			optionAuto.value = 'auto';
+			optionAuto.textContent = Foxtrick.L10n.getString('matchOrder.auto');
+			addMatchHomeAwaySelect.appendChild(optionAuto);
 			var optionHome = doc.createElement('option');
 			optionHome.value = 'home';
 			optionHome.textContent = Foxtrick.L10n.getString('matchOrder.home');
@@ -457,11 +458,6 @@ Foxtrick.modules.MatchSimulator = {
 			optionNoMatch.value = -1;
 			optionNoMatch.textContent = Foxtrick.L10n.getString('matchOrder.noMatchSelected');
 			select.appendChild(optionNoMatch);
-
-			var option = doc.createElement('option');
-			option.value = 0;
-			option.textContent = Foxtrick.L10n.getString('matchOrder.AddMatchManually');
-			select.appendChild(option);
 
 			var fieldOverlay = doc.getElementById(module.FIELD_OVERLAY_ID);
 			fieldOverlay.appendChild(select);
@@ -745,6 +741,14 @@ Foxtrick.modules.MatchSimulator = {
 			if (displayOption) {
 				// keep it visible till closed
 				Foxtrick.addClass(fieldOverlay, 'visible');
+
+				var coachModDiv = doc.getElementById('coachModifier');
+				var neighbor = coachModDiv.previousElementSibling;
+				if (Foxtrick.hasClass(neighbor, 'ratingPredictionsOverlay')) {
+					Foxtrick.addClass(neighbor, 'ft-simulator-pred-controls');
+					// move controls back to fieldOverlay
+					fieldOverlay.appendChild(neighbor);
+				}
 			}
 
 			// this injects Ratings module so should always run
@@ -919,7 +923,17 @@ Foxtrick.modules.MatchSimulator = {
 		}
 
 		// coach type
-		text += doc.getElementById('trainerTypeLabel').textContent + '\n';
+		var coachTypeModifier = doc.getElementById('coachTypeModifier');
+		if (coachTypeModifier) {
+			// new tactic assistant type coach modifier
+			var coachModifierTitle = doc.getElementById('coachModifierTitle');
+			var coachModifierLabel = doc.getElementById('coachModifierLabel');
+			text += coachModifierTitle.textContent + ': ' + coachModifierLabel.textContent + '\n';
+		}
+		else {
+			// old style
+			text += doc.getElementById('trainerTypeLabel').textContent + '\n';
+		}
 
 		// tactics
 		var teamTacticsTitle = module.getTacticsLabel(doc);

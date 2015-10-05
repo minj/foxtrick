@@ -103,7 +103,7 @@ html[data-theme="standard"] #ft-overlayBottom {
 #nisse {
 	display: none;
 }
-.visible {
+.visible, .visible .ft-simulator-pred-controls {
 	visibility: visible !important;
 }
 #fieldOverlay .ratingInnerBox {
@@ -168,10 +168,7 @@ html[dir="ltr"] .overlayMidDefense, .overlayMidAttack {
 #fieldOverlay.displayBelow {
 	height: 520px;
 	position: relative;
-	top: 700px;
-}
-#fieldOverlay.displayBelow.newME {
-	top: 720px;
+	top: 675px !important;
 }
 #fieldOverlay.displayRight {
 	height: 520px;
