@@ -325,7 +325,7 @@ Foxtrick.modules['SkillTable'] = {
 			//   data is treated as plain text and appended to the cell.
 			// sortAsc: whether to sort the column in ascending order, default is in
 			//   descending order.
-			// sortString: whether to sort the column with values as string, default is as
+			// sortAsString: whether to sort the column with values as string, default is as
 			//   numbers. If set to true, sortAsc is always on.
 			// alignRight: whether to align the data cells to the right
 			// img: images used in table headers as substitution of text
@@ -334,11 +334,11 @@ Foxtrick.modules['SkillTable'] = {
 				{ name: 'PlayerCategory', property: 'category',
 					method: 'category', sortAsc: true, frozen: true, },
 				{ name: 'Nationality', property: 'countryId',
-					method: 'nationality', sortString: true, frozen: true, },
+					method: 'nationality', sortAsString: true, frozen: true, },
 				{ name: 'Player', properties: ['nameLink', 'nationalTeamId', 'trainerData'],
-					method: 'playerName', sortString: true, frozen: true, },
+					method: 'playerName', sortAsString: true, frozen: true, },
 				{ name: 'Speciality', property: 'speciality',
-					method: 'speciality', sortString: true, frozen: true, },
+					method: 'speciality', sortAsString: true, frozen: true, },
 				{ name: 'Status', properties: [
 					'yellowCard', 'redCard', 'bruised', 'injuredWeeks', 'transferListed',
 				], method: 'status', frozen: true, },
@@ -347,13 +347,13 @@ Foxtrick.modules['SkillTable'] = {
 				{ name: 'CurrentBid', property: 'currentBid',
 					method: 'formatNum', alignRight: true, frozen: true, },
 				{ name: 'Bookmark', property: 'bookmarkLink', method: 'link',
-					sortString: true, frozen: true, },
+					sortAsString: true, frozen: true, },
 				{ name: 'Hotlist', property: 'hotlistLink',
-					method: 'link', sortString: true, frozen: true, },
+					method: 'link', sortAsString: true, frozen: true, },
 				{ name: 'CurrentBidder', property: 'currentBidderLink',
-					method: 'link', sortString: true, },
+					method: 'link', sortAsString: true, },
 				{ name: 'CurrentBidderShort', property: 'currentBidderLinkShort',
-					method: 'link', sortString: true, },
+					method: 'link', sortAsString: true, },
 				{ name: 'JoinedSince', property: 'joinedSince', method: 'dateDiff', },
 				{ name: 'TSI', property: 'tsi', alignRight: true, method: 'formatNum', },
 				{ name: 'Leadership', property: 'leadership', method: 'skill', },
@@ -364,7 +364,7 @@ Foxtrick.modules['SkillTable'] = {
 					method: 'staminaPrediction', },
 				{ name: 'Loyalty', property: 'loyalty', method: 'skill', },
 				{ name: 'MotherClubBonus', property: 'motherClubBonus',
-					method: 'object', sortString: true, },
+					method: 'object', sortAsString: true, },
 				{ name: 'Keeper', property: 'keeper', method: 'skill', },
 				{ name: 'Defending', property: 'defending', method: 'skill', },
 				{ name: 'Playmaking', property: 'playmaking', method: 'skill', },
@@ -384,7 +384,7 @@ Foxtrick.modules['SkillTable'] = {
 				{ name: 'Last_stars', property: 'lastRating',
 					img: '/Img/Matches/star_yellow.png', },
 				{ name: 'Last_position', property: 'lastPosition',
-					method: 'position', sortString: true, },
+					method: 'position', sortAsString: true, },
 				{ name: 'Salary', property: 'salary', alignRight: true, method: 'formatNum', },
 				{ name: 'NrOfMatches', property: 'matchCount', },
 				{ name: 'LeagueGoals', property: 'leagueGoals', },
@@ -394,9 +394,9 @@ Foxtrick.modules['SkillTable'] = {
 				{ name: 'Hattricks', property: 'hattricks', },
 				{ name: 'Deadline', property: 'deadline', method: 'dateCell', },
 				{ name: 'Current_club', property: 'currentClubLink',
-					method: 'link', sortString: true, },
+					method: 'link', sortAsString: true, },
 				{ name: 'Current_league', property: 'currentLeagueId',
-					method: 'league', sortString: true, },
+					method: 'league', sortAsString: true, },
 				{ name: 'TransferCompare', property: 'transferCompare', method: 'link', },
 				{ name: 'PerformanceHistory', property: 'performanceHistory', method: 'link', },
 				{ name: 'HyLink', property: 'hyLink', method: 'link', },
@@ -421,7 +421,7 @@ Foxtrick.modules['SkillTable'] = {
 				{ name: 'fwdPosition', property: 'fwd', },
 				{ name: 'fwtwPosition', property: 'fwtw', },
 				{ name: 'tdfPosition', property: 'tdf', },
-				{ name: 'BestPosition', property: 'bestPosition', sortString: true, },
+				{ name: 'BestPosition', property: 'bestPosition', sortAsString: true, },
 				{ name: 'BestPositionValue', property: 'bestPositionValue', },
 			];
 
@@ -769,32 +769,30 @@ Foxtrick.modules['SkillTable'] = {
 			var sortClick = function(ev) {
 				var modifierPressed = ev.ctrlKey;
 				try {
-					var head = ev.currentTarget;
+					var th = ev.currentTarget;
 
-					var table = doc.getElementById('ft_skilltable');
+					var table = doc.querySelector('.ft_skilltable');
 					// determine sort direction
-					var lastSortIndex = table.getAttribute('lastSortIndex');
-					var sortIndex = Foxtrick.getChildIndex(head);
-					var sortAsc = head.hasAttribute('sort-asc');
-					if (sortIndex == lastSortIndex) {
-						if (sortAsc)
-							head.removeAttribute('sort-asc');
-						else
-							head.setAttribute('sort-asc', 'true');
-						sortAsc = !Boolean(sortAsc);
+					var sortAsc = !!Number(th.dataset.sortAsc);
+					var lastSortColumnIdx = table.dataset.lastSortColumnIdx;
+					var sortColumnIdx = Foxtrick.getChildIndex(th).toString();
+					if (sortColumnIdx === lastSortColumnIdx) {
+						sortAsc = !sortAsc;
+						th.dataset.sortAsc = Number(sortAsc);
 					}
-					if (!modifierPressed)
-						table.setAttribute('lastSortIndex', sortIndex);
+					if (!modifierPressed) {
+						table.dataset.lastSortColumnIdx = sortColumnIdx;
+					}
 
-					var sortString = head.hasAttribute('sort-string');
+					var sortAsString = !!Number(th.dataset.sortAsString);
 
-					var getSortByIndex = function(index) {
+					var getSortByIndexFromColumn = function(idx) {
 						var res = Foxtrick.any(function(n) {
-							return n.cells[index].hasAttribute('index');
+							return n.cells[idx].hasAttribute('index');
 						}, table.rows);
 						return res;
 					};
-					var sortByIndex = getSortByIndex(sortIndex);
+					var sortByIndex = getSortByIndexFromColumn(sortColumnIdx);
 
 					var rows = Foxtrick.map(function(row) {
 						return row.cloneNode(true);
@@ -808,16 +806,16 @@ Foxtrick.modules['SkillTable'] = {
 					var sortCompare = function(a, b) {
 						var doSort = function(aa, bb) {
 							var aContent, bContent;
-							var lastSort = Number(aa.getAttribute('lastSort')) -
-								Number(bb.getAttribute('lastSort'));
+							var lastSort = Number(aa.dataset.lastSort) -
+								Number(bb.dataset.lastSort);
 
 							if (sortByIndex) {
-								aContent = aa.cells[sortIndex].getAttribute('index');
-								bContent = bb.cells[sortIndex].getAttribute('index');
+								aContent = aa.cells[sortColumnIdx].getAttribute('index');
+								bContent = bb.cells[sortColumnIdx].getAttribute('index');
 							}
 							else {
-								aContent = aa.cells[sortIndex].textContent;
-								bContent = bb.cells[sortIndex].textContent;
+								aContent = aa.cells[sortColumnIdx].textContent;
+								bContent = bb.cells[sortColumnIdx].textContent;
 							}
 
 							if (aContent === bContent) {
@@ -832,9 +830,7 @@ Foxtrick.modules['SkillTable'] = {
 							    bContent === null || bContent === undefined) {
 								return -1;
 							}
-							if (sortString) {
-								// always sort by ascending order
-								// why? This works perfectly, doesn't it?
+							if (sortAsString) {
 								var res = aContent.localeCompare(bContent);
 								if (sortAsc)
 									res = bContent.localeCompare(aContent);
@@ -858,25 +854,27 @@ Foxtrick.modules['SkillTable'] = {
 							}
 						};
 
-						var getSortStringByIndex = function(n) {
-							var table = doc.getElementById('ft_skilltable');
+						var getSortAsStringFromColumn = function(n) {
 							var head = table.rows[0].cells[n];
-							return head.hasAttribute('sort-string');
+							return !!Number(head.dataset.sortAsString);
 						};
 
 						if (modifierPressed) {
 							var tmp = {
-								sortIndex: sortIndex,
-								sortString: sortString,
+								sortColumnIdx: sortColumnIdx,
+								sortAsString: sortAsString,
 								sortByIndex: sortByIndex,
 							};
-							sortString = getSortStringByIndex(lastSortIndex);
-							sortIndex = lastSortIndex;
-							sortByIndex = getSortByIndex(lastSortIndex);
+							sortColumnIdx = lastSortColumnIdx;
+							sortAsString = getSortAsStringFromColumn(lastSortColumnIdx);
+							sortByIndex = getSortByIndexFromColumn(lastSortColumnIdx);
+
 							var result = doSort(a, b);
+
+							sortColumnIdx = tmp.sortColumnIdx;
 							sortByIndex = tmp.sortByIndex;
-							sortIndex = tmp.sortIndex;
-							sortString = tmp.sortString;
+							sortAsString = tmp.sortAsString;
+
 							if (result === 0) {
 								var sortResult = doSort(a, b);
 								return sortResult;
@@ -893,9 +891,10 @@ Foxtrick.modules['SkillTable'] = {
 					rows.sort(sortCompare);
 
 					Foxtrick.forEach(function(row, i) {
-						row.setAttribute('lastSort', i);
+						row.dataset.lastSort = i;
 						// rows.length < table.rows.length because header was skipped
-						table.rows[i + 1].parentNode.replaceChild(row, table.rows[i + 1]);
+						var rowOld = table.rows[i + 1];
+						rowOld.parentNode.replaceChild(row, rowOld);
 					}, rows);
 				}
 				catch (e) {
@@ -951,12 +950,8 @@ Foxtrick.modules['SkillTable'] = {
 					var addTH = function(column) {
 						if (column.enabled) {
 							var th = doc.createElement('th');
-							if (column.sortString) {
-								th.setAttribute('sort-string', true);
-							}
-							if (column.sortAsc) {
-								th.setAttribute('sort-asc', true);
-							}
+							th.dataset.sortAsString = Number(!!column.sortAsString);
+							th.dataset.sortAsc = Number(!!column.sortAsc);
 							Foxtrick.onClick(th, sortClick);
 
 							renderTH(th, column);
