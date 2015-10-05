@@ -31,11 +31,6 @@ Foxtrick.modules.MatchSimulator = {
 		else if (displayOption == 2)
 			Foxtrick.addClass(fieldOverlay, 'displayRight');
 
-		// TODO: remove once new match engine alert is gone
-		var newME = doc.querySelector('#order_tabs div.alert');
-		if (newME)
-			Foxtrick.addClass(fieldOverlay, 'newME');
-
 		var useRatings = Foxtrick.Prefs.isModuleEnabled('Ratings') &&
 			Foxtrick.Prefs.isModuleOptionEnabled(module, 'UseRatingsModule');
 		var useHTMS = Foxtrick.Prefs.isModuleOptionEnabled(module, 'HTMSPrediction');
