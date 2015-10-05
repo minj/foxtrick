@@ -1,3 +1,6 @@
+.dimmedOverlay {
+	display: none;
+}
 /* our ratings as number */
 .overlayRatingsNum {
 	border-bottom: 1px solid #79A777;
@@ -165,10 +168,10 @@ html[dir="ltr"] .overlayMidDefense, .overlayMidAttack {
 #fieldOverlay.displayBelow {
 	height: 520px;
 	position: relative;
-	top: 630px !important;
+	top: 700px !important;
 }
 #fieldOverlay.displayBelow.newME {
-	top: 650px !important;
+	top: 720px !important;
 }
 #fieldOverlay.displayRight {
 	height: 520px;
