@@ -337,6 +337,13 @@ Foxtrick.modules['SkillTable'] = {
 					method: 'nationality', sortString: true, frozen: true, },
 				{ name: 'Player', properties: ['nameLink', 'nationalTeamId', 'trainerData'],
 					method: 'playerName', sortString: true, frozen: true, },
+				{ name: 'Speciality', property: 'speciality',
+					method: 'speciality', sortString: true, frozen: true, },
+				{ name: 'Status', properties: [
+					'yellowCard', 'redCard', 'bruised', 'injuredWeeks', 'transferListed',
+				], method: 'status', frozen: true, },
+				{ name: 'Age', property: 'age', method: 'age', sortAsc: true, frozen: true, },
+				{ name: 'CanBePromotedIn', property: 'canBePromotedIn', frozen: true, },
 				{ name: 'CurrentBid', property: 'currentBid',
 					method: 'formatNum', alignRight: true, frozen: true, },
 				{ name: 'Bookmark', property: 'bookmarkLink', method: 'link',
@@ -347,15 +354,8 @@ Foxtrick.modules['SkillTable'] = {
 					method: 'link', sortString: true, },
 				{ name: 'CurrentBidderShort', property: 'currentBidderLinkShort',
 					method: 'link', sortString: true, },
-				{ name: 'Age', property: 'age', method: 'age', sortAsc: true, },
 				{ name: 'JoinedSince', property: 'joinedSince', method: 'dateDiff', },
-				{ name: 'CanBePromotedIn', property: 'canBePromotedIn', },
 				{ name: 'TSI', property: 'tsi', alignRight: true, method: 'formatNum', },
-				{ name: 'Status', properties: [
-					'yellowCard', 'redCard', 'bruised', 'injuredWeeks', 'transferListed',
-				], method: 'status', },
-				{ name: 'Speciality', property: 'speciality',
-					method: 'speciality', sortString: true, },
 				{ name: 'Leadership', property: 'leadership', method: 'skill', },
 				{ name: 'Experience', property: 'experience', method: 'skill', },
 				{ name: 'Form', property: 'form', method: 'skill', },
@@ -444,6 +444,7 @@ Foxtrick.modules['SkillTable'] = {
 					}
 				},
 				playerName: function(cell, player) {
+					Foxtrick.addClass(cell, 'ft-skilltable_player');
 					cell.appendChild(player.nameLink.cloneNode(true));
 					if (player.nationalTeamId) {
 						cell.appendChild(doc.createTextNode(' (NT)'));

@@ -18,15 +18,15 @@
 	float: left;
 }
 .ft_skilltable_wrapperRight {
-	max-width: 370px;
+	max-width: 252px;
 	overflow: auto;
 	position: absolute;
 	top: -1px;
-	left: 162px;
+	left: 280px;
 }
 .transfer .ft_skilltable_wrapperRight {
-	max-width: 410px;
-	left: 322px;
+	max-width: 300px;
+	left: 440px;
 }
 .on_top .ft_skilltable_wrapperRight {
 	overflow: hidden;
@@ -42,21 +42,29 @@
 	border: 1px solid #dce0dc;
 }
 .ft_skilltableLeft {
-	width: 162px !important;
+	width: 280px !important;
 	margin: 0 0 2em 0;
 	border-right-width: 4px;
 }
 .transfer .ft_skilltableLeft {
-	width: 322px !important;
+	width: 440px !important;
 }
 .on_top .ft_skilltableLeft {
 	margin: 0;
 }
 .on_top .ft_skilltableRight {
-	margin: 1px 164px 0 0;
+	margin: 1px 282px 0 0;
 }
 .transfer .on_top .ft_skilltableRight {
-	margin: 1px 324px 0 0;
+	margin: 1px 442px 0 0;
+}
+.ft-skilltable_player {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 100px;
+}
+.transfer .ft-skilltable_player {
+	max-width: 150px;
 }
 .ft_skilltablediv h2 { margin: 10px 0; }
 .ft_skilltablediv.transfer { margin: 35px 0; }
