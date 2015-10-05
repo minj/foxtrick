@@ -103,7 +103,7 @@ html[data-theme="standard"] #ft-overlayBottom {
 #nisse {
 	display: none;
 }
-.visible {
+.visible, .visible .ft-simulator-pred-controls {
 	visibility: visible !important;
 }
 #fieldOverlay .ratingInnerBox {

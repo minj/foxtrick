@@ -745,6 +745,14 @@ Foxtrick.modules.MatchSimulator = {
 			if (displayOption) {
 				// keep it visible till closed
 				Foxtrick.addClass(fieldOverlay, 'visible');
+
+				var coachModDiv = doc.getElementById('coachModifier');
+				var neighbor = coachModDiv.previousElementSibling;
+				if (Foxtrick.hasClass(neighbor, 'ratingPredictionsOverlay')) {
+					Foxtrick.addClass(neighbor, 'ft-simulator-pred-controls');
+					// move controls back to fieldOverlay
+					fieldOverlay.appendChild(neighbor);
+				}
 			}
 
 			// this injects Ratings module so should always run
