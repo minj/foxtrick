@@ -182,7 +182,7 @@ Foxtrick.modules.MatchSimulator = {
 
 			var MatchDate = matchXML.time('MatchDate');
 			var date = Foxtrick.util.time.buildDate(MatchDate, { showTime: false });
-			var howeAwayStr = Foxtrick.L10n.getString('matchOrder.' + homeAway + '.abbr');
+			var howeAwayStr = Foxtrick.L10n.getString('matchOrder.homeAway.' + homeAway + '.abbr');
 
 			var tmpl = '{HA}: ' + MATCH_LIST_TMPL;
 			var info = {
@@ -345,15 +345,15 @@ Foxtrick.modules.MatchSimulator = {
 
 			var optionAuto = doc.createElement('option');
 			optionAuto.value = 'auto';
-			optionAuto.textContent = Foxtrick.L10n.getString('matchOrder.auto');
+			optionAuto.textContent = Foxtrick.L10n.getString('matchOrder.homeAway.auto');
 			addMatchHomeAwaySelect.appendChild(optionAuto);
 			var optionHome = doc.createElement('option');
 			optionHome.value = 'home';
-			optionHome.textContent = Foxtrick.L10n.getString('matchOrder.home');
+			optionHome.textContent = Foxtrick.L10n.getString('matchOrder.homeAway.home');
 			addMatchHomeAwaySelect.appendChild(optionHome);
 			var optionAway = doc.createElement('option');
 			optionAway.value = 'away';
-			optionAway.textContent = Foxtrick.L10n.getString('matchOrder.away');
+			optionAway.textContent = Foxtrick.L10n.getString('matchOrder.homeAway.away');
 			addMatchHomeAwaySelect.appendChild(optionAway);
 
 			var addMatchCheck = doc.createElement('input');
