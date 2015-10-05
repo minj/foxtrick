@@ -126,11 +126,11 @@
 			"code": "cs",
 			"name": "Czech",
 			"phrases": "2109",
-			"translated": "1953",
+			"translated": "1958",
 			"translated_progress": "84",
 			"words": "14716",
 			"words_approved": "10503",
-			"words_translated": "12378"
+			"words_translated": "12410"
 		},
 		{
 			"approved": "1873",
@@ -217,15 +217,15 @@
 			"words_translated": "6207"
 		},
 		{
-			"approved": "1894",
-			"approved_progress": "91",
+			"approved": "2005",
+			"approved_progress": "95",
 			"code": "fr",
 			"name": "French",
 			"phrases": "2109",
 			"translated": "2109",
 			"translated_progress": "100",
 			"words": "14716",
-			"words_approved": "13529",
+			"words_approved": "14111",
 			"words_translated": "14716"
 		},
 		{
@@ -354,11 +354,11 @@
 			"code": "it",
 			"name": "Italian",
 			"phrases": "2109",
-			"translated": "1947",
-			"translated_progress": "92",
+			"translated": "2009",
+			"translated_progress": "94",
 			"words": "14716",
 			"words_approved": "0",
-			"words_translated": "13539"
+			"words_translated": "13905"
 		},
 		{
 			"approved": "0",
@@ -378,11 +378,11 @@
 			"code": "ko",
 			"name": "Korean",
 			"phrases": "2109",
-			"translated": "1894",
-			"translated_progress": "91",
+			"translated": "1944",
+			"translated_progress": "93",
 			"words": "14716",
 			"words_approved": "0",
-			"words_translated": "13529"
+			"words_translated": "13737"
 		},
 		{
 			"approved": "0",
@@ -397,7 +397,7 @@
 			"words_translated": "4955"
 		},
 		{
-			"approved": "1518",
+			"approved": "1516",
 			"approved_progress": "61",
 			"code": "lt",
 			"name": "Lithuanian",
@@ -405,7 +405,7 @@
 			"translated": "1894",
 			"translated_progress": "91",
 			"words": "14716",
-			"words_approved": "9120",
+			"words_approved": "9118",
 			"words_translated": "13529"
 		},
 		{
@@ -445,7 +445,7 @@
 			"words_translated": "4778"
 		},
 		{
-			"approved": "0",
+			"approved": "1",
 			"approved_progress": "0",
 			"code": "no",
 			"name": "Norwegian",
@@ -453,7 +453,7 @@
 			"translated": "1084",
 			"translated_progress": "43",
 			"words": "14716",
-			"words_approved": "0",
+			"words_approved": "1",
 			"words_translated": "6410"
 		},
 		{
@@ -505,7 +505,7 @@
 			"words_translated": "14716"
 		},
 		{
-			"approved": "0",
+			"approved": "1",
 			"approved_progress": "0",
 			"code": "pt-BR",
 			"name": "Portuguese, Brazilian",
@@ -513,7 +513,7 @@
 			"translated": "1859",
 			"translated_progress": "89",
 			"words": "14716",
-			"words_approved": "0",
+			"words_approved": "1",
 			"words_translated": "13110"
 		},
 		{
