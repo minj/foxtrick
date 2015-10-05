@@ -770,8 +770,11 @@ Foxtrick.modules['SkillTable'] = {
 				var modifierPressed = ev.ctrlKey;
 				try {
 					var th = ev.currentTarget;
+					var table = th.parentNode.parentNode.parentNode;
 
-					var table = doc.querySelector('.ft_skilltable');
+					var tables = doc.querySelectorAll('.ft_skilltable');
+					var tableOther = Foxtrick.nth(function(tbl) { return tbl !== table; }, tables);
+
 					// determine sort direction
 					var sortAsc = !!Number(th.dataset.sortAsc);
 					var lastSortColumnIdx = table.dataset.lastSortColumnIdx;
@@ -782,21 +785,28 @@ Foxtrick.modules['SkillTable'] = {
 					}
 					if (!modifierPressed) {
 						table.dataset.lastSortColumnIdx = sortColumnIdx;
+						tableOther.dataset.lastSortColumnIdx = -1;
 					}
 
 					var sortAsString = !!Number(th.dataset.sortAsString);
 
-					var getSortByIndexFromColumn = function(idx) {
+					var getSortByIndexFromColumn = function(table, idx) {
 						var res = Foxtrick.any(function(n) {
 							return n.cells[idx].hasAttribute('index');
 						}, table.rows);
 						return res;
 					};
-					var sortByIndex = getSortByIndexFromColumn(sortColumnIdx);
+					var sortByIndex = getSortByIndexFromColumn(table, sortColumnIdx);
 
-					var rows = Foxtrick.map(function(row) {
-						return row.cloneNode(true);
+					var rows = Foxtrick.map(function(row, i) {
+						row = row.cloneNode(true);
+						// save previous index to sort rowsOther identically
+						row.dataset.prevIdx = i - 1; // skipping header
+						return row;
 					}, table.rows).slice(1); // skipping header
+					var rowsOther = Foxtrick.map(function(row) {
+						return row.cloneNode(true);
+					}, tableOther.rows).slice(1); // skipping header
 
 					/* sortCompare
 						sortClick() will first check whether every cell in that column has the
@@ -854,7 +864,7 @@ Foxtrick.modules['SkillTable'] = {
 							}
 						};
 
-						var getSortAsStringFromColumn = function(n) {
+						var getSortAsStringFromColumn = function(table, n) {
 							var head = table.rows[0].cells[n];
 							return !!Number(head.dataset.sortAsString);
 						};
@@ -866,14 +876,26 @@ Foxtrick.modules['SkillTable'] = {
 								sortColumnIdx: sortColumnIdx,
 								sortAsString: sortAsString,
 								sortByIndex: sortByIndex,
+								lastSortColumnIdx: lastSortColumnIdx,
+								a: a,
+								b: b,
 							};
+							var lastTable = table;
+
+							if (lastSortColumnIdx == -1) {
+								// different table
+								lastTable = tableOther;
+								lastSortColumnIdx = tableOther.dataset.lastSortColumnIdx;
+								a = rowsOther[a.dataset.lastSort];
+								b = rowsOther[b.dataset.lastSort];
+							}
 
 							// load previous sort settings
 							var lastTh = lastTable.rows[0].cells[lastSortColumnIdx];
 							sortAsc = !!Number(lastTh.dataset.sortAsc);
 							sortColumnIdx = lastSortColumnIdx;
-							sortAsString = getSortAsStringFromColumn(lastSortColumnIdx);
-							sortByIndex = getSortByIndexFromColumn(lastSortColumnIdx);
+							sortAsString = getSortAsStringFromColumn(lastTable, lastSortColumnIdx);
+							sortByIndex = getSortByIndexFromColumn(lastTable, lastSortColumnIdx);
 
 							var result = doSort(a, b);
 
@@ -882,6 +904,9 @@ Foxtrick.modules['SkillTable'] = {
 							sortColumnIdx = tmp.sortColumnIdx;
 							sortByIndex = tmp.sortByIndex;
 							sortAsString = tmp.sortAsString;
+							lastSortColumnIdx = tmp.lastSortColumnIdx;
+							a = tmp.a;
+							b = tmp.b;
 
 							if (result === 0) {
 								// previous sort was equal
@@ -905,6 +930,12 @@ Foxtrick.modules['SkillTable'] = {
 						// rows.length < table.rows.length because header was skipped
 						var rowOld = table.rows[i + 1];
 						rowOld.parentNode.replaceChild(row, rowOld);
+
+						var prevIdx = row.dataset.prevIdx;
+						var rowOther = rowsOther[prevIdx];
+						rowOther.dataset.lastSort = i;
+						var rowOldOther = tableOther.rows[i + 1];
+						rowOldOther.parentNode.replaceChild(rowOther, rowOldOther);
 					}, rows);
 				}
 				catch (e) {
