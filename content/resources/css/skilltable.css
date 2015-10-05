@@ -17,6 +17,9 @@
 .on_top .ft_skilltable_wrapperLeft {
 	float: left;
 }
+html[dir="rtl"] .on_top .ft_skilltable_wrapperLeft {
+	float: right;
+}
 .ft_skilltable_wrapperRight {
 	max-width: 252px;
 	overflow: auto;
@@ -24,9 +27,17 @@
 	top: -1px;
 	left: 280px;
 }
+html[dir="rtl"] .ft_skilltable_wrapperRight {
+	right: 280px;
+	left: initial;
+}
 .transfer .ft_skilltable_wrapperRight {
 	max-width: 300px;
 	left: 440px;
+}
+html[dir="rtl"] .transfer .ft_skilltable_wrapperRight {
+	right: 440px;
+	left: initial;
 }
 .on_top .ft_skilltable_wrapperRight {
 	overflow: hidden;
@@ -46,6 +57,10 @@
 	margin: 0 0 2em 0;
 	border-right-width: 4px;
 }
+html[dir="rtl"] .ft_skilltableLeft {
+	border-left-width: 4px;
+	border-right-width: 1px;
+}
 .transfer .ft_skilltableLeft {
 	width: 440px !important;
 }
@@ -55,8 +70,14 @@
 .on_top .ft_skilltableRight {
 	margin: 1px 282px 0 0;
 }
+html[dir="rtl"] .on_top .ft_skilltableRight {
+	margin: 1px 0 0 282px;
+}
 .transfer .on_top .ft_skilltableRight {
 	margin: 1px 442px 0 0;
+}
+html[dir="rtl"] .transfer .on_top .ft_skilltableRight {
+	margin: 1px 0 0 442px;
 }
 .ft-skilltable_player {
 	overflow: hidden;
