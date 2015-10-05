@@ -1,5 +1,5 @@
 .ft_skilltable_container { background-color: #fff; }
-.ft_skilltable_container.on_top {
+.on_top .ft_skilltable_container {
 	position: absolute;
 	z-index: 98;
 	padding: 1em;
@@ -73,10 +73,10 @@ html[dir="rtl"] .ft_skilltableLeft {
 html[dir="rtl"] .on_top .ft_skilltableRight {
 	margin: 1px 0 0 282px;
 }
-.transfer .on_top .ft_skilltableRight {
+.transfer.on_top .ft_skilltableRight {
 	margin: 1px 442px 0 0;
 }
-html[dir="rtl"] .transfer .on_top .ft_skilltableRight {
+html[dir="rtl"] .transfer.on_top .ft_skilltableRight {
 	margin: 1px 0 0 442px;
 }
 .ft-skilltable_player {

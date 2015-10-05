@@ -761,9 +761,8 @@ Foxtrick.modules['SkillTable'] = {
 			};
 
 			var setViewMode = function() {
-				var container = tableDiv.querySelector('.ft_skilltable_container');
 				if (Foxtrick.Prefs.getBool('module.SkillTable.top')) {
-					Foxtrick.addClass(container, 'on_top');
+					Foxtrick.addClass(tableDiv, 'on_top');
 				}
 			};
 
@@ -1406,10 +1405,9 @@ Foxtrick.modules['SkillTable'] = {
 			switchViewLink.title = Foxtrick.L10n.getString('SkillTable.switchView.title');
 			Foxtrick.onClick(switchViewLink, function() {
 				var tableDiv = doc.getElementById(TABLE_DIV_ID);
-				var container = tableDiv.querySelector('.ft_skilltable_container');
-				Foxtrick.toggleClass(container, 'on_top');
+				Foxtrick.toggleClass(tableDiv, 'on_top');
 
-				var onTop = Foxtrick.hasClass(container, 'on_top');
+				var onTop = Foxtrick.hasClass(tableDiv, 'on_top');
 				Foxtrick.Prefs.setBool('module.SkillTable.top', onTop);
 			});
 			switchView.appendChild(switchViewLink);
