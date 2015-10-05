@@ -1242,38 +1242,44 @@ Foxtrick.modules['SkillTable'] = {
 						}
 					}
 				};
-				var toHtMl = function(table) {
+				var parseTables = function(tableLeft, tableRight) {
+					var parseCell = function(cell) {
+						var cellName = cell.tagName.toLowerCase();
+						var cellContent = getNode(cell);
+						if (Foxtrick.hasClass(cell, 'maxed')) {
+							cellContent = '[b]' + cellContent + '[/b]';
+						}
+						else if (Foxtrick.hasClass(cell, 'formatted-num')) {
+							cellContent = Foxtrick.trimnum(cellContent);
+						}
+						ret += '[' + cellName + ']' + cellContent + '[/' + cellName + ']';
+					};
+
 					var ret = '[table]\n';
-					Foxtrick.forEach(function(row) {
-						if (Foxtrick.hasClass(row, 'hidden'))
+					Foxtrick.forEach(function(rowLeft, i) {
+						if (Foxtrick.hasClass(rowLeft, 'hidden'))
 							return;
 
-						ret += '[tr]';
+						var rowRight = tableRight.rows[i];
 
-						Foxtrick.forEach(function(cell) {
-							var cellName = cell.tagName.toLowerCase();
-							var cellContent = getNode(cell);
-							if (Foxtrick.hasClass(cell, 'maxed')) {
-								cellContent = '[b]' + cellContent + '[/b]';
-							}
-							else if (Foxtrick.hasClass(cell, 'formatted-num')) {
-								cellContent = Foxtrick.trimnum(cellContent);
-							}
-							ret += '[' + cellName + ']' + cellContent + '[/' + cellName + ']';
-						}, row.cells);
+						ret += '[tr]';
+						Foxtrick.forEach(parseCell, rowLeft.cells);
+						Foxtrick.forEach(parseCell, rowRight.cells);
 
 						ret += '[/tr]\n';
-					}, table.rows);
+					}, tableLeft.rows);
 
 					ret += '[/table]';
 					return ret;
 				};
 
-				var table = doc.querySelector('.ft_skilltable');
-				Foxtrick.copyStringToClipboard(toHtMl(table));
+				var tables = doc.querySelectorAll('.ft_skilltable');
+				var copyStr = parseTables(tables[0], tables[1]);
+				Foxtrick.copyStringToClipboard(copyStr);
 
-				Foxtrick.util.note.add(doc, Foxtrick.L10n.getString('copy.skilltable.copied'),
-				                       'ft-skilltable-copy-note', { at: table });
+				var COPIED = Foxtrick.L10n.getString('copy.skilltable.copied');
+				var target = tables[0].parentNode.parentNode;
+				Foxtrick.util.note.add(doc, COPIED, 'ft-skilltable-copy-note', { at: target });
 			};
 
 			var makeLinks = function() {
