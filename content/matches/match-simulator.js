@@ -314,6 +314,12 @@ Foxtrick.modules.MatchSimulator = {
 		};
 		var buildAddMatch = function(select, opts) {
 			// manual add a match
+
+			var option = doc.createElement('option');
+			option.value = 0;
+			option.textContent = Foxtrick.L10n.getString('matchOrder.AddMatchManually');
+			select.appendChild(option);
+
 			var addMatchDiv = doc.createElement('div');
 			addMatchDiv.className = 'hidden';
 			addMatchDiv.id = 'addMatchDiv';
@@ -452,11 +458,6 @@ Foxtrick.modules.MatchSimulator = {
 			optionNoMatch.value = -1;
 			optionNoMatch.textContent = Foxtrick.L10n.getString('matchOrder.noMatchSelected');
 			select.appendChild(optionNoMatch);
-
-			var option = doc.createElement('option');
-			option.value = 0;
-			option.textContent = Foxtrick.L10n.getString('matchOrder.AddMatchManually');
-			select.appendChild(option);
 
 			var fieldOverlay = doc.getElementById(module.FIELD_OVERLAY_ID);
 			fieldOverlay.appendChild(select);
