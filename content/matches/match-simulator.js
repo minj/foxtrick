@@ -343,10 +343,10 @@ Foxtrick.modules.MatchSimulator = {
 			addMatchHomeAwaySelect.title = HOME_AWAY_DESC;
 			addMatchDiv.appendChild(addMatchHomeAwaySelect);
 
-			var optionDefault = doc.createElement('option');
-			optionDefault.value = 'default';
-			optionDefault.textContent = Foxtrick.L10n.getString('matchOrder.default');
-			addMatchHomeAwaySelect.appendChild(optionDefault);
+			var optionAuto = doc.createElement('option');
+			optionAuto.value = 'auto';
+			optionAuto.textContent = Foxtrick.L10n.getString('matchOrder.auto');
+			addMatchHomeAwaySelect.appendChild(optionAuto);
 			var optionHome = doc.createElement('option');
 			optionHome.value = 'home';
 			optionHome.textContent = Foxtrick.L10n.getString('matchOrder.home');
