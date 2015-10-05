@@ -860,22 +860,32 @@ Foxtrick.modules['SkillTable'] = {
 						};
 
 						if (modifierPressed) {
+							// preserve new sort settings for later
 							var tmp = {
+								sortAsc: sortAsc,
 								sortColumnIdx: sortColumnIdx,
 								sortAsString: sortAsString,
 								sortByIndex: sortByIndex,
 							};
+
+							// load previous sort settings
+							var lastTh = lastTable.rows[0].cells[lastSortColumnIdx];
+							sortAsc = !!Number(lastTh.dataset.sortAsc);
 							sortColumnIdx = lastSortColumnIdx;
 							sortAsString = getSortAsStringFromColumn(lastSortColumnIdx);
 							sortByIndex = getSortByIndexFromColumn(lastSortColumnIdx);
 
 							var result = doSort(a, b);
 
+							// restore new settings
+							sortAsc = tmp.sortAsc;
 							sortColumnIdx = tmp.sortColumnIdx;
 							sortByIndex = tmp.sortByIndex;
 							sortAsString = tmp.sortAsString;
 
 							if (result === 0) {
+								// previous sort was equal
+								// do new sort
 								var sortResult = doSort(a, b);
 								return sortResult;
 							}
