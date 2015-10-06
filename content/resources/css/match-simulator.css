@@ -25,7 +25,10 @@
 .overlayRatingsNumOther {
 }
 
-
+.ft-simulator-pred-controls {
+	right: 10px !important;
+	bottom: 0 !important;
+}
 /* other teams tactics level */
 #tacticLevelLabelOther {
 	position: absolute;
