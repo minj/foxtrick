@@ -47,7 +47,7 @@ html[dir="rtl"] .transfer .ft_skilltable_wrapperRight {
 }
 .on_top .ft_skilltable_wrapperRight {
 	overflow: hidden;
-	max-width: initial;
+	max-width: initial !important;
 	position: initial;
 }
 .ft_skilltable {
@@ -77,7 +77,7 @@ html[dir="rtl"] .ft_skilltableLeft {
 	margin: 1px 282px 0 0;
 }
 html[dir="rtl"] .on_top .ft_skilltableRight {
-	margin: 1px 0 0 282px;
+	margin: 1px 0 0 288px;
 }
 .transfer.on_top .ft_skilltableRight {
 	margin: 1px 442px 0 0;
@@ -109,7 +109,7 @@ html[dir="rtl"] .ft_skilltablediv { margin: 35px -8px 35px 0; }
 .ft_skilltable th, .ft_skilltablediv table td { padding: 1px 2px; vertical-align: middle; }
 .ft_skilltable_container a, .ft_skilltable_links a { cursor: pointer; }
 .ft_skilltable_wrapper, .ft_skilltable_customizewrapper { max-width: 100%; overflow: auto; }
-.ft_skilltable_links { margin-bottom: 0.5em; }
+.ft_skilltable_links { margin-bottom: 1em; }
 .ft_skilltable_links a, #ft-skilltable-frozenDiv { display: none; margin: 0 0.5em 0 0; }
 .ft_skilltable_links .secondary { float: right; }
 .ft_skilltable_links .customize_item { display: inline; }
