@@ -8,11 +8,11 @@
 Foxtrick.modules['LiveAlert'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.ALERT,
 	PAGES: ['matchesLive'],
-	OPTIONS: ['Sound', 'home', 'away', 'own'],
+	OPTIONS: ['Sound', 'home', 'away', 'own', 'opponent'],
 	OPTION_EDITS: true,
-	OPTION_EDITS_DISABLED_LIST: [true, false, false, false],
-	OPTION_EDITS_DATAURL_LOAD_BUTTONS: [false, true, true, true],
-	OPTION_EDITS_DATAURL_IS_SOUND: [false, true, true, true],
+	OPTION_EDITS_DISABLED_LIST: [true, false, false, false, false],
+	OPTION_EDITS_DATAURL_LOAD_BUTTONS: [false, true, true, true, true],
+	OPTION_EDITS_DATAURL_IS_SOUND: [false, true, true, true, true],
 
 	store: {},
 
@@ -91,6 +91,8 @@ Foxtrick.modules['LiveAlert'] = {
 				var own = Foxtrick.modules.Core.TEAM.teamName;
 				var ownScored = own == info.homeLong && homeScored ||
 					own == info.awayLong && awayScored;
+				var opScored = own == info.homeLong && awayScored ||
+					own == info.awayLong && homeScored;
 
 				this.store[teamsText] = score;
 				// show notification
@@ -106,6 +108,9 @@ Foxtrick.modules['LiveAlert'] = {
 					if (ownScored &&
 					    Foxtrick.Prefs.isModuleOptionEnabled('LiveAlert', 'own'))
 						sound = Foxtrick.Prefs.getString('module.LiveAlert.own_text');
+					else if (opScored &&
+					         Foxtrick.Prefs.isModuleOptionEnabled('LiveAlert', 'opponent'))
+						sound = Foxtrick.Prefs.getString('module.LiveAlert.opponent_text');
 					else if (homeScored &&
 					         Foxtrick.Prefs.isModuleOptionEnabled('LiveAlert', 'home'))
 						sound = Foxtrick.Prefs.getString('module.LiveAlert.home_text');
