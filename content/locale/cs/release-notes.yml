@@ -13,12 +13,20 @@ cs:
       weatherSE: 'Zobrazení jmen hráčů u speciálních událostí zapříčiněných počasím z modulu <module>MatchLineupFixes</module> z důvodu změn na Hattricku nefungoval. Tato chyba je nyní opravena.'
       other: '<header>Ostatní změny</header>'
       sandbox: Přidána podpora pro připravovanou funkci Hattrick match sandbox.
+      compact_lineups: 'Zmenšení názvů uložených soupisek modulem <module>MatchOrderInterface</module>. Nabízí se tedy více soupisek bez posouvání obrazu nebo nabídky formací.'
       and_more: Pár dalších malých změn a oprav.
     0.15.2:
       important: '<header>Důležitá oznámení</header>'
+      support: '<header>Používáte Foxtrick? Můžete ho i různými způsoby <linkContribute>podpořit</linkContribute>.</header>'
       crowdin: '<header>Spousta překladatelských updatů od našich skvělých uživatelů využívajících <linkCrowdin>crowdin nástroj</linkCrowdin>. Můžeš také pomoci!</header>'
+      twitter: 'Foxtrick můžete sledovat i na <linkTwitter>Twitteru</linkTwitter> a mít aktuální informace o novinkách, aktualizacích a oznámeních.'
       bugs: '<header>Opravy chyb</header>'
+      youth_avatars: 'Opraveny mizející obličeje hráčů dorostu které způsoboval modul <module>MatchOrderInterface</module>.'
       other: '<header>Ostatní změny</header>'
+      export_live: 'V modulu <module>ReLiveLinks</module> lze povolit tlačítko na export seznamu zápasů HT-live na odkaz.'
+      match_icons: 'Přidány další ikony k událostem z modulu <module>MatchReportFormat</module>. Nyní by měly zahrnovat všechny důležité události.'
+      retro_cups: 'V modulu <module>CustomMedals</module> lze nyní nahradit ikony nových typů pohárů "retro" verzí.'
+      and_more: Pár dalších malých změn a oprav.
     0.15.1:
       bugs: '<header>Opravy chyb</header>'
       other: '<header>Ostatní změny</header>'
