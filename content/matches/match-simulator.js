@@ -13,6 +13,7 @@ Foxtrick.modules.MatchSimulator = {
 	CSS: Foxtrick.InternalPath + 'resources/css/match-simulator.css',
 
 	FIELD_OVERLAY_ID: 'fieldOverlay',
+	CONTROLS_ID: 'ft-simulator-controls',
 	MATCH_SELECT_ID: 'ft-matchSelect',
 	run: function(doc) {
 		var module = this;
@@ -323,7 +324,9 @@ Foxtrick.modules.MatchSimulator = {
 			var addMatchDiv = doc.createElement('div');
 			addMatchDiv.className = 'hidden';
 			addMatchDiv.id = 'addMatchDiv';
-			fieldOverlay.appendChild(addMatchDiv);
+
+			var controls = doc.getElementById(module.CONTROLS_ID);
+			controls.appendChild(addMatchDiv);
 
 			var addMatchText = doc.createElement('input');
 			addMatchText.id = 'addMatchText';
@@ -407,7 +410,9 @@ Foxtrick.modules.MatchSimulator = {
 			var addTeamDiv = doc.createElement('div');
 			addTeamDiv.className = 'hidden';
 			addTeamDiv.id = 'addTeamDiv';
-			fieldOverlay.appendChild(addTeamDiv);
+
+			var controls = doc.getElementById(module.CONTROLS_ID);
+			controls.appendChild(addTeamDiv);
 
 			var addTeamLabel = doc.createElement('label');
 			addTeamLabel.setAttribute('for', 'addTeamText');
@@ -459,8 +464,8 @@ Foxtrick.modules.MatchSimulator = {
 			optionNoMatch.textContent = Foxtrick.L10n.getString('matchOrder.noMatchSelected');
 			select.appendChild(optionNoMatch);
 
-			var fieldOverlay = doc.getElementById(module.FIELD_OVERLAY_ID);
-			fieldOverlay.appendChild(select);
+			var controls = doc.getElementById(module.CONTROLS_ID);
+			controls.appendChild(select);
 
 			buildAddMatch(select, opts);
 			buildAddTeam(select, opts);
@@ -555,15 +560,27 @@ Foxtrick.modules.MatchSimulator = {
 			};
 			Foxtrick.onClick(doc.getElementById('closeOverlay'), hideOverlay);
 
+			var fieldOverlay = doc.getElementById(module.FIELD_OVERLAY_ID);
+			var controls = Foxtrick.createFeaturedElement(doc, module, 'div');
+			controls.id = module.CONTROLS_ID;
+			fieldOverlay.appendChild(controls);
+
 			// add copy button
 			var copyButton = doc.createElement('input');
 			copyButton.type = 'button';
 			copyButton.value = Foxtrick.L10n.getString('button.copy');
 			copyButton.id = 'ft-copyRatingsButton';
 			Foxtrick.onClick(copyButton, module.copyRatings.bind(module));
+			controls.appendChild(copyButton);
 
-			var fieldOverlay = doc.getElementById(module.FIELD_OVERLAY_ID);
-			fieldOverlay.appendChild(copyButton);
+			// relocate prediction controls
+			var coachModDiv = doc.getElementById('coachModifier');
+			var neighbor = coachModDiv.previousElementSibling;
+			if (Foxtrick.hasClass(neighbor, 'ratingPredictionsOverlay')) {
+				Foxtrick.addClass(neighbor, 'ft-simulator-pred-controls');
+				// move controls back to fieldOverlay
+				controls.appendChild(neighbor);
+			}
 
 			var crumbs = Foxtrick.Pages.All.getBreadCrumbs(doc);
 			var thisTeamID = Foxtrick.util.id.getTeamIdFromUrl(crumbs[0].href);
@@ -741,14 +758,6 @@ Foxtrick.modules.MatchSimulator = {
 			if (displayOption) {
 				// keep it visible till closed
 				Foxtrick.addClass(fieldOverlay, 'visible');
-
-				var coachModDiv = doc.getElementById('coachModifier');
-				var neighbor = coachModDiv.previousElementSibling;
-				if (Foxtrick.hasClass(neighbor, 'ratingPredictionsOverlay')) {
-					Foxtrick.addClass(neighbor, 'ft-simulator-pred-controls');
-					// move controls back to fieldOverlay
-					fieldOverlay.appendChild(neighbor);
-				}
 			}
 
 			// this injects Ratings module so should always run
