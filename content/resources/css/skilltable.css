@@ -73,6 +73,14 @@ html[dir="rtl"] .ft_skilltableLeft {
 .on_top .ft_skilltableLeft {
 	margin: 0;
 }
+.ft_skilltableLeft .ft-skilltable_player {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 100px;
+}
+.transfer .ft_skilltableLeft .ft-skilltable_player {
+	max-width: 150px;
+}
 .on_top .ft_skilltableRight {
 	margin: 1px 282px 0 0;
 }
@@ -87,14 +95,6 @@ html[dir="rtl"] .transfer.on_top .ft_skilltableRight {
 }
 html[firefox] .on_top .ft_skilltableRight {
 	margin-top: 2px;
-}
-.ft-skilltable_player {
-	overflow: hidden;
-	text-overflow: ellipsis;
-	max-width: 100px;
-}
-.transfer .ft-skilltable_player {
-	max-width: 150px;
 }
 .ft_skilltablediv h2 { margin: 10px 0; }
 .ft_skilltablediv.transfer { margin: 35px 0; }
