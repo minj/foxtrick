@@ -215,7 +215,6 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 
 	var addPerfHistLink = function(doc, player) {
 		var ps = doc.createElement('a');
-		ps.textContent = Foxtrick.L10n.getString('PerformanceHistory.abbr');
 		ps.title = Foxtrick.L10n.getString('PerformanceHistory');
 		var psUrl = player.nameLink.href;
 		psUrl = psUrl.replace('/Club/Players/Player.aspx',
@@ -223,17 +222,27 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 		ps.href = psUrl;
 		ps.target = '_blank';
 		player.performanceHistory = ps;
+		Foxtrick.addImage(doc, ps, {
+			src: Foxtrick.InternalPath + 'resources/img/shortcuts/stats.png',
+			alt: Foxtrick.L10n.getString('PerformanceHistory.abbr'),
+			height: 16,
+			'aria-label': ps.title,
+		});
 	};
 	var addHYLink = function(doc, player) {
 		var hyUrl = 'http://www.hattrick-youthclub.org/redirect/type/player_details/ht_id/' +
 			player.id;
 
 		var hyLink = doc.createElement('a');
-		hyLink.textContent = Foxtrick.L10n.getString('HyLink.abbr');
 		hyLink.title = Foxtrick.L10n.getString('HyLink');
 		hyLink.href = hyUrl;
 		hyLink.target = '_blank';
 		player.hyLink = hyLink;
+		Foxtrick.addImage(doc, hyLink, {
+			src: Foxtrick.InternalPath + 'resources/img/staff/hyouthclub.png',
+			alt: Foxtrick.L10n.getString('HyLink.abbr'),
+			'aria-label': hyLink.title,
+		});
 	};
 
 	var parseXml = function(xml) {
@@ -858,7 +867,6 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 			if (Foxtrick.Pages.Players.isOwn(doc) &&
 			    !Foxtrick.Pages.Players.isNT(doc)) {
 				var tc = doc.createElement('a');
-				tc.textContent = Foxtrick.L10n.getString('TransferCompare.abbr');
 				tc.title = Foxtrick.L10n.getString('TransferCompare');
 				var tcUrl = player.nameLink.href;
 				tcUrl = tcUrl.replace('/Club/Players/Player.aspx',
@@ -866,6 +874,13 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				tc.href = tcUrl;
 				tc.target = '_blank';
 				player.transferCompare = tc;
+
+				var tcImg = doc.createElement('img');
+				tcImg.height = 16;
+				tcImg.src = '/App_Themes/Standard/images/ActionIcons/sell.png';
+				tcImg.alt = Foxtrick.L10n.getString('TransferCompare.abbr');
+				tcImg.setAttribute('aria-label', tc.title);
+				tc.appendChild(tcImg);
 			}
 
 			// playerstats

@@ -92,12 +92,24 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 			var bidder = items[items.length - 2];
 			var bidderLink = bidder.querySelector('a');
 			if (bidderLink) {
+				var bidDesc = Foxtrick.L10n.getString('CurrentBidder');
 				bidderLink = bidderLink.cloneNode(true);
 				bidderLink.target = '_blank';
-				player.currentBidderLink = bidderLink;
+
 				var shortBidder = bidderLink.cloneNode(true);
-				shortBidder.textContent = 'x';
+				shortBidder.textContent = '';
+				shortBidder.title = bidDesc + ': ' + shortBidder.title;
 				player.currentBidderLinkShort = shortBidder;
+
+				bidderLink.title = bidDesc;
+				player.currentBidderLink = bidderLink;
+
+				var bidderImg = doc.createElement('img');
+				bidderImg.height = 16;
+				bidderImg.src = '/Img/Icons/dollar.gif';
+				bidderImg.alt = bidderLink.textContent;
+				bidderImg.setAttribute('aria-label', bidDesc);
+				shortBidder.appendChild(bidderImg);
 			}
 
 			// check if the player is sold, if he is, then following info
@@ -130,22 +142,32 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 
 			var tc = doc.createElement('a');
 			tc.target = '_blank';
-			tc.textContent = Foxtrick.L10n.getString('TransferCompare.abbr');
 			tc.title = Foxtrick.L10n.getString('TransferCompare');
 			tc.href = player.nameLink.href.replace('/Club/Players/Player.aspx',
 			                                       '/Club/Transfers/TransferCompare.aspx');
 			player.transferCompare = tc;
+			var tcImg = doc.createElement('img');
+			tcImg.height = 16;
+			tcImg.src = '/App_Themes/Standard/images/ActionIcons/sell.png';
+			tcImg.alt = Foxtrick.L10n.getString('TransferCompare.abbr');
+			tcImg.setAttribute('aria-label', tc.title);
+			tc.appendChild(tcImg);
 
 			// playerstats
 			var ps = doc.createElement('a');
 			ps.target = '_blank';
-			ps.textContent = Foxtrick.L10n.getString('PerformanceHistory.abbr');
 			ps.title = Foxtrick.L10n.getString('PerformanceHistory');
 			var psUrl = player.nameLink.href;
 			psUrl = psUrl.replace('/Club/Players/Player.aspx',
 			                      '/Club/Players/PlayerStats.aspx') + '&ShowAll=true';
 			ps.href = psUrl;
 			player.performanceHistory = ps;
+			Foxtrick.addImage(doc, ps, {
+				src: Foxtrick.InternalPath + 'resources/img/shortcuts/stats.png',
+				alt: Foxtrick.L10n.getString('PerformanceHistory.abbr'),
+				height: 16,
+				'aria-label': ps.title,
+			});
 
 			// right skill table - skills
 			var skillTable = playerInfo.querySelector('.transferPlayerSkills table');
