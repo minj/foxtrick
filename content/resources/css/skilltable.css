@@ -47,7 +47,7 @@ html[dir="rtl"] .transfer .ft_skilltable_wrapperRight {
 }
 .on_top .ft_skilltable_wrapperRight {
 	overflow: hidden;
-	max-width: initial;
+	max-width: initial !important;
 	position: initial;
 }
 .ft_skilltable {
@@ -77,7 +77,7 @@ html[dir="rtl"] .ft_skilltableLeft {
 	margin: 1px 282px 0 0;
 }
 html[dir="rtl"] .on_top .ft_skilltableRight {
-	margin: 1px 0 0 282px;
+	margin: 1px 0 0 288px;
 }
 .transfer.on_top .ft_skilltableRight {
 	margin: 1px 442px 0 0;
