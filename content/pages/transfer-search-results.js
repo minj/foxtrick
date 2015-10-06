@@ -41,13 +41,18 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 			player.countryId = Foxtrick.XMLData.getCountryIdByLeagueId(leagueId);
 			var nameLink = playerInfo.querySelector('.transfer_search_playername a');
 			player.nameLink = nameLink.cloneNode(true);
+			player.nameLink.target = '_blank';
 			player.id = Foxtrick.getParameterFromUrl(player.nameLink.href, 'playerId');
 			var bookmarkLink = playerInfo.querySelector('.bookmarkSmall');
-			if (bookmarkLink)
+			if (bookmarkLink) {
 				player.bookmarkLink = bookmarkLink.cloneNode(true);
+				player.bookmarkLink.target = '_blank';
+			}
 			var hotlistLink = playerInfo.querySelector('a[href*="hotList"]');
-			if (hotlistLink)
+			if (hotlistLink) {
 				player.hotlistLink = hotlistLink.cloneNode(true);
+				player.hotlistLink.target = '_blank';
+			}
 
 			var htms = playerInfo.querySelector('.ft-htms-points');
 			if (htms) {
@@ -87,9 +92,12 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 			var bidder = items[items.length - 2];
 			var bidderLink = bidder.querySelector('a');
 			if (bidderLink) {
+				bidderLink = bidderLink.cloneNode(true);
+				bidderLink.target = '_blank';
 				player.currentBidderLink = bidderLink;
-				player.currentBidderLinkShort = bidderLink.cloneNode(true);
-				player.currentBidderLinkShort.textContent = 'x';
+				var shortBidder = bidderLink.cloneNode(true);
+				shortBidder.textContent = 'x';
+				player.currentBidderLinkShort = shortBidder;
 			}
 
 			// check if the player is sold, if he is, then following info
@@ -121,6 +129,7 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 			player.deadline = infoTable.rows[4].cells[1].cloneNode(true);
 
 			var tc = doc.createElement('a');
+			tc.target = '_blank';
 			tc.textContent = Foxtrick.L10n.getString('TransferCompare.abbr');
 			tc.title = Foxtrick.L10n.getString('TransferCompare');
 			tc.href = player.nameLink.href.replace('/Club/Players/Player.aspx',
@@ -129,6 +138,7 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 
 			// playerstats
 			var ps = doc.createElement('a');
+			ps.target = '_blank';
 			ps.textContent = Foxtrick.L10n.getString('PerformanceHistory.abbr');
 			ps.title = Foxtrick.L10n.getString('PerformanceHistory');
 			var psUrl = player.nameLink.href;
