@@ -26,11 +26,13 @@
 	,"disallowKeywordsInComments": true
 	,"disallowYodaConditions": true
 	,"disallowFunctionDeclarations": true
+	,"disallowSpacesInFunction": { "beforeOpeningRoundBrace": true }
 	,"disallowSpacesInCallExpression": true
 	,"disallowSpacesInsideArrayBrackets": true
 	,"disallowSpacesInsideParentheses": true
 	,"requireSpaceBetweenArguments": true
 	,"validateParameterSeparator": ", "
+	,"requireSpacesInFunction": { "beforeOpeningCurlyBrace": true }
 	,"requireSpacesInConditionalExpression": true
 	,"requireSpacesInForStatement": true
 	,"requireSpacesInsideObjectBrackets": "allButNested"

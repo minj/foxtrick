@@ -1,24 +1,122 @@
+.ft_skilltable_container { background-color: #fff; }
+.on_top .ft_skilltable_container {
+	position: absolute;
+	z-index: 98;
+	padding: 1em;
+	border: 2px solid #888;
+}
+.ft_skilltable_wrapper {
+	position: relative;
+}
+.on_top .ft_skilltable_wrapper {
+	position: initial;
+}
+.ft_skilltable_wrapperLeft {
+	margin: 0.1em auto 0.5em auto;
+}
+.on_top .ft_skilltable_wrapperLeft {
+	float: left;
+}
+html[dir="rtl"] .on_top .ft_skilltable_wrapperLeft {
+	float: right;
+}
+.ft_skilltable_wrapperRight {
+	max-width: 252px;
+	overflow: auto;
+	position: absolute;
+	top: -1px;
+	left: 280px;
+}
+html[data-theme="simple"] .ft_skilltable_wrapperRight {
+	max-width: 285px;
+}
+html[dir="rtl"] .ft_skilltable_wrapperRight {
+	right: 280px;
+	left: initial;
+}
+.transfer .ft_skilltable_wrapperRight {
+	max-width: 300px;
+	left: 440px;
+}
+html[data-theme="simple"] .transfer .ft_skilltable_wrapperRight {
+	max-width: 336px;
+}
+html[dir="rtl"] .transfer .ft_skilltable_wrapperRight {
+	right: 440px;
+	left: initial;
+}
+.on_top .ft_skilltable_wrapperRight {
+	overflow: hidden;
+	max-width: initial;
+	position: initial;
+}
+.ft_skilltable {
+	width: auto !important;
+	max-width: 100%;
+	margin: 2px auto 0.5em auto;
+	white-space: nowrap;
+	border-collapse: collapse;
+	border: 1px solid #dce0dc;
+}
+.ft_skilltableLeft {
+	width: 280px !important;
+	margin: 0 0 2em 0;
+	border-right-width: 4px;
+}
+html[dir="rtl"] .ft_skilltableLeft {
+	border-left-width: 4px;
+	border-right-width: 1px;
+}
+.transfer .ft_skilltableLeft {
+	width: 440px !important;
+}
+.on_top .ft_skilltableLeft {
+	margin: 0;
+}
+.on_top .ft_skilltableRight {
+	margin: 1px 282px 0 0;
+}
+html[dir="rtl"] .on_top .ft_skilltableRight {
+	margin: 1px 0 0 282px;
+}
+.transfer.on_top .ft_skilltableRight {
+	margin: 1px 442px 0 0;
+}
+html[dir="rtl"] .transfer.on_top .ft_skilltableRight {
+	margin: 1px 0 0 442px;
+}
+html[firefox] .on_top .ft_skilltableRight {
+	margin-top: 2px;
+}
+.ft-skilltable_player {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 100px;
+}
+.transfer .ft-skilltable_player {
+	max-width: 150px;
+}
+.ft_skilltablediv h2 { margin: 10px 0; }
+.ft_skilltablediv.transfer { margin: 35px 0; }
 html[dir="ltr"] .ft_skilltablediv { margin: 35px 0 35px -8px; }
 html[dir="rtl"] .ft_skilltablediv { margin: 35px -8px 35px 0; }
-.ft_skilltablediv.transfer { margin: 35px 0; }
-.ft_skilltablediv h2 { margin: 10px 0; }
-.ft_skilltable { width: auto !important; max-width: 100%; margin: 0.1em auto 0.5em auto; white-space: nowrap; border-collapse: collapse; border: 1px solid #dce0dc; }
 .ft_skilltable td:nth-child(even) { background-color: #eeeeee; }
 .ft_skilltable td:nth-child(odd) { background-color: white; }
-.ft_skilltable tr:hover td { background-color: yellow; }
+.ft_skilltable tr { height: 19px; }
+.transfer .ft_skilltable tr { height: 21px; }
+.ft_skilltableRight tr:hover td { background-color: yellow; }
 .ft_skilltable th { text-align: center; }
 .ft_skilltable th, .ft_skilltablediv table td { padding: 1px 2px; vertical-align: middle; }
 .ft_skilltable_container a, .ft_skilltable_links a { cursor: pointer; }
 .ft_skilltable_wrapper, .ft_skilltable_customizewrapper { max-width: 100%; overflow: auto; }
 .ft_skilltable_links { margin-bottom: 0.5em; }
-.ft_skilltable_links a { display: none; margin: 0 0.5em 0 0; }
+.ft_skilltable_links a, #ft-skilltable-frozenDiv { display: none; margin: 0 0.5em 0 0; }
 .ft_skilltable_links .secondary { float: right; }
 .ft_skilltable_links .customize_item { display: inline; }
+.customizing #ft-skilltable-frozenDiv { display: block; }
 .ft_skilltable_links.customizing a { display: inline; }
 .ft_skilltable_links.customizing .customize_item { display: none; }
-.ft_skilltable_container { background-color: #fff; }
-.ft_skilltable_container.on_top { position: absolute; z-index: 98; padding: 1em; border: 2px solid #888; }
-.ft_skilltable th { cursor: pointer; }
+.ft_skilltable th { cursor: pointer; height: 22px; vertical-align: middle; }
 .ft_skilltable td { border-bottom: 1px solid #dce0dc; }
 .ft_skilltable td.align-right { text-align: right; }
 .ft_skilltable td.align-left { text-align: left; }
@@ -31,3 +129,7 @@ html[dir="ltr"] .ft_skilltable td.status img { margin-left: 0.5em; }
 html[dir="rtl"] .ft_skilltable td.status img { margin-left: 0.5em; }
 html[dir="rtl"] .ft_skilltable td.formatted-num { direction: ltr; }
 #ft_skilltable img { vertical-align: middle; }
+.ft-coach {
+	vertical-align: bottom;
+}
+.on_top #ft-skilltable-frozenDiv { display: none; }
