@@ -136,6 +136,8 @@ Foxtrick.modules.MatchSimulator = {
 
 			var addTeamDiv = doc.getElementById('addTeamDiv');
 			Foxtrick.addClass(addTeamDiv, 'hidden');
+			var predControls = doc.querySelector('.ft-simulator-pred-controls');
+			Foxtrick.removeClass(predControls, 'hidden');
 			var select = doc.getElementById(module.MATCH_SELECT_ID);
 			select.selectedIndex = 0;
 			Foxtrick.removeClass(select, 'hidden');
@@ -165,8 +167,10 @@ Foxtrick.modules.MatchSimulator = {
 			opts.isNew = true;
 
 			var addMatchDiv = doc.getElementById('addMatchDiv');
-			var select = doc.getElementById(module.MATCH_SELECT_ID);
 			Foxtrick.addClass(addMatchDiv, 'hidden');
+			var predControls = doc.querySelector('.ft-simulator-pred-controls');
+			Foxtrick.removeClass(predControls, 'hidden');
+			var select = doc.getElementById(module.MATCH_SELECT_ID);
 			Foxtrick.removeClass(select, 'hidden');
 
 			getMatchDetails(matchId, sourceSystem, opts);
@@ -205,6 +209,7 @@ Foxtrick.modules.MatchSimulator = {
 			var doc = ev.target.ownerDocument;
 			var select = doc.getElementById(module.MATCH_SELECT_ID);
 			var fieldOverlay = doc.getElementById(module.FIELD_OVERLAY_ID);
+			var predControls = doc.querySelector('.ft-simulator-pred-controls');
 
 			var selectedMatchId = parseInt(select.value, 10);
 			var selectedOption = select.options[select.selectedIndex];
@@ -214,6 +219,7 @@ Foxtrick.modules.MatchSimulator = {
 			// add team
 			if (selectedMatchId == -2) {
 				Foxtrick.addClass(ev.target, 'hidden');
+				Foxtrick.addClass(predControls, 'hidden');
 				var addTeamDiv = doc.getElementById('addTeamDiv');
 				Foxtrick.removeClass(addTeamDiv, 'hidden');
 				return;
@@ -241,6 +247,7 @@ Foxtrick.modules.MatchSimulator = {
 			// add a matchId manually
 			else if (selectedMatchId === 0) {
 				Foxtrick.addClass(ev.target, 'hidden');
+				Foxtrick.addClass(predControls, 'hidden');
 				var addMatchDiv = doc.getElementById('addMatchDiv');
 				Foxtrick.removeClass(addMatchDiv, 'hidden');
 				return;
@@ -390,9 +397,14 @@ Foxtrick.modules.MatchSimulator = {
 			addMatchButtonCancel.value = Foxtrick.L10n.getString('button.cancel');
 			var addMatchCancel = function(ev) {
 				var doc = ev.target.ownerDocument;
+
 				var addMatchDiv = doc.getElementById('addMatchDiv');
-				var select = doc.getElementById(module.MATCH_SELECT_ID);
 				Foxtrick.addClass(addMatchDiv, 'hidden');
+
+				var predControls = doc.querySelector('.ft-simulator-pred-controls');
+				Foxtrick.removeClass(predControls, 'hidden');
+
+				var select = doc.getElementById(module.MATCH_SELECT_ID);
 				Foxtrick.removeClass(select, 'hidden');
 				select.selectedIndex = 0;
 			};
@@ -441,9 +453,14 @@ Foxtrick.modules.MatchSimulator = {
 			addTeamButtonCancel.value = Foxtrick.L10n.getString('button.cancel');
 			var addTeamCancel = function(ev) {
 				var doc = ev.target.ownerDocument;
+
 				var addTeamDiv = doc.getElementById('addTeamDiv');
-				var select = doc.getElementById(module.MATCH_SELECT_ID);
 				Foxtrick.addClass(addTeamDiv, 'hidden');
+
+				var predControls = doc.querySelector('.ft-simulator-pred-controls');
+				Foxtrick.removeClass(predControls, 'hidden');
+
+				var select = doc.getElementById(module.MATCH_SELECT_ID);
 				Foxtrick.removeClass(select, 'hidden');
 				select.selectedIndex = 0;
 			};
