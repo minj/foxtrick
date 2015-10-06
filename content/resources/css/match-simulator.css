@@ -25,7 +25,6 @@
 .overlayRatingsNumOther {
 }
 
-
 /* other teams tactics level */
 #tacticLevelLabelOther {
 	position: absolute;
@@ -69,6 +68,11 @@ html[safari] .ftMatchTournamentLadder , html[chrome] .ftMatchTournamentLadder ,
 html[safari] .ftMatchTournament , html[chrome] .ftMatchTournament  { background-color: #FFC880}
 html[safari] .ftMatchLeagueNT , html[chrome] .ftMatchLeagueNT  { background-color: #FFC880}
 
+.ft-simulator-pred-controls {
+	z-index: 4;
+	right: 10px !important;
+	bottom: 0 !important;
+}
 
 /* bottom box */
 #ft-overlayBottom {
