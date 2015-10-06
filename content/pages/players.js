@@ -377,7 +377,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 					}
 				}
 
-				if (newSkillInfo) {
+				if (newSkillInfo && !isYouth) {
 					var htmsInput = {
 						years: player.age.years,
 						days: player.age.days,
