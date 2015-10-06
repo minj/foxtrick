@@ -27,6 +27,9 @@ html[dir="rtl"] .on_top .ft_skilltable_wrapperLeft {
 	top: -1px;
 	left: 280px;
 }
+html[data-theme="simple"] .ft_skilltable_wrapperRight {
+	max-width: 285px;
+}
 html[dir="rtl"] .ft_skilltable_wrapperRight {
 	right: 280px;
 	left: initial;
@@ -34,6 +37,9 @@ html[dir="rtl"] .ft_skilltable_wrapperRight {
 .transfer .ft_skilltable_wrapperRight {
 	max-width: 300px;
 	left: 440px;
+}
+html[data-theme="simple"] .transfer .ft_skilltable_wrapperRight {
+	max-width: 336px;
 }
 html[dir="rtl"] .transfer .ft_skilltable_wrapperRight {
 	right: 440px;
