@@ -41,13 +41,18 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 			player.countryId = Foxtrick.XMLData.getCountryIdByLeagueId(leagueId);
 			var nameLink = playerInfo.querySelector('.transfer_search_playername a');
 			player.nameLink = nameLink.cloneNode(true);
+			player.nameLink.target = '_blank';
 			player.id = Foxtrick.getParameterFromUrl(player.nameLink.href, 'playerId');
 			var bookmarkLink = playerInfo.querySelector('.bookmarkSmall');
-			if (bookmarkLink)
+			if (bookmarkLink) {
 				player.bookmarkLink = bookmarkLink.cloneNode(true);
+				player.bookmarkLink.target = '_blank';
+			}
 			var hotlistLink = playerInfo.querySelector('a[href*="hotList"]');
-			if (hotlistLink)
+			if (hotlistLink) {
 				player.hotlistLink = hotlistLink.cloneNode(true);
+				player.hotlistLink.target = '_blank';
+			}
 
 			var htms = playerInfo.querySelector('.ft-htms-points');
 			if (htms) {
@@ -87,9 +92,24 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 			var bidder = items[items.length - 2];
 			var bidderLink = bidder.querySelector('a');
 			if (bidderLink) {
+				var bidDesc = Foxtrick.L10n.getString('CurrentBidder');
+				bidderLink = bidderLink.cloneNode(true);
+				bidderLink.target = '_blank';
+
+				var shortBidder = bidderLink.cloneNode(true);
+				shortBidder.textContent = '';
+				shortBidder.title = bidDesc + ': ' + shortBidder.title;
+				player.currentBidderLinkShort = shortBidder;
+
+				bidderLink.title = bidDesc;
 				player.currentBidderLink = bidderLink;
-				player.currentBidderLinkShort = bidderLink.cloneNode(true);
-				player.currentBidderLinkShort.textContent = 'x';
+
+				var bidderImg = doc.createElement('img');
+				bidderImg.height = 16;
+				bidderImg.src = '/Img/Icons/dollar.gif';
+				bidderImg.alt = bidderLink.textContent;
+				bidderImg.setAttribute('aria-label', bidDesc);
+				shortBidder.appendChild(bidderImg);
 			}
 
 			// check if the player is sold, if he is, then following info
@@ -121,21 +141,33 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 			player.deadline = infoTable.rows[4].cells[1].cloneNode(true);
 
 			var tc = doc.createElement('a');
-			tc.textContent = Foxtrick.L10n.getString('TransferCompare.abbr');
+			tc.target = '_blank';
 			tc.title = Foxtrick.L10n.getString('TransferCompare');
 			tc.href = player.nameLink.href.replace('/Club/Players/Player.aspx',
 			                                       '/Club/Transfers/TransferCompare.aspx');
 			player.transferCompare = tc;
+			var tcImg = doc.createElement('img');
+			tcImg.height = 16;
+			tcImg.src = '/App_Themes/Standard/images/ActionIcons/sell.png';
+			tcImg.alt = Foxtrick.L10n.getString('TransferCompare.abbr');
+			tcImg.setAttribute('aria-label', tc.title);
+			tc.appendChild(tcImg);
 
 			// playerstats
 			var ps = doc.createElement('a');
-			ps.textContent = Foxtrick.L10n.getString('PerformanceHistory.abbr');
+			ps.target = '_blank';
 			ps.title = Foxtrick.L10n.getString('PerformanceHistory');
 			var psUrl = player.nameLink.href;
 			psUrl = psUrl.replace('/Club/Players/Player.aspx',
 			                      '/Club/Players/PlayerStats.aspx') + '&ShowAll=true';
 			ps.href = psUrl;
 			player.performanceHistory = ps;
+			Foxtrick.addImage(doc, ps, {
+				src: Foxtrick.InternalPath + 'resources/img/shortcuts/stats.png',
+				alt: Foxtrick.L10n.getString('PerformanceHistory.abbr'),
+				height: 16,
+				'aria-label': ps.title,
+			});
 
 			// right skill table - skills
 			var skillTable = playerInfo.querySelector('.transferPlayerSkills table');
