@@ -236,7 +236,7 @@ Foxtrick.modules['TeamPopupLinks'] = {
 					if (org_link.getAttribute('more')) {
 						if (org_link.getAttribute('more') == 'true')
 							show_more = true;
-						org_link = org_link.parentNode.parentNode.nextSibling;
+						org_link = org_link.parentNode.parentNode.previousSibling;
 					}
 
 					var teamid = Foxtrick.util.id.getTeamIdFromUrl(org_link.href);

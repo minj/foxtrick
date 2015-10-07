@@ -389,6 +389,7 @@ pref("extensions.foxtrick.prefs.module.SkillColoring.skill_translated.enabled", 
 pref("extensions.foxtrick.prefs.module.SkillColoring.skill_translated_title.enabled", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.enabled", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.ColouredYouth.enabled", false);
+pref("extensions.foxtrick.prefs.module.SkillTable.FrozenColumns.enabled", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.OtherTeams.enabled", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.senior.nt.Age", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.senior.nt.Current_club", true);
@@ -560,6 +561,7 @@ pref("extensions.foxtrick.prefs.module.SkillTable.transfer.fwtwPosition", false)
 pref("extensions.foxtrick.prefs.module.SkillTable.transfer.tdfPosition", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.transfer.BestPosition", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.youth.others.Age", true);
+pref("extensions.foxtrick.prefs.module.SkillTable.youth.others.HyLink", false);
 pref("extensions.foxtrick.prefs.module.SkillTable.youth.others.Last_match", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.youth.others.Last_position", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.youth.others.Last_stars", true);
@@ -570,6 +572,7 @@ pref("extensions.foxtrick.prefs.module.SkillTable.youth.others.Speciality", true
 pref("extensions.foxtrick.prefs.module.SkillTable.youth.others.Status", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.youth.own.Age", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.youth.own.Defending", true);
+pref("extensions.foxtrick.prefs.module.SkillTable.youth.own.HyLink", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.youth.own.Keeper", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.youth.own.Last_match", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.youth.own.Last_position", true);

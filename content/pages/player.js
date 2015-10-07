@@ -374,7 +374,7 @@ Foxtrick.Pages.Player.getSpeciality = function(doc) {
  * Get player skills.
  * For senior players returns an integer skill map:
  * {keeper, defending, playmaking, winger, passing, scoring, setPieces}.
- * Youth player skill map contains {current, max: number, maxed: Boolean} or
+ * Youth player skill map contains {current, max: number, top3, maxed: Boolean} or
  * an empty object if no data is known.
  * @param  {document} doc
  * @return {object}       {current: number, max: number, maxed: Boolean}
@@ -391,7 +391,7 @@ Foxtrick.Pages.Player.getSkills = function(doc) {
 -	 * Each field is a skill map:
  * {keeper, defending, playmaking, winger, passing, scoring, setPieces}.
  * For seniors values are integers, while youth values are
- * {current, max: number, maxed: Boolean} or
+ * {current, max: number, maxed, top3: Boolean} or
  * an empty object if no data is known.
  * For seniors texts are strings, while youth texts are {current, max: string}.
  * Texts may contain level numbers, e.g. 'weak (3)'.'
@@ -527,7 +527,7 @@ Foxtrick.Pages.Player.parseSeniorSkills = function(table) {
  * localized skill levels and names respectively.
  * Each field is a skill map:
  * {keeper, defending, playmaking, winger, passing, scoring, setPieces}.
- * Each value is {current, max: number, maxed: Boolean}
+ * Each value is {current, max: number, maxed, top3: Boolean}
  * or an empty object if no data is known.
  * Each text is {current, max: string}.
  * Texts may contain level numbers, e.g. 'weak (3)'.'
@@ -582,6 +582,11 @@ Foxtrick.Pages.Player.parseYouthSkills = function(table) {
 				skill.current = parseFloat(info[0]) || 0;
 				skill.max = parseFloat(info[1]) || 0;
 				skill.maxed = HYSkills.querySelector('.ft-skillbar-maxed').hasAttribute('style');
+
+				var row = HYSkills;
+				while (row.nodeName !== 'TR')
+					row = row.parentNode;
+				skill.top3 = !!row.querySelector('strong.ft-dummy');
 			}
 			else if (imgs.length) {
 				// when max is unknown first title is empty
@@ -604,11 +609,12 @@ Foxtrick.Pages.Player.parseYouthSkills = function(table) {
 				// if current and/or max is unknown, mark it as 0
 				skill.current = current;
 				skill.max = max || 0;
+				skill.top3 = false; // only known in HY
 			}
 			else {
 				// no image is present, meaning nothing about
 				// that skill has been revealed
-				skill = { current: 0, max: 0, maxed: false };
+				skill = { current: 0, max: 0, maxed: false, top3: false };
 			}
 			var currentText = '';
 			var maxText = '';
