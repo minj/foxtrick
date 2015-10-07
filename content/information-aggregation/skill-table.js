@@ -659,7 +659,7 @@ Foxtrick.modules['SkillTable'] = {
 				dateDiff: function(cell, deadline) {
 					var htDate = Foxtrick.util.time.getHtDate(doc);
 					var diff = Math.floor((htDate.getTime() - deadline.getTime()) / 1000); // Sec
-					var span = Foxtrick.util.time.timeDifferenceToElement(doc, diff, true, false);
+					var span = Foxtrick.util.time.timeDiffToSpan(doc, diff, { useDHM: false });
 					cell.appendChild(span);
 					cell.title = Foxtrick.util.time.buildDate(deadline);
 					Foxtrick.addClass(cell, 'align-left');
