@@ -28,8 +28,9 @@ Foxtrick.modules['LastLogin'] = {
 				var last = doc.createElement('span');
 				var ST_date = Foxtrick.util.time.getDateFromText(elm);
 
-				var _s = Math.floor((HT_date.getTime() - ST_date.getTime()) / 1000); //Sec
-				var DiffText = Foxtrick.util.time.timeDifferenceToElement(doc, _s).textContent;
+				var _s = Math.floor((HT_date.getTime() - ST_date.getTime()) / 1000); // sec
+				var diffEl = Foxtrick.util.time.timeDiffToSpan(doc, _s, { useSWD: true });
+				var DiffText = diffEl.textContent;
 				if (DiffText.search('NaN') == -1) {
 					last.textContent = '(' + DiffText + ')';
 					last.className = 'date smallText ft-last-login-diff nowrap';

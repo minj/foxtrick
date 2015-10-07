@@ -62,9 +62,9 @@ Foxtrick.modules['ExtendedPlayerDetails'] = {
 
 		var htDate = Foxtrick.util.time.getHtDate(doc);
 
-		var joined_s = Math.floor((htDate.getTime() - dateObj.getTime()) / 1000); //Sec
+		var sec = Math.floor((htDate.getTime() - dateObj.getTime()) / 1000); // sec
 
-		var JoinedSpan = Foxtrick.util.time.timeDifferenceToElement(doc, joined_s, true);
+		var JoinedSpan = Foxtrick.util.time.timeDiffToSpan(doc, sec, { useDHM: false });
 
 		if (JoinedSpan.textContent.search('NaN') == -1) {
 			Foxtrick.addClass(joined_elm, 'smallText ft_since');
