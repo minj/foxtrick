@@ -261,7 +261,7 @@ Foxtrick.modules['PlayerFilters'] = {
 		var hasBotsMarked = false;
 		var markBotPlayers = function() {
 			var loading = Foxtrick.util.note.createLoading(doc);
-			doc.getElementsByTagName('p')[0].appendChild(loading);
+			doc.querySelector('#mainBody p').appendChild(loading);
 
 			var batchArgs = [];
 			Foxtrick.map(function(n) {
