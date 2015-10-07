@@ -91,6 +91,16 @@ Foxtrick.modules['PlayerFilters'] = {
 				btnOK.tabIndex = 5;
 				filterSelectOptionsDiv.appendChild(btnOK);
 
+				// disable enter to submit HT form
+				// redirect to FT button instead
+				Foxtrick.listen(input, 'keypress', function(ev) {
+					var doc = this.ownerDocument;
+					if (ev.keyCode == 13) {
+						ev.preventDefault();
+						doc.getElementById('filterSelectOptionsOk').click();
+					}
+				});
+
 				// rename filter to all
 				filterSelect.getElementsByTagName('option')[0].textContent =
 					Foxtrick.L10n.getString('Filters.noFilter');
