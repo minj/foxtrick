@@ -282,6 +282,7 @@ Foxtrick.modules['PlayerFilters'] = {
 			Foxtrick.util.api.batchRetrieve(doc, batchArgs, { cache_lifetime: 'session' },
 			  function(xmls, errors) {
 				if (xmls) {
+					var skillTables = doc.querySelectorAll('.ft_skilltable');
 					Foxtrick.forEach(function(xml, i) {
 						var errorText = errors[i];
 						if (!xml || errorText) {
@@ -291,26 +292,25 @@ Foxtrick.modules['PlayerFilters'] = {
 						var TeamID = xml.num('TeamID');
 						var IsBot = xml.bool('IsBot');
 
-						// update playerInfo
 						if (!IsBot) {
+							// update playerInfo
 							Foxtrick.map(function(div) {
 								var thisTeamId = Foxtrick.util.id.findTeamId(div);
 								if (thisTeamId == TeamID) {
 									div.setAttribute('active', 'true');
 								}
 							}, doc.getElementsByClassName('playerInfo'));
-						}
 
-						// update skillTable
-						var skillTable = doc.getElementById('ft_skilltable');
-						if (skillTable && !IsBot) {
-							var rows = Foxtrick.toArray(skillTable.rows).slice(1); // skip header
-							Foxtrick.map(function(row) {
-								var thisTeamId = Foxtrick.util.id.findTeamId(row);
-								if (TeamID == thisTeamId) {
-									row.setAttribute('active', 'true');
-								}
-							}, rows);
+							// update skillTables
+							Foxtrick.forEach(function(table) {
+								var rows = Foxtrick.toArray(table.rows).slice(1); // skip header
+								Foxtrick.map(function(row) {
+									var thisTeamId = Foxtrick.util.id.findTeamId(row);
+									if (TeamID == thisTeamId) {
+										row.setAttribute('active', 'true');
+									}
+								}, rows);
+							}, skillTables);
 						}
 					}, xmls);
 				}
@@ -513,10 +513,10 @@ Foxtrick.modules['PlayerFilters'] = {
 			var h = body.getElementsByTagName('h1')[0];
 			h.textContent = h.textContent.replace(/\d+/, count);
 
-			// update skillTable
-			var skillTable = doc.getElementById('ft_skilltable');
-			if (skillTable) {
-				var rows = Foxtrick.toArray(skillTable.rows).slice(1); // skip header
+			// update skillTables
+			var skillTables = doc.querySelectorAll('.ft_skilltable');
+			Foxtrick.forEach(function(table) {
+				var rows = Foxtrick.toArray(table.rows).slice(1); // skip header
 				Foxtrick.forEach(function(row) {
 					var pid = parseInt(row.getAttribute('playerid'), 10);
 					var player = Foxtrick.Pages.Players.getPlayerFromListById(playerList, pid);
@@ -527,7 +527,7 @@ Foxtrick.modules['PlayerFilters'] = {
 						Foxtrick.addClass(row, 'hidden');
 					}
 				}, rows);
-			}
+			}, skillTables);
 
 			// update team-stats
 			var	box = doc.getElementById('ft-team-stats-box');
