@@ -23,12 +23,33 @@ Foxtrick.modules['PlayerFilters'] = {
 		if (!sortSelect)
 			return;
 
+		var insertBefore = sortSelect.nextSibling;
+
 		var filterSelect = Foxtrick.createFeaturedElement(doc, this, 'select');
 		filterSelect.id = this.FILTER_SELECT_ID;
 
+		// this is used to clear filters, and we use this to select all
+		// players
+		var optionAll = doc.createElement('option');
+		optionAll.value = 'all';
+		optionAll.textContent = '-- ' + Foxtrick.L10n.getString('Filters.label') + ' --';
+		filterSelect.appendChild(optionAll);
+
+		var optionAdd = doc.createElement('option');
+		optionAdd.value = 'addFilters';
+		optionAdd.textContent = Foxtrick.L10n.getString('Filters.addFilterOptions');
+		filterSelect.appendChild(optionAdd);
+
+		var container = doc.createElement('div');
+		container.className = 'ft-select-container';
+		container.appendChild(sortSelect);
+		container.appendChild(filterSelect);
+
+		insertBefore.parentNode.insertBefore(container, insertBefore);
+
 		var playerList = Foxtrick.modules.Core.getPlayerList(doc);
 
-		var selectClick = function() {
+		var addFilters = function() {
 			try {
 				if (filterSelect.getAttribute('scanned') === 'true') {
 					// we only scan the players for once and mark it as scanned
@@ -39,45 +60,36 @@ Foxtrick.modules['PlayerFilters'] = {
 				filterSelectOptionsDiv.id = 'filterSelectOptionsDiv';
 				filterSelectOptionsDiv.className = 'hidden';
 				container.appendChild(filterSelectOptionsDiv);
+
 				var filterSelectOptions = doc.createElement('select');
 				filterSelectOptions.id = 'filterSelectOptions';
-				filterSelectOptions.setAttribute('tabindex', '3');
-				//Foxtrick.listen(filterSelect, 'change', changeListener, false);
-				var option = doc.createElement('option');
-				option.value = 'equal';
-				option.textContent = Foxtrick.L10n.getString('Filters.equal');
-				filterSelectOptions.appendChild(option);
-				var option = doc.createElement('option');
-				option.value = 'notEqual';
-				option.textContent = Foxtrick.L10n.getString('Filters.notEqual');
-				filterSelectOptions.appendChild(option);
-				var option = doc.createElement('option');
-				option.value = 'over';
-				option.textContent = Foxtrick.L10n.getString('Filters.over');
-				filterSelectOptions.appendChild(option);
-				var option = doc.createElement('option');
-				option.value = 'under';
-				option.textContent = Foxtrick.L10n.getString('Filters.under');
-				filterSelectOptions.appendChild(option);
+				filterSelectOptions.tabIndex = 3;
+
+				var options = ['equal', 'notEqual', 'over', 'under'];
+				Foxtrick.forEach(function(opt) {
+					var option = doc.createElement('option');
+					option.value = opt;
+					option.textContent = Foxtrick.L10n.getString('Filters.' + opt);
+					filterSelectOptions.appendChild(option);
+				}, options);
 				filterSelectOptionsDiv.appendChild(filterSelectOptions);
 
 				var input = doc.createElement('input');
-				input.setAttribute('id', 'filterSelectOptionsText');
-				input.setAttribute('value', '');
-				input.setAttribute('type', 'text');
-				input.setAttribute('maxlength', '20');
-				input.setAttribute('size', '5');
-				input.setAttribute('tabindex', '4');
-				input.setAttribute('style', 'margin-left:5px;margin-right:5px;');
+				input.id = 'filterSelectOptionsText';
+				input.type = 'text';
+				input.maxLength = 20;
+				input.size = 5;
+				input.tabIndex = 4;
+				input.setAttribute('style', 'margin-eft:5px;margin-right:5px;');
 				filterSelectOptionsDiv.appendChild(input);
 
-				var button_ok = doc.createElement('input');
-				button_ok.setAttribute('value', Foxtrick.L10n.getString('button.ok'));
-				button_ok.setAttribute('id', 'filterSelectOptionsOk');
-				button_ok.setAttribute('type', 'button');
-				Foxtrick.onClick(button_ok, changeListener);
-				button_ok.setAttribute('tabindex', '5');
-				filterSelectOptionsDiv.appendChild(button_ok);
+				var btnOK = doc.createElement('input');
+				btnOK.value = Foxtrick.L10n.getString('button.ok');
+				btnOK.id = 'filterSelectOptionsOk';
+				btnOK.type = 'button';
+				Foxtrick.onClick(btnOK, changeListener);
+				btnOK.tabIndex = 5;
+				filterSelectOptionsDiv.appendChild(btnOK);
 
 				// rename filter to all
 				filterSelect.getElementsByTagName('option')[0].textContent =
@@ -97,170 +109,154 @@ Foxtrick.modules['PlayerFilters'] = {
 				var specialities = {};
 				var specialityCount = 0;
 
-				var allPlayers = doc.getElementsByClassName('playerInfo');
-				for (var i = 0; i < allPlayers.length; ++i) {
-					var id = Foxtrick.Pages.Players.getPlayerId(allPlayers[i]);
+				var playerDivs = doc.getElementsByClassName('playerInfo');
+				Foxtrick.forEach(function(div) {
+					var id = Foxtrick.Pages.Players.getPlayerId(div);
 					var player = Foxtrick.Pages.Players.getPlayerFromListById(playerList, id);
-					// All players have attribute 'all' set to 'true', so that the
-					// filter can be cleared using an 'all' filter
-					allPlayers[i].setAttribute('all', 'true');
 					if (player.redCard || player.yellowCard) {
-						allPlayers[i].setAttribute('cards', 'true');
+						div.setAttribute('cards', 'true');
 					}
 					if (player.transferListed) {
-						allPlayers[i].setAttribute('transfer-listed', 'true');
+						div.setAttribute('transfer-listed', 'true');
 					}
 					else {
-						allPlayers[i].setAttribute('not-transfer-listed', 'true');
+						div.setAttribute('not-transfer-listed', 'true');
 					}
 					if (player.injured) {
-						allPlayers[i].setAttribute('injured', 'true');
+						div.setAttribute('injured', 'true');
 					}
 					if (player.speciality) {
-						if (specialities[player.speciality] === undefined) {
+						if (typeof specialities[player.speciality] === 'undefined') {
 							specialities[player.speciality] = specialityCount++;
 						}
-						allPlayers[i].setAttribute('speciality',
-						                           'speciality-' + Foxtrick.L10n
-						                           .getEnglishSpeciality(player.speciality));
+						var spec = Foxtrick.L10n.getEnglishSpeciality(player.speciality);
+						div.setAttribute('speciality-' + spec, 'true');
 					}
 					if (Foxtrick.Pages.Players.isPropertyInList(playerList, 'lastMatchDate')) {
 						if (lastMatch && player.lastMatchDate &&
 						    lastMatch.getTime() === player.lastMatchDate.getTime()) {
-							allPlayers[i].setAttribute('played-latest', 'true');
+							div.setAttribute('played-latest', 'true');
 						}
 						else {
-							allPlayers[i].setAttribute('not-played-latest', 'true');
+							div.setAttribute('not-played-latest', 'true');
 						}
 					}
 					if (player.motherClubBonus) {
-						allPlayers[i].setAttribute('homegrown-player', 'true');
+						div.setAttribute('homegrown-player', 'true');
 					}
 					else {
-						allPlayers[i].setAttribute('purchased-player', 'true');
+						div.setAttribute('purchased-player', 'true');
 					}
-				}
+				}, playerDivs);
 
-				if (Foxtrick.Pages.Players.isPropertyInList(playerList, 'redCard')
-					|| Foxtrick.Pages.Players.isPropertyInList(playerList, 'yellowCard')) {
-					var option = doc.createElement('option');
-					option.value = 'cards';
-					option.textContent = Foxtrick.L10n.getString('TeamStats.Cards');
-					filterSelect.appendChild(option);
-				}
+				var filters = [
+					{ props: ['redCard', 'yellowCard'], name: 'cards', l10n: 'Cards', },
+					{ props: ['injured', 'bruised'], name: 'injured', l10n: 'Injured', },
+					{ props: ['transferListed'],
+						name: 'transfer-listed', l10n: 'TransferListed', },
+					{ props: ['transferListed'],
+						name: 'not-transfer-listed', l10n: 'NotTransferListed', },
+					{ props: ['lastMatch'], name: 'played-latest', l10n: 'PlayedLatest', },
+					{ props: ['lastMatch'], name: 'not-played-latest', l10n: 'NotPlayedLatest', },
+				];
 
-				if (Foxtrick.Pages.Players.isPropertyInList(playerList, 'injured')
-					|| Foxtrick.Pages.Players.isPropertyInList(playerList, 'bruised')) {
-					var option = doc.createElement('option');
-					option.value = 'injured';
-					option.textContent = Foxtrick.L10n.getString('TeamStats.Injured');
-					filterSelect.appendChild(option);
-				}
-
-				if (Foxtrick.Pages.Players.isPropertyInList(playerList, 'transferListed')) {
-					var option = doc.createElement('option');
-					option.value = 'transfer-listed';
-					option.textContent = Foxtrick.L10n.getString('TeamStats.TransferListed');
-					filterSelect.appendChild(option);
-
-					var option = doc.createElement('option');
-					option.value = 'not-transfer-listed';
-					option.textContent = Foxtrick.L10n.getString('TeamStats.NotTransferListed');
-					filterSelect.appendChild(option);
-				}
-
-				if (Foxtrick.Pages.Players.isPropertyInList(playerList, 'lastMatch')) {
-					var option = doc.createElement('option');
-					option.value = 'played-latest';
-					option.textContent = Foxtrick.L10n.getString('TeamStats.PlayedLatest');
-					filterSelect.appendChild(option);
-
-					var option = doc.createElement('option');
-					option.value = 'not-played-latest';
-					option.textContent = Foxtrick.L10n.getString('TeamStats.NotPlayedLatest');
-					filterSelect.appendChild(option);
-				}
-
-				if (Foxtrick.Pages.Players.isPropertyInList(playerList, 'speciality')) {
-					var speciality;
-					for (speciality in specialities) {
-						var option = doc.createElement('option');
-						option.value = 'speciality-' + Foxtrick.L10n.getEnglishSpeciality(speciality);
-						option.textContent = speciality;
-						filterSelect.appendChild(option);
-					}
+				if (Foxtrick.Pages.Players.isRegular(doc)) {
+					filters.push({
+						props: ['motherClubBonus'],
+						name: 'homegrown-player', l10n: 'HomeGrownPlayers',
+					});
+					filters.push({
+						props: ['motherClubBonus'],
+						name: 'purchased-player', l10n: 'PurchasedPlayers',
+					});
 				}
 
 				if (Foxtrick.Pages.Players.isOldies(doc) && Foxtrick.util.api.authorized()) {
-					var option = doc.createElement('option');
-					option.value = 'active';
-					option.textContent = Foxtrick.L10n.getString('TeamStats.ActivePlayers');
-					filterSelect.appendChild(option);
+					filters.push({
+						props: ['id'],
+						name: 'active', l10n: 'ActivePlayers',
+					});
+				}
+
+				for (var speciality in specialities) {
+					var spec = Foxtrick.L10n.getEnglishSpeciality(speciality);
+					filters.push({
+						props: ['speciality'],
+						name: 'speciality-' + spec, title: speciality,
+					});
 				}
 
 				var faceCards = doc.getElementsByClassName('faceCard');
 				if (faceCards.length > 0) {
+					filters.push({
+						props: ['id'],
+						name: 'face', l10n: 'Pictures',
+					});
+				}
+
+				Foxtrick.forEach(function(filter) {
+					var active = Foxtrick.any(function(prop) {
+						return Foxtrick.Pages.Players.isPropertyInList(playerList, prop);
+					}, filter.props);
+
+					if (!active)
+						return;
+
 					var option = doc.createElement('option');
-					option.value = 'face';
-					option.textContent = Foxtrick.L10n.getString('TeamStats.Pictures');
+					option.value = filter.name;
+					if (filter.l10n)
+						option.textContent = Foxtrick.L10n.getString('TeamStats.' + filter.l10n);
+					else
+						option.textContent = filter.title;
+
 					filterSelect.appendChild(option);
-				}
-
-				if (Foxtrick.Pages.Players.isRegular(doc)) {
-					if (Foxtrick.Pages.Players.isPropertyInList(playerList, 'motherClubBonus')) {
-						var option = doc.createElement('option');
-						option.value = 'homegrown-player';
-						option.textContent = Foxtrick.L10n.getString('TeamStats.HomeGrownPlayers');
-						filterSelect.appendChild(option);
-
-						var option = doc.createElement('option');
-						option.value = 'purchased-player';
-						option.textContent = Foxtrick.L10n.getString('TeamStats.PurchasedPlayers');
-						filterSelect.appendChild(option);
-					}
-				}
+				}, filters);
 
 				// adding attribute filters (senior pages)
 				var attributeOptions = [
-					{ name: 'TSI', property: 'tsi', pages: ['allPlayers'] },
-					{ name: 'Age', property: 'ageYears', pages: ['allPlayers', 'youthPlayers'] },
-					{ name: 'Leadership', property: 'leadership', pages: ['allPlayers'] },
-					{ name: 'Experience', property: 'experience', pages: ['allPlayers'] },
-					{ name: 'Form', property: 'form', pages: ['allPlayers']},
-					{ name: 'Stamina', property: 'stamina', pages: ['allPlayers']},
-					{ name: 'Loyalty', property: 'loyalty', pages: ['players', 'oldPlayers']},
-					{ name: 'Keeper', property: 'keeper', pages: ['ownPlayers']},
-					{ name: 'Defending', property: 'defending', pages: ['ownPlayers']},
-					{ name: 'Playmaking', property: 'playmaking', pages: ['ownPlayers']},
-					{ name: 'Winger', property: 'winger', pages: ['ownPlayers']},
-					{ name: 'Passing', property: 'passing', pages: ['ownPlayers']},
-					{ name: 'Scoring', property: 'scoring', pages: ['ownPlayers']},
-					{ name: 'Set_pieces', property: 'setPieces', pages: ['ownPlayers']},
-					/*{ name: 'HTMS_Ability', property: 'htmsAbility', pages: ['players'] },
-					{ name: 'HTMS_Potential', property: 'htmsPotential' , pages: ['players']},
-					{ name: 'Agreeability', property: 'agreeability', pages: ['players']},
-					{ name: 'Aggressiveness', property: 'aggressiveness', pages: ['players']},
-					{ name: 'Honesty', property: 'honesty', pages: ['players']},*/
-					{ name: 'Last_stars', property: 'lastRating', pages: ['players',
-						'youthPlayers']}
+					{ name: 'TSI', property: 'tsi', pages: ['allPlayers'], },
+					{ name: 'Age', property: 'ageYears', pages: ['allPlayers', 'youthPlayers'], },
+					{ name: 'Leadership', property: 'leadership', pages: ['allPlayers'], },
+					{ name: 'Experience', property: 'experience', pages: ['allPlayers'], },
+					{ name: 'Form', property: 'form', pages: ['allPlayers'], },
+					{ name: 'Stamina', property: 'stamina', pages: ['allPlayers'], },
+					{ name: 'Loyalty', property: 'loyalty', pages: ['players', 'oldPlayers'], },
+					{ name: 'Keeper', property: 'keeper', pages: ['ownPlayers'], },
+					{ name: 'Defending', property: 'defending', pages: ['ownPlayers'], },
+					{ name: 'Playmaking', property: 'playmaking', pages: ['ownPlayers'], },
+					{ name: 'Winger', property: 'winger', pages: ['ownPlayers'], },
+					{ name: 'Passing', property: 'passing', pages: ['ownPlayers'], },
+					{ name: 'Scoring', property: 'scoring', pages: ['ownPlayers'], },
+					{ name: 'Set_pieces', property: 'setPieces', pages: ['ownPlayers'], },
+					// { name: 'HTMS_Ability', property: 'htmsAbility', pages: ['players'], },
+					// { name: 'HTMS_Potential', property: 'htmsPotential' , pages: ['players'], },
+					// { name: 'Agreeability', property: 'agreeability', pages: ['players'], },
+					// { name: 'Aggressiveness', property: 'aggressiveness', pages: ['players'], },
+					// { name: 'Honesty', property: 'honesty', pages: ['players'], },
+					{ name: 'Last_stars', property: 'lastRating',
+						pages: ['players', 'youthPlayers'], },
 				];
-				var option = doc.createElement('option');
-				option.value = 'attribute-all';
-				option.textContent = '---' + Foxtrick.L10n.getString('Filters.Attributes') + '---';
-				filterSelect.appendChild(option);
-				for (var i = 0; i < attributeOptions.length; ++i) {
-					if (!Foxtrick.isOneOfPages(doc, attributeOptions[i].pages))
-						continue;
+
+				var optionAttr = doc.createElement('option');
+				optionAttr.value = 'attribute-all';
+				var attrL10n = Foxtrick.L10n.getString('Filters.Attributes');
+				optionAttr.textContent = '---' + attrL10n + '---';
+				filterSelect.appendChild(optionAttr);
+
+				Foxtrick.forEach(function(opt) {
+					if (!Foxtrick.isOneOfPages(doc, opt.pages))
+						return;
+
 					var option = doc.createElement('option');
-					option.value = 'attribute-' + attributeOptions[i].property;
-					option.textContent = Foxtrick.L10n.getString(attributeOptions[i].name);
+					option.value = 'attribute-' + opt.property;
+					option.textContent = Foxtrick.L10n.getString(opt.name);
 					filterSelect.appendChild(option);
-				}
+				}, attributeOptions);
 
 				filterSelect.setAttribute('scanned', 'true');
-			} catch (e) { Foxtrick.log('Player filter click:', e); }
+			}
+			catch (e) { Foxtrick.log('Player filter click:', e); }
 		};
-
 
 		var hasBotsMarked = false;
 		var markBotPlayers = function() {
@@ -276,38 +272,39 @@ Foxtrick.modules['PlayerFilters'] = {
 			Foxtrick.util.api.batchRetrieve(doc, batchArgs, { cache_lifetime: 'session' },
 			  function(xmls, errors) {
 				if (xmls) {
-					for (var i = 0; i < xmls.length; ++i) {
-						var xml = xmls[i];
+					Foxtrick.forEach(function(xml, i) {
 						var errorText = errors[i];
 						if (!xml || errorText) {
 							Foxtrick.log('No XML in batchRetrieve', batchArgs[i], errorText);
-							continue;
+							return;
 						}
-						var tid = xml.num('TeamID');
+						var TeamID = xml.num('TeamID');
 						var IsBot = xml.bool('IsBot');
 
 						// update playerInfo
-						Foxtrick.map(function(n) {
-							var currentClubId = Foxtrick.util.id.findTeamId(n);
-							if (tid == currentClubId) {
-								if (!IsBot)
-									n.setAttribute('active', 'true');
-							}
-						}, doc.getElementsByClassName('playerInfo'));
-
-						// update skilltable
-						var skilltable = doc.getElementById('ft_skilltable');
-						if (skilltable) {
-							Foxtrick.map(function(n) {
-								var currentClubId = Foxtrick.util.id.findTeamId(n);
-								if (tid == currentClubId) {
-									if (!IsBot)
-										n.setAttribute('active', 'true');
+						if (!IsBot) {
+							Foxtrick.map(function(div) {
+								var thisTeamId = Foxtrick.util.id.findTeamId(div);
+								if (thisTeamId == TeamID) {
+									div.setAttribute('active', 'true');
 								}
-							}, skilltable.rows);
+							}, doc.getElementsByClassName('playerInfo'));
 						}
-					}
+
+						// update skillTable
+						var skillTable = doc.getElementById('ft_skilltable');
+						if (skillTable && !IsBot) {
+							var rows = Foxtrick.toArray(skillTable.rows).slice(1); // skip header
+							Foxtrick.map(function(row) {
+								var thisTeamId = Foxtrick.util.id.findTeamId(row);
+								if (TeamID == thisTeamId) {
+									row.setAttribute('active', 'true');
+								}
+							}, rows);
+						}
+					}, xmls);
 				}
+
 				hasBotsMarked = true;
 				if (loading)
 					loading.parentNode.removeChild(loading);
@@ -317,28 +314,30 @@ Foxtrick.modules['PlayerFilters'] = {
 
 		var changeListener = function(ev) {
 			if (filterSelect.getAttribute('scanned') !== 'true') {
-				selectClick();
+				addFilters();
 				return;
 			}
 
 			var filter = filterSelect.value;
 			if (filter == 'active' && !hasBotsMarked) {
 				markBotPlayers();
-				return; // comes back here when bots marked
+				return; // continues after bots are marked
 			}
 			// invalidate again. might be new page next time
 			hasBotsMarked = false;
 
 			var filterSelectOptionsDiv = doc.getElementById('filterSelectOptionsDiv');
+			var attribute = '';
 			var attributeFilter = filter.match(/attribute-(.+)/);
-			if (attributeFilter)
+			if (attributeFilter) {
 				Foxtrick.removeClass(filterSelectOptionsDiv, 'hidden');
-			else
+				attribute = attributeFilter[1];
+			}
+			else {
 				Foxtrick.addClass(filterSelectOptionsDiv, 'hidden');
-			var filterSelectOptions = doc.getElementById('filterSelectOptions').value;
-			var filterSelectOptionsText = doc.getElementById('filterSelectOptionsText').value;
+			}
 
-			var compare = {
+			var COMPARE = {
 				over: function(a, b) {
 					return a > b;
 				},
@@ -350,13 +349,28 @@ Foxtrick.modules['PlayerFilters'] = {
 				},
 				notEqual: function(a, b) {
 					return a != b;
-				}
+				},
 			};
 
-			//var parsedPlayerList = playerList;
+			var compValue = doc.getElementById('filterSelectOptionsText').value;
+			var compType = doc.getElementById('filterSelectOptions').value;
+			var comp = COMPARE[compType];
 
-			var lastMatch = 0;
+			var isVisible = function(elem, player) {
+				if (filter == 'all' || attribute == 'all')
+					return true;
+
+				if (elem.getAttribute(filter) === 'true')
+					return true;
+
+				if (attribute && typeof player[attribute] !== 'undefined')
+					return comp(player[attribute], compValue);
+
+				return false;
+			};
+
 			var body = doc.getElementById('mainBody');
+
 			var allElems;
 			if (doc.getElementsByClassName('playerList').length) {
 				var playerNodeList = doc.getElementsByClassName('playerList')[0];
@@ -366,26 +380,30 @@ Foxtrick.modules['PlayerFilters'] = {
 				allElems = body.childNodes;
 			}
 
+			// these are attached information divs
+			var hideFace = ['category', 'playerInfo', 'borderSeparator', 'separator', 'youthnotes'];
+			var hideOther = ['borderSeparator', 'separator', 'youthnotes'];
+			var sepCls = ['borderSeparator', 'separator'];
+
 			// recording how many players are shown
 			var count = 0;
 			if (filter === 'face') {
+
 				var faceCards = doc.getElementsByClassName('faceCard');
-				if (faceCards.length > 0) {
+				if (faceCards.length) {
 					count = faceCards.length;
-					for (var i = 0; i < allElems.length; ++i) {
-						var elem = allElems[i];
-						if (Foxtrick.hasClass(elem, 'faceCard')) {
-							Foxtrick.removeClass(elem, 'hidden');
-						}
-						else if (Foxtrick.hasClass(elem, 'category')
-							|| Foxtrick.hasClass(elem, 'playerInfo')
-							|| Foxtrick.hasClass(elem, 'borderSeparator')
-							|| Foxtrick.hasClass(elem, 'separator')
-							|| Foxtrick.hasClass(elem, 'youthnotes')) {
-							// these are attached infomation divisions
+					Foxtrick.forEach(function(elem) {
+						var hasHiddenCls = Foxtrick.any(function(cls) {
+							return Foxtrick.hasClass(elem, cls);
+						}, hideFace);
+
+						if (hasHiddenCls) {
 							Foxtrick.addClass(elem, 'hidden');
 						}
-					}
+						else if (Foxtrick.hasClass(elem, 'faceCard')) {
+							Foxtrick.removeClass(elem, 'hidden');
+						}
+					}, allElems);
 
 					// Face cards are floated to the left, so we need a
 					// cleaner to maintain the container's length.
@@ -409,14 +427,19 @@ Foxtrick.modules['PlayerFilters'] = {
 				var hide = false;
 				var hideCategory = true;
 				var lastCategory = null;
-				var lastborderSeparator = null;
+				var lastBorderSeparator = null;
 				var lastFace = null;
+				Foxtrick.forEach(function(elem) {
+					var hasHiddenCls = Foxtrick.any(function(cls) {
+						return Foxtrick.hasClass(elem, cls);
+					}, hideOther);
+					var isSeparator = Foxtrick.any(function(cls) {
+						return Foxtrick.hasClass(elem, cls);
+					}, sepCls);
 
-				for (var i = 0; i < allElems.length; ++i) {
-					var elem = allElems[i];
 					if (Foxtrick.hasClass(elem, 'category')) {
 						if (lastCategory) {
-							if (hideCategory == true) {
+							if (hideCategory) {
 								Foxtrick.addClass(lastCategory, 'hidden');
 							}
 							else {
@@ -431,14 +454,8 @@ Foxtrick.modules['PlayerFilters'] = {
 					}
 					else if (Foxtrick.hasClass(elem, 'playerInfo')) {
 						var pid = Foxtrick.util.id.findPlayerId(elem);
-						var player = Foxtrick.Pages.Players
-							.getPlayerFromListById(playerList, pid);
-						if (elem.getAttribute(filter) === 'true'
-							 || elem.getAttribute('speciality') === filter
-							 || (attributeFilter != null && attributeFilter[1] == 'all')
-							 || (attributeFilter != null && player[attributeFilter[1]] != null
-							 && compare[filterSelectOptions](player[attributeFilter[1]],
-							                                 filterSelectOptionsText))) {
+						var player = Foxtrick.Pages.Players.getPlayerFromListById(playerList, pid);
+						if (isVisible(elem, player)) {
 							Foxtrick.removeClass(elem, 'hidden');
 							hide = false;
 							hideCategory = false;
@@ -459,23 +476,21 @@ Foxtrick.modules['PlayerFilters'] = {
 							++count;
 						}
 					}
-					else if (Foxtrick.hasClass(elem, 'borderSeparator')
-						|| Foxtrick.hasClass(elem, 'separator')
-						|| Foxtrick.hasClass(elem, 'youthnotes')) {
-						if (hide === true) {
+					else if (hasHiddenCls) {
+						if (hide) {
 							Foxtrick.addClass(elem, 'hidden');
 						}
 						else {
 							Foxtrick.removeClass(elem, 'hidden');
 						}
 					}
-					if (Foxtrick.hasClass(elem, 'borderSeparator')
-						|| Foxtrick.hasClass(elem, 'separator')) {
-						lastborderSeparator = elem;
+					if (isSeparator) {
+						lastBorderSeparator = elem;
 					}
-				}
+				}, allElems);
+
 				if (lastCategory) {
-					if (hideCategory === true) {
+					if (hideCategory) {
 						Foxtrick.addClass(lastCategory, 'hidden');
 					}
 					else {
@@ -483,26 +498,25 @@ Foxtrick.modules['PlayerFilters'] = {
 					}
 				}
 			}
+
 			// update player count
 			var h = body.getElementsByTagName('h1')[0];
 			h.textContent = h.textContent.replace(/\d+/, count);
 
-			// update skilltable
-			var skilltable = doc.getElementById('ft_skilltable');
-			if (skilltable) {
-				for (var i = 1; i < skilltable.rows.length; ++i) {
-					var pid = Number(skilltable.rows[i].getAttribute('playerid'));
+			// update skillTable
+			var skillTable = doc.getElementById('ft_skilltable');
+			if (skillTable) {
+				var rows = Foxtrick.toArray(skillTable.rows).slice(1); // skip header
+				Foxtrick.forEach(function(row) {
+					var pid = parseInt(row.getAttribute('playerid'), 10);
 					var player = Foxtrick.Pages.Players.getPlayerFromListById(playerList, pid);
-					if (filter == 'all' || skilltable.rows[i].getAttribute(filter)
-						|| skilltable.rows[i].getAttribute('speciality-' + filter)
-						|| (attributeFilter != null && attributeFilter[1] == 'all')
-						|| (attributeFilter != null && player[attributeFilter[1]] != null
-						&& compare[filterSelectOptions](player[attributeFilter[1]],
-							                                filterSelectOptionsText)))
-						Foxtrick.removeClass(skilltable.rows[i], 'hidden');
-					else
-						Foxtrick.addClass(skilltable.rows[i], 'hidden');
-				}
+					if (isVisible(row, player)) {
+						Foxtrick.removeClass(row, 'hidden');
+					}
+					else {
+						Foxtrick.addClass(row, 'hidden');
+					}
+				}, rows);
 			}
 
 			// update team-stats
@@ -511,16 +525,7 @@ Foxtrick.modules['PlayerFilters'] = {
 				Foxtrick.modules.TeamStats.run(doc);
 			}
 		};
-		Foxtrick.onClick(filterSelect, function() {
-			try {
-				// replaced with a filter option to fill the select. seems better
-				// (and needed for OsX+webkit)
-				//selectClick();
-			}
-			catch (e) {
-				Foxtrick.log(e);
-			}
-		});
+
 		Foxtrick.listen(filterSelect, 'change', function() {
 			try {
 				changeListener();
@@ -528,34 +533,7 @@ Foxtrick.modules['PlayerFilters'] = {
 			catch (e) {
 				Foxtrick.log(e);
 			}
-		}, false);
+		});
 
-		// this is used to clear filters, and we use this to select all
-		// players
-		var option = doc.createElement('option');
-		option.value = 'all';
-		option.textContent = '-- ' + Foxtrick.L10n.getString('Filters.label') + ' --';
-		filterSelect.appendChild(option);
-
-		var option = doc.createElement('option');
-		option.value = 'addFilters';
-		option.textContent = Foxtrick.L10n.getString('Filters.addFilterOptions');
-		filterSelect.appendChild(option);
-
-
-		var parentNode = sortSelect.parentNode;
-		var insertBefore = sortSelect.nextSibling;
-		sortSelect.parentNode.removeChild(sortSelect);
-
-		var container = doc.createElement('div');
-		container.className = 'ft-select-container';
-		container.appendChild(sortSelect);
-		container.appendChild(filterSelect);
-
-		parentNode.insertBefore(container, insertBefore);
 	},
-
-	change: function(doc) {
-		//this.run(doc);
-	}
 };
