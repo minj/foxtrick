@@ -8,7 +8,7 @@
 Foxtrick.modules['SkillTable'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES: ['allPlayers', 'youthPlayers', 'transferSearchResult'],
-	OPTIONS: ['FrozenColumns', 'OtherTeams', 'ColouredYouth'],
+	OPTIONS: ['FrozenColumns', 'OtherTeams', 'ColouredYouth', 'FullNames'],
 	CSS: Foxtrick.InternalPath + 'resources/css/skilltable.css',
 
 	/**
@@ -54,6 +54,7 @@ Foxtrick.modules['SkillTable'] = {
 		var TABLE_DIV_ID = 'ft_skilltablediv';
 
 		var useFrozen = Foxtrick.Prefs.isModuleOptionEnabled(module, 'FrozenColumns');
+		var useFullNames = Foxtrick.Prefs.isModuleOptionEnabled(module, 'FullNames');
 
 		// returns full type of the document in this format:
 		// { type: ['senior'|'youth'|'transfer'], subtype: ['own'|'others'|'nt'|'oldiesCoach'] }
@@ -487,7 +488,11 @@ Foxtrick.modules['SkillTable'] = {
 				},
 				playerName: function(cell, player) {
 					Foxtrick.addClass(cell, 'ft-skilltable_player');
-					cell.appendChild(player.nameLink.cloneNode(true));
+					var nameLink = player.nameLink.cloneNode(true);
+					if (!useFullNames && nameLink.dataset.shortName) {
+						nameLink.textContent = nameLink.dataset.shortName;
+					}
+					cell.appendChild(nameLink);
 					if (player.nationalTeamId) {
 						cell.appendChild(doc.createTextNode(' (NT)'));
 					}
@@ -1423,7 +1428,7 @@ Foxtrick.modules['SkillTable'] = {
 				// frozen columns
 				var frozenDiv = doc.createElement('div');
 				frozenDiv.id = 'ft-skilltable-frozenDiv';
-				Foxtrick.addClass(frozenDiv, 'float_right');
+				Foxtrick.addClass(frozenDiv, 'float_right ft-skilltable-checkDiv');
 				var frozenCheck = doc.createElement('input');
 				frozenCheck.id = 'ft-skilltable-frozenCheck';
 				frozenCheck.type = 'checkbox';
@@ -1435,6 +1440,20 @@ Foxtrick.modules['SkillTable'] = {
 				frozenLabel.title = Foxtrick.L10n.getString('SkillTable.useFrozenColumns.title');
 				frozenDiv.appendChild(frozenLabel);
 
+				var fullNameDiv = doc.createElement('div');
+				fullNameDiv.id = 'ft-skilltable-fullNameDiv';
+				Foxtrick.addClass(fullNameDiv, 'float_right ft-skilltable-checkDiv');
+				var fullNameCheck = doc.createElement('input');
+				fullNameCheck.id = 'ft-skilltable-fullNameCheck';
+				fullNameCheck.type = 'checkbox';
+				fullNameCheck.checked = useFullNames;
+				fullNameDiv.appendChild(fullNameCheck);
+				var fullNameLabel = doc.createElement('label');
+				fullNameLabel.setAttribute('for', 'ft-skilltable-fullNameCheck');
+				fullNameLabel.textContent = Foxtrick.L10n.getString('SkillTable.useFullNames');
+				fullNameLabel.title = Foxtrick.L10n.getString('SkillTable.useFullNames.title');
+				fullNameDiv.appendChild(fullNameLabel);
+
 				var actionDiv = doc.createElement('div');
 				actionDiv.id = 'ft-skilltable-customizeActions';
 
@@ -1444,8 +1463,10 @@ Foxtrick.modules['SkillTable'] = {
 				Foxtrick.onClick(save, function() {
 					var fullType = getFullType(doc);
 
-					var check = doc.getElementById('ft-skilltable-frozenCheck');
-					Foxtrick.Prefs.setModuleEnableState('SkillTable.FrozenColumns', check.checked);
+					var frozen = doc.getElementById('ft-skilltable-frozenCheck');
+					Foxtrick.Prefs.setModuleEnableState('SkillTable.FrozenColumns', frozen.checked);
+					var fullName = doc.getElementById('ft-skilltable-fullNameCheck');
+					Foxtrick.Prefs.setModuleEnableState('SkillTable.FullNames', fullName.checked);
 
 					var tableDiv = doc.getElementById(TABLE_DIV_ID);
 					var inputs = tableDiv.getElementsByTagName('input');
@@ -1474,6 +1495,7 @@ Foxtrick.modules['SkillTable'] = {
 				links.appendChild(copy);
 				links.appendChild(customize);
 				links.appendChild(frozenDiv);
+				links.appendChild(fullNameDiv);
 				links.appendChild(actionDiv);
 
 				return links;
@@ -1515,6 +1537,9 @@ Foxtrick.modules['SkillTable'] = {
 			Foxtrick.addClass(tableDiv, TABLE_DIV_ID);
 			if (Foxtrick.Pages.TransferSearchResults.isPage(doc)) {
 				Foxtrick.addClass(tableDiv, 'transfer');
+			}
+			else if (useFullNames) {
+				Foxtrick.addClass(tableDiv, 'ft_skilltable_fullNames');
 			}
 
 			// table div head

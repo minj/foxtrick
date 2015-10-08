@@ -43,7 +43,16 @@ html[data-theme="simple"] .transfer .ft_skilltable_wrapperRight {
 }
 html[dir="rtl"] .transfer .ft_skilltable_wrapperRight {
 	right: 440px;
-	left: initial;
+}
+.ft_skilltable_fullNames .ft_skilltable_wrapperRight {
+	max-width: 202px;
+	left: 330px;
+}
+html[data-theme="simple"] .ft_skilltable_fullNames .ft_skilltable_wrapperRight {
+	max-width: 235px;
+}
+html[dir="rtl"] .ft_skilltable_fullNames .ft_skilltable_wrapperRight {
+	right: 330px;
 }
 .on_top .ft_skilltable_wrapperRight {
 	overflow: hidden;
@@ -70,6 +79,9 @@ html[dir="rtl"] .ft_skilltableLeft {
 .transfer .ft_skilltableLeft {
 	width: 440px !important;
 }
+.ft_skilltable_fullNames .ft_skilltableLeft {
+	width: 330px !important;
+}
 .on_top .ft_skilltableLeft {
 	margin: 0;
 }
@@ -78,6 +90,7 @@ html[dir="rtl"] .ft_skilltableLeft {
 	text-overflow: ellipsis;
 	max-width: 100px;
 }
+.ft_skilltable_fullNames .ft_skilltableLeft .ft-skilltable_player,
 .transfer .ft_skilltableLeft .ft-skilltable_player {
 	max-width: 150px;
 }
@@ -92,6 +105,12 @@ html[dir="rtl"] .on_top .ft_skilltableRight {
 }
 html[dir="rtl"] .transfer.on_top .ft_skilltableRight {
 	margin: 1px 0 0 442px;
+}
+.ft_skilltable_fullNames.on_top .ft_skilltableRight {
+	margin: 1px 332px 0 0;
+}
+html[dir="rtl"] .ft_skilltable_fullNames.on_top .ft_skilltableRight {
+	margin: 1px 0 0 332px;
 }
 html[firefox] .on_top .ft_skilltableRight {
 	margin-top: 2px;
@@ -110,10 +129,10 @@ html[dir="rtl"] .ft_skilltablediv { margin: 35px -8px 35px 0; }
 .ft_skilltable_container a, .ft_skilltable_links a { cursor: pointer; }
 .ft_skilltable_wrapper, .ft_skilltable_customizewrapper { max-width: 100%; overflow: auto; }
 .ft_skilltable_links { margin-bottom: 1em; }
-.ft_skilltable_links a, #ft-skilltable-frozenDiv { display: none; margin: 0 0.5em 0 0; }
+.ft_skilltable_links a, .ft-skilltable-checkDiv { display: none; margin: 0 0.5em 0 0; }
 .ft_skilltable_links .secondary { float: right; }
 .ft_skilltable_links .customize_item { display: inline; }
-.customizing #ft-skilltable-frozenDiv { display: block; }
+.customizing .ft-skilltable-checkDiv { display: block; }
 .ft_skilltable_links.customizing a { display: inline; }
 .ft_skilltable_links.customizing .customize_item { display: none; }
 .ft_skilltable th { cursor: pointer; height: 22px; vertical-align: middle; }
