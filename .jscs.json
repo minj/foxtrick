@@ -39,6 +39,7 @@
 	,"requireSpaceBeforeObjectValues": true
 	,"requireSpaceBeforeBlockStatements": true
 	,"requireSpaceAfterLineComment": { "allExcept": ["/", "#", "="] }
+	,"requireSpaceAfterComma": true
 	,"requireTrailingComma": { "ignoreSingleLine": true }
 	,"requireCommaBeforeLineBreak": true
 	,"disallowNewlineBeforeBlockStatements": true
