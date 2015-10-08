@@ -132,4 +132,3 @@ html[dir="rtl"] .ft_skilltable td.formatted-num { direction: ltr; }
 .ft-coach {
 	vertical-align: bottom;
 }
-.on_top #ft-skilltable-frozenDiv { display: none; }
