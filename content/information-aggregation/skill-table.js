@@ -842,7 +842,6 @@ Foxtrick.modules['SkillTable'] = {
 			};
 
 			var sortClick = function(ev) {
-				var modifierPressed = ev.ctrlKey;
 				try {
 					var th = ev.currentTarget;
 					var table = th.parentNode.parentNode.parentNode;
@@ -858,6 +857,8 @@ Foxtrick.modules['SkillTable'] = {
 						sortAsc = !sortAsc;
 						th.dataset.sortAsc = Number(sortAsc);
 					}
+
+					var modifierPressed = ev.ctrlKey && lastSortColumnIdx;
 					if (!modifierPressed) {
 						table.dataset.lastSortColumnIdx = sortColumnIdx;
 						if (tableOther)
