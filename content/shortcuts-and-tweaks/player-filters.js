@@ -528,6 +528,7 @@ Foxtrick.modules['PlayerFilters'] = {
 					}
 				}, rows);
 			}, skillTables);
+			Foxtrick.modules['SkillTable'].updateBrowseIds(doc);
 
 			// update team-stats
 			var	box = doc.getElementById('ft-team-stats-box');

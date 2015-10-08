@@ -13,6 +13,7 @@ Foxtrick.modules['SkillTable'] = {
 
 	/**
 	 * Update player link browseIds based on visible rows and their order.
+	 * Can be called from other modules.
 	 *
 	 * table and playerIdList are optional.
 	 * @param {document}         doc
@@ -22,8 +23,10 @@ Foxtrick.modules['SkillTable'] = {
 	updateBrowseIds: function(doc, table, playerIdList) {
 		var BROWSEIDS_RE = /BrowseIds=([0-9,]+)$/i;
 
+		// player links are only in the first table
+		table = table || doc.querySelector('.ft_skilltable');
 		if (!table)
-			table = doc.querySelector('.ft_skilltable'); // player links are only in first table
+			return;
 
 		var rows = Foxtrick.toArray(table.rows).slice(1); // skip header
 		var visibleRows = Foxtrick.filter(function(row) {
