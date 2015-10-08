@@ -54,7 +54,7 @@
 		],
 		"attitude": [
 			{
-				"text": "Bermain santai",
+				"text": "Play it Cool",
 				"value": "-1"
 			},
 			{
@@ -62,7 +62,7 @@
 				"value": "0"
 			},
 			{
-				"text": "Bermain semangat sekali",
+				"text": "Match of the Season",
 				"value": "1"
 			}
 		],
@@ -104,18 +104,18 @@
 				"value": "8"
 			},
 			{
-				"text": "sangat Berlebihan",
+				"text": "sangat berlebihan",
 				"value": "9"
 			}
 		],
-		"desc": "Indonesian",
+		"desc": "Bahasa Indonesia",
 		"fans": [
 			{
 				"text": "mengamuk",
 				"value": "0"
 			},
 			{
-				"text": "marah Besar",
+				"text": "marah besar",
 				"value": "1"
 			},
 			{
@@ -511,19 +511,19 @@
 		],
 		"ratingSubLevels": [
 			{
-				"text": "Sangat Rendah",
+				"text": "sangat rendah",
 				"value": "0"
 			},
 			{
-				"text": "Rendah",
+				"text": "rendah",
 				"value": "0.25"
 			},
 			{
-				"text": "Tinggi",
+				"text": "tinggi",
 				"value": "0.5"
 			},
 			{
-				"text": "Sangat Tinggi",
+				"text": "sangat tinggi",
 				"value": "0.75"
 			}
 		],
@@ -572,7 +572,7 @@
 			},
 			{
 				"type": "Playmaker",
-				"value": "Playmaking"
+				"value": "Olah bola"
 			},
 			{
 				"type": "Winger",
@@ -580,15 +580,15 @@
 			},
 			{
 				"type": "Scorer",
-				"value": "menyerang"
+				"value": "Mencetak gol"
 			},
 			{
 				"type": "Kicker",
-				"value": "Set pieces"
+				"value": "Bola Mati"
 			},
 			{
 				"type": "Passer",
-				"value": "Passing"
+				"value": "Operan"
 			},
 			{
 				"type": "Experience",
@@ -631,7 +631,7 @@
 		],
 		"spirit": [
 			{
-				"text": "seperti Perang Dingin",
+				"text": "Seperti Perang Dingin",
 				"value": "0"
 			},
 			{
@@ -724,7 +724,7 @@
 			},
 			{
 				"type": "pressing",
-				"value": "Pressing"
+				"value": "Menekan"
 			},
 			{
 				"type": "ca",
@@ -748,7 +748,7 @@
 			},
 			{
 				"type": "creatively",
-				"value": "Play creatively"
+				"value": "Bermain kreatif"
 			},
 			{
 				"type": "longshots",
@@ -794,7 +794,7 @@
 			},
 			{
 				"type": "GK",
-				"value": "Mencegah Gol"
+				"value": "Menjaga gawang"
 			},
 			{
 				"type": "ThPass",
