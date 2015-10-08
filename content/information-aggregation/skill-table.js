@@ -11,6 +11,43 @@ Foxtrick.modules['SkillTable'] = {
 	OPTIONS: ['FrozenColumns', 'OtherTeams', 'ColouredYouth'],
 	CSS: Foxtrick.InternalPath + 'resources/css/skilltable.css',
 
+	/**
+	 * Update player link browseIds based on visible rows and their order.
+	 *
+	 * table and playerIdList are optional.
+	 * @param {document}         doc
+	 * @param {HTMLTableElement} table        (optional)
+	 * @param {string}           playerIdList (optional)
+	 */
+	updateBrowseIds: function(doc, table, playerIdList) {
+		var BROWSEIDS_RE = /BrowseIds=([0-9,]+)$/i;
+
+		if (!table)
+			table = doc.querySelector('.ft_skilltable'); // player links are only in first table
+
+		var rows = Foxtrick.toArray(table.rows).slice(1); // skip header
+		var visibleRows = Foxtrick.filter(function(row) {
+			return !Foxtrick.hasClass(row, 'hidden');
+		}, rows);
+
+		if (!playerIdList) {
+			playerIdList = Foxtrick.map(function(row) {
+				return row.getAttribute('playerid');
+			}, visibleRows).join(',');
+		}
+		var browseIds = 'BrowseIds=' + playerIdList;
+
+		Foxtrick.forEach(function(row) {
+			var playerLink = row.querySelector('.ft-skilltable_player a');
+			if (playerLink) {
+				if (BROWSEIDS_RE.test(playerLink.href))
+					playerLink.href = playerLink.href.replace(BROWSEIDS_RE, browseIds);
+				else
+					playerLink.href += '&' + browseIds;
+			}
+		}, visibleRows);
+	},
+
 	run: function(doc) {
 		var module = this;
 		var DEFAULT_CACHE = { cache_lifetime: 'session' };
@@ -946,6 +983,8 @@ Foxtrick.modules['SkillTable'] = {
 							rowOldOther.parentNode.replaceChild(rowOther, rowOldOther);
 						}
 					}, rows);
+
+					module.updateBrowseIds(doc);
 				}
 				catch (e) {
 					Foxtrick.log(e);
@@ -1105,6 +1144,7 @@ Foxtrick.modules['SkillTable'] = {
 					tableLeft.id = 'ft_skilltableLeft';
 					tableLeft.className = 'ft_skilltable ft_skilltableLeft';
 					assemble(tableLeft, frozenColumns);
+					module.updateBrowseIds(doc, tableLeft);
 
 					var tableRight = doc.createElement('table');
 					tableRight.id = 'ft_skilltableRight';
@@ -1117,6 +1157,7 @@ Foxtrick.modules['SkillTable'] = {
 					table.id = 'ft_skilltable';
 					table.className = 'ft_skilltable';
 					assemble(table, COLUMNS);
+					module.updateBrowseIds(doc, table);
 					return [table];
 				}
 			};
