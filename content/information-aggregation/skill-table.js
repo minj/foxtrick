@@ -113,12 +113,14 @@ Foxtrick.modules['SkillTable'] = {
 		var getLastMatchDates = function() {
 			var getMatchDate = function(playerInfo) {
 				var links = playerInfo.getElementsByTagName('a');
-				return Foxtrick.nth(function(link) {
-					if (/matchid/i.test(link.href)) {
-						var date = Foxtrick.util.time.getDateFromText(link.textContent);
-						return date.getTime();
-					}
-				}, links) || 0;
+				var matchLink = Foxtrick.nth(function(link) {
+					return /matchid/i.test(link.href);
+				}, links);
+				if (matchLink) {
+					var date = Foxtrick.util.time.getDateFromText(matchLink.textContent);
+					return date.getTime();
+				}
+				return 0;
 			};
 
 			var players = doc.getElementsByClassName('playerInfo');
@@ -468,6 +470,7 @@ Foxtrick.modules['SkillTable'] = {
 			];
 
 			// functions used to attach data to table cell
+			// should not touch table row: needs to handle split table
 			var RENDERERS = {
 				category: function(cell, cat) {
 					var categories = ['GK', 'WB', 'CD', 'W', 'IM', 'FW', 'S', 'R', 'E1', 'E2'];
@@ -668,14 +671,9 @@ Foxtrick.modules['SkillTable'] = {
 						cell.setAttribute('index', matchDay);
 						if (matchDay == lastMatchDate) {
 							Foxtrick.addClass(cell, 'latest-match');
-							cell.parentNode.setAttribute('played-latest', true);
 						}
 						else if (matchDay == secondLastMatchDate) {
 							Foxtrick.addClass(cell, 'second-latest-match');
-							cell.parentNode.setAttribute('not-played-latest', true);
-						}
-						else {
-							cell.parentNode.setAttribute('not-played-latest', true);
 						}
 					}
 					else {
@@ -1121,6 +1119,14 @@ Foxtrick.modules['SkillTable'] = {
 							row.setAttribute('homegrown-player', 'true');
 						else
 							row.setAttribute('purchased-player', 'true');
+
+						if (player.lastMatchDate &&
+						    player.lastMatchDate.getTime() === lastMatchDate) {
+							row.setAttribute('played-latest', true);
+						}
+						else {
+							row.setAttribute('not-played-latest', true);
+						}
 
 						tbody.appendChild(row);
 
