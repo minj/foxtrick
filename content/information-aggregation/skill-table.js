@@ -8,11 +8,12 @@
 Foxtrick.modules['SkillTable'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES: ['allPlayers', 'youthPlayers', 'transferSearchResult'],
-	OPTIONS: ['FrozenColumns', 'OtherTeams', 'ColouredYouth'],
+	OPTIONS: ['FrozenColumns', 'OtherTeams', 'ColouredYouth', 'FullNames'],
 	CSS: Foxtrick.InternalPath + 'resources/css/skilltable.css',
 
 	/**
-	 * Update player link browseIds based on visible rows and their order.
+	 * Update player link browseIds and table UI
+	 * based on visible rows and their order.
 	 * Can be called from other modules.
 	 *
 	 * table and playerIdList are optional.
@@ -20,7 +21,7 @@ Foxtrick.modules['SkillTable'] = {
 	 * @param {HTMLTableElement} table        (optional)
 	 * @param {string}           playerIdList (optional)
 	 */
-	updateBrowseIds: function(doc, table, playerIdList) {
+	updateUI: function(doc, table, playerIdList) {
 		var BROWSEIDS_RE = /BrowseIds=([0-9,]+)$/i;
 
 		// player links are only in the first table
@@ -49,6 +50,13 @@ Foxtrick.modules['SkillTable'] = {
 					playerLink.href += '&' + browseIds;
 			}
 		}, visibleRows);
+
+		var hasHidden = rows.length !== visibleRows.length;
+		var restoreBtn = doc.getElementById('ft_skilltable_restoreHidden');
+		if (hasHidden)
+			Foxtrick.removeClass(restoreBtn, 'hidden');
+		else
+			Foxtrick.addClass(restoreBtn, 'hidden');
 	},
 
 	run: function(doc) {
@@ -57,6 +65,7 @@ Foxtrick.modules['SkillTable'] = {
 		var TABLE_DIV_ID = 'ft_skilltablediv';
 
 		var useFrozen = Foxtrick.Prefs.isModuleOptionEnabled(module, 'FrozenColumns');
+		var useFullNames = Foxtrick.Prefs.isModuleOptionEnabled(module, 'FullNames');
 
 		// returns full type of the document in this format:
 		// { type: ['senior'|'youth'|'transfer'], subtype: ['own'|'others'|'nt'|'oldiesCoach'] }
@@ -374,6 +383,8 @@ Foxtrick.modules['SkillTable'] = {
 			// alignRight: whether to align the data cells to the right
 			// img: images used in table headers as substitution of text
 			var COLUMNS = [
+				{ name: 'SkillTableHide', property: 'id',
+					method: 'hide', sortAsc: true, frozen: true, },
 				{ name: 'PlayerNumber', property: 'number', sortAsc: true, frozen: true, },
 				{ name: 'PlayerCategory', property: 'category',
 					method: 'category', sortAsc: true, frozen: true, },
@@ -472,6 +483,16 @@ Foxtrick.modules['SkillTable'] = {
 			// functions used to attach data to table cell
 			// should not touch table row: needs to handle split table
 			var RENDERERS = {
+				hide: function(cell, id) {
+					var l10n = Foxtrick.L10n.getString('SkillTableHide');
+					var btn = doc.createElement('span');
+					btn.className = 'ft-skilltable_hideBtn';
+					btn.textContent = '–';
+					btn.setAttribute('aria-label', btn.title = l10n);
+					cell.setAttribute('index', btn.dataset.id = id);
+					Foxtrick.onClick(btn, hideRowHandler);
+					cell.appendChild(btn);
+				},
 				category: function(cell, cat) {
 					var categories = ['GK', 'WB', 'CD', 'W', 'IM', 'FW', 'S', 'R', 'E1', 'E2'];
 					cell.textContent = Foxtrick.L10n.getString('categories.' + categories[cat - 1]);
@@ -490,7 +511,11 @@ Foxtrick.modules['SkillTable'] = {
 				},
 				playerName: function(cell, player) {
 					Foxtrick.addClass(cell, 'ft-skilltable_player');
-					cell.appendChild(player.nameLink.cloneNode(true));
+					var nameLink = player.nameLink.cloneNode(true);
+					if (!useFullNames && nameLink.dataset.shortName) {
+						nameLink.textContent = nameLink.dataset.shortName;
+					}
+					cell.appendChild(nameLink);
 					if (player.nationalTeamId) {
 						cell.appendChild(doc.createTextNode(' (NT)'));
 					}
@@ -720,6 +745,16 @@ Foxtrick.modules['SkillTable'] = {
 				},
 			};
 
+			var hideRowHandler = function() {
+				var doc = this.ownerDocument;
+				var id = this.dataset.id;
+				var rows = doc.querySelectorAll('.ft_skilltable tr[playerid="' + id + '"]');
+				Foxtrick.forEach(function(row) {
+					Foxtrick.addClass(row, 'hidden');
+				}, rows);
+				module.updateUI(doc);
+			};
+
 			var checkAvailableColumns = function() {
 				Foxtrick.forEach(function(column) {
 					column.available = false;
@@ -807,7 +842,6 @@ Foxtrick.modules['SkillTable'] = {
 			};
 
 			var sortClick = function(ev) {
-				var modifierPressed = ev.ctrlKey;
 				try {
 					var th = ev.currentTarget;
 					var table = th.parentNode.parentNode.parentNode;
@@ -823,6 +857,8 @@ Foxtrick.modules['SkillTable'] = {
 						sortAsc = !sortAsc;
 						th.dataset.sortAsc = Number(sortAsc);
 					}
+
+					var modifierPressed = ev.ctrlKey && lastSortColumnIdx;
 					if (!modifierPressed) {
 						table.dataset.lastSortColumnIdx = sortColumnIdx;
 						if (tableOther)
@@ -985,7 +1021,7 @@ Foxtrick.modules['SkillTable'] = {
 						}
 					}, rows);
 
-					module.updateBrowseIds(doc);
+					module.updateUI(doc);
 				}
 				catch (e) {
 					Foxtrick.log(e);
@@ -1153,7 +1189,7 @@ Foxtrick.modules['SkillTable'] = {
 					tableLeft.id = 'ft_skilltableLeft';
 					tableLeft.className = 'ft_skilltable ft_skilltableLeft';
 					assemble(tableLeft, frozenColumns);
-					module.updateBrowseIds(doc, tableLeft);
+					module.updateUI(doc, tableLeft);
 
 					var tableRight = doc.createElement('table');
 					tableRight.id = 'ft_skilltableRight';
@@ -1166,7 +1202,7 @@ Foxtrick.modules['SkillTable'] = {
 					table.id = 'ft_skilltable';
 					table.className = 'ft_skilltable';
 					assemble(table, COLUMNS);
-					module.updateBrowseIds(doc, table);
+					module.updateUI(doc, table);
 					return [table];
 				}
 			};
@@ -1422,11 +1458,46 @@ Foxtrick.modules['SkillTable'] = {
 					Foxtrick.addClass(container, 'hidden');
 				});
 
+				// links: show info
+				var showInfo = doc.createElement('a');
+				showInfo.className = 'customize_item';
+				var imgInfo = doc.createElement('img');
+				imgInfo.src = '/Img/Icons/info.png';
+				imgInfo.alt = imgInfo.title = Foxtrick.L10n.getString('button.moreInfo');
+				showInfo.appendChild(imgInfo);
+				Foxtrick.onClick(showInfo, function() {
+					var doc = this.ownerDocument;
+					var info = doc.getElementById('ft-skilltable-infoDiv');
+					Foxtrick.toggleClass(info, 'hidden');
+				});
+
+				// links: info
+				var infoDiv = doc.createElement('div');
+				infoDiv.id = 'ft-skilltable-infoDiv';
+				infoDiv.className = 'alert_shy hidden';
+
+				var infoParas = [
+					['viewModes', 'actions'],
+					['viewActions', 'browseIds', 'restore'],
+					['sort.reverse', 'sort.secondary', 'sort.secondary.ex'],
+					['customize', 'frozenColumns', 'fullNames'],
+					['saveToReload'],
+				];
+				Foxtrick.forEach(function(para) {
+					var p = doc.createElement('p');
+					Foxtrick.forEach(function(text) {
+						var l10n = Foxtrick.L10n.getString('skilltable.info.' + text);
+						var node = doc.createTextNode(l10n + ' ');
+						p.appendChild(node);
+					}, para);
+					infoDiv.appendChild(p);
+				}, infoParas);
+
 				// customization view
 				// frozen columns
 				var frozenDiv = doc.createElement('div');
 				frozenDiv.id = 'ft-skilltable-frozenDiv';
-				Foxtrick.addClass(frozenDiv, 'float_right');
+				Foxtrick.addClass(frozenDiv, 'float_right ft-skilltable-checkDiv');
 				var frozenCheck = doc.createElement('input');
 				frozenCheck.id = 'ft-skilltable-frozenCheck';
 				frozenCheck.type = 'checkbox';
@@ -1438,6 +1509,20 @@ Foxtrick.modules['SkillTable'] = {
 				frozenLabel.title = Foxtrick.L10n.getString('SkillTable.useFrozenColumns.title');
 				frozenDiv.appendChild(frozenLabel);
 
+				var fullNameDiv = doc.createElement('div');
+				fullNameDiv.id = 'ft-skilltable-fullNameDiv';
+				Foxtrick.addClass(fullNameDiv, 'float_right ft-skilltable-checkDiv');
+				var fullNameCheck = doc.createElement('input');
+				fullNameCheck.id = 'ft-skilltable-fullNameCheck';
+				fullNameCheck.type = 'checkbox';
+				fullNameCheck.checked = useFullNames;
+				fullNameDiv.appendChild(fullNameCheck);
+				var fullNameLabel = doc.createElement('label');
+				fullNameLabel.setAttribute('for', 'ft-skilltable-fullNameCheck');
+				fullNameLabel.textContent = Foxtrick.L10n.getString('SkillTable.useFullNames');
+				fullNameLabel.title = Foxtrick.L10n.getString('SkillTable.useFullNames.title');
+				fullNameDiv.appendChild(fullNameLabel);
+
 				var actionDiv = doc.createElement('div');
 				actionDiv.id = 'ft-skilltable-customizeActions';
 
@@ -1447,8 +1532,10 @@ Foxtrick.modules['SkillTable'] = {
 				Foxtrick.onClick(save, function() {
 					var fullType = getFullType(doc);
 
-					var check = doc.getElementById('ft-skilltable-frozenCheck');
-					Foxtrick.Prefs.setModuleEnableState('SkillTable.FrozenColumns', check.checked);
+					var frozen = doc.getElementById('ft-skilltable-frozenCheck');
+					Foxtrick.Prefs.setModuleEnableState('SkillTable.FrozenColumns', frozen.checked);
+					var fullName = doc.getElementById('ft-skilltable-fullNameCheck');
+					Foxtrick.Prefs.setModuleEnableState('SkillTable.FullNames', fullName.checked);
 
 					var tableDiv = doc.getElementById(TABLE_DIV_ID);
 					var inputs = tableDiv.getElementsByTagName('input');
@@ -1476,7 +1563,10 @@ Foxtrick.modules['SkillTable'] = {
 				// links: add all children
 				links.appendChild(copy);
 				links.appendChild(customize);
+				links.appendChild(showInfo);
+				links.appendChild(infoDiv);
 				links.appendChild(frozenDiv);
+				links.appendChild(fullNameDiv);
 				links.appendChild(actionDiv);
 
 				return links;
@@ -1519,6 +1609,9 @@ Foxtrick.modules['SkillTable'] = {
 			if (Foxtrick.Pages.TransferSearchResults.isPage(doc)) {
 				Foxtrick.addClass(tableDiv, 'transfer');
 			}
+			else if (useFullNames) {
+				Foxtrick.addClass(tableDiv, 'ft_skilltable_fullNames');
+			}
 
 			// table div head
 			var h2 = doc.createElement('h2');
@@ -1541,7 +1634,7 @@ Foxtrick.modules['SkillTable'] = {
 			Foxtrick.addClass(container, 'hidden');
 
 			// table container: switch view
-			var switchView = doc.createElement('div');
+			var viewOptions = doc.createElement('div');
 			var switchViewLink = doc.createElement('a');
 			switchViewLink.textContent = Foxtrick.L10n.getString('SkillTable.switchView');
 			switchViewLink.title = Foxtrick.L10n.getString('SkillTable.switchView.title');
@@ -1552,9 +1645,25 @@ Foxtrick.modules['SkillTable'] = {
 				var onTop = Foxtrick.hasClass(tableDiv, 'on_top');
 				Foxtrick.Prefs.setBool('module.SkillTable.top', onTop);
 			});
-			switchView.appendChild(switchViewLink);
+			viewOptions.appendChild(switchViewLink);
 
-			container.appendChild(switchView);
+			var restoreLink = doc.createElement('a');
+			restoreLink.id = 'ft_skilltable_restoreHidden';
+			restoreLink.className = 'hidden';
+			restoreLink.textContent = Foxtrick.L10n.getString('skilltable.restoreHidden');
+			Foxtrick.onClick(restoreLink, function() {
+				var doc = this.ownerDocument;
+
+				var rows = doc.querySelectorAll('.ft_skilltable tr');
+				Foxtrick.forEach(function(row) {
+					Foxtrick.removeClass(row, 'hidden');
+				}, rows);
+
+				module.updateUI(doc);
+			});
+			viewOptions.appendChild(restoreLink);
+
+			container.appendChild(viewOptions);
 
 			// table container: table wrapper
 			var wrapper = doc.createElement('div');

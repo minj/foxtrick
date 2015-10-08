@@ -442,24 +442,32 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 					player.injured = (player.bruised || player.injuredWeeks !== 0);
 				}
 
-				// first name stripping
-				player.nameLink = doc.createElement('a');
-				player.nameLink.href = '/Club/Players/' + (isYouth ? 'Youth' : '') +
-					'Player.aspx?' + (isYouth ? 'Youth' : '') + 'PlayerID=' + id;
-				player.nameLink.target = '_blank';
-				if (node('PlayerName'))
-					player.nameLink.textContent = text('PlayerName');
+				var nameLink = doc.createElement('a');
+				nameLink.href = '/Club/Players/' + (isYouth ? 'Youth' : '') + 'Player.aspx?' +
+					(isYouth ? 'Youth' : '') + 'PlayerID=' + id;
+				nameLink.target = '_blank';
+				if (node('PlayerName')) {
+					// NT
+					nameLink.textContent = text('PlayerName');
+				}
 				else {
-					player.nameLink.textContent = text('FirstName').
-						replace(/(-[^\(])([^-\s]+)/g, '$1.'). // replaces first name
+					var first = text('FirstName');
+					var last = text('LastName');
+					var nick = text('NickName');
+
+					nameLink.textContent = first + ' ' + last;
+					nameLink.title = first + (nick ? '\'' + nick + '\'' : '') + ' ' + last;
+					nameLink.dataset.nickName = nick;
+
+					// first name stripping
+					var shortName = first.replace(/(-[^\(])([^-\s]+)/g, '$1.'). // replaces first
 						replace(/(\s[^\(])([^-\s]+)/g, '$1.'). // replace further first names
 						replace(/(\(.)([^-\)]+)/g, '$1.'). // non-latin in brackets
 						replace(/(^[^\(])([^-\s]+)/g, '$1.') + // replace names with '-'
-						' ' + text('LastName');
-
-					// keep full name in title
-					player.nameLink.title = text('FirstName') + ' ' + text('LastName');
+						' ' + last;
+					nameLink.dataset.shortName = shortName;
 				}
+				player.nameLink = nameLink;
 
 				if (!isYouth) {
 					if (typeof player.performanceHistory === 'undefined')
