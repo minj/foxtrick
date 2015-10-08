@@ -12,7 +12,8 @@ Foxtrick.modules['SkillTable'] = {
 	CSS: Foxtrick.InternalPath + 'resources/css/skilltable.css',
 
 	/**
-	 * Update player link browseIds based on visible rows and their order.
+	 * Update player link browseIds and table UI
+	 * based on visible rows and their order.
 	 * Can be called from other modules.
 	 *
 	 * table and playerIdList are optional.
@@ -20,7 +21,7 @@ Foxtrick.modules['SkillTable'] = {
 	 * @param {HTMLTableElement} table        (optional)
 	 * @param {string}           playerIdList (optional)
 	 */
-	updateBrowseIds: function(doc, table, playerIdList) {
+	updateUI: function(doc, table, playerIdList) {
 		var BROWSEIDS_RE = /BrowseIds=([0-9,]+)$/i;
 
 		// player links are only in the first table
@@ -49,6 +50,13 @@ Foxtrick.modules['SkillTable'] = {
 					playerLink.href += '&' + browseIds;
 			}
 		}, visibleRows);
+
+		var hasHidden = rows.length !== visibleRows.length;
+		var restoreBtn = doc.getElementById('ft_skilltable_restoreHidden');
+		if (hasHidden)
+			Foxtrick.removeClass(restoreBtn, 'hidden');
+		else
+			Foxtrick.addClass(restoreBtn, 'hidden');
 	},
 
 	run: function(doc) {
@@ -744,7 +752,7 @@ Foxtrick.modules['SkillTable'] = {
 				Foxtrick.forEach(function(row) {
 					Foxtrick.addClass(row, 'hidden');
 				}, rows);
-				module.updateBrowseIds(doc);
+				module.updateUI(doc);
 			};
 
 			var checkAvailableColumns = function() {
@@ -1012,7 +1020,7 @@ Foxtrick.modules['SkillTable'] = {
 						}
 					}, rows);
 
-					module.updateBrowseIds(doc);
+					module.updateUI(doc);
 				}
 				catch (e) {
 					Foxtrick.log(e);
@@ -1180,7 +1188,7 @@ Foxtrick.modules['SkillTable'] = {
 					tableLeft.id = 'ft_skilltableLeft';
 					tableLeft.className = 'ft_skilltable ft_skilltableLeft';
 					assemble(tableLeft, frozenColumns);
-					module.updateBrowseIds(doc, tableLeft);
+					module.updateUI(doc, tableLeft);
 
 					var tableRight = doc.createElement('table');
 					tableRight.id = 'ft_skilltableRight';
@@ -1193,7 +1201,7 @@ Foxtrick.modules['SkillTable'] = {
 					table.id = 'ft_skilltable';
 					table.className = 'ft_skilltable';
 					assemble(table, COLUMNS);
-					module.updateBrowseIds(doc, table);
+					module.updateUI(doc, table);
 					return [table];
 				}
 			};
@@ -1588,7 +1596,7 @@ Foxtrick.modules['SkillTable'] = {
 			Foxtrick.addClass(container, 'hidden');
 
 			// table container: switch view
-			var switchView = doc.createElement('div');
+			var viewOptions = doc.createElement('div');
 			var switchViewLink = doc.createElement('a');
 			switchViewLink.textContent = Foxtrick.L10n.getString('SkillTable.switchView');
 			switchViewLink.title = Foxtrick.L10n.getString('SkillTable.switchView.title');
@@ -1599,9 +1607,25 @@ Foxtrick.modules['SkillTable'] = {
 				var onTop = Foxtrick.hasClass(tableDiv, 'on_top');
 				Foxtrick.Prefs.setBool('module.SkillTable.top', onTop);
 			});
-			switchView.appendChild(switchViewLink);
+			viewOptions.appendChild(switchViewLink);
 
-			container.appendChild(switchView);
+			var restoreLink = doc.createElement('a');
+			restoreLink.id = 'ft_skilltable_restoreHidden';
+			restoreLink.className = 'hidden';
+			restoreLink.textContent = Foxtrick.L10n.getString('skilltable.restoreHidden');
+			Foxtrick.onClick(restoreLink, function() {
+				var doc = this.ownerDocument;
+
+				var rows = doc.querySelectorAll('.ft_skilltable tr');
+				Foxtrick.forEach(function(row) {
+					Foxtrick.removeClass(row, 'hidden');
+				}, rows);
+
+				module.updateUI(doc);
+			});
+			viewOptions.appendChild(restoreLink);
+
+			container.appendChild(viewOptions);
 
 			// table container: table wrapper
 			var wrapper = doc.createElement('div');

@@ -154,3 +154,6 @@ html[dir="rtl"] .ft_skilltable td.formatted-num { direction: ltr; }
 .ft-skilltable_hideBtn {
 	cursor: pointer;
 }
+#ft_skilltable_restoreHidden {
+	margin: 0 4em;
+}
