@@ -217,15 +217,15 @@
 			"words_translated": "6206"
 		},
 		{
-			"approved": "2105",
-			"approved_progress": "99",
+			"approved": "2112",
+			"approved_progress": "100",
 			"code": "fr",
 			"name": "French",
 			"phrases": "2112",
 			"translated": "2112",
 			"translated_progress": "100",
 			"words": "14738",
-			"words_approved": "14712",
+			"words_approved": "14738",
 			"words_translated": "14738"
 		},
 		{
@@ -390,11 +390,11 @@
 			"code": "lv",
 			"name": "Latvian",
 			"phrases": "2112",
-			"translated": "1122",
-			"translated_progress": "33",
+			"translated": "1173",
+			"translated_progress": "35",
 			"words": "14738",
 			"words_approved": "0",
-			"words_translated": "4953"
+			"words_translated": "5196"
 		},
 		{
 			"approved": "1512",
@@ -582,11 +582,11 @@
 			"code": "es-ES",
 			"name": "Spanish",
 			"phrases": "2112",
-			"translated": "1916",
+			"translated": "1925",
 			"translated_progress": "92",
 			"words": "14738",
 			"words_approved": "1",
-			"words_translated": "13616"
+			"words_translated": "13644"
 		},
 		{
 			"approved": "0",
@@ -606,11 +606,11 @@
 			"code": "es-CR",
 			"name": "Spanish, Costa Rica",
 			"phrases": "2112",
-			"translated": "1888",
-			"translated_progress": "91",
+			"translated": "1934",
+			"translated_progress": "92",
 			"words": "14738",
 			"words_approved": "0",
-			"words_translated": "13520"
+			"words_translated": "13690"
 		},
 		{
 			"approved": "1890",

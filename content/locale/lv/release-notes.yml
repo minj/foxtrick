@@ -8,6 +8,9 @@ lv:
       and_more: Dažādas citas nelielas izmaiņas un labojumi.
     0.15.2:
       important: '<header>Svarīgi paziņojumi</header>'
+      support: '<header>Patīk ko mēs darām? Lūdzu<linkContribute>Atbalsti Foxtrick</linkContribute>.</header>'
+      crowdin: '<header>Daudzu tulkojumu atjauninājumi, pateicoties mūsu lieliskajiem lietotājiem, kas izmanto <linkCrowdin>crowdin rīku</linkCrowdin>. Arī tu vari mums palīdzēt!</header>'
+      twitter: 'Jūs varat sekot <linkTwitter>Foxtrick Twiterī</linkTwitter>, lai saņemtu jaunākās ziņas, atjauninājumus un paziņojumus.'
       bugs: '<header>Kļūdu labojumi</header>'
       other: '<header>Citas izmaiņas</header>'
       and_more: Dažādas citas nelielas izmaiņas un labojumi.
@@ -17,8 +20,10 @@ lv:
       and_more: Dažādas citas nelielas izmaiņas un labojumi.
     0.15.0:
       important: '<header>Svarīgi paziņojumi</header>'
+      support: '<header>Patīk ko mēs darām? Lūdzu<linkContribute>Atbalsti Foxtrick</linkContribute>.</header>'
       twitter: 'Jūs varat sekot <linkTwitter>Foxtrick Twiterī</linkTwitter>, lai saņemtu jaunākās ziņas, atjauninājumus un paziņojumus.'
       bugs: '<header>Kļūdu labojumi</header>'
+      breakages: Foxtrick tagad vajadzētu darboties korekti ar Safari 7.1 un Firefox priekš Android.
       other: '<header>Citas izmaiņas</header>'
       and_more: Dažādas citas nelielas izmaiņas un labojumi.
     0.14.0.3:
@@ -27,6 +32,7 @@ lv:
     0.14.0.2:
       bugs: '<header>Kļūdu labojumi</header>'
       other: '<header>Citas izmaiņas</header>'
+      psico: '<module>PsicoTSI</module> algu prognozētājs ir atjaunināts.'
       and_more: Dažādas citas nelielas izmaiņas un labojumi.
     0.14.0.1:
       important: '<header>Svarīgi paziņojumi</header>'
@@ -34,6 +40,7 @@ lv:
       safari_prefs: Foxtrick preferenču lapu var nerādīt dažiem Safari lietotājiem.
     0.14.0:
       important: '<header>Svarīgi paziņojumi</header>'
+      twitter: 'Jūs varat sekot <linkTwitter>Foxtrick Twiterī</linkTwitter>, lai saņemtu jaunākās ziņas, atjauninājumus un paziņojumus.'
       bugs: '<header>Kļūdu labojumi</header>'
       other: '<header>Citas izmaiņas</header>'
       and_more: Dažādas citas nelielas izmaiņas un labojumi.
@@ -43,14 +50,22 @@ lv:
       and_more: Dažādas citas nelielas izmaiņas un labojumi.
     0.13.0:
       important: '<header>Svarīgi paziņojumi</header>'
+      twitter: 'Jūs varat sekot <linkTwitter>Foxtrick Twiterī</linkTwitter>, lai saņemtu jaunākās ziņas, atjauninājumus un paziņojumus.'
       other: '<header>Citas izmaiņas</header>'
       bugs: '<header>Kļūdu labojumi</header>'
     0.12.2:
       note_11: '<header>Kļūdu labojumi</header>'
     0.12.1.1:
       note_0: Tulkošanas atjauninājumi.
+      note_2: Nelieli pieejamības uzlabojumi.
+      note_8: 'Salabotas dažas kļūdas <module>ForumAlterHeaderLine</module>, <module>ManagerButtons</module> un <module>HideSignatures</module>.'
+    0.12.1:
+      note_10: Tika pievienots atbalsts Azerbaidžānas valodai.
+    0.11.0.1:
+      note_1: 'Izlabotas nelielas kļūdas <module>ForumLastPost</module>, <module>ContextMenuCopy</module>, <module>PlayerFilters</module>, <module>SmallerPages</module>, <module>SkillTable</module>, <module>TeamPopupLinks</module>, <module>MatchIncome</module> un <module>HTThreadMarker</module>.'
     0.11.0:
       note_12: '<header>Kļūdu labojumi</header>'
+      note_13: 'Salabots <module>Filter</module>, <module>SupporterStatsEnhancements</module> un <module>YouthTwins</module>.'
       note_18: BackgroundFixed modulis tika noņemts.
       note_27: '<module>MatchReportFormat</module> izmanto jaunas HT ikonas.'
       note_31: Pievienots atbalsts www.hattrick.fm
