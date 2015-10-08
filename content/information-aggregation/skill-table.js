@@ -372,6 +372,8 @@ Foxtrick.modules['SkillTable'] = {
 			// alignRight: whether to align the data cells to the right
 			// img: images used in table headers as substitution of text
 			var COLUMNS = [
+				{ name: 'SkillTableHide', property: 'id',
+					method: 'hide', sortAsc: true, frozen: true, },
 				{ name: 'PlayerNumber', property: 'number', sortAsc: true, frozen: true, },
 				{ name: 'PlayerCategory', property: 'category',
 					method: 'category', sortAsc: true, frozen: true, },
@@ -470,6 +472,16 @@ Foxtrick.modules['SkillTable'] = {
 			// functions used to attach data to table cell
 			// should not touch table row: needs to handle split table
 			var RENDERERS = {
+				hide: function(cell, id) {
+					var l10n = Foxtrick.L10n.getString('SkillTableHide');
+					var btn = doc.createElement('span');
+					btn.className = 'ft-skilltable_hideBtn';
+					btn.textContent = '–';
+					btn.setAttribute('aria-label', btn.title = l10n);
+					cell.setAttribute('index', btn.dataset.id = id);
+					Foxtrick.onClick(btn, hideRowHandler);
+					cell.appendChild(btn);
+				},
 				category: function(cell, cat) {
 					var categories = ['GK', 'WB', 'CD', 'W', 'IM', 'FW', 'S', 'R', 'E1', 'E2'];
 					cell.textContent = Foxtrick.L10n.getString('categories.' + categories[cat - 1]);
@@ -720,6 +732,16 @@ Foxtrick.modules['SkillTable'] = {
 					if (val)
 						cell.appendChild(val);
 				},
+			};
+
+			var hideRowHandler = function() {
+				var doc = this.ownerDocument;
+				var id = this.dataset.id;
+				var rows = doc.querySelectorAll('.ft_skilltable tr[playerid="' + id + '"]');
+				Foxtrick.forEach(function(row) {
+					Foxtrick.addClass(row, 'hidden');
+				}, rows);
+				module.updateBrowseIds(doc);
 			};
 
 			var checkAvailableColumns = function() {
