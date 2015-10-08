@@ -135,6 +135,7 @@ html[dir="rtl"] .ft_skilltablediv { margin: 35px -8px 35px 0; }
 .customizing .ft-skilltable-checkDiv { display: block; }
 .ft_skilltable_links.customizing a { display: inline; }
 .ft_skilltable_links.customizing .customize_item { display: none; }
+.ft_skilltable_links .customize_item img { vertical-align: middle; }
 .ft_skilltable th { cursor: pointer; height: 22px; vertical-align: middle; }
 .ft_skilltable td { border-bottom: 1px solid #dce0dc; }
 .ft_skilltable td.align-right { text-align: right; }

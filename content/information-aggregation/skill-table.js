@@ -1458,6 +1458,41 @@ Foxtrick.modules['SkillTable'] = {
 					Foxtrick.addClass(container, 'hidden');
 				});
 
+				// links: show info
+				var showInfo = doc.createElement('a');
+				showInfo.className = 'customize_item';
+				var imgInfo = doc.createElement('img');
+				imgInfo.src = '/Img/Icons/info.png';
+				imgInfo.alt = imgInfo.title = Foxtrick.L10n.getString('button.moreInfo');
+				showInfo.appendChild(imgInfo);
+				Foxtrick.onClick(showInfo, function() {
+					var doc = this.ownerDocument;
+					var info = doc.getElementById('ft-skilltable-infoDiv');
+					Foxtrick.toggleClass(info, 'hidden');
+				});
+
+				// links: info
+				var infoDiv = doc.createElement('div');
+				infoDiv.id = 'ft-skilltable-infoDiv';
+				infoDiv.className = 'alert_shy hidden';
+
+				var infoParas = [
+					['viewModes', 'actions'],
+					['viewActions', 'browseIds', 'restore'],
+					['sort.reverse', 'sort.secondary', 'sort.secondary.ex'],
+					['customize', 'frozenColumns', 'fullNames'],
+					['saveToReload'],
+				];
+				Foxtrick.forEach(function(para) {
+					var p = doc.createElement('p');
+					Foxtrick.forEach(function(text) {
+						var l10n = Foxtrick.L10n.getString('skilltable.info.' + text);
+						var node = doc.createTextNode(l10n + ' ');
+						p.appendChild(node);
+					}, para);
+					infoDiv.appendChild(p);
+				}, infoParas);
+
 				// customization view
 				// frozen columns
 				var frozenDiv = doc.createElement('div');
@@ -1528,6 +1563,8 @@ Foxtrick.modules['SkillTable'] = {
 				// links: add all children
 				links.appendChild(copy);
 				links.appendChild(customize);
+				links.appendChild(showInfo);
+				links.appendChild(infoDiv);
 				links.appendChild(frozenDiv);
 				links.appendChild(fullNameDiv);
 				links.appendChild(actionDiv);
