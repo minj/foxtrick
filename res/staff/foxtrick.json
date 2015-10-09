@@ -221,6 +221,11 @@
 		},
 		{
 			"duty": "translator",
+			"id": "12449946",
+			"name": "amundsoet"
+		},
+		{
+			"duty": "translator",
 			"id": "12533508",
 			"name": "RoLitoral"
 		},
@@ -658,6 +663,11 @@
 			"duty": "developer",
 			"id": "6228713",
 			"name": "smates"
+		},
+		{
+			"duty": "translator",
+			"id": "6263697",
+			"name": "LA-Ron__Manager"
 		},
 		{
 			"duty": "translator",
