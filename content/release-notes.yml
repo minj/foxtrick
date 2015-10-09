@@ -24,6 +24,7 @@ en:
       indonesian: 'Added support for the Indonesian language.'
       match_events: 'Match event type descriptions can now be translated as well.'
       style_cleanup: 'Foxtrick styles (CSS) have been adjusted to better support custom Hattrick themes. As a result you can now also assign custom user name colors for HT officials in <module>StaffMarker</module>.'
+      and_more: 'Various other small changes and fixes.'
 
     0.15.2.1:
       important: '<header>Important announcements</header>'
