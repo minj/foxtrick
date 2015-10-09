@@ -497,6 +497,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 					'CupGoals',
 					'Experience',
 					'FriendliesGoals',
+					['friendliesGoals', 'FriendlyGoals'], // youth
 					'Honesty',
 					'IsAbroad',
 					'Leadership',
