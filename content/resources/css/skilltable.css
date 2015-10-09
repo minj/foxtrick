@@ -123,7 +123,7 @@ html[dir="rtl"] .ft_skilltablediv { margin: 35px -8px 35px 0; }
 .ft_skilltable td:nth-child(odd) { background-color: white; }
 .ft_skilltable tr { height: 19px; }
 .transfer .ft_skilltable tr { height: 21px; }
-.ft_skilltableRight tr:hover td { background-color: yellow; }
+.ft_skilltableLong tr:hover td { background-color: yellow; }
 .ft_skilltable th { text-align: center; }
 .ft_skilltable th, .ft_skilltablediv table td { padding: 1px 2px; vertical-align: middle; }
 .ft_skilltable_container a, .ft_skilltable_links a { cursor: pointer; }

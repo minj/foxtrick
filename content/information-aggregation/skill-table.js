@@ -1194,14 +1194,14 @@ Foxtrick.modules['SkillTable'] = {
 
 					var tableRight = doc.createElement('table');
 					tableRight.id = 'ft_skilltableRight';
-					tableRight.className = 'ft_skilltable ft_skilltableRight';
+					tableRight.className = 'ft_skilltable ft_skilltableRight ft_skilltableLong';
 					assemble(tableRight, otherColumns);
 					return [tableLeft, tableRight];
 				}
 				else {
 					var table = doc.createElement('table');
 					table.id = 'ft_skilltable';
-					table.className = 'ft_skilltable';
+					table.className = 'ft_skilltable ft_skilltableLong';
 					assemble(table, COLUMNS);
 					module.updateUI(doc, table);
 					return [table];
