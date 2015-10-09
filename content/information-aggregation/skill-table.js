@@ -1041,14 +1041,13 @@ Foxtrick.modules['SkillTable'] = {
 				if (!abbrName || fullName === abbrName) {
 					useAbbr = false;
 				}
-				var img;
 				if (useAbbr) {
 					if (column.img) {
-						img = doc.createElement('img');
-						img.src = column.img;
-						img.alt = abbrName;
-						img.title = fullName;
-						th.appendChild(img);
+						Foxtrick.addImage(doc, th, {
+							src: column.img,
+							alt: abbrName,
+							title: fullName,
+						});
 					}
 					else {
 						var abbr = doc.createElement('abbr');
@@ -1059,11 +1058,11 @@ Foxtrick.modules['SkillTable'] = {
 				}
 				else {
 					if (column.img) {
-						img = doc.createElement('img');
-						img.src = column.img;
-						img.alt = fullName;
-						img.title = fullName;
-						th.appendChild(img);
+						Foxtrick.addImage(doc, th, {
+							src: column.img,
+							alt: fullName,
+							title: fullName,
+						});
 					}
 					else {
 						th.textContent = fullName;
