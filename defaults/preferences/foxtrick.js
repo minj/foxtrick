@@ -594,6 +594,7 @@ pref("extensions.foxtrick.prefs.module.SkillTable.youth.own.Set_pieces", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.youth.own.SkillTableHide", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.youth.own.Speciality", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.youth.own.Status", true);
+pref("extensions.foxtrick.prefs.module.SkillTable.youth.own.TwinLink", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.youth.own.Winger", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.youth.own.CanBePromotedIn", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.youth.own.JoinedSince", true);

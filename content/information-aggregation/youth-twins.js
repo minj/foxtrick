@@ -176,9 +176,15 @@ Foxtrick.modules['YouthTwins'] = {
 					Foxtrick.createFeaturedElement(doc, Foxtrick.modules['YouthTwins'], 'a');
 				var container =
 					Foxtrick.createFeaturedElement(doc, Foxtrick.modules['YouthTwins'], 'span');
+
 				Foxtrick.addClass(container, 'ft-youth-twins-container');
 				container.setAttribute('title', title);
 				container.setAttribute('alt', title);
+
+				container.dataset.possible = possible;
+				container.dataset.marked = marked;
+				container.dataset.unmarked = non;
+				container.dataset.undecided = missing;
 
 				//add icons according to amount of occurance
 				var addIcons = function(parent, limit, alt, className, src) {
@@ -194,14 +200,13 @@ Foxtrick.modules['YouthTwins'] = {
 				link.appendChild(container);
 
 				//link destinations as Mackshot from HY requested
-				if (isHYuser)
-					link.setAttribute('href',
-					                  'http://www.hattrick-youthclub.org/site/players_twins');
-				else
-					link.setAttribute('href',
-					                  'http://www.hattrick-youthclub.org');
+				var url = isHYuser ? 'http://www.hattrick-youthclub.org/site/players_twins' :
+					'http://www.hattrick-youthclub.org';
 
-				link.setAttribute('target', '_blank');
+				container.dataset.url = url;
+
+				link.href = url;
+				link.target = '_blank';
 
 				if (possible > 0 &&
 				    !Foxtrick.Prefs.isModuleOptionEnabled('YouthTwins','HideInfoLink')) {

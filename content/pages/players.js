@@ -766,6 +766,26 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				}
 				else if (Foxtrick.Pages.Players.isYouth(doc)) {
 					skillInfo = Foxtrick.Pages.Player.parseYouthSkills(skillTable);
+
+					var twinsInfo = playerNode.querySelector('.ft-youth-twins-container');
+					if (twinsInfo && Number(twinsInfo.dataset.possible)) {
+						var marked = Number(twinsInfo.dataset.marked);
+						var undecided = Number(twinsInfo.dataset.undecided);
+
+						var twinLink = doc.createElement('a');
+						twinLink.href = twinsInfo.dataset.url;
+						twinLink.target = '_blank';
+						twinLink.title = twinsInfo.title;
+						twinLink.textContent = marked || '';
+
+						if (undecided) {
+							var newTwins = doc.createElement('strong');
+							newTwins.textContent = '+' + undecided;
+							twinLink.appendChild(newTwins);
+						}
+
+						player.twinLink = twinLink;
+					}
 				}
 				if (skillInfo) {
 					var skills = skillInfo.values;
