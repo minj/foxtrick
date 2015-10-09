@@ -152,7 +152,7 @@ html[dir="rtl"] .ft_skilltable td.formatted-num { direction: ltr; }
 .ft-coach {
 	vertical-align: bottom;
 }
-.ft-skilltable_hideBtn {
+.ft-skilltable_cellBtn {
 	cursor: pointer;
 }
 #ft_skilltable_restoreHidden {

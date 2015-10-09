@@ -384,7 +384,7 @@ Foxtrick.modules['SkillTable'] = {
 			// img: images used in table headers as substitution of text
 			var COLUMNS = [
 				{ name: 'SkillTableHide', property: 'id',
-					method: 'hide', sortAsc: true, frozen: true, },
+					method: 'hide', listener: 'hide', sortAsc: true, frozen: true, },
 				{ name: 'PlayerNumber', property: 'number', sortAsc: true, frozen: true, },
 				{ name: 'PlayerCategory', property: 'category',
 					method: 'category', sortAsc: true, frozen: true, },
@@ -487,13 +487,9 @@ Foxtrick.modules['SkillTable'] = {
 			var RENDERERS = {
 				hide: function(cell, id) {
 					var l10n = Foxtrick.L10n.getString('SkillTableHide');
-					var btn = doc.createElement('span');
-					btn.className = 'ft-skilltable_hideBtn';
-					btn.textContent = '–';
-					btn.setAttribute('aria-label', btn.title = l10n);
-					cell.setAttribute('index', btn.dataset.id = id);
-					Foxtrick.onClick(btn, hideRowHandler);
-					cell.appendChild(btn);
+					cell.textContent = '–';
+					cell.setAttribute('aria-label', cell.title = l10n);
+					cell.setAttribute('index', cell.dataset.id = id);
 				},
 				category: function(cell, cat) {
 					var categories = ['GK', 'WB', 'CD', 'W', 'IM', 'FW', 'S', 'R', 'E1', 'E2'];
@@ -747,14 +743,16 @@ Foxtrick.modules['SkillTable'] = {
 				},
 			};
 
-			var hideRowHandler = function() {
-				var doc = this.ownerDocument;
-				var id = this.dataset.id;
-				var rows = doc.querySelectorAll('.ft_skilltable tr[playerid="' + id + '"]');
-				Foxtrick.forEach(function(row) {
-					Foxtrick.addClass(row, 'hidden');
-				}, rows);
-				module.updateUI(doc);
+			var LISTENERS = {
+				hide: function() {
+					var doc = this.ownerDocument;
+					var id = this.dataset.id;
+					var rows = doc.querySelectorAll('.ft_skilltable tr[playerid="' + id + '"]');
+					Foxtrick.forEach(function(row) {
+						Foxtrick.addClass(row, 'hidden');
+					}, rows);
+					module.updateUI(doc);
+				},
 			};
 
 			var checkAvailableColumns = function() {
@@ -841,6 +839,17 @@ Foxtrick.modules['SkillTable'] = {
 				if (Foxtrick.Prefs.getBool('module.SkillTable.top')) {
 					Foxtrick.addClass(tableDiv, 'on_top');
 				}
+			};
+
+			var attachListeners = function(tables) {
+				Foxtrick.forEach(function(table) {
+					var cells = table.querySelectorAll('.ft-skilltable_cellBtn');
+					Foxtrick.forEach(function(cell) {
+						var handler = LISTENERS[cell.dataset.listener];
+						if (handler)
+							Foxtrick.onClick(cell, handler);
+					}, cells);
+				}, tables);
 			};
 
 			var sortClick = function(ev) {
@@ -1023,6 +1032,7 @@ Foxtrick.modules['SkillTable'] = {
 						}
 					}, rows);
 
+					attachListeners(tables); // cloneNode does not clone listeners :S
 					module.updateUI(doc);
 				}
 				catch (e) {
@@ -1091,6 +1101,7 @@ Foxtrick.modules['SkillTable'] = {
 						var addCell = function(column) {
 							if (column.enabled) {
 								var method = column.method;
+								var listener = column.listener;
 								var property = column.property;
 								var value = player[property];
 
@@ -1120,6 +1131,10 @@ Foxtrick.modules['SkillTable'] = {
 								}
 								if (column.alignRight) {
 									Foxtrick.addClass(cell, 'align-right');
+								}
+								if (listener) {
+									cell.dataset.listener = listener;
+									Foxtrick.addClass(cell, 'ft-skilltable_cellBtn');
 								}
 							}
 						};
@@ -1185,6 +1200,7 @@ Foxtrick.modules['SkillTable'] = {
 				var frozenColumns = Foxtrick.filter(function(c) { return c.frozen; }, COLUMNS);
 				var otherColumns = Foxtrick.filter(function(c) { return !c.frozen; }, COLUMNS);
 
+				var ret = [];
 				if (useFrozen) {
 					var tableLeft = doc.createElement('table');
 					tableLeft.id = 'ft_skilltableLeft';
@@ -1196,7 +1212,7 @@ Foxtrick.modules['SkillTable'] = {
 					tableRight.id = 'ft_skilltableRight';
 					tableRight.className = 'ft_skilltable ft_skilltableRight ft_skilltableLong';
 					assemble(tableRight, otherColumns);
-					return [tableLeft, tableRight];
+					ret = [tableLeft, tableRight];
 				}
 				else {
 					var table = doc.createElement('table');
@@ -1204,8 +1220,10 @@ Foxtrick.modules['SkillTable'] = {
 					table.className = 'ft_skilltable ft_skilltableLong';
 					assemble(table, COLUMNS);
 					module.updateUI(doc, table);
-					return [table];
+					ret = [table];
 				}
+				attachListeners(ret);
+				return ret;
 			};
 
 			try {
