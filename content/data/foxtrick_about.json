@@ -177,6 +177,10 @@
 				},
 				{
 					"name": "spajdrmen11"
+				},
+				{
+					"id": "6263697",
+					"name": "LA-Ron__Manager"
 				}
 			]
 		},
@@ -198,6 +202,9 @@
 				},
 				{
 					"name": "traditore"
+				},
+				{
+					"name": "crocach"
 				}
 			]
 		},
@@ -211,6 +218,9 @@
 				{
 					"id": "368411",
 					"name": "Robin"
+				},
+				{
+					"name": "turonhonza"
 				}
 			]
 		},
@@ -264,6 +274,9 @@
 				{
 					"id": "10613189",
 					"name": "GM-Romanolus"
+				},
+				{
+					"name": "fr02081975"
 				}
 			]
 		},
@@ -389,6 +402,9 @@
 				{
 					"id": "7137875",
 					"name": "LA-IpEFiX"
+				},
+				{
+					"name": "Kostitsyn46"
 				}
 			]
 		},
@@ -526,6 +542,14 @@
 				{
 					"id": "9668661",
 					"name": "dzsoo"
+				}
+			]
+		},
+		{
+			"language": "Indonesian",
+			"translators": [
+				{
+					"name": "yosua_k"
 				}
 			]
 		},
@@ -679,6 +703,9 @@
 				{
 					"id": "9367491",
 					"name": "Domburg86"
+				},
+				{
+					"name": "takiwakiu20"
 				}
 			]
 		},
@@ -701,6 +728,10 @@
 				},
 				{
 					"name": "borgstein"
+				},
+				{
+					"id": "12449946",
+					"name": "amundsoet"
 				}
 			]
 		},
@@ -712,6 +743,7 @@
 					"name": "Krasher"
 				},
 				{
+					"id": "12449946",
 					"name": "amundsoet"
 				}
 			]
