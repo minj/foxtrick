@@ -5,6 +5,13 @@ es-ES:
       note_0: 'Esta es versión de desarrollo. Úsalo a tu propia discreción. Por favor, mira <linkSVN>commit history</linkSVN> en Google Code para los detalles de los cambios.'
     beta:
       note_0: 'Esta es la versión beta de la próxima release. Por favor, ayuda a traducir esta versión accediendo a nuestra super fácil de usar web de traducción <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.16.0:
+      important: '<header>Anuncios importantes</header>'
+      crowdin: '<header>AMuchas actualizaciones de la traducción de nuestros asombrosos usuarios, mediante la <linkCrowdin>herramienta CrowdIn</linkCrowdin>. ¡Tu puedes contribuir también si quieres!</header>'
+      support: '¿<header>Como lo estamos haciendo? Por favor <linkContribute>ayuda Foxtrick</linkContribute>.</header>'
+      new: '<header>Nuevos módulos</header>'
+      bugs: '<header>Corrección de errores</header>'
+      other: '<header>Otros cambios</header>'
     0.15.2.1:
       important: '<header>Anuncios importantes</header>'
       signed: Ahora todas las extensiones de Firefox deben estar firmadas digitalmente por Mozilla. Esta actualización de la firma es principalmente para garantizar la compatibilidad con Firefox.

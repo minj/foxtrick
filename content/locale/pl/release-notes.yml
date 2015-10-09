@@ -5,6 +5,13 @@ pl:
       note_0: 'To jest wersja rozwojowa. Korzystaj według własnego uznania. Proszę sprawdź szczegóły zmian <linkSVN>historia zmian</linkSVN> w witrynie Google Code.'
     beta:
       note_0: 'To jest wersja beta następnego wydania. Proszę pomóż w tłumaczeniu tej wersji na naszej super łatwej stronie tłumaczeń <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.16.0:
+      important: '<header>Ważne ogłoszenia</header>'
+      crowdin: '<header>Wiele tłumaczeń pochodzi od naszych niesamowitych użytkowników korzystających z <linkCrowdin>narzędzia crowdin</linkCrowdin>. Ty też możesz pomóc!</header>'
+      support: '<header>Podoba ci się to, co robimy? Proszę <linkContribute>Wesprzyj Foxtrick</linkContribute>.</header>'
+      new: '<header>Nowe moduły</header>'
+      bugs: '<header>Poprawki błędów</header>'
+      other: '<header>Inne zmiany</header>'
     0.15.2.1:
       important: '<header>Ważne ogłoszenia</header>'
       signed: Obecnie wszystkie dodatki Firefoxa muszą być podpisane cyfrowo przez Mozillę. Jest to głównie aktualizacja podpisów w celu zapewnienia zgodności Foxtricka.

@@ -5,6 +5,13 @@ es-AR:
       note_0: 'Se trata de la version de desarrollo. Utilizar bajo su propio riesgo. Por favor ver <linkSVN>historial de commit</linkSVN> en Google Code para detalles de los cambios.'
     beta:
       note_0: 'Esta es la versión beta de la próxima versión. Por favor ayude a traducir esta versión en nuestra super-fácil página <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.16.0:
+      important: '<header>Anuncios importantes</header>'
+      crowdin: '<header>Muchas actualizaciones en las traducciones de nuestros colaboradores mediante <linkCrowdin> crowdin</linkCrowdin>. Usted también puede ayudarnos!</header>'
+      support: '¿<header>Qué estamos haciendo? Por favor <linkContribute>ayuda a Foxtrick</linkContribute>.</header>'
+      new: '<header>Nuevos módulos</header>'
+      bugs: '<header>Corrección de errores</header>'
+      other: '<header>Otros cambios</header>'
     0.15.2.1:
       important: '<header>Anuncios importantes</header>'
       signed: Todos los complementos de Firefox ahora necesitan ser firmados digitalmente por Mozilla. Esta es principalmente una actualización para garantizar la compatibilidad de Foxtrick.

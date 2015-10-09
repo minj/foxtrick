@@ -5,6 +5,13 @@ hr:
       note_0: 'Ovo je razvojna inačica. Koristiti na svoju odgovornost. Za detalje o promjenama pogledajte <linkSVN>commit history</linkSVN> na Google Code stranici.'
     beta:
       note_0: 'Ovo je beta inačica buduće nove verzije. Pomozite na prevoditi ovu verziju sa super lakim prevođenjem na <linkCrowdin>crowdin.net</linkCrowdin>.'
+    0.16.0:
+      important: '<header>Važne obavijesti</header>'
+      crowdin: '<header>Mnogo prevoditeljskih nadogradnji od naših fantastičnih korisnika koristeći <linkCrowdin>crowdin alat</linkCrowdin>. I Vi možete pomoći!</header>'
+      support: '<header>Sviđa Vam se što radimo? Molim Vas da <linkContribute>podržite Foxtrick</linkContribute>.</header>'
+      new: '<header>Novi moduli</header>'
+      bugs: '<header>Popravljene greške</header>'
+      other: '<header>Druge promjene</header>'
     0.15.2.1:
       important: '<header>Važne obavijesti</header>'
       signed: Svi Firefox dodaci sada moraju biti digitalno potpisani od strane Mozille. Ovo je uglavnom potpisana nadogradnja da bi se osigurala Foxtrick-ova kompatibilnost.

@@ -5,6 +5,10 @@ mk:
       note_0: 'Ова е верзија во развој. Само за лична употреба. За детаљи околу промените ja посетете <linkSVN>Google Code</linkSVN> страницата.'
     beta:
       note_0: 'Ова е бета верзијата од следното издание. Ве молиме помогнете во преводот на оваа верзија на нашата едноставна crowd-веб страничка за преведување <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.16.0:
+      support: '<header>Ви се допаѓа што работиме? Ве молиме <linkContribute>подржете го Foxtrick</linkContribute>.</header>'
+      new: '<header>Нови модули</header>'
+      other: '<header>Други промени</header>'
     0.15.2.1:
       other: '<header>Други промени</header>'
     0.15.2:

@@ -5,6 +5,13 @@ sv-SE:
       note_0: 'This is the development build. Use at your own discretion. Please view <linkSVN>commit history</linkSVN> at Google Code for details of the changes.'
     beta:
       note_0: 'Detta är BETA -versionen av nästa utgåva. Hjälp gärna till att översätta denna version via vårt superlätta översättningsverktyg på <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.16.0:
+      important: '<header>Viktiga meddelanden</header>'
+      crowdin: '<header>En hel massa översättningsuppdateringar av användare via översättningsverktyget på <linkCrowdin>crowdin.net</linkCrowdin>. Du kan också hjälpa till!</header>'
+      support: '<header>Gillar du vad vi gör? Vänligen <linkContribute>Stöd Foxtrick</linkContribute>.</header>'
+      new: '<header>Nya moduler</header>'
+      bugs: '<header>Buggfixar</header>'
+      other: '<header>Andra ändringar</header>'
     0.15.2.1:
       important: '<header>Viktiga meddelanden</header>'
       signed: Alla tillägg till Firefox måste nu vara digitalt signerade av Mozilla. Detta är till stor del bara en signerad uppdatering för att säkerställa att Foxtrick är kompatibelt.

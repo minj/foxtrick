@@ -5,6 +5,13 @@ he:
       note_0: 'זהו עדכון בפיתוח. השימוש בו הוא לשיקולכם בלבד. לפרטים בנוגע לשינויים נא ראו <linkSVN>היסטוריה</linkSVN> בגוגל קוד.'
     beta:
       note_0: 'זוהי גירסת הבטא של המהדורה הבאה. נודה על עזרה בתרגום גירסה זו באתר התרגום המאוד נוח שלנו <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.16.0:
+      important: '<header>הודעות חשובות</header>'
+      crowdin: '<header>עדכוני תרגום רבים של המשתמשים המדהימים שלנו באמצעות <linkCrowdin>כלי ה-crowdin</linkCrowdin>. גם אתם יכולים לעזור!</header>'
+      support: '<header>מוצא חן בעיניך מה שאנחנו עושים? נודה על <linkContribute>תרומתך ל- Foxtrick</linkContribute>.</header>'
+      new: '<header>מודולים חדשים</header>'
+      bugs: '<header>תיקוני באגים</header>'
+      other: '<header>שינויים אחרים</header>'
     0.15.2.1:
       important: '<header>הודעות חשובות</header>'
       signed: כעת כל התוספים לפיירפוקס חייבים להיחתם אלקטרונית על ידי מוזילה. בעקרו של דבר, מטרת העדכון היא לקבל חתימה אלקטרונית, כדי שפוקסטריק תוכל לפעול בדפדפן.

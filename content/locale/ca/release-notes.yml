@@ -2,36 +2,43 @@
 ca:
   versions:
     nightly:
-      note_0: 'Això és la complexió de desenvolupament. Utilitzar discreció. Si us plau veure <linkSVN>història de cometre</linkSVN> a Google Code per detalls dels canvis.'
+      note_0: 'Aquesta és la versió de desenvolupament. Utilitza-la a la teva pròpia discreció. Si us plau mira <linkSVN>commit history</linkSVN> a Google Code per als detalls dels canvis.'
     beta:
-      note_0: 'Aquesta és la versió beta de la propera versió. Si us plau ajudar a traduir aquesta versió al nostre super fàcil multitud de traducció-pàgina <linkCrowdin>crowdin.net</linkCrowdin>.'
+      note_0: 'Aquesta és la versió beta de la propera versió. Si us plau, ajuda a traduir aquesta versió a la nostra súper pàgina web de traducció i molt fàcil <linkCrowdin>crowdin.net</linkCrowdin>.'
+    0.16.0:
+      important: '<header>Anuncis importants</header>'
+      crowdin: "<header>Moltes actualitzacions en la traducció, dels nostres impressionats usuaris, es fan utilitzant l' <linkCrowdin>eina crowdin</linkCrowdin>. ¡Tu també pots ajudar-nos!</header>s usuari"
+      support: '<header>Com el que estem fent? Si us plau <linkContribute>Foxtrick suport</linkContribute>.</header>'
+      new: '<header>Mòduls nous</header>'
+      bugs: "<header>Correccions d'errors</header>"
+      other: '<header>Altres canvis</header>'
     0.15.2.1:
       important: '<header>Anuncis importants</header>'
-      signed: Tots els add-ons Firefox ara necessiten ser signada digitalment per Mozilla. Això és principalment una actualització signat per assegurar la compatibilitat Foxtrick.
-      signing: "A causa de trastorns produïts per la política de signatura complement obligatori decidíem unlist Foxtrick del portal de <linkAMO>Complements de Mozilla</linkAMO>. Més detalls a l' <linkUnlistPost>anunci de Global Foxtrick</linkUnlistPost>."
+      signed: "Ara totes les extensions Firefox han d'estar signades digitalment per Mozilla. Aquesta actualització de la marca es principalment per garantir la compatibilitat amb Firefox."
+      signing: "Degut als problemes produïts per la política obligatòria de la marca, hem tret Foxtrick de la llista <linkAMO>Extensions de Mozilla</linkAMO> del portal. Si vols veure mes detalls visita l'<linkUnlistPost>anunci de Foxtrick</linkUnlistPost>."
       bugs: '<header>Bugfixes</header>'
-      weatherSE: "Llista jugadors SE temps partit cronologia va batre en <module>MatchLineupFixes</module> degut als canvis d'HT. El problema ara és fix."
+      weatherSE: "El llistat de jugadors SE en la linea del temps del partit es va dividir en <module>MatchLineupFixes</module> degut als canvis de HT. Ara s'ha solucionat el problema."
       other: '<header>Altres canvis</header>'
-      sandbox: Suport afegit per a la futura tret de sorrera de partit de Hattrick.
-      compact_lineups: 'Salvat cartell noms ara es ser compactada amb <module>MatchOrderInterface</module>. Això li permetrà utilitzar més desades alineacions sense córrer a assumptes espacials.'
-      and_more: Diversos altres petits canvis i correccions.
+      sandbox: "S'afegit suport de compatibilitat per a la característica de partits sandbox de Hattrick."
+      compact_lineups: "Ara els noms de alineació desades es comprimiràn amb <module>MatchOrderInterface</module>. Això et permetrà utilitzar més les alineacions desades sense cap problema d'espai."
+      and_more: Diversos petits canvis, correccions i altres.
     0.15.2:
       important: '<header>Anuncis importants</header>'
-      links: '<module>Enllaços</module> funcionalitat va ser reescrit per fixar uns quants errors i millorar el manteniment. Etiquetes més ara estarà disponibles per a enllaços personalitzats. Algunes etiquetes van canviar de nom per reflectir el seu veritable significat. Si us plau, esborrar la memòria cau Foxtrick, provar els seus enllaços personalitzats i actualitzar-los consegüentment.'
+      links: '<module>Enllaços</module> la funcionalitat va ser reescrit per corregir alguns errors i millorar el manteniment. Més etiquetes estaran ara disponibles per a enllaços personalitzats. Algunes etiquetes van ser renombrades per reflectir el seu veritable significat. Si us plau buida la memòria caché de Foxtrick, prova els teus enllaços personalitzats i actualitzals consegüentment.'
       support: '<header>Com el que estem fent? Si us plau <linkContribute>Foxtrick suport</linkContribute>.</header>'
       crowdin: "<header>Un munt de actualitzacions de nostre impressionant usuaris utilitzant l' <linkCrowdin>eina crowdin</linkCrowdin>. Vostè pot ajudar així!</header>"
       twitter: 'Vostè pot seguir <linkTwitter>Foxtrick a Twitter</linkTwitter> per rebre les últimes notícies, actualitzacions i anuncis.'
       bugs: "<header>Correccions d'errors</header>"
-      youth_avatars: 'Avatars joventut falta fixa en <module>MatchOrderInterface</module>.'
-      preserve_changes: '<module>MatchRatingsTweaks</module> ara cal preservar última modificació qualificació durant els jocs en viu. Prèviament els canvis en les qualificacions (amb números) desapareixeria en cada actualització fins i tot si aquesta actualització no tenia cap efecte en índexs.'
-      leave_forum: '<module>ForumLeaveButton</module> estava totalment trencat i ara ha de ser fix.'
-      monitor_cups: '<module>MyMonitor</module> ara haurien de mostrar les icones Copa secundària correcta.'
+      youth_avatars: 'Reparats avatars del planter que falten a <module>MatchOrderInterface</module>.'
+      preserve_changes: '<module>MatchRatingsTweaks</module> ara cal preservar els últims canvis de qualificacións durant els jocs en viu. Prèviament els canvis en les qualificacions (números de color) desapareixerien en cada actualització si aquella actualització no tenia cap efecte en les qualificacions.'
+      leave_forum: "<module>ForumLeaveButton</module> estava totalment fora de servei i ara hauria d'haver sigut reparat."
+      monitor_cups: '<module>MyMonitor</module> ara hauria de mostrar les icones correctes de les copes secundàries.'
       other: '<header>Altres canvis</header>'
-      volume: 'Afegir un control lliscant global Foxtrick volum del so a la <FTlinkMainTab>configuració general secció</FTlinkMainTab>.'
-      mlt_upgrade: "<module>MatchLineupTweaks</module> mòdul hauria de mostrar ara números d'intèrpret en l'alineació del partit. A més, podràs veure predicció habilitat de resistència (si està disponible) quan voltant el seu ratolí sobre el valor d'energia de jugador."
-      mrt_ratings: '<module>Classificacions</module> mòdul integrat en <module>MatchRatingsTweaks</module> i ara té una funcionalitat limitada fins i tot en HT-viure (per HT partidaris només).'
-      copy_ratings: '<module>CopyRatings</module> va ser reescrit i ara podeu copiar índexs basats en minuts des de la pestanya de qualificació detalls, fins i tot en HT-viu.'
-      monitor_update: "<module>MyMonitor</module> ara inclou equip d'ordenació més intel·ligent i una capacitat afegir partits HT-viure basat en el seu tipus."
+      volume: 'Un deslizador de volum del so global de Foxtrick ha sigut afegit a la <FTlinkMainTab>secció de configuració generals</FTlinkMainTab>.'
+      mlt_upgrade: "<module>MatchLineupTweaks</module> El mòdul ara hauria de mostrar els números del jugador en l'alineació del partit. A més, veureu la predicció d'habilitats de resistència (si està disponible) quan passeu el ratolí damunt el valor d'energia del jugador."
+      mrt_ratings: "<module>Classificacions</module> el mòdul s'ha integrat a <module>MatchRatingsTweaks</module> i ara té una funcionalitat limitada inclús a HT-Live (només per a HT supporters)."
+      copy_ratings: "<module>CopyRatings</module> va ser reescrit i ara podeu copiar les qualificacions basades en minuts des de fitxa d'informació de qualificacions, inclús a HT-Live."
+      monitor_update: "<module>MyMonitor</module> ara inclou classificació de equip més intel·ligent i la capacitat d'afegir partits HT-Live basats en aquest tipus."
       promote_age: '<module>YouthPromotes</module> ara Mostra edat jugador el dia de la promoció.'
       export_live: 'Afegir un botó per exportar la llista de partit HT-viu com un enllaç a <module>ReLiveLinks</module>.'
       match_icons: "S'han afegit més icones partit esdeveniment a <module>MatchReportFormat</module>. Tots els esdeveniments importants ara han de ser coberts."
@@ -119,7 +126,7 @@ ca:
       removed: Mòduls SmallerPages i MatchTables van ser també tret a causa de la seva inutilitat.
       and_more: Diversos altres petits canvis i correccions.
     0.13.0.1:
-      crowdin: "<header>Un munt de actualitzacions de nostre impressionant usuaris utilitzant l' <linkCrowdin>eina crowdin</linkCrowdin>. Vostè pot ajudar així!</header>"
+      crowdin: '<header>Moltes actualitzacions en la traducció, per part dels nostres impressionants usuaris, utilitzant la <linkCrowdin>eina crowdin</linkCrowdin>. ¡Tu també pots ajudar-nos!</header>s usuari'
       bugs: "<header>Correccions d'errors</header>"
       old_faces: "<module>OldStyleFace</module> no estava funcionant pròpiament en interfície d'ordre de partit i partit alineació pàgines. Ara és fix."
       simulator_skills: 'Sublevel noms de <module>MatchSimulator</module> han estat corregits per unes quantes llengües.'
@@ -135,7 +142,7 @@ ca:
       opera: "<p>Això és l'últim alleujament essencial que suporta oficialment òpera 12 o més avall. Foxtrick les versions existents pot pari de funcionar sense avís més.</p> <p>Si us plau considerar canviar la <linkOperaNext>Següent òpera</linkOperaNext> o un altre navegador compatible de la seva elecció.</p>"
       safari: Suport de 5. x de versió de Safari aviat sereu.
       twitter: 'Vostè pot seguir <linkTwitter>Foxtrick a Twitter</linkTwitter> per rebre les últimes notícies, actualitzacions i anuncis.'
-      crowdin: "<header>Un munt de actualitzacions de nostre impressionant usuaris utilitzant l' <linkCrowdin>eina crowdin</linkCrowdin>. Vostè pot ajudar així!</header>"
+      crowdin: '<header>Moltes actualitzacions en la traducció, per part dels nostres impressionants usuaris, utilitzant la <linkCrowdin>eina crowdin</linkCrowdin>. ¡Tu també pots ajudar-nos!</header>s usuari'
       new: '<header>Mòduls nous</header>'
       hy_skills: '<module>YouthSkills</module>: realça pàgina de jugadors joves amb informació de hattrick-youthclub. Per a usuaris HY només.'
       ratings_tweaks: "<module>MatchRatingsTweaks</module>: Pessiga classificacions a la pàgina d'informe de partit. Mostra les qualificacions numèriques i segueix els canvis quan mirant la cronologia com a <module>MatchSimulator</module>. Calcula probabilitats reals de puntuació/defensar/possessió segons les fórmules que s'estableixen en el decàleg manual: 15766691.221, 15766691.242"
@@ -171,7 +178,7 @@ ca:
       note_2: "<module>MatchIncome</module> mostrarà ara percentatges d'ús mentre el seu camp està en construcció. Durant el temps de construcció que és impossible FoxTrick saber si el seu camp actual mida d'un joc particular és correcta o no. FoxTrick assumirà és correcta i thatfore mostrarà percentatges incorrectes quan mirant jocs antics jugat al seu arena abans s'ha assolit la seva mida actual."
       note_3: "Fixava el problema que va causar la Foxtrick mostrar els símbols estranys en comptes de moneda de l'usuari"
     0.12.2:
-      note_0: "<header>Un munt de actualitzacions de nostre impressionant usuaris utilitzant l' <linkCrowdin>eina crowdin</linkCrowdin>. Vostè pot ajudar així!</header>"
+      note_0: "<header>Moltes actualitzacions en la traducció, dels nostres impressionats usuaris, es fan utilitzant l' <linkCrowdin>eina crowdin</linkCrowdin>. ¡Tu també pots ajudar-nos!</header>s usuari"
       note_1: '<module>PlayerStatsExperience</module>: el càlcul experiència ara assumeix hi 28.57 punts per cada nivell (vegeu 15766691.780).'
       note_2: "NOU: l'eina de <module>PsicoTSI</module> va ser importat a Foxtrick."
       note_3: '<module>ShowLineupSet</module>: afegida opció per exalçar propi equip en taules de classificació.'
@@ -201,7 +208,7 @@ ca:
       note_8: 'Solucionat alguns problemes <module>ForumAlterHeaderLine</module>, <module>ManagerButtons</module> i <module>HideSignatures</module>.'
       note_9: '<module>SkillTable</module> ara treballarà una altra vegada sense autorització Foxtrick per a usuaris amb un sol equip.'
     0.12.1:
-      note_0: "<header>Un munt de actualitzacions de nostre impressionant usuaris utilitzant l' <linkCrowdin>eina crowdin</linkCrowdin>. Vostè pot ajudar així!</header>"
+      note_0: '<header>Moltes actualitzacions en la traducció, per part dels nostres impressionants usuaris, utilitzant la <linkCrowdin>eina crowdin</linkCrowdin>. ¡Tu també pots ajudar-nos!</header>s usuari'
       note_1: 'NOU: <module>SupportershipExpirationDate</module>: clicant dies partidari restants al tauler mostrarà ara la data de caducitat'
       note_2: '<module>MatchIncome</module>: afegida opció per mostrar la utilització de seient en percentatges prop del nombre de visitants a les pàgines de partit'
       note_3: 'NOU: <module>MainMenuDropDown</module>: Afegeix menús desplegables a la barra que contenen normalment disponibles a la barra lateral de la pàgina de destinació tots els enllaços de navegació principal.'
@@ -214,7 +221,7 @@ ca:
       note_10: "S'ha afegit suport per a la llengua de l'Azerbaidjan."
       note_11: Cent altres destrets per a assumptes provocats per canvis de Hattrick.
     0.12.0:
-      note_0: "<header>Un munt de actualitzacions de nostre impressionant usuaris utilitzant l' <linkCrowdin>eina crowdin</linkCrowdin>. Vostè pot ajudar així!</header>"
+      note_0: "<header>Moltes actualitzacions en la traducció, dels nostres impressionats usuaris, es fan utilitzant l' <linkCrowdin>eina crowdin</linkCrowdin>. ¡Tu també pots ajudar-nos!</header>s usuari"
       note_1: "NOU: <module>MatchLineupTweaks</module>: canvis en l'estrella compta al vell estil-estrelles. Afegeix comptadors per a les estrelles i la resistència a la nova pàgina d'alineació. Mostra d'especialitats per a tots els jugadors i afegeix el nom de l'equip al camp per limitar la confusió. Mostra avatars de jugador per al seu equip. Destacar jugadors rellevants per a un esdeveniment en un partit."
       note_2: Un munt de correccions per diversos mòduls que estaven trencats, després es va presentar la nova botiga de Hattrick.
       note_3: 'NOU: <module>MatchLineupFixes</module>: sincronitzar cronologia en pestanyes intèrpret i sectors. Mostrar noms de jugadors per al temps SEs. Afegir enllaços per a jugadors en el seu propi pestanya comandes últim recompte estrella afegir als jugadors a la banqueta. Corregeix múltiples esdeveniments passa al mateix temps: jugadors canviar pas en comptes de les seves posicions a la vegada.'
@@ -233,7 +240,7 @@ ca:
       note_16: 'Preparat un error a <module>MatchSimulator</module> que causa classificacions malament i predicció aparèixer quan atac contra defensa opció està desactivada.'
       note_17: Safari actualitzacions semblen ser trencat. Usuaris ha de treure la versió anterior de Foxtrick i instal·lar una nova.
     0.11.0.1:
-      note_0: "<header>Un munt de actualitzacions de nostre impressionant usuaris utilitzant l' <linkCrowdin>eina crowdin</linkCrowdin>. Vostè pot ajudar així!</header>"
+      note_0: '<header>Moltes actualitzacions en la traducció, per part dels nostres impressionants usuaris, utilitzant la <linkCrowdin>eina crowdin</linkCrowdin>. ¡Tu també pots ajudar-nos!</header>s usuari'
       note_1: 'Fixar assumptes menors en <module>ForumLastPost</module>, <module>ContextMenuCopy</module>, <module>PlayerFilters</module>, <module>SmallerPages</module>, <module>SkillTable</module>, <module>TeamPopupLinks</module>, <module>MatchIncome</module> i <module>HTThreadMarker</module>.'
       note_2: "Evitar que el Firefox recarregant tots els tabuladors de Hattrick quan s'obre una finestra nova del navegador."
     0.11.0:
@@ -443,55 +450,55 @@ ca:
       note_1: Fixes for skill table at transfer search results. (convincedd, ryanli)
     0.7.1:
       note_0: 'Module <module>LeagueNewsFilter</module> split into <module>LeagueNewsFilter</module> and <module>ShowLineupSet</module>. (ryanli)'
-      note_1: Modifications to adapt for new transfer search results page. (ryanli, taised)
+      note_1: Modificacions per adaptar la nova pàgina de resultats en el cercador de transferències. (ryanli, taised)
       note_2: Locale updates. (ryanli, CoRrRan, ljushaff, _KOHb_, slader, ElChiquitin)
       note_3: Some other trivial fixes. (ryanli)
     0.7:
       note_0: Icelandic locale. (LA-LordBastard)
       note_1: Vlaams locale copied from Dutch. (ryanli)
-      note_2: 'New module category, <FTlinkAggregation>Information Aggregation</FTlinkAggregation>. (ryanli)'
-      note_3: 'New module <module>MyMonitor</module> for monitoring recent matches of selected teams at My Hattrirck. (ryanli)'
-      note_4: 'New module <module>MarkAllAsRead</module>, a button to mark threads in all forums as read. (ryanli)'
-      note_5: 'New module <module>ShowFriendlyBooked</module> for showing whether a team has booked a friendly on series page. (ryanli)'
+      note_2: 'Nova categoria de mòdul, <FTlinkAggregation>Information Aggregation</FTlinkAggregation>. (ryanli)'
+      note_3: 'Nou mòdul <module>MyMonitor</module> per a monotoritzar els últims partits dels equips seleccionats al Meu Hattrick. (ryanli)'
+      note_4: 'Nou mòdul <module>MarkAllAsRead</module>, un botó per marcar coma llegits els fils de tots els fòrums. (ryanli)'
+      note_5: 'Nou mòdul <module>ShowFriendlyBooked</module> per a mostrar si un equip ha reservat un amistós a la pàgina del grup de la lliga. (ryanli)'
       note_6: 'Rewrite of module <module>TickerAlert</module>, integrating former FoxtrickAlert, AlertCustomSound, AlertCustomOff modules. (ryanli)'
-      note_7: 'Module <module>MatchPlayerColouring</module> loads match lineup from XML. (ryanli)'
-      note_8: 'Module FoxtrickLineupShortcut renamed to <module>LineupShortcut</module>. (ryanli)'
-      note_9: 'Module htmsStatistics renamed to <module>HTMSPrediction</module>. (ryanli)'
-      note_10: 'New option in module <module>FriendlyInterface</module> to hide the secretary if he has nothing to report. (ryanli)'
-      note_11: 'Module <module>StaffMarker</module> now uses <linkJSON>JavaScript Object Notation</linkJSON> for custom markers. (ryanli)'
-      note_12: 'New radios in module <module>ExtraShortcuts</module>, Balkaradio and Downtime Radio. (ljushaff, ryanli)'
-      note_13: 'Option of <module>LeagueAndMatchChat</module> to open Yaplet chat in a frame removed. (ryanli)'
-      note_14: Various trivial fixes. (ryanli, Mod-spambot)
+      note_7: "Mòdul <module>MatchPlayerColouring</module> carrega l'alineació del partit des de XML. (ryanli)"
+      note_8: 'Mòdul FoxtrickLineupShortcut renombrar a <module>LineupShortcut</module>. (ryanli)'
+      note_9: 'Mòdul htmsStatistics renombrar a <module>HTMSPrediction</module>. (ryanli)'
+      note_10: 'Nova opció en el mòdul <module>FriendlyInterface</module> per amagar el secretari si no te res a informar. (ryanli)'
+      note_11: 'Mòdul <module>StaffMarker</module> ara utilitza <linkJSON>JavaScript Object Notation</linkJSON> per a marcadors personalitzats. (ryanli)'
+      note_12: 'Noves ràdios en el mòdul <module>ExtraShortcuts</module>, Balkaradio and Downtime Radio. (ljushaff, ryanli)'
+      note_13: 'Opció de <module>LeagueAndMatchChat</module> per obrir el Yaplet chat en un marc suprimit. (ryanli)'
+      note_14: Varies correccions trivials. (ryanli, Mod-spambot)
     0.6.2:
-      note_0: 'Module <module>SeriesFlags</module> now fetches team data directly from Hattrick. (ryanli)'
-      note_1: Locale updates. (ljushaff, csajszi, Mod-spambot)
-      note_2: Some other trivial fixes. (ryanli)
+      note_0: 'Mòdul <module>SeriesFlags</module> ara obté les dades del equip directament de Hattrick. (ryanli)'
+      note_1: Actualitzacions locals. (ljushaff, csajszi, Mod-spambot)
+      note_2: Altres correccions trivials. (ryanli)
     0.6.1:
-      note_0: 'Module <module>HTMSPoints</module> now calculates points locally without connecting to HTMS website. (taised)'
-      note_1: 'Module <module>htmsStatistics</module> now loads prediction correctly. (taised)'
-      note_2: Locale updates. (Mod-spambot, Mod-OmaniMilani, Baler0, ljushaff, _KOHb_, Slash-ss, MEO_Comandante)
-      note_3: Compatible with Firefox 4.2 branch. (ryanli)
-      note_4: Some other trivial fixes. (ryanli)
+      note_0: 'Mòdul <module>HTMSPoints</module> ara calcula els punts localment sense connectar-se a la pàgina web de HTMS. (taised)'
+      note_1: 'Mòdul <module>htmsStatistics</module> ara carrega la predicció correctament. (taised)'
+      note_2: Actualitzacions locals. (Mod-spambot, Mod-OmaniMilani, Baler0, ljushaff, _KOHb_, Slash-ss, MEO_Comandante)
+      note_3: Compatible amb Firefox 4.2. (ryanli)
+      note_4: Altres correccions trivials. (ryanli)
     0.6:
-      note_0: New preferences interface. (ryanli)
-      note_1: OAuth interface implemented for the new Hattrick CHPP API. (ryanli)
-      note_2: 'Module <module>LiveAlert</module> for alerting at HT Live goals. (ryanli)'
-      note_3: 'Module <module>OldStyleFace</module> for showing faces in old Hattrick style. (Aimo_Kanuuna)'
-      note_4: 'Module <module>NtPeek</module> for peeking NT/U20 matches at My Hattrick. (ryanli)'
-      note_5: 'Module <module>SeriesFlags</module> for showing user country and series beside manager and team links. Images provided by <linkHTMS>HTMS</linkHTMS>. (taised, ryanli)'
-      note_6: "Module <module>HTMSPoints</module> for showing player's <linkHTMSPoints>HTMS Points</linkHTMSPoints>, i.e. numeralized ability and potential. (taised)"
-      note_7: "Module <module>FriendlyInterface</module> with options for showing player's full name in match line up page and showing national teams in links for NT players. (ryanli)"
-      note_8: 'Module HighlightBotTeams renamed to <module>HighlightOwnerless</module>. (ryanli)'
-      note_9: Module YouthSkillNotes and ShortPA removed. (ryanli)
-      note_10: 'Option to hide forum sneak-peek in <module>FixcssProblems</module>. (ljushaff)'
-      note_11: 'Option to copy advertisement in non-table style in <module>CopyPlayerAd</module>. (ryanli)'
-      note_12: 'Option to show HatStats per rating in <module>Ratings</module>. (taised)'
-      note_13: Belarusian locale. (LA-Stolik)
-      note_14: 'Add some frequently asked questions at <FTlinkHelp>Help tab</FTlinkHelp>. (ryanli)'
-      note_15: New grey icon for report links. (ljushaff)
-      note_16: '<module>YouthPromotes</module> also shows the earliest date to promote a player. (ryanli)'
-      note_17: Most features working under Google Chrome. (ryanli)
-      note_18: Some trivial fixes for latest Hattrick changes. (ryanli, taised, ljushaff)
-      note_19: 'Module <module>TeamSelectBox</module> disabled by default. (ryanli)'
-      note_20: 'Module <module>SmallerPages</module> disabled by default. (ljushaff)'
-      note_21: 'Radio options in <module>ExtraShortcuts</module> are disabled by default. (ryanli)'
+      note_0: "Noves preferències de l'interfície. (ryanli)"
+      note_1: OAuth interfície implementat per la nova Hattrick CHPP API. (ryanli)
+      note_2: 'Mòdul <module>LiveAlert</module> per avisar dels gols a HT Live. (ryanli)'
+      note_3: "Mòdul <module>OldStyleFace</module> per mostrar les cares en l'estil antic de Hattrick. (Aimo_Kanuuna)"
+      note_4: 'Mòdul <module>NtPeek</module> per espiar els partits de les seleccions nacionals/U20 en el Meu Hattrick. (ryanli)'
+      note_5: 'Mòdul <module>SeriesFlags</module> per mostrar els usuaris del país i lligues junt amb els entrenadors i enllaços del equip. Imatges proporcionades per <linkHTMS>HTMS</linkHTMS>. (taised, ryanli)'
+      note_6: "Mòdul <module>HTMSPoints</module> per mostrar els <linkHTMSPoints>HTMS Points</linkHTMSPoints>del jugador, es dir, l'habilitat i el potencial en números. (taised)"
+      note_7: "Mòdul <module>FriendlyInterface</module> amb opcions per mostrar el nom complet dels jugadors a la pàgina de l'alineació de partit i mostrar les seleccions nacionals en els enllaços per als jugadors de seleccions nacionals. (ryanli)"
+      note_8: 'Mòdul HighlightBotTeams renombrar a <module>HighlightOwnerless</module>. (ryanli)'
+      note_9: Mòdul YouthSkillNotes and ShortPA suprimits. (ryanli)
+      note_10: 'Opcions per ocultar el ullada ràpida del fòrum a <module>FixcssProblems</module>. (ljushaff)'
+      note_11: "Opció per copiar l'anunci en l'estil no-taula a <module>CopyPlayerAd</module>. (ryanli)"
+      note_12: 'Opció de mostrar HatStats per qualificacions a <module>Ratings</module>. (taised)'
+      note_13: Idioma Bielorús. (LA-Stolik)
+      note_14: 'Afegides algunes FAQs a <FTlinkHelp>Help tab</FTlinkHelp>. (ryanli)'
+      note_15: "Noves icones grises per als enllaços d'informació. (ljushaff)"
+      note_16: "<module>YouthPromotes</module> també es mostra la data mes d'hora per promocionar a un jugador. (ryanli)"
+      note_17: Moltes funcions funcionant a Google Chrome. (ryanli)
+      note_18: Algunes correccions trivials per als últims canvis de Hattrick. (ryanli, taised, ljushaff)
+      note_19: 'Mòdul <module>TeamSelectBox</module> deshabilitat per defecte. (ryanli)'
+      note_20: 'Mòdul <module>SmallerPages</module> Deshabilitat per defecte. (ljushaff)'
+      note_21: 'Opcions de radio <module>ExtraShortcuts</module> estan deshabilitats per defecte. (ryanli)'

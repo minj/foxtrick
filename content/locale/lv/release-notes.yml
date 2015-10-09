@@ -1,6 +1,11 @@
 ---
 lv:
   versions:
+    0.16.0:
+      important: '<header>Svarīgi paziņojumi</header>'
+      support: '<header>Patīk ko mēs darām? Lūdzu<linkContribute>Atbalsti Foxtrick</linkContribute>.</header>'
+      bugs: '<header>Kļūdu labojumi</header>'
+      other: '<header>Citas izmaiņas</header>'
     0.15.2.1:
       important: '<header>Svarīgi paziņojumi</header>'
       bugs: '<header>Kļūdu labojumi</header>'
