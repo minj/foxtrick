@@ -582,11 +582,6 @@ Foxtrick.Pages.Player.parseYouthSkills = function(table) {
 				skill.current = parseFloat(info[0]) || 0;
 				skill.max = parseFloat(info[1]) || 0;
 				skill.maxed = HYSkills.querySelector('.ft-skillbar-maxed').hasAttribute('style');
-
-				var row = HYSkills;
-				while (row.nodeName !== 'TR')
-					row = row.parentNode;
-				skill.top3 = !!row.querySelector('strong.ft-dummy');
 			}
 			else if (imgs.length) {
 				// when max is unknown first title is empty
@@ -609,13 +604,15 @@ Foxtrick.Pages.Player.parseYouthSkills = function(table) {
 				// if current and/or max is unknown, mark it as 0
 				skill.current = current;
 				skill.max = max || 0;
-				skill.top3 = false; // only known in HY
 			}
 			else {
 				// no image is present, meaning nothing about
 				// that skill has been revealed
-				skill = { current: 0, max: 0, maxed: false, top3: false };
+				skill = { current: 0, max: 0, maxed: false };
 			}
+
+			skill.top3 = !!rows[i].querySelector('strong.ft-dummy');
+
 			var currentText = '';
 			var maxText = '';
 			var bar = skillCell.getElementsByClassName('youthSkillBar')[0];
