@@ -1109,7 +1109,7 @@ Foxtrick.modules['SkillTable'] = {
 								}
 								else if (property && typeof value !== 'undefined') {
 									if (method) {
-										RENDERERS[column.method](cell, value, property);
+										RENDERERS[method](cell, value, property);
 									}
 									else {
 										cell.textContent = value;
