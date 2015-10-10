@@ -13,41 +13,41 @@ import codecs
 
 tag = '<!-- %s -->'
 targets = [
-	{
-		"file" : "manifest.json",
-		"prefix" : "\t\t\t\"content/",
-		"suffix" : "\",\n"
-	},
-	{
-		"file" : "Info.plist",
-		"prefix" : "\t\t\t\t<string>content/",
-		"suffix" : "</string>\n"
-	},
-	{
-		"file" : "content/scripts-fennec.js",
-		"prefix" : "\t\t'",
-		"suffix" : "',\n"
-	},
-	{
-		"file" : "content/bootstrap-firefox.js",
-		"prefix" : "\t\t'",
-		"suffix" : "',\n"
-	},
+    {
+        "file" : "manifest.json",
+        "prefix" : "\t\t\t\"content/",
+        "suffix" : "\",\n"
+    },
+    {
+        "file" : "Info.plist",
+        "prefix" : "\t\t\t\t<string>content/",
+        "suffix" : "</string>\n"
+    },
+    {
+        "file" : "content/scripts-fennec.js",
+        "prefix" : "\t\t'",
+        "suffix" : "',\n"
+    },
+    {
+        "file" : "content/bootstrap-firefox.js",
+        "prefix" : "\t\t'",
+        "suffix" : "',\n"
+    },
     {
         "file" : "content/bootstrap-fennec.js",
         "prefix" : "\t\t'",
         "suffix" : "',\n"
     },
-	{
-		"file" : "content/preferences.html",
-		"prefix" : "\t<script type=\"application/x-javascript\" src=\"./",
-		"suffix" : "\"></script>\n"
-	},
-	{
-		"file" : "content/background.html",
-		"prefix" : "\t<script type=\"application/x-javascript\" src=\"./",
-		"suffix" : "\"></script>\n"
-	}
+    {
+        "file" : "content/preferences.html",
+        "prefix" : "\t<script type=\"application/x-javascript\" src=\"./",
+        "suffix" : "\"></script>\n"
+    },
+    {
+        "file" : "content/background.html",
+        "prefix" : "\t<script type=\"application/x-javascript\" src=\"./",
+        "suffix" : "\"></script>\n"
+    }
 ]
 
 def build(args=dict(sourcefile="modules", excludefile=None, dirfile=".")):
