@@ -12,6 +12,6 @@ cd maintainer || log "Cannot cd to maintainer"
 #./crowdin-upload.sh || echo "Cannot upload external translations"
 #./crowdin-download.sh || echo "Cannot download external translations"
 #./commit.locale.sh || echo "Cannot commit locale"
-./upload-nightly.sh -c upload.beta.conf.sh WEBSTORE=true BRANCH=beta XAR=/usr/local/bin/xar || log "Cannot upload beta"
+./upload-nightly.sh -c upload.beta.conf.sh BRANCH=beta XAR=/usr/local/bin/xar || log "Cannot upload beta"
 
 log "Success beta upload."
