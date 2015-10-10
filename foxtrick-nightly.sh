@@ -16,7 +16,7 @@ echo 'upload nightly'
 # git config --global user.name foxtrickdev
 
 ## run:
-# ./foxtrick-cron.sh >verbatim 2>>error
+# ./foxtrick-nightly.sh >verbatim 2>>error
 ## verbatim is whole output
 ## error is error log
 ## ideally it should be added to crontab (needs full paths to files):
