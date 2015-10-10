@@ -5,9 +5,52 @@ sv-SE:
       note_0: 'This is the development build. Use at your own discretion. Please view <linkSVN>commit history</linkSVN> at Google Code for details of the changes.'
     beta:
       note_0: 'Detta är BETA -versionen av nästa utgåva. Hjälp gärna till att översätta denna version via vårt superlätta översättningsverktyg på <linkCrowdin>crowdin.net</linkCrowdin>. '
-    0.15.1:
+    0.16.0:
+      important: '<header>Viktiga meddelanden</header>'
+      crowdin: '<header>En hel massa översättningsuppdateringar av användare via översättningsverktyget på <linkCrowdin>crowdin.net</linkCrowdin>. Du kan också hjälpa till!</header>'
+      support: '<header>Gillar du vad vi gör? Vänligen <linkContribute>Stöd Foxtrick</linkContribute>.</header>'
+      new: '<header>Nya moduler</header>'
       bugs: '<header>Buggfixar</header>'
       other: '<header>Andra ändringar</header>'
+    0.15.2.1:
+      important: '<header>Viktiga meddelanden</header>'
+      signed: Alla tillägg till Firefox måste nu vara digitalt signerade av Mozilla. Detta är till stor del bara en signerad uppdatering för att säkerställa att Foxtrick är kompatibelt.
+      signing: 'Due to disruptions caused by mandatory add-on signing policy we chose to unlist Foxtrick from <linkAMO>Mozilla add-ons</linkAMO> portal. More details in the <linkUnlistPost>Global Foxtrick announcement</linkUnlistPost>.'
+      bugs: '<header>Buggfixar</header>'
+      weatherSE: 'Listing weather SE players in match timeline was broken in <module>MatchLineupFixes</module> due to HT changes. The problem is now fixed.'
+      other: '<header>Andra ändringar</header>'
+      sandbox: Added support for the upcoming Hattrick match sandbox feature.
+      compact_lineups: 'Saved lineup names will now be compacted with <module>MatchOrderInterface</module>. This will allow you to use more saved lineups without running into space issues.'
+      and_more: Flera andra mindre ändringar och korrigeringar.
+    0.15.2:
+      important: '<header>Viktiga meddelanden</header>'
+      links: '<module>Links</module> funktionalitet har gjorts om för att fixa en del buggar samt för att förbättra och förenkla underhåll. Fler etiketter kommer nu att finnas tillgängliga för att skapa egna länkar. En del etiketter har döpts om för att bättre reflektera deras verkliga innebörd. Vänligen rensa först din Foxtrick cache, testa dina egna länkar och uppdatera dem vid behov därefter.'
+      support: '<header>Gillar du vad vi gör? Vänligen <linkContribute>Stöd Foxtrick</linkContribute>.</header>'
+      crowdin: '<header>En hel massa översättningsuppdateringar av användare via översättningsverktyget på <linkCrowdin>crowdin.net</linkCrowdin>. Du kan också hjälpa till!</header>'
+      twitter: 'Du kan följa <linkTwitter>Foxtrick på Twitter</linkTwitter> för att få senaste nytt, uppdateringar och meddelanden.'
+      bugs: '<header>Buggfixar</header>'
+      youth_avatars: 'Fixat junioravatarer som saknats i <module>MatchOrderInterface</module>.'
+      preserve_changes: '<module>MatchRatingsTweaks</module> ska nu bevara de senaste betygsändringarna under livematcher. Tidigare har dessa förändringar i betyg (färgade siffror) försvunnit vid varje uppdatering även om uppdateringen i sig ej påverkade betygen.'
+      leave_forum: '<module>ForumLeaveButton</module> var helt obrukbar men bör nu fungera korrekt igen.'
+      monitor_cups: '<module>MyMonitor</module> ska nu visa korrekta ikonsymboler för hela cupsystemet.'
+      other: '<header>Andra ändringar</header>'
+      volume: 'Har lagt till en global volymkontroll för Foxtrickljud i <FTlinkMainTab>general settings section</FTlinkMainTab>.'
+      mlt_upgrade: '<module>MatchLineupTweaks</module> ska nu visa spelarnummer  på laguppställningen. Dessutom visas (om tillgängligt) en prognos av konditionsnivån när du håller din muspekare över spelarens konditionsstapel.'
+      mrt_ratings: 'Modulen <module>Ratings</module> har integrerats med modulen<module>MatchRatingsTweaks</module> och har nu begränsade funktioner även i HT-Live (endast för Hattrick Supporters).'
+      copy_ratings: '<module>CopyRatings</module> har skrivits om helt och kan nu kopiera minutbaserade betyg från just betygsfliken, även i HT-Live (endast för Hattrick Supporters).'
+      monitor_update: '<module>MyMonitor</module> inkluderar nu en mer intelligent sortering av lagen samt en möjlighet att lägga till matcher till HT-Live baserat på matchtyp.'
+      promote_age: '<module>YouthPromotes</module> visar nu hur gammal spelaren kommer att vara, dagen han som tidigast kan plockas upp till seniorlaget.'
+      export_live: 'Lagt till en knapp för att exportera dina HT-Live -matcher som en länk (för exempelvis forum) i <module>ReLiveLinks</module>.'
+      match_icons: 'Fler ikoner för matchhändelser har lagts till i <module>MatchReportFormat</module>. Alla viktiga händelser bör nu omfattas.'
+      retro_cups: 'Nya cupikoner (retro) för nya cuptyper har lagts till i <module>CustomMedals</module>.'
+      and_more: Flera andra mindre ändringar och korrigeringar.
+    0.15.1:
+      bugs: '<header>Buggfixar</header>'
+      nt_crash: 'Fixat ett prestandaproblem som lett till att webbläsaren kraschat för NTs i <module>MatchOrderInterface</module>.'
+      copy_htMl: 'Fixat problem med att <module>ContextMenuCopy</module> inte längre kopierar länktext för HT-ML.'
+      resource_fix: '<module>Links</module> och <module>StaffMarker</module> ha slutat fungera för användare i vissa länder. Detta bör vara åtgärdat inom några dagar.'
+      other: '<header>Andra ändringar</header>'
+      extarnal_url: 'Lagt till ett alternativ för att kopiera Hattrick Länkar för andra webbsidor i <module>ContextMenuCopy</module>. Dessa länkar fungerar oavsett vilken HT-server en användare är inloggad på.'
       and_more: Flera andra mindre ändringar och korrigeringar.
     0.15.0:
       important: '<header>Viktiga meddelanden</header>'
@@ -325,7 +368,7 @@ sv-SE:
       note_10: Matchreport now shows tooltips for all events
       note_11: Links resources moved to yet another server
       note_12: Some internal changes to improve AMO compliance
-      note_13: "A huge ammount of translation updates by: aegeansailor, brauxx, Mod-Utku, ebitechv, Polytropos, gkon13, SOLARIS1973, Fieras, margaale, ipefix, stephan.cardot, OmaniMilani, LambdaB, SI-CH, Convincedd, margaale, ljushaff, serjhanti, playMaker, CoRrRan, Aristodemos, margaale, spider007, FeritAkarsu and probably some people i missed, please drop us a msg if you feel unrespected, it's kinda hard to keep tracking all of you guys. This is awesome! Thanks to all of you!"
+      note_13: 'Massor av uppdaterade översättningar av bl.a: aegeansailor, brauxx, Mod-Utku, ebitechv, Polytropos, gkon13, SOLARIS1973, Fieras, margaale, ipefix, stephan.cardot, OmaniMilani, LambdaB, SI-CH, Convincedd, margaale, ljushaff, serjhanti, playMaker, CoRrRan, Aristodemos, margaale, spider007, FeritAkarsu och garanterat en massa andra personer jag missar. Hör gärna av dig om du inte känner dig uppmärksammad. Det är inte lätt att hålla koll på er allihop. Det här är häftigt! Tack till er alla!'
     0.9.0.4:
       note_0: Links resources moved to another server
       note_1: "Added basic english event texts to the icons' titles in MatchReportFormat"

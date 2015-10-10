@@ -58,13 +58,12 @@ staff = list()
 for person in old_staff:
 	ht_id = int(person['id'])
 
-	if person['duty'] == 'supporter':
-		if not ht_id in supporters:
-			# skip no longer valid supporters
-			continue
-		else:
-			# remove already existing ID
-			supporters.remove(ht_id)
+	if ht_id in supporters:
+		# remove already existing ID
+		supporters.remove(ht_id)
+	elif person['duty'] == 'supporter':
+		# skip no longer valid supporters
+		continue
 
 	# add valid staff
 	staff.append(person)

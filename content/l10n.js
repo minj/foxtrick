@@ -36,6 +36,7 @@ Foxtrick.L10n = {
 		'he',	// עברית, hebrew	40
 		'hr',	// Hrvatski, croatian	39
 		'hu',	// Magyar, hungarian	33
+		'id',	// Indonesian	38
 		'is',	// Íslenska, island	25
 		'it',	// italian	4
 		'ja',	// 日本語, japanese	12
@@ -93,6 +94,7 @@ Foxtrick.L10n = {
 		'he': 'he',	// עברית, hebrew	40
 		'hr': 'hr',	// Hrvatski, croatian	39
 		'hu': 'hu',	// Magyar, hungarian	33
+		'id': 'id', // Indonesian	38
 		'is': 'is',	// Íslenska, island	25
 		'it': 'it',	// italian	4
 		'ja': 'ja',	// 日本語, japanese	12

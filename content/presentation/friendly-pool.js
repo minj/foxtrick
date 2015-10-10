@@ -7,7 +7,7 @@
 
 Foxtrick.modules['FriendlyPool'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.PRESENTATION,
-	PAGES: ['challengesPool'],
+	PAGES: ['challenges'],
 	CSS: Foxtrick.InternalPath + 'resources/css/friendly-pool.css',
 	OPTIONS: ['ExpandCountrySelection'],
 

@@ -2,7 +2,7 @@
 
 /* kicking ht archieve icon */
 #ctl00_ctl00_CPContent_CPMain_lnkArchive  img.archiveLinkIcon {
-	background-image: none !important;
+	background-image: none;
 }
 
 /* removing toggle icon for my-monitor */

@@ -59,7 +59,7 @@ Foxtrick.modules['NewMail'] = {
 				// play sound if enabled
 				if (Foxtrick.Prefs.isModuleOptionEnabled('NewMail', 'NotifyMailSound')) {
 					var sound = Foxtrick.Prefs.getString('module.NewMail.NotifyMailSound_text');
-					Foxtrick.playSound(sound, doc);
+					Foxtrick.playSound(doc, sound);
 				}
 			}
 
@@ -112,7 +112,7 @@ Foxtrick.modules['NewMail'] = {
 				// play sound if enabled
 				if (Foxtrick.Prefs.isModuleOptionEnabled('NewMail', 'NotifyForumSound')) {
 					var sound = Foxtrick.Prefs.getString('module.NewMail.NotifyForumSound_text');
-					Foxtrick.playSound(sound, doc);
+					Foxtrick.playSound(doc, sound);
 				}
 			}
 			//Foxtrick.log('oldCount', oldCount)

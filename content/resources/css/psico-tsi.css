@@ -8,8 +8,8 @@
 	font-weight: bold;
 }
 div.ft-psico p, .ft-psico-sideBar p {
-	padding: 0 !important;
-	margin: 0 !important;
+	padding: 0;
+	margin: 0;
 }
 .ft-psico-indicator {
 	padding-right: 3px;

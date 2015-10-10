@@ -261,110 +261,168 @@ Foxtrick.util.time = {
 		return ret;
 	},
 
-	timeDifferenceToElement: function(doc, time_sec, useShort, useFull) {
-		var org_time = time_sec;
-		// Returns the time differnce as DDD days, HHh MMm
-		// if useShort, only DDD day(s) will be returned
-		// if useFull && useShort, show S W D always
+	/**
+	 * Build a season/week/day/hour/minute span from time difference in seconds.
+	 * options is { useDHM, useSWD, forceSWD, forceDHM: Boolean }.
+	 * where useDHM means display time in whole days (may be >6), hours and minutes
+	 * (defaults to true), false implies useSWD=true;
+	 * where useSWD means display time in whole seasons, weeks and days (mod);
+	 * forcing options display respective parts even if they are equal to 0,
+	 * displays only last zero when false (default).
+	 * @param  {document}        doc
+	 * @param  {number}          secDiff {Integer}
+	 * @param  {object}          options {{ useDHM, useSWD, forceDHM, forceSWD: Boolean }}
+	 * @return {HTMLSpanElement}
+	 */
+	timeDiffToSpan: function(doc, secDiff, options) {
+		// Returns the time difference as non-zero days/hours and minutes
+		// if !useDHM or useSWD shows non-zero seasons/weeks and days
+		// if forceDHM shows days/hours/minutes always
+		// if forceSWD shows seasons/weeks/days always
 
-		var datespan = doc.createElement('span');
-		datespan.className = 'nowrap';
-		var Days = 0; var Minutes = 0; var Hours = 0;
+		var dateSpan = doc.createElement('span');
+		dateSpan.className = 'nowrap';
 
-		if (Math.floor(time_sec) < 0)
-			return 'NaN';
-
-		//days
-		if (time_sec >= 86400) {
-			Days = Math.floor(time_sec / 86400);
-			time_sec = time_sec - Days * 86400;
-			datespan.textContent += Days + '' + Foxtrick.L10n.getString('datetimestrings.days', Days);
-		}
-		// only days returned
-		if (useShort) {
-			var display_option = Foxtrick.Prefs.getInt('module.ExtendedPlayerDetails.value');
-			if (display_option == null) var display_option = 0;
-			var PJD_D = Math.floor(org_time / 86400);
-			var PJD_W = Math.floor(PJD_D / 7);
-			var PJD_S = Math.floor(PJD_D / (16 * 7));
-			var print_S = ''; var print_W = ''; var print_D = '';
-			try {
-				switch (display_option) { //('SWD', 'SW', 'SD', 'WD', 'D')
-					case 0: //SWD
-						print_S = PJD_S;
-						print_W = PJD_W - (print_S * 16);
-						print_D = PJD_D - (print_S * 16 * 7) - (print_W * 7);
-					break;
-
-					case 1: //SW
-						print_S = PJD_S;
-						print_W = PJD_W - (print_S * 16);
-						break;
-
-					case 2: //SD
-						print_S = PJD_S;
-						print_D = PJD_D - (print_S * 16 * 7);
-					break;
-
-					case 3: //WD
-						print_W = PJD_W;
-						print_D = PJD_D - (print_W * 7);
-					break;
-
-					case 4: //D
-						print_D = PJD_D;
-					break;
-				} // switch
-			} // try
-			catch (e) { }
-
-			datespan.textContent = '';
-			if (print_S != 0 || useFull) {
-				var b = doc.createElement('b');
-				b.textContent = print_S;
-				datespan.appendChild(b);
-				datespan.appendChild(doc.createTextNode(Foxtrick.L10n
-				                     .getString('datetimestrings.short_seasons', print_S)));
-			}
-			if ((print_W != 0 && print_S != '') || useFull)
-				datespan.appendChild(doc.createTextNode(' '));
-			if (print_W != 0 || useFull) {
-				var b = doc.createElement('b');
-				b.textContent = print_W;
-				datespan.appendChild(b);
-				datespan.appendChild(doc.createTextNode(Foxtrick.L10n
-				                     .getString('datetimestrings.short_weeks', print_W)));
-			}
-			if (print_D != 0 || useFull)
-				datespan.appendChild(doc.createTextNode(' '));
-			if (print_D != 0 || useFull || (print_S == 0 && print_W == 0)) {
-				var b = doc.createElement('b');
-				b.textContent = print_D;
-				datespan.appendChild(b);
-				datespan.appendChild(doc.createTextNode(Foxtrick.L10n
-				                     .getString('datetimestrings.short_days', print_D)));
-			}
-
-			return datespan;
+		if (Math.floor(secDiff) < 0) {
+			dateSpan.textContent = 'NaN';
+			return dateSpan;
 		}
 
-		//insert white space between days and hours
-		if (datespan.textContent != '') datespan.textContent += ' ';
+		var opts = {
+			useDHM: true,
+			useSWD: false,
+			forceDHM: false,
+			forceSWD: false,
+		};
+		Foxtrick.mergeValid(opts, options);
+		var useDHM = opts.useDHM || opts.forceDHM;
+		var useSWD = opts.useSWD || opts.forceSWD || !opts.useDHM;
 
-		//hours
-		if ((time_sec >= 3600) || (Days > 0))
-		{
-			Hours = Math.floor(time_sec / 3600);
-			time_sec = time_sec - Hours * 3600;
-			datespan.textContent += Hours + Foxtrick.L10n.getString('datetimestrings.hours', Hours) +
-				' ';
+		var WEEKS_IN_SEASON = 16;
+
+		var SECS_IN_MIN = 60;
+		var MINS_IN_HOUR = 60;
+		var HOURS_IN_DAY = 24;
+		var DAYS_IN_WEEK = 7;
+
+		var SECS_IN_HOUR = SECS_IN_MIN * MINS_IN_HOUR;
+		var SECS_IN_DAY = SECS_IN_HOUR * HOURS_IN_DAY;
+		var DAYS_IN_SEASON = WEEKS_IN_SEASON * DAYS_IN_WEEK;
+
+		// totals
+		var minDiff = Math.floor(secDiff / SECS_IN_MIN);
+		var hourDiff = Math.floor(secDiff / SECS_IN_HOUR);
+		var dayDiff = Math.floor(secDiff / SECS_IN_DAY);
+		var weekDiff = Math.floor(dayDiff / DAYS_IN_WEEK);
+		var seasDiff = Math.floor(dayDiff / DAYS_IN_SEASON);
+
+		// mods
+		var minMod = minDiff % MINS_IN_HOUR;
+		var hourMod = hourDiff % HOURS_IN_DAY;
+		var dayMod = dayDiff % DAYS_IN_WEEK;
+		var weekMod = weekDiff % WEEKS_IN_SEASON;
+		var seasMod = seasDiff;
+
+		var displayOption = Foxtrick.Prefs.getInt('module.ExtendedPlayerDetails.value') || 0;
+
+		if (useSWD) {
+			var swd;
+
+			switch (displayOption) { // ('SWD', 'SW', 'SD', 'WD', 'D')
+				case 0: // SWD
+					swd = [
+						[seasMod, 'short_seasons'],
+						[weekMod, 'short_weeks'],
+						[dayMod, 'short_days'],
+					];
+				break;
+
+				case 1: // SW
+					swd = [
+						[seasMod, 'short_seasons'],
+						[weekMod, 'short_weeks'],
+					];
+				break;
+
+				case 2: // SD
+					swd = [
+						[seasMod, 'short_seasons'],
+						[dayDiff - seasMod * DAYS_IN_SEASON, 'short_days'],
+					];
+				break;
+
+				case 3: // WD
+					swd = [
+						[weekDiff, 'short_weeks'],
+						[dayMod, 'short_days'],
+					];
+				break;
+
+				case 4: // D
+					swd = [
+						[dayDiff, 'short_days'],
+					];
+				break;
+			}
+
+			if (!opts.forceSWD) {
+				// remove zeros
+				swd = Foxtrick.filter(function(def, i, arr) {
+					return def[0] || i == arr.length - 1; // always use last
+				}, swd);
+			}
+
+			var children = [];
+			Foxtrick.forEach(function(def) {
+				var b = doc.createElement('b');
+				b.textContent = def[0];
+				children.push(b);
+
+				var str = Foxtrick.L10n.getString('datetimestrings.' + def[1], def[0]);
+				children.push(doc.createTextNode(str));
+				children.push(doc.createTextNode(' '));
+			}, swd);
+
+			if (!useDHM) {
+				// remove last space
+				children.pop();
+			}
+
+			Foxtrick.appendChildren(dateSpan, children);
 		}
 
-		//minutes
-		Minutes = Math.floor(time_sec / 60);
-		time_sec = time_sec - Minutes * 60;
-		datespan.textContent += Minutes + Foxtrick.L10n.getString('datetimestrings.minutes', Minutes);
+		if (useDHM) {
+			var dhm = [
+				[dayDiff, 'days'],
+				[hourMod, 'hours'],
+				[minMod, 'minutes'],
+			];
+			if (useSWD) {
+				if (displayOption === 1) {
+					// weeks + no days, use dayMod instead
+					dhm[0][0] = dayMod;
+				}
+				else {
+					// remove day duplicate
+					dhm.shift();
+				}
+			}
 
-		return datespan;
-	}
+			if (!opts.forceDHM) {
+				// remove zeros
+				dhm = Foxtrick.filter(function(def, i, arr) {
+					return def[0] || i == arr.length - 1; // always use last
+				}, dhm);
+			}
+
+			var result = Foxtrick.map(function(def) {
+				var str = Foxtrick.L10n.getString('datetimestrings.' + def[1], def[0]);
+				return def[0] + str;
+			}, dhm).join(' ');
+
+			dateSpan.appendChild(doc.createTextNode(result));
+		}
+
+		return dateSpan;
+	},
 };

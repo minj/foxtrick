@@ -213,6 +213,38 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 		});
 	};
 
+	var addPerfHistLink = function(doc, player) {
+		var ps = doc.createElement('a');
+		ps.title = Foxtrick.L10n.getString('PerformanceHistory');
+		var psUrl = player.nameLink.href;
+		psUrl = psUrl.replace('/Club/Players/Player.aspx',
+		                      '/Club/Players/PlayerStats.aspx') + '&ShowAll=true';
+		ps.href = psUrl;
+		ps.target = '_blank';
+		player.performanceHistory = ps;
+		Foxtrick.addImage(doc, ps, {
+			src: Foxtrick.InternalPath + 'resources/img/shortcuts/stats.png',
+			alt: Foxtrick.L10n.getString('PerformanceHistory.abbr'),
+			height: 16,
+			'aria-label': ps.title,
+		});
+	};
+	var addHYLink = function(doc, player) {
+		var hyUrl = 'http://www.hattrick-youthclub.org/redirect/type/player_details/ht_id/' +
+			player.id;
+
+		var hyLink = doc.createElement('a');
+		hyLink.title = Foxtrick.L10n.getString('HyLink');
+		hyLink.href = hyUrl;
+		hyLink.target = '_blank';
+		player.hyLink = hyLink;
+		Foxtrick.addImage(doc, hyLink, {
+			src: Foxtrick.InternalPath + 'resources/img/staff/hyouthclub.png',
+			alt: Foxtrick.L10n.getString('HyLink.abbr'),
+			'aria-label': hyLink.title,
+		});
+	};
+
 	var parseXml = function(xml) {
 		try {
 			if (!xml)
@@ -239,7 +271,12 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 
 			var playerNode;
 			var num = function(nodeName) {
-				return xml.num(nodeName, playerNode);
+				var value = xml.num(nodeName, playerNode);
+				// deal with goals being undefined during matches
+				if (isNaN(value))
+					return undefined;
+
+				return value;
 			};
 			var money = function(nodeName) {
 				return xml.money(nodeName, currencyRate, playerNode);
@@ -266,6 +303,14 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				Foxtrick.Pages.Players.isYouthMatchOrder(doc);
 			var fetchedDate = xml.date('FetchedDate');
 			var now = Foxtrick.util.time.getHtDate(doc);
+
+			var currentClubId = xml.num(isYouth ? 'YouthTeamID' : 'TeamID');
+			var currentClubUrl = isYouth ? '/Club/Youth/?YouthTeamID=' + currentClubId :
+				'/Club/?TeamID=' + currentClubId;
+			var currentClubLink = doc.createElement('a');
+			currentClubLink.textContent = xml.text(isYouth ? 'YouthTeamName' : 'TeamName');
+			currentClubLink.href = currentClubUrl;
+			currentClubLink.target = '_blank';
 
 			var nodeName = !isYouth ? 'Player' : 'YouthPlayer';
 			var playerNodes = xml.getElementsByTagName(nodeName);
@@ -306,8 +351,26 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				// README: normally this section is already defined in HTML but
 				// sometimes part of it is not available
 				// we set it here if needed
+				if (node('Age') && node('AgeDays')) {
+					var age = {};
+					age.years = num('Age');
+					age.days = num('AgeDays');
+					player.age = age;
+					player.ageYears = age.years;
+				}
+
+				var nums = [
+					'StaminaSkill',
+					['form', 'PlayerForm'],
+					'Loyalty',
+					'TransferListed',
+					['tsi', 'TSI'],
+				];
+				Foxtrick.forEach(addProperty(player, num), nums);
+
 				if (!player.skills)
 					player.skills = {};
+
 				var skills = [
 					['defending', 'DefenderSkill'],
 					'KeeperSkill',
@@ -318,18 +381,29 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 					'WingerSkill',
 				];
 				Foxtrick.forEach(addProperty(player.skills, num), skills);
+
+				var newSkillInfo = false;
 				for (var skill in player.skills) {
-					if (typeof player[skill] === 'undefined')
+					if (typeof player[skill] === 'undefined') {
 						player[skill] = player.skills[skill];
+						// skill info was missing
+						newSkillInfo = true;
+					}
 				}
 
-				var nums = [
-					'StaminaSkill',
-					['form', 'PlayerForm'],
-					'Loyalty',
-					'TransferListed',
-				];
-				Foxtrick.forEach(addProperty(player, num), nums);
+				if (newSkillInfo && !isYouth) {
+					var htmsInput = {
+						years: player.age.years,
+						days: player.age.days,
+					};
+					Foxtrick.mergeAll(htmsInput, player.skills);
+					var htmsResult = Foxtrick.modules['HTMSPoints'].calc(htmsInput);
+					player.htmsAbility = htmsResult[0];
+					player.htmsPotential = htmsResult[1];
+
+					var psico = Foxtrick.modules['PsicoTSI'].getPrediction(player);
+					player.psicoTSI = psico.formAvg;
+				}
 
 				if (typeof player.speciality === 'undefined' && node('Specialty')) {
 					var specNum = num('Specialty') || 0;
@@ -368,26 +442,52 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 					player.injured = (player.bruised || player.injuredWeeks !== 0);
 				}
 
-
-				// README: XML exclusive info starts here
-
-				// first name stripping
-				player.nameLink = doc.createElement('a');
-				player.nameLink.href = '/Club/Players/' + (isYouth ? 'Youth' : '') +
-					'Player.aspx?' + (isYouth ? 'Youth' : '') + 'PlayerID=' + id;
-				if (node('PlayerName'))
-					player.nameLink.textContent = text('PlayerName');
+				var nameLink = doc.createElement('a');
+				nameLink.href = '/Club/Players/' + (isYouth ? 'Youth' : '') + 'Player.aspx?' +
+					(isYouth ? 'Youth' : '') + 'PlayerID=' + id;
+				nameLink.target = '_blank';
+				if (node('PlayerName')) {
+					// NT
+					nameLink.textContent = text('PlayerName');
+				}
 				else {
-					player.nameLink.textContent = text('FirstName').
-						replace(/(-[^\(])([^-\s]+)/g, '$1.'). // replaces first name
+					var first = text('FirstName');
+					var last = text('LastName');
+					var nick = text('NickName');
+
+					nameLink.textContent = first + ' ' + last;
+					nameLink.title = first + (nick ? '\'' + nick + '\'' : '') + ' ' + last;
+					nameLink.dataset.nickName = nick;
+
+					// first name stripping
+					var shortName = first.replace(/(-[^\(])([^-\s]+)/g, '$1.'). // replaces first
 						replace(/(\s[^\(])([^-\s]+)/g, '$1.'). // replace further first names
 						replace(/(\(.)([^-\)]+)/g, '$1.'). // non-latin in brackets
 						replace(/(^[^\(])([^-\s]+)/g, '$1.') + // replace names with '-'
-						' ' + text('LastName');
-
-					// keep full name in title
-					player.nameLink.title = text('FirstName') + ' ' + text('LastName');
+						' ' + last;
+					nameLink.dataset.shortName = shortName;
 				}
+				player.nameLink = nameLink;
+
+				if (!isYouth) {
+					if (typeof player.performanceHistory === 'undefined')
+						addPerfHistLink(doc, player);
+				}
+				else {
+					if (typeof player.hyLink === 'undefined')
+						addHYLink(doc, player);
+				}
+
+				if ((Foxtrick.Pages.Players.isOldies(doc) ||
+				    Foxtrick.Pages.Players.isCoaches(doc) ||
+				    Foxtrick.Pages.Players.isNT(doc)) &&
+				    typeof player.currentClubLink === 'undefined') {
+					player.currentClubLink = currentClubLink.cloneNode(true);
+					player.currentClubId = currentClubId;
+				}
+
+				// README: XML exclusive info starts here
+
 				var xmlNums = [
 					'Agreeability',
 					'Aggressiveness',
@@ -403,7 +503,6 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 					'LeagueGoals',
 					['matchCount', 'NrOfMatches'], // NT supp stats
 					['nationalTeamId', 'NationalTeamID'],
-					['tsi', 'TSI'],
 				];
 				Foxtrick.forEach(addProperty(player, num), xmlNums);
 
@@ -438,13 +537,6 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				}
 				if (node('Salary')) {
 					player.salary = money('Salary');
-				}
-				if (node('Age') && node('AgeDays')) {
-					var age = {};
-					age.years = num('Age');
-					age.days = num('AgeDays');
-					player.age = age;
-					player.ageYears = age.years;
 				}
 				var trainerData = node('TrainerData');
 				if (trainerData) {
@@ -488,6 +580,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 							'&HighlightPlayerID=' + player.id + '#tab2';
 						link.textContent =
 							Foxtrick.util.time.buildDate(matchDate, { showTime: false });
+						link.target = '_blank';
 						player.lastMatch = link;
 
 						var lastPositionCode = num('PositionCode', LastMatch);
@@ -742,6 +835,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				var matchRatingCell = matchDateCell.nextElementSibling;
 
 				player.lastMatch = matchLink.cloneNode(true);
+				player.lastMatch.target = '_blank';
 				player.lastMatchDate = Foxtrick.util.time.getDateFromText(matchLink.textContent);
 
 				var matchId = Foxtrick.getParameterFromUrl(matchLink.href, 'matchId');
@@ -781,25 +875,28 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 			if (Foxtrick.Pages.Players.isOwn(doc) &&
 			    !Foxtrick.Pages.Players.isNT(doc)) {
 				var tc = doc.createElement('a');
-				tc.textContent = Foxtrick.L10n.getString('TransferCompare.abbr');
 				tc.title = Foxtrick.L10n.getString('TransferCompare');
 				var tcUrl = player.nameLink.href;
 				tcUrl = tcUrl.replace('/Club/Players/Player.aspx',
 				                      '/Club/Transfers/TransferCompare.aspx');
 				tc.href = tcUrl;
+				tc.target = '_blank';
 				player.transferCompare = tc;
+
+				var tcImg = doc.createElement('img');
+				tcImg.height = 16;
+				tcImg.src = '/App_Themes/Standard/images/ActionIcons/sell.png';
+				tcImg.alt = Foxtrick.L10n.getString('TransferCompare.abbr');
+				tcImg.setAttribute('aria-label', tc.title);
+				tc.appendChild(tcImg);
 			}
 
 			// playerstats
 			if (!Foxtrick.Pages.Players.isYouth(doc)) {
-				var ps = doc.createElement('a');
-				ps.textContent = Foxtrick.L10n.getString('PerformanceHistory.abbr');
-				ps.title = Foxtrick.L10n.getString('PerformanceHistory');
-				var psUrl = player.nameLink.href;
-				psUrl = psUrl.replace('/Club/Players/Player.aspx',
-				                      '/Club/Players/PlayerStats.aspx') + '&ShowAll=true';
-				ps.href = psUrl;
-				player.performanceHistory = ps;
+				addPerfHistLink(doc, player);
+			}
+			else {
+				addHYLink(doc, player);
 			}
 
 			if (Foxtrick.Pages.Players.isOldies(doc) ||
@@ -814,6 +911,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 					if (currentClubLink) {
 						currentClubId = Foxtrick.util.id.getTeamIdFromUrl(currentClubLink.href);
 						player.currentClubLink = currentClubLink.cloneNode(true);
+						player.currentClubLink.target = '_blank';
 						player.currentClubId = currentClubId;
 
 						if (!Foxtrick.Pages.Players.isNT(doc)) {

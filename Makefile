@@ -90,7 +90,7 @@ CONTENT_FILES = add-class.js \
 	forum-stage.js \
 	l10n.js \
 	pages.js \
-	prefs.js \
+	prefs-util.js \
 	read-ht-prefs.js \
 	redirections.js \
 	ui.js \
@@ -138,7 +138,7 @@ firefox:
 	# skin/
 	cp -r skin $(BUILD_DIR)/chrome
 	# remove ignore modules from files
-	perl module-update.pl $(MODULES) $(IGNORED_MODULES) $(BUILD_DIR)/chrome/
+	python module-update.py build -s $(MODULES) -e $(IGNORED_MODULES) -d $(BUILD_DIR)/chrome/
 	# modify DataPath
 	cd $(BUILD_DIR); \
 	sed -i -r '/\/\* <BUILD>|<\/BUILD> \*\//d' chrome/content/env.js
@@ -202,7 +202,7 @@ chrome:
 	cp -r $(SCRIPT_FOLDERS) $(RESOURCE_FOLDERS) $(CONTENT_FILES_CHROME) \
 		../$(BUILD_DIR)/content
 	# remove ignore modules from files
-	perl module-update.pl $(MODULES) $(IGNORED_MODULES) $(BUILD_DIR)/
+	python module-update.py build -s $(MODULES) -e $(IGNORED_MODULES) -d $(BUILD_DIR)/
 	# modify DataPath
 	cd $(BUILD_DIR); \
 	sed -i -r '/\/\* <BUILD>|<\/BUILD> \*\//d' content/env.js
@@ -258,7 +258,7 @@ safari:
 	cp -r $(SCRIPT_FOLDERS) $(RESOURCE_FOLDERS) $(CONTENT_FILES_SAFARI) \
 		../$(SAFARI_BUILD_DIR)/content
 	# remove ignore modules from files
-	perl module-update.pl $(MODULES) $(IGNORED_MODULES) $(SAFARI_BUILD_DIR)/
+	python module-update.py build -s $(MODULES) -e $(IGNORED_MODULES) -d $(SAFARI_BUILD_DIR)/
 	# modify DataPath
 	cd $(SAFARI_BUILD_DIR); \
 	sed -i -r '/\/\* <BUILD>|<\/BUILD> \*\//d' content/env.js

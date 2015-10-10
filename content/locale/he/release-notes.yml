@@ -5,6 +5,28 @@ he:
       note_0: 'זהו עדכון בפיתוח. השימוש בו הוא לשיקולכם בלבד. לפרטים בנוגע לשינויים נא ראו <linkSVN>היסטוריה</linkSVN> בגוגל קוד.'
     beta:
       note_0: 'זוהי גירסת הבטא של המהדורה הבאה. נודה על עזרה בתרגום גירסה זו באתר התרגום המאוד נוח שלנו <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.16.0:
+      important: '<header>הודעות חשובות</header>'
+      crowdin: '<header>עדכוני תרגום רבים של המשתמשים המדהימים שלנו באמצעות <linkCrowdin>כלי ה-crowdin</linkCrowdin>. גם אתם יכולים לעזור!</header>'
+      support: '<header>מוצא חן בעיניך מה שאנחנו עושים? נודה על <linkContribute>תרומתך ל- Foxtrick</linkContribute>.</header>'
+      new: '<header>מודולים חדשים</header>'
+      bugs: '<header>תיקוני באגים</header>'
+      other: '<header>שינויים אחרים</header>'
+    0.15.2.1:
+      important: '<header>הודעות חשובות</header>'
+      signed: כעת כל התוספים לפיירפוקס חייבים להיחתם אלקטרונית על ידי מוזילה. בעקרו של דבר, מטרת העדכון היא לקבל חתימה אלקטרונית, כדי שפוקסטריק תוכל לפעול בדפדפן.
+      signing: 'בשל הפרעות שנגרמו על ידי מדיניות שרירותית של חתימת תוספים, החלטנו להסיר את פוקסטריק מפורטל <linkAMO>תוספי מוזילה</linkAMO>. פרטים נוספים ב<linkUnlistPost>הודעה הגלובלית של פוקסטריק</linkUnlistPost>.'
+      bugs: '<header>תיקוני באגים</header>'
+      other: '<header>שינויים אחרים</header>'
+      and_more: הרבה שינויים ותיקונים קטנים נוספים.
+    0.15.2:
+      important: '<header>הודעות חשובות</header>'
+      support: '<header>מוצא חן בעיניך מה שאנחנו עושים? נודה על <linkContribute>תרומתך ל- Foxtrick</linkContribute>.</header>'
+      crowdin: '<header>עדכוני תרגום רבים של המשתמשים המדהימים שלנו באמצעות <linkCrowdin>כלי ה-crowdin</linkCrowdin>. גם אתם יכולים לעזור!</header>'
+      twitter: 'באפשרותך לעקוב אחר עדכוני <linkTwitter>פוקסטריק בטוויטר</linkTwitter> על מנת לקבל את החדשות, העדכונים וההודעות האחרונים.'
+      bugs: '<header>תיקוני באגים</header>'
+      other: '<header>שינויים אחרים</header>'
+      and_more: הרבה שינויים ותיקונים קטנים נוספים.
     0.15.1:
       bugs: '<header>תיקוני באגים</header>'
       nt_crash: 'תיקון בעיית ביצועים שמוביל לקריסה של הדפדפן עבור NTs ב- <module>MatchOrderInterface</module>.'

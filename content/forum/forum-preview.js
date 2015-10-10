@@ -8,9 +8,9 @@
 Foxtrick.modules['ForumPreview'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.FORUM,
 	PAGES: [
-		'forumWritePost', 'messageWritePost', 'guestbook', 'announcements',
+		'forumWritePost', 'messageWritePost', 'guestbook', 'announcementsWrite',
 		'newsLetter', 'mailNewsLetter', 'ntNewsLetter',
-		'forumSettings', 'forumModWritePost'
+		'forumSettings', 'forumModWritePost', 'ticket',
 	],
 	NICE: 1, // after ForumYouthIcons
 	CSS: Foxtrick.InternalPath + 'resources/css/forum-preview.css',
@@ -106,37 +106,26 @@ Foxtrick.modules['ForumPreview'] = {
 				[/\<tbody\>\s*\<br \/\>/gi, '<tbody>']
 			];
 
+			var msg_window;
 			try {
-				var msg_window = doc.getElementById('mainBody').getElementsByTagName('textarea')[0];
+				msg_window = doc.getElementById('mainBody').getElementsByTagName('textarea')[0];
 			}
 			catch (e) {
-				Foxtrick.dump('FoxtrickForumPreview' + e);
+				Foxtrick.log(e);
+				return;
 			}
 
 			try {
-				var prev_div = doc.getElementById('ft-forum-preview-area');
-				var text = String(msg_window.value);
+				var text = msg_window.value;
 
-				var formatter = Foxtrick.modules['FormatPostingText'];
+				// escape HTML for preview
+				text = text.replace(/&/g, '&amp;');
+				text = text.replace(/</g, '&lt;');
 
 				// format within pre
-				text = formatter.format(text);
+				text = Foxtrick.escapePre(text);
 
-				// replace &
-				text = text.replace(/\&/g, '&amp;');
-				// < with space after is allowed
-				text = text.replace(/< /g, '&lt; ');
-
-				// strip links. replace <· with &lt;
-				// using u2060 'word joiner' zero-width space instead!
-				//text = text.replace(/<Â·/g, '&lt;');
-				// who know why that Â is needed there. i think that happens at times
-				// with uft8 vs ansi
-				// i don't, so just lets do both
-				text = text.replace(new RegExp('<' + String.fromCharCode(8288), 'g'), '&lt;');
-				text = Foxtrick.stripHTML(text);
-
-				text = text.replace(/\n/g, ' <br />');
+				text = text.replace(/\n/g, '<br />');
 				text = text.replace(/\r/g, '');
 
 				var nested = ['[q', '[b', '[i', '[u', '[spoil', '[table', '[pre'];
@@ -156,8 +145,8 @@ Foxtrick.modules['ForumPreview'] = {
 					}
 				}
 
-				// reformat with pre
-				text = formatter.reformat(text);
+				// remove HT-ML escaping but leave HTML
+				text = Foxtrick.unescapePre(text);
 
 				var preview_message = doc.createElement('div');
 				preview_message.id = 'message_preview';
@@ -350,7 +339,8 @@ Foxtrick.modules['ForumPreview'] = {
 				div = Foxtrick.getMBElement(doc, 'tbNewsBody');
 		}
 
-		div.parentNode.insertBefore(preview_div, div);
+		if (div)
+			div.parentNode.insertBefore(preview_div, div);
 	},
 
 	change: function(doc) {

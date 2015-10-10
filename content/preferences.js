@@ -803,7 +803,7 @@ function getModule(module) {
 		};
 		var makePlayListener = function(input) {
 			return function() {
-				Foxtrick.playSound(input.value, this.ownerDocument);
+				Foxtrick.playSound(this.ownerDocument, input.value);
 			};
 		};
 
@@ -812,7 +812,7 @@ function getModule(module) {
 				input.value = url;
 				input.dispatchEvent(new Event('change'));
 				if (isSound)
-					Foxtrick.playSound(url, input.ownerDocument);
+					Foxtrick.playSound(input.ownerDocument, url);
 			};
 		};
 
@@ -992,7 +992,6 @@ function initMainTab() {
 	$('#pref-load-do').click(function() {
 		Foxtrick.Prefs.load($('#pref-load-text').val());
 		$('#pref-load-text').val('');
-		window.location.href = window.location.href + '&imported=true';
 		window.location.reload();
 	});
 
@@ -1000,7 +999,6 @@ function initMainTab() {
 	$('#pref-stored-restore').click(function() {
 		if (Foxtrick.confirmDialog(Foxtrick.L10n.getString('prefs.restoreDefault.ask'))) {
 			Foxtrick.Prefs.cleanupBranch();
-			window.location.href = window.location.href + '&imported=true';
 			window.location.reload();
 		}
 	});
@@ -1014,7 +1012,6 @@ function initMainTab() {
 			for (var i = 0; i < array.length; i++) {
 				Foxtrick.Prefs.deleteValue(array[i]);
 			}
-			window.location.href = window.location.href + '&imported=true';
 			window.location.reload();
 		}
 	});
@@ -1024,7 +1021,6 @@ function initMainTab() {
 		if (Foxtrick.confirmDialog(Foxtrick.L10n.getString('prefs.disableAllModules.ask'))) {
 			Foxtrick.log('preferences: diable all');
 			Foxtrick.Prefs.disableAllModules();
-			window.location.href = window.location.href + '&imported=true';
 			window.location.reload();
 		}
 	});
@@ -1130,9 +1126,10 @@ function initChangesTab() {
 			// IMPORTANT!!! branch note must always be 'note_0'
 			var note = (notesLocalized && notesLocalized['note_0']) || notes['note_0'];
 			addNote(note, list, releaseNotesLinks);
-			$('#translator_note').attr('style', 'display:block;');
 			if (version == 'beta')
-				$('#translator_note').append(statusText);
+				$('#translator_note').append(' ' + statusText);
+
+			$('#translator_note').attr('style', 'display:block;');
 		}
 	}
 

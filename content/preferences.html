@@ -10,7 +10,7 @@
 
 	<!-- essential -->
 	<script type="application/x-javascript" src="./env.js"></script>
-	<script type="application/x-javascript" src="./prefs.js"></script>
+	<script type="application/x-javascript" src="./prefs-util.js"></script>
 	<script type="application/x-javascript" src="./l10n.js"></script>
 	<script type="application/x-javascript" src="./xml-load.js"></script>
 	<script type="application/x-javascript" src="./pages.js"></script>
@@ -98,6 +98,7 @@
 	<script type="application/x-javascript" src="./forum/show-forum-pref-button.js"></script>
 	<script type="application/x-javascript" src="./forum/staff-marker.js"></script>
 	<script type="application/x-javascript" src="./information-aggregation/cross-table.js"></script>
+	<script type="application/x-javascript" src="./information-aggregation/current-transfers.js"></script>
 	<script type="application/x-javascript" src="./information-aggregation/dashboard-calendar.js"></script>
 	<script type="application/x-javascript" src="./information-aggregation/election-table.js"></script>
 	<script type="application/x-javascript" src="./information-aggregation/extended-player-details.js"></script>
@@ -328,6 +329,10 @@
 				<h3 id="pref-additional" data-text="prefs.additional.title"></h3>
 				<div class="module-content">
 					<ul>
+						<li>
+							<label id="pref-volume-label" for="pref-volume" data-text="prefs.additional.volume"></label>
+							<input type="range" min="0" max="100" id="pref-volume" pref="volume" /><label id="pref-volume-value" for="pref-volume" pref="volume" class="range-value"></label>
+						</li>
 						<li>
 							<input type="checkbox" id="pref-xml-load" pref="xmlLoad" />
 							<label id="pref-xml-load-label" for="pref-xml-load" data-text="prefs.additional.xmlLoad"></label>

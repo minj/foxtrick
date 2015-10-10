@@ -20,6 +20,8 @@
 if (!Foxtrick)
 	var Foxtrick = {};
 
+// jscs:disable disallowSpaceAfterObjectKeys, disallowQuotedKeysInObjects
+// jscs:disable disallowMultipleSpaces
 Foxtrick.ht_pages = {
 	// following are mainly used for information gathering. keep on top
 	'myHattrick'                : '/MyHattrick/$',  // that's the news page
@@ -39,7 +41,8 @@ Foxtrick.ht_pages = {
 	                              '/MyHattrick/Inbox/(Default.aspx?|?)actionType=readMail',
 	'ticket'                    : '/MyHattrick/Inbox/(Default.aspx?|?)' +
 	                              'actionType=viewInfoTicket',
-	'forumSettings'             : '/MyHattrick/Preferences/ForumSettings.aspx',
+	'forumSettings'             : '/Forum/ForumUserPreferences.aspx|' +
+	                              '/MyHattrick/Preferences/ForumSettings.aspx',
 	'prefSettings'              : '/MyHattrick/Preferences/ProfileSettings.aspx',
 	'bookmarks'                 : '/MyHattrick/Bookmarks/(Default.aspx|?|$)',
 	'series'                    : '/World/Series/(Default.aspx|?|$)',
@@ -48,8 +51,7 @@ Foxtrick.ht_pages = {
 	'country'                   : '/World/Leagues/League.aspx',
 	'region'                    : '/World/Regions/Region.aspx',
 	'regionOverview'            : '/World/Regions/(Default.aspx|?|$)',
-	'challenges'                : '/Club/Challenges/$',
-	'challengesPool'            : '/Club/Challenges/default.aspx',
+	'challenges'                : '/Club/Challenges/(Default.aspx|?|$)',
 	'youthChallenges'           : '/Club/Challenges/YouthChallenges.aspx',
 	'achievements'              : '/Club/Achievements/(Default.aspx|?|$)',
 	'history'                   : '/Club/History/(Default.aspx|?|$)',
@@ -135,9 +137,8 @@ Foxtrick.ht_pages = {
 	'ntNewsLetter'              : '/Club/NationalTeam/NTNotice.aspx',
 	'national'                  : '/Club/NationalTeam/NationalTeam.aspx',
 	'guestbook'                 : '/Club/Manager/Guestbook.aspx',
-	'announcements'             : '/Club/Announcements/New.aspx|' +
-	                              '/Club/Announcements/Edit.aspx|' +
-	                              '/Club/Announcements/(Default.aspx?|?)',
+	'announcementsView'         : '/Club/Announcements/(Default.aspx?|?)',
+	'announcementsWrite'        : '/Club/Announcements/(New|Edit).aspx',
 	'htPress'                   : '/Community/Press/(Default.aspx|?|$)',
 	'cupMatches'                : '/World/Cup/CupMatches.aspx',
 	'cupOverview'               : '/World/Cup/(Default.aspx|?|$)',
@@ -182,8 +183,10 @@ Foxtrick.pagesExcluded = {
 	'offline'                   : '/down.aspx',
 	'oath'                      : 'chpp.hattrick.org/',
 	'error'                     : '/Errors/',
-	'logout'                    : '/Logout.aspx'
+	'logout'                    : '/Logout.aspx',
 };
+// jscs:enable disallowSpaceAfterObjectKeys, disallowQuotedKeysInObjects
+// jscs:enable disallowMultipleSpaces
 
 /**
  * Test whether document belongs to a certain page type

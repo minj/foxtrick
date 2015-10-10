@@ -561,10 +561,6 @@ Foxtrick.modules['StaffMarker'] = {
 			if (!cfHeader)
 				continue;
 			var userId = Foxtrick.util.id.findUserId(cfHeader);
-			var userName = cfHeader.querySelector('a[href*="' + userId + '"][title]').title;
-			if (userName.match(/^(GM|LA|HT|CHPP|Mod)-/i))
-				// custom coloring for staff is not feasible due to CSS cascading issues
-				continue;
 			var cfFooter = elems[i].getElementsByClassName('cfFooter')[0];
 			var markerOptions = Foxtrick.createFeaturedElement(doc, module, 'div');
 			markerOptions.id = 'ft-staff-marker-opts-' + i;

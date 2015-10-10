@@ -2,7 +2,7 @@
 /*
  * ht-ml.js
  * Utilities for HT-ML (Hattrick Markup Language)
- * @author ryanli
+ * @author ryanli, LA-MJ
  */
 
 if (!Foxtrick)
@@ -94,8 +94,7 @@ Foxtrick.util.htMl.getFormat = (function() {
 							if (/^foxtrick:/.test(a.url)) {
 								return a.url;
 							}
-							a.url = Foxtrick.goToUrl(a.url);
-							content = Foxtrick.format('[link={}]', [a.url]);
+							content = Foxtrick.goToUrl(a.url);
 						}
 						else {
 							content = Foxtrick.format('[{}={}]', [a.type, a.id || a.url]);
@@ -108,7 +107,7 @@ Foxtrick.util.htMl.getFormat = (function() {
 							if (a.type === 'link') {
 								if (a.url.indexOf(path) === -1) {
 									// link text is not a URL
-									content += Foxtrick.format('({})', [stripped]);
+									content = Foxtrick.format('{} {}', [stripped, content]);
 								}
 							}
 							else if (stripped !== a.id) {
@@ -379,38 +378,43 @@ Foxtrick.util.htMl.getFormat = (function() {
 	};
 })();
 
-// @param node: a DOM node which is an <a> element or an <a>'s child node
-// @returns:
-// if ID is found, will return an object like this:
-// { type: 'match', id: '123456789', tag: 'matchid' },
-// or like this:
-// { type: 'arena', id: '123456' }
-// otherwise, return null
+/**
+ * Parse HT-ML ID from a link.
+ * Traverses up the tree from node until the first link is found.
+ * Returns {id, markup, type, copyTitle, ?tag}.
+ * Returns null if no link was found,
+ * the found link was invalid (javascript: or SVG),
+ * or the link URL does not contain a HT-ML ID.
+ * @param  {element} node
+ * @return {object}       ?{id, markup, type, copyTitle, ?tag}
+ */
 Foxtrick.util.htMl.getId = function(node) {
-	var idTypes = [
-		{ type: 'Player', re: /[?&]playerId=(\d+)/i, tag: 'playerid' },
-		{ type: 'Youth Player', re: /YouthPlayerID=(\d+)/i, tag: 'youthplayerid' },
-		{ type: 'Team', re: /\/Club\/(?:Default\.aspx)?\?TeamID=(\d+)/i, tag: 'teamid' },
-		{ type: 'Youth Team', re: /\/Club\/Youth\/(?:Default\.aspx)?\?YouthTeamID=(\d+)/i, tag: 'youthteamid' },
-		{ type: 'Youth Match', re: /\?matchID=(\d+).*?&SourceSystem=Youth/i, tag: 'youthmatchid' },
-		{ type: 'Tournament Match', re: /\?matchID=(\d+).*?SourceSystem=HTOIntegrated/i,
-			tag: 'tournamentmatchid' },
-		{ type: 'Match', re: /\?matchID=(\d+)/i, tag: 'matchid' },
+	var HT_ID_TYPES = {
+		Player: [/[?&]playerId=(\d+)/i, 'playerid'],
+		'Youth Player': [/YouthPlayerID=(\d+)/i, 'youthplayerid'],
+		Team: [/\/Club\/(?:Default\.aspx)?\?TeamID=(\d+)/i, 'teamid'],
+		'Youth Team': [/\/Club\/Youth\/(?:Default\.aspx)?\?YouthTeamID=(\d+)/i, 'youthteamid'],
+		'Youth Match': [/\?matchID=(\d+).*?&SourceSystem=Youth/i, 'youthmatchid'],
+		'Tournament Match':
+			[/\?matchID=(\d+).*?SourceSystem=HTOIntegrated/i, 'tournamentmatchid'],
+		Match: [/\?matchID=(\d+)/i, 'matchid'],
 		// behind youth and tournament, so they get detected first
-		{ type: 'Federation', re: /\?AllianceID=(\d+)/i, tag: 'federationid' },
-		{ type: 'Series', re: /\?LeagueLevelUnitID=(\d+)/i, tag: 'leagueid' },
-		{ type: 'Youth Series', re: /\?YouthLeagueId=(\d+)/i, tag: 'youthleagueid' },
-		{ type: 'User', re: /\?userId=(\d+)/i, tag: 'userid' },
-		{ type: 'Kit', re: /\?KitID=(\d+)/i, tag: 'kitid' },
-		{ type: 'Article', re: /\?ArticleID=(\d+)/i, tag: 'articleid' },
-		{ type: 'Post', re: /\/Forum\/Read\.aspx\?t=(\d+).*&n=(\d+)/i, tag: 'post' },
-		{ type: 'Tournament', re: /\?tournamentId=(\d+)/i, tag: 'tournamentid' },
-		{ type: 'Arena', re: /\/Club\/Arena\/(?:Default\.aspx)?\?ArenaID=(\d+)/i, tag: 'arenaid' },
-		{ type: 'League', re: /\/World\/Leagues\/League\.aspx\?LeagueID=(\d+)/i },
-		{ type: 'Cup', re: /\/World\/Cup\/(?:Default\.aspx)?\?CupID=(\d+)/i },
-		{ type: 'Region', re: /\/World\/Regions\/Region\.aspx\?RegionID=(\d+)/i },
-		{ type: 'National Team', re: /\/Club\/NationalTeam\/NationalTeam\.aspx\?teamId=(\d+)/i }
-	];
+		Federation: [/\?AllianceID=(\d+)/i, 'federationid'],
+		Series: [/\?LeagueLevelUnitID=(\d+)/i, 'leagueid'],
+		'Youth Series': [/\?YouthLeagueId=(\d+)/i, 'youthleagueid'],
+		User: [/\?userId=(\d+)/i, 'userid'],
+		Kit: [/\?KitID=(\d+)/i, 'kitid'],
+		Article: [/\?ArticleID=(\d+)/i, 'articleid'],
+		Post: [/\/Forum\/Read\.aspx\?t=(\d+).*&n=(\d+)/i, 'post'],
+		Tournament: [/\?tournamentId=(\d+)/i, 'tournamentid'],
+		Arena: [/\/Club\/Arena\/(?:Default\.aspx)?\?ArenaID=(\d+)/i],
+		League: [/\/World\/Leagues\/League\.aspx\?LeagueID=(\d+)/i],
+		Cup: [/\/World\/Cup\/(?:Default\.aspx)?\?CupID=(\d+)/i],
+		Region: [/\/World\/Regions\/Region\.aspx\?RegionID=(\d+)/i],
+		'National Team': [/\/Club\/NationalTeam\/NationalTeam\.aspx\?teamId=(\d+)/i],
+	};
+	var COPY_TEXT = Foxtrick.L10n.getString('copy.id');
+
 	var link = null;
 	var currentObj = node;
 	while (currentObj) {
@@ -420,34 +424,34 @@ Foxtrick.util.htMl.getId = function(node) {
 		}
 		currentObj = currentObj.parentNode;
 	}
-	if (typeof(link) !== 'string' || link.search(/^javascript/i) === 0) {
+
+	if (typeof link !== 'string' || /^javascript/i.test(link)) {
+		// not found or JS or SVG link
 		return null;
 	}
-	for (var index = 0; index < idTypes.length; ++index) {
-		var current = idTypes[index];
-		if (link.search(current.re) !== -1) {
-			var match = link.match(current.re);
-			var id = '';
-			for (var matchIndex = 1; matchIndex < match.length; ++matchIndex) {
-				id += match[matchIndex];
-				if (matchIndex !== match.length - 1) {
-					id += '.';
-				}
-			}
-			var ret = {};
-			ret.copyTitle = Foxtrick.L10n.getString('copy.id')
-				.replace('%s', current.type + ' ID').replace('%i', id);
-			ret.type = current.type;
-			ret.id = id;
-			ret.markup = id;
-			if (current.tag) {
+
+	for (var type in HT_ID_TYPES) {
+		var current = HT_ID_TYPES[type];
+		if (current[0].test(link)) {
+			var match = link.match(current[0]);
+			var ids = match.slice(1);
+			var id = ids.join('.');
+			var copyTitle = COPY_TEXT.replace('%s', type + ' ID').replace('%i', id);
+			var ret = {
+				id: id,
+				markup: id,
+				type: type,
+				copyTitle: copyTitle,
+			};
+			if (current[1]) {
 				// some ID types may not have corresponding tags
-				ret.tag = current.tag;
+				ret.tag = current[1];
 			}
 			return ret;
 		}
 	}
-	// return null if nothing is found
+
+	// no ID
 	return null;
 };
 

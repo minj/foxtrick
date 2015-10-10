@@ -1,7 +1,7 @@
 a.copyicon {
 	cursor: pointer;
 	background-repeat: no-repeat;
-	display: inline-block !important;
+	display: inline-block;
 }
 
 a.copyicon img {

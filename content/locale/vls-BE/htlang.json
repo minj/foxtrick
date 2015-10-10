@@ -54,15 +54,15 @@
 		],
 		"attitude": [
 			{
-				"text": "speel het rustig",
+				"text": "Speel het rustig",
 				"value": "-1"
 			},
 			{
-				"text": "normaal",
+				"text": "Normaal",
 				"value": "0"
 			},
 			{
-				"text": "match van het seizoen",
+				"text": "Wedstrijd van het seizoen",
 				"value": "1"
 			}
 		],
@@ -720,23 +720,23 @@
 		"tactics": [
 			{
 				"type": "normal",
-				"value": "normaal"
+				"value": "Normaal"
 			},
 			{
 				"type": "pressing",
-				"value": "pressievoetbal"
+				"value": "Pressievoetbal"
 			},
 			{
 				"type": "ca",
-				"value": "counteraanval"
+				"value": "Counteraanval"
 			},
 			{
 				"type": "aim",
-				"value": "centrumaanval"
+				"value": "Centrumaanval"
 			},
 			{
 				"type": "aow",
-				"value": "flankaanval"
+				"value": "Flankaanval"
 			},
 			{
 				"type": "",
@@ -748,11 +748,11 @@
 			},
 			{
 				"type": "creatively",
-				"value": "speel creatief"
+				"value": "Creatief spel"
 			},
 			{
 				"type": "longshots",
-				"value": "afstandsschoten"
+				"value": "Afstandsschoten"
 			}
 		],
 		"training": [

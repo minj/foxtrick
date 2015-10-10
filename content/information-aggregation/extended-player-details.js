@@ -26,17 +26,16 @@ Foxtrick.modules['ExtendedPlayerDetails'] = {
 					if (!player)
 						return;
 					if (player.playerLanguage) {
-						var br = doc.createElement('br');
-						br.className = 'clear';
-						node.appendChild(br);
-
-						var language = Foxtrick.createFeaturedElement(doc, module, 'em');
+						var language = doc.createElement('em');
 						Foxtrick.addClass(language, 'shy');
 						language.setAttribute('style', 'font-weight:normal; margin-left:5px;');
 						language.textContent = player.playerLanguage;
 						if (player.playerLanguageID)
 							language.setAttribute('PlayerLanguageID', player.playerLanguageID);
-						node.appendChild(language);
+
+						var langPara = Foxtrick.createFeaturedElement(doc, module, 'p');
+						langPara.appendChild(language);
+						node.appendChild(langPara);
 					}
 				});
 			};
@@ -63,9 +62,9 @@ Foxtrick.modules['ExtendedPlayerDetails'] = {
 
 		var htDate = Foxtrick.util.time.getHtDate(doc);
 
-		var joined_s = Math.floor((htDate.getTime() - dateObj.getTime()) / 1000); //Sec
+		var sec = Math.floor((htDate.getTime() - dateObj.getTime()) / 1000); // sec
 
-		var JoinedSpan = Foxtrick.util.time.timeDifferenceToElement(doc, joined_s, true);
+		var JoinedSpan = Foxtrick.util.time.timeDiffToSpan(doc, sec, { useDHM: false });
 
 		if (JoinedSpan.textContent.search('NaN') == -1) {
 			Foxtrick.addClass(joined_elm, 'smallText ft_since');
@@ -142,7 +141,7 @@ Foxtrick.modules['ExtendedPlayerDetailsWage'] = {
 				wageElm.textContent = part1 + '\u00a0';
 				var span = doc.createElement('span');
 				span.setAttribute('id', 'ft_bonuswage');
-				span.setAttribute('style', 'direction: ltr !important; color:#666666;');
+				span.setAttribute('style', 'direction: ltr; color:#666666;');
 				span.textContent = '(' + formattedWage + '\u00a0' + symbol + ')';
 				wageElm.appendChild(span);
 				wageElm.appendChild(doc.createTextNode(part2));

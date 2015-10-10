@@ -79,7 +79,7 @@ Foxtrick.modules['ExtraShortcuts'] = {
 							var img1 = doc.getElementById(radio + 'Icon');
 							img1.setAttribute('style', 'margin-left:2px; ' +
 							                  'background-repeat:no-repeat; background-image: ' +
-							                  'url(' + iconurl + ') !important;');
+							                  'url(' + iconurl + ');');
 							Foxtrick.Prefs.setString(radio + 'CurrentIcon', iconurl);
 						}
 						else {
@@ -96,7 +96,7 @@ Foxtrick.modules['ExtraShortcuts'] = {
 							var img1 = doc.getElementById(radio + 'Icon');
 							img1.setAttribute('style', 'margin-left:2px; ' +
 							                  'background-repeat:no-repeat; background-image: ' +
-							                  'url(' + iconurl + ') !important;');
+							                  'url(' + iconurl + ');');
 							Foxtrick.Prefs.setString(radio + 'CurrentIcon', iconurl);
 						}
 						var websites = radio_xml.getElementsByTagName('website');
@@ -198,7 +198,7 @@ Foxtrick.modules['ExtraShortcuts'] = {
 					if (Foxtrick.Prefs.getString(radio + 'CurrentIcon') != null)
 						img1.setAttribute('style', 'margin-left:2px; background-image: url(' +
 						                  Foxtrick.Prefs.getString(radio + 'CurrentIcon') +
-						                  ') !important;');
+						                  ');');
 					link.appendChild(img1);
 
 					var span = doc.createElement('div');

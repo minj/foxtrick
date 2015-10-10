@@ -7,7 +7,6 @@
 Foxtrick.modules['LineupShortcut'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES: ['playerDetails', 'statsBestGames', 'youthPlayerDetails'],
-	OPTIONS: ['HighlightPlayer'],
 
 	run: function(doc) {
 		if (Foxtrick.isPage(doc, 'playerDetails'))

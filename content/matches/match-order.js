@@ -328,15 +328,16 @@ Foxtrick.modules['MatchOrderInterface'] = {
 			var hasInterface = false;
 			var playerList = null;
 			var avatarsXml = null;
-			var teamLink = Foxtrick.Pages.All.getBreadCrumbs(doc)[0];
 			// NT team ID can only be found in URL it seems
-			var teamid = Foxtrick.util.id.getTeamIdFromUrl(doc.location.href);
+			var seniorId = Foxtrick.util.id.getTeamIdFromUrl(doc.location.href);
+			var youthId = Foxtrick.util.id.getYouthTeamIdFromUrl(doc.location.href);
+			var teamId = isYouth ? youthId : seniorId;
 
 			// load ahead players and then wait for interface loaded
 			getPlayers = function(fresh) {
 				Foxtrick.Pages.Players.getPlayerList(doc,
 				  function(playerInfo) {
-					if (!playerInfo || playerInfo.length == 0) {
+					if (!playerInfo || playerInfo.length === 0) {
 						Foxtrick.log('unable to retrieve player list.');
 						return;
 					}
@@ -349,14 +350,14 @@ Foxtrick.modules['MatchOrderInterface'] = {
 
 					if (hasInterface)
 						showPlayerInfo(doc.getElementById('orders'));
-				}, { teamId: teamid, currentSquad: true, includeMatchInfo: true, refresh: fresh });
+				}, { teamId: teamId, currentSquad: true, includeMatchInfo: true, refresh: fresh });
 			};
 			getPlayers();
 
 			var avatarsParams = [
 				['file', (isYouth ? 'youth' : '') + 'avatars'],
 				['version', '1.1'],
-				[(isYouth ? 'youthT' : 't') + 'eamId', teamid]
+				[(isYouth ? 'youthT' : 't') + 'eamId', teamId]
 			];
 			avatarsParamsString = JSON.stringify(avatarsParams); // save as string (immutable)
 			getAvatars = function(avatarsParams, opts) {
@@ -401,11 +402,8 @@ Foxtrick.modules['MatchOrderInterface'] = {
 					swapPositionsDiv.appendChild(swapPositionsLink);
 					var formations = doc.getElementById('formations');
 					formations.parentNode.insertBefore(swapPositionsDiv, formations.nextSibling);
-					var swapJS =
-						'document.getElementById("ft_swap_positions").' +
-							'addEventListener("click", ft_swap_positions);';
-
-					Foxtrick.util.inject.js(doc, swapJS, 'ft-swap-positions');
+					doc.dispatchEvent(new Event('ft_enable_swap'));
+					doc.documentElement.dataset.ft_enable_swap = true;
 				}
 
 
@@ -553,24 +551,18 @@ Foxtrick.modules['MatchOrderInterface'] = {
 
 					var penalties = doc.getElementById('tab_penaltytakers');
 					penalties.appendChild(frag);
-					var clearPenaltiesJS =
-						'document.getElementById("ft_clear_penalty_takers").' +
-							'addEventListener("click", ft_clear_penalty_takers);';
-					Foxtrick.util.inject.js(doc, clearPenaltiesJS, 'ft-clear-penalty-takers');
+					doc.dispatchEvent(new Event('ft_enable_penalty_controls'));
+					doc.documentElement.dataset.ft_enable_penalty_controls = true;
 				}
 
 				if (Foxtrick.Prefs.isModuleOptionEnabled('MatchOrderInterface', 'StayOnPage')) {
-					var stayJS =
-						'document.getElementById("send").' +
-							'addEventListener("click", ft_stay_on_page);';
-					Foxtrick.util.inject.js(doc, stayJS, 'ft-stay-on-page');
+					doc.dispatchEvent(new Event('ft_enable_stay'));
+					doc.documentElement.dataset.ft_enable_stay = true;
 				}
 				if (Foxtrick.Prefs.isModuleOptionEnabled('MatchOrderInterface',
 				    'FixPenaltyTakers')) {
-					var fixPenaltiesJS =
-						'document.querySelector("#li_tab_subs + li > a").' +
-							'addEventListener("click", ft_fix_penalty_takers);';
-					Foxtrick.util.inject.js(doc, fixPenaltiesJS, 'ft-fix-penalty-takers');
+					doc.dispatchEvent(new Event('ft_enable_penalties_fix'));
+					doc.documentElement.dataset.ft_enable_penalties_fix = true;
 				}
 
 				// add playerid to details
@@ -695,11 +687,11 @@ Foxtrick.modules['MatchOrderInterface'] = {
 				check_Specialties(doc, target, playerList, getIDParent, 'cards_health');
 			};
 
-			doc.addEventListener('interface_ready', function(e) {
+			Foxtrick.listen(doc, 'interface_ready', function(e) {
 				Foxtrick.log('interface ready: ', doc.getElementById('tab_penaltytakers')
 				             .getElementsByTagName('div').length !== 0);
 				waitForInterface();
-			}, false);
+			});
 		};
 
 		var isYouth = (doc.location.href.search(/isYouth=true|SourceSystem=Youth/i) != -1);

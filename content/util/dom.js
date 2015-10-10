@@ -273,7 +273,7 @@ Foxtrick.onClick = function(el, listener) {
  */
 Foxtrick.listen = function(el, type, listener, useCapture) {
 	el.addEventListener(type, function(ev) {
-		var doc = ev.target.ownerDocument;
+		var doc = ev.target.ownerDocument || ev.target;
 		Foxtrick.stopListenToChange(doc);
 		listener.bind(this)(ev);
 		Foxtrick.log.flush(doc);
@@ -530,8 +530,13 @@ Foxtrick.getDataURIText = function(str) {
  */
 Foxtrick.addImage = function(doc, parent, features, insertBefore, callback) {
 	var img = doc.createElement('img');
-	for (var i in features)
-		img.setAttribute(i, features[i]);
+	if (typeof features.onError === 'function')
+		Foxtrick.listen(img, 'error', features.onError);
+
+	for (var i in features) {
+		if (i !== 'onError')
+			img.setAttribute(i, features[i]);
+	}
 	if (insertBefore)
 		parent.insertBefore(img, insertBefore);
 	else
@@ -640,6 +645,116 @@ Foxtrick.getTextNodes = function(parent) {
 		ret.push(node);
 	}
 	return ret;
+};
+
+/**
+ * Get all text and element nodes in the node tree
+ * @param  {element} parent
+ * @return {array}          Array.<element>
+ */
+Foxtrick.getNodes = function(parent) {
+	var ret = [];
+	var doc = parent.ownerDocument;
+	var win = doc.defaultView;
+	/* jshint -W016 */
+	var bitMask = win.NodeFilter.SHOW_TEXT | win.NodeFilter.SHOW_ELEMENT;
+	/* jshint +W016 */
+	var walker = doc.createTreeWalker(parent, bitMask, null, false);
+	var node;
+	while ((node = walker.nextNode())) {
+		ret.push(node);
+	}
+	return ret;
+};
+
+/**
+ * Render pre elements in a container
+ * @param  {element} parent
+ */
+Foxtrick.renderPre = function(parent) {
+	var doc = parent.ownerDocument;
+	var testRE = /\[\/?pre\]/i;
+	if (testRE.test(parent.textContent)) {
+		// valid pre found
+		var allNodes = Foxtrick.getNodes(parent);
+		var pre = null, target = null, nodes = [];
+		Foxtrick.forEach(function(node) {
+			if (node.hasChildNodes()) {
+				// skip containers
+				return;
+			}
+			var text = node.textContent;
+			if (testRE.test(text)) {
+				// create a new RE object for each node
+				var preRE = /\[\/?pre\]/ig;
+				var mArray, prevIndex = 0;
+				while ((mArray = preRE.exec(text))) {
+					var tag = mArray[0];
+					var start = preRE.lastIndex - tag.length;
+					if (start > prevIndex) {
+						// add any previous text as a text node
+						var previousText = text.slice(prevIndex, start);
+						var prevTextNode = doc.createTextNode(previousText);
+						if (pre) {
+							pre.appendChild(prevTextNode);
+						}
+						else {
+							nodes.push(prevTextNode);
+						}
+					}
+					if (tag === '[pre]' && !pre) {
+						pre = doc.createElement('pre');
+						pre.className = 'ft-dummy';
+						nodes.push(pre);
+						// target is a pointer for DOM insertion
+						target = node;
+					}
+					else if (tag === '[/pre]' && pre) {
+						var frag = doc.createDocumentFragment();
+						Foxtrick.appendChildren(frag, nodes);
+						target.parentNode.replaceChild(frag, target);
+
+						if (node !== target) {
+							// node is still in DOM, remove it
+							node.parentNode.removeChild(node);
+						}
+
+						// set target as pre to be used outside loop
+						target = pre;
+						pre = null;
+						nodes = [];
+					}
+					else {
+						Foxtrick.log('renderPre: unsupported state');
+						return;
+					}
+					prevIndex = preRE.lastIndex;
+				}
+				if (prevIndex < text.length) {
+					// add any ending text
+					var endText = text.slice(prevIndex);
+					var endTextNode = doc.createTextNode(endText);
+					if (pre) {
+						// pre still not inserted
+						pre.appendChild(endTextNode);
+					}
+					else {
+						// target points to inserted pre instead
+						Foxtrick.insertAfter(endTextNode, target);
+					}
+				}
+			}
+			else if (pre) {
+				// add any nodes in between pre tags as is
+				pre.appendChild(node);
+			}
+		}, allNodes);
+	}
+	// replace \u2060 everywhere
+	var tNodes = Foxtrick.getTextNodes(parent);
+	Foxtrick.forEach(function(node) {
+		node.textContent = node.textContent.replace(/\u2060/g, '');
+	}, tNodes);
 };
 
 /**

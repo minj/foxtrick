@@ -9,7 +9,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.MATCHES,
 	PAGES: ['match', 'matchesLive'],
 	OPTIONS: [
-		'DisplayTeamNameOnField', 'ShowSpecialties',
+		'DisplayTeamNameOnField', 'ShowSpecialties', 'ShowNumbers',
 		'ConvertStars',
 		'SplitLineup',
 		'ShowFaces', 'StarCounter', 'StaminaCounter', 'HighlighEventPlayers',
@@ -18,7 +18,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		'GatherStaminaData',
 	],
 	OPTIONS_CSS: [
-		null, null,
+		null, null, Foxtrick.InternalPath + 'resources/css/match-lineup-numbers.css',
 		Foxtrick.InternalPath + 'resources/css/match-lineup-convert-stars.css',
 		null,
 	],
@@ -26,8 +26,6 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 	run: function(doc) {
 		// run change now as sometimes we are too slow to init the listener
 		// causing display to be broken on first load
-		// this.change(doc);
-		//this.onChange(doc);
 		this.registerListener(doc);
 
 		if (!Foxtrick.Pages.Match.hasRatingsTabs(doc))
@@ -35,8 +33,6 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 
 		if (Foxtrick.Prefs.isModuleOptionEnabled('MatchLineupTweaks', 'GatherStaminaData')) {
 			this.gatherStaminaData(doc);
-			// debug mode for home (true) or away (false)
-			// this.gatherStaminaData(doc, true);
 		}
 	},
 	/**
@@ -186,7 +182,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 				});
 				if (otherId) {
 					// highlight other player on click
-					Foxtrick.onClick(subDiv, function(ev) {
+					Foxtrick.onClick(subDiv, function() {
 						highlightSub(otherId);
 					});
 				}
@@ -220,6 +216,11 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			var pIds = Foxtrick.map(function(link) {
 				return Math.abs(Foxtrick.getParameterFromUrl(link, param));
 			}, subLinks);
+
+			if (!pIds.length)
+				// neighborhood kids
+				return;
+
 			var isSubject = true, sbjPid = pIds[0], objPid = pIds[1] || 0;
 			addSubDiv(sbjPid, time, type, isSubject, objPid);
 
@@ -252,7 +253,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		doc.getElementById('playersField').appendChild(awaySpan);
 
 	},
-	//adds apecialty icons for all players, on field and on bench
+	// adds apecialty icons for all players, on field and on bench
 	runSpecialties: function(doc) {
 		if (!Foxtrick.Pages.Match.getHomeTeam(doc))
 			return; // we're not ready yet
@@ -333,6 +334,56 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 
 		addSpecialtiesByTeamId(homeTeamId, homePlayerLinks);
 		addSpecialtiesByTeamId(awayTeamId, awayPlayerLinks);
+	},
+	// adds player numbers for all players, on field and on bench
+	runNumbers: function(doc) {
+		var module = this;
+		if (!Foxtrick.Pages.Match.getHomeTeam(doc))
+			return; // we're not ready yet
+
+		var homeTeamId = Foxtrick.Pages.Match.getHomeTeamId(doc);
+		var awayTeamId = Foxtrick.Pages.Match.getAwayTeamId(doc);
+		var isYouth = Foxtrick.Pages.Match.isYouth(doc);
+		var param = (isYouth ? 'youth' : '') + 'playerid';
+
+		var homeQuery =
+			'.playersField > div.playerBoxHome > div > a, ' +
+			'#playersBench > div#playersBenchHome > div.playerBoxHome > div > a';
+		var homePlayerLinks = doc.querySelectorAll(homeQuery);
+
+		var awayQuery =
+			'.playersField > div.playerBoxAway > div > a, #playersBench > ' +
+			'div#playersBenchAway > div.playerBoxAway > div > a';
+		var awayPlayerLinks = doc.querySelectorAll(awayQuery);
+
+		var addByTeamId = function(teamId, players) {
+			if (teamId === null)
+				return;
+
+			Foxtrick.Pages.Players.getPlayerList(doc,
+			  function(playerInfo) {
+				if (!playerInfo || !playerInfo.length)
+					return;
+
+				Foxtrick.stopListenToChange(doc);
+				Foxtrick.forEach(function(link) {
+					link.title = link.textContent;
+					var id = Math.abs(Foxtrick.getParameterFromUrl(link.href, param));
+					var player = Foxtrick.Pages.Players.getPlayerFromListById(playerInfo, id);
+					if (player && player.number) {
+						var node = link.parentNode.parentNode;
+						var span = Foxtrick.createFeaturedElement(doc, module, 'span');
+						Foxtrick.addClass(span, 'ft-mlt-player-nr');
+						span.textContent = player.number;
+						node.insertBefore(span, node.firstChild);
+					}
+				}, players);
+				Foxtrick.startListenToChange(doc);
+			}, { teamId: teamId, currentSquad: true, isYouth: isYouth });
+		};
+
+		addByTeamId(homeTeamId, homePlayerLinks);
+		addByTeamId(awayTeamId, awayPlayerLinks);
 	},
 	runMissing: function(doc) {
 		if (!Foxtrick.Pages.Match.getHomeTeam(doc))
@@ -537,7 +588,13 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 
 			var getStaminaFromNode = function(node) {
 				var parent = node.getElementsByClassName('sectorShirt')[0].nextSibling;
-				var staminaTitle = parent.firstChild.title;
+				var child = parent.firstChild;
+				if (!child) {
+					// probably old match like 177995984#
+					return 0;
+				}
+
+				var staminaTitle = child.title;
 				var stamina = staminaTitle.match(/\d+/);
 				return parseInt(stamina, 10);
 			};
@@ -649,7 +706,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 				});
 				newDiv.appendChild(star5container);
 			}
-			for (var j = 0; j < stars2; j++) {
+			for (var k = 0; k < stars2; k++) {
 				Foxtrick.addImage(doc, smallDiv, {
 					src: Foxtrick.InternalPath + 'resources/img/matches/2stars' + color + '.png',
 					alt: '2*'
@@ -700,7 +757,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			alt: alt,
 		});
 		Foxtrick.onClick(div, (function(module) {
-			return function(e) {
+			return function() {
 				Foxtrick.stopListenToChange(doc);
 				module.showAway = !module.showAway;
 				module.hideOtherTeam(doc);
@@ -727,8 +784,8 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 				Foxtrick.addClass(hideDivs[i], 'hidden');
 		}
 		var showDivs = doc.querySelectorAll('div.playerBox' + (this.showAway ? 'Away' : 'Home'));
-		for (var i = 0; i < showDivs.length; i++) {
-			Foxtrick.removeClass(showDivs[i], 'hidden');
+		for (var j = 0; j < showDivs.length; j++) {
+			Foxtrick.removeClass(showDivs[j], 'hidden');
 		}
 		var f = doc.getElementById('playersField');
 		if (undo)
@@ -743,28 +800,66 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 	/**
 	 * Gather stamina data to be used for match-simulator and player table
 	 * @param {document} doc
-	 * @param {boolean}  forceHome a flag to enable debug mode for home/away
 	 */
-	gatherStaminaData: function(doc, forceHome) {
+	gatherStaminaData: function(doc) {
 		if (Foxtrick.Pages.Match.isYouth(doc))
 			return;
-		var debug = false;
-		var isHome = false;
+
+		var inProgress = Foxtrick.Pages.Match.inProgress(doc);
+		var isLive = Foxtrick.isPage(doc, 'matchesLive');
+		if (inProgress || isLive)
+			return;
+
+		var team = 'away';
 		var ownId = Foxtrick.util.id.getOwnTeamId();
-		if (typeof forceHome === 'undefined') {
-			// only gather data for own team
-			var homeId = Foxtrick.Pages.Match.getHomeTeamId(doc);
-			var awayId = Foxtrick.Pages.Match.getAwayTeamId(doc);
-			if (homeId == ownId)
-				isHome = true;
-			else if (awayId != ownId)
-				return;
-		}
-		else {
-			isHome = forceHome;
-			debug = true;
+		// only gather data for own team
+		var homeId = Foxtrick.Pages.Match.getHomeTeamId(doc);
+		var awayId = Foxtrick.Pages.Match.getAwayTeamId(doc);
+		if (homeId == ownId)
+			team = 'home';
+		else if (awayId != ownId)
+			return;
+
+		var data = {}, dataText = Foxtrick.Prefs.getString('StaminaData.' + ownId);
+		if (dataText) {
+			try {
+				data = JSON.parse(dataText);
+			}
+			catch (e) {
+				Foxtrick.log('Error parsing StaminaData, data will be reset', e);
+			}
 		}
 
+		var matchDate = Foxtrick.Pages.Match.getDate(doc);
+		var players = this.getPlayersWithStamina(doc, team);
+
+		Foxtrick.map(function(player) {
+			if (player.stamina) {
+				if (!data.hasOwnProperty(player.PlayerId))
+					data[player.PlayerId] = [];
+
+				if (data[player.PlayerId].length &&
+					data[player.PlayerId][0] >= matchDate.valueOf())
+					// we have more recent data
+					return;
+
+				data[player.PlayerId][0] = matchDate.valueOf();
+				data[player.PlayerId][1] = player.stamina;
+			}
+		}, players);
+
+		Foxtrick.log('StaminaData:', matchDate, players, data);
+		Foxtrick.Prefs.setString('StaminaData.' + ownId, JSON.stringify(data));
+	},
+
+	getPlayersWithStamina: function(doc, team) {
+		var EMPTY = [];
+		if (Foxtrick.Pages.Match.isYouth(doc))
+			return EMPTY;
+
+		var isHome = team == 'home';
+
+		/* jshint ignore:start */
 		var getStamina = function(lastEnergy, checkpoints, isRested) {
 			// these formulas are derrived from the formula used in match-simulator
 			// currently they seem to have low accuracy :(
@@ -788,13 +883,15 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			}
 			return stamina;
 		};
+		var hasRest = function(from, to) {
+			return from < 45 && to > 45;
+		};
+		/* jshint ignore:end */
+
 		var getCheckpointCount = function(from, to) {
 			var ct = Foxtrick.Math.div(to - 1, 5) - Foxtrick.Math.div(from - 1, 5) +
 				(from > 0 ? 0 : 1) - (to > 0 ? 0 : 1);
 			return ct;
-		};
-		var hasRest = function(from, to) {
-			return from < 45 && to > 45;
 		};
 		var findEvent = function(minute) {
 			for (var i = 0, event; i < timeline.length && (event = timeline[i]); ++i) {
@@ -810,7 +907,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		if (!playerRatings.length) {
 			// most likely WO, or match in progress
 			// abort
-			return;
+			return EMPTY;
 		}
 		// info for CHPP
 		var SourceSystem = Foxtrick.Pages.Match.getSourceSystem(doc);
@@ -832,27 +929,17 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 
 			if (!HTOPlayers) {
 				Foxtrick.log('gatherStaminaData: failed to parse playerData');
-				return;
-			}
-		}
-		var data = {}, dataText = Foxtrick.Prefs.getString('StaminaData.' + ownId);
-		if (dataText && !debug) {
-			try {
-				data = JSON.parse(dataText);
-			}
-			catch (e) {
-				Foxtrick.log('Error parsing StaminaData, data will be reset', e);
+				return EMPTY;
 			}
 		}
 
-		Foxtrick.log('Existing StaminaData', data);
 		var table = Foxtrick.Pages.Match.getRatingsTable(doc);
-		var tactics = Foxtrick.Pages.Match.getTacticsByTeam(table).tactics[Number(!isHome)];
+		var teamNr = Number(!isHome);
+		var tactics = Foxtrick.Pages.Match.getTacticsByTeam(table).tactics[teamNr];
 		// don't parse pressing: affects stamina
 		if (tactics == 'pressing')
-			return;
+			return EMPTY;
 
-		var matchDate = Foxtrick.Pages.Match.getDate(doc);
 		var affectedPlayerID = '0';
 		var events = doc.getElementsByClassName('matchevent');
 		// should not be more than one SE with same type
@@ -861,7 +948,12 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			// powerfull suffers in sun (loses stamina)
 			if (evtType == 304) {
 				var playerLink = evt.getElementsByTagName('a')[0];
-				affectedPlayerID = Foxtrick.getParameterFromUrl(playerLink.href, 'playerId');
+				if (!playerLink) {
+					// street
+					affectedPlayerID = 0;
+				}
+				else
+					affectedPlayerID = Foxtrick.getParameterFromUrl(playerLink.href, 'playerId');
 				return true;
 			}
 			return false;
@@ -869,13 +961,14 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 
 		var players = Foxtrick.filter(function(player, i) {
 			// need to parse player data and change PlayerIds to HT Ids
-			if (typeof (HTOPlayers) != 'undefined') {
-				for (var j = 0; j < HTOPlayers.length; j++) {
-					if (HTOPlayers[j].PlayerId == player.PlayerId) {
-						player.PlayerId = HTOPlayers[j].SourcePlayerId;
-						break;
+			if (typeof HTOPlayers != 'undefined') {
+				Foxtrick.any(function(HTOPlayer) {
+					if (HTOPlayer.PlayerId == player.PlayerId) {
+						player.PlayerId = HTOPlayer.SourcePlayerId;
+						return true;
 					}
-				}
+					return false;
+				}, HTOPlayers);
 			}
 
 			// disregard extra time data
@@ -887,7 +980,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			return player.ToMin > 0 && player.PlayerId != affectedPlayerID;
 		}, playerRatings[0].players);
 
-		Foxtrick.map(function(player) {
+		Foxtrick.forEach(function(player) {
 			player.checkpoints = getCheckpointCount(player.FromMin, player.ToMin);
 			player.lastEvent = findEvent(player.ToMin);
 			player.lastEnergy = playerRatings[player.lastEvent].players[player.ftIdx].Stamina;
@@ -904,22 +997,56 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 					player.stamina = Foxtrick.Predict.stamina(player.lastEnergy).toFixed(2);
 				else
 					player.stamina = '8.63+';
-
-				if (!data.hasOwnProperty(player.PlayerId))
-					data[player.PlayerId] = [];
-
-				if (data[player.PlayerId].length &&
-					data[player.PlayerId][0] >= matchDate.valueOf())
-					// we have more recent data
-					return;
-
-				data[player.PlayerId][0] = matchDate.valueOf();
-				data[player.PlayerId][1] = player.stamina;
 			}
 		}, players);
-		Foxtrick.log('StaminaData:', matchDate, players, data);
-		if (!debug)
-			Foxtrick.Prefs.setString('StaminaData.' + ownId, JSON.stringify(data));
+		return players;
+	},
+
+	flipStaminaBar: function(doc, playerDivs) {
+		var module = this;
+		var playersById = {};
+
+		var inProgress = Foxtrick.Pages.Match.inProgress(doc);
+		var isLive = Foxtrick.isPage(doc, 'matchesLive');
+		if (!isLive && !inProgress) {
+			var homePlayers = module.getPlayersWithStamina(doc, 'home');
+			var awayPlayers = module.getPlayersWithStamina(doc, 'away');
+			var players = Foxtrick.concat(homePlayers, awayPlayers);
+			Foxtrick.forEach(function(p) {
+				playersById[p.PlayerId] = p;
+			}, players);
+		}
+
+		Foxtrick.forEach(function(playerDiv) {
+			var ftdiv = Foxtrick.createFeaturedElement(doc, module, 'div');
+			Foxtrick.addClass(ftdiv, 'ft-indicator-wrapper');
+			var staminaDiv = playerDiv.querySelector('div.sectorShirt + div > div');
+			Foxtrick.addClass(staminaDiv, 'ft-staminaDiv');
+			if (staminaDiv) {
+				var stamina = staminaDiv.title.match(/\d+/)[0];
+				var fatigue = 100 - Number(stamina);
+				staminaDiv.firstChild.style.height = fatigue + '%';
+				var staminaSpan = doc.createElement('span');
+				Foxtrick.addClass(staminaSpan, 'ft-staminaText');
+				staminaSpan.style.backgroundColor = staminaDiv.style.backgroundColor;
+				// let's 'hide' 100
+				staminaSpan.textContent = (stamina != 100) ? stamina : '00';
+				if (stamina == 100)
+					staminaSpan.style.color = staminaSpan.style.backgroundColor;
+
+				var staminaText = staminaDiv.title;
+				var link = playerDiv.querySelector('#playerLink');
+				if (link) {
+					var id = Foxtrick.getParameterFromUrl(link.href, 'PlayerId');
+					var player = playersById[id];
+					if (player && player.stamina)
+						staminaText += Foxtrick.format(' ({})', [player.stamina]);
+				}
+				staminaSpan.title = staminaText;
+				ftdiv.appendChild(staminaSpan);
+			}
+			playerDiv.appendChild(ftdiv);
+		}, playerDivs);
 	},
 
 	onChange: function(doc) {
@@ -940,34 +1067,13 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		if (Foxtrick.Prefs.isModuleOptionEnabled('MatchLineupTweaks', 'SplitLineup'))
 			this.splitLineup(doc);
 
-		for (var i = 0; i < playerDivs.length; i++) {
-			var player = playerDivs[i];
-			var ftdiv = Foxtrick.createFeaturedElement(doc, this, 'div');
-			Foxtrick.addClass(ftdiv, 'ft-indicator-wrapper');
-			var staminaDiv = player.querySelector('div.sectorShirt + div > div');
-			Foxtrick.addClass(staminaDiv, 'ft-staminaDiv');
-			if (staminaDiv) {
-				var stamina = staminaDiv.title.match(/\d+/)[0];
-				var fatigue = 100 - Number(stamina);
-				staminaDiv.firstChild.style.height = fatigue + '%';
-				var staminaSpan = doc.createElement('span');
-				Foxtrick.addClass(staminaSpan, 'ft-staminaText');
-				staminaSpan.style.backgroundColor = staminaDiv.style.backgroundColor;
-				// let's 'hide' 100
-				staminaSpan.textContent = (stamina != 100) ? stamina : '00';
-				if (stamina == 100)
-					staminaSpan.style.color = staminaSpan.style.backgroundColor;
-				staminaSpan.title = staminaDiv.title;
-				ftdiv.appendChild(staminaSpan);
-			}
-			player.appendChild(ftdiv);
-		}
+		this.flipStaminaBar(doc, playerDivs);
 
 		// add ft-stars="N" to ratings spans for possible styling
 		var ratings = doc.querySelectorAll('div.playerRating > span');
-		for (var i = 0; i < ratings.length; i++) {
-			var count = Number(ratings[i].textContent);
-			ratings[i].setAttribute('ft-stars', count);
+		for (var j = 0; j < ratings.length; j++) {
+			var count = Number(ratings[j].textContent);
+			ratings[j].setAttribute('ft-stars', count);
 		}
 
 		var hId = doc.location.search.match(/HighlightPlayerID=(\d+)/i);
@@ -1010,6 +1116,8 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		Foxtrick.startListenToChange(doc);
 
 		//add async shit last
+		if (Foxtrick.Prefs.isModuleOptionEnabled('MatchLineupTweaks', 'ShowNumbers'))
+			this.runNumbers(doc);
 
 		if (Foxtrick.Prefs.isModuleOptionEnabled('MatchLineupTweaks', 'ShowSpecialties'))
 			this.runSpecialties(doc);

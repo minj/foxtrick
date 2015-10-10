@@ -1,5 +1,5 @@
 /* make space for long skills names */
-div.playerInfo table.thin  td {padding-right: 5px !important;}
+div.playerInfo table.thin  td {padding-right: 5px;}
 
 a[href*="#skill"] {white-space:nowrap;}
 
@@ -13,12 +13,12 @@ span.ft-skill
 	font-size:xx-small;
 }
 #details .experienceAndLeadership span, #details .staminaAndForm span, #details .layalty span {
-	text-decoration: none !important;
+	text-decoration: none;
 }
 a.ft-skill{
-	text-decoration: none !important;
+	text-decoration: none;
 }
 a.ft-skill-dont-touch{
-	color: #fff !important;
-	background-color: inherit !important;
+	color: #fff;
+	background-color: inherit;
 }

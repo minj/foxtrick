@@ -12,7 +12,7 @@
 	width: 600px;
 	margin-top: -10px;
 	color: red;
-	font-size: 1em !important;
+	font-size: 1em;
 }
 #ft-matchRatingsOptions {
 	right: 12px;
@@ -20,8 +20,8 @@
 	width: 175px;
 }
 #ft-matchRatingsTable td {
-	padding: 2px !important;
-	vertical-align: middle !important;
+	padding: 2px;
+	vertical-align: middle;
 }
 
 #ft-mrt-homeName {

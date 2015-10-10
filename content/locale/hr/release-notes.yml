@@ -5,11 +5,50 @@ hr:
       note_0: 'Ovo je razvojna inačica. Koristiti na svoju odgovornost. Za detalje o promjenama pogledajte <linkSVN>commit history</linkSVN> na Google Code stranici.'
     beta:
       note_0: 'Ovo je beta inačica buduće nove verzije. Pomozite na prevoditi ovu verziju sa super lakim prevođenjem na <linkCrowdin>crowdin.net</linkCrowdin>.'
+    0.16.0:
+      important: '<header>Važne obavijesti</header>'
+      crowdin: '<header>Mnogo prevoditeljskih nadogradnji od naših fantastičnih korisnika koristeći <linkCrowdin>crowdin alat</linkCrowdin>. I Vi možete pomoći!</header>'
+      support: '<header>Sviđa Vam se što radimo? Molim Vas da <linkContribute>podržite Foxtrick</linkContribute>.</header>'
+      new: '<header>Novi moduli</header>'
+      bugs: '<header>Popravljene greške</header>'
+      other: '<header>Druge promjene</header>'
+    0.15.2.1:
+      important: '<header>Važne obavijesti</header>'
+      signed: Svi Firefox dodaci sada moraju biti digitalno potpisani od strane Mozille. Ovo je uglavnom potpisana nadogradnja da bi se osigurala Foxtrick-ova kompatibilnost.
+      signing: 'Zbog poremećaja uzrokovanih obaveznim potpisivanjem dodataka, odlučili smo maknuti Foxtrick s <linkAMO>Mozilla add-ons</linkAMO> portala. Više detalja u <linkUnlistPost>globalnim Foxtrick najavama</linkUnlistPost>.'
+      bugs: '<header>Popravljene greške</header>'
+      weatherSE: 'Popis vremenskih specijalnih događaja tijekom utakmice je bio pokvaren u <module>MatchLineupFixes</module> zbog HT promjena. To je sada popravljeno.'
+      other: '<header>Druge promjene</header>'
+      sandbox: Dodana podrška za predstojeće HT opcije tijekom utakmice.
+      compact_lineups: 'Spremanje imena postava je sada usklađeno s <module>MatchOrderInterface</module>. Ovo će vam omogućiti da koristite više spremljenih postava bez pojave problema s imenovanjem.'
+      and_more: Razne druge male promjene i popravci.
+    0.15.2:
+      important: '<header>Važne obavijesti</header>'
+      links: '<module>Links</module> funkcionalnost je bila napisana iznova s ciljem ispravljanja greški i unaprijeđenja održavanja. Više oznaka će sada biti dostupno za prilagođene veze. Neke oznake su preimenovane da prikažu njihovo pravo značenje. Molimo obrišite Foxtrick predmemoriju, testirajte svoje prilagođene veze i ažurirajte ih u skladu sa tim.'
+      support: '<header>Sviđa Vam se što radimo? Molim Vas da <linkContribute>podržite Foxtrick</linkContribute>.</header>'
+      crowdin: '<header>Mnogo prevoditeljskih nadogradnji od naših fantastičnih korisnika koristeći <linkCrowdin>crowdin alat</linkCrowdin>. I Vi možete pomoći!</header>'
+      twitter: 'Možete pratiti <linkTwitter>Foxtrick na Twitteru</linkTwitter> kako biste dobili najnovije vijesti, ažuriranja i objave.'
+      bugs: '<header>Popravljene greške</header>'
+      youth_avatars: 'Ispravljeni nedostajući avatari mladih igrača u <module>MatchOrderInterface</module>.'
+      preserve_changes: '<module>MatchRatingsTweaks</module> će sačuvati zadnje promjene ocjena tijekom utakmica uživo. Ranije promjene u ocjenama (obojeni brojevi) će nestati na svako ažuriranje iako to ažuriranje nema utjecaja na ocjene.'
+      leave_forum: '<module>ForumLeaveButton</module> je bio potpuno slomljen te je sada ispravljen.'
+      monitor_cups: '<module>MyMonitor</module> bi trebao sada ispravno prikazivati sekundarne kup ikone.'
+      other: '<header>Druge promjene</header>'
+      volume: 'Dodan globalni Foxtrick klizač glasnoće zvuka u <FTlinkMainTab>glavne opcije postavki</FTlinkMainTab>.'
+      mlt_upgrade: '<module>MatchLineupTweaks</module> modul bi trebao sada ispravno prikazivati brojeve igrača na postavi utakmice. Dodatno, vidjet ćete predviđanje vještine izdržljivost (ukoliko je dostupno) kod prelaska mišem preko igračeve vrijednosti snage.'
+      mrt_ratings: '<module>Ratings</module> modul je integriran u <module>MatchRatingsTweaks</module> i sada ima limitiranu funkcionalnost čak i u HT-Live (samo za HT Supportere).'
+      copy_ratings: '<module>CopyRatings</module> je bio iznova napisan i sada možete kopirati ocjene od neke minute iz kartice prikaza detalja, čak i iz HT-Live.'
+      monitor_update: '<module>MyMonitor</module> sada uključuje pametnije sortiranje timova i mogućnost dodavanja utakmica u HT-Live baziranima na njihovom tipu utakmice.'
+      promote_age: '<module>YouthPromotes</module> prikazuje godine igrača na dan promocije.'
+      export_live: 'Dodan gumb za izvoz HT-Live popisa utakmica kao vezu u <module>ReLiveLinks</module>.'
+      match_icons: 'Dodano je više ikona vezano uz događaje na utakmici u <module>MatchReportFormat</module>. Svi važni događaji bi trebali biti pokriveni.'
+      retro_cups: 'Retro kup ikone su dodane za nove tipove cupa u <module>CustomMedals</module>.'
+      and_more: Razne druge male promjene i popravci.
     0.15.1:
       bugs: '<header>Popravljene greške</header>'
       nt_crash: 'Popravljen problem koji dovodi do rušenja preglednika za NT u <module>MatchOrderInterface</module>.'
       copy_htMl: 'Popravljen <module>ContextMenuCopy</module> koji nije kopirao tekst veze za HT-ML.'
-      resource_fix: '<module>Veze</module> i <module>StaffMarker</module> je prestao raditi za korisnike u nekim zemljama. Ovo bi trebalo biti popravljeno za nekoliko dana.'
+      resource_fix: '<module>Links</module> i <module>StaffMarker</module> je prestao raditi za korisnike u nekim zemljama. Ovo bi trebalo biti popravljeno za nekoliko dana.'
       other: '<header>Druge promjene</header>'
       extarnal_url: 'Dodana opcija za kopiranje Hattrick linkova za druge web stranice u <module>ContextMenuCopy</module>. Ove veze rade bez obzira na koji HT server je korisnik prijavljen.'
       and_more: Razne druge male promjene i popravci.

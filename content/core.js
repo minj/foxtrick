@@ -78,9 +78,12 @@ Foxtrick.modules.Core = {
 	showChangeLog: function(doc) {
 		try {
 			// show change log if anything but forth number changes
-			if (Foxtrick.Prefs.getString('oldVersion') === null ||
-			    Foxtrick.Prefs.getString('oldVersion').match(/\d+\.\d+(\.\d+)?/)[0] !==
-			    Foxtrick.version().match(/\d+\.\d+(\.\d+)?/)[0]) {
+			var oldV = Foxtrick.Prefs.getString('oldVersion');
+			var oldVMajor = oldV.match(/\d+\.\d+(\.\d+)?/)[0];
+			var newV = Foxtrick.version();
+			var newVMajor = newV.match(/\d+\.\d+(\.\d+)?/)[0];
+			var br = Foxtrick.branch().slice(0, 4);
+			if (oldV === null || oldV != newV && br !== 'beta' || oldVMajor !== newVMajor) {
 				if (Foxtrick.Prefs.getBool('showReleaseNotes')) {
 					Foxtrick.Prefs.show('#tab=changes');
 				}

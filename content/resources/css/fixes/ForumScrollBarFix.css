@@ -1,2 +1,2 @@
-div[class="main mainConf"] #mainBody
+div.main.mainConf #mainBody
 { overflow-y:scroll !important; }

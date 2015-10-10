@@ -15,7 +15,7 @@ Foxtrick.loader.background.contentScriptManager = {
 	contentScripts: [
 		//<!-- essential -->
 		'env.js',
-		'prefs.js',
+		'prefs-util.js',
 		'l10n.js',
 		'xml-load.js',
 		'pages.js',
@@ -124,6 +124,7 @@ Foxtrick.loader.background.contentScriptManager = {
 		'forum/show-forum-pref-button.js',
 		'forum/staff-marker.js',
 		'information-aggregation/cross-table.js',
+		'information-aggregation/current-transfers.js',
 		'information-aggregation/dashboard-calendar.js',
 		'information-aggregation/election-table.js',
 		'information-aggregation/extended-player-details.js',
@@ -259,7 +260,8 @@ Foxtrick.loader.background.contentScriptManager = {
 		for (var i = 0; i < this.contentScripts.length; ++i) {
 			var script = this.contentScripts[i];
 			try {
-				messageManager.loadFrameScript('chrome://foxtrick/content/' + script, true, true);
+				var url = FOXTRICK_PATH + script + '?t=' + FOXTRICK_RUNTIME;
+				messageManager.loadFrameScript(url, true, true);
 			}
 			catch (e) {
 				e.message = 'Foxtrick ERROR: ' + script + ': ' + e.message + '\n' + e.stack + '\n';
@@ -269,20 +271,20 @@ Foxtrick.loader.background.contentScriptManager = {
 	},
 
 	unload: function() {
-		// tell content script to unload
-		Foxtrick.SB.ext.broadcastMessage('unload');
-		Foxtrick.saveAs.unload();
-
-		// unload content scripts
+		// stop loading content scripts
 		for (var i = 0; i < this.contentScripts.length; ++i) {
 			var script = this.contentScripts[i];
 			try {
-				messageManager.removeDelayedFrameScript('chrome://foxtrick/content/' + script);
+				var url = FOXTRICK_PATH + script + '?t=' + FOXTRICK_RUNTIME;
+				messageManager.removeDelayedFrameScript(url);
 			}
 			catch (e) {
 				e.message = 'Foxtrick ERROR: ' + script + ': ' + e.message + '\n' + e.stack + '\n';
 				Services.console.logStringMessage(e);
 			}
 		}
+		// tell running content scripts to unload
+		Foxtrick.SB.ext.broadcastMessage('unload');
+		Foxtrick.saveAs.unload();
 	},
 };

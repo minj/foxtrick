@@ -8,9 +8,9 @@
 Foxtrick.modules['ForumStripHattrickLinks'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.FORUM,
 	PAGES: [
-		'forumWritePost', 'messageWritePost', 'guestbook', 'announcements',
+		'forumWritePost', 'messageWritePost', 'guestbook', 'announcementsWrite',
 		'newsLetter', 'mailNewsLetter', 'ntNewsLetter',
-		'forumModWritePost', 'forumViewThread'
+		'forumModWritePost', 'forumViewThread', 'ticket', 'helpContact',
 	],
 	OPTIONS: ['NoConfirmStripping'],
 	NICE: -1, //  needs to be before forum preview for old submit button (order) detection
@@ -29,7 +29,7 @@ Foxtrick.modules['ForumStripHattrickLinks'] = {
 	run: function(doc) {
 		var URLs = [
 			{
-				reg: /\[link=https?:\/\/(www(\d+)?|stage)\.hattrick\.(org|fm|ws|interia\.pl)(\/.+?)\]/g,
+				reg: /\[link=https?:\/\/(www(\d+)?|stage)\.hattrick\.(org|ws|bz|uol\.com\.br|interia\.pl|name|fm)(\/.+?)\]/g,
 				repl: '[link=$4]'
 			},
 			// safari nightly

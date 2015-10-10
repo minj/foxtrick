@@ -91,7 +91,7 @@ function startup(aData, aReason) {
 	// prefs branch
 	const branch = 'extensions.foxtrick.prefs.';
 
-	_gLoader = {};
+	_gLoader = { FOXTRICK_RUNTIME: new Date().valueOf() };
 
 	let pathToDefault;
 	// load specific startup stripts

@@ -1,11 +1,11 @@
 a[id^="ctl00_ctl00_CPContent_CPMain_repHairColors"] img,
 a[id^="ctl00_ctl00_CPContent_CPMain_repFaceTones"] img
 {
-	padding-top: 12px !important;
-	width: 12px !important;
-	height: 0 !important;
-	top: 0px !important;
-	left: 0px !important;
+	padding-top: 12px;
+	width: 12px;
+	height: 0;
+	top: 0px;
+	left: 0px;
 }
 
 /* hide eye mood */

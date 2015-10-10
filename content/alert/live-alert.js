@@ -8,11 +8,11 @@
 Foxtrick.modules['LiveAlert'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.ALERT,
 	PAGES: ['matchesLive'],
-	OPTIONS: ['Sound', 'home', 'away', 'own'],
+	OPTIONS: ['Sound', 'home', 'away', 'own', 'opponent'],
 	OPTION_EDITS: true,
-	OPTION_EDITS_DISABLED_LIST: [true, false, false, false],
-	OPTION_EDITS_DATAURL_LOAD_BUTTONS: [false, true, true, true],
-	OPTION_EDITS_DATAURL_IS_SOUND: [false, true, true, true],
+	OPTION_EDITS_DISABLED_LIST: [true, false, false, false, false],
+	OPTION_EDITS_DATAURL_LOAD_BUTTONS: [false, true, true, true, true],
+	OPTION_EDITS_DATAURL_IS_SOUND: [false, true, true, true, true],
 
 	store: {},
 
@@ -26,54 +26,60 @@ Foxtrick.modules['LiveAlert'] = {
 		this.alert(doc);
 	},
 
+	/**
+	 * Get goals from tab.
+	 *
+	 * Returns [home, away] goals as integers
+	 * @param  {element} tab
+	 * @return {array}       <Array.<number>>
+	 */
 	getScoreFromTab: function(tab) {
-		try {
-			var doc = tab.ownerDocument;
-			if (tab.getElementsByClassName('liveTabScore').length > 0) {
-				var score = tab.getElementsByClassName('liveTabScore')[0].textContent;
-				if (score === '')
-					return;
-				var scoreRe = /(\d+)\s*-\s*(\d+)/;
-				var scoreMatch = score.match(scoreRe);
-				if (!Foxtrick.util.layout.isRtl(doc))
-					return [parseInt(scoreMatch[1], 10), parseInt(scoreMatch[2], 10)];
-				else
-					return [parseInt(scoreMatch[2], 10), parseInt(scoreMatch[1], 10)];
-			}
-			return null;
+		var ret = null;
+
+		var score = tab.querySelector('.liveTabScore');
+		var match = score.textContent.trim().match(/^(\d+) - (\d+)$/);
+		if (match) {
+			var goals = Foxtrick.toArray(match).slice(1);
+			ret = goals.map(function(s) { return parseInt(s, 10); });
 		}
-		catch (e) {
-			Foxtrick.log('Cannot parse score \'', score, '\'');
-			return null;
-		}
+
+		return ret;
 	},
 
+	/**
+	 * Get team elements from tab.
+	 *
+	 * Returns an [home, away] where teams are either links or spans.
+	 * team.title = full team name team.textContent = shortTeamName.
+	 * @param  {element} tab
+	 * @return {array}       {Array.<HTMLAnchorElement|HTMLSpanElement}
+	 */
 	getTeamsFromTab: function(tab) {
-		var links = tab.getElementsByTagName('a');
-		if (links.length) {
-			// expanded tab with team names as links
-			links = Foxtrick.Pages.Match.getTeams(tab.ownerDocument);
-			return Foxtrick.map(function(link) {
-				return link.textContent;
-			}, links);
-		}
-		else {
-			var teams = tab.lastChild.textContent;
-			teams = teams.trim();
-			return teams.split(' - ');
-		}
+		return [tab.querySelector('.hometeam'), tab.querySelector('.awayteam')];
 	},
 
 	alert: function(doc) {
+		var ALERT_TMPL = '{homeShort} {homeGoals} - {awayGoals} {awayShort}';
 		var tabs = doc.getElementsByClassName('liveTabText');
-		for (var i = 0; i < tabs.length; ++i) {
+		// skip first tab = header
+		for (var i = 1; i < tabs.length; ++i) {
 			var tab = tabs[i];
 			var score = this.getScoreFromTab(tab);
 			if (score === null)
 				continue;
 
 			var teams = this.getTeamsFromTab(tab);
-			var teamsText = teams[0] + '-' + teams[1]; // used as index
+
+			var info = {
+				homeGoals: score[0],
+				homeShort: teams[0].textContent,
+				homeLong: teams[0].title,
+				awayGoals: score[1],
+				awayShort: teams[1].textContent,
+				awayLong: teams[1].title,
+			};
+
+			var teamsText = info.homeShort + '-' + info.awayShort; // used as index
 			if (typeof this.store[teamsText] === 'undefined') {
 				this.store[teamsText] = score;
 				continue;
@@ -82,16 +88,15 @@ Foxtrick.modules['LiveAlert'] = {
 			var awayScored = this.store[teamsText][1] < score[1];
 			if (homeScored || awayScored) {
 				// score has changed, alert
-				var own = Foxtrick.modules.Core.TEAM.shortTeamName;
-				var ownScored = own && (
-					own == teams[0] && homeScored ||
-					own == teams[1] && awayScored
-				);
+				var own = Foxtrick.modules.Core.TEAM.teamName;
+				var ownScored = own == info.homeLong && homeScored ||
+					own == info.awayLong && awayScored;
+				var opScored = own == info.homeLong && awayScored ||
+					own == info.awayLong && homeScored;
 
 				this.store[teamsText] = score;
 				// show notification
-				var txt = '%h %H - %A %a'.replace(/%h/, teams[0]).replace(/%H/, score[0]).
-					replace(/%A/, score[1]).replace(/%a/, teams[1]);
+				var txt = Foxtrick.format(ALERT_TMPL, info);
 				var url = doc.location.href;
 				var noop = function(response) {};
 
@@ -103,6 +108,9 @@ Foxtrick.modules['LiveAlert'] = {
 					if (ownScored &&
 					    Foxtrick.Prefs.isModuleOptionEnabled('LiveAlert', 'own'))
 						sound = Foxtrick.Prefs.getString('module.LiveAlert.own_text');
+					else if (opScored &&
+					         Foxtrick.Prefs.isModuleOptionEnabled('LiveAlert', 'opponent'))
+						sound = Foxtrick.Prefs.getString('module.LiveAlert.opponent_text');
 					else if (homeScored &&
 					         Foxtrick.Prefs.isModuleOptionEnabled('LiveAlert', 'home'))
 						sound = Foxtrick.Prefs.getString('module.LiveAlert.home_text');
@@ -111,9 +119,9 @@ Foxtrick.modules['LiveAlert'] = {
 						sound = Foxtrick.Prefs.getString('module.LiveAlert.away_text');
 
 					if (sound)
-						Foxtrick.playSound(sound, doc);
+						Foxtrick.playSound(doc, sound);
 				}
 			}
 		}
-	}
+	},
 };

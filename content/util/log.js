@@ -71,12 +71,9 @@ Foxtrick.log = function() {
 		Foxtrick.addToDebugLogStorage(concated);
 	}
 
-	// live logging in browser for devs
-	try {
-		if (Foxtrick.Prefs.getBool('logDisabled'))
-			return;
-	}
-	catch (e) {}
+	// Foxtrick.Prefs may not have loaded yet
+	if (Foxtrick.Prefs && Foxtrick.Prefs.getBool('logDisabled'))
+		return;
 
 	if (typeof Firebug !== 'undefined' && typeof Firebug.Console !== 'undefined' &&
 	    typeof Firebug.Console.log === 'function') {

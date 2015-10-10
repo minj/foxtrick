@@ -10,7 +10,7 @@ FoxtrickFirefox.prototype = {
 
 		//<!-- essential -->
 		'env.js',
-		'prefs.js',
+		'prefs-util.js',
 		'l10n.js',
 		'xml-load.js',
 		'pages.js',
@@ -116,6 +116,7 @@ FoxtrickFirefox.prototype = {
 		'forum/show-forum-pref-button.js',
 		'forum/staff-marker.js',
 		'information-aggregation/cross-table.js',
+		'information-aggregation/current-transfers.js',
 		'information-aggregation/dashboard-calendar.js',
 		'information-aggregation/election-table.js',
 		'information-aggregation/extended-player-details.js',

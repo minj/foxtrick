@@ -2,57 +2,57 @@
 
 /* SKILL COLOR */
 #details .experienceAndLeadership span, #details .staminaAndForm span, #details .layalty span {
-	text-decoration: none !important;
+	text-decoration: none;
 }
 a.ft-skill{
-	text-decoration: none !important;
+	text-decoration: none;
 }
 a.ft-skill-dont-touch{
-	color: #fff !important;
-	background-color: inherit !important;
+	color: #fff;
+	background-color: inherit;
 }
 a[href$="=0#skill"]
-{background-color:#ffffff !important; color:#000 !important;}
+{background-color:#ffffff; color:#000;}
 a[href$="=1#skill"]
-{background-color:#EFFFEF !important; color:#000 !important;}
+{background-color:#EFFFEF; color:#000;}
 a[href$="=2#skill"]
-{background-color:#E0EFE0 !important; color:#000 !important;}
+{background-color:#E0EFE0; color:#000;}
 a[href$="=3#skill"]
-{background-color:#D2EFD1 !important; color:#000 !important;}
+{background-color:#D2EFD1; color:#000;}
 a[href$="=4#skill"]
-{background-color:#C4DFC3 !important; color:#000 !important;}
+{background-color:#C4DFC3; color:#000;}
 a[href$="=5#skill"]
-{background-color:#B6DFB5 !important; color:#000 !important;}
+{background-color:#B6DFB5; color:#000;}
 a[href$="=6#skill"]
-{background-color:#A9CFA8 !important; color:#000 !important;}
+{background-color:#A9CFA8; color:#000;}
 a[href$="=7#skill"]
-{background-color:#90BF8F !important; color:#000 !important;}
+{background-color:#90BF8F; color:#000;}
 a[href$="=8#skill"]
-{background-color:#7AAF78 !important; color:#000 !important;}
+{background-color:#7AAF78; color:#000;}
 a[href$="=9#skill"]
-{background-color:#659F63 !important; color:#000 !important;}
+{background-color:#659F63; color:#000;}
 a[href$="=10#skill"]
-{background-color:#528F50 !important; color:#fff !important;}
+{background-color:#528F50; color:#fff;}
 a[href$="=11#skill"]
-{background-color:#417F3F !important; color:#fff !important;}
+{background-color:#417F3F; color:#fff;}
 a[href$="=12#skill"]
-{background-color:#326F30 !important; color:#fff !important;}
+{background-color:#326F30; color:#fff;}
 a[href$="=13#skill"]
-{background-color:#255F23 !important; color:#fff !important;}
+{background-color:#255F23; color:#fff;}
 a[href$="=14#skill"]
-{background-color:#1A4F18 !important; color:#fff !important;}
+{background-color:#1A4F18; color:#fff;}
 a[href$="=15#skill"]
-{background-color:#113F10 !important; color:#fff !important;}
+{background-color:#113F10; color:#fff;}
 a[href$="=16#skill"]
-{background-color:#0A2F09 !important; color:#fff !important;}
+{background-color:#0A2F09; color:#fff;}
 a[href$="=17#skill"]
-{background-color:#051F04 !important; color:#fff !important;}
+{background-color:#051F04; color:#fff;}
 a[href$="=18#skill"]
-{background-color:#031702 !important; color:#fff !important;}
+{background-color:#031702; color:#fff;}
 a[href$="=19#skill"]
-{background-color:#020F01 !important; color:#fff !important;}
+{background-color:#020F01; color:#fff;}
 a[href$="=20#skill"]
-{background-color:#000000 !important; color:#fff !important;}
+{background-color:#000000; color:#fff;}
 
 a[href$="#skill"]:hover
-{background-color:transparent !important; color:#267F30 !important;}
+{background-color:transparent; color:#267F30;}

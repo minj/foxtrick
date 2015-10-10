@@ -242,14 +242,12 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 			Foxtrick.addClass(matchRows[store.last.nodeIndex], 'ft-xp-skillup');
 
 			// adjust minimum gained xp depending on the relevant skillup game
-			if (store.skillup) {
-				store.matches[store.last.gameType].minutes.min -= store.last.minutes;
-				store.matches[store.last.gameType].count.min -= store.last.minutes / 90.0;
-				store.matches[store.last.gameType].xp.min -= store.last.min;
+			store.matches[store.last.gameType].minutes.min -= store.last.minutes;
+			store.matches[store.last.gameType].count.min -= store.last.minutes / 90.0;
+			store.matches[store.last.gameType].xp.min -= store.last.min;
 
-				store.xp.points.min -= store.last.min;
-				store.xp.xp.min -= store.last.min / module.XP_PTS_PER_LEVEL;
-			}
+			store.xp.points.min -= store.last.min;
+			store.xp.xp.min -= store.last.min / module.XP_PTS_PER_LEVEL;
 
 		};
 

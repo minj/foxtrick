@@ -8,5 +8,5 @@ html[dir="ltr"] .ft-transfer-history-filter-label {
 	margin-right: 10px;
 }
 html[dir="rtl"] .ft-transfer-history-filter-label {
-	margin-left: 10px !important;
+	margin-left: 10px;
 }

@@ -49,15 +49,6 @@
 	text-align:right;
 }
 
-#ft-xp-matchInternationalFriendly-desc,
-#ft-xp-matchNationalFriendly-desc {
-	padding-left: 10px !important;
-}
-html[dir="rtl"] #ft-xp-matchInternationalFriendly-desc,
-html[dir="rtl"] #ft-xp-matchNationalFriendly-desc {
-	padding-right: 10px !important;
-}
-
 #ft-xp-min-pts,
 #ft-xp-max-pts {
 	border-top: 1px solid #000;

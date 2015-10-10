@@ -91,6 +91,7 @@ Foxtrick.modules['RapidId'] = {
 				var select = doc.createElement('select');
 				var input = doc.createElement('input');
 				var button = doc.createElement('input');
+				button.id = 'ft_rapidid_btn';
 				form.appendChild(select);
 				form.appendChild(input);
 				form.appendChild(button);
@@ -130,6 +131,16 @@ Foxtrick.modules['RapidId'] = {
 				input.className = 'ft_rapidid_input';
 				input.type = 'text';
 				input.setAttribute('size', '9');
+
+				// disable enter to submit HT form
+				// redirect to FT button instead
+				Foxtrick.listen(input, 'keypress', function(ev) {
+					var doc = this.ownerDocument;
+					if (ev.keyCode == 13) {
+						ev.preventDefault();
+						doc.getElementById('ft_rapidid_btn').click();
+					}
+				});
 
 				// the <input type='button' /> element
 				button.setAttribute('type', 'submit');

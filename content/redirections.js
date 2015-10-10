@@ -16,12 +16,12 @@ Foxtrick.modules['Redirections'] = {
 			return;
 
 		var serv = doc.location.protocol + '//' + doc.location.hostname;
-		var teamid = Foxtrick.util.id.findTeamId(doc.getElementsByClassName('subMenu')[0]);
+		var subMenu = doc.getElementsByClassName('subMenu')[0];
+		var teamid = Foxtrick.util.id.findTeamId(subMenu);
 		var ownteamid = Foxtrick.util.id.getOwnTeamId();
-		var leagueid = Foxtrick.util.id
-			.findLeagueLeveUnitId(doc.getElementsByClassName('subMenu')[0]);
+		var seriesId = Foxtrick.util.id.findLeagueLeveUnitId(subMenu);
 		Foxtrick.log('Redirections - teamid: ', teamid, ' ownteamid: ', ownteamid,
-		             ' leagueid: ', leagueid);
+		             ' seriesId: ', seriesId);
 
 		var tar = '';
 		// redirect from manager
@@ -68,8 +68,8 @@ Foxtrick.modules['Redirections'] = {
 				tar = serv + '/Club/Players/?TeamID=' + teamid;
 			else if (doc.location.href.search(/redir_to_matches=true/i) != -1)
 				tar = serv + '/Club/Matches/?TeamID=' + teamid;
-			else if (doc.location.href.search(/redir_to_league=true/i) != -1)
-				tar = serv + '/World/Series/?LeagueLevelUnitID=' + leagueid;
+			else if (doc.location.href.search(/redir_to_series=true/i) != -1)
+				tar = serv + '/World/Series/?LeagueLevelUnitID=' + seriesId;
 			else if (doc.location.href.search(/redir_to_tournaments=true/i) != -1)
 				tar = serv + '/Community/Tournaments/?teamId=' + teamid;
 			else if (doc.location.href.search(/redir_to_custom=true\&/i) != -1) {
@@ -78,8 +78,7 @@ Foxtrick.modules['Redirections'] = {
 				tar = tar.replace(/%5Buserid%5D|\[userid\]/i, userid);
 			}
 			else if (doc.location.href.search(/redir_to_youthmatches=true/i) != -1) {
-				var YouthTeamId = Foxtrick.util.id
-					.findYouthTeamId(doc.getElementsByClassName('subMenu')[0]);
+				var YouthTeamId = Foxtrick.util.id.findYouthTeamId(subMenu);
 				tar = serv + '/Club/Matches/?TeamID=' + teamid + '&YouthTeamId=' + YouthTeamId;
 			}
 		}
@@ -109,8 +108,7 @@ Foxtrick.modules['Redirections'] = {
 			}
 			//redirect to youthmatches
 			else if (doc.location.href.search(/redir_to_youthmatches=true/i) != -1) {
-				var YouthTeamId = Foxtrick.util.id
-					.findYouthTeamId(doc.getElementsByClassName('subMenu')[0]);
+				var YouthTeamId = Foxtrick.util.id.findYouthTeamId(subMenu);
 				tar = serv + '/Club/Matches/?TeamID=' + teamid + '&YouthTeamId=' + YouthTeamId;
 			}
 			// redirect to coach

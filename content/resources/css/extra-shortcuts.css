@@ -1,27 +1,27 @@
 .ftManageCHPP {
 	margin-left:2px;
-	background-image: url('chrome://foxtrick/content/resources/img/shortcuts/chpp.png') !important;
+	background-image: url('chrome://foxtrick/content/resources/img/shortcuts/chpp.png');
 }
 
 .ftSuppStats {
 	margin-left:2px;
-	background-image: url('chrome://foxtrick/content/resources/img/shortcuts/stats.png') !important;
+	background-image: url('chrome://foxtrick/content/resources/img/shortcuts/stats.png');
 }
 
 .ftMyTransfers {
 	margin-left:2px;
-	background-image: url('chrome://foxtrick/content/resources/img/shortcuts/transfers.png') !important;
+	background-image: url('chrome://foxtrick/content/resources/img/shortcuts/transfers.png');
 }
 
 .ftSCPrefs {
 	margin-left:2px;
-	background-image: url('chrome://foxtrick/content/resources/img/shortcuts/options.png') !important;
+	background-image: url('chrome://foxtrick/content/resources/img/shortcuts/options.png');
 }
 
 .ftSCFtPrefs {
 	margin-left:2px;
 	margin-right:4px;
-	background-image: url('chrome://foxtrick/content/resources/img/shortcuts/foxtrick.png') !important;
+	background-image: url('chrome://foxtrick/content/resources/img/shortcuts/foxtrick.png');
 }
 
 /* radio tweaks */

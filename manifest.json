@@ -21,7 +21,7 @@
 		"js" : [
 			//<!-- essential -->
 			"content/env.js",
-			"content/prefs.js",
+			"content/prefs-util.js",
 			"content/l10n.js",
 			"content/xml-load.js",
 			"content/pages.js",
@@ -131,6 +131,7 @@
 			"content/forum/show-forum-pref-button.js",
 			"content/forum/staff-marker.js",
 			"content/information-aggregation/cross-table.js",
+			"content/information-aggregation/current-transfers.js",
 			"content/information-aggregation/dashboard-calendar.js",
 			"content/information-aggregation/election-table.js",
 			"content/information-aggregation/extended-player-details.js",
@@ -261,12 +262,13 @@
 		],
 		"matches" : [
 			"*://*.hattrick.org/*",
-			"*://*.hattrick.fm/*",
 			"*://*.hattrick.ws/*",
-			"*://*.hattrick.name/*",
+			"*://*.hattrick.bz/*",
 			"*://*.hat-trick.net/*",
+			"*://*.hattrick.uol.com.br/*",
 			"*://*.hattrick.interia.pl/*",
-			"*://*.hattrick.uol.com.br/*"
+			"*://*.hattrick.name/*",
+			"*://*.hattrick.fm/*"
 		],
 		"run_at" : "document_start"
 	} ],
@@ -308,5 +310,5 @@
 	"options_page" : "content/preferences.html",
 	"homepage_url": "https://www.foxtrick.org/",
 	"update_url" : "https://www.foxtrick.org/nightly/chrome/update.xml",
-	"version" : "0.15.10"
+	"version" : "0.16.9"
 }
