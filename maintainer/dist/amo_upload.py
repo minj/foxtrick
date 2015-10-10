@@ -16,10 +16,9 @@ import sys
 from AMO.Credentials import LOGIN, PASS
 
 FF_PATH = '/usr/bin/firefox'
-ADDON = 'foxtrick'
 LOGIN_URL = 'https://addons.mozilla.org/en-US/firefox/users/login?to=%2Fen-US%2Ffirefox%2F'
-UPLOAD_URL = 'https://addons.mozilla.org/en-US/developers/addon/%s/versions#version-upload' % ADDON
-ADDON_URL = 'https://addons.mozilla.org/en-US/developers/addon/%s/versions' % ADDON
+UPLOAD_URL_TMPL = 'https://addons.mozilla.org/en-US/developers/addon/%s/versions#version-upload'
+ADDON_URL_TMPL = 'https://addons.mozilla.org/en-US/developers/addon/%s/versions'
 MANAGE_TITLE = 'Manage Version'
 
 def login(driver):
@@ -106,13 +105,22 @@ def run(infile, outfile):
         driver.quit()
 
 if __name__ == '__main__':
-    if len(sys.argv) < 2:
-        print('Usage: %s infile.xpi [outfile.xpi]' % sys.argv[0])
+    if len(sys.argv) < 3:
+        print('Usage: %s addon_web_id infile.xpi [outfile.xpi]' % sys.argv[0])
+        exit(2)
     else:
-        XPI_IN = os.path.realpath(sys.argv[1])
-        if len(sys.argv) < 3:
+        ADDON = sys.argv[1]
+        ADDON_URL = ADDON_URL_TMPL % ADDON
+        UPLOAD_URL = UPLOAD_URL_TMPL % ADDON
+
+        XPI_IN = os.path.realpath(sys.argv[2])
+        if not os.path.isfile(XPI_IN):
+            print('ERROR: \'%s\' is not a file' % XPI_IN)
+            exit(1)
+
+        if len(sys.argv) < 4:
             XPI_OUT = XPI_IN
         else:
-            XPI_OUT = sys.argv[2]
+            XPI_OUT = sys.argv[3]
 
         run(XPI_IN, XPI_OUT)
