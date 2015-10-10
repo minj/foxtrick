@@ -110,6 +110,10 @@ if __name__ == '__main__':
         print('Usage: %s infile.xpi [outfile.xpi]' % sys.argv[0])
     else:
         XPI_IN = os.path.realpath(sys.argv[1])
+        if not os.path.isfile(XPI_IN):
+            print('ERROR: \'%s\' is not a file' % XPI_IN)
+            exit(1)
+
         if len(sys.argv) < 3:
             XPI_OUT = XPI_IN
         else:
