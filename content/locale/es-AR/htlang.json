@@ -502,7 +502,7 @@
 			},
 			{
 				"type": "Winger",
-				"value": "Medio lateral"
+				"value": "Mediocampista lateral"
 			},
 			{
 				"type": "Forward",
@@ -576,7 +576,7 @@
 			},
 			{
 				"type": "Winger",
-				"value": "Lateral"
+				"value": "Desborde"
 			},
 			{
 				"type": "Scorer",
@@ -778,7 +778,7 @@
 			},
 			{
 				"type": "Cross",
-				"value": "Lateral"
+				"value": "Desborde"
 			},
 			{
 				"type": "Shoot",
