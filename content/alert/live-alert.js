@@ -88,11 +88,22 @@ Foxtrick.modules['LiveAlert'] = {
 			var awayScored = this.store[teamsText][1] < score[1];
 			if (homeScored || awayScored) {
 				// score has changed, alert
-				var own = Foxtrick.modules.Core.TEAM.teamName;
-				var ownScored = own == info.homeLong && homeScored ||
-					own == info.awayLong && awayScored;
-				var opScored = own == info.homeLong && awayScored ||
-					own == info.awayLong && homeScored;
+				var own = {
+					full: Foxtrick.modules.Core.TEAM.teamName,
+					abbr: Foxtrick.modules.Core.TEAM.shortTeamName,
+				};
+
+				// README: during HT-Live games own.full == own.abbr!!!
+				var isHomeOwn = own.abbr == info.homeShort || // HT-Live
+					own.full == info.homeLong || // Re-Live
+					own.full == info.homeShort; // HT-Live fallback (if shortTeamName failed)
+
+				var isAwayOwn = own.abbr == info.awayShort || // HT-Live
+					own.full == info.awayLong || // Re-Live
+					own.full == info.awayShort; // HT-Live fallback (if shortTeamName failed)
+
+				var ownScored = isHomeOwn && homeScored || isAwayOwn && awayScored;
+				var opScored = isHomeOwn && awayScored || isAwayOwn && homeScored;
 
 				this.store[teamsText] = score;
 				// show notification
