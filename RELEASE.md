@@ -86,6 +86,8 @@ git stash
 git pull --rebase origin master
 # merge resource updates
 git merge origin/cdn
+./version.sh 0.x.9
+git commit -am 'release 0.x.0'
 git tag -a -m 'release 0.x.0' 0.x.0
 ./version.sh 0.x.9
 git commit -am 'bump master to 0.x.9'
