@@ -7,11 +7,21 @@ lt:
       note_0: 'Įdiegėte išankstinę (beta) versiją. Prašome prisidėti prie jos vertimo į lietuvių kalbą ypatingai šauniame vertėjų savanorių portale „<linkCrowdin>crowdin.net</linkCrowdin>“. '
     0.16.0:
       important: '<header>Svarbūs pranešimai</header>'
+      safari: Dėl pasikeitusios Apple kompanijos pozicijos ir bendro nenoro tobulinti savo naršyklę nebegalime garantuoti automatinių atnaujinimų ar bendro palaikymo „Safari“ naudotojams. Siūlome geriau naudoti „Firefox“, „Google Chrome“ ar „Opera“ naršykles.
       crowdin: '<header>Daugybė vertimo atnaujinimų. Dėkojame savo šauniems vartotojams, kurie naudojasi <linkCrowdin>crowdin portalu</linkCrowdin>. Ir Jūs galite prisidėti!</header>'
       support: '<header>Patinka šis projektas? Prašome <linkContribute>pagelbėti Foxtrick</linkContribute>.</header>'
       new: '<header>Nauji moduliai</header>'
+      transfers: '<module>CurrentTransfers</module> pateikia daugiau informacijos apie žaidėjus dabartinių sandorių puslapyje.'
       bugs: '<header>Pataisytos klaidos</header>'
+      stamina_prediction: 'Spėjamas Ištvermės polygmuo (<module>MatchLineupTweaks</module> modulis) buvo klaidingas dėl HT pokyčių. Problema sutvarkyta.'
+      match_order: 'Pataisytas <module>MatchSimulator</module> ir <module>MatchOrderInterface</module> modulių dizainas – prisitaikyta prie Hattrick dizaino pokyčių.'
+      team_detection: 'Dėl HT dizaino pokyčių buvo atsiradę ir daugiau problemų: pradingę svečių komandos veidai, sugedęs <module>LiveAlert</module> įvarčių atpažinimas ir kt.. Visos problemos turėtų būti sutaisytos.'
       other: '<header>Kiti pakeitimai</header>'
+      table: '<module>PlayerFilters</module> ir <module>SkillTable</module> moduliai buvo perrašyti. Ištaisytos įvairios klaidos ir praplėstas funkcionalumas. Svarbiausi stulpeliai nuo šiol yra pritvirtinami, kad neslinktų sutrauktame peržiūros režime. Dabar galima laikinai paslėpti pasirinktus žaidėjus ir dar daugiau. Pilną funkcijų aprašą rasite spustelėję ant informacijos mygtuko.'
+      opponent_goals: '<module>LiveAlert</module> modulyje atsirado atskiras garsinis pranešimas Jūsų varžovų įvarčiams.'
+      indonesian: Indoneziečių kalbos palaikymas.
+      match_events: Rungtynių įvykių tipų aprašymai nuo šiol taip pat gali būti išverčiami.
+      style_cleanup: 'Foxtrick stiliai (CSS) patvarkyti taip, kad būtų lengviau pakeičiami. Nuo šiol galėsite priskirti slapyvardžių spalvas ir Hattrick darbuotojams bei savanoriams (<module>StaffMarker</module> modulis).'
       and_more: Daugybė kitų smulkių pataisymų ir pakitimų.
     0.15.2.1:
       important: '<header>Svarbūs pranešimai</header>'
