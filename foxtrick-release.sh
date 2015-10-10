@@ -19,7 +19,7 @@ echo "--- foxtrick.org release---"
 #echo "--- ixweb release ---"
 #./upload-nightly.sh -c upload.ixweb.release.conf.sh BRANCH=release XAR=/usr/local/bin/xar || log "Cannot upload ixweb release"
 echo "--- foxtrick.org hosted ---"
-./upload-nightly.sh -c upload.hosting.conf.sh BRANCH=hosted WEBSTORE=true XAR=/usr/local/bin/xar || log "Cannot upload foxtrick.org hosted"
+./upload-nightly.sh -c upload.hosting.conf.sh BRANCH=hosted WEBSTORE=true XAR=/usr/local/bin/xar chrome || log "Cannot upload foxtrick.org hosted"
 cd ..
 git stash
 log "Success release upload."
