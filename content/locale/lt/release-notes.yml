@@ -12,6 +12,7 @@ lt:
       new: '<header>Nauji moduliai</header>'
       bugs: '<header>Pataisytos klaidos</header>'
       other: '<header>Kiti pakeitimai</header>'
+      and_more: Daugybė kitų smulkių pataisymų ir pakitimų.
     0.15.2.1:
       important: '<header>Svarbūs pranešimai</header>'
       signed: Visi Firefox plėtiniai nuo šiol privalo turėti Mozilla elektroninį parašą. Šis Foxtrick atnaujinimas iš esmės skirtas šiam parašui pridėti, kad būtų užtikrintas sklandus plėtinio darbas.

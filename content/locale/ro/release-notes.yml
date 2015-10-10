@@ -12,6 +12,7 @@ ro:
       new: '<header>Module noi</header>'
       bugs: '<header>Erori reparate</header>'
       other: '<header>Alte schimbări</header>'
+      and_more: Diferite alte mici schimbări și reparații.
     0.15.2.1:
       important: '<header>Anunţuri importante</header>'
       signed: Toate add-on-urile pentru Firefox, de acum inainte, trebuie sa aibe semnatura digitala Mozilla. Acest update are semnatura digitala necesara pentru comatibilitatea cu Foxtrick.

@@ -12,6 +12,7 @@ pl:
       new: '<header>Nowe moduły</header>'
       bugs: '<header>Poprawki błędów</header>'
       other: '<header>Inne zmiany</header>'
+      and_more: Różne inne małe zmiany i poprawki.
     0.15.2.1:
       important: '<header>Ważne ogłoszenia</header>'
       signed: Obecnie wszystkie dodatki Firefoxa muszą być podpisane cyfrowo przez Mozillę. Jest to głównie aktualizacja podpisów w celu zapewnienia zgodności Foxtricka.

@@ -12,6 +12,7 @@ da:
       new: '<header>Nye moduler</header>'
       bugs: '<header>Fejlrettelser</header>'
       other: '<header>Andre ændringer</header>'
+      and_more: Forskellige små ændringer og rettelser.
     0.15.2.1:
       important: '<header>Vigtige meddelelser</header>'
       signed: Alle Firefox add-ons skal nu være digitalt signeret af Mozilla. Dette er for det meste en signeret opdatering for at sikre Foxtrick kompatibilitet.

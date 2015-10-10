@@ -12,6 +12,7 @@ bs:
       new: '<header>Novi moduli</header>'
       bugs: '<header>Popravljene greške</header>'
       other: '<header>Druge promjene</header>'
+      and_more: Razne druge male promjene i popravke.
     0.15.2.1:
       important: '<header>Važne obavijesti</header>'
       bugs: '<header>Popravljene greške</header>'

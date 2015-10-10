@@ -12,6 +12,7 @@ it:
       new: '<header>Nuovi moduli</header>'
       bugs: '<header>Correzioni di bug</header>'
       other: '<header>Altre modifiche</header>'
+      and_more: Varie altre piccole modifiche e correzioni.
     0.15.2.1:
       important: '<header>Avvisi importanti</header>'
       bugs: '<header>Correzioni di bug</header>'

@@ -11,6 +11,7 @@ en-GB:
       new: '<header>New modules</header>'
       bugs: '<header>Bug fixes</header>'
       other: '<header>Other changes</header>'
+      and_more: Various other small changes and fixes.
     0.15.2.1:
       important: '<header>Important announcements</header>'
       bugs: '<header>Bug fixes</header>'

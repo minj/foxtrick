@@ -7,11 +7,22 @@ nl:
       note_0: 'Dit is een beta versie van de volgende release. Help alsjeblieft met vertalen van deze versie op de zeer gebruiksvriendelijke crowd-vertaal pagina <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.16.0:
       important: '<header>Belangrijke aankondigingen</header>'
+      safari: Als gevolg van veranderingen in het beleid van Apple Inc. en nalatigheid om hun browser te verbeteren kunnen we automatische updates en algemene ondersteuning voor Safari gebruikers niet langer garanderen. Neemt u aub in overweging om over te stappen naar Firefox, Google Chrome of Opera.
       crowdin: '<header>Heel veel vertalingsupdates van onze geweldige gebruikers zijn gemaakt met behulp van de <linkCrowdin>crowdin tool</linkCrowdin>. Jij kan ons ook helpen!</header>'
       support: '<header>Waardeer je wat wij doen? Steun ons dan aub<linkContribute>Steun Foxtrick</linkContribute>.</header>'
       new: '<header>Nieuwe modules</header>'
+      transfers: '<module>CurrentTransfers</module> voegt meer informatie toe over spelers op de huidige transfer pagina.'
       bugs: '<header>Fout herstel</header>'
+      stamina_prediction: 'Conditie subniveau voorspelling (<module>MatchLineupTweaks</module>) was niet correct wegens HT wijzigingen. Dit probleem zou nu verholpen moeten zijn.'
+      match_order: 'Aangepaste layout in <module>MatchSimulator</module> en <module>MatchOrderInterface</module>.'
+      team_detection: 'Er waren verschillende andere problemen als gevolg van HT ontwerp wijzigingen: spelers van het uitspelende team waren verdwenen, <module>LiveAlert</module> doelpunt detectie was defect etc. Alle problemen zouden nu moeten zijn verholpen.'
       other: '<header>Andere veranderingen</header>'
+      table: '<module>PlayerFilters</module> en <module>SkillTable</module> zijn herschreven wegens een paar issues en om hun functionaliteit uit te breiden. Sleutel tabel kolommen zijn nu geblokkeerd voor horizontale scrolling, je kunt bepaalde spelers verbergen en meer. Gebruik de informatie knop om de volledige beschrijving te lezen.'
+      opponent_goals: 'Een extra geluid is toegevoegd voor doelpunten van je tegenstander in <module>LiveAlert</module>.'
+      indonesian: We hebben ondersteuning toegevoegd voor de Indonesische taal.
+      match_events: Wedstrijd event type beschrijvingen kunnen nu ook worden vertaald.
+      style_cleanup: "Foxtrixk stijlen (CSS) zijn aangepast om Hattrick thema's beter te ondersteunen. Als gevolg hiervan kun je nu aangepaste kleuren toewijzen voor HT-medewerkers in <module>StaffMarker</module>."
+      and_more: Diverse andere kleine veranderingen en correcties.
     0.15.2.1:
       important: '<header>Belangrijke aankondigingen</header>'
       signed: Alle Firefox add-ons moeten nu digitaal worden ondertekend door Mozilla. Dit is meestal een ondertekende update om compatibiliteit met Foxtrick te garanderen.

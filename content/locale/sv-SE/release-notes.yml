@@ -7,11 +7,22 @@ sv-SE:
       note_0: 'Detta är BETA -versionen av nästa utgåva. Hjälp gärna till att översätta denna version via vårt superlätta översättningsverktyg på <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.16.0:
       important: '<header>Viktiga meddelanden</header>'
+      safari: Pga förändringar i Apple Inc. policy och allmän ovilja att förbättra deras webbläsare kan vi inte längre garantera automatiska uppdateringar och allmänt stöd för Safari-användare. Överväg gärna att använda Firefox, Google Chrome eller Opera istället.
       crowdin: '<header>En hel massa översättningsuppdateringar av användare via översättningsverktyget på <linkCrowdin>crowdin.net</linkCrowdin>. Du kan också hjälpa till!</header>'
       support: '<header>Gillar du vad vi gör? Vänligen <linkContribute>Stöd Foxtrick</linkContribute>.</header>'
       new: '<header>Nya moduler</header>'
+      transfers: '<module>CurrentTransfers</module> lägger till mer information om spelare på den aktuella transfersidan.'
       bugs: '<header>Buggfixar</header>'
+      stamina_prediction: 'Prognosen av undernivån på konditionen (<module>MatchLineupTweaks</module>) var felaktig pga ändringar HT gjort. Problemet ska nu vara löst.'
+      match_order: 'Justerad layout i <module>MatchSimulator</module> och <module>MatchOrderInterface</module> pga ändringar som HT gjort i designen.'
+      team_detection: 'Det fanns ett flertal andra problem pga ändringar HT gjort i designen: bortalagets spelares ansikten försvann, <module>LiveAlert</module> mål upptäcktes inte etc. Alla dessa problem ska nu ha fixats.'
       other: '<header>Andra ändringar</header>'
+      table: 'Modulerna <module>PlayerFilters</module> och <module>SkillTable</module> har skrivits om för att fixa ett antal buggar samt utöka dess funktionalitet. Nyckelkolumner är nu frysta när du scrollar horisontellt, du kan dölja spelare och mer därtill. Klicka på informationsknappen för att få en fullständig beskrivning.'
+      opponent_goals: 'Lagt till ett nytt målljud i <module>LiveAlert</module>, mål gjort av dina motståndare.'
+      indonesian: Lagt till stöd för Indonesiska.
+      match_events: Matchhändelser och beskrivningar kan nu också översättas.
+      style_cleanup: 'Foxtrick formatmallar (CSS) har justerats något för att ge ett bättre stöd till anpassade Hattrickteman. Som ett resultat av det kan du nu även tilldela anpassade färger på användarnamn på HT* i <module>StaffMarker</module>.'
+      and_more: Flera andra mindre ändringar och korrigeringar.
     0.15.2.1:
       important: '<header>Viktiga meddelanden</header>'
       signed: Alla tillägg till Firefox måste nu vara digitalt signerade av Mozilla. Detta är till stor del bara en signerad uppdatering för att säkerställa att Foxtrick är kompatibelt.

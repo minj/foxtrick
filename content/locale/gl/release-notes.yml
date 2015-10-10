@@ -12,6 +12,7 @@ gl:
       new: '<header>Módulos novos</header>'
       bugs: '<header>Solucións de erros</header>'
       other: '<header>Outros cambios</header>'
+      and_more: Moitos outros cambios pequeniños por aquí e por alá.
     0.15.2.1:
       important: '<header>Anuncios importantes</header>'
       bugs: '<header>Solucións de erros</header>'

@@ -11,6 +11,7 @@ ar:
       new: '<header>وظائف جديدة</header>'
       bugs: '<header>إصلاح الأخطاء التقنية</header>'
       other: '<header>تغييرات أخرى</header>'
+      and_more: والعديد من التغييرات والإصلاحات الصغيرة الأخرى.
     0.15.2.1:
       important: '<header>إعلانات هامة</header>'
       bugs: '<header>إصلاح الأخطاء التقنية</header>'

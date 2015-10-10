@@ -12,6 +12,7 @@ hr:
       new: '<header>Novi moduli</header>'
       bugs: '<header>Popravljene greške</header>'
       other: '<header>Druge promjene</header>'
+      and_more: Razne druge male promjene i popravci.
     0.15.2.1:
       important: '<header>Važne obavijesti</header>'
       signed: Svi Firefox dodaci sada moraju biti digitalno potpisani od strane Mozille. Ovo je uglavnom potpisana nadogradnja da bi se osigurala Foxtrick-ova kompatibilnost.

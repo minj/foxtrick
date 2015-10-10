@@ -7,11 +7,22 @@ ko:
       note_0: '이것은 다음 배포의 beta 버전 입니다. 이 버전에서 저희 군중-번역 페이지를 통해 번역해주세요. <linkCrowdin>crowdin.net</linkCrowdin>'
     0.16.0:
       important: '<header>중요한 공지 사항</header>'
+      safari: Apple Inc. 정책 변화와 그들의 브라우저 개선을 위한 보편적 저항 때문에 더 이상 자동 업데이트와 Safari 사용자들을 위한 일반적인 지원을 보장할 수 없게 되었습니다. Firefox, Google Chrome 또는 Opera를 대신 사용하는 것을 고려해주세요.
       crowdin: '<header>저희 뛰어난 사용자들이 <linkCrowdin>crowdin tool</linkCrowdin>을 사용하여 수많은 번역 업데이트가 있었습니다. 당신도 도울 수 있습니다!</header>'
       support: '<header>Foxtrick이 마음에 드세요? 그러시면 <linkContribute>Foxtrick 지원</linkContribute>을 부탁드립니다.</header>'
       new: '<header>새로운 모듈</header>'
+      transfers: '<module>CurrentTransfers</module>가 현재 이적 중인 선수들에 대한 더욱 많은 정보를 추가합니다.'
       bugs: '<header>버그 수정</header>'
+      stamina_prediction: 'HT 변화 때문에 체력 서브레벨 예측 (<module>MatchLineupTweaks</module>) 이 올바르지 않았습니다. 이 문제점은 이제 수정되었습니다.'
+      match_order: 'Hattrick 디자인 변화를 처리하기 위해 <module>MatchSimulator</module>와 <module>MatchOrderInterface</module>의 레이아웃을 조정했습니다.'
+      team_detection: 'HT 디자인 변화에 따른 여러 문제점들이 발생했습니다. 예를 들면 원정 팀 선수 얼굴이 사라지거나, <module>LiveAlert</module> 득점 감지가 고장나는 등이 있습니다. 이제 모든 문제점들을 해결되었습니다.'
       other: '<header>기타 변경 사항</header>'
+      table: '<module>PlayerFilters</module>와 <module>SkillTable</module>를 일부 버그 수정과 기능 확장을 위해 다시 작성했습니다. 키 테이블 열은 이제 수평 스크롤을 방지하기 위해 동결되었습니다. 이제 특정 선수들을 감추는 등의 행위를 할 수 있습니다. 전체 설명을 읽으려면 도움말 버튼을 사용하세요.'
+      opponent_goals: '<module>LiveAlert</module>에 상대팀 득점을 위한 또 다른 득점 사운드를 추가했습니다.'
+      indonesian: 인도네시아어를 위한 지원을 추가했습니다.
+      match_events: 이제 경기 이벤트 유형 설명도 번역될 수 있습니다.
+      style_cleanup: 'Foxtrick styles (CSS) 는 더 나은 사용자정의 Hattrick 테마 지원을 위해 수정되었습니다. 그 결과로 이제 <module>StaffMarker</module>에서 HT 직원들에 임의로 사용자 이름 색상을 지정할 수 있습니다.'
+      and_more: 그 외에 작은 규모의 변화와 수정이 있었습니다.
     0.15.2.1:
       important: '<header>중요한 공지 사항</header>'
       signed: 이제 모든 Firefox 추가 기능들은 Mozilla에 의한 디지털 서명이 필요합니다. 이는 Foxtrick 호환성을 보장하기 위한 서명 업데이트 입니다.

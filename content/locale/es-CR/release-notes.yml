@@ -12,6 +12,7 @@ es-CR:
       new: '<header>Nuevos módulos</header>'
       bugs: '<header>Corrección de errores</header>'
       other: '<header>Otros cambios</header>'
+      and_more: Varios pequeños cambios y correcciones.
     0.15.2.1:
       important: '<header>Anuncios importantes</header>'
       signed: Todos los complementos de Firefox ahora necesitan ser firmados digitalmente por Mozilla. Esto es principalmente una actualización firmada para garantizar la compatibilidad de Foxtrick.

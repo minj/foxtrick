@@ -7,11 +7,22 @@ ca:
       note_0: 'Aquesta és la versió beta de la propera versió. Si us plau, ajuda a traduir aquesta versió a la nostra súper pàgina web de traducció i molt fàcil <linkCrowdin>crowdin.net</linkCrowdin>.'
     0.16.0:
       important: '<header>Anuncis importants</header>'
+      safari: "Degut als canvis en la política d'Apple Inc i la renuncia general per millorar el seu navegador ja no garantim actualitzacions automàtiques ni suport general per als usuaris de Safari. Et recomanem utilitzar Firefox, Google Chrome o Opera en el seu lloc."
       crowdin: "<header>Moltes actualitzacions en la traducció, dels nostres impressionats usuaris, es fan utilitzant l' <linkCrowdin>eina crowdin</linkCrowdin>. ¡Tu també pots ajudar-nos!</header>s usuari"
-      support: '<header>Com el que estem fent? Si us plau <linkContribute>Foxtrick suport</linkContribute>.</header>'
+      support: "¿<header>T'agrada com ho estem fent? Si us plau <linkContribute>Foxtrick suport</linkContribute>.</header>"
       new: '<header>Mòduls nous</header>'
+      transfers: '<module>Transferències actuals</module> afegeix més informació sobre els jugadors a la pàgina actual de transferències.'
       bugs: "<header>Correccions d'errors</header>"
+      stamina_prediction: "Predicció del subnivell de resistència (<module>MatchLineupTweaks</module>) no era correcta degut a canvis d'HT. El problema hauria d'haver sigut resolt."
+      match_order: 'Ajustar la disposició en <module>MatchSimulator</module> i <module>MatchOrderInterface</module> per tenir en compte els canvis de disseny de Hattrick.'
+      team_detection: "Hi ha altres diversos problemes degut als canvis de disseny HT: jugador fora cares havia desaparegut, detecció d'objectiu de <module>LiveAlert</module> va ser trencat etc.. Totes aquelles qüestions que ara haurien de ser reparats."
       other: '<header>Altres canvis</header>'
+      table: "<module>PlayerFilters</module> i <module>SkillTable</module> van ser reescrit per fixar uns quants errors i ampliar la seva funcionalitat. Columnes de la taula clau ara són congelats de desplaçament horitzontal, pot ara amagar certs jugadors i molt més. Utilitzeu el botó d'informació per llegir la plena descripció."
+      opponent_goals: "Afegeix un altre so al marca un gol als gols marcats per l'equip rival <module>LiveAlert</module>."
+      indonesian: "Afegit el suport per l'idioma indonesi."
+      match_events: Partit esdeveniment tipus descripcions ara pot ser traduït també.
+      style_cleanup: "Foxtrick estils (CSS) s'han ajustat per donar millor suport personalitzat Hattrick temes. Com a resultat ara també podeu assignar els colors de nom d'usuari personalitzades per a funcionaris HT en <module>StaffMarker</module>."
+      and_more: Diversos altres petits canvis i correccions.
     0.15.2.1:
       important: '<header>Anuncis importants</header>'
       signed: "Ara totes les extensions Firefox han d'estar signades digitalment per Mozilla. Aquesta actualització de la marca es principalment per garantir la compatibilitat amb Firefox."
@@ -25,7 +36,7 @@ ca:
     0.15.2:
       important: '<header>Anuncis importants</header>'
       links: '<module>Enllaços</module> la funcionalitat va ser reescrit per corregir alguns errors i millorar el manteniment. Més etiquetes estaran ara disponibles per a enllaços personalitzats. Algunes etiquetes van ser renombrades per reflectir el seu veritable significat. Si us plau buida la memòria caché de Foxtrick, prova els teus enllaços personalitzats i actualitzals consegüentment.'
-      support: '<header>Com el que estem fent? Si us plau <linkContribute>Foxtrick suport</linkContribute>.</header>'
+      support: "¿<header>T'agrada com ho estem fent? Si us plau <linkContribute>Foxtrick suport</linkContribute>.</header>"
       crowdin: "<header>Un munt de actualitzacions de nostre impressionant usuaris utilitzant l' <linkCrowdin>eina crowdin</linkCrowdin>. Vostè pot ajudar així!</header>"
       twitter: 'Vostè pot seguir <linkTwitter>Foxtrick a Twitter</linkTwitter> per rebre les últimes notícies, actualitzacions i anuncis.'
       bugs: "<header>Correccions d'errors</header>"
@@ -54,7 +65,7 @@ ca:
       and_more: Diversos altres petits canvis i correccions.
     0.15.0:
       important: '<header>Anuncis importants</header>'
-      support: '<header>Com el que estem fent? Si us plau <linkContribute>Foxtrick suport</linkContribute>.</header>'
+      support: "¿<header>T'agrada com ho estem fent? Si us plau <linkContribute>Foxtrick suport</linkContribute>.</header>"
       crowdin: "<header>Un munt de actualitzacions de nostre impressionant usuaris utilitzant l' <linkCrowdin>eina crowdin</linkCrowdin>. Vostè pot ajudar així!</header>"
       twitter: 'Vostè pot seguir <linkTwitter>Foxtrick a Twitter</linkTwitter> per rebre les últimes notícies, actualitzacions i anuncis.'
       new: '<header>Mòduls nous</header>'
@@ -103,7 +114,7 @@ ca:
     0.14.0:
       important: '<header>Anuncis importants</header>'
       crowdin: "<header>Un munt de actualitzacions de nostre impressionant usuaris utilitzant l' <linkCrowdin>eina crowdin</linkCrowdin>. Vostè pot ajudar així!</header>"
-      browsers: "Suport de l'òpera 12 es va suspendre. Safari 6 i Firefox 24 ara són versions mínimes de córrer Foxtrick."
+      browsers: El suport per a Opera 12 va se suspès. Safari 6 i Firefox 24 ara són les versions mínimes per que funcioni Foxtrick.
       backend: Es van fer més neteja i actualitzacions al nucli Foxtrick. Canvis afecten un munt de pàgines, mòduls i funcionalitats, incloent-hi partit informe, HT-viu, lligar amb ordre interfície, detecció automàtica moneda i memòria cau Foxtrick. Sisplau, reporteu qualsevol errors que trobeu.
       bug_report: Peu de hattrick ara inclourà un enllaç per comunicar eficaçment Foxtrick errors. Utilitzar-lo en la pàgina infractor i seguir les instruccions que apareixen.
       twitter: 'Vostè pot seguir <linkTwitter>Foxtrick a Twitter</linkTwitter> per rebre les últimes notícies, actualitzacions i anuncis.'
@@ -111,7 +122,7 @@ ca:
       series_transfers: '<module>SeriesTransfers</module>: Mostra una llista de jugadors actualment a la venda a les pàgines de la sèrie.'
       player_positions: '<module>PlayerPositionsEvaluations</module> i <module>BestPlayerPosition</module> mòduls calcular efectivitat intèrpret en diverses posicions segons <linkContributionsWiki>Hattrick Wiki</linkContributionsWiki>.'
       bugs: "<header>Correccions d'errors</header>"
-      australis: "Menú de la icona Firefox s'arreglava per treballar amb el tema de navegador nou."
+      australis: "El menú de l'icona de Firefox va ser arreglada per concorde amb el nou tema del navegador."
       chrome_notes: "Foxtrick notificacions s'han esmenat per utilitzar el nou sistema de notificació a Google Chrome."
       player_cache: Foxtrick ara detectar nous jugadors en el teu equip i actualitza les dades CHPP automàticament.
       train_est: Foxtrick ja no interfereix amb la taula de classificació en la novetat estimació de formació.
@@ -126,7 +137,7 @@ ca:
       removed: Mòduls SmallerPages i MatchTables van ser també tret a causa de la seva inutilitat.
       and_more: Diversos altres petits canvis i correccions.
     0.13.0.1:
-      crowdin: '<header>Moltes actualitzacions en la traducció, per part dels nostres impressionants usuaris, utilitzant la <linkCrowdin>eina crowdin</linkCrowdin>. ¡Tu també pots ajudar-nos!</header>s usuari'
+      crowdin: "<header>Moltes actualitzacions per traduir-lo per part dels nostres impressionants usuaris, utilitzant <linkCrowdin>l'eina crowdin</linkCrowdin>. ¡Tu també pots ajudar-nos!</header>s usuari"
       bugs: "<header>Correccions d'errors</header>"
       old_faces: "<module>OldStyleFace</module> no estava funcionant pròpiament en interfície d'ordre de partit i partit alineació pàgines. Ara és fix."
       simulator_skills: 'Sublevel noms de <module>MatchSimulator</module> han estat corregits per unes quantes llengües.'
@@ -139,7 +150,7 @@ ca:
       and_more: Diversos altres petits canvis i correccions.
     0.13.0:
       important: '<header>Anuncis importants</header>'
-      opera: "<p>Això és l'últim alleujament essencial que suporta oficialment òpera 12 o més avall. Foxtrick les versions existents pot pari de funcionar sense avís més.</p> <p>Si us plau considerar canviar la <linkOperaNext>Següent òpera</linkOperaNext> o un altre navegador compatible de la seva elecció.</p>"
+      opera: "<p>Aquesta és l'última versió que siporta oficialment Opera 12 o anteriors. Les versions existents de Foxtrick poden deixar de funcionar sense previ avís.</p> <p>Si us plau considerar canviar a <linkOperaNext>la següent Opera</linkOperaNext> o un altre navegador compatible.</p>"
       safari: Suport de 5. x de versió de Safari aviat sereu.
       twitter: 'Vostè pot seguir <linkTwitter>Foxtrick a Twitter</linkTwitter> per rebre les últimes notícies, actualitzacions i anuncis.'
       crowdin: '<header>Moltes actualitzacions en la traducció, per part dels nostres impressionants usuaris, utilitzant la <linkCrowdin>eina crowdin</linkCrowdin>. ¡Tu també pots ajudar-nos!</header>s usuari'
@@ -234,7 +245,7 @@ ca:
       note_10: '<module>LineupShortcut</module> ara enllaços a la pàgina nova alineació.'
       note_11: '<module>SkillTable</module> ara utilitza icones per a especialitats i autocars.'
       note_12: 'AddLeaveConfButton el nom de <module>ForumLeaveButton</module>'
-      note_13: "D'ara endavant, el seu navegador i la configuració de Hattrick disposició seran automàticament incloses en els missatges publicats a FoxTrick fòrum. Això ens ajudi a solucionar els problemes més ràpid. No suprimiu aquesta informació quan publiques."
+      note_13: "D'ara endavant, el seu navegador i la configuració de disseny de Hattrick s'inclourà automàticament en missatges enviats al fòrum de Foxtrick. Això ens ajuda a solucionar els problemes més ràpidament. Si us plau no esborris aquesta informació al escriure."
       note_14: El codi complement va ser netejat per a la millor amenitat i mantenibilitat.
       note_15: 'Fixa alguns assumptes amb detecció de setmana en <module>PlayerStatsTrainingWeek</module>.'
       note_16: 'Preparat un error a <module>MatchSimulator</module> que causa classificacions malament i predicció aparèixer quan atac contra defensa opció està desactivada.'
@@ -242,7 +253,7 @@ ca:
     0.11.0.1:
       note_0: '<header>Moltes actualitzacions en la traducció, per part dels nostres impressionants usuaris, utilitzant la <linkCrowdin>eina crowdin</linkCrowdin>. ¡Tu també pots ajudar-nos!</header>s usuari'
       note_1: 'Fixar assumptes menors en <module>ForumLastPost</module>, <module>ContextMenuCopy</module>, <module>PlayerFilters</module>, <module>SmallerPages</module>, <module>SkillTable</module>, <module>TeamPopupLinks</module>, <module>MatchIncome</module> i <module>HTThreadMarker</module>.'
-      note_2: "Evitar que el Firefox recarregant tots els tabuladors de Hattrick quan s'obre una finestra nova del navegador."
+      note_2: "Preveniu que Firefox recarregui totes les fitxes de Hattrick quan s'obri una finestra nova del navegador."
     0.11.0:
       note_0: 'NOU: <module>DirectPageLinks</module>: enllaços se sumaven per accedir a pàgines específiques en un fil de fòrum'
       note_1: 'NOU: <module>ForumModeratorPopup</module>: afegir un menú desplegable per als moderadors fòrum sobre temes de simplificar la moderació.'
