@@ -58,17 +58,9 @@ ROOT_FILES_SAFARI = Info.plist \
 ROOT_FOLDERS_FIREFOX = defaults/ res/
 ROOT_FOLDERS_CHROME = defaults/ skin/
 ROOT_FOLDERS_SAFARI = defaults/ skin/
-SCRIPT_FOLDERS = alert/ \
-	access/ \
-	api/ \
-	forum/ \
-	information-aggregation/ \
+SCRIPT_FOLDERS = api/ \
 	lib/ \
-	links/ \
-	matches/ \
 	pages/ \
-	presentation/ \
-	shortcuts-and-tweaks/ \
 	util/
 RESOURCE_FOLDERS = data/ \
 	locale/ \
@@ -126,13 +118,16 @@ firefox:
 	mkdir $(BUILD_DIR)
 	# copy root files
 	cp -r $(ROOT_FILES_FIREFOX) $(ROOT_FOLDERS_FIREFOX) $(BUILD_DIR)
+	# skin/
+	cp -r skin $(BUILD_DIR)/chrome
 	# content/
 	mkdir -p $(BUILD_DIR)/chrome/content
 	cd content/; \
 	cp -r $(SCRIPT_FOLDERS) $(RESOURCE_FOLDERS) $(CONTENT_FILES_FIREFOX) \
 		../$(BUILD_DIR)/chrome/content
-	# skin/
-	cp -r skin $(BUILD_DIR)/chrome
+	# modules
+	cd content/; \
+	cat ../$(MODULES) | while read m; do cp --parents "$$m" ../$(BUILD_DIR)/chrome/content; done;
 	# remove ignore modules from files
 	python module-update.py build -s $(MODULES) -e $(IGNORED_MODULES) -d $(BUILD_DIR)/chrome/
 	# modify DataPath
@@ -197,6 +192,9 @@ chrome:
 	cd content/; \
 	cp -r $(SCRIPT_FOLDERS) $(RESOURCE_FOLDERS) $(CONTENT_FILES_CHROME) \
 		../$(BUILD_DIR)/content
+	# modules
+	cd content/; \
+	cat ../$(MODULES) | while read m; do cp --parents "$$m" ../$(BUILD_DIR)/content; done;
 	# remove ignore modules from files
 	python module-update.py build -s $(MODULES) -e $(IGNORED_MODULES) -d $(BUILD_DIR)/
 	# modify DataPath
@@ -253,6 +251,9 @@ safari:
 	cd content/; \
 	cp -r $(SCRIPT_FOLDERS) $(RESOURCE_FOLDERS) $(CONTENT_FILES_SAFARI) \
 		../$(SAFARI_BUILD_DIR)/content
+	# modules
+	cd content/; \
+	cat ../$(MODULES) | while read m; do cp --parents "$$m" ../$(BUILD_DIR)/content; done;
 	# remove ignore modules from files
 	python module-update.py build -s $(MODULES) -e $(IGNORED_MODULES) -d $(SAFARI_BUILD_DIR)/
 	# modify DataPath
