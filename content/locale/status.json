@@ -313,7 +313,7 @@
 			"words_translated": "13256"
 		},
 		{
-			"approved": "200",
+			"approved": "197",
 			"approved_progress": "2",
 			"code": "hu",
 			"name": "Hungarian",
@@ -321,7 +321,7 @@
 			"translated": "1635",
 			"translated_progress": "65",
 			"words": "15262",
-			"words_approved": "396",
+			"words_approved": "393",
 			"words_translated": "10044"
 		},
 		{
@@ -378,11 +378,11 @@
 			"code": "ko",
 			"name": "Korean",
 			"phrases": "2151",
-			"translated": "2149",
-			"translated_progress": "99",
+			"translated": "2151",
+			"translated_progress": "100",
 			"words": "15262",
 			"words_approved": "0",
-			"words_translated": "15229"
+			"words_translated": "15262"
 		},
 		{
 			"approved": "0",
