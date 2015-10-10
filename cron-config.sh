@@ -1,3 +1,3 @@
-RELEASE=0.15.0
+RELEASE=0.16.0
 BETA=trunk
 NIGHTLY=trunk
