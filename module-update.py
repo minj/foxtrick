@@ -66,7 +66,7 @@ def build(args=dict(sourcefile="modules", excludefile=None, dirfile=".")):
     source.close()
 
     #if exclude file in fuction, read the file
-    if excludefile:
+    if excludefile and os.path.isfile(excludefile):
         ignore = codecs.open(excludefile, mode='r', encoding='utf-8')
         ignorelist = ignore.read().splitlines()
         ignore.close()
