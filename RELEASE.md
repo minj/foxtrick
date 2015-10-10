@@ -105,8 +105,8 @@ cp ~/{trunk,0.x.0}/maintainer/locale/Hattrick/CHPP/Credentials.py
 cp ~/{trunk,0.x.0}/maintainer/locale/ftp/Credentials.py
 cd 0.x.0
 # create a new stable branch from release tag
-git checkout -b release-0.x.0 0.x.0
-git push -u origin release-0.x.0
+git checkout -b r0.x.0 0.x.0
+git push -u origin r0.x.0
 # remove master as there is no need to track origin/master here
 git branch -D master
 ```
