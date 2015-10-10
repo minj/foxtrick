@@ -21,17 +21,17 @@ html[dir="rtl"] .on_top .ft_skilltable_wrapperLeft {
 	float: right;
 }
 .ft_skilltable_wrapperRight {
-	max-width: 252px;
+	max-width: 242px;
 	overflow: auto;
 	position: absolute;
 	top: -1px;
-	left: 280px;
+	left: 290px;
 }
 html[data-theme="simple"] .ft_skilltable_wrapperRight {
-	max-width: 285px;
+	max-width: 275px;
 }
 html[dir="rtl"] .ft_skilltable_wrapperRight {
-	right: 280px;
+	right: 290px;
 	left: initial;
 }
 .transfer .ft_skilltable_wrapperRight {
@@ -45,14 +45,14 @@ html[dir="rtl"] .transfer .ft_skilltable_wrapperRight {
 	right: 440px;
 }
 .ft_skilltable_fullNames .ft_skilltable_wrapperRight {
-	max-width: 202px;
-	left: 330px;
+	max-width: 192px;
+	left: 340px;
 }
 html[data-theme="simple"] .ft_skilltable_fullNames .ft_skilltable_wrapperRight {
-	max-width: 235px;
+	max-width: 225px;
 }
 html[dir="rtl"] .ft_skilltable_fullNames .ft_skilltable_wrapperRight {
-	right: 330px;
+	right: 340px;
 }
 .on_top .ft_skilltable_wrapperRight {
 	overflow: hidden;
@@ -68,7 +68,7 @@ html[dir="rtl"] .ft_skilltable_fullNames .ft_skilltable_wrapperRight {
 	border: 1px solid #dce0dc;
 }
 .ft_skilltableLeft {
-	width: 280px !important;
+	width: 290px !important;
 	margin: 0 0 2em 0;
 	border-right-width: 4px;
 }
@@ -80,7 +80,7 @@ html[dir="rtl"] .ft_skilltableLeft {
 	width: 440px !important;
 }
 .ft_skilltable_fullNames .ft_skilltableLeft {
-	width: 330px !important;
+	width: 340px !important;
 }
 .on_top .ft_skilltableLeft {
 	margin: 0;
@@ -95,10 +95,10 @@ html[dir="rtl"] .ft_skilltableLeft {
 	max-width: 150px;
 }
 .on_top .ft_skilltableRight {
-	margin: 1px 282px 0 0;
+	margin: 1px 292px 0 0;
 }
 html[dir="rtl"] .on_top .ft_skilltableRight {
-	margin: 1px 0 0 288px;
+	margin: 1px 0 0 298px;
 }
 .transfer.on_top .ft_skilltableRight {
 	margin: 1px 442px 0 0;
@@ -107,10 +107,10 @@ html[dir="rtl"] .transfer.on_top .ft_skilltableRight {
 	margin: 1px 0 0 442px;
 }
 .ft_skilltable_fullNames.on_top .ft_skilltableRight {
-	margin: 1px 332px 0 0;
+	margin: 1px 342px 0 0;
 }
 html[dir="rtl"] .ft_skilltable_fullNames.on_top .ft_skilltableRight {
-	margin: 1px 0 0 332px;
+	margin: 1px 0 0 342px;
 }
 html[firefox] .on_top .ft_skilltableRight {
 	margin-top: 2px;
@@ -143,10 +143,6 @@ html[dir="rtl"] .ft_skilltablediv { margin: 35px -8px 35px 0; }
 .ft_skilltable td.latest-match { font-weight: bold; }
 .ft_skilltable td.second-latest-match { font-style: italic; }
 .ft_skilltable td.maxed { font-weight: bold; }
-html[dir="ltr"] .ft_skilltable td.status img:nth-child(1) { margin-left: 0; }
-html[dir="rtl"] .ft_skilltable td.status img:nth-child(1) { margin-right: 0; }
-html[dir="ltr"] .ft_skilltable td.status img { margin-left: 0.5em; }
-html[dir="rtl"] .ft_skilltable td.status img { margin-left: 0.5em; }
 html[dir="rtl"] .ft_skilltable td.formatted-num { direction: ltr; }
 #ft_skilltable img { vertical-align: middle; }
 .ft-coach {
