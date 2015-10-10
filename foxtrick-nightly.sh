@@ -4,12 +4,11 @@ echo 'upload nightly'
 ## setup:
 # mkdir build-root
 # cd build-root
-# mkdir trunk
+# git clone https://github.com/minj/foxtrick.git trunk
 # cd trunk
-# git svn init https://foxtrick.googlecode.com/svn/trunk
-# git svn fetch -rHEAD
 ## follow same steps for other branches and build
 ## copy critical files to $branch/maintainer
+## see HACKING for details
 
 ## config git
 # git config --global user.email foxtrickdev@gmail.com
