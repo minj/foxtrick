@@ -103,6 +103,8 @@ cp ~/trunk/maintainer/{upload.*,*.{pem,der}} ~/0.x.0/maintainer
 cp ~/{trunk,0.x.0}/maintainer/locale/Hattrick/CHPP/AccessToken.py
 cp ~/{trunk,0.x.0}/maintainer/locale/Hattrick/CHPP/Credentials.py
 cp ~/{trunk,0.x.0}/maintainer/locale/ftp/Credentials.py
+cp ~/{trunk,0.x.0}/maintainer/dist/AMO/Credentials.py
+cp ~/{trunk,0.x.0}/maintainer/dist/CWS/Credentials.py
 cd 0.x.0
 # create a new stable branch from release tag
 git checkout -b r0.x.0 0.x.0
