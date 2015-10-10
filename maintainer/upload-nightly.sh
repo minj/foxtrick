@@ -68,25 +68,33 @@ fi
 if [ -f "${SRC_DIR}/foxtrick.zip" ]; then
 	DISPLAY=:89 python dist/cws_upload.py ${CHROME_ID} "${SRC_DIR}/foxtrick.zip" || exit 2
 fi
-DISPLAY=:89 python dist/amo_upload.py "${SRC_DIR}/foxtrick.xpi" || exit 2
+if [ -f "${SRC_DIR}/foxtrick.xpi" ]; then
+	DISPLAY=:89 python dist/amo_upload.py "${SRC_DIR}/foxtrick.xpi" || exit 2
+fi
 
 if [ "$UPLOAD_UPDATE_FILES" == "true" ]; then
-	# modify update-firefox.rdf for Gecko
-	cp update-tmpl-firefox.rdf update-firefox.rdf
-	GECKO_SHA1SUM=`sha1sum "${SRC_DIR}/foxtrick.xpi" | sed -r 's/\s+.+$//g'`
-	sed -i "s|{UPDATE_LINK}|${URL_BASE}/foxtrick-${VERSION}.xpi|g" update-firefox.rdf
-	sed -i "s|{UPDATE_HASH}|sha1:${GECKO_SHA1SUM}|g" update-firefox.rdf
-	sed -i "s|{VERSION}|${VERSION}|g" update-firefox.rdf
+	if [ -f "${SRC_DIR}/foxtrick.xpi" ]; then
+		# modify update-firefox.rdf for Gecko
+		cp update-tmpl-firefox.rdf update-firefox.rdf
+		GECKO_SHA1SUM=`sha1sum "${SRC_DIR}/foxtrick.xpi" | sed -r 's/\s+.+$//g'`
+		sed -i "s|{UPDATE_LINK}|${URL_BASE}/foxtrick-${VERSION}.xpi|g" update-firefox.rdf
+		sed -i "s|{UPDATE_HASH}|sha1:${GECKO_SHA1SUM}|g" update-firefox.rdf
+		sed -i "s|{VERSION}|${VERSION}|g" update-firefox.rdf
+	fi
 
-	# modify update-chrome.xml for Google Chrome
-	cp update-tmpl-chrome.xml update-chrome.xml
-	sed -i "s|{UPDATE_LINK}|${URL_BASE}/chrome/foxtrick-${VERSION}.crx|g" update-chrome.xml
-	sed -i "s|{VERSION}|${VERSION}|g" update-chrome.xml
+	if [ -f "${SRC_DIR}/foxtrick.crx" ]; then
+		# modify update-chrome.xml for Google Chrome
+		cp update-tmpl-chrome.xml update-chrome.xml
+		sed -i "s|{UPDATE_LINK}|${URL_BASE}/chrome/foxtrick-${VERSION}.crx|g" update-chrome.xml
+		sed -i "s|{VERSION}|${VERSION}|g" update-chrome.xml
+	fi
 
-	# modify update-safari.plist for Safari
-	cp update-tmpl-safari.plist update-safari.plist
-	sed -i "s|{UPDATE_LINK}|${URL_BASE}/safari/foxtrick-${VERSION}.safariextz|g" update-safari.plist
-	sed -i "s|{VERSION}|${VERSION}|g" update-safari.plist
+	if [ -f "${SRC_DIR}/foxtrick.safariextz" ]; then
+		# modify update-safari.plist for Safari
+		cp update-tmpl-safari.plist update-safari.plist
+		sed -i "s|{UPDATE_LINK}|${URL_BASE}/safari/foxtrick-${VERSION}.safariextz|g" update-safari.plist
+		sed -i "s|{VERSION}|${VERSION}|g" update-safari.plist
+	fi
 fi
 
 echo "uploading to $HOST $DEST"
