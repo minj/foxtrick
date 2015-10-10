@@ -131,7 +131,6 @@ firefox:
 	cd content/; \
 	cp -r $(SCRIPT_FOLDERS) $(RESOURCE_FOLDERS) $(CONTENT_FILES_FIREFOX) \
 		../$(BUILD_DIR)/chrome/content
-	mkdir -p $(BUILD_DIR)/chrome/content
 	# skin/
 	cp -r skin $(BUILD_DIR)/chrome
 	# remove ignore modules from files
