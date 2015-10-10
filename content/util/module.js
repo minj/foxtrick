@@ -1,7 +1,7 @@
 'use strict';
 /*
  * module.js
- * Utilities for FoxTrick categorized module handling
+ * Utilities for Foxtrick categorized module handling
  * @author ryanli
  */
 

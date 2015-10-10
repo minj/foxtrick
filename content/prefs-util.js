@@ -178,7 +178,7 @@ Foxtrick.Prefs = {
 
 	// ---------------------- common function --------------------------------------
 
-	// returns whether FoxTrick is enabled on doc
+	// returns whether Foxtrick is enabled on doc
 	isEnabled: function(doc) {
 		if (Foxtrick.Prefs.getBool('disableOnStage') && Foxtrick.isStage(doc))
 			return false;

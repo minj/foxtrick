@@ -1,6 +1,6 @@
 'use strict';
 /* note.js
- * Foxtrick.util.note used for creating FoxTrick notes.
+ * Foxtrick.util.note used for creating Foxtrick notes.
  * @author ryanli
  */
 if (!Foxtrick)

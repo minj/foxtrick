@@ -307,8 +307,8 @@ FoxtrickFirefox.prototype = {
 				this.loadToolbarItem();
 			}
 			catch (e) {
-				dump('FoxTrick error: ToolbarItem failed ' + e + '\n');
-				Cu.reportError('FoxTrick error: ToolbarItem failed ' + e);
+				dump('Foxtrick error: ToolbarItem failed ' + e + '\n');
+				Cu.reportError('Foxtrick error: ToolbarItem failed ' + e);
 			}
 		}
 	},
@@ -351,8 +351,8 @@ FoxtrickFirefox.prototype = {
 			this.generalButton = this.ToolbarItem.create(
 				'<toolbarbutton id="foxtrick-toolbar-button" ' +
 					'type="menu" ' +
-					'label="FoxTrick" ' +
-					'tooltiptext="FoxTrick" ' +
+					'label="Foxtrick" ' +
+					'tooltiptext="Foxtrick" ' +
 					'context="foxtrick-menu" ' +
 					'class="' + this.ToolbarItem.BASIC_ITEM_CLASS +
 						' foxtrick-toolbar-item">' +
@@ -371,8 +371,8 @@ FoxtrickFirefox.prototype = {
 			);
 		}
 		catch (e) {
-			dump('FoxTrick error: Toolbar button init ' + e + '\n');
-			Cu.reportError('FoxTrick error: Toolbar button init ' + e);
+			dump('Foxtrick error: Toolbar button init ' + e + '\n');
+			Cu.reportError('Foxtrick error: Toolbar button init ' + e);
 		}
 	},
 	loadContextMenu: function() {
@@ -384,7 +384,7 @@ FoxtrickFirefox.prototype = {
 			let contextMenuString =
 				'<menu id="foxtrick-popup-copy" ' +
 					'class="menu-iconic foxtrick-menu-item" ' +
-					'label="FoxTrick">' +
+					'label="Foxtrick">' +
 					'<menupopup>' +
 						'<menuitem id="foxtrick-popup-copy-id" ' +
 							'label="Copy ID"/>' +
@@ -402,8 +402,8 @@ FoxtrickFirefox.prototype = {
 			popup.insertBefore(fragment, copyPaste.nextSibling);
 		}
 		catch (e) {
-			dump('FoxTrick error: Context menu init ' + e + '\n');
-			Cu.reportError('FoxTrick error: Context menu init ' + e);
+			dump('Foxtrick error: Context menu init ' + e + '\n');
+			Cu.reportError('Foxtrick error: Context menu init ' + e);
 		}
 	},
 	removeContextMenu: function() {
@@ -457,7 +457,7 @@ function loadIntoWindow(window) {
 		window.Foxtrick.init();
 	}
 	catch (e) {
-		let msg = 'FoxTrick error: ' + e + '\n' + e.stack + '\n';
+		let msg = 'Foxtrick error: ' + e + '\n' + e.stack + '\n';
 		dump(msg);
 		Services.console.logStringMessage(msg);
 		Cu.reportError(msg);

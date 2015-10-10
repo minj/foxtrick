@@ -7,11 +7,11 @@ a good reason to. They are for version bumps in Makefile.
 <plist version="1.0">
 <dict>
 	<key>Author</key>
-	<string>FoxTrick team</string>
+	<string>Foxtrick team</string>
 	<key>Builder Version</key>
 	<string>534.50</string>
 	<key>CFBundleDisplayName</key>
-	<string>FoxTrick</string>
+	<string>Foxtrick</string>
 	<key>CFBundleIdentifier</key>
 	<string>www.foxtrick.org</string>
 	<key>CFBundleInfoDictionaryVersion</key>

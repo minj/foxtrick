@@ -141,7 +141,7 @@ function loadIntoWindow(window) {
 		window.Foxtrick = new FoxtrickFennec(window);
 		window.Foxtrick.init();
 	} catch (e) {
-		Cu.reportError('FoxTrick error: ' + e);
+		Cu.reportError('Foxtrick error: ' + e);
 	}
 }
 

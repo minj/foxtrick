@@ -1,7 +1,7 @@
 'use strict';
 /**
  * env.js
- * FoxTrick environment
+ * Foxtrick environment
  * @author convinced
  */
 

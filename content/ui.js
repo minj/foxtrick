@@ -112,18 +112,18 @@ if (Foxtrick.platform == 'Firefox') {
 		var statusText;
 
 		if (Foxtrick.Prefs.getBool('disableTemporary')) {
-			// FoxTrick is disabled temporarily
+			// Foxtrick is disabled temporarily
 			button.setAttribute('status', 'disabled');
 			statusText = Foxtrick.L10n.getString('status.disabled');
 		}
 		else if ((Foxtrick.isHt(doc) || /^chrome:\/\/foxtrick/.test(doc.location.href)) &&
 		         !(Foxtrick.Prefs.getBool('disableOnStage') && Foxtrick.isStage(doc))) {
-			// FoxTrick is enabled, and active on current page
+			// Foxtrick is enabled, and active on current page
 			button.setAttribute('status', 'active');
 			statusText = Foxtrick.L10n.getString('status.active');
 		}
 		else {
-			// FoxTrick is enabled, but not active on current page
+			// Foxtrick is enabled, but not active on current page
 			button.setAttribute('status', 'enabled');
 			var hostname = '';
 			try {

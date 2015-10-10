@@ -17,7 +17,7 @@ Foxtrick.error = function(err) {
 };
 
 
-// outputs a list of strings/objects/errors to FoxTrick log
+// outputs a list of strings/objects/errors to Foxtrick log
 Foxtrick.log = function() {
 	if (arguments.length < 2 && typeof arguments[0] === 'undefined')
 		// useless logging
@@ -106,9 +106,9 @@ Foxtrick.log = function() {
 		// goes to JS->Log in the browser console (ctrl+shift+J)
 		if (Foxtrick.platform == 'Android' && Foxtrick.chromeContext() == 'content')
 			// logging does not work particularly well in Fennec content
-			Cu.reportError(new Error('FoxTrick: ' + concated));
+			Cu.reportError(new Error('Foxtrick: ' + concated));
 		else
-			Services.console.logStringMessage('FoxTrick: ' + concated);
+			Services.console.logStringMessage('Foxtrick: ' + concated);
 	}
 	if (typeof dump === 'function' && Foxtrick.Prefs.getBool('dump')) {
 		// window.dump, a Gecko extension

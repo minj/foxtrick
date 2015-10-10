@@ -1,7 +1,7 @@
 'use strict';
 /*
  * entry.js
- * Entry point of FoxTrick modules
+ * Entry point of Foxtrick modules
  * @author ryanli, convincedd
  */
 
@@ -49,7 +49,7 @@ Foxtrick.entry.docLoad = function(doc) {
 	if (!content)
 		return;
 
-	// run FoxTrick modules
+	// run Foxtrick modules
 	var begin = (new Date()).getTime();
 	Foxtrick.entry.run(doc);
 	var diff = (new Date()).getTime() - begin;
@@ -107,7 +107,7 @@ Foxtrick.entry.contentScriptInit = function(data) {
 
 // called on browser load and after preferences changes (background side for sandboxed, fennec)
 Foxtrick.entry.init = function(reinit) {
-	// Foxtrick.log('Initializing FoxTrick... reinit:', reinit);
+	// Foxtrick.log('Initializing Foxtrick... reinit:', reinit);
 
 	// add MODULE_NAME to modules
 	var i;
@@ -148,7 +148,7 @@ Foxtrick.entry.init = function(reinit) {
 		return null;
 	});
 
-	Foxtrick.log('FoxTrick initialization completed.');
+	Foxtrick.log('Foxtrick initialization completed.');
 };
 
 Foxtrick.entry.run = function(doc, is_only_css_check) {

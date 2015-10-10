@@ -1,7 +1,7 @@
 'use strict';
 /**
 * core.js
-* Some core functions for FoxTrick
+* Some core functions for Foxtrick
 * @author ryanli
 */
 
@@ -107,7 +107,7 @@ Foxtrick.modules.Core = {
 		if (bottom) { // sometimes bottom is not loaded yet. just skip it in those cases
 			var server = bottom.getElementsByClassName('currentServer')[0];
 			var span = doc.createElement('span');
-			span.textContent += ' / FoxTrick ' + Foxtrick.version() + ' ' + Foxtrick.branch();
+			span.textContent += ' / Foxtrick ' + Foxtrick.version() + ' ' + Foxtrick.branch();
 			span.id = 'ft_versionInfo';
 			server.appendChild(span);
 		}

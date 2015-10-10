@@ -177,11 +177,11 @@ ifeq ($(DIST_TYPE),nightly)
 	# add minor version and change name
 	cd $(BUILD_DIR); \
 	../version.sh $(REV_VERSION); \
-	sed -i -r 's|(<em:name>).+(</em:name>)|\1FoxTrick (Beta)\2|' install.rdf;
+	sed -i -r 's|(<em:name>).+(</em:name>)|\1Foxtrick (Beta)\2|' install.rdf;
 else ifeq ($(DIST_TYPE),light)
 	# change name
 	cd $(BUILD_DIR); \
-	sed -i -r 's|(<em:name>).+(</em:name>)|\1FoxTrick (light)\2|' install.rdf
+	sed -i -r 's|(<em:name>).+(</em:name>)|\1Foxtrick (light)\2|' install.rdf
 endif
 
 ifeq ($(DIST_TYPE),hosting)
@@ -234,11 +234,11 @@ ifeq ($(DIST_TYPE),nightly)
 	# add minor version and change name
 	cd $(BUILD_DIR); \
 	../version.sh $(REV_VERSION); \
-	sed -i -r 's|("name" : ").+(")|\1FoxTrick (Beta)\2|' manifest.json
+	sed -i -r 's|("name" : ").+(")|\1Foxtrick (Beta)\2|' manifest.json
 else ifeq ($(DIST_TYPE),light)
 	# change name
 	cd $(BUILD_DIR); \
-	sed -i -r 's|("name" : ").+(")|\1FoxTrick (light)\2|' manifest.json
+	sed -i -r 's|("name" : ").+(")|\1Foxtrick (light)\2|' manifest.json
 endif
 
 ifneq ($(DIST_TYPE),hosting)
@@ -290,11 +290,11 @@ ifeq ($(DIST_TYPE),nightly)
 	# add minor version and change name
 	cd $(SAFARI_BUILD_DIR); \
 	../../version.sh $(REV_VERSION); \
-	sed -i -r 's/>FoxTrick</>FoxTrick (Beta)</' Info.plist
+	sed -i -r 's/>Foxtrick</>Foxtrick (Beta)</' Info.plist
 else ifeq ($(DIST_TYPE),light)
 	# change name
 	cd $(SAFARI_BUILD_DIR); \
-	sed -i -r 's/>FoxTrick</>FoxTrick (light)</' Info.plist
+	sed -i -r 's/>Foxtrick</>Foxtrick (light)</' Info.plist
 endif
 
 	cd $(SAFARI_BUILD_DIR); \

@@ -40,15 +40,16 @@ Foxtrick.modules['AutoPostSpecs'] = {
 
 			//super simple check if the spoiler is already present, but seems sufficient
 			//applies when editing forum msgs
-			var matched = txt.match('FoxTrick ' + Foxtrick.version());
-			if(matched !== null)
+			var reText = Foxtrick.strToRe('Foxtrick ' + Foxtrick.version());
+			var RE = new RegExp(reText, 'i');
+			if (RE.test(txt))
 				return;
 
 			var win = doc.defaultView;
 
 			var navInfo = win.navigator.userAgent + ' - ' + win.navigator.platform;
 
-			txt = txt + '\n[hr][spoiler]' + 'FoxTrick ' + Foxtrick.version() + ' ' +
+			txt = txt + '\n[hr][spoiler]' + 'Foxtrick ' + Foxtrick.version() + ' ' +
 				Foxtrick.branch() + ' - Stage: ' + Foxtrick.isStage(doc) + ' - Skin: ' +
 				(Foxtrick.util.layout.isStandard(doc) ? 'normal' : 'simple') + ' - ' +
 				Foxtrick.Prefs.getString('htLanguage') + ' - ' +

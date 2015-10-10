@@ -1,7 +1,7 @@
-This file is intended for maintainers of FoxTrick, including notes for version and releasing.
+This file is intended for maintainers of Foxtrick, including notes for version and releasing.
 
 ## Version Scheme
-FoxTrick has two major channels of versions, one is stable version for daily use and another is beta version for testing.
+Foxtrick has two major channels of versions, one is stable version for daily use and another is beta version for testing.
 
 The major version number has two digits separated by dot, like 0.7, 0.8, and 1.0.
 For minor version over major stable releases, a number starting from 1 is appended, like: 0.7.1, 0.7.2, etc.

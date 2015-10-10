@@ -1,7 +1,7 @@
 'use strict';
 /*
  * background.js
- * FoxTrick background loader for sandboxed arch and fennec
+ * Foxtrick background loader for sandboxed arch and fennec
  * executed on extension load (on activate, reload and browser start)
  */
 
