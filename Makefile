@@ -176,7 +176,7 @@ else ifeq ($(DIST_TYPE),light)
 	# change name and ID
 	cd $(BUILD_DIR); \
 	sed -i -r 's|(<em:name>).+(</em:name>)|\1FoxTrick (light)\2|' install.rdf; \
-	sed -i -r 's|(<em:id>).+(</em:id>)|\1foxtrick-light@foxtrick.org\2|' install.rdf;
+	sed -i -r 's|(<em:id>)\{9d1f059c.+(</em:id>)|\1foxtrick-light@foxtrick.org\2|' install.rdf;
 endif
 
 ifeq ($(DIST_TYPE),hosting)
