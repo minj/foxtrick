@@ -18,10 +18,7 @@ SAFARI_TARGET = foxtrick.safariextension
 SAFARI_BUILD_DIR = build/$(SAFARI_TARGET)
 
 MODULES = modules
-IGNORED_MODULES=ignored-modules-$(DIST_TYPE)
-ifeq ($(BRANCH),beta)
-IGNORED_MODULES=ignored-modules-release
-endif
+IGNORED_MODULES = ignored-modules-$(DIST_TYPE)
 
 ifeq ($(DIST_TYPE),nightly)
 	VERSION = $(REV_VERSION)
