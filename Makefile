@@ -270,7 +270,7 @@ safari:
 		../$(SAFARI_BUILD_DIR)/content
 	# modules
 	cd content/; \
-	cat ../$(MODULES) | while read m; do cp --parents "$$m" ../$(BUILD_DIR)/content; done;
+	cat ../$(MODULES) | while read m; do cp --parents "$$m" ../$(SAFARI_BUILD_DIR)/content; done;
 	# remove ignore modules from files
 	python module-update.py build -s $(MODULES) -e $(IGNORED_MODULES) -d $(SAFARI_BUILD_DIR)/
 	# modify DataPath
