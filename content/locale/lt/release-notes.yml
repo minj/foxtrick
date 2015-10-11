@@ -13,7 +13,7 @@ lt:
       new: '<header>Nauji moduliai</header>'
       transfers: '<module>CurrentTransfers</module> pateikia daugiau informacijos apie žaidėjus dabartinių sandorių puslapyje.'
       bugs: '<header>Pataisytos klaidos</header>'
-      stamina_prediction: 'Spėjamas Ištvermės polygmuo (<module>MatchLineupTweaks</module> modulis) buvo klaidingas dėl HT pokyčių. Problema sutvarkyta.'
+      stamina_prediction: 'Spėjamas ištvermės polygmuo (<module>MatchLineupTweaks</module> modulis) buvo klaidingas dėl HT pokyčių. Problema sutvarkyta.'
       match_order: 'Pataisytas <module>MatchSimulator</module> ir <module>MatchOrderInterface</module> modulių dizainas – prisitaikyta prie Hattrick dizaino pokyčių.'
       team_detection: 'Dėl HT dizaino pokyčių buvo atsiradę ir daugiau problemų: pradingę svečių komandos veidai, sugedęs <module>LiveAlert</module> įvarčių atpažinimas ir kt.. Visos problemos turėtų būti sutaisytos.'
       other: '<header>Kiti pakeitimai</header>'

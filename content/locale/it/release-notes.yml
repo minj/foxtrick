@@ -7,11 +7,21 @@ it:
       note_0: 'Questa è la versione beta della prossima release. Per favore aiutaci a tradurre questa versione con la nostra semplicissima pagina di traduzione di Crowdin <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.16.0:
       important: '<header>Avvisi importanti</header>'
+      safari: "A causa di alcuni cambiamenti nella politica di Apple Inc. e per una riluttanza generale a migliorare il loro browser non possiamo più garantire gli aggiornamenti automatici e supporto generale per gli utenti di Safari. Raccomandiamo l'utilizzo di Firefox, Google Chrome o Opera."
       crowdin: '<header>Sono disponibili tante nuove traduzioni per i nostri utenti su <linkCrowdin>crowdin tool</linkCrowdin>. Anche tu puoi dare una mano!</header>'
       support: '<header>Ti piace quello che stiamo facendo? Si prega di <linkContribute>supportare Foxtrick</linkContribute>.</header>'
       new: '<header>Nuovi moduli</header>'
+      transfers: '<module>CurrentTransfers</module> aggiunge informazioni ai giocatori nella pagina delle aste in corso.'
       bugs: '<header>Correzioni di bug</header>'
+      stamina_prediction: 'La previsione dei sottolivelli di resistenza (<module>MatchLineupTweaks</module>) era incorretta a causa di alcune modifiche di Hattrick. Il problema dovrebbe essere ora risolto.'
+      match_order: 'Adattato il layout di <module>MatchSimulator</module> e <module>MatchOrderInterface</module> alle recenti modifiche di design di Hattrick.'
+      team_detection: 'Altri problemi si erano palesati a causa delle recenti modifiche al design di Hattrick: le facce dei giocatori nella formazione delle squadre fuori casa erano sparite, il rilevamento dei goal segnati in <module>LiveAlert</module> era difettoso, ecc. Tutti questi problemi dovrebbero essere ora risolti.'
       other: '<header>Altre modifiche</header>'
+      table: '<module>PlayerFilters</module> e <module>SkillTable</module> sono state riscritte per correggere alcuni bug ed espandere le loro funzionalità. Le colonne più importanti sono bloccate per prevenirne lo scrolling orizzontale, si possono nascondere alcuni giocatori, e altro ancora. Usa il pulsante apposito della tabella per informazioni più approfondite.'
+      opponent_goals: 'Aggiunto un altro suono per i goal dei tuoi avversari in <module>LiveAlert</module>.'
+      indonesian: Aggiunto supporto per la lingua indonesiana.
+      match_events: "Le descrizioni degli eventi delle partite sono state tradotte dall'inglese."
+      style_cleanup: 'Gli stili di Foxtrick (CSS) sono stati adattati per supportare meglio i temi personalizzati di Hattrick. Di conseguenza ora è possibile assegnare colori personalizzati anche agli username dei membri dello staff di Hattrick in <module>StaffMarker</module>.'
       and_more: Varie altre piccole modifiche e correzioni.
     0.15.2.1:
       important: '<header>Avvisi importanti</header>'
