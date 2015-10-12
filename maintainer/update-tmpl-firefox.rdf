@@ -2,7 +2,7 @@
 
 <RDF:RDF xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 	xmlns:em="http://www.mozilla.org/2004/em-rdf#">
-	<RDF:Description about="urn:mozilla:extension:{9d1f059c-cada-4111-9696-41a62d64e3ba}">
+	<RDF:Description about="urn:mozilla:extension:{FF_ADDON_ID}">
 		<em:updates>
 			<RDF:Seq>
 				<RDF:li>

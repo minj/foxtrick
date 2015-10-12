@@ -25,6 +25,7 @@ DO_MAKE='true'
 UPLOAD_UPDATE_FILES='true'
 MODULES=modules
 CHROME_ID='gpfggkkkmpaalfemiafhfobkfnadeegj'
+FF_ADDON_ID='{9d1f059c-cada-4111-9696-41a62d64e3ba}'
 AMO_WEB_ID='foxtrick'
 
 # update manifest settings
@@ -63,7 +64,10 @@ else
 fi
 
 if [ "$DO_MAKE" == "true" ]; then
-	(cd "$SRC_DIR" && make DIST_TYPE="$DIST" MODULES="$MODULES" UPDATE_URL="$URL_BASE" "$@")|| exit 2
+	(\
+	 cd "$SRC_DIR" && \
+	 make DIST_TYPE="$DIST" MODULES="$MODULES" UPDATE_URL="$URL_BASE" FF_ADDON_ID="$FF_ADDON_ID" "$@"\
+	 ) || exit 2
 fi
 
 if [ -f "${SRC_DIR}/foxtrick.zip" ]; then
@@ -79,6 +83,7 @@ if [ "$UPLOAD_UPDATE_FILES" == "true" ]; then
 		cp update-tmpl-firefox.rdf update-firefox.rdf
 		GECKO_SHA1SUM=`sha1sum "${SRC_DIR}/foxtrick.xpi" | sed -r 's/\s+.+$//g'`
 		sed -i "s|{UPDATE_LINK}|${URL_BASE}/foxtrick-${VERSION}.xpi|g" update-firefox.rdf
+		sed -i "s|{FF_ADDON_ID}|${FF_ADDON_ID}|g" update-firefox.rdf
 		sed -i "s|{UPDATE_HASH}|sha1:${GECKO_SHA1SUM}|g" update-firefox.rdf
 		sed -i "s|{VERSION}|${VERSION}|g" update-firefox.rdf
 	fi
