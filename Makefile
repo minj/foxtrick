@@ -100,8 +100,8 @@ CONTENT_FILES_FIREFOX = $(CONTENT_FILES) bootstrap-firefox.js \
 	scripts-fennec.js \
 	background.js \
 	loader-firefox.js \
-	loader-fennec.js \
-	../res/
+	loader-fennec.js
+	# ../res/
 CONTENT_FILES_CHROME = $(CONTENT_FILES) background.html \
 	background.js \
 	preferences.html \
