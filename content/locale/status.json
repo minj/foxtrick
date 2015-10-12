@@ -66,11 +66,11 @@
 			"code": "bs",
 			"name": "Bosnian",
 			"phrases": "2151",
-			"translated": "1900",
+			"translated": "1910",
 			"translated_progress": "86",
 			"words": "15262",
 			"words_approved": "0",
-			"words_translated": "13216"
+			"words_translated": "13260"
 		},
 		{
 			"approved": "0",
@@ -126,11 +126,11 @@
 			"code": "cs",
 			"name": "Czech",
 			"phrases": "2151",
-			"translated": "1974",
-			"translated_progress": "82",
+			"translated": "1998",
+			"translated_progress": "84",
 			"words": "15262",
 			"words_approved": "10530",
-			"words_translated": "12584"
+			"words_translated": "12849"
 		},
 		{
 			"approved": "1876",
@@ -138,11 +138,11 @@
 			"code": "da",
 			"name": "Danish",
 			"phrases": "2151",
-			"translated": "1887",
-			"translated_progress": "87",
+			"translated": "1909",
+			"translated_progress": "88",
 			"words": "15262",
 			"words_approved": "13259",
-			"words_translated": "13369"
+			"words_translated": "13441"
 		},
 		{
 			"approved": "1847",
