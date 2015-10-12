@@ -166,6 +166,12 @@ firefox:
 	cd $(BUILD_DIR); \
 	sed -i -r "/extensions\\.foxtrick\\.prefs\\.branch/s|\"dev\"|\"$(BRANCH_FULL) mozilla\"|" defaults/preferences/foxtrick.js
 
+ifneq ($(FF_ADDON_ID),)
+	# set addon ID
+	cd $(BUILD_DIR); \
+	sed -i -r 's|<!-- FF_ADDON_ID -->(<em:id>).+(</em:id>)|\1$(FF_ADDON_ID)\2|' install.rdf;
+endif
+
 # modify according to dist type
 ifeq ($(DIST_TYPE),nightly)
 	# add minor version and change name
@@ -173,10 +179,9 @@ ifeq ($(DIST_TYPE),nightly)
 	../version.sh $(REV_VERSION); \
 	sed -i -r 's|(<em:name>).+(</em:name>)|\1FoxTrick (Beta)\2|' install.rdf;
 else ifeq ($(DIST_TYPE),light)
-	# change name and ID
+	# change name
 	cd $(BUILD_DIR); \
-	sed -i -r 's|(<em:name>).+(</em:name>)|\1FoxTrick (light)\2|' install.rdf; \
-	sed -i -r 's|(<em:id>)\{9d1f059c.+(</em:id>)|\1foxtrick-light@foxtrick.org\2|' install.rdf;
+	sed -i -r 's|(<em:name>).+(</em:name>)|\1FoxTrick (light)\2|' install.rdf
 endif
 
 ifeq ($(DIST_TYPE),hosting)
