@@ -268,7 +268,8 @@ Foxtrick.util.time = {
 	 * (defaults to true), false implies useSWD=true;
 	 * where useSWD means display time in whole seasons, weeks and days (mod);
 	 * forcing options display respective parts even if they are equal to 0,
-	 * displays only last zero when false (default).
+	 * displays starts only when first non-zero is encountered
+	 * or it's the last number when false (default).
 	 * @param  {document}        doc
 	 * @param  {number}          secDiff {Integer}
 	 * @param  {object}          options {{ useDHM, useSWD, forceDHM, forceSWD: Boolean }}
@@ -367,8 +368,13 @@ Foxtrick.util.time = {
 
 			if (!opts.forceSWD) {
 				// remove zeros
+				var swdExists = false;
 				swd = Foxtrick.filter(function(def, i, arr) {
-					return def[0] || i == arr.length - 1; // always use last
+					if (def[0]) {
+						// when non-zero is found, use all the rest
+						swdExists = true;
+					}
+					return swdExists || i == arr.length - 1; // always use last
 				}, swd);
 			}
 
@@ -410,8 +416,13 @@ Foxtrick.util.time = {
 
 			if (!opts.forceDHM) {
 				// remove zeros
+				var dhmExists = false;
 				dhm = Foxtrick.filter(function(def, i, arr) {
-					return def[0] || i == arr.length - 1; // always use last
+					if (def[0]) {
+						// when non-zero is found, use all the rest
+						dhmExists = true;
+					}
+					return dhmExists || i == arr.length - 1; // always use last
 				}, dhm);
 			}
 
