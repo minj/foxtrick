@@ -71,6 +71,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "10680966",
+			"name": "vegar56"
+		},
+		{
+			"duty": "supporter",
 			"id": "10775786",
 			"name": "Ucha_Cuervo"
 		},
@@ -143,6 +148,11 @@
 			"duty": "supporter",
 			"id": "11616717",
 			"name": "nic016"
+		},
+		{
+			"duty": "supporter",
+			"id": "11650318",
+			"name": "GikuHTR"
 		},
 		{
 			"duty": "translator",
@@ -287,7 +297,7 @@
 		{
 			"duty": "translator",
 			"id": "13142222",
-			"name": "crocach"
+			"name": "karlinhos"
 		},
 		{
 			"duty": "supporter",
@@ -561,8 +571,18 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "4418737",
+			"name": "Che-Gi"
+		},
+		{
+			"duty": "supporter",
 			"id": "4451958",
 			"name": "Fangio"
+		},
+		{
+			"duty": "supporter",
+			"id": "4476273",
+			"name": "fbog31"
 		},
 		{
 			"duty": "translator",
@@ -578,6 +598,11 @@
 			"duty": "translator",
 			"id": "4727906",
 			"name": "DEL_Grif_07_2009112301230270382844"
+		},
+		{
+			"duty": "supporter",
+			"id": "4736512",
+			"name": "Korrigan"
 		},
 		{
 			"duty": "translator",
@@ -810,6 +835,11 @@
 			"name": "Kira_Luke"
 		},
 		{
+			"duty": "supporter",
+			"id": "7517447",
+			"name": "LeBridge-PDM"
+		},
+		{
 			"duty": "translator",
 			"id": "753905",
 			"name": "carlesmu"
@@ -993,6 +1023,11 @@
 			"duty": "translator",
 			"id": "9724171",
 			"name": "LuizGreg"
+		},
+		{
+			"duty": "supporter",
+			"id": "9779968",
+			"name": "deliomnes"
 		},
 		{
 			"duty": "supporter",
