@@ -7,12 +7,22 @@ cs:
       note_0: 'Toto je beta verze dalšího vydání. Prosím pomožte s překladem této verze na naší superjednoduché překladatelské stránce <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.16.0:
       important: '<header>Důležitá oznámení</header>'
+      safari: Z důvodů pomalého vývoje prohlížeče Safari jsme se rozhodli dále neposkytovat automatické aktualizace a podporu pro uživatele tohoto prohlížeče. Pro správnou funkčnost Foxtricku zvažte používání Firefoxu, Chromu nebo Opery.
       crowdin: '<header>Spousta překladatelských updatů od našich skvělých uživatelů využívajících <linkCrowdin>crowdin nástroj</linkCrowdin>. Můžeš také pomoci!</header>'
       support: '<header>Používáte Foxtrick? Můžete ho i různými způsoby <linkContribute>podpořit</linkContribute>.</header>'
       new: '<header>Nové moduly</header>'
+      transfers: 'Modul <module>CurrentTransfers</module> nyní prodává více informací o hráčích na stránce aktuálních nabídek.'
       bugs: '<header>Opravy chyb</header>'
+      stamina_prediction: 'Předpověď podstupně kondice v modulu <module>MatchLineupTweaks</module> z důvodu změn na Hattricku nefungovala správně. Chyba by už měla být opravena.'
+      match_order: 'Upraveno rozložení v modulech <module>MatchSimulator</module> a <module>MatchOrderInterface</module> tak aby sedělo k změnám v designu Hattricku.'
+      team_detection: 'Z důvodu úpravy designu Hattricku byly problémy např. s mizením tváří hráčů hostí, modul <module>LiveAlert</module> nehlásil góly atp. Všechny problémy by už měly být opraveny.'
       other: '<header>Ostatní změny</header>'
+      table: 'Moduly <module>PlayerFilters</module> a <module>SkillTable</module> byly přepsány. Opravily se chyby a rozšířily se možnosti. Jdou zmrazit klíčové sloupce tak aby nemizely při vodorovném posouvání tabulky, jdou skrýt vybraní hráči apod. Klikněte na informace abyste si přečetli celý popis nových funkcí.'
+      opponent_goals: 'Přidán jiný zvuk gólu pro gól tvého soupeře (modul <module>LiveAlert</module>).'
       indonesian: Přidána indonéština.
+      match_events: Jsou přeloženy popisy zápasových událostí.
+      style_cleanup: 'CSS styly Foxtricku byly přizpůsobeny lepší podpoře vlastních Hattrick skinů. V modulu <module>StaffMarker</module> si můžete nastavit barvu jmen správců Hattricku.'
+      and_more: Pár dalších malých změn a oprav.
     0.15.2.1:
       important: '<header>Důležitá oznámení</header>'
       signed: Všechny rozšíření pro Firefox musí být digitálně podepsány Mozillou. Toto je v první řadě podepsaná aktualizace k zajištění kompatibility Foxtricku.
