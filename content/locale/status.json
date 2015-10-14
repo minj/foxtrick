@@ -138,11 +138,11 @@
 			"code": "da",
 			"name": "Danish",
 			"phrases": "2151",
-			"translated": "1909",
+			"translated": "1913",
 			"translated_progress": "88",
 			"words": "15262",
 			"words_approved": "13259",
-			"words_translated": "13441"
+			"words_translated": "13460"
 		},
 		{
 			"approved": "1847",
@@ -354,11 +354,11 @@
 			"code": "it",
 			"name": "Italian",
 			"phrases": "2151",
-			"translated": "2140",
-			"translated_progress": "98",
+			"translated": "2150",
+			"translated_progress": "99",
 			"words": "15262",
 			"words_approved": "0",
-			"words_translated": "14986"
+			"words_translated": "15240"
 		},
 		{
 			"approved": "0",
@@ -582,11 +582,11 @@
 			"code": "es-ES",
 			"name": "Spanish",
 			"phrases": "2151",
-			"translated": "1946",
+			"translated": "1947",
 			"translated_progress": "90",
 			"words": "15262",
 			"words_approved": "1",
-			"words_translated": "13823"
+			"words_translated": "13824"
 		},
 		{
 			"approved": "0",
@@ -594,11 +594,11 @@
 			"code": "es-AR",
 			"name": "Spanish, Argentina",
 			"phrases": "2151",
-			"translated": "1958",
-			"translated_progress": "91",
+			"translated": "1978",
+			"translated_progress": "92",
 			"words": "15262",
 			"words_approved": "0",
-			"words_translated": "14003"
+			"words_translated": "14108"
 		},
 		{
 			"approved": "0",
@@ -606,11 +606,11 @@
 			"code": "es-CR",
 			"name": "Spanish, Costa Rica",
 			"phrases": "2151",
-			"translated": "1954",
+			"translated": "1966",
 			"translated_progress": "90",
 			"words": "15262",
 			"words_approved": "0",
-			"words_translated": "13806"
+			"words_translated": "13863"
 		},
 		{
 			"approved": "1907",
