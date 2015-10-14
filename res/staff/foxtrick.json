@@ -135,6 +135,11 @@
 			"name": "CatzHoek"
 		},
 		{
+			"duty": "supporter",
+			"id": "11525655",
+			"name": "brutuscat"
+		},
+		{
 			"duty": "translator",
 			"id": "11528071",
 			"name": "Flatron330"
@@ -481,6 +486,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "3639672",
+			"name": "Balkankoenig"
+		},
+		{
+			"duty": "supporter",
 			"id": "364858932",
 			"name": "----------"
 		},
@@ -498,6 +508,11 @@
 			"duty": "supporter",
 			"id": "3745622",
 			"name": "kikindas"
+		},
+		{
+			"duty": "supporter",
+			"id": "3765816",
+			"name": "bgillam"
 		},
 		{
 			"duty": "supporter",
