@@ -475,6 +475,11 @@
 			"name": "Aimo_Kanuuna"
 		},
 		{
+			"duty": "supporter",
+			"id": "3508192",
+			"name": "jonny91"
+		},
+		{
 			"duty": "developer",
 			"id": "3542943",
 			"name": "Jestar"
@@ -493,6 +498,11 @@
 			"duty": "supporter",
 			"id": "364858932",
 			"name": "----------"
+		},
+		{
+			"duty": "supporter",
+			"id": "3682430",
+			"name": "Canari29"
 		},
 		{
 			"duty": "translator",
@@ -913,6 +923,11 @@
 			"duty": "developer",
 			"id": "8107197",
 			"name": "Greblys"
+		},
+		{
+			"duty": "supporter",
+			"id": "8131534",
+			"name": "necrospettro"
 		},
 		{
 			"duty": "supporter",
