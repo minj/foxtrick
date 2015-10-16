@@ -336,6 +336,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "1742563",
+			"name": "SebGui_HTA"
+		},
+		{
+			"duty": "supporter",
 			"id": "1806088",
 			"name": "GeissbockHennes"
 		},
@@ -928,6 +933,11 @@
 			"duty": "supporter",
 			"id": "8131534",
 			"name": "necrospettro"
+		},
+		{
+			"duty": "supporter",
+			"id": "8209901",
+			"name": "fitzstudio"
 		},
 		{
 			"duty": "supporter",
