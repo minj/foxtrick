@@ -28,6 +28,7 @@ it:
       signed: Tutti i componenti aggiuntivi di Firefox ora devono essere firmati digitalmente da Mozilla. Questo è principalmente un aggiornamento firmato per garantire la compatibilità di Foxtrick.
       signing: "A causa di disservizi imputabili a causa dei criteri di firma del componente aggiuntivo obbligatorio abbiamo scelto di rimuovere Foxtrick dal portale di <linkAMO>Mozilla Add-ons</linkAMO>. Maggiori dettagli nell' <linkUnlistPost>annuncio globale di Foxtrick</linkUnlistPost>."
       bugs: '<header>Correzioni di bug</header>'
+      weatherSE: "L'elencazione degli eventi meteo nella timeline della partita in <module>MatchLineupFixes</module> era difettoso a causa di modifiche di HT. Il problema è ora risolto."
       other: '<header>Altre modifiche</header>'
       sandbox: "Aggiunto il supporto per l'imminente funzionalità del simulatore di formazione di Hattrick."
       compact_lineups: 'I nomi delle formazioni salvate verranno ora compattati con <module>MatchOrderInterface</module>. Questo vi permetterà di utilizzare più formazioni salvate senza incorrere in problemi di spazio.'

@@ -66,11 +66,11 @@
 			"code": "bs",
 			"name": "Bosnian",
 			"phrases": "2151",
-			"translated": "1910",
+			"translated": "1916",
 			"translated_progress": "86",
 			"words": "15262",
 			"words_approved": "0",
-			"words_translated": "13260"
+			"words_translated": "13271"
 		},
 		{
 			"approved": "0",
@@ -354,11 +354,11 @@
 			"code": "it",
 			"name": "Italian",
 			"phrases": "2151",
-			"translated": "2150",
-			"translated_progress": "99",
+			"translated": "2151",
+			"translated_progress": "100",
 			"words": "15262",
 			"words_approved": "0",
-			"words_translated": "15240"
+			"words_translated": "15262"
 		},
 		{
 			"approved": "0",
@@ -486,11 +486,11 @@
 			"code": "pl",
 			"name": "Polish",
 			"phrases": "2151",
-			"translated": "2121",
-			"translated_progress": "96",
+			"translated": "2129",
+			"translated_progress": "97",
 			"words": "15262",
 			"words_approved": "0",
-			"words_translated": "14803"
+			"words_translated": "14838"
 		},
 		{
 			"approved": "0",
@@ -522,11 +522,11 @@
 			"code": "ro",
 			"name": "Romanian",
 			"phrases": "2151",
-			"translated": "2001",
+			"translated": "2016",
 			"translated_progress": "92",
 			"words": "15262",
 			"words_approved": "4545",
-			"words_translated": "14063"
+			"words_translated": "14152"
 		},
 		{
 			"approved": "1897",
