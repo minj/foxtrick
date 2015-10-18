@@ -512,6 +512,7 @@ Foxtrick.modules['SkillTable'] = {
 					var nameLink = player.nameLink.cloneNode(true);
 					if (!useFullNames && nameLink.dataset.shortName) {
 						nameLink.textContent = nameLink.dataset.shortName;
+						cell.setAttribute('index', nameLink.dataset.fullName);
 					}
 					cell.appendChild(nameLink);
 					if (player.nationalTeamId) {
