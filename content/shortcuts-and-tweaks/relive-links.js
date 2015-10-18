@@ -116,7 +116,8 @@ Foxtrick.modules['ReLiveLinks'] = {
 		img.alt = img.title = 'HT Re-Live';
 		img.className = 'matchHTReLive';
 
-		var rows, addAllLink, matches, insertCells = false, insertHeader = false;
+		var rows, addAllLink, matches;
+		var insertCells = false, insertHeader = false, useColSpan = false;
 
 		if (Foxtrick.isPage(doc, 'series')) {
 
@@ -150,7 +151,9 @@ Foxtrick.modules['ReLiveLinks'] = {
 			var fixtures = Foxtrick.getMBElement(doc, 'repFixtures');
 			rows = fixtures.querySelectorAll('tr');
 
-			if (Foxtrick.isPage(doc, 'youthFixtures')) {
+			useColSpan = true; // fixes broken layout due to expanded 1st column
+
+			if (Foxtrick.Pages.All.isYouth(doc)) {
 				insertCells = true;
 			}
 		}
@@ -193,12 +196,18 @@ Foxtrick.modules['ReLiveLinks'] = {
 			}
 		}
 
+		var source;
 		for (var m = rows.length; i < m; ++i) {
 			var row = rows[i];
 			var tds = row.cells;
 			var scoreTd = tds[scoreIdx];
-			if (!scoreTd || !/^\d+\D+\d+$/.test(scoreTd.textContent.trim()))
+			if (!scoreTd || !/^\d+\D+\d+$/.test(scoreTd.textContent.trim())) {
+				// unused row
+				if (useColSpan && tds[0])
+					tds[0].colSpan = 2;
+
 				continue;
+			}
 
 			var matchLink = row.querySelector(matchSelector);
 			if (!matchLink)
@@ -210,7 +219,7 @@ Foxtrick.modules['ReLiveLinks'] = {
 
 			var url = matchLink.href;
 			var id = Foxtrick.util.id.getMatchIdFromUrl(url);
-			var source = Foxtrick.getParameterFromUrl(url, 'SourceSystem');
+			source = Foxtrick.getParameterFromUrl(url, 'SourceSystem');
 			if (matches) {
 				matches.push(id);
 				continue;
@@ -226,5 +235,5 @@ Foxtrick.modules['ReLiveLinks'] = {
 		if (addAllLink)
 			addAllLink.href = '/Club/Matches/Live.aspx?matchID=' + matches.join(',') +
 				'&actionType=addMatch&SourceSystem=' + source;
-	}
+	},
 };
