@@ -10,7 +10,7 @@ Foxtrick.modules['ReLiveLinks'] = {
 	PAGES: [
 		'matches', 'worldMatches', 'matchesArchive', 'matchesCup', 'cupMatches',
 		'fixtures', 'youthFixtures', 'series',
-		'matchesLive'
+		'matchesLive',
 	],
 	NICE: -1, // before any modules that might change row count
 	OPTIONS: ['ReLive', 'Live'],
@@ -31,9 +31,12 @@ Foxtrick.modules['ReLiveLinks'] = {
 
 		var getSourceFromUId = function(uid) {
 			switch (uid[0]) {
-				case 'X': return 'HTOIntegrated';
-				case 'Y': return 'Youth';
-				default: return 'Hattrick';
+				case 'X':
+					return 'HTOIntegrated';
+				case 'Y':
+					return 'Youth';
+				default:
+					return 'Hattrick';
 			}
 		};
 
@@ -119,6 +122,7 @@ Foxtrick.modules['ReLiveLinks'] = {
 		var rows, addAllLink, matches;
 		var insertCells = false, insertHeader = false, useColSpan = false;
 
+		var reLiveSrc = Foxtrick.InternalPath + 'resources/img/relive-small.png';
 		if (Foxtrick.isPage(doc, 'series')) {
 
 			matches = [];
@@ -128,8 +132,7 @@ Foxtrick.modules['ReLiveLinks'] = {
 				return;
 
 			img = doc.createDocumentFragment();
-			Foxtrick.addImage(doc, img, { src: Foxtrick.InternalPath +
-				'resources/img/relive-small.png', alt: 'HT Re-Live', title: 'HT Re-Live' });
+			Foxtrick.addImage(doc, img, { src: reLiveSrc, alt: 'HT Re-Live', title: 'HT Re-Live' });
 
 			var addAll = doc.createElement('img');
 			addAll.src = '/Img/Icons/transparent.gif';
