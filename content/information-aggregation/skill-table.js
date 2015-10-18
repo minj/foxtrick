@@ -250,8 +250,10 @@ Foxtrick.modules['SkillTable'] = {
 					return false;
 				}, PlayerEvents);
 
-				if (done)
-					return;
+				if (done) {
+					// joinedSince = pullDate
+					return true;
+				}
 
 				// pulledHere already dealt with above
 				// it's either pulled elsewhere which is 1): should have event 12 -> coachDate
