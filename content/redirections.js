@@ -157,7 +157,8 @@ Foxtrick.modules['Redirections'] = {
 				}
 			}
 			else if (doc.location.href.search(/redir_to_newlineup=true/i) != -1) {
-				var match = doc.querySelector('a[href^="/Club/Matches/Match.aspx?"]');
+				var mainBody = doc.getElementById('mainBody');
+				var match = mainBody.querySelector('a[href^="/Club/Matches/Match.aspx?"]');
 				tar = match.href + '&teamId=' + teamid + '#tab2';
 			}
 		}
