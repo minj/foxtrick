@@ -455,8 +455,12 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 					var last = text('LastName');
 					var nick = text('NickName');
 
-					nameLink.textContent = first + ' ' + last;
-					nameLink.title = first + (nick ? '\'' + nick + '\'' : '') + ' ' + last;
+					var fullName = first + ' ' + last;
+					nameLink.textContent = fullName;
+					nameLink.dataset.fullName = fullName;
+
+					nameLink.title = first + (nick ? ' \'' + nick + '\'' : '') + ' ' + last;
+					nameLink.dataset.fullNameAndNick = nameLink.title;
 					nameLink.dataset.nickName = nick;
 
 					// first name stripping
