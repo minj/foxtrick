@@ -29,7 +29,7 @@
 	width: 155px;
 }
 .ft-drop-down-submenu-2 {
-	top: 0px;
+	top: 0 !important;
 	left: 155px;
 	margin-top: -5px;
 }
