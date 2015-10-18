@@ -339,8 +339,13 @@ Foxtrick.Pages.Player.getWage = function(doc) {
 			wageText = wageText.replace(/\s*(\d+)\s+/g, '$1');
 			var hasBonus = /%/.test(wageText);
 			var wage = parseInt(wageText, 10);
-			ret = (hasBonus) ? { base: wage / 1.2, bonus: wage / 6, total: wage } :
-				{ base: wage, bonus: 0, total: wage };
+			if (hasBonus) {
+				var bonus = Math.round(wage / 6);
+				var wageWO = wage - bonus;
+				ret = { base: wageWO, bonus: bonus, total: wage };
+			}
+			else
+				ret = { base: wage, bonus: 0, total: wage };
 		}
 		catch (e) {
 			Foxtrick.log(e);

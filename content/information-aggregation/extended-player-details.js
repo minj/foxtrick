@@ -81,8 +81,9 @@ Foxtrick.modules['ExtendedPlayerDetails'] = {
 			joined_elm.appendChild(doc.createTextNode(')'));
 			Foxtrick.makeFeaturedElement(joined_elm, this);
 		}
-		else Foxtrick.dump('  Could not create jointime (NaN)\n');
-	}
+		else
+			Foxtrick.log('Could not create jointime (NaN)\n');
+	},
 };
 
 Foxtrick.modules['ExtendedPlayerDetailsWage'] = {
@@ -92,71 +93,77 @@ Foxtrick.modules['ExtendedPlayerDetailsWage'] = {
 
 	run: function(doc) {
 		var module = this;
+		var NBSP = '\u00a0';
+
 		Foxtrick.util.currency.establish(doc, function(rate, symbol) {
-			var div = doc.getElementById('ft_bonuswage');
-			if (div != null) return;
-
-			try {
-				var div = doc.getElementsByClassName('playerInfo')[0];
-				var wageElm = div.getElementsByTagName('table')[0].rows[2].cells[1];
-			}
-			catch (e) {
-				// no such thing, return
+			var done = doc.querySelector('#ft_bonuswage, #ft_seasonwage');
+			if (done)
 				return;
-			}
-			if (!Foxtrick.util.id.findTeamId(div.getElementsByTagName('table')[0]))
-				return; // player has no team
 
-			symbol = symbol.replace('$', '\\$');
-			var wageText = wageElm.textContent;
-			var hasBonus = wageText.indexOf('%') > 0;
-			var curRe = new RegExp('\\d+' + '\u00a0' + symbol);
+			var wageObj = Foxtrick.Pages.Player.getWage(doc);
+			if (!wageObj)
+				return;
 
-			if (!wageText.match(curRe)) {
+			var wageTbl = doc.querySelector('.playerInfo table');
+			if (!wageTbl)
+				return;
+
+			var symbolReStr = symbol.replace('$', '\\$');
+			var wageStr = Foxtrick.formatNumber(wageObj.total, NBSP);
+			var wageRe = new RegExp('^\\s*' + wageStr + NBSP + symbolReStr);
+			var wageRow = Foxtrick.nth(function(row) {
+				var cell = row.cells[1];
+				if (cell) {
+					return wageRe.test(cell.textContent);
+				}
+				return false;
+			}, wageTbl.rows);
+
+			if (!wageRow) {
 				// bad currency
 				Foxtrick.log(symbol, 'NOT FOUND');
 				Foxtrick.util.currency.reset();
 				Foxtrick.util.currency.displaySelector(doc, { reason: 'symbol' });
 				return;
 			}
-			var currencyLen = symbol.length;
-			var splitPos = wageText.indexOf(symbol) + currencyLen;
-			var part1 = wageText.substr(0, splitPos);
-			var part2 = wageText.substr(splitPos);
 
-			var wage = parseInt(part1.replace(/\d+%/, '').replace(symbol, '').
-			                    replace(/\s/g, '').match(/\d+/)[0], 10);
-			if (isNaN(wage))
-				return;
+			var wageCell = wageRow.cells[1];
 
-			if (!hasBonus)
-				var formattedWage = Foxtrick.formatNumber(wage, '\u00a0');
-			else {
-				var reducedWage = Math.floor(wage / 1.2);
-				var formattedWage = Foxtrick.formatNumber(reducedWage, '\u00a0');
+			var wageWOBonus = Foxtrick.Prefs.isModuleOptionEnabled(module, 'WageWithoutBonus');
+			var seasonWage = Foxtrick.Prefs.isModuleOptionEnabled(module, 'SeasonWage');
+
+			var hasBonus = !!wageObj.bonus;
+			if (hasBonus && wageWOBonus) {
+				var wageText = wageCell.textContent;
+				var part1 = wageText.match(wageRe)[0];
+				var part2 = wageText.replace(wageRe, '');
+
+				wageCell.textContent = part1 + NBSP;
+				var wageWOStr = Foxtrick.formatNumber(wageObj.base, NBSP);
+
+				var spanWO = doc.createElement('span');
+				spanWO.id = 'ft_bonuswage';
+				spanWO.setAttribute('style', 'direction: ltr; color:#666666;');
+				spanWO.textContent = '(' + wageWOStr + NBSP + symbol + ')';
+				Foxtrick.makeFeaturedElement(spanWO, module);
+
+				wageCell.appendChild(spanWO);
+				wageCell.appendChild(doc.createTextNode(part2));
 			}
 
-			if (hasBonus && Foxtrick.Prefs.isModuleOptionEnabled('ExtendedPlayerDetailsWage',
-				'WageWithoutBonus')) {
-				wageElm.textContent = part1 + '\u00a0';
-				var span = doc.createElement('span');
-				span.setAttribute('id', 'ft_bonuswage');
-				span.setAttribute('style', 'direction: ltr; color:#666666;');
-				span.textContent = '(' + formattedWage + '\u00a0' + symbol + ')';
-				wageElm.appendChild(span);
-				wageElm.appendChild(doc.createTextNode(part2));
-				Foxtrick.makeFeaturedElement(span, module);
-			}
-			if (Foxtrick.Prefs.isModuleOptionEnabled('ExtendedPlayerDetailsWage', 'SeasonWage')) {
-				wageElm.appendChild(doc.createElement('br'));
-				var span = doc.createElement('span');
-				span.setAttribute('id', 'ft_seasonwage');
-				span.textContent =
-					Foxtrick.formatNumber(wage * 16, '\u00a0') + '\u00a0' + symbol +
-					Foxtrick.L10n.getString('ExtendedPlayerDetails.perseason');
-				wageElm.appendChild(span);
-				Foxtrick.makeFeaturedElement(span, module);
+			if (seasonWage) {
+				var wageSeason = wageObj.total * 16;
+				var wageSeasonStr = Foxtrick.formatNumber(wageSeason, NBSP);
+				var perseason = Foxtrick.L10n.getString('ExtendedPlayerDetails.perseason');
+
+				var spanSeason = doc.createElement('span');
+				spanSeason.id = 'ft_seasonwage';
+				spanSeason.textContent = wageSeasonStr + NBSP + symbol + perseason;
+				Foxtrick.makeFeaturedElement(spanSeason, module);
+
+				wageCell.appendChild(doc.createElement('br'));
+				wageCell.appendChild(spanSeason);
 			}
 		});
-	}
+	},
 };
