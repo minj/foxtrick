@@ -6,11 +6,11 @@
 			"code": "sq",
 			"name": "Albanian",
 			"phrases": "2151",
-			"translated": "558",
-			"translated_progress": "27",
+			"translated": "577",
+			"translated_progress": "28",
 			"words": "15262",
 			"words_approved": "0",
-			"words_translated": "4126"
+			"words_translated": "4378"
 		},
 		{
 			"approved": "1689",
@@ -570,11 +570,11 @@
 			"code": "sl",
 			"name": "Slovenian",
 			"phrases": "2151",
-			"translated": "1045",
+			"translated": "1056",
 			"translated_progress": "34",
 			"words": "15262",
 			"words_approved": "0",
-			"words_translated": "5211"
+			"words_translated": "5271"
 		},
 		{
 			"approved": "1",
