@@ -294,7 +294,7 @@ Foxtrick.modules['DashboardCalendar'] = {
 
 		var header = 'BEGIN:VCALENDAR\r\n' +
 			'VERSION:2.0\r\n' +
-			'PRODID:-//foxtrick//v' + Foxtrick.version() + '//EN\r\n';
+			'PRODID:-//foxtrick//v' + Foxtrick.version + '//EN\r\n';
 
 		var cal = Foxtrick.map(function(evnt) {
 			var desc = 'DESCRIPTION:' + evnt.text;

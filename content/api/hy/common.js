@@ -60,7 +60,7 @@ Foxtrick.api.hy._buildParams = function(callback, params, teamId) {
 	params = params ? params + '&' : '';
 	params += 'teamId=' + teamId;
 	params += '&app=foxtrick';
-	params += '&version=' + Foxtrick.version();
+	params += '&version=' + Foxtrick.version;
 	var identifier = teamId + '_' + new Date().getTime();
 	params += '&identifier=' + identifier;
 	params += '&hash=' + Foxtrick.encodeBase64('foxtrick_' + teamId + '_' + identifier);

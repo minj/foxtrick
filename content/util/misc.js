@@ -105,7 +105,7 @@ Foxtrick.playSound = function(doc, url) {
 			}
 		}
 		catch (e) {
-			if (Foxtrick.chromeContext() == 'content') {
+			if (Foxtrick.context == 'content') {
 				// via background since internal sounds might not be acessible
 				// from the html page itself
 				Foxtrick.SB.ext.sendRequest({ req: 'playSound', url: url });
@@ -131,7 +131,7 @@ Foxtrick.playSound = function(doc, url) {
 
 Foxtrick.copyStringToClipboard = function(string) {
 	if (Foxtrick.arch === 'Gecko') {
-		if (Foxtrick.chromeContext() === 'content') {
+		if (Foxtrick.context === 'content') {
 			Foxtrick.SB.ext.sendRequest({ req: 'clipboard', content: string });
 		}
 		else {
@@ -144,7 +144,7 @@ Foxtrick.copyStringToClipboard = function(string) {
 		Foxtrick.sessionSet('clipboard', string);
 	}
 	else if (Foxtrick.arch === 'Sandboxed') {
-		if (Foxtrick.chromeContext() == 'content')
+		if (Foxtrick.context == 'content')
 			Foxtrick.SB.ext.sendRequest({ req: 'clipboard', content: string });
 		else {
 			if (Foxtrick.platform == 'Chrome')
@@ -156,7 +156,7 @@ Foxtrick.copyStringToClipboard = function(string) {
 };
 
 Foxtrick.newTab = function(url) {
-	if (Foxtrick.chromeContext() === 'content') {
+	if (Foxtrick.context === 'content') {
 		Foxtrick.SB.ext.sendRequest({ req: 'newTab', url: url });
 	}
 	else if (Foxtrick.platform == 'Firefox')
@@ -220,17 +220,17 @@ Foxtrick.xml_single_evaluate = function(xmldoc, path, attribute) {
 		return null;
 };
 
-Foxtrick.version = function() {
+Foxtrick.lazyProp(Foxtrick, 'version', function() {
 	// get rid of user-imported value
 	Foxtrick.Prefs.deleteValue('version');
 	return Foxtrick.Prefs.getString('version');
-};
+});
 
-Foxtrick.branch = function() {
+Foxtrick.lazyProp(Foxtrick, 'branch', function() {
 	// get rid of user-imported value
 	Foxtrick.Prefs.deleteValue('branch');
 	return Foxtrick.Prefs.getString('branch');
-};
+});
 
 Foxtrick.getHref = function(doc) {
 	return doc.location.href;

@@ -69,7 +69,7 @@ Foxtrick.modules.Core = {
 		Foxtrick.L10n.appendLink('changes.updates', pUpdates, UPDATES_URL);
 		content.appendChild(pUpdates);
 
-		Foxtrick.makeModal(doc, Foxtrick.version(), content);
+		Foxtrick.makeModal(doc, Foxtrick.version, content);
 	},
 
 	updateLastHost: function(doc) {
@@ -84,20 +84,20 @@ Foxtrick.modules.Core = {
 			// show change log if anything but forth number changes
 			var oldV = Foxtrick.Prefs.getString('oldVersion');
 			var oldVMajor = oldV.match(/\d+\.\d+(\.\d+)?/)[0];
-			var newV = Foxtrick.version();
+			var newV = Foxtrick.version;
 			var newVMajor = newV.match(/\d+\.\d+(\.\d+)?/)[0];
-			var br = Foxtrick.branch().slice(0, 4);
+			var br = Foxtrick.branch.slice(0, 4);
 			if (oldV === null || oldV != newV && br !== 'beta' || oldVMajor !== newVMajor) {
 				if (Foxtrick.Prefs.getBool('showReleaseNotes')) {
 					Foxtrick.Prefs.show('#tab=changes');
 				}
 				this.showReleaseModal(doc);
-				Foxtrick.Prefs.setString('oldVersion', Foxtrick.version());
+				Foxtrick.Prefs.setString('oldVersion', Foxtrick.version);
 			}
 		}
 		catch (e) {
 			// catching very old 'wrong' formats and fix them by just using the upto date version
-			Foxtrick.Prefs.setString('oldVersion', Foxtrick.version());
+			Foxtrick.Prefs.setString('oldVersion', Foxtrick.version);
 		}
 	},
 
@@ -107,7 +107,7 @@ Foxtrick.modules.Core = {
 		if (bottom) { // sometimes bottom is not loaded yet. just skip it in those cases
 			var server = bottom.getElementsByClassName('currentServer')[0];
 			var span = doc.createElement('span');
-			span.textContent += ' / Foxtrick ' + Foxtrick.version() + ' ' + Foxtrick.branch();
+			span.textContent += ' / Foxtrick ' + Foxtrick.version + ' ' + Foxtrick.branch;
 			span.id = 'ft_versionInfo';
 			server.appendChild(span);
 		}

@@ -109,7 +109,7 @@ Foxtrick.util.notify.create = function(msg, source, cb, opts) {
 	if (Foxtrick.arch == 'Gecko') {
 		createGecko();
 	}
-	else if (Foxtrick.chromeContext() === 'background') {
+	else if (Foxtrick.context === 'background') {
 		if (Foxtrick.platform === 'Chrome' && chrome.notifications) {
 			var options = {
 				type: 'basic',

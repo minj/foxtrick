@@ -19,7 +19,7 @@ Keep in mind to modify the following files: (version.sh can/should be used for t
 * install.rdf (For Gecko)
 * manifest.json (For Chrome)
 * Info.plist (For Safari)
-* default/preferences/foxtrick.js (For Foxtrick.version())
+* default/preferences/foxtrick.js (For Foxtrick.version)
 
 ### Releasing Beta Versions
 These are uploaded to foxtrick.org automatically (thanks to CatzHoek for providing the server!) at 13:00 CET everyday.

@@ -140,9 +140,6 @@ firefox:
 	cat ../$(MODULES) | while read m; do cp --parents "$$m" ../$(BUILD_DIR)/chrome/content; done;
 	# remove ignore modules from files
 	python module-update.py build -s $(MODULES) -e $(IGNORED_MODULES) -d $(BUILD_DIR)/chrome/
-	# modify DataPath
-	cd $(BUILD_DIR); \
-	sed -i -r '/\/\* <BUILD>|<\/BUILD> \*\//d' chrome/content/env.js
 	#removes zips from res
 	rm -rf $(BUILD_DIR)/chrome/*/*.zip
 	rm -rf $(BUILD_DIR)/chrome/*/*/*.zip
@@ -222,9 +219,6 @@ chrome:
 	cat ../$(MODULES) | while read m; do cp --parents "$$m" ../$(BUILD_DIR)/content; done;
 	# remove ignore modules from files
 	python module-update.py build -s $(MODULES) -e $(IGNORED_MODULES) -d $(BUILD_DIR)/
-	# modify DataPath
-	cd $(BUILD_DIR); \
-	sed -i -r '/\/\* <BUILD>|<\/BUILD> \*\//d' content/env.js
 	# set branch
 	cd $(BUILD_DIR); \
 	sed -i -r "/extensions\\.foxtrick\\.prefs\\.branch/s|\"dev\"|\"$(BRANCH_FULL) chrome\"|" defaults/preferences/foxtrick.js
@@ -278,9 +272,6 @@ safari:
 	cat ../$(MODULES) | while read m; do cp --parents "$$m" ../$(SAFARI_BUILD_DIR)/content; done;
 	# remove ignore modules from files
 	python module-update.py build -s $(MODULES) -e $(IGNORED_MODULES) -d $(SAFARI_BUILD_DIR)/
-	# modify DataPath
-	cd $(SAFARI_BUILD_DIR); \
-	sed -i -r '/\/\* <BUILD>|<\/BUILD> \*\//d' content/env.js
 	# set branch
 	cd $(SAFARI_BUILD_DIR); \
 	sed -i -r "/extensions\\.foxtrick\\.prefs\\.branch/s|\"dev\"|\"$(BRANCH_FULL) safari\"|" defaults/preferences/foxtrick.js

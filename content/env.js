@@ -48,6 +48,25 @@ Foxtrick.SB.tabs.create(url)
 // Foxtrick.ResourcePath: called from html page - external page
 // Foxtrick.DataPath: path to res/
 
+/**
+ * Define a lazy-loaded cached property
+ * @param {object}   obj
+ * @param {string}   prop
+ * @param {function} calc
+ */
+Foxtrick.lazyProp = function(obj, prop, calc) {
+	Object.defineProperty(obj, prop, {
+		configurable: true,
+		enumerable: true,
+		get: function() {
+			var val = calc();
+			delete this[prop];
+			this[prop] = val;
+			return val;
+		},
+	});
+};
+
 (function() {
 
 	// used to cache dataUrl images
@@ -66,19 +85,21 @@ Foxtrick.SB.tabs.create(url)
 
 		// to tell which context the chrome script is running at
 		// either background page, or content script
-		Foxtrick.chromeContext = function() {
+		Foxtrick.lazyProp(Foxtrick, 'context', function() {
+			var ret;
 			try {
 				if (safari.application) {
-					return 'background';
+					ret = 'background';
 				}
 				else {
-					return 'content';
+					ret = 'content';
 				}
 			}
 			catch (e) {
-				return 'content';
+				ret = 'content';
 			}
-		};
+			return ret;
+		});
 
 		addListener = function(handler) {
 			var target = safari.self;
@@ -229,19 +250,21 @@ Foxtrick.SB.tabs.create(url)
 
 		// to tell which context the chrome script is running at
 		// either background page, or content script
-		Foxtrick.chromeContext = function() {
+		Foxtrick.lazyProp(Foxtrick, 'context', function() {
+			var ret;
 			try {
 				if (window.location.protocol == 'chrome-extension:') {
-					return 'background';
+					ret = 'background';
 				}
 				else {
-					return 'content';
+					ret = 'content';
 				}
 			}
 			catch (e) {
-				return 'content';
+				ret = 'content';
 			}
-		};
+			return ret;
+		});
 
 		// port common functions to sandboxed
 		Foxtrick.SB = {
@@ -294,7 +317,7 @@ Foxtrick.SB.tabs.create(url)
 			},
 		};
 
-		if (Foxtrick.chromeContext() == 'content') {
+		if (Foxtrick.context === 'content') {
 			// register this tab for broadcastMessage messages and receive tabId
 			Foxtrick.SB.ext.sendRequest({ req: 'register' },
 			  function(response) {
@@ -312,7 +335,7 @@ Foxtrick.SB.tabs.create(url)
 				}
 			});
 		}
-		else if (Foxtrick.chromeContext() == 'background') {
+		else if (Foxtrick.context === 'background') {
 			(function() {
 				var confirmAlive = function(response) {
 					if (response)
@@ -359,17 +382,15 @@ Foxtrick.SB.tabs.create(url)
 			Foxtrick.platform = 'Firefox'; // includes SeaMonkey here
 
 		if (Foxtrick.platform === 'Android') {
-			Foxtrick.chromeContext = function() {
+			Foxtrick.lazyProp(Foxtrick, 'context', function() {
 				if (typeof sendSyncMessage === 'function')
 					return 'content';
 				else
 					return 'background';
-			};
+			});
 		}
 		else {
-			Foxtrick.chromeContext = function() {
-				return 'background';
-			};
+			Foxtrick.context = 'background';
 		}
 
 		if (Foxtrick.platform === 'Android') {
@@ -591,9 +612,17 @@ if (Foxtrick.arch === 'Gecko') {
 	/* jshint ignore:end */
 }
 
-// this is external URL for builds
-// uncommented in MakeFile
-/* <BUILD>
-if (Foxtrick.platform !== 'Android')
-	Foxtrick.DataPath = 'https://cdn.rawgit.com/minj/foxtrick/res/%d/res/';
-</BUILD> */
+if (Foxtrick.platform !== 'Android') {
+	// use a remote DataPath for desktop installs unless running from source
+	// branch cannot be accessed so early so we need a lazy getter
+	(function() {
+		var localDataPath = Foxtrick.DataPath;
+		var remoteDataPath = 'https://cdn.rawgit.com/minj/foxtrick/res/%d/res/';
+		Foxtrick.lazyProp(Foxtrick, 'DataPath', function() {
+			if (Foxtrick.branch !== 'dev')
+				return remoteDataPath;
+			else
+				return localDataPath;
+		});
+	})();
+}

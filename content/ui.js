@@ -134,8 +134,8 @@ if (Foxtrick.platform == 'Firefox') {
 			catch (e) {}
 			statusText = Foxtrick.L10n.getString('status.enabled').replace('%s', hostname);
 		}
-		var tooltipText = Foxtrick.L10n.getString('toolbar.title') + ' ' + Foxtrick.version() +
-			' ' + Foxtrick.branch() + ' (' + statusText + ')';
+		var tooltipText = Foxtrick.L10n.getString('toolbar.title') + ' ' + Foxtrick.version +
+			' ' + Foxtrick.branch + ' (' + statusText + ')';
 		button.setAttribute('tooltiptext', tooltipText);
 	};
 }
@@ -167,7 +167,7 @@ if (Foxtrick.platform == 'Chrome') {
 			statusText = Foxtrick.L10n.getString('status.active');
 		}
 		var tooltipText = Foxtrick.L10n.getString('toolbar.title') + ' ' +
-			Foxtrick.version() + ' ' + Foxtrick.branch() + ' (' + statusText + ')';
+			Foxtrick.version + ' ' + Foxtrick.branch + ' (' + statusText + ')';
 		chrome.pageAction.setIcon({ tabId: tab.id, path: iconUrl });
 		chrome.pageAction.setTitle({ tabId: tab.id, title: tooltipText });
 	};

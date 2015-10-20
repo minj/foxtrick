@@ -9,7 +9,7 @@ if (!Foxtrick)
 	var Foxtrick = {};
 
 // background
-if (Foxtrick.chromeContext() == 'background') {
+if (Foxtrick.context == 'background') {
 	if (Foxtrick.arch === 'Gecko') {
 		(function() {
 			var hasIDB = false;
@@ -145,7 +145,7 @@ if (Foxtrick.chromeContext() == 'background') {
 }
 
 // content
-else if (Foxtrick.chromeContext() == 'content') {
+else if (Foxtrick.context == 'content') {
 
 	Foxtrick.localSet = function(key, value) {
 		// inform background

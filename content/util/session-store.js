@@ -69,14 +69,14 @@ if (Foxtrick.platform == 'Firefox') {
 // sessionStore for all other
 else {
 	// background
-	if (Foxtrick.chromeContext() == 'background') {
+	if (Foxtrick.context == 'background') {
 		Foxtrick.sessionSet = Foxtrick._sessionSet;
 		Foxtrick.sessionGet = Foxtrick._sessionGet;
 		Foxtrick.sessionDeleteBranch = Foxtrick._sessionDeleteBranch;
 	}
 
 	// content
-	else if (Foxtrick.chromeContext() == 'content') {
+	else if (Foxtrick.context == 'content') {
 
 		Foxtrick.sessionSet = function(key, value) {
 			// inform background

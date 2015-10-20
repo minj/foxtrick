@@ -106,7 +106,7 @@ if (!Foxtrick)
 			});
 		}
 		else if (Foxtrick.platform == 'Chrome') {
-			if (Foxtrick.chromeContext() == 'content') {
+			if (Foxtrick.context == 'content') {
 				Foxtrick.SB.ext.sendRequest({
 					req: 'cookieSet',
 					where: where,
@@ -198,7 +198,7 @@ if (!Foxtrick)
 			return;
 		}
 		else if (Foxtrick.platform == 'Chrome') {
-			if (Foxtrick.chromeContext() == 'content') {
+			if (Foxtrick.context == 'content') {
 				Foxtrick.SB.ext.sendRequest({ req: 'cookieGet', where: where, name: name },
 				  function(response) {
 					try {

@@ -28,7 +28,7 @@
 		feeds = Foxtrick.filter(function(n) { return n.trim() !== ''; }, feeds);
 		// add default feed if no feeds set or using dev/android
 		if (feeds.length === 0 ||
-		    Foxtrick.platform === 'Android' || Foxtrick.branch() === 'dev')
+		    Foxtrick.platform === 'Android' || Foxtrick.branch === 'dev')
 			feeds = [Foxtrick.DataPath + 'links.json'];
 
 		var parseFeed = function(text) {

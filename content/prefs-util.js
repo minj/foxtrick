@@ -281,7 +281,7 @@ Foxtrick.Prefs = {
 	//  ----------------- function for preference.js ---------------------------
 	cleanupBranch: function() {
 		if (Foxtrick.arch == 'Gecko') {
-			if (Foxtrick.chromeContext() === 'background') {
+			if (Foxtrick.context === 'background') {
 				try {
 					var array = Foxtrick.Prefs.getAllKeysOfBranch('module');
 					for (var i = 0; i < array.length; i++) {
@@ -398,7 +398,7 @@ Foxtrick.Prefs = {
 				// skip old version
 				try {
 					if (key === 'oldVersion' && value.match(/\d+\.\d+(\.\d+)?/)[0] !==
-						Foxtrick.version().match(/\d+\.\d+(\.\d+)?/)[0])
+						Foxtrick.version.match(/\d+\.\d+(\.\d+)?/)[0])
 						continue;
 				}
 				catch (e) {}
@@ -495,7 +495,7 @@ if (Foxtrick.arch === 'Gecko') {
 		setString: function(key, value) {
 			value = String(value);
 			value = value.replace(/\\./g, unescape);
-			if (Foxtrick.chromeContext() === 'content')
+			if (Foxtrick.context === 'content')
 				Foxtrick.SB.ext.sendRequest({
 					req: 'setValue',
 					type: 'string',
@@ -520,7 +520,7 @@ if (Foxtrick.arch === 'Gecko') {
 		},
 
 		setInt: function(key, value) {
-			if (Foxtrick.chromeContext() === 'content')
+			if (Foxtrick.context === 'content')
 				Foxtrick.SB.ext.sendRequest({
 					req: 'setValue',
 					type: 'int',
@@ -540,7 +540,7 @@ if (Foxtrick.arch === 'Gecko') {
 		},
 
 		setBool: function(key, value) {
-			if (Foxtrick.chromeContext() === 'content')
+			if (Foxtrick.context === 'content')
 				Foxtrick.SB.ext.sendRequest({
 					req: 'setValue',
 					type: 'bool',
@@ -552,7 +552,7 @@ if (Foxtrick.arch === 'Gecko') {
 		},
 
 		deleteValue: function(key) {
-			if (Foxtrick.chromeContext() === 'background') {
+			if (Foxtrick.context === 'background') {
 				if (Foxtrick.Prefs._prefs_gecko.prefHasUserValue(encodeURI(key)))
 					Foxtrick.Prefs._prefs_gecko.clearUserPref(encodeURI(key));   // reset to default
 			}
@@ -680,7 +680,7 @@ if (Foxtrick.arch === 'Sandboxed') {
 		},
 	};
 
-	if (Foxtrick.chromeContext() == 'background') {
+	if (Foxtrick.context == 'background') {
 
 		var FoxtrickPrefsChromeBackground = {
 			init: function() {
@@ -773,7 +773,7 @@ if (Foxtrick.arch === 'Sandboxed') {
 	}
 
 
-	if (Foxtrick.chromeContext() == 'content') {
+	if (Foxtrick.context == 'content') {
 		// set and delete for contents script side
 		var FoxtrickPrefsChromeContent = {
 
