@@ -55,6 +55,8 @@ Foxtrick.SB.tabs.create(url)
 
 	// messaging abstraction
 	var addListener, removeListener;
+	var REQUEST = 'request@foxtrick.org';
+	var RESPONSE = 'response@foxtrick.org';
 
 	if (typeof safari === 'object') {
 		Foxtrick.arch = 'Sandboxed';
@@ -113,7 +115,7 @@ Foxtrick.SB.tabs.create(url)
 						// Listen for a response for our specific request token.
 						addOneTimeResponseListener(callbackToken, callback);
 
-						target.dispatchMessage('request', msg);
+						target.dispatchMessage(REQUEST, msg);
 					};
 
 					// Make a listener which, when activated for the given callbackToken,
@@ -130,7 +132,7 @@ Foxtrick.SB.tabs.create(url)
 								}
 							};
 
-							if (ev.name != 'response')
+							if (ev.name != RESPONSE)
 								return;
 							if (ev.message.callbackToken != callbackToken)
 								return;
@@ -165,7 +167,7 @@ Foxtrick.SB.tabs.create(url)
 					addListener: function(handler) {
 						var responseHandler = function(ev) {
 							// Only listen for 'sendRequest' messages
-							if (ev.name != 'request')
+							if (ev.name != REQUEST)
 								return;
 
 							var request = ev.message.data;
@@ -178,7 +180,7 @@ Foxtrick.SB.tabs.create(url)
 									data: dataToSend,
 								};
 
-								ev.target.page.dispatchMessage('response', reply);
+								ev.target.page.dispatchMessage(RESPONSE, reply);
 							};
 							handler(request, sender, sendResponse);
 						};
@@ -409,10 +411,10 @@ Foxtrick.SB.tabs.create(url)
 							addOneTimeResponseListener(callbackToken, callback);
 
 							if (typeof sendAsyncMessage === 'function') {
-								sendAsyncMessage('request', msg);
+								sendAsyncMessage(REQUEST, msg);
 							}
 							else {
-								messageManager.broadcastAsyncMessage('request', msg);
+								messageManager.broadcastAsyncMessage(REQUEST, msg);
 							}
 						};
 
@@ -434,14 +436,14 @@ Foxtrick.SB.tabs.create(url)
 								if (ev.json.callbackToken != callbackToken)
 									return;
 
-								removeListener('response', responseHandler);
+								removeListener(RESPONSE, responseHandler);
 
 								if (typeof callback === 'function') {
 									run(callback);
 								}
 							};
 
-							addListener('response', responseHandler);
+							addListener(RESPONSE, responseHandler);
 						};
 
 						return theFunction;
@@ -470,17 +472,16 @@ Foxtrick.SB.tabs.create(url)
 									};
 
 									if (typeof sendAsyncMessage === 'function') {
-										sendAsyncMessage('response', reply);
+										sendAsyncMessage(RESPONSE, reply);
 									}
 									else if (typeof messageManager !== 'undefined') {
 										try {
 											var childMM = ev.target.messageManager;
-											childMM.sendAsyncMessage('response', reply);
+											childMM.sendAsyncMessage(RESPONSE, reply);
 										}
 										catch (e) {
 											Foxtrick.error('No MessageSender');
-											messageManager.
-												broadcastAsyncMessage('response', reply);
+											messageManager.broadcastAsyncMessage(RESPONSE, reply);
 										}
 									}
 								};
@@ -494,20 +495,20 @@ Foxtrick.SB.tabs.create(url)
 						addListener: function(handler) {
 							var handlerWrapper = this.__makeHandlerWrapper(handler);
 							this.__handlerWrappers.set(handler, handlerWrapper);
-							addListener('request', handlerWrapper);
+							addListener(REQUEST, handlerWrapper);
 						},
 
 						removeListener: function(handler) {
 							var handlerWrapper = this.__handlerWrappers.get(handler);
 							if (typeof handlerWrapper !== 'undefined') {
 								this.__handlerWrappers.delete(handler);
-								removeListener('request', handlerWrapper);
+								removeListener(REQUEST, handlerWrapper);
 							}
 						},
 					},
 
 					broadcastMessage: function(message) {
-						messageManager.broadcastAsyncMessage('request', { data: message });
+						messageManager.broadcastAsyncMessage(REQUEST, { data: message });
 					},
 
 					// tabId of a content script
