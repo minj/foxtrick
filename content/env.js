@@ -224,8 +224,8 @@ Foxtrick.SB.tabs.create(url)
 	else if (typeof chrome === 'object') {
 		Foxtrick.arch = 'Sandboxed';
 		Foxtrick.platform = 'Chrome';
-		Foxtrick.InternalPath = Foxtrick.ResourcePath = chrome.extension.getURL('content/');
-		Foxtrick.DataPath = chrome.extension.getURL('res/');
+		Foxtrick.InternalPath = Foxtrick.ResourcePath = chrome.runtime.getURL('content/');
+		Foxtrick.DataPath = chrome.runtime.getURL('res/');
 
 		// to tell which context the chrome script is running at
 		// either background page, or content script
@@ -256,25 +256,29 @@ Foxtrick.SB.tabs.create(url)
 				sendRequest: function(data, callback) {
 					try {
 						if (callback)
-							chrome.extension.sendRequest(data, callback);
+							chrome.runtime.sendMessage(data, callback);
 						else
-							chrome.extension.sendRequest(data);
+							chrome.runtime.sendMessage(data);
 					}
 					catch (e) {}
 				},
-				onRequest: {
-					addListener: function(listener) {
-						chrome.extension.onRequest.addListener(listener);
-					},
-				},
-
 				// README: chrome implementation uses direct binding to sendResponse function rather
 				// than callback tokens, thus normally there are no listeners on the content side.
 				broadcastMessage: function(data, callback) {
 					for (var i in Foxtrick.SB.tabs.active) {
-						chrome.tabs.sendRequest(Number(i), data, callback);
+						chrome.tabs.sendMessage(Number(i), data, callback);
 					}
 				},
+
+				onRequest: {
+					addListener: function(listener) {
+						chrome.runtime.onMessage.addListener(function(data, sender, sendResponse) {
+							listener(data, sender, sendResponse);
+							return true; // assure message channel is left open for async
+						});
+					},
+				},
+
 				// tabId of a content script
 				tabId: -1,
 			},
@@ -324,7 +328,7 @@ Foxtrick.SB.tabs.create(url)
 						// not the sender
 						if (i != senderId) {
 							var msg = { req: 'checkAlive', id: i };
-							chrome.tabs.sendRequest(Number(i), msg, confirmAlive);
+							chrome.tabs.sendMessage(Number(i), msg, confirmAlive);
 						}
 					}
 					Foxtrick.SB.tabs.active[senderId] = true;
