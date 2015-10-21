@@ -541,16 +541,16 @@
 			"words_translated": "13582"
 		},
 		{
-			"approved": "1738",
-			"approved_progress": "75",
+			"approved": "1881",
+			"approved_progress": "80",
 			"code": "sr",
 			"name": "Serbian (Cyrillic)",
 			"phrases": "2151",
-			"translated": "1757",
-			"translated_progress": "76",
+			"translated": "1901",
+			"translated_progress": "81",
 			"words": "15262",
-			"words_approved": "11452",
-			"words_translated": "11636"
+			"words_approved": "12312",
+			"words_translated": "12501"
 		},
 		{
 			"approved": "0",
