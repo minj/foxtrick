@@ -264,7 +264,8 @@ FoxtrickFirefox.prototype = {
 			};
 			for (let i in libMap) {
 				let lib = libMap[i];
-				Services.scriptloader.loadSubScript(PATH + 'lib/' + lib, scope, 'UTF-8');
+				let url = FOXTRICK_PATH + 'lib/' + lib + '?bg=' + FOXTRICK_RUNTIME;
+				Services.scriptloader.loadSubScript(url, scope, 'UTF-8');
 				this.owner.Foxtrick[i] = scope.module.exports;
 			}
 		}
@@ -275,8 +276,9 @@ FoxtrickFirefox.prototype = {
 		// loading Foxtrick into window.Foxtrick
 		for (var i = 0; i < this.scripts.length; ++i) {
 			var script = this.scripts[i];
+			var url = FOXTRICK_PATH + script + '?bg=' + FOXTRICK_RUNTIME;
 			try {
-				Services.scriptloader.loadSubScript(PATH + script, this.owner, 'UTF-8');
+				Services.scriptloader.loadSubScript(url, this.owner, 'UTF-8');
 			}
 			catch (e) {
 				e.message = 'Foxtrick ERROR: ' + script + ': ' + e.message + '\n' + e.stack + '\n';
@@ -301,7 +303,7 @@ FoxtrickFirefox.prototype = {
 		}
 		else {
 			try {
-				Services.scriptloader.loadSubScript(PATH + 'lib/ToolbarItem.js', this);
+				Services.scriptloader.loadSubScript(FOXTRICK_PATH + 'lib/ToolbarItem.js', this);
 				this.loadToolbarItem();
 			}
 			catch (e) {
@@ -438,7 +440,7 @@ function loadIntoWindow(window) {
 		return;
 
 	// styles also needed in eg customize-toolbox
-	var uri = PATH + 'resources/css/overlay.css';
+	var uri = FOXTRICK_PATH + 'resources/css/overlay.css';
 	var attr = 'id="foxtrick-overlay-css" type="text/css" href="' + uri + '"';
 	var style = window.document.createProcessingInstruction('xml-stylesheet', attr);
 	window.document.insertBefore(style, window.document.documentElement);

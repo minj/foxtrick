@@ -342,7 +342,7 @@ Foxtrick.util.api = {
 
 					var parser = new doc.defaultView.DOMParser();
 					var xml = parser.parseFromString(JSON.parse(xml_cache.xml_string), 'text/xml');
-					var errorText = getError(xml, status);
+					var errorText = getError(xml);
 					safeCallback(xml, errorText);
 				}
 				else {

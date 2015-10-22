@@ -1,10 +1,12 @@
 'use strict';
+
 Cu.import('resource://gre/modules/Services.jsm');
 
 var FoxtrickFennec = function(window) {
 	this.owner = window;
+	// exporting symbols for scripts-fennec
 	window.FOXTRICK_RUNTIME = FOXTRICK_RUNTIME;
-	window.FOXTRICK_PATH = PATH;
+	window.FOXTRICK_PATH = FOXTRICK_PATH;
 };
 FoxtrickFennec.prototype = {
 	scripts: [
@@ -83,7 +85,8 @@ FoxtrickFennec.prototype = {
 			};
 			for (let i in libMap) {
 				let lib = libMap[i];
-				Services.scriptloader.loadSubScript(PATH + 'lib/' + lib, scope, 'UTF-8');
+				let url = FOXTRICK_PATH + 'lib/' + lib + '?bg=' + FOXTRICK_RUNTIME;
+				Services.scriptloader.loadSubScript(url, scope, 'UTF-8');
 				this.owner.Foxtrick[i] = scope.module.exports;
 			}
 		}
@@ -93,8 +96,9 @@ FoxtrickFennec.prototype = {
 		}
 		for (var i = 0; i < this.scripts.length; ++i) {
 			var script = this.scripts[i];
+			var url = FOXTRICK_PATH + script + '?bg=' + FOXTRICK_RUNTIME;
 			try {
-				Services.scriptloader.loadSubScript(PATH + script, this.owner, 'UTF-8');
+				Services.scriptloader.loadSubScript(url, this.owner, 'UTF-8');
 			}
 			catch (e) {
 				e.message = 'Foxtrick ERROR: ' + script + ': ' + e.message + '\n' + e.stack + '\n';
