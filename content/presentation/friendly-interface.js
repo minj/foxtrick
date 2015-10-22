@@ -27,6 +27,7 @@ Foxtrick.modules['FriendlyInterface'] = {
 			// a player has highlight <=> he is a national player
 			var highlight = playerInfo.getElementsByClassName('highlight')[0];
 			if (highlight) {
+				// FIXME: this is bound to break
 				var text = highlight.textContent;
 				var leagueId = Foxtrick.Pages.Player.getNationalityId(doc);
 				var league = Foxtrick.XMLData.League[leagueId];

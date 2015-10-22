@@ -713,8 +713,9 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 
 			var specMatch = info.textContent.match(/\[(\D+)\]/);
 			if (specMatch) {
-				player.speciality = specMatch[1];
-				player.specialityNumber = Foxtrick.L10n.getNumberFromSpeciality(specMatch[1]);
+				var spec = specMatch[1].trim();
+				player.speciality = spec;
+				player.specialityNumber = Foxtrick.L10n.getNumberFromSpeciality(spec);
 			}
 
 			// this could include form, stamina, leadership and experience
@@ -864,7 +865,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				player.lastMatchId = parseInt(youthMatchId || matchId, 10);
 
 				var positionSpan = matchRatingCell.querySelector('.shy');
-				var position = positionSpan.textContent.match(/\((.+)\)/)[1];
+				var position = positionSpan.textContent.match(/\((.+)\)/)[1].trim();
 				player.lastPosition = position;
 				player.lastPositionType = Foxtrick.L10n.getPositionType(position);
 
@@ -948,8 +949,9 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 								}
 							}, currentPara.childNodes);
 							for (var j in Foxtrick.XMLData.League) {
-								// README: this will break with localized country names
-								var re = new RegExp(Foxtrick.XMLData.getNTNameByLeagueId(j));
+								// README: this will break with localized league names
+								var league = Foxtrick.L10n.getCountryNameNative(j);
+								var re = new RegExp(Foxtrick.strToRe(league));
 								if (re.test(leagueText)) {
 									player.currentLeagueId = j;
 									break;
@@ -962,14 +964,21 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 					return false;
 				}, paragraphs);
 			}
-			var psicoLink = null;
-			var showDiv = doc.getElementById('psicotsi_show_div_' + i) ||
-				doc.getElementById('psico_show_div_' + i) ||
-				doc.getElementById('ft_psico_show_div_' + i);
-			if (showDiv) {
-				psicoLink = showDiv.getElementsByTagName('a')[0];
-				player.psicoTSI = psicoLink.textContent.match(/\d+\.\d+/)[0];
-				player.psicoTitle = psicoLink.textContent.match(/(.+)\s\[/)[1];
+
+			var psicoDiv = playerNode.querySelector('.ft-psico');
+			if (psicoDiv) {
+				player.psicoTSI = psicoDiv.dataset.psicoAvg;
+				player.psicoTitle = psicoDiv.dataset.psicoSkill;
+			}
+			else {
+				var psicoLink = null;
+				var showDiv = doc.getElementById('psicotsi_show_div_' + i) ||
+					doc.getElementById('psico_show_div_' + i);
+				if (showDiv) {
+					psicoLink = showDiv.getElementsByTagName('a')[0];
+					player.psicoTSI = psicoLink.textContent.match(/\d+\.\d+/)[0];
+					player.psicoTitle = psicoLink.textContent.match(/(.+)\s\[/)[1];
+				}
 			}
 
 		}, playerNodes);
