@@ -191,9 +191,11 @@ Foxtrick.Prefs = {
 
 	// returns whether Foxtrick is enabled on doc
 	isEnabled: function(doc) {
+		if (Foxtrick.Prefs.getBool('disableTemporary'))
+			return false;
 		if (Foxtrick.Prefs.getBool('disableOnStage') && Foxtrick.isStage(doc))
 			return false;
-		if (Foxtrick.Prefs.getBool('disableTemporary'))
+		if (!Foxtrick.Prefs.getBool('runLoggedOff') && Foxtrick.isLoginPage(doc))
 			return false;
 		return true;
 	},

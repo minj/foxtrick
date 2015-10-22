@@ -106,6 +106,7 @@
 	Foxtrick.modules['Links'] = {
 		MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
 		CORE_MODULE: true,
+		PAGES: ['all'],
 		OPTIONS: ['ReuseTab'],
 
 		OPTION_FUNC: function(doc) {

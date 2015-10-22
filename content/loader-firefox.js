@@ -125,7 +125,7 @@ Foxtrick.loader.firefox.tabFocus = function(ev) {
 		if (!Foxtrick.isHt(doc))
 			return;
 
-		Foxtrick.entry.run(doc, true); // recheck css
+		Foxtrick.entry.checkCSS(doc);
 
 		Foxtrick.log.flush(doc);
 	} catch (e) {

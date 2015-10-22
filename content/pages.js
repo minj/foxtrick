@@ -22,7 +22,7 @@ if (!Foxtrick)
 
 // jscs:disable disallowSpaceAfterObjectKeys, disallowQuotedKeysInObjects
 // jscs:disable disallowMultipleSpaces
-Foxtrick.ht_pages = {
+Foxtrick.htPages = {
 	// following are mainly used for information gathering. keep on top
 	'myHattrick'                : '/MyHattrick/$',  // that's the news page
 	'myHattrickAll'             : '/MyHattrick/|.(org|fm|ws|name|net|pl|br)/$', // TLD
@@ -196,8 +196,8 @@ Foxtrick.pagesExcluded = {
  * @return {Boolean}
  */
 Foxtrick.isPage = function(doc, page) {
-	if (typeof Foxtrick.ht_pages[page] !== 'undefined')
-		return Foxtrick.isPageHref(doc.location.href, Foxtrick.ht_pages[page]);
+	if (typeof Foxtrick.htPages[page] !== 'undefined')
+		return Foxtrick.isPageHref(doc.location.href, Foxtrick.htPages[page]);
 	else {
 		Foxtrick.error('Requesting unknown page: ' + page);
 		return false;

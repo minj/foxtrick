@@ -169,8 +169,8 @@ Foxtrick.modules.Core = {
 				Foxtrick.localGet('shortTeamName.' + teamId, processShortName);
 			}
 
-			Foxtrick.ht_pages['ownPlayers'] =
-				Foxtrick.ht_pages['ownPlayersTemplate'].replace(/\[id\]/g, teamId);
+			Foxtrick.htPages['ownPlayers'] =
+				Foxtrick.htPages['ownPlayersTemplate'].replace(/\[id\]/g, teamId);
 			Foxtrick.addClass(doc.body, 'ft-teamID-' + teamId);
 		}
 
@@ -181,16 +181,16 @@ Foxtrick.modules.Core = {
 				if (CORE.TEAM.teamId == leftMenuTeamId) {
 					var youthId = Foxtrick.util.id.findYouthTeamId(subMenu);
 					CORE.TEAM.youthTeamId = youthId;
-					Foxtrick.ht_pages['ownYouthPlayers'] =
-						Foxtrick.ht_pages['ownYouthPlayersTemplate'].replace(/\[id\]/g, youthId);
+					Foxtrick.htPages['ownYouthPlayers'] =
+						Foxtrick.htPages['ownYouthPlayersTemplate'].replace(/\[id\]/g, youthId);
 
 					var ntTeamLink = subMenu.querySelector('a[href^="/Club/NationalTeam/"]');
 					if (ntTeamLink) {
 						// NT coach
 						var ntId = Foxtrick.util.id.getTeamIdFromUrl(ntTeamLink.href);
 						if (ntId) {
-							Foxtrick.ht_pages['ownPlayers'] =
-								Foxtrick.ht_pages['ownPlayers'].replace(/\[ntid\]/g, ntId);
+							Foxtrick.htPages['ownPlayers'] =
+								Foxtrick.htPages['ownPlayers'].replace(/\[ntid\]/g, ntId);
 						}
 					}
 				}

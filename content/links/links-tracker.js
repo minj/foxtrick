@@ -7,6 +7,7 @@
 
 Foxtrick.modules['LinksTracker'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
+	PAGES: ['all'],
 	LINK_TYPE: 'trackerplayerlink',
 	/**
 	 * return HTML for FT prefs

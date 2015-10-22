@@ -654,16 +654,16 @@ function initListeners() {
 	});
 }
 
-// get page IDs in Foxtrick.ht_pages that last page matches and store them
+// get page IDs in Foxtrick.htPages that last page matches and store them
 // in pageIds
 function getPageIds() {
 	var lastPage = Foxtrick.getLastPage();
 	var i;
-	for (i in Foxtrick.ht_pages) {
+	for (i in Foxtrick.htPages) {
 		// ignore PAGE all, it's shown in universal tab
 		if (i == 'all')
 			continue;
-		if (Foxtrick.isPageHref(lastPage, Foxtrick.ht_pages[i]))
+		if (Foxtrick.isPageHref(lastPage, Foxtrick.htPages[i]))
 			pageIds.push(i);
 	}
 }
