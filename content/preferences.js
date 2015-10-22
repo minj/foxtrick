@@ -643,12 +643,11 @@ function initListeners() {
 			    ev.target.getAttribute('href')[0] == '#')) {
 				locateFragment(ev.target.href);
 			}
-			else if (ev.target.getAttribute('href').indexOf('http://www.hattrick.org') === 0) {
+			else if (Foxtrick.isHtUrl(ev.target.href)) {
 				// we redirect links starting with
 				// 'http://www.hattrick.org' to last Hattrick host
-				var url =
-					ev.target.href.replace(/^http:\/\/www\.hattrick\.org/, Foxtrick.getLastHost());
-				ev.target.setAttribute('href', url);
+				var url = Foxtrick.goToUrl(ev.target.href);
+				ev.target.href = url;
 			}
 		}
 	});

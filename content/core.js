@@ -28,7 +28,8 @@ Foxtrick.modules.Core = {
 		if (Foxtrick.isPage(doc, 'matchOrder'))
 			Foxtrick.util.inject.jsLink(doc, Foxtrick.InternalPath +
 			                            'resources/js/matchOrderData.js');
-		this.updateLastHost(doc);
+
+		this.updateLastPage(doc);
 		this.showVersion(doc);
 		this.featureHighlight(doc);
 		this.showChangeLog(doc);
@@ -72,10 +73,7 @@ Foxtrick.modules.Core = {
 		Foxtrick.makeModal(doc, Foxtrick.version, content);
 	},
 
-	updateLastHost: function(doc) {
-		// update Foxtrick.lastHost, which is used when opening links
-		// from browser chrome
-		Foxtrick.setLastHost(doc.location.protocol + '//' + doc.location.hostname);
+	updateLastPage: function(doc) {
 		Foxtrick.setLastPage(doc.location.href);
 	},
 

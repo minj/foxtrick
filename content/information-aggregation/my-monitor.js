@@ -82,8 +82,8 @@ Foxtrick.modules['MyMonitor'] = {
 		};
 
 		var addBulkLiveSelect = function(div) {
-			var URL_TEMPLATE = Foxtrick.getLastHost() + '/Club/Matches/Live.aspx' +
-				'?matchID={}&actionType=addMatch&SourceSystem={}';
+			var url = '/Club/Matches/Live.aspx?matchID=!&actionType=addMatch&SourceSystem=!';
+			var URL_TEMPLATE = Foxtrick.goToUrl(url).replace(/!/g, '{}');
 
 			var tbl = doc.createElement('table');
 			tbl.id = 'ft-monitor-live-links';
