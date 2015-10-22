@@ -438,11 +438,11 @@
 			"code": "mt",
 			"name": "Maltese",
 			"phrases": "2151",
-			"translated": "779",
-			"translated_progress": "31",
+			"translated": "886",
+			"translated_progress": "32",
 			"words": "15262",
 			"words_approved": "0",
-			"words_translated": "4777"
+			"words_translated": "4950"
 		},
 		{
 			"approved": "1",
@@ -486,11 +486,11 @@
 			"code": "pl",
 			"name": "Polish",
 			"phrases": "2151",
-			"translated": "2129",
-			"translated_progress": "97",
+			"translated": "2151",
+			"translated_progress": "100",
 			"words": "15262",
 			"words_approved": "0",
-			"words_translated": "14838"
+			"words_translated": "15262"
 		},
 		{
 			"approved": "0",

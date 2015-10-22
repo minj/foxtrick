@@ -7,11 +7,21 @@ pl:
       note_0: 'To jest wersja beta następnego wydania. Proszę pomóż w tłumaczeniu tej wersji na naszej super łatwej stronie tłumaczeń <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.16.0:
       important: '<header>Ważne ogłoszenia</header>'
+      safari: "Ze względu na zmiany w polityce firmy Apple i ogólnej niechęci do poprawy ich przeglądarki nie jesteśmy w stanie zagwarantować aktualizacji automatycznych i ogólnego wsparcia dla użytkowników Safari. Proszę rozważyć korzystanie z Firefox'a, Google Chrome i Opery."
       crowdin: '<header>Wiele tłumaczeń pochodzi od naszych niesamowitych użytkowników korzystających z <linkCrowdin>narzędzia crowdin</linkCrowdin>. Ty też możesz pomóc!</header>'
       support: '<header>Podoba ci się to, co robimy? Proszę <linkContribute>Wesprzyj Foxtrick</linkContribute>.</header>'
       new: '<header>Nowe moduły</header>'
+      transfers: '<module>CurrentTransfers</module> dodaje więcej informacji na temat graczy na bieżącej stronie transferów.'
       bugs: '<header>Poprawki błędów</header>'
+      stamina_prediction: 'Przewidywanie podpoziomu kondycji (<module>MatchLineupTweaks</module>) było nieprawidłowe z powodu zmian w HT. Ten problem powinien już być naprawiony.'
+      match_order: "Dostosowano układ w <module>MatchSimulator</module> i <module>MatchOrderInterface</module>, aby uwzględnić zmiany w wyglądzie Hattrick'a."
+      team_detection: 'Zaistniały różne inne problemy ze względu na zmiany w wyglądzie HT: zniknęły wizerunki graczy drużyn gości, <module>LiveAlert</module> wykrywanie bramek nie działało itp. Wszystkie problemy powinny już być naprawione.'
       other: '<header>Inne zmiany</header>'
+      table: '<module>PlayerFilters</module> i <module>SkillTable</module> zostały przepisane, by naprawić kilka błędów i poszerzyć ich funkcjonalność. Kluczowe kolumny tabel są teraz zamrażane, aby uniemożliwić przewijanie w poziomie, można teraz ukryć niektórych graczy i więcej. Użyj przycisku informacji, aby przeczytać pełny opis.'
+      opponent_goals: 'Dodano inny dźwięk gola dla bramek przeciwników w <module>LiveAlert</module>.'
+      indonesian: Dodano wsparcie dla języka indonezyjskiego.
+      match_events: Obecnie opisy typów zdarzeń meczowych mogą być również tłumaczone.
+      style_cleanup: "Style Foxtrick'a (CSS) zostały dostosowane do lepszej obsługi niestandardowych motywów Hattrick'a. W efekcie można teraz przypisać własne kolory użytkownika kadrze HT w <module>StaffMarker</module>."
       and_more: Różne inne małe zmiany i poprawki.
     0.15.2.1:
       important: '<header>Ważne ogłoszenia</header>'
