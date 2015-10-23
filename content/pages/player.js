@@ -876,7 +876,7 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerid, callback) {
  */
 Foxtrick.Pages.Player.getContributions = function(playerSkills, playerAttrs) {
 	var MF_VS_ATT = 4 / 3;
-	var DF_VS_ATT = 4 / 3;
+	var DF_VS_ATT = 1; // 4 / 3;
 	var CNTR_VS_WING = 35 / 25;
 	var WBD_VS_CD = 1.6;
 	var WO_VS_FW = 1.25;
