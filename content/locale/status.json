@@ -306,11 +306,11 @@
 			"code": "he",
 			"name": "Hebrew",
 			"phrases": "2151",
-			"translated": "1916",
-			"translated_progress": "87",
+			"translated": "1975",
+			"translated_progress": "89",
 			"words": "15262",
 			"words_approved": "0",
-			"words_translated": "13350"
+			"words_translated": "13703"
 		},
 		{
 			"approved": "197",
@@ -618,11 +618,11 @@
 			"code": "sv-SE",
 			"name": "Swedish",
 			"phrases": "2151",
-			"translated": "1938",
+			"translated": "1947",
 			"translated_progress": "92",
 			"words": "15262",
 			"words_approved": "13802",
-			"words_translated": "14080"
+			"words_translated": "14101"
 		},
 		{
 			"approved": "0",
