@@ -10,7 +10,7 @@ Beta channel uses a custom versioning scheme using `git describe`. Due to the wa
 
 If you happen to merge/rebase a branch with annotated tags on `master`, those tags will be used instead of the `0.x.9` beta tag with (most probably) **disastrous effects** on release versioning and/or build scripts.
 
-Lightweight (not annotated) tags like `cdn/*` are OK as they are not used unless you run `git describe --tags`.
+Lightweight (not annotated) tags like `res/*` are OK as they are not used unless you run `git describe --tags`.
 
 ### Version Bump
 A version bump comes after the release of a major stable version

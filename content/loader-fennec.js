@@ -19,6 +19,7 @@ if (Foxtrick.platform == 'Android') {
 	// fennec tab load. starts the content instances for fennec (one per tab. persistant)
 	Foxtrick.loader.fennec = {
 		DOMContentLoadedListener: function(ev) {
+			// Foxtrick.log('DOMContentLoaded');
 			// DOM ready. run on DOM page
 			Foxtrick.entry.docLoad(ev.originalTarget);
 		},
@@ -39,6 +40,8 @@ if (Foxtrick.platform == 'Android') {
 
 		tabLoadStart: function() {
 			// listen to unload request
+			// debugger;
+			// Foxtrick.log('Foxtrick: new tab loaded');
 			Foxtrick.SB.ext.onRequest.addListener(Foxtrick.loader.fennec.stopListener);
 
 			// request needed data from background and start with DOMContentLoaded

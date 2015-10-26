@@ -199,9 +199,10 @@ Foxtrick.L10n = {
 		var json = Foxtrick.L10n.htLanguagesJSON[lang].language;
 		var array = json[query.category];
 		if (Array.isArray(array)) {
+			var value = query.value.toString().trim();
 			var el = Foxtrick.nth(function(e) {
-				return e[query.filter] == query.value;
-				// return new RegExp('^' + e[query.filter], 'i').test(query.value);
+				return e[query.filter] === value;
+				// return new RegExp('^' + e[query.filter], 'i').test(value);
 			}, array);
 			if (el && typeof el === 'object' && query.property in el)
 				prop = el[query.property];
@@ -242,6 +243,7 @@ Foxtrick.L10n = {
 
 	// this function returns level including decimal subs from text.
 	getLevelFromText: function(text) {
+		text = text.trim();
 		var level = null, sublevel = 0;
 		var lang = Foxtrick.Prefs.getString('htLanguage');
 		var json = Foxtrick.L10n.htLanguagesJSON[lang].language;
@@ -270,6 +272,7 @@ Foxtrick.L10n = {
 		return level + sublevel;
 	},
 
+	// README: trimmed
 	getTextByLevel: function(value) {
 		var query = {
 			category: 'levels',
@@ -281,6 +284,7 @@ Foxtrick.L10n = {
 	},
 
 
+	// README: trimmed
 	// this function returns level string of given level type and numeral value.
 	// type could be levels, for normal skills;
 	// agreeability, honesty, and aggressiveness, which are all obvious.
@@ -328,6 +332,7 @@ Foxtrick.L10n = {
 		return mainStr + ' ' + subStr;
 	},
 
+	// README: trimmed
 	getTacticById: function(id) {
 		var tactics = [
 			'normal', //: 0,
@@ -412,6 +417,7 @@ Foxtrick.L10n = {
 		var spec = specs[number];
 		return spec || '';
 	},
+	// README: trimmed
 	getSpecialityFromNumber: function(number) {
 		var spec = this.getEnglishSpecialityFromNumber(number);
 		var query = {
@@ -485,6 +491,7 @@ Foxtrick.L10n = {
 		return type;
 	},
 
+	// README: trimmed
 	getPositionByType: function(val) {
 		var query = {
 			category: 'positions',
@@ -505,7 +512,7 @@ Foxtrick.L10n = {
 	},
 
 	/**
-	 * Get country name for display purposes.
+	 * Get country name (trimmed) for display purposes.
 	 * Honors language settings in CountryList.
 	 * Returns 'New Moon' if the method fails.
 	 * @param  {number} leagueId
@@ -523,7 +530,7 @@ Foxtrick.L10n = {
 	},
 
 	/**
-	 * Get English country name.
+	 * Get English country name (trimmed).
 	 * Returns 'New Moon' if the method fails.
 	 * @param  {number} leagueId
 	 * @return {string}
@@ -540,7 +547,7 @@ Foxtrick.L10n = {
 	},
 
 	/**
-	 * Get native country name.
+	 * Get native country name (trimmed).
 	 * Returns 'New Moon' if the method fails.
 	 * @param  {number} leagueId
 	 * @return {string}
@@ -557,7 +564,7 @@ Foxtrick.L10n = {
 	},
 
 	/**
-	 * Get localized country name.
+	 * Get localized country name (trimmed).
 	 * Returns 'New Moon' if the method fails.
 	 * @param  {number} leagueId
 	 * @param  {string} lang     language (optional)

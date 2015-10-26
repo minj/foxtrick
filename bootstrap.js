@@ -5,7 +5,7 @@
  */
 'use strict';
 const { classes: Cc, interfaces: Ci, utils: Cu, manager: Cm, results: Cr } = Components;
-const PATH = 'chrome://foxtrick/content/';
+const FOXTRICK_PATH = 'chrome://foxtrick/content/';
 
 let _gLoader;
 
@@ -93,20 +93,23 @@ function startup(aData, aReason) {
 
 	_gLoader = { FOXTRICK_RUNTIME: new Date().valueOf() };
 
-	let pathToDefault;
+	let pathToDefault, bootstrap;
 	// load specific startup stripts
 	if (isFennecNative()) {
 		// old FF loads anything that ends with .js
 		// so we can't name this one foxtrick-android.js
 		pathToDefault = aData.resourceURI.spec + 'defaults/preferences/foxtrick-android';
-		setDefaultPrefs(pathToDefault, branch);
-		Services.scriptloader.loadSubScript(PATH + 'bootstrap-fennec.js', _gLoader, 'UTF-8');
+		bootstrap = 'bootstrap-fennec.js';
 	}
 	else {
 		pathToDefault = aData.resourceURI.spec + 'defaults/preferences/foxtrick.js';
-		setDefaultPrefs(pathToDefault, branch);
-		Services.scriptloader.loadSubScript(PATH + 'bootstrap-firefox.js', _gLoader, 'UTF-8');
+		bootstrap = 'bootstrap-firefox.js';
 	}
+
+	setDefaultPrefs(pathToDefault, branch);
+
+	bootstrap += '?bg=' + _gLoader.FOXTRICK_RUNTIME;
+	Services.scriptloader.loadSubScript(FOXTRICK_PATH + bootstrap, _gLoader, 'UTF-8');
 
 	// Load into any existing windows
 	let enumerator = Services.wm.getEnumerator('navigator:browser');

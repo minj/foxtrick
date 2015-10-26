@@ -49,6 +49,7 @@ Foxtrick.XMLData = {
 		}
 	},
 
+	// README: trimmed
 	getNTNameByLeagueId: function(id) {
 		var NT_BY_COUNTRY = {
 			// 'Al Maghrib': 'Al Maghrib ', // oh yes, there's a space here!
