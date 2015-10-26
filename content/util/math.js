@@ -138,3 +138,256 @@ Foxtrick.Predict.loyaltyBonus = function(loyaltyLevel, isMotherClub) {
 	else
 		return 0;
 };
+
+/**
+ * Make a position contribution map.
+ * Definition format: {center, wings, factor: number}
+ * @return {object} Object.<string, object> position contribution map
+ */
+Foxtrick.Predict.contributionFactors = function() {
+	var MF_VS_ATT = 4 / 3;
+	var DF_VS_ATT = 1; // 4 / 3;
+	var CNTR_VS_WING = 35 / 25;
+	var WBD_VS_CD = 1.6;
+	var WO_VS_FW = 1.25;
+
+	// all factors taken from https://docs.google.com/spreadsheets/d/1bNwtBdOxbY8pdY7uAx0boqHwRtJgj7tNpcFtDsP9Wq8/edit#gid=0
+	// format: middle[, side[, farSide]]
+	var factors = {
+		kp: {
+			keeper: [0.87, 0.61, 0.61],
+			defending: [0.35, 0.25, 0.25],
+		},
+		cd: {
+			defending: [1, 0.26, 0.26],
+			playmaking: 0.25,
+		},
+		cdo: {
+			defending: [0.73, 0.20, 0.20],
+			playmaking: 0.40,
+		},
+		cdtw: {
+			defending: [0.67, 0.81],
+			playmaking: 0.15,
+			winger: [0, 0.26],
+		},
+		wb: {
+			defending: [0.38, 0.92],
+			playmaking: 0.15,
+			winger: [0, 0.59],
+		},
+		wbd: {
+			defending: [0.43, 1],
+			playmaking: 0.10,
+			winger: [0, 0.45],
+		},
+		wbo: {
+			defending: [0.35, 0.74],
+			playmaking: 0.20,
+			winger: [0, 0.69],
+		},
+		wbtm: {
+			defending: [0.70, 0.75],
+			playmaking: 0.20,
+			winger: [0, 0.35],
+		},
+		w: {
+			defending: [0.20, 0.35],
+			playmaking: 0.45,
+			passing: [0.11, 0.26],
+			winger: [0, 0.86],
+		},
+		wd: {
+			defending: [0.25, 0.61],
+			playmaking: 0.30,
+			passing: [0.05, 0.21],
+			winger: [0, 0.69],
+		},
+		wo: {
+			defending: [0.13, 0.22],
+			playmaking: 0.30,
+			passing: [0.13, 0.29],
+			winger: [0, 1],
+		},
+		wtm: {
+			defending: [0.25, 0.29],
+			playmaking: 0.55,
+			passing: [0.16, 0.15],
+			winger: [0, 0.74],
+		},
+		im: {
+			defending: [0.40, 0.09, 0.09],
+			playmaking: 1,
+			passing: [0.33, 0.13, 0.13],
+			scoring: [0.22, 0],
+		},
+		imd: {
+			defending: [0.58, 0.14, 0.14],
+			playmaking: 0.95,
+			passing: [0.18, 0.07, 0.07],
+			scoring: [0.13, 0],
+		},
+		imo: {
+			defending: [0.16, 0.04, 0.04],
+			playmaking: 0.95,
+			passing: [0.49, 0.18, 0.18],
+			scoring: [0.31, 0],
+		},
+		imtw: {
+			defending: [0.33, 0.24],
+			playmaking: 0.90,
+			passing: [0.23, 0.31],
+			winger: [0, 0.59],
+		},
+		fw: {
+			playmaking: 0.25,
+			passing: [0.33, 0.14, 0.14],
+			scoring: [1, 0.27, 0.27],
+			winger: [0, 0.24, 0.24],
+		},
+		fwd: {
+			playmaking: 0.35,
+			passing: [0.53, 0.31, 0.31],
+			scoring: [0.56, 0.13, 0.13],
+			winger: [0, 0.13, 0.13],
+		},
+		tdf: {
+			playmaking: 0.35,
+			passing: [0.53, 0.41, 0.41],
+			scoring: [0.56, 0.13, 0.13],
+			winger: [0, 0.13, 0.13],
+		},
+		fwtw: {
+			playmaking: 0.15,
+			passing: [0.23, 0.21, 0.06],
+			scoring: [0.66, 0.51, 0.19],
+			winger: [0, 0.64, 0.21],
+		},
+	};
+
+	var getSkillData = function(position, skill) {
+		var pos = factors[position];
+
+		if (!(skill in pos))
+			return 0;
+
+		var contr = pos[skill];
+		var isDef = skill === 'defending' || skill === 'keeper';
+
+		var factor = 0, center = 0, side = 0, farSide = 0, wings = 0;
+		if (Array.isArray(contr)) {
+			center = contr[0];
+			side = contr[1];
+			farSide = contr[2] || 0;
+
+			side *= isDef ? WBD_VS_CD : WO_VS_FW;
+			farSide *= isDef ? WBD_VS_CD : WO_VS_FW;
+			wings = side + farSide;
+
+			// weighted average for 3 sectors
+			factor = (center + wings / CNTR_VS_WING) / (1 + 2 / CNTR_VS_WING);
+			if (isDef)
+				factor *= DF_VS_ATT;
+		}
+		else {
+			// PM
+			center = contr;
+			factor = center * MF_VS_ATT;
+		}
+		// Foxtrick.log(position, skill, factor);
+
+		return { center: center, side: side, farSide: farSide, wings: wings, factor: factor };
+	};
+
+	var ret = {};
+	for (var pos in factors) {
+		ret[pos] = {};
+		var skillDef = factors[pos];
+		for (var skill in skillDef) {
+			ret[pos][skill] = getSkillData(pos, skill);
+		}
+	}
+
+	return ret;
+};
+
+/**
+ * Get effective skill levels based on player attributes.
+ * Skill map must be {keeper, defending, playmaking, winger, passing, scoring, setPieces}.
+ * Attributes map must be {form, experience, loyalty, spec}
+ * Returns effective skill map.
+ * @author Greblys, LA-MJ
+ * @param  {object} skills Object.<string, number> skill map
+ * @param  {object} attrs  Object.<string, ?>      attribute map
+ * @return {object}        Object.<string, number> effective skill map
+ */
+Foxtrick.Predict.effectiveSkills = function(skills, attrs) {
+	var enabled = {};
+	Foxtrick.forEach(function(opt) {
+		enabled[opt] = Foxtrick.Prefs.isModuleOptionEnabled('PlayerPositionsEvaluations', opt);
+	}, [
+		'ExperienceIncluded',
+		'LoyaltyAndMCBIncluded',
+		'FormIncluded',
+		'BruisedIncluded',
+		'StaminaIncluded',
+	]);
+
+	var ret = {};
+	Foxtrick.mergeAll(ret, skills);
+
+	// Source [post=16376110.4]
+	var bonus, skill;
+	if (enabled['ExperienceIncluded'] && attrs.experience) { // don't do log 0
+		bonus = Math.log(attrs.experience) / Math.log(10) * 4.0 / 3.0;
+		for (skill in ret)
+			ret[skill] += bonus;
+	}
+
+	var loyalty = attrs.loyalty;
+	var mcb = attrs.motherClubBonus;
+	var tl = attrs.transferListed; // loyalty can be undefined in transfer pages
+	if (enabled['LoyaltyAndMCBIncluded'] && typeof loyalty !== 'undefined' && !tl) {
+		bonus = Foxtrick.Predict.loyaltyBonus(loyalty, mcb);
+		for (skill in ret)
+			ret[skill] += bonus;
+	}
+
+	var stamina = attrs.stamina;
+	if (enabled['StaminaIncluded']) {
+		var energy = Foxtrick.Predict.averageEnergy90(stamina);
+		for (skill in ret)
+			ret[skill] *= energy;
+	}
+
+	/**
+	 * Source [post=16376110.4]
+	 * Probably we will never know if the form affect needs to be calculated before or after
+	 * other bonuses' addition to the main skills.
+	 */
+	if (enabled['FormIncluded']) {
+		var formInfls = [
+			0,
+			0.305,
+			0.5,
+			0.629,
+			0.732,
+			0.82,
+			0.897,
+			0.967,
+			1,
+		];
+		for (skill in ret)
+			ret[skill] *= formInfls[attrs.form];
+	}
+
+	// source: http://www.hattrickinfo.com/en/training/284/#281-
+	if (enabled['BruisedIncluded']) {
+		if (attrs.bruised) {
+			for (skill in ret)
+				ret[skill] *= 0.95;
+		}
+	}
+
+	return ret;
+};
