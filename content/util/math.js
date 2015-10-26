@@ -152,18 +152,18 @@ Foxtrick.Predict.contributionFactors = function() {
 	var WO_VS_FW = 1.25;
 
 	// all factors taken from https://docs.google.com/spreadsheets/d/1bNwtBdOxbY8pdY7uAx0boqHwRtJgj7tNpcFtDsP9Wq8/edit#gid=0
-	// format: [middle, sides]
+	// format: middle[, side[, farSide]]
 	var factors = {
 		kp: {
-			keeper: [0.87, 0.61 * 2],
-			defending: [0.35, 0.25 * 2],
+			keeper: [0.87, 0.61, 0.61],
+			defending: [0.35, 0.25, 0.25],
 		},
 		cd: {
-			defending: [1, 0.26 * 2],
+			defending: [1, 0.26, 0.26],
 			playmaking: 0.25,
 		},
 		cdo: {
-			defending: [0.73, 0.20 * 2],
+			defending: [0.73, 0.20, 0.20],
 			playmaking: 0.40,
 		},
 		cdtw: {
@@ -216,21 +216,21 @@ Foxtrick.Predict.contributionFactors = function() {
 			winger: [0, 0.74],
 		},
 		im: {
-			defending: [0.40, 0.09 * 2],
+			defending: [0.40, 0.09, 0.09],
 			playmaking: 1,
-			passing: [0.33, 0.13 * 2],
+			passing: [0.33, 0.13, 0.13],
 			scoring: [0.22, 0],
 		},
 		imd: {
-			defending: [0.58, 0.14 * 2],
+			defending: [0.58, 0.14, 0.14],
 			playmaking: 0.95,
-			passing: [0.18, 0.07 * 2],
+			passing: [0.18, 0.07, 0.07],
 			scoring: [0.13, 0],
 		},
 		imo: {
-			defending: [0.16, 0.04 * 2],
+			defending: [0.16, 0.04, 0.04],
 			playmaking: 0.95,
-			passing: [0.49, 0.18 * 2],
+			passing: [0.49, 0.18, 0.18],
 			scoring: [0.31, 0],
 		},
 		imtw: {
@@ -241,27 +241,27 @@ Foxtrick.Predict.contributionFactors = function() {
 		},
 		fw: {
 			playmaking: 0.25,
-			passing: [0.33, 0.14 * 2],
-			scoring: [1, 0.27 * 2],
-			winger: [0, 0.24 * 2],
+			passing: [0.33, 0.14, 0.14],
+			scoring: [1, 0.27, 0.27],
+			winger: [0, 0.24, 0.24],
 		},
 		fwd: {
 			playmaking: 0.35,
-			passing: [0.53, 0.31 * 2],
-			scoring: [0.56, 0.13 * 2],
-			winger: [0, 0.13 * 2],
+			passing: [0.53, 0.31, 0.31],
+			scoring: [0.56, 0.13, 0.13],
+			winger: [0, 0.13, 0.13],
 		},
 		tdf: {
 			playmaking: 0.35,
-			passing: [0.53, 0.41 * 2],
-			scoring: [0.56, 0.13 * 2],
-			winger: [0, 0.13 * 2],
+			passing: [0.53, 0.41, 0.41],
+			scoring: [0.56, 0.13, 0.13],
+			winger: [0, 0.13, 0.13],
 		},
 		fwtw: {
 			playmaking: 0.15,
-			passing: [0.23, 0.21 + 0.06],
-			scoring: [0.66, 0.51 + 0.19],
-			winger: [0, 0.64 + 0.21],
+			passing: [0.23, 0.21, 0.06],
+			scoring: [0.66, 0.51, 0.19],
+			winger: [0, 0.64, 0.21],
 		},
 	};
 
@@ -274,11 +274,16 @@ Foxtrick.Predict.contributionFactors = function() {
 		var contr = pos[skill];
 		var isDef = skill === 'defending' || skill === 'keeper';
 
-		var factor = 0, center = 0, wings = 0;
+		var factor = 0, center = 0, side = 0, farSide = 0, wings = 0;
 		if (Array.isArray(contr)) {
 			center = contr[0];
-			wings = contr[1];
-			wings *= isDef ? WBD_VS_CD : WO_VS_FW;
+			side = contr[1];
+			farSide = contr[2] || 0;
+
+			side *= isDef ? WBD_VS_CD : WO_VS_FW;
+			farSide *= isDef ? WBD_VS_CD : WO_VS_FW;
+			wings = side + farSide;
+
 			// weighted average for 3 sectors
 			factor = (center + wings / CNTR_VS_WING) / (1 + 2 / CNTR_VS_WING);
 			if (isDef)
@@ -291,7 +296,7 @@ Foxtrick.Predict.contributionFactors = function() {
 		}
 		// Foxtrick.log(position, skill, factor);
 
-		return { center: center, wings: wings, factor: factor };
+		return { center: center, side: side, farSide: farSide, wings: wings, factor: factor };
 	};
 
 	var ret = {};
