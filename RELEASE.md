@@ -93,7 +93,7 @@ git tag -a -m 'release 0.x.0' 0.x.0
 git commit -am 'bump master to 0.x.9'
 git tag -a -m 'start 0.x.9 beta' 0.x.9
 # clean used cdn tags before pushing
-git tag -d $(git tag -l cdn/*)
+git tag -d $(git tag -l 'res/*')
 git push --tags origin master
 ```
 ### new release branch 0.x.0
@@ -137,7 +137,7 @@ Notice that `0.x.0` tag was created on `master`. There should **NOT** be any **a
 
 This is due to the way `git describe` works (used for versioning). If you happen to merge/rebase a branch with annotated tags on `master`, those tags will be used instead of the `0.x.9` beta tag with (most probably) **disastrous effects** on release versioning and/or build scripts.
 
-Lightweight (not annotated) tags like `cdn/*` are OK as they are not used unless you run `git describe --tags`.
+Lightweight (not annotated) tags like `res/*` are OK as they are not used unless you run `git describe --tags`.
 
 **This means tags like `0.x.1` for point releases should be lightweight.**
 
