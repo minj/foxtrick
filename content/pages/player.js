@@ -867,272 +867,50 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerid, callback) {
 /**
  * Get position contributions from skill map and player's attributes map
  * Skill map must be {keeper, defending, playmaking, winger, passing, scoring, setPieces}.
- * Attributes map must be {form, experience, loyalty, spec }
+ * Attributes map must be {form, experience, loyalty, spec}
  * Returns position contribution map.
- * @author Greblys, LA-MJ
- * @param  {object} playerSkills skill map Object<string, number>
- * @param  {object} playerAttrs  attributes map Object<string, ?>
- * @return {object}              position map Object<string, number>
+ * @param  {object} playerSkills Object.<string, number> skill map
+ * @param  {object} playerAttrs  Object.<string, ?>      attributes map
+ * @return {object}              Object.<string, number> position contribution map
  */
 Foxtrick.Pages.Player.getContributions = function(playerSkills, playerAttrs) {
-	var MF_VS_ATT = 4 / 3;
-	var DF_VS_ATT = 1; // 4 / 3;
-	var CNTR_VS_WING = 35 / 25;
-	var WBD_VS_CD = 1.6;
-	var WO_VS_FW = 1.25;
-	var getValue = function(coefs, skills) {
-		var value = 0;
-		var sum = 0;
-		for (var skill in skills) {
-			if (skills.hasOwnProperty(skill) && skill in coefs) {
-				var defence = skill === 'defending' || skill === 'keeper';
-				var contr = coefs[skill];
-				var coef;
-				if (Array.isArray(contr)) {
-					var center = contr[0];
-					var wing = contr[1];
-					wing *= defence ? WBD_VS_CD : WO_VS_FW;
-					// weighted average for 3 sectors
-					coef = (center + wing / CNTR_VS_WING) / (1 + 2 / CNTR_VS_WING);
-					if (defence)
-						coef *= DF_VS_ATT;
-				}
-				else {
-					// PM
-					coef = contr * MF_VS_ATT;
-				}
-				value += skills[skill] * coef;
-				sum += coef;
-				// Foxtrick.log(skill, coef);
-			}
-		}
-		if (Foxtrick.Prefs.isModuleOptionEnabled('PlayerPositionsEvaluations', 'Normalised')) {
-			value /= sum;
-		}
-		return parseFloat(value.toFixed(2));
-	};
-
-	var copyObject = function(original) {
-		var copy = {};
-		for (var property in original)
-			copy[property] = original[property];
-		return copy;
-	};
-
-	var skills = copyObject(playerSkills);
-	var attrs = copyObject(playerAttrs);
-
-	// for testing specific players
-	/*
-	skills.keeper = 1;
-	skills.defending = 7;
-	skills.passing = 4;
-	skills.playmaking = 5;
-	skills.scoring = 5;
-	skills.setPieces = 4;
-	skills.winger = 4;
-	speciality = ""
-	console.log(skills);
-	*/
-
-	if (!skills)
+	if (!playerSkills)
 		return null;
 
-	// all coefficients taken from https://docs.google.com/spreadsheets/d/1bNwtBdOxbY8pdY7uAx0boqHwRtJgj7tNpcFtDsP9Wq8/edit#gid=0
-	// format: [middle, sides]
-	var coefs = {
-		kp: {
-			keeper: [0.87, 0.61 * 2],
-			defending: [0.35, 0.25 * 2],
-		},
-		cd: {
-			defending: [1, 0.26 * 2],
-			playmaking: 0.25,
-		},
-		cdo: {
-			defending: [0.73, 0.20 * 2],
-			playmaking: 0.40,
-		},
-		cdtw: {
-			defending: [0.67, 0.81],
-			playmaking: 0.15,
-			winger: [0, 0.26],
-		},
-		wb: {
-			defending: [0.38, 0.92],
-			playmaking: 0.15,
-			winger: [0, 0.59],
-		},
-		wbd: {
-			defending: [0.43, 1],
-			playmaking: 0.10,
-			winger: [0, 0.45],
-		},
-		wbo: {
-			defending: [0.35, 0.74],
-			playmaking: 0.20,
-			winger: [0, 0.69],
-		},
-		wbtm: {
-			defending: [0.70, 0.75],
-			playmaking: 0.20,
-			winger: [0, 0.35],
-		},
-		w: {
-			defending: [0.20, 0.35],
-			playmaking: 0.45,
-			passing: [0.11, 0.26],
-			winger: [0, 0.86],
-		},
-		wd: {
-			defending: [0.25, 0.61],
-			playmaking: 0.30,
-			passing: [0.05, 0.21],
-			winger: [0, 0.69],
-		},
-		wo: {
-			defending: [0.13, 0.22],
-			playmaking: 0.30,
-			passing: [0.13, 0.29],
-			winger: [0, 1],
-		},
-		wtm: {
-			defending: [0.25, 0.29],
-			playmaking: 0.55,
-			passing: [0.16, 0.15],
-			winger: [0, 0.74],
-		},
-		im: {
-			defending: [0.40, 0.09 * 2],
-			playmaking: 1,
-			passing: [0.33, 0.13 * 2],
-			scoring: [0.22, 0],
-		},
-		imd: {
-			defending: [0.58, 0.14 * 2],
-			playmaking: 0.95,
-			passing: [0.18, 0.07 * 2],
-			scoring: [0.13, 0],
-		},
-		imo: {
-			defending: [0.16, 0.04 * 2],
-			playmaking: 0.95,
-			passing: [0.49, 0.18 * 2],
-			scoring: [0.31, 0],
-		},
-		imtw: {
-			defending: [0.33, 0.24],
-			playmaking: 0.90,
-			passing: [0.23, 0.31],
-			winger: [0, 0.59],
-		},
-		fw: {
-			playmaking: 0.25,
-			passing: [0.33, 0.14 * 2],
-			scoring: [1, 0.27 * 2],
-			winger: [0, 0.24 * 2],
-		},
-		fwd: {
-			playmaking: 0.35,
-			passing: [0.53, 0.31 * 2],
-			scoring: [0.56, 0.13 * 2],
-			winger: [0, 0.13 * 2],
-		},
-		tdf: {
-			playmaking: 0.35,
-			passing: [0.53, 0.41 * 2],
-			scoring: [0.56, 0.13 * 2],
-			winger: [0, 0.13 * 2],
-		},
-		fwtw: {
-			playmaking: 0.15,
-			passing: [0.23, 0.21 + 0.06],
-			scoring: [0.66, 0.51 + 0.19],
-			winger: [0, 0.64 + 0.21],
-		},
-	};
+	var doNormal = Foxtrick.Prefs.isModuleOptionEnabled('PlayerPositionsEvaluations', 'Normalised');
 
-	// Source [post=16376110.4]
-	var enabled = {};
-	Foxtrick.forEach(function(opt) {
-		enabled[opt] = Foxtrick.Prefs.isModuleOptionEnabled('PlayerPositionsEvaluations', opt);
-	}, [
-		'ExperienceIncluded',
-		'LoyaltyAndMCBIncluded',
-		'FormIncluded',
-		'BruisedIncluded',
-		'StaminaIncluded',
-	]);
-	var bonus, skill;
-	if (enabled['ExperienceIncluded']) {
-		var experience = attrs.experience;
-		// don't do log 0
-		bonus = experience ? Math.log(experience) / Math.log(10) * 4.0 / 3.0 : 0;
-		for (skill in skills)
-			skills[skill] += bonus;
-	}
+	var cntrbMap = Foxtrick.Predict.contributionFactors();
+	var skills = Foxtrick.Predict.effectiveSkills(playerSkills, playerAttrs);
 
-	var loyalty = attrs.loyalty;
-	var mcb = attrs.motherClubBonus;
-	var tl = attrs.transferListed; // loyalty can be undefined in transfer pages
-	if (enabled['LoyaltyAndMCBIncluded'] && typeof loyalty !== 'undefined' && !tl) {
-		bonus = Foxtrick.Predict.loyaltyBonus(loyalty, mcb);
-		for (skill in skills)
-			skills[skill] += bonus;
-	}
-
-	var stamina = attrs.stamina;
-	if (enabled['StaminaIncluded']) {
-		var energy = Foxtrick.Predict.averageEnergy90(stamina);
-		for (skill in skills)
-			skills[skill] *= energy;
-	}
-
-	/**
-	 * Source [post=16376110.4]
-	 * Probably we will never know if the form affect needs to be calculated before or after
-	 * other bonuses' addition to the main skills.
-	 */
-	if (enabled['FormIncluded']) {
-		var formInfls = [
-			0,
-			0.305,
-			0.5,
-			0.629,
-			0.732,
-			0.82,
-			0.897,
-			0.967,
-			1,
-		];
-		var form = attrs.form;
-		for (skill in skills)
-			skills[skill] *= formInfls[form];
-	}
-
-	// source: http://www.hattrickinfo.com/en/training/284/#281-
-	if (enabled['BruisedIncluded']) {
-		var bruised = attrs.bruised;
-		if (bruised)
-			for (skill in skills)
-				skills[skill] *= 0.95;
-	}
-
-	var cntrb = {};
-	for (var pos in coefs) {
+	for (var pos in cntrbMap) {
 		// Foxtrick.log(pos);
-		cntrb[pos] = getValue(coefs[pos], skills);
+		var score = 0;
+		var sum = 0;
+		for (var skill in skills) {
+			var data = cntrbMap[pos][skill];
+			if (typeof data !== 'undefined') {
+				sum += data.factor;
+				score += data.factor * skills[skill];
+			}
+		}
+
+		if (doNormal) {
+			score /= sum;
+		}
+
+		var value = parseFloat(score.toFixed(2));
+		cntrbMap[pos] = value;
 	}
 
-	var speciality = attrs.specialityNumber;
+	var speciality = playerAttrs.specialityNumber;
 	if (speciality == 1) {
 		// Technical
-		cntrb.fwd = 0;
+		cntrbMap.fwd = 0;
 	}
 	else {
-		cntrb.tdf = 0;
+		cntrbMap.tdf = 0;
 	}
-	return cntrb;
+	return cntrbMap;
 };
 
 /**
