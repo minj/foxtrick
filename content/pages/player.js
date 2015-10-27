@@ -672,6 +672,15 @@ Foxtrick.Pages.Player.getTransferDeadline = function(doc) {
 };
 
 /**
+ * Test whether player is transfer listed
+ * @param  {document} doc
+ * @return {Boolean}
+ */
+Foxtrick.Pages.Player.isTransferListed = function(doc) {
+	return !!this.getBidInfo(doc);
+};
+
+/**
  * Test whether player was fired
  * @param  {document} doc
  * @return {Boolean}
