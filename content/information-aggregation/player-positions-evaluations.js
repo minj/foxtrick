@@ -147,16 +147,18 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 			if (Foxtrick.Pages.Player.wasFired(doc))
 				return;
 
-			var id = Foxtrick.Pages.Player.getId(doc);
-			Foxtrick.Pages.Player.getPlayer(doc, id, function(player) {
-				var skills = Foxtrick.Pages.Player.getSkills(doc);
-				if (!skills)
-					return;
-				var contributions = Foxtrick.Pages.Player.getContributions(skills, player);
-				module.insertEvaluationsTable(doc, contributions);
-				// lets reuse contributions and don't recalculate them for bestPosition
-				module.insertBestPosition(doc, contributions);
-			});
+			var skills = Foxtrick.Pages.Player.getSkills(doc);
+			if (!skills)
+				return;
+
+			var attrs = Foxtrick.Pages.Player.getAttributes(doc);
+			attrs.bruised = Foxtrick.Pages.Player.isBruised(doc);
+			attrs.transferListed = Foxtrick.Pages.Player.isTransferListed(doc);
+			attrs.specialityNumber = Foxtrick.Pages.Player.getSpecialityNumber(doc);
+
+			var contributions = Foxtrick.Pages.Player.getContributions(skills, attrs);
+			module.insertBestPosition(doc, contributions);
+			module.insertEvaluationsTable(doc, contributions);
 		}
 		else
 			module.insertBestPosition(doc, {});
