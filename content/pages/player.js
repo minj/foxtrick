@@ -350,24 +350,24 @@ Foxtrick.Pages.Player.getWage = function(doc) {
 };
 
 /**
- * Get the player specialty name in English
+ * Get the player specialty number
  * @param  {document} doc
  * @return {string}
  */
-Foxtrick.Pages.Player.getSpeciality = function(doc) {
-	var speciality = null;
+Foxtrick.Pages.Player.getSpecialityNumber = function(doc) {
+	var specNr = 0;
 	try {
 		var infoTable = doc.querySelector('.playerInfo table');
 		var specRow = infoTable.rows[5];
 		if (specRow) {
 			var specText = specRow.cells[1].textContent.trim();
-			speciality = Foxtrick.L10n.getEnglishSpeciality(specText);
+			specNr = Foxtrick.L10n.getNumberFromSpeciality(specText);
 		}
 	}
 	catch (e) {
 		Foxtrick.log(e);
 	}
-	return speciality;
+	return specNr;
 };
 
 /**
