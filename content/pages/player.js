@@ -867,7 +867,8 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerid, callback) {
 /**
  * Get position contributions from skill map and player's attributes map
  * Skill map must be {keeper, defending, playmaking, winger, passing, scoring, setPieces}.
- * Attributes map must be {form, experience, loyalty, spec}
+ * Attributes map must be: {form, stamina, experience, loyalty, motherClubBonus, bruised,
+ * transferListed, specialityNumber}.
  * Returns position contribution map.
  * @param  {object} playerSkills Object.<string, number> skill map
  * @param  {object} playerAttrs  Object.<string, ?>      attributes map

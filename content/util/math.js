@@ -141,7 +141,7 @@ Foxtrick.Predict.loyaltyBonus = function(loyaltyLevel, isMotherClub) {
 
 /**
  * Make a position contribution map.
- * Definition format: {center, wings, factor: number}
+ * Definition format: {center, side, farSide, wings, factor: number}
  * @return {object} Object.<string, object> position contribution map
  */
 Foxtrick.Predict.contributionFactors = function() {
@@ -314,7 +314,8 @@ Foxtrick.Predict.contributionFactors = function() {
 /**
  * Get effective skill levels based on player attributes.
  * Skill map must be {keeper, defending, playmaking, winger, passing, scoring, setPieces}.
- * Attributes map must be {form, experience, loyalty, spec}
+ * Attributes map must be:
+ * {form, stamina, experience, loyalty, motherClubBonus, bruised, transferListed}
  * Returns effective skill map.
  * @author Greblys, LA-MJ
  * @param  {object} skills Object.<string, number> skill map
