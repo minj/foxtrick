@@ -154,8 +154,9 @@ Foxtrick.Pages.Player.getTsi = function(doc) {
 
 /**
  * Get player attributes.
- * Returns an object with leadership, experience, coachSkill, stamina, form, loyalty
- * and personality (gentleness, aggressiveness, honesty) fields.
+ * Returns {leadership, experience, coachSkill, stamina, form, loyalty, motherClubBonus,
+ * gentleness, aggressiveness, honesty}.
+ *
  * Senior players only.
  * @param  {document} doc
  * @return {object}
@@ -202,6 +203,9 @@ Foxtrick.Pages.Player.getAttributes = function(doc) {
 			}
 			// loyalty
 			attrs.loyalty = num(links[7 + offset]);
+
+			// motherClub
+			attrs.motherClubBonus = !!Foxtrick.getMBElement(doc, 'lblMotherClub');
 		}
 		catch (e) {
 			Foxtrick.log(e);
