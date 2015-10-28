@@ -907,22 +907,24 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerid, callback) {
  * {form, stamina, ?staminaPred, experience, loyalty, motherClubBonus, bruised,
  * transferListed, specialityNumber}.
  * Options is {form, stamina, experience, loyalty, bruised, normalise: Boolean} (optional)
- * By default options is assembled from prefs or needs to be fully overridden otherwise.
+ * Params is {CTR_VS_WG, WBD_VS_CD, WO_VS_FW, MF_VS_ATT, DF_VS_ATT: number} (optional)
+ * By default options and params are assembled from prefs or need to be fully overridden otherwise.
  *
  * Returns position contribution map.
  * @param  {object} playerSkills Object.<string, number>  skill map
  * @param  {object} playerAttrs  Object.<string, ?>       attributes map
  * @param  {object} options      Object.<string, Boolean> options map
+ * @param  {object} params       Object.<string, number>  params map
  * @return {object}              Object.<string, number>  position contribution map
  */
-Foxtrick.Pages.Player.getContributions = function(playerSkills, playerAttrs, options) {
+Foxtrick.Pages.Player.getContributions = function(playerSkills, playerAttrs, options, params) {
 	if (!playerSkills)
 		return null;
 
 	var doNormal = options ? options.normalise :
 		Foxtrick.Prefs.isModuleOptionEnabled('PlayerPositionsEvaluations', 'Normalised');
 
-	var cntrbMap = Foxtrick.Predict.contributionFactors();
+	var cntrbMap = Foxtrick.Predict.contributionFactors(params);
 	var skills = Foxtrick.Predict.effectiveSkills(playerSkills, playerAttrs, options);
 
 	for (var pos in cntrbMap) {

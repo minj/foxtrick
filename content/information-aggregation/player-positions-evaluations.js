@@ -26,6 +26,13 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 		bruised: 'BruisedIncluded',
 		normalise: 'Normalised',
 	},
+	paramMap: {
+		CTR_VS_WG: 35 / 25,
+		WBD_VS_CD: 1.6,
+		WO_VS_FW: 1.25,
+		MF_VS_ATT: 1.33,
+		DF_VS_ATT: 1.1,
+	},
 	getPrefs: function() {
 		var prefs = {};
 		for (var pref in this.prefMap) {
@@ -37,6 +44,20 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 		var mName = this.MODULE_NAME;
 		for (var pref in this.prefMap) {
 			Foxtrick.Prefs.setModuleEnableState(mName + '.' + this.prefMap[pref], prefs[pref]);
+		}
+	},
+	getParams: function() {
+		var params = {};
+		for (var param in this.paramMap) {
+			var str = Foxtrick.Prefs.getString('PlayerPositionsEvaluations.' + param);
+			params[param] = parseFloat(str) || this.paramMap[param];
+		}
+		return params;
+	},
+	setParams: function(params) {
+		for (var param in this.paramMap) {
+			var str = params[param].toString();
+			Foxtrick.Prefs.setString('PlayerPositionsEvaluations.' + param, str);
 		}
 	},
 
@@ -74,7 +95,8 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 			td.id = 'ft-ppe-' + name;
 			tr.appendChild(td);
 			td = doc.createElement('td');
-			td.textContent = contributions[name];
+			td.className = 'ft-ppe-number';
+			td.textContent = contributions[name].toFixed(2);
 			tr.appendChild(td);
 			tbody.appendChild(tr);
 		}
@@ -107,11 +129,12 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 				Foxtrick.addClass(row, 'ft-best-player-position');
 				var title = row.insertCell(0);
 				title.textContent = Foxtrick.L10n.getString('BestPlayerPosition.title');
-				var bestPositionCell = row.insertCell(1);
-				var bestPositionValue = Foxtrick.Pages.Player.getBestPosition(contributions);
-				bestPositionCell.textContent =
-					Foxtrick.L10n.getString(bestPositionValue.position + 'Position') +
-					' (' + bestPositionValue.value.toFixed(2) + ')';
+				var best = Foxtrick.Pages.Player.getBestPosition(contributions);
+				var str = Foxtrick.L10n.getString(best.position + 'Position');
+				var bestPosCell = row.insertCell(1);
+				bestPosCell.id = 'ft-ppe-bestPos';
+				bestPosCell.dataset.position = best.position;
+				bestPosCell.textContent = str + ' (' + best.value.toFixed(2) + ')';
 
 			}
 			else if (Foxtrick.isPage(doc, 'transferSearchResult')) {
@@ -161,12 +184,16 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 			for (var pref in opts) {
 				opts[pref] = doc.getElementById('ft-ppe-' + pref).checked;
 			}
+			for (var param in params) {
+				var input = doc.getElementById('ft-ppe-' + param);
+				params[param] = parseFloat(input.value) || params[param];
+			}
 
 			// update summary table
-			var contributions = Foxtrick.Pages.Player.getContributions(skills, attrs, opts);
+			var contributions = Foxtrick.Pages.Player.getContributions(skills, attrs, opts, params);
 			module.insertEvaluationsTable(doc, contributions);
 
-			factors = Foxtrick.Predict.contributionFactors();
+			factors = Foxtrick.Predict.contributionFactors(params);
 			var effSkills = Foxtrick.Predict.effectiveSkills(skills, attrs, opts);
 
 			var table = doc.getElementById('ft-ppeBd-table');
@@ -252,6 +279,10 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 			cntrlHead.title = Foxtrick.L10n.getString(PPE + '.settings.title');
 			controls.appendChild(cntrlHead);
 
+			var simple = doc.createElement('div');
+			simple.id = 'ft-ppe-controlsSimple';
+			controls.appendChild(simple);
+
 			var inputs = [
 				'experience',
 				'loyalty',
@@ -263,27 +294,64 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 				'normalise',
 			];
 
+			var prefListener = function() {
+				updateSkills(this.ownerDocument);
+			};
 			Foxtrick.forEach(function(s) {
 				if (!s) {
-					controls.appendChild(doc.createElement('br'));
+					simple.appendChild(doc.createElement('br'));
 					return;
 				}
 
 				var input = doc.createElement('input');
 				input.type = 'checkbox';
 				input.id = 'ft-ppe-' + s;
-				input.checked = preset[s];
-				Foxtrick.listen(input, 'change', function() {
-					updateSkills(this.ownerDocument);
-				});
+				input.checked = presetPrefs[s];
+				Foxtrick.listen(input, 'change', prefListener);
 
 				var label = doc.createElement('label');
 				label.setAttribute('for', 'ft-ppe-' + s);
 				label.textContent = strMap[s];
 
-				controls.appendChild(input);
-				controls.appendChild(label);
+				simple.appendChild(input);
+				simple.appendChild(label);
 			}, inputs);
+
+			var paramTable = doc.createElement('table');
+			paramTable.id = 'ft-ppe-controlsAdvanced';
+			paramTable.className = 'hidden';
+			controls.appendChild(paramTable);
+
+			var pRow = paramTable.insertRow(-1);
+			var nameCell = pRow.appendChild(doc.createElement('th'));
+			nameCell.textContent = Foxtrick.L10n.getString(PPE + '.parameter');
+			var descCell = pRow.appendChild(doc.createElement('th'));
+			descCell.textContent = Foxtrick.L10n.getString(PPE + '.description');
+			var valCell = pRow.appendChild(doc.createElement('th'));
+			valCell.textContent = Foxtrick.L10n.getString(PPE + '.value');
+			var defCell = pRow.appendChild(doc.createElement('th'));
+			defCell.textContent = Foxtrick.L10n.getString(PPE + '.default');
+
+			for (var param in params) {
+				pRow = paramTable.insertRow(-1);
+
+				nameCell = pRow.insertCell(-1);
+				nameCell.textContent = param;
+
+				descCell = pRow.insertCell(-1);
+				descCell.textContent = Foxtrick.L10n.getString(PPE + '.params.' + param + '.desc');
+
+				valCell = pRow.insertCell(-1);
+				var pInput = doc.createElement('input');
+				pInput.id = 'ft-ppe-' + param;
+				pInput.size = 1;
+				pInput.value = params[param];
+				Foxtrick.listen(pInput, 'change', prefListener);
+				valCell.appendChild(pInput);
+
+				defCell = pRow.insertCell(-1);
+				defCell.textContent = module.paramMap[param];
+			}
 
 			var buttons = doc.createElement('div');
 			buttons.id = 'ft-ppe-prefButtons';
@@ -294,6 +362,12 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 			Foxtrick.addClass(btnSave, 'ft-link');
 			Foxtrick.onClick(btnSave, function() {
 				module.setPrefs(opts);
+				module.setParams(params);
+
+				var msg = Foxtrick.L10n.getString('status.saved');
+				var doc = this.ownerDocument;
+				var target = this.parentNode.parentNode;
+				Foxtrick.util.note.add(doc, msg, null, { to: target });
 			});
 			buttons.appendChild(btnSave);
 
@@ -305,13 +379,38 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 			Foxtrick.onClick(btnReset, function() {
 				var doc = this.ownerDocument;
 
-				Foxtrick.mergeAll(opts, preset);
+				Foxtrick.mergeAll(opts, presetPrefs);
 				for (var pref in opts) {
 					doc.getElementById('ft-ppe-' + pref).checked = opts[pref];
+				}
+				Foxtrick.mergeAll(params, presetParams);
+				for (var param in params) {
+					doc.getElementById('ft-ppe-' + param).value = params[param];
 				}
 				updateSkills(doc);
 			});
 			buttons.appendChild(btnReset);
+
+			buttons.appendChild(doc.createTextNode(' '));
+
+			var btnAdvanced = doc.createElement('a');
+			btnAdvanced.className = 'float_right';
+			btnAdvanced.dataset.open = Foxtrick.L10n.getString('button.advanced');
+			btnAdvanced.dataset.close = Foxtrick.L10n.getString('button.close');
+			btnAdvanced.textContent = btnAdvanced.dataset.open;
+			Foxtrick.addClass(btnAdvanced, 'ft-link');
+			Foxtrick.onClick(btnAdvanced, function() {
+				var doc = this.ownerDocument;
+
+				var advanced = doc.getElementById('ft-ppe-controlsAdvanced');
+				Foxtrick.toggleClass(advanced, 'hidden');
+				var simple = doc.getElementById('ft-ppe-controlsSimple');
+				Foxtrick.toggleClass(simple, 'hidden');
+
+				var opened = Foxtrick.hasClass(simple, 'hidden');
+				this.textContent = this.dataset[opened ? 'close' : 'open'];
+			});
+			buttons.appendChild(btnAdvanced);
 
 			return controls;
 		};
@@ -344,9 +443,12 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 			});
 			posDiv.appendChild(posSelect);
 
+			var bestPosCell = doc.getElementById('ft-ppe-bestPos');
+			var bestPos = bestPosCell.dataset.position;
 			for (var pos in factors) {
 				var option = doc.createElement('option');
 				option.value = pos;
+				option.selected = pos === bestPos;
 				option.textContent = Foxtrick.L10n.getString(pos + 'Position');
 				posSelect.appendChild(option);
 			}
@@ -367,6 +469,7 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 				skillTd.textContent = strMap[skill];
 
 				var inputTd = row.insertCell(-1);
+				inputTd.className = 'ft-ppeBd-NaN';
 				var input = doc.createElement('input');
 				input.className = 'ft-ppeBd-input';
 				input.size = 1;
@@ -452,9 +555,10 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 			table.appendChild(tfoot);
 
 			var footRow1 = tfoot.insertRow(-1);
-			var sumCell = footRow1.insertCell(-1);
-			sumCell.colSpan = 6;
-			sumCell.textContent = 'Σ';
+			var sumLabel = footRow1.insertCell(-1);
+			sumLabel.className = 'ft-ppeBd-NaN';
+			sumLabel.colSpan = 6;
+			sumLabel.textContent = 'Σ';
 			var sumFactors = footRow1.insertCell(-1);
 			sumFactors.className = 'ft-ppeBd-sumFactors';
 			var sumCntrbs = footRow1.insertCell(-1);
@@ -463,6 +567,7 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 			var footRow2 = tfoot.insertRow(-1);
 			var normLabel = footRow2.insertCell(-1);
 			normLabel.colSpan = 7;
+			normLabel.className = 'ft-ppeBd-NaN';
 			normLabel.textContent = Foxtrick.L10n.getString(PPE + '.normalised');
 			normLabel.title = Foxtrick.L10n.getString(PPE + '.normalised.title');
 			normLabel.setAttribute('aria-label', normLabel.title);
@@ -472,10 +577,13 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 			return table;
 		};
 
-		var preset = module.getPrefs();
+		var presetPrefs = module.getPrefs();
 		var opts = {};
-		Foxtrick.mergeAll(opts, preset);
-		var factors = Foxtrick.Predict.contributionFactors();
+		Foxtrick.mergeAll(opts, presetPrefs);
+		var presetParams = module.getParams();
+		var params = {};
+		Foxtrick.mergeAll(params, presetParams);
+		var factors = Foxtrick.Predict.contributionFactors(params);
 
 		var strMap = {
 			experience: '',

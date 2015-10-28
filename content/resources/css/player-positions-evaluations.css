@@ -7,13 +7,17 @@
 	cursor: auto !important;
 }
 
-#ft-ppeBd-table th, #ft-ppeBd-table td {
+#ft-ppeBd-table th, #ft-ppeBd-table td, #ft-ppe-controlsAdvanced td {
 	vertical-align: middle;
 }
 
-#ft-ppeBd-table td, .ft-ppeBd-input {
+/* align all numbers to the right regardless of text direction */
+#ft-ppeBd-table td, .ft-ppeBd-input, .ft-ppe-number {
 	text-align: right;
 }
-td.ft-ppeBd-skill {
-	text-align: left;
+#ft-ppeBd-table td.ft-ppeBd-NaN {
+	text-align: end;
+}
+#ft-ppeBd-table .ft-ppeBd-skill {
+	text-align: start;
 }
