@@ -74,7 +74,8 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 			td.id = 'ft-ppe-' + name;
 			tr.appendChild(td);
 			td = doc.createElement('td');
-			td.textContent = contributions[name];
+			td.className = 'ft-ppe-number';
+			td.textContent = contributions[name].toFixed(2);
 			tr.appendChild(td);
 			tbody.appendChild(tr);
 		}

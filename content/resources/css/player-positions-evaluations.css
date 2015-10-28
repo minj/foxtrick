@@ -12,7 +12,7 @@
 }
 
 /* align all numbers to the right regardless of text direction */
-#ft-ppeBd-table td, .ft-ppeBd-input {
+#ft-ppeBd-table td, .ft-ppeBd-input, .ft-ppe-number {
 	text-align: right;
 }
 #ft-ppeBd-table td.ft-ppeBd-NaN {
