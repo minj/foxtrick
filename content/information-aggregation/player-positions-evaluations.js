@@ -17,6 +17,28 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 		'LoyaltyAndMCBIncluded', 'ExperienceIncluded', 'BruisedIncluded',
 	],
 
+	prefMap: {
+		experience: 'ExperienceIncluded',
+		loyalty: 'LoyaltyAndMCBIncluded',
+		form: 'FormIncluded',
+		stamina: 'StaminaIncluded',
+		bruised: 'BruisedIncluded',
+		normalise: 'Normalised',
+	},
+	getPrefs: function() {
+		var prefs = {};
+		for (var pref in this.prefMap) {
+			prefs[pref] = Foxtrick.Prefs.isModuleOptionEnabled(this, this.prefMap[pref]);
+		}
+		return prefs;
+	},
+	setPrefs: function(prefs) {
+		var mName = this.MODULE_NAME;
+		for (var pref in this.prefMap) {
+			Foxtrick.Prefs.setModuleEnableState(mName + '.' + this.prefMap[pref], prefs[pref]);
+		}
+	},
+
 	insertEvaluationsTable: function(doc, contributions) {
 		var feat_div = Foxtrick.createFeaturedElement(doc, this, 'div');
 		var entryPoint = doc.getElementById('mainBody');
