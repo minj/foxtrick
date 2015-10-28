@@ -107,11 +107,12 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 				Foxtrick.addClass(row, 'ft-best-player-position');
 				var title = row.insertCell(0);
 				title.textContent = Foxtrick.L10n.getString('BestPlayerPosition.title');
-				var bestPositionCell = row.insertCell(1);
-				var bestPositionValue = Foxtrick.Pages.Player.getBestPosition(contributions);
-				bestPositionCell.textContent =
-					Foxtrick.L10n.getString(bestPositionValue.position + 'Position') +
-					' (' + bestPositionValue.value.toFixed(2) + ')';
+				var best = Foxtrick.Pages.Player.getBestPosition(contributions);
+				var str = Foxtrick.L10n.getString(best.position + 'Position');
+				var bestPosCell = row.insertCell(1);
+				bestPosCell.id = 'ft-ppe-bestPos';
+				bestPosCell.dataset.position = best.position;
+				bestPosCell.textContent = str + ' (' + best.value.toFixed(2) + ')';
 
 			}
 			else if (Foxtrick.isPage(doc, 'transferSearchResult')) {
@@ -344,9 +345,12 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 			});
 			posDiv.appendChild(posSelect);
 
+			var bestPosCell = doc.getElementById('ft-ppe-bestPos');
+			var bestPos = bestPosCell.dataset.position;
 			for (var pos in factors) {
 				var option = doc.createElement('option');
 				option.value = pos;
+				option.selected = pos === bestPos;
 				option.textContent = Foxtrick.L10n.getString(pos + 'Position');
 				posSelect.appendChild(option);
 			}
