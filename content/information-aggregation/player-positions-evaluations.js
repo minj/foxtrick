@@ -363,6 +363,11 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 			Foxtrick.onClick(btnSave, function() {
 				module.setPrefs(opts);
 				module.setParams(params);
+
+				var msg = Foxtrick.L10n.getString('status.saved');
+				var doc = this.ownerDocument;
+				var target = this.parentNode.parentNode;
+				Foxtrick.util.note.add(doc, msg, null, { to: target });
 			});
 			buttons.appendChild(btnSave);
 
