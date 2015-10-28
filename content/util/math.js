@@ -145,11 +145,11 @@ Foxtrick.Predict.loyaltyBonus = function(loyaltyLevel, isMotherClub) {
  * @return {object} Object.<string, object> position contribution map
  */
 Foxtrick.Predict.contributionFactors = function() {
-	var MF_VS_ATT = 4 / 3;
-	var DF_VS_ATT = 1; // 4 / 3;
-	var CNTR_VS_WING = 35 / 25;
+	var CTR_VS_WG = 35 / 25;
 	var WBD_VS_CD = 1.6;
 	var WO_VS_FW = 1.25;
+	var MF_VS_ATT = 4 / 3;
+	var DF_VS_ATT = 1.1;
 
 	// all factors taken from https://docs.google.com/spreadsheets/d/1bNwtBdOxbY8pdY7uAx0boqHwRtJgj7tNpcFtDsP9Wq8/edit#gid=0
 	// format: middle[, side[, farSide]]
@@ -285,7 +285,7 @@ Foxtrick.Predict.contributionFactors = function() {
 			wings = side + farSide;
 
 			// weighted average for 3 sectors
-			factor = (center + wings / CNTR_VS_WING) / (1 + 2 / CNTR_VS_WING);
+			factor = (center + wings / CTR_VS_WG) / (1 + 2 / CTR_VS_WG);
 			if (isDef)
 				factor *= DF_VS_ATT;
 		}
