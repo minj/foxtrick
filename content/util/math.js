@@ -321,9 +321,10 @@ Foxtrick.Predict.contributionFactors = function() {
  *
  * Returns effective skill map.
  * @author Greblys, LA-MJ
- * @param  {object} skills Object.<string, number> skill map
- * @param  {object} attrs  Object.<string, ?>      attribute map
- * @return {object}        Object.<string, number> effective skill map
+ * @param  {object} skills   Object.<string, number>  skill map
+ * @param  {object} attrs    Object.<string, ?>       attribute map
+ * @param  {object} options  Object.<string, Boolean> options map
+ * @return {object}          Object.<string, number>  effective skill map
  */
 Foxtrick.Predict.effectiveSkills = function(skills, attrs, options) {
 	if (!options) {
