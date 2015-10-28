@@ -43,7 +43,6 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 	insertEvaluationsTable: function(doc, contributions) {
 		var featDiv = Foxtrick.createFeaturedElement(doc, this, 'div');
 		featDiv.id = 'ft-ppe';
-		var entryPoint = doc.getElementById('mainBody');
 		var title = doc.createElement('h2');
 		title.textContent = Foxtrick.L10n.getString('module.PlayerPositionsEvaluations.title');
 		featDiv.appendChild(title);
@@ -82,7 +81,15 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 
 		table.appendChild(tbody);
 		featDiv.appendChild(table);
-		entryPoint.appendChild(featDiv);
+
+		var existing = doc.getElementById('ft-ppe-table');
+		if (existing) {
+			existing.parentNode.replaceChild(table, existing);
+		}
+		else {
+			var entryPoint = doc.getElementById('mainBody');
+			entryPoint.appendChild(featDiv);
+		}
 	},
 
 	insertBestPosition: function(doc, contributions) {
@@ -154,6 +161,10 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 			for (var pref in opts) {
 				opts[pref] = doc.getElementById('ft-ppe-' + pref).checked;
 			}
+
+			// update summary table
+			var contributions = Foxtrick.Pages.Player.getContributions(skills, attrs, opts);
+			module.insertEvaluationsTable(doc, contributions);
 
 			factors = Foxtrick.Predict.contributionFactors();
 			var effSkills = Foxtrick.Predict.effectiveSkills(skills, attrs, opts);

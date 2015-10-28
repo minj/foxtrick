@@ -882,19 +882,24 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerid, callback) {
  * Skill map must be {keeper, defending, playmaking, winger, passing, scoring, setPieces}.
  * Attributes map must be: {form, stamina, experience, loyalty, motherClubBonus, bruised,
  * transferListed, specialityNumber}.
+ * Options is {form, stamina, experience, loyalty, bruised, normalise: Boolean} (optional)
+ * By default options is assembled from prefs or needs to be fully overridden otherwise.
+ *
  * Returns position contribution map.
- * @param  {object} playerSkills Object.<string, number> skill map
- * @param  {object} playerAttrs  Object.<string, ?>      attributes map
- * @return {object}              Object.<string, number> position contribution map
+ * @param  {object} playerSkills Object.<string, number>  skill map
+ * @param  {object} playerAttrs  Object.<string, ?>       attributes map
+ * @param  {object} options      Object.<string, Boolean> options map
+ * @return {object}              Object.<string, number>  position contribution map
  */
-Foxtrick.Pages.Player.getContributions = function(playerSkills, playerAttrs) {
+Foxtrick.Pages.Player.getContributions = function(playerSkills, playerAttrs, options) {
 	if (!playerSkills)
 		return null;
 
-	var doNormal = Foxtrick.Prefs.isModuleOptionEnabled('PlayerPositionsEvaluations', 'Normalised');
+	var doNormal = options ? options.normalise :
+		Foxtrick.Prefs.isModuleOptionEnabled('PlayerPositionsEvaluations', 'Normalised');
 
 	var cntrbMap = Foxtrick.Predict.contributionFactors();
-	var skills = Foxtrick.Predict.effectiveSkills(playerSkills, playerAttrs);
+	var skills = Foxtrick.Predict.effectiveSkills(playerSkills, playerAttrs, options);
 
 	for (var pos in cntrbMap) {
 		// Foxtrick.log(pos);
