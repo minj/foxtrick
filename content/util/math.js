@@ -141,7 +141,7 @@ Foxtrick.Predict.loyaltyBonus = function(loyaltyLevel, isMotherClub) {
 
 /**
  * Make a position contribution map.
- * Definition format: {center, wings, factor: number}
+ * Definition format: {center, side, farSide, wings, factor: number}
  * @return {object} Object.<string, object> position contribution map
  */
 Foxtrick.Predict.contributionFactors = function() {
@@ -314,31 +314,29 @@ Foxtrick.Predict.contributionFactors = function() {
 /**
  * Get effective skill levels based on player attributes.
  * Skill map must be {keeper, defending, playmaking, winger, passing, scoring, setPieces}.
- * Attributes map must be {form, experience, loyalty, spec}
+ * Attributes map must be:
+ * {form, stamina, ?staminaPred, experience, loyalty, motherClubBonus, bruised, transferListed}
+ * Options is {form, stamina, experience, loyalty, bruised: Boolean} (optional)
+ * By default options is assembled from prefs or needs to be fully overridden otherwise.
+ *
  * Returns effective skill map.
  * @author Greblys, LA-MJ
- * @param  {object} skills Object.<string, number> skill map
- * @param  {object} attrs  Object.<string, ?>      attribute map
- * @return {object}        Object.<string, number> effective skill map
+ * @param  {object} skills   Object.<string, number>  skill map
+ * @param  {object} attrs    Object.<string, ?>       attribute map
+ * @param  {object} options  Object.<string, Boolean> options map
+ * @return {object}          Object.<string, number>  effective skill map
  */
-Foxtrick.Predict.effectiveSkills = function(skills, attrs) {
-	var enabled = {};
-	Foxtrick.forEach(function(opt) {
-		enabled[opt] = Foxtrick.Prefs.isModuleOptionEnabled('PlayerPositionsEvaluations', opt);
-	}, [
-		'ExperienceIncluded',
-		'LoyaltyAndMCBIncluded',
-		'FormIncluded',
-		'BruisedIncluded',
-		'StaminaIncluded',
-	]);
+Foxtrick.Predict.effectiveSkills = function(skills, attrs, options) {
+	if (!options) {
+		options = Foxtrick.modules['PlayerPositionsEvaluations'].getPrefs();
+	}
 
 	var ret = {};
 	Foxtrick.mergeAll(ret, skills);
 
 	// Source [post=16376110.4]
 	var bonus, skill;
-	if (enabled['ExperienceIncluded'] && attrs.experience) { // don't do log 0
+	if (options.experience && attrs.experience) { // don't do log 0
 		bonus = Math.log(attrs.experience) / Math.log(10) * 4.0 / 3.0;
 		for (skill in ret)
 			ret[skill] += bonus;
@@ -347,15 +345,14 @@ Foxtrick.Predict.effectiveSkills = function(skills, attrs) {
 	var loyalty = attrs.loyalty;
 	var mcb = attrs.motherClubBonus;
 	var tl = attrs.transferListed; // loyalty can be undefined in transfer pages
-	if (enabled['LoyaltyAndMCBIncluded'] && typeof loyalty !== 'undefined' && !tl) {
+	if (options.loyalty && typeof loyalty !== 'undefined' && !tl) {
 		bonus = Foxtrick.Predict.loyaltyBonus(loyalty, mcb);
 		for (skill in ret)
 			ret[skill] += bonus;
 	}
 
-	var stamina = attrs.stamina;
-	if (enabled['StaminaIncluded']) {
-		var energy = Foxtrick.Predict.averageEnergy90(stamina);
+	if (options.stamina) {
+		var energy = Foxtrick.Predict.averageEnergy90(attrs.staminaPred || attrs.stamina);
 		for (skill in ret)
 			ret[skill] *= energy;
 	}
@@ -365,7 +362,7 @@ Foxtrick.Predict.effectiveSkills = function(skills, attrs) {
 	 * Probably we will never know if the form affect needs to be calculated before or after
 	 * other bonuses' addition to the main skills.
 	 */
-	if (enabled['FormIncluded']) {
+	if (options.form) {
 		var formInfls = [
 			0,
 			0.305,
@@ -382,11 +379,9 @@ Foxtrick.Predict.effectiveSkills = function(skills, attrs) {
 	}
 
 	// source: http://www.hattrickinfo.com/en/training/284/#281-
-	if (enabled['BruisedIncluded']) {
-		if (attrs.bruised) {
-			for (skill in ret)
-				ret[skill] *= 0.95;
-		}
+	if (options.bruised && attrs.bruised) {
+		for (skill in ret)
+			ret[skill] *= 0.95;
 	}
 
 	return ret;
