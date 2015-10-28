@@ -26,6 +26,13 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 		bruised: 'BruisedIncluded',
 		normalise: 'Normalised',
 	},
+	paramMap: {
+		CTR_VS_WG: 35 / 25,
+		WBD_VS_CD: 1.6,
+		WO_VS_FW: 1.25,
+		MF_VS_ATT: 1.33,
+		DF_VS_ATT: 1.1,
+	},
 	getPrefs: function() {
 		var prefs = {};
 		for (var pref in this.prefMap) {
@@ -37,6 +44,20 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 		var mName = this.MODULE_NAME;
 		for (var pref in this.prefMap) {
 			Foxtrick.Prefs.setModuleEnableState(mName + '.' + this.prefMap[pref], prefs[pref]);
+		}
+	},
+	getParams: function() {
+		var params = {};
+		for (var param in this.paramMap) {
+			var str = Foxtrick.Prefs.getString('PlayerPositionsEvaluations.' + param);
+			params[param] = parseFloat(str) || this.paramMap[param];
+		}
+		return params;
+	},
+	setParams: function(params) {
+		for (var param in this.paramMap) {
+			var str = params[param].toString();
+			Foxtrick.Prefs.setString('PlayerPositionsEvaluations.' + param, str);
 		}
 	},
 
@@ -165,10 +186,10 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 			}
 
 			// update summary table
-			var contributions = Foxtrick.Pages.Player.getContributions(skills, attrs, opts);
+			var contributions = Foxtrick.Pages.Player.getContributions(skills, attrs, opts, params);
 			module.insertEvaluationsTable(doc, contributions);
 
-			factors = Foxtrick.Predict.contributionFactors();
+			factors = Foxtrick.Predict.contributionFactors(params);
 			var effSkills = Foxtrick.Predict.effectiveSkills(skills, attrs, opts);
 
 			var table = doc.getElementById('ft-ppeBd-table');
@@ -483,7 +504,8 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 		var preset = module.getPrefs();
 		var opts = {};
 		Foxtrick.mergeAll(opts, preset);
-		var factors = Foxtrick.Predict.contributionFactors();
+		var params = module.getParams();
+		var factors = Foxtrick.Predict.contributionFactors(params);
 
 		var strMap = {
 			experience: '',

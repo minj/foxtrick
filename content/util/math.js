@@ -141,15 +141,18 @@ Foxtrick.Predict.loyaltyBonus = function(loyaltyLevel, isMotherClub) {
 
 /**
  * Make a position contribution map.
+ * Options is {CTR_VS_WG, WBD_VS_CD, WO_VS_FW, MF_VS_ATT, DF_VS_ATT: number} (optional)
+ * By default options is assembled from prefs or needs to be fully overridden otherwise.
+ *
  * Definition format: {center, side, farSide, wings, factor: number}
- * @return {object} Object.<string, object> position contribution map
+ * @param  {object} options Object.<string, number> options map
+ * @return {object}         Object.<string, object> position contribution map
  */
-Foxtrick.Predict.contributionFactors = function() {
-	var CTR_VS_WG = 35 / 25;
-	var WBD_VS_CD = 1.6;
-	var WO_VS_FW = 1.25;
-	var MF_VS_ATT = 4 / 3;
-	var DF_VS_ATT = 1.1;
+Foxtrick.Predict.contributionFactors = function(options) {
+	var opts = options;
+	if (!opts) {
+		opts = Foxtrick.modules['PlayerPositionsEvaluations'].getParams();
+	}
 
 	// all factors taken from https://docs.google.com/spreadsheets/d/1bNwtBdOxbY8pdY7uAx0boqHwRtJgj7tNpcFtDsP9Wq8/edit#gid=0
 	// format: middle[, side[, farSide]]
@@ -280,19 +283,19 @@ Foxtrick.Predict.contributionFactors = function() {
 			side = contr[1];
 			farSide = contr[2] || 0;
 
-			side *= isDef ? WBD_VS_CD : WO_VS_FW;
-			farSide *= isDef ? WBD_VS_CD : WO_VS_FW;
+			side *= isDef ? opts.WBD_VS_CD : opts.WO_VS_FW;
+			farSide *= isDef ? opts.WBD_VS_CD : opts.WO_VS_FW;
 			wings = side + farSide;
 
 			// weighted average for 3 sectors
-			factor = (center + wings / CTR_VS_WG) / (1 + 2 / CTR_VS_WG);
+			factor = (center + wings / opts.CTR_VS_WG) / (1 + 2 / opts.CTR_VS_WG);
 			if (isDef)
-				factor *= DF_VS_ATT;
+				factor *= opts.DF_VS_ATT;
 		}
 		else {
 			// PM
 			center = contr;
-			factor = center * MF_VS_ATT;
+			factor = center * opts.MF_VS_ATT;
 		}
 		// Foxtrick.log(position, skill, factor);
 
