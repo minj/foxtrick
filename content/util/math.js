@@ -315,7 +315,7 @@ Foxtrick.Predict.contributionFactors = function() {
  * Get effective skill levels based on player attributes.
  * Skill map must be {keeper, defending, playmaking, winger, passing, scoring, setPieces}.
  * Attributes map must be:
- * {form, stamina, experience, loyalty, motherClubBonus, bruised, transferListed}
+ * {form, stamina, ?staminaPred, experience, loyalty, motherClubBonus, bruised, transferListed}
  * Options is {form, stamina, experience, loyalty, bruised: Boolean} (optional)
  * By default options is assembled from prefs or needs to be fully overridden otherwise.
  *
@@ -352,7 +352,7 @@ Foxtrick.Predict.effectiveSkills = function(skills, attrs, options) {
 	}
 
 	if (options.stamina) {
-		var energy = Foxtrick.Predict.averageEnergy90(attrs.stamina);
+		var energy = Foxtrick.Predict.averageEnergy90(attrs.staminaPred || attrs.stamina);
 		for (skill in ret)
 			ret[skill] *= energy;
 	}

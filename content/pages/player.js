@@ -154,8 +154,8 @@ Foxtrick.Pages.Player.getTsi = function(doc) {
 
 /**
  * Get player attributes.
- * Returns {leadership, experience, coachSkill, stamina, form, loyalty, motherClubBonus,
- * gentleness, aggressiveness, honesty}.
+ * Returns {leadership, experience, coachSkill, stamina, staminaPred, form,
+ * loyalty, motherClubBonus, gentleness, aggressiveness, honesty}.
  *
  * Senior players only.
  * @param  {document} doc
@@ -180,6 +180,21 @@ Foxtrick.Pages.Player.getAttributes = function(doc) {
 				attrs.form = num(links[0]);
 				attrs.stamina = num(links[1]);
 			}
+
+			// stamina prediction
+			var ownId = Foxtrick.util.id.getOwnTeamId();
+			var pid = Foxtrick.Pages.All.getId(doc);
+			var data = null, dataText = Foxtrick.Prefs.getString('StaminaData.' + ownId);
+			try {
+				data = JSON.parse(dataText);
+			}
+			catch (e) {
+				Foxtrick.log(e);
+			}
+			if (data && typeof data === 'object' && data[pid]) {
+				attrs.staminaPred = parseFloat(data[pid][1]);
+			}
+
 			// coaches have an additional link at this point
 			var offset = 0;
 			if (this.isCoach(doc)) {
@@ -880,7 +895,8 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerid, callback) {
 /**
  * Get position contributions from skill map and player's attributes map
  * Skill map must be {keeper, defending, playmaking, winger, passing, scoring, setPieces}.
- * Attributes map must be: {form, stamina, experience, loyalty, motherClubBonus, bruised,
+ * Attributes map must be:
+ * {form, stamina, ?staminaPred, experience, loyalty, motherClubBonus, bruised,
  * transferListed, specialityNumber}.
  * Options is {form, stamina, experience, loyalty, bruised, normalise: Boolean} (optional)
  * By default options is assembled from prefs or needs to be fully overridden otherwise.
