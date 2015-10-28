@@ -1,6 +1,9 @@
 #ft-ppe-prefButtons {
 	margin: 1em 0;
 }
+#ft-ppeBd-table {
+	clear: both;
+}
 #ft-ppeBd-table th {
 	text-align: center;
 	border: solid #dce0dc 1px;
