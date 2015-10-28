@@ -367,6 +367,7 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 				skillTd.textContent = strMap[skill];
 
 				var inputTd = row.insertCell(-1);
+				inputTd.className = 'ft-ppeBd-NaN';
 				var input = doc.createElement('input');
 				input.className = 'ft-ppeBd-input';
 				input.size = 1;
@@ -452,9 +453,10 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 			table.appendChild(tfoot);
 
 			var footRow1 = tfoot.insertRow(-1);
-			var sumCell = footRow1.insertCell(-1);
-			sumCell.colSpan = 6;
-			sumCell.textContent = 'Σ';
+			var sumLabel = footRow1.insertCell(-1);
+			sumLabel.className = 'ft-ppeBd-NaN';
+			sumLabel.colSpan = 6;
+			sumLabel.textContent = 'Σ';
 			var sumFactors = footRow1.insertCell(-1);
 			sumFactors.className = 'ft-ppeBd-sumFactors';
 			var sumCntrbs = footRow1.insertCell(-1);
@@ -463,6 +465,7 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 			var footRow2 = tfoot.insertRow(-1);
 			var normLabel = footRow2.insertCell(-1);
 			normLabel.colSpan = 7;
+			normLabel.className = 'ft-ppeBd-NaN';
 			normLabel.textContent = Foxtrick.L10n.getString(PPE + '.normalised');
 			normLabel.title = Foxtrick.L10n.getString(PPE + '.normalised.title');
 			normLabel.setAttribute('aria-label', normLabel.title);

@@ -11,9 +11,13 @@
 	vertical-align: middle;
 }
 
+/* align all numbers to the right regardless of text direction */
 #ft-ppeBd-table td, .ft-ppeBd-input {
 	text-align: right;
 }
+#ft-ppeBd-table td.ft-ppeBd-NaN {
+	text-align: end;
+}
 #ft-ppeBd-table .ft-ppeBd-skill {
-	text-align: left;
+	text-align: start;
 }
