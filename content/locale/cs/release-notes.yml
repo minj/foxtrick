@@ -122,7 +122,7 @@ cs:
       note_9: '<module>FriendlyPool</module>: Přidána možnost rozbalit seznam států.'
       note_10: '<module>MovePlayerStatement</module>: Přidána možnost úplně odstranit prohlášení.'
       note_11: '<module>YouthTwins</module>: Manuálně provedené změny v HY budou nyní okamžitě promítnuty na stránce s mládežníckými hráči'
-      note_12: '<header>Opravy bugů</header>'
+      note_12: '<header>Opravy chyb</header>'
       note_13: 'Opraven <module>Filter</module>, <module>SupporterStatsEnhancements</module> a <module>YouthTwins</module>.'
       note_14: '<module>StaffMarker</module> a <module>HTThreadMarker</module> nyní fungují na více místech.'
       note_15: '<module>ConfirmActions</module>: přidána podpora pro automatické přihazování.'
@@ -163,7 +163,7 @@ cs:
       note_10: Possibility to test alert sounds in the preferences
       note_11: Some internal changes related to data storage
       note_12: Some smaller changes and fixes we forgot about
-      note_13: '<header>Bugfixes</header>'
+      note_13: '<header>Opravy chyb</header>'
       note_14: '<module>ExtendedPlayerDetails</module>: Fixed wage per week and season beeing incorrect for korean and probably some other languages too'
       note_15: '<module>MatchOrderInterface</module>: Face will also show for replaced and highlighted players for past lineups'
       note_16: '<module>MatchPlayerColouring</module>: Now works properly for players that were put in and left the field before the game ended'

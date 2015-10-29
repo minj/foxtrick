@@ -121,16 +121,16 @@
 			"words_translated": "15303"
 		},
 		{
-			"approved": "1640",
-			"approved_progress": "68",
+			"approved": "0",
+			"approved_progress": "0",
 			"code": "cs",
 			"name": "Czech",
 			"phrases": "2176",
-			"translated": "2015",
-			"translated_progress": "84",
+			"translated": "2030",
+			"translated_progress": "85",
 			"words": "15398",
-			"words_approved": "10532",
-			"words_translated": "13087"
+			"words_approved": "0",
+			"words_translated": "13165"
 		},
 		{
 			"approved": "1878",
@@ -222,11 +222,11 @@
 			"code": "fr",
 			"name": "French",
 			"phrases": "2176",
-			"translated": "2165",
-			"translated_progress": "99",
+			"translated": "2176",
+			"translated_progress": "100",
 			"words": "15398",
 			"words_approved": "15264",
-			"words_translated": "15281"
+			"words_translated": "15398"
 		},
 		{
 			"approved": "0",
@@ -541,16 +541,16 @@
 			"words_translated": "13584"
 		},
 		{
-			"approved": "1883",
-			"approved_progress": "79",
+			"approved": "2041",
+			"approved_progress": "87",
 			"code": "sr",
 			"name": "Serbian (Cyrillic)",
 			"phrases": "2176",
-			"translated": "2017",
-			"translated_progress": "85",
+			"translated": "2041",
+			"translated_progress": "87",
 			"words": "15398",
-			"words_approved": "12314",
-			"words_translated": "13186"
+			"words_approved": "13476",
+			"words_translated": "13482"
 		},
 		{
 			"approved": "0",
