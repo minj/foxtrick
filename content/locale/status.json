@@ -126,11 +126,11 @@
 			"code": "cs",
 			"name": "Czech",
 			"phrases": "2176",
-			"translated": "2030",
+			"translated": "2033",
 			"translated_progress": "85",
 			"words": "15398",
 			"words_approved": "0",
-			"words_translated": "13165"
+			"words_translated": "13205"
 		},
 		{
 			"approved": "1878",
@@ -546,11 +546,11 @@
 			"code": "sr",
 			"name": "Serbian (Cyrillic)",
 			"phrases": "2176",
-			"translated": "2041",
-			"translated_progress": "87",
+			"translated": "2049",
+			"translated_progress": "88",
 			"words": "15398",
 			"words_approved": "13476",
-			"words_translated": "13482"
+			"words_translated": "13602"
 		},
 		{
 			"approved": "0",

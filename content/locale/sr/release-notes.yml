@@ -25,6 +25,14 @@ sr:
       and_more: Разне друге мале промене и исправке.
     0.15.2.1:
       important: '<header>Важна обавештења</header>'
+      signed: All Firefox add-ons now need to be digitally signed by Mozilla. This is mostly a signed update to ensure Foxtrick compatibility.
+      signing: 'Due to disruptions caused by mandatory add-on signing policy we chose to unlist Foxtrick from <linkAMO>Mozilla add-ons</linkAMO> portal. More details in the <linkUnlistPost>Global Foxtrick announcement</linkUnlistPost>.'
+      bugs: '<header>Исправљене грешке</header>'
+      weatherSE: 'Listing weather SE players in match timeline was broken in <module>MatchLineupFixes</module> due to HT changes. The problem is now fixed.'
+      other: '<header>Остале промене</header>'
+      sandbox: Added support for the upcoming Hattrick match sandbox feature.
+      compact_lineups: 'Saved lineup names will now be compacted with <module>MatchOrderInterface</module>. This will allow you to use more saved lineups without running into space issues.'
+      and_more: Разне друге мале промене и исправке.
     0.15.2:
       important: '<header>Важна обавештења</header>'
       links: 'Код за персонализоване линкове <module>Links</module> је преуређен како би се исправиле грешке и олакшало одржавање. Од сада ће бити доступни и нови тагови. Неки од тагова су преименовани ради усклађивања са њиховим правим значењем. Молимо вас да освежите Foxtrick кеш меморију, затим испробајте ваше персонализоване линкове па их потом ажурирајте у складу са новим променама.'
