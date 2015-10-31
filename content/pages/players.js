@@ -1053,8 +1053,8 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 						parseHtml();
 					if (xml)
 						parseXml(xml);
-					addContributionsInfo(playerList);
 					addStamindaData(doc, playerList);
+					addContributionsInfo(playerList);
 				}
 				catch (e) {
 					Foxtrick.log(e);
