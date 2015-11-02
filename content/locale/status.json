@@ -78,11 +78,11 @@
 			"code": "bg",
 			"name": "Bulgarian",
 			"phrases": "2176",
-			"translated": "546",
-			"translated_progress": "25",
+			"translated": "634",
+			"translated_progress": "34",
 			"words": "15398",
 			"words_approved": "0",
-			"words_translated": "3917"
+			"words_translated": "5262"
 		},
 		{
 			"approved": "0",
@@ -138,11 +138,11 @@
 			"code": "da",
 			"name": "Danish",
 			"phrases": "2176",
-			"translated": "1945",
+			"translated": "1948",
 			"translated_progress": "88",
 			"words": "15398",
 			"words_approved": "13261",
-			"words_translated": "13603"
+			"words_translated": "13619"
 		},
 		{
 			"approved": "1850",
