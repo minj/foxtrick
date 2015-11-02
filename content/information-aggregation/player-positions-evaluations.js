@@ -28,8 +28,8 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 	},
 	paramMap: {
 		CTR_VS_WG: 35 / 25,
-		WBD_VS_CD: 1.6,
-		WO_VS_FW: 1.25,
+		WBD_VS_CD: 1.7,
+		WO_VS_FW: 1.3,
 		MF_VS_ATT: 1.33,
 		DF_VS_ATT: 1.1,
 	},
