@@ -1026,21 +1026,6 @@
 			"url": "http://hattrickportal.pro/Tracker"
 		}
 	},
-	"hattrickchallenge_friendly": {
-		"challengeslink": {
-			"url": "http://www.hattrickchallenge.com/Tools/Entry.php?tool=friendly&teamid=[ownteamid]"
-		},
-		"youthchallengeslink": {
-			"url": "http://www.hattrickchallenge.com/Tools/Entry.php?tool=youthfriendly&youthteamid=[ownyouthteamid]&teamid=[ownteamid]"
-		},
-		"title": "HattrickChallenge Friendly ads",
-		"img": "http://www.hattrickchallenge.com/images/favicon.ico",
-		"allow": [
-			"EQUAL",
-			"teamid",
-			"ownteamid"
-		]
-	},
 	"hattrick-youthclub": {
 		"youthlink": {
 			"url": "http://www.hattrick-youthclub.org/redirect/type/team/ht_id/[ownteamid]"
