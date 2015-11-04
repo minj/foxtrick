@@ -235,6 +235,12 @@ Foxtrick.modules['ReLiveLinks'] = {
 			liveLink.appendChild(img.cloneNode(true));
 			tds[liveTdIdx].appendChild(liveLink);
 		}
+
+		if (useColSpan) {
+			var standings = doc.querySelectorAll('.leagueTables > td');
+			Foxtrick.forEach(function(td) { td.colSpan = 4; }, standings);
+		}
+
 		if (addAllLink)
 			addAllLink.href = '/Club/Matches/Live.aspx?matchID=' + matches.join(',') +
 				'&actionType=addMatch&SourceSystem=' + source;
