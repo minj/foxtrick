@@ -8,9 +8,11 @@
 Foxtrick.modules['ReLiveLinks'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES: [
-		'matches', 'worldMatches', 'matchesArchive', 'matchesCup', 'cupMatches',
-		'fixtures', 'youthFixtures', 'series',
-		'matchesLive',
+		'matchesLive', // export live
+		'series', // combo link
+		'fixtures', 'youthFixtures', // table mess
+		'cupMatches', // insertCells, insertHeader
+		'matchesArchive', 'worldMatches', // insertCells
 	],
 	NICE: -1, // before any modules that might change row count
 	OPTIONS: ['ReLive', 'Live'],
@@ -170,11 +172,13 @@ Foxtrick.modules['ReLiveLinks'] = {
 			rows = doc.querySelectorAll('table.indent > tbody > tr');
 			insertCells = true;
 		}
-		else {
+		else if (Foxtrick.isPage(doc, 'worldMatches')) {
 			rows = doc.querySelectorAll('#mainBody tr');
-			if (Foxtrick.isPage(doc, 'worldMatches')) {
-				insertCells = true;
-			}
+			insertCells = true;
+		}
+		else {
+			Foxtrick.error('Unhandled case in ReLiveLinks');
+			return;
 		}
 
 		var matchTdIdx = findMatchTdIdx(rows);
@@ -230,6 +234,7 @@ Foxtrick.modules['ReLiveLinks'] = {
 				continue;
 				// don't run on series
 			}
+
 			url = '/Club/Matches/Live.aspx?matchID=' + id +
 				'&actionType=addMatch&SourceSystem=' + source;
 			liveLink = Foxtrick.createFeaturedElement(doc, this, 'a');
