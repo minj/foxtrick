@@ -78,11 +78,11 @@
 			"code": "bg",
 			"name": "Bulgarian",
 			"phrases": "2176",
-			"translated": "949",
-			"translated_progress": "47",
+			"translated": "1225",
+			"translated_progress": "56",
 			"words": "15398",
 			"words_approved": "0",
-			"words_translated": "7265"
+			"words_translated": "8706"
 		},
 		{
 			"approved": "0",
@@ -217,15 +217,15 @@
 			"words_translated": "6206"
 		},
 		{
-			"approved": "2153",
-			"approved_progress": "99",
+			"approved": "2176",
+			"approved_progress": "100",
 			"code": "fr",
 			"name": "French",
 			"phrases": "2176",
 			"translated": "2176",
 			"translated_progress": "100",
 			"words": "15398",
-			"words_approved": "15264",
+			"words_approved": "15398",
 			"words_translated": "15398"
 		},
 		{
