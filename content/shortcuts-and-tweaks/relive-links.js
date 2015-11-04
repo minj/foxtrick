@@ -94,13 +94,14 @@ Foxtrick.modules['ReLiveLinks'] = {
 			return;
 		}
 
-		var matchSelector = 'a[href*="/Club/Matches/Match.aspx"]';
-		var liveSelector = 'a[href*="/Club/Matches/Live.aspx"]';
+		var MATCH_SELECTOR = 'a[href^="/Club/Matches/Match.aspx"]';
+		var LIVE_SELECTOR = 'a[href^="/Club/Matches/Live.aspx"]';
+
 		var findMatchTdIdx = function(rows) {
 			if (!rows[0])
 				return -1;
 			var tbody = rows[0].parentNode;
-			var matchLink = tbody.querySelector(matchSelector);
+			var matchLink = tbody.querySelector(MATCH_SELECTOR);
 			if (!matchLink)
 				return -1;
 			var cell = matchLink.parentNode;
@@ -204,7 +205,7 @@ Foxtrick.modules['ReLiveLinks'] = {
 			var row = rows[i];
 			var tds = row.cells;
 
-			var matchLink = row.querySelector(matchSelector);
+			var matchLink = row.querySelector(MATCH_SELECTOR);
 			if (!matchLink) {
 				// unused row
 				if (useColSpan && tds[0])
@@ -217,7 +218,7 @@ Foxtrick.modules['ReLiveLinks'] = {
 			if (!scoreTd || !/^\d+\D+\d+$/.test(scoreTd.textContent.trim()))
 				continue;
 
-			var liveLink = row.querySelector(liveSelector);
+			var liveLink = row.querySelector(LIVE_SELECTOR);
 			if (liveLink)
 				continue;
 
