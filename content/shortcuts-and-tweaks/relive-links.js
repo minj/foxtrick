@@ -204,15 +204,18 @@ Foxtrick.modules['ReLiveLinks'] = {
 			var row = rows[i];
 			var tds = row.cells;
 
-			var scoreTd = tds[scoreIdx];
 			var matchLink = row.querySelector(matchSelector);
-			if (!scoreTd || !matchLink) {
+			if (!matchLink) {
 				// unused row
 				if (useColSpan && tds[0])
 					tds[0].colSpan = 4;
 
 				continue;
 			}
+
+			var scoreTd = tds[scoreIdx];
+			if (!scoreTd || !/^\d+\D+\d+$/.test(scoreTd.textContent.trim()))
+				continue;
 
 			var liveLink = row.querySelector(liveSelector);
 			if (liveLink)
