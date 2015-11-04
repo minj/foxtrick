@@ -203,18 +203,16 @@ Foxtrick.modules['ReLiveLinks'] = {
 		for (var m = rows.length; i < m; ++i) {
 			var row = rows[i];
 			var tds = row.cells;
+
 			var scoreTd = tds[scoreIdx];
-			if (!scoreTd || !/^\d+\D+\d+$/.test(scoreTd.textContent.trim())) {
+			var matchLink = row.querySelector(matchSelector);
+			if (!scoreTd || !matchLink) {
 				// unused row
 				if (useColSpan && tds[0])
-					tds[0].colSpan = 2;
+					tds[0].colSpan = 4;
 
 				continue;
 			}
-
-			var matchLink = row.querySelector(matchSelector);
-			if (!matchLink)
-				continue;
 
 			var liveLink = row.querySelector(liveSelector);
 			if (liveLink)
@@ -234,11 +232,6 @@ Foxtrick.modules['ReLiveLinks'] = {
 			liveLink.href = url;
 			liveLink.appendChild(img.cloneNode(true));
 			tds[liveTdIdx].appendChild(liveLink);
-		}
-
-		if (useColSpan) {
-			var standings = doc.querySelectorAll('.leagueTables > td');
-			Foxtrick.forEach(function(td) { td.colSpan = 4; }, standings);
 		}
 
 		if (addAllLink)
