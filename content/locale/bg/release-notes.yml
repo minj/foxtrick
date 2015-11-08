@@ -4,7 +4,7 @@ bg:
     nightly:
       note_0: 'Това е работната версия на Фокстрик. Използвайте по ваша преценка. Моля вижте <linkSVN>commit history</linkSVN> в Google Code за подробности за промени.'
     beta:
-      note_0: 'Това е бета версията на Фокстрик. Моля помогнете с превода на тази версия на нашия суперлесна страница за групов превод <linkCrowdin>crowdin.net</linkCrowdin>. '
+      note_0: 'Това е бета версията на Foxtrick. Моля помогнете с превода чрез супер лесната платформа за превод <linkCrowdin>crowdin.net</linkCrowdin>.'
     0.16.0:
       important: '<header>Важни съобщения</header>'
       safari: Поради промени в политиката на Apple Inc. и като цяло нежелание да подобрят своя браузър вече не можем да гарантираме автоматични актуализации и въобще поддръжка за потребителите на Safari. Вместо това моля обмислете дали да не използвате Firefox, Google Chrome или Opera.
@@ -13,7 +13,7 @@ bg:
       new: '<header>Нови модули</header>'
       transfers: '<module>CurrentTransfers</module> добавя повече информация за играчите на страницата за трансфери.'
       bugs: '<header>Решени проблеми</header>'
-      stamina_prediction: 'Предвижданете на под-нивата за издръжливост (<module>MatchLineupTweaks</module>) беше неправилно заради промени в Hattrick. Проблемът трябва да е решен.'
+      stamina_prediction: 'Прогнозата на поднивата издръжливост (<module>MatchLineupTweaks</module>) беше неправилна заради промени в Hattrick. Проблемът трябва да е решен.'
       match_order: 'Коригирано е оформлението в <module>MatchSimulator</module> и <module>MatchOrderInterface</module>, за да се отчетат Hattrick промени в дизайна.'
       team_detection: 'Имаше различни проблеми поради промени в дизайна на Hattrick: изчезнали лица на играчите от гостуващия отбор, <module>LiveAlert</module> откриване на головете беше счупен и други. Всички тези проблеми вече трябва да са оправени.'
       other: '<header>Други промени</header>'
