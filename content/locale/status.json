@@ -529,16 +529,16 @@
 			"words_translated": "14345"
 		},
 		{
-			"approved": "1899",
-			"approved_progress": "88",
+			"approved": "2176",
+			"approved_progress": "100",
 			"code": "ru",
 			"name": "Russian",
 			"phrases": "2176",
-			"translated": "1899",
-			"translated_progress": "88",
+			"translated": "2176",
+			"translated_progress": "100",
 			"words": "15398",
-			"words_approved": "13584",
-			"words_translated": "13584"
+			"words_approved": "15398",
+			"words_translated": "15398"
 		},
 		{
 			"approved": "2041",
@@ -594,11 +594,11 @@
 			"code": "es-AR",
 			"name": "Spanish, Argentina",
 			"phrases": "2176",
-			"translated": "1996",
+			"translated": "2011",
 			"translated_progress": "92",
 			"words": "15398",
 			"words_approved": "0",
-			"words_translated": "14214"
+			"words_translated": "14290"
 		},
 		{
 			"approved": "0",
