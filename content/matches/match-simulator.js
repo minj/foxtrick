@@ -1508,6 +1508,7 @@ Foxtrick.modules.MatchSimulator = {
 					if (staminaData[player.id]) {
 						staminaPrediction = parseFloat(staminaData[player.id][1]);
 					}
+					var energy = getStaminaFactor(player.stamina, staminaPrediction);
 
 					var tacticClass = 'normal'; // default to normal player tactic
 					var tacticAbbrs = module.TACTICS;
@@ -1528,7 +1529,6 @@ Foxtrick.modules.MatchSimulator = {
 
 					Foxtrick.forEach(function(c) {
 						var squareV = c.v * c.v;
-						var energy = getStaminaFactor(player.stamina, staminaPrediction);
 						sumSquareVEnergy += squareV * energy;
 						sumSquareV += squareV;
 					}, contributions);
