@@ -1529,6 +1529,7 @@ Foxtrick.modules.MatchSimulator = {
 				}
 				var wing = sector - center; // left:-1, center:0, right:1
 
+				var error = false;
 				Foxtrick.forEach(function(positionDiv, pos) {
 					var playerDiv = positionDiv.getElementsByClassName('player')[0];
 					if (!playerDiv)
@@ -1537,6 +1538,8 @@ Foxtrick.modules.MatchSimulator = {
 					var id = playerDiv.id.match(/\d+/)[0];
 					var player = players[id];
 					if (!player) {
+						error = true;
+						Foxtrick.error('No player JSON in staminaDiscount');
 						return;
 					}
 
@@ -1587,7 +1590,7 @@ Foxtrick.modules.MatchSimulator = {
 				}, positions);
 
 				var oldRating = orgRatings[sector];
-				var newRating = oldRating * sumVEnergy / sumV;
+				var newRating = error ? oldRating : oldRating * sumVEnergy / sumV;
 				var newRatingNorm = module.normalizeRatings(newRating);
 				var discount = doc.createElement('div');
 				discount.className = 'overlayRatingsDiscounted';
