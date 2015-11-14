@@ -593,7 +593,7 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 			loyalty: '',
 			form: '',
 			stamina: '',
-			bruised: '',
+			bruised: PPE + '.bruised',
 			normalise: PPE + '.normalise',
 			keeper: '',
 			defending: '',
