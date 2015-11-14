@@ -1554,24 +1554,23 @@ Foxtrick.modules.MatchSimulator = {
 		}
 	},
 	get STAMINA_DATA() {
-		if (!this._STAMINA_DATA) {
-			var staminaData = {};
-			var useStaminaPred = Foxtrick.Prefs.isModuleOptionEnabled(this, 'StaminaPrediction');
-			if (useStaminaPred) {
-				var ownId = Foxtrick.util.id.getOwnTeamId();
-				var dataText = Foxtrick.Prefs.getString('StaminaData.' + ownId);
-				if (dataText) {
-					try {
-						staminaData = JSON.parse(dataText);
-					}
-					catch (e) {
-						Foxtrick.log('Error parsing staminaData:', e);
-					}
+		var staminaData = {};
+		var useStaminaPred = Foxtrick.Prefs.isModuleOptionEnabled(this, 'StaminaPrediction');
+		if (useStaminaPred) {
+			var ownId = Foxtrick.util.id.getOwnTeamId();
+			var dataText = Foxtrick.Prefs.getString('StaminaData.' + ownId);
+			if (dataText) {
+				try {
+					staminaData = JSON.parse(dataText);
+				}
+				catch (e) {
+					Foxtrick.log('Error parsing staminaData:', e);
 				}
 			}
-			this._STAMINA_DATA = staminaData;
 		}
-		return this._STAMINA_DATA;
+		delete this.STAMINA_DATA;
+		this.STAMINA_DATA = staminaData;
+		return staminaData;
 	},
 	CONTRIBUTIONS: [
 		{
