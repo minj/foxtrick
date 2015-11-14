@@ -1487,6 +1487,24 @@ Foxtrick.modules.MatchSimulator = {
 		var skillOpts = Foxtrick.modules['PlayerPositionsEvaluations'].getPrefs();
 		skillOpts.stamina = false; // reset stamina effect
 
+		var players = {};
+		Foxtrick.forEach(function(div) {
+			if (!div.dataset.json)
+				return;
+
+			var player = JSON.parse(div.dataset.json);
+			player.effectiveSkills =
+				Foxtrick.Predict.effectiveSkills(player.skills, player, skillOpts);
+
+			var staminaPrediction = null;
+			if (staminaData[player.id]) {
+				staminaPrediction = parseFloat(staminaData[player.id][1]);
+			}
+			player.energy = getStaminaFactor(player.stamina, staminaPrediction);
+
+			players[player.id] = player;
+		}, doc.querySelectorAll('#players .player'));
+
 		try {
 			var overlayRatingsNums = doc.getElementsByClassName('overlayRatingsNum');
 			var overlayRatings = doc.getElementsByClassName('overlayRatings');
@@ -1517,19 +1535,10 @@ Foxtrick.modules.MatchSimulator = {
 						return;
 
 					var id = playerDiv.id.match(/\d+/)[0];
-					var playerStrip = doc.querySelector('#players #list_playerID' + id);
-					// HTs use the same ID for elements in '#players' and in '.position'
-					var player = JSON.parse(playerStrip.dataset.json);
-					if (!player.stamina)
+					var player = players[id];
+					if (!player) {
 						return;
-
-					var skills = Foxtrick.Predict.effectiveSkills(player.skills, player, skillOpts);
-
-					var staminaPrediction = null;
-					if (staminaData[player.id]) {
-						staminaPrediction = parseFloat(staminaData[player.id][1]);
 					}
-					var energy = getStaminaFactor(player.stamina, staminaPrediction);
 
 					var tacticClass = 'normal'; // default to normal player tactic
 					var tacticAbbrs = module.TACTICS;
@@ -1568,9 +1577,10 @@ Foxtrick.modules.MatchSimulator = {
 							else {
 								factor = cntrb.center;
 							}
-							var value = skills[skill] * factor;
+							var skillVal = player.effectiveSkills[skill];
+							var value = skillVal * factor;
 							sumV += value;
-							sumVEnergy += value * energy;
+							sumVEnergy += value * player.energy;
 						}
 					}
 
