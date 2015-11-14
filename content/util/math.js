@@ -294,7 +294,7 @@ Foxtrick.Predict.contributionFactors = function(options) {
 		}
 		else {
 			// PM
-			center = contr;
+			center = contr * opts.IM_VS_CD;
 			factor = center * opts.MF_VS_ATT;
 		}
 		// Foxtrick.log(position, skill, factor);

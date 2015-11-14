@@ -30,7 +30,8 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 		CTR_VS_WG: 35 / 25,
 		WBD_VS_CD: 1.7,
 		WO_VS_FW: 1.3,
-		MF_VS_ATT: 1.33,
+		IM_VS_CD: 0.6,
+		MF_VS_ATT: 3,
 		DF_VS_ATT: 1.1,
 	},
 	getPrefs: function() {
