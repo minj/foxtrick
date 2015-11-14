@@ -1,3 +1,6 @@
+.dimmedOverlay {
+	display: none;
+}
 /* our ratings as number */
 .overlayRatingsNum {
 	border-bottom: 1px solid #79A777;
@@ -21,7 +24,6 @@
 }
 .overlayRatingsNumOther {
 }
-
 
 /* other teams tactics level */
 #tacticLevelLabelOther {
@@ -66,6 +68,11 @@ html[safari] .ftMatchTournamentLadder , html[chrome] .ftMatchTournamentLadder ,
 html[safari] .ftMatchTournament , html[chrome] .ftMatchTournament  { background-color: #FFC880}
 html[safari] .ftMatchLeagueNT , html[chrome] .ftMatchLeagueNT  { background-color: #FFC880}
 
+.ft-simulator-pred-controls {
+	z-index: 4;
+	right: 10px !important;
+	bottom: 0 !important;
+}
 
 /* bottom box */
 #ft-overlayBottom {
@@ -100,7 +107,7 @@ html[data-theme="standard"] #ft-overlayBottom {
 #nisse {
 	display: none;
 }
-.visible {
+.visible, .visible .ft-simulator-pred-controls {
 	visibility: visible !important;
 }
 #fieldOverlay .ratingInnerBox {
@@ -165,10 +172,7 @@ html[dir="ltr"] .overlayMidDefense, .overlayMidAttack {
 #fieldOverlay.displayBelow {
 	height: 520px;
 	position: relative;
-	top: 630px !important;
-}
-#fieldOverlay.displayBelow.newME {
-	top: 650px !important;
+	top: 675px !important;
 }
 #fieldOverlay.displayRight {
 	height: 520px;

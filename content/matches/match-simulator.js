@@ -13,6 +13,7 @@ Foxtrick.modules.MatchSimulator = {
 	CSS: Foxtrick.InternalPath + 'resources/css/match-simulator.css',
 
 	FIELD_OVERLAY_ID: 'fieldOverlay',
+	CONTROLS_ID: 'ft-simulator-controls',
 	MATCH_SELECT_ID: 'ft-matchSelect',
 	run: function(doc) {
 		var module = this;
@@ -30,11 +31,6 @@ Foxtrick.modules.MatchSimulator = {
 			Foxtrick.addClass(fieldOverlay, 'displayBelow');
 		else if (displayOption == 2)
 			Foxtrick.addClass(fieldOverlay, 'displayRight');
-
-		// TODO: remove once new match engine alert is gone
-		var newME = doc.querySelector('#order_tabs div.alert');
-		if (newME)
-			Foxtrick.addClass(fieldOverlay, 'newME');
 
 		var useRatings = Foxtrick.Prefs.isModuleEnabled('Ratings') &&
 			Foxtrick.Prefs.isModuleOptionEnabled(module, 'UseRatingsModule');
@@ -140,6 +136,11 @@ Foxtrick.modules.MatchSimulator = {
 
 			var addTeamDiv = doc.getElementById('addTeamDiv');
 			Foxtrick.addClass(addTeamDiv, 'hidden');
+
+			var predControls = doc.querySelector('.ft-simulator-pred-controls');
+			if (predControls)
+				Foxtrick.removeClass(predControls, 'hidden');
+
 			var select = doc.getElementById(module.MATCH_SELECT_ID);
 			select.selectedIndex = 0;
 			Foxtrick.removeClass(select, 'hidden');
@@ -169,8 +170,13 @@ Foxtrick.modules.MatchSimulator = {
 			opts.isNew = true;
 
 			var addMatchDiv = doc.getElementById('addMatchDiv');
-			var select = doc.getElementById(module.MATCH_SELECT_ID);
 			Foxtrick.addClass(addMatchDiv, 'hidden');
+
+			var predControls = doc.querySelector('.ft-simulator-pred-controls');
+			if (predControls)
+				Foxtrick.removeClass(predControls, 'hidden');
+
+			var select = doc.getElementById(module.MATCH_SELECT_ID);
 			Foxtrick.removeClass(select, 'hidden');
 
 			getMatchDetails(matchId, sourceSystem, opts);
@@ -187,7 +193,7 @@ Foxtrick.modules.MatchSimulator = {
 
 			var MatchDate = matchXML.time('MatchDate');
 			var date = Foxtrick.util.time.buildDate(MatchDate, { showTime: false });
-			var howeAwayStr = Foxtrick.L10n.getString('matchOrder.' + homeAway + '.abbr');
+			var howeAwayStr = Foxtrick.L10n.getString('matchOrder.homeAway.' + homeAway + '.abbr');
 
 			var tmpl = '{HA}: ' + MATCH_LIST_TMPL;
 			var info = {
@@ -209,6 +215,7 @@ Foxtrick.modules.MatchSimulator = {
 			var doc = ev.target.ownerDocument;
 			var select = doc.getElementById(module.MATCH_SELECT_ID);
 			var fieldOverlay = doc.getElementById(module.FIELD_OVERLAY_ID);
+			var predControls = doc.querySelector('.ft-simulator-pred-controls');
 
 			var selectedMatchId = parseInt(select.value, 10);
 			var selectedOption = select.options[select.selectedIndex];
@@ -218,6 +225,8 @@ Foxtrick.modules.MatchSimulator = {
 			// add team
 			if (selectedMatchId == -2) {
 				Foxtrick.addClass(ev.target, 'hidden');
+				if (predControls)
+					Foxtrick.addClass(predControls, 'hidden');
 				var addTeamDiv = doc.getElementById('addTeamDiv');
 				Foxtrick.removeClass(addTeamDiv, 'hidden');
 				return;
@@ -245,6 +254,8 @@ Foxtrick.modules.MatchSimulator = {
 			// add a matchId manually
 			else if (selectedMatchId === 0) {
 				Foxtrick.addClass(ev.target, 'hidden');
+				if (predControls)
+					Foxtrick.addClass(predControls, 'hidden');
 				var addMatchDiv = doc.getElementById('addMatchDiv');
 				Foxtrick.removeClass(addMatchDiv, 'hidden');
 				return;
@@ -319,10 +330,18 @@ Foxtrick.modules.MatchSimulator = {
 		};
 		var buildAddMatch = function(select, opts) {
 			// manual add a match
+
+			var option = doc.createElement('option');
+			option.value = 0;
+			option.textContent = Foxtrick.L10n.getString('matchOrder.AddMatchManually');
+			select.appendChild(option);
+
 			var addMatchDiv = doc.createElement('div');
 			addMatchDiv.className = 'hidden';
 			addMatchDiv.id = 'addMatchDiv';
-			fieldOverlay.appendChild(addMatchDiv);
+
+			var controls = doc.getElementById(module.CONTROLS_ID);
+			controls.appendChild(addMatchDiv);
 
 			var addMatchText = doc.createElement('input');
 			addMatchText.id = 'addMatchText';
@@ -342,17 +361,17 @@ Foxtrick.modules.MatchSimulator = {
 			addMatchHomeAwaySelect.title = HOME_AWAY_DESC;
 			addMatchDiv.appendChild(addMatchHomeAwaySelect);
 
-			var optionDefault = doc.createElement('option');
-			optionDefault.value = 'default';
-			optionDefault.textContent = Foxtrick.L10n.getString('matchOrder.default');
-			addMatchHomeAwaySelect.appendChild(optionDefault);
+			var optionAuto = doc.createElement('option');
+			optionAuto.value = 'auto';
+			optionAuto.textContent = Foxtrick.L10n.getString('matchOrder.homeAway.auto');
+			addMatchHomeAwaySelect.appendChild(optionAuto);
 			var optionHome = doc.createElement('option');
 			optionHome.value = 'home';
-			optionHome.textContent = Foxtrick.L10n.getString('matchOrder.home');
+			optionHome.textContent = Foxtrick.L10n.getString('matchOrder.homeAway.home');
 			addMatchHomeAwaySelect.appendChild(optionHome);
 			var optionAway = doc.createElement('option');
 			optionAway.value = 'away';
-			optionAway.textContent = Foxtrick.L10n.getString('matchOrder.away');
+			optionAway.textContent = Foxtrick.L10n.getString('matchOrder.homeAway.away');
 			addMatchHomeAwaySelect.appendChild(optionAway);
 
 			var addMatchCheck = doc.createElement('input');
@@ -386,9 +405,15 @@ Foxtrick.modules.MatchSimulator = {
 			addMatchButtonCancel.value = Foxtrick.L10n.getString('button.cancel');
 			var addMatchCancel = function(ev) {
 				var doc = ev.target.ownerDocument;
+
 				var addMatchDiv = doc.getElementById('addMatchDiv');
-				var select = doc.getElementById(module.MATCH_SELECT_ID);
 				Foxtrick.addClass(addMatchDiv, 'hidden');
+
+				var predControls = doc.querySelector('.ft-simulator-pred-controls');
+				if (predControls)
+					Foxtrick.removeClass(predControls, 'hidden');
+
+				var select = doc.getElementById(module.MATCH_SELECT_ID);
 				Foxtrick.removeClass(select, 'hidden');
 				select.selectedIndex = 0;
 			};
@@ -406,7 +431,9 @@ Foxtrick.modules.MatchSimulator = {
 			var addTeamDiv = doc.createElement('div');
 			addTeamDiv.className = 'hidden';
 			addTeamDiv.id = 'addTeamDiv';
-			fieldOverlay.appendChild(addTeamDiv);
+
+			var controls = doc.getElementById(module.CONTROLS_ID);
+			controls.appendChild(addTeamDiv);
 
 			var addTeamLabel = doc.createElement('label');
 			addTeamLabel.setAttribute('for', 'addTeamText');
@@ -435,9 +462,15 @@ Foxtrick.modules.MatchSimulator = {
 			addTeamButtonCancel.value = Foxtrick.L10n.getString('button.cancel');
 			var addTeamCancel = function(ev) {
 				var doc = ev.target.ownerDocument;
+
 				var addTeamDiv = doc.getElementById('addTeamDiv');
-				var select = doc.getElementById(module.MATCH_SELECT_ID);
 				Foxtrick.addClass(addTeamDiv, 'hidden');
+
+				var predControls = doc.querySelector('.ft-simulator-pred-controls');
+				if (predControls)
+					Foxtrick.removeClass(predControls, 'hidden');
+
+				var select = doc.getElementById(module.MATCH_SELECT_ID);
 				Foxtrick.removeClass(select, 'hidden');
 				select.selectedIndex = 0;
 			};
@@ -458,13 +491,8 @@ Foxtrick.modules.MatchSimulator = {
 			optionNoMatch.textContent = Foxtrick.L10n.getString('matchOrder.noMatchSelected');
 			select.appendChild(optionNoMatch);
 
-			var option = doc.createElement('option');
-			option.value = 0;
-			option.textContent = Foxtrick.L10n.getString('matchOrder.AddMatchManually');
-			select.appendChild(option);
-
-			var fieldOverlay = doc.getElementById(module.FIELD_OVERLAY_ID);
-			fieldOverlay.appendChild(select);
+			var controls = doc.getElementById(module.CONTROLS_ID);
+			controls.appendChild(select);
 
 			buildAddMatch(select, opts);
 			buildAddTeam(select, opts);
@@ -559,15 +587,27 @@ Foxtrick.modules.MatchSimulator = {
 			};
 			Foxtrick.onClick(doc.getElementById('closeOverlay'), hideOverlay);
 
+			var fieldOverlay = doc.getElementById(module.FIELD_OVERLAY_ID);
+			var controls = Foxtrick.createFeaturedElement(doc, module, 'div');
+			controls.id = module.CONTROLS_ID;
+			fieldOverlay.appendChild(controls);
+
 			// add copy button
 			var copyButton = doc.createElement('input');
 			copyButton.type = 'button';
 			copyButton.value = Foxtrick.L10n.getString('button.copy');
 			copyButton.id = 'ft-copyRatingsButton';
 			Foxtrick.onClick(copyButton, module.copyRatings.bind(module));
+			controls.appendChild(copyButton);
 
-			var fieldOverlay = doc.getElementById(module.FIELD_OVERLAY_ID);
-			fieldOverlay.appendChild(copyButton);
+			// relocate prediction controls
+			var coachModDiv = doc.getElementById('coachModifier');
+			var neighbor = coachModDiv.previousElementSibling;
+			if (Foxtrick.hasClass(neighbor, 'ratingPredictionsOverlay')) {
+				Foxtrick.addClass(neighbor, 'ft-simulator-pred-controls');
+				// move controls back to fieldOverlay
+				controls.appendChild(neighbor);
+			}
 
 			var crumbs = Foxtrick.Pages.All.getBreadCrumbs(doc);
 			var thisTeamID = Foxtrick.util.id.getTeamIdFromUrl(crumbs[0].href);
@@ -847,8 +887,10 @@ Foxtrick.modules.MatchSimulator = {
 		// TODO: replace with L10n string
 		try {
 			var teamTacticsDiv = doc.getElementById('tactics').cloneNode(true);
-			teamTacticsDiv.removeChild(teamTacticsDiv.getElementsByClassName('speechLevel')[0]);
-			teamTacticsDiv.removeChild(teamTacticsDiv.getElementsByTagName('select')[0]);
+			var speechLevelTxt = teamTacticsDiv.getElementsByClassName('speechLevel')[0];
+			speechLevelTxt.parentNode.removeChild(speechLevelTxt);
+			var speechLevel = teamTacticsDiv.getElementsByTagName('select')[0];
+			speechLevel.parentNode.removeChild(speechLevel);
 			return teamTacticsDiv.textContent.trim();
 		}
 		catch (e) {
@@ -917,7 +959,17 @@ Foxtrick.modules.MatchSimulator = {
 		}
 
 		// coach type
-		text += doc.getElementById('trainerTypeLabel').textContent + '\n';
+		var coachTypeModifier = doc.getElementById('coachTypeModifier');
+		if (coachTypeModifier) {
+			// new tactic assistant type coach modifier
+			var coachModifierTitle = doc.getElementById('coachModifierTitle');
+			var coachModifierLabel = doc.getElementById('coachModifierLabel');
+			text += coachModifierTitle.textContent + ': ' + coachModifierLabel.textContent + '\n';
+		}
+		else {
+			// old style
+			text += doc.getElementById('trainerTypeLabel').textContent + '\n';
+		}
 
 		// tactics
 		var teamTacticsTitle = module.getTacticsLabel(doc);
