@@ -115,6 +115,22 @@ Foxtrick.Pages.Matches.IconsByType = {
 	106: 'matchFriendly',
 };
 
+/**
+ * Get numeric match type ID based on match icon class name
+ * @param  {string} iconClass
+ * @return {number}
+ */
+Foxtrick.Pages.Matches.getTypeFromIcon = function(iconClass) {
+	var type = null;
+	for (var id in this.IconsByType) {
+		if (this.IconsByType[id] === iconClass) {
+			type = parseInt(id, 10);
+			break;
+		}
+	}
+	return type;
+};
+
 Foxtrick.Pages.Matches.Official = [1, 2, 3, 7];
 Foxtrick.Pages.Matches.Friendly = [4, 5, 8, 9];
 Foxtrick.Pages.Matches.NT = [10, 11, 12];
