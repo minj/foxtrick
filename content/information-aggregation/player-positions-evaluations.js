@@ -276,12 +276,15 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 
 			var cntrlHead = doc.createElement('h3');
 			cntrlHead.textContent = Foxtrick.L10n.getString(PPE + '.settings');
-			cntrlHead.title = Foxtrick.L10n.getString(PPE + '.settings.title');
 			controls.appendChild(cntrlHead);
 
 			var simple = doc.createElement('div');
 			simple.id = 'ft-ppe-controlsSimple';
 			controls.appendChild(simple);
+
+			var simpleTitle = doc.createElement('p');
+			simpleTitle.textContent = Foxtrick.L10n.getString(PPE + '.settings.title');
+			simple.appendChild(simpleTitle);
 
 			var inputs = [
 				'experience',
