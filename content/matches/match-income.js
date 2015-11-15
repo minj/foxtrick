@@ -26,8 +26,8 @@ Foxtrick.modules['MatchIncome'] = {
 			if (!table)
 				return;
 
-			//find correct price for match
-			//based on research in post 15703189.1
+			// find correct price for match
+			// based on research in post 15703189.1
 			var prices = [
 				{
 					from: '22.09.1997 00:00',
@@ -35,7 +35,7 @@ Foxtrick.modules['MatchIncome'] = {
 					terraces: 5,
 					basicSeats: 7.5,
 					seatsUnderRoof: 10,
-					vip: 25
+					vip: 25,
 				},
 				{
 					from: '11.10.2004 00:00',
@@ -43,7 +43,7 @@ Foxtrick.modules['MatchIncome'] = {
 					terraces: 5.5,
 					basicSeats: 8,
 					seatsUnderRoof: 11,
-					vip: 27.5
+					vip: 27.5,
 				},
 				{
 					from: '16.07.2007 00:00',
@@ -51,7 +51,7 @@ Foxtrick.modules['MatchIncome'] = {
 					terraces: 6.5,
 					basicSeats: 9.5,
 					seatsUnderRoof: 13,
-					vip: 32.5
+					vip: 32.5,
 				},
 				{
 					from: '25.02.2008 00:00',
@@ -59,7 +59,7 @@ Foxtrick.modules['MatchIncome'] = {
 					terraces: 6.5,
 					basicSeats: 9.5,
 					seatsUnderRoof: 18,
-					vip: 32.5
+					vip: 32.5,
 				},
 				{
 					from: '11.06.2012 00:00',
@@ -67,12 +67,12 @@ Foxtrick.modules['MatchIncome'] = {
 					terraces: 7,
 					basicSeats: 10,
 					seatsUnderRoof: 19,
-					vip: 35
+					vip: 35,
 				},
 			];
 
 			var matchDate = Foxtrick.Pages.Match.getDate(doc);
-			//use last if we find nothing
+			// use last if we find nothing
 			var priceIdx = prices.length - 1;
 			for (var i = 0; i < prices.length; i++) {
 				var from = Foxtrick.util.time.getDateFromText(prices[i].from, 'dd-mm-yyyy');
@@ -89,7 +89,7 @@ Foxtrick.modules['MatchIncome'] = {
 			var isNeutral = Foxtrick.Pages.Match.isNeutral(doc);
 			var isCup = Foxtrick.Pages.Match.isCup(doc);
 			var isFriendly = Foxtrick.Pages.Match.isFriendly(doc);
-			var priceQ = isFriendly || isNeutral ? 0.5 : (isCup ? 0.67 : 1);
+			var priceQ = isFriendly || isNeutral ? 0.5 : isCup ? 0.67 : 1;
 
 			var visitorsTerraces = Foxtrick.trimnum(table.rows[0].cells[1].textContent);
 			var visitorsBasicSeats = Foxtrick.trimnum(table.rows[1].cells[1].textContent);
@@ -144,7 +144,7 @@ Foxtrick.modules['MatchIncome'] = {
 						// whether the arena has been rebuilt after the match or not
 						var rebuildDate = xml.time('RebuiltDate');
 						var playDate = Foxtrick.Pages.Match.getDate(doc);
-						var hasChanged = (playDate.getTime() - rebuildDate.getTime()) < 0;
+						var hasChanged = playDate.getTime() < rebuildDate.getTime();
 
 						if (hasChanged)
 							return;
@@ -166,5 +166,5 @@ Foxtrick.modules['MatchIncome'] = {
 				});
 			}
 		});
-	}
+	},
 };
