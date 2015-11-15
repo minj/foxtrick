@@ -3,7 +3,7 @@
  * transfer-compare-players.js
  * Shows median and average values in transfer compare.
  * Fetch additional player information on request
- * @author bummerland - tasosventouris
+ * @author bummerland, tasosventouris, LA-MJ
  */
 
 Foxtrick.modules['TransferComparePlayers'] = {
@@ -239,34 +239,16 @@ Foxtrick.modules['TransferComparePlayers'] = {
 				var agedays = xml.num('AgeDays');
 				var fetchDate = xml.date('FetchedDate');
 
+				var DIFF_TMPL = '{sign}{val} {curr} ({sign}{pctg} %)';
+				var SEASON_TMPL = '{sign}{season} {curr} {per}';
+				var diff = {
+					curr: hTable.rows[1].cells[3].firstChild.textContent.match(/\D+$/)[0].trim(),
+					per: Foxtrick.L10n.getString('ExtendedPlayerDetails.perseason'),
+				};
+
 				for (var i = 1; i < ct; i++) {
 					var transferRow = hTable.rows[i];
-					if (i < ct - 1) {
-						var priceCell = transferRow.cells[3];
-						var prevPriceCell = hTable.rows[i + 1].cells[3];
-						var price = Foxtrick.trimnum(priceCell.firstChild.textContent);
-						var prevPrice = Foxtrick.trimnum(prevPriceCell.firstChild.textContent);
-
-						var dif = 0, percentage = doc.createElement('span');
-						if (price > prevPrice) {
-							dif = (price - prevPrice) / prevPrice;
-							Foxtrick.addClass(percentage, 'ft-player-transfer-history positive');
-							percentage.textContent = '(+' + Math.round(dif * 100) + ' %)';
-						}
-						else if (price < prevPrice) {
-							dif = (prevPrice - price) / prevPrice;
-							Foxtrick.addClass(percentage, 'ft-player-transfer-history negative');
-							percentage.textContent = '(-' + Math.round(dif * 100) + ' %)';
-						}
-						else {
-							Foxtrick.addClass(percentage, 'ft-player-transfer-history');
-							percentage.textContent = '(0 %)';
-						}
-
-						Foxtrick.makeFeaturedElement(percentage, module);
-						transferRow.insertCell(4);
-						transferRow.cells[4].appendChild(percentage);
-					}
+					var prevRow = hTable.rows[i + 1];
 
 					var days = age * DAYS_IN_SEASON + agedays;
 					var now = Foxtrick.util.time.getHtDate(doc);
@@ -288,6 +270,47 @@ Foxtrick.modules['TransferComparePlayers'] = {
 					ageSpan.textContent = years + '.' + days;
 					ageSpan.title = AGE_TITLE;
 					ageCell.appendChild(ageSpan);
+
+					if (i < ct - 1) {
+						var prevDateText = prevRow.cells[0].textContent;
+						var prevDate = Foxtrick.util.time.getDateFromText(prevDateText);
+						var daysInClub = (transferDate.getTime() - prevDate.getTime()) / MS_IN_DAY;
+
+						var diffCell = transferRow.insertCell(5);
+						Foxtrick.makeFeaturedElement(diffCell, module);
+
+						var priceCell = transferRow.cells[4];
+						var prevPriceCell = prevRow.cells[3];
+						var price = Foxtrick.trimnum(priceCell.firstChild.textContent);
+						var prevPrice = Foxtrick.trimnum(prevPriceCell.firstChild.textContent);
+
+						if (price == prevPrice) {
+							Foxtrick.addClass(diffCell, 'ft-player-transfer-history');
+						}
+						else {
+							if (price > prevPrice) {
+								Foxtrick.addClass(diffCell, 'ft-player-transfer-history positive');
+								diff.sign = '+';
+							}
+							else {
+								Foxtrick.addClass(diffCell, 'ft-player-transfer-history negative');
+								diff.sign = '-';
+							}
+							var val = Math.abs(price - prevPrice);
+							diff.val = Foxtrick.formatNumber(val, '\u00a0');
+							diff.pctg = Math.round(val / prevPrice * 100);
+							var season = Math.round(val / daysInClub * DAYS_IN_SEASON);
+							diff.season = Foxtrick.formatNumber(season, '\u00a0');
+
+							var span = doc.createElement('span');
+							span.textContent = Foxtrick.format(DIFF_TMPL, diff);
+							diffCell.appendChild(span);
+							diffCell.appendChild(doc.createElement('br'));
+							var seasonSpan = doc.createElement('span');
+							seasonSpan.textContent = Foxtrick.format(SEASON_TMPL, diff);
+							diffCell.appendChild(seasonSpan);
+						}
+					}
 				}
 
 				var td = doc.createElement('td');
