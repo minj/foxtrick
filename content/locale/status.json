@@ -90,11 +90,11 @@
 			"code": "ca",
 			"name": "Catalan",
 			"phrases": "2178",
-			"translated": "2174",
-			"translated_progress": "99",
+			"translated": "2178",
+			"translated_progress": "100",
 			"words": "15418",
 			"words_approved": "0",
-			"words_translated": "15374"
+			"words_translated": "15418"
 		},
 		{
 			"approved": "0",
@@ -222,11 +222,11 @@
 			"code": "fr",
 			"name": "French",
 			"phrases": "2178",
-			"translated": "2174",
-			"translated_progress": "99",
+			"translated": "2178",
+			"translated_progress": "100",
 			"words": "15418",
 			"words_approved": "15374",
-			"words_translated": "15374"
+			"words_translated": "15418"
 		},
 		{
 			"approved": "0",
@@ -594,11 +594,11 @@
 			"code": "es-AR",
 			"name": "Spanish, Argentina",
 			"phrases": "2178",
-			"translated": "2011",
-			"translated_progress": "92",
+			"translated": "2052",
+			"translated_progress": "94",
 			"words": "15418",
 			"words_approved": "0",
-			"words_translated": "14290"
+			"words_translated": "14554"
 		},
 		{
 			"approved": "0",
