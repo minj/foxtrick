@@ -166,7 +166,8 @@ Foxtrick.modules['TransferComparePlayers'] = {
 			}
 
 			if (count > 0) {
-				var currency = table.rows[5].cells[3].textContent.match(/\D+$/)[0].trim();
+				var currencyCell = table.rows[5].cells[3];
+				var currency = currencyCell.firstChild.textContent.match(/\D+$/)[0].trim();
 				var sumRow = Foxtrick.insertFeaturedRow(table, module, table.rows.length);
 				var cell = sumRow.insertCell(-1);
 				cell.className = 'left bold';
@@ -241,17 +242,19 @@ Foxtrick.modules['TransferComparePlayers'] = {
 				for (var i = 1; i < ct; i++) {
 					var transferRow = hTable.rows[i];
 					if (i < ct - 1) {
-						var next = Foxtrick.trimnum(transferRow.cells[3].textContent);
-						var last = Foxtrick.trimnum(hTable.rows[i + 1].cells[3].textContent);
+						var priceCell = transferRow.cells[3];
+						var prevPriceCell = hTable.rows[i + 1].cells[3];
+						var price = Foxtrick.trimnum(priceCell.firstChild.textContent);
+						var prevPrice = Foxtrick.trimnum(prevPriceCell.firstChild.textContent);
 
 						var dif = 0, percentage = doc.createElement('span');
-						if (next > last) {
-							dif = (next - last) / last;
+						if (price > prevPrice) {
+							dif = (price - prevPrice) / prevPrice;
 							Foxtrick.addClass(percentage, 'ft-player-transfer-history positive');
 							percentage.textContent = '(+' + Math.round(dif * 100) + ' %)';
 						}
-						else if (next < last) {
-							dif = (last - next) / last;
+						else if (price < prevPrice) {
+							dif = (prevPrice - price) / prevPrice;
 							Foxtrick.addClass(percentage, 'ft-player-transfer-history negative');
 							percentage.textContent = '(-' + Math.round(dif * 100) + ' %)';
 						}
