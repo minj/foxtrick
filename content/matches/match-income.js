@@ -95,6 +95,8 @@ Foxtrick.modules['MatchIncome'] = {
 			var visitorsBasicSeats = Foxtrick.trimnum(table.rows[1].cells[1].textContent);
 			var visitorsUnderRoof = Foxtrick.trimnum(table.rows[2].cells[1].textContent);
 			var visitorsVip = Foxtrick.trimnum(table.rows[3].cells[1].textContent);
+			var visitorsTotal =
+				visitorsTerraces + visitorsBasicSeats + visitorsUnderRoof + visitorsVip;
 
 			var tbody = table.getElementsByTagName('tbody')[0];
 			var sum = visitorsTerraces * prices[priceIdx].terraces +
@@ -109,6 +111,19 @@ Foxtrick.modules['MatchIncome'] = {
 			// get rid of possible fraction
 			sum = Math.floor(sum);
 
+			// total attendance
+			var totalRow = table.insertRow(-1);
+			Foxtrick.makeFeaturedElement(totalRow, module);
+
+			var header = totalRow.insertCell(-1);
+			header.className = 'ch';
+			header.textContent = Foxtrick.L10n.getString('matches.total');
+
+			var count = totalRow.insertCell(-1);
+			count.textContent = visitorsTotal;
+			var graphCell = totalRow.insertCell(-1);
+
+			// income
 			var tr2 = Foxtrick.createFeaturedElement(doc, module, 'tr');
 			var td2a = doc.createElement('td');
 			var td2b = doc.createElement('td');
@@ -153,6 +168,7 @@ Foxtrick.modules['MatchIncome'] = {
 					var availRoof = xml.num('Roof');
 					var availVip = xml.num('VIP');
 					var availBasicSeats = xml.num('Basic');
+					var availTotal = xml.num('Total');
 
 					var addPercentage = function(idx, avail, usage) {
 						var row = table.rows[idx];
@@ -163,6 +179,33 @@ Foxtrick.modules['MatchIncome'] = {
 					addPercentage(1, availBasicSeats, visitorsBasicSeats);
 					addPercentage(2, availRoof, visitorsUnderRoof);
 					addPercentage(3, availVip, visitorsVip);
+					addPercentage(4, availTotal, visitorsTotal);
+
+					if (availTotal && Foxtrick.util.layout.isSupporter(doc)) {
+						var total = visitorsTotal / availTotal;
+						var coords = {
+							x: (1 + Math.sin(2 * Math.PI * total)) * 8,
+							y: (1 - Math.cos(2 * Math.PI * total)) * 8,
+							large: total > 0.5 ? 1 : 0,
+						};
+						var totalStr = (100 * total).toFixed(0) + '%';
+						graphCell.title = totalStr;
+
+						var svg = Foxtrick.createSVG(doc, 'svg');
+						graphCell.appendChild(svg);
+						svg.height.baseVal.valueAsString = '16px';
+						svg.width.baseVal.valueAsString = '16px';
+						var svgPath = Foxtrick.createSVG(doc, 'path');
+						svg.appendChild(svgPath);
+						var props = {
+							fill: '#cccccc',
+							stroke: '#ffffff',
+							'stroke-width': '0.29px',
+							d: Foxtrick.format('M8,8L{x},{y}A8,8,0,{large},0,8,0Z', coords),
+						};
+						for (var prop in props)
+							svgPath.setAttribute(prop, props[prop]);
+					}
 				});
 			}
 		});

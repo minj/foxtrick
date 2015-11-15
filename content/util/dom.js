@@ -8,6 +8,16 @@ if (!Foxtrick)
 	var Foxtrick = {};
 
 /**
+ * Create an element in SVG namespace. Root element is typically 'svg'.
+ * @param  {document} doc
+ * @param  {string}   type
+ * @return {element}
+ */
+Foxtrick.createSVG = function(doc, type) {
+	return doc.createElementNS('http://www.w3.org/2000/svg', type);
+};
+
+/**
  * Create an element with Foxtrick feature highlight enabled.
  * This and other similar functions must be used on the outer container
  * of DOM created and/or modified by Foxtrick.
