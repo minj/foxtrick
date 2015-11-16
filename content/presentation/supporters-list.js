@@ -47,6 +47,11 @@ Foxtrick.modules['SupportersList'] = {
 		var ids = [];
 
 		var addDecorations = function() {
+			var callback = function(img) {
+				Foxtrick.makeFeaturedElement(img, Foxtrick.modules.SupportersList);
+				Foxtrick.addClass(img, className);
+			};
+
 			var links = doc.querySelectorAll('#mainBody a[href*="TeamID"]');
 			var re = /TeamID=([0-9]+)/i;
 			for (var l = 0; l < links.length; l++) {
@@ -55,16 +60,14 @@ Foxtrick.modules['SupportersList'] = {
 				if (matches[1] && Foxtrick.indexOf(ids, matches[1]) != -1) {
 					var node = mine ? links[l].parentNode.parentNode.previousElementSibling :
 						links[l].parentNode;
+
 					Foxtrick.addImage(doc, node, {
-						'src': '/Img/Icons/transparent.gif',
-						'class': className,
-						'width': '22px',
-						'height': '22px',
-						'title': title,
-						'alt': title
-					}, node.firstChild, function(img) {
-						Foxtrick.makeFeaturedElement(img, Foxtrick.modules.SupportersList);
-					});
+						src: '/Img/Icons/transparent.gif',
+						width: 22,
+						height: 22,
+						title: title,
+						alt: title,
+					}, node.firstChild, callback);
 				}
 			}
 			loading.parentNode.removeChild(loading);
@@ -131,5 +134,5 @@ Foxtrick.modules['SupportersList'] = {
 			else
 				addDecorations();
 		});
-	}
+	},
 };
