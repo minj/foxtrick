@@ -89,10 +89,10 @@ Foxtrick.modules['SupportersList'] = {
 	decorateLinks: function(doc, ids, type, findParent) {
 		var module = this;
 		var title = Foxtrick.L10n.getString('supporters.otherSupportYou');
-		var className = 'ft-staff-icon ft-staff-supporter';
+		var className = 'ft-suppList ft-staff-icon ft-staff-supporter';
 		if (type === 'supported') {
 			title = Foxtrick.L10n.getString('supporters.youSupportOther');
-			className = 'ft-staff-icon ft-staff-supported';
+			className = 'ft-suppList ft-staff-icon ft-staff-supported';
 		}
 
 		var imgCb = function(img) {
