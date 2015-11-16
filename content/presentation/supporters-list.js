@@ -54,10 +54,10 @@ Foxtrick.modules['SupportersList'] = {
 	decorateLinks: function(doc, ids, type, findParent) {
 		var module = this;
 		var title = Foxtrick.L10n.getString('supporters.otherSupportYou');
-		var className = 'scFans ft-supporter';
+		var className = 'ft-staff-icon ft-staff-supporter';
 		if (type === 'supported') {
 			title = Foxtrick.L10n.getString('supporters.youSupportOther');
-			className = 'scMySupporters ft-supported';
+			className = 'ft-staff-icon ft-staff-supported';
 		}
 
 		var imgCb = function(img) {
@@ -74,8 +74,6 @@ Foxtrick.modules['SupportersList'] = {
 				var node = findParent(links[l]);
 				Foxtrick.addImage(doc, node, {
 					src: '/Img/Icons/transparent.gif',
-					width: 22,
-					height: 22,
 					title: title,
 					alt: title,
 				}, node.firstChild, imgCb);
