@@ -5,6 +5,13 @@ pt-PT:
       note_0: 'Esta é uma versão de testes. Use à sua responsabilidade. Por favor veja o <linkSVN>Histórico de confirmação</linkSVN> no Google Code para mais detalhes sobre as alterações.'
     beta:
       note_0: 'Esta é uma versão beta do próximo lançamento. Por favor ajude na tradução desta versão na nossa página <linkCrowdin>crowdin.net</linkCrowdin>, é bastante fácil.'
+    0.16.1:
+      important: '<header>Avisos Importantes</header>'
+      crowdin: '<header>Várias atualizações nas traduções dos nossos utilizadores incríveis usando a ferramenta <linkCrowdin>Crowdin</linkCrowdin>. Venha daí, também pode ajudar!</header>'
+      support: '<header>Gosta do que estamos a fazer? Por favor <linkContribute>apoie</linkContribute> o FoxTrick.</header>'
+      bugs: '<header>Correções de Erros</header>'
+      other: '<header>Outras alterações</header>'
+      and_more: Diversas pequenas correções e alterações.
     0.16.0:
       important: '<header>Avisos Importantes</header>'
       safari: Devido a mudanças da Apple Inc. na sua política e relutância geral em melhorar o seu navegador, não podemos mais garantir atualizações automáticas e suporte geral para utilizadores do Safari. Por favor considere usar o Firefox, Chrome ou Opera.

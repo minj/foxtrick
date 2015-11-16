@@ -5,6 +5,13 @@ lt:
       note_0: 'Įdiegėte nestabilią versiją. Naudokite savo rizika. Peržiūrėkite „Google Code“ <linkSVN>pakeitimų sąrašą</linkSVN>.'
     beta:
       note_0: 'Įdiegėte išankstinę (beta) versiją. Prašome prisidėti prie jos vertimo į lietuvių kalbą ypatingai šauniame vertėjų savanorių portale „<linkCrowdin>crowdin.net</linkCrowdin>“. '
+    0.16.1:
+      important: '<header>Svarbūs pranešimai</header>'
+      crowdin: '<header>Daugybė vertimo atnaujinimų. Dėkojame savo šauniems vartotojams, kurie naudojasi <linkCrowdin>crowdin portalu</linkCrowdin>. Ir Jūs galite prisidėti!</header>'
+      support: '<header>Patinka šis projektas? Prašome <linkContribute>pagelbėti Foxtrick</linkContribute>.</header>'
+      bugs: '<header>Pataisytos klaidos</header>'
+      other: '<header>Kiti pakeitimai</header>'
+      and_more: Daugybė kitų smulkių pataisymų ir pakitimų.
     0.16.0:
       important: '<header>Svarbūs pranešimai</header>'
       safari: Dėl pasikeitusios Apple kompanijos pozicijos ir bendro nenoro tobulinti savo naršyklę nebegalime garantuoti automatinių atnaujinimų ar bendro palaikymo „Safari“ naudotojams. Siūlome geriau naudoti „Firefox“, „Google Chrome“ ar „Opera“ naršykles.

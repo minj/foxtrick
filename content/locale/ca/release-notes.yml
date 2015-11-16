@@ -5,6 +5,13 @@ ca:
       note_0: 'Aquesta és la versió de desenvolupament. Utilitza-la a la teva pròpia discreció. Si us plau mira <linkSVN>commit history</linkSVN> a Google Code per als detalls dels canvis.'
     beta:
       note_0: 'Aquesta és la versió beta de la propera versió. Si us plau, ajuda a traduir aquesta versió a la nostra súper pàgina web de traducció i molt fàcil <linkCrowdin>crowdin.net</linkCrowdin>.'
+    0.16.1:
+      important: '<header>Anuncis importants</header>'
+      crowdin: "<header>Moltes actualitzacions en la traducció, per part dels nostres impressionants usuaris, usant <linkCrowdin>l'eina crowdin</linkCrowdin>. ¡Tu també pots ajudar-nos!</header>s usuari"
+      support: "¿<header>T'agrada com ho estem fent? Si us plau <linkContribute>Foxtrick suport</linkContribute>.</header>"
+      bugs: "<header>Correccions d'errors</header>"
+      other: '<header>Altres canvis</header>'
+      and_more: Diversos altres petits canvis i correccions.
     0.16.0:
       important: '<header>Anuncis importants</header>'
       safari: "Degut als canvis en la política d'Apple Inc i la renuncia general per millorar el seu navegador ja no garantim actualitzacions automàtiques ni suport general per als usuaris de Safari. Et recomanem utilitzar Firefox, Google Chrome o Opera en el seu lloc."
