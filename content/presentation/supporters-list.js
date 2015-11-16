@@ -80,9 +80,9 @@ Foxtrick.modules['SupportersList'] = {
 				decorate(supporters, 'supporters');
 		};
 
-		module.fetch(doc, true, function(supporters) {
-			module.fetch(doc, false, function(supported) {
-				run(supporters, supported);
+		module.fetch(doc, 'supported', function(supported) {
+			module.fetch(doc, 'supporters', function(supporters) {
+				run(supported, supporters);
 			});
 		});
 	},
