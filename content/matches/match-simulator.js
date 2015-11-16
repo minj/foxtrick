@@ -1484,7 +1484,10 @@ Foxtrick.modules.MatchSimulator = {
 
 		var staminaData = module.STAMINA_DATA;
 		var contributions = Foxtrick.Predict.contributionFactors();
-		var skillOpts = Foxtrick.modules['PlayerPositionsEvaluations'].getPrefs();
+
+		// using defaults to disregard user settings
+		// gives more consistency and allows to play around with them w/o affecting stamina
+		var skillOpts = Foxtrick.modules['PlayerPositionsEvaluations'].getDefaultPrefs();
 		skillOpts.stamina = false; // reset stamina effect
 
 		var players = {};
