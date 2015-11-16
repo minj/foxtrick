@@ -41,6 +41,16 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 		}
 		return prefs;
 	},
+	getDefaultPrefs: function() {
+		return {
+			experience: true,
+			loyalty: true,
+			form: true,
+			stamina: true,
+			bruised: true,
+			normalise: true,
+		};
+	},
 	setPrefs: function(prefs) {
 		var mName = this.MODULE_NAME;
 		for (var pref in this.prefMap) {
