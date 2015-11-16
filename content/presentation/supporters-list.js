@@ -7,11 +7,20 @@
 
 Foxtrick.modules['SupportersList'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.PRESENTATION,
-	PAGES: ['supported', 'supporters'],
-	OPTIONS: ['SupporterBack', 'SupportedBack'],
+	PAGES: [
+		'supported', 'supporters',
+		'series', 'nextSeries', 'oldSeries', 'marathon', 'promotion',
+	],
+	OPTIONS: ['SupporterBack', 'SupportedBack', 'Series'],
 	CSS: Foxtrick.InternalPath + 'resources/css/supporters-list.css',
 
 	run: function(doc) {
+		if (Foxtrick.isPage(doc, 'supported') || Foxtrick.isPage(doc, 'supporters'))
+			this.supporters(doc);
+		else if (Foxtrick.Prefs.isModuleOptionEnabled(this, 'Series'))
+			this.series(doc);
+	},
+	supporters: function(doc) {
 		var module = this;
 		var supporterBack = Foxtrick.Prefs.isModuleOptionEnabled(module, 'SupporterBack');
 		var supportedBack = Foxtrick.Prefs.isModuleOptionEnabled(module, 'SupportedBack');
@@ -49,6 +58,32 @@ Foxtrick.modules['SupportersList'] = {
 		module.fetch(doc, type, function(ids) {
 			module.decorateLinks(doc, ids, type, callback);
 			loading.parentNode.removeChild(loading);
+		});
+	},
+	series: function(doc) {
+		var module = this;
+		var supporterBack = Foxtrick.Prefs.isModuleOptionEnabled(module, 'SupporterBack');
+		var supportedBack = Foxtrick.Prefs.isModuleOptionEnabled(module, 'SupportedBack');
+		if (!supporterBack && !supportedBack)
+			return;
+
+		var decorate = function(ids, type) {
+			module.decorateLinks(doc, ids, type, function(link) {
+				return link.parentNode;
+			});
+		};
+
+		var run = function(supported, supporters) {
+			if (supported && supported.length && supportedBack)
+				decorate(supported, 'supported');
+			if (supporters && supporters.length && supporterBack)
+				decorate(supporters, 'supporters');
+		};
+
+		module.fetch(doc, true, function(supporters) {
+			module.fetch(doc, false, function(supported) {
+				run(supporters, supported);
+			});
 		});
 	},
 	decorateLinks: function(doc, ids, type, findParent) {
