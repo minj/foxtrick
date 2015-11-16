@@ -615,6 +615,7 @@ pref("extensions.foxtrick.prefs.module.StaffMarker.own_text", "{\"1001\" : \"col
 pref("extensions.foxtrick.prefs.module.StaffMarker.forumInterface.enabled", true);
 pref("extensions.foxtrick.prefs.module.SupportershipExpirationDate.enabled", true);
 pref("extensions.foxtrick.prefs.module.SupportersList.enabled", true);
+pref("extensions.foxtrick.prefs.module.SupportersList.Series.enabled", true);
 pref("extensions.foxtrick.prefs.module.SupportersList.SupporterBack.enabled", true);
 pref("extensions.foxtrick.prefs.module.SupportersList.SupportedBack.enabled", true);
 pref("extensions.foxtrick.prefs.module.SupporterStatsEnhancements.enabled", true);
