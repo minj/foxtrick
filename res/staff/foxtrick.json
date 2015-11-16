@@ -41,6 +41,11 @@
 		},
 		{
 			"duty": "translator",
+			"id": "1028143",
+			"name": "kosio"
+		},
+		{
+			"duty": "translator",
 			"id": "10438815",
 			"name": "puuslik"
 		},
@@ -755,6 +760,11 @@
 			"name": "baumanns"
 		},
 		{
+			"duty": "translator",
+			"id": "6489521",
+			"name": "turonhonza"
+		},
+		{
 			"duty": "developer",
 			"id": "653581",
 			"name": "CHPP-teles"
@@ -973,6 +983,11 @@
 			"duty": "translator",
 			"id": "8656808",
 			"name": "HHTim"
+		},
+		{
+			"duty": "translator",
+			"id": "8795088",
+			"name": "crta13"
 		},
 		{
 			"duty": "translator",
