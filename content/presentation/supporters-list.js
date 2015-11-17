@@ -106,6 +106,7 @@ Foxtrick.modules['SupportersList'] = {
 			var href = links[l].href;
 			var matches = re.exec(href);
 			if (matches[1] && Foxtrick.indexOf(ids, matches[1]) != -1) {
+				Foxtrick.addClass(links[l], 'ft-suppList-' + type);
 				var node = findParent(links[l]);
 				Foxtrick.addImage(doc, node, {
 					src: '/Img/Icons/transparent.gif',
