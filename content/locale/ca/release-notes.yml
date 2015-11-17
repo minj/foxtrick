@@ -7,10 +7,19 @@ ca:
       note_0: 'Aquesta és la versió beta de la propera versió. Si us plau, ajuda a traduir aquesta versió a la nostra súper pàgina web de traducció i molt fàcil <linkCrowdin>crowdin.net</linkCrowdin>.'
     0.16.1:
       important: '<header>Anuncis importants</header>'
+      new_contributions: '<module>PlayerPositionsEvaluations</module> ara utilitza les dades oficialment publicades del motor del joc per a la temporada global 60. No obstant això, paràmetres addicionals són necessaris per donar sentit a aquestes dades. Es proporcionen valors per defecte raonables que no són oficials ni estan basats en estudis estadístics. Qualsevol opinió per millorar-los és benvinguda. Tots els paràmetres estan disponibles en qualsevol pàgina de jugador.'
       crowdin: "<header>Moltes actualitzacions en la traducció, per part dels nostres impressionants usuaris, usant <linkCrowdin>l'eina crowdin</linkCrowdin>. ¡Tu també pots ajudar-nos!</header>s usuari"
       support: "¿<header>T'agrada com ho estem fent? Si us plau <linkContribute>Foxtrick suport</linkContribute>.</header>"
       bugs: "<header>Correccions d'errors</header>"
+      dollar_wage: 'Càlcul del sou de <module>ExtendedPlayerDetailsWage</module> corregit per a països que utilitzen dòlars com a moneda.'
+      old_faces_moi: 'Corregits els avatars dels jugadors incorrectes per una interferència entre <module>OldStyleFace</module> i <module>MatchOrderInterface</module>.'
+      last_lineup_live: "Els enllaços a la darrera alineació a <module>TeamPopupLinks</module> i <module>SeniorTeamShortCuts</module> eren incorrectes durant els partits. El problema hauria d'estar resolt ara."
       other: '<header>Altres canvis</header>'
+      stamina_contributions: "<module>MatchSimulator</module> ara utilitza <module>PlayerPositionsEvaluations</module> per a calcular l'efecte de la resistència. Els canvis son petits però perceptibles. Qualsevol opinió per millorar aquesta característica es sempre benvinguda."
+      copy_lineup: 'Ara pots copiar la teva alineació a <module>MatchOrderInterface</module>.'
+      supporters_series: '<module>SupportersList</module> ara afegeix icones de supporter a les pàgines de les lligues.'
+      price_history: "<module>TransferComparePlayers</module> ara mostra informació més detallada sobre les variacions de preu en l'historial de transferències del jugador."
+      total_capacity: "<module>MatchIncome</module> ara mostra estadístiques d'entades venudes en relació a la capacitat total de l'estadi."
       and_more: Diversos altres petits canvis i correccions.
     0.16.0:
       important: '<header>Anuncis importants</header>'

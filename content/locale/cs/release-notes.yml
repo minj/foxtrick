@@ -8,8 +8,14 @@ cs:
     0.16.1:
       important: '<header>Důležitá oznámení</header>'
       crowdin: '<header>Spousta překladatelských updatů od našich skvělých uživatelů využívajících <linkCrowdin>crowdin nástroj</linkCrowdin>. Můžeš také pomoci!</header>'
+      support: '<header>Používáte Foxtrick? Můžete ho i různými způsoby <linkContribute>podpořit</linkContribute>.</header>'
       bugs: '<header>Opravy chyb</header>'
+      old_faces_moi: 'Opravena chyba která nezobrazovala obličeje hráčů při zapnutých modulech <module>OldStyleFace</module> a <module>MatchOrderInterface</module>.'
       other: '<header>Ostatní změny</header>'
+      copy_lineup: 'Díky modulu <module>MatchOrderInterface</module> můžete zkopírovat sestavu (formát HT-ML).'
+      supporters_series: 'Modul <module>SupportersList</module> přidává možnost zapnout ikony fanouška vašeho týmu na stránky ligy.'
+      total_capacity: 'Modul <module>MatchIncome</module> přidává statistiky o celkovém zaplnění stadionu během zápasu.'
+      and_more: Pár dalších malých změn a oprav.
     0.16.0:
       important: '<header>Důležitá oznámení</header>'
       safari: Z důvodů pomalého vývoje prohlížeče Safari jsme se rozhodli dále neposkytovat automatické aktualizace a podporu pro uživatele tohoto prohlížeče. Pro správnou funkčnost Foxtricku zvažte používání Firefoxu, Chromu nebo Opery.

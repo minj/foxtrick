@@ -7,10 +7,19 @@ it:
       note_0: 'Questa è la versione beta della prossima release. Per favore aiutaci a tradurre questa versione con la nostra semplicissima pagina di traduzione di Crowdin <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.16.1:
       important: '<header>Avvisi importanti</header>'
+      new_contributions: '<module>PlayerPositionsEvaluations</module> ora utilizza i dati del motore di gioco pubblicati ufficialmente per la stagione globale HT #60. Tuttavia, sono necessari parametri aggiuntivi per rendere significativi quei numeri. Anche se sono forniti dei valori di default ragionevoli, non sono né ufficiali né basati su studi statistici. Qualsiasi feedback per migliorarli è benvenuto. Tutte le impostazioni sono disponibili su sulla pagina di ogni giocatore.'
       crowdin: '<header>Sono disponibili tante nuove traduzioni per i nostri utenti su <linkCrowdin>crowdin tool</linkCrowdin>. Anche tu puoi dare una mano!</header>'
       support: '<header>Ti piace quello che stiamo facendo? Si prega di <linkContribute>supportare Foxtrick</linkContribute>.</header>'
       bugs: '<header>Correzioni di bug</header>'
+      dollar_wage: 'Corretto il calcolo del salario <module>ExtendedPlayerDetailsWage</module> per paesi che utilizzano il dollaro come valuta.'
+      old_faces_moi: "Corretti gli avatar dei giocatori a seguito dell'interferenza tra <module>OldStyleFace</module> e <module>MatchOrderInterface</module>."
+      last_lineup_live: "I link all'ultima formazione in <module>TeamPopupLinks</module> e <module>SeniorTeamShortCuts</module> erano non funzionanti durante le partite dal vivo. Il problema ora dovrebbe essere risolto."
       other: '<header>Altre modifiche</header>'
+      stamina_contributions: "<module>MatchSimulator</module> ora utilizza <module>PlayerPositionsEvaluations</module> per calcolare l'effetto della resistenza. Le modifiche sono lievi ma percettibili. Qualsiasi feedback per migliorare questa funzionalità è sempre il benvenuto."
+      copy_lineup: 'Ora puoi copiare la tua formazione in <module>MatchOrderInterface</module> nel formato HTML (per HT forum).'
+      supporters_series: '<module>SupportersList</module> ora aggiunge le icone dei sostenitori alle pagine di serie.'
+      price_history: '<module>TransferComparePlayers</module> ora mostra informazioni dettagliate sulle variazioni di prezzo nella storia dei trasferimenti del giocatore.'
+      total_capacity: '<module>MatchIncome</module> ora mostra le statistiche per la capienza totale dello stadio.'
       and_more: Varie altre piccole modifiche e correzioni.
     0.16.0:
       important: '<header>Avvisi importanti</header>'
