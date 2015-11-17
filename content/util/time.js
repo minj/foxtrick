@@ -374,7 +374,7 @@ Foxtrick.util.time = {
 						// when non-zero is found, use all the rest
 						swdExists = true;
 					}
-					return swdExists || i == arr.length - 1; // always use last
+					return swdExists || !useDHM && i == arr.length - 1; // always use last if no DHM
 				}, swd);
 			}
 
