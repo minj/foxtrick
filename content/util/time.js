@@ -326,6 +326,7 @@ Foxtrick.util.time = {
 
 		var displayOption = Foxtrick.Prefs.getInt('module.ExtendedPlayerDetails.value') || 0;
 
+		var swdExists = false;
 		if (useSWD) {
 			var swd;
 
@@ -368,13 +369,12 @@ Foxtrick.util.time = {
 
 			if (!opts.forceSWD) {
 				// remove zeros
-				var swdExists = false;
 				swd = Foxtrick.filter(function(def, i, arr) {
 					if (def[0]) {
 						// when non-zero is found, use all the rest
 						swdExists = true;
 					}
-					return swdExists || i == arr.length - 1; // always use last
+					return swdExists || !useDHM && i == arr.length - 1; // always use last if no DHM
 				}, swd);
 			}
 
@@ -415,8 +415,8 @@ Foxtrick.util.time = {
 			}
 
 			if (!opts.forceDHM) {
-				// remove zeros
-				var dhmExists = false;
+				// remove zeros if swd is missing
+				var dhmExists = swdExists;
 				dhm = Foxtrick.filter(function(def, i, arr) {
 					if (def[0]) {
 						// when non-zero is found, use all the rest
