@@ -125,7 +125,7 @@ Foxtrick.modules['MatchWeather'] = {
 			if (Foxtrick.Prefs.isModuleOptionEnabled('MatchWeather', 'Irl')) {
 				var uri = 'http://api.openweathermap.org/data/2.5/forecast/daily?q=' +
 					encodeURIComponent(data.regionName) + ',' + data.country +
-					'&mode=json&units=metric&cnt=2';
+					'&mode=json&units=metric&cnt=2&APPID=904808f94702b520590a4cfd0aff8f85';
 				var weather = { 1: 3, 2: 2, 3: 2, 4: 1, 9: 0, 10: 1, 11: 0, 13: 0, 50: 1 };
 
 				Foxtrick.log('Fetching JSON data from', uri);
