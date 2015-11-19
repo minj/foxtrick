@@ -236,7 +236,7 @@ Foxtrick.util.time.isDST = function(utcHTDate) {
 /**
  * Get a ?Date representing HT time in real UTC
  * @param  {document} doc
- * @return {Date}     {?Date}
+ * @return {Date}         {?Date}
  */
 Foxtrick.util.time.getUTCDate = function(doc) {
 	var dateEl = doc.getElementById('hattrickTime');
@@ -256,7 +256,7 @@ Foxtrick.util.time.getUTCDate = function(doc) {
 };
 
 /**
- * Get a number representing HT time.
+ * Get a number representing HT time in real UTC.
  *
  * Throws if HT time was not found.
  * @param  {document}  doc
@@ -264,13 +264,13 @@ Foxtrick.util.time.getUTCDate = function(doc) {
  * @return {number}
  */
 Foxtrick.util.time.getUTCTimeStamp = function(doc) {
-	return this.getHTDate(doc).getTime();
+	return this.getUTCDate(doc).getTime();
 };
 
 /**
  * Get a ?Date representing HT time
  * @param  {document} doc
- * @return {Date}     {?Date}
+ * @return {Date}         {?Date}
  */
 Foxtrick.util.time.getHTDate = function(doc) {
 	var dateEl = doc.getElementById('hattrickTime');
@@ -284,7 +284,7 @@ Foxtrick.util.time.getHTDate = function(doc) {
 };
 
 /**
- * Get a number representing HT time
+ * Get a number representing HT time.
  *
  * Throws if HT time was not found.
  * @param  {document}  doc
@@ -298,7 +298,7 @@ Foxtrick.util.time.getHTTimeStamp = function(doc) {
 /**
  * Get a ?Date representing user time
  * @param  {document} doc
- * @return {Date}     {?Date}
+ * @return {Date}         {?Date}
  */
 Foxtrick.util.time.getDate = function(doc) {
 	var dateEl = doc.getElementById('time');
@@ -414,7 +414,7 @@ Foxtrick.util.time.toLocal = function(doc, userDate) {
  *
  * Throws if user league was not found.
  * @throw  {Error}  user league not found
- * @return {number} {Integer>0}
+ * @return {number}                       {Integer>0}
  */
 Foxtrick.util.time.getSeasonOffset = function() {
 	var country = Foxtrick.Prefs.getString('htCountry');
@@ -469,10 +469,10 @@ Foxtrick.util.time.fill = function(str, length) {
 /**
  * Convert a ?Date object into string.
  *
- * options: {format: string, showTime, showSecs: boolean}
+ * options: {format: string, showTime, showSecs: Boolean}
  * By default uses localized format, no secs.
  * @param  {Date}   date   	?Date
- * @param  {object} options {format: string, showTime, showSecs: boolean}
+ * @param  {object} options {format: string, showTime, showSecs: Boolean}
  * @return {string}
  */
 Foxtrick.util.time.buildDate = function(date, options) {
