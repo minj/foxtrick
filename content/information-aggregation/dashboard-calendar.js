@@ -16,6 +16,7 @@ Foxtrick.modules['DashboardCalendar'] = {
 			ECONOMY: 'economy',               // upcomingEconomyIcon
 			FRREMINDER: 'frReminder',         // matchFriendly
 			INTFRREMINDER: 'intFrReminder',   // fake event
+			WKNDFRREMINDER: 'wkndFrReminder', // fake event
 			LEAGUE: 'game',                   // matchLeague
 			FRIENDLY: 'game',                 // matchFriendly
 			CUP: 'cup',                       // matchCup
@@ -37,6 +38,7 @@ Foxtrick.modules['DashboardCalendar'] = {
 		var L10N_PREFIX = 'dashBoardCalendar.events.';
 
 		var midWeekGames = {};
+		var weekendGames = {};
 
 		var parseEvent = function(div, userMidnight) {
 			var image = div.querySelector('.largeMasterIcon');
@@ -53,6 +55,8 @@ Foxtrick.modules['DashboardCalendar'] = {
 				ret.team = logo.title;
 				if (typeof midWeekGames[ret.team] === 'undefined')
 					midWeekGames[ret.team] = false;
+				if (typeof weekendGames[ret.team] === 'undefined')
+					weekendGames[ret.team] = false;
 			}
 
 			var time = ret.text.match(/^\d{2}\D\d{2}/) + '';
@@ -71,11 +75,18 @@ Foxtrick.modules['DashboardCalendar'] = {
 			var imageClass = image.className.replace(/largeMasterIcon /, '');
 			switch (imageClass) {
 				case 'matchLeague':
+				case 'matchQualification':
 					var leagueLiveLink = links[links.length - 1];
-					if (youthRe.test(leagueLiveLink.href))
+					if (youthRe.test(leagueLiveLink.href)) {
 						ret.type = EVENTS.YOUTHGAME;
-					else
+						return ret;
+					}
+					else if (imageClass === 'matchLeague')
 						ret.type = EVENTS.LEAGUE;
+					else
+						ret.type = EVENTS.QUALIFICATION;
+
+					weekendGames[ret.team] = true;
 				break;
 				case 'matchCupA':
 				case 'matchCupB1':
@@ -105,7 +116,6 @@ Foxtrick.modules['DashboardCalendar'] = {
 						midWeekGames[ret.team] = true;
 					}
 				break;
-				case 'matchQualification': ret.type = EVENTS.QUALIFICATION; break;
 				case 'matchMasters': ret.type = EVENTS.MASTERS; break;
 				case 'matchTournament': ret.type = EVENTS.TOURNAMENT; break;
 				case 'matchSingleMatch': ret.type = EVENTS.SINGLEMATCH; break;
@@ -221,6 +231,10 @@ Foxtrick.modules['DashboardCalendar'] = {
 				break;
 				case EVENTS.INTFRREMINDER:
 				break;
+				case EVENTS.WKNDFRREMINDER:
+					endTime = new Date(evnt.date.valueOf() + 6 * MSECS_IN_HOUR);
+					evnt.alarmMinutes = 60;
+				break;
 			}
 			if (endTime)
 				evnt.end = Foxtrick.util.time.toBareISOString(endTime);
@@ -257,6 +271,19 @@ Foxtrick.modules['DashboardCalendar'] = {
 						offset: i,
 						team: team,
 						type: EVENTS.INTFRREMINDER,
+						url: CHALLENGE_URL,
+					});
+				}
+			}
+			else if (day == 5) {
+				for (var wkndTeam in weekendGames) {
+					if (weekendGames[wkndTeam])
+						continue;
+
+					addFake({
+						offset: i,
+						team: wkndTeam,
+						type: EVENTS.WKNDFRREMINDER,
 						url: CHALLENGE_URL,
 					});
 				}
