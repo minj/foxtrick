@@ -56,7 +56,7 @@ Foxtrick.modules['MatchOrderInterface'] = {
 				if (i == players.length) {
 					// id not found, possibly new player, invalidate cache and refetch
 					if (!recursion) {
-						var now = Foxtrick.util.time.getHtTimeStamp(doc);
+						var now = Foxtrick.util.time.getHTTimeStamp(doc);
 						Foxtrick.util.api.setCacheLifetime(avatarsParamsString, now);
 						Foxtrick.log('New player found: refreshing player cache.');
 						getPlayers(true);

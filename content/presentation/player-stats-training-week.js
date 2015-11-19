@@ -45,7 +45,9 @@ Foxtrick.modules['PlayerStatsTrainingWeek'] = {
 			else if (row.querySelector('img.matchFriendly') && !row.querySelector('span[style]'))
 				friendly = true;
 
-			if (league && weekDay === 1 || friendly && weekDay > 0 && weekDay < 5 ||
+			// weekDay check fails on some timezones due to HT-time grouping by HTs
+			// alas exact time stamp is unavailable
+			if (league && weekDay === 1 || friendly && weekDay > 0 && weekDay < 6 ||
 			    row.querySelector('img[class^="matchCup"], img.matchMasters')) {
 				Foxtrick.toggleClass(row, 'odd');
 				Foxtrick.toggleClass(row, 'darkereven');
@@ -53,5 +55,5 @@ Foxtrick.modules['PlayerStatsTrainingWeek'] = {
 				Foxtrick.toggleClass(statsrow, 'darkereven');
 			}
 		}, rows);
-	}
+	},
 };

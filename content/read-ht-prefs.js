@@ -75,30 +75,33 @@ Foxtrick.modules['ReadHtPrefs'] = {
 	},
 
 	readDateFormat: function(doc) {
+		var clockRe = /HT\.Clock\.init\((?!\))/i;
+		var formatRe = /HT\.Clock\.init\(\s*(?:\d+\s*,\s*)*'([ymd\-]+)'(?:\s*,\s*-?\d+)*\s*\)/i;
 		var scripts = doc.getElementsByTagName('script');
 		for (var i = 0; i < scripts.length; ++i) {
 			var script = scripts[i].textContent;
-			var timeDiffOff = script.search(/HT.Clock.init/i);
-			if (timeDiffOff != -1) {
+			var clockMatch = script.match(clockRe);
+			if (clockMatch) {
 				// function call to timeDiff in the script
-				var funcCall = script.substr(timeDiffOff);
-				var matched = funcCall.match(RegExp('HT.Clock.init\\(\\d+,\\s?\\d+,\\s?\\d+,\\s?' +
-				                             '\\d+,\\s?\\d+,\\s?\\d+,\\s?\'(.+)\'\\);'));
-				// failed to match regular expression
-				if (matched == null) {
-					Foxtrick.log('Cannot find date format: ', funcCall);
+				var formatMatch = script.match(formatRe);
+				if (!formatMatch) {
+					// failed to match regular expression
+					Foxtrick.error('Cannot find date format: ' + script.slice(clockMatch.index));
 				}
 				else {
-					var dateFormat = matched[1];
+					var dateFormat = formatMatch[1];
 					// make sure the format has characters 'd', 'm', 'y' in it
-					if (dateFormat.indexOf('d') != -1
-						&& dateFormat.indexOf('m') != -1
-						&& dateFormat.indexOf('y') != -1) {
+					if (dateFormat.indexOf('d') != -1 &&
+					    dateFormat.indexOf('m') != -1 &&
+					    dateFormat.indexOf('y') != -1) {
 						Foxtrick.util.time.setDateFormat(dateFormat);
+					}
+					else {
+						Foxtrick.error('Incomplete date format: ' + dateFormat);
 					}
 				}
 				return;
 			}
 		}
-	}
+	},
 };

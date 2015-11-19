@@ -80,7 +80,9 @@ if (!Foxtrick)
 				var new_cookie = makeCookie(where, name, oldValue, what);
 				//expire just to make the function happy, no effect
 				//when the param before is true (session only)
-				var expire = (new Date()).getTime() + 60 * 60 * 24 * 7;
+				var MSECS_IN_WEEK = Foxtrick.util.time.DAYS_IN_WEEK *
+					Foxtrick.util.time.MSECS_IN_DAY;
+				var expire = (new Date()).getTime() + MSECS_IN_WEEK;
 				try {
 					Services.cookies.add(new_cookie.domain, '/', new_cookie.name,
 					                     new_cookie.value, false, true, true, expire);

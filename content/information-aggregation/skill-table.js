@@ -533,7 +533,8 @@ Foxtrick.modules['SkillTable'] = {
 				age: function(cell, age) {
 					Foxtrick.addClass(cell, 'align-left');
 					cell.textContent = age.years + '.' + age.days;
-					cell.setAttribute('index', age.years * 112 + age.days);
+					var DAYS_IN_SEASON = Foxtrick.util.time.DAYS_IN_SEASON;
+					cell.setAttribute('index', age.years * DAYS_IN_SEASON + age.days);
 				},
 				status: function(cell, player) {
 					var index = 0;
@@ -721,10 +722,12 @@ Foxtrick.modules['SkillTable'] = {
 					cell.appendChild(link);
 				},
 				dateDiff: function(cell, deadline) {
-					var htDate = Foxtrick.util.time.getHtDate(doc);
+					var htDate = Foxtrick.util.time.getHTDate(doc);
 					var diff = Math.floor((htDate.getTime() - deadline.getTime()) / 1000); // Sec
 					var span = Foxtrick.util.time.timeDiffToSpan(doc, diff, { useDHM: false });
 					cell.appendChild(span);
+
+					deadline = Foxtrick.util.time.toUser(doc, deadline);
 					cell.title = Foxtrick.util.time.buildDate(deadline);
 					Foxtrick.addClass(cell, 'align-left');
 					cell.setAttribute('index', diff);

@@ -18,6 +18,7 @@ Foxtrick.modules.Core = {
 
 	TEAM: {},
 	PLAYER_LIST: {},
+	// UTC timestamp
 	HT_TIME: 0,
 
 	run: function(doc) {
@@ -31,7 +32,10 @@ Foxtrick.modules.Core = {
 		this.showVersion(doc);
 		this.featureHighlight(doc);
 		this.showChangeLog(doc);
-		this.HT_TIME = Foxtrick.util.time.getHtTimeStamp(doc);
+		var UTC = Foxtrick.util.time.getUTCDate(doc);
+		if (UTC)
+			this.HT_TIME = UTC.getTime();
+
 		Foxtrick.Prefs.setString('lastTime', this.HT_TIME);
 		this.addBugReportLink(doc);
 	},

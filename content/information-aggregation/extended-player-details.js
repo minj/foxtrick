@@ -60,7 +60,7 @@ Foxtrick.modules['ExtendedPlayerDetails'] = {
 		var dateObj = Foxtrick.util.time.getDateFromText(joined_elm.textContent);
 		var season_week = Foxtrick.util.time.gregorianToHT(dateObj);
 
-		var htDate = Foxtrick.util.time.getHtDate(doc);
+		var htDate = Foxtrick.util.time.getDate(doc);
 
 		var sec = Math.floor((htDate.getTime() - dateObj.getTime()) / 1000); // sec
 

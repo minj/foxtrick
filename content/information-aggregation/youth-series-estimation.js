@@ -37,35 +37,36 @@ Foxtrick.modules['YouthSeriesEstimation'] = {
 
 			var startsCell = cells[3];
 			var startsSpan = startsCell.getElementsByClassName('date')[0];
-			if (startsSpan.hasAttribute('x-ht-date')) {
-				// node displays local time instead of HT time as modified
-				// in LocalTime, HT time is saved in attribute x-ht-date
-				var date = new Date();
-				date.setTime(startsSpan.getAttribute('x-ht-date'));
+			var date;
+			if (startsSpan.dataset.userDate) {
+				// node displays local time instead of user time as modified
+				// in LocalTime, user time is saved in attribute data-user-date
+				date = new Date();
+				date.setTime(startsSpan.dataset.userDate);
 			}
 			else {
-				var date = Foxtrick.util.time.getDateFromText(startsSpan.textContent);
+				date = Foxtrick.util.time.getDateFromText(startsSpan.textContent);
 			}
 			var time = date.getTime();
-			var nowTimeText = doc.getElementById('time').textContent;
-			var nowTime = Foxtrick.util.time.getDateFromText(nowTimeText).getTime();
+			var nowTime = Foxtrick.util.time.getTimeStamp(doc);
 
-			var timeHour = 60 * 60 * 1000;
-			var timeDay = 24 * timeHour;
-			var timeWeek = 7 * timeDay;
+			var MSECS_IN_HOUR = Foxtrick.util.time.MSECS_IN_HOUR;
+			var MSECS_IN_DAY = Foxtrick.util.time.MSECS_IN_DAY;
+			var MSECS_IN_WEEK = Foxtrick.util.time.DAYS_IN_WEEK * MSECS_IN_DAY;
 
 			var estimationTime;
 			if (nowTime < time)
 				estimationTime = time; // first season of the series
 			else
-				estimationTime = time + Math.ceil((nowTime - time) / (timeWeek)) * timeWeek;
+				estimationTime = time + Math.ceil((nowTime - time) / MSECS_IN_WEEK) * MSECS_IN_WEEK;
 
 			var timeDiff = estimationTime - nowTime;
-			var days = Math.floor(timeDiff / timeDay);
-			var hours = Math.floor((timeDiff - days * timeDay) / timeHour);
+			var days = Math.floor(timeDiff / MSECS_IN_DAY);
+			var daysStr = Foxtrick.L10n.getString('datetimestrings.days', days);
+			var hours = Math.floor((timeDiff - days * MSECS_IN_DAY) / MSECS_IN_HOUR);
+			var hoursStr = Foxtrick.L10n.getString('datetimestrings.hours', hours);
 
-			var str = '(' + days + ' ' + Foxtrick.L10n.getString('datetimestrings.days', days) + ' '
-			            + hours + ' ' + Foxtrick.L10n.getString('datetimestrings.hours', hours) + ')';
+			var str = '(' + days + ' ' + daysStr + ' ' + hours + ' ' + hoursStr + ')';
 			var info = Foxtrick.createFeaturedElement(doc, this, 'span');
 			info.className = 'ft-youth-series-estimation';
 			info.textContent = str;
@@ -79,5 +80,5 @@ Foxtrick.modules['YouthSeriesEstimation'] = {
 
 	change: function(doc) {
 		this.run(doc);
-	}
+	},
 };
