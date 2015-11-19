@@ -179,6 +179,8 @@ Foxtrick.util.time.parse = function(text, dateFormat, dateOnly) {
  */
 Foxtrick.util.time.getDateFromText = function(text, dateFormat, dateOnly) {
 	var d = this.parse(text, dateFormat, dateOnly);
+	if (!d)
+		return null;
 
 	// check validity of values
 	if (0 <= d.minute && d.minute < this.MINS_IN_HOUR &&
