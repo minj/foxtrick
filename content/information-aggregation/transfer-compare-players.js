@@ -79,9 +79,8 @@ Foxtrick.modules['TransferComparePlayers'] = {
 						Foxtrick.util.time.setMidnight(now);
 						// README: user time only => +-1 day
 						var transfer = table.rows[rowIdx].cells[1].textContent;
-						var transferDate = Foxtrick.util.time.getDateFromText(transfer);
+						var refDate = i ? Foxtrick.util.time.getDateFromText(transfer) : now;
 						// original player has no transferDate so now is used as reference
-						var refDate = i ? transferDate : now;
 
 						var diffDays = (fetchDate.getTime() - refDate.getTime()) / MSECS_IN_DAY;
 
