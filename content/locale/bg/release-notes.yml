@@ -5,6 +5,22 @@ bg:
       note_0: 'Това е работната версия на Фокстрик. Използвайте по ваша преценка. Моля вижте <linkSVN>commit history</linkSVN> в Google Code за подробности за промени.'
     beta:
       note_0: 'Това е бета версията на Foxtrick. Моля помогнете с превода чрез супер лесната платформа за превод <linkCrowdin>crowdin.net</linkCrowdin>.'
+    0.16.1:
+      important: '<header>Важни съобщения</header>'
+      new_contributions: '<module>PlayerPositionsEvaluations</module> вече използва официално публикуваните данни за алгоритъма на мачовете в Hattrick сезон №60. Необходими са обаче допълнителни параметри за да имат смисъл тези числа. Въпреки че сa осигурени разумни стойности по подразбиране, те не са нито официални, нито са базирани на статистически проучвания. Всяко мнение за подобрениe е добро дошло. Всички настройки са достъпни на страницата всеки играч.'
+      crowdin: '<header>Добавени са много актуализации в превода от нашите страхотни потребители използващи инструмента <linkCrowdin>crowdin</linkCrowdin>. Можете да помогнете и вие! Бел.ред. - в тази версия влиза почти пълен превод и на Български! За детайли и обратна връзка пишете във форум България.</header>'
+      support: '<header>Харесвате какво правим? Моля <linkContribute>помогнете на Foxtrick</linkContribute>.</header>'
+      bugs: '<header>Решени проблеми</header>'
+      dollar_wage: 'Оправен е модулът <module>ExtendedPlayerDetailsWage</module> за изчисление на заплатите за страни, които използват долар като валута.'
+      old_faces_moi: 'Оправен е проблем с аватари поради конфликт между модулите <module>OldStyleFace</module> и <module>MatchOrderInterface</module>.'
+      last_lineup_live: 'Връзките към последно подреждане в модулите <module>TeamPopupLinks</module> и <module>SeniorTeamShortCuts</module> не работеха по време на мачове на живо. Проблемът вече е решен.'
+      other: '<header>Други промени</header>'
+      stamina_contributions: 'Модулът <module>MatchSimulator</module> вече използва <module>PlayerPositionsEvaluations</module> за да изчисли ефекта на издръжливостта. Промените са малки, но забележими. Всички мнения за подобряване на тази функция са добре дошли.'
+      copy_lineup: 'Вече можете да копирате вашето подреждане в <module>MatchOrderInterface</module>.'
+      supporters_series: 'Модулът <module>SupportersList</module> добавя икони за поддръжник на страниците на лигата.'
+      price_history: 'Модулът <module>TransferComparePlayers</module> показва по-подробна информация за ценовите промени в историята от трансфери на играча.'
+      total_capacity: '<module>MatchIncome</module> показва статистика за общия капацитет на стадиона.'
+      and_more: Различни други малки промени и поправки.
     0.16.0:
       important: '<header>Важни съобщения</header>'
       safari: Поради промени в политиката на Apple Inc. и като цяло нежелание да подобрят своя браузър вече не можем да гарантираме автоматични актуализации и въобще поддръжка за потребителите на Safari. Вместо това моля обмислете дали да не използвате Firefox, Google Chrome или Opera.
@@ -60,6 +76,31 @@ bg:
       nt_crash: 'Решен е проблем водещ до краш на браузъра за националните отбори в <module>MatchOrderInterface</module>.'
       copy_htMl: 'Фикснат е <module>ContextMenuCopy</module>, който не копираше линк текста за HT-ML.'
       resource_fix: 'Модулите <module>Links</module> и <module>StaffMarker</module> спряха да работят за потребители в някои страни. Проблемът ще бъде решен до няколко дена.'
+      other: '<header>Други промени</header>'
+      extarnal_url: 'Добавена е възможност за копиране на Hattrick връзки за други уеб сайтове в модулът <module>ContextMenuCopy</module>. Тези връзки работят независимо от използвания Hattrick сървър.'
+      and_more: Различни други малки промени и поправки.
+    0.15.0:
+      important: '<header>Важни съобщения</header>'
+      support: '<header>Харесвате какво правим? Моля <linkContribute>помогнете на Foxtrick</linkContribute>.</header>'
+      crowdin: '<header>Направени са множество подобрения в превода от нашите изключителни потребители използващи интрумента <linkCrowdin>crowdin</linkCrowdin>. Можете да помогнете и Вие!</header>'
+      twitter: 'Можете да следвате Foxtrick в <linkTwitter>Twitter</linkTwitter> за да научите за последните новини, подобрения и съобщения.'
+      new: '<header>Нови модули</header>'
+      promotion_reminder: '<module>AddPromotionReminder</module>: Добавя бутон за напомняне за деня, когато можете да промотирате младежки играч'
+      bugs: '<header>Решени проблеми</header>'
+      breakages: Foxtrick вече трябва да работи коректно на Safari 7.1+ и Firefox за Android.
+      https: Foxtrick отново трябва да работи коректно на Hattrick Stage.
+      avatars: 'Аватарите на играчите в <module>MatchOrderInterface</module> вече ще се обновяват автоматично, когато нови играчи пристигат в отбора.'
+      fans: 'Развитието на феновете в модулът <module>Fans</module> вече ще се изчисляват правилно, когато вашият отбор се промотира или изпадне.'
+      player_stats: 'Модулът <module>PlayerStatsTrainingWeek</module> вече трябва правилно да разпознава приятелските мачове през уикенда.'
+      other: '<header>Други промени</header>'
+      transfer_compare: 'MedianTransferPrice е преименуван на <module>TransferComparePlayers</module>. Добавени са ОИК изчисления и способност за извличане на повече данни за играчите от CHPP. Показва разлика в цените на страницата на играча с история на трансферите.'
+      player_positions: 'Подобрен е <module>PlayerPositionsEvaluations</module> модула и са добавени много опции, при които можете да изберете да включите в изчисленията ефекта на форма, издръжливост, лоялност, опит и лека контузия.'
+      country_list: 'Модулът <module>CountryList</module> може да променя имената на страните в колекцията от флагове. Възможно е ползването на английските имена вместо родните такива.'
+      best_player_position: 'BestPlayerPosition модул е обединен с <module>PlayerPositionsEvaluations</module>.'
+      nt: Поправени са много функции, които не работеха коректно за треньорите на национални отбори.
+      en-US: Добавена поддръжка за американски английски език.
+      code: Допълнителна поддръжка е направена в кода на Foxtrick. Това ни позволява да намерим и решим скрити бъгове, подобрим стабилността на Foxtrick и улесним неговото по-нататъшно развитие.
+      and_more: Различни други малки промени и поправки.
     0.14.0:
       bug_report: Добавен е линк в долната част на страните в Hattrick за да може по-лесно да се докладват проблеми на FoxTrick. Използвайте го на проблематичната страница и следвайте инструкциите, които ще се появят.
       twitter: 'Можете да следвате Foxtrick в <linkTwitter>Twitter</linkTwitter> за да научите за последните новини, подобрения и съобщения.'
