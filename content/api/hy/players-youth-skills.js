@@ -89,6 +89,7 @@ Foxtrick.api.hy._fetchYouthSkills = function(callback, params, failure, finalize
  * @param	{[integer]}		teamId		senior team ID to fetch data for (optional)
  */
 Foxtrick.api.hy.getYouthSkills = function(callback, failure, finalize, teamId) {
-	Foxtrick.api.hy._fetchViaCache(7, 'playersYouthSkills', null, this._fetchYouthSkills,
+	var days = Foxtrick.util.time.DAYS_IN_WEEK;
+	Foxtrick.api.hy._fetchViaCache(days, 'playersYouthSkills', null, this._fetchYouthSkills,
 								   callback, failure, finalize, teamId);
 };

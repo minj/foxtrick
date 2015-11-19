@@ -1,7 +1,19 @@
 'use strict';
 /*
  * time.js
- * Utilities for date and time
+ * Utilities for date and time.
+ * @author ryan, convincedd, LA-MJ
+ *
+ * Basically there are 4 time zones in FT:
+ * 1) UTC: useful for interacting with external world
+ * 2) Local/browser time: local machine time of JavaScript engine, for internal use
+ * 3) HT time: useful for CHPP and general game world calculations
+ * 4) User time: new user setting, used for displaying/parsing dates on the site
+ *
+ * All time zones except UTC and browser time have timestamp values
+ * that are meaningless to the outside world.
+ * However, incorrectly set machine time is always a problem so we can only rely on
+ * UTC which was generated directly from the HT timestamp and nothing else.
  */
 
 if (!Foxtrick)
@@ -20,6 +32,7 @@ Foxtrick.util.time = {
 	UNIX_YEAR: 1970,
 
 	WEEKS_IN_SEASON: 16,
+	HT_GMT_OFFSET: 1,
 
 	get DAYS_IN_SEASON() {
 		return this.WEEKS_IN_SEASON * this.DAYS_IN_WEEK;
@@ -29,6 +42,9 @@ Foxtrick.util.time = {
 	},
 	get SECS_IN_DAY() {
 		return this.SECS_IN_MIN * this.MINS_IN_HOUR * this.HOURS_IN_DAY;
+	},
+	get MSECS_IN_MIN() {
+		return this.MSECS_IN_SEC * this.SECS_IN_MIN;
 	},
 	get MSECS_IN_HOUR() {
 		return this.MSECS_IN_SEC * this.SECS_IN_HOUR;
@@ -91,15 +107,15 @@ Foxtrick.util.time.gregorianToHT = function(date, weekdayOffset, useLocal) {
 };
 
 /**
- * Convert datetime text into a ?Date
+ * Parse datetime text into {day, month, year, hour, minute: number}
  *
  * May optionally use a custom dateFormat.
  * @param  {string}  text
  * @param  {string}  dateFormat {?string}
  * @param  {Boolean} dateOnly   {?Boolean}
- * @return {Date}               {?Date}
+ * @return {object}             {day, month, year, hour, minute: number}
  */
-Foxtrick.util.time.getDateFromText = function(text, dateFormat, dateOnly) {
+Foxtrick.util.time.parse = function(text, dateFormat, dateOnly) {
 	// four-digit year first
 	var reLong = /(\d{4})\D(\d{1,2})\D(\d{1,2})\D?\s+(\d{2})\D(\d{2})/;
 	var reShort = /(\d{4})\D(\d{1,2})\D(\d{1,2})/;
@@ -149,15 +165,31 @@ Foxtrick.util.time.getDateFromText = function(text, dateFormat, dateOnly) {
 	var hour = matches.length == 6 ? matches[4] : 0;
 	var minute = matches.length == 6 ? matches[5] : 0;
 
+	return { day: day, month: month, year: year, hour: hour, minute: minute };
+};
+
+/**
+ * Convert datetime text into a ?Date
+ *
+ * May optionally use a custom dateFormat.
+ * @param  {string}  text
+ * @param  {string}  dateFormat {?string}
+ * @param  {Boolean} dateOnly   {?Boolean}
+ * @return {Date}               {?Date}
+ */
+Foxtrick.util.time.getDateFromText = function(text, dateFormat, dateOnly) {
+	var d = this.parse(text, dateFormat, dateOnly);
+
 	// check validity of values
-	if (0 <= minute && minute < this.MINS_IN_HOUR &&
-	    0 <= hour && hour < this.HOURS_IN_DAY &&
-	    1 <= day && day <= this.MAX_DAY &&
-	    1 <= month && month <= this.MONTHS_IN_YEAR &&
-	    this.UNIX_YEAR <= year) {
-		var date = new Date(year, month - 1, day, hour, minute);
+	if (0 <= d.minute && d.minute < this.MINS_IN_HOUR &&
+	    0 <= d.hour && d.hour < this.HOURS_IN_DAY &&
+	    1 <= d.day && d.day <= this.MAX_DAY &&
+	    1 <= d.month && d.month <= this.MONTHS_IN_YEAR &&
+	    this.UNIX_YEAR <= d.year) {
+		var date = new Date(d.year, d.month - 1, d.day, d.hour, d.minute);
 		return date;
 	}
+	return null;
 };
 
 /**
@@ -181,6 +213,49 @@ Foxtrick.util.time.hasTime = function(text, dateFormat) {
 };
 
 /**
+ * Check if a HT Date in UTC falls during DST
+ * @param  {Date}    utcHTDate
+ * @return {Boolean}
+ */
+Foxtrick.util.time.isDST = function(utcHTDate) {
+	var year = utcHTDate.getUTCFullYear();
+	// European DST starts on last March Sunday and ends on last October Sunday at 01:00 UTC
+	var utcDSTEnd = new Date(Date.UTC(year, 9, 31, 1)); // 9 = October, got to love 0-index
+	utcDSTEnd.setUTCDate(31 - utcDSTEnd.getUTCDay()); // 0 = Sunday
+
+	var utcDSTStart = new Date(Date.UTC(year, 2, 31, 1)); // 2 = March, got to love 0-index
+	utcDSTStart.setUTCDate(31 - utcDSTStart.getUTCDay()); // 0 = Sunday
+
+	if (utcHTDate.getTime() > utcDSTStart.getTime() &&
+	    utcHTDate.getTime() < utcDSTEnd.getTime()) // this fails during 00:00-01:00 UTC on DSTEnd
+		return true;
+
+	return false;
+};
+
+/**
+ * Get a ?Date representing HT time in real UTC
+ * @param  {document} doc
+ * @return {Date}     {?Date}
+ */
+Foxtrick.util.time.getUTCDate = function(doc) {
+	var dateEl = doc.getElementById('hattrickTime');
+	if (!dateEl)
+		dateEl = doc.getElementById('time');
+
+	if (!dateEl)
+		return null;
+
+	var d = this.parse(dateEl.textContent);
+	var hour = d.hour - this.HT_GMT_OFFSET;
+	var utcHTDate = new Date(Date.UTC(d.year, d.month - 1, d.day, hour, d.minute));
+	if (this.isDST(utcHTDate))
+		utcHTDate.setUTCHours(hour - 1);
+
+	return utcHTDate;
+};
+
+/**
  * Get a number representing HT time.
  *
  * Throws if HT time was not found.
@@ -188,8 +263,8 @@ Foxtrick.util.time.hasTime = function(text, dateFormat) {
  * @throw  {TypeError}     HT time not found
  * @return {number}
  */
-Foxtrick.util.time.getHtTimeStamp = function(doc) {
-	return this.getHtDate(doc).getTime();
+Foxtrick.util.time.getUTCTimeStamp = function(doc) {
+	return this.getHTDate(doc).getTime();
 };
 
 /**
@@ -197,7 +272,35 @@ Foxtrick.util.time.getHtTimeStamp = function(doc) {
  * @param  {document} doc
  * @return {Date}     {?Date}
  */
-Foxtrick.util.time.getHtDate = function(doc) {
+Foxtrick.util.time.getHTDate = function(doc) {
+	var dateEl = doc.getElementById('hattrickTime');
+	if (!dateEl)
+		dateEl = doc.getElementById('time');
+
+	if (!dateEl)
+		return null;
+
+	return this.getDateFromText(dateEl.textContent);
+};
+
+/**
+ * Get a number representing HT time
+ *
+ * Throws if HT time was not found.
+ * @param  {document}  doc
+ * @throw  {TypeError}     HT time not found
+ * @return {number}
+ */
+Foxtrick.util.time.getHTTimeStamp = function(doc) {
+	return this.getHTDate(doc).getTime();
+};
+
+/**
+ * Get a ?Date representing user time
+ * @param  {document} doc
+ * @return {Date}     {?Date}
+ */
+Foxtrick.util.time.getDate = function(doc) {
 	var dateEl = doc.getElementById('time');
 	if (!dateEl)
 		return null;
@@ -207,21 +310,103 @@ Foxtrick.util.time.getHtDate = function(doc) {
 };
 
 /**
- * Get timezone difference between HT time and local time in hours (Float).
+ * Get a number representing user time.
  *
- * E.g. 7.0 when local time is GMT+8.
+ * Throws if HT time was not found.
+ * @param  {document}  doc
+ * @throw  {TypeError}     HT time not found
+ * @return {number}
+ */
+Foxtrick.util.time.getTimeStamp = function(doc) {
+	return this.getDate(doc).getTime();
+};
+
+/**
+ * Get timezone difference between HT time and browser time in hours (Float).
+ *
+ * E.g. 7.0 when browser time is GMT+8.
  * Throws if HT time was not found.
  * @param  {document} doc
  * @throw  {TypeError}    HT time not found
  * @return {number}       {Float}
  */
-Foxtrick.util.time.timezoneDiff = function(doc) {
-	var htDate = this.getHtDate(doc);
+Foxtrick.util.time.getBrowserOffset = function(doc) {
+	var htDate = this.getHTDate(doc);
 
 	var now = new Date();
 	// time zone difference is typically a multiple of 15 minutes
 	var diff = Math.round((now.getTime() - htDate.getTime()) / this.MSECS_IN_HOUR * 4) / 4;
 	return diff;
+};
+
+/**
+ * Get timezone difference between HT time and user time in hours (Float).
+ *
+ * E.g. 7.0 when user time is GMT+8.
+ * Throws if HT time was not found.
+ * @param  {document} doc
+ * @throw  {TypeError}    HT time not found
+ * @return {number}       {Float}
+ */
+Foxtrick.util.time.getUserOffset = function(doc) {
+	var htDate = this.getHTDate(doc);
+	var userDate = this.getDate(doc);
+
+	// time zone difference is typically a multiple of 15 minutes
+	var diff = Math.round((userDate.getTime() - htDate.getTime()) / this.MSECS_IN_HOUR * 4) / 4;
+	return diff;
+};
+
+/**
+ * Get timezone difference between user time and browser time in hours (Float).
+ *
+ * E.g. 1.0 when user time is GMT+2 and browser time is GMT+3.
+ * Throws if HT time was not found.
+ * @param  {document} doc
+ * @throw  {TypeError}    HT time not found
+ * @return {number}       {Float}
+ */
+Foxtrick.util.time.getLocalOffset = function(doc) {
+	return this.getBrowserOffset(doc) - this.getUserOffset(doc);
+};
+
+/**
+ * Convert user date or timestamp into HT time
+ * @param  {document} doc
+ * @param  {number}   userDate
+ * @return {Date}
+ */
+Foxtrick.util.time.toHT = function(doc, userDate) {
+	var offset = this.getUserOffset(doc);
+	var ret = new Date(userDate);
+	ret.setMinutes(ret.getMinutes() - this.MINS_IN_HOUR * offset);
+	return ret;
+};
+
+/**
+ * Convert HT date or timestamp into user time
+ * @param  {document} doc
+ * @param  {number}   htDate
+ * @return {Date}
+ */
+Foxtrick.util.time.toUser = function(doc, htDate) {
+	var offset = this.getUserOffset(doc);
+	var ret = new Date(htDate);
+	ret.setMinutes(ret.getMinutes() + this.MINS_IN_HOUR * offset);
+	return ret;
+};
+
+/**
+ * Convert user date or timestamp into browser time
+ * @param  {document} doc
+ * @param  {number}   userDate
+ * @return {Date}
+ */
+Foxtrick.util.time.toLocal = function(doc, userDate) {
+	var offset = this.getLocalOffset(doc);
+	var ret = new Date(userDate);
+	ret.setMinutes(ret.getMinutes() + this.MINS_IN_HOUR * offset);
+	return ret;
 };
 
 /**
@@ -336,14 +521,8 @@ Foxtrick.util.time.buildDate = function(date, options) {
  * @return {string}
  */
 Foxtrick.util.time.toBareISOString = function(date) {
-	var ret = '' + date.getFullYear() +
-		this.fill(date.getMonth() + 1, 2) +
-		this.fill(date.getDate(), 2) +
-		'T' +
-		this.fill(date.getHours(), 2) +
-		this.fill(date.getMinutes(), 2) +
-		this.fill(date.getSeconds(), 2);
-	return ret;
+	var format = 'YYYYmmddTHHMMSS';
+	return this.buildDate(date, { format: format, showSecs: true });
 };
 
 /**

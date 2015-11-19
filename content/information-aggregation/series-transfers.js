@@ -11,10 +11,10 @@ Foxtrick.modules['SeriesTransfers'] = {
 
 	run: function(doc) {
 
-		var AUTO_REFRESH_IN = 2 * 24 * 60 * 60 * 1000; // two days
+		var AUTO_REFRESH_IN = 2 * Foxtrick.util.time.MSECS_IN_DAY;
 		var resultId = 'ft-series-transfers-result';
 		var timeId = 'ft-series-transfers-time';
-		var now = Foxtrick.util.time.getHtTimeStamp(doc);
+		var now = Foxtrick.util.time.getHTTimeStamp(doc);
 
 		var leagueTable = doc.getElementById('mainBody').getElementsByTagName('table')[0];
 
@@ -58,7 +58,7 @@ Foxtrick.modules['SeriesTransfers'] = {
 					if (node)
 						node.parentNode.removeChild(node);
 				}, [resultId, timeId]);
-				now = Foxtrick.util.time.getHtTimeStamp(doc);
+				now = Foxtrick.util.time.getHTTimeStamp(doc);
 				showPlayers();
 			}, 300);
 		};

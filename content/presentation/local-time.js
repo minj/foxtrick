@@ -41,7 +41,7 @@ Foxtrick.modules['LocalTime'] = {
 		else {
 			Foxtrick.addClass(localTime, 'hidden');
 		}
-		// add on-click events for toggling between local/HT times
+		// add on-click events for toggling between local/user times
 		var toggleDisplay = function(ev) {
 			Foxtrick.Prefs.setBool('module.LocalTime.local',
 			                      !Foxtrick.Prefs.getBool('module.LocalTime.local'));
@@ -72,37 +72,34 @@ Foxtrick.modules['LocalTime'] = {
 		dates = Foxtrick.filter(function(n) {
 			return Foxtrick.util.time.hasTime(n.textContent);
 		}, dates);
-		var isLocalDate = function(n) { return n.hasAttribute('x-lt-proced'); };
+		var isLocalDate = function(n) { return n.dataset.localTime; };
 		var localDates = Foxtrick.filter(isLocalDate, dates);
-		var htDates = Foxtrick.filter(function(n) { return !isLocalDate(n); }, dates);
+		var userDates = Foxtrick.filter(function(n) { return !isLocalDate(n); }, dates);
 		if (Foxtrick.Prefs.getBool('module.LocalTime.local')) {
-			// turn HT dates to local dates
+			// turn User dates to local dates
 			Foxtrick.map(function(date) {
-				date.setAttribute('x-lt-proced', 'true');
+				date.dataset.localTime = '1';
 
-				var htDate = Foxtrick.util.time.getDateFromText(date.textContent);
-				if (!htDate)
+				var userDate = Foxtrick.util.time.getDateFromText(date.textContent);
+				if (!userDate)
 					return; // may only contain time without date
-				var tzDiff = Foxtrick.util.time.timezoneDiff(doc);
-				var localDate = new Date();
-				localDate.setTime(htDate.getTime() + tzDiff * 60 * 60 * 1000);
-				// always build strings with hours and seconds, but
-				// without seconds
+
+				var localDate = Foxtrick.util.time.toLocal(doc, userDate);
+				// always build strings with hours and seconds, but without seconds
 				date.textContent = Foxtrick.util.time.buildDate(localDate);
-				// set original time as attribute for reference from
-				// other modules
-				date.setAttribute('x-ht-date', htDate.getTime());
-			}, htDates);
+				// set original time as attribute for reference from other modules
+				date.dataset.userDate = userDate.getTime();
+			}, userDates);
 		}
 		else {
-			// turn local dates to HT dates
+			// turn local dates to user dates
 			Foxtrick.map(function(date) {
 				var timestamp = new Date();
-				timestamp.setTime(date.getAttribute('x-ht-date'));
+				timestamp.setTime(date.dataset.userDate);
 				date.textContent = Foxtrick.util.time.buildDate(timestamp);
-				date.removeAttribute('x-lt-proced');
-				date.removeAttribute('x-ht-date');
+				date.removeAttribute('data-local-time');
+				date.removeAttribute('data-user-date');
 			}, localDates);
 		}
-	}
+	},
 };

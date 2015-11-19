@@ -110,14 +110,12 @@ Foxtrick.modules['DashboardCalendar'] = {
 		}
 		if (typeof calWeekDay == 'undefined') return;
 
-		var now = Foxtrick.util.time.getHtDate(doc);
+		var MSEC_IN_MIN = Foxtrick.util.time.MSECS_IN_MIN;
+
+		var now = Foxtrick.util.time.getHTDate(doc);
 		var currentWeekDay = now.getDay(); // sometimes dashboard calendar lags
-		var month = now.getMonth() + 1;
-		month = month > 9 ? month : '0' + new String(month);
-		var day = now.getDate();
-		day = day > 9 ? day : '0' + new String(day);
-		var todayString = now.getFullYear() + '-' + month + '-' + day;
-		var today = new Date(todayString);
+		var today = new Date(now);
+		Foxtrick.util.time.setMidnight(today);
 		now = Foxtrick.util.time.toBareISOString(now);
 
 		var events = [];
@@ -153,18 +151,18 @@ Foxtrick.modules['DashboardCalendar'] = {
 						case EVENTS.YOUTHGAME:
 						case EVENTS.TOURNAMENT:
 							event.end = Foxtrick.util.time
-								.toBareISOString(new Date(eventTime.valueOf() + 105 * 60 * 1000));
+								.toBareISOString(new Date(eventTime.valueOf() + 105 * MSEC_IN_MIN));
 						break;
 						case EVENTS.CUP:
 						case EVENTS.SINGLEMATCH:
 						case EVENTS.LADDER:
 							event.end = Foxtrick.util.time
-								.toBareISOString(new Date(eventTime.valueOf() + 180 * 60 * 1000));
+								.toBareISOString(new Date(eventTime.valueOf() + 180 * MSEC_IN_MIN));
 						break;
 						case EVENTS.TRAINING:
 						case EVENTS.ECONOMY:
 							event.end = Foxtrick.util.time
-								.toBareISOString(new Date(eventTime.valueOf() + 30 * 60 * 1000));
+								.toBareISOString(new Date(eventTime.valueOf() + 30 * MSEC_IN_MIN));
 						break;
 					}
 
@@ -238,7 +236,7 @@ Foxtrick.modules['DashboardCalendar'] = {
 		Foxtrick.onClick(newLink, function(ev) {
 			// using view.Blob here otherwise it's undefined in Android
 			var blob = new ev.view.Blob(cal, { type: 'text/calendar;charset=utf-8' });
-			Foxtrick.saveAs(blob, 'ht-cal-' + todayString + '.ics');
+			Foxtrick.saveAs(blob, 'ht-cal-' + today.toJSON().slice(0, 10) + '.ics');
 		});
 		var MAIN = Foxtrick.getMainIDPrefix();
 		var br = doc.querySelector('#' + MAIN + 'lnkArchive + br');

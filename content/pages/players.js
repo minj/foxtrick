@@ -205,7 +205,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 		}
 
 		if (options && options.refresh) {
-			var now = Foxtrick.util.time.getHtTimeStamp(doc);
+			var now = Foxtrick.util.time.getHTTimeStamp(doc);
 			Foxtrick.util.api.setCacheLifetime(JSON.stringify(args), now);
 		}
 		Foxtrick.util.currency.establish(doc, function() {
@@ -302,7 +302,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				Foxtrick.Pages.Players.isYouth(doc) ||
 				Foxtrick.Pages.Players.isYouthMatchOrder(doc);
 			var fetchedDate = xml.date('FetchedDate');
-			var now = Foxtrick.util.time.getHtDate(doc);
+			var now = Foxtrick.util.time.getHTDate(doc);
 
 			var currentClubId = xml.num(isYouth ? 'YouthTeamID' : 'TeamID');
 			var currentClubUrl = isYouth ? '/Club/Youth/?YouthTeamID=' + currentClubId :
@@ -569,6 +569,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 							player.lastMatchId = xml.num('YouthMatchID', LastMatch);
 
 						var matchDate = xml.date('Date', LastMatch);
+						matchDate = Foxtrick.util.time.toUser(doc, matchDate);
 						player.lastMatchDate = matchDate;
 
 						var link = doc.createElement('a');
@@ -614,7 +615,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 			}, playerList);
 			if (missingXML.length) {
 				Foxtrick.log('WARNING: New players in HTML', missingXML, 'resetting cache');
-				var htTime = Foxtrick.util.time.getHtTimeStamp(doc);
+				var htTime = Foxtrick.util.time.getHTTimeStamp(doc);
 				Foxtrick.util.api.setCacheLifetime(JSON.stringify(args), htTime);
 			}
 		}
@@ -1150,7 +1151,9 @@ Foxtrick.Pages.Players.getLastMatchDates = function(players, getMatchDate, playe
 
 	matchdays = Foxtrick.filter(function(n) {
 		// delete all older than a week and all with too few players (might be transfers)
-		return n > lastMatch - 7 * 24 * 60 * 60 * 1000 && matchdays_count[n] >= playerLimit;
+		var MSECS_IN_WEEK = Foxtrick.util.time.DAYS_IN_WEEK * Foxtrick.util.time.MSECS_IN_DAY;
+		var lastWeek = lastMatch - MSECS_IN_WEEK;
+		return n > lastWeek && matchdays_count[n] >= playerLimit;
 	}, matchdays);
 
 	if (matchdays.length)

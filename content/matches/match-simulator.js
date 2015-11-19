@@ -192,6 +192,7 @@ Foxtrick.modules.MatchSimulator = {
 			option.dataset.homeAway = homeAway;
 
 			var MatchDate = matchXML.time('MatchDate');
+			MatchDate = Foxtrick.util.time.toUser(doc, MatchDate);
 			var date = Foxtrick.util.time.buildDate(MatchDate, { showTime: false });
 			var howeAwayStr = Foxtrick.L10n.getString('matchOrder.homeAway.' + homeAway + '.abbr');
 
@@ -524,6 +525,7 @@ Foxtrick.modules.MatchSimulator = {
 					return;
 
 				var MatchDate = matchesXML.time('MatchDate', match);
+				MatchDate = Foxtrick.util.time.toUser(doc, MatchDate);
 				var date = Foxtrick.util.time.buildDate(MatchDate, { showTime: false });
 				var MatchID = matchesXML.text('MatchID', match);
 				var AwayTeamID = matchesXML.text('AwayTeamID', match);

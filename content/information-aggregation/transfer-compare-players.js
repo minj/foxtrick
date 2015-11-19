@@ -17,6 +17,9 @@ Foxtrick.modules['TransferComparePlayers'] = {
 		var isCompare = Foxtrick.isPage(doc, 'transferCompare');
 		var isHistory = Foxtrick.isPage(doc, 'transfersPlayer');
 
+		var DAYS_IN_SEASON = Foxtrick.util.time.DAYS_IN_SEASON;
+		var MSECS_IN_DAY = Foxtrick.util.time.MSECS_IN_DAY;
+
 		if (isCompare) {
 			var table = doc.querySelectorAll('#mainBody > table')[0];
 			if (!table)
@@ -70,20 +73,21 @@ Foxtrick.modules['TransferComparePlayers'] = {
 						}
 						// original player is in row 1, others start 4 rows down
 						var rowIdx = i ? i + 4 : 1;
-						var days = xmls[i].num('Age') * 112 + xmls[i].num('AgeDays');
+						var days = xmls[i].num('Age') * DAYS_IN_SEASON + xmls[i].num('AgeDays');
 						var fetchDate = xmls[i].date('FetchedDate');
-						var now = Foxtrick.util.time.getHtDate(doc);
+						var now = Foxtrick.util.time.getHTDate(doc);
 						Foxtrick.util.time.setMidnight(now);
+						// README: user time only => +-1 day
 						var transfer = table.rows[rowIdx].cells[1].textContent;
 						var transferDate = Foxtrick.util.time.getDateFromText(transfer);
 						// original player has no transferDate so now is used as reference
 						var refDate = i ? transferDate : now;
 
-						var diffDays = (fetchDate.getTime() - refDate.getTime()) /
-							(24 * 60 * 60 * 1000);
+						var diffDays = (fetchDate.getTime() - refDate.getTime()) / MSECS_IN_DAY;
+
 						days -= Math.round(diffDays);
-						var years = Foxtrick.Math.div(days, 112);
-						days %= 112;
+						var years = Foxtrick.Math.div(days, DAYS_IN_SEASON);
+						days %= DAYS_IN_SEASON;
 
 						var ageCell = table.rows[rowIdx].cells[4];
 						ageCell.textContent = '';
@@ -233,7 +237,7 @@ Foxtrick.modules['TransferComparePlayers'] = {
 				var age = xml.num('Age');
 				var agedays = xml.num('AgeDays');
 				var fetchDate = xml.date('FetchedDate');
-				
+
 				for (var i = 1; i < ct; i++) {
 
 					if (i < ct - 1) {
@@ -264,18 +268,17 @@ Foxtrick.modules['TransferComparePlayers'] = {
 
 					}
 
-					var days = age * 112 + agedays;
-					var now = Foxtrick.util.time.getHtDate(doc);
+					var days = age * DAYS_IN_SEASON + agedays;
+					var now = Foxtrick.util.time.getHTDate(doc);
 					Foxtrick.util.time.setMidnight(now);
+
+					// README: user time only => +-1 day
 					var transfer = hTable.rows[i].cells[0].textContent;
 					var transferDate = Foxtrick.util.time.getDateFromText(transfer);
-					// original player has no transferDate so now is used as reference
-
-					var diffDays = (fetchDate.getTime() - transferDate.getTime()) /
-						(24 * 60 * 60 * 1000);
+					var diffDays = (fetchDate.getTime() - transferDate.getTime()) / MSECS_IN_DAY;
 					days -= Math.round(diffDays);
-					var years = Foxtrick.Math.div(days, 112);
-					days %= 112;
+					var years = Foxtrick.Math.div(days, DAYS_IN_SEASON);
+					days %= DAYS_IN_SEASON;
 
 					hTable.rows[i].insertCell(1);
 					var ageCell = hTable.rows[i].cells[1];

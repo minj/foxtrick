@@ -20,7 +20,7 @@ Foxtrick.modules['SeasonStats'] = {
 
 		try {
 			// get current season
-			var htDate = Foxtrick.util.time.getHtDate(doc);
+			var htDate = Foxtrick.util.time.getHTDate(doc);
 			var season = Foxtrick.util.time.gregorianToHT(htDate).season;
 			// get selected season
 			var selected_season = doc.location.href.match(/season=(\d+)/i)[1];

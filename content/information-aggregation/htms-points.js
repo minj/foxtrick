@@ -222,26 +222,32 @@ Foxtrick.modules['HTMSPoints'] = {
 		actValue += pointsSkills[skills['setPieces']][6];
 
 		// now calculating the potential at 28yo
+		var AGE_LIMIT = 28;
+		var WEEKS_IN_SEASON = Foxtrick.util.time.WEEKS_IN_SEASON;
+		var DAYS_IN_WEEK = Foxtrick.util.time.DAYS_IN_WEEK;
+		var DAYS_IN_SEASON = Foxtrick.util.time.DAYS_IN_SEASON;
+
 		var points_diff = 0;
-		if (skills['years'] < 28) {
+		if (skills['years'] < AGE_LIMIT) {
 			// add weeks to reach next birthday (112 days)
-			points_diff = (112 - skills['days']) / 7 * pointsAge[skills['years']];
+			var pointsYears = pointsAge[skills['years']];
+			points_diff = (DAYS_IN_SEASON - skills['days']) / DAYS_IN_WEEK * pointsYears;
 			// adding 16 weeks per whole year until 28 y.o.
-			for (var i = skills['years'] + 1; i < 28; i++) {
-				points_diff += 16 * pointsAge[i];
+			for (var i = skills['years'] + 1; i < AGE_LIMIT; i++) {
+				points_diff += WEEKS_IN_SEASON * pointsAge[i];
 			}
 		}
 		else {
 			// subtract weeks to previous birthday
-			points_diff = (skills['days'] / 7) * pointsAge[skills['years']];
+			points_diff = skills['days'] / DAYS_IN_WEEK * pointsAge[skills['years']];
 			// subtracting 16 weeks per whole year until 28
-			for (var i = skills['years']; i > 28; i--) {
-				points_diff += 16 * pointsAge[i];
+			for (var i = skills['years']; i > AGE_LIMIT; i--) {
+				points_diff += WEEKS_IN_SEASON * pointsAge[i];
 			}
 			points_diff = -points_diff;
 		}
 		var potValue = actValue + points_diff;
 
-		return ([actValue, Math.round(potValue)]);
-	}
+		return [actValue, Math.round(potValue)];
+	},
 };
