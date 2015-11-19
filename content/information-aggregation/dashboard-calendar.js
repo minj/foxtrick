@@ -271,7 +271,7 @@ Foxtrick.modules['DashboardCalendar'] = {
 						offset: i,
 						team: team,
 						type: EVENTS.INTFRREMINDER,
-						url: CHALLENGE_URL,
+						URL: CHALLENGE_URL,
 					});
 				}
 			}
@@ -284,7 +284,7 @@ Foxtrick.modules['DashboardCalendar'] = {
 						offset: i,
 						team: wkndTeam,
 						type: EVENTS.WKNDFRREMINDER,
-						url: CHALLENGE_URL,
+						URL: CHALLENGE_URL,
 					});
 				}
 			}
