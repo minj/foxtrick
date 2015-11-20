@@ -7,10 +7,19 @@ sv-SE:
       note_0: 'Detta är BETA -versionen av nästa utgåva. Hjälp gärna till att översätta denna version via vårt superlätta översättningsverktyg på <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.16.1:
       important: '<header>Viktiga meddelanden</header>'
+      new_contributions: 'Modulen <module>PlayerPositionsEvaluations</module> är nu anpassad för de nya ändringarna HT gjort i matchmotorn inför säsong #60. Det behövs dock ytterligare parametrar för att förstå dessa siffror bättre. Även om rimliga standardvärden har angetts här, så är dessa vare sig officiella eller baserade på några statistiska undersökningar. All feedback när det gäller dessa värden tas emot med öppna armar. Samtliga inställningar för denna modul finns längst ner på den detaljerade spelarsidan.'
       crowdin: '<header>En hel massa översättningsuppdateringar av användare via översättningsverktyget på <linkCrowdin>crowdin.net</linkCrowdin>. Du kan också hjälpa till!</header>'
       support: '<header>Gillar du vad vi gör? Vänligen <linkContribute>Stöd Foxtrick</linkContribute>.</header>'
       bugs: '<header>Buggfixar</header>'
+      dollar_wage: 'Fixat <module>ExtendedPlayerDetailsWage</module> löneberäkningen för länder som använder dollar som valuta.'
+      old_faces_moi: 'Fixat problem med spelaravatarer p.g.a. en krock mellan de två modulerna <module>OldStyleFace</module> och <module>MatchOrderInterface</module>.'
+      last_lineup_live: 'Länkar till senaste uppställningen i modulerna <module>TeamPopupLinks</module> och <module>SeniorTeamShortCuts</module> fungerade felaktigt under tiden en match spelades. Detta problem skall nu vara löst.'
       other: '<header>Andra ändringar</header>'
+      stamina_contributions: 'Modulen <module>MatchSimulator</module> använder sig numera av <module>PlayerPositionsEvaluations</module> för att beräkna effekten av konditionen. Dessa ändringar är relativt små, men märkbara. All feedback för att förbättra denna funktion ytterligare tas tacksamt emot.'
+      copy_lineup: 'Du kan nu kopiera (HT-ML) din uppställning på matchordersidan. <module>MatchOrderInterface</module>.'
+      supporters_series: 'Modulen <module>SupportersList</module> kan nu även markera supporters med ikon på seriesidor (aktuella tabeller, gamla tabeller, maratontabeller samt tabell på sidan för uppflyttningsstatus).'
+      price_history: 'Modulen <module>TransferComparePlayers</module> visar nu ännu mer detaljerad information angående prisändringar i en spelares transferhistorik.'
+      total_capacity: 'Modulen <module>MatchIncome</module> visar nu även statistik totalt och inte bara per sektion.'
       and_more: Flera andra mindre ändringar och korrigeringar.
     0.16.0:
       important: '<header>Viktiga meddelanden</header>'
