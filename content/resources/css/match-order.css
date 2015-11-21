@@ -1,4 +1,4 @@
-#ft_swap_positions, #ft_fill_penalty_takers, #ft_clear_penalty_takers {
+#ft_swap_positions, #ft_fill_penalty_takers, #ft_clear_penalty_takers, #ft_copy_lineup {
 	background-color: #3f7137;
 	cursor: pointer;
 	padding: 6px;
@@ -9,6 +9,13 @@
 	clear: left;
 	float: left;
 	margin-left: 20px;
+	position: relative;
+	top: 255px;
+}
+#ft_copy_lineup {
+	clear: right;
+	float: right;
+	margin-right: 20px;
 	position: relative;
 	top: 255px;
 }
