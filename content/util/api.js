@@ -275,12 +275,14 @@ Foxtrick.util.api = {
 			return;
 		}
 
-		var httime = doc.getElementById('time').textContent;
+		var HT_date;
 		try {
-			var HT_date = Foxtrick.util.time.getDateFromText(httime).getTime();
-		} catch (e) { // no httime yet.we have been to fast. lets put us 1 day in the future
-			Foxtrick.log('no httime yet');
-			var HT_date = (new Date()).getTime() + 24 * 60 * 60 * 1000;
+			HT_date = Foxtrick.util.time.getHTTimeStamp(doc);
+		}
+		catch (e) {
+			// No HT time yet. We have been to fast. Lets put us 1 day in the future
+			Foxtrick.log('no HT time yet');
+			HT_date = Date.now() + Foxtrick.util.time.MSECS_IN_DAY;
 		}
 
 		// check global_cache_lifetime first, aka server down
@@ -367,7 +369,7 @@ Foxtrick.util.api = {
 					// determine cache liftime
 					if (options && options.cache_lifetime) {
 						if (options.cache_lifetime == 'default')
-							var cache_lifetime = HT_date + 60 * 60 * 1000;  //= 1 hour
+							var cache_lifetime = HT_date + Foxtrick.util.time.MSECS_IN_HOUR;
 						else var cache_lifetime = options.cache_lifetime;
 					}
 					else var cache_lifetime = 0;
@@ -432,7 +434,8 @@ Foxtrick.util.api = {
 								// server down. no need to check very page load.
 								// let's say we check again in 30 min
 								if (status == 503) {
-									var recheckDate = (new Date()).getTime() + 30 * 60 * 1000;
+									var recheckDate =
+										HT_date + 30 * Foxtrick.util.time.MSECS_IN_MIN;
 									Foxtrick.sessionSet('xml_cache.' + parameters_str,
 													{ xml_string: '503',
 													cache_lifetime: recheckDate });

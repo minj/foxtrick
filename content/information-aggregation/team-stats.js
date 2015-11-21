@@ -75,6 +75,8 @@ Foxtrick.modules['TeamStats'] = {
 			var hasSpecialities = false;
 			var specialities = {};
 
+			var DAYS_IN_SEASON = Foxtrick.util.time.DAYS_IN_SEASON;
+
 			for (var i = 0; i < playerList.length; ++i) {
 				var current = playerList[i];
 				if (playerList[i].hidden)
@@ -82,7 +84,7 @@ Foxtrick.modules['TeamStats'] = {
 				++numPlayers;
 
 				if (current.age) {
-					totalAge += current.age.years * 112 + current.age.days;
+					totalAge += current.age.years * DAYS_IN_SEASON + current.age.days;
 				}
 				if (current.age.years >= 19) {
 					++olderThanNineteen;
@@ -221,8 +223,8 @@ Foxtrick.modules['TeamStats'] = {
 					addRow('TeamStats.General', Foxtrick.L10n.getString('TeamStats.Players'), data);
 					if (totalAge) {
 						var avgAge = Math.round(totalAge / numPlayers);
-						var avgYears = Math.floor(avgAge / 112);
-						var avgDays = avgAge % 112;
+						var avgYears = Math.floor(avgAge / DAYS_IN_SEASON);
+						var avgDays = avgAge % DAYS_IN_SEASON;
 						addRow('TeamStats.General', Foxtrick.L10n.getString('Age'),
 							   avgYears + '.' + avgDays);
 					}

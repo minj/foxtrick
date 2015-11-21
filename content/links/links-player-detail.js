@@ -74,10 +74,11 @@ Foxtrick.modules['LinksPlayerDetail'] = {
 			params.wageBonus = Math.round(wageObj.bonus * rate);
 		}
 
-		var deadlineDate = Foxtrick.Pages.Player.getTransferDeadline(doc);
-		if (deadlineDate) {
+		var deadline = Foxtrick.Pages.Player.getTransferDeadline(doc);
+		if (deadline) {
 			var format = 'YYYY-mm-dd HH:MM:SS';
-			params.deadline = Foxtrick.util.time.buildDate(deadlineDate, { format: format });
+			deadline = Foxtrick.util.time.toUser(doc, deadline);
+			params.deadline = Foxtrick.util.time.buildDate(deadline, { format: format });
 		}
 
 		var skills = Foxtrick.Pages.Player.getSkills(doc);
@@ -100,7 +101,7 @@ Foxtrick.modules['LinksPlayerDetail'] = {
 
 			types.push('transfercomparelink');
 			if (skills.keeper > 3 && skillTable) {
-				var newTable = (skillTable.rows.length === 7);
+				var newTable = skillTable.rows.length === 7;
 				var keeperSkillNode = newTable ? skillTable.rows[0].cells[1] :
 					skillTable.rows[0].cells[3];
 				keeperSkillNode = keeperSkillNode.getElementsByTagName('a')[0];
@@ -129,5 +130,5 @@ Foxtrick.modules['LinksPlayerDetail'] = {
 			types.push(tracker);
 		}
 		return { types: types, info: params };
-	}
+	},
 };

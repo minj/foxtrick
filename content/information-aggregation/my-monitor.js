@@ -323,7 +323,6 @@ Foxtrick.modules['MyMonitor'] = {
 
 			// add the teams
 			var teams = getSavedTeams(doc);
-			var dateNow = Foxtrick.util.time.getHtDate(doc);
 			var addTeam = function(team) {
 				var buildLink = function(team, link) {
 					link.textContent = team.name;
@@ -457,7 +456,7 @@ Foxtrick.modules['MyMonitor'] = {
 						.fillMatches(matchesContainer, xml, errorText);
 					// change expire date of xml to after next match game
 					if (nextmatchdate) {
-						var time = nextmatchdate.getTime() + 105 * 60 * 1000;
+						var time = nextmatchdate.getTime() + 105 * Foxtrick.util.time.MSECS_IN_MIN;
 						Foxtrick.util.api.setCacheLifetime(parameters_str, time);
 					}
 				});

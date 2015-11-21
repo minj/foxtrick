@@ -21,20 +21,17 @@ Foxtrick.modules['AddPromotionReminder'] = {
 			if (Foxtrick.Pages.YouthPlayer.wasFired(doc))
 				return;
 
-			var daysToPromote = Foxtrick.Pages.YouthPlayer.getDaysToPromote(doc);
-			var playerID = Foxtrick.Pages.Player.getId(doc);
-			if (daysToPromote > 0) {
-				var today = Foxtrick.util.time.getHtDate(doc);
-				var alarm = Foxtrick.util.time.addDaysToDate(today, daysToPromote);
-				var d = alarm.getDate();
-				var m = alarm.getMonth() + 1;
-				var y = alarm.getFullYear();
-				var promoteday = y + '-' + m + '-' + d + '+00%3a00%3a00';
+			var playerId = Foxtrick.Pages.Player.getId(doc);
+			var now = Foxtrick.util.time.getDate(doc);
+			var alarm = Foxtrick.Pages.YouthPlayer.getPromotionDate(doc);
+			if (alarm > now) {
+				var format = 'YYYY-mm-dd+HH%3aMM%3a00';
+				var promoTime = Foxtrick.util.time.buildDate(alarm, { format: format });
 
-				var promotetext = Foxtrick.L10n.getString('AddPromotionReminder.text');
-				promotetext = promotetext.replace('%s', '[youthplayerid=' + playerID + ']');
-				var reminderlink = '/MyHattrick/Reminders/default.aspx?sendDate=' + promoteday +
-					'&reminderText=' + encodeURIComponent(promotetext);
+				var promoText = Foxtrick.L10n.getString('AddPromotionReminder.text');
+				promoText = promoText.replace('%s', '[youthplayerid=' + playerId + ']');
+				var reminderlink = '/MyHattrick/Reminders/default.aspx?sendDate=' + promoTime +
+					'&reminderText=' + encodeURIComponent(promoText);
 
 				var title = Foxtrick.L10n.getString('AddPromotionReminder.button');
 				var button = Foxtrick.util.copyButton.add(doc, title);
@@ -47,5 +44,5 @@ Foxtrick.modules['AddPromotionReminder'] = {
 				}
 			}
 		}
-	}
+	},
 };

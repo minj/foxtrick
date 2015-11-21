@@ -72,6 +72,8 @@ Foxtrick.modules['MatchIncome'] = {
 			];
 
 			var matchDate = Foxtrick.Pages.Match.getDate(doc);
+			matchDate = Foxtrick.util.time.toHT(doc, matchDate);
+
 			// use last if we find nothing
 			var priceIdx = prices.length - 1;
 			for (var i = 0; i < prices.length; i++) {
