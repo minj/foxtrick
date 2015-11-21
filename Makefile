@@ -29,14 +29,15 @@ endif
 MODULES = modules
 IGNORED_MODULES = ignored-modules-$(DIST_TYPE)
 
-ifeq ($(DIST_TYPE),nightly)
-	VERSION = $(REV_VERSION)
-	BRANCH_FULL = $(BRANCH)-$(HASH)
-else
-	VERSION = $(MAJOR_VERSION)
-	BRANCH_FULL = $(BRANCH)
+ifeq ($(VERSION),)
+	ifeq ($(DIST_TYPE),nightly)
+		VERSION = $(REV_VERSION)
+		BRANCH_FULL = $(BRANCH)-$(HASH)
+	else
+		VERSION = $(MAJOR_VERSION)
+		BRANCH_FULL = $(BRANCH)
+	endif
 endif
-
 
 # cf safari: xar needs to have sign capabilities ie xar --help shows --sign as option.
 # sudo apt-get install gcc libssl-dev libxml2-dev make openssl lftp autoconf build-essential
@@ -176,7 +177,7 @@ endif
 ifeq ($(DIST_TYPE),nightly)
 	# add minor version and change name
 	cd $(BUILD_DIR); \
-	../version.sh $(REV_VERSION); \
+	../version.sh $(VERSION); \
 	sed -i -r 's|(<em:name>).+(</em:name>)|\1FoxTrick (Beta)\2|' install.rdf;
 else ifeq ($(DIST_TYPE),light)
 	# change name
@@ -233,7 +234,7 @@ chrome:
 ifeq ($(DIST_TYPE),nightly)
 	# add minor version and change name
 	cd $(BUILD_DIR); \
-	../version.sh $(REV_VERSION); \
+	../version.sh $(VERSION); \
 	sed -i -r 's|("name" : ").+(")|\1FoxTrick (Beta)\2|' manifest.json
 else ifeq ($(DIST_TYPE),light)
 	# change name
@@ -289,7 +290,7 @@ safari:
 ifeq ($(DIST_TYPE),nightly)
 	# add minor version and change name
 	cd $(SAFARI_BUILD_DIR); \
-	../../version.sh $(REV_VERSION); \
+	../../version.sh $(VERSION); \
 	sed -i -r 's/>FoxTrick</>FoxTrick (Beta)</' Info.plist
 else ifeq ($(DIST_TYPE),light)
 	# change name
