@@ -112,6 +112,6 @@ div.arenaInfo {
 }
 
 /* fix for popup shop*/
-.ui-widget {
+div[role="dialog"] {
 	z-index:10002;
 }
