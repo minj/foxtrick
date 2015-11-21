@@ -5,12 +5,40 @@ cs:
       note_0: 'Toto je vývojový build. Používejte po pečlivém zvážení. Podívejte se na <linkSVN>historii commitů</linkSVN> na Google Code pro zobrazení detailů změn.'
     beta:
       note_0: 'Toto je beta verze dalšího vydání. Prosím pomožte s překladem této verze na naší superjednoduché překladatelské stránce <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.16.1:
+      important: '<header>Důležitá oznámení</header>'
+      new_contributions: 'Modul <module>PlayerPositionsEvaluations</module> od teď používá oficiální data pro nový zápasový engine. Dodatečné parametry ale potřebují dát smysl těmto datům. Smysluplné hodnoty již jsou k dispozici, nejsou však zatím potvrzeny oficiálně ani nejsou zkontrolovány statistickými studiemi. Jakékoliv připomínky jsou vítány. Možnosti nastavení jsou dostupné na všech stránkách hráče.'
+      crowdin: '<header>Naši uživatelé aktualizují lokalizace pomocí projektu <linkCrowdin>Crowdin</linkCrowdin>. Můžete také pomoci!</header>'
+      support: '<header>Používáte Foxtrick? Můžete ho i různými způsoby <linkContribute>podpořit</linkContribute>.</header>'
+      bugs: '<header>Opravy chyb</header>'
+      dollar_wage: 'V modulu <module>MatchIncome</module> byl opraven výpočet platu pro země které používají jako měnu dolar.'
+      old_faces_moi: 'Opravena chyba která nezobrazovala obličeje hráčů při zapnutých modulech <module>OldStyleFace</module> a <module>MatchOrderInterface</module>.'
+      last_lineup_live: 'Odkazy na poslední soupisku v modulech <module>TeamPopupLinks</module> a <module>SeniorTeamShortCuts</module> nefungovaly během hraných zápasů. To je nyní opraveno.'
+      other: '<header>Ostatní změny</header>'
+      stamina_contributions: 'Modul <module>MatchSimulator</module> od teď používá modul <module>PlayerPositionsEvaluations</module> na výpočet efektu kondice. Změny jsou malé ale zjevné. Zpětná vazba pro zlepšení této vlastnosti je vítána.'
+      copy_lineup: 'Díky modulu <module>MatchOrderInterface</module> můžete zkopírovat sestavu (formát HT-ML).'
+      supporters_series: 'Modul <module>SupportersList</module> přidává možnost zapnout ikony fanouška vašeho týmu na stránky ligy.'
+      price_history: 'Modul <module>TransferComparePlayers</module> ukazuje více detailních informací o změnách cen v historii přestupů hráče.'
+      total_capacity: 'Modul <module>MatchIncome</module> přidává statistiky o celkovém zaplnění stadionu během zápasu.'
+      and_more: Pár dalších malých změn a oprav.
     0.16.0:
       important: '<header>Důležitá oznámení</header>'
-      crowdin: '<header>Spousta překladatelských updatů od našich skvělých uživatelů využívajících <linkCrowdin>crowdin nástroj</linkCrowdin>. Můžeš také pomoci!</header>'
+      safari: Z důvodů pomalého vývoje prohlížeče Safari jsme se rozhodli dále neposkytovat automatické aktualizace a podporu pro uživatele tohoto prohlížeče. Pro správnou funkčnost Foxtricku zvažte používání Firefoxu, Chromu nebo Opery.
+      crowdin: '<header>Naši uživatelé aktualizují lokalizace pomocí projektu <linkCrowdin>Crowdin</linkCrowdin>. Můžete také pomoci!</header>'
+      support: '<header>Používáte Foxtrick? Můžete ho i různými způsoby <linkContribute>podpořit</linkContribute>.</header>'
       new: '<header>Nové moduly</header>'
+      transfers: 'Modul <module>CurrentTransfers</module> nyní prodává více informací o hráčích na stránce aktuálních nabídek.'
       bugs: '<header>Opravy chyb</header>'
+      stamina_prediction: 'Předpověď podstupně kondice v modulu <module>MatchLineupTweaks</module> z důvodu změn na Hattricku nefungovala správně. Chyba by už měla být opravena.'
+      match_order: 'Upraveno rozložení v modulech <module>MatchSimulator</module> a <module>MatchOrderInterface</module> tak aby sedělo k změnám v designu Hattricku.'
+      team_detection: 'Z důvodu úpravy designu Hattricku byly problémy např. s mizením tváří hráčů hostí, modul <module>LiveAlert</module> nehlásil góly atp. Všechny problémy by už měly být opraveny.'
       other: '<header>Ostatní změny</header>'
+      table: 'Moduly <module>PlayerFilters</module> a <module>SkillTable</module> byly přepsány. Opravily se chyby a rozšířily se možnosti. Jdou zmrazit klíčové sloupce tak aby nemizely při vodorovném posouvání tabulky, jdou skrýt vybraní hráči apod. Klikněte na informace abyste si přečetli celý popis nových funkcí.'
+      opponent_goals: 'Přidán jiný zvuk gólu pro gól tvého soupeře (modul <module>LiveAlert</module>).'
+      indonesian: Přidána indonéština.
+      match_events: Jsou přeloženy popisy zápasových událostí.
+      style_cleanup: 'CSS styly Foxtricku byly přizpůsobeny lepší podpoře vlastních Hattrick skinů. V modulu <module>StaffMarker</module> si můžete nastavit barvu jmen správců Hattricku.'
+      and_more: Pár dalších malých změn a oprav.
     0.15.2.1:
       important: '<header>Důležitá oznámení</header>'
       signed: Všechny rozšíření pro Firefox musí být digitálně podepsány Mozillou. Toto je v první řadě podepsaná aktualizace k zajištění kompatibility Foxtricku.
@@ -110,7 +138,7 @@ cs:
       note_9: '<module>FriendlyPool</module>: Přidána možnost rozbalit seznam států.'
       note_10: '<module>MovePlayerStatement</module>: Přidána možnost úplně odstranit prohlášení.'
       note_11: '<module>YouthTwins</module>: Manuálně provedené změny v HY budou nyní okamžitě promítnuty na stránce s mládežníckými hráči'
-      note_12: '<header>Opravy bugů</header>'
+      note_12: '<header>Opravy chyb</header>'
       note_13: 'Opraven <module>Filter</module>, <module>SupporterStatsEnhancements</module> a <module>YouthTwins</module>.'
       note_14: '<module>StaffMarker</module> a <module>HTThreadMarker</module> nyní fungují na více místech.'
       note_15: '<module>ConfirmActions</module>: přidána podpora pro automatické přihazování.'
@@ -151,7 +179,7 @@ cs:
       note_10: Possibility to test alert sounds in the preferences
       note_11: Some internal changes related to data storage
       note_12: Some smaller changes and fixes we forgot about
-      note_13: '<header>Bugfixes</header>'
+      note_13: '<header>Opravy chyb</header>'
       note_14: '<module>ExtendedPlayerDetails</module>: Fixed wage per week and season beeing incorrect for korean and probably some other languages too'
       note_15: '<module>MatchOrderInterface</module>: Face will also show for replaced and highlighted players for past lineups'
       note_16: '<module>MatchPlayerColouring</module>: Now works properly for players that were put in and left the field before the game ended'

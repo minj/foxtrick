@@ -5,6 +5,22 @@ es-AR:
       note_0: 'Se trata de la version de desarrollo. Utilizar bajo su propio riesgo. Por favor ver <linkSVN>historial de commit</linkSVN> en Google Code para detalles de los cambios.'
     beta:
       note_0: 'Esta es la versión beta de la próxima versión. Por favor ayude a traducir esta versión en nuestra super-fácil página <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.16.1:
+      important: '<header>Anuncios importantes</header>'
+      new_contributions: '<module>PlayerPositionsEvaluations</module> ahora utiliza los datos del motor de partidos oficialmente publicadas en la temporada global #60 de HT. Sin embargo, parámetros adicionales se necesitan para dar sentido a esos números. Mientras que se proporcionan valores predeterminados razonables, no son ni oficiales ni en base a estudios estadísticos. Cualquier comentario para mejorarlo es bienvenido. Todos los ajustes están disponibles en cualquier página de jugador.'
+      crowdin: '<header>Muchas actualizaciones en las traducciones de nuestros colaboradores mediante <linkCrowdin> crowdin</linkCrowdin>. Usted también puede ayudarnos!</header>'
+      support: '¿<header>Qué estamos haciendo? Por favor <linkContribute>ayuda a Foxtrick</linkContribute>.</header>'
+      bugs: '<header>Corrección de errores</header>'
+      dollar_wage: 'Arreglado el cálculo de salario <module>ExtendedPlayerDetailsWage</module> para los países que usan dolares como moneda.'
+      old_faces_moi: 'Arreglado los avatares de jugador que no se mostraba debido a interferencia entre <module>OldStyleFace</module> y <module>MatchOrderInterface</module>.'
+      last_lineup_live: 'Los últimos enlaces de alineación en <module>TeamPopupLinks</module> y <module>SeniorTeamShortCuts</module> no funcionaban en los partidos en vivo. El problema debería haberse resuelto.'
+      other: '<header>Otros cambios</header>'
+      stamina_contributions: '<module>MatchSimulator</module> utiliza <module>PlayerPositionsEvaluations</module> para calcular el efecto de la condición. Los cambios son pequeños pero notables. Siempre es bienvenido cualquier comentario para mejorar esta característica.'
+      copy_lineup: 'Ahora puedes copiar tu alineación en <module>MatchOrderInterface</module>.'
+      supporters_series: '<module>SupportersList</module> ahora agrega los iconos de Supporter a las páginas de la liga.'
+      price_history: '<module>TransferComparePlayers</module> ahora muestra información más detallada sobre los cambios de precio en la historia de transferencia del jugador.'
+      total_capacity: '<module>MatchIncome</module> ahora muestra las estadísticas de capacidad total del estadio.'
+      and_more: Otros pequeños cambios y correcciones.
     0.16.0:
       important: '<header>Anuncios importantes</header>'
       safari: Debido a los cambios en la política de Apple Inc. y la reticencia general a mejorar su navegador ya no garantizamos actualizaciones automáticas ni soporte general para los usuarios de Safari. Te recomendamos utilizar Google Chrome, Firefox u Opera en su lugar.

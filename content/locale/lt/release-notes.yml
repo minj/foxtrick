@@ -5,6 +5,22 @@ lt:
       note_0: 'Įdiegėte nestabilią versiją. Naudokite savo rizika. Peržiūrėkite „Google Code“ <linkSVN>pakeitimų sąrašą</linkSVN>.'
     beta:
       note_0: 'Įdiegėte išankstinę (beta) versiją. Prašome prisidėti prie jos vertimo į lietuvių kalbą ypatingai šauniame vertėjų savanorių portale „<linkCrowdin>crowdin.net</linkCrowdin>“. '
+    0.16.1:
+      important: '<header>Svarbūs pranešimai</header>'
+      new_contributions: '<module>PlayerPositionsEvaluations</module> nuo šiol naudos oficialiai paskelbtus 60-tojo visuotinio Hattrick sezono rungtynių variklio duomenis. Visgi reiktų pastebėti, kad bet kokiems skaičiavimams būtini papildomi parametrai, kurie nėra tiksliai žinomi. Nors numatytos jų vertės yra pakankamai geros, jos nėra oficialios ar patvirtintos statistiškai. Laukiame Jūsų pasiūlymų kaip jas patobulinti. Visus nustatymus rasite bet kurio žaidėjo puslapyje.'
+      crowdin: '<header>Daugybė vertimo atnaujinimų. Dėkojame savo šauniems vartotojams, kurie naudojasi <linkCrowdin>crowdin portalu</linkCrowdin>. Ir Jūs galite prisidėti!</header>'
+      support: '<header>Patinka šis projektas? Prašome <linkContribute>pagelbėti Foxtrick</linkContribute>.</header>'
+      bugs: '<header>Pataisytos klaidos</header>'
+      dollar_wage: 'Sutaisytas atlyginimo skaičiavimas šalyse, kurios naudoja dolerio valiutą ( <module>ExtendedPlayerDetailsWage</module> modulis).'
+      old_faces_moi: 'Sutvarkytas žaidėjų veidų atvaizdavimas, sutrikęs dėl <module>OldStyleFace</module> ir <module>MatchOrderInterface</module> modulių sąveikos.'
+      last_lineup_live: 'Paskutinės sudėties nuorodos (<module>TeamPopupLinks</module> ir <module>SeniorTeamShortCuts</module> moduliai) neveikė vykstant rungtynėms. Problema išspręsta.'
+      other: '<header>Kiti pakeitimai</header>'
+      stamina_contributions: '<module>MatchSimulator</module> modulis nuo šiol naudos <module>PlayerPositionsEvaluations</module> modulį ištvermės poveikiui skaičiuoti. Pokyčiai nėra dideli, bet pastebimi. Visuomet laukiame pasiūlymų kaip pagerinti šią funkciją.'
+      copy_lineup: 'Aktyvavę <module>MatchOrderInterface</module> modulį nuo šiol galėsite nukopijuoti rungtynių sudėtį HT-ML formatu (forumams).'
+      supporters_series: '<module>SupportersList</module> modulis nuo šiol pažymės Jūsų komandos rėmėjus ir remiamas komandas ir grupių puslapiuose.'
+      price_history: '<module>TransferComparePlayers</module> modulis dabar rodys išsamesnę informaciją apie kainos pokyčius žaidėjo sandorių istorijos puslapyje.'
+      total_capacity: '<module>MatchIncome</module> nuo šiol rodys suminę parduotų bilietų statistiką.'
+      and_more: Daugybė kitų smulkių pataisymų ir pakitimų.
     0.16.0:
       important: '<header>Svarbūs pranešimai</header>'
       safari: Dėl pasikeitusios Apple kompanijos pozicijos ir bendro nenoro tobulinti savo naršyklę nebegalime garantuoti automatinių atnaujinimų ar bendro palaikymo „Safari“ naudotojams. Siūlome geriau naudoti „Firefox“, „Google Chrome“ ar „Opera“ naršykles.
@@ -13,7 +29,7 @@ lt:
       new: '<header>Nauji moduliai</header>'
       transfers: '<module>CurrentTransfers</module> pateikia daugiau informacijos apie žaidėjus dabartinių sandorių puslapyje.'
       bugs: '<header>Pataisytos klaidos</header>'
-      stamina_prediction: 'Spėjamas Ištvermės polygmuo (<module>MatchLineupTweaks</module> modulis) buvo klaidingas dėl HT pokyčių. Problema sutvarkyta.'
+      stamina_prediction: 'Spėjamas ištvermės polygmuo (<module>MatchLineupTweaks</module> modulis) buvo klaidingas dėl HT pokyčių. Problema sutvarkyta.'
       match_order: 'Pataisytas <module>MatchSimulator</module> ir <module>MatchOrderInterface</module> modulių dizainas – prisitaikyta prie Hattrick dizaino pokyčių.'
       team_detection: 'Dėl HT dizaino pokyčių buvo atsiradę ir daugiau problemų: pradingę svečių komandos veidai, sugedęs <module>LiveAlert</module> įvarčių atpažinimas ir kt.. Visos problemos turėtų būti sutaisytos.'
       other: '<header>Kiti pakeitimai</header>'
