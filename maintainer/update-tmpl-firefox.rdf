@@ -12,8 +12,8 @@
 						<em:targetApplication>
 							<RDF:Description>
 								<em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
-								<em:minVersion>3.0</em:minVersion>
-								<em:maxVersion>20.0a1</em:maxVersion>
+								<em:minVersion>38.0a1</em:minVersion>
+								<em:maxVersion>43.0a1</em:maxVersion>
 								<em:updateLink>{UPDATE_LINK}</em:updateLink>
 								<em:updateHash>{UPDATE_HASH}</em:updateHash>
 							</RDF:Description>
@@ -27,23 +27,8 @@
 						<em:targetApplication>
 							<RDF:Description>
 								<em:id>{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}</em:id>
-								<em:minVersion>2.0</em:minVersion>
-								<em:maxVersion>2.17a1</em:maxVersion>
-								<em:updateLink>{UPDATE_LINK}</em:updateLink>
-								<em:updateHash>{UPDATE_HASH}</em:updateHash>
-							</RDF:Description>
-						</em:targetApplication>
-					</RDF:Description>
-				</RDF:li>
-				<RDF:li>
-					<RDF:Description>
-						<em:version>{VERSION}</em:version>
-						<!-- Fennec -->
-						<em:targetApplication>
-							<RDF:Description>
-								<em:id>{a23983c0-fd0e-11dc-95ff-0800200c9a66}</em:id>
-								<em:minVersion>2.0a1pre</em:minVersion>
-								<em:maxVersion>20.0a1</em:maxVersion>
+								<em:minVersion>2.35a1</em:minVersion>
+								<em:maxVersion>2.40a1</em:maxVersion>
 								<em:updateLink>{UPDATE_LINK}</em:updateLink>
 								<em:updateHash>{UPDATE_HASH}</em:updateHash>
 							</RDF:Description>
@@ -57,8 +42,8 @@
 						<em:targetApplication>
 							<RDF:Description>
 								<em:id>{aa3c5121-dab2-40e2-81ca-7ea25febc110}</em:id>
-								<em:minVersion>10.0a1</em:minVersion>
-								<em:maxVersion>20.0a1</em:maxVersion>
+								<em:minVersion>38.0a1</em:minVersion>
+								<em:maxVersion>43.0a1</em:maxVersion>
 								<em:updateLink>{UPDATE_LINK}</em:updateLink>
 								<em:updateHash>{UPDATE_HASH}</em:updateHash>
 							</RDF:Description>
