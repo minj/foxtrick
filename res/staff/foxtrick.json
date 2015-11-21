@@ -246,6 +246,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "12511204",
+			"name": "Domek_69"
+		},
+		{
+			"duty": "supporter",
 			"id": "12521069",
 			"name": "EiCeKju"
 		},
@@ -1093,6 +1098,11 @@
 			"duty": "supporter",
 			"id": "9818296",
 			"name": "relon"
+		},
+		{
+			"duty": "supporter",
+			"id": "9832269",
+			"name": "bigbird"
 		},
 		{
 			"duty": "translator",
