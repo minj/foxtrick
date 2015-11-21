@@ -90,11 +90,11 @@
 			"code": "ca",
 			"name": "Catalan",
 			"phrases": "2210",
-			"translated": "2208",
-			"translated_progress": "99",
+			"translated": "2210",
+			"translated_progress": "100",
 			"words": "15700",
 			"words_approved": "0",
-			"words_translated": "15690"
+			"words_translated": "15700"
 		},
 		{
 			"approved": "0",
@@ -270,11 +270,11 @@
 			"code": "ka",
 			"name": "Georgian",
 			"phrases": "2210",
-			"translated": "1175",
-			"translated_progress": "42",
+			"translated": "1189",
+			"translated_progress": "43",
 			"words": "15700",
 			"words_approved": "0",
-			"words_translated": "6654"
+			"words_translated": "6786"
 		},
 		{
 			"approved": "11",
@@ -529,16 +529,16 @@
 			"words_translated": "14398"
 		},
 		{
-			"approved": "2207",
-			"approved_progress": "99",
+			"approved": "2210",
+			"approved_progress": "100",
 			"code": "ru",
 			"name": "Russian",
 			"phrases": "2210",
-			"translated": "2207",
-			"translated_progress": "99",
+			"translated": "2210",
+			"translated_progress": "100",
 			"words": "15700",
-			"words_approved": "15687",
-			"words_translated": "15687"
+			"words_approved": "15700",
+			"words_translated": "15700"
 		},
 		{
 			"approved": "2041",
