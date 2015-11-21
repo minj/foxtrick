@@ -76,7 +76,7 @@ ul.ft-popup-list > li > a, ul.ft-popup-list > li > span {
 }
 
 .sidebarBox span.ft-popup-span > a {
-    white-space: nowrap;
+    /*white-space: nowrap;*/
 }
 
 html[dir="ltr"] ul.ft-popup-list > li > a, html[dir="ltr"] ul.ft-popup-list > li > span {
