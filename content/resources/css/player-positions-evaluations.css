@@ -1,0 +1,26 @@
+#ft-ppe-prefButtons {
+	margin: 1em 0;
+}
+#ft-ppeBd-table {
+	clear: both;
+}
+#ft-ppeBd-table th {
+	text-align: center;
+	border: solid #dce0dc 1px;
+	cursor: auto !important;
+}
+
+#ft-ppeBd-table th, #ft-ppeBd-table td, #ft-ppe-controlsAdvanced td {
+	vertical-align: middle;
+}
+
+/* align all numbers to the right regardless of text direction */
+#ft-ppeBd-table td, .ft-ppeBd-input, .ft-ppe-number {
+	text-align: right;
+}
+#ft-ppeBd-table td.ft-ppeBd-NaN {
+	text-align: end;
+}
+#ft-ppeBd-table .ft-ppeBd-skill {
+	text-align: start;
+}

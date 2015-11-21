@@ -1483,6 +1483,30 @@ Foxtrick.modules.MatchSimulator = {
 		};
 
 		var staminaData = module.STAMINA_DATA;
+		var contributions = Foxtrick.Predict.contributionFactors();
+
+		// using defaults to disregard user settings
+		// gives more consistency and allows to play around with them w/o affecting stamina
+		var skillOpts = Foxtrick.modules['PlayerPositionsEvaluations'].getDefaultPrefs();
+		skillOpts.stamina = false; // reset stamina effect
+
+		var players = {};
+		Foxtrick.forEach(function(div) {
+			if (!div.dataset.json)
+				return;
+
+			var player = JSON.parse(div.dataset.json);
+			player.effectiveSkills =
+				Foxtrick.Predict.effectiveSkills(player.skills, player, skillOpts);
+
+			var staminaPrediction = null;
+			if (staminaData[player.id]) {
+				staminaPrediction = parseFloat(staminaData[player.id][1]);
+			}
+			player.energy = getStaminaFactor(player.stamina, staminaPrediction);
+
+			players[player.id] = player;
+		}, doc.querySelectorAll('#players .player'));
 
 		try {
 			var overlayRatingsNums = doc.getElementsByClassName('overlayRatingsNum');
@@ -1490,23 +1514,36 @@ Foxtrick.modules.MatchSimulator = {
 			var positionDivs = doc.querySelectorAll('#fieldplayers .position');
 			var positions = Foxtrick.toArray(positionDivs).slice(0, 14); // truncate bench
 			Foxtrick.forEach(function(ratingsNum, sector) {
-				var sumSquareVEnergy = 0;
-				var sumSquareV = 0;
+				var sumVEnergy = 0;
+				var sumV = 0;
+
+				var sectorSkills = [], center = 0;
+				if (sector < 3) {
+					sectorSkills = ['keeper', 'de-fending'];
+					center = 1;
+				}
+				else if (sector === 3) {
+					sectorSkills = ['playmaking'];
+					center = 3;
+				}
+				else {
+					sectorSkills = ['passing', 'scoring', 'winger'];
+					center = 5;
+				}
+				var wing = sector - center; // left:-1, center:0, right:1
+
+				var error = false;
 				Foxtrick.forEach(function(positionDiv, pos) {
 					var playerDiv = positionDiv.getElementsByClassName('player')[0];
 					if (!playerDiv)
 						return;
 
 					var id = playerDiv.id.match(/\d+/)[0];
-					var playerStrip = doc.querySelector('#players #list_playerID' + id);
-					// HTs use the same ID for elements in '#players' and in '.position'
-					var player = JSON.parse(playerStrip.dataset.json);
-					if (!player.stamina)
+					var player = players[id];
+					if (!player) {
+						error = true;
+						Foxtrick.error('No player JSON in staminaDiscount');
 						return;
-
-					var staminaPrediction = null;
-					if (staminaData[player.id]) {
-						staminaPrediction = parseFloat(staminaData[player.id][1]);
 					}
 
 					var tacticClass = 'normal'; // default to normal player tactic
@@ -1518,25 +1555,45 @@ Foxtrick.modules.MatchSimulator = {
 					}
 					var tacticAbbr = tacticAbbrs[tacticClass];
 
-					var position = Foxtrick.nth(function(p) {
-						return p.p == pos && p.t == tacticAbbr;
-					}, module.CONTRIBUTIONS);
+					var posDef = module.POSITIONS[pos];
+					var posId = posDef.pos + tacticAbbr;
+					if (posId === 'fwd' && player.specialty === 1)
+						posId = 'tdf';
 
-					var contributions = Foxtrick.filter(function(c) {
-						return c.s == sector;
-					}, position.c);
-
-					Foxtrick.forEach(function(c) {
-						var squareV = c.v * c.v;
-						var energy = getStaminaFactor(player.stamina, staminaPrediction);
-						sumSquareVEnergy += squareV * energy;
-						sumSquareV += squareV;
-					}, contributions);
+					var cntrbSkills = contributions[posId];
+					for (var skill in cntrbSkills) {
+						if (Foxtrick.has(sectorSkills, skill)) {
+							var cntrb = cntrbSkills[skill];
+							var factor = 0;
+							if (wing) {
+								if (posDef.wing && !posDef.noTransfer) {
+									if (wing === posDef.wing) {
+										// transferring both sides to this wing
+										// i.e. left CD does not contribute to right defence
+										factor = cntrb.wings;
+									}
+								}
+								else {
+									// no transfer
+									// (forwards or other centered positions: GK/CCD/CIM)
+									// only matters for fwtw since side=farSide otherwise
+									factor = wing === posDef.wing ? cntrb.side : cntrb.farSide;
+								}
+							}
+							else {
+								factor = cntrb.center;
+							}
+							var skillVal = player.effectiveSkills[skill];
+							var value = skillVal * factor;
+							sumV += value;
+							sumVEnergy += value * player.energy;
+						}
+					}
 
 				}, positions);
 
 				var oldRating = orgRatings[sector];
-				var newRating = oldRating * sumSquareVEnergy / sumSquareV;
+				var newRating = error ? oldRating : oldRating * sumVEnergy / sumV;
 				var newRatingNorm = module.normalizeRatings(newRating);
 				var discount = doc.createElement('div');
 				discount.className = 'overlayRatingsDiscounted';
@@ -1554,493 +1611,42 @@ Foxtrick.modules.MatchSimulator = {
 		}
 	},
 	get STAMINA_DATA() {
-		if (!this._STAMINA_DATA) {
-			var staminaData = {};
-			var useStaminaPred = Foxtrick.Prefs.isModuleOptionEnabled(this, 'StaminaPrediction');
-			if (useStaminaPred) {
-				var ownId = Foxtrick.util.id.getOwnTeamId();
-				var dataText = Foxtrick.Prefs.getString('StaminaData.' + ownId);
-				if (dataText) {
-					try {
-						staminaData = JSON.parse(dataText);
-					}
-					catch (e) {
-						Foxtrick.log('Error parsing staminaData:', e);
-					}
+		var staminaData = {};
+		var useStaminaPred = Foxtrick.Prefs.isModuleOptionEnabled(this, 'StaminaPrediction');
+		if (useStaminaPred) {
+			var ownId = Foxtrick.util.id.getOwnTeamId();
+			var dataText = Foxtrick.Prefs.getString('StaminaData.' + ownId);
+			if (dataText) {
+				try {
+					staminaData = JSON.parse(dataText);
+				}
+				catch (e) {
+					Foxtrick.log('Error parsing staminaData:', e);
 				}
 			}
-			this._STAMINA_DATA = staminaData;
 		}
-		return this._STAMINA_DATA;
+		delete this.STAMINA_DATA;
+		this.STAMINA_DATA = staminaData;
+		return staminaData;
 	},
-	CONTRIBUTIONS: [
-		{
-			p: 0, t: 'n',
-			c: [
-				{ s: 1, sk: 'gk', v: 0.866 },
-				{ s: 1, sk: 'df', v: 0.425 },
-				{ s: 0, sk: 'gk', v: 0.597 },
-				{ s: 2, sk: 'ke', v: 0.597 },
-				{ s: 0, sk: 'df', v: 0.276 },
-				{ s: 2, sk: 'df', v: 0.276 },
-			],
-		},
-		{
-			p: 3, t: 'n',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.236 },
-				{ s: 1, sk: 'df', v: 1.000 },
-				{ s: 0, sk: 'df', v: 0.260 },
-				{ s: 2, sk: 'df', v: 0.260 },
-			],
-		},
-		{
-			p: 3, t: 'o',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.318 },
-				{ s: 1, sk: 'df', v: 0.725 },
-				{ s: 0, sk: 'df', v: 0.190 },
-				{ s: 2, sk: 'df', v: 0.190 },
-			],
-		},
-		{
-			p: 2, t: 'n',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.236 },
-				{ s: 1, sk: 'df', v: 1.000 },
-				{ s: 0, sk: 'df', v: 0.516 },
-			],
-		},
-		{
-			p: 2, t: 'tw',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.165 },
-				{ s: 1, sk: 'df', v: 0.778 },
-				{ s: 0, sk: 'df', v: 0.711 },
-				{ s: 4, sk: 'wi', v: 0.246 },
-			],
-		},
-		{
-			p: 2, t: 'o',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.318 },
-				{ s: 1, sk: 'df', v: 0.725 },
-				{ s: 0, sk: 'df', v: 0.378 },
-			],
-		},
-		{
-			p: 4, t: 'n',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.236 },
-				{ s: 1, sk: 'df', v: 1.000 },
-				{ s: 2, sk: 'df', v: 0.516 },
-			],
-		},
-		{
-			p: 4, t: 'tw',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.165 },
-				{ s: 1, sk: 'df', v: 0.778 },
-				{ s: 2, sk: 'df', v: 0.711 },
-				{ s: 6, sk: 'wi', v: 0.246 },
-			],
-		},
-		{
-			p: 4, t: 'o',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.318 },
-				{ s: 1, sk: 'df', v: 0.725 },
-				{ s: 2, sk: 'df', v: 0.378 },
-			],
-		},
-		{
-			p: 1, t: 'n',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.167 },
-				{ s: 1, sk: 'df', v: 0.450 },
-				{ s: 0, sk: 'df', v: 0.919 },
-				{ s: 4, sk: 'wi', v: 0.506 },
-			],
-		},
-		{
-			p: 1, t: 'd',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.066 },
-				{ s: 1, sk: 'df', v: 0.479 },
-				{ s: 0, sk: 'df', v: 1.000 },
-				{ s: 4, sk: 'wi', v: 0.323 },
-			],
-		},
-		{
-			p: 1, t: 'tm',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.167 },
-				{ s: 1, sk: 'df', v: 0.683 },
-				{ s: 0, sk: 'df', v: 0.687 },
-				{ s: 4, sk: 'wi', v: 0.279 },
-			],
-		},
-		{
-			p: 1, t: 'o',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.230 },
-				{ s: 1, sk: 'df', v: 0.382 },
-				{ s: 0, sk: 'df', v: 0.698 },
-				{ s: 4, sk: 'wi', v: 0.618 },
-			],
-		},
-		{
-			p: 5, t: 'n',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.167 },
-				{ s: 1, sk: 'df', v: 0.450 },
-				{ s: 2, sk: 'df', v: 0.919 },
-				{ s: 6, sk: 'wi', v: 0.506 },
-			],
-		},
-		{
-			p: 5, t: 'd',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.066 },
-				{ s: 1, sk: 'df', v: 0.479 },
-				{ s: 2, sk: 'df', v: 1.000 },
-				{ s: 6, sk: 'wi', v: 0.323 },
-			],
-		},
-		{
-			p: 5, t: 'tm',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.167 },
-				{ s: 1, sk: 'df', v: 0.683 },
-				{ s: 2, sk: 'df', v: 0.687 },
-				{ s: 6, sk: 'wi', v: 0.279 },
-			],
-		},
-		{
-			p: 5, t: 'o',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.230 },
-				{ s: 1, sk: 'df', v: 0.382 },
-				{ s: 2, sk: 'df', v: 0.698 },
-				{ s: 6, sk: 'wi', v: 0.618 },
-			],
-		},
-		{
-			p: 8, t: 'n',
-			c: [
-				{ s: 3, sk: 'pm', v: 1.000 },
-				{ s: 1, sk: 'df', v: 0.400 },
-				{ s: 0, sk: 'df', v: 0.095 },
-				{ s: 2, sk: 'df', v: 0.095 },
-				{ s: 5, sk: 'ps', v: 0.325 },
-				{ s: 4, sk: 'ps', v: 0.110 },
-				{ s: 6, sk: 'ps', v: 0.110 },
-			],
-		},
-		{
-			p: 8, t: 'o',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.944 },
-				{ s: 1, sk: 'df', v: 0.216 },
-				{ s: 0, sk: 'df', v: 0.051 },
-				{ s: 2, sk: 'df', v: 0.051 },
-				{ s: 5, sk: 'ps', v: 0.483 },
-				{ s: 4, sk: 'ps', v: 0.110 },
-				{ s: 6, sk: 'ps', v: 0.110 },
-			],
-		},
-		{
-			p: 8, t: 'd',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.944 },
-				{ s: 1, sk: 'df', v: 0.594 },
-				{ s: 0, sk: 'df', v: 0.135 },
-				{ s: 2, sk: 'df', v: 0.135 },
-				{ s: 5, sk: 'ps', v: 0.219 },
-				{ s: 4, sk: 'ps', v: 0.070 },
-				{ s: 6, sk: 'ps', v: 0.070 },
-			],
-		},
-		{
-			p: 7, t: 'n',
-			c: [
-				{ s: 3, sk: 'pm', v: 1.000 },
-				{ s: 1, sk: 'df', v: 0.400 },
-				{ s: 0, sk: 'df', v: 0.189 },
-				{ s: 5, sk: 'ps', v: 0.325 },
-				{ s: 4, sk: 'ps', v: 0.218 },
-			],
-		},
-		{
-			p: 7, t: 'o',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.944 },
-				{ s: 1, sk: 'df', v: 0.216 },
-				{ s: 0, sk: 'df', v: 0.102 },
-				{ s: 5, sk: 'ps', v: 0.483 },
-				{ s: 4, sk: 'ps', v: 0.216 },
-			],
-		},
-		{
-			p: 7, t: 'd',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.944 },
-				{ s: 1, sk: 'df', v: 0.594 },
-				{ s: 0, sk: 'df', v: 0.270 },
-				{ s: 5, sk: 'ps', v: 0.219 },
-				{ s: 4, sk: 'ps', v: 0.140 },
-			],
-		},
-		{
-			p: 7, t: 'tw',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.881 },
-				{ s: 1, sk: 'df', v: 0.348 },
-				{ s: 0, sk: 'df', v: 0.291 },
-				{ s: 5, sk: 'ps', v: 0.227 },
-				{ s: 4, sk: 'wi', v: 0.494 },
-				{ s: 4, sk: 'ps', v: 0.271 },
-			],
-		},
-		{
-			p: 9, t: 'n',
-			c: [
-				{ s: 3, sk: 'pm', v: 1.000 },
-				{ s: 1, sk: 'df', v: 0.400 },
-				{ s: 2, sk: 'df', v: 0.189 },
-				{ s: 5, sk: 'ps', v: 0.325 },
-				{ s: 6, sk: 'ps', v: 0.218 },
-			],
-		},
-		{
-			p: 9, t: 'o',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.944 },
-				{ s: 1, sk: 'df', v: 0.216 },
-				{ s: 2, sk: 'df', v: 0.102 },
-				{ s: 5, sk: 'ps', v: 0.483 },
-				{ s: 6, sk: 'ps', v: 0.216 },
-			],
-		},
-		{
-			p: 9, t: 'd',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.944 },
-				{ s: 1, sk: 'df', v: 0.594 },
-				{ s: 2, sk: 'df', v: 0.270 },
-				{ s: 5, sk: 'ps', v: 0.219 },
-				{ s: 6, sk: 'ps', v: 0.140 },
-			],
-		},
-		{
-			p: 9, t: 'tw',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.881 },
-				{ s: 1, sk: 'df', v: 0.348 },
-				{ s: 2, sk: 'df', v: 0.291 },
-				{ s: 5, sk: 'ps', v: 0.227 },
-				{ s: 6, sk: 'wi', v: 0.494 },
-				{ s: 6, sk: 'ps', v: 0.271 },
-			],
-		},
-		{
-			p: 6, t: 'n',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.455 },
-				{ s: 1, sk: 'df', v: 0.201 },
-				{ s: 0, sk: 'df', v: 0.349 },
-				{ s: 5, sk: 'ps', v: 0.104 },
-				{ s: 4, sk: 'wi', v: 0.854 },
-				{ s: 4, sk: 'ps', v: 0.210 },
-			],
-		},
-		{
-			p: 6, t: 'o',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.381 },
-				{ s: 1, sk: 'df', v: 0.085 },
-				{ s: 0, sk: 'df', v: 0.180 },
-				{ s: 5, sk: 'ps', v: 0.135 },
-				{ s: 4, sk: 'wi', v: 1.000 },
-				{ s: 4, sk: 'ps', v: 0.246 },
-			],
-		},
-		{
-			p: 6, t: 'tm',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.574 },
-				{ s: 1, sk: 'df', v: 0.244 },
-				{ s: 0, sk: 'df', v: 0.284 },
-				{ s: 5, sk: 'ps', v: 0.148 },
-				{ s: 4, sk: 'wi', v: 0.564 },
-				{ s: 4, sk: 'ps', v: 0.133 },
-			],
-		},
-		{
-			p: 6, t: 'd',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.381 },
-				{ s: 1, sk: 'df', v: 0.264 },
-				{ s: 0, sk: 'df', v: 0.485 },
-				{ s: 5, sk: 'ps', v: 0.052 },
-				{ s: 4, sk: 'wi', v: 0.723 },
-				{ s: 4, sk: 'ps', v: 0.173 },
-			],
-		},
-		{
-			p: 10, t: 'n',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.455 },
-				{ s: 1, sk: 'df', v: 0.201 },
-				{ s: 2, sk: 'df', v: 0.349 },
-				{ s: 5, sk: 'ps', v: 0.104 },
-				{ s: 6, sk: 'wi', v: 0.854 },
-				{ s: 6, sk: 'ps', v: 0.210 },
-			],
-		},
-		{
-			p: 10, t: 'o',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.381 },
-				{ s: 1, sk: 'df', v: 0.085 },
-				{ s: 2, sk: 'df', v: 0.180 },
-				{ s: 5, sk: 'ps', v: 0.135 },
-				{ s: 6, sk: 'wi', v: 1.000 },
-				{ s: 6, sk: 'ps', v: 0.246 },
-			],
-		},
-		{
-			p: 10, t: 'tm',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.574 },
-				{ s: 1, sk: 'df', v: 0.244 },
-				{ s: 2, sk: 'df', v: 0.284 },
-				{ s: 5, sk: 'ps', v: 0.148 },
-				{ s: 6, sk: 'wi', v: 0.564 },
-				{ s: 6, sk: 'ps', v: 0.133 },
-			],
-		},
-		{
-			p: 10, t: 'd',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.381 },
-				{ s: 1, sk: 'df', v: 0.264 },
-				{ s: 2, sk: 'df', v: 0.485 },
-				{ s: 5, sk: 'ps', v: 0.052 },
-				{ s: 6, sk: 'wi', v: 0.723 },
-				{ s: 6, sk: 'ps', v: 0.173 },
-			],
-		},
-		{
-			p: 12, t: 'n',
-			c: [
-				{ s: 5, sk: 'sc', v: 1.000 },
-				{ s: 5, sk: 'ps', v: 0.369 },
-				{ s: 4, sk: 'wi', v: 0.190 },
-				{ s: 6, sk: 'wi', v: 0.190 },
-				{ s: 4, sk: 'ps', v: 0.122 },
-				{ s: 6, sk: 'ps', v: 0.122 },
-				{ s: 4, sk: 'sc', v: 0.224 },
-				{ s: 6, sk: 'sc', v: 0.224 },
-			],
-		},
-		{
-			p: 12, t: 'd',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.406 },
-				{ s: 5, sk: 'sc', v: 0.583 },
-				{ s: 5, sk: 'ps', v: 0.543 },
-				{ s: 4, sk: 'wi', v: 0.124 },
-				{ s: 6, sk: 'wi', v: 0.124 },
-				{ s: 4, sk: 'ps', v: 0.215 },
-				{ s: 6, sk: 'ps', v: 0.215 },
-				{ s: 4, sk: 'sc', v: 0.109 },
-				{ s: 6, sk: 'sc', v: 0.109 },
-			],
-		},
-		{
-			p: 11, t: 'n',
-			c: [
-				{ s: 5, sk: 'sc', v: 1.000 },
-				{ s: 5, sk: 'ps', v: 0.369 },
-				{ s: 4, sk: 'wi', v: 0.190 },
-				{ s: 6, sk: 'wi', v: 0.190 },
-				{ s: 4, sk: 'ps', v: 0.122 },
-				{ s: 6, sk: 'ps', v: 0.122 },
-				{ s: 4, sk: 'sc', v: 0.224 },
-				{ s: 6, sk: 'sc', v: 0.224 },
-			],
-		},
-		{
-			p: 11, t: 'd',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.406 },
-				{ s: 5, sk: 'sc', v: 0.583 },
-				{ s: 5, sk: 'ps', v: 0.543 },
-				{ s: 4, sk: 'wi', v: 0.124 },
-				{ s: 6, sk: 'wi', v: 0.124 },
-				{ s: 4, sk: 'ps', v: 0.215 },
-				{ s: 6, sk: 'ps', v: 0.215 },
-				{ s: 4, sk: 'sc', v: 0.109 },
-				{ s: 6, sk: 'sc', v: 0.109 },
-			],
-		},
-		{
-			p: 11, t: 'tw',
-			c: [
-				{ s: 5, sk: 'sc', v: 0.607 },
-				{ s: 5, sk: 'ps', v: 0.261 },
-				{ s: 4, sk: 'wi', v: 0.174 },
-				{ s: 6, sk: 'wi', v: 0.522 },
-				{ s: 4, sk: 'ps', v: 0.060 },
-				{ s: 6, sk: 'ps', v: 0.180 },
-				{ s: 4, sk: 'sc', v: 0.150 },
-				{ s: 6, sk: 'sc', v: 0.451 },
-			],
-		},
-		{
-			p: 13, t: 'n',
-			c: [
-				{ s: 5, sk: 'sc', v: 1.000 },
-				{ s: 5, sk: 'ps', v: 0.369 },
-				{ s: 4, sk: 'wi', v: 0.190 },
-				{ s: 6, sk: 'wi', v: 0.190 },
-				{ s: 4, sk: 'ps', v: 0.122 },
-				{ s: 6, sk: 'ps', v: 0.122 },
-				{ s: 4, sk: 'sc', v: 0.224 },
-				{ s: 6, sk: 'sc', v: 0.224 },
-			],
-		},
-		{
-			p: 13, t: 'd',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.406 },
-				{ s: 5, sk: 'sc', v: 0.583 },
-				{ s: 5, sk: 'ps', v: 0.543 },
-				{ s: 4, sk: 'wi', v: 0.124 },
-				{ s: 6, sk: 'wi', v: 0.124 },
-				{ s: 4, sk: 'ps', v: 0.215 },
-				{ s: 6, sk: 'ps', v: 0.215 },
-				{ s: 4, sk: 'sc', v: 0.109 },
-				{ s: 6, sk: 'sc', v: 0.109 },
-			],
-		},
-		{
-			p: 13, t: 'tw',
-			c: [
-				{ s: 5, sk: 'sc', v: 0.607 },
-				{ s: 5, sk: 'ps', v: 0.261 },
-				{ s: 4, sk: 'wi', v: 0.522 },
-				{ s: 6, sk: 'wi', v: 0.174 },
-				{ s: 4, sk: 'ps', v: 0.180 },
-				{ s: 6, sk: 'ps', v: 0.060 },
-				{ s: 4, sk: 'sc', v: 0.451 },
-				{ s: 6, sk: 'sc', v: 0.150 },
-			],
-		},
+	POSITIONS: [
+		{ pos: 'kp', wing: 0, },
+		{ pos: 'wb', wing: -1, },
+		{ pos: 'cd', wing: -1, },
+		{ pos: 'cd', wing: 0, },
+		{ pos: 'cd', wing: 1, },
+		{ pos: 'wb', wing: 1, },
+		{ pos: 'w', wing: -1, },
+		{ pos: 'im', wing: -1, },
+		{ pos: 'im', wing: 0, },
+		{ pos: 'im', wing: 1, },
+		{ pos: 'w', wing: 1, },
+		{ pos: 'fw', wing: -1, noTransfer: true },
+		{ pos: 'fw', wing: 0, },
+		{ pos: 'fw', wing: 1, noTransfer: true },
 	],
 	TACTICS: {
-		normal: 'n',
+		normal: '',
 		middle: 'tm',
 		wing: 'tw',
 		offensive: 'o',

@@ -992,16 +992,8 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 		if (Foxtrick.Pages.Players.isOwn(doc)) {
 			for (var i = 0; i < playerList.length; ++i) {
 				var player = playerList[i];
-				var skills = {
-					keeper: player.keeper,
-					playmaking: player.playmaking,
-					passing: player.passing,
-					winger: player.winger,
-					defending: player.defending,
-					scoring: player.scoring,
-				};
 
-				var contributions = Foxtrick.Pages.Player.getContributions(skills, player);
+				var contributions = Foxtrick.Pages.Player.getContributions(player.skills, player);
 				for (var name in contributions)
 					player[name] = contributions[name];
 
@@ -1040,6 +1032,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 					player.staminaPrediction = {
 						value: data[player.id][1], date: data[player.id][0]
 					};
+					player.staminaPred = parseFloat(data[player.id][1]);
 				}
 				else
 					player.staminaPrediction = null;
@@ -1060,8 +1053,8 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 						parseHtml();
 					if (xml)
 						parseXml(xml);
-					addContributionsInfo(playerList);
 					addStamindaData(doc, playerList);
+					addContributionsInfo(playerList);
 				}
 				catch (e) {
 					Foxtrick.log(e);
@@ -1080,8 +1073,8 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 	else {
 		try {
 			parseHtml();
-			addContributionsInfo(playerList);
 			addStamindaData(doc, playerList);
+			addContributionsInfo(playerList);
 			return playerList;
 		}
 		catch (e) {
