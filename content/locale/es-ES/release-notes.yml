@@ -5,15 +5,30 @@ es-ES:
       note_0: 'Esta es versión de desarrollo. Úsalo a tu propia discreción. Por favor, mira <linkSVN>commit history</linkSVN> en Google Code para los detalles de los cambios.'
     beta:
       note_0: 'Esta es la versión beta de la próxima release. Por favor, ayuda a traducir esta versión accediendo a nuestra super fácil de usar web de traducción <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.16.1:
+      important: '<header>Anuncios importantes</header>'
+      crowdin: '<header>AMuchas actualizaciones de la traducción de nuestros asombrosos usuarios, mediante la <linkCrowdin>herramienta CrowdIn</linkCrowdin>. ¡Tu puedes contribuir también si quieres!</header>'
+      support: '¿<header>Como lo estamos haciendo? Por favor <linkContribute>ayuda Foxtrick</linkContribute>.</header>'
+      bugs: '<header>Corrección de errores</header>'
+      other: '<header>Otros cambios</header>'
+      and_more: Otros pequeños cambios y correcciones.
     0.16.0:
       important: '<header>Anuncios importantes</header>'
       safari: Debido a los cambios en la política de Apple Inc. y la reticencia general a mejorar su navegador ya no garantizamos actualizaciones automáticas ni soporte general para los usuarios de Safari. Te recomendamos utilizar Google Chrome, Firefox u Opera en su lugar.
       crowdin: '<header>AMuchas actualizaciones de la traducción de nuestros asombrosos usuarios, mediante la <linkCrowdin>herramienta CrowdIn</linkCrowdin>. ¡Tu puedes contribuir también si quieres!</header>'
       support: '¿<header>Como lo estamos haciendo? Por favor <linkContribute>ayuda Foxtrick</linkContribute>.</header>'
       new: '<header>Nuevos módulos</header>'
+      transfers: '<module>CurrentTransfers</module> agrega más información sobre los jugadores en la actual página de transferencias.'
       bugs: '<header>Corrección de errores</header>'
       stamina_prediction: 'La predicción del subnivel de resistencia (<module>MatchLineupTweaks</module>) no era correcta debido a cambios en HT. El problema debe haberse resuelto.'
+      match_order: 'Ajustar el diseño en <module>MatchSimulator</module> y <module>MatchOrderInterface</module> para tomar en cuenta cambios de diseño de Hattrick.'
+      team_detection: 'Había varios otros asuntos debido a los cambios de diseño de HT: los rostros de jugadores visitantes habían desaparecido, la detección de goles de <module>LiveAlert</module> no funcionaba, etc. Ahora deben estar resueltos.'
       other: '<header>Otros cambios</header>'
+      table: '<module>PlayerFilters</module> y <module>SkillTable</module> fueron reescritas para arreglar algunos errores y ampliar su funcionalidad. Columnas clave de la tabla ahora estan fijas para evitar su desplazamiento horizontal, puedes ocultar ciertos jugadores y mucho más. Usa el botón de información para leer la descripción completa.'
+      opponent_goals: 'Añadido otro sonido de gol para anotaciones de los oponentes en <module>LiveAlert</module>.'
+      indonesian: Añadido soporte para el idioma indonesio.
+      match_events: Descripciones de tipo de evento de partido ahora pueden ser traducidas. Es una gran cantidad, ten paciencia!
+      style_cleanup: 'Los estilos de Foxtrick (CSS) han sido ajustados para apoyar mejor a temas personalizados de Hattrick. Como resultado ahora también puede asignar colores personalizados de acuerdo al nombre de usuario para los funcionarios de HT en <module>StaffMarker</module>.'
       and_more: Otros pequeños cambios y correcciones.
     0.15.2.1:
       important: '<header>Anuncios importantes</header>'

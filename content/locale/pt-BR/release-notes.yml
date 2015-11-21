@@ -5,12 +5,24 @@ pt-BR:
       note_0: 'Esta é a versão de desenvolvimento. Use a seu próprio critério. Veja <linkSVN>história de alterações</linkSVN> no Google Code para detalhes das mudanças.'
     beta:
       note_0: 'Esta é a versão beta do próximo lançamento. Por favor ajude a traduzir essa versão em nossa página de tradução comunitária super fácil <linkCrowdin>crowdin.net</linkCrowdin>. '
-    0.16.0:
+    0.16.1:
       important: '<header>Anúncios Importantes</header>'
       crowdin: '<header>Várias atualizações de traduções de nossos fantásticos usuários que usam o <linkCrowdin>crowdin tool</linkCrowdin>. Você também pode ajudar!</header>'
       support: '<header>Como o que estamos fazendo? Por favor <linkContribute>apoio Foxtrick</linkContribute>.</header>'
-      new: '<header>Novos módulos</header>'
       bugs: '<header>Correções de bugs</header>'
+      other: '<header>Outras alterações</header>'
+      and_more: Várias outras pequenas alterações e correções.
+    0.16.0:
+      important: '<header>Anúncios Importantes</header>'
+      safari: Devido a mudanças da Apple Inc. em sua política e relutância geral em melhorar o seu navegador, não podemos mais garantir atualizações automáticas e suporte geral para utilizadores do Safari. Por favor considere usar o Firefox, Chrome ou Opera.
+      crowdin: '<header>Várias atualizações de traduções de nossos fantásticos usuários que usam o <linkCrowdin>crowdin tool</linkCrowdin>. Você também pode ajudar!</header>'
+      support: '<header>Como o que estamos fazendo? Por favor <linkContribute>apoio Foxtrick</linkContribute>.</header>'
+      new: '<header>Novos módulos</header>'
+      transfers: '<module>CurrentTransfers</module> adiciona mais informação sobre sobre jogadores na página de transferências atual.'
+      bugs: '<header>Correções de bugs</header>'
+      stamina_prediction: 'Previsão do sub nível de Resistência (<module>MatchLineupTweaks</module>) estava incorreta devido a mudanças no Hattrick. O problema deverá agora estar corrigido.'
+      match_order: 'Ajustado o layout no <module>MatchSimulator</module> e <module>MatchOrderInterface</module> devido a mudanças no design do Hattrick.'
+      team_detection: 'Existiam variadas questões derivadas das mudanças do design do Hattrick: Rostos dos jogadores visitantes tinham desaparecido, a deteção de gols no <module>LiveAlert</module> estava com problemas, etc. Todos os problemas deverão estar agora corrigidos.'
       other: '<header>Outras alterações</header>'
       and_more: Várias outras pequenas alterações e correções.
     0.15.2.1:
