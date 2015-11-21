@@ -297,31 +297,14 @@ FoxtrickFirefox.prototype = {
 	loadUI: function() {
 		this.loadContextMenu();
 
-		if (typeof this.owner.CustomizableUI !== 'undefined') {
-			// Australis
-			this.loadAustralisUI();
-		}
-		else {
-			try {
-				Services.scriptloader.loadSubScript(FOXTRICK_PATH + 'lib/ToolbarItem.js', this);
-				this.loadToolbarItem();
-			}
-			catch (e) {
-				dump('FoxTrick error: ToolbarItem failed ' + e + '\n');
-				Cu.reportError('FoxTrick error: ToolbarItem failed ' + e);
-			}
-		}
+		// Australis
+		this.loadAustralisUI();
 	},
 	removeUI: function() {
 		this.removeContextMenu();
 
-		if (typeof this.owner.CustomizableUI !== 'undefined')
-			// Australis
-			this.removeAustralisUI();
-
-		// defined in ToolbarItem.js
-		if (typeof this.shutdown === 'function')
-			this.shutdown();
+		// Australis
+		this.removeAustralisUI();
 	},
 	loadAustralisUI: function() {
 		let doc = this.owner.document;
@@ -344,36 +327,6 @@ FoxtrickFirefox.prototype = {
 		let panel = this.owner.document.getElementById('foxtrick-toolbar-view');
 		if (panel)
 			panel.remove();
-	},
-	loadToolbarItem: function() {
-		try {
-			// toolbar
-			this.generalButton = this.ToolbarItem.create(
-				'<toolbarbutton id="foxtrick-toolbar-button" ' +
-					'type="menu" ' +
-					'label="FoxTrick" ' +
-					'tooltiptext="FoxTrick" ' +
-					'context="foxtrick-menu" ' +
-					'class="' + this.ToolbarItem.BASIC_ITEM_CLASS +
-						' foxtrick-toolbar-item">' +
-					'<menupopup id="foxtrick-menu">' +
-						'<menuitem id="foxtrick-toolbar-preferences"/>' +
-						'<menuitem id="foxtrick-toolbar-deactivate" type="checkbox" ' +
-							'autocheck="true"/>' +
-						'<menuitem id="foxtrick-toolbar-clearCache" />' +
-						'<menuitem id="foxtrick-toolbar-highlight" type="checkbox" ' +
-							'autocheck="true"/>' +
-						'<menuitem id="foxtrick-toolbar-translationKeys" type="checkbox" ' +
-							'autocheck="true"/>' +
-					'</menupopup>' +
-				'</toolbarbutton>',
-				this.owner.document.getElementById('nav-bar')
-			);
-		}
-		catch (e) {
-			dump('FoxTrick error: Toolbar button init ' + e + '\n');
-			Cu.reportError('FoxTrick error: Toolbar button init ' + e);
-		}
 	},
 	loadContextMenu: function() {
 		try {
