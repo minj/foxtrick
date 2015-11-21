@@ -341,7 +341,10 @@ Foxtrick.modules['SkillColoring'] = {
 						var percentImage = td.getElementsByTagName('img')[0];
 						var level = (percentImage) ? percentImage.title.match(/\d+/) :
 							Foxtrick.L10n.getLevelFromText(skill);
-						td.removeChild(td.lastChild);
+
+						if (td.lastChild)
+							td.removeChild(td.lastChild);
+
 						if (percentImage) td.appendChild(doc.createTextNode('\u00a0'));
 
 						var translated = (skill_translated) ? !percentImage : false;
