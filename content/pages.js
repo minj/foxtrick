@@ -143,6 +143,7 @@ Foxtrick.ht_pages = {
 	'cupMatches'                : '/World/Cup/CupMatches.aspx',
 	'cupOverview'               : '/World/Cup/(Default.aspx|?|$)',
 	'election'                  : '/World/Elections/(Default.aspx|?|$)',
+	'worldCup'                  : '/World/WorldCup/',
 	'denominations'             : '/Help/Rules/AppDenominations.aspx',
 	'helpContact'               : '/Help/Contact.aspx',
 	'statsBestGames'            : '/World/Stats/StatsBestgames.aspx',

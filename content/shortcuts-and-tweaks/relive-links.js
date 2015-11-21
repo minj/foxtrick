@@ -8,9 +8,11 @@
 Foxtrick.modules['ReLiveLinks'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES: [
-		'matches', 'worldMatches', 'matchesArchive', 'matchesCup', 'cupMatches',
-		'fixtures', 'youthFixtures', 'series',
-		'matchesLive',
+		'matchesLive', // export live
+		'series', // combo link
+		'fixtures', 'youthFixtures', // table mess
+		'cupMatches', 'worldCup', // insertCells, insertHeader
+		'matchesArchive', 'worldMatches', // insertCells
 	],
 	NICE: -1, // before any modules that might change row count
 	OPTIONS: ['ReLive', 'Live'],
@@ -88,19 +90,21 @@ Foxtrick.modules['ReLiveLinks'] = {
 		Foxtrick.Pages.Match.addLiveListener(doc, addBulkButton);
 	},
 	reLive: function(doc) {
+		var module = this;
 		// don't run on live table
 		var liveSeriesLink = Foxtrick.getMBElement(doc, 'hlLive');
 		if (liveSeriesLink && liveSeriesLink.hasAttribute('disabled')) {
 			return;
 		}
 
-		var matchSelector = 'a[href*="/Club/Matches/Match.aspx"]';
-		var liveSelector = 'a[href*="/Club/Matches/Live.aspx"]';
+		var MATCH_SELECTOR = 'a[href^="/Club/Matches/Match.aspx"]';
+		var LIVE_SELECTOR = 'a[href^="/Club/Matches/Live.aspx"]';
+
 		var findMatchTdIdx = function(rows) {
 			if (!rows[0])
 				return -1;
 			var tbody = rows[0].parentNode;
-			var matchLink = tbody.querySelector(matchSelector);
+			var matchLink = tbody.querySelector(MATCH_SELECTOR);
 			if (!matchLink)
 				return -1;
 			var cell = matchLink.parentNode;
@@ -142,7 +146,7 @@ Foxtrick.modules['ReLiveLinks'] = {
 
 			addAllLink = doc.createElement('a');
 			addAllLink.appendChild(addAll);
-			var addAllSpan = Foxtrick.createFeaturedElement(doc, this, 'span');
+			var addAllSpan = Foxtrick.createFeaturedElement(doc, module, 'span');
 			Foxtrick.addClass(addAllSpan, 'float_right');
 			addAllSpan.appendChild(addAllLink);
 
@@ -165,76 +169,93 @@ Foxtrick.modules['ReLiveLinks'] = {
 			insertCells = true;
 			insertHeader = true;
 		}
+		else if (Foxtrick.isPage(doc, 'worldCup')) {
+			rows = doc.querySelectorAll('#ctl00_ctl00_CPContent_CPMain_repWCFixtures tr');
+			insertCells = true;
+			insertHeader = true;
+		}
 		else if (Foxtrick.isPage(doc, 'matchesArchive')) {
 			rows = doc.querySelectorAll('table.indent > tbody > tr');
 			insertCells = true;
 		}
-		else {
+		else if (Foxtrick.isPage(doc, 'worldMatches')) {
 			rows = doc.querySelectorAll('#mainBody tr');
-			if (Foxtrick.isPage(doc, 'worldMatches')) {
-				insertCells = true;
-			}
+			insertCells = true;
+		}
+		else {
+			Foxtrick.error('Unhandled case in ReLiveLinks');
+			return;
 		}
 
 		var matchTdIdx = findMatchTdIdx(rows);
 		if (matchTdIdx === -1)
 			return;
+
 		var scoreIdx = matchTdIdx + 1;
 		var liveTdIdx = matchTdIdx + 2;
 
-		var i = 0;
-		if (insertCells) {
-			var j = 0;
-			if (insertHeader) {
-				var header = Foxtrick.createFeaturedElement(doc, this, 'th');
-				var lastCell = rows[0].cells.length - 1;
+		if (insertHeader) {
+			Foxtrick.forEach(function(row) {
+				var tbody = row.parentNode;
+				if (tbody.rows[0] !== row)
+					return;
+
+				row.dataset.header = '1';
+
+				var header = Foxtrick.createFeaturedElement(doc, module, 'th');
+				var lastCell = row.cells.length - 1;
 				if (liveTdIdx < lastCell)
-					rows[0].insertBefore(header, rows[0].cells[liveTdIdx]);
+					row.insertBefore(header, row.cells[liveTdIdx]);
 				else
-					rows[0].appendChild(header);
-				i = j = 1;
-			}
-			for (var m = rows.length; j < m; ++j) {
-				Foxtrick.insertFeaturedCell(rows[j], this, liveTdIdx);
-			}
+					row.appendChild(header);
+			}, rows);
+		}
+
+		if (insertCells) {
+			Foxtrick.forEach(function(row) {
+				if (!row.dataset.header)
+					Foxtrick.insertFeaturedCell(row, module, liveTdIdx);
+			}, rows);
 		}
 
 		var source;
-		for (var m = rows.length; i < m; ++i) {
-			var row = rows[i];
+		Foxtrick.forEach(function(row) {
 			var tds = row.cells;
-			var scoreTd = tds[scoreIdx];
-			if (!scoreTd || !/^\d+\D+\d+$/.test(scoreTd.textContent.trim())) {
+
+			var matchLink = row.querySelector(MATCH_SELECTOR);
+			if (!matchLink) {
 				// unused row
 				if (useColSpan && tds[0])
-					tds[0].colSpan = 2;
+					tds[0].colSpan = 4;
 
-				continue;
+				return;
 			}
 
-			var matchLink = row.querySelector(matchSelector);
-			if (!matchLink)
-				continue;
+			var scoreTd = tds[scoreIdx];
+			if (!scoreTd || !/^\d+\D+\d+$/.test(scoreTd.textContent.trim()))
+				return;
 
-			var liveLink = row.querySelector(liveSelector);
+			var liveLink = row.querySelector(LIVE_SELECTOR);
 			if (liveLink)
-				continue;
+				return;
 
 			var url = matchLink.href;
 			var id = Foxtrick.util.id.getMatchIdFromUrl(url);
 			source = Foxtrick.getParameterFromUrl(url, 'SourceSystem');
 			if (matches) {
 				matches.push(id);
-				continue;
+				return;
 				// don't run on series
 			}
+
 			url = '/Club/Matches/Live.aspx?matchID=' + id +
 				'&actionType=addMatch&SourceSystem=' + source;
-			liveLink = Foxtrick.createFeaturedElement(doc, this, 'a');
+			liveLink = Foxtrick.createFeaturedElement(doc, module, 'a');
 			liveLink.href = url;
 			liveLink.appendChild(img.cloneNode(true));
 			tds[liveTdIdx].appendChild(liveLink);
-		}
+		}, rows);
+
 		if (addAllLink)
 			addAllLink.href = '/Club/Matches/Live.aspx?matchID=' + matches.join(',') +
 				'&actionType=addMatch&SourceSystem=' + source;
