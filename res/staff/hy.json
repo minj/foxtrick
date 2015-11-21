@@ -52,6 +52,11 @@
 			"duty": "helper"
 		},
 		{
+			"id": "6381548",
+			"name": "Halli",
+			"duty": "helper"
+		},
+		{
 			"id": "7277437",
 			"name": "Dorie_tries_soccer",
 			"duty": "helper"
@@ -267,11 +272,6 @@
 			"duty": "translator"
 		},
 		{
-			"id": "10979826",
-			"name": "DeadOrAlive",
-			"duty": "translator"
-		},
-		{
 			"id": "7360875",
 			"name": "MOD-emevev",
 			"duty": "translator"
@@ -279,6 +279,11 @@
 		{
 			"id": "3589747",
 			"name": "tjeken",
+			"duty": "translator"
+		},
+		{
+			"id": "1957756",
+			"name": "llramone",
 			"duty": "translator"
 		},
 		{
