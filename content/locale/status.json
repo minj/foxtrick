@@ -133,19 +133,19 @@
 			"words_translated": "13507"
 		},
 		{
-			"approved": "1884",
+			"approved": "1875",
 			"approved_progress": "84",
 			"code": "da",
 			"name": "Danish",
 			"phrases": "2210",
-			"translated": "2072",
-			"translated_progress": "91",
+			"translated": "2154",
+			"translated_progress": "94",
 			"words": "15700",
-			"words_approved": "13314",
-			"words_translated": "14436"
+			"words_approved": "13245",
+			"words_translated": "14763"
 		},
 		{
-			"approved": "1861",
+			"approved": "1862",
 			"approved_progress": "80",
 			"code": "nl",
 			"name": "Dutch",
@@ -153,7 +153,7 @@
 			"translated": "2015",
 			"translated_progress": "91",
 			"words": "15700",
-			"words_approved": "12598",
+			"words_approved": "12599",
 			"words_translated": "14291"
 		},
 		{
@@ -294,11 +294,11 @@
 			"code": "el",
 			"name": "Greek",
 			"phrases": "2210",
-			"translated": "1245",
+			"translated": "1291",
 			"translated_progress": "42",
 			"words": "15700",
 			"words_approved": "0",
-			"words_translated": "6642"
+			"words_translated": "6749"
 		},
 		{
 			"approved": "0",
@@ -318,11 +318,11 @@
 			"code": "hu",
 			"name": "Hungarian",
 			"phrases": "2210",
-			"translated": "1850",
+			"translated": "1873",
 			"translated_progress": "71",
 			"words": "15700",
 			"words_approved": "393",
-			"words_translated": "11166"
+			"words_translated": "11246"
 		},
 		{
 			"approved": "0",
@@ -378,11 +378,11 @@
 			"code": "ko",
 			"name": "Korean",
 			"phrases": "2210",
-			"translated": "2208",
-			"translated_progress": "99",
+			"translated": "2210",
+			"translated_progress": "100",
 			"words": "15700",
 			"words_approved": "0",
-			"words_translated": "15690"
+			"words_translated": "15700"
 		},
 		{
 			"approved": "0",
@@ -498,11 +498,11 @@
 			"code": "pt-PT",
 			"name": "Portuguese",
 			"phrases": "2210",
-			"translated": "2208",
-			"translated_progress": "99",
+			"translated": "2210",
+			"translated_progress": "100",
 			"words": "15700",
 			"words_approved": "0",
-			"words_translated": "15690"
+			"words_translated": "15700"
 		},
 		{
 			"approved": "1",
@@ -522,11 +522,11 @@
 			"code": "ro",
 			"name": "Romanian",
 			"phrases": "2210",
-			"translated": "2039",
+			"translated": "2044",
 			"translated_progress": "91",
 			"words": "15700",
 			"words_approved": "4588",
-			"words_translated": "14398"
+			"words_translated": "14411"
 		},
 		{
 			"approved": "2210",

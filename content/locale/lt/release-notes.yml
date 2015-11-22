@@ -11,7 +11,7 @@ lt:
       crowdin: '<header>Daugybė vertimo atnaujinimų. Dėkojame savo šauniems vartotojams, kurie naudojasi <linkCrowdin>crowdin portalu</linkCrowdin>. Ir Jūs galite prisidėti!</header>'
       support: '<header>Patinka šis projektas? Prašome <linkContribute>pagelbėti Foxtrick</linkContribute>.</header>'
       bugs: '<header>Pataisytos klaidos</header>'
-      dollar_wage: 'Sutaisytas atlyginimo skaičiavimas šalyse, kurios naudoja dolerio valiutą ( <module>ExtendedPlayerDetailsWage</module> modulis).'
+      dollar_wage: 'Sutaisytas atlyginimo skaičiavimas šalyse, kurios naudoja dolerio valiutą (<module>ExtendedPlayerDetailsWage</module> modulis).'
       old_faces_moi: 'Sutvarkytas žaidėjų veidų atvaizdavimas, sutrikęs dėl <module>OldStyleFace</module> ir <module>MatchOrderInterface</module> modulių sąveikos.'
       last_lineup_live: 'Paskutinės sudėties nuorodos (<module>TeamPopupLinks</module> ir <module>SeniorTeamShortCuts</module> moduliai) neveikė vykstant rungtynėms. Problema išspręsta.'
       other: '<header>Kiti pakeitimai</header>'

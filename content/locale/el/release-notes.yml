@@ -1,6 +1,10 @@
 ---
 el:
   versions:
+    0.16.1:
+      important: '<header>Σημαντικές ανακοινώσεις</header>'
+      bugs: '<header>Διορθώσεις σφαλμάτων</header>'
+      other: '<header>Άλλες αλλαγές</header>'
     0.10.0:
       note_0: 'NEW: <module>TransferHistoryFilters</module>: Allows you to filter transfers for bought or sold players only. Only available for the team history, not players (default on)'
       note_1: 'NEW: <module>FriendlyPool</module>: Colorizes visited countries in the friendly pool (supporters only, default on)'
