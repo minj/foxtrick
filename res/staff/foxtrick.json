@@ -380,6 +380,11 @@
 			"name": "--Eagle--"
 		},
 		{
+			"duty": "supporter",
+			"id": "2117265",
+			"name": "Regador"
+		},
+		{
 			"duty": "translator",
 			"id": "2172516",
 			"name": "csajszi"
@@ -895,6 +900,11 @@
 			"name": "LA-Shamil"
 		},
 		{
+			"duty": "supporter",
+			"id": "7611458",
+			"name": "geboren1948"
+		},
+		{
 			"duty": "developer",
 			"id": "765274",
 			"name": "taised"
@@ -1008,6 +1018,11 @@
 			"duty": "translator",
 			"id": "8988135",
 			"name": "Vital_top7"
+		},
+		{
+			"duty": "supporter",
+			"id": "9063412",
+			"name": "MagicRoFoX"
 		},
 		{
 			"duty": "translator",
