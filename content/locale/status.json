@@ -294,11 +294,11 @@
 			"code": "el",
 			"name": "Greek",
 			"phrases": "2210",
-			"translated": "1291",
-			"translated_progress": "42",
+			"translated": "1514",
+			"translated_progress": "50",
 			"words": "15700",
 			"words_approved": "0",
-			"words_translated": "6749"
+			"words_translated": "7989"
 		},
 		{
 			"approved": "0",
@@ -354,11 +354,11 @@
 			"code": "it",
 			"name": "Italian",
 			"phrases": "2210",
-			"translated": "2182",
-			"translated_progress": "98",
+			"translated": "2193",
+			"translated_progress": "99",
 			"words": "15700",
 			"words_approved": "0",
-			"words_translated": "15527"
+			"words_translated": "15544"
 		},
 		{
 			"approved": "0",
@@ -594,11 +594,11 @@
 			"code": "es-AR",
 			"name": "Spanish, Argentina",
 			"phrases": "2210",
-			"translated": "2155",
+			"translated": "2170",
 			"translated_progress": "97",
 			"words": "15700",
 			"words_approved": "0",
-			"words_translated": "15303"
+			"words_translated": "15370"
 		},
 		{
 			"approved": "0",
@@ -606,11 +606,11 @@
 			"code": "es-CR",
 			"name": "Spanish, Costa Rica",
 			"phrases": "2210",
-			"translated": "2118",
+			"translated": "2124",
 			"translated_progress": "95",
 			"words": "15700",
 			"words_approved": "0",
-			"words_translated": "15006"
+			"words_translated": "15023"
 		},
 		{
 			"approved": "1974",
