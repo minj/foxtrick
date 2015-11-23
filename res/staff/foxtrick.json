@@ -246,6 +246,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "12511204",
+			"name": "Domek_69"
+		},
+		{
+			"duty": "supporter",
 			"id": "12521069",
 			"name": "EiCeKju"
 		},
@@ -373,6 +378,11 @@
 			"duty": "translator",
 			"id": "2090503",
 			"name": "--Eagle--"
+		},
+		{
+			"duty": "supporter",
+			"id": "2117265",
+			"name": "Regador"
 		},
 		{
 			"duty": "translator",
@@ -890,6 +900,11 @@
 			"name": "LA-Shamil"
 		},
 		{
+			"duty": "supporter",
+			"id": "7611458",
+			"name": "geboren1948"
+		},
+		{
 			"duty": "developer",
 			"id": "765274",
 			"name": "taised"
@@ -1005,6 +1020,11 @@
 			"name": "Vital_top7"
 		},
 		{
+			"duty": "supporter",
+			"id": "9063412",
+			"name": "MagicRoFoX"
+		},
+		{
 			"duty": "translator",
 			"id": "9100817",
 			"name": "DavidatorusF"
@@ -1093,6 +1113,11 @@
 			"duty": "supporter",
 			"id": "9818296",
 			"name": "relon"
+		},
+		{
+			"duty": "supporter",
+			"id": "9832269",
+			"name": "bigbird"
 		},
 		{
 			"duty": "translator",
