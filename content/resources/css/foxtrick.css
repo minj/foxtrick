@@ -165,7 +165,6 @@ html[data-theme="simple"] #logo {
 .foxtrickInfo:hover {background-image: url('chrome://foxtrick/content/resources/img/info-hover.png'); width: 16px; }
 .foxtrickScreenshot { background-image: url("chrome://foxtrick/content/resources/img/screenshot.png"); width: 16px; }
 .foxtrickScreenshot:hover { background-image: url("chrome://foxtrick/content/resources/img/screenshot-hover.png"); width: 16px; }
-.foxtrickBrowse { background-image: url("chrome://foxtrick/content/resources/img/browse.png"); padding:2px; }
 
 .foxtrickBrowse img {
 	width: 16px;
@@ -300,6 +299,10 @@ span.flag img {
 	width: auto;
 }
 
+#ft-link-img-preview {
+	vertical-align: middle;
+	display: inline-block;
+}
 #foxtrick_links_content a, a.ft-link-keeper, a.ft-link-injury {
 	padding: 0 2px;
 }
@@ -312,7 +315,7 @@ span.flag img {
 	display: inline-block;
 }
 
-.ft-link-icon {
+.ft-link-icon, #ft-link-img-preview {
 	height: 16px;
 }
 .ft-link-injury .ft-link-icon, .ft-link-keeper .ft-link-icon {

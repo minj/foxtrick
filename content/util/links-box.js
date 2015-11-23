@@ -184,17 +184,16 @@ Foxtrick.util.links = {
 			divED.appendChild(customLinkTable);
 
 			// image preview
-			var imgDiv = doc.createElement('div');
-			imgDiv.id = 'ft-link-img-preview';
-			imgDiv.className = 'ft_icon foxtrickBrowse inner';
-			var img = doc.createElement('img');
-			imgDiv.appendChild(img);
 
 			var selectLabel = doc.createElement('span');
 			selectLabel.textContent = ' ' + Foxtrick.L10n.getString('links.custom.selecticon');
-
-			divED.appendChild(imgDiv);
 			divED.appendChild(selectLabel);
+
+			var imgPre = {
+				id: 'ft-link-img-preview',
+				src: Foxtrick.InternalPath + 'resources/img/browse.png',
+			};
+			Foxtrick.addImage(doc, divED, imgPre, selectLabel);
 
 			// image upload
 			var inputDiv = doc.createElement('div');
@@ -352,8 +351,7 @@ Foxtrick.util.links = {
 			var img = doc.getElementById('ft-link-img-preview');
 			var imgref = Foxtrick.Prefs.getString(fullKey + '.img');
 			if (imgref && imgref !== 'null' && imgref !== 'undefined') {
-				img.style.backgroundImage = 'url("' + imgref + '")';
-				img.setAttribute('data-img', imgref);
+				img.src = imgref;
 			}
 		}
 		catch (e) {
@@ -373,7 +371,7 @@ Foxtrick.util.links = {
 			var href = doc.getElementById('ft-link-url-input').value;
 			var title = doc.getElementById('ft-link-title-input').value;
 			var inputImg = doc.getElementById('ft-link-img-preview');
-			var imgref = inputImg.getAttribute('data-img');
+			var imgref = inputImg.src;
 
 			Foxtrick.Prefs.setString(fullKey + '.href', href);
 			Foxtrick.Prefs.setString(fullKey + '.title', title);
@@ -434,8 +432,7 @@ Foxtrick.util.links = {
 			// 	return;
 			// }
 			var div = doc.getElementById('ft-link-img-preview');
-			div.setAttribute('data-img', url);
-			div.style.backgroundImage = 'url("' + url + '")';
+			div.src = url;
 		};
 		var form = Foxtrick.util.load.filePickerForDataUrl(doc, handleUrl);
 		divED.appendChild(form);
