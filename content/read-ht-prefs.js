@@ -76,7 +76,7 @@ Foxtrick.modules['ReadHtPrefs'] = {
 
 	readDateFormat: function(doc) {
 		var clockRe = /HT\.Clock\.init\((?!\))/i;
-		var formatRe = /HT\.Clock\.init\(\s*(?:\d+\s*,\s*)*'([ymd\-]+)'(?:\s*,\s*-?\d+)*\s*\)/i;
+		var formatRe = /HT\.Clock\.init\(\s*(?:\d+\s*,\s*)*'(.+?)'(?:\s*,\s*-?\d+)*\s*\)/i;
 		var scripts = doc.getElementsByTagName('script');
 		for (var i = 0; i < scripts.length; ++i) {
 			var script = scripts[i].textContent;
