@@ -11,7 +11,7 @@ cs:
       crowdin: '<header>Naši uživatelé aktualizují lokalizace pomocí projektu <linkCrowdin>Crowdin</linkCrowdin>. Můžete také pomoci!</header>'
       support: '<header>Používáte Foxtrick? Můžete ho i různými způsoby <linkContribute>podpořit</linkContribute>.</header>'
       bugs: '<header>Opravy chyb</header>'
-      dollar_wage: 'V modulu <module>MatchIncome</module> byl opraven výpočet platu pro země které používají jako měnu dolar.'
+      dollar_wage: 'V modulu <module>MatchIncome</module> byl opraven výpočet příjmu pro země které používají jako měnu dolar.'
       old_faces_moi: 'Opravena chyba která nezobrazovala obličeje hráčů při zapnutých modulech <module>OldStyleFace</module> a <module>MatchOrderInterface</module>.'
       last_lineup_live: 'Odkazy na poslední soupisku v modulech <module>TeamPopupLinks</module> a <module>SeniorTeamShortCuts</module> nefungovaly během hraných zápasů. To je nyní opraveno.'
       other: '<header>Ostatní změny</header>'
