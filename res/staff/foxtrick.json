@@ -111,6 +111,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "11035584",
+			"name": "thejohn"
+		},
+		{
+			"duty": "supporter",
 			"id": "11097458",
 			"name": "faber_civitas_nova"
 		},
@@ -698,6 +703,11 @@
 			"duty": "supporter",
 			"id": "5413446",
 			"name": "tjahe"
+		},
+		{
+			"duty": "supporter",
+			"id": "5489151",
+			"name": "legerutengenser"
 		},
 		{
 			"duty": "translator",
