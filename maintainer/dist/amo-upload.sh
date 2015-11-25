@@ -83,7 +83,8 @@ while [[ $amo_timeout -lt 600 ]]; do
 		dump "Received file checksum: ${GECKO_CHKSUM}"
 	fi
 
-	dump -n "${GECKO_CHKSUM}"
+	# plain echo: result to STDOUT
+	echo -n "${GECKO_CHKSUM}"
 
 	rm "${tmp_resp}" "${tmp_headers}"
 	exit 0
