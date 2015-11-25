@@ -30,7 +30,6 @@
 			"content/lib/oauth.js",
 			"content/lib/sha1.js",
 			"content/lib/PluralForm.js",
-			"content/lib/FileSaver.js",
 			"content/lib/psico.js",
 			"content/lib/integration.js",
 			//<!-- end ext-lib -->

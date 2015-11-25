@@ -357,9 +357,10 @@ Foxtrick.modules['DashboardCalendar'] = {
 			title: title,
 		});
 		Foxtrick.onClick(newLink, function(ev) {
-			// using view.Blob here otherwise it's undefined in Android
-			var blob = new ev.view.Blob(cal, { type: 'text/calendar;charset=utf-8' });
-			Foxtrick.saveAs(blob, 'ht-cal-' + htToday.toJSON().slice(0, 10) + '.ics');
+			var doc = this.ownerDocument;
+			var name = 'ht-cal-' + htToday.toJSON().slice(0, 10) + '.ics';
+			var mime = 'text/calendar;charset=utf-8';
+			Foxtrick.saveAs(doc, cal, name, mime);
 		});
 		var MAIN = Foxtrick.getMainIDPrefix();
 		var br = doc.querySelector('#' + MAIN + 'lnkArchive + br');

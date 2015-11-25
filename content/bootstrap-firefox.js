@@ -251,7 +251,6 @@ FoxtrickFirefox.prototype = {
 		try {
 			// lib scope integration
 			let libMap = {
-				saveAs: 'FileSaver.js',
 				YAML: 'yaml.js',
 				IDBStore: 'idbstore.js',
 			};
@@ -379,8 +378,6 @@ FoxtrickFirefox.prototype = {
 	cleanup: function() {
 		// remove ui
 		this.removeUI();
-		// unload FileSaver lib
-		this.saveAs.unload();
 		// remove listeners and css
 		this.loader.firefox.browserUnLoad();
 	},
