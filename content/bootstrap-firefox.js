@@ -251,13 +251,13 @@ FoxtrickFirefox.prototype = {
 		try {
 			// lib scope integration
 			let libMap = {
-				jsyaml: 'yaml.js',
+				YAML: 'yaml.js',
 				IDBStore: 'idbstore.js',
 			};
 			let scope = {
 				self: this.owner,
 				Foxtrick: this,
-				exports: {},
+				exports: true,
 				module: { exports: true },
 				require: {}
 			};
