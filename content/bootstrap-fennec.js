@@ -72,13 +72,13 @@ FoxtrickFennec.prototype = {
 		try {
 			// lib scope integration
 			let libMap = {
-				YAML: 'yaml.js',
+				jsyaml: 'yaml.js',
 				IDBStore: 'idbstore.js',
 			};
 			let scope = {
 				self: this.owner,
 				Foxtrick: this,
-				exports: true,
+				exports: {},
 				module: { exports: true },
 				require: {}
 			};
