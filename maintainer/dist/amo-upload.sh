@@ -15,7 +15,7 @@ dump() {
 		echo -e "\n#EOF" >&2
 	fi
 
-	exit 1
+	false
 }
 
 [[ $# -lt 3 ]] && usage
