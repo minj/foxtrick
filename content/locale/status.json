@@ -133,7 +133,7 @@
 			"words_translated": "13507"
 		},
 		{
-			"approved": "1875",
+			"approved": "1872",
 			"approved_progress": "84",
 			"code": "da",
 			"name": "Danish",
@@ -141,7 +141,7 @@
 			"translated": "2154",
 			"translated_progress": "94",
 			"words": "15700",
-			"words_approved": "13245",
+			"words_approved": "13218",
 			"words_translated": "14763"
 		},
 		{
@@ -270,11 +270,11 @@
 			"code": "ka",
 			"name": "Georgian",
 			"phrases": "2210",
-			"translated": "1272",
-			"translated_progress": "45",
+			"translated": "1295",
+			"translated_progress": "46",
 			"words": "15700",
 			"words_approved": "0",
-			"words_translated": "7164"
+			"words_translated": "7231"
 		},
 		{
 			"approved": "11",
