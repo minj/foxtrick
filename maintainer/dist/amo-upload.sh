@@ -16,7 +16,7 @@ amo_api_url="https://addons.mozilla.org/api/v3/addons/${FF_ADDON_ID}/versions/${
 tmp_resp="$(mktemp)"
 tmp_headers="$(mktemp)"
 
-echo "Uploading ${XPI_PATH} to {$amo_api_url} as ${FF_ADDON_ID} (${VERSION})" >&2
+echo "Uploading ${XPI_PATH} to ${amo_api_url} as ${FF_ADDON_ID} (${VERSION})" >&2
 echo "Headers: ${tmp_headers}; Response: ${tmp_resp}" >&2
 
 curl -fg "${amo_api_url}" -XPUT --form "upload=@${XPI_PATH}" \
