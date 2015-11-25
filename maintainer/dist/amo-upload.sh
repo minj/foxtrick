@@ -77,8 +77,7 @@ while [[ $amo_timeout -lt 600 ]]; do
 
 		file_hash=$(${hash_fn} "${XPI_PATH}" | sed -r 's/\s+.+$//g')
 		if [[ "${file_hash}" != "${hash_val}" ]]; then
-			dump "WARNING: hash miss-match: ${file_hash} != ${hash_val}"
-			continue
+			dump "WARNING: hash miss-match: ${file_hash} != ${hash_val}" || continue
 		fi
 	else
 		GECKO_CHKSUM="sha256:$(sha256sum "${XPI_PATH}" | sed -r 's/\s+.+$//g')"

@@ -76,7 +76,7 @@ fi
 
 if [ -f "${SRC_DIR}/foxtrick.xpi" ]; then
 	GECKO_CHKSUM=$(dist/amo-upload.sh "${FF_ADDON_ID}" "${VERSION}" "${SRC_DIR}/foxtrick.xpi")
-	[[ -z "${GECKO_CHKSUM}" ]] && exit 2
+	[[ -z "${GECKO_CHKSUM}" ]] && exit 3
 fi
 
 if [ "$UPLOAD_UPDATE_FILES" == "true" ]; then
