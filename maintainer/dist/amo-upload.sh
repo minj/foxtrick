@@ -1,15 +1,23 @@
 #!/bin/bash
-[[ $# -lt 3 ]] && \
-	echo -e "Usage: $0 FF_ADDON_ID VERSION XPI_PATH\nPrints GECKO_CHKSUM on success" >&2 \
-	&& exit 1
+usage() {
+	echo -e "Usage: $0 FF_ADDON_ID VERSION XPI_PATH\nPrints GECKO_CHKSUM on success" >&2
+	exit 1
+}
+
+[[ $# -lt 3 ]] && usage
 
 FF_ADDON_ID="$1"
 VERSION="$2"
 XPI_PATH="$3"
 
+[[ ! -f "${XPI_PATH}" ]] && usage
+
 amo_api_url="https://addons.mozilla.org/api/v3/addons/${FF_ADDON_ID}/versions/${VERSION}/"
 tmp_resp="$(mktemp)"
 tmp_headers="$(mktemp)"
+
+echo "Uploading ${XPI_PATH} to {$amo_api_url} as ${FF_ADDON_ID} (${VERSION})" >&2
+echo "Headers: ${tmp_headers}; Response: ${tmp_resp}" >&2
 
 curl -fg "${amo_api_url}" -XPUT --form "upload=@${XPI_PATH}" \
 	-H "Authorization: JWT $(dist/amo_jwt.py)" \
