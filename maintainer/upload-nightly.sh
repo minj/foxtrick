@@ -26,7 +26,6 @@ UPLOAD_UPDATE_FILES='true'
 MODULES=modules
 CHROME_ID='gpfggkkkmpaalfemiafhfobkfnadeegj'
 FF_ADDON_ID='{9d1f059c-cada-4111-9696-41a62d64e3ba}'
-AMO_WEB_ID='foxtrick'
 
 # update manifest settings
 URL_BASE='http://foxtrick.foundationhorizont.org/nightly'
@@ -71,20 +70,22 @@ if [ "$DO_MAKE" == "true" ]; then
 fi
 
 if [ -f "${SRC_DIR}/foxtrick.zip" ]; then
-	DISPLAY=:89 python dist/cws_upload.py ${CHROME_ID} "${SRC_DIR}/foxtrick.zip" || exit 2
+	DISPLAY=:89 python dist/cws_upload.py ${CHROME_ID} "${SRC_DIR}/foxtrick.zip" || \
+		echo "WARNING: failed to upload to CWS" >&2
 fi
+
 if [ -f "${SRC_DIR}/foxtrick.xpi" ]; then
-	DISPLAY=:89 python dist/amo_upload.py ${AMO_WEB_ID} "${SRC_DIR}/foxtrick.xpi" || exit 2
+	GECKO_CHKSUM=$(dist/amo-upload.sh "${FF_ADDON_ID}" "${VERSION}" "${SRC_DIR}/foxtrick.xpi")
+	[[ -z "${GECKO_CHKSUM}" ]] && exit 3
 fi
 
 if [ "$UPLOAD_UPDATE_FILES" == "true" ]; then
 	if [ -f "${SRC_DIR}/foxtrick.xpi" ]; then
 		# modify update-firefox.rdf for Gecko
 		cp update-tmpl-firefox.rdf update-firefox.rdf
-		GECKO_SHA1SUM=`sha1sum "${SRC_DIR}/foxtrick.xpi" | sed -r 's/\s+.+$//g'`
 		sed -i "s|{UPDATE_LINK}|${URL_BASE}/foxtrick-${VERSION}.xpi|g" update-firefox.rdf
 		sed -i "s|{FF_ADDON_ID}|${FF_ADDON_ID}|g" update-firefox.rdf
-		sed -i "s|{UPDATE_HASH}|sha1:${GECKO_SHA1SUM}|g" update-firefox.rdf
+		sed -i "s|{UPDATE_HASH}|${GECKO_CHKSUM}|g" update-firefox.rdf
 		sed -i "s|{VERSION}|${VERSION}|g" update-firefox.rdf
 	fi
 
