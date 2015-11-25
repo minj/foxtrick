@@ -159,20 +159,6 @@ function shutdown(aData, aReason) {
 	// Flush string bundle cache
 	Services.strings.flushBundles();
 
-	// flush jar cache
-	// this should prevent cache issues
-	let addOnDir = aData.installPath.clone();
-	addOnDir.append('chrome');
-	let jarFile = addOnDir.clone();
-	jarFile.append('foxtrick.jar');
-	try {
-		Cu.import('resource://gre/modules/XPIProvider.jsm').flushJarCache(jarFile);
-	}
-	catch (e) {
-		// FF30
-		Cu.import('resource://gre/modules/addons/XPIProvider.jsm').flushJarCache(jarFile);
-	}
-
 	// destroy scope
 	_gLoader = undefined;
 }

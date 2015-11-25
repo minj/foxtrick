@@ -10,23 +10,6 @@ if (!Foxtrick)
 
 // background
 if (Foxtrick.chromeContext() == 'background') {
-	if (Foxtrick.arch === 'Gecko') {
-		(function() {
-			var hasIDB = false;
-			try {
-				// bootstrap
-				hasIDB = typeof indexedDB !== 'undefined';
-			}
-			catch (e) {}
-			finally {
-				if (!hasIDB) {
-					if (typeof Cu.importGlobalProperties === 'function')
-						// FF27+ preferences.html
-						Cu.importGlobalProperties(['indexedDB']);
-				}
-			}
-		})();
-	}
 	// queues that track access to localStore until it becomes available
 	// should mainly apply to init stage
 	Foxtrick._localStore = {
