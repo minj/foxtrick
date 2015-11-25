@@ -3,7 +3,7 @@
 // for those contexts where boot-strap does not take affect
 (function(global) {
 	var libs = [
-		'jsyaml',
+		'YAML',
 		'IDBStore',
 	];
 	libs.forEach(function(lib) {
