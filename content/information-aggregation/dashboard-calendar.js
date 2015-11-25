@@ -160,7 +160,7 @@ Foxtrick.modules['DashboardCalendar'] = {
 			var dayDiff = dayNumber - userDayNumber;
 			if (Math.abs(dayDiff) > 19) {
 				// different month
-				userDate.setMonth(userDate.getMonth() + dayDiff > 0 ? 1 : -1);
+				userDate.setMonth(userDate.getMonth() + (dayDiff > 0 ? -1 : 1));
 			}
 			userDate.setDate(dayNumber);
 
