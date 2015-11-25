@@ -14,6 +14,8 @@ dump() {
 		cat "$@" >&2
 		echo -e "\n#EOF" >&2
 	fi
+
+	exit 1
 }
 
 [[ $# -lt 3 ]] && usage
@@ -34,7 +36,7 @@ dump "Headers: ${tmp_headers}; Response: ${tmp_resp}"
 curl -fg "${amo_api_url}" -XPUT --form "upload=@${XPI_PATH}" \
 	-H "Authorization: JWT $(dist/amo_jwt.py)" \
 	-o "${tmp_resp}" -D "${tmp_headers}" || \
-		dump "ERROR: failed to upload to ${amo_api_url}:" "${tmp_headers}" "${tmp_resp}" && exit 2
+		dump "ERROR: failed to upload to ${amo_api_url}:" "${tmp_headers}" "${tmp_resp}" || exit 2
 
 amo_timeout=60
 while [[ $amo_timeout -lt 600 ]]; do
@@ -45,7 +47,7 @@ while [[ $amo_timeout -lt 600 ]]; do
 
 	curl -fg "${amo_api_url}" -H "Authorization: JWT $(dist/amo_jwt.py)" \
 		-o "${tmp_resp}" -D "${tmp_headers}" || \
-		dump "WARNING: failed to access ${amo_api_url}:" "${tmp_headers}" "${tmp_resp}" && continue
+		dump "WARNING: failed to access ${amo_api_url}:" "${tmp_headers}" "${tmp_resp}" || continue
 
 	grep -q '"signed": true' "${tmp_resp}" || continue
 
@@ -54,13 +56,13 @@ while [[ $amo_timeout -lt 600 ]]; do
 
 	curl -L -f "${amo_url}" -H "Authorization: JWT $(dist/amo_jwt.py)" \
 		-o "${XPI_PATH}" -D "${tmp_headers}" || \
-		dump "WARNING: failed to download from ${amo_url}:" "${tmp_headers}" && continue
+		dump "WARNING: failed to download from ${amo_url}:" "${tmp_headers}" || continue
 
 	GECKO_CHKSUM=$(grep -oPm1 '(?<=^X-Target-Digest: )\w+:\w+' "${tmp_headers}")
 	amo_302=$(grep -P 'HTTP/[\d.]+ 302' "${tmp_headers}")
 	if [[ -n "${amo_302}" ]]; then
 		if [[ -z "${GECKO_CHKSUM}" ]]; then
-			dump "ERROR: no checksum found in redirect:" "${tmp_headers}" && exit 2
+			dump "ERROR: no checksum found in redirect:" "${tmp_headers}" || exit 2
 		fi
 
 		dump "HTTP 302 file checksum: ${GECKO_CHKSUM}"
@@ -70,7 +72,7 @@ while [[ $amo_timeout -lt 600 ]]; do
 		hash_fn="/usr/bin/${hash_type}sum"
 
 		if [[ ! -x "${hash_fn}" ]]; then
-			dump "ERROR: unknown hash algorithm: ${hash_type}" "${tmp_headers}" && exit 2
+			dump "ERROR: unknown hash algorithm: ${hash_type}" "${tmp_headers}" || exit 2
 		fi
 
 		file_hash=$(${hash_fn} "${XPI_PATH}" | sed -r 's/\s+.+$//g')
