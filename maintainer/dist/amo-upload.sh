@@ -47,6 +47,8 @@ while [[ $amo_timeout -lt 600 ]]; do
 	[[ -z "$(grep '"signed": true' "${tmp_resp}")" ]] && continue
 
 	amo_url=$(grep -oP '(?<="download_url": ").+?(?=")' "${tmp_resp}");
+	echo "Downloading from ${amo_url}" >&2
+
 	curl -L -f "${amo_url}" -H "Authorization: JWT $(dist/amo_jwt.py)" \
 		-o "${XPI_PATH}" -D "${tmp_headers}" || (\
 				echo "WARNING: failed to download from ${amo_url}:" >&2; \
@@ -64,6 +66,8 @@ while [[ $amo_timeout -lt 600 ]]; do
 			echo -e "\n#EOF" >&2
 			exit 2
 		fi
+
+		echo "HTTP 302 file checksum: ${GECKO_CHKSUM}" >&2
 
 		hash_val=${GECKO_CHKSUM#*:}
 		hash_type=${GECKO_CHKSUM%:*}
@@ -83,6 +87,7 @@ while [[ $amo_timeout -lt 600 ]]; do
 		fi
 	else
 		GECKO_CHKSUM="sha256:$(sha256sum "${XPI_PATH}" | sed -r 's/\s+.+$//g')"
+		echo "Received file checksum: ${GECKO_CHKSUM}" >&2
 	fi
 
 	found=1
