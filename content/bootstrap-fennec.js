@@ -72,7 +72,6 @@ FoxtrickFennec.prototype = {
 		try {
 			// lib scope integration
 			let libMap = {
-				saveAs: 'FileSaver.js',
 				YAML: 'yaml.js',
 				IDBStore: 'idbstore.js',
 			};
@@ -120,7 +119,6 @@ FoxtrickFennec.prototype = {
 	},
 
 	cleanup: function() {
-		this.saveAs.unload();
 		//stop background
 		this.loader.background.browserUnload();
 		// remove content scripts and listeners

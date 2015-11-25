@@ -24,7 +24,6 @@ Foxtrick.loader.background.contentScriptManager = {
 		'lib/oauth.js',
 		'lib/sha1.js',
 		'lib/jester.js',
-		'lib/FileSaver.js',
 		'lib/psico.js',
 		'lib/integration.js',
 		//<!-- end ext-lib -->
@@ -285,6 +284,5 @@ Foxtrick.loader.background.contentScriptManager = {
 		}
 		// tell running content scripts to unload
 		Foxtrick.SB.ext.broadcastMessage('unload');
-		Foxtrick.saveAs.unload();
 	},
 };

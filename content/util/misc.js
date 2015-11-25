@@ -469,6 +469,26 @@ Foxtrick.decodeBase64 = function(str) {
 };
 
 /**
+ * Save an array of arrays of bytes/chars as a file.
+ *
+ * Default name: foxtrick.txt
+ * Default mime: text/plain;charset=utf-8'
+ * @param {document} doc
+ * @param {array}    arr  array of arrays of bytes/chars
+ * @param {string}   name file name
+ * @param {string}   mime mime type + charset
+ */
+Foxtrick.saveAs = function(doc, arr, name, mime) {
+	var win = doc.defaultView;
+	var blob = new win.Blob(arr, { type: mime || 'text/plain;charset=utf-8' });
+	var url = win.URL.createObjectURL(blob);
+	var link = doc.createElement('a');
+	link.href = url;
+	link.download = name || 'foxtrick.txt';
+	link.dispatchEvent(new MouseEvent('click'));
+};
+
+/**
  * requestAnimationFrame wrapper
  * Finds rAF and attaches cb callback to it
  * Ensures $this in cb refers to the window
