@@ -71,28 +71,22 @@ FoxtrickFennec.prototype = {
 		// loading Foxtrick into window.Foxtrick
 		try {
 			// lib scope integration
-			let win = this.owner;
 			let libMap = {
-				YAML: {
-					file: 'yaml.js',
-					scope: {
-						window: {},
-					},
-				},
-				IDBStore: {
-					file: 'idbstore.js',
-					scope: {
-						self: win,
-						module: { exports: {} },
-					},
-				},
+				jsyaml: 'yaml.js',
+				IDBStore: 'idbstore.js',
+			};
+			let scope = {
+				self: this.owner,
+				Foxtrick: this,
+				exports: {},
+				module: { exports: true },
+				require: {}
 			};
 			for (let i in libMap) {
 				let lib = libMap[i];
-				let url = FOXTRICK_PATH + 'lib/' + lib.file + '?bg=' + FOXTRICK_RUNTIME;
-				Services.scriptloader.loadSubScript(url, lib.scope, 'UTF-8');
-				this.owner.Foxtrick[i] = lib.scope.window ?
-					lib.scope.window[i] : lib.scope.module.exports;
+				let url = FOXTRICK_PATH + 'lib/' + lib + '?bg=' + FOXTRICK_RUNTIME;
+				Services.scriptloader.loadSubScript(url, scope, 'UTF-8');
+				this.owner.Foxtrick[i] = scope.module.exports;
 			}
 		}
 		catch (e) {
