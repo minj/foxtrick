@@ -49,6 +49,11 @@ while [[ $amo_timeout -lt 600 ]]; do
 		-o "${tmp_resp}" -D "${tmp_headers}" || \
 		dump "WARNING: failed to access ${amo_api_url}:" "${tmp_headers}" "${tmp_resp}" || continue
 
+	grep -q '"processed": true' "${tmp_resp}" || continue
+
+	grep -q '"valid": true' "${tmp_resp}" || \
+		dump "ERROR: add-on validation failed:" "${tmp_headers}" "${tmp_resp}" || exit 2
+
 	grep -q '"signed": true' "${tmp_resp}" || continue
 
 	amo_url=$(grep -oP '(?<="download_url": ").+?(?=")' "${tmp_resp}")
