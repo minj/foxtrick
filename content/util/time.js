@@ -437,10 +437,8 @@ Foxtrick.util.time.getSeasonOffset = function() {
  * @return {Date}
  */
 Foxtrick.util.time.addDaysToDate = function(date, days) {
-	var timestamp = date.getTime();
-	timestamp += days * this.MSECS_IN_DAY;
-	var ret = new Date();
-	ret.setTime(timestamp);
+	var ret = new Date(date);
+	ret.setDate(ret.getDate() + days);
 	return ret;
 };
 
