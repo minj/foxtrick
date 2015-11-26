@@ -38,6 +38,12 @@ curl -fg "${amo_api_url}" -XPUT --form "upload=@${XPI_PATH}" \
 	-o "${tmp_resp}" -D "${tmp_headers}" || \
 		dump "ERROR: failed to upload to ${amo_api_url}:" "${tmp_headers}" "${tmp_resp}" || exit 2
 
+	upload_pk=$(grep -oP '(?<="pk": ").+?(?=")' "${tmp_resp}")
+	if [[ -z "${upload_pk}" ]]; then
+		dump "ERROR: no pk found in upload response:" "${tmp_headers}" "${tmp_resp}" || exit 2
+	fi
+	amo_api_url="${amo_api_url}uploads/${upload_pk}/"
+
 amo_timeout=60
 while [[ $amo_timeout -lt 600 ]]; do
 	dump "Neeed to wait for AMO signing. Trying in ${amo_timeout} seconds."
