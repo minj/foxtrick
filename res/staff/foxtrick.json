@@ -740,6 +740,11 @@
 			"name": "Bephep"
 		},
 		{
+			"duty": "translator",
+			"id": "578992",
+			"name": "dm001"
+		},
+		{
 			"duty": "supporter",
 			"id": "589379",
 			"name": "BaDWiCk"
@@ -1138,6 +1143,11 @@
 			"duty": "translator",
 			"id": "9845514",
 			"name": "LA-SI-CH"
+		},
+		{
+			"duty": "translator",
+			"id": "9855688",
+			"name": "Nika_Kvrivishvili"
 		},
 		{
 			"duty": "translator",
