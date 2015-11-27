@@ -133,15 +133,15 @@
 			"words_translated": "13507"
 		},
 		{
-			"approved": "1872",
-			"approved_progress": "84",
+			"approved": "1871",
+			"approved_progress": "83",
 			"code": "da",
 			"name": "Danish",
 			"phrases": "2210",
 			"translated": "2154",
 			"translated_progress": "94",
 			"words": "15700",
-			"words_approved": "13218",
+			"words_approved": "13167",
 			"words_translated": "14763"
 		},
 		{
@@ -606,11 +606,11 @@
 			"code": "es-CR",
 			"name": "Spanish, Costa Rica",
 			"phrases": "2210",
-			"translated": "2124",
+			"translated": "2132",
 			"translated_progress": "95",
 			"words": "15700",
 			"words_approved": "0",
-			"words_translated": "15023"
+			"words_translated": "15071"
 		},
 		{
 			"approved": "1974",
