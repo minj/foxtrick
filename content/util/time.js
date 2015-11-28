@@ -431,12 +431,13 @@ Foxtrick.util.time.getSeasonOffset = function() {
 };
 
 /**
- * Get a new Date with a number of days added
+ * Get a new Date with an integer of days added
  * @param  {Date}   date
- * @param  {number} days
+ * @param  {number} days {Integer}
  * @return {Date}
  */
 Foxtrick.util.time.addDaysToDate = function(date, days) {
+	days = parseInt(days, 10);
 	var ret = new Date(date);
 	ret.setDate(ret.getDate() + days);
 	return ret;
