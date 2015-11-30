@@ -1451,20 +1451,23 @@ Foxtrick.modules.MatchSimulator = {
 	staminaDiscount: function(doc, orgRatings, currentRatings) {
 		var module = this;
 
-		var getStaminaFactor = function(stamina, staminaPrediction) {
+		var getStaminaFactor = function(stamina, prediction) {
 			// formula by lizardopoli/Senzascrupoli/Pappagallopoli et al
 			// [post=15917246.1]
 			// latest data:
 			// https://docs.google.com/file/d/0Bzy0IjRlxhtxaGp0VXlmNjljaTA/edit?usp=sharing
 
-			if (staminaPrediction !== null) {
-				if (parseInt(staminaPrediction, 10) == stamina)
-					stamina = staminaPrediction;
+			if (prediction !== null) {
+
+				if (parseInt(prediction, 10) == stamina) {
+					stamina = prediction;
+				}
 				else {
 					// our prediction data is inaccurate
 					// assume high subskill if stamina is lower
 					// assume low subskill otherwise
-					if (stamina < staminaPrediction)
+					Foxtrick.log('WARNING: inaccurate stamina prediction', prediction, stamina);
+					if (stamina < prediction)
 						stamina += 0.99;
 				}
 			}
@@ -1491,9 +1494,14 @@ Foxtrick.modules.MatchSimulator = {
 		skillOpts.stamina = false; // reset stamina effect
 
 		var players = {};
+		var noPrediction = true;
+		var playersMissing = false;
 		Foxtrick.forEach(function(div) {
-			if (!div.dataset.json)
+			if (!div.dataset.json) {
+				Foxtrick.log('No player JSON in staminaDiscount: #', div.id);
+				playersMissing = true;
 				return;
+			}
 
 			var player = JSON.parse(div.dataset.json);
 			player.effectiveSkills =
@@ -1501,12 +1509,19 @@ Foxtrick.modules.MatchSimulator = {
 
 			var staminaPrediction = null;
 			if (staminaData[player.id]) {
-				staminaPrediction = parseFloat(staminaData[player.id][1]);
+				staminaPrediction = parseFloat(staminaData[player.id][1]) || null;
+				noPrediction = false;
 			}
 			player.energy = getStaminaFactor(player.stamina, staminaPrediction);
 
 			players[player.id] = player;
 		}, doc.querySelectorAll('#players .player'));
+
+		if (playersMissing)
+			Foxtrick.error('Player JSON missing in staminaDiscount');
+
+		if (noPrediction)
+			Foxtrick.log('WARNING: no staminaPrediction');
 
 		try {
 			var overlayRatingsNums = doc.getElementsByClassName('overlayRatingsNum');
@@ -1532,7 +1547,7 @@ Foxtrick.modules.MatchSimulator = {
 				}
 				var wing = sector - center; // left:-1, center:0, right:1
 
-				var error = false;
+				var missing = false;
 				Foxtrick.forEach(function(positionDiv, pos) {
 					var playerDiv = positionDiv.getElementsByClassName('player')[0];
 					if (!playerDiv)
@@ -1541,8 +1556,8 @@ Foxtrick.modules.MatchSimulator = {
 					var id = playerDiv.id.match(/\d+/)[0];
 					var player = players[id];
 					if (!player) {
-						error = true;
-						Foxtrick.error('No player JSON in staminaDiscount');
+						missing = true;
+						Foxtrick.log('Missing:', id, 'sector', sector, 'pos', pos);
 						return;
 					}
 
@@ -1593,17 +1608,24 @@ Foxtrick.modules.MatchSimulator = {
 				}, positions);
 
 				var oldRating = orgRatings[sector];
-				var newRating = error ? oldRating : oldRating * sumVEnergy / sumV;
-				var newRatingNorm = module.normalizeRatings(newRating);
-				var discount = doc.createElement('div');
-				discount.className = 'overlayRatingsDiscounted';
-				discount.textContent = Foxtrick.L10n.getFullLevelByValue(newRatingNorm);
+				var newRating = oldRating;
 
-				Foxtrick.insertAfter(discount, overlayRatings[sector * 2 + 1]);
-				Foxtrick.addClass(overlayRatings[sector * 2 + 1], 'hidden');
+				if (missing)
+					Foxtrick.log('WARNING: skipping staminaDiscount');
+				else
+					newRating = oldRating * sumVEnergy / sumV;
 
-				ratingsNum.textContent = '[' + newRating.toFixed(2) + ']';
 				currentRatings[sector] = newRating;
+				ratingsNum.textContent = '[' + newRating.toFixed(2) + ']';
+
+				var newOverlay = doc.createElement('div');
+				newOverlay.className = 'overlayRatingsDiscounted';
+				var newRatingNorm = module.normalizeRatings(newRating);
+				newOverlay.textContent = Foxtrick.L10n.getFullLevelByValue(newRatingNorm);
+
+				var oldOverlay = overlayRatings[sector * 2 + 1];
+				Foxtrick.addClass(oldOverlay, 'hidden');
+				Foxtrick.insertAfter(newOverlay, oldOverlay);
 			}, overlayRatingsNums);
 		}
 		catch (e) {
