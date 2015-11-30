@@ -1519,7 +1519,7 @@ Foxtrick.modules.MatchSimulator = {
 
 				var sectorSkills = [], center = 0;
 				if (sector < 3) {
-					sectorSkills = ['keeper', 'de-fending'];
+					sectorSkills = ['keeper', 'defending'];
 					center = 1;
 				}
 				else if (sector === 3) {
