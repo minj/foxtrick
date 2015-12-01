@@ -45,7 +45,7 @@ curl -fg "${amo_api_url}" -XPUT --form "upload=@${XPI_PATH}" \
 	amo_api_url="${amo_api_url}uploads/${upload_pk}/"
 
 amo_timeout=60
-while [[ $amo_timeout -lt 600 ]]; do
+while [[ $amo_timeout -lt 1000 ]]; do
 	dump "Neeed to wait for AMO signing. Trying in ${amo_timeout} seconds."
 
 	sleep $amo_timeout
