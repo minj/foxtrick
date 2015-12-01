@@ -1451,11 +1451,18 @@ Foxtrick.modules.MatchSimulator = {
 	staminaDiscount: function(doc, orgRatings, currentRatings) {
 		var module = this;
 
-		var getStaminaFactor = function(stamina, prediction) {
+		var noPrediction = true;
+		var getStaminaFactor = function(stamina, predData) {
 			// formula by lizardopoli/Senzascrupoli/Pappagallopoli et al
 			// [post=15917246.1]
 			// latest data:
 			// https://docs.google.com/file/d/0Bzy0IjRlxhtxaGp0VXlmNjljaTA/edit?usp=sharing
+
+			var prediction = null;
+			if (predData) {
+				prediction = parseFloat(predData[1]) || null;
+				noPrediction = false;
+			}
 
 			if (prediction !== null) {
 
@@ -1464,9 +1471,10 @@ Foxtrick.modules.MatchSimulator = {
 				}
 				else {
 					// our prediction data is inaccurate
+					var d = new Date(predData[0]);
 					// assume high subskill if stamina is lower
 					// assume low subskill otherwise
-					Foxtrick.log('WARNING: inaccurate stamina prediction', prediction, stamina);
+					Foxtrick.log('WARNING: inaccurate stamina prediction', prediction, stamina, d);
 					if (stamina < prediction)
 						stamina += 0.99;
 				}
@@ -1494,7 +1502,6 @@ Foxtrick.modules.MatchSimulator = {
 		skillOpts.stamina = false; // reset stamina effect
 
 		var players = {};
-		var noPrediction = true;
 		var playersMissing = false;
 		Foxtrick.forEach(function(div) {
 			if (!div.dataset.json) {
@@ -1507,21 +1514,16 @@ Foxtrick.modules.MatchSimulator = {
 			player.effectiveSkills =
 				Foxtrick.Predict.effectiveSkills(player.skills, player, skillOpts);
 
-			var staminaPrediction = null;
-			if (staminaData[player.id]) {
-				staminaPrediction = parseFloat(staminaData[player.id][1]) || null;
-				noPrediction = false;
-			}
-			player.energy = getStaminaFactor(player.stamina, staminaPrediction);
+			player.energy = getStaminaFactor(player.stamina, staminaData[player.id]);
 
 			players[player.id] = player;
 		}, doc.querySelectorAll('#players .player'));
 
-		if (playersMissing)
-			Foxtrick.error('Player JSON missing in staminaDiscount');
-
 		if (noPrediction)
 			Foxtrick.log('WARNING: no staminaPrediction');
+
+		if (playersMissing)
+			Foxtrick.error('Player JSON missing in staminaDiscount');
 
 		try {
 			var overlayRatingsNums = doc.getElementsByClassName('overlayRatingsNum');
