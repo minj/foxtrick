@@ -858,6 +858,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 
 				player.lastMatch = matchLink.cloneNode(true);
 				player.lastMatch.target = '_blank';
+				// README: using user date since no time is available
 				player.lastMatchDate = Foxtrick.util.time.getDateFromText(matchLink.textContent);
 
 				var matchId = Foxtrick.getParameterFromUrl(matchLink.href, 'matchId');
