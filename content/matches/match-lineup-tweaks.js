@@ -831,7 +831,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		}
 
 		var matchDate = Foxtrick.Pages.Match.getDate(doc);
-		matchDate = Foxtrick.util.time.toHT(matchDate);
+		matchDate = Foxtrick.util.time.toHT(doc, matchDate);
 		var players = this.getPlayersWithStamina(doc, team);
 
 		Foxtrick.map(function(player) {
