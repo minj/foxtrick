@@ -5,6 +5,10 @@ sv-SE:
       note_0: 'This is the development build. Use at your own discretion. Please view <linkSVN>commit history</linkSVN> at Google Code for details of the changes.'
     beta:
       note_0: 'Detta är BETA -versionen av nästa utgåva. Hjälp gärna till att översätta denna version via vårt superlätta översättningsverktyg på <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.16.1.1:
+      important: '<header>Viktiga meddelanden</header>'
+      bugs: '<header>Buggfixar</header>'
+      and_more: Flera andra mindre ändringar och korrigeringar.
     0.16.1:
       important: '<header>Viktiga meddelanden</header>'
       new_contributions: 'Modulen <module>PlayerPositionsEvaluations</module> är nu anpassad för de nya ändringarna HT gjort i matchmotorn inför säsong #60. Det behövs dock ytterligare parametrar för att förstå dessa siffror bättre. Även om rimliga standardvärden har angetts här, så är dessa vare sig officiella eller baserade på några statistiska undersökningar. All feedback när det gäller dessa värden tas emot med öppna armar. Samtliga inställningar för denna modul finns längst ner på den detaljerade spelarsidan.'

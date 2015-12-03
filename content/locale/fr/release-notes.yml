@@ -5,6 +5,10 @@ fr:
       note_0: "Il s'agit d'une version de développement. Utilisez la à votre propre discrétion. S'il vous plaît consultez <linkSVN>commit history</linkSVN> sur Google Code pour plus de détails sur les modifications."
     beta:
       note_0: "Il s'agit de la version bêta de la prochaine version. Veuillez nous aider à traduire cette version via un site ultra simple à utiliser <linkCrowdin>crowdin.net</linkCrowdin>. "
+    0.16.1.1:
+      important: '<header>Annonces importantes</header>'
+      bugs: '<header>Correctifs</header>'
+      and_more: Divers autres petits changements et corrections.
     0.16.1:
       important: '<header>Annonces importantes</header>'
       new_contributions: '<module>PlayerPositionsEvaluations</module> utilise maintenant les données du moteur de jeu officiellement publiées par HT pour la saison 60. Cependant, des paramètres supplémentaires sont nécessaires pour donner un sens à ces chiffres. Bien que les valeurs par défaut sont à disposition, elles ne sont ni officielles ni fondées sur des études statistiques. Tout commentaire pour les améliorer est bienvenue. Tous les paramètres sont disponibles sur la page de joueur.'

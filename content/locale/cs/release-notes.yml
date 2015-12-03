@@ -5,6 +5,9 @@ cs:
       note_0: 'Toto je vývojový build. Používejte po pečlivém zvážení. Podívejte se na <linkSVN>historii commitů</linkSVN> na Google Code pro zobrazení detailů změn.'
     beta:
       note_0: 'Toto je beta verze dalšího vydání. Prosím pomožte s překladem této verze na naší superjednoduché překladatelské stránce <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.16.1.1:
+      important: '<header>Důležitá oznámení</header>'
+      bugs: '<header>Opravy chyb</header>'
     0.16.1:
       important: '<header>Důležitá oznámení</header>'
       new_contributions: 'Modul <module>PlayerPositionsEvaluations</module> od teď používá oficiální data pro nový zápasový engine. Dodatečné parametry ale potřebují dát smysl těmto datům. Smysluplné hodnoty již jsou k dispozici, nejsou však zatím potvrzeny oficiálně ani nejsou zkontrolovány statistickými studiemi. Jakékoliv připomínky jsou vítány. Možnosti nastavení jsou dostupné na všech stránkách hráče.'

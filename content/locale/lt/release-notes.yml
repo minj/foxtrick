@@ -5,6 +5,11 @@ lt:
       note_0: 'Įdiegėte nestabilią versiją. Naudokite savo rizika. Peržiūrėkite „Google Code“ <linkSVN>pakeitimų sąrašą</linkSVN>.'
     beta:
       note_0: 'Įdiegėte išankstinę (beta) versiją. Prašome prisidėti prie jos vertimo į lietuvių kalbą ypatingai šauniame vertėjų savanorių portale „<linkCrowdin>crowdin.net</linkCrowdin>“. '
+    0.16.1.1:
+      important: '<header>Svarbūs pranešimai</header>'
+      bugs: '<header>Pataisytos klaidos</header>'
+      calendar_fix: 'Sutvarkyta problema, kur <module>DashboardCalendar</module> modulis kartais visiškai sutrikdavo dėl problemų nustatant datą.'
+      and_more: Daugybė kitų smulkių pataisymų ir pakitimų.
     0.16.1:
       important: '<header>Svarbūs pranešimai</header>'
       new_contributions: '<module>PlayerPositionsEvaluations</module> nuo šiol naudos oficialiai paskelbtus 60-tojo visuotinio Hattrick sezono rungtynių variklio duomenis. Visgi reiktų pastebėti, kad bet kokiems skaičiavimams būtini papildomi parametrai, kurie nėra tiksliai žinomi. Nors numatytos jų vertės yra pakankamai geros, jos nėra oficialios ar patvirtintos statistiškai. Laukiame Jūsų pasiūlymų kaip jas patobulinti. Visus nustatymus rasite bet kurio žaidėjo puslapyje.'

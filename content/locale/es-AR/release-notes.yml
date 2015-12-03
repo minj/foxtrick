@@ -5,6 +5,10 @@ es-AR:
       note_0: 'Se trata de la version de desarrollo. Utilizar bajo su propio riesgo. Por favor ver <linkSVN>historial de commit</linkSVN> en Google Code para detalles de los cambios.'
     beta:
       note_0: 'Esta es la versión beta de la próxima versión. Por favor ayude a traducir esta versión en nuestra super-fácil página <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.16.1.1:
+      important: '<header>Anuncios importantes</header>'
+      bugs: '<header>Corrección de errores</header>'
+      and_more: Otros pequeños cambios y correcciones.
     0.16.1:
       important: '<header>Anuncios importantes</header>'
       new_contributions: '<module>PlayerPositionsEvaluations</module> ahora utiliza los datos del motor de partidos oficialmente publicadas en la temporada global #60 de HT. Sin embargo, parámetros adicionales se necesitan para dar sentido a esos números. Mientras que se proporcionan valores predeterminados razonables, no son ni oficiales ni en base a estudios estadísticos. Cualquier comentario para mejorarlo es bienvenido. Todos los ajustes están disponibles en cualquier página de jugador.'

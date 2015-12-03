@@ -5,6 +5,10 @@ ca:
       note_0: 'Aquesta és la versió de desenvolupament. Utilitza-la a la teva pròpia discreció. Si us plau mira <linkSVN>commit history</linkSVN> a Google Code per als detalls dels canvis.'
     beta:
       note_0: 'Aquesta és la versió beta de la propera versió. Si us plau, ajuda a traduir aquesta versió a la nostra súper pàgina web de traducció i molt fàcil <linkCrowdin>crowdin.net</linkCrowdin>.'
+    0.16.1.1:
+      important: '<header>Anuncis importants</header>'
+      bugs: "<header>Correccions d'errors</header>"
+      and_more: Diversos altres petits canvis i correccions.
     0.16.1:
       important: '<header>Anuncis importants</header>'
       new_contributions: '<module>PlayerPositionsEvaluations</module> ara utilitza les dades oficialment publicades del motor del joc per a la temporada global 60. No obstant això, paràmetres addicionals són necessaris per donar sentit a aquestes dades. Es proporcionen valors per defecte raonables que no són oficials ni estan basats en estudis estadístics. Qualsevol opinió per millorar-los és benvinguda. Tots els paràmetres estan disponibles en qualsevol pàgina de jugador.'
