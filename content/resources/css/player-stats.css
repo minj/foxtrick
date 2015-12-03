@@ -53,9 +53,6 @@
 #ft-xp-max-pts {
 	border-top: 1px solid #000;
 }
-#ft-xp-min,
-#ft-xp-max {
-
 .ft-desc {
 	min-width: 200px;
 }
@@ -76,5 +73,4 @@
 
 .ft-slider-option {
 	padding-top: 20px;
-}
 }
