@@ -12,7 +12,7 @@ en:
       safari_cert: 'We are looking for someone in the Hattrick community who develops apps for iOS or OSX to help restore Foxtrick support for Safari users. See our <linkSafariCertBug>issue tracker</linkSafariCertBug> for more information.'
       beta: 'Please consider using <linkFTBeta>Foxtrick beta</linkFTBeta> to get new features early, to influence their development and to help finding and fixing any problems that may arise.'
       bugs: '<header>Bug fixes</header>'
-      defence_stamina: 'Fixed the broken stamina effect calculation for defence sectors in <module>MatchSimulator</module>: only keeper skills were considered by accident in the previous release.'
+      defence_stamina: 'Fixed the broken stamina effect calculation for defence sectors in <module>MatchSimulator</module>: only keeper stamina was considered by accident in the previous release.'
       time_rewrite: 'Foxtrick date and time detection had to be rewritten due to upcoming Hattrick changes. Unfortunately a few mistakes were introduced in the previous release causing problems for some countries with modules using CHPP. The issue should now be resolved.'
       calendar_fix: '<module>DashboardCalendar</module> was completely broken in some cases due to a problem with date detection.'
       and_more: 'Various other small changes and fixes.'
