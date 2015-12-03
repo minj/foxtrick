@@ -37,18 +37,19 @@ Foxtrick.Pages.YouthPlayer.getJoinedDate = function(doc) {
  * @return {Date}         {?Date}
  */
 Foxtrick.Pages.YouthPlayer.getPromotionDate = function(doc) {
-	var days = null;
 	try {
 		var joinedDate = this.getJoinedDate(doc);
 		var age = Foxtrick.Pages.Player.getAge(doc);
 		if (joinedDate && age && !isNaN(age.years) && !isNaN(age.days)) {
 			var DAYS_IN_SEASON = Foxtrick.util.time.DAYS_IN_SEASON;
-			var daysToSeventeen = (17 - 1 - age.years) * DAYS_IN_SEASON +
-				DAYS_IN_SEASON - age.days;
+			var daysInSeventeen = 17 * DAYS_IN_SEASON;
+
+			var days = age.years * DAYS_IN_SEASON + age.days;
+			var daysToSeventeen = daysInSeventeen - days;
 
 			joinedDate = Foxtrick.util.time.toHT(doc, joinedDate);
+			Foxtrick.util.time.setMidnight(joinedDate);
 			var seasonDate = Foxtrick.util.time.addDaysToDate(joinedDate, DAYS_IN_SEASON + 1);
-			Foxtrick.util.time.setMidnight(seasonDate);
 
 			var today = Foxtrick.util.time.getHTDate(doc);
 			Foxtrick.util.time.setMidnight(today);
@@ -60,8 +61,8 @@ Foxtrick.Pages.YouthPlayer.getPromotionDate = function(doc) {
 	}
 	catch (e) {
 		Foxtrick.log(e);
+		return null;
 	}
-	return days;
 };
 
 /**
