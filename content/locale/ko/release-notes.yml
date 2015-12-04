@@ -7,7 +7,12 @@ ko:
       note_0: '이것은 다음 배포의 beta 버전 입니다. 이 버전에서 저희 군중-번역 페이지를 통해 번역해주세요. <linkCrowdin>crowdin.net</linkCrowdin>'
     0.16.1.1:
       important: '<header>중요한 공지 사항</header>'
+      safari_cert: 'Safari 사용자들의 Foxtrick 지원을 복구하는데 도와주실 iOS 또는 OSX App 개발자 분들을 Hattrick 커뮤니티에서 찾고 있습니다. 자세한 정보는 저희 <linkSafariCertBug>issue tracker</linkSafariCertBug>를 참조하세요.'
+      beta: '새로운 기능을 미리 접하거나 개발에 영향을 주거나 새롭게 발생하는 문제점들을 찾고 수정하는데 도움을 주실 생각이 있으시면 <linkFTBeta>Foxtrick beta</linkFTBeta>를 사용해보는 것을 고려해보세요.'
       bugs: '<header>버그 수정</header>'
+      defence_stamina: '<module>MatchSimulator</module>에서 수비 구역의 체력 효과 계산이 고장난 것을 해결했습니다. 이전 릴리즈에서는 때때로 골키퍼의 체력만으로 계산되었습니다.'
+      time_rewrite: 다음 Hattrick 변경 사항들 때문에 Foxtrick의 날짜 및 시간 감지를 다시 만들었습니다. 불행하게도 지난 릴리즈에서 몇 가지 실수가 있었고 일부 국가에서는 CHPP를 사용하는 모듈때문에 문제가 발생했습니다. 이제 이 문제는 해결되었습니다.
+      calendar_fix: '날짜 감지와 관련된 문제로 인해 어떤 경우에는 <module>DashboardCalendar</module>가 완전히 고장 났었습니다.'
       and_more: 그 외에 작은 규모의 변화와 수정이 있었습니다.
     0.16.1:
       important: '<header>중요한 공지 사항</header>'

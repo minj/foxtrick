@@ -7,7 +7,13 @@ cs:
       note_0: 'Toto je beta verze dalšího vydání. Prosím pomožte s překladem této verze na naší superjednoduché překladatelské stránce <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.16.1.1:
       important: '<header>Důležitá oznámení</header>'
+      safari_cert: 'Hledáme někoho z Hattrick komunity kdo vyvíjí aplikace pro iOS nebo OSX. Chtěli bychom obnovit podporu Foxtricku pro uživatele prohlížeče safari. Více informací je v našem <linkSafariCertBug>připomínkovacím systému</linkSafariCertBug>.'
+      beta: 'Zvažte používání <linkFTBeta>betaverze Foxtricku</linkFTBeta>. Máte dříve k dispozici nové funkce, které nám můžete pomoci doladit.'
       bugs: '<header>Opravy chyb</header>'
+      defence_stamina: 'V modulu <module>MatchSimulator</module> jsme opravili nefunkční příspěvek kondice k výpočtu obranných sektorů. V minulé verzi fungoval výpočet jen u brankáře.'
+      time_rewrite: Přepsali jsme zjišťování času a data, které nefungovalo z důvodu změn na Hattricku. Problémy byly u některých zemí při použití modulů užívajících CHPP.
+      calendar_fix: 'Modul <module>DashboardCalendar</module> vůbec nefungoval z důvodu nefunkčnosti detekce data.'
+      and_more: Pár dalších malých změn a oprav.
     0.16.1:
       important: '<header>Důležitá oznámení</header>'
       new_contributions: 'Modul <module>PlayerPositionsEvaluations</module> od teď používá oficiální data pro nový zápasový engine. Dodatečné parametry ale potřebují dát smysl těmto datům. Smysluplné hodnoty již jsou k dispozici, nejsou však zatím potvrzeny oficiálně ani nejsou zkontrolovány statistickými studiemi. Jakékoliv připomínky jsou vítány. Možnosti nastavení jsou dostupné na všech stránkách hráče.'

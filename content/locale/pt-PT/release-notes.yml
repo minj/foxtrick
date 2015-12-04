@@ -7,7 +7,12 @@ pt-PT:
       note_0: 'Esta é uma versão beta do próximo lançamento. Por favor ajude na tradução desta versão na nossa página <linkCrowdin>crowdin.net</linkCrowdin>, é bastante fácil.'
     0.16.1.1:
       important: '<header>Avisos Importantes</header>'
+      safari_cert: 'Estamos à procura de alguém na comunidade Hattrick que desenvolva aplicações para iOS ou OSX para ajudar a que voltemos a suportar utilizadores do Safari. Veja o nosso <linkSafariCertBug>rastreador de problemas</linkSafariCertBug> para mais informações.'
+      beta: 'Por favor considere usar <linkFTBeta>Foxtrick beta</linkFTBeta> para ter as novas funcionalidades mais cedo, para influenciar o seu desenvolvimento e ajudar a encontrar e corrigir problemas que possam existir.'
       bugs: '<header>Correções de Erros</header>'
+      defence_stamina: 'Corrigido o problema do efeito da resistência nos cálculos dos setores defensivos em <module>MatchSimulator</module>: anteriormente apenas a resistência do guarda-redes era tida em conta.'
+      time_rewrite: A deteção de data e hora Foxtrick teve de ser reescrita devido a mudanças futuras do Hattrick. Infelizmente alguns erros foram introduzidos na versão anterior causando problemas para alguns países com módulos usando CHPP. O erro deve agora estar corrigido.
+      calendar_fix: '<module>DashboardCalendar</module> estava completamente inútil devido a problemas causados pela deteção da data.'
       and_more: Diversas pequenas correções e alterações.
     0.16.1:
       important: '<header>Avisos Importantes</header>'

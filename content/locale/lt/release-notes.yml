@@ -7,7 +7,11 @@ lt:
       note_0: 'Įdiegėte išankstinę (beta) versiją. Prašome prisidėti prie jos vertimo į lietuvių kalbą ypatingai šauniame vertėjų savanorių portale „<linkCrowdin>crowdin.net</linkCrowdin>“. '
     0.16.1.1:
       important: '<header>Svarbūs pranešimai</header>'
+      safari_cert: 'Ieškome Hattrick bendruomenės narių, kurie kurtų iOS ar OSX programėles. Reikia pagalbos sutvarkant Foxtrick palaikymą Safari naršyklės naudotojams. Daugiau informacijos rasite <linkSafariCertBug>Foxtrick klaidų seklyje</linkSafariCertBug>.'
+      beta: 'Siūlome išmėgint <linkFTBeta>Foxtrick beta</linkFTBeta> versiją: galėsite pirmieji išmėginti naująsias funkcijas, paveikti jų kūrimo procesą ir pagelbėti randant bei sutaisant iškylančius keblumus.'
       bugs: '<header>Pataisytos klaidos</header>'
+      defence_stamina: 'Sutaisytas klaidingas gynybos sektorių ištvermės efekto skaičiavimas <module>MatchSimulator</module> modulyje: praeitoje versijoje per klaidą buvo atsižvelgiama tik į vartininko ištvermę.'
+      time_rewrite: Foxtrick datos ir laiko nustatymo sistema buvo visiškai pertvarkyta dėl ateinančių Hatrrick pokyčių šioje srityje. Deja praeitoje versijoje įsivėlė kelios klaidos, dėl kurių kai kuriose šalyse žaidžiantiems vartotojams galėjo kilti keblumų su moduliais, kuriems reikalinga CHPP sąsaja. Problema turėtų būti sutvarkyta.
       calendar_fix: 'Sutvarkyta problema, kur <module>DashboardCalendar</module> modulis kartais visiškai sutrikdavo dėl problemų nustatant datą.'
       and_more: Daugybė kitų smulkių pataisymų ir pakitimų.
     0.16.1:
