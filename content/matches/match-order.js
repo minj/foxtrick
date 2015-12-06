@@ -386,10 +386,10 @@ Foxtrick.modules['MatchOrderInterface'] = {
 				wing: [0, 0, -1, 0, 1, 0, 0, -1, 0, 1, 0, -1, 0, 1],
 			};
 			var DIRS = {
-				offensive: '↓',
-				defensive: '↑',
-				right: '→',
-				left: '←',
+				offensive: '▼',
+				defensive: '▲',
+				right: '▶',
+				left: '◀︎',
 			};
 
 			var data = {
