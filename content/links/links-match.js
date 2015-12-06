@@ -12,7 +12,7 @@ Foxtrick.modules['LinksMatch'] = {
 		'playedmatchlink',
 		'playedyouthmatchlink',
 		'nextmatchlink',
-		'matchlink'
+		'matchlink',
 	],
 	/**
 	 * return HTML for FT prefs
@@ -54,7 +54,7 @@ Foxtrick.modules['LinksMatch'] = {
 		};
 
 		var subMenu = doc.querySelector('.subMenu');
-		var menuTeam = Foxtrick.util.id.findTeamId(subMenu);
+		var menuTeam = Foxtrick.util.id.findTeamId(subMenu) || Foxtrick.util.id.getOwnTeamId();
 		if (menuTeam == teamId2) {
 			info.thisTeamId = teamId2;
 			info.opponentId = teamId;
@@ -93,7 +93,7 @@ Foxtrick.modules['LinksMatch'] = {
 			types: types,
 			info: info,
 			hasNewSidebar: hasNewSidebar,
-			customLinkSet: customLinkSet
+			customLinkSet: customLinkSet,
 		};
-	}
+	},
 };
