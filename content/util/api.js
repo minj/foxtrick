@@ -257,6 +257,10 @@ Foxtrick.util.api = {
 	//                     strings over booleans.
 	retrieve: function(doc, parameters, options, callback) {
 		var safeCallback = (function(parameters) {
+			// create a local copy so that oauth params are skipped
+			if (Array.isArray(parameters))
+				parameters = parameters.slice();
+
 			return function() {
 				Foxtrick.util.api.addHelpers(arguments[0]);
 				try {
