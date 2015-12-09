@@ -185,28 +185,40 @@ Foxtrick.lazyProp = function(obj, prop, calc) {
 				},
 
 				onRequest: {
+					__handlerWrappers: new Map(),
 					addListener: function(handler) {
-						var responseHandler = function(ev) {
-							// Only listen for 'sendRequest' messages
-							if (ev.name != REQUEST)
-								return;
+						var makeHandler = function(handler) {
+							return function(ev) {
+								// Only listen for 'sendRequest' messages
+								if (ev.name != REQUEST)
+									return;
 
-							var request = ev.message.data;
-							var id = Foxtrick.SB.tabs.getId(ev.target);
-							var sender = { tab: { id: id, url: ev.target.url }};
+								var request = ev.message.data;
+								var id = Foxtrick.SB.tabs.getId(ev.target);
+								var sender = { tab: { id: id, url: ev.target.url }};
 
-							var sendResponse = function(dataToSend) {
-								var reply = {
-									callbackToken: ev.message.callbackToken,
-									data: dataToSend,
+								var sendResponse = function(dataToSend) {
+									var reply = {
+										callbackToken: ev.message.callbackToken,
+										data: dataToSend,
+									};
+
+									ev.target.page.dispatchMessage(RESPONSE, reply);
 								};
-
-								ev.target.page.dispatchMessage(RESPONSE, reply);
+								handler(request, sender, sendResponse);
 							};
-							handler(request, sender, sendResponse);
 						};
 
+						var responseHandler = makeHandler(handler);
+						this.__handlerWrappers.set(handler, responseHandler);
 						addListener(responseHandler);
+					},
+					removeListener: function(handler) {
+						var responseHandler = this.__handlerWrappers.get(handler);
+						if (typeof responseHandler !== 'undefined') {
+							this.__handlerWrappers.delete(handler);
+							removeListener(responseHandler);
+						}
 					},
 				},
 
@@ -300,11 +312,24 @@ Foxtrick.lazyProp = function(obj, prop, calc) {
 				},
 
 				onRequest: {
-					addListener: function(listener) {
-						chrome.runtime.onMessage.addListener(function(data, sender, sendResponse) {
-							listener(data, sender, sendResponse);
-							return true; // assure message channel is left open for async
-						});
+					__handlerWrappers: new Map(),
+					addListener: function(handler) {
+						var makeHandler = function(handler) {
+							return function(data, sender, sendResponse) {
+								handler(data, sender, sendResponse);
+								return true; // assure message channel is left open for async
+							};
+						};
+						var responseHandler = makeHandler(handler);
+						this.__handlerWrappers.set(handler, responseHandler);
+						chrome.runtime.onMessage.addListener(responseHandler);
+					},
+					removeListener: function(handler) {
+						var responseHandler = this.__handlerWrappers.get(handler);
+						if (typeof responseHandler !== 'undefined') {
+							this.__handlerWrappers.delete(handler);
+							chrome.runtime.onMessage.removeListener(responseHandler);
+						}
 					},
 				},
 
