@@ -581,14 +581,16 @@ Foxtrick.lazyProp = function(obj, prop, calc) {
 					if (typeof sendAsyncMessage === 'function') {
 						sendAsyncMessage(RESPONSE, reply);
 					}
-					else if (typeof messageManager !== 'undefined') {
+					else {
 						try {
 							var childMM = ev.target.messageManager;
 							childMM.sendAsyncMessage(RESPONSE, reply);
 						}
 						catch (e) {
 							Foxtrick.error('No MessageSender');
-							messageManager.broadcastAsyncMessage(RESPONSE, reply);
+
+							if (typeof messageManager !== 'undefined')
+								messageManager.broadcastAsyncMessage(RESPONSE, reply);
 						}
 					}
 				};
