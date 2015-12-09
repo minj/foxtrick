@@ -12,44 +12,179 @@
 if (!Foxtrick)
 	var Foxtrick = {};
 
+/**
+ * Browser architecture: Sandboxed|Gecko.
+ *
+ * Sandboxed: Chrome/Opera and Safari.
+ * Gecko: Firefox/Android.
+ * Used to help abstract Foxtrick APIs in the back-end and utils.
+ *
+ * README: Many of the Sandboxed features also applies to Android and
+ * will apply to Firefox after e10s support is finished hence this
+ * distinction needs to be redesigned.
+ *
+ * @type {string}
+ */
+Foxtrick.arch = 'arch';
 
-// sandboxed object for chrome, safari and fennec
-// used to communicate between content script and background script
-/*
-Foxtrick.SB.ext.sendRequest(data, callback)
-// send JSON data from content to background
-// callback: function(reply)
+/**
+ * Browser name: Chrome|Safari|Firefox|Android.
+ *
+ * Used to help abstract Foxtrick APIs in the back-end and utils.
+ *
+ * README: Opera is currently detected as Chrome and uses the same API.
+ *
+ * @type {string}
+ */
+Foxtrick.platform = 'Browser';
 
-Foxtrick.SB.ext.onRequest.addListener(listener)
-// listen to requests (background and content side)
-// with listener = function(JSON data, sender, callback);
-// sender - content: { tab: { id: id, url: ev.target.url }};
-// sender - background: undefined
-// callback: function(reply)
+/**
+ * Execution context: background|content.
+ *
+ * Signifies separation of permissions
+ *
+ * @type {string}
+ */
+Foxtrick.context = 'context';
 
-Foxtrick.SB.ext.broadcastMessage(data, callback)
-// send JSON data from background to all tabs
-// with callback function(reply)
+/**
+ * Path to content/ files from an internal context.
+ *
+ * Typically used to load CSS and other non-script files.
+ *
+ * README: used for images but this likely needs to be switched to ResourcePath.
+ *
+ * @type {string}
+ */
+Foxtrick.InternalPath = 'content/';
 
-Foxtrick.SB.ext.getURL(path)
-// get extension url of path relative to extension folder
+/**
+ * Path to content/ files from an external context.
+ *
+ * Typically used for image URLs in CSS.
+ * May be different from InternalPath.
+ *
+ * @type {string}
+ */
+Foxtrick.ResourcePath = 'content/';
 
-Foxtrick.SB.tabs.create(url)
-// create a tab from background with url
-*/
+/**
+ * Path to independently updated resource files like links.json.
+ *
+ * Is currently local for Android to limit network requests.
+ *
+ * @type {string}
+ */
+Foxtrick.DataPath = 'res/';
 
-// Foxtrick.arch: 'Sandboxed' (chrome, safari) or 'Gecko' (firefox, fennec)
-// used mainly in l10n, prefs and css injection
+/**
+ * Data URL image cache.
+ *
+ * For image path conversion to data URLs.
+ * {URL: dataURL}
+ *
+ * README: currently unused.
+ *
+ * @type {Object} {string: string}
+ */
+Foxtrick.dataUrlStorage = {};
 
-// Foxtrick.platform: 'Chrome', 'Safari', 'Firefox', 'Android'
-// used mainly in UI and script starting
+/**
+ * Sandboxed adapter, based on AdBlockPlus for Safari
+ * @type {Object}
+ */
+Foxtrick.SB = { ext: { onRequest: {}}, tabs: {}};
 
-// Foxtrick.InternalPath: called from extension - path to extension folder
-// Foxtrick.ResourcePath: called from html page - external page
-// Foxtrick.DataPath: path to res/
+// --------------------- function stubs ----------------
+// jshint ignore:start
+
+/**
+ * Get a reference to background page from another elevated context
+ *
+ * README: does not make sense in Gecko for now
+ *
+ * @return {[type]} [description]
+ */
+Foxtrick.SB.ext.getBackgroundPage = function() {};
+
+/**
+ * Get the URL of a path relative to the extension folder
+ *
+ * @param  {string} path
+ * @return {string}
+ */
+Foxtrick.SB.ext.getURL = function(path) {};
+
+/**
+ * Send data (plain JSON-like object) from content to background.
+ *
+ * callback: function(response).
+ *
+ * @param  {object}   data
+ * @param  {function} callback {function(object)}
+ */
+Foxtrick.SB.ext.sendRequest = function(data, callback) {};
+
+/**
+ * Send data (plain JSON-like object) from background to all tabs.
+ *
+ * callback: function(response).
+ *
+ * @param  {object}   data
+ * @param  {function} callback {function(object)}
+ */
+Foxtrick.SB.ext.broadcastMessage = function(data, callback) {};
+
+/**
+ * Listen to requests (background and content side).
+ *
+ * listener: function(data, sender, sendResponse);
+ * data: request object;
+ * sender: { tab: { id, url }}, undefined from background;
+ * sendResponse: function(response).
+ *
+ * sendResponse(response) should be called at the end of the listener.
+ *
+ * @param {function} listener {function(function(object, object, function(object)))}
+ */
+Foxtrick.SB.ext.onRequest.addListener = function(listener) {};
+
+/**
+ * Remove a listener added with onRequest.addListener
+ *
+ * @param {function} listener {function(function(object, object, function(object)))}
+ */
+Foxtrick.SB.ext.onRequest.removeListener = function(handler) {};
+
+/**
+ * tabId of a content script.
+ *
+ * Somewhat unreliable.
+ *
+ * @type {Number}
+ */
+Foxtrick.SB.ext.tabId = -1;
+
+/**
+ * Get the tab ID for a tab
+ *
+ * @param  {object} tab
+ * @return {number}
+ */
+Foxtrick.SB.tabs.getId = function(tab) {};
+
+/**
+ * Open an URL in a new tab
+ *
+ * @param  {string} url
+ */
+Foxtrick.SB.tabs.create = function(url) {};
+
+// jshint ignore:end
 
 /**
  * Define a lazy-loaded cached property
+ *
  * @param {object}   obj
  * @param {string}   prop
  * @param {function} calc
@@ -69,13 +204,13 @@ Foxtrick.lazyProp = function(obj, prop, calc) {
 
 (function() {
 
-	// used to cache dataUrl images
-	Foxtrick.dataUrlStorage = {};
-
 	// messaging abstraction
-	var addListener, removeListener;
+	var addListener, removeListener, sendRequest;
 	var REQUEST = 'request@foxtrick.org';
 	var RESPONSE = 'response@foxtrick.org';
+
+	// stores onRequest handlers so we can unregister them again
+	var ONREQUEST_HANDLERS = new Map();
 
 	if (typeof safari === 'object') {
 		Foxtrick.arch = 'Sandboxed';
@@ -116,141 +251,131 @@ Foxtrick.lazyProp = function(obj, prop, calc) {
 			target.removeEventListener('message', handler);
 		};
 
-		// Safari adapter. copied from adblockplus for safari
-		Foxtrick.SB = {
-			ext: {
-				getBackgroundPage: function() {
-					return safari.extension.globalPage.contentWindow;
-				},
+		sendRequest = (function() {
+			// The function we'll return at the end of all this
+			var theFunction = function(target, data, callback) {
+				var callbackToken = 'callback' + Math.random();
+				var msg = { data: data, callbackToken: callbackToken };
 
-				getURL: function(path) {
-					return safari.extension.baseURI + path;
-				},
+				// Listen for a response for our specific request token.
+				addOneTimeResponseListener(callbackToken, callback);
 
-				__request: (function() {
-					// The function we'll return at the end of all this
-					var theFunction = function(target, data, callback) {
-						var callbackToken = 'callback' + Math.random();
-						var msg = { data: data, callbackToken: callbackToken };
+				target.dispatchMessage(REQUEST, msg);
+			};
 
-						// Listen for a response for our specific request token.
-						addOneTimeResponseListener(callbackToken, callback);
+			// Make a listener which, when activated for the given callbackToken,
+			// calls callback(resultData) and unregisters itself
+			var addOneTimeResponseListener = function(callbackToken, callback) {
 
-						target.dispatchMessage(REQUEST, msg);
+				var responseHandler = function(ev) {
+					var run = function(callback) {
+						try {
+							callback(ev.message.data);
+						}
+						catch (e) {
+							Foxtrick.log('callback error:', e);
+						}
 					};
 
-					// Make a listener which, when activated for the given callbackToken,
-					// calls callback(resultData) and unregisters itself
-					var addOneTimeResponseListener = function(callbackToken, callback) {
+					if (ev.name != RESPONSE)
+						return;
+					if (ev.message.callbackToken != callbackToken)
+						return;
 
-						var responseHandler = function(ev) {
-							var run = function(callback) {
-								try {
-									callback(ev.message.data);
-								}
-								catch (e) {
-									Foxtrick.log('callback error:', e);
-								}
-							};
+					removeListener(responseHandler);
 
-							if (ev.name != RESPONSE)
-								return;
-							if (ev.message.callbackToken != callbackToken)
-								return;
+					if (typeof callback === 'function') {
+						run(callback);
+					}
+				};
 
-							removeListener(responseHandler);
+				addListener(responseHandler);
+			};
 
-							if (typeof callback === 'function') {
-								run(callback);
-							}
+			return theFunction;
+		})();
+
+		Foxtrick.SB.ext.getBackgroundPage = function() {
+			return safari.extension.globalPage.contentWindow;
+		};
+
+		Foxtrick.SB.ext.getURL = function(path) {
+			return safari.extension.baseURI + path;
+		};
+
+		Foxtrick.SB.ext.sendRequest = function(data, callback) {
+			var target = safari.self.tab ||
+				safari.application.activeBrowserWindow.activeTab.page;
+
+			sendRequest(target, data, callback);
+		};
+		// sending to all tabs
+		Foxtrick.SB.ext.broadcastMessage = function(data, callback) {
+			Foxtrick.forEach(function(tab) {
+				sendRequest(tab.page, data, callback);
+			}, safari.application.activeBrowserWindow.tabs);
+		};
+
+		Foxtrick.SB.ext.onRequest.addListener = function(handler) {
+			var makeHandler = function(handler) {
+				return function(ev) {
+					// Only listen for 'sendRequest' messages
+					if (ev.name != REQUEST)
+						return;
+
+					var request = ev.message.data;
+					var id = Foxtrick.SB.tabs.getId(ev.target);
+					var sender = { tab: { id: id, url: ev.target.url }};
+
+					var sendResponse = function(dataToSend) {
+						var reply = {
+							callbackToken: ev.message.callbackToken,
+							data: dataToSend,
 						};
 
-						addListener(responseHandler);
+						ev.target.page.dispatchMessage(RESPONSE, reply);
 					};
+					handler(request, sender, sendResponse);
+				};
+			};
 
-					return theFunction;
-				})(),
+			var responseHandler = makeHandler(handler);
+			ONREQUEST_HANDLERS.set(handler, responseHandler);
+			addListener(responseHandler);
+		};
+		Foxtrick.SB.ext.onRequest.removeListener = function(handler) {
+			var responseHandler = ONREQUEST_HANDLERS.get(handler);
+			if (typeof responseHandler !== 'undefined') {
+				ONREQUEST_HANDLERS.delete(handler);
+				removeListener(responseHandler);
+			}
+		};
 
-				sendRequest: function(data, callback) {
-					var target = safari.self.tab ||
-						safari.application.activeBrowserWindow.activeTab.page;
+		// Track tabs that make requests to the global page, assigning them
+		// IDs so we can recognize them later.
+		Foxtrick.SB.tabs.getId = (function() {
+			// Tab objects are destroyed when no one has a reference to them,
+			// so we keep a list of them, lest our IDs get lost.
+			var tabs = [];
+			var lastAssignedTabId = -1;
 
-					this.__request(target, data, callback);
-				},
-				// sending to all tabs
-				broadcastMessage: function(data, callback) {
-					Foxtrick.forEach(function(tab) {
-						Foxtrick.SB.ext.__request(tab.page, data, callback);
-					}, safari.application.activeBrowserWindow.tabs);
-				},
+			var theFunction = function(tab) {
+				// Clean up closed tabs, to avoid memory bloat.
+				tabs = tabs.filter(function(t) { return t.browserWindow !== null; });
 
-				onRequest: {
-					__handlerWrappers: new Map(),
-					addListener: function(handler) {
-						var makeHandler = function(handler) {
-							return function(ev) {
-								// Only listen for 'sendRequest' messages
-								if (ev.name != REQUEST)
-									return;
+				if (typeof tab._ftId === 'undefined') {
+					// New tab
+					tab._ftId = ++lastAssignedTabId;
+					tabs.push(tab); // save so it isn't garbage collected, losing our ID.
+				}
+				return tab._ftId;
+			};
+			return theFunction;
+		})();
 
-								var request = ev.message.data;
-								var id = Foxtrick.SB.tabs.getId(ev.target);
-								var sender = { tab: { id: id, url: ev.target.url }};
-
-								var sendResponse = function(dataToSend) {
-									var reply = {
-										callbackToken: ev.message.callbackToken,
-										data: dataToSend,
-									};
-
-									ev.target.page.dispatchMessage(RESPONSE, reply);
-								};
-								handler(request, sender, sendResponse);
-							};
-						};
-
-						var responseHandler = makeHandler(handler);
-						this.__handlerWrappers.set(handler, responseHandler);
-						addListener(responseHandler);
-					},
-					removeListener: function(handler) {
-						var responseHandler = this.__handlerWrappers.get(handler);
-						if (typeof responseHandler !== 'undefined') {
-							this.__handlerWrappers.delete(handler);
-							removeListener(responseHandler);
-						}
-					},
-				},
-
-			},
-			tabs: {
-				// Track tabs that make requests to the global page, assigning them
-				// IDs so we can recognize them later.
-				getId: (function() {
-					// Tab objects are destroyed when no one has a reference to them,
-					// so we keep a list of them, lest our IDs get lost.
-					var tabs = [];
-					var lastAssignedTabId = -1;
-
-					var theFunction = function(tab) {
-						// Clean up closed tabs, to avoid memory bloat.
-						tabs = tabs.filter(function(t) { return t.browserWindow !== null; });
-
-						if (typeof tab._ftId === 'undefined') {
-							// New tab
-							tab._ftId = ++lastAssignedTabId;
-							tabs.push(tab); // save so it isn't garbage collected, losing our ID.
-						}
-						return tab._ftId;
-					};
-					return theFunction;
-				})(),
-
-				create: function(options) {
-					var window = safari.application.activeBrowserWindow;
-					window.openTab('foreground').url = options.url;
-				},
-			},
+		Foxtrick.SB.tabs.create = function(options) {
+			var window = safari.application.activeBrowserWindow;
+			window.openTab('foreground').url = options.url;
 		};
 	}
 
@@ -278,74 +403,63 @@ Foxtrick.lazyProp = function(obj, prop, calc) {
 			return ret;
 		});
 
-		// port common functions to sandboxed
-		Foxtrick.SB = {
-			ext: {
-				getBackgroundPage: function() {
-					return chrome.extension.getBackgroundPage();
-				},
-				getURL: function(path) {
-					return chrome.runtime.getURL(path);
-				},
+		Foxtrick.SB.ext.getBackgroundPage = function() {
+			return chrome.extension.getBackgroundPage();
+		};
+		Foxtrick.SB.ext.getURL = function(path) {
+			return chrome.runtime.getURL(path);
+		};
 
-				sendRequest: function(data, callback) {
-					try {
-						if (callback)
-							chrome.runtime.sendMessage(data, callback);
-						else
-							chrome.runtime.sendMessage(data);
-					}
-					catch (e) {}
-				},
-				// README: chrome implementation uses direct binding to sendResponse function rather
-				// than callback tokens, thus normally there are no listeners on the content side.
-				broadcastMessage: function(data, callback) {
-					try {
-						for (var i in Foxtrick.SB.tabs.active) {
-							if (callback)
-								chrome.tabs.sendMessage(Number(i), data, callback);
-							else
-								chrome.tabs.sendMessage(Number(i), data);
-						}
-					}
-					catch (e) {}
-				},
+		Foxtrick.SB.ext.sendRequest = function(data, callback) {
+			try {
+				if (callback)
+					chrome.runtime.sendMessage(data, callback);
+				else
+					chrome.runtime.sendMessage(data);
+			}
+			catch (e) {}
+		};
+		// README: chrome implementation uses direct binding to sendResponse function rather
+		// than callback tokens, thus normally there are no listeners on the content side.
+		Foxtrick.SB.ext.broadcastMessage = function(data, callback) {
+			try {
+				for (var i in ACTIVE_TABS) {
+					if (callback)
+						chrome.tabs.sendMessage(Number(i), data, callback);
+					else
+						chrome.tabs.sendMessage(Number(i), data);
+				}
+			}
+			catch (e) {}
+		};
 
-				onRequest: {
-					__handlerWrappers: new Map(),
-					addListener: function(handler) {
-						var makeHandler = function(handler) {
-							return function(data, sender, sendResponse) {
-								handler(data, sender, sendResponse);
-								return true; // assure message channel is left open for async
-							};
-						};
-						var responseHandler = makeHandler(handler);
-						this.__handlerWrappers.set(handler, responseHandler);
-						chrome.runtime.onMessage.addListener(responseHandler);
-					},
-					removeListener: function(handler) {
-						var responseHandler = this.__handlerWrappers.get(handler);
-						if (typeof responseHandler !== 'undefined') {
-							this.__handlerWrappers.delete(handler);
-							chrome.runtime.onMessage.removeListener(responseHandler);
-						}
-					},
-				},
+		Foxtrick.SB.ext.onRequest.addListener = function(handler) {
+			var makeHandler = function(handler) {
+				return function(data, sender, sendResponse) {
+					handler(data, sender, sendResponse);
+					return true; // assure message channel is left open for async
+				};
+			};
+			var responseHandler = makeHandler(handler);
+			ONREQUEST_HANDLERS.set(handler, responseHandler);
+			chrome.runtime.onMessage.addListener(responseHandler);
+		};
+		Foxtrick.SB.ext.onRequest.removeListener = function(handler) {
+			var responseHandler = ONREQUEST_HANDLERS.get(handler);
+			if (typeof responseHandler !== 'undefined') {
+				ONREQUEST_HANDLERS.delete(handler);
+				chrome.runtime.onMessage.removeListener(responseHandler);
+			}
+		};
 
-				// tabId of a content script
-				tabId: -1,
-			},
-			tabs: {
-				getId: function(tab) {
-					return tab.id;
-				},
-				create: function(url) {
-					chrome.tabs.create(url);
-				},
-				// activeTabs { id: true/false,.. }
-				active: {},
-			},
+		var ACTIVE_TABS = {};
+
+		Foxtrick.SB.tabs.getId = function(tab) {
+			return tab.id;
+		};
+
+		Foxtrick.SB.tabs.create = function(url) {
+			chrome.tabs.create(url);
 		};
 
 		if (Foxtrick.context === 'content') {
@@ -370,14 +484,14 @@ Foxtrick.lazyProp = function(obj, prop, calc) {
 			(function() {
 				var confirmAlive = function(response) {
 					if (response)
-						Foxtrick.SB.tabs.active[response.id] = true;
+						ACTIVE_TABS[response.id] = true;
 				};
 
 				// request tabs to confirm being alive
 				var updateTabList = function(senderId) {
-					var tabListOld = Foxtrick.SB.tabs.active;
+					var tabListOld = ACTIVE_TABS;
 					// clear list and add alive tabs again
-					Foxtrick.SB.tabs.active = {};
+					ACTIVE_TABS = {};
 					for (var i in tabListOld) {
 						// not the sender
 						if (i != senderId) {
@@ -385,7 +499,7 @@ Foxtrick.lazyProp = function(obj, prop, calc) {
 							chrome.tabs.sendMessage(Number(i), msg, confirmAlive);
 						}
 					}
-					Foxtrick.SB.tabs.active[senderId] = true;
+					ACTIVE_TABS[senderId] = true;
 				};
 
 				// listen to tab register
@@ -450,186 +564,172 @@ Foxtrick.lazyProp = function(obj, prop, calc) {
 				/* jshint ignore:end */
 			}
 
-			// fennec adapter. adapted from adblockplus for safari
-			Foxtrick.SB = {
-				ext: {
-					getURL: function(path) {
-						return 'chrome://foxtrick/' + path;
-					},
+			sendRequest = (function() {
+				// The function we'll return at the end of all this
+				var theFunction = function(target, data, callback) {
+					var callbackToken = 'callback' + Math.random();
+					var msg = { data: data, callbackToken: callbackToken };
 
-					__sendRequest: (function() {
-						// The function we'll return at the end of all this
-						var theFunction = function(target, data, callback) {
-							var callbackToken = 'callback' + Math.random();
-							var msg = { data: data, callbackToken: callbackToken };
+					// Listen for a response for our specific request token.
+					addOneTimeResponseListener(callbackToken, callback);
 
-							// Listen for a response for our specific request token.
-							addOneTimeResponseListener(callbackToken, callback);
+					if (target && typeof target.sendAsyncMessage === 'function') {
+						target.sendAsyncMessage(REQUEST, msg);
+					}
+					else if (typeof sendAsyncMessage === 'function') {
+						sendAsyncMessage(REQUEST, msg);
+					}
+					else {
+						messageManager.broadcastAsyncMessage(REQUEST, msg);
+					}
+				};
 
-							if (target && typeof target.sendAsyncMessage === 'function') {
-								target.sendAsyncMessage(REQUEST, msg);
+				// Make a listener which, when activated for the given callbackToken,
+				// calls callback(resultData) and unregisters itself
+				var addOneTimeResponseListener = function(callbackToken, callback) {
+
+					var responseHandler = function(ev) {
+						var run = function(callback) {
+							try {
+								callback(ev.json.data);
 							}
-							else if (typeof sendAsyncMessage === 'function') {
-								sendAsyncMessage(REQUEST, msg);
-							}
-							else {
-								messageManager.broadcastAsyncMessage(REQUEST, msg);
+							catch (e) {
+								Foxtrick.log('callback error:', e);
 							}
 						};
 
-						// Make a listener which, when activated for the given callbackToken,
-						// calls callback(resultData) and unregisters itself
-						var addOneTimeResponseListener = function(callbackToken, callback) {
+						// content context
+						if (ev.json.callbackToken != callbackToken)
+							return;
 
-							var responseHandler = function(ev) {
-								var run = function(callback) {
-									try {
-										callback(ev.json.data);
-									}
-									catch (e) {
-										Foxtrick.log('callback error:', e);
-									}
-								};
+						removeListener(RESPONSE, responseHandler);
 
-								// content context
-								if (ev.json.callbackToken != callbackToken)
-									return;
-
-								removeListener(RESPONSE, responseHandler);
-
-								if (typeof callback === 'function') {
-									run(callback);
-								}
-							};
-
-							addListener(RESPONSE, responseHandler);
-						};
-
-						return theFunction;
-					})(),
-
-					sendRequest: function(data, callback) {
-						this.__sendRequest(null, data, callback);
-					},
-
-					broadcastMessage: function(data, callback) {
-						var getMessageSenders = function(msgMngr) {
-							if (!msgMngr)
-								return [];
-
-							if (typeof msgMngr.sendAsyncMessage === 'function') {
-								return [msgMngr];
-							}
-
-							var senders = [];
-							var ct = msgMngr.childCount;
-							for (var i = 0; i < ct; i++) {
-								var childMM = msgMngr.getChildAt(i);
-								var childs = getMessageSenders(childMM);
-								senders.push.apply(senders, childs);
-							}
-							return senders;
-						};
-
-						var msgSenders = Foxtrick.unique(getMessageSenders(messageManager));
-						for (var msgSender of msgSenders) {
-							this.__sendRequest(msgSender, data, callback);
+						if (typeof callback === 'function') {
+							run(callback);
 						}
-					},
+					};
 
-					onRequest: {
-						// make a wrapper for the handler to pass a sendResponse reference
-						__makeHandlerWrapper: function(handler) {
-							return function(ev) {
-								// bg context
-								var request = ev.json.data;
-								var id = Foxtrick.SB.tabs.getId(ev.target);
+					addListener(RESPONSE, responseHandler);
+				};
 
-								var sender = {
-									tab: {
-										id: id,
-										url: ev.target.lastLocation,
-										target: ev.target,
-									},
-								};
+				return theFunction;
+			})();
 
-								var sendResponse = function(dataToSend) {
-									var reply = {
-										callbackToken: ev.json.callbackToken,
-										data: dataToSend,
-									};
+			Foxtrick.SB.ext.getURL = function(path) {
+				return 'chrome://foxtrick/' + path;
+			};
 
-									if (typeof sendAsyncMessage === 'function') {
-										sendAsyncMessage(RESPONSE, reply);
-									}
-									else if (typeof messageManager !== 'undefined') {
-										try {
-											var childMM = ev.target.messageManager;
-											childMM.sendAsyncMessage(RESPONSE, reply);
-										}
-										catch (e) {
-											Foxtrick.error('No MessageSender');
-											messageManager.broadcastAsyncMessage(RESPONSE, reply);
-										}
-									}
-								};
+			Foxtrick.SB.ext.sendRequest = function(data, callback) {
+				sendRequest(null, data, callback);
+			};
 
-								handler(request, sender, sendResponse);
-							};
-						},
-						// stores handler wrappers so we can unregister them again
-						__handlerWrappers: new Map(),
+			Foxtrick.SB.ext.broadcastMessage = function(data, callback) {
+				var getMessageSenders = function(msgMngr) {
+					if (!msgMngr)
+						return [];
 
-						addListener: function(handler) {
-							var handlerWrapper = this.__makeHandlerWrapper(handler);
-							this.__handlerWrappers.set(handler, handlerWrapper);
-							addListener(REQUEST, handlerWrapper);
-						},
+					if (typeof msgMngr.sendAsyncMessage === 'function') {
+						return [msgMngr];
+					}
 
-						removeListener: function(handler) {
-							var handlerWrapper = this.__handlerWrappers.get(handler);
-							if (typeof handlerWrapper !== 'undefined') {
-								this.__handlerWrappers.delete(handler);
-								removeListener(REQUEST, handlerWrapper);
-							}
-						},
-					},
+					var senders = [];
+					var ct = msgMngr.childCount;
+					for (var i = 0; i < ct; i++) {
+						var childMM = msgMngr.getChildAt(i);
+						var childs = getMessageSenders(childMM);
+						senders.push.apply(senders, childs);
+					}
+					return senders;
+				};
 
-					// tabId of a content script
-					tabId: -1,
-				},
-				tabs: {
-					// Track tabs that make requests to the global page, assigning them
-					// IDs so we can recognize them later.
-					getId: (function() {
-						// Tab objects are destroyed when no one has a reference to them,
-						// so we keep a list of them, lest our IDs get lost.
-						var tabs = [];
-						var lastAssignedTabId = -1;
+				var msgSenders = Foxtrick.unique(getMessageSenders(messageManager));
+				for (var msgSender of msgSenders) {
+					sendRequest(msgSender, data, callback);
+				}
+			};
 
-						var theFunction = function(tab) {
-							// Clean up closed tabs, to avoid memory bloat.
-							tabs = tabs.filter(function(t) { return t.browser !== null; });
+			Foxtrick.SB.ext.onRequest.addListener = function(handler) {
+				// make a wrapper for the handler to pass a sendResponse reference
+				var makeHandler = function(handler) {
+					return function(ev) {
+						// bg context
+						var request = ev.json.data;
+						var id = Foxtrick.SB.tabs.getId(ev.target);
 
-							if (typeof tab._ftId === 'undefined') {
-								// New tab
-								tab._ftId = ++lastAssignedTabId;
-								// save it so it isn't garbage collected, losing our ID
-								tabs.push(tab);
-							}
-							return tab._ftId;
+						var sender = {
+							tab: {
+								id: id,
+								url: ev.target.lastLocation,
+								target: ev.target,
+							},
 						};
 
-						return theFunction;
-					})(),
+						var sendResponse = function(dataToSend) {
+							var reply = {
+								callbackToken: ev.json.callbackToken,
+								data: dataToSend,
+							};
 
-					create: function(data) {
-						if (Foxtrick.platform === 'Android')
-							BrowserApp.addTab(data.url);
-						else
-							window.gBrowser.selectedTab = window.gBrowser.addTab(data.url);
-					},
-				},
+							if (typeof sendAsyncMessage === 'function') {
+								sendAsyncMessage(RESPONSE, reply);
+							}
+							else if (typeof messageManager !== 'undefined') {
+								try {
+									var childMM = ev.target.messageManager;
+									childMM.sendAsyncMessage(RESPONSE, reply);
+								}
+								catch (e) {
+									Foxtrick.error('No MessageSender');
+									messageManager.broadcastAsyncMessage(RESPONSE, reply);
+								}
+							}
+						};
+
+						handler(request, sender, sendResponse);
+					};
+				};
+
+				var responseHandler = makeHandler(handler);
+				ONREQUEST_HANDLERS.set(handler, responseHandler);
+				addListener(REQUEST, responseHandler);
+			};
+			Foxtrick.SB.ext.onRequest.removeListener = function(handler) {
+				var responseHandler = ONREQUEST_HANDLERS.get(handler);
+				if (typeof responseHandler !== 'undefined') {
+					ONREQUEST_HANDLERS.delete(handler);
+					removeListener(REQUEST, responseHandler);
+				}
+			};
+
+			// Track tabs that make requests to the global page, assigning them
+			// IDs so we can recognize them later.
+			Foxtrick.SB.tabs.getId = (function() {
+				// Tab objects are destroyed when no one has a reference to them,
+				// so we keep a list of them, lest our IDs get lost.
+				var tabs = [];
+				var lastAssignedTabId = -1;
+
+				var theFunction = function(tab) {
+					// Clean up closed tabs, to avoid memory bloat.
+					tabs = tabs.filter(function(t) { return t.browser !== null; });
+
+					if (typeof tab._ftId === 'undefined') {
+						// New tab
+						tab._ftId = ++lastAssignedTabId;
+						// save it so it isn't garbage collected, losing our ID
+						tabs.push(tab);
+					}
+					return tab._ftId;
+				};
+
+				return theFunction;
+			})();
+
+			Foxtrick.SB.tabs.create = function(data) {
+				if (Foxtrick.platform === 'Android')
+					BrowserApp.addTab(data.url);
+				else
+					window.gBrowser.selectedTab = window.gBrowser.addTab(data.url);
 			};
 		}
 	}
