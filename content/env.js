@@ -288,9 +288,15 @@ Foxtrick.lazyProp = function(obj, prop, calc) {
 				// README: chrome implementation uses direct binding to sendResponse function rather
 				// than callback tokens, thus normally there are no listeners on the content side.
 				broadcastMessage: function(data, callback) {
-					for (var i in Foxtrick.SB.tabs.active) {
-						chrome.tabs.sendMessage(Number(i), data, callback);
+					try {
+						for (var i in Foxtrick.SB.tabs.active) {
+							if (callback)
+								chrome.tabs.sendMessage(Number(i), data, callback);
+							else
+								chrome.tabs.sendMessage(Number(i), data);
+						}
 					}
+					catch (e) {}
 				},
 
 				onRequest: {
