@@ -103,7 +103,7 @@ Foxtrick.SB = { ext: { onRequest: {}}, tabs: {}};
  *
  * README: does not make sense in Gecko for now
  *
- * @return {[type]} [description]
+ * @return {object} Global object/window
  */
 Foxtrick.SB.ext.getBackgroundPage = function() {};
 
@@ -120,8 +120,8 @@ Foxtrick.SB.ext.getURL = function(path) {};
  *
  * callback: function(response).
  *
- * @param  {object}   data
- * @param  {function} callback {function(object)}
+ * @param {object}   data
+ * @param {function} callback {function(object)}
  */
 Foxtrick.SB.ext.sendRequest = function(data, callback) {};
 
@@ -130,8 +130,8 @@ Foxtrick.SB.ext.sendRequest = function(data, callback) {};
  *
  * callback: function(response).
  *
- * @param  {object}   data
- * @param  {function} callback {function(object)}
+ * @param {object}   data
+ * @param {function} callback {function(object)}
  */
 Foxtrick.SB.ext.broadcastMessage = function(data, callback) {};
 
@@ -145,23 +145,23 @@ Foxtrick.SB.ext.broadcastMessage = function(data, callback) {};
  *
  * sendResponse(response) should be called at the end of the listener.
  *
- * @param {function} listener {function(function(object, object, function(object)))}
+ * @param {function} listener {function(object, {tab: {id, url}}, function(object))}
  */
 Foxtrick.SB.ext.onRequest.addListener = function(listener) {};
 
 /**
  * Remove a listener added with onRequest.addListener
  *
- * @param {function} listener {function(function(object, object, function(object)))}
+ * @param {function} listener {function(object, {tab: {id, url}}, function(object))}
  */
 Foxtrick.SB.ext.onRequest.removeListener = function(handler) {};
 
 /**
- * tabId of a content script.
+ * tabId of this content script.
  *
  * Somewhat unreliable.
  *
- * @type {Number}
+ * @type {number}
  */
 Foxtrick.SB.ext.tabId = -1;
 
@@ -176,7 +176,7 @@ Foxtrick.SB.tabs.getId = function(tab) {};
 /**
  * Open an URL in a new tab
  *
- * @param  {string} url
+ * @param {string} url
  */
 Foxtrick.SB.tabs.create = function(url) {};
 
@@ -473,7 +473,7 @@ Foxtrick.lazyProp = function(obj, prop, calc) {
 
 			// answer to status check after every new page load
 			Foxtrick.SB.ext.onRequest.addListener(
-			  function(request, sender, sendResponse) {
+			  function(request, sender, sendResponse) { // jshint ignore:line
 				if (request.req == 'checkAlive') {
 					// send back who answered
 					sendResponse({ id: request.id });
