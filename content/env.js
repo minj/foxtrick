@@ -432,16 +432,19 @@ Foxtrick.lazyProp = function(obj, prop, calc) {
 						return 'chrome://foxtrick/' + path;
 					},
 
-					sendRequest: (function() {
+					__sendRequest: (function() {
 						// The function we'll return at the end of all this
-						var theFunction = function(data, callback) {
+						var theFunction = function(target, data, callback) {
 							var callbackToken = 'callback' + Math.random();
 							var msg = { data: data, callbackToken: callbackToken };
 
 							// Listen for a response for our specific request token.
 							addOneTimeResponseListener(callbackToken, callback);
 
-							if (typeof sendAsyncMessage === 'function') {
+							if (target && typeof target.sendAsyncMessage === 'function') {
+								target.sendAsyncMessage(REQUEST, msg);
+							}
+							else if (typeof sendAsyncMessage === 'function') {
 								sendAsyncMessage(REQUEST, msg);
 							}
 							else {
@@ -479,6 +482,35 @@ Foxtrick.lazyProp = function(obj, prop, calc) {
 
 						return theFunction;
 					})(),
+
+					sendRequest: function(data, callback) {
+						this.__sendRequest(null, data, callback);
+					},
+
+					broadcastMessage: function(data, callback) {
+						var getMessageSenders = function(msgMngr) {
+							if (!msgMngr)
+								return [];
+
+							if (typeof msgMngr.sendAsyncMessage === 'function') {
+								return [msgMngr];
+							}
+
+							var senders = [];
+							var ct = msgMngr.childCount;
+							for (var i = 0; i < ct; i++) {
+								var childMM = msgMngr.getChildAt(i);
+								var childs = getMessageSenders(childMM);
+								senders.push.apply(senders, childs);
+							}
+							return senders;
+						};
+
+						var msgSenders = Foxtrick.unique(getMessageSenders(messageManager));
+						for (var msgSender of msgSenders) {
+							this.__sendRequest(msgSender, data, callback);
+						}
+					},
 
 					onRequest: {
 						// make a wrapper for the handler to pass a sendResponse reference
@@ -536,10 +568,6 @@ Foxtrick.lazyProp = function(obj, prop, calc) {
 								removeListener(REQUEST, handlerWrapper);
 							}
 						},
-					},
-
-					broadcastMessage: function(message) {
-						messageManager.broadcastAsyncMessage(REQUEST, { data: message });
 					},
 
 					// tabId of a content script
