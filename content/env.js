@@ -205,12 +205,24 @@ Foxtrick.lazyProp = function(obj, prop, calc) {
 (function() {
 
 	// messaging abstraction
-	var addListener, removeListener, sendRequest;
+	var addListener, removeListener, sendRequest, makeHandler;
 	var REQUEST = 'request@foxtrick.org';
 	var RESPONSE = 'response@foxtrick.org';
 
 	// stores onRequest handlers so we can unregister them again
 	var ONREQUEST_HANDLERS = new Map();
+	Foxtrick.SB.ext.onRequest.addListener = function(handler) {
+		var requestHandler = makeHandler(handler);
+		ONREQUEST_HANDLERS.set(handler, requestHandler);
+		addListener(requestHandler);
+	};
+	Foxtrick.SB.ext.onRequest.removeListener = function(handler) {
+		var requestHandler = ONREQUEST_HANDLERS.get(handler);
+		if (typeof requestHandler !== 'undefined') {
+			ONREQUEST_HANDLERS.delete(handler);
+			removeListener(requestHandler);
+		}
+	};
 
 	if (typeof safari === 'object') {
 		Foxtrick.arch = 'Sandboxed';
@@ -249,6 +261,27 @@ Foxtrick.lazyProp = function(obj, prop, calc) {
 				target = safari.application;
 
 			target.removeEventListener('message', handler);
+		};
+		makeHandler = function(handler) {
+			return function(ev) {
+				// Only listen for 'sendRequest' messages
+				if (ev.name != REQUEST)
+					return;
+
+				var request = ev.message.data;
+				var id = Foxtrick.SB.tabs.getId(ev.target);
+				var sender = { tab: { id: id, url: ev.target.url }};
+
+				var sendResponse = function(dataToSend) {
+					var reply = {
+						callbackToken: ev.message.callbackToken,
+						data: dataToSend,
+					};
+
+					ev.target.page.dispatchMessage(RESPONSE, reply);
+				};
+				handler(request, sender, sendResponse);
+			};
 		};
 
 		sendRequest = (function() {
@@ -316,41 +349,6 @@ Foxtrick.lazyProp = function(obj, prop, calc) {
 			}, safari.application.activeBrowserWindow.tabs);
 		};
 
-		Foxtrick.SB.ext.onRequest.addListener = function(handler) {
-			var makeHandler = function(handler) {
-				return function(ev) {
-					// Only listen for 'sendRequest' messages
-					if (ev.name != REQUEST)
-						return;
-
-					var request = ev.message.data;
-					var id = Foxtrick.SB.tabs.getId(ev.target);
-					var sender = { tab: { id: id, url: ev.target.url }};
-
-					var sendResponse = function(dataToSend) {
-						var reply = {
-							callbackToken: ev.message.callbackToken,
-							data: dataToSend,
-						};
-
-						ev.target.page.dispatchMessage(RESPONSE, reply);
-					};
-					handler(request, sender, sendResponse);
-				};
-			};
-
-			var responseHandler = makeHandler(handler);
-			ONREQUEST_HANDLERS.set(handler, responseHandler);
-			addListener(responseHandler);
-		};
-		Foxtrick.SB.ext.onRequest.removeListener = function(handler) {
-			var responseHandler = ONREQUEST_HANDLERS.get(handler);
-			if (typeof responseHandler !== 'undefined') {
-				ONREQUEST_HANDLERS.delete(handler);
-				removeListener(responseHandler);
-			}
-		};
-
 		// Track tabs that make requests to the global page, assigning them
 		// IDs so we can recognize them later.
 		Foxtrick.SB.tabs.getId = (function() {
@@ -403,6 +401,19 @@ Foxtrick.lazyProp = function(obj, prop, calc) {
 			return ret;
 		});
 
+		addListener = function(handler) {
+			chrome.runtime.onMessage.addListener(handler);
+		};
+		removeListener = function(handler) {
+			chrome.runtime.onMessage.removeListener(handler);
+		};
+		makeHandler = function(handler) {
+			return function(request, sender, sendResponse) {
+				handler(request, sender, sendResponse);
+				return true; // assure message channel is left open for async
+			};
+		};
+
 		Foxtrick.SB.ext.getBackgroundPage = function() {
 			return chrome.extension.getBackgroundPage();
 		};
@@ -431,25 +442,6 @@ Foxtrick.lazyProp = function(obj, prop, calc) {
 				}
 			}
 			catch (e) {}
-		};
-
-		Foxtrick.SB.ext.onRequest.addListener = function(handler) {
-			var makeHandler = function(handler) {
-				return function(data, sender, sendResponse) {
-					handler(data, sender, sendResponse);
-					return true; // assure message channel is left open for async
-				};
-			};
-			var responseHandler = makeHandler(handler);
-			ONREQUEST_HANDLERS.set(handler, responseHandler);
-			chrome.runtime.onMessage.addListener(responseHandler);
-		};
-		Foxtrick.SB.ext.onRequest.removeListener = function(handler) {
-			var responseHandler = ONREQUEST_HANDLERS.get(handler);
-			if (typeof responseHandler !== 'undefined') {
-				ONREQUEST_HANDLERS.delete(handler);
-				chrome.runtime.onMessage.removeListener(responseHandler);
-			}
 		};
 
 		var ACTIVE_TABS = {};
@@ -566,6 +558,45 @@ Foxtrick.lazyProp = function(obj, prop, calc) {
 			/* jshint ignore:end */
 		}
 
+		makeHandler = function(handler) {
+			return function(ev) {
+				// bg context
+				var request = ev.json.data;
+				var id = Foxtrick.SB.tabs.getId(ev.target);
+
+				var sender = {
+					tab: {
+						id: id,
+						url: ev.target.lastLocation,
+						target: ev.target,
+					},
+				};
+
+				var sendResponse = function(dataToSend) {
+					var reply = {
+						callbackToken: ev.json.callbackToken,
+						data: dataToSend,
+					};
+
+					if (typeof sendAsyncMessage === 'function') {
+						sendAsyncMessage(RESPONSE, reply);
+					}
+					else if (typeof messageManager !== 'undefined') {
+						try {
+							var childMM = ev.target.messageManager;
+							childMM.sendAsyncMessage(RESPONSE, reply);
+						}
+						catch (e) {
+							Foxtrick.error('No MessageSender');
+							messageManager.broadcastAsyncMessage(RESPONSE, reply);
+						}
+					}
+				};
+
+				handler(request, sender, sendResponse);
+			};
+		};
+
 		sendRequest = (function() {
 			// The function we'll return at the end of all this
 			var theFunction = function(target, data, callback) {
@@ -650,56 +681,18 @@ Foxtrick.lazyProp = function(obj, prop, calc) {
 			}
 		};
 
+		// these are not quite the same as in Safari/Chrome case
+		// because Gecko has native name-based message separation
 		Foxtrick.SB.ext.onRequest.addListener = function(handler) {
-			// make a wrapper for the handler to pass a sendResponse reference
-			var makeHandler = function(handler) {
-				return function(ev) {
-					// bg context
-					var request = ev.json.data;
-					var id = Foxtrick.SB.tabs.getId(ev.target);
-
-					var sender = {
-						tab: {
-							id: id,
-							url: ev.target.lastLocation,
-							target: ev.target,
-						},
-					};
-
-					var sendResponse = function(dataToSend) {
-						var reply = {
-							callbackToken: ev.json.callbackToken,
-							data: dataToSend,
-						};
-
-						if (typeof sendAsyncMessage === 'function') {
-							sendAsyncMessage(RESPONSE, reply);
-						}
-						else if (typeof messageManager !== 'undefined') {
-							try {
-								var childMM = ev.target.messageManager;
-								childMM.sendAsyncMessage(RESPONSE, reply);
-							}
-							catch (e) {
-								Foxtrick.error('No MessageSender');
-								messageManager.broadcastAsyncMessage(RESPONSE, reply);
-							}
-						}
-					};
-
-					handler(request, sender, sendResponse);
-				};
-			};
-
-			var responseHandler = makeHandler(handler);
-			ONREQUEST_HANDLERS.set(handler, responseHandler);
-			addListener(REQUEST, responseHandler);
+			var requestHandler = makeHandler(handler);
+			ONREQUEST_HANDLERS.set(handler, requestHandler);
+			addListener(REQUEST, requestHandler);
 		};
 		Foxtrick.SB.ext.onRequest.removeListener = function(handler) {
-			var responseHandler = ONREQUEST_HANDLERS.get(handler);
-			if (typeof responseHandler !== 'undefined') {
+			var requestHandler = ONREQUEST_HANDLERS.get(handler);
+			if (typeof requestHandler !== 'undefined') {
 				ONREQUEST_HANDLERS.delete(handler);
-				removeListener(REQUEST, responseHandler);
+				removeListener(REQUEST, requestHandler);
 			}
 		};
 
