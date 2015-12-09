@@ -78,11 +78,11 @@
 			"code": "bg",
 			"name": "Bulgarian",
 			"phrases": "2218",
-			"translated": "2014",
+			"translated": "2015",
 			"translated_progress": "83",
 			"words": "15853",
 			"words_approved": "0",
-			"words_translated": "13242"
+			"words_translated": "13243"
 		},
 		{
 			"approved": "0",
@@ -133,7 +133,7 @@
 			"words_translated": "13660"
 		},
 		{
-			"approved": "1874",
+			"approved": "1873",
 			"approved_progress": "83",
 			"code": "da",
 			"name": "Danish",
@@ -141,7 +141,7 @@
 			"translated": "2157",
 			"translated_progress": "93",
 			"words": "15853",
-			"words_approved": "13181",
+			"words_approved": "13173",
 			"words_translated": "14777"
 		},
 		{
@@ -186,11 +186,11 @@
 			"code": "et",
 			"name": "Estonian",
 			"phrases": "2218",
-			"translated": "487",
+			"translated": "494",
 			"translated_progress": "17",
 			"words": "15853",
 			"words_approved": "0",
-			"words_translated": "2767"
+			"words_translated": "2789"
 		},
 		{
 			"approved": "0",
@@ -270,11 +270,11 @@
 			"code": "ka",
 			"name": "Georgian",
 			"phrases": "2218",
-			"translated": "1577",
+			"translated": "1581",
 			"translated_progress": "54",
 			"words": "15853",
 			"words_approved": "0",
-			"words_translated": "8707"
+			"words_translated": "8716"
 		},
 		{
 			"approved": "12",
@@ -282,11 +282,11 @@
 			"code": "de",
 			"name": "German",
 			"phrases": "2218",
-			"translated": "1934",
-			"translated_progress": "84",
+			"translated": "2108",
+			"translated_progress": "91",
 			"words": "15853",
 			"words_approved": "33",
-			"words_translated": "13461"
+			"words_translated": "14516"
 		},
 		{
 			"approved": "0",
