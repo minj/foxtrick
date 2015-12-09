@@ -154,6 +154,12 @@ Foxtrick.SB.tabs.create(url)
 
 					this.__request(target, data, callback);
 				},
+				// sending to all tabs
+				broadcastMessage: function(data, callback) {
+					Foxtrick.forEach(function(tab) {
+						Foxtrick.SB.ext.__request(tab.page, data, callback);
+					}, safari.application.activeBrowserWindow.tabs);
+				},
 
 				onRequest: {
 					addListener: function(handler) {
@@ -181,12 +187,6 @@ Foxtrick.SB.tabs.create(url)
 					},
 				},
 
-				// sending to all tabs
-				broadcastMessage: function(data, callback) {
-					Foxtrick.forEach(function(tab) {
-						Foxtrick.SB.ext.__request(tab.page, data, callback);
-					}, safari.application.activeBrowserWindow.tabs);
-				},
 			},
 			tabs: {
 				// Track tabs that make requests to the global page, assigning them
@@ -244,6 +244,13 @@ Foxtrick.SB.tabs.create(url)
 		// port common functions to sandboxed
 		Foxtrick.SB = {
 			ext: {
+				getBackgroundPage: function() {
+					return chrome.extension.getBackgroundPage();
+				},
+				getURL: function(path) {
+					return chrome.runtime.getURL(path);
+				},
+
 				sendRequest: function(data, callback) {
 					try {
 						if (callback)
@@ -266,13 +273,13 @@ Foxtrick.SB.tabs.create(url)
 						chrome.tabs.sendRequest(Number(i), data, callback);
 					}
 				},
-				getURL: function(path) {
-					chrome.extension.getURL(path);
-				},
 				// tabId of a content script
 				tabId: -1,
 			},
 			tabs: {
+				getId: function(tab) {
+					return tab.id;
+				},
 				create: function(url) {
 					chrome.tabs.create(url);
 				},
