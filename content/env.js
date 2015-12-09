@@ -450,7 +450,7 @@ Foxtrick.lazyProp = function(obj, prop, calc) {
 							var responseHandler = function(ev) {
 								var run = function(callback) {
 									try {
-										callback(ev.json.data, ev.target);
+										callback(ev.json.data);
 									}
 									catch (e) {
 										Foxtrick.log('callback error:', e);
