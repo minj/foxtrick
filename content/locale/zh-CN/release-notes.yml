@@ -5,6 +5,12 @@ zh-CN:
       note_0: '请查阅 Google Code 上的<linkSVN>版本历史</linkSVN>.'
     beta:
       note_0: '这是下一个版本的beta测试版。请在我们超级容易的大众翻译页面 <linkCrowdin>crowdin.net</linkCrowdin>帮助翻译此版本。'
+    0.16.1.1:
+      important: '<header>重要公告</header>'
+      safari_cert: '我们正在寻找开发 iOS 或 OSX 应用的人员，帮助恢复Foxtrick对 Safari 用户的支持。请参阅我们的 <linkSafariCertBug>问题跟踪器</linkSafariCertBug> 的详细信息。'
+      beta: '请考虑使用 <linkFTBeta>Foxtrick beta</linkFTBeta>以早点获得新的功能，影响Foxtrick的开发，并帮助查找和修复可能出现的任何问题。'
+      bugs: '<header>Bug 修复</header>'
+      defence_stamina: '修复了损坏的体能效果对于防守区域的计算在<module>MatchSimulator</module>中的影响：在以前版本中只有守门员的体能被意外考虑进去。'
     0.15.2.1:
       important: '<header>重要公告</header>'
       signed: 火狐浏览器的所有附加程序现在都需要由 Mozilla 进行数字签名。这大部分是签名的更新，以确保 Foxtrick 兼容性。

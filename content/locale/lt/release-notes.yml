@@ -5,13 +5,22 @@ lt:
       note_0: 'Įdiegėte nestabilią versiją. Naudokite savo rizika. Peržiūrėkite „Google Code“ <linkSVN>pakeitimų sąrašą</linkSVN>.'
     beta:
       note_0: 'Įdiegėte išankstinę (beta) versiją. Prašome prisidėti prie jos vertimo į lietuvių kalbą ypatingai šauniame vertėjų savanorių portale „<linkCrowdin>crowdin.net</linkCrowdin>“. '
+    0.16.1.1:
+      important: '<header>Svarbūs pranešimai</header>'
+      safari_cert: 'Ieškome Hattrick bendruomenės narių, kurie kurtų iOS ar OSX programėles. Reikia pagalbos sutvarkant Foxtrick palaikymą Safari naršyklės naudotojams. Daugiau informacijos rasite <linkSafariCertBug>Foxtrick klaidų seklyje</linkSafariCertBug>.'
+      beta: 'Siūlome išmėgint <linkFTBeta>Foxtrick beta</linkFTBeta> versiją: galėsite pirmieji išmėginti naująsias funkcijas, paveikti jų kūrimo procesą ir pagelbėti randant bei sutaisant iškylančius keblumus.'
+      bugs: '<header>Pataisytos klaidos</header>'
+      defence_stamina: 'Sutaisytas klaidingas gynybos sektorių ištvermės efekto skaičiavimas <module>MatchSimulator</module> modulyje: praeitoje versijoje per klaidą buvo atsižvelgiama tik į vartininko ištvermę.'
+      time_rewrite: Foxtrick datos ir laiko nustatymo sistema buvo visiškai pertvarkyta dėl ateinančių Hatrrick pokyčių šioje srityje. Deja praeitoje versijoje įsivėlė kelios klaidos, dėl kurių kai kuriose šalyse žaidžiantiems vartotojams galėjo kilti keblumų su moduliais, kuriems reikalinga CHPP sąsaja. Problema turėtų būti sutvarkyta.
+      calendar_fix: 'Sutvarkyta problema, kur <module>DashboardCalendar</module> modulis kartais visiškai sutrikdavo dėl problemų nustatant datą.'
+      and_more: Daugybė kitų smulkių pataisymų ir pakitimų.
     0.16.1:
       important: '<header>Svarbūs pranešimai</header>'
       new_contributions: '<module>PlayerPositionsEvaluations</module> nuo šiol naudos oficialiai paskelbtus 60-tojo visuotinio Hattrick sezono rungtynių variklio duomenis. Visgi reiktų pastebėti, kad bet kokiems skaičiavimams būtini papildomi parametrai, kurie nėra tiksliai žinomi. Nors numatytos jų vertės yra pakankamai geros, jos nėra oficialios ar patvirtintos statistiškai. Laukiame Jūsų pasiūlymų kaip jas patobulinti. Visus nustatymus rasite bet kurio žaidėjo puslapyje.'
       crowdin: '<header>Daugybė vertimo atnaujinimų. Dėkojame savo šauniems vartotojams, kurie naudojasi <linkCrowdin>crowdin portalu</linkCrowdin>. Ir Jūs galite prisidėti!</header>'
       support: '<header>Patinka šis projektas? Prašome <linkContribute>pagelbėti Foxtrick</linkContribute>.</header>'
       bugs: '<header>Pataisytos klaidos</header>'
-      dollar_wage: 'Sutaisytas atlyginimo skaičiavimas šalyse, kurios naudoja dolerio valiutą ( <module>ExtendedPlayerDetailsWage</module> modulis).'
+      dollar_wage: 'Sutaisytas atlyginimo skaičiavimas šalyse, kurios naudoja dolerio valiutą (<module>ExtendedPlayerDetailsWage</module> modulis).'
       old_faces_moi: 'Sutvarkytas žaidėjų veidų atvaizdavimas, sutrikęs dėl <module>OldStyleFace</module> ir <module>MatchOrderInterface</module> modulių sąveikos.'
       last_lineup_live: 'Paskutinės sudėties nuorodos (<module>TeamPopupLinks</module> ir <module>SeniorTeamShortCuts</module> moduliai) neveikė vykstant rungtynėms. Problema išspręsta.'
       other: '<header>Kiti pakeitimai</header>'

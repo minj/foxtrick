@@ -5,6 +5,15 @@ ca:
       note_0: 'Aquesta és la versió de desenvolupament. Utilitza-la a la teva pròpia discreció. Si us plau mira <linkSVN>commit history</linkSVN> a Google Code per als detalls dels canvis.'
     beta:
       note_0: 'Aquesta és la versió beta de la propera versió. Si us plau, ajuda a traduir aquesta versió a la nostra súper pàgina web de traducció i molt fàcil <linkCrowdin>crowdin.net</linkCrowdin>.'
+    0.16.1.1:
+      important: '<header>Anuncis importants</header>'
+      safari_cert: "Busquem a algú de la comunitat de Hattrick que desenvolupi aplicacions per a iOS o OSX que ajudi a redreçar el suport de Foxtrick per als usuaris de Safari. Veure nostre <linkSafariCertBug>seguiment d'incidències</linkSafariCertBug> per obtenir més informació."
+      beta: 'Per favor utilitzeu <linkFTBeta>la versió beta de Foxtrick</linkFTBeta> per a obtenir noves característiques des del principi, influir en el seu desenvolupament i ajudar a trobar i solucionar qualsevol problema que pugui sorgir.'
+      bugs: "<header>Correccions d'errors</header>"
+      defence_stamina: "Arreglat el càlcul de l'efecte de la resistència per als sectors de la defensa en <module>MatchSimulator</module>: només la resistència del porter, per error, va ser considerada en la versió anterior."
+      time_rewrite: "La detecció de la data i la hora que fa Foxtrick ha hagut de ser reescrita degut als propers canvis a Hattrick. Malauradament en la versió anterior es van introduir alguns errors causant problemes a mòduls CHPP (per alguns països). El problema ara per ara hauria d'estar resolt."
+      calendar_fix: '<module>DashboardCalendar</module> estava completament danyat en alguns casos per un problema amb detecció de la data.'
+      and_more: Diversos altres petits canvis i correccions.
     0.16.1:
       important: '<header>Anuncis importants</header>'
       new_contributions: '<module>PlayerPositionsEvaluations</module> ara utilitza les dades oficialment publicades del motor del joc per a la temporada global 60. No obstant això, paràmetres addicionals són necessaris per donar sentit a aquestes dades. Es proporcionen valors per defecte raonables que no són oficials ni estan basats en estudis estadístics. Qualsevol opinió per millorar-los és benvinguda. Tots els paràmetres estan disponibles en qualsevol pàgina de jugador.'

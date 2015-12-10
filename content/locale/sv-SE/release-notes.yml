@@ -5,6 +5,15 @@ sv-SE:
       note_0: 'This is the development build. Use at your own discretion. Please view <linkSVN>commit history</linkSVN> at Google Code for details of the changes.'
     beta:
       note_0: 'Detta är BETA -versionen av nästa utgåva. Hjälp gärna till att översätta denna version via vårt superlätta översättningsverktyg på <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.16.1.1:
+      important: '<header>Viktiga meddelanden</header>'
+      safari_cert: 'Vi letar efter någon i Hattricks stora community som utvecklar appar för iOS eller OSX som kan hjälpa oss att återskapa support även för användare av Safari. Se vår <linkSafariCertBug>issue tracker</linkSafariCertBug> för mer information.'
+      beta: 'Vänligen överväg att använda <linkFTBeta>Foxtrick beta</linkFTBeta> för att dels få nya funktioner i ett tidigt skede, dels kunna påverka dess vidare utveckling samt för att hjälpa oss att fixa de ev. problem som ibland går hand i hand med nya funktioner.'
+      bugs: '<header>Buggfixar</header>'
+      defence_stamina: 'Ett enkelt stavfel gjorde att beräkningen av kondiseffekten för försvarsdelen i <module>MatchSimulator</module> blev fel. Endast målvaktens kondition togs med i beräkningen. Detta är nu åtgärdat.'
+      time_rewrite: P.g.a. kommande ändringar från Hattrick har Foxtricks sätt att upptäcka tid/datum fått skrivas om helt. Tyvärr smög sig några missar in i den förra utgåvan av Foxtrick, vilket orsakade problem för vissa användare/länder med moduler som använder sig av CHPP. Detta problem skall nu vara löst.
+      calendar_fix: '<module>DashboardCalendar</module> har i vissa fall varit helt trasig p.g.a. ett datumrelaterat problem.'
+      and_more: Flera andra mindre ändringar och korrigeringar.
     0.16.1:
       important: '<header>Viktiga meddelanden</header>'
       new_contributions: 'Modulen <module>PlayerPositionsEvaluations</module> är nu anpassad för de nya ändringarna HT gjort i matchmotorn inför säsong #60. Det behövs dock ytterligare parametrar för att förstå dessa siffror bättre. Även om rimliga standardvärden har angetts här, så är dessa vare sig officiella eller baserade på några statistiska undersökningar. All feedback när det gäller dessa värden tas emot med öppna armar. Samtliga inställningar för denna modul finns längst ner på den detaljerade spelarsidan.'
