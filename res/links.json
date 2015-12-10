@@ -23,13 +23,6 @@
 		"title": "HT-Tools Arena",
 		"img": "http://www.ht-tools.eu/static/img/favicon.png"
 	},
-	"ht_tools_sponsors_revenue": {
-		"economylink": {
-			"url": "http://www.ht-tools.eu/sponsorsrevenue?teamid=[ownteamid]"
-		},
-		"title": "HT-Tools Sponsors Revenue",
-		"img": "http://www.ht-tools.eu/static/img/favicon.png"
-	},
 	"ht_tools_healing": {
 		"playerhealinglink": {
 			"url": "http://www.ht-tools.eu/healing?playerid=[playerid]&teamid=[teamid]"

@@ -45,6 +45,11 @@
 			"name": "kosio"
 		},
 		{
+			"duty": "supporter",
+			"id": "10344768",
+			"name": "raetselecke"
+		},
+		{
 			"duty": "translator",
 			"id": "10438815",
 			"name": "puuslik"
@@ -108,6 +113,11 @@
 			"duty": "translator",
 			"id": "11006315",
 			"name": "GM-timh1704"
+		},
+		{
+			"duty": "supporter",
+			"id": "11035584",
+			"name": "thejohn"
 		},
 		{
 			"duty": "supporter",
@@ -246,6 +256,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "12511204",
+			"name": "Domek_69"
+		},
+		{
+			"duty": "supporter",
 			"id": "12521069",
 			"name": "EiCeKju"
 		},
@@ -375,6 +390,11 @@
 			"name": "--Eagle--"
 		},
 		{
+			"duty": "supporter",
+			"id": "2117265",
+			"name": "Regador"
+		},
+		{
 			"duty": "translator",
 			"id": "2172516",
 			"name": "csajszi"
@@ -483,6 +503,11 @@
 			"duty": "developer",
 			"id": "3410980",
 			"name": "Aimo_Kanuuna"
+		},
+		{
+			"duty": "translator",
+			"id": "3455853",
+			"name": "takiwakiu20"
 		},
 		{
 			"duty": "supporter",
@@ -690,6 +715,11 @@
 			"name": "tjahe"
 		},
 		{
+			"duty": "supporter",
+			"id": "5489151",
+			"name": "legerutengenser"
+		},
+		{
 			"duty": "translator",
 			"id": "552640",
 			"name": "slader"
@@ -713,6 +743,11 @@
 			"duty": "supporter",
 			"id": "575455",
 			"name": "Bephep"
+		},
+		{
+			"duty": "translator",
+			"id": "578992",
+			"name": "dm001"
 		},
 		{
 			"duty": "supporter",
@@ -890,6 +925,11 @@
 			"name": "LA-Shamil"
 		},
 		{
+			"duty": "supporter",
+			"id": "7611458",
+			"name": "geboren1948"
+		},
+		{
 			"duty": "developer",
 			"id": "765274",
 			"name": "taised"
@@ -1005,6 +1045,11 @@
 			"name": "Vital_top7"
 		},
 		{
+			"duty": "supporter",
+			"id": "9063412",
+			"name": "MagicRoFoX"
+		},
+		{
 			"duty": "translator",
 			"id": "9100817",
 			"name": "DavidatorusF"
@@ -1095,9 +1140,19 @@
 			"name": "relon"
 		},
 		{
+			"duty": "supporter",
+			"id": "9832269",
+			"name": "bigbird"
+		},
+		{
 			"duty": "translator",
 			"id": "9845514",
 			"name": "LA-SI-CH"
+		},
+		{
+			"duty": "translator",
+			"id": "9855688",
+			"name": "Nika_Kvrivishvili"
 		},
 		{
 			"duty": "translator",
