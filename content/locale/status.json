@@ -138,11 +138,11 @@
 			"code": "da",
 			"name": "Danish",
 			"phrases": "2218",
-			"translated": "2157",
+			"translated": "2160",
 			"translated_progress": "93",
 			"words": "15853",
 			"words_approved": "13173",
-			"words_translated": "14777"
+			"words_translated": "14799"
 		},
 		{
 			"approved": "1865",
@@ -270,11 +270,11 @@
 			"code": "ka",
 			"name": "Georgian",
 			"phrases": "2218",
-			"translated": "1581",
-			"translated_progress": "54",
+			"translated": "1582",
+			"translated_progress": "55",
 			"words": "15853",
 			"words_approved": "0",
-			"words_translated": "8716"
+			"words_translated": "8730"
 		},
 		{
 			"approved": "12",
@@ -582,11 +582,11 @@
 			"code": "es-ES",
 			"name": "Spanish",
 			"phrases": "2218",
-			"translated": "2105",
-			"translated_progress": "93",
+			"translated": "2218",
+			"translated_progress": "100",
 			"words": "15853",
 			"words_approved": "1",
-			"words_translated": "14806"
+			"words_translated": "15853"
 		},
 		{
 			"approved": "0",

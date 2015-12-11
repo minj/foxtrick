@@ -7,14 +7,28 @@ es-ES:
       note_0: 'Esta es la versión beta de la próxima release. Por favor, ayuda a traducir esta versión accediendo a nuestra super fácil de usar web de traducción <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.16.1.1:
       important: '<header>Anuncios importantes</header>'
+      safari_cert: 'Estamos buscando a alguien en la comunidad de Hattrick que desarrolle applicaciones para iOS u OSX para ayudar a que Foxtrick pueda volver a dar soporte a los usuarios de Safari. Visita nuestro <linkSafariCertBug>gestor de incidencias</linkSafariCertBug> para más información.'
+      beta: 'Por favor, considera usar <linkFTBeta>la versión beta de Foxtrick</linkFTBeta> para obtener antes nuevas mejoras, para hacer sugerencias y para ayudar a encontrar y arreglar cualquier problema que pudiese aparecer.'
       bugs: '<header>Corrección de errores</header>'
+      defence_stamina: 'Corregido el cálculo del efecto de la condición en los sectores defensivos en <module>MatchSimulator</module>: sólo la condición de los porteros se consideró de manera accidental en las versiones anteriores.'
+      time_rewrite: Detección de la fecha y hora en Foxtrick tuvo que ser reescrita debido a los nuevos cambios de Hattrick. Por desgracia, se introdujeron unos pocos errores en la versión anterior, causando problemas para algunos países que usaban ´módulos CHPP. El problema debería estar resuelto ahora.
+      calendar_fix: '<module>DashboardCalendar</module> estaba completamente roto en algunos casos debido a un problema con la detección de las fechas.'
       and_more: Otros pequeños cambios y correcciones.
     0.16.1:
       important: '<header>Anuncios importantes</header>'
+      new_contributions: '<module>PlayerPositionsEvaluations</module> ahora utiliza los datos oficiales publicados por el motor de HT para la temporada 60. De todas formas, se necesitan parámetros adicionales para dar sentido a esas cifras. Mientras se proporcionan valores por defecto razonables, no están basados en estudios o estadísticas oficiales. Cualquier sugerencia para mejorarlos será bienvenida. Todas las configuraciones están disponibles en la página del jugador.'
       crowdin: '<header>AMuchas actualizaciones de la traducción de nuestros asombrosos usuarios, mediante la <linkCrowdin>herramienta CrowdIn</linkCrowdin>. ¡Tu puedes contribuir también si quieres!</header>'
       support: '¿<header>Como lo estamos haciendo? Por favor <linkContribute>ayuda Foxtrick</linkContribute>.</header>'
       bugs: '<header>Corrección de errores</header>'
+      dollar_wage: 'Corregido el cálculo de salarios en <module>ExtendedPlayerDetailsWage</module> para países que usan dólar como divisa.'
+      old_faces_moi: 'Corregidos los avatars de los jugadores debido a un conflicto entre <module>OldStyleFace</module> y <module>MatchOrderInterface</module>.'
+      last_lineup_live: 'El enlace a la última alineación en <module>TeamPopupLinks</module> y en <module>SeniorTeamShortCuts</module> estaban rotos durante los partidos en directo. El problema debería estar ya resuelto.'
       other: '<header>Otros cambios</header>'
+      stamina_contributions: '<module>MatchSimulator</module> ahora usa <module>PlayerPositionsEvaluations</module> para calcular el efecto de la condición. Los cambios son pequeños pero destacables. Cualquier sugerencia para mejorar esta característica será siempre bienvenida.'
+      copy_lineup: 'Ahora puedes copiar tu alineación en <module>MatchOrderInterface</module>.'
+      supporters_series: '<module>SupporterList</module> ahora añade iconos de Supporter a las páginas de las ligas.'
+      price_history: '<module>TransferComparePlayers</module> ahora muestra información más detallada acerca de los cambios de precio en la historia de transferencia del jugador.'
+      total_capacity: '<module>MatchIncome</module> ahora muestra estadísticas de la capacidad total del estadio.'
       and_more: Otros pequeños cambios y correcciones.
     0.16.0:
       important: '<header>Anuncios importantes</header>'
