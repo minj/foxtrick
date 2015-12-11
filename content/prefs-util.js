@@ -149,7 +149,18 @@ Foxtrick.Prefs = {
 
 	// returns a list in an array
 	getList: function(branch) {
+		var getNum = function(key) {
+			var numStr = key.slice(branch.length + 1); // skip '.'
+			return parseInt(numStr, 10);
+		};
+
 		var keys = Foxtrick.Prefs.getAllKeysOfBranch(branch);
+		keys.sort(function(a, b) {
+			var aNum = getNum(a) || 0;
+			var bNum = getNum(b) || 0;
+			return aNum - bNum;
+		});
+
 		return Foxtrick.map(function(k) {
 			return Foxtrick.Prefs.get(k);
 		}, keys);
