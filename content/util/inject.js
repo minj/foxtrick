@@ -20,31 +20,65 @@ Foxtrick.util.inject.cssLink = function(doc, url) {
 		});
 		return;
 	}
-	var head = doc.getElementsByTagName('head')[0];
-	var link = doc.createElement('link');
-	link.setAttribute('rel', 'stylesheet');
-	link.setAttribute('type', 'text/css');
-	link.setAttribute('media', 'all');
-	link.setAttribute('href', url);
-	head.appendChild(link);
+	var inject = function(doc) {
+		var link = doc.createElement('link');
+		link.setAttribute('rel', 'stylesheet');
+		link.setAttribute('type', 'text/css');
+		link.setAttribute('media', 'all');
+		link.setAttribute('href', url);
 
-	return link;
+		doc.head.appendChild(link);
+	};
+
+	var head = doc.head;
+	var body = doc.body;
+
+	if (head && body) {
+		inject(doc);
+	}
+	else {
+		Foxtrick.onChange(doc.documentElement, function(doc) {
+			var head = doc.head;
+			var body = doc.body;
+			if (head && body) {
+				inject(doc);
+				return true;
+			}
+		}, { subtree: false });
+	}
 };
 
 Foxtrick.util.inject.css = function(doc, css, id) {
-	var sourceName = 'ft.' + id + '.css';
-	var head = doc.getElementsByTagName('head')[0];
-	var style = doc.createElement('style');
-	style.setAttribute('type', 'text/css');
-	style.id = id;
-	head.appendChild(style);
+	var inject = function(doc) {
+		Foxtrick.util.css.replaceExtensionDirectory(css, function(css) {
+			if (!/^(ft|foxtrick)/i.test(id))
+				id = 'ft-' + id;
 
-	var inject = function(css) {
-		style.textContent = css + '\n\n/*# sourceURL=' + sourceName + ' */\n';
+			var sourceName = id + '.css';
+			var style = doc.createElement('style');
+			style.id = id;
+			style.textContent = css + '\n\n/*# sourceURL=' + sourceName + ' */\n';
+			style.setAttribute('type', 'text/css');
+
+			doc.head.appendChild(style);
+		});
 	};
-	Foxtrick.util.css.replaceExtensionDirectory(css, inject);
 
-	return style;
+	var head = doc.head;
+	var body = doc.body;
+	if (head && body) {
+		inject(doc);
+	}
+	else {
+		Foxtrick.onChange(doc.documentElement, function(doc) {
+			var head = doc.head;
+			var body = doc.body;
+			if (head && body) {
+				inject(doc);
+				return true;
+			}
+		}, { subtree: false });
+	}
 };
 
 // attaches a JavaScript file to the page
