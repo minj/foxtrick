@@ -140,6 +140,11 @@
 			"name": "aleksi_h"
 		},
 		{
+			"duty": "supporter",
+			"id": "11320073",
+			"name": "Dr_Fleischwolf"
+		},
+		{
 			"duty": "translator",
 			"id": "1132186",
 			"name": "LA-gucan"
@@ -505,9 +510,14 @@
 			"name": "Aimo_Kanuuna"
 		},
 		{
+			"duty": "supporter",
+			"id": "3417036",
+			"name": "Chemii"
+		},
+		{
 			"duty": "translator",
 			"id": "3455853",
-			"name": "takiwakiu20"
+			"name": "Takiwaki"
 		},
 		{
 			"duty": "supporter",
