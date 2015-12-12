@@ -51,8 +51,10 @@ Foxtrick.util.inject.cssLink = function(doc, url) {
 Foxtrick.util.inject.css = function(doc, css, id) {
 	var inject = function(doc) {
 		Foxtrick.util.css.replaceExtensionDirectory(css, function(css) {
-			var sourceName = 'ft.' + id + '.css';
+			if (!/^(ft|foxtrick)/i.test(id))
+				id = 'ft-' + id;
 
+			var sourceName = id + '.css';
 			var style = doc.createElement('style');
 			style.id = id;
 			style.textContent = css + '\n\n/*# sourceURL=' + sourceName + ' */\n';
