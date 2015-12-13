@@ -39,8 +39,10 @@ Foxtrick.modules.MatchSimulator = {
 
 		var TEAM_ID = (function() {
 			var crumbs = Foxtrick.Pages.All.getBreadCrumbs(doc);
-			var crumbId = Foxtrick.util.id.getTeamIdFromUrl(crumbs[0].href);
-			return crumbId;
+			var crumbId = Foxtrick.util.id.getTeamIdFromUrl(crumbs[0].href); // Simulator
+			var urlId = Foxtrick.util.id.getTeamIdFromUrl(doc.location.href); // NT/Regular
+
+			return urlId || crumbId;
 		})();
 
 		var MATCH_ID = Foxtrick.util.id.getMatchIdFromUrl(doc.location.href);
