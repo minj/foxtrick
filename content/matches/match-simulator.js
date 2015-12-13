@@ -18,12 +18,40 @@ Foxtrick.modules.MatchSimulator = {
 	run: function(doc) {
 		var module = this;
 
-		var isYouth = Foxtrick.Pages.Match.isYouth(doc);
-		if (isYouth)
+		var IS_YOUTH = Foxtrick.Pages.Match.isYouth(doc);
+		if (IS_YOUTH)
 			return;
 
-		var isHTOIntegrated = Foxtrick.Pages.Match.isHTOIntegrated(doc);
-		var isHome;
+		// global vars, NOT constants!
+		var gTeamNames = new Array(2); // global var to be used for HTMS,
+
+		// ratings and tactic for predicted and for selected other team's match
+		var gRatings = new Array(9), gRatingsOther = new Array(9);
+		var gOldRatings = new Array(9); // previous ratings
+		var gOrgRatings = new Array(9); // no stamina discount
+		var gSimulatorReady = false; // track first run
+
+		var gMatchXML = null, gOtherTeamID = null, gHomeAway = null;
+
+		var IS_HTO = Foxtrick.Pages.Match.isHTOIntegrated(doc);
+		var SOURCE_SYSTEM = IS_HTO ? SOURCE_SYSTEM = 'HTOIntegrated' : 'Hattrick';
+		var IS_HOME; // defined later but once only!
+
+		var TEAM_ID = (function() {
+			var crumbs = Foxtrick.Pages.All.getBreadCrumbs(doc);
+			var crumbId = Foxtrick.util.id.getTeamIdFromUrl(crumbs[0].href); // Simulator
+			var urlId = Foxtrick.util.id.getTeamIdFromUrl(doc.location.href); // NT/Regular
+
+			return urlId || crumbId;
+		})();
+
+		var MATCH_ID = Foxtrick.util.id.getMatchIdFromUrl(doc.location.href);
+		if (!MATCH_ID) {
+			// no matchId: match sandbox
+			IS_HOME = true;
+			var crumbs = Foxtrick.Pages.All.getBreadCrumbs(doc);
+			gTeamNames[0] = crumbs[0].textContent.trim();
+		}
 
 		var displayOption = Foxtrick.Prefs.getInt('module.MatchSimulator.value');
 		var fieldOverlay = doc.getElementById(module.FIELD_OVERLAY_ID);
@@ -41,7 +69,6 @@ Foxtrick.modules.MatchSimulator = {
 			overlayBottom = doc.createElement('div');
 			fieldOverlay.appendChild(overlayBottom).id = 'ft-overlayBottom';
 		}
-		var teamNames = new Array(2); // global var to be used for HTMS
 
 		// ratings
 		if (useRatings) {
@@ -117,14 +144,6 @@ Foxtrick.modules.MatchSimulator = {
 		checkFlipped(doc);
 
 		var MATCH_LIST_TMPL = '{date}: {HomeTeamName} - {HomeGoals}:{AwayGoals} - {AwayTeamName}';
-
-		// ratings and tactic for predicted and for selected other team's match
-		var currentRatings = new Array(9), currentRatingsOther = new Array(9);
-		var oldRatings = new Array(9); // previous ratings
-		var orgRatings = new Array(9); // no stamina discount
-		var simulatorReady = false; // track first run
-
-		var currentMatchXML = null, currentOtherTeamID = null, currentHomeAway = null;
 
 		var addTeam = function(ev, opts) {
 			var doc = ev.target.ownerDocument;
@@ -233,14 +252,14 @@ Foxtrick.modules.MatchSimulator = {
 				return;
 			}
 			// if no match selected,
-			// cleanup old ratings display and reset currentRatingsOther,
+			// cleanup old ratings display and reset gRatingsOther,
 			// so that percentBars and HTMS gets cleaned as well
 			else if (selectedMatchId == -1) {
 				var otherWrappers = fieldOverlay.getElementsByClassName('ft-otherWrapper');
 
 				Foxtrick.forEach(function(wrapper, i) {
 					wrapper.parentNode.removeChild(wrapper);
-					currentRatingsOther[i] = undefined;
+					gRatingsOther[i] = undefined;
 				}, otherWrappers);
 
 				var tacticLevelLabelOther = doc.getElementById('tacticLevelLabelOther');
@@ -249,7 +268,7 @@ Foxtrick.modules.MatchSimulator = {
 					labelParent.removeChild(tacticLevelLabelOther);
 				}
 
-				module.updateBarsAndHTMS(doc, currentRatings, currentRatingsOther, opts);
+				module.updateBarsAndHTMS(doc, gRatings, gRatingsOther, opts);
 				return;
 			}
 			// add a matchId manually
@@ -267,12 +286,12 @@ Foxtrick.modules.MatchSimulator = {
 			getMatchDetails(selectedMatchId, SourceSystem, opts);
 		};
 		var processMatch = function(matchXML, opts) {
-			currentMatchXML = matchXML;
-			currentHomeAway = opts.homeAway;
-			currentOtherTeamID = opts.teamId;
+			gMatchXML = matchXML;
+			gHomeAway = opts.homeAway;
+			gOtherTeamID = opts.teamId;
 
-			module.updateOtherRatings(doc, currentRatingsOther, matchXML, isHome, opts);
-			module.updateBarsAndHTMS(doc, currentRatings, currentRatingsOther, opts);
+			module.updateOtherRatings(doc, gRatingsOther, matchXML, gTeamNames, opts);
+			module.updateBarsAndHTMS(doc, gRatings, gRatingsOther, opts);
 		};
 		var getMatchDetails = function(matchId, sourceSystem, opts) {
 			var isNew = opts.isNew;
@@ -509,7 +528,7 @@ Foxtrick.modules.MatchSimulator = {
 		var addMatches = function(matchesXML) {
 			var select = doc.getElementById(module.MATCH_SELECT_ID);
 
-			var thisTeamID = matchesXML.text('TeamID');
+			var selectedTeamID = matchesXML.text('TeamID');
 			var matchNodes = matchesXML.getElementsByTagName('Match');
 			Foxtrick.forEach(function(match) {
 				// README: no HTO in match archive
@@ -534,7 +553,7 @@ Foxtrick.modules.MatchSimulator = {
 				option.className = module.getIconClass(MatchType);
 				option.dataset.SourceSystem = SourceSystem;
 				// ensure homeAway exists for automatically added matches
-				option.dataset.homeAway = thisTeamID == AwayTeamID ? 'away' : 'home';
+				option.dataset.homeAway = selectedTeamID == AwayTeamID ? 'away' : 'home';
 				option.value = MatchID;
 
 				var info = {
@@ -576,8 +595,8 @@ Foxtrick.modules.MatchSimulator = {
 			});
 		};
 
-		var setupSimulator = function(matchId, opts) {
-			simulatorReady = true;
+		var setupSimulator = function(opts) {
+			gSimulatorReady = true;
 
 			var hideOverlay = function(ev) {
 				var doc = ev.target.ownerDocument;
@@ -599,7 +618,9 @@ Foxtrick.modules.MatchSimulator = {
 			copyButton.type = 'button';
 			copyButton.value = Foxtrick.L10n.getString('button.copy');
 			copyButton.id = 'ft-copyRatingsButton';
-			Foxtrick.onClick(copyButton, module.copyRatings.bind(module));
+			Foxtrick.onClick(copyButton, function(ev) {
+				module.copyRatings(ev, opts);
+			});
 			controls.appendChild(copyButton);
 
 			// relocate prediction controls
@@ -611,13 +632,8 @@ Foxtrick.modules.MatchSimulator = {
 				controls.appendChild(neighbor);
 			}
 
-			var crumbs = Foxtrick.Pages.All.getBreadCrumbs(doc);
-			var thisTeamID = Foxtrick.util.id.getTeamIdFromUrl(crumbs[0].href);
-
-			if (!matchId) {
+			if (!MATCH_ID) {
 				// no matchId: match sandbox
-				isHome = true;
-				teamNames[0] = crumbs[0].textContent.trim();
 				buildMatchSimulator(null, opts);
 				return;
 			}
@@ -631,15 +647,11 @@ Foxtrick.modules.MatchSimulator = {
 			else
 				doc.getElementById('field').appendChild(loadingMatchList);
 
-			var sourceSystem = 'Hattrick';
-			if (isHTOIntegrated)
-				sourceSystem = 'HTOIntegrated';
-
 			var orderMatchArgs = [
 				['file', 'matchdetails'],
 				['version', '2.3'],
-				['matchId', matchId],
-				['sourceSystem', sourceSystem],
+				['matchId', MATCH_ID],
+				['sourceSystem', SOURCE_SYSTEM],
 			];
 
 			Foxtrick.util.api.retrieve(doc, orderMatchArgs, { cache_lifetime: 'session' },
@@ -657,17 +669,17 @@ Foxtrick.modules.MatchSimulator = {
 				var AwayTeamID = orderMatchXml.num('AwayTeamID');
 
 				var teamId;
-				if (thisTeamID == HomeTeamID) {
-					isHome = true;
+				if (TEAM_ID == HomeTeamID) {
+					IS_HOME = true;
 					teamId = AwayTeamID;
-					teamNames[0] = orderMatchXml.text('HomeTeamName');
-					teamNames[1] = orderMatchXml.text('AwayTeamName');
+					gTeamNames[0] = orderMatchXml.text('HomeTeamName');
+					gTeamNames[1] = orderMatchXml.text('AwayTeamName');
 				}
 				else {
-					isHome = false;
+					IS_HOME = false;
 					teamId = HomeTeamID;
-					teamNames[1] = orderMatchXml.text('HomeTeamName');
-					teamNames[0] = orderMatchXml.text('AwayTeamName');
+					gTeamNames[1] = orderMatchXml.text('HomeTeamName');
+					gTeamNames[0] = orderMatchXml.text('AwayTeamName');
 				}
 				opts.teamId = teamId;
 				opts.loading = loadingMatchList;
@@ -706,7 +718,7 @@ Foxtrick.modules.MatchSimulator = {
 				var id = 'ft-full-level' + i;
 
 				var ratingsNum;
-				if (typeof currentRatings[i] !== 'undefined') {
+				if (typeof gRatings[i] !== 'undefined') {
 					ratingsNum = doc.getElementById(id);
 					ratingsNum.textContent = levelText;
 				}
@@ -718,20 +730,20 @@ Foxtrick.modules.MatchSimulator = {
 				}
 
 				Foxtrick.insertAfter(ratingsNum, overlayRating);
-				oldRatings[i] = currentRatings[i]; // save previous
-				currentRatings[i] = orgRatings[i] = fullLevel; // save sans stamina discount
+				gOldRatings[i] = gRatings[i]; // save previous
+				gRatings[i] = gOrgRatings[i] = fullLevel; // save sans stamina discount
 			}, ratingInnerBoxes);
 
 			// store tactics for HTMS
 			var teamTacticsSelect = doc.getElementById('teamtactics');
-			var tactics = currentRatings[7] = parseInt(teamTacticsSelect.value, 10);
+			var tactics = gRatings[7] = parseInt(teamTacticsSelect.value, 10);
 			if (tactics !== 0 && tactics !== 7) {
 				var tacticsSpan = tacticLevelLabel.querySelector('span[data-tacticlevel]');
-				currentRatings[8] = tacticsSpan.dataset.tacticlevel;
+				gRatings[8] = tacticsSpan.dataset.tacticlevel;
 			}
 			else {
 				// normal/creatively
-				currentRatings[8] = 0;
+				gRatings[8] = 0;
 			}
 
 			// remove other changes for clarity
@@ -743,17 +755,17 @@ Foxtrick.modules.MatchSimulator = {
 			var staminaDiscountCheck = doc.getElementById('ft_stamina_discount_check');
 			if (staminaDiscountCheck.checked) {
 				Foxtrick.Prefs.setBool('MatchSimulator.staminaDiscountOn', true);
-				module.staminaDiscount(doc, orgRatings, currentRatings);
+				module.staminaDiscount(doc, gOrgRatings, gRatings);
 			}
 			else {
 				Foxtrick.Prefs.setBool('MatchSimulator.staminaDiscountOn', false);
 			}
 
 			for (var i = 0; i < 7; ++i) {
-				if (typeof oldRatings[i] !== 'undefined') {
+				if (typeof gOldRatings[i] !== 'undefined') {
 					var id = 'ft-full-level' + i;
 					var fullLevelDiv = doc.getElementById(id);
-					var diff = currentRatings[i] - oldRatings[i];
+					var diff = gRatings[i] - gOldRatings[i];
 					var diffStr = diff.toFixed(2);
 					var diffTrunc = parseFloat(diffStr);
 
@@ -775,8 +787,12 @@ Foxtrick.modules.MatchSimulator = {
 			var updateHTMS = !updateOther;
 			var updatePctgDiff = target.id != 'ft_attVsDef_check';
 
+			// make a clone if possible to prevent unintentional changes
+			var teamNames = gSimulatorReady ? gTeamNames.slice() : gTeamNames;
 			var opts = {
 				teamNames: teamNames,
+				IS_HOME: IS_HOME,
+				TEAM_ID: TEAM_ID,
 				update: {
 					other: updateOther,
 					htms: updateHTMS,
@@ -790,20 +806,19 @@ Foxtrick.modules.MatchSimulator = {
 			}
 
 			// this injects Ratings module so should always run
-			module.updateBarsAndHTMS(doc, currentRatings, currentRatingsOther, opts);
+			module.updateBarsAndHTMS(doc, gRatings, gRatingsOther, opts);
 
-			var matchId = Foxtrick.util.id.getMatchIdFromUrl(doc.location.href);
-
-			if (!simulatorReady) {
+			if (!gSimulatorReady) {
 				// opened first time
-				setupSimulator(matchId, opts);
+				setupSimulator(opts);
 			}
 			else {
-				if (updateOther && currentMatchXML) {
-					opts.teamId = currentOtherTeamID;
-					opts.homeAway = currentHomeAway;
-					module.updateOtherRatings(doc, currentRatingsOther, currentMatchXML,
-					                          isHome, opts);
+				if (updateOther && gMatchXML) {
+					opts.teamId = gOtherTeamID;
+					opts.homeAway = gHomeAway;
+
+					// passing gTeamNames separately to modify
+					module.updateOtherRatings(doc, gRatingsOther, gMatchXML, gTeamNames, opts);
 				}
 			}
 		};
@@ -920,7 +935,7 @@ Foxtrick.modules.MatchSimulator = {
 	normalizeRatings: function(level) {
 		return Math.floor((level + 0.125) * 4) / 4;
 	},
-	copyRatings: function(ev) {
+	copyRatings: function(ev, opts) {
 		var module = this;
 
 		var doc = ev.target.ownerDocument;
@@ -941,8 +956,8 @@ Foxtrick.modules.MatchSimulator = {
 		text += replaced;
 
 		// match link
-		var matchId = Foxtrick.util.id.getMatchIdFromUrl(doc.location.href);
-		text += matchId ? ' [matchid=' + matchId + ']' + '\n' : '\n';
+		var MATCH_ID = opts.MATCH_ID;
+		text += MATCH_ID ? ' [matchid=' + MATCH_ID + ']' + '\n' : '\n';
 
 		// formation
 		var formations = doc.getElementById('formations').textContent;
@@ -1073,22 +1088,21 @@ Foxtrick.modules.MatchSimulator = {
 	},
 	// change bars to represent percentage of ratings comparison between predicted ratings
 	// and selected other team's match ratings and update HTMSPrediction
-	updateBarsAndHTMS: function(doc, ratings, ratingsOther, opts) {
+	updateBarsAndHTMS: function(doc, gRatings, gRatingsOther, opts) {
 		var module = this;
 
 		var updateHTMS = opts.update.htms;
 		var updatePctgDiff = opts.update.pctgDiff;
-		var teamNames = opts.teamNames;
 
 		var useHTMS = Foxtrick.Prefs.isModuleOptionEnabled(module, 'HTMSPrediction');
 		var useRatings = Foxtrick.Prefs.isModuleEnabled('Ratings') &&
 			Foxtrick.Prefs.isModuleOptionEnabled(module, 'UseRatingsModule');
 
 		if (updateHTMS && useHTMS)
-			module.updateHTMS(doc, ratings, ratingsOther, teamNames);
+			module.updateHTMS(doc, gRatings, gRatingsOther, opts);
 
 		if (useRatings)
-			module.addRatings(doc, ratings, ratingsOther);
+			module.addRatings(doc, gRatings, gRatingsOther);
 
 		var attVsDefCheck = doc.getElementById('ft_attVsDef_check');
 		var realProbabilitiesCheck = doc.getElementById('ft_realProbabilities_check');
@@ -1099,10 +1113,10 @@ Foxtrick.modules.MatchSimulator = {
 		var percentImages = fieldOverlay.getElementsByClassName('percentImage');
 		Foxtrick.forEach(function(percentImage, i) {
 			var percentNumber;
-			if (typeof ratingsOther[i] !== 'undefined') {
+			if (typeof gRatingsOther[i] !== 'undefined') {
 				// change to zero-based ratings
-				var curr = ratings[i] ? ratings[i] - 1 : 0;
-				var other = ratingsOther[i] ? ratingsOther[i] - 1 : 0;
+				var curr = gRatings[i] ? gRatings[i] - 1 : 0;
+				var other = gRatingsOther[i] ? gRatingsOther[i] - 1 : 0;
 				var percent = curr / (curr + other);
 
 				var oldVal;
@@ -1179,7 +1193,7 @@ Foxtrick.modules.MatchSimulator = {
 	},
 	// updating or adding HTMS prediction based on rating prediction
 	// and selected match of another team
-	updateHTMS: function(doc, ratings, ratingsOther, teamNames) {
+	updateHTMS: function(doc, gRatings, gRatingsOther, opts) {
 		var module = this;
 
 		var normalizeRatings = module.normalizeRatings;
@@ -1223,18 +1237,18 @@ Foxtrick.modules.MatchSimulator = {
 
 		// if there are numbers from other team's match,
 		// collect and submit them to HTMS, else clear overlays
-		if (typeof ratingsOther[0] !== 'undefined') {
+		if (typeof gRatingsOther[0] !== 'undefined') {
 			var tacticAbbr = ['', 'pressing', 'ca', 'aim', 'aow', '', '', 'cre', 'long'];
-			var midfieldLevel = [normalizeRatings(ratings[3]) - 1, ratingsOther[3] - 1];
-			var rdefence = [normalizeRatings(ratings[0]) - 1, ratingsOther[6] - 1];
-			var cdefence = [normalizeRatings(ratings[1]) - 1, ratingsOther[5] - 1];
-			var ldefence = [normalizeRatings(ratings[2]) - 1, ratingsOther[4] - 1];
-			var rattack = [normalizeRatings(ratings[4]) - 1, ratingsOther[2] - 1];
-			var cattack = [normalizeRatings(ratings[5]) - 1, ratingsOther[1] - 1];
-			var lattack = [normalizeRatings(ratings[6]) - 1, ratingsOther[0] - 1];
+			var midfieldLevel = [normalizeRatings(gRatings[3]) - 1, gRatingsOther[3] - 1];
+			var rdefence = [normalizeRatings(gRatings[0]) - 1, gRatingsOther[6] - 1];
+			var cdefence = [normalizeRatings(gRatings[1]) - 1, gRatingsOther[5] - 1];
+			var ldefence = [normalizeRatings(gRatings[2]) - 1, gRatingsOther[4] - 1];
+			var rattack = [normalizeRatings(gRatings[4]) - 1, gRatingsOther[2] - 1];
+			var cattack = [normalizeRatings(gRatings[5]) - 1, gRatingsOther[1] - 1];
+			var lattack = [normalizeRatings(gRatings[6]) - 1, gRatingsOther[0] - 1];
 
-			var tactics = [tacticAbbr[ratings[7]], tacticAbbr[ratingsOther[7]]];
-			var tacticsLevel = [ratings[8], ratingsOther[8]];
+			var tactics = [tacticAbbr[gRatings[7]], tacticAbbr[gRatingsOther[7]]];
+			var tacticsLevel = [gRatings[8], gRatingsOther[8]];
 			var htms = Foxtrick.modules['HTMSPrediction'];
 			htms.insertPrediction(
 				doc, overlayHTMSCurrent,
@@ -1242,7 +1256,7 @@ Foxtrick.modules.MatchSimulator = {
 				rdefence, cdefence, ldefence,
 				rattack, cattack, lattack,
 				tactics, tacticsLevel,
-				teamNames
+				opts.teamNames
 			);
 		}
 		else {
@@ -1251,17 +1265,14 @@ Foxtrick.modules.MatchSimulator = {
 				overlayHTMS.textContent = '';
 		}
 	},
-	updateOtherRatings: function(doc, ratings, xml, isHome, opts) {
+	updateOtherRatings: function(doc, gRatingsOther, xml, gTeamNames, opts) {
 		var module = this;
 
 		var teamId = opts.teamId; // opponent
 		var homeAway = opts.homeAway; // selected match
 		var update = opts.update.other;
-		var teamNames = opts.teamNames;
-
-		// select team node
-		var teamLink = Foxtrick.Pages.All.getBreadCrumbs(doc)[0];
-		var thisTeamID = Foxtrick.util.id.getTeamIdFromUrl(teamLink.href);
+		var IS_HOME = opts.IS_HOME;
+		var TEAM_ID = opts.TEAM_ID;
 
 		var HomeTeamID = xml.num('HomeTeamID');
 		var AwayTeamID = xml.num('AwayTeamID');
@@ -1269,8 +1280,8 @@ Foxtrick.modules.MatchSimulator = {
 		var doHome = true;
 		if (homeAway == 'away' || // chose away
 		    (homeAway != 'home' && // auto detect away
-		     (teamId == AwayTeamID || thisTeamID == HomeTeamID || // one of the teams
-		      isHome && teamId != HomeTeamID && thisTeamID != AwayTeamID)
+		     (teamId == AwayTeamID || TEAM_ID == HomeTeamID || // one of the teams
+		      IS_HOME && teamId != HomeTeamID && TEAM_ID != AwayTeamID)
 		      // none of the teams match + playing home
 		    )) {
 			doHome = false;
@@ -1279,11 +1290,11 @@ Foxtrick.modules.MatchSimulator = {
 		var teamNode;
 		if (doHome) {
 			teamNode = xml.node('HomeTeam');
-			teamNames[1] = xml.text('HomeTeamName');
+			gTeamNames[1] = xml.text('HomeTeamName');
 		}
 		else {
 			teamNode = xml.node('AwayTeam');
-			teamNames[1] = xml.text('AwayTeamName');
+			gTeamNames[1] = xml.text('AwayTeamName');
 		}
 		// get ratings
 		var selectedRatings = [
@@ -1337,7 +1348,7 @@ Foxtrick.modules.MatchSimulator = {
 				// there was another match selected before. show ratings and differences
 				levelDiv.textContent = levelText;
 				if (!update) {
-					var diff = fullLevel - ratings[j];
+					var diff = fullLevel - gRatingsOther[j];
 					var diffStr = diff.toFixed(2);
 					var diffTrunc = parseFloat(diffStr);
 
@@ -1382,7 +1393,7 @@ Foxtrick.modules.MatchSimulator = {
 			overlayOther.textContent = selectedRatings[j].text;
 
 			// README: index must match to fullLevel definition above
-			ratings[j] = fullLevel;
+			gRatingsOther[j] = fullLevel;
 		}
 
 		// add tactics
@@ -1395,8 +1406,8 @@ Foxtrick.modules.MatchSimulator = {
 			Foxtrick.insertAfter(tacticLevelLabelOther, tacticLevelLabel);
 		}
 		var tacticLevelLabelTitle = tacticLevelLabel.textContent.split(':')[0];
-		ratings[7] = selectedRatings[7].value;
-		ratings[8] = selectedRatings[8].value;
+		gRatingsOther[7] = selectedRatings[7].value;
+		gRatingsOther[8] = selectedRatings[8].value;
 
 		var teamTacticsTitle = module.getTacticsLabel(doc);
 		var info = {
@@ -1415,7 +1426,7 @@ Foxtrick.modules.MatchSimulator = {
 		}, ratingChanges);
 	},
 	// add Ratings module functionality
-	addRatings: function(doc, ratings, ratingsOther) {
+	addRatings: function(doc, gRatings, gRatingsOther) {
 		var module = this;
 
 		var normalizeRatings = module.normalizeRatings;
@@ -1426,21 +1437,21 @@ Foxtrick.modules.MatchSimulator = {
 			'creatively', 'longshots',
 		];
 
-		var midfieldLevel = [normalizeRatings(ratings[3]) - 1, ratingsOther[3] - 1];
-		var rdefence = [normalizeRatings(ratings[0]) - 1, ratingsOther[6] - 1];
-		var cdefence = [normalizeRatings(ratings[1]) - 1, ratingsOther[5] - 1];
-		var ldefence = [normalizeRatings(ratings[2]) - 1, ratingsOther[4] - 1];
-		var rattack = [normalizeRatings(ratings[4]) - 1, ratingsOther[2] - 1];
-		var cattack = [normalizeRatings(ratings[5]) - 1, ratingsOther[1] - 1];
-		var lattack = [normalizeRatings(ratings[6]) - 1, ratingsOther[0] - 1];
+		var midfieldLevel = [normalizeRatings(gRatings[3]) - 1, gRatingsOther[3] - 1];
+		var rdefence = [normalizeRatings(gRatings[0]) - 1, gRatingsOther[6] - 1];
+		var cdefence = [normalizeRatings(gRatings[1]) - 1, gRatingsOther[5] - 1];
+		var ldefence = [normalizeRatings(gRatings[2]) - 1, gRatingsOther[4] - 1];
+		var rattack = [normalizeRatings(gRatings[4]) - 1, gRatingsOther[2] - 1];
+		var cattack = [normalizeRatings(gRatings[5]) - 1, gRatingsOther[1] - 1];
+		var lattack = [normalizeRatings(gRatings[6]) - 1, gRatingsOther[0] - 1];
 
-		var tactics = [tacticNames[ratings[7]], tacticNames[ratingsOther[7]]];
-		var tacticsLevel = [ratings[8], ratingsOther[8]];
+		var tactics = [tacticNames[gRatings[7]], tacticNames[gRatingsOther[7]]];
+		var tacticsLevel = [gRatings[8], gRatingsOther[8]];
 
 		var ratingsTable = doc.getElementById('ft_simulation_ratings_table');
 		var newTable = ratingsTable.cloneNode(false);
 
-		var twoTeams = typeof ratingsOther[0] !== 'undefined';
+		var twoTeams = typeof gRatingsOther[0] !== 'undefined';
 		Foxtrick.modules['Ratings'].addRatings(
 			doc, newTable,
 			midfieldLevel, rdefence, cdefence, ldefence, rattack, cattack, lattack,
@@ -1450,7 +1461,7 @@ Foxtrick.modules.MatchSimulator = {
 
 		ratingsTable.parentNode.replaceChild(newTable, ratingsTable);
 	},
-	staminaDiscount: function(doc, orgRatings, currentRatings) {
+	staminaDiscount: function(doc, gOrgRatings, gRatings) {
 		var module = this;
 
 		var noPrediction = true;
@@ -1611,7 +1622,7 @@ Foxtrick.modules.MatchSimulator = {
 
 				}, positions);
 
-				var oldRating = orgRatings[sector];
+				var oldRating = gOrgRatings[sector];
 				var newRating = oldRating;
 
 				if (missing)
@@ -1619,7 +1630,7 @@ Foxtrick.modules.MatchSimulator = {
 				else
 					newRating = oldRating * sumVEnergy / sumV;
 
-				currentRatings[sector] = newRating;
+				gRatings[sector] = newRating;
 				ratingsNum.textContent = '[' + newRating.toFixed(2) + ']';
 
 				var newOverlay = doc.createElement('div');
