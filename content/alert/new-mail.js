@@ -49,12 +49,9 @@ Foxtrick.modules['NewMail'] = {
 				Foxtrick.util.notify.create(Foxtrick.L10n.getString('notify.newMail', newMailCount)
 				                            .replace(/%s/, newMailCount), 'http://' +
 				                            doc.location.host + '/MyHattrick/Inbox/',
-				                            function(response) {},
 				                            {
-				                            	id: 'mail',
-				                            	opts: {
-				                            		buttons: [{ title: open }],
-				                            	}
+			                            		id: 'mail',
+			                            		buttons: [{ title: open }],
 				                            });
 				// play sound if enabled
 				if (Foxtrick.Prefs.isModuleOptionEnabled('NewMail', 'NotifyMailSound')) {
@@ -102,12 +99,9 @@ Foxtrick.modules['NewMail'] = {
 				                            newForumCount).replace(/%s/, newForumCount),
 											'http://' + doc.location.host +
 											'/Forum/?actionType=refresh',
-				                            function(response) {},
 				                            {
 				                            	id: 'forum',
-				                            	opts: {
-				                            		buttons: [{ title: open }],
-				                            	}
+			                            		buttons: [{ title: open }],
 				                            });
 				// play sound if enabled
 				if (Foxtrick.Prefs.isModuleOptionEnabled('NewMail', 'NotifyForumSound')) {
