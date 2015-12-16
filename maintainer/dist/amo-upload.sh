@@ -42,6 +42,7 @@ curl -fg "${amo_api_url}" -XPUT --form "upload=@${XPI_PATH}" \
 	if [[ -z "${upload_pk}" ]]; then
 		dump "ERROR: no pk found in upload response:" "${tmp_headers}" "${tmp_resp}" || exit 2
 	fi
+	dump "Upload pk: ${upload_pk}"
 	amo_api_url="${amo_api_url}uploads/${upload_pk}/"
 
 amo_timeout=60
