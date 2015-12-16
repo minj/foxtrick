@@ -162,11 +162,9 @@
 						var type = getType(n.link);
 
 						if (Foxtrick.Prefs.getBool('module.TickerAlert.' + type + '.enabled')) {
-							Foxtrick.util.notify.create(n.text, n.link, function(response) {}, {
+							Foxtrick.util.notify.create(n.text, n.link, {
 								id: 'ticker-' + type + Date.valueOf(),
-								opts: {
-									buttons: [{ title: open }],
-								}
+								buttons: [{ title: open }],
 							});
 							var sound = Foxtrick.Prefs.getString('module.TickerAlert.' + type + '.sound');
 							if (sound) {

@@ -109,9 +109,8 @@ Foxtrick.modules['LiveAlert'] = {
 				// show notification
 				var txt = Foxtrick.format(ALERT_TMPL, info);
 				var url = doc.location.href;
-				var noop = function(response) {};
 
-				Foxtrick.util.notify.create(txt, url, noop, { id: teamsText });
+				Foxtrick.util.notify.create(txt, url, { id: teamsText });
 				// play sound if enabled
 				if (Foxtrick.Prefs.isModuleOptionEnabled('LiveAlert', 'Sound')) {
 					var sound = null;
