@@ -62,6 +62,15 @@ else
 	VERSION="$MAJOR_VERSION"
 fi
 
+PREVIOUS_VERSION=$(curl ${URL_BASE}/last.php)
+echo "Previous: ${PREVIOUS_VERSION}"
+echo "Current: ${VERSION}"
+
+if [ "${PREVIOUS_VERSION}" == "${VERSION}" ]; then
+	echo "Current version matches last upload. Stopping." >&2
+	exit 3
+fi
+
 if [ "$DO_MAKE" == "true" ]; then
 	(\
 	 cd "$SRC_DIR" && \
