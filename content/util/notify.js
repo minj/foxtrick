@@ -186,8 +186,13 @@ Foxtrick.util.notify.create = function(msg, source, opts, callback) {
 
 			var addNew = function() {
 				chrome.notifications.create(id, options, function(nId) { // jshint ignore:line
-					if (chrome.runtime.lastError)
-						return;
+					var err = chrome.runtime.lastError;
+					if (err && /^Adding buttons/.test(err.message)) {
+						// opera does not support buttons
+						delete options.buttons;
+						opts = options;
+						createChrome();
+					}
 				});
 			};
 
