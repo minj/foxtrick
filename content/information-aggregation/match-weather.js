@@ -55,19 +55,11 @@ Foxtrick.modules['MatchWeather'] = {
 		var irlNowText = Foxtrick.L10n.getString('matchWeather.irltoday');
 		var irlTomorrowText = Foxtrick.L10n.getString('matchWeather.irltomorrow');
 
-		var weatherP;
-
 		var preMatchPanel = Foxtrick.Pages.Match.getPreMatchPanel(doc);
 		var div = preMatchPanel.querySelector('div.arenaInfo');
 
-		var img = div.querySelector('p:last-child img');
-		if (img) {
-			weatherP = img.parentNode;
-		}
-		else {
-			return;
-		}
-
+		// image might be missing in NT but the paragraph is still there
+		var weatherP = div.querySelector('p:last-child');
 		var parentNode = weatherP.parentNode;
 		parentNode.removeChild(weatherP);
 
