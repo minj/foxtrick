@@ -47,8 +47,8 @@ Foxtrick.modules['HeaderFix'] = {
 		if (!panelArenaFlash)
 			return;
 
-		if (isArena && panel.getElementsByTagName('h1').length > 1)
-			return; // don't move if arena is under constriction
+		// if (isArena && panel.getElementsByTagName('h1').length > 1)
+		// 	return; // don't move if arena is under constriction
 
 		var mainBox = panel.getElementsByClassName('mainBox')[0];
 		if (mainBox && Foxtrick.util.layout.isStandard(doc))
