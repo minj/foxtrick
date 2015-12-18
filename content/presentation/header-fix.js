@@ -57,8 +57,8 @@ Foxtrick.modules['HeaderFix'] = {
 		// (re)move separators
 		var seps = Foxtrick.toArray(doc.querySelectorAll('#mainBody .separator'));
 		if (seps.length) {
-			var separator = seps.shift();
-			panel.appendChild(separator);
+			// skip first separator: used in MatchWeather
+			seps.shift();
 			Foxtrick.forEach(function(sep) {
 				sep.parentNode.removeChild(sep);
 			}, seps);
