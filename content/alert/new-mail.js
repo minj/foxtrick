@@ -26,7 +26,9 @@ Foxtrick.modules['NewMail'] = {
 
 			var menu = doc.getElementById('menu');
 			// mail count within My Hattrick link
-			var myHt = menu.querySelector('a[href^="/MyHattrick/"]');
+			var myHt = menu.querySelector('.ft-mmdd-primary[href^="/MyHattrick/"]') ||
+				menu.querySelector('a[href^="/MyHattrick/"]');
+
 			if (myHt.getElementsByTagName('span').length) {
 				var mailCountSpan = myHt.getElementsByTagName('span')[0];
 				mailCountSpan.className = 'ft-new-mail';
@@ -75,7 +77,8 @@ Foxtrick.modules['NewMail'] = {
 			}
 
 			// new forum message
-			var forum = menu.getElementsByTagName('a')[3];
+			var forum = menu.querySelector('.ft-mmdd-primary[href^="/Forum/"]') ||
+				menu.querySelector('a[href^="/Forum/"]');
 			if (forum.textContent.indexOf('(') > -1) {
 				// has new message, no span this time, we need to add it
 				var newForumCount = Number(forum.textContent.match(/\d+/)[0]);
