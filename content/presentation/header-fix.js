@@ -27,12 +27,14 @@ Foxtrick.modules['HeaderFix'] = {
 			return;
 
 		var panel;
-		if (isArena)
+		if (isArena) {
 			// main container in #mainBody
 			// arena page only, only used here
 			panel = Foxtrick.getMBElement(doc, 'pnlMain');
-		else
+		}
+		else {
 			panel = Foxtrick.Pages.Match.getPreMatchPanel(doc);
+		}
 
 		var panelTeamInfo = Foxtrick.Pages.Match.getPreMatchSummary(doc);
 		var panelArenaFlash = Foxtrick.Pages.Match.getArenaContainer(doc);
@@ -52,7 +54,7 @@ Foxtrick.modules['HeaderFix'] = {
 		if (mainBox && Foxtrick.util.layout.isStandard(doc))
 			mainBox.setAttribute('style', 'margin-bottom:0px;');
 
-		// (re)move sperators
+		// (re)move separators
 		var seps = Foxtrick.toArray(doc.querySelectorAll('#mainBody .separator'));
 		if (seps.length) {
 			var separator = seps.shift();
@@ -62,9 +64,9 @@ Foxtrick.modules['HeaderFix'] = {
 			}, seps);
 		}
 
-		// move flash
+		// move flash: flickers in FF
 		panelArenaFlash = panel.removeChild(panelArenaFlash);
 		Foxtrick.removeClass(panelArenaFlash, 'float_left');
 		panel.appendChild(panelArenaFlash);
-	}
+	},
 };
