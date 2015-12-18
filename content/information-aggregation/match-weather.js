@@ -69,8 +69,12 @@ Foxtrick.modules['MatchWeather'] = {
 
 		// image might be missing in NT but the paragraph is still there
 		var weatherP = div.querySelector('p:last-child');
+		var img = weatherP.querySelector('img');
 		Foxtrick.appendChildren(tdExpected, weatherP.childNodes);
-		tdExpected.appendChild(doc.createTextNode(' ' + expectedText));
+		if (img) {
+			// add text only if image exists
+			tdExpected.appendChild(doc.createTextNode(' ' + expectedText));
+		}
 
 		var trNow = table.insertRow(-1);
 		var tdNow = trNow.insertCell(-1);
