@@ -26,7 +26,7 @@ Foxtrick.modules['NewMail'] = {
 
 			var menu = doc.getElementById('menu');
 			// mail count within My Hattrick link
-			var myHt = menu.getElementsByTagName('a')[0];
+			var myHt = menu.querySelector('a[href^="/MyHattrick/"]');
 			if (myHt.getElementsByTagName('span').length) {
 				var mailCountSpan = myHt.getElementsByTagName('span')[0];
 				mailCountSpan.className = 'ft-new-mail';
