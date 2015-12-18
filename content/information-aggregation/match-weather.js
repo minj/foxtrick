@@ -55,30 +55,26 @@ Foxtrick.modules['MatchWeather'] = {
 		var irlNowText = Foxtrick.L10n.getString('matchWeather.irltoday');
 		var irlTomorrowText = Foxtrick.L10n.getString('matchWeather.irltomorrow');
 
-		var weatherP;
-
 		var preMatchPanel = Foxtrick.Pages.Match.getPreMatchPanel(doc);
-		var div = preMatchPanel.querySelector('div');
-
-		var img = div.querySelector('p:last-child img');
-		if (img) {
-			weatherP = img.parentNode;
-		}
-		else {
-			return;
-		}
-
-		var parentNode = weatherP.parentNode;
-		parentNode.removeChild(weatherP);
+		var div = preMatchPanel.querySelector('div.arenaInfo');
 
 		var table = Foxtrick.createFeaturedElement(doc, this, 'table');
 		table.id = 'ft-matchWeather';
-		parentNode.appendChild(table);
+		// inserting after the separator so that full width would be available
+		var separator = preMatchPanel.querySelector('.separator');
+		Foxtrick.insertAfter(table, separator);
 
 		var trExpected = table.insertRow(-1);
 		var tdExpected = trExpected.insertCell(-1);
+
+		// image might be missing in NT but the paragraph is still there
+		var weatherP = div.querySelector('p:last-child');
+		var img = weatherP.querySelector('img');
 		Foxtrick.appendChildren(tdExpected, weatherP.childNodes);
-		tdExpected.appendChild(doc.createTextNode(' ' + expectedText));
+		if (img) {
+			// add text only if image exists
+			tdExpected.appendChild(doc.createTextNode(' ' + expectedText));
+		}
 
 		var trNow = table.insertRow(-1);
 		var tdNow = trNow.insertCell(-1);
@@ -99,7 +95,10 @@ Foxtrick.modules['MatchWeather'] = {
 		if (Foxtrick.Prefs.isModuleOptionEnabled('MatchWeather', 'Irl')) {
 			var ccAttr = trExpected.insertCell(-1);
 			ccAttr.className = 'ft-irlWeather';
-			ccAttr.textContent = Foxtrick.L10n.getString('matchWeather.opw');
+
+			var bold = doc.createElement('strong');
+			bold.textContent = Foxtrick.L10n.getString('matchWeather.opw');
+			ccAttr.appendChild(bold);
 
 			if (typeof data.irlNow !== 'undefined') {
 				var tdIrlNow = trNow.insertCell(-1);
