@@ -58,17 +58,17 @@ Foxtrick.modules['MatchWeather'] = {
 		var preMatchPanel = Foxtrick.Pages.Match.getPreMatchPanel(doc);
 		var div = preMatchPanel.querySelector('div.arenaInfo');
 
-		// image might be missing in NT but the paragraph is still there
-		var weatherP = div.querySelector('p:last-child');
-		var parentNode = weatherP.parentNode;
-		parentNode.removeChild(weatherP);
-
 		var table = Foxtrick.createFeaturedElement(doc, this, 'table');
 		table.id = 'ft-matchWeather';
-		parentNode.appendChild(table);
+		// inserting after the separator so that full width would be available
+		var separator = preMatchPanel.querySelector('.separator');
+		Foxtrick.insertAfter(table, separator);
 
 		var trExpected = table.insertRow(-1);
 		var tdExpected = trExpected.insertCell(-1);
+
+		// image might be missing in NT but the paragraph is still there
+		var weatherP = div.querySelector('p:last-child');
 		Foxtrick.appendChildren(tdExpected, weatherP.childNodes);
 		tdExpected.appendChild(doc.createTextNode(' ' + expectedText));
 
