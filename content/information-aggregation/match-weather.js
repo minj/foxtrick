@@ -95,7 +95,10 @@ Foxtrick.modules['MatchWeather'] = {
 		if (Foxtrick.Prefs.isModuleOptionEnabled('MatchWeather', 'Irl')) {
 			var ccAttr = trExpected.insertCell(-1);
 			ccAttr.className = 'ft-irlWeather';
-			ccAttr.textContent = Foxtrick.L10n.getString('matchWeather.opw');
+
+			var bold = doc.createElement('strong');
+			bold.textContent = Foxtrick.L10n.getString('matchWeather.opw');
+			ccAttr.appendChild(bold);
 
 			if (typeof data.irlNow !== 'undefined') {
 				var tdIrlNow = trNow.insertCell(-1);
