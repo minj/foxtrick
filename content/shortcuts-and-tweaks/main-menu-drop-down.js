@@ -320,6 +320,7 @@ Foxtrick.modules['MainMenuDropDown'] = {
 			// build the menu
 			var links = doc.querySelectorAll('#menu > ul > li > a');
 			for (var l = 0; l < links.length; l++) {
+				Foxtrick.addClass(links[l], 'ft-mmdd-primary');
 				var primaryUrl = links[l].href;
 				var primaries = navi.getPrimaryMenusForUrl(primaryUrl);
 				var secondaries = navi.getSecondaryMenusForUrl(primaryUrl);
