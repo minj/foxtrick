@@ -58,7 +58,7 @@ Foxtrick.modules['MatchWeather'] = {
 		var weatherP;
 
 		var preMatchPanel = Foxtrick.Pages.Match.getPreMatchPanel(doc);
-		var div = preMatchPanel.querySelector('div');
+		var div = preMatchPanel.querySelector('div.arenaInfo');
 
 		var img = div.querySelector('p:last-child img');
 		if (img) {
