@@ -78,6 +78,7 @@ function initAustralisUI() {
 			aNode.id = 'foxtrick-toolbar-button';
 			aNode.className = 'toolbarbutton-1';
 			aNode.setAttribute('type', 'menu');
+			aNode.setAttribute('label', 'Foxtrick');
 
 			let menu = aDocument.getElementById('foxtrick-toolbar-view');
 			aNode.appendChild(menu);
