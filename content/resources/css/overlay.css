@@ -2,7 +2,6 @@
 
 #foxtrick-toolbar-button {
 	list-style-image: url("chrome://foxtrick/skin/icon-24.png");
-	-moz-box-orient: horizontal;
 }
 #foxtrick-toolbar-button[status="disabled"] {
 	list-style-image: url("chrome://foxtrick/skin/disabled-24.png");
