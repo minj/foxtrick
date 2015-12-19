@@ -325,16 +325,16 @@ FoxtrickFirefox.prototype = {
 	},
 	loadAustralisUI: function() {
 		let doc = this.owner.document;
-		let panel = doc.createElement('panelview');
+		let panel = doc.createElement('menupopup');
 		panel.setAttribute('id', 'foxtrick-toolbar-view');
 		let menuString =
-			'<toolbarbutton id="foxtrick-toolbar-preferences" />' +
-			'<toolbarbutton id="foxtrick-toolbar-deactivate" type="checkbox" ' +
+			'<menuitem id="foxtrick-toolbar-preferences" />' +
+			'<menuitem id="foxtrick-toolbar-deactivate" type="checkbox" ' +
 				'autocheck="true"/>' +
-			'<toolbarbutton id="foxtrick-toolbar-clearCache" />' +
-			'<toolbarbutton id="foxtrick-toolbar-highlight" type="checkbox" ' +
+			'<menuitem id="foxtrick-toolbar-clearCache" />' +
+			'<menuitem id="foxtrick-toolbar-highlight" type="checkbox" ' +
 				'autocheck="true"/>' +
-			'<toolbarbutton id="foxtrick-toolbar-translationKeys" type="checkbox" ' +
+			'<menuitem id="foxtrick-toolbar-translationKeys" type="checkbox" ' +
 				'autocheck="true"/>';
 		let fragment = this.toDOMDocumentFragment(doc, menuString, panel);
 		panel.appendChild(fragment);

@@ -69,14 +69,23 @@ function initAustralisUI() {
 	}
 	CustomizableUI.createWidget({
 		id: 'foxtrick-toolbar-button',
-		type: 'view',
-		viewId: 'foxtrick-toolbar-view',
+		type: 'custom',
 		defaultArea: CustomizableUI.AREA_NAVBAR,
 		label: 'Foxtrick',
 		tooltiptext: 'Foxtrick',
-		onCreated: function(aNode) {
-			let win = aNode.ownerDocument.defaultView;
+		onBuild: function(aDocument) {
+			var aNode = aDocument.createElement('toolbarbutton');
+			aNode.id = 'foxtrick-toolbar-button';
+			aNode.className = 'toolbarbutton-1';
+			aNode.setAttribute('type', 'menu');
+
+			let menu = aDocument.getElementById('foxtrick-toolbar-view');
+			aNode.appendChild(menu);
+
+			let win = aDocument.defaultView;
 			win.Foxtrick.modules.UI._updateSingle(win);
+
+			return aNode;
 		},
 		// onViewShowing: function(ev) {
 		// 	// initialize code
