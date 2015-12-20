@@ -71,7 +71,6 @@ function initAustralisUI() {
 		id: 'foxtrick-toolbar-button',
 		type: 'custom',
 		defaultArea: CustomizableUI.AREA_NAVBAR,
-		label: 'Foxtrick',
 		tooltiptext: 'Foxtrick',
 		onBuild: function(aDocument) {
 			var aNode = aDocument.createElement('toolbarbutton');
@@ -88,12 +87,6 @@ function initAustralisUI() {
 
 			return aNode;
 		},
-		// onViewShowing: function(ev) {
-		// 	// initialize code
-		// },
-		// onViewHiding: function(ev) {
-		// 	// cleanup code
-		// }
 	});
 }
 
