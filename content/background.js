@@ -259,7 +259,7 @@ Foxtrick.loader.background.browserLoad = function() {
 
 		// from notify.js
 		Foxtrick.loader.background.requests.notify = function(request, sender, sendResponse) {
-			Foxtrick.util.notify.create(request, sender, sendResponse);
+			Foxtrick.util.notify.create(request.msg, sender, request, sendResponse);
 		};
 
 		// from context-menu.js: dummy. request handled in there
