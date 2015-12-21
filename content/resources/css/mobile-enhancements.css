@@ -15,13 +15,14 @@ div[class^="ad_"] {display: none !important;}
 .ft-mobile .notebook, .ft-mobile textarea.large,
 .ft-mobile a.featuredShopItem, .ft-mobile div.featuredShopItemText,
 .ft-mobile #fbErrorBox, .ft-mobile .fbSendBox , .ft-mobile .sendBoxHeader
+ {width:auto !important;}
+
 /*textarea.medium{width:400px;height:100px;}
 .forumScrollContent {position:relative;width:501px;}
 div.scEditSC .txtb{width:300px;}
 .main .liveMatchContainer{float:left; width:490px;
 .notebook,textarea.large{width:400px;
 .treeNavUp, .treeNavDown */
- {width:auto !important;}
 
 
  /* limit images */

@@ -388,7 +388,8 @@ Foxtrick.lazyProp = function(obj, prop, calc) {
 		Foxtrick.lazyProp(Foxtrick, 'context', function() {
 			var ret;
 			try {
-				if (window.location.protocol == 'chrome-extension:') {
+				var protocol = window.location.protocol;
+				if (protocol === 'chrome-extension:' || protocol === 'moz-extension:') {
 					ret = 'background';
 				}
 				else {

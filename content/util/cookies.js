@@ -14,7 +14,7 @@ if (!Foxtrick)
 			url: 'http://www.hattrick-youthclub.org/*',
 			name: 'fromFoxtrick',
 			addId: true,
-			domain: '.hattrick-youthclub.org',
+			domain: 'hattrick-youthclub.org',
 			isJSON: true,
 			isBase64: true
 		},
@@ -22,7 +22,7 @@ if (!Foxtrick)
 			url: 'http://hattrick-youthclub.org/*',
 			name: 'forFoxtrick',
 			addId: true,
-			domain: '.hattrick-youthclub.org',
+			domain: 'hattrick-youthclub.org',
 			isJSON: true,
 			isBase64: true
 		},
