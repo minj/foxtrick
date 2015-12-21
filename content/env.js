@@ -227,7 +227,8 @@ else if (typeof(chrome) == 'object') {
 	// either background page, or content script
 	Foxtrick.chromeContext = function() {
 		try {
-			if (window.location.protocol == 'chrome-extension:') {
+			var protocol = window.location.protocol;
+			if (protocol === 'chrome-extension:' || protocol === 'moz-extension:') {
 				return 'background';
 			}
 			else {
