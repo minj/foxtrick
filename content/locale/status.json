@@ -18,11 +18,11 @@
 			"code": "ar",
 			"name": "Arabic",
 			"phrases": "2218",
-			"translated": "1703",
-			"translated_progress": "73",
+			"translated": "1716",
+			"translated_progress": "74",
 			"words": "15853",
 			"words_approved": "11667",
-			"words_translated": "11721"
+			"words_translated": "11746"
 		},
 		{
 			"approved": "0",
@@ -306,11 +306,11 @@
 			"code": "he",
 			"name": "Hebrew",
 			"phrases": "2218",
-			"translated": "2126",
-			"translated_progress": "91",
+			"translated": "2156",
+			"translated_progress": "92",
 			"words": "15853",
 			"words_approved": "0",
-			"words_translated": "14567"
+			"words_translated": "14691"
 		},
 		{
 			"approved": "197",
@@ -474,11 +474,11 @@
 			"code": "fa",
 			"name": "Persian",
 			"phrases": "2218",
-			"translated": "1452",
-			"translated_progress": "53",
+			"translated": "1462",
+			"translated_progress": "56",
 			"words": "15853",
 			"words_approved": "0",
-			"words_translated": "8446"
+			"words_translated": "9006"
 		},
 		{
 			"approved": "0",
