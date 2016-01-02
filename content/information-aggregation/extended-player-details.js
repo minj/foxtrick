@@ -104,51 +104,37 @@ Foxtrick.modules['ExtendedPlayerDetailsWage'] = {
 			if (!wageObj)
 				return;
 
-			var wageTbl = doc.querySelector('.playerInfo table');
-			if (!wageTbl)
-				return;
-
-			var symbolReStr = symbol.replace('$', '\\$');
+			var symbolReStr = Foxtrick.strToRe(symbol);
+			var wageCell = Foxtrick.Pages.Player.getWageCell(doc);
 			var wageStr = Foxtrick.formatNumber(wageObj.total, NBSP);
-			var wageRe = new RegExp('^\\s*' + wageStr + NBSP + symbolReStr);
-			var wageRow = Foxtrick.nth(function(row) {
-				var cell = row.cells[1];
-				if (cell) {
-					return wageRe.test(cell.textContent);
-				}
-				return false;
-			}, wageTbl.rows);
 
-			if (!wageRow) {
+			var currencyStr = wageStr + NBSP + symbol;
+			var currencyRe = new RegExp(wageStr + NBSP + symbolReStr);
+			if (!currencyRe.test(wageCell.textContent)) {
 				// bad currency
 				Foxtrick.log(symbol, 'NOT FOUND');
 				Foxtrick.util.currency.reset();
 				Foxtrick.util.currency.displaySelector(doc, { reason: 'symbol' });
 				return;
 			}
-
-			var wageCell = wageRow.cells[1];
+			var wageParts = wageCell.textContent.split(currencyRe);
 
 			var wageWOBonus = Foxtrick.Prefs.isModuleOptionEnabled(module, 'WageWithoutBonus');
 			var seasonWage = Foxtrick.Prefs.isModuleOptionEnabled(module, 'SeasonWage');
 
 			var hasBonus = !!wageObj.bonus;
 			if (hasBonus && wageWOBonus) {
-				var wageText = wageCell.textContent;
-				var part1 = wageText.match(wageRe)[0];
-				var part2 = wageText.replace(wageRe, '');
+				wageCell.textContent = wageParts[0] + currencyStr + NBSP;
 
-				wageCell.textContent = part1 + NBSP;
-				var wageWOStr = Foxtrick.formatNumber(wageObj.base, NBSP);
+				var wageBaseStr = Foxtrick.formatNumber(wageObj.base, NBSP);
+				var baseSpan = doc.createElement('span');
+				baseSpan.id = 'ft_bonuswage';
+				baseSpan.setAttribute('style', 'direction: ltr; color:#666666;');
+				baseSpan.textContent = '(' + wageBaseStr + NBSP + symbol + ')';
+				Foxtrick.makeFeaturedElement(baseSpan, module);
 
-				var spanWO = doc.createElement('span');
-				spanWO.id = 'ft_bonuswage';
-				spanWO.setAttribute('style', 'direction: ltr; color:#666666;');
-				spanWO.textContent = '(' + wageWOStr + NBSP + symbol + ')';
-				Foxtrick.makeFeaturedElement(spanWO, module);
-
-				wageCell.appendChild(spanWO);
-				wageCell.appendChild(doc.createTextNode(part2));
+				wageCell.appendChild(baseSpan);
+				wageCell.appendChild(doc.createTextNode(wageParts[1]));
 			}
 
 			if (seasonWage) {

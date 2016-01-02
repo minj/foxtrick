@@ -341,34 +341,60 @@ Foxtrick.Pages.Player.getTeamName = function(doc) {
 };
 
 /**
- * Get the player wage.
- * Returns {base, bonus, total: number}.
+ * Get the player wage cell.
+ *
  * Senior player only.
  * @param  {document} doc
- * @return {object}       {base: number, bonus: number, total: number}
+ * @return {element}
  */
-Foxtrick.Pages.Player.getWage = function(doc) {
+Foxtrick.Pages.Player.getWageCell = function(doc) {
 	var ret = null;
 	if (this.isSenior(doc)) {
 		try {
 			var infoTable = doc.querySelector('.playerInfo table');
 			// wage position varies for free agents
 			var rowIdx = this.isFreeAgent(doc) ? 1 : 2;
-			var wageText = infoTable.rows[rowIdx].cells[1].textContent;
-			wageText = wageText.replace(/\s*(\d+)\s+/g, '$1');
-			var hasBonus = /%/.test(wageText);
-			var wage = parseInt(wageText, 10);
-			if (hasBonus) {
-				var bonus = Math.round(wage / 6);
-				var wageWO = wage - bonus;
-				ret = { base: wageWO, bonus: bonus, total: wage };
-			}
-			else
-				ret = { base: wage, bonus: 0, total: wage };
+			ret = infoTable.rows[rowIdx].cells[1];
 		}
 		catch (e) {
 			Foxtrick.log(e);
 		}
+	}
+	return ret;
+};
+
+/**
+ * Get the player wage.
+ *
+ * Returns {base, bonus, total: number}.
+ * Senior player only.
+ * @param  {document} doc
+ * @return {object}       {base: number, bonus: number, total: number}
+ */
+Foxtrick.Pages.Player.getWage = function(doc) {
+	var wageCell = this.getWageCell(doc);
+	if (!wageCell)
+		return null;
+
+	var wageText = wageCell.textContent;
+
+	// we need to trim front text if any
+	// unfortunately new lines force using multiline mode
+	// thus '.' does not match '\n', /sigh
+	wageText = wageText.replace(/^(.|\s)*?(?=[\d\u00a0]{3,})/m, '');
+	wageText = wageText.replace(/\u00a0/g, '');
+
+	var wage = parseInt(wageText, 10);
+	if (isNaN(wage))
+		return null;
+
+	var ret = { base: wage, bonus: 0, total: wage };
+
+	var hasBonus = /%/.test(wageText);
+	if (hasBonus) {
+		var bonus = Math.round(wage / 6);
+		ret.bonus = bonus;
+		ret.base = wage - bonus;
 	}
 	return ret;
 };
