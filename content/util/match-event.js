@@ -605,21 +605,18 @@ Foxtrick.util.matchEvent.isFirstEvent = function(evnt) {
 
 Foxtrick.util.matchEvent.getEventIcons = function(evnt, type) {
 	var eventId = Foxtrick.util.matchEvent.getEventId(evnt);
-	if (Foxtrick.util.matchEvent.eventIcons[eventId] === undefined)
-		return ['transparent'];
+	if (!Foxtrick.util.matchEvent.eventIcons[eventId])
+		return null;
 
 	var eventIcons = Foxtrick.util.matchEvent.eventIcons[eventId];
-	if (typeof(eventIcons) == 'object') {
-		if (eventIcons[type] === undefined)
-			return ['transparent'];
+	if (typeof eventIcons === 'object') {
+		return eventIcons[type] || null;
+	}
+	else if (type == 'team') {
+		return [eventIcons];
+	}
 
-		return eventIcons[type];
-	}
-	else {
-		if (type == 'team')
-			return [eventIcons];
-	}
-	return ['transparent'];
+	return null;
 };
 
 Foxtrick.util.matchEvent.getEventTeamIcons = function(evnt) {
@@ -659,31 +656,43 @@ Foxtrick.util.matchEvent.getAwayIcons = function(evnt) {
 
 Foxtrick.util.matchEvent.addEventIcons = function(evnt) {
 	var doc = evnt.ownerDocument;
+
 	var eventId = Foxtrick.util.matchEvent.getEventId(evnt);
-	var homeIcons = Foxtrick.util.matchEvent.getHomeIcons(evnt);
-	var awayIcons = Foxtrick.util.matchEvent.getAwayIcons(evnt);
-
-	// Event Icons
-	var homeIconContainer =
-		Foxtrick.createFeaturedElement(doc, Foxtrick.modules.MatchReportFormat, 'td');
-	var awayIconContainer =
-		Foxtrick.createFeaturedElement(doc, Foxtrick.modules.MatchReportFormat, 'td');
-
 	var l10nId = 'match.events.' + eventId;
 	var eventText = Foxtrick.L10n.isStringAvailable(l10nId) ? Foxtrick.L10n.getString(l10nId)
 		: Foxtrick.L10n.getString('match.events.unknown');
 	var title = eventText + ' (' + eventId + ')';
-	Foxtrick.util.matchEvent.appendIcons(doc, homeIconContainer, homeIcons, title);
-	Foxtrick.util.matchEvent.appendIcons(doc, awayIconContainer, awayIcons, title);
 
-	evnt.insertBefore(homeIconContainer, evnt.firstChild.nextSibling);
-	evnt.insertBefore(awayIconContainer, homeIconContainer.nextSibling);
+	var module = Foxtrick.modules.MatchReportFormat;
+	var insertBefore = evnt.firstChild.nextSibling;
+
+	var homeIcons = Foxtrick.util.matchEvent.getHomeIcons(evnt);
+	var awayIcons = Foxtrick.util.matchEvent.getAwayIcons(evnt);
+	var hasNeither = !(homeIcons || awayIcons);
+	if (hasNeither) {
+		var container = Foxtrick.createFeaturedElement(doc, module, 'td');
+		Foxtrick.util.matchEvent.appendIcons(doc, container, ['transparent'], title);
+		container.colSpan = 2;
+		evnt.insertBefore(container, insertBefore);
+		return;
+	}
+
+	var homeContainer = Foxtrick.createFeaturedElement(doc, module, 'td');
+	evnt.insertBefore(homeContainer, insertBefore);
+	var awayContainer = Foxtrick.createFeaturedElement(doc, module, 'td');
+	evnt.insertBefore(awayContainer, insertBefore);
+
+	if (homeIcons) {
+		Foxtrick.util.matchEvent.appendIcons(doc, homeContainer, homeIcons, title);
+	}
+	if (awayIcons) {
+		Foxtrick.util.matchEvent.appendIcons(doc, awayContainer, awayIcons, homeIcons ? '' : title);
+	}
 };
 
 Foxtrick.util.matchEvent.appendIcons = function(doc, container, icons, title) {
 	var appendEventIcon = function(parent, src, title, alt) {
-		Foxtrick.addImage(doc, parent, { alt: alt,
-			title: title, src: src });
+		Foxtrick.addImage(doc, parent, { alt: alt, title: title, src: src, 'aria-label': alt });
 	};
 
 	for (var idx = 0; idx < icons.length; idx++) {
@@ -694,7 +703,7 @@ Foxtrick.util.matchEvent.appendIcons = function(doc, container, icons, title) {
 		if (src === undefined)
 			src = Foxtrick.util.matchEvent.eventIconDefinition['transparent'];
 
-		appendEventIcon(container, src, title, title);
+		appendEventIcon(container, src, title, idx ? '' : title);
 	}
 };
 
@@ -786,8 +795,13 @@ Foxtrick.util.matchEvent.addEventIndicator = function(evnt, invert) {
 		// found a matching indicator
 		var indicator = doc.createElement('tr');
 		var indicatorCell = doc.createElement('td');
-		indicatorCell.setAttribute('colspan', evnt.getElementsByTagName('td').length);
 		indicator.appendChild(indicatorCell);
+
+		var cells = Foxtrick.toArray(evnt.cells);
+		var colSpan = cells.reduce(function(sum, cell) {
+			return sum + cell.colSpan;
+		}, 0);
+		indicatorCell.colSpan = colSpan;
 		indicatorCell.textContent = Foxtrick.L10n.getString('MatchReportFormat.' + indType.text);
 		Foxtrick.addClass(indicator, 'ft-match-report-' + indType['class']);
 
