@@ -78,11 +78,11 @@
 			"code": "bg",
 			"name": "Bulgarian",
 			"phrases": "2227",
-			"translated": "2017",
+			"translated": "2029",
 			"translated_progress": "83",
 			"words": "15847",
 			"words_approved": "0",
-			"words_translated": "13227"
+			"words_translated": "13259"
 		},
 		{
 			"approved": "0",
@@ -90,11 +90,11 @@
 			"code": "ca",
 			"name": "Catalan",
 			"phrases": "2227",
-			"translated": "2220",
-			"translated_progress": "99",
+			"translated": "2227",
+			"translated_progress": "100",
 			"words": "15847",
 			"words_approved": "0",
-			"words_translated": "15837"
+			"words_translated": "15847"
 		},
 		{
 			"approved": "0",
@@ -613,16 +613,16 @@
 			"words_translated": "15069"
 		},
 		{
-			"approved": "1984",
+			"approved": "1993",
 			"approved_progress": "91",
 			"code": "sv-SE",
 			"name": "Swedish",
 			"phrases": "2227",
-			"translated": "1993",
+			"translated": "2002",
 			"translated_progress": "91",
 			"words": "15847",
-			"words_approved": "14496",
-			"words_translated": "14517"
+			"words_approved": "14516",
+			"words_translated": "14537"
 		},
 		{
 			"approved": "0",
