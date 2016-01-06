@@ -114,11 +114,11 @@
 			"code": "hr",
 			"name": "Croatian",
 			"phrases": "2227",
-			"translated": "2206",
+			"translated": "2213",
 			"translated_progress": "97",
 			"words": "15847",
 			"words_approved": "13572",
-			"words_translated": "15517"
+			"words_translated": "15527"
 		},
 		{
 			"approved": "0",
@@ -145,7 +145,7 @@
 			"words_translated": "14871"
 		},
 		{
-			"approved": "1867",
+			"approved": "1891",
 			"approved_progress": "79",
 			"code": "nl",
 			"name": "Dutch",
@@ -153,7 +153,7 @@
 			"translated": "2044",
 			"translated_progress": "90",
 			"words": "15847",
-			"words_approved": "12597",
+			"words_approved": "12654",
 			"words_translated": "14346"
 		},
 		{
@@ -594,11 +594,11 @@
 			"code": "es-AR",
 			"name": "Spanish, Argentina",
 			"phrases": "2227",
-			"translated": "2220",
-			"translated_progress": "99",
+			"translated": "2227",
+			"translated_progress": "100",
 			"words": "15847",
 			"words_approved": "0",
-			"words_translated": "15837"
+			"words_translated": "15847"
 		},
 		{
 			"approved": "0",
