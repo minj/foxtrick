@@ -161,7 +161,7 @@ Foxtrick.modules['ExtraShortcuts'] = {
 				var link = doc.createElement('a');
 				link.className = 'ft_extra-shortcuts ft-link';
 				Foxtrick.onClick(link, function() {
-					Foxtrick.Prefs.show('#tab=on_page&view-by=page');
+					Foxtrick.Prefs.show('#tab=on_page');
 				});
 				var img1 = doc.createElement('img');
 				img1.setAttribute('class', 'ftSCFtPrefs');

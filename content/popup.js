@@ -52,8 +52,9 @@ function clearCache() {
 	// Foxtrick.util.api.clearCache();
 	window.close();
 }
+
 function openPrefs() {
-	document.location.href = 'preferences.html?width=600';
+	document.location.href = 'preferences.html?width=600#tab=on_page';
 }
 
 function init() {

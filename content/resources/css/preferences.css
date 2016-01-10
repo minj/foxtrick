@@ -32,7 +32,7 @@ ul li ul
 	margin: 0;
 }
 
-h3
+h2, h3
 {/*
 	display:inline;*/
 	margin: 0px 0 0;
@@ -40,7 +40,7 @@ h3
 }
 
 h4 {
-    font-size: 1.4em;
+    font-size: 1.2em;
     margin: 0.5em 0;
 }
 #about-translators h4 {
@@ -49,7 +49,7 @@ h4 {
 }
 
 h5 {
-    font-size: 1.2em;
+    font-size: 1em;
     margin: 0.7em 0;
 }
 
@@ -513,7 +513,7 @@ html[dir="rtl"] #search {
 	border: 1px solid black;
 }
 
-h3 {
+h2, h3 {
 	padding-top: 2px;
 	padding-left: 15px;
 	padding-right: 15px;
@@ -525,6 +525,10 @@ h3 {
 
 	background: linear-gradient(top, #7abcff 0%, #60abf8 44%, #4096ee 100%);
 	background: linear-gradient(to bottom, #7abcff 0%,#60abf8 44%,#4096ee 100%);
+}
+.h2 h3 {
+	background: transparent;
+	font-size: 1.4em;
 }
 
 .module-content {
@@ -582,4 +586,8 @@ div.nav{
 }
 #search-input {
 	margin: 0 10px;
+}
+
+.expand {
+	margin: 1em 0;
 }
