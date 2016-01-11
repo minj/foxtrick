@@ -473,7 +473,7 @@ Foxtrick.modules['StaffMarker'] = {
 						Foxtrick.map(function(a) {
 							if (!a.href) return; // eg our copy link
 							if (a.getAttribute('href').search(/\/Club\/Manager\/\?userId\=/i) == -1
-								|| a.getAttribute('href').search(/redir_to_league=true/i) != -1)
+								|| a.getAttribute('href').search(/redir_to_series=true/i) != -1)
 								return;
 							var uname = a.title.trim();
 							var uid = a.href.replace(/.+userId=/i, '').match(/^\d+/);
