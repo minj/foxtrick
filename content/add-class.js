@@ -2,7 +2,7 @@
 /*
  * add-class.js
  * Add classes for HTML nodes
- * @author ryanli
+ * @author ryanli, convincedd, LA-MJ
  */
 
 Foxtrick.modules.AddClass = {
@@ -64,72 +64,74 @@ Foxtrick.modules.AddClass = {
 
 	// add date class for match
 	addDateForMatch: function(doc) {
+		var module = this;
 		var mainBody = doc.getElementById('mainBody');
 		if (!mainBody)
 			return;
 
 		// start time
-		var timeRe = this.timeRe;
 		var parent = mainBody.getElementsByClassName('byline')[0];
-		this.replaceInNode(doc, parent, timeRe);
+		module.replaceInNode(doc, parent, module.timeRe);
 	},
+
+	// guestbook, player events etc
 	addDateForFeed: function(doc) {
 		var feeds = doc.getElementsByClassName('feed');
 		Foxtrick.forEach(function(feed) {
 			Foxtrick.addClass(feed, 'date');
 		}, feeds);
 	},
+
 	// add date class for bookmark
 	addDateForBookmarks: function(doc) {
+		var module = this;
 		var mainBody = doc.getElementById('mainBody');
 		if (!mainBody)
 			return;
 
-		var timeRe = this.timeRe;
 		var cells = mainBody.getElementsByTagName('td');
 		Foxtrick.map(function(cell) {
-			Foxtrick.modules.AddClass.replaceInNode(doc, cell, timeRe);
+			module.replaceInNode(doc, cell, module.timeRe);
 		}, cells);
 	},
 
 	// add date class for youth league search
 	addDateForTable: function(doc, table) {
+		var module = this;
 		if (!table)
 			return;
-
-		var timeReFull = this.timeRe;
-		var timeReShort = this.timeReNoTime;
 
 		// start time
 		var cells = table.getElementsByTagName('td');
 		Foxtrick.map(function(cell) {
-			if (!cell.getElementsByClassName('date').length) {
-				if (timeReFull.test(cell.textContent))
-					Foxtrick.modules.AddClass.replaceInNode(doc, cell, timeReFull);
-				else
-					Foxtrick.modules.AddClass.replaceInNode(doc, cell, timeReShort);
-			}
+			if (cell.getElementsByClassName('date').length)
+				return;
+
+			if (module.timeReFull.test(cell.textContent))
+				module.replaceInNode(doc, cell, module.timeReFull);
+			else
+				module.replaceInNode(doc, cell, module.timeReShort);
 		}, cells);
 	},
 
 	// add date class for transfer-list
 	addDateForTl: function(doc) {
+		var module = this;
 		var transferList = Foxtrick.Pages.Player.getBidInfo(doc);
 		if (!transferList)
 			return;
 
-		var timeRe = this.timeRe;
-
 		// deadline time
-		var dlPar = transferList.getElementsByTagName('p')[0];
+		var dlPar = transferList.querySelector('p');
 		if (!dlPar)
 			return;
+
 		if (!dlPar.getElementsByClassName('date').length)
-			this.replaceInNode(doc, dlPar, timeRe);
+			module.replaceInNode(doc, dlPar, module.timeRe);
 
 		// reload time
-		var firstLine = transferList.getElementsByClassName('float_left')[0];
+		var firstLine = transferList.querySelector('.float_left');
 		if (firstLine)
-			this.replaceInNode(doc, firstLine, timeRe);
-	}
+			module.replaceInNode(doc, firstLine, module.timeRe);
+	},
 };
