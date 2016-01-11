@@ -2,7 +2,11 @@
 /*
  * scripts-fennec.js
  * content script inject for fennec
+ *
+ * @author convincedd, CatzHoek, LA-MJ
  */
+
+/* global FOXTRICK_PATH, FOXTRICK_RUNTIME */
 
 if (!Foxtrick)
 	var Foxtrick = {};
@@ -13,23 +17,23 @@ if (!Foxtrick.loader.background)
 
 Foxtrick.loader.background.contentScriptManager = {
 	contentScripts: [
-		//<!-- essential -->
+		// <!-- essential -->
 		'env.js',
 		'prefs-util.js',
 		'l10n.js',
 		'xml-load.js',
 		'pages.js',
 
-		//<!-- ext-lib -->
+		// <!-- ext-lib -->
 		'lib/oauth.js',
 		'lib/sha1.js',
 		'lib/jester.js',
 		'lib/FileSaver.js',
 		'lib/psico.js',
 		'lib/integration.js',
-		//<!-- end ext-lib -->
+		// <!-- end ext-lib -->
 
-		//<!-- util -->
+		// <!-- util -->
 		'util/api.js',
 		'util/array.js',
 		'util/color.js',
@@ -59,9 +63,9 @@ Foxtrick.loader.background.contentScriptManager = {
 		'util/string.js',
 		'util/tabs.js',
 		'util/time.js',
-		//<!-- end util -->
+		// <!-- end util -->
 
-		//<!-- page-util -->
+		// <!-- page-util -->
 		'pages/all.js',
 		'pages/match.js',
 		'pages/matches.js',
@@ -70,9 +74,9 @@ Foxtrick.loader.background.contentScriptManager = {
 		'pages/series.js',
 		'pages/transfer-search-results.js',
 		'pages/youth-player.js',
-		//<!-- end page-util -->
+		// <!-- end page-util -->
 
-		//<!-- api-util -->
+		// <!-- api-util -->
 		'api/hy/common.js',
 		'api/hy/matches-report.js',
 		'api/hy/matches-training.js',
@@ -84,18 +88,18 @@ Foxtrick.loader.background.contentScriptManager = {
 		'api/pastebin/get.js',
 		'api/pastebin/login.js',
 		'api/pastebin/paste.js',
-		//<!-- end api-util -->
+		// <!-- end api-util -->
 
-		//<!-- core -->
+		// <!-- core -->
 		'add-class.js',
 		'core.js',
 		'fix-links.js',
 		'forum-stage.js',
 		'read-ht-prefs.js',
 		'redirections.js',
-		//<!-- end core -->
+		// <!-- end core -->
 
-		//<!-- categorized modules -->
+		// <!-- categorized modules -->
 		'access/aria-landmarks.js',
 		'alert/live-alert.js',
 		'alert/new-mail.js',
@@ -247,12 +251,12 @@ Foxtrick.loader.background.contentScriptManager = {
 		'shortcuts-and-tweaks/transfer-history-filters.js',
 		'shortcuts-and-tweaks/transfer-search-filters.js',
 		'shortcuts-and-tweaks/transfer-search-result-filters.js',
-		//<!-- end categorized modules -->
+		// <!-- end categorized modules -->
 
-		//<!-- platform-specific -->
+		// <!-- platform-specific -->
 		'ui.js',
 		'entry.js',
-		'loader-fennec.js'
+		'loader-fennec.js',
 	],
 
 	load: function() {
@@ -283,6 +287,7 @@ Foxtrick.loader.background.contentScriptManager = {
 				Services.console.logStringMessage(e);
 			}
 		}
+
 		// tell running content scripts to unload
 		Foxtrick.SB.ext.broadcastMessage('unload');
 		Foxtrick.saveAs.unload();
