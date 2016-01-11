@@ -1030,7 +1030,7 @@ function initMainTab() {
 	// restore to default
 	$('#pref-stored-restore').click(function() {
 		if (Foxtrick.confirmDialog(Foxtrick.L10n.getString('prefs.restoreDefault.ask'))) {
-			Foxtrick.Prefs.cleanupBranch();
+			Foxtrick.Prefs.restore();
 			window.location.reload();
 		}
 	});

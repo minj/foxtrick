@@ -142,10 +142,7 @@ Foxtrick.loader.background.browserLoad = function() {
 
 		// from prefs-util.js
 		this.requests.setValue = function(request) {
-			if (Foxtrick.Prefs.get(request.key) == request.value)
-				return;
-
-			Foxtrick.Prefs.setValue(request.key, request.value, request.type);
+			Foxtrick.Prefs.setValueWithType(request.type, request.key, request.value);
 
 			if (request.key == 'htLanguage')
 				Foxtrick.L10n.init();
@@ -159,7 +156,7 @@ Foxtrick.loader.background.browserLoad = function() {
 		this.requests.clearPrefs = function() {
 			try {
 				if (Foxtrick.platform == 'Android') {
-					Foxtrick.Prefs.cleanupBranch();
+					Foxtrick.Prefs.restore();
 				}
 				else {
 					for (var i in localStorage) {
