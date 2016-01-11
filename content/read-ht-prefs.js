@@ -2,7 +2,8 @@
 /**
  * read-ht-prefs.js
  * Read Hattrick preferences and change Foxtrick's accordingly.
- * @author convinced, ryanli
+ *
+ * @author ryanli, convinced, CatzHoek, LA-MJ
  */
 
 Foxtrick.modules['ReadHtPrefs'] = {
@@ -15,61 +16,69 @@ Foxtrick.modules['ReadHtPrefs'] = {
 		// only read preferences if logged in
 		if (!Foxtrick.Pages.All.isLoggedIn(doc))
 			return;
+
 		this.readLanguage(doc);
 		this.readCountry(doc);
 		this.readDateFormat(doc);
 	},
 
 	readLanguageFromMetaTag: function(doc) {
-		var meta = doc.getElementsByTagName('meta');
 		var lang = null;
-		for (var i = 0; i < meta.length; i++)
-		{
-			if (meta[i].getAttribute('http-equiv') == 'Content-Language')
-				var lang = meta[i].getAttribute('content');
-		}
+		var metas = doc.getElementsByTagName('meta');
+		Foxtrick.any(function(meta) {
+			if (meta.getAttribute('http-equiv') == 'Content-Language') {
+				lang = meta.getAttribute('content');
+				return true;
+			}
+			return false;
+		}, metas);
 		return lang;
 	},
 
 	readLanguage: function(doc) {
-		var readLang = this.readLanguageFromMetaTag(doc);
-		var newLang = Foxtrick.L10n.htMapping[readLang];
+		var metaLang = this.readLanguageFromMetaTag(doc);
+		if (!metaLang) {
+			Foxtrick.error('No meta lang');
+			return;
+		}
+		var newLang = Foxtrick.L10n.htMapping[metaLang];
 		var oldLang = Foxtrick.Prefs.getString('htLanguage');
 
-		if (newLang != oldLang) {
-			Foxtrick.log('Language changed. ht: ' + readLang + ' ft: ' + newLang +
-			             ', old language: ft: ' + oldLang + '.');
-			if (Foxtrick.L10n.htLanguagesJSON[newLang]) {
-				Foxtrick.Prefs.setString('htLanguage', newLang);
-				if (Foxtrick.arch == 'Gecko') {
-					// change language
-					Foxtrick.L10n.setUserLocaleGecko(newLang);
-				}
-				var language = Foxtrick.L10n.htLanguagesJSON[newLang].language.desc;
+		if (newLang == oldLang)
+			return;
 
-				var msg = Foxtrick.L10n.getString('ReadHtPrefs.HTLanguageChanged');
-				if (msg.search('%s') != -1)
-					msg = msg.replace('%s', language);
-				else
-					msg += ' ' + language; // fallback for outdated description
+		Foxtrick.log('Language changed. ht:', metaLang, 'ft:', newLang, 'old-ft:', oldLang);
+		var langDef = Foxtrick.L10n.htLanguagesJSON[newLang];
+		if (langDef) {
+			Foxtrick.Prefs.setString('htLanguage', newLang);
+			if (Foxtrick.arch == 'Gecko') {
+				// change language
+				Foxtrick.L10n.setUserLocaleGecko(newLang);
+			}
+			var langDesc = langDef.language.desc;
 
-				Foxtrick.util.note.add(doc, msg, 'ft-language-changed', { focus: true });
-			}
-			else {
-				Foxtrick.log('Language changed: ' + newLang + '(' + readLang +
-				             ') but no Foxtrick support yet.');
-			}
-			if (Foxtrick.platform === 'Firefox') {
-				Foxtrick.modules.UI.update(doc);
-			}
+			var msg = Foxtrick.L10n.getString('ReadHtPrefs.HTLanguageChanged');
+			var tag = /%s/;
+			if (tag.test(msg))
+				msg = msg.replace(tag, langDesc);
+			else
+				msg += ' ' + langDesc; // fallback for outdated description
+
+			Foxtrick.util.note.add(doc, msg, 'ft-language-changed', { focus: true });
+		}
+		else {
+			Foxtrick.log('Language changed:', newLang, '(' + metaLang + ')',
+			             'but no Foxtrick support yet.');
+		}
+		if (Foxtrick.platform === 'Firefox') {
+			Foxtrick.modules.UI.update(doc);
 		}
 	},
 
 	readCountry: function(doc) {
-		var teamLinks = doc.getElementById('teamLinks').getElementsByTagName('a');
-
+		var teamLinks = doc.querySelectorAll('#teamLinks a');
 		var leagueLink = teamLinks[2];
-		var leagueId = leagueLink.href.replace(/.+leagueid=/i, '').match(/^\d+/)[0];
+		var leagueId = Foxtrick.getParameterFromUrl(leagueLink.href, 'leagueId');
 		var country = Foxtrick.L10n.getCountryNameEnglish(leagueId);
 		Foxtrick.Prefs.setString('htCountry', country);
 	},
@@ -78,8 +87,8 @@ Foxtrick.modules['ReadHtPrefs'] = {
 		var clockRe = /HT\.Clock\.init\((?!\))/i;
 		var formatRe = /HT\.Clock\.init\(\s*(?:\d+\s*,\s*)*'([ymd\-]+)'(?:\s*,\s*-?\d+)*\s*\)/i;
 		var scripts = doc.getElementsByTagName('script');
-		for (var i = 0; i < scripts.length; ++i) {
-			var script = scripts[i].textContent;
+		Foxtrick.forEach(function(tag) {
+			var script = tag.textContent;
 			var clockMatch = script.match(clockRe);
 			if (clockMatch) {
 				// function call to timeDiff in the script
@@ -97,11 +106,11 @@ Foxtrick.modules['ReadHtPrefs'] = {
 						Foxtrick.util.time.setDateFormat(dateFormat);
 					}
 					else {
-						Foxtrick.error('Incomplete date format: ' + dateFormat);
+						Foxtrick.error('Incomplete date format:', dateFormat);
 					}
 				}
 				return;
 			}
-		}
+		}, scripts);
 	},
 };
