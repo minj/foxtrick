@@ -217,15 +217,15 @@
 			"words_translated": "6207"
 		},
 		{
-			"approved": "2220",
-			"approved_progress": "99",
+			"approved": "2227",
+			"approved_progress": "100",
 			"code": "fr",
 			"name": "French",
 			"phrases": "2227",
 			"translated": "2227",
 			"translated_progress": "100",
 			"words": "15847",
-			"words_approved": "15837",
+			"words_approved": "15847",
 			"words_translated": "15847"
 		},
 		{
@@ -282,11 +282,11 @@
 			"code": "de",
 			"name": "German",
 			"phrases": "2227",
-			"translated": "2112",
-			"translated_progress": "91",
+			"translated": "2142",
+			"translated_progress": "92",
 			"words": "15847",
 			"words_approved": "33",
-			"words_translated": "14506"
+			"words_translated": "14585"
 		},
 		{
 			"approved": "0",
@@ -354,11 +354,11 @@
 			"code": "it",
 			"name": "Italian",
 			"phrases": "2227",
-			"translated": "2224",
-			"translated_progress": "99",
+			"translated": "2227",
+			"translated_progress": "100",
 			"words": "15847",
 			"words_approved": "0",
-			"words_translated": "15844"
+			"words_translated": "15847"
 		},
 		{
 			"approved": "0",
