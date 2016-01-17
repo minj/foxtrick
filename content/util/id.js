@@ -27,6 +27,10 @@ Foxtrick.util.id.isSeriesDetailUrl = function(href) {
 	return href.match(/Series\/(Default\.aspx)?\?LeagueLevelUnitID=/i);
 };
 
+Foxtrick.util.id.isNTId = function(teamId) {
+	return teamId >= 3000 && teamId < 4000; // regular teams seem to start @5000
+};
+
 Foxtrick.util.id.getLeagueLeveUnitIdFromUrl = function(url) {
 	return url.replace(/.+leagueLevelUnitID=/i, '').match(/^\d+/);
 };

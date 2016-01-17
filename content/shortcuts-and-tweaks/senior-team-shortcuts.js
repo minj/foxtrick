@@ -48,7 +48,7 @@ Foxtrick.modules['SeniorTeamShortCuts'] = {
 		// coach make link
 		var li2 = Foxtrick.createFeaturedElement(doc, this, 'li');
 		var coachlink = doc.createElement('a');
-		if (teamid < 3000 || teamid >= 5000) { // normal teams
+		if (!Foxtrick.util.id.isNTId(teamid)) { // normal teams
 			if (teamid != ownteamid)
 				coachlink.setAttribute('href', '/Club/Players/?TeamID=' + teamid +
 				                       '&redir_to_coach=true');

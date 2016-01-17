@@ -231,7 +231,8 @@ Foxtrick.Pages.Match.isHTOIntegrated = function(doc) {
 Foxtrick.Pages.Match.isNT = function(doc) {
 	var homeId = this.getHomeTeamId(doc);
 	var awayId = this.getAwayTeamId(doc);
-	return homeId && awayId && homeId < 10000 && awayId < 10000 || false;
+	return homeId && Foxtrick.util.id.isNTId(homeId) &&
+		awayId && Foxtrick.util.id.isNTId(awayId) || false;
 };
 
 /**
