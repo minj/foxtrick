@@ -328,10 +328,8 @@ Foxtrick.modules['MatchOrderInterface'] = {
 			var hasInterface = false;
 			var playerList = null;
 			var avatarsXml = null;
-			// NT team ID can only be found in URL it seems
-			var seniorId = Foxtrick.util.id.getTeamIdFromUrl(doc.location.href);
-			var youthId = Foxtrick.util.id.getYouthTeamIdFromUrl(doc.location.href);
-			var teamId = isYouth ? youthId : seniorId;
+
+			var teamId = Foxtrick.Pages.Match.getMyTeamId(doc);
 
 			// load ahead players and then wait for interface loaded
 			getPlayers = function(fresh) {
@@ -357,7 +355,7 @@ Foxtrick.modules['MatchOrderInterface'] = {
 			var avatarsParams = [
 				['file', (isYouth ? 'youth' : '') + 'avatars'],
 				['version', '1.1'],
-				[(isYouth ? 'youthT' : 't') + 'eamId', teamId]
+				[(isYouth ? 'youthT' : 't') + 'eamId', teamId],
 			];
 			avatarsParamsString = JSON.stringify(avatarsParams); // save as string (immutable)
 			getAvatars = function(avatarsParams, opts) {
