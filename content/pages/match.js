@@ -94,6 +94,32 @@ Foxtrick.Pages.Match.getAwayTeamId = function(doc) {
 };
 
 /**
+ * Get team ID belonging to user's team.
+ *
+ * Mostly suited for matchOrder page.
+ * May be youth or NT team ID.
+ * @param  {document} doc
+ * @return {number}
+ */
+Foxtrick.Pages.Match.getMyTeamId = function(doc) {
+	if (Foxtrick.isPage(doc, 'matchOrder')) {
+		if (!this.isYouth(doc)) {
+			// URL id is not really reliable: it might be completely wrong or missing
+			// alas it is the only place to find NT team ID
+			var urlId = Foxtrick.util.id.getTeamIdFromUrl(doc.location.href); // NT
+			if (Foxtrick.util.id.isNTId(urlId))
+				return urlId;
+		}
+
+		var crumbs = Foxtrick.Pages.All.getBreadCrumbs(doc);
+		var crumbId = Foxtrick.util.id.getTeamIdFromUrl(crumbs[0].href);
+		if (crumbId)
+			return crumbId;
+	}
+	return Foxtrick.util.id.getOwnTeamId();
+};
+
+/**
  * Get home team name
  * @param  {document} doc
  * @return {string}
@@ -210,7 +236,8 @@ Foxtrick.Pages.Match.isHTOIntegrated = function(doc) {
 Foxtrick.Pages.Match.isNT = function(doc) {
 	var homeId = this.getHomeTeamId(doc);
 	var awayId = this.getAwayTeamId(doc);
-	return homeId && awayId && homeId < 10000 && awayId < 10000 || false;
+	return homeId && Foxtrick.util.id.isNTId(homeId) &&
+		awayId && Foxtrick.util.id.isNTId(awayId) || false;
 };
 
 /**

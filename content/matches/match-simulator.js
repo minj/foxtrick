@@ -37,8 +37,7 @@ Foxtrick.modules.MatchSimulator = {
 		var SOURCE_SYSTEM = IS_HTO ? SOURCE_SYSTEM = 'HTOIntegrated' : 'Hattrick';
 		var IS_HOME; // defined later but once only!
 
-		// NT teamId is only available in the URL
-		var TEAM_ID = Foxtrick.util.id.getTeamIdFromUrl(doc.location.href);
+		var TEAM_ID = Foxtrick.Pages.Match.getMyTeamId(doc);
 
 		var MATCH_ID = Foxtrick.util.id.getMatchIdFromUrl(doc.location.href);
 		if (!MATCH_ID) {

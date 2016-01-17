@@ -168,7 +168,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 
 		if (options && typeof options.isNT !== 'undefined')
 			isNT = options.isNT;
-		else if (teamId > 3000 && teamId < 4000 || Foxtrick.Pages.Players.isNT(doc))
+		else if (Foxtrick.util.id.isNTId(teamId) || Foxtrick.Pages.Players.isNT(doc))
 			isNT = true;
 
 		if (isYouth) {

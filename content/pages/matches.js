@@ -29,7 +29,7 @@ Foxtrick.Pages.Matches.isYouth = function(doc) {
  */
 Foxtrick.Pages.Matches.isNT = function(doc) {
 	var teamId = Foxtrick.Pages.All.getTeamId(doc);
-	return teamId >= 3000 && teamId < 4000;
+	return Foxtrick.util.id.isNTId(teamId);
 };
 
 /**
