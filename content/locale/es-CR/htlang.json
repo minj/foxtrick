@@ -490,11 +490,11 @@
 			},
 			{
 				"type": "WingBack",
-				"value": "Defensor lateral"
+				"value": "Defensa lateral"
 			},
 			{
 				"type": "CentralDefender",
-				"value": "Defensor central"
+				"value": "Defensa central"
 			},
 			{
 				"type": "InnerMidfield",
