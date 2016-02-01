@@ -19,7 +19,7 @@
 		{
 			"id": "1532705",
 			"name": "Mackshot",
-			"duty": "developer"
+			"duty": "translator"
 		},
 		{
 			"id": "1904227",
@@ -92,6 +92,11 @@
 			"duty": "translator"
 		},
 		{
+			"id": "6170192",
+			"name": "albertocorrez-SUB",
+			"duty": "translator"
+		},
+		{
 			"id": "6598614",
 			"name": "GM-Toni",
 			"duty": "translator"
@@ -99,21 +104,6 @@
 		{
 			"id": "5775947",
 			"name": "bigs_",
-			"duty": "translator"
-		},
-		{
-			"id": "6734724",
-			"name": "statkar",
-			"duty": "translator"
-		},
-		{
-			"id": "1570740",
-			"name": "Thelonius",
-			"duty": "translator"
-		},
-		{
-			"id": "440454",
-			"name": "LA-Foppe",
 			"duty": "translator"
 		},
 		{
@@ -184,11 +174,6 @@
 		{
 			"id": "8852987",
 			"name": "Mrgood",
-			"duty": "translator"
-		},
-		{
-			"id": "6609378",
-			"name": "toffotox",
 			"duty": "translator"
 		},
 		{
@@ -332,6 +317,11 @@
 			"duty": "translator"
 		},
 		{
+			"id": "11658837",
+			"name": "comanzino",
+			"duty": "translator"
+		},
+		{
 			"id": "7545735",
 			"name": "stormbass",
 			"duty": "translator"
@@ -369,11 +359,6 @@
 		{
 			"id": "10496115",
 			"name": "Sina_Adams",
-			"duty": "translator"
-		},
-		{
-			"id": "12175097",
-			"name": "Mod-squirrelius",
 			"duty": "translator"
 		},
 		{
@@ -422,23 +407,33 @@
 			"duty": "translator"
 		},
 		{
-			"id": "9286790",
-			"name": "Cis_Trans",
-			"duty": "translator"
-		},
-		{
-			"id": "12570031",
-			"name": "C_B1anc0",
-			"duty": "translator"
-		},
-		{
-			"id": "1432428",
-			"name": "vedran6",
+			"id": "12614915",
+			"name": "clashfan",
 			"duty": "translator"
 		},
 		{
 			"id": "12858567",
 			"name": "Engin_Altiok",
+			"duty": "translator"
+		},
+		{
+			"id": "11795800",
+			"name": "Dotyfree",
+			"duty": "translator"
+		},
+		{
+			"id": "10436772",
+			"name": "Citree",
+			"duty": "translator"
+		},
+		{
+			"id": "6489521",
+			"name": "-JENDA-",
+			"duty": "translator"
+		},
+		{
+			"id": "9700755",
+			"name": "czhenjupt",
 			"duty": "translator"
 		}
 	]
