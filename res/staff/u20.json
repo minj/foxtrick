@@ -112,7 +112,7 @@
 		{ "LeagueId": 129, "TeamId": 3219, "TeamName": "U-20 Azərbaycan", "id": 6431125, "name": "erimay" },
 		{ "LeagueId": 130, "TeamId": 3223, "TeamName": "U-20 Angola", "id": 168400, "name": "CoachOle" },
 		{ "LeagueId": 131, "TeamId": 3227, "TeamName": "U-20 Crna Gora", "id": 10503366, "name": "Afro-Man" },
-		{ "LeagueId": 132, "TeamId": 3225, "TeamName": "U-20 Bangladesh", "id": 12468472, "name": "savidm" },
+		{ "LeagueId": 132, "TeamId": 3225, "TeamName": "U-20 Bangladesh", "id": 10297268, "name": "cristi_bn" },
 		{ "LeagueId": 133, "TeamId": 3229, "TeamName": "U-20 Al Yaman", "id": 11758956, "name": "-Teseo-" },
 		{ "LeagueId": 134, "TeamId": 3231, "TeamName": "U-20 Oman", "id": 7335044, "name": "Heisenb3rg" },
 		{ "LeagueId": 135, "TeamId": 3233, "TeamName": "U-20 Moçambique", "id": 10316689, "name": "Apangaia" },
@@ -127,7 +127,7 @@
 		{ "LeagueId": 144, "TeamId": 3252, "TeamName": "U-20 Dhivehi Raajje", "id": 10624317, "name": "VascoDaGamma" },
 		{ "LeagueId": 145, "TeamId": 3261, "TeamName": "U-20 O'zbekiston", "id": 6789621, "name": "hadria" },
 		{ "LeagueId": 146, "TeamId": 3255, "TeamName": "U-20 Cameroon", "id": 13025621, "name": "andire" },
-		{ "LeagueId": 147, "TeamId": 3257, "TeamName": "U-20 Cuba", "id": 12416185, "name": "SSL_Jugon" },
+		{ "LeagueId": 147, "TeamId": 3257, "TeamName": "U-20 Cuba", "id": 12416185, "name": "Jugon_" },
 		{ "LeagueId": 148, "TeamId": 3259, "TeamName": "U-20 Palestine", "id": 11331332, "name": "kattans" }
 	]
 }
