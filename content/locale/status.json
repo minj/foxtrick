@@ -138,11 +138,11 @@
 			"code": "da",
 			"name": "Danish",
 			"phrases": "2227",
-			"translated": "2167",
+			"translated": "2168",
 			"translated_progress": "93",
 			"words": "15847",
 			"words_approved": "13155",
-			"words_translated": "14871"
+			"words_translated": "14873"
 		},
 		{
 			"approved": "1891",
@@ -541,16 +541,16 @@
 			"words_translated": "15837"
 		},
 		{
-			"approved": "2044",
+			"approved": "2072",
 			"approved_progress": "85",
 			"code": "sr",
 			"name": "Serbian (Cyrillic)",
 			"phrases": "2227",
-			"translated": "2052",
-			"translated_progress": "85",
+			"translated": "2080",
+			"translated_progress": "86",
 			"words": "15847",
-			"words_approved": "13473",
-			"words_translated": "13593"
+			"words_approved": "13575",
+			"words_translated": "13695"
 		},
 		{
 			"approved": "0",
