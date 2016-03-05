@@ -192,7 +192,16 @@ Foxtrick.modules['CopyRatings'] = {
 			}
 			else if (isLive) {
 				var timer = doc.getElementById('match');
-				map.match_time = timer.textContent.trim().match(/^\d+/)[0] + '\'';
+				var timerTime = parseInt(timer.textContent.trim().match(/^\d+/), 10);
+				if (timerTime && timerTime <= 15) {
+					// test half-time counter
+					var tmstmps = doc.querySelectorAll('.timelineEventTimeStamp');
+					var lastTmstmp = [].slice.call(tmstmps, -1)[0];
+					if (lastTmstmp && lastTmstmp.textContent.trim() === '45') {
+						timerTime = 45;
+					}
+				}
+				map.match_time = timerTime + '\'';
 			}
 
 			map.sectors = Foxtrick.format(SECTORS_TEMPLATE, map);
