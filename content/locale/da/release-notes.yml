@@ -8,7 +8,7 @@ da:
     0.16.1.1:
       important: '<header>Vigtige meddelelser</header>'
       safari_cert: 'Vi er på udkig efter en engageret manager, som udvikler apps til iOS eller OSX, for at være med til at genoprette hjælp til Safari-brugere omkring Foxtrick. Se vores <linkSafariCertBug>issue tracker</linkSafariCertBug> for flere oplysninger.'
-      beta: 'Overvej at installer <linkFTBeta>Foxtrick beta</linkFTBeta> for at få nye funktioner tidligt sådan, at du kan være med til at påvirke udviklingen af nye features, og til at hjælpe med at finde og løse eventuelle problemer, der måtte opstå.'
+      beta: 'Overvej at installer <linkFTBeta>Foxtrick beta</linkFTBeta> for at få nye funktioner tidligt, sådan at du kan være med til at påvirke udviklingen af nye features, og til at hjælpe med at finde og løse eventuelle problemer, der måtte opstå.'
       bugs: '<header>Fejlrettelser</header>'
       defence_stamina: 'En fejlberegning af konditionseffekten i forsvarssektoren er nu rettet under <module>MatchSimulator</module>: Det var, ved et uheld, kun målmandens kondition der var taget højde for i den forrige udgave.'
       time_rewrite: 'Foxtricks dato- og tidsindstilling måtte omskrives på grund af kommende ændringer i Hattrick. Desværre skete der nogle få fejl i den forrige udgave, som forårsagede problemer i forbindelse med brugen af CHPP-moduler, for visse lande. Problemet skulle nu være løst.'
