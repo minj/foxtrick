@@ -40,7 +40,7 @@ Foxtrick.modules['ForumLastPost'] = {
 					if (!url)
 						return;
 
-					if (url.querySelector('strong').length && unlessOpen) {
+					if (url.querySelector('strong') && unlessOpen) {
 						// this thread is open now!
 						// default to first post
 						return;
