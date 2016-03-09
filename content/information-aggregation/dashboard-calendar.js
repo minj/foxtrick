@@ -136,6 +136,7 @@ Foxtrick.modules['DashboardCalendar'] = {
 			return;
 
 		var MSECS_IN_MIN = Foxtrick.util.time.MSECS_IN_MIN;
+		var MSECS_IN_HOUR = Foxtrick.util.time.MSECS_IN_HOUR;
 		var DAYS_IN_WEEK = Foxtrick.util.time.DAYS_IN_WEEK;
 
 		var htNow = Foxtrick.util.time.getHTDate(doc);
@@ -258,8 +259,8 @@ Foxtrick.modules['DashboardCalendar'] = {
 		};
 
 		var CHALLENGE_URL = 'https://www.hattrick.org/goto.ashx?path=/Club/Challenges/';
-		for (var i = 0, day; i < DAYS_IN_WEEK; ++i) {
-			day = (htWeekDay + i) % DAYS_IN_WEEK;
+		for (var d = 0, day; d < DAYS_IN_WEEK; ++d) {
+			day = (htWeekDay + d) % DAYS_IN_WEEK;
 
 			// fake events
 			if (day == 2) {
@@ -268,7 +269,7 @@ Foxtrick.modules['DashboardCalendar'] = {
 						continue;
 
 					addFake({
-						offset: i,
+						offset: d,
 						team: team,
 						type: EVENTS.INTFRREMINDER,
 						URL: CHALLENGE_URL,
@@ -281,7 +282,7 @@ Foxtrick.modules['DashboardCalendar'] = {
 						continue;
 
 					addFake({
-						offset: i,
+						offset: d,
 						team: wkndTeam,
 						type: EVENTS.WKNDFRREMINDER,
 						URL: CHALLENGE_URL,
