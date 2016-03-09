@@ -57,8 +57,8 @@ Foxtrick.modules['TransferSearchResultFilters'] = {
 		};
 		// default filter values
 		var FILTER_VAL = [
-			{ key: 'form', type: 'skillselect', min: null, max: null, minAllowed: 0, maxAllowed: 8},
-			{ key: 'days', type: 'minmax', min: null, max: null },
+			{ key: 'form', type: 'skillselect', min: -1, max: -1, minAllowed: 0, maxAllowed: 8},
+			{ key: 'days', type: 'minmax', min: '', max: '' },
 			{ key: 'hideOrdinary', type: 'check', checked: false },
 			{ key: 'hideInjured', type: 'check', checked: false },
 			{ key: 'hideSuspended', type: 'check', checked: false },
@@ -227,10 +227,10 @@ Foxtrick.modules['TransferSearchResultFilters'] = {
 						for (var j = 0; j < filters.length; ++j) {
 							var filter = filters[j];
 							if (filter.type == 'minmax') {
-								filters[j].min = null;
+								filters[j].min = '';
 								doc.getElementById(filterIdPrefix +
 								                   filter.key + '.Min').value = '';
-								filters[j].max = null;
+								filters[j].max = '';
 								doc.getElementById(filterIdPrefix +
 								                   filter.key + '.Max').value = '';
 							}
@@ -240,10 +240,10 @@ Foxtrick.modules['TransferSearchResultFilters'] = {
 								                   filter.key + '.check').removeAttribute('checked');
 							}
 							else if (filter.type == 'skillselect') {
-								filters[j].min = null;
+								filters[j].min = -1;
 								doc.getElementById('FoxtrickTransferSearchResultFilters.Skills.' +
 								                   filter.key + '.Min').value = '-1';
-								filters[j].max = null;
+								filters[j].max = -1;
 								doc.getElementById('FoxtrickTransferSearchResultFilters.Skills.' +
 								                   filter.key + '.Max').value = '-1';
 							}
@@ -269,13 +269,13 @@ Foxtrick.modules['TransferSearchResultFilters'] = {
 								if (filter.type == 'minmax') {
 									var el = doc.getElementById(filterIdPrefix + filter.key +
 									                            '.Min');
-									if (el.value == '' || isNaN(el.value))
-										filters[j].min = null;
+									if (el.value === '' || isNaN(el.value))
+										filters[j].min = '';
 									else filters[j].min = Number(el.value);
 									var el = doc.getElementById(filterIdPrefix + filter.key +
 									                            '.Max');
-									if (el.value == '' || isNaN(el.value))
-										filters[j].max = null;
+									if (el.value === '' || isNaN(el.value))
+										filters[j].max = '';
 									else filters[j].max = Number(el.value);
 								}
 								else if (filter.type == 'check') {
@@ -286,13 +286,13 @@ Foxtrick.modules['TransferSearchResultFilters'] = {
 								else if (filter.type == 'skillselect') {
 									var el = doc.getElementById(filterIdPrefix + 'Skills.' +
 									                            filter.key + '.Min');
-									if (isNaN(el.value) || Number(el.value) == -1)
-										filters[j].min = null;
+									if (isNaN(el.value))
+										filters[j].min = -1;
 									else filters[j].min = Number(el.value);
 									var el = doc.getElementById(filterIdPrefix + 'Skills.' +
 									                            filter.key + '.Max');
-									if (isNaN(el.value) || Number(el.value) == -1)
-										filters[j].max = null;
+									if (isNaN(el.value))
+										filters[j].max = -1;
 									else filters[j].max = Number(el.value);
 								}
 							}
@@ -326,8 +326,13 @@ Foxtrick.modules['TransferSearchResultFilters'] = {
 					var hide = false;
 					for (var j = 0; j < filters.length; ++j) {
 						var filter = filters[j];
-						if ((filter.type == 'minmax' || filter.type == 'skillselect') &&
-						    (filter.min != null || filter.max != null)) {
+						if (filter.type == 'minmax' &&
+						    (filter.min !== '' || filter.max !== '')) {
+							if (FILTER_FUNC[filter.key](player, filter.min, filter.max))
+								hide = true;
+						}
+						else if (filter.type == 'skillselect' &&
+						    (filter.min != -1 || filter.max != -1)) {
 							if (FILTER_FUNC[filter.key](player, filter.min, filter.max))
 								hide = true;
 						}
