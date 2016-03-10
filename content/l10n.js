@@ -289,13 +289,19 @@ Foxtrick.L10n = {
 	// type could be levels, for normal skills;
 	// agreeability, honesty, and aggressiveness, which are all obvious.
 	getLevelByTypeAndValue: function(type, val) {
+		var numVal = parseInt(val, 10) || 0;
+		var cappedVal = Math.min(numVal, 20); // cap divine
 		var query = {
 			category: type,
 			property: 'text',
 			filter: 'value',
-			value: val,
+			value: cappedVal,
 		};
-		return this.getLocalOrEnglish(query);
+		var l10n = this.getLocalOrEnglish(query);
+		if (l10n && numVal > cappedVal)
+			l10n += Foxtrick.format(' (+{})', [numVal - cappedVal]);
+
+		return l10n;
 	},
 
 	getSublevelByValue: function(val) {
