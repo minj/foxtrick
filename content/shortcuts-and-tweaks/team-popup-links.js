@@ -242,9 +242,20 @@ Foxtrick.modules['TeamPopupLinks'] = {
 					var teamid = Foxtrick.util.id.getTeamIdFromUrl(org_link.href);
 					if (teamid)
 						var teamname = org_link.textContent;
+
+					var username;
 					var userid = Foxtrick.util.id.getUserIdFromUrl(org_link.href);
-					if (userid)
-						var username = org_link.textContent;
+					if (userid) {
+						var linkName = org_link.textContent.trim();
+						var titleName = org_link.title.trim();
+						if (titleName.slice(0, linkName.length) === linkName) {
+							// link name seems to be shortened for long user names
+							// using titleName instead if it's a superstring
+							username = titleName;
+						}
+						else
+							username = linkName;
+					}
 
 					var owntopteamlinks = (org_link.parentNode.parentNode.tagName == 'DIV'
 					                       && org_link.parentNode.parentNode.id == 'teamLinks');
