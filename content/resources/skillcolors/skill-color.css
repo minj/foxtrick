@@ -11,6 +11,10 @@ a.ft-skill-dont-touch{
 	color: #fff;
 	background-color: inherit;
 }
+
+a[href$="#skill"] /* divine plus, overridden by further declarations */
+{background-color:#000000; color:#fff;}
+
 a[href$="=0#skill"]
 {background-color:#ffffff; color:#000;}
 a[href$="=1#skill"]
@@ -51,8 +55,6 @@ a[href$="=18#skill"]
 {background-color:#031702; color:#fff;}
 a[href$="=19#skill"]
 {background-color:#020F01; color:#fff;}
-a[href$="=20#skill"]
-{background-color:#000000; color:#fff;}
 
 a[href$="#skill"]:hover
 {background-color:transparent; color:#267F30;}
