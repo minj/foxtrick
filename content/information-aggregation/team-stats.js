@@ -127,7 +127,7 @@ Foxtrick.modules['TeamStats'] = {
 
 				// sum attributeOptions values
 				for (var j = 0; j < attributeOptions.length; ++j) {
-					if (!Foxtrick.isOneOfPages(doc, attributeOptions[j].pages))
+					if (!Foxtrick.isPage(doc, attributeOptions[j].pages))
 						continue;
 					if (current[attributeOptions[j].property] == undefined)
 						continue;
@@ -275,7 +275,7 @@ Foxtrick.modules['TeamStats'] = {
 					}
 				};
 				for (var j = 0; j < attributeOptions.length; ++j) {
-					if (!Foxtrick.isOneOfPages(doc, attributeOptions[j].pages))
+					if (!Foxtrick.isPage(doc, attributeOptions[j].pages))
 						continue;
 					if (!Foxtrick.Prefs.isModuleOptionEnabled('TeamStats',
 						attributeOptions[j].category.replace(/.+\./, '')))
