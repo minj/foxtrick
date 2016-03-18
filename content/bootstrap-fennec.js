@@ -1,5 +1,13 @@
 'use strict';
 
+/**
+ * bootstrap-fennec.js
+ *
+ * @author convincedd, LA-MJ
+ */
+
+/* global FOXTRICK_RUNTIME, FOXTRICK_PATH */
+
 Cu.import('resource://gre/modules/Services.jsm');
 
 var FoxtrickFennec = function(window) {
@@ -10,21 +18,21 @@ var FoxtrickFennec = function(window) {
 };
 FoxtrickFennec.prototype = {
 	scripts: [
-		//<!-- essential -->
+		// <!-- essential -->
 		'env.js',
 		'prefs-util.js',
 		'l10n.js',
 		'xml-load.js',
 		'pages.js',
 
-		//<!-- ext-lib -->
+		// <!-- ext-lib -->
 		'lib/oauth.js',
 		'lib/sha1.js',
 		'lib/jester.js',
 		'lib/psico.js',
-		//<!-- end ext-lib -->
+		// <!-- end ext-lib -->
 
-		//<!-- util -->
+		// <!-- util -->
 		'util/api.js',
 		'util/array.js',
 		'util/color.js',
@@ -54,18 +62,18 @@ FoxtrickFennec.prototype = {
 		'util/string.js',
 		'util/tabs.js',
 		'util/time.js',
-		//<!-- end util -->
+		// <!-- end util -->
 
-		//<!-- categorized modules with init functions -->
+		// <!-- categorized modules with init functions -->
 		'forum/staff-marker.js',
 		'presentation/skin-plugin.js',
 		'links/links.js',
 
-		//<!-- platform-specific -->
+		// <!-- platform-specific -->
 		'ui.js',
 		'entry.js',
 		'background.js',
-		'scripts-fennec.js'
+		'scripts-fennec.js',
 	],
 	loadScript: function() {
 		// loading Foxtrick into window.Foxtrick
@@ -81,7 +89,7 @@ FoxtrickFennec.prototype = {
 				Foxtrick: this,
 				exports: true,
 				module: { exports: true },
-				require: {}
+				require: {},
 			};
 			for (let i in libMap) {
 				let lib = libMap[i];
@@ -91,11 +99,10 @@ FoxtrickFennec.prototype = {
 			}
 		}
 		catch (e) {
-			e.message = 'Foxtrick ERROR: ' + e.message;
+			e.message = 'Foxtrick lib ERROR: ' + e.message;
 			Services.console.logStringMessage(e);
 		}
-		for (var i = 0; i < this.scripts.length; ++i) {
-			var script = this.scripts[i];
+		for (var script of this.scripts) {
 			var url = FOXTRICK_PATH + script + '?bg=' + FOXTRICK_RUNTIME;
 			try {
 				Services.scriptloader.loadSubScript(url, this.owner, 'UTF-8');
@@ -108,7 +115,7 @@ FoxtrickFennec.prototype = {
 	},
 
 	init: function() {
-		// load foxtrick background files and starts background script
+		// load Foxtrick background files and start background script
 		// debugger;
 		this.loadScript();
 		// run background
@@ -121,31 +128,33 @@ FoxtrickFennec.prototype = {
 
 	cleanup: function() {
 		this.saveAs.unload();
-		//stop background
+		// stop background
 		this.loader.background.browserUnload();
 		// remove content scripts and listeners
 		this.loader.background.contentScriptManager.unload();
 		// remove styles
 		this.util.css.unload_module_css();
-	}
+	},
 };
 
+/* jscs:disable disallowFunctionDeclarations */
 
 // called from main bootstrap.js for each browser window
-function loadIntoWindow(window) {
+function loadIntoWindow(window) { // jshint ignore:line
 	if (!window || !window.document)
 		return;
 
-	//create & run
+	// create & run
 	try {
 		window.Foxtrick = new FoxtrickFennec(window);
 		window.Foxtrick.init();
-	} catch (e) {
+	}
+	catch (e) {
 		Cu.reportError('Foxtrick error: ' + e);
 	}
 }
 
-function unloadFromWindow(window) {
+function unloadFromWindow(window) { // jshint ignore:line
 	if (!window || !window.document)
 		return;
 

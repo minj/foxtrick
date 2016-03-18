@@ -7,7 +7,7 @@
  */
 
 if (!Foxtrick)
-	var Foxtrick = {};
+	var Foxtrick = {}; // jshint ignore:line
 
 // window in content fennec script is named 'content'
 if (!window)
@@ -30,7 +30,7 @@ if (!window)
 			// Foxtrick.log('tabLoad: initing and adding listener');
 
 			Foxtrick.entry.contentScriptInit(data);
-			addEventListener('DOMContentLoaded', onDocLoad, false);
+			addEventListener('DOMContentLoaded', onDocLoad);
 		});
 	};
 
@@ -50,7 +50,7 @@ if (!window)
 		Foxtrick.SB.ext.onRequest.removeListener(onUnload);
 
 		// stop listen to DOMContentLoaded
-		removeEventListener('DOMContentLoaded', onDocLoad, false);
+		removeEventListener('DOMContentLoaded', onDocLoad);
 	};
 
 	// First content side entry point in Fennec.

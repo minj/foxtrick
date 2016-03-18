@@ -9,7 +9,7 @@
 /* global FOXTRICK_PATH, FOXTRICK_RUNTIME */
 
 if (!Foxtrick)
-	var Foxtrick = {};
+	var Foxtrick = {}; // jshint ignore:line
 if (!Foxtrick.loader)
 	Foxtrick.loader = {};
 if (!Foxtrick.loader.background)
@@ -261,8 +261,7 @@ Foxtrick.loader.background.contentScriptManager = {
 
 	load: function() {
 		// load content scripts into content pages. those start running in loader-fennec
-		for (var i = 0; i < this.contentScripts.length; ++i) {
-			var script = this.contentScripts[i];
+		for (var script of this.contentScripts) {
 			try {
 				var url = FOXTRICK_PATH + script + '?t=' + FOXTRICK_RUNTIME;
 				messageManager.loadFrameScript(url, true, true);
@@ -276,8 +275,7 @@ Foxtrick.loader.background.contentScriptManager = {
 
 	unload: function() {
 		// stop loading content scripts
-		for (var i = 0; i < this.contentScripts.length; ++i) {
-			var script = this.contentScripts[i];
+		for (var script of this.contentScripts) {
 			try {
 				var url = FOXTRICK_PATH + script + '?t=' + FOXTRICK_RUNTIME;
 				messageManager.removeDelayedFrameScript(url);

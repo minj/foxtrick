@@ -191,10 +191,8 @@ else
 endif
 
 	# make android-prefs after all modifications are done
-	# old FF loads anything that ends with .js
-	# so we can't name this one foxtrick-android.js
 	cd $(BUILD_DIR)/defaults/preferences; \
-	cat foxtrick.js foxtrick.android > foxtrick-android
+	cat foxtrick.js foxtrick.android > foxtrick.android.js
 	# make xpi
 	cd $(BUILD_DIR); \
 	$(ZIP) -r ../$(APP_NAME).xpi *
