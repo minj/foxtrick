@@ -2,8 +2,73 @@
 /**
  * prefs-util.js
  * Foxtrick preferences service
+ *
  * @author Mod-PaV, ryanli, convincedd, LA-MJ
  */
+
+// Prefs can be accessed from both content & background.
+// However, different browsers have a different architecture.
+// Consequently, pref-util has quite a complicated internal flow.
+// Consult the following diagrams.
+//
+// ------------ FF -------------
+//
+// [BG] getString(key)==[C] getString(key) // direct access
+// [BG] setString(key)
+// =>[BG] __cleanString(val)
+// =>[BG] __setString(key, val)
+//
+// [C] setString(key)
+// =>[C] __cleanString(val)
+// =>[C] __setString(key, val)
+//
+// [C] setAny(key, val)
+// =>[C] setString(key, val)
+// 	=> ...
+
+// ------------ Android -------------
+//
+// [BG] getString(key)==[C] getString(key) // direct access
+//
+// [BG] setString(key, val)
+// =>[BG] __cleanString(val)
+// =>[BG] __setString(key, val)
+//
+// [C] setString(key, val)
+// =>[C] __cleanString(val)
+// =>[BG] getAny(key)
+// 	=>[BG] getString(key) // each type
+// =>[BG] setWithType(key, val, type)
+// 	=>[BG] __setString(key, val)
+//
+// [C] setAny(key, val)
+// =>[C] setString(key, val)
+// 	=> ...
+
+// ------------ Chrome -------------
+//
+// [BG] getString(key)
+// =>[BG] __get(key)
+//
+// [C] getString(key)
+// =>[C] __get(key) // cached
+//
+// [BG] setString(key, val)
+// =>[BG] __cleanString(val)
+// =>[BG] __set(key, val)
+//
+// [C] setString(key, val)
+// =>[C] __cleanString(val)
+// =>[C] __set(key, val)
+// 	=>[BG] getAny(key)
+// 		=>[BG] getString(key) // each type
+// 			=>[BG] __get(key)
+// 	=>[BG] setWithType(key, val)
+// 		=> [BG] __set(key, val)
+//
+// [C] setAny(key, val)
+// =>[C] setString(key, val)
+// 	=> ...
 
 // jscs:disable validateIndentation
 
@@ -91,6 +156,44 @@ Foxtrick.Prefs = {
 
 	// jshint ignore:end
 
+	// ----------------------- sanitize functions ------------------------
+
+	__unescape: function(escaped) {
+		switch (escaped.charAt(1)) {
+			case 't':
+			case '\t':
+				return '\t';
+			case 'n':
+				return '\n';
+			case 'r':
+				return '\r';
+			case ' ':
+				return ' ';
+			case '"':
+				return '"';
+			case '/':
+				return '/';
+			case '\\':
+				return '\\';
+			default:
+				return escaped;
+		}
+	},
+
+	__cleanInt: function(num) {
+		return parseInt(num, 10) || 0;
+	},
+
+	__cleanBool: function(bool) {
+		return Boolean(bool);
+	},
+
+	__cleanString: function(str) {
+		return String(str).replace(/\\./g, this.__unescape);
+	},
+
+	// ----------------------- generic functions -------------------------
+
 	/**
 	 * get an entry from preferences with generic type,
 	 * should not be used in modules!
@@ -99,7 +202,7 @@ Foxtrick.Prefs = {
 	 * @param  {string} key   pref key
 	 * @return {Object} value
 	 */
-	__getAny: function(key) {
+	getAny: function(key) {
 		var val;
 		if ((val = this.getString(key)) != null)
 			return val;
@@ -119,7 +222,7 @@ Foxtrick.Prefs = {
 	 * @param {string} key
 	 * @param {mixed}  value
 	 */
-	__setAny: function(key, value) {
+	setAny: function(key, value) {
 		var map = {
 			string: this.setString,
 			number: this.setInt,
@@ -133,25 +236,7 @@ Foxtrick.Prefs = {
 			throw new TypeError('Type error: value is ' + type);
 	},
 
-	/**
-	 * set a value in prefs with a specific type.
-	 *
-	 * type can be any of 'string', 'int', 'bool'.
-	 * @param {string} type
-	 * @param {string} key
-	 * @param {mixed}  value
-	 */
-	setValueWithType: function(type, key, value) {
-		if (type == 'string') {
-			this.setString(key, value);
-		}
-		else if (type == 'int')
-			this.setInt(key, value);
-		else if (type == 'bool')
-			this.setBool(key, value);
-	},
-
-	// -----------------------  list functions ----------------------------
+	// ----------------------- list functions ----------------------------
 
 	// list are sets of numbered settings which contain titles
 	// and the values corresponding to that title
@@ -198,7 +283,7 @@ Foxtrick.Prefs = {
 		});
 
 		return Foxtrick.map(function(k) {
-			return Foxtrick.Prefs.__getAny(k);
+			return Foxtrick.Prefs.getAny(k);
 		}, keys);
 	},
 
@@ -218,12 +303,12 @@ Foxtrick.Prefs = {
 			this.deleteValue(key);
 		}
 		for (var i = 0; i < values.length; ++i) {
-			this.__setAny(decodeURI(branch + '.' + i), values[i]);
+			this.setAny(decodeURI(branch + '.' + i), values[i]);
 		}
 	},
 
 
-	// ---------------------- common function --------------------------------------
+	// ---------------------- module functions --------------------------------------
 
 	// return whether Foxtrick is enabled on doc
 	isEnabled: function(doc) {
@@ -328,7 +413,7 @@ Foxtrick.Prefs = {
 			(key.indexOf('LinksCustom') !== 0 || key.indexOf('LinksCustom.enabled') === 0);
 	},
 
-	//  ----------------- function for preference.js ---------------------------
+	//  ----------------- preferences.js etc ---------------------------
 	restore: function() {
 		if (Foxtrick.arch == 'Gecko') {
 			if (Foxtrick.context === 'background') {
@@ -354,9 +439,17 @@ Foxtrick.Prefs = {
 		}
 		else if (Foxtrick.arch == 'Sandboxed') {
 			this._prefs_chrome_user = {};
-			Foxtrick.SB.ext.sendRequest({ req: 'clearPrefs' }, function() {
-				Foxtrick.entry.init(true); // reinit
-			});
+
+			if (Foxtrick.context === 'background') {
+				for (var i in localStorage) {
+					if (i.indexOf('module.') === 0 && this.isPrefSetting(i)) {
+						localStorage.removeItem(i);
+					}
+				}
+			}
+			else {
+				Foxtrick.SB.ext.sendRequest({ req: 'clearPrefs' });
+			}
 			return true;
 		}
 		return false;
@@ -447,28 +540,6 @@ Foxtrick.Prefs = {
 		}
 	},
 
-	unescape: function(escaped) {
-		switch (escaped.charAt(1)) {
-			case 't':
-			case '\t':
-				return '\t';
-			case 'n':
-				return '\n';
-			case 'r':
-				return '\r';
-			case ' ':
-				return ' ';
-			case '"':
-				return '"';
-			case '/':
-				return '/';
-			case '\\':
-				return '\\';
-			default:
-				return escaped;
-		}
-	},
-
 	parsePrefs: function(string, eachCb) {
 		var format = /(?:user_)?pref\("extensions\.foxtrick\.prefs\.(.+?)",(.+)\);/;
 		// README: quotes are not escaped here, the format regex takes care of it regardless
@@ -518,7 +589,7 @@ Foxtrick.Prefs = {
 				return;
 			}
 
-			Foxtrick.Prefs.__setAny(key, value);
+			Foxtrick.Prefs.setAny(key, value);
 		});
 		this.setBool('preferences.updated', true);
 	},
@@ -554,10 +625,10 @@ Foxtrick.Prefs = {
 	},
 };
 
-// wrap browser-specific configuration to prevenr global scope pollution
+// wrap browser-specific configuration to prevent global scope pollution
 (function() {
 
-// ----------------------  Gecko specific get/set preferences --------------------------
+// ------------------ Gecko-specific getters/setters --------------------
 if (Foxtrick.arch === 'Gecko') {
 
 	var NSI_STR = Ci.nsISupportsString;
@@ -578,8 +649,15 @@ if (Foxtrick.arch === 'Gecko') {
 			}
 		},
 
+		__setString: function(key, value) {
+			var str = Cc['@mozilla.org/supports-string;1'].createInstance(NSI_STR);
+			str.data = value;
+			this._prefs_gecko.setComplexValue(encodeURI(key), NSI_STR, str);
+		},
+
 		setString: function(key, value) {
-			value = String(value);
+			value = this.__cleanString(value);
+
 			if (Foxtrick.context === 'content') {
 				Foxtrick.SB.ext.sendRequest({
 					req: 'setValue',
@@ -589,11 +667,7 @@ if (Foxtrick.arch === 'Gecko') {
 				});
 			}
 			else {
-				value = value.replace(/\\./g, this.unescape);
-				var str = Cc['@mozilla.org/supports-string;1'].createInstance(NSI_STR);
-				str.data = value;
-
-				this._prefs_gecko.setComplexValue(encodeURI(key), NSI_STR, str);
+				this.__setString(key, value);
 			}
 		},
 
@@ -606,7 +680,13 @@ if (Foxtrick.arch === 'Gecko') {
 			}
 		},
 
+		__setInt: function(key, value) {
+			this._prefs_gecko.setIntPref(encodeURI(key), value);
+		},
+
 		setInt: function(key, value) {
+			value = this.__cleanInt(value);
+
 			if (Foxtrick.context === 'content') {
 				Foxtrick.SB.ext.sendRequest({
 					req: 'setValue',
@@ -615,8 +695,9 @@ if (Foxtrick.arch === 'Gecko') {
 					value: value,
 				});
 			}
-			else
-				this._prefs_gecko.setIntPref(encodeURI(key), value);
+			else {
+				this.__setInt(key, value);
+			}
 		},
 
 		getBool: function(key) {
@@ -628,7 +709,13 @@ if (Foxtrick.arch === 'Gecko') {
 			}
 		},
 
+		__setBool: function(key, value) {
+			this._prefs_gecko.setBoolPref(encodeURI(key), value);
+		},
+
 		setBool: function(key, value) {
+			value = this.__cleanBool(value);
+
 			if (Foxtrick.context === 'content') {
 				Foxtrick.SB.ext.sendRequest({
 					req: 'setValue',
@@ -637,8 +724,31 @@ if (Foxtrick.arch === 'Gecko') {
 					value: value,
 				});
 			}
-			else
-				this._prefs_gecko.setBoolPref(encodeURI(key), value);
+			else {
+				this.__setBool(key, value);
+			}
+		},
+
+		/**
+		 * set a value in prefs with a specific type.
+		 *
+		 * type can be any of 'string', 'int', 'bool'.
+		 * @param {string} key
+		 * @param {mixed}  value
+		 * @param {string} type
+		 */
+		setWithType: function(key, value, type) {
+			if (Foxtrick.context === 'content') {
+				throw new Error('setWithType cannot be used in content');
+			}
+
+			if (type == 'string') {
+				this.__setString(key, value);
+			}
+			else if (type == 'int')
+				this.__setInt(key, value);
+			else if (type == 'bool')
+				this.__setBool(key, value);
 		},
 
 		deleteValue: function(key) {
@@ -654,11 +764,7 @@ if (Foxtrick.arch === 'Gecko') {
 		hasUserValue: function(key) {
 			return this._prefs_gecko.hasUserValue(key);
 		},
-		/* get all preference entry keys under a branch.
-		 * - if branch is '', return the names of all entries;
-		 * - if branch is not '', return the names of entries with name
-			 starting with the branch name.
-		 */
+
 		getAllKeysOfBranch: function(branch) {
 			var prefix = !branch ? '' : encodeURI(branch + '.');
 			var keys = this._prefs_gecko.getChildList(prefix, {});
@@ -675,51 +781,14 @@ if (Foxtrick.arch === 'Gecko') {
 
 
 
-// ----------------------  Chrome specific get/set preferences --------------------------
+// ------------------ Chrome-specific getters/setters --------------------
 if (Foxtrick.arch === 'Sandboxed') {
 
 	var FoxtrickPrefsChrome = {
 		_prefs_chrome_user: {}, // contains mapped copies of user settings localStore.
-		_prefs_chrome_default: {}, // defaults from foxtrick.prefs
+		_prefs_chrome_default: {}, // defaults from Foxtrick.prefs
 
-		getString: function(key) {
-			var value = this.getValue(key);
-			if (typeof value === 'string')
-				return value;
-
-			return null;
-		},
-
-		setString: function(key, value) {
-			var newVal = String(value);
-			this.__setValue(key, newVal);
-		},
-
-		getInt: function(key) {
-			var value = this.getValue(key);
-			if (typeof value === 'number')
-				return value;
-
-			return null;
-		},
-
-		setInt: function(key, value) {
-			this.__setValue(key, parseInt(value, 10) || 0);
-		},
-
-		getBool: function(key) {
-			var value = this.getValue(key);
-			if (typeof value === 'boolean')
-				return value;
-
-			return null;
-		},
-
-		setBool: function(key, value) {
-			this.__setValue(key, Boolean(value));
-		},
-
-		getValue: function(key) {
+		__get: function(key) {
 			if (key in this._prefs_chrome_user)
 				return this._prefs_chrome_user[key];
 			else if (key in this._prefs_chrome_default)
@@ -728,15 +797,49 @@ if (Foxtrick.arch === 'Sandboxed') {
 				return null;
 		},
 
+		getString: function(key) {
+			var value = this.__get(key);
+			if (typeof value === 'string')
+				return value;
+
+			return null;
+		},
+
+		setString: function(key, value) {
+			value = this.__cleanString(value);
+			this.__set(key, value);
+		},
+
+		getInt: function(key) {
+			var value = this.__get(key);
+			if (typeof value === 'number')
+				return Math.round(value) || 0;
+
+			return null;
+		},
+
+		setInt: function(key, value) {
+			value = this.__cleanInt(value);
+			this.__set(key, value);
+		},
+
+		getBool: function(key) {
+			var value = this.__get(key);
+			if (typeof value === 'boolean')
+				return value;
+
+			return null;
+		},
+
+		setBool: function(key, value) {
+			value = this.__cleanBool(value);
+			this.__set(key, value);
+		},
+
 		hasUserValue: function(key) {
 			return key in this._prefs_chrome_user;
 		},
 
-		/* get all preference entry keys under a branch.
-		 * - if branch is '', return the names of all entries;
-		 * - if branch is not '', return the names of entries with name
-			 starting with the branch name.
-		 */
 		getAllKeysOfBranch: function(branch) {
 			var prefix = !branch ? '' : encodeURI(branch + '.');
 
@@ -809,10 +912,7 @@ if (Foxtrick.arch === 'Sandboxed') {
 			},
 
 			// set and delete for background script side
-			__setValue: function(key, value) {
-				if (typeof value === 'string')
-					value = value.replace(/\\./g, this.unescape);
-
+			__set: function(key, value) {
 				try {
 					if (this._prefs_chrome_default[key] === value) {
 						this.deleteValue(key);
@@ -823,6 +923,11 @@ if (Foxtrick.arch === 'Sandboxed') {
 					}
 				}
 				catch (e) {}
+			},
+
+			setWithType: function(key, value) {
+				// README: ignoring type in Sandboxed: makes no difference
+				this.__set(key, value);
 			},
 
 			deleteValue: function(key) {
@@ -841,21 +946,16 @@ if (Foxtrick.arch === 'Sandboxed') {
 		// set and delete for contents script side
 		var FoxtrickPrefsChromeContent = {
 
-			__setValue: function(key, value) {
-
-				// using a temp var to prevent double unescaping on the background side
-				var temp = value;
-				if (typeof value === 'string')
-					temp = value.replace(/\\./g, this.unescape);
+			__set: function(key, value) {
 
 				try {
-					if (this._prefs_chrome_default[key] === temp) {
+					if (this._prefs_chrome_default[key] === value) {
 						// is default. deleting user pref, will set it to default
 						this.deleteValue(key);
 					}
 					else {
 						// not default, set it
-						this._prefs_chrome_user[key] = temp;
+						this._prefs_chrome_user[key] = value;
 						Foxtrick.SB.ext.sendRequest({ req: 'setValue', key: key, value: value });
 					}
 				}

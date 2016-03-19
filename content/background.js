@@ -142,7 +142,10 @@ Foxtrick.loader.background.browserLoad = function() {
 
 		// from prefs-util.js
 		this.requests.setValue = function(request) {
-			Foxtrick.Prefs.setValueWithType(request.type, request.key, request.value);
+			if (Foxtrick.Prefs.getAny(request.key) == request.value)
+				return;
+
+			Foxtrick.Prefs.setWithType(request.key, request.value, request.type);
 
 			if (request.key == 'htLanguage')
 				Foxtrick.L10n.init();
@@ -155,15 +158,9 @@ Foxtrick.loader.background.browserLoad = function() {
 		};
 		this.requests.clearPrefs = function() {
 			try {
-				if (Foxtrick.platform == 'Android') {
-					Foxtrick.Prefs.restore();
-				}
-				else {
-					for (var i in localStorage) {
-						if (i.indexOf('module.') === 0 && Foxtrick.Prefs.isPrefSetting(i)) {
-							localStorage.removeItem(i);
-						}
-					}
+				Foxtrick.Prefs.restore();
+
+				if (Foxtrick.platform !== 'Android') {
 					updateResources();
 				}
 			}
