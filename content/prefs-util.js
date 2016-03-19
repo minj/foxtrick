@@ -562,7 +562,7 @@ Foxtrick.Prefs.restore = function() {
 
 		if (Foxtrick.context === 'background') {
 			for (var i in localStorage) {
-				if (i.indexOf('module.') === 0 && this.isPrefSetting(i)) {
+				if (i.indexOf('localStore.') !== 0 && this.isPrefSetting(i)) {
 					localStorage.removeItem(i);
 				}
 			}
