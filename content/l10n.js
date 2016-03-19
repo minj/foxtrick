@@ -418,22 +418,28 @@ Foxtrick.L10n.getFullLevelByValue = function(val) {
 	var main = Math.floor(val);
 	var sub = val - main;
 
-	if (sub >= 0 && sub < 0.25) {
-		sub = '0';
+	// subStr is just a representation
+	// actually sublevels are rounded up
+	// hence these calculations do not reflect reality
+	// subStr should be 0.25 higher in all cases
+	var subStr = '';
+
+	if (sub >= 0 && sub <= 0.25) {
+		subStr = '0';
 	}
-	else if (sub >= 0.25 && sub < 0.5) {
-		sub = '0.25';
+	else if (sub > 0.25 && sub <= 0.5) {
+		subStr = '0.25';
 	}
-	else if (sub >= 0.5 && sub < 0.75) {
-		sub = '0.5';
+	else if (sub > 0.5 && sub <= 0.75) {
+		subStr = '0.5';
 	}
-	else if (sub >= 0.75 && sub < 1) {
-		sub = '0.75';
+	else if (sub > 0.75 && sub < 1) {
+		subStr = '0.75';
 	}
 
-	var mainStr = this.getLevelByTypeAndValue('levels', main);
-	var subStr = this.getSublevelByValue(sub);
-	return mainStr + ' ' + subStr;
+	var mainL10n = this.getLevelByTypeAndValue('levels', main);
+	var subL10n = this.getSublevelByValue(subStr);
+	return mainL10n + ' ' + subL10n;
 };
 
 /**
