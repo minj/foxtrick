@@ -10,7 +10,7 @@
 /* globals safari, chrome */
 
 if (!Foxtrick)
-	var Foxtrick = {};
+	var Foxtrick = {}; // jshint ignore:line
 
 /**
  * Browser architecture: Sandboxed|Gecko.
