@@ -19,11 +19,11 @@ Foxtrick.modules['ForumStage'] = {
 			divalert.className = 'alert ft-dummy';
 			divalert.appendChild(doc.createTextNode('Please '));
 			var b = divalert.appendChild(doc.createElement('b'));
-			b.appendChild(doc.createTextNode('disable FoxTrick'));
+			b.appendChild(doc.createTextNode('disable Foxtrick'));
 			divalert.appendChild(doc.createTextNode(' and any other Hattrick extensions' +
 				' before reporting a bug (eg Browser menu -> Tools -> Add-ons). ' +
 				' Repeated ignorance can lead to getting kicked from stage. ' +
-				'FoxTrick bugs report '));
+				'Foxtrick bugs report '));
 			var a = divalert.appendChild(doc.createElement('a'));
 			a.appendChild(doc.createTextNode('here'));
 			a.href = '/Forum/Overview.aspx?v=0&f=173635';

@@ -1,7 +1,7 @@
 'use strict';
 /**
  * pages.js
- * @author FoxTrick developers
+ * @author Foxtrick developers
  *
  * This is a list of Hattrick pages that modules can run on.
  * Those values are simply taken from the hattrick URL, so when the current

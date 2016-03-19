@@ -335,7 +335,7 @@ FoxtrickFirefox.prototype = {
 			let contextMenuString =
 				'<menu id="foxtrick-popup-copy" ' +
 					'class="menu-iconic foxtrick-menu-item" ' +
-					'label="FoxTrick">' +
+					'label="Foxtrick">' +
 					'<menupopup>' +
 						'<menuitem id="foxtrick-popup-copy-id" ' +
 							'label="Copy ID"/>' +
@@ -353,8 +353,8 @@ FoxtrickFirefox.prototype = {
 			popup.insertBefore(fragment, copyPaste.nextSibling);
 		}
 		catch (e) {
-			dump('FoxTrick error: Context menu init ' + e + '\n');
-			Cu.reportError('FoxTrick error: Context menu init ' + e);
+			dump('Foxtrick error: Context menu init ' + e + '\n');
+			Cu.reportError('Foxtrick error: Context menu init ' + e);
 		}
 	},
 	removeContextMenu: function() {
@@ -406,7 +406,7 @@ function loadIntoWindow(window) {
 		window.Foxtrick.init();
 	}
 	catch (e) {
-		let msg = 'FoxTrick error: ' + e + '\n' + e.stack + '\n';
+		let msg = 'Foxtrick error: ' + e + '\n' + e.stack + '\n';
 		dump(msg);
 		Services.console.logStringMessage(msg);
 		Cu.reportError(msg);

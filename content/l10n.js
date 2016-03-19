@@ -616,7 +616,7 @@ if (Foxtrick.arch === 'Gecko') {
 		_strings_bundle_screenshots_default: null,
 
 		init: function() {
-			if (Foxtrick.chromeContext() === 'background') {
+			if (Foxtrick.context === 'background') {
 				// get htlang.json for each locale
 				for (var i = 0; i < Foxtrick.L10n.locales.length; ++i) {
 					var locale = Foxtrick.L10n.locales[i];

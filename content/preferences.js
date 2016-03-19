@@ -1117,7 +1117,7 @@ function initChangesTab() {
 	var i, version;
 	for (i in versions) {
 		version = i;
-		if (Foxtrick.branch().indexOf(version) !== -1) {
+		if (Foxtrick.branch.indexOf(version) !== -1) {
 			var notes = versions[version];
 			var notesLocalized = versionsLocalized[version];
 			if (!notes)
@@ -1192,7 +1192,7 @@ function initChangesTab() {
 		}
 	};
 
-	var currentVersion = Foxtrick.version().replace(/(\d\.\d\.\d)\.\d/, '$1');
+	var currentVersion = Foxtrick.version.replace(/(\d\.\d\.\d)\.\d/, '$1');
 	for (var i = 0; i < select.options.length; ++i) {
 		if (select.options[i].value == currentVersion) {
 			select.selectedIndex = i;
@@ -1356,7 +1356,7 @@ function initTextAndValues() {
 		$('html').attr('dir', 'rtl');
 
 	document.title = Foxtrick.L10n.getString('prefs.title');
-	$('#version').text(Foxtrick.version() + ' ' + Foxtrick.branch());
+	$('#version').text(Foxtrick.version + ' ' + Foxtrick.branch);
 
 	// initialize text
 	$('body [data-text]').each(function() {
@@ -1546,7 +1546,7 @@ function initLoader() {
 	// called directly, it'll run and save actually for some reason
 
 	// gecko, chrome
-	if (Foxtrick.arch === 'Gecko' || Foxtrick.chromeContext() === 'background')
+	if (Foxtrick.arch === 'Gecko' || Foxtrick.context === 'background')
 		init();
 	else
 		// safari prefs runs in content context for some people?!!

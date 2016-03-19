@@ -50,7 +50,7 @@ Foxtrick.util.load.get = function(url, params) {
 	// text: String, response text
 	url = this._parseUrl(url);
 	var loadImpl;
-	if (Foxtrick.chromeContext() == 'content') {
+	if (Foxtrick.context == 'content') {
 		loadImpl = function(cb) {
 			Foxtrick.SB.ext.sendRequest({ req: 'getXml', url: url, params: params },
 			  function(response) {
@@ -162,7 +162,7 @@ Foxtrick.util.load.get = function(url, params) {
 
 Foxtrick.util.load.async = function(url, callback, params) {
 	url = this._parseUrl(url);
-	if (Foxtrick.chromeContext() == 'content') {
+	if (Foxtrick.context == 'content') {
 		// background script for xml requests
 		Foxtrick.SB.ext.sendRequest({ req: 'getXml', url: url, params: params },
 		  function(response) {

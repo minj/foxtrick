@@ -1,7 +1,7 @@
 'use strict';
 /*
  * loader-firefox.js
- * FoxTrick loader for Firefox/Seamonkey
+ * Foxtrick loader for Firefox/Seamonkey
  */
 
 

@@ -1,6 +1,6 @@
 /* user-content-example.css
  *
- * This file is a list of CSS statements for styling FoxTrick that satisfies
+ * This file is a list of CSS statements for styling Foxtrick that satisfies
  * user's preferences. There are comments (everything with / * ... * / are comments)
  * that describes what module each statement belongs to and their meanings.
  *
@@ -11,7 +11,7 @@
  * Hattrick rule.
  *
  * After saving it to a file and adjusting the values, you can use
- * the SkinPlugin module of FoxTrick to load the CSS file in order to have the
+ * the SkinPlugin module of Foxtrick to load the CSS file in order to have the
  * user style in effect.
  *
  * Example basic color names:

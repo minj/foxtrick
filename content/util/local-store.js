@@ -9,7 +9,7 @@ if (!Foxtrick)
 	var Foxtrick = {};
 
 // background
-if (Foxtrick.chromeContext() == 'background') {
+if (Foxtrick.context == 'background') {
 	// queues that track access to localStore until it becomes available
 	// should mainly apply to init stage
 	Foxtrick._localStore = {
@@ -128,7 +128,7 @@ if (Foxtrick.chromeContext() == 'background') {
 }
 
 // content
-else if (Foxtrick.chromeContext() == 'content') {
+else if (Foxtrick.context == 'content') {
 
 	Foxtrick.localSet = function(key, value) {
 		// inform background

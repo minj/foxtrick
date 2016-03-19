@@ -276,7 +276,7 @@
 		"48" : "skin/icon-48.png",
 		"128" : "skin/icon-128.png"
 	},
-	"name" : "FoxTrick",
+	"name" : "Foxtrick",
 	"permissions" : [
 		"cookies",
 		"contextMenus",
@@ -302,7 +302,7 @@
 	],
 	"page_action": {
 		"default_icon": "skin/icon-24.png",
-		"default_title": "FoxTrick enabled",
+		"default_title": "Foxtrick enabled",
 		"default_popup": "content/popup.html"
 	},
 	"options_page" : "content/preferences.html",

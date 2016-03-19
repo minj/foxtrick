@@ -141,9 +141,6 @@ firefox:
 	cat ../$(MODULES) | while read m; do cp --parents "$$m" ../$(BUILD_DIR)/chrome/content; done;
 	# remove ignore modules from files
 	python module-update.py build -s $(MODULES) -e $(IGNORED_MODULES) -d $(BUILD_DIR)/chrome/
-	# modify DataPath
-	cd $(BUILD_DIR); \
-	sed -i -r '/\/\* <BUILD>|<\/BUILD> \*\//d' chrome/content/env.js
 	#removes zips from res
 	rm -rf $(BUILD_DIR)/chrome/*/*.zip
 	rm -rf $(BUILD_DIR)/chrome/*/*/*.zip
@@ -178,11 +175,11 @@ ifeq ($(DIST_TYPE),nightly)
 	# add minor version and change name
 	cd $(BUILD_DIR); \
 	../version.sh $(VERSION); \
-	sed -i -r 's|(<em:name>).+(</em:name>)|\1FoxTrick (Beta)\2|' install.rdf;
+	sed -i -r 's|(<em:name>).+(</em:name>)|\1Foxtrick (Beta)\2|' install.rdf;
 else ifeq ($(DIST_TYPE),light)
 	# change name
 	cd $(BUILD_DIR); \
-	sed -i -r 's|(<em:name>).+(</em:name>)|\1FoxTrick (light)\2|' install.rdf
+	sed -i -r 's|(<em:name>).+(</em:name>)|\1Foxtrick (light)\2|' install.rdf
 endif
 
 ifeq ($(DIST_TYPE),hosting)
@@ -223,9 +220,6 @@ chrome:
 	cat ../$(MODULES) | while read m; do cp --parents "$$m" ../$(BUILD_DIR)/content; done;
 	# remove ignore modules from files
 	python module-update.py build -s $(MODULES) -e $(IGNORED_MODULES) -d $(BUILD_DIR)/
-	# modify DataPath
-	cd $(BUILD_DIR); \
-	sed -i -r '/\/\* <BUILD>|<\/BUILD> \*\//d' content/env.js
 	# set branch
 	cd $(BUILD_DIR); \
 	sed -i -r "/extensions\\.foxtrick\\.prefs\\.branch/s|\"dev\"|\"$(BRANCH_FULL) chrome\"|" defaults/preferences/foxtrick.js
@@ -235,11 +229,11 @@ ifeq ($(DIST_TYPE),nightly)
 	# add minor version and change name
 	cd $(BUILD_DIR); \
 	../version.sh $(VERSION); \
-	sed -i -r 's|("name" : ").+(")|\1FoxTrick (Beta)\2|' manifest.json
+	sed -i -r 's|("name" : ").+(")|\1Foxtrick (Beta)\2|' manifest.json
 else ifeq ($(DIST_TYPE),light)
 	# change name
 	cd $(BUILD_DIR); \
-	sed -i -r 's|("name" : ").+(")|\1FoxTrick (light)\2|' manifest.json
+	sed -i -r 's|("name" : ").+(")|\1Foxtrick (light)\2|' manifest.json
 endif
 
 ifneq ($(DIST_TYPE),hosting)
@@ -279,9 +273,6 @@ safari:
 	cat ../$(MODULES) | while read m; do cp --parents "$$m" ../$(SAFARI_BUILD_DIR)/content; done;
 	# remove ignore modules from files
 	python module-update.py build -s $(MODULES) -e $(IGNORED_MODULES) -d $(SAFARI_BUILD_DIR)/
-	# modify DataPath
-	cd $(SAFARI_BUILD_DIR); \
-	sed -i -r '/\/\* <BUILD>|<\/BUILD> \*\//d' content/env.js
 	# set branch
 	cd $(SAFARI_BUILD_DIR); \
 	sed -i -r "/extensions\\.foxtrick\\.prefs\\.branch/s|\"dev\"|\"$(BRANCH_FULL) safari\"|" defaults/preferences/foxtrick.js
@@ -291,11 +282,11 @@ ifeq ($(DIST_TYPE),nightly)
 	# add minor version and change name
 	cd $(SAFARI_BUILD_DIR); \
 	../../version.sh $(VERSION); \
-	sed -i -r 's/>FoxTrick</>FoxTrick (Beta)</' Info.plist
+	sed -i -r 's/>Foxtrick</>Foxtrick (Beta)</' Info.plist
 else ifeq ($(DIST_TYPE),light)
 	# change name
 	cd $(SAFARI_BUILD_DIR); \
-	sed -i -r 's/>FoxTrick</>FoxTrick (light)</' Info.plist
+	sed -i -r 's/>Foxtrick</>Foxtrick (light)</' Info.plist
 endif
 
 	cd $(SAFARI_BUILD_DIR); \

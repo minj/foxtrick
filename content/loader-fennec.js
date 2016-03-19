@@ -1,7 +1,7 @@
 'use strict';
 /*
  * loader-fennec.js
- * FoxTrick loader for Fennec platform
+ * Foxtrick loader for Fennec platform
  */
 
 
