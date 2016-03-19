@@ -227,9 +227,9 @@ Foxtrick.Prefs.getAny = function(key) {
  */
 Foxtrick.Prefs.setAny = function(key, value) {
 	var map = {
-		string: this.setString,
-		number: this.setInt,
-		boolean: this.setBool,
+		string: this.setString.bind(this),
+		number: this.setInt.bind(this),
+		boolean: this.setBool.bind(this),
 	};
 
 	var type = typeof value;
