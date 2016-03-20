@@ -15,6 +15,7 @@
 	"nonew": true,
 	"nonstandard": true,
 	"singleGroups": true,
+	"strict": false,
 	"sub": true,
 	"typed": true,
 	"undef": true,
