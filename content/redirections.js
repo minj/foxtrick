@@ -157,7 +157,8 @@ Foxtrick.modules['Redirections'] = {
 
 				case 'newlineup':
 					var match = mainBody.querySelector('a[href^="/Club/Matches/Match.aspx?"]');
-					url = match.href + '&teamId=' + teamId + '#tab2';
+					// using getAttribute to generate a relative link
+					url = match.getAttribute('href') + '&teamId=' + teamId + '#tab2';
 				break;
 
 				case 'youthmatches':
@@ -192,6 +193,8 @@ Foxtrick.modules['Redirections'] = {
 
 		Foxtrick.log('redirect', redirect, 'from:', location, 'to:', url);
 		if (url) {
+			// README: url must be relative!
+			//
 			// Firefox displays completely weird behavior here.
 			// Relative URL works when executed directly in the debugger.
 			// Running live, however, resolves URLs against XULDocument
