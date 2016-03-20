@@ -195,8 +195,8 @@ Foxtrick.pagesExcluded = {
  * Test whether document belongs to certain page type(s)
  * page may be Array.<string>
  *
- * @param  {document} doc
- * @param  {string|array}   page
+ * @param  {document}     doc
+ * @param  {string|array} page
  * @return {Boolean}
  */
 Foxtrick.isPage = function(doc, page) {
@@ -216,7 +216,7 @@ Foxtrick.isPage = function(doc, page) {
 };
 
 /**
- * form a regular expression from page spec
+ * Form a regular expression from page spec
  * @param  {string} reStr page spec
  * @return {RegExp}
  */
@@ -242,7 +242,8 @@ Foxtrick.isPageHref = function(href, reStr) {
  */
 Foxtrick.isExcluded = function(doc) {
 	for (var i in this.pagesExcluded) {
-		if (this.isPageHref(doc.location.href, this.pagesExcluded[i])) {
+		var pageRe = this.pagesExcluded[i];
+		if (this.isPageHref(doc.location.href, pageRe)) {
 			// page excluded, return
 			return true;
 		}

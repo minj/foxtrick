@@ -14,13 +14,14 @@ Foxtrick.L10n = {};
 // jscs:disable disallowMultipleSpaces
 
 /**
- * List of FT locale IDs/folders
+ * List of FT locale IDs/folders.
+ *
  * Names and ids are also used in:
  * a) maintainer/locale/Hattrick/Language.py
  * b) content/locale/ * /htlang.json
  *
  * {Array.<string>}
- * @type {Array}    {Array.<string>}
+ * @type {Array} {Array.<string>}
  */
 Foxtrick.L10n.locales = [
 	'ar',     // 22  العربية, arabic
@@ -82,12 +83,13 @@ Foxtrick.L10n.locales = [
 // jscs:disable disallowSpaceAfterObjectKeys, disallowQuotedKeysInObjects
 
 /**
- * Map HT Content-Language to FT locale ID/folder
- * Data comes from language selector and meta tag
+ * Map HT Content-Language to FT locale ID/folder.
+ *
+ * Data comes from language selector and meta tag.
  * Names and numeric IDs are also available in worldlanguages.xml
  *
  * {string: string}
- * @type {Object}   {string: string}
+ * @type {Object} {string: string}
  */
 Foxtrick.L10n.htMapping = {
 	'ar':    'ar',     // 22  العربية, arabic
@@ -161,13 +163,14 @@ Foxtrick.L10n.htLanguagesJSON = {},
  * Plural form of the selected language
  *
  * @see https://developer.mozilla.org/en/Localization_and_Plurals
- * @type {Number}
+ * @type {Number} {Integer}
  */
 Foxtrick.L10n.plForm = 0,
+
 /**
  * Plural form of the default language
  *
- * @type {Number}
+ * @type {Number} {Integer}
  */
 Foxtrick.L10n.plForm_default = 0,
 
@@ -310,8 +313,8 @@ Foxtrick.L10n.getLevelFromText = function(text) {
 	var json = Foxtrick.L10n.htLanguagesJSON[lang].language;
 
 	var levelObj = Foxtrick.nth(function(jsonLevel) {
-		var leveltext = Foxtrick.strToRe(jsonLevel.text);
-		return new RegExp('^' + leveltext, 'i').test(text);
+		var levelText = Foxtrick.strToRe(jsonLevel.text);
+		return new RegExp('^' + levelText, 'i').test(text);
 	}, json.levels);
 
 	if (levelObj === null)
@@ -411,8 +414,8 @@ Foxtrick.L10n.getSublevelByValue = function(val) {
  *
  * Skill level may also include sub-skill.
  *
- * @param  {string} val
- * @return {number}
+ * @param  {number} val
+ * @return {string}
  */
 Foxtrick.L10n.getFullLevelByValue = function(val) {
 	var main = Math.floor(val);
@@ -473,9 +476,9 @@ Foxtrick.L10n.getTacticById = function(id) {
 };
 
 /**
- * get position abbreviation from position.
+ * Get position abbreviation from position.
  *
- * both strings localized.
+ * Both strings localized.
  *
  * @param  {string} pos
  * @return {string}
@@ -511,7 +514,7 @@ Foxtrick.L10n.getShortPosition = function(pos) {
 };
 
 /**
- * get l10n spec abbreviation from English spec
+ * Get l10n spec abbreviation from English spec
  *
  * @param  {string} spec
  * @return {string}
@@ -521,7 +524,7 @@ Foxtrick.L10n.getShortSpecialityFromEnglish = function(spec) {
 };
 
 /**
- * translate spec
+ * Translate spec
  *
  * @param  {string} spec
  * @return {string}
@@ -546,7 +549,7 @@ Foxtrick.L10n.getEnglishSpeciality = function(spec) {
 };
 
 /**
- * map spec code to English spec
+ * Map spec code to English spec
  *
  * @param  {number} number {Integer}
  * @return {string}
@@ -567,7 +570,7 @@ Foxtrick.L10n.getEnglishSpecialityFromNumber = function(number) {
 };
 
 /**
- * map spec code to l10n spec (trimmed)
+ * Map spec code to l10n spec (trimmed)
  *
  * @param  {number} number {Integer}
  * @return {string}
@@ -585,7 +588,7 @@ Foxtrick.L10n.getSpecialityFromNumber = function(number) {
 };
 
 /**
- * map l10n spec to spec code
+ * Map l10n spec to spec code
  *
  * @param  {string} speciality
  * @return {number}            {Integer}
@@ -610,7 +613,7 @@ Foxtrick.L10n.getNumberFromSpeciality = function(speciality) {
 };
 
 /**
- * map English category abbr to category id
+ * Map English category abbr to category id
  *
  * @param  {string} cat
  * @return {number}     {Integer}
@@ -626,7 +629,7 @@ Foxtrick.L10n.getCategoryId = function(cat) {
 };
 
 /**
- * map category id to English category abbr
+ * Map category id to English category abbr
  *
  * @param  {number} id {Integer}
  * @return {string}
@@ -637,7 +640,7 @@ Foxtrick.L10n.getCategoryById = function(id) {
 };
 
 /**
- * map position id to English position type
+ * Map position id to position type
  *
  * @param  {number} id {Integer}
  * @return {string}
@@ -678,7 +681,7 @@ Foxtrick.L10n.getPositionTypeById = function(id) {
 };
 
 /**
- * map position type to l10n position
+ * Map position type to l10n position
  *
  * @param  {string} val
  * @return {string}
@@ -694,7 +697,7 @@ Foxtrick.L10n.getPositionByType = function(val) {
 };
 
 /**
- * map l10n position to position type
+ * Map l10n position to position type
  *
  * @param  {string} pos
  * @return {string}

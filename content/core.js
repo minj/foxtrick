@@ -231,6 +231,8 @@ Foxtrick.modules.Core = {
 			return;
 
 		var reportBug = function(log) {
+			var BUG_TITLE_TMPL = 'Bug {nonce} by {team} ({id})';
+
 			if (log === '')
 				return;
 
@@ -239,9 +241,17 @@ Foxtrick.modules.Core = {
 			var url = doc.location.pathname + doc.location.search;
 			var nonce = Math.random().toString(16).slice(2).toUpperCase();
 
-			var title = 'Bug ' + nonce + ' by ' + team + ' (' + id + ')';
+			var info = {
+				nonce: nonce,
+				team: team,
+				id: id,
+			};
+			var title = Foxtrick.format(BUG_TITLE_TMPL, info);
+
 			var prefs = Foxtrick.Prefs.save({ notes: true, skipFiles: true });
+
 			var bug = log + '\n\n\n' + prefs;
+
 			// add a somewhat sane limit of 200K
 			var MAX_LENGTH = 200 * 1024;
 			if (bug.length > MAX_LENGTH)

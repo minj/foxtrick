@@ -25,8 +25,7 @@ if (!window)
 		Foxtrick.SB.ext.onRequest.addListener(onUnload);
 
 		// request needed data from background and start with DOMContentLoaded
-		Foxtrick.SB.ext.sendRequest({ req: 'tabLoad' },
-		  function(data) {
+		Foxtrick.SB.ext.sendRequest({ req: 'tabLoad' }, function(data) {
 			// Foxtrick.log('tabLoad: initing and adding listener');
 
 			Foxtrick.entry.contentScriptInit(data);

@@ -12,7 +12,7 @@ Foxtrick.modules['ForumStage'] = {
 	run: function(doc) {
 		var crumbs = Foxtrick.Pages.All.getBreadCrumbs(doc);
 		var forum = crumbs[1];
-		if (forum.textContent !== 'Stage')
+		if (forum.textContent.trim() !== 'Stage')
 			return;
 
 		var alertDiv = doc.createElement('div');
@@ -42,6 +42,7 @@ Foxtrick.modules['ForumStage'] = {
 		check.type = 'checkbox';
 		check.tabIndex = 10;
 		checkDiv.appendChild(check);
+
 		var desc = doc.createElement('label');
 		desc.textContent = 'I understand and comply';
 		desc.setAttribute('for', 'ft-stage-forum-post');
@@ -51,13 +52,13 @@ Foxtrick.modules['ForumStage'] = {
 		var textarea = doc.querySelector('#mainBody textarea');
 		Foxtrick.insertAfter(alertDiv, textarea);
 
-		var brnOK = Foxtrick.getButton(doc, 'OK');
-		brnOK.disabled = true;
+		var btnOK = Foxtrick.getButton(doc, 'OK');
+		btnOK.disabled = true;
 
 		Foxtrick.onClick(check, function(ev) {
 			var doc = ev.target.ownerDocument;
-			var brnOK = Foxtrick.getButton(doc, 'OK');
-			brnOK.disabled = !ev.target.checked;
+			var btnOK = Foxtrick.getButton(doc, 'OK');
+			btnOK.disabled = !ev.target.checked;
 		});
 
 	},

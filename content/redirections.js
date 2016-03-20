@@ -98,7 +98,7 @@ Foxtrick.modules['Redirections'] = {
 				break;
 
 				case 'custom':
-					url = location.replace(/.+redir_to_custom=true\&/, '');
+					url = Foxtrick.getParameterFromUrl(location, 'redir_to');
 					url = url.replace(/%5BteamId%5D|\[teamId\]/i, teamId);
 					url = url.replace(/%5BuserId%5D|\[userId\]/i, userId);
 				break;

@@ -46,9 +46,9 @@ Foxtrick.loader.background.browserLoad = function() {
 
 		var currencyJSON, aboutJSON, worldDetailsJSON, htLanguagesJSONText, cssTextCollection;
 
-		var updateResources = function(reinit) {
+		var updateResources = function(reInit) {
 			// init resources
-			Foxtrick.entry.init(reinit);
+			Foxtrick.entry.init(reInit);
 
 			// prepare resources for later transmission to content script
 			currencyJSON = JSON.stringify(Foxtrick.XMLData.htCurrencyJSON);
@@ -99,7 +99,7 @@ Foxtrick.loader.background.browserLoad = function() {
 				Foxtrick.platform == 'Android' &&
 				Foxtrick.Prefs._prefs_gecko.getBoolPref('preferences.updated')) {
 
-				updateResources(true); // reinit
+				updateResources(true); // reInit
 			}
 
 			var resource = {
@@ -142,7 +142,7 @@ Foxtrick.loader.background.browserLoad = function() {
 
 		// from prefs-util.js
 		this.requests.setValue = function(request) {
-			if (Foxtrick.Prefs.getAny(request.key) == request.value)
+			if (Foxtrick.Prefs.getAny(request.key) === request.value)
 				return;
 
 			Foxtrick.Prefs.setWithType(request.key, request.value, request.type);

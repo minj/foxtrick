@@ -76,7 +76,7 @@ Foxtrick.XMLData = {
 		var NT_BY_COUNTRY = {
 			// 'Al Maghrib': 'Al Maghrib ', // oh yes, there's a space here!
 			'Côte d’Ivoire': 'Côte d\'Ivoire',
-			'Kampuchea': 'Prateh Kampuchea', // jscs:ignore disallowQuotedKeysInObjects
+			'Kampuchea': 'Prateh Kampuchea',
 			'O’zbekiston': 'O\'zbekiston',
 			'Panamá': 'Panama',
 			'Shqipëria': 'Shqiperia',

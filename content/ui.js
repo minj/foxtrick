@@ -37,29 +37,34 @@ if (Foxtrick.platform == 'Firefox') {
 		var toolPreferences = document.getElementById('foxtrick-toolbar-preferences');
 		toolPreferences.addEventListener('click', function() {
 			Foxtrick.Prefs.show();
-		}, false);
+		});
+
 		// toolbar menu - disable
 		var toolDisable = document.getElementById('foxtrick-toolbar-deactivate');
 		toolDisable.addEventListener('click', function() {
 			Foxtrick.Prefs.disable();
-		}, false);
+		});
+
 		// toolbar menu - clearCache
 		var toolCache = document.getElementById('foxtrick-toolbar-clearCache');
 		toolCache.addEventListener('click', function() {
 			Foxtrick.sessionDeleteBranch('');
 			Foxtrick.localDeleteBranch('');
 			// Foxtrick.util.api.clearCache();
-		}, false);
+		});
+
 		// toolbar menu - highlight
 		var toolHighlight = document.getElementById('foxtrick-toolbar-highlight');
 		toolHighlight.addEventListener('click', function() {
 			Foxtrick.Prefs.highlight();
-		}, false);
+		});
+
 		// toolbar menu - translationKeys
 		var toolTranslation = document.getElementById('foxtrick-toolbar-translationKeys');
 		toolTranslation.addEventListener('click', function() {
 			Foxtrick.Prefs.translationKeys(); // sets the pref and calls update()
-		}, false);
+		});
+
 		Foxtrick.modules.UI._updateSingle(window);
 	};
 	Foxtrick.modules.UI.onTabChange = function() {
@@ -71,6 +76,7 @@ if (Foxtrick.platform == 'Firefox') {
 	};
 	Foxtrick.modules.UI.update = function() {
 		var browserEnumerator = Services.wm.getEnumerator('navigator:browser');
+
 		while (browserEnumerator.hasMoreElements()) {
 			var browserWin = browserEnumerator.getNext();
 			Foxtrick.modules.UI._updateSingle(browserWin);
@@ -86,17 +92,21 @@ if (Foxtrick.platform == 'Firefox') {
 			return;
 		}
 		toolPreferences.setAttribute('label', Foxtrick.L10n.getString('toolbar.preferences'));
+
 		// toolbar menu - disable
 		var toolDisable = document.getElementById('foxtrick-toolbar-deactivate');
 		toolDisable.setAttribute('label', Foxtrick.L10n.getString('toolbar.disableTemporary'));
 		toolDisable.setAttribute('checked', Foxtrick.Prefs.getBool('disableTemporary'));
+
 		// toolbar menu - clearCache
 		var toolCache = document.getElementById('foxtrick-toolbar-clearCache');
 		toolCache.setAttribute('label', Foxtrick.L10n.getString('api.clearCache'));
+
 		// toolbar menu - highlight
 		var toolHighlight = document.getElementById('foxtrick-toolbar-highlight');
 		toolHighlight.setAttribute('label', Foxtrick.L10n.getString('toolbar.featureHighlight'));
 		toolHighlight.setAttribute('checked', Foxtrick.Prefs.getBool('featureHighlight'));
+
 		// toolbar menu - translationKeys
 		var toolTranslation = document.getElementById('foxtrick-toolbar-translationKeys');
 		toolTranslation.setAttribute('label', Foxtrick.L10n.getString('toolbar.translationKeys'));
@@ -114,20 +124,24 @@ if (Foxtrick.platform == 'Firefox') {
 		if (Foxtrick.Prefs.getBool('disableTemporary')) {
 			// Foxtrick is disabled temporarily
 			button.setAttribute('status', 'disabled');
+
 			statusText = Foxtrick.L10n.getString('status.disabled');
 		}
 		else if (/^chrome:\/\/foxtrick/.test(doc.location.href) ||
 		         Foxtrick.Prefs.isEnabled(doc)) {
 			// Foxtrick is enabled, and active on current page
 			button.setAttribute('status', 'active');
+
 			statusText = Foxtrick.L10n.getString('status.active');
 		}
 		else {
 			// Foxtrick is enabled, but not active on current page
 			button.setAttribute('status', 'enabled');
+
 			var hostname = doc.location.hostname;
 			statusText = Foxtrick.L10n.getString('status.enabled').replace('%s', hostname);
 		}
+
 		var args = {
 			title: Foxtrick.L10n.getString('toolbar.title'),
 			version: Foxtrick.version,
@@ -135,6 +149,7 @@ if (Foxtrick.platform == 'Firefox') {
 			status: statusText,
 		};
 		var tooltipText = Foxtrick.format('{title} {version} {branch} ({status})', args);
+
 		button.setAttribute('tooltiptext', tooltipText);
 	};
 }

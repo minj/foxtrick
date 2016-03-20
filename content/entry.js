@@ -80,9 +80,9 @@ Foxtrick.entry.contentScriptInit = function(data) {
 		// fennec can access them from context, but they still need to get initialized
 		// xmldata has nothing to init only fetch
 		var coreModules = [Foxtrick.Prefs, Foxtrick.L10n];
-		for (var i = 0; i < coreModules.length; ++i) {
-			if (typeof coreModules[i].init === 'function')
-				coreModules[i].init();
+		for (var cModule of coreModules) {
+			if (typeof cModule.init === 'function')
+				cModule.init();
 		}
 	}
 
@@ -199,9 +199,10 @@ Foxtrick.entry.change = function(doc, changes) {
 };
 
 /**
- * Make and run a function for each module in the array in order of NICEness
+ * Make and run a function for each module in the array in order of NICEness.
  *
- * makeFn(module) should return function(void) or null
+ * makeFn(module) should return function(void) or null.
+ *
  * @param {array}    modules {Array.<object>}
  * @param {function} makeFn  {function(object)->?function}
  */
@@ -257,17 +258,17 @@ Foxtrick.entry.checkCSS = function(doc) {
 
 	var html = doc.documentElement;
 	html.dir = currentDir;
-	html.setAttribute('data-theme', currentTheme);
+	html.dataset.theme = currentTheme;
 
 	if (Foxtrick.platform == 'Android') {
 		var fennecTheme = /Forum/i.test(doc.location.href) ? 'forum' : 'default';
-		html.setAttribute('data-fennec-theme', fennecTheme);
+		html.dataset.fennecTheme = fennecTheme;
 	}
 
-	html.setAttribute(Foxtrick.platform, '');
+	html.setAttribute(Foxtrick.platform, 'true');
 
 	if (Foxtrick.util.layout.hasMultipleTeams(doc))
-		html.setAttribute('data-multiple', '');
+		html.dataset.multiple = 'true';
 
 	// reload CSS if not loaded
 	if (!Foxtrick.entry.cssLoaded) {

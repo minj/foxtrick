@@ -34,7 +34,8 @@ Foxtrick.util.modules = {};
 /**
  * Get active modules.
  *
- * doc param is optional: returns only modules that run on that page if provided
+ * doc param is optional: returns only modules that run on that page if provided.
+ *
  * @param  {document} doc {?document}
  * @return {array}        {Array.<object>}
  */
@@ -52,13 +53,14 @@ Foxtrick.util.modules.getActive = function(doc) {
 	for (var m in Foxtrick.modules) {
 		var module = Foxtrick.modules[m];
 		if (Foxtrick.Prefs.isModuleEnabled(module)) {
-			for (var mp = 0; mp < module.PAGES.length; ++mp) {
-				var mPage = module.PAGES[mp];
+			for (var mPage of module.PAGES) {
 
 				if (typeof Foxtrick.htPages[mPage] === 'undefined') {
 					var args = [module.MODULE_NAME, mPage];
 					var msg = Foxtrick.format('{} wants to run on an unknown page {}', args);
+
 					Foxtrick.error(msg);
+
 					continue;
 				}
 

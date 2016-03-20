@@ -66,7 +66,7 @@ let windowListener = {
 		domWindow.addEventListener('DOMContentLoaded', function waitForWindowload() {
 			domWindow.removeEventListener('DOMContentLoaded', waitForWindowload);
 			gScope.loadIntoWindow(domWindow);
-		}, false);
+		});
 	},
 	/* jshint ignore:start */
 	onCloseWindow: function(aWindow) {},

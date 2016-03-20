@@ -41,13 +41,14 @@ Foxtrick.modules['ReadHtPrefs'] = {
 			Foxtrick.error('No meta lang');
 			return;
 		}
+
 		var newLang = Foxtrick.L10n.htMapping[metaLang];
 		var oldLang = Foxtrick.Prefs.getString('htLanguage');
-
 		if (newLang == oldLang)
 			return;
 
 		Foxtrick.log('Language changed. ht:', metaLang, 'ft:', newLang, 'old-ft:', oldLang);
+
 		var langDef = Foxtrick.L10n.htLanguagesJSON[newLang];
 		if (langDef) {
 			Foxtrick.Prefs.setString('htLanguage', newLang);
@@ -70,6 +71,7 @@ Foxtrick.modules['ReadHtPrefs'] = {
 			Foxtrick.log('Language changed:', newLang, '(' + metaLang + ')',
 			             'but no Foxtrick support yet.');
 		}
+
 		if (Foxtrick.platform === 'Firefox') {
 			Foxtrick.modules.UI.update(doc);
 		}

@@ -48,8 +48,8 @@ Foxtrick.loader.firefox.browserLoad = function() {
 		// add listener to tab focus changes
 		var browserEnumerator = Services.wm.getEnumerator('navigator:browser');
 		var browserWin = browserEnumerator.getNext();
-		var tabbrowser = browserWin.getBrowser();
-		tabbrowser.tabContainer.addEventListener('select', LOADER.tabFocus);
+		var tabBrowser = browserWin.getBrowser();
+		tabBrowser.tabContainer.addEventListener('select', LOADER.tabFocus);
 	}
 	catch (e) {
 		Foxtrick.log(e);
@@ -68,8 +68,8 @@ Foxtrick.loader.firefox.browserUnLoad = function() {
 
 	var browserEnumerator = Services.wm.getEnumerator('navigator:browser');
 	var browserWin = browserEnumerator.getNext();
-	var tabbrowser = browserWin.getBrowser();
-	tabbrowser.tabContainer.removeEventListener('select', LOADER.tabFocus);
+	var tabBrowser = browserWin.getBrowser();
+	tabBrowser.tabContainer.removeEventListener('select', LOADER.tabFocus);
 
 	Foxtrick.util.css.unload_module_css();
 
@@ -104,8 +104,8 @@ Foxtrick.loader.firefox.tabFocus = function(ev) {
 
 		var browserEnumerator = Services.wm.getEnumerator('navigator:browser');
 		var browserWin = browserEnumerator.getNext();
-		var tabbrowser = browserWin.getBrowser();
-		var currentBrowser = tabbrowser.getBrowserAtIndex(ev.target.selectedIndex);
+		var tabBrowser = browserWin.getBrowser();
+		var currentBrowser = tabBrowser.getBrowserAtIndex(ev.target.selectedIndex);
 		var doc = currentBrowser.contentDocument;
 
 		Foxtrick.log('tab focus:', ev.target.selectedIndex);

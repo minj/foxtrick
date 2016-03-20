@@ -24,9 +24,12 @@ function visitLink() {
 		// jshint -W040
 		chrome.tabs.create({ url: this.href });
 		// jshint +W040
+
 		window.close();
+
 		return false;
 	}
+
 	shutDown();
 }
 

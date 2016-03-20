@@ -27,6 +27,11 @@ function getPageIds() {
 // from traversing the DOM all the time
 var MODULES = {};
 
+/**
+ * Show message box
+ *
+ * @param {string} msg
+ */
 function notice(msg) {
 	$('#note-content').text(msg);
 	$('#note').show('slow');
@@ -36,6 +41,14 @@ function baseURI() {
 	return window.location.href.replace(/#.*$/, '');
 }
 
+/**
+ * Generate a hash URI to an object.
+ *
+ * opts is {tab, module, id, search: string}, choose one.
+ *
+ * @param  {object} opts {tab, module, id, search: string}
+ * @return {string}
+ */
 function generateURI(opts) {
 	var location = baseURI();
 	if (opts.tab)
@@ -48,15 +61,16 @@ function generateURI(opts) {
 		return location + '#search=' + opts.search;
 }
 
-// feed the search bar with options, no effect yet
+/**
+ * Index modules and other headers for search
+ */
 function initSearch() {
 	var searchAdd = function(searchStr, item) {
 		if (Array.isArray(MODULES[searchStr])) {
 			MODULES[searchStr].push(item);
 		}
 		else if (typeof MODULES[searchStr] === 'object') {
-			MODULES[searchStr] = [MODULES[searchStr]];
-			MODULES[searchStr].push(item);
+			MODULES[searchStr] = [MODULES[searchStr], item];
 		}
 		else
 			MODULES[searchStr] = item;
@@ -64,31 +78,33 @@ function initSearch() {
 
 	$('.module').each(function() {
 		try {
-			var saveName, header;
 
 			var $this = $(this);
+			var $header;
+
 			var name = $this.attr('id');
+			var saveName;
 
 			var prefRe = /^pref-/;
 			if (name && prefRe.test(name)) {
 				saveName = name.replace(/^pref-/, '');
-				searchAdd(saveName, $('#' + name)[0]);
+				searchAdd(saveName, this);
 			}
 			else if (name) {
-				header = $this.children('h3:first, h2:first');
-				saveName = header.text().replace('¶', '');
+				$header = $this.children('h3:first, h2:first');
+				saveName = $header.text().replace('¶', '').trim();
 				searchAdd(saveName, this);
 
-				var faqLink = header.children('a')[0];
+				var faqLink = $header.children('a')[0];
 				saveName = faqLink.href;
 				searchAdd(saveName, this);
 			}
 			else {
-				header = $this.children('h3:first, h2:first');
-				if (header.attr('data-text')) {
-					name = Foxtrick.L10n.getString(header.attr('data-text'));
+				$header = $this.children('h3:first, h2:first');
+				if ($header.attr('data-text')) {
+					name = Foxtrick.L10n.getString($header.attr('data-text'));
 					searchAdd(name, this);
-					searchAdd(header.attr('data-text'), this);
+					searchAdd($header.attr('data-text'), this);
 				}
 				else {
 					Foxtrick.log('no search support, missing header and/or data-text:', this);
@@ -101,46 +117,61 @@ function initSearch() {
 	});
 }
 
-// search
-function search(string, isModule) {
+/**
+ * Reflow content to show only matching search results.
+ *
+ * isModule is used for breadcrumb URL generation.
+ *
+ * @param {string}  needle
+ * @param {Boolean} isModule
+ */
+function search(needle, isModule) {
 
 	// iterate pre-cached modules,
 	// jQuery is slow as hell here, directly using DOM methods
-	var showModules = function(predicate) {
+	var showModules = function(visibilityPredicate) {
 		var shown = new Set();
 		for (var m in MODULES) {
-			var show = predicate(m);
+			var doShow = visibilityPredicate(m);
 			var memo = MODULES[m];
 			if (Array.isArray(memo)) {
 				for (var module of memo) {
-					if (show) {
+					if (doShow) {
 						Foxtrick.removeClass(module, 'hidden');
 						shown.add(module);
 					}
-					else if (!shown.has(module))
+					else if (!shown.has(module)) {
+						// only hide if not shown in a previous iteration
 						Foxtrick.addClass(module, 'hidden');
+					}
 				}
 			}
 			else {
-				if (show) {
+				if (doShow) {
 					Foxtrick.removeClass(memo, 'hidden');
 					shown.add(memo);
 				}
-				else if (!shown.has(memo))
+				else if (!shown.has(memo)) {
+					// only hide if not shown in a previous iteration
 					Foxtrick.addClass(memo, 'hidden');
+				}
 			}
 		}
 	};
 
-	if (string.length > 0) {
+	if (needle.length > 0) {
 		$('#breadcrumb-2').show();
-		$('#breadcrumb-2').text(string);
+		$('#breadcrumb-2').text(needle);
 		$('#breadcrumb-sep-1').show();
 
-		var opt = isModule ? { module: string } : { search: string };
+		var opt = isModule ? { module: needle } : { search: needle };
 		$('#breadcrumb-2').attr('href', generateURI(opt));
 
-		var regex = new RegExp(string, 'i');
+		// README: needle not escaped => supports RegExp
+		// consider escaping
+		var regex = new RegExp(needle, 'i');
+
+		// show matching
 		showModules(function(name) { return regex.test(name); });
 	}
 	else {
@@ -148,11 +179,20 @@ function search(string, isModule) {
 		$('#breadcrumb-3').hide();
 		$('#breadcrumb-sep-1').hide();
 		$('#breadcrumb-sep-2').hide();
+
+		// show all
 		showModules(function() { return true; });
 	}
 }
 
-// see http://tools.ietf.org/html/rfc3986#section-3.5
+/**
+ * Parse hash fragment into options: {tab, module, id, search: string}.
+ *
+ * TODO replace with URLSearchParams
+ *
+ * @param  {string} fragment
+ * @return {object}          {tab, module, id, search: string}
+ */
 function parseFragment(fragment) {
 	var pairs = (fragment ? fragment.toString() : '').split(/&/);
 
@@ -161,16 +201,46 @@ function parseFragment(fragment) {
 	for (var pair of pairs) {
 		var param = pair.split(/=/); // key and value are separated by equal sign (=)
 		if (param.length == 2)
-			ret[param[0]] = param[1];
+			ret[decodeURIComponent(param[0])] = decodeURIComponent(param[1]);
 	}
 	return ret;
 }
 
-
+/**
+ * Reflow content according to hash fragment
+ *
+ * @param {string} uri
+ */
 function locateFragment(uri) {
 	// show functions
+	var showTab = function(tab) {
+		// if (Foxtrick.Prefs.isModuleEnabled('MobileEnhancements')) {
+		// 	// mobile
+		// 	$('#navigation-header').text(Foxtrick.L10n.getString('tab.' + tab));
+		// }
+
+		$('#breadcrumb-1').text(Foxtrick.L10n.getString('tab.' + tab));
+		$('#breadcrumb-1').attr('href', generateURI({ tab: tab }));
+
+		search('', true); // search reset
+
+		$('#pane > div').hide();
+		$('#tabs > li').removeClass('active');
+
+		$('#tab-' + tab).addClass('active');
+		$('#pane > div[x-on*=' + tab + ']').show();
+	};
+
+	var showFaq = function(id) {
+		showTab('help');
+
+		var div = $('#faq-' + id)[0];
+		if (div)
+			div.scrollIntoView(true);
+	};
+
 	var showModule = function(module) {
-		var $module = $('#pref-' + (module ? module.toString() : ''));
+		var $module = $('#pref-' + (module ? String(module) : ''));
 		var category = $module.attr('x-category');
 		showTab(category || 'search');
 		search(module, true); // direct search
@@ -180,29 +250,11 @@ function locateFragment(uri) {
 			div.scrollIntoView(true);
 		}
 	};
-	var showTab = function(tab) {
-		// if (Foxtrick.Prefs.isModuleEnabled('MobileEnhancements')) {
-		// 	// mobile
-		// 	$('#navigation-header').text(Foxtrick.L10n.getString('tab.' + tab));
-		// }
-		$('#breadcrumb-1').text(Foxtrick.L10n.getString('tab.' + tab));
-		$('#breadcrumb-1').attr('href', generateURI({ tab: tab }));
-		search('', true); // search reset
-		$('#pane > div').hide();
-		$('#tabs > li').removeClass('active');
-		$('#tab-' + tab).addClass('active');
-		$('#pane > div[x-on*=' + tab + ']').show();
-	};
-	var showFaq = function(id) {
-		showTab('help');
-		var div = $('#faq-' + id)[0];
-		if (div)
-			div.scrollIntoView(true);
-	};
 
 	// only keep the fragment of URI
 	var fragment = /#/.test(uri) ? fragment = uri.replace(/^.*#/, '') : '';
 	var param = parseFragment(fragment);
+
 	if (param.module)
 		showModule(param.module);
 	else if (param.tab)
@@ -213,8 +265,9 @@ function locateFragment(uri) {
 	}
 	else if (param.faq)
 		showFaq(param.faq);
-	else
+	else {
 		showTab('main'); // show the main tab by default
+	}
 
 	// if (Foxtrick.Prefs.isModuleEnabled('MobileEnhancements')) {
 	// 	// mobile
@@ -223,6 +276,13 @@ function locateFragment(uri) {
 	// }
 }
 
+/**
+ * Search input event handler
+ *
+ * TODO: improve to batch and throttle 'requests' asynchronously
+ *
+ * @param {Event} ev
+ */
 function searchEvent(ev) {
 	if (ev.target.value.length < 4)
 		return;
@@ -237,14 +297,16 @@ function searchEvent(ev) {
 	search(ev.target.value);
 }
 
-// permissions management
+// Permissions Management
 
-// check if permissions are granted in init and ask for permission if needed on saving
+// TODO: extract and improve
+
+// Check if permissions are granted in init and ask for permission if needed on saving
 // that's unsave since we don't check permissions right before asking for them
-// but since permission request must be in the click handler and not in a callback
-// this seems to be the only way
+// but since permission request must be in the click handler and not in a callback.
+// This seems to be the only way.
 
-// should move/get that to the resp. modules
+// Should move/get that to the resp. modules
 var neededPermissions = [
 	{
 		modules: ['ExtraShortcuts.No9'],
@@ -306,11 +368,17 @@ var neededPermissions = [
 	},
 ];
 
-function permissionsMakeIdFromName(module) {
-	var id = '#pref-' + module;
+/**
+ * Convert module/option into element ID
+ *
+ * @param  {string} option
+ * @return {string}
+ */
+function getElementIdFromOption(option) {
+	var id = '#pref-' + option;
 
 	var re = /\./g;
-	if (re.test(id))
+	if (!re.test(id))
 		id = id + '-check'; // main module check
 	else
 		id = id.replace(re, '-'); // sub-option check
@@ -318,13 +386,22 @@ function permissionsMakeIdFromName(module) {
 	return id;
 }
 
+/**
+ * Request optional permissions.
+ *
+ * needed is {types: { permissions, origins: array}, modules: array}.
+ *
+ * showSaved: optionally show success message
+ *
+ * @param {object}  needed
+ * @param {Boolean} showSaved
+ */
 function getPermission(needed, showSaved) {
 	// Permissions must be requested from inside a user gesture, like a button's click handler.
-	chrome.permissions.request(needed.types,
-	  function(granted) {
+	chrome.permissions.request(needed.types, function(granted) {
 		// The callback argument will be true if the user granted the permissions.
 		for (var module of needed.modules) {
-			var id = permissionsMakeIdFromName(module);
+			var id = getElementIdFromOption(module);
 			if (!granted) {
 				$(id).prop('checked', false);
 				var pref = 'module.' + module + '.enabled';
@@ -342,9 +419,16 @@ function getPermission(needed, showSaved) {
 	});
 }
 
+/**
+ * Check whether optional permissions are required and ask for them if needed
+ *
+ * returns true if needed
+ *
+ * @return {Boolean} isNeeded
+ */
 function checkPermissions() {
 	var needsPermissions = false;
-	// ask for permissions if needed
+
 	if (Foxtrick.platform === 'Chrome') {
 		// combine all need permissions into on request
 		var combined = {
@@ -354,7 +438,7 @@ function checkPermissions() {
 
 		neededPermissions.forEach(function(needed) {
 			needed.modules.forEach(function(module, m, modules) { // jshint ignore:line
-				var id = permissionsMakeIdFromName(module);
+				var id = getElementIdFromOption(module);
 				if (!Foxtrick.Prefs.getBool('module.' + module + '.enabled') ||
 				    $(id).attr('permission-granted') === 'true')
 					return;
@@ -364,6 +448,7 @@ function checkPermissions() {
 
 				if (needed.types.permissions)
 					Foxtrick.pushNew(combined.types.permissions, needed.types.permissions);
+
 				if (needed.types.origins)
 					Foxtrick.pushNew(combined.types.origins, needed.types.origins);
 			});
@@ -371,18 +456,22 @@ function checkPermissions() {
 
 		getPermission(combined, true);
 	}
+
+	// returning true prevents save notice from being shown
+	// will be shown asynchronously in getPermission
 	return needsPermissions;
-	// false prevents save notice to be shown
-	// will be shown delayed in getPermissions
 }
 
+/**
+ * Revoke all permissions.
+ *
+ * TODO: test/fix/improve
+ */
 function revokePermissions() {
-	// removes current permissions
 	var revokeModulePermission = function(needed) {
-		chrome.permissions.remove(needed.types,
-		  function(result) {
+		chrome.permissions.remove(needed.types, function(result) {
 			for (var module of needed.modules) {
-				var id = permissionsMakeIdFromName(module);
+				var id = getElementIdFromOption(module);
 				$(id).attr('permission-granted', false);
 				Foxtrick.log('Permission removed:', module, result);
 			}
@@ -395,8 +484,12 @@ function revokePermissions() {
 	}
 }
 
+/**
+ * Initialize elements which need permissions, show notice if permissions are missing
+ *
+ * TODO: test/fix/improve
+ */
 function testPermissions() {
-	// initialize elements which need permissions, ask for permission if needed
 	if (Foxtrick.platform === 'Chrome') {
 		var makeChecker = function(id, perm, module) {
 			return function() {
@@ -405,34 +498,39 @@ function testPermissions() {
 		};
 
 		var testModulePermission = function(needed) {
-			chrome.permissions.contains(needed.types,
-			  function(result) {
+			chrome.permissions.contains(needed.types, function(result) {
+				needed.granted = result;
+
 				for (var module of needed.modules) {
-					var id = permissionsMakeIdFromName(module);
+					var id = getElementIdFromOption(module);
 					$(id).attr('permission-granted', result);
-					needed.granted = result;
 					$(id).click(makeChecker(id, needed, module));
 
 					if (result === false &&
 					    Foxtrick.Prefs.getBool('module.' + module + '.enabled')) {
 
 						Foxtrick.pushNew(modules, needed.modules);
+
 						var needsPermHtml = Foxtrick.L10n.getString('prefs.needPermissions') +
 							'<ul><li>' + modules.join('</li><li>') + '</li></ul>';
+
 						$('#alert-text').html(needsPermHtml);
 						$('#alert').attr('style', 'display:block;');
 					}
 				}
 			});
 		};
+
 		var checkPermission = function(id, neededPermission, module) {
 			if ($(id).prop('checked') && $(id).attr('permission-granted') == 'false')
 				getPermission(neededPermission);
 			else if (!$(id).prop('checked')) {
+
 				modules = Foxtrick.exclude(modules, module);
 				if (modules.length > 0) {
 					var needsPermText = Foxtrick.L10n.getString('prefs.needPermissions') +
 						' ' + modules.join(', ');
+
 					$('#alert-text').text(needsPermText);
 					$('#alert').attr('style', 'display:block;');
 				}
@@ -442,6 +540,7 @@ function testPermissions() {
 				}
 			}
 		};
+
 		var modules = [];
 		for (var permission of neededPermissions) {
 			testModulePermission(permission);
@@ -449,11 +548,19 @@ function testPermissions() {
 	}
 }
 
+/**
+ * Handle save event.
+ *
+ * Saves the current state of all options.
+ *
+ * @param {Event} ev
+ */
 function saveEvent(ev) {
 	Foxtrick.log('save');
 
-	var $target = $(ev.target);
 	var pref;
+
+	var $target = $(ev.target);
 	if ($target.attr('pref')) {
 		pref = $target.attr('pref');
 
@@ -476,6 +583,7 @@ function saveEvent(ev) {
 		if ($target.attr('option')) {
 			Foxtrick.log('option of module');
 			var option = $target.attr('option');
+
 			pref = module + '.' + option;
 			if ($target.is(':checkbox'))
 				Foxtrick.Prefs.setModuleEnableState(pref, $target.is(':checked'));
@@ -493,12 +601,19 @@ function saveEvent(ev) {
 	}
 	Foxtrick.Prefs.setBool('preferences.updated', true);
 }
+
+/**
+ * Save button clicked.
+ *
+ * TODO: unused, remove?
+ */
 function save() {
 	var needsPermissions = checkPermissions();
 
+	// shown save notice only if no permissions needed
+	// otherwise triggered in permission request callback
 	if (!needsPermissions)
 		notice(Foxtrick.L10n.getString('prefs.feedback.saved'));
-	// else it is shown in permission request callback
 
 	Foxtrick.Prefs.setBool('preferences.updated', true);
 }
@@ -602,6 +717,9 @@ function addNote(note, parent, links) {
 	parent.appendChild(noteContainer);
 }
 
+/**
+ * Run core module init functions
+ */
 function initCoreModules() {
 	// add MODULE_NAME to modules
 	for (var m in Foxtrick.modules)
@@ -614,8 +732,12 @@ function initCoreModules() {
 			module.init();
 }
 
+/**
+ * Add auto save listeners to all elements that require it.
+ *
+ * Used for custom options as well
+ */
 function initAutoSaveListeners() {
-	// save on click/input
 	$('#pane input').each(function() {
 		var $this = $(this);
 
@@ -652,11 +774,14 @@ function initAutoSaveListeners() {
 		if ($this.attr('savelistener'))
 			return;
 
-		$this.attr('savelistener', 'false');
+		$this.attr('savelistener', 'true');
 		this.addEventListener('input', saveEvent);
 	});
 }
 
+/**
+ * Add save, search and click listeners
+ */
 function initListeners() {
 	initAutoSaveListeners();
 
@@ -683,7 +808,13 @@ function initListeners() {
 	});
 }
 
-function getModule(module) {
+/**
+ * Make module div container with module options and their descriptions
+ *
+ * @param  {object}         module
+ * @return {HTMLDivElement}
+ */
+function makeModuleDiv(module) {
 	var getScreenshot = function(link) {
 		var a = document.createElement('a');
 		a.className = 'screenshot';
@@ -709,6 +840,7 @@ function getModule(module) {
 	var check = document.createElement('input');
 	check.id = entry.id + '-check';
 	check.type = 'checkbox';
+
 	// do not allow disabling core modules
 	if (module.CORE_MODULE) {
 		check.setAttribute('checked', 'checked');
@@ -751,16 +883,16 @@ function getModule(module) {
 	// module-provided function for generating options. will be appended
 	// OPTION_FUNC either returns an HTML object or an array of HTML objects
 	// or purely initializes them and returns null
-	var customCoptions = [];
+	var customOptions = [];
 	if (typeof module.OPTION_FUNC == 'function') {
 		var genOptions = module.OPTION_FUNC(document, initAutoSaveListeners);
 		if (genOptions) {
 			if (Array.isArray(genOptions)) {
 				for (var field of genOptions)
-					customCoptions.push(field);
+					customOptions.push(field);
 			}
 			else
-				customCoptions.push(genOptions);
+				customOptions.push(genOptions);
 		}
 	}
 
@@ -797,21 +929,24 @@ function getModule(module) {
 			}
 		};
 
-		var appendOptionsArrayToList = function(optionsarray, parentlist) {
-			for (var k = 0; k < optionsarray.length; ++k) {
+		var appendOptionsArrayToList = function(optionsArray, parentList) {
+			for (var k = 0; k < optionsArray.length; ++k) {
 				if (k == 1) {
+					// first subOption, create subOption list and redirect all options to it
 					item = document.createElement('li');
-					parentlist.appendChild(item);
-					parentlist = document.createElement('ul');
-					parentlist.setAttribute('depends-on', entry.id + '-' + optionsarray[0]);
-					item.appendChild(parentlist);
-					parentlist.id = module.MODULE_NAME + '-' + optionsarray[0] + '-checkboxes';
+					parentList.appendChild(item);
+
+					parentList = document.createElement('ul');
+					parentList.id = module.MODULE_NAME + '-' + optionsArray[0] + '-checkboxes';
+					parentList.setAttribute('depends-on', entry.id + '-' + optionsArray[0]);
+
+					item.appendChild(parentList);
 				}
 
-				if (Array.isArray(optionsarray[k]))
-					appendOptionsArrayToList(optionsarray[k], parentlist);
+				if (Array.isArray(optionsArray[k]))
+					appendOptionsArrayToList(optionsArray[k], parentList);
 				else
-					appendOptionToList(optionsarray[k], parentlist);
+					appendOptionToList(optionsArray[k], parentList);
 			}
 		};
 		var makeTextListener = function(input) {
@@ -830,6 +965,7 @@ function getModule(module) {
 			return function(url) {
 				input.value = url;
 				input.dispatchEvent(new Event('change'));
+
 				if (isSound)
 					Foxtrick.playSound(input.ownerDocument, url);
 			};
@@ -937,14 +1073,15 @@ function getModule(module) {
 		}, module.RADIO_OPTIONS);
 	}
 
-	for (var custom of customCoptions) {
-		options.appendChild(custom);
-	}
+	Foxtrick.appendChildren(options, customOptions);
 
 	entry.appendChild(container);
 	return entry;
 }
 
+/**
+ * Create module containers and initialize their attributes
+ */
 function initModules() {
 	var modules = [];
 	for (var m in Foxtrick.modules)
@@ -955,7 +1092,7 @@ function initModules() {
 		return typeof m.MODULE_CATEGORY !== 'undefined';
 	}, modules);
 
-	// sort modules in alphabetical order. Links modules to the end
+	// Sort modules in alphabetical order. Links modules to the end
 	var linksRe = /^Links/;
 	modules.sort(function(a, b) {
 		if (linksRe.test(a.MODULE_NAME)) {
@@ -971,7 +1108,7 @@ function initModules() {
 	});
 
 	for (var module of modules) {
-		var obj = getModule(module);
+		var obj = makeModuleDiv(module);
 		var $obj = $(obj);
 
 		// show on view-by-category tab
@@ -988,8 +1125,10 @@ function initModules() {
 	}
 }
 
+/**
+ * Setup main tab options and listeners
+ */
 function initMainTab() {
-	// setup
 	var desc = $('#pref-setup-desc')[0];
 	var ISSUES_URL = 'https://github.com/minj/foxtrick/issues';
 	Foxtrick.L10n.appendLink('prefs.setup.desc', desc, ISSUES_URL);
@@ -1022,15 +1161,19 @@ function initMainTab() {
 
 	// load preferences
 	$('#pref-load-do').click(function() {
+
 		Foxtrick.Prefs.load($('#pref-load-text').val());
 		$('#pref-load-text').val('');
+
 		window.location.reload();
 	});
 
 	// restore to default
 	$('#pref-stored-restore').click(function() {
 		if (Foxtrick.confirmDialog(Foxtrick.L10n.getString('prefs.restoreDefault.ask'))) {
+
 			Foxtrick.Prefs.restore();
+
 			window.location.reload();
 		}
 	});
@@ -1044,6 +1187,7 @@ function initMainTab() {
 			for (var key of keys) {
 				Foxtrick.Prefs.deleteValue(key);
 			}
+
 			window.location.reload();
 		}
 	});
@@ -1051,8 +1195,10 @@ function initMainTab() {
 	// disable all
 	$('#pref-stored-disable').click(function() {
 		if (Foxtrick.confirmDialog(Foxtrick.L10n.getString('prefs.disableAllModules.ask'))) {
-			Foxtrick.log('preferences: diable all');
+
+			Foxtrick.log('preferences: disable all');
 			Foxtrick.Prefs.disableAllModules();
+
 			window.location.reload();
 		}
 	});
@@ -1060,21 +1206,28 @@ function initMainTab() {
 	// revoke permissions
 	$('#pref-revoke-permissions').click(function() {
 		if (Foxtrick.confirmDialog(Foxtrick.L10n.getString('prefs.revokePermissions.ask'))) {
+
 			Foxtrick.log('preferences: revoke permissions');
 			revokePermissions();
+
 			window.location.reload();
 		}
 	});
 
-	// clear cche
+	// clear cache
 	$('#pref-stored-clear-cache').click(function() {
 		Foxtrick.sessionDeleteBranch('');
 		Foxtrick.localDeleteBranch('');
+
 		// Foxtrick.util.api.clearCache();
+
 		window.location.reload();
 	});
 }
 
+/**
+ * Setup changes tab layout and release notes
+ */
 function initChangesTab() {
 	var changesLink = document.createElement('a');
 	changesLink.href = '#tab=changes';
@@ -1112,17 +1265,21 @@ function initChangesTab() {
 	}
 	catch (e) {}
 
-	var parseNotes = function(json) {
-		if (!json) {
+	var parseNotes = function(obj) {
+		if (!obj) {
 			return {};
 		}
 
 		var versions;
-		for (var locale in json)
-			versions = json[locale].versions;
+		for (var locale in obj) {
+			// yaml obj has only one property: locale code
+			// ignoring it and taking versions sub-property directly
+			versions = obj[locale].versions;
+		}
 
 		return versions;
 	};
+
 	var versions = parseNotes(releaseNotes);
 	var versionsLocalized = parseNotes(releaseNotesLocal);
 
@@ -1157,6 +1314,8 @@ function initChangesTab() {
 
 	var select = $('#pref-version-release-notes')[0];
 
+	// version format: x.y[.z[.j]]
+	// major version format: x.y.z, adds or removes parts as needed
 	var getMajorVersion = function(version) {
 		var parts = version.split(/\./).slice(0, 3);
 		while (parts.length < 3)
@@ -1164,6 +1323,7 @@ function initChangesTab() {
 
 		return parts.join('.');
 	};
+
 	var isMajorVersion = function(version) {
 		var parts = version.split(/\./);
 		return parts.length < 4;
@@ -1176,18 +1336,19 @@ function initChangesTab() {
 			continue;
 		}
 
+		// sort all versions into buckets by major version
 		var major = getMajorVersion(version);
 		majorVersions[major] = majorVersions[major] || [];
 		majorVersions[major].push(version);
 
 		if (!isMajorVersion(version)) {
-			// don't add subversions
+			// don't add subversions to select box
 			continue;
 		}
 
 		var item = document.createElement('option');
 		item.textContent = version;
-		item.value = version;
+		item.value = major; // setting value to major
 		select.appendChild(item);
 	}
 
@@ -1208,9 +1369,12 @@ function initChangesTab() {
 			var versionHeader = versionL10n + ' ' + version;
 			var isMajor = isMajorVersion(version);
 			if (isMajor) {
+				// set main title
 				$('#pref-notepad-title').text(versionHeader);
 			}
+
 			if (!isMajor || minorVersions.length > 1) {
+				// add sub-headers where needed
 				var header = document.createElement('h4');
 				header.textContent = versionHeader;
 				list.appendChild(header);
@@ -1246,14 +1410,19 @@ function initChangesTab() {
 	$(select).change(updateNotepad);
 }
 
+/**
+ * Setup help tab and FAQ layout
+ */
 function initHelpTab() {
 	// external links
 	var aboutJSON = Foxtrick.util.load.sync(Foxtrick.InternalPath + 'data/foxtrick_about.json');
 	var aboutData = JSON.parse(aboutJSON);
 	var category = aboutData.links;
+
 	Foxtrick.map(function(a) {
 		var item = document.createElement('li');
 		$('#external-links-list').append(item);
+
 		var link = document.createElement('a');
 		item.appendChild(link);
 		link.textContent = Foxtrick.L10n.getString('link.' + a.id);
@@ -1265,6 +1434,7 @@ function initHelpTab() {
 	var lang = Foxtrick.Prefs.getString('htLanguage');
 	var faqLinks = Foxtrick.util.load.ymlSync(Foxtrick.InternalPath + 'faq-links.yml');
 	var faq = Foxtrick.util.load.ymlSync(Foxtrick.InternalPath + 'faq.yml');
+
 	var faqLocalSrc = Foxtrick.InternalPath + 'locale/' + lang + '/faq.yml';
 	var faqLocal = Foxtrick.util.load.ymlSync(faqLocalSrc);
 
@@ -1272,11 +1442,15 @@ function initHelpTab() {
 		if (!src)
 			return {};
 
-		for (var locale in src)
+		for (var locale in src) {
+			// yaml obj has only one property: locale code
+			// ignoring it and taking faq sub-property directly
 			src = src[locale];
+		}
 
 		return src.faq;
 	};
+
 	var items = parseFaq(faq);
 	var itemsLocal = parseFaq(faqLocal);
 
@@ -1287,7 +1461,8 @@ function initHelpTab() {
 
 	for (var i in items) {
 		var item = items[i];
-		// we prefer localized ones
+
+		// prefer localized ones
 		var itemLocal = itemsLocal ? itemsLocal[i] : null;
 
 		// container for question and answer
@@ -1301,6 +1476,7 @@ function initHelpTab() {
 		var header = document.createElement('h3');
 		var question = itemLocal && typeof itemLocal === 'object' && itemLocal.question ?
 			itemLocal.question : item.question;
+
 		addNote(question, header, faqLinks);
 		block.appendChild(header);
 
@@ -1315,6 +1491,7 @@ function initHelpTab() {
 		var content = document.createElement('p');
 		var answer = itemLocal && typeof itemLocal === 'object' && itemLocal.answer ?
 			itemLocal.answer : item.answer;
+
 		addNote(answer, content, faqLinks);
 
 		var container = document.createElement('div');
@@ -1324,15 +1501,20 @@ function initHelpTab() {
 	}
 }
 
+/**
+ * Setup about page and contributor layout
+ */
 function initAboutTab() {
 	var aboutJSON = Foxtrick.util.load.sync(Foxtrick.InternalPath + 'data/foxtrick_about.json');
 	var aboutData = JSON.parse(aboutJSON);
 
 	var addItem = function(person, list) {
 		var item = document.createElement('li');
+
 		var id = person.id || null;
 		var name = person.name;
 		item.appendChild(document.createTextNode(name));
+
 		if (id) {
 			item.appendChild(document.createTextNode(' '));
 			var link = document.createElement('a');
@@ -1340,6 +1522,7 @@ function initAboutTab() {
 			link.textContent = Foxtrick.format('({})', [id]);
 			item.appendChild(link);
 		}
+
 		$(list).append(item);
 	};
 
@@ -1358,9 +1541,11 @@ function initAboutTab() {
 
 				var list = document.createElement('ul');
 				item.appendChild(list);
+
 				Foxtrick.map(function(translator) {
 					addItem(translator, $(list));
 				}, data.translators);
+
 				$container.append(item);
 			}
 			else {
@@ -1371,6 +1556,9 @@ function initAboutTab() {
 	});
 }
 
+/**
+ * Setup all tabs
+ */
 function initTabs() {
 	// attach each tab with corresponding pane
 	$('#tabs li a').each(function() {
@@ -1386,6 +1574,9 @@ function initTabs() {
 	initModules();
 }
 
+/**
+ * Setup localized descriptions, initial option values and option dependencies
+ */
 function initTextAndValues() {
 	if (Foxtrick.L10n.getString('direction') === 'rtl')
 		$('html').attr('dir', 'rtl');
@@ -1408,8 +1599,8 @@ function initTextAndValues() {
 		var $this = $(this);
 		var module = $this.attr('module');
 		if ($this.attr('option')) {
-			var option = $this.attr('option');
 			// module option
+			var option = $this.attr('option');
 			if ($this.is(':checkbox')) {
 				if (Foxtrick.Prefs.isModuleOptionEnabled(module, option))
 					$this.prop('checked', true);
@@ -1454,6 +1645,7 @@ function initTextAndValues() {
 	$('body [blocked-by]').each(function() {
 		var $blockee = $(this);
 		var $blocker = $('#' + $blockee.attr('blocked-by'));
+
 		var updateStatus = function() {
 			if ($blocker.is(':checked'))
 				$blockee.prop('disabled', true);
@@ -1461,6 +1653,7 @@ function initTextAndValues() {
 				$blockee.prop('disabled', false);
 		};
 		$blocker.click(updateStatus);
+
 		updateStatus();
 	});
 
@@ -1468,6 +1661,7 @@ function initTextAndValues() {
 	$('#pane [depends-on]').each(function() {
 		var $depender = $(this);
 		var $dependee = $('#' + $depender.attr('depends-on'));
+
 		var updateStatus = function() {
 			if ($dependee.is(':checked'))
 				Foxtrick.removeClass($depender[0], 'hidden');
@@ -1475,8 +1669,11 @@ function initTextAndValues() {
 				Foxtrick.addClass($depender[0], 'hidden');
 		};
 		$dependee.click(updateStatus);
+
 		updateStatus();
 	});
+
+	// TODO: move oAuth and currency setup to initMainTab
 
 	// delete-token description
 	var CHPP_URL = Foxtrick.goToUrl('/MyHattrick/Preferences/ExternalAccessGrants.aspx');
@@ -1493,10 +1690,12 @@ function initTextAndValues() {
 
 		for (var teamId of teamIds) {
 			var id = parseInt(teamId, 10);
+
 			if (!isNaN(id)) {
 				var item = document.createElement('option');
 				item.value = id;
 				item.textContent = id;
+
 				$('#select-delete-token-teamIds').append(item);
 			}
 			else {
@@ -1550,17 +1749,26 @@ function initTextAndValues() {
 	}, currencyKeys);
 }
 
+/**
+ * Main pref logic sequence
+ */
 function init() {
 	try {
 		$('body').hide();
+
 		initCoreModules();
 		getPageIds();
+
 		initTabs();
+
 		initSearch(); // important, run after module divs have been created (initTabs)
 		initListeners(); // important, run after module divs have been created (initTabs)
 		initTextAndValues();
+
 		locateFragment(window.location.href); // locate element by fragment
+
 		testPermissions();
+
 		$('body').show();
 
 		// if (Foxtrick.Prefs.isModuleEnabled('MobileEnhancements')) {
@@ -1591,17 +1799,21 @@ function init() {
 	}
 }
 
+/**
+ * Start up
+ */
 function initLoader() {
 	var w = document.location.href.match(/width=(\d+)/);
 	if (w)
 		document.body.setAttribute('style', 'width:' + w[1] + 'px;');
 
-	// fennec runs init() from injected entry.js (injected)
+	// Fennec runs init() from injected entry.js (injected)
 	// called directly, it'll run and save actually for some reason
 
 	// gecko, chrome
-	if (Foxtrick.arch === 'Gecko' || Foxtrick.context === 'background')
+	if (Foxtrick.arch === 'Gecko' || Foxtrick.context === 'background') {
 		init();
+	}
 	else {
 		// safari prefs runs in content context for some people?!!
 		// add needed resources first
@@ -1612,10 +1824,11 @@ function initLoader() {
 				init();
 			}
 			catch (e) {
-				Foxtrick.log('initLoader: ', e);
+				Foxtrick.log('initLoader:', e);
 			}
 		});
 	}
 }
+
 // this is the preference script entry point for Sandboxed arch
 initLoader();

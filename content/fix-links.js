@@ -198,7 +198,7 @@ Foxtrick.modules.FixLinks = {
 
 		// add ids to lineup-links if away; we don't care about third-party teams
 		var addTeamIdForAwayGame = function(lineupLink, teamId, matchLink, teamRe) {
-			if (!teamRe.test(matchLink.textContent)) {
+			if (!teamRe.test(matchLink.textContent.trim())) {
 				// home team name does not match
 				// assume away game
 				lineupLink.href = module.addParam(lineupLink.href, 'teamId', teamId);
@@ -237,19 +237,17 @@ Foxtrick.modules.FixLinks = {
 
 	run: function(doc) {
 
-		var MATCHES = ['matches', 'matchesCup', 'matchesArchive'];
-
 		if (Foxtrick.isPage(doc, 'match')) {
 			// this might be a bit annoying as it causes match page to reload
 			this.parseMatchPage(doc);
 		}
-		else if (Foxtrick.any(function(page) { return Foxtrick.isPage(doc, page); }, MATCHES))
+		else if (Foxtrick.isPage(doc, ['matches', 'matchesCup', 'matchesArchive']))
 			this.parseMatchesPage(doc);
 		else if (Foxtrick.isPage(doc, 'playerStats'))
 			this.parsePlayerStats(doc);
 		else if (Foxtrick.isPage(doc, 'matchesLatest'))
 			this.parseH2HLatestMatches(doc);
-		else if (Foxtrick.isPage(doc, 'players') || Foxtrick.isPage(doc, 'youthPlayers'))
+		else if (Foxtrick.isPage(doc, ['players', 'youthPlayers']))
 			this.parsePlayers(doc);
 	},
 };
