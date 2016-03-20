@@ -1,4 +1,14 @@
 'use strict';
+
+/**
+ * bootstrap-firefox.js
+ *
+ * @author convincedd, CatzHoek, LA-MJ
+ */
+
+// jscs:disable disallowFunctionDeclarations
+/* global FOXTRICK_PATH, FOXTRICK_RUNTIME */
+
 Cu.import('resource://gre/modules/Services.jsm');
 
 var FoxtrickFirefox = function(window) {
@@ -8,20 +18,20 @@ FoxtrickFirefox.prototype = {
 	scripts: [
 		// loading Foxtrick into window.Foxtrick
 
-		//<!-- essential -->
+		// <!-- essential -->
 		'env.js',
 		'prefs-util.js',
 		'l10n.js',
 		'xml-load.js',
 		'pages.js',
 
-		//<!-- ext-lib -->
+		// <!-- ext-lib -->
 		'lib/oauth.js',
 		'lib/sha1.js',
 		'lib/psico.js',
-		//<!-- end ext-lib -->
+		// <!-- end ext-lib -->
 
-		//<!-- util -->
+		// <!-- util -->
 		'util/api.js',
 		'util/array.js',
 		'util/color.js',
@@ -51,9 +61,9 @@ FoxtrickFirefox.prototype = {
 		'util/string.js',
 		'util/tabs.js',
 		'util/time.js',
-		//<!-- end util -->
+		// <!-- end util -->
 
-		//<!-- page-util -->
+		// <!-- page-util -->
 		'pages/all.js',
 		'pages/match.js',
 		'pages/matches.js',
@@ -62,9 +72,9 @@ FoxtrickFirefox.prototype = {
 		'pages/series.js',
 		'pages/transfer-search-results.js',
 		'pages/youth-player.js',
-		//<!-- end page-util -->
+		// <!-- end page-util -->
 
-		//<!-- api-util -->
+		// <!-- api-util -->
 		'api/hy/common.js',
 		'api/hy/matches-report.js',
 		'api/hy/matches-training.js',
@@ -76,18 +86,18 @@ FoxtrickFirefox.prototype = {
 		'api/pastebin/get.js',
 		'api/pastebin/login.js',
 		'api/pastebin/paste.js',
-		//<!-- end api-util -->
+		// <!-- end api-util -->
 
-		//<!-- core -->
+		// <!-- core -->
 		'add-class.js',
 		'core.js',
 		'fix-links.js',
 		'forum-stage.js',
 		'read-ht-prefs.js',
 		'redirections.js',
-		//<!-- end core -->
+		// <!-- end core -->
 
-		//<!-- categorized modules -->
+		// <!-- categorized modules -->
 		'access/aria-landmarks.js',
 		'alert/live-alert.js',
 		'alert/new-mail.js',
@@ -238,15 +248,16 @@ FoxtrickFirefox.prototype = {
 		'shortcuts-and-tweaks/transfer-history-filters.js',
 		'shortcuts-and-tweaks/transfer-search-filters.js',
 		'shortcuts-and-tweaks/transfer-search-result-filters.js',
-		//<!-- end categorized modules -->
+		// <!-- end categorized modules -->
 
-		//<!-- platform-specific -->
+		// <!-- platform-specific -->
 		'ui.js',
 		'entry.js',
-		'loader-firefox.js'
+		'loader-firefox.js',
 	],
 
 	loadScript: function() {
+		// loading Foxtrick into window.Foxtrick
 		try {
 			// lib scope integration
 			let libMap = {
@@ -258,7 +269,7 @@ FoxtrickFirefox.prototype = {
 				Foxtrick: this,
 				exports: {},
 				module: { exports: true },
-				require: {}
+				require: {},
 			};
 			for (let i in libMap) {
 				let lib = libMap[i];
@@ -271,9 +282,7 @@ FoxtrickFirefox.prototype = {
 			e.message = 'Foxtrick ERROR: ' + e.message + '\n' + e.stack + '\n';
 			Services.console.logStringMessage(e);
 		}
-		// loading Foxtrick into window.Foxtrick
-		for (var i = 0; i < this.scripts.length; ++i) {
-			var script = this.scripts[i];
+		for (var script of this.scripts) {
 			var url = FOXTRICK_PATH + script + '?bg=' + FOXTRICK_RUNTIME;
 			try {
 				Services.scriptloader.loadSubScript(url, this.owner, 'UTF-8');
@@ -284,6 +293,7 @@ FoxtrickFirefox.prototype = {
 			}
 		}
 	},
+
 	toDOMDocumentFragment: function(doc, xmlString, parent) {
 		let range = doc.createRange();
 		range.selectNodeContents(parent);
@@ -298,12 +308,14 @@ FoxtrickFirefox.prototype = {
 		// Australis
 		this.loadAustralisUI();
 	},
+
 	removeUI: function() {
 		this.removeContextMenu();
 
 		// Australis
 		this.removeAustralisUI();
 	},
+
 	loadAustralisUI: function() {
 		let doc = this.owner.document;
 		let panel = doc.createElement('menupopup');
@@ -321,14 +333,15 @@ FoxtrickFirefox.prototype = {
 		panel.appendChild(fragment);
 		doc.getElementById('PanelUI-multiView').appendChild(panel);
 	},
+
 	removeAustralisUI: function() {
 		let panel = this.owner.document.getElementById('foxtrick-toolbar-view');
 		if (panel)
 			panel.remove();
 	},
+
 	loadContextMenu: function() {
 		try {
-			// contextmenu
 			let doc = this.owner.document;
 			let popup = doc.getElementById('contentAreaContextMenu');
 			let copyPaste = doc.getElementById('context-paste');
@@ -365,12 +378,11 @@ FoxtrickFirefox.prototype = {
 	},
 
 	init: function() {
-		// load foxtrick files
 		// debugger;
 		this.loadScript();
 		// add ui
 		this.loadUI();
-		//init and add listeners
+		// init and add listeners
 		this.loader.firefox.browserLoad();
 	},
 
@@ -384,20 +396,23 @@ FoxtrickFirefox.prototype = {
 
 
 // called from main bootstrap.js for each browser window
-function loadIntoWindow(window) {
+function loadIntoWindow(window) { // jshint ignore:line
 	if (!window || !window.document)
 		return;
 
+	let document = window.document;
+
 	// styles also needed in eg customize-toolbox
-	var uri = FOXTRICK_PATH + 'resources/css/overlay.css';
-	var attr = 'id="foxtrick-overlay-css" type="text/css" href="' + uri + '"';
-	var style = window.document.createProcessingInstruction('xml-stylesheet', attr);
-	window.document.insertBefore(style, window.document.documentElement);
+	let uri = FOXTRICK_PATH + 'resources/css/overlay.css';
+	let attr = 'id="foxtrick-overlay-css" type="text/css" href="' + uri + '"';
+	let style = document.createProcessingInstruction('xml-stylesheet', attr);
+	document.insertBefore(style, document.documentElement);
 
 	// only in content windows (not menupopups etc)
-	if (!window.document.getElementById('appcontent'))
+	if (!document.getElementById('appcontent'))
 		return;
-	if (window.document.documentElement.getAttribute('windowtype') != 'navigator:browser')
+
+	if (document.documentElement.getAttribute('windowtype') != 'navigator:browser')
 		return;
 
 	// create & run
@@ -413,18 +428,21 @@ function loadIntoWindow(window) {
 	}
 }
 
-
-function unloadFromWindow(window) {
+function unloadFromWindow(window) { // jshint ignore:line
 	if (!window || !window.document)
 		return;
 
-	// styles also needed in eg customize-toolbox
-	var style = window.document.getElementById('foxtrick-overlay-css');
+	let document = window.document;
+
+	let style = document.getElementById('foxtrick-overlay-css');
 	if (style)
-		window.document.removeChild(style);
+		document.removeChild(style);
 
 	// only in content windows (not menupopups etc)
-	if (!window.document.getElementById('appcontent'))
+	if (!document.getElementById('appcontent'))
+		return;
+
+	if (document.documentElement.getAttribute('windowtype') != 'navigator:browser')
 		return;
 
 	// stop and delete

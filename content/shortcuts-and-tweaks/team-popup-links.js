@@ -360,10 +360,15 @@ Foxtrick.modules['TeamPopupLinks'] = {
 										}
 
 										if (redir_to_custom) {
-											if (teamid == null) a6.href = '/Club/Manager/?userId=' +
-												userid + '&redir_to_custom=true' + '&' + a6.href;
-											else a6.href = '/Club/Manager/?teamId=' + teamid +
-												'&redir_to_custom=true' + '&' + a6.href;
+											if (teamid == null) {
+												a6.href = '/Club/Manager/?userId=' +
+													userid + '&redir_to_custom=true&redir_to=' +
+													a6.href;
+											}
+											else {
+												a6.href = '/Club/Manager/?teamId=' + teamid +
+													'&redir_to_custom=true&redir_to=' + a6.href;
+											}
 										}
 										if (json.newTab)
 											a6.target = '_blank';

@@ -2,11 +2,11 @@
 /**
  * xml-load.js
  * xml loading
- * @author convinced
+ * @author convinced, LA-MJ
  */
 
 if (!Foxtrick)
-	var Foxtrick = {};
+	var Foxtrick = {}; // jshint ignore:line
 
 Foxtrick.XMLData = {
 	MODULE_NAME: 'XMLData',
@@ -16,23 +16,30 @@ Foxtrick.XMLData = {
 	countryToLeague: {},
 
 	init: function() {
-		var currency = Foxtrick.util.load.sync(Foxtrick.InternalPath + 'data/htcurrency.json');
-		this.htCurrencyJSON = JSON.parse(currency);
-		var about = Foxtrick.util.load.sync(Foxtrick.InternalPath + 'data/foxtrick_about.json');
-		this.aboutJSON = JSON.parse(about);
-		var worldDetails = Foxtrick.util.load.sync(Foxtrick.InternalPath +
-		                                           'data/worlddetails.json');
-		this.worldDetailsJSON = JSON.parse(worldDetails);
+		var module = this;
 
-		var leagueList = this.worldDetailsJSON.HattrickData.LeagueList;
-		for (var i = 0; i < leagueList.length; ++i) {
-			this.League[leagueList[i].LeagueID] = leagueList[i];
-			this.countryToLeague[leagueList[i].Country.CountryID] = leagueList[i].LeagueID;
-		}
+		var currency = Foxtrick.util.load.sync(Foxtrick.InternalPath + 'data/htcurrency.json');
+		module.htCurrencyJSON = JSON.parse(currency);
+		var about = Foxtrick.util.load.sync(Foxtrick.InternalPath + 'data/foxtrick_about.json');
+		module.aboutJSON = JSON.parse(about);
+		var world = Foxtrick.util.load.sync(Foxtrick.InternalPath + 'data/worlddetails.json');
+		module.worldDetailsJSON = JSON.parse(world);
+
+		var leagueList = module.worldDetailsJSON.HattrickData.LeagueList;
+		Foxtrick.forEach(function(league) {
+			module.League[league.LeagueID] = league;
+			module.countryToLeague[league.Country.CountryID] = league.LeagueID;
+		}, leagueList);
 	},
 
+	/**
+	 * Get League ID from Country ID
+	 *
+	 * @param  {number} id
+	 * @return {number}
+	 */
 	getLeagueIdByCountryId: function(id) {
-		if (this.countryToLeague[id] !== undefined) {
+		if (this.countryToLeague[id]) {
 			return this.countryToLeague[id];
 		}
 		else {
@@ -40,26 +47,43 @@ Foxtrick.XMLData = {
 		}
 	},
 
+	/**
+	 * Get Country ID from League ID
+	 *
+	 * @param  {number} id
+	 * @return {number}
+	 */
 	getCountryIdByLeagueId: function(id) {
-		if (this.League[id] !== undefined) {
-			return this.League[id].Country.CountryID;
+		var league = this.League[id];
+		if (league) {
+			return league.Country.CountryID;
 		}
 		else {
 			return 0;
 		}
 	},
 
-	// README: trimmed
+	/**
+	 * Get the name of National Team for a certain league
+	 *
+	 * NOTE: the returned string is trimmed
+	 *
+	 * @param  {number} id
+	 * @return {string}
+	 */
 	getNTNameByLeagueId: function(id) {
+		// jscs:disable disallowQuotedKeysInObjects
 		var NT_BY_COUNTRY = {
 			// 'Al Maghrib': 'Al Maghrib ', // oh yes, there's a space here!
-			'Panamá': 'Panama',
-			'Shqipëria': 'Shqiperia',
-			'Sénégal': 'Senegal',
 			'Côte d’Ivoire': 'Côte d\'Ivoire',
 			'Kampuchea': 'Prateh Kampuchea',
 			'O’zbekiston': 'O\'zbekiston',
+			'Panamá': 'Panama',
+			'Shqipëria': 'Shqiperia',
+			'Sénégal': 'Senegal',
 		};
+		// jscs:enable disallowQuotedKeysInObjects
+
 		var country = Foxtrick.L10n.getCountryNameNative(id);
 		return country in NT_BY_COUNTRY ? NT_BY_COUNTRY[country] : country;
 	},

@@ -19,22 +19,22 @@
 	},
 	"content_scripts" : [ {
 		"js" : [
-			//<!-- essential -->
+			// <!-- essential -->
 			"content/env.js",
 			"content/prefs-util.js",
 			"content/l10n.js",
 			"content/xml-load.js",
 			"content/pages.js",
 
-			//<!-- ext-lib -->
+			// <!-- ext-lib -->
 			"content/lib/oauth.js",
 			"content/lib/sha1.js",
 			"content/lib/PluralForm.js",
 			"content/lib/psico.js",
 			"content/lib/integration.js",
-			//<!-- end ext-lib -->
+			// <!-- end ext-lib -->
 
-			//<!-- util -->
+			// <!-- util -->
 			"content/util/api.js",
 			"content/util/array.js",
 			"content/util/color.js",
@@ -64,9 +64,9 @@
 			"content/util/string.js",
 			"content/util/tabs.js",
 			"content/util/time.js",
-			//<!-- end util -->
+			// <!-- end util -->
 
-			//<!-- page-util -->
+			// <!-- page-util -->
 			"content/pages/all.js",
 			"content/pages/match.js",
 			"content/pages/matches.js",
@@ -75,9 +75,9 @@
 			"content/pages/series.js",
 			"content/pages/transfer-search-results.js",
 			"content/pages/youth-player.js",
-			//<!-- end page-util -->
+			// <!-- end page-util -->
 
-			//<!-- api-util -->
+			// <!-- api-util -->
 			"content/api/hy/common.js",
 			"content/api/hy/matches-report.js",
 			"content/api/hy/matches-training.js",
@@ -89,9 +89,9 @@
 			"content/api/pastebin/get.js",
 			"content/api/pastebin/login.js",
 			"content/api/pastebin/paste.js",
-			//<!-- end api-util -->
+			// <!-- end api-util -->
 
-			//<!-- core -->
+			// <!-- core -->
 			"content/add-class.js",
 			"content/core.js",
 			"content/fix-links.js",
@@ -99,9 +99,9 @@
 			"content/read-ht-prefs.js",
 			"content/redirections.js",
 			"content/ui.js",
-			//<!-- end core -->
+			// <!-- end core -->
 
-			//<!-- categorized modules -->
+			// <!-- categorized modules -->
 			"content/access/aria-landmarks.js",
 			"content/alert/live-alert.js",
 			"content/alert/new-mail.js",
@@ -252,9 +252,9 @@
 			"content/shortcuts-and-tweaks/transfer-history-filters.js",
 			"content/shortcuts-and-tweaks/transfer-search-filters.js",
 			"content/shortcuts-and-tweaks/transfer-search-result-filters.js",
-			//<!-- end categorized modules -->
+			// <!-- end categorized modules -->
 
-			//<!-- platform-specific -->
+			// <!-- platform-specific -->
 			"content/entry.js",
 			"content/loader-chrome.js"
 		],

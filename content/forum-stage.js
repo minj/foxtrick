@@ -2,7 +2,7 @@
 /**
 * forumstage.js
 * Foxtrick Copies post id to clipboard
-* @author convinced
+* @author convinced, LA-MJ
 */
 
 Foxtrick.modules['ForumStage'] = {
@@ -10,50 +10,56 @@ Foxtrick.modules['ForumStage'] = {
 	PAGES: ['forumWritePost'],
 
 	run: function(doc) {
-		var forum = doc.getElementById('mainBody').parentNode
-						.getElementsByTagName('h2')[0]
-						.getElementsByTagName('a')[1].textContent;
-		if (forum == 'Stage') {
-			var textarea = doc.getElementById('mainBody').getElementsByTagName('textarea')[0];
-			var divalert = doc.createElement('div');
-			divalert.className = 'alert ft-dummy';
-			divalert.appendChild(doc.createTextNode('Please '));
-			var b = divalert.appendChild(doc.createElement('b'));
-			b.appendChild(doc.createTextNode('disable Foxtrick'));
-			divalert.appendChild(doc.createTextNode(' and any other Hattrick extensions' +
-				' before reporting a bug (eg Browser menu -> Tools -> Add-ons). ' +
-				' Repeated ignorance can lead to getting kicked from stage. ' +
-				'Foxtrick bugs report '));
-			var a = divalert.appendChild(doc.createElement('a'));
-			a.appendChild(doc.createTextNode('here'));
-			a.href = '/Forum/Overview.aspx?v=0&f=173635';
-			divalert.appendChild(doc.createTextNode('.'));
+		var crumbs = Foxtrick.Pages.All.getBreadCrumbs(doc);
+		var forum = crumbs[1];
+		if (forum.textContent.trim() !== 'Stage')
+			return;
 
-			textarea.parentNode.insertBefore(divalert, textarea.nextSibling);
+		var alertDiv = doc.createElement('div');
+		alertDiv.className = 'alert ft-dummy';
 
-			// checkbox
-			var button_ok = Foxtrick.getButton(doc, 'OK');
-			button_ok.setAttribute('disabled', true);
+		var disablePara = doc.createElement('p');
+		disablePara.textContent = 'Please ';
+		var disableFT = disablePara.appendChild(doc.createElement('strong'));
+		disableFT.textContent = 'disable Foxtrick';
+		var andOther = ' and any other Hattrick extensions before reporting Hattrick bugs.';
+		var disable = doc.createTextNode(andOther);
+		disablePara.appendChild(disable);
+		alertDiv.appendChild(disablePara);
 
-			var checkdiv = doc.createElement('div');
-			var check = doc.createElement('input');
-			check.id = 'ft-stage-forum-post';
-			check.setAttribute('type', 'checkbox');
-			checkdiv.appendChild(check);
-			var desc = doc.createElement('label');
-			desc.appendChild(doc.createTextNode('I know'));
-			desc.setAttribute('for', 'ft-stage-forum-post');
-			checkdiv.appendChild(desc);
-			divalert.appendChild(checkdiv);
+		var kickPara = doc.createElement('p');
+		kickPara.textContent = 'Repeated ignorance can lead to getting kicked from Stage.';
+		alertDiv.appendChild(kickPara);
 
-			Foxtrick.onClick(check, function(ev) {
-				var doc = ev.target.ownerDocument;
-				var checked = ev.target.checked;
-				var button_ok = Foxtrick.getButton(doc, 'OK');
-				if (checked) button_ok.removeAttribute('disabled');
-				else button_ok.setAttribute('disabled', true);
-			});
-			check.setAttribute('tabindex', '10');
-		}
-	}
+		var ftBugPara = doc.createElement('p');
+		ftBugPara.textContent = 'Use the link at the bottom of the page to report a Foxtrick bug.';
+		alertDiv.appendChild(ftBugPara);
+
+		// checkbox
+		var checkDiv = doc.createElement('div');
+		var check = doc.createElement('input');
+		check.id = 'ft-stage-forum-post';
+		check.type = 'checkbox';
+		check.tabIndex = 10;
+		checkDiv.appendChild(check);
+
+		var desc = doc.createElement('label');
+		desc.textContent = 'I understand and comply';
+		desc.setAttribute('for', 'ft-stage-forum-post');
+		checkDiv.appendChild(desc);
+		alertDiv.appendChild(checkDiv);
+
+		var textarea = doc.querySelector('#mainBody textarea');
+		Foxtrick.insertAfter(alertDiv, textarea);
+
+		var btnOK = Foxtrick.getButton(doc, 'OK');
+		btnOK.disabled = true;
+
+		Foxtrick.onClick(check, function(ev) {
+			var doc = ev.target.ownerDocument;
+			var btnOK = Foxtrick.getButton(doc, 'OK');
+			btnOK.disabled = !ev.target.checked;
+		});
+
+	},
 };

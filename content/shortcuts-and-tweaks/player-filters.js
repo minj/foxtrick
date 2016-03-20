@@ -254,7 +254,7 @@ Foxtrick.modules['PlayerFilters'] = {
 				filterSelect.appendChild(optionAttr);
 
 				Foxtrick.forEach(function(opt) {
-					if (!Foxtrick.isOneOfPages(doc, opt.pages))
+					if (!Foxtrick.isPage(doc, opt.pages))
 						return;
 
 					var option = doc.createElement('option');

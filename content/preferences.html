@@ -2,6 +2,7 @@
 <html>
 <head>
 	<!-- options/preferences page for mozilla and chrome -->
+	<!-- @author ryanli, convincedd, CatzHoek, LA-MJ -->
 
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="icon" type="image/png" href="./resources/img/icon-32.png" />
@@ -290,7 +291,7 @@
 		</div>
 		<div id="pane">
 			<!-- Set-up -->
-			<div class="module" x-on="main all">
+			<div class="module" x-on="main search">
 				<h3 id="pref-setup" data-text="prefs.setup"></h3>
 				<div class="module-content">
 					<p id="pref-setup-desc"></p>
@@ -323,7 +324,7 @@
 				</div>
 			</div>
 			<!-- additional -->
-			<div class="module" x-on="main all">
+			<div class="module" x-on="main search">
 				<h3 id="pref-additional" data-text="prefs.additional.title"></h3>
 				<div class="module-content">
 					<ul>
@@ -359,7 +360,7 @@
 				</div>
 			</div>
 			<!-- disable -->
-			<div class="module" x-on="main all">
+			<div class="module" x-on="main search">
 				<h3 id="pref-disable-title" data-text="prefs.disable.title"></h3>
 				<div class="module-content">
 					<ul>
@@ -375,7 +376,7 @@
 				</div>
 			</div>
 			<!-- StoredPrefs -->
-			<div class="module" x-on="main all">
+			<div class="module" x-on="main search">
 				<h3 id="pref-stored" data-text="prefs.storedData.title"></h3>
 				<div class="module-content">
 					<table>
@@ -385,7 +386,7 @@
 						</tr>
 						<tr>
 							<td><button id="pref-delete-token" data-text="button.deleteToken"></button></td>
-							<td><select id="select-delete-token-teamids"></select></td>
+							<td><select id="select-delete-token-teamIds"></select></td>
 							<td>
 								<label id="pref-delete-token-label" data-text="prefs.storedData.oauth.delete"></label>
 								<p id="pref-delete-token-desc"></p>
@@ -407,7 +408,7 @@
 				</div>
 			</div>
 			<!-- LoadSavePrefs -->
-			<div class="module" x-on="main all">
+			<div class="module" x-on="main search">
 				<h3 id="pref-load-save" data-text="prefs.loadSave.title"></h3>
 				<div class="module-content">
 					<h4 id="pref-save" data-text="prefs.loadSave.export"></h4>
@@ -439,8 +440,8 @@
 				</div>
 			</div>
 			<!-- changes -->
-			<div class="module" x-on="changes all">
-				<h3 data-text="changes.title"></h3>
+			<div class="module h2" x-on="changes search">
+				<h2 data-text="changes.title"></h2>
 				<div class="module-content">
 					<div id="translator_note" class="alert">
 					</div>
@@ -448,28 +449,28 @@
 						<input type="checkbox" id="pref-show-release-notes" pref="showReleaseNotes" />
 						<label id="pref-show-release-notes-label" for="pref-show-release-notes" data-text="releaseNotes.show"></label>
 					</div>
-					<div>
+					<div class="expand">
 						<label for="pref-version-release-notes" data-text="releaseNotes.showFor"></label>
-						<select id="pref-version-release-notes"></select>
+						<select id="pref-version-release-notes" savelistener="false"></select>
 					</div>
 					<div id="pref-notepad">
-						<h4 id="pref-notepad-title"></h4>
+						<h3 id="pref-notepad-title"></h3>
 						<ul id="pref-notepad-list"></ul>
 					</div>
 				</div>
 			</div>
 
 			<!-- help -->
-			<div class="module" x-on="help all">
-				<h3 data-text="link.title"></h3>
+			<div class="module" x-on="help search">
+				<h2 data-text="link.title"></h2>
 				<div class="module-content">
 					<ul id="external-links-list"></ul>
 				</div>
 			</div>
 
 			<!-- about -->
-			<div class="module" x-on="about all">
-				<h3 data-text="about.copyright"></h3>
+			<div class="module" x-on="about search">
+				<h2 data-text="about.copyright"></h2>
 				<div class="module-content">
 					<h4>Foxtrick - a browser add-on for the Hattrick.org online football manager game</h4>
 					<ul>
@@ -529,31 +530,31 @@
 						<code>COPYING</code></p>
 				</div>
 			</div>
-			<div class="module" x-on="about all">
+			<div class="module" x-on="about search">
 				<h3 data-text="about.maintainers"></h3>
 				<div class="module-content">
 					<ul id="about-maintainers" class="about-list" path="maintainers"></ul>
 				</div>
 			</div>
-			<div class="module" x-on="about all">
+			<div class="module" x-on="about search">
 				<h3 data-text="about.developers"></h3>
 				<div class="module-content">
 					<ul id="about-developers" class="about-list" path="developers"></ul>
 				</div>
 			</div>
-			<div class="module" x-on="about all">
+			<div class="module" x-on="about search">
 				<h3 data-text="about.designers"></h3>
 				<div class="module-content">
 					<ul id="about-designers" class="about-list" path="designers"></ul>
 				</div>
 			</div>
-			<div class="module" x-on="about all">
+			<div class="module" x-on="about search">
 				<h3 data-text="about.donators"></h3>
 				<div class="module-content">
 					<ul id="about-donators" class="about-list" path="donators"></ul>
 				</div>
 			</div>
-			<div class="module" x-on="about all">
+			<div class="module" x-on="about search">
 				<h3 data-text="about.translators"></h3>
 				<div class="module-content">
 					<ul id="about-translators" class="about-list" path="translations"></ul>

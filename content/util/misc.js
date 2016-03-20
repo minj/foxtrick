@@ -254,15 +254,15 @@ Foxtrick.isHt = function(doc) {
 
 Foxtrick.isHtUrl = function(url) {
 	var htMatches = [
-		/^https?:\/\/(www\d{2}\.)?hattrick\.org(\/|$)/i,
+		/^https?:\/\/(www(\d{2})?\.)?hattrick\.org(\/|$)/i,
 		/^https?:\/\/stage\.hattrick\.org(\/|$)/i,
-		/^https?:\/\/www\d{2}\.hattrick\.ws(\/|$)/i,
-		/^https?:\/\/www\d{2}\.hattrick\.bz(\/|$)/i,
-		/^https?:\/\/www\d{2}\.hat-trick\.net(\/|$)/i,
-		/^https?:\/\/www\d{2}\.hattrick\.uol\.com\.br(\/|$)/i,
-		/^https?:\/\/www\d{2}\.hattrick\.interia\.pl(\/|$)/i,
-		/^https?:\/\/www\d{2}\.hattrick\.name(\/|$)/i,
-		/^https?:\/\/www\d{2}\.hattrick\.fm(\/|$)/i,
+		/^https?:\/\/www(\d{2})?\.hattrick\.ws(\/|$)/i,
+		/^https?:\/\/www(\d{2})?\.hattrick\.bz(\/|$)/i,
+		/^https?:\/\/www(\d{2})?\.hat-trick\.net(\/|$)/i,
+		/^https?:\/\/www(\d{2})?\.hattrick\.uol\.com\.br(\/|$)/i,
+		/^https?:\/\/www(\d{2})?\.hattrick\.interia\.pl(\/|$)/i,
+		/^https?:\/\/www(\d{2})?\.hattrick\.name(\/|$)/i,
+		/^https?:\/\/www(\d{2})?\.hattrick\.fm(\/|$)/i,
 	];
 	return Foxtrick.any(function(re) { return re.test(url); }, htMatches);
 };
@@ -329,14 +329,6 @@ Foxtrick.mergeValid = function(original, modified) {
 			}
 		}
 	}
-};
-
-Foxtrick.setLastHost = function(host) {
-	Foxtrick.Prefs.setString('last-host', String(host));
-};
-
-Foxtrick.getLastHost = function(host) {
-	return Foxtrick.Prefs.getString('last-host') || 'http://www.hattrick.org';
 };
 
 Foxtrick.setLastPage = function(host) {

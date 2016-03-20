@@ -192,10 +192,8 @@ else
 endif
 
 	# make android-prefs after all modifications are done
-	# old FF loads anything that ends with .js
-	# so we can't name this one foxtrick-android.js
 	cd $(BUILD_DIR)/defaults/preferences; \
-	cat foxtrick.js foxtrick.android > foxtrick-android
+	cat foxtrick.js foxtrick.android > foxtrick.android.js
 	# make xpi
 	cd $(BUILD_DIR); \
 	$(ZIP) -r ../$(APP_NAME).xpi *
@@ -240,7 +238,7 @@ ifneq ($(DIST_TYPE),hosting)
 	# make crx
 	cd $(BUILD_DIR); \
 	sed -i -r 's|("update_url" : ").+(")|\1'$(UPDATE_URL)'/chrome/update.xml\2|' manifest.json; \
-	sed -i -r '/\/\/<!--/d' manifest.json
+	sed -i -r '/\/\/ <!--/d' manifest.json
 	./maintainer/crxmake.sh $(BUILD_DIR) maintainer/chrome.pem
 	mv $(BUILD_DIR).crx $(APP_NAME).crx
 endif
@@ -249,7 +247,7 @@ ifeq ($(UNSIGNED_CHROME),true)
 	# make zip
 	cd $(BUILD_DIR); \
 	sed -i -r '/update_url/d' manifest.json; \
-	sed -i -r '/\/\/<!--/d' manifest.json; \
+	sed -i -r '/\/\/ <!--/d' manifest.json; \
 	$(ZIP) -r ../$(APP_NAME).zip *
 endif
 	# clean up

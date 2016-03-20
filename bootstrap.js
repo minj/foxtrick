@@ -3,11 +3,25 @@
  * version 2.0 (the "License"). You can obtain a copy of the License at
  * http://mozilla.org/MPL/2.0/.
  */
+
+/**
+ * bootstrap.js
+ *
+ * @author convincedd, LA-MJ
+ */
+
 'use strict';
+
+/* global Services, CustomizableUI, APP_SHUTDOWN */
+
+/* jscs:disable disallowFunctionDeclarations */
+
+/* jshint ignore:start */
 const { classes: Cc, interfaces: Ci, utils: Cu, manager: Cm, results: Cr } = Components;
+/* jshint ignore:end */
 const FOXTRICK_PATH = 'chrome://foxtrick/content/';
 
-let _gLoader;
+let gScope;
 
 Cu.import('resource://gre/modules/Services.jsm');
 
@@ -15,19 +29,17 @@ function isFennecNative() {
 	return Services.appinfo.ID == '{aa3c5121-dab2-40e2-81ca-7ea25febc110}';
 }
 
-
 // load prefs into default prefs branch
 function setDefaultPrefs(pathToDefault, branch) {
 	// Load default preferences and set up properties for them
 	let defaultBranch = Services.prefs.getDefaultBranch(branch);
 	let scope = {
 		pref: function(key, val) {
-			if (key.substr(0, branch.length) != branch) {
-				Cu.reportError(new Error('Ignoring default preference ' +
-				               key + ', wrong branch.'));
+			if (key.slice(0, branch.length) !== branch) {
+				Cu.reportError(new Error('Ignoring default preference ' + key + ', wrong branch.'));
 				return;
 			}
-			key = key.substr(branch.length);
+			key = key.slice(branch.length);
 			switch (typeof val) {
 				case 'boolean':
 					defaultBranch.setBoolPref(key, val);
@@ -39,28 +51,31 @@ function setDefaultPrefs(pathToDefault, branch) {
 					defaultBranch.setCharPref(key, val);
 					break;
 			}
-		}
+		},
 	};
 	Services.scriptloader.loadSubScript(pathToDefault, scope);
 }
-
 
 // bootstrap.js API
 let windowListener = {
 	onOpenWindow: function(aWindow) {
 		// Wait for the window to finish loading
-		let domWindow = aWindow.QueryInterface(Ci.nsIInterfaceRequestor)
-			.getInterface(Ci.nsIDOMWindow);
+		let ifRqstr = aWindow.QueryInterface(Ci.nsIInterfaceRequestor);
+		let domWindow = ifRqstr.getInterface(Ci.nsIDOMWindow);
+
 		domWindow.addEventListener('DOMContentLoaded', function waitForWindowload() {
-			domWindow.removeEventListener('DOMContentLoaded', waitForWindowload, false);
-			_gLoader.loadIntoWindow(domWindow);
-		}, false);
+			domWindow.removeEventListener('DOMContentLoaded', waitForWindowload);
+			gScope.loadIntoWindow(domWindow);
+		});
 	},
+	/* jshint ignore:start */
 	onCloseWindow: function(aWindow) {},
-	onWindowTitleChange: function(aWindow, aTitle) {}
+	onWindowTitleChange: function(aWindow, aTitle) {},
+	/* jshint ignore:end */
 };
 
 function initAustralisUI() {
+	// this needs to run after existed windows were loaded into
 	try {
 		Cu.import('resource:///modules/CustomizableUI.jsm');
 	}
@@ -73,35 +88,33 @@ function initAustralisUI() {
 		defaultArea: CustomizableUI.AREA_NAVBAR,
 		tooltiptext: 'Foxtrick',
 		onBuild: function(aDocument) {
-			var aNode = aDocument.createElement('toolbarbutton');
-			aNode.id = 'foxtrick-toolbar-button';
-			aNode.className = 'toolbarbutton-1';
-			aNode.setAttribute('type', 'menu');
-			aNode.setAttribute('label', 'Foxtrick');
+			var node = aDocument.createElement('toolbarbutton');
+			node.id = 'foxtrick-toolbar-button';
+			node.className = 'toolbarbutton-1';
+			node.setAttribute('type', 'menu');
+			node.setAttribute('label', 'Foxtrick');
 
 			let menu = aDocument.getElementById('foxtrick-toolbar-view');
-			aNode.appendChild(menu);
+			node.appendChild(menu);
 
 			let win = aDocument.defaultView;
 			win.Foxtrick.modules.UI._updateSingle(win);
 
-			return aNode;
+			return node;
 		},
 	});
 }
 
-function startup(aData, aReason) {
+function startup(aData, aReason) { // jshint ignore:line
 	// prefs branch
 	const branch = 'extensions.foxtrick.prefs.';
 
-	_gLoader = { FOXTRICK_RUNTIME: new Date().valueOf() };
+	gScope = { FOXTRICK_RUNTIME: new Date().valueOf() };
 
 	let pathToDefault, bootstrap;
-	// load specific startup stripts
+	// load specific startup scripts
 	if (isFennecNative()) {
-		// old FF loads anything that ends with .js
-		// so we can't name this one foxtrick-android.js
-		pathToDefault = aData.resourceURI.spec + 'defaults/preferences/foxtrick-android';
+		pathToDefault = aData.resourceURI.spec + 'defaults/preferences/foxtrick.android.js';
 		bootstrap = 'bootstrap-fennec.js';
 	}
 	else {
@@ -111,16 +124,17 @@ function startup(aData, aReason) {
 
 	setDefaultPrefs(pathToDefault, branch);
 
-	bootstrap += '?bg=' + _gLoader.FOXTRICK_RUNTIME;
-	Services.scriptloader.loadSubScript(FOXTRICK_PATH + bootstrap, _gLoader, 'UTF-8');
+	bootstrap += '?bg=' + gScope.FOXTRICK_RUNTIME;
+	Services.scriptloader.loadSubScript(FOXTRICK_PATH + bootstrap, gScope, 'UTF-8');
 
 	// Load into any existing windows
-	let enumerator = Services.wm.getEnumerator('navigator:browser');
 	let win;
+	let enumerator = Services.wm.getEnumerator('navigator:browser');
 	while (enumerator.hasMoreElements()) {
 		win = enumerator.getNext().QueryInterface(Ci.nsIDOMWindow);
-		_gLoader.loadIntoWindow(win);
+		gScope.loadIntoWindow(win);
 	}
+
 	if (typeof win !== 'undefined') {
 		// during FF startup bootstrap runs before any windows are created,
 		// hence win is undefined
@@ -138,7 +152,7 @@ function startup(aData, aReason) {
 	}
 }
 
-function shutdown(aData, aReason) {
+function shutdown(aData, aReason) { // jshint ignore:line
 	// When the application is shutting down we normally don't have to clean
 	// up any UI changes made
 	if (aReason == APP_SHUTDOWN)
@@ -151,11 +165,10 @@ function shutdown(aData, aReason) {
 	let windows = Services.wm.getEnumerator('navigator:browser');
 	while (windows.hasMoreElements()) {
 		let win = windows.getNext().QueryInterface(Ci.nsIDOMWindow);
-		_gLoader.unloadFromWindow(win);
+		gScope.unloadFromWindow(win);
 	}
 
 	if (typeof CustomizableUI !== 'undefined') {
-		// this needs to run after existed windows were loaded into
 		CustomizableUI.destroyWidget('foxtrick-toolbar-button');
 	}
 
@@ -163,9 +176,10 @@ function shutdown(aData, aReason) {
 	Services.strings.flushBundles();
 
 	// destroy scope
-	_gLoader = undefined;
+	gScope = undefined;
 }
 
+/* jshint ignore:start */
 function install(aData, aReason) {
 }
 
