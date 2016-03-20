@@ -13,27 +13,12 @@ if (!Foxtrick)
 if (!window)
 	var window = content; // jshint ignore:line
 
+// Fennec tab load. starts the content instances for Fennec (one per tab, persistent)
 (function() {
 	if (Foxtrick.platform !== 'Android')
 		return;
 
-	var onTabLoad = function() {
-		// Foxtrick.log('Foxtrick: new tab loaded');
-		// debugger;
 
-		// listen to unload request
-		Foxtrick.SB.ext.onRequest.addListener(onUnload);
-
-		// request needed data from background and start with DOMContentLoaded
-		Foxtrick.SB.ext.sendRequest({ req: 'tabLoad' }, function(data) {
-			// Foxtrick.log('tabLoad: initing and adding listener');
-
-			Foxtrick.entry.contentScriptInit(data);
-			addEventListener('DOMContentLoaded', onDocLoad);
-		});
-	};
-
-	// Fennec tab load. starts the content instances for Fennec (one per tab, persistent)
 	var onDocLoad = function(ev) {
 		// Foxtrick.log('DOMContentLoaded');
 		// DOM ready. run on content page
@@ -50,6 +35,22 @@ if (!window)
 
 		// stop listen to DOMContentLoaded
 		removeEventListener('DOMContentLoaded', onDocLoad);
+	};
+
+	var onTabLoad = function() {
+		// Foxtrick.log('Foxtrick: new tab loaded');
+		// debugger;
+
+		// listen to unload request
+		Foxtrick.SB.ext.onRequest.addListener(onUnload);
+
+		// request needed data from background and start with DOMContentLoaded
+		Foxtrick.SB.ext.sendRequest({ req: 'tabLoad' }, function(data) {
+			// Foxtrick.log('tabLoad: initing and adding listener');
+
+			Foxtrick.entry.contentScriptInit(data);
+			addEventListener('DOMContentLoaded', onDocLoad);
+		});
 	};
 
 	// First content side entry point in Fennec.

@@ -45,7 +45,6 @@
 	,"requireTrailingComma": { "ignoreSingleLine": true }
 	,"requireCommaBeforeLineBreak": true
 	,"disallowNewlineBeforeBlockStatements": true
-	,"requireNewlineBeforeSingleStatementsInIf": true
 	,"requireBlocksOnNewline": 1
 	,"requireOperatorBeforeLineBreak": [
 		"?", ":", "+", "/", "*", "%", "=", "+=", "-=", "/=", "*=", "%=", "==", "===", "!=", "!==", ">", ">=", "<", "<=", "&&", "||", "."

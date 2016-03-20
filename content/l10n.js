@@ -6,6 +6,8 @@
  * @author ryan, convincedd, CatzHoek, LA-MJ
  */
 
+/* global PluralForm */
+
 if (!Foxtrick)
 	var Foxtrick = {}; // jshint ignore:line
 
@@ -147,7 +149,7 @@ Foxtrick.L10n.htMapping = {
 	'vi':    'vi',     // 55  Tiếng Việt, Vietnamese
 	'vl':    'vls-BE', // 65  Vlaams, Flemish (Belgian Dutch)
 	'zh':    'zh-CN',  // 15  中文（简体）, Chinese (Simplified)
-};
+}; // jshint ignore:line
 // jscs:enable disallowSpaceAfterObjectKeys, disallowQuotedKeysInObjects
 // jscs:enable disallowMultipleSpaces
 
@@ -173,6 +175,9 @@ Foxtrick.L10n.plForm = 0,
  * @type {Number} {Integer}
  */
 Foxtrick.L10n.plForm_default = 0,
+
+// ------------------------- function stubs ---------------------------
+// jshint ignore:start
 
 /**
  * Test if a string is localized
@@ -201,6 +206,7 @@ Foxtrick.L10n.isStringAvailable = function(str) {},
  * @return {string}
  */
 Foxtrick.L10n.getString = function(str, num) {},
+// jshint ignore:end
 
 /**
  * Generate a link from a l10n key with a link tag and append it to parent
@@ -224,7 +230,7 @@ Foxtrick.L10n.appendLink = function(str, parent, url) {
 	}
 	if (parts.length > 2)
 		parent.appendChild(doc.createTextNode(parts[2]));
-};
+}; // jshint ignore:line
 
 /**
  * Get the value of a certain property from htlang.json.
@@ -973,8 +979,8 @@ Foxtrick.L10n.getCountryNameLocal = function(leagueId, lang) {
 			},
 		};
 
-		for (var i in FoxtrickL10nGecko)
-			Foxtrick.L10n[i] = FoxtrickL10nGecko[i];
+		for (var flg in FoxtrickL10nGecko)
+			Foxtrick.L10n[flg] = FoxtrickL10nGecko[flg];
 
 	}
 
@@ -1127,8 +1133,8 @@ Foxtrick.L10n.getCountryNameLocal = function(leagueId, lang) {
 			},
 		};
 
-		for (var i in FoxtrickL10nChrome)
-			Foxtrick.L10n[i] = FoxtrickL10nChrome[i];
+		for (var flc in FoxtrickL10nChrome)
+			Foxtrick.L10n[flc] = FoxtrickL10nChrome[flc];
 
 	}
 

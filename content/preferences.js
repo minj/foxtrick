@@ -491,6 +491,29 @@ function revokePermissions() {
  */
 function testPermissions() {
 	if (Foxtrick.platform === 'Chrome') {
+
+		var modules = [];
+
+		var checkPermission = function(id, neededPermission, module) {
+			if ($(id).prop('checked') && $(id).attr('permission-granted') == 'false')
+				getPermission(neededPermission);
+			else if (!$(id).prop('checked')) {
+
+				modules = Foxtrick.exclude(modules, module);
+				if (modules.length > 0) {
+					var needsPermText = Foxtrick.L10n.getString('prefs.needPermissions') +
+						' ' + modules.join(', ');
+
+					$('#alert-text').text(needsPermText);
+					$('#alert').attr('style', 'display:block;');
+				}
+				else {
+					$('#alert-text').text('');
+					$('#alert').attr('style', 'display:none;');
+				}
+			}
+		};
+
 		var makeChecker = function(id, perm, module) {
 			return function() {
 				checkPermission(id, perm, module);
@@ -521,27 +544,6 @@ function testPermissions() {
 			});
 		};
 
-		var checkPermission = function(id, neededPermission, module) {
-			if ($(id).prop('checked') && $(id).attr('permission-granted') == 'false')
-				getPermission(neededPermission);
-			else if (!$(id).prop('checked')) {
-
-				modules = Foxtrick.exclude(modules, module);
-				if (modules.length > 0) {
-					var needsPermText = Foxtrick.L10n.getString('prefs.needPermissions') +
-						' ' + modules.join(', ');
-
-					$('#alert-text').text(needsPermText);
-					$('#alert').attr('style', 'display:block;');
-				}
-				else {
-					$('#alert-text').text('');
-					$('#alert').attr('style', 'display:none;');
-				}
-			}
-		};
-
-		var modules = [];
 		for (var permission of neededPermissions) {
 			testModulePermission(permission);
 		}
@@ -904,6 +906,8 @@ function makeModuleDiv(module) {
 		options.appendChild(checkboxes);
 		checkboxes.id = module.MODULE_NAME + '-checkboxes';
 
+		var checkbox, textDiv, textInput;
+
 		var appendOptionToList = function(key, list) {
 			item = document.createElement('li');
 			list.appendChild(item);
@@ -972,8 +976,6 @@ function makeModuleDiv(module) {
 		};
 
 		for (var i = 0; i < module.OPTIONS.length; ++i) {
-			var checkbox, textDiv, textInput;
-
 			// super easy way to create subgroups for options, just supply an array
 			// first element will toggle visibility for entries 1->n
 			// supports nested subgroups
