@@ -285,17 +285,6 @@ Foxtrick.lazyProp = function(obj, prop, calc) {
 		};
 
 		sendRequest = (function() {
-			// The function we'll return at the end of all this
-			var theFunction = function(target, data, callback) {
-				var callbackToken = 'callback' + Math.random();
-				var msg = { data: data, callbackToken: callbackToken };
-
-				// Listen for a response for our specific request token.
-				addOneTimeResponseListener(callbackToken, callback);
-
-				target.dispatchMessage(REQUEST, msg);
-			};
-
 			// Make a listener which, when activated for the given callbackToken,
 			// calls callback(resultData) and unregisters itself
 			var addOneTimeResponseListener = function(callbackToken, callback) {
@@ -325,7 +314,16 @@ Foxtrick.lazyProp = function(obj, prop, calc) {
 				addListener(responseHandler);
 			};
 
-			return theFunction;
+			// The actual sendRequest implementation
+			return function(target, data, callback) {
+				var callbackToken = 'callback' + Math.random();
+				var msg = { data: data, callbackToken: callbackToken };
+
+				// Listen for a response for our specific request token.
+				addOneTimeResponseListener(callbackToken, callback);
+
+				target.dispatchMessage(REQUEST, msg);
+			};
 		})();
 
 		Foxtrick.SB.ext.getBackgroundPage = function() {
@@ -402,6 +400,16 @@ Foxtrick.lazyProp = function(obj, prop, calc) {
 			return ret;
 		});
 
+		var ACTIVE_TABS = {};
+
+		Foxtrick.SB.tabs.getId = function(tab) {
+			return tab.id;
+		};
+
+		Foxtrick.SB.tabs.create = function(url) {
+			chrome.tabs.create(url);
+		};
+
 		addListener = function(handler) {
 			chrome.runtime.onMessage.addListener(handler);
 		};
@@ -443,16 +451,6 @@ Foxtrick.lazyProp = function(obj, prop, calc) {
 				}
 			}
 			catch (e) {}
-		};
-
-		var ACTIVE_TABS = {};
-
-		Foxtrick.SB.tabs.getId = function(tab) {
-			return tab.id;
-		};
-
-		Foxtrick.SB.tabs.create = function(url) {
-			chrome.tabs.create(url);
 		};
 
 		if (Foxtrick.context === 'content') {
@@ -601,25 +599,6 @@ Foxtrick.lazyProp = function(obj, prop, calc) {
 		};
 
 		sendRequest = (function() {
-			// The function we'll return at the end of all this
-			var theFunction = function(target, data, callback) {
-				var callbackToken = 'callback' + Math.random();
-				var msg = { data: data, callbackToken: callbackToken };
-
-				// Listen for a response for our specific request token.
-				addOneTimeResponseListener(callbackToken, callback);
-
-				if (target && typeof target.sendAsyncMessage === 'function') {
-					target.sendAsyncMessage(REQUEST, msg);
-				}
-				else if (typeof sendAsyncMessage === 'function') {
-					sendAsyncMessage(REQUEST, msg);
-				}
-				else {
-					messageManager.broadcastAsyncMessage(REQUEST, msg);
-				}
-			};
-
 			// Make a listener which, when activated for the given callbackToken,
 			// calls callback(resultData) and unregisters itself
 			var addOneTimeResponseListener = function(callbackToken, callback) {
@@ -648,7 +627,24 @@ Foxtrick.lazyProp = function(obj, prop, calc) {
 				addListener(RESPONSE, responseHandler);
 			};
 
-			return theFunction;
+			// The actual sendRequest implementation
+			return function(target, data, callback) {
+				var callbackToken = 'callback' + Math.random();
+				var msg = { data: data, callbackToken: callbackToken };
+
+				// Listen for a response for our specific request token.
+				addOneTimeResponseListener(callbackToken, callback);
+
+				if (target && typeof target.sendAsyncMessage === 'function') {
+					target.sendAsyncMessage(REQUEST, msg);
+				}
+				else if (typeof sendAsyncMessage === 'function') {
+					sendAsyncMessage(REQUEST, msg);
+				}
+				else {
+					messageManager.broadcastAsyncMessage(REQUEST, msg);
+				}
+			};
 		})();
 
 		Foxtrick.SB.ext.getURL = function(path) {

@@ -43,13 +43,13 @@ function setDefaultPrefs(pathToDefault, branch) {
 			switch (typeof val) {
 				case 'boolean':
 					defaultBranch.setBoolPref(key, val);
-					break;
+				break;
 				case 'number':
 					defaultBranch.setIntPref(key, val);
-					break;
+				break;
 				case 'string':
 					defaultBranch.setCharPref(key, val);
-					break;
+				break;
 			}
 		},
 	};
