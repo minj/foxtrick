@@ -191,7 +191,11 @@ Foxtrick.modules['Redirections'] = {
 		}
 
 		Foxtrick.log('redirect', redirect, 'from:', location, 'to:', url);
-		if (url)
-			doc.location.replace(url);
+		if (url) {
+			// Firefox displays completely weird behavior here.
+			// Relative URL works when executed directly in the debugger.
+			// Running live, however, resolves URLs against XULDocument
+			doc.location.replace(doc.location.origin + url);
+		}
 	},
 };
