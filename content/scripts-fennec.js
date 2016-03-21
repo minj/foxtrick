@@ -35,6 +35,7 @@ Foxtrick.loader.background.contentScriptManager = {
 		// <!-- util -->
 		'util/api.js',
 		'util/array.js',
+		'util/async.js',
 		'util/color.js',
 		'util/cookies.js',
 		'util/copy-button.js',
