@@ -52,6 +52,7 @@ function toggleTranslationKeys() {
 function clearCache() {
 	Foxtrick.sessionDeleteBranch('');
 	Foxtrick.localDeleteBranch('');
+	Foxtrick.__promiseCache.clear();
 	// Foxtrick.util.api.clearCache();
 	window.close();
 }

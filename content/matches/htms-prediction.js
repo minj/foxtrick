@@ -122,7 +122,7 @@ Foxtrick.modules['HTMSPrediction'] = {
 		cell.textContent = Foxtrick.L10n.getString('HTMSPrediction.prediction');
 
 		var url = 'http://www.fantamondi.it/HTMS/dorequest.php?action=predict&' + params;
-		Foxtrick.fetch(url).then(function(text) {
+		Foxtrick.load(url).then(function(text) {
 			var xml = Foxtrick.parseXml(text);
 			if (loading)
 				loading.parentNode.removeChild(loading);

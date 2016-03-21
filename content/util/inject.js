@@ -16,7 +16,7 @@ Foxtrick.util.inject.cssLink = function(doc, url) {
 	if (Foxtrick.arch == 'Sandboxed') {
 		var id = url.match(/([^\/]+)\.css$/)[1];
 
-		Foxtrick.fetch(url).then(function(text) {
+		Foxtrick.load(url).then(function(text) {
 			Foxtrick.util.inject.css(doc, text, id);
 		}).catch(Foxtrick.catch('cssLink'));
 
@@ -115,7 +115,7 @@ Foxtrick.util.inject.jsLink = function(doc, url) {
 
 		var id = url.match(/([^\/]+)\.js$/)[1];
 
-		Foxtrick.fetch(url).then(function(text) {
+		Foxtrick.load(url).then(function(text) {
 			inject(doc, text, id);
 		}).catch(Foxtrick.catch('jsLink'));
 	}

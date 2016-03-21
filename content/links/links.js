@@ -86,7 +86,7 @@
 			Foxtrick.log('loading feed:', feed);
 
 			// load plain text
-			Foxtrick.fetch(feed)
+			Foxtrick.load(feed)
 				.then(function(text) {
 
 					--todo;

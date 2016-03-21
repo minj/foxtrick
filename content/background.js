@@ -301,6 +301,17 @@ Foxtrick.loader.background.browserLoad = function() {
 				.catch(Foxtrick.catch(sender));
 		};
 
+		this.requests.load = function(request, sender, sendResponse) {
+			// @param url - the URL of resource to load with caching
+			// @param params - params != null makes it and used for a POST request
+			// @callback_param data - response text
+			// @callback_param status - HTTP status of request
+
+			Foxtrick.load(request.url, request.params, request.lifeTime, request.now)
+				.then(sendResponse, sendResponse) // use the same callback for both
+				.catch(Foxtrick.catch(sender));
+		};
+
 		// from localStore.js
 		this.requests.getStorage = function(request, sender, sendResponse) {
 			Foxtrick.storage.get(request.key) // never rejects

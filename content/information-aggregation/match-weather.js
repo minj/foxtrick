@@ -151,7 +151,7 @@ Foxtrick.modules['MatchWeather'] = {
 
 				Foxtrick.log('Fetching JSON data from', uri);
 
-				Foxtrick.fetch(uri).then(Foxtrick.safeJSON)
+				Foxtrick.load(uri).then(Foxtrick.safeJSON)
 					.then(function(json) {
 						if (json) {
 							if (json.cod == 200 && json.list.length == 2) {
