@@ -18,6 +18,7 @@ Foxtrick.modules['EmbedMedia'] = {
 	CSS: Foxtrick.InternalPath + 'resources/css/embed-media.css',
 
 	run: function(doc) {
+		var module = this;
 
 		var BAD_RESPONSE = Foxtrick.L10n.getString('oembed.badresponse');
 
@@ -351,21 +352,21 @@ Foxtrick.modules['EmbedMedia'] = {
 				if (oembed_enabled) {
 					var oEmbedRequestURL = oembed_urls[key] + target.firstChild.href;
 					//load json from providers async
-					Foxtrick.util.load.get(oEmbedRequestURL)('success',
-					  function(response) {
-						try {
-							var json = JSON.parse(response);
+					Foxtrick.fetch(oEmbedRequestURL).then(Foxtrick.safeJSON)
+						.then(function(json) {
+
+							if (!json) {
+								Foxtrick.log('oEmbed parsing error');
+								target.nextSibling.textContent = BAD_RESPONSE;
+								return;
+							}
+
 							do_oEmbed(target, json);
-						}
-						catch (e) {
-							Foxtrick.log('oEmbed error:', e.toString());
+
+						}, function(resp) {
+							Foxtrick.log('Error loading embed code:', resp);
 							target.nextSibling.textContent = BAD_RESPONSE;
-						}
-					})('failure', function(code) {
-						Foxtrick.log('Error loading embed code: ', oembed_urls[key] +
-									 target.firstChild.href);
-						target.nextSibling.textContent = BAD_RESPONSE;
-					});
+						}).catch(Foxtrick.catch(module));
 				}
 				//iFrame
 				else

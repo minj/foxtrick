@@ -289,6 +289,18 @@ Foxtrick.loader.background.browserLoad = function() {
 			Foxtrick.sessionDeleteBranch(request.branch);
 		};
 
+		// from load.js
+		this.requests.fetch = function(request, sender, sendResponse) {
+			// @param url - the URL of resource to fetch with window.XMLHttpRequest
+			// @param params - params != null makes it and used for a POST request
+			// @callback_param data - response text
+			// @callback_param status - HTTP status of request
+
+			Foxtrick.fetch(request.url, request.params)
+				.then(sendResponse, sendResponse) // use the same callback for both
+				.catch(Foxtrick.catch(sender));
+		};
+
 		// from localStore.js
 		this.requests.getStorage = function(request, sender, sendResponse) {
 			Foxtrick.storage.get(request.key) // never rejects

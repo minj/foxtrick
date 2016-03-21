@@ -79,26 +79,40 @@
 
 		// now load the feeds
 		var todo = feeds.length;
+
 		Foxtrick.log('Loading', todo, 'link feeds from:', feeds);
+
 		Foxtrick.map(function(feed) {
 			Foxtrick.log('loading feed:', feed);
+
 			// load plain text
-			Foxtrick.util.load.get(feed)('success',
-			  function(text) {
-				--todo;
-				if (!text) {
-					Foxtrick.log('Error loading links from:', feed,
-					             '. Received empty response. Using cached feed.');
-					Foxtrick.localGet('LinksFeed.' + feed, function(text) { parseFeed(text); });
-				}
-				// Foxtrick.log('parsing', feed);
-				parseFeed(text);
-				Foxtrick.localSet('LinksFeed.' + feed, text);
-			})('failure', function(code) {
-				--todo;
-				Foxtrick.log('Error', code, 'loading links from:', feed, '. Using cached feed.');
-				Foxtrick.localGet('LinksFeed.' + feed, function(text) { parseFeed(text); });
-			});
+			Foxtrick.fetch(feed)
+				.then(function(text) {
+
+					--todo;
+
+					if (!text) {
+						Foxtrick.log('Error loading links from:', feed,
+						             '. Received empty response. Using cached feed.');
+
+						Foxtrick.localGet('LinksFeed.' + feed, parseFeed);
+					}
+					else {
+						parseFeed(text);
+						Foxtrick.localSet('LinksFeed.' + feed, text);
+					}
+
+				}, function(resp) {
+
+					--todo;
+
+					Foxtrick.log('Error', resp.status, 'loading links from:', resp.url,
+					             '. Using cached feed.');
+
+					Foxtrick.localGet('LinksFeed.' + feed, parseFeed);
+
+				}).catch(Foxtrick.catch('StoreLinksCollection'));
+
 		}, feeds);
 	};
 

@@ -336,16 +336,20 @@ Foxtrick.modules['StaffMarker'] = {
 						}
 					});
 				});
-			} else {
-				Foxtrick.util.load.get(uri)('success',
-				  function(text) {
-					Foxtrick.log('parse ', uri);
-					parseMarkers(text);
-					Foxtrick.localSet('Markers.' + uri, text);
-				})('failure', function(code) {
-					Foxtrick.log('Failure loading file: ' + uri, '. Using cached markers.');
-					Foxtrick.localGet('Markers.' + uri, parseMarkers);
-				});
+			}
+			else {
+				Foxtrick.fetch(uri)
+					.then(function(text) {
+						Foxtrick.log('parse ', uri);
+
+						parseMarkers(text);
+
+						Foxtrick.localSet('Markers.' + uri, text);
+					}, function(resp) {
+						Foxtrick.log('Failure loading file:', resp.url, '. Using cached markers.');
+
+						Foxtrick.localGet('Markers.' + uri, parseMarkers);
+					}).catch(Foxtrick.catch(module));
 			}
 		}, uris);
 
