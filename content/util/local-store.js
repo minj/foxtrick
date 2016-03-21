@@ -196,12 +196,12 @@ if (Foxtrick.context == 'background') {
 				// catch every time localStore is used
 				// will make it easier to spot in the logs
 				return STORE_PROMISE.catch(function(e) {
-					// just log and re-throw to disable chain
 
-					// disable stack: most likely Private mode
+					// just log a simple message to disable stack: most likely Private mode
 					Foxtrick.log('WARNING: localStore has not been initialized', e.message);
 
-					throw e.message;
+					// re-throw to disable chain
+					throw e;
 				});
 
 			},
@@ -262,7 +262,11 @@ if (Foxtrick.context == 'background') {
 			});
 
 		}).catch(function(e) {
-			Foxtrick.log('Error in storage.get', key, e);
+			try {
+				Foxtrick.log('Error in storage.get', key, e);
+			}
+			catch (ee) {}
+
 			return null;
 		});
 
