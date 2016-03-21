@@ -6,6 +6,118 @@
 
 if (!Foxtrick)
 	var Foxtrick = {};
+
+/**
+ * Parse data as JSON.
+ *
+ * Logs bad input in case of errors and returns null instead.
+ *
+ * @param  {string} data
+ * @return {object}
+ */
+Foxtrick.parseJSON = function(data) {
+	var ret = null;
+	try {
+		ret = JSON.parse(data);
+
+		if (typeof ret !== 'object') {
+			Foxtrick.log(new TypeError('Bad JSON: non-object'), data);
+			ret = null;
+		}
+	}
+	catch (e) {
+		Foxtrick.log('Bad JSON:', e, data);
+	}
+	return ret;
+};
+
+/**
+ * Fetch a url.
+ *
+ * Returns a Promise that fulfills with a string on success
+ * or rejects with {url, status, text, params}.
+ *
+ * params is optional, switches to POST.
+ *
+ * @param  {string}  url
+ * @param  {object}  params {?object}
+ * @return {Promise}
+ */
+Foxtrick.fetch = function(url, params) {
+	const ERROR_XHR_FATAL = 'FATAL error in XHR:';
+
+	url = Foxtrick.util.load._parseUrl(url);
+
+	if (Foxtrick.context == 'content') {
+
+		return new Promise(function(fulfill, reject) {
+			Foxtrick.SB.ext.sendRequest({ req: 'fetch', url: url, params: params },
+			  function(response) {
+				if (typeof response === 'string') {
+					fulfill(response);
+				}
+				else {
+					Foxtrick.log('XHR failed:', response);
+					reject(response);
+				}
+			});
+		});
+
+	}
+	else {
+
+		return new Promise(function(resolve) {
+			var type = params ? 'POST' : 'GET';
+
+			var req = new window.XMLHttpRequest();
+			req.open(type, url, true);
+
+			if (typeof req.overrideMimeType === 'function')
+				req.overrideMimeType('text/plain');
+
+			// Send the proper header information along with the request
+			if (type == 'POST' && typeof req.setRequestHeader === 'function')
+				req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+			req.onload = function() {
+				// README: safari returns chrome resources with status=0
+				if (this.status >= 200 && this.status < 300 ||
+				    this.status === 0 && this.responseText) {
+
+					resolve(this.responseText);
+
+				}
+
+				// always resolve at this point
+				resolve({ url: url, status: this.status, text: this.responseText, params: params });
+			};
+
+			req.onerror = function() {
+				// always resolve at this point
+				resolve({ url: url, status: this.status, text: this.responseText, params: params });
+			};
+
+			req.onabort = function() {
+				// always resolve at this point
+				resolve({ url: url, status: -1, text: this.responseText, params: params });
+			};
+
+			req.send(params);
+		})
+		.catch(function(e) {
+			// handle fatal errors in Promise constructor
+			Foxtrick.log(ERROR_XHR_FATAL, e);
+			return { url: url, status: -1, text: ERROR_XHR_FATAL + e.message, params: params };
+		}).then(function(resp) {
+			// handle non-fatal errors by rejecting
+			if (typeof resp !== 'string')
+				return Promise.reject(resp);
+
+			return resp;
+		});
+	}
+};
+
 if (!Foxtrick.util)
 	Foxtrick.util = {};
 
@@ -28,129 +140,6 @@ Foxtrick.util.load._parseUrl = function(url) {
 	return url;
 };
 
-/**
- * Using XMLHttpRequest by a promise, on which listeners on success and
- * failure status can be registered.
- *
- * Usage:
-	Foxtrick.__load(url)('success', function(responseText) {
-		...
-	})('failure', function(statusCode) {
-		...
-	});
- *
- * @author ryanli
- */
-Foxtrick.util.load.get = function(url, params) {
-	// Low-level implementation of XMLHttpRequest:
-	// @param params - params != null makes it and used for a POST request
-	// Arguments passed to cb is an Object, with following members:
-	// status: String, either 'success' or 'failure'
-	// code: Integer, HTTP status code
-	// text: String, response text
-	url = this._parseUrl(url);
-	var loadImpl;
-	if (Foxtrick.context == 'content') {
-		loadImpl = function(cb) {
-			Foxtrick.SB.ext.sendRequest({ req: 'getXml', url: url, params: params },
-			  function(response) {
-				try {
-					cb({
-						code: response.status,
-						status: (response.status < 400) ? 'success' : 'failure',
-						text: response.data
-					});
-				}
-				catch (e) {
-					Foxtrick.log('Error in callback for getXml', response, e);
-				}
-			});
-		};
-	}
-	else {
-		loadImpl = function(cb) {
-			var req = new window.XMLHttpRequest();
-			var type = (params != null) ? 'POST' : 'GET';
-			req.open(type, url, true);
-
-			if (typeof req.overrideMimeType === 'function')
-				req.overrideMimeType('text/plain');
-			//Send the proper header information along with the request
-			if (type == 'POST' && typeof(req.setRequestHeader) == 'function')
-				req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-
-			req.onloadend = function() {
-				var status = (req.status < 400 && req.responseText !== '') ?
-					'success' : 'failure';
-				cb({
-					code: req.status,
-					status: status,
-					text: req.responseText
-				});
-			};
-
-			try {
-				req.send(params);
-			}
-			catch (e) {
-				// catch cross-domain errors, we return 499 as status code
-				Foxtrick.log('Error fetching ' + url + ': ', e);
-				cb({
-					code: 499,
-					status: 'failure',
-					text: null
-				});
-			}
-		};
-	}
-
-	var status;
-	// handlers for each status used as FIFO queues
-	var handlers = {};
-	// arguments passed to callback functions for each status
-	var args = {};
-
-	var promise = function(when, cb) {
-		// add inexistent array
-		if (!handlers[when])
-			handlers[when] = [];
-		handlers[when].push(cb);
-		trigger();
-
-		return promise;
-	};
-
-	// calls callback functions according to status
-	var trigger = function() {
-		var handlerLst = handlers[status], argLst = args[status];
-		if (!handlerLst)
-			return;
-
-		while (handlerLst.length) {
-			try {
-				handlerLst.shift().apply(null, argLst);
-			}
-			catch (e) {
-				Foxtrick.log('Uncaught callback error ', e);
-			}
-		}
-	};
-
-	loadImpl(function(response) {
-		if (response.status == 'success') {
-			status = 'success';
-			args['success'] = [response.text];
-		}
-		else if (response.status == 'failure') {
-			status = 'failure';
-			args['failure'] = [response.code];
-		}
-		trigger();
-	});
-
-	return promise;
-};
-
 /*
  * Load external URL asynchronously
  * @param url - URL
@@ -159,7 +148,6 @@ Foxtrick.util.load.get = function(url, params) {
  * @callback_param String of text content if success or null if failure
  * @callback_param HTTP status code
  */
-
 Foxtrick.util.load.async = function(url, callback, params) {
 	url = this._parseUrl(url);
 	if (Foxtrick.context == 'content') {
