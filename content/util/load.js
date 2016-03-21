@@ -158,13 +158,8 @@ Foxtrick.load = function(url, params, lifeTime, now) {
 		var tryFetch = function(cache) {
 			Foxtrick.log('Promise cache replied:', cache, 'Fetching from', url);
 
-			var thisPromise = Foxtrick.fetch(url, params);
-
-			return Foxtrick.__savePromiseFor(url, params, lifeTime)(thisPromise)
-				.then(function() {
-					// resolve the original Promise
-					return thisPromise;
-				});
+			// resolve the original Promise
+			return Foxtrick.__savePromiseFor(url, params, lifeTime)(Foxtrick.fetch(url, params))
 		};
 		return Foxtrick.__loadPromise(url, params, lifeTime, now)
 			.catch(tryFetch);
@@ -334,6 +329,7 @@ if (Foxtrick.context === 'background') {
 	 * Save a promise in promise cache with specified properties
 	 *
 	 * Returns {function(Promise): Promise} to give the promise to.
+	 * Callback returns a promise that resolves to the original promise.
 	 *
 	 * lifeTime is an optional timestamp.
 	 *
@@ -345,14 +341,18 @@ if (Foxtrick.context === 'background') {
 	Foxtrick.__savePromiseFor = function(url, params, lifeTime) {
 		return function(promise) {
 
+			// promisify
+			promise = Promise.resolve(promise);
+
 			return Promise.resolve().then(function() {
-				// promisify
-				var cacheObj = { promise: Promise.resolve(promise) };
+				var cacheObj = { promise: promise };
 
 				if (lifeTime)
 					cacheObj.lifeTime = lifeTime;
 
-				return Foxtrick.__promiseCache.set(url, params, cacheObj);
+				Foxtrick.__promiseCache.set(url, params, cacheObj);
+
+				return promise;
 			});
 
 		};
