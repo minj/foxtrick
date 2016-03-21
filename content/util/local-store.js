@@ -3,7 +3,8 @@
  * storage.set() and storage.get() are a pair of functions that can store
  * permanent information.
  * The stored value must be a JSON-serializable object, or of native types.
- * @author LA-MJ
+ *
+ * @author convincedd, LA-MJ
  */
 
 /* global indexedDB */

@@ -117,9 +117,9 @@ Foxtrick.delay = function(time) {
 /**
  * Create a handler to catch errors at the end of a promise chain.
  *
- * Takes a module object or a string as an optional parameter for log tag.
+ * Takes a module object or some other tag for logging.
  *
- * @param  {object}   module {object|string}
+ * @param  {object}   module {object}
  * @return {function}        {function(Error)}
  */
 Foxtrick.catch = function(module) {
@@ -130,7 +130,7 @@ Foxtrick.catch = function(module) {
 };
 
 /**
- * Run a step regardless of promise resolution value.
+ * Run an additional step regardless of promise resolution status.
  *
  * Returns a Promise that resolves with the value of the original promise
  * or rejects in case the additional step rejects/throws.
