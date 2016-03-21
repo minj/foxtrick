@@ -338,7 +338,7 @@ Foxtrick.modules['StaffMarker'] = {
 				});
 			}
 			else {
-				Foxtrick.fetch(uri)
+				Foxtrick.load(uri)
 					.then(function(text) {
 						Foxtrick.log('parse ', uri);
 
