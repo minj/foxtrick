@@ -37,6 +37,7 @@
 			// <!-- util -->
 			"content/util/api.js",
 			"content/util/array.js",
+			"content/util/async.js",
 			"content/util/color.js",
 			"content/util/cookies.js",
 			"content/util/copy-button.js",
