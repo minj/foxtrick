@@ -324,7 +324,7 @@ Foxtrick.storage.deleteBranch = function(branch) {
 	return Foxtrick.localStore.then(function(store) {
 
 		return new Promise(function(fulfill, reject) {
-			if (typeof branch === 'undefined' || branch === null)
+			if (branch == null)
 				branch = '';
 
 			branch = branch.toString();
