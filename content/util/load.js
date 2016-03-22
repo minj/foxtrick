@@ -193,6 +193,11 @@ Foxtrick.fetch = function(url, params) {
 			resolve({ url: url, status: this.status, text: this.responseText, params: params });
 		};
 
+		req.onabort = function() {
+			// always resolve at this point
+			resolve({ url: url, status: -1, text: this.responseText, params: params });
+		};
+
 		req.send(params);
 	})
 	.catch(function(e) {
