@@ -76,7 +76,7 @@ Foxtrick.util.api = {
 			div.appendChild(linkPar);
 			linkPar.appendChild(Foxtrick.util.note.createLoading(doc, null, true));
 			Foxtrick.log('Requesting token at: ', Foxtrick.util.api.stripToken(requestTokenUrl));
-			Foxtrick.util.load.async(requestTokenUrl, function(text, status) {
+			Foxtrick.util.load.fetch(requestTokenUrl, function(text, status) {
 				Foxtrick.stopListenToChange(doc);
 				linkPar.textContent = ''; // clear linkPar first
 				if (status != 200) {
@@ -124,7 +124,7 @@ Foxtrick.util.api = {
 					var accessTokenUrl = Foxtrick.util.api.accessTokenUrl + '?' + query;
 					Foxtrick.log('Requesting access token at: ',
 					             Foxtrick.util.api.stripToken(accessTokenUrl));
-					Foxtrick.util.load.async(accessTokenUrl, function(text, status) {
+					Foxtrick.util.load.fetch(accessTokenUrl, function(text, status) {
 						if (status != 200) {
 							// failed to fetch link
 							showFinished(Foxtrick.util.api.getErrorText(text, status));
@@ -140,7 +140,7 @@ Foxtrick.util.api = {
 				inputPar.appendChild(button);
 				//disabled to prevent auth-reset on dynamic pages
 				//Foxtrick.startListenToChange(doc);
-			}); // get authorize URL with Foxtrick.util.load.async()
+			}); // get authorize URL with Foxtrick.util.load.fetch()
 			Foxtrick.startListenToChange(doc);
 		}); // initial authorize link event listener
 		div.appendChild(link);
@@ -525,18 +525,28 @@ Foxtrick.util.api = {
 	},
 
 	getErrorText: function(text, status) {
+		var errorText;
+
 		try {
-			var errorText = text.getElementsByTagName('title')[0].textContent;
+			errorText = text.getElementsByTagName('title')[0].textContent;
 		}
 		catch (e) {
 			try {
-				var xml = Foxtrick.parseXml(text);
-				var errorText = xml.getElementsByTagName('h2')[0].textContent;
+
+				var xml = Foxtrick.parseXML(text);
+				if (xml == null)
+					errorText = Foxtrick.L10n.getString('exception.error').replace(/%s/, -1);
+				else
+					errorText = xml.getElementsByTagName('h2')[0].textContent;
+
 			}
-			catch (e) {
-				var errorText = Foxtrick.L10n.getString('exception.error').replace(/%s/, status);
+			catch (ee) {
+
+				errorText = Foxtrick.L10n.getString('exception.error').replace(/%s/, status);
+
 			}
 		}
+
 		return errorText;
-	}
+	},
 };
