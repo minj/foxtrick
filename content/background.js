@@ -301,17 +301,17 @@ Foxtrick.loader.background.browserLoad = function() {
 		};
 
 		// from localStore.js
-		this.requests.getStorage = function(request, sender, sendResponse) {
+		this.requests.storageGet = function(request, sender, sendResponse) {
 			Foxtrick.storage.get(request.key) // never rejects
 				.then(sendResponse)
 				.catch(Foxtrick.catch(sender));
 		};
-		this.requests.setStorage = function(request, sender, sendResponse) {
+		this.requests.storageSet = function(request, sender, sendResponse) {
 			Foxtrick.storage.set(request.key, request.value)
 				.then(sendResponse, sendResponse) // use the same callback for both
 				.catch(Foxtrick.catch(sender));
 		};
-		this.requests.deleteStorageBranch = function(request, sender, sendResponse) {
+		this.requests.storageDeleteBranch = function(request, sender, sendResponse) {
 			Foxtrick.storage.deleteBranch(request.branch)
 				.then(sendResponse, sendResponse) // use the same callback for both
 				.catch(Foxtrick.catch(sender));

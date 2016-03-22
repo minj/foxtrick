@@ -225,7 +225,7 @@ Foxtrick.storage.set = function(key, value) {
 	if (Foxtrick.context == 'content') {
 		return new Promise(function(fulfill, reject) {
 			Foxtrick.SB.ext.sendRequest({
-				req: 'setStorage',
+				req: 'storageSet',
 				key: key,
 				value: value,
 			}, function onSendResponse(response) {
@@ -268,7 +268,7 @@ Foxtrick.storage.get = function(key) {
 	if (Foxtrick.context == 'content') {
 		return new Promise(function(fulfill) {
 			// background never rejects
-			Foxtrick.SB.ext.sendRequest({ req: 'getStorage', key: key }, fulfill);
+			Foxtrick.SB.ext.sendRequest({ req: 'storageGet', key: key }, fulfill);
 		});
 	}
 
@@ -308,7 +308,7 @@ Foxtrick.storage.deleteBranch = function(branch) {
 	if (Foxtrick.context == 'content') {
 		return new Promise(function(fulfill, reject) {
 			Foxtrick.SB.ext.sendRequest({
-				req: 'deleteStorageBranch',
+				req: 'storageDeleteBranch',
 				branch: branch,
 			}, function onSendResponse(response) {
 
