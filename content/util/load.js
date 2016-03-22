@@ -46,6 +46,8 @@ Foxtrick.safeJSON = function(data) {
 Foxtrick.fetch = function(url, params) {
 	const ERROR_XHR_FATAL = 'FATAL error in XHR:';
 
+	url = Foxtrick.util.load._parseUrl(url);
+
 	if (Foxtrick.context == 'content') {
 
 		return new Promise(function(fulfill, reject) {
