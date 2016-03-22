@@ -62,53 +62,52 @@ Foxtrick.fetch = function(url, params) {
 		});
 
 	}
-	else {
 
-		return new Promise(function(resolve) {
-			var type = params ? 'POST' : 'GET';
+	return new Promise(function(resolve) {
+		var type = params ? 'POST' : 'GET';
 
-			var req = new window.XMLHttpRequest();
-			req.open(type, url, true);
+		var req = new window.XMLHttpRequest();
+		req.open(type, url, true);
 
-			if (typeof req.overrideMimeType === 'function')
-				req.overrideMimeType('text/plain');
+		if (typeof req.overrideMimeType === 'function')
+			req.overrideMimeType('text/plain');
 
-			// Send the proper header information along with the request
-			if (type == 'POST' && typeof req.setRequestHeader === 'function')
-				req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+		// Send the proper header information along with the request
+		if (type == 'POST' && typeof req.setRequestHeader === 'function')
+			req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
-			req.onload = function() {
-				// README: safari returns chrome resources with status=0
-				if (this.status >= 200 && this.status < 300 ||
-				    this.status === 0 && this.responseText) {
+		req.onload = function() {
+			// README: safari returns chrome resources with status=0
+			if (this.status >= 200 && this.status < 300 ||
+			    this.status === 0 && this.responseText) {
 
-					resolve(this.responseText);
+				resolve(this.responseText);
 
-				}
+			}
 
-				// always resolve at this point
-				resolve({ url: url, status: this.status, text: this.responseText, params: params });
-			};
+			// always resolve at this point
+			resolve({ url: url, status: this.status, text: this.responseText, params: params });
+		};
 
-			req.onerror = function() {
-				// always resolve at this point
-				resolve({ url: url, status: this.status, text: this.responseText, params: params });
-			};
+		req.onerror = function() {
+			// always resolve at this point
+			resolve({ url: url, status: this.status, text: this.responseText, params: params });
+		};
 
-			req.send(params);
-		})
-		.catch(function(e) {
-			// handle fatal errors in Promise constructor
-			Foxtrick.log(ERROR_XHR_FATAL, e);
-			return { url: url, status: -1, text: ERROR_XHR_FATAL + e.message };
-		}).then(function(resp) {
-			// handle non-fatal errors by rejecting
-			if (typeof resp !== 'string')
-				return Promise.reject(resp);
+		req.send(params);
+	})
+	.catch(function(e) {
+		// handle fatal errors in Promise constructor
+		Foxtrick.log(ERROR_XHR_FATAL, e);
+		return { url: url, status: -1, text: ERROR_XHR_FATAL + e.message };
+	}).then(function(resp) {
+		// handle non-fatal errors by rejecting
+		if (typeof resp !== 'string')
+			return Promise.reject(resp);
 
-			return resp;
-		});
-	}
+		return resp;
+	});
+
 };
 
 /**
@@ -154,16 +153,17 @@ Foxtrick.load = function(url, params, lifeTime, now) {
 			});
 		});
 	}
-	else {
-		var tryFetch = function(cache) {
-			Foxtrick.log('Promise cache replied:', cache, 'Fetching from', url);
 
-			// resolve the original Promise
-			return Foxtrick.__savePromiseFor(url, params, lifeTime)(Foxtrick.fetch(url, params))
-		};
-		return Foxtrick.__loadPromise(url, params, lifeTime, now)
-			.catch(tryFetch);
-	}
+	var tryFetch = function(cache) {
+		Foxtrick.log('Promise cache replied:', cache, 'Fetching from', url);
+
+		// resolve the original Promise
+		return Foxtrick.__savePromiseFor(url, params, lifeTime)(Foxtrick.fetch(url, params));
+	};
+
+	return Foxtrick.__loadPromise(url, params, lifeTime, now)
+		.catch(tryFetch);
+
 };
 
 

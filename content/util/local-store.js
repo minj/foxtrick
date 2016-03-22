@@ -208,139 +208,21 @@ if (Foxtrick.context == 'background') {
 		};
 
 	})());
-
-	/**
-	 * Get a promise when storage value is set.
-	 *
-	 * key should be a string.
-	 * value may be any stringify-able object.
-	 *
-	 * @param  {string}  key
-	 * @param  {object}  value
-	 * @return {Promise}       {Promise.<key>}
-	 */
-	Foxtrick.storage.set = function(key, value) {
-
-		return Foxtrick.localStore.then(function(store) {
-
-			return new Promise(function(fulfill, reject) {
-				store.put(key, value, fulfill, reject);
-			}).catch(function(e) {
-				Foxtrick.log('Error in storage.set', key, e);
-				throw e;
-			});
-
-		});
-
-	};
-
-	/**
-	 * Get a promise for a storage value.
-	 *
-	 * Promise will never reject, returns null instead.
-	 *
-	 * key should be a string.
-	 * value may be any stringify-able object or null if N/A.
-	 *
-	 * @param  {string}  key
-	 * @return {Promise}     {Promise.<?value>}
-	 */
-	Foxtrick.storage.get = function(key) {
-
-		return Foxtrick.localStore.then(function(store) {
-
-			return new Promise(function(resolve, reject) {
-				store.get(key, function onStoreGet(value) {
-
-					// type-cast undefined to null
-					if (typeof value === 'undefined')
-						value = null;
-
-					resolve(value);
-
-				}, reject);
-			});
-
-		}).catch(function(e) {
-			try {
-				Foxtrick.log('Error in storage.get', key, e);
-			}
-			catch (ee) {}
-
-			return null;
-		});
-
-	};
-
-	/**
-	 * Get a promise for when a certain storage branch is deleted
-	 *
-	 * @param  {string}  branch
-	 * @return {Promise}
-	 */
-	Foxtrick.storage.deleteBranch = function(branch) {
-
-		return Foxtrick.localStore.then(function(store) {
-
-			return new Promise(function(fulfill, reject) {
-				if (typeof branch === 'undefined' || branch === null)
-					branch = '';
-
-				branch = branch.toString();
-
-				var options = {
-					writeAccess: true,
-
-					onEnd: function() {
-						Foxtrick.log('localStore branch "' + branch + '" deleted');
-
-						fulfill();
-					},
-
-					onError: function(e) {
-						Foxtrick.log('Error deleting localStore branch', branch, e.message);
-
-						reject(e);
-					},
-				};
-
-				try {
-					if (branch !== '') {
-						options.keyRange = store.makeKeyRange({
-							lower: branch + '.', // charCode 46
-							upper: branch + '/', // charCode 47
-							excludeUpper: true,
-						});
-					}
-				}
-				catch (e) {
-					Foxtrick.log('Error deleting localStore branch', branch,
-					             'in makeKeyRange', e.message);
-
-					reject(e);
-					return;
-				}
-
-				store.iterate(function onStoreIterate(item, cursor) { // jshint ignore:line
-					cursor.delete();
-				}, options);
-
-			}).catch(function(e) {
-				Foxtrick.log('Error in localDeleteBranch', branch, e);
-				throw e;
-			});
-
-		});
-
-	};
-
 }
 
-// content
-else if (Foxtrick.context == 'content') {
+/**
+ * Get a promise when storage value is set.
+ *
+ * key should be a string.
+ * value may be any stringify-able object.
+ *
+ * @param  {string}  key
+ * @param  {object}  value
+ * @return {Promise}       {Promise.<key>}
+ */
+Foxtrick.storage.set = function(key, value) {
 
-	Foxtrick.storage.set = function(key, value) {
-
+	if (Foxtrick.context == 'content') {
 		return new Promise(function(fulfill, reject) {
 			Foxtrick.SB.ext.sendRequest({
 				req: 'setStorage',
@@ -355,20 +237,75 @@ else if (Foxtrick.context == 'content') {
 
 			});
 		});
+	}
 
-	};
+	return Foxtrick.localStore.then(function(store) {
 
-	Foxtrick.storage.get = function(key) {
+		return new Promise(function(fulfill, reject) {
+			store.put(key, value, fulfill, reject);
+		}).catch(function(e) {
+			Foxtrick.log('Error in storage.set', key, e);
+			throw e;
+		});
 
+	});
+
+};
+
+/**
+ * Get a promise for a storage value.
+ *
+ * Promise will never reject, returns null instead.
+ *
+ * key should be a string.
+ * value may be any stringify-able object or null if N/A.
+ *
+ * @param  {string}  key
+ * @return {Promise}     {Promise.<?value>}
+ */
+Foxtrick.storage.get = function(key) {
+
+	if (Foxtrick.context == 'content') {
 		return new Promise(function(fulfill) {
 			// background never rejects
 			Foxtrick.SB.ext.sendRequest({ req: 'getStorage', key: key }, fulfill);
 		});
+	}
 
-	};
+	return Foxtrick.localStore.then(function(store) {
 
-	Foxtrick.storage.deleteBranch = function(branch) {
+		return new Promise(function(resolve, reject) {
+			store.get(key, function onStoreGet(value) {
 
+				// type-cast undefined to null
+				if (typeof value === 'undefined')
+					value = null;
+
+				resolve(value);
+
+			}, reject);
+		});
+
+	}).catch(function(e) {
+		try {
+			Foxtrick.log('Error in storage.get', key, e);
+		}
+		catch (ee) {}
+
+		return null;
+	});
+
+};
+
+/**
+ * Get a promise for when a certain storage branch is deleted
+ *
+ * @param  {string}  branch
+ * @return {Promise}
+ */
+Foxtrick.storage.deleteBranch = function(branch) {
+
+	if (Foxtrick.context == 'content') {
 		return new Promise(function(fulfill, reject) {
 			Foxtrick.SB.ext.sendRequest({
 				req: 'deleteStorageBranch',
@@ -382,10 +319,61 @@ else if (Foxtrick.context == 'content') {
 
 			});
 		});
+	}
 
-	};
-}
+	return Foxtrick.localStore.then(function(store) {
 
+		return new Promise(function(fulfill, reject) {
+			if (typeof branch === 'undefined' || branch === null)
+				branch = '';
+
+			branch = branch.toString();
+
+			var options = {
+				writeAccess: true,
+
+				onEnd: function() {
+					Foxtrick.log('localStore branch "' + branch + '" deleted');
+
+					fulfill();
+				},
+
+				onError: function(e) {
+					Foxtrick.log('Error deleting localStore branch', branch, e.message);
+
+					reject(e);
+				},
+			};
+
+			try {
+				if (branch !== '') {
+					options.keyRange = store.makeKeyRange({
+						lower: branch + '.', // charCode 46
+						upper: branch + '/', // charCode 47
+						excludeUpper: true,
+					});
+				}
+			}
+			catch (e) {
+				Foxtrick.log('Error deleting localStore branch', branch,
+				             'in makeKeyRange', e.message);
+
+				reject(e);
+				return;
+			}
+
+			store.iterate(function onStoreIterate(item, cursor) { // jshint ignore:line
+				cursor.delete();
+			}, options);
+
+		}).catch(function(e) {
+			Foxtrick.log('Error in localDeleteBranch', branch, e);
+			throw e;
+		});
+
+	});
+
+};
 
 // /////////////////////////
 // TODO: remove deprecated
