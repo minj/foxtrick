@@ -388,7 +388,7 @@ Foxtrick.storage.deleteBranch = function(branch) {
  * @param {object} value
  */
 Foxtrick.localSet = function(key, value) {
-	Foxtrick.storage.set(key, value).catch(Foxtrick.catch());
+	Foxtrick.storage.set(key, value).catch(Foxtrick.catch('localSet'));
 };
 
 /**
@@ -400,7 +400,7 @@ Foxtrick.localSet = function(key, value) {
  * @param {function} callback
  */
 Foxtrick.localGet = function(key, callback) {
-	Foxtrick.storage.get(key).then(callback).catch(Foxtrick.catch());
+	Foxtrick.storage.get(key).then(callback).catch(Foxtrick.catch('localGet'));
 };
 
 /**
@@ -411,5 +411,5 @@ Foxtrick.localGet = function(key, callback) {
  * @param {string} branch
  */
 Foxtrick.localDeleteBranch = function(branch) {
-	Foxtrick.storage.deleteBranch(branch).catch(Foxtrick.catch());
+	Foxtrick.storage.deleteBranch(branch).catch(Foxtrick.catch('localDeleteBranch'));
 };
