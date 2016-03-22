@@ -188,18 +188,6 @@ Foxtrick.loader.background.browserLoad = function() {
 		// 	});
 		// };
 
-		this.requests.getXml = function(request, sender, sendResponse) { // jshint ignore:line
-			// @param url - the URL of resource to load with window.XMLHttpRequest
-			// @param params - params != null makes it and used for a POST request
-			// @callback_param data - response text
-			// @callback_param status - HTTP status of request
-
-			var callback = function(responseText, status) {
-				sendResponse({ data: responseText, status: status });
-			};
-			Foxtrick.util.load.async(request.url, callback, request.params);
-		};
-
 		this.requests.getDataUrl = function(request, sender, sendResponse) { // jshint ignore:line
 			var replaceImage = function(url) {
 				var image = new Image();
