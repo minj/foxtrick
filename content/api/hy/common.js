@@ -192,7 +192,7 @@ Foxtrick.api.hy._fetchOrIgnore = function(api, url, params,
 		var now = Foxtrick.modules.Core.HT_TIME + 59000;
 		if (now > ignored) {
 			buildParams(function(params) {
-				Foxtrick.util.load.async(url,
+				Foxtrick.util.load.fetch(url,
 				  function(response, status) {
 					switch (status) {
 						case 0:

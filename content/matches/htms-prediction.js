@@ -123,7 +123,10 @@ Foxtrick.modules['HTMSPrediction'] = {
 
 		var url = 'http://www.fantamondi.it/HTMS/dorequest.php?action=predict&' + params;
 		Foxtrick.load(url).then(function(text) {
-			var xml = Foxtrick.parseXml(text);
+			var xml = Foxtrick.parseXML(text);
+			if (xml == null)
+				return;
+
 			if (loading)
 				loading.parentNode.removeChild(loading);
 
