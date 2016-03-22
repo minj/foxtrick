@@ -390,12 +390,38 @@ else if (Foxtrick.context == 'content') {
 // /////////////////////////
 // TODO: remove deprecated
 // ////////////////////////
+
+/**
+ * Save a value in local storage
+ *
+ * @deprecated use storage.set() instead
+ *
+ * @param {string} key
+ * @param {object} value
+ */
 Foxtrick.localSet = function(key, value) {
 	Foxtrick.storage.set(key, value).catch(Foxtrick.catch());
 };
+
+/**
+ * Get a value from local storage
+ *
+ * @deprecated use storage.get() instead
+ *
+ * @param {string}   key
+ * @param {function} callback
+ */
 Foxtrick.localGet = function(key, callback) {
 	Foxtrick.storage.get(key).then(callback).catch(Foxtrick.catch());
 };
+
+/**
+ * Remove a branch from local storage
+ *
+ * @deprecated use storage.deleteBranch() instead
+ *
+ * @param {string} branch
+ */
 Foxtrick.localDeleteBranch = function(branch) {
 	Foxtrick.storage.deleteBranch(branch).catch(Foxtrick.catch());
 };
