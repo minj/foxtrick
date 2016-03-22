@@ -262,21 +262,6 @@ Foxtrick.loader.background.browserLoad = function() {
 		// from context-menu.js: dummy. request handled in there
 		this.requests.updateContextMenu = function() {}; // jshint ignore:line
 
-		// from sessionStore.js
-		this.requests.sessionSet = function(request) {
-			// @param key - key of session store
-			// @param value - value to store
-			Foxtrick.sessionSet(request.key, request.value);
-		};
-		this.requests.sessionGet = function(request, sender, sendResponse) { // jshint ignore:line
-			// @param key - key of session store
-			sendResponse({ value: Foxtrick.sessionGet(request.key) });
-		};
-		this.requests.sessionDeleteBranch = function(request) {
-			// @param branch - initial part of key(s) of session store to delete
-			Foxtrick.sessionDeleteBranch(request.branch);
-		};
-
 		// from load.js
 		this.requests.fetch = function(request, sender, sendResponse) {
 			// @param url - the URL of resource to fetch with window.XMLHttpRequest
@@ -313,6 +298,23 @@ Foxtrick.loader.background.browserLoad = function() {
 		};
 		this.requests.storageDeleteBranch = function(request, sender, sendResponse) {
 			Foxtrick.storage.deleteBranch(request.branch)
+				.then(sendResponse, sendResponse) // use the same callback for both
+				.catch(Foxtrick.catch(sender));
+		};
+
+		// from session-store.js
+		this.requests.sessionGet = function(request, sender, sendResponse) {
+			Foxtrick.session.get(request.key) // never rejects
+				.then(sendResponse)
+				.catch(Foxtrick.catch(sender));
+		};
+		this.requests.sessionSet = function(request, sender, sendResponse) {
+			Foxtrick.session.set(request.key, request.value)
+				.then(sendResponse, sendResponse) // use the same callback for both
+				.catch(Foxtrick.catch(sender));
+		};
+		this.requests.sessionDeleteBranch = function(request, sender, sendResponse) {
+			Foxtrick.session.deleteBranch(request.branch)
 				.then(sendResponse, sendResponse) // use the same callback for both
 				.catch(Foxtrick.catch(sender));
 		};
