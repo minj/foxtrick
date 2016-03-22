@@ -301,20 +301,20 @@ Foxtrick.loader.background.browserLoad = function() {
 		};
 
 		// from localStore.js
-		this.requests.localSet = function(request) {
-			// @param key - key of local store
-			// @param value - value to store
-			Foxtrick.localSet(request.key, request.value);
+		this.requests.storageGet = function(request, sender, sendResponse) {
+			Foxtrick.storage.get(request.key) // never rejects
+				.then(sendResponse)
+				.catch(Foxtrick.catch(sender));
 		};
-		this.requests.localGet = function(request, sender, sendResponse) { // jshint ignore:line
-			// @param key - key of local store
-			Foxtrick.localGet(request.key, function(value) {
-				sendResponse({ value: value });
-			});
+		this.requests.storageSet = function(request, sender, sendResponse) {
+			Foxtrick.storage.set(request.key, request.value)
+				.then(sendResponse, sendResponse) // use the same callback for both
+				.catch(Foxtrick.catch(sender));
 		};
-		this.requests.localDeleteBranch = function(request) {
-			// @param branch - initial part of key(s) of local store to delete
-			Foxtrick.localDeleteBranch(request.branch);
+		this.requests.storageDeleteBranch = function(request, sender, sendResponse) {
+			Foxtrick.storage.deleteBranch(request.branch)
+				.then(sendResponse, sendResponse) // use the same callback for both
+				.catch(Foxtrick.catch(sender));
 		};
 
 		// from misc.js
