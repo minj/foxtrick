@@ -203,7 +203,7 @@ Foxtrick.fetch = function(url, params) {
 	.catch(function(e) {
 		// handle fatal errors in Promise constructor
 		Foxtrick.log(ERROR_XHR_FATAL, e);
-		return { url: url, status: -1, text: ERROR_XHR_FATAL + e.message };
+		return { url: url, status: -1, text: ERROR_XHR_FATAL + e.message, params: params };
 	}).then(function(resp) {
 		// handle non-fatal errors by rejecting
 		if (typeof resp !== 'string')
