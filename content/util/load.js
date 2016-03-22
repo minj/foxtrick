@@ -15,7 +15,7 @@ if (!Foxtrick)
  * @param  {string} data
  * @return {object}
  */
-Foxtrick.safeJSON = function(data) {
+Foxtrick.parseJSON = function(data) {
 	var ret = null;
 	try {
 		ret = JSON.parse(data);
