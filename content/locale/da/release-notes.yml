@@ -16,6 +16,7 @@ da:
       and_more: Forskellige små ændringer og rettelser.
     0.16.1:
       important: '<header>Vigtige meddelelser</header>'
+      new_contributions: 'Modulet <module>PlayerPositionsEvaluations</module> bruger nu officielle data som er offentliggjort for global sæson #60. Imidlertid er yderligere parametre nødvendige for, at tallene giver mening. Mens rimelige standardværdier er angivet, er de hverken officielle eller baseret på statistiske undersøgelser. Vi tager glædeligt imod enhver tilbagemelding om værdierne, som kan være med til at forbedre vore data. Alle indstillinger er tilgængelige på enhver spillerside.'
       crowdin: '<header>En stor tak til alle de hjælpsomme brugere, som oversætter ved hjælp af <linkCrowdin>crowdin </linkCrowdin>. Du kan også give en hånd!</header>'
       support: '<header>Støt Foxtrick via Flattr mikrodonationer eller giv et bidrag med Paypal <linkContribute>Donér</linkContribute>.</header>'
       bugs: '<header>Fejlrettelser</header>'
