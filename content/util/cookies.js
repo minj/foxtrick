@@ -80,7 +80,7 @@ Foxtrick.cookies = {};
 	var gCookiesReady = Promise.resolve();
 
 	/**
-	 * Get a promise when session value is set.
+	 * Get a promise when cookie value is set.
 	 *
 	 * Promise will never reject.
 	 *
@@ -103,6 +103,7 @@ Foxtrick.cookies = {};
 					req: 'cookiesSet',
 					key: key,
 					value: value,
+					name: name,
 				}, fulfill);
 			});
 		}
