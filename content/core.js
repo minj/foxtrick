@@ -24,15 +24,15 @@ Foxtrick.modules.Core = {
 	run: function(doc) {
 		this.addBugReportLink(doc);
 
-		if (Foxtrick.isPage(doc, 'matchOrder')) {
-			var MOData = Foxtrick.InternalPath + 'resources/js/matchOrderData.js';
-			Foxtrick.util.inject.jsLink(doc, MOData);
-		}
-
 		var UTC = Foxtrick.util.time.getUTCDate(doc);
 		if (UTC) {
 			this.HT_TIME = UTC.getTime();
 			Foxtrick.Prefs.setString('lastTime', this.HT_TIME);
+		}
+
+		if (Foxtrick.isPage(doc, 'matchOrder')) {
+			var MOData = Foxtrick.InternalPath + 'resources/js/matchOrderData.js';
+			Foxtrick.util.inject.jsLink(doc, MOData);
 		}
 
 		this.parseSelfTeamInfo(doc);
