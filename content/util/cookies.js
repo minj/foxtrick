@@ -2,6 +2,8 @@
 /*
  * cookies.js
  * cookie management
+ *
+ * @author convincedd, LA-MJ
  */
 
 if (!Foxtrick)
@@ -12,6 +14,10 @@ Foxtrick.cookies = {};
 
 (function() {
 
+	/**
+	 * Cookie specification object
+	 * @type {Object}
+	 */
 	const COOKIE_SPEC = {
 		for_hty: {
 			url: 'http://www.hattrick-youthclub.org/*',
@@ -31,6 +37,16 @@ Foxtrick.cookies = {};
 		},
 	};
 
+	/**
+	 * Parse a value from a cookie string according to spec:
+	 * {isJSON, isBase64: Boolean}.
+	 *
+	 * base64 may only be used when isJSON=true.
+	 *
+	 * @param  {string} str
+	 * @param  {object} spec
+	 * @return {object}
+	 */
 	var parseVal = function(str, spec) {
 		if (!str)
 			return {};
@@ -45,6 +61,16 @@ Foxtrick.cookies = {};
 			return JSON.parse(Foxtrick.decodeBase64(str));
 	};
 
+	/**
+	 * Prepare a value for storing in a cookie according to spec:
+	 * {isJSON, isBase64: Boolean}.
+	 *
+	 * base64 may only be used when isJSON=true.
+	 *
+	 * @param  {object} val
+	 * @param  {object} spec
+	 * @return {string}
+	 */
 	var stringifyVal = function(val, spec) {
 		if (!val)
 			return '';
@@ -59,6 +85,17 @@ Foxtrick.cookies = {};
 			return Foxtrick.encodeBase64(JSON.stringify(val));
 	};
 
+	/**
+	 * Create a chrome API Cookie object.
+	 *
+	 * Returns {url, domain, name, value: string}
+	 *
+	 * @param  {string} key
+	 * @param  {string} name
+	 * @param  {object} oldVal
+	 * @param  {object} val
+	 * @return {object}
+	 */
 	var makeCookie = function(key, name, oldVal, val) {
 		var spec = COOKIE_SPEC[key];
 
@@ -76,7 +113,10 @@ Foxtrick.cookies = {};
 		return cookie;
 	};
 
-	// use a global Promise to limit concurrency
+	/**
+	 * A global Promise to limit concurrency while cookie.set is in progress
+	 * @type {Promise}
+	 */
 	var gCookiesReady = Promise.resolve();
 
 	/**
