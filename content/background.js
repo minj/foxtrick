@@ -320,21 +320,15 @@ Foxtrick.loader.background.browserLoad = function() {
 		};
 
 		// from misc.js
-		this.requests.cookieSet = function(request, sender, sendResponse) { // jshint ignore:line
-			// @param where - cookies type: see misc.js - cookies map
-			// @param what - value to add to the cookie
-			// @callback cookie - the new cookie it set
-			Foxtrick._cookieSet(request.where, request.name, request.what, function(response) {
-				if (sendResponse)
-					sendResponse(response);
-			});
+		this.requests.cookiesGet = function(request, sender, sendResponse) {
+			Foxtrick.cookies.get(request.key, request.name) // never rejects
+				.then(sendResponse)
+				.catch(Foxtrick.catch(sender));
 		};
-		this.requests.cookieGet = function(request, sender, sendResponse) { // jshint ignore:line
-			// @param where - cookies type: see misc.js - cookies map
-			// @callback cookie - the retrived cookie it set
-			Foxtrick._cookieGet(request.where, request.name, function(response) {
-				sendResponse(response);
-			});
+		this.requests.cookiesSet = function(request, sender, sendResponse) {
+			Foxtrick.cookies.set(request.key, request.value, request.name) // never rejects
+				.then(sendResponse)
+				.catch(Foxtrick.catch(sender));
 		};
 
 		// from permissions.js
