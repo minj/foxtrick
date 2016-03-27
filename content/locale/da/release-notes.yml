@@ -37,8 +37,8 @@ da:
       bugs: '<header>Fejlrettelser</header>'
       weatherSE: 'Grundet ændringer fra Hattrick, har der været visuelle problemer af speciellebegivenheder ifm. spillere under kamptidslinjen ved <module>MatchLineupFixes</module>. Problemet er nu løst.'
       other: '<header>Andre ændringer</header>'
-      sandbox: Support for den kommende arbejdsfunktion for kampordre er nu tilføjet.
-      compact_lineups: 'Titlerne for holdopstillinger, ved kampordre siden under fanen gemt, vil nu blive komprimeret med <module>MatchOrderInterface</module>. Dette giver mere plads og mulighed for at gemme flere forskellige hold ordrer.'
+      sandbox: Support for den kommende opstillingssimulator er nu tilføjet.
+      compact_lineups: 'Titlerne for holdopstillinger, ved kampordre - holdopstillinger - under fanen gemt, vil nu blive komprimeret med <module>MatchOrderInterface</module>. Dette giver mere plads og mulighed for at gemme flere forskellige hold ordrer.'
       and_more: Forskellige små ændringer og rettelser.
     0.15.2:
       important: '<header>Vigtige meddelelser</header>'
