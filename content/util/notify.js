@@ -23,9 +23,9 @@ Foxtrick.util.notify = {};
  * @param {string}        msg
  * @param {string|object} source
  * @param {object}        opts
- * @param {function}      callback {function(string)}
+ * @param {function}      callback {function(string)} TODO fails due to disconnected port
  */
-Foxtrick.util.notify.create = function(msg, source, opts, callback) {
+Foxtrick.util.notify.create = function(msg, source, opts/*, callback*/) {
 	const TITLE = 'Hattrick';
 	const IMG = Foxtrick.InternalPath + 'resources/img/icon-128.png';
 	const NAME = 'Foxtrick';
@@ -51,8 +51,8 @@ Foxtrick.util.notify.create = function(msg, source, opts, callback) {
 							Foxtrick.SB.ext.sendRequest({ req: 'reuseTab', url: data });
 						}
 
-						if (typeof callback === 'function')
-							callback(data);
+						// if (typeof callback === 'function')
+						// 	callback(data);
 					}
 				}
 				catch (e) {
@@ -181,7 +181,7 @@ Foxtrick.util.notify.create = function(msg, source, opts, callback) {
 			clearNote(noteId).then(function() {
 				return updateOriginTab(source.tab, tabOpts);
 			}).then(function() {
-				callback(gUrl);
+				// callback(gUrl);
 			}).catch(Foxtrick.catch('notifications.onButtonClicked'));
 		});
 
@@ -197,7 +197,7 @@ Foxtrick.util.notify.create = function(msg, source, opts, callback) {
 			clearNote(noteId).then(function() {
 				return updateOriginTab(source.tab, tabOpts);
 			}).then(function() {
-				callback(gUrl);
+				// callback(gUrl);
 			}).catch(Foxtrick.catch('notifications.onClicked'));
 		});
 
@@ -255,7 +255,7 @@ Foxtrick.util.notify.create = function(msg, source, opts, callback) {
 
 			this.cancel();
 
-			callback(gUrl);
+			// callback(gUrl);
 		};
 
 		var notification = window.webkitNotifications.createNotification(IMG, TITLE, msg);
@@ -327,6 +327,6 @@ Foxtrick.util.notify.create = function(msg, source, opts, callback) {
 			id: gId,
 			url: gUrl,
 			opts: opts,
-		}, callback);
+		}/*, callback*/);
 	}
 };
