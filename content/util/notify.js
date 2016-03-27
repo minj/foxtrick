@@ -93,21 +93,24 @@ Foxtrick.util.notify.create = function(msg, source, opts, callback) {
 	var createGecko = function() {
 
 		var listener = {
+			/**
+			 * observer function
+			 * @param  {object} subject null
+			 * @param  {string} topic   {alertclickcallback|alertshow|alertfinished}
+			 * @param  {string} data    url
+			 */
 			observe: function(subject, topic, data) { // jshint ignore:line
 				try {
 					if (topic === 'alertclickcallback') {
 						if (Foxtrick.platform == 'Firefox')
-							Foxtrick.openAndReuseOneTabPerURL(gUrl, true);
+							Foxtrick.openAndReuseOneTabPerURL(data, true);
 						else {
-							Foxtrick.SB.ext.sendRequest({ req: 'reuseTab', url: gUrl });
+							Foxtrick.SB.ext.sendRequest({ req: 'reuseTab', url: data });
 						}
+
+						if (typeof callback === 'function')
+							callback(data);
 					}
-
-					// if (topic === 'alertfinished') {
-					// }
-
-					if (typeof callback === 'function')
-						callback(data);
 				}
 				catch (e) {
 					Foxtrick.log(e);
