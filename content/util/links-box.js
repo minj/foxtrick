@@ -581,7 +581,7 @@ Foxtrick.util.links.run = function(doc, module) {
 			else
 				o.types = [module.LINK_TYPE];
 		}
-		var promises = Foxtrick.map(function(type) {
+		var specPromises = Foxtrick.map(function(type) {
 			var opts = {
 				module: module.MODULE_NAME,
 				className: LINK_CLASS,
@@ -601,11 +601,15 @@ Foxtrick.util.links.run = function(doc, module) {
 
 		}, o.types);
 
-		Promise.all(promises).then(function(anchorSpecs) {
-			anchorSpecs.forEach(function(spec) {
-				Foxtrick.appendChildren(spec.parent, spec.anchors);
+		// allow concurrent resolution
+		// but append children in order
+		specPromises.reduce(function(prev, now) {
+			return prev.then(function() {
+				return now.then(function(spec) {
+					Foxtrick.appendChildren(spec.parent, spec.anchors);
+				}).catch(Foxtrick.catch('links.run'));
 			});
-		});
+		}, Promise.resolve());
 
 		var adder = o.hasNewSidebar ? Foxtrick.Pages.Match : Foxtrick;
 		var wrapper = adder.addBoxToSidebar(doc, HEADER, box, -20);
@@ -613,7 +617,6 @@ Foxtrick.util.links.run = function(doc, module) {
 
 		var customLinkSet = o.customLinkSet || module.MODULE_NAME;
 		Foxtrick.util.links.add(box, customLinkSet, info, o.hasNewSidebar);
-
 	};
 
 	Foxtrick.modules['Links'].getCollection().then(run);
