@@ -169,28 +169,9 @@ Foxtrick.util.notify.create = function(msg, source, opts/*, callback*/) {
 			});
 		};
 
-		chrome.notifications.onButtonClicked.addListener(
-		  function onButtonClicked(noteId, btnIdx) { // jshint ignore:line
+		var onClicked = function onClicked(noteId) {
 			if (noteId !== gId)
 				return;
-
-			chrome.notifications.onButtonClicked.removeListener(onButtonClicked);
-
-			var tabOpts = { active: true, url: gUrl }; // focus and open
-
-			clearNote(noteId).then(function() {
-				return updateOriginTab(source.tab, tabOpts);
-			}).then(function() {
-				// callback(gUrl);
-			}).catch(Foxtrick.catch('notifications.onButtonClicked'));
-		});
-
-		chrome.notifications.onClicked.addListener(
-		  function onClicked(noteId) {
-			if (noteId !== gId)
-				return;
-
-			chrome.notifications.onClicked.removeListener(onClicked);
 
 			var tabOpts = { active: true }; // focus only
 
@@ -199,29 +180,57 @@ Foxtrick.util.notify.create = function(msg, source, opts/*, callback*/) {
 			}).then(function() {
 				// callback(gUrl);
 			}).catch(Foxtrick.catch('notifications.onClicked'));
-		});
+		};
 
-		chrome.notifications.getAll(function(notes) {
-			if (chrome.runtime.lastError)
+		var onButtonClicked = function onButtonClicked(noteId, btnIdx) { // jshint ignore:line
+			if (noteId !== gId)
 				return;
 
-			Promise.resolve(notes).then(function(notes) {
+			var tabOpts = { active: true, url: gUrl }; // focus and open
 
-				if (gId in notes)
-					return clearNote(gId);
-
+			clearNote(noteId).then(function() {
+				return updateOriginTab(source.tab, tabOpts);
 			}).then(function() {
+				// callback(gUrl);
+			}).catch(Foxtrick.catch('notifications.onButtonClicked'));
+		};
+
+		var onClosed = function onClosed(noteId) {
+			console.log('onClosed', gId, noteId);
+
+			if (noteId !== gId)
+				return;
+
+			chrome.notifications.onButtonClicked.removeListener(onButtonClicked);
+			chrome.notifications.onClicked.removeListener(onClicked);
+			chrome.notifications.onClosed.removeListener(onClosed);
+		};
+
+		chrome.notifications.getAll(function(notes) {
+			if (chrome.runtime.lastError) {} // jscs:ignore disallowEmptyBlocks
+
+			// clear dupes manually to trigger onClosed listener
+			// prevents double execution when a note is duplicated before closing
+			var now = gId in notes ? clearNote(gId) : Promise.resolve();
+			now.then(function() {
 				chrome.notifications.create(gId, options,
 				  function(nId) { // jshint ignore:line
 					var err = chrome.runtime.lastError;
-					if (err && /^Adding buttons/.test(err.message)) {
-						// opera does not support buttons
-						delete options.buttons;
-						opts = options;
-						createChrome();
+					if (err) {
+						if (/^Adding buttons/.test(err.message)) {
+							// opera does not support buttons
+							delete options.buttons;
+							opts = options;
+							createChrome();
+						}
+					}
+					else {
+						chrome.notifications.onClicked.addListener(onClicked);
+						chrome.notifications.onButtonClicked.addListener(onButtonClicked);
+						chrome.notifications.onClosed.addListener(onClosed);
 					}
 				});
-			}).catch(Foxtrick.catch('notifications.getAll'));
+			}).catch(Foxtrick.catch('notifications.create'));
 		});
 	};
 
