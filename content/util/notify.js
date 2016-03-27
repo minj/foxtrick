@@ -13,63 +13,6 @@ if (!Foxtrick.util)
 
 Foxtrick.util.notify = {};
 
-if (Foxtrick.platform === 'Chrome' && chrome.notifications) {
-	// store notification data
-	Foxtrick.util.notify.__notes = {};
-	(function() {
-		var focusWindow = function(winId) {
-			try {
-				chrome.windows.update(winId, { focused: true });
-			}
-			catch (e) {}
-		};
-
-		var openTabFromNote = function(noteId, tabOptsFn) {
-			var note = Foxtrick.util.notify.__notes[noteId];
-			if (note) {
-				var tabOpts = tabOptsFn(note);
-
-				// focus sender tab
-				chrome.tabs.update(note.tabId, tabOpts, function() {
-					if (chrome.runtime.lastError) {
-						// tab closed, open new
-						chrome.tabs.create({ url: note.url }, function(tab) {
-							focusWindow(tab.windowId);
-						});
-					}
-					else {
-						focusWindow(note.windowId);
-					}
-				});
-			}
-
-			// remove used
-			var noOp = function(done) {}; // jshint ignore:line
-			chrome.notifications.clear(noteId, noOp);
-		};
-
-		var runCb = function(noteId) {
-			var note = Foxtrick.util.notify.__notes[noteId];
-			if (note) {
-				note.callback(note.url);
-			}
-		};
-
-		chrome.notifications.onClicked.addListener(function(noteId) {
-			openTabFromNote(noteId, function() { return { selected: true };	});
-			runCb(noteId);
-		});
-
-		chrome.notifications.onButtonClicked.addListener(
-		  function(noteId, btnIdx) { // jshint ignore:line
-			openTabFromNote(noteId, function(note) { // jshint ignore:line
-				return { selected: true, url: note.url };
-			});
-			runCb(noteId);
-		});
-	})();
-}
-
 /**
  * Create a desktop notification with a given message and link to source
  *
@@ -174,23 +117,81 @@ Foxtrick.util.notify.create = function(msg, source, opts, callback) {
 				options[opt] = opts[opt];
 		}
 
-		if (gId !== '') {
-			// named note, save source
-			Foxtrick.util.notify.__notes[gId] = {
-				url: gUrl,
-				tabId: source.tab.id,
-				windowId: source.tab.windowId,
-				callback: callback,
+		var clearNote = function(noteId) {
+			return new Promise(function(resolve) {
+				chrome.notifications.clear(noteId, resolve);
+			});
+		};
+
+		var updateOriginTab = function(originTab, tabOpts) {
+			var focusWindow = function(winId) {
+				return new Promise(function(resolve) {
+					chrome.windows.update(winId, { focused: true }, resolve);
+				});
 			};
-		}
+
+			return new Promise(function(resolve) {
+				chrome.tabs.update(originTab.id, tabOpts,
+				  function(tab) { // jshint ignore:line
+					if (chrome.runtime.lastError) {
+						// tab closed, open new
+						chrome.tabs.create({ url: gUrl }, resolve);
+					}
+					else {
+						resolve(tab);
+					}
+				});
+			}).then(function(tab) {
+				return focusWindow(tab.windowId).then(function() {
+					return tab;
+				});
+			});
+		};
+
+		chrome.notifications.onButtonClicked.addListener(
+		  function onButtonClicked(noteId, btnIdx) { // jshint ignore:line
+			if (noteId !== gId)
+				return;
+
+			chrome.notifications.onButtonClicked.removeListener(onButtonClicked);
+
+			var tabOpts = { selected: true, url: gUrl }; // focus and open
+
+			clearNote(noteId).then(function() {
+				return updateOriginTab(source.tab, tabOpts);
+			}).then(function() {
+				callback(gUrl);
+			});
+		});
+
+		chrome.notifications.onClicked.addListener(
+		  function onClicked(noteId) {
+			if (noteId !== gId)
+				return;
+
+			chrome.notifications.onClicked.removeListener(onClicked);
+
+			var tabOpts = { selected: true }; // focus only
+
+			clearNote(noteId).then(function() {
+				return updateOriginTab(source.tab, tabOpts);
+			}).then(function() {
+				callback(gUrl);
+			});
+		});
 
 		chrome.notifications.getAll(function(notes) {
-			// check if exists
 			if (chrome.runtime.lastError)
 				return;
 
-			var addNew = function() {
-				chrome.notifications.create(gId, options, function(nId) { // jshint ignore:line
+			Promise.resolve(notes).then(function(notes) {
+
+				if (gId in notes)
+					return clearNote(gId);
+
+			}).then(function() {
+				chrome.notifications.create(gId, options,
+				  function(nId) { // jshint ignore:line
 					var err = chrome.runtime.lastError;
 					if (err && /^Adding buttons/.test(err.message)) {
 						// opera does not support buttons
@@ -199,19 +200,7 @@ Foxtrick.util.notify.create = function(msg, source, opts, callback) {
 						createChrome();
 					}
 				});
-			};
-
-			if (gId in notes) {
-				// need to clear first
-				// otherwise new note is not displayed
-				chrome.notifications.clear(gId, function(success) { // jshint ignore:line
-					addNew();
-				});
-			}
-			else {
-				addNew();
-			}
-
+			});
 		});
 	};
 
