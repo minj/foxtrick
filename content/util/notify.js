@@ -7,7 +7,7 @@
  */
 
 if (!Foxtrick)
-	var Foxtrick = {};
+	var Foxtrick = {}; // jshint ignore: line
 if (!Foxtrick.util)
 	Foxtrick.util = {};
 
@@ -83,10 +83,12 @@ if (Foxtrick.platform === 'Chrome' && chrome.notifications) {
  * @param {function}      callback {function(string)}
  */
 Foxtrick.util.notify.create = function(msg, source, opts, callback) {
-	var TITLE = 'Hattrick';
-	var IMG = Foxtrick.InternalPath + 'resources/img/icon-128.png';
-	var NAME = 'Foxtrick';
-	var IS_CLICKABLE = true;
+	const TITLE = 'Hattrick';
+	const IMG = Foxtrick.InternalPath + 'resources/img/icon-128.png';
+	const NAME = 'Foxtrick';
+	const IS_CLICKABLE = true;
+
+	var gId = '', gUrl = '';
 
 	var createGecko = function() {
 
@@ -95,9 +97,9 @@ Foxtrick.util.notify.create = function(msg, source, opts, callback) {
 				try {
 					if (topic === 'alertclickcallback') {
 						if (Foxtrick.platform == 'Firefox')
-							Foxtrick.openAndReuseOneTabPerURL(url, true);
+							Foxtrick.openAndReuseOneTabPerURL(gUrl, true);
 						else {
-							Foxtrick.SB.ext.sendRequest({ req: 'reuseTab', url: url });
+							Foxtrick.SB.ext.sendRequest({ req: 'reuseTab', url: gUrl });
 						}
 					}
 
@@ -115,7 +117,7 @@ Foxtrick.util.notify.create = function(msg, source, opts, callback) {
 
 		try {
 			var alertWin = Cc['@mozilla.org/alerts-service;1'].getService(Ci.nsIAlertsService);
-			alertWin.showAlertNotification(IMG, TITLE, msg, IS_CLICKABLE, url, listener, NAME);
+			alertWin.showAlertNotification(IMG, TITLE, msg, IS_CLICKABLE, gUrl, listener, NAME);
 		}
 		catch (e) {
 			// fix for when alerts-service is not available (e.g. SUSE)
@@ -138,11 +140,11 @@ Foxtrick.util.notify.create = function(msg, source, opts, callback) {
 			// // i. e. previous alert
 			// arguments[9] --> an optional callback listener (nsIObserver)
 			// arguments[10] -> the nsIURI.hostPort of the origin, optional
-			var winArgs = [IMG, TITLE, msg, IS_CLICKABLE, url, 2, null, null, null, listener, NAME];
+			var wArgs = [IMG, TITLE, msg, IS_CLICKABLE, gUrl, 2, null, null, null, listener, NAME];
 
 			// aParentwindow, aUrl, aWindowName, aWindowFeatures, aWindowArguments (nsISupports)
 			var win = Services.ww.openWindow(null, ALERT_XUL, '_blank', FF_WIN_OPTS, null);
-			win.arguments = winArgs;
+			win.arguments = wArgs;
 		}
 	};
 
@@ -169,10 +171,10 @@ Foxtrick.util.notify.create = function(msg, source, opts, callback) {
 				options[opt] = opts[opt];
 		}
 
-		if (id !== '') {
+		if (gId !== '') {
 			// named note, save source
-			Foxtrick.util.notify.__notes[id] = {
-				url: url,
+			Foxtrick.util.notify.__notes[gId] = {
+				url: gUrl,
 				tabId: source.tab.id,
 				windowId: source.tab.windowId,
 				callback: callback,
@@ -185,7 +187,7 @@ Foxtrick.util.notify.create = function(msg, source, opts, callback) {
 				return;
 
 			var addNew = function() {
-				chrome.notifications.create(id, options, function(nId) { // jshint ignore:line
+				chrome.notifications.create(gId, options, function(nId) { // jshint ignore:line
 					var err = chrome.runtime.lastError;
 					if (err && /^Adding buttons/.test(err.message)) {
 						// opera does not support buttons
@@ -196,10 +198,10 @@ Foxtrick.util.notify.create = function(msg, source, opts, callback) {
 				});
 			};
 
-			if (id in notes) {
+			if (gId in notes) {
 				// need to clear first
 				// otherwise new note is not displayed
-				chrome.notifications.clear(id, function(success) { // jshint ignore:line
+				chrome.notifications.clear(gId, function(success) { // jshint ignore:line
 					addNew();
 				});
 			}
@@ -221,10 +223,10 @@ Foxtrick.util.notify.create = function(msg, source, opts, callback) {
 					catch (e) {}
 				};
 
-				chrome.tabs.update(source.tab.id, { url: url, selected: true }, function() {
+				chrome.tabs.update(source.tab.id, { url: gUrl, selected: true }, function() {
 					if (chrome.runtime.lastError) {
 						// tab closed, open new
-						chrome.tabs.create({ url: url }, function(tab) {
+						chrome.tabs.create({ url: gUrl }, function(tab) {
 							focusWindow(tab.windowId);
 						});
 					}
@@ -235,17 +237,17 @@ Foxtrick.util.notify.create = function(msg, source, opts, callback) {
 
 			}
 			else {
-				Foxtrick.SB.tabs.create({ url: url });
+				Foxtrick.SB.tabs.create({ url: gUrl });
 			}
 
 			this.cancel();
 
-			callback(url);
+			callback(gUrl);
 		};
 
 		var notification = window.webkitNotifications.createNotification(IMG, TITLE, msg);
 
-		if (url)
+		if (gUrl)
 			notification.onclick = onclick;
 
 		// Then show the notification.
@@ -270,11 +272,10 @@ Foxtrick.util.notify.create = function(msg, source, opts, callback) {
 	};
 
 	// standardize options
-	var id = '', url = '';
 	if (opts && opts.opts) {
 		// request to background
-		id = opts.id || '';
-		url = opts.url;
+		gId = opts.id || '';
+		gUrl = opts.url;
 
 		opts = opts.opts;
 	}
@@ -283,11 +284,11 @@ Foxtrick.util.notify.create = function(msg, source, opts, callback) {
 		opts = opts || {};
 
 		if (opts.id) {
-			id = opts.id;
+			gId = opts.id;
 			delete opts.id;
 		}
 
-		url = source;
+		gUrl = source;
 	}
 
 	// start logic
@@ -310,8 +311,8 @@ Foxtrick.util.notify.create = function(msg, source, opts, callback) {
 		Foxtrick.SB.ext.sendRequest({
 			req: 'notify',
 			msg: msg,
-			id: id,
-			url: url,
+			id: gId,
+			url: gUrl,
 			opts: opts,
 		}, callback);
 	}
