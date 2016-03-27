@@ -131,11 +131,32 @@ Foxtrick.util.notify.create = function(msg, source, opts, callback) {
 			};
 
 			return new Promise(function(resolve) {
+				if (tabOpts.url) {
+					// open URLs in a new tab next to original
+					// set correct position
+					// not setting opener since originTab may already be closed
+					var newOpts = {
+						windowId: originTab.windowId,
+						index: originTab.index + 1,
+					};
+					Foxtrick.mergeAll(newOpts, tabOpts);
+
+					chrome.tabs.create(newOpts, resolve);
+					return;
+				}
+
 				chrome.tabs.update(originTab.id, tabOpts,
 				  function(tab) { // jshint ignore:line
 					if (chrome.runtime.lastError) {
-						// tab closed, open new
-						chrome.tabs.create({ url: gUrl }, resolve);
+						// tab closed, restore
+						var restoreOpts = {
+							url: gUrl,
+							windowId: originTab.windowId,
+							index: originTab.index,
+						};
+						Foxtrick.mergeAll(restoreOpts, tabOpts);
+
+						chrome.tabs.create(restoreOpts, resolve);
 					}
 					else {
 						resolve(tab);
