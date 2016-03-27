@@ -155,7 +155,7 @@ Foxtrick.util.notify.create = function(msg, source, opts, callback) {
 
 			chrome.notifications.onButtonClicked.removeListener(onButtonClicked);
 
-			var tabOpts = { selected: true, url: gUrl }; // focus and open
+			var tabOpts = { active: true, url: gUrl }; // focus and open
 
 			clearNote(noteId).then(function() {
 				return updateOriginTab(source.tab, tabOpts);
@@ -171,7 +171,7 @@ Foxtrick.util.notify.create = function(msg, source, opts, callback) {
 
 			chrome.notifications.onClicked.removeListener(onClicked);
 
-			var tabOpts = { selected: true }; // focus only
+			var tabOpts = { active: true }; // focus only
 
 			clearNote(noteId).then(function() {
 				return updateOriginTab(source.tab, tabOpts);
