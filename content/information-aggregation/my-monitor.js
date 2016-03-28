@@ -47,22 +47,6 @@ Foxtrick.modules['MyMonitor'] = {
 				];
 			}
 
-			// TODO: fix team names never being updated in prefs
-			// rewrite into a general mechanism with Promises
-			// FT <0.16 escaped team names
-			var isEscaped = false;
-			teams = Foxtrick.map(function(team) {
-				var unicode = unescape(team.name);
-				if (unicode != team.name) {
-					isEscaped = true;
-					team.name = unicode;
-				}
-				return team;
-			}, teams);
-
-			if (isEscaped)
-				setSavedTeams(teams);
-
 			if (SORT) {
 				var sorter = function(a, b) {
 					if (SORT == 1) {
@@ -499,29 +483,39 @@ Foxtrick.modules['MyMonitor'] = {
 
 				var argStr = JSON.stringify(args);
 
-				Foxtrick.util.api.retrieve(doc, args, { cache_lifetime: 'default' },
-				  function(xml, errorText) {
-					if (!xml || errorText) {
-						Foxtrick.log(errorText);
-						return;
-					}
+				return new Promise(function(resolve) {
+					Foxtrick.util.api.retrieve(doc, args, { cache_lifetime: 'default' },
+					  function(xml, errorText) {
+						if (!xml || errorText) {
+							Foxtrick.log(errorText);
 
-					team.name = xml.text('TeamName');
-					team.id = xml.num('TeamID');
-					buildLink(team, nameLink);
+							resolve(team);
 
-					var nextMatchDate =
-						Foxtrick.util.matchView.fillMatches(matchesContainer, xml, errorText);
+							return;
+						}
 
-					// change expire date of XML to after next match game
-					if (nextMatchDate) {
-						var time = nextMatchDate.getTime() + 105 * Foxtrick.util.time.MSECS_IN_MIN;
-						Foxtrick.util.api.setCacheLifetime(argStr, time);
-					}
+						team.name = xml.text('TeamName');
+						team.id = xml.num('TeamID');
+						buildLink(team, nameLink);
+
+						var nextMatchDate =
+							Foxtrick.util.matchView.fillMatches(matchesContainer, xml, errorText);
+
+						// change expire date of XML to after next match game
+						if (nextMatchDate) {
+							var time = nextMatchDate.getTime() +
+								105 * Foxtrick.util.time.MSECS_IN_MIN;
+
+							Foxtrick.util.api.setCacheLifetime(argStr, time);
+						}
+
+						resolve(team);
+					});
 				});
-
 			};
-			Foxtrick.map(addTeam, gTeams);
+			var teamPromises = Foxtrick.map(addTeam, gTeams);
+			Promise.all(teamPromises).then(setSavedTeams)
+				.catch(Foxtrick.catch(module));
 
 			addBulkLiveSelect(monitor);
 		};
