@@ -2,7 +2,7 @@
 /**
  * nt-peek.js
  * peeks NT/U20 matches at MyHT
- * @author ryanli
+ * @author ryanli, convincedd, ryanli
  */
 
 Foxtrick.modules['NtPeek'] = {
