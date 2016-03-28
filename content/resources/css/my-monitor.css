@@ -47,7 +47,7 @@
 	width: 85%;
 	display: inline-block;
 }
-.teamicon + .ft-monitor-team-name  {
+.teamIconSpan + .ft-monitor-team-name  {
 	width: 70%;
 }
 .flag + .ft-monitor-team-name {
@@ -71,7 +71,7 @@
 	display: none;
 }
 
-.teamicon {
+.teamIcon {
 	padding: 0 5px 0 0;
 	margin:0 0 -2px;
 	max-height: 24px;
