@@ -182,7 +182,7 @@ Foxtrick.util.notify.create = function(msg, source, opts/*, callback*/) {
 				return updateOriginTab(source.tab, tabOpts);
 			}).then(function() {
 				// callback(gUrl);
-			});
+			}).catch(Foxtrick.catch('notifications.onButtonClicked'));
 		});
 
 		chrome.notifications.onClicked.addListener(
@@ -198,7 +198,7 @@ Foxtrick.util.notify.create = function(msg, source, opts/*, callback*/) {
 				return updateOriginTab(source.tab, tabOpts);
 			}).then(function() {
 				// callback(gUrl);
-			});
+			}).catch(Foxtrick.catch('notifications.onClicked'));
 		});
 
 		chrome.notifications.getAll(function(notes) {
@@ -221,7 +221,7 @@ Foxtrick.util.notify.create = function(msg, source, opts/*, callback*/) {
 						createChrome();
 					}
 				});
-			});
+			}).catch(Foxtrick.catch('notifications.getAll'));
 		});
 	};
 

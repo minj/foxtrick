@@ -12,6 +12,8 @@ Foxtrick.modules['TableOfStatisticalTruth'] = {
 
 	run: function(doc) {
 
+		var module = this;
+
 		var season = doc.getElementById('mainBody').getElementsByTagName('select')[0].value;
 		var crumbs = Foxtrick.Pages.All.getBreadCrumbs(doc);
 		var serieLink = crumbs[1];
@@ -141,8 +143,9 @@ Foxtrick.modules['TableOfStatisticalTruth'] = {
 				Foxtrick.modules['TableSort'].run(doc);
 			};
 
-			Foxtrick.load(url).then(Foxtrick.parseXML).then(buildTable);
+			Foxtrick.load(url).then(Foxtrick.parseXML)
+				.then(buildTable).catch(Foxtrick.catch(module));
 
 		};
-	}
+	},
 };
