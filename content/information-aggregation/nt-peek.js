@@ -2,7 +2,7 @@
 /**
  * nt-peek.js
  * peeks NT/U20 matches at MyHT
- * @author ryanli
+ * @author ryanli, convincedd, ryanli
  */
 
 Foxtrick.modules['NtPeek'] = {
@@ -45,18 +45,19 @@ Foxtrick.modules['NtPeek'] = {
 		var ntName = Foxtrick.XMLData.getNTNameByLeagueId(leagueId);
 		var u20Name = 'U-20 ' + ntName;
 
-		var insertBefore = Foxtrick.getMBElement(doc, 'ucForumSneakpeek_updSneakpeek');
-
 		var container = Foxtrick.createFeaturedElement(doc, this, 'div');
 		container.className = 'ft-nt-peek';
+		var insertBefore = Foxtrick.getMBElement(doc, 'ucForumSneakpeek_updSneakpeek');
 		insertBefore.parentNode.insertBefore(container, insertBefore);
 
 		// NT container
 		var ntContainer = buildContainer(ntName, ntId, true);
 		container.appendChild(ntContainer);
+
 		// U20 container
 		var u20Container = buildContainer(u20Name, u20Id, false);
 		container.appendChild(u20Container);
+
 		// separator
 		var separator = doc.createElement('div');
 		separator.className = 'separator';
@@ -65,35 +66,35 @@ Foxtrick.modules['NtPeek'] = {
 		var ntArgs = [
 			['file', 'matches'],
 			['version', '2.8'],
-			['teamId', parseInt(ntId, 10)]
+			['teamId', parseInt(ntId, 10)],
 		];
-		var parameters_nt_str = JSON.stringify(ntArgs);
+		var ntArgStr = JSON.stringify(ntArgs);
 		Foxtrick.util.api.retrieve(doc, ntArgs, { cache_lifetime: 'default' },
 		  function(xml, errorText) {
-			var nextmatchdate = Foxtrick.util.matchView.fillMatches(
-									ntContainer.getElementsByTagName('div')[0],
-									xml,
-									errorText);
-			if (nextmatchdate) {
-				Foxtrick.util.api.setCacheLifetime(parameters_nt_str, nextmatchdate.getTime());
+			var div = ntContainer.querySelector('div');
+			var nextMatchDate =
+				Foxtrick.util.matchView.fillMatches(div, xml, errorText);
+
+			if (nextMatchDate) {
+				Foxtrick.util.api.setCacheLifetime(ntArgStr, nextMatchDate.getTime());
 			}
 		});
 
 		var u20Args = [
 			['file', 'matches'],
 			['version', '2.8'],
-			['teamId', parseInt(u20Id, 10)]
+			['teamId', parseInt(u20Id, 10)],
 		];
-		var parameters_u20_str = JSON.stringify(u20Args);
+		var u20ArgStr = JSON.stringify(u20Args);
 		Foxtrick.util.api.retrieve(doc, u20Args, { cache_lifetime: 'default' },
 		  function(xml, errorText) {
-			var nextmatchdate = Foxtrick.util.matchView.fillMatches(
-									u20Container.getElementsByTagName('div')[0],
-									xml,
-									errorText);
-			if (nextmatchdate) {
-				Foxtrick.util.api.setCacheLifetime(parameters_u20_str, nextmatchdate.getTime());
+			var div = u20Container.querySelector('div');
+			var nextMatchDate =
+				Foxtrick.util.matchView.fillMatches(div, xml, errorText);
+
+			if (nextMatchDate) {
+				Foxtrick.util.api.setCacheLifetime(u20ArgStr, nextMatchDate.getTime());
 			}
 		});
-	}
+	},
 };
