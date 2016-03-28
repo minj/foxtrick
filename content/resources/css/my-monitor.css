@@ -29,17 +29,13 @@
 	clear: left; /* two in a row */
 }
 
-.ft-monitor-frame  > h3 {
+.ft-monitor-frame > h3 {
 	color: #222;
 	background-color: #EDF1ED;
 	border-bottom: solid 2px #DCE0DC;
 }
 
-.ft-monitor-frame  > h3:hover  > div.ft_sort {
-	display:inline;
-}
-
-.ft-monitor-frame > h3 > div.ft_sort {
+.ft-monitor-frame > h3 > .ft_sort {
 	float:right;
 }
 

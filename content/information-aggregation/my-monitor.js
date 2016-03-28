@@ -106,7 +106,7 @@ Foxtrick.modules['MyMonitor'] = {
 			Foxtrick.forEach(function(t) {
 				var sourceOpt = doc.createElement('option');
 				sourceOpt.textContent = Foxtrick.L10n.getString('matches.' + t.type);
-				sourceOpt.setAttribute('data-source', t.source);
+				sourceOpt.dataset.source = t.source;
 				liveSelect.appendChild(sourceOpt);
 			}, matchesBySource);
 
@@ -118,7 +118,7 @@ Foxtrick.modules['MyMonitor'] = {
 			Foxtrick.forEach(function(t) {
 				var typeOpt = doc.createElement('option');
 				typeOpt.textContent = Foxtrick.L10n.getString('matches.' + t.toLowerCase());
-				typeOpt.setAttribute('data-type', t);
+				typeOpt.dataset.type = t;
 				liveSelect.appendChild(typeOpt);
 			}, matchesByType);
 
@@ -145,8 +145,8 @@ Foxtrick.modules['MyMonitor'] = {
 					return;
 
 				var opt = liveSelect.options[idx];
-				var source = opt.getAttribute('data-source');
-				var type = opt.getAttribute('data-type');
+				var source = opt.dataset.source;
+				var type = opt.dataset.type;
 
 				var url;
 
@@ -167,7 +167,7 @@ Foxtrick.modules['MyMonitor'] = {
 				else if (type) {
 					var types = Foxtrick.Pages.Matches[type];
 					var typeMatches = Foxtrick.filter(function(link) {
-						var mType = link.getAttribute('data-match-type');
+						var mType = link.dataset.matchType;
 						return Foxtrick.any(function(type) {
 							return type == mType;
 						}, types);
@@ -481,7 +481,7 @@ Foxtrick.modules['MyMonitor'] = {
 				if (team.type == 'youth')
 					args.push(['isYouth', 'true']);
 
-				var paramStr = JSON.stringify(args);
+				var argStr = JSON.stringify(args);
 
 				return new Promise(function(resolve) {
 					Foxtrick.util.api.retrieve(doc, args, { cache_lifetime: 'default' },
@@ -504,9 +504,9 @@ Foxtrick.modules['MyMonitor'] = {
 						// change expire date of XML to after next match game
 						if (nextMatchDate) {
 							var time = nextMatchDate.getTime() +
-								150 * Foxtrick.util.time.MSECS_IN_MIN;
+								105 * Foxtrick.util.time.MSECS_IN_MIN;
 
-							Foxtrick.util.api.setCacheLifetime(paramStr, time);
+							Foxtrick.util.api.setCacheLifetime(argStr, time);
 						}
 
 						resolve(team);
@@ -551,7 +551,7 @@ Foxtrick.modules['MyMonitor'] = {
 				savedTeam.name = teamIdContainer.name;
 
 			if (type == 'senior') {
-				var logo = doc.getElementsByClassName('teamLogo')[0]; // team logo
+				var logo = doc.querySelector('.teamLogo'); // team logo
 				if (logo) {
 					var logoLink = logo.getElementsByTagName('a')[0];
 					// better quality. original size
