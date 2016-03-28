@@ -375,9 +375,13 @@ Foxtrick.modules['MyMonitor'] = {
 				}, null, function() {
 					if (Foxtrick.Prefs.isModuleOptionEnabled('MyMonitor', 'TeamIcons')) {
 						if (team.logo) {
-							Foxtrick.addImage(doc, header, {
+							var span = doc.createElement('span');
+							span.className = 'teamIconSpan';
+							header.appendChild(span);
+
+							Foxtrick.addImage(doc, span, {
 								title: team.name,
-								class: 'teamicon',
+								class: 'teamIcon',
 								src: team.logo,
 							});
 						}
