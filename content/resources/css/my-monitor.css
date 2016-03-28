@@ -35,10 +35,6 @@
 	border-bottom: solid 2px #DCE0DC;
 }
 
-.ft-monitor-frame > h3 > .ft_sort {
-	float:right;
-}
-
 .ft-monitor-team-name {
 	width: 85%;
 	display: inline-block;
@@ -69,9 +65,12 @@
 
 .teamIcon {
 	padding: 0 5px 0 0;
-	margin:0 0 -2px;
+	margin: 0 0 -2px;
 	max-height: 24px;
 	max-width: 36px;
+}
+html[dir="rtl"] .teamIcon {
+	padding: 0 0 0 5px;
 }
 
 .ft-monitor-frame > h3 > a.flag + img {
