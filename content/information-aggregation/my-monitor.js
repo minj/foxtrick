@@ -393,7 +393,7 @@ Foxtrick.modules['MyMonitor'] = {
 				teamCont.appendChild(nameLink);
 
 				var sortDiv = doc.createElement('div');
-				sortDiv.className = 'ft_sort';
+				sortDiv.className = 'float_right';
 
 				// a fake image to fix vertical layout by expanding inner height
 				Foxtrick.addImage(doc, sortDiv, {
