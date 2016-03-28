@@ -553,6 +553,9 @@ Foxtrick.modules['MyMonitor'] = {
 				return n.id == teamIdContainer.id && n.type == type;
 			}, teams);
 
+			if (savedTeam)
+				savedTeam.name = teamIdContainer.name;
+
 			if (type == 'senior') {
 				var logo = doc.querySelector('.teamLogo'); // team logo
 				if (logo) {
