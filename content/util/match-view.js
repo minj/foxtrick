@@ -64,45 +64,44 @@ Foxtrick.util.matchView.fillMatches = function(container, xml, errorText) {
 		return null;
 	};
 	var getMatchInfo = function(match) {
-		var type = match.getElementsByTagName('MatchType')[0].textContent;
-		var cupLvl = match.getElementsByTagName('CupLevel')[0].textContent;
-		var cupIdx = match.getElementsByTagName('CupLevelIndex')[0].textContent;
-		var cup = parseInt(cupLvl, 10) * 3 + parseInt(cupIdx, 10);
+		var type = xml.text('MatchType', match);
+		var cupLvl = xml.num('CupLevel', match);
+		var cupIdx = xml.num('CupLevelIndex', match);
+		var cup = cupLvl * 3 + cupIdx;
 		return type2info(type, cup);
 	};
 
 	var doc = container.ownerDocument;
+	var IS_RTL = Foxtrick.util.layout.isRtl(doc);
 
 	container.textContent = ''; // clear container first
 	var table = doc.createElement('table');
 	container.appendChild(table);
 
-	var teamId = xml.getElementsByTagName('TeamID')[0].textContent;
-	// var teamName = xml.getElementsByTagName('TeamName')[0].textContent;
+	var teamId = xml.num('TeamID');
+	// var teamName = xml.text('TeamName');
 
 	var isYouth = xml.bool('IsYouth');
 	var matches = xml.getElementsByTagName('Match');
 
 	// add one played and one not played
-	var played = Foxtrick.filter(function(n) {
-		return n.getElementsByTagName('Status')[0].textContent == 'FINISHED';
+	var playedMatches = Foxtrick.filter(function(m) {
+		return xml.text('Status', m) == 'FINISHED';
 	}, matches);
-	var notPlayed = Foxtrick.filter(function(n) {
-		return n.getElementsByTagName('Status')[0].textContent != 'FINISHED';
+	var notPlayedMatches = Foxtrick.filter(function(m) {
+		return xml.text('Status', m) != 'FINISHED';
 	}, matches);
 
 	// get last previous and first future match
-	played.reverse();
-	var toAdd = Foxtrick.map(function(type) {
+	playedMatches.reverse();
+	var displayed = Foxtrick.map(function(matches) {
 		// only supported types (no HTO)
-		return Foxtrick.nth(getMatchInfo, type);
-	}, [played, notPlayed]);
+		return Foxtrick.nth(getMatchInfo, matches);
+	}, [playedMatches, notPlayedMatches]);
 
-	var nextMatchDate = toAdd[1] ? xml.time('MatchDate', toAdd[1]) : null;
+	var nextMatchDate = displayed[1] ? xml.time('MatchDate', displayed[1]) : null;
 
 	var makeMatchRow = function(match) {
-		var rtl = Foxtrick.util.layout.isRtl(doc);
-
 		var row = doc.createElement('tr');
 
 		var matchTypeCell = doc.createElement('td');
@@ -117,37 +116,33 @@ Foxtrick.util.matchView.fillMatches = function(container, xml, errorText) {
 
 		var matchCell = doc.createElement('td');
 		var matchLink = doc.createElement('a');
-		matchLink.setAttribute('data-match-type', match.type);
+		matchLink.dataset.matchType = match.type;
 		matchLink.href = '/Club/Matches/Match.aspx?matchID=' + match.id + '&SourceSystem=' +
 			(isYouth ? 'Youth' : 'Hattrick');
 
-		// get in one line for standard theme while won't fit in one
-		// line anyway for simple theme
+		// limit team name length to fit in one line
 		var cutLength = 12;
-		if (!rtl) {
+		var spanHome = doc.createElement('span');
+		spanHome.className = 'nowrap';
+		spanHome.textContent = match.home.slice(0, cutLength);
+
+		var spanAway = doc.createElement('span');
+		spanAway.className = 'nowrap';
+		spanAway.textContent = match.away.slice(0, cutLength);
+
+		if (!IS_RTL) {
 			matchLink.title = match.home + ' - ' + match.away;
-			var spanLTR1 = doc.createElement('span');
-			spanLTR1.className = 'nowrap';
-			spanLTR1.textContent = match.home.slice(0, cutLength);
-			matchLink.appendChild(spanLTR1);
+			matchLink.appendChild(spanHome);
 			matchLink.appendChild(doc.createTextNode(' - '));
-			var spanLTR2 = doc.createElement('span');
-			spanLTR2.className = 'nowrap';
-			spanLTR2.textContent = match.away.slice(0, cutLength);
-			matchLink.appendChild(spanLTR2);
+			matchLink.appendChild(spanAway);
 		}
 		else {
 			matchLink.title = match.away + ' - ' + match.home;
-			var spanRTL1 = doc.createElement('span');
-			spanRTL1.className = 'nowrap';
-			spanRTL1.textContent = match.away.slice(0, cutLength);
-			matchLink.appendChild(spanRTL1);
+			matchLink.appendChild(spanAway);
 			matchLink.appendChild(doc.createTextNode(' - '));
-			var spanRTL2 = doc.createElement('span');
-			spanRTL2.className = 'nowrap';
-			spanRTL2.textContent = match.home.slice(0, cutLength);
-			matchLink.appendChild(spanRTL2);
+			matchLink.appendChild(spanHome);
 		}
+
 		matchCell.appendChild(matchLink);
 		row.appendChild(matchCell);
 
@@ -166,24 +161,28 @@ Foxtrick.util.matchView.fillMatches = function(container, xml, errorText) {
 			}
 		}
 		else {
-			matchLink.setAttribute('data-live', '');
+			matchLink.dataset.live = '';
+
 			// add HT-Live
 			var liveLink = doc.createElement('a');
 			liveLink.href = '/Club/Matches/Live.aspx?actionType=addMatch&matchID=' + match.id +
 				'&SourceSystem=' + (isYouth ? 'Youth' : 'Hattrick');
+
 			var liveImg = doc.createElement('img');
 			liveImg.className = 'matchHTLive';
 			liveImg.src = '/Img/Icons/transparent.gif';
 			liveImg.alt = liveImg.title = Foxtrick.L10n.getString('MyMonitor.htLive');
 			liveLink.appendChild(liveImg);
+
 			resultCell.appendChild(liveLink);
 		}
+
 		Foxtrick.addClass(resultCell, 'nowrap');
 		row.appendChild(resultCell);
 		return row;
 	};
 
-	for (var matchXML of toAdd) {
+	for (var matchXML of displayed) {
 		if (!matchXML)
 			continue;
 
@@ -194,11 +193,10 @@ Foxtrick.util.matchView.fillMatches = function(container, xml, errorText) {
 		var homeTeam = xml.text('HomeTeamName', matchXML);
 		var awayTeam = xml.text('AwayTeamName', matchXML);
 		var homeId = xml.num('HomeTeamID', matchXML);
-		// var awayId = xml.getElementsByTagName('AwayTeamID', matchXML)[0].textContent;
+		// var awayId = xml.num('AwayTeamID', matchXML);
 		var side = teamId == homeId ? 'home' : 'away';
 
-		var homeGoals = null;
-		var awayGoals = null;
+		var homeGoals = null, awayGoals = null;
 		var status = xml.text('Status', matchXML);
 		if (status == 'FINISHED') {
 			homeGoals = xml.num('HomeGoals', matchXML);
