@@ -507,7 +507,7 @@ Foxtrick.modules['MyMonitor'] = {
 					}
 
 					team.name = xml.text('TeamName');
-					team.id = xml.text('TeamID');
+					team.id = xml.num('TeamID');
 					buildLink(team, nameLink);
 
 					var nextMatchDate =
