@@ -166,7 +166,7 @@ Foxtrick.cookies = {};
 					Foxtrick.log('Error setting cookie', key, value, cookie, e);
 				}
 			}
-			else if (Foxtrick.platform === 'chrome') {
+			else if (Foxtrick.platform === 'Chrome') {
 				gCookiesReady = new Promise(function(resolve) {
 					try {
 						chrome.cookies.set(cookie, function(cookie) { // jshint ignore:line
