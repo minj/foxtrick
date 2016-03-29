@@ -45,7 +45,7 @@ Foxtrick.modules['StaffMarker'] = {
 	// [option, type1, type2,.. typeN]
 	// or type when type=option
 	// where type is type in json
-	type_map: [
+	TYPE_LIST: [
 		'officials',
 		'editor',
 		'foxtrick',
@@ -56,11 +56,11 @@ Foxtrick.modules['StaffMarker'] = {
 	],
 
 	// placeholder for StaffMarker.type strings
-	title_map: {},
+	TITLE_MAP: {},
 
 	// [type, file1, file2,.. fileN]
 	// or file when file=type
-	file_map: [
+	FILE_LIST: [
 		// no file for officials
 		'editor',
 		'foxtrick',
@@ -71,7 +71,7 @@ Foxtrick.modules['StaffMarker'] = {
 	],
 
 	// functions called for each type
-	type_callback_map: {
+	TYPE_CALLBACK_MAP: {
 		'chpp-holder': function(data) {
 			data['chpp-holder']['apps'] = {};
 		},
@@ -82,7 +82,7 @@ Foxtrick.modules['StaffMarker'] = {
 	},
 
 	// functions called for each user by type
-	user_callback_map: {
+	USER_CALLBACK_MAP: {
 		'chpp-holder': function(data, user) {
 			data['chpp-holder']['apps'][user.id] = user.appNames;
 		},
@@ -98,7 +98,7 @@ Foxtrick.modules['StaffMarker'] = {
 	// functions called for the marked object by type
 	// if false is returned the element is not appended
 	// if an element is returned it will be appended instead of default icon
-	object_callback_map: {
+	OBJECT_CALLBACK_MAP: {
 		'chpp-holder': function(data, id, object, icon, link) { // jshint ignore:line
 			var appNames = '';
 			Foxtrick.map(function(appName) {
@@ -138,21 +138,22 @@ Foxtrick.modules['StaffMarker'] = {
 
 	// parse enable map
 	getEnabledTypes: function() {
-		var enable = {}, m = this.type_map;
-		for (var i = 0, t; i < m.length && (t = m[i]); i++) {
-			if (typeof t === 'string') {
-				enable[t] = Foxtrick.Prefs.isModuleOptionEnabled('StaffMarker', t);
-				this.title_map[t] = this.getTitle(t);
+		var enabled = {};
+		for (var type of this.TYPE_LIST) {
+			if (typeof type === 'string') {
+				enabled[type] = Foxtrick.Prefs.isModuleOptionEnabled('StaffMarker', type);
+				this.TITLE_MAP[type] = this.getTitle(type);
 			}
 			else {
-				var superTypeEnabled = Foxtrick.Prefs.isModuleOptionEnabled('StaffMarker', t[0]);
-				for (var j = 1, e; j < t.length && (e = t[j]); ++j) {
-					enable[e] = superTypeEnabled;
-					this.title_map[e] = this.getTitle(e);
+				var superTypeEnabled = Foxtrick.Prefs.isModuleOptionEnabled('StaffMarker', type[0]);
+				var subTypes = type.slice(1);
+				for (var subType of subTypes) {
+					enabled[subType] = superTypeEnabled;
+					this.TITLE_MAP[subType] = this.getTitle(subType);
 				}
 			}
 		}
-		return enable;
+		return enabled;
 	},
 
 	hasLoadedOnce: false,
@@ -195,19 +196,19 @@ Foxtrick.modules['StaffMarker'] = {
 						gData[key]['duty'] = {};
 				}
 
-				var type_func = module.type_callback_map[key];
-				if (typeof type_func === 'function')
-					type_func(gData);
+				var typeCallback = module.TYPE_CALLBACK_MAP[key];
+				if (typeof typeCallback === 'function')
+					typeCallback(gData);
 
-				var user_func = module.user_callback_map[key];
+				var userCallback = module.USER_CALLBACK_MAP[key];
 
 				Foxtrick.map(function(user) {
 					gData[key][user.id] = true;
 					if (gData[key]['hasDuties'] && user.duty !== 'undefined') {
 						gData[key]['duty'][user.id] = user.duty;
 					}
-					if (typeof user_func === 'function')
-						user_func(gData, user);
+					if (typeof userCallback === 'function')
+						userCallback(gData, user);
 				}, list);
 			}
 
@@ -230,21 +231,21 @@ Foxtrick.modules['StaffMarker'] = {
 
 		var urls = [];
 		// JSON files to be downloaded
-		var enable = this.getEnabledTypes();
-		var files = this.file_map;
-		for (var i = 0, f; i < files.length && (f = files[i]); ++i) {
-			if (typeof f === 'string') {
-				if (enable[f])
-					urls.push(Foxtrick.DataPath + 'staff/' + f + '.json');
+		var enabled = this.getEnabledTypes();
+		for (var file of this.FILE_LIST) {
+			if (typeof file === 'string') {
+				if (enabled[file])
+					urls.push(Foxtrick.DataPath + 'staff/' + file + '.json');
 			}
-			else if (enable[f[0]]) {
-				for (var j = 1, e; j < f.length && (e = f[j]); ++j) {
-					urls.push(Foxtrick.DataPath + 'staff/' + e + '.json');
+			else if (enabled[file[0]]) {
+				var subFiles = file.slice(1);
+				for (var subFile of subFiles) {
+					urls.push(Foxtrick.DataPath + 'staff/' + subFile + '.json');
 				}
 			}
 		}
 		// custom URLs
-		if (enable['supporter'] && Foxtrick.util.layout.isSupporter(doc)) {
+		if (enabled['supporter'] && Foxtrick.util.layout.isSupporter(doc)) {
 			urls.push('supporter');
 			urls.push('supported');
 		}
@@ -332,9 +333,9 @@ Foxtrick.modules['StaffMarker'] = {
 									list = idsS.list;
 								}
 
-								var all = sup.getElementsByTagName('UserId');
-								for (var i = 0; i < all.length; i++)
-									list.push({ id: all[i].textContent });
+								var userIds = sup.getElementsByTagName('UserId');
+								for (var userId of Foxtrick.toArray(userIds))
+									list.push({ id: userId.textContent });
 
 							}
 							parseMarkers(JSON.stringify(idsS));
@@ -431,7 +432,7 @@ Foxtrick.modules['StaffMarker'] = {
 							var icon = img.cloneNode(), link, element;
 							Foxtrick.addClass(object, 'ft-staff ft-staff-' + type);
 							Foxtrick.addClass(icon, 'ft-staff-icon ft-staff-' + type);
-							icon.title = icon.alt = module.title_map[type];
+							icon.title = icon.alt = module.TITLE_MAP[type];
 							var duty, dutyDesc;
 							if (data[type]['hasDuties'] && (duty = data[type]['duty'][id]) &&
 								(dutyDesc = data[type]['duties'][duty])) {
@@ -459,10 +460,10 @@ Foxtrick.modules['StaffMarker'] = {
 							else
 								element = icon;
 
-							var obj_func = module.object_callback_map[type];
+							var objectCallback = module.OBJECT_CALLBACK_MAP[type];
 							var include = true;
-							if (typeof obj_func === 'function') {
-								var newElement = obj_func(data, id, object, icon, link);
+							if (typeof objectCallback === 'function') {
+								var newElement = objectCallback(data, id, object, icon, link);
 								if (typeof newElement !== 'undefined') {
 									if (typeof newElement === 'boolean')
 										include = newElement;
@@ -494,9 +495,9 @@ Foxtrick.modules['StaffMarker'] = {
 							    /redir_to_series=true/i.test(href))
 								return;
 
-							var uname = a.title.trim();
-							var uid = Foxtrick.getParameterFromUrl(a.href, 'userId');
-							modifier(uid, uname, a);
+							var uName = a.title.trim();
+							var userId = Foxtrick.getParameterFromUrl(a.href, 'userId');
+							modifier(userId, uName, a);
 						}, links);
 					}, userDivs);
 					if (Foxtrick.isPage(doc, 'guestbook')) {
@@ -522,13 +523,13 @@ Foxtrick.modules['StaffMarker'] = {
 						var i = 1;
 						var option;
 						while ((option = select.options[i++])) {
-							var uname = option.textContent.trim();
-							if (uname === '')
+							var userName = option.textContent.trim();
+							if (userName === '')
 								break;
 
-							var uid = option.value.replace(/by_|to_/gi, '');
+							var userId = option.value.replace(/by_|to_/gi, '');
 
-							modifier(uid, uname, option);
+							modifier(userId, userName, option);
 							// no background image in chrome for select. background-colors only
 
 							// special colors for options which are not users in filter select box
