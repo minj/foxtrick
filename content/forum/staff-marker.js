@@ -119,13 +119,13 @@ Foxtrick.modules['StaffMarker'] = {
 		},
 		supporter: function(data, id, object) { // jshint ignore:line
 			var doc = object.ownerDocument;
-			if (Foxtrick.isPage(doc, 'supported') || Foxtrick.isPage(doc, 'supporters'))
+			if (Foxtrick.isPage(doc, ['supported', 'supporters']))
 				return false;
 			return true;
 		},
 		supported: function(data, id, object) { // jshint ignore:line
 			var doc = object.ownerDocument;
-			if (Foxtrick.isPage(doc, 'supported') || Foxtrick.isPage(doc, 'supporters'))
+			if (Foxtrick.isPage(doc, ['supported', 'supporters']))
 				return false;
 			return true;
 		},
@@ -348,7 +348,7 @@ Foxtrick.modules['StaffMarker'] = {
 			else {
 				Foxtrick.load(url)
 					.then(function(text) {
-						Foxtrick.log('parse ', url);
+						Foxtrick.log('parse', url);
 
 						parseMarkers(text);
 
@@ -414,11 +414,11 @@ Foxtrick.modules['StaffMarker'] = {
 							[/^\u202d?CHPP-/i, 'chpp'],
 							[/^\u202d?LA-/i, 'la'],
 						];
-						var first = Foxtrick.nth(function(pair) {
-							return pair[0].test(alias);
+						var firstMatch = Foxtrick.nth(function(spec) {
+							return spec[0].test(alias);
 						}, markers);
-						if (first) {
-							var staffClasses = 'ft-staff ft-staff-style ft-staff-' + first[1];
+						if (firstMatch) {
+							var staffClasses = 'ft-staff ft-staff-style ft-staff-' + firstMatch[1];
 							Foxtrick.addClass(object, staffClasses);
 						}
 					}
@@ -495,9 +495,9 @@ Foxtrick.modules['StaffMarker'] = {
 							    /redir_to_series=true/i.test(href))
 								return;
 
-							var uName = a.title.trim();
+							var userName = a.title.trim();
 							var userId = Foxtrick.getParameterFromUrl(a.href, 'userId');
-							modifier(userId, uName, a);
+							modifier(userId, userName, a);
 						}, links);
 					}, userDivs);
 					if (Foxtrick.isPage(doc, 'guestbook')) {
@@ -639,8 +639,8 @@ Foxtrick.modules['StaffMarker'] = {
 			if (!cfHeader)
 				continue;
 
-			var userId = Foxtrick.util.id.findUserId(cfHeader);
 			var cfFooter = elem.querySelector('.cfFooter');
+
 			var markerOptions = Foxtrick.createFeaturedElement(doc, module, 'div');
 			markerOptions.id = 'ft-staff-marker-opts-' + i;
 			Foxtrick.addClass(markerOptions, 'ft-staff-marker-opts hidden');
@@ -666,6 +666,7 @@ Foxtrick.modules['StaffMarker'] = {
 			bg.setAttribute('size', 7);
 			bg.setAttribute('type', 'color');
 
+			var userId = Foxtrick.util.id.findUserId(cfHeader);
 			var style = customMarker[userId];
 			var color = style ? style.match(/([^-]|^)color\s*:\s*(#[0-9a-f]{6})/i) : null;
 			fg.value = color ? color[2] : '#ffffff';
