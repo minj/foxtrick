@@ -279,22 +279,22 @@ Foxtrick.modules['StaffMarker'] = {
 						Foxtrick.log(errorText);
 						return;
 					}
-					var batchArgs = [], supportedCt;
+					var batchArgs = [];
+					var supportedCt, supporterCt;
 					var pageCt, p;
 					var teams = xml.getElementsByTagName('Team');
-					for (var t = 0; t < teams.length; t++) {
-						var team = teams[t];
-						var id = team.getElementsByTagName('TeamID')[0].textContent;
-						var sups = team.getElementsByTagName('SupportedTeams')[0];
+					for (var team of Foxtrick.toArray(teams)) {
+						var id = xml.num('TeamID', team);
+						var sups = xml.node('SupportedTeams', team);
 						supportedCt = parseInt(sups.getAttribute('TotalItems'), 10);
-						sups = team.getElementsByTagName('MySupporters')[0];
-						var supporterCt = parseInt(sups.getAttribute('TotalItems'), 10);
+						sups = xml.node('MySupporters', team);
+						supporterCt = parseInt(sups.getAttribute('TotalItems'), 10);
 						pageCt = Math.ceil(supporterCt / TEAMS_PER_PAGE);
 						for (p = 0; p < pageCt; p++) {
 							batchArgs.push([
 								['file', 'supporters'],
 								['version', '1.0'],
-								['teamId', parseInt(id, 10)], // use int for consistency (cache)
+								['teamId', id],
 								['actionType', 'mysupporters'],
 								['pageSize', TEAMS_PER_PAGE],
 								['pageIndex', p],
@@ -316,8 +316,8 @@ Foxtrick.modules['StaffMarker'] = {
 					Foxtrick.util.api.batchRetrieve(doc, batchArgs, { cache_lifetime: 'session' },
 					  function(xmls, errors) {
 						if (xmls) {
-							var idsS = { type: 'supported', list: [] };
-							var idsM = { type: 'supporter', list: [] };
+							var supportedIds = { type: 'supported', list: [] };
+							var supporterIds = { type: 'supporter', list: [] };
 							for (var x = 0; x < xmls.length; ++x) {
 								var xml = xmls[x];
 								var errorText = errors[x];
@@ -326,20 +326,20 @@ Foxtrick.modules['StaffMarker'] = {
 									             batchArgs[x], errorText);
 									continue;
 								}
-								var sup = xml.getElementsByTagName('MySupporters')[0];
-								var list = idsM.list;
-								if (!sup) {
-									sup = xml.getElementsByTagName('SupportedTeams')[0];
-									list = idsS.list;
+								var sups = xml.node('MySupporters');
+								var list = supporterIds.list;
+								if (!sups) {
+									sups = xml.node('SupportedTeams');
+									list = supportedIds.list;
 								}
 
-								var userIds = sup.getElementsByTagName('UserId');
+								var userIds = sups.getElementsByTagName('UserId');
 								for (var userId of Foxtrick.toArray(userIds))
 									list.push({ id: userId.textContent });
 
 							}
-							parseMarkers(JSON.stringify(idsS));
-							parseMarkers(JSON.stringify(idsM));
+							parseMarkers(JSON.stringify(supportedIds));
+							parseMarkers(JSON.stringify(supporterIds));
 							loading.parentNode.removeChild(loading);
 						}
 					});
@@ -697,7 +697,7 @@ Foxtrick.modules['StaffMarker'] = {
 			markerLink.className = 'foxtrick-marker-link ft-link';
 			markerLink.textContent = markerLink.title = markUser;
 			Foxtrick.onClick(markerLink, makeOpenListener(i));
-			var secondaryLinks = cfFooter.getElementsByClassName('float_right')[0];
+			var secondaryLinks = cfFooter.querySelector('.float_right');
 			secondaryLinks.insertBefore(markerLink, secondaryLinks.firstChild);
 		}
 	},
