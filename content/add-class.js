@@ -107,8 +107,8 @@ Foxtrick.modules.AddClass = {
 			if (cell.getElementsByClassName('date').length)
 				return;
 
-			if (module.timeReFull.test(cell.textContent))
-				module.replaceInNode(doc, cell, module.timeReFull);
+			if (module.timeRe.test(cell.textContent))
+				module.replaceInNode(doc, cell, module.timeRe);
 			else
 				module.replaceInNode(doc, cell, module.timeReShort);
 		}, cells);
