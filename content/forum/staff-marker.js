@@ -131,7 +131,7 @@ Foxtrick.modules['StaffMarker'] = {
 	 * as a certain StaffMarker type.
 	 *
 	 * callback signature:
-	 * function(elements, data, userId}): Boolean|Element where:
+	 * function(elements, data, userId): Boolean|Element where:
 	 * elements is {target, icon, link}
 	 * data is the StaffMarker data map
 	 *
@@ -145,7 +145,7 @@ Foxtrick.modules['StaffMarker'] = {
 			var apps = data['chpp-holder']['apps'][userId];
 			var appNames = apps.reduce(function(prev, appName) {
 				return prev + '\n● ' + appName;
-			}, ' ');
+			}, '');
 
 			var icon = elements.icon;
 			icon.title += appNames;
@@ -468,14 +468,14 @@ Foxtrick.modules['StaffMarker'] = {
 					}
 				}
 
-				// tell whether user is staff by alias or uses custom marker
-				// and attach class and/or user-defined style to target element
-				var modifier = function(id, alias, target) {
-					// user-defined style
+				// modify target element to mark staff types
+				var modify = function(target, id, alias) {
+					// user-defined style in custom marker
 					if (typeof customMarker[id] !== 'undefined')
 						target.setAttribute('style', customMarker[id]);
 
-					// exclusive classes for official staff
+					// check whether user is official staff by alias
+					// and add an exclusive class
 					if (gEnabled['officials']) {
 						// alias in select boxes might have a Left-to-Right
 						// Overwrite (LRO, U+202D) in front
@@ -502,7 +502,7 @@ Foxtrick.modules['StaffMarker'] = {
 					var URL_RE = /^chrome:\/\/foxtrick\/content\//;
 
 					for (var type in data) {
-						if (!data[type][id] || !gEnabled[type])
+						if (!gEnabled[type] || !data[type][id])
 							continue;
 
 						var icon = img.cloneNode(), link, marker;
@@ -579,7 +579,7 @@ Foxtrick.modules['StaffMarker'] = {
 
 							var userName = a.title.trim();
 							var userId = Foxtrick.getParameterFromUrl(a.href, 'userId');
-							modifier(userId, userName, a);
+							modify(a, userId, userName);
 						}, links);
 					}, userDivs);
 
@@ -601,7 +601,7 @@ Foxtrick.modules['StaffMarker'] = {
 					var selects = body.querySelectorAll(query);
 
 					Foxtrick.map(function(select) {
-						// avoid select box which doesn't contain users
+						// avoid select boxes that do not contain users
 						if (!/filter/i.test(select.id) && !/recipient/i.test(select.id))
 							return;
 
@@ -614,8 +614,8 @@ Foxtrick.modules['StaffMarker'] = {
 
 							var userId = option.value.replace(/by_|to_/gi, '');
 
-							// no background image for select in chrome; background-colors only
-							modifier(userId, userName, option);
+							// no background images in options in chrome; background-colors only
+							modify(option, userId, userName);
 
 							// special colors for options which are not users in filter select box
 							if (option.value == -3) {
@@ -629,12 +629,12 @@ Foxtrick.modules['StaffMarker'] = {
 				};
 
 				if (Foxtrick.isPage(doc, ['forumViewThread', 'forumWritePost'])) {
-					markThread(doc, modifier);
+					markThread();
 					Foxtrick.modules['ForumAlterHeaderLine'].ensureUnbrokenHeaders(doc);
-					markSelect(doc, modifier);
+					markSelect();
 				}
 				else if (Foxtrick.Prefs.isModuleOptionEnabled('StaffMarker', 'manager')) {
-					markThread(doc, modifier);
+					markThread();
 				}
 			});
 		});
@@ -643,7 +643,7 @@ Foxtrick.modules['StaffMarker'] = {
 		var module = this;
 		var markerLinkTitle = Foxtrick.L10n.getString('StaffMarker.userColor');
 		var fgColorText = Foxtrick.L10n.getString('StaffMarker.textColor');
-		var bgColorText = Foxtrick.L10n.getString('StaffMarker.bgColorText');
+		var bgColorText = Foxtrick.L10n.getString('StaffMarker.bgColor');
 		var saveText = Foxtrick.L10n.getString('button.save');
 		var closeText = Foxtrick.L10n.getString('button.close');
 		var resetText = Foxtrick.L10n.getString('button.reset');
