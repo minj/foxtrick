@@ -31,14 +31,14 @@ if (Foxtrick.context == 'background') {
 			const STORE = {
 				put: function(key, value, success, failure) {
 
-					var promise = Promise.resolve().then(function() {
+					var promise = new Promise(function(resolve) {
 
 						key = PREFIX + key;
 						var val = JSON.stringify(value);
 
 						window.localStorage.setItem(key, val);
 
-						return key;
+						resolve(key);
 
 					}).then(success, failure);
 
@@ -54,12 +54,12 @@ if (Foxtrick.context == 'background') {
 
 				get: function(key, success, failure) {
 
-					var promise = Promise.resolve().then(function() {
+					var promise = new Promise(function(resolve) {
 
 						key = PREFIX + key;
 						var val = window.localStorage.getItem(key);
 
-						return JSON.parse(val);
+						resolve(JSON.parse(val));
 
 					}).then(success, failure);
 
@@ -88,8 +88,9 @@ if (Foxtrick.context == 'background') {
 								};
 
 								cursor.delete = function() {
-									return Promise.resolve().then(function() {
+									return new Promise(function(resolve) {
 										window.localStorage.removeItem(PREFIX + key);
+										resolve();
 									}).catch(CLEANUP);
 								};
 							}
