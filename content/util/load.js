@@ -162,54 +162,48 @@ Foxtrick.fetch = function(url, params) {
 
 	}
 
-	return new Promise(function(resolve) {
-		var type = params ? 'POST' : 'GET';
+	return new Promise(function(fulfill, reject) {
+		try {
+			var type = params ? 'POST' : 'GET';
 
-		var req = new window.XMLHttpRequest();
-		req.open(type, url, true);
+			var req = new window.XMLHttpRequest();
+			req.open(type, url, true);
 
-		if (typeof req.overrideMimeType === 'function')
-			req.overrideMimeType('text/plain');
+			if (typeof req.overrideMimeType === 'function')
+				req.overrideMimeType('text/plain');
 
-		// Send the proper header information along with the request
-		if (type == 'POST' && typeof req.setRequestHeader === 'function')
-			req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+			// Send the proper header information along with the request
+			if (type == 'POST' && typeof req.setRequestHeader === 'function')
+				req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
-		req.onload = function() {
-			// README: safari returns chrome resources with status=0
-			if (this.status >= 200 && this.status < 300 ||
-			    this.status === 0 && this.responseText) {
+			req.onload = function() {
+				// README: safari returns chrome resources with status=0
+				if (this.status >= 200 && this.status < 300 ||
+				    this.status === 0 && this.responseText) {
 
-				resolve(this.responseText);
+					fulfill(this.responseText);
+					return;
+				}
 
-			}
+				reject({ url: url, status: this.status, text: this.responseText, params: params });
+			};
 
-			// always resolve at this point
-			resolve({ url: url, status: this.status, text: this.responseText, params: params });
-		};
+			req.onerror = function() {
+				reject({ url: url, status: this.status, text: this.responseText, params: params });
+			};
 
-		req.onerror = function() {
-			// always resolve at this point
-			resolve({ url: url, status: this.status, text: this.responseText, params: params });
-		};
+			req.onabort = function() {
+				reject({ url: url, status: -1, text: this.responseText, params: params });
+			};
 
-		req.onabort = function() {
-			// always resolve at this point
-			resolve({ url: url, status: -1, text: this.responseText, params: params });
-		};
+			req.send(params);
 
-		req.send(params);
-	})
-	.catch(function(e) {
-		// handle fatal errors in Promise constructor
-		Foxtrick.log(ERROR_XHR_FATAL, e);
-		return { url: url, status: -1, text: ERROR_XHR_FATAL + e.message, params: params };
-	}).then(function(resp) {
-		// handle non-fatal errors by rejecting
-		if (typeof resp !== 'string')
-			return Promise.reject(resp);
-
-		return resp;
+		}
+		catch (e) {
+			// handle fatal errors here
+			Foxtrick.log(ERROR_XHR_FATAL, e);
+			reject({ url: url, status: -1, text: ERROR_XHR_FATAL + e.message, params: params });
+		}
 	});
 
 };
@@ -265,8 +259,7 @@ Foxtrick.load = function(url, params, lifeTime, now) {
 		return Foxtrick.__savePromiseFor(url, params, lifeTime)(Foxtrick.fetch(url, params));
 	};
 
-	return Foxtrick.__loadPromise(url, params, lifeTime, now)
-		.catch(tryFetch);
+	return Foxtrick.__loadPromise(url, params, lifeTime, now).catch(tryFetch);
 
 };
 
@@ -302,9 +295,7 @@ if (Foxtrick.context === 'background') {
 		return {
 
 			/**
-			 * Get a Promise for the cache object for {url, params}.
-			 *
-			 * Rejects with null if cache/Promise failed.
+			 * Get a cache object for {url, params}
 			 *
 			 * @param  {string}  url
 			 * @param  {object}  params {?object}
@@ -315,21 +306,11 @@ if (Foxtrick.context === 'background') {
 
 				var obj = CACHE_OBJECTS.get(id);
 				if (!obj) {
-					// no cache, reject straight away
-					return Promise.reject(null);
+					// no cache
+					return null;
 				}
 
-				return obj.promise.then(function() {
-					// good promise
-					// resolve cache object
-					return obj;
-				}, function() {
-					// bad promise: remove cache object
-					CACHE_OBJECTS.delete(id);
-
-					return Promise.reject(null);
-				});
-
+				return obj;
 			},
 
 			/**
@@ -344,6 +325,14 @@ if (Foxtrick.context === 'background') {
 			set: function(url, params, obj) {
 				var id = genId(url, params);
 				CACHE_OBJECTS.set(id, obj);
+
+				if (obj && obj.promise) {
+					obj.promise.catch(function() {
+						// bad promise: remove cache object
+						if (CACHE_OBJECTS.get(id) === obj)
+							CACHE_OBJECTS.delete(id);
+					});
+				}
 			},
 
 			/**
@@ -373,59 +362,46 @@ if (Foxtrick.context === 'background') {
 	 */
 	Foxtrick.__loadPromise = function(url, params, aLifeTime, now) {
 
-		return Promise.resolve().then(function() {
+		var obj = Foxtrick.__promiseCache.get(url, params);
+		if (!obj)
+			return Promise.reject(null);
 
-			return Foxtrick.__promiseCache.get(url, params).then(function(obj) {
-				now = now ? new Date(now) : new Date();
+		now = now ? new Date(now) : new Date();
 
-				var cache = 'session';
+		var cache = 'session';
 
-				/**
-				 * Logs success and returns a cached Promise
-				 *
-				 * @return {Promise}
-				 */
-				var getCachedPromise = function() {
-					Foxtrick.log('Using cache for:', url,
-					             'until', cache.toString(), 'now:', now.toString());
+		// deal with Promise lifeTime
+		if (typeof obj.lifeTime === 'number') {
+			cache = new Date(obj.lifeTime);
+			if (cache < now) {
+				// stale cache
 
-					return obj.promise;
-				};
+				Foxtrick.__promiseCache.set(url, params, null);
 
-				// deal with Promise lifeTime
-				if (typeof obj.lifeTime === 'number') {
-					cache = new Date(obj.lifeTime);
-					if (cache < now) {
-						// stale cache
+				return Promise.reject({ stale: cache.toString(), now: now.toString() });
+			}
+		}
+		else if (obj.lifeTime) {
+			// string?
+			cache = obj.lifeTime;
+		}
 
-						Foxtrick.__promiseCache.set(url, params, null);
+		if (typeof aLifeTime === 'number' &&
+		    (typeof cache !== 'object' || cache > aLifeTime)) {
+			// obj.lifeTime was not a number but aLifeTime is
+			// or aLifeTime is sooner than obj.lifeTime
+			Foxtrick.log('New lifeTime for cached', url, params, aLifeTime);
 
-						return Promise.reject({ stale: cache.toString(), now: now.toString() });
-					}
-				}
-				else if (obj.lifeTime) {
-					// string?
-					cache = obj.lifeTime;
-				}
+			// update for logging
+			cache = new Date(aLifeTime);
 
-				if (typeof aLifeTime === 'number' &&
-				    (typeof cache !== 'object' || cache > aLifeTime)) {
-					// obj.lifeTime was not a number but aLifeTime is
-					// or aLifeTime is sooner than obj.lifeTime
-					Foxtrick.log('New lifeTime for cached', url, params, aLifeTime);
+			// set new lifeTime
+			Foxtrick.__savePromiseFor(url, params, aLifeTime)(obj.promise);
+		}
 
-					// update for logging
-					cache = new Date(aLifeTime);
+		Foxtrick.log('Using cache for:', url, 'until', cache.toString(), 'now:', now.toString());
 
-					// set new lifeTime
-					return Foxtrick.__savePromiseFor(url, params, aLifeTime)(obj.promise)
-						.then(getCachedPromise);
-				}
-
-				return getCachedPromise();
-			});
-
-		});
+		return obj.promise;
 
 	};
 
@@ -448,17 +424,14 @@ if (Foxtrick.context === 'background') {
 			// promisify
 			promise = Promise.resolve(promise);
 
-			return Promise.resolve().then(function() {
-				var cacheObj = { promise: promise };
+			var cacheObj = { promise: promise };
 
-				if (lifeTime)
-					cacheObj.lifeTime = lifeTime;
+			if (lifeTime)
+				cacheObj.lifeTime = lifeTime;
 
-				Foxtrick.__promiseCache.set(url, params, cacheObj);
+			Foxtrick.__promiseCache.set(url, params, cacheObj);
 
-				return promise;
-			});
-
+			return promise;
 		};
 	};
 }
