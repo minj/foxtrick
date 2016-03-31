@@ -66,7 +66,6 @@ FoxtrickFennec.prototype = {
 		// <!-- end util -->
 
 		// <!-- categorized modules with init functions -->
-		'forum/staff-marker.js',
 		'presentation/skin-plugin.js',
 
 		// <!-- platform-specific -->
