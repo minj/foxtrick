@@ -130,7 +130,7 @@ Foxtrick.util.note.createLoading = function(doc, loadingText, inline) {
 		var win = doc.defaultView;
 		win.setTimeout(function() {
 			Foxtrick.removeClass(this.document.getElementById(id), 'hidden');
-		}, 500);
+		}, 800);
 
 		return note;
 	}
