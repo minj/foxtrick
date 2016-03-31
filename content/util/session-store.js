@@ -48,9 +48,9 @@ Foxtrick.session.set = function(key, value) {
 		});
 	}
 
-	return Promise.resolve().then(function() {
+	return new Promise(function(resolve) {
 		Foxtrick.session.__STORE[key] = value;
-		return key;
+		resolve(key);
 	});
 
 };
@@ -74,22 +74,26 @@ Foxtrick.session.get = function(key) {
 		});
 	}
 
-	return Promise.resolve(key).then(function(key) {
-		var value = Foxtrick.session.__STORE[key];
-
-		// type-cast undefined to null
-		if (typeof value === 'undefined')
-			value = null;
-
-		return value;
-	}).catch(function(e) {
+	return new Promise(function(resolve) {
 		try {
-			Foxtrick.log('Error in session.get', key, e);
-		}
-		catch (ee) {}
+			var value = Foxtrick.session.__STORE[key];
 
-		return null;
+			// type-cast undefined to null
+			if (typeof value === 'undefined')
+				value = null;
+
+			resolve(value);
+		}
+		catch (e) {
+			try {
+				Foxtrick.log('Error in session.get', key, e);
+			}
+			catch (ee) {}
+
+			resolve(null);
+		}
 	});
+
 };
 
 /**
@@ -116,7 +120,7 @@ Foxtrick.session.deleteBranch = function(branch) {
 		});
 	}
 
-	return Promise.resolve(branch).then(function(branch) {
+	return new Promise(function(resolve) {
 		if (branch == null)
 			branch = '';
 
@@ -126,6 +130,8 @@ Foxtrick.session.deleteBranch = function(branch) {
 			if (key.indexOf(branch) === 0)
 				Foxtrick.session.__STORE[key] = null;
 		}
+
+		resolve();
 	});
 
 };
