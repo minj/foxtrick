@@ -104,13 +104,13 @@ Foxtrick.modules.AddClass = {
 		// start time
 		var cells = table.getElementsByTagName('td');
 		Foxtrick.map(function(cell) {
-			if (cell.getElementsByClassName('date').length)
+			if (cell.querySelector('.date'))
 				return;
 
 			if (module.timeRe.test(cell.textContent))
 				module.replaceInNode(doc, cell, module.timeRe);
-			else
-				module.replaceInNode(doc, cell, module.timeReShort);
+			else if (module.timeReNoTime.test(cell.textContent))
+				module.replaceInNode(doc, cell, module.timeReNoTime);
 		}, cells);
 	},
 
