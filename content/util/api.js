@@ -289,21 +289,25 @@ Foxtrick.util.api = {
 			HT_date = Date.now() + Foxtrick.util.time.MSECS_IN_DAY;
 		}
 
-		// check global_cache_lifetime first, aka server down
-		Foxtrick.sessionGet('xml_cache.global_cache_lifetime',
-		  function(recheckDate) {
-			if (recheckDate && (Number(recheckDate) > HT_date)) {
-				Foxtrick.log('global_cache_lifetime set. recheck later: ',
-									'  recheckDate: ', (new Date(recheckDate)).toString(),
-									'  current timestamp: ', (new Date(HT_date)).toString());
-				Foxtrick.util.api.addClearCacheLink(doc);
-				safeCallback(null, Foxtrick.L10n.getString('api.serverUnavailable'));
-				return;
-			}
+		// global_cache_lifetime = server down
+		var glblLifetime = Foxtrick.session.get('xml_cache.global_cache_lifetime');
+		var parameters_str = JSON.stringify(parameters);
+		var xmlCache = Foxtrick.session.get('xml_cache.' + parameters_str);
 
-			var parameters_str = JSON.stringify(parameters);
-			Foxtrick.sessionGet('xml_cache.' + parameters_str,
-			  function(xml_cache) {
+		Promise.all([glblLifetime, xmlCache])
+			.then(function(session) {
+				var recheckDate = session[0];
+				var xml_cache = session[1];
+
+				if (recheckDate && (Number(recheckDate) > HT_date)) {
+					Foxtrick.log('global_cache_lifetime set. recheck later: ',
+										'  recheckDate: ', (new Date(recheckDate)).toString(),
+										'  current timestamp: ', (new Date(HT_date)).toString());
+					Foxtrick.util.api.addClearCacheLink(doc);
+					safeCallback(null, Foxtrick.L10n.getString('api.serverUnavailable'));
+					return;
+				}
+
 				var session = options && options.cache_lifetime === 'session' || false;
 				var cacheTime = 0;
 				if (xml_cache) {
@@ -454,8 +458,11 @@ Foxtrick.util.api = {
 						process_queued(null, 0);
 					}
 				}
+
+			}).catch(function(e) {
+				Foxtrick.log('FATAL CHPP ERROR in retrieve:', e);
 			});
-		});
+
 	},
 
 	// batchParameters: array of parameters for retrieve function
