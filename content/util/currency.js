@@ -29,10 +29,10 @@ Foxtrick.util.currency.establish = function(doc) {
 		var ownTeamId = Foxtrick.util.id.getOwnTeamId();
 		var rate, symbol;
 
-		var code = this.getCode();
-		if (code && this.isValidCode(code)) {
-			rate = this.getRateByCode(code);
-			symbol = this.getSymbolByCode(code);
+		var code = Foxtrick.util.currency.getCode();
+		if (code && Foxtrick.util.currency.isValidCode(code)) {
+			rate = Foxtrick.util.currency.getRateByCode(code);
+			symbol = Foxtrick.util.currency.getSymbolByCode(code);
 
 			resolve([rate, symbol]);
 
@@ -40,11 +40,11 @@ Foxtrick.util.currency.establish = function(doc) {
 		}
 
 		if (!Foxtrick.util.layout.hasMultipleTeams(doc)) {
-			code = this.findCode();
+			code = Foxtrick.util.currency.findCode();
 			Foxtrick.Prefs.setString('Currency.Code.' + ownTeamId, code);
 
-			rate = this.getRateByCode(code);
-			symbol = this.getSymbolByCode(code);
+			rate = Foxtrick.util.currency.getRateByCode(code);
+			symbol = Foxtrick.util.currency.getSymbolByCode(code);
 
 			resolve([rate, symbol]);
 
