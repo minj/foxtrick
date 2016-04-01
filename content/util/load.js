@@ -252,15 +252,17 @@ Foxtrick.load = function(url, params, lifeTime, now) {
 		});
 	}
 
-	var tryFetch = function(cache) {
-		Foxtrick.log('Promise cache replied:', cache, 'Fetching from', url);
+	var obj = Foxtrick.__getPromiseCacheFor(url, params, lifeTime, now);
+	if (obj && obj.promise) {
+		return obj.promise;
+	}
 
-		// resolve the original Promise
-		return Foxtrick.__savePromiseFor(url, params, lifeTime)(Foxtrick.fetch(url, params));
-	};
+	Foxtrick.log('Promise cache replied:', obj, 'Fetching from', url);
 
-	return Foxtrick.__loadPromise(url, params, lifeTime, now).catch(tryFetch);
+	var promise = Foxtrick.fetch(url, params);
+	Foxtrick.__cachePromiseFor(url, params, lifeTime)(promise);
 
+	return promise;
 };
 
 
@@ -346,9 +348,11 @@ if (Foxtrick.context === 'background') {
 	})();
 
 	/**
-	 * Load a Promise for {url, params} from promise cache.
+	 * Load a Promise cache object for {url, params}.
 	 *
-	 * The returned Promise may reject with null if cache failed
+	 * cache object is {promise, lifeTime}.
+	 *
+	 * returns null if cache failed
 	 * or {stale, now: string} if cache lifeTime is over.
 	 *
 	 * aLifeTime is an optional timestamp to decrease cache lifeTime.
@@ -358,13 +362,14 @@ if (Foxtrick.context === 'background') {
 	 * @param  {object}  params    {?object}
 	 * @param  {number}  aLifeTime {?Integer}
 	 * @param  {number}  now       {?Integer}
-	 * @return {Promise}
+	 * @return {object}
 	 */
-	Foxtrick.__loadPromise = function(url, params, aLifeTime, now) {
+	Foxtrick.__getPromiseCacheFor = function(url, params, aLifeTime, now) {
 
 		var obj = Foxtrick.__promiseCache.get(url, params);
-		if (!obj)
-			return Promise.reject(null);
+		if (!obj) {
+			return null;
+		}
 
 		now = now ? new Date(now) : new Date();
 
@@ -378,7 +383,7 @@ if (Foxtrick.context === 'background') {
 
 				Foxtrick.__promiseCache.set(url, params, null);
 
-				return Promise.reject({ stale: cache.toString(), now: now.toString() });
+				return { stale: cache.toString(), now: now.toString() };
 			}
 		}
 		else if (obj.lifeTime) {
@@ -396,20 +401,19 @@ if (Foxtrick.context === 'background') {
 			cache = new Date(aLifeTime);
 
 			// set new lifeTime
-			Foxtrick.__savePromiseFor(url, params, aLifeTime)(obj.promise);
+			Foxtrick.__cachePromiseFor(url, params, aLifeTime)(obj.promise);
 		}
 
 		Foxtrick.log('Using cache for:', url, 'until', cache.toString(), 'now:', now.toString());
 
-		return obj.promise;
+		return obj;
 
 	};
 
 	/**
 	 * Save a promise in promise cache with specified properties
 	 *
-	 * Returns {function(Promise): Promise} to give the promise to.
-	 * Callback returns a promise that resolves to the original promise.
+	 * Returns {function(Promise)} to give the promise to.
 	 *
 	 * lifeTime is an optional timestamp.
 	 *
@@ -418,7 +422,7 @@ if (Foxtrick.context === 'background') {
 	 * @param  {number}   lifeTime {?Integer}
 	 * @return {function}          {function(Promise): Promise}
 	 */
-	Foxtrick.__savePromiseFor = function(url, params, lifeTime) {
+	Foxtrick.__cachePromiseFor = function(url, params, lifeTime) {
 		return function(promise) {
 
 			// promisify
@@ -430,8 +434,6 @@ if (Foxtrick.context === 'background') {
 				cacheObj.lifeTime = lifeTime;
 
 			Foxtrick.__promiseCache.set(url, params, cacheObj);
-
-			return promise;
 		};
 	};
 }
