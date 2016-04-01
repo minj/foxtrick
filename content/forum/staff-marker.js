@@ -227,7 +227,7 @@ Foxtrick.modules['StaffMarker'] = {
 				parsed = JSON.parse(text);
 			}
 			catch (e) {
-				Foxtrick.log('WARNING: Cannot parse StaffMarker JSON', text);
+				Foxtrick.log('WARNING: Cannot parse StaffMarker JSON');
 			}
 
 			if (!parsed) {
@@ -419,13 +419,12 @@ Foxtrick.modules['StaffMarker'] = {
 
 			return Foxtrick.load(url).then(function(text) {
 
-				Foxtrick.log('parse', url);
-
+				// set only if parsing step does not throw or fail
 				var parseOK = parseMarkers(text);
-
-				// set only if previous step does not throw or fail
 				if (parseOK)
 					Foxtrick.storage.set('Markers.' + url, text);
+				else
+					Foxtrick.log('StaffMarker parsing failed:', url, text);
 
 			}, function(resp) {
 
