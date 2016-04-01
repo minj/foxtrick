@@ -15,74 +15,74 @@ if (!Foxtrick.util)
 Foxtrick.util.currency = {};
 
 /**
- * continue with correct currency if possible
+ * Continue with correct currency if possible.
  *
- * @param	{document}	doc
- * @param	{Function}	callback
+ * Returns Promise.<[rate, symbol]>
+ *
+ * @param  {document}	doc
+ * @return {Promise}
  */
-Foxtrick.util.currency.establish = function(doc, callback) {
-	var safeCallback = function() {
-		try {
-			callback.apply(this, arguments);
-		}
-		catch (e) {
-			Foxtrick.log('Error in callback for currency.establish', e);
-		}
-	};
+Foxtrick.util.currency.establish = function(doc) {
 
-	var ownTeamId = Foxtrick.util.id.getOwnTeamId();
-	var rate, symbol;
+	return new Promise(function(resolve, reject) {
 
-	var code = this.getCode();
-	if (code && this.isValidCode(code)) {
-		rate = this.getRateByCode(code);
-		symbol = this.getSymbolByCode(code);
+		var ownTeamId = Foxtrick.util.id.getOwnTeamId();
+		var rate, symbol;
 
-		safeCallback(rate, symbol);
+		var code = this.getCode();
+		if (code && this.isValidCode(code)) {
+			rate = this.getRateByCode(code);
+			symbol = this.getSymbolByCode(code);
 
-		return;
-	}
+			resolve([rate, symbol]);
 
-	if (!Foxtrick.util.layout.hasMultipleTeams(doc)) {
-		code = this.findCode();
-		Foxtrick.Prefs.setString('Currency.Code.' + ownTeamId, code);
-
-		rate = this.getRateByCode(code);
-		symbol = this.getSymbolByCode(code);
-
-		safeCallback(rate, symbol);
-
-		return;
-	}
-
-	var teamargs = [['file', 'teamdetails'], ['version', '2.9'], ['teamId', ownTeamId]];
-	Foxtrick.util.api.retrieve(doc, teamargs, { cache_lifetime: 'session' },
-	  function(teamXml, errorText) {
-		if (!teamXml || errorText) {
-			Foxtrick.log('[ERROR] Currency detection failed:', errorText);
-
-			// can't detect if CHPP is disabled with multiple teams
-			Foxtrick.util.currency.displaySelector(doc, { reason: 'chpp' });
 			return;
 		}
 
-		// set the correct currency
-		var teams = teamXml.getElementsByTagName('IsPrimaryClub');
-		for (var primaryTeamIdx = 0; primaryTeamIdx < teams.length; ++primaryTeamIdx) {
-			if (teams[primaryTeamIdx].textContent == 'True')
-				break;
+		if (!Foxtrick.util.layout.hasMultipleTeams(doc)) {
+			code = this.findCode();
+			Foxtrick.Prefs.setString('Currency.Code.' + ownTeamId, code);
+
+			rate = this.getRateByCode(code);
+			symbol = this.getSymbolByCode(code);
+
+			resolve([rate, symbol]);
+
+			return;
 		}
 
-		var leagues = teamXml.getElementsByTagName('LeagueID');
-		var leagueId = leagues[primaryTeamIdx].textContent;
+		var teamargs = [['file', 'teamdetails'], ['version', '2.9'], ['teamId', ownTeamId]];
+		Foxtrick.util.api.retrieve(doc, teamargs, { cache_lifetime: 'session' },
+		  function(teamXml, errorText) {
+			if (!teamXml || errorText) {
+				Foxtrick.log('[ERROR] Currency detection failed:', errorText);
 
-		rate = Foxtrick.util.currency.findRate(leagueId);
-		symbol = Foxtrick.util.currency.findSymbol(leagueId);
+				// can't detect if CHPP is disabled with multiple teams
+				Foxtrick.util.currency.displaySelector(doc, { reason: 'chpp' });
 
-		code = Foxtrick.util.currency.guessCode({ rate: rate, symbol: symbol });
-		Foxtrick.Prefs.setString('Currency.Code.' + ownTeamId, code);
+				reject({ reason: 'chpp' });
+				return;
+			}
 
-		safeCallback(rate, symbol);
+			// set the correct currency
+			var teams = teamXml.getElementsByTagName('IsPrimaryClub');
+			for (var primaryTeamIdx = 0; primaryTeamIdx < teams.length; ++primaryTeamIdx) {
+				if (teams[primaryTeamIdx].textContent == 'True')
+					break;
+			}
+
+			var leagues = teamXml.getElementsByTagName('LeagueID');
+			var leagueId = leagues[primaryTeamIdx].textContent;
+
+			rate = Foxtrick.util.currency.findRate(leagueId);
+			symbol = Foxtrick.util.currency.findSymbol(leagueId);
+
+			code = Foxtrick.util.currency.guessCode({ rate: rate, symbol: symbol });
+			Foxtrick.Prefs.setString('Currency.Code.' + ownTeamId, code);
+
+			resolve([rate, symbol]);
+
+		});
 
 	});
 

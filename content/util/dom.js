@@ -549,6 +549,7 @@ Foxtrick.getDataURIText = function(str) {
 
 /**
  * Add an image in an asynchronous way.
+ * TODO: promisify
  * Used to be the only way to add images from FT package
  * in some extension architectures.
  * Continued to be used with forward compatibility in mind.

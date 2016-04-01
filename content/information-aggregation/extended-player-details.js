@@ -95,7 +95,9 @@ Foxtrick.modules['ExtendedPlayerDetailsWage'] = {
 		var module = this;
 		var NBSP = '\u00a0';
 
-		Foxtrick.util.currency.establish(doc, function(rate, symbol) {
+		Foxtrick.util.currency.establish(doc).then(function(curr) {
+			var symbol = curr[1];
+
 			var done = doc.querySelector('#ft_bonuswage, #ft_seasonwage');
 			if (done)
 				return;
@@ -150,6 +152,10 @@ Foxtrick.modules['ExtendedPlayerDetailsWage'] = {
 				wageCell.appendChild(doc.createElement('br'));
 				wageCell.appendChild(spanSeason);
 			}
+
+		}).catch(function(reason) {
+			Foxtrick.log('WARNING: currency.establish aborted:', reason);
 		});
+
 	},
 };
