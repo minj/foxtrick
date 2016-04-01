@@ -475,29 +475,44 @@ Foxtrick.util.api = {
 				callback(null);
 			}
 			catch (e) {
-				Foxtrick.log('ApiProxy: uncaught callback error: ', e,
-				             'parameters: ', batchParameters);
+				Foxtrick.log('ApiProxy: uncaught callback error:', e,
+				             'parameters:', batchParameters);
 			}
 			return;
 		}
-		var index = 0, responses = [], errors = [];
-		var processSingle = function(last_response, errorText) {
-			// collect responses
-			if (index !== 0) {
-				Foxtrick.util.api.addHelpers(last_response);
-				responses.push(last_response);
-				errors.push(errorText);
-			}
-			// return if finished
-			if (index == batchParameters.length)
-				callback(responses, errors);
-			else {
-				// load next file
-				var opts = Array.isArray(options) ? options[index] : options;
-				Foxtrick.util.api.retrieve(doc, batchParameters[index++], opts, processSingle);
-			}
-		};
-		processSingle();
+
+		var chppPromises = Foxtrick.map(function(params, i) {
+			var opts = Array.isArray(options) ? options[i] : options;
+
+			return new Promise(function(resolve) {
+
+				Foxtrick.util.api.retrieve(doc, params, opts,
+				  function(xml, errorText) {
+					Foxtrick.util.api.addHelpers(xml);
+					resolve([xml, errorText]);
+				});
+
+			}).catch(function(e) {
+				Foxtrick.log('FATAL CHPP ERROR in batchRetrieve:', e);
+				return [null, e.message];
+			});
+
+		}, batchParameters);
+
+		Promise.all(chppPromises).then(function(arr) {
+			var responses = Foxtrick.map(function(resolved) {
+				return resolved[0];
+			}, arr);
+			var errors = Foxtrick.map(function(resolved) {
+				return resolved[1];
+			}, arr);
+
+			callback(responses, errors);
+
+		}).catch(function(e) {
+			Foxtrick.log('ApiProxy: uncaught callback error:', e, 'parameters:', batchParameters);
+		});
+
 	},
 
 	invalidateAccessToken: function() {
