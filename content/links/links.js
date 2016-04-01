@@ -42,105 +42,95 @@ Foxtrick.modules['Links'] = {
 		return cont;
 	},
 
-	getCollection: (function() {
-		var get = function() {
-			// load links from external feeds
-			var feeds = Foxtrick.Prefs.getString('module.Links.feedsList') || '';
-			feeds = feeds.split(/(\n|\r|\\n|\\r)+/);
-			feeds = Foxtrick.filter(function(n) { return n.trim() !== ''; }, feeds);
+	getCollection: function() {
+		// load links from external feeds
+		var feeds = Foxtrick.Prefs.getString('module.Links.feedsList') || '';
+		feeds = feeds.split(/(\n|\r|\\n|\\r)+/);
+		feeds = Foxtrick.filter(function(n) { return n.trim() !== ''; }, feeds);
 
-			// use the default feed if no feeds set or using dev/android
-			if (feeds.length === 0 ||
-			    Foxtrick.platform === 'Android' || Foxtrick.branch === 'dev')
-				feeds = [Foxtrick.DataPath + 'links.json'];
+		// use the default feed if no feeds set or using dev/android
+		if (feeds.length === 0 ||
+		    Foxtrick.platform === 'Android' || Foxtrick.branch === 'dev')
+			feeds = [Foxtrick.DataPath + 'links.json'];
 
 
-			var parseFeeds = function(feeds) {
-				var collection = {};
+		var parseFeeds = function(feeds) {
+			var collection = {};
 
-				feeds.forEach(function(text) {
-					var links;
-					try {
-						// Foxtrick.log('parseFeed: ', text.slice(0, 200));
-						links = JSON.parse(text);
+			feeds.forEach(function(text) {
+				var links;
+				try {
+					// Foxtrick.log('parseFeed: ', text.slice(0, 200));
+					links = JSON.parse(text);
+				}
+				catch (e) {
+					Foxtrick.log('Failure parsing links:', text.slice(0, 200), e);
+					return;
+				}
+
+				for (var key in links) {
+					var link = links[key];
+					if (link.img) {
+						if (link.img.indexOf('resources') === 0) {
+							// add path to internal images
+							link.img = Foxtrick.InternalPath + link.img;
+						}
+						link.img = Foxtrick.util.sanitize.parseUrl(link.img);
 					}
-					catch (e) {
-						Foxtrick.log('Failure parsing links:', text.slice(0, 200), e);
-						return;
-					}
 
-					for (var key in links) {
-						var link = links[key];
-						if (link.img) {
-							if (link.img.indexOf('resources') === 0) {
-								// add path to internal images
-								link.img = Foxtrick.InternalPath + link.img;
+					for (var prop in link) {
+						if (/link/.test(prop)) {
+							link[prop].url = Foxtrick.util.sanitize.parseUrl(link[prop].url);
+							if (typeof collection[prop] === 'undefined') {
+								collection[prop] = {};
 							}
-							link.img = Foxtrick.util.sanitize.parseUrl(link.img);
-						}
-
-						for (var prop in link) {
-							if (/link/.test(prop)) {
-								link[prop].url = Foxtrick.util.sanitize.parseUrl(link[prop].url);
-								if (typeof collection[prop] === 'undefined') {
-									collection[prop] = {};
-								}
-								collection[prop][key] = link;
-							}
+							collection[prop][key] = link;
 						}
 					}
-				});
+				}
+			});
 
-				// Foxtrick.log('Link feeds loaded');
-				return collection;
-			};
+			// Foxtrick.log('Link feeds loaded');
+			return collection;
+		};
 
-			Foxtrick.log('Loading', feeds.length, 'link feeds from:', feeds);
+		Foxtrick.log('Loading', feeds.length, 'link feeds from:', feeds);
 
-			var promises = Foxtrick.map(function(feed) {
-				// Foxtrick.log('loading feed:', feed);
+		var promises = Foxtrick.map(function(feed) {
+			// Foxtrick.log('loading feed:', feed);
 
-				// load a plain text Promise
-				return Foxtrick.load(feed)
-					.then(function(text) {
-						if (!text) {
-							Foxtrick.log('Error loading links from:', feed,
-							             '. Received empty response. Using cached feed.');
-
-							return Foxtrick.storage.get('LinksFeed.' + feed);
-						}
-						else {
-							return Foxtrick.storage.set('LinksFeed.' + feed, text)
-								.then(function() { return text; });
-						}
-
-					}, function(resp) {
-
-						Foxtrick.log('Error', resp.status, 'loading links from:', resp.url,
-						             '. Using cached feed.');
+			// load a plain text Promise
+			return Foxtrick.load(feed)
+				.then(function(text) {
+					if (!text) {
+						Foxtrick.log('Error loading links from:', feed,
+						             '. Received empty response. Using cached feed.');
 
 						return Foxtrick.storage.get('LinksFeed.' + feed);
+					}
+					else {
+						return Foxtrick.storage.set('LinksFeed.' + feed, text)
+							.then(function() { return text; });
+					}
 
-					}).catch(Foxtrick.catch('StoreLinksCollection'));
+				}, function(resp) {
 
-			}, feeds);
+					Foxtrick.log('Error', resp.status, 'loading links from:', resp.url,
+					             '. Using cached feed.');
 
-			return Promise.all(promises).then(function(feeds) {
-				return parseFeeds(feeds.filter(function(text) {
-					return text;
-				}));
-			});
-		};
+					return Foxtrick.storage.get('LinksFeed.' + feed);
 
-		var promise;
+				}).catch(Foxtrick.catch('StoreLinksCollection'));
 
-		return function() {
-			if (!promise)
-				promise = get();
+		}, feeds);
 
-			return promise;
-		};
-	})(),
+		return Promise.all(promises).then(function(feeds) {
+			return parseFeeds(feeds.filter(function(text) {
+				return text;
+			}));
+		});
+
+	},
 
 	getLinks: function(doc, options) {
 		var module = this;
