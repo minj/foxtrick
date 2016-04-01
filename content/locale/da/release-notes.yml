@@ -20,7 +20,14 @@ da:
       crowdin: '<header>En stor tak til alle de hjælpsomme brugere, som oversætter ved hjælp af <linkCrowdin>crowdin </linkCrowdin>. Du kan også give en hånd!</header>'
       support: '<header>Støt Foxtrick via Flattr mikrodonationer eller giv et bidrag med Paypal <linkContribute>Donér</linkContribute>.</header>'
       bugs: '<header>Fejlrettelser</header>'
+      dollar_wage: 'Lønberegningen er rettet ved <module>ExtendedPlayerDetailsWage</module> for lande der bruger dollar som valuta.'
+      old_faces_moi: 'Defekte spiller avatarer som skyldes interferens mellem <module>OldStyleFace</module> og <module>MatchOrderInterface</module> er nu rettet.'
+      last_lineup_live: 'Links til sidste kampopstilling ved <module>TeamPopupLinks</module> og <module>SeniorTeamShortCuts</module> fungerede ikke efter hensigten under live kampe. Problemet skulle nu være rettet.'
       other: '<header>Andre ændringer</header>'
+      stamina_contributions: '<module>MatchSimulator</module> bruger nu <module>PlayerPositionsEvaluations</module> for at beregne konditionseffekten. Ændringerne er af mindre karakter, men mærkbar. Vi tager gerne imod enhver tilbagemelding for at forbedre denne funktion.'
+      copy_lineup: 'Du kan nu kopiere din opstilling i <module>MatchOrderInterface</module>.'
+      supporters_series: '<module>SupportersList</module> tilføjer ikoner, for dine supportere og de hold der supporterer dig, under ligasider.'
+      price_history: '<module>TransferComparePlayers</module> viser nu detaljeret oplysninger om prisændringer under spillere transferhistorie.'
       and_more: Forskellige små ændringer og rettelser.
     0.16.0:
       important: '<header>Vigtige meddelelser</header>'
@@ -67,7 +74,7 @@ da:
       bugs: '<header>Fejlrettelser</header>'
       breakages: Foxtrick burde fungere fejlfrit på Safari 7.1+ og Firefox til andriod enheder.
       https: FoxTrick bør igen fungerer fejlfrit på Hattrick Stage.
-      avatars: 'Spiller avatar cache i <module>MatchOrderInterface</module> bliver nu opdateret automatisk når nye spillere ankommer på dit hold.'
+      avatars: 'Cache i <module>MatchOrderInterface</module> for spiller avatar bliver nu opdateret automatisk, når nye spillere ankommer til dit hold.'
       fans: 'Tilgang og afgang af fans i <module>Fans</module> bliver nu beregnet korrekt, når dit hold rykker op eller ned.'
       player_stats: '<module>PlayerStatsTrainingWeek</module> bør nu genkende weekend venskabskampe korrekt.'
       other: '<header>Andre ændringer</header>'
