@@ -34,7 +34,8 @@ Foxtrick.modules['CurrentTransfers'] = {
 			optsPlayers.push({ cache_lifetime: cache });
 		}, players);
 
-		Foxtrick.util.currency.establish(doc, function(currencyRate, symbol) {
+		Foxtrick.util.currency.establish(doc).then(function(curr) {
+			var currencyRate = curr[0], symbol = curr[1];
 			Foxtrick.util.api.batchRetrieve(doc, argsPlayers, optsPlayers,
 			  function(xmls, errors) {
 				if (!xmls)
@@ -48,7 +49,11 @@ Foxtrick.modules['CurrentTransfers'] = {
 					module.processXML(doc, xmls[i], { rate: currencyRate, symbol: symbol });
 				}
 			});
+
+		}).catch(function(reason) {
+			Foxtrick.log('WARNING: currency.establish aborted:', reason);
 		});
+
 	},
 	getPlayers: function(doc) {
 		var NOW = Foxtrick.util.time.getHTTimeStamp(doc);

@@ -40,7 +40,9 @@ Foxtrick.modules['CurrencyConverter'] = {
 		// don't run on forum pages
 		if (doc.location.href.search(/Forum/i) != -1)
 			return;
-		Foxtrick.util.currency.establish(doc, function(rate, symbol) {
+
+		Foxtrick.util.currency.establish(doc).then(function(curr) {
+			var rate = curr[0], symbol = curr[1];
 
 			// old stuffs
 			var oldSymbol = symbol;
@@ -133,6 +135,10 @@ Foxtrick.modules['CurrencyConverter'] = {
 					Foxtrick.map(traverse, node.childNodes);
 			};
 			Foxtrick.map(traverse, nodes);
+
+		}).catch(function(reason) {
+			Foxtrick.log('WARNING: currency.establish aborted:', reason);
 		});
+
 	}
 };
