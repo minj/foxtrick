@@ -338,7 +338,7 @@ if (Foxtrick.context === 'background') {
 		return {
 
 			/**
-			 * Load a Promise cache object for {url, params}.
+			 * Get a Promise cache object for {url, params}.
 			 *
 			 * cache object is {promise, lifeTime}.
 			 *
