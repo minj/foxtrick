@@ -1220,7 +1220,7 @@ function initMainTab() {
 	$('#pref-stored-clear-cache').click(function() {
 		Foxtrick.sessionDeleteBranch('');
 		Foxtrick.localDeleteBranch('');
-		Foxtrick.__promiseCache.clear();
+		Foxtrick.cache.clear();
 
 		// Foxtrick.util.api.clearCache();
 
