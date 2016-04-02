@@ -292,6 +292,11 @@
 			"duty": "translator"
 		},
 		{
+			"id": "9607801",
+			"name": "Kostitsyn46",
+			"duty": "translator"
+		},
+		{
 			"id": "5601852",
 			"name": "LA-vikingcliff",
 			"duty": "translator"
@@ -299,6 +304,11 @@
 		{
 			"id": "11710656",
 			"name": "LA-Hadi",
+			"duty": "translator"
+		},
+		{
+			"id": "936259",
+			"name": "GM-Lidegand",
 			"duty": "translator"
 		},
 		{
@@ -402,6 +412,11 @@
 			"duty": "translator"
 		},
 		{
+			"id": "8114991",
+			"name": "Papytrick",
+			"duty": "translator"
+		},
+		{
 			"id": "9220100",
 			"name": "tamjan",
 			"duty": "translator"
@@ -422,8 +437,23 @@
 			"duty": "translator"
 		},
 		{
+			"id": "11014585",
+			"name": "Deuterium1985",
+			"duty": "translator"
+		},
+		{
 			"id": "12614915",
 			"name": "clashfan",
+			"duty": "translator"
+		},
+		{
+			"id": "12805270",
+			"name": "cebbe",
+			"duty": "translator"
+		},
+		{
+			"id": "5475689",
+			"name": "Calgar_",
 			"duty": "translator"
 		},
 		{
@@ -432,8 +462,18 @@
 			"duty": "translator"
 		},
 		{
+			"id": "12839457",
+			"name": "CAT-esperitdelbosc",
+			"duty": "translator"
+		},
+		{
 			"id": "12858567",
 			"name": "Engin_Altiok",
+			"duty": "translator"
+		},
+		{
+			"id": "12938225",
+			"name": "Howard007",
 			"duty": "translator"
 		},
 		{
