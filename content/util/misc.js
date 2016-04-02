@@ -165,16 +165,6 @@ Foxtrick.newTab = function(url) {
 		BrowserApp.addTab(url);
 };
 
-/*
- * @desc return an XML file parsed from given text
- */
-Foxtrick.parseXml = function(text) {
-	var parser = new window.DOMParser();
-	var xml = parser.parseFromString(text, 'text/xml');
-	return xml;
-};
-
-
 Foxtrick.XML_evaluate = function(xmlresponse, basenodestr, labelstr,
                                  valuestr, value2str, value3str) {
 	var result = [];

@@ -288,7 +288,8 @@ Foxtrick.modules['SeriesTransfers'] = {
 		var showPlayers = function() {
 			buildTable();
 			// retrieve currency rate
-			Foxtrick.util.currency.establish(doc, function(currencyRate) {
+			Foxtrick.util.currency.establish(doc).then(function(curr) {
+				var currencyRate = curr[0];
 				// batch retrieve
 				var time = now + AUTO_REFRESH_IN;
 				Foxtrick.util.api.batchRetrieve(doc, batchArgs, { cache_lifetime: time },
@@ -296,7 +297,11 @@ Foxtrick.modules['SeriesTransfers'] = {
 					if (xmls)
 						processXMLs(xmls, errors, currencyRate);
 				});
+
+			}).catch(function(reason) {
+				Foxtrick.log('WARNING: currency.establish aborted:', reason);
 			});
+
 		};
 
 		var sidebar = doc.getElementById('sidebar');

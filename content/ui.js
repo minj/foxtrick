@@ -50,6 +50,7 @@ if (Foxtrick.platform == 'Firefox') {
 		toolCache.addEventListener('click', function() {
 			Foxtrick.sessionDeleteBranch('');
 			Foxtrick.localDeleteBranch('');
+			Foxtrick.__promiseCache.clear();
 			// Foxtrick.util.api.clearCache();
 		});
 

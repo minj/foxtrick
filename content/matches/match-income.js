@@ -11,7 +11,8 @@ Foxtrick.modules['MatchIncome'] = {
 	OPTIONS: ['UtilizationPercentages'],
 	run: function(doc) {
 		var module = this;
-		Foxtrick.util.currency.establish(doc, function(rate, symbol) {
+		Foxtrick.util.currency.establish(doc).then(function(curr) {
+			var rate = curr[0], symbol = curr[1];
 			var table = Foxtrick.filter(function(n) {
 				if (n.rows.length != 4)
 					return false;
@@ -210,6 +211,10 @@ Foxtrick.modules['MatchIncome'] = {
 					}
 				});
 			}
+
+		}).catch(function(reason) {
+			Foxtrick.log('WARNING: currency.establish aborted:', reason);
 		});
+
 	},
 };

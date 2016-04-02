@@ -25,6 +25,8 @@ Foxtrick.modules['HTMSPrediction'] = {
 
 	insertPrediction: function(doc, targetNode, midfieldLevel, rdefence, cdefence, ldefence,
 	                           rattack, cattack, lattack, tactics, tacticsLevel, teams) {
+
+		var module = this;
 		var loading = Foxtrick.util.note.createLoading(doc);
 		targetNode.appendChild(loading);
 
@@ -120,9 +122,11 @@ Foxtrick.modules['HTMSPrediction'] = {
 		cell.textContent = Foxtrick.L10n.getString('HTMSPrediction.prediction');
 
 		var url = 'http://www.fantamondi.it/HTMS/dorequest.php?action=predict&' + params;
-		Foxtrick.util.load.get(url)('success',
-		  function(text) {
-			var xml = Foxtrick.parseXml(text);
+		Foxtrick.load(url).then(function(text) {
+			var xml = Foxtrick.parseXML(text);
+			if (xml == null)
+				return;
+
 			if (loading)
 				loading.parentNode.removeChild(loading);
 
@@ -142,7 +146,7 @@ Foxtrick.modules['HTMSPrediction'] = {
 				drawprob = 0;
 				lossprob = 0;
 			}
-			
+
 			var b = doc.createElement('b');
 			b.appendChild(doc.createTextNode(pred1));
 			cell = row.insertCell(1); cell.appendChild(b); cell.className = 'left';
@@ -175,7 +179,7 @@ Foxtrick.modules['HTMSPrediction'] = {
 			cell = row.insertCell(1); cell.textContent = winprob; cell.className = 'left';
 			cell = row.insertCell(2); cell.textContent = drawprob; cell.className = 'center';
 			cell = row.insertCell(3); cell.textContent = lossprob; cell.className = 'right';
-		});
+		}).catch(Foxtrick.catch(module));
 
 		var p = doc.createElement('p');
 		var a = doc.createElement('a');
