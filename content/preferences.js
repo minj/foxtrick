@@ -1232,41 +1232,14 @@ function initMainTab() {
  * Setup changes tab layout and release notes
  */
 function initChangesTab() {
+	var lang = Foxtrick.Prefs.getString('htLanguage');
+
 	var changesLink = document.createElement('a');
 	changesLink.href = '#tab=changes';
 	changesLink.className = 'module-link';
 	changesLink.textContent = '¶';
 	changesLink.title = Foxtrick.L10n.getString('module.link');
 	$('div[x-on*="changes"] > h2').append(changesLink);
-
-	var lang = Foxtrick.Prefs.getString('htLanguage');
-
-	var rNotesLinks = Foxtrick.util.load.ymlSync(Foxtrick.InternalPath + 'release-notes-links.yml');
-
-	var rNotesLocalSrc = Foxtrick.InternalPath + 'locale/' + lang + '/release-notes.yml';
-	var releaseNotesLocal = Foxtrick.util.load.ymlSync(rNotesLocalSrc);
-	var releaseNotes = Foxtrick.util.load.ymlSync(Foxtrick.InternalPath + 'release-notes.yml');
-
-	if (rNotesLinks === null || releaseNotesLocal === null || releaseNotes === null) {
-		Foxtrick.log('Release notes failed');
-		return;
-	}
-
-	var statusL10n = Foxtrick.L10n.getString('releaseNotes.translationStatus');
-	var statusJSON = Foxtrick.util.load.sync(Foxtrick.InternalPath + 'locale/status.json');
-	var statusData = JSON.parse(statusJSON);
-
-	var statusText = '';
-	try {
-		if (lang !== 'en') {
-			var langStatus = Foxtrick.nth(function(item) {
-				return item.code == lang;
-			}, statusData.status);
-			var pctg = langStatus.translated_progress;
-			statusText = statusL10n.replace(/%s/, pctg);
-		}
-	}
-	catch (e) {}
 
 	var parseNotes = function(obj) {
 		if (!obj) {
@@ -1283,40 +1256,6 @@ function initChangesTab() {
 		return versions;
 	};
 
-	var versions = parseNotes(releaseNotes);
-	var versionsLocalized = parseNotes(releaseNotesLocal);
-
-	if (!versions) {
-		Foxtrick.error('NO RELEASE NOTES!!!');
-		return;
-	}
-
-	// add nightly and beta notes
-	for (var version in versions) {
-		if (Foxtrick.branch.indexOf(version) !== 0)
-			continue;
-
-		var notes = versions[version];
-		var notesLocalized = versionsLocalized[version];
-		if (!notes)
-			continue;
-
-		// README: branch note must always be 'note_0'
-		var note = notesLocalized && notesLocalized['note_0'] || notes['note_0'];
-		if (!note)
-			continue;
-
-		var $note = $('#translator_note');
-		var list = $note[0];
-		addNote(note, list, rNotesLinks);
-		if (version === 'beta')
-			$note.append(' ' + statusText);
-
-		$note.attr('style', 'display:block;');
-	}
-
-	var select = $('#pref-version-release-notes')[0];
-
 	// version format: x.y[.z[.j]]
 	// major version format: x.y.z, adds or removes parts as needed
 	var getMajorVersion = function(version) {
@@ -1332,37 +1271,18 @@ function initChangesTab() {
 		return parts.length < 4;
 	};
 
-	var majorVersions = {};
-	for (version in versions) {
-		if (!/^\d/.test(version)) {
-			// beta / nightly notes
-			continue;
-		}
-
-		// sort all versions into buckets by major version
-		var major = getMajorVersion(version);
-		majorVersions[major] = majorVersions[major] || [];
-		majorVersions[major].push(version);
-
-		if (!isMajorVersion(version)) {
-			// don't add subversions to select box
-			continue;
-		}
-
-		var item = document.createElement('option');
-		item.textContent = version;
-		item.value = major; // setting value to major
-		select.appendChild(item);
-	}
-
-	var updateNotepad = function() {
+	var updateNotepad = function(selected, versionMap, data) {
 		var list = $('#pref-notepad-list')[0];
 		list.textContent = ''; // clear list
 
 		var versionL10n = Foxtrick.L10n.getString('releaseNotes.version');
 
-		var major = getMajorVersion(select.value);
-		var minorVersions = majorVersions[major];
+		var versions = data.versions;
+		var versionsLocalized = data.versionsLocalized;
+		var rNotesLinks = data.rNotesLinks;
+
+		var major = getMajorVersion(selected);
+		var minorVersions = versionMap[major];
 
 		for (var version of minorVersions) {
 			var notes = versions[version];
@@ -1385,7 +1305,7 @@ function initChangesTab() {
 
 			var notesLocalized = versionsLocalized[version];
 			for (var n in notes) {
-				note = notes[n];
+				var note = notes[n];
 				if (notesLocalized && typeof notesLocalized[n] !== 'undefined' &&
 				    notesLocalized[n] !== null)
 					note = notesLocalized[n];
@@ -1400,17 +1320,135 @@ function initChangesTab() {
 		}
 	};
 
-	var currentVersion = getMajorVersion(Foxtrick.version);
-	Foxtrick.any(function(opt, i) {
-		if (opt.value == currentVersion) {
-			select.selectedIndex = i;
-			return true;
-		}
-		return false;
-	}, select.options);
+	var addBetaNote = function(statusText, data) {
+		var versions = data.versions;
+		var versionsLocalized = data.versionsLocalized;
+		var rNotesLinks = data.rNotesLinks;
 
-	updateNotepad();
-	$(select).change(updateNotepad);
+		// add nightly and beta notes
+		for (var version in versions) {
+			if (Foxtrick.branch.indexOf(version) !== 0)
+				continue;
+
+			var notes = versions[version];
+			var notesLocalized = versionsLocalized[version];
+			if (!notes)
+				continue;
+
+			// README: branch note must always be 'note_0'
+			var note = notesLocalized && notesLocalized['note_0'] || notes['note_0'];
+			if (!note)
+				continue;
+
+			var $note = $('#translator_note');
+			var list = $note[0];
+
+			addNote(note, list, rNotesLinks);
+
+			if (version === 'beta')
+				$note.append(' ' + statusText);
+
+			$note.attr('style', 'display:block;');
+		}
+	};
+
+	var addVersions = function(select, versions) {
+		var majorVersions = {};
+		for (var version in versions) {
+			if (!/^\d/.test(version)) {
+				// beta / nightly notes
+				continue;
+			}
+
+			// sort all versions into buckets by major version
+			var major = getMajorVersion(version);
+			majorVersions[major] = majorVersions[major] || [];
+			majorVersions[major].push(version);
+
+			if (!isMajorVersion(version)) {
+				// don't add subversions to select box
+				continue;
+			}
+
+			var item = document.createElement('option');
+			item.textContent = version;
+			item.value = major; // setting value to major
+			select.appendChild(item);
+		}
+
+		var currentVersion = getMajorVersion(Foxtrick.version);
+		Foxtrick.any(function(opt, i) {
+			if (opt.value == currentVersion) {
+				select.selectedIndex = i;
+				return true;
+			}
+			return false;
+		}, select.options);
+
+		return majorVersions;
+	};
+
+	var statusL10n = Foxtrick.L10n.getString('releaseNotes.translationStatus');
+	var status = Foxtrick.load(Foxtrick.InternalPath + 'locale/status.json')
+		.then(Foxtrick.parseJSON)
+		.then(function(statusData) {
+			var statusText = '';
+			try {
+				if (lang !== 'en') {
+					var langStatus = Foxtrick.nth(function(item) {
+						return item.code == lang;
+					}, statusData.status);
+					var pctg = langStatus.translated_progress;
+					statusText = statusL10n.replace(/%s/, pctg);
+				}
+			}
+			catch (e) {}
+
+			return statusText;
+		});
+
+	var rNotesLinks = Foxtrick.load(Foxtrick.InternalPath + 'release-notes-links.yml')
+		.then(Foxtrick.parseYAML);
+
+	var rNotesLocalSrc = Foxtrick.InternalPath + 'locale/' + lang + '/release-notes.yml';
+	var releaseNotesLocal = Foxtrick.load(rNotesLocalSrc).then(Foxtrick.parseYAML);
+
+	var releaseNotes = Foxtrick.load(Foxtrick.InternalPath + 'release-notes.yml')
+		.then(Foxtrick.parseYAML);
+
+	Promise.all([releaseNotes, releaseNotesLocal, rNotesLinks, status])
+		.then(function(resp) {
+
+			var versions = parseNotes(resp[0]);
+			var versionsLocalized = parseNotes(resp[1]);
+			var rNotesLinks = resp[1];
+			var statusText = resp[2];
+
+			if (!versions) {
+				Foxtrick.error('NO RELEASE NOTES!!!');
+				return;
+			}
+
+			var data = {
+				versions: versions,
+				versionsLocalized: versionsLocalized,
+				rNotesLinks: rNotesLinks,
+			};
+
+			addBetaNote(statusText, data);
+
+			var select = $('#pref-version-release-notes')[0];
+			var majorVersions = addVersions(select, versions);
+
+			var update = function() {
+				updateNotepad(select.value, majorVersions, data);
+			};
+
+			update();
+			$(select).change(update);
+
+		}).catch(Foxtrick.catch('changes'));
+
 }
 
 /**
