@@ -10,7 +10,7 @@ html[data-theme="standard"] #ft-local-time {
 	margin-top: 9px;
 }
 html[data-theme="simple"] #ft-local-time {
-	margin-top: 20px;
+	margin-top: 25px;
 }
 
 html[dir="ltr"][data-theme="standard"] #ft-local-time {

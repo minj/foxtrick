@@ -13,6 +13,11 @@ html[data-theme="standard"] .ft-mark-all-as-read {
 	right :7px;
 }
 
+/* reset a useless position: relative that makes .ft-mark-all-as-read unclickable */
+html[data-theme="simple"] .subMenuBox .boxBody {
+	position: static;
+}
+
 html[dir="ltr"] .ft-mark-all-as-read  {
 	float: right;
 }
