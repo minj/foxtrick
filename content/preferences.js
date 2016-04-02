@@ -1508,9 +1508,6 @@ function initHelpTab() {
  * Setup about page and contributor layout
  */
 function initAboutTab() {
-	var aboutJSON = Foxtrick.util.load.sync(Foxtrick.InternalPath + 'data/foxtrick_about.json');
-	var aboutData = JSON.parse(aboutJSON);
-
 	var addItem = function(person, list) {
 		var item = document.createElement('li');
 
@@ -1529,34 +1526,42 @@ function initAboutTab() {
 		$(list).append(item);
 	};
 
-	$('.about-list').each(function() {
+	Foxtrick.load(Foxtrick.InternalPath + 'data/foxtrick_about.json')
+		.then(function(aboutJSON) {
 
-		var $container = $(this);
-		var type = $container.attr('path');
+			var aboutData = JSON.parse(aboutJSON);
 
-		var category = aboutData[type];
-		Foxtrick.map(function(data) {
-			if (type === 'translations') {
-				var item = document.createElement('li');
-				var header = document.createElement('h4');
-				header.textContent = data.language;
-				item.appendChild(header);
+			$('.about-list').each(function() {
 
-				var list = document.createElement('ul');
-				item.appendChild(list);
+				var $container = $(this);
+				var type = $container.attr('path');
 
-				Foxtrick.map(function(translator) {
-					addItem(translator, $(list));
-				}, data.translators);
+				var category = aboutData[type];
+				Foxtrick.map(function(data) {
+					if (type === 'translations') {
+						var item = document.createElement('li');
+						var header = document.createElement('h4');
+						header.textContent = data.language;
+						item.appendChild(header);
 
-				$container.append(item);
-			}
-			else {
-				addItem(data, $container);
-			}
-		}, category);
+						var list = document.createElement('ul');
+						item.appendChild(list);
 
-	});
+						Foxtrick.map(function(translator) {
+							addItem(translator, $(list));
+						}, data.translators);
+
+						$container.append(item);
+					}
+					else {
+						addItem(data, $container);
+					}
+				}, category);
+
+			});
+
+		}).catch(Foxtrick.catch('about'));
+
 }
 
 /**
