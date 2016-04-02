@@ -1418,28 +1418,24 @@ function initChangesTab() {
  */
 function initHelpTab() {
 	// external links
-	var aboutJSON = Foxtrick.util.load.sync(Foxtrick.InternalPath + 'data/foxtrick_about.json');
-	var aboutData = JSON.parse(aboutJSON);
-	var category = aboutData.links;
+	Foxtrick.load(Foxtrick.InternalPath + 'data/foxtrick_about.json')
+		.then(function(aboutJSON) {
 
-	Foxtrick.map(function(a) {
-		var item = document.createElement('li');
-		$('#external-links-list').append(item);
+			var aboutData = JSON.parse(aboutJSON);
+			var category = aboutData.links;
 
-		var link = document.createElement('a');
-		item.appendChild(link);
-		link.textContent = Foxtrick.L10n.getString('link.' + a.id);
-		link.href = a.href;
-		link.target = '_blank';
-	}, category);
+			Foxtrick.map(function(a) {
+				var item = document.createElement('li');
+				$('#external-links-list').append(item);
 
-	// FAQ (faq.yml or localized locale/code/faq.yml
-	var lang = Foxtrick.Prefs.getString('htLanguage');
-	var faqLinks = Foxtrick.util.load.ymlSync(Foxtrick.InternalPath + 'faq-links.yml');
-	var faq = Foxtrick.util.load.ymlSync(Foxtrick.InternalPath + 'faq.yml');
+				var link = document.createElement('a');
+				item.appendChild(link);
+				link.textContent = Foxtrick.L10n.getString('link.' + a.id);
+				link.href = a.href;
+				link.target = '_blank';
+			}, category);
 
-	var faqLocalSrc = Foxtrick.InternalPath + 'locale/' + lang + '/faq.yml';
-	var faqLocal = Foxtrick.util.load.ymlSync(faqLocalSrc);
+		}).catch(Foxtrick.catch('help-external-links'));
 
 	var parseFaq = function(src) {
 		if (!src)
@@ -1454,20 +1450,7 @@ function initHelpTab() {
 		return src.faq;
 	};
 
-	var items = parseFaq(faq);
-	var itemsLocal = parseFaq(faqLocal);
-
-	if (!items) {
-		Foxtrick.error('NO FAQ!!!');
-		return;
-	}
-
-	for (var i in items) {
-		var item = items[i];
-
-		// prefer localized ones
-		var itemLocal = itemsLocal ? itemsLocal[i] : null;
-
+	var addFAQItem = function(item, itemLocal, i, faqLinks) {
 		// container for question and answer
 		var block = document.createElement('div');
 		block.id = 'faq-' + i;
@@ -1501,7 +1484,36 @@ function initHelpTab() {
 		container.className = 'module-content';
 		container.appendChild(content);
 		block.appendChild(container);
-	}
+	};
+
+	// FAQ (faq.yml or localized locale/code/faq.yml
+	var faqLinks = Foxtrick.load(Foxtrick.InternalPath + 'faq-links.yml').then(Foxtrick.parseYAML);
+	var faq = Foxtrick.load(Foxtrick.InternalPath + 'faq.yml').then(Foxtrick.parseYAML);
+
+	var lang = Foxtrick.Prefs.getString('htLanguage');
+	var faqLocalSrc = Foxtrick.InternalPath + 'locale/' + lang + '/faq.yml';
+	var faqLocal = Foxtrick.load(faqLocalSrc).then(Foxtrick.parseYAML);
+
+	Promise.all([faqLinks, faq, faqLocal]).then(function(resp) {
+		var faqLinks = resp[0];
+		var items = parseFaq(resp[1]);
+		var itemsLocal = parseFaq(resp[2]);
+
+		if (!items) {
+			Foxtrick.error('NO FAQ!!!');
+			return;
+		}
+
+		for (var i in items) {
+			var item = items[i];
+
+			// prefer localized ones
+			var itemLocal = itemsLocal ? itemsLocal[i] : null;
+
+			addFAQItem(item, itemLocal, i, faqLinks);
+		}
+
+	}).catch(Foxtrick.catch('help'));
 }
 
 /**
