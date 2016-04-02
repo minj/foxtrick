@@ -35,6 +35,7 @@ FoxtrickFennec.prototype = {
 		// <!-- util -->
 		'util/api.js',
 		'util/array.js',
+		'util/async.js',
 		'util/color.js',
 		'util/cookies.js',
 		'util/copy-button.js',
@@ -65,9 +66,7 @@ FoxtrickFennec.prototype = {
 		// <!-- end util -->
 
 		// <!-- categorized modules with init functions -->
-		'forum/staff-marker.js',
 		'presentation/skin-plugin.js',
-		'links/links.js',
 
 		// <!-- platform-specific -->
 		'ui.js',

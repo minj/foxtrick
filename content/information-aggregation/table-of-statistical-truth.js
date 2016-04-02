@@ -12,6 +12,8 @@ Foxtrick.modules['TableOfStatisticalTruth'] = {
 
 	run: function(doc) {
 
+		var module = this;
+
 		var season = doc.getElementById('mainBody').getElementsByTagName('select')[0].value;
 		var crumbs = Foxtrick.Pages.All.getBreadCrumbs(doc);
 		var serieLink = crumbs[1];
@@ -46,9 +48,10 @@ Foxtrick.modules['TableOfStatisticalTruth'] = {
 		var addTable = function() {
 			var url = 'http://www.fantamondi.it/HTMS/dorequest.php?action=truthtable&serie=' +
 				serie + '&season=' + season;
-			Foxtrick.util.load.xml(url, function(xml) {
+
+			var buildTable = function(xml) {
 				if (!xml) {
-					// feedback
+					// TODO: feedback
 					return;
 				}
 				else if (xml.getElementsByTagName('available')[0].textContent == 'false') {
@@ -137,9 +140,12 @@ Foxtrick.modules['TableOfStatisticalTruth'] = {
 				link.textContent = Foxtrick.L10n.getString('truthTable.tableAtHTMS');
 				insertBefore.parentNode.insertBefore(link, insertBefore);
 
-
 				Foxtrick.modules['TableSort'].run(doc);
-			});
+			};
+
+			Foxtrick.load(url).then(Foxtrick.parseXML)
+				.then(buildTable).catch(Foxtrick.catch(module));
+
 		};
-	}
+	},
 };

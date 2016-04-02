@@ -15,11 +15,14 @@ Foxtrick.util.inject = {};
 Foxtrick.util.inject.cssLink = function(doc, url) {
 	if (Foxtrick.arch == 'Sandboxed') {
 		var id = url.match(/([^\/]+)\.css$/)[1];
-		Foxtrick.util.load.get(url)('success', function(text) {
+
+		Foxtrick.load(url).then(function(text) {
 			Foxtrick.util.inject.css(doc, text, id);
-		});
+		}).catch(Foxtrick.catch('cssLink'));
+
 		return;
 	}
+
 	var inject = function(doc) {
 		var link = doc.createElement('link');
 		link.setAttribute('rel', 'stylesheet');
@@ -111,8 +114,9 @@ Foxtrick.util.inject.jsLink = function(doc, url) {
 		};
 
 		var id = url.match(/([^\/]+)\.js$/)[1];
-		Foxtrick.util.load.get(url)('success', function(text) {
+
+		Foxtrick.load(url).then(function(text) {
 			inject(doc, text, id);
-		});
+		}).catch(Foxtrick.catch('jsLink'));
 	}
 };

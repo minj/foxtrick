@@ -1,104 +1,177 @@
 'use strict';
-/*
- * sessionSet() and sessionGet() are a pair of functions that can store some
+/**
+ * session-store.js
+ *
+ * session.set() and session.get() are a pair of functions that can store some
  * useful information that has its life spanning the browser session.
+ *
  * The stored value must be a JSON-serializable object, or of native types.
+ *
+ * @author ryanli, convincedd, LA-MJ
  */
 
 if (!Foxtrick)
-	var Foxtrick = {};
+	var Foxtrick = {}; // jshint ignore:line
 
-Foxtrick.sessionStore = {};
+Foxtrick.session = {};
 
-Foxtrick._sessionSet = function(key, value) {
-	Foxtrick.sessionStore[key] = value;
-};
-
-// key = string or map of keys and default values
-// returns value reps. map of keys and values
-Foxtrick._sessionGet = function(keymap, callback) {
-	var answermap;
-	if (typeof(keymap) === 'string')
-		answermap = Foxtrick.sessionStore[keymap];
-	else if (typeof(keymap) === 'object') {
-		answermap = {};
-		for (var key in keymap) {
-			if (Foxtrick.sessionStore[key] !== null)
-				answermap[key] = Foxtrick.sessionStore[key];
-			else
-				answermap[key] = keymap[key];
-		}
-	}
-
-	if (typeof(callback) == 'function') {
-		try {
-			callback(answermap);
-		}
-		catch (e) {
-			Foxtrick.log('Error in callback for sessionGet', keymap);
-		}
-	}
-	return answermap;
-};
-
-Foxtrick._sessionDeleteBranch = function(branch) {
-	if (!branch)
-		branch = '';
-	if (branch !== '')
-		branch += '.';
-	var key;
-	for (key in Foxtrick.sessionStore) {
-		if (key.indexOf(branch) === 0)
-			Foxtrick.sessionStore[key] = null;
-	}
-};
-
-// for Firefox
-if (Foxtrick.platform == 'Firefox') {
-	Foxtrick.sessionSet = Foxtrick._sessionSet;
-	Foxtrick.sessionGet = function(key, callback) {
-		try {
-			callback(Foxtrick._sessionGet(key));
-		}
-		catch (e) {
-			Foxtrick.log('Error in callback for sessionGet', key);
-		}
-	};
-	Foxtrick.sessionDeleteBranch = Foxtrick._sessionDeleteBranch;
+if (Foxtrick.context === 'background') {
+	Foxtrick.session.__STORE = {};
 }
-// sessionStore for all other
-else {
-	// background
-	if (Foxtrick.context == 'background') {
-		Foxtrick.sessionSet = Foxtrick._sessionSet;
-		Foxtrick.sessionGet = Foxtrick._sessionGet;
-		Foxtrick.sessionDeleteBranch = Foxtrick._sessionDeleteBranch;
-	}
 
-	// content
-	else if (Foxtrick.context == 'content') {
+/**
+ * Get a promise when session value is set.
+ *
+ * key should be a string.
+ * value may be any stringify-able object.
+ *
+ * @param  {string}  key
+ * @param  {object}  value
+ * @return {Promise}       {Promise.<key>}
+ */
+Foxtrick.session.set = function(key, value) {
 
-		Foxtrick.sessionSet = function(key, value) {
-			// inform background
-			Foxtrick.SB.ext.sendRequest({ req: 'sessionSet', key: key, value: value });
-		};
+	if (Foxtrick.context == 'content') {
+		return new Promise(function(fulfill, reject) {
+			Foxtrick.SB.ext.sendRequest({
+				req: 'sessionSet',
+				key: key,
+				value: value,
+			}, function onSendResponse(response) {
 
-		Foxtrick.sessionGet = function(key, callback) {
-			// get from background
-			Foxtrick.SB.ext.sendRequest({ req: 'sessionGet', key: key },
-			  function(response) {
-				try {
-					callback(response.value);
-				}
-				catch (e) {
-					Foxtrick.log('Error in callback for sessionGet', key, response, e);
-				}
+				if (response instanceof Error)
+					reject(response);
+				else
+					fulfill(response);
+
 			});
-		};
-
-		Foxtrick.sessionDeleteBranch = function(branch) {
-			// inform background
-			Foxtrick.SB.ext.sendRequest({ req: 'sessionDeleteBranch', branch: branch });
-		};
+		});
 	}
-}
+
+	return new Promise(function(resolve) {
+		Foxtrick.session.__STORE[key] = value;
+		resolve(key);
+	});
+
+};
+
+/**
+ * Get a promise for a session value.
+ *
+ * Promise will never reject, returns null instead.
+ *
+ * key should be a string.
+ * value may be any stringify-able object or null if N/A.
+ *
+ * @param  {string}  key
+ * @return {Promise}     {Promise.<?value>}
+ */
+Foxtrick.session.get = function(key) {
+	if (Foxtrick.context == 'content') {
+		return new Promise(function(fulfill) {
+			// background never rejects
+			Foxtrick.SB.ext.sendRequest({ req: 'sessionGet', key: key }, fulfill);
+		});
+	}
+
+	return new Promise(function(resolve) {
+		try {
+			var value = Foxtrick.session.__STORE[key];
+
+			// type-cast undefined to null
+			if (typeof value === 'undefined')
+				value = null;
+
+			resolve(value);
+		}
+		catch (e) {
+			try {
+				Foxtrick.log('Error in session.get', key, e);
+			}
+			catch (ee) {}
+
+			resolve(null);
+		}
+	});
+
+};
+
+/**
+ * Get a promise for when a certain session branch is deleted
+ *
+ * @param  {string}  branch
+ * @return {Promise}
+ */
+Foxtrick.session.deleteBranch = function(branch) {
+
+	if (Foxtrick.context == 'content') {
+		return new Promise(function(fulfill, reject) {
+			Foxtrick.SB.ext.sendRequest({
+				req: 'sessionDeleteBranch',
+				branch: branch,
+			}, function onSendResponse(response) {
+
+				if (response instanceof Error)
+					reject(response);
+				else
+					fulfill(response);
+
+			});
+		});
+	}
+
+	return new Promise(function(resolve) {
+		if (branch == null)
+			branch = '';
+
+		branch = branch.toString();
+
+		for (var key in Foxtrick.session.__STORE) {
+			if (key.indexOf(branch) === 0)
+				Foxtrick.session.__STORE[key] = null;
+		}
+
+		resolve();
+	});
+
+};
+
+
+// /////////////////////////
+// TODO: remove deprecated
+// ////////////////////////
+
+/**
+ * Save a value in temporary storage
+ *
+ * @deprecated use session.set() instead
+ *
+ * @param {string} key
+ * @param {object} value
+ */
+Foxtrick.sessionSet = function(key, value) {
+	Foxtrick.session.set(key, value).catch(Foxtrick.catch('sessionSet'));
+};
+
+/**
+ * Get a value from temporary storage
+ *
+ * @deprecated use session.get() instead
+ *
+ * @param {string}   key
+ * @param {function} callback
+ */
+Foxtrick.sessionGet = function(key, callback) {
+	Foxtrick.session.get(key).then(callback).catch(Foxtrick.catch('sessionGet'));
+};
+
+/**
+ * Remove a branch from temporary storage
+ *
+ * @deprecated use session.deleteBranch() instead
+ *
+ * @param {string} branch
+ */
+Foxtrick.sessionDeleteBranch = function(branch) {
+	Foxtrick.session.deleteBranch(branch).catch(Foxtrick.catch('sessionDeleteBranch'));
+};

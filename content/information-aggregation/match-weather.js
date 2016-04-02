@@ -150,31 +150,24 @@ Foxtrick.modules['MatchWeather'] = {
 				var weather = { 1: 3, 2: 2, 3: 2, 4: 1, 9: 0, 10: 1, 11: 0, 13: 0, 50: 1 };
 
 				Foxtrick.log('Fetching JSON data from', uri);
-				Foxtrick.util.load.get(uri)('success', function(response) {
-					if (response !== '') {
-						var json;
-						try {
-							json = JSON.parse(response);
-						}
-						catch (e) {
-							Foxtrick.error(e);
-							return;
-						}
 
-						if (json.cod == 200 && json.list.length == 2) {
-							var now = json.list[0].weather[0].icon;
-							var tomorrow = json.list[1].weather[0].icon;
-							data.irlNow = weather[Foxtrick.trimnum(now)];
-							data.irlTomorrow = weather[Foxtrick.trimnum(tomorrow)];
+				Foxtrick.load(uri).then(Foxtrick.parseJSON)
+					.then(function(json) {
+						if (json) {
+							if (json.cod == 200 && json.list.length == 2) {
+								var now = json.list[0].weather[0].icon;
+								var tomorrow = json.list[1].weather[0].icon;
+								data.irlNow = weather[Foxtrick.trimnum(now)];
+								data.irlTomorrow = weather[Foxtrick.trimnum(tomorrow)];
+							}
 						}
-					}
-					Foxtrick.sessionSet('weather.region.' + regionId, data);
-					module.showWeather(doc, data);
-				})('failure', function(code) {
-					Foxtrick.log('Fail loading weather:' + code);
-					Foxtrick.sessionSet('weather.region.' + regionId, data);
-					module.showWeather(doc, data);
-				});
+						Foxtrick.sessionSet('weather.region.' + regionId, data);
+						module.showWeather(doc, data);
+					}, function(resp) {
+						Foxtrick.log('Fail loading weather:', resp);
+						Foxtrick.sessionSet('weather.region.' + regionId, data);
+						module.showWeather(doc, data);
+					}).catch(Foxtrick.catch(module));
 			}
 			else {
 				Foxtrick.sessionSet('weather.region.' + regionId, data);

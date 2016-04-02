@@ -51,6 +51,7 @@ a good reason to. They are for version bumps in Makefile.
 				<!-- util -->
 				<string>content/util/api.js</string>
 				<string>content/util/array.js</string>
+				<string>content/util/async.js</string>
 				<string>content/util/color.js</string>
 				<string>content/util/cookies.js</string>
 				<string>content/util/copy-button.js</string>

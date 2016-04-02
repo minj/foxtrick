@@ -2,240 +2,290 @@
 /*
  * cookies.js
  * cookie management
+ *
+ * @author convincedd, LA-MJ
  */
 
 if (!Foxtrick)
-	var Foxtrick = {};
+	var Foxtrick = {}; // jshint ignore:line
+
+Foxtrick.cookies = {};
+
 
 (function() {
-	// cookies for external pages
-	var cookies = {
+
+	/**
+	 * Cookie specification object
+	 * @type {Object}
+	 */
+	const COOKIE_SPEC = {
 		for_hty: {
 			url: 'http://www.hattrick-youthclub.org/*',
 			name: 'fromFoxtrick',
 			addId: true,
-			domain: 'hattrick-youthclub.org',
+			domain: '.hattrick-youthclub.org',
 			isJSON: true,
-			isBase64: true
+			isBase64: true,
 		},
 		from_hty: {
 			url: 'http://hattrick-youthclub.org/*',
 			name: 'forFoxtrick',
 			addId: true,
-			domain: 'hattrick-youthclub.org',
+			domain: '.hattrick-youthclub.org',
 			isJSON: true,
-			isBase64: true
+			isBase64: true,
 		},
 	};
 
-	var makeCookie = function(where, name, oldvalue, newvalue) {
-		var new_cookie = { url: cookies[where].url, domain: cookies[where].domain };
-		new_cookie.name = name;
-		if (cookies[where].isJSON) {
-			var decode = oldvalue;
-			var valuejson;
+	/**
+	 * Parse a value from a cookie string according to spec:
+	 * {isJSON, isBase64: Boolean}.
+	 *
+	 * base64 may only be used when isJSON=true.
+	 *
+	 * @param  {string} str
+	 * @param  {object} spec
+	 * @return {object}
+	 */
+	var parseVal = function(str, spec) {
+		if (!str)
+			return {};
 
-			new_cookie.value = oldvalue ? oldvalue : '{}';
-			if (!cookies[where].isBase64 || !decode)
-				valuejson = JSON.parse(new_cookie.value);
-			else
-				valuejson = JSON.parse(Foxtrick.decodeBase64(new_cookie.value));
-
-			var key;
-			for (key in newvalue)
-				valuejson[key] = newvalue[key];
-
-			if (cookies[where].isBase64)
-				new_cookie.value = Foxtrick.encodeBase64(JSON.stringify(valuejson));
+		if (!spec.isJSON) {
+			return str;
 		}
+
+		if (!spec.isBase64)
+			return JSON.parse(str);
 		else
-			new_cookie.value = newvalue;
-		return new_cookie;
+			return JSON.parse(Foxtrick.decodeBase64(str));
 	};
 
-	// defines if cookie being set currently and thuse need wait if needed
-	// depends somewhat one browser implementation. so we'll see how it works
-	var set_scheduled = false;
+	/**
+	 * Prepare a value for storing in a cookie according to spec:
+	 * {isJSON, isBase64: Boolean}.
+	 *
+	 * base64 may only be used when isJSON=true.
+	 *
+	 * @param  {object} val
+	 * @param  {object} spec
+	 * @return {string}
+	 */
+	var stringifyVal = function(val, spec) {
+		if (!val)
+			return '';
 
-	// @param where - cookies type: see above - cookies map
-	// @param what - value to add to the cookie, if isJSON it's added to existing
-	// (optional) @callback(cookieValue) - the value (json) it set,
-	// returns content decoded and json.parsed if applicable
-	Foxtrick.cookieSet = function(where, what, callback) {
-		var name;
-		if (cookies[where].addId)
-			name = cookies[where].name + '_' +
-				Foxtrick.modules.Core.TEAM.teamId;
-		else
-			name = cookies[where].name;
-
-		if (Foxtrick.arch == 'Gecko') {
-			Foxtrick.cookieGet(where,
-			  function(oldValue) {
-				if (oldValue && cookies[where].isJSON) {
-					oldValue = JSON.stringify(oldValue);
-					if (cookies[where].isBase64)
-						oldValue = Foxtrick.encodeBase64(oldValue);
-				}
-				var new_cookie = makeCookie(where, name, oldValue, what);
-				//expire just to make the function happy, no effect
-				//when the param before is true (session only)
-				var MSECS_IN_WEEK = Foxtrick.util.time.DAYS_IN_WEEK *
-					Foxtrick.util.time.MSECS_IN_DAY;
-				var expire = (new Date()).getTime() + MSECS_IN_WEEK;
-				try {
-					Services.cookies.add(new_cookie.domain, '/', new_cookie.name,
-					                     new_cookie.value, false, true, true, expire);
-				}
-				catch (e) {
-					Foxtrick.log('Error setting cookie', where, what, e);
-				}
-				try {
-					if (callback) {
-						if (cookies[where].isJSON && cookies[where].isBase64)
-							callback(JSON.parse(Foxtrick.decodeBase64(new_cookie.value)));
-						else if (cookies[where].isJSON && !cookies[where].isBase64)
-							callback(JSON.parse(new_cookie.value));
-						else
-							callback(new_cookie.value);
-					}
-				}
-				catch (e) {
-					Foxtrick.log('Error in callback for cookieSet', where, what, e);
-				}
-			});
+		if (!spec.isJSON) {
+			return val.toString();
 		}
-		else if (Foxtrick.platform == 'Chrome') {
-			if (Foxtrick.context == 'content') {
+
+		if (!spec.isBase64)
+			return JSON.stringify(val);
+		else
+			return Foxtrick.encodeBase64(JSON.stringify(val));
+	};
+
+	/**
+	 * Create a chrome API Cookie object.
+	 *
+	 * Returns {url, domain, name, value: string}
+	 *
+	 * @param  {string} key
+	 * @param  {string} name
+	 * @param  {object} oldVal
+	 * @param  {object} val
+	 * @return {object}
+	 */
+	var makeCookie = function(key, name, oldVal, val) {
+		var spec = COOKIE_SPEC[key];
+
+		var cookie = { url: spec.url, domain: spec.domain, name: name };
+
+		if (spec.isJSON) {
+			oldVal = oldVal || {};
+			Foxtrick.mergeAll(oldVal, val);
+			cookie.value = stringifyVal(oldVal, spec);
+		}
+		else {
+			cookie.value = stringifyVal(val, spec);
+		}
+
+		return cookie;
+	};
+
+	/**
+	 * A global Promise to limit concurrency while cookie.set is in progress
+	 * @type {Promise}
+	 */
+	var gCookiesReady = Promise.resolve();
+
+	/**
+	 * Get a promise when cookie value is set.
+	 *
+	 * Promise will never reject.
+	 *
+ 	 * Cookie storage key must be preset in COOKIE_SPEC.
+ 	 * name is an optional cookie name override, typically used in BG comm.
+ 	 * value may be any stringify-able object.
+	 *
+	 * @param  {string}  key
+	 * @param  {object}  value
+	 * @param  {string}  name
+	 * @return {Promise}
+	 */
+	Foxtrick.cookies.set = function(key, value, name) {
+		var spec = COOKIE_SPEC[key];
+		name = name || (spec.addId ? spec.name + '_' + Foxtrick.util.id.getOwnTeamId() : spec.name);
+
+		if (Foxtrick.context == 'content') {
+			return new Promise(function(fulfill) {
 				Foxtrick.SB.ext.sendRequest({
-					req: 'cookieSet',
-					where: where,
+					req: 'cookiesSet',
+					key: key,
+					value: value,
 					name: name,
-					what: what
-				  },
-				  function(response) {
-					if (callback) {
-						try {
-							if (cookies[where].isJSON && cookies[where].isBase64)
-								callback(JSON.parse(Foxtrick.decodeBase64(response)));
-							else if (cookies[where].isJSON && !cookies[where].isBase64)
-								callback(JSON.parse(response));
-							else
-								callback(response);
-						}
-						catch (e) {
-							Foxtrick.log('Error in callback for cookieSet', where, what,
-							             response, e);
-						}
-					}
-				});
-			}
-		}
-		else if (callback)
-			callback(null);
-	};
-
-	// chrome background
-	Foxtrick._cookieSet = function(where, name, what, callback) {
-		var _set = function() {
-			set_scheduled = true;
-			chrome.cookies.get({ url: cookies[where].url, name: name },
-			  function(cookie) {
-				var oldValue = cookie ? cookie.value : null;
-				var new_cookie = makeCookie(where, name, oldValue, what);
-				chrome.cookies.set(new_cookie, function() {
-					set_scheduled = false;
-					if (callback)
-						callback(new_cookie.value);
-				});
+				}, fulfill);
 			});
-		};
-		if (set_scheduled)
-			// if unfinshed set is called, queue behind
-			window.setTimeout(function() { _set(); }, 0);
-		else
-			_set();
-	};
-	// @param where - cookies type: see above - cookies map
-	// @callback cookieValue - the retrieved value
-	Foxtrick.cookieGet = function(where, callback) {
-		var name;
-		if (cookies[where].addId)
-			name = cookies[where].name + '_' +
-				Foxtrick.modules.Core.TEAM.teamId;
-		else
-			name = cookies[where].name;
+		}
 
-		if (Foxtrick.arch == 'Gecko') {
-			try {
-				var iter = Services.cookies.getCookiesFromHost(cookies[where].domain);
-				var cookie_count = 0;
-				while (iter.hasMoreElements()) {
-					var cookie = iter.getNext();
-					if (cookie instanceof Ci.nsICookie) {
-						if (cookie.name == name && cookie.host == cookies[where].domain) {
-							if (cookies[where].isJSON && !cookies[where].isBase64)
-								callback(JSON.parse(cookie.value));
-							else if (cookies[where].isJSON && cookies[where].isBase64)
-								callback(JSON.parse(Foxtrick.decodeBase64(cookie.value)));
-							else
-								callback(cookie.value);
-							return;
-						}
-						cookie_count++;
-					}
+		return Foxtrick.cookies.get(key).then(function(oldVal) {
+			var cookie = makeCookie(key, name, oldVal, value);
+
+			if (Foxtrick.arch === 'Gecko') {
+				try {
+					// expire just to make the function happy, no effect
+					// when the param before is true (session only)
+					var MSECS_IN_WEEK = Foxtrick.util.time.DAYS_IN_WEEK *
+						Foxtrick.util.time.MSECS_IN_DAY;
+					var expire = Date.now() + MSECS_IN_WEEK;
+
+					Services.cookies.add(cookie.domain, '/', cookie.name, cookie.value,
+					                     false, true, true, expire);
+				}
+				catch (e) {
+					Foxtrick.log('Error setting cookie', key, value, cookie, e);
 				}
 			}
-			catch (e) {
-				Foxtrick.log('Error getting cookie', where, e);
-			}
-			try {
-				callback(null);
-			}
-			catch (e) {
-				Foxtrick.log('Error in callback for cookieGet', where, e);
-			}
-			return;
-		}
-		else if (Foxtrick.platform == 'Chrome') {
-			if (Foxtrick.context == 'content') {
-				Foxtrick.SB.ext.sendRequest({ req: 'cookieGet', where: where, name: name },
-				  function(response) {
+			else if (Foxtrick.platform === 'Chrome') {
+				gCookiesReady = new Promise(function(resolve) {
 					try {
-						if (response && cookies[where].isJSON && !cookies[where].isBase64)
-							callback(JSON.parse(response));
-						else if (response && cookies[where].isJSON &&
-								 cookies[where].isBase64)
-							callback(JSON.parse(Foxtrick.decodeBase64(response)));
-						else
-							callback(response);
-						return;
+						chrome.cookies.set(cookie, function(cookie) { // jshint ignore:line
+							resolve();
+						});
 					}
 					catch (e) {
-						Foxtrick.log('Error in callback for cookieGet', where, response, e);
+						Foxtrick.log('Error setting cookie', key, value, cookie, e);
+						resolve();
 					}
 				});
 			}
-		}
-		else
-			callback(null);
+
+			return parseVal(cookie.value, spec);
+		});
+
 	};
 
-	// chrome background
-	Foxtrick._cookieGet = function(where, name, callback) {
-		var _get = function() {
-			chrome.cookies.get({ url: cookies[where].url, name: name },
-			  function(cookie) {
-				if (cookie)
-					callback(cookie.value);
-				else
-					callback(null);
+	/**
+	 * Get a promise for a cookie value.
+	 *
+	 * Promise will never reject, returns null instead.
+	 *
+ 	 * Cookie storage key must be preset in COOKIE_SPEC.
+ 	 * name is an optional cookie name override, typically used in BG comm.
+	 * value may be any stringify-able object or null if N/A.
+	 *
+	 * @param  {string}  key
+	 * @param  {string}  name
+	 * @return {Promise}      {Promise.<?value>}
+	 */
+	Foxtrick.cookies.get = function(key, name) {
+		var spec = COOKIE_SPEC[key];
+		name = name || (spec.addId ? spec.name + '_' + Foxtrick.util.id.getOwnTeamId() : spec.name);
+
+		if (Foxtrick.context == 'content') {
+			return new Promise(function(fulfill) {
+				Foxtrick.SB.ext.sendRequest({ req: 'cookiesGet', key: key, name: name }, fulfill);
 			});
-		};
-		if (set_scheduled)
-			// if unfinshed set is called, queue behind
-			window.setTimeout(function() { _get(); }, 0);
-		else
-			_get();
+		}
+
+		return gCookiesReady.then(function() {
+
+			if (Foxtrick.arch == 'Gecko') {
+				try {
+					var iter = Services.cookies.getCookiesFromHost(spec.domain);
+					while (iter.hasMoreElements()) {
+						var cookie = iter.getNext();
+
+						if (!(cookie instanceof Ci.nsICookie))
+							continue;
+
+						if (cookie.name == name && cookie.host == spec.domain) {
+							return parseVal(cookie.value, spec);
+						}
+					}
+				}
+				catch (e) {
+					Foxtrick.log('Error getting cookie', key, e);
+				}
+			}
+			else if (Foxtrick.platform == 'Chrome') {
+
+				return new Promise(function(resolve) {
+					try {
+						chrome.cookies.get({ url: spec.url, name: name },
+						  function(cookie) {
+							if (cookie)
+								resolve(parseVal(cookie.value, spec));
+							else
+								resolve(null);
+						});
+					}
+					catch (e) {
+						Foxtrick.log('Error getting cookie', key, e);
+						resolve(null);
+					}
+				});
+
+			}
+
+			return null;
+		});
+
 	};
+
 })();
+
+
+// /////////////////////////
+// TODO: remove deprecated
+// ////////////////////////
+
+/**
+ * Save a value in the cookie storage.
+ *
+ * Cookie storage key must be preset in COOKIE_SPEC.
+ *
+ * @deprecated use cookies.set() instead
+ *
+ * @param {string}   key
+ * @param {object}   value
+ * @param {function} callback
+ */
+Foxtrick.cookieSet = function(key, value, callback) {
+	Foxtrick.cookies.set(key, value).then(callback).catch(Foxtrick.catch('cookieSet'));
+};
+
+/**
+ * Get a value from the cookie storage.
+ *
+ * Cookie storage key must be preset in COOKIE_SPEC.
+ *
+ * @deprecated use cookies.get() instead
+ *
+ * @param {string}   key
+ * @param {object}   value
+ * @param {function} callback
+ */
+Foxtrick.cookieGet = function(key, callback) {
+	Foxtrick.cookies.get(key).then(callback).catch(Foxtrick.catch('cookieGet'));
+};

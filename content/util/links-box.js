@@ -6,7 +6,7 @@
  */
 
 if (!Foxtrick)
-	var Foxtrick = {};
+	var Foxtrick = {}; // jshint ignore:line
 if (!Foxtrick.util)
 	Foxtrick.util = {};
 
@@ -150,7 +150,7 @@ Foxtrick.util.links = {
 		}
 	},
 
-	showEdit: function(doc , ownBoxBody, linkSet) {
+	showEdit: function(doc, ownBoxBody, linkSet) {
 		try {
 			// box
 			var ownBoxId = 'ft-links-box';
@@ -458,7 +458,7 @@ Foxtrick.util.links = {
 		catch (e) {
 			Foxtrick.log(e);
 		}
-	}
+	},
 };
 
 Foxtrick.util.links.getBasePref = function(linkSet) {
@@ -549,7 +549,7 @@ Foxtrick.util.links.run = function(doc, module) {
 
 	var ownInfo = {
 		server: doc.location.hostname,
-		lang: Foxtrick.Prefs.getString('htLanguage')
+		lang: Foxtrick.Prefs.getString('htLanguage'),
 	};
 
 	var ownTeam = Foxtrick.modules.Core.TEAM;
@@ -581,7 +581,7 @@ Foxtrick.util.links.run = function(doc, module) {
 			else
 				o.types = [module.LINK_TYPE];
 		}
-		Foxtrick.forEach(function(type) {
+		var specPromises = Foxtrick.map(function(type) {
 			var opts = {
 				module: module.MODULE_NAME,
 				className: LINK_CLASS,
@@ -593,9 +593,23 @@ Foxtrick.util.links.run = function(doc, module) {
 			if (typeof type !== 'string') {
 				Foxtrick.mergeValid(opts, type);
 			}
-			var anchors = Foxtrick.modules['Links'].getLinks(doc, opts);
-			Foxtrick.appendChildren(opts.parent, anchors);
+
+			return Foxtrick.modules['Links'].getLinks(doc, opts)
+				.then(function(anchors) {
+					return { parent: opts.parent, anchors: anchors };
+				});
+
 		}, o.types);
+
+		// allow concurrent resolution
+		// but append children in order
+		specPromises.reduce(function(prev, now) {
+			return prev.then(function() {
+				return now.then(function(spec) {
+					Foxtrick.appendChildren(spec.parent, spec.anchors);
+				}).catch(Foxtrick.catch('links.run'));
+			});
+		}, Promise.resolve());
 
 		var adder = o.hasNewSidebar ? Foxtrick.Pages.Match : Foxtrick;
 		var wrapper = adder.addBoxToSidebar(doc, HEADER, box, -20);
@@ -603,15 +617,17 @@ Foxtrick.util.links.run = function(doc, module) {
 
 		var customLinkSet = o.customLinkSet || module.MODULE_NAME;
 		Foxtrick.util.links.add(box, customLinkSet, info, o.hasNewSidebar);
-
 	};
 
-	Foxtrick.modules['Links'].getCollection(run);
+	Foxtrick.modules['Links'].getCollection().then(run);
 };
 
 Foxtrick.util.links.getPrefs = function(doc, module, cb) {
 	var types = module.LINK_TYPES || [module.LINK_TYPE];
 	var mName = module.MODULE_NAME;
+
+	var gList = doc.createElement('ul');
+
 	var parseCollection = function(collection) {
 		if (!collection)
 			return;
@@ -624,7 +640,7 @@ Foxtrick.util.links.getPrefs = function(doc, module, cb) {
 					for (var key in links) {
 						var link = links[key];
 						var item = doc.createElement('li');
-						list.appendChild(item);
+						gList.appendChild(item);
 
 						var label = doc.createElement('label');
 						item.appendChild(label);
@@ -672,7 +688,7 @@ Foxtrick.util.links.getPrefs = function(doc, module, cb) {
 		}
 	};
 
-	var list = doc.createElement('ul');
-	Foxtrick.modules['Links'].getCollection(parseCollection);
-	return list;
+	Foxtrick.modules['Links'].getCollection().then(parseCollection);
+
+	return gList;
 };
