@@ -28,13 +28,17 @@ da:
       copy_lineup: 'Du kan nu kopiere din opstilling i <module>MatchOrderInterface</module>.'
       supporters_series: '<module>SupportersList</module> tilføjer ikoner, for dine supportere og de hold der supporterer dig, under ligasider.'
       price_history: '<module>TransferComparePlayers</module> viser nu detaljeret oplysninger om prisændringer under spillere transferhistorie.'
+      total_capacity: '<module>MatchIncome</module> viser nu statistik for den samlede stadion kapacitet.'
       and_more: Forskellige små ændringer og rettelser.
     0.16.0:
       important: '<header>Vigtige meddelelser</header>'
+      safari: Grundet ændringer i Apple Inc. politik og en generel modvilje mod at forbedre deres browser, kan vi ikke længere garantere automatiske opdateringer og generel hjælp til Safari-brugere. Overvej at bruge Firefox, Google Chrome eller Opera i stedet.
       crowdin: '<header>En stor tak til alle de hjælpsomme brugere, som oversætter ved hjælp af <linkCrowdin>crowdin </linkCrowdin>. Du kan også give en hånd!</header>'
       support: '<header>Støt Foxtrick via Flattr mikrodonationer eller giv et bidrag med Paypal <linkContribute>Donér</linkContribute>.</header>'
       new: '<header>Nye moduler</header>'
+      transfers: '<module>CurrentTransfers</module> tilføjer mere information om spillere på transfersiden.'
       bugs: '<header>Fejlrettelser</header>'
+      stamina_prediction: 'Prognosen over subniveauet af konditionen under modulet (<module>MatchLineupTweaks</module>) var forkert på grund af ændringer i HT. Problemet skulle nu være udbedret.'
       other: '<header>Andre ændringer</header>'
       and_more: Forskellige små ændringer og rettelser.
     0.15.2.1:
