@@ -7,11 +7,11 @@ es-ES:
       note_0: 'Esta es la versión beta de la próxima release. Por favor, ayuda a traducir esta versión accediendo a nuestra super fácil de usar web de traducción <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.16.1.1:
       important: '<header>Anuncios importantes</header>'
-      safari_cert: 'Estamos buscando a alguien en la comunidad de Hattrick que desarrolle applicaciones para iOS u OSX para ayudar a que Foxtrick pueda volver a dar soporte a los usuarios de Safari. Visita nuestro <linkSafariCertBug>gestor de incidencias</linkSafariCertBug> para más información.'
+      safari_cert: 'Estamos buscando a alguien en la comunidad de Hattrick que desarrolle applicaciones para iOS u OSX para ayudar a restaurar el soporte de Foxtrick para los usuarios de Safari. Visita nuestro <linkSafariCertBug>gestor de incidencias</linkSafariCertBug> para más información.'
       beta: 'Por favor, considera usar <linkFTBeta>la versión beta de Foxtrick</linkFTBeta> para obtener antes nuevas mejoras, para hacer sugerencias y para ayudar a encontrar y arreglar cualquier problema que pudiese aparecer.'
       bugs: '<header>Corrección de errores</header>'
-      defence_stamina: 'Corregido el cálculo del efecto de la condición en los sectores defensivos en <module>MatchSimulator</module>: sólo la condición de los porteros se consideró de manera accidental en las versiones anteriores.'
-      time_rewrite: Detección de la fecha y hora en Foxtrick tuvo que ser reescrita debido a los nuevos cambios de Hattrick. Por desgracia, se introdujeron unos pocos errores en la versión anterior, causando problemas para algunos países que usaban ´módulos CHPP. El problema debería estar resuelto ahora.
+      defence_stamina: 'Corregido el cálculo del efecto de resistencia en los sectores defensivos en <module>MatchSimulator</module>: en las versiones anteriores, de manera accidental, sólo fue considerada la resistencia de los porteros.'
+      time_rewrite: Detección de la fecha y hora en Foxtrick tuvo que ser reescrita debido a los nuevos cambios de Hattrick. Por desgracia, se introdujeron unos pocos errores en la versión anterior, causando problemas para algunos países que utilizaban módulos CHPP. El problema debería estar resuelto ahora.
       calendar_fix: '<module>DashboardCalendar</module> estaba completamente roto en algunos casos debido a un problema con la detección de las fechas.'
       and_more: Otros pequeños cambios y correcciones.
     0.16.1:

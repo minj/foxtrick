@@ -582,11 +582,11 @@
 			"code": "es-ES",
 			"name": "Spanish",
 			"phrases": "2228",
-			"translated": "2226",
-			"translated_progress": "99",
+			"translated": "2228",
+			"translated_progress": "100",
 			"words": "15848",
 			"words_approved": "1",
-			"words_translated": "15846"
+			"words_translated": "15848"
 		},
 		{
 			"approved": "0",
@@ -606,11 +606,11 @@
 			"code": "es-CR",
 			"name": "Spanish, Costa Rica",
 			"phrases": "2228",
-			"translated": "2157",
-			"translated_progress": "95",
+			"translated": "2167",
+			"translated_progress": "96",
 			"words": "15848",
 			"words_approved": "0",
-			"words_translated": "15124"
+			"words_translated": "15289"
 		},
 		{
 			"approved": "1992",
