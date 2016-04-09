@@ -195,23 +195,6 @@
 		"title": "HT-Dog",
 		"img": "http://ht-dog.net/animated_favicon111.gif"
 	},
-	"htbox_heal": {
-		"playerhealinglink": {
-			"url": "http://www.ht-box.ru/healing.php?age=[age]&inj=[injuredweeks]&tsi=[tsi]"
-		},
-		"title": "HTBox Healing",
-		"img": "http://ht-box.ru/favicon.png"
-	},
-	"htbox_training": {
-		"playerlink": {
-			"url": "http://www.ht-box.ru/training.php?yr=[age]&dy=[agedays]&goalkeeping=[goalkeeping]&defending=[defending]&playmaking=[playmaking]&winger=[winger]&passing=[passing]&scoring=[scoring]&setpieces=[setpieces]"
-		},
-		"traininglink": {
-			"url": "http://www.ht-box.ru/training.php?coach=[Coach]&ti=[TI]&ko=[STA]&type=[TrainingType]"
-		},
-		"title": "HTBox Training",
-		"img": "http://ht-box.ru/favicon.png"
-	},
 	"Ht4u": {
 		"playerlink": {
 			"url": "http://ht4u.altervista.org/index.php",
