@@ -241,7 +241,7 @@ Foxtrick.util.api = {
 		};
 		xml.money = function(tagName, rate, container) {
 			var sek = this.num(tagName, container);
-			return Math.floor(sek / (10 * rate));
+			return Math.ceil(sek / (10 * rate));
 		};
 	},
 
