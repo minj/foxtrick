@@ -221,6 +221,8 @@ Foxtrick.fetch = function(url, params) {
  * @return {Promise}
  */
 Foxtrick.load = function(url, params, lifeTime, now) {
+	url = Foxtrick.parseURL(url);
+
 	if (Foxtrick.context == 'content') {
 		return new Promise(function(fulfill, reject) {
 
