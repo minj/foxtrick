@@ -602,7 +602,7 @@ Foxtrick.util.links.run = function(doc, module) {
 
 	// allow concurrent resolution
 	// but append children in order
-	specPromises.reduce(function(prev, now) {
+	var done = specPromises.reduce(function(prev, now) {
 		return prev.then(function() {
 			return now.then(function(spec) {
 				Foxtrick.appendChildren(spec.parent, spec.anchors);
@@ -610,12 +610,15 @@ Foxtrick.util.links.run = function(doc, module) {
 		});
 	}, Promise.resolve());
 
+	done.then(function() {
+		// append custom links last
+		var customLinkSet = o.customLinkSet || module.MODULE_NAME;
+		Foxtrick.util.links.add(box, customLinkSet, info, o.hasNewSidebar);
+	}).catch(Foxtrick.catch('links.run.custom'));
+
 	var adder = o.hasNewSidebar ? Foxtrick.Pages.Match : Foxtrick;
 	var wrapper = adder.addBoxToSidebar(doc, HEADER, box, -20);
 	wrapper.id = 'ft-links-box';
-
-	var customLinkSet = o.customLinkSet || module.MODULE_NAME;
-	Foxtrick.util.links.add(box, customLinkSet, info, o.hasNewSidebar);
 };
 
 Foxtrick.util.links.getPrefs = function(doc, module, cb) {
