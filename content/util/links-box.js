@@ -557,69 +557,65 @@ Foxtrick.util.links.run = function(doc, module) {
 		ownInfo['own' + key] = ownTeam[key];
 	}
 
-	var run = function() {
-		var o = module.links(doc);
-		if (!o)
-			return;
+	var o = module.links(doc);
+	if (!o)
+		return;
 
-		var output = o.info || {};
-		Foxtrick.mergeAll(output, ownInfo);
+	var output = o.info || {};
+	Foxtrick.mergeAll(output, ownInfo);
 
-		var info = {};
-		for (var key in output) {
-			// convert all tags to lower case
-			info[key.toLowerCase()] = output[key];
+	var info = {};
+	for (var tag in output) {
+		// convert all tags to lower case
+		info[tag.toLowerCase()] = output[tag];
+	}
+
+	var box = Foxtrick.createFeaturedElement(doc, module, 'div');
+	box.id = BOX_ID;
+
+	if (!o.types) {
+		// default link types
+		if (module.LINK_TYPES)
+			o.types = module.LINK_TYPES;
+		else
+			o.types = [module.LINK_TYPE];
+	}
+	var specPromises = Foxtrick.map(function(type) {
+		var opts = {
+			module: module.MODULE_NAME,
+			className: LINK_CLASS,
+			type: type,
+			parent: box,
+			info: info,
+		};
+
+		if (typeof type !== 'string') {
+			Foxtrick.mergeValid(opts, type);
 		}
 
-		var box = Foxtrick.createFeaturedElement(doc, module, 'div');
-		box.id = BOX_ID;
-
-		if (!o.types) {
-			// default link types
-			if (module.LINK_TYPES)
-				o.types = module.LINK_TYPES;
-			else
-				o.types = [module.LINK_TYPE];
-		}
-		var specPromises = Foxtrick.map(function(type) {
-			var opts = {
-				module: module.MODULE_NAME,
-				className: LINK_CLASS,
-				type: type,
-				parent: box,
-				info: info,
-			};
-
-			if (typeof type !== 'string') {
-				Foxtrick.mergeValid(opts, type);
-			}
-
-			return Foxtrick.modules['Links'].getLinks(doc, opts)
-				.then(function(anchors) {
-					return { parent: opts.parent, anchors: anchors };
-				});
-
-		}, o.types);
-
-		// allow concurrent resolution
-		// but append children in order
-		specPromises.reduce(function(prev, now) {
-			return prev.then(function() {
-				return now.then(function(spec) {
-					Foxtrick.appendChildren(spec.parent, spec.anchors);
-				}).catch(Foxtrick.catch('links.run'));
+		return Foxtrick.modules['Links'].getLinks(doc, opts)
+			.then(function(anchors) {
+				return { parent: opts.parent, anchors: anchors };
 			});
-		}, Promise.resolve());
 
-		var adder = o.hasNewSidebar ? Foxtrick.Pages.Match : Foxtrick;
-		var wrapper = adder.addBoxToSidebar(doc, HEADER, box, -20);
-		wrapper.id = 'ft-links-box';
+	}, o.types);
 
-		var customLinkSet = o.customLinkSet || module.MODULE_NAME;
-		Foxtrick.util.links.add(box, customLinkSet, info, o.hasNewSidebar);
-	};
+	// allow concurrent resolution
+	// but append children in order
+	specPromises.reduce(function(prev, now) {
+		return prev.then(function() {
+			return now.then(function(spec) {
+				Foxtrick.appendChildren(spec.parent, spec.anchors);
+			}).catch(Foxtrick.catch('links.run'));
+		});
+	}, Promise.resolve());
 
-	Foxtrick.modules['Links'].getCollection().then(run);
+	var adder = o.hasNewSidebar ? Foxtrick.Pages.Match : Foxtrick;
+	var wrapper = adder.addBoxToSidebar(doc, HEADER, box, -20);
+	wrapper.id = 'ft-links-box';
+
+	var customLinkSet = o.customLinkSet || module.MODULE_NAME;
+	Foxtrick.util.links.add(box, customLinkSet, info, o.hasNewSidebar);
 };
 
 Foxtrick.util.links.getPrefs = function(doc, module, cb) {
