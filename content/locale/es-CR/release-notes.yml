@@ -12,13 +12,23 @@ es-CR:
       bugs: '<header>Corrección de errores</header>'
       defence_stamina: 'Corregido el cálculo del efecto de la condición en los sectores defensivos en <module>MatchSimulator</module>: en las versiones anteriores, de manera accidental, sólo fue considerada la condición de los porteros.'
       time_rewrite: La detección de la fecha y hora en Foxtrick tuvo que ser reescrita debido a los nuevos cambios de Hattrick. Por desgracia, se introdujeron unos pocos errores en la versión anterior, causando problemas para algunos países que utilizaban módulos CHPP. El problema debería estar resuelto ahora.
+      calendar_fix: '<module>DashboardCalendar</module> estaba completamente roto en algunos casos debido a un problema con la detección de las fechas.'
       and_more: Varios pequeños cambios y correcciones.
     0.16.1:
       important: '<header>Anuncios importantes</header>'
+      new_contributions: '<module>PlayerPositionsEvaluations</module> ahora utiliza los datos oficiales publicados por el motor de HT para la temporada 60. Sin embargo, se necesitan parámetros adicionales para dar sentido a esas cifras. Aunque se proporcionan valores por defecto razonables, no están basados en estudios o estadísticas oficiales. Cualquier sugerencia para mejorarlos será bienvenida. Todas las configuraciones están disponibles en la página del jugador.'
       crowdin: '<header>Muchas actualizaciones de la traducción, de nuestros impresionantes usuarios, se hace utilizando la <linkCrowdin>herramienta crowdin</linkCrowdin>. ¡Tu puedes ayudar también!</header>'
       support: '¿<header>Te gusta como lo estamos haciendo? Por favor <linkContribute>Ayuda Foxtrick</linkContribute>.</header>'
       bugs: '<header>Corrección de errores</header>'
+      dollar_wage: 'Corregido el cálculo de salarios en <module>ExtendedPlayerDetailsWage</module> para países que usan dólar como divisa.'
+      old_faces_moi: 'Corregidos los avatars de los jugadores debido a un conflicto entre <module>OldStyleFace</module> y <module>MatchOrderInterface</module>.'
+      last_lineup_live: 'Los enlaces a última alineación en <module>TeamPopupLinks</module> y en <module>SeniorTeamShortCuts</module> estaban rotos durante los partidos en directo. El problema debería estar ya resuelto.'
       other: '<header>Otros cambios</header>'
+      stamina_contributions: '<module>MatchSimulator</module> ahora usa <module>PlayerPositionsEvaluations</module> para calcular el efecto de la condición. Los cambios son pequeños pero destacables. Cualquier sugerencia para mejorar esta característica será siempre bienvenida.'
+      copy_lineup: 'Ahora puedes copiar tu alineación en <module>MatchOrderInterface</module>.'
+      supporters_series: '<module>SupporterList</module> ahora añade iconos de Supporter a las páginas de las ligas.'
+      price_history: '<module>TransferComparePlayers</module> ahora muestra información más detallada acerca de los cambios de precio en la historia de transferencia del jugador.'
+      total_capacity: '<module>MatchIncome</module> ahora muestra estadísticas de la capacidad total del estadio.'
       and_more: Varios pequeños cambios y correcciones.
     0.16.0:
       important: '<header>Anuncios importantes</header>'
