@@ -55,7 +55,10 @@ Foxtrick.modules.FixLinks = {
 	},
 	getMenuTeamId: function(doc) {
 		var teamLink = doc.querySelector('.subMenu a[href*="TeamID="]');
-		return Foxtrick.util.id.getTeamIdFromUrl(teamLink.href);
+		if (teamLink)
+			return Foxtrick.util.id.getTeamIdFromUrl(teamLink.href);
+
+		return null;
 	},
 	getDefaultTeamId: function(doc) {
 		var teamId = Foxtrick.util.id.getTeamIdFromUrl(doc.location.href);
