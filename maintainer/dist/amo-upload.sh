@@ -38,7 +38,7 @@ curl -fg "${amo_api_url}" -XPUT --form "upload=@${XPI_PATH}" \
 	-o "${tmp_resp}" -D "${tmp_headers}" || \
 		dump "ERROR: failed to upload to ${amo_api_url}:" "${tmp_headers}" "${tmp_resp}" || exit 2
 
-	upload_pk=$(grep -oP '(?<="pk": ").+?(?=")' "${tmp_resp}")
+	upload_pk=$(grep -oP '(?<="pk":").+?(?=")' "${tmp_resp}")
 	if [[ -z "${upload_pk}" ]]; then
 		dump "ERROR: no pk found in upload response:" "${tmp_headers}" "${tmp_resp}" || exit 2
 	fi
@@ -56,14 +56,14 @@ while [[ $amo_timeout -lt 1000 ]]; do
 		-o "${tmp_resp}" -D "${tmp_headers}" || \
 		dump "WARNING: failed to access ${amo_api_url}:" "${tmp_headers}" "${tmp_resp}" || continue
 
-	grep -q '"processed": true' "${tmp_resp}" || continue
+	grep -q '"processed":\s*true' "${tmp_resp}" || continue
 
-	grep -q '"valid": true' "${tmp_resp}" || \
+	grep -q '"valid":\s*true' "${tmp_resp}" || \
 		dump "ERROR: add-on validation failed:" "${tmp_headers}" "${tmp_resp}" || exit 2
 
-	grep -q '"signed": true' "${tmp_resp}" || continue
+	grep -q '"signed":\s*true' "${tmp_resp}" || continue
 
-	amo_url=$(grep -oP '(?<="download_url": ").+?(?=")' "${tmp_resp}")
+	amo_url=$(grep -oP '(?<="download_url":").+?(?=")' "${tmp_resp}")
 	dump "Downloading from ${amo_url}"
 
 	curl -L -f "${amo_url}" -H "Authorization: JWT $(dist/amo_jwt.py)" \
