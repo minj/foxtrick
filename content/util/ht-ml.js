@@ -103,9 +103,24 @@ Foxtrick.util.htMl.getFormat = (function() {
 						if (!opts.linksOnly && a.text) {
 							// strip surrounding '(' and '...blabla)' that's used to shorten urls
 							var stripped = a.text.replace(/^\(|(\.\.\..*)?\)$/g, '');
-							var path = stripped.replace(/^(\w+:)?\/\/.+?(\/.*)/, '$1');
+
 							if (a.type === 'link') {
-								if (a.url.indexOf(path) === -1) {
+								// test whether link text is just an URL (i. e. from forum post)
+								var path = stripped;
+
+								if (/^\/\//.test(path)) {
+									// add protocol if missing
+									path = node.ownerDocument.location.protocol + path;
+								}
+
+								if (Foxtrick.isHtUrl(path)) {
+									// a.url is relative for HT links
+									path = path.replace(/^\w+:\/\/.+?(\/.*)/, '$1');
+								}
+
+								// using a RegExp to enforce case-insensitivity
+								var pathRe = new RegExp('^' + Foxtrick.strToRe(path), 'i');
+								if (!pathRe.test(a.url)) {
 									// link text is not a URL
 									content = Foxtrick.format('{} {}', [stripped, content]);
 								}
@@ -523,7 +538,7 @@ Foxtrick.util.htMl._parseLink = function(node) {
 		}
 
 		// if it's relative link of Hattrick, remove the host
-		var relRe = /https?:\/\/.+?(\/.*)/i;
+		var relRe = /^https?:\/\/.+?(\/.*)/i;
 		if (link.match(relRe) !== null && Foxtrick.isHtUrl(link)) {
 			var matched = link.match(relRe);
 			var relLink = matched[1];
