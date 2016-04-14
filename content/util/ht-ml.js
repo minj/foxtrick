@@ -564,6 +564,10 @@ Foxtrick.util.htMl._findNode = function(node) {
 		    node.firstChild.nodeType == Foxtrick.NodeTypes.TEXT_NODE)
 			node = node.parentNode;
 	}
+
+	if (node.nodeName.toLowerCase() === 'img')
+		node = node.parentNode;
+
 	return node;
 };
 
