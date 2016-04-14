@@ -339,9 +339,11 @@ Foxtrick.util.htMl.getFormat = (function() {
 				if (!/\| :?---:? \|/.test(lines[1])) {
 					// no header, generate fake
 					var cellCts = Foxtrick.map(function(line) {
-						var m = line.match(/\| /g);
+						// simulating lookbehind to avoid previously escaped '|'
+						var m = line.split('').reverse().join('').match(/ \|(?!\\)/g);
 						if (m)
 							return m.length;
+
 						return 0;
 					}, lines);
 					var cellCt = Math.max.apply(null, cellCts);
