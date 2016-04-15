@@ -93,8 +93,10 @@ Foxtrick.timeout = function(promisory, limit) {
 
 	return Promise.race([
 		Promise.resolve(promisory()),
-		new Promise(function(resolve, reject) { // jshint ignore:line
-			setTimeout(reject, limit, new Error(Foxtrick.TIMEOUT_ERROR));
+		new Promise(function timeoutReject(resolve, reject) { // jshint ignore:line
+			setTimeout(function() {
+				reject(new Error(Foxtrick.TIMEOUT_ERROR));
+			}, limit);
 		}),
 	]);
 
@@ -108,8 +110,10 @@ Foxtrick.timeout = function(promisory, limit) {
  */
 Foxtrick.delay = function(time) {
 
-	return new Promise(function(fulfill) {
-		setTimeout(fulfill, time);
+	return new Promise(function delayFinish(fulfill) {
+		setTimeout(function() {
+			fulfill();
+		}, time);
 	});
 
 };
