@@ -934,18 +934,5 @@
 		},
 		"title": "HTEV Simulator",
 		"img": "http://htev.org/static/htevfavicon.gif"
-	},
-	"hatstatsnet": {
-		"serieslink": {
-			"url": "http://hatstats.net/[leagueid]/standings.php?series=[seriesid]"
-		},
-		"teamlink": {
-			"url": "http://hatstats.net/[leagueid]/team.php?teamID=[teamid]"
-		},
-		"leaguelink": {
-			"url": "http://hatstats.net/[leagueid]/"
-		},
-		"title": "Hatstats",
-		"img": "http://hatstats.net/favicon.ico"
 	}
 }
