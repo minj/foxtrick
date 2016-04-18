@@ -212,6 +212,9 @@ Foxtrick.modules['HTMSPoints'] = {
 		pointsSkills[18] = [691, 1268, 1070, 741, 988, 1114, 210];
 		pointsSkills[19] = [797, 1487, 1247, 855, 1148, 1300, 246];
 		pointsSkills[20] = [924, 1791, 1480, 995, 1355, 1547, 287];
+		pointsSkills[21] = [1074, 1791, 1791, 1172, 1355, 1547, 334];
+		pointsSkills[22] = [1278, 1791, 1791, 1360, 1355, 1547, 388];
+		pointsSkills[23] = [1278, 1791, 1791, 1360, 1355, 1547, 450];
 
 		var actValue = pointsSkills[skills['keeper']][0];
 		actValue += pointsSkills[skills['defending']][1];
