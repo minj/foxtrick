@@ -20,13 +20,13 @@ es-ES:
     sound-location:
       question: ¿Cual es el limite de tamaño para alertas de sonido y donde pueden ser localizados?
       answer: |
-        <p>Todos los navegadores puede reproducir URLs de datos. Estos son los sonidos guardados que se utilizan cuando usas el botón de carga de preferencias. Una vez se convierten y guardan en tus preferencias, el tamaño se limita a los 160kB por sonido.</p>
+        <p>Todos los navegadores puede reproducir datos de urls. Estos son los sonidos guardados que se utilizan cuando usas el botón de carga en las preferencias. Una vez que se convierten y se guardan en tus preferencias, el tamaño se limita a 160kB por sonido.</p>
         
-        <p>Además, todos los navegadores pueden reproducir sonidos directamente desde internet (direcciones http). Simplemente copia un enlace a un sonido (por ejemplo: http://foxtrick.org/sound.wav) en el campo de edición para el sonido. No hay límite de tamaño.</p>
+        <p>Además, todos los navegadores pueden reproducir sonidos directamente desde Internet (direcciones http). Simplemente copia un enlace a un sonido (por ejemplo: http://foxtrick.org/sound.wav) en el campo de edición para el sonido. No hay límite de tamaño.</p>
         
-        <p>El Mozilla también puede reproducir sonidos directamente desde tu disco duro sin límite de tamaño. La forma más fácil de obtener el formato apropiado: pulsa Ctrl+O en el navegador, busca el archivo de sonido y selecciónalo. En la barra de dirección de arriba aparecerá entonces el directorio en el que se encuentra el archivo local (por ejemplo: file:///c:/sound.wav). Copia y pega esto en el campo de edición para el sonido.</p>
+        <p>Los navegadores de Mozilla también puede reproducir sonidos directamente desde tu disco duro (archivos urls) sin límite de tamaño. La forma más fácil de obtener el formato apropiado: pulsa Ctrl+O en el navegador, busca el archivo de sonido y selecciónalo. En la barra de dirección de arriba aparecerá entonces el directorio en el que se encuentra el archivo local (por ejemplo: file:///c:/sound.wav). Copia y pega esto en el campo de edición para el sonido.</p>
     authorize:
-      question: ¿Por qué debo autorizar a Foxtrick acceder a los datos de mi equipo?
+      question: ¿Por qué debería autorizar a Foxtrick acceder a los datos de mi equipo?
       answer: |2
         <p>Aunque la mayoría de los datos necesarios por FoxTrick se puede obtener directamente de la página que estás viendo, algunos módulos requieren la descarga de datos de Hattrick para funcionar correctamente.</p>  
         
@@ -51,7 +51,7 @@ es-ES:
     privacy:
       question: ¿Cómo protege mi privacidad FoxTrick?
       answer: |
-        <p>FoxTrick no compartirá tus datos ni tu configuración con ningún servidor de FoxTrick; tampoco enviará nombres, contraseñas, IDs de jugador ni ningunos otros datos privados a terceros.</p>
+        <p>FoxTrick no compartirá tus datos ni tu configuración con ningún servidor de FoxTrick; tampoco enviará nombres, contraseñas, IDs de jugador ni ningún otro dato privado a terceros.</p>
         
         <p>La mayoría de los datos que pasan a terceros, entre los que no están los anteriormente especificados, lo hacen por medio de HTTP y deberás hacer clic en un enlace para permitirlo.</p>
         
