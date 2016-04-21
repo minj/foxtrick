@@ -740,45 +740,19 @@ function initCoreModules() {
  * Used for custom options as well
  */
 function initAutoSaveListeners() {
-	$('#pane input').each(function() {
+	var $parent = $('#pane');
+
+	var listener = function(ev) {
 		var $this = $(this);
 
-		if ($this.attr('savelistener'))
+		if ($this.attr('data-listen') === 'false')
 			return;
 
-		$this.attr('savelistener', 'true');
+		saveEvent(ev);
+	};
 
-		if ($this.is(':checkbox')) {
-			$this.click(saveEvent);
-		}
-		else if ($this.is(':input')) {
-			this.addEventListener('input', saveEvent);
-			this.addEventListener('change', saveEvent);
-		}
-		else {
-			$this.attr('savelistener', 'false');
-		}
-	});
-
-	$('#pane select').each(function() {
-		var $this = $(this);
-
-		if ($this.attr('savelistener'))
-			return;
-
-		$this.attr('savelistener', 'true');
-		$this.click(saveEvent);
-		this.addEventListener('change', saveEvent);
-	});
-	$('#pane textarea').each(function() {
-		var $this = $(this);
-
-		if ($this.attr('savelistener'))
-			return;
-
-		$this.attr('savelistener', 'true');
-		this.addEventListener('input', saveEvent);
-	});
+	$parent.on('change', ':checkbox, :radio, select', listener);
+	$parent.on('input', ':input, textarea', listener);
 }
 
 /**
@@ -887,7 +861,7 @@ function makeModuleDiv(module) {
 	// or purely initializes them and returns null
 	var customOptions = [];
 	if (typeof module.OPTION_FUNC == 'function') {
-		var genOptions = module.OPTION_FUNC(document, initAutoSaveListeners);
+		var genOptions = module.OPTION_FUNC(document);
 		if (genOptions) {
 			if (Array.isArray(genOptions)) {
 				for (var field of genOptions)
@@ -956,7 +930,7 @@ function makeModuleDiv(module) {
 		var makeTextListener = function(input) {
 			return function(text) {
 				input.value = text;
-				input.dispatchEvent(new Event('input'));
+				input.dispatchEvent(new Event('input', { bubbles: true }));
 			};
 		};
 		var makePlayListener = function(input) {
@@ -968,7 +942,7 @@ function makeModuleDiv(module) {
 		var makeDataListener = function(input, isSound) {
 			return function(url) {
 				input.value = url;
-				input.dispatchEvent(new Event('change'));
+				input.dispatchEvent(new Event('input', { bubbles: true }));
 
 				if (isSound)
 					Foxtrick.playSound(input.ownerDocument, url);

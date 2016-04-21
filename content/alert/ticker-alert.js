@@ -75,7 +75,7 @@
 				  (function(sound) {
 					return function(url) {
 						sound.value = url;
-						sound.dispatchEvent(new Event('change'));
+						sound.dispatchEvent(new Event('input', { bubbles: true }));
 						Foxtrick.playSound(doc, url);
 					};
 				})(sound));
