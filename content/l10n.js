@@ -830,7 +830,7 @@ Foxtrick.L10n.getCountryNameLocal = function(leagueId, lang) {
 
 			init: function() {
 				var L10N_BUNDLE_PATH = Foxtrick.InternalPath + 'foxtrick.properties';
-				var SS_BUNDLE_PATH = Foxtrick.InternalPath + 'foxtrick.screenshots';
+				// var SS_BUNDLE_PATH = Foxtrick.InternalPath + 'foxtrick.screenshots';
 
 				var L10N_PATH = Foxtrick.InternalPath + 'locale/';
 
@@ -853,8 +853,8 @@ Foxtrick.L10n.getCountryNameLocal = function(leagueId, lang) {
 
 				this.setUserLocaleGecko(Foxtrick.Prefs.getString('htLanguage'));
 
-				this._strings_bundle_screenshots_default =
-					Services.strings.createBundle(SS_BUNDLE_PATH);
+				// this._strings_bundle_screenshots_default =
+				// 	Services.strings.createBundle(SS_BUNDLE_PATH);
 			},
 
 			setUserLocaleGecko: function(localeCode) {
@@ -875,14 +875,14 @@ Foxtrick.L10n.getCountryNameLocal = function(leagueId, lang) {
 				}
 				catch (e) {}
 
-				var ssBundlePath = L10N_PATH + localeCode + '/foxtrick.screenshots';
-				try {
-					this._strings_bundle_screenshots = Services.strings.createBundle(ssBundlePath);
-				}
-				catch (e) {
-					this._strings_bundle_screenshots = this._strings_bundle_screenshots_default;
-					Foxtrick.log('Use default screenshots for locale', localeCode);
-				}
+				// var ssBundlePath = L10N_PATH + localeCode + '/foxtrick.screenshots';
+				// try {
+				// 	this._strings_bundle_screenshots = Services.strings.createBundle(ssBundlePath);
+				// }
+				// catch (e) {
+				// 	this._strings_bundle_screenshots = this._strings_bundle_screenshots_default;
+				// 	Foxtrick.log('Use default screenshots for locale', localeCode);
+				// }
 			},
 
 			getString: function(str, num) {
@@ -997,7 +997,7 @@ Foxtrick.L10n.getCountryNameLocal = function(leagueId, lang) {
 
 			init: function() {
 				var L10N_BUNDLE_PATH = Foxtrick.InternalPath + 'foxtrick.properties';
-				var SS_BUNDLE_PATH = Foxtrick.InternalPath + 'foxtrick.screenshots';
+				// var SS_BUNDLE_PATH = Foxtrick.InternalPath + 'foxtrick.screenshots';
 				var L10N_PATH = Foxtrick.InternalPath + 'locale/';
 
 				// get htlang.json for each locale
@@ -1012,7 +1012,7 @@ Foxtrick.L10n.getCountryNameLocal = function(leagueId, lang) {
 				}
 
 				this.properties_default = Foxtrick.util.load.sync(L10N_BUNDLE_PATH);
-				this.screenshots_default = Foxtrick.util.load.sync(SS_BUNDLE_PATH);
+				// this.screenshots_default = Foxtrick.util.load.sync(SS_BUNDLE_PATH);
 				try {
 					var rule = this._getString(this.properties_default, 'pluralFormRuleID');
 					this.plForm_default = parseInt(rule.match(/\d+/), 10);
@@ -1040,18 +1040,18 @@ Foxtrick.L10n.getCountryNameLocal = function(leagueId, lang) {
 				}
 				catch (e) {}
 
-				var ssBundlePath = L10N_PATH + localeCode + '/foxtrick.screenshots';
-				try {
-					this.screenshots = Foxtrick.util.load.sync(ssBundlePath);
-					if (this.screenshots === null) {
-						Foxtrick.log('Use default screenshots for locale', localeCode);
-						this.screenshots = this.screenshots_default;
-					}
-				}
-				catch (ee) {
-					Foxtrick.log('Use default screenshots for locale', localeCode);
-					this.screenshots = this.screenshots_default;
-				}
+				// var ssBundlePath = L10N_PATH + localeCode + '/foxtrick.screenshots';
+				// try {
+				// 	this.screenshots = Foxtrick.util.load.sync(ssBundlePath);
+				// 	if (this.screenshots === null) {
+				// 		Foxtrick.log('Use default screenshots for locale', localeCode);
+				// 		this.screenshots = this.screenshots_default;
+				// 	}
+				// }
+				// catch (ee) {
+				// 	Foxtrick.log('Use default screenshots for locale', localeCode);
+				// 	this.screenshots = this.screenshots_default;
+				// }
 			},
 
 			_getString: function(properties, str) {
