@@ -1011,7 +1011,9 @@ Foxtrick.L10n.getCountryNameLocal = function(leagueId, lang) {
 					}
 				}
 
-				this.properties_default = Foxtrick.util.load.sync(L10N_BUNDLE_PATH);
+				var propsDefault = Foxtrick.util.load.sync(L10N_BUNDLE_PATH);
+				this.properties_default = this.__parse(propsDefault);
+
 				// this.screenshots_default = Foxtrick.util.load.sync(SS_BUNDLE_PATH);
 				try {
 					var rule = this._getString(this.properties_default, 'pluralFormRuleID');
@@ -1023,11 +1025,13 @@ Foxtrick.L10n.getCountryNameLocal = function(leagueId, lang) {
 
 				var l10nBundlePath = L10N_PATH + localeCode + '/foxtrick.properties';
 				try {
-					this.properties = Foxtrick.util.load.sync(l10nBundlePath);
-					if (this.properties === null) {
+					var props = Foxtrick.util.load.sync(l10nBundlePath);
+					if (props === null) {
 						Foxtrick.log('Use default properties for locale', localeCode);
 						this.properties = this.properties_default;
 					}
+					else
+						this.properties = this.__parse(props);
 				}
 				catch (e) {
 					Foxtrick.log('Use default properties for locale', localeCode);
@@ -1054,10 +1058,20 @@ Foxtrick.L10n.getCountryNameLocal = function(leagueId, lang) {
 				// }
 			},
 
+			__parse: function(props) {
+				var L10N_RE = /^(.+?)=(.+)$/mg;
+				var ret = {};
+
+				var prop;
+				while ((prop = L10N_RE.exec(props)))
+					ret[prop[1]] = prop[2];
+
+				return ret;
+			},
+
 			_getString: function(properties, str) {
-				var string_regexp = new RegExp('^' + str + '=(.+)$', 'im');
-				if (string_regexp.test(properties))
-					return properties.match(string_regexp)[1];
+				if (str in properties)
+					return properties[str];
 
 				return null;
 			},
@@ -1105,14 +1119,11 @@ Foxtrick.L10n.getCountryNameLocal = function(leagueId, lang) {
 			},
 
 			isStringAvailable: function(str) {
-				var string_regexp = new RegExp('^' + str + '=(.+)$', 'im');
-				return string_regexp.test(Foxtrick.L10n.properties) ||
-				       string_regexp.test(Foxtrick.L10n.properties_default);
+				return str in Foxtrick.L10n.properties || str in Foxtrick.L10n.properties_default;
 			},
 
 			isStringAvailableLocal: function(str) {
-				var string_regexp = new RegExp('^' + str + '=(.+)$', 'im');
-				return string_regexp.test(Foxtrick.L10n.properties);
+				return str in Foxtrick.L10n.properties;
 			},
 
 			getScreenshot: function(str) {
