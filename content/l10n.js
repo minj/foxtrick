@@ -835,11 +835,14 @@ Foxtrick.L10n.getCountryNameLocal = function(leagueId, lang) {
 				var L10N_PATH = Foxtrick.InternalPath + 'locale/';
 
 				if (Foxtrick.context === 'background') {
-					// get htlang.json for each locale
-					for (var locale of Foxtrick.L10n.locales) {
-						var url = L10N_PATH + locale + '/htlang.json';
-						var text = Foxtrick.util.load.sync(url);
-						this.htLanguagesJSON[locale] = JSON.parse(text);
+					if (!/\/preferences\.html$/.test(window.location.pathname)) {
+						// don't run in prefs
+						// unnecessary and hurts performance
+						for (var locale of Foxtrick.L10n.locales) {
+							var url = L10N_PATH + locale + '/htlang.json';
+							var text = Foxtrick.util.load.sync(url);
+							this.htLanguagesJSON[locale] = JSON.parse(text);
+						}
 					}
 				}
 
