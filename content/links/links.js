@@ -109,8 +109,8 @@ Foxtrick.modules['Links'] = {
 						return Foxtrick.storage.get('LinksFeed.' + feed);
 					}
 					else {
-						return Foxtrick.storage.set('LinksFeed.' + feed, text)
-							.then(function() { return text; });
+						Foxtrick.storage.set('LinksFeed.' + feed, text);
+						return text;
 					}
 
 				}, function(resp) {
