@@ -1390,7 +1390,7 @@ function initChangesTab() {
 	var releaseNotes = Foxtrick.load(Foxtrick.InternalPath + 'release-notes.yml')
 		.then(Foxtrick.parseYAML);
 
-	Promise.all([releaseNotes, releaseNotesLocal, rNotesLinks, status])
+	return Promise.all([releaseNotes, releaseNotesLocal, rNotesLinks, status])
 		.then(function(resp) {
 
 			var versions = parseNotes(resp[0]);
@@ -1506,7 +1506,7 @@ function initHelpTab() {
 	var faqLocalSrc = Foxtrick.InternalPath + 'locale/' + lang + '/faq.yml';
 	var faqLocal = Foxtrick.load(faqLocalSrc).then(Foxtrick.parseYAML);
 
-	Promise.all([faqLinks, faq, faqLocal]).then(function(resp) {
+	return Promise.all([faqLinks, faq, faqLocal]).then(function(resp) {
 		var faqLinks = resp[0];
 		var items = parseFaq(resp[1]);
 		var itemsLocal = parseFaq(resp[2]);
@@ -1550,7 +1550,7 @@ function initAboutTab() {
 		$(list).append(item);
 	};
 
-	Foxtrick.load(Foxtrick.InternalPath + 'data/foxtrick_about.json')
+	return Foxtrick.load(Foxtrick.InternalPath + 'data/foxtrick_about.json')
 		.then(function(aboutJSON) {
 
 			var aboutData = JSON.parse(aboutJSON);
@@ -1599,11 +1599,16 @@ function initTabs() {
 	});
 
 	// initialize the tabs
+
 	initMainTab();
-	initChangesTab();
-	initHelpTab();
-	initAboutTab();
+
+	var changes = initChangesTab();
+	var help = initHelpTab();
+	var about = initAboutTab();
+
 	initModules();
+
+	return Promise.all([changes, help, about]);
 }
 
 /**
@@ -1789,18 +1794,20 @@ function init() {
 		initCoreModules();
 		getPageIds();
 
-		initTabs();
+		initTabs().then(function() {
 
-		initSearch(); // important, run after module divs have been created (initTabs)
-		initListeners(); // important, run after module divs have been created (initTabs)
-		initTextAndValues();
+			initSearch();
+			initListeners();
+			initTextAndValues();
 
-		locateFragment(window.location.href); // locate element by fragment
+			locateFragment(window.location.href);
 
-		testPermissions();
+			testPermissions();
 
-		$('#subheader').removeClass('hidden');
-		$('#content').removeClass('hidden');
+			$('#subheader').removeClass('hidden');
+			$('#content').removeClass('hidden');
+
+		}).catch(Foxtrick.catch('Preferences init'));
 
 		// if (Foxtrick.Prefs.isModuleEnabled('MobileEnhancements')) {
 		// 	// mobile
@@ -1826,7 +1833,7 @@ function init() {
 		// }
 	}
 	catch (e) {
-		Foxtrick.log('init: ', e);
+		Foxtrick.log('Preferences init:', e);
 	}
 }
 
