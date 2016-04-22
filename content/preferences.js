@@ -740,45 +740,19 @@ function initCoreModules() {
  * Used for custom options as well
  */
 function initAutoSaveListeners() {
-	$('#pane input').each(function() {
+	var $parent = $('#pane');
+
+	var listener = function(ev) {
 		var $this = $(this);
 
-		if ($this.attr('savelistener'))
+		if ($this.attr('data-listen') === 'false')
 			return;
 
-		$this.attr('savelistener', 'true');
+		saveEvent(ev);
+	};
 
-		if ($this.is(':checkbox')) {
-			$this.click(saveEvent);
-		}
-		else if ($this.is(':input')) {
-			this.addEventListener('input', saveEvent);
-			this.addEventListener('change', saveEvent);
-		}
-		else {
-			$this.attr('savelistener', 'false');
-		}
-	});
-
-	$('#pane select').each(function() {
-		var $this = $(this);
-
-		if ($this.attr('savelistener'))
-			return;
-
-		$this.attr('savelistener', 'true');
-		$this.click(saveEvent);
-		this.addEventListener('change', saveEvent);
-	});
-	$('#pane textarea').each(function() {
-		var $this = $(this);
-
-		if ($this.attr('savelistener'))
-			return;
-
-		$this.attr('savelistener', 'true');
-		this.addEventListener('input', saveEvent);
-	});
+	$parent.on('change', ':checkbox, :radio, select', listener);
+	$parent.on('input', ':input, textarea', listener);
 }
 
 /**
@@ -887,7 +861,7 @@ function makeModuleDiv(module) {
 	// or purely initializes them and returns null
 	var customOptions = [];
 	if (typeof module.OPTION_FUNC == 'function') {
-		var genOptions = module.OPTION_FUNC(document, initAutoSaveListeners);
+		var genOptions = module.OPTION_FUNC(document);
 		if (genOptions) {
 			if (Array.isArray(genOptions)) {
 				for (var field of genOptions)
@@ -956,7 +930,7 @@ function makeModuleDiv(module) {
 		var makeTextListener = function(input) {
 			return function(text) {
 				input.value = text;
-				input.dispatchEvent(new Event('input'));
+				input.dispatchEvent(new Event('input', { bubbles: true }));
 			};
 		};
 		var makePlayListener = function(input) {
@@ -968,7 +942,7 @@ function makeModuleDiv(module) {
 		var makeDataListener = function(input, isSound) {
 			return function(url) {
 				input.value = url;
-				input.dispatchEvent(new Event('change'));
+				input.dispatchEvent(new Event('input', { bubbles: true }));
 
 				if (isSound)
 					Foxtrick.playSound(input.ownerDocument, url);
@@ -1232,41 +1206,14 @@ function initMainTab() {
  * Setup changes tab layout and release notes
  */
 function initChangesTab() {
+	var lang = Foxtrick.Prefs.getString('htLanguage');
+
 	var changesLink = document.createElement('a');
 	changesLink.href = '#tab=changes';
 	changesLink.className = 'module-link';
 	changesLink.textContent = '¶';
 	changesLink.title = Foxtrick.L10n.getString('module.link');
 	$('div[x-on*="changes"] > h2').append(changesLink);
-
-	var lang = Foxtrick.Prefs.getString('htLanguage');
-
-	var rNotesLinks = Foxtrick.util.load.ymlSync(Foxtrick.InternalPath + 'release-notes-links.yml');
-
-	var rNotesLocalSrc = Foxtrick.InternalPath + 'locale/' + lang + '/release-notes.yml';
-	var releaseNotesLocal = Foxtrick.util.load.ymlSync(rNotesLocalSrc);
-	var releaseNotes = Foxtrick.util.load.ymlSync(Foxtrick.InternalPath + 'release-notes.yml');
-
-	if (rNotesLinks === null || releaseNotesLocal === null || releaseNotes === null) {
-		Foxtrick.log('Release notes failed');
-		return;
-	}
-
-	var statusL10n = Foxtrick.L10n.getString('releaseNotes.translationStatus');
-	var statusJSON = Foxtrick.util.load.sync(Foxtrick.InternalPath + 'locale/status.json');
-	var statusData = JSON.parse(statusJSON);
-
-	var statusText = '';
-	try {
-		if (lang !== 'en') {
-			var langStatus = Foxtrick.nth(function(item) {
-				return item.code == lang;
-			}, statusData.status);
-			var pctg = langStatus.translated_progress;
-			statusText = statusL10n.replace(/%s/, pctg);
-		}
-	}
-	catch (e) {}
 
 	var parseNotes = function(obj) {
 		if (!obj) {
@@ -1283,40 +1230,6 @@ function initChangesTab() {
 		return versions;
 	};
 
-	var versions = parseNotes(releaseNotes);
-	var versionsLocalized = parseNotes(releaseNotesLocal);
-
-	if (!versions) {
-		Foxtrick.error('NO RELEASE NOTES!!!');
-		return;
-	}
-
-	// add nightly and beta notes
-	for (var version in versions) {
-		if (Foxtrick.branch.indexOf(version) !== 0)
-			continue;
-
-		var notes = versions[version];
-		var notesLocalized = versionsLocalized[version];
-		if (!notes)
-			continue;
-
-		// README: branch note must always be 'note_0'
-		var note = notesLocalized && notesLocalized['note_0'] || notes['note_0'];
-		if (!note)
-			continue;
-
-		var $note = $('#translator_note');
-		var list = $note[0];
-		addNote(note, list, rNotesLinks);
-		if (version === 'beta')
-			$note.append(' ' + statusText);
-
-		$note.attr('style', 'display:block;');
-	}
-
-	var select = $('#pref-version-release-notes')[0];
-
 	// version format: x.y[.z[.j]]
 	// major version format: x.y.z, adds or removes parts as needed
 	var getMajorVersion = function(version) {
@@ -1332,37 +1245,18 @@ function initChangesTab() {
 		return parts.length < 4;
 	};
 
-	var majorVersions = {};
-	for (version in versions) {
-		if (!/^\d/.test(version)) {
-			// beta / nightly notes
-			continue;
-		}
-
-		// sort all versions into buckets by major version
-		var major = getMajorVersion(version);
-		majorVersions[major] = majorVersions[major] || [];
-		majorVersions[major].push(version);
-
-		if (!isMajorVersion(version)) {
-			// don't add subversions to select box
-			continue;
-		}
-
-		var item = document.createElement('option');
-		item.textContent = version;
-		item.value = major; // setting value to major
-		select.appendChild(item);
-	}
-
-	var updateNotepad = function() {
+	var updateNotepad = function(selected, versionMap, data) {
 		var list = $('#pref-notepad-list')[0];
 		list.textContent = ''; // clear list
 
 		var versionL10n = Foxtrick.L10n.getString('releaseNotes.version');
 
-		var major = getMajorVersion(select.value);
-		var minorVersions = majorVersions[major];
+		var versions = data.versions;
+		var versionsLocalized = data.versionsLocalized;
+		var rNotesLinks = data.rNotesLinks;
+
+		var major = getMajorVersion(selected);
+		var minorVersions = versionMap[major];
 
 		for (var version of minorVersions) {
 			var notes = versions[version];
@@ -1385,7 +1279,7 @@ function initChangesTab() {
 
 			var notesLocalized = versionsLocalized[version];
 			for (var n in notes) {
-				note = notes[n];
+				var note = notes[n];
 				if (notesLocalized && typeof notesLocalized[n] !== 'undefined' &&
 				    notesLocalized[n] !== null)
 					note = notesLocalized[n];
@@ -1400,17 +1294,135 @@ function initChangesTab() {
 		}
 	};
 
-	var currentVersion = getMajorVersion(Foxtrick.version);
-	Foxtrick.any(function(opt, i) {
-		if (opt.value == currentVersion) {
-			select.selectedIndex = i;
-			return true;
-		}
-		return false;
-	}, select.options);
+	var addBetaNote = function(statusText, data) {
+		var versions = data.versions;
+		var versionsLocalized = data.versionsLocalized;
+		var rNotesLinks = data.rNotesLinks;
 
-	updateNotepad();
-	$(select).change(updateNotepad);
+		// add nightly and beta notes
+		for (var version in versions) {
+			if (Foxtrick.branch.indexOf(version) !== 0)
+				continue;
+
+			var notes = versions[version];
+			var notesLocalized = versionsLocalized[version];
+			if (!notes)
+				continue;
+
+			// README: branch note must always be 'note_0'
+			var note = notesLocalized && notesLocalized['note_0'] || notes['note_0'];
+			if (!note)
+				continue;
+
+			var $note = $('#translator_note');
+			var list = $note[0];
+
+			addNote(note, list, rNotesLinks);
+
+			if (version === 'beta')
+				$note.append(' ' + statusText);
+
+			$note.attr('style', 'display:block;');
+		}
+	};
+
+	var addVersions = function(select, versions) {
+		var majorVersions = {};
+		for (var version in versions) {
+			if (!/^\d/.test(version)) {
+				// beta / nightly notes
+				continue;
+			}
+
+			// sort all versions into buckets by major version
+			var major = getMajorVersion(version);
+			majorVersions[major] = majorVersions[major] || [];
+			majorVersions[major].push(version);
+
+			if (!isMajorVersion(version)) {
+				// don't add subversions to select box
+				continue;
+			}
+
+			var item = document.createElement('option');
+			item.textContent = version;
+			item.value = major; // setting value to major
+			select.appendChild(item);
+		}
+
+		var currentVersion = getMajorVersion(Foxtrick.version);
+		Foxtrick.any(function(opt, i) {
+			if (opt.value == currentVersion) {
+				select.selectedIndex = i;
+				return true;
+			}
+			return false;
+		}, select.options);
+
+		return majorVersions;
+	};
+
+	var statusL10n = Foxtrick.L10n.getString('releaseNotes.translationStatus');
+	var status = Foxtrick.load(Foxtrick.InternalPath + 'locale/status.json')
+		.then(Foxtrick.parseJSON)
+		.then(function(statusData) {
+			var statusText = '';
+			try {
+				if (lang !== 'en') {
+					var langStatus = Foxtrick.nth(function(item) {
+						return item.code == lang;
+					}, statusData.status);
+					var pctg = langStatus.translated_progress;
+					statusText = statusL10n.replace(/%s/, pctg);
+				}
+			}
+			catch (e) {}
+
+			return statusText;
+		});
+
+	var rNotesLinks = Foxtrick.load(Foxtrick.InternalPath + 'release-notes-links.yml')
+		.then(Foxtrick.parseYAML);
+
+	var rNotesLocalSrc = Foxtrick.InternalPath + 'locale/' + lang + '/release-notes.yml';
+	var releaseNotesLocal = Foxtrick.load(rNotesLocalSrc).then(Foxtrick.parseYAML);
+
+	var releaseNotes = Foxtrick.load(Foxtrick.InternalPath + 'release-notes.yml')
+		.then(Foxtrick.parseYAML);
+
+	return Promise.all([releaseNotes, releaseNotesLocal, rNotesLinks, status])
+		.then(function(resp) {
+
+			var versions = parseNotes(resp[0]);
+			var versionsLocalized = parseNotes(resp[1]);
+			var rNotesLinks = resp[1];
+			var statusText = resp[2];
+
+			if (!versions) {
+				Foxtrick.error('NO RELEASE NOTES!!!');
+				return;
+			}
+
+			var data = {
+				versions: versions,
+				versionsLocalized: versionsLocalized,
+				rNotesLinks: rNotesLinks,
+			};
+
+			addBetaNote(statusText, data);
+
+			var select = $('#pref-version-release-notes')[0];
+			var majorVersions = addVersions(select, versions);
+
+			var update = function() {
+				updateNotepad(select.value, majorVersions, data);
+			};
+
+			update();
+			$(select).change(update);
+
+		}).catch(Foxtrick.catch('changes'));
+
 }
 
 /**
@@ -1418,28 +1430,24 @@ function initChangesTab() {
  */
 function initHelpTab() {
 	// external links
-	var aboutJSON = Foxtrick.util.load.sync(Foxtrick.InternalPath + 'data/foxtrick_about.json');
-	var aboutData = JSON.parse(aboutJSON);
-	var category = aboutData.links;
+	Foxtrick.load(Foxtrick.InternalPath + 'data/foxtrick_about.json')
+		.then(function(aboutJSON) {
 
-	Foxtrick.map(function(a) {
-		var item = document.createElement('li');
-		$('#external-links-list').append(item);
+			var aboutData = JSON.parse(aboutJSON);
+			var category = aboutData.links;
 
-		var link = document.createElement('a');
-		item.appendChild(link);
-		link.textContent = Foxtrick.L10n.getString('link.' + a.id);
-		link.href = a.href;
-		link.target = '_blank';
-	}, category);
+			Foxtrick.map(function(a) {
+				var item = document.createElement('li');
+				$('#external-links-list').append(item);
 
-	// FAQ (faq.yml or localized locale/code/faq.yml
-	var lang = Foxtrick.Prefs.getString('htLanguage');
-	var faqLinks = Foxtrick.util.load.ymlSync(Foxtrick.InternalPath + 'faq-links.yml');
-	var faq = Foxtrick.util.load.ymlSync(Foxtrick.InternalPath + 'faq.yml');
+				var link = document.createElement('a');
+				item.appendChild(link);
+				link.textContent = Foxtrick.L10n.getString('link.' + a.id);
+				link.href = a.href;
+				link.target = '_blank';
+			}, category);
 
-	var faqLocalSrc = Foxtrick.InternalPath + 'locale/' + lang + '/faq.yml';
-	var faqLocal = Foxtrick.util.load.ymlSync(faqLocalSrc);
+		}).catch(Foxtrick.catch('help-external-links'));
 
 	var parseFaq = function(src) {
 		if (!src)
@@ -1454,20 +1462,7 @@ function initHelpTab() {
 		return src.faq;
 	};
 
-	var items = parseFaq(faq);
-	var itemsLocal = parseFaq(faqLocal);
-
-	if (!items) {
-		Foxtrick.error('NO FAQ!!!');
-		return;
-	}
-
-	for (var i in items) {
-		var item = items[i];
-
-		// prefer localized ones
-		var itemLocal = itemsLocal ? itemsLocal[i] : null;
-
+	var addFAQItem = function(item, itemLocal, i, faqLinks) {
 		// container for question and answer
 		var block = document.createElement('div');
 		block.id = 'faq-' + i;
@@ -1501,16 +1496,42 @@ function initHelpTab() {
 		container.className = 'module-content';
 		container.appendChild(content);
 		block.appendChild(container);
-	}
+	};
+
+	// FAQ (faq.yml or localized locale/code/faq.yml
+	var faqLinks = Foxtrick.load(Foxtrick.InternalPath + 'faq-links.yml').then(Foxtrick.parseYAML);
+	var faq = Foxtrick.load(Foxtrick.InternalPath + 'faq.yml').then(Foxtrick.parseYAML);
+
+	var lang = Foxtrick.Prefs.getString('htLanguage');
+	var faqLocalSrc = Foxtrick.InternalPath + 'locale/' + lang + '/faq.yml';
+	var faqLocal = Foxtrick.load(faqLocalSrc).then(Foxtrick.parseYAML);
+
+	return Promise.all([faqLinks, faq, faqLocal]).then(function(resp) {
+		var faqLinks = resp[0];
+		var items = parseFaq(resp[1]);
+		var itemsLocal = parseFaq(resp[2]);
+
+		if (!items) {
+			Foxtrick.error('NO FAQ!!!');
+			return;
+		}
+
+		for (var i in items) {
+			var item = items[i];
+
+			// prefer localized ones
+			var itemLocal = itemsLocal ? itemsLocal[i] : null;
+
+			addFAQItem(item, itemLocal, i, faqLinks);
+		}
+
+	}).catch(Foxtrick.catch('help'));
 }
 
 /**
  * Setup about page and contributor layout
  */
 function initAboutTab() {
-	var aboutJSON = Foxtrick.util.load.sync(Foxtrick.InternalPath + 'data/foxtrick_about.json');
-	var aboutData = JSON.parse(aboutJSON);
-
 	var addItem = function(person, list) {
 		var item = document.createElement('li');
 
@@ -1529,34 +1550,42 @@ function initAboutTab() {
 		$(list).append(item);
 	};
 
-	$('.about-list').each(function() {
+	return Foxtrick.load(Foxtrick.InternalPath + 'data/foxtrick_about.json')
+		.then(function(aboutJSON) {
 
-		var $container = $(this);
-		var type = $container.attr('path');
+			var aboutData = JSON.parse(aboutJSON);
 
-		var category = aboutData[type];
-		Foxtrick.map(function(data) {
-			if (type === 'translations') {
-				var item = document.createElement('li');
-				var header = document.createElement('h4');
-				header.textContent = data.language;
-				item.appendChild(header);
+			$('.about-list').each(function() {
 
-				var list = document.createElement('ul');
-				item.appendChild(list);
+				var $container = $(this);
+				var type = $container.attr('path');
 
-				Foxtrick.map(function(translator) {
-					addItem(translator, $(list));
-				}, data.translators);
+				var category = aboutData[type];
+				Foxtrick.map(function(data) {
+					if (type === 'translations') {
+						var item = document.createElement('li');
+						var header = document.createElement('h4');
+						header.textContent = data.language;
+						item.appendChild(header);
 
-				$container.append(item);
-			}
-			else {
-				addItem(data, $container);
-			}
-		}, category);
+						var list = document.createElement('ul');
+						item.appendChild(list);
 
-	});
+						Foxtrick.map(function(translator) {
+							addItem(translator, $(list));
+						}, data.translators);
+
+						$container.append(item);
+					}
+					else {
+						addItem(data, $container);
+					}
+				}, category);
+
+			});
+
+		}).catch(Foxtrick.catch('about'));
+
 }
 
 /**
@@ -1570,11 +1599,16 @@ function initTabs() {
 	});
 
 	// initialize the tabs
+
 	initMainTab();
-	initChangesTab();
-	initHelpTab();
-	initAboutTab();
+
+	var changes = initChangesTab();
+	var help = initHelpTab();
+	var about = initAboutTab();
+
 	initModules();
+
+	return Promise.all([changes, help, about]);
 }
 
 /**
@@ -1757,22 +1791,24 @@ function initTextAndValues() {
  */
 function init() {
 	try {
-		$('body').hide();
-
 		initCoreModules();
 		getPageIds();
 
-		initTabs();
+		initTabs().then(function() {
 
-		initSearch(); // important, run after module divs have been created (initTabs)
-		initListeners(); // important, run after module divs have been created (initTabs)
-		initTextAndValues();
+			initSearch();
+			initListeners();
+			initTextAndValues();
 
-		locateFragment(window.location.href); // locate element by fragment
+			locateFragment(window.location.href);
 
-		testPermissions();
+			testPermissions();
 
-		$('body').show();
+			$('#spinner').addClass('hidden');
+			$('#subheader').removeClass('hidden');
+			$('#content').removeClass('hidden');
+
+		}).catch(Foxtrick.catch('Preferences init'));
 
 		// if (Foxtrick.Prefs.isModuleEnabled('MobileEnhancements')) {
 		// 	// mobile
@@ -1798,7 +1834,7 @@ function init() {
 		// }
 	}
 	catch (e) {
-		Foxtrick.log('init: ', e);
+		Foxtrick.log('Preferences init:', e);
 	}
 }
 

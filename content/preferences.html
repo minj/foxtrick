@@ -242,13 +242,17 @@
 	<div class="clear"></div>
 </div>
 
-<div id="subheader">
+<div id="spinner">
+	<svg width="300" height="300" id="svg-spinner"><defs><linearGradient id="gradientRing1" gradientUnits="userSpaceOnUse" x1="0" y1="-60" x2="51.96152422706631" y2="-30.000000000000007"><stop offset="0%" stop-color="rgb(14,89,164)"></stop><stop offset="100%" stop-color="rgb(30,104,178)"></stop></linearGradient><linearGradient id="gradientRing2" gradientUnits="userSpaceOnUse" x1="51.96152422706631" y1="-30.000000000000007" x2="51.96152422706632" y2="29.999999999999986"><stop offset="0%" stop-color="rgb(30,104,178)"></stop><stop offset="100%" stop-color="rgb(45,119,192)"></stop></linearGradient><linearGradient id="gradientRing3" gradientUnits="userSpaceOnUse" x1="51.96152422706632" y1="29.999999999999986" x2="7.34788079488412e-15" y2="60"><stop offset="0%" stop-color="rgb(45,119,192)"></stop><stop offset="100%" stop-color="rgb(61,134,207)"></stop></linearGradient><linearGradient id="gradientRing4" gradientUnits="userSpaceOnUse" x1="7.34788079488412e-15" y1="60" x2="-51.961524227066306" y2="30.00000000000003"><stop offset="0%" stop-color="rgb(61,134,207)"></stop><stop offset="100%" stop-color="rgb(77,148,221)"></stop></linearGradient><linearGradient id="gradientRing5" gradientUnits="userSpaceOnUse" x1="-51.961524227066306" y1="30.00000000000003" x2="-51.96152422706634" y2="-29.99999999999996"><stop offset="0%" stop-color="rgb(77,148,221)"></stop><stop offset="100%" stop-color="rgb(92,163,235)"></stop></linearGradient><linearGradient id="gradientRing6" gradientUnits="userSpaceOnUse" x1="-51.96152422706634" y1="-29.99999999999996" x2="-6.798646677177576e-14" y2="-60"><stop offset="0%" stop-color="rgb(92,163,235)"></stop><stop offset="100%" stop-color="rgb(108,178,249)"></stop></linearGradient></defs><g></g><path d="M7.34788079488412e-15,-120A120,120 0 0,1 104.22174816873485,-59.479636924352654L52.110874084367424,-29.739818462176327A60,60 0 0,0 3.67394039744206e-15,-60Z" fill="url(#gradientRing1)" transform="translate(150,150)"></path><path d="M103.92304845413263,-60A120,120 0 0,1 103.62175066873175,60.51886307877233L51.810875334365875,30.259431539386163A60,60 0 0,0 51.96152422706631,-30Z" fill="url(#gradientRing2)" transform="translate(150,150)"></path><path d="M103.92304845413264,59.99999999999998A120,120 0 0,1 -0.5999975000031049,119.998500003125L-0.29999875000155246,59.9992500015625A60,60 0 0,0 51.96152422706632,29.99999999999999Z" fill="url(#gradientRing3)" transform="translate(150,150)"></path><path d="M7.34788079488412e-15,120A120,120 0 0,1 -104.22174816873482,59.47963692435269L-52.11087408436741,29.739818462176345A60,60 0 0,0 3.67394039744206e-15,60Z" fill="url(#gradientRing4)" transform="translate(150,150)"></path><path d="M-103.92304845413261,60.00000000000004A120,120 0 0,1 -103.62175066873178,-60.51886307877227L-51.81087533436589,-30.259431539386135A60,60 0 0,0 -51.961524227066306,30.00000000000002Z" fill="url(#gradientRing5)" transform="translate(150,150)"></path><path d="M-103.92304845413268,-59.99999999999993A120,120 0 0,1 0.5999975000029836,-119.998500003125L0.2999987500014918,-59.9992500015625A60,60 0 0,0 -51.96152422706634,-29.999999999999964Z" fill="url(#gradientRing6)" transform="translate(150,150)"></path></svg>
+</div>
+
+<div id="subheader" class="hidden">
 	<div id="search">
 		<p data-text="prefs.search"><input id="search-input" list="modulelist" class="bright border" /></p>
 	</div>
 </div>
 
-<div id="content">
+<div id="content" class="hidden">
 	<!-- whether to view by category or view by page -->
 	<div id="navigation">
 		<div id="navigation-header" class="nav" data-text="prefs.settings"></div>
@@ -429,13 +433,13 @@
 							</li>
 						</ul>
 						<p><button id="pref-save-do" data-text="button.export"></button></p>
-						<p><textarea id="pref-save-text"></textarea></p>
+						<p><textarea id="pref-save-text" data-listen="false"></textarea></p>
 						<p data-text="prefs.loadSave.export.notice"></p>
 					</div>
 					<h4 id="pref-load" data-text="prefs.loadSave.import"></h4>
 					<div>
 						<p data-text="prefs.loadSave.import.notice"></p>
-						<p><textarea id="pref-load-text"></textarea></p>
+						<p><textarea id="pref-load-text" data-listen="false"></textarea></p>
 						<p><button id="pref-load-do" data-text="button.import"></button></p>
 					</div>
 				</div>
@@ -452,7 +456,7 @@
 					</div>
 					<div class="expand">
 						<label for="pref-version-release-notes" data-text="releaseNotes.showFor"></label>
-						<select id="pref-version-release-notes" savelistener="false"></select>
+						<select id="pref-version-release-notes" data-listen="false"></select>
 					</div>
 					<div id="pref-notepad">
 						<h3 id="pref-notepad-title"></h3>

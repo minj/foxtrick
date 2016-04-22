@@ -679,7 +679,8 @@ Foxtrick.util.links.getPrefs = function(doc, module, cb) {
 
 		if (typeof cb === 'function') {
 			try {
-				cb();
+				// run cb for async elements
+				cb(gList);
 			}
 			catch (e) {
 				Foxtrick.log('Error in callback for getPrefs', e);

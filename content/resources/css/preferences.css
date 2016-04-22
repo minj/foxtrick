@@ -5,6 +5,12 @@ body
 	margin: 0px;
 	padding: 8px;
 	background-color: #345;
+	display: flex;
+	flex-direction: column;
+}
+
+body > div {
+	flex:1 0 auto;
 }
 
 ul
@@ -103,29 +109,33 @@ input[type] /* only set width for text input */
 input[type=range] {
 	-webkit-appearance: none;
 	width: 200px;
-	border-radius: 0px;
-	vertical-align: middle;
+	/*border-radius: 0px;*/
+	/*vertical-align: middle;*/
 	margin: -2px 0 0 0;
 	padding: 0;
-	position: relative;
+	/*position: relative;*/
 	vertical-align: middle;
-	overflow-x: hidden;
-	overflow-y: visible;
-	background: transparent;
+	/*overflow-x: hidden;*/
+	/*overflow-y: visible;*/
+	/*background: transparent;*/
 	border: none;
 }
 input[type=range]::-webkit-slider-thumb {
-	-webkit-appearance: none !important;
+	/*-webkit-appearance: none !important;*/
 	position: relative;
-	pointer-events: none;
-	width: 8px;
-	height: 100%;
+	top: -5px;
+	/*pointer-events: none;*/
+	/*width: 8px;*/
+	/*height: 100%;*/
 }
 input[type=range]::-webkit-slider-runnable-track {
-	background: #757575;
+	/*background: #757575;*/
+	background: #4096ee;
 	height: 8px;
 	margin: 12px 0;
 }
+
+/*
 input[type=range]::-webkit-slider-thumb:before {
 	content:"-";
 	font-style: 0;
@@ -162,6 +172,8 @@ input[type=range]:disabled::-webkit-slider-thumb:before {
 input[type=range]:disabled::-webkit-slider-thumb:after {
 	background: #aaa !important;
 }
+*/
+
 /* slider */
 
 textarea {
@@ -590,4 +602,19 @@ div.nav{
 
 .expand {
 	margin: 1em 0;
+}
+
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+#spinner {
+	border-radius: 100px;
+	margin: 5em auto;
+}
+
+#svg-spinner {
+	-webkit-animation:spin 0.3s linear infinite;
+	-moz-animation:spin 0.3s linear infinite;
+	animation: spin 0.3s linear infinite;
 }

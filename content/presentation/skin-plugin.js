@@ -18,8 +18,8 @@ Foxtrick.modules['SkinPlugin'] = {
 
 		var loader = Foxtrick.util.load.filePickerForText(doc,
 		  function(text) {
-			holder.textContent += text + '\n';
-			holder.dispatchEvent(new Event('input'));
+			holder.value += text + '\n';
+			holder.dispatchEvent(new Event('input', { bubbles: true }));
 		});
 		cont.appendChild(loader);
 
