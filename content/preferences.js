@@ -1786,8 +1786,6 @@ function initTextAndValues() {
  */
 function init() {
 	try {
-		$('body').hide();
-
 		initCoreModules();
 		getPageIds();
 
@@ -1801,7 +1799,8 @@ function init() {
 
 		testPermissions();
 
-		$('body').show();
+		$('#subheader').removeClass('hidden');
+		$('#content').removeClass('hidden');
 
 		// if (Foxtrick.Prefs.isModuleEnabled('MobileEnhancements')) {
 		// 	// mobile
