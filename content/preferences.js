@@ -1804,6 +1804,7 @@ function init() {
 
 			testPermissions();
 
+			$('#spinner').addClass('hidden');
 			$('#subheader').removeClass('hidden');
 			$('#content').removeClass('hidden');
 

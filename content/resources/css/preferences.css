@@ -5,6 +5,12 @@ body
 	margin: 0px;
 	padding: 8px;
 	background-color: #345;
+	display: flex;
+	flex-direction: column;
+}
+
+body > div {
+	flex:1 0 auto;
 }
 
 ul
@@ -596,4 +602,19 @@ div.nav{
 
 .expand {
 	margin: 1em 0;
+}
+
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+#spinner {
+	border-radius: 100px;
+	margin: 5em auto;
+}
+
+#svg-spinner {
+	-webkit-animation:spin 0.3s linear infinite;
+	-moz-animation:spin 0.3s linear infinite;
+	animation: spin 0.3s linear infinite;
 }
