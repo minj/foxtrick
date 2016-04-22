@@ -193,7 +193,7 @@ Foxtrick.modules['CopyRatings'] = {
 			else if (isLive) {
 				var timer = doc.getElementById('match');
 				var timerTime = parseInt(timer.textContent.trim().match(/^\d+/), 10);
-				if (timerTime && timerTime <= 15) {
+				if (!isNaN(timerTime) && timerTime <= 15) {
 					// test half-time counter
 					var tmstmps = doc.querySelectorAll('.timelineEventTimeStamp');
 					var lastTmstmp = [].slice.call(tmstmps, -1)[0];
