@@ -22,9 +22,9 @@ Foxtrick.util.currency = {};
  * @param  {document}	doc
  * @return {Promise}
  */
-Foxtrick.util.currency.establish = function(doc) {
+Foxtrick.util.currency.detect = function(doc) {
 
-	return new Promise(function(resolve, reject) {
+	return new Promise(function(fulfill, reject) {
 
 		var ownTeamId = Foxtrick.util.id.getOwnTeamId();
 		var rate, symbol;
@@ -34,7 +34,7 @@ Foxtrick.util.currency.establish = function(doc) {
 			rate = Foxtrick.util.currency.getRateByCode(code);
 			symbol = Foxtrick.util.currency.getSymbolByCode(code);
 
-			resolve([rate, symbol]);
+			fulfill({ rate: rate, symbol: symbol });
 
 			return;
 		}
@@ -46,7 +46,7 @@ Foxtrick.util.currency.establish = function(doc) {
 			rate = Foxtrick.util.currency.getRateByCode(code);
 			symbol = Foxtrick.util.currency.getSymbolByCode(code);
 
-			resolve([rate, symbol]);
+			fulfill({ rate: rate, symbol: symbol });
 
 			return;
 		}
@@ -80,7 +80,7 @@ Foxtrick.util.currency.establish = function(doc) {
 			code = Foxtrick.util.currency.guessCode({ rate: rate, symbol: symbol });
 			Foxtrick.Prefs.setString('Currency.Code.' + ownTeamId, code);
 
-			resolve([rate, symbol]);
+			fulfill({ rate: rate, symbol: symbol });
 
 		});
 
@@ -309,7 +309,7 @@ Foxtrick.util.currency.getCode = function() {
 /**
  * Get saved currency symbol.
  *
- * Must be used after Foxtrick.util.currency.establish!
+ * Must be used after Foxtrick.util.currency.detect!
  *
  * @return {string} symbol
  */
@@ -320,7 +320,7 @@ Foxtrick.util.currency.getSymbol = function() {
 /**
  * Get saved ratio to Euro (i.e. 1 curr = x Euro).
  *
- * Must be used after Foxtrick.util.currency.establish!
+ * Must be used after Foxtrick.util.currency.detect!
  *
  * @return {number} rate
  */

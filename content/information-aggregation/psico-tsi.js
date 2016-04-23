@@ -62,7 +62,7 @@ Foxtrick.modules['PsicoTSI'] = {
 			Foxtrick.L10n.getString('Set_pieces'),
 		];
 		var module = this;
-		Foxtrick.util.currency.establish(doc).then(function() {
+		Foxtrick.util.currency.detect(doc).then(function() {
 			if (Foxtrick.isPage(doc, 'playerDetails'))
 				module.runPlayer(doc);
 			if (Foxtrick.isPage(doc, 'ownPlayers') &&
@@ -73,7 +73,7 @@ Foxtrick.modules['PsicoTSI'] = {
 				module.runTL(doc);
 
 		}).catch(function(reason) {
-			Foxtrick.log('WARNING: currency.establish aborted:', reason);
+			Foxtrick.log('WARNING: currency.detect aborted:', reason);
 		});
 
 	},

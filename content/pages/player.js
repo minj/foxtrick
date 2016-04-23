@@ -767,8 +767,8 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerid, callback) {
 			callback(null);
 			return;
 		}
-		Foxtrick.util.currency.establish(doc).then(function(curr) {
-			var rate = curr[0];
+		Foxtrick.util.currency.detect(doc).then(function(curr) {
+			var rate = curr.rate;
 			var addProperty = function(player, fn) {
 				return function(name) {
 					var newName, nodeName;
@@ -925,7 +925,7 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerid, callback) {
 			callback(player);
 
 		}).catch(function(reason) {
-			Foxtrick.log('WARNING: currency.establish aborted:', reason);
+			Foxtrick.log('WARNING: currency.detect aborted:', reason);
 		});
 
 	});
