@@ -25,7 +25,7 @@ Foxtrick.modules['Redirections'] = {
 			return;
 		}
 
-		var redirectRe = /redir_to_(.+?)=true/i;
+		var redirectRe = /redir_to_(\w+)=true/i;
 
 		if (!redirectRe.test(location))
 			return;
