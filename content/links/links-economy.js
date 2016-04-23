@@ -22,10 +22,10 @@ Foxtrick.modules['LinksEconomy'] = {
 	run: function(doc) {
 		var module = this;
 
-		Foxtrick.util.currency.establish(doc).then(function() {
+		Foxtrick.util.currency.detect(doc).then(function() {
 			Foxtrick.util.links.run(doc, module);
 		}).catch(function(reason) {
-			Foxtrick.log('WARNING: currency.establish aborted:', reason);
+			Foxtrick.log('WARNING: currency.detect aborted:', reason);
 		});
 	},
 

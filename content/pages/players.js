@@ -208,10 +208,10 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 			var now = Foxtrick.util.time.getHTTimeStamp(doc);
 			Foxtrick.util.api.setCacheLifetime(JSON.stringify(args), now);
 		}
-		Foxtrick.util.currency.establish(doc).then(function() {
+		Foxtrick.util.currency.detect(doc).then(function() {
 			Foxtrick.util.api.retrieve(doc, args, { cache_lifetime: 'session' }, callback);
 		}).catch(function(reason) {
-			Foxtrick.log('WARNING: currency.establish aborted:', reason);
+			Foxtrick.log('WARNING: currency.detect aborted:', reason);
 		});
 	};
 
