@@ -351,8 +351,7 @@ Foxtrick.modules['StaffMarker'] = {
 							var xml = xmls[x];
 							var errorText = errors[x];
 							if (!xml || errorText) {
-								Foxtrick.log('No XML in batchRetrieve',
-								             batchArgs[x], errorText);
+								Foxtrick.log('No XML in batchRetrieve', batchArgs[x], errorText);
 								continue;
 							}
 
@@ -578,7 +577,7 @@ Foxtrick.modules['StaffMarker'] = {
 					var href = a.getAttribute('href');
 
 					if (!/^\/Club\/Manager\/\?userId\=/i.test(href) ||
-					    /redir_to_series=true/i.test(href))
+					    /redir_to_(\w+)=true/i.test(href))
 						return;
 
 					var userName = a.title.trim();
