@@ -379,21 +379,21 @@ Foxtrick.modules['StaffMarker'] = {
 
 				var supportersOK = parseMarkers(sups[0]);
 				if (supportersOK)
-					Foxtrick.storage.set('Markers.supporters', sups[0]);
+					Foxtrick.storage.set('Markers.supporters.' + teamId, sups[0]);
 
 				var supportedOK = parseMarkers(sups[1]);
 				if (supportedOK)
-					Foxtrick.storage.set('Markers.supported', sups[1]);
+					Foxtrick.storage.set('Markers.supported.' + teamId, sups[1]);
 
 			}, function(e) {
 
 				if (e instanceof Error)
 					Foxtrick.catch(module)(e);
 
-				var supporters = Foxtrick.storage.get('Markers.supporters').then(parseMarkers);
-				var supported = Foxtrick.storage.get('Markers.supported').then(parseMarkers);
+				var by = Foxtrick.storage.get('Markers.supporters.' + teamId).then(parseMarkers);
+				var who = Foxtrick.storage.get('Markers.supported.' + teamId).then(parseMarkers);
 
-				return Promise.all([supporters, supported]);
+				return Promise.all([by, who]);
 
 			}).catch(Foxtrick.catch(module));
 
