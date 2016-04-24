@@ -345,35 +345,12 @@ div {
 
 }
 
-div#pane
+#pane
 {
-	-webkit-box-flex:1;
-	-moz-box-flex: 1;
-	box-flex: 1;
-
-	display: -webkit-box;
-	display: -moz-box;
-	display: box;
-
-	-webkit-box-orient: vertical;
-	-moz-box-orient: vertical;
-	box-orient: vertical;
 }
 
-div#main
+#main
 {
-	-webkit-box-flex:1;
-	-moz-box-flex: 1;
-	box-flex: 1;
-
-	display: -webkit-box;
-	display: -moz-box;
-	display: box;
-
-	-webkit-box-orient: vertical;
-	-moz-box-orient: vertical;
-	box-orient: vertical;
-
 	padding-left: 5px;
 }
 
@@ -474,25 +451,13 @@ html[dir="rtl"] #note
 	text-align: center;
 }
 
+#navigation {
+	flex: 1 0 auto;
+}
 
 #content {
-	display: -webkit-box;
-	display: -moz-box;
-	display: box;
 	width: 100%;
-
-	-webkit-box-orient: horizontal;
-	-moz-box-orient: horizontal;
-	box-orient: horizontal;
-
-	-webkit-box-align: start;
-	-moz-box-align: start;
-	box-align: start;
-
-/*	-webkit-box-direction: reverse;
-	-moz-box-direction: reverse;
-	box-direction: reverse;*/
-
+	display: flex;
 	clear: both;
 }
 
@@ -568,8 +533,6 @@ div.nav{
 	/*border: 1px solid black;*/
 	border-radius: 4px 4px 4px 4px;
 	padding: 4px;
-
-	display:block;
 	background: linear-gradient(top, #7abcff 0%, #60abf8 44%, #4096ee 100%);
 	background: linear-gradient(to bottom, #7abcff 0%,#60abf8 44%,#4096ee 100%); /* W3C */
 }
