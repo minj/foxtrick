@@ -39,7 +39,12 @@ da:
       transfers: '<module>CurrentTransfers</module> tilføjer mere information om spillere på transfersiden.'
       bugs: '<header>Fejlrettelser</header>'
       stamina_prediction: 'Prognosen over subniveauet af konditionen under modulet (<module>MatchLineupTweaks</module>) var forkert på grund af ændringer i HT. Problemet skulle nu være udbedret.'
+      match_order: 'Layoutet i <module>MatchSimulator</module> og <module>MatchOrderInterface</module> er justeret for at tage højde for designændringer.'
+      team_detection: 'På grund af designændringer var der forskellige andre problemer. Spilleransigter for udeholdet var forsvundet, registrering af mål via<module>LiveAlert</module> var dysfunktionel. Samtlige fejl skulle nu være rettet.'
       other: '<header>Andre ændringer</header>'
+      table: '<module>PlayerFilters</module> og <module>SkillTable</module> er omskrevet for at rette op på nogle fejl og for at udvide deres funktionalitet. Vigtige kolonner er nu fastlåst for at forhindre dem i at rulle horisontalt. Du kan skjule visse spillere og meget mere. Klik på ikonet "Flere oplysninger" for at læse den fulde beskrivelse.'
+      opponent_goals: 'Der er tilføjet en anden lyd for mål scoret af din modstander i modulet <module>LiveAlert</module>.'
+      indonesian: Support tilføjet for den indonesiske sprog.
       and_more: Forskellige små ændringer og rettelser.
     0.15.2.1:
       important: '<header>Vigtige meddelelser</header>'
