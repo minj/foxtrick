@@ -156,13 +156,14 @@ Foxtrick.loader.background.browserLoad = function() {
 			if (request.key == 'htLanguage')
 				Foxtrick.L10n.init();
 		};
-		this.requests.clearPrefs = function() {
+		this.requests.clearPrefs = function(request, sender, sendResponse) { // jshint ignore:line
 			try {
 				Foxtrick.Prefs.restore();
 
 				if (Foxtrick.platform !== 'Android') {
 					updateResources();
 				}
+				sendResponse();
 			}
 			catch (e) {
 				Foxtrick.log(e);
