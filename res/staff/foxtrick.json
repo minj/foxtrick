@@ -220,6 +220,11 @@
 			"name": "papi_"
 		},
 		{
+			"duty": "translator",
+			"id": "11988102",
+			"name": "LA-levang"
+		},
+		{
 			"duty": "supporter",
 			"id": "12066737",
 			"name": "pimhitv"
@@ -341,6 +346,11 @@
 		},
 		{
 			"duty": "translator",
+			"id": "1370102",
+			"name": "iltios"
+		},
+		{
+			"duty": "translator",
 			"id": "1425439",
 			"name": "playMaker-"
 		},
@@ -433,6 +443,11 @@
 			"duty": "translator",
 			"id": "2363296",
 			"name": "LA-OReiDasSachadas"
+		},
+		{
+			"duty": "translator",
+			"id": "2391052",
+			"name": "eyanez"
 		},
 		{
 			"duty": "supporter",
