@@ -35,6 +35,9 @@ Foxtrick.util.notify.create = function(msg, source, opts/*, callback*/) {
 
 	var createGecko = function() {
 
+		var glbl = window.gBrowser || window.BrowserApp;
+		var currentTabIdx = Foxtrick.indexOf(glbl.tabs, glbl.selectedTab);
+
 		var listener = {
 			/**
 			 * observer function
@@ -45,10 +48,32 @@ Foxtrick.util.notify.create = function(msg, source, opts/*, callback*/) {
 			observe: function(subject, topic, data) { // jshint ignore:line
 				try {
 					if (topic === 'alertclickcallback') {
-						if (Foxtrick.platform == 'Firefox')
-							Foxtrick.openAndReuseOneTabPerURL(data, true);
-						else {
-							Foxtrick.SB.ext.sendRequest({ req: 'reuseTab', url: data });
+
+						var tab = Foxtrick.newTab(data);
+
+						if (Foxtrick.platform === 'Firefox') {
+							// Android has no moveTabTo
+
+							var index;
+
+							if (source.tab) {
+								// e10s FF
+								var browser = source.tab.target;
+								index = browser.selectedIndex + 1;
+
+								// FIXME?
+								// var deck = browser.parentNode;
+								// var index = Foxtrick.indexOf(deck.childNodes, browser);
+
+							}
+							else {
+								// old FF
+								index = currentTabIdx + 1;
+							}
+
+							window.gBrowser.moveTabTo(tab, index);
+							window.focus();
+
 						}
 
 						// if (typeof callback === 'function')
@@ -314,11 +339,11 @@ Foxtrick.util.notify.create = function(msg, source, opts/*, callback*/) {
 	}
 
 	// start logic
-	if (Foxtrick.arch == 'Gecko') {
-		createGecko();
-	}
-	else if (Foxtrick.context === 'background') {
-		if (Foxtrick.platform === 'Chrome' && chrome.notifications) {
+	if (Foxtrick.context === 'background') {
+		if (Foxtrick.arch == 'Gecko') {
+			createGecko();
+		}
+		else if (Foxtrick.platform === 'Chrome' && chrome.notifications) {
 			createChrome();
 		}
 		else if (window.webkitNotifications) {

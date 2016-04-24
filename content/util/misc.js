@@ -156,13 +156,21 @@ Foxtrick.copyStringToClipboard = function(string) {
 };
 
 Foxtrick.newTab = function(url) {
+	var tab;
+
 	if (Foxtrick.context === 'content') {
 		Foxtrick.SB.ext.sendRequest({ req: 'newTab', url: url });
 	}
-	else if (Foxtrick.platform == 'Firefox')
-		window.gBrowser.selectedTab = window.gBrowser.addTab(url);
-	else if (Foxtrick.platform == 'Android')
-		BrowserApp.addTab(url);
+	else if (Foxtrick.platform == 'Firefox') {
+		tab = window.gBrowser.addTab(url);
+		window.gBrowser.selectedTab = tab;
+		return tab;
+	}
+	else if (Foxtrick.platform == 'Android') {
+		tab = window.BrowserApp.addTab(url);
+		window.BrowserApp.selectedTab = tab;
+		return tab;
+	}
 };
 
 Foxtrick.XML_evaluate = function(xmlresponse, basenodestr, labelstr,
