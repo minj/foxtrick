@@ -501,15 +501,18 @@ function testPermissions() {
 
 				modules = Foxtrick.exclude(modules, module);
 				if (modules.length > 0) {
-					var needsPermText = Foxtrick.L10n.getString('prefs.needPermissions') +
-						' ' + modules.join(', ');
 
-					$('#alert-text').text(needsPermText);
-					$('#alert').attr('style', 'display:block;');
+					var needsPermHtml = '<strong/>' +
+						'<ul><li>' + modules.join('</li><li>') + '</li></ul>';
+
+					var l10n = Foxtrick.L10n.getString('prefs.needPermissions');
+					$('#alert-text').html(needsPermHtml).find('strong').text(l10n);
+
+					$('#alert').removeClass('hidden');
 				}
 				else {
 					$('#alert-text').text('');
-					$('#alert').attr('style', 'display:none;');
+					$('#alert').addClass('hidden');
 				}
 			}
 		};
@@ -534,11 +537,13 @@ function testPermissions() {
 
 						Foxtrick.pushNew(modules, needed.modules);
 
-						var needsPermHtml = Foxtrick.L10n.getString('prefs.needPermissions') +
+						var needsPermHtml = '<strong/>' +
 							'<ul><li>' + modules.join('</li><li>') + '</li></ul>';
 
-						$('#alert-text').html(needsPermHtml);
-						$('#alert').attr('style', 'display:block;');
+						var l10n = Foxtrick.L10n.getString('prefs.needPermissions');
+						$('#alert-text').html(needsPermHtml).find('strong').text(l10n);
+
+						$('#alert').removeClass('hidden');
 					}
 				}
 			});
@@ -764,7 +769,7 @@ function initListeners() {
 	$('#search-input')[0].addEventListener('input', searchEvent);
 	$('#save').click(function() {
 		save();
-		$('#alert').attr('style', 'display:none;');
+		$('#alert').addClass('hidden');
 	});
 
 	$('body').click(function(ev) {
