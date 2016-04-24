@@ -566,7 +566,7 @@ Foxtrick.lazyProp = function(obj, prop, calc) {
 				var sender = {
 					tab: {
 						id: id,
-						url: ev.target.lastLocation,
+						url: ev.target.lastURI.spec,
 						target: ev.target,
 					},
 				};
