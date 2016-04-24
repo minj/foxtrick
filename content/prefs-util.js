@@ -741,20 +741,14 @@ Foxtrick.Prefs.parsePrefs = function(string, eachCb) {
  * @param {string} string
  */
 Foxtrick.Prefs.load = function(string) {
-	var versionRe = /\d+\.\d+(\.\d+)?/;
-	var version = Foxtrick.version.match(versionRe)[0];
-
 	this.parsePrefs(string, function(key, value) {
-		try {
-			// skip old version
-			if (key === 'oldVersion' && value.match(versionRe)[0] !== version)
-				return;
-		}
-		catch (e) {
+		// skip old version
+		if (key === 'oldVersion') {
 			return;
 		}
 
 		Foxtrick.Prefs.setAny(key, value);
+
 	});
 
 	this.setBool('preferences.updated', true);
