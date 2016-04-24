@@ -123,7 +123,7 @@ input[type=range] {
 input[type=range]::-webkit-slider-thumb {
 	/*-webkit-appearance: none !important;*/
 	position: relative;
-	top: -5px;
+	top: -7px;
 	/*pointer-events: none;*/
 	/*width: 8px;*/
 	/*height: 100%;*/
