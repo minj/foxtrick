@@ -43,9 +43,9 @@
 			soundh.setAttribute('data-text', 'TickerAlert.sound');
 			soundh.className = 'col_textfield';
 			header.appendChild(soundh);
-			var fileh = doc.createElement('th');
-			fileh.className = 'col_filepicker';
-			header.appendChild(fileh);
+			// var fileh = doc.createElement('th');
+			// fileh.className = 'col_filepicker';
+			// header.appendChild(fileh);
 			var playh = doc.createElement('th');
 			playh.className = 'col_play';
 			header.appendChild(playh);
@@ -65,12 +65,13 @@
 				enablec.appendChild(enable);
 				var soundc = doc.createElement('td');
 				row.appendChild(soundc);
+				Foxtrick.addClass(soundc, 'left');
 				var sound = doc.createElement('input');
 				sound.setAttribute('pref', 'module.TickerAlert.' + type + '.sound');
 				sound.id = 'module.TickerAlert.' + type + '.id';
 				soundc.appendChild(sound);
-				var filec = doc.createElement('td');
-				row.appendChild(filec);
+				// var filec = doc.createElement('td');
+				// row.appendChild(filec);
 				var input = Foxtrick.util.load.filePickerForDataUrl(doc,
 				  (function(sound) {
 					return function(url) {
@@ -79,7 +80,7 @@
 						Foxtrick.playSound(doc, url);
 					};
 				})(sound));
-				filec.appendChild(input);
+				soundc.appendChild(input);
 
 				var playc = doc.createElement('td');
 				row.appendChild(playc);
