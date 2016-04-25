@@ -246,6 +246,11 @@
 		},
 		{
 			"duty": "translator",
+			"id": "12326398",
+			"name": "Dr-Jalal"
+		},
+		{
+			"duty": "translator",
 			"id": "12378459",
 			"name": "ASTND"
 		},
@@ -347,7 +352,7 @@
 		{
 			"duty": "translator",
 			"id": "1370102",
-			"name": "iltios"
+			"name": "Iltios"
 		},
 		{
 			"duty": "translator",
@@ -1168,6 +1173,11 @@
 			"duty": "supporter",
 			"id": "9786585",
 			"name": "dual-core"
+		},
+		{
+			"duty": "translator",
+			"id": "9793408",
+			"name": "LA-keebak"
 		},
 		{
 			"duty": "supporter",
