@@ -1,6 +1,6 @@
 body
 {
-	max-height: 540px;
+	min-height: 580px;
 	font-size: 1em;
 	margin: 0px;
 	padding: 8px;
@@ -208,6 +208,10 @@ table.maxed {
 	width: 100%;
 }
 
+td.left {
+	text-align: left !important;
+}
+
 table th:first-child {
 	text-align: left;
 }
@@ -349,6 +353,7 @@ div {
 
 #main
 {
+	padding-bottom: 3em;
 	padding-left: 5px;
 	flex-grow: 1;
 }
