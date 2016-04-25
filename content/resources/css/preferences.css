@@ -5,12 +5,12 @@ body
 	margin: 0px;
 	padding: 8px;
 	background-color: #345;
-	display: flex;
-	flex-direction: column;
+	/*display: flex;*/
+	/*flex-direction: column;*/
 }
 
 body > div {
-	flex:1 0 auto;
+	/*flex:1 0 auto;*/
 }
 
 ul
@@ -355,7 +355,14 @@ div {
 {
 	padding-bottom: 3em;
 	padding-left: 5px;
-	flex-grow: 1;
+	/*flex-grow: 1;*/
+	float: right;
+	width: calc(100% - 210px);
+}
+
+html[dir="rtl"] #main {
+	padding-right: 5px;
+	float: left;
 }
 
 /*#fixed
@@ -459,20 +466,41 @@ html[dir="rtl"] #note
 }
 
 #navigation {
-	flex: 0 0 auto;
+	/*flex: 0 0 auto;*/
+	position: fixed;
+	width: 200px;
 }
 
 #content {
 	width: 100%;
-	display: flex;
+	/* display: flex; */
 	clear: both;
 	box-sizing: border-box;
+	margin-top: 122px;
 }
 
 h1 {
 	margin: 0;
 	padding: 10px;
 }
+
+#header-container {
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	box-sizing: border-box;
+	width: 100%;
+	padding: 0.5em 0;
+	padding-right: 16px;
+	padding-left: 0;
+	background: inherit;
+}
+
+html[dir="rtl"] #header-container {
+	padding-left: 16px;
+	padding-right: 0;
+}
+
 #header {
 	background: linear-gradient(top, #7abcff 0%, #60abf8 44%, #4096ee 100%);
 	background: linear-gradient(to bottom, #7abcff 0%,#60abf8 44%,#4096ee 100%);
@@ -487,6 +515,8 @@ html[dir="rtl"] #search {
 	float: right;
 	margin-bottom: 2px;
 	margin-top: 2px;
+	margin-right: 1.5em;
+	margin-left: 1.5em;
 	color: #fff;
 }
 
@@ -543,6 +573,12 @@ div.nav{
 	padding: 4px;
 	background: linear-gradient(top, #7abcff 0%, #60abf8 44%, #4096ee 100%);
 	background: linear-gradient(to bottom, #7abcff 0%,#60abf8 44%,#4096ee 100%); /* W3C */
+	width: calc(100% - 218px);
+	float: right;
+}
+
+html[dir="rtl"] #breadcrumbs {
+	float: left;
 }
 
 #breadcrumbs a {
@@ -582,6 +618,7 @@ div.nav{
 #spinner {
 	border-radius: 100px;
 	margin: 5em auto;
+	text-align: center;
 }
 
 #svg-spinner {

@@ -509,6 +509,7 @@ function testPermissions() {
 					$('#alert-text').html(needsPermHtml).find('strong').text(l10n);
 
 					$('#alert').removeClass('hidden');
+					$('#breadcrumbs').addClass('hidden');
 				}
 				else {
 					$('#alert-text').text('');
@@ -544,6 +545,7 @@ function testPermissions() {
 						$('#alert-text').html(needsPermHtml).find('strong').text(l10n);
 
 						$('#alert').removeClass('hidden');
+						$('#breadcrumbs').addClass('hidden');
 					}
 				}
 			});
@@ -770,6 +772,7 @@ function initListeners() {
 	$('#save').click(function() {
 		save();
 		$('#alert').addClass('hidden');
+		$('#breadcrumbs').removeClass('hidden');
 	});
 
 	$('body').click(function(ev) {
