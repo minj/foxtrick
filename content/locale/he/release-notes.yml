@@ -5,6 +5,16 @@ he:
       note_0: 'זהו עדכון בפיתוח. השימוש בו הוא לשיקולכם בלבד. לפרטים בנוגע לשינויים נא ראו <linkSVN>commit history</linkSVN> בגוגל קוד.'
     beta:
       note_0: 'זוהי גרסת הבטא של המהדורה הבאה. נודה על עזרה בתרגום גרסה זו באתר התרגום המאוד נוח שלנו <linkCrowdin>crowdin.net</linkCrowdin>.'
+    0.17.0:
+      important: '<header>הודעות חשובות</header>'
+      crowdin: '<header>עדכוני תרגום רבים של המשתמשים המדהימים שלנו באמצעות <linkCrowdin>כלי ה-crowdin</linkCrowdin>. גם אתם יכולים לעזור!</header>'
+      safari_cert: 'אנחנו מחפשים בקרב קהילת האטריק מישהו אשר יודע לפתח אפליקציות עבור iOS או OSX כדי לעזור להחזיר את התמיכה ב-Foxtrick למשתמשי ספארי. ראו <linkSafariCertBug>במעקב העניינים</linkSafariCertBug> שלנו לקבלת מידע נוסף.'
+      beta: 'אנא שקלו להשתמש בגרסת <linkFTBeta>פוקסטריק בטא</linkFTBeta> כדי לקבל את התוספות החדשות מוקדם, כדי להשפיע על התפתחותן וכדי לסייע באיתור ובתיקון בעיות שעלולות להתעורר.'
+      support: '<header>מוצא חן בעיניך מה שאנחנו עושים? נודה על <linkContribute>תרומתך ל- Foxtrick</linkContribute>.</header>'
+      new: '<header>מודולים חדשים</header>'
+      bugs: '<header>תיקוני באגים</header>'
+      other: '<header>שינויים אחרים</header>'
+      and_more: הרבה שינויים ותיקונים קטנים נוספים.
     0.16.1.1:
       important: '<header>הודעות חשובות</header>'
       safari_cert: 'אנחנו מחפשים בקרב קהילת האטריק מישהו אשר יודע לפתח אפליקציות עבור iOS או OSX כדי לעזור להחזיר את התמיכה ב-Foxtrick למשתמשי ספארי. ראו <linkSafariCertBug>במעקב העניינים</linkSafariCertBug> שלנו לקבלת מידע נוסף.'

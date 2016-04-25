@@ -5,6 +5,16 @@ da:
       note_0: 'Dette er Beta-versionen. Du bruger denne version på eget ansvar. Se venligst <linkSVN>commit history</linkSVN> på Google Code for nærmere oplysninger om ændringerne.'
     beta:
       note_0: 'Dette er betaversionen af den næste udgave. Du kan hjælpe med at oversætte via vores super nemme oversættelses-side <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.17.0:
+      important: '<header>Vigtige meddelelser</header>'
+      crowdin: '<header>En stor tak til alle de hjælpsomme brugere, som oversætter ved hjælp af <linkCrowdin>crowdin </linkCrowdin>. Du kan også give en hånd!</header>'
+      safari_cert: 'Vi er på udkig efter engageret managere, som arbejder med udvikling af apps til iOS eller OSX, for at være med til at genoprette hjælp til Safari-brugere omkring Foxtrick. Se vores <linkSafariCertBug>issue tracker</linkSafariCertBug> for flere oplysninger.'
+      beta: 'Overvej at installer <linkFTBeta>Foxtrick beta</linkFTBeta> for at få nye funktioner tidligt, sådan at du kan være med til at påvirke udviklingen af nye features, og til at hjælpe med at finde og løse eventuelle problemer, der måtte opstå.'
+      support: '<header>Støt Foxtrick via Flattr mikrodonationer eller giv et bidrag med Paypal <linkContribute>Donér</linkContribute>.</header>'
+      new: '<header>Nye moduler</header>'
+      bugs: '<header>Fejlrettelser</header>'
+      other: '<header>Andre ændringer</header>'
+      and_more: Forskellige små ændringer og rettelser.
     0.16.1.1:
       important: '<header>Vigtige meddelelser</header>'
       safari_cert: 'Vi er på udkig efter engageret managere, som arbejder med udvikling af apps til iOS eller OSX, for at være med til at genoprette hjælp til Safari-brugere omkring Foxtrick. Se vores <linkSafariCertBug>issue tracker</linkSafariCertBug> for flere oplysninger.'
@@ -45,6 +55,8 @@ da:
       table: '<module>PlayerFilters</module> og <module>SkillTable</module> er omskrevet for at rette op på nogle fejl og for at udvide deres funktionalitet. Vigtige kolonner er nu fastlåst for at forhindre dem i at rulle horisontalt. Du kan skjule visse spillere og meget mere. Klik på ikonet "Flere oplysninger" for at læse den fulde beskrivelse.'
       opponent_goals: 'Der er tilføjet en anden lyd for mål scoret af din modstander i modulet <module>LiveAlert</module>.'
       indonesian: Support tilføjet for den indonesiske sprog.
+      match_events: Hændelsesreferencer for kampe kan nu oversættes.
+      style_cleanup: 'Foxtricks CSS moduler er justeret for bedre samspil med Hattricks brugerdefinerede temaer. Dette har bland andet resulteret i, at du kan tildele brugerdefinerede farver i <module>StaffMarker</module> for brugernavne som har en officiel funktion i Hattrick.'
       and_more: Forskellige små ændringer og rettelser.
     0.15.2.1:
       important: '<header>Vigtige meddelelser</header>'
@@ -63,6 +75,7 @@ da:
       crowdin: '<header>En stor tak til alle de hjælpsomme brugere, som oversætter ved hjælp af <linkCrowdin>crowdin </linkCrowdin>. Du kan også give en hånd!</header>'
       twitter: 'Du kan følge <linkTwitter>Foxtrick på Twitter</linkTwitter> for at modtage de seneste nyheder, opdateringer og meddelelser.'
       bugs: '<header>Fejlrettelser</header>'
+      youth_avatars: 'Manglende avatarer for ungdomsspillere er nu rettet i <module>MatchOrderInterface</module>.'
       other: '<header>Andre ændringer</header>'
       and_more: Forskellige små ændringer og rettelser.
     0.15.1:

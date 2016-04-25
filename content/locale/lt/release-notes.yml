@@ -5,6 +5,16 @@ lt:
       note_0: 'Įdiegėte nestabilią versiją. Naudokite savo rizika. Peržiūrėkite „Google Code“ <linkSVN>pakeitimų sąrašą</linkSVN>.'
     beta:
       note_0: 'Įdiegėte išankstinę (beta) versiją. Prašome prisidėti prie jos vertimo į lietuvių kalbą ypatingai šauniame vertėjų savanorių portale „<linkCrowdin>crowdin.net</linkCrowdin>“. '
+    0.17.0:
+      important: '<header>Svarbūs pranešimai</header>'
+      crowdin: '<header>Daugybė vertimo atnaujinimų. Dėkojame savo šauniems vartotojams, kurie naudojasi <linkCrowdin>crowdin portalu</linkCrowdin>. Ir Jūs galite prisidėti!</header>'
+      safari_cert: 'Ieškome Hattrick bendruomenės narių, kurie kurtų iOS ar OSX programėles. Reikia pagalbos sutvarkant Foxtrick palaikymą Safari naršyklės naudotojams. Daugiau informacijos rasite <linkSafariCertBug>Foxtrick klaidų seklyje</linkSafariCertBug>.'
+      beta: 'Siūlome išmėgint <linkFTBeta>Foxtrick beta</linkFTBeta> versiją: galėsite pirmieji išmėginti naująsias funkcijas, paveikti jų kūrimo procesą ir pagelbėti randant bei sutaisant iškylančius keblumus.'
+      support: '<header>Patinka šis projektas? Prašome <linkContribute>pagelbėti Foxtrick</linkContribute>.</header>'
+      new: '<header>Nauji moduliai</header>'
+      bugs: '<header>Pataisytos klaidos</header>'
+      other: '<header>Kiti pakeitimai</header>'
+      and_more: Daugybė kitų smulkių pataisymų ir pakitimų.
     0.16.1.1:
       important: '<header>Svarbūs pranešimai</header>'
       safari_cert: 'Ieškome Hattrick bendruomenės narių, kurie kurtų iOS ar OSX programėles. Reikia pagalbos sutvarkant Foxtrick palaikymą Safari naršyklės naudotojams. Daugiau informacijos rasite <linkSafariCertBug>Foxtrick klaidų seklyje</linkSafariCertBug>.'

@@ -5,6 +5,16 @@ it:
       note_0: 'Questa è la versione di sviluppo. Utilizzala a tua discrezione. per favore visita <linkSVN>commit history</linkSVN> su Google code per dettagli sui cambiamenti.'
     beta:
       note_0: 'Questa è la versione beta della prossima release. Per favore aiutaci a tradurre questa versione con la nostra semplicissima pagina di traduzione di Crowdin <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.17.0:
+      important: '<header>Avvisi importanti</header>'
+      crowdin: '<header>Sono disponibili tante nuove traduzioni per i nostri utenti su <linkCrowdin>crowdin tool</linkCrowdin>. Anche tu puoi dare una mano!</header>'
+      safari_cert: 'Stiamo cercando qualcuno nella comunità di Hattrick che sviluppi app per iOS o OSX per aiutare a ripristinare il supporto di Foxtrick per gli utenti di Safari. Guarda il nostro <linkSafariCertBug>"issue tracker"</linkSafariCertBug> per ulteriori informazioni.'
+      beta: 'Usa <linkFTBeta>beta Foxtrick</linkFTBeta> per ottenere in anticipo le nuove funzionalità, influenzare il loro sviluppo e consentire di trovare e correggere gli eventuali problemi che possono sorgere.'
+      support: '<header>Ti piace quello che stiamo facendo? Si prega di <linkContribute>supportare Foxtrick</linkContribute>.</header>'
+      new: '<header>Nuovi moduli</header>'
+      bugs: '<header>Correzioni di bug</header>'
+      other: '<header>Altre modifiche</header>'
+      and_more: Varie altre piccole modifiche e correzioni.
     0.16.1.1:
       important: '<header>Avvisi importanti</header>'
       safari_cert: 'Stiamo cercando qualcuno nella comunità di Hattrick che sviluppi app per iOS o OSX per aiutare a ripristinare il supporto di Foxtrick per gli utenti di Safari. Guarda il nostro <linkSafariCertBug>"issue tracker"</linkSafariCertBug> per ulteriori informazioni.'

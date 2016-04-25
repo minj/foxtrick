@@ -5,6 +5,16 @@ fr:
       note_0: "Il s'agit d'une version de développement. Utilisez la à votre propre discrétion. S'il vous plaît consultez <linkSVN>commit history</linkSVN> sur Google Code pour plus de détails sur les modifications."
     beta:
       note_0: "Il s'agit de la version bêta de la prochaine version. Veuillez nous aider à traduire cette version via un site ultra simple à utiliser <linkCrowdin>crowdin.net</linkCrowdin>. "
+    0.17.0:
+      important: '<header>Annonces importantes</header>'
+      crowdin: '<header>Mise à jour des traductions de la part de nos fidèles utilisateurs via <linkCrowdin>crowdin tool</linkCrowdin>. Vous pouvez aussi nous donner un coup de main!</header>'
+      safari_cert: "Nous recherchons une personne de la communauté Hattrick pouvant développer des applications pour iOS ou OSX afin d'aider à restaurer Foxtrick sur Safari. Pour plus d'informations, voir notre <linkSafariCertBug>issue tracker</linkSafariCertBug>."
+      beta: "Vous pouvez envisager d'utiliser <linkFTBeta>Foxtrick beta</linkFTBeta> afin de voir en avant-première les nouvelles fonctionnalités, d'influencer leur développement et d'aider à trouver et corriger les problèmes qui peuvent survenir."
+      support: "<header>Vous aimez ce que nous faisons ? S'il vous plaît <linkContribute>Support Foxtrick</linkContribute>.</header>"
+      new: '<header>Nouveaux modules</header>'
+      bugs: '<header>Correctifs</header>'
+      other: '<header>Autres changements</header>'
+      and_more: Divers autres petits changements et corrections.
     0.16.1.1:
       important: '<header>Annonces importantes</header>'
       safari_cert: "Nous recherchons une personne de la communauté Hattrick pouvant développer des applications pour iOS ou OSX afin d'aider à restaurer Foxtrick sur Safari. Pour plus d'informations, voir notre <linkSafariCertBug>issue tracker</linkSafariCertBug>."
