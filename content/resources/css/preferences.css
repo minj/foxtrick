@@ -350,6 +350,7 @@ div {
 #main
 {
 	padding-left: 5px;
+	flex-grow: 1;
 }
 
 /*#fixed
@@ -453,13 +454,14 @@ html[dir="rtl"] #note
 }
 
 #navigation {
-	flex: 1 0 auto;
+	flex: 0 0 auto;
 }
 
 #content {
 	width: 100%;
 	display: flex;
 	clear: both;
+	box-sizing: border-box;
 }
 
 h1 {
