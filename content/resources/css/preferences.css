@@ -208,10 +208,6 @@ table.maxed {
 	width: 100%;
 }
 
-td.left {
-	text-align: left !important;
-}
-
 table th:first-child {
 	text-align: left;
 }
@@ -605,6 +601,19 @@ html[dir="rtl"] #breadcrumbs {
 
 .expand {
 	margin: 1em 0;
+}
+
+.left {
+	text-align: left !important;
+}
+.right {
+	text-align: right !important;
+}
+html[dir="rtl"] .left {
+	text-align: right !important;
+}
+html[dir="rtl"] .right {
+	text-align: left !important;
 }
 
 @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
