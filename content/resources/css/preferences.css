@@ -91,7 +91,7 @@ html[dir="rtl"] input, html[dir="rtl"] button
 	margin: 0 0 0 5px;
 }
 
- #search * input {
+#search input {
 	width: 200px;
 	border-radius: 5px;
 }
@@ -447,24 +447,11 @@ html[dir="rtl"] #note
 	display: block;
 }
 
-#content.ft-mobile {
-	-webkit-box-orient: vertical !important;
-	-moz-box-orient: vertical !important;
-	box-orient: vertical !important;
-}
-
-#content.ft-mobile #navigation  {
-	position: relative;
-}
-#content.ft-mobile .nav,
-#content.ft-mobile #navigation li {
-	text-align: center;
-}
-
 #navigation {
 	/*flex: 0 0 auto;*/
 	position: fixed;
 	width: 200px;
+	background: inherit;
 }
 
 #content {
@@ -473,6 +460,7 @@ html[dir="rtl"] #note
 	clear: both;
 	box-sizing: border-box;
 	margin-top: 122px;
+	background: inherit;
 }
 
 h1 {
@@ -482,7 +470,7 @@ h1 {
 
 #header-container {
 	position: fixed;
-	z-index: 1;
+	z-index: 2;
 	top: 0;
 	left: 0;
 	box-sizing: border-box;
@@ -630,4 +618,67 @@ html[dir="rtl"] .right {
 	-webkit-animation:spin 0.3s linear infinite;
 	-moz-animation:spin 0.3s linear infinite;
 	animation: spin 0.3s linear infinite;
+}
+
+button.icon {
+	background: inherit;
+	padding: 0 1px;
+	margin: 0;
+	border: 0;
+}
+
+#nav-toggle {
+	float: left;
+	display: none;
+}
+
+@media only screen and (max-width: 1023px) {
+	h1 {
+		font-size: 1.5em;
+	}
+
+	#version {
+		display: block;
+	}
+
+	#search input {
+		width: 8em;
+	}
+
+	#search {
+		width: calc(100% - 80px);
+		margin: 2px 0;
+	}
+
+	#breadcrumbs {
+		width: calc(100% - 80px);
+	}
+
+	#nav-toggle {
+		display: block;
+	}
+
+	#navigation {
+		width: 100%;
+		z-index: 1;
+		left: 0;
+		box-sizing: border-box;
+		margin-top: -3px;
+		padding: 0 8px 1.5em 8px;
+	}
+
+	#content {
+		margin-top: 140px;
+	}
+
+	#main {
+		float: none;
+		width: 100%;
+	}
+
+}
+@media only screen and (min-width: 1024px) {
+	#navigation {
+		display: block !important;
+	}
 }
