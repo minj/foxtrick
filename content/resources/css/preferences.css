@@ -85,6 +85,14 @@ button.active
 	border: 3px solid #a8a8a8;
 }
 
+button.icon {
+	background: inherit;
+	padding: 0 1px;
+	margin: 0;
+	border: 0;
+	cursor: pointer;
+}
+
 
 html[dir="rtl"] input, html[dir="rtl"] button
 {
@@ -618,13 +626,6 @@ html[dir="rtl"] .right {
 	-webkit-animation:spin 0.3s linear infinite;
 	-moz-animation:spin 0.3s linear infinite;
 	animation: spin 0.3s linear infinite;
-}
-
-button.icon {
-	background: inherit;
-	padding: 0 1px;
-	margin: 0;
-	border: 0;
 }
 
 #nav-toggle {
