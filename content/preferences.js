@@ -295,6 +295,7 @@ function searchEvent(ev) {
 	}
 
 	search(ev.target.value);
+	$('#js-top')[0].scrollIntoView();
 }
 
 // Permissions Management
@@ -773,8 +774,11 @@ function initListeners() {
 	});
 
 	$('#navigation').on('click', 'a', function() {
-		if ($('#nav-toggle').is(':visible'))
+		if ($('#nav-toggle').is(':visible')) {
 			$('#nav-toggle').click();
+		}
+
+		$('#js-top')[0].scrollIntoView();
 	});
 
 	$('#search-input')[0].addEventListener('input', searchEvent);
