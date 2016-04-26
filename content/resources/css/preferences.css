@@ -488,17 +488,13 @@ h1 {
 	position: fixed;
 	z-index: 1;
 	top: 0;
+	left: 0;
 	box-sizing: border-box;
 	width: 100%;
 	padding: 0.5em 0;
-	padding-right: 16px;
-	padding-left: 0;
+	padding-right: 8px;
+	padding-left: 8px;
 	background: inherit;
-}
-
-html[dir="rtl"] #header-container {
-	padding-left: 16px;
-	padding-right: 0;
 }
 
 #header {
