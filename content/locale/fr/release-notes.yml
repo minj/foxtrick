@@ -14,7 +14,25 @@ fr:
       support: "<header>Vous aimez ce que nous faisons ? S'il vous plaît <linkContribute>Support Foxtrick</linkContribute>.</header>"
       new: '<header>Nouveaux modules</header>'
       bugs: '<header>Correctifs</header>'
+      tl_search_form: "Le filtrage avancé de FoxTrick par la forme dans <module>TransferSearchResultFilters</module> a été corrompu en raison d'une modification du navigateur. Cela masquait tous les joueurs dans les résultats de recherche de transfert. Le problème devrait maintenant être résolu."
+      divine_skills: "L'ajout récent des caractéristiques de type divin + a eu des répercussions sur la majeure partie des applications CHPP en raison de la négligence de HT. FoxTrick n'a pas échappé à cette règle. Les modules affectés concernent <module>SkillTable</module>, <module>MatchOrderInterface</module>, <module>HTMSPoints</module>, <module>SkillColoring</module> ainsi que d'autres. Les soucis devraient maintenant être résolus."
+      opera_notifications: Les notifications de FoxTrick posaient problème au sein du navigateur Opera mais devraient maintenant être accessibles.
+      nt_weather: '<module>MatchWeather</module> ne fonctionnait plus pour les matchs des équipes nationales ainsi que dans quelques autres cas. Le module a été réécrit pour résoudre tous les problèmes connus.'
+      nt_simulator: '<module>MatchSimulator</module> la liste des matchs ne montrait pas les correspondances correctes pour les équipes nationales. Cela devrait maintenant être corrigé.'
+      chrome_styles: "Les styles de FoxTrick pouvaient parfois être inaccessibles dans Google Chrome en raison d'un conflit causé par des changements dans le navigateur. Des mesures ont été prises pour tenter d'éviter ces problèmes à l'avenir."
+      supporter_list: "<module>SupportersList</module> pouvait cesser de fonctionner si <module>StaffMarker</module> était désactivé. L'interaction incorrecte devrait donc être supprimée."
+      youth_promotes: |-
+        Correction d'un bug "à un jour près" dans le calcul des jours restants dans <module>YouthPromotes</module>.
       other: '<header>Autres changements</header>'
+      performance_cache: Beaucoup de travail a été accompli pour augmenter les performances globales de Foxtrick. Le CHPP et autres sources de données devraient maintenant être plus rapides et plus réactifs. Le cache de FoxTrick pour ces sources a été amélioré lui aussi.
+      preferences_install: "Les préférences de FoxTrick devraient maintenant se charger plus vite, surtout dans Google Chrome. L'installation et les mises à jour devraient également être plus rapides sur Firefox."
+      backend: Du nettoyage et des mises à jour du noyau de Foxtrick ont été menés à bien afin de facilité la maintenance future du produit. Les modifications affectent un grand nombre de pages, de modules et de fonctionnalités. Merci de signaler tout bug que vous trouveriez.
+      firefox_support: "À la suite de ce travail, l' interopérabilité avec les autres modules de Firefox devrait maintenant être plus satisfaisante. Les préparatifs de la nouvelle architecture multi-processus de Firefox vont également bon train."
+      notifications: Cliquer sur les notifications de Foxtrick doit maintenant ouvrir la page correspondante dans un nouvel onglet.
+      context_copy: '<module>ContextMenuCopy</module> a été amélioré pour gérer plus de liens et générer un balisage HT-ML plus précis.'
+      training_week: Le module PlayerStatsTrainingWeek a été supprimé car Hattrick propose désormais un outil similaire.
+      wage: 'La détection de la devise du pays a été réécrit en <module>ExtendedPlayerDetailsWage</module> pour le rendre plus robuste contre les variations de HT. La fonctionnalité était auparavant inutilisable pour les utilisateurs chinois.'
+      mail_counter: '<module>NewMail</module> a été réécrit pour être plus robuste envers les modifications de la conception de HT.'
       and_more: Divers autres petits changements et corrections.
     0.16.1.1:
       important: '<header>Annonces importantes</header>'

@@ -8,12 +8,30 @@ sv-SE:
     0.17.0:
       important: '<header>Viktiga meddelanden</header>'
       crowdin: '<header>En hel massa översättningsuppdateringar av användare via översättningsverktyget på <linkCrowdin>crowdin.net</linkCrowdin>. Du kan också hjälpa till!</header>'
+      browsers: På grund av tekniska orsaker är numera Firefox v38, Google Chrome v39 och Opera v26 de äldsta webbläsarversionerna som officiellt stöds. Du bör dock för din egen säkerhet alltid använda den senaste versionen av webbläsare.
       safari_cert: 'Vi letar efter någon i Hattricks stora community som utvecklar appar för iOS eller OSX som kan hjälpa oss att återskapa support även för användare av Safari. Se vår <linkSafariCertBug>issue tracker</linkSafariCertBug> för mer information.'
       beta: 'Vänligen överväg att använda <linkFTBeta>Foxtrick beta</linkFTBeta> för att dels få nya funktioner i ett tidigt skede, dels kunna påverka dess vidare utveckling samt för att hjälpa oss att fixa de ev. problem som ibland går hand i hand med nya funktioner.'
       support: '<header>Gillar du vad vi gör? Vänligen <linkContribute>Stöd Foxtrick</linkContribute>.</header>'
       new: '<header>Nya moduler</header>'
       bugs: '<header>Buggfixar</header>'
+      tl_search_form: 'Foxtricks formfilter, under i avancerat filter, i <module>TransferSearchResultFilters</module> slutade att fungera som den skulle p.g.a. ändringar i webbläsaren. Detta gjorde att alla spelare i sökresultatet var dolda. Detta ska nu vara fixat.'
+      divine_skills: 'Det senaste tillskottet av förmågor gudomlig+ hade sönder i stort sett alla CHPP-applikationer p.g.a. försumlighet från HTs sida. Foxtrick var inget undantag från denna regel. Bland de moduler som drabbades fanns <module>SkillTable</module>, <module>MatchOrderInterface</module>, <module>HTMSPoints</module>, <module>SkillColoring</module> och en del andra. Detta ska nu också äntligen vara löst.'
+      opera_notifications: Foxtricks aviseringar i Opera ska nu åter fungera.
+      nt_weather: 'Modulen <module>MatchWeather</module> har inte fungerat som den skulle för exempelvis landslagen, men även i en del andra fall. Hela modulen har nu skrivits om för att fixa alla kända problem.'
+      nt_simulator: 'Matchlistan i modulen <module>MatchSimulator</module> visade inte korrekt matcher för landslagen. Detta är nu åtgärdat.'
+      chrome_styles: Foxtricks egna stilar fungerade i vissa fall inte som de skulle i Google Chrome p.g.a. ändringar i webbläsaren. Åtgärder har nu vidtagits för att försöka förhindra detta i framtiden.
+      supporter_list: 'Modulen <module>SupportersList</module> slutade att fungera om modulen <module>StaffMarker</module> var inaktiverad. Detta felaktiga samspel har nu åtgärdats.'
+      youth_promotes: 'Fixat en bugg i kalkyleringen av antalet dagar kvar, i modulen <module>YouthPromotes</module>.'
       other: '<header>Andra ändringar</header>'
+      performance_cache: En hel del arbete har lagts ner på att försöka öka och förbättra Foxtricks prestanda. CHPP och andra datakällor bör nu vara snabbare och smidigare. Foxtrick cache för dessa källor har också förbättrats.
+      preferences_install: Foxtricks inställningar ska nu ladda snabbare, särskilt under Google Chrome. Installation och uppdateringar ska också vara en hel del snabbare under Firefox.
+      backend: Mer städning av kod och uppdateringar till Foxtricks kärna har gjorts för att förenkla och förbättra framtida underhåll. Dessa ändringar påverkar ett flertal sidor, moduler och funktioner. Vänligen rapportera alla ev. fel ni hittar.
+      firefox_support: Som ett resultat av detta arbete bör interoperabilitet med andra Firefox-tillägg fungera bättre nu. Förberedelser inför Firefox nya multiprocessarkitektur är också en bra bit på väg.
+      notifications: Ett klick på en avisering från Foxtrick öppnar nu relevant sida i en ny flik.
+      context_copy: 'Modulen <module>ContextMenuCopy</module> har förbättrats för att hantera fler länkar och att generera en mer exakt HT-ML -kod.'
+      training_week: Modulen PlayerStatsTrainingWeek har plockats bort p.g.a. att HT nu själva implementerat samma funktion.
+      wage: 'Funktionen att upptäcka och identifiera lönevaluta har skivits om i modulen <module>ExtendedPlayerDetailsWage</module> för att göra den mer stabil mot framtida ändringar från HT. Funktionen har tidigare inte fungerat för användare i Kina.'
+      mail_counter: 'Modulen <module>NewMail</module> har skrivits om för att göras mer stabil för framtida designändringar från HT.'
       and_more: Flera andra mindre ändringar och korrigeringar.
     0.16.1.1:
       important: '<header>Viktiga meddelanden</header>'

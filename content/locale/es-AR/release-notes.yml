@@ -8,11 +8,13 @@ es-AR:
     0.17.0:
       important: '<header>Anuncios importantes</header>'
       crowdin: '<header>Muchas actualizaciones en las traducciones de nuestros colaboradores mediante <linkCrowdin> crowdin</linkCrowdin>. Usted también puede ayudarnos!</header>'
+      browsers: Debido a razones técnicas Firefox v38, Google Chrome v39 y Opera v26 son ahora las versiones mínimas de navegador soportadas oficialmente. Sin embargo, para tu propia seguridad deberías usar siempre la última versión del navegador disponible.
       safari_cert: 'Estamos buscando a alguien en la comunidad de Hattrick que desarrolle aplicaciones para iOS u OSX para ayudar a restaurar el soporte de Foxtrick para usuarios de Safari. Vea nuestro <linkSafariCertBug> gestor de incidencias </linkSafariCertBug> para obtener más información.'
       beta: 'Por favor considera usar <linkFTBeta>Foxtrick beta</linkFTBeta> para obtener nuevas características, influir en su desarrollo y ayudar a encontrar y arreglar cualquier problema que pueda surgir.'
       support: '¿<header>Qué estamos haciendo? Por favor <linkContribute>ayuda a Foxtrick</linkContribute>.</header>'
       new: '<header>Nuevos módulos</header>'
       bugs: '<header>Corrección de errores</header>'
+      tl_search_form: 'El filtro de forma de Foxtrick en <module>TransferSearchResultFilters</module> se rompió debido a los cambios de navegador. Esto hacía que se escondieran todos los jugadores en los resultados de la búsqueda de transferencia. Ahora el problema debería estar resuelto.'
       other: '<header>Otros cambios</header>'
       and_more: Otros pequeños cambios y correcciones.
     0.16.1.1:
