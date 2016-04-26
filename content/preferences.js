@@ -768,6 +768,15 @@ function initAutoSaveListeners() {
 function initListeners() {
 	initAutoSaveListeners();
 
+	$('#nav-toggle').click(function() {
+		$('#navigation').toggleClass('hidden');
+	});
+
+	$('#navigation').on('click', 'a', function() {
+		if ($('#nav-toggle').is(':visible'))
+			$('#nav-toggle').click();
+	});
+
 	$('#search-input')[0].addEventListener('input', searchEvent);
 	$('#save').click(function() {
 		save();
