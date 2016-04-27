@@ -8,12 +8,17 @@ da:
     0.17.0:
       important: '<header>Vigtige meddelelser</header>'
       crowdin: '<header>En stor tak til alle de hjælpsomme brugere, som oversætter ved hjælp af <linkCrowdin>crowdin </linkCrowdin>. Du kan også give en hånd!</header>'
-      browsers: Af tekniske årsager er Firefox v.38, Google Chrome v.39 og Opera v.26 nu de senest officielt understøttede browserversioner. Du bør dog altid, for din egen sikkerhed, bruge den senest tilgængelig browserversion.
+      browsers: Af tekniske årsager er Firefox v.38, Google Chrome v.39 og Opera v.26 nu de senest officielt understøttede browserversioner. Du bør dog altid, for din egen sikkerhed, bruge den senest tilgængelige browserversion.
       safari_cert: 'Vi er på udkig efter engageret managere, som arbejder med udvikling af apps til iOS eller OSX, for at være med til at genoprette hjælp til Safari-brugere omkring Foxtrick. Se vores <linkSafariCertBug>issue tracker</linkSafariCertBug> for flere oplysninger.'
       beta: 'Overvej at installer <linkFTBeta>Foxtrick beta</linkFTBeta> for at få nye funktioner tidligt, sådan at du kan være med til at påvirke udviklingen af nye features, og til at hjælpe med at finde og løse eventuelle problemer, der måtte opstå.'
       support: '<header>Støt Foxtrick via Flattr mikrodonationer eller giv et bidrag med Paypal <linkContribute>Donér</linkContribute>.</header>'
       new: '<header>Nye moduler</header>'
       bugs: '<header>Fejlrettelser</header>'
+      tl_search_form: 'Grundet ændringer i browsere, var der nedbrud i Foxtricks formfilter i <module>TransferSearchResultFilters</module>. Dette resulterede i, at alle spillere på søgelisten forblev skjulte. Fejlen er nu udbedret.'
+      divine_skills: 'Den seneste tilføjelse omkring visning af evner over guddommelige niveau, forårsagede nedbrud i alle CHPP applikationer, da Hattrick udviklere har været uopmærksom omkring emnet. FoxTrick var dermed ikke en undtagelse. Berørte moduler omfatter <module>SkillTable</module>, <module>MatchOrderInterface</module>, <module>HTMSPoints</module>, <module>SkillColoring</module> m.fl. Fejlene skulle nu være udbedret.'
+      opera_notifications: Foxtricks notifikationer i Opera browseren var ramt af en fejl, som nu skulle være udbedret.
+      nt_weather: 'Modulet <module>MatchWeather</module> havde en fejl for landsholdkampe og nogle andre tilfælde. Modulet blev omskrevet for at løse alle kendte problemer.'
+      nt_simulator: 'Liste over kampe i <module>MatchSimulator</module> viste ikke de korrekte kampe for landshold. Dette skulle nu være udbedret.'
       other: '<header>Andre ændringer</header>'
       and_more: Forskellige små ændringer og rettelser.
     0.16.1.1:

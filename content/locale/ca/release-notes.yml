@@ -8,12 +8,30 @@ ca:
     0.17.0:
       important: '<header>Anuncis importants</header>'
       crowdin: "<header>Moltes actualitzacions en la traducció, per part dels nostres impressionants usuaris, usant <linkCrowdin>l'eina crowdin</linkCrowdin>. ¡Tu també pots ajudar-nos!</header>s usuari"
+      browsers: Per motius tècnics Firefox v38, Google Chrome v39 i òpera v26 són ara les versions suportades oficialment navegador mínima. No obstant això, per la vostra seguretat sempre tindríeu que usar la versió de navegador més recent disponible.
       safari_cert: "Busquem a algú de la comunitat de Hattrick que desenvolupi aplicacions per a iOS o OSX que ajudi a redreçar el suport de Foxtrick per als usuaris de Safari. Veure nostre <linkSafariCertBug>seguiment d'incidències</linkSafariCertBug> per obtenir més informació."
       beta: 'Per favor utilitzeu <linkFTBeta>la versió beta de Foxtrick</linkFTBeta> per a obtenir noves característiques des del principi, influir en el seu desenvolupament i ajudar a trobar i solucionar qualsevol problema que pugui sorgir.'
       support: "¿<header>T'agrada com ho estem fent? Si us plau <linkContribute>Foxtrick suport</linkContribute>.</header>"
       new: '<header>Mòduls nous</header>'
       bugs: "<header>Correccions d'errors</header>"
+      tl_search_form: 'Filtre de forma Foxtrick en <module>TransferSearchResultFilters</module> va trencar a causa de canvis de navegador. Això vols amagar tots els jugadors en els resultats de cerca de transferència. Ara això serà solventat el problema.'
+      divine_skills: "Addició recent de diví + pantalla habilitat trencava essencialment totes les aplicacions CHPP per culpa d'HT. Foxtrick no era una excepció a aquesta regla. Mòduls afectats inclouen <module>SkillTable</module>, <module>MatchOrderInterface</module>, <module>HTMSPoints</module>, <module>SkillColoring</module> i altres. Les qüestions ara hauria de ser resolt."
+      opera_notifications: "Foxtrick notificacions estaven trencades en navegador d'òpera i ara ha de ser fix."
+      nt_weather: '<module>MatchWeather</module> va trencar per a jocs de NT i alguns altres casos. El mòdul va ser reescrit per solucionar tots els problemes coneguts.'
+      nt_simulator: '<module>MatchSimulator</module> llista de partit no mostrava els partits correctes per equips de NT. Això ara ha de ser fix.'
+      chrome_styles: "Estils Foxtrick vegades podia ser trencat a Google Chrome a causa d'una condició de carrera causat per canvis en el navegador. Mesures van ser preses per evitar que aquestes qüestions en el futur."
+      supporter_list: '<module>SupportersList</module> vols parar de funcionar si <module>StaffMarker</module> va ser desactivat. La interacció incorrecta ara hauria de ser rellevat.'
+      youth_promotes: 'Corregit un fora per un error en el càlcul dies deixats en <module>YouthPromotes</module>.'
       other: '<header>Altres canvis</header>'
+      performance_cache: "Un munt de treball va ser realitzat per augmentar el rendiment global de Foxtrick. CHPP i altres fonts de dades hauria de ser ara més ràpid i més sensible. Memòria cau Foxtrick per aquelles fonts s'ha millorat, així."
+      preferences_install: Foxtrick preferències hauria ara carreguen més ràpid, especialment a Google Chrome. Instal. lació i actualitzacions també ha de ser més ràpid en Firefox.
+      backend: Més neteja i actualitzacions a Foxtrick cor van fer augmentar el manteniment del futur. Canvis afecten un munt de pàgines, mòduls i funcionalitats. Sisplau, reporteu qualsevol errors que trobeu.
+      firefox_support: "Com a resultat d'aquesta obra ara ha millor interoperabilitat amb altres add-ons Firefox. Preparatius per a l'arquitectura multi-procés nou de Firefox són també està en marxa."
+      notifications: "Fent clic sobre notificacions de Foxtrick ara d'obrir la pàgina pertinent en una nova pestanya."
+      context_copy: '<module>ContextMenuCopy</module> va ser millorat per manejar més enllaços i generar més precisos Etiquetatge HT-ML.'
+      training_week: PlayerStatsTrainingWeek mòdul fou eliminat perquè Hattrick ha implantat el mateix tret.
+      wage: 'Salari moneda descoberta va ser rescrit en <module>ExtendedPlayerDetailsWage</module> per fer-lo més robust contra canvis de HT. La funció es trencava anteriorment per als usuaris xinesos.'
+      mail_counter: '<module>NewMail</module> va ser reescrit per ser més robust contra canvis de disseny HT.'
       and_more: Diversos altres petits canvis i correccions.
     0.16.1.1:
       important: '<header>Anuncis importants</header>'

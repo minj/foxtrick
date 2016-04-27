@@ -78,11 +78,11 @@
 			"code": "bg",
 			"name": "Bulgarian",
 			"phrases": "2255",
-			"translated": "2031",
-			"translated_progress": "81",
+			"translated": "2057",
+			"translated_progress": "84",
 			"words": "16371",
 			"words_approved": "0",
-			"words_translated": "13330"
+			"words_translated": "13802"
 		},
 		{
 			"approved": "0",
@@ -90,11 +90,11 @@
 			"code": "ca",
 			"name": "Catalan",
 			"phrases": "2255",
-			"translated": "2237",
-			"translated_progress": "97",
+			"translated": "2255",
+			"translated_progress": "100",
 			"words": "16371",
 			"words_approved": "0",
-			"words_translated": "15965"
+			"words_translated": "16371"
 		},
 		{
 			"approved": "0",
@@ -102,11 +102,11 @@
 			"code": "zh-CN",
 			"name": "Chinese Simplified",
 			"phrases": "2255",
-			"translated": "1959",
-			"translated_progress": "74",
+			"translated": "1987",
+			"translated_progress": "77",
 			"words": "16371",
 			"words_approved": "0",
-			"words_translated": "12256"
+			"words_translated": "12659"
 		},
 		{
 			"approved": "1909",
@@ -126,11 +126,11 @@
 			"code": "cs",
 			"name": "Czech",
 			"phrases": "2255",
-			"translated": "2094",
-			"translated_progress": "84",
+			"translated": "2111",
+			"translated_progress": "86",
 			"words": "16371",
 			"words_approved": "0",
-			"words_translated": "13800"
+			"words_translated": "14146"
 		},
 		{
 			"approved": "1850",
@@ -138,11 +138,11 @@
 			"code": "da",
 			"name": "Danish",
 			"phrases": "2255",
-			"translated": "2226",
-			"translated_progress": "96",
+			"translated": "2231",
+			"translated_progress": "97",
 			"words": "16371",
 			"words_approved": "12846",
-			"words_translated": "15782"
+			"words_translated": "15909"
 		},
 		{
 			"approved": "1899",
@@ -354,11 +354,11 @@
 			"code": "it",
 			"name": "Italian",
 			"phrases": "2255",
-			"translated": "2254",
-			"translated_progress": "99",
+			"translated": "2255",
+			"translated_progress": "100",
 			"words": "16371",
 			"words_approved": "0",
-			"words_translated": "16359"
+			"words_translated": "16371"
 		},
 		{
 			"approved": "0",
@@ -529,16 +529,16 @@
 			"words_translated": "15215"
 		},
 		{
-			"approved": "2235",
+			"approved": "2237",
 			"approved_progress": "97",
 			"code": "ru",
 			"name": "Russian",
 			"phrases": "2255",
-			"translated": "2235",
+			"translated": "2237",
 			"translated_progress": "97",
 			"words": "16371",
-			"words_approved": "15963",
-			"words_translated": "15963"
+			"words_approved": "15965",
+			"words_translated": "15965"
 		},
 		{
 			"approved": "2073",

@@ -14,7 +14,24 @@ cs:
       support: '<header>Používáte Foxtrick? Můžete ho i různými způsoby <linkContribute>podpořit</linkContribute>.</header>'
       new: '<header>Nové moduly</header>'
       bugs: '<header>Opravy chyb</header>'
+      tl_search_form: 'Opravili jsme chybu filtrování v modulu <module>TransferSearchResultFilters</module>, která skrývala všechny hráče na přestupové listině.'
+      divine_skills: 'Přidání dovedností větších než Boží pokazilo v podstatě všechny CHPP aplikace včetně Foxtricku. Museli jsme dát znovu dokupy moduly <module>SkillTable</module>, <module>MatchOrderInterface</module>, <module>HTMSPoints</module>, <module>SkillColoring</module> a některé další.'
+      opera_notifications: Oznámení Foxtricku v prohlížeči Opera by měly znovu fungovat.
+      nt_weather: 'Modul <module>MatchWeather</module> jsme upravili aby fungoval i u mezinárodních zápasů.'
+      nt_simulator: 'Seznam zápasů modulu <module>MatchSimulator</module> neukazoval správné zápasy u národních týmů. Tak jsme na tom zamakali a opravili to.'
+      supporter_list: 'Modul <module>SupportersList</module> nejel když se vypnul modul <module>StaffMarker</module>. Chybu jsme opravili.'
+      youth_promotes: 'Spravili jsme chybu která zobrazovala dny do přeřazení o jeden větší nebo menší v modulu <module>YouthPromotes</module>.'
       other: '<header>Ostatní změny</header>'
+      performance_cache: Mákli jsme na zvýšení stability a výkonu Foxtricku. Zrychlili jsme načítání z cache, CHPP i z externích stránek.
+      preferences_install: Nastavení Foxtricku nyní v Chromu načítá rychleji. Ve Firefoxu jsme zase zrychlili instalaci a aktualizace.
+      backend: Pročistili jsme jádro Foxtricku pro snazší údržbu v budoucnu. Změny ovlivnily hodně stránek, pokud najdete chybu, nahlaste ji prosím.
+      firefox_support: Upravili jsme Foxtrick tak aby nezlobil, máte-li zapnuté i další doplňky ve Firefoxu. Připravuje se také přechod na vícevláknovou architekturu Firefoxu.
+      notifications: Po kliknutí na upozornění Foxtricku by se měla otevřít správná stránka v novém panelu.
+      context_copy: 'Modul <module>ContextMenuCopy</module> jsme vylepšili, nyní generuje přesnější HT-ML a má více možností na více stránkách.'
+      training_week: Modul PlayerStatsTrainingWeek byl odstraněn z důvodu přímé implementace vývojáři Hattricku.
+      wage: 'Kontrolu měny u platu v modulu <module>ExtendedPlayerDetailsWage</module> jsme přepsali aby byla odolnější vůči změnám na Hattricku. Tato funkce zlobila hlavně čínským uživatelům.'
+      mail_counter: 'Modul <module>NewMail</module> jsme přepsali aby byl odolnější změnám na Hattricku.'
+      and_more: Pár dalších malých změn a oprav.
     0.16.1.1:
       important: '<header>Důležitá oznámení</header>'
       safari_cert: 'Hledáme někoho z Hattrick komunity kdo vyvíjí aplikace pro iOS nebo OSX. Chtěli bychom obnovit podporu Foxtricku pro uživatele prohlížeče safari. Více informací je v našem <linkSafariCertBug>připomínkovacím systému</linkSafariCertBug>.'

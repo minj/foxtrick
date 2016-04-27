@@ -21,6 +21,7 @@ it:
       nt_simulator: "<module>MatchSimulator</module> l'elenco partite non mostrava le corrispondenze corrette per le squadre NT. Ciò dovrebbe essere risolto ora."
       chrome_styles: 'Gli stili di Foxtrick potrebbero a volte essere non funzionanti in Google Chrome a causa di una "race condition" causata da modifiche al browser. Sono state adottate misure per cercare di evitare tali problemi in futuro.'
       supporter_list: "<module>SupportersList</module> potrebbe smettere di funzionare se <module>StaffMarker</module> è stato disattivato. L'interazione non corretta dovrebbe ora essere stata rimossa."
+      youth_promotes: 'Corretto un baco nel calcolo dei giorni mancanti in <module>YouthPromotes</module>.'
       other: '<header>Altre modifiche</header>'
       performance_cache: Molto lavoro è stato fatto per aumentare le prestazioni complessive di Foxtrick. CHPP e altre fonti di dati dovrebbero essere più veloci e reattivi. La cache di Foxtrick per tali fonti è stata inoltre migliorata.
       preferences_install: Le preferenze di Foxtrick dovrebbero caricarsi più velocemente, specialmente su Google Chrome. Installazione e aggiornamenti dovrebbero essere più veloci anche su Firefox.
