@@ -956,7 +956,7 @@ function makeModuleDiv(module) {
 		};
 		var makePlayListener = function(input) {
 			return function() {
-				Foxtrick.playSound(this.ownerDocument, input.value);
+				Foxtrick.playSound(input.value);
 			};
 		};
 
@@ -966,7 +966,7 @@ function makeModuleDiv(module) {
 				input.dispatchEvent(new Event('input', { bubbles: true }));
 
 				if (isSound)
-					Foxtrick.playSound(input.ownerDocument, url);
+					Foxtrick.playSound(url);
 			};
 		};
 
