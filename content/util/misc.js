@@ -58,75 +58,64 @@ if (!Foxtrick)
  * @param  {document} doc
  * @param  {string} url
  */
-Foxtrick.playSound = function(doc, url) {
-	try {
-		if (typeof url !== 'string') {
-			Foxtrick.log('Bad sound:', url);
-			return;
-		}
-		url = url.replace(/^foxtrick:\/\//, Foxtrick.ResourcePath);
-		var type = 'wav';
-		if (url.indexOf('data:audio') === 0)
-			type = url.match(/data:audio\/(.+);/)[1];
-		else {
-			var ext = url.match(/\.([^\.]+)$/);
-			if (ext)
-				type = ext[1];
-			else {
-				Foxtrick.log('Not a sound file:', url);
-				return;
-			}
-		}
-		var volume = parseInt(Foxtrick.Prefs.getString('volume'), 10) / 100;
-		Foxtrick.log('play', volume, url.slice(0, 100));
+Foxtrick.playSound = function(url) {
+	var play = function(url, type, volume) {
 		try {
 			var music = new Audio();
 			var canPlay = music.canPlayType('audio/' + type);
-			Foxtrick.log('can play', type, ':', (canPlay === '' ? 'no' : canPlay));
-			if (canPlay == 'maybe' || canPlay == 'probably') {
-				music.src = url;
-				// try overwrite mime type (in case server says wrongly
-				// it's a generic application/octet-stream)
-				music.type = 'audio/' + type;
-				music.volume = volume;
-				music.play();
-			}
-			else {
-				Foxtrick.log('try embeded using plugin');
-				var videoElement = doc.createElement('embed');
-				videoElement.setAttribute('style', 'visibility:hidden');
-				videoElement.setAttribute('width', '1');
-				videoElement.setAttribute('height', '1');
-				videoElement.setAttribute('autoplay', 'true');
-				videoElement.setAttribute('volume', volume);
-				videoElement.setAttribute('type', 'audio/' + type);
-				videoElement.setAttribute('src', url);
-				doc.getElementsByTagName('body')[0].appendChild(videoElement);
-			}
+			Foxtrick.log('can play', type, ':', canPlay === '' ? 'no' : canPlay);
+
+			if (canPlay === 'no')
+				return;
+
+			music.src = url;
+
+			// try overwrite mime type (in case server says wrongly
+			// it's a generic application/octet-stream)
+			music.type = 'audio/' + type;
+			music.volume = volume;
+			music.play();
 		}
 		catch (e) {
-			if (Foxtrick.context == 'content') {
-				// via background since internal sounds might not be acessible
-				// from the html page itself
-				Foxtrick.SB.ext.sendRequest({ req: 'playSound', url: url });
-			}
-			else {
-				Foxtrick.log(e, 'try play with audio tag in document');
-				var music = doc.createElement('audio');
-				music.setAttribute('autoplay', 'autoplay');
-				music.setAttribute('volume', volume);
-				var source = doc.createElement('source');
-				source.setAttribute('src', url);
-				source.setAttribute('type', 'audio/' + type);
-				music.appendChild(source);
-				doc.getElementsByTagName('body')[0].appendChild(music);
-			}
+			Foxtrick.log('Playback failed', e);
 		}
+	};
+
+	if (Foxtrick.context == 'content') {
+		// delegate to background due to playback delay
+		Foxtrick.SB.ext.sendRequest({ req: 'playSound', url: url });
 	}
-	catch (e) {
-		Foxtrick.log('Cannot play sound: ', url.slice(0, 100));
-		Foxtrick.log(e);
+
+	if (typeof url !== 'string') {
+		Foxtrick.log('Bad sound:', url);
+		return;
 	}
+	url = url.replace(/^foxtrick:\/\//, Foxtrick.ResourcePath);
+
+	var type = 'wav';
+	if (url.indexOf('data:audio/') === 0) {
+		var dataURLRe = /data:audio\/(.+);/;
+		if (!dataURLRe.test(url)) {
+			Foxtrick.log('Bad data URL:', url);
+			return;
+		}
+
+		type = dataURLRe.exec(url)[1];
+	}
+	else {
+		var extRe = /\.([^\.]+)$/;
+		if (!extRe.test(url)) {
+			Foxtrick.log('Not a sound file:', url);
+			return;
+		}
+
+		type = extRe.exec(url)[1];
+	}
+
+	var volume = (parseInt(Foxtrick.Prefs.getString('volume'), 10) || 100) / 100;
+	Foxtrick.log('play', volume, url.slice(0, 100));
+
+	play(url, type, volume);
 };
 
 Foxtrick.copyStringToClipboard = function(string) {

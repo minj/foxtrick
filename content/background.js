@@ -213,9 +213,10 @@ Foxtrick.loader.background.browserLoad = function() {
 			else
 				sendResponse({ url: dataUrl });
 		};
+
 		this.requests.playSound = function(request) {
 			// @param url - the URL of new tab to create
-			Foxtrick.playSound(request.url, document);
+			Foxtrick.playSound(request.url);
 		};
 
 		// from misc.js: tabs
