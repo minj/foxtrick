@@ -85,14 +85,18 @@ button.active
 	border: 3px solid #a8a8a8;
 }
 
-button.icon {
+.btn-icon {
 	background: inherit;
-	padding: 0 1px;
-	margin: 0;
+	padding: 0;
+	margin: 0 2px;
 	border: 0;
 	cursor: pointer;
 }
 
+.btn-icon64 {
+	width: 68px;
+	height: 68px;
+}
 
 html[dir="rtl"] input, html[dir="rtl"] button
 {
