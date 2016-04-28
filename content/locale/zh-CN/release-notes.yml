@@ -28,6 +28,11 @@ zh-CN:
       backend: 对 Foxtrick 核心进行了更多的清理和更新，以提高未来的可维护性。更改会影响大量的页面、 模块和功能。请报告你发现的任何 bug。
       firefox_support: 这项工作使得与其他火狐附加组件兼容性现在应该更好。针对新的火狐多进程结构的准备工作也在顺利进行。
       notifications: 点击 Foxtrick 通知现在应该在新选项卡中打开相关的页面。
+      context_copy: '改进了<module>ContextMenuCopy</module> 以处理更多的链接和生成更精确的 HT-ML 标记。'
+      training_week: PlayerStatsTrainingWeek 模块已被移除，因为Hattrick已实现相同的功能。
+      wage: '在 <module>ExtendedPlayerDetailsWage</module>中重写了工资货币检测，使它对于HT的改动更加健壮。该功能对中国用户曾经不可用。'
+      mail_counter: '<module>NewMail</module> 改动得更能适应 HT 的更改。'
+      and_more: 许多其他的小更改和修复
     0.16.1.1:
       important: '<header>重要公告</header>'
       safari_cert: '我们正在寻找开发 iOS 或 OSX 应用的人员，帮助恢复Foxtrick对 Safari 用户的支持。请参阅我们的 <linkSafariCertBug>问题跟踪器</linkSafariCertBug> 的详细信息。'
