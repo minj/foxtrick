@@ -460,6 +460,7 @@ html[dir="rtl"] #note
 	position: fixed;
 	width: 200px;
 	background: inherit;
+	margin-top: 3px;
 }
 
 #content {
@@ -483,9 +484,7 @@ h1 {
 	left: 0;
 	box-sizing: border-box;
 	width: 100%;
-	padding: 0.5em 0;
-	padding-right: 8px;
-	padding-left: 8px;
+	padding: 8px;
 	background: inherit;
 }
 
@@ -657,6 +656,10 @@ html[dir="rtl"] .right {
 
 	#nav-toggle {
 		display: block;
+	}
+
+	#js-top {
+		padding-bottom: 5px;
 	}
 
 	#navigation {
