@@ -283,6 +283,19 @@ Foxtrick.getPanel = function(doc) {
 	}
 };
 
+/**
+ * Test whether object obj has a property prop
+ *
+ * Deals with non-objects and null.
+ * Traverses prototype chain.
+ *
+ * @param  {object}  obj
+ * @param  {string}  prop
+ * @return {Boolean}
+ */
+Foxtrick.hasProp = function(obj, prop) {
+	return obj && typeof obj === 'object' && prop in obj;
+};
 
 /**
  * Copy all members from modified to original.
