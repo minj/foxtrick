@@ -15,6 +15,7 @@ en:
       beta: 'Please consider using <linkFTBeta>Foxtrick beta</linkFTBeta> to get new features early, to influence their development and to help finding and fixing any problems that may arise.'
       support: '<header>Like what we are doing? Please <linkContribute>Support Foxtrick</linkContribute>.</header>'
       new: '<header>New modules</header>'
+      spec_info: '<module>SpecialtyInfo</module> displays a concise specialty information table having clicked on a specialty icon.'
       bugs: '<header>Bug fixes</header>'
       tl_search_form: 'Foxtrick form filter in <module>TransferSearchResultFilters</module> was broken due to browser changes. This would hide all players in the transfer search results. The problem should now be fixed.'
       divine_skills: 'Recent addition of divine+ skill display broke essentially all CHPP applications due to HT negligence. Foxtrick was not an exception to this rule. Affected modules include <module>SkillTable</module>, <module>MatchOrderInterface</module>, <module>HTMSPoints</module>, <module>SkillColoring</module> and others. The issues should now be solved.'
