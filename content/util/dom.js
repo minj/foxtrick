@@ -579,6 +579,43 @@ Foxtrick.addImage = function(doc, parent, features, insertBefore, callback) {
 };
 
 /**
+ * Add a specialty icon from a specialty number.
+ *
+ * options is a map of DOM attributes: {string: string}.
+ * NOTE: insertBefore and onError has special meaning.
+ *
+ * Returns Promise.<HTMLImageElement>
+ *
+ * @param  {element} parent
+ * @param  {number}  specNum {Integer}
+ * @param  {object}  options {string: string}
+ * @return {Promise}         Promise.<HTMLImageElement>
+ */
+Foxtrick.addSpecialty = function(parent, specNum, options) {
+	var doc = parent.ownerDocument;
+
+	var specialtyName = Foxtrick.L10n.getSpecialityFromNumber(specNum);
+	var specialtyUrl = Foxtrick.getSpecialtyImagePathFromNumber(specNum);
+
+	var insertBefore = null;
+	if (Foxtrick.hasProp(options, 'insertBefore')) {
+		insertBefore = options.insertBefore;
+		delete options.insertBefore;
+	}
+
+	var opts = {
+		alt: specialtyName,
+		title: specialtyName,
+		src: specialtyUrl,
+	};
+	Foxtrick.mergeAll(opts, options);
+
+	return new Promise(function(resolve) {
+		Foxtrick.addImage(doc, parent, opts, insertBefore, resolve);
+	});
+};
+
+/**
  * Describe selected text in a text area.
  * Returns null if no selection or
  * {completeText, selectionStart, selectionEnd, selectionLength,

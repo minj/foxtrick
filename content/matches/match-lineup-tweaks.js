@@ -278,14 +278,8 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 				return;
 			if (player && player.specialityNumber) {
 				var specIdx = player.specialityNumber;
-				var title = Foxtrick.L10n.getSpecialityFromNumber(specIdx);
-				var specUrl = Foxtrick.getSpecialtyImagePathFromNumber(specIdx);
-				Foxtrick.addImage(doc, node, {
-					alt: title,
-					title: title,
-					src: specUrl,
-					class: 'ft-specialty ft-match-lineup-tweaks-specialty-icon'
-				});
+				var opts = { class: 'ft-specialty ft-match-lineup-tweaks-specialty-icon' };
+				Foxtrick.addSpecialty(node, specIdx, opts);
 			}
 		};
 

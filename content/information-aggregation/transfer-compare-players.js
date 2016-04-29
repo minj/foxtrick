@@ -101,17 +101,7 @@ Foxtrick.modules['TransferComparePlayers'] = {
 
 						var specialty = xmls[i].num('Specialty');
 						if (specialty) {
-							var spec = Foxtrick.L10n.getSpecialityFromNumber(specialty);
-							var hidden = doc.createElement('span');
-							hidden.className = 'hidden';
-							hidden.textContent = spec;
-							table.rows[rowIdx].cells[0].appendChild(hidden);
-							var specImageUrl = Foxtrick.getSpecialtyImagePathFromNumber(specialty);
-							Foxtrick.addImage(doc, table.rows[rowIdx].cells[0], {
-								alt: spec,
-								title: spec,
-								src: specImageUrl,
-							});
+							Foxtrick.addSpecialty(table.rows[rowIdx].cells[0], specialty);
 						}
 					}
 					loading.parentNode.removeChild(loading);

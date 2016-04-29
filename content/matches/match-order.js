@@ -105,17 +105,11 @@ Foxtrick.modules['MatchOrderInterface'] = {
 						continue;
 
 					var player = Foxtrick.Pages.Players.getPlayerFromListById(playerList, id);
-					if (player && player.specialityNumber != 0) {
-						var specIdx = player.specialityNumber;
+					if (player && player.specialityNumber) {
 						Foxtrick.addClass(cards_health[i], 'ft-specialty');
-						var title = Foxtrick.L10n.getSpecialityFromNumber(specIdx);
-						var specUrl = Foxtrick.getSpecialtyImagePathFromNumber(specIdx);
-						Foxtrick.addImage(doc, cards_health[i], {
-							alt: title,
-							title: title,
-							src: specUrl,
-							class: 'ft-specialty'
-						});
+						var specIdx = player.specialityNumber;
+						var opts = { class: 'ft-specialty-img' };
+						Foxtrick.addSpecialty(cards_health[i], specIdx, opts);
 					}
 				}
 			}

@@ -164,13 +164,7 @@ Foxtrick.modules['SeriesTransfers'] = {
 			};
 			var specialityFunc = function(cell, spec) {
 				if (spec) {
-					var specialtyName = Foxtrick.L10n.getSpecialityFromNumber(spec);
-					var specialtyUrl = Foxtrick.getSpecialtyImagePathFromNumber(spec);
-					Foxtrick.addImage(doc, cell, {
-						alt: specialtyName,
-						title: specialtyName,
-						src: specialtyUrl
-					});
+					Foxtrick.addSpecialty(cell, spec);
 				}
 				cell.setAttribute('index', spec);
 			};
