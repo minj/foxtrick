@@ -173,6 +173,9 @@ Foxtrick.modules['SpecialtyInfo'] = {
 
 			if (ancestor) {
 				// match order field
+				// absolute positioning in HT design overlaps our container
+				// if attached at original position
+				// moving up a few nodes instead
 				parent = ancestor;
 			}
 
@@ -188,8 +191,12 @@ Foxtrick.modules['SpecialtyInfo'] = {
 		};
 
 		Foxtrick.addClass(parent, 'ft-specInfo-parent');
-		Foxtrick.onClick(parent, function() {
+		Foxtrick.onClick(parent, function(ev) {
 			activate();
+
+			// stop event to disable match order select
+			ev.preventDefault();
+			ev.stopPropagation();
 		});
 	},
 };
