@@ -565,8 +565,10 @@ Foxtrick.modules['StaffMarker'] = {
 		var markThread = function(data) {
 			var query = '#mainBody .float_left, #sidebar, .mainBox, ' +
 				MAIN + 'pnlSupportedTeams, ' + MAIN + 'pnlMySupporters, ' + MAIN + 'upGB';
-			var userDivs = doc.querySelectorAll(query);
 
+			var originRe = new RegExp('^' + Foxtrick.strToRe(doc.location.origin));
+
+			var userDivs = doc.querySelectorAll(query);
 			Foxtrick.map(function(user) {
 				var links = user.getElementsByTagName('a');
 
@@ -574,7 +576,8 @@ Foxtrick.modules['StaffMarker'] = {
 					if (!a.href)
 						return; // e.g. our copy link
 
-					var href = a.getAttribute('href');
+					// make relative URL manually due to inconsistent absolute URL use
+					var href = a.href.replace(originRe, '');
 
 					if (!/^\/Club\/Manager\/\?userId\=/i.test(href) ||
 					    /redir_to_(\w+)=true/i.test(href))
