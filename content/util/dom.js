@@ -603,6 +603,17 @@ Foxtrick.addSpecialty = function(parent, specNum, options) {
 		delete options.insertBefore;
 	}
 
+	var imgContainer = doc.createElement('span');
+	if (insertBefore)
+		parent.insertBefore(imgContainer, insertBefore);
+	else
+		parent.appendChild(imgContainer);
+
+	if (Foxtrick.Prefs.isModuleEnabled('SpecialtyInfo')) {
+		var module = Foxtrick.modules['SpecialtyInfo'];
+		module.decorate(imgContainer, specNum);
+	}
+
 	var opts = {
 		alt: specialtyName,
 		title: specialtyName,
@@ -611,7 +622,7 @@ Foxtrick.addSpecialty = function(parent, specNum, options) {
 	Foxtrick.mergeAll(opts, options);
 
 	return new Promise(function(resolve) {
-		Foxtrick.addImage(doc, parent, opts, insertBefore, resolve);
+		Foxtrick.addImage(doc, imgContainer, opts, null, resolve);
 	});
 };
 

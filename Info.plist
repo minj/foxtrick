@@ -167,6 +167,7 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/information-aggregation/show-friendly-booked.js</string>
 				<string>content/information-aggregation/show-lineup-set.js</string>
 				<string>content/information-aggregation/skill-table.js</string>
+				<string>content/information-aggregation/specialty-info.js</string>
 				<string>content/information-aggregation/supporterstats-enhancements.js</string>
 				<string>content/information-aggregation/table-of-statistical-truth.js</string>
 				<string>content/information-aggregation/team-stats.js</string>

@@ -585,6 +585,13 @@ Foxtrick.util.matchEvent.getEventMinute = function(evnt) {
 	return min;
 };
 
+Foxtrick.util.matchEvent.getEventTitle = function(eventId) {
+	var l10nId = 'match.events.' + eventId;
+	var eventText = Foxtrick.L10n.isStringAvailable(l10nId) ? Foxtrick.L10n.getString(l10nId)
+		: Foxtrick.L10n.getString('match.events.unknown');
+	return eventText + ' (' + eventId + ')';
+};
+
 Foxtrick.util.matchEvent.getEventId = function(evnt) {
 	var id = 0;
 	var type = evnt.getAttribute('data-eventtype');
@@ -604,7 +611,7 @@ Foxtrick.util.matchEvent.isFirstEvent = function(evnt) {
 };
 
 Foxtrick.util.matchEvent.getEventIcons = function(evnt, type) {
-	var eventId = Foxtrick.util.matchEvent.getEventId(evnt);
+	var eventId = typeof evnt == 'number' ? evnt : Foxtrick.util.matchEvent.getEventId(evnt);
 	if (!Foxtrick.util.matchEvent.eventIcons[eventId])
 		return null;
 
@@ -653,15 +660,11 @@ Foxtrick.util.matchEvent.getAwayIcons = function(evnt) {
 		return Foxtrick.util.matchEvent.getGeneralIconsAway(evnt);
 };
 
-
 Foxtrick.util.matchEvent.addEventIcons = function(evnt) {
 	var doc = evnt.ownerDocument;
 
 	var eventId = Foxtrick.util.matchEvent.getEventId(evnt);
-	var l10nId = 'match.events.' + eventId;
-	var eventText = Foxtrick.L10n.isStringAvailable(l10nId) ? Foxtrick.L10n.getString(l10nId)
-		: Foxtrick.L10n.getString('match.events.unknown');
-	var title = eventText + ' (' + eventId + ')';
+	var title = Foxtrick.util.matchEvent.getEventTitle(eventId);
 
 	var module = Foxtrick.modules.MatchReportFormat;
 	var insertBefore = evnt.firstChild.nextSibling;
