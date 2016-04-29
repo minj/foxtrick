@@ -8,12 +8,30 @@ ko:
     0.17.0:
       important: '<header>중요한 공지 사항</header>'
       crowdin: '<header>저희 뛰어난 사용자들이 <linkCrowdin>crowdin tool</linkCrowdin>을 사용하여 수많은 번역 업데이트가 있었습니다. 당신도 도울 수 있습니다!</header>'
+      browsers: 기술적인 이유로 파이어 폭스 38버전, 구글 크롬 39버전, 오페라 26버전이 이제 공식적으로 지원하는 브라우저의 최소 버전입니다. 하지만, 여러분의 보안을 위해 가능한 최신 버전의 브라우저를 사용하셔야 합니다.
       safari_cert: 'Safari 사용자들의 Foxtrick 지원을 복구하는데 도와주실 iOS 또는 OSX App 개발자 분들을 Hattrick 커뮤니티에서 찾고 있습니다. 자세한 정보는 저희 <linkSafariCertBug>issue tracker</linkSafariCertBug>를 참조하세요.'
       beta: '새로운 기능을 미리 접하거나 개발에 영향을 주거나 새롭게 발생하는 문제점들을 찾고 수정하는데 도움을 주실 생각이 있으시면 <linkFTBeta>Foxtrick beta</linkFTBeta>를 사용해보는 것을 고려해보세요.'
       support: '<header>Foxtrick이 마음에 드십니까? 그러시면 <linkContribute>Foxtrick 후원</linkContribute>을 부탁드립니다.</header>'
       new: '<header>새로운 모듈</header>'
       bugs: '<header>버그 수정</header>'
+      tl_search_form: '<module>TransferSearchResultFilters</module>에서 폭스트릭 Form 필터가 브라우저 변화 때문에 고장이 났었습니다. 그리하여 이적 검색 결과에서 모든 선수들이 숨겨졌습니다. 이 문제는 이제 해결되었을 것입니다.'
+      divine_skills: '최근에 추가된 신의 경지+ 스킬 표시가 HT 과실로 인하여 이따금 CHPP 프로그램에 고장을 일으켰습니다. 또한 폭스트릭도 예외가 아니었습니다. 이에 영향을 받는 모듈은 <module>SkillTable</module>, <module>MatchOrderInterface</module>, <module>HTMSPoints</module>, <module>SkillColoring</module> 등입니다. 이 문제는 이제 해결되었을 것입니다.'
+      opera_notifications: 오페라 브라우저에서 Foxtrick 알림이 고장 났었고 이제 해결되었습니다.
+      nt_weather: '<module>MatchWeather</module> 모듈이 NT 경기와 일부 경기에서 고장 났었습니다. 그래서 알려진 모든 문제를 해결하기 위해 다시 작성되었습니다.'
+      nt_simulator: '<module>MatchSimulator</module> 경기 목록이 NT 팀인 경우 올바른 경기들을 표시하지 않았습니다. 이제 이 문제는 해결되었습니다.'
+      chrome_styles: Foxtrick 스타일이 때때로 구글 크롬에서 브라우저 변화 때문에 드문 경우에 고장이 났습니다. 앞으로 이러한 문제를 예방하기 위해 조치가 취해졌습니다.
+      supporter_list: '<module>StaffMarker</module> 모듈이 비활성화되면 <module>SupportersList</module> 모듈이 중단되었습니다. 이러한 잘못된 상호작용은 이제 제거되었습니다.'
+      youth_promotes: '<module>YouthPromotes</module> 모듈에서 남은 일을 계산하는 과정에서 발생하는 off-by-one 버그를 수정했습니다.'
       other: '<header>기타 변경 사항</header>'
+      performance_cache: 전체적인 Foxtrick 성능 향상을 위해 많은 작업이 이루어졌습니다. CHPP와 기타 데이터 자원은 이제 더욱 빠른 속도와 응답 속도를 보장할 것입니다. 또한 이들 자원의 Foxtrick 캐시도 개선되었습니다.
+      preferences_install: Foxtrick 환경 설정은 이제 구글 크롬에서 특이 더욱 빠르게 로드됩니다. 또한 파이어 폭스에서 설치와 업데이트가 더욱 빨라졌습니다.
+      backend: Foxtrick 코어의 정리 및 업데이트들이 앞으로의 관리 용이성을 증가시켰습니다. 이 변화는 수많은 페이지와 모듈 및 기능들에 해당합니다. 만약 버그를 찾으시면 저희에게 보고해주세요.
+      firefox_support: 이러한 작업의 결과로 다른 파이어 폭스의 애드온들과 상호운용성이 이제 더욱 좋아졌습니다. 새로운 파이어 폭스 멀티 프로세스 아키텍처를 위한 준비도 잘 진행되고 있습니다.
+      notifications: Foxtrick 알림을 클릭 하면 이제 새로운 탭에서 해당하는 페이지를 엽니다.
+      context_copy: '<module>ContextMenuCopy</module> 모듈이 더 많은 링크를 다루고 더욱 복잡한 HT-ML 마크업을 생성하기위해 개선되었습니다.'
+      training_week: PlayerStatsTrainingWeek 모듈이 Hattrick에 동일한 기능이 구현되어 제거되었습니다.
+      wage: '<module>ExtendedPlayerDetailsWage</module> 모듈에서 주급 통화 감지가 HT 변화에 더욱 잘 대응하기 위해 재작성되었습니다. 이 기능은 과거 중국 사용자들인 경우 고장이 났었습니다.'
+      mail_counter: '<module>NewMail</module> 모듈이 HT 디자인을 더욱 잘 대응하기 위해 재작성되었습니다.'
       and_more: 그 외에 작은 규모의 변화와 수정이 있었습니다.
     0.16.1.1:
       important: '<header>중요한 공지 사항</header>'

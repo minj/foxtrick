@@ -133,7 +133,7 @@
 			"words_translated": "14146"
 		},
 		{
-			"approved": "1850",
+			"approved": "1849",
 			"approved_progress": "78",
 			"code": "da",
 			"name": "Danish",
@@ -141,7 +141,7 @@
 			"translated": "2231",
 			"translated_progress": "97",
 			"words": "16371",
-			"words_approved": "12846",
+			"words_approved": "12830",
 			"words_translated": "15909"
 		},
 		{
@@ -378,11 +378,11 @@
 			"code": "ko",
 			"name": "Korean",
 			"phrases": "2255",
-			"translated": "2237",
-			"translated_progress": "97",
+			"translated": "2255",
+			"translated_progress": "100",
 			"words": "16371",
 			"words_approved": "0",
-			"words_translated": "15965"
+			"words_translated": "16371"
 		},
 		{
 			"approved": "0",
