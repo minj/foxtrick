@@ -67,10 +67,10 @@ html[dir="ltr"] #field #list img.specialty {
 	margin: 40px 0 0 2px !important;
 }
 
-html[dir="ltr"] #fieldplayers .cards_health > img, #fieldplayers  .ft-specialty > img {
+html[dir="ltr"] #fieldplayers .cards_health > img, #fieldplayers .ft-specialty-img {
 	float: right;
 }
-html[dir="rtl"] #fieldplayers .cards_health > img, #fieldplayers  .ft-specialty > img {
+html[dir="rtl"] #fieldplayers .cards_health > img, #fieldplayers .ft-specialty-img {
 	float: left;
 }
 

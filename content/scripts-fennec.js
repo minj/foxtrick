@@ -151,6 +151,7 @@ Foxtrick.loader.background.contentScriptManager = {
 		'information-aggregation/show-friendly-booked.js',
 		'information-aggregation/show-lineup-set.js',
 		'information-aggregation/skill-table.js',
+		'information-aggregation/specialty-info.js',
 		'information-aggregation/supporterstats-enhancements.js',
 		'information-aggregation/table-of-statistical-truth.js',
 		'information-aggregation/team-stats.js',

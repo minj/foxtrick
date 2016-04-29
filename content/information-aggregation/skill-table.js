@@ -683,12 +683,7 @@ Foxtrick.modules['SkillTable'] = {
 				speciality: function(cell, spec) {
 					var specIdx = Foxtrick.L10n.getNumberFromSpeciality(spec);
 					if (specIdx) {
-						var specImageUrl = Foxtrick.getSpecialtyImagePathFromNumber(specIdx);
-						Foxtrick.addImage(doc, cell, {
-							alt: spec,
-							title: spec,
-							src: specImageUrl,
-						});
+						Foxtrick.addSpecialty(cell, specIdx);
 					}
 					cell.setAttribute('index', spec);
 				},
