@@ -188,8 +188,12 @@ Foxtrick.modules['SpecialtyInfo'] = {
 		};
 
 		Foxtrick.addClass(parent, 'ft-specInfo-parent');
-		Foxtrick.onClick(parent, function() {
+		Foxtrick.onClick(parent, function(ev) {
 			activate();
+
+			// stop event to disable match order select
+			ev.preventDefault();
+			ev.stopPropagation();
 		});
 	},
 };
