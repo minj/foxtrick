@@ -182,8 +182,8 @@ Foxtrick.modules['TeamPopupLinks'] = {
 
 
 		var addSpan = function(aLink) {
-			if (Foxtrick.hasClass(aLink.parentNode, 'ft-popup-span')
-			    || Foxtrick.hasClass(aLink.parentNode.parentNode, 'ft-popup-list'))
+			if (Foxtrick.hasClass(aLink, 'ft-tpl')
+			    || Foxtrick.hasClass(aLink, 'ft-popup-list-link'))
 				return;
 
 			if ((aLink.href.search(/Club\/\?TeamID=/i) > -1 && aLink.href.search(/redir_to/i) === -1
@@ -268,6 +268,7 @@ Foxtrick.modules['TeamPopupLinks'] = {
 					                       linkByTeam, linkByUser, linkByUserName) {
 						var item = doc.createElement('li');
 						var link = doc.createElement('a');
+						link.className = 'ft-popup-list-link';
 						if (userName && userId && userId == userName.match(/\d+/))
 							userName = '';
 						if (isOwnTeam && ownLink)
