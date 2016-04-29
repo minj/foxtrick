@@ -83,7 +83,7 @@ Foxtrick.modules['SpecialtyInfo'] = {
 		var module = this;
 		var EVENT_UTIL = Foxtrick.util.matchEvent;
 
-		var addInfo = function(parent) {
+		var addInfo = function() {
 			var doc = parent.ownerDocument;
 
 			var infoContainer = Foxtrick.createFeaturedElement(doc, module, 'div');
@@ -167,20 +167,29 @@ Foxtrick.modules['SpecialtyInfo'] = {
 				}
 			}
 
+			var ancestor = parent.parentNode;
+			while (ancestor && !Foxtrick.hasClass(ancestor, 'position'))
+				ancestor = ancestor.parentNode;
+
+			if (ancestor) {
+				// match order field
+				parent = ancestor;
+			}
+
 			parent.appendChild(infoContainer);
 		};
 
-		var activate = function(parent) {
+		var activate = function() {
 			var info = parent.querySelector('.ft-specInfo');
 			if (info)
 				Foxtrick.toggleClass(info, 'ft-specInfo-active');
 			else
-				addInfo(parent);
+				addInfo();
 		};
 
 		Foxtrick.addClass(parent, 'ft-specInfo-parent');
 		Foxtrick.onClick(parent, function() {
-			activate(this);
+			activate();
 		});
 	},
 };
