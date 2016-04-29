@@ -580,7 +580,7 @@ Foxtrick.modules['StaffMarker'] = {
 					var href = a.href.replace(originRe, '');
 
 					if (!/^\/Club\/Manager\/\?userId\=/i.test(href) ||
-					    /redir_to_(\w+)=true/i.test(href))
+					    Foxtrick.hasClass(a, 'ft-popup-list-link'))
 						return;
 
 					var userName = a.title.trim();
