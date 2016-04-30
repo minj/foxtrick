@@ -543,8 +543,8 @@ Foxtrick.psico = {
 	getPrediction: function(playerskills, currTSI, currWAGE, age) {
 		var frm = playerskills[0];
 		var maxSkill = this.getMaxSkill(playerskills);
-		// halt if player is a Divine or Non - existent
-		if (playerskills[maxSkill] == 20 || playerskills[maxSkill] == 0) {
+		// halt if player is Non - existent
+		if (playerskills[maxSkill] === 0) {
 			return null;
 		}
 		var formAvg = 0;
