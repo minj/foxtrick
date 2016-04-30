@@ -13,12 +13,14 @@ cs:
       beta: 'Zvažte používání <linkFTBeta>betaverze Foxtricku</linkFTBeta>. Máte dříve k dispozici nové funkce, které nám můžete pomoci doladit.'
       support: '<header>Používáte Foxtrick? Můžete ho i různými způsoby <linkContribute>podpořit</linkContribute>.</header>'
       new: '<header>Nové moduly</header>'
+      spec_info: 'Modul <module>SpecialtyInfo</module> zobrazuje stručné informace o specialitě po kliknutí na ikonu speciality.'
       bugs: '<header>Opravy chyb</header>'
       tl_search_form: 'Opravili jsme chybu filtrování v modulu <module>TransferSearchResultFilters</module>, která skrývala všechny hráče na přestupové listině.'
       divine_skills: 'Přidání dovedností větších než Boží pokazilo v podstatě všechny CHPP aplikace včetně Foxtricku. Museli jsme dát znovu dokupy moduly <module>SkillTable</module>, <module>MatchOrderInterface</module>, <module>HTMSPoints</module>, <module>SkillColoring</module> a některé další.'
       opera_notifications: Oznámení Foxtricku v prohlížeči Opera by měly znovu fungovat.
       nt_weather: 'Modul <module>MatchWeather</module> jsme upravili aby fungoval i u mezinárodních zápasů.'
       nt_simulator: 'Seznam zápasů modulu <module>MatchSimulator</module> neukazoval správné zápasy u národních týmů. Tak jsme na tom zamakali a opravili to.'
+      chrome_styles: Změny v Google Chrome někdy způsobovaly chyby v css stylech nastavených Foxtrickem. Udělali jsme pár změn aby se to už neopakovalo.
       supporter_list: 'Modul <module>SupportersList</module> nejel když se vypnul modul <module>StaffMarker</module>. Chybu jsme opravili.'
       youth_promotes: 'Spravili jsme chybu která zobrazovala dny do přeřazení o jeden větší nebo menší v modulu <module>YouthPromotes</module>.'
       other: '<header>Ostatní změny</header>'

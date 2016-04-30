@@ -13,13 +13,23 @@ da:
       beta: 'Overvej at installer <linkFTBeta>Foxtrick beta</linkFTBeta> for at få nye funktioner tidligt, sådan at du kan være med til at påvirke udviklingen af nye features, og til at hjælpe med at finde og løse eventuelle problemer, der måtte opstå.'
       support: '<header>Støt Foxtrick via Flattr mikrodonationer eller giv et bidrag med Paypal <linkContribute>Donér</linkContribute>.</header>'
       new: '<header>Nye moduler</header>'
+      spec_info: '<module>SpecialtyInfo</module> viser en kortfattet beskrivelse af spillerspecialitet ved at klikke på specialitets ikonet.'
       bugs: '<header>Fejlrettelser</header>'
       tl_search_form: 'Grundet ændringer i browsere, var der nedbrud i Foxtricks formfilter i <module>TransferSearchResultFilters</module>. Dette resulterede i, at alle spillere på søgelisten forblev skjulte. Fejlen er nu udbedret.'
       divine_skills: 'Den seneste tilføjelse omkring visning af evner over guddommelige niveau, forårsagede nedbrud i alle CHPP applikationer, da Hattrick udviklere har været uopmærksom omkring emnet. FoxTrick var dermed ikke en undtagelse. Berørte moduler omfatter <module>SkillTable</module>, <module>MatchOrderInterface</module>, <module>HTMSPoints</module>, <module>SkillColoring</module> m.fl. Fejlene skulle nu være udbedret.'
       opera_notifications: Foxtricks notifikationer i Opera browseren var ramt af en fejl, som nu skulle være udbedret.
       nt_weather: 'Modulet <module>MatchWeather</module> havde en fejl for landsholdkampe og nogle andre tilfælde. Modulet blev omskrevet for at løse alle kendte problemer.'
       nt_simulator: 'Liste over kampe i <module>MatchSimulator</module> viste ikke de korrekte kampe for landshold. Dette skulle nu være udbedret.'
+      chrome_styles: På grund af en konkurrencetilstand, forårsaget af ændringer i Google Chrome browseren, kunne Foxtricks stilarter til tider være ud for et nedbrud. Der er fortaget foranstaltninger for at forsøge at forhindre sådanne problemer i fremtiden.
+      supporter_list: 'Modulet <module>SupportersList</module> holdt op med at virke, når <module>StaffMarker</module> var deaktiveret. Fejlen er nu udbedret.'
+      youth_promotes: 'Rettet en fejl i beregningen af tilbageværende dage, ifm. oprykning af en ungdomsspiller, i <module>YouthPromotes</module>.'
       other: '<header>Andre ændringer</header>'
+      performance_cache: Vi har arbejdet en del på at øge den samlede ydeevne af Foxtrick. CHPP og andre datakilder bør nu respondere hurtigere. Desuden er Foxtricks cache for disse datakilder også forbedret.
+      preferences_install: Foxtricks indstillinger indlæses hurtigere, især på Google Chrome. Installation og opdateringer bør nu også være hurtigere på Firefox.
+      backend: Vi har opdateret og ryddet op i Foxtricks centrale kerne for at øge fremtidige vedligeholdelsesevne. Ændringer påvirker en masse sider, moduller og funktioner. Du bedes rapportere eventuelle fejl.
+      firefox_support: Som et resultat af dette arbejde, skulle den indbyrdes kompatibilitet af Foxtrick med andre Firefox tilføjelser, nu være bedre. Forberedelser til den nye multi-proces arkitektur af Firefox browseren er også godt i gang.
+      notifications: Ved at klikke på Foxtricks notifikationer åbnes de relevante sider i en ny fane.
+      context_copy: 'Modulet <module>ContextMenuCopy</module> blev forbedret til at håndtere flere links og til at generere præcise HT-ML markeringer.'
       and_more: Forskellige små ændringer og rettelser.
     0.16.1.1:
       important: '<header>Vigtige meddelelser</header>'

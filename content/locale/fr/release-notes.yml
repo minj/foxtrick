@@ -13,6 +13,7 @@ fr:
       beta: "Vous pouvez envisager d'utiliser <linkFTBeta>Foxtrick beta</linkFTBeta> afin de voir en avant-première les nouvelles fonctionnalités, d'influencer leur développement et d'aider à trouver et corriger les problèmes qui peuvent survenir."
       support: "<header>Vous aimez ce que nous faisons ? S'il vous plaît <linkContribute>Support Foxtrick</linkContribute>.</header>"
       new: '<header>Nouveaux modules</header>'
+      spec_info: "<module>SpecialtyInfo</module> affiche un tableau comprenant tous les renseignements d'une spécialité en cliquant sur son icône."
       bugs: '<header>Correctifs</header>'
       tl_search_form: "Le filtrage avancé de FoxTrick par la forme dans <module>TransferSearchResultFilters</module> a été corrompu en raison d'une modification du navigateur. Cela masquait tous les joueurs dans les résultats de recherche de transfert. Le problème devrait maintenant être résolu."
       divine_skills: "L'ajout récent des caractéristiques de type divin + a eu des répercussions sur la majeure partie des applications CHPP en raison de la négligence de HT. FoxTrick n'a pas échappé à cette règle. Les modules affectés concernent <module>SkillTable</module>, <module>MatchOrderInterface</module>, <module>HTMSPoints</module>, <module>SkillColoring</module> ainsi que d'autres. Les soucis devraient maintenant être résolus."

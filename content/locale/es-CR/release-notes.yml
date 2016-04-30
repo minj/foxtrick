@@ -13,6 +13,7 @@ es-CR:
       beta: 'Por favor considera usar <linkFTBeta>Foxtrick beta</linkFTBeta> para obtener antes nuevas características, hacer sugerencias y para ayudar a encontrar y arreglar cualquier problema que pueda surgir.'
       support: '¿<header>Te gusta como lo estamos haciendo? Por favor <linkContribute>Ayuda Foxtrick</linkContribute>.</header>'
       new: '<header>Nuevos módulos</header>'
+      spec_info: '<module>SpecialtyInfo</module> muestra una tabla de información concisa de la especialidad, se activa al hacer clic en un icono de especialidad.'
       bugs: '<header>Corrección de errores</header>'
       tl_search_form: 'Filtro de forma de Foxtrick en <module>TransferSearchResultFilters</module> se rompió debido a los cambios en los navegadores. Esto escondía todos los jugadores en los resultados de la búsqueda de transferencias. Este problema está resuelto.'
       divine_skills: 'La reciente incorporación de niveles divino+ en habilidad rompió esencialmente todas las aplicaciones CHPP debido a negligencia de HT. Foxtrick no fue una excepción a esta regla. Módulos afectados incluyen <module>SkillTable</module>, <module>MatchOrderInterface</module>, <module>HTMSPoints</module>, <module>SkillColoring</module> y otros. Los problemas están solucionados.'

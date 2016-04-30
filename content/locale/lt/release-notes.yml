@@ -8,12 +8,31 @@ lt:
     0.17.0:
       important: '<header>Svarbūs pranešimai</header>'
       crowdin: '<header>Daugybė vertimo atnaujinimų. Dėkojame savo šauniems vartotojams, kurie naudojasi <linkCrowdin>crowdin portalu</linkCrowdin>. Ir Jūs galite prisidėti!</header>'
+      browsers: Dėl techninių priežasčių „Firefox“ v38, „Google Chrome“ v39 ir „Opera“ v26 nuo šiol yra seniausios oficialiai palaikomos naršyklių versijos. Visgi dėl savo pačių saugumo turėtumėte visada naudoti naujausią naršyklės versiją.
       safari_cert: 'Ieškome Hattrick bendruomenės narių, kurie kurtų iOS ar OSX programėles. Reikia pagalbos sutvarkant Foxtrick palaikymą Safari naršyklės naudotojams. Daugiau informacijos rasite <linkSafariCertBug>Foxtrick klaidų seklyje</linkSafariCertBug>.'
       beta: 'Siūlome išmėgint <linkFTBeta>Foxtrick beta</linkFTBeta> versiją: galėsite pirmieji išmėginti naująsias funkcijas, paveikti jų kūrimo procesą ir pagelbėti randant bei sutaisant iškylančius keblumus.'
       support: '<header>Patinka šis projektas? Prašome <linkContribute>pagelbėti Foxtrick</linkContribute>.</header>'
       new: '<header>Nauji moduliai</header>'
+      spec_info: '<module>SpecialtyInfo</module>: spustelėjus ant specialybės piktogramos rodoma nedidelė informacinė lentelė.'
       bugs: '<header>Pataisytos klaidos</header>'
+      tl_search_form: '<module>TransferSearchResultFilters</module> formos filtras buvo sugedęs dėl naršyklių pakitimų. Dėl to paslepiami visi žaidėjai sandorių rinkos paieškos rezultatų puslapyje. Problema turėtų būti sutvarkyta.'
+      divine_skills: 'Dėl HT programuotojų aplaidumo neseniai atsiradusi informacija apie aukštesnius nei dieviškas įgūdžius sutrikdė iš esmės visų CHPP programų veiklą. Foxtrick – ne išimtis. Paveikti moduliai: <module>SkillTable</module>, <module>MatchOrderInterface</module>, <module>HTMSPoints</module>, <module>SkillColoring</module> ir kiti. Problemos turėtų būti sutvarkytos.'
+      opera_notifications: Sutaisyti Foxtrick pranešimai „Opera“ naršyklėje.
+      nt_weather: '<module>MatchWeather</module> nustojo veikti nacionalinių rinktinių rungtynių puslapyje ir kitais retais atvejais. Modulis perrašytas ir problemos turėtų išnykti.'
+      nt_simulator: 'Sutvarkytas nacionalinių rinktinių trenerių <module>MatchSimulator</module> rungtynių sąrašas.'
+      chrome_styles: Foxtrick dizainais kartais sutrikdavo „Google Chrome“ dėl naršyklės pakeitimų susidarius nepastoviai priedėlio veiklai. Imtasi priemonių tokių problemų prevencijai įgyvendinti.
+      supporter_list: '<module>SupportersList</module> nustodavo veikti, jei <module>StaffMarker</module> buvo išjungtas. Nekorektiška sąveika panaikinta.'
+      youth_promotes: 'Sutaisyta <module>YouthPromotes</module> klaida, dėl kurios kai kurių jaunių aukštinimo data būdavo apskaičiuojama su vienos dienos paklaida.'
       other: '<header>Kiti pakeitimai</header>'
+      performance_cache: Daug nuveikta bendram Foxtrick našumui padidinti. CHPP ir kiti duomenys nuo šiol turėtų būti pasiekiami greičiau ir su mažiau trukdžių. Taip pat pagerintas Foxtrick podėlis.
+      preferences_install: Foxtrick nustatymų puslapių nuo šiol turėtų greičiau užsikrauti, ypač naudojant „Google Chrome“ naršyklę. Taip pat paspartėjo priedėlio ir jo atnaujinimų įdiegimas „Firefox“ naudotojams.
+      backend: Toliau vykdomas Foxtrick branduolio valymas ir atnaujinimas. Tai palengvina priedėlio priežiūrą ateityje. Pokyčiai galėjo paveikti daug puslapių, modulių ir jų funkcijų. Prašome pranešti apie Jūsų rastas klaidas ir sutrikimus.
+      firefox_support: Dėl šios veiklos pagerėjo Foxtrick suderinamumas su kitais Firefox priedėliais. Taip pat įpusėtas pasiruošimas naujajai Firefox kelių procesų architektūrai.
+      notifications: Spustelėjus ant Foxtrick pranešimų atitinkamas puslapis turėtų atsidaryti naujame skirtuke.
+      context_copy: '<module>ContextMenuCopy</module> modulis pagerintas, kad teisingai nustatytų daugiau Hattrick nuorodų ir sugeneruotų tikslesnį HT-ML kodą (forumams).'
+      training_week: PlayerStatsTrainingWeek modulis panaikintas, nes Hattrick atsirado ta pati funkcija.
+      wage: 'Perrašytas <module>ExtendedPlayerDetailsWage</module> atlyginimo valiutos nustatymas. Modulis turėtų būti atsparesnis HT pokyčiams. Ši funkcija buvo sutrikusi žaidžiantiems Kinijoje.'
+      mail_counter: '<module>NewMail</module> perrašytas, kad būtų atsparesnis HT dizaino pokyčiams.'
       and_more: Daugybė kitų smulkių pataisymų ir pakitimų.
     0.16.1.1:
       important: '<header>Svarbūs pranešimai</header>'
