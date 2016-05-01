@@ -20,7 +20,7 @@ da:
       opera_notifications: Foxtricks notifikationer i Opera browseren var ramt af en fejl, som nu skulle være udbedret.
       nt_weather: 'Modulet <module>MatchWeather</module> havde en fejl for landsholdkampe og nogle andre tilfælde. Modulet blev omskrevet for at løse alle kendte problemer.'
       nt_simulator: 'Liste over kampe i <module>MatchSimulator</module> viste ikke de korrekte kampe for landshold. Dette skulle nu være udbedret.'
-      chrome_styles: På grund af en konkurrencetilstand, forårsaget af ændringer i Google Chrome browseren, kunne Foxtricks stilarter til tider være ud for et nedbrud. Der er fortaget foranstaltninger for at forsøge at forhindre sådanne problemer i fremtiden.
+      chrome_styles: På grund af en konkurrencetilstand, forårsaget af ændringer i Google Chrome browseren, kunne Foxtricks stilarter til tider være ud for et nedbrud. Der er foretaget foranstaltninger for at forsøge at forhindre sådanne problemer i fremtiden.
       supporter_list: 'Modulet <module>SupportersList</module> holdt op med at virke, når <module>StaffMarker</module> var deaktiveret. Fejlen er nu udbedret.'
       youth_promotes: 'Rettet en fejl i beregningen af tilbageværende dage, ifm. oprykning af en ungdomsspiller, i <module>YouthPromotes</module>.'
       other: '<header>Andre ændringer</header>'
@@ -30,6 +30,9 @@ da:
       firefox_support: Som et resultat af dette arbejde, skulle den indbyrdes kompatibilitet af Foxtrick med andre Firefox tilføjelser, nu være bedre. Forberedelser til den nye multi-proces arkitektur af Firefox browseren er også godt i gang.
       notifications: Ved at klikke på Foxtricks notifikationer åbnes de relevante sider i en ny fane.
       context_copy: 'Modulet <module>ContextMenuCopy</module> blev forbedret til at håndtere flere links og til at generere præcise HT-ML markeringer.'
+      training_week: Modulet PlayerStatsTrainingWeek er fjernet fordi Hattrick har fået implementeret samme feature.
+      wage: 'Registrering af valuta ifm. spillerløn i <module>ExtendedPlayerDetailsWage</module> er omskrevet, for at gøre den mere holdbar i forhold til ændringer i Hattrick. Funktionen har før været nede for kinesiske brugere.'
+      mail_counter: 'Modulet <module>NewMail</module> er omskrevet for at gøre den mere holdbar i forhold til ændringer i Hattrick.'
       and_more: Forskellige små ændringer og rettelser.
     0.16.1.1:
       important: '<header>Vigtige meddelelser</header>'
@@ -92,7 +95,19 @@ da:
       twitter: 'Du kan følge <linkTwitter>Foxtrick på Twitter</linkTwitter> for at modtage de seneste nyheder, opdateringer og meddelelser.'
       bugs: '<header>Fejlrettelser</header>'
       youth_avatars: 'Manglende avatarer for ungdomsspillere er nu rettet i <module>MatchOrderInterface</module>.'
+      preserve_changes: 'Modulet <module>MatchRatingsTweaks</module> beholder nu de seneste ændringer i rating-bidrag i løbet af live-kampe. I de tidligere versioner, forsvandt ændringer i ratings - de farvede tal - efter hver opdatering, selvom opdateringen havde ingen effekt på ratings.'
+      leave_forum: 'Modulet <module>ForumLeaveButton</module> fungerede ikke efter hensigten og bør nu være i orden.'
+      monitor_cups: 'Modulet <module>MyMonitor</module> viser nu de korrekte ikoner for sekundær pokaler.'
       other: '<header>Andre ændringer</header>'
+      volume: 'Du kan nu justere lydstyrken for Foxtricks komponenter i <FTlinkMainTab> generelle indstillinger</FTlinkMainTab>.'
+      mlt_upgrade: 'Modulet <module>MatchLineupTweaks</module> bør nu vise spillerenes trøjenummer på opstillingssiden for spillede kampe. Derudover, vil du se en konditionsprognose - hvis den er tilgængelig- når du holder musen over søjlen for kondition.'
+      mrt_ratings: 'Modulet <module>Ratings</module> er integreret i <module>MatchRatingsTweaks</module> og har nu en begrænset funktionalitet i HT-Live (kun for supportere).'
+      copy_ratings: 'Modulet <module>CopyRatings</module> er omstruktureret og kan nu kopiere ratings separat, for spillede- og live-kampe, i de forskellige minutter under fanen ratings.'
+      monitor_update: 'Modulet <module>MyMonitor</module> er nu i stand til at sorter holdene mere intelligent og kan desuden tilføje kampe til HT-live afhængig af kamptype.'
+      promote_age: 'Modulet <module>YouthPromotes</module> viser nu spillerenes alder på dagen, hvor de kan rykkes op til seniorholdet.'
+      export_live: 'Der er tilføjet et link i <module>ReLiveLinks</module> til, at du nu kan eksporter dine live-kampe.'
+      match_icons: 'Der er tilføjer yderligere ikoner for kamphændelser i modulet <module>MatchReportFormat</module>. Alle vigtige hændelser bør nu være omfattet.'
+      retro_cups: 'Retro ikoner for pokaler blev tilføjet for nye pokaltyper i <module>CustomMedals</module>.'
       and_more: Forskellige små ændringer og rettelser.
     0.15.1:
       bugs: '<header>Fejlrettelser</header>'

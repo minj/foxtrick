@@ -13,6 +13,7 @@ sv-SE:
       beta: 'Vänligen överväg att använda <linkFTBeta>Foxtrick beta</linkFTBeta> för att dels få nya funktioner i ett tidigt skede, dels kunna påverka dess vidare utveckling samt för att hjälpa oss att fixa de ev. problem som ibland går hand i hand med nya funktioner.'
       support: '<header>Gillar du vad vi gör? Vänligen <linkContribute>Stöd Foxtrick</linkContribute>.</header>'
       new: '<header>Nya moduler</header>'
+      spec_info: '<module>SpecialtyInfo</module> visar en kortfattad informationstabell om aktuell specialitet genom att klicka på en specialitetsikon.'
       bugs: '<header>Buggfixar</header>'
       tl_search_form: 'Foxtricks formfilter, under i avancerat filter, i <module>TransferSearchResultFilters</module> slutade att fungera som den skulle p.g.a. ändringar i webbläsaren. Detta gjorde att alla spelare i sökresultatet var dolda. Detta ska nu vara fixat.'
       divine_skills: 'Det senaste tillskottet av förmågor gudomlig+ hade sönder i stort sett alla CHPP-applikationer p.g.a. försumlighet från HTs sida. Foxtrick var inget undantag från denna regel. Bland de moduler som drabbades fanns <module>SkillTable</module>, <module>MatchOrderInterface</module>, <module>HTMSPoints</module>, <module>SkillColoring</module> och en del andra. Detta ska nu också äntligen vara löst.'

@@ -8,12 +8,31 @@ pt-PT:
     0.17.0:
       important: '<header>Avisos Importantes</header>'
       crowdin: '<header>Várias atualizações nas traduções dos nossos utilizadores incríveis usando a ferramenta <linkCrowdin>Crowdin</linkCrowdin>. Venha daí, também pode ajudar!</header>'
+      browsers: Devido a razoes técnicas Firefox v38, Google Chrome v39 and Opera v26 são agora oficialmente os mínimos browsers suportados. No entanto, para sua segurança devera usar sempre a versão mais recente.
       safari_cert: 'Estamos à procura de alguém na comunidade Hattrick que desenvolva aplicações para iOS ou OSX para ajudar a que voltemos a suportar utilizadores do Safari. Veja o nosso <linkSafariCertBug>rastreador de problemas</linkSafariCertBug> para mais informações.'
       beta: 'Por favor considere usar <linkFTBeta>Foxtrick beta</linkFTBeta> para ter as novas funcionalidades mais cedo, para influenciar o seu desenvolvimento e ajudar a encontrar e corrigir problemas que possam existir.'
       support: '<header>Gosta do que estamos a fazer? Por favor <linkContribute>apoie</linkContribute> o FoxTrick.</header>'
       new: '<header>Módulos novos</header>'
+      spec_info: '<module>SpecialtyInfo</module> mostra uma tabela de informação da especialidade tendo clicado num ícone de especialidade.'
       bugs: '<header>Correções de Erros</header>'
+      tl_search_form: 'O formulário do filtro Foxtrick em <module>TransferSearchResultFilters</module> nao funcionava devido a mudanças do browser. Isto ocultaria todos os jogadores na pesquisa de transferências. O problema deve agora estar corrigido.'
+      divine_skills: 'A recente adição de características com nível divino+ criou problemas essencialmente em todas aplicações CHPP por negligência do HT. Foxtrick nao foi uma exceção a esta regra. Módulos afetados incluem <module>SkillTable</module>, <module>MatchOrderInterface</module>, <module>HTMSPoints</module>, <module>SkillColoring</module> entre outros. O problema deve agora estar resolvido.'
+      opera_notifications: As notificações Foxtrick nao funcionavam no browser Opera e devem agora estar corrigidas.
+      nt_weather: '<module>MatchWeather</module> não funcionava para jogos NT e outros casos. O modulo foi reescrito para corrigir todos os problemas conhecidos.'
+      nt_simulator: '<module>MatchSimulator</module> lista de jogos não mostrava os jogos corretos para equipas NT. Deve agora estar corrigido.'
+      chrome_styles: Estilos Foxtrick podiam algumas vezes apresentar problemas no Google Chrome devido a uma rara condição causada por mudanças no browser. Foram tomadas medidas para tentar evitar situações semelhantes no futuro.
+      supporter_list: '<module>SupportersList</module> deixava de funcionar se <module>StaffMarker</module> estivesse desativado. A interação incorreta deve agora estar corrigida.'
+      youth_promotes: 'Corrigido um erro no calculo de dias restantes em <module>YouthPromotes</module>.'
       other: '<header>Outras alterações</header>'
+      performance_cache: Muito empenho colocado em melhorar a performance em geral do Foxtrick. CHPP e outras fontes de dados devem agora ser mais rápidas. A cache do Foxtrick para esses recursos foi também melhorada.
+      preferences_install: As preferências do Foxtrick devem agora carregar mais rápido, especialmente no Google Chrome. Instalação e atualização devem também estar mais rápidas no Firefox.
+      backend: Mais limpeza e atualizações no core do Foxtrick foram feitas para aumentar sustentabilidade futura. As mudanças afetam imensas paginas, módulos e funções. Por favor reporte alguma falha encontrada.
+      firefox_support: Como resultados destes trabalhos inter-operabilidade com outros extras do Firefox deve agora estar melhorada. Preparações para nova arquitetura multi-processo do Firefox estão também bem encaminhadas.
+      notifications: Clicar nas notificações Foxtrick deve agora abrir a página relevante num novo separador.
+      context_copy: '<module>ContextMenuCopy</module> foi melhorado para lidar com mais ligações e gerar um marcador HT-ML mais preciso.'
+      training_week: Módulo PlayerStatsTrainingWeek foi removido porque o Hattrick implementou a mesma característica.
+      wage: 'A deteção da moeda dos salários foi reescrita em <module>ExtendedPlayerDetailsWage</module> para a tornar mais robusta perante mudanças do HT. A função estava anteriormente com problemas para utilizadores na China.'
+      mail_counter: '<module>NewMail</module> foi reescrito para ser mais robusto perante mudanças do design do HT.'
       and_more: Diversas pequenas correções e alterações.
     0.16.1.1:
       important: '<header>Avisos Importantes</header>'

@@ -13,6 +13,7 @@ ca:
       beta: 'Per favor utilitzeu <linkFTBeta>la versió beta de Foxtrick</linkFTBeta> per a obtenir noves característiques des del principi, influir en el seu desenvolupament i ajudar a trobar i solucionar qualsevol problema que pugui sorgir.'
       support: "¿<header>T'agrada com ho estem fent? Si us plau <linkContribute>Foxtrick suport</linkContribute>.</header>"
       new: '<header>Mòduls nous</header>'
+      spec_info: "<module>SpecialtyInfo</module> Visualitza una taula d'informació concisa de l'especialitat s'activa fent clic en una icona de l'especialitat."
       bugs: "<header>Correccions d'errors</header>"
       tl_search_form: 'Filtre de forma Foxtrick en <module>TransferSearchResultFilters</module> va trencar a causa de canvis de navegador. Això vols amagar tots els jugadors en els resultats de cerca de transferència. Ara això serà solventat el problema.'
       divine_skills: "Addició recent de diví + pantalla habilitat trencava essencialment totes les aplicacions CHPP per culpa d'HT. Foxtrick no era una excepció a aquesta regla. Mòduls afectats inclouen <module>SkillTable</module>, <module>MatchOrderInterface</module>, <module>HTMSPoints</module>, <module>SkillColoring</module> i altres. Les qüestions ara hauria de ser resolt."
