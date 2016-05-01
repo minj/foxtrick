@@ -25,7 +25,7 @@ lt:
       youth_promotes: 'Sutaisyta <module>YouthPromotes</module> klaida, dėl kurios kai kurių jaunių aukštinimo data būdavo apskaičiuojama su vienos dienos paklaida.'
       other: '<header>Kiti pakeitimai</header>'
       performance_cache: Daug nuveikta bendram Foxtrick našumui padidinti. CHPP ir kiti duomenys nuo šiol turėtų būti pasiekiami greičiau ir su mažiau trukdžių. Taip pat pagerintas Foxtrick podėlis.
-      preferences_install: Foxtrick nustatymų puslapių nuo šiol turėtų greičiau užsikrauti, ypač naudojant „Google Chrome“ naršyklę. Taip pat paspartėjo priedėlio ir jo atnaujinimų įdiegimas „Firefox“ naudotojams.
+      preferences_install: Foxtrick nustatymų puslapis nuo šiol turėtų greičiau užsikrauti, ypač naudojant „Google Chrome“ naršyklę. Taip pat paspartėjo priedėlio ir jo atnaujinimų įdiegimas „Firefox“ naudotojams.
       backend: Toliau vykdomas Foxtrick branduolio valymas ir atnaujinimas. Tai palengvina priedėlio priežiūrą ateityje. Pokyčiai galėjo paveikti daug puslapių, modulių ir jų funkcijų. Prašome pranešti apie Jūsų rastas klaidas ir sutrikimus.
       firefox_support: Dėl šios veiklos pagerėjo Foxtrick suderinamumas su kitais Firefox priedėliais. Taip pat įpusėtas pasiruošimas naujajai Firefox kelių procesų architektūrai.
       notifications: Spustelėjus ant Foxtrick pranešimų atitinkamas puslapis turėtų atsidaryti naujame skirtuke.
