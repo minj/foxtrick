@@ -118,7 +118,7 @@ CONTENT_FILES_SAFARI = $(CONTENT_FILES) background.html \
 BACKGROUND_LIBS = \
 	jquery.js
 
-all: firefox chrome safari
+all: firefox chrome
 
 firefox:
 	#
