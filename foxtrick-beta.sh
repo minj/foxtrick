@@ -7,6 +7,7 @@ DIR=$(cd $(dirname $0); pwd)
 cd "$DIR/../$BETA" || log "Cannot cd to $BETA"
 
 git stash
+git checkout master || log "Cannot checkout master"
 git pull --rebase || log "Cannot git pull rebase"
 cd maintainer || log "Cannot cd to maintainer"
 #./crowdin-upload.sh || echo "Cannot upload external translations"
