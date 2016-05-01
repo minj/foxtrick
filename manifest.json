@@ -19,25 +19,25 @@
 	},
 	"content_scripts" : [ {
 		"js" : [
-			//<!-- essential -->
+			// <!-- essential -->
 			"content/env.js",
 			"content/prefs-util.js",
 			"content/l10n.js",
 			"content/xml-load.js",
 			"content/pages.js",
 
-			//<!-- ext-lib -->
+			// <!-- ext-lib -->
 			"content/lib/oauth.js",
 			"content/lib/sha1.js",
 			"content/lib/PluralForm.js",
-			"content/lib/FileSaver.js",
 			"content/lib/psico.js",
 			"content/lib/integration.js",
-			//<!-- end ext-lib -->
+			// <!-- end ext-lib -->
 
-			//<!-- util -->
+			// <!-- util -->
 			"content/util/api.js",
 			"content/util/array.js",
+			"content/util/async.js",
 			"content/util/color.js",
 			"content/util/cookies.js",
 			"content/util/copy-button.js",
@@ -65,9 +65,9 @@
 			"content/util/string.js",
 			"content/util/tabs.js",
 			"content/util/time.js",
-			//<!-- end util -->
+			// <!-- end util -->
 
-			//<!-- page-util -->
+			// <!-- page-util -->
 			"content/pages/all.js",
 			"content/pages/match.js",
 			"content/pages/matches.js",
@@ -76,9 +76,9 @@
 			"content/pages/series.js",
 			"content/pages/transfer-search-results.js",
 			"content/pages/youth-player.js",
-			//<!-- end page-util -->
+			// <!-- end page-util -->
 
-			//<!-- api-util -->
+			// <!-- api-util -->
 			"content/api/hy/common.js",
 			"content/api/hy/matches-report.js",
 			"content/api/hy/matches-training.js",
@@ -90,9 +90,9 @@
 			"content/api/pastebin/get.js",
 			"content/api/pastebin/login.js",
 			"content/api/pastebin/paste.js",
-			//<!-- end api-util -->
+			// <!-- end api-util -->
 
-			//<!-- core -->
+			// <!-- core -->
 			"content/add-class.js",
 			"content/core.js",
 			"content/fix-links.js",
@@ -100,9 +100,9 @@
 			"content/read-ht-prefs.js",
 			"content/redirections.js",
 			"content/ui.js",
-			//<!-- end core -->
+			// <!-- end core -->
 
-			//<!-- categorized modules -->
+			// <!-- categorized modules -->
 			"content/access/aria-landmarks.js",
 			"content/alert/live-alert.js",
 			"content/alert/new-mail.js",
@@ -154,6 +154,7 @@
 			"content/information-aggregation/show-friendly-booked.js",
 			"content/information-aggregation/show-lineup-set.js",
 			"content/information-aggregation/skill-table.js",
+			"content/information-aggregation/specialty-info.js",
 			"content/information-aggregation/supporterstats-enhancements.js",
 			"content/information-aggregation/table-of-statistical-truth.js",
 			"content/information-aggregation/team-stats.js",
@@ -221,7 +222,6 @@
 			"content/presentation/old-style-face.js",
 			"content/presentation/original-face.js",
 			"content/presentation/personality-images.js",
-			"content/presentation/player-stats-training-week.js",
 			"content/presentation/ratings-display.js",
 			"content/presentation/safe-for-work.js",
 			"content/presentation/simple-presentation.js",
@@ -254,9 +254,9 @@
 			"content/shortcuts-and-tweaks/transfer-history-filters.js",
 			"content/shortcuts-and-tweaks/transfer-search-filters.js",
 			"content/shortcuts-and-tweaks/transfer-search-result-filters.js",
-			//<!-- end categorized modules -->
+			// <!-- end categorized modules -->
 
-			//<!-- platform-specific -->
+			// <!-- platform-specific -->
 			"content/entry.js",
 			"content/loader-chrome.js"
 		],
@@ -278,7 +278,7 @@
 		"48" : "skin/icon-48.png",
 		"128" : "skin/icon-128.png"
 	},
-	"name" : "FoxTrick",
+	"name" : "Foxtrick",
 	"permissions" : [
 		"cookies",
 		"contextMenus",
@@ -304,11 +304,11 @@
 	],
 	"page_action": {
 		"default_icon": "skin/icon-24.png",
-		"default_title": "FoxTrick enabled",
+		"default_title": "Foxtrick enabled",
 		"default_popup": "content/popup.html"
 	},
 	"options_page" : "content/preferences.html",
 	"homepage_url": "https://www.foxtrick.org/",
 	"update_url" : "https://www.foxtrick.org/nightly/chrome/update.xml",
-	"version" : "0.16.9"
+	"version" : "0.16.11"
 }

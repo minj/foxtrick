@@ -3,9 +3,18 @@ fi:
   versions:
     beta:
       note_0: 'Tämä on uuden versiomme beta-versio. Olisitko ystävällinen, ja auttaisit meitä kääntämään versiota todella helpossa palvelussamme <linkCrowdin>crowdin.net</linkCrowdin>. '
-    0.16.0:
+    0.17.0:
       crowdin: '<header>Paljon käännöspäivityksiä mahtavilta <linkCrowdin>crowdin-työkalua</linkCrowdin> käyttäviltä käyttäjiltämme. Sinäkin voit auttaa!</header>'
       other: '<header>Muita muutoksia</header>'
+    0.16.1:
+      crowdin: '<header>Paljon käännöspäivityksiä mahtavilta <linkCrowdin>crowdin-työkalua</linkCrowdin> käyttäviltä käyttäjiltämme. Sinäkin voit auttaa!</header>'
+      bugs: '<header>Bugien korjaukset</header>'
+      other: '<header>Muita muutoksia</header>'
+    0.16.0:
+      crowdin: '<header>Paljon käännöspäivityksiä mahtavilta <linkCrowdin>crowdin-työkalua</linkCrowdin> käyttäviltä käyttäjiltämme. Sinäkin voit auttaa!</header>'
+      bugs: '<header>Bugien korjaukset</header>'
+      other: '<header>Muita muutoksia</header>'
+      and_more: Monia muita pieniä muutoksia ja korjauksia.
     0.15.2.1:
       other: '<header>Muita muutoksia</header>'
     0.15.2:

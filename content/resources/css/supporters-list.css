@@ -2,6 +2,19 @@
 #ctl00_ctl00_CPContent_CPMain_pnlSupportedTeams td {
 	vertical-align: inherit !important;
 }
-.ft-supporter, .ft-supported {
-	vertical-align: middle;
+
+/* duplicating StaffMarker styling in case it is disabled */
+.ft-staff-icon {
+	width: 18px;
+	height: 16px;
+	background-position: 50% 50%;
+	vertical-align: top !important;
+	background-repeat: no-repeat;
+}
+.ft-staff-icon.ft-staff-supported {
+	background-image: url("chrome://foxtrick/content/resources/img/staff/supported.png");
+}
+
+.ft-staff-icon.ft-staff-supporter {
+	background-image: url("chrome://foxtrick/content/resources/img/staff/supporter.png");
 }

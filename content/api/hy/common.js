@@ -60,7 +60,7 @@ Foxtrick.api.hy._buildParams = function(callback, params, teamId) {
 	params = params ? params + '&' : '';
 	params += 'teamId=' + teamId;
 	params += '&app=foxtrick';
-	params += '&version=' + Foxtrick.version();
+	params += '&version=' + Foxtrick.version;
 	var identifier = teamId + '_' + new Date().getTime();
 	params += '&identifier=' + identifier;
 	params += '&hash=' + Foxtrick.encodeBase64('foxtrick_' + teamId + '_' + identifier);
@@ -69,7 +69,7 @@ Foxtrick.api.hy._buildParams = function(callback, params, teamId) {
 };
 
 /** @type {Number}	The number of hours to back of if HY is in trouble */
-Foxtrick.api.hy.ignoreHours = 24;
+Foxtrick.api.hy.ignoreHours = Foxtrick.util.time.HOURS_IN_DAY;
 
 /**
  * A generic low-level localStore cache wrapper with Cookie support
@@ -89,7 +89,7 @@ Foxtrick.api.hy.ignoreHours = 24;
  */
 Foxtrick.api.hy._fetchViaCache = function(cacheDays, api, params, fetch,
 										  callback, failure, finalize, teamId) {
-	var now = new Date().valueOf();
+	var now = Foxtrick.modules.Core.HT_TIME;
 	// this produces a valid UNIX timestamp that can be compared to HY
 	if (typeof(teamId) == 'undefined' || teamId === null)
 		teamId = Foxtrick.modules.Core.TEAM.teamId;
@@ -130,7 +130,7 @@ Foxtrick.api.hy._fetchViaCache = function(cacheDays, api, params, fetch,
 		if (data !== null) {
 			Foxtrick.localGet('YouthClub.' + teamId + '.' + api + '.fetchTime',
 			  function(fetchTime) {
-				var lifeTime = fetchTime + cacheDays * 24 * 60 * 60 * 1000;
+				var lifeTime = fetchTime + cacheDays * Foxtrick.util.time.MSECS_IN_DAY;
 				if (lifeTime > now) {
 					Foxtrick.cookieGet('from_hty',
 					  function(cookie) {
@@ -192,7 +192,7 @@ Foxtrick.api.hy._fetchOrIgnore = function(api, url, params,
 		var now = Foxtrick.modules.Core.HT_TIME + 59000;
 		if (now > ignored) {
 			buildParams(function(params) {
-				Foxtrick.util.load.async(url,
+				Foxtrick.util.load.fetch(url,
 				  function(response, status) {
 					switch (status) {
 						case 0:
@@ -204,7 +204,7 @@ Foxtrick.api.hy._fetchOrIgnore = function(api, url, params,
 							Foxtrick.log('[HY_API][' + api + '] Success', status);
 							break;
 						case 503:
-							var ignoreUntil = now + ignoreHours * 60 * 60 * 1000;
+							var ignoreUntil = now + ignoreHours * Foxtrick.util.time.MSECS_IN_HOUR;
 							Foxtrick.localSet('YouthClub.ignoreUntil', ignoreUntil);
 							Foxtrick.log('[HY_API][' + api + '] Failure', status, response);
 							Foxtrick.log('[HY_API] No requests for ' +

@@ -20,7 +20,13 @@ Foxtrick.modules['LinksEconomy'] = {
 	},
 
 	run: function(doc) {
-		Foxtrick.util.links.run(doc, this);
+		var module = this;
+
+		Foxtrick.util.currency.detect(doc).then(function() {
+			Foxtrick.util.links.run(doc, module);
+		}).catch(function(reason) {
+			Foxtrick.log('WARNING: currency.detect aborted:', reason);
+		});
 	},
 
 	links: function(doc) {
@@ -46,5 +52,5 @@ Foxtrick.modules['LinksEconomy'] = {
 			currency: currencySymbol,
 		};
 		return { info: info };
-	}
+	},
 };

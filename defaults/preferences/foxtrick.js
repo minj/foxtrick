@@ -1,6 +1,6 @@
 pref("extensions.foxtrick.prefs.CopyPostingStyle", "ht-ml");
 pref("extensions.foxtrick.prefs.copyratings.teams", "both");
-pref("extensions.foxtrick.prefs.version", "0.16.9");
+pref("extensions.foxtrick.prefs.version", "0.16.11");
 pref("extensions.foxtrick.prefs.branch", "dev");
 pref("extensions.foxtrick.prefs.disableOnStage", false);
 pref("extensions.foxtrick.prefs.disableTemporary", false);
@@ -331,7 +331,6 @@ pref("extensions.foxtrick.prefs.module.PlayerPositionsEvaluations.LoyaltyAndMCBI
 pref("extensions.foxtrick.prefs.module.PlayerPositionsEvaluations.BruisedIncluded.enabled", true);
 pref("extensions.foxtrick.prefs.module.PlayerStatsExperience.enabled", true);
 pref("extensions.foxtrick.prefs.module.PlayerStatsExperience.AlwaysShowAll.enabled", true);
-pref("extensions.foxtrick.prefs.module.PlayerStatsTrainingWeek.enabled", true);
 pref("extensions.foxtrick.prefs.module.PsicoTSI.enabled", true);
 pref("extensions.foxtrick.prefs.module.PsicoTSI.showOnLeft.enabled", false);
 pref("extensions.foxtrick.prefs.module.PsicoTSI.hideUnderSkills.enabled", true);
@@ -594,12 +593,14 @@ pref("extensions.foxtrick.prefs.module.SkillTable.youth.own.Set_pieces", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.youth.own.SkillTableHide", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.youth.own.Speciality", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.youth.own.Status", true);
+pref("extensions.foxtrick.prefs.module.SkillTable.youth.own.TwinLink", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.youth.own.Winger", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.youth.own.CanBePromotedIn", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.youth.own.JoinedSince", true);
 pref("extensions.foxtrick.prefs.module.SkillTranslation.enabled", true);
 pref("extensions.foxtrick.prefs.module.SkinPlugin.enabled", false);
 pref("extensions.foxtrick.prefs.module.SkinPlugin.skin", "");
+pref("extensions.foxtrick.prefs.module.SpecialtyInfo.enabled", true);
 pref("extensions.foxtrick.prefs.module.StaffMarker.enabled", true);
 pref("extensions.foxtrick.prefs.module.StaffMarker.officials.enabled", true);
 pref("extensions.foxtrick.prefs.module.StaffMarker.editor.enabled", true);
@@ -614,6 +615,7 @@ pref("extensions.foxtrick.prefs.module.StaffMarker.own_text", "{\"1001\" : \"col
 pref("extensions.foxtrick.prefs.module.StaffMarker.forumInterface.enabled", true);
 pref("extensions.foxtrick.prefs.module.SupportershipExpirationDate.enabled", true);
 pref("extensions.foxtrick.prefs.module.SupportersList.enabled", true);
+pref("extensions.foxtrick.prefs.module.SupportersList.Series.enabled", true);
 pref("extensions.foxtrick.prefs.module.SupportersList.SupporterBack.enabled", true);
 pref("extensions.foxtrick.prefs.module.SupportersList.SupportedBack.enabled", true);
 pref("extensions.foxtrick.prefs.module.SupporterStatsEnhancements.enabled", true);

@@ -61,7 +61,8 @@ def upload(driver, path):
         '(function() {'
         'var input = document.querySelector("#cx-dev-upload-form input");'
         'input.style.visibility="visible";'
-        'input.style.height = "50px";'
+        'input.style.position = "initial";'
+        'input.style.height = "initial";'
         '})();'
     )
     elem.send_keys(path)

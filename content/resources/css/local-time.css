@@ -10,7 +10,7 @@ html[data-theme="standard"] #ft-local-time {
 	margin-top: 9px;
 }
 html[data-theme="simple"] #ft-local-time {
-	margin-top: 20px;
+	margin-top: 25px;
 }
 
 html[dir="ltr"][data-theme="standard"] #ft-local-time {
@@ -26,7 +26,7 @@ html[dir="ltr"][data-theme="simple"] #ft-local-time {
 }
 
 /* background */
-.date[x-ht-date], #ft-local-time {
+.date[data-user-date], #ft-local-time {
 	background-image: url("chrome://foxtrick/content/resources/img/tz-local.png");
 	background-repeat: no-repeat;
 }
@@ -36,11 +36,11 @@ html[dir="ltr"][data-theme="simple"] #ft-local-time {
 }
 
 /* reserve space for background */
-html[dir="ltr"] .date[x-ht-date], html[dir="ltr"] #ft-local-time, html[dir="ltr"] #time {
+html[dir="ltr"] .date[data-user-date], html[dir="ltr"] #ft-local-time, html[dir="ltr"] #time {
 	padding-left: 14px;
 	background-position: left center;
 }
-html[dir="rtl"] .date[x-ht-date], html[dir="rtl"] #ft-local-time, html[dir="rtl"] #time {
+html[dir="rtl"] .date[data-user-date], html[dir="rtl"] #ft-local-time, html[dir="rtl"] #time {
 	padding-right: 14px;
 	background-position: right center;
 }

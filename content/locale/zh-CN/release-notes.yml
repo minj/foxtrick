@@ -5,6 +5,40 @@ zh-CN:
       note_0: '请查阅 Google Code 上的<linkSVN>版本历史</linkSVN>.'
     beta:
       note_0: '这是下一个版本的beta测试版。请在我们超级容易的大众翻译页面 <linkCrowdin>crowdin.net</linkCrowdin>帮助翻译此版本。'
+    0.17.0:
+      important: '<header>重要公告</header>'
+      crowdin: '<header>我们可敬的用户使用 <linkCrowdin>crowdin 工具</linkCrowdin>更新了大量翻译。你也可以帮忙！</header>'
+      browsers: 由于技术原因，火狐浏览器 v38，谷歌 chrome 浏览器 v39 和Opera浏览器 v26 现在是正式支持的浏览器的最低版本。然而，为了您的安全您应该始终使用最新的浏览器版本。
+      safari_cert: '我们正在寻找开发 iOS 或 OSX 应用的人员，帮助恢复Foxtrick对 Safari 用户的支持。请参阅我们的 <linkSafariCertBug>问题跟踪器</linkSafariCertBug> 的详细信息。'
+      beta: '请考虑使用 <linkFTBeta>Foxtrick beta</linkFTBeta>以早点获得新的功能，影响Foxtrick的开发，并帮助查找和修复可能出现的任何问题。'
+      support: '<header>喜欢我们在做的事？请 <linkContribute>支持 Foxtrick</linkContribute>.</header>'
+      new: '<header>新的模块</header>'
+      bugs: '<header>Bug 修复</header>'
+      tl_search_form: '<module>TransferSearchResultFilters</module> 中的Foxtrick 状态筛选由于浏览器的更新无法正常使用。这会隐藏在转会搜索结果中的所有球员。现在应该解决了这个问题。'
+      divine_skills: '由于 HT 的疏忽，最近增加的超凡入圣 + 技能的显示损坏了基本上所有的 CHPP 应用。Foxtrick 也是这样。受影响的模块包括 <module>SkillTable</module>、 <module>MatchOrderInterface</module>、 <module>HTMSPoints</module>、 <module>SkillColoring</module> 和其他的模块。现在应该解决了这个问题。'
+      opera_notifications: Foxtrick 通知在 Opera 浏览器曾经损坏，现在应该修复了。
+      nt_weather: '<module>MatchWeather</module> 在NT 比赛和某些其他情况下损坏了。该模块已被重写，以修复所有已知的问题。'
+      nt_simulator: '<module>MatchSimulator</module> 比赛列表中未正确显示NT队伍的比赛。这个问题现在应该已被修复。'
+      chrome_styles: 在谷歌 chrome 浏览器的更新后，由于一个竞争的情况，Foxtrick 的样式有时会损坏。已采取措施，设法防止未来发生这类问题。
+      supporter_list: '<module>SupportersList</module> 将停止工作，如果 <module>StaffMarker</module> 被禁用。现在应该移除了不正确的互动。'
+      youth_promotes: '修复了一个在 <module>YouthPromotes</module> 模块中计算剩余天数差1的 bug。'
+      other: '<header>其他更改</header>'
+      performance_cache: 为提升 Foxtrick 的整体性能，做了大量的工作。CHPP 和其他数据源现在应该速度更快、 响应更快。这些来源的 Foxtrick 缓存也明显改善。
+      preferences_install: Foxtrick 首选项现在应该加载速度更快，尤其是对谷歌 chrome 浏览器来说。Foxtrick 的安装和更新在火狐浏览器中也会更快。
+      backend: 对 Foxtrick 核心进行了更多的清理和更新，以提高未来的可维护性。更改会影响大量的页面、 模块和功能。请报告你发现的任何 bug。
+      firefox_support: 这项工作使得与其他火狐附加组件兼容性现在应该更好。针对新的火狐多进程结构的准备工作也在顺利进行。
+      notifications: 点击 Foxtrick 通知现在应该在新选项卡中打开相关的页面。
+      context_copy: '改进了<module>ContextMenuCopy</module> 以处理更多的链接和生成更精确的 HT-ML 标记。'
+      training_week: PlayerStatsTrainingWeek 模块已被移除，因为Hattrick已实现相同的功能。
+      wage: '在 <module>ExtendedPlayerDetailsWage</module>中重写了工资货币检测，使它对于HT的改动更加健壮。该功能对中国用户曾经不可用。'
+      mail_counter: '<module>NewMail</module> 改动得更能适应 HT 的更改。'
+      and_more: 许多其他的小更改和修复
+    0.16.1.1:
+      important: '<header>重要公告</header>'
+      safari_cert: '我们正在寻找开发 iOS 或 OSX 应用的人员，帮助恢复Foxtrick对 Safari 用户的支持。请参阅我们的 <linkSafariCertBug>问题跟踪器</linkSafariCertBug> 的详细信息。'
+      beta: '请考虑使用 <linkFTBeta>Foxtrick beta</linkFTBeta>以早点获得新的功能，影响Foxtrick的开发，并帮助查找和修复可能出现的任何问题。'
+      bugs: '<header>Bug 修复</header>'
+      defence_stamina: '修复了损坏的体能效果对于防守区域的计算在<module>MatchSimulator</module>中的影响：在以前版本中只有守门员的体能被意外考虑进去。'
     0.15.2.1:
       important: '<header>重要公告</header>'
       signed: 火狐浏览器的所有附加程序现在都需要由 Mozilla 进行数字签名。这大部分是签名的更新，以确保 Foxtrick 兼容性。

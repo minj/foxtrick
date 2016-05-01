@@ -146,17 +146,18 @@ Foxtrick.modules['MainMenuDropDown'] = {
 			}
 			this.concat = function(menus, target) {
 				var secondary = this.menus[target];
-				Foxtrick.map(function(newMenu) {
-					Foxtrick.any(function(menu) {
-						if (menu.url.toLowerCase() === newMenu.url.toLowerCase() &&
-						   menu.name === newMenu.name) {
-							secondary = Foxtrick.exclude(secondary, menu);
-							return true; // stops on first match
-						}
-						return false;
-					}, secondary);
-					secondary.push(newMenu);
-				}, menus);
+				var urls = Foxtrick.unique(Foxtrick.map(function(newMenu) {
+					return newMenu.url.toLowerCase();
+				}, menus));
+
+				secondary = Foxtrick.filter(function(menu) {
+					var menuUrl = menu.url.toLowerCase();
+					return Foxtrick.all(function(url) {
+						return menuUrl != url;
+					}, urls);
+				}, secondary);
+
+				Foxtrick.push(secondary, menus);
 				this.menus[target] = secondary;
 			}
 			this.learn = function(doc) {
@@ -320,6 +321,7 @@ Foxtrick.modules['MainMenuDropDown'] = {
 			// build the menu
 			var links = doc.querySelectorAll('#menu > ul > li > a');
 			for (var l = 0; l < links.length; l++) {
+				Foxtrick.addClass(links[l], 'ft-mmdd-primary');
 				var primaryUrl = links[l].href;
 				var primaries = navi.getPrimaryMenusForUrl(primaryUrl);
 				var secondaries = navi.getSecondaryMenusForUrl(primaryUrl);

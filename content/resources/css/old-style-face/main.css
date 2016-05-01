@@ -1,5 +1,10 @@
 /*****************************************PLAYERCARD*****************************************/
 
+#orders .faceCard img {
+    height: 0 !important;
+    width: 47px !important;
+}
+
 .faceCard
 {
 padding: 49px 10px 0px 0px;

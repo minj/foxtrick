@@ -182,8 +182,8 @@ Foxtrick.modules['TeamPopupLinks'] = {
 
 
 		var addSpan = function(aLink) {
-			if (Foxtrick.hasClass(aLink.parentNode, 'ft-popup-span')
-			    || Foxtrick.hasClass(aLink.parentNode.parentNode, 'ft-popup-list'))
+			if (Foxtrick.hasClass(aLink, 'ft-tpl')
+			    || Foxtrick.hasClass(aLink, 'ft-popup-list-link'))
 				return;
 
 			if ((aLink.href.search(/Club\/\?TeamID=/i) > -1 && aLink.href.search(/redir_to/i) === -1
@@ -242,9 +242,20 @@ Foxtrick.modules['TeamPopupLinks'] = {
 					var teamid = Foxtrick.util.id.getTeamIdFromUrl(org_link.href);
 					if (teamid)
 						var teamname = org_link.textContent;
+
+					var username;
 					var userid = Foxtrick.util.id.getUserIdFromUrl(org_link.href);
-					if (userid)
-						var username = org_link.textContent;
+					if (userid) {
+						var linkName = org_link.textContent.trim();
+						var titleName = org_link.title.trim();
+						if (titleName.slice(0, linkName.length) === linkName) {
+							// link name seems to be shortened for long user names
+							// using titleName instead if it's a superstring
+							username = titleName;
+						}
+						else
+							username = linkName;
+					}
 
 					var owntopteamlinks = (org_link.parentNode.parentNode.tagName == 'DIV'
 					                       && org_link.parentNode.parentNode.id == 'teamLinks');
@@ -257,6 +268,7 @@ Foxtrick.modules['TeamPopupLinks'] = {
 					                       linkByTeam, linkByUser, linkByUserName) {
 						var item = doc.createElement('li');
 						var link = doc.createElement('a');
+						link.className = 'ft-popup-list-link';
 						if (userName && userId && userId == userName.match(/\d+/))
 							userName = '';
 						if (isOwnTeam && ownLink)
@@ -349,10 +361,15 @@ Foxtrick.modules['TeamPopupLinks'] = {
 										}
 
 										if (redir_to_custom) {
-											if (teamid == null) a6.href = '/Club/Manager/?userId=' +
-												userid + '&redir_to_custom=true' + '&' + a6.href;
-											else a6.href = '/Club/Manager/?teamId=' + teamid +
-												'&redir_to_custom=true' + '&' + a6.href;
+											if (teamid == null) {
+												a6.href = '/Club/Manager/?userId=' +
+													userid + '&redir_to_custom=true&redir_to=' +
+													a6.href;
+											}
+											else {
+												a6.href = '/Club/Manager/?teamId=' + teamid +
+													'&redir_to_custom=true&redir_to=' + a6.href;
+											}
 										}
 										if (json.newTab)
 											a6.target = '_blank';

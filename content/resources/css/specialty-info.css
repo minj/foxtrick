@@ -1,0 +1,49 @@
+.ft-specInfo-parent {
+	cursor: pointer;
+}
+
+.ft-specInfo {
+	display: none;
+
+	position: absolute;
+	z-index: 10002;
+	box-sizing: border-box;
+	width: 320px;
+	padding: 8px;
+
+	border: solid 3px #295223;
+	border-radius: 8px;
+
+	background: white;
+	color: black;
+
+	white-space: normal;
+}
+
+html[dir="ltr"] .cards_health .ft-specInfo {
+	right: 0;
+}
+
+.ft-specInfo-active {
+	display: block;
+}
+
+.ft-specInfo-col {
+	width: 50%;
+}
+
+.ft-specInfo-textIcon {
+	vertical-align: middle;
+}
+
+/* SkillTable /sigh */
+.ft-specInfo-outer td {
+	background: white !important;
+	color: black;
+	vertical-align: baseline !important;
+	border: none;
+}
+
+.ft-specInfo-inner td {
+	padding: 2px !important;
+}

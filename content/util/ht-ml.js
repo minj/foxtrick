@@ -103,9 +103,24 @@ Foxtrick.util.htMl.getFormat = (function() {
 						if (!opts.linksOnly && a.text) {
 							// strip surrounding '(' and '...blabla)' that's used to shorten urls
 							var stripped = a.text.replace(/^\(|(\.\.\..*)?\)$/g, '');
-							var path = stripped.replace(/^(\w+:)?\/\/.+?(\/.*)/, '$1');
+
 							if (a.type === 'link') {
-								if (a.url.indexOf(path) === -1) {
+								// test whether link text is just an URL (i. e. from forum post)
+								var path = stripped;
+
+								if (/^\/\//.test(path)) {
+									// add protocol if missing
+									path = node.ownerDocument.location.protocol + path;
+								}
+
+								if (Foxtrick.isHtUrl(path)) {
+									// a.url is relative for HT links
+									path = path.replace(/^\w+:\/\/.+?(\/.*)/, '$1');
+								}
+
+								// using a RegExp to enforce case-insensitivity
+								var pathRe = new RegExp('^' + Foxtrick.strToRe(path), 'i');
+								if (!pathRe.test(a.url)) {
 									// link text is not a URL
 									content = Foxtrick.format('{} {}', [stripped, content]);
 								}
@@ -324,9 +339,11 @@ Foxtrick.util.htMl.getFormat = (function() {
 				if (!/\| :?---:? \|/.test(lines[1])) {
 					// no header, generate fake
 					var cellCts = Foxtrick.map(function(line) {
-						var m = line.match(/\| /g);
+						// simulating lookbehind to avoid previously escaped '|'
+						var m = line.split('').reverse().join('').match(/ \|(?!\\)/g);
 						if (m)
 							return m.length;
+
 						return 0;
 					}, lines);
 					var cellCt = Math.max.apply(null, cellCts);
@@ -389,30 +406,53 @@ Foxtrick.util.htMl.getFormat = (function() {
  * @return {object}       ?{id, markup, type, copyTitle, ?tag}
  */
 Foxtrick.util.htMl.getId = function(node) {
-	var HT_ID_TYPES = {
-		Player: [/[?&]playerId=(\d+)/i, 'playerid'],
-		'Youth Player': [/YouthPlayerID=(\d+)/i, 'youthplayerid'],
-		Team: [/\/Club\/(?:Default\.aspx)?\?TeamID=(\d+)/i, 'teamid'],
-		'Youth Team': [/\/Club\/Youth\/(?:Default\.aspx)?\?YouthTeamID=(\d+)/i, 'youthteamid'],
-		'Youth Match': [/\?matchID=(\d+).*?&SourceSystem=Youth/i, 'youthmatchid'],
-		'Tournament Match':
-			[/\?matchID=(\d+).*?SourceSystem=HTOIntegrated/i, 'tournamentmatchid'],
-		Match: [/\?matchID=(\d+)/i, 'matchid'],
-		// behind youth and tournament, so they get detected first
-		Federation: [/\?AllianceID=(\d+)/i, 'federationid'],
-		Series: [/\?LeagueLevelUnitID=(\d+)/i, 'leagueid'],
-		'Youth Series': [/\?YouthLeagueId=(\d+)/i, 'youthleagueid'],
-		User: [/\?userId=(\d+)/i, 'userid'],
-		Kit: [/\?KitID=(\d+)/i, 'kitid'],
-		Article: [/\?ArticleID=(\d+)/i, 'articleid'],
-		Post: [/\/Forum\/Read\.aspx\?t=(\d+).*&n=(\d+)/i, 'post'],
-		Tournament: [/\?tournamentId=(\d+)/i, 'tournamentid'],
-		Arena: [/\/Club\/Arena\/(?:Default\.aspx)?\?ArenaID=(\d+)/i],
-		League: [/\/World\/Leagues\/League\.aspx\?LeagueID=(\d+)/i],
-		Cup: [/\/World\/Cup\/(?:Default\.aspx)?\?CupID=(\d+)/i],
-		Region: [/\/World\/Regions\/Region\.aspx\?RegionID=(\d+)/i],
-		'National Team': [/\/Club\/NationalTeam\/NationalTeam\.aspx\?teamId=(\d+)/i],
-	};
+
+	// ['title', RE, 'tag']
+	// first match first serve
+	// a missing tag suppresses url.text conversion
+	var HT_ID_TYPES = [
+		[
+			'Youth Match',
+			/Match\.aspx\?matchID=(\d+).*?&SourceSystem=Youth(?!.*?#tab[1-9])/i,
+			'youthmatchid',
+		],
+		['Youth Match', /matchID=(\d+).*?&SourceSystem=Youth/i],
+		[
+			'Tournament Match',
+			/Match\.aspx\?matchID=(\d+).*?SourceSystem=HTO(?!.*?#tab[1-9])/i,
+			'tournamentmatchid',
+		],
+		['Tournament Match', /matchID=(\d+).*?SourceSystem=HTO/i],
+		// regular matches after youth and tournament, so they get detected first
+		['Match', /Match\.aspx\?matchID=(\d+)(?!.*?#tab[1-9])/i, 'matchid'],
+		['Match', /matchID=(\d+)/i],
+		['Youth Player', /YouthPlayer\.aspx\?YouthPlayerID=(\d+)/i, 'youthplayerid'],
+		['Youth Player', /YouthPlayerID=(\d+)/i],
+		['Player', /Player\.aspx\?playerId=(\d+)/i, 'playerid'],
+		['Player', /playerId=(\d+)/i],
+		['Series', /\/World\/Series\/(?:Default\.aspx)?\?LeagueLevelUnitID=(\d+)/i, 'leagueid'],
+		['Series', /LeagueLevelUnitID=(\d+)/i],
+		['Youth Series', /YouthSeries\.aspx\?YouthLeagueId=(\d+)/i, 'youthleagueid'],
+		['Youth Series', /YouthLeagueId=(\d+)/i],
+		['Federation', /Federation\.aspx\?AllianceID=(\d+)/i, 'federationid'],
+		['Federation', /AllianceID=(\d+)/i],
+		['Tournament', /Tournament(?:History)?\.aspx\?tournamentId=(\d+)/i, 'tournamentid'],
+		['Tournament', /\?tournamentId=(\d+)/i],
+		['Kit', /\?KitID=(\d+)/i, 'kitid'],
+		['Article', /\?ArticleID=(\d+)/i, 'articleid'],
+		['Post', /\/Forum\/Read\.aspx\?t=(\d+).*&n=(\d+)/i, 'post'],
+		['Arena', /\/Club\/Arena\/(?:Default\.aspx)?\?ArenaID=(\d+)/i],
+		['League', /\/World\/Leagues\/League\.aspx\?LeagueID=(\d+)/i],
+		['Cup', /\/World\/Cup\/(?:Default\.aspx)?\?CupID=(\d+)/i],
+		['Region', /\/World\/Regions\/Region\.aspx\?RegionID=(\d+)/i],
+		['Youth Team', /\/Club\/Youth\/(?:Default\.aspx)?\?YouthTeamID=(\d+)/i, 'youthteamid'],
+		['Youth Team', /YouthTeamID=(\d+)/i],
+		['National Team', /\/Club\/NationalTeam\/NationalTeam\.aspx\?teamId=(\d+)/i],
+		['Team', /\/Club\/(?:Default\.aspx)?\?TeamID=(\d+)/i, 'teamid'],
+		['Team', /TeamID=(\d+)/i],
+		['User', /\/Club\/Manager\/(?:Default\.aspx)?\?userId=(\d+)/i, 'userid'],
+		['User', /\?userId=(\d+)/i],
+	];
 	var COPY_TEXT = Foxtrick.L10n.getString('copy.id');
 
 	var link = null;
@@ -430,25 +470,33 @@ Foxtrick.util.htMl.getId = function(node) {
 		return null;
 	}
 
-	for (var type in HT_ID_TYPES) {
-		var current = HT_ID_TYPES[type];
-		if (current[0].test(link)) {
-			var match = link.match(current[0]);
-			var ids = match.slice(1);
-			var id = ids.join('.');
-			var copyTitle = COPY_TEXT.replace('%s', type + ' ID').replace('%i', id);
-			var ret = {
-				id: id,
-				markup: id,
-				type: type,
-				copyTitle: copyTitle,
-			};
-			if (current[1]) {
-				// some ID types may not have corresponding tags
-				ret.tag = current[1];
-			}
-			return ret;
+	for (var spec of HT_ID_TYPES) {
+		var type = spec[0];
+		var re = spec[1];
+		var tag = spec[2];
+
+		if (!re.test(link))
+			continue;
+
+		var match = link.match(re);
+		var ids = match.slice(1);
+		var id = ids.join('.');
+		var copyTitle = COPY_TEXT.replace('%s', type + ' ID').replace('%i', id);
+
+		var ret = {
+			id: id,
+			markup: id,
+			type: type,
+			copyTitle: copyTitle,
+		};
+
+		if (tag) {
+			// some ID types may not have corresponding tags
+			ret.tag = tag;
 		}
+
+		return ret;
+
 	}
 
 	// no ID
@@ -523,7 +571,7 @@ Foxtrick.util.htMl._parseLink = function(node) {
 		}
 
 		// if it's relative link of Hattrick, remove the host
-		var relRe = /https?:\/\/.+?(\/.*)/i;
+		var relRe = /^https?:\/\/.+?(\/.*)/i;
 		if (link.match(relRe) !== null && Foxtrick.isHtUrl(link)) {
 			var matched = link.match(relRe);
 			var relLink = matched[1];
@@ -564,6 +612,10 @@ Foxtrick.util.htMl._findNode = function(node) {
 		    node.firstChild.nodeType == Foxtrick.NodeTypes.TEXT_NODE)
 			node = node.parentNode;
 	}
+
+	if (node.nodeName.toLowerCase() === 'img')
+		node = node.parentNode;
+
 	return node;
 };
 

@@ -43,9 +43,9 @@
 			soundh.setAttribute('data-text', 'TickerAlert.sound');
 			soundh.className = 'col_textfield';
 			header.appendChild(soundh);
-			var fileh = doc.createElement('th');
-			fileh.className = 'col_filepicker';
-			header.appendChild(fileh);
+			// var fileh = doc.createElement('th');
+			// fileh.className = 'col_filepicker';
+			// header.appendChild(fileh);
 			var playh = doc.createElement('th');
 			playh.className = 'col_play';
 			header.appendChild(playh);
@@ -65,21 +65,22 @@
 				enablec.appendChild(enable);
 				var soundc = doc.createElement('td');
 				row.appendChild(soundc);
+				Foxtrick.addClass(soundc, 'left');
 				var sound = doc.createElement('input');
 				sound.setAttribute('pref', 'module.TickerAlert.' + type + '.sound');
 				sound.id = 'module.TickerAlert.' + type + '.id';
 				soundc.appendChild(sound);
-				var filec = doc.createElement('td');
-				row.appendChild(filec);
+				// var filec = doc.createElement('td');
+				// row.appendChild(filec);
 				var input = Foxtrick.util.load.filePickerForDataUrl(doc,
 				  (function(sound) {
 					return function(url) {
 						sound.value = url;
-						sound.dispatchEvent(new Event('change'));
-						Foxtrick.playSound(doc, url);
+						sound.dispatchEvent(new Event('input', { bubbles: true }));
+						Foxtrick.playSound(url);
 					};
 				})(sound));
-				filec.appendChild(input);
+				soundc.appendChild(input);
 
 				var playc = doc.createElement('td');
 				row.appendChild(playc);
@@ -88,7 +89,7 @@
 				playButton.setAttribute('soundId', 'module.TickerAlert.' + type + '.id');
 				playButton.addEventListener('click', function(ev) {
 					var url = doc.getElementById(ev.target.getAttribute('soundId')).value;
-					Foxtrick.playSound(doc, url);
+					Foxtrick.playSound(url);
 				}, false);
 				playc.appendChild(playButton);
 			}
@@ -162,15 +163,13 @@
 						var type = getType(n.link);
 
 						if (Foxtrick.Prefs.getBool('module.TickerAlert.' + type + '.enabled')) {
-							Foxtrick.util.notify.create(n.text, n.link, function(response) {}, {
+							Foxtrick.util.notify.create(n.text, n.link, {
 								id: 'ticker-' + type + Date.valueOf(),
-								opts: {
-									buttons: [{ title: open }],
-								}
+								buttons: [{ title: open }],
 							});
 							var sound = Foxtrick.Prefs.getString('module.TickerAlert.' + type + '.sound');
 							if (sound) {
-								Foxtrick.playSound(doc, sound);
+								Foxtrick.playSound(sound);
 							}
 						}
 					}, newTickers);

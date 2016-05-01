@@ -15,10 +15,11 @@
 	"nonew": true,
 	"nonstandard": true,
 	"singleGroups": true,
-	"strict": true,
+	"strict": false,
 	"sub": true,
 	"typed": true,
 	"undef": true,
 	"unused": "strict",
+	"esnext": true,
 	"globals": { "Foxtrick": true, "Cc": true, "Ci": true, "Cr": true, "Cu": true, "Cm": true, "Services": false, "dump": false, "messageManager": false, "chrome": false, "opera": false, "safari": false }
 }

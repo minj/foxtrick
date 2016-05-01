@@ -86,6 +86,8 @@ Foxtrick.modules['Ratings'] = {
 						 Foxtrick.L10n.getString('match.ratings.attack'),  ra[i], ca[i], la[i]);
 
 				try {
+					var mrt = Foxtrick.L10n.getString('match.ratings.total');
+
 					if (typeof(this.ratingDefs[selectedRating]['total2']) == 'function') {
 						if (ta[i] == null) {
 							ta[i] = -1;
@@ -93,8 +95,7 @@ Foxtrick.modules['Ratings'] = {
 						if (ta[i] != null) {
 							if (cell.textContent.length > 2) {
 								cell.appendChild(doc.createElement('br'));
-								cell.appendChild('\n' + doc.createTextNode(Foxtrick.L10n
-								                 .getString('match.ratings.total') + ': '));
+								cell.appendChild(doc.createTextNode('\n' + mrt + ': '));
 							}
 							var b = cell.appendChild(doc.createElement('b'));
 							b.appendChild(this.ratingDefs[selectedRating]['total2'](doc, mf[i],
@@ -104,8 +105,7 @@ Foxtrick.modules['Ratings'] = {
 					else if (typeof(this.ratingDefs[selectedRating]['total']) == 'function') {
 						if (cell.textContent.length > 2) {
 							cell.appendChild(doc.createElement('br'));
-							cell.appendChild('\n' + doc.createTextNode(Foxtrick.L10n
-							                 .getString('match.ratings.total' ) + ': '));
+							cell.appendChild(doc.createTextNode('\n' + mrt + ': '));
 						}
 						var b = cell.appendChild(doc.createElement('b'));
 						b.textContent =

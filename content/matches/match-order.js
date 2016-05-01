@@ -56,7 +56,7 @@ Foxtrick.modules['MatchOrderInterface'] = {
 				if (i == players.length) {
 					// id not found, possibly new player, invalidate cache and refetch
 					if (!recursion) {
-						var now = Foxtrick.util.time.getHtTimeStamp(doc);
+						var now = Foxtrick.util.time.getHTTimeStamp(doc);
 						Foxtrick.util.api.setCacheLifetime(avatarsParamsString, now);
 						Foxtrick.log('New player found: refreshing player cache.');
 						getPlayers(true);
@@ -105,17 +105,11 @@ Foxtrick.modules['MatchOrderInterface'] = {
 						continue;
 
 					var player = Foxtrick.Pages.Players.getPlayerFromListById(playerList, id);
-					if (player && player.specialityNumber != 0) {
-						var specIdx = player.specialityNumber;
+					if (player && player.specialityNumber) {
 						Foxtrick.addClass(cards_health[i], 'ft-specialty');
-						var title = Foxtrick.L10n.getSpecialityFromNumber(specIdx);
-						var specUrl = Foxtrick.getSpecialtyImagePathFromNumber(specIdx);
-						Foxtrick.addImage(doc, cards_health[i], {
-							alt: title,
-							title: title,
-							src: specUrl,
-							class: 'ft-specialty'
-						});
+						var specIdx = player.specialityNumber;
+						var opts = { class: 'ft-specialty-img' };
+						Foxtrick.addSpecialty(cards_health[i], specIdx, opts);
 					}
 				}
 			}
@@ -309,6 +303,194 @@ Foxtrick.modules['MatchOrderInterface'] = {
 			}
 		};
 
+		var makeCopyTemplate = function() {
+			var POS_TITLE_TMPL = '[th align=center]{p{0}Title}[/th]\n';
+			var PLAYER_TMPL = '[td align=center]{p{0}Name}\n[playerid={p{0}Id}]\n' +
+				'[b]{p{0}Spec}[/b]\n{p{0}Dir}[/td]\n';
+
+			var template = '{teams} [matchid={matchId}]\n' +
+				'{formation}\n{tacticsStr} [u]{tactics}[/u]\n\n' +
+				'[table][tr][th colspan=5 align=center]{lineupStr}[/th][/tr]\n' +
+				'[tr][th colspan=2][/th][th align=center]{kpPosition}[/th]' +
+				'[th colspan=2][/th][/tr]\n[tr][td colspan=2][/td]\n';
+
+			template += Foxtrick.format(PLAYER_TMPL, [0]);
+
+			template += '[td colspan=2][/td][/tr]\n[tr][th align=center]{rwbPosition}[/th]' +
+				'[th colspan=3 align=center]{cdsPosition}[/th]' +
+				'[th align=center]{lwbPosition}[/th][/tr]\n[tr]\n';
+
+			Foxtrick.forEach(function(num) {
+				template += Foxtrick.format(PLAYER_TMPL, [num]);
+			}, [1, 2, 3, 4, 5]);
+
+			template += '[/tr]\n[tr][th align=center]{rwPosition}[/th]' +
+				'[th colspan=3 align=center]{imsPosition}[/th]' +
+				'[th align=center]{lwPosition}[/th][/tr]\n[tr]\n';
+
+			Foxtrick.forEach(function(num) {
+				template += Foxtrick.format(PLAYER_TMPL, [num]);
+			}, [6, 7, 8, 9, 10]);
+
+			template += '[/tr]\n[tr][th][/th]' +
+				'[th colspan=3 align=center]{fwsPosition}[/th][th][/th][/tr]\n[tr][td][/td]\n';
+
+			Foxtrick.forEach(function(num) {
+				template += Foxtrick.format(PLAYER_TMPL, [num]);
+			}, [11, 12, 13]);
+
+			template += '[td][/td][/tr][/table]\n\n' +
+				'[table][tr][th colspan=5 align=center]{bench}[/th][/tr]\n[tr]\n';
+
+			Foxtrick.forEach(function(num) {
+				template += Foxtrick.format(POS_TITLE_TMPL, [num]);
+			}, [14, 15, 16, 17, 18]);
+
+			template += '[/tr]\n[tr]\n';
+
+			Foxtrick.forEach(function(num) {
+				template += Foxtrick.format(PLAYER_TMPL, [num]);
+			}, [14, 15, 16, 17, 18]);
+
+			template += '[/tr][/table]\n\n[table][tr]\n';
+
+			Foxtrick.forEach(function(num) {
+				template += Foxtrick.format(POS_TITLE_TMPL, [num]);
+			}, [19, 20]);
+
+			template += '[/tr]\n[tr]\n';
+
+			Foxtrick.forEach(function(num) {
+				template += Foxtrick.format(PLAYER_TMPL, [num]);
+			}, [19, 20]);
+
+			template += '[/tr][/table]';
+
+			return template;
+		};
+
+
+		var copyLineup = function() {
+			var doc = this.ownerDocument;
+			var COPY_TMPL = makeCopyTemplate();
+
+			// right: 1, left: -1
+			var X_DIRS = {
+				middle: [0, 1, 0, 0, 0, -1, 1, 0, 0, 0, -1],
+				wing: [0, 0, -1, 0, 1, 0, 0, -1, 0, 1, 0, -1, 0, 1],
+			};
+			var DIRS = {
+				offensive: '▼',
+				defensive: '▲',
+				right: '▶',
+				left: '◀︎',
+			};
+
+			var data = {
+				tacticsStr: Foxtrick.L10n.getString('match.tactics'),
+				lineupStr: Foxtrick.L10n.getString('match.lineup'),
+				bench: Foxtrick.L10n.getString('match.bench'),
+			};
+
+			var STRINGS = [
+				'kpPosition',
+				'rwbPosition',
+				'cdsPosition',
+				'lwbPosition',
+				'rwPosition',
+				'imsPosition',
+				'lwPosition',
+				'fwsPosition',
+			];
+			Foxtrick.forEach(function(str) {
+				data[str] = Foxtrick.L10n.getString(str);
+			}, STRINGS);
+
+			Foxtrick.forEach(function(pos) {
+				data['p' + pos + 'Title'] = doc.getElementById(pos + '_text').textContent.trim();
+			}, [14, 15, 16, 17, 18, 19, 20]);
+
+			// get team names and highlight own team
+			var crumbs = Foxtrick.Pages.All.getBreadCrumbs(doc);
+			var thisTeam = crumbs[0].textContent.trim();
+			var bothTeams = crumbs[1].textContent.trim();
+			var re = Foxtrick.strToRe(thisTeam);
+			var matched = bothTeams.match(re);
+			data.teams = matched ? bothTeams.replace(re, '[b]' + thisTeam + '[/b]') :
+				bothTeams += ' - ' + '[b]' + thisTeam + '[/b]';
+
+			data.matchId = Foxtrick.util.id.getMatchIdFromUrl(doc.location.href) || '';
+			data.formation = doc.getElementById('formations').textContent.trim();
+
+			// tactics
+			// var teamTacticsTitle = module.getTacticsLabel(doc);
+			var teamTacticsSelect = doc.getElementById('teamtactics');
+			var selectedTactics = teamTacticsSelect.options[teamTacticsSelect.selectedIndex];
+			data.tactics = selectedTactics.textContent.trim();
+
+			// positions
+			Foxtrick.forEach(function(posDiv, pos) {
+				var player = posDiv.querySelector('.player');
+				if (!player)
+					return;
+
+				var id = player.id.match(/\d+/)[0];
+				data['p' + pos + 'Id'] = id;
+
+				var name = player.querySelector('.name').cloneNode(true);
+				var nrSpan = name.querySelector('span');
+				if (nrSpan)
+					nrSpan.parentNode.removeChild(nrSpan);
+
+				data['p' + pos + 'Name'] = name.textContent.trim();
+
+				var dir;
+				for (var x in X_DIRS) {
+					if (Foxtrick.hasClass(posDiv, x)) {
+						var dirNum = X_DIRS[x][pos];
+						if (dirNum) {
+							dir = dirNum === 1 ? 'right' : 'left';
+						}
+						break;
+					}
+				}
+				for (var d in DIRS) {
+					if (Foxtrick.hasClass(posDiv, d)) {
+						dir = d;
+						break;
+					}
+				}
+				if (dir)
+					data['p' + pos + 'Dir'] = DIRS[dir];
+
+				// spec
+				var strip = doc.querySelector('#players #list_playerID' + id);
+				var json = JSON.parse(strip.dataset.json);
+				var spec = Foxtrick.L10n.getSpecialityFromNumber(json.specialty);
+				if (spec)
+					data['p' + pos + 'Spec'] = spec;
+
+			}, doc.querySelectorAll('#fieldplayers .position'));
+
+			var ret = Foxtrick.format(COPY_TMPL, data);
+
+			// prune missing
+			var PRUNE_PTRNS = [
+				'{p0Name}\n[playerid={p0Id}]\n',
+				'[b]{p0Spec}[/b]\n',
+				'{p0Dir}',
+			];
+			Foxtrick.forEach(function(ptrn) {
+				var reStr = Foxtrick.strToRe(ptrn).replace(/0/g, '\\d+');
+				var re = new RegExp(reStr, 'g');
+				ret = ret.replace(re, '');
+			}, PRUNE_PTRNS);
+
+			Foxtrick.copyStringToClipboard(ret);
+			var copied = Foxtrick.L10n.getString('copy.lineup.copied');
+			Foxtrick.util.note.add(doc, copied, 'ft-ratings-copy-note');
+		};
+
 		var runMatchOrder = function(doc) {
 			var isYouth = (doc.location.href.search(/isYouth=true|SourceSystem=Youth/i) != -1);
 			var getID = function(fieldplayer) {
@@ -328,10 +510,8 @@ Foxtrick.modules['MatchOrderInterface'] = {
 			var hasInterface = false;
 			var playerList = null;
 			var avatarsXml = null;
-			// NT team ID can only be found in URL it seems
-			var seniorId = Foxtrick.util.id.getTeamIdFromUrl(doc.location.href);
-			var youthId = Foxtrick.util.id.getYouthTeamIdFromUrl(doc.location.href);
-			var teamId = isYouth ? youthId : seniorId;
+
+			var teamId = Foxtrick.Pages.Match.getMyTeamId(doc);
 
 			// load ahead players and then wait for interface loaded
 			getPlayers = function(fresh) {
@@ -357,7 +537,7 @@ Foxtrick.modules['MatchOrderInterface'] = {
 			var avatarsParams = [
 				['file', (isYouth ? 'youth' : '') + 'avatars'],
 				['version', '1.1'],
-				[(isYouth ? 'youthT' : 't') + 'eamId', teamId]
+				[(isYouth ? 'youthT' : 't') + 'eamId', teamId],
 			];
 			avatarsParamsString = JSON.stringify(avatarsParams); // save as string (immutable)
 			getAvatars = function(avatarsParams, opts) {
@@ -388,6 +568,18 @@ Foxtrick.modules['MatchOrderInterface'] = {
 					showPlayerInfo(doc.getElementById('orders'));
 				if (hasAvatars)
 					check_images(doc, doc.getElementById('field'), avatarsXml, getID, 3);
+
+				// copy lineuo
+				if (!doc.getElementById('ft_copy_lineup')) {
+					var copyLineupDiv = Foxtrick.createFeaturedElement(doc, module, 'div');
+					copyLineupDiv.id = 'ft_copy_lineup';
+					var copyLineupLink = doc.createElement('span');
+					copyLineupLink.textContent = Foxtrick.L10n.getString('button.copy');
+					copyLineupDiv.appendChild(copyLineupLink);
+					Foxtrick.onClick(copyLineupLink, copyLineup);
+					var formations = doc.getElementById('formations');
+					formations.parentNode.insertBefore(copyLineupDiv, formations.nextSibling);
+				}
 
 				//checkbox to swap positions
 				var needsSwapPositions = Foxtrick.Prefs.isModuleOptionEnabled('MatchOrderInterface',

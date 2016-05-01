@@ -17,7 +17,7 @@ Foxtrick.modules['SupportershipExpirationDate'] = {
 		Foxtrick.makeFeaturedElement(container, this);
 
 		var days = container.textContent.match(/\d+/);
-		var now = new Date();
+		var now = Foxtrick.util.time.getDate(doc);
 		var endDate = Foxtrick.util.time.addDaysToDate(now, days);
 
 		//get date in localized/correct format

@@ -5,13 +5,78 @@ sv-SE:
       note_0: 'This is the development build. Use at your own discretion. Please view <linkSVN>commit history</linkSVN> at Google Code for details of the changes.'
     beta:
       note_0: 'Detta är BETA -versionen av nästa utgåva. Hjälp gärna till att översätta denna version via vårt superlätta översättningsverktyg på <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.17.0:
+      important: '<header>Viktiga meddelanden</header>'
+      crowdin: '<header>En hel massa översättningsuppdateringar av användare via översättningsverktyget på <linkCrowdin>crowdin.net</linkCrowdin>. Du kan också hjälpa till!</header>'
+      browsers: På grund av tekniska orsaker är numera Firefox v38, Google Chrome v39 och Opera v26 de äldsta webbläsarversionerna som officiellt stöds. Du bör dock för din egen säkerhet alltid använda den senaste versionen av webbläsare.
+      safari_cert: 'Vi letar efter någon i Hattricks stora community som utvecklar appar för iOS eller OSX som kan hjälpa oss att återskapa support även för användare av Safari. Se vår <linkSafariCertBug>issue tracker</linkSafariCertBug> för mer information.'
+      beta: 'Vänligen överväg att använda <linkFTBeta>Foxtrick beta</linkFTBeta> för att dels få nya funktioner i ett tidigt skede, dels kunna påverka dess vidare utveckling samt för att hjälpa oss att fixa de ev. problem som ibland går hand i hand med nya funktioner.'
+      support: '<header>Gillar du vad vi gör? Vänligen <linkContribute>Stöd Foxtrick</linkContribute>.</header>'
+      new: '<header>Nya moduler</header>'
+      spec_info: '<module>SpecialtyInfo</module> visar en kortfattad informationstabell om aktuell specialitet genom att klicka på en specialitetsikon.'
+      bugs: '<header>Buggfixar</header>'
+      tl_search_form: 'Foxtricks formfilter, under i avancerat filter, i <module>TransferSearchResultFilters</module> slutade att fungera som den skulle p.g.a. ändringar i webbläsaren. Detta gjorde att alla spelare i sökresultatet var dolda. Detta ska nu vara fixat.'
+      divine_skills: 'Det senaste tillskottet av förmågor gudomlig+ hade sönder i stort sett alla CHPP-applikationer p.g.a. försumlighet från HTs sida. Foxtrick var inget undantag från denna regel. Bland de moduler som drabbades fanns <module>SkillTable</module>, <module>MatchOrderInterface</module>, <module>HTMSPoints</module>, <module>SkillColoring</module> och en del andra. Detta ska nu också äntligen vara löst.'
+      opera_notifications: Foxtricks aviseringar i Opera ska nu åter fungera.
+      nt_weather: 'Modulen <module>MatchWeather</module> har inte fungerat som den skulle för exempelvis landslagen, men även i en del andra fall. Hela modulen har nu skrivits om för att fixa alla kända problem.'
+      nt_simulator: 'Matchlistan i modulen <module>MatchSimulator</module> visade inte korrekt matcher för landslagen. Detta är nu åtgärdat.'
+      chrome_styles: Foxtricks egna stilar fungerade i vissa fall inte som de skulle i Google Chrome p.g.a. ändringar i webbläsaren. Åtgärder har nu vidtagits för att försöka förhindra detta i framtiden.
+      supporter_list: 'Modulen <module>SupportersList</module> slutade att fungera om modulen <module>StaffMarker</module> var inaktiverad. Detta felaktiga samspel har nu åtgärdats.'
+      youth_promotes: 'Fixat en bugg i kalkyleringen av antalet dagar kvar, i modulen <module>YouthPromotes</module>.'
+      other: '<header>Andra ändringar</header>'
+      performance_cache: En hel del arbete har lagts ner på att försöka öka och förbättra Foxtricks prestanda. CHPP och andra datakällor bör nu vara snabbare och smidigare. Foxtrick cache för dessa källor har också förbättrats.
+      preferences_install: Foxtricks inställningar ska nu ladda snabbare, särskilt under Google Chrome. Installation och uppdateringar ska också vara en hel del snabbare under Firefox.
+      backend: Mer städning av kod och uppdateringar till Foxtricks kärna har gjorts för att förenkla och förbättra framtida underhåll. Dessa ändringar påverkar ett flertal sidor, moduler och funktioner. Vänligen rapportera alla ev. fel ni hittar.
+      firefox_support: Som ett resultat av detta arbete bör interoperabilitet med andra Firefox-tillägg fungera bättre nu. Förberedelser inför Firefox nya multiprocessarkitektur är också en bra bit på väg.
+      notifications: Ett klick på en avisering från Foxtrick öppnar nu relevant sida i en ny flik.
+      context_copy: 'Modulen <module>ContextMenuCopy</module> har förbättrats för att hantera fler länkar och att generera en mer exakt HT-ML -kod.'
+      training_week: Modulen PlayerStatsTrainingWeek har plockats bort p.g.a. att HT nu själva implementerat samma funktion.
+      wage: 'Funktionen att upptäcka och identifiera lönevaluta har skivits om i modulen <module>ExtendedPlayerDetailsWage</module> för att göra den mer stabil mot framtida ändringar från HT. Funktionen har tidigare inte fungerat för användare i Kina.'
+      mail_counter: 'Modulen <module>NewMail</module> har skrivits om för att göras mer stabil för framtida designändringar från HT.'
+      and_more: Flera andra mindre ändringar och korrigeringar.
+    0.16.1.1:
+      important: '<header>Viktiga meddelanden</header>'
+      safari_cert: 'Vi letar efter någon i Hattricks stora community som utvecklar appar för iOS eller OSX som kan hjälpa oss att återskapa support även för användare av Safari. Se vår <linkSafariCertBug>issue tracker</linkSafariCertBug> för mer information.'
+      beta: 'Vänligen överväg att använda <linkFTBeta>Foxtrick beta</linkFTBeta> för att dels få nya funktioner i ett tidigt skede, dels kunna påverka dess vidare utveckling samt för att hjälpa oss att fixa de ev. problem som ibland går hand i hand med nya funktioner.'
+      bugs: '<header>Buggfixar</header>'
+      defence_stamina: 'Ett enkelt stavfel gjorde att beräkningen av kondiseffekten för försvarsdelen i <module>MatchSimulator</module> blev fel. Endast målvaktens kondition togs med i beräkningen. Detta är nu åtgärdat.'
+      time_rewrite: P.g.a. kommande ändringar från Hattrick har Foxtricks sätt att upptäcka tid/datum fått skrivas om helt. Tyvärr smög sig några missar in i den förra utgåvan av Foxtrick, vilket orsakade problem för vissa användare/länder med moduler som använder sig av CHPP. Detta problem skall nu vara löst.
+      calendar_fix: '<module>DashboardCalendar</module> har i vissa fall varit helt trasig p.g.a. ett datumrelaterat problem.'
+      and_more: Flera andra mindre ändringar och korrigeringar.
+    0.16.1:
+      important: '<header>Viktiga meddelanden</header>'
+      new_contributions: 'Modulen <module>PlayerPositionsEvaluations</module> är nu anpassad för de nya ändringarna HT gjort i matchmotorn inför säsong #60. Det behövs dock ytterligare parametrar för att förstå dessa siffror bättre. Även om rimliga standardvärden har angetts här, så är dessa vare sig officiella eller baserade på några statistiska undersökningar. All feedback när det gäller dessa värden tas emot med öppna armar. Samtliga inställningar för denna modul finns längst ner på den detaljerade spelarsidan.'
+      crowdin: '<header>En hel massa översättningsuppdateringar av användare via översättningsverktyget på <linkCrowdin>crowdin.net</linkCrowdin>. Du kan också hjälpa till!</header>'
+      support: '<header>Gillar du vad vi gör? Vänligen <linkContribute>Stöd Foxtrick</linkContribute>.</header>'
+      bugs: '<header>Buggfixar</header>'
+      dollar_wage: 'Fixat <module>ExtendedPlayerDetailsWage</module> löneberäkningen för länder som använder dollar som valuta.'
+      old_faces_moi: 'Fixat problem med spelaravatarer p.g.a. en krock mellan de två modulerna <module>OldStyleFace</module> och <module>MatchOrderInterface</module>.'
+      last_lineup_live: 'Länkar till senaste uppställningen i modulerna <module>TeamPopupLinks</module> och <module>SeniorTeamShortCuts</module> fungerade felaktigt under tiden en match spelades. Detta problem skall nu vara löst.'
+      other: '<header>Andra ändringar</header>'
+      stamina_contributions: 'Modulen <module>MatchSimulator</module> använder sig numera av <module>PlayerPositionsEvaluations</module> för att beräkna effekten av konditionen. Dessa ändringar är relativt små, men märkbara. All feedback för att förbättra denna funktion ytterligare tas tacksamt emot.'
+      copy_lineup: 'Du kan nu kopiera (HT-ML) din uppställning på matchordersidan. <module>MatchOrderInterface</module>.'
+      supporters_series: 'Modulen <module>SupportersList</module> kan nu även markera supporters med ikon på seriesidor (aktuella tabeller, gamla tabeller, maratontabeller samt tabell på sidan för uppflyttningsstatus).'
+      price_history: 'Modulen <module>TransferComparePlayers</module> visar nu ännu mer detaljerad information angående prisändringar i en spelares transferhistorik.'
+      total_capacity: 'Modulen <module>MatchIncome</module> visar nu även statistik totalt och inte bara per sektion.'
+      and_more: Flera andra mindre ändringar och korrigeringar.
     0.16.0:
       important: '<header>Viktiga meddelanden</header>'
+      safari: Pga förändringar i Apple Inc. policy och allmän ovilja att förbättra deras webbläsare kan vi inte längre garantera automatiska uppdateringar och allmänt stöd för Safari-användare. Överväg gärna att använda Firefox, Google Chrome eller Opera istället.
       crowdin: '<header>En hel massa översättningsuppdateringar av användare via översättningsverktyget på <linkCrowdin>crowdin.net</linkCrowdin>. Du kan också hjälpa till!</header>'
       support: '<header>Gillar du vad vi gör? Vänligen <linkContribute>Stöd Foxtrick</linkContribute>.</header>'
       new: '<header>Nya moduler</header>'
+      transfers: '<module>CurrentTransfers</module> lägger till mer information om spelare på den aktuella transfersidan.'
       bugs: '<header>Buggfixar</header>'
+      stamina_prediction: 'Prognosen av undernivån på konditionen (<module>MatchLineupTweaks</module>) var felaktig pga ändringar HT gjort. Problemet ska nu vara löst.'
+      match_order: 'Justerad layout i <module>MatchSimulator</module> och <module>MatchOrderInterface</module> pga ändringar som HT gjort i designen.'
+      team_detection: 'Det fanns ett flertal andra problem pga ändringar HT gjort i designen: bortalagets spelares ansikten försvann, <module>LiveAlert</module> mål upptäcktes inte etc. Alla dessa problem ska nu ha fixats.'
       other: '<header>Andra ändringar</header>'
+      table: 'Modulerna <module>PlayerFilters</module> och <module>SkillTable</module> har skrivits om för att fixa ett antal buggar samt utöka dess funktionalitet. Nyckelkolumner är nu frysta när du scrollar horisontellt, du kan dölja spelare och mer därtill. Klicka på informationsknappen för att få en fullständig beskrivning.'
+      opponent_goals: 'Lagt till ett nytt målljud i <module>LiveAlert</module>, mål gjort av dina motståndare.'
+      indonesian: Lagt till stöd för Indonesiska.
+      match_events: Matchhändelser och beskrivningar kan nu också översättas.
+      style_cleanup: 'Foxtrick formatmallar (CSS) har justerats något för att ge ett bättre stöd till anpassade Hattrickteman. Som ett resultat av det kan du nu även tilldela anpassade färger på användarnamn på HT* i <module>StaffMarker</module>.'
+      and_more: Flera andra mindre ändringar och korrigeringar.
     0.15.2.1:
       important: '<header>Viktiga meddelanden</header>'
       signed: Alla tillägg till Firefox måste nu vara digitalt signerade av Mozilla. Detta är till stor del bara en signerad uppdatering för att säkerställa att Foxtrick är kompatibelt.

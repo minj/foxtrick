@@ -31,22 +31,26 @@ Foxtrick.modules['ForumLastPost'] = {
 				var rows = doc.getElementsByClassName(rowClass);
 				Foxtrick.forEach(function(row) {
 					var div = row.getElementsByClassName(countClass)[0];
-					if (div.querySelector('span[onclick]'))
-						// mark-read span = unread
+					if (!div || div.querySelector('span[onclick]')) {
+						// mark-read span -> unread thread
 						return;
-
-					var url = row.querySelector('.' + linkClass + ' a');
-					if (url.getElementsByTagName('strong').length) {
-						if (unlessOpen)
-							// this thread is open now!
-							// default to first post
-							return;
 					}
 
-					var postNum = parseInt(div.textContent.trim(), 10);
+					var url = row.querySelector('.' + linkClass + ' a');
+					if (!url)
+						return;
+
+					if (url.querySelector('strong') && unlessOpen) {
+						// this thread is open now!
+						// default to first post
+						return;
+					}
+
+					var postNum = parseInt(div.textContent.trim(), 10) || 1;
 
 					if (lastpage)
 						postNum = postNum - perpage + 1;
+
 					if (postNum < 1)
 						postNum = 1;
 

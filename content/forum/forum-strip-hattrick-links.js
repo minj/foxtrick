@@ -74,7 +74,7 @@ Foxtrick.modules['ForumStripHattrickLinks'] = {
 			// add submit listener
 			Foxtrick.onClick(target, function() {
 				// assume svn users post only FT links
-				if (Foxtrick.branch() == 'dev')
+				if (Foxtrick.branch == 'dev')
 					URLs.push({
 						reg: /\[link=chrome-extension:\/\/\w+\/content\//g,
 						repl: '[link=foxtrick://'

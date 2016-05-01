@@ -18,12 +18,34 @@ Foxtrick.modules.MatchSimulator = {
 	run: function(doc) {
 		var module = this;
 
-		var isYouth = Foxtrick.Pages.Match.isYouth(doc);
-		if (isYouth)
+		var IS_YOUTH = Foxtrick.Pages.Match.isYouth(doc);
+		if (IS_YOUTH)
 			return;
 
-		var isHTOIntegrated = Foxtrick.Pages.Match.isHTOIntegrated(doc);
-		var isHome;
+		// global vars, NOT constants!
+		var gTeamNames = new Array(2); // global var to be used for HTMS,
+
+		// ratings and tactic for predicted and for selected other team's match
+		var gRatings = new Array(9), gRatingsOther = new Array(9);
+		var gOldRatings = new Array(9); // previous ratings
+		var gOrgRatings = new Array(9); // no stamina discount
+		var gSimulatorReady = false; // track first run
+
+		var gMatchXML = null, gOtherTeamID = null, gHomeAway = null;
+
+		var IS_HTO = Foxtrick.Pages.Match.isHTOIntegrated(doc);
+		var SOURCE_SYSTEM = IS_HTO ? SOURCE_SYSTEM = 'HTOIntegrated' : 'Hattrick';
+		var IS_HOME; // defined later but once only!
+
+		var TEAM_ID = Foxtrick.Pages.Match.getMyTeamId(doc);
+
+		var MATCH_ID = Foxtrick.util.id.getMatchIdFromUrl(doc.location.href);
+		if (!MATCH_ID) {
+			// no matchId: match sandbox
+			IS_HOME = true;
+			var crumbs = Foxtrick.Pages.All.getBreadCrumbs(doc);
+			gTeamNames[0] = crumbs[0].textContent.trim();
+		}
 
 		var displayOption = Foxtrick.Prefs.getInt('module.MatchSimulator.value');
 		var fieldOverlay = doc.getElementById(module.FIELD_OVERLAY_ID);
@@ -41,7 +63,6 @@ Foxtrick.modules.MatchSimulator = {
 			overlayBottom = doc.createElement('div');
 			fieldOverlay.appendChild(overlayBottom).id = 'ft-overlayBottom';
 		}
-		var teamNames = new Array(2); // global var to be used for HTMS
 
 		// ratings
 		if (useRatings) {
@@ -118,14 +139,6 @@ Foxtrick.modules.MatchSimulator = {
 
 		var MATCH_LIST_TMPL = '{date}: {HomeTeamName} - {HomeGoals}:{AwayGoals} - {AwayTeamName}';
 
-		// ratings and tactic for predicted and for selected other team's match
-		var currentRatings = new Array(9), currentRatingsOther = new Array(9);
-		var oldRatings = new Array(9); // previous ratings
-		var orgRatings = new Array(9); // no stamina discount
-		var simulatorReady = false; // track first run
-
-		var currentMatchXML = null, currentOtherTeamID = null, currentHomeAway = null;
-
 		var addTeam = function(ev, opts) {
 			var doc = ev.target.ownerDocument;
 
@@ -192,6 +205,7 @@ Foxtrick.modules.MatchSimulator = {
 			option.dataset.homeAway = homeAway;
 
 			var MatchDate = matchXML.time('MatchDate');
+			MatchDate = Foxtrick.util.time.toUser(doc, MatchDate);
 			var date = Foxtrick.util.time.buildDate(MatchDate, { showTime: false });
 			var howeAwayStr = Foxtrick.L10n.getString('matchOrder.homeAway.' + homeAway + '.abbr');
 
@@ -232,14 +246,14 @@ Foxtrick.modules.MatchSimulator = {
 				return;
 			}
 			// if no match selected,
-			// cleanup old ratings display and reset currentRatingsOther,
+			// cleanup old ratings display and reset gRatingsOther,
 			// so that percentBars and HTMS gets cleaned as well
 			else if (selectedMatchId == -1) {
 				var otherWrappers = fieldOverlay.getElementsByClassName('ft-otherWrapper');
 
 				Foxtrick.forEach(function(wrapper, i) {
 					wrapper.parentNode.removeChild(wrapper);
-					currentRatingsOther[i] = undefined;
+					gRatingsOther[i] = undefined;
 				}, otherWrappers);
 
 				var tacticLevelLabelOther = doc.getElementById('tacticLevelLabelOther');
@@ -248,7 +262,7 @@ Foxtrick.modules.MatchSimulator = {
 					labelParent.removeChild(tacticLevelLabelOther);
 				}
 
-				module.updateBarsAndHTMS(doc, currentRatings, currentRatingsOther, opts);
+				module.updateBarsAndHTMS(doc, gRatings, gRatingsOther, opts);
 				return;
 			}
 			// add a matchId manually
@@ -266,12 +280,12 @@ Foxtrick.modules.MatchSimulator = {
 			getMatchDetails(selectedMatchId, SourceSystem, opts);
 		};
 		var processMatch = function(matchXML, opts) {
-			currentMatchXML = matchXML;
-			currentHomeAway = opts.homeAway;
-			currentOtherTeamID = opts.teamId;
+			gMatchXML = matchXML;
+			gHomeAway = opts.homeAway;
+			gOtherTeamID = opts.teamId;
 
-			module.updateOtherRatings(doc, currentRatingsOther, matchXML, isHome, opts);
-			module.updateBarsAndHTMS(doc, currentRatings, currentRatingsOther, opts);
+			module.updateOtherRatings(doc, gRatingsOther, matchXML, gTeamNames, opts);
+			module.updateBarsAndHTMS(doc, gRatings, gRatingsOther, opts);
 		};
 		var getMatchDetails = function(matchId, sourceSystem, opts) {
 			var isNew = opts.isNew;
@@ -508,7 +522,7 @@ Foxtrick.modules.MatchSimulator = {
 		var addMatches = function(matchesXML) {
 			var select = doc.getElementById(module.MATCH_SELECT_ID);
 
-			var thisTeamID = matchesXML.text('TeamID');
+			var selectedTeamID = matchesXML.text('TeamID');
 			var matchNodes = matchesXML.getElementsByTagName('Match');
 			Foxtrick.forEach(function(match) {
 				// README: no HTO in match archive
@@ -524,6 +538,7 @@ Foxtrick.modules.MatchSimulator = {
 					return;
 
 				var MatchDate = matchesXML.time('MatchDate', match);
+				MatchDate = Foxtrick.util.time.toUser(doc, MatchDate);
 				var date = Foxtrick.util.time.buildDate(MatchDate, { showTime: false });
 				var MatchID = matchesXML.text('MatchID', match);
 				var AwayTeamID = matchesXML.text('AwayTeamID', match);
@@ -532,7 +547,7 @@ Foxtrick.modules.MatchSimulator = {
 				option.className = module.getIconClass(MatchType);
 				option.dataset.SourceSystem = SourceSystem;
 				// ensure homeAway exists for automatically added matches
-				option.dataset.homeAway = thisTeamID == AwayTeamID ? 'away' : 'home';
+				option.dataset.homeAway = selectedTeamID == AwayTeamID ? 'away' : 'home';
 				option.value = MatchID;
 
 				var info = {
@@ -574,8 +589,8 @@ Foxtrick.modules.MatchSimulator = {
 			});
 		};
 
-		var setupSimulator = function(matchId, opts) {
-			simulatorReady = true;
+		var setupSimulator = function(opts) {
+			gSimulatorReady = true;
 
 			var hideOverlay = function(ev) {
 				var doc = ev.target.ownerDocument;
@@ -597,7 +612,9 @@ Foxtrick.modules.MatchSimulator = {
 			copyButton.type = 'button';
 			copyButton.value = Foxtrick.L10n.getString('button.copy');
 			copyButton.id = 'ft-copyRatingsButton';
-			Foxtrick.onClick(copyButton, module.copyRatings.bind(module));
+			Foxtrick.onClick(copyButton, function(ev) {
+				module.copyRatings(ev, opts);
+			});
 			controls.appendChild(copyButton);
 
 			// relocate prediction controls
@@ -609,13 +626,8 @@ Foxtrick.modules.MatchSimulator = {
 				controls.appendChild(neighbor);
 			}
 
-			var crumbs = Foxtrick.Pages.All.getBreadCrumbs(doc);
-			var thisTeamID = Foxtrick.util.id.getTeamIdFromUrl(crumbs[0].href);
-
-			if (!matchId) {
+			if (!MATCH_ID) {
 				// no matchId: match sandbox
-				isHome = true;
-				teamNames[0] = crumbs[0].textContent.trim();
 				buildMatchSimulator(null, opts);
 				return;
 			}
@@ -629,15 +641,11 @@ Foxtrick.modules.MatchSimulator = {
 			else
 				doc.getElementById('field').appendChild(loadingMatchList);
 
-			var sourceSystem = 'Hattrick';
-			if (isHTOIntegrated)
-				sourceSystem = 'HTOIntegrated';
-
 			var orderMatchArgs = [
 				['file', 'matchdetails'],
 				['version', '2.3'],
-				['matchId', matchId],
-				['sourceSystem', sourceSystem],
+				['matchId', MATCH_ID],
+				['sourceSystem', SOURCE_SYSTEM],
 			];
 
 			Foxtrick.util.api.retrieve(doc, orderMatchArgs, { cache_lifetime: 'session' },
@@ -655,17 +663,17 @@ Foxtrick.modules.MatchSimulator = {
 				var AwayTeamID = orderMatchXml.num('AwayTeamID');
 
 				var teamId;
-				if (thisTeamID == HomeTeamID) {
-					isHome = true;
+				if (TEAM_ID == HomeTeamID) {
+					IS_HOME = true;
 					teamId = AwayTeamID;
-					teamNames[0] = orderMatchXml.text('HomeTeamName');
-					teamNames[1] = orderMatchXml.text('AwayTeamName');
+					gTeamNames[0] = orderMatchXml.text('HomeTeamName');
+					gTeamNames[1] = orderMatchXml.text('AwayTeamName');
 				}
 				else {
-					isHome = false;
+					IS_HOME = false;
 					teamId = HomeTeamID;
-					teamNames[1] = orderMatchXml.text('HomeTeamName');
-					teamNames[0] = orderMatchXml.text('AwayTeamName');
+					gTeamNames[1] = orderMatchXml.text('HomeTeamName');
+					gTeamNames[0] = orderMatchXml.text('AwayTeamName');
 				}
 				opts.teamId = teamId;
 				opts.loading = loadingMatchList;
@@ -704,7 +712,7 @@ Foxtrick.modules.MatchSimulator = {
 				var id = 'ft-full-level' + i;
 
 				var ratingsNum;
-				if (typeof currentRatings[i] !== 'undefined') {
+				if (typeof gRatings[i] !== 'undefined') {
 					ratingsNum = doc.getElementById(id);
 					ratingsNum.textContent = levelText;
 				}
@@ -716,20 +724,20 @@ Foxtrick.modules.MatchSimulator = {
 				}
 
 				Foxtrick.insertAfter(ratingsNum, overlayRating);
-				oldRatings[i] = currentRatings[i]; // save previous
-				currentRatings[i] = orgRatings[i] = fullLevel; // save sans stamina discount
+				gOldRatings[i] = gRatings[i]; // save previous
+				gRatings[i] = gOrgRatings[i] = fullLevel; // save sans stamina discount
 			}, ratingInnerBoxes);
 
 			// store tactics for HTMS
 			var teamTacticsSelect = doc.getElementById('teamtactics');
-			var tactics = currentRatings[7] = parseInt(teamTacticsSelect.value, 10);
+			var tactics = gRatings[7] = parseInt(teamTacticsSelect.value, 10);
 			if (tactics !== 0 && tactics !== 7) {
 				var tacticsSpan = tacticLevelLabel.querySelector('span[data-tacticlevel]');
-				currentRatings[8] = tacticsSpan.dataset.tacticlevel;
+				gRatings[8] = tacticsSpan.dataset.tacticlevel;
 			}
 			else {
 				// normal/creatively
-				currentRatings[8] = 0;
+				gRatings[8] = 0;
 			}
 
 			// remove other changes for clarity
@@ -741,17 +749,17 @@ Foxtrick.modules.MatchSimulator = {
 			var staminaDiscountCheck = doc.getElementById('ft_stamina_discount_check');
 			if (staminaDiscountCheck.checked) {
 				Foxtrick.Prefs.setBool('MatchSimulator.staminaDiscountOn', true);
-				module.staminaDiscount(doc, orgRatings, currentRatings);
+				module.staminaDiscount(doc, gOrgRatings, gRatings);
 			}
 			else {
 				Foxtrick.Prefs.setBool('MatchSimulator.staminaDiscountOn', false);
 			}
 
 			for (var i = 0; i < 7; ++i) {
-				if (typeof oldRatings[i] !== 'undefined') {
+				if (typeof gOldRatings[i] !== 'undefined') {
 					var id = 'ft-full-level' + i;
 					var fullLevelDiv = doc.getElementById(id);
-					var diff = currentRatings[i] - oldRatings[i];
+					var diff = gRatings[i] - gOldRatings[i];
 					var diffStr = diff.toFixed(2);
 					var diffTrunc = parseFloat(diffStr);
 
@@ -773,8 +781,12 @@ Foxtrick.modules.MatchSimulator = {
 			var updateHTMS = !updateOther;
 			var updatePctgDiff = target.id != 'ft_attVsDef_check';
 
+			// make a clone if possible to prevent unintentional changes
+			var teamNames = gSimulatorReady ? gTeamNames.slice() : gTeamNames;
 			var opts = {
 				teamNames: teamNames,
+				IS_HOME: IS_HOME,
+				TEAM_ID: TEAM_ID,
 				update: {
 					other: updateOther,
 					htms: updateHTMS,
@@ -788,20 +800,19 @@ Foxtrick.modules.MatchSimulator = {
 			}
 
 			// this injects Ratings module so should always run
-			module.updateBarsAndHTMS(doc, currentRatings, currentRatingsOther, opts);
+			module.updateBarsAndHTMS(doc, gRatings, gRatingsOther, opts);
 
-			var matchId = Foxtrick.util.id.getMatchIdFromUrl(doc.location.href);
-
-			if (!simulatorReady) {
+			if (!gSimulatorReady) {
 				// opened first time
-				setupSimulator(matchId, opts);
+				setupSimulator(opts);
 			}
 			else {
-				if (updateOther && currentMatchXML) {
-					opts.teamId = currentOtherTeamID;
-					opts.homeAway = currentHomeAway;
-					module.updateOtherRatings(doc, currentRatingsOther, currentMatchXML,
-					                          isHome, opts);
+				if (updateOther && gMatchXML) {
+					opts.teamId = gOtherTeamID;
+					opts.homeAway = gHomeAway;
+
+					// passing gTeamNames separately to modify
+					module.updateOtherRatings(doc, gRatingsOther, gMatchXML, gTeamNames, opts);
 				}
 			}
 		};
@@ -918,7 +929,7 @@ Foxtrick.modules.MatchSimulator = {
 	normalizeRatings: function(level) {
 		return Math.floor((level + 0.125) * 4) / 4;
 	},
-	copyRatings: function(ev) {
+	copyRatings: function(ev, opts) {
 		var module = this;
 
 		var doc = ev.target.ownerDocument;
@@ -939,8 +950,8 @@ Foxtrick.modules.MatchSimulator = {
 		text += replaced;
 
 		// match link
-		var matchId = Foxtrick.util.id.getMatchIdFromUrl(doc.location.href);
-		text += matchId ? ' [matchid=' + matchId + ']' + '\n' : '\n';
+		var MATCH_ID = opts.MATCH_ID;
+		text += MATCH_ID ? ' [matchid=' + MATCH_ID + ']' + '\n' : '\n';
 
 		// formation
 		var formations = doc.getElementById('formations').textContent;
@@ -1071,22 +1082,21 @@ Foxtrick.modules.MatchSimulator = {
 	},
 	// change bars to represent percentage of ratings comparison between predicted ratings
 	// and selected other team's match ratings and update HTMSPrediction
-	updateBarsAndHTMS: function(doc, ratings, ratingsOther, opts) {
+	updateBarsAndHTMS: function(doc, gRatings, gRatingsOther, opts) {
 		var module = this;
 
 		var updateHTMS = opts.update.htms;
 		var updatePctgDiff = opts.update.pctgDiff;
-		var teamNames = opts.teamNames;
 
 		var useHTMS = Foxtrick.Prefs.isModuleOptionEnabled(module, 'HTMSPrediction');
 		var useRatings = Foxtrick.Prefs.isModuleEnabled('Ratings') &&
 			Foxtrick.Prefs.isModuleOptionEnabled(module, 'UseRatingsModule');
 
 		if (updateHTMS && useHTMS)
-			module.updateHTMS(doc, ratings, ratingsOther, teamNames);
+			module.updateHTMS(doc, gRatings, gRatingsOther, opts);
 
 		if (useRatings)
-			module.addRatings(doc, ratings, ratingsOther);
+			module.addRatings(doc, gRatings, gRatingsOther);
 
 		var attVsDefCheck = doc.getElementById('ft_attVsDef_check');
 		var realProbabilitiesCheck = doc.getElementById('ft_realProbabilities_check');
@@ -1097,10 +1107,10 @@ Foxtrick.modules.MatchSimulator = {
 		var percentImages = fieldOverlay.getElementsByClassName('percentImage');
 		Foxtrick.forEach(function(percentImage, i) {
 			var percentNumber;
-			if (typeof ratingsOther[i] !== 'undefined') {
+			if (typeof gRatingsOther[i] !== 'undefined') {
 				// change to zero-based ratings
-				var curr = ratings[i] ? ratings[i] - 1 : 0;
-				var other = ratingsOther[i] ? ratingsOther[i] - 1 : 0;
+				var curr = gRatings[i] ? gRatings[i] - 1 : 0;
+				var other = gRatingsOther[i] ? gRatingsOther[i] - 1 : 0;
 				var percent = curr / (curr + other);
 
 				var oldVal;
@@ -1177,7 +1187,7 @@ Foxtrick.modules.MatchSimulator = {
 	},
 	// updating or adding HTMS prediction based on rating prediction
 	// and selected match of another team
-	updateHTMS: function(doc, ratings, ratingsOther, teamNames) {
+	updateHTMS: function(doc, gRatings, gRatingsOther, opts) {
 		var module = this;
 
 		var normalizeRatings = module.normalizeRatings;
@@ -1221,18 +1231,18 @@ Foxtrick.modules.MatchSimulator = {
 
 		// if there are numbers from other team's match,
 		// collect and submit them to HTMS, else clear overlays
-		if (typeof ratingsOther[0] !== 'undefined') {
+		if (typeof gRatingsOther[0] !== 'undefined') {
 			var tacticAbbr = ['', 'pressing', 'ca', 'aim', 'aow', '', '', 'cre', 'long'];
-			var midfieldLevel = [normalizeRatings(ratings[3]) - 1, ratingsOther[3] - 1];
-			var rdefence = [normalizeRatings(ratings[0]) - 1, ratingsOther[6] - 1];
-			var cdefence = [normalizeRatings(ratings[1]) - 1, ratingsOther[5] - 1];
-			var ldefence = [normalizeRatings(ratings[2]) - 1, ratingsOther[4] - 1];
-			var rattack = [normalizeRatings(ratings[4]) - 1, ratingsOther[2] - 1];
-			var cattack = [normalizeRatings(ratings[5]) - 1, ratingsOther[1] - 1];
-			var lattack = [normalizeRatings(ratings[6]) - 1, ratingsOther[0] - 1];
+			var midfieldLevel = [normalizeRatings(gRatings[3]) - 1, gRatingsOther[3] - 1];
+			var rdefence = [normalizeRatings(gRatings[0]) - 1, gRatingsOther[6] - 1];
+			var cdefence = [normalizeRatings(gRatings[1]) - 1, gRatingsOther[5] - 1];
+			var ldefence = [normalizeRatings(gRatings[2]) - 1, gRatingsOther[4] - 1];
+			var rattack = [normalizeRatings(gRatings[4]) - 1, gRatingsOther[2] - 1];
+			var cattack = [normalizeRatings(gRatings[5]) - 1, gRatingsOther[1] - 1];
+			var lattack = [normalizeRatings(gRatings[6]) - 1, gRatingsOther[0] - 1];
 
-			var tactics = [tacticAbbr[ratings[7]], tacticAbbr[ratingsOther[7]]];
-			var tacticsLevel = [ratings[8], ratingsOther[8]];
+			var tactics = [tacticAbbr[gRatings[7]], tacticAbbr[gRatingsOther[7]]];
+			var tacticsLevel = [gRatings[8], gRatingsOther[8]];
 			var htms = Foxtrick.modules['HTMSPrediction'];
 			htms.insertPrediction(
 				doc, overlayHTMSCurrent,
@@ -1240,7 +1250,7 @@ Foxtrick.modules.MatchSimulator = {
 				rdefence, cdefence, ldefence,
 				rattack, cattack, lattack,
 				tactics, tacticsLevel,
-				teamNames
+				opts.teamNames
 			);
 		}
 		else {
@@ -1249,17 +1259,14 @@ Foxtrick.modules.MatchSimulator = {
 				overlayHTMS.textContent = '';
 		}
 	},
-	updateOtherRatings: function(doc, ratings, xml, isHome, opts) {
+	updateOtherRatings: function(doc, gRatingsOther, xml, gTeamNames, opts) {
 		var module = this;
 
 		var teamId = opts.teamId; // opponent
 		var homeAway = opts.homeAway; // selected match
 		var update = opts.update.other;
-		var teamNames = opts.teamNames;
-
-		// select team node
-		var teamLink = Foxtrick.Pages.All.getBreadCrumbs(doc)[0];
-		var thisTeamID = Foxtrick.util.id.getTeamIdFromUrl(teamLink.href);
+		var IS_HOME = opts.IS_HOME;
+		var TEAM_ID = opts.TEAM_ID;
 
 		var HomeTeamID = xml.num('HomeTeamID');
 		var AwayTeamID = xml.num('AwayTeamID');
@@ -1267,8 +1274,8 @@ Foxtrick.modules.MatchSimulator = {
 		var doHome = true;
 		if (homeAway == 'away' || // chose away
 		    (homeAway != 'home' && // auto detect away
-		     (teamId == AwayTeamID || thisTeamID == HomeTeamID || // one of the teams
-		      isHome && teamId != HomeTeamID && thisTeamID != AwayTeamID)
+		     (teamId == AwayTeamID || TEAM_ID == HomeTeamID || // one of the teams
+		      IS_HOME && teamId != HomeTeamID && TEAM_ID != AwayTeamID)
 		      // none of the teams match + playing home
 		    )) {
 			doHome = false;
@@ -1277,11 +1284,11 @@ Foxtrick.modules.MatchSimulator = {
 		var teamNode;
 		if (doHome) {
 			teamNode = xml.node('HomeTeam');
-			teamNames[1] = xml.text('HomeTeamName');
+			gTeamNames[1] = xml.text('HomeTeamName');
 		}
 		else {
 			teamNode = xml.node('AwayTeam');
-			teamNames[1] = xml.text('AwayTeamName');
+			gTeamNames[1] = xml.text('AwayTeamName');
 		}
 		// get ratings
 		var selectedRatings = [
@@ -1335,7 +1342,7 @@ Foxtrick.modules.MatchSimulator = {
 				// there was another match selected before. show ratings and differences
 				levelDiv.textContent = levelText;
 				if (!update) {
-					var diff = fullLevel - ratings[j];
+					var diff = fullLevel - gRatingsOther[j];
 					var diffStr = diff.toFixed(2);
 					var diffTrunc = parseFloat(diffStr);
 
@@ -1380,7 +1387,7 @@ Foxtrick.modules.MatchSimulator = {
 			overlayOther.textContent = selectedRatings[j].text;
 
 			// README: index must match to fullLevel definition above
-			ratings[j] = fullLevel;
+			gRatingsOther[j] = fullLevel;
 		}
 
 		// add tactics
@@ -1393,8 +1400,8 @@ Foxtrick.modules.MatchSimulator = {
 			Foxtrick.insertAfter(tacticLevelLabelOther, tacticLevelLabel);
 		}
 		var tacticLevelLabelTitle = tacticLevelLabel.textContent.split(':')[0];
-		ratings[7] = selectedRatings[7].value;
-		ratings[8] = selectedRatings[8].value;
+		gRatingsOther[7] = selectedRatings[7].value;
+		gRatingsOther[8] = selectedRatings[8].value;
 
 		var teamTacticsTitle = module.getTacticsLabel(doc);
 		var info = {
@@ -1413,7 +1420,7 @@ Foxtrick.modules.MatchSimulator = {
 		}, ratingChanges);
 	},
 	// add Ratings module functionality
-	addRatings: function(doc, ratings, ratingsOther) {
+	addRatings: function(doc, gRatings, gRatingsOther) {
 		var module = this;
 
 		var normalizeRatings = module.normalizeRatings;
@@ -1424,21 +1431,21 @@ Foxtrick.modules.MatchSimulator = {
 			'creatively', 'longshots',
 		];
 
-		var midfieldLevel = [normalizeRatings(ratings[3]) - 1, ratingsOther[3] - 1];
-		var rdefence = [normalizeRatings(ratings[0]) - 1, ratingsOther[6] - 1];
-		var cdefence = [normalizeRatings(ratings[1]) - 1, ratingsOther[5] - 1];
-		var ldefence = [normalizeRatings(ratings[2]) - 1, ratingsOther[4] - 1];
-		var rattack = [normalizeRatings(ratings[4]) - 1, ratingsOther[2] - 1];
-		var cattack = [normalizeRatings(ratings[5]) - 1, ratingsOther[1] - 1];
-		var lattack = [normalizeRatings(ratings[6]) - 1, ratingsOther[0] - 1];
+		var midfieldLevel = [normalizeRatings(gRatings[3]) - 1, gRatingsOther[3] - 1];
+		var rdefence = [normalizeRatings(gRatings[0]) - 1, gRatingsOther[6] - 1];
+		var cdefence = [normalizeRatings(gRatings[1]) - 1, gRatingsOther[5] - 1];
+		var ldefence = [normalizeRatings(gRatings[2]) - 1, gRatingsOther[4] - 1];
+		var rattack = [normalizeRatings(gRatings[4]) - 1, gRatingsOther[2] - 1];
+		var cattack = [normalizeRatings(gRatings[5]) - 1, gRatingsOther[1] - 1];
+		var lattack = [normalizeRatings(gRatings[6]) - 1, gRatingsOther[0] - 1];
 
-		var tactics = [tacticNames[ratings[7]], tacticNames[ratingsOther[7]]];
-		var tacticsLevel = [ratings[8], ratingsOther[8]];
+		var tactics = [tacticNames[gRatings[7]], tacticNames[gRatingsOther[7]]];
+		var tacticsLevel = [gRatings[8], gRatingsOther[8]];
 
 		var ratingsTable = doc.getElementById('ft_simulation_ratings_table');
 		var newTable = ratingsTable.cloneNode(false);
 
-		var twoTeams = typeof ratingsOther[0] !== 'undefined';
+		var twoTeams = typeof gRatingsOther[0] !== 'undefined';
 		Foxtrick.modules['Ratings'].addRatings(
 			doc, newTable,
 			midfieldLevel, rdefence, cdefence, ldefence, rattack, cattack, lattack,
@@ -1448,23 +1455,34 @@ Foxtrick.modules.MatchSimulator = {
 
 		ratingsTable.parentNode.replaceChild(newTable, ratingsTable);
 	},
-	staminaDiscount: function(doc, orgRatings, currentRatings) {
+	staminaDiscount: function(doc, gOrgRatings, gRatings) {
 		var module = this;
 
-		var getStaminaFactor = function(stamina, staminaPrediction) {
+		var noPrediction = true;
+		var getStaminaFactor = function(stamina, predData) {
 			// formula by lizardopoli/Senzascrupoli/Pappagallopoli et al
 			// [post=15917246.1]
 			// latest data:
 			// https://docs.google.com/file/d/0Bzy0IjRlxhtxaGp0VXlmNjljaTA/edit?usp=sharing
 
-			if (staminaPrediction !== null) {
-				if (parseInt(staminaPrediction, 10) == stamina)
-					stamina = staminaPrediction;
+			var prediction = null;
+			if (predData) {
+				prediction = parseFloat(predData[1]) || null;
+				noPrediction = false;
+			}
+
+			if (prediction !== null) {
+
+				if (parseInt(prediction, 10) == stamina) {
+					stamina = prediction;
+				}
 				else {
 					// our prediction data is inaccurate
+					var d = new Date(predData[0]);
 					// assume high subskill if stamina is lower
 					// assume low subskill otherwise
-					if (stamina < staminaPrediction)
+					Foxtrick.log('WARNING: inaccurate stamina prediction', prediction, stamina, d);
+					if (stamina < prediction)
 						stamina += 0.99;
 				}
 			}
@@ -1483,6 +1501,36 @@ Foxtrick.modules.MatchSimulator = {
 		};
 
 		var staminaData = module.STAMINA_DATA;
+		var contributions = Foxtrick.Predict.contributionFactors();
+
+		// using defaults to disregard user settings
+		// gives more consistency and allows to play around with them w/o affecting stamina
+		var skillOpts = Foxtrick.modules['PlayerPositionsEvaluations'].getDefaultPrefs();
+		skillOpts.stamina = false; // reset stamina effect
+
+		var players = {};
+		var playersMissing = false;
+		Foxtrick.forEach(function(div) {
+			if (!div.dataset.json) {
+				Foxtrick.log('No player JSON in staminaDiscount: #', div.id);
+				playersMissing = true;
+				return;
+			}
+
+			var player = JSON.parse(div.dataset.json);
+			player.effectiveSkills =
+				Foxtrick.Predict.effectiveSkills(player.skills, player, skillOpts);
+
+			player.energy = getStaminaFactor(player.stamina, staminaData[player.id]);
+
+			players[player.id] = player;
+		}, doc.querySelectorAll('#players .player'));
+
+		if (noPrediction)
+			Foxtrick.log('WARNING: no staminaPrediction');
+
+		if (playersMissing)
+			Foxtrick.error('Player JSON missing in staminaDiscount');
 
 		try {
 			var overlayRatingsNums = doc.getElementsByClassName('overlayRatingsNum');
@@ -1490,23 +1538,36 @@ Foxtrick.modules.MatchSimulator = {
 			var positionDivs = doc.querySelectorAll('#fieldplayers .position');
 			var positions = Foxtrick.toArray(positionDivs).slice(0, 14); // truncate bench
 			Foxtrick.forEach(function(ratingsNum, sector) {
-				var sumSquareVEnergy = 0;
-				var sumSquareV = 0;
+				var sumVEnergy = 0;
+				var sumV = 0;
+
+				var sectorSkills = [], center = 0;
+				if (sector < 3) {
+					sectorSkills = ['keeper', 'defending'];
+					center = 1;
+				}
+				else if (sector === 3) {
+					sectorSkills = ['playmaking'];
+					center = 3;
+				}
+				else {
+					sectorSkills = ['passing', 'scoring', 'winger'];
+					center = 5;
+				}
+				var wing = sector - center; // left:-1, center:0, right:1
+
+				var missing = false;
 				Foxtrick.forEach(function(positionDiv, pos) {
 					var playerDiv = positionDiv.getElementsByClassName('player')[0];
 					if (!playerDiv)
 						return;
 
 					var id = playerDiv.id.match(/\d+/)[0];
-					var playerStrip = doc.querySelector('#players #list_playerID' + id);
-					// HTs use the same ID for elements in '#players' and in '.position'
-					var player = JSON.parse(playerStrip.dataset.json);
-					if (!player.stamina)
+					var player = players[id];
+					if (!player) {
+						missing = true;
+						Foxtrick.log('Missing:', id, 'sector', sector, 'pos', pos);
 						return;
-
-					var staminaPrediction = null;
-					if (staminaData[player.id]) {
-						staminaPrediction = parseFloat(staminaData[player.id][1]);
 					}
 
 					var tacticClass = 'normal'; // default to normal player tactic
@@ -1518,35 +1579,62 @@ Foxtrick.modules.MatchSimulator = {
 					}
 					var tacticAbbr = tacticAbbrs[tacticClass];
 
-					var position = Foxtrick.nth(function(p) {
-						return p.p == pos && p.t == tacticAbbr;
-					}, module.CONTRIBUTIONS);
+					var posDef = module.POSITIONS[pos];
+					var posId = posDef.pos + tacticAbbr;
+					if (posId === 'fwd' && player.specialty === 1)
+						posId = 'tdf';
 
-					var contributions = Foxtrick.filter(function(c) {
-						return c.s == sector;
-					}, position.c);
-
-					Foxtrick.forEach(function(c) {
-						var squareV = c.v * c.v;
-						var energy = getStaminaFactor(player.stamina, staminaPrediction);
-						sumSquareVEnergy += squareV * energy;
-						sumSquareV += squareV;
-					}, contributions);
+					var cntrbSkills = contributions[posId];
+					for (var skill in cntrbSkills) {
+						if (Foxtrick.has(sectorSkills, skill)) {
+							var cntrb = cntrbSkills[skill];
+							var factor = 0;
+							if (wing) {
+								if (posDef.wing && !posDef.noTransfer) {
+									if (wing === posDef.wing) {
+										// transferring both sides to this wing
+										// i.e. left CD does not contribute to right defence
+										factor = cntrb.wings;
+									}
+								}
+								else {
+									// no transfer
+									// (forwards or other centered positions: GK/CCD/CIM)
+									// only matters for fwtw since side=farSide otherwise
+									factor = wing === posDef.wing ? cntrb.side : cntrb.farSide;
+								}
+							}
+							else {
+								factor = cntrb.center;
+							}
+							var skillVal = player.effectiveSkills[skill];
+							var value = skillVal * factor;
+							sumV += value;
+							sumVEnergy += value * player.energy;
+						}
+					}
 
 				}, positions);
 
-				var oldRating = orgRatings[sector];
-				var newRating = oldRating * sumSquareVEnergy / sumSquareV;
-				var newRatingNorm = module.normalizeRatings(newRating);
-				var discount = doc.createElement('div');
-				discount.className = 'overlayRatingsDiscounted';
-				discount.textContent = Foxtrick.L10n.getFullLevelByValue(newRatingNorm);
+				var oldRating = gOrgRatings[sector];
+				var newRating = oldRating;
 
-				Foxtrick.insertAfter(discount, overlayRatings[sector * 2 + 1]);
-				Foxtrick.addClass(overlayRatings[sector * 2 + 1], 'hidden');
+				if (missing)
+					Foxtrick.log('WARNING: skipping staminaDiscount');
+				else
+					newRating = oldRating * sumVEnergy / sumV;
 
+				gRatings[sector] = newRating;
 				ratingsNum.textContent = '[' + newRating.toFixed(2) + ']';
-				currentRatings[sector] = newRating;
+
+				var newOverlay = doc.createElement('div');
+				newOverlay.className = 'overlayRatingsDiscounted';
+				var newRatingNorm = module.normalizeRatings(newRating);
+				newOverlay.textContent = Foxtrick.L10n.getFullLevelByValue(newRatingNorm);
+
+				var oldOverlay = overlayRatings[sector * 2 + 1];
+				Foxtrick.addClass(oldOverlay, 'hidden');
+				Foxtrick.insertAfter(newOverlay, oldOverlay);
 			}, overlayRatingsNums);
 		}
 		catch (e) {
@@ -1554,493 +1642,42 @@ Foxtrick.modules.MatchSimulator = {
 		}
 	},
 	get STAMINA_DATA() {
-		if (!this._STAMINA_DATA) {
-			var staminaData = {};
-			var useStaminaPred = Foxtrick.Prefs.isModuleOptionEnabled(this, 'StaminaPrediction');
-			if (useStaminaPred) {
-				var ownId = Foxtrick.util.id.getOwnTeamId();
-				var dataText = Foxtrick.Prefs.getString('StaminaData.' + ownId);
-				if (dataText) {
-					try {
-						staminaData = JSON.parse(dataText);
-					}
-					catch (e) {
-						Foxtrick.log('Error parsing staminaData:', e);
-					}
+		var staminaData = {};
+		var useStaminaPred = Foxtrick.Prefs.isModuleOptionEnabled(this, 'StaminaPrediction');
+		if (useStaminaPred) {
+			var ownId = Foxtrick.util.id.getOwnTeamId();
+			var dataText = Foxtrick.Prefs.getString('StaminaData.' + ownId);
+			if (dataText) {
+				try {
+					staminaData = JSON.parse(dataText);
+				}
+				catch (e) {
+					Foxtrick.log('Error parsing staminaData:', e);
 				}
 			}
-			this._STAMINA_DATA = staminaData;
 		}
-		return this._STAMINA_DATA;
+		delete this.STAMINA_DATA;
+		this.STAMINA_DATA = staminaData;
+		return staminaData;
 	},
-	CONTRIBUTIONS: [
-		{
-			p: 0, t: 'n',
-			c: [
-				{ s: 1, sk: 'gk', v: 0.866 },
-				{ s: 1, sk: 'df', v: 0.425 },
-				{ s: 0, sk: 'gk', v: 0.597 },
-				{ s: 2, sk: 'ke', v: 0.597 },
-				{ s: 0, sk: 'df', v: 0.276 },
-				{ s: 2, sk: 'df', v: 0.276 },
-			],
-		},
-		{
-			p: 3, t: 'n',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.236 },
-				{ s: 1, sk: 'df', v: 1.000 },
-				{ s: 0, sk: 'df', v: 0.260 },
-				{ s: 2, sk: 'df', v: 0.260 },
-			],
-		},
-		{
-			p: 3, t: 'o',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.318 },
-				{ s: 1, sk: 'df', v: 0.725 },
-				{ s: 0, sk: 'df', v: 0.190 },
-				{ s: 2, sk: 'df', v: 0.190 },
-			],
-		},
-		{
-			p: 2, t: 'n',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.236 },
-				{ s: 1, sk: 'df', v: 1.000 },
-				{ s: 0, sk: 'df', v: 0.516 },
-			],
-		},
-		{
-			p: 2, t: 'tw',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.165 },
-				{ s: 1, sk: 'df', v: 0.778 },
-				{ s: 0, sk: 'df', v: 0.711 },
-				{ s: 4, sk: 'wi', v: 0.246 },
-			],
-		},
-		{
-			p: 2, t: 'o',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.318 },
-				{ s: 1, sk: 'df', v: 0.725 },
-				{ s: 0, sk: 'df', v: 0.378 },
-			],
-		},
-		{
-			p: 4, t: 'n',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.236 },
-				{ s: 1, sk: 'df', v: 1.000 },
-				{ s: 2, sk: 'df', v: 0.516 },
-			],
-		},
-		{
-			p: 4, t: 'tw',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.165 },
-				{ s: 1, sk: 'df', v: 0.778 },
-				{ s: 2, sk: 'df', v: 0.711 },
-				{ s: 6, sk: 'wi', v: 0.246 },
-			],
-		},
-		{
-			p: 4, t: 'o',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.318 },
-				{ s: 1, sk: 'df', v: 0.725 },
-				{ s: 2, sk: 'df', v: 0.378 },
-			],
-		},
-		{
-			p: 1, t: 'n',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.167 },
-				{ s: 1, sk: 'df', v: 0.450 },
-				{ s: 0, sk: 'df', v: 0.919 },
-				{ s: 4, sk: 'wi', v: 0.506 },
-			],
-		},
-		{
-			p: 1, t: 'd',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.066 },
-				{ s: 1, sk: 'df', v: 0.479 },
-				{ s: 0, sk: 'df', v: 1.000 },
-				{ s: 4, sk: 'wi', v: 0.323 },
-			],
-		},
-		{
-			p: 1, t: 'tm',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.167 },
-				{ s: 1, sk: 'df', v: 0.683 },
-				{ s: 0, sk: 'df', v: 0.687 },
-				{ s: 4, sk: 'wi', v: 0.279 },
-			],
-		},
-		{
-			p: 1, t: 'o',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.230 },
-				{ s: 1, sk: 'df', v: 0.382 },
-				{ s: 0, sk: 'df', v: 0.698 },
-				{ s: 4, sk: 'wi', v: 0.618 },
-			],
-		},
-		{
-			p: 5, t: 'n',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.167 },
-				{ s: 1, sk: 'df', v: 0.450 },
-				{ s: 2, sk: 'df', v: 0.919 },
-				{ s: 6, sk: 'wi', v: 0.506 },
-			],
-		},
-		{
-			p: 5, t: 'd',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.066 },
-				{ s: 1, sk: 'df', v: 0.479 },
-				{ s: 2, sk: 'df', v: 1.000 },
-				{ s: 6, sk: 'wi', v: 0.323 },
-			],
-		},
-		{
-			p: 5, t: 'tm',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.167 },
-				{ s: 1, sk: 'df', v: 0.683 },
-				{ s: 2, sk: 'df', v: 0.687 },
-				{ s: 6, sk: 'wi', v: 0.279 },
-			],
-		},
-		{
-			p: 5, t: 'o',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.230 },
-				{ s: 1, sk: 'df', v: 0.382 },
-				{ s: 2, sk: 'df', v: 0.698 },
-				{ s: 6, sk: 'wi', v: 0.618 },
-			],
-		},
-		{
-			p: 8, t: 'n',
-			c: [
-				{ s: 3, sk: 'pm', v: 1.000 },
-				{ s: 1, sk: 'df', v: 0.400 },
-				{ s: 0, sk: 'df', v: 0.095 },
-				{ s: 2, sk: 'df', v: 0.095 },
-				{ s: 5, sk: 'ps', v: 0.325 },
-				{ s: 4, sk: 'ps', v: 0.110 },
-				{ s: 6, sk: 'ps', v: 0.110 },
-			],
-		},
-		{
-			p: 8, t: 'o',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.944 },
-				{ s: 1, sk: 'df', v: 0.216 },
-				{ s: 0, sk: 'df', v: 0.051 },
-				{ s: 2, sk: 'df', v: 0.051 },
-				{ s: 5, sk: 'ps', v: 0.483 },
-				{ s: 4, sk: 'ps', v: 0.110 },
-				{ s: 6, sk: 'ps', v: 0.110 },
-			],
-		},
-		{
-			p: 8, t: 'd',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.944 },
-				{ s: 1, sk: 'df', v: 0.594 },
-				{ s: 0, sk: 'df', v: 0.135 },
-				{ s: 2, sk: 'df', v: 0.135 },
-				{ s: 5, sk: 'ps', v: 0.219 },
-				{ s: 4, sk: 'ps', v: 0.070 },
-				{ s: 6, sk: 'ps', v: 0.070 },
-			],
-		},
-		{
-			p: 7, t: 'n',
-			c: [
-				{ s: 3, sk: 'pm', v: 1.000 },
-				{ s: 1, sk: 'df', v: 0.400 },
-				{ s: 0, sk: 'df', v: 0.189 },
-				{ s: 5, sk: 'ps', v: 0.325 },
-				{ s: 4, sk: 'ps', v: 0.218 },
-			],
-		},
-		{
-			p: 7, t: 'o',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.944 },
-				{ s: 1, sk: 'df', v: 0.216 },
-				{ s: 0, sk: 'df', v: 0.102 },
-				{ s: 5, sk: 'ps', v: 0.483 },
-				{ s: 4, sk: 'ps', v: 0.216 },
-			],
-		},
-		{
-			p: 7, t: 'd',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.944 },
-				{ s: 1, sk: 'df', v: 0.594 },
-				{ s: 0, sk: 'df', v: 0.270 },
-				{ s: 5, sk: 'ps', v: 0.219 },
-				{ s: 4, sk: 'ps', v: 0.140 },
-			],
-		},
-		{
-			p: 7, t: 'tw',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.881 },
-				{ s: 1, sk: 'df', v: 0.348 },
-				{ s: 0, sk: 'df', v: 0.291 },
-				{ s: 5, sk: 'ps', v: 0.227 },
-				{ s: 4, sk: 'wi', v: 0.494 },
-				{ s: 4, sk: 'ps', v: 0.271 },
-			],
-		},
-		{
-			p: 9, t: 'n',
-			c: [
-				{ s: 3, sk: 'pm', v: 1.000 },
-				{ s: 1, sk: 'df', v: 0.400 },
-				{ s: 2, sk: 'df', v: 0.189 },
-				{ s: 5, sk: 'ps', v: 0.325 },
-				{ s: 6, sk: 'ps', v: 0.218 },
-			],
-		},
-		{
-			p: 9, t: 'o',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.944 },
-				{ s: 1, sk: 'df', v: 0.216 },
-				{ s: 2, sk: 'df', v: 0.102 },
-				{ s: 5, sk: 'ps', v: 0.483 },
-				{ s: 6, sk: 'ps', v: 0.216 },
-			],
-		},
-		{
-			p: 9, t: 'd',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.944 },
-				{ s: 1, sk: 'df', v: 0.594 },
-				{ s: 2, sk: 'df', v: 0.270 },
-				{ s: 5, sk: 'ps', v: 0.219 },
-				{ s: 6, sk: 'ps', v: 0.140 },
-			],
-		},
-		{
-			p: 9, t: 'tw',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.881 },
-				{ s: 1, sk: 'df', v: 0.348 },
-				{ s: 2, sk: 'df', v: 0.291 },
-				{ s: 5, sk: 'ps', v: 0.227 },
-				{ s: 6, sk: 'wi', v: 0.494 },
-				{ s: 6, sk: 'ps', v: 0.271 },
-			],
-		},
-		{
-			p: 6, t: 'n',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.455 },
-				{ s: 1, sk: 'df', v: 0.201 },
-				{ s: 0, sk: 'df', v: 0.349 },
-				{ s: 5, sk: 'ps', v: 0.104 },
-				{ s: 4, sk: 'wi', v: 0.854 },
-				{ s: 4, sk: 'ps', v: 0.210 },
-			],
-		},
-		{
-			p: 6, t: 'o',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.381 },
-				{ s: 1, sk: 'df', v: 0.085 },
-				{ s: 0, sk: 'df', v: 0.180 },
-				{ s: 5, sk: 'ps', v: 0.135 },
-				{ s: 4, sk: 'wi', v: 1.000 },
-				{ s: 4, sk: 'ps', v: 0.246 },
-			],
-		},
-		{
-			p: 6, t: 'tm',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.574 },
-				{ s: 1, sk: 'df', v: 0.244 },
-				{ s: 0, sk: 'df', v: 0.284 },
-				{ s: 5, sk: 'ps', v: 0.148 },
-				{ s: 4, sk: 'wi', v: 0.564 },
-				{ s: 4, sk: 'ps', v: 0.133 },
-			],
-		},
-		{
-			p: 6, t: 'd',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.381 },
-				{ s: 1, sk: 'df', v: 0.264 },
-				{ s: 0, sk: 'df', v: 0.485 },
-				{ s: 5, sk: 'ps', v: 0.052 },
-				{ s: 4, sk: 'wi', v: 0.723 },
-				{ s: 4, sk: 'ps', v: 0.173 },
-			],
-		},
-		{
-			p: 10, t: 'n',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.455 },
-				{ s: 1, sk: 'df', v: 0.201 },
-				{ s: 2, sk: 'df', v: 0.349 },
-				{ s: 5, sk: 'ps', v: 0.104 },
-				{ s: 6, sk: 'wi', v: 0.854 },
-				{ s: 6, sk: 'ps', v: 0.210 },
-			],
-		},
-		{
-			p: 10, t: 'o',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.381 },
-				{ s: 1, sk: 'df', v: 0.085 },
-				{ s: 2, sk: 'df', v: 0.180 },
-				{ s: 5, sk: 'ps', v: 0.135 },
-				{ s: 6, sk: 'wi', v: 1.000 },
-				{ s: 6, sk: 'ps', v: 0.246 },
-			],
-		},
-		{
-			p: 10, t: 'tm',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.574 },
-				{ s: 1, sk: 'df', v: 0.244 },
-				{ s: 2, sk: 'df', v: 0.284 },
-				{ s: 5, sk: 'ps', v: 0.148 },
-				{ s: 6, sk: 'wi', v: 0.564 },
-				{ s: 6, sk: 'ps', v: 0.133 },
-			],
-		},
-		{
-			p: 10, t: 'd',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.381 },
-				{ s: 1, sk: 'df', v: 0.264 },
-				{ s: 2, sk: 'df', v: 0.485 },
-				{ s: 5, sk: 'ps', v: 0.052 },
-				{ s: 6, sk: 'wi', v: 0.723 },
-				{ s: 6, sk: 'ps', v: 0.173 },
-			],
-		},
-		{
-			p: 12, t: 'n',
-			c: [
-				{ s: 5, sk: 'sc', v: 1.000 },
-				{ s: 5, sk: 'ps', v: 0.369 },
-				{ s: 4, sk: 'wi', v: 0.190 },
-				{ s: 6, sk: 'wi', v: 0.190 },
-				{ s: 4, sk: 'ps', v: 0.122 },
-				{ s: 6, sk: 'ps', v: 0.122 },
-				{ s: 4, sk: 'sc', v: 0.224 },
-				{ s: 6, sk: 'sc', v: 0.224 },
-			],
-		},
-		{
-			p: 12, t: 'd',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.406 },
-				{ s: 5, sk: 'sc', v: 0.583 },
-				{ s: 5, sk: 'ps', v: 0.543 },
-				{ s: 4, sk: 'wi', v: 0.124 },
-				{ s: 6, sk: 'wi', v: 0.124 },
-				{ s: 4, sk: 'ps', v: 0.215 },
-				{ s: 6, sk: 'ps', v: 0.215 },
-				{ s: 4, sk: 'sc', v: 0.109 },
-				{ s: 6, sk: 'sc', v: 0.109 },
-			],
-		},
-		{
-			p: 11, t: 'n',
-			c: [
-				{ s: 5, sk: 'sc', v: 1.000 },
-				{ s: 5, sk: 'ps', v: 0.369 },
-				{ s: 4, sk: 'wi', v: 0.190 },
-				{ s: 6, sk: 'wi', v: 0.190 },
-				{ s: 4, sk: 'ps', v: 0.122 },
-				{ s: 6, sk: 'ps', v: 0.122 },
-				{ s: 4, sk: 'sc', v: 0.224 },
-				{ s: 6, sk: 'sc', v: 0.224 },
-			],
-		},
-		{
-			p: 11, t: 'd',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.406 },
-				{ s: 5, sk: 'sc', v: 0.583 },
-				{ s: 5, sk: 'ps', v: 0.543 },
-				{ s: 4, sk: 'wi', v: 0.124 },
-				{ s: 6, sk: 'wi', v: 0.124 },
-				{ s: 4, sk: 'ps', v: 0.215 },
-				{ s: 6, sk: 'ps', v: 0.215 },
-				{ s: 4, sk: 'sc', v: 0.109 },
-				{ s: 6, sk: 'sc', v: 0.109 },
-			],
-		},
-		{
-			p: 11, t: 'tw',
-			c: [
-				{ s: 5, sk: 'sc', v: 0.607 },
-				{ s: 5, sk: 'ps', v: 0.261 },
-				{ s: 4, sk: 'wi', v: 0.174 },
-				{ s: 6, sk: 'wi', v: 0.522 },
-				{ s: 4, sk: 'ps', v: 0.060 },
-				{ s: 6, sk: 'ps', v: 0.180 },
-				{ s: 4, sk: 'sc', v: 0.150 },
-				{ s: 6, sk: 'sc', v: 0.451 },
-			],
-		},
-		{
-			p: 13, t: 'n',
-			c: [
-				{ s: 5, sk: 'sc', v: 1.000 },
-				{ s: 5, sk: 'ps', v: 0.369 },
-				{ s: 4, sk: 'wi', v: 0.190 },
-				{ s: 6, sk: 'wi', v: 0.190 },
-				{ s: 4, sk: 'ps', v: 0.122 },
-				{ s: 6, sk: 'ps', v: 0.122 },
-				{ s: 4, sk: 'sc', v: 0.224 },
-				{ s: 6, sk: 'sc', v: 0.224 },
-			],
-		},
-		{
-			p: 13, t: 'd',
-			c: [
-				{ s: 3, sk: 'pm', v: 0.406 },
-				{ s: 5, sk: 'sc', v: 0.583 },
-				{ s: 5, sk: 'ps', v: 0.543 },
-				{ s: 4, sk: 'wi', v: 0.124 },
-				{ s: 6, sk: 'wi', v: 0.124 },
-				{ s: 4, sk: 'ps', v: 0.215 },
-				{ s: 6, sk: 'ps', v: 0.215 },
-				{ s: 4, sk: 'sc', v: 0.109 },
-				{ s: 6, sk: 'sc', v: 0.109 },
-			],
-		},
-		{
-			p: 13, t: 'tw',
-			c: [
-				{ s: 5, sk: 'sc', v: 0.607 },
-				{ s: 5, sk: 'ps', v: 0.261 },
-				{ s: 4, sk: 'wi', v: 0.522 },
-				{ s: 6, sk: 'wi', v: 0.174 },
-				{ s: 4, sk: 'ps', v: 0.180 },
-				{ s: 6, sk: 'ps', v: 0.060 },
-				{ s: 4, sk: 'sc', v: 0.451 },
-				{ s: 6, sk: 'sc', v: 0.150 },
-			],
-		},
+	POSITIONS: [
+		{ pos: 'kp', wing: 0, },
+		{ pos: 'wb', wing: -1, },
+		{ pos: 'cd', wing: -1, },
+		{ pos: 'cd', wing: 0, },
+		{ pos: 'cd', wing: 1, },
+		{ pos: 'wb', wing: 1, },
+		{ pos: 'w', wing: -1, },
+		{ pos: 'im', wing: -1, },
+		{ pos: 'im', wing: 0, },
+		{ pos: 'im', wing: 1, },
+		{ pos: 'w', wing: 1, },
+		{ pos: 'fw', wing: -1, noTransfer: true },
+		{ pos: 'fw', wing: 0, },
+		{ pos: 'fw', wing: 1, noTransfer: true },
 	],
 	TACTICS: {
-		normal: 'n',
+		normal: '',
 		middle: 'tm',
 		wing: 'tw',
 		offensive: 'o',

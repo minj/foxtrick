@@ -6,7 +6,7 @@
  */
 
 if (!Foxtrick)
-	var Foxtrick = {};
+	var Foxtrick = {}; // jshint ignore:line
 if (!Foxtrick.util)
 	Foxtrick.util = {};
 
@@ -150,7 +150,7 @@ Foxtrick.util.links = {
 		}
 	},
 
-	showEdit: function(doc , ownBoxBody, linkSet) {
+	showEdit: function(doc, ownBoxBody, linkSet) {
 		try {
 			// box
 			var ownBoxId = 'ft-links-box';
@@ -184,17 +184,16 @@ Foxtrick.util.links = {
 			divED.appendChild(customLinkTable);
 
 			// image preview
-			var imgDiv = doc.createElement('div');
-			imgDiv.id = 'ft-link-img-preview';
-			imgDiv.className = 'ft_icon foxtrickBrowse inner';
-			var img = doc.createElement('img');
-			imgDiv.appendChild(img);
 
 			var selectLabel = doc.createElement('span');
 			selectLabel.textContent = ' ' + Foxtrick.L10n.getString('links.custom.selecticon');
-
-			divED.appendChild(imgDiv);
 			divED.appendChild(selectLabel);
+
+			var imgPre = {
+				id: 'ft-link-img-preview',
+				src: Foxtrick.InternalPath + 'resources/img/browse.png',
+			};
+			Foxtrick.addImage(doc, divED, imgPre, selectLabel);
 
 			// image upload
 			var inputDiv = doc.createElement('div');
@@ -352,8 +351,7 @@ Foxtrick.util.links = {
 			var img = doc.getElementById('ft-link-img-preview');
 			var imgref = Foxtrick.Prefs.getString(fullKey + '.img');
 			if (imgref && imgref !== 'null' && imgref !== 'undefined') {
-				img.style.backgroundImage = 'url("' + imgref + '")';
-				img.setAttribute('data-img', imgref);
+				img.src = imgref;
 			}
 		}
 		catch (e) {
@@ -373,7 +371,7 @@ Foxtrick.util.links = {
 			var href = doc.getElementById('ft-link-url-input').value;
 			var title = doc.getElementById('ft-link-title-input').value;
 			var inputImg = doc.getElementById('ft-link-img-preview');
-			var imgref = inputImg.getAttribute('data-img');
+			var imgref = inputImg.src;
 
 			Foxtrick.Prefs.setString(fullKey + '.href', href);
 			Foxtrick.Prefs.setString(fullKey + '.title', title);
@@ -434,8 +432,7 @@ Foxtrick.util.links = {
 			// 	return;
 			// }
 			var div = doc.getElementById('ft-link-img-preview');
-			div.setAttribute('data-img', url);
-			div.style.backgroundImage = 'url("' + url + '")';
+			div.src = url;
 		};
 		var form = Foxtrick.util.load.filePickerForDataUrl(doc, handleUrl);
 		divED.appendChild(form);
@@ -461,7 +458,7 @@ Foxtrick.util.links = {
 		catch (e) {
 			Foxtrick.log(e);
 		}
-	}
+	},
 };
 
 Foxtrick.util.links.getBasePref = function(linkSet) {
@@ -552,7 +549,7 @@ Foxtrick.util.links.run = function(doc, module) {
 
 	var ownInfo = {
 		server: doc.location.hostname,
-		lang: Foxtrick.Prefs.getString('htLanguage')
+		lang: Foxtrick.Prefs.getString('htLanguage'),
 	};
 
 	var ownTeam = Foxtrick.modules.Core.TEAM;
@@ -560,61 +557,76 @@ Foxtrick.util.links.run = function(doc, module) {
 		ownInfo['own' + key] = ownTeam[key];
 	}
 
-	var run = function() {
-		var o = module.links(doc);
-		if (!o)
-			return;
+	var o = module.links(doc);
+	if (!o)
+		return;
 
-		var output = o.info || {};
-		Foxtrick.mergeAll(output, ownInfo);
+	var output = o.info || {};
+	Foxtrick.mergeAll(output, ownInfo);
 
-		var info = {};
-		for (var key in output) {
-			// convert all tags to lower case
-			info[key.toLowerCase()] = output[key];
+	var info = {};
+	for (var tag in output) {
+		// convert all tags to lower case
+		info[tag.toLowerCase()] = output[tag];
+	}
+
+	var box = Foxtrick.createFeaturedElement(doc, module, 'div');
+	box.id = BOX_ID;
+
+	if (!o.types) {
+		// default link types
+		if (module.LINK_TYPES)
+			o.types = module.LINK_TYPES;
+		else
+			o.types = [module.LINK_TYPE];
+	}
+	var specPromises = Foxtrick.map(function(type) {
+		var opts = {
+			module: module.MODULE_NAME,
+			className: LINK_CLASS,
+			type: type,
+			parent: box,
+			info: info,
+		};
+
+		if (typeof type !== 'string') {
+			Foxtrick.mergeValid(opts, type);
 		}
 
-		var box = Foxtrick.createFeaturedElement(doc, module, 'div');
-		box.id = BOX_ID;
+		return Foxtrick.modules['Links'].getLinks(doc, opts)
+			.then(function(anchors) {
+				return { parent: opts.parent, anchors: anchors };
+			});
 
-		if (!o.types) {
-			// default link types
-			if (module.LINK_TYPES)
-				o.types = module.LINK_TYPES;
-			else
-				o.types = [module.LINK_TYPE];
-		}
-		Foxtrick.forEach(function(type) {
-			var opts = {
-				module: module.MODULE_NAME,
-				className: LINK_CLASS,
-				type: type,
-				parent: box,
-				info: info,
-			};
+	}, o.types);
 
-			if (typeof type !== 'string') {
-				Foxtrick.mergeValid(opts, type);
-			}
-			var anchors = Foxtrick.modules['Links'].getLinks(doc, opts);
-			Foxtrick.appendChildren(opts.parent, anchors);
-		}, o.types);
+	// allow concurrent resolution
+	// but append children in order
+	var done = specPromises.reduce(function(prev, now) {
+		return prev.then(function() {
+			return now.then(function(spec) {
+				Foxtrick.appendChildren(spec.parent, spec.anchors);
+			}).catch(Foxtrick.catch('links.run'));
+		});
+	}, Promise.resolve());
 
-		var adder = o.hasNewSidebar ? Foxtrick.Pages.Match : Foxtrick;
-		var wrapper = adder.addBoxToSidebar(doc, HEADER, box, -20);
-		wrapper.id = 'ft-links-box';
-
+	done.then(function() {
+		// append custom links last
 		var customLinkSet = o.customLinkSet || module.MODULE_NAME;
 		Foxtrick.util.links.add(box, customLinkSet, info, o.hasNewSidebar);
+	}).catch(Foxtrick.catch('links.run.custom'));
 
-	};
-
-	Foxtrick.modules['Links'].getCollection(run);
+	var adder = o.hasNewSidebar ? Foxtrick.Pages.Match : Foxtrick;
+	var wrapper = adder.addBoxToSidebar(doc, HEADER, box, -20);
+	wrapper.id = 'ft-links-box';
 };
 
 Foxtrick.util.links.getPrefs = function(doc, module, cb) {
 	var types = module.LINK_TYPES || [module.LINK_TYPE];
 	var mName = module.MODULE_NAME;
+
+	var gList = doc.createElement('ul');
+
 	var parseCollection = function(collection) {
 		if (!collection)
 			return;
@@ -627,7 +639,7 @@ Foxtrick.util.links.getPrefs = function(doc, module, cb) {
 					for (var key in links) {
 						var link = links[key];
 						var item = doc.createElement('li');
-						list.appendChild(item);
+						gList.appendChild(item);
 
 						var label = doc.createElement('label');
 						item.appendChild(label);
@@ -667,7 +679,8 @@ Foxtrick.util.links.getPrefs = function(doc, module, cb) {
 
 		if (typeof cb === 'function') {
 			try {
-				cb();
+				// run cb for async elements
+				cb(gList);
 			}
 			catch (e) {
 				Foxtrick.log('Error in callback for getPrefs', e);
@@ -675,7 +688,7 @@ Foxtrick.util.links.getPrefs = function(doc, module, cb) {
 		}
 	};
 
-	var list = doc.createElement('ul');
-	Foxtrick.modules['Links'].getCollection(parseCollection);
-	return list;
+	Foxtrick.modules['Links'].getCollection().then(parseCollection);
+
+	return gList;
 };

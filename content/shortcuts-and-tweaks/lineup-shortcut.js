@@ -64,6 +64,7 @@ Foxtrick.modules['LineupShortcut'] = {
 			var matchId = Foxtrick.util.id.getMatchIdFromUrl(link.href);
 			link.href += '&HighlightPlayerID=' + playerId;
 
+			// FIXME: this is bound to break
 			// find out home/away team names
 			// \u00a0 is no-break space (entity &nbsp;)
 			// use textContent to deal with encoded entities (like &amp;)

@@ -626,8 +626,7 @@ Foxtrick.modules['MatchLineupFixes'] = {
 
 			var links = {};
 			var names = Foxtrick.map(function(p) {
-				var nick = p.NickName ? ' \'' + p.NickName + '\' ' : ' ';
-				var fullName = p.FirstName + nick + p.LastName;
+				var fullName = p.FirstName + ' ' + p.LastName;
 
 				// create a player link for replacements
 				var link = Foxtrick.createFeaturedElement(doc, module, 'a');

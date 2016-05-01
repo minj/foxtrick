@@ -8,6 +8,37 @@ if (!Foxtrick)
 	var Foxtrick = {};
 
 /**
+ * Node type map.
+ *
+ * Allegedly not available in some browsers
+ * @type {Object}
+ */
+Foxtrick.NodeTypes = {
+	ELEMENT_NODE: 1,
+	ATTRIBUTE_NODE: 2,
+	TEXT_NODE: 3,
+	CDATA_SECTION_NODE: 4,
+	ENTITY_REFERENCE_NODE: 5,
+	ENTITY_NODE: 6,
+	PROCESSING_INSTRUCTION_NODE: 7,
+	COMMENT_NODE: 8,
+	DOCUMENT_NODE: 9,
+	DOCUMENT_TYPE_NODE: 10,
+	DOCUMENT_FRAGMENT_NODE: 11,
+	NOTATION_NODE: 12,
+};
+
+/**
+ * Create an element in SVG namespace. Root element is typically 'svg'.
+ * @param  {document} doc
+ * @param  {string}   type
+ * @return {element}
+ */
+Foxtrick.createSVG = function(doc, type) {
+	return doc.createElementNS('http://www.w3.org/2000/svg', type);
+};
+
+/**
  * Create an element with Foxtrick feature highlight enabled.
  * This and other similar functions must be used on the outer container
  * of DOM created and/or modified by Foxtrick.
@@ -518,6 +549,7 @@ Foxtrick.getDataURIText = function(str) {
 
 /**
  * Add an image in an asynchronous way.
+ * TODO: promisify
  * Used to be the only way to add images from FT package
  * in some extension architectures.
  * Continued to be used with forward compatibility in mind.
@@ -544,6 +576,55 @@ Foxtrick.addImage = function(doc, parent, features, insertBefore, callback) {
 
 	if (callback)
 		callback(img);
+};
+
+/**
+ * Add a specialty icon from a specialty number.
+ *
+ * options is a map of DOM attributes: {string: string}.
+ * NOTE: insertBefore and onError has special meaning.
+ *
+ * Returns Promise.<HTMLImageElement>
+ *
+ * @param  {element} parent
+ * @param  {number}  specNum {Integer}
+ * @param  {object}  options {string: string}
+ * @return {Promise}         Promise.<HTMLImageElement>
+ */
+Foxtrick.addSpecialty = function(parent, specNum, options) {
+	var doc = parent.ownerDocument;
+
+	var specialtyName = Foxtrick.L10n.getSpecialityFromNumber(specNum);
+	var specialtyUrl = Foxtrick.getSpecialtyImagePathFromNumber(specNum);
+
+	var insertBefore = null;
+	if (Foxtrick.hasProp(options, 'insertBefore')) {
+		insertBefore = options.insertBefore;
+		delete options.insertBefore;
+	}
+
+	var imgContainer = doc.createElement('span');
+	if (insertBefore)
+		parent.insertBefore(imgContainer, insertBefore);
+	else
+		parent.appendChild(imgContainer);
+
+	if (Foxtrick.Prefs.isModuleEnabled('SpecialtyInfo')) {
+		var module = Foxtrick.modules['SpecialtyInfo'];
+		module.decorate(imgContainer, specNum);
+		specialtyName += '\n' + Foxtrick.L10n.getString('SpecialtyInfo.open');
+	}
+
+	var opts = {
+		alt: specialtyName,
+		title: specialtyName,
+		src: specialtyUrl,
+	};
+	Foxtrick.mergeAll(opts, options);
+
+	return new Promise(function(resolve) {
+		Foxtrick.addImage(doc, imgContainer, opts, null, resolve);
+	});
 };
 
 /**

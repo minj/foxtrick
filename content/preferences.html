@@ -2,11 +2,13 @@
 <html>
 <head>
 	<!-- options/preferences page for mozilla and chrome -->
+	<!-- @author ryanli, convincedd, CatzHoek, LA-MJ -->
 
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width,user-scalable=0">
 	<link rel="icon" type="image/png" href="./resources/img/icon-32.png" />
 	<link rel="stylesheet" type="text/css" media="screen" href="./resources/css/preferences.css" />
-	<title>FoxTrick Preferences</title>
+	<title>Foxtrick Preferences</title>
 
 	<!-- essential -->
 	<script type="application/x-javascript" src="./env.js"></script>
@@ -22,7 +24,6 @@
 	<script type="application/x-javascript" src="./lib/PluralForm.js"></script>
 	<script type="application/x-javascript" src="./lib/yaml.js"></script>
 	<script type="application/x-javascript" src="./lib/jester.js"></script>
-	<script type="application/x-javascript" src="./lib/FileSaver.js"></script>
 	<script type="application/x-javascript" src="./lib/idbstore.js"></script>
 	<script type="application/x-javascript" src="./lib/psico.js"></script>
 	<script type="application/x-javascript" src="./lib/integration.js"></script>
@@ -31,6 +32,7 @@
 	<!-- util -->
 	<script type="application/x-javascript" src="./util/api.js"></script>
 	<script type="application/x-javascript" src="./util/array.js"></script>
+	<script type="application/x-javascript" src="./util/async.js"></script>
 	<script type="application/x-javascript" src="./util/color.js"></script>
 	<script type="application/x-javascript" src="./util/cookies.js"></script>
 	<script type="application/x-javascript" src="./util/copy-button.js"></script>
@@ -121,6 +123,7 @@
 	<script type="application/x-javascript" src="./information-aggregation/show-friendly-booked.js"></script>
 	<script type="application/x-javascript" src="./information-aggregation/show-lineup-set.js"></script>
 	<script type="application/x-javascript" src="./information-aggregation/skill-table.js"></script>
+	<script type="application/x-javascript" src="./information-aggregation/specialty-info.js"></script>
 	<script type="application/x-javascript" src="./information-aggregation/supporterstats-enhancements.js"></script>
 	<script type="application/x-javascript" src="./information-aggregation/table-of-statistical-truth.js"></script>
 	<script type="application/x-javascript" src="./information-aggregation/team-stats.js"></script>
@@ -188,7 +191,6 @@
 	<script type="application/x-javascript" src="./presentation/old-style-face.js"></script>
 	<script type="application/x-javascript" src="./presentation/original-face.js"></script>
 	<script type="application/x-javascript" src="./presentation/personality-images.js"></script>
-	<script type="application/x-javascript" src="./presentation/player-stats-training-week.js"></script>
 	<script type="application/x-javascript" src="./presentation/ratings-display.js"></script>
 	<script type="application/x-javascript" src="./presentation/safe-for-work.js"></script>
 	<script type="application/x-javascript" src="./presentation/simple-presentation.js"></script>
@@ -228,29 +230,50 @@
 </head>
 <body>
 
-<div id="header">
-	<h1 id="title">
-		<span data-text="prefs.title"></span>
-		<span id="version"></span>
-	</h1>
-</div>
+<div id="header-container">
 
-<!-- Permission save required -->
-<div id="alert" class="alert">
-	<p id="alert-text"></p>
-	<button id="save" data-text="button.save"></button>
-	<div class="clear"></div>
-</div>
+	<div id="header">
+		<h1 id="title">
+			<span data-text="prefs.title"></span>
+			<span id="version"></span>
+		</h1>
+	</div>
 
-<div id="subheader">
-	<div id="search">
-		<p data-text="prefs.search"><input id="search-input" list="modulelist" class="bright border" /></p>
+	<div id="spinner">
+		<img id="svg-spinner" src="./resources/img/spinner.svg" />
+	</div>
+
+	<div id="subheader" class="hidden">
+		<div id="nav-toggle">
+			<button type="button" class="btn-icon btn-icon64"><img src="./resources/img/menu.svg"></button>
+		</div>
+
+		<div id="search">
+			<p data-text="prefs.search" class="right"><input id="search-input" list="modulelist" class="bright border" /></p>
+		</div>
+
+		<!-- Permission save required -->
+		<div id="alert" class="alert hidden">
+			<p id="alert-text"></p>
+			<button id="save" data-text="button.save"></button>
+			<div class="clear"></div>
+		</div>
+
+		<div id="breadcrumbs">
+			<a id="breadcrumb-1" href="#"></a>
+			<span id="breadcrumb-sep-1">>></span>
+			<a id="breadcrumb-2" href="#"></a>
+			<span id="breadcrumb-sep-2">>></span>
+			<a id="breadcrumb-3" href="#"></a>
+		</div>
 	</div>
 </div>
 
-<div id="content">
+<div id="js-top"></div>
+
+<div id="content" class="hidden">
 	<!-- whether to view by category or view by page -->
-	<div id="navigation">
+	<div id="navigation" class="hidden">
 		<div id="navigation-header" class="nav" data-text="prefs.settings"></div>
 		<!-- tabs for each category -->
 		<ul id="tabs" class="nav">
@@ -283,16 +306,9 @@
 	<!-- pane for showing modules, modules have attribute x-on which is a list
 	 of under which tabs it should be shown -->
 	<div id="main">
-		<div id="breadcrumbs">
-			<a id="breadcrumb-1" href="#"></a>
-			<span id="breadcrumb-sep-1">>></span>
-			<a id="breadcrumb-2" href="#"></a>
-			<span id="breadcrumb-sep-2">>></span>
-			<a id="breadcrumb-3" href="#"></a>
-		</div>
 		<div id="pane">
 			<!-- Set-up -->
-			<div class="module" x-on="main all">
+			<div class="module" x-on="main search">
 				<h3 id="pref-setup" data-text="prefs.setup"></h3>
 				<div class="module-content">
 					<p id="pref-setup-desc"></p>
@@ -325,7 +341,7 @@
 				</div>
 			</div>
 			<!-- additional -->
-			<div class="module" x-on="main all">
+			<div class="module" x-on="main search">
 				<h3 id="pref-additional" data-text="prefs.additional.title"></h3>
 				<div class="module-content">
 					<ul>
@@ -361,7 +377,7 @@
 				</div>
 			</div>
 			<!-- disable -->
-			<div class="module" x-on="main all">
+			<div class="module" x-on="main search">
 				<h3 id="pref-disable-title" data-text="prefs.disable.title"></h3>
 				<div class="module-content">
 					<ul>
@@ -377,7 +393,7 @@
 				</div>
 			</div>
 			<!-- StoredPrefs -->
-			<div class="module" x-on="main all">
+			<div class="module" x-on="main search">
 				<h3 id="pref-stored" data-text="prefs.storedData.title"></h3>
 				<div class="module-content">
 					<table>
@@ -387,7 +403,7 @@
 						</tr>
 						<tr>
 							<td><button id="pref-delete-token" data-text="button.deleteToken"></button></td>
-							<td><select id="select-delete-token-teamids"></select></td>
+							<td><select id="select-delete-token-teamIds"></select></td>
 							<td>
 								<label id="pref-delete-token-label" data-text="prefs.storedData.oauth.delete"></label>
 								<p id="pref-delete-token-desc"></p>
@@ -409,7 +425,7 @@
 				</div>
 			</div>
 			<!-- LoadSavePrefs -->
-			<div class="module" x-on="main all">
+			<div class="module" x-on="main search">
 				<h3 id="pref-load-save" data-text="prefs.loadSave.title"></h3>
 				<div class="module-content">
 					<h4 id="pref-save" data-text="prefs.loadSave.export"></h4>
@@ -429,20 +445,20 @@
 							</li>
 						</ul>
 						<p><button id="pref-save-do" data-text="button.export"></button></p>
-						<p><textarea id="pref-save-text"></textarea></p>
+						<p><textarea id="pref-save-text" data-listen="false"></textarea></p>
 						<p data-text="prefs.loadSave.export.notice"></p>
 					</div>
 					<h4 id="pref-load" data-text="prefs.loadSave.import"></h4>
 					<div>
 						<p data-text="prefs.loadSave.import.notice"></p>
-						<p><textarea id="pref-load-text"></textarea></p>
+						<p><textarea id="pref-load-text" data-listen="false"></textarea></p>
 						<p><button id="pref-load-do" data-text="button.import"></button></p>
 					</div>
 				</div>
 			</div>
 			<!-- changes -->
-			<div class="module" x-on="changes all">
-				<h3 data-text="changes.title"></h3>
+			<div class="module h2" x-on="changes search">
+				<h2 data-text="changes.title"></h2>
 				<div class="module-content">
 					<div id="translator_note" class="alert">
 					</div>
@@ -450,30 +466,30 @@
 						<input type="checkbox" id="pref-show-release-notes" pref="showReleaseNotes" />
 						<label id="pref-show-release-notes-label" for="pref-show-release-notes" data-text="releaseNotes.show"></label>
 					</div>
-					<div>
+					<div class="expand">
 						<label for="pref-version-release-notes" data-text="releaseNotes.showFor"></label>
-						<select id="pref-version-release-notes"></select>
+						<select id="pref-version-release-notes" data-listen="false"></select>
 					</div>
 					<div id="pref-notepad">
-						<h4 id="pref-notepad-title"></h4>
+						<h3 id="pref-notepad-title"></h3>
 						<ul id="pref-notepad-list"></ul>
 					</div>
 				</div>
 			</div>
 
 			<!-- help -->
-			<div class="module" x-on="help all">
-				<h3 data-text="link.title"></h3>
+			<div class="module" x-on="help search">
+				<h2 data-text="link.title"></h2>
 				<div class="module-content">
 					<ul id="external-links-list"></ul>
 				</div>
 			</div>
 
 			<!-- about -->
-			<div class="module" x-on="about all">
-				<h3 data-text="about.copyright"></h3>
+			<div class="module" x-on="about search">
+				<h2 data-text="about.copyright"></h2>
 				<div class="module-content">
-					<h4>FoxTrick - a browser add-on for the Hattrick.org online football manager game</h4>
+					<h4>Foxtrick - a browser add-on for the Hattrick.org online football manager game</h4>
 					<ul>
 						<li>Copyright &copy; 2005&ndash;2008, Karel Kolman &lt;kolmis@gmail.com&gt;</li>
 						<li>Copyright &copy; 2008&ndash;2009, Mod-PaV</li>
@@ -516,10 +532,7 @@
 							Paul Johnston, et al., under BSD License.</li>
 						<li>● Modified Chrome to Safari port by Michael Gundlach
 						under GPLv3 as part of adblockforchrome.googlecode.com</li>
-						<li>● yaml.js, a Javascript YAML library ported (from  Symfony PHP framework)
-						by Jeremy Faivre and minj under MIT License.</li>
-						<li>● FileSaver.js by Eli Grey and Devin Samarin under MIT license</li>
-						<li>● ToolbarItem.js by SHIMODA "Piro" Hiroshi under MIT license.</li>
+						<li>● js-yaml.js, a Javascript YAML library by Vitaly Puzrin under MIT license</li>
 						<li>● PsicoTSI, maintained by lizardopoli, originally created by Re4Ver,
 						under MIT license.</li>
 						<li>● indexedDB.polyfill.js by Facebook Inc. under Apache license.
@@ -534,31 +547,31 @@
 						<code>COPYING</code></p>
 				</div>
 			</div>
-			<div class="module" x-on="about all">
+			<div class="module" x-on="about search">
 				<h3 data-text="about.maintainers"></h3>
 				<div class="module-content">
 					<ul id="about-maintainers" class="about-list" path="maintainers"></ul>
 				</div>
 			</div>
-			<div class="module" x-on="about all">
+			<div class="module" x-on="about search">
 				<h3 data-text="about.developers"></h3>
 				<div class="module-content">
 					<ul id="about-developers" class="about-list" path="developers"></ul>
 				</div>
 			</div>
-			<div class="module" x-on="about all">
+			<div class="module" x-on="about search">
 				<h3 data-text="about.designers"></h3>
 				<div class="module-content">
 					<ul id="about-designers" class="about-list" path="designers"></ul>
 				</div>
 			</div>
-			<div class="module" x-on="about all">
+			<div class="module" x-on="about search">
 				<h3 data-text="about.donators"></h3>
 				<div class="module-content">
 					<ul id="about-donators" class="about-list" path="donators"></ul>
 				</div>
 			</div>
-			<div class="module" x-on="about all">
+			<div class="module" x-on="about search">
 				<h3 data-text="about.translators"></h3>
 				<div class="module-content">
 					<ul id="about-translators" class="about-list" path="translations"></ul>

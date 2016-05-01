@@ -20,7 +20,7 @@ Foxtrick.modules['SeasonStats'] = {
 
 		try {
 			// get current season
-			var htDate = Foxtrick.util.time.getHtDate(doc);
+			var htDate = Foxtrick.util.time.getHTDate(doc);
 			var season = Foxtrick.util.time.gregorianToHT(htDate).season;
 			// get selected season
 			var selected_season = doc.location.href.match(/season=(\d+)/i)[1];
@@ -204,38 +204,34 @@ Foxtrick.modules['SeasonStats'] = {
 			var tbody = doc.createElement('tbody');
 			table.appendChild(tbody);
 
-			var tr = doc.createElement('tr');
-			tbody.appendChild(tr);
-			var th = doc.createElement('th');
-			tr.appendChild(th);
-			var th = doc.createElement('th');
-			th.setAttribute('class', 'right ft_seasonstats_td ft_seasonstats_border_left');
-			th.textContent = Foxtrick.L10n.getString('seasonstats.played');
-			tr.appendChild(th);
-			var th = doc.createElement('th');
-			th.setAttribute('class', 'right ft_seasonstats_td ft_seasonstats_border_left');
-			th.textContent = Foxtrick.L10n.getString('seasonstats.won');
-			tr.appendChild(th);
-			var th = doc.createElement('th');
-			th.setAttribute('class', 'right ft_seasonstats_td');
-			th.textContent = Foxtrick.L10n.getString('seasonstats.draw');
-			tr.appendChild(th);
-			var th = doc.createElement('th');
-			th.setAttribute('class', 'right ft_seasonstats_td');
-			th.textContent = Foxtrick.L10n.getString('seasonstats.lost');
-			tr.appendChild(th);
-			var th = doc.createElement('th');
-			th.setAttribute('class', 'right ft_seasonstats_td ft_seasonstats_border_left');
-			th.textContent = Foxtrick.L10n.getString('seasonstats.goalplus');
-			tr.appendChild(th);
-			var th = doc.createElement('th');
-			th.setAttribute('class', 'right ft_seasonstats_td');
-			th.textContent = Foxtrick.L10n.getString('seasonstats.goalminus');
-			tr.appendChild(th);
-			var th = doc.createElement('th');
-			th.setAttribute('class', 'right ft_seasonstats_td');
-			th.textContent = Foxtrick.L10n.getString('seasonstats.goaldiff');
-			tr.appendChild(th);
+			var SS_HEADER_CLASS_GENERIC = 'right ft_seasonstats_td';
+			var SS_HEADER_CLASS_BORDER = 'right ft_seasonstats_td ft_seasonstats_border_left';
+			var cols = {
+				header: null,
+				played: SS_HEADER_CLASS_BORDER,
+				won: SS_HEADER_CLASS_BORDER,
+				draw: SS_HEADER_CLASS_GENERIC,
+				lost: SS_HEADER_CLASS_GENERIC,
+				goalplus: SS_HEADER_CLASS_BORDER,
+				goalminus: SS_HEADER_CLASS_GENERIC,
+				goaldiff: SS_HEADER_CLASS_GENERIC,
+			};
+
+			var headerRow = doc.createElement('tr');
+			tbody.appendChild(headerRow);
+
+			for (var col in cols) {
+				var th = doc.createElement('th');
+				var cls = cols[col];
+				if (cls) {
+					Foxtrick.addClass(th, cls);
+					var l10n = Foxtrick.L10n.getString('seasonstats.' + col);
+					var l10nDesc = Foxtrick.L10n.getString('seasonstats.' + col + '.desc');
+					th.textContent = l10n;
+					th.title = l10nDesc;
+				}
+				headerRow.appendChild(th);
+			}
 
 			for (var k = 0; k < 3; ++k) {
 				var tr = doc.createElement('tr');

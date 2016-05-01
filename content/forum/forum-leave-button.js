@@ -14,8 +14,7 @@ Foxtrick.modules['ForumLeaveButton'] = {
 		if (Foxtrick.isPage(doc, 'forum')) {
 			var LEAVE = Foxtrick.L10n.getString('ForumLeaveButton.LeaveForum');
 			var ALERT = Foxtrick.L10n.getString('ForumLeaveButton.alert');
-			var host = Foxtrick.getLastHost();
-			var URL = host + '/MyHattrick/Preferences/ForumSettings.aspx?LeaveConf=';
+			var URL = Foxtrick.goToUrl('/MyHattrick/Preferences/ForumSettings.aspx?LeaveConf=');
 
 			var addButton = function(folderHeader) {
 				var doc = folderHeader.ownerDocument;

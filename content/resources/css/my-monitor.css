@@ -29,25 +29,17 @@
 	clear: left; /* two in a row */
 }
 
-.ft-monitor-frame  > h3 {
+.ft-monitor-frame > h3 {
 	color: #222;
 	background-color: #EDF1ED;
 	border-bottom: solid 2px #DCE0DC;
-}
-
-.ft-monitor-frame  > h3:hover  > div.ft_sort {
-	display:inline;
-}
-
-.ft-monitor-frame > h3 > div.ft_sort {
-	float:right;
 }
 
 .ft-monitor-team-name {
 	width: 85%;
 	display: inline-block;
 }
-.teamicon + .ft-monitor-team-name  {
+.teamIconSpan + .ft-monitor-team-name  {
 	width: 70%;
 }
 .flag + .ft-monitor-team-name {
@@ -71,11 +63,14 @@
 	display: none;
 }
 
-.teamicon {
+.teamIcon {
 	padding: 0 5px 0 0;
-	margin:0 0 -2px;
+	margin: 0 0 -2px;
 	max-height: 24px;
 	max-width: 36px;
+}
+html[dir="rtl"] .teamIcon {
+	padding: 0 0 0 5px;
 }
 
 .ft-monitor-frame > h3 > a.flag + img {

@@ -75,7 +75,7 @@ if (Foxtrick.platform != 'Android')
 			// called from background script
 			var chromeInit = function() {
 				// update menu in background on mousedown
-				chrome.extension.onRequest.addListener(
+				Foxtrick.SB.ext.onRequest.addListener(
 				  function(request, sender, sendResponse) {
 					var documentUrlPatterns = [
 						'*://*.hattrick.org/*',
@@ -214,8 +214,8 @@ if (Foxtrick.platform != 'Android')
 					doc.addEventListener('mousedown', function(ev) {
 						if (ev.button == 2) { // right mouse down
 							collectData(ev.target);
-							chrome.extension.sendRequest({ req: 'updateContextMenu',
-							                             entries: getEntries() });
+							var msg = { req: 'updateContextMenu', entries: getEntries() };
+							Foxtrick.SB.ext.sendRequest(msg);
 						}
 					}, false);
 				}

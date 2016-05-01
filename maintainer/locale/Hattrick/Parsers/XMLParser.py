@@ -9,7 +9,11 @@ def xml_to_python(el, parent):
 	childs = list(el)
 	attrs = list(el.keys())
 	if not el.text == None:
+		# trimming is needed for container detection but also affects legitimate textNodes
 		text = el.text.strip()
+		# untrimming:
+		# if text:
+		#	text = el.text
 	else:
 		text = ''
 	isArray = False

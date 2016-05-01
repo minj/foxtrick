@@ -14,7 +14,7 @@ Foxtrick.modules['CurrentTransfers'] = {
 
 		// time to add to player deadline for caching
 		// players are delayed if a game is being played
-		var CACHE_BONUS = 1000 * 60 * 60 * 4; // 4 hours
+		var CACHE_BONUS = 4 * Foxtrick.util.time.MSECS_IN_HOUR;
 
 		this.OPENING_PRICE = Foxtrick.L10n.getString('CurrentTransfers.openingPrice');
 
@@ -34,7 +34,8 @@ Foxtrick.modules['CurrentTransfers'] = {
 			optsPlayers.push({ cache_lifetime: cache });
 		}, players);
 
-		Foxtrick.util.currency.establish(doc, function(currencyRate, symbol) {
+		Foxtrick.util.currency.detect(doc).then(function(curr) {
+			var currencyRate = curr.rate, symbol = curr.symbol;
 			Foxtrick.util.api.batchRetrieve(doc, argsPlayers, optsPlayers,
 			  function(xmls, errors) {
 				if (!xmls)
@@ -48,10 +49,14 @@ Foxtrick.modules['CurrentTransfers'] = {
 					module.processXML(doc, xmls[i], { rate: currencyRate, symbol: symbol });
 				}
 			});
+
+		}).catch(function(reason) {
+			Foxtrick.log('WARNING: currency.detect aborted:', reason);
 		});
+
 	},
 	getPlayers: function(doc) {
-		var NOW = Foxtrick.util.time.getHtTimeStamp(doc);
+		var NOW = Foxtrick.util.time.getHTTimeStamp(doc);
 
 		var table = doc.querySelector('#mainBody table.naked');
 		if (!table)
@@ -83,6 +88,7 @@ Foxtrick.modules['CurrentTransfers'] = {
 			var date = deadlineCell.querySelector('.date');
 			if (date) {
 				var ddl = Foxtrick.util.time.getDateFromText(date.firstChild.textContent);
+				ddl = Foxtrick.util.time.toHT(doc, ddl);
 				deadline = ddl.valueOf();
 			}
 

@@ -7,19 +7,19 @@ a good reason to. They are for version bumps in Makefile.
 <plist version="1.0">
 <dict>
 	<key>Author</key>
-	<string>FoxTrick team</string>
+	<string>Foxtrick team</string>
 	<key>Builder Version</key>
 	<string>534.50</string>
 	<key>CFBundleDisplayName</key>
-	<string>FoxTrick</string>
+	<string>Foxtrick</string>
 	<key>CFBundleIdentifier</key>
 	<string>www.foxtrick.org</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleVersion</key>
-	<string>0.16.9</string><!--version-->
+	<string>0.16.11</string><!--version-->
 	<key>CFBundleShortVersionString</key>
-	<string>0.16.9</string><!--version-->
+	<string>0.16.11</string><!--version-->
 	<key>Chrome</key>
 	<dict>
 		<key>Database Quota</key>
@@ -44,7 +44,6 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/lib/oauth.js</string>
 				<string>content/lib/sha1.js</string>
 				<string>content/lib/PluralForm.js</string>
-				<string>content/lib/FileSaver.js</string>
 				<string>content/lib/psico.js</string>
 				<string>content/lib/integration.js</string>
 				<!-- end ext-lib -->
@@ -52,6 +51,7 @@ a good reason to. They are for version bumps in Makefile.
 				<!-- util -->
 				<string>content/util/api.js</string>
 				<string>content/util/array.js</string>
+				<string>content/util/async.js</string>
 				<string>content/util/color.js</string>
 				<string>content/util/cookies.js</string>
 				<string>content/util/copy-button.js</string>
@@ -167,6 +167,7 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/information-aggregation/show-friendly-booked.js</string>
 				<string>content/information-aggregation/show-lineup-set.js</string>
 				<string>content/information-aggregation/skill-table.js</string>
+				<string>content/information-aggregation/specialty-info.js</string>
 				<string>content/information-aggregation/supporterstats-enhancements.js</string>
 				<string>content/information-aggregation/table-of-statistical-truth.js</string>
 				<string>content/information-aggregation/team-stats.js</string>
@@ -234,7 +235,6 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/presentation/old-style-face.js</string>
 				<string>content/presentation/original-face.js</string>
 				<string>content/presentation/personality-images.js</string>
-				<string>content/presentation/player-stats-training-week.js</string>
 				<string>content/presentation/ratings-display.js</string>
 				<string>content/presentation/safe-for-work.js</string>
 				<string>content/presentation/simple-presentation.js</string>

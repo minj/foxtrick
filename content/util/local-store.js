@@ -1,176 +1,416 @@
 'use strict';
 /*
- * localSet() and localGet() are a pair of functions that can store
+ * storage.set() and storage.get() are a pair of functions that can store
  * permanent information.
  * The stored value must be a JSON-serializable object, or of native types.
+ *
+ * @author convincedd, LA-MJ
  */
 
+/* global indexedDB */
+
 if (!Foxtrick)
-	var Foxtrick = {};
+	var Foxtrick = {}; // jshint ignore:line
+
+Foxtrick.storage = {};
 
 // background
-if (Foxtrick.chromeContext() == 'background') {
-	if (Foxtrick.arch === 'Gecko') {
-		(function() {
-			var hasIDB = false;
-			try {
-				// bootstrap
-				hasIDB = typeof indexedDB !== 'undefined';
-			}
-			catch (e) {}
-			finally {
-				if (!hasIDB) {
-					if (typeof Cu.importGlobalProperties === 'function')
-						// FF27+ preferences.html
-						Cu.importGlobalProperties(['indexedDB']);
-				}
-			}
-		})();
-	}
-	// queues that track access to localStore until it becomes available
-	// should mainly apply to init stage
-	Foxtrick._localStore = {
-		ready: false,
-		getQueue: [],
-		setQueue: [],
-	};
-	try {
-		if (indexedDB !== null) {
-			Foxtrick.localStore = new Foxtrick.IDBStore({
-				storeName: 'localStore',
-				storePrefix: 'Foxtrick',
-				keyPath: null,
-				autoIncrement: true,
-				indexes: [],
-				onStoreReady: function() {
-					var ls = Foxtrick._localStore;
-					ls.ready = true;
-					for (var i = 0; i < ls.setQueue.length; ++i) {
-						Foxtrick.localSet(ls.setQueue[i][0], ls.setQueue[i][1]);
+if (Foxtrick.context == 'background') {
+
+	// localStore is a Promise that
+	// a) fulfills with a IDBStore value which is **NOT** a promise-aware utility
+	// b) rejects if initialization failed
+
+	Object.defineProperty(Foxtrick, 'localStore', (function defineLocalStore() {
+
+		var getIDBShim = function() {
+
+			const PREFIX = 'localStore.';
+			const CLEANUP = Foxtrick.catch(PREFIX);
+
+			const STORE = {
+				put: function(key, value, success, failure) {
+
+					var promise = new Promise(function(resolve) {
+
+						key = PREFIX + key;
+						var val = JSON.stringify(value);
+
+						window.localStorage.setItem(key, val);
+
+						resolve(key);
+
+					}).then(success, failure);
+
+					// return a 'raw' Promise for internal use if failure is null
+					if (failure === null) {
+						return promise;
 					}
-					for (var i = 0; i < ls.getQueue.length; ++i) {
-						Foxtrick.localGet(ls.getQueue[i][0], ls.getQueue[i][1]);
+
+					// log any errors otherwise
+					return promise.catch(CLEANUP);
+
+				},
+
+				get: function(key, success, failure) {
+
+					var promise = new Promise(function(resolve) {
+
+						key = PREFIX + key;
+						var val = window.localStorage.getItem(key);
+
+						resolve(JSON.parse(val));
+
+					}).then(success, failure);
+
+					// return a 'raw' Promise for internal use if failure is null
+					if (failure === null) {
+						return promise;
 					}
-					ls.setQueue = [];
-					ls.getQueue = [];
+
+					// log any errors otherwise
+					return promise.catch(CLEANUP);
+
 				},
-				onError: function(error) { throw error; }
-			});
-		}
-		else if (window.localStorage) {
-			Foxtrick.localStore = {
-				put: function(key, value) {
-					window.localStorage.setItem('localStore.' + key, JSON.stringify(value));
-				},
-				get: function(key, callback) {
-					callback(JSON.parse(window.localStorage.getItem('localStore.' + key)));
-				},
+
 				iterate: function(cb, options) {
-					// fake, only implements deletion
-					var branch = options.keyRange.lower;
+
+					var makeIterAdapter = function(key) {
+						return function iterAdapter(val) {
+							var cursor = {
+								key: key,
+								source: STORE,
+							};
+
+							if (options.writeAccess) {
+								cursor.update = function(newVal) {
+									return Foxtrick.storage.set(key, newVal).catch(CLEANUP);
+								};
+
+								cursor.delete = function() {
+									return new Promise(function(resolve) {
+										window.localStorage.removeItem(PREFIX + key);
+										resolve();
+									}).catch(CLEANUP);
+								};
+							}
+
+							cb(val, cursor);
+						};
+					};
+
+					options.onError = options.onError || CLEANUP;
+
+					var range = options.keyRange || STORE.makeKeyRange({});
+					var lower = range.lower;
+					var upper = range.upper;
+
+					var keyMatches = function(key) {
+						var lowOK = range.lowerOpen ? key > lower : key >= lower;
+						var upOK = range.upperOpen ? key < upper : key <= upper;
+						return lowOK && upOK;
+					};
+
+					var promises = [];
+
 					for (var key in window.localStorage) {
-						if (key.indexOf('localStore.' + branch) === 0)
-							// key already contains localStore.
-							window.localStorage.removeItem(key);
+						key = key.slice(PREFIX.length);
+
+						if (keyMatches(key)) {
+							// get a 'raw' Promise by
+							// overriding error callback with null
+							var promise = this.get(key, makeIterAdapter(key), null);
+							promises.push(promise);
+						}
 					}
+
+					Promise.all(promises)
+						.then(options.onEnd, options.onError)
+						.catch(CLEANUP);
 				},
+
 				makeKeyRange: function(opts) {
-					// fake
-					return opts;
-				}
+					const MAX_CHAR = String.fromCharCode(0xffff);
+					const MIN_CHAR = String.fromCharCode(0);
+
+					var ret = {};
+
+					if (opts.only) {
+						ret.lower = opts.only;
+
+						var len = ret.lower.length;
+						if (len) {
+							var last = ret.lower.charCodeAt(len - 1);
+							ret.upper = ret.lower.slice(0, len - 1) + String.fromCharCode(last + 1);
+						}
+						else
+							ret.upper = MIN_CHAR;
+
+						ret.lowerOpen = false;
+						ret.upperOpen = true;
+					}
+					else {
+						var lower = ret.lower = opts.lower || '';
+						var maxString = Foxtrick.repeat(MAX_CHAR, lower.length + 1);
+						ret.upper = opts.upper || maxString;
+
+						ret.lowerOpen = opts.excludeLower;
+						ret.upperOpen = opts.excludeUpper;
+					}
+
+					return ret;
+				},
+
 			};
-			Foxtrick._localStore.ready = true;
-		}
-	}
-	catch (e) {}
-	Foxtrick.localSet = function(key, value) {
-		if (Foxtrick._localStore.ready)
-			Foxtrick.localStore.put(key, value);
-		else {
-			Foxtrick.log('WARNING: localStore has not been initialized.');
-			Foxtrick._localStore.setQueue.push([key, value]);
-		}
-	};
-	Foxtrick.localGet = function(key, callback) {
-		if (Foxtrick._localStore.ready) {
-			Foxtrick.localStore.get(key, function(value) {
-				if (typeof value === 'undefined')
-					value = null;
-				try {
-					callback(value);
-				}
-				catch (e) {
-					Foxtrick.log('Error in callback for localGet', key, value, e);
-				}
-			});
-		}
-		else {
-			Foxtrick.log('WARNING: localStore has not been initialized.');
-			Foxtrick._localStore.getQueue.push([key, callback]);
-		}
-	};
-	Foxtrick.localDeleteBranch = function(branch) {
-		if (typeof branch === 'undefined' || branch === null)
-			branch = '';
 
-		branch = String(branch);
+			return STORE;
+		};
 
-		var options = {
-			onEnd: function() {
-				Foxtrick.log('localStore branch "' + branch + '" deleted');
-			},
-			writeAccess: true,
-			onError: function(e) {
-				Foxtrick.log('Error deleting localStore branch ' + branch, e);
+		const STORE_PROMISE = new Promise(function(fulfill, reject) {
+
+			if (indexedDB !== null) {
+
+				const STORE = new Foxtrick.IDBStore({
+					storeName: 'localStore',
+					storePrefix: 'Foxtrick',
+					keyPath: null,
+					autoIncrement: true,
+					indexes: [],
+					onStoreReady: function() {
+						fulfill(STORE);
+					},
+					onError: reject,
+				});
+
+			}
+			else if (window.localStorage) {
+
+				Promise.resolve(getIDBShim()).then(fulfill);
+
+			}
+		});
+
+		// return localStore property descriptor
+		return {
+			get: function() {
+
+				// catch every time localStore is used
+				// will make it easier to spot in the logs
+				return STORE_PROMISE.catch(function(e) {
+
+					// just log a simple message to disable stack: most likely Private mode
+					Foxtrick.log('WARNING: localStore has not been initialized', e.message);
+
+					// re-throw to disable chain
+					throw e;
+				});
+
 			},
 		};
-		if (branch !== '') {
-			try {
-				options.keyRange = Foxtrick.localStore.makeKeyRange({
-					lower: branch + '.', // charCode 46
-					upper: branch + '/', // charCode 47
-					excludeUpper: true
-				});
-			}
-			catch (e) {
-				Foxtrick.log('Error deleting localStore branch ' + branch +
-				             'in makeKeyRange', e);
-			}
+
+	})());
+}
+
+/**
+ * Get a promise when storage value is set.
+ *
+ * key should be a string.
+ * value may be any stringify-able object.
+ *
+ * @param  {string}  key
+ * @param  {object}  value
+ * @return {Promise}       {Promise.<key>}
+ */
+Foxtrick.storage.set = function(key, value) {
+
+	if (Foxtrick.context == 'content') {
+		return new Promise(function(fulfill, reject) {
+			Foxtrick.SB.ext.sendRequest({
+				req: 'storageSet',
+				key: key,
+				value: value,
+			}, function onSendResponse(response) {
+
+				if (response instanceof Error)
+					reject(response);
+				else
+					fulfill(response);
+
+			});
+		});
+	}
+
+	return Foxtrick.localStore.then(function(store) {
+
+		return new Promise(function(fulfill, reject) {
+			store.put(key, value, fulfill, reject);
+		}).catch(function(e) {
+			Foxtrick.log('Error in storage.set', key, e);
+			throw e;
+		});
+
+	});
+
+};
+
+/**
+ * Get a promise for a storage value.
+ *
+ * Promise will never reject, returns null instead.
+ *
+ * key should be a string.
+ * value may be any stringify-able object or null if N/A.
+ *
+ * @param  {string}  key
+ * @return {Promise}     {Promise.<?value>}
+ */
+Foxtrick.storage.get = function(key) {
+
+	if (Foxtrick.context == 'content') {
+		return new Promise(function(fulfill) {
+			// background never rejects
+			Foxtrick.SB.ext.sendRequest({ req: 'storageGet', key: key }, fulfill);
+		});
+	}
+
+	return Foxtrick.localStore.then(function(store) {
+
+		return new Promise(function(resolve, reject) {
+			store.get(key, function onStoreGet(value) {
+
+				// type-cast undefined to null
+				if (typeof value === 'undefined')
+					value = null;
+
+				resolve(value);
+
+			}, reject);
+		});
+
+	}).catch(function(e) {
+		try {
+			Foxtrick.log('Error in storage.get', key, e);
 		}
-		Foxtrick.localStore.iterate(function(item, cursor) {
-			cursor.delete();
-		}, options);
-	};
+		catch (ee) {}
 
-}
+		return null;
+	});
 
-// content
-else if (Foxtrick.chromeContext() == 'content') {
+};
 
-	Foxtrick.localSet = function(key, value) {
-		// inform background
-		Foxtrick.SB.ext.sendRequest({
-			req: 'localSet',
-			key: key,
-			value: value
+/**
+ * Get a promise for when a certain storage branch is deleted
+ *
+ * @param  {string}  branch
+ * @return {Promise}
+ */
+Foxtrick.storage.deleteBranch = function(branch) {
+
+	if (Foxtrick.context == 'content') {
+		return new Promise(function(fulfill, reject) {
+			Foxtrick.SB.ext.sendRequest({
+				req: 'storageDeleteBranch',
+				branch: branch,
+			}, function onSendResponse(response) {
+
+				if (response instanceof Error)
+					reject(response);
+				else
+					fulfill(response);
+
+			});
 		});
-	};
+	}
 
-	Foxtrick.localGet = function(key, callback) {
-		// get from background
-		Foxtrick.SB.ext.sendRequest({ req: 'localGet', key: key },
-		  function(response) {
+	return Foxtrick.localStore.then(function(store) {
+
+		return new Promise(function(fulfill, reject) {
+			if (branch == null)
+				branch = '';
+
+			branch = branch.toString();
+
+			var options = {
+				writeAccess: true,
+
+				onEnd: function() {
+					Foxtrick.log('localStore branch "' + branch + '" deleted');
+
+					fulfill();
+				},
+
+				onError: function(e) {
+					Foxtrick.log('Error deleting localStore branch', branch, e.message);
+
+					reject(e);
+				},
+			};
+
 			try {
-				callback(response.value);
+				if (branch !== '') {
+					options.keyRange = store.makeKeyRange({
+						lower: branch + '.', // charCode 46
+						upper: branch + '/', // charCode 47
+						excludeUpper: true,
+					});
+				}
 			}
 			catch (e) {
-				Foxtrick.log('Error in callback for localGet', response, e);
-			}
-		});
-	};
+				Foxtrick.log('Error deleting localStore branch', branch,
+				             'in makeKeyRange', e.message);
 
-	Foxtrick.localDeleteBranch = function(branch) {
-		// inform background
-		Foxtrick.SB.ext.sendRequest({ req: 'localDeleteBranch', branch: branch });
-	};
-}
+				reject(e);
+				return;
+			}
+
+			store.iterate(function onStoreIterate(item, cursor) { // jshint ignore:line
+				cursor.delete();
+			}, options);
+
+		}).catch(function(e) {
+			Foxtrick.log('Error in localDeleteBranch', branch, e);
+			throw e;
+		});
+
+	});
+
+};
+
+// /////////////////////////
+// TODO: remove deprecated
+// ////////////////////////
+
+/**
+ * Save a value in local storage
+ *
+ * @deprecated use storage.set() instead
+ *
+ * @param {string} key
+ * @param {object} value
+ */
+Foxtrick.localSet = function(key, value) {
+	Foxtrick.storage.set(key, value).catch(Foxtrick.catch('localSet'));
+};
+
+/**
+ * Get a value from local storage
+ *
+ * @deprecated use storage.get() instead
+ *
+ * @param {string}   key
+ * @param {function} callback
+ */
+Foxtrick.localGet = function(key, callback) {
+	Foxtrick.storage.get(key).then(callback).catch(Foxtrick.catch('localGet'));
+};
+
+/**
+ * Remove a branch from local storage
+ *
+ * @deprecated use storage.deleteBranch() instead
+ *
+ * @param {string} branch
+ */
+Foxtrick.localDeleteBranch = function(branch) {
+	Foxtrick.storage.deleteBranch(branch).catch(Foxtrick.catch('localDeleteBranch'));
+};

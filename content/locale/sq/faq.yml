@@ -3,3 +3,27 @@ sq:
   faq:
     style:
       question: Si mund ta stiloj FoxTrick?
+    sound-format:
+      question: Cilat formate te dokumentave jane te lejuara per njoftimet me ze?
+      answer: |
+        <p>Shfletues të ndryshme të lejojë formate të ndryshme te dokumentave. Këtu është një listë (nuk jane listuar  formatet qe punojne me shtojca, prsh Quicktime per te aktivizuar mp3 ne Firefox):</p>
+        
+        <ul>
+        <li>Mozilla: wav, ogg</li>
+        <li>Safari (mund te kerkoje Quicktime): wav, mp3</li>
+        <li>Chrome: ogg, mp3, wav</li><li>Opera: wav, ogg</li>
+        </ul>
+    sound-location:
+      question: Sa eshte limiti i njoftimeve me ze dhe ku jane te lokalizuara?
+    authorize:
+      question: Pse duhet qe te autorizoj FoxTrick per te marre te dhena nga ekipi im?
+    privacy:
+      question: Si e mbron privatesin time FoxTrick?
+      answer: |
+        <p>FoxTrick nuk do te ngarkoje ndonje te dhene ose preference ne serverat e FoxTrick; as te dhenat private nuk do te dergohen nga FoxTrick, duke perfshire por jo duke kufizuar, emrin e perdoruesit, password, apo ndonje ID te lojtareve lidhur me aftesite per palet e treta.</p>
+        
+        <p>Shumica e të dhënave kaluar palëve të treta, nëse nuk shprehet në mënyrë të qartë më poshtë, janë dërguar me metodën HTTP dhe GET, dhe do të dërgohen vetëm nese klikoni mbi link.</p>
+        
+        <p>Kjo është, ju do të jetë në gjendje për të parë se çfarë të dhënash janë derguar te inspektuar URI (Uniform Resource Identifier) nga një lidhjeje e jashtme, dhe asnje e dhene nuk do te dergohet pa miratimin tuaj. Siç u tha më sipër, asnje e dhene private nuk eshte e perfshire.</p>
+        
+        <p>Perjashtim bejn modulet <module>HTMSPrediction</module> dhe <module>HTEVPrediction</module>, ku vleresimi i ndeshjeve i kalon dhe mirret nga websitet respektive me XMLHttpRequest.</p>

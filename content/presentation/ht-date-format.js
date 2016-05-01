@@ -27,15 +27,15 @@ Foxtrick.modules['HTDateFormat'] = {
 
 		var modifyDate = function(node) {
 			if (Foxtrick.hasClass(node, 'ft-date') ||
-			    (Foxtrick.hasClass(node, 'matchdate') && !Foxtrick.isPage(doc, 'playerStats')))
+			    Foxtrick.hasClass(node, 'matchdate') && !Foxtrick.isPage(doc, 'playerStats'))
 				return;
 
 			var date;
-			if (node.hasAttribute('x-ht-date')) {
-				// attribute x-ht-date set by LocalTime, while inner
-				// text is not HT date but local date
+			if (node.dataset.userDate) {
+				// attribute data-user-date set by LocalTime, while inner
+				// text is not user date but local date
 				date = new Date();
-				date.setTime(node.getAttribute('x-ht-date'));
+				date.setTime(node.dataset.userDate);
 			}
 			else
 				date = Foxtrick.util.time.getDateFromText(node.textContent);
@@ -50,9 +50,9 @@ Foxtrick.modules['HTDateFormat'] = {
 			}
 		};
 
-		var now = Foxtrick.util.time.getHtDate(doc);
+		var now = Foxtrick.util.time.getDate(doc);
 		if (!now) {
-			Foxtrick.log('HT time missing');
+			Foxtrick.log('User time missing');
 			return;
 		}
 
@@ -84,5 +84,5 @@ Foxtrick.modules['HTDateFormat'] = {
 
 	change: function(doc, ev) {
 		this.run(doc);
-	}
+	},
 };

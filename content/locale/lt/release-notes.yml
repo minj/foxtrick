@@ -5,13 +5,78 @@ lt:
       note_0: 'Įdiegėte nestabilią versiją. Naudokite savo rizika. Peržiūrėkite „Google Code“ <linkSVN>pakeitimų sąrašą</linkSVN>.'
     beta:
       note_0: 'Įdiegėte išankstinę (beta) versiją. Prašome prisidėti prie jos vertimo į lietuvių kalbą ypatingai šauniame vertėjų savanorių portale „<linkCrowdin>crowdin.net</linkCrowdin>“. '
+    0.17.0:
+      important: '<header>Svarbūs pranešimai</header>'
+      crowdin: '<header>Daugybė vertimo atnaujinimų. Dėkojame savo šauniems vartotojams, kurie naudojasi <linkCrowdin>crowdin portalu</linkCrowdin>. Ir Jūs galite prisidėti!</header>'
+      browsers: Dėl techninių priežasčių „Firefox“ v38, „Google Chrome“ v39 ir „Opera“ v26 nuo šiol yra seniausios oficialiai palaikomos naršyklių versijos. Visgi dėl savo pačių saugumo turėtumėte visada naudoti naujausią naršyklės versiją.
+      safari_cert: 'Ieškome Hattrick bendruomenės narių, kurie kurtų iOS ar OSX programėles. Reikia pagalbos sutvarkant Foxtrick palaikymą Safari naršyklės naudotojams. Daugiau informacijos rasite <linkSafariCertBug>Foxtrick klaidų seklyje</linkSafariCertBug>.'
+      beta: 'Siūlome išmėgint <linkFTBeta>Foxtrick beta</linkFTBeta> versiją: galėsite pirmieji išmėginti naująsias funkcijas, paveikti jų kūrimo procesą ir pagelbėti randant bei sutaisant iškylančius keblumus.'
+      support: '<header>Patinka šis projektas? Prašome <linkContribute>pagelbėti Foxtrick</linkContribute>.</header>'
+      new: '<header>Nauji moduliai</header>'
+      spec_info: '<module>SpecialtyInfo</module>: spustelėjus ant specialybės piktogramos rodoma nedidelė informacinė lentelė.'
+      bugs: '<header>Pataisytos klaidos</header>'
+      tl_search_form: '<module>TransferSearchResultFilters</module> formos filtras buvo sugedęs dėl naršyklių pakitimų. Dėl to paslepiami visi žaidėjai sandorių rinkos paieškos rezultatų puslapyje. Problema turėtų būti sutvarkyta.'
+      divine_skills: 'Dėl HT programuotojų aplaidumo neseniai atsiradusi informacija apie aukštesnius nei dieviškas įgūdžius sutrikdė iš esmės visų CHPP programų veiklą. Foxtrick – ne išimtis. Paveikti moduliai: <module>SkillTable</module>, <module>MatchOrderInterface</module>, <module>HTMSPoints</module>, <module>SkillColoring</module> ir kiti. Problemos turėtų būti sutvarkytos.'
+      opera_notifications: Sutaisyti Foxtrick pranešimai „Opera“ naršyklėje.
+      nt_weather: '<module>MatchWeather</module> nustojo veikti nacionalinių rinktinių rungtynių puslapyje ir kitais retais atvejais. Modulis perrašytas ir problemos turėtų išnykti.'
+      nt_simulator: 'Sutvarkytas nacionalinių rinktinių trenerių <module>MatchSimulator</module> rungtynių sąrašas.'
+      chrome_styles: Foxtrick dizainais kartais sutrikdavo „Google Chrome“ dėl naršyklės pakeitimų susidarius nepastoviai priedėlio veiklai. Imtasi priemonių tokių problemų prevencijai įgyvendinti.
+      supporter_list: '<module>SupportersList</module> nustodavo veikti, jei <module>StaffMarker</module> buvo išjungtas. Nekorektiška sąveika panaikinta.'
+      youth_promotes: 'Sutaisyta <module>YouthPromotes</module> klaida, dėl kurios kai kurių jaunių aukštinimo data būdavo apskaičiuojama su vienos dienos paklaida.'
+      other: '<header>Kiti pakeitimai</header>'
+      performance_cache: Daug nuveikta bendram Foxtrick našumui padidinti. CHPP ir kiti duomenys nuo šiol turėtų būti pasiekiami greičiau ir su mažiau trukdžių. Taip pat pagerintas Foxtrick podėlis.
+      preferences_install: Foxtrick nustatymų puslapių nuo šiol turėtų greičiau užsikrauti, ypač naudojant „Google Chrome“ naršyklę. Taip pat paspartėjo priedėlio ir jo atnaujinimų įdiegimas „Firefox“ naudotojams.
+      backend: Toliau vykdomas Foxtrick branduolio valymas ir atnaujinimas. Tai palengvina priedėlio priežiūrą ateityje. Pokyčiai galėjo paveikti daug puslapių, modulių ir jų funkcijų. Prašome pranešti apie Jūsų rastas klaidas ir sutrikimus.
+      firefox_support: Dėl šios veiklos pagerėjo Foxtrick suderinamumas su kitais Firefox priedėliais. Taip pat įpusėtas pasiruošimas naujajai Firefox kelių procesų architektūrai.
+      notifications: Spustelėjus ant Foxtrick pranešimų atitinkamas puslapis turėtų atsidaryti naujame skirtuke.
+      context_copy: '<module>ContextMenuCopy</module> modulis pagerintas, kad teisingai nustatytų daugiau Hattrick nuorodų ir sugeneruotų tikslesnį HT-ML kodą (forumams).'
+      training_week: PlayerStatsTrainingWeek modulis panaikintas, nes Hattrick atsirado ta pati funkcija.
+      wage: 'Perrašytas <module>ExtendedPlayerDetailsWage</module> atlyginimo valiutos nustatymas. Modulis turėtų būti atsparesnis HT pokyčiams. Ši funkcija buvo sutrikusi žaidžiantiems Kinijoje.'
+      mail_counter: '<module>NewMail</module> perrašytas, kad būtų atsparesnis HT dizaino pokyčiams.'
+      and_more: Daugybė kitų smulkių pataisymų ir pakitimų.
+    0.16.1.1:
+      important: '<header>Svarbūs pranešimai</header>'
+      safari_cert: 'Ieškome Hattrick bendruomenės narių, kurie kurtų iOS ar OSX programėles. Reikia pagalbos sutvarkant Foxtrick palaikymą Safari naršyklės naudotojams. Daugiau informacijos rasite <linkSafariCertBug>Foxtrick klaidų seklyje</linkSafariCertBug>.'
+      beta: 'Siūlome išmėgint <linkFTBeta>Foxtrick beta</linkFTBeta> versiją: galėsite pirmieji išmėginti naująsias funkcijas, paveikti jų kūrimo procesą ir pagelbėti randant bei sutaisant iškylančius keblumus.'
+      bugs: '<header>Pataisytos klaidos</header>'
+      defence_stamina: 'Sutaisytas klaidingas gynybos sektorių ištvermės efekto skaičiavimas <module>MatchSimulator</module> modulyje: praeitoje versijoje per klaidą buvo atsižvelgiama tik į vartininko ištvermę.'
+      time_rewrite: Foxtrick datos ir laiko nustatymo sistema buvo visiškai pertvarkyta dėl ateinančių Hatrrick pokyčių šioje srityje. Deja praeitoje versijoje įsivėlė kelios klaidos, dėl kurių kai kuriose šalyse žaidžiantiems vartotojams galėjo kilti keblumų su moduliais, kuriems reikalinga CHPP sąsaja. Problema turėtų būti sutvarkyta.
+      calendar_fix: 'Sutvarkyta problema, kur <module>DashboardCalendar</module> modulis kartais visiškai sutrikdavo dėl problemų nustatant datą.'
+      and_more: Daugybė kitų smulkių pataisymų ir pakitimų.
+    0.16.1:
+      important: '<header>Svarbūs pranešimai</header>'
+      new_contributions: '<module>PlayerPositionsEvaluations</module> nuo šiol naudos oficialiai paskelbtus 60-tojo visuotinio Hattrick sezono rungtynių variklio duomenis. Visgi reiktų pastebėti, kad bet kokiems skaičiavimams būtini papildomi parametrai, kurie nėra tiksliai žinomi. Nors numatytos jų vertės yra pakankamai geros, jos nėra oficialios ar patvirtintos statistiškai. Laukiame Jūsų pasiūlymų kaip jas patobulinti. Visus nustatymus rasite bet kurio žaidėjo puslapyje.'
+      crowdin: '<header>Daugybė vertimo atnaujinimų. Dėkojame savo šauniems vartotojams, kurie naudojasi <linkCrowdin>crowdin portalu</linkCrowdin>. Ir Jūs galite prisidėti!</header>'
+      support: '<header>Patinka šis projektas? Prašome <linkContribute>pagelbėti Foxtrick</linkContribute>.</header>'
+      bugs: '<header>Pataisytos klaidos</header>'
+      dollar_wage: 'Sutaisytas atlyginimo skaičiavimas šalyse, kurios naudoja dolerio valiutą (<module>ExtendedPlayerDetailsWage</module> modulis).'
+      old_faces_moi: 'Sutvarkytas žaidėjų veidų atvaizdavimas, sutrikęs dėl <module>OldStyleFace</module> ir <module>MatchOrderInterface</module> modulių sąveikos.'
+      last_lineup_live: 'Paskutinės sudėties nuorodos (<module>TeamPopupLinks</module> ir <module>SeniorTeamShortCuts</module> moduliai) neveikė vykstant rungtynėms. Problema išspręsta.'
+      other: '<header>Kiti pakeitimai</header>'
+      stamina_contributions: '<module>MatchSimulator</module> modulis nuo šiol naudos <module>PlayerPositionsEvaluations</module> modulį ištvermės poveikiui skaičiuoti. Pokyčiai nėra dideli, bet pastebimi. Visuomet laukiame pasiūlymų kaip pagerinti šią funkciją.'
+      copy_lineup: 'Aktyvavę <module>MatchOrderInterface</module> modulį nuo šiol galėsite nukopijuoti rungtynių sudėtį HT-ML formatu (forumams).'
+      supporters_series: '<module>SupportersList</module> modulis nuo šiol pažymės Jūsų komandos rėmėjus ir remiamas komandas ir grupių puslapiuose.'
+      price_history: '<module>TransferComparePlayers</module> modulis dabar rodys išsamesnę informaciją apie kainos pokyčius žaidėjo sandorių istorijos puslapyje.'
+      total_capacity: '<module>MatchIncome</module> nuo šiol rodys suminę parduotų bilietų statistiką.'
+      and_more: Daugybė kitų smulkių pataisymų ir pakitimų.
     0.16.0:
       important: '<header>Svarbūs pranešimai</header>'
+      safari: Dėl pasikeitusios Apple kompanijos pozicijos ir bendro nenoro tobulinti savo naršyklę nebegalime garantuoti automatinių atnaujinimų ar bendro palaikymo „Safari“ naudotojams. Siūlome geriau naudoti „Firefox“, „Google Chrome“ ar „Opera“ naršykles.
       crowdin: '<header>Daugybė vertimo atnaujinimų. Dėkojame savo šauniems vartotojams, kurie naudojasi <linkCrowdin>crowdin portalu</linkCrowdin>. Ir Jūs galite prisidėti!</header>'
       support: '<header>Patinka šis projektas? Prašome <linkContribute>pagelbėti Foxtrick</linkContribute>.</header>'
       new: '<header>Nauji moduliai</header>'
+      transfers: '<module>CurrentTransfers</module> pateikia daugiau informacijos apie žaidėjus dabartinių sandorių puslapyje.'
       bugs: '<header>Pataisytos klaidos</header>'
+      stamina_prediction: 'Spėjamas ištvermės polygmuo (<module>MatchLineupTweaks</module> modulis) buvo klaidingas dėl HT pokyčių. Problema sutvarkyta.'
+      match_order: 'Pataisytas <module>MatchSimulator</module> ir <module>MatchOrderInterface</module> modulių dizainas – prisitaikyta prie Hattrick dizaino pokyčių.'
+      team_detection: 'Dėl HT dizaino pokyčių buvo atsiradę ir daugiau problemų: pradingę svečių komandos veidai, sugedęs <module>LiveAlert</module> įvarčių atpažinimas ir kt.. Visos problemos turėtų būti sutaisytos.'
       other: '<header>Kiti pakeitimai</header>'
+      table: '<module>PlayerFilters</module> ir <module>SkillTable</module> moduliai buvo perrašyti. Ištaisytos įvairios klaidos ir praplėstas funkcionalumas. Svarbiausi stulpeliai nuo šiol yra pritvirtinami, kad neslinktų sutrauktame peržiūros režime. Dabar galima laikinai paslėpti pasirinktus žaidėjus ir dar daugiau. Pilną funkcijų aprašą rasite spustelėję ant informacijos mygtuko.'
+      opponent_goals: '<module>LiveAlert</module> modulyje atsirado atskiras garsinis pranešimas Jūsų varžovų įvarčiams.'
+      indonesian: Indoneziečių kalbos palaikymas.
+      match_events: Rungtynių įvykių tipų aprašymai nuo šiol taip pat gali būti išverčiami.
+      style_cleanup: 'Foxtrick stiliai (CSS) patvarkyti taip, kad būtų lengviau pakeičiami. Nuo šiol galėsite priskirti slapyvardžių spalvas ir Hattrick darbuotojams bei savanoriams (<module>StaffMarker</module> modulis).'
+      and_more: Daugybė kitų smulkių pataisymų ir pakitimų.
     0.15.2.1:
       important: '<header>Svarbūs pranešimai</header>'
       signed: Visi Firefox plėtiniai nuo šiol privalo turėti Mozilla elektroninį parašą. Šis Foxtrick atnaujinimas iš esmės skirtas šiam parašui pridėti, kad būtų užtikrintas sklandus plėtinio darbas.

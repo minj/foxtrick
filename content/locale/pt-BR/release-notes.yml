@@ -5,15 +5,59 @@ pt-BR:
       note_0: 'Esta é a versão de desenvolvimento. Use a seu próprio critério. Veja <linkSVN>história de alterações</linkSVN> no Google Code para detalhes das mudanças.'
     beta:
       note_0: 'Esta é a versão beta do próximo lançamento. Por favor ajude a traduzir essa versão em nossa página de tradução comunitária super fácil <linkCrowdin>crowdin.net</linkCrowdin>. '
-    0.16.0:
+    0.17.0:
       important: '<header>Anúncios Importantes</header>'
       crowdin: '<header>Várias atualizações de traduções de nossos fantásticos usuários que usam o <linkCrowdin>crowdin tool</linkCrowdin>. Você também pode ajudar!</header>'
+      safari_cert: 'Estamos à procura de alguém na comunidade Hattrick que desenvolva aplicativos para iOS ou OSX para ajudar a que voltemos a suportar utilizadores do Safari. Veja o nosso <linkSafariCertBug>rastreador de problemas</linkSafariCertBug> para mais informações.'
+      beta: 'Por favor considere usar <linkFTBeta>Foxtrick beta</linkFTBeta> para ter as novas funcionalidades mais cedo, para influenciar o seu desenvolvimento e ajudar a encontrar e corrigir problemas que possam existir.'
       support: '<header>Como o que estamos fazendo? Por favor <linkContribute>apoio Foxtrick</linkContribute>.</header>'
       new: '<header>Novos módulos</header>'
       bugs: '<header>Correções de bugs</header>'
       other: '<header>Outras alterações</header>'
+      and_more: Várias outras pequenas alterações e correções.
+    0.16.1.1:
+      important: '<header>Anúncios Importantes</header>'
+      safari_cert: 'Estamos à procura de alguém na comunidade Hattrick que desenvolva aplicativos para iOS ou OSX para ajudar a que voltemos a suportar utilizadores do Safari. Veja o nosso <linkSafariCertBug>rastreador de problemas</linkSafariCertBug> para mais informações.'
+      beta: 'Por favor considere usar <linkFTBeta>Foxtrick beta</linkFTBeta> para ter as novas funcionalidades mais cedo, para influenciar o seu desenvolvimento e ajudar a encontrar e corrigir problemas que possam existir.'
+      bugs: '<header>Correções de bugs</header>'
+      defence_stamina: 'Corrigido o problema do efeito da resistência nos cálculos dos setores defensivos em <module>MatchSimulator</module>: anteriormente apenas a resistência do goleiro era levada em conta.'
+      time_rewrite: A deteção de data e hora Foxtrick teve de ser reescrita devido a mudanças futuras do Hattrick. Infelizmente alguns erros foram introduzidos na versão anterior causando problemas para alguns países usando módulos CHPP. O erro deve agora estar corrigido.
+      calendar_fix: '<module>DashboardCalendar</module> estava completamente inútil devido a problemas causados pela deteção da data.'
+      and_more: Várias outras pequenas alterações e correções.
+    0.16.1:
+      important: '<header>Anúncios Importantes</header>'
+      crowdin: '<header>Várias atualizações de traduções de nossos fantásticos usuários que usam o <linkCrowdin>crowdin tool</linkCrowdin>. Você também pode ajudar!</header>'
+      support: '<header>Como o que estamos fazendo? Por favor <linkContribute>apoio Foxtrick</linkContribute>.</header>'
+      bugs: '<header>Correções de bugs</header>'
+      old_faces_moi: 'Corrigidos avatares corrompidos de jogadores devido a interferência entre <module>OldStyleFace</module> e <module>MatchOrderInterface</module>.'
+      last_lineup_live: 'Links para última escalação <module>TeamPopupLinks</module> e <module>SeniorTeamShortCuts</module> não estavam operacionais durante jogos ao vivo. O problema deverá agora estar resolvido.'
+      other: '<header>Outras alterações</header>'
+      stamina_contributions: '<module>MatchSimulator</module> agora usa <module>PlayerPositionsEvaluations</module> para calcular o efeito da resistência. As mudanças são pequenas mas visíveis. Qualquer feedback para melhorar esta função é sempre bem vindo.'
+      copy_lineup: 'Pode agora copiar a escalação em <module>MatchOrderInterface</module>.'
+      price_history: '<module>TransferComparePlayers</module> agora mostra informação mais detalhada sobre mudanças de preço no histórico de transferências.'
+      total_capacity: '<module>MatchIncome</module> agora mostra estatísticas para a capacidade total do estádio.'
+      and_more: Várias outras pequenas alterações e correções.
+    0.16.0:
+      important: '<header>Anúncios Importantes</header>'
+      safari: Devido a mudanças da Apple Inc. em sua política e relutância geral em melhorar o seu navegador, não podemos mais garantir atualizações automáticas e suporte geral para utilizadores do Safari. Por favor considere usar o Firefox, Chrome ou Opera.
+      crowdin: '<header>Várias atualizações de traduções de nossos fantásticos usuários que usam o <linkCrowdin>crowdin tool</linkCrowdin>. Você também pode ajudar!</header>'
+      support: '<header>Como o que estamos fazendo? Por favor <linkContribute>apoio Foxtrick</linkContribute>.</header>'
+      new: '<header>Novos módulos</header>'
+      transfers: '<module>CurrentTransfers</module> adiciona mais informação sobre sobre jogadores na página de transferências atual.'
+      bugs: '<header>Correções de bugs</header>'
+      stamina_prediction: 'Previsão do sub nível de Resistência (<module>MatchLineupTweaks</module>) estava incorreta devido a mudanças no Hattrick. O problema deverá agora estar corrigido.'
+      match_order: 'Ajustado o layout no <module>MatchSimulator</module> e <module>MatchOrderInterface</module> devido a mudanças no design do Hattrick.'
+      team_detection: 'Existiam variadas questões derivadas das mudanças do design do Hattrick: Rostos dos jogadores visitantes tinham desaparecido, a deteção de gols no <module>LiveAlert</module> estava com problemas, etc. Todos os problemas deverão estar agora corrigidos.'
+      other: '<header>Outras alterações</header>'
+      table: '<module>PlayerFilters</module> e <module>SkillTable</module> foram reescritos para corrigir alguns problemas e expandir a sua funcionalidade. Colunas chave são agora bloqueadas para evitar deslizamento horizontal, pode agora ocultar alguns jogadores, etc. Use o botão de informação para ler toda a descrição.'
+      opponent_goals: 'Adicionado outro som de gol para os gols dos seus adversários em <module>LiveAlert</module>.'
+      indonesian: Adicionado suporte para a língua Indonésia.
+      match_events: As descrições dos tipos de eventos de jogo podem agora ser traduzidas também.
+      and_more: Várias outras pequenas alterações e correções.
     0.15.2.1:
       important: '<header>Anúncios Importantes</header>'
+      signed: Todos os extras do Firefox agora necessitam de estar assinados digitalmente pela Mozilla. Este é apenas uma atualização assinada para garantir a compatibilidade.
+      signing: 'Devido a interferências causadas pela obrigação da política de assinatura digital decidimos tirar o Foxtrick da lista do portal <linkAMO>Mozilla add-ons</linkAMO>. Mais detalhes em <linkUnlistPost>Global Foxtrick announcement</linkUnlistPost>.'
       bugs: '<header>Correções de bugs</header>'
       other: '<header>Outras alterações</header>'
       and_more: Várias outras pequenas alterações e correções.
@@ -28,6 +72,10 @@ pt-BR:
       monitor_cups: '<module>MyMonitor</module>deve mostrar os ícones corretos das copas de consolação agora.'
       other: '<header>Outras alterações</header>'
       volume: 'Colocamos um controlador de volume geral para o foxtrick, está em <FTlinkMainTab>general settings section</FTlinkMainTab>.'
+      mrt_ratings: 'Módulo <module>Ratings</module> foi integrado no módulo <module>MatchRatingsTweaks</module> e tem agora funcionalidade limitada mesmo em HT-Live (apenas para Sócio-HT).'
+      export_live: 'Adicionado um botão para exportar a sua lista de jogos HT-Live como um link em <module>ReLiveLinks</module>.'
+      match_icons: 'Mais ícones de eventos de jogo foram adicionados ao <module>MatchReportFormat</module>. Todos os eventos importantes devem agora estar cobertos.'
+      retro_cups: 'Adicionados ícones Retro das copas para os novos tipos de copas em <module>CustomMedals</module>.'
       and_more: Várias outras pequenas alterações e correções.
     0.15.1:
       bugs: '<header>Correções de bugs</header>'

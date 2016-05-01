@@ -184,14 +184,26 @@ Foxtrick.modules['SkillColoring'] = {
 	addSkill: function(doc, el, type, htIndex, skill_number, skill_translated,
 	                   skill_translated_title, isProblemPage) {
 
-		var text = el.textContent;
+		var level = parseInt(htIndex, 10) || 0;
 
-		var skill = this.NAMES[type][htIndex];
-		var level;
-		if (!(this.NAMES[type] instanceof Array))
-			level = this.NAMES[type].indexOf(htIndex); //some HT skills follow weird patterns
+		var skill;
+		if (!(this.NAMES[type] instanceof Array)) {
+			level = this.NAMES[type].indexOf(level); // some HT skills follow weird patterns
+			skill = this.NAMES[type][level];
+		}
+		else {
+			var capped = Math.min(level, 20); // capped at 20
+			skill = this.NAMES[type][capped];
+			if (capped < level) {
+				skill += Foxtrick.format(' (+{})', [level - capped]);
+				// if (el.href) {
+				// 	var re = new RegExp('=' + level + '(?!\\d)', 'g');
+				// 	el.href = el.href.replace(re, '=' + capped);
+				// }
+			}
+		}
 
-		else level = htIndex;
+
 		if (skill_translated && skill_translated_title) { //add to title instead
 			el.setAttribute('title', skill);
 			skill_translated = false;
@@ -341,7 +353,10 @@ Foxtrick.modules['SkillColoring'] = {
 						var percentImage = td.getElementsByTagName('img')[0];
 						var level = (percentImage) ? percentImage.title.match(/\d+/) :
 							Foxtrick.L10n.getLevelFromText(skill);
-						td.removeChild(td.lastChild);
+
+						if (td.lastChild)
+							td.removeChild(td.lastChild);
+
 						if (percentImage) td.appendChild(doc.createTextNode('\u00a0'));
 
 						var translated = (skill_translated) ? !percentImage : false;

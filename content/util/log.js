@@ -17,7 +17,7 @@ Foxtrick.error = function(err) {
 };
 
 
-// outputs a list of strings/objects/errors to FoxTrick log
+// outputs a list of strings/objects/errors to Foxtrick log
 Foxtrick.log = function() {
 	if (arguments.length < 2 && typeof arguments[0] === 'undefined')
 		// useless logging
@@ -65,7 +65,7 @@ Foxtrick.log = function() {
 	Foxtrick.log.flush();
 
 	// store in debug storage (retrieved with forum debug log icon)
-	if (Foxtrick.chromeContext() == 'content')
+	if (Foxtrick.context == 'content')
 		Foxtrick.SB.ext.sendRequest({ req: 'addDebugLog', log: concated });
 	else {
 		Foxtrick.addToDebugLogStorage(concated);
@@ -104,15 +104,15 @@ Foxtrick.log = function() {
 	}
 	if (Foxtrick.arch == 'Gecko') {
 		// goes to JS->Log in the browser console (ctrl+shift+J)
-		if (Foxtrick.platform == 'Android' && Foxtrick.chromeContext() == 'content')
+		if (Foxtrick.platform == 'Android' && Foxtrick.context == 'content')
 			// logging does not work particularly well in Fennec content
-			Cu.reportError(new Error('FoxTrick: ' + concated));
+			Cu.reportError(new Error('Foxtrick: ' + concated));
 		else
-			Services.console.logStringMessage('FoxTrick: ' + concated);
+			Services.console.logStringMessage('Foxtrick: ' + concated);
 	}
 	if (typeof dump === 'function' && Foxtrick.Prefs.getBool('dump')) {
 		// window.dump, a Gecko extension
-		if (Foxtrick.chromeContext() === 'background') {
+		if (Foxtrick.context === 'background') {
 			var lines = concated.split(/\n/);
 			Foxtrick.forEach(function(l) {
 				dump('FT: ' + l.substr(0, 500) + '\n');
@@ -128,7 +128,7 @@ Foxtrick.log = function() {
 // environment info shown in log as header
 Foxtrick.log.header = function(doc) {
 	var headString = 'Version %1, %2 platform, %3 locale, %4 layout, %5 direction'.
-		replace(/%1/, Foxtrick.version() + ' ' + Foxtrick.branch()).
+		replace(/%1/, Foxtrick.version + ' ' + Foxtrick.branch).
 		replace(/%2/, Foxtrick.arch + ' ' + Foxtrick.platform).
 		replace(/%3/, Foxtrick.Prefs.getString('htLanguage')).
 		replace(/%4/, Foxtrick.util.layout.isStandard(doc) ? 'standard' : 'simple').
@@ -151,7 +151,7 @@ Foxtrick.log.doc = null;
 
 // print to HTML log, when doc is available
 Foxtrick.log.flush = function(doc) {
-	if (Foxtrick.platform !== 'Firefox' && Foxtrick.chromeContext() === 'background')
+	if (Foxtrick.platform !== 'Firefox' && Foxtrick.context === 'background')
 		return;
 	if (!Foxtrick.Prefs.getBool('DisplayHTMLDebugOutput'))
 		return;

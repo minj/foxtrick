@@ -1,11 +1,28 @@
 ---
 lv:
   versions:
+    0.17.0:
+      important: '<header>Svarīgi paziņojumi</header>'
+      support: '<header>Patīk ko mēs darām? Lūdzu<linkContribute>Atbalsti Foxtrick</linkContribute>.</header>'
+      bugs: '<header>Kļūdu labojumi</header>'
+      other: '<header>Citas izmaiņas</header>'
+      and_more: Dažādas citas nelielas izmaiņas un labojumi.
+    0.16.1.1:
+      important: '<header>Svarīgi paziņojumi</header>'
+      bugs: '<header>Kļūdu labojumi</header>'
+      and_more: Dažādas citas nelielas izmaiņas un labojumi.
+    0.16.1:
+      important: '<header>Svarīgi paziņojumi</header>'
+      support: '<header>Patīk ko mēs darām? Lūdzu<linkContribute>Atbalsti Foxtrick</linkContribute>.</header>'
+      bugs: '<header>Kļūdu labojumi</header>'
+      other: '<header>Citas izmaiņas</header>'
+      and_more: Dažādas citas nelielas izmaiņas un labojumi.
     0.16.0:
       important: '<header>Svarīgi paziņojumi</header>'
       support: '<header>Patīk ko mēs darām? Lūdzu<linkContribute>Atbalsti Foxtrick</linkContribute>.</header>'
       bugs: '<header>Kļūdu labojumi</header>'
       other: '<header>Citas izmaiņas</header>'
+      and_more: Dažādas citas nelielas izmaiņas un labojumi.
     0.15.2.1:
       important: '<header>Svarīgi paziņojumi</header>'
       bugs: '<header>Kļūdu labojumi</header>'

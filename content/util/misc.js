@@ -58,80 +58,69 @@ if (!Foxtrick)
  * @param  {document} doc
  * @param  {string} url
  */
-Foxtrick.playSound = function(doc, url) {
-	try {
-		if (typeof url !== 'string') {
-			Foxtrick.log('Bad sound:', url);
-			return;
-		}
-		url = url.replace(/^foxtrick:\/\//, Foxtrick.ResourcePath);
-		var type = 'wav';
-		if (url.indexOf('data:audio') === 0)
-			type = url.match(/data:audio\/(.+);/)[1];
-		else {
-			var ext = url.match(/\.([^\.]+)$/);
-			if (ext)
-				type = ext[1];
-			else {
-				Foxtrick.log('Not a sound file:', url);
-				return;
-			}
-		}
-		var volume = parseInt(Foxtrick.Prefs.getString('volume'), 10) / 100;
-		Foxtrick.log('play', volume, url.slice(0, 100));
+Foxtrick.playSound = function(url) {
+	var play = function(url, type, volume) {
 		try {
 			var music = new Audio();
 			var canPlay = music.canPlayType('audio/' + type);
-			Foxtrick.log('can play', type, ':', (canPlay === '' ? 'no' : canPlay));
-			if (canPlay == 'maybe' || canPlay == 'probably') {
-				music.src = url;
-				// try overwrite mime type (in case server says wrongly
-				// it's a generic application/octet-stream)
-				music.type = 'audio/' + type;
-				music.volume = volume;
-				music.play();
-			}
-			else {
-				Foxtrick.log('try embeded using plugin');
-				var videoElement = doc.createElement('embed');
-				videoElement.setAttribute('style', 'visibility:hidden');
-				videoElement.setAttribute('width', '1');
-				videoElement.setAttribute('height', '1');
-				videoElement.setAttribute('autoplay', 'true');
-				videoElement.setAttribute('volume', volume);
-				videoElement.setAttribute('type', 'audio/' + type);
-				videoElement.setAttribute('src', url);
-				doc.getElementsByTagName('body')[0].appendChild(videoElement);
-			}
+			Foxtrick.log('can play', type, ':', canPlay === '' ? 'no' : canPlay);
+
+			if (canPlay === 'no')
+				return;
+
+			music.src = url;
+
+			// try overwrite mime type (in case server says wrongly
+			// it's a generic application/octet-stream)
+			music.type = 'audio/' + type;
+			music.volume = volume;
+			music.play();
 		}
 		catch (e) {
-			if (Foxtrick.chromeContext() == 'content') {
-				// via background since internal sounds might not be acessible
-				// from the html page itself
-				Foxtrick.SB.ext.sendRequest({ req: 'playSound', url: url });
-			}
-			else {
-				Foxtrick.log(e, 'try play with audio tag in document');
-				var music = doc.createElement('audio');
-				music.setAttribute('autoplay', 'autoplay');
-				music.setAttribute('volume', volume);
-				var source = doc.createElement('source');
-				source.setAttribute('src', url);
-				source.setAttribute('type', 'audio/' + type);
-				music.appendChild(source);
-				doc.getElementsByTagName('body')[0].appendChild(music);
-			}
+			Foxtrick.log('Playback failed', e);
 		}
+	};
+
+	if (Foxtrick.context == 'content') {
+		// delegate to background due to playback delay
+		Foxtrick.SB.ext.sendRequest({ req: 'playSound', url: url });
 	}
-	catch (e) {
-		Foxtrick.log('Cannot play sound: ', url.slice(0, 100));
-		Foxtrick.log(e);
+
+	if (typeof url !== 'string') {
+		Foxtrick.log('Bad sound:', url);
+		return;
 	}
+	url = url.replace(/^foxtrick:\/\//, Foxtrick.ResourcePath);
+
+	var type = 'wav';
+	if (url.indexOf('data:audio/') === 0) {
+		var dataURLRe = /data:audio\/(.+);/;
+		if (!dataURLRe.test(url)) {
+			Foxtrick.log('Bad data URL:', url);
+			return;
+		}
+
+		type = dataURLRe.exec(url)[1];
+	}
+	else {
+		var extRe = /\.([^\.]+)$/;
+		if (!extRe.test(url)) {
+			Foxtrick.log('Not a sound file:', url);
+			return;
+		}
+
+		type = extRe.exec(url)[1];
+	}
+
+	var volume = (parseInt(Foxtrick.Prefs.getString('volume'), 10) || 100) / 100;
+	Foxtrick.log('play', volume, url.slice(0, 100));
+
+	play(url, type, volume);
 };
 
 Foxtrick.copyStringToClipboard = function(string) {
 	if (Foxtrick.arch === 'Gecko') {
-		if (Foxtrick.chromeContext() === 'content') {
+		if (Foxtrick.context === 'content') {
 			Foxtrick.SB.ext.sendRequest({ req: 'clipboard', content: string });
 		}
 		else {
@@ -144,7 +133,7 @@ Foxtrick.copyStringToClipboard = function(string) {
 		Foxtrick.sessionSet('clipboard', string);
 	}
 	else if (Foxtrick.arch === 'Sandboxed') {
-		if (Foxtrick.chromeContext() == 'content')
+		if (Foxtrick.context == 'content')
 			Foxtrick.SB.ext.sendRequest({ req: 'clipboard', content: string });
 		else {
 			if (Foxtrick.platform == 'Chrome')
@@ -156,24 +145,22 @@ Foxtrick.copyStringToClipboard = function(string) {
 };
 
 Foxtrick.newTab = function(url) {
-	if (Foxtrick.chromeContext() === 'content') {
+	var tab;
+
+	if (Foxtrick.context === 'content') {
 		Foxtrick.SB.ext.sendRequest({ req: 'newTab', url: url });
 	}
-	else if (Foxtrick.platform == 'Firefox')
-		window.gBrowser.selectedTab = window.gBrowser.addTab(url);
-	else if (Foxtrick.platform == 'Android')
-		BrowserApp.addTab(url);
+	else if (Foxtrick.platform == 'Firefox') {
+		tab = window.gBrowser.addTab(url);
+		window.gBrowser.selectedTab = tab;
+		return tab;
+	}
+	else if (Foxtrick.platform == 'Android') {
+		tab = window.BrowserApp.addTab(url);
+		window.BrowserApp.selectedTab = tab;
+		return tab;
+	}
 };
-
-/*
- * @desc return an XML file parsed from given text
- */
-Foxtrick.parseXml = function(text) {
-	var parser = new window.DOMParser();
-	var xml = parser.parseFromString(text, 'text/xml');
-	return xml;
-};
-
 
 Foxtrick.XML_evaluate = function(xmlresponse, basenodestr, labelstr,
                                  valuestr, value2str, value3str) {
@@ -220,17 +207,17 @@ Foxtrick.xml_single_evaluate = function(xmldoc, path, attribute) {
 		return null;
 };
 
-Foxtrick.version = function() {
+Foxtrick.lazyProp(Foxtrick, 'version', function() {
 	// get rid of user-imported value
 	Foxtrick.Prefs.deleteValue('version');
 	return Foxtrick.Prefs.getString('version');
-};
+});
 
-Foxtrick.branch = function() {
+Foxtrick.lazyProp(Foxtrick, 'branch', function() {
 	// get rid of user-imported value
 	Foxtrick.Prefs.deleteValue('branch');
 	return Foxtrick.Prefs.getString('branch');
-};
+});
 
 Foxtrick.getHref = function(doc) {
 	return doc.location.href;
@@ -254,15 +241,15 @@ Foxtrick.isHt = function(doc) {
 
 Foxtrick.isHtUrl = function(url) {
 	var htMatches = [
-		/^https?:\/\/(www\d{2}\.)?hattrick\.org(\/|$)/i,
-		/^https?:\/\/stage\.hattrick\.org(\/|$)/i,
-		/^https?:\/\/www\d{2}\.hattrick\.ws(\/|$)/i,
-		/^https?:\/\/www\d{2}\.hattrick\.bz(\/|$)/i,
-		/^https?:\/\/www\d{2}\.hat-trick\.net(\/|$)/i,
-		/^https?:\/\/www\d{2}\.hattrick\.uol\.com\.br(\/|$)/i,
-		/^https?:\/\/www\d{2}\.hattrick\.interia\.pl(\/|$)/i,
-		/^https?:\/\/www\d{2}\.hattrick\.name(\/|$)/i,
-		/^https?:\/\/www\d{2}\.hattrick\.fm(\/|$)/i,
+		/^(https?:)?\/\/(www(\d{2})?\.)?hattrick\.org(\/|$)/i,
+		/^(https?:)?\/\/stage\.hattrick\.org(\/|$)/i,
+		/^(https?:)?\/\/www(\d{2})?\.hattrick\.ws(\/|$)/i,
+		/^(https?:)?\/\/www(\d{2})?\.hattrick\.bz(\/|$)/i,
+		/^(https?:)?\/\/www(\d{2})?\.hat-trick\.net(\/|$)/i,
+		/^(https?:)?\/\/www(\d{2})?\.hattrick\.uol\.com\.br(\/|$)/i,
+		/^(https?:)?\/\/www(\d{2})?\.hattrick\.interia\.pl(\/|$)/i,
+		/^(https?:)?\/\/www(\d{2})?\.hattrick\.name(\/|$)/i,
+		/^(https?:)?\/\/www(\d{2})?\.hattrick\.fm(\/|$)/i,
 	];
 	return Foxtrick.any(function(re) { return re.test(url); }, htMatches);
 };
@@ -296,6 +283,19 @@ Foxtrick.getPanel = function(doc) {
 	}
 };
 
+/**
+ * Test whether object obj has a property prop
+ *
+ * Deals with non-objects and null.
+ * Traverses prototype chain.
+ *
+ * @param  {object}  obj
+ * @param  {string}  prop
+ * @return {Boolean}
+ */
+Foxtrick.hasProp = function(obj, prop) {
+	return obj && typeof obj === 'object' && prop in obj;
+};
 
 /**
  * Copy all members from modified to original.
@@ -329,14 +329,6 @@ Foxtrick.mergeValid = function(original, modified) {
 			}
 		}
 	}
-};
-
-Foxtrick.setLastHost = function(host) {
-	Foxtrick.Prefs.setString('last-host', String(host));
-};
-
-Foxtrick.getLastHost = function(host) {
-	return Foxtrick.Prefs.getString('last-host') || 'http://www.hattrick.org';
 };
 
 Foxtrick.setLastPage = function(host) {
@@ -466,6 +458,26 @@ Foxtrick.decodeBase64 = function(str) {
 		Foxtrick.log('Error decoding base64 encoded string', str, e);
 		return null;
 	}
+};
+
+/**
+ * Save an array of arrays of bytes/chars as a file.
+ *
+ * Default name: foxtrick.txt
+ * Default mime: text/plain;charset=utf-8'
+ * @param {document} doc
+ * @param {array}    arr  array of arrays of bytes/chars
+ * @param {string}   name file name
+ * @param {string}   mime mime type + charset
+ */
+Foxtrick.saveAs = function(doc, arr, name, mime) {
+	var win = doc.defaultView;
+	var blob = new win.Blob(arr, { type: mime || 'text/plain;charset=utf-8' });
+	var url = win.URL.createObjectURL(blob);
+	var link = doc.createElement('a');
+	link.href = url;
+	link.download = name || 'foxtrick.txt';
+	link.dispatchEvent(new MouseEvent('click'));
 };
 
 /**
