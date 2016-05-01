@@ -14,7 +14,7 @@ cd maintainer || log "Cannot cd to maintainer"
 ./crowdin-download.sh || echo "Cannot download external translations"
 ./commit.locale.sh || echo "Cannot commit locale"
 git checkout master || log "Cannot checkout master"
-git merge --no-ff l10n || log "Cannot merge l10n"
+git merge --no-ff --no-edit l10n || log "Cannot merge l10n"
 git push origin master || log "Cannot push l10n merge"
 
 log "Success crowdin update."
