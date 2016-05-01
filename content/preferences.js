@@ -1416,8 +1416,8 @@ function initChangesTab() {
 
 			var versions = parseNotes(resp[0]);
 			var versionsLocalized = parseNotes(resp[1]);
-			var rNotesLinks = resp[1];
-			var statusText = resp[2];
+			var rNotesLinks = resp[2];
+			var statusText = resp[3];
 
 			if (!versions) {
 				Foxtrick.error('NO RELEASE NOTES!!!');
