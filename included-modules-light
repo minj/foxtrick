@@ -26,6 +26,7 @@ information-aggregation/psico-tsi.js
 information-aggregation/season-stats.js
 information-aggregation/series-transfers.js
 information-aggregation/show-friendly-booked.js
+information-aggregation/specialty-info.js
 information-aggregation/team-stats.js
 information-aggregation/transfer-compare-players.js
 information-aggregation/transfer-deadline.js
