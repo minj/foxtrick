@@ -1040,6 +1040,11 @@
 			"name": "MarceloFBrandao"
 		},
 		{
+			"duty": "supporter",
+			"id": "8329542",
+			"name": "Aristodemos"
+		},
+		{
 			"duty": "developer",
 			"id": "8342420",
 			"name": "ryanli"
