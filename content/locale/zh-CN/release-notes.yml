@@ -13,6 +13,7 @@ zh-CN:
       beta: '请考虑使用 <linkFTBeta>Foxtrick beta</linkFTBeta>以早点获得新的功能，影响Foxtrick的开发，并帮助查找和修复可能出现的任何问题。'
       support: '<header>喜欢我们在做的事？请 <linkContribute>支持 Foxtrick</linkContribute>.</header>'
       new: '<header>新的模块</header>'
+      spec_info: '<module>SpecialtyInfo</module> 在点击特技图标时显示一个简明特技相关信息表。'
       bugs: '<header>Bug 修复</header>'
       tl_search_form: '<module>TransferSearchResultFilters</module> 中的Foxtrick 状态筛选由于浏览器的更新无法正常使用。这会隐藏在转会搜索结果中的所有球员。现在应该解决了这个问题。'
       divine_skills: '由于 HT 的疏忽，最近增加的超凡入圣 + 技能的显示损坏了基本上所有的 CHPP 应用。Foxtrick 也是这样。受影响的模块包括 <module>SkillTable</module>、 <module>MatchOrderInterface</module>、 <module>HTMSPoints</module>、 <module>SkillColoring</module> 和其他的模块。现在应该解决了这个问题。'

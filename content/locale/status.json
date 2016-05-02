@@ -18,11 +18,11 @@
 			"code": "ar",
 			"name": "Arabic",
 			"phrases": "2263",
-			"translated": "1721",
+			"translated": "1749",
 			"translated_progress": "71",
 			"words": "16432",
 			"words_approved": "11693",
-			"words_translated": "11772"
+			"words_translated": "11824"
 		},
 		{
 			"approved": "0",
@@ -102,11 +102,11 @@
 			"code": "zh-CN",
 			"name": "Chinese Simplified",
 			"phrases": "2263",
-			"translated": "1993",
+			"translated": "2001",
 			"translated_progress": "77",
 			"words": "16432",
 			"words_approved": "0",
-			"words_translated": "12731"
+			"words_translated": "12792"
 		},
 		{
 			"approved": "1909",
@@ -294,11 +294,11 @@
 			"code": "el",
 			"name": "Greek",
 			"phrases": "2263",
-			"translated": "1516",
-			"translated_progress": "48",
+			"translated": "1594",
+			"translated_progress": "50",
 			"words": "16432",
 			"words_approved": "0",
-			"words_translated": "7991"
+			"words_translated": "8350"
 		},
 		{
 			"approved": "0",
@@ -522,11 +522,11 @@
 			"code": "ro",
 			"name": "Romanian",
 			"phrases": "2263",
-			"translated": "2180",
+			"translated": "2189",
 			"translated_progress": "92",
 			"words": "16432",
 			"words_approved": "4629",
-			"words_translated": "15215"
+			"words_translated": "15256"
 		},
 		{
 			"approved": "2263",
