@@ -116,6 +116,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "11017062",
+			"name": "DDriver"
+		},
+		{
+			"duty": "supporter",
 			"id": "11035584",
 			"name": "thejohn"
 		},
@@ -153,6 +158,11 @@
 			"duty": "developer",
 			"id": "11335334",
 			"name": "CatzHoek"
+		},
+		{
+			"duty": "supporter",
+			"id": "1140197",
+			"name": "schmidde"
 		},
 		{
 			"duty": "supporter",
