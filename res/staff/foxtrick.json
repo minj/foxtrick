@@ -116,6 +116,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "11017062",
+			"name": "DDriver"
+		},
+		{
+			"duty": "supporter",
 			"id": "11035584",
 			"name": "thejohn"
 		},
@@ -153,6 +158,11 @@
 			"duty": "developer",
 			"id": "11335334",
 			"name": "CatzHoek"
+		},
+		{
+			"duty": "supporter",
+			"id": "1140197",
+			"name": "schmidde"
 		},
 		{
 			"duty": "supporter",
@@ -303,6 +313,11 @@
 			"duty": "developer",
 			"id": "1270528",
 			"name": "larsw84"
+		},
+		{
+			"duty": "supporter",
+			"id": "12788724",
+			"name": "jkers"
 		},
 		{
 			"duty": "translator",
@@ -718,6 +733,11 @@
 			"duty": "translator",
 			"id": "4917179",
 			"name": "mygenfordt"
+		},
+		{
+			"duty": "supporter",
+			"id": "50011",
+			"name": "Wilbor"
 		},
 		{
 			"duty": "translator",
