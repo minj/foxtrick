@@ -101,7 +101,8 @@ Foxtrick.modules['TransferComparePlayers'] = {
 
 						var specialty = xmls[i].num('Specialty');
 						if (specialty) {
-							Foxtrick.addSpecialty(table.rows[rowIdx].cells[0], specialty);
+							Foxtrick.addSpecialty(table.rows[rowIdx].cells[0], specialty)
+								.catch(Foxtrick.catch('TCP addSpecialty'));
 						}
 					}
 					loading.parentNode.removeChild(loading);
