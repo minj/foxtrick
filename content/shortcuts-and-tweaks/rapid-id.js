@@ -45,8 +45,6 @@ Foxtrick.modules['RapidId'] = {
 			return Foxtrick.Prefs.getString('module.RapidId.selected');
 		};
 		var view = function(event) {
-			// prevent the form from being submitted
-			event.preventDefault();
 			var doc = event.target.ownerDocument;
 			var select = doc.getElementById('ft_rapidid_select');
 			var type = select.options[select.selectedIndex].getAttribute('value');
@@ -90,7 +88,8 @@ Foxtrick.modules['RapidId'] = {
 				form.id = 'ft_rapidid_form';
 				var select = doc.createElement('select');
 				var input = doc.createElement('input');
-				var button = doc.createElement('input');
+				var button = doc.createElement('button');
+				button.type = 'button';
 				button.id = 'ft_rapidid_btn';
 				form.appendChild(select);
 				form.appendChild(input);
@@ -142,9 +141,7 @@ Foxtrick.modules['RapidId'] = {
 					}
 				});
 
-				// the <input type='button' /> element
-				button.setAttribute('type', 'submit');
-				button.setAttribute('value', Foxtrick.L10n.getString('RapidId.view'));
+				button.textContent = Foxtrick.L10n.getString('RapidId.view');
 				Foxtrick.onClick(button, view);
 
 				// hide rightnow on demand
@@ -180,8 +177,8 @@ Foxtrick.modules['RapidId'] = {
 		var viewById = Foxtrick.L10n.getString('RapidId.viewById');
 		indicator.appendChild(doc.createTextNode(viewById));
 		Foxtrick.onClick(indicator, function(ev) {
-				ev.preventDefault();
-				displayForm(doc);
-			});
-	}
+			displayForm(doc);
+		});
+
+	},
 };

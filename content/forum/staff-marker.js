@@ -703,8 +703,6 @@ Foxtrick.modules['StaffMarker'] = {
 				Foxtrick.Prefs.setString('module.StaffMarker.own_text',
 				                         JSON.stringify(customMarker));
 				Foxtrick.Prefs.setModuleEnableState('StaffMarker.own', true);
-
-				ev.preventDefault();
 			};
 		};
 
@@ -714,8 +712,6 @@ Foxtrick.modules['StaffMarker'] = {
 
 				Foxtrick.addClass(doc.getElementById('ft-staff-marker-opts-' + i), 'hidden');
 				Foxtrick.removeClass(doc.getElementById('foxtrick-marker-link-' + i), 'hidden');
-
-				ev.preventDefault();
 			};
 		};
 
@@ -728,8 +724,6 @@ Foxtrick.modules['StaffMarker'] = {
 
 				fg.value = COLOR_SUPPORTED && '#ffffff' || '';
 				bg.value = COLOR_SUPPORTED && '#ffffff' || '';
-
-				ev.preventDefault();
 			};
 		};
 
@@ -803,18 +797,21 @@ Foxtrick.modules['StaffMarker'] = {
 			bg.value = color ? color[1] : '#ffffff';
 
 			var btnSave = doc.createElement('button');
+			btnSave.type = 'button';
 			btnSave.textContent = saveText;
 			Foxtrick.onClick(btnSave, makeSaveListener(i, userId));
 			markerOptions.appendChild(btnSave);
 			markerOptions.appendChild(doc.createTextNode('\u00a0'));
 
 			var btnClose = doc.createElement('button');
+			btnClose.type = 'button';
 			btnClose.textContent = closeText;
 			Foxtrick.onClick(btnClose, makeCloseListener(i));
 			markerOptions.appendChild(btnClose);
 			markerOptions.appendChild(doc.createTextNode('\u00a0\u00a0'));
 
 			var btnReset = doc.createElement('button');
+			btnReset.type = 'button';
 			btnReset.textContent = resetText;
 			Foxtrick.onClick(btnReset, makeResetListener(i));
 			markerOptions.appendChild(btnReset);
