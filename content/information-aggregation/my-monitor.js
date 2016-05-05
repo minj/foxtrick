@@ -403,9 +403,6 @@ Foxtrick.modules['MyMonitor'] = {
 
 				var move = function(direction) {
 					return function(ev) {
-						ev.preventDefault();
-						ev.stopPropagation();
-
 						var teams = getSavedTeams(doc);
 						var frames = doc.getElementsByClassName('ft-monitor-frame');
 						frames = Foxtrick.toArray(frames);
@@ -441,6 +438,9 @@ Foxtrick.modules['MyMonitor'] = {
 
 						// ensure manual
 						Foxtrick.Prefs.setModuleValue('MyMonitor', 0);
+
+						// disable input[type=image] submit
+						return false;
 					};
 				};
 

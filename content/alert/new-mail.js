@@ -32,8 +32,9 @@ Foxtrick.modules['NewMail'] = {
 			mailCountSpan.className = 'ft-new-mail';
 			Foxtrick.onClick(mailCountSpan, function(e) {
 				e.target.ownerDocument.location.assign('/MyHattrick/Inbox/');
-				e.preventDefault();
-				e.stopPropagation();
+
+				// disable MyHT link
+				return false;
 			});
 			var newMailCount = Number(mailCountSpan.textContent.match(/\d+/)[0]);
 		}
