@@ -124,6 +124,7 @@ Foxtrick.modules['MyMonitor'] = {
 
 			var buttonCell = row.appendChild(doc.createElement('td'));
 			var button = doc.createElement('button');
+			button.type = 'button';
 			button.textContent = Foxtrick.L10n.getString('button.import');
 			buttonCell.appendChild(button);
 
@@ -131,8 +132,6 @@ Foxtrick.modules['MyMonitor'] = {
 			infoCell.id = 'ft-monitor-live-info';
 
 			Foxtrick.onClick(button, function(ev) {
-				ev.preventDefault();
-				ev.stopPropagation();
 				var doc = this.ownerDocument;
 
 				var liveLinks = doc.querySelectorAll('a[data-live]');
@@ -404,9 +403,6 @@ Foxtrick.modules['MyMonitor'] = {
 
 				var move = function(direction) {
 					return function(ev) {
-						ev.preventDefault();
-						ev.stopPropagation();
-
 						var teams = getSavedTeams(doc);
 						var frames = doc.getElementsByClassName('ft-monitor-frame');
 						frames = Foxtrick.toArray(frames);
@@ -442,9 +438,15 @@ Foxtrick.modules['MyMonitor'] = {
 
 						// ensure manual
 						Foxtrick.Prefs.setModuleValue('MyMonitor', 0);
+
+						// disable input[type=image] submit
+						return false;
 					};
 				};
 
+				// styling depends on HT CSS
+				// ergo input.up[type=image] is needed
+				// need to use preventDefault accordingly
 				var upLink = doc.createElement('input');
 				upLink.type = 'image';
 				upLink.className = 'up';

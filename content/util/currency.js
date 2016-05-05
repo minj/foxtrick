@@ -141,11 +141,11 @@ Foxtrick.util.currency.displaySelector = function(doc, info) {
 	cont.appendChild(currencySelect);
 
 	var button = doc.createElement('button');
+	button.type = 'button';
 	button.textContent = Foxtrick.L10n.getString('button.save');
 	cont.appendChild(button);
 
 	Foxtrick.onClick(button, function(ev) {
-		ev.preventDefault();
 		var doc = ev.target.ownerDocument;
 
 		var select = doc.getElementById(selectId);

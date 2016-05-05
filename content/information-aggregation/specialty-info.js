@@ -195,8 +195,7 @@ Foxtrick.modules['SpecialtyInfo'] = {
 			activate();
 
 			// stop event to disable match order select
-			ev.preventDefault();
-			ev.stopPropagation();
+			return false;
 		});
 	},
 };
