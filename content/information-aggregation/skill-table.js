@@ -1041,10 +1041,6 @@ Foxtrick.modules['SkillTable'] = {
 				catch (e) {
 					Foxtrick.log(e);
 				}
-				finally {
-					if (ev)
-						ev.stopPropagation();
-				}
 				Foxtrick.log.flush(doc);
 			};
 
