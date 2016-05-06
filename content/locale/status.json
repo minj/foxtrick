@@ -397,7 +397,7 @@
 			"words_translated": "5373"
 		},
 		{
-			"approved": "1532",
+			"approved": "1531",
 			"approved_progress": "56",
 			"code": "lt",
 			"name": "Lithuanian",
@@ -405,7 +405,7 @@
 			"translated": "2263",
 			"translated_progress": "100",
 			"words": "16432",
-			"words_approved": "9241",
+			"words_approved": "9240",
 			"words_translated": "16432"
 		},
 		{
@@ -582,11 +582,11 @@
 			"code": "es-ES",
 			"name": "Spanish",
 			"phrases": "2263",
-			"translated": "2241",
-			"translated_progress": "97",
+			"translated": "2263",
+			"translated_progress": "100",
 			"words": "16432",
 			"words_approved": "1",
-			"words_translated": "15978"
+			"words_translated": "16432"
 		},
 		{
 			"approved": "0",
@@ -594,11 +594,11 @@
 			"code": "es-AR",
 			"name": "Spanish, Argentina",
 			"phrases": "2263",
-			"translated": "2257",
-			"translated_progress": "99",
+			"translated": "2263",
+			"translated_progress": "100",
 			"words": "16432",
 			"words_approved": "0",
-			"words_translated": "16329"
+			"words_translated": "16432"
 		},
 		{
 			"approved": "0",
