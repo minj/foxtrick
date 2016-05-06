@@ -26,6 +26,13 @@ es-AR:
       other: '<header>Otros cambios</header>'
       performance_cache: Mucho trabajo fue hecho para aumentar el rendimiento general de Foxtrick. CHPP y otras fuentes de datos deben ser ahora más rápidas y responsivas. El caché de Foxtrick para estos recursos fue mejorado también.
       preferences_install: Las preferencias de Foxtrick ahora deben cargar más rápido, especialmente en Google Chrome. La instalación y actualizaciones también deberían ser más rápidas en Firefox.
+      backend: Más limpieza y actualizaciones a la base de Foxtrick hicieron aumentar la mantención futura. Los cambios afectan a un montón de páginas, módulos y funcionalidades. Por favor informá cualquier bug que encuentres.
+      firefox_support: Como resultado de este trabajo ahora debe mejorar la interoperabilidad con otros complementos de Firefox. También están en marcha preparativos para la nueva arquitectura de múltiples procesos de Firefox.
+      notifications: Al hacer clic en las notificaciones de Foxtrick se debería abrir la página correspondiente en una nueva pestaña.
+      context_copy: '<module>ContextMenuCopy</module> fue mejorado para manejar mayor cantidad de enlaces y generar marcadores HT-ML más exactos.'
+      training_week: El módulo de PlayerStatsTrainingWeek fue quitado porque Hattrick ha implementado la misma característica.
+      wage: 'La detección de moneda fue reescrita en <module>ExtendedPlayerDetailsWage</module>, para que sea más constante frente a cambios de HT. La característica previamente no funcionaba para los usuarios chinos.'
+      mail_counter: '<module>NewMail</module> fue reescrito para ser más robusto contra los cambios de diseño de HT.'
       and_more: Otros pequeños cambios y correcciones.
     0.16.1.1:
       important: '<header>Anuncios importantes</header>'
