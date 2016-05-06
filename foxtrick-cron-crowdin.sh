@@ -7,8 +7,6 @@ DIR=$(cd $(dirname $0); pwd)
 cd "$DIR/../$BETA" || log "Cannot cd to $BETA"
 
 git stash
-git checkout master || log "Cannot checkout master"
-git pull --rebase origin master || log "Cannot git pull rebase master"
 git checkout l10n || log "Cannot checkout l10n"
 git pull --rebase origin l10n || log "Cannot git pull rebase l10n"
 cd maintainer || log "Cannot cd to maintainer"
@@ -17,6 +15,7 @@ cd maintainer || log "Cannot cd to maintainer"
 ./commit.locale.sh || log "Cannot commit locale"
 git push origin l10n || log "Cannot push l10n"
 git checkout master || log "Cannot checkout master"
+git pull --rebase origin master || log "Cannot git pull rebase master"
 git merge --no-ff --no-edit l10n || log "Cannot merge l10n"
 git push origin master || log "Cannot push l10n merge"
 
