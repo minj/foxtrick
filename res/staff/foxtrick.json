@@ -86,6 +86,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "10763413",
+			"name": "h-b-o"
+		},
+		{
+			"duty": "supporter",
 			"id": "10775786",
 			"name": "Ucha_Cuervo"
 		},
@@ -323,6 +328,11 @@
 			"duty": "translator",
 			"id": "12960779",
 			"name": "puttfarken01"
+		},
+		{
+			"duty": "supporter",
+			"id": "12966867",
+			"name": "ExpatU"
 		},
 		{
 			"duty": "translator",
@@ -1158,6 +1168,11 @@
 			"duty": "translator",
 			"id": "9511330",
 			"name": "Vosco"
+		},
+		{
+			"duty": "supporter",
+			"id": "9531623",
+			"name": "J_Bax"
 		},
 		{
 			"duty": "translator",
