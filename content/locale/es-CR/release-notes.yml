@@ -17,15 +17,15 @@ es-CR:
       bugs: '<header>Corrección de errores</header>'
       tl_search_form: 'Filtro de forma de Foxtrick en <module>TransferSearchResultFilters</module> se rompió debido a los cambios en los navegadores. Esto escondía todos los jugadores en los resultados de la búsqueda de transferencias. Este problema está resuelto.'
       divine_skills: 'La reciente incorporación de niveles divino+ en habilidad rompió esencialmente todas las aplicaciones CHPP debido a negligencia de HT. Foxtrick no fue una excepción a esta regla. Módulos afectados incluyen <module>SkillTable</module>, <module>MatchOrderInterface</module>, <module>HTMSPoints</module>, <module>SkillColoring</module> y otros. Los problemas están solucionados.'
-      opera_notifications: Las notificaciones de notificaciones dejaron de funcionar en el navegador de Opera y ahora deben funcionar.
-      nt_weather: '<module>MatchWeather</module> no funciona para juegos de selecciones y algunos otros casos aislados. El módulo fue reescrito para solucionar todos los problemas conocidos.'
-      nt_simulator: 'La lista de partidos en <module>MatchSimulator</module> no se mostraba correctamente para slecciones. Ahora esto debe funcionar.'
-      chrome_styles: Estilos de Foxtrick a veces podrían dejar de funcionar Google Chrome, causada por cambios en el navegador. Se tomaron medidas para intentar prevenir tales problemas en el futuro.
-      supporter_list: '<module>SupportersList</module> dejaría de trabajar si <module>StaffMarker</module> estaba desactivado. Ahora se retiro la interacción incorrecta.'
-      youth_promotes: 'Arreglado un error en el cálculo de días en <module>YouthPromotes</module>.'
+      opera_notifications: Las notificaciones de Foxtrick dejaron de funcionar en el navegador de Opera y ahora deberían funcionar.
+      nt_weather: '<module>MatchWeather</module> no funcionaba para juegos de selecciones y algunos otros casos aislados. El módulo fue reescrito para solucionar todos los problemas conocidos.'
+      nt_simulator: 'La lista de partidos en <module>MatchSimulator</module> no se mostraba correctamente para selecciones nacionales. Ahora esto debe funcionar.'
+      chrome_styles: Estilos de Foxtrick a veces podrían dejar de funcionar Google Chrome, debido a cambios en el navegador. Se tomaron medidas para intentar prevenir tales problemas en el futuro.
+      supporter_list: '<module>SupportersList</module> dejaría de funcionar si <module>StaffMarker</module> se encontraba desactivado. Ahora se retiro la interacción incorrecta.'
+      youth_promotes: 'Arreglado un error en el cálculo de días para la promoción en <module>YouthPromotes</module>.'
       other: '<header>Otros cambios</header>'
-      performance_cache: Mucho trabajo fue hecho para aumentar el rendimiento general de Foxtrick. CHPP y otras fuentes de datos deben ser ahora más rápido y más sensible. El caché de Foxtrick caché para estos recursos fue mejorado también.
-      preferences_install: Preferencias de Foxtrick ahora deben cargar más rápido, especialmente en Google Chrome. Instalación y actualizaciones también deberían ser más rápidas en Firefox.
+      performance_cache: Mucho trabajo fue hecho para aumentar el rendimiento general de Foxtrick. CHPP y otras fuentes de datos deben ser ahora más rápidas y sensibles. El caché de Foxtrick para estos recursos fue mejorado también.
+      preferences_install: Las preferencias de Foxtrick ahora deben cargar más rápido, especialmente en Google Chrome. Instalación y actualizaciones también deberían ser más rápidas en Firefox.
       backend: Más limpieza y actualizaciones a la base de Foxtrick hicieron aumentar la mantenibilidad futura. Cambios afectan a un montón de páginas, módulos y funcionalidades. Por favor informa cualquier bug que encuentres.
       firefox_support: Como resultado de este trabajo ahora debe mejorar la interoperabilidad con otros complementos de Firefox. También están en marcha preparativos para la nueva arquitectura de múltiples proceso de Firefox.
       notifications: Hacer clic en las notificaciones de Foxtrick debe abrir la página correspondiente en una nueva pestaña.
