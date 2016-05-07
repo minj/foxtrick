@@ -34,18 +34,18 @@ Foxtrick.modules['TransferSearchResultFilters'] = {
 			'days': function(player, min, max) {
 				if (player.age == null)
 					return true;
-				if (typeof(min) == 'number' && player.age.days < min)
+				if (typeof min == 'number' && player.age.days < min)
 					return true;
-				if (typeof(max) == 'number' && player.age.days > max)
+				if (typeof max == 'number' && player.age.days > max)
 					return true;
 				return false;
 			},
 			'form': function(player, min, max) {
 				if (player.form == null)
 					return true;
-				if (typeof(min) == 'number' && player.form < min)
+				if (typeof min == 'number' && min !== -1 && player.form < min)
 					return true;
-				if (typeof(max) == 'number' && player.form > max)
+				if (typeof max == 'number' && max !== -1 && player.form > max)
 					return true;
 				return false;
 			},
@@ -57,7 +57,7 @@ Foxtrick.modules['TransferSearchResultFilters'] = {
 		};
 		// default filter values
 		var FILTER_VAL = [
-			{ key: 'form', type: 'skillselect', min: -1, max: -1, minAllowed: 0, maxAllowed: 8},
+			{ key: 'form', type: 'skillselect', min: -1, max: -1, minAllowed: 0, maxAllowed: 8 },
 			{ key: 'days', type: 'minmax', min: '', max: '' },
 			{ key: 'hideOrdinary', type: 'check', checked: false },
 			{ key: 'hideInjured', type: 'check', checked: false },
@@ -286,14 +286,16 @@ Foxtrick.modules['TransferSearchResultFilters'] = {
 								else if (filter.type == 'skillselect') {
 									var el = doc.getElementById(filterIdPrefix + 'Skills.' +
 									                            filter.key + '.Min');
-									if (isNaN(el.value))
+									filters[j].min = parseInt(el.value, 10);
+									if (isNaN(filters[j].min))
 										filters[j].min = -1;
-									else filters[j].min = Number(el.value);
+
 									var el = doc.getElementById(filterIdPrefix + 'Skills.' +
 									                            filter.key + '.Max');
-									if (isNaN(el.value))
+
+									filters[j].max = parseInt(el.value, 10);
+									if (isNaN(filters[j].max))
 										filters[j].max = -1;
-									else filters[j].max = Number(el.value);
 								}
 							}
 							setFilters(filters);
