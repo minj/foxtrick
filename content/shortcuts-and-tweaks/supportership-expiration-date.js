@@ -10,6 +10,9 @@ Foxtrick.modules['SupportershipExpirationDate'] = {
 	PAGES: ['dashboard'],
 
 	run: function(doc) {
+		if (!Foxtrick.util.layout.isSupporter(doc))
+			return;
+
 		//get the content, translate days to date
 		var container = doc.getElementById('ctl00_ctl00_CPContent_CPSidebar_pnlSupporterDays');
 
