@@ -312,6 +312,12 @@ Foxtrick.listen = function(el, type, listener, useCapture) {
 		Foxtrick.log.flush(doc);
 		Foxtrick.startListenToChange(doc);
 
+		if (ret === false) {
+			// simply returning false does not seem to work in capture phase
+			ev.stopPropagation();
+			ev.preventDefault();
+		}
+
 		return ret;
 	}, useCapture);
 };
