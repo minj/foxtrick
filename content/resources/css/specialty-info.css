@@ -18,6 +18,8 @@
 	color: black;
 
 	white-space: normal;
+
+	cursor: pointer;
 }
 
 html[dir="ltr"] .cards_health .ft-specInfo {
