@@ -612,8 +612,9 @@ Foxtrick.addSpecialty = function(parent, specNum, options) {
 		parent.appendChild(imgContainer);
 
 	if (Foxtrick.Prefs.isModuleEnabled('SpecialtyInfo')) {
-		var module = Foxtrick.modules['SpecialtyInfo'];
-		module.decorate(imgContainer, specNum);
+		Foxtrick.addClass(imgContainer, 'ft-specInfo-parent');
+		imgContainer.dataset.specialty = specNum;
+
 		specialtyName += '\n' + Foxtrick.L10n.getString('SpecialtyInfo.open');
 	}
 
