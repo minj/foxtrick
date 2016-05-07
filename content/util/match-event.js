@@ -282,34 +282,34 @@ Foxtrick.util.matchEvent.eventIconDefinition = {
 	reorganize: Foxtrick.InternalPath + 'resources/img/matches/reorg.png',
 	right_wing: '/Img/Matches/sub_out.gif',
 	se_head_specialist: function() {
-		return Foxtrick.getSpecialtyImagePathFromNumber(5, false);
+		return { specialty: 5 };
 	},
 	se_head_specialist_negative: function() {
-		return Foxtrick.getSpecialtyImagePathFromNumber(5, true);
+		return { specialty: 5, failure: true };
 	},
 	se_powerful: function() {
-		return Foxtrick.getSpecialtyImagePathFromNumber(3, false);
+		return { specialty: 3 };
 	},
 	se_powerful_negative: function() {
-		return Foxtrick.getSpecialtyImagePathFromNumber(3, true);
+		return { specialty: 3, failure: true };
 	},
 	se_quick: function() {
-		return Foxtrick.getSpecialtyImagePathFromNumber(2, false);
+		return { specialty: 2 };
 	},
 	se_quick_negative: function() {
-		return Foxtrick.getSpecialtyImagePathFromNumber(2, true);
+		return { specialty: 2, failure: true };
 	},
 	se_technical: function() {
-		return Foxtrick.getSpecialtyImagePathFromNumber(1, false);
+		return { specialty: 1 };
 	},
 	se_technical_negative: function() {
-		return Foxtrick.getSpecialtyImagePathFromNumber(1, true);
+		return { specialty: 1, failure: true };
 	},
 	se_unpredictable: function() {
-		return Foxtrick.getSpecialtyImagePathFromNumber(4, false);
+		return { specialty: 4 };
 	},
 	se_unpredictable_negative: function() {
-		return Foxtrick.getSpecialtyImagePathFromNumber(4, true);
+		return { specialty: 4, failure: true };
 	},
 	setPieces: '/Club/Matches/images/set_Pieces.png',
 	stop: Foxtrick.InternalPath + 'resources/img/stop.png',
@@ -694,19 +694,28 @@ Foxtrick.util.matchEvent.addEventIcons = function(evnt) {
 };
 
 Foxtrick.util.matchEvent.appendIcons = function(doc, container, icons, title) {
-	var appendEventIcon = function(parent, src, title, alt) {
-		Foxtrick.addImage(doc, parent, { alt: alt, title: title, src: src, 'aria-label': alt });
-	};
-
 	for (var idx = 0; idx < icons.length; idx++) {
-		var src = Foxtrick.util.matchEvent.eventIconDefinition[icons[idx]];
-		if (typeof src === 'function')
-			src = src();
+		var alt = idx ? '' : title;
+		var features = { alt: alt, title: title, 'aria-label': alt };
 
-		if (src === undefined)
+		var src = Foxtrick.util.matchEvent.eventIconDefinition[icons[idx]];
+		if (typeof src === 'function') {
+			var ret = src();
+			if (ret.specialty) {
+				container.dataset.specialty = ret.specialty;
+				Foxtrick.addClass(container, 'ft-specInfo-parent');
+
+				src = Foxtrick.getSpecialtyImagePathFromNumber(ret.specialty, ret.failure);
+			}
+			else
+				src = ret;
+		}
+
+		if (src == null)
 			src = Foxtrick.util.matchEvent.eventIconDefinition['transparent'];
 
-		appendEventIcon(container, src, title, idx ? '' : title);
+		features.src = src;
+		Foxtrick.addImage(doc, container, features);
 	}
 };
 
