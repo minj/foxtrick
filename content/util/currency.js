@@ -250,6 +250,10 @@ Foxtrick.util.currency.isValidCode = function(code) {
  */
 Foxtrick.util.currency.findCode = function(id) {
 	var leagueId = id || Foxtrick.util.id.getOwnLeagueId();
+	if (!leagueId) {
+		Foxtrick.log('WARNING: no league found: using EUR as currency.');
+		return 'EUR';
+	}
 
 	return this.guessCode({
 		rate: this.findRate(leagueId),
@@ -267,6 +271,10 @@ Foxtrick.util.currency.findCode = function(id) {
  */
 Foxtrick.util.currency.findSymbol = function(id) {
 	var leagueId = id || Foxtrick.util.id.getOwnLeagueId();
+	if (!leagueId) {
+		Foxtrick.log('WARNING: no league found: using EUR as currency.');
+		return '€';
+	}
 
 	var name = Foxtrick.XMLData.League[leagueId].Country.CurrencyName;
 
@@ -284,6 +292,11 @@ Foxtrick.util.currency.findSymbol = function(id) {
  */
 Foxtrick.util.currency.findRate = function(id) {
 	var leagueId = id || Foxtrick.util.id.getOwnLeagueId();
+	if (!leagueId) {
+		Foxtrick.log('WARNING: no league found: using EUR as currency.');
+		return 1.0;
+	}
+
 	var country = Foxtrick.XMLData.League[leagueId].Country;
 
 	var name = country.CurrencyName;
