@@ -283,11 +283,13 @@ Foxtrick.appendChildren = function(parent, children) {
  * Adds a click event listener to an element.
  * Sets tabindex=0 and role=button if these attributes have no value.
  * The callback is executed with global change listeners stopped.
+ *
  * @param {HTMLElement} el
  * @param {function}    listener
+ * @param {Boolean}     useCapture
  */
-Foxtrick.onClick = function(el, listener) {
-	Foxtrick.listen(el, 'click', listener, false);
+Foxtrick.onClick = function(el, listener, useCapture) {
+	Foxtrick.listen(el, 'click', listener, useCapture);
 	if (!el.hasAttribute('tabindex'))
 		el.setAttribute('tabindex', '0');
 	if (!el.hasAttribute('role'))
