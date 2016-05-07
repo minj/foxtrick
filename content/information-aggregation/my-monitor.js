@@ -24,7 +24,7 @@ Foxtrick.modules['MyMonitor'] = {
 
 		var getSavedTeams = function() {
 			var savedTeams = Foxtrick.Prefs.getString('MyMonitor.teams');
-			var teams = null;
+			var teams = [];
 			try {
 				teams = JSON.parse(savedTeams);
 			}
@@ -32,19 +32,25 @@ Foxtrick.modules['MyMonitor'] = {
 				Foxtrick.log('Cannot parse saved teams:', savedTeams);
 			}
 
-			if (!teams) {
+			if (!Array.isArray(teams) || !teams.length) {
 				// return national teams if first run
 				var leagueId = Foxtrick.util.id.getOwnLeagueId();
-				var league = Foxtrick.XMLData.League[leagueId];
-				var ntId = league.NationalTeamId;
-				var u20Id = league.U20TeamId;
-				var ntName = Foxtrick.XMLData.getNTNameByLeagueId(leagueId);
-				var u20Name = 'U-20 ' + ntName;
+				if (!leagueId) {
+					// inactive team
+					teams = [];
+				}
+				else {
+					var league = Foxtrick.XMLData.League[leagueId];
+					var ntId = league.NationalTeamId;
+					var u20Id = league.U20TeamId;
+					var ntName = Foxtrick.XMLData.getNTNameByLeagueId(leagueId);
+					var u20Name = 'U-20 ' + ntName;
 
-				teams = [
-					{ id: ntId, name: ntName, type: 'nt' },
-					{ id: u20Id, name: u20Name, type: 'nt' },
-				];
+					teams = [
+						{ id: ntId, name: ntName, type: 'nt' },
+						{ id: u20Id, name: u20Name, type: 'nt' },
+					];
+				}
 			}
 
 			if (SORT) {
