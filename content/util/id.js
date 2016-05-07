@@ -125,7 +125,7 @@ Foxtrick.util.id.findTeamId = function(element) {
 			return Number(links[i].href.replace(/.+TeamID=/i, '').match(/^\d+/)[0]);
 		}
 	}
-	return false;
+	return null;
 };
 
 Foxtrick.util.id.findYouthTeamId = function(element) {

@@ -426,7 +426,7 @@ Foxtrick.modules['TeamPopupLinks'] = {
 		};
 
 		// team links
-		var link = doc.getElementById('teamLinks').getElementsByTagName('a')[0];
+		var link = doc.querySelector('#teamLinks a');
 		if (link)
 			addSpan(link);
 
