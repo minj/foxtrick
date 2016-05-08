@@ -5,7 +5,7 @@ pref("extensions.foxtrick.prefs.branch", "dev");
 pref("extensions.foxtrick.prefs.disableOnStage", false);
 pref("extensions.foxtrick.prefs.disableTemporary", false);
 pref("extensions.foxtrick.prefs.DisplayHTMLDebugOutput", false);
-pref("extensions.foxtrick.prefs.htCountry", "Sweden");
+pref("extensions.foxtrick.prefs.htCountry", "N/A");
 pref("extensions.foxtrick.prefs.htDateFormat", "dd-mm-yyyy");
 pref("extensions.foxtrick.prefs.htLanguage", "en");
 pref("extensions.foxtrick.prefs.module.ARIALandmarks.enabled", true);

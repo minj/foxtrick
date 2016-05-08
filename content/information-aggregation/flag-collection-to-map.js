@@ -245,7 +245,7 @@ Foxtrick.modules['FlagCollectionToMap'] = {
 
 
 	run: function(doc) {
-		this.own_countryid = Foxtrick.util.id.getOwnLeagueId();
+		// this.own_countryid = Foxtrick.util.id.getOwnLeagueId(); // unused, check for null
 
 		var mapId = 0;
 		var mainbox = doc.getElementsByClassName('mainBox');
