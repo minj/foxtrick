@@ -393,7 +393,7 @@ if (Foxtrick.context === 'background') {
 					cache = new Date(aLifeTime);
 
 					// set new lifeTime
-					this.set(url, params, aLifeTime)(obj.promise);
+					this.setFor(url, params, aLifeTime)(obj.promise);
 				}
 
 				Foxtrick.log('Using cache for:', url, 'until', cache.toString(),
