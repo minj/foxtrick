@@ -373,7 +373,7 @@ if (Foxtrick.context === 'background') {
 					if (cache < now) {
 						// stale cache
 
-						set(url, params, null);
+						this.delete(url, params);
 
 						return { stale: cache.toString(), now: now.toString() };
 					}
@@ -428,6 +428,16 @@ if (Foxtrick.context === 'background') {
 
 					set(url, params, cacheObj);
 				};
+			},
+
+			/**
+			 * Delete a cached promise if any
+			 *
+			 * @param  {string} url
+			 * @param  {object} params
+			 */
+			delete: function(url, params) {
+				set(url, params, null);
 			},
 
 			/**
