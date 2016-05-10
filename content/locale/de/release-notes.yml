@@ -8,13 +8,36 @@ de:
     0.17.0:
       important: '<header>Wichtige Ankündigungen</header>'
       crowdin: '<header>Eine Menge neue Übersetzungen von unseren großartigen <linkCrowdin>Crowdin</linkCrowdin> Nutzern. Du kannst übrigens auch ganz einfach mithelfen!</header>'
+      browsers: Aus technischen Gründen sind Firefox v38, Google Chrome v39 und Opera v26 derzeit die minimalen offiziell unterstützten Browser-Versionen. Zu deiner eigenen Sicherheit solltest du aber immer die neueste verfügbare Browser-Version verwenden.
+      safari_cert: 'Wir suchen jemanden in der Hattrick Community, der Apps für iOS oder OSX entwickelt, um den Foxtrick Support für Safari-Nutzer wiederherzustellen. Besuche unsere <linkSafariCertBug>Fehlerverfolgung</linkSafariCertBug> für mehr Informationen.'
+      beta: 'Unterstütze uns durch Benutzung von <linkFTBeta>Foxtrick beta</linkFTBeta>, um von neuen Funktionen zu profitieren, ihre Weiterentwicklung zu fördern und uns bei der Fehlersuche und -behebung zu helfen.'
       support: '<header>Foxtrick gefällt Dir? Bitte <linkContribute>unterstütze Foxtrick</linkContribute>.</header>'
       new: '<header>Neue Module</header>'
+      spec_info: '<module>SpecialtyInfo</module> zeigt eine kompakte Informations-Tabelle zur Spezialfähigkeit nach Klick auf ein Spezialfähigkeits-Symbol.'
       bugs: '<header>Bugfixes</header>'
+      tl_search_form: 'Der Foxtrick Formfilter in <module>TransferSearchResultFilters</module> war wegen Änderungen beim Browser unterbrochen. Das führte dazu, dass alle Spieler in den Resultaten der Transfersuche versteckt waren. Das Problem sollte jetzt behoben sein.'
+      divine_skills: 'Die kürzliche Einführung der Darstellung von Fähigkeitsstufen göttlich+ unterbrach alle CHPP Anwendungen aufgrund von Nachlässigkeit von HT. Foxtrick war keine Ausnahme dieser Regel. Betroffene Module sind u. a. <module>SkillTable</module>, <module>MatchOrderInterface</module>, <module>HTMSPoints</module> und <module>SkillColoring</module>. Die Probleme sollten nun behoben sein.'
+      opera_notifications: Foxtrick Benachrichtigungen im Opera Browser waren unterbrochen und sollten nun wiederhergestellt sein.
+      nt_weather: '<module>MatchWeather</module> war defekt für NT Spiele und einige andere Fälle. Das Modul wurde neu geschrieben um alle bekannten Fehler zu beheben.'
+      nt_simulator: '<module>MatchSimulator</module> Matchliste zeigte nicht die richtigen Spiele für NT-Teams. Dies sollte nun behoben sein.'
+      chrome_styles: Foxtrick Stile waren manchmal defekt in Google Chrome, wegen einer Wettlaufsituation aufgrund von Änderungen beim Browser. Massnahmen zur künftigen Vermeidung solcher Probleme wurden ergriffen.
+      supporter_list: '<module>SupportersList</module> funktionierte nicht wenn <module>StaffMarker</module> deaktiviert war. Die unbeabsichtigte Wechselwirkung sollte nun entfernt worden sein.'
+      youth_promotes: 'Behob einen "1-daneben" Bug bei der Berechnung der verbleibenden Tage in <module>YouthPromotes</module>.'
       other: '<header>Andere Änderungen</header>'
+      performance_cache: Viel Arbeit wurde in die Verbesserung der Foxtrick-Leistung gesteckt. CHPP und andere Datenquellen sollten nun schneller angesprochen werden können. Der Foxtrick Cache für diese Quellen wurde ebenfalls verbessert.
+      preferences_install: Foxtrick Eigenschaften sollten nun schneller laden, speziell bei Google Chrome. Installation und Updates sollten auch bei Firefox schneller sein.
+      backend: Zur verbesserten Wartbarkeit in Zukunft wurden weitere Aufräumarbeiten und Updates im Foxtrick-Kern durchgeführt. Änderungen betreffen viele Seiten, Module und Funktionalitäten. Bitte melde allfällige Bugs.
+      firefox_support: Als Folge dieser Arbeiten sollte die Kompatibilität mit anderen Firefox Add-ons jetzt besser sein. Vorbereitungen für die neue Firefox Multi-Prozess-Architektur sind auch in vollem Gange.
+      notifications: Klick auf Foxtrick Benachrichtigungen sollte nun die entsprechende Seite in einem neuen Tab öffnen.
+      context_copy: '<module>ContextMenuCopy</module> wurde verbessert um mehr Links zu verarbeiten und präzisere HT-ML Markup zu erzeugen.'
+      training_week: PlayerStatsTrainingWeek Modul wurde entfernt, da Hattrick dieselbe Funktion eingebaut hat.
+      wage: 'Erkennung der Währung des Lohnes wurde neu geschrieben in <module>ExtendedPlayerDetailsWage</module>, um es robuster gegen HT-Änderungen zu machen. Die Funktion war für chinesische Nutzer zuvor unterbrochen.'
+      mail_counter: '<module>NewMail</module> wurde umgeschrieben um robuster gegen Änderungen der Darstellung durch HT zu sein.'
       and_more: Mehrere kleinere Änderungen und Korrekturen.
     0.16.1.1:
       important: '<header>Wichtige Ankündigungen</header>'
+      safari_cert: 'Wir suchen jemanden in der Hattrick Community, der Apps für iOS oder OSX entwickelt, um den Foxtrick Support für Safari-Nutzer wiederherzustellen. Besuche unsere <linkSafariCertBug>Fehlerverfolgung</linkSafariCertBug> für mehr Informationen.'
+      beta: 'Unterstütze uns durch Benutzung von <linkFTBeta>Foxtrick beta</linkFTBeta>, um von neuen Funktionen zu profitieren, ihre Weiterentwicklung zu fördern und uns bei der Fehlersuche und -behebung zu helfen.'
       bugs: '<header>Bugfixes</header>'
       and_more: Mehrere kleinere Änderungen und Korrekturen.
     0.16.1:
