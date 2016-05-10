@@ -133,7 +133,7 @@
 			"words_translated": "14249"
 		},
 		{
-			"approved": "1849",
+			"approved": "1848",
 			"approved_progress": "78",
 			"code": "da",
 			"name": "Danish",
@@ -141,7 +141,7 @@
 			"translated": "2263",
 			"translated_progress": "100",
 			"words": "16432",
-			"words_approved": "12830",
+			"words_approved": "12821",
 			"words_translated": "16432"
 		},
 		{
@@ -282,11 +282,11 @@
 			"code": "de",
 			"name": "German",
 			"phrases": "2263",
-			"translated": "2162",
-			"translated_progress": "89",
+			"translated": "2193",
+			"translated_progress": "92",
 			"words": "16432",
 			"words_approved": "37",
-			"words_translated": "14679"
+			"words_translated": "15265"
 		},
 		{
 			"approved": "0",
