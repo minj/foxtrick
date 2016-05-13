@@ -9,11 +9,11 @@ da:
       important: '<header>Vigtige meddelelser</header>'
       crowdin: '<header>En stor tak til alle de hjælpsomme brugere, som oversætter ved hjælp af <linkCrowdin>crowdin </linkCrowdin>. Du kan også give en hånd!</header>'
       browsers: Af tekniske årsager er Firefox v.38, Google Chrome v.39 og Opera v.26 nu de senest officielt understøttede browserversioner. Du bør dog altid, for din egen sikkerhed, bruge den senest tilgængelige browserversion.
-      safari_cert: 'Vi er på udkig efter engageret managere, som arbejder med udvikling af apps til iOS eller OSX, for at være med til at genoprette hjælp til Safari-brugere omkring Foxtrick. Se vores <linkSafariCertBug>issue tracker</linkSafariCertBug> for flere oplysninger.'
-      beta: 'Overvej at installer <linkFTBeta>Foxtrick beta</linkFTBeta> for at få nye funktioner tidligt, sådan at du kan være med til at påvirke udviklingen af nye features, og til at hjælpe med at finde og løse eventuelle problemer, der måtte opstå.'
+      safari_cert: 'Vi er på udkig efter engageret managere, som arbejder med udvikling af apps til iOS eller OSX, for at være med til at genetablere hjælp til Safari-brugere omkring Foxtrick. Se vores <linkSafariCertBug>issue tracker</linkSafariCertBug> for flere oplysninger.'
+      beta: 'Hvis du kunne tænke dig at få adgang til nye funktioner sådan, at du kan være med til at præge udviklingen af nye features, og til at hjælpe med at finde og løse eventuelle fejl der måtte opstå, bør du overveje at installer beta versionen som du finder her: <linkFTBeta>Foxtrick beta</linkFTBeta>'
       support: '<header>Støt Foxtrick via Flattr mikrodonationer eller giv et bidrag med Paypal <linkContribute>Donér</linkContribute>.</header>'
       new: '<header>Nye moduler</header>'
-      spec_info: '<module>SpecialtyInfo</module> viser en kortfattet beskrivelse af spillerspecialitet ved at klikke på specialitets ikonet.'
+      spec_info: '<module>SpecialtyInfo</module> viser en kortfattet beskrivelse af spillerspecialitet ved at klikke på specialitet-ikonet.'
       bugs: '<header>Fejlrettelser</header>'
       tl_search_form: 'Grundet ændringer i browsere, var der nedbrud i Foxtricks formfilter i <module>TransferSearchResultFilters</module>. Dette resulterede i, at alle spillere på søgelisten forblev skjulte. Fejlen er nu udbedret.'
       divine_skills: 'Den seneste tilføjelse omkring visning af evner over guddommelige niveau, forårsagede nedbrud i alle CHPP applikationer, da Hattrick udviklere har været uopmærksom omkring emnet. FoxTrick var dermed ikke en undtagelse. Berørte moduler omfatter <module>SkillTable</module>, <module>MatchOrderInterface</module>, <module>HTMSPoints</module>, <module>SkillColoring</module> m.fl. Fejlene skulle nu være udbedret.'
@@ -36,8 +36,8 @@ da:
       and_more: Forskellige små ændringer og rettelser.
     0.16.1.1:
       important: '<header>Vigtige meddelelser</header>'
-      safari_cert: 'Vi er på udkig efter engageret managere, som arbejder med udvikling af apps til iOS eller OSX, for at være med til at genoprette hjælp til Safari-brugere omkring Foxtrick. Se vores <linkSafariCertBug>issue tracker</linkSafariCertBug> for flere oplysninger.'
-      beta: 'Overvej at installer <linkFTBeta>Foxtrick beta</linkFTBeta> for at få nye funktioner tidligt, sådan at du kan være med til at påvirke udviklingen af nye features, og til at hjælpe med at finde og løse eventuelle problemer, der måtte opstå.'
+      safari_cert: 'Vi er på udkig efter engageret managere, som arbejder med udvikling af apps til iOS eller OSX, for at være med til at genetablere hjælp til Safari-brugere omkring Foxtrick. Se vores <linkSafariCertBug>issue tracker</linkSafariCertBug> for flere oplysninger.'
+      beta: 'Hvis du kunne tænke dig at få adgang til nye funktioner sådan, at du kan være med til at præge udviklingen af nye features, og til at hjælpe med at finde og løse eventuelle fejl der måtte opstå, bør du overveje at installer beta versionen som du finder her: <linkFTBeta>Foxtrick beta</linkFTBeta>'
       bugs: '<header>Fejlrettelser</header>'
       defence_stamina: 'En fejlberegning af konditionseffekten i forsvarssektoren er nu rettet under <module>MatchSimulator</module>: Det var, ved et uheld, kun målmandens kondition der var taget højde for i den forrige udgave.'
       time_rewrite: 'Foxtricks dato- og tidsindstilling måtte omskrives på grund af kommende ændringer i Hattrick. Desværre skete der nogle få fejl i den forrige udgave, som forårsagede problemer i forbindelse med brugen af CHPP-moduler, for visse lande. Problemet skulle nu være løst.'
