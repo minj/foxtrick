@@ -8,6 +8,7 @@ nl:
     0.17.0:
       important: '<header>Belangrijke aankondigingen</header>'
       crowdin: '<header>Heel veel vertalingsupdates van onze geweldige gebruikers zijn gemaakt met behulp van de <linkCrowdin>crowdin tool</linkCrowdin>. Jij kan ons ook helpen!</header>'
+      browsers: Wegens technische redenen zijn Firefox v38, Google Chrome v39 en Opera v26 momenteel de laagste versie van de browsers welke officieel ondersteund worden. Voor uw eigen veiligheid, kunt u het beste de nieuwste beschikbare browserversie gebruiken.
       support: '<header>Waardeer je wat wij doen? Steun ons dan aub<linkContribute>Steun Foxtrick</linkContribute>.</header>'
       new: '<header>Nieuwe modules</header>'
       bugs: '<header>Fout herstel</header>'
