@@ -8,7 +8,7 @@ pt-PT:
     0.17.0:
       important: '<header>Avisos Importantes</header>'
       crowdin: '<header>Várias atualizações nas traduções dos nossos utilizadores incríveis usando a ferramenta <linkCrowdin>Crowdin</linkCrowdin>. Venha daí, também pode ajudar!</header>'
-      browsers: Devido a razoes técnicas Firefox v38, Google Chrome v39 and Opera v26 são agora oficialmente os mínimos browsers suportados. No entanto, para sua segurança devera usar sempre a versão mais recente.
+      browsers: Devido a razões técnicas Firefox v38, Google Chrome v39 and Opera v26 são agora oficialmente os mínimos browsers suportados. No entanto, para sua segurança devera usar sempre a versão mais recente.
       safari_cert: 'Estamos à procura de alguém na comunidade Hattrick que desenvolva aplicações para iOS ou OSX para ajudar a que voltemos a suportar utilizadores do Safari. Veja o nosso <linkSafariCertBug>rastreador de problemas</linkSafariCertBug> para mais informações.'
       beta: 'Por favor considere usar <linkFTBeta>Foxtrick beta</linkFTBeta> para ter as novas funcionalidades mais cedo, para influenciar o seu desenvolvimento e ajudar a encontrar e corrigir problemas que possam existir.'
       support: '<header>Gosta do que estamos a fazer? Por favor <linkContribute>apoie</linkContribute> o FoxTrick.</header>'
