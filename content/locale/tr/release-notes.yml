@@ -5,6 +5,8 @@ tr:
       note_0: 'Bu bir geliştirme yapılandırmasıdır. Sağduyunuzu kullanın. Değişikliklerin ayrıntıları için lütfen Google Kodunda <linkSVN>işlem geçmişi</linkSVN> göz atın.'
     beta:
       note_0: 'Bu, bir sonraki güncellemenin beta versiyonudur. Lütfen bu versiyonun çevirisine bizim çok basit kalabalık-çeviri sayfamızdan <linkCrowdin>crowdin.net</linkCrowdin> yardım edin. '
+    0.17.0:
+      bugs: '<header>Hata düzeltmeleri</header>'
     0.15.0:
       important: Önemli duyurular
     0.11.0:
