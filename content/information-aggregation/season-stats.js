@@ -92,31 +92,39 @@ Foxtrick.modules['SeasonStats'] = {
 
 		// get team name. start with current name, but try to get name of
 		// that season from first home game
-		var TeamName = Foxtrick.Pages.All.getTeamName(doc).substr(0, 15);
-		var TeamNameOld = null;
-		for (var i = 0; i < matchestable.rows.length; ++i) {
-			var iswon = matchestable.rows[i].cells[3]
-				.getElementsByTagName('span')[0].className == 'won';
-			var islost = matchestable.rows[i].cells[3]
-				.getElementsByTagName('span')[0].className == 'lost';
-			var draw = matchestable.rows[i].cells[3]
-				.getElementsByTagName('span')[0].className == 'draw';
-			var goals = matchestable.rows[i].cells[3]
-				.getElementsByTagName('strong')[0].textContent.match(/\d+/g);
-			var goals0 = parseInt(goals[0], 10);
-			var goals1 = parseInt(goals[1], 10);
-			if (!draw) {
-				if ((goals0 > goals1) && islost ||
-					(goals0 < goals1) && iswon) { // away. own goals second
-				}
-				else {
-					TeamNameOld = matchestable.rows[i].cells[2]
-						.getElementsByTagName('a')[0].title.replace(/-.+/g, '');
-					break;
-				}
+		var teamName = Foxtrick.Pages.All.getTeamName(doc).slice(0, 15);
+		var teamNameOld = null;
+
+		var rows = Foxtrick.toArray(matchestable.rows);
+		for (var row of rows) {
+			var won = row.querySelector('.won');
+			var lost = row.querySelector('.lost');
+			var draw = row.querySelector('.draw');
+
+			if (draw)
+				continue;
+
+			var goals = row.querySelector('strong').textContent.match(/\d+/g);
+			var goalsHome = parseInt(goals[0], 10);
+			var goalsAway = parseInt(goals[1], 10);
+
+			var matchLink = row.querySelector('a[href*="Match.aspx"]');
+			var teams = matchLink.textContent.split(/\u00a0-\u00a0/);
+
+			if (goalsHome > goalsAway && lost ||
+			    goalsHome < goalsAway && won) {
+				// away
+				teamNameOld = teams[1];
 			}
+			else {
+				// home
+				teamNameOld = teams[0];
+			}
+
+			break;
 		}
-		Foxtrick.log('TeamName: ', TeamName, '  TeamNameOld: ', TeamNameOld);
+
+		Foxtrick.log('teamName:', teamName, 'teamNameOld:', teamNameOld);
 
 		for (var i = 0; i < matchestable.rows.length; ++i) {
 			var type;
@@ -147,15 +155,16 @@ Foxtrick.modules['SeasonStats'] = {
 				goals1 = parseInt(goals[0], 10);
 				ishome = 2;
 			}
+
 			// get home/away for draws
 			if (isdraw) {
-				var thisfixture = matchestable.rows[i].cells[2]
-					.getElementsByTagName('a')[0].title/*.replace(/\W/g,'')*/;
-				if (thisfixture.search(TeamName))  // check if teamname is in fixture
-						ishome = thisfixture.search(TeamName) == 0 ? 1 : 2;  // first pos = home
-				else if (TeamNameOld && thisfixture.search(TeamNameOld))  // same for old teamname
-						ishome = thisfixture.search(TeamNameOld) == 0 ? 1 : 2;
+				var fixture = matchestable.rows[i].cells[2].querySelector('a').title;
+				if (fixture.indexOf(teamName) !== -1)
+					ishome = fixture.indexOf(teamName) ? 2 : 1; // home = first pos = 0 = false
+				else if (teamNameOld && fixture.indexOf(teamNameOld) !== -1)
+					ishome = fixture.indexOf(teamNameOld) ? 2 : 1;
 			}
+
 			sum_matches[type * 3]['type'] = matchestable.rows[i].cells[1]
 				.getElementsByTagName('img')[0].title;
 			sum_matches[type * 3]['num']++;
