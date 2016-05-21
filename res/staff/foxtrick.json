@@ -667,7 +667,7 @@
 		{
 			"duty": "developer",
 			"id": "4342858",
-			"name": "Mod-ljushaff"
+			"name": "GM-ljushaff"
 		},
 		{
 			"duty": "translator",
@@ -917,7 +917,7 @@
 		{
 			"duty": "supporter",
 			"id": "6944890",
-			"name": "guttusangolo-GIGA"
+			"name": "guttusangolo"
 		},
 		{
 			"duty": "supporter",
@@ -1052,7 +1052,7 @@
 		{
 			"duty": "supporter",
 			"id": "8131534",
-			"name": "necrospettro"
+			"name": "Necromio88"
 		},
 		{
 			"duty": "supporter",
@@ -1178,6 +1178,11 @@
 			"duty": "translator",
 			"id": "9559302",
 			"name": "Sam-Latitante"
+		},
+		{
+			"duty": "supporter",
+			"id": "9577400",
+			"name": "Om_lover"
 		},
 		{
 			"duty": "translator",
