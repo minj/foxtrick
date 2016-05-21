@@ -134,12 +134,15 @@ Foxtrick.Pages.All.getTeamId = function(doc) {
  */
 Foxtrick.Pages.All.getTeamNameFromBC = function(doc) {
 	var name = null;
+
 	var links = this.getBreadCrumbs(doc);
 	var link = Foxtrick.nth(function(link) {
 		return /TeamID=\d+/i.test(link.href);
 	}, links);
+
 	if (link)
-		name = link.textContent;
+		name = link.textContent.trim();
+
 	return name;
 };
 
@@ -150,15 +153,15 @@ Foxtrick.Pages.All.getTeamNameFromBC = function(doc) {
  * @return {number}
  */
 Foxtrick.Pages.All.getTeamName = function(doc) {
-	var name = null;
-	// check if this page has an associated team
-	var team = this.getTeamNameFromBC(doc);
-	if (team) {
+	var name = this.getTeamNameFromBC(doc);
+
+	if (!name || Foxtrick.Pages.All.isYouth(doc)) {
+		// README: this should not run for NT coaches
+		// since subMenu = main team, bread crumb = NT
 		var header = doc.querySelector('.subMenu h2');
-		if (header) {
-			name = header.textContent.trim();
-		}
+		name = header ? header.textContent.trim() : null;
 	}
+
 	return name;
 };
 
