@@ -58,7 +58,7 @@ Foxtrick.modules['Filter'] = {
 			Foxtrick.sessionGet('filters.' + page,
 			  function(n) {
 				try {
-					if (n === undefined) {
+					if (!n) {
 						// set default filters if not set
 						Foxtrick.sessionSet('filters.' + page, FILTER_VAL[page].filters);
 						callback(FILTER_VAL[page].filters);
