@@ -1,6 +1,9 @@
 ---
 hu:
   versions:
+    0.17.0:
+      important: '<header>Fontos közlemények</header>'
+      new: '<header>Új modulok</header>'
     0.12.2:
       note_11: '<header>Hibajavítások</header>'
     0.11.0:
