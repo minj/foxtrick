@@ -1,9 +1,16 @@
 ---
 hu:
   versions:
+    nightly:
+      note_0: 'Fejlesztői verzió. Saját belátásod szerint használd. Kérjük tekintsd meg változtatások részletekért a <linkSVN>jóváhagyási történetet</linkSVN> a Google Code-on.'
+    beta:
+      note_0: 'A következő kiadás béta verziója. Kérlek segítsd a fordítást a szuper könnyű tömegfordító <linkCrowdin>crowdin.net</linkCrowdin> oldalunkon.'
     0.17.0:
       important: '<header>Fontos közlemények</header>'
       new: '<header>Új modulok</header>'
+      bugs: '<header>Hibajavítások</header>'
+    0.16.1.1:
+      bugs: '<header>Hibajavítások</header>'
     0.12.2:
       note_11: '<header>Hibajavítások</header>'
     0.11.0:
