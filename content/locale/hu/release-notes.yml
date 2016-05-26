@@ -7,9 +7,30 @@ hu:
       note_0: 'A következő kiadás béta verziója. Kérlek segítsd a fordítást a szuper könnyű tömegfordító <linkCrowdin>crowdin.net</linkCrowdin> oldalunkon.'
     0.17.0:
       important: '<header>Fontos közlemények</header>'
+      crowdin: '<header>A mi nagyszerű felhasználóink a  <linkCrowdin>crowdin eszközt</linkCrowdin> használják a számtalan fordítási frissítéshez. Te is segíthetsz természetesen!</header>'
+      browsers: Jelenleg technikai okok miatt hivatalosan a legalacsonyabb támogatott böngésző verziók a Firefox v38, Google Chrome v39 és Opera v26. Ezért és saját biztonságod érdekében is mindig használd a legutolsó elérhető böngésző verziót.
+      safari_cert: 'A Hattrick közösség soraiból keresünk valakit, aki iOS vagy OSX applikációkat fejleszt, hogy segítsen visszaállítani a Foxtrick támogatást a Safari felhasználók számára. További információért tekintsd meg a <linkSafariCertBug> pröbléma követő oldalunkat</linkSafariCertBug>.'
+      beta: 'Az új funkciók korai megismerése kapcsán felhívom a figyelmed a <linkFTBeta>Foxtrick beta</linkFTBeta> használatára, befolyásolhatod a fejlesztéseket és segíthetsz megkeresni és javítani az esetlegesen felmerülő problémákat.'
+      support: '<header>Tetszik amit csinálunk? Kérlek<linkContribute>támogasd a Foxtrick kiegészítőt</linkContribute>.</header>'
       new: '<header>Új modulok</header>'
+      spec_info: 'A <module>SpecialtyInfo</module> modul segítségével a specialitás ikonra kattintva egy tömör, specialitáshoz tartozó információs tábla jelenik meg.'
       bugs: '<header>Hibajavítások</header>'
+      tl_search_form: '<module>TransferSearchResultFilters</module>, a Foxtrick forma szűrője böngészőváltozások miatt hibás volt, ezért az összes játékos rejtett volt az átigazolási keresési eredményeknél. A probléma most javításra került.'
+      divine_skills: 'A most bevezetett isteni+ képesség kijelzés hibás volt az összes CHPP alkalmazásnál a HT gondatlansága miatt. A Foxtrick sem volt kivétel ezalól. Az érintett modulok a <module>SkillTable</module>, <module>MatchOrderInterface</module>, <module>HTMSPoints</module>, <module>SkillColoring</module> és mások. A hibák most javításra kerültek.'
+      opera_notifications: A Foxtrick értesítések az Opera böngészőjében nem működtek és most javításra kerültek.
+      nt_weather: 'A <module>MatchWeather</module> nem működött az NT mérkőzések egy néhány más egyéb eset kapcsán. A modul újraírásra került az összes ismert hiba javításához.'
+      nt_simulator: 'A <module>MatchSimulator</module> mérkőzés lista nem jelent meg helyesen az NT csapatoknál. Ez most javításra került.'
+      chrome_styles: A Foxtrick stílusok néha nem működtek a Google Chrome versenyfeltételei miatt, melyet a böngésző változásai okoztak. Intézkedéseket hoztunk, hogy megpróbáljuk megelőzni ezeket a hibákat a jövőben.
+      supporter_list: '<module>SupportersList</module> leállt, ha a <module>StaffMarker</module> tiltott volt. A hibás egymásra hatást most eltávolítottuk.'
+      youth_promotes: 'A <module>YouthPromotes</module> modulban javításra került egy off-by-one hiba a hátralévő napok számításánál.'
+      other: '<header>Egyéb változások</header>'
+      and_more: Számos kis változtatások és javítások.
     0.16.1.1:
+      important: '<header>Fontos közlemények</header>'
+      safari_cert: 'A Hattrick közösség soraiból keresünk valakit, aki iOS vagy OSX applikációkat fejleszt, hogy segítsen visszaállítani a Foxtrick támogatást a Safari felhasználók számára. További információért tekintsd meg a  <linkSafariCertBug>pröbléma követő oldalunkat</linkSafariCertBug>.'
+      beta: 'Az új funkciók korai megismerése kapcsán felhívom a figyelmed a <linkFTBeta>Foxtrick beta</linkFTBeta> használatára, befolyásolhatod a fejlesztéseket és segíthetsz megkeresni és javítani az esetlegesen felmerülő problémákat.'
+      bugs: '<header>Hibajavítások</header>'
+    0.16.1:
       bugs: '<header>Hibajavítások</header>'
     0.12.2:
       note_11: '<header>Hibajavítások</header>'
