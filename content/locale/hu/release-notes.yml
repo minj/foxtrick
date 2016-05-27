@@ -4,14 +4,14 @@ hu:
     nightly:
       note_0: 'Fejlesztői verzió. Saját belátásod szerint használd. Kérjük tekintsd meg változtatások részletekért a <linkSVN>jóváhagyási történetet</linkSVN> a Google Code-on.'
     beta:
-      note_0: 'A következő kiadás béta verziója. Kérlek segítsd a fordítást a szuper könnyű tömegfordító <linkCrowdin>crowdin.net</linkCrowdin> oldalunkon.'
+      note_0: 'Ez a következő kiadás béta verziója. Kérlek segítsd a fordítást a szuper könnyű tömegfordító <linkCrowdin>crowdin.net</linkCrowdin> oldalunkon.'
     0.17.0:
       important: '<header>Fontos közlemények</header>'
       crowdin: '<header>A mi nagyszerű felhasználóink a  <linkCrowdin>crowdin eszközt</linkCrowdin> használják a számtalan fordítási frissítéshez. Te is segíthetsz természetesen!</header>'
       browsers: Jelenleg technikai okok miatt hivatalosan a legalacsonyabb támogatott böngésző verziók a Firefox v38, Google Chrome v39 és Opera v26. Ezért és saját biztonságod érdekében is mindig használd a legutolsó elérhető böngésző verziót.
       safari_cert: 'A Hattrick közösség soraiból keresünk valakit, aki iOS vagy OSX applikációkat fejleszt, hogy segítsen visszaállítani a Foxtrick támogatást a Safari felhasználók számára. További információért tekintsd meg a <linkSafariCertBug> pröbléma követő oldalunkat</linkSafariCertBug>.'
       beta: 'Az új funkciók korai megismerése kapcsán felhívom a figyelmed a <linkFTBeta>Foxtrick beta</linkFTBeta> használatára, befolyásolhatod a fejlesztéseket és segíthetsz megkeresni és javítani az esetlegesen felmerülő problémákat.'
-      support: '<header>Tetszik amit csinálunk? Kérlek<linkContribute>támogasd a Foxtrick kiegészítőt</linkContribute>.</header>'
+      support: '<header>Tetszik, amit csinálunk? Kérlek <linkContribute>támogasd a Foxtrick kiegészítőt</linkContribute>.</header>'
       new: '<header>Új modulok</header>'
       spec_info: 'A <module>SpecialtyInfo</module> modul segítségével a specialitás ikonra kattintva egy tömör, specialitáshoz tartozó információs tábla jelenik meg.'
       bugs: '<header>Hibajavítások</header>'
@@ -24,7 +24,16 @@ hu:
       supporter_list: '<module>SupportersList</module> leállt, ha a <module>StaffMarker</module> tiltott volt. A hibás egymásra hatást most eltávolítottuk.'
       youth_promotes: 'A <module>YouthPromotes</module> modulban javításra került egy off-by-one hiba a hátralévő napok számításánál.'
       other: '<header>Egyéb változások</header>'
-      and_more: Számos kis változtatások és javítások.
+      performance_cache: A Foxtrick általános teljesítménye érdekében rengeteget dolgoztunk. CHPP és egyéb adatforrásokból származó adatok kezelése gyorsabb és rugalmasabb lett. A Foxtrick gyorsítótára szintén fejlesztésre került ezekhez a forrásokhoz igazítva.
+      preferences_install: A Foxtrick beállítások mostmár gyorsabban töltődnek be, különösen Google Chrome esetén. Telepítés és a frissítések szintén gyorsabbak Firefoxon.
+      backend: Több tisztogatás és frissítések készültek a Foxtrick magjához a jövőbeli fenntarthatóság növelése érdekében. A módosítások hatással voltak rengeteg oldalon, modulokon és funkciók esetén is. Kérjük bármilyen hibát találsz, jelentsd.
+      firefox_support: Ezen munka eredményeként más Firefox bővítményekkel való közös működés sokkal jobb lett. Az új Firefox multi-process architektúrához való előkészületek is igen jól haladnak.
+      notifications: A Firefox értesítéseken való kattintás után most már megnyílik a releváns oldal egy új fülön.
+      context_copy: 'A <module>ContextMenuCopy</module> fejlesztésre került, hogy több hivatkozást kezeljen és precízebb HT-ML leíró nyelvezetet generáljon.'
+      training_week: A PlayerStatsTrainingWeek modul eltávolításra került, mivel a Hattrick ugyanezt a funkciót bevezette.
+      wage: 'A fizetések valutanem detektálása újraírásra került a <module>ExtendedPlayerDetailsWage</module> modulban, ezzel megerősítve a HT változásokkal szemben. A funkció ezelőtt nem működött a kínai felhasználók számára, már igen.'
+      mail_counter: 'A HT dizájn változtatások miatt sokkal robusztusabbra került átírásra a <module>NewMail</module> modul.'
+      and_more: Számos kis változtatás és javítás.
     0.16.1.1:
       important: '<header>Fontos közlemények</header>'
       safari_cert: 'A Hattrick közösség soraiból keresünk valakit, aki iOS vagy OSX applikációkat fejleszt, hogy segítsen visszaállítani a Foxtrick támogatást a Safari felhasználók számára. További információért tekintsd meg a  <linkSafariCertBug>pröbléma követő oldalunkat</linkSafariCertBug>.'
@@ -32,6 +41,8 @@ hu:
       bugs: '<header>Hibajavítások</header>'
     0.16.1:
       bugs: '<header>Hibajavítások</header>'
+      other: '<header>Egyéb változások</header>'
+      and_more: Számos kis változtatás és javítás.
     0.12.2:
       note_11: '<header>Hibajavítások</header>'
     0.11.0:
