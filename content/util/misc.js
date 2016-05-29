@@ -219,6 +219,15 @@ Foxtrick.lazyProp(Foxtrick, 'branch', function() {
 	return Foxtrick.Prefs.getString('branch');
 });
 
+/**
+ * Clear all caches
+ */
+Foxtrick.clearCaches = function() {
+	Foxtrick.sessionDeleteBranch('');
+	Foxtrick.localDeleteBranch('');
+	Foxtrick.cache.clear();
+};
+
 Foxtrick.getHref = function(doc) {
 	return doc.location.href;
 };
