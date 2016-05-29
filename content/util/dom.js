@@ -335,8 +335,8 @@ Foxtrick.append = function(parent, child) {
 	}
 	else if (Node.prototype.isPrototypeOf(child))
 		parent.appendChild(child);
-	else
-		parent.appendChild(doc.createTextNode(String(child)));
+	else if (child != null) // skip null/undefined
+		parent.appendChild(doc.createTextNode(child.toString()));
 };
 
 /**
