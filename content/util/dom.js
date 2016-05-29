@@ -166,6 +166,44 @@ Foxtrick.removeAttributeValue = function(el, attribute, value) {
 };
 
 /**
+ * Set element attributes/properties base on attribute map.
+ *
+ * Supports style/dataset and on* listeners.
+ *
+ * @param {element} el
+ * @param {object}  attributes
+ */
+Foxtrick.setAttributes = function(el, attributes) {
+	var ELEMENT_PROPERTIES = [
+		'textContent',
+		'className',
+	];
+
+	for (var attr in attributes) {
+		if ((attr == 'dataset' || attr == 'style') && typeof attributes[attr] == 'object') {
+			for (var item of attributes[attr]) {
+				el[attr][item] = attributes[attr][item];
+			}
+		}
+		else if (attr.slice(0, 2) == 'on' && typeof attributes[attr] == 'function') {
+			var cb = attributes[attr];
+			var type = attr.slice(2).toLowerCase();
+
+			if (type == 'click')
+				Foxtrick.onClick(el, cb);
+			else if (type == 'change')
+				Foxtrick.onChange(el, cb);
+			else
+				Foxtrick.listen(el, type, cb);
+		}
+		else if (Foxtrick.has(ELEMENT_PROPERTIES, attr))
+			el[attr] = attributes[attr];
+		else
+			el.setAttribute(attr, attributes[attr]);
+	}
+};
+
+/**
  * Test whether an element has a class
  * @param  {HTMLElement} el
  * @param  {String}      cls
@@ -562,13 +600,9 @@ Foxtrick.getDataURIText = function(str) {
  */
 Foxtrick.addImage = function(doc, parent, features, insertBefore, callback) {
 	var img = doc.createElement('img');
-	if (typeof features.onError === 'function')
-		Foxtrick.listen(img, 'error', features.onError);
 
-	for (var i in features) {
-		if (i !== 'onError')
-			img.setAttribute(i, features[i]);
-	}
+	Foxtrick.setAttributes(img, features);
+
 	if (insertBefore)
 		parent.insertBefore(img, insertBefore);
 	else
