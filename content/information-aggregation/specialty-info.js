@@ -16,14 +16,18 @@ Foxtrick.modules['SpecialtyInfo'] = {
 		{}, // none
 		{ // Technical
 			pos: [
-				{ icon: 'weather_sunny', text: 'Scoring' },
-				{ icon: 'weather_sunny', text: 'Playmaking' },
-				{ icon: 'aow', text: 'SpecialtyInfo.tdf' },
+				{ icon: 'weather_sunny', text: 'Scoring', title: 'weather.3' },
+				{ icon: 'weather_sunny', text: 'Playmaking', title: 'weather.3' },
+				{
+					icon: 'aow',
+					text: 'SpecialtyInfo.tdf',
+					title: 'PlayerPositionsEvaluations.wings',
+				},
 				{ events: [139, 55] },
 			],
 			neg: [
-				{ icon: 'weather_rainy', text: 'Scoring' },
-				{ icon: 'weather_rainy', text: 'Playmaking' },
+				{ icon: 'weather_rainy', text: 'Scoring', title: 'weather.0' },
+				{ icon: 'weather_rainy', text: 'Playmaking', title: 'weather.0' },
 			],
 		},
 		{ // Quick
@@ -32,26 +36,28 @@ Foxtrick.modules['SpecialtyInfo'] = {
 				{
 					icon: 'weather_sunny',
 					text: 'Defending',
+					title: 'weather.3',
 					textIcons: [
 						{ name: 'warning.png', text: 'icon.important' },
 						{ name: 'clock.png', text: 'SpecialtyInfo.secondHalf' },
 					],
 				},
-				{ icon: 'weather_rainy', text: 'Scoring' },
-				{ icon: 'weather_rainy', text: 'Defending' },
+				{ icon: 'weather_rainy', text: 'Scoring', title: 'weather.0' },
+				{ icon: 'weather_rainy', text: 'Defending', title: 'weather.0' },
 			],
 		},
 		{ // Powerful
 			pos: [
-				{ icon: 'weather_rainy', text: 'Scoring' },
-				{ icon: 'weather_rainy', text: 'Defending' },
-				{ icon: 'weather_rainy', text: 'Playmaking' },
-				{ icon: 'pressing', text: 'SpecialtyInfo.powerPress' },
+				{ icon: 'weather_rainy', text: 'Scoring', title: 'weather.0' },
+				{ icon: 'weather_rainy', text: 'Defending', title: 'weather.0' },
+				{ icon: 'weather_rainy', text: 'Playmaking', title: 'weather.0' },
+				{ icon: 'pressing', text: 'SpecialtyInfo.powerPress', title: 'match.events.331' },
 			],
 			neg: [
 				{
 					icon: 'weather_sunny',
 					text: 'Scoring',
+					title: 'weather.3',
 					textIcons: [
 						{ name: 'clock.png', text: 'SpecialtyInfo.secondHalf' },
 					],
@@ -59,6 +65,7 @@ Foxtrick.modules['SpecialtyInfo'] = {
 				{
 					icon: 'weather_sunny',
 					text: 'Stamina',
+					title: 'weather.3',
 					textIcons: [
 						{ name: 'clock.png', text: 'SpecialtyInfo.secondHalf' },
 					],
@@ -74,7 +81,7 @@ Foxtrick.modules['SpecialtyInfo'] = {
 			neg: [{ events: [139] }],
 		},
 		{ // Regainer
-			pos: [{ icon: 'injured', text: 'SpecialtyInfo.regainer' }],
+			pos: [{ icon: 'injured', text: 'SpecialtyInfo.regainer', title: 'Injured' }],
 			neg: [],
 		},
 	],
@@ -165,7 +172,8 @@ Foxtrick.modules['SpecialtyInfo'] = {
 					row[startIdx] = iconCell;
 
 					if (item.icon) {
-						EVENT_UTIL.appendIcons(doc, iconCell, [item.icon], '');
+						var iTitle = Foxtrick.L10n.getString(item.title);
+						EVENT_UTIL.appendIcons(doc, iconCell, [item.icon], iTitle);
 					}
 
 					var text = Foxtrick.L10n.getString(item.text);
