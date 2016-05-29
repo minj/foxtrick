@@ -44,10 +44,10 @@ Foxtrick.util.htMl.getFormat = (function() {
 			 */
 			img: function(node) {
 				if (node.hasAttribute('alt') && node.getAttribute('alt') !== '') {
-					return '[u]' + node.getAttribute('alt') + '[/u]';
+					return ' [\u2060' + node.getAttribute('alt') + '\u2060] ';
 				}
 				else if (node.hasAttribute('title') && node.getAttribute('title') !== '') {
-					return '[u]' + node.getAttribute('title') + '[/u]';
+					return ' [\u2060' + node.getAttribute('title') + '\u2060] ';
 				}
 				else {
 					return '';
@@ -220,13 +220,13 @@ Foxtrick.util.htMl.getFormat = (function() {
 				else if (node.hasAttribute('title') && node.getAttribute('title') !== '') {
 					alt = node.title;
 				}
-				return Foxtrick.format('![{}]({})', [alt, node.src]);
+				return Foxtrick.format(' ![{}]({}) ', [alt, node.src]);
 			},
 			hr: function() {
-				return '\n---\n';
+				return '\n\n---\n';
 			},
 			br: function() {
-				return '\n';
+				return '\n\n';
 			},
 			pre: function(node) {
 				return Foxtrick.format('```{}```', [node.textContent]);
