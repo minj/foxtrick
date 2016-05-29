@@ -24,6 +24,8 @@ Foxtrick.modules.Core = {
 	run: function(doc) {
 		this.addBugReportLink(doc);
 
+		this.monitorWeekChanges(doc);
+
 		var UTC = Foxtrick.util.time.getUTCDate(doc);
 		if (UTC) {
 			this.HT_TIME = UTC.getTime();
@@ -75,6 +77,31 @@ Foxtrick.modules.Core = {
 		content.appendChild(pUpdates);
 
 		Foxtrick.makeModal(doc, Foxtrick.version, content);
+	},
+
+	monitorWeekChanges: function(doc) {
+		try {
+			var LAST_WEEK = Foxtrick.util.time.WEEKS_IN_SEASON;
+
+			var oldWeek = Foxtrick.Prefs.getInt('oldWeek');
+			var online = doc.getElementById('online');
+			var week = parseInt(online.textContent.trim().match(/\d+$/), 10);
+
+			if (!week) {
+				Foxtrick.log('WARNING: week # detection failed.', online.textContent);
+				return;
+			}
+
+			if (oldWeek != week && (!oldWeek || oldWeek > week || week == LAST_WEEK)) {
+				// season changes (like series) more or less happen before LAST_WEEK starts
+				Foxtrick.clearCaches();
+			}
+
+			Foxtrick.Prefs.setInt('oldWeek', week);
+		}
+		catch (e) {
+			Foxtrick.log(e);
+		}
 	},
 
 	updateLastPage: function(doc) {
