@@ -36,15 +36,8 @@ Foxtrick.modules['MatchWeather'] = {
 			}
 
 			var regionID = xml.num('RegionID');
-			Foxtrick.sessionGet('weather.region.' + regionID,
-			  function(data) {
-				if (!data) {
-					module.fetchRegion(doc, regionID);
-				}
-				else {
-					module.showWeather(doc, data);
-				}
-			});
+			module.fetchRegion(doc, regionID);
+
 		});
 	},
 
@@ -125,33 +118,49 @@ Foxtrick.modules['MatchWeather'] = {
 
 	fetchRegion: function(doc, regionId) {
 		var module = this;
+
+		// 6 hours seems to be the minimum interval between HT updates
+		// using a smaller value to ensure frequent updates
+		var CACHE_HOURS = 4;
+		var CACHE_MSECS = CACHE_HOURS * Foxtrick.util.time.MSECS_IN_HOUR;
+
+		var now = Foxtrick.util.time.getHTTimeStamp(doc);
+		var until = now + CACHE_MSECS;
+
 		var parameters = [
 			['file', 'regiondetails'],
 			['version', '1.2'],
 			['regionId', regionId],
 		];
-		Foxtrick.util.api.retrieve(doc, parameters, { cache_lifetime: 'session' },
+
+		Foxtrick.util.api.retrieve(doc, parameters, { cache_lifetime: until },
 		  function(xml, errorText) {
 			if (!xml || errorText) {
 				Foxtrick.log(errorText);
 				return;
 			}
+
 			var data = {};
 			data.weatherNow = xml.num('WeatherID');
 			data.weatherTomorrow = xml.num('TomorrowWeatherID');
 			data.regionName = xml.text('RegionName').replace('\'', '').replace(/ ,/g, '-');
+
 			var leagueId = xml.text('LeagueID');
 			data.country = Foxtrick.L10n.getCountryNameEnglish(leagueId);
 
 			if (Foxtrick.Prefs.isModuleOptionEnabled('MatchWeather', 'Irl')) {
-				var uri = 'http://api.openweathermap.org/data/2.5/forecast/daily?q=' +
-					encodeURIComponent(data.regionName) + ',' + data.country +
-					'&mode=json&units=metric&cnt=2&APPID=904808f94702b520590a4cfd0aff8f85';
 				var weather = { 1: 3, 2: 2, 3: 2, 4: 1, 9: 0, 10: 1, 11: 0, 13: 0, 50: 1 };
 
-				Foxtrick.log('Fetching JSON data from', uri);
+				var url = 'http://api.openweathermap.org/data/2.5/forecast/daily?q=' +
+					encodeURIComponent(data.regionName) + ',' + data.country +
+					'&mode=json&units=metric&cnt=2&APPID=904808f94702b520590a4cfd0aff8f85';
 
-				Foxtrick.load(uri).then(Foxtrick.parseJSON)
+				Foxtrick.log('Fetching JSON data from', url);
+
+				var now = Foxtrick.modules.Core.HT_TIME;
+				var until = now + CACHE_MSECS;
+
+				Foxtrick.load(url, null, until).then(Foxtrick.parseJSON)
 					.then(function(json) {
 						if (json) {
 							if (json.cod == 200 && json.list.length == 2) {
@@ -161,18 +170,17 @@ Foxtrick.modules['MatchWeather'] = {
 								data.irlTomorrow = weather[Foxtrick.trimnum(tomorrow)];
 							}
 						}
-						Foxtrick.sessionSet('weather.region.' + regionId, data);
+
 						module.showWeather(doc, data);
 					}, function(resp) {
 						Foxtrick.log('Fail loading weather:', resp);
-						Foxtrick.sessionSet('weather.region.' + regionId, data);
 						module.showWeather(doc, data);
 					}).catch(Foxtrick.catch(module));
 			}
 			else {
-				Foxtrick.sessionSet('weather.region.' + regionId, data);
 				module.showWeather(doc, data);
 			}
+
 		});
 	},
 };
