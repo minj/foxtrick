@@ -321,6 +321,11 @@ Foxtrick.loader.background.browserLoad = function() {
 				.catch(Foxtrick.catch(sender));
 		};
 
+		// from load.js
+		this.requests.cacheClear = function() {
+			Foxtrick.cache.clear();
+		};
+
 		// from misc.js
 		this.requests.cookiesGet = function(request, sender, sendResponse) {
 			Foxtrick.cookies.get(request.key, request.name) // never rejects

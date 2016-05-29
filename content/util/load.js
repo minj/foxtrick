@@ -269,9 +269,9 @@ Foxtrick.load = function(url, params, lifeTime, now) {
 
 
 // ----------------------- internal helpers ------------------------
-if (Foxtrick.context === 'background') {
+Foxtrick.cache = (function() {
 
-	Foxtrick.cache = (function() {
+	if (Foxtrick.context === 'background') {
 
 		/**
 		 * Promise cache
@@ -438,9 +438,16 @@ if (Foxtrick.context === 'background') {
 			},
 		};
 
-	})();
+	}
+	else {
+		return {
+			clear: function() {
+				Foxtrick.SB.ext.sendRequest({ req: 'cacheClear' });
+			},
+		};
+	}
 
-}
+})();
 
 
 // --------------------- old implementation -------------------------
