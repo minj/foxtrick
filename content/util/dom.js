@@ -665,6 +665,64 @@ Foxtrick.addSpecialty = function(parent, specNum, options) {
 };
 
 /**
+ * Make table rows from a row definition array.
+ *
+ * Row definitions may be <TR>s or arrays of cell definitions.
+ * Cell definitions may be either cell attribute maps,
+ * or Nodes, Strings and arrays of such.
+ *
+ * An optional section param is a <TABLE>, <THEAD>, <TBODY> or <TFOOT>
+ * to add rows to. A new table is created by default.
+ *
+ * Returns the created table or section.
+ *
+ * @param  {document}                doc
+ * @param  {array}                   rows
+ * @param  {HTMLTableSectionElement} section
+ * @return {HTMLTableSectionElement}
+ */
+Foxtrick.makeRows = function(doc, rows, section) {
+	var append = function(parent, child) {
+		if (Array.isArray(child)) {
+			for (var node of child)
+				append(parent, node);
+		}
+		else if (Node.prototype.isPrototypeOf(child))
+			parent.appendChild(child);
+		else
+			parent.appendChild(doc.createTextNode(String(child)));
+	};
+
+	if (!section)
+		section = doc.createElement('table');
+
+	for (var rowItem of rows) {
+		if (HTMLTableRowElement.prototype.isPrototypeOf(rowItem)) {
+			section.appendChild(rowItem);
+			continue;
+		}
+
+		var row = section.insertRow(-1);
+
+		for (var cellItem of rowItem) {
+			if (HTMLTableCellElement.prototype.isPrototypeOf(cellItem)) {
+				row.appendChild(cellItem);
+				continue;
+			}
+
+			var cell = row.insertCell(-1);
+
+			if (Foxtrick.isMap(cellItem))
+				Foxtrick.setAttributes(cell, cellItem);
+			else
+				append(cell, cellItem);
+		}
+	}
+
+	return section;
+};
+
+/**
  * Describe selected text in a text area.
  * Returns null if no selection or
  * {completeText, selectionStart, selectionEnd, selectionLength,
