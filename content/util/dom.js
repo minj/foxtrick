@@ -327,13 +327,14 @@ Foxtrick.appendChildren = function(parent, children) {
  */
 Foxtrick.append = function(parent, child) {
 	var doc = parent.ownerDocument;
+	var win = doc.defaultView;
 
 	if (Array.isArray(child)) {
 		Foxtrick.forEach(function(c) {
 			Foxtrick.append(parent, c);
 		}, child);
 	}
-	else if (Node.prototype.isPrototypeOf(child))
+	else if (win.Node.prototype.isPrototypeOf(child))
 		parent.appendChild(child);
 	else if (child != null) // skip null/undefined
 		parent.appendChild(doc.createTextNode(child.toString()));
@@ -704,11 +705,13 @@ Foxtrick.addSpecialty = function(parent, specNum, options) {
  * @return {HTMLTableSectionElement}
  */
 Foxtrick.makeRows = function(doc, rows, section) {
+	var win = doc.defaultView;
+
 	if (!section)
 		section = doc.createElement('table');
 
 	for (var rowItem of rows) {
-		if (HTMLTableRowElement.prototype.isPrototypeOf(rowItem)) {
+		if (win.HTMLTableRowElement.prototype.isPrototypeOf(rowItem)) {
 			section.appendChild(rowItem);
 			continue;
 		}
@@ -716,7 +719,7 @@ Foxtrick.makeRows = function(doc, rows, section) {
 		var row = section.insertRow(-1);
 
 		for (var cellItem of rowItem) {
-			if (HTMLTableCellElement.prototype.isPrototypeOf(cellItem)) {
+			if (win.HTMLTableCellElement.prototype.isPrototypeOf(cellItem)) {
 				row.appendChild(cellItem);
 				continue;
 			}
