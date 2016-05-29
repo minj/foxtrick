@@ -298,6 +298,16 @@ Foxtrick.hasProp = function(obj, prop) {
 };
 
 /**
+ * Test whether object obj is a simple key-value map
+ *
+ * @param  {object}  obj
+ * @return {Boolean}
+ */
+Foxtrick.isMap = function(obj) {
+	return obj != null && Object.getPrototypeOf(obj) == Object.prototype;
+};
+
+/**
  * Copy all members from modified to original.
  * Modifies original.
  * @param {object} original
