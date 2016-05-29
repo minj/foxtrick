@@ -50,10 +50,7 @@ function toggleTranslationKeys() {
 }
 
 function clearCache() {
-	Foxtrick.sessionDeleteBranch('');
-	Foxtrick.localDeleteBranch('');
-	Foxtrick.cache.clear();
-	// Foxtrick.util.api.clearCache();
+	Foxtrick.clearCaches();
 	window.close();
 }
 

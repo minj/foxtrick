@@ -48,10 +48,7 @@ if (Foxtrick.platform == 'Firefox') {
 		// toolbar menu - clearCache
 		var toolCache = document.getElementById('foxtrick-toolbar-clearCache');
 		toolCache.addEventListener('click', function() {
-			Foxtrick.sessionDeleteBranch('');
-			Foxtrick.localDeleteBranch('');
-			Foxtrick.cache.clear();
-			// Foxtrick.util.api.clearCache();
+			Foxtrick.clearCaches();
 		});
 
 		// toolbar menu - highlight

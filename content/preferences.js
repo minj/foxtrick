@@ -1213,12 +1213,7 @@ function initMainTab() {
 
 	// clear cache
 	$('#pref-stored-clear-cache').click(function() {
-		Foxtrick.sessionDeleteBranch('');
-		Foxtrick.localDeleteBranch('');
-		Foxtrick.cache.clear();
-
-		// Foxtrick.util.api.clearCache();
-
+		Foxtrick.clearCaches();
 		window.location.reload();
 	});
 }
