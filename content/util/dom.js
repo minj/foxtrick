@@ -318,6 +318,28 @@ Foxtrick.appendChildren = function(parent, children) {
 };
 
 /**
+ * Append child(ren) to parent.
+ *
+ * child may be a Node, String or an array of such.
+ *
+ * @param {element} parent
+ * @param {object}  child
+ */
+Foxtrick.append = function(parent, child) {
+	var doc = parent.ownerDocument;
+
+	if (Array.isArray(child)) {
+		Foxtrick.forEach(function(c) {
+			Foxtrick.append(parent, c);
+		}, child);
+	}
+	else if (Node.prototype.isPrototypeOf(child))
+		parent.appendChild(child);
+	else
+		parent.appendChild(doc.createTextNode(String(child)));
+};
+
+/**
  * Adds a click event listener to an element.
  * Sets tabindex=0 and role=button if these attributes have no value.
  * The callback is executed with global change listeners stopped.
@@ -679,17 +701,6 @@ Foxtrick.addSpecialty = function(parent, specNum, options) {
  * @return {HTMLTableSectionElement}
  */
 Foxtrick.makeRows = function(doc, rows, section) {
-	var append = function(parent, child) {
-		if (Array.isArray(child)) {
-			for (var node of child)
-				append(parent, node);
-		}
-		else if (Node.prototype.isPrototypeOf(child))
-			parent.appendChild(child);
-		else
-			parent.appendChild(doc.createTextNode(String(child)));
-	};
-
 	if (!section)
 		section = doc.createElement('table');
 
@@ -712,7 +723,7 @@ Foxtrick.makeRows = function(doc, rows, section) {
 			if (Foxtrick.isMap(cellItem))
 				Foxtrick.setAttributes(cell, cellItem);
 			else
-				append(cell, cellItem);
+				Foxtrick.append(cell, cellItem);
 		}
 	}
 
