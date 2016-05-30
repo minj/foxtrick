@@ -30,10 +30,10 @@ html[dir="ltr"] .cards_health .ft-specInfo {
 	display: block;
 }
 
-.ft-specInfo-col:nth-child(2n+1) {
+.ft-specInfo-col:nth-child(odd) {
 	width: 19px;
 }
-.ft-specInfo-col:nth-child(2n+2) {
+.ft-specInfo-col:nth-child(even) {
 	width: 130px;
 }
 
@@ -46,7 +46,7 @@ html[dir="ltr"] .cards_health .ft-specInfo {
 	padding-right: 0;
 }
 
-.ft-specInfo-tbl td:nth-child(2n+2) {
+.ft-specInfo-tbl td:nth-child(even) {
 	padding-right: 0.5em;
 }
 
