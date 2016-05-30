@@ -729,6 +729,9 @@ Foxtrick.makeRows = function(doc, rows, section) {
 		var row = section.insertRow(-1);
 
 		for (var cellItem of Foxtrick.toArray(rowItem)) {
+			if (cellItem == null)
+				continue;
+
 			if (win.HTMLTableCellElement.prototype.isPrototypeOf(cellItem)) {
 				row.appendChild(cellItem);
 				continue;
