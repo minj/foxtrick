@@ -294,7 +294,7 @@ Foxtrick.getPanel = function(doc) {
  * @return {Boolean}
  */
 Foxtrick.hasProp = function(obj, prop) {
-	return obj && typeof obj === 'object' && prop in obj;
+	return obj != null && typeof obj === 'object' && prop in obj;
 };
 
 /**
@@ -305,6 +305,16 @@ Foxtrick.hasProp = function(obj, prop) {
  */
 Foxtrick.isMap = function(obj) {
 	return obj != null && Object.getPrototypeOf(obj) == Object.prototype;
+};
+
+/**
+ * Test whether object obj is an array-like
+ *
+ * @param  {object}  obj
+ * @return {Boolean}
+ */
+Foxtrick.isArrayLike = function(obj) {
+	return Foxtrick.hasProp(obj, 'length');
 };
 
 /**

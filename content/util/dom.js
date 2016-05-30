@@ -329,7 +329,7 @@ Foxtrick.append = function(parent, child) {
 	var doc = parent.ownerDocument;
 	var win = doc.defaultView;
 
-	if (Array.isArray(child)) {
+	if (Foxtrick.isArrayLike(child)) {
 		Foxtrick.forEach(function(c) {
 			Foxtrick.append(parent, c);
 		}, child);
@@ -710,7 +710,7 @@ Foxtrick.makeRows = function(doc, rows, section) {
 	if (!section)
 		section = doc.createElement('table');
 
-	for (var rowItem of rows) {
+	for (var rowItem of Foxtrick.toArray(rows)) {
 		if (win.HTMLTableRowElement.prototype.isPrototypeOf(rowItem)) {
 			section.appendChild(rowItem);
 			continue;
@@ -718,7 +718,7 @@ Foxtrick.makeRows = function(doc, rows, section) {
 
 		var row = section.insertRow(-1);
 
-		for (var cellItem of rowItem) {
+		for (var cellItem of Foxtrick.toArray(rowItem)) {
 			if (win.HTMLTableCellElement.prototype.isPrototypeOf(cellItem)) {
 				row.appendChild(cellItem);
 				continue;
