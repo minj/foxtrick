@@ -166,9 +166,9 @@ Foxtrick.removeAttributeValue = function(el, attribute, value) {
 };
 
 /**
- * Set element attributes/properties base on attribute map.
+ * Set element attributes/properties based on attribute map.
  *
- * Supports style/dataset and on* listeners.
+ * Also supports style/dataset and on* listeners.
  *
  * @param {element} el
  * @param {object}  attributes
