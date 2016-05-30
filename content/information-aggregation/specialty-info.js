@@ -127,12 +127,21 @@ Foxtrick.modules['SpecialtyInfo'] = {
 			thMinus.textContent = '-';
 
 
-			var rows = [[{}, {}, {}, {}]], iconCell;
+			var rows = [], iconCell;
+
+			var row, rowIdx;
+			var updateRowPointer = function(newIdx) {
+				rowIdx = newIdx;
+				while (rowIdx >= rows.length)
+					rows.push([{}, {}, {}, {}]);
+
+				row = rows[rowIdx];
+			};
 
 			var spec = module.SPECS[specNum];
 			for (var pair of [[0, spec.pos], [2, spec.neg]]) {
 				var startIdx = pair[0], arr = pair[1];
-				var rowIdx = 0, row = rows[rowIdx];
+				updateRowPointer(0);
 
 				if (!arr.length) {
 					row[startIdx] = { className: 'center', textContent: '-', colSpan: 2 };
@@ -143,11 +152,9 @@ Foxtrick.modules['SpecialtyInfo'] = {
 
 				for (var item of arr) {
 					if (item.events) {
+						var evRowIdx = rowIdx;
 						for (var eventId of item.events) {
-							if (rowIdx == rows.length)
-								rows.push([{}, {}, {}, {}]);
-
-							row = rows[rowIdx];
+							updateRowPointer(evRowIdx);
 
 							iconCell = doc.createElement('td');
 							row[startIdx] = iconCell;
@@ -158,15 +165,12 @@ Foxtrick.modules['SpecialtyInfo'] = {
 							var title = EVENT_UTIL.getEventTitle(eventId);
 							row[startIdx + 1] = title;
 
-							rowIdx++;
+							evRowIdx++;
 						}
 						continue;
 					}
 
-					if (rowIdx == rows.length)
-						rows.push([{}, {}, {}, {}]);
-
-					row = rows[rowIdx];
+					updateRowPointer(rowIdx);
 
 					iconCell = doc.createElement('td');
 					row[startIdx] = iconCell;
