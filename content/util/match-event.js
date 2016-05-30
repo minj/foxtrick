@@ -694,6 +694,10 @@ Foxtrick.util.matchEvent.addEventIcons = function(evnt) {
 };
 
 Foxtrick.util.matchEvent.appendIcons = function(doc, container, icons, title) {
+	var addSpaceBeforeImg = function(img) {
+		img.parentNode.insertBefore(doc.createTextNode(' '), img);
+	};
+
 	for (var idx = 0; idx < icons.length; idx++) {
 		var alt = idx ? '' : title;
 		var features = { alt: alt, title: title, 'aria-label': alt };
@@ -715,7 +719,8 @@ Foxtrick.util.matchEvent.appendIcons = function(doc, container, icons, title) {
 			src = Foxtrick.util.matchEvent.eventIconDefinition['transparent'];
 
 		features.src = src;
-		Foxtrick.addImage(doc, container, features);
+
+		Foxtrick.addImage(doc, container, features, null, addSpaceBeforeImg);
 	}
 };
 
