@@ -90,11 +90,11 @@
 			"code": "ca",
 			"name": "Catalan",
 			"phrases": "2267",
-			"translated": "2263",
-			"translated_progress": "99",
+			"translated": "2267",
+			"translated_progress": "100",
 			"words": "16437",
 			"words_approved": "0",
-			"words_translated": "16432"
+			"words_translated": "16437"
 		},
 		{
 			"approved": "0",
@@ -138,11 +138,11 @@
 			"code": "da",
 			"name": "Danish",
 			"phrases": "2267",
-			"translated": "2263",
-			"translated_progress": "99",
+			"translated": "2267",
+			"translated_progress": "100",
 			"words": "16437",
 			"words_approved": "12821",
-			"words_translated": "16432"
+			"words_translated": "16437"
 		},
 		{
 			"approved": "1899",
@@ -217,16 +217,16 @@
 			"words_translated": "6207"
 		},
 		{
-			"approved": "2263",
-			"approved_progress": "99",
+			"approved": "2267",
+			"approved_progress": "100",
 			"code": "fr",
 			"name": "French",
 			"phrases": "2267",
-			"translated": "2263",
-			"translated_progress": "99",
+			"translated": "2267",
+			"translated_progress": "100",
 			"words": "16437",
-			"words_approved": "16432",
-			"words_translated": "16432"
+			"words_approved": "16437",
+			"words_translated": "16437"
 		},
 		{
 			"approved": "0",
@@ -318,11 +318,11 @@
 			"code": "hu",
 			"name": "Hungarian",
 			"phrases": "2267",
-			"translated": "1977",
+			"translated": "1981",
 			"translated_progress": "75",
 			"words": "16437",
 			"words_approved": "393",
-			"words_translated": "12413"
+			"words_translated": "12418"
 		},
 		{
 			"approved": "0",
