@@ -181,7 +181,9 @@ Foxtrick.Pages.Match.isPrematch = function(doc) {
  * @return {Boolean}
  */
 Foxtrick.Pages.Match.hasRatingsTabs = function(doc) {
-	return doc.getElementById('divSectors') !== null;
+	var sectors = doc.getElementById('divSectors');
+
+	return !!(sectors && sectors.style.display != 'none');
 };
 
 /**
