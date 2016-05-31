@@ -32,6 +32,22 @@ if (!Foxtrick.util)
 Foxtrick.util.modules = {};
 
 /**
+ * Ensure conditionally essential modules are not disabled by accident
+ * causing major UX problems
+ */
+Foxtrick.util.modules.enableEssential = function() {
+	var ANDROID_ESSENTIALS = [
+		'ExtraShortcuts',
+		'ExtraShortcuts.FoxTrickPrefs',
+	];
+
+	if (Foxtrick.platform == 'Android') {
+		for (var andrModule of ANDROID_ESSENTIALS)
+			Foxtrick.Prefs.setModuleEnableState(andrModule, true);
+	}
+};
+
+/**
  * Get active modules.
  *
  * doc param is optional: returns only modules that run on that page if provided.
@@ -40,6 +56,8 @@ Foxtrick.util.modules = {};
  * @return {array}        {Array.<object>}
  */
 Foxtrick.util.modules.getActive = function(doc) {
+	this.enableEssential();
+
 	var pages = Foxtrick.htPages;
 	if (doc) {
 		pages = {};
