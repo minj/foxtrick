@@ -128,7 +128,7 @@
 					return;
 				//Foxtrick.log('ticker check')
 				Foxtrick.sessionGet('tickers', function(tickers) {
-					if (tickers == undefined)
+					if (!tickers)
 						tickers = [];
 
 					var tickersNow = getTickers();
