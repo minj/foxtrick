@@ -17,6 +17,9 @@ Foxtrick.modules['MatchLineupFixes'] = {
 
 		var module = this;
 
+		if (!Foxtrick.Pages.Match.hasRatingsTabs(doc))
+			return;
+
 		// START PREPARATION STAGE
 
 		// this is where we fix HTs shit
