@@ -86,6 +86,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "10763413",
+			"name": "h-b-o"
+		},
+		{
+			"duty": "supporter",
 			"id": "10775786",
 			"name": "Ucha_Cuervo"
 		},
@@ -113,6 +118,11 @@
 			"duty": "translator",
 			"id": "11006315",
 			"name": "GM-timh1704"
+		},
+		{
+			"duty": "supporter",
+			"id": "11017062",
+			"name": "DDriver"
 		},
 		{
 			"duty": "supporter",
@@ -153,6 +163,11 @@
 			"duty": "developer",
 			"id": "11335334",
 			"name": "CatzHoek"
+		},
+		{
+			"duty": "supporter",
+			"id": "1140197",
+			"name": "schmidde"
 		},
 		{
 			"duty": "supporter",
@@ -305,9 +320,19 @@
 			"name": "larsw84"
 		},
 		{
+			"duty": "supporter",
+			"id": "12788724",
+			"name": "jkers"
+		},
+		{
 			"duty": "translator",
 			"id": "12960779",
 			"name": "puttfarken01"
+		},
+		{
+			"duty": "supporter",
+			"id": "12966867",
+			"name": "ExpatU"
 		},
 		{
 			"duty": "translator",
@@ -640,9 +665,14 @@
 			"name": "Triplex1963"
 		},
 		{
+			"duty": "supporter",
+			"id": "4253318",
+			"name": "cschz"
+		},
+		{
 			"duty": "developer",
 			"id": "4342858",
-			"name": "Mod-ljushaff"
+			"name": "GM-ljushaff"
 		},
 		{
 			"duty": "translator",
@@ -718,6 +748,11 @@
 			"duty": "translator",
 			"id": "4917179",
 			"name": "mygenfordt"
+		},
+		{
+			"duty": "supporter",
+			"id": "50011",
+			"name": "Wilbor"
 		},
 		{
 			"duty": "translator",
@@ -887,7 +922,7 @@
 		{
 			"duty": "supporter",
 			"id": "6944890",
-			"name": "guttusangolo-GIGA"
+			"name": "guttusangolo"
 		},
 		{
 			"duty": "supporter",
@@ -1040,6 +1075,11 @@
 			"name": "MarceloFBrandao"
 		},
 		{
+			"duty": "supporter",
+			"id": "8329542",
+			"name": "Aristodemos"
+		},
+		{
 			"duty": "developer",
 			"id": "8342420",
 			"name": "ryanli"
@@ -1135,9 +1175,19 @@
 			"name": "Vosco"
 		},
 		{
+			"duty": "supporter",
+			"id": "9531623",
+			"name": "J_Bax"
+		},
+		{
 			"duty": "translator",
 			"id": "9559302",
 			"name": "Sam-Latitante"
+		},
+		{
+			"duty": "supporter",
+			"id": "9577400",
+			"name": "Om_lover"
 		},
 		{
 			"duty": "translator",
@@ -1178,6 +1228,11 @@
 			"duty": "translator",
 			"id": "9793408",
 			"name": "LA-keebak"
+		},
+		{
+			"duty": "supporter",
+			"id": "9816045",
+			"name": "unhumble"
 		},
 		{
 			"duty": "supporter",
