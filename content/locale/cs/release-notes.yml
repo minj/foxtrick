@@ -95,6 +95,7 @@ cs:
       bugs: '<header>Opravy chyb</header>'
       youth_avatars: 'Opraveny mizející obličeje hráčů dorostu které způsoboval modul <module>MatchOrderInterface</module>.'
       other: '<header>Ostatní změny</header>'
+      promote_age: '<module>Přeřazení hráče z akademie</module> nyní se zobrazuje hráčův věk v den přeřazení.'
       export_live: 'V modulu <module>ReLiveLinks</module> lze povolit tlačítko na export seznamu zápasů HT-live na odkaz.'
       match_icons: 'Přidány další ikony k událostem z modulu <module>MatchReportFormat</module>. Nyní by měly zahrnovat všechny důležité události.'
       retro_cups: 'V modulu <module>CustomMedals</module> lze nyní nahradit ikony nových typů pohárů "retro" verzí.'
