@@ -79,15 +79,19 @@ Foxtrick.modules['SpecialtyInfo'] = {
 		},
 	],
 
-	decorate: function(parent, specNum) {
+	run: function(doc) {
 		var module = this;
 		var EVENT_UTIL = Foxtrick.util.matchEvent;
 
-		var addInfo = function() {
+		var addInfo = function(parent) {
 			var doc = parent.ownerDocument;
+			var specNum = parent.dataset.specialty;
+			var uuid = parent.dataset.uuid;
 
 			var infoContainer = Foxtrick.createFeaturedElement(doc, module, 'div');
 			Foxtrick.addClass(infoContainer, 'ft-specInfo ft-specInfo-active');
+			infoContainer.id = 'ft-specInfo-' + uuid;
+			infoContainer.dataset.uuid = uuid;
 
 			var outerTable = infoContainer.appendChild(doc.createElement('table'));
 			outerTable.className = 'ft-specInfo-outer';
@@ -182,20 +186,48 @@ Foxtrick.modules['SpecialtyInfo'] = {
 			parent.appendChild(infoContainer);
 		};
 
-		var activate = function() {
-			var info = parent.querySelector('.ft-specInfo');
+		var activate = function(parent) {
+			var doc = parent.ownerDocument;
+
+			var uuid = parent.dataset.uuid;
+			if (!uuid) {
+				parent.dataset.uuid = uuid = Math.random().toString(16).slice(2);
+				parent.id = 'ft-specInfo-parent-' + uuid;
+			}
+
+			var info = doc.getElementById('ft-specInfo-' + uuid);
 			if (info)
 				Foxtrick.toggleClass(info, 'ft-specInfo-active');
 			else
-				addInfo();
+				addInfo(parent);
 		};
 
-		Foxtrick.addClass(parent, 'ft-specInfo-parent');
-		Foxtrick.onClick(parent, function(ev) {
-			activate();
+		var mainBody = doc.getElementById('mainBody');
+		Foxtrick.onClick(mainBody, function specInfoListener(ev) {
+			var target = ev.target;
+			while (target) {
+				if (Foxtrick.hasClass(target, 'ft-specInfo')) {
+					var uuid = target.dataset.uuid;
+					target = doc.getElementById('ft-specInfo-parent-' + uuid);
+					break;
+				}
+
+				// README: parent class set elsewhere
+				if (Foxtrick.hasClass(target, 'ft-specInfo-parent'))
+					break;
+
+				target = target.parentNode;
+			}
+
+			if (!target)
+				return;
+
+			activate(target);
 
 			// stop event to disable match order select
 			return false;
-		});
+
+		}, true); // useCapture
+
 	},
 };
