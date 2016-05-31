@@ -26,8 +26,8 @@ Foxtrick.modules['Links'] = {
 		cont.appendChild(textarea);
 
 		var button = doc.createElement('button');
+		button.type = 'button';
 		Foxtrick.onClick(button, function(ev) {
-			ev.preventDefault();
 			var doc = ev.target.ownerDocument;
 			var links = doc.querySelectorAll('input[option][module^="Links"]:not([id])');
 			var state = links[0].checked;
