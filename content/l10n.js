@@ -433,16 +433,16 @@ Foxtrick.L10n.getFullLevelByValue = function(val) {
 	// subStr should be 0.25 higher in all cases
 	var subStr = '';
 
-	if (sub >= 0 && sub <= 0.25) {
+	if (sub >= 0 && sub < 0.25) {
 		subStr = '0';
 	}
-	else if (sub > 0.25 && sub <= 0.5) {
+	else if (sub >= 0.25 && sub < 0.5) {
 		subStr = '0.25';
 	}
-	else if (sub > 0.5 && sub <= 0.75) {
+	else if (sub >= 0.5 && sub < 0.75) {
 		subStr = '0.5';
 	}
-	else if (sub > 0.75 && sub < 1) {
+	else if (sub >= 0.75 && sub < 1) {
 		subStr = '0.75';
 	}
 
