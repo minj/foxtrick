@@ -164,7 +164,8 @@ Foxtrick.modules['SeriesTransfers'] = {
 			};
 			var specialityFunc = function(cell, spec) {
 				if (spec) {
-					Foxtrick.addSpecialty(cell, spec);
+					Foxtrick.addSpecialty(cell, spec)
+						.catch(Foxtrick.catch('SeriesTransfers addSpecialty'));
 				}
 				cell.setAttribute('index', spec);
 			};

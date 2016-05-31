@@ -683,7 +683,8 @@ Foxtrick.modules['SkillTable'] = {
 				speciality: function(cell, spec) {
 					var specIdx = Foxtrick.L10n.getNumberFromSpeciality(spec);
 					if (specIdx) {
-						Foxtrick.addSpecialty(cell, specIdx);
+						Foxtrick.addSpecialty(cell, specIdx)
+							.catch(Foxtrick.catch('SkillTable addSpecialty'));
 					}
 					cell.setAttribute('index', spec);
 				},

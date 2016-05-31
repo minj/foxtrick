@@ -109,7 +109,8 @@ Foxtrick.modules['MatchOrderInterface'] = {
 						Foxtrick.addClass(cards_health[i], 'ft-specialty');
 						var specIdx = player.specialityNumber;
 						var opts = { class: 'ft-specialty-img' };
-						Foxtrick.addSpecialty(cards_health[i], specIdx, opts);
+						Foxtrick.addSpecialty(cards_health[i], specIdx, opts)
+							.catch(Foxtrick.catch('MOI addSpecialty'));
 					}
 				}
 			}
