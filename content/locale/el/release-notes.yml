@@ -1,6 +1,10 @@
 ---
 el:
   versions:
+    0.17.0.1:
+      bugs: '<header>Διορθώσεις σφαλμάτων</header>'
+      other: '<header>Άλλες αλλαγές</header>'
+      and_more: Διάφορες άλλες μικρές αλλαγές και διορθώσεις.
     0.17.0:
       bugs: '<header>Διορθώσεις σφαλμάτων</header>'
       other: '<header>Άλλες αλλαγές</header>'

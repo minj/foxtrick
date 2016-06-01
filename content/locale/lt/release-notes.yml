@@ -5,6 +5,23 @@ lt:
       note_0: 'Įdiegėte nestabilią versiją. Naudokite savo rizika. Peržiūrėkite „Google Code“ <linkSVN>pakeitimų sąrašą</linkSVN>.'
     beta:
       note_0: 'Įdiegėte išankstinę (beta) versiją. Prašome prisidėti prie jos vertimo į lietuvių kalbą ypatingai šauniame vertėjų savanorių portale „<linkCrowdin>crowdin.net</linkCrowdin>“. '
+    0.17.0.1:
+      important: '<header>Svarbūs pranešimai</header>'
+      safari_cert: 'Ieškome Hattrick bendruomenės narių, kurie kurtų iOS ar OSX programėles. Reikia pagalbos sutvarkant Foxtrick palaikymą Safari naršyklės naudotojams. Daugiau informacijos rasite <linkSafariCertBug>Foxtrick klaidų seklyje</linkSafariCertBug>.'
+      beta: 'Siūlome išmėgint <linkFTBeta>Foxtrick beta</linkFTBeta> versiją: galėsite pirmieji išmėginti naująsias funkcijas, paveikti jų kūrimo procesą ir pagelbėti randant bei sutaisant iškylančius keblumus.'
+      support: '<header>Patinka šis projektas? Prašome <linkContribute>pagelbėti Foxtrick</linkContribute>.</header>'
+      bugs: '<header>Pataisytos klaidos</header>'
+      android: Dėl Mozilla pokyčių Foxtrick buvo nustojęs veikti Android naudotojams.
+      filters: '<module>Filters</module> modulis buvo sugedęs po paskutinių Foxtrick branduolio pakitimų.'
+      simulator_hs: '<module>MatchSimulator</module> modulis rodė neteisingus polygmenų pavadinimus apskaičiuotiems reitingams. Dėl to buvo atsiradęs neatitikimas su apskaičiuotomis HatStats vertėmis.'
+      nt_stats: '<module>SeasonStats</module> neteisingai veikė rinktinių treneriams: rungtynės, sužaistos lygiosiomis buvo neteisingai atpažinamos.'
+      specinfo_fixes: '<module>SpecialtyInfo</module> neteisingai sąveikavo su <module>SkillTable</module> ir <module>ContextMenuCopy</module> moduliais, todėl buvo perrašytas integracijai pagerinti.'
+      other: '<header>Kiti pakeitimai</header>'
+      minimum_search: 'Vėl galima vykdyti paiešką įvedant tik minimalią formos vertę (<module>TransferSearchResultFilters</module> modulis). Viršutine paieškos riba automatiškai laikoma „puiki“ forma.'
+      season_cache: 'Foxtrick podėlis nuo šiol bus automatiškai išvalomas, keičiantis sezonams. Taip išvengiama pasenusių duomenų įvairiuose moduliuose, pvz. <module>SeriesFlags</module>.'
+      weather_cache: '<module>MatchWeather</module> rodydavo tuos pačius orus, jei naršyklė ilgai neperkraunama. Nuo šiol orų duomenys bus saugomi podėlyje tik trumpą laiką.'
+      android_prefs: Nuo šiol nebeįmanoma išjungti Foxtrick nustatymų nuorodos Android naudotojams, pavyzdžiui, įkeliant nustatymus iš kompiuterio. Priešingu atveju, telefone būtų nebeįmanoma pasiekti Foxtrick nustatymų.
+      and_more: Daugybė kitų smulkių pataisymų ir pakitimų.
     0.17.0:
       important: '<header>Svarbūs pranešimai</header>'
       crowdin: '<header>Daugybė vertimo atnaujinimų. Dėkojame savo šauniems vartotojams, kurie naudojasi <linkCrowdin>crowdin portalu</linkCrowdin>. Ir Jūs galite prisidėti!</header>'

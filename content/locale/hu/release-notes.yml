@@ -5,6 +5,23 @@ hu:
       note_0: 'Fejlesztői verzió. Saját belátásod szerint használd. Kérjük tekintsd meg változtatások részletekért a <linkSVN>jóváhagyási történetet</linkSVN> a Google Code-on.'
     beta:
       note_0: 'Ez a következő kiadás béta verziója. Kérlek segítsd a fordítást a szuper könnyű tömegfordító <linkCrowdin>crowdin.net</linkCrowdin> oldalunkon.'
+    0.17.0.1:
+      important: '<header>Fontos közlemények</header>'
+      safari_cert: 'A Hattrick közösség soraiból keresünk valakit, aki iOS vagy OSX applikációkat fejleszt, hogy segítsen visszaállítani a Foxtrick támogatást a Safari felhasználók számára. További információért tekintsd meg a  <linkSafariCertBug>pröbléma követő oldalunkat</linkSafariCertBug>.'
+      beta: 'Az új funkciók korai megismerése kapcsán felhívom a figyelmed a <linkFTBeta>Foxtrick beta</linkFTBeta> használatára, befolyásolhatod a fejlesztéseket és segíthetsz megkeresni és javítani az esetlegesen felmerülő problémákat.'
+      support: '<header>Tetszik, amit csinálunk? Kérlek <linkContribute>támogasd a Foxtrick kiegészítőt</linkContribute>.</header>'
+      bugs: '<header>Hibajavítások</header>'
+      android: A Foxtrick nem működik Androidon Mozilla változtatások miatt.
+      filters: 'A <module>Filters</module> modul nem működik, miután változtatások történtek a Foxtrick magban.'
+      simulator_hs: 'A <module>MatchSimulator</module> modul rossz képesség alszint feliratokat használ a számított értékeléseknél, eltérően a számított HatStats értékekkel.'
+      nt_stats: 'A <module>SeasonStats</module> modul nem érzékeli helyesen a döntetlennel végződött NT mérkőzéseket a szövetségi kapitányoknál.'
+      specinfo_fixes: 'A <module>SpecialtyInfo</module> rosszul működött együtt a <module>SkillTable</module> és a <module>ContextMenuCopy</module> modullal. A modul újraírásra került az integráció javítása érdekében.'
+      other: '<header>Egyéb változások</header>'
+      minimum_search: 'Most már újra kereshetsz csak a minimális formára a <module>TransferSearchResultFilters</module> modulban. A felső keresési határ automatikusan "remek" szintre kerül beállításra.'
+      season_cache: 'A Foxtrick cache szezonváltáskor most már automatikusan törlődik. Ezzel meggátoljuk, hogy különböző modulok, mint a <module>SeriesFlags</module>, elavult adatokat használjon.'
+      weather_cache: 'A <module>MatchWeather</module> modul addig ugyanazt az időjárást jelzi, amíg a böngésző fut. Az időjárási adatok már csak rövid ideig kerülnek tárolásra.'
+      android_prefs: Továbbiakban nem elérhető a Foxtrick beállítások letiltása hivatkozás Androidon, mint pl. a beállítások importálása asztali verzióra. Másrészt a beállítások elérhetetlenné válnak.
+      and_more: Számos kis változtatás és javítás.
     0.17.0:
       important: '<header>Fontos közlemények</header>'
       crowdin: '<header>A mi nagyszerű felhasználóink a  <linkCrowdin>crowdin eszközt</linkCrowdin> használják a számtalan fordítási frissítéshez. Te is segíthetsz természetesen!</header>'
@@ -39,6 +56,7 @@ hu:
       safari_cert: 'A Hattrick közösség soraiból keresünk valakit, aki iOS vagy OSX applikációkat fejleszt, hogy segítsen visszaállítani a Foxtrick támogatást a Safari felhasználók számára. További információért tekintsd meg a  <linkSafariCertBug>pröbléma követő oldalunkat</linkSafariCertBug>.'
       beta: 'Az új funkciók korai megismerése kapcsán felhívom a figyelmed a <linkFTBeta>Foxtrick beta</linkFTBeta> használatára, befolyásolhatod a fejlesztéseket és segíthetsz megkeresni és javítani az esetlegesen felmerülő problémákat.'
       bugs: '<header>Hibajavítások</header>'
+      and_more: Számos kis változtatás és javítás.
     0.16.1:
       bugs: '<header>Hibajavítások</header>'
       other: '<header>Egyéb változások</header>'

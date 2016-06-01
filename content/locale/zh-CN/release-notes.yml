@@ -5,6 +5,9 @@ zh-CN:
       note_0: '请查阅 Google Code 上的<linkSVN>版本历史</linkSVN>.'
     beta:
       note_0: '这是下一个版本的beta测试版。请在我们超级容易的大众翻译页面 <linkCrowdin>crowdin.net</linkCrowdin>帮助翻译此版本。'
+    0.17.0.1:
+      safari_cert: '我们正在寻找开发 iOS 或 OSX 应用的人员，帮助恢复Foxtrick对 Safari 用户的支持。请参阅我们的 <linkSafariCertBug>问题跟踪器</linkSafariCertBug> 的详细信息。'
+      beta: '请考虑使用 <linkFTBeta>Foxtrick beta</linkFTBeta>以早点获得新的功能，影响Foxtrick的开发，并帮助查找和修复可能出现的任何问题。'
     0.17.0:
       important: '<header>重要公告</header>'
       crowdin: '<header>我们可敬的用户使用 <linkCrowdin>crowdin 工具</linkCrowdin>更新了大量翻译。你也可以帮忙！</header>'
