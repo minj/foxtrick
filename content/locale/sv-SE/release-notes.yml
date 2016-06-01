@@ -5,6 +5,23 @@ sv-SE:
       note_0: 'This is the development build. Use at your own discretion. Please view <linkSVN>commit history</linkSVN> at Google Code for details of the changes.'
     beta:
       note_0: 'Detta är BETA -versionen av nästa utgåva. Hjälp gärna till att översätta denna version via vårt superlätta översättningsverktyg på <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.17.0.1:
+      important: '<header>Viktiga meddelanden</header>'
+      safari_cert: 'Vi letar efter någon i Hattricks stora community som utvecklar appar för iOS eller OSX som kan hjälpa oss att återskapa support även för användare av Safari. Se vår <linkSafariCertBug>issue tracker</linkSafariCertBug> för mer information.'
+      beta: 'Vänligen överväg att använda <linkFTBeta>Foxtrick beta</linkFTBeta> för att dels få nya funktioner i ett tidigt skede, dels kunna påverka dess vidare utveckling samt för att hjälpa oss att fixa de ev. problem som ibland går hand i hand med nya funktioner.'
+      support: '<header>Gillar du vad vi gör? Vänligen <linkContribute>Stöd Foxtrick</linkContribute>.</header>'
+      bugs: '<header>Buggfixar</header>'
+      android: Pga ändringar av Mozilla fungerade inte Foxtrick korrekt för Android.
+      filters: 'Modulen <module>Filters</module> slutade fungera efter ändringar i Foxtricks kärna.'
+      simulator_hs: 'Modulen <module>MatchSimulator</module> använde fel etikett på undernivåer vid kalkylering av betygen, vilket blev en konflikt med de kalkylerade värdena för Hatstats.'
+      nt_stats: '<module>SeasonStats</module> kunde inte upptäcka och visa oavgjorda matcher på ett korrekt sätt för förbundskaptenerna.'
+      specinfo_fixes: '<module>SpecialtyInfo</module> interagerade felaktigt med modulerna <module>SkillTable</module> och <module>ContextMenuCopy</module>. Modulen har sedan skrivits om för att förbättra detta.'
+      other: '<header>Andra ändringar</header>'
+      minimum_search: 'I modulen <module>TransferSearchResultFilters</module> under avancerat sökfilter på transfersöksidan är det nu åter igen möjligt att enbart sätta en "minimum" form att söka på. Sätter man inget maxvärde alls, kommer "fenomenal" att antas automatiskt.'
+      season_cache: 'Foxtricks cache kommer nu att rensas automatiskt vid varje ny säsong. Detta förhindrar Foxtrick från att använda inaktuell data i olika moduler som t.ex. <module>SeriesFlags</module>.'
+      weather_cache: 'Modulen <module>MatchWeather</module> visade samma väder så länge som webbläsaren kördes. Väderdata cachelagras därför nu under en kort tid.'
+      android_prefs: Det är nu längre inte möjigt att inaktivera genvägen till foxtrickinställningar på Android (som placerats bland Hattricks andra genvägar) genom att t.ex. importera inställningar från en stationär enhet. Pga begränsningar i Firefox androidversion skulle då inställningarna till Foxtrick bli helt omöjliga att nå.
+      and_more: Flera andra mindre ändringar och korrigeringar.
     0.17.0:
       important: '<header>Viktiga meddelanden</header>'
       crowdin: '<header>En hel massa översättningsuppdateringar av användare via översättningsverktyget på <linkCrowdin>crowdin.net</linkCrowdin>. Du kan också hjälpa till!</header>'

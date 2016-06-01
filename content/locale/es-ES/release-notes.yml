@@ -5,6 +5,14 @@ es-ES:
       note_0: 'Esta es versión de desarrollo. Úsalo a tu propia discreción. Por favor, mira <linkSVN>commit history</linkSVN> en Google Code para los detalles de los cambios.'
     beta:
       note_0: 'Esta es la versión beta de la próxima release. Por favor, ayuda a traducir esta versión accediendo a nuestra super fácil de usar web de traducción <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.17.0.1:
+      important: '<header>Anuncios importantes</header>'
+      safari_cert: 'Estamos buscando a alguien en la comunidad de Hattrick que desarrolle applicaciones para iOS u OSX para ayudar a restaurar el soporte de Foxtrick para los usuarios de Safari. Visita nuestro <linkSafariCertBug>gestor de incidencias</linkSafariCertBug> para más información.'
+      beta: 'Por favor, considera usar <linkFTBeta>la versión beta de Foxtrick</linkFTBeta> para obtener antes nuevas mejoras, para hacer sugerencias y para ayudar a encontrar y arreglar cualquier problema que pudiese aparecer.'
+      support: '¿<header>Como lo estamos haciendo? Por favor <linkContribute>ayuda Foxtrick</linkContribute>.</header>'
+      bugs: '<header>Corrección de errores</header>'
+      other: '<header>Otros cambios</header>'
+      and_more: Otros pequeños cambios y correcciones.
     0.17.0:
       important: '<header>Anuncios importantes</header>'
       crowdin: '<header>AMuchas actualizaciones de la traducción de nuestros asombrosos usuarios, mediante la <linkCrowdin>herramienta CrowdIn</linkCrowdin>. ¡Tu puedes contribuir también si quieres!</header>'

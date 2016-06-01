@@ -5,6 +5,14 @@ da:
       note_0: 'Dette er Beta-versionen. Du bruger denne version på eget ansvar. Se venligst <linkSVN>commit history</linkSVN> på Google Code for nærmere oplysninger om ændringerne.'
     beta:
       note_0: 'Dette er betaversionen af den næste udgave. Du kan hjælpe med at oversætte via vores super nemme oversættelses-side <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.17.0.1:
+      important: '<header>Vigtige meddelelser</header>'
+      safari_cert: 'Vi er på udkig efter engageret managere, som arbejder med udvikling af apps til iOS eller OSX, for at være med til at genetablere hjælp til Safari-brugere omkring Foxtrick. Se vores <linkSafariCertBug>issue tracker</linkSafariCertBug> for flere oplysninger.'
+      beta: 'Hvis du kunne tænke dig at få adgang til nye funktioner sådan, at du kan være med til at præge udviklingen af nye features, og til at hjælpe med at finde og løse eventuelle fejl der måtte opstå, bør du overveje at installer beta versionen som du finder her: <linkFTBeta>Foxtrick beta</linkFTBeta>'
+      support: '<header>Støt Foxtrick via Flattr mikrodonationer eller giv et bidrag med Paypal <linkContribute>Donér</linkContribute>.</header>'
+      bugs: '<header>Fejlrettelser</header>'
+      other: '<header>Andre ændringer</header>'
+      and_more: Forskellige små ændringer og rettelser.
     0.17.0:
       important: '<header>Vigtige meddelelser</header>'
       crowdin: '<header>En stor tak til alle de hjælpsomme brugere, som oversætter ved hjælp af <linkCrowdin>crowdin </linkCrowdin>. Du kan også give en hånd!</header>'
