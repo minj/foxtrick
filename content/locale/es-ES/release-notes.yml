@@ -11,7 +11,16 @@ es-ES:
       beta: 'Por favor, considera usar <linkFTBeta>la versión beta de Foxtrick</linkFTBeta> para obtener antes nuevas mejoras, para hacer sugerencias y para ayudar a encontrar y arreglar cualquier problema que pudiese aparecer.'
       support: '¿<header>Como lo estamos haciendo? Por favor <linkContribute>ayuda Foxtrick</linkContribute>.</header>'
       bugs: '<header>Corrección de errores</header>'
+      android: Foxtrick fue interrumpido en Android debido a cambios realizados por Mozilla.
+      filters: '<module>Filtros</module> modulo fue interrumpido después de cambios en el código de Foxtrick.'
+      simulator_hs: '<module>MatchSimulator</module> usó etiquetas de subnivel de habilidad erróneas para calcular calificaciones, entrando en conflicto con los valores de HatStats calculados.'
+      nt_stats: '<module>SeasonStats</module> podría no detectar correctamente los partidos empatados de Selecciones por los seleccionadores.'
+      specinfo_fixes: '<module>SpecialtyInfo</module> había tenido interacciones incorrectas con <module>SkillTable</module> y <module>ContextMenuCopy</module>. El módulo fue reescrito para mejorar su integración.'
       other: '<header>Otros cambios</header>'
+      minimum_search: 'Ahora puedes buscar de nuevo por mínimo de forma mínima solo en <module>TransferSearchResultFilters</module>. El límite superior de búsqueda es asumido automáticamente a ser "excelente".'
+      season_cache: 'Ahora el caché de Foxtrick se borrará automáticamente cuando la temporada finaliza. Esto previene usar información antigua en varios módulos como <module>SeriesFlags</module>.'
+      weather_cache: '<module>MatchWeather</module> mostraría el mismó tiempo meteorológico tanto como el navegador se mantuviera corriendo. La información del clima ahora se guardará en caché solamente por un corto tiempo.'
+      android_prefs: Ya no es posible deshabilitar el link de preferencias de Foxtrick en Android, por ejemplo, importando preferencias a una versión de escritorio. De lo contrario, las preferencias serían inaccesibles.
       and_more: Otros pequeños cambios y correcciones.
     0.17.0:
       important: '<header>Anuncios importantes</header>'

@@ -11,7 +11,17 @@ ca:
       beta: 'Per favor utilitzeu <linkFTBeta>la versió beta de Foxtrick</linkFTBeta> per a obtenir noves característiques des del principi, influir en el seu desenvolupament i ajudar a trobar i solucionar qualsevol problema que pugui sorgir.'
       support: "¿<header>T'agrada com ho estem fent? Si us plau <linkContribute>Foxtrick suport</linkContribute>.</header>"
       bugs: "<header>Correccions d'errors</header>"
+      android: Foxtrick va ser interromput en Android a causa de canvis per Mozilla.
+      filters: 'Mòdul de <module>filtres</module> es va trencar després de canvis de nucli de Foxtrick.'
+      simulator_hs: "<module>MatchSimulator</module> utilitza Etiquetes sub-nivell d'habilitat malament per índexs calculats, en conflicte amb els valors calculats de HatStats."
+      nt_stats: '<module>SeasonStats</module> no ha pogut detectar partides NT per a autocars NT correctament.'
+      specinfo_fixes: '<module>SpecialtyInfo</module> havia equivocats interaccions amb <module>SkillTable</module> i <module>ContextMenuCopy</module>. El mòdul va ser reescrit per millorar la seva integració.'
       other: '<header>Altres canvis</header>'
+      minimum_search: |-
+        Una altra vegada ara pot buscar per mínim formulari només en <module>TransferSearchResultFilters</module>. La recerca superior obligat automàticament s'assumeix que "excel·lent".
+      season_cache: 'Foxtrick memòria cau ara es pot buidar automàticament quan el canvi de les estacions. Això evita que utilitzant dades ranci en diversos mòduls com <module>SeriesFlags</module>.'
+      weather_cache: '<module>MatchWeather</module> mostraria el mateix temps mentre el navegador es va mantenir funcionant. Les dades meteorològiques es ser cached ara per un curt temps.'
+      android_prefs: "Ja no és possible desactivar l'enllaç de preferències Foxtrick en Android per exemple, per importar les preferències d'una versió d'escriptori. En cas contrari les preferències es tornen inaccessibles."
       and_more: Diversos altres petits canvis i correccions.
     0.17.0:
       important: '<header>Anuncis importants</header>'

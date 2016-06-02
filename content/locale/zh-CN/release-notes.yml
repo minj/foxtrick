@@ -6,8 +6,22 @@ zh-CN:
     beta:
       note_0: '这是下一个版本的beta测试版。请在我们超级容易的大众翻译页面 <linkCrowdin>crowdin.net</linkCrowdin>帮助翻译此版本。'
     0.17.0.1:
+      important: '<header>重要公告</header>'
       safari_cert: '我们正在寻找开发 iOS 或 OSX 应用的人员，帮助恢复Foxtrick对 Safari 用户的支持。请参阅我们的 <linkSafariCertBug>问题跟踪器</linkSafariCertBug> 的详细信息。'
       beta: '请考虑使用 <linkFTBeta>Foxtrick beta</linkFTBeta>以早点获得新的功能，影响Foxtrick的开发，并帮助查找和修复可能出现的任何问题。'
+      support: '<header>喜欢我们在做的事？请 <linkContribute>支持 Foxtrick</linkContribute>.</header>'
+      bugs: '<header>Bug 修复</header>'
+      android: Foxtrick 在 Android 上因为 Mozilla 的改动不可用。
+      filters: '<module>筛选器</module> 模块 在Foxtrick 核心更改后不可用。'
+      simulator_hs: '<module>MatchSimulator</module> 使用了错误的技能子等级计算比率，与HatStats的计算值冲突。'
+      nt_stats: '<module>SeasonStats</module> 无法为NT 教练正确检测平局的NT 比赛。'
+      specinfo_fixes: '<module>SpecialtyInfo</module> 曾与 <module>SkillTable</module> 和 <module>ContextMenuCopy</module> 有错误交互。该模块被重写，以改善其集成性能。'
+      other: '<header>其他更改</header>'
+      minimum_search: '现在你可以再次只在 <module>TransferSearchResultFilters</module> 中搜索最低状态。上部的搜索绑定自动假定为"优秀"。'
+      season_cache: '当赛季变化现在将自动清除 Foxtrick 缓存。这样可以防止在许多模块使用陈旧的数据，如 <module>SeriesFlags</module>。'
+      weather_cache: '<module>MatchWeather</module> 会显示相同的天气，只要浏览器保持运行。天气数据现在仅短时间缓存。'
+      android_prefs: 在 Android 上将不能禁用 Foxtrick 首选项链接，例如通过导入桌面版本的首选项。否则首选项将变得无法访问。
+      and_more: 许多其他的小更改和修复
     0.17.0:
       important: '<header>重要公告</header>'
       crowdin: '<header>我们可敬的用户使用 <linkCrowdin>crowdin 工具</linkCrowdin>更新了大量翻译。你也可以帮忙！</header>'
