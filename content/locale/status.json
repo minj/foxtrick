@@ -18,11 +18,11 @@
 			"code": "ar",
 			"name": "Arabic",
 			"phrases": "2283",
-			"translated": "1753",
-			"translated_progress": "70",
+			"translated": "1787",
+			"translated_progress": "71",
 			"words": "16699",
 			"words_approved": "11711",
-			"words_translated": "11842"
+			"words_translated": "11973"
 		},
 		{
 			"approved": "0",
@@ -90,11 +90,11 @@
 			"code": "ca",
 			"name": "Catalan",
 			"phrases": "2283",
-			"translated": "2274",
-			"translated_progress": "98",
+			"translated": "2283",
+			"translated_progress": "100",
 			"words": "16699",
 			"words_approved": "0",
-			"words_translated": "16527"
+			"words_translated": "16699"
 		},
 		{
 			"approved": "0",
@@ -102,11 +102,11 @@
 			"code": "zh-CN",
 			"name": "Chinese Simplified",
 			"phrases": "2283",
-			"translated": "2003",
-			"translated_progress": "76",
+			"translated": "2021",
+			"translated_progress": "78",
 			"words": "16699",
 			"words_approved": "0",
-			"words_translated": "12852"
+			"words_translated": "13059"
 		},
 		{
 			"approved": "1913",
@@ -541,16 +541,16 @@
 			"words_translated": "16522"
 		},
 		{
-			"approved": "2076",
+			"approved": "2087",
 			"approved_progress": "81",
 			"code": "sr",
 			"name": "Serbian (Cyrillic)",
 			"phrases": "2283",
-			"translated": "2084",
+			"translated": "2095",
 			"translated_progress": "82",
 			"words": "16699",
-			"words_approved": "13607",
-			"words_translated": "13727"
+			"words_approved": "13658",
+			"words_translated": "13778"
 		},
 		{
 			"approved": "0",
@@ -582,11 +582,11 @@
 			"code": "es-ES",
 			"name": "Spanish",
 			"phrases": "2283",
-			"translated": "2270",
-			"translated_progress": "98",
+			"translated": "2283",
+			"translated_progress": "100",
 			"words": "16699",
 			"words_approved": "1",
-			"words_translated": "16522"
+			"words_translated": "16699"
 		},
 		{
 			"approved": "0",
@@ -594,11 +594,11 @@
 			"code": "es-AR",
 			"name": "Spanish, Argentina",
 			"phrases": "2283",
-			"translated": "2275",
-			"translated_progress": "99",
+			"translated": "2283",
+			"translated_progress": "100",
 			"words": "16699",
 			"words_approved": "0",
-			"words_translated": "16537"
+			"words_translated": "16699"
 		},
 		{
 			"approved": "0",
