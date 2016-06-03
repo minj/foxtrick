@@ -112,11 +112,17 @@
 			var getTickers = function() {
 				var divs = ticker.getElementsByTagName('div');
 				var tickers = Foxtrick.map(function(n) {
+					var anchor = n.querySelector('a');
+					var prefix = anchor.textContent.match(/^[\d\W]+/);
+					var time = prefix.toString().trim();
+
 					return {
 						text: n.textContent,
-						link: n.getElementsByTagName('a')[0].href,
-						isNew: (n.getElementsByTagName('strong').length > 0)
+						link: anchor.href,
+						time: time,
+						isNew: !!n.querySelector('strong'),
 					};
+
 				}, divs);
 				return tickers;
 			};
@@ -163,7 +169,7 @@
 
 						if (Foxtrick.Prefs.getBool('module.TickerAlert.' + type + '.enabled')) {
 							Foxtrick.util.notify.create(n.text, n.link, {
-								id: 'ticker-' + type + Date.valueOf(),
+								id: 'ticker-' + type + '-' + n.time,
 								buttons: [{ title: open }],
 							});
 							var sound = Foxtrick.Prefs.getString('module.TickerAlert.' + type + '.sound');
