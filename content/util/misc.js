@@ -84,6 +84,7 @@ Foxtrick.playSound = function(url) {
 	if (Foxtrick.context == 'content') {
 		// delegate to background due to playback delay
 		Foxtrick.SB.ext.sendRequest({ req: 'playSound', url: url });
+		return;
 	}
 
 	if (typeof url !== 'string') {
