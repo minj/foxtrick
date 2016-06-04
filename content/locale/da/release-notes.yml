@@ -11,7 +11,18 @@ da:
       beta: 'Hvis du kunne tænke dig at få adgang til nye funktioner sådan, at du kan være med til at præge udviklingen af nye features, og til at hjælpe med at finde og løse eventuelle fejl der måtte opstå, bør du overveje at installer beta versionen som du finder her: <linkFTBeta>Foxtrick beta</linkFTBeta>'
       support: '<header>Støt Foxtrick via Flattr mikrodonationer eller giv et bidrag med Paypal <linkContribute>Donér</linkContribute>.</header>'
       bugs: '<header>Fejlrettelser</header>'
+      android: Grundet ændringer foretaget af Mozilla, holdt Foxtrick op med at virke på Android enheder.
+      filters: 'Modulet <module>Filtre</module> var nede på grund af ændringer i Foxtricks kerne.'
+      simulator_hs: 'Modulet <module>MatchSimulator</module> brugte ukorrekte evne sub-niveau etiketter for beregnede ratings, hvilke var i modstrid med de beregnede HatStats-værdier.'
+      nt_stats: 'Modulet <module>SeasonStats</module> kunne ikke registrere offentliggjorte landsholdskampe for landstrænere på en hensigtsmæssig måde.'
+      specinfo_fixes: |
+        Modulet <module>SpecialtyInfo</module> havde en uhensigtsmæssig samspil med
+        <module>SkillTable</module> og <module>ContextMenuCopy</module>. Modulet blev omskrevet for at forbedre dets integration.
       other: '<header>Andre ændringer</header>'
+      minimum_search: 'Det er igen muligt at søge efter min. form kun i modulet <module>TransferSearchResultFilters</module>. Den øvre grænse for formniveau er automatisk sat til "udmærket".'
+      season_cache: 'Foxtricks cache ryddes automatisk for hver ny sæson. Dette forhindre brugen af forældet data i forskellige moduller såsom <module>SeriesFlags</module>.'
+      weather_cache: 'Vejrdata bliver nu cachelageret for kortere tid. Derfor, vil modulet <module>MatchWeather</module> vise den sidst kendte vejrinformation, så længe din browser er åben.'
+      android_prefs: Det er ikke længere muligt at deaktivere link til Foxtricks indstillinger på Android enheder, da de ellers bliver utilgængelige, ved at importere indstillinger for en desktop-version.
       and_more: Forskellige små ændringer og rettelser.
     0.17.0:
       important: '<header>Vigtige meddelelser</header>'
