@@ -5,6 +5,23 @@ it:
       note_0: 'Questa è la versione di sviluppo. Utilizzala a tua discrezione. per favore visita <linkSVN>commit history</linkSVN> su Google code per dettagli sui cambiamenti.'
     beta:
       note_0: 'Questa è la versione beta della prossima release. Per favore aiutaci a tradurre questa versione con la nostra semplicissima pagina di traduzione di Crowdin <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.17.0.1:
+      important: '<header>Avvisi importanti</header>'
+      safari_cert: 'Stiamo cercando qualcuno nella comunità di Hattrick che sviluppi app per iOS o OSX per aiutare a ripristinare il supporto di Foxtrick per gli utenti di Safari. Guarda il nostro <linkSafariCertBug>"issue tracker"</linkSafariCertBug> per ulteriori informazioni.'
+      beta: 'Usa <linkFTBeta>beta Foxtrick</linkFTBeta> per ottenere in anticipo le nuove funzionalità, influenzare il loro sviluppo e consentire di trovare e correggere gli eventuali problemi che possono sorgere.'
+      support: '<header>Ti piace quello che stiamo facendo? Si prega di <linkContribute>supportare Foxtrick</linkContribute>.</header>'
+      bugs: '<header>Correzioni di bug</header>'
+      android: Foxtrick era non funzionante su Android a causa di modifiche da parte di Mozilla.
+      filters: 'Il modulo <module>filtri</module> era non funzionante a seguito di modifiche di base a Foxtrick.'
+      simulator_hs: '<module>MatchSimulator</module> usava etichette dei sottolivelli delle abilità sbagliate per le valutazioni calcolate, in contrasto con i valori calcolati da HatStats.'
+      nt_stats: '<module>SeasonStats</module> potrebbe non rilevare correttamente le partite NT per gli allenatori di NT.'
+      specinfo_fixes: '<module>SpecialtyInfo</module> aveva interazioni non corrette con <module>SkillTable</module> e <module>ContextMenuCopy</module>. Il modulo è stato riscritto per migliorare la sua integrazione.'
+      other: '<header>Altre modifiche</header>'
+      minimum_search: 'Ora è possibile nuovamente impostare soltanto la forma minima nella ricerca in <module>TransferSearchResultFilters</module>. Il limite superiore della ricerca viene automaticamente considerato "eccellente".'
+      season_cache: "La cache di Foxtrick ora verrà cancellata automaticamente quando le stagioni cambiano. Questo previene l'uso di dati non aggiornati in vari moduli come <module>SeriesFlags</module>."
+      weather_cache: '<module>MatchWeather</module> mostrava lo stesso meteo per tutto il tempo in cui il browser è mantenuto in esecuzione. I dati meteo ora verranno memorizzati nella cache soltanto per un breve periodo di tempo.'
+      android_prefs: Non è più possibile disabilitare il link Preferenze Foxtrick su Android ad esempio importando le preferenze per una versione desktop. In caso contrario le preferenze diventerebbero inaccessibili.
+      and_more: Varie altre piccole modifiche e correzioni.
     0.17.0:
       important: '<header>Avvisi importanti</header>'
       crowdin: '<header>Sono disponibili tante nuove traduzioni per i nostri utenti su <linkCrowdin>crowdin tool</linkCrowdin>. Anche tu puoi dare una mano!</header>'
@@ -13,6 +30,7 @@ it:
       beta: 'Usa <linkFTBeta>beta Foxtrick</linkFTBeta> per ottenere in anticipo le nuove funzionalità, influenzare il loro sviluppo e consentire di trovare e correggere gli eventuali problemi che possono sorgere.'
       support: '<header>Ti piace quello che stiamo facendo? Si prega di <linkContribute>supportare Foxtrick</linkContribute>.</header>'
       new: '<header>Nuovi moduli</header>'
+      spec_info: "<module>SpecialtyInfo</module> visualizza una tabella di informazioni concise sulla specialità quando si clicca su un'icona di specialità."
       bugs: '<header>Correzioni di bug</header>'
       tl_search_form: 'Il filtro Foxtrick sulla forma in <module>TransferSearchResultFilters</module> era non funzionante a causa di modifiche al browser. A causa di ciò, tutti i giocatori erano nascosti nei risultati della ricerca di trasferimento. Il problema ora dovrebbe essere risolto.'
       divine_skills: "La recente aggiunta delle skill divino+ hanno reso non funzionanti pressoché tutte le applicazioni CHPP, a causa della negligenza di HT. Foxtrick non era un'eccezione a questa regola. I moduli interessati includono <module>SkillTable</module>, <module>MatchOrderInterface</module>, <module>HTMSPoints</module>, <module>SkillColoring</module> e altri. Ora i problemi dovrebbero essere risolti."

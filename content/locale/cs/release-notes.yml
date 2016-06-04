@@ -5,6 +5,16 @@ cs:
       note_0: 'Toto je vývojový build. Používejte po pečlivém zvážení. Podívejte se na <linkSVN>historii commitů</linkSVN> na Google Code pro zobrazení detailů změn.'
     beta:
       note_0: 'Toto je beta verze dalšího vydání. Prosím pomožte s překladem této verze na naší superjednoduché překladatelské stránce <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.17.0.1:
+      important: '<header>Důležitá oznámení</header>'
+      safari_cert: 'Hledáme někoho z Hattrick komunity kdo vyvíjí aplikace pro iOS nebo OSX. Chtěli bychom obnovit podporu Foxtricku pro uživatele prohlížeče safari. Více informací je v našem <linkSafariCertBug>připomínkovacím systému</linkSafariCertBug>.'
+      beta: 'Zvažte používání <linkFTBeta>betaverze Foxtricku</linkFTBeta>. Máte dříve k dispozici nové funkce, které nám můžete pomoci doladit.'
+      support: '<header>Používáte Foxtrick? Můžete ho i různými způsoby <linkContribute>podpořit</linkContribute>.</header>'
+      bugs: '<header>Opravy chyb</header>'
+      android: Foxtrick nejel na Androidu kvůli změnám v mobilním Firefoxu.
+      other: '<header>Ostatní změny</header>'
+      android_prefs: Na Androidu už nejde zrušit odkaz na nastavení Foxtricku. Nastavení se totiž stávalo nepřístupným.
+      and_more: Pár dalších malých změn a oprav.
     0.17.0:
       important: '<header>Důležitá oznámení</header>'
       crowdin: '<header>Spousta překladatelských updatů od našich skvělých uživatelů využívajících <linkCrowdin>crowdin nástroj</linkCrowdin>. Můžeš také pomoci!</header>'

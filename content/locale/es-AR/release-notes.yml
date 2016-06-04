@@ -5,6 +5,23 @@ es-AR:
       note_0: 'Se trata de la version de desarrollo. Utilizar bajo su propio riesgo. Por favor ver <linkSVN>historial de commit</linkSVN> en Google Code para detalles de los cambios.'
     beta:
       note_0: 'Esta es la versión beta de la próxima versión. Por favor ayude a traducir esta versión en nuestra super-fácil página <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.17.0.1:
+      important: '<header>Anuncios importantes</header>'
+      safari_cert: 'Estamos buscando a alguien en la comunidad de Hattrick que desarrolle aplicaciones para iOS u OSX para ayudar a restaurar el soporte de Foxtrick para usuarios de Safari. Vea nuestro <linkSafariCertBug> gestor de incidencias </linkSafariCertBug> para obtener más información.'
+      beta: 'Por favor considera usar <linkFTBeta>Foxtrick beta</linkFTBeta> para obtener nuevas características, influir en su desarrollo y ayudar a encontrar y arreglar cualquier problema que pueda surgir.'
+      support: '¿<header>Qué estamos haciendo? Por favor <linkContribute>ayuda a Foxtrick</linkContribute>.</header>'
+      bugs: '<header>Corrección de errores</header>'
+      android: Foxtrick dejó de funcionar en Android debido a cambios realizados por Mozilla.
+      filters: 'El módulo de <module>filtros</module> se rompió luego de algunos cambios realizados en el núcleo de Foxtrick.'
+      simulator_hs: '<module>MatchSimulator</module> estaba utilizando mal las etiquetas de subnivel de habilidad para calcular calificaciones, entrando en conflicto con los valores calculados de HatStats.'
+      nt_stats: '<module>SeasonStats</module> no se pudo detectar correctamente los partidos empatados de las selecciones nacionales para los entrenadores de las selecciones.'
+      specinfo_fixes: '<module>SpecialtyInfo</module> no interactuó correctamente con <module>SkillTable</module> y <module>ContextMenuCopy</module>. El módulo fue reescrito para mejorar su integración.'
+      other: '<header>Otros cambios</header>'
+      minimum_search: 'Ahora se puede buscar otra vez en <module>TransferSearchResultFilters</module> filtrando sólo por forma mínima. El límite superior de la búsqueda asume automáticamente que es "excelente".'
+      season_cache: 'El caché de Foxtrick ahora se borrará automáticamente al finalizar cada temporada. Esto evita usar datos antiguos en varios módulos como <module>SeriesFlags</module>.'
+      weather_cache: '<module>MatchWeather</module> mostraba el mismo pronóstico del tiempo, siempre y cuando el navegador se mantuviera abierto. Los datos meteorológicos ahora se almacenarán en caché sólo por un breve período de tiempo.'
+      android_prefs: Ya no es posible deshabilitar el link de preferencias de Foxtrick en Android, por ejemplo, importando preferencias para una versión de escritorio. De lo contrario las preferencias serían inaccesibles.
+      and_more: Otros pequeños cambios y correcciones.
     0.17.0:
       important: '<header>Anuncios importantes</header>'
       crowdin: '<header>Muchas actualizaciones en las traducciones de nuestros colaboradores mediante <linkCrowdin> crowdin</linkCrowdin>. Usted también puede ayudarnos!</header>'
