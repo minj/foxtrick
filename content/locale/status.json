@@ -133,16 +133,16 @@
 			"words_translated": "14381"
 		},
 		{
-			"approved": "1850",
+			"approved": "1846",
 			"approved_progress": "76",
 			"code": "da",
 			"name": "Danish",
 			"phrases": "2283",
-			"translated": "2273",
-			"translated_progress": "98",
+			"translated": "2283",
+			"translated_progress": "100",
 			"words": "16699",
-			"words_approved": "12830",
-			"words_translated": "16517"
+			"words_approved": "12808",
+			"words_translated": "16699"
 		},
 		{
 			"approved": "2023",
