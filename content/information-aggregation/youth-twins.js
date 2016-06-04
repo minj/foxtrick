@@ -117,7 +117,16 @@ Foxtrick.modules['YouthTwins'] = {
 						callback(json);
 					}, params,
 					  function(response, status) {
-						var msg = 'Error ' + status + ': ' + JSON.parse(response).error;
+						var msg = 'Error ' + status + ': ';
+
+						try {
+							var err = JSON.parse(response).error;
+							msg += err;
+						}
+						catch (e) {
+							msg += response;
+						}
+
 						Foxtrick.util.note.add(doc, msg);
 					  },
 					  function() {
