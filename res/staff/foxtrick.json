@@ -60,6 +60,11 @@
 			"name": "ivo_stoyanov"
 		},
 		{
+			"duty": "supporter",
+			"id": "10491436",
+			"name": "flight_of_icarus"
+		},
+		{
 			"duty": "translator",
 			"id": "10562696",
 			"name": "minskj-GIGANT"
@@ -330,6 +335,11 @@
 			"name": "jkers"
 		},
 		{
+			"duty": "supporter",
+			"id": "12903605",
+			"name": "1910pauli1910"
+		},
+		{
 			"duty": "translator",
 			"id": "12960779",
 			"name": "puttfarken01"
@@ -413,6 +423,11 @@
 			"duty": "supporter",
 			"id": "1742563",
 			"name": "SebGui_HTA"
+		},
+		{
+			"duty": "supporter",
+			"id": "1761014",
+			"name": "fepo1"
 		},
 		{
 			"duty": "supporter",
@@ -880,6 +895,11 @@
 			"name": "-JENDA-"
 		},
 		{
+			"duty": "supporter",
+			"id": "648971",
+			"name": "DEL_atalaya"
+		},
+		{
 			"duty": "developer",
 			"id": "653581",
 			"name": "CHPP-teles"
@@ -987,7 +1007,7 @@
 		{
 			"duty": "supporter",
 			"id": "7486920",
-			"name": "Kira_Littlefinger"
+			"name": "Littlefinger"
 		},
 		{
 			"duty": "supporter",
