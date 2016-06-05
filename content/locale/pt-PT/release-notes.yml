@@ -11,7 +11,16 @@ pt-PT:
       beta: 'Por favor considere usar <linkFTBeta>Foxtrick beta</linkFTBeta> para ter as novas funcionalidades mais cedo, para influenciar o seu desenvolvimento e ajudar a encontrar e corrigir problemas que possam existir.'
       support: '<header>Gosta do que estamos a fazer? Por favor <linkContribute>apoie</linkContribute> o FoxTrick.</header>'
       bugs: '<header>Correções de Erros</header>'
+      android: FoxTrick não funciona no Android devido a alterações pela Mozilla.
+      filters: '<module>Filters</module> módulo não funciona após alterações de núcleo Foxtrick.'
+      simulator_hs: '<module>MatchSimulator</module> utilizados rótulos errados de sub-nível de habilidade para classificações calculadas, em conflito com os valores calculados de HatStats.'
+      nt_stats: '<module>SeasonStats</module> não conseguiu detetar jogos de NT desenhados para treinadores NT corretamente.'
+      specinfo_fixes: '<module>SpecialtyInfo</module> tinha interações erradas com <module>SkillTable</module> e <module>ContextMenuCopy</module>. O módulo foi reescrito para melhorar a sua integração.'
       other: '<header>Outras alterações</header>'
+      minimum_search: 'Você agora pode procurar novamente por formulário mínimo apenas em <module>TransferSearchResultFilters</module>. A pesquisa superior vinculada automaticamente é considerada "excelente".'
+      season_cache: 'A cache do FoxTrick será agora limpo automaticamente quando as estações mudam. Isso previne/ impede o uso de dados obsoletos em vários módulos como <module>SeriesFlags</module>.'
+      weather_cache: '<module>MatchWeather</module> iria mostrar o mesmo tempo, contanto que o navegador foi mantido em execução. Dados meteorológicos agora serão armazenados por um curto período de tempo apenas.'
+      android_prefs: Já não é possível desativar o link Preferências de Foxtrick no Android, por exemplo, importando preferências para uma versão desktop. Caso contrário, as preferências se tornariam inacessíveis.
       and_more: Diversas pequenas correções e alterações.
     0.17.0:
       important: '<header>Avisos Importantes</header>'
