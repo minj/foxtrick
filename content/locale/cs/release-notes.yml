@@ -4,7 +4,7 @@ cs:
     nightly:
       note_0: 'Toto je vývojový build. Používejte po pečlivém zvážení. Podívejte se na <linkSVN>historii commitů</linkSVN> na Google Code pro zobrazení detailů změn.'
     beta:
-      note_0: 'Toto je beta verze dalšího vydání. Prosím pomožte s překladem této verze na naší superjednoduché překladatelské stránce <linkCrowdin>crowdin.net</linkCrowdin>. '
+      note_0: 'Používáte betaverzi dalšího vydání. Pomocí webové aplikace <linkCrowdin>crowdin.net</linkCrowdin> můžete pomoci s lokalizací Foxtricku.'
     0.17.0.1:
       important: '<header>Důležitá oznámení</header>'
       safari_cert: 'Hledáme někoho z Hattrick komunity kdo vyvíjí aplikace pro iOS nebo OSX. Chtěli bychom obnovit podporu Foxtricku pro uživatele prohlížeče safari. Více informací je v našem <linkSafariCertBug>připomínkovacím systému</linkSafariCertBug>.'
@@ -12,12 +12,19 @@ cs:
       support: '<header>Používáte Foxtrick? Můžete ho i různými způsoby <linkContribute>podpořit</linkContribute>.</header>'
       bugs: '<header>Opravy chyb</header>'
       android: Foxtrick nejel na Androidu kvůli změnám v mobilním Firefoxu.
+      filters: 'Modul <module>Filters</module> jsme museli předělat z důvodu změn v kódu Foxtricku.'
+      simulator_hs: 'Modul <module>MatchSimulator</module> používal špatné popisky pod-úrovně pro výpočet hodnocení, neseděly s vypočtenými HatStats.'
+      nt_stats: 'Modul <module>SeasonStats</module> nefungoval správně u zápasů národních týmů, které skončily remízou.'
+      specinfo_fixes: 'Modul <module>SpecialtyInfo</module> nefungoval správně s moduly <module>SkillTable</module> a <module>ContextMenuCopy</module>. Přepsali jsme jej tak aby fungoval korektně.'
       other: '<header>Ostatní změny</header>'
+      minimum_search: 'Díky úpravě modulu <module>TransferSearchResultFilters</module> znovu můžete na přestupovém trhu vyhledávat podle nejnižší formy. Hodnota nejvyšší formy se automaticky přepne na "excelentní".'
+      season_cache: 'Foxtrick od teď maže uložené cache po konci sezony. V některých modulech, třeba <module>SeriesFlags</module> tedy neukládají stará data.'
+      weather_cache: 'Modul <module>MatchWeather</module> ukazuje stejnou předpověď počasí jen po dobu zapnutého prohlížeče. Dříve se cache ukládaly i po vypnutí což vedlo k špatně zobrazené předpovědi.'
       android_prefs: Na Androidu už nejde zrušit odkaz na nastavení Foxtricku. Nastavení se totiž stávalo nepřístupným.
       and_more: Pár dalších malých změn a oprav.
     0.17.0:
       important: '<header>Důležitá oznámení</header>'
-      crowdin: '<header>Spousta překladatelských updatů od našich skvělých uživatelů využívajících <linkCrowdin>crowdin nástroj</linkCrowdin>. Můžeš také pomoci!</header>'
+      crowdin: '<header>Aktualizace lokalizací našimi skvělými uživateli pomocí aplikace <linkCrowdin>Crowdin</linkCrowdin>. Můžete se také zapojit!</header>'
       browsers: Z technických důvodů nyní Foxtrick oficiálně podporuje pouze Firefox od verze 38, Google Chrome od verze 39 a Operu od verze 26. Pro vaši vlastní bezpečnost byste si měli pořídit nejnovější verzi prohlížeče.
       safari_cert: 'Hledáme někoho z Hattrick komunity kdo vyvíjí aplikace pro iOS nebo OSX. Chtěli bychom obnovit podporu Foxtricku pro uživatele prohlížeče safari. Více informací je v našem <linkSafariCertBug>připomínkovacím systému</linkSafariCertBug>.'
       beta: 'Zvažte používání <linkFTBeta>betaverze Foxtricku</linkFTBeta>. Máte dříve k dispozici nové funkce, které nám můžete pomoci doladit.'
