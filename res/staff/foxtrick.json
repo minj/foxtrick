@@ -466,6 +466,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "2093541",
+			"name": "borgirk"
+		},
+		{
+			"duty": "supporter",
 			"id": "2117265",
 			"name": "Regador"
 		},
@@ -898,11 +903,6 @@
 			"duty": "translator",
 			"id": "6489521",
 			"name": "-JENDA-"
-		},
-		{
-			"duty": "supporter",
-			"id": "648971",
-			"name": "DEL_atalaya"
 		},
 		{
 			"duty": "developer",
