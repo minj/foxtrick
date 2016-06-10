@@ -665,6 +665,11 @@
 			"name": "MOD-Nacho"
 		},
 		{
+			"duty": "supporter",
+			"id": "389027",
+			"name": "Kramp"
+		},
+		{
 			"duty": "translator",
 			"id": "3911874",
 			"name": "mr_freeze_"
