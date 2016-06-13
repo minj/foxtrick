@@ -466,6 +466,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "2093541",
+			"name": "borgirk"
+		},
+		{
+			"duty": "supporter",
 			"id": "2117265",
 			"name": "Regador"
 		},
@@ -658,6 +663,11 @@
 			"duty": "translator",
 			"id": "3885942",
 			"name": "MOD-Nacho"
+		},
+		{
+			"duty": "supporter",
+			"id": "389027",
+			"name": "Kramp"
 		},
 		{
 			"duty": "translator",
@@ -898,11 +908,6 @@
 			"duty": "translator",
 			"id": "6489521",
 			"name": "-JENDA-"
-		},
-		{
-			"duty": "supporter",
-			"id": "648971",
-			"name": "DEL_atalaya"
 		},
 		{
 			"duty": "developer",
