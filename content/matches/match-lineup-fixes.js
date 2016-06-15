@@ -200,10 +200,11 @@ Foxtrick.modules['MatchLineupFixes'] = {
 		// add stars for players that leave the field
 		var addStarsToSubs = function(playerRatingsByEvent) {
 			// filter players that have not played: { FromMin: 0, ToMin: 0 }
+			// or { FromMin: -1, ToMin: -1 } => coaches
 			// these have
 			var played = [];
 			playerRatingsByEvent[0].players.forEach(function(player, i) {
-				if (!(player.FromMin === 0 && player.ToMin === 0)) {
+				if (player.ToMin !== -1 && !(player.FromMin === 0 && player.ToMin === 0)) {
 					player.ftIdx = i; // saving the index in the original array
 					played.push(player);
 				}
