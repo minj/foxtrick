@@ -199,7 +199,8 @@ if (Foxtrick.context == 'background') {
 				return STORE_PROMISE.catch(function(e) {
 
 					// just log a simple message to disable stack: most likely Private mode
-					Foxtrick.log('WARNING: localStore has not been initialized', e.message);
+					var message = e.message || e.target.error.message;
+					Foxtrick.log('WARNING: localStore has not been initialized:', message);
 
 					// re-throw to disable chain
 					throw e;
@@ -249,6 +250,10 @@ Foxtrick.storage.set = function(key, value) {
 			throw e;
 		});
 
+	}, function() {
+		// swallow Foxtrick.localStore failure here
+		// already logged
+		throw Foxtrick.SWALLOWED_ERROR;
 	});
 
 };
@@ -287,6 +292,10 @@ Foxtrick.storage.get = function(key) {
 			}, reject);
 		});
 
+	}, function() {
+		// swallow Foxtrick.localStore failure here
+		// already logged
+		return null;
 	}).catch(function(e) {
 		try {
 			Foxtrick.log('Error in storage.get', key, e);
