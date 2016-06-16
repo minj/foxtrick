@@ -199,7 +199,8 @@ if (Foxtrick.context == 'background') {
 				return STORE_PROMISE.catch(function(e) {
 
 					// just log a simple message to disable stack: most likely Private mode
-					Foxtrick.log('WARNING: localStore has not been initialized', e.message);
+					var message = e.message || e.target.error.message;
+					Foxtrick.log('WARNING: localStore has not been initialized:', message);
 
 					// re-throw to disable chain
 					throw e;
