@@ -2,9 +2,9 @@
 hu:
   versions:
     nightly:
-      note_0: 'Fejlesztői verzió. Saját belátásod szerint használd. Kérjük tekintsd meg változtatások részletekért a <linkSVN>jóváhagyási történetet</linkSVN> a Google Code-on.'
+      note_0: 'Fejlesztői verzió, saját belátásod szerint használd. Kérjük tekintsd meg változtatások részleteinek <linkSVN>jóváhagyási történetét</linkSVN> a Google Code-on.'
     beta:
-      note_0: 'Ez a következő kiadás béta verziója. Kérlek segítsd a fordítást a szuper könnyű tömegfordító <linkCrowdin>crowdin.net</linkCrowdin> oldalunkon.'
+      note_0: 'Ez a következő kiadás béta verziója. Kérlek segítsd a fordítást a szuper könnyű tömeg-fordító <linkCrowdin>crowdin.net</linkCrowdin> oldalunkon.'
     0.17.0.1:
       important: '<header>Fontos közlemények</header>'
       safari_cert: 'A Hattrick közösség soraiból keresünk valakit, aki iOS vagy OSX applikációkat fejleszt, hogy segítsen visszaállítani a Foxtrick támogatást a Safari felhasználók számára. További információért tekintsd meg a <linkSafariCertBug>probléma követő oldalunkat</linkSafariCertBug>.'
