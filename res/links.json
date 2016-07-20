@@ -808,13 +808,6 @@
 		"title": "Trinidad & Tobago Youth Academy Guide",
 		"img": "http://www.dasmagischedreieck.de/DivBilder/ateam.ico"
 	},
-	"ht-ys": {
-		"youthserieslink": {
-			"url": "http://www.ht-ys.org/?league_id=[youthseriesid]"
-		},
-		"title": "Hattrick Youth Statistics",
-		"img": "resources/linkicons/htys.png"
-	},
 	"Wage_Reduction_Calculator": {
 		"playerlink": {
 			"url": "http://www.nrgjack.altervista.org/wagereduction.php?wage=[wage]&wagebonus=[wagebonus]&age=[age]",
