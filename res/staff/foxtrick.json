@@ -171,6 +171,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "11386166",
+			"name": "FloZorgo"
+		},
+		{
+			"duty": "supporter",
 			"id": "1140197",
 			"name": "schmidde"
 		},
@@ -237,7 +242,7 @@
 		{
 			"duty": "supporter",
 			"id": "11916705",
-			"name": "Compagno_di_merende"
+			"name": "papi_"
 		},
 		{
 			"duty": "translator",
@@ -543,6 +548,11 @@
 			"duty": "supporter",
 			"id": "2787409",
 			"name": "gia73"
+		},
+		{
+			"duty": "supporter",
+			"id": "278893",
+			"name": "----------"
 		},
 		{
 			"duty": "translator",
