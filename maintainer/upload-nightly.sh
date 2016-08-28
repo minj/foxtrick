@@ -79,7 +79,7 @@ if [ "$DO_MAKE" == "true" ]; then
 fi
 
 if [ -f "${SRC_DIR}/foxtrick.zip" ]; then
-	DISPLAY=:89 python dist/cws_upload.py ${CHROME_ID} "${SRC_DIR}/foxtrick.zip" || \
+	xvfb-run python dist/cws_upload.py ${CHROME_ID} "${SRC_DIR}/foxtrick.zip" || \
 		echo "WARNING: failed to upload to CWS" >&2
 fi
 
