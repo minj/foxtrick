@@ -62,7 +62,10 @@ else
 	VERSION="$MAJOR_VERSION"
 fi
 
-PREVIOUS_VERSION=$(curl ${URL_BASE}/last.php)
+UPLOAD_BRANCH=$(basename "$URL_BASE")
+UPLOAD_PARENT=$(dirname "$URL_BASE")
+
+PREVIOUS_VERSION=$(curl "${UPLOAD_PARENT}/last.php?path=${UPLOAD_BRANCH}")
 echo "Previous: ${PREVIOUS_VERSION}"
 echo "Current: ${VERSION}"
 
