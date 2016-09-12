@@ -11,7 +11,16 @@ he:
       beta: 'אנא שקלו להשתמש בגרסת <linkFTBeta>פוקסטריק בטא</linkFTBeta> כדי לקבל את התוספות החדשות מוקדם, כדי להשפיע על התפתחותן וכדי לסייע באיתור ובתיקון בעיות שעלולות להתעורר.'
       support: '<header>מוצא חן בעיניך מה שאנחנו עושים? נודה על <linkContribute>תרומתך ל- Foxtrick</linkContribute>.</header>'
       bugs: '<header>תיקוני באגים</header>'
+      android: פוקסטריק לא עבד במכשירי אנדרואיד בשל שינויים שביצעה חברת מוזילה.
+      filters: 'המודול <module>Filters</module> לא עבד באופן תקין בשל שינויי ליבה בפוקסטריק.'
+      simulator_hs: 'המודול <module>MatchSimulator</module> השתמש ברמות משנה שגויות של יכולות בחישוב הציונים, אשר התנגשו עם ערכי הרייטינג המחושבים.'
+      nt_stats: 'המודול <module>SeasonStats</module> לא הצליח לחשב נכונה את הציונים של הנבחרות במשחקים שהסתיימו בתיקו.'
+      specinfo_fixes: 'המודול <module>SpecialtyInfo</module> לא השתלב היטב עם המודולים <module>SkillTable</module> ו-<module>ContextMenuCopy</module>. המודול שוכתב על מנת לשפר את שילובו עם המודולים האחרים.'
       other: '<header>שינויים אחרים</header>'
+      minimum_search: 'שוב ניתן לחפש לפי כושר משחק מינימלי בלבד במודול <module>TransferSearchResultFilters</module>. הגבול העליון מוגבל אוטומטית לרמת "מצוין".'
+      season_cache: 'זיכרון המטמון של פוקסטריק (קאש) ינוקה אוטומטית עם חילופי העונות. זה ימנע שימוש במידע ישן במודולים כגון המודול <module>SeriesFlags</module>.'
+      weather_cache: 'המודול <module>MatchWeather</module> היה מציג את אותו מזג האוויר אם הדפדפן נותר פתוח. כעת המידע בנוגע למזג האוויר יאוחסן בזיכרון המטמון לזמן קצר בלבד.'
+      android_prefs: יותר לא ניתן לבטל את הקישור להעדפות פוקסטריק באנדרואיד, למשל באמצעות ייבוא העדפות מגרסה של מחשב שולחני. אחרת, לא ניתן יהיה לגשת להעדפות.
       and_more: הרבה שינויים ותיקונים קטנים נוספים.
     0.17.0:
       important: '<header>הודעות חשובות</header>'
