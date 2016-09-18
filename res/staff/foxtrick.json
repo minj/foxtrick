@@ -91,6 +91,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "10726446",
+			"name": "LA-Cenarius"
+		},
+		{
+			"duty": "supporter",
 			"id": "10763413",
 			"name": "h-b-o"
 		},
@@ -388,6 +393,11 @@
 			"duty": "supporter",
 			"id": "13113133",
 			"name": "Quantor"
+		},
+		{
+			"duty": "translator",
+			"id": "13121281",
+			"name": "mustafashllaku"
 		},
 		{
 			"duty": "translator",
