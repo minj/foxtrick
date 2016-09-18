@@ -597,8 +597,11 @@ Foxtrick.modules['MyMonitor'] = {
 				select.textContent = ''; // clear first
 
 				Foxtrick.listen(select, 'change', function() {
-					if (select.value)
-						doc.location.assign(select.value);
+					if (!select.value)
+						return;
+
+					var newURL = new URL(select.value, doc.location.href);
+					doc.location.assign(newURL);
 				});
 
 				// use an option as faux-header

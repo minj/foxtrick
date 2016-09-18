@@ -30,8 +30,10 @@ Foxtrick.modules['NewMail'] = {
 		if (myHt.getElementsByTagName('span').length) {
 			var mailCountSpan = myHt.getElementsByTagName('span')[0];
 			mailCountSpan.className = 'ft-new-mail';
-			Foxtrick.onClick(mailCountSpan, function(e) {
-				e.target.ownerDocument.location.assign('/MyHattrick/Inbox/');
+			Foxtrick.onClick(mailCountSpan, function() {
+				var doc = this.ownerDocument;
+				var newURL = new URL('/MyHattrick/Inbox/', doc.location.href);
+				doc.location.assign(newURL);
 
 				// disable MyHT link
 				return false;
