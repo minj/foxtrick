@@ -601,18 +601,22 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 
 					}
 
-					player.lastPlayedMinutes = num('PlayedMinutes', LastMatch);
+					var mins = player.lastPlayedMinutes = num('PlayedMinutes', LastMatch);
 
-					var dateText =
-						Foxtrick.util.time.buildDate(player.lastMatchDate, { showTime: false });
-					var str = Foxtrick.L10n.getString('Last_match_played_as_at',
-					                                  player.lastPlayedMinutes);
-					player.lastMatchText = str.replace('%1', player.lastPlayedMinutes).
-						replace('%2', player.lastPosition).replace('%3', dateText);
+					if (mins) {
+						var dateText =
+							Foxtrick.util.time.buildDate(player.lastMatchDate, { showTime: false });
+
+						var str = Foxtrick.L10n.getString('Last_match_played_as_at', mins);
+						player.lastMatchText =
+							str.replace('%1', player.lastPlayedMinutes)
+							   .replace('%2', player.lastPosition)
+							   .replace('%3', dateText);
+					}
+					else {
+						player.lastMatchText = Foxtrick.L10n.getString('Last_match_didnot_play');
+					}
 				}
-				if (!player.lastMatchText)
-					player.lastMatchText =
-						Foxtrick.L10n.getString('Last_match_didnot_play');
 			}
 
 			var missingXML = Foxtrick.filter(function(p) {
