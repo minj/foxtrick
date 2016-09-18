@@ -40,7 +40,8 @@ Foxtrick.modules['GoToPostBox'] = {
 			}
 
 			// doc.location='' resolves to XUL here
-			doc.location.assign('/Forum/Read.aspx?t=' + val);
+			var newURL = new URL('/Forum/Read.aspx?t=' + val, doc.location.href);
+			doc.location.assign(newURL);
 		};
 
 		var parent = doc.getElementById('mainBody').parentNode;
