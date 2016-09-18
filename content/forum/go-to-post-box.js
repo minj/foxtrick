@@ -44,36 +44,12 @@ Foxtrick.modules['GoToPostBox'] = {
 		};
 
 		var parent = doc.getElementById('mainBody').parentNode;
+		var parents = parent.querySelectorAll('.threadPaging');
 
-		var selectBoxTop = null;
-		var selectBoxBottom = null;
-
-		var selects = parent.getElementsByTagName('select');
-		for (var select of Foxtrick.toArray(selects)) {
-			if (!/filter/i.test(select.id))
-				continue;
-
-			if (!selectBoxTop) {
-				selectBoxTop = select;
-			}
-			else {
-				selectBoxBottom = select;
-				break;
-			}
-		}
-
-		var selectBoxes = [];
-		if (selectBoxTop)
-			selectBoxes.push(selectBoxTop);
-		if (selectBoxBottom)
-			selectBoxes.push(selectBoxBottom);
-
-		Foxtrick.forEach(function(selectBox, b) {
+		Foxtrick.forEach(function(parent, b) {
 			var boxId = 'foxtrick_forum_postbox_postboxnum_' + b;
 			if (doc.getElementById(boxId))
 				return;
-
-			var parent = selectBox.parentNode;
 
 			var inputBox = Foxtrick.createFeaturedElement(doc, module, 'input');
 			inputBox.id = boxId;
@@ -108,7 +84,7 @@ Foxtrick.modules['GoToPostBox'] = {
 			Foxtrick.onClick(goButton, goToHandler);
 			parent.appendChild(goButton);
 
-		}, selectBoxes);
+		}, parents);
 
 	},
 };
