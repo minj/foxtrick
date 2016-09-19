@@ -18,7 +18,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		'GatherStaminaData',
 	],
 	OPTIONS_CSS: [
-		null, null, Foxtrick.InternalPath + 'resources/css/match-lineup-numbers.css',
+		null, null,
 		Foxtrick.InternalPath + 'resources/css/match-lineup-convert-stars.css',
 		null,
 	],
