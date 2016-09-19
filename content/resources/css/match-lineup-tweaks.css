@@ -163,6 +163,17 @@ html[dir="ltr"] div.playerDiv .sectorShirt.ft-smallFaceCard {
 div.playerDiv .sectorShirt.ft-smallFaceCard img[src^="/Img/Avatar/hair/"] {
 	border-bottom: solid 2px #79A777;
 }
+
+.ft-ht-shirt-num {
+	top: 22px !important;
+	left: 22px !important;
+}
+
+.ft-smallFaceCard .ft-ht-shirt-num {
+	top: 32px !important;
+	left: 18px !important;
+}
+
 .ft-match-lineup-tweaks-specialty-icon {
 	display: block;
 	position: absolute;
