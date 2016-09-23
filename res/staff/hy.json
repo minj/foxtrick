@@ -212,11 +212,6 @@
 			"duty": "translator"
 		},
 		{
-			"id": "10458034",
-			"name": "sasa4pin",
-			"duty": "translator"
-		},
-		{
 			"id": "10032805",
 			"name": "Mod-Simokas",
 			"duty": "translator"
@@ -459,6 +454,11 @@
 		{
 			"id": "6489521",
 			"name": "-JENDA-",
+			"duty": "translator"
+		},
+		{
+			"id": "11689741",
+			"name": "khoai",
 			"duty": "translator"
 		}
 	]
