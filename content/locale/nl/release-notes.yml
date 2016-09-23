@@ -198,9 +198,9 @@ nl:
       ff_button: The Firefox werkbalk knop zal nu beter reageren en zal de status van Foxtrick beter aangeven.
       ff_disable: Door Foxtrick uit te schakelen, zal Foxtrick voorkeuren (wanneer geopend) worden gesloten en alle Hattrick vensters zullen herladen worden om alle Foxtrick opties uit te schakelen.
       bugs: '<header>Fout herstel</header>'
-      android: |
-        <p>Grote aanpassingen aan de Foxtrick broncode om deze aan te passen voor gebruik in Firefox voor Android. Als resultaat zal Foxtrick een stuk beter werken op mobiele apparaten.</p>
-        <p>Getroffen modules: <module>MatchReportFormat</module>, <module>Ratings</module>, <module>MatchSimulator</module>, <module>HTMSPrediction</module> <em>et al</em>.</p>
+      android:
+        <p>Major fixes to Foxtrick core have been made in order to adapt to Firefox for Android. As a result, Foxtrick now runs much better on mobile devices.</p>
+<p>Affected modules: ""
       ff_cache: Het probleem is opgelost waarin Foxtrick in sommige gevallen een update naar een nieuwe versie voorkwam.
       custom_links: Externe links functionaliteit is opnieuw nagekeken en de bekende problemen zijn opgelost. U kunt nu ook eigen links toevoegen op de wedstrijdverslag pagina.
       chpp_update: '<module>SupportersList</module> en <module>MatchIncome</module> werden verkeerd weergegeven na wijzigingen in CHPP. Dit is nu opgelost.'
@@ -425,7 +425,7 @@ nl:
       note_1: 'Integration of the crowdsourcing translation service <linkCrowdin>http://www.crowdin.net</linkCrowdin>. (CatzHoek, Convincedd)'
       note_2: 'Veel updates van de vertalingen. (Catzhoek en vele andere vertalers. Onder andere: GM-murko, LambdaB, Paulo Francisco Martins, MEO_Comandante, Jānis Pamiljans, GZ-grobas, SI-CH, bigpapy, edzus, silkevicious, Max_Schreck, TheZayc, -Iuve-, Mcload, Polytropos, MrAli, ripaldo, Ryo567, Louzao, kirja, MartinsPF)'
       note_3: 'Bedankt allemaal. Help mee om FoxTrick te vertalen via <linkCrowdin>http://crowdin.net/project/foxtrick</linkCrowdin>'
-      note_4: 'For some info about translations see [post=15466991.1] or [post=15466972.1]'
+      note_4: 'Voor meer informatie over het vertalen zie [post=15466991.1] of [post=15466972.1]'
       note_5: '<header>Feature highlight</header>'
       note_6: We included a feature highlight for easier detection of FoxTrick features and the responsible modules. You can turn this on/off by clicking on the FoxTrick version info down right on every page. After first reload it shows the responsible module in the hover tooltip.
       note_7: '<header>New features and changes</header>'

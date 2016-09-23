@@ -9,23 +9,24 @@ nl:
         <p>Een voorbeeld van een gebruiker's stijl kan <linkCSSExample>hier</linkCSSExample> of <linkCSSExampleGCode>hier</linkCSSExampleGCode> gevonden worden, welke je naar hartenlust kunt aanpassen. Nadat je het bestand opgeslagen hebt, kun je de <module>SkinPlugin</module> module gebruiken om het CSS bestand in te laden om je eigen gecreëerde stijlen op de Hattrick site te kunnen zien.</p>
     sound-format:
       question: Welke bestandstypen zijn toegestaan voor een notificatie geluid?
-      answer: |
-        <p>Verschillende browsers accepteren verschillende bestandsformaten. Hier is een lijst (bestandsformaten die niet in de lijst staan, kunnen ook werken als de juiste plug-ins geïnstalleerd zijn, bijv. Quicktime om mp3 bestanden af te spelen in Firefox):</p>
-        
-        <ul>
-        <li>Mozilla: wav, ogg</li>
-        <li>Safari (Quicktime is mogelijk nodig): wav, mp3</li>
-        <li>Chrome: ogg, mp3, wav</li>
-        <li>Opera: wav, ogg</li>
-        </ul>
+      answer:
+        "<p>Different browsers allow different file formats. Here's a list (non-listed formats may work if the appropriate plugins are installed, eg Quicktime to play mp3 in Firefox):</p>
+
+<ul>
+<li>Mozilla":
+          wav, ogg</li>
+<li>Safari (may need Quicktime):
+            wav, mp3</li>
+<li>Chrome:
+              ogg, mp3, wav</li><li>Opera: ""
     sound-location:
       question: Wat is de maximum bestandsgrootte voor waarschuwings-geluiden en waar kunnen deze geplaatst worden?
-      answer: |
-        <p>Alle browsers kunnen data urls afspelen. Dit zijn de intern opgeslagen geluiden die opgeslagen worden met behulp van de laad knop in de instellingen. Omdat ze geconverteerd en opgeslagen worden in je instellingen, is de maximale grote ongeveer 160KB per geluid.</p>
-        
-        <p>All browsers kunnen ook geluiden direct afspelen van het internet (http-urls). Kopieer eenvoudig een link (bijv. http://foxtrick.org/sound.wav) in het locatie tekst invoer veld voor geluiden. Geen limiet aan de grote van het geluid.</p>
-        
-        <p>Mozilla browsers kunnen ook geluiden direct afspelen van uw harde schijf (file urls) zonder bestandsgrootte limiet. Eenvoudigste manier om de locatie van een geluidsbestand te krijgen is door in de browser CTRL+O in te typen, waarna u het geluidsbestand opzoekt. In de adresbalk zal daarna de link naar het bestand staan (bijv. file:///c:/sound.wav). Kopieer en plak deze in het tekst-invoer veld voor geluiden.</p>
+      answer:
+        "<p>All browsers can play data urls. Those are the internally saved sounds when you use the load button provided in the preferences. Since they are converted and saved in your preferences, the size is limited to around 160kB per sound.</p>
+
+<p>All browsers also can play sounds directly from the internet (http urls). Just copy a link to a sound (eg http://foxtrick.org/sound.wav) into the edit field for sounds. No size limit.</p>
+
+<p>Mozilla browsers also can play sounds directly from your harddrive (file urls) with no size limit. Easiest way to get the right format": ""
     authorize:
       question: Waarom moet ik FoxTrick toestemming geven om mijn teamdata te benaderen?
       answer: |
