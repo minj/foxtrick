@@ -888,15 +888,21 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 				(from > 0 ? 0 : 1) - (to > 0 ? 0 : 1);
 			return ct;
 		};
+
+		var timeline = Foxtrick.Pages.Match.getTimeline(doc);
 		var findEvent = function(minute) {
 			for (var i = 0, event; i < timeline.length && (event = timeline[i]); ++i) {
-				if (event.min == minute)
-					return i;
+				if (event.min < minute)
+					continue;
+
+				if (event.min > minute)
+					return i - 1; // HT BUG: no event at |minute|
+
+				return i;
 			}
 			return null;
 		};
 
-		var timeline = Foxtrick.Pages.Match.getTimeline(doc);
 		var playerRatings = Foxtrick.Pages.Match.getTeamRatingsByEvent(doc, isHome);
 
 		if (!playerRatings.length) {
