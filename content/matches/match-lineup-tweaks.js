@@ -7,7 +7,7 @@
 
 Foxtrick.modules['MatchLineupTweaks'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.MATCHES,
-	PAGES: ['match', 'matchesLive'],
+	PAGES: ['match'],
 	OPTIONS: [
 		'DisplayTeamNameOnField', 'ShowSpecialties',
 		'ConvertStars',
