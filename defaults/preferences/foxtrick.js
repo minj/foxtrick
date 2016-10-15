@@ -354,7 +354,7 @@ pref("extensions.foxtrick.prefs.module.ReLiveLinks.Live.enabled", true);
 pref("extensions.foxtrick.prefs.module.ReLiveLinks.ReLive.enabled", true);
 pref("extensions.foxtrick.prefs.module.SafeForWork.enabled", false);
 pref("extensions.foxtrick.prefs.module.SafeForWork.icon", "https://www.google.com/favicon.ico");
-pref("extensions.foxtrick.prefs.module.SafeForWork.title", "What is the ultimate answer to the ultimate question of Life, The Universe, and Everything?");
+pref("extensions.foxtrick.prefs.module.SafeForWork.title", "What is the ultimate answer to the ultimate question of Life, The Universe, and Everything? It is %s");
 pref("extensions.foxtrick.prefs.module.SeasonStats.enabled", true);
 pref("extensions.foxtrick.prefs.module.SeniorTeamShortCuts.enabled", true);
 pref("extensions.foxtrick.prefs.module.SeniorTeamShortCuts.value", 0);

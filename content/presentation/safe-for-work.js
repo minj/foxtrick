@@ -66,7 +66,7 @@ Foxtrick.modules['SafeForWork'] = {
 
 		// set new title
 		var setTitle = function(doc, title) {
-			doc.title = title;
+			doc.title = title.replace('%s', doc.title);
 		};
 
 		// Nike! I mean, just do it!
