@@ -105,6 +105,9 @@ Foxtrick.modules['LiveAlert'] = {
 		var tabs = results.querySelectorAll('li');
 		// skip first tab = header
 		for (var tab of Foxtrick.toArray(tabs).slice(1)) {
+			if (!tab.childElementCount)
+				continue;
+
 			var score = this.getScoreFromTab(tab);
 			if (score === null)
 				continue;
