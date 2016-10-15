@@ -9,49 +9,47 @@ Foxtrick.modules['SafeForWork'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.PRESENTATION,
 	OUTSIDE_MAINBODY: true,
 	PAGES: ['all'],
-	NICE: -49,	//right after core, totally ridiculous to call it here but hey!
+	NICE: -49,	// right after core, totally ridiculous to call it here but hey!
 	OPTION_FUNC: function(doc) {
-			var textDiv = doc.createElement('div');
+		var textDiv = doc.createElement('div');
 
-				var desc = doc.createElement('p');
-				desc.textContent = Foxtrick.L10n.getString('SafeForWork.icon');
-				textDiv.appendChild(desc);
+		var desc = doc.createElement('p');
+		desc.textContent = Foxtrick.L10n.getString('SafeForWork.icon');
+		textDiv.appendChild(desc);
 
-				var textInput = doc.createElement('input');
-				textInput.setAttribute('pref', 'module.SafeForWork.icon');
-				textDiv.appendChild(textInput);
+		var textInput = doc.createElement('input');
+		textInput.setAttribute('pref', 'module.SafeForWork.icon');
+		textDiv.appendChild(textInput);
 
-				var desc2 = doc.createElement('p');
-				desc2.textContent = Foxtrick.L10n.getString('SafeForWork.title');
-				textDiv.appendChild(desc2);
+		var desc2 = doc.createElement('p');
+		desc2.textContent = Foxtrick.L10n.getString('SafeForWork.title');
+		textDiv.appendChild(desc2);
 
-				var textInput2 = doc.createElement('input');
-				textInput2.setAttribute('pref', 'module.SafeForWork.title');
-				textDiv.appendChild(textInput2);
+		var textInput2 = doc.createElement('input');
+		textInput2.setAttribute('pref', 'module.SafeForWork.title');
+		textDiv.appendChild(textInput2);
 
-				return textDiv;
+		return textDiv;
 	},
 	run: function(doc) {
 
-		//temp default until the stuff gets finished
+		// temp default until the stuff gets finished
 		var entry = {
 			icon: Foxtrick.Prefs.getString('module.SafeForWork.icon'),
-			title: Foxtrick.Prefs.getString('module.SafeForWork.title')
+			title: Foxtrick.Prefs.getString('module.SafeForWork.title'),
 		};
 
 		var head = doc.getElementsByTagName('head')[0];
 
-		//for removing previously used/stock icon
-		var removeFavIconLink = function(doc) {
-			var links = head.getElementsByTagName('link');
-				for (var i = 0; i < links.length; i++) {
-					var link = links[i];
-					if (link.type == 'image/x-icon' && link.rel == 'shortcut icon')
-						head.removeChild(link);
+		// remove previously used/stock icon
+		var removeFavIconLink = function() {
+			for (var link of Foxtrick.toArray(head.getElementsByTagName('link'))) {
+				if (link.type == 'image/x-icon' && link.rel == 'shortcut icon')
+					head.removeChild(link);
 			}
 		};
 
-		//for adding a new icon link
+		// add a new icon link
 		var addFavIconLink = function(doc, icon) {
 			var link = doc.createElement('link');
 			link.type = 'image/x-icon';
@@ -60,18 +58,19 @@ Foxtrick.modules['SafeForWork'] = {
 			head.appendChild(link);
 		};
 
-		//set new icon
+		// set new icon
 		var setFavIcon = function(doc, icon) {
-			removeFavIconLink(doc);
+			removeFavIconLink();
 			addFavIconLink(doc, icon);
 		};
-		//set new title
+
+		// set new title
 		var setTitle = function(doc, title) {
 			doc.title = title;
 		};
 
-		//Nike! I mean, just do it!
+		// Nike! I mean, just do it!
 		setTitle(doc, entry.title);
 		setFavIcon(doc, entry.icon);
-	}
+	},
 };
