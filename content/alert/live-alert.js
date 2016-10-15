@@ -103,7 +103,7 @@ Foxtrick.modules['LiveAlert'] = {
 
 	runTabs: function(doc, results) {
 		var tabs = results.querySelectorAll('li');
-		// skip first tab = header
+		// skip first tab = overview
 		for (var tab of Foxtrick.toArray(tabs).slice(1)) {
 			if (!tab.childElementCount)
 				continue;
