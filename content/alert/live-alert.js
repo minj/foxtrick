@@ -22,9 +22,9 @@ Foxtrick.modules['LiveAlert'] = {
 		Foxtrick.onChange(results, this.alert.bind(this));
 	},
 
-	onChange: function(doc) {
-		this.alert(doc);
-	},
+	// onChange: function(doc) {
+	// 	this.alert(doc);
+	// },
 
 	/**
 	 * Get goals from tab.
