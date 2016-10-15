@@ -17,13 +17,57 @@ Foxtrick.modules['LiveAlert'] = {
 	store: {},
 
 	run: function(doc) {
-		this.alert(doc);
-		var results = Foxtrick.getMBElement(doc, 'UpdatePanelPopupMessages');
-		Foxtrick.onChange(results, this.alert.bind(this));
+		var results = doc.querySelector('#ngLive .htbox-content');
+		var opts = { childList: true, characterData: true, subtree: true };
+		Foxtrick.onChange(results, this.runTabs.bind(this), opts);
+
+		// add overlay pre-announce support
+		var container = doc.querySelector('.live-left-container');
+		Foxtrick.onChange(container, this.runOverlay.bind(this));
 	},
 
-	onChange: function(doc) {
-		this.alert(doc);
+	// onChange: function(doc) {
+	// 	this.runTabs(doc);
+	// },
+
+	runOverlay: function(doc) {
+		var overlay = doc.querySelector('.pitchOverlay');
+		if (!overlay)
+			return;
+
+		var goal = doc.querySelector('.live-goal:not(.ng-hide)');
+		if (!goal)
+			return;
+
+		var tab = doc.querySelector('.live-matchlist-item.live-matchlist-item-selected');
+		var score = this.getScoreFromTab(tab);
+		if (score === null)
+			return;
+
+		var teams = this.getTeamsFromTab(tab);
+
+		var info = {
+			homeGoals: score[0],
+			homeName: teams[0].textContent,
+			awayGoals: score[1],
+			awayName: teams[1].textContent,
+		};
+		info.teamsText = info.homeName + '-' + info.awayName; // used as index
+
+		// new goal logic
+		var scorer = doc.querySelector('.specialMention');
+
+		if (scorer.dataset.done)
+			return;
+
+		scorer.dataset.done = true; // use a tag to prevent alerting twice during match change
+
+		if (Foxtrick.hasClass(scorer, 'bench-home'))
+			info.homeGoals++;
+		else if (Foxtrick.hasClass(scorer, 'bench-away'))
+			info.awayGoals++;
+
+		this.alert(doc, info);
 	},
 
 	/**
@@ -36,12 +80,11 @@ Foxtrick.modules['LiveAlert'] = {
 	getScoreFromTab: function(tab) {
 		var ret = null;
 
-		var score = tab.querySelector('.liveTabScore');
-		var match = score.textContent.trim().match(/^(\d+) - (\d+)$/);
-		if (match) {
-			var goals = Foxtrick.toArray(match).slice(1);
-			ret = goals.map(function(s) { return parseInt(s, 10); });
-		}
+		var scores = tab.querySelectorAll('.live-matchlist-item-score');
+		var goals = Foxtrick.map(function(score) {
+			return score.textContent;
+		}, scores);
+		ret = goals.map(function(s) { return parseInt(s, 10); });
 
 		return ret;
 	},
@@ -55,15 +98,16 @@ Foxtrick.modules['LiveAlert'] = {
 	 * @return {array}       {Array.<HTMLAnchorElement|HTMLSpanElement}
 	 */
 	getTeamsFromTab: function(tab) {
-		return [tab.querySelector('.hometeam'), tab.querySelector('.awayteam')];
+		return Foxtrick.toArray(tab.querySelectorAll('.ellipsis'));
 	},
 
-	alert: function(doc) {
-		var ALERT_TMPL = '{homeShort} {homeGoals} - {awayGoals} {awayShort}';
-		var tabs = doc.getElementsByClassName('liveTabText');
-		// skip first tab = header
-		for (var i = 1; i < tabs.length; ++i) {
-			var tab = tabs[i];
+	runTabs: function(doc, results) {
+		var tabs = results.querySelectorAll('li');
+		// skip first tab = overview
+		for (var tab of Foxtrick.toArray(tabs).slice(1)) {
+			if (!tab.childElementCount)
+				continue;
+
 			var score = this.getScoreFromTab(tab);
 			if (score === null)
 				continue;
@@ -72,66 +116,75 @@ Foxtrick.modules['LiveAlert'] = {
 
 			var info = {
 				homeGoals: score[0],
-				homeShort: teams[0].textContent,
-				homeLong: teams[0].title,
+				homeName: teams[0].textContent,
 				awayGoals: score[1],
-				awayShort: teams[1].textContent,
-				awayLong: teams[1].title,
+				awayName: teams[1].textContent,
 			};
+			info.teamsText = info.homeName + '-' + info.awayName; // used as index
 
-			var teamsText = info.homeShort + '-' + info.awayShort; // used as index
-			if (typeof this.store[teamsText] === 'undefined') {
-				this.store[teamsText] = score;
-				continue;
-			}
-			var homeScored = this.store[teamsText][0] < score[0];
-			var awayScored = this.store[teamsText][1] < score[1];
-			if (homeScored || awayScored) {
-				// score has changed, alert
-				var own = {
-					full: Foxtrick.modules.Core.TEAM.teamName,
-					abbr: Foxtrick.modules.Core.TEAM.shortTeamName,
-				};
-
-				// README: during HT-Live games own.full == own.abbr!!!
-				var isHomeOwn = own.abbr == info.homeShort || // HT-Live
-					own.full == info.homeLong || // Re-Live
-					own.full == info.homeShort; // HT-Live fallback (if shortTeamName failed)
-
-				var isAwayOwn = own.abbr == info.awayShort || // HT-Live
-					own.full == info.awayLong || // Re-Live
-					own.full == info.awayShort; // HT-Live fallback (if shortTeamName failed)
-
-				var ownScored = isHomeOwn && homeScored || isAwayOwn && awayScored;
-				var opScored = isHomeOwn && awayScored || isAwayOwn && homeScored;
-
-				this.store[teamsText] = score;
-				// show notification
-				var txt = Foxtrick.format(ALERT_TMPL, info);
-				var url = doc.location.href;
-
-				Foxtrick.util.notify.create(txt, url, { id: teamsText });
-				// play sound if enabled
-				if (Foxtrick.Prefs.isModuleOptionEnabled('LiveAlert', 'Sound')) {
-					var sound = null;
-
-					if (ownScored &&
-					    Foxtrick.Prefs.isModuleOptionEnabled('LiveAlert', 'own'))
-						sound = Foxtrick.Prefs.getString('module.LiveAlert.own_text');
-					else if (opScored &&
-					         Foxtrick.Prefs.isModuleOptionEnabled('LiveAlert', 'opponent'))
-						sound = Foxtrick.Prefs.getString('module.LiveAlert.opponent_text');
-					else if (homeScored &&
-					         Foxtrick.Prefs.isModuleOptionEnabled('LiveAlert', 'home'))
-						sound = Foxtrick.Prefs.getString('module.LiveAlert.home_text');
-					else if (awayScored &&
-					         Foxtrick.Prefs.isModuleOptionEnabled('LiveAlert', 'away'))
-						sound = Foxtrick.Prefs.getString('module.LiveAlert.away_text');
-
-					if (sound)
-						Foxtrick.playSound(sound);
-				}
-			}
+			this.alert(doc, info);
 		}
+	},
+
+	alert: function(doc, info) {
+		var ALERT_TMPL = '{homeName} {homeGoals} - {awayGoals} {awayName}';
+
+		var score = [info.homeGoals, info.awayGoals];
+
+		var store = this.store[info.teamsText];
+		if (typeof store === 'undefined') {
+			store = this.store[info.teamsText] = { score: score };
+			return;
+		}
+
+		var homeScored = store.score[0] < score[0];
+		var awayScored = store.score[1] < score[1];
+		if (!homeScored && !awayScored)
+			return;
+
+		// score has changed, alert
+		var own = {
+			full: Foxtrick.modules.Core.TEAM.teamName,
+			abbr: Foxtrick.modules.Core.TEAM.shortTeamName,
+		};
+
+		// README: during HT-Live games own.full == own.abbr!!!
+		// FIXME: no way to recognize own goal during Live?!
+		var isHomeOwn = own.abbr == info.homeName || // HT-Live
+			// own.full == info.homeLong || // Re-Live
+			own.full == info.homeName; // HT-Live fallback (if shortTeamName failed)
+
+		var isAwayOwn = own.abbr == info.awayName || // HT-Live
+			// own.full == info.awayLong || // Re-Live
+			own.full == info.awayName; // HT-Live fallback (if shortTeamName failed)
+
+		var ownScored = isHomeOwn && homeScored || isAwayOwn && awayScored;
+		var opScored = isHomeOwn && awayScored || isAwayOwn && homeScored;
+
+		store.score = score;
+		// show notification
+		var txt = Foxtrick.format(ALERT_TMPL, info);
+		var url = doc.location.href;
+
+		Foxtrick.util.notify.create(txt, url, { id: info.teamsText });
+
+		// play sound if enabled
+		if (!Foxtrick.Prefs.isModuleOptionEnabled('LiveAlert', 'Sound'))
+			return;
+
+		var sound = null;
+
+		if (ownScored && Foxtrick.Prefs.isModuleOptionEnabled('LiveAlert', 'own'))
+			sound = Foxtrick.Prefs.getString('module.LiveAlert.own_text');
+		else if (opScored && Foxtrick.Prefs.isModuleOptionEnabled('LiveAlert', 'opponent'))
+			sound = Foxtrick.Prefs.getString('module.LiveAlert.opponent_text');
+		else if (homeScored && Foxtrick.Prefs.isModuleOptionEnabled('LiveAlert', 'home'))
+			sound = Foxtrick.Prefs.getString('module.LiveAlert.home_text');
+		else if (awayScored && Foxtrick.Prefs.isModuleOptionEnabled('LiveAlert', 'away'))
+			sound = Foxtrick.Prefs.getString('module.LiveAlert.away_text');
+
+		if (sound)
+			Foxtrick.playSound(sound);
+
 	},
 };
