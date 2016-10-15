@@ -58,7 +58,7 @@ Foxtrick.modules['LiveAlert'] = {
 	},
 
 	alert: function(doc, results) {
-		var ALERT_TMPL = '{homeShort} {homeGoals} - {awayGoals} {awayShort}';
+		var ALERT_TMPL = '{homeName} {homeGoals} - {awayGoals} {awayName}';
 		var tabs = results.querySelectorAll('li');
 		// skip first tab = header
 		for (var tab of Foxtrick.toArray(tabs).slice(1)) {
@@ -70,14 +70,12 @@ Foxtrick.modules['LiveAlert'] = {
 
 			var info = {
 				homeGoals: score[0],
-				homeShort: teams[0].textContent,
-				homeLong: teams[0].title,
+				homeName: teams[0].textContent,
 				awayGoals: score[1],
-				awayShort: teams[1].textContent,
-				awayLong: teams[1].title,
+				awayName: teams[1].textContent,
 			};
 
-			var teamsText = info.homeShort + '-' + info.awayShort; // used as index
+			var teamsText = info.homeName + '-' + info.awayName; // used as index
 			if (typeof this.store[teamsText] === 'undefined') {
 				this.store[teamsText] = score;
 				continue;
@@ -92,13 +90,14 @@ Foxtrick.modules['LiveAlert'] = {
 				};
 
 				// README: during HT-Live games own.full == own.abbr!!!
-				var isHomeOwn = own.abbr == info.homeShort || // HT-Live
-					own.full == info.homeLong || // Re-Live
-					own.full == info.homeShort; // HT-Live fallback (if shortTeamName failed)
+				// FIXME: no way to recognize own goal during Live?!
+				var isHomeOwn = own.abbr == info.homeName || // HT-Live
+					// own.full == info.homeLong || // Re-Live
+					own.full == info.homeName; // HT-Live fallback (if shortTeamName failed)
 
-				var isAwayOwn = own.abbr == info.awayShort || // HT-Live
-					own.full == info.awayLong || // Re-Live
-					own.full == info.awayShort; // HT-Live fallback (if shortTeamName failed)
+				var isAwayOwn = own.abbr == info.awayName || // HT-Live
+					// own.full == info.awayLong || // Re-Live
+					own.full == info.awayName; // HT-Live fallback (if shortTeamName failed)
 
 				var ownScored = isHomeOwn && homeScored || isAwayOwn && awayScored;
 				var opScored = isHomeOwn && awayScored || isAwayOwn && homeScored;
