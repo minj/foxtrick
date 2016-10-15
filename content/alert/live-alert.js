@@ -20,11 +20,55 @@ Foxtrick.modules['LiveAlert'] = {
 		var results = doc.querySelector('#ngLive .htbox-content');
 		var opts = { childList: true, characterData: true, subtree: true };
 		Foxtrick.onChange(results, this.runTabs.bind(this), opts);
+
+		// add overlay pre-announce support
+		var container = doc.querySelector('.live-left-container');
+		Foxtrick.onChange(container, this.runOverlay.bind(this));
 	},
 
 	// onChange: function(doc) {
 	// 	this.runTabs(doc);
 	// },
+
+	runOverlay: function(doc) {
+		var overlay = doc.querySelector('.pitchOverlay');
+		if (!overlay)
+			return;
+
+		var goal = doc.querySelector('.live-goal:not(.ng-hide)');
+		if (!goal)
+			return;
+
+		var tab = doc.querySelector('.live-matchlist-item.live-matchlist-item-selected');
+		var score = this.getScoreFromTab(tab);
+		if (score === null)
+			return;
+
+		var teams = this.getTeamsFromTab(tab);
+
+		var info = {
+			homeGoals: score[0],
+			homeName: teams[0].textContent,
+			awayGoals: score[1],
+			awayName: teams[1].textContent,
+		};
+		info.teamsText = info.homeName + '-' + info.awayName; // used as index
+
+		// new goal logic
+		var scorer = doc.querySelector('.specialMention');
+
+		if (scorer.dataset.done)
+			return;
+
+		scorer.dataset.done = true; // use a tag to prevent alerting twice during match change
+
+		if (Foxtrick.hasClass(scorer, 'bench-home'))
+			info.homeGoals++;
+		else if (Foxtrick.hasClass(scorer, 'bench-away'))
+			info.awayGoals++;
+
+		this.alert(doc, info);
+	},
 
 	/**
 	 * Get goals from tab.
