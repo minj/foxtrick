@@ -17,9 +17,9 @@ Foxtrick.modules['LiveAlert'] = {
 	store: {},
 
 	run: function(doc) {
-		this.alert(doc);
-		var results = Foxtrick.getMBElement(doc, 'UpdatePanelPopupMessages');
-		Foxtrick.onChange(results, this.alert.bind(this));
+		var results = doc.querySelector('#ngLive .htbox-content');
+		var opts = { childList: true, characterData: true, subtree: true };
+		Foxtrick.onChange(results, this.alert.bind(this), opts);
 	},
 
 	// onChange: function(doc) {
@@ -36,12 +36,11 @@ Foxtrick.modules['LiveAlert'] = {
 	getScoreFromTab: function(tab) {
 		var ret = null;
 
-		var score = tab.querySelector('.liveTabScore');
-		var match = score.textContent.trim().match(/^(\d+) - (\d+)$/);
-		if (match) {
-			var goals = Foxtrick.toArray(match).slice(1);
-			ret = goals.map(function(s) { return parseInt(s, 10); });
-		}
+		var scores = tab.querySelectorAll('.live-matchlist-item-score');
+		var goals = Foxtrick.map(function(score) {
+			return score.textContent;
+		}, scores);
+		ret = goals.map(function(s) { return parseInt(s, 10); });
 
 		return ret;
 	},
@@ -55,15 +54,14 @@ Foxtrick.modules['LiveAlert'] = {
 	 * @return {array}       {Array.<HTMLAnchorElement|HTMLSpanElement}
 	 */
 	getTeamsFromTab: function(tab) {
-		return [tab.querySelector('.hometeam'), tab.querySelector('.awayteam')];
+		return Foxtrick.toArray(tab.querySelectorAll('.ellipsis'));
 	},
 
-	alert: function(doc) {
+	alert: function(doc, results) {
 		var ALERT_TMPL = '{homeShort} {homeGoals} - {awayGoals} {awayShort}';
-		var tabs = doc.getElementsByClassName('liveTabText');
+		var tabs = results.querySelectorAll('li');
 		// skip first tab = header
-		for (var i = 1; i < tabs.length; ++i) {
-			var tab = tabs[i];
+		for (var tab of Foxtrick.toArray(tabs).slice(1)) {
 			var score = this.getScoreFromTab(tab);
 			if (score === null)
 				continue;
