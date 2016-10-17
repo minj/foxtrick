@@ -208,12 +208,7 @@
 		},
 		{
 			"id": "9668661",
-			"name": "dzsoo",
-			"duty": "translator"
-		},
-		{
-			"id": "10458034",
-			"name": "sasa4pin",
+			"name": "LA-dzsoo",
 			"duty": "translator"
 		},
 		{
@@ -234,11 +229,6 @@
 		{
 			"id": "7360875",
 			"name": "MOD-emevev",
-			"duty": "translator"
-		},
-		{
-			"id": "3589747",
-			"name": "tjeken",
 			"duty": "translator"
 		},
 		{
@@ -427,6 +417,11 @@
 			"duty": "translator"
 		},
 		{
+			"id": "9855688",
+			"name": "Nika_Kvrivishvili",
+			"duty": "translator"
+		},
+		{
 			"id": "10806018",
 			"name": "theopap101",
 			"duty": "translator"
@@ -459,6 +454,16 @@
 		{
 			"id": "6489521",
 			"name": "-JENDA-",
+			"duty": "translator"
+		},
+		{
+			"id": "11689741",
+			"name": "khoai",
+			"duty": "translator"
+		},
+		{
+			"id": "10104187",
+			"name": "Morcivert",
 			"duty": "translator"
 		}
 	]
