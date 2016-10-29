@@ -195,8 +195,11 @@ Foxtrick.modules['MatchIncome'] = {
 		var priceQ = isFriendly || isNeutral ? 0.5 : isCup ? 0.67 : 1;
 
 		Foxtrick.util.currency.detect(doc).then(function(curr) {
-			sum *= priceQ;
 			addIncome(table, 'income', sum, curr);
+			if (priceQ !== 1) {
+				addIncome(table, 'income.home', sum * priceQ, curr);
+				addIncome(table, 'income.away', sum * (1 - priceQ), curr);
+			}
 
 			// display utilization percentage for games that happened after last arena change
 			if (!Foxtrick.Prefs.isModuleOptionEnabled('MatchIncome', 'UtilizationPercentages'))
