@@ -880,7 +880,16 @@ Foxtrick.Pages.Match.getEventTypesByEvent = function(doc) {
 };
 
 /**
- * Get the smallest HT-Live container that includes
+ * Test whether this is the new HT-Live view
+ * @param  {document}  doc
+ * @return {Boolean}
+ */
+Foxtrick.Pages.Match.isNewLive = function(doc) {
+	return !!doc.getElementById('ngLive');
+};
+
+/**
+ * Get the smallest OLD HT-Live container that includes
  * both the single match view and the match list view
  * @param  {document} doc
  * @return {element}
