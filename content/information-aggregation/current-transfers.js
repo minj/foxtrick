@@ -13,8 +13,7 @@ Foxtrick.modules['CurrentTransfers'] = {
 		var module = this;
 
 		// time to add to player deadline for caching
-		// players are delayed if a game is being played
-		var CACHE_BONUS = 4 * Foxtrick.util.time.MSECS_IN_HOUR;
+		var CACHE_BONUS = 0;
 
 		this.OPENING_PRICE = Foxtrick.L10n.getString('CurrentTransfers.openingPrice');
 
