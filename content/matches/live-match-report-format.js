@@ -7,7 +7,7 @@
 
 Foxtrick.modules['LiveMatchReportFormat'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.MATCHES,
-	PAGES: [],
+	PAGES: ['matchesLive'],
 	NICE: 1,
 
 	run: function(doc) {
