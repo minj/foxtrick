@@ -15,8 +15,6 @@ Foxtrick.modules['CurrentTransfers'] = {
 		// time to add to player deadline for caching
 		var CACHE_BONUS = 0;
 
-		this.OPENING_PRICE = Foxtrick.L10n.getString('CurrentTransfers.openingPrice');
-
 		var players = module.getPlayers(doc);
 		if (!players.length)
 			return;
@@ -45,7 +43,8 @@ Foxtrick.modules['CurrentTransfers'] = {
 						Foxtrick.log('No XML in batchRetrieve', argsPlayers[i], errors[i]);
 						continue;
 					}
-					module.processXML(doc, xmls[i], { rate: currencyRate, symbol: symbol });
+					var data = { rate: currencyRate, symbol: symbol, args: argsPlayers[i] };
+					module.processXML(doc, xmls[i], data);
 				}
 			});
 
@@ -105,8 +104,20 @@ Foxtrick.modules['CurrentTransfers'] = {
 		var module = this;
 
 		var id = xml.num('PlayerID');
-		var price = xml.money('AskingPrice', opts.rate);
-		var result = Foxtrick.formatNumber(price, '\u00a0') + ' ' + opts.symbol;
+
+		var price, result;
+		try {
+			price = xml.money('AskingPrice', opts.rate);
+			result = Foxtrick.formatNumber(price, '\u00a0') + ' ' + opts.symbol;
+		}
+		catch (e) {
+			// no AskingPrice => stale CHPP
+			result = Foxtrick.L10n.getString('status.unknown');
+			var now = Foxtrick.util.time.getHTTimeStamp(doc);
+			Foxtrick.util.api.setCacheLifetime(JSON.stringify(opts.args), now);
+		}
+
+		var OPENING_PRICE = Foxtrick.L10n.getString('CurrentTransfers.openingPrice');
 
 		var rows = doc.getElementsByClassName('ft-transfer-' + id);
 		Foxtrick.forEach(function(row) {
@@ -115,7 +126,7 @@ Foxtrick.modules['CurrentTransfers'] = {
 
 			Foxtrick.makeFeaturedElement(resultDiv, module);
 			Foxtrick.addClass(resultDiv, 'ft-transfers-price');
-			resultDiv.textContent = module.OPENING_PRICE + ': ' + result;
+			resultDiv.textContent = OPENING_PRICE + ': ' + result;
 			bidCell.appendChild(resultDiv);
 		}, rows);
 	},
