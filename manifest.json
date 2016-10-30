@@ -290,7 +290,7 @@
 		"http://pastebin.com/api/*"
 	],
 	"optional_permissions" : [
-		"http://*.hattrick-youthclub.org/*",
+		"https://*.hattrick-youthclub.org/*",
 		"http://no9-online.de/*",
 		"http://www.latehome.de/*",
 		"https://vimeo.com/api/*",
