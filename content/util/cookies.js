@@ -20,7 +20,7 @@ Foxtrick.cookies = {};
 	 */
 	const COOKIE_SPEC = {
 		for_hty: {
-			url: 'http://www.hattrick-youthclub.org/*',
+			url: 'https://www.hattrick-youthclub.org/*',
 			name: 'fromFoxtrick',
 			addId: true,
 			domain: '.hattrick-youthclub.org',
@@ -28,7 +28,7 @@ Foxtrick.cookies = {};
 			isBase64: true,
 		},
 		from_hty: {
-			url: 'http://hattrick-youthclub.org/*',
+			url: 'https://hattrick-youthclub.org/*',
 			name: 'forFoxtrick',
 			addId: true,
 			domain: '.hattrick-youthclub.org',

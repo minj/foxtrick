@@ -47,7 +47,7 @@ Foxtrick.modules['CopyYouth'] = {
 
 				// display note
 				var server = Foxtrick.Prefs.getBool('hty-stage') ? 'stage' : 'www';
-				var url = 'http://' + server +
+				var url = 'https://' + server +
 					'.hattrick-youthclub.org/site/coachcomments_add/htmatch/' + matchid;
 				var container = doc.createElement('div');
 				var p = doc.createElement('p');
@@ -61,7 +61,7 @@ Foxtrick.modules['CopyYouth'] = {
 				var a = doc.createElement('a');
 				a.href = url;
 				a.target = '_copyYouth';
-				a.textContent = 'http://www.hattrick-youthclub.org/site/coachcomments_add/htmatch/'
+				a.textContent = 'https://www.hattrick-youthclub.org/site/coachcomments_add/htmatch/'
 					+ matchid;
 				linkContainer.appendChild(a);
 				linkContainer.appendChild(doc.createTextNode(string[1]));

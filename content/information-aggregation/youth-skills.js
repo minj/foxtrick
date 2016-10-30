@@ -406,7 +406,7 @@ Foxtrick.modules['YouthSkills'] = {
 		}
 
 		// get skills from HY
-		Foxtrick.containsPermission({ origins: ['http://*.hattrick-youthclub.org/*'] },
+		Foxtrick.containsPermission({ origins: ['https://*.hattrick-youthclub.org/*'] },
 		  function(permission) {
 			if (permission) {
 				Foxtrick.api.hy.runIfHYUser(function() {
