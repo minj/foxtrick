@@ -29,6 +29,9 @@ Foxtrick.modules['ForumPreview'] = {
 						"target='_blank'>($1)</a>"],
 				[/\[teamid=(\d+)\]/gi,
 					"<a href='/Club/?TeamID=$1' target='_blank'>($1)</a>"],
+				[/\[ntteamid=(\d+)\]/gi,
+					"<a href='/Club/NationalTeam/NationalTeam.aspx?TeamID=$1' " +
+						"target='_blank'>($1)</a>"],
 				[/\[youthteamid=(\d+)\]/gi,
 					"<a href='/Club/Youth/?YouthTeamID=$1' target='_blank'>($1)</a>"],
 				[/\[matchid=(\d+)\]/gi,
