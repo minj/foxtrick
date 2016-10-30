@@ -232,7 +232,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 		});
 	};
 	var addHYLink = function(doc, player) {
-		var hyUrl = 'http://www.hattrick-youthclub.org/redirect/type/player_details/ht_id/' +
+		var hyUrl = 'https://www.hattrick-youthclub.org/redirect/type/player_details/ht_id/' +
 			player.id;
 
 		var hyLink = doc.createElement('a');

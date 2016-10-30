@@ -14,7 +14,7 @@ if (!Foxtrick.api.hy.URL)
  * @author LA-MJ, HY backend/API by MackShot
  *
  * @Interface:
- * 		Url: http://www.hattrick-youthclub.org/_data_provider/foxtrick/playersTwinsCheck
+ * 		Url: https://www.hattrick-youthclub.org/_data_provider/foxtrick/playersTwinsCheck
  * @params:
  *		//params send via http 'POST'
  * 		forceUpdate (optional): !!!! NOT SUPPORTED FOR THE MOMENT, will be ignored on HY
@@ -56,7 +56,7 @@ if (!Foxtrick.api.hy.URL)
  */
 
 
-Foxtrick.api.hy.URL['playersTwinsCheck'] = 'http://www.hattrick-youthclub.org' +
+Foxtrick.api.hy.URL['playersTwinsCheck'] = 'https://www.hattrick-youthclub.org' +
 	'/_data_provider/foxtrick/playersTwinsCheck';
 
 /**
