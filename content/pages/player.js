@@ -757,6 +757,9 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerid, callback) {
 
 	var args = [
 		['file', 'playerdetails'],
+
+		// README: version 2.5 is used in current transfers, but with specific deadlines
+		// otherwise few gains are obtained by upgrading, new fields are commented below
 		['version', '2.1'],
 		['playerId', playerid],
 	];
@@ -845,6 +848,10 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerid, callback) {
 				'CareerHattricks',
 				'CupGoals',
 				'Experience',
+				// README: version=2.3
+				// 'FriendliesGoals',
+				// README: version=2.7
+				// 'GoalsCurrentTeam',
 				'Honesty',
 				'Leadership',
 				'LeagueGoals',
@@ -905,22 +912,41 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerid, callback) {
 			player.specialityNumber = xml.num('Specialty');
 			player.specialty = Foxtrick.L10n.getSpecialityFromNumber(player.specialityNumber);
 
-	/*
-	    <TrainerData />
-	    <OwningTeam>
-	      <TeamID>672194</TeamID>
-	      <TeamName>Strange quarks</TeamName>
-	      <LeagueID>66</LeagueID>
-	    </OwningTeam>
-	    <LastMatch>
-	      <Date>2014-07-26 15:20:00</Date>
-	      <MatchId>483831455</MatchId>
-	      <PositionCode>109</PositionCode>
-	      <PlayedMinutes>90</PlayedMinutes>
-	      <Rating>7</Rating>
-	      <RatingEndOfGame>6</RatingEndOfGame>
-	    </LastMatch>
-	 */
+			// README: version=2.2
+			// player.joinedSince = xml.time('ArrivalDate');
+
+			/*
+			    <TrainerData>
+			      <TrainerType>2</TrainerType>
+			      <TrainerSkill>7</TrainerSkill>
+			    </TrainerData>
+			    <OwningTeam>
+			      <TeamID>672194</TeamID>
+			      <TeamName>Strange quarks</TeamName>
+			      <LeagueID>66</LeagueID>
+			    </OwningTeam>
+
+			    // README: version=2.5
+			    <TransferDetails>
+			      <AskingPrice>760000</AskingPrice>
+			      <Deadline>2016-10-31 08:40:25</Deadline>
+			      <HighestBid>760000</HighestBid>
+			      <MaxBid/> // version=2.6, optional
+			      <BidderTeam> // may be empty
+			        <TeamID>1064154</TeamID>
+			        <TeamName>Dinamo3000</TeamName>
+			      </BidderTeam>
+			    </TransferDetails>
+
+			    <LastMatch>
+			      <Date>2014-07-26 15:20:00</Date>
+			      <MatchId>483831455</MatchId>
+			      <PositionCode>109</PositionCode>
+			      <PlayedMinutes>90</PlayedMinutes>
+			      <Rating>7</Rating>
+			      <RatingEndOfGame>6</RatingEndOfGame>
+			    </LastMatch>
+			 */
 
 			callback(player);
 
