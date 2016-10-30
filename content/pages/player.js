@@ -830,7 +830,7 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerid, callback) {
 			var optionalNums = [
 				'Caps',
 				'CapsU20',
-				['category', 'PlayerCategoryId'],
+				['category', 'PlayerCategoryID'], // inconsistent spelling
 			];
 			Foxtrick.forEach(addProperty(player, ifPositive), optionalNums);
 
