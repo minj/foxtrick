@@ -153,6 +153,7 @@ pref("extensions.foxtrick.prefs.module.ForumYouthIcons.enabled", true);
 pref("extensions.foxtrick.prefs.module.ForumYouthIcons.enlarge_input.enabled", true);
 pref("extensions.foxtrick.prefs.module.ForumYouthIcons.kit_id.enabled", true);
 pref("extensions.foxtrick.prefs.module.ForumYouthIcons.line_br.enabled", true);
+pref("extensions.foxtrick.prefs.module.ForumYouthIcons.nt_team_id.enabled", true);
 pref("extensions.foxtrick.prefs.module.ForumYouthIcons.pre.enabled", true);
 pref("extensions.foxtrick.prefs.module.ForumYouthIcons.q.enabled", true);
 pref("extensions.foxtrick.prefs.module.ForumYouthIcons.spoiler.enabled", true);

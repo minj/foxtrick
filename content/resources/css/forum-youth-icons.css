@@ -50,6 +50,9 @@
 .HTMLToolbar img.ft_symbol {
 	background: url('chrome://foxtrick/content/resources/img/ht-ml/format_symbol.png') no-repeat scroll 0 0 transparent;
 }
+.HTMLToolbar img.ft_ntteam {
+	background: url('chrome://foxtrick/content/resources/img/ht-ml/format_globe.png') no-repeat scroll 0 0 transparent;
+}
 
 /* tournament toolbar */
 .HTMLToolbar img.ft_tournament {

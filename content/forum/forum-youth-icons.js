@@ -13,7 +13,7 @@ Foxtrick.modules['ForumYouthIcons'] = {
 		'forumModWritePost', 'ticket', 'helpContact',
 	],
 	OPTIONS: [
-		'q', 'user_id', 'kit_id', 'article_id', 'line_br', 'clock', 'spoiler',
+		'q', 'user_id', 'nt_team_id', 'kit_id', 'article_id', 'line_br', 'clock', 'spoiler',
 		'pre', 'table', 'symbols', 'youth_player', 'youth_team', 'youth_match',
 		'youth_series', 'debug', 'settings', 'enlarge_input', 'tournament',
 		'tournament_match'
@@ -162,6 +162,14 @@ Foxtrick.modules['ForumYouthIcons'] = {
 				replace_text: 'xxx',
 			},
 			{
+				type: 'nt_team_id',
+				icon_class: 'ft_ntteam',
+				image: 'format_globe.png',
+				string: 'nt',
+				tags: '[ntteamid=xxx]',
+				replace_text: 'xxx',
+			},
+			{
 				type: 'kit_id',
 				icon_class: 'ft_kit',
 				image: 'format_kit.png',
@@ -230,7 +238,7 @@ Foxtrick.modules['ForumYouthIcons'] = {
 		var split = symbolsText.split('').reverse().join('').split(/;(?!\\)/).reverse();
 		for (var i = 0; i < split.length; ++i) {
 			var fixed = split[i].split('').reverse().join('').replace(/\\;/g, ';');
-			icons[9].versions.push(fixed);
+			icons[icons.length - 1].versions.push(fixed);
 		}
 
 		var youthicons = [
@@ -506,7 +514,7 @@ Foxtrick.modules['ForumYouthIcons'] = {
 
 		// polls have two toolbars. we want the later for now
 		var toolbar = toolbars.length === 1 ? toolbars[0] : toolbars[1];
-		toolbar.setAttribute('style', 'float:left; margin-right:3px;');
+		toolbar.setAttribute('style', 'float:left; margin:0 -6px;');
 
 		if (Foxtrick.isPage(doc, 'guestbook'))
 			try {
