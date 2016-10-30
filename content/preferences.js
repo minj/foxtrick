@@ -345,23 +345,23 @@ var neededPermissions = [
 	},
 	{
 		modules: ['YouthTwins'],
-		types: { origins: ['http://*.hattrick-youthclub.org/*'] },
+		types: { origins: ['https://*.hattrick-youthclub.org/*'] },
 	},
 	{
 		modules: ['CopyYouth.AutoSendTrainingReportToHY'],
-		types: { origins: ['http://*.hattrick-youthclub.org/*'] },
+		types: { origins: ['https://*.hattrick-youthclub.org/*'] },
 	},
 	{
 		modules: ['CopyYouth.AutoSendRejectedToHY'],
-		types: { origins: ['http://*.hattrick-youthclub.org/*'] },
+		types: { origins: ['https://*.hattrick-youthclub.org/*'] },
 	},
 	{
 		modules: ['CopyYouth.AutoSendTrainingChangesToHY'],
-		types: { origins: ['http://*.hattrick-youthclub.org/*'] },
+		types: { origins: ['https://*.hattrick-youthclub.org/*'] },
 	},
 	{
 		modules: ['YouthSkills'],
-		types: { origins: ['http://*.hattrick-youthclub.org/*'] },
+		types: { origins: ['https://*.hattrick-youthclub.org/*'] },
 	},
 	{
 		modules: ['MatchWeather'],

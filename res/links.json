@@ -857,22 +857,22 @@
 	},
 	"hattrick-youthclub": {
 		"youthlink": {
-			"url": "http://www.hattrick-youthclub.org/redirect/type/team/ht_id/[ownteamid]"
+			"url": "https://www.hattrick-youthclub.org/redirect/type/team/ht_id/[ownteamid]"
 		},
 		"youthplayerlistlink": {
-			"url": "http://www.hattrick-youthclub.org/redirect/type/team_sync/ht_id/[ownteamid]"
+			"url": "https://www.hattrick-youthclub.org/redirect/type/team_sync/ht_id/[ownteamid]"
 		},
 		"youthplayerdetaillink": {
-			"url": "http://www.hattrick-youthclub.org/redirect/type/player_details/ht_id/[playerid]"
+			"url": "https://www.hattrick-youthclub.org/redirect/type/player_details/ht_id/[playerid]"
 		},
 		"youthmatchlistlink": {
-			"url": "http://www.hattrick-youthclub.org/redirect/type/team_matches/ht_id/[ownteamid]"
+			"url": "https://www.hattrick-youthclub.org/redirect/type/team_matches/ht_id/[ownteamid]"
 		},
 		"youthtraininglink": {
-			"url": "http://www.hattrick-youthclub.org/redirect/type/team/ht_id/[ownteamid]"
+			"url": "https://www.hattrick-youthclub.org/redirect/type/team/ht_id/[ownteamid]"
 		},
 		"playedyouthmatchlink": {
-			"url": "http://www.hattrick-youthclub.org/redirect/type/lineup/ht_id/[matchid]"
+			"url": "https://www.hattrick-youthclub.org/redirect/type/lineup/ht_id/[matchid]"
 		},
 		"allow": [
 			"OR",
@@ -897,7 +897,7 @@
 			]
 		],
 		"title": "Hattrick Youthclub",
-		"img": "http://static.hattrick-youthclub.org/resources/image/favicon.ico"
+		"img": "https://static.hattrick-youthclub.org/resources/image/favicon.ico"
 	},
 	"htev": {
 		"teamlink": {
