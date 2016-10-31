@@ -217,15 +217,15 @@
 			"words_translated": "6207"
 		},
 		{
-			"approved": "2282",
-			"approved_progress": "99",
+			"approved": "2284",
+			"approved_progress": "100",
 			"code": "fr",
 			"name": "French",
 			"phrases": "2284",
 			"translated": "2284",
 			"translated_progress": "100",
 			"words": "16700",
-			"words_approved": "16696",
+			"words_approved": "16700",
 			"words_translated": "16700"
 		},
 		{
@@ -618,11 +618,11 @@
 			"code": "sv-SE",
 			"name": "Swedish",
 			"phrases": "2284",
-			"translated": "2088",
+			"translated": "2090",
 			"translated_progress": "92",
 			"words": "16700",
 			"words_approved": "15364",
-			"words_translated": "15488"
+			"words_translated": "15492"
 		},
 		{
 			"approved": "0",
