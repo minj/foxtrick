@@ -3,7 +3,7 @@
 /*
  * show-friendly-booked.js
  * Show whether a team has booked friendly on series page
- * @author ryanli
+ * @author ryanli, LA-MJ
  */
 
 Foxtrick.modules['FriendlyPool'] = {
@@ -13,15 +13,16 @@ Foxtrick.modules['FriendlyPool'] = {
 	OPTIONS: ['ExpandCountrySelection'],
 
 	run: function(doc) {
-		var leagueSelect = Foxtrick.getMBElement(doc, 'ddlPoolLeagues');
-		if (!leagueSelect)
+		var countrySelect = Foxtrick.getMBElement(doc, 'ddlPoolCountries');
+		if (!countrySelect)
 			return;
 
 		if (Foxtrick.Prefs.isModuleOptionEnabled('FriendlyPool', 'ExpandCountrySelection'))
-			leagueSelect.size = leagueSelect.querySelectorAll('option').length;
+			countrySelect.size = countrySelect.querySelectorAll('option').length;
 
 		var ownTeamId = Foxtrick.util.id.getOwnTeamId();
 		var ownLeagueId = Foxtrick.util.id.getOwnLeagueId();
+		var ownCountryId = Foxtrick.XMLData.getCountryIdByLeagueId(ownLeagueId);
 		var parameters = [
 			['file', 'teamdetails'],
 			['version', '2.6'],
@@ -41,15 +42,19 @@ Foxtrick.modules['FriendlyPool'] = {
 
 			var home = {};
 			var homeIds = xml.node('HomeFlags').getElementsByTagName('LeagueId');
-			for (var homeId of Foxtrick.toArray(homeIds))
-				home[homeId.textContent] = true;
+			for (var homeId of Foxtrick.toArray(homeIds)) {
+				var homeCountryId = Foxtrick.XMLData.getCountryIdByLeagueId(homeId.textContent);
+				home[homeCountryId] = true;
+			}
 
 			var away = {};
 			var awayIds = xml.node('AwayFlags').getElementsByTagName('LeagueId');
-			for (var awayId of Foxtrick.toArray(awayIds))
-				away[awayId.textContent] = true;
+			for (var awayId of Foxtrick.toArray(awayIds)) {
+				var awayCountryId = Foxtrick.XMLData.getCountryIdByLeagueId(awayId.textContent);
+				away[awayCountryId] = true;
+			}
 
-			var options = leagueSelect.getElementsByTagName('option');
+			var options = countrySelect.getElementsByTagName('option');
 			for (var option of Foxtrick.toArray(options)) {
 				if (home[option.getAttribute('value')] && away[option.getAttribute('value')]) {
 					Foxtrick.addClass(option, 'ft-home ft-away');
@@ -63,7 +68,7 @@ Foxtrick.modules['FriendlyPool'] = {
 					Foxtrick.addClass(option, 'ft-away');
 					option.title = Foxtrick.L10n.getString('matches.playedAway');
 				}
-				else if (option.getAttribute('value') == ownLeagueId) {
+				else if (option.getAttribute('value') == ownCountryId) {
 					Foxtrick.addClass(option, 'ft-own');
 				}
 			}
