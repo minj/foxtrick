@@ -2,23 +2,24 @@
 es-AR:
   faq:
     style:
-      question: ¿Cómo puedo configurar el estilo de mi FoxTrick?
+      question: '¿Cómo puedo configurar el estilo de mi FoxTrick?'
       answer: |
         <p>FoxTrick proporciona un conjunto de interfaces de presentación a los usuarios para personalizar sus propios estilos. Estas interfaces son proporcionadas a través de HTML IDs y clases, y se puede utilizar CSS para definir su estilo como desee.</p>  
         
         <p>Un archivo de estilo de usuario de ejemplo se puede encontrar <linkCSSExample>aquí</linkCSSExample> o <linkCSSExampleGCode>aquí</linkCSSExampleGCode>, los cuales se pueden modificar para satisfacer tus necesidades. Después de guardar el archivo, puede utilizar el módulo <module>SkinPlugin</module> para cargar el archivo CSS y aplicarlo.</p>
     sound-format:
-      question: ¿Qué formatos de archivo están permitidos para los sonidos de alerta?
-      answer: '<p>Diferentes navegadores permiten diferentes formatos de archivo. Aquí está una lista (otros formatos pueden funcionar si se instalan los plugins adecuados, por ejemplo Quicktime para reproducir mp3 en Firefox):</p> <ul><li>Mozilla: wav, ogg</li> <li>Safari (puede necesitar Quicktime): wav, mp3</li> <li>cromo: ogg, mp3, wav</li> <li>Opera: wav, ogg</li></ul>'
+      question: '¿Qué formatos de archivo están permitidos para los sonidos de alerta?'
+      answer: |
+        <p>Diferentes navegadores permiten diferentes formatos de archivo. Aquí está una lista (otros formatos pueden funcionar si se instalan los plugins adecuados, por ejemplo Quicktime para reproducir mp3 en Firefox):</p> <ul><li>Mozilla: wav, ogg</li> <li>Safari (puede necesitar Quicktime): wav, mp3</li> <li>cromo: ogg, mp3, wav</li> <li>Opera: wav, ogg</li></ul>
     sound-location:
-      question: ¿Cuál es el límite de tamaño para sonidos de alerta y dónde se pueden ser encontrados?
+      question: '¿Cuál es el límite de tamaño para sonidos de alerta y dónde se pueden ser encontrados?'
       answer: |
         <p>Todos los navegadores pueden reproducir URL de datos. Esos son los sonidos guardados internamente cuando se utiliza el botón de carga proporcionado en las preferencias. Ya que son convertidos y guardadas en las preferencias, el tamaño está limitado a alrededor de 160 kB por sonido.</p>  
         
         <p>Todos los navegadores también pueden reproducir sonidos directamente desde internet (URL de http). Solo copia un enlace a un sonido (por ejemplo http://foxtrick.org/sound.wav) en el campo de edición de sonidos. Sin límite de tamaño.</p>
         <p>Mozilla también puede reproducir sonidos directamente desde su disco duro (archivo URL) sin límite de tamaño. La forma más sencilla de obtener el formato adecuado: en el tipo de navegador Ctrl + o, busque el archivo de sonido y selecciónelo. En la barra de direcciones, en la parte superior, esta ahora el enlace correcto para el archivo local (p. ej. file:///c:/sound.wav). Copie y pegue esto en el campo de edición para los sonidos.</p>
     authorize:
-      question: ¿Por qué debo autorizar FoxTrick para acceder a los datos de mis equipo?
+      question: '¿Por qué debo autorizar FoxTrick para acceder a los datos de mis equipo?'
       answer: |
         <p>Aunque la mayoría de los datos necesarios para FoxTrick se pueden obtener directamente desde la página que está viendo, algunos módulos si requieren la descarga de datos de Hattrick para que funcionen.</p>  
         
@@ -46,7 +47,7 @@ es-AR:
         <li><module>TeamStats</module></li>
         </ul>
     privacy:
-      question: ¿Cómo protegerá FoxTrick mi privacidad?
+      question: '¿Cómo protegerá FoxTrick mi privacidad?'
       answer: |
         <p>FoxTrick no cargará cualquiera de sus datos o preferencias a un servidor de FoxTrick, ni cualquiera de sus datos privados, incluyendo pero no limitado a su ID de usuario, contraseña e ID de un jugador asociado con sus habilidades a terceros.</p>  
         <p>La mayoría de los datos enviados a terceros, a menos que sea explícitamente indicado a continuación, se envían con el método HTTP GET y sólo será enviado despues de que hagas clic en un vínculo.</p>  
