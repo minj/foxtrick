@@ -89,17 +89,17 @@ Foxtrick.modules['LiveAlert'] = {
 		if (Foxtrick.Pages.Match.isNewLive(tab.ownerDocument)) {
 			var scores = tab.querySelectorAll('.live-matchlist-item-score');
 			goals = Foxtrick.map(function(score) {
-				return score.textContent;
+				return parseInt(score.textContent, 10);
 			}, scores);
 		}
 		else {
 			var score = tab.querySelector('.liveTabScore');
 			var match = score.textContent.trim().match(/^(\d+) - (\d+)$/);
-			if (match)
+			if (match) {
 				goals = Foxtrick.toArray(match).slice(1);
+				goals = goals.map(function(s) { return parseInt(s, 10); });
+			}
 		}
-
-		goals = goals.map(function(s) { return parseInt(s, 10); });
 
 		return goals;
 	},
