@@ -10,7 +10,7 @@ if (!Foxtrick.api.hy.URL)
 	Foxtrick.api.hy.URL = {};
 
 /* matches-training.js
- * url: 'http://www.hattrick-youthclub.org/_data_provider/foxtrick/matchesTraining';
+ * url: 'https://www.hattrick-youthclub.org/_data_provider/foxtrick/matchesTraining';
  *
  * params:
  * hash: md5/sha1/base64(app + '_' + teamId + '_' + identifier)
@@ -32,7 +32,7 @@ if (!Foxtrick.api.hy.URL)
  */
 
 
-Foxtrick.api.hy.URL['matchesTraining'] = 'http://www.hattrick-youthclub.org' +
+Foxtrick.api.hy.URL['matchesTraining'] = 'https://www.hattrick-youthclub.org' +
 	'/_data_provider/foxtrick/matchesTraining';
 /**
  * Tries to post the match report to HY and executes callback(response);
