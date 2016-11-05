@@ -172,12 +172,8 @@ Foxtrick.modules['LiveAlert'] = {
 			abbr: Foxtrick.modules.Core.TEAM.shortTeamName,
 		};
 
-		// README: during HT-Live games own.full == own.abbr!!!
-		// FIXME: no way to recognize own goal during Live?!
-		var isHomeOwn = own.full === info.homeFull ||
-			own.abbr === info.homeFull;
-		var isAwayOwn = own.full === info.awayFull ||
-			own.abbr === info.awayFull;
+		var isHomeOwn = own.full === info.homeFull;
+		var isAwayOwn = own.full === info.awayFull;
 
 		var ownScored = isHomeOwn && homeScored || isAwayOwn && awayScored;
 		var opScored = isHomeOwn && awayScored || isAwayOwn && homeScored;
