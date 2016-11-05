@@ -14,7 +14,7 @@ if (!Foxtrick.api.hy.URL)
  * @author LA-MJ, HY backend/API by MackShot
  *
  * @Interface:
- * 		Url: http://www.hattrick-youthclub.org/_data_provider/foxtrick/userId
+ * 		Url: https://www.hattrick-youthclub.org/_data_provider/foxtrick/userId
  * @params:
  * 		teamid
  * 			teamid
@@ -31,7 +31,7 @@ if (!Foxtrick.api.hy.URL)
  */
 
 
-Foxtrick.api.hy.URL['userId'] = 'http://www.hattrick-youthclub.org' +
+Foxtrick.api.hy.URL['userId'] = 'https://www.hattrick-youthclub.org' +
 	'/_data_provider/foxtrick/userId';
 /**
  * Check if the id could be userId
