@@ -310,6 +310,13 @@
 		"title": "The Hattrick Radio’s Podcast",
 		"img": "https://hattrickradio.podbean.com/mf/web/8skbtp/hattrick_ball_dark_green_png.ico"
 	},
+	"htbook": {
+		"managerlink": {
+			"url": "http://htbook.2fh.co"
+		},
+		"title": "Hattrick Social Network",
+		"img": "http://htbook.2fh.co/favicon.ico"
+	},
 	"englandyadb": {
 		"youthlink": {
 			"url": "http://www.realfootball.co.uk/hattrick/ya/",
