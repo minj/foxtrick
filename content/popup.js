@@ -92,8 +92,7 @@ function init() {
 
 	label = document.getElementById('foxtrick-toolbar-contribute-label');
 	var temp = document.createElement('div');
-	Foxtrick.L10n.appendLink('changes.support', temp, label.href);
-	var link = temp.getElementsByTagName('a')[0];
+	var link = Foxtrick.L10n.appendLink('changes.support', temp, label.href);
 	if (link) {
 		label.textContent = link.textContent;
 	}

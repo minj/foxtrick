@@ -361,9 +361,7 @@ Foxtrick.modules['YouthSkills'] = {
 				text = doc.createElement('span');
 				text.textContent = header;
 
-				Foxtrick.L10n.appendLink(prefLink, text, '#');
-
-				var link = text.querySelector('a');
+				var link = Foxtrick.L10n.appendLink(prefLink, text, '#');
 				if (link) {
 					Foxtrick.onClick(link, function() {
 						Foxtrick.Prefs.show();
