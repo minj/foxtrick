@@ -298,6 +298,18 @@
 		"title": "GO Internationals",
 		"img": "http://www.goanoei.nl/goht/favicon.ico"
 	},
+	"htradiopodbean": {
+		"worldlink": {
+			"url": "https://hattrickradio.podbean.com"
+		},
+		"leaguelink": {
+			"url": "https://hattrickradio.podbean.com",
+			"filters": ["leagueid"]
+		},
+		"leagueidranges": [[85, 85]],
+		"title": "The Hattrick Radio’s Podcast",
+		"img": "https://hattrickradio.podbean.com/mf/web/8skbtp/hattrick_ball_dark_green_png.ico"
+	},
 	"englandyadb": {
 		"youthlink": {
 			"url": "http://www.realfootball.co.uk/hattrick/ya/",
