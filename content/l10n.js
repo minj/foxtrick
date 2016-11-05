@@ -159,7 +159,7 @@ Foxtrick.L10n.htMapping = {
  * langCode->object map
  * @type {Object} {string: object}
  */
-Foxtrick.L10n.htLanguagesJSON = {},
+Foxtrick.L10n.htLanguagesJSON = {};
 
 /**
  * Plural form of the selected language
@@ -167,14 +167,14 @@ Foxtrick.L10n.htLanguagesJSON = {},
  * @see https://developer.mozilla.org/en/Localization_and_Plurals
  * @type {Number} {Integer}
  */
-Foxtrick.L10n.plForm = 0,
+Foxtrick.L10n.plForm = 0;
 
 /**
  * Plural form of the default language
  *
  * @type {Number} {Integer}
  */
-Foxtrick.L10n.plForm_default = 0,
+Foxtrick.L10n.plForm_default = 0;
 
 // ------------------------- function stubs ---------------------------
 // jshint ignore:start
@@ -185,7 +185,7 @@ Foxtrick.L10n.plForm_default = 0,
  * @param  {string}  str locale key
  * @return {Boolean}
  */
-Foxtrick.L10n.isStringAvailableLocal = function(str) {},
+Foxtrick.L10n.isStringAvailableLocal = function(str) {};
 
 /**
  * Test if a string exists
@@ -193,7 +193,7 @@ Foxtrick.L10n.isStringAvailableLocal = function(str) {},
  * @param  {string}  str locale key
  * @return {Boolean}
  */
-Foxtrick.L10n.isStringAvailable = function(str) {},
+Foxtrick.L10n.isStringAvailable = function(str) {};
 
 /**
  * Get string localization.
@@ -205,15 +205,17 @@ Foxtrick.L10n.isStringAvailable = function(str) {},
  * @param  {number} num number to substitute in plural (optional integer)
  * @return {string}
  */
-Foxtrick.L10n.getString = function(str, num) {},
+Foxtrick.L10n.getString = function(str, num) {};
 // jshint ignore:end
 
 /**
- * Generate a link from a l10n key with a link tag and append it to parent
+ * Generate a link from a l10n key with a link tag,
+ * append it to parent and return it
  *
- * @param {string}  str    locale key
- * @param {element} parent
- * @param {string}  url
+ * @param  {string}            str    locale key
+ * @param  {element}           parent
+ * @param  {string}            url
+ * @return {HTMLAnchorElement}
  */
 Foxtrick.L10n.appendLink = function(str, parent, url) {
 	var doc = parent.ownerDocument;
@@ -221,16 +223,22 @@ Foxtrick.L10n.appendLink = function(str, parent, url) {
 	var parts = text.split(/<\/?a>/ig);
 
 	parent.appendChild(doc.createTextNode(parts[0]));
+
+	var link;
+
 	if (parts.length > 1) {
-		var link = doc.createElement('a');
+		link = doc.createElement('a');
 		link.href = url;
 		link.target = '_blank';
 		link.textContent = parts[1];
 		parent.appendChild(link);
 	}
+
 	if (parts.length > 2)
 		parent.appendChild(doc.createTextNode(parts[2]));
-}; // jshint ignore:line
+
+	return link;
+};
 
 /**
  * Get the value of a certain property from htlang.json.
