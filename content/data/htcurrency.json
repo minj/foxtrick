@@ -263,15 +263,6 @@
 			"symbol": "BBD"
 		},
 		{
-			"code": "BYR",
-			"eurorate": "0.0005",
-			"leagues": {
-				"91": "Belarus"
-			},
-			"name": "Ruble (Belarusian)",
-			"symbol": "BYR"
-		},
-		{
 			"code": "BOB",
 			"eurorate": "0.1",
 			"leagues": {
@@ -891,6 +882,21 @@
 			},
 			"name": "Đồng (Vietnamese)",
 			"symbol": "đồng"
+		},
+		{
+			"code": "",
+			"eurorate": "0.5",
+			"leagues": {
+				"91": "Belarus"
+			},
+			"name": "",
+			"symbol": "BYN"
+		},
+		{
+			"code": "BYR",
+			"eurorate": "0.0005",
+			"name": "Ruble (Belarusian)",
+			"symbol": "BYR"
 		},
 		{
 			"code": "LTL",
