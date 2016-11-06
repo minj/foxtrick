@@ -145,7 +145,7 @@
 			"words_translated": "16698"
 		},
 		{
-			"approved": "2070",
+			"approved": "2071",
 			"approved_progress": "86",
 			"code": "nl",
 			"name": "Dutch",
@@ -153,7 +153,7 @@
 			"translated": "2074",
 			"translated_progress": "87",
 			"words": "16708",
-			"words_approved": "14507",
+			"words_approved": "14523",
 			"words_translated": "14547"
 		},
 		{
@@ -217,16 +217,16 @@
 			"words_translated": "6207"
 		},
 		{
-			"approved": "2283",
+			"approved": "2284",
 			"approved_progress": "99",
 			"code": "fr",
 			"name": "French",
 			"phrases": "2286",
-			"translated": "2284",
-			"translated_progress": "99",
+			"translated": "2286",
+			"translated_progress": "100",
 			"words": "16708",
-			"words_approved": "16686",
-			"words_translated": "16702"
+			"words_approved": "16702",
+			"words_translated": "16708"
 		},
 		{
 			"approved": "0",
