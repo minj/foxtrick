@@ -306,11 +306,11 @@
 			"code": "he",
 			"name": "Hebrew",
 			"phrases": "2286",
-			"translated": "2282",
-			"translated_progress": "99",
+			"translated": "2286",
+			"translated_progress": "100",
 			"words": "16708",
 			"words_approved": "0",
-			"words_translated": "16698"
+			"words_translated": "16708"
 		},
 		{
 			"approved": "194",
@@ -529,16 +529,16 @@
 			"words_translated": "15342"
 		},
 		{
-			"approved": "2272",
-			"approved_progress": "98",
+			"approved": "2286",
+			"approved_progress": "100",
 			"code": "ru",
 			"name": "Russian",
 			"phrases": "2286",
-			"translated": "2273",
-			"translated_progress": "98",
+			"translated": "2286",
+			"translated_progress": "100",
 			"words": "16708",
-			"words_approved": "16510",
-			"words_translated": "16526"
+			"words_approved": "16708",
+			"words_translated": "16708"
 		},
 		{
 			"approved": "2085",
