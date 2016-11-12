@@ -14,7 +14,7 @@ he:
       android: 'פוקסטריק לא עבד במכשירי אנדרואיד בשל שינויים שביצעה חברת מוזילה.'
       filters: 'המודול <module>Filters</module> לא עבד באופן תקין בשל שינויי ליבה בפוקסטריק.'
       simulator_hs: 'המודול <module>MatchSimulator</module> השתמש ברמות משנה שגויות של יכולות בחישוב הציונים, אשר התנגשו עם ערכי הרייטינג המחושבים.'
-      nt_stats: 'המודול <module>SeasonStats</module> לא הצליח לחשב נכונה את הציונים של הנבחרות במשחקים שהסתיימו בתיקו.'
+      nt_stats: 'המודול <module>SeasonStats</module> לא הצליח לזהות נכונה משחקי נבחרת שהסתיימו בתיקו.'
       specinfo_fixes: 'המודול <module>SpecialtyInfo</module> לא השתלב היטב עם המודולים <module>SkillTable</module> ו-<module>ContextMenuCopy</module>. המודול שוכתב על מנת לשפר את שילובו עם המודולים האחרים.'
       other: '<header>שינויים אחרים</header>'
       minimum_search: 'שוב ניתן לחפש לפי כושר משחק מינימלי בלבד במודול <module>TransferSearchResultFilters</module>. הגבול העליון מוגבל אוטומטית לרמת "מצוין".'
