@@ -160,6 +160,9 @@ Foxtrick.modules['MatchIncome'] = {
 			tr2.appendChild(td2b);
 		};
 
+		if (Foxtrick.Pages.Match.isNT(doc))
+			return;
+
 		var table = Foxtrick.filter(function(n) {
 			if (n.rows.length != 4)
 				return false;
