@@ -20,29 +20,31 @@ html[dir="ltr"] #timelineEventDetails {
 	padding: 3px;
 	position: absolute;
 }
-html[dir="rtl"] .ft-match-lineup-tweaks-teamname-home {
+
+.ft-match-lineup-tweaks-teamname-home {
 	top: 15px;
+}
+.ft-match-lineup-tweaks-teamname-away {
+	bottom: 15px;
+}
+
+html[dir="rtl"] .ft-match-lineup-tweaks-teamname-home {
 	right: 15px;
 	left: initial;
 }
 html[dir="rtl"] .ft-match-lineup-tweaks-teamname-away {
-	bottom: 15px;
 	right: 15px;
 	left: initial;
 }
 
-
 html[dir="ltr"] .ft-match-lineup-tweaks-teamname-home {
-	top: 15px;
 	left: 15px;
 	right: initial;
 }
 html[dir="ltr"] .ft-match-lineup-tweaks-teamname-away {
-	bottom: 15px;
 	left: 15px;
 	right: initial;
 }
-
 
 .ft-match-lineup-tweaks-star-counter, .ft-match-lineup-tweaks-stamina-counter
 {
@@ -63,6 +65,11 @@ html[dir="ltr"] .ft-match-lineup-tweaks-teamname-away {
 .isYouthMatch .ft-match-lineup-tweaks-star-counter, .isYouthMatch .ft-match-lineup-tweaks-stamina-counter
 {
 	color: #6ec6e9;
+}
+
+.ft-match-lineup-tweaks-teamname-home, .ft-match-lineup-tweaks-stars-counter-sum-home,
+.ft-match-lineup-tweaks-stamina-counter-sum-home {
+	background: #295223;
 }
 
 .ft-match-lineup-tweaks-stars-counter-sum-home, .ft-match-lineup-tweaks-stamina-counter-sum-home {
@@ -211,12 +218,6 @@ div.playerDiv .sectorShirt.ft-smallFaceCard img[src^="/Img/Avatar/hair/"] {
 	top: -6px !important;
 	margin-right: 3px;
 }
-.goRight::after {
-	left: 94px !important;
-}
-.goDown::after {
-	top: 4px !important;
-}
 #playersBenchHome > div, #playersBenchAway > div {
 	margin-bottom: 24px !important;
 }
@@ -224,17 +225,53 @@ div.playerDiv .sectorShirt.ft-smallFaceCard img[src^="/Img/Avatar/hair/"] {
 	padding: 0 !important;
 }
 
+.goRight::after {
+	left: 94px;
+}
+.goLeft::after {
+	left: -14px;
+}
+.goDown::after {
+	top: 4px;
+}
 
 
 /* split lineup */
 
-#playersField.ft-field-split {
+.ft-field-split {
 	min-height: 430px;
 }
 .ft-field-away {
-	background-position: bottom !important;
+	background-position: bottom;
 }
 
+#ft-split-lineup-toggle-div {
+	font-size: 1.2em;
+	line-height: normal;
+	color: white;
+}
+
+#ft-split-arrow {
+	cursor: pointer;
+
+	position: absolute;
+	display: block;
+	height: 64px;
+	width: 64px;
+
+	left: 268px;
+	bottom: 20px;
+
+	background: url(chrome://foxtrick/content/resources/img/matches/arrows.png) no-repeat;
+	background-position: left bottom;
+}
+
+.ft-field-away #ft-split-arrow {
+	top: 20px;
+	bottom: initial;
+
+	background-position: top;
+}
 .ft-field-away .ft-match-lineup-tweaks-stamina-counter-sum-home,
 .ft-field-away .ft-match-lineup-tweaks-stars-counter-sum-home {
 	top: 56px;
@@ -248,27 +285,3 @@ div.playerDiv .sectorShirt.ft-smallFaceCard img[src^="/Img/Avatar/hair/"] {
 	top: 86px;
 }
 
-#ft-split-arrow {
-	position: absolute;
-	cursor: pointer;
-	display: block;
-	left: 268px;
-	bottom: 20px;
-	height: 64px;
-	background: url(chrome://foxtrick/content/resources/img/arrows.png) no-repeat left bottom;
-	width: 64px;
-}
-.ft-field-away #ft-split-arrow {
-	background-position: top;
-	bottom: initial;
-	top: 20px;
-}
-#ft-split-lineup-toggle-div {
-	font-size: 1.2em;
-	line-height: normal;
-	color: white;
-}
-.ft-match-lineup-tweaks-teamname-home, .ft-match-lineup-tweaks-stars-counter-sum-home,
-.ft-match-lineup-tweaks-stamina-counter-sum-home {
-	background: #295223;
-}
