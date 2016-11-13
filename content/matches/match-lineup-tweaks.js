@@ -11,7 +11,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 	OPTIONS: [
 		'DisplayTeamNameOnField', 'ShowSpecialties', 'ShowNumbers',
 		'ConvertStars',
-		'SplitLineup',
+		['SplitLineup', 'InvertSplit'],
 		'ShowFaces', 'StarCounter', 'StaminaCounter', 'HighlighEventPlayers',
 		'AddSubstiutionInfo',
 		'HighlightMissing',
@@ -740,9 +740,23 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		// that one started: stop again
 		// Foxtrick.stopListenToChange(doc);
 
+		var invert = Foxtrick.Prefs.isModuleOptionEnabled(this, 'InvertSplit');
+
 		var awayDivs = doc.querySelectorAll('div.playerBoxAway');
-		for (var awayDiv of Foxtrick.toArray(awayDivs))
-			awayDiv.style.top = (parseInt(awayDiv.style.top, 10) || 0) - 240 + 'px';
+		for (var awayDiv of Foxtrick.toArray(awayDivs)) {
+			if (!invert) {
+				awayDiv.style.top = (parseInt(awayDiv.style.top, 10) || 0) - 240 + 'px';
+				continue;
+			}
+
+			if (awayDiv.parentNode.id == 'playersBenchAway') {
+				awayDiv.style.top = '-318px';
+			}
+			else {
+				awayDiv.style.left = 150 + 356 - parseInt(awayDiv.style.left, 10) + 'px';
+				awayDiv.style.top = 268 + 353 - parseInt(awayDiv.style.top, 10) + 'px';
+			}
+		}
 
 		var div = doc.createElement('div');
 		div.id = 'ft-split-arrow-div';
@@ -769,9 +783,24 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 	},
 	joinLineup: function(doc) {
 		this.hideOtherTeam(doc, true); // undo
+
+		var invert = Foxtrick.Prefs.isModuleOptionEnabled(this, 'InvertSplit');
+
 		var awayDivs = doc.querySelectorAll('div.playerBoxAway');
-		for (var awayDiv of Foxtrick.toArray(awayDivs))
-			awayDiv.style.top = parseInt(awayDiv.style.top, 10) + 240 + 'px';
+		for (var awayDiv of Foxtrick.toArray(awayDivs)) {
+			if (!invert) {
+				awayDiv.style.top = parseInt(awayDiv.style.top, 10) + 240 + 'px';
+				continue;
+			}
+
+			if (awayDiv.parentNode.id == 'playersBenchAway') {
+				awayDiv.style.top = '';
+			}
+			else {
+				awayDiv.style.left = 150 + 356 - parseInt(awayDiv.style.left, 10) + 'px';
+				awayDiv.style.top = 268 + 353 - parseInt(awayDiv.style.top, 10) + 'px';
+			}
+		}
 
 		var div = doc.getElementById('ft-split-arrow-div');
 		div.parentNode.removeChild(div);
@@ -789,16 +818,24 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		for (var showDiv of Foxtrick.toArray(showDivs))
 			Foxtrick.removeClass(showDiv, 'hidden');
 
-		var field = doc.getElementById('playersField');
-		if (undo)
-			Foxtrick.removeClass(field, 'ft-field-split');
-		else
-			Foxtrick.addClass(field, 'ft-field-split');
+		var invert = Foxtrick.Prefs.isModuleOptionEnabled(this, 'InvertSplit');
 
-		if (this.showAway && !undo)
-			Foxtrick.addClass(field, 'ft-field-away');
-		else 
+		var field = doc.getElementById('playersField');
+		if (undo) {
+			Foxtrick.removeClass(field, 'ft-field-split');
+			Foxtrick.removeClass(field, 'ft-field-split-invert');
+		}
+		else {
+			Foxtrick.addClass(field, invert ? 'ft-field-split-invert' : 'ft-field-split');
+		}
+
+		if (this.showAway && !undo) {
+			Foxtrick.addClass(field, invert ? 'ft-field-away-invert' : 'ft-field-away');
+		}
+		else {
 			Foxtrick.removeClass(field, 'ft-field-away');
+			Foxtrick.removeClass(field, 'ft-field-away-invert');
+		}
 	},
 	/**
 	 * Gather stamina data to be used for match-simulator and player table

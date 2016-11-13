@@ -238,7 +238,7 @@ div.playerDiv .sectorShirt.ft-smallFaceCard img[src^="/Img/Avatar/hair/"] {
 
 /* split lineup */
 
-.ft-field-split {
+.ft-field-split, .ft-field-split-invert {
 	min-height: 430px;
 }
 .ft-field-away {
@@ -266,6 +266,7 @@ div.playerDiv .sectorShirt.ft-smallFaceCard img[src^="/Img/Avatar/hair/"] {
 	background-position: left bottom;
 }
 
+/* REGULAR SPLIT */
 .ft-field-away #ft-split-arrow {
 	top: 20px;
 	bottom: initial;
@@ -279,6 +280,48 @@ div.playerDiv .sectorShirt.ft-smallFaceCard img[src^="/Img/Avatar/hair/"] {
 .ft-field-away .ft-match-lineup-tweaks-stamina-counter-sum-away,
 .ft-field-away .ft-match-lineup-tweaks-stars-counter-sum-away {
 	top: 116px;
+}
+.ft-field-away .ft-match-lineup-tweaks-stamina-counter-diff,
+.ft-field-away .ft-match-lineup-tweaks-stars-counter-diff {
+	top: 86px;
+}
+
+/* INVERTED SPLIT */
+.ft-field-split-invert #ft-split-arrow {
+	background: url(chrome://foxtrick/content/resources/img/matches/flip-match.png) no-repeat;
+}
+/* README: inverted values are taken from generic definition at the top */
+.ft-field-away-invert .goUp:after {
+	top: 4px;
+	background-position: -9px -27px;
+}
+.ft-field-away-invert .goDown:after {
+	top: -53px;
+	background-position: -9px 0;
+}
+.ft-field-away-invert .goRight:after {
+	left: -14px;
+	background-position: 0px -9px;
+}
+.ft-field-away-invert .goLeft:after {
+	left: 94px;
+	background-position: -27px -9px;
+}
+.ft-field-away-invert .ft-match-lineup-tweaks-teamname-home {
+	top: initial;
+	bottom: 15px;
+}
+.ft-field-away-invert .ft-match-lineup-tweaks-teamname-away {
+	top: 15px;
+	bottom: initial;
+}
+.ft-field-away-invert .ft-match-lineup-tweaks-stamina-counter-sum-home,
+.ft-field-away-invert .ft-match-lineup-tweaks-stars-counter-sum-home {
+	top: 349px;
+}
+.ft-field-away-invert .ft-match-lineup-tweaks-stamina-counter-sum-away,
+.ft-field-away-invert .ft-match-lineup-tweaks-stars-counter-sum-away {
+	top: 289px;
 }
 .ft-field-away .ft-match-lineup-tweaks-stamina-counter-diff,
 .ft-field-away .ft-match-lineup-tweaks-stars-counter-diff {
