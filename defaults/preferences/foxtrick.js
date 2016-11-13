@@ -260,6 +260,7 @@ pref("extensions.foxtrick.prefs.module.MatchLineupTweaks.DisplayTeamNameOnField.
 pref("extensions.foxtrick.prefs.module.MatchLineupTweaks.GatherStaminaData.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchLineupTweaks.HighlighEventPlayers.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchLineupTweaks.HighlightMissing.enabled", true);
+pref("extensions.foxtrick.prefs.module.MatchLineupTweaks.InvertSplit.enabled",true);
 pref("extensions.foxtrick.prefs.module.MatchLineupTweaks.ShowFaces.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchLineupTweaks.ShowSpecialties.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchLineupTweaks.SplitLineup.enabled", true);
