@@ -24,6 +24,8 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 	],
 	CSS: Foxtrick.InternalPath + 'resources/css/match-lineup-tweaks.css',
 	run: function(doc) {
+		this.showAway = false; // FIXME: remove when FF back-end is changed
+
 		// run change now as sometimes we are too slow to init the listener
 		// causing display to be broken on first load
 		this.registerListener(doc);
