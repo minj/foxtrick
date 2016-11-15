@@ -486,11 +486,11 @@
 			"code": "pl",
 			"name": "Polish",
 			"phrases": "2287",
-			"translated": "2203",
-			"translated_progress": "92",
+			"translated": "2241",
+			"translated_progress": "93",
 			"words": "16718",
 			"words_approved": "0",
-			"words_translated": "15522"
+			"words_translated": "15685"
 		},
 		{
 			"approved": "0",
@@ -582,11 +582,11 @@
 			"code": "es-ES",
 			"name": "Spanish",
 			"phrases": "2287",
-			"translated": "2282",
-			"translated_progress": "99",
+			"translated": "2287",
+			"translated_progress": "100",
 			"words": "16718",
 			"words_approved": "1",
-			"words_translated": "16698"
+			"words_translated": "16718"
 		},
 		{
 			"approved": "0",
