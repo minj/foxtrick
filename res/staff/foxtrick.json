@@ -192,7 +192,7 @@
 		{
 			"duty": "translator",
 			"id": "11528071",
-			"name": "HPE-Flatron330"
+			"name": "HPE-Flatron"
 		},
 		{
 			"duty": "translator",
@@ -1138,6 +1138,11 @@
 			"duty": "supporter",
 			"id": "8131534",
 			"name": "necrospettro"
+		},
+		{
+			"duty": "supporter",
+			"id": "8190906",
+			"name": "DxHT-pawpol"
 		},
 		{
 			"duty": "supporter",
