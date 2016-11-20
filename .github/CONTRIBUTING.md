@@ -14,7 +14,7 @@ We are using a modified [github flow](https://guides.github.com/introduction/flo
 More information about developing foxtrick can be found in [HACKING.md](../HACKING.md) and [DevGuide.md](../maintainer/DevGuide.md).
 
 ## Repo structure
-Repository contains these branches: `master` (beta builds), a stable release branch (e.g. `r0.17.0`), `rls-notes`, `l10n` (continuous crowdin integration), `cnd` (continuous `res/` integration), build` (server-side scripts).
+Repository contains these branches: `master` (beta builds), a stable release branch (e.g. `r0.17.0`), `rls-notes`, `l10n` (continuous crowdin integration), `cdn` (continuous `res/` integration) and `build` (server-side scripts).
 
 When major releases are made, they are tagged with an annotated release tag, e.g. `0.17.0`. These should be accessible by both `master` and `r0.17.0` branches.
 
