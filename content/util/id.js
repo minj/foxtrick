@@ -268,6 +268,7 @@ Foxtrick.util.id.romantodecimal = function(roman) {
 		case ('VIII'): return 8;
 		case ('IX'): return 9;
 		case ('X'): return 10;
+		case ('XI'): return 11;
 		default: return null;
 	}
 };
