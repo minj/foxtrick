@@ -17,7 +17,6 @@ Foxtrick.modules['HistoryStats'] = {
 		var teamId = Foxtrick.Pages.All.getTeamId(doc);
 		this.Buffer[teamId] = [];
 		this.Pages[teamId] = [];
-		this.Offset[teamId] = 0;
 		this._fetch(doc);
 		this._paste(doc);
 	},
@@ -29,6 +28,59 @@ Foxtrick.modules['HistoryStats'] = {
 
 	_fetch: function(doc) {
 		var module = this;
+
+		var isLgHist = function(a) {
+			return /LeagueLevelUnitID/i.test(a.href) &&
+				/RequestedSeason/i.test(a.href);
+		};
+		var isCupHist = function(a) {
+			return /actiontype=viewcup/i.test(a.href);
+		};
+		var isWinnerAny = function(a) {
+			return /Club\/Manager\/\?userId/i.test(a.href);
+		};
+		var removeEl = function(a) {
+			a.parentNode.removeChild(a);
+		};
+
+		var hasSeasonOffset = function(teamId) {
+			return Foxtrick.hasProp(module.Offset, teamId);
+		};
+
+		var gotSeasonOffset = function(log, teamId) {
+			var feeds = log.getElementsByClassName('feedItem');
+			return Foxtrick.any(function(feed) {
+				var dateSpan = feed.querySelector('.date');
+				if (!dateSpan)
+					return false;
+
+				var date = Foxtrick.util.time.getDateFromText(dateSpan.textContent);
+				var season = Foxtrick.util.time.gregorianToHT(date).season;
+
+				var clone = feed.querySelector('.otherEventText').cloneNode(true);
+				var links = clone.querySelectorAll('a');
+
+				var cupLink = Foxtrick.nth(isCupHist, links);
+				if (cupLink) {
+					var cupSeason = cupLink.textContent;
+					module.Offset[teamId] = parseInt(season, 10) - parseInt(cupSeason, 10);
+					return true;
+				}
+				else if (Foxtrick.any(isLgHist, links)) {
+					Foxtrick.forEach(removeEl, links);
+					// README: match 2 digits only to guard against position number
+					var seriesSeason = clone.textContent.match(/\b\d\d\b/);
+					if (seriesSeason) {
+						module.Offset[teamId] = parseInt(season, 10) - parseInt(seriesSeason, 10);
+						return true;
+					}
+				}
+
+				return false;
+
+			}, feeds);
+		};
+
 		try {
 			var teamId = Foxtrick.Pages.All.getTeamId(doc);
 			// try to get current page number
@@ -44,37 +96,10 @@ Foxtrick.modules['HistoryStats'] = {
 				this.Pages[teamId].push(page);
 				var log = Foxtrick.getMBElement(doc, 'ucOtherEvents_ctl00');
 				// get season offset
-				var feeds = log.getElementsByClassName('feedItem');
-				var found = Foxtrick.any(function(feed) {
-					var a = feed.querySelector('a[href$="viewcup"]');
-					if (!a)
-						return false;
-					var check_season = a.textContent;
-					var dateSpan = feed.querySelector('.date');
-					if (dateSpan) {
-						var date = Foxtrick.util.time.getDateFromText(dateSpan.textContent);
-						var season = Foxtrick.util.time.gregorianToHT(date).season;
-						module.Offset[teamId] = parseInt(season, 10) - parseInt(check_season, 10);
-						return true;
-					}
-					return false;
-				}, feeds);
-				if (!found)
-					return;
-
-				var isLgHist = function(a) {
-					return /LeagueLevelUnitID/i.test(a.href) &&
-						/RequestedSeason/i.test(a.href);
-				};
-				var isCupHist = function(a) {
-					return /actiontype=viewcup/i.test(a.href);
-				};
-				var isWinnerAny = function(a) {
-					return /Club\/Manager\/\?userId/i.test(a.href);
-				};
-				var removeEl = function(a) {
-					a.parentNode.removeChild(a);
-				};
+				if (!hasSeasonOffset(teamId)) {
+					if (!gotSeasonOffset(log, teamId))
+						return;
+				}
 
 				var table = log.cloneNode(true).getElementsByClassName('otherEventText');
 				for (var i = 0; i < table.length; i++) {
