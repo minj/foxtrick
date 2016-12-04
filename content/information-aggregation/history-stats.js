@@ -137,7 +137,7 @@ Foxtrick.modules['HistoryStats'] = {
 						}
 						if (isCupHist(as[j])) {
 							Foxtrick.forEach(removeEl, table[i].getElementsByTagName('a'));
-							cup = table[i].textContent.match(/\d{1,2}/);
+							cup = table[i].textContent.match(/\b\d{1,2}\b/);
 							if (!cup)
 								cup = '!';
 						}
@@ -149,10 +149,12 @@ Foxtrick.modules['HistoryStats'] = {
 							// double entry for winning league skipped
 							continue;
 
+						var lSeason = season - this.Offset[teamId];
+						var lSeasonRe = new RegExp('\\b' + lSeason + '\\b');
 						Foxtrick.forEach(removeEl, table[i].getElementsByTagName('a'));
-						table[i].textContent =
-							table[i].textContent.replace(season - this.Offset[teamId], '').trim();
-						var pos = table[i].textContent.match(/\d{1}/);
+						table[i].textContent = table[i].textContent.replace(lSeasonRe, '').trim();
+
+						var pos = table[i].textContent.match(/\b\d{1}\b/);
 						buff += season + '|' + league + '|' + pos + '|' + leagueN;
 					}
 					else if (cup != -1) {
