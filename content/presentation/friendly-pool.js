@@ -22,7 +22,10 @@ Foxtrick.modules['FriendlyPool'] = {
 
 		var ownTeamId = Foxtrick.util.id.getOwnTeamId();
 		var ownLeagueId = Foxtrick.util.id.getOwnLeagueId();
+
+		// README: 0 for HTI
 		var ownCountryId = Foxtrick.XMLData.getCountryIdByLeagueId(ownLeagueId);
+
 		var parameters = [
 			['file', 'teamdetails'],
 			['version', '2.6'],

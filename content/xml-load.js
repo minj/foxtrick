@@ -28,7 +28,8 @@ Foxtrick.XMLData = {
 		var leagueList = module.worldDetailsJSON.HattrickData.LeagueList;
 		Foxtrick.forEach(function(league) {
 			module.League[league.LeagueID] = league;
-			module.countryToLeague[league.Country.CountryID] = league.LeagueID;
+			if (league.Country.CountryID)
+				module.countryToLeague[league.Country.CountryID] = league.LeagueID;
 		}, leagueList);
 	},
 
@@ -56,7 +57,7 @@ Foxtrick.XMLData = {
 	getCountryIdByLeagueId: function(id) {
 		var league = this.League[id];
 		if (league) {
-			return league.Country.CountryID;
+			return league.Country.CountryID || 0;
 		}
 		else {
 			return 0;
