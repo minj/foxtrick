@@ -36,25 +36,33 @@ cd ~/trunk/maintainer
 ```
 
 ### World
-Save `https://www.hattrick.org/goto.ashx?path=/Community/CHPP/NewDocs/Example.aspx?file=worlddetails%26version=1.5` as `~/trunk/content/data/worlddetails.xml`
+Save `https://www.hattrick.org/goto.ashx?path=/Community/CHPP/NewDocs/Example.aspx?file=worlddetails%26version=1.8` as `~/cdn/content/data/worlddetails.xml`
 ```sh
-cd ~/trunk
-python maintainer/locale/XMLToJSON.py content/data/worlddetails.xml
+#xclip -selection clipboard -o > ~/cdn/content/data/worlddetails.xml
+#scp worlddetails.xml server:cdn/content/data/worlddetails.xml
+cd ~/cdn
+python ~/trunk/maintainer/locale/XMLToJSON.py content/data/worlddetails.xml
 git diff content/data/worlddetails.json | grep -P '^[-+]\t' | grep -Pv \
     'FetchedDate|ActiveTeams|ActiveUsers|CupMatchDate|EconomyDate|LeagueName|MatchRound|NumberOfLevels|Season|SeriesMatchDate|TrainingDate|WaitingUsers'
-rm content/data/worlddetails.xml
-python ~/trunk/maintainer/locale/updateCurrencies.py
+rm ~/cdn/content/data/worlddetails.xml
+python ~/trunk/maintainer/locale/updateCurrencies.py ~/cdn/content/data/worlddetails.json
 ```
 
 ### Staff
 Change files in `cdn` branch with:
 - `~/build/foxtrick-cron-supporters.sh`
 - `~/trunk/maintainer/locale/updateCoaches.py`
+- `cp ~/trunk/res/staff/{u20,nt}.json res/staff/`
+- `git ci -am updateCoaches.py`
 - `~/trunk/maintainer/userjs/ht.htp-editor-crawler.user.js`
 - `~/trunk/maintainer/userjs/ht.chpp-holder-crawler.user.js`
 
 ### L10n
-- `~/trunk/maintainer/locale/getTranslations.py`
+- `cd ~/trunk`
+- `git checkout master`
+- `python ~/trunk/maintainer/locale/getTranslations.py`
+- `git checkout --merge l10n`
+- `git commit -am 'htlang.json update'`
 - `~/build/foxtrick-cron-crowdin.sh`
 - Compare [Crowdin statistics](https://crowdin.com/project/foxtrick/settings#reports-custom) for words translated from `last update` until `NOW()` with from `2012-01-12` to `NOW()`. Update `~/trunk/content/data/foxtrick_about.json` and `~/trunk/res/staff/foxtrick.json` accordingly.
 
