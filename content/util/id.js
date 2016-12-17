@@ -289,6 +289,9 @@ Foxtrick.util.id.findLeagueLeveUnitId = function(element) {
  * Returns a flag as a link element
  * link href and img title may optionally override defaults:
  * league link and league name respectively
+ *
+ * README: DO NOT use if leagueId is available
+ *
  * @param	{document}	doc
  * @param	{Integer}	countryId
  * @param	{String}	href		optional

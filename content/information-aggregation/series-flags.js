@@ -28,8 +28,7 @@ Foxtrick.modules['SeriesFlags'] = {
 						Foxtrick.createFeaturedElement(doc, Foxtrick.modules.SeriesFlags, 'span');
 					if (data['leagueId'] != 0) {
 						flag.className = 'ft-series-flag';
-						var countryId = Foxtrick.XMLData.getCountryIdByLeagueId(data['leagueId']);
-						var country = Foxtrick.util.id.createFlagFromCountryId(doc, countryId);
+						var country = Foxtrick.util.id.createFlagFromLeagueId(doc, data.leagueId);
 						flag.appendChild(country);
 						if (!Foxtrick.Prefs.isModuleOptionEnabled('SeriesFlags', 'CountryOnly') &&
 						    data['seriesId'] !== 0) {
