@@ -1,6 +1,6 @@
 {
 	"HattrickData": {
-		"FetchedDate": "2016-12-17 15:37:18",
+		"FetchedDate": "2016-12-17 15:38:31",
 		"FileName": "worlddetails.xml",
 		"LeagueList": [
 			{
@@ -10886,9 +10886,80 @@
 				"U20TeamId": "3259",
 				"WaitingUsers": "0",
 				"ZoneName": "Asia,  Africa and Oceania"
+			},
+			{
+				"ActiveTeams": "0",
+				"ActiveUsers": "0",
+				"Continent": "World",
+				"Country": {
+					"Available": "False"
+				},
+				"CupMatchDate": "2016-11-16 16:15:00",
+				"Cups": [
+					{
+						"CupID": "1433",
+						"CupLeagueLevel": "0",
+						"CupLevel": "1",
+						"CupLevelIndex": "1",
+						"CupName": "Hattrick International Cup",
+						"MatchRound": "0",
+						"MatchRoundsLeft": "0"
+					},
+					{
+						"CupID": "1434",
+						"CupLeagueLevel": "0",
+						"CupLevel": "2",
+						"CupLevelIndex": "1",
+						"CupName": "Hattrick International Emerald Challenger Cup",
+						"MatchRound": "0",
+						"MatchRoundsLeft": "0"
+					},
+					{
+						"CupID": "1435",
+						"CupLeagueLevel": "0",
+						"CupLevel": "2",
+						"CupLevelIndex": "2",
+						"CupName": "Hattrick International Ruby Challenger Cup",
+						"MatchRound": "0",
+						"MatchRoundsLeft": "0"
+					},
+					{
+						"CupID": "1436",
+						"CupLeagueLevel": "0",
+						"CupLevel": "2",
+						"CupLevelIndex": "3",
+						"CupName": "Hattrick International Sapphire Challenger Cup",
+						"MatchRound": "0",
+						"MatchRoundsLeft": "0"
+					},
+					{
+						"CupID": "1437",
+						"CupLeagueLevel": "0",
+						"CupLevel": "3",
+						"CupLevelIndex": "1",
+						"CupName": "Hattrick International Consolation Cup",
+						"MatchRound": "0",
+						"MatchRoundsLeft": "0"
+					}
+				],
+				"EconomyDate": "2017-01-13 13:00:00",
+				"EnglishName": "Hattrick International",
+				"LeagueID": "1000",
+				"LeagueName": "Hattrick International",
+				"MatchRound": "5",
+				"NationalTeamId": "0",
+				"NumberOfLevels": "5",
+				"Season": "0",
+				"SeasonOffset": "-63",
+				"SeriesMatchDate": "2017-01-13 18:15:00",
+				"ShortName": "International",
+				"TrainingDate": "2017-01-12 10:15:00",
+				"U20TeamId": "0",
+				"WaitingUsers": "0",
+				"ZoneName": "World"
 			}
 		],
 		"UserID": "8366392",
-		"Version": "1.7"
+		"Version": "1.8"
 	}
 }
