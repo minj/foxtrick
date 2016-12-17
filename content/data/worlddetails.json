@@ -1,6 +1,6 @@
 {
 	"HattrickData": {
-		"FetchedDate": "2016-12-17 15:34:35",
+		"FetchedDate": "2016-12-17 15:37:18",
 		"FileName": "worlddetails.xml",
 		"LeagueList": [
 			{
@@ -9,6 +9,7 @@
 				"Continent": "Europe",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "SE",
 					"CountryID": "1",
 					"CountryName": "Sverige",
 					"CurrencyName": "kr",
@@ -131,6 +132,7 @@
 				"Continent": "Europe",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "GB",
 					"CountryID": "2",
 					"CountryName": "England",
 					"CurrencyName": "£",
@@ -208,6 +210,7 @@
 				"Continent": "Europe",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "DE",
 					"CountryID": "3",
 					"CountryName": "Deutschland",
 					"CurrencyName": "€",
@@ -375,6 +378,7 @@
 				"Continent": "Europe",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "IT",
 					"CountryID": "4",
 					"CountryName": "Italia",
 					"CurrencyName": "€",
@@ -587,6 +591,7 @@
 				"Continent": "Europe",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "FR",
 					"CountryID": "5",
 					"CountryName": "France",
 					"CurrencyName": "€",
@@ -754,6 +759,7 @@
 				"Continent": "North America",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "MX",
 					"CountryID": "6",
 					"CountryName": "México",
 					"CurrencyName": "Pesos",
@@ -831,6 +837,7 @@
 				"Continent": "South America",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "AR",
 					"CountryID": "7",
 					"CountryName": "Argentina",
 					"CurrencyName": "Pesos",
@@ -953,6 +960,7 @@
 				"Continent": "North America",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "US",
 					"CountryID": "8",
 					"CountryName": "USA",
 					"CurrencyName": "US$",
@@ -1030,6 +1038,7 @@
 				"Continent": "Europe",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "NO",
 					"CountryID": "9",
 					"CountryName": "Norge",
 					"CurrencyName": "Kroner",
@@ -1107,6 +1116,7 @@
 				"Continent": "Europe",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "DK",
 					"CountryID": "10",
 					"CountryName": "Danmark",
 					"CurrencyName": "Kroner",
@@ -1184,6 +1194,7 @@
 				"Continent": "Europe",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "FI",
 					"CountryID": "11",
 					"CountryName": "Suomi",
 					"CurrencyName": "€",
@@ -1306,6 +1317,7 @@
 				"Continent": "Europe",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "NL",
 					"CountryID": "12",
 					"CountryName": "Nederland",
 					"CurrencyName": "€",
@@ -1428,6 +1440,7 @@
 				"Continent": "Oceania",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "AU",
 					"CountryID": "13",
 					"CountryName": "Oceania",
 					"CurrencyName": "AU$",
@@ -1505,6 +1518,7 @@
 				"Continent": "South America",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "BR",
 					"CountryID": "22",
 					"CountryName": "Brasil",
 					"CurrencyName": "reais",
@@ -1582,6 +1596,7 @@
 				"Continent": "North America",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "CA",
 					"CountryID": "14",
 					"CountryName": "Canada",
 					"CurrencyName": "C$",
@@ -1659,6 +1674,7 @@
 				"Continent": "South America",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "CL",
 					"CountryID": "17",
 					"CountryName": "Chile",
 					"CurrencyName": "Pesos",
@@ -1736,6 +1752,7 @@
 				"Continent": "South America",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "CO",
 					"CountryID": "18",
 					"CountryName": "Colombia",
 					"CurrencyName": "US$",
@@ -1813,6 +1830,7 @@
 				"Continent": "Asia",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "IN",
 					"CountryID": "27",
 					"CountryName": "India",
 					"CurrencyName": "Rupees",
@@ -1890,6 +1908,7 @@
 				"Continent": "Europe",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "IE",
 					"CountryID": "16",
 					"CountryName": "Ireland",
 					"CurrencyName": "€",
@@ -1967,6 +1986,7 @@
 				"Continent": "Asia",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "JP",
 					"CountryID": "25",
 					"CountryName": "Nippon",
 					"CurrencyName": "Yen",
@@ -2044,6 +2064,7 @@
 				"Continent": "South America",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "PE",
 					"CountryID": "21",
 					"CountryName": "Perú",
 					"CurrencyName": "US$",
@@ -2121,6 +2142,7 @@
 				"Continent": "Europe",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "PL",
 					"CountryID": "26",
 					"CountryName": "Polska",
 					"CurrencyName": "zł",
@@ -2288,6 +2310,7 @@
 				"Continent": "Europe",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "PT",
 					"CountryID": "23",
 					"CountryName": "Portugal",
 					"CurrencyName": "€",
@@ -2410,6 +2433,7 @@
 				"Continent": "Europe",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "GB",
 					"CountryID": "15",
 					"CountryName": "Scotland",
 					"CurrencyName": "£",
@@ -2487,6 +2511,7 @@
 				"Continent": "Africa",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "ZA",
 					"CountryID": "24",
 					"CountryName": "South Africa",
 					"CurrencyName": "Rand",
@@ -2564,6 +2589,7 @@
 				"Continent": "South America",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "UY",
 					"CountryID": "19",
 					"CountryName": "Uruguay",
 					"CurrencyName": "Pesos",
@@ -2641,6 +2667,7 @@
 				"Continent": "South America",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "VE",
 					"CountryID": "20",
 					"CountryName": "Venezuela",
 					"CurrencyName": "Bs",
@@ -2718,6 +2745,7 @@
 				"Continent": "Asia",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "KR",
 					"CountryID": "29",
 					"CountryName": "Hanguk",
 					"CurrencyName": "Won",
@@ -2795,6 +2823,7 @@
 				"Continent": "Asia",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "TH",
 					"CountryID": "30",
 					"CountryName": "Prathet Thai",
 					"CurrencyName": "Baht",
@@ -2872,6 +2901,7 @@
 				"Continent": "Europe",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "TR",
 					"CountryID": "31",
 					"CountryName": "Türkiye",
 					"CurrencyName": "TL",
@@ -2949,6 +2979,7 @@
 				"Continent": "Africa",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "EG",
 					"CountryID": "32",
 					"CountryName": "Misr",
 					"CurrencyName": "E£",
@@ -3026,6 +3057,7 @@
 				"Continent": "Asia",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "CN",
 					"CountryID": "28",
 					"CountryName": "China",
 					"CurrencyName": "Yuan",
@@ -3103,6 +3135,7 @@
 				"Continent": "Europe",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "RU",
 					"CountryID": "34",
 					"CountryName": "Rossiya",
 					"CurrencyName": "Roubel",
@@ -3180,6 +3213,7 @@
 				"Continent": "Europe",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "ES",
 					"CountryID": "35",
 					"CountryName": "España",
 					"CurrencyName": "€",
@@ -3347,6 +3381,7 @@
 				"Continent": "Europe",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "RO",
 					"CountryID": "36",
 					"CountryName": "România",
 					"CurrencyName": "Lei",
@@ -3469,6 +3504,7 @@
 				"Continent": "Europe",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "IS",
 					"CountryID": "37",
 					"CountryName": "Ísland",
 					"CurrencyName": "Ikr",
@@ -3546,6 +3582,7 @@
 				"Continent": "Europe",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "AT",
 					"CountryID": "33",
 					"CountryName": "Österreich",
 					"CurrencyName": "€",
@@ -3623,6 +3660,7 @@
 				"Continent": "Europe",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "BE",
 					"CountryID": "38",
 					"CountryName": "Belgium",
 					"CurrencyName": "€",
@@ -3745,6 +3783,7 @@
 				"Continent": "Asia",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "MY",
 					"CountryID": "39",
 					"CountryName": "Malaysia",
 					"CurrencyName": "MYR",
@@ -3822,6 +3861,7 @@
 				"Continent": "Europe",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "CH",
 					"CountryID": "40",
 					"CountryName": "Schweiz",
 					"CurrencyName": "CHF",
@@ -3989,6 +4029,7 @@
 				"Continent": "Asia",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "SG",
 					"CountryID": "41",
 					"CountryName": "Singapore",
 					"CurrencyName": "SG$",
@@ -4066,6 +4107,7 @@
 				"Continent": "Europe",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "GR",
 					"CountryID": "45",
 					"CountryName": "Hellas",
 					"CurrencyName": "€",
@@ -4143,6 +4185,7 @@
 				"Continent": "Europe",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "HU",
 					"CountryID": "44",
 					"CountryName": "Magyarország",
 					"CurrencyName": "eFt",
@@ -4220,6 +4263,7 @@
 				"Continent": "Europe",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "CZ",
 					"CountryID": "46",
 					"CountryName": "Česká republika",
 					"CurrencyName": "Kč",
@@ -4297,6 +4341,7 @@
 				"Continent": "Europe",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "LV",
 					"CountryID": "48",
 					"CountryName": "Latvija",
 					"CurrencyName": "€",
@@ -4374,6 +4419,7 @@
 				"Continent": "Asia",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "ID",
 					"CountryID": "49",
 					"CountryName": "Indonesia",
 					"CurrencyName": "Rp",
@@ -4451,6 +4497,7 @@
 				"Continent": "Asia",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "PH",
 					"CountryID": "50",
 					"CountryName": "Pilipinas",
 					"CurrencyName": "Pesos",
@@ -4528,6 +4575,7 @@
 				"Continent": "Europe",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "EE",
 					"CountryID": "47",
 					"CountryName": "Eesti",
 					"CurrencyName": "€",
@@ -4605,6 +4653,7 @@
 				"Continent": "Europe",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "RS",
 					"CountryID": "43",
 					"CountryName": "Srbija",
 					"CurrencyName": "dinar",
@@ -4682,6 +4731,7 @@
 				"Continent": "Europe",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "HR",
 					"CountryID": "42",
 					"CountryName": "Hrvatska",
 					"CurrencyName": "kuna",
@@ -4759,6 +4809,7 @@
 				"Continent": "Asia",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "HK",
 					"CountryID": "53",
 					"CountryName": "Hong Kong SAR",
 					"CurrencyName": "HKD",
@@ -4836,6 +4887,7 @@
 				"Continent": "Asia",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "TW",
 					"CountryID": "52",
 					"CountryName": "Chinese Taipei",
 					"CurrencyName": "$",
@@ -4913,6 +4965,7 @@
 				"Continent": "Europe",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "GB",
 					"CountryID": "56",
 					"CountryName": "Cymru",
 					"CurrencyName": "£",
@@ -4990,6 +5043,7 @@
 				"Continent": "Europe",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "BG",
 					"CountryID": "55",
 					"CountryName": "Bulgaria",
 					"CurrencyName": "lv",
@@ -5067,6 +5121,7 @@
 				"Continent": "Asia",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "IL",
 					"CountryID": "51",
 					"CountryName": "Israel",
 					"CurrencyName": "NIS",
@@ -5144,6 +5199,7 @@
 				"Continent": "Europe",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "SI",
 					"CountryID": "57",
 					"CountryName": "Slovenija",
 					"CurrencyName": "€",
@@ -5221,6 +5277,7 @@
 				"Continent": "Europe",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "LT",
 					"CountryID": "61",
 					"CountryName": "Lietuva",
 					"CurrencyName": "€",
@@ -5298,6 +5355,7 @@
 				"Continent": "Europe",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "SK",
 					"CountryID": "66",
 					"CountryName": "Slovensko",
 					"CurrencyName": "€",
@@ -5375,6 +5433,7 @@
 				"Continent": "Europe",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "UA",
 					"CountryID": "62",
 					"CountryName": "Ukraina",
 					"CurrencyName": "hryvnia",
@@ -5452,6 +5511,7 @@
 				"Continent": "Europe",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "BA",
 					"CountryID": "63",
 					"CountryName": "Bosna i Hercegovina",
 					"CurrencyName": "KM",
@@ -5529,6 +5589,7 @@
 				"Continent": "Asia",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "VN",
 					"CountryID": "65",
 					"CountryName": "Việt Nam",
 					"CurrencyName": "đồng",
@@ -5606,6 +5667,7 @@
 				"Continent": "Asia",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "PK",
 					"CountryID": "64",
 					"CountryName": "Pakistan",
 					"CurrencyName": "rupee",
@@ -5683,6 +5745,7 @@
 				"Continent": "South America",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "PY",
 					"CountryID": "67",
 					"CountryName": "Paraguay",
 					"CurrencyName": "PYG",
@@ -5760,6 +5823,7 @@
 				"Continent": "South America",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "EC",
 					"CountryID": "68",
 					"CountryName": "Ecuador",
 					"CurrencyName": "$",
@@ -5837,6 +5901,7 @@
 				"Continent": "South America",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "BO",
 					"CountryID": "69",
 					"CountryName": "Bolivia",
 					"CurrencyName": "Bs",
@@ -5914,6 +5979,7 @@
 				"Continent": "Africa",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "NG",
 					"CountryID": "70",
 					"CountryName": "Nigeria",
 					"CurrencyName": "kNaira",
@@ -5991,6 +6057,7 @@
 				"Continent": "Europe",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "FO",
 					"CountryID": "71",
 					"CountryName": "Føroyar",
 					"CurrencyName": "Kroner",
@@ -6068,6 +6135,7 @@
 				"Continent": "Africa",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "MO",
 					"CountryID": "72",
 					"CountryName": "Al Maghrib",
 					"CurrencyName": "dirhams",
@@ -6145,6 +6213,7 @@
 				"Continent": "Asia",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "SA",
 					"CountryID": "75",
 					"CountryName": "Saudi Arabia",
 					"CurrencyName": "SAR",
@@ -6222,6 +6291,7 @@
 				"Continent": "Africa",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "TN",
 					"CountryID": "76",
 					"CountryName": "Tounes",
 					"CurrencyName": "Dinars",
@@ -6299,6 +6369,7 @@
 				"Continent": "North America",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "CR",
 					"CountryID": "77",
 					"CountryName": "Costa Rica",
 					"CurrencyName": "Colones",
@@ -6376,6 +6447,7 @@
 				"Continent": "Asia",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "AE",
 					"CountryID": "78",
 					"CountryName": "United Arab Emirates",
 					"CurrencyName": "Dirham",
@@ -6453,6 +6525,7 @@
 				"Continent": "Europe",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "LU",
 					"CountryID": "79",
 					"CountryName": "Lëtzebuerg",
 					"CurrencyName": "€",
@@ -6530,6 +6603,7 @@
 				"Continent": "Asia",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "IR",
 					"CountryID": "80",
 					"CountryName": "Iran",
 					"CurrencyName": "Rial",
@@ -6607,6 +6681,7 @@
 				"Continent": "North America",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "DO",
 					"CountryID": "83",
 					"CountryName": "República Dominicana",
 					"CurrencyName": "pesos",
@@ -6684,6 +6759,7 @@
 				"Continent": "Europe",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "CY",
 					"CountryID": "82",
 					"CountryName": "Cyprus",
 					"CurrencyName": "€",
@@ -6761,6 +6837,7 @@
 				"Continent": "Europe",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "BY",
 					"CountryID": "87",
 					"CountryName": "Belarus",
 					"CurrencyName": "BYN",
@@ -6838,6 +6915,7 @@
 				"Continent": "Europe",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "GB",
 					"CountryID": "88",
 					"CountryName": "Northern Ireland",
 					"CurrencyName": "£",
@@ -6915,6 +6993,7 @@
 				"Continent": "North America",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "JM",
 					"CountryID": "89",
 					"CountryName": "Jamaica",
 					"CurrencyName": "JMD",
@@ -6992,6 +7071,7 @@
 				"Continent": "Africa",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "KE",
 					"CountryID": "90",
 					"CountryName": "Kenya",
 					"CurrencyName": "KES",
@@ -7069,6 +7149,7 @@
 				"Continent": "North America",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "PA",
 					"CountryID": "91",
 					"CountryName": "Panamá",
 					"CurrencyName": "฿",
@@ -7146,6 +7227,7 @@
 				"Continent": "Europe",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "MK",
 					"CountryID": "92",
 					"CountryName": "Makedonija",
 					"CurrencyName": "MKD",
@@ -7223,6 +7305,7 @@
 				"Continent": "Europe",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "AL",
 					"CountryID": "94",
 					"CountryName": "Shqipëria",
 					"CurrencyName": "lek",
@@ -7300,6 +7383,7 @@
 				"Continent": "North America",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "HN",
 					"CountryID": "95",
 					"CountryName": "Honduras",
 					"CurrencyName": "HNL",
@@ -7377,6 +7461,7 @@
 				"Continent": "North America",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "SV",
 					"CountryID": "96",
 					"CountryName": "El Salvador",
 					"CurrencyName": "US$",
@@ -7454,6 +7539,7 @@
 				"Continent": "Europe",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "MT",
 					"CountryID": "97",
 					"CountryName": "Malta",
 					"CurrencyName": "€",
@@ -7531,6 +7617,7 @@
 				"Continent": "Asia",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "KG",
 					"CountryID": "98",
 					"CountryName": "Kyrgyzstan",
 					"CurrencyName": "som",
@@ -7608,6 +7695,7 @@
 				"Continent": "Europe",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "MD",
 					"CountryID": "99",
 					"CountryName": "Moldova",
 					"CurrencyName": "lei",
@@ -7685,6 +7773,7 @@
 				"Continent": "Asia",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "GE",
 					"CountryID": "100",
 					"CountryName": "Sakartvelo",
 					"CurrencyName": "Lari",
@@ -7762,6 +7851,7 @@
 				"Continent": "Europe",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "AD",
 					"CountryID": "101",
 					"CountryName": "Andorra",
 					"CurrencyName": "€",
@@ -7839,6 +7929,7 @@
 				"Continent": "Asia",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "JO",
 					"CountryID": "103",
 					"CountryName": "Al Urdun",
 					"CurrencyName": "JOD",
@@ -7916,6 +8007,7 @@
 				"Continent": "North America",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "GT",
 					"CountryID": "102",
 					"CountryName": "Guatemala",
 					"CurrencyName": "Q",
@@ -7993,6 +8085,7 @@
 				"Continent": "North America",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "TT",
 					"CountryID": "105",
 					"CountryName": "Trinidad & Tobago",
 					"CurrencyName": "TTD",
@@ -8070,6 +8163,7 @@
 				"Continent": "North America",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "NI",
 					"CountryID": "121",
 					"CountryName": "Nicaragua",
 					"CurrencyName": "NIO",
@@ -8147,6 +8241,7 @@
 				"Continent": "Asia",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "KZ",
 					"CountryID": "122",
 					"CountryName": "Kazakhstan",
 					"CurrencyName": "tenge",
@@ -8224,6 +8319,7 @@
 				"Continent": "South America",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "SR",
 					"CountryID": "123",
 					"CountryName": "Suriname",
 					"CurrencyName": "SRD",
@@ -8301,6 +8397,7 @@
 				"Continent": "Europe",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "LI",
 					"CountryID": "125",
 					"CountryName": "Liechtenstein",
 					"CurrencyName": "CHF",
@@ -8378,6 +8475,7 @@
 				"Continent": "Africa",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "DZ",
 					"CountryID": "126",
 					"CountryName": "Algérie",
 					"CurrencyName": "DZD",
@@ -8455,6 +8553,7 @@
 				"Continent": "Asia",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "MN",
 					"CountryID": "127",
 					"CountryName": "Mongol Uls",
 					"CurrencyName": "tugrik",
@@ -8532,6 +8631,7 @@
 				"Continent": "Asia",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "LB",
 					"CountryID": "128",
 					"CountryName": "Lebanon",
 					"CurrencyName": "LBP",
@@ -8609,6 +8709,7 @@
 				"Continent": "Africa",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "SN",
 					"CountryID": "86",
 					"CountryName": "Sénégal",
 					"CurrencyName": "XOF",
@@ -8686,6 +8787,7 @@
 				"Continent": "Asia",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "AM",
 					"CountryID": "104",
 					"CountryName": "Armenia",
 					"CurrencyName": "dram",
@@ -8763,6 +8865,7 @@
 				"Continent": "Asia",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "BH",
 					"CountryID": "129",
 					"CountryName": "Bahrain",
 					"CurrencyName": "BHD",
@@ -8840,6 +8943,7 @@
 				"Continent": "North America",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "BB",
 					"CountryID": "130",
 					"CountryName": "Barbados",
 					"CurrencyName": "BBD",
@@ -8917,6 +9021,7 @@
 				"Continent": "Africa",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "CV",
 					"CountryID": "131",
 					"CountryName": "Cabo Verde",
 					"CurrencyName": "Esc.",
@@ -8994,6 +9099,7 @@
 				"Continent": "Africa",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "CI",
 					"CountryID": "132",
 					"CountryName": "Côte d’Ivoire",
 					"CurrencyName": "XOF",
@@ -9071,6 +9177,7 @@
 				"Continent": "Asia",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "KW",
 					"CountryID": "134",
 					"CountryName": "Al Kuwayt",
 					"CurrencyName": "dinar",
@@ -9148,6 +9255,7 @@
 				"Continent": "Asia",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "IQ",
 					"CountryID": "135",
 					"CountryName": "Al Iraq",
 					"CurrencyName": "dinar",
@@ -9225,6 +9333,7 @@
 				"Continent": "Asia",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "AZ",
 					"CountryID": "133",
 					"CountryName": "Azərbaycan",
 					"CurrencyName": "AZN",
@@ -9302,6 +9411,7 @@
 				"Continent": "Africa",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "AO",
 					"CountryID": "137",
 					"CountryName": "Angola",
 					"CurrencyName": "kwanza",
@@ -9379,6 +9489,7 @@
 				"Continent": "Europe",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "ME",
 					"CountryID": "136",
 					"CountryName": "Crna Gora",
 					"CurrencyName": "€",
@@ -9456,6 +9567,7 @@
 				"Continent": "Asia",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "BD",
 					"CountryID": "138",
 					"CountryName": "Bangladesh",
 					"CurrencyName": "taka",
@@ -9533,6 +9645,7 @@
 				"Continent": "Asia",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "YE",
 					"CountryID": "139",
 					"CountryName": "Al Yaman",
 					"CurrencyName": "rial",
@@ -9610,6 +9723,7 @@
 				"Continent": "Asia",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "OM",
 					"CountryID": "140",
 					"CountryName": "Oman",
 					"CurrencyName": "rial",
@@ -9687,6 +9801,7 @@
 				"Continent": "Africa",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "MZ",
 					"CountryID": "142",
 					"CountryName": "Moçambique",
 					"CurrencyName": "metical",
@@ -9764,6 +9879,7 @@
 				"Continent": "Asia",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "BN",
 					"CountryID": "143",
 					"CountryName": "Brunei",
 					"CurrencyName": "BND",
@@ -9841,6 +9957,7 @@
 				"Continent": "Africa",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "GH",
 					"CountryID": "144",
 					"CountryName": "Ghana",
 					"CurrencyName": "cedis",
@@ -9918,6 +10035,7 @@
 				"Continent": "Asia",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "KH",
 					"CountryID": "145",
 					"CountryName": "Kampuchea",
 					"CurrencyName": "Riel",
@@ -9995,6 +10113,7 @@
 				"Continent": "Africa",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "BJ",
 					"CountryID": "147",
 					"CountryName": "Benin",
 					"CurrencyName": "$",
@@ -10072,6 +10191,7 @@
 				"Continent": "Asia",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "SY",
 					"CountryID": "148",
 					"CountryName": "Suriyah",
 					"CurrencyName": "$",
@@ -10149,6 +10269,7 @@
 				"Continent": "Asia",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "QA",
 					"CountryID": "149",
 					"CountryName": "Qatar",
 					"CurrencyName": "QAR",
@@ -10226,6 +10347,7 @@
 				"Continent": "Africa",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "TZ",
 					"CountryID": "150",
 					"CountryName": "Tanzania",
 					"CurrencyName": "$",
@@ -10303,6 +10425,7 @@
 				"Continent": "Africa",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "UG",
 					"CountryID": "153",
 					"CountryName": "Uganda",
 					"CurrencyName": "shill",
@@ -10380,6 +10503,7 @@
 				"Continent": "Asia",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "MV",
 					"CountryID": "154",
 					"CountryName": "Dhivehi Raajje",
 					"CurrencyName": "rufiyaa",
@@ -10457,6 +10581,7 @@
 				"Continent": "Asia",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "UZ",
 					"CountryID": "163",
 					"CountryName": "Uzbekistan",
 					"CurrencyName": "som",
@@ -10534,6 +10659,7 @@
 				"Continent": "Africa",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "CM",
 					"CountryID": "165",
 					"CountryName": "Cameroon",
 					"CurrencyName": "XAF",
@@ -10611,6 +10737,7 @@
 				"Continent": "North America",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "CU",
 					"CountryID": "93",
 					"CountryName": "Cuba",
 					"CurrencyName": "$",
@@ -10688,6 +10815,7 @@
 				"Continent": "Asia",
 				"Country": {
 					"Available": "True",
+					"CountryCode": "PS",
 					"CountryID": "166",
 					"CountryName": "Palestine",
 					"CurrencyName": "NIS",
@@ -10761,6 +10889,6 @@
 			}
 		],
 		"UserID": "8366392",
-		"Version": "1.6"
+		"Version": "1.7"
 	}
 }
