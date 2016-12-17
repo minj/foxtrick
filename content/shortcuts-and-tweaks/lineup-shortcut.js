@@ -186,7 +186,7 @@ Foxtrick.modules['LineupShortcut'] = {
 		var mainBody = doc.getElementById('mainBody');
 
 		var matchLink = Foxtrick.nth(function(n) {
-			return /\/Club\/Matches\/Match\.aspx/i.test(n.href);
+			return /\/Club\/Matches\/Match\.aspx\?MatchId=\d+&SourceSystem=Youth&/i.test(n.href);
 		}, mainBody.getElementsByTagName('a'));
 		if (!matchLink)
 			return; // hasn't played a match yet
