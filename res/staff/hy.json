@@ -82,6 +82,11 @@
 			"duty": "helper"
 		},
 		{
+			"id": "13142123",
+			"name": "tca86",
+			"duty": "helper"
+		},
+		{
 			"id": "1693272",
 			"name": "Max_Schreck",
 			"duty": "support"
@@ -192,6 +197,11 @@
 			"duty": "translator"
 		},
 		{
+			"id": "7774971",
+			"name": "Robert_Kralik",
+			"duty": "translator"
+		},
+		{
 			"id": "8059435",
 			"name": "Saltapiou",
 			"duty": "translator"
@@ -204,6 +214,11 @@
 		{
 			"id": "9668661",
 			"name": "LA-dzsoo",
+			"duty": "translator"
+		},
+		{
+			"id": "9634554",
+			"name": "marcoslkz",
 			"duty": "translator"
 		},
 		{
@@ -357,6 +372,11 @@
 			"duty": "translator"
 		},
 		{
+			"id": "12714984",
+			"name": "provonost",
+			"duty": "translator"
+		},
+		{
 			"id": "12614915",
 			"name": "clashfan",
 			"duty": "translator"
@@ -409,6 +429,11 @@
 		{
 			"id": "10436772",
 			"name": "Citree",
+			"duty": "translator"
+		},
+		{
+			"id": "299466",
+			"name": "CoachDinamo",
 			"duty": "translator"
 		},
 		{
