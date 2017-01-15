@@ -917,34 +917,5 @@
 		],
 		"title": "Hattrick Youthclub",
 		"img": "https://static.hattrick-youthclub.org/resources/image/favicon.ico"
-	},
-	"htev": {
-		"teamlink": {
-			"url": "http://htev.org/team/[teamid]/"
-		},
-		"serieslink": {
-			"url": "http://htev.org/search_leagueid/?SeriesID=[seriesid]"
-		},
-		"playedmatchlink": {
-			"url": "http://htev.org/match/[matchid]/"
-		},
-		"leaguelink": {
-			"url": "http://htev.org/country/[leagueid]/"
-		},
-		"worldlink": {
-			"url": "http://htev.org/world/"
-		},
-		"nationalteamlink": {
-			"url": "http://htev.org/scout/nat_team/[ntteamid]/"
-		},
-		"title": "HTEV",
-		"img": "http://htev.org/static/htevfavicon.gif"
-	},
-	"htev_simulator": {
-		"matchlink": {
-			"url": "http://htev.org/furminator/"
-		},
-		"title": "HTEV Simulator",
-		"img": "http://htev.org/static/htevfavicon.gif"
 	}
 }
