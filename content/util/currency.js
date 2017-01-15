@@ -104,6 +104,27 @@ Foxtrick.util.currency.displaySelector = function(doc, info) {
 		return;
 
 	var defaultCode = this.findCode(); // unsafe
+
+	if (!defaultCode) {
+		var teamCodes = Foxtrick.Prefs.getAllKeysOfBranch('Currency.Code');
+		var freqMap = new Map();
+
+		for (var teamCode of teamCodes) {
+			var code = Foxtrick.Prefs.getString(teamCode);
+
+			var freq = freqMap.get(code) || 0;
+			freqMap.set(code, ++freq);
+		}
+
+		var entries = Array.from(freqMap.entries());
+		var mostFreqEntry = entries.sort(function(a, b) {
+			return a[1] - b[1];
+		}).pop();
+
+		if (mostFreqEntry)
+			defaultCode = mostFreqEntry[0];
+	}
+
 	var ownTeamId = Foxtrick.util.id.getOwnTeamId();
 
 	var currencySelect = doc.createElement('select');
