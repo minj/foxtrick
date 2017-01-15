@@ -77,8 +77,8 @@
 			"duty": "helper"
 		},
 		{
-			"id": "8110206",
-			"name": "Acid303",
+			"id": "12508540",
+			"name": "Oppa-JoMar",
 			"duty": "helper"
 		},
 		{
@@ -147,11 +147,6 @@
 			"duty": "translator"
 		},
 		{
-			"id": "5135274",
-			"name": "Mravenec",
-			"duty": "translator"
-		},
-		{
 			"id": "4475291",
 			"name": "Sylmarion",
 			"duty": "translator"
@@ -164,11 +159,6 @@
 		{
 			"id": "5204575",
 			"name": "LA-RNH",
-			"duty": "translator"
-		},
-		{
-			"id": "8852987",
-			"name": "Mrgood",
 			"duty": "translator"
 		},
 		{
@@ -197,6 +187,16 @@
 			"duty": "translator"
 		},
 		{
+			"id": "7774971",
+			"name": "Robert_Kralik",
+			"duty": "translator"
+		},
+		{
+			"id": "8023911",
+			"name": "ballinho",
+			"duty": "translator"
+		},
+		{
 			"id": "8059435",
 			"name": "Saltapiou",
 			"duty": "translator"
@@ -209,6 +209,11 @@
 		{
 			"id": "9668661",
 			"name": "LA-dzsoo",
+			"duty": "translator"
+		},
+		{
+			"id": "9634554",
+			"name": "marcoslkz",
 			"duty": "translator"
 		},
 		{
@@ -267,11 +272,6 @@
 			"duty": "translator"
 		},
 		{
-			"id": "7020931",
-			"name": "wyrzo1",
-			"duty": "translator"
-		},
-		{
 			"id": "11894939",
 			"name": "Adler76",
 			"duty": "translator"
@@ -312,23 +312,8 @@
 			"duty": "translator"
 		},
 		{
-			"id": "11902787",
-			"name": "edub0mb3r",
-			"duty": "translator"
-		},
-		{
 			"id": "10496115",
 			"name": "Sina_Adams",
-			"duty": "translator"
-		},
-		{
-			"id": "10263974",
-			"name": "svani1989",
-			"duty": "translator"
-		},
-		{
-			"id": "11800506",
-			"name": "MOD-Malcolm-Glazer",
 			"duty": "translator"
 		},
 		{
@@ -382,13 +367,13 @@
 			"duty": "translator"
 		},
 		{
-			"id": "12614915",
-			"name": "clashfan",
+			"id": "12714984",
+			"name": "provonost",
 			"duty": "translator"
 		},
 		{
-			"id": "12805270",
-			"name": "cebbe",
+			"id": "12614915",
+			"name": "clashfan",
 			"duty": "translator"
 		},
 		{
@@ -437,18 +422,18 @@
 			"duty": "translator"
 		},
 		{
-			"id": "10436772",
-			"name": "Citree",
-			"duty": "translator"
-		},
-		{
-			"id": "6489521",
-			"name": "-JENDA-",
+			"id": "299466",
+			"name": "CoachDinamo",
 			"duty": "translator"
 		},
 		{
 			"id": "11107942",
 			"name": "mynayir",
+			"duty": "translator"
+		},
+		{
+			"id": "13259084",
+			"name": "omer_bar",
 			"duty": "translator"
 		},
 		{

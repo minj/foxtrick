@@ -86,6 +86,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "10648045",
+			"name": "BigDima"
+		},
+		{
+			"duty": "supporter",
 			"id": "10680966",
 			"name": "vegar56"
 		},
@@ -288,6 +293,11 @@
 			"duty": "translator",
 			"id": "12326398",
 			"name": "Dr-Jalal"
+		},
+		{
+			"duty": "supporter",
+			"id": "12341439",
+			"name": "azulinvicto"
 		},
 		{
 			"duty": "translator",
@@ -672,7 +682,7 @@
 		{
 			"duty": "translator",
 			"id": "368411",
-			"name": "LA-Robin"
+			"name": "--Robin--"
 		},
 		{
 			"duty": "developer",
@@ -1232,7 +1242,7 @@
 		{
 			"duty": "translator",
 			"id": "9311330",
-			"name": "GM-OmaniMilani"
+			"name": "OmaniMilani"
 		},
 		{
 			"duty": "translator",
@@ -1272,7 +1282,7 @@
 		{
 			"duty": "supporter",
 			"id": "9577400",
-			"name": "Om_lover"
+			"name": "HighJahMan"
 		},
 		{
 			"duty": "translator",
