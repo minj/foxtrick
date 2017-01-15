@@ -280,6 +280,11 @@
 			"name": "Sellas"
 		},
 		{
+			"duty": "supporter",
+			"id": "12104313",
+			"name": "royson3"
+		},
+		{
 			"duty": "translator",
 			"id": "12166",
 			"name": "murko"
@@ -440,6 +445,11 @@
 			"name": "Iltios"
 		},
 		{
+			"duty": "supporter",
+			"id": "1397713",
+			"name": "VvJ-Beckham"
+		},
+		{
 			"duty": "translator",
 			"id": "1425439",
 			"name": "playMaker-"
@@ -513,6 +523,11 @@
 			"duty": "supporter",
 			"id": "2093541",
 			"name": "borgirk"
+		},
+		{
+			"duty": "supporter",
+			"id": "20986",
+			"name": "DEL_eloffe_20071205024759407917938"
 		},
 		{
 			"duty": "supporter",
@@ -633,6 +648,11 @@
 			"duty": "translator",
 			"id": "335181",
 			"name": "Baler0"
+		},
+		{
+			"duty": "supporter",
+			"id": "339156",
+			"name": "GM-Crosswind"
 		},
 		{
 			"duty": "developer",
