@@ -12,13 +12,11 @@ html[data-multiple][data-theme="simple"] #header {
 	top: 18px;
 }
 
-#ctl00_ctl00_ucClubSwitcher_btnSwitchClub {
+.switchClubTabWrapper {
 	position: fixed;
-	top: 0px;
-	z-index: 10001;
-}
-#ctl00_ctl00_ucClubSwitcher_pnlSwitchClub {
-	margin-top: 0px;
+	top: 0;
+	margin-top: 0;
+	z-index: 101;
 }
 
 html[data-theme="standard"] #header {
