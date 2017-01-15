@@ -1795,6 +1795,7 @@ function initTextAndValues() {
 			Foxtrick.Prefs.deleteValue('Currency.Code.' + id);
 			var row = ev.target.ownerDocument.getElementById('team-currency-row-' + id);
 			row.parentNode.removeChild(row);
+			Foxtrick.Prefs.setBool('preferences.updated', true);
 		});
 
 		$('#pref-setup-currency').append(row);
