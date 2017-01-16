@@ -77,6 +77,11 @@
 			"duty": "helper"
 		},
 		{
+			"id": "5931194",
+			"name": "LA-Jimmydinho",
+			"duty": "translator"
+		},
+		{
 			"id": "12508540",
 			"name": "Oppa-JoMar",
 			"duty": "helper"
@@ -94,6 +99,11 @@
 		{
 			"id": "6170192",
 			"name": "albertocorrez-SUB",
+			"duty": "translator"
+		},
+		{
+			"id": "7128451",
+			"name": "LA-savcenko",
 			"duty": "translator"
 		},
 		{
@@ -304,11 +314,6 @@
 		{
 			"id": "2363296",
 			"name": "LA-OReiDasSachadas",
-			"duty": "translator"
-		},
-		{
-			"id": "5931194",
-			"name": "LA-Jimmydinho",
 			"duty": "translator"
 		},
 		{
