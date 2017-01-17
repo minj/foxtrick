@@ -1220,6 +1220,11 @@
 			"name": "HHTim"
 		},
 		{
+			"duty": "supporter",
+			"id": "8782191",
+			"name": "Rustyjack"
+		},
+		{
 			"duty": "translator",
 			"id": "8795088",
 			"name": "crta13"
