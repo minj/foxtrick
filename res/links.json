@@ -121,6 +121,17 @@
 		"title": "VnukStats",
 		"img": "resources/linkicons/vnukstats.png"
 	},
+	"vnukstats_hti": {
+		"leaguelink": {
+			"url": "http://vnukstats.hattrick-sk.com/hti/",
+			"filters": ["leagueid"]
+		},
+		"leagueidranges": [
+			[1000, 1000]
+		],
+		"title": "VnukStats HTI",
+		"img": "resources/linkicons/vnukstats.png"
+	},
 	"todohattrick": {
 		"serieslink": {
 			"url": "http://www.stepi.org/todohattrick/grupo.asp?grupoID=[seriesid]",

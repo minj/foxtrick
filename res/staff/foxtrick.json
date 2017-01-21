@@ -392,7 +392,7 @@
 		{
 			"duty": "translator",
 			"id": "12975827",
-			"name": "MartinsPF_"
+			"name": "mbohane"
 		},
 		{
 			"duty": "supporter",
@@ -1218,6 +1218,11 @@
 			"duty": "translator",
 			"id": "8656808",
 			"name": "HHTim"
+		},
+		{
+			"duty": "supporter",
+			"id": "8782191",
+			"name": "Rustyjack"
 		},
 		{
 			"duty": "translator",

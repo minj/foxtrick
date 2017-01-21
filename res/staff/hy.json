@@ -77,6 +77,11 @@
 			"duty": "helper"
 		},
 		{
+			"id": "5931194",
+			"name": "LA-Jimmydinho",
+			"duty": "translator"
+		},
+		{
 			"id": "12508540",
 			"name": "Oppa-JoMar",
 			"duty": "helper"
@@ -94,6 +99,11 @@
 		{
 			"id": "6170192",
 			"name": "albertocorrez-SUB",
+			"duty": "translator"
+		},
+		{
+			"id": "7128451",
+			"name": "LA-savcenko",
 			"duty": "translator"
 		},
 		{
@@ -267,6 +277,11 @@
 			"duty": "translator"
 		},
 		{
+			"id": "5397227",
+			"name": "Ellydone",
+			"duty": "translator"
+		},
+		{
 			"id": "9984109",
 			"name": "tut4nk4m0n",
 			"duty": "translator"
@@ -307,11 +322,6 @@
 			"duty": "translator"
 		},
 		{
-			"id": "5931194",
-			"name": "LA-Jimmydinho",
-			"duty": "translator"
-		},
-		{
 			"id": "10496115",
 			"name": "Sina_Adams",
 			"duty": "translator"
@@ -337,6 +347,11 @@
 			"duty": "translator"
 		},
 		{
+			"id": "1641271",
+			"name": "jaymz69",
+			"duty": "translator"
+		},
+		{
 			"id": "11660183",
 			"name": "Seba-DT",
 			"duty": "translator"
@@ -354,6 +369,11 @@
 		{
 			"id": "6263697",
 			"name": "LA-Ron__Manager",
+			"duty": "translator"
+		},
+		{
+			"id": "11960000",
+			"name": "r6andrew",
 			"duty": "translator"
 		},
 		{
