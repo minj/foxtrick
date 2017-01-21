@@ -140,6 +140,7 @@
 		{ "id": 9754830, "name": "AndyGJones", "appNames": ["AndTrick"] },
 		{ "id": 980430, "name": "DorkPower", "appNames": ["Hattrick Stars"] },
 		{ "id": 9900496, "name": "Menfiesto", "appNames": ["Copa Velez HT"] },
-		{ "id": 9979330, "name": "Thorlius", "appNames": ["Canada NT/U20 tracker"] }
+		{ "id": 9979330, "name": "Thorlius", "appNames": ["Canada NT/U20 tracker"] },
+		{ "id": 6228713, "name": "smates", "appNames": ["VnukStats"] }
 	]
 }
