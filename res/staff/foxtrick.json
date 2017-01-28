@@ -65,6 +65,11 @@
 			"name": "flight_of_icarus"
 		},
 		{
+			"duty": "supporter",
+			"id": "10511346",
+			"name": "AH-galla"
+		},
+		{
 			"duty": "translator",
 			"id": "10562696",
 			"name": "minskj-GIGANT"
