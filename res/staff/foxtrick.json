@@ -65,6 +65,11 @@
 			"name": "flight_of_icarus"
 		},
 		{
+			"duty": "supporter",
+			"id": "10511346",
+			"name": "AH-galla"
+		},
+		{
 			"duty": "translator",
 			"id": "10562696",
 			"name": "minskj-GIGANT"
@@ -203,6 +208,11 @@
 			"duty": "translator",
 			"id": "11551835",
 			"name": "Limonada123"
+		},
+		{
+			"duty": "supporter",
+			"id": "11578876",
+			"name": "FCJoe"
 		},
 		{
 			"duty": "supporter",
@@ -376,6 +386,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "12842434",
+			"name": "darkrider2"
+		},
+		{
+			"duty": "supporter",
 			"id": "12903605",
 			"name": "1910pauli1910"
 		},
@@ -388,6 +403,11 @@
 			"duty": "supporter",
 			"id": "12966867",
 			"name": "ExpatU"
+		},
+		{
+			"duty": "supporter",
+			"id": "12973873",
+			"name": "Shantiboss"
 		},
 		{
 			"duty": "translator",
