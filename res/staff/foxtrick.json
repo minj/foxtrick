@@ -336,6 +336,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "12467052",
+			"name": "Asterix71"
+		},
+		{
+			"duty": "supporter",
 			"id": "12511204",
 			"name": "Domek_69"
 		},
@@ -1298,6 +1303,11 @@
 			"duty": "translator",
 			"id": "9372637",
 			"name": "Murtagsh"
+		},
+		{
+			"duty": "supporter",
+			"id": "9466227",
+			"name": "thom_raindog"
 		},
 		{
 			"duty": "translator",
