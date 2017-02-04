@@ -156,7 +156,7 @@ Foxtrick.modules['HistoryStats'] = {
 				Foxtrick.forEach(removeEl, event.getElementsByTagName('a'));
 				event.textContent = event.textContent.replace(lSeasonRe, '').trim();
 
-				var pos = event.textContent.match(/\b\d{1}\b/);
+				var pos = event.textContent.match(/\b\d{1}(?!\d)/); // French/Flemish: '1e'
 				buff += season + '|' + division + '|' + pos + '|' + series;
 			}
 			else if (cup) {
