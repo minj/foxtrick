@@ -227,6 +227,7 @@ pref("extensions.foxtrick.prefs.module.LinksYouthPlayerList.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksYouthTraining.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksWorld.enabled", true);
 pref("extensions.foxtrick.prefs.module.LiveAlert.enabled", true);
+pref("extensions.foxtrick.prefs.module.LiveAlert.Notification.enabled", true);
 pref("extensions.foxtrick.prefs.module.LiveAlert.Sound.enabled", true);
 pref("extensions.foxtrick.prefs.module.LiveAlert.home.enabled", true);
 pref("extensions.foxtrick.prefs.module.LiveAlert.home_text", "foxtrick://resources/sounds/goal.wav");

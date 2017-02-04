@@ -8,11 +8,11 @@
 Foxtrick.modules['LiveAlert'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.ALERT,
 	PAGES: ['matchesLive'],
-	OPTIONS: ['Sound', 'home', 'away', 'own', 'opponent'],
+	OPTIONS: ['Notification', 'Sound', 'home', 'away', 'own', 'opponent'],
 	OPTION_EDITS: true,
-	OPTION_EDITS_DISABLED_LIST: [true, false, false, false, false],
-	OPTION_EDITS_DATAURL_LOAD_BUTTONS: [false, true, true, true, true],
-	OPTION_EDITS_DATAURL_IS_SOUND: [false, true, true, true, true],
+	OPTION_EDITS_DISABLED_LIST: [true, true, false, false, false, false],
+	OPTION_EDITS_DATAURL_LOAD_BUTTONS: [false, false, true, true, true, true],
+	OPTION_EDITS_DATAURL_IS_SOUND: [false, false, true, true, true, true],
 
 	store: {},
 
@@ -180,11 +180,13 @@ Foxtrick.modules['LiveAlert'] = {
 
 		store.score = score;
 
-		// show notification
-		var txt = Foxtrick.format(ALERT_TMPL, info);
-		var url = doc.location.href;
+		// show notification if enabled
+		if (Foxtrick.Prefs.isModuleOptionEnabled('LiveAlert', 'Notification')) {
+			var txt = Foxtrick.format(ALERT_TMPL, info);
+			var url = doc.location.href;
 
-		Foxtrick.util.notify.create(txt, url, { id: info.teamsText });
+			Foxtrick.util.notify.create(txt, url, { id: info.teamsText });
+		}
 
 		// play sound if enabled
 		if (!Foxtrick.Prefs.isModuleOptionEnabled('LiveAlert', 'Sound'))
