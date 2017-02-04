@@ -90,7 +90,7 @@ Foxtrick.modules['CopyBBAd'] = {
 				}
 				ad += '[/table]\n';
 
-				Foxtrick.copyStringToClipboard(ad);
+				Foxtrick.copy(doc, ad);
 				Foxtrick.util.note.add(doc, Foxtrick.L10n.getString('CopyTableAd.copied'),
 				                       'ft-tableAd-copy-note');
 			}
@@ -169,7 +169,7 @@ Foxtrick.modules['CopyBBAd'] = {
 					}
 					ad += '[/table]\n\n';
 				}
-				Foxtrick.copyStringToClipboard(ad);
+				Foxtrick.copy(doc, ad);
 				Foxtrick.util.note.add(doc, Foxtrick.L10n.getString('CopyLeagueStatsAd.copied'),
 				                       'ft-tableAd-copy-note');
 			}
@@ -243,7 +243,7 @@ Foxtrick.modules['CopyBBAd'] = {
 			ad += '[/table]\n';
 			ad = ad.replace(/\s+/g, ' ');
 
-			Foxtrick.copyStringToClipboard(ad);
+			Foxtrick.copy(doc, ad);
 			Foxtrick.util.note.add(doc, Foxtrick.L10n.getString('CopyFinancesAd.copied'),
 			                       'ft-tableAd-copy-note');
 		}

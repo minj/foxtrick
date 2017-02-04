@@ -118,30 +118,65 @@ Foxtrick.playSound = function(url) {
 	play(url, type, volume);
 };
 
-Foxtrick.copyStringToClipboard = function(string) {
-	if (Foxtrick.arch === 'Gecko') {
-		if (Foxtrick.context === 'content') {
-			Foxtrick.SB.ext.sendRequest({ req: 'clipboard', content: string });
+/**
+ * Copy something to the clipboard.
+ *
+ * Must be used in a listener for a user-initiated event.
+ * Use addCopying instead
+ *
+ * copy maybe a string or a function that returns a string or {mime, content}
+ * mime may specify additional mime time
+ * 'text/plain' is always used
+ *
+ * c.f. https://stackoverflow.com/questions/3436102/copy-to-clipboard-in-chrome-extension/12693636#12693636
+ *
+ * @param {document} doc
+ * @param {string}   copy {string|function}
+ * @param {string}   mime {string?}
+ */
+Foxtrick.copy = function(doc, copy, mime) {
+	if (Foxtrick.platform == 'Safari') {
+		// FIXME needs testing
+		Foxtrick.sessionSet('clipboard', copy);
+		Foxtrick.error('Safari copying is untested');
+		return;
+	}
+
+	if (Foxtrick.context == 'background' && Foxtrick.platform == 'Chrome') {
+		// FIXME needs testing
+		Foxtrick.error('Copying in background is untested');
+		return;
+	}
+
+	const DEFAULT_MIME = 'text/plain';
+	var contentMime = null;
+	var copyContent;
+
+	if (typeof copy === 'function') {
+		var ret = copy();
+		if (ret && typeof ret === 'object') {
+			contentMime = ret.mime || null;
+			copyContent = ret.content;
 		}
 		else {
-			var gClipboardHelper = Cc['@mozilla.org/widget/clipboardhelper;1'].
-				getService(Ci.nsIClipboardHelper);
-			gClipboardHelper.copyString(string);
+			copyContent = ret;
 		}
 	}
-	else if (Foxtrick.platform == 'Safari') {
-		Foxtrick.sessionSet('clipboard', string);
+	else {
+		contentMime = mime || null;
+		copyContent = copy;
 	}
-	else if (Foxtrick.arch === 'Sandboxed') {
-		if (Foxtrick.context == 'content')
-			Foxtrick.SB.ext.sendRequest({ req: 'clipboard', content: string });
-		else {
-			if (Foxtrick.platform == 'Chrome')
-				Foxtrick.loader.background.copyToClipBoard(string);
-			else
-				Foxtrick.copyStringToClipboard(string);
-		}
-	}
+
+	doc.addEventListener('copy', function (ev) {
+
+		ev.clipboardData.setData(DEFAULT_MIME, copyContent);
+		if (contentMime)
+			ev.clipboardData.setData(contentMime, copyContent);
+		ev.preventDefault();
+
+	}, { once: true });
+
+	doc.execCommand('Copy', false, null);
 };
 
 Foxtrick.newTab = function(url) {

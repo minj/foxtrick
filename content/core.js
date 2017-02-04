@@ -267,7 +267,7 @@ Foxtrick.modules.Core = {
 
 				if (/^https?:/.test(url)) {
 					// upload successful
-					Foxtrick.copyStringToClipboard('[link=' + url + ']');
+					Foxtrick.copy(doc, '[link=' + url + ']');
 					var upload = doc.createElement('p');
 					upload.textContent = Foxtrick.L10n.getString('reportBug.link.copied');
 					info.appendChild(upload);
@@ -278,7 +278,7 @@ Foxtrick.modules.Core = {
 				}
 				else {
 					// too many pastes
-					Foxtrick.copyStringToClipboard(bug);
+					Foxtrick.copy(doc, bug);
 					var copied = doc.createElement('p');
 					copied.textContent = Foxtrick.L10n.getString('reportBug.log.copied');
 					info.appendChild(copied);

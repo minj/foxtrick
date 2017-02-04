@@ -43,7 +43,7 @@ Foxtrick.modules['CopyYouth'] = {
 				plain = plain.replace(/^\s+|\s+$/g, '');  // remove leading/trailing whitespace
 				plain += '\n';
 
-				Foxtrick.copyStringToClipboard(plain);
+				Foxtrick.copy(doc, plain);
 
 				// display note
 				var server = Foxtrick.Prefs.getBool('hty-stage') ? 'stage' : 'www';
@@ -191,7 +191,7 @@ Foxtrick.modules['CopyYouth'] = {
 					paragraphs = paragraphs.splice(0, paragraphs.length - 3);
 					plain = paragraphs.join('\n');
 
-					Foxtrick.copyStringToClipboard(plain);
+					Foxtrick.copy(doc, plain);
 
 					//auto send the rejected player to HY
 					var reportNode = subDivs[lastmainbox].cloneNode(true);
@@ -360,7 +360,7 @@ Foxtrick.modules['CopyYouth'] = {
 			try {
 				var html = '<html>' + doc.documentElement.innerHTML + ' </html>';
 				html = fixBr(html);
-				Foxtrick.copyStringToClipboard(html);
+				Foxtrick.copy(doc, html, 'text/html');
 
 				// display note
 				var url = 'http://www.ht-ys.org/read_fixtures';

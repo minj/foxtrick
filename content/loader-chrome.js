@@ -104,6 +104,7 @@ Foxtrick.loader.chrome.clickListener = function(ev) {
 
 			// jscs:enable disallowMultipleSpaces
 
+			// FIXME
 			Foxtrick.sessionGet('clipboard', function(text) {
 				if (!text)
 					return;

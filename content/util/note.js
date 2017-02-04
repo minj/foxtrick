@@ -79,6 +79,7 @@ Foxtrick.util.note.add = function(doc, msg, id, options) {
 	}
 
 	// add copy instructions for safari to copy notes
+	// FIXME
 	if (Foxtrick.platform == 'Safari' && id.indexOf('copy-note') !== -1) {
 		Foxtrick.sessionGet('clipboard',
 		  function(string) {

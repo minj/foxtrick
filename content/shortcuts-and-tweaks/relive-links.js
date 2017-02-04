@@ -66,7 +66,7 @@ Foxtrick.modules['ReLiveLinks'] = {
 				text += Foxtrick.format(LINK_TEMPLATE, [list, type]);
 			}
 
-			Foxtrick.copyStringToClipboard(text);
+			Foxtrick.copy(doc, text);
 			Foxtrick.util.note.add(doc, SUCCESS, 'ft-relive-copy-note');
 		};
 
