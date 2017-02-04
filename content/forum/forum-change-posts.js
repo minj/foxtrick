@@ -23,7 +23,7 @@ Foxtrick.modules['ForumChangePosts'] = {
 			Foxtrick.onClick(img, function() {
 				var idExpanded = (idLink.href.search(/MInd/i) >= 0);
 				var postId = idExpanded ? idLink.href.match(/\d+\.\d+/g)[0] : idLink.title;
-				Foxtrick.copyStringToClipboard('[post=Oops]'.replace('Oops', postId));
+				Foxtrick.copy(doc, '[post=Oops]'.replace('Oops', postId));
 				var insertBefore = idLink;
 				while (!Foxtrick.hasClass(insertBefore, 'cfWrapper') &&
 				       !Foxtrick.hasClass(insertBefore, 'boxBody'))
@@ -211,7 +211,7 @@ Foxtrick.modules['ForumChangePosts'] = {
 				}
 
 				var copy = Foxtrick.format(template, args);
-				Foxtrick.copyStringToClipboard(copy);
+				Foxtrick.copy(doc, copy);
 
 				var insertBefore = header.parentNode;
 				var id = 'ft-posting-copy-note- ' + post_1.id.replace(/\D/, ' - ');

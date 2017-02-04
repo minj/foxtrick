@@ -486,7 +486,7 @@ Foxtrick.modules['MatchOrderInterface'] = {
 				ret = ret.replace(re, '');
 			}, PRUNE_PTRNS);
 
-			Foxtrick.copyStringToClipboard(ret);
+			Foxtrick.copy(doc, ret);
 			var copied = Foxtrick.L10n.getString('copy.lineup.copied');
 			Foxtrick.util.note.add(doc, copied, 'ft-ratings-copy-note');
 		};

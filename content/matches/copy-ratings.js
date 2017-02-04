@@ -256,7 +256,7 @@ Foxtrick.modules['CopyRatings'] = {
 				ret += table.markup + '\n';
 			}
 
-			Foxtrick.copyStringToClipboard(ret);
+			Foxtrick.copy(doc, ret);
 			Foxtrick.util.note.add(doc, COPIED, 'ft-ratings-copy-note');
 		};
 
@@ -392,7 +392,7 @@ Foxtrick.modules['CopyRatings'] = {
 					}
 				}
 
-				Foxtrick.copyStringToClipboard(ad);
+				Foxtrick.copy(doc, ad);
 				Foxtrick.util.note.add(doc, COPIED, 'ft-ratings-copy-note', { at: insertBefore });
 			}
 			catch (e) {
