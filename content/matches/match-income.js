@@ -193,9 +193,10 @@ Foxtrick.modules['MatchIncome'] = {
 				sum += prices[type] * visitors[type];
 
 		var isNeutral = Foxtrick.Pages.Match.isNeutral(doc);
+		var isQalification = Foxtrick.Pages.Match.isQualification(doc);
 		var isCup = Foxtrick.Pages.Match.isCup(doc);
 		var isFriendly = Foxtrick.Pages.Match.isFriendly(doc);
-		var priceQ = isFriendly || isNeutral ? 0.5 : isCup ? 0.67 : 1;
+		var priceQ = isFriendly || isQalification || isNeutral ? 0.5 : isCup ? 0.67 : 1;
 
 		Foxtrick.util.currency.detect(doc).then(function(curr) {
 			addIncome(table, 'income', sum, curr);

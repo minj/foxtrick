@@ -320,6 +320,17 @@ Foxtrick.Pages.Match.isLeague = function(doc) {
 };
 
 /**
+ * Test whether match is a qualification match
+ * @param  {document} doc
+ * @return {Boolean}
+ */
+Foxtrick.Pages.Match.isQualification = function(doc) {
+	var mainBody = doc.getElementById('mainBody');
+	var isQualification = mainBody.getElementsByClassName('matchQualification').length > 0;
+	return isQualification;
+};
+
+/**
  * Test whether match is a cup match
  * @param  {document} doc
  * @return {Boolean}
