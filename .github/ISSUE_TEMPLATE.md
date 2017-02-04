@@ -1,3 +1,4 @@
+<!--
 Oh noes, you are having trouble with Foxtrick :/
 
 FYI, we have a generic troubleshooting guide on our website: https://www.foxtrick.org/trouble-shooting
@@ -7,9 +8,7 @@ I trust you have searched the existing issues (both open and closed) before open
 Foxtrick provides a bug report link at the bottom left section of Hattrick pages. You should get a URL for your Foxtrick log if you press it on the relevant page and follow the instructions.
 
 Please follow the provided template:
-
----
-
+-->
 ## Short description of the problem
 
 ## What steps will reproduce the problem?
