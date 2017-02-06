@@ -352,7 +352,7 @@
 		{
 			"duty": "translator",
 			"id": "12533508",
-			"name": "RoLitoral"
+			"name": "MOD-RoLitoral"
 		},
 		{
 			"duty": "supporter",
@@ -603,6 +603,11 @@
 			"duty": "supporter",
 			"id": "245173",
 			"name": "Dikkiedick"
+		},
+		{
+			"duty": "supporter",
+			"id": "246566",
+			"name": "----------"
 		},
 		{
 			"duty": "supporter",
