@@ -140,7 +140,8 @@ Foxtrick.modules['HistoryStats'] = {
 
 				if (isCupHist(link)) {
 					Foxtrick.forEach(removeEl, event.querySelectorAll('a'));
-					cup = event.textContent.match(/\b\d{1,2}\b/) || '!';
+					// French/Flemish: '1e'
+					cup = event.textContent.match(/\b\d{1,2}(?!\d)/) || '!';
 				}
 			}
 
