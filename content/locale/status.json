@@ -217,16 +217,16 @@
 			"words_translated": "6207"
 		},
 		{
-			"approved": "2287",
-			"approved_progress": "99",
+			"approved": "2288",
+			"approved_progress": "100",
 			"code": "fr",
 			"name": "French",
 			"phrases": "2288",
-			"translated": "2287",
-			"translated_progress": "99",
+			"translated": "2288",
+			"translated_progress": "100",
 			"words": "16722",
-			"words_approved": "16718",
-			"words_translated": "16718"
+			"words_approved": "16722",
+			"words_translated": "16722"
 		},
 		{
 			"approved": "0",
@@ -510,11 +510,11 @@
 			"code": "pt-BR",
 			"name": "Portuguese, Brazilian",
 			"phrases": "2288",
-			"translated": "2068",
-			"translated_progress": "86",
+			"translated": "2085",
+			"translated_progress": "87",
 			"words": "16722",
 			"words_approved": "1",
-			"words_translated": "14500"
+			"words_translated": "14601"
 		},
 		{
 			"approved": "947",
