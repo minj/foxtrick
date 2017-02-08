@@ -778,10 +778,10 @@
 		"nationalityranges": [[37, 37]]
 	},
 	"uruguaytracker": {
-		"img": "http://www.sisu-ht.com/SISU/images/Logo.ico",
+		"img": "http://www.sisu-ht.com/images/Logo.ico",
 		"title": "Sistema Integral de la Seleccion Uruguaya (SISU)",
 		"trackernationalteamlink": {
-			"url": "http://www.sisu-ht.com/SISU/VerEspirituSeleccion.aspx?teamId=[ntteamid]",
+			"url": "http://www.sisu-ht.com/VerEspirituSeleccion.aspx?teamId=[ntteamid]",
 			"filters": ["leagueid"]
 		},
 		"trackerleaguelink": {
@@ -789,7 +789,7 @@
 			"filters": ["leagueid"]
 		},
 		"trackerplayerlink": {
-			"url": "http://www.sisu-ht.com/SISU/EditarJugadorSenior.aspx?playerId=[playerid]",
+			"url": "http://www.sisu-ht.com/EditarJugadorSenior.aspx?playerId=[playerid]",
 			"filters": ["nationality"]
 		},
 		"trackeryouthlink": {
@@ -797,7 +797,7 @@
 			"filters": ["leagueid"]
 		},
 		"trackeryouthplayerlink": {
-			"url": "http://www.sisu-ht.com/SISU/EditarJugadorNuevaCantera.aspx?playerId=[playerid]",
+			"url": "http://www.sisu-ht.com/EditarJugadorNuevaCantera.aspx?playerId=[playerid]",
 			"filters": ["nationality"]
 		},
 		"leagueidranges": [[28, 28]],
