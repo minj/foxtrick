@@ -1075,7 +1075,7 @@ Foxtrick.modules.MatchSimulator = {
 			text += Foxtrick.modules['HTMSPrediction'].copy(overlayHTMS);
 		}
 
-		Foxtrick.copyStringToClipboard(text);
+		Foxtrick.copy(doc, text);
 		var target = doc.getElementById('ft-overlayBottom');
 		var copied = Foxtrick.L10n.getString('copy.ratings.copied');
 		Foxtrick.util.note.add(doc, copied, 'ft-ratings-copy-note', { to: target });

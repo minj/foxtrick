@@ -469,6 +469,10 @@ function checkPermissions() {
  * TODO: test/fix/improve
  */
 function revokePermissions() {
+
+	if (Foxtrick.platform !== 'Chrome' || !('permissions' in chrome))
+	    return;
+
 	var revokeModulePermission = function(needed) {
 		chrome.permissions.remove(needed.types, function(result) {
 			for (var module of needed.modules) {
@@ -491,17 +495,54 @@ function revokePermissions() {
  * TODO: test/fix/improve
  */
 function testPermissions() {
-	if (Foxtrick.platform === 'Chrome') {
+	if (Foxtrick.platform !== 'Chrome' || !('permissions' in chrome))
+		return;
 
-		var modules = [];
+	var modules = [];
 
-		var checkPermission = function(id, neededPermission, module) {
-			if ($(id).prop('checked') && $(id).attr('permission-granted') == 'false')
-				getPermission(neededPermission);
-			else if (!$(id).prop('checked')) {
+	var checkPermission = function(id, neededPermission, module) {
+		if ($(id).prop('checked') && $(id).attr('permission-granted') == 'false')
+			getPermission(neededPermission);
+		else if (!$(id).prop('checked')) {
 
-				modules = Foxtrick.exclude(modules, module);
-				if (modules.length > 0) {
+			modules = Foxtrick.exclude(modules, module);
+			if (modules.length > 0) {
+
+				var needsPermHtml = '<strong/>' +
+					'<ul><li>' + modules.join('</li><li>') + '</li></ul>';
+
+				var l10n = Foxtrick.L10n.getString('prefs.needPermissions');
+				$('#alert-text').html(needsPermHtml).find('strong').text(l10n);
+
+				$('#alert').removeClass('hidden');
+				$('#breadcrumbs').addClass('hidden');
+			}
+			else {
+				$('#alert-text').text('');
+				$('#alert').addClass('hidden');
+			}
+		}
+	};
+
+	var makeChecker = function(id, perm, module) {
+		return function() {
+			checkPermission(id, perm, module);
+		};
+	};
+
+	var testModulePermission = function(needed) {
+		chrome.permissions.contains(needed.types, function(result) {
+			needed.granted = result;
+
+			for (var module of needed.modules) {
+				var id = getElementIdFromOption(module);
+				$(id).attr('permission-granted', result);
+				$(id).click(makeChecker(id, needed, module));
+
+				if (result === false &&
+				    Foxtrick.Prefs.getBool('module.' + module + '.enabled')) {
+
+					Foxtrick.pushNew(modules, needed.modules);
 
 					var needsPermHtml = '<strong/>' +
 						'<ul><li>' + modules.join('</li><li>') + '</li></ul>';
@@ -512,49 +553,12 @@ function testPermissions() {
 					$('#alert').removeClass('hidden');
 					$('#breadcrumbs').addClass('hidden');
 				}
-				else {
-					$('#alert-text').text('');
-					$('#alert').addClass('hidden');
-				}
 			}
-		};
+		});
+	};
 
-		var makeChecker = function(id, perm, module) {
-			return function() {
-				checkPermission(id, perm, module);
-			};
-		};
-
-		var testModulePermission = function(needed) {
-			chrome.permissions.contains(needed.types, function(result) {
-				needed.granted = result;
-
-				for (var module of needed.modules) {
-					var id = getElementIdFromOption(module);
-					$(id).attr('permission-granted', result);
-					$(id).click(makeChecker(id, needed, module));
-
-					if (result === false &&
-					    Foxtrick.Prefs.getBool('module.' + module + '.enabled')) {
-
-						Foxtrick.pushNew(modules, needed.modules);
-
-						var needsPermHtml = '<strong/>' +
-							'<ul><li>' + modules.join('</li><li>') + '</li></ul>';
-
-						var l10n = Foxtrick.L10n.getString('prefs.needPermissions');
-						$('#alert-text').html(needsPermHtml).find('strong').text(l10n);
-
-						$('#alert').removeClass('hidden');
-						$('#breadcrumbs').addClass('hidden');
-					}
-				}
-			});
-		};
-
-		for (var permission of neededPermissions) {
-			testModulePermission(permission);
-		}
+	for (var permission of neededPermissions) {
+		testModulePermission(permission);
 	}
 }
 

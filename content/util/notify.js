@@ -142,6 +142,12 @@ Foxtrick.util.notify.create = function(msg, source, opts/*, callback*/) {
 				options[opt] = opts[opt];
 		}
 
+		var retry = function() {
+			delete options.buttons;
+			opts = options;
+			createChrome();
+		};
+
 		var clearNote = function(noteId) {
 			return new Promise(function(resolve) {
 				chrome.notifications.clear(noteId, resolve);
@@ -242,9 +248,7 @@ Foxtrick.util.notify.create = function(msg, source, opts/*, callback*/) {
 					if (err) {
 						if (/^Adding buttons/.test(err.message)) {
 							// opera does not support buttons
-							delete options.buttons;
-							opts = options;
-							createChrome();
+							retry();
 						}
 					}
 					else {
@@ -253,7 +257,13 @@ Foxtrick.util.notify.create = function(msg, source, opts/*, callback*/) {
 						chrome.notifications.onClosed.addListener(onClosed);
 					}
 				});
-			}).catch(Foxtrick.catch('notifications.create'));
+			}).catch(function(err) {
+				if (/buttons/.test(err.message))
+					retry();
+				else
+					throw err;
+			})
+			.catch(Foxtrick.catch('notifications.create'));
 		});
 	};
 

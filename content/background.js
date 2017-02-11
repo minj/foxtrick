@@ -239,23 +239,6 @@ Foxtrick.loader.background.browserLoad = function() {
 			// }
 		};
 
-		// from misc.js
-		this.requests.clipboard = function(request, sender, sendResponse) { // jshint ignore:line
-			// @param content - content to copy
-			// @callback_param status - success status
-			try {
-				if (Foxtrick.platform == 'Chrome')
-					Foxtrick.loader.background.copyToClipBoard(request.content);
-				else
-					Foxtrick.copyStringToClipboard(request.content);
-
-				sendResponse({ status: true });
-			}
-			catch (e) {
-				sendResponse({ status: false });
-			}
-		};
-
 		// from notify.js
 		this.requests.notify = function(request, sender, sendResponse) {
 			Foxtrick.util.notify.create(request.msg, sender, request, sendResponse);
@@ -390,16 +373,6 @@ Foxtrick.loader.background.browserLoad = function() {
 		Foxtrick.log(e);
 	}
 };
-
-
-// for clipboard
-Foxtrick.loader.background.copyToClipBoard = function(content) {
-	var clipboardStore = document.getElementById('clipboard-store');
-	clipboardStore.value = content;
-	clipboardStore.select();
-	document.execCommand('Copy');
-};
-
 
 // this is the background script entry point for sandboxed arch
 if (Foxtrick.arch == 'Sandboxed')

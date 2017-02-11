@@ -1448,7 +1448,7 @@ Foxtrick.modules['SkillTable'] = {
 
 				var tables = doc.querySelectorAll('.ft_skilltable');
 				var copyStr = parseTables(tables[0], tables[1]);
-				Foxtrick.copyStringToClipboard(copyStr);
+				Foxtrick.copy(doc, copyStr);
 
 				var COPIED = Foxtrick.L10n.getString('copy.skilltable.copied');
 				var target = tables[0].parentNode.parentNode;

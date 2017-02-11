@@ -386,6 +386,25 @@ Foxtrick.listen = function(el, type, listener, useCapture) {
 };
 
 /**
+ * Activate an element by adding a copy listener.
+ *
+ * copy maybe a string or a function that returns {mime, content}
+ * mime may specify additional mime type
+ * 'text/plain' is always used
+ *
+ * @param {element} el
+ * @param {string}  copy {string|function}
+ * @param {string}  mime {string?}
+ */
+Foxtrick.addCopying = function(el, copy, mime) {
+	Foxtrick.onClick(el, function() {
+		var doc = this.ownerDocument;
+
+		Foxtrick.copy(doc, copy, mime);
+	});
+};
+
+/**
  * Add a mutation observer to a node.
  * Should not be used directly.
  * Calls callback(mutations) on childList changes in the whole tree.

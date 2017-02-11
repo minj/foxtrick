@@ -58,7 +58,9 @@ if (Foxtrick.platform != 'Android')
 			// returns copy function on click
 			var copy = function(entry) {
 				return function() {
-					Foxtrick.copyStringToClipboard(entry.copyText);
+					// FIXME copying from background
+					// does not work in WebExt
+					Foxtrick.copy(document, entry.copyText);
 				};
 			};
 			var firefoxInit = function() {
