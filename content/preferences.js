@@ -469,6 +469,10 @@ function checkPermissions() {
  * TODO: test/fix/improve
  */
 function revokePermissions() {
+
+	if (Foxtrick.platform !== 'Chrome' || !('permissions' in chrome))
+	    return;
+
 	var revokeModulePermission = function(needed) {
 		chrome.permissions.remove(needed.types, function(result) {
 			for (var module of needed.modules) {
