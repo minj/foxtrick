@@ -142,12 +142,6 @@ Foxtrick.copy = function(doc, copy, mime) {
 		return;
 	}
 
-	if (Foxtrick.context == 'background' && Foxtrick.platform == 'Chrome') {
-		// FIXME needs testing
-		Foxtrick.error('Copying in background is untested');
-		return;
-	}
-
 	const DEFAULT_MIME = 'text/plain';
 	var contentMime = null;
 	var copyContent;
