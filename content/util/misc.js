@@ -125,7 +125,7 @@ Foxtrick.playSound = function(url) {
  * Use addCopying instead
  *
  * copy maybe a string or a function that returns a string or {mime, content}
- * mime may specify additional mime time
+ * mime may specify additional mime type
  * 'text/plain' is always used
  *
  * c.f. https://stackoverflow.com/questions/3436102/copy-to-clipboard-in-chrome-extension/12693636#12693636

@@ -316,7 +316,7 @@ Foxtrick.listen = function(el, type, listener, useCapture) {
  * Activate an element by adding a copy listener.
  *
  * copy maybe a string or a function that returns {mime, content}
- * mime may specify additional mime time
+ * mime may specify additional mime type
  * 'text/plain' is always used
  *
  * @param {element} el
