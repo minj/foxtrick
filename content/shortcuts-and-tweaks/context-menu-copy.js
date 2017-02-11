@@ -59,7 +59,8 @@ if (Foxtrick.platform != 'Android')
 			var copy = function(entry) {
 				return function() {
 					// FIXME copying from background
-					Foxtrick.copy(doc, entry.copyText);
+					// does not work in WebExt
+					Foxtrick.copy(document, entry.copyText);
 				};
 			};
 			var firefoxInit = function() {
