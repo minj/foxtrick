@@ -26,6 +26,12 @@ if (!Foxtrick)
 
 	// chrome background
 	Foxtrick._containsPermission = function(types, callback){
+
+		// FIXME rewrite/remove this file
+		// keep in mind that WebExt does not support permissions (bug 1197420)
+		if (!('permissions' in chrome))
+			callback(true);
+
 		chrome.permissions.contains(types,
 			function(result) {
 				callback(result);
