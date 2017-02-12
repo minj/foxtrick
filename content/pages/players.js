@@ -1034,18 +1034,27 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 		catch (e) {
 			Foxtrick.log(e);
 		}
-		if (data && typeof data === 'object') {
-			Foxtrick.map(function(player) {
-				if (data[player.id]) {
-					player.staminaPrediction = {
-						value: data[player.id][1], date: data[player.id][0]
-					};
-					player.staminaPred = parseFloat(data[player.id][1]);
-				}
-				else
-					player.staminaPrediction = null;
-			}, playerList);
-		}
+
+		if (!data || typeof data !== 'object')
+			return;
+
+		var newData = {}; // update player list
+		Foxtrick.map(function(player) {
+			if (!(player.id in data)) {
+				player.staminaPrediction = null;
+				return;
+			}
+
+			newData[player.id] = data[player.id]; // only copy existing players
+
+			player.staminaPrediction = {
+				value: data[player.id][1], date: data[player.id][0]
+			};
+			player.staminaPred = parseFloat(data[player.id][1]);
+
+		}, playerList);
+
+		Foxtrick.Prefs.setString('StaminaData.' + ownId, JSON.stringify(newData));
 	};
 	// if callback is provided, we get list with XML
 	// otherwise, we get list synchronously and return it
