@@ -31,7 +31,7 @@ Foxtrick.util.notify.create = function(msg, source, opts/*, callback*/) {
 	const NAME = 'Foxtrick';
 	const IS_CLICKABLE = true;
 
-	var gId = '', gUrl = '';
+	var gId = '', gUrl = '', gTabOpts = {}, gTabOptsBtn = {};
 
 	var createGecko = function() {
 
@@ -142,9 +142,12 @@ Foxtrick.util.notify.create = function(msg, source, opts/*, callback*/) {
 				options[opt] = opts[opt];
 		}
 
+
 		var retry = function() {
 			delete options.buttons;
 			opts = options;
+			gTabOpts.url = gTabOptsBtn.url;
+
 			createChrome();
 		};
 
@@ -204,10 +207,8 @@ Foxtrick.util.notify.create = function(msg, source, opts/*, callback*/) {
 			if (noteId !== gId)
 				return;
 
-			var tabOpts = { active: true }; // focus only
-
 			clearNote(noteId).then(function() {
-				return updateOriginTab(source.tab, tabOpts);
+				return updateOriginTab(source.tab, gTabOpts);
 			}).then(function() {
 				// callback(gUrl);
 			}).catch(Foxtrick.catch('notifications.onClicked'));
@@ -217,10 +218,8 @@ Foxtrick.util.notify.create = function(msg, source, opts/*, callback*/) {
 			if (noteId !== gId)
 				return;
 
-			var tabOpts = { active: true, url: gUrl }; // focus and open
-
 			clearNote(noteId).then(function() {
-				return updateOriginTab(source.tab, tabOpts);
+				return updateOriginTab(source.tab, gTabOptsBtn);
 			}).then(function() {
 				// callback(gUrl);
 			}).catch(Foxtrick.catch('notifications.onButtonClicked'));
@@ -345,6 +344,9 @@ Foxtrick.util.notify.create = function(msg, source, opts/*, callback*/) {
 
 		gUrl = source;
 	}
+
+	gTabOpts = { active: true }; // focus only
+	gTabOptsBtn = { active: true, url: gUrl }; // focus and open
 
 	// start logic
 	if (Foxtrick.context === 'background') {
