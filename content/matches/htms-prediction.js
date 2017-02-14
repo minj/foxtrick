@@ -179,6 +179,48 @@ Foxtrick.modules['HTMSPrediction'] = {
 			cell = row.insertCell(1); cell.textContent = winprob; cell.className = 'left';
 			cell = row.insertCell(2); cell.textContent = drawprob; cell.className = 'center';
 			cell = row.insertCell(3); cell.textContent = lossprob; cell.className = 'right';
+					
+			/***********************
+			 * Mimimi add-on       *
+			 * @author: educhielle *
+			 * HT: MetalTeck       *
+			 **********************/
+			
+			/* 
+			   The Mimimi add-on aims to show if a match result was fair or if luck played a huge role
+			   It takes into account the HTMS prediction and the match result, and determine how luck a team was
+			   There are three fields:
+			   - expected: shows how many points the home team was expected to get from the match
+			   - acquired: shows how many points the home team actually got from the match
+			   - luck: shows how luck the home team was (the luck parameter varies from -100% to +100%)
+				- -100% means that the home team was very unlucky (and, consequently, the away team very luck)
+				- near 0% means that it was a fair result
+				- +100% means that the home team was very luck (and the away team very unlucky)
+				
+				The luck parameter is quadratic to emphasize results heavily influenced by randomness
+			*/
+			
+			var goals = Foxtrick.Pages.Match.getResult(doc);
+			var homeResult = goals[0];
+			var awayResult = goals[1];
+			var result = homeResult - awayResult;
+			var expected = (3 * parseFloat(winprob) + parseFloat(drawprob)) / 100;
+			var acquired = ( result > 0 ? 3 : ( result < 0 ? 0 : 1 ));
+			var diff = acquired - expected;
+			var luck = Math.round(100 * Math.abs(diff) * diff / 9);
+			var luckContent = ( luck > 0 ? "+"+luck+"%" : luck+"%" );
+			
+			row = htmstable.insertRow(htmstable.rows.length);
+			cell = row.insertCell(0); cell.className = 'ch';
+			
+			// text need to be moved to proper place. I didn't want to mess with your code
+			cell.textContent = "expected/acquired/luck"; //Foxtrick.L10n.getString('HTMSPrediction.winDrawLoss');
+			
+			cell = row.insertCell(1); cell.textContent = expected.toFixed(2); cell.className = 'left';
+			cell = row.insertCell(2); cell.textContent = acquired; cell.className = 'center';
+			cell = row.insertCell(3); cell.textContent = luckContent; cell.className = 'right';
+			
+			/* end of Mimimi add-on code */
 		}).catch(Foxtrick.catch(module));
 
 		var p = doc.createElement('p');
