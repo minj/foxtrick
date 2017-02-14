@@ -30,6 +30,7 @@ FoxtrickFennec.prototype = {
 		'lib/sha1.js',
 		'lib/jester.js',
 		'lib/psico.js',
+		'lib/gauge.js',
 		// <!-- end ext-lib -->
 
 		// <!-- util -->
