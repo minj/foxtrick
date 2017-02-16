@@ -191,7 +191,7 @@ Foxtrick.modules['HTMSPrediction'] = {
 			cell = row.insertCell(3); cell.appendChild(b); cell.className = 'right';
 
 			var row = htmstable.insertRow(htmstable.rows.length);
-			cell = row.insertCell(0);			
+			cell = row.insertCell(0);
 			cell = row.insertCell(1);
 			cell.setAttribute('colspan', 3);
 			var graph = cell.appendChild(doc.createElement('div'));
