@@ -188,6 +188,10 @@ if (Foxtrick.context == 'background') {
 				Promise.resolve(getIDBShim()).then(fulfill);
 
 			}
+			else {
+				reject(new Error('No storage implementation available'));
+			}
+
 		});
 
 		// return localStore property descriptor
