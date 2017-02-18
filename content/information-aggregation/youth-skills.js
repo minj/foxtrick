@@ -326,11 +326,15 @@ Foxtrick.modules['YouthSkills'] = {
 				loading.parentNode.removeChild(loading);
 				loading = null;
 			}
-			if (response === null)
-				showError(Foxtrick.L10n.getString('youthclub.api.nopermission'), 401);
 
-			if (reason === 'user')
-				showError(Foxtrick.L10n.getString('youthclub.api.notuser').replace(/%s/, 'YouthSkills'), 401);
+			if (response === null)
+				showError(null, 401, 'youthclub.api.nopermission');
+
+			if (reason === 'user') {
+				var moduleTemplate = Foxtrick.L10n.getString('youthclub.api.notuser');
+				var explanation = moduleTemplate.replace(/%s/, 'YouthSkills');
+				showError(explanation, 401);
+			}
 
 			if (Foxtrick.Prefs.isModuleEnabled('SkillColoring'))
 				Foxtrick.modules['SkillColoring'].execute(doc);
@@ -339,9 +343,11 @@ Foxtrick.modules['YouthSkills'] = {
 				Foxtrick.modules['TeamStats'].execute(doc);
 		};
 
-		var showError = function(response, status) {
+		var showError = function(response, status, prefLink) {
 			if (!entry)
 				return;
+
+			var header = 'Hattrick Youthclub Error ' + status + ': ';
 
 			var text;
 			try {
@@ -351,7 +357,21 @@ Foxtrick.modules['YouthSkills'] = {
 				text = response;
 			}
 
-			text = 'Hattrick Youthclub Error ' + status + ': ' + text;
+			if (!text && prefLink) {
+				text = doc.createElement('span');
+				text.textContent = header;
+
+				var link = Foxtrick.L10n.appendLink(prefLink, text, '#');
+				if (link) {
+					Foxtrick.onClick(link, function() {
+						Foxtrick.Prefs.show();
+					});
+				}
+			}
+			else {
+				text = header + text;
+			}
+
 			var target = doc.getElementById('ft-hy-skills-info');
 			Foxtrick.util.note.add(doc, text, 'ft-youth-skills-error', { at: target });
 		};
@@ -406,7 +426,7 @@ Foxtrick.modules['YouthSkills'] = {
 		}
 
 		// get skills from HY
-		Foxtrick.containsPermission({ origins: ['http://*.hattrick-youthclub.org/*'] },
+		Foxtrick.containsPermission({ origins: ['https://*.hattrick-youthclub.org/*'] },
 		  function(permission) {
 			if (permission) {
 				Foxtrick.api.hy.runIfHYUser(function() {

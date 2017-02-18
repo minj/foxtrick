@@ -125,7 +125,7 @@ Foxtrick.util.id.findTeamId = function(element) {
 			return Number(links[i].href.replace(/.+TeamID=/i, '').match(/^\d+/)[0]);
 		}
 	}
-	return false;
+	return null;
 };
 
 Foxtrick.util.id.findYouthTeamId = function(element) {
@@ -268,6 +268,7 @@ Foxtrick.util.id.romantodecimal = function(roman) {
 		case ('VIII'): return 8;
 		case ('IX'): return 9;
 		case ('X'): return 10;
+		case ('XI'): return 11;
 		default: return null;
 	}
 };
@@ -288,6 +289,9 @@ Foxtrick.util.id.findLeagueLeveUnitId = function(element) {
  * Returns a flag as a link element
  * link href and img title may optionally override defaults:
  * league link and league name respectively
+ *
+ * README: DO NOT use if leagueId is available
+ *
  * @param	{document}	doc
  * @param	{Integer}	countryId
  * @param	{String}	href		optional

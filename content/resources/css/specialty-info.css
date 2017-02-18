@@ -18,6 +18,8 @@
 	color: black;
 
 	white-space: normal;
+
+	cursor: pointer;
 }
 
 html[dir="ltr"] .cards_health .ft-specInfo {
@@ -28,22 +30,31 @@ html[dir="ltr"] .cards_health .ft-specInfo {
 	display: block;
 }
 
-.ft-specInfo-col {
-	width: 50%;
+.ft-specInfo-col:nth-child(odd) {
+	width: 19px;
+}
+.ft-specInfo-col:nth-child(even) {
+	width: 130px;
 }
 
 .ft-specInfo-textIcon {
 	vertical-align: middle;
 }
 
-/* SkillTable /sigh */
-.ft-specInfo-outer td {
-	background: white !important;
-	color: black;
-	vertical-align: baseline !important;
-	border: none;
+.ft-specInfo-tbl th, .ft-specInfo-tbl td {
+	box-sizing: border-box;
+	padding-right: 0;
 }
 
-.ft-specInfo-inner td {
-	padding: 2px !important;
+.ft-specInfo-tbl td:nth-child(even) {
+	padding-right: 0.5em;
+}
+
+.ft-specInfo-tbl td {
+	border-bottom: 1px solid #dce0dc;
+
+	/* SkillTable /sigh */
+	background: white !important;
+	color: black;
+	vertical-align: middle !important;
 }

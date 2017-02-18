@@ -84,6 +84,7 @@ Foxtrick.playSound = function(url) {
 	if (Foxtrick.context == 'content') {
 		// delegate to background due to playback delay
 		Foxtrick.SB.ext.sendRequest({ req: 'playSound', url: url });
+		return;
 	}
 
 	if (typeof url !== 'string') {
@@ -248,6 +249,15 @@ Foxtrick.lazyProp(Foxtrick, 'branch', function() {
 	return Foxtrick.Prefs.getString('branch');
 });
 
+/**
+ * Clear all caches
+ */
+Foxtrick.clearCaches = function() {
+	Foxtrick.sessionDeleteBranch('');
+	Foxtrick.localDeleteBranch('');
+	Foxtrick.cache.clear();
+};
+
 Foxtrick.getHref = function(doc) {
 	return doc.location.href;
 };
@@ -323,7 +333,27 @@ Foxtrick.getPanel = function(doc) {
  * @return {Boolean}
  */
 Foxtrick.hasProp = function(obj, prop) {
-	return obj && typeof obj === 'object' && prop in obj;
+	return obj != null && typeof obj === 'object' && prop in obj;
+};
+
+/**
+ * Test whether object obj is a simple key-value map
+ *
+ * @param  {object}  obj
+ * @return {Boolean}
+ */
+Foxtrick.isMap = function(obj) {
+	return obj != null && Object.getPrototypeOf(obj) == Object.prototype;
+};
+
+/**
+ * Test whether object obj is an array-like
+ *
+ * @param  {object}  obj
+ * @return {Boolean}
+ */
+Foxtrick.isArrayLike = function(obj) {
+	return Foxtrick.hasProp(obj, 'length');
 };
 
 /**

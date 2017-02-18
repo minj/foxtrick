@@ -80,9 +80,15 @@ Foxtrick.modules['ReadHtPrefs'] = {
 	readCountry: function(doc) {
 		var teamLinks = doc.querySelectorAll('#teamLinks a');
 		var leagueLink = teamLinks[2];
-		var leagueId = Foxtrick.getParameterFromUrl(leagueLink.href, 'leagueId');
-		var country = Foxtrick.L10n.getCountryNameEnglish(leagueId);
-		Foxtrick.Prefs.setString('htCountry', country);
+		if (leagueLink) {
+			var leagueId = Foxtrick.getParameterFromUrl(leagueLink.href, 'leagueId');
+			var country = Foxtrick.L10n.getCountryNameEnglish(leagueId);
+			Foxtrick.Prefs.setString('htCountry', country);
+		}
+		else {
+			Foxtrick.log('WARNING: no league found');
+			Foxtrick.Prefs.setString('htCountry', 'N/A');
+		}
 	},
 
 	readDateFormat: function(doc) {

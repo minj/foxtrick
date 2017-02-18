@@ -24,6 +24,8 @@ Foxtrick.modules.Core = {
 	run: function(doc) {
 		this.addBugReportLink(doc);
 
+		this.monitorWeekChanges(doc);
+
 		var UTC = Foxtrick.util.time.getUTCDate(doc);
 		if (UTC) {
 			this.HT_TIME = UTC.getTime();
@@ -75,6 +77,31 @@ Foxtrick.modules.Core = {
 		content.appendChild(pUpdates);
 
 		Foxtrick.makeModal(doc, Foxtrick.version, content);
+	},
+
+	monitorWeekChanges: function(doc) {
+		try {
+			var LAST_WEEK = Foxtrick.util.time.WEEKS_IN_SEASON;
+
+			var oldWeek = Foxtrick.Prefs.getInt('oldWeek');
+			var online = doc.getElementById('online');
+			var week = parseInt(online.textContent.trim().match(/\d+$/), 10);
+
+			if (!week) {
+				Foxtrick.log('WARNING: week # detection failed.', online.textContent);
+				return;
+			}
+
+			if (oldWeek != week && (!oldWeek || oldWeek > week || week == LAST_WEEK)) {
+				// season changes (like series) more or less happen before LAST_WEEK starts
+				Foxtrick.clearCaches();
+			}
+
+			Foxtrick.Prefs.setInt('oldWeek', week);
+		}
+		catch (e) {
+			Foxtrick.log(e);
+		}
 	},
 
 	updateLastPage: function(doc) {
@@ -158,26 +185,29 @@ Foxtrick.modules.Core = {
 	parseSelfTeamInfo: function(doc) {
 		var CORE = this; // jscs:ignore safeContextKeyword
 
-		var processShortName = function(name) {
-			if (doc.querySelector('.ongoingEvents a[href*="/Club/Matches/Live.aspx"]')) {
-				name = CORE.TEAM.teamName;
-				Foxtrick.log('Short team name found!', name);
-				// move away from localStore
-				Foxtrick.localSet('shortTeamName.' + CORE.TEAM.teamId, null);
-				Foxtrick.Prefs.setString('shortTeamName.' + CORE.TEAM.teamId, name);
-			}
-			if (name)
-				CORE.TEAM.shortTeamName = name;
-		};
-
 		var teamLinks = doc.getElementById('teamLinks');
 		if (teamLinks && teamLinks.getElementsByTagName('a').length > 0) {
+			var teamLink = teamLinks.querySelector('a');
+
+			var processShortName = function(name) {
+				if (doc.querySelector('.ongoingEvents a[href*="/Club/Matches/Live.aspx"]')) {
+					name = teamLink.textContent;
+					Foxtrick.log('Short team name found!', name);
+					// move away from localStore
+					Foxtrick.localSet('shortTeamName.' + CORE.TEAM.teamId, null);
+					Foxtrick.Prefs.setString('shortTeamName.' + CORE.TEAM.teamId, name);
+				}
+				if (name)
+					CORE.TEAM.shortTeamName = name;
+			};
+
 			CORE.TEAM = {
-				teamId: Foxtrick.util.id.findTeamId(teamLinks),
+				teamId: Foxtrick.util.id.getTeamIdFromUrl(teamLink.href),
+				teamName: teamLink.title,
 				leagueId: Foxtrick.util.id.findLeagueId(teamLinks),
-				teamName: Foxtrick.util.id.extractTeamName(teamLinks),
 				seriesId: Foxtrick.util.id.findLeagueLeveUnitId(teamLinks),
 			};
+
 			var teamId = CORE.TEAM.teamId;
 			var shortName = Foxtrick.Prefs.getString('shortTeamName.' + teamId);
 			if (shortName !== null) {
@@ -189,6 +219,7 @@ Foxtrick.modules.Core = {
 
 			Foxtrick.htPages['ownPlayers'] =
 				Foxtrick.htPages['ownPlayersTemplate'].replace(/\[id\]/g, teamId);
+
 			Foxtrick.addClass(doc.body, 'ft-teamID-' + teamId);
 		}
 

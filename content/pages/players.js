@@ -232,7 +232,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 		});
 	};
 	var addHYLink = function(doc, player) {
-		var hyUrl = 'http://www.hattrick-youthclub.org/redirect/type/player_details/ht_id/' +
+		var hyUrl = 'https://www.hattrick-youthclub.org/redirect/type/player_details/ht_id/' +
 			player.id;
 
 		var hyLink = doc.createElement('a');
@@ -601,18 +601,22 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 
 					}
 
-					player.lastPlayedMinutes = num('PlayedMinutes', LastMatch);
+					var mins = player.lastPlayedMinutes = num('PlayedMinutes', LastMatch);
 
-					var dateText =
-						Foxtrick.util.time.buildDate(player.lastMatchDate, { showTime: false });
-					var str = Foxtrick.L10n.getString('Last_match_played_as_at',
-					                                  player.lastPlayedMinutes);
-					player.lastMatchText = str.replace('%1', player.lastPlayedMinutes).
-						replace('%2', player.lastPosition).replace('%3', dateText);
+					if (mins) {
+						var dateText =
+							Foxtrick.util.time.buildDate(player.lastMatchDate, { showTime: false });
+
+						var str = Foxtrick.L10n.getString('Last_match_played_as_at', mins);
+						player.lastMatchText =
+							str.replace('%1', player.lastPlayedMinutes)
+							   .replace('%2', player.lastPosition)
+							   .replace('%3', dateText);
+					}
+					else {
+						player.lastMatchText = Foxtrick.L10n.getString('Last_match_didnot_play');
+					}
 				}
-				if (!player.lastMatchText)
-					player.lastMatchText =
-						Foxtrick.L10n.getString('Last_match_didnot_play');
 			}
 
 			var missingXML = Foxtrick.filter(function(p) {
@@ -1030,18 +1034,27 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 		catch (e) {
 			Foxtrick.log(e);
 		}
-		if (data && typeof data === 'object') {
-			Foxtrick.map(function(player) {
-				if (data[player.id]) {
-					player.staminaPrediction = {
-						value: data[player.id][1], date: data[player.id][0]
-					};
-					player.staminaPred = parseFloat(data[player.id][1]);
-				}
-				else
-					player.staminaPrediction = null;
-			}, playerList);
-		}
+
+		if (!data || typeof data !== 'object')
+			return;
+
+		var newData = {}; // update player list
+		Foxtrick.map(function(player) {
+			if (!(player.id in data)) {
+				player.staminaPrediction = null;
+				return;
+			}
+
+			newData[player.id] = data[player.id]; // only copy existing players
+
+			player.staminaPrediction = {
+				value: data[player.id][1], date: data[player.id][0]
+			};
+			player.staminaPred = parseFloat(data[player.id][1]);
+
+		}, playerList);
+
+		Foxtrick.Prefs.setString('StaminaData.' + ownId, JSON.stringify(newData));
 	};
 	// if callback is provided, we get list with XML
 	// otherwise, we get list synchronously and return it

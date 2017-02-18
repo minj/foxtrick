@@ -65,7 +65,7 @@ Foxtrick.modules['YouthTwins'] = {
 					var av = encodeURIComponent(xml.serializeToString(avatars));
 
 					//api url
-					var url = 'http://www.hattrick-youthclub.org' +
+					var url = 'https://www.hattrick-youthclub.org' +
 						'/_data_provider/foxtrick/playersTwinsCheck';
 
 					//assemble param string
@@ -117,7 +117,16 @@ Foxtrick.modules['YouthTwins'] = {
 						callback(json);
 					}, params,
 					  function(response, status) {
-						var msg = 'Error ' + status + ': ' + JSON.parse(response).error;
+						var msg = 'Error ' + status + ': ';
+
+						try {
+							var err = JSON.parse(response).error;
+							msg += err;
+						}
+						catch (e) {
+							msg += response;
+						}
+
 						Foxtrick.util.note.add(doc, msg);
 					  },
 					  function() {
@@ -200,8 +209,8 @@ Foxtrick.modules['YouthTwins'] = {
 				link.appendChild(container);
 
 				//link destinations as Mackshot from HY requested
-				var url = isHYuser ? 'http://www.hattrick-youthclub.org/site/players_twins' :
-					'http://www.hattrick-youthclub.org';
+				var url = isHYuser ? 'https://www.hattrick-youthclub.org/site/players_twins' :
+					'https://www.hattrick-youthclub.org';
 
 				container.dataset.url = url;
 
@@ -214,7 +223,7 @@ Foxtrick.modules['YouthTwins'] = {
 					var infolink =
 						Foxtrick.createFeaturedElement(doc, Foxtrick.modules['YouthTwins'], 'a');
 					Foxtrick.addClass(infolink, 'ft-youth-twins-info');
-					infolink.href = 'http://www.hattrick-youthclub.org/site/wiki-player_twins';
+					infolink.href = 'https://www.hattrick-youthclub.org/site/wiki-player_twins';
 					infolink.target = '_blank';
 					var infotext = Foxtrick.L10n.getString('YouthTwins.infoText');
 					target.parentNode.insertBefore(infolink, target.nextSibling);

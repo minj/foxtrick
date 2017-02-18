@@ -269,6 +269,7 @@
 		"leagueNames": {
 			"1": "Sverige",
 			"100": "El Salvador",
+			"1000": "Hattrick International",
 			"101": "Malta",
 			"102": "Kirgisistan",
 			"103": "Moldova",
@@ -610,7 +611,7 @@
 			},
 			{
 				"type": "Quick",
-				"value": "Rask"
+				"value": "Snøgg"
 			},
 			{
 				"type": "Powerful",

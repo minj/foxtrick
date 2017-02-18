@@ -79,6 +79,12 @@ if (!Foxtrick)
 Foxtrick.TIMEOUT_ERROR = 'Foxtrick timeout';
 
 /**
+ * Error message to suppress additional logging
+ * @type {String}
+ */
+Foxtrick.SWALLOWED_ERROR = 'Foxtrick ignore this error';
+
+/**
  * Setup a time limit (ms) for Promise fulfillment.
  *
  * Returns a Promise that resolves with the value
@@ -128,6 +134,9 @@ Foxtrick.delay = function(time) {
  */
 Foxtrick.catch = function(module) {
 	return function(e) {
+		if (e === Foxtrick.SWALLOWED_ERROR)
+			return;
+
 		var what = module && module.MODULE_NAME || module;
 		Foxtrick.log('Uncaught error in callback for', what, e);
 	};

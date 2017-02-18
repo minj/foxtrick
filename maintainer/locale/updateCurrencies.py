@@ -28,8 +28,14 @@ def parse_worlddetails(input_file):
     for league in league_list:
         l_id = league['LeagueID']
         l_name = league['EnglishName']
-        c_name = league['Country']['CurrencyName']
-        c_rate = league['Country']['CurrencyRate']
+
+        c_cont = league['Country']
+        if c_cont['Available'] == 'False':
+            continue
+
+        c_name = c_cont['CurrencyName']
+        c_rate = c_cont['CurrencyRate']
+
         # deal with HT number system and convert from SEK to EUR
         c_rate = str(float(c_rate.replace(',', '.')) / 10)
         league_map[l_id] = { 'id': l_id, 'name': l_name, 'currency': c_name, 'rate': c_rate }

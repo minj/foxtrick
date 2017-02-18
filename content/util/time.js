@@ -414,8 +414,6 @@ Foxtrick.util.time.toLocal = function(doc, userDate) {
 /**
  * Get the user league season offset (>0)
  *
- * Throws if user league was not found.
- * @throw  {Error}  user league not found
  * @return {number}                       {Integer>0}
  */
 Foxtrick.util.time.getSeasonOffset = function() {
@@ -427,7 +425,9 @@ Foxtrick.util.time.getSeasonOffset = function() {
 			return -offset;
 		}
 	}
-	throw new Error('User league not found');
+
+	Foxtrick.log('WARNING: no league found');
+	return 0;
 };
 
 /**

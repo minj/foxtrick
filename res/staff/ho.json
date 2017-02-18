@@ -19,7 +19,6 @@
 		{ "id": "12834985", "name": "Jose_Valerinho", "duty": "developer" },
 		{ "id": "2824245", "name": "Kruescho", "duty": "developer" },
 		{ "id": "2192218", "name": "PeaceKeeper", "duty": "developer" },
-		{ "id": "4927457", "name": "Seb04", "duty": "developer" },
 		{ "id": "12229464", "name": "suokko", "duty": "developer" },
 		{ "id": "9685284", "name": "thesabry", "duty": "developer" },
 		{ "id": "4718113", "name": "Werder0405", "duty": "developer" },
@@ -90,6 +89,7 @@
 		{ "id": "10063659", "name": "tricktron", "duty": "developer"},
 		{ "id": "881906", "name": "ultracool", "duty": "translator"},
 		{ "id": "11741437", "name": "YLMZ-VRL", "duty": "translator"},
+		{ "id": "9855688", "name": "Nika_Kvrivishvili", "duty": "translator"},
 		{ "id": "2684151", "name": "zymbo", "duty": "translator"}
 	]
 }

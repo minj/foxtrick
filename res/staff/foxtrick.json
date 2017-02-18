@@ -27,7 +27,7 @@
 		{
 			"duty": "translator",
 			"id": "10167326",
-			"name": "qoomis"
+			"name": "goomis90"
 		},
 		{
 			"duty": "supporter",
@@ -50,6 +50,11 @@
 			"name": "raetselecke"
 		},
 		{
+			"duty": "supporter",
+			"id": "10354068",
+			"name": "gtavo"
+		},
+		{
 			"duty": "translator",
 			"id": "10438815",
 			"name": "puuslik"
@@ -58,6 +63,16 @@
 			"duty": "translator",
 			"id": "1048018",
 			"name": "ivo_stoyanov"
+		},
+		{
+			"duty": "supporter",
+			"id": "10491436",
+			"name": "flight_of_icarus"
+		},
+		{
+			"duty": "supporter",
+			"id": "10511346",
+			"name": "AH-galla"
 		},
 		{
 			"duty": "translator",
@@ -81,8 +96,23 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "10648045",
+			"name": "BigDima"
+		},
+		{
+			"duty": "supporter",
 			"id": "10680966",
 			"name": "vegar56"
+		},
+		{
+			"duty": "supporter",
+			"id": "10726446",
+			"name": "LA-Cenarius"
+		},
+		{
+			"duty": "supporter",
+			"id": "10763413",
+			"name": "h-b-o"
 		},
 		{
 			"duty": "supporter",
@@ -112,7 +142,12 @@
 		{
 			"duty": "translator",
 			"id": "11006315",
-			"name": "GM-timh1704"
+			"name": "timh1704"
+		},
+		{
+			"duty": "supporter",
+			"id": "11017062",
+			"name": "DDriver"
 		},
 		{
 			"duty": "supporter",
@@ -156,18 +191,33 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "11386166",
+			"name": "FloZorgo"
+		},
+		{
+			"duty": "supporter",
+			"id": "1140197",
+			"name": "schmidde"
+		},
+		{
+			"duty": "supporter",
 			"id": "11525655",
 			"name": "brutuscat"
 		},
 		{
 			"duty": "translator",
 			"id": "11528071",
-			"name": "Flatron330"
+			"name": "HPE-Flatron"
 		},
 		{
 			"duty": "translator",
 			"id": "11551835",
 			"name": "Limonada123"
+		},
+		{
+			"duty": "supporter",
+			"id": "11578876",
+			"name": "FCJoe"
 		},
 		{
 			"duty": "supporter",
@@ -205,6 +255,11 @@
 			"name": "visviva"
 		},
 		{
+			"duty": "supporter",
+			"id": "11792210",
+			"name": "himbeerkracherl"
+		},
+		{
 			"duty": "translator",
 			"id": "11817135",
 			"name": "Parjikia"
@@ -218,6 +273,11 @@
 			"duty": "supporter",
 			"id": "11916705",
 			"name": "papi_"
+		},
+		{
+			"duty": "translator",
+			"id": "11935403",
+			"name": "Fondhaarp"
 		},
 		{
 			"duty": "translator",
@@ -235,6 +295,11 @@
 			"name": "Sellas"
 		},
 		{
+			"duty": "supporter",
+			"id": "12104313",
+			"name": "royson3"
+		},
+		{
 			"duty": "translator",
 			"id": "12166",
 			"name": "murko"
@@ -248,6 +313,11 @@
 			"duty": "translator",
 			"id": "12326398",
 			"name": "Dr-Jalal"
+		},
+		{
+			"duty": "supporter",
+			"id": "12341439",
+			"name": "azulinvicto"
 		},
 		{
 			"duty": "translator",
@@ -271,6 +341,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "12467052",
+			"name": "Asterix71"
+		},
+		{
+			"duty": "supporter",
 			"id": "12511204",
 			"name": "Domek_69"
 		},
@@ -282,7 +357,7 @@
 		{
 			"duty": "translator",
 			"id": "12533508",
-			"name": "RoLitoral"
+			"name": "MOD-RoLitoral"
 		},
 		{
 			"duty": "supporter",
@@ -296,6 +371,16 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "12605339",
+			"name": "PhileasFogg"
+		},
+		{
+			"duty": "supporter",
+			"id": "12605732",
+			"name": "MaxCman"
+		},
+		{
+			"duty": "supporter",
 			"id": "12608460",
 			"name": "Jarly"
 		},
@@ -305,14 +390,39 @@
 			"name": "larsw84"
 		},
 		{
+			"duty": "supporter",
+			"id": "12788724",
+			"name": "jkers"
+		},
+		{
+			"duty": "supporter",
+			"id": "12842434",
+			"name": "darkrider2"
+		},
+		{
+			"duty": "supporter",
+			"id": "12903605",
+			"name": "1910pauli1910"
+		},
+		{
 			"duty": "translator",
 			"id": "12960779",
 			"name": "puttfarken01"
 		},
 		{
+			"duty": "supporter",
+			"id": "12966867",
+			"name": "ExpatU"
+		},
+		{
+			"duty": "supporter",
+			"id": "12973873",
+			"name": "Shantiboss"
+		},
+		{
 			"duty": "translator",
 			"id": "12975827",
-			"name": "MartinsPF_"
+			"name": "mbohane"
 		},
 		{
 			"duty": "supporter",
@@ -322,7 +432,7 @@
 		{
 			"duty": "supporter",
 			"id": "13049551",
-			"name": "Novecento_"
+			"name": "Novecento-GIGA"
 		},
 		{
 			"duty": "supporter",
@@ -332,7 +442,7 @@
 		{
 			"duty": "supporter",
 			"id": "13111549",
-			"name": "vanDerBaald"
+			"name": "Baldbeardy"
 		},
 		{
 			"duty": "supporter",
@@ -341,8 +451,18 @@
 		},
 		{
 			"duty": "translator",
+			"id": "13121281",
+			"name": "Fantomas-1"
+		},
+		{
+			"duty": "translator",
 			"id": "13142222",
 			"name": "karlinhos"
+		},
+		{
+			"duty": "supporter",
+			"id": "13204824",
+			"name": "ReeeN"
 		},
 		{
 			"duty": "supporter",
@@ -353,6 +473,11 @@
 			"duty": "translator",
 			"id": "1370102",
 			"name": "Iltios"
+		},
+		{
+			"duty": "supporter",
+			"id": "1397713",
+			"name": "VvJ-Beckham"
 		},
 		{
 			"duty": "translator",
@@ -386,6 +511,16 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "1748351",
+			"name": "bal-G"
+		},
+		{
+			"duty": "supporter",
+			"id": "1761014",
+			"name": "fepo1"
+		},
+		{
+			"duty": "supporter",
 			"id": "1806088",
 			"name": "GeissbockHennes"
 		},
@@ -413,6 +548,16 @@
 			"duty": "translator",
 			"id": "2090503",
 			"name": "--Eagle--"
+		},
+		{
+			"duty": "supporter",
+			"id": "2093541",
+			"name": "borgirk"
+		},
+		{
+			"duty": "supporter",
+			"id": "20986",
+			"name": "DEL_eloffe_20071205024759407917938"
 		},
 		{
 			"duty": "supporter",
@@ -466,6 +611,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "246566",
+			"name": "----------"
+		},
+		{
+			"duty": "supporter",
 			"id": "2552246",
 			"name": "bigos11"
 		},
@@ -483,6 +633,11 @@
 			"duty": "supporter",
 			"id": "2787409",
 			"name": "gia73"
+		},
+		{
+			"duty": "supporter",
+			"id": "278893",
+			"name": "----------"
 		},
 		{
 			"duty": "translator",
@@ -528,6 +683,11 @@
 			"duty": "translator",
 			"id": "335181",
 			"name": "Baler0"
+		},
+		{
+			"duty": "supporter",
+			"id": "339156",
+			"name": "GM-Crosswind"
 		},
 		{
 			"duty": "developer",
@@ -577,7 +737,7 @@
 		{
 			"duty": "translator",
 			"id": "368411",
-			"name": "LA-Robin"
+			"name": "--Robin--"
 		},
 		{
 			"duty": "developer",
@@ -587,7 +747,7 @@
 		{
 			"duty": "supporter",
 			"id": "3745622",
-			"name": "kikindas"
+			"name": "kikinhtev"
 		},
 		{
 			"duty": "supporter",
@@ -610,9 +770,19 @@
 			"name": "MOD-Nacho"
 		},
 		{
+			"duty": "supporter",
+			"id": "389027",
+			"name": "Kramp"
+		},
+		{
 			"duty": "translator",
 			"id": "3911874",
 			"name": "mr_freeze_"
+		},
+		{
+			"duty": "supporter",
+			"id": "3954594",
+			"name": "Il_Gim"
 		},
 		{
 			"duty": "translator",
@@ -623,6 +793,11 @@
 			"duty": "translator",
 			"id": "3961483",
 			"name": "_recluso_"
+		},
+		{
+			"duty": "supporter",
+			"id": "3981682",
+			"name": "jurandraczej"
 		},
 		{
 			"duty": "supporter",
@@ -640,9 +815,14 @@
 			"name": "Triplex1963"
 		},
 		{
+			"duty": "supporter",
+			"id": "4253318",
+			"name": "cschz"
+		},
+		{
 			"duty": "developer",
 			"id": "4342858",
-			"name": "Mod-ljushaff"
+			"name": "ljushaff"
 		},
 		{
 			"duty": "translator",
@@ -652,7 +832,7 @@
 		{
 			"duty": "translator",
 			"id": "440454",
-			"name": "-Foppe-"
+			"name": "LA-Foppe"
 		},
 		{
 			"duty": "supporter",
@@ -718,6 +898,11 @@
 			"duty": "translator",
 			"id": "4917179",
 			"name": "mygenfordt"
+		},
+		{
+			"duty": "supporter",
+			"id": "50011",
+			"name": "Wilbor"
 		},
 		{
 			"duty": "translator",
@@ -847,7 +1032,7 @@
 		{
 			"duty": "translator",
 			"id": "6595557",
-			"name": "edzus"
+			"name": "LA-edzus"
 		},
 		{
 			"duty": "translator",
@@ -887,7 +1072,7 @@
 		{
 			"duty": "supporter",
 			"id": "6944890",
-			"name": "guttusangolo-GIGA"
+			"name": "guttusangolo"
 		},
 		{
 			"duty": "supporter",
@@ -932,7 +1117,7 @@
 		{
 			"duty": "supporter",
 			"id": "7269920",
-			"name": "TheChef-GIGA"
+			"name": "-TheChef-"
 		},
 		{
 			"duty": "developer",
@@ -943,6 +1128,11 @@
 			"duty": "translator",
 			"id": "7439277",
 			"name": "white_eagle"
+		},
+		{
+			"duty": "supporter",
+			"id": "7455307",
+			"name": "Vendragon"
 		},
 		{
 			"duty": "supporter",
@@ -1026,6 +1216,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "8190906",
+			"name": "DxHT-pawpol"
+		},
+		{
+			"duty": "supporter",
 			"id": "8209901",
 			"name": "fitzstudio"
 		},
@@ -1038,6 +1233,11 @@
 			"duty": "translator",
 			"id": "8277378",
 			"name": "MarceloFBrandao"
+		},
+		{
+			"duty": "supporter",
+			"id": "8329542",
+			"name": "Aristodemos"
 		},
 		{
 			"duty": "developer",
@@ -1065,6 +1265,11 @@
 			"name": "HHTim"
 		},
 		{
+			"duty": "supporter",
+			"id": "8782191",
+			"name": "Rustyjack"
+		},
+		{
 			"duty": "translator",
 			"id": "8795088",
 			"name": "crta13"
@@ -1082,7 +1287,7 @@
 		{
 			"duty": "translator",
 			"id": "8988135",
-			"name": "Vital_top7"
+			"name": "LA-Vital_top7"
 		},
 		{
 			"duty": "supporter",
@@ -1107,7 +1312,7 @@
 		{
 			"duty": "translator",
 			"id": "9311330",
-			"name": "GM-OmaniMilani"
+			"name": "OmaniMilani"
 		},
 		{
 			"duty": "translator",
@@ -1118,6 +1323,11 @@
 			"duty": "translator",
 			"id": "9372637",
 			"name": "Murtagsh"
+		},
+		{
+			"duty": "supporter",
+			"id": "9466227",
+			"name": "thom_raindog"
 		},
 		{
 			"duty": "translator",
@@ -1135,9 +1345,19 @@
 			"name": "Vosco"
 		},
 		{
+			"duty": "supporter",
+			"id": "9531623",
+			"name": "J_Bax"
+		},
+		{
 			"duty": "translator",
 			"id": "9559302",
 			"name": "Sam-Latitante"
+		},
+		{
+			"duty": "supporter",
+			"id": "9577400",
+			"name": "HighJahMan"
 		},
 		{
 			"duty": "translator",
@@ -1152,7 +1372,7 @@
 		{
 			"duty": "translator",
 			"id": "9668661",
-			"name": "dzsoo"
+			"name": "LA-dzsoo"
 		},
 		{
 			"duty": "supporter",
@@ -1181,6 +1401,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "9816045",
+			"name": "unhumble"
+		},
+		{
+			"duty": "supporter",
 			"id": "9818296",
 			"name": "relon"
 		},
@@ -1197,7 +1422,7 @@
 		{
 			"duty": "translator",
 			"id": "9855688",
-			"name": "Nika_Kvrivishvili"
+			"name": "LA-Nika_Kvrivishvili"
 		},
 		{
 			"duty": "translator",

@@ -269,9 +269,9 @@ Foxtrick.load = function(url, params, lifeTime, now) {
 
 
 // ----------------------- internal helpers ------------------------
-if (Foxtrick.context === 'background') {
+Foxtrick.cache = (function() {
 
-	Foxtrick.cache = (function() {
+	if (Foxtrick.context === 'background') {
 
 		/**
 		 * Promise cache
@@ -373,7 +373,7 @@ if (Foxtrick.context === 'background') {
 					if (cache < now) {
 						// stale cache
 
-						set(url, params, null);
+						this.delete(url, params);
 
 						return { stale: cache.toString(), now: now.toString() };
 					}
@@ -393,7 +393,7 @@ if (Foxtrick.context === 'background') {
 					cache = new Date(aLifeTime);
 
 					// set new lifeTime
-					this.set(url, params, aLifeTime)(obj.promise);
+					this.setFor(url, params, aLifeTime)(obj.promise);
 				}
 
 				Foxtrick.log('Using cache for:', url, 'until', cache.toString(),
@@ -431,6 +431,16 @@ if (Foxtrick.context === 'background') {
 			},
 
 			/**
+			 * Delete a cached promise if any
+			 *
+			 * @param  {string} url
+			 * @param  {object} params
+			 */
+			delete: function(url, params) {
+				set(url, params, null);
+			},
+
+			/**
 			 * Clear promise cache
 			 */
 			clear: function() {
@@ -438,9 +448,16 @@ if (Foxtrick.context === 'background') {
 			},
 		};
 
-	})();
+	}
+	else {
+		return {
+			clear: function() {
+				Foxtrick.SB.ext.sendRequest({ req: 'cacheClear' });
+			},
+		};
+	}
 
-}
+})();
 
 
 // --------------------- old implementation -------------------------

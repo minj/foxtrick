@@ -40,6 +40,11 @@ Foxtrick.modules['NtPeek'] = {
 		var leagueId = Foxtrick.Pages.All.getId(doc);
 
 		var league = Foxtrick.XMLData.League[leagueId];
+
+		var hasCountry = league.Country.Available == 'True';
+		if (!hasCountry)
+			return;
+
 		var ntId = league.NationalTeamId;
 		var u20Id = league.U20TeamId;
 		var ntName = Foxtrick.XMLData.getNTNameByLeagueId(leagueId);

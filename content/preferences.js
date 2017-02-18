@@ -345,23 +345,23 @@ var neededPermissions = [
 	},
 	{
 		modules: ['YouthTwins'],
-		types: { origins: ['http://*.hattrick-youthclub.org/*'] },
+		types: { origins: ['https://*.hattrick-youthclub.org/*'] },
 	},
 	{
 		modules: ['CopyYouth.AutoSendTrainingReportToHY'],
-		types: { origins: ['http://*.hattrick-youthclub.org/*'] },
+		types: { origins: ['https://*.hattrick-youthclub.org/*'] },
 	},
 	{
 		modules: ['CopyYouth.AutoSendRejectedToHY'],
-		types: { origins: ['http://*.hattrick-youthclub.org/*'] },
+		types: { origins: ['https://*.hattrick-youthclub.org/*'] },
 	},
 	{
 		modules: ['CopyYouth.AutoSendTrainingChangesToHY'],
-		types: { origins: ['http://*.hattrick-youthclub.org/*'] },
+		types: { origins: ['https://*.hattrick-youthclub.org/*'] },
 	},
 	{
 		modules: ['YouthSkills'],
-		types: { origins: ['http://*.hattrick-youthclub.org/*'] },
+		types: { origins: ['https://*.hattrick-youthclub.org/*'] },
 	},
 	{
 		modules: ['MatchWeather'],
@@ -1217,12 +1217,7 @@ function initMainTab() {
 
 	// clear cache
 	$('#pref-stored-clear-cache').click(function() {
-		Foxtrick.sessionDeleteBranch('');
-		Foxtrick.localDeleteBranch('');
-		Foxtrick.cache.clear();
-
-		// Foxtrick.util.api.clearCache();
-
+		Foxtrick.clearCaches();
 		window.location.reload();
 	});
 }
@@ -1804,6 +1799,7 @@ function initTextAndValues() {
 			Foxtrick.Prefs.deleteValue('Currency.Code.' + id);
 			var row = ev.target.ownerDocument.getElementById('team-currency-row-' + id);
 			row.parentNode.removeChild(row);
+			Foxtrick.Prefs.setBool('preferences.updated', true);
 		});
 
 		$('#pref-setup-currency').append(row);

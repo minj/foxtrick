@@ -269,6 +269,7 @@
 		"leagueNames": {
 			"1": "Szwecja",
 			"100": "Salwador",
+			"1000": "Hattrick International",
 			"101": "Malta",
 			"102": "Kirgistan",
 			"103": "Mołdawia",
@@ -720,7 +721,7 @@
 		"tactics": [
 			{
 				"type": "normal",
-				"value": "normalny"
+				"value": "Normalny"
 			},
 			{
 				"type": "pressing",

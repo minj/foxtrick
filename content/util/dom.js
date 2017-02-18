@@ -166,6 +166,44 @@ Foxtrick.removeAttributeValue = function(el, attribute, value) {
 };
 
 /**
+ * Set element attributes/properties based on attribute map.
+ *
+ * Also supports style/dataset and on* listeners.
+ *
+ * @param {element} el
+ * @param {object}  attributes
+ */
+Foxtrick.setAttributes = function(el, attributes) {
+	var ELEMENT_PROPERTIES = [
+		'textContent',
+		'className',
+	];
+
+	for (var attr in attributes) {
+		if ((attr == 'dataset' || attr == 'style') && typeof attributes[attr] == 'object') {
+			for (var item of attributes[attr]) {
+				el[attr][item] = attributes[attr][item];
+			}
+		}
+		else if (attr.slice(0, 2) == 'on' && typeof attributes[attr] == 'function') {
+			var cb = attributes[attr];
+			var type = attr.slice(2).toLowerCase();
+
+			if (type == 'click')
+				Foxtrick.onClick(el, cb);
+			else if (type == 'change')
+				Foxtrick.onChange(el, cb);
+			else
+				Foxtrick.listen(el, type, cb);
+		}
+		else if (Foxtrick.has(ELEMENT_PROPERTIES, attr))
+			el[attr] = attributes[attr];
+		else
+			el.setAttribute(attr, attributes[attr]);
+	}
+};
+
+/**
  * Test whether an element has a class
  * @param  {HTMLElement} el
  * @param  {String}      cls
@@ -280,14 +318,39 @@ Foxtrick.appendChildren = function(parent, children) {
 };
 
 /**
+ * Append child(ren) to parent.
+ *
+ * child may be a Node, String or an array of such.
+ *
+ * @param {element} parent
+ * @param {object}  child
+ */
+Foxtrick.append = function(parent, child) {
+	var doc = parent.ownerDocument;
+	var win = doc.defaultView;
+
+	if (Foxtrick.isArrayLike(child)) {
+		Foxtrick.forEach(function(c) {
+			Foxtrick.append(parent, c);
+		}, child);
+	}
+	else if (win.Node.prototype.isPrototypeOf(child))
+		parent.appendChild(child);
+	else if (child != null) // skip null/undefined
+		parent.appendChild(doc.createTextNode(child.toString()));
+};
+
+/**
  * Adds a click event listener to an element.
  * Sets tabindex=0 and role=button if these attributes have no value.
  * The callback is executed with global change listeners stopped.
+ *
  * @param {HTMLElement} el
  * @param {function}    listener
+ * @param {Boolean}     useCapture
  */
-Foxtrick.onClick = function(el, listener) {
-	Foxtrick.listen(el, 'click', listener, false);
+Foxtrick.onClick = function(el, listener, useCapture) {
+	Foxtrick.listen(el, 'click', listener, useCapture);
 	if (!el.hasAttribute('tabindex'))
 		el.setAttribute('tabindex', '0');
 	if (!el.hasAttribute('role'))
@@ -306,9 +369,19 @@ Foxtrick.listen = function(el, type, listener, useCapture) {
 	el.addEventListener(type, function(ev) {
 		var doc = ev.target.ownerDocument || ev.target;
 		Foxtrick.stopListenToChange(doc);
-		listener.bind(this)(ev);
+
+		var ret = listener.bind(this)(ev);
+
 		Foxtrick.log.flush(doc);
 		Foxtrick.startListenToChange(doc);
+
+		if (ret === false) {
+			// simply returning false does not seem to work in capture phase
+			ev.stopPropagation();
+			ev.preventDefault();
+		}
+
+		return ret;
 	}, useCapture);
 };
 
@@ -581,13 +654,9 @@ Foxtrick.getDataURIText = function(str) {
  */
 Foxtrick.addImage = function(doc, parent, features, insertBefore, callback) {
 	var img = doc.createElement('img');
-	if (typeof features.onError === 'function')
-		Foxtrick.listen(img, 'error', features.onError);
 
-	for (var i in features) {
-		if (i !== 'onError')
-			img.setAttribute(i, features[i]);
-	}
+	Foxtrick.setAttributes(img, features);
+
 	if (insertBefore)
 		parent.insertBefore(img, insertBefore);
 	else
@@ -629,8 +698,9 @@ Foxtrick.addSpecialty = function(parent, specNum, options) {
 		parent.appendChild(imgContainer);
 
 	if (Foxtrick.Prefs.isModuleEnabled('SpecialtyInfo')) {
-		var module = Foxtrick.modules['SpecialtyInfo'];
-		module.decorate(imgContainer, specNum);
+		Foxtrick.addClass(imgContainer, 'ft-specInfo-parent');
+		imgContainer.dataset.specialty = specNum;
+
 		specialtyName += '\n' + Foxtrick.L10n.getString('SpecialtyInfo.open');
 	}
 
@@ -644,6 +714,58 @@ Foxtrick.addSpecialty = function(parent, specNum, options) {
 	return new Promise(function(resolve) {
 		Foxtrick.addImage(doc, imgContainer, opts, null, resolve);
 	});
+};
+
+/**
+ * Make table rows from a row definition array.
+ *
+ * Row definitions may be <TR>s or arrays of cell definitions.
+ * Cell definitions may be either cell attribute maps,
+ * or Nodes, Strings and arrays of such.
+ *
+ * An optional section param is a <TABLE>, <THEAD>, <TBODY> or <TFOOT>
+ * to add rows to. A new table is created by default.
+ *
+ * Returns the created table or section.
+ *
+ * @param  {document}                doc
+ * @param  {array}                   rows
+ * @param  {HTMLTableSectionElement} section
+ * @return {HTMLTableSectionElement}
+ */
+Foxtrick.makeRows = function(doc, rows, section) {
+	var win = doc.defaultView;
+
+	if (!section)
+		section = doc.createElement('table');
+
+	for (var rowItem of Foxtrick.toArray(rows)) {
+		if (win.HTMLTableRowElement.prototype.isPrototypeOf(rowItem)) {
+			section.appendChild(rowItem);
+			continue;
+		}
+
+		var row = section.insertRow(-1);
+
+		for (var cellItem of Foxtrick.toArray(rowItem)) {
+			if (cellItem == null)
+				continue;
+
+			if (win.HTMLTableCellElement.prototype.isPrototypeOf(cellItem)) {
+				row.appendChild(cellItem);
+				continue;
+			}
+
+			var cell = row.insertCell(-1);
+
+			if (Foxtrick.isMap(cellItem))
+				Foxtrick.setAttributes(cell, cellItem);
+			else
+				Foxtrick.append(cell, cellItem);
+		}
+	}
+
+	return section;
 };
 
 /**

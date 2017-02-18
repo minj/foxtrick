@@ -181,7 +181,9 @@ Foxtrick.Pages.Match.isPrematch = function(doc) {
  * @return {Boolean}
  */
 Foxtrick.Pages.Match.hasRatingsTabs = function(doc) {
-	return doc.getElementById('divSectors') !== null;
+	var lineupTab = doc.querySelector('#mainBody .tab2');
+
+	return !!(lineupTab && lineupTab.style.display != 'none');
 };
 
 /**
@@ -317,6 +319,17 @@ Foxtrick.Pages.Match.isLeague = function(doc) {
 	var mainBody = doc.getElementById('mainBody');
 	var isLeague = mainBody.getElementsByClassName('matchLeague').length > 0;
 	return isLeague;
+};
+
+/**
+ * Test whether match is a qualification match
+ * @param  {document} doc
+ * @return {Boolean}
+ */
+Foxtrick.Pages.Match.isQualification = function(doc) {
+	var mainBody = doc.getElementById('mainBody');
+	var isQualification = mainBody.getElementsByClassName('matchQualification').length > 0;
+	return isQualification;
 };
 
 /**
@@ -878,7 +891,16 @@ Foxtrick.Pages.Match.getEventTypesByEvent = function(doc) {
 };
 
 /**
- * Get the smallest HT-Live container that includes
+ * Test whether this is the new HT-Live view
+ * @param  {document}  doc
+ * @return {Boolean}
+ */
+Foxtrick.Pages.Match.isNewLive = function(doc) {
+	return !!doc.getElementById('ngLive');
+};
+
+/**
+ * Get the smallest OLD HT-Live container that includes
  * both the single match view and the match list view
  * @param  {document} doc
  * @return {element}

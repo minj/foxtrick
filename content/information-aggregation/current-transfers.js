@@ -12,15 +12,18 @@ Foxtrick.modules['CurrentTransfers'] = {
 	run: function(doc) {
 		var module = this;
 
-		// time to add to player deadline for caching
-		// players are delayed if a game is being played
-		var CACHE_BONUS = 4 * Foxtrick.util.time.MSECS_IN_HOUR;
-
-		this.OPENING_PRICE = Foxtrick.L10n.getString('CurrentTransfers.openingPrice');
-
 		var players = module.getPlayers(doc);
 		if (!players.length)
 			return;
+
+		module.runPlayers(doc, players);
+	},
+
+	runPlayers: function(doc, players) {
+		var module = this;
+
+		// time to add to player deadline for caching
+		var CACHE_BONUS = 0;
 
 		var argsPlayers = [], optsPlayers = [];
 		Foxtrick.forEach(function(player) {
@@ -35,7 +38,6 @@ Foxtrick.modules['CurrentTransfers'] = {
 		}, players);
 
 		Foxtrick.util.currency.detect(doc).then(function(curr) {
-			var currencyRate = curr.rate, symbol = curr.symbol;
 			Foxtrick.util.api.batchRetrieve(doc, argsPlayers, optsPlayers,
 			  function(xmls, errors) {
 				if (!xmls)
@@ -46,7 +48,15 @@ Foxtrick.modules['CurrentTransfers'] = {
 						Foxtrick.log('No XML in batchRetrieve', argsPlayers[i], errors[i]);
 						continue;
 					}
-					module.processXML(doc, xmls[i], { rate: currencyRate, symbol: symbol });
+
+					var data = {
+						rate: curr.rate,
+						symbol: curr.symbol,
+						args: argsPlayers[i],
+						ddl: players[i].ddl,
+						recursion: !!players[i].recursion,
+					};
+					module.processXML(doc, xmls[i], data);
 				}
 			});
 
@@ -106,8 +116,26 @@ Foxtrick.modules['CurrentTransfers'] = {
 		var module = this;
 
 		var id = xml.num('PlayerID');
-		var price = xml.money('AskingPrice', opts.rate);
-		var result = Foxtrick.formatNumber(price, '\u00a0') + ' ' + opts.symbol;
+
+		var price, result;
+		try {
+			price = xml.money('AskingPrice', opts.rate);
+			result = Foxtrick.formatNumber(price, '\u00a0') + ' ' + opts.symbol;
+		}
+		catch (e) {
+			// no AskingPrice => stale CHPP
+			result = Foxtrick.L10n.getString('status.unknown');
+			var now = Foxtrick.util.time.getHTTimeStamp(doc);
+			Foxtrick.util.api.setCacheLifetime(JSON.stringify(opts.args), now);
+
+			// try to recurse once
+			if (!opts.recursion) {
+				module.runPlayers(doc, [{ id: id, ddl: opts.ddl, recursion: true }]);
+				return;
+			}
+		}
+
+		var OPENING_PRICE = Foxtrick.L10n.getString('CurrentTransfers.openingPrice');
 
 		var rows = doc.getElementsByClassName('ft-transfer-' + id);
 		Foxtrick.forEach(function(row) {
@@ -116,7 +144,7 @@ Foxtrick.modules['CurrentTransfers'] = {
 
 			Foxtrick.makeFeaturedElement(resultDiv, module);
 			Foxtrick.addClass(resultDiv, 'ft-transfers-price');
-			resultDiv.textContent = module.OPENING_PRICE + ': ' + result;
+			resultDiv.textContent = OPENING_PRICE + ': ' + result;
 			bidCell.appendChild(resultDiv);
 		}, rows);
 	},

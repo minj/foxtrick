@@ -290,7 +290,7 @@
 		"http://pastebin.com/api/*"
 	],
 	"optional_permissions" : [
-		"http://*.hattrick-youthclub.org/*",
+		"https://*.hattrick-youthclub.org/*",
 		"http://no9-online.de/*",
 		"http://www.latehome.de/*",
 		"https://vimeo.com/api/*",
@@ -314,5 +314,5 @@
 	},
 	"homepage_url": "https://www.foxtrick.org/",
 	"update_url" : "https://www.foxtrick.org/nightly/chrome/update.xml",
-	"version" : "0.17.0"
+	"version" : "0.17.9"
 }

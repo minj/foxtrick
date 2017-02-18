@@ -40,7 +40,7 @@ Foxtrick.util.currency.detect = function(doc) {
 		}
 
 		if (!Foxtrick.util.layout.hasMultipleTeams(doc)) {
-			code = Foxtrick.util.currency.findCode();
+			code = Foxtrick.util.currency.findCode(); // safe
 			Foxtrick.Prefs.setString('Currency.Code.' + ownTeamId, code);
 
 			rate = Foxtrick.util.currency.getRateByCode(code);
@@ -74,10 +74,10 @@ Foxtrick.util.currency.detect = function(doc) {
 			var leagues = teamXml.getElementsByTagName('LeagueID');
 			var leagueId = leagues[primaryTeamIdx].textContent;
 
-			rate = Foxtrick.util.currency.findRate(leagueId);
-			symbol = Foxtrick.util.currency.findSymbol(leagueId);
+			rate = Foxtrick.util.currency.findRate(leagueId); // safe
+			symbol = Foxtrick.util.currency.findSymbol(leagueId); // safe
 
-			code = Foxtrick.util.currency.guessCode({ rate: rate, symbol: symbol });
+			code = Foxtrick.util.currency.guessCode({ rate: rate, symbol: symbol }); // safe
 			Foxtrick.Prefs.setString('Currency.Code.' + ownTeamId, code);
 
 			fulfill({ rate: rate, symbol: symbol });
@@ -103,7 +103,28 @@ Foxtrick.util.currency.displaySelector = function(doc, info) {
 	if (doc.getElementById(noteId))
 		return;
 
-	var defaultCode = this.findCode();
+	var defaultCode = this.findCode(); // unsafe
+
+	if (!defaultCode) {
+		var teamCodes = Foxtrick.Prefs.getAllKeysOfBranch('Currency.Code');
+		var freqMap = new Map();
+
+		for (var teamCode of teamCodes) {
+			var code = Foxtrick.Prefs.getString(teamCode);
+
+			var freq = freqMap.get(code) || 0;
+			freqMap.set(code, ++freq);
+		}
+
+		var entries = Array.from(freqMap.entries());
+		var mostFreqEntry = entries.sort(function(a, b) {
+			return a[1] - b[1];
+		}).pop();
+
+		if (mostFreqEntry)
+			defaultCode = mostFreqEntry[0];
+	}
+
 	var ownTeamId = Foxtrick.util.id.getOwnTeamId();
 
 	var currencySelect = doc.createElement('select');
@@ -141,11 +162,11 @@ Foxtrick.util.currency.displaySelector = function(doc, info) {
 	cont.appendChild(currencySelect);
 
 	var button = doc.createElement('button');
+	button.type = 'button';
 	button.textContent = Foxtrick.L10n.getString('button.save');
 	cont.appendChild(button);
 
 	Foxtrick.onClick(button, function(ev) {
-		ev.preventDefault();
 		var doc = ev.target.ownerDocument;
 
 		var select = doc.getElementById(selectId);
@@ -245,15 +266,21 @@ Foxtrick.util.currency.isValidCode = function(code) {
  *
  * Assumes own league by default.
  *
+ * Potentially unsafe: returns null
+ *
  * @param  {number} id
  * @return {string}
  */
 Foxtrick.util.currency.findCode = function(id) {
 	var leagueId = id || Foxtrick.util.id.getOwnLeagueId();
+	if (!leagueId) {
+		Foxtrick.log('WARNING: no league found: using EUR as currency.');
+		return 'EUR';
+	}
 
 	return this.guessCode({
-		rate: this.findRate(leagueId),
-		symbol: this.findSymbol(leagueId),
+		rate: this.findRate(leagueId), // unsafe
+		symbol: this.findSymbol(leagueId), // unsafe
 	});
 };
 
@@ -262,13 +289,24 @@ Foxtrick.util.currency.findCode = function(id) {
  *
  * Assumes own league by default.
  *
+ * Potentially unsafe: returns null
+ *
  * @param  {number} id
  * @return {string}
  */
 Foxtrick.util.currency.findSymbol = function(id) {
 	var leagueId = id || Foxtrick.util.id.getOwnLeagueId();
+	if (!leagueId) {
+		Foxtrick.log('WARNING: no league found: using EUR as currency.');
+		return '€';
+	}
 
-	var name = Foxtrick.XMLData.League[leagueId].Country.CurrencyName;
+	var country = Foxtrick.XMLData.League[leagueId].Country;
+
+	if (country.Available === 'False')
+		return null;
+
+	var name = country.CurrencyName;
 
 	return name.replace(/000 /, '');
 };
@@ -279,12 +317,22 @@ Foxtrick.util.currency.findSymbol = function(id) {
  * e.g. 1 curr = x Euro.
  * Assumes own league by default.
  *
+ * Potentially unsafe: returns null
+ *
  * @param  {number}	id
  * @return {number}
  */
 Foxtrick.util.currency.findRate = function(id) {
 	var leagueId = id || Foxtrick.util.id.getOwnLeagueId();
+	if (!leagueId) {
+		Foxtrick.log('WARNING: no league found: using EUR as currency.');
+		return 1.0;
+	}
+
 	var country = Foxtrick.XMLData.League[leagueId].Country;
+
+	if (country.Available === 'False')
+		return null;
 
 	var name = country.CurrencyName;
 	var rate = country.CurrencyRate.replace(',', '.');

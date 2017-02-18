@@ -1,10 +1,67 @@
 ---
 el:
   versions:
+    0.17.0.1:
+      bugs: '<header>Διορθώσεις σφαλμάτων</header>'
+      other: '<header>Άλλες αλλαγές</header>'
+      and_more: Διάφορες άλλες μικρές αλλαγές και διορθώσεις.
+    0.17.0:
+      bugs: '<header>Διορθώσεις σφαλμάτων</header>'
+      other: '<header>Άλλες αλλαγές</header>'
+      and_more: Διάφορες άλλες μικρές αλλαγές και διορθώσεις.
+    0.16.1.1:
+      bugs: '<header>Διορθώσεις σφαλμάτων</header>'
+      and_more: Διάφορες άλλες μικρές αλλαγές και διορθώσεις.
     0.16.1:
       important: '<header>Σημαντικές ανακοινώσεις</header>'
       bugs: '<header>Διορθώσεις σφαλμάτων</header>'
       other: '<header>Άλλες αλλαγές</header>'
+      and_more: Διάφορες άλλες μικρές αλλαγές και διορθώσεις.
+    0.16.0:
+      bugs: '<header>Διορθώσεις σφαλμάτων</header>'
+      other: '<header>Άλλες αλλαγές</header>'
+      and_more: Διάφορες άλλες μικρές αλλαγές και διορθώσεις.
+    0.15.2.1:
+      bugs: '<header>Διορθώσεις σφαλμάτων</header>'
+      other: '<header>Άλλες αλλαγές</header>'
+      and_more: Διάφορες άλλες μικρές αλλαγές και διορθώσεις.
+    0.15.2:
+      bugs: '<header>Διορθώσεις σφαλμάτων</header>'
+      other: '<header>Άλλες αλλαγές</header>'
+      and_more: Διάφορες άλλες μικρές αλλαγές και διορθώσεις.
+    0.15.1:
+      bugs: '<header>Διορθώσεις σφαλμάτων</header>'
+      other: '<header>Άλλες αλλαγές</header>'
+      and_more: Διάφορες άλλες μικρές αλλαγές και διορθώσεις.
+    0.15.0:
+      bugs: '<header>Διορθώσεις σφαλμάτων</header>'
+      other: '<header>Άλλες αλλαγές</header>'
+      and_more: Διάφορες άλλες μικρές αλλαγές και διορθώσεις.
+    0.14.0.3:
+      bugs: '<header>Διορθώσεις σφαλμάτων</header>'
+    0.14.0.2:
+      bugs: '<header>Διορθώσεις σφαλμάτων</header>'
+      other: '<header>Άλλες αλλαγές</header>'
+      and_more: Διάφορες άλλες μικρές αλλαγές και διορθώσεις.
+    0.14.0.1:
+      bugs: '<header>Διορθώσεις σφαλμάτων</header>'
+    0.14.0:
+      bugs: '<header>Διορθώσεις σφαλμάτων</header>'
+      other: '<header>Άλλες αλλαγές</header>'
+      and_more: Διάφορες άλλες μικρές αλλαγές και διορθώσεις.
+    0.13.0.1:
+      bugs: '<header>Διορθώσεις σφαλμάτων</header>'
+      other: '<header>Άλλες αλλαγές</header>'
+      and_more: Διάφορες άλλες μικρές αλλαγές και διορθώσεις.
+    0.13.0:
+      other: '<header>Άλλες αλλαγές</header>'
+      bugs: '<header>Διορθώσεις σφαλμάτων</header>'
+    0.12.2:
+      note_11: '<header>Διορθώσεις σφαλμάτων</header>'
+    0.12.1.1:
+      note_0: Ενημερώσεις μετάφρασης.
+    0.11.0:
+      note_12: '<header>Διορθώσεις σφαλμάτων</header>'
     0.10.0:
       note_0: 'NEW: <module>TransferHistoryFilters</module>: Allows you to filter transfers for bought or sold players only. Only available for the team history, not players (default on)'
       note_1: 'NEW: <module>FriendlyPool</module>: Colorizes visited countries in the friendly pool (supporters only, default on)'

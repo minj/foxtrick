@@ -14,7 +14,7 @@ lv:
         <li>Chrome: ogg, mp3, wav</li><li>Opera: wav, ogg</li>
         </ul>
     sound-location:
-      question: Kāds ir brīdinājuma skaņu lieluma ierobežojums un kur tās var atrast?
+      question: Kāds ir brīdinājuma skaņu izmēra ierobežojums un kur tās var atrast?
     authorize:
       question: Kāpēc būtu jāatļauj FoxTrick piekļūt manas komandas datiem?
     privacy:

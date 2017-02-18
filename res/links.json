@@ -121,6 +121,17 @@
 		"title": "VnukStats",
 		"img": "resources/linkicons/vnukstats.png"
 	},
+	"vnukstats_hti": {
+		"leaguelink": {
+			"url": "http://vnukstats.hattrick-sk.com/hti/",
+			"filters": ["leagueid"]
+		},
+		"leagueidranges": [
+			[1000, 1000]
+		],
+		"title": "VnukStats HTI",
+		"img": "resources/linkicons/vnukstats.png"
+	},
 	"todohattrick": {
 		"serieslink": {
 			"url": "http://www.stepi.org/todohattrick/grupo.asp?grupoID=[seriesid]",
@@ -297,6 +308,25 @@
 		},
 		"title": "GO Internationals",
 		"img": "http://www.goanoei.nl/goht/favicon.ico"
+	},
+	"htradiopodbean": {
+		"worldlink": {
+			"url": "https://hattrickradio.podbean.com"
+		},
+		"leaguelink": {
+			"url": "https://hattrickradio.podbean.com",
+			"filters": ["leagueid"]
+		},
+		"leagueidranges": [[85, 85]],
+		"title": "The Hattrick Radio’s Podcast",
+		"img": "https://hattrickradio.podbean.com/mf/web/8skbtp/hattrick_ball_dark_green_png.ico"
+	},
+	"htbook": {
+		"managerlink": {
+			"url": "http://htbook.cf"
+		},
+		"title": "Hattrick Social Network",
+		"img": "http://htbook.cf/favicon.ico"
 	},
 	"englandyadb": {
 		"youthlink": {
@@ -748,10 +778,10 @@
 		"nationalityranges": [[37, 37]]
 	},
 	"uruguaytracker": {
-		"img": "http://www.sisu-ht.com/SISU/images/Logo.ico",
+		"img": "http://www.sisu-ht.com/images/Logo.ico",
 		"title": "Sistema Integral de la Seleccion Uruguaya (SISU)",
 		"trackernationalteamlink": {
-			"url": "http://www.sisu-ht.com/SISU/VerEspirituSeleccion.aspx?teamId=[ntteamid]",
+			"url": "http://www.sisu-ht.com/VerEspirituSeleccion.aspx?teamId=[ntteamid]",
 			"filters": ["leagueid"]
 		},
 		"trackerleaguelink": {
@@ -759,7 +789,7 @@
 			"filters": ["leagueid"]
 		},
 		"trackerplayerlink": {
-			"url": "http://www.sisu-ht.com/SISU/EditarJugadorSenior.aspx?playerId=[playerid]",
+			"url": "http://www.sisu-ht.com/EditarJugadorSenior.aspx?playerId=[playerid]",
 			"filters": ["nationality"]
 		},
 		"trackeryouthlink": {
@@ -767,7 +797,7 @@
 			"filters": ["leagueid"]
 		},
 		"trackeryouthplayerlink": {
-			"url": "http://www.sisu-ht.com/SISU/EditarJugadorNuevaCantera.aspx?playerId=[playerid]",
+			"url": "http://www.sisu-ht.com/EditarJugadorNuevaCantera.aspx?playerId=[playerid]",
 			"filters": ["nationality"]
 		},
 		"leagueidranges": [[28, 28]],
@@ -807,13 +837,6 @@
 		"ownleagueidranges": [[110, 110]],
 		"title": "Trinidad & Tobago Youth Academy Guide",
 		"img": "http://www.dasmagischedreieck.de/DivBilder/ateam.ico"
-	},
-	"ht-ys": {
-		"youthserieslink": {
-			"url": "http://www.ht-ys.org/?league_id=[youthseriesid]"
-		},
-		"title": "Hattrick Youth Statistics",
-		"img": "resources/linkicons/htys.png"
 	},
 	"Wage_Reduction_Calculator": {
 		"playerlink": {
@@ -864,22 +887,22 @@
 	},
 	"hattrick-youthclub": {
 		"youthlink": {
-			"url": "http://www.hattrick-youthclub.org/redirect/type/team/ht_id/[ownteamid]"
+			"url": "https://www.hattrick-youthclub.org/redirect/type/team/ht_id/[ownteamid]"
 		},
 		"youthplayerlistlink": {
-			"url": "http://www.hattrick-youthclub.org/redirect/type/team_sync/ht_id/[ownteamid]"
+			"url": "https://www.hattrick-youthclub.org/redirect/type/team_sync/ht_id/[ownteamid]"
 		},
 		"youthplayerdetaillink": {
-			"url": "http://www.hattrick-youthclub.org/redirect/type/player_details/ht_id/[playerid]"
+			"url": "https://www.hattrick-youthclub.org/redirect/type/player_details/ht_id/[playerid]"
 		},
 		"youthmatchlistlink": {
-			"url": "http://www.hattrick-youthclub.org/redirect/type/team_matches/ht_id/[ownteamid]"
+			"url": "https://www.hattrick-youthclub.org/redirect/type/team_matches/ht_id/[ownteamid]"
 		},
 		"youthtraininglink": {
-			"url": "http://www.hattrick-youthclub.org/redirect/type/team/ht_id/[ownteamid]"
+			"url": "https://www.hattrick-youthclub.org/redirect/type/team/ht_id/[ownteamid]"
 		},
 		"playedyouthmatchlink": {
-			"url": "http://www.hattrick-youthclub.org/redirect/type/lineup/ht_id/[matchid]"
+			"url": "https://www.hattrick-youthclub.org/redirect/type/lineup/ht_id/[matchid]"
 		},
 		"allow": [
 			"OR",
@@ -904,35 +927,6 @@
 			]
 		],
 		"title": "Hattrick Youthclub",
-		"img": "http://static.hattrick-youthclub.org/resources/image/favicon.ico"
-	},
-	"htev": {
-		"teamlink": {
-			"url": "http://htev.org/team/[teamid]/"
-		},
-		"serieslink": {
-			"url": "http://htev.org/search_leagueid/?SeriesID=[seriesid]"
-		},
-		"playedmatchlink": {
-			"url": "http://htev.org/match/[matchid]/"
-		},
-		"leaguelink": {
-			"url": "http://htev.org/country/[leagueid]/"
-		},
-		"worldlink": {
-			"url": "http://htev.org/world/"
-		},
-		"nationalteamlink": {
-			"url": "http://htev.org/scout/nat_team/[ntteamid]/"
-		},
-		"title": "HTEV",
-		"img": "http://htev.org/static/htevfavicon.gif"
-	},
-	"htev_simulator": {
-		"matchlink": {
-			"url": "http://htev.org/furminator/"
-		},
-		"title": "HTEV Simulator",
-		"img": "http://htev.org/static/htevfavicon.gif"
+		"img": "https://static.hattrick-youthclub.org/resources/image/favicon.ico"
 	}
 }

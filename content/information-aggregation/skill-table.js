@@ -683,7 +683,8 @@ Foxtrick.modules['SkillTable'] = {
 				speciality: function(cell, spec) {
 					var specIdx = Foxtrick.L10n.getNumberFromSpeciality(spec);
 					if (specIdx) {
-						Foxtrick.addSpecialty(cell, specIdx);
+						Foxtrick.addSpecialty(cell, specIdx)
+							.catch(Foxtrick.catch('SkillTable addSpecialty'));
 					}
 					cell.setAttribute('index', spec);
 				},
@@ -846,12 +847,19 @@ Foxtrick.modules['SkillTable'] = {
 
 			var attachListeners = function(tables) {
 				Foxtrick.forEach(function(table) {
-					var cells = table.querySelectorAll('.ft-skilltable_cellBtn');
-					Foxtrick.forEach(function(cell) {
-						var handler = LISTENERS[cell.dataset.listener];
+					Foxtrick.onClick(table, function(ev) {
+						var target = ev.target;
+						while (target && !Foxtrick.hasClass(target, 'ft-skilltable_cellBtn'))
+							target = target.parentNode;
+
+						if (!target)
+							return;
+
+						var handler = LISTENERS[target.dataset.listener];
 						if (handler)
-							Foxtrick.onClick(cell, handler);
-					}, cells);
+							handler.bind(target)(ev);
+
+					});
 				}, tables);
 			};
 
@@ -1035,15 +1043,10 @@ Foxtrick.modules['SkillTable'] = {
 						}
 					}, rows);
 
-					attachListeners(tables); // cloneNode does not clone listeners :S
 					module.updateUI(doc);
 				}
 				catch (e) {
 					Foxtrick.log(e);
-				}
-				finally {
-					if (ev)
-						ev.stopPropagation();
 				}
 				Foxtrick.log.flush(doc);
 			};

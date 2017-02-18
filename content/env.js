@@ -563,10 +563,13 @@ Foxtrick.lazyProp = function(obj, prop, calc) {
 				var request = ev.json.data;
 				var id = Foxtrick.SB.tabs.getId(ev.target);
 
+				var urlObj = ev.target.lastURI || ev.target.currentURI;
+				var url = urlObj ? urlObj.spec : ev.target.lastLocation;
+
 				var sender = {
 					tab: {
 						id: id,
-						url: ev.target.lastURI.spec,
+						url: url,
 						target: ev.target,
 					},
 				};

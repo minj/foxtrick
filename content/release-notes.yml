@@ -7,6 +7,24 @@ en:
     beta:
       note_0: 'This is the beta version of the next release. Please help translating this version at our super easy crowd-translation page <linkCrowdin>crowdin.net</linkCrowdin>.'
 
+    0.17.0.1:
+      important: '<header>Important announcements</header>'
+      safari_cert: 'We are looking for someone in the Hattrick community who develops apps for iOS or OSX to help restore Foxtrick support for Safari users. See our <linkSafariCertBug>issue tracker</linkSafariCertBug> for more information.'
+      beta: 'Please consider using <linkFTBeta>Foxtrick beta</linkFTBeta> to get new features early, to influence their development and to help finding and fixing any problems that may arise.'
+      support: '<header>Like what we are doing? Please <linkContribute>Support Foxtrick</linkContribute>.</header>'
+      bugs: '<header>Bug fixes</header>'
+      android: 'Foxtrick was broken on Android due to changes by Mozilla.'
+      filters: '<module>Filters</module> module was broken after Foxtrick core changes.'
+      simulator_hs: '<module>MatchSimulator</module> used wrong skill sub-level labels for calculated ratings, conflicting with the calculated HatStats values.'
+      nt_stats: '<module>SeasonStats</module> could not detect drawn NT games for NT coaches properly.'
+      specinfo_fixes: '<module>SpecialtyInfo</module> had wrong interactions with <module>SkillTable</module> and <module>ContextMenuCopy</module>. The module was rewritten to improve its integration.'
+      other: '<header>Other changes</header>'
+      minimum_search: 'You can now again search for minimum form only in <module>TransferSearchResultFilters</module>. The upper search bound is automatically assumed to be "excellent".'
+      season_cache: 'Foxtrick cache will now be cleared automatically when seasons change. This prevents using stale data in various modules like <module>SeriesFlags</module>.'
+      weather_cache: '<module>MatchWeather</module> would show the same weather as long as the browser was kept running. The weather data will now be cached for a short time only.'
+      android_prefs: 'It is no longer possible to disable the Foxtrick preferences link on Android e.g. by importing preferences for a desktop version. Otherwise the preferences would become inaccessible.'
+      and_more: 'Various other small changes and fixes.'
+
     0.17.0:
       important: '<header>Important announcements</header>'
       crowdin: '<header>A lot of translation updates from our awesome users using the <linkCrowdin>crowdin tool</linkCrowdin>. You can help out as well!</header>'

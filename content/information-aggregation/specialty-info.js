@@ -16,14 +16,18 @@ Foxtrick.modules['SpecialtyInfo'] = {
 		{}, // none
 		{ // Technical
 			pos: [
-				{ icon: 'weather_sunny', text: 'Scoring' },
-				{ icon: 'weather_sunny', text: 'Playmaking' },
-				{ icon: 'aow', text: 'SpecialtyInfo.tdf' },
+				{ icon: 'weather_sunny', text: 'Scoring', title: 'weather.3' },
+				{ icon: 'weather_sunny', text: 'Playmaking', title: 'weather.3' },
+				{
+					icon: 'aow',
+					text: 'SpecialtyInfo.tdf',
+					title: 'PlayerPositionsEvaluations.wings',
+				},
 				{ events: [139, 55] },
 			],
 			neg: [
-				{ icon: 'weather_rainy', text: 'Scoring' },
-				{ icon: 'weather_rainy', text: 'Playmaking' },
+				{ icon: 'weather_rainy', text: 'Scoring', title: 'weather.0' },
+				{ icon: 'weather_rainy', text: 'Playmaking', title: 'weather.0' },
 			],
 		},
 		{ // Quick
@@ -32,26 +36,28 @@ Foxtrick.modules['SpecialtyInfo'] = {
 				{
 					icon: 'weather_sunny',
 					text: 'Defending',
+					title: 'weather.3',
 					textIcons: [
 						{ name: 'warning.png', text: 'icon.important' },
 						{ name: 'clock.png', text: 'SpecialtyInfo.secondHalf' },
 					],
 				},
-				{ icon: 'weather_rainy', text: 'Scoring' },
-				{ icon: 'weather_rainy', text: 'Defending' },
+				{ icon: 'weather_rainy', text: 'Scoring', title: 'weather.0' },
+				{ icon: 'weather_rainy', text: 'Defending', title: 'weather.0' },
 			],
 		},
 		{ // Powerful
 			pos: [
-				{ icon: 'weather_rainy', text: 'Scoring' },
-				{ icon: 'weather_rainy', text: 'Defending' },
-				{ icon: 'weather_rainy', text: 'Playmaking' },
-				{ icon: 'pressing', text: 'SpecialtyInfo.powerPress' },
+				{ icon: 'weather_rainy', text: 'Scoring', title: 'weather.0' },
+				{ icon: 'weather_rainy', text: 'Defending', title: 'weather.0' },
+				{ icon: 'weather_rainy', text: 'Playmaking', title: 'weather.0' },
+				{ icon: 'pressing', text: 'SpecialtyInfo.powerPress', title: 'match.events.331' },
 			],
 			neg: [
 				{
 					icon: 'weather_sunny',
 					text: 'Scoring',
+					title: 'weather.3',
 					textIcons: [
 						{ name: 'clock.png', text: 'SpecialtyInfo.secondHalf' },
 					],
@@ -59,6 +65,7 @@ Foxtrick.modules['SpecialtyInfo'] = {
 				{
 					icon: 'weather_sunny',
 					text: 'Stamina',
+					title: 'weather.3',
 					textIcons: [
 						{ name: 'clock.png', text: 'SpecialtyInfo.secondHalf' },
 					],
@@ -74,89 +81,118 @@ Foxtrick.modules['SpecialtyInfo'] = {
 			neg: [{ events: [139] }],
 		},
 		{ // Regainer
-			pos: [{ icon: 'injured', text: 'SpecialtyInfo.regainer' }],
+			pos: [{ icon: 'injured', text: 'SpecialtyInfo.regainer', title: 'Injured' }],
 			neg: [],
 		},
 	],
 
-	decorate: function(parent, specNum) {
+	run: function(doc) {
 		var module = this;
 		var EVENT_UTIL = Foxtrick.util.matchEvent;
 
-		var addInfo = function() {
+		var addInfo = function(parent) {
 			var doc = parent.ownerDocument;
+			var specNum = parent.dataset.specialty;
+			var uuid = parent.dataset.uuid;
 
 			var infoContainer = Foxtrick.createFeaturedElement(doc, module, 'div');
 			Foxtrick.addClass(infoContainer, 'ft-specInfo ft-specInfo-active');
+			infoContainer.id = 'ft-specInfo-' + uuid;
+			infoContainer.dataset.uuid = uuid;
 
-			var outerTable = infoContainer.appendChild(doc.createElement('table'));
-			outerTable.className = 'ft-specInfo-outer';
+			var infoTable = infoContainer.appendChild(doc.createElement('table'));
+			infoTable.className = 'ft-specInfo-tbl';
 
-			var cols = outerTable.appendChild(doc.createElement('colgroup'));
-			var colPlus = cols.appendChild(doc.createElement('col'));
-			colPlus.className = 'ft-specInfo-col';
-			var colMinus = cols.appendChild(doc.createElement('col'));
-			colMinus.className = 'ft-specInfo-col';
+			var cols = infoTable.appendChild(doc.createElement('colgroup'));
+			cols.appendChild(doc.createElement('col')).className = 'ft-specInfo-col';
+			cols.appendChild(doc.createElement('col')).className = 'ft-specInfo-col';
+			cols.appendChild(doc.createElement('col')).className = 'ft-specInfo-col';
+			cols.appendChild(doc.createElement('col')).className = 'ft-specInfo-col';
 
-			var titleRow = outerTable.insertRow(-1);
+			var thead = infoTable.appendChild(doc.createElement('thead'));
+			var titleRow = thead.insertRow(-1);
 			var thTitle = titleRow.appendChild(doc.createElement('th'));
 			thTitle.className = 'center';
-			thTitle.colSpan = 2;
+			thTitle.colSpan = 4;
 			thTitle.textContent = Foxtrick.L10n.getSpecialityFromNumber(specNum);
 
-			var headerRow = outerTable.insertRow(-1);
+			var headerRow = thead.insertRow(-1);
 			var thPlus = headerRow.appendChild(doc.createElement('th'));
 			thPlus.className = 'center';
+			thPlus.colSpan = 2;
 			thPlus.textContent = '+';
 			var thMinus = headerRow.appendChild(doc.createElement('th'));
 			thMinus.className = 'center';
+			thMinus.colSpan = 2;
 			thMinus.textContent = '-';
 
-			var defRow = outerTable.insertRow(-1);
-			var tdPlus = defRow.insertCell(-1);
-			var tdMinus = defRow.insertCell(-1);
+
+			var rows = [], iconCell;
+
+			var row, rowIdx;
+			var updateRowPointer = function(newIdx) {
+				rowIdx = newIdx;
+				while (rowIdx >= rows.length)
+					rows.push([{}, {}, {}, {}]);
+
+				row = rows[rowIdx];
+			};
 
 			var spec = module.SPECS[specNum];
-			for (var pair of [[tdPlus, spec.pos], [tdMinus, spec.neg]]) {
-				var cell = pair[0], arr = pair[1];
+			for (var pair of [[0, spec.pos], [2, spec.neg]]) {
+				var startIdx = pair[0], arr = pair[1];
+				updateRowPointer(0);
+
 				if (!arr.length) {
-					cell.className = 'center';
-					cell.textContent = '-';
+					row[startIdx] = { className: 'center', textContent: '-', colSpan: 2 };
+					row[startIdx + 1] = null;
+
 					continue;
 				}
 
-				var innerTable = cell.appendChild(doc.createElement('table'));
-				innerTable.className = 'ft-specInfo-inner';
 				for (var item of arr) {
-					var row, iconCell, textCell;
 					if (item.events) {
+						var evRowIdx = rowIdx;
 						for (var eventId of item.events) {
-							row = innerTable.insertRow(-1);
+							updateRowPointer(evRowIdx);
+
+							iconCell = doc.createElement('td');
+							row[startIdx] = iconCell;
 
 							var icons = EVENT_UTIL.getEventIcons(eventId, 'team');
-							iconCell = row.insertCell(-1);
 							EVENT_UTIL.appendIcons(doc, iconCell, icons, eventId);
 
 							var title = EVENT_UTIL.getEventTitle(eventId);
-							textCell = row.insertCell(-1);
-							textCell.textContent = title;
+							row[startIdx + 1] = title;
+
+							evRowIdx++;
 						}
 						continue;
 					}
 
-					row = innerTable.insertRow(-1);
-					iconCell = row.insertCell(-1);
+					updateRowPointer(rowIdx);
+
+					iconCell = doc.createElement('td');
+					row[startIdx] = iconCell;
+
 					if (item.icon) {
-						EVENT_UTIL.appendIcons(doc, iconCell, [item.icon], '');
+						var iTitle = Foxtrick.L10n.getString(item.title);
+						EVENT_UTIL.appendIcons(doc, iconCell, [item.icon], iTitle);
 					}
 
-					textCell = row.insertCell(-1);
-					textCell.textContent = Foxtrick.L10n.getString(item.text) + ' ';
+					var text = Foxtrick.L10n.getString(item.text);
+					row[startIdx + 1] = text;
 
 					if (item.textIcons) {
+						var textArr = row[startIdx + 1] = [text];
 						for (var icon of item.textIcons) {
+							textArr.push(' ');
+
+							var iconFrag = doc.createDocumentFragment();
+							textArr.push(iconFrag);
+
 							var iconText = Foxtrick.L10n.getString(icon.text);
-							Foxtrick.addImage(doc, textCell, {
+							Foxtrick.addImage(doc, iconFrag, {
 								src: Foxtrick.InternalPath + 'resources/img/' + icon.name,
 								class: 'ft-specInfo-textIcon',
 								alt: iconText,
@@ -164,8 +200,13 @@ Foxtrick.modules['SpecialtyInfo'] = {
 							});
 						}
 					}
+
+					rowIdx++;
 				}
 			}
+
+			var tbody = infoTable.appendChild(doc.createElement('tbody'));
+			Foxtrick.makeRows(doc, rows, tbody);
 
 			var ancestor = parent.parentNode;
 			while (ancestor && !Foxtrick.hasClass(ancestor, 'position'))
@@ -182,21 +223,48 @@ Foxtrick.modules['SpecialtyInfo'] = {
 			parent.appendChild(infoContainer);
 		};
 
-		var activate = function() {
-			var info = parent.querySelector('.ft-specInfo');
+		var activate = function(parent) {
+			var doc = parent.ownerDocument;
+
+			var uuid = parent.dataset.uuid;
+			if (!uuid) {
+				parent.dataset.uuid = uuid = Math.random().toString(16).slice(2);
+				parent.id = 'ft-specInfo-parent-' + uuid;
+			}
+
+			var info = doc.getElementById('ft-specInfo-' + uuid);
 			if (info)
 				Foxtrick.toggleClass(info, 'ft-specInfo-active');
 			else
-				addInfo();
+				addInfo(parent);
 		};
 
-		Foxtrick.addClass(parent, 'ft-specInfo-parent');
-		Foxtrick.onClick(parent, function(ev) {
-			activate();
+		var mainBody = doc.getElementById('mainBody');
+		Foxtrick.onClick(mainBody, function specInfoListener(ev) {
+			var target = ev.target;
+			while (target) {
+				if (Foxtrick.hasClass(target, 'ft-specInfo')) {
+					var uuid = target.dataset.uuid;
+					target = doc.getElementById('ft-specInfo-parent-' + uuid);
+					break;
+				}
+
+				// README: parent class set elsewhere
+				if (Foxtrick.hasClass(target, 'ft-specInfo-parent'))
+					break;
+
+				target = target.parentNode;
+			}
+
+			if (!target)
+				return;
+
+			activate(target);
 
 			// stop event to disable match order select
-			ev.preventDefault();
-			ev.stopPropagation();
-		});
+			return false;
+
+		}, true); // useCapture
+
 	},
 };

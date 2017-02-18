@@ -226,8 +226,6 @@ Foxtrick.util.notify.create = function(msg, source, opts/*, callback*/) {
 		};
 
 		var onClosed = function onClosed(noteId) {
-			console.log('onClosed', gId, noteId);
-
 			if (noteId !== gId)
 				return;
 

@@ -39,7 +39,8 @@ Foxtrick.modules['AddPromotionReminder'] = {
 					Foxtrick.makeFeaturedElement(button, this);
 					button.id = 'ft-promotion-button';
 					Foxtrick.onClick(button, function() {
-						doc.location.assign(reminderlink);
+						var newURL = new URL(reminderlink, doc.location.href);
+						doc.location.assign(newURL);
 					});
 				}
 			}
