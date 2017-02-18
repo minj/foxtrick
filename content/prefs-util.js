@@ -585,6 +585,7 @@ Foxtrick.Prefs.restore = function() {
 					localStorage.removeItem(i);
 				}
 			}
+			chrome.storage.local.clear();
 		}
 		else {
 			Foxtrick.SB.ext.sendRequest({ req: 'clearPrefs' });
@@ -1112,6 +1113,23 @@ Foxtrick.Prefs.translationKeys = function(sender) {
 					catch (e) {
 						Foxtrick.log(e);
 					}
+
+					this.initAsync(this._prefs_chrome_user);
+				},
+
+				initAsync: function(syncStore) {
+					if (Foxtrick.platform === 'Safari')
+						return;
+
+					new Promise(function(resolve) {
+						chrome.storage.local.get(null, resolve);
+					})
+					.then(function(store) {
+
+						Object.assign(syncStore, store);
+
+					});
+
 				},
 
 				// set and delete for background script side
@@ -1123,6 +1141,14 @@ Foxtrick.Prefs.translationKeys = function(sender) {
 						else {
 							this._prefs_chrome_user[key] = value; // not default, set it
 							localStorage.setItem(key, JSON.stringify(value));
+
+							var o = {};
+							o[key] = value;
+							chrome.storage.local.set(o, function() {
+								var e = chrome.runtime.lastError;
+								if (e)
+									Foxtrick.log('chrome.storage failed', e);
+							});
 						}
 					}
 					catch (e) {}
@@ -1136,6 +1162,7 @@ Foxtrick.Prefs.translationKeys = function(sender) {
 				deleteValue: function(key) {
 					delete this._prefs_chrome_user[key];
 					localStorage.removeItem(key);
+					chrome.storage.local.remove(key);
 				},
 			};
 
