@@ -14,7 +14,7 @@ Foxtrick.modules['HTMSPrediction'] = {
 	PAGES: ['match'],
 	CSS: Foxtrick.InternalPath + 'resources/css/htms-statistics.css',
 	NICE: -1,  // before ratings
-
+	
 	copy: function(div) {
 		var HTMSClone = div.cloneNode(true);
 		var htmstable = HTMSClone.getElementsByTagName('table')[0];
@@ -48,7 +48,6 @@ Foxtrick.modules['HTMSPrediction'] = {
 		cattack[1] = cattack[1] * 4 + 1;
 		lattack[0] = lattack[0] * 4 + 1;
 		lattack[1] = lattack[1] * 4 + 1;
-
 
 		//Creating params for link
 		var params = '&TAM=' + midfieldLevel[0] + '&TBM=' + midfieldLevel[1];
@@ -132,7 +131,7 @@ Foxtrick.modules['HTMSPrediction'] = {
 			cell.className = 'center';
 			var mimimicanvas = cell.appendChild(doc.createElement('canvas'));
 			mimimicanvas.id = 'ft-mimimicanvas';
-			mimimicanvas.style.width = '80px';
+			mimimicanvas.className = 'htms-mimimi-canvas';
 			cell = row.insertCell(3);
 			row = htmstable.insertRow(htmstable.rows.length);
 			cell = row.insertCell(0);
@@ -180,7 +179,7 @@ Foxtrick.modules['HTMSPrediction'] = {
 			if (mimimiIsChecked)
 			{
 				var b = doc.createElement('b');
-				var luckText = 'luck'; // replace by something like Foxtrick.L10n.getString('HTMSPrediction.luck');
+				var luckText = Foxtrick.L10n.getString('HTMSPrediction.luck');
 				b.appendChild(doc.createTextNode(luckText));
 				cell.appendChild(b);
 			}
@@ -244,12 +243,11 @@ Foxtrick.modules['HTMSPrediction'] = {
 				var acquired = ( result > 0 ? 3 : ( result < 0 ? 0 : 1 ));
 				var diff = acquired - expected;
 				var luck = Math.round(100 * Math.abs(diff) * diff / 9);
-				var luckContent = ( luck > 0 ? "+"+luck+"%" : luck+"%" );
 				
 				var opts = {
 					angle: 0.0, // The span of the gauge arc
 					lineWidth: 0.3, // The line thickness
-					radiusScale: 1, // Relative radius
+					radiusScale: 1.0, // Relative radius
 					pointer: {
 						length: 0.6, // // Relative to gauge radius
 						strokeWidth: 0.051, // The thickness
@@ -306,7 +304,7 @@ Foxtrick.modules['HTMSPrediction'] = {
 						{strokeStyle: "#660000", min: 95, max: 100}
 					]
 				};
-				var target = document.getElementById('ft-mimimicanvas'); // your canvas element
+				var target = doc.getElementById('ft-mimimicanvas'); // your canvas element
 				var gauge = new Gauge(target).setOptions(opts); // create sexy gauge!
 				gauge.maxValue = 100; // set max gauge value
 				gauge.setMinValue(-100);  // Prefer setter over gauge.minValue = 0
