@@ -280,6 +280,7 @@
 	},
 	"name" : "Foxtrick",
 	"permissions" : [
+		"storage",
 		"cookies",
 		"contextMenus",
 		"notifications",
