@@ -11,6 +11,7 @@ Foxtrick.modules['HTMSPrediction'] = {
 	PAGES: ['match'],
 	CSS: Foxtrick.InternalPath + 'resources/css/htms-statistics.css',
 	NICE: -1,  // before ratings
+	OPTIONS: ['Mimimi'],
 	
 	copy: function(div) {
 		var HTMSClone = div.cloneNode(true);
@@ -121,7 +122,7 @@ Foxtrick.modules['HTMSPrediction'] = {
 		/**************************
 		 * Mimimi add-on (part 1) *
 		 **************************/
-		var mimimiIsChecked = true && Foxtrick.Pages.Match.hasRatingsTabs(doc); // replace first parameter by return from check box
+		var mimimiIsChecked = Foxtrick.Prefs.isModuleOptionEnabled('HTMSPrediction', 'Mimimi') && Foxtrick.Pages.Match.hasRatingsTabs(doc);
 		if (mimimiIsChecked)
 		{
 			cell = row.insertCell(1); cell = row.insertCell(2);

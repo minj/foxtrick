@@ -46,6 +46,7 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/lib/PluralForm.js</string>
 				<string>content/lib/psico.js</string>
 				<string>content/lib/integration.js</string>
+				<string>content/lib/gauge.js</string>
 				<!-- end ext-lib -->
 
 				<!-- util -->
