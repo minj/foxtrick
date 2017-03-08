@@ -30,6 +30,7 @@ Foxtrick.loader.background.contentScriptManager = {
 		'lib/jester.js',
 		'lib/psico.js',
 		'lib/integration.js',
+		'lib/gauge.js',
 		// <!-- end ext-lib -->
 
 		// <!-- util -->

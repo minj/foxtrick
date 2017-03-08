@@ -5,12 +5,14 @@
  * @author taised
  */
 ////////////////////////////////////////////////////////////////////////////////
+
 Foxtrick.modules['HTMSPrediction'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.MATCHES,
 	PAGES: ['match'],
 	CSS: Foxtrick.InternalPath + 'resources/css/htms-statistics.css',
 	NICE: -1,  // before ratings
-
+	OPTIONS: ['Mimimi'],
+	
 	copy: function(div) {
 		var HTMSClone = div.cloneNode(true);
 		var htmstable = HTMSClone.getElementsByTagName('table')[0];
@@ -44,7 +46,6 @@ Foxtrick.modules['HTMSPrediction'] = {
 		cattack[1] = cattack[1] * 4 + 1;
 		lattack[0] = lattack[0] * 4 + 1;
 		lattack[1] = lattack[1] * 4 + 1;
-
 
 		//Creating params for link
 		var params = '&TAM=' + midfieldLevel[0] + '&TBM=' + midfieldLevel[1];
@@ -117,6 +118,24 @@ Foxtrick.modules['HTMSPrediction'] = {
 		}
 		var row = htmstable.insertRow(htmstable.rows.length);
 		var cell = row.insertCell(0);
+		
+		/**************************
+		 * Mimimi add-on (part 1) *
+		 **************************/
+		var mimimiIsChecked = Foxtrick.Prefs.isModuleOptionEnabled('HTMSPrediction', 'Mimimi') && Foxtrick.Pages.Match.hasRatingsTabs(doc);
+		if (mimimiIsChecked)
+		{
+			cell = row.insertCell(1); cell = row.insertCell(2);
+			cell.className = 'center';
+			var mimimicanvas = cell.appendChild(doc.createElement('canvas'));
+			mimimicanvas.id = 'ft-mimimicanvas';
+			mimimicanvas.className = 'ft-mimimi-canvas';
+			cell = row.insertCell(3);
+			row = htmstable.insertRow(htmstable.rows.length);
+			cell = row.insertCell(0);
+		}
+		/* End of Mimimi add-on (part 1) */
+			
 		cell.className = 'ch ft-htms-leftcell';
 		cell.style.width = '160px';
 		cell.textContent = Foxtrick.L10n.getString('HTMSPrediction.prediction');
@@ -133,7 +152,7 @@ Foxtrick.modules['HTMSPrediction'] = {
 			var htmstable = doc.getElementById('ft-htmstable');
 			var row = htmstable.rows[htmstable.rows.length - 1];
 			var cell;
-
+			
 			var pred1 = xml.getElementsByTagName('T1').item(0).firstChild.nodeValue;
 			var pred2 = xml.getElementsByTagName('T2').item(0).firstChild.nodeValue;
 			var winprob = xml.getElementsByTagName('S1P').item(0).firstChild.nodeValue;
@@ -146,11 +165,24 @@ Foxtrick.modules['HTMSPrediction'] = {
 				drawprob = 0;
 				lossprob = 0;
 			}
-
+			
 			var b = doc.createElement('b');
 			b.appendChild(doc.createTextNode(pred1));
 			cell = row.insertCell(1); cell.appendChild(b); cell.className = 'left';
 			cell = row.insertCell(2); cell.className = 'center';
+			
+			/**************************
+			 * Mimimi add-on (part 2) *
+			 **************************/
+			if (mimimiIsChecked)
+			{
+				var b = doc.createElement('b');
+				var luckText = Foxtrick.L10n.getString('HTMSPrediction.luck');
+				b.appendChild(doc.createTextNode(luckText));
+				cell.appendChild(b);
+			}
+			/* End of Mimimi add-on (part 2) */
+			
 			var b = doc.createElement('b');
 			b.appendChild(doc.createTextNode(pred2));
 			cell = row.insertCell(3); cell.appendChild(b); cell.className = 'right';
@@ -172,13 +204,113 @@ Foxtrick.modules['HTMSPrediction'] = {
 			// use minus to prevent from overall sum exceeding 100%
 			// when there is rounding up
 			lossdiv.style.width = (100 - parseFloat(winprob) - parseFloat(drawprob)) + '%';
-
+			
 			var row = htmstable.insertRow(htmstable.rows.length);
 			cell = row.insertCell(0); cell.className = 'ch';
 			cell.textContent = Foxtrick.L10n.getString('HTMSPrediction.winDrawLoss');
 			cell = row.insertCell(1); cell.textContent = winprob; cell.className = 'left';
 			cell = row.insertCell(2); cell.textContent = drawprob; cell.className = 'center';
 			cell = row.insertCell(3); cell.textContent = lossprob; cell.className = 'right';
+			
+			/************************
+			 * Mimimi add-on (main) *
+			 * @author: educhielle  *
+			 * HT: MetalTeck        *
+			 ************************/
+			
+			/* 
+			   The Mimimi add-on aims to show if a match result was fair or if luck played a huge role
+			   It takes into account the HTMS predictions and the match result, and determine how luck a team was
+			   There are three fields:
+			   - expected: shows how many points the home team was expected to get from the match
+			   - acquired: shows how many points the home team actually got from the match
+			   - luck: shows how luck the home team was (the luck parameter varies from -100% to +100%)
+			     - -100% means that the home team was very unlucky (and, consequently, the away team very luck)
+				 - near 0% means that it was a fair result
+				 - +100% means that the home team was very luck (and the away team very unlucky)
+				
+				The luck parameter is quadratic to emphasize results heavily influenced by randomness
+			*/
+			if (mimimiIsChecked)
+			{
+				var goals = Foxtrick.Pages.Match.getResult(doc);
+				var homeResult = goals[0];
+				var awayResult = goals[1];
+				var result = homeResult - awayResult;
+				var expected = (3 * parseFloat(winprob) + parseFloat(drawprob)) / 100;
+				var acquired = ( result > 0 ? 3 : ( result < 0 ? 0 : 1 ));
+				var diff = acquired - expected;
+				var luck = Math.round(100 * Math.abs(diff) * diff / 9);
+				
+				var opts = {
+					angle: 0.0, // The span of the gauge arc
+					lineWidth: 0.3, // The line thickness
+					radiusScale: 1.0, // Relative radius
+					pointer: {
+						length: 0.6, // // Relative to gauge radius
+						strokeWidth: 0.051, // The thickness
+						color: '#000000' // Fill color
+					},
+					limitMax: true,     // If false, the max value of the gauge will be updated if value surpass max
+					limitMin: true,     // If true, the min value of the gauge will be fixed unless you set it manually
+					colorStart: '#6FADCF',   // Colors
+					colorStop: '#8FC0DA',    // just experiment with them
+					strokeColor: '#E0E0E0',  // to see which ones work best for you
+					generateGradient: true,
+					highDpiSupport: true,     // High resolution support
+					percentColors: [[0.0, "#00FF00"], [0.50, "#FFFF00"], [1.00, "#FF0000"]],
+					staticZones: [
+						{strokeStyle: "#660000", min: -100, max: -95},
+						{strokeStyle: "#770000", min: -95, max: -90},
+						{strokeStyle: "#880000", min: -90, max: -85},
+						{strokeStyle: "#992200", min: -85, max: -80},
+						{strokeStyle: "#AA4400", min: -80, max: -75},
+						{strokeStyle: "#BB6600", min: -75, max: -70},
+						{strokeStyle: "#CC8800", min: -70, max: -65},
+						{strokeStyle: "#DDAA00", min: -65, max: -60},
+						{strokeStyle: "#EECC00", min: -60, max: -55},
+						{strokeStyle: "#FFEE00", min: -55, max: -50},
+						{strokeStyle: "#EEFF00", min: -50, max: -45},
+						{strokeStyle: "#CCEE00", min: -45, max: -40},
+						{strokeStyle: "#AADD00", min: -40, max: -35},
+						{strokeStyle: "#88CC00", min: -35, max: -30},
+						{strokeStyle: "#66BB00", min: -30, max: -25},
+						{strokeStyle: "#44AA00", min: -25, max: -20},
+						{strokeStyle: "#229900", min: -20, max: -15},
+						{strokeStyle: "#008800", min: -15, max: -10},
+						{strokeStyle: "#007700", min: -10, max: -5},
+						{strokeStyle: "#006600", min: -5, max: 0},
+						{strokeStyle: "#006600", min: 0, max: 5},
+						{strokeStyle: "#007700", min: 5, max: 10},
+						{strokeStyle: "#008800", min: 10, max: 15},
+						{strokeStyle: "#229900", min: 15, max: 20},
+						{strokeStyle: "#44AA00", min: 20, max: 25},
+						{strokeStyle: "#66BB00", min: 25, max: 30},
+						{strokeStyle: "#88CC00", min: 30, max: 35},
+						{strokeStyle: "#AADD00", min: 35, max: 40},
+						{strokeStyle: "#CCEE00", min: 40, max: 45},
+						{strokeStyle: "#EEFF00", min: 45, max: 50},
+						{strokeStyle: "#FFEE00", min: 50, max: 55},
+						{strokeStyle: "#EECC00", min: 55, max: 60},
+						{strokeStyle: "#DDAA00", min: 60, max: 65},
+						{strokeStyle: "#CC8800", min: 65, max: 70},
+						{strokeStyle: "#BB6600", min: 70, max: 75},
+						{strokeStyle: "#AA4400", min: 75, max: 80},
+						{strokeStyle: "#992200", min: 80, max: 85},
+						{strokeStyle: "#880000", min: 85, max: 90},
+						{strokeStyle: "#770000", min: 90, max: 95},
+						{strokeStyle: "#660000", min: 95, max: 100}
+					]
+				};
+				var target = doc.getElementById('ft-mimimicanvas'); // your canvas element
+				var gauge = new Gauge(target).setOptions(opts); // create sexy gauge!
+				gauge.maxValue = 100; // set max gauge value
+				gauge.setMinValue(-100);  // Prefer setter over gauge.minValue = 0
+				gauge.animationSpeed = 32; // set animation speed (32 is default value)
+				gauge.set(-luck); // set actual value	
+			}
+			/* End of Mimimi add-on (part 2) */
+			
 		}).catch(Foxtrick.catch(module));
 
 		var p = doc.createElement('p');
@@ -218,6 +350,5 @@ Foxtrick.modules['HTMSPrediction'] = {
 		Foxtrick.log(tactics, tacticsLevel);
 		this.insertPrediction(doc, htmsDiv, midfieldLevel, rdefence, cdefence, ldefence, rattack,
 		                      cattack, lattack, tactics, tacticsLevel);
-
 	}
 };
