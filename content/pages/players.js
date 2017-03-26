@@ -639,10 +639,10 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 
 		var playerNodes = doc.getElementsByClassName('playerInfo');
 		Foxtrick.forEach(function(playerNode, i) {
-			var paragraphs = playerNode.getElementsByTagName('p');
-			var imgs = playerNode.getElementsByTagName('img');
-			var as = playerNode.getElementsByTagName('a');
-			var bs = playerNode.getElementsByTagName('b');
+			var paragraphs = Foxtrick.toArray(playerNode.getElementsByTagName('p'));
+			var imgs = Foxtrick.toArray(playerNode.getElementsByTagName('img'));
+			var as = Foxtrick.toArray(playerNode.getElementsByTagName('a'));
+			var bs = Foxtrick.toArray(playerNode.getElementsByTagName('b'));
 
 			var id = Foxtrick.Pages.Players.getPlayerId(playerNode);
 			// see if player is already in playerList, add if not
@@ -821,31 +821,33 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				player.transferListed = false;
 			}
 
-			for (var j = 0; j < imgs.length; ++j) {
-				if (Foxtrick.hasClass(imgs[j], 'motherclubBonus')) {
+			for (var img of imgs) {
+				if (Foxtrick.hasClass(img, 'motherclubBonus')) {
 					player.motherClubBonus = doc.createElement('span');
 					player.motherClubBonus.textContent = '✔';
 					player.motherClubBonus.title =
 						Foxtrick.L10n.getString('skilltable.youthplayer');
 				}
-				if (Foxtrick.hasClass(imgs[j], 'cardsOne')) {
-					if (/red_card/i.test(imgs[j].src)) {
+				if (Foxtrick.hasClass(img, 'cardsOne')) {
+					if (/red_card/i.test(img.src)) {
 						player.redCard = 1;
 					}
 					else {
 						player.yellowCard = 1;
 					}
 				}
-				else if (Foxtrick.hasClass(imgs[j], 'cardsTwo')) {
+				else if (Foxtrick.hasClass(img, 'cardsTwo')) {
 					player.yellowCard = 2;
 				}
-				else if (Foxtrick.hasClass(imgs[j], 'injuryBruised')) {
+				else if (Foxtrick.hasClass(img, 'injuryBruised')) {
 					player.bruised = true;
 				}
-				else if (Foxtrick.hasClass(imgs[j], 'injuryInjured')) {
-					player.injuredWeeks = parseInt(imgs[j].nextSibling.textContent, 10);
+				else if (Foxtrick.hasClass(img, 'injuryInjured')) {
+					var injSpan = img.nextSibling;
+					// README: span may contain infinity sign
+					player.injuredWeeks = parseInt(injSpan.textContent, 10) || injSpan.textContent;
 				}
-				else if (Foxtrick.hasClass(imgs[j], 'transferListed')) {
+				else if (Foxtrick.hasClass(img, 'transferListed')) {
 					player.transferListed = true;
 				}
 			}
