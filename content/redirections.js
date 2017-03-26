@@ -57,7 +57,7 @@ Foxtrick.modules['Redirections'] = {
 				case 'challenge': url = '/Club/?teamId=' + teamId + '&make_challenge'; break;
 				case 'flags': url = '/Club/Flags/?teamId=' + teamId; break;
 				case 'guestbook': url = '/Club/Manager/Guestbook.aspx?teamId=' + teamId; break;
-				case 'mail': url = '/MyHattrick/Inbox/?actionType=newMail&alias=' + userName; break;
+				case 'mail': url = '/MyHattrick/Inbox/?actionType=newMail&userId=' + userId; break;
 				case 'matches': url = '/Club/Matches/?TeamID=' + teamId; break;
 				case 'players': url = '/Club/Players/?TeamID=' + teamId; break;
 				case 'series': url = '/World/Series/?LeagueLevelUnitID=' + seriesId; break;
@@ -147,12 +147,8 @@ Foxtrick.modules['Redirections'] = {
 				break;
 
 				case 'mail':
-					if (userName) {
-						url = '/MyHattrick/Inbox/?actionType=newMail&alias=' + userName;
-					}
-					else {
-						url = '/Club/Manager/?userId=' + userId + '&redir_to_mail=true';
-					}
+					if (userId)
+						url = '/MyHattrick/Inbox/?actionType=newMail&userId=' + userId;
 				break;
 
 				case 'newlineup':
