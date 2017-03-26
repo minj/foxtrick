@@ -839,7 +839,9 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 					player.bruised = true;
 				}
 				else if (Foxtrick.hasClass(img, 'injuryInjured')) {
-					player.injuredWeeks = parseInt(img.nextSibling.textContent, 10);
+					var injSpan = img.nextSibling;
+					// README: span may contain infinity sign
+					player.injuredWeeks = parseInt(injSpan.textContent, 10) || injSpan.textContent;
 				}
 				else if (Foxtrick.hasClass(img, 'transferListed')) {
 					player.transferListed = true;

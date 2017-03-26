@@ -579,14 +579,16 @@ Foxtrick.modules['SkillTable'] = {
 						img.title = Foxtrick.L10n.getString('Injured');
 						cell.appendChild(img);
 						// player.injured is number from players page,
+						// or string for infinity
 						// or boolean from transfer result page.
-						if (typeof player.injuredWeeks === 'number') {
+						if (typeof player.injuredWeeks !== 'undefined' &&
+						    typeof player.injuredWeeks !== 'boolean')
 							cell.appendChild(doc.createTextNode(player.injuredWeeks));
+
+						if (typeof player.injuredWeeks === 'number')
 							index += player.injuredWeeks * 100;
-						}
-						else {
-							index += 100;
-						}
+						else
+							index += 1000;
 					}
 					if (player.transferListed) {
 						img = doc.createElement('img');
