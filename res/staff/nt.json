@@ -75,7 +75,7 @@
 		{ "LeagueId": 83, "TeamId": 3142, "TeamName": "United Arab Emirates", "id": 11239289, "name": "justiS04" },
 		{ "LeagueId": 84, "TeamId": 3146, "TeamName": "Lëtzebuerg", "id": 13016233, "name": "-Florissimo-" },
 		{ "LeagueId": 85, "TeamId": 3150, "TeamName": "Iran", "id": 9923404, "name": "_meisam_" },
-		{ "LeagueId": 88, "TeamId": 3152, "TeamName": "República Dominicana", "id": 9652156, "name": "pablo1995" },
+		{ "LeagueId": 88, "TeamId": 3152, "TeamName": "República Dominicana", "id": 9652156, "name": "FD_pablo1995" },
 		{ "LeagueId": 89, "TeamId": 3140, "TeamName": "Cyprus", "id": 5131814, "name": "antonis12" },
 		{ "LeagueId": 91, "TeamId": 3156, "TeamName": "Belarus", "id": 11487093, "name": "f0G2Y" },
 		{ "LeagueId": 93, "TeamId": 3164, "TeamName": "Northern Ireland", "id": 7708796, "name": "Splank" },
@@ -126,7 +126,7 @@
 		{ "LeagueId": 143, "TeamId": 3249, "TeamName": "Uganda", "id": 8986792, "name": "hoobsen" },
 		{ "LeagueId": 144, "TeamId": 3251, "TeamName": "Dhivehi Raajje", "id": 8322460, "name": "Samba_" },
 		{ "LeagueId": 145, "TeamId": 3260, "TeamName": "O'zbekiston", "id": 10597424, "name": "Corben-Dallas" },
-		{ "LeagueId": 146, "TeamId": 3254, "TeamName": "Cameroon", "id": 12407319, "name": "mudoct" },
+		{ "LeagueId": 146, "TeamId": 3254, "TeamName": "Cameroon", "id": 12847900, "name": "Tironald" },
 		{ "LeagueId": 147, "TeamId": 3256, "TeamName": "Cuba", "id": 11921008, "name": "Eldarr" },
 		{ "LeagueId": 148, "TeamId": 3258, "TeamName": "Palestine", "id": 384456, "name": "GM-Pale" }
 	]

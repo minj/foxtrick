@@ -447,6 +447,11 @@
 			"duty": "translator"
 		},
 		{
+			"id": "4116867",
+			"name": "raffaelpinto",
+			"duty": "translator"
+		},
+		{
 			"id": "11107942",
 			"name": "mynayir",
 			"duty": "translator"
@@ -464,6 +469,16 @@
 		{
 			"id": "10104187",
 			"name": "Morcivert",
+			"duty": "translator"
+		},
+		{
+			"id": "12433095",
+			"name": "janisg",
+			"duty": "translator"
+		},
+		{
+			"id": "11191407",
+			"name": "anna_rose",
 			"duty": "translator"
 		}
 	]

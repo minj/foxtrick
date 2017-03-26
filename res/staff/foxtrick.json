@@ -260,6 +260,11 @@
 			"name": "himbeerkracherl"
 		},
 		{
+			"duty": "supporter",
+			"id": "11793121",
+			"name": "neandertal"
+		},
+		{
 			"duty": "translator",
 			"id": "11817135",
 			"name": "Parjikia"
@@ -437,7 +442,7 @@
 		{
 			"duty": "supporter",
 			"id": "13049551",
-			"name": "Novecento-GIGA"
+			"name": "Novecento_BOT"
 		},
 		{
 			"duty": "supporter",
@@ -457,7 +462,7 @@
 		{
 			"duty": "translator",
 			"id": "13121281",
-			"name": "Fantomas-1"
+			"name": "fantomas-1"
 		},
 		{
 			"duty": "translator",
