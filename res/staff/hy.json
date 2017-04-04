@@ -432,6 +432,11 @@
 			"duty": "translator"
 		},
 		{
+			"id": "12407319",
+			"name": "mudoct",
+			"duty": "translator"
+		},
+		{
 			"id": "12971983",
 			"name": "m4nufactured",
 			"duty": "translator"
@@ -464,11 +469,6 @@
 		{
 			"id": "11689741",
 			"name": "LA-khoai",
-			"duty": "translator"
-		},
-		{
-			"id": "10104187",
-			"name": "Morcivert",
 			"duty": "translator"
 		},
 		{
