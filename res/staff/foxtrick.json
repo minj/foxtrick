@@ -107,7 +107,7 @@
 		{
 			"duty": "supporter",
 			"id": "10726446",
-			"name": "LA-Cenarius"
+			"name": "Cenarius"
 		},
 		{
 			"duty": "supporter",
@@ -1138,6 +1138,11 @@
 			"duty": "translator",
 			"id": "7439277",
 			"name": "white_eagle"
+		},
+		{
+			"duty": "supporter",
+			"id": "7445196",
+			"name": "Franz-Kremer"
 		},
 		{
 			"duty": "supporter",
