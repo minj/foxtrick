@@ -389,15 +389,15 @@
 		"img": "http://www.ht-fff.org/favicon.ico",
 		"title": "French U20/NT Tracker",
 		"trackernationalteamlink": {
-			"url": "http://www.ht-fff.org/?server=[server]",
+			"url": "http://www.ht-dtnfff.fr/",
 			"filters": ["leagueid"]
 		},
 		"trackerleaguelink": {
-			"url": "http://www.ht-fff.org/?server=[server]",
+			"url": "http://www.ht-dtnfff.fr/",
 			"filters": ["leagueid"]
 		},
 		"trackerplayerlink": {
-			"url": "http://www.ht-fff.org/?server=[server]",
+			"url": "http://www.ht-dtnfff.fr/",
 			"filters": ["nationality"]
 		},
 		"leagueidranges": [[5, 5]],
