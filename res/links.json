@@ -222,18 +222,6 @@
 		"title": "Team Spirit Calculator",
 		"img": "resources/linkicons/Ht4u.png"
 	},
-	"ht-u20": {
-		"playerlink": {
-			"url": "http://age.ht-u20.com/?years=[age]&days=[agedays]",
-			"filters": ["age"]
-		},
-		"youthplayerdetaillink": {
-			"url": "http://age.ht-u20.com/?years=[age]&days=[agedays]"
-		},
-		"ageranges": [[15, 20]],
-		"title": "HT-U20 Check age vs U-20 matches",
-		"img": "resources/linkicons/u20.png"
-	},
 	"hottrickkeeper": {
 		"keeperlink": {
 			"url": "http://www.hottrick.org/hattrick_keeper_tool.php"
