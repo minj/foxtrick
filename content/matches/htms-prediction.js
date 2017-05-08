@@ -245,8 +245,8 @@ Foxtrick.modules['HTMSPrediction'] = {
 					lineWidth: 0.3, // The line thickness
 					radiusScale: 1.0, // Relative radius
 					pointer: {
-						length: 0.6, // // Relative to gauge radius
-						strokeWidth: 0.051, // The thickness
+						length: 0.7, // // Relative to gauge radius
+						strokeWidth: 0.08, // The thickness
 						color: '#000000' // Fill color
 					},
 					limitMax: true,     // If false, the max value of the gauge will be updated if value surpass max
@@ -260,7 +260,7 @@ Foxtrick.modules['HTMSPrediction'] = {
 					var max = pctg + 5;
 
 					var hue = (1 - pctg / 100) * 360 / 3; // deg
-					var light = (0.5 - 0.3 * Math.abs(1 - pctg / 50)) * 100; // pctg
+					var light = (0.6 - 0.3 * Math.abs(1 - pctg / 50)) * 100; // pctg
 					var hsl = `hsl(${hue}, 100%, ${light}%)`;
 
 					zones.push({ strokeStyle: hsl, min: pctg, max });
@@ -271,7 +271,7 @@ Foxtrick.modules['HTMSPrediction'] = {
 				var gauge = new Gauge(target).setOptions(opts); // create sexy gauge!
 				gauge.maxValue = 105; // set max gauge value
 				gauge.setMinValue(-105);  // Prefer setter over gauge.minValue = 0
-				gauge.animationSpeed = 32; // set animation speed (32 is default value)
+				gauge.animationSpeed = 50; // set animation speed (32 is default value)
 				gauge.set(-luck); // set actual value
 			}
 			/* End of Mimimi add-on (part 2) */
