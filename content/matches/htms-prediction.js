@@ -268,7 +268,7 @@ Foxtrick.modules['HTMSPrediction'] = {
 				}
 
 				var target = doc.getElementById('ft-mimimicanvas'); // your canvas element
-				var gauge = new Gauge(target).setOptions(opts); // create sexy gauge!
+				var gauge = new Foxtrick.Gauge(target).setOptions(opts); // create sexy gauge!
 				gauge.maxValue = 100; // set max gauge value
 				gauge.setMinValue(-100);  // Prefer setter over gauge.minValue = 0
 				gauge.animationSpeed = 50; // set animation speed (32 is default value)
