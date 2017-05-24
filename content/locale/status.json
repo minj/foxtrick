@@ -18,11 +18,11 @@
 			"code": "ar",
 			"name": "Arabic",
 			"phrases": "2290",
-			"translated": "2023",
+			"translated": "2048",
 			"translated_progress": "80",
 			"words": "16726",
 			"words_approved": "11697",
-			"words_translated": "13385"
+			"words_translated": "13454"
 		},
 		{
 			"approved": "0",
@@ -474,11 +474,11 @@
 			"code": "fa",
 			"name": "Persian",
 			"phrases": "2290",
-			"translated": "1460",
-			"translated_progress": "53",
+			"translated": "1535",
+			"translated_progress": "54",
 			"words": "16726",
 			"words_approved": "0",
-			"words_translated": "8984"
+			"words_translated": "9192"
 		},
 		{
 			"approved": "0",
