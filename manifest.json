@@ -31,8 +31,10 @@
 			"content/lib/sha1.js",
 			"content/lib/PluralForm.js",
 			"content/lib/psico.js",
-			"content/lib/integration.js",
+			"content/lib/gauge.js",
 			// <!-- end ext-lib -->
+
+			"content/lib/integration.js",
 
 			// <!-- util -->
 			"content/util/api.js",

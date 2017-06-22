@@ -45,8 +45,10 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/lib/sha1.js</string>
 				<string>content/lib/PluralForm.js</string>
 				<string>content/lib/psico.js</string>
-				<string>content/lib/integration.js</string>
+				<string>content/lib/gauge.js</string>
 				<!-- end ext-lib -->
+
+				<string>content/lib/integration.js</string>
 
 				<!-- util -->
 				<string>content/util/api.js</string>

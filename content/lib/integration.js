@@ -2,14 +2,29 @@
 // redefine external libs on top of Foxtrick
 // for those contexts where boot-strap does not take affect
 (function(global) {
-	var libs = [
+	const LIBS = [
 		'jsyaml',
 		'IDBStore',
+		'Gauge',
+		'Donut',
+		'BaseDonut',
+		'TextRenderer',
 	];
-	libs.forEach(function(lib) {
-		if (typeof Foxtrick[lib] === 'undefined' && typeof global[lib] !== 'undefined') {
+
+	debugger;
+
+	LIBS.forEach(lib => {
+		if (typeof Foxtrick[lib] === 'undefined')
 			Foxtrick[lib] = global[lib];
-			global[lib] = undefined;
+
+		if (typeof global[lib] === 'undefined')
+			return;
+
+		global[lib] = undefined;
+		try {
+			delete global[lib];
 		}
+		catch (e) {}
 	});
+
 })(this);

@@ -29,8 +29,10 @@ Foxtrick.loader.background.contentScriptManager = {
 		'lib/sha1.js',
 		'lib/jester.js',
 		'lib/psico.js',
-		'lib/integration.js',
+		'lib/gauge.js',
 		// <!-- end ext-lib -->
+
+		'lib/integration.js',
 
 		// <!-- util -->
 		'util/api.js',
