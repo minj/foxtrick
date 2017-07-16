@@ -505,6 +505,11 @@
 			"name": "Stolik"
 		},
 		{
+			"duty": "supporter",
+			"id": "1528065",
+			"name": "kupteri"
+		},
+		{
 			"duty": "translator",
 			"id": "1641271",
 			"name": "jaymz69"
