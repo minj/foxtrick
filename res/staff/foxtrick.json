@@ -715,6 +715,11 @@
 			"name": "Chemii"
 		},
 		{
+			"duty": "supporter",
+			"id": "343470",
+			"name": "another"
+		},
+		{
 			"duty": "translator",
 			"id": "3455853",
 			"name": "Takiwaki"
