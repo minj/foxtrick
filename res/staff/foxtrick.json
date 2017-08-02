@@ -1195,6 +1195,11 @@
 			"name": "taised"
 		},
 		{
+			"duty": "supporter",
+			"id": "7730271",
+			"name": "wildgoose"
+		},
+		{
 			"duty": "developer",
 			"id": "7776339",
 			"name": "convincedd"
