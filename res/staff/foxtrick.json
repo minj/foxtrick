@@ -565,6 +565,11 @@
 			"name": "SLV-Ferovejecs"
 		},
 		{
+			"duty": "supporter",
+			"id": "2058275",
+			"name": "DEL_giovabelli_20050120024833150512906"
+		},
+		{
 			"duty": "translator",
 			"id": "2090503",
 			"name": "--Eagle--"
@@ -1437,7 +1442,7 @@
 		{
 			"duty": "supporter",
 			"id": "9786585",
-			"name": "dual-core"
+			"name": "OneCore"
 		},
 		{
 			"duty": "translator",
