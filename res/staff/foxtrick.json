@@ -566,6 +566,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "2029812",
+			"name": "Presida"
+		},
+		{
+			"duty": "supporter",
 			"id": "2058275",
 			"name": "DEL_giovabelli_20050120024833150512906"
 		},
@@ -1473,6 +1478,11 @@
 			"duty": "translator",
 			"id": "9855688",
 			"name": "LA-Nika_Kvrivishvili"
+		},
+		{
+			"duty": "supporter",
+			"id": "98655",
+			"name": "Petrovitsj"
 		},
 		{
 			"duty": "translator",
