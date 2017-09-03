@@ -39,10 +39,10 @@
 	},
 	"htarena": {
 		"arenalink": {
-			"url": "http://uik.somee.com/htarena/"
+			"url": "http://htstart.se/htarena/"
 		},
 		"title": "HT-Arena",
-		"img": "http://uik.somee.com/htarena/favicon.ico"
+		"img": "http://htstart.se/htarena/favicon.ico"
 	},
 	"htlivesight": {
 		"matchlink": {
