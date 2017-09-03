@@ -570,11 +570,6 @@
 			"name": "Presida"
 		},
 		{
-			"duty": "supporter",
-			"id": "2058275",
-			"name": "DEL_giovabelli_20050120024833150512906"
-		},
-		{
 			"duty": "translator",
 			"id": "2090503",
 			"name": "--Eagle--"
@@ -653,6 +648,11 @@
 			"duty": "translator",
 			"id": "2689296",
 			"name": "Pyntsa"
+		},
+		{
+			"duty": "supporter",
+			"id": "2724749",
+			"name": "CarryOn"
 		},
 		{
 			"duty": "translator",
@@ -1203,11 +1203,6 @@
 			"duty": "developer",
 			"id": "765274",
 			"name": "taised"
-		},
-		{
-			"duty": "supporter",
-			"id": "768750",
-			"name": "DEL_marc_verhoeven_20100101010553110294566"
 		},
 		{
 			"duty": "supporter",
