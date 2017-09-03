@@ -356,6 +356,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "12508540",
+			"name": "Oppa-JoMar"
+		},
+		{
+			"duty": "supporter",
 			"id": "12511204",
 			"name": "Domek_69"
 		},
@@ -432,7 +437,7 @@
 		{
 			"duty": "translator",
 			"id": "12975827",
-			"name": "mbohane"
+			"name": "MartinsPF_"
 		},
 		{
 			"duty": "supporter",
@@ -462,7 +467,7 @@
 		{
 			"duty": "translator",
 			"id": "13121281",
-			"name": "fantomas-1"
+			"name": "Fantomas_"
 		},
 		{
 			"duty": "translator",
@@ -503,6 +508,11 @@
 			"duty": "translator",
 			"id": "1512628",
 			"name": "Stolik"
+		},
+		{
+			"duty": "supporter",
+			"id": "1528065",
+			"name": "kupteri"
 		},
 		{
 			"duty": "translator",
@@ -553,6 +563,11 @@
 			"duty": "translator",
 			"id": "1966508",
 			"name": "SLV-Ferovejecs"
+		},
+		{
+			"duty": "supporter",
+			"id": "2029812",
+			"name": "Presida"
 		},
 		{
 			"duty": "translator",
@@ -635,6 +650,11 @@
 			"name": "Pyntsa"
 		},
 		{
+			"duty": "supporter",
+			"id": "2724749",
+			"name": "CarryOn"
+		},
+		{
 			"duty": "translator",
 			"id": "2765378",
 			"name": "summercloud"
@@ -710,6 +730,11 @@
 			"name": "Chemii"
 		},
 		{
+			"duty": "supporter",
+			"id": "343470",
+			"name": "another"
+		},
+		{
 			"duty": "translator",
 			"id": "3455853",
 			"name": "Takiwaki"
@@ -777,7 +802,7 @@
 		{
 			"duty": "translator",
 			"id": "3885942",
-			"name": "MOD-Nacho"
+			"name": "---Nacho---"
 		},
 		{
 			"duty": "supporter",
@@ -992,7 +1017,7 @@
 		{
 			"duty": "supporter",
 			"id": "5932699",
-			"name": "DenTavse"
+			"name": "mm2007"
 		},
 		{
 			"duty": "translator",
@@ -1052,7 +1077,7 @@
 		{
 			"duty": "supporter",
 			"id": "6723161",
-			"name": "LA-LeChatPotte"
+			"name": "LeChatPotte"
 		},
 		{
 			"duty": "translator",
@@ -1082,7 +1107,7 @@
 		{
 			"duty": "supporter",
 			"id": "6944890",
-			"name": "guttusangolo"
+			"name": "guttusangolo-TWF"
 		},
 		{
 			"duty": "supporter",
@@ -1178,6 +1203,11 @@
 			"duty": "developer",
 			"id": "765274",
 			"name": "taised"
+		},
+		{
+			"duty": "supporter",
+			"id": "7730271",
+			"name": "wildgoose"
 		},
 		{
 			"duty": "developer",
@@ -1412,7 +1442,7 @@
 		{
 			"duty": "supporter",
 			"id": "9786585",
-			"name": "dual-core"
+			"name": "OneCore"
 		},
 		{
 			"duty": "translator",
@@ -1443,6 +1473,11 @@
 			"duty": "translator",
 			"id": "9855688",
 			"name": "LA-Nika_Kvrivishvili"
+		},
+		{
+			"duty": "supporter",
+			"id": "98655",
+			"name": "Petrovitsj"
 		},
 		{
 			"duty": "translator",
