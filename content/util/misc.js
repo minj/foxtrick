@@ -323,6 +323,43 @@ Foxtrick.getPanel = function(doc) {
 };
 
 /**
+ * A reimplementation of python range function.
+ *
+ * Returns a number generator
+ *
+ * @param  {number} start start value (may be omitted for 0)
+ * @param  {number} stop  stop value
+ * @param  {number} step  step value  (defaults to 1, must be non-zero)
+ * @return {Generator}    Generator.<number>
+ */
+Foxtrick.range = (start, stop, step = 1) => (function* (start, stop, step) {
+	if (typeof stop == 'undefined') {
+		stop = start;
+		start = 0;
+	}
+
+	let i = start;
+	let st = Number(step);
+
+	if (!st) {
+		throw new TypeError('Step must be non-zero');
+	}
+	else if (st > 0) {
+		while (i < stop) {
+			yield i;
+			i += st;
+		}
+	}
+	else {
+		while (i > stop) {
+			yield i;
+			i += st;
+		}
+	}
+
+})(start, stop, step);
+
+/**
  * Test whether object obj has a property prop
  *
  * Deals with non-objects and null.
