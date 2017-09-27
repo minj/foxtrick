@@ -127,6 +127,7 @@
 		{ "LeagueId": 144, "TeamId": 3251, "TeamName": "Dhivehi Raajje", "id": 8322460, "name": "Samba_" },
 		{ "LeagueId": 145, "TeamId": 3260, "TeamName": "O'zbekiston", "id": 1091931, "name": "SpectRe" },
 		{ "LeagueId": 146, "TeamId": 3254, "TeamName": "Cameroon", "id": 79512, "name": "valyfl" },
+		{ "LeagueId": 147, "TeamId": 3256, "TeamName": "Cuba", "id": 11921008, "name": "Eldarr" },
 		{ "LeagueId": 148, "TeamId": 3258, "TeamName": "Palestine", "id": 8559257, "name": "Dragonflight" }
 	]
 }
