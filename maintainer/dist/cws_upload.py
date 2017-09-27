@@ -24,18 +24,18 @@ def login(driver):
     print('...')
 
     elem = WebDriverWait(driver, 30).until(
-        EC.visibility_of_element_located((By.NAME, 'Email'))
+        EC.visibility_of_element_located((By.NAME, 'identifier'))
     )
     elem.send_keys(LOGIN)
     try:
         # two-field login
-        elem = driver.find_element_by_name('Passwd')
+        elem = driver.find_element_by_name('password')
         elem.send_keys(PASS)
     except NoSuchElementException:
         # single-field login
         elem.send_keys(Keys.ENTER)
         elem = WebDriverWait(driver, 30).until(
-            EC.visibility_of_element_located((By.NAME, 'Passwd'))
+            EC.visibility_of_element_located((By.NAME, 'password'))
         )
         elem.send_keys(PASS)
 
