@@ -212,6 +212,11 @@
 			"duty": "translator"
 		},
 		{
+			"id": "2201648",
+			"name": "Mod-D",
+			"duty": "translator"
+		},
+		{
 			"id": "9668661",
 			"name": "LA-dzsoo",
 			"duty": "translator"
@@ -398,7 +403,7 @@
 		},
 		{
 			"id": "815564",
-			"name": "Siem_",
+			"name": "Carpe_Siem_",
 			"duty": "translator"
 		},
 		{
