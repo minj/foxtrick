@@ -21,9 +21,6 @@ Foxtrick.util.copyButton.add = function(doc, text) {
 	if (Foxtrick.Prefs.getBool('smallcopyicons')) {
 		var mainBody = doc.getElementById('mainBody');
 
-		if (Foxtrick.util.layout.isStandard(doc))
-			mainBody.style.paddingTop = '10px';
-
 		// try to get order of the button in the header
 		// icons: contains a list of icons which is a list of classes
 		// that can occupy the header
