@@ -123,10 +123,10 @@ Foxtrick.modules['Ratings'] = {
 	                            defenceLevel) {
 		if (typeof(rating[ratingType]) == 'undefined')
 			return;
-			if (cell.textContent.length > 2) {
-				cell.appendChild(doc.createElement('br'));
-				cell.appendChild(doc.createTextNode('\n'));
-			}
+		if (cell.textContent.length > 2) {
+			cell.appendChild(doc.createElement('br'));
+			cell.appendChild(doc.createTextNode('\n'));
+		}
 		cell.appendChild(doc.createTextNode(label + ': '));
 		var b = cell.appendChild(doc.createElement('b'));
 		b.textContent = rating[ratingType](midfieldLevel, attackLevel, defenceLevel);
