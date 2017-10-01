@@ -272,28 +272,28 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 			};
 
 			var playerNode;
-			var num = function(nodeName) {
-				var value = xml.num(nodeName, playerNode);
+			var num = function(nodeName, parent) {
+				var value = xml.num(nodeName, parent || playerNode);
 				// deal with goals being undefined during matches
 				if (isNaN(value))
 					return undefined;
 
 				return value;
 			};
-			var money = function(nodeName) {
-				return xml.money(nodeName, currencyRate, playerNode);
+			var money = function(nodeName, parent) {
+				return xml.money(nodeName, currencyRate, parent || playerNode);
 			};
-			var node = function(nodeName) {
-				return xml.node(nodeName, playerNode);
+			var node = function(nodeName, parent) {
+				return xml.node(nodeName, parent || playerNode);
 			};
-			var text = function(nodeName) {
-				return xml.text(nodeName, playerNode);
+			var text = function(nodeName, parent) {
+				return xml.text(nodeName, parent || playerNode);
 			};
-			var bool = function(nodeName) {
-				return xml.bool(nodeName, playerNode);
+			var bool = function(nodeName, parent) {
+				return xml.bool(nodeName, parent || playerNode);
 			};
-			var ifPositive = function(nodeName) {
-				var value = num(nodeName);
+			var ifPositive = function(nodeName, parent) {
+				var value = num(nodeName, parent);
 				if (value > 0)
 					return value;
 				return undefined;
