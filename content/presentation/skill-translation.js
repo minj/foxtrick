@@ -176,18 +176,18 @@ Foxtrick.modules['SkillTranslation'] = {
 		    this.player_abilities[0])
 			return;
 
-			this.translate_category(doc, table, 1, this.player_abilities, false);
-			this.translate_category(doc, table, 2, this.coach_skills, false);
-			this.translate_category(doc, table, 3, this.formation_experience, false);
-			this.translate_category(doc, table, 4, this.sponsors, false);
-			this.translate_category(doc, table, 5, this.fan_mood, false);
-			this.translate_category(doc, table, 6, this.fan_match_expectations, true);
-			this.translate_category(doc, table, 7, this.fan_season_expectations, true);
-			this.translate_category(doc, table, 8, this.agreeability, true);
-			this.translate_category(doc, table, 9, this.honesty, false);
-			this.translate_category(doc, table, 10, this.aggressiveness, false);
-			this.translate_category(doc, table, 11, this.team_spirit, false);
-			this.translate_category(doc, table, 12, this.team_confidence, false);
+		this.translate_category(doc, table, 1, this.player_abilities, false);
+		this.translate_category(doc, table, 2, this.coach_skills, false);
+		this.translate_category(doc, table, 3, this.formation_experience, false);
+		this.translate_category(doc, table, 4, this.sponsors, false);
+		this.translate_category(doc, table, 5, this.fan_mood, false);
+		this.translate_category(doc, table, 6, this.fan_match_expectations, true);
+		this.translate_category(doc, table, 7, this.fan_season_expectations, true);
+		this.translate_category(doc, table, 8, this.agreeability, true);
+		this.translate_category(doc, table, 9, this.honesty, false);
+		this.translate_category(doc, table, 10, this.aggressiveness, false);
+		this.translate_category(doc, table, 11, this.team_spirit, false);
+		this.translate_category(doc, table, 12, this.team_confidence, false);
 
 		doc.location.hash = doc.location.hash;
 	},
