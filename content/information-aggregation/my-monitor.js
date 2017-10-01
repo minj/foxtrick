@@ -452,7 +452,7 @@ Foxtrick.modules['MyMonitor'] = {
 				upLink.title = Foxtrick.L10n.getString('button.up');
 				sortDiv.appendChild(upLink);
 
-				Foxtrick.onClick(upLink, move('up', team.id));
+				Foxtrick.onClick(upLink, move('up'));
 
 				var downLink = doc.createElement('input');
 				downLink.type = 'image';
@@ -462,7 +462,7 @@ Foxtrick.modules['MyMonitor'] = {
 				downLink.setAttribute('teamid', team.id);
 				sortDiv.appendChild(downLink);
 
-				Foxtrick.onClick(downLink, move('down', team.id));
+				Foxtrick.onClick(downLink, move('down'));
 
 				header.appendChild(sortDiv);
 

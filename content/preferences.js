@@ -252,7 +252,7 @@ function locateFragment(uri) {
 	};
 
 	// only keep the fragment of URI
-	var fragment = /#/.test(uri) ? fragment = uri.replace(/^.*#/, '') : '';
+	var fragment = /#/.test(uri) ? uri.replace(/^.*#/, '') : '';
 	var param = parseFragment(fragment);
 
 	if (param.module)
