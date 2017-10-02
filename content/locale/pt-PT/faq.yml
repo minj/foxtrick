@@ -2,22 +2,64 @@
 pt-PT:
   faq:
     style:
-      question: Como posso mudar o estilo do Foxtrick?
-      answer: '<p>O FoxTrick fornece um conjunto de interfaces de apresentação para os utilizadores, que podem personalizar seus próprios estilos. Essas interfaces são fornecidas através de classes e IDs HTML, e você pode usar CSS para definir o seu estilo preferido.</p>  <p>Podemos ver um exemplo desses estilos <linkCSSExample>aqui</linkCSSExample> ou <linkCSSExampleGCode>aqui</linkCSSExampleGCode>, podem ser modificados para satisfazer as necessidades específicas de cada um. Depois de gravar o ficheiro, pode utilizar o módulo <module>SkinPlugin</module> para carregar o mesmo para que se possa colocar o estilo próprio em utilização.</p>'
+      question: Como posso mudar o estilo do FoxTrick?
+      answer: |
+        <p>O FoxTrick fornece um conjunto de interfaces de apresentação para os utilizadores, que podem personalizar seus próprios estilos. Essas interfaces são fornecidas através de classes e IDs HTML, e pode usar CSS para definir o seu estilo preferido.</p>
+        
+        <p>Podemos ver um exemplo desses estilos <linkCSSExample>aqui</linkCSSExample> ou <linkCSSExampleGCode>aqui</linkCSSExampleGCode>, que pode modificar para satisfazer as necessidades específicas de cada um. Depois de gravar o ficheiro, pode utilizar o módulo <module>SkinPlugin</module> para o carregar para que o possa colocar em uso.</p>
     sound-format:
       question: Que tipo de ficheiros são permitidos para som de alerta?
       answer: |
-        <p>Diferentes browsers permitem diferentes formatos de ficheiros. Aqui está uma lista( formatos não referidos podem funcionar se os plugins necessários estiverem instalados, como por exemplo, o Quicktime para reproduzir ficheiros mp3 no Firefox):</p>
+        <p>Diferentes navegadores permitem diferentes formatos de ficheiros. Aqui está uma lista (formatos não referidos podem funcionar se os plugins necessários estiverem instalados, ex: o Quicktime para reproduzir mp3 no Firefox):</p>
         
         <ul>
         <li>Mozilla: wav, ogg</li>
-        <li>Safari (may need Quicktime): wav, mp3</li>
+        <li>Safari (pode necessitar do Quicktime): wav, mp3</li>
         <li>Chrome:  ogg, mp3, wav</li><li>Opera: wav, ogg</li>
         </ul>
     sound-location:
       question: Qual é o tamanho limite e onde podem ser encontrados os ficheiros de som de alerta?
+      answer: |
+        <p>Todos os navegadores podem reproduzir dados de URLs. Esses são os sons gravados internamente quando usa o botão existente nas preferências. Como são convertidos e guardados nas suas preferências o tamanho é limitado a cerca de 160Kb por som.</p>
+        
+        <p>Todos os navegadores conseguem reproduzir sons diretamente da Internet (urls http). Copie o atalho para um som (ex: http://foxtrick.org/sound.wav) no campo de edição para sons. Sem limite de tamanho.</p>
+        
+        <p>Os navegadores Mozilla conseguem também reproduzir sons diretamente do seu disco (urls ficheiro) sem limite de tamanho. A forma mais fácil de ter o formato correto é, no navegador pressione ctrl+O, procure o ficheiro do som e selecione-o. Na barra de endereços no topo tem agora o atalho correto para o ficheiro local (ex: file:///c:/sound.wav). Copie e cole-o no campo de edição para sons.</p>
     authorize:
-      question: Porque deveria eu autorizar o Foxtrick a aceder aos dados da minha equipa?
+      question: Porque deveria eu autorizar o FoxTrick a aceder aos dados da minha equipa?
+      answer: |
+        <p>Embora a maioria dos dados necessários ao FoxTrick podem ser recolhidos diretamente da página que está a ver, alguns módulos requerem que dados sejam descarregados do Hattrick para funcionarem corretamente.</p>
+        
+        <p>Para descarregar dados do Hattrick, incluindo dados da sua equipa, séries e seleções nacionais, terá primeiramente que autorizar o Foxtrick a tal.</p>
+        
+        <p>Pode autorizar o FoxTrick colocando o seu nome de utilizador e password em chpp.hattrick.org e receberá o código de verificação, que indicará ao FoxTrick. O FoxTrick não saberá os seus dados de acesso do hattrick durante todo o processo.</p>
+        
+        <p>Para saber mais sobre o processo de autorização, poderá ler <linkCHPPDesc>CHPP - How it works</linkCHPPDesc> no Hattrick.</p>
+        
+        <p>Alguns módulos requerem acesso a dados para funcionarem corretamente:</p>
+        
+        <ul>
+        <li><module>CrossTable</module></li>
+        <li><module>ExtraPlayerInfo</module></li>
+        <li><module>MatchPlayerColouring</module></li>
+        <li><module>MyMonitor</module></li>
+        <li><module>NtPeek</module></li>
+        <li><module>SeriesFlags</module></li>
+        </ul>
+        
+        <p>Alguns módulos podem dar-lhe informação extensiva se conseguirem ter acesso a dados do Hattrick:</p>
+        
+        <ul>
+        <li><module>SkillTable</module></li>
+        <li><module>TeamStats</module></li>
+        </ul>
     privacy:
-      question: Como vai o Foxtrick proteger a minha privacidade?
-      answer: '<p>FoxTrick não vou carregar os seus dados ou preferências para um servidor de FoxTrick, nem FoxTrick enviar qualquer um dos seus dados confidenciais, incluindo mas não limitada a sua ID de nome de usuário, senha e jogador associado com competências a terceiros.</p>  <p>Maioria dos dados passados a terceiros, a menos que explicitamente indicado abaixo, são enviadas com o método HTTP GET e só será enviado após você clicar em um link.</p>  <p>Ou seja, você será capaz de ver o que os dados são passados inspecionando o URI (Uniform Resource Identifier) de um link externo, e nenhum dado será enviado sem o seu consentimento. Como dito acima, nenhum dado privado está envolvido.</p>  <p>As excepções são os módulos <module>HTMSPrediction</module> e <module>HTEVPrediction</module>, onde as classificações de jogo são passadas e recebidas nos respectivos sites com XMLHttpRequest.</p>'
+      question: Como vai o FoxTrick proteger a minha privacidade?
+      answer: |
+        <p>FoxTrick não vou carregar os seus dados ou preferências para um servidor de FoxTrick, nem FoxTrick enviar qualquer um dos seus dados confidenciais, incluindo mas não limitada a sua ID de nome de usuário, senha e jogador associado com competências a terceiros.</p> 
+        
+        <p>Maioria dos dados passados a terceiros, a menos que explicitamente indicado abaixo, são enviadas com o método HTTP GET e só será enviado após você clicar em um link.</p>
+        
+        <p>Ou seja, você será capaz de ver o que os dados são passados inspecionando o URI (Uniform Resource Identifier) de um link externo, e nenhum dado será enviado sem o seu consentimento. Como dito acima, nenhum dado privado está envolvido.</p>
+        
+        <p>As exceções são os módulos <module>HTMSPrediction</module> e <module>HTEVPrediction</module>, onde as classificações de jogo são passadas e recebidas nos respetivos sites com XMLHttpRequest.</p>

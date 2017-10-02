@@ -1,32 +1,28 @@
 'use strict';
 /*
  * entry.js
- * Entry point of FoxTrick modules
- * @author ryanli, convincedd
+ * Entry point of Foxtrick modules
+ * @author ryanli, convincedd, LA-MJ
  */
 
 if (!Foxtrick)
-	var Foxtrick = {};
+	var Foxtrick = {}; // jshint ignore:line
 
 Foxtrick.entry = {};
-
-// mapping from page name (defined in pages.js) to array of modules running
-// on it
-Foxtrick.entry.runMap = {};
 
 // invoked on DOMContentLoaded (all browsers)
 // @param doc - HTML document to run on
 Foxtrick.entry.docLoad = function(doc) {
-	if (doc.nodeName != '#document')
+	if (doc.nodeName != '#document' || !doc.body.childNodes.length) {
+		// fennec raises annoying DOMContentLoaded events for blank pages
 		return;
-
-	//init html debug (somehow needed for feenc atm)
-	Foxtrick.log.flush(doc);
+	}
 
 	// don't execute if disabled
-	if (Foxtrick.Prefs.getBool('disableTemporary')) {
-		Foxtrick.log('disabled');
-		// potenial disable cleanup
+	if ((Foxtrick.arch == 'Sandboxed' || Foxtrick.platform === 'Android') && !Foxtrick.isHt(doc) ||
+	    !Foxtrick.Prefs.isEnabled(doc) ||
+	    Foxtrick.isExcluded(doc)) {
+		// potential cleanup for injected CSS
 		if (Foxtrick.entry.cssLoaded) {
 			Foxtrick.util.css.unload_module_css(doc);
 			Foxtrick.entry.cssLoaded = false;
@@ -34,27 +30,23 @@ Foxtrick.entry.docLoad = function(doc) {
 		return;
 	}
 
-	// we shall not run here
-	if (Foxtrick.arch == 'Sandboxed' && !Foxtrick.isHt(doc)) {
-		// potential cleanup for injected css
-		if (Foxtrick.entry.cssLoaded) {
-			Foxtrick.util.css.unload_module_css(doc);
-			Foxtrick.entry.cssLoaded = false;
-		}
-		return;
-	}
+	Foxtrick.entry.checkCSS(doc);
 
 	// ensure #content is available
 	var content = doc.getElementById('content');
 	if (!content)
 		return;
 
-	// run FoxTrick modules
-	var begin = (new Date()).getTime();
+	// init html debug (somehow needed for fennec atm)
+	Foxtrick.log.flush(doc);
+
+	// run Foxtrick modules
+	var begin = new Date().getTime();
+
 	Foxtrick.entry.run(doc);
-	var diff = (new Date()).getTime() - begin;
-	Foxtrick.log('page run time: ', diff, ' ms | ',
-		doc.location.pathname, doc.location.search);
+
+	var diff = new Date().getTime() - begin;
+	Foxtrick.log('page run time:', diff, 'ms |', doc.location.pathname, doc.location.search);
 
 	Foxtrick.log.flush(doc);
 
@@ -62,17 +54,16 @@ Foxtrick.entry.docLoad = function(doc) {
 	Foxtrick.startListenToChange(doc);
 };
 
-// invoved for each new instance of a content script
+// invoked for each new instance of a content script
 // for chrome/safari after each page load
 // for fennec on new tab opened
 // @param data - copy of the resources passed from the background script
 Foxtrick.entry.contentScriptInit = function(data) {
-
 	// Foxtrick.log('Foxtrick.entry.contentScriptInit');
+
 	// add MODULE_NAME to modules
-	var i;
-	for (i in Foxtrick.modules)
-		Foxtrick.modules[i].MODULE_NAME = i;
+	for (var mName in Foxtrick.modules)
+		Foxtrick.modules[mName].MODULE_NAME = mName;
 
 	if (Foxtrick.platform != 'Android') {
 		Foxtrick.Prefs._prefs_chrome_user = data._prefs_chrome_user;
@@ -86,16 +77,17 @@ Foxtrick.entry.contentScriptInit = function(data) {
 		Foxtrick.L10n.plForm = data.plForm;
 	}
 	else {
-		// fennec can access them from context, but they still need to get initilized
+		// fennec can access them from context, but they still need to get initialized
 		// xmldata has nothing to init only fetch
 		var coreModules = [Foxtrick.Prefs, Foxtrick.L10n];
-		for (var i = 0; i < coreModules.length; ++i) {
-			if (typeof(coreModules[i].init) == 'function')
-				coreModules[i].init();
+		for (var cModule of coreModules) {
+			if (typeof cModule.init === 'function')
+				cModule.init();
 		}
 	}
-	for (i in data.htLangJSON) {
-		Foxtrick.L10n.htLanguagesJSON[i] = JSON.parse(data.htLangJSON[i]);
+
+	for (var lang in data.htLangJSON) {
+		Foxtrick.L10n.htLanguagesJSON[lang] = JSON.parse(data.htLangJSON[lang]);
 	}
 
 	Foxtrick.XMLData.htCurrencyJSON = JSON.parse(data.currencyJSON);
@@ -105,163 +97,49 @@ Foxtrick.entry.contentScriptInit = function(data) {
 	Foxtrick.XMLData.countryToLeague = data.countryToLeague;
 };
 
-// called on browser load and after preferences changes (background side for sandboxed, fennec)
-Foxtrick.entry.init = function(reinit) {
-	// Foxtrick.log('Initializing FoxTrick... reinit:', reinit);
+// called on browser load and after preferences changes
+// (background side for sandboxed, fennec)
+Foxtrick.entry.init = function(reInit) {
+	// Foxtrick.log('Initializing Foxtrick... reInit:', reInit);
 
 	// add MODULE_NAME to modules
-	var i;
-	for (i in Foxtrick.modules)
-		Foxtrick.modules[i].MODULE_NAME = i;
+	for (var mName in Foxtrick.modules)
+		Foxtrick.modules[mName].MODULE_NAME = mName;
 
 	var coreModules = [Foxtrick.Prefs, Foxtrick.L10n, Foxtrick.XMLData];
 	for (var i = 0; i < coreModules.length; ++i) {
-		if (typeof(coreModules[i].init) == 'function')
-			coreModules[i].init(reinit);
+		if (typeof coreModules[i].init === 'function')
+			coreModules[i].init(reInit);
 	}
 
-	// create arrays for each recognized page that contains modules
-	// that run on it
-	var i;
-	for (i in Foxtrick.ht_pages) {
-		Foxtrick.entry.runMap[i] = [];
-	}
+	var modules = Foxtrick.util.modules.getActive();
 
-	// initialize all enabled modules
-	var modules = [];
-	for (i in Foxtrick.modules) {
-		var module = Foxtrick.modules[i];
-		if (Foxtrick.Prefs.isModuleEnabled(module.MODULE_NAME)) {
-			// push to array modules for executing init()
-			modules.push(module);
-			// register modules on the pages they are operating on according
-			// to their PAGES property
-			if (module.MODULE_NAME && module.PAGES) {
-				for (var i = 0; i < module.PAGES.length; ++i)
-					Foxtrick.entry.runMap[module.PAGES[i]].push(module);
-			}
-		}
-	}
 	Foxtrick.entry.niceRun(modules, function(m) {
-		if (typeof(m.init) == 'function')
-			return function() { m.init(reinit); };
+		if (typeof m.init == 'function')
+			return function() { m.init(reInit); };
 		return null;
 	});
 
-	Foxtrick.log('FoxTrick initialization completed.');
+	// Foxtrick.log('Foxtrick initialization completed.');
 };
 
-Foxtrick.entry.run = function(doc, is_only_css_check) {
+Foxtrick.entry.run = function(doc) {
 	try {
-		if (Foxtrick.platform == 'Firefox' && Foxtrick.Prefs.getBool('preferences.updated')) {
-			Foxtrick.log('prefs updated');
-			Foxtrick.entry.init(true); // reinit
-			Foxtrick.util.css.reload_module_css(doc);
-			Foxtrick.entry.cssLoaded = true;
-			Foxtrick.Prefs.setBool('preferences.updated', false);
-		}
-
-		// don't execute if not enabled on the document
-		if (!Foxtrick.Prefs.isEnabled(doc)) {
-			// potenial disable cleanup
-			Foxtrick.util.css.unload_module_css(doc);
-			Foxtrick.entry.cssLoaded = false;
-			return;
-		}
-
-		// set up direction and style attributes
-		var current_theme = Foxtrick.util.layout.isStandard(doc) ? 'standard' : 'simple';
-		var current_dir = Foxtrick.util.layout.isRtl(doc) ? 'rtl' : 'ltr';
-		var oldtheme = Foxtrick.Prefs.getString('theme');
-		var olddir = Foxtrick.Prefs.getString('dir');
-		if (current_theme != oldtheme || current_dir != olddir) {
-			Foxtrick.log('layout change');
-			Foxtrick.Prefs.setString('theme', current_theme);
-			Foxtrick.Prefs.setString('dir', current_dir);
-			Foxtrick.util.css.reload_module_css(doc);
-			Foxtrick.entry.cssLoaded = true;
-		}
-		var html = doc.getElementsByTagName('html')[0];
-		html.dir = current_dir;
-		html.setAttribute('data-theme', current_theme);
-		if (Foxtrick.platform == 'Android') {
-			html.setAttribute('data-fennec-theme',
-				doc.location.href.search(/Forum/i) == -1 ? 'default' : 'forum');
-		}
-		html.setAttribute(Foxtrick.platform, '');
-		if (Foxtrick.util.layout.hasMultipleTeams(doc))
-			html.setAttribute('data-multiple', '');
-
-		// reload CSS if not loaded
-		if (!Foxtrick.entry.cssLoaded) {
-			Foxtrick.log('CSS not loaded');
-			Foxtrick.Prefs.setBool('isStage', Foxtrick.isStage(doc));
-			Foxtrick.util.css.reload_module_css(doc);
-			Foxtrick.entry.cssLoaded = true;
-		}
-
-		// if only a CSS check, return now.
-		if (is_only_css_check)
-			return;
-		if (Foxtrick.isExcluded(doc) ||
-			(Foxtrick.isLoginPage(doc) && !Foxtrick.Prefs.getBool('runLoggedOff')))
-			return;
-
-		// create arrays for each recognized page that contains modules
-		// that run on it
-		var i;
-		for (i in Foxtrick.ht_pages) {
-			Foxtrick.entry.runMap[i] = [];
-		}
-		for (i in Foxtrick.modules) {
-			var module = Foxtrick.modules[i];
-			if (Foxtrick.Prefs.isModuleEnabled(module.MODULE_NAME)) {
-				// register modules on the pages they are operating on according
-				// to their PAGES property
-				if (module.MODULE_NAME && module.PAGES) {
-					for (var i = 0; i < module.PAGES.length; ++i)
-						Foxtrick.entry.runMap[module.PAGES[i]].push(module);
-				}
-			}
-		}
-
-		// call all modules that registered as page listeners
-		// if their page is loaded
-		var modules = [];
-		// modules running on current page
-		var page;
-		for (page in Foxtrick.ht_pages) {
-			if (Foxtrick.isPage(doc, page) && Foxtrick.entry.runMap[page]) {
-				for (var i = 0; i < Foxtrick.entry.runMap[page].length; ++i)
-					modules.push(Foxtrick.entry.runMap[page][i]);
-			}
-		}
-
-		// pages with no mainBody
-		var mainBodyExcludes = [
-			/^\/Shop\//i,
-		];
-		var noMainBody = Foxtrick.any(function(ex) {
-			return ex.test(doc.location.pathname);
-		}, mainBodyExcludes);
-		if (noMainBody) {
-			modules = modules.filter(function(module) {
-				return module.OUTSIDE_MAINBODY;
-			});
-		}
+		var modules = Foxtrick.util.modules.getActive(doc);
 
 		// invoke niceRun to run modules
 		Foxtrick.entry.niceRun(modules, function(m) {
-			if (typeof(m.run) == 'function')
+			if (typeof m.run === 'function') {
 				return function() {
 					var begin = new Date();
 
 					m.run(doc);
 
-					var diff = (new Date()).getTime() - begin;
+					var diff = new Date().getTime() - begin;
 					if (diff > 50)
-						Foxtrick.log(m.MODULE_NAME, ' run time: ', diff, ' ms');
+						Foxtrick.log(m.MODULE_NAME, 'run time:', diff, 'ms');
 				};
+			}
 			return null;
 		});
 
@@ -274,90 +152,46 @@ Foxtrick.entry.run = function(doc, is_only_css_check) {
 
 Foxtrick.entry.change = function(doc, changes) {
 	try {
-		// var doc = ev.target.ownerDocument;
-		// var node = ev.target;
-		// if (node.nodeType !== Foxtrick.NodeTypes.ELEMENT_NODE &&
-		// 	node.nodeType !== Foxtrick.NodeTypes.TEXT_NODE)
-		// 	return;
-
 		// don't act to changes on the excluded pages
-		var excludes = [
+		var mutationExcludes = [
 			/^\/Club\/Matches\/MatchOrder\//i,
 			/^\/Community\/CHPP\/ChppPrograms\.aspx/i,
 			/^\/Club\/Arena\/ArenaUsage\.aspx/i,
 			/^\/Club\/Matches\/Live\.aspx/i,
 			/^\/MatchOrder\/(Default.aspx|$)/i,
 		];
-		if (Foxtrick.any(function(ex) { return ex.test(doc.location.pathname); }, excludes)) {
-			return;
-		}
+		var excluded = Foxtrick.any(function(ex) {
+			return ex.test(doc.location.pathname);
+		}, mutationExcludes);
 
-		var content = doc.getElementById('content');
-		if (!content) {
-			Foxtrick.log('Cannot find #content at ', doc.location);
+		if (excluded)
 			return;
-		}
 
 		var ignoredClasses = [
 			'ft-ignore-changes',
 			'ft-popup-span',
 		];
-
 		var isIgnored = function(node) {
 			return Foxtrick.any(function(cls) {
 				return Foxtrick.hasClass(node, cls);
 			}, ignoredClasses);
 		};
 
-		if (Foxtrick.any(isIgnored, changes)) {
+		if (Foxtrick.any(isIgnored, changes))
 			return;
-		}
-		// var node = ev.target;
-		// while (node && node.nodeName != '#document') {
-		// 	if (node && Foxtrick.hasClass(node, 'ft-ignore-changes'))
-		// 		return;
-		// 	node = node.parentNode;
-		// }
-		// ignore changes list
-		// if (ev.originalTarget &&
-		// 	(Foxtrick.hasClass(ev.originalTarget, 'boxBody')
-		// 	|| Foxtrick.hasClass(ev.originalTarget, 'ft-popup-span')))
-		// 	return;
 
-		if (Foxtrick.Prefs.isEnabled(doc)) {
-			Foxtrick.log('call modules change functions');
-			var modules = [];
-			// modules running on current page
-			var page;
-			for (page in Foxtrick.ht_pages) {
-				if (Foxtrick.isPage(doc, page) && Foxtrick.entry.runMap[page]) {
-					for (var i = 0; i < Foxtrick.entry.runMap[page].length; ++i)
-						modules.push(Foxtrick.entry.runMap[page][i]);
-				}
-			}
+		Foxtrick.log('call modules change functions');
 
-			// pages with no mainBody
-			var mainBodyExcludes = [
-				/^\/Shop\//i,
-			];
-			var noMainBody = Foxtrick.any(function(ex) {
-				return ex.test(doc.location.pathname);
-			}, mainBodyExcludes);
-			if (noMainBody) {
-				modules = modules.filter(function(module) {
-					return module.OUTSIDE_MAINBODY;
-				});
-			}
+		var modules = Foxtrick.util.modules.getActive(doc);
 
-			// invoke niceRun to run modules
-			Foxtrick.entry.niceRun(modules, function(m) {
-				if (typeof(m.change) == 'function')
-					return function() { m.change(doc/*, ev*/); };
-				return null;
-			});
+		// invoke niceRun to run modules
+		Foxtrick.entry.niceRun(modules, function(m) {
+			if (typeof m.change === 'function')
+				return function() { m.change(doc); };
+			return null;
+		});
 
-			Foxtrick.log.flush(doc);
-		}
+		Foxtrick.log.flush(doc);
 	}
 	catch (e) {
 		Foxtrick.log(e);
@@ -365,26 +199,82 @@ Foxtrick.entry.change = function(doc, changes) {
 };
 
 /**
- * Runs the specified function of each module in the array in the order
- * of nice index
+ * Make and run a function for each module in the array in order of NICEness.
+ *
+ * makeFn(module) should return function(void) or null.
+ *
+ * @param {array}    modules {Array.<object>}
+ * @param {function} makeFn  {function(object)->?function}
  */
-Foxtrick.entry.niceRun = function(modules, pick) {
+Foxtrick.entry.niceRun = function(modules, makeFn) {
 	modules = Foxtrick.unique(modules);
 	modules.sort(function(a, b) {
 		var aNice = a.NICE || 0;
 		var bNice = b.NICE || 0;
 		return aNice - bNice;
 	});
+
 	Foxtrick.map(function(m) {
 		try {
-			if (typeof(pick(m)) == 'function')
-				pick(m)();
+			var fn = makeFn(m);
+			if (typeof fn === 'function')
+				fn();
 		}
 		catch (e) {
 			if (m.MODULE_NAME)
-				Foxtrick.log('Error in ', m.MODULE_NAME, ': ', e);
+				Foxtrick.log('Error in', m.MODULE_NAME, ':', e);
 			else
 				Foxtrick.log(e);
 		}
 	}, modules);
+};
+
+Foxtrick.entry.checkCSS = function(doc) {
+	if (Foxtrick.platform == 'Firefox' && Foxtrick.Prefs.getBool('preferences.updated')) {
+		Foxtrick.log('prefs updated');
+
+		Foxtrick.entry.init(true); // reInit
+
+		Foxtrick.util.css.reload_module_css(doc);
+		Foxtrick.entry.cssLoaded = true;
+
+		Foxtrick.Prefs.setBool('preferences.updated', false);
+	}
+
+	// set up direction and style attributes
+	var currentTheme = Foxtrick.util.layout.isStandard(doc) ? 'standard' : 'simple';
+	var currentDir = Foxtrick.util.layout.isRtl(doc) ? 'rtl' : 'ltr';
+	var oldTheme = Foxtrick.Prefs.getString('theme');
+	var oldDir = Foxtrick.Prefs.getString('dir');
+	if (currentTheme != oldTheme || currentDir != oldDir) {
+		Foxtrick.log('layout change');
+
+		Foxtrick.Prefs.setString('theme', currentTheme);
+		Foxtrick.Prefs.setString('dir', currentDir);
+
+		Foxtrick.util.css.reload_module_css(doc);
+		Foxtrick.entry.cssLoaded = true;
+	}
+
+	var html = doc.documentElement;
+	html.dir = currentDir;
+	html.dataset.theme = currentTheme;
+
+	if (Foxtrick.platform == 'Android') {
+		var fennecTheme = /Forum/i.test(doc.location.href) ? 'forum' : 'default';
+		html.dataset.fennecTheme = fennecTheme;
+	}
+
+	html.setAttribute(Foxtrick.platform, 'true');
+
+	if (Foxtrick.util.layout.hasMultipleTeams(doc))
+		html.dataset.multiple = 'true';
+
+	// reload CSS if not loaded
+	if (!Foxtrick.entry.cssLoaded) {
+		Foxtrick.log('CSS not loaded');
+
+		Foxtrick.util.css.reload_module_css(doc);
+		Foxtrick.entry.cssLoaded = true;
+	}
 };

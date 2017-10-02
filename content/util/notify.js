@@ -2,205 +2,365 @@
 /*
  * notify.js
  * Utilities for creating a notification
+ *
+ * @author ryanli, convincedd, LA-MJ
  */
 
 if (!Foxtrick)
-	var Foxtrick = {};
+	var Foxtrick = {}; // jshint ignore: line
 if (!Foxtrick.util)
 	Foxtrick.util = {};
 
 Foxtrick.util.notify = {};
 
-if (Foxtrick.platform === 'Chrome' && chrome.notifications) {
-	// store notification data
-	Foxtrick.util.notify._notes = {};
-	(function() {
-		var focusWindow = function(id) {
-			// focus window. needs permissions: tabs. only nightly as for now
-			try {
-				chrome.windows.update(id, { focused: true });
-			}
-			catch (e) {}
-		};
-		var openTabFromNote = function(noteId, tabOptsFn) {
-			var note = Foxtrick.util.notify._notes[noteId];
-			if (note) {
-				var tabOpts = tabOptsFn(note);
-				// focus sender tab
-				chrome.tabs.update(note.tab, tabOpts, function() {
-					if (chrome.runtime.lastError) {
-						// tab closed, open new
-						chrome.tabs.create({ url: note.url }, function(tab) {
-							focusWindow(tab.windowId);
-						});
-					}
-					else {
-						focusWindow(note.window);
-					}
-				});
-			}
-			// remove used
-			chrome.notifications.clear(noteId, function(done) {});
-		};
-		chrome.notifications.onClicked.addListener(function(noteId) {
-			openTabFromNote(noteId, function(note) { return { selected: true }; });
-		});
-		chrome.notifications.onButtonClicked.addListener(function(noteId, bId) {
-			openTabFromNote(noteId, function(note) { return { selected: true, url: note.url }; });
-		});
-	})();
-}
+/**
+ * Create a desktop notification with a given message and link to source
+ *
+ * source is normally an URL or sender object in the background (non-Gecko).
+ * opts is chrome NotificationOptions or
+ * {msg, url, id: string, opts: NotificationOptions} in the background (non-Gecko).
+ *
+ * @param {string}        msg
+ * @param {string|object} source
+ * @param {object}        opts
+ * @param {function}      callback {function(string)} TODO fails due to disconnected port
+ */
+Foxtrick.util.notify.create = function(msg, source, opts/*, callback*/) {
+	const TITLE = 'Hattrick';
+	const IMG = Foxtrick.InternalPath + 'resources/img/icon-128.png';
+	const NAME = 'Foxtrick';
+	const IS_CLICKABLE = true;
 
-// show a notification containin given message and link if possible
-// the first 3 parameters are used in both bg and content
-// @param msg - message to be shown
-// @param source - URL of event if applicable
-Foxtrick.util.notify.create = function(msg, source, cb, opts) {
+	var gId = '', gUrl = '', gTabOpts = {}, gTabOptsBtn = {};
+
 	var createGecko = function() {
-		var img = Foxtrick.InternalPath + 'resources/img/icon-128.png';
-		var title = 'Hattrick';
-		var clickable = true;
+
+		var glbl = window.gBrowser || window.BrowserApp;
+		var currentTabIdx = Foxtrick.indexOf(glbl.tabs, glbl.selectedTab);
+
 		var listener = {
-			observe: function(subject, topic, data) {
+			/**
+			 * observer function
+			 * @param  {object} subject null
+			 * @param  {string} topic   {alertclickcallback|alertshow|alertfinished}
+			 * @param  {string} data    url
+			 */
+			observe: function(subject, topic, data) { // jshint ignore:line
 				try {
-					if (topic == 'alertclickcallback') {
-						if (Foxtrick.platform == 'Firefox')
-							Foxtrick.openAndReuseOneTabPerURL(source, true);
-						else {
-							Foxtrick.SB.ext.sendRequest({ req: 'reuseTab', url: source });
+					if (topic === 'alertclickcallback') {
+
+						var tab = Foxtrick.newTab(data);
+
+						if (Foxtrick.platform === 'Firefox') {
+							// Android has no moveTabTo
+
+							var index;
+
+							if (source.tab) {
+								// e10s FF
+								var browser = source.tab.target;
+								index = browser.selectedIndex + 1;
+
+								// FIXME?
+								// var deck = browser.parentNode;
+								// var index = Foxtrick.indexOf(deck.childNodes, browser);
+
+							}
+							else {
+								// old FF
+								index = currentTabIdx + 1;
+							}
+
+							window.gBrowser.moveTabTo(tab, index);
+							window.focus();
+
 						}
-					}
-					if (topic == 'alertfinished') {
-						// empty
+
+						// if (typeof callback === 'function')
+						// 	callback(data);
 					}
 				}
 				catch (e) {
 					Foxtrick.log(e);
 				}
-			}
+			},
 		};
 
 		try {
-			var alertWin = Cc['@mozilla.org/alerts-service;1'].
-				getService(Ci.nsIAlertsService);
-			alertWin.showAlertNotification(img, title, msg, clickable, source, listener);
+			var alertWin = Cc['@mozilla.org/alerts-service;1'].getService(Ci.nsIAlertsService);
+			alertWin.showAlertNotification(IMG, TITLE, msg, IS_CLICKABLE, gUrl, listener, NAME);
 		}
 		catch (e) {
 			// fix for when alerts-service is not available (e.g. SUSE)
-			var alertWin = Services.ww.
-				openWindow(null, 'chrome://global/content/alerts/alert.xul',
-				           '_blank', 'chrome,titlebar=no,popup=yes', null);
-			alertWin.arguments = [img, 'www.hattrick.org', msg, clickable, source, 0, listener];
+			var ALERT_XUL = 'chrome://global/content/alerts/alert.xul';
+			var FF_WIN_OPTS = 'chrome,dialog=yes,titlebar=no,popup=yes';
+
+			// arguments[0] --> the image src url
+			// arguments[1] --> the alert title
+			// arguments[2] --> the alert text
+			// arguments[3] --> is the text clickable?
+			// arguments[4] --> the alert cookie to be passed back to the listener
+			// arguments[5] --> the alert origin reported by the look and feel
+			// 0: bottom right.
+			// 2: bottom left
+			// 4: top right
+			// 6: top left
+			// arguments[6] --> bidi
+			// arguments[7] --> lang
+			// arguments[8] --> replaced alert window (nsIDOMWindow)
+			// // i. e. previous alert
+			// arguments[9] --> an optional callback listener (nsIObserver)
+			// arguments[10] -> the nsIURI.hostPort of the origin, optional
+			var wArgs = [IMG, TITLE, msg, IS_CLICKABLE, gUrl, 2, null, null, null, listener, NAME];
+
+			// aParentwindow, aUrl, aWindowName, aWindowFeatures, aWindowArguments (nsISupports)
+			var win = Services.ww.openWindow(null, ALERT_XUL, '_blank', FF_WIN_OPTS, null);
+			win.arguments = wArgs;
 		}
 	};
 
-	var id = '', chromeOpts = {};
-	if (opts) {
-		// in content (need to send to bg)
-		chromeOpts = opts.opts || {};
-		id = opts.id;
-	}
-	else if (typeof msg === 'object') {
-		// in bg (msg from content)
-		chromeOpts = msg.opts;
-		id = msg.id;
-	}
-
-	if (Foxtrick.arch == 'Gecko') {
-		createGecko();
-	}
-	else if (Foxtrick.chromeContext() === 'background') {
-		if (Foxtrick.platform === 'Chrome' && chrome.notifications) {
-			var options = {
-				type: 'basic',
-				iconUrl: 'resources/img/icon-128.png',
-				title: 'Hattrick',
-				message: msg.msg,
-				contextMessage: Foxtrick.L10n.getString('notify.focus'),
-				// buttons: [
-				// 	{ title: 'Button1', iconUrl: 'resources/img/hattrick-logo.png' },
-				// 	{ title: 'Button2', iconUrl: 'resources/img/hattrick-logo.png' }
-				// ],
-				// items: [
-				// 	{ title: 'Item1', message: 'resources/img/hattrick-logo.png' },
-				// 	{ title: 'Item2', message: 'resources/img/hattrick-logo.png' }
-				// ],
-				isClickable: true
-			};
-			if (chromeOpts) {
-				// overwrite defaults
-				for (var opt in chromeOpts)
-					options[opt] = chromeOpts[opt];
-			}
-			if (id !== '') {
-				// named note, save source
-				this._notes[id] = {
-					url: msg.url,
-					tab: source.tab.id,
-					window: source.tab.windowId
-				};
-			}
-			chrome.notifications.getAll(function(notes) {
-				// check if exists
-				if (chrome.runtime.lastError)
-					return;
-				var addNew = function() {
-					chrome.notifications.create(id, options, function(a) {
-						if (chrome.runtime.lastError)
-							return;
-					});
-				};
-				if (id in notes)
-					// need to clear first
-					// otherwise new note is not displayed
-					chrome.notifications.clear(id, function(done) { addNew(); });
-				else
-					addNew();
-			});
+	var createChrome = function() {
+		var options = {
+			type: 'basic',
+			iconUrl: IMG,
+			title: TITLE,
+			message: msg,
+			contextMessage: Foxtrick.L10n.getString('notify.focus'),
+			isClickable: IS_CLICKABLE,
+			// buttons: [
+			// 	{ title: 'Button1', iconUrl: 'resources/img/hattrick-logo.png' },
+			// 	{ title: 'Button2', iconUrl: 'resources/img/hattrick-logo.png' }
+			// ],
+			// items: [
+			// 	{ title: 'Item1', message: 'resources/img/hattrick-logo.png' },
+			// 	{ title: 'Item2', message: 'resources/img/hattrick-logo.png' }
+			// ],
+		};
+		if (opts) {
+			// overwrite defaults
+			for (var opt in opts)
+				options[opt] = opts[opt];
 		}
-		else if (window.webkitNotifications) {
-			var notification = webkitNotifications.createNotification(
-				'resources/img/hattrick-logo.png', // logo location
-				'Hattrick', // notification title
-				msg.msg // notification body text
-			);
-			// this webkit notification. onclick is needed
-			notification.onclick = function() {
-				if (Foxtrick.platform == 'Chrome') {
-					// goto msg.url in sender tab
-					chrome.tabs.update(source.tab.id, { url: msg.url, selected: true });
-					// focus last window. needs permissions: tabs. only nightly as for now
+
+
+		var retry = function() {
+			delete options.buttons;
+			opts = options;
+			gTabOpts.url = gTabOptsBtn.url;
+
+			createChrome();
+		};
+
+		var clearNote = function(noteId) {
+			return new Promise(function(resolve) {
+				chrome.notifications.clear(noteId, resolve);
+			});
+		};
+
+		var updateOriginTab = function(originTab, tabOpts) {
+			var focusWindow = function(winId) {
+				return new Promise(function(resolve) {
+					chrome.windows.update(winId, { focused: true }, resolve);
+				});
+			};
+
+			return new Promise(function(resolve) {
+				if (tabOpts.url) {
+					// open URLs in a new tab next to original
+					// set correct position
+					// not setting opener since originTab may already be closed
+					var newOpts = {
+						windowId: originTab.windowId,
+						index: originTab.index + 1,
+					};
+					Foxtrick.mergeAll(newOpts, tabOpts);
+
+					chrome.tabs.create(newOpts, resolve);
+					return;
+				}
+
+				chrome.tabs.update(originTab.id, tabOpts,
+				  function(tab) { // jshint ignore:line
+					if (chrome.runtime.lastError) {
+						// tab closed, restore
+						var restoreOpts = {
+							url: gUrl,
+							windowId: originTab.windowId,
+							index: originTab.index,
+						};
+						Foxtrick.mergeAll(restoreOpts, tabOpts);
+
+						chrome.tabs.create(restoreOpts, resolve);
+					}
+					else {
+						resolve(tab);
+					}
+				});
+			}).then(function(tab) {
+				return focusWindow(tab.windowId).then(function() {
+					return tab;
+				});
+			});
+		};
+
+		var onClicked = function onClicked(noteId) {
+			if (noteId !== gId)
+				return;
+
+			clearNote(noteId).then(function() {
+				return updateOriginTab(source.tab, gTabOpts);
+			}).then(function() {
+				// callback(gUrl);
+			}).catch(Foxtrick.catch('notifications.onClicked'));
+		};
+
+		var onButtonClicked = function onButtonClicked(noteId, btnIdx) { // jshint ignore:line
+			if (noteId !== gId)
+				return;
+
+			clearNote(noteId).then(function() {
+				return updateOriginTab(source.tab, gTabOptsBtn);
+			}).then(function() {
+				// callback(gUrl);
+			}).catch(Foxtrick.catch('notifications.onButtonClicked'));
+		};
+
+		var onClosed = function onClosed(noteId) {
+			if (noteId !== gId)
+				return;
+
+			chrome.notifications.onButtonClicked.removeListener(onButtonClicked);
+			chrome.notifications.onClicked.removeListener(onClicked);
+			chrome.notifications.onClosed.removeListener(onClosed);
+		};
+
+		chrome.notifications.getAll(function(notes) {
+			if (chrome.runtime.lastError) {} // jscs:ignore disallowEmptyBlocks
+
+			// clear dupes manually to trigger onClosed listener
+			// prevents double execution when a note is duplicated before closing
+			var now = gId in notes ? clearNote(gId) : Promise.resolve();
+			now.then(function() {
+				chrome.notifications.create(gId, options,
+				  function(nId) { // jshint ignore:line
+					var err = chrome.runtime.lastError;
+					if (err) {
+						if (/^Adding buttons/.test(err.message)) {
+							// opera does not support buttons
+							retry();
+						}
+					}
+					else {
+						chrome.notifications.onClicked.addListener(onClicked);
+						chrome.notifications.onButtonClicked.addListener(onButtonClicked);
+						chrome.notifications.onClosed.addListener(onClosed);
+					}
+				});
+			}).catch(function(err) {
+				if (/buttons/.test(err.message))
+					retry();
+				else
+					throw err;
+			})
+			.catch(Foxtrick.catch('notifications.create'));
+		});
+	};
+
+	var createWebkit = function() {
+		var onclick = function() {
+			if (Foxtrick.platform === 'Chrome') {
+				// goto url in sender tab
+				var focusWindow = function(windowId) {
 					try {
-						chrome.windows.update(source.tab.windowId, { focused: true });
+						chrome.windows.update(windowId, { focused: true });
 					}
 					catch (e) {}
-				}
-				else
-					Foxtrick.SB.tabs.create({ url: msg.url });
-				notification.cancel();
-			};
-			// Then show the notification.
-			notification.show();
-			// close after 10 sec
-			window.setTimeout(function() { notification.cancel(); }, 10000);
-		}
-		if (Foxtrick.platform === 'Safari') {
-			var showGrowlNotification = function(msg) {
-				try {
-					if (window.GrowlSafariBridge &&
-					    window.GrowlSafariBridge.notifyWithOptions) {
-						window.GrowlSafariBridge.notifyWithOptions(msg.name, msg.status, {
-							isSticky: false,
-							priority: -1,
-							imageUrl: msg.img_url
+				};
+
+				chrome.tabs.update(source.tab.id, { url: gUrl, selected: true }, function() {
+					if (chrome.runtime.lastError) {
+						// tab closed, open new
+						chrome.tabs.create({ url: gUrl }, function(tab) {
+							focusWindow(tab.windowId);
 						});
 					}
-				}
-				catch (e) { Foxtrick.log(e); }
-			};
+					else {
+						focusWindow(source.tab.windowId);
+					}
+				});
 
-			var img = Foxtrick.InternalPath + 'resources/img/hattrick-logo.png';
-			showGrowlNotification({ name: 'www.hattrick.org', status: msg.msg, img_url: img });
+			}
+			else {
+				Foxtrick.SB.tabs.create({ url: gUrl });
+			}
+
+			this.cancel();
+
+			// callback(gUrl);
+		};
+
+		var notification = window.webkitNotifications.createNotification(IMG, TITLE, msg);
+
+		if (gUrl)
+			notification.onclick = onclick;
+
+		// Then show the notification.
+		notification.show();
+
+		// close after 20 sec
+		window.setTimeout(function() { notification.cancel(); }, 20000);
+	};
+
+	var createGrowl = function() {
+		var bridge = window.GrowlSafariBridge;
+		try {
+			if (bridge && bridge.notifyWithOptions) {
+				bridge.notifyWithOptions(TITLE, msg, {
+					isSticky: false,
+					priority: -1,
+					imageUrl: IMG,
+				});
+			}
+		}
+		catch (e) { Foxtrick.log(e); }
+	};
+
+	// standardize options
+	if (opts && opts.opts) {
+		// request to background
+		gId = opts.id || '';
+		gUrl = opts.url;
+
+		opts = opts.opts;
+	}
+	else {
+		// gecko or content
+		opts = opts || {};
+
+		if (opts.id) {
+			gId = opts.id;
+			delete opts.id;
+		}
+
+		gUrl = source;
+	}
+
+	gTabOpts = { active: true }; // focus only
+	gTabOptsBtn = { active: true, url: gUrl }; // focus and open
+
+	// start logic
+	if (Foxtrick.context === 'background') {
+		if (Foxtrick.arch == 'Gecko') {
+			createGecko();
+		}
+		else if (Foxtrick.platform === 'Chrome' && chrome.notifications) {
+			createChrome();
+		}
+		else if (window.webkitNotifications) {
+			createWebkit();
+		}
+		else if (Foxtrick.platform === 'Safari') {
+			createGrowl();
 		}
 	}
 	else {
@@ -208,9 +368,9 @@ Foxtrick.util.notify.create = function(msg, source, cb, opts) {
 		Foxtrick.SB.ext.sendRequest({
 			req: 'notify',
 			msg: msg,
-			url: source,
-			id: id,
-			opts: chromeOpts
-		});
+			id: gId,
+			url: gUrl,
+			opts: opts,
+		}/*, callback*/);
 	}
 };

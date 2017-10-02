@@ -34,18 +34,18 @@ Foxtrick.modules['TransferSearchResultFilters'] = {
 			'days': function(player, min, max) {
 				if (player.age == null)
 					return true;
-				if (typeof(min) == 'number' && player.age.days < min)
+				if (typeof min == 'number' && player.age.days < min)
 					return true;
-				if (typeof(max) == 'number' && player.age.days > max)
+				if (typeof max == 'number' && player.age.days > max)
 					return true;
 				return false;
 			},
 			'form': function(player, min, max) {
 				if (player.form == null)
 					return true;
-				if (typeof(min) == 'number' && player.form < min)
+				if (typeof min == 'number' && min !== -1 && player.form < min)
 					return true;
-				if (typeof(max) == 'number' && player.form > max)
+				if (typeof max == 'number' && max !== -1 && player.form > max)
 					return true;
 				return false;
 			},
@@ -57,8 +57,8 @@ Foxtrick.modules['TransferSearchResultFilters'] = {
 		};
 		// default filter values
 		var FILTER_VAL = [
-			{ key: 'form', type: 'skillselect', min: null, max: null, minAllowed: 0, maxAllowed: 8},
-			{ key: 'days', type: 'minmax', min: null, max: null },
+			{ key: 'form', type: 'skillselect', min: -1, max: -1, minAllowed: 0, maxAllowed: 8 },
+			{ key: 'days', type: 'minmax', min: '', max: '' },
 			{ key: 'hideOrdinary', type: 'check', checked: false },
 			{ key: 'hideInjured', type: 'check', checked: false },
 			{ key: 'hideSuspended', type: 'check', checked: false },
@@ -227,10 +227,10 @@ Foxtrick.modules['TransferSearchResultFilters'] = {
 						for (var j = 0; j < filters.length; ++j) {
 							var filter = filters[j];
 							if (filter.type == 'minmax') {
-								filters[j].min = null;
+								filters[j].min = '';
 								doc.getElementById(filterIdPrefix +
 								                   filter.key + '.Min').value = '';
-								filters[j].max = null;
+								filters[j].max = '';
 								doc.getElementById(filterIdPrefix +
 								                   filter.key + '.Max').value = '';
 							}
@@ -240,10 +240,10 @@ Foxtrick.modules['TransferSearchResultFilters'] = {
 								                   filter.key + '.check').removeAttribute('checked');
 							}
 							else if (filter.type == 'skillselect') {
-								filters[j].min = null;
+								filters[j].min = -1;
 								doc.getElementById('FoxtrickTransferSearchResultFilters.Skills.' +
 								                   filter.key + '.Min').value = '-1';
-								filters[j].max = null;
+								filters[j].max = -1;
 								doc.getElementById('FoxtrickTransferSearchResultFilters.Skills.' +
 								                   filter.key + '.Max').value = '-1';
 							}
@@ -269,13 +269,13 @@ Foxtrick.modules['TransferSearchResultFilters'] = {
 								if (filter.type == 'minmax') {
 									var el = doc.getElementById(filterIdPrefix + filter.key +
 									                            '.Min');
-									if (el.value == '' || isNaN(el.value))
-										filters[j].min = null;
+									if (el.value === '' || isNaN(el.value))
+										filters[j].min = '';
 									else filters[j].min = Number(el.value);
 									var el = doc.getElementById(filterIdPrefix + filter.key +
 									                            '.Max');
-									if (el.value == '' || isNaN(el.value))
-										filters[j].max = null;
+									if (el.value === '' || isNaN(el.value))
+										filters[j].max = '';
 									else filters[j].max = Number(el.value);
 								}
 								else if (filter.type == 'check') {
@@ -286,14 +286,16 @@ Foxtrick.modules['TransferSearchResultFilters'] = {
 								else if (filter.type == 'skillselect') {
 									var el = doc.getElementById(filterIdPrefix + 'Skills.' +
 									                            filter.key + '.Min');
-									if (isNaN(el.value) || Number(el.value) == -1)
-										filters[j].min = null;
-									else filters[j].min = Number(el.value);
+									filters[j].min = parseInt(el.value, 10);
+									if (isNaN(filters[j].min))
+										filters[j].min = -1;
+
 									var el = doc.getElementById(filterIdPrefix + 'Skills.' +
 									                            filter.key + '.Max');
-									if (isNaN(el.value) || Number(el.value) == -1)
-										filters[j].max = null;
-									else filters[j].max = Number(el.value);
+
+									filters[j].max = parseInt(el.value, 10);
+									if (isNaN(filters[j].max))
+										filters[j].max = -1;
 								}
 							}
 							setFilters(filters);
@@ -326,8 +328,13 @@ Foxtrick.modules['TransferSearchResultFilters'] = {
 					var hide = false;
 					for (var j = 0; j < filters.length; ++j) {
 						var filter = filters[j];
-						if ((filter.type == 'minmax' || filter.type == 'skillselect') &&
-						    (filter.min != null || filter.max != null)) {
+						if (filter.type == 'minmax' &&
+						    (filter.min !== '' || filter.max !== '')) {
+							if (FILTER_FUNC[filter.key](player, filter.min, filter.max))
+								hide = true;
+						}
+						else if (filter.type == 'skillselect' &&
+						    (filter.min != -1 || filter.max != -1)) {
 							if (FILTER_FUNC[filter.key](player, filter.min, filter.max))
 								hide = true;
 						}

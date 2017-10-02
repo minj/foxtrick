@@ -9,11 +9,11 @@ Foxtrick.modules['ForumYouthIcons'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.FORUM,
 	PAGES: [
 		'forumWritePost', 'messageWritePost', 'guestbook',
-		'announcements', 'forumSettings', 'newsLetter', 'mailNewsLetter', 'ntNewsLetter',
-		'forumModWritePost', 'ticket'
+		'announcementsWrite', 'forumSettings', 'newsLetter', 'mailNewsLetter', 'ntNewsLetter',
+		'forumModWritePost', 'ticket', 'helpContact',
 	],
 	OPTIONS: [
-		'q', 'user_id', 'kit_id', 'article_id', 'line_br', 'clock', 'spoiler',
+		'q', 'user_id', 'nt_team_id', 'kit_id', 'article_id', 'line_br', 'clock', 'spoiler',
 		'pre', 'table', 'symbols', 'youth_player', 'youth_team', 'youth_match',
 		'youth_series', 'debug', 'settings', 'enlarge_input', 'tournament',
 		'tournament_match'
@@ -37,6 +37,8 @@ Foxtrick.modules['ForumYouthIcons'] = {
 		var MAIN = Foxtrick.getMainIDPrefix();
 		var HMLtxtBody = MAIN + 'ucHattrickMLEditor_txtBody';
 		var HMLtxtRemLen = MAIN + 'ucHattrickMLEditor_txtRemLen';
+		var PrefsHMLtxtBody = MAIN + 'ucForumPreferences_ucHattrickMLEditor_txtBody';
+		var PrefsHMLtxtRemLen = MAIN + 'ucForumPreferences_ucHattrickMLEditor_txtRemLen';
 		var EMtxtBody = MAIN + 'ucEditorMain_txtBody';
 		var EMtxtRemLen = MAIN + 'ucEditorMain_txtRemLen';
 		var AEtxtBody = MAIN + 'ucActionEditor_txtBody';
@@ -103,7 +105,7 @@ Foxtrick.modules['ForumYouthIcons'] = {
 			},
 			// PA
 			{
-				page: 'announcements',
+				page: 'announcementsWrite',
 				textarea: HMLtxtBody,
 				counterfield: HMLtxtRemLen,
 				length: 1000,
@@ -117,11 +119,19 @@ Foxtrick.modules['ForumYouthIcons'] = {
 				length: 2950,
 				add_quote: false,
 			},
+			// contact
+			{
+				page: 'helpContact',
+				textarea: HMLtxtBody,
+				counterfield: HMLtxtRemLen,
+				length: 2950,
+				add_quote: false,
+			},
 			// signatur
 			{
 				page: 'forumSettings',
-				textarea: HMLtxtBody,
-				counterfield: HMLtxtRemLen,
+				textarea: PrefsHMLtxtBody,
+				counterfield: PrefsHMLtxtRemLen,
 				length: 500,
 				add_quote: false,
 			},
@@ -149,6 +159,14 @@ Foxtrick.modules['ForumYouthIcons'] = {
 				image: 'format_user.png',
 				string: 'user',
 				tags: '[userid=xxx]',
+				replace_text: 'xxx',
+			},
+			{
+				type: 'nt_team_id',
+				icon_class: 'ft_ntteam',
+				image: 'format_globe.png',
+				string: 'nt',
+				tags: '[ntteamid=xxx]',
 				replace_text: 'xxx',
 			},
 			{
@@ -220,7 +238,7 @@ Foxtrick.modules['ForumYouthIcons'] = {
 		var split = symbolsText.split('').reverse().join('').split(/;(?!\\)/).reverse();
 		for (var i = 0; i < split.length; ++i) {
 			var fixed = split[i].split('').reverse().join('').replace(/\\;/g, ';');
-			icons[9].versions.push(fixed);
+			icons[icons.length - 1].versions.push(fixed);
 		}
 
 		var youthicons = [
@@ -485,9 +503,10 @@ Foxtrick.modules['ForumYouthIcons'] = {
 			anchor.style.height = '300px';
 		}
 
-		if (Foxtrick.isPage(doc, 'announcements') && enlarge) {
+		if (Foxtrick.isPage(doc, 'announcementsWrite') && enlarge) {
 			anchor = doc.getElementById(HMLtxtBody);
-			anchor.style.height = '300px';
+			if (anchor)
+				anchor.style.height = '300px';
 		}
 		var toolbars = doc.getElementsByClassName('HTMLToolbar');
 		if (!toolbars[0])
@@ -495,7 +514,7 @@ Foxtrick.modules['ForumYouthIcons'] = {
 
 		// polls have two toolbars. we want the later for now
 		var toolbar = toolbars.length === 1 ? toolbars[0] : toolbars[1];
-		toolbar.setAttribute('style', 'float:left; margin-right:3px;');
+		toolbar.setAttribute('style', 'float:left; margin:0 -6px;');
 
 		if (Foxtrick.isPage(doc, 'guestbook'))
 			try {
@@ -555,67 +574,59 @@ Foxtrick.modules['ForumYouthIcons'] = {
 
 					if (replaceText == 'ttt') {
 						// table
+
 						Foxtrick.log('separator', separator);
 
 						if (separator == tab)
-							separator = '\\t';
-						if (separator == '|')
-							separator = '\\|';
-						if (separator == '+')
-							separator = '\\+';
-						if (separator == '.')
-							separator = '\\.';
+							separator = '\t';
+
+						separator = Foxtrick.strToRe(separator);
+
 						if (separator == ' ')
 							separator = ' +';
 
-						// deal with some nested tags
-						var myReg;
-						myReg = new RegExp('\\[i\\](.+)(' + separator + ')(.+)\\[\\/i\\]', 'g');
-						newText = newText.replace(myReg, '[i]$1[/i]$2[i]$3[/i]');
-						myReg = new RegExp('\\[u\\](.+)(' + separator + ')(.+)\\[\\/u\\]', 'g');
-						newText = newText.replace(myReg, '[u]$1[/u]$2[u]$3[/u]');
-						myReg = new RegExp('\\[b\\](.+)(' + separator + ')(.+)\\[\\/b\\]', 'g');
-						newText = newText.replace(myReg, '[b]$1[/b]$2[b]$3[/b]');
-
 						// make the table
-						myReg = new RegExp(separator, 'g');
+						var myReg = new RegExp(separator, 'g');
 						newText = newText.replace(myReg, '[/td][td]');
 						newText = newText.replace(/\n/g, '[/td][/tr][tr][td]');
 
 						// add some colspan for too short rows
-						var rows = newText.split('[/tr]');
-						var max_cells = 0;
-						for (var i = 0; i < rows.length - 1; ++i) {
-							max_cells = Math.max(max_cells, rows[i].split('[/td]').length - 1);
-						}
-						for (var i = 0; i < rows.length - 1; ++i) {
-							var missing_col = max_cells - (rows[i].split('[/td]').length - 1);
+						var rows = newText.split('[/tr]').slice(0, -1);
+						var cellCts = Foxtrick.map(function(row) {
+							return row.split('[/td]').length - 1;
+						}, rows);
+						var max_cells = Math.max.apply(null, cellCts);
+
+						rows = Foxtrick.map(function(row, i) {
+							var colCt = cellCts[i];
+							var missing_col = max_cells - colCt;
 							if (missing_col !== 0) {
-								var last_td = rows[i].lastIndexOf('[td');
-								rows[i] = rows[i].substring(0, last_td + 3) + ' colspan=' +
-									(missing_col + 1) + rows[i].substr(last_td + 3);
+								var last_td = row.lastIndexOf('[td');
+								row = row.slice(0, last_td + 3) +
+									' colspan=' + (missing_col + 1) +
+									row.slice(last_td + 3);
 							}
-						}
-						// add header if first row is bold to some part
-						if (/\[b\].+\[\/b\]/.test(rows[0])) {
-							rows[0] = rows[0].replace(/\[\/?b\]/g, '').replace(/td\]/g, 'th]');
-						}
-						newText = '';
-						for (var i = 0; i < rows.length - 1; ++i) {
-							newText += rows[i] + '[/tr]';
-						}
-						newText += '[/table]';
+							return row;
+						}, rows);
+
+						// always add header for first row
+						rows[0] = rows[0].replace(/\[\/?b\]/g, '');
+						rows[0] = rows[0].replace(/\[(\/)?td( colspan=\d+)?\]/g, '[$1th$2]');
+
+						newText = rows.join('[/tr]');
+						newText += '[/tr][/table]';
+
 						if (s.selectionLength === 0)
-							newText = '[table][tr][td]cell1[/td]' +
-								'[td]cell2[/td][/tr][tr][td]cell3[/td][td]cell4[/td][/tr][/table]';
+							newText = '[table][tr][td]cell1[/td][td]cell2[/td][/tr]' +
+								'[tr][td]cell3[/td][td]cell4[/td][/tr][/table]';
 
 						// some formating
 						newText = newText.replace(/table\]/g, 'table]\n').
 							replace(/\/tr\]/g, '/tr]\n').
-							replace(/\[td/g, ' [td').
-							replace(/\[\/td\]/g, '[/td] ').
-							replace(/\[th/g, ' [th').
-							replace(/\[\/th\]/g, '[/th] ');
+							replace(/\[td/g, '[td').
+							replace(/\[\/td\]/g, '[/td]').
+							replace(/\[th/g, '[th').
+							replace(/\[\/th\]/g, '[/th]');
 					}
 
 					if (ta.selectionStart || ta.selectionStart == '0') {

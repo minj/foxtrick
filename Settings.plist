@@ -4,7 +4,7 @@
 <array>
 	<dict>
 		<key>Title</key>
-		<string>FoxTrick Options</string>
+		<string>Foxtrick Options</string>
 		<key>Type</key>
 		<string>Group</string>
 	</dict>
@@ -14,7 +14,7 @@
 		<key>Key</key>
 		<string>openFoxtrickOptions</string>
 		<key>Title</key>
-		<string>Click me to show FoxTrick's options.</string>
+		<string>Click me to show Foxtrick options.</string>
 		<key>Type</key>
 		<string>CheckBox</string>
 	</dict>

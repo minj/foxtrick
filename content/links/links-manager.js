@@ -2,68 +2,51 @@
 /**
  * links-manager.js
  * Foxtrick add links to manager pages
- * @author convinced
+ * @author convinced, LA-MJ
  */
 
 Foxtrick.modules['LinksManager'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
 	PAGES: ['managerPage'],
-	OPTION_FUNC: function(doc, callback) {
-		return Foxtrick.modules['Links']
-			.getOptionsHtml(doc, 'LinksManager', 'managerlink', callback);
+	LINK_TYPE: 'managerlink',
+	/**
+	 * return HTML for FT prefs
+	 * @param  {document}         doc
+	 * @param  {function}         cb
+	 * @return {HTMLUListElement}
+	 */
+	OPTION_FUNC: function(doc, cb) {
+		return Foxtrick.util.links.getPrefs(doc, this, cb);
 	},
 
 	run: function(doc) {
-		var module = this;
-		Foxtrick.modules.Links.getCollection(function(collection) {
-			module._run(doc);
-		});
+		Foxtrick.util.links.run(doc, this);
 	},
 
-	_run: function(doc) {
-		var ownBoxBody = null;
-		var mainBody = doc.getElementById('mainBody');
+	links: function(doc) {
+		var userId = Foxtrick.Pages.All.getId(doc);
+		var bcs = Foxtrick.Pages.All.getBreadCrumbs(doc);
+		var userName = bcs[1].textContent;
 
-		var teamid = Foxtrick.util.id.findTeamId(mainBody);
-		var teamname = Foxtrick.Pages.All.getTeamName(doc);
-		var userid = Foxtrick.util.id.findUserId(mainBody);
-		var leaguename = Foxtrick.util.id.extractLeagueName(mainBody);
-		var leagueid = Foxtrick.util.id.findLeagueLeveUnitId(mainBody);
-		var owncountryid = Foxtrick.util.id.getOwnLeagueId();
+		var info = {
+			userId: userId,
+			userName: userName,
+		};
 
-		var h1 = mainBody.getElementsByTagName('h1')[0];
-		var username = h1.textContent.replace(/^\s+/, '').replace(/\s+$/, '')
-			.replace(/\(.+/, '').replace(/\s+$/g, '');
-
-		var links = Foxtrick.modules['Links'].getLinks('managerlink', {
-			'teamid': teamid,
-			'teamname': teamname,
-			'userid': userid,
-			'username': username,
-			'leagueid': leagueid,
-			'owncountryid': owncountryid
-		}, doc, this);
-		if (links.length > 0) {
-			ownBoxBody = Foxtrick.createFeaturedElement(doc, this, 'div');
-			var header = Foxtrick.L10n.getString('links.boxheader');
-			var ownBoxBodyId = 'foxtrick_links_content';
-			ownBoxBody.setAttribute('id', ownBoxBodyId);
-
-			for (var k = 0; k < links.length; k++) {
-				links[k].link.className = 'inner';
-				ownBoxBody.appendChild(links[k].link);
-			}
-
-			var box = Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, -20);
-			box.id = 'ft-links-box';
+		var playerInfo = doc.querySelector('.playerInfo');
+		var teams = playerInfo.querySelectorAll('a[href^="/Club/?TeamID"]');
+		var series = playerInfo.querySelectorAll('a[href^="/World/Series/?"]');
+		var leagues = playerInfo.querySelectorAll('a[href^="/World/Leagues/League.aspx"]');
+		var ct = Math.min(teams.length, series.length, leagues.length);
+		for (var i = 0; i < ct; i++) {
+			var idx = i ? (i + 1) : '';
+			info['teamId' + idx] = Foxtrick.getParameterFromUrl(teams[i], 'teamId');
+			info['teamName' + idx] = teams[i].textContent;
+			info['seriesId' + idx] = Foxtrick.getParameterFromUrl(series[i], 'leagueLevelUnitId');
+			info['seriesName' + idx] = series[i].textContent;
+			info['leagueId' + idx] = Foxtrick.getParameterFromUrl(leagues[i], 'leagueId');
 		}
-		Foxtrick.util.links.add(doc, ownBoxBody, this.MODULE_NAME, {
-			'teamid': teamid,
-			'teamname': teamname,
-			'userid': userid,
-			'username': username,
-			'leagueid': leagueid,
-			'owncountryid': owncountryid
-		});
+
+		return { info: info };
 	}
 };

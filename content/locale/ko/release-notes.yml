@@ -5,16 +5,145 @@ ko:
       note_0: '자세한 내용은 Google Code의 <linkSVN>보고 기록</linkSVN>을 참조하세요.'
     beta:
       note_0: '이것은 다음 배포의 beta 버전 입니다. 이 버전에서 저희 군중-번역 페이지를 통해 번역해주세요. <linkCrowdin>crowdin.net</linkCrowdin>'
+    0.17.0.1:
+      important: '<header>중요한 공지 사항</header>'
+      safari_cert: 'Safari 사용자들의 Foxtrick 지원을 복구하는데 도와주실 iOS 또는 OSX App 개발자 분들을 Hattrick 커뮤니티에서 찾고 있습니다. 자세한 정보는 저희 <linkSafariCertBug>issue tracker</linkSafariCertBug>를 참조하세요.'
+      beta: '새로운 기능을 미리 접하거나 개발에 영향을 주거나 새롭게 발생하는 문제점들을 찾고 수정하는데 도움을 주실 생각이 있으시면 <linkFTBeta>Foxtrick beta</linkFTBeta>를 사용해보는 것을 고려해보세요.'
+      support: '<header>Foxtrick이 마음에 드십니까? 그러시면 <linkContribute>Foxtrick 후원</linkContribute>을 부탁드립니다.</header>'
+      bugs: '<header>버그 수정</header>'
+      android: 'Mozila의 변경 때문에 Android에서 Foxtrick이 고장 났었습니다.'
+      filters: 'Foxtrick 코어 변경 이후 <module>Filters</module> 모듈이 고장 났었습니다.'
+      simulator_hs: '<module>MatchSimulator</module> 모듈이 HatStats 값 계산과 충돌하여 평점 계산 시 잘못된 스킬 서브 레벨을 사용하였습니다.'
+      nt_stats: '<module>SeasonStats</module> 모듈이 NT 감독에 맞춰 가져온 NT 경기들을 감지하지 못했습니다.'
+      specinfo_fixes: '<module>SpecialtyInfo</module> 모듈이 <module>SkillTable</module>과 <module>ContextMenuCopy</module> 사이에서 잘못된 상호작용을 하였습니다. 통합 개선을 위해 모듈을 재작성 되었습니다.'
+      other: '<header>기타 변경 사항</header>'
+      minimum_search: '이제 다시 <module>TransferSearchResultFilters</module>에서 최소 Form 만으로 검색할 수 있습니다. 검색 최대 범위는 자동적으로 “뛰어남”으로 설정됩니다.'
+      season_cache: '이제 Foxtrick 캐시는 시즌이 바뀔 때 자동으로 제거됩니다. 이는 <module>SeriesFlags</module>을 포함한 여러 모듈에서 오래된 데이터를 사용하는 것을 방지하기 위함입니다.'
+      weather_cache: '<module>MatchWeather</module> 모듈은 이제 브라우저가 작동하는 동안에만 같은 날씨를 표시합니다. 날씨 데이터는 짧은 기간 동안 캐시에 저장될 것입니다.'
+      android_prefs: '이제 데스크톱 버전의 환경설정을 가져와서 Android에서 Foxtrick 환경설정 링크를 비활성화하는 것이 가능하지 않습니다. 그렇지 않으면 환경설정을 접근할 수 없습니다.'
+      and_more: '그 외에 작은 규모의 변화와 수정이 있었습니다.'
+    0.17.0:
+      important: '<header>중요한 공지 사항</header>'
+      crowdin: '<header>저희 뛰어난 사용자들이 <linkCrowdin>crowdin tool</linkCrowdin>을 사용하여 수많은 번역 업데이트가 있었습니다. 당신도 도울 수 있습니다!</header>'
+      browsers: '기술적인 이유로 파이어 폭스 38버전, 구글 크롬 39버전, 오페라 26버전이 이제 공식적으로 지원하는 브라우저의 최소 버전입니다. 하지만, 여러분의 보안을 위해 가능한 최신 버전의 브라우저를 사용하셔야 합니다.'
+      safari_cert: 'Safari 사용자들의 Foxtrick 지원을 복구하는데 도와주실 iOS 또는 OSX App 개발자 분들을 Hattrick 커뮤니티에서 찾고 있습니다. 자세한 정보는 저희 <linkSafariCertBug>issue tracker</linkSafariCertBug>를 참조하세요.'
+      beta: '새로운 기능을 미리 접하거나 개발에 영향을 주거나 새롭게 발생하는 문제점들을 찾고 수정하는데 도움을 주실 생각이 있으시면 <linkFTBeta>Foxtrick beta</linkFTBeta>를 사용해보는 것을 고려해보세요.'
+      support: '<header>Foxtrick이 마음에 드십니까? 그러시면 <linkContribute>Foxtrick 후원</linkContribute>을 부탁드립니다.</header>'
+      new: '<header>새로운 모듈</header>'
+      spec_info: '<module>SpecialtyInfo</module> 모듈은 특수 능력 아이콘을 클릭했을 때 특수 능력에 대한 간단한 정보 테이블을 표시합니다.'
+      bugs: '<header>버그 수정</header>'
+      tl_search_form: '<module>TransferSearchResultFilters</module>에서 폭스트릭 Form 필터가 브라우저 변화 때문에 고장이 났었습니다. 그리하여 이적 검색 결과에서 모든 선수들이 숨겨졌습니다. 이 문제는 이제 해결되었을 것입니다.'
+      divine_skills: '최근에 추가된 신의 경지+ 스킬 표시가 HT 과실로 인하여 이따금 CHPP 프로그램에 고장을 일으켰습니다. 또한 폭스트릭도 예외가 아니었습니다. 이에 영향을 받는 모듈은 <module>SkillTable</module>, <module>MatchOrderInterface</module>, <module>HTMSPoints</module>, <module>SkillColoring</module> 등입니다. 이 문제는 이제 해결되었을 것입니다.'
+      opera_notifications: '오페라 브라우저에서 Foxtrick 알림이 고장 났었고 이제 해결되었습니다.'
+      nt_weather: '<module>MatchWeather</module> 모듈이 NT 경기와 일부 경기에서 고장 났었습니다. 그래서 알려진 모든 문제를 해결하기 위해 다시 작성되었습니다.'
+      nt_simulator: '<module>MatchSimulator</module> 경기 목록이 NT 팀인 경우 올바른 경기들을 표시하지 않았습니다. 이제 이 문제는 해결되었습니다.'
+      chrome_styles: 'Foxtrick 스타일이 때때로 구글 크롬에서 브라우저 변화 때문에 드문 경우에 고장이 났습니다. 앞으로 이러한 문제를 예방하기 위해 조치가 취해졌습니다.'
+      supporter_list: '<module>StaffMarker</module> 모듈이 비활성화되면 <module>SupportersList</module> 모듈이 중단되었습니다. 이러한 잘못된 상호작용은 이제 제거되었습니다.'
+      youth_promotes: '<module>YouthPromotes</module> 모듈에서 남은 일을 계산하는 과정에서 발생하는 off-by-one 버그를 수정했습니다.'
+      other: '<header>기타 변경 사항</header>'
+      performance_cache: '전체적인 Foxtrick 성능 향상을 위해 많은 작업이 이루어졌습니다. CHPP와 기타 데이터 자원은 이제 더욱 빠른 속도와 응답 속도를 보장할 것입니다. 또한 이들 자원의 Foxtrick 캐시도 개선되었습니다.'
+      preferences_install: 'Foxtrick 환경 설정은 이제 구글 크롬에서 특이 더욱 빠르게 로드됩니다. 또한 파이어 폭스에서 설치와 업데이트가 더욱 빨라졌습니다.'
+      backend: 'Foxtrick 코어의 정리 및 업데이트들이 앞으로의 관리 용이성을 증가시켰습니다. 이 변화는 수많은 페이지와 모듈 및 기능들에 해당합니다. 만약 버그를 찾으시면 저희에게 보고해주세요.'
+      firefox_support: '이러한 작업의 결과로 다른 파이어 폭스의 애드온들과 상호운용성이 이제 더욱 좋아졌습니다. 새로운 파이어 폭스 멀티 프로세스 아키텍처를 위한 준비도 잘 진행되고 있습니다.'
+      notifications: 'Foxtrick 알림을 클릭 하면 이제 새로운 탭에서 해당하는 페이지를 엽니다.'
+      context_copy: '<module>ContextMenuCopy</module> 모듈이 더 많은 링크를 다루고 더욱 복잡한 HT-ML 마크업을 생성하기위해 개선되었습니다.'
+      training_week: 'PlayerStatsTrainingWeek 모듈이 Hattrick에 동일한 기능이 구현되어 제거되었습니다.'
+      wage: '<module>ExtendedPlayerDetailsWage</module> 모듈에서 주급 통화 감지가 HT 변화에 더욱 잘 대응하기 위해 재작성되었습니다. 이 기능은 과거 중국 사용자들인 경우 고장이 났었습니다.'
+      mail_counter: '<module>NewMail</module> 모듈이 HT 디자인을 더욱 잘 대응하기 위해 재작성되었습니다.'
+      and_more: '그 외에 작은 규모의 변화와 수정이 있었습니다.'
+    0.16.1.1:
+      important: '<header>중요한 공지 사항</header>'
+      safari_cert: 'Safari 사용자들의 Foxtrick 지원을 복구하는데 도와주실 iOS 또는 OSX App 개발자 분들을 Hattrick 커뮤니티에서 찾고 있습니다. 자세한 정보는 저희 <linkSafariCertBug>issue tracker</linkSafariCertBug>를 참조하세요.'
+      beta: '새로운 기능을 미리 접하거나 개발에 영향을 주거나 새롭게 발생하는 문제점들을 찾고 수정하는데 도움을 주실 생각이 있으시면 <linkFTBeta>Foxtrick beta</linkFTBeta>를 사용해보는 것을 고려해보세요.'
+      bugs: '<header>버그 수정</header>'
+      defence_stamina: <module>MatchSimulator</module>에서 수비 구역의 체력 효과 계산이 고장난 것을 해결했습니다. 이전 릴리즈에서는 때때로 골키퍼의 체력만으로 계산되었습니다.
+      time_rewrite: '다음 Hattrick 변경 사항들 때문에 Foxtrick의 날짜 및 시간 감지를 다시 만들었습니다. 불행하게도 지난 릴리즈에서 몇 가지 실수가 있었고 일부 국가에서는 CHPP를 사용하는 모듈때문에 문제가 발생했습니다. 이제 이 문제는 해결되었습니다.'
+      calendar_fix: '날짜 감지와 관련된 문제로 인해 어떤 경우에는 <module>DashboardCalendar</module>가 완전히 고장 났었습니다.'
+      and_more: '그 외에 작은 규모의 변화와 수정이 있었습니다.'
+    0.16.1:
+      important: '<header>중요한 공지 사항</header>'
+      new_contributions: '<module>PlayerPositionsEvaluations</module>은 이제 HT 60시즌에 공식적으로 발표된 매치 엔진 데이터를 사용합니다. 그러나 추가 파라미터는 값이 맞는지 확인할 필요가 있습니다. 신뢰할만한 기본 값이 주어졌지만, 공식적이지 않으며 통계 연구를 기반으로 만들어지지 않았습니다. 추가 파라미터 값을 향상시키기 위해 어떠한 피드백도 환영합니다. 모든 설정은 선수 페이지에서 할 수 있습니다.'
+      crowdin: '<header>저희 뛰어난 사용자들이 <linkCrowdin>crowdin tool</linkCrowdin>을 사용하여 수많은 번역 업데이트가 있었습니다. 당신도 도울 수 있습니다!</header>'
+      support: '<header>Foxtrick이 마음에 드십니까? 그러시면 <linkContribute>Foxtrick 후원</linkContribute>을 부탁드립니다.</header>'
+      bugs: '<header>버그 수정</header>'
+      dollar_wage: '<module>ExtendedPlayerDetailsWage</module>가 달러를 통화로 사용하는 나라의 임금을 계산하도록 수정했습니다.'
+      old_faces_moi: '<module>OldStyleFace</module>와 <module>MatchOrderInterface</module> 사이에 인터페이스 때문에 선수 아바타가 깨지는 문제를 수정했습니다.'
+      last_lineup_live: '경기 라이브 동안 <module>TeamPopupLinks</module>와 <module>SeniorTeamShortCuts</module>에서 최근 라인업 링크가 깨졌습니다. 이 문제는 이제 해결되었습니다.'
+      other: '<header>기타 변경 사항</header>'
+      stamina_contributions: '<module>MatchSimulator</module>은 이제 체력 영향을 계산하는데 <module>PlayerPositionsEvaluations</module>을 사용합니다. 이 변화는 작지만 눈에 뜨일 것입니다. 이 기능을 향상시키는 어떠한 피드백도 환영합니다.'
+      copy_lineup: '여러분은 이제 <module>MatchOrderInterface</module>에서 라인업을 복사할 수 있습니다.'
+      supporters_series: '<module>SupportersList</module>은 이제 시리즈 페이지에 서포터 아이콘을 추가합니다.'
+      price_history: '<module>TransferComparePlayers</module>는 이제 선수 이적 기록에 가격 변화에 대한 상세한 정보를 표시합니다.'
+      total_capacity: '<module>MatchIncome</module>은 이제 총 경기장 수용 인원의 통계를 표시합니다.'
+      and_more: '그 외에 작은 규모의 변화와 수정이 있었습니다.'
+    0.16.0:
+      important: '<header>중요한 공지 사항</header>'
+      safari: 'Apple Inc. 정책 변화와 그들의 브라우저 개선을 위한 보편적 저항 때문에 더 이상 자동 업데이트와 Safari 사용자들을 위한 일반적인 지원을 보장할 수 없게 되었습니다. Firefox, Google Chrome 또는 Opera를 대신 사용하는 것을 고려해주세요.'
+      crowdin: '<header>저희 뛰어난 사용자들이 <linkCrowdin>crowdin tool</linkCrowdin>을 사용하여 수많은 번역 업데이트가 있었습니다. 당신도 도울 수 있습니다!</header>'
+      support: '<header>Foxtrick이 마음에 드십니까? 그러시면 <linkContribute>Foxtrick 후원</linkContribute>을 부탁드립니다.</header>'
+      new: '<header>새로운 모듈</header>'
+      transfers: '<module>CurrentTransfers</module>가 현재 이적 중인 선수들에 대한 더욱 많은 정보를 추가합니다.'
+      bugs: '<header>버그 수정</header>'
+      stamina_prediction: 'HT 변화 때문에 체력 서브레벨 예측 (<module>MatchLineupTweaks</module>) 이 올바르지 않았습니다. 이 문제점은 이제 수정되었습니다.'
+      match_order: 'Hattrick 디자인 변화를 처리하기 위해 <module>MatchSimulator</module>와 <module>MatchOrderInterface</module>의 레이아웃을 조정했습니다.'
+      team_detection: HT 디자인 변화에 따른 여러 문제점들이 발생했습니다. 예를 들면 원정 팀 선수 얼굴이 사라지거나, <module>LiveAlert</module> 득점 감지가 고장나는 등이 있습니다. 이제 모든 문제점들을 해결되었습니다.
+      other: '<header>기타 변경 사항</header>'
+      table: '<module>PlayerFilters</module>와 <module>SkillTable</module>를 일부 버그 수정과 기능 확장을 위해 다시 작성했습니다. 키 테이블 열은 이제 수평 스크롤을 방지하기 위해 동결되었습니다. 이제 특정 선수들을 감추는 등의 행위를 할 수 있습니다. 전체 설명을 읽으려면 도움말 버튼을 사용하세요.'
+      opponent_goals: '<module>LiveAlert</module>에 상대팀 득점을 위한 또 다른 득점 사운드를 추가했습니다.'
+      indonesian: '인도네시아어를 위한 지원을 추가했습니다.'
+      match_events: '이제 경기 이벤트 유형 설명도 번역될 수 있습니다.'
+      style_cleanup: 'Foxtrick styles (CSS) 는 더 나은 사용자정의 Hattrick 테마 지원을 위해 수정되었습니다. 그 결과로 이제 <module>StaffMarker</module>에서 HT 직원들에 임의로 사용자 이름 색상을 지정할 수 있습니다.'
+      and_more: '그 외에 작은 규모의 변화와 수정이 있었습니다.'
+    0.15.2.1:
+      important: '<header>중요한 공지 사항</header>'
+      signed: '이제 모든 Firefox 추가 기능들은 Mozilla에 의한 디지털 서명이 필요합니다. 이는 Foxtrick 호환성을 보장하기 위한 서명 업데이트 입니다.'
+      signing: '법으로 정해진 추가 기능 서명 정책에 의해 발생한 중단들 때문에 <linkAMO>Mozilla 추가 기능</linkAMO>포털에서 Foxtrick을 제거하기로 결정 했습니다. <linkUnlistPost>Global Foxtrick 공지사항</linkUnlistPost>에 자세한 설명이 있습니다.'
+      bugs: '<header>버그 수정</header>'
+      weatherSE: 'HT 업데이트 때문에 <module>MatchLineupFixes</module>에서 경기 타임 라인의 날씨 SE 선수를 목록화 하는 것이 고장났습니다. 이제 이 문제는 수정되었습니다.'
+      other: '<header>기타 변경 사항</header>'
+      sandbox: '앞으로 추가될 Hattrick 경기 샌드 박스 기능에 대한 지원을 추가했습니다.'
+      compact_lineups: '이제 저장된 라인업 이름은 <module>MatchOrderInterface</module>으로 압축됩니다. 이를 통해 여러분은 앞으로 공간 문제를 걱정하지 않고 더 많은 저장된 라인업을 쓸 수 있습니다.'
+      and_more: '그 외에 작은 규모의 변화와 수정이 있었습니다.'
+    0.15.2:
+      important: '<header>중요한 공지 사항</header>'
+      links: '<module>링크</module> 기능이 몇 가지 버그를 수정하고 유지 보수를 향상시키기 위해 다시 작성되었습니다. 이제 커스텀 링크에서 더 많은 태그를 사용할 수 있습니다. 일부 태그는 실제 의미를 반영하기 위해 이름을 변경했습니다. Foxtrick 캐시를 지우고, 귀하의 커스텀 링크를 테스트한 다음, 그들을 적절하게 갱신해주세요.'
+      support: '<header>Foxtrick이 마음에 드십니까? 그러시면 <linkContribute>Foxtrick 후원</linkContribute>을 부탁드립니다.</header>'
+      crowdin: '<header>저희 뛰어난 사용자들이 <linkCrowdin>crowdin tool</linkCrowdin>을 사용하여 수많은 번역 업데이트가 있었습니다. 당신도 도울 수 있습니다!</header>'
+      twitter: '<linkTwitter>Foxtrick on Twitter</linkTwitter>을 팔로우하면 최신 뉴스 및 업데이트와 공지를 받을 수 있습니다.'
+      bugs: '<header>버그 수정</header>'
+      youth_avatars: '<module>MatchOrderInterface</module>에서 누락된 유소년 선수 아바타를 수정했습니다.'
+      preserve_changes: '<module>MatchRatingsTweaks</module>은 이제 라이브 경기 동안 마지막 평점 변경 사항을 보존합니다. 이전에는 레이팅에 아무런 변화가 없더라도 평점 변경 사항(컬러 숫자)이 갱신될 때 마다 사라졌습니다.'
+      leave_forum: '<module>ForumLeaveButton</module>이 완전히 고장나서 수정했습니다.'
+      monitor_cups: '이제 <module>MyMonitor</module>는 올바른 챌린저 컵 아이콘을 표시합니다.'
+      other: '<header>기타 변경 사항</header>'
+      volume: '<FTlinkMainTab>일반 설정</FTlinkMainTab>에 전체 Foxtrick 사운드 볼륨 슬라이더를 추가했습니다.'
+      mlt_upgrade: '<module>MatchLineupTweaks</module> 모듈은 이제 경기 라인업에 선수 번호를 표시합니다. 더불어, 선수 체력 수치에 마우스를 데면 체력 스킬 예측(사용 가능한 경우)을 볼 수 있습니다.'
+      mrt_ratings: '<module>Ratings</module> 모듈이 <module>MatchRatingsTweaks</module>에 통합되었으며 이제 HT-Live에서 (HT Supporter만 쓸 수 있는) 제한된 기능이 있습니다.'
+      copy_ratings: '<module>CopyRatings</module>을 다시 작성하여 이제 HT-Live와 상세 레이팅 탭에서 분 단위 레이팅을 복사할 수 있습니다.'
+      monitor_update: '이제 <module>MyMonitor</module>는 뛰어난 팀 정렬 기능을 포함하며 HT-Live에 유형별로 경기를 추가할 수 있습니다.'
+      promote_age: '<module>YouthPromotes</module>는 이제 승격 당일의 선수 나이를 표시합니다.'
+      export_live: '<module>ReLiveLinks</module>에 HT-Live 경기 목록을 링크로 내보내는 버튼을 추가했습니다.'
+      match_icons: '<module>MatchReportFormat</module>에 더 많은 이벤트 아이콘을 추가했습니다. 이제 모든 중요한 이벤트에 적용됩니다.'
+      retro_cups: '<module>CustomMedals</module>에 새로운 컵 유형을 위한 레트로 컵 아이콘이 추가되었습니다.'
+      and_more: '그 외에 작은 규모의 변화와 수정이 있었습니다.'
+    0.15.1:
+      bugs: '<header>버그 수정</header>'
+      nt_crash: '<module>MatchOrderInterface</module> 모듈에서 NT 계열의 브라우저 충돌을 일으키는 기능 문제를 해결하였습니다.'
+      copy_htMl: '<module>ContextMenuCopy</module> 모듈이 더 이상 HT-ML 형식의 링크 텍스트를 복사하지 않는 것을 수정했습니다.'
+      resource_fix: '일부 국가 사용자들에게서 <module>Links</module>과 <module>StaffMarker</module>모듈 동작이 멈췄습니다. 이 문제는 며칠 내에 해결될 것입니다.'
+      other: '<header>기타 변경 사항</header>'
+      extarnal_url: '<module>ContextMenuCopy</module> 모듈에 기타 웹사이트에서 사용할 수 있는 Hattrick 링크를 복사하는 옵션을 추가하였습니다. 이러한 링크는 HT 서버에 사용자가 로그인했는지 상관없이 동작합니다.'
+      and_more: '그 외에 작은 규모의 변화와 수정이 있었습니다.'
     0.15.0:
       important: '<header>중요한 공지 사항</header>'
-      support: '<header>Foxtrick이 마음에 드세요? 그러시면 <linkContribute>Foxtrick 지원</linkContribute>을 부탁드립니다.</header>'
+      support: '<header>Foxtrick이 마음에 드십니까? 그러시면 <linkContribute>Foxtrick 후원</linkContribute>을 부탁드립니다.</header>'
       crowdin: '<header>저희 뛰어난 사용자들이 <linkCrowdin>crowdin tool</linkCrowdin>을 사용하여 수많은 번역 업데이트가 있었습니다. 당신도 도울 수 있습니다!</header>'
       twitter: '<linkTwitter>Foxtrick on Twitter</linkTwitter>을 팔로우하면 최신 뉴스 및 업데이트와 공지를 받을 수 있습니다.'
       new: '<header>새로운 모듈</header>'
       promotion_reminder: '<module>AddPromotionReminder</module>: 유소년 선수가 승격할 수 있늘 날짜 알림을 생성하는 버튼을 추가합니다'
       bugs: '<header>버그 수정</header>'
-      breakages: 이제 Foxtrick은 Safari 7.1+ 및 Android 용 Firefox에서 올바르게 동작합니다.
-      https: Hattrick Stage에서 Foxtrick이 다시 제대로 동작할 것입니다.
+      breakages: '이제 Foxtrick은 Safari 7.1+ 및 Android 용 Firefox에서 올바르게 동작합니다.'
+      https: 'Hattrick Stage에서 Foxtrick이 다시 제대로 동작할 것입니다.'
       avatars: '이제 새로운 선수들이 팀에 왔을 때 <module>MatchOrderInterface</module> 모듈의 선수 아바타 캐시가 자동으로 새로 고쳐질 것입니다.'
       fans: '이제 <module>Fans</module> 모듈의 팬 진화도가 팀이 승격되거나 강등될 때 올바르게 계산될 것입니다.'
       player_stats: '이제 <module>PlayerStatsTrainingWeek</module> 모듈을 주말 친선 경기를 제대로 인식할 것입니다.'
@@ -23,15 +152,15 @@ ko:
       player_positions: '<module>PlayerPositionsEvaluations</module> 모듈을 개선하여 많은 옵션을 추가했습니다. 이제 계산에 Form, 체력, 충성도, 경험 및 부상 페널티를 포함시킬 수 있습니다.'
       country_list: '이제 <module>CountryList</module> 모듈은 깃발 모음의 국가 명칭을 변경할 수 있습니다. 토착 명칭 대신에 영어식 국가 명칭을 사용할 수 있습니다.'
       best_player_position: 'BestPlayerPosition 모듈은 <module>PlayerPositionsEvaluations</module> 모듈에 합병되었습니다.'
-      nt: 과거에 NT 감독에게 제대로 동작하지 않았던 많은 기능들을 고쳤습니다.
-      en-US: 미국식 영어 언어에 적절한 지원을 추가했습니다.
-      code: Foxtrick 코드의 수많은 유지 보수가 끝났습니다. 이를 통해 저희는 숨겨진 버그를 찾아 해결하였고 애드온 안정성 및 추가 개발의 용이성을 향상시켰습니다.
-      and_more: 그 외에 작은 규모의 변화와 수정이 있었습니다.
+      nt: '과거에 NT 감독에게 제대로 동작하지 않았던 많은 기능들을 고쳤습니다.'
+      en-US: '미국식 영어 언어에 적절한 지원을 추가했습니다.'
+      code: 'Foxtrick 코드의 수많은 유지 보수가 끝났습니다. 이를 통해 저희는 숨겨진 버그를 찾아 해결하였고 애드온 안정성 및 추가 개발의 용이성을 향상시켰습니다.'
+      and_more: '그 외에 작은 규모의 변화와 수정이 있었습니다.'
     0.14.0.3:
       important: '<header>중요한 공지 사항</header>'
       sorry: "지난 '버그 수정'에서 알려드린 부분보다 더 많은 부분이 실제로 고장 났음을 사과드립니다. 새로운 버전에서는 이 부분들이 개선되었을 것입니다."
       bugs: '<header>버그 수정</header>'
-      street_teams: 새로운 컵 시스템에서 Street Team의 도입으로 기괴한 문제들이 다량 발생하여 수정하였습니다.
+      street_teams: '새로운 컵 시스템에서 Street Team의 도입으로 기괴한 문제들이 다량 발생하여 수정하였습니다.'
       revert: '<module>MatchOrderInterface</module> 모듈에서 페널티킥 전담 유틸리티와<module>PlayerStatsExperience</module> 모듈이 정말로 수정되었습니다.'
       income: '<module>MatchIncome</module> 모듈은 이제 모든 경기에서 올바른 정보를 표시할 것입니다. 만약에 틀린 내용을 표시하면 보고해주세요.'
       stats: 'HT 변화로 <module>SeasonStats</module>가 고장 났었고 이를 해결하였습니다.'
@@ -43,40 +172,40 @@ ko:
       other: '<header>기타 변경 사항</header>'
       psico: '<module>PsicoTSI</module> 임금 예측이 업데이트되었습니다.'
       first_last_post: '이미 열려있는 스레드를 <module>ForumLastPost</module> 모듈로 다시 클릭하면 첫 번째 게시물을 임의로 열 수 있습니다.'
-      and_more: 그 외에 작은 규모의 변화와 수정이 있었습니다.
+      and_more: '그 외에 작은 규모의 변화와 수정이 있었습니다.'
     0.14.0.1:
       important: '<header>중요한 공지 사항</header>'
-      ff_cache: Foxtrick 패키지는 Firefox에서 더 이상 추가 압축을 하지 않을 것입니다. 이를 통해 0.14.0. 버전 사용자들이 경험하는 모든 문제를 예방될 것입니다.
+      ff_cache: 'Foxtrick 패키지는 Firefox에서 더 이상 추가 압축을 하지 않을 것입니다. 이를 통해 0.14.0. 버전 사용자들이 경험하는 모든 문제를 예방될 것입니다.'
       bugs: '<header>버그 수정</header>'
-      safari_prefs: Safari를 통해 Foxtrick을 이용하는 일부 사용자들에게 Foxtrick 환경 설정 페이지가 표시되지 않을 수 있습니다.
+      safari_prefs: 'Safari를 통해 Foxtrick을 이용하는 일부 사용자들에게 Foxtrick 환경 설정 페이지가 표시되지 않을 수 있습니다.'
       teamstats: '드물게 <module>TeamStats</module> 모듈과 기타 모듈에 고장을 일으키는 오류를 수정하였습니다.'
       bpp: '<module>BestPlayerPosition</module> 모듈이 경우에 따라 이적 검색 결과 페이지에 잘못된 데이터를 표시하였습니다.'
       history_stats: '<module>HistoryStats</module> 모듈은 이제 항상 시즌에 따라 클럽 기록을 정렬할 것입니다.'
     0.14.0:
       important: '<header>중요한 공지 사항</header>'
       crowdin: '<header>저희 뛰어난 사용자들이 <linkCrowdin>crowdin tool</linkCrowdin>을 사용하여 수많은 번역 업데이트가 있었습니다. 당신도 도울 수 있습니다!</header>'
-      browsers: Opera 12 지원이 중단되었습니다. 이제 Safari 6 및 Firefox 24가 Foxtrick을 실행할 수 있는 최소 버전입니다.
-      backend: Foxtrick 코어를 정리하고 갱신하였습니다. 이 변화는 경기 보고서, HT-Live, 경기 지시 사항 인터페이스, 자동 통화 감지, Foxtrick 캐시 등 수많은 페이지, 모듈 및 기능에 영향을 미칩니다. 버그를 찾으면 신고해주세요.
-      bug_report: Hattrick 하단에 Foxtrick 버그를 효과적으로 신고할 수 있는 링크를 추가했습니다. 문제가 발생한 페이지에서 이 링크를 클릭하고 표시되는 지침을 따라주세요.
+      browsers: 'Opera 12 지원이 중단되었습니다. 이제 Safari 6 및 Firefox 24가 Foxtrick을 실행할 수 있는 최소 버전입니다.'
+      backend: 'Foxtrick 코어를 정리하고 갱신하였습니다. 이 변화는 경기 보고서, HT-Live, 경기 지시 사항 인터페이스, 자동 통화 감지, Foxtrick 캐시 등 수많은 페이지, 모듈 및 기능에 영향을 미칩니다. 버그를 찾으면 신고해주세요.'
+      bug_report: 'Hattrick 하단에 Foxtrick 버그를 효과적으로 신고할 수 있는 링크를 추가했습니다. 문제가 발생한 페이지에서 이 링크를 클릭하고 표시되는 지침을 따라주세요.'
       twitter: '<linkTwitter>Foxtrick on Twitter</linkTwitter>을 팔로우하면 최신 뉴스 및 업데이트와 공지를 받을 수 있습니다.'
       new: '<header>새로운 모듈</header>'
       series_transfers: '<module>SeriesTransfers</module>: 시리즈 페이지에서 현재 판매 중인 선수 목록을 보여줍니다.'
       player_positions: '<module>PlayerPositionsEvaluations</module> 및 <module>BestPlayerPosition</module> 모듈은  <linkContributionsWiki>Hattrick Wiki</linkContributionsWiki>에 따라 다양한 포지션에서 선수 기여를 계산합니다.'
       bugs: '<header>버그 수정</header>'
-      australis: 새로운 브라우저 테마와 함께 동작하도록 Firefox 아이콘 메뉴를 수정하였습니다.
-      chrome_notes: Google Chrome에서 새로운 알림 시스템을 사용하도록 Foxtrick 알림을 수정하였습니다.
-      player_cache: Foxtrick은 이제 당신의 팀에서 새로운 선수를 감지하고 자동으로 CHPP 데이터를 새로 고칩니다.
-      train_est: Foxtrick은 더 이상 새로운 훈련 평가 기능의 테이블 정렬을 방해하지 않습니다.
+      australis: '새로운 브라우저 테마와 함께 동작하도록 Firefox 아이콘 메뉴를 수정하였습니다.'
+      chrome_notes: 'Google Chrome에서 새로운 알림 시스템을 사용하도록 Foxtrick 알림을 수정하였습니다.'
+      player_cache: 'Foxtrick은 이제 당신의 팀에서 새로운 선수를 감지하고 자동으로 CHPP 데이터를 새로 고칩니다.'
+      train_est: 'Foxtrick은 더 이상 새로운 훈련 평가 기능의 테이블 정렬을 방해하지 않습니다.'
       mrf_fixes: '<module>MatchReportFormat</module>은 더 이상 일부 경기 보고서에서 레이아웃을 깨뜨리지 않을 것입니다. 또한 더 많은 이벤트 아이콘을 추가했습니다.'
       forum_header: '<module>ForumAlterHeaderLine</module>을 검토하여 이제 모든 옵션이 제대로 동작할 것입니다.'
       nav_fix: 'Firefox버전에서 <module>GoToPostBox</module> 및 <module>MyMonitor</module>의 내비게이션을 수정하였습니다.'
       new_lineup: '이제 새로운 경기 라인업 페이지에서 <module>MatchPlayerColouring</module>, <module>LineupShortcut</module>, <module>TeamPopupLinks</module> 및 <module>SeniorTeamShortCuts</module> 모듈이 제대로 작동할 것입니다.'
       other: '<header>기타 변경 사항</header>'
       live_ratings: ' <module>MatchLineupTweaks</module>, <module>MatchRatingsTweaks</module> 및 <module>MatchPlayerColouring</module> 모듈에 라이브 레이팅 지원을 추가하였습니다.'
-      own_top_players: "<module>Filter</module> 모듈은 이제 '최고 선수' 통계 페이지에서 당신의 선수들을 강조합니다."
-      htev: htev.org은 더 이상 Foxtrick의 요청 업무를 수행할 수 없어 HTEVPrediction 모듈을 제거했습니다.
-      removed: SmallerPages 및 MatchTables 모듈 또한 쓸모없어져 제거했습니다.
-      and_more: 그 외에 작은 규모의 변화와 수정이 있었습니다.
+      own_top_players: '<module>Filter</module> 모듈은 이제 ''최고 선수'' 통계 페이지에서 당신의 선수들을 강조합니다.'
+      htev: 'htev.org은 더 이상 Foxtrick의 요청 업무를 수행할 수 없어 HTEVPrediction 모듈을 제거했습니다.'
+      removed: 'SmallerPages 및 MatchTables 모듈 또한 쓸모없어져 제거했습니다.'
+      and_more: '그 외에 작은 규모의 변화와 수정이 있었습니다.'
     0.13.0.1:
       crowdin: '<header>저희 뛰어난 사용자들이 <linkCrowdin>crowdin tool</linkCrowdin>을 사용하여 수많은 번역 업데이트가 있었습니다. 당신도 도울 수 있습니다!</header>'
       bugs: '<header>버그 수정</header>'
@@ -88,13 +217,13 @@ ko:
       attvsdef: '<module>AttVsDef</module>모듈에서 실제 확률이 볼 점유율 바에 영향을 줍니다.'
       staff_marker: '<module>StaffMarker</module>에서 사용자 색상 인터페이스가 선택사항이 되었습니다.'
       mmdd: '<module>MainMenuDropDown</module> 메뉴에서 화살표가 선택사항이 되었습니다.'
-      and_more: 그 외에 작은 규모의 변화와 수정이 있었습니다.
+      and_more: '그 외에 작은 규모의 변화와 수정이 있었습니다.'
     0.13.0:
       important: '<header>중요한 공지 사항</header>'
       opera: |
         <p>이는 Opera 12 및 하위 버전을 공식적으로 지원하는 마지막 메이저 버전입니다. 기존의 Foxtrick 버전들은 추가적인 공지 없이 기능을 중단할 것입니다.</p>
         <p><linkOperaNext>Opera Next</linkOperaNext>로 변경하는 것을 고려하거나 저희가 지원하는 다른 브라우저를 선택해주세요.</p>
-      safari: Safari 5.x 버전 지원이 곧 중단될 것입니다.
+      safari: 'Safari 5.x 버전 지원이 곧 중단될 것입니다.'
       twitter: '<linkTwitter>Foxtrick on Twitter</linkTwitter>을 팔로우하면 최신 뉴스 및 업데이트와 공지를 받을 수 있습니다.'
       crowdin: '<header>저희 뛰어난 사용자들이 <linkCrowdin>crowdin tool</linkCrowdin>을 사용하여 수많은 번역 업데이트가 있었습니다. 당신도 도울 수 있습니다!</header>'
       new: '<header>새로운 모듈</header>'
@@ -102,25 +231,25 @@ ko:
       ratings_tweaks: '<module>MatchRatingsTweaks</module>:  경기 보고서 페이지에서 평점을 조작합니다. <module>MatchSimulator</module>에서처럼 시각표를 탐색할 때 평점과 변화를 수치적으로 표시합니다. ‘unwritten manual: 15766691.221, 15766691.242’에서 규명한 공식에 따라 실제 득점/수비/점유율 확률을 계산합니다.'
       match_weather: '<module>MatchWeather</module>는 경기 페이지에서 오늘과 내일 경기장 날씨를 보여줍니다.'
       other: '<header>기타 변경 사항</header>'
-      ht_changes: 최근 Hattrick의 변경 사항들을 지원하기 위해 Foxtrick을 업데이트하였습니다. 지원 대상은 유소년 경기 보고서, 단순 테마 및 경기 지시 사항 설정 인터페이스입니다.
+      ht_changes: '최근 Hattrick의 변경 사항들을 지원하기 위해 Foxtrick을 업데이트하였습니다. 지원 대상은 유소년 경기 보고서, 단순 테마 및 경기 지시 사항 설정 인터페이스입니다.'
       locale_support: '로컬 지원 업데이트: 라트비아 Euro 통화, 새로운 스페인 방언 이름, 올바른 시간 날짜 형식 등입니다.'
       simulator_prob: '<module>MatchSimulator</module>은 새로운 <module>MatchRatingsTweaks</module> 모듈로부터 실제 득점/수비/점유율 확률로 향상되었습니다.'
       staff_marker: '<module>StaffMarker</module>을 재구성하였습니다. 서포터들과 지원받는 팀, 국가 대표 팀 감독 옵션을 추가하였습니다. 환경 설정에서 원하는 대로 설정하세요.'
-      custom_marker: 사용자 이름 색상을 쉽게 꾸밀 수 있는 인터페이스를 토론장 메시지 바닥글에 추가했습니다.
+      custom_marker: '사용자 이름 색상을 쉽게 꾸밀 수 있는 인터페이스를 토론장 메시지 바닥글에 추가했습니다.'
       inline_options: '페널티 킥 순서 탭에서 <module>MatchOrderInterface</module>의 강화 기능과 <module>MatchLineupTweaks</module>에 라인업 분할 기능을 인라인 옵션으로 추가했습니다.'
       links_enhancments: '이제 모든 <module>Links</module>를 쉽게 비활성화시킬 수 있으며 페이지를 여는 방법을 설정할 수 있습니다.'
       psico_update: '왼쪽 사이드 바에서 <module>PsicoTSI</module> 예측을 표시하는 옵션을 다시 이행하였습니다.'
       ticker_update: '지난 몇 년 동안 추가된 새로운 서포터 뉴스티커 유형을 추가하기 위해 <module>TickerColoring</module> 모듈과 <module>TickerAlert</module> 모듈을 업데이트하였습니다.'
       ticker_chall: '더 이상 <module>TickerColoring</module>에서 HT Supporter용 MyHT 메시지로부터 친선 경기 도전을 구별하는 것이 불가능합니다. 따라서 해당 뉴스티커 유형을 개명하였습니다.'
       htms_points: '<module>HTMSPoints</module>는 새로운 공식을 사용하도록 업데이트되었습니다.'
-      ff_button: Firefox 툴바 버튼은 이제 더욱 즉각 반응하고 Foxtrick 상태를 반영합니다.
-      ff_disable: Firefox에서 Foxtrick을 비활성화하면 이제 (환경 설정이 열려 있는 경우) Foxtrick 환경 설정을 닫고 Foxtrick에 의해 수정된 부분을 모두 제거하기 위해 모든 Hattrick 탭을 다시 불러옵니다.
+      ff_button: 'Firefox 툴바 버튼은 이제 더욱 즉각 반응하고 Foxtrick 상태를 반영합니다.'
+      ff_disable: 'Firefox에서 Foxtrick을 비활성화하면 이제 (환경 설정이 열려 있는 경우) Foxtrick 환경 설정을 닫고 Foxtrick에 의해 수정된 부분을 모두 제거하기 위해 모든 Hattrick 탭을 다시 불러옵니다.'
       bugs: '<header>버그 수정</header>'
       android: |
         <p>Android 용 Firefox를 적응시키기 위해 Foxtrick 코어에 중대한 변화가 있었습니다. 그 결과 Foxtrick은 이제 모바일 디바이스에서 더 나은 성능을 기대할 수 있습니다.</p>
         <p>해당 모듈: <module>MatchReportFormat</module>, <module>Ratings</module>, <module>MatchSimulator</module>, <module>HTMSPrediction</module> <em>등등</em>.</p>
-      ff_cache: Firefox에서 경우에 따라 Foxtrick이 새로운 버전으로 업데이트하는 것을 방해하는 문제를 해결하였습니다.
-      custom_links: 외부 링크 기능을 재검토하고 알려진 모든 문제를 해결하였습니다. 이제 경기 보고서 페이지에서도 사용자 지정 링크를 추가할 수 있습니다.
+      ff_cache: 'Firefox에서 경우에 따라 Foxtrick이 새로운 버전으로 업데이트하는 것을 방해하는 문제를 해결하였습니다.'
+      custom_links: '외부 링크 기능을 재검토하고 알려진 모든 문제를 해결하였습니다. 이제 경기 보고서 페이지에서도 사용자 지정 링크를 추가할 수 있습니다.'
       chpp_update: 'CHPP 변경 이후 <module>SupportersList</module>와 <module>MatchIncome</module>이 잘못된 반응을 보이는 문제를 해결하였습니다.'
       player_xp: '<module>PlayerStatsExperience</module>가 이제 모든 경우의 부전승 경기들을 올바르게 감지할 것입니다.'
       stamina_data_bug: 'Firefox에서 과거 경기들을 열람할 때 <module>MatchLineupTweaks</module>에서 수집한 체력 자료가 재설정되지 않습니다.'
@@ -129,10 +258,10 @@ ko:
       player_filters: 'Firefox를 사용하는 사용자는 이제 동시에 멀티 탭에서 <module>PlayerFilters</module>을 사용하는 것이 가능합니다.'
       history_stats: '이제 Firefox에서 <module>HistoryStats</module>을 동시에 여러 팀들과 함께 쓸 수 있습니다.'
     0.12.2.1:
-      note_0: Firefox에서 Foxtrick 캐시를 청소하면 링크는 사라질 것입니다.
+      note_0: 'Firefox에서 Foxtrick 캐시를 청소하면 링크는 사라질 것입니다.'
       note_1: 'Foxtrick에 문제를 일으키는 변화들이  페르시아어 및 기타 언어들에서 현재 보고되었습니다.'
       note_2: '경기장 공사 중에 <module>MatchIncome</module>은 이제 경기장 사용 비율을 표시할 것입니다. 공사 중에 FoxTrick은 일부 경기에서 현재 경기장 크기를 알 수 없습니다. 현재 경기장 크기에 도달하기 전에 치른 과거 경기를 볼 때 FoxTrick은 올바르지 못한 비율을 표시할 것입니다.'
-      note_3: Foxtrick에서 사용자의 통화 대신에 이상한 기호를 표시하는 문제를 해결
+      note_3: "Foxtrick에서 사용자의 통화 대신에 이상한 기호를 표시하는 문제를 해결"
     0.12.2:
       note_0: '<header>저희 뛰어난 사용자들이 <linkCrowdin>crowdin tool</linkCrowdin>을 사용하여 수많은 번역 업데이트가 있었습니다. 당신도 도울 수 있습니다!</header>'
       note_1: '<module>PlayerStatsExperience</module>: 이제 경험을 계산할 때 한 레벨을 올리는데 28.57 포인트가 필요가하고 가정합니다 (참조 15766691.780).'
@@ -143,23 +272,23 @@ ko:
       note_6: '<module>MatchLineupTweaks</module>: 경기 페이지를 방문할 때마다 선수 체력 자료를 수집하는 옵션을 추가하였습니다. 이 자료는 <module>MatchSimulator</module> 모듈에서 더 나은 레이팅 예측을 위해 사용되며 <module>SkillTable</module>에서 볼 수 있습니다. 선수들은 90분 전체 출전해야 합니다. 압박 전술을 사용하거나 부정적인 날씨 SE (힘 있음 이벤트)가 있었던 경기들은 배제됩니다. 예측 공식은  Pappagallopoli에 의해 만들어 졌습니다.'
       note_7: 'NEW: <module>Fans</module>: 다음 경기 링크 옆에 라이브 링크를 추가하고 사이드 바에 팬 클럽 총원 발전 지표를 추가하였습니다.'
       note_8: "여러 개의 팀을 가진 사용자들은 이제 <module>SkinPlugin</module>의 'body.ft-teamID-0000000'구분자를 사용하여 Hattrick을 다르게 스타일링 할 수 있습니다."
-      note_9: '<module>HeaderToggle</module>은 다른 모듈 및 Hattrick에 의한 영향을 대비하여 더욱 견고하게 만들어졌습니다.'
-      note_10: '레이팅을 복사할 때 트레이너 유형을 포함하도록 <module>MatchSimulator</module>을 조정했습니다.'
-      note_11: '<header>버그 수정</header>'
-      note_12: '국가 대표 팀 선수 페이지 및 xml 다운로딩이 불가능할 때 발생했던 TSI NaN 오류를 수정하였습니다.(<module>Skilltable</module>, <module>TeamStats</module> 및 기타)'
+      note_9: "<module>HeaderToggle</module>은 다른 모듈 및 Hattrick에 의한 영향을 대비하여 더욱 견고하게 만들어졌습니다."
+      note_10: "레이팅을 복사할 때 트레이너 유형을 포함하도록 <module>MatchSimulator</module>을 조정했습니다."
+      note_11: "<header>버그 수정</header>"
+      note_12: "국가 대표 팀 선수 페이지 및 xml 다운로딩이 불가능할 때 발생했던 TSI NaN 오류를 수정하였습니다.(<module>Skilltable</module>, <module>TeamStats</module> 및 기타)"
       note_13: "<module>MatchOrderInterface</module>에 있는 '페널티 킥 순서 채우기'기능을 사용할 때 출전하지 않는 선수들이 포함되지 않도록 수정하였습니다."
-      note_14: (친선 경기에서 부전승을 방지하기 위해) 이웃 팀 경기들 중에 나쁜 플레이어 ID 목록을 차선책으로 제공합니다.
-      note_15: '<module>TeamPopupLinks</module>의 도전 링크를 수정하였습니다.'
-      note_16: 환경 설정의 검색 기능에 있는 작은 결함을 수정하였습니다.
+      note_14: "(친선 경기에서 부전승을 방지하기 위해) 이웃 팀 경기들 중에 나쁜 플레이어 ID 목록을 차선책으로 제공합니다."
+      note_15: "<module>TeamPopupLinks</module>의 도전 링크를 수정하였습니다."
+      note_16: "환경 설정의 검색 기능에 있는 작은 결함을 수정하였습니다."
     0.12.1.1:
-      note_0: 번역 업데이트.
+      note_0: '번역 업데이트.'
       note_1: '<module>MainMenuDropDown</module>의 성능을 향상시켰습니다.'
-      note_2: 접근성에 대해서 사소한 부분을 개선하였습니다.
+      note_2: '접근성에 대해서 사소한 부분을 개선하였습니다.'
       note_3: '<module>CopyPosting</module> 와 <module>StaffMarker</module>를 수정하였습니다.'
-      note_4: 일부 사운드 관련 문제가 해결 되었습니다.
-      note_5: 경우에 따라 Foxtrick가 동작하지 않는 Android 문제가 해결되었습니다.
-      note_6: 이제 환경설정을 가져오는 중에 토론장에서 줄 바꿈 및 메일 템플릿들을 올바르게 인식합니다.
-      note_7: 프리지아어를 사용하는 경우에 발생했던 레이팅 인식 문제가 해결되었습니다.
+      note_4: '일부 사운드 관련 문제가 해결 되었습니다.'
+      note_5: '경우에 따라 Foxtrick가 동작하지 않는 Android 문제가 해결되었습니다.'
+      note_6: '이제 환경설정을 가져오는 중에 토론장에서 줄 바꿈 및 메일 템플릿들을 올바르게 인식합니다.'
+      note_7: '프리지아어를 사용하는 경우에 발생했던 레이팅 인식 문제가 해결되었습니다.'
       note_8: '<module>ForumAlterHeaderLine</module>, <module>ManagerButtons</module> 및 <module>HideSignatures</module>에 있었던 몇 가지 문제가 해결되었습니다.'
       note_9: '<module>SkillTable</module>은 이제 단일 팀 사용자인 경우 다시 Foxtrick 권환 부여가 없더라도 동작합니다.'
     0.12.1:
@@ -168,17 +297,17 @@ ko:
       note_2: '<module>MatchIncome</module>: 경기 페이지에 관중 수 옆에 좌석 사용률을 백분율로 표시하는 옵션을 추가하였습니다.'
       note_3: 'NEW: <module>MainMenuDropDown</module>: 메인 탐색 바에 일반적으로 사용가능한 모든 링크를 포함하는 드롭 다운 메뉴를 추가합니다.'
       note_4: 'Firefox에서 <module>DashboardCalendar</module> 내보낼 때 시간 인식 해결'
-      note_5: '<module>MatchOrderInterface</module>은 이제 여러 팀들의 아바타를 보여 줍니다.'
+      note_5: <module>MatchOrderInterface</module>은 이제 여러 팀들의 아바타를 보여 줍니다.
       note_6: '<module>DashboardCalendar</module>: Firefox에서 여러 개의 다운로드 확인 메시지를 제거 합니다.'
       note_7: '<module>HeaderFix</module>: 이제 예전에 숨겨진  팀 스위칭 바를 표시합니다.'
       note_8: '<module>ConfirmActions</module>: 여러 팀을 보유한 사용자들은 이제 입찰한 팀의 이름을 볼 것입니다.'
       note_9: '<module>TransferSearchFilters</module>: 이제 필터에는 선수의 나이와 일수를 함께 저장합니다.'
-      note_10: 새롭게 추가된 아제르바이잔어를 지원합니다.
-      note_11: Hattrick 변화로 인해 발생한 수백 개의 문제점을 해결하였습니다.
+      note_10: '새롭게 추가된 아제르바이잔어를 지원합니다.'
+      note_11: 'Hattrick 변화로 인해 발생한 수백 개의 문제점을 해결하였습니다.'
     0.12.0:
       note_0: '<header>저희 뛰어난 사용자들이 <linkCrowdin>crowdin tool</linkCrowdin>을 사용하여 수많은 번역 업데이트가 있었습니다. 당신도 도울 수 있습니다!</header>'
       note_1: 'NEW: <module>MatchLineupTweaks</module>: 별 표시를 과거 스타일로 변경합니다. 새로운 라인업 페이지에 별 카운터와 체력을 추가합니다. 모든 선수의 특수능력을 표시하고 혼란을 줄이기 위해서 필드에 클럽 이름을 추가합니다. 여러분의 선수 얼굴을 표시합니다. 경기에 있었던 이벤트에 일치하는 선수를 강조합니다.'
-      note_2: 새로운 Hattrick 상점을 출시한 이후에 중단된 많은 모듈을 수정하였습니다.
+      note_2: '새로운 Hattrick 상점을 출시한 이후에 중단된 많은 모듈을 수정하였습니다.'
       note_3: 'NEW: <module>MatchLineupFixes</module>: 선수 및 분야에 걸쳐서 타임 라인을 동기화합니다. 날씨 SE에 해당하는 선수를 표시합니다. 지시사항 탭에 선수 링크를 추가합니다. 벤치에 있는 선수의 마지막 별점을 헤아리는 것을 추가합니다. 동시에 발생하는 여러 이벤트를 수정합니다: 선수 포지션 변경은 한번에 일어나지 않고 단계적으로 변경합니다.'
       note_4: 'NEW: <module>ReLiveLinks</module>: 종료한 경기들을 HT Re-Live으로 보는 링크를 추가합니다.'
       note_5: 'NEW: <module>CopyBBAd</module>: 다양한 광고를 BB 코드로 복사합니다. (by merfis)'
@@ -189,15 +318,15 @@ ko:
       note_10: '<module>LineupShortcut</module>은 이제 새로운 라인업 페이지로 연결합니다.'
       note_11: '<module>SkillTable</module>은 이제 특수능력과 코치에 대한 아이콘을 사용합니다.'
       note_12: 'AddLeaveConfButton 은 <module>ForumLeaveButton</module>으로 이름을 바꿉니다'
-      note_13: 이제부터 폭스트릭 토론장에 포스팅하는 메세지에 당신의 브라우저와 해트트릭 레이아웃 설정을 자동적으로 포함될 것입니다. 이것을 문제를 더욱 빠르게 수정하는데 저희에게 도움이 될 것입니다. 포스팅할 때 그 정보를 지우지 마세요.
-      note_14: 더 좋은 가독성과 보수성을 위하여 추가 기능 코드를 청소하였습니다.
+      note_13: '이제부터 폭스트릭 토론장에 포스팅하는 메세지에 당신의 브라우저와 해트트릭 레이아웃 설정을 자동적으로 포함될 것입니다. 이것을 문제를 더욱 빠르게 수정하는데 저희에게 도움이 될 것입니다. 포스팅할 때 그 정보를 지우지 마세요.'
+      note_14: '더 좋은 가독성과 보수성을 위하여 추가 기능 코드를 청소하였습니다.'
       note_15: '<module>PlayerStatsTrainingWeek</module>에서 주:week를 탐지하는 것과 관련하여 몇 가지 사안을 해결하였습니다.'
       note_16: '<module>MatchSimulator</module>에서 공격 vs 수비 옵션을 끌 때 잘못된 레이팅과 예측을 표시하게 하는 버그를 수정했습니다.'
-      note_17: Safari 업데이트가 깨진 것 같습니다. 이전 Foxtrick 버전을 제거하고 새로운 버전으로 설치하셔야 합니다.
+      note_17: 'Safari 업데이트가 깨진 것 같습니다. 이전 Foxtrick 버전을 제거하고 새로운 버전으로 설치하셔야 합니다.'
     0.11.0.1:
       note_0: '<header>저희 뛰어난 사용자들이 <linkCrowdin>crowdin tool</linkCrowdin>을 사용하여 수많은 번역 업데이트가 있었습니다. 당신도 도울 수 있습니다!</header>'
       note_1: '<module>ForumLastPost</module>, <module>ContextMenuCopy</module>, <module>PlayerFilters</module>, <module>SmallerPages</module>, <module>SkillTable</module>, <module>TeamPopupLinks</module>, <module>MatchIncome</module>, <module>HTThreadMarker</module>에 있던 사소한 문제를 수정하였습니다.'
-      note_2: 새로운 브라우저 윈도우를 열 때 Firefox가 해트트릭 탭을 다시 로드하는 것을 방지합니다.
+      note_2: '새로운 브라우저 윈도우를 열 때 Firefox가 해트트릭 탭을 다시 로드하는 것을 방지합니다.'
     0.11.0:
       note_0: 'NEW: <module>DirectPageLinks</module>: 토론장 스레드에 있는 특정 페이지로 접근할 수 있는 링크를 추가하였습니다.'
       note_1: 'NEW: <module>ForumModeratorPopup</module>: 토론장 중재자를 위해서 간단히 중재할 수 있는 드롭다운 메뉴를 스레드 상단에 추가하였습니다.'
@@ -217,25 +346,25 @@ ko:
       note_15: '<module>ConfirmActions</module>: autobid에 대한 지원을 추가하였습니다.'
       note_16: '<module>EmbedMedia</module>: 보안성 증가와 링크 감지를 증가시켰습니다.'
       note_17: '<module>SkillTable</module> 이제 팀에 소속된 외부 코치의 정확한 시간을 보고할 것입니다.'
-      note_18: BackgroundFixed 모듈을 제거하였습니다.
+      note_18: 'BackgroundFixed 모듈을 제거하였습니다.'
       note_19: '<header>복사 모듈</header>'
       note_20: '<module>CopyRatings</module>: 토너먼트 경기 id 지원.'
       note_21: '<module>CopyMatchID</module>: single match 지원을 추가하고 경기 페이지에 새로운 HT 직접 링크 기능을 위한 공간을 만들지 않도록 설정'
       note_22: '<module>CopyPlayerAd</module>: HT 스킬 바 인터페이스로 수정'
-      note_23: 일반 HT-ML 복사를 수정하였습니다.
+      note_23: '일반 HT-ML 복사를 수정하였습니다.'
       note_24: '<header>기타 조작</header>'
       note_25: '<module>MatchOrderInterface</module>: 비 서포터를 위한 아바타. 안정성을 향상시켰습니다.'
       note_26: '<module>MatchSimulator</module>은 이제 새로운 체력 수식(by Senzascrupoli [post=15917246.1])을 체력 감소를 계산하는데 사용합니다.'
       note_27: '<module>MatchReportFormat</module>은 새로운 HT아이콘을 사용합니다.'
       note_28: '<module>PlayerStatsExperience</module>: 레벨 당 경험 포인트를 28.62 으로 증가시켰습니다(토론장 15766691.423 참조). 부전승은 이제 경험치를 주지 않은 것으로 표시됩니다.'
-      note_29: "토론장 모듈은 이제 텍스트를 피하기 위해서 '·'대신에 공백 문자를 사용합니다:이것은 카탈로니아어 언어에 도움이 됩니다."
-      note_30: HT 레이아웃이 폭스트릭을 방해하는 것을 방지합니다.
-      note_31: www.hattrick.fm에 대한 지원 추가
+      note_29: '토론장 모듈은 이제 텍스트를 피하기 위해서 ''·''대신에 공백 문자를 사용합니다:이것은 카탈로니아어 언어에 도움이 됩니다.'
+      note_30: 'HT 레이아웃이 폭스트릭을 방해하는 것을 방지합니다.'
+      note_31: 'www.hattrick.fm에 대한 지원 추가'
       note_32: '<module>Links</module>에 있는 죽은 외부 링크를 제거합니다. 그리고 가능한 외부 아이콘을 사용합니다.'
       note_33: '<header>브라우저 지원</header>'
-      note_34: Android 17+의 Firefox 지원을 수정했습니다.
-      note_35: Firefox12가 이제 폭스트릭을 실행할 수 있는 최소버전입니다.
-      note_36: Google Chrome 22가 이제 폭스트릭을 실행할 수 있는 최소 버전입니다.
+      note_34: 'Android 17+의 Firefox 지원을 수정했습니다.'
+      note_35: 'Firefox12가 이제 폭스트릭을 실행할 수 있는 최소버전입니다.'
+      note_36: 'Google Chrome 22가 이제 폭스트릭을 실행할 수 있는 최소 버전입니다.'
       note_37: 'Opera: FT가 다른 페이지(Hattrick Youthclub)를 방해를 야기시키는 버그를 수정하였습니다. 이제 더욱 빨리 이미지가 불러올 것입니다. 특히 Opera에서 비활성화된 몇 가지 모듈을 이제 사용할 수 있습니다.'
       note_38: '<header>저희 뛰어난 사용자들이 <linkCrowdin>crowdin tool</linkCrowdin>을 사용하여 수많은 번역 업데이트가 있었습니다. 당신도 도울 수 있습니다!</header>'
       note_39: '<header>환경 설정 페이지를 다시 수정하였습니다.</header>'
@@ -336,7 +465,7 @@ ko:
       note_4: 다수의 번역 업데이트
     0.9.0.1:
       note_0: Chrome의 (우발적인)과도한 권한 수정
-      note_1: 'LiveAlert 수정 '
+      note_1: LiveAlert 수정 
       note_2: 몇 가지 css 이슈 수정(Chrome, Opera, Safari)
     0.9:
       note_0: '<header>현지화:</header>'
@@ -441,8 +570,8 @@ ko:
       note_3: '모듈 <module>OldStyleFace</module> - 이전 Hattrick 스타일로 얼굴 표시합니다. (Aimo_Kanuuna)'
       note_4: '모듈 <module>NtPeek</module> - Hattrick의 NT/U20 경기 살짝 봅니다. (ryanli)'
       note_5: '모듈 <module>SeriesFlags</module> - 구단주와 팀링크 옆에 사용자의 나라와 시리즈를 표시합니다. 이미지는 <linkHTMS>HTMS</linkHTMS>에 의해서 제공됩니다. (taised, ryanli)'
-      note_6: '모듈 <module>HTMSPoints</module> - 선수의 <linkHTMSPoints>HTMS Points</linkHTMSPoints>를 표시, 예-수치화된 능력과 잠재력. (taised)'
-      note_7: '모듈 <module>FriendlyInterface</module> -  경기 라인업 페이지와 풀 네임을 표시하는 옵션이며 대표 팀 선수의 경우 국가대표팀 링크 표시. (ryanli)'
+      note_6: "모듈 <module>HTMSPoints</module> - 선수의 <linkHTMSPoints>HTMS Points</linkHTMSPoints>를 표시, 예-수치화된 능력과 잠재력. (taised)"
+      note_7: "모듈 <module>FriendlyInterface</module> -  경기 라인업 페이지와 풀 네임을 표시하는 옵션이며 대표 팀 선수의 경우 국가대표팀 링크 표시. (ryanli)"
       note_8: '모듈 HighlightBotTeams 은 <module>HighlightOwnerless</module>으로 개명되었습니다. (ryanli)'
       note_9: 모듈 YouthSkillNotes 과 ShortPA 은 제거되었습니다. (ryanli)
       note_10: '<module>FixcssProblems</module>에 토론장 쌀짝 숨기기 옵션 제공. (ljushaff)'

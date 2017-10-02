@@ -12,10 +12,10 @@
 
 #ft-team-stats-box table th {
 	text-decoration: underline;
-	padding-bottom: 0.5em !important;
-	padding-top: 1em !important;
+	padding-bottom: 0.5em;
+	padding-top: 1em;
 }
 
 #ft-team-stats-box table td {
-	font-size: 0.9em !important;
+	font-size: 0.9em;
 }

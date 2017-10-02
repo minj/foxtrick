@@ -11,10 +11,10 @@ Foxtrick.modules['SeriesTransfers'] = {
 
 	run: function(doc) {
 
-		var AUTO_REFRESH_IN = 2 * 24 * 60 * 60 * 1000; // two days
+		var AUTO_REFRESH_IN = 2 * Foxtrick.util.time.MSECS_IN_DAY;
 		var resultId = 'ft-series-transfers-result';
 		var timeId = 'ft-series-transfers-time';
-		var now = Foxtrick.util.time.getHtTimeStamp(doc);
+		var now = Foxtrick.util.time.getHTTimeStamp(doc);
 
 		var leagueTable = doc.getElementById('mainBody').getElementsByTagName('table')[0];
 
@@ -58,7 +58,7 @@ Foxtrick.modules['SeriesTransfers'] = {
 					if (node)
 						node.parentNode.removeChild(node);
 				}, [resultId, timeId]);
-				now = Foxtrick.util.time.getHtTimeStamp(doc);
+				now = Foxtrick.util.time.getHTTimeStamp(doc);
 				showPlayers();
 			}, 300);
 		};
@@ -164,13 +164,8 @@ Foxtrick.modules['SeriesTransfers'] = {
 			};
 			var specialityFunc = function(cell, spec) {
 				if (spec) {
-					var specialtyName = Foxtrick.L10n.getSpecialityFromNumber(spec);
-					var specialtyUrl = Foxtrick.getSpecialtyImagePathFromNumber(spec);
-					Foxtrick.addImage(doc, cell, {
-						alt: specialtyName,
-						title: specialtyName,
-						src: specialtyUrl
-					});
+					Foxtrick.addSpecialty(cell, spec)
+						.catch(Foxtrick.catch('SeriesTransfers addSpecialty'));
 				}
 				cell.setAttribute('index', spec);
 			};
@@ -279,7 +274,7 @@ Foxtrick.modules['SeriesTransfers'] = {
 			Foxtrick.localSet('series_transfers.' + seriesId, oldestFile);
 			var infoDiv = doc.createElement('div');
 			var info = Foxtrick.L10n.getString('SeriesTransfers.lastFetch');
-			var dateText = Foxtrick.util.time.buildDate(new Date(oldestFile), true);
+			var dateText = Foxtrick.util.time.buildDate(new Date(oldestFile));
 			infoDiv.textContent = info.replace(/%s/, dateText);
 			infoDiv.id = timeId;
 			fetchDiv.insertBefore(infoDiv, fetchLink);
@@ -288,7 +283,8 @@ Foxtrick.modules['SeriesTransfers'] = {
 		var showPlayers = function() {
 			buildTable();
 			// retrieve currency rate
-			Foxtrick.util.currency.establish(doc, function(currencyRate) {
+			Foxtrick.util.currency.detect(doc).then(function(curr) {
+				var currencyRate = curr.rate;
 				// batch retrieve
 				var time = now + AUTO_REFRESH_IN;
 				Foxtrick.util.api.batchRetrieve(doc, batchArgs, { cache_lifetime: time },
@@ -296,7 +292,11 @@ Foxtrick.modules['SeriesTransfers'] = {
 					if (xmls)
 						processXMLs(xmls, errors, currencyRate);
 				});
+
+			}).catch(function(reason) {
+				Foxtrick.log('WARNING: currency.detect aborted:', reason);
 			});
+
 		};
 
 		var sidebar = doc.getElementById('sidebar');

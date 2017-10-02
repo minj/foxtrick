@@ -276,7 +276,7 @@ Foxtrick.modules['CopyPlayerAd'] = {
 				}
 			}
 
-			Foxtrick.copyStringToClipboard(ad);
+			Foxtrick.copy(doc, ad);
 			Foxtrick.util.note.add(doc, Foxtrick.L10n.getString('copy.playerad.copied'),
 			                       'ft-playerad-copy-note');
 		}

@@ -12,130 +12,80 @@ Foxtrick.modules['GoToPostBox'] = {
 
 	run: function(doc) {
 
+		var module = this;
 
-		//set up tab on left forums menu
+		// detect active tab on the left forum menu
 		var tab = '';
 		try {
-			var forumtabs = doc.getElementsByClassName('active')[0];
-			var reg = /^(.*?)\&v\=(\d+)(.*?)/;
-			var ar = reg.exec(+ ' ' + forumtabs.href + ' ');
-			if (ar[2] != null) {
-				tab = '&v=' + ar[2];
-			}
-		} catch (e) {}
-
-
-
-		var HTGotoInput = null;
-		var HTGotoButton = null;
-		var HTGotoInput2 = null;
-		var HTGotoButton2 = null;
-
-		var inputs = doc.getElementById('mainBody').parentNode.getElementsByTagName('input');
-		for (var i = 0; i < inputs.length; ++i) {
-			if (inputs[i].type == 'submit') {
-				if (!HTGotoButton) {
-					HTGotoButton = inputs[i];
-					HTGotoInput = inputs[i - 1];
-				}
-				else {
-					HTGotoButton2 = inputs[i];
-					HTGotoInput2 = inputs[i - 1];
-					break;
-				}
-			}
+			var activeTab = doc.querySelector('.forumTabs > .active');
+			tab = '&v=' + Foxtrick.getParameterFromUrl(activeTab.href, 'v');
 		}
+		catch (e) {}
 
-		var selectBoxTop = null;
-		var selectBoxBottom = null;
+		var topicId = Foxtrick.getParameterFromUrl(doc.location.href, 't');
 
-		var selects = doc.getElementById('mainBody').parentNode.getElementsByTagName('select');
-		for (var i = 0; i < selects.length; ++i) {
-			if (selects[i].id.search(/filter/i) != -1) {
-				if (!selectBoxTop) {
-					selectBoxTop = selects[i];
-				}
-				else {
-					selectBoxBottom = selects[i];
-					break;
-				}
+		var goToHandler = function() {
+			var doc = this.ownerDocument;
+
+			var boxNum = this.id.match(/\d/)[0];
+			var input = doc.getElementById('foxtrick_forum_postbox_postboxnum_' + boxNum);
+			var val = input.value;
+
+			if (val.indexOf('.') > 0) {
+				var aTemp = val.split('.');
+				val = aTemp[0] + '&n=' + aTemp[1];
 			}
-		}
+			else {
+				val = topicId + tab + '&n=' + val;
+			}
 
+			// doc.location='' resolves to XUL here
+			var newURL = new URL('/Forum/Read.aspx?t=' + val, doc.location.href);
+			doc.location.assign(newURL);
+		};
 
-		var aSelectBoxes = [];
-		if (selectBoxTop)
-			aSelectBoxes.push(selectBoxTop);
-		if (selectBoxBottom)
-			aSelectBoxes.push(selectBoxBottom);
-		for (var i = 0; i < aSelectBoxes.length; i++) {
-			var boxId = 'foxtrick_forum_postbox_postboxnum_' + i;
+		var parent = doc.getElementById('mainBody').parentNode;
+		var parents = parent.querySelectorAll('.threadPaging');
+
+		Foxtrick.forEach(function(parent, b) {
+			var boxId = 'foxtrick_forum_postbox_postboxnum_' + b;
 			if (doc.getElementById(boxId))
-				continue;
-			var selectBox = aSelectBoxes[i];
+				return;
 
-			var inputBoxTop = Foxtrick.createFeaturedElement(doc, this, 'input');
-			inputBoxTop.setAttribute('type', 'text');
-			inputBoxTop.setAttribute('size', '4');
-			inputBoxTop.setAttribute('value', '(xxx.)yyy');
-			inputBoxTop.setAttribute('class', 'quickViewBox viewInactive ft_gotobox');
-			inputBoxTop.addEventListener('focus', function(ev) {
-				ev.target.className = 'quickViewBox viewActive ft_gotobox';
-				if (ev.target.value == '(xxx.)yyy') {
-					ev.target.value = '';
-				}
-			}, false);
-			inputBoxTop.addEventListener('blur', function(ev) {
-				if (ev.target.value.length === 0) {
-					ev.target.className = 'quickViewBox viewInactive ft_gotobox';
-					ev.target.value = '(xxx.)yyy';
-				}
-			}, false);
+			var inputBox = Foxtrick.createFeaturedElement(doc, module, 'input');
+			inputBox.id = boxId;
+			inputBox.type = 'text';
+			inputBox.size = '4';
+			inputBox.placeholder = '(xxx.)yyy';
+			inputBox.className = 'quickViewBox ft_gotobox';
 
-			var goButton = Foxtrick.createFeaturedElement(doc, this, 'input');
-			goButton.setAttribute('id', 'foxtrick_forum_postbox_okbutton_' + i);
-			inputBoxTop.setAttribute('id', boxId);
-			goButton.setAttribute('type', 'button');
-			var sTmp = selectBox.getAttribute('onchange');
-			var iTopicId = doc.location.search.match(/\d+/)[0];
-			goButton.setAttribute('value', Foxtrick.L10n.getString('button.go'));
-			goButton.setAttribute('class', 'ft_gotobox ft_gotobox_btn');
-			var gotoFkt = function(ev) {
-				var doc = ev.target.ownerDocument;
-				var boxNum = ev.target.id.match(/\d/)[0];
-				var val = doc.getElementById('foxtrick_forum_postbox_postboxnum_' + boxNum).value;
-				if (val.indexOf('.') > 0) {
-					var aTemp = val.split('.');
-					val = aTemp[0] + '&n=' + aTemp[1];
+			Foxtrick.listen(inputBox, 'keypress', function(ev) {
+				var key = ev.keyCode;
+				if (key == 13) {
+					var goButtonID = this.id.replace(/postboxnum/, 'okbutton');
+					var goButton = doc.getElementById(goButtonID);
+					if (goButton)
+						goButton.click();
+
+					return false;
 				}
-				else {
-					val = '' + iTopicId + tab + '&n=' + val;
-				}
-				// doc.location='' does not work hear, no idea
-				doc.location.assign('/Forum/Read.aspx?t=' + val);
-			};
-			Foxtrick.onClick(goButton, gotoFkt);
+			});
 
 			var inputBoxLabel = doc.createElement('span');
 			inputBoxLabel.textContent = '\u00a0';
-			selectBox.parentNode.appendChild(inputBoxLabel);
+			parent.appendChild(inputBoxLabel);
+			parent.appendChild(inputBox);
+			parent.appendChild(inputBoxLabel.cloneNode(true));
 
-			selectBox.parentNode.appendChild(inputBoxTop);
+			var goButton = Foxtrick.createFeaturedElement(doc, module, 'button');
+			goButton.id = 'foxtrick_forum_postbox_okbutton_' + b;
+			goButton.type = 'button';
+			goButton.className = 'ft_gotobox ft_gotobox_btn';
+			goButton.textContent = Foxtrick.L10n.getString('button.go');
+			Foxtrick.onClick(goButton, goToHandler);
+			parent.appendChild(goButton);
 
-			var inputBoxLabel2 = doc.createElement('span');
-			inputBoxLabel2.textContent = '\u00a0';
-			selectBox.parentNode.appendChild(inputBoxLabel2);
+		}, parents);
 
-			selectBox.parentNode.appendChild(goButton);
-			Foxtrick.listen(inputBoxTop, 'keyup', function(ev) {
-				var key = ev.keyCode;
-				if (key == 13) {
-					var goButtonID = ev.target.getAttribute('id').replace(/postboxnum/, 'okbutton');
-					var goButton = doc.getElementById(goButtonID);
-					if (goButton) goButton.click();
-					return false;
-				}
-			}, false);
-		}
-	}
+	},
 };

@@ -25,6 +25,14 @@ if (Foxtrick.platform != 'Android')
 			item: null,
 			copyText: null
 		},
+		'foxtrick-popup-copy-external-link': {
+			option: 'external',
+			func: function(node) {
+				return Foxtrick.util.htMl.getLink(node, { external: true });
+			},
+			item: null,
+			copyText: null
+		},
 		'foxtrick-popup-copy-ht-ml': {
 			option: 'HtMl',
 			func: Foxtrick.util.htMl.getHtMl,
@@ -50,7 +58,9 @@ if (Foxtrick.platform != 'Android')
 			// returns copy function on click
 			var copy = function(entry) {
 				return function() {
-					Foxtrick.copyStringToClipboard(entry.copyText);
+					// FIXME copying from background
+					// does not work in WebExt
+					Foxtrick.copy(document, entry.copyText);
 				};
 			};
 			var firefoxInit = function() {
@@ -67,16 +77,17 @@ if (Foxtrick.platform != 'Android')
 			// called from background script
 			var chromeInit = function() {
 				// update menu in background on mousedown
-				chrome.extension.onRequest.addListener(
+				Foxtrick.SB.ext.onRequest.addListener(
 				  function(request, sender, sendResponse) {
 					var documentUrlPatterns = [
 						'*://*.hattrick.org/*',
-						'*://*.hattrick.fm/*',
 						'*://*.hattrick.ws/*',
-						'*://*.hattrick.name/*',
+						'*://*.hattrick.bz/*',
 						'*://*.hat-trick.net/*',
+						'*://*.hattrick.uol.com.br/*',
 						'*://*.hattrick.interia.pl/*',
-						'*://*.hattrick.uol.com.br/*'
+						'*://*.hattrick.name/*',
+						'*://*.hattrick.fm/*',
 					];
 					if (request.req === 'updateContextMenu') {
 						// remove old entries
@@ -205,8 +216,8 @@ if (Foxtrick.platform != 'Android')
 					doc.addEventListener('mousedown', function(ev) {
 						if (ev.button == 2) { // right mouse down
 							collectData(ev.target);
-							chrome.extension.sendRequest({ req: 'updateContextMenu',
-							                             entries: getEntries() });
+							var msg = { req: 'updateContextMenu', entries: getEntries() };
+							Foxtrick.SB.ext.sendRequest(msg);
 						}
 					}, false);
 				}

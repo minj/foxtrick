@@ -120,6 +120,10 @@
 				{
 					"id": "2090503",
 					"name": "GM-Eagle"
+				},
+				{
+					"id": "13121281",
+					"name": "mustafashllaku"
 				}
 			]
 		},
@@ -129,6 +133,9 @@
 				{
 					"id": "9311330",
 					"name": "GM-OmaniMilani"
+				},
+				{
+					"name": "krohige"
 				}
 			]
 		},
@@ -151,6 +158,17 @@
 				{
 					"id": "1048018",
 					"name": "Mod-ivo_stoyanov"
+				},
+				{
+					"id": "1028143",
+					"name": "kosio"
+				},
+				{
+					"name": "dcholakov"
+				},
+				{
+					"id": "192461",
+					"name": "dedo_uluk"
 				}
 			]
 		},
@@ -171,6 +189,17 @@
 				},
 				{
 					"name": "nermin83s"
+				},
+				{
+					"id": "8795088",
+					"name": "crta13"
+				},
+				{
+					"name": "spajdrmen11"
+				},
+				{
+					"id": "6263697",
+					"name": "LA-Ron__Manager"
 				}
 			]
 		},
@@ -189,6 +218,13 @@
 				{
 					"id": "753905",
 					"name": "carlesmu"
+				},
+				{
+					"name": "traditore"
+				},
+				{
+					"id": "13142222",
+					"name": "crocach"
 				}
 			]
 		},
@@ -202,6 +238,10 @@
 				{
 					"id": "368411",
 					"name": "Robin"
+				},
+				{
+					"id": "6489521",
+					"name": "turonhonza"
 				}
 			]
 		},
@@ -255,6 +295,13 @@
 				{
 					"id": "10613189",
 					"name": "GM-Romanolus"
+				},
+				{
+					"name": "fr02081975"
+				},
+				{
+					"id": "1370102",
+					"name": "iltios"
 				}
 			]
 		},
@@ -305,6 +352,14 @@
 				},
 				{
 					"name": "Ryo567"
+				},
+				{
+					"id": "2391052",
+					"name": "eyp (eyanez)"
+				},
+				{
+					"id": "11935403",
+					"name": "fondhaarp"
 				}
 			]
 		},
@@ -343,6 +398,13 @@
 				{
 					"id": "11551835",
 					"name": "Lays"
+				},
+				{
+					"id": "3885942",
+					"name": "gnacho61"
+				},
+				{
+					"name": "daniruts"
 				}
 			]
 		},
@@ -376,6 +438,10 @@
 				{
 					"id": "7137875",
 					"name": "LA-IpEFiX"
+				},
+				{
+					"id": "9607801",
+					"name": "Kostitsyn46"
 				}
 			]
 		},
@@ -404,7 +470,12 @@
 					"name": "ALIMALTIPO"
 				},
 				{
+					"id": "10621734",
 					"name": "dritte333"
+				},
+				{
+					"id": "12326398",
+					"name": "Dr-Jalal"
 				}
 			]
 		},
@@ -450,7 +521,16 @@
 					"name": "parjikia"
 				},
 				{
+					"id": "10968856",
 					"name": "serjhanti"
+				},
+				{
+					"id": "9855688",
+					"name": "Nika_Kvrivishvili"
+				},
+				{
+					"id": "11988102",
+					"name": "LA-levang"
 				}
 			]
 		},
@@ -515,6 +595,14 @@
 			]
 		},
 		{
+			"language": "Indonesian",
+			"translators": [
+				{
+					"name": "yosua_k"
+				}
+			]
+		},
+		{
 			"language": "Íslenska",
 			"translators": [
 				{
@@ -552,6 +640,10 @@
 				{
 					"id": "7967145",
 					"name": "bigpapy"
+				},
+				{
+					"id": "578992",
+					"name": "dm001"
 				}
 			]
 		},
@@ -639,6 +731,9 @@
 				},
 				{
 					"name": "steve007121"
+				},
+				{
+					"name": "colinvella"
 				}
 			]
 		},
@@ -664,6 +759,10 @@
 				{
 					"id": "9367491",
 					"name": "Domburg86"
+				},
+				{
+					"id": "3455853",
+					"name": "takiwakiu20"
 				}
 			]
 		},
@@ -686,6 +785,10 @@
 				},
 				{
 					"name": "borgstein"
+				},
+				{
+					"id": "12449946",
+					"name": "amundsoet"
 				}
 			]
 		},
@@ -695,6 +798,10 @@
 				{
 					"id": "4387847",
 					"name": "Krasher"
+				},
+				{
+					"id": "12449946",
+					"name": "amundsoet"
 				}
 			]
 		},
@@ -772,6 +879,7 @@
 					"name": "Mod-Guaipeca"
 				},
 				{
+					"id": "12975827",
 					"name": "MartinsPF"
 				},
 				{
@@ -798,6 +906,10 @@
 				{
 					"id": "12533508",
 					"name": "RoLitoral"
+				},
+				{
+					"id": "8656808",
+					"name": "horatiu_halmajan"
 				}
 			]
 		},
@@ -828,6 +940,10 @@
 				{
 					"id": "9511330",
 					"name": "vosco"
+				},
+				{
+					"id": "9793408",
+					"name": "LA-keebak"
 				}
 			]
 		},
@@ -911,6 +1027,9 @@
 				},
 				{
 					"name": "ebitech"
+				},
+				{
+					"name": "ufukfb"
 				}
 			]
 		},
@@ -951,6 +1070,235 @@
 		{
 			"id": "3410980",
 			"name": "Aimo_Kanuuna"
+		},
+		{
+			"id": "4416087",
+			"name": "ratsrats"
+		}
+	],
+	"donators": [
+		{
+			"id": "10808283",
+			"name": "ypo333"
+		},
+		{
+			"id": "9100817",
+			"name": "DavidatorusF"
+		},
+		{
+			"id": "7517447",
+			"name": "LeBridge-PDM"
+		},
+		{
+			"id": "7865524",
+			"name": "Dovco_HandF"
+		},
+		{
+			"id": "9786585",
+			"name": "dual-core"
+		},
+
+		{
+			"id": "916222",
+			"name": "_Domingo"
+		},
+		{
+			"id": "1806088",
+			"name": "GeissbockHennes"
+		},
+		{
+			"id": "2178948",
+			"name": "stuhlgang"
+		},
+		{
+			"id": "3013185",
+			"name": "AfroSeb"
+		},
+		{
+			"id": "3150937",
+			"name": "Hidetoschi"
+		},
+		{
+			"id": "4149601",
+			"name": "Triplex1963"
+		},
+		{
+			"id": "4451958",
+			"name": "Fangio"
+		},
+		{
+			"id": "8919275",
+			"name": "Leymi"
+		},
+		{
+			"id": "10680966",
+			"name": "vegar56"
+		},
+		{
+			"id": "12068053",
+			"name": "Sellas"
+		},
+		{
+			"id": "12966867",
+			"name": "ExpatU"
+		},
+		{
+			"id": "13102527",
+			"name": "TomTrader"
+		},
+
+		{
+			"id": "410541",
+			"name": "ice21sui"
+		},
+		{
+			"id": "8209901",
+			"name": "fitzstudio"
+		},
+
+		{
+			"id": "32722",
+			"name": "FaderMerrin"
+		},
+		{
+			"id": "48207",
+			"name": "stefkor"
+		},
+		{
+			"id": "50011",
+			"name": "Wilbor"
+		},
+		{
+			"id": "80899",
+			"name": "steelbow"
+		},
+		{
+			"id": "235470",
+			"name": "Kalle0708"
+		},
+		{
+			"id": "245173",
+			"name": "Dikkiedick"
+		},
+		{
+			"id": "1140197",
+			"name": "schmidde"
+		},
+		{
+			"id": "1360148",
+			"name": "Stipe_GAK"
+		},
+		{
+			"id": "2117265",
+			"name": "Regador"
+		},
+		{
+			"id": "2398346",
+			"name": "CarlesWhisper"
+		},
+		{
+			"id": "2787409",
+			"name": "gia73"
+		},
+		{
+			"id": "3417036",
+			"name": "Chemii"
+		},
+		{
+			"id": "3639672",
+			"name": "Balkankoenig"
+		},
+		{
+			"id": "4418737",
+			"name": "Che-Gi"
+		},
+		{
+			"id": "4476273",
+			"name": "fbog31"
+		},
+		{
+			"id": "4736512",
+			"name": "Korrigan"
+		},
+		{
+			"id": "5932699",
+			"name": "DenTavse"
+		},
+		{
+			"id": "6895080",
+			"name": "sardinablu"
+		},
+		{
+			"id": "6977975",
+			"name": "cicix-GIGA"
+		},
+		{
+			"id": "7197589",
+			"name": "il-padrone"
+		},
+		{
+			"id": "7269920",
+			"name": "TheChef-GIGA"
+		},
+		{
+			"id": "7611458",
+			"name": "geboren1948"
+		},
+		{
+			"id": "9474452",
+			"name": "Zami1981"
+		},
+		{
+			"id": "9531623",
+			"name": "J_Bax"
+		},
+		{
+			"id": "9779968",
+			"name": "deliomnes"
+		},
+		{
+			"id": "9832269",
+			"name": "bigbird"
+		},
+		{
+			"id": "10344768",
+			"name": "raetselecke"
+		},
+		{
+			"id": "10763413",
+			"name": "h-b-o"
+		},
+		{
+			"id": "11017062",
+			"name": "DDriver"
+		},
+		{
+			"id": "11320073",
+			"name": "Dr_Fleischwolf"
+		},
+		{
+			"id": "11525655",
+			"name": "brutuscat"
+		},
+		{
+			"id": "11650318",
+			"name": "GikuHTR"
+		},
+		{
+			"id": "11749650",
+			"name": "Elle2-GIGA"
+		},
+		{
+			"id": "11765709",
+			"name": "visviva"
+		},
+		{
+			"id": "12521069",
+			"name": "EiCeKju"
+		},
+		{
+			"id": "12788724",
+			"name": "jkers"
 		}
 	]
 }

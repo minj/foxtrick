@@ -2,12 +2,22 @@
 ca:
   faq:
     style:
-      question: Com podria estilitzar el meu FoxTrick?
+      question: '¿Com podria canviar l''estil del meu FoxTrick?'
+      answer: |
+        <p>FoxTrick proporciona un conjunt d'interfícies de presentació per a que els usuaris el personalitzin al seu propi estil. Aquestes interfícies es proporcionen a través de IDs i clases de HTML, a més pots utilitzar CSS per definir el vostre estil principal.</p>  <p>Pots trobar un exemple de fitxer d'un usuari <linkCSSExample>aquí</linkCSSExample> o <linkCSSExampleGCode>aquí</linkCSSExampleGCode>, Els quals pots modificar al teus gust. Després de desar el fitxer, podeu utilitzar el mòdul <module>SkinPlugin</module> per a carregar l'arxiu CSS i que l'estil d'usuari sorgeixi efecte.</p>
     sound-format:
-      question: Quins formats de so es permeten per a les alertes de so?
+      question: '¿Quins formats de so es permeten per a les alertes de so?'
+      answer: |
+        <p>Diferents navegadors permeten diferents formats d'arxiu. Aquí hi ha una llista (els formats no llistats potser funcionin si estan instal·lats els plugins apropiats, Per exemple, Quicktime per a reproduir mp3 a Firefox):</p> <ul><li>Mozilla: wav, ogg</li> <li>Safari (pot necessitar Quicktime): wav, mp3</li> <li>Chrome: ogg, mp3, wav</li> <li>òpera: wav, ogg</li></ul>
     sound-location:
       question: Quina és la mida límit per les alertes sonores i on es poden trobar?
+      answer: |
+        <p>Tots els navegadors poden reproduir URLs de dades. Aquest són els sons desats que es utilitzen quan uses el botó càrrega de preferències. Un cop es converteixen i es guarden a les teves preferències, la mida es limita a uns 160 KB per so.</p>  <p>A més, tots els navegadors poden reproduir sons directament des de internet (adreces URL http). Simplement còpia un enllaç a un so (per exemple, http://foxtrick.org/sound.wav) en el camp de l'edició per al so. No hi ha límit de so.</p>  <p>El Mozilla també pot reproduir sons directament des del disc dur sense límit de grandària. La manera més fàcil d'obtenir el format correcte: Clica Ctrl + O en el navegador, Cerca l'arxiu de so i seleccionau. A la barra d'adreces de dalt apareixerà llavors els directori en el que es troba l'arxiu local (per exemple, file:///c:/sound.wav). Còpia i enganxa això al camp d'edició pels sons.</p>
     authorize:
-      question: "Per què he d'autoritzar FoxTrick a accedir a les dades del meu equip?"
+      question: '¿Per què he d''autoritzar FoxTrick a accedir a les dades del meu equip?'
+      answer: |
+        <p>Encara que la majoria de les dades necessàries per FoxTrick es poden obtindre directament de la pàgina que esteu visualitzant, alguns mòduls requereixen la descarrega dades de Hattrick per que funcioni correctament.</p>  <p>Per a descarregar dades de Hattrick, incloent-hi les dades del seu equip, lligues i equips nacionals, cal autoritzar prèviament FoxTrick.</p>  <p>Autoritzeu a FoxTrick proporcionant el teu nom d'usuari i contrasenya en chpp.hattrick.org. Aixó consegueixes un codi de verificació, que li proporcionen a FoxTrick. FoxTrick no se sap el teu nom d'usuari o la contrasenya en tot el procés.</p>  <p>Per a conèixer més sobre el procés d'autorització, si us plau llegiu <linkCHPPDesc>CHPP - com funciona</linkCHPPDesc> en Hattrick.</p>  <p>Alguns mòduls requereixen accés a les de dades per a que funcionin correctament:</p>  <ul><li><module>CrossTable</module></li> <li><module>ExtraPlayerInfo</module></li> <li><module>MatchPlayerColouring</module></li> <li><module>MyMonitor</module></li> <li><module>NtPeek</module></li> <li><module>SeriesFlags</module></li></ul>  <p>Alguns mòduls poden proporcionar informació més extensa, si poden accedir a dades de Hattrick:</p>  <ul><li><module>SkillTable</module></li> <li><module>TeamStats</module></li></ul>
     privacy:
-      question: Com protegirà la meva privacitat FoxTrick?
+      question: '¿Com protegeix la meva privacitat FoxTrick?'
+      answer: |
+        <p>FoxTrick no compartirà les teves dades ni les preferències a cap servidor de FoxTrick, tampoc enviarà noms, contrasenyes, IDs de jugador ni cap altres dades privades a tercers.</p>  <p>La majoria de dades que passen a tercers, entre els que no estan anteriorment especificats, ho fan pel mitjà de HTTP i hauràs de fer clic a un enllaç per a permetre-ho.</p>  <p>D'aquesta manera, podreu veure les dades que passen inspeccionant la URI (Idenfificador Uniforme de Recursos) de un enllaç extern i res serà enviat sense el teu consentiment. Cal destacar, que les dades privades no es veuran involucrades. </p>  <p>Les excepcions són els mòduls <module>HTMSPrediction</module> i <module>HTEVPrediction</module>, on els valors coincidents passen i es reben als llocs respectius mitjançant XMLHttpRequest.</p>

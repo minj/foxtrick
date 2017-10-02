@@ -21,14 +21,14 @@ Foxtrick.modules['PersonalityImages'] = {
 			if (/lt\=honesty/i.test(skill.href) || /lt\=gentleness/i.test(skill.href)) {
 				level = skill.href.match(/ll\=(\d)/)[1];
 				Foxtrick.addImage(doc, skill, {
-					className: 'ft-personality-img',
+					class: 'ft-personality-img',
 					src: Foxtrick.InternalPath + 'resources/personality/red2blue/' + level + '.jpg'
 				});
 			}
 			else if (/lt\=aggressiveness/i.test(skill.href)) {
 				level = skill.href.match(/ll\=(\d)/)[1];
 				Foxtrick.addImage(doc, skill, {
-					className: 'ft-personality-img',
+					class: 'ft-personality-img',
 					src: Foxtrick.InternalPath + 'resources/personality/blue2red/' + level + '.jpg'
 				});
 			}

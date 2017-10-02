@@ -7,7 +7,6 @@
 Foxtrick.modules['LineupShortcut'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES: ['playerDetails', 'statsBestGames', 'youthPlayerDetails'],
-	OPTIONS: ['HighlightPlayer'],
 
 	run: function(doc) {
 		if (Foxtrick.isPage(doc, 'playerDetails'))
@@ -65,19 +64,29 @@ Foxtrick.modules['LineupShortcut'] = {
 			var matchId = Foxtrick.util.id.getMatchIdFromUrl(link.href);
 			link.href += '&HighlightPlayerID=' + playerId;
 
+			// FIXME: this is bound to break
 			// find out home/away team names
+			//
+			// textContent uses trimmed team names
+			//
 			// \u00a0 is no-break space (entity &nbsp;)
-			// use textContent to deal with encoded entities (like &amp;)
-			// which innerHTML isn't capable of
-			var teamsTrimmed = link.textContent.split(/\u00a0-\u00a0/);
-			var teamsText = link.title;
-			var homeIdx = teamsText.indexOf(teamsTrimmed[0]);
-			var awayIdx = teamsText.indexOf(teamsTrimmed[1]);
-			var matchTeams = [teamsText.substr(homeIdx, awayIdx - 1), teamsText.substr(awayIdx)];
+			// helps distinguishing from hyphens in team names
+			var textTeams = link.textContent.split(/\u00a0-\u00a0/);
+
+			// title is `${HomeTeam}-${AwayTeam}`
+			var titleText = link.title;
+			var homeIdx = titleText.indexOf(textTeams[0]);
+			var awayIdx = titleText.indexOf(textTeams[1]);
+
+			var fullNames = [
+				titleText.slice(homeIdx, awayIdx - 1).trim(), // skipping the hyphen
+				titleText.slice(awayIdx).trim(),
+			];
+
 			var hasMatch = false;
 
 			var opts;
-			if (Foxtrick.has(matchTeams, teamName)) {
+			if (Foxtrick.has(fullNames, teamName)) {
 				if (!hasTransfer) {
 					opts = {
 						type: 'normal',
@@ -89,7 +98,7 @@ Foxtrick.modules['LineupShortcut'] = {
 					hasMatch = true;
 				}
 			}
-			else if (leagueId && Foxtrick.has(matchTeams, ntName)) {
+			else if (leagueId && Foxtrick.has(fullNames, ntName)) {
 				opts = {
 					type: 'NT',
 					matchId: matchId,
@@ -99,7 +108,7 @@ Foxtrick.modules['LineupShortcut'] = {
 				this._Add_Lineup_Link(doc, row, opts);
 				hasMatch = true;
 			}
-			else if (leagueId && Foxtrick.has(matchTeams, u20Name)) {
+			else if (leagueId && Foxtrick.has(fullNames, u20Name)) {
 				opts = {
 					type: 'U20',
 					matchId: matchId,
@@ -186,7 +195,7 @@ Foxtrick.modules['LineupShortcut'] = {
 		var mainBody = doc.getElementById('mainBody');
 
 		var matchLink = Foxtrick.nth(function(n) {
-			return /\/Club\/Matches\/Match\.aspx/i.test(n.href);
+			return /\/Club\/Matches\/Match\.aspx\?MatchId=\d+&SourceSystem=Youth&/i.test(n.href);
 		}, mainBody.getElementsByTagName('a'));
 		if (!matchLink)
 			return; // hasn't played a match yet

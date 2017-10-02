@@ -7,6 +7,157 @@
 if (!Foxtrick)
 	var Foxtrick = {};
 
+/**
+ * Prepare a string to be used as regex.
+ * Escapes some trivial cases of special regex characters.
+ * @param  {string} str
+ * @return {string}
+ */
+Foxtrick.strToRe = function(str) {
+	return str.replace(/([[\](){}?+*.|^$])/g, '\\$1');
+};
+
+/**
+ * Get a nested array representation of a nested tag in str.
+ * Array elements are either strings (perhaps empty) or other arrays.
+ * Strings may contain instances of nested tag in case they were unmatched.
+ * opts is {start, end: string} (required)
+ * @param  {string} str
+ * @param  {object} opts {start, end: str}
+ * @return {array}
+ */
+Foxtrick.parseNestedTag = function(str, opts) {
+	var mArray, tag;
+	if (!opts.re) {
+		// initialize
+		var start = Foxtrick.strToRe(opts.start);
+		var end = Foxtrick.strToRe(opts.end);
+		opts.re = new RegExp(start + '|' + end, 'g');
+		opts.prevIndex = 0;
+
+		// pre-pass to find unmatched starting tags
+		var level = 0, maxLevel = 0;
+		while ((mArray = opts.re.exec(str))) {
+			tag = mArray[0];
+			if (tag === opts.start) {
+				level += 1;
+				maxLevel = Math.max(maxLevel, level);
+			}
+			else if (tag === opts.end) {
+				if (level) {
+					// skip unmatched ending tags
+					level -= 1;
+				}
+			}
+			else {
+				Foxtrick.error('parseNestedTag: incorrectly escaped regex for tag ' + tag);
+				return [''];
+			}
+		}
+		if (level) {
+			// unmatched starting tags
+			maxLevel -= level;
+		}
+		opts.maxLevel = maxLevel;
+		opts.level = 0;
+	}
+
+	var nodes = [];
+	while ((mArray = opts.re.exec(str))) {
+		tag = mArray[0];
+		var startIndex = opts.re.lastIndex - tag.length;
+		// add any previous str (even if empty)
+		var previousText = str.slice(opts.prevIndex, startIndex);
+		nodes.push(previousText);
+		opts.prevIndex = opts.re.lastIndex;
+		if (tag === opts.start) {
+			if (opts.level < opts.maxLevel) {
+				opts.level += 1;
+				// continue recursively
+				nodes.push(Foxtrick.parseNestedTag(str, opts));
+				opts.level -= 1;
+				// update where recursion left off
+				opts.prevIndex = opts.re.lastIndex;
+			}
+			else {
+				// unmatched starting tag
+				nodes.push(tag);
+			}
+		}
+		else if (tag === opts.end) {
+			if (!opts.level) {
+				// unmatched ending tag
+				nodes.push(tag);
+			}
+			else {
+				// tag level finished, returning to previous stack frame
+				return nodes;
+			}
+		}
+	}
+	// no more tags in str
+	// add any ending text
+	var endText = str.slice(opts.prevIndex);
+	nodes.push(endText);
+	return nodes;
+};
+
+/**
+ * Remove escaping symbols used inside pre tags
+ * @param  {string} string
+ * @return {string}
+ */
+Foxtrick.unescapePre = function(string) {
+	return string.replace(/([\[<])\u2060/g, '$1');
+};
+
+/**
+ * Add escaping symbols inside pre tags
+ * @param  {string} string
+ * @return {string}
+ */
+Foxtrick.escapePre = function(string) {
+	var joinNestedPre = function(arr) {
+		var ret = '[pre]';
+		Foxtrick.forEach(function(el) {
+			if (typeof el === 'string') {
+				ret += el;
+				return;
+			}
+			// add pre tags recursively
+			ret += joinNestedPre(el);
+		}, arr);
+		ret += '[/pre]';
+		return ret;
+	};
+
+	var tokens = Foxtrick.parseNestedTag(string, { start: '[pre]', end: '[/pre]' });
+	tokens = Foxtrick.map(function(token) {
+		// unescaped level
+		if (typeof token === 'string') {
+			// deal with unmatched pre tags but leave others as is
+			return token.replace(/\[(\/)?(?=pre\])/g, '[\u2060$1');
+		}
+		// join array
+		var ret = Foxtrick.map(function(nToken) {
+			// escaped level (inside pre)
+			var ret;
+			if (typeof nToken === 'string') {
+				ret = nToken;
+			}
+			else {
+				// add pre tags recursively
+				ret = joinNestedPre(nToken);
+			}
+			// escape every tag inside pre
+			return ret.replace(/([\[<])(?=\S)/g, '$1\u2060');
+		}, token).join('');
+		// wrap with first-level pre tags
+		return Foxtrick.format('[pre]{}[/pre]', [ret]);
+	}, tokens);
+	return tokens.join('');
+};
+
 /** Remove any occurences of tags ('<something>') from text */
 Foxtrick.stripHTML = function(text) {
 	return text.replace(/(<([^>]+)>)/ig, '');
@@ -155,8 +306,91 @@ Foxtrick.foldLines = function(string, length, lineEnd, lineStart, recursive) {
 	return ret;
 };
 
+/**
+ * Pre-pad each line in a given textblock with pre
+ * @param  {string} textblock
+ * @param  {string} pre
+ * @return {string}
+ */
+Foxtrick.prepad = function(textblock, pre) {
+	return textblock.trim().replace(/^/mg, pre);
+};
 
+/**
+ * Repeat str num times
+ * @param  {string} str
+ * @param  {number} num
+ * @return {string}
+ */
+Foxtrick.repeat = function(str, num) {
+	var ret = '';
+	str = String(str);
+	for (var i = 0; i < num; i++)
+		ret += str;
+	return ret;
+};
 
+/**
+ * Format a string by replacing instances of '{}' with arbitrary values.
+ * Works similarly to python's string.format:
+ * If args is an array, replaces '{}', '{0}', '{1}', etc.
+ * If args is an object, replaces '{property1}', '{property2}', etc
+ * @param  {string}       str
+ * @param  {array|object} args array or object
+ * @return {string}
+ */
+Foxtrick.format = function(str, args) {
+	if (Array.isArray(args)) {
+		Foxtrick.forEach(function(arg, i) {
+			str = str.replace('{}', arg);
+			str = str.replace(new RegExp('\\{' + i + '\\}', 'g'), arg);
+		}, args);
+	}
+	else {
+		for (var arg in args) {
+			if (args.hasOwnProperty(arg))
+				str = str.replace(new RegExp('\\{' + arg + '\\}', 'g'), args[arg]);
+		}
+	}
+	return str;
+};
+
+/**
+ * Convert a HT URL to a domain agnostic (goto.ashx?path=) URL.
+ * Non-HT URLs are left unchanged.
+ * Domain-relative URLs are always considered HT URLs.
+ * @param  {string} url
+ * @return {string}
+ */
+Foxtrick.goToUrl = function(url) {
+	if (/^\/\//.test(url)) {
+		// revert domain-agnostic URLs for easier handling
+		url = 'https:' + url;
+	}
+	if (Foxtrick.isHtUrl(url) || /^\//.test(url)) {
+		var path = url.replace(/^\w+:\/\/.+?(\/|$)/, '/');
+		url = 'https://www.hattrick.org/goto.ashx?path=' + encodeURIComponent(path);
+	}
+	return url;
+};
+
+/**
+ * Get a HT URL to a specific post in the forum.
+ * postId ex: 123456.1
+ * @param  {string} postId 123456.1
+ * @return {string}
+ */
+Foxtrick.getForumUrl = function(postId) {
+	var template = 'https://stage.hattrick.org/Forum/Read.aspx?t={}&n={}&v=0';
+	var post = postId.match(/(\d+)\.(\d+)/);
+	if (!post)
+		return null;
+
+	var url = Foxtrick.format(template, Foxtrick.toArray(post).slice(1));
+	return Foxtrick.goToUrl(url);
+};
+
+/* jshint -W016 */
 /*
  * A JavaScript implementation of the Secure Hash Algorithm, SHA-1, as defined
  * in FIPS PUB 180-1
@@ -351,3 +585,4 @@ Foxtrick.hash = function(s) {
 
 	return rstr2hex(rstr_sha1(str2rstr_utf8(s)));
 };
+/* jshint +W016 */

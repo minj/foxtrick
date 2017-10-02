@@ -1,4 +1,11 @@
 {
+	"ht_tools_subskill": {
+		"playerlink": {
+			"url": "http://www.ht-tools.eu/subskill?playerid=[playerid]&teamid=[teamid]"
+		},
+		"title": "HT-Tools Subskill",
+		"img": "http://www.ht-tools.eu/static/img/favicon.png"
+	},
 	"ht_tools_training_estimation": {
 		"playerlink": {
 			"url": "http://www.ht-tools.eu/training"
@@ -9,25 +16,11 @@
 		"title": "HT-Tools Training Estimation",
 		"img": "http://www.ht-tools.eu/static/img/favicon.png"
 	},
-	"ht_tools_subskill": {
-		"playerlink": {
-			"url": "http://www.ht-tools.eu/subskill?playerid=[playerid]&teamid=[teamid]"
-		},
-		"title": "HT-Tools Subskill",
-		"img": "http://www.ht-tools.eu/static/img/favicon.png"
-	},
 	"ht_tools_arena_optimizer": {
 		"arenalink": {
 			"url": "http://www.ht-tools.eu/arena?teamid=[teamid]"
 		},
 		"title": "HT-Tools Arena",
-		"img": "http://www.ht-tools.eu/static/img/favicon.png"
-	},
-	"ht_tools_sponsors_revenue": {
-		"economylink": {
-			"url": "http://www.ht-tools.eu/sponsorsrevenue?teamid=[teamid]"
-		},
-		"title": "HT-Tools Sponsors Revenue",
 		"img": "http://www.ht-tools.eu/static/img/favicon.png"
 	},
 	"ht_tools_healing": {
@@ -44,61 +37,12 @@
 		"title": "HT-Tools Spying the Opponent",
 		"img": "http://www.ht-tools.eu/static/img/favicon.png"
 	},
-	"xray_crossover": {
-		"playerlink": {
-			"url": "http://www.databased.at/hattrick/x-ray/?starter=crossover&pid=[playerid]"
+	"htarena": {
+		"arenalink": {
+			"url": "http://htstart.se/htarena/"
 		},
-		"title": "hattriX-Ray Crossover",
-		"img": "resources/linkicons/xray_crossover.png"
-	},
-	"xray_backdraft": {
-		"teamlink": {
-			"url": "http://www.databased.at/hattrick/x-ray/index.asp?starter=backdraft&teamid=[teamid]"
-		},
-		"title": "hattriX-Ray Backdraft",
-		"img": "resources/linkicons/xray_backdraft.png"
-	},
-	"xray_clubray": {
-		"teamlink": {
-			"url": "http://www.databased.at/hattrick/x-ray/index.asp?starter=clubray&teamid=[teamid]"
-		},
-		"title": "hattriX-Ray clubray",
-		"img": "resources/linkicons/xray_clubray.png"
-	},
-	"xray_friendlier": {
-		"challengeslink": {
-			"url": "http://www.databased.at/hattrick/x-ray/index.asp?starter=friendlier"
-		},
-		"title": "hattriX-Ray Friendlier",
-		"img": "resources/linkicons/xray_friendlier.png"
-	},
-	"xray_roundstogo": {
-		"leaguelink": {
-			"url": "http://www.databased.at/hattrick/x-ray/index.asp?starter=rounds2Go&divID=[leagueid]"
-		},
-		"title": "hattriX-Ray rounds to go",
-		"img": "resources/linkicons/xray_rounds2go.png"
-	},
-	"xray_roundrate": {
-		"leaguelink": {
-			"url": "http://www.databased.at/hattrick/x-ray/index.asp?starter=roundrate&divID=[leagueid]"
-		},
-		"title": "hattriX-Ray roundRate",
-		"img": "resources/linkicons/xray_roundrate.png"
-	},
-	"xray_leaguemates": {
-		"leaguelink": {
-			"url": "http://www.databased.at/hattrick/x-ray/index.asp?starter=leaguemates&divID=[leagueid]"
-		},
-		"title": "hattriX-Ray leaguemates",
-		"img": "resources/linkicons/xray_leaguemates.png"
-	},
-	"xray_sunray": {
-		"nextmatchlink": {
-			"url": "http://www.databased.at/hattrick/x-ray/index.asp?starter=sunray&teamid=[teamid]"
-		},
-		"title": "hattriX-Ray sunray",
-		"img": "resources/linkicons/xray_sunray.png"
+		"title": "HT-Arena",
+		"img": "http://htstart.se/htarena/favicon.ico"
 	},
 	"htlivesight": {
 		"matchlink": {
@@ -112,90 +56,6 @@
 		},
 		"title": "htlivesight match viewer (based on livefox)",
 		"img": "http://htlivesight.sourceforge.net/images/48.png"
-	},
-	"xray_live": {
-		"matchlink": {
-			"url": "http://www.databased.at/hattrick/x-ray/index.asp?starter=live&matchid=[matchid]"
-		},
-		"title": "hattriX-Ray live!",
-		"img": "resources/linkicons/xray_live.png"
-	},
-	"xray_livereview": {
-		"playedmatchlink": {
-			"url": "http://www.databased.at/hattrick/x-ray/index.asp?starter=livereview&matchid=[matchid]"
-		},
-		"title": "hattriX-Ray live! (played matches)",
-		"img": "resources/linkicons/xray_live_review.png"
-	},
-	"xray_h2h": {
-		"playedmatchlink": {
-			"url": "http://www.databased.at/hattrick/x-ray/index.asp?starter=headtohead&matchid=[matchid]"
-		},
-		"title": "hattriX-Ray head to head (played matches)",
-		"img": "resources/linkicons/xray_h2h.png"
-	},
-	"xray_healing": {
-		"playerhealinglink": {
-			"url": "http://www.databased.at/hattrick/x-ray/index.asp?starter=healing&v1=[age]&v2=[injuredweeks]&pid=[playerid]"
-		},
-		"title": "hattriX-Ray healing",
-		"img": "resources/linkicons/xray_healing_s.png"
-	},
-	"xray_healingtsi": {
-		"playerhealinglink": {
-			"url": "http://www.databased.at/hattrick/x-ray/index.asp?starter=healingTSI&v1=[age]&v2=[injuredweeks]&v3=[tsi]&pid=[playerid]"
-		},
-		"title": "hattriX-Ray healing TSI",
-		"img": "resources/linkicons/xray_healingtsi_s.png"
-	},
-	"xray_keeper": {
-		"keeperlink": {
-			"url": "http://www.databased.at/hattrick/x-ray/index.asp?starter=keepersup&tsi=[tsi]&form=[form]&pid=[playerid]&v1=[goalkeeping]"
-		},
-		"title": "hattriX-Ray keepers-up",
-		"img": "resources/linkicons/xray_keepersup_s.png"
-	},
-	"xray_coach": {
-		"coachlink": {
-			"url": "http://www.databased.at/hattrick/x-ray/pages/coach.asp"
-		},
-		"title": "hattriX-Ray Coach",
-		"img": "resources/linkicons/xray_coach.png"
-	},
-	"xray_arenasizer": {
-		"arenalink": {
-			"url": "http://www.databased.at/hattrick/x-ray/index.asp?starter=arenasizer&v1=[terraces]&v2=[basic]&v3=[roof]&v4=[vip]"
-		},
-		"title": "hattriX-Ray arenasizer",
-		"img": "resources/linkicons/xray_arenasizer.png"
-	},
-	"HTPE": {
-		"transfercomparelink": {
-			"url": "http://www.databased.at/hattrick/htpe/?pid=[playerid]&tid=[teamid]&tsi=[tsi]&age=[age]&form=[form]&exp=[exp]&st=[stamina]&gk=[goalkeeping]&pm=[playmaking]&pa=[passing]&wi=[winger]&de=[defending]&sc=[scoring]&sp=[setpieces]"
-		},
-		"title": "hattriX-Ray HTPE",
-		"img": "http://www.databased.at/hattrick/pix/icons/htpe.ico"
-	},
-	"halloffame_match": {
-		"playedmatchlink": {
-			"url": "http://www.databased.at/hattrick/halloffame/?matchid=[matchid]"
-		},
-		"title": "Hattrick Hall of Fame (match)",
-		"img": "http://www.databased.at/hattrick/pix/icons/hhof.ico"
-	},
-	"halloffame_team": {
-		"teamlink": {
-			"url": "http://www.databased.at/hattrick/halloffame/?teamid=[teamid]"
-		},
-		"title": "Hattrick Hall of Fame (team)",
-		"img": "http://www.databased.at/hattrick/pix/icons/hhof.ico"
-	},
-	"halloffame_player": {
-		"playerlink": {
-			"url": "http://www.databased.at/hattrick/halloffame/?pid=[playerid]"
-		},
-		"title": "Hattrick Hall of Fame (player)",
-		"img": "http://www.databased.at/hattrick/pix/icons/hhof.ico"
 	},
 	"htstats_all": {
 		"playedmatchlink": {
@@ -225,109 +85,103 @@
 		"img": "http://www.fantamondi.it/HTMS/images/icon.ico"
 	},
 	"htstats": {
-		"leaguelink": {
-			"url": "http://htstats.com/liga.php?htliga=[leagueid]&setlang=[lang]",
-			"filters": ["countryid"]
+		"serieslink": {
+			"url": "http://htstats.com/liga.php?htliga=[seriesid]&setlang=[lang]",
+			"filters": ["leagueid"]
 		},
 		"teamlink": {
 			"url": "http://htstats.com/equipo.php?htequipo=[teamid]&setlang=[lang]",
-			"filters": ["countryid"]
+			"filters": ["leagueid"]
 		},
-		"countrylink": {
+		"leaguelink": {
 			"url": "http://htstats.com/&setlang=[lang]",
-			"filters": ["countryid"]
+			"filters": ["leagueid"]
 		},
-		"countryidranges": [[36, 36]],
+		"leagueidranges": [[36, 36]],
 		"title": "Peaso Hattrick Stats",
 		"img": "http://www.htstats.com/favicon.ico"
 	},
 	"vnukstats": {
-		"leaguelink": {
-			"url": "http://vnukstats.hattrick-sk.com/league/details/[leagueid]",
-			"filters": ["countryid"]
+		"serieslink": {
+			"url": "http://vnukstats.hattrick-sk.com/league/details/[seriesid]",
+			"filters": ["leagueid"]
 		},
 		"teamlink": {
 			"url": "http://vnukstats.hattrick-sk.com/team/details/[teamid]",
-			"filters": ["countryid"]
+			"filters": ["leagueid"]
 		},
-		"countrylink": {
-			"url": "http://vnukstats.hattrick-sk.com/top-series/default/[countryid]",
-			"filters": ["countryid"]
+		"leaguelink": {
+			"url": "http://vnukstats.hattrick-sk.com/top-series/default/[leagueid]",
+			"filters": ["leagueid"]
 		},
-		"countryidranges": [
+		"leagueidranges": [
 			[52, 52],
 			[67, 67]
 		],
 		"title": "VnukStats",
 		"img": "resources/linkicons/vnukstats.png"
 	},
-	"todohattrick": {
+	"vnukstats_hti": {
 		"leaguelink": {
-			"url": "http://www.stepi.org/todohattrick/grupo.asp?grupoID=[leagueid]",
-			"filters": ["countryid"]
+			"url": "http://vnukstats.hattrick-sk.com/hti/",
+			"filters": ["leagueid"]
+		},
+		"leagueidranges": [
+			[1000, 1000]
+		],
+		"title": "VnukStats HTI",
+		"img": "resources/linkicons/vnukstats.png"
+	},
+	"todohattrick": {
+		"serieslink": {
+			"url": "http://www.stepi.org/todohattrick/grupo.asp?grupoID=[seriesid]",
+			"filters": ["leagueid"]
 		},
 		"teamlink": {
 			"url": "http://www.stepi.org/todohattrick/equipo.asp?equipoID=[teamid]",
-			"filters": ["countryid"]
+			"filters": ["leagueid"]
 		},
-		"countryidranges": [[36, 36]],
+		"leagueidranges": [[36, 36]],
 		"title": "TodoHattrick",
 		"img": "http://www.stepi.org/todohattrick/images/thbystepi3.ico"
 	},
 	"hattristics": {
-		"leaguelink": {
-			"url": "http://www.hattristics.org/pub/viewLeague.php?leagueName=[leaguename]",
-			"filters": ["levelnum", "countryid"]
+		"serieslink": {
+			"url": "http://www.hattristics.org/pub/viewLeague.php?leagueName=[seriesname]",
+			"filters": ["levelnum", "leagueid"]
 		},
 		"teamlink": {
 			"url": "http://www.hattristics.org/index.php",
-			"filters": ["countryid"]
+			"filters": ["leagueid"]
 		},
-		"countryidranges": [[46, 46]],
+		"leagueidranges": [[46, 46]],
 		"levelnumranges": [[1, 5]],
 		"title": "Hattristics",
 		"img": "http://www.hattristics.org/favicon.ico"
 	},
 	"hattrickgazette": {
-		"leaguelink": {
+		"serieslink": {
 			"url": "http://www.hattrickgazette.org/"
 		},
 		"title": "Hattrick Gazette",
 		"img": "http://www.hattrickgazette.org/favicon.png"
-	},
-	"akickku": {
-		"leaguelink": {
-			"url": "http://www.akickku.com/series.php?seriesname=[leaguename]",
-			"filters": ["countryid"]
-		},
-		"teamlink": {
-			"url": "http://www.akickku.com/team.php?id=[teamid]&name=[teamname]",
-			"filters": ["countryid"]
-		},
-		"countrylink": {
-			"url": "http://www.akickku.com/",
-			"filters": ["countryid"]
-		},
-		"countryidranges": [[8, 8]],
-		"title": "Akickku",
-		"img": "resources/linkicons/akickku.png"
 	},
 	"maptrick_coolness": {
 		"teamlink": {
 			"url": "http://www.maptrick.org/coolness.php?team=[teamid]#results"
 		},
 		"challengeslink": {
-			"url": "http://www.maptrick.org/coolness.php?team=[teamid]"
+			"url": "http://www.maptrick.org/coolness.php?team=[ownteamid]"
 		},
 		"title": "Maptrick Coolness",
 		"img": "http://www.maptrick.org/favicon.ico"
 	},
 	"maptrick_hoc": {
-		"countrylink": {
-			"url": "http://www.maptrick.org/hallofcool.php?country=[countryid]"
-		},
 		"leaguelink": {
-			"url": "http://www.maptrick.org/hallofcool.php?league=[leagueid]"
+			"url": "http://www.maptrick.org/hallofcool.php?country=[leagueid]"
+		},
+		"serieslink": {
+			"url": "http://www.maptrick.org/hallofcool.php?league=[seriesid]"
 		},
 		"federationlink": {
 			"url": "http://www.maptrick.org/hallofcool.php?alliance=[federationid]"
@@ -336,8 +190,8 @@
 		"img": "http://www.maptrick.org/favicon.ico"
 	},
 	"maptrick_botmap": {
-		"countrylink": {
-			"url": "http://www.maptrick.org/botmap.php?country=[countryid]"
+		"leaguelink": {
+			"url": "http://www.maptrick.org/botmap.php?country=[leagueid]"
 		},
 		"title": "Maptrick Botmap",
 		"img": "http://www.maptrick.org/favicon.ico"
@@ -346,39 +200,11 @@
 		"teamlink": {
 			"url": "http://ht-dog.net/?otherTeamID=[teamid]"
 		},
+		"nextmatchlink": {
+			"url": "http://ht-dog.net/?otherTeamID=[opponentid]"
+		},
 		"title": "HT-Dog",
 		"img": "http://ht-dog.net/animated_favicon111.gif"
-	},
-	"healingkawasaki": {
-		"playerhealinglink": {
-			"url": "http://av.hattricknippon.org"
-		},
-		"title": "Kawasaki Tigers Injury Healing Time Prediction Tool",
-		"img": "resources/linkicons/redcross_small.png"
-	},
-	"healingkawasaki2": {
-		"playerhealinglink": {
-			"url": "http://av2.hattricknippon.org"
-		},
-		"title": "Kawasaki Tigers Injury Healing Time Prediction Tool 2",
-		"img": "resources/linkicons/redcross_small.png"
-	},
-	"htbox_heal": {
-		"playerhealinglink": {
-			"url": "http://www.ht-box.ru/healing.php?age=[age]&inj=[injuredweeks]&tsi=[tsi]"
-		},
-		"title": "HTBox Healing",
-		"img": "http://ht-box.ru/favicon.png"
-	},
-	"htbox_training": {
-		"playerlink": {
-			"url": "http://www.ht-box.ru/training.php?yr=[age]&dy=[age_days]&goalkeeping=[goalkeeping]&defending=[defending]&playmaking=[playmaking]&winger=[winger]&passing=[passing]&scoring=[scoring]&setpieces=[setpieces]"
-		},
-		"traininglink": {
-			"url": "http://www.ht-box.ru/training.php?coach=[Coach]&ti=[TI]&ko=[STA]&type=[TrainingType]"
-		},
-		"title": "HTBox Training",
-		"img": "http://ht-box.ru/favicon.png"
 	},
 	"Ht4u": {
 		"playerlink": {
@@ -396,25 +222,6 @@
 		"title": "Team Spirit Calculator",
 		"img": "resources/linkicons/Ht4u.png"
 	},
-	"confidence": {
-		"traininglink": {
-			"url": "http://fptsj.brinkster.net/confianca.aspx"
-		},
-		"title": "Team Confidence Calculator",
-		"img": "resources/linkicons/confidence.png"
-	},
-  "ht-u20": {
-		"playerlink": {
-			"url": "http://age.ht-u20.com/?years=[age]&days=[age_days]",
-			"filters": ["age"]
-		},
-		"youthplayerdetaillink": {
-			"url": "http://age.ht-u20.com/?years=[age]&days=[age_days]"
-		},
-		"ageranges": [[15, 20]],
-		"title": "HT-U20 Check age vs U-20 matches",
-		"img": "resources/linkicons/u20.png"
-	},
 	"hottrickkeeper": {
 		"keeperlink": {
 			"url": "http://www.hottrick.org/hattrick_keeper_tool.php"
@@ -428,13 +235,6 @@
 		},
 		"title": "Substitutions calculator tool",
 		"img": "http://lizardopoli.altervista.org/staminia/img/staminia_favicon.png"
-	},
-	"htnipponkeeper": {
-		"keeperlink": {
-			"url": "http://keeper.hattricknippon.org/?tsi=[tsi]&form=[form]"
-		},
-		"title": "Keeper Level Prediction Tool",
-		"img": "resources/linkicons/hattricknippon_small.png"
 	},
 	"coachexperience": {
 		"coachlink": {
@@ -461,15 +261,15 @@
 	"htlinks_ti_schrauber": {
 		"traininglink": {
 			"url": "http://www.ht-links.de/Hattrick/TISchrauber.html",
-			"filters": ["owncountryid"]
+			"filters": ["ownleagueid"]
 		},
-		"owncountryidranges": [[3, 3]],
+		"ownleagueidranges": [[3, 3]],
 		"title": "HT-Links.de - TISchrauber",
 		"img": "http://www.ht-links.de/favicon.ico"
 	},
 	"htlinks_price_money": {
 		"teamlink": {
-			"url": "http://www.ht-links.de/Hattrick/PraemiephpE.html?Fan=[fans]&Platz=[leaguepos]&Liga=[levelnum]"
+			"url": "http://www.ht-links.de/Hattrick/PraemiephpE.html?Fan=[fans]&Platz=[seriespos]&Liga=[levelnum]"
 		},
 		"title": "HT-Links.de - price_money",
 		"img": "http://www.ht-links.de/favicon.ico"
@@ -484,18 +284,11 @@
 	"htlinks_Errungenschaften": {
 		"achievementslink": {
 			"url": "http://www.ht-links.de/Hattrick/Errungenschaften.html",
-			"filters": ["owncountryid"]
+			"filters": ["ownleagueid"]
 		},
-		"owncountryidranges": [[3, 3]],
+		"ownleagueidranges": [[3, 3]],
 		"title": "HT-Links.de - Errungenschaften",
 		"img": "http://www.ht-links.de/favicon.ico"
-	},
-	"Hattrick_training_speed_tool": {
-		"traininglink": {
-			"url": "http://trainingspeed.freehostia.com/?Coach=[Coach]&TI=[TI]&KO=[STA]&TrainingType=[TrainingType]"
-		},
-		"title": "Hattrick training speed tool",
-		"img": "resources/linkicons/trainingspeed.png"
 	},
 	"GOInternationals": {
 		"nationalteamlink": {
@@ -504,34 +297,53 @@
 		"title": "GO Internationals",
 		"img": "http://www.goanoei.nl/goht/favicon.ico"
 	},
+	"htradiopodbean": {
+		"worldlink": {
+			"url": "https://hattrickradio.podbean.com"
+		},
+		"leaguelink": {
+			"url": "https://hattrickradio.podbean.com",
+			"filters": ["leagueid"]
+		},
+		"leagueidranges": [[85, 85]],
+		"title": "The Hattrick Radio’s Podcast",
+		"img": "https://hattrickradio.podbean.com/mf/web/8skbtp/hattrick_ball_dark_green_png.ico"
+	},
+	"htbook": {
+		"managerlink": {
+			"url": "http://htbook.cf"
+		},
+		"title": "Hattrick Social Network",
+		"img": "http://htbook.cf/favicon.ico"
+	},
 	"englandyadb": {
 		"youthlink": {
 			"url": "http://www.realfootball.co.uk/hattrick/ya/",
-			"filters": ["owncountryid"]
+			"filters": ["ownleagueid"]
 		},
 		"youthtraininglink": {
 			"url": "http://www.realfootball.co.uk/hattrick/ya/",
-			"filters": ["owncountryid"]
+			"filters": ["ownleagueid"]
 		},
-		"owncountryidranges": [[2, 2]],
+		"ownleagueidranges": [[2, 2]],
 		"title": "England YA DB",
 		"img": "resources/linkicons/tracker.png"
 	},
 	"junnukoira": {
 		"youthplayerdetaillink": {
 			"url": "http://www.saunalahti.fi/pterasti/Hattrick/junnukoira/index.php",
-			"filters": ["owncountryid"]
+			"filters": ["ownleagueid"]
 		},
-		"owncountryidranges": [[12, 12]],
+		"ownleagueidranges": [[12, 12]],
 		"title": "Junnukoira - U-20 -superlupausten arvioija",
 		"img": "resources/linkicons/puhuvakoira.png"
 	},
 	"treenikoira": {
 		"traininglink": {
 			"url": "http://www.saunalahti.fi/pterasti/Hattrick/treenikoira/index.php?coach=[Coach]&ti=[TI]&sta=[STA]&trainingtype=[TrainingType]",
-			"filters": ["owncountryid"]
+			"filters": ["ownleagueid"]
 		},
-		"owncountryidranges": [[12, 12]],
+		"ownleagueidranges": [[12, 12]],
 		"title": "Treenikoira - treenilaskuri",
 		"img": "resources/linkicons/puhuvakoira.png"
 	},
@@ -557,41 +369,38 @@
 		"img": "resources/linkicons/nrg_pop.png"
 	},
 	"argenstat": {
-		"leaguelink": {
-			"url": "http://argenstat.com.ar/?V=L&ID=[leagueid]",
-			"filters": ["countryid"]
+		"serieslink": {
+			"url": "http://argenstat.com.ar/?V=L&ID=[seriesid]",
+			"filters": ["leagueid"]
 		},
 		"teamlink": {
 			"url": "http://argenstat.com.ar/?V=T&ID=[teamid]",
-			"filters": ["countryid"]
+			"filters": ["leagueid"]
 		},
-		"countrylink": {
+		"leaguelink": {
 			"url": "http://argenstat.com.ar/",
-			"filters": ["countryid"]
+			"filters": ["leagueid"]
 		},
-		"countryidranges": [[7, 7]],
+		"leagueidranges": [[7, 7]],
 		"title": "ArgenStat",
 		"img": "resources/linkicons/argenstat.png"
-	},
-	"gham": {
-		"matchlink": {
-			"url": "http://hattrickitalia.org/gham/live/?matchId=[matchid]"
-		},
-		"title": "Gham live",
-		"img": "http://gham.hattrickitalia.org/favicon.ico"
 	},
 	"frenchtracker":  {
 		"img": "http://www.ht-fff.org/favicon.ico",
 		"title": "French U20/NT Tracker",
 		"trackernationalteamlink": {
-			"url": "http://www.ht-fff.org/?server=[server]",
-			"filters": ["countryid"]
+			"url": "http://www.ht-dtnfff.fr/",
+			"filters": ["leagueid"]
+		},
+		"trackerleaguelink": {
+			"url": "http://www.ht-dtnfff.fr/",
+			"filters": ["leagueid"]
 		},
 		"trackerplayerlink": {
-			"url": "http://www.ht-fff.org/?server=[server]",
+			"url": "http://www.ht-dtnfff.fr/",
 			"filters": ["nationality"]
 		},
-		"countryidranges": [[5, 5]],
+		"leagueidranges": [[5, 5]],
 		"nationalityranges": [[5, 5]]
 	},
 	"scotlandtracker":  {
@@ -599,13 +408,17 @@
 		"title": "Scotland U20/NT Tracker",
 		"trackernationalteamlink": {
 			"url": "http://hattrickscotland.org/nationalteams.php",
-			"filters": ["countryid"]
+			"filters": ["leagueid"]
+		},
+		"trackerleaguelink": {
+			"url": "http://hattrickscotland.org/nationalteams.php",
+			"filters": ["leagueid"]
 		},
 		"trackerplayerlink": {
 			"url": "http://hattrickscotland.org/players.php?do=view&playerid=[playerid]",
 			"filters": ["nationality"]
 		},
-		"countryidranges": [[26, 26]],
+		"leagueidranges": [[26, 26]],
 		"nationalityranges": [[26, 26]]
 	},
 	"canadatracker": {
@@ -613,13 +426,17 @@
 		"title": "Canada U20/NT Tracker",
 		"trackernationalteamlink": {
 			"url": "http://canada.htravenia.com/?server=[server]",
-			"filters": ["countryid"]
+			"filters": ["leagueid"]
+		},
+		"trackerleaguelink": {
+			"url": "http://canada.htravenia.com/?server=[server]",
+			"filters": ["leagueid"]
 		},
 		"trackerplayerlink": {
 			"url": "http://canada.htravenia.com/players/?id=[playerid]&server=[server]",
 			"filters": ["nationality"]
 		},
-		"countryidranges": [[17, 17]],
+		"leagueidranges": [[17, 17]],
 		"nationalityranges": [[17, 17]]
 	},
 	"benintracker": {
@@ -627,13 +444,17 @@
 		"title": "Benin NT/U20 Tracker",
 		"trackernationalteamlink": {
 			"url": "http://htbenin.athost.fr/index.php",
-			"filters": ["countryid"]
+			"filters": ["leagueid"]
+		},
+		"trackerleaguelink": {
+			"url": "http://htbenin.athost.fr/index.php",
+			"filters": ["leagueid"]
 		},
 		"trackerplayerlink": {
 			"url": "http://htbenin.athost.fr/index.php",
 			"filters": ["nationality"]
 		},
-		"countryidranges": [[139, 139]],
+		"leagueidranges": [[139, 139]],
 		"nationalityranges": [[139, 139]]
 	},
 	"crotracker": {
@@ -641,13 +462,17 @@
 		"title": "Hrvatska NT U20 Tracker",
 		"trackernationalteamlink": {
 			"url": "http://cro-tracker.com/index.php",
-			"filters": ["countryid"]
+			"filters": ["leagueid"]
+		},
+		"trackerleaguelink": {
+			"url": "http://cro-tracker.com/index.php",
+			"filters": ["leagueid"]
 		},
 		"trackerplayerlink": {
 			"url": "http://cro-tracker.com/index.php",
 			"filters": ["nationality"]
 		},
-		"countryidranges": [[58, 58]],
+		"leagueidranges": [[58, 58]],
 		"nationalityranges": [[58, 58]]
 	},
 	"colombiatracker": {
@@ -655,13 +480,17 @@
 		"title": "Colombia U20/NT Tracker",
 		"trackernationalteamlink": {
 			"url": "http://seleccion.htcolombia.org/",
-			"filters": ["countryid"]
+			"filters": ["leagueid"]
+		},
+		"trackerleaguelink": {
+			"url": "http://seleccion.htcolombia.org/",
+			"filters": ["leagueid"]
 		},
 		"trackerplayerlink": {
 			"url": "http://seleccion.htcolombia.org/",
 			"filters": ["nationality"]
 		},
-		"countryidranges": [[19, 19]],
+		"leagueidranges": [[19, 19]],
 		"nationalityranges": [[19, 19]]
 	},
 	"englandtracker": {
@@ -669,13 +498,17 @@
 		"title": "England U20/NT Tracker",
 		"trackernationalteamlink": {
 			"url": "http://www.realfootball.co.uk/hattrick/tracker",
-			"filters": ["countryid"]
+			"filters": ["leagueid"]
+		},
+		"trackerleaguelink": {
+			"url": "http://www.realfootball.co.uk/hattrick/tracker",
+			"filters": ["leagueid"]
 		},
 		"trackerplayerlink": {
 			"url": "http://www.realfootball.co.uk/hattrick/tracker",
 			"filters": ["nationality"]
 		},
-		"countryidranges": [[2, 2]],
+		"leagueidranges": [[2, 2]],
 		"nationalityranges": [[2, 2]]
 	},
 	"nederlandtracker": {
@@ -683,13 +516,17 @@
 		"title": "Nederland U20/NT Tracker",
 		"trackernationalteamlink": {
 			"url": "http://www.dutchscouts.nl/",
-			"filters": ["countryid"]
+			"filters": ["leagueid"]
+		},
+		"trackerleaguelink": {
+			"url": "http://www.dutchscouts.nl/",
+			"filters": ["leagueid"]
 		},
 		"trackerplayerlink": {
 			"url": "http://www.dutchscouts.nl/",
 			"filters": ["nationality"]
 		},
-		"countryidranges": [[14, 14]],
+		"leagueidranges": [[14, 14]],
 		"nationalityranges": [[14, 14]]
 	},
 	"qatartracker": {
@@ -697,13 +534,17 @@
 		"title": "Dawlat Qatar U20/NT Tracker",
 		"trackernationalteamlink": {
 			"url": "http://www.tracker.comyr.com/",
-			"filters": ["countryid"]
+			"filters": ["leagueid"]
+		},
+		"trackerleaguelink": {
+			"url": "http://www.tracker.comyr.com/",
+			"filters": ["leagueid"]
 		},
 		"trackerplayerlink": {
 			"url": "http://www.tracker.comyr.com/",
 			"filters": ["nationality"]
 		},
-		"countryidranges": [[141, 141]],
+		"leagueidranges": [[141, 141]],
 		"nationalityranges": [[141, 141]]
 	},
 	"sverigetracker": {
@@ -711,13 +552,17 @@
 		"title": "Sweden U20/NT Tracker",
 		"trackernationalteamlink": {
 			"url": "http://htsweden.htsv.se",
-			"filters": ["countryid"]
+			"filters": ["leagueid"]
+		},
+		"trackerleaguelink": {
+			"url": "http://htsweden.htsv.se",
+			"filters": ["leagueid"]
 		},
 		"trackerplayerlink": {
 			"url": "http://htsweden.htsv.se",
 			"filters": ["nationality"]
 		},
-		"countryidranges": [[1, 1]],
+		"leagueidranges": [[1, 1]],
 		"nationalityranges": [[1, 1]]
 	},
 	"tanzaniatracker": {
@@ -725,13 +570,17 @@
 		"title": "Tanzania U-20/NT DB",
 		"trackernationalteamlink": {
 			"url": "http://hattricktanzania.ic.cz",
-			"filters": ["countryid"]
+			"filters": ["leagueid"]
+		},
+		"trackerleaguelink": {
+			"url": "http://hattricktanzania.ic.cz",
+			"filters": ["leagueid"]
 		},
 		"trackerplayerlink": {
 			"url": "http://hattricktanzania.ic.cz",
 			"filters": ["nationality"]
 		},
-		"countryidranges": [[142, 142]],
+		"leagueidranges": [[142, 142]],
 		"nationalityranges": [[142, 142]]
 	},
 	"turkeytracker": {
@@ -739,13 +588,17 @@
 		"title": "Türkiye & Azebaycan Player Database",
 		"trackernationalteamlink": {
 			"url": "http://www.ht-turkiye.com",
-			"filters": ["countryid"]
+			"filters": ["leagueid"]
+		},
+		"trackerleaguelink": {
+			"url": "http://www.ht-turkiye.com",
+			"filters": ["leagueid"]
 		},
 		"trackerplayerlink": {
 			"url": "http://www.ht-turkiye.com",
 			"filters": ["nationality"]
 		},
-		"countryidranges": [
+		"leagueidranges": [
 			[32, 32],
 			[129, 129]
 		],
@@ -759,13 +612,17 @@
 		"title": "Ukraina NT/U-20 DB",
 		"trackernationalteamlink": {
 			"url": "http://players.pp.ua/",
-			"filters": ["countryid"]
+			"filters": ["leagueid"]
+		},
+		"trackerleaguelink": {
+			"url": "http://players.pp.ua/",
+			"filters": ["leagueid"]
 		},
 		"trackerplayerlink": {
 			"url": "http://players.pp.ua/update",
 			"filters": ["nationality"]
 		},
-		"countryidranges": [[68, 68]],
+		"leagueidranges": [[68, 68]],
 		"nationalityranges": [[68, 68]]
 	},
 	"spaintracker": {
@@ -773,13 +630,17 @@
 		"title": "Espana NT/U-20 DB",
 		"trackernationalteamlink": {
 			"url": "http://www.htspain.es/",
-			"filters": ["countryid"]
+			"filters": ["leagueid"]
+		},
+		"trackerleaguelink": {
+			"url": "http://www.htspain.es/",
+			"filters": ["leagueid"]
 		},
 		"trackerplayerlink": {
 			"url": "http://www.htspain.es/index.php?pag=ht_login",
 			"filters": ["nationality"]
 		},
-		"countryidranges": [[36, 36]],
+		"leagueidranges": [[36, 36]],
 		"nationalityranges": [[36, 36]]
 	},
 	"polskatracker": {
@@ -787,13 +648,17 @@
 		"title": "Polska NT/U-20 DB",
 		"trackernationalteamlink": {
 			"url": "http://www.ntdb.pl/",
-			"filters": ["countryid"]
+			"filters": ["leagueid"]
+		},
+		"trackerleaguelink": {
+			"url": "http://www.ntdb.pl/",
+			"filters": ["leagueid"]
 		},
 		"trackerplayerlink": {
 			"url": "http://www.ntdb.pl/index.php?page=Logging",
 			"filters": ["nationality"]
 		},
-		"countryidranges": [[24, 24]],
+		"leagueidranges": [[24, 24]],
 		"nationalityranges": [[24, 24]]
 	},
 	"hungarytracker" : {
@@ -801,7 +666,11 @@
 		"title": "Hungary National Tracker",
 		"trackernationalteamlink": {
 			"url": "http://ht-tracker.rakoczif.hu/",
-			"filters": ["countryid"]
+			"filters": ["leagueid"]
+		},
+		"trackerleaguelink": {
+			"url": "http://ht-tracker.rakoczif.hu/",
+			"filters": ["leagueid"]
 		},
 		"trackerplayerlink": {
 			"url": "http://ht-tracker.rakoczif.hu/",
@@ -809,9 +678,13 @@
 		},
 		"trackeryouthlink": {
 			"url": "http://ht-tracker.rakoczif.hu/",
-			"filters": ["countryid"]
+			"filters": ["leagueid"]
 		},
-		"countryidranges": [[51, 51]],
+		"trackeryouthplayerlink": {
+			"url": "http://ht-tracker.rakoczif.hu/",
+			"filters": ["nationality"]
+		},
+		"leagueidranges": [[51, 51]],
 		"nationalityranges": [[51, 51]]
 	},
 	"russiatracker": {
@@ -819,13 +692,17 @@
 		"title": "Russia + Kyrgyzstan NT/U-20 DB",
 		"trackernationalteamlink": {
 			"url": "http://www.hattricker.ru/tracker/",
-			"filters": ["countryid"]
+			"filters": ["leagueid"]
+		},
+		"trackerleaguelink": {
+			"url": "http://www.hattricker.ru/tracker/",
+			"filters": ["leagueid"]
 		},
 		"trackerplayerlink": {
 			"url": "http://www.hattricker.ru/tracker/",
 			"filters": ["nationality"]
 		},
-		"countryidranges": [
+		"leagueidranges": [
 			[35, 35],
 			[102, 102]
 		],
@@ -839,13 +716,17 @@
 		"title": "Norway NT/U-20 DB",
 		"trackernationalteamlink": {
 			"url": "http://htnorway.com/tracker/",
-			"filters": ["countryid"]
+			"filters": ["leagueid"]
+		},
+		"trackerleaguelink": {
+			"url": "http://htnorway.com/tracker/",
+			"filters": ["leagueid"]
 		},
 		"trackerplayerlink": {
 			"url": "http://htnorway.com/tracker/",
 			"filters": ["nationality"]
 		},
-		"countryidranges": [[9, 9]],
+		"leagueidranges": [[9, 9]],
 		"nationalityranges": [[9, 9]]
 	},
 	"sloveniatracker": {
@@ -853,13 +734,17 @@
 		"title": "HTSlo - Slovenian Hattrick U-20/NT tracker",
 		"trackernationalteamlink": {
 			"url": "http://www.sloscfan.com/hattrick/",
-			"filters": ["countryid"]
+			"filters": ["leagueid"]
+		},
+		"trackerleaguelink": {
+			"url": "http://www.sloscfan.com/hattrick/",
+			"filters": ["leagueid"]
 		},
 		"trackerplayerlink": {
 			"url": "http://www.sloscfan.com/hattrick/",
 			"filters": ["nationality"]
 		},
-		"countryidranges": [[64, 64]],
+		"leagueidranges": [[64, 64]],
 		"nationalityranges": [[64, 64]]
 	},
 	"romaniantracker": {
@@ -867,56 +752,79 @@
 		"title": "HT-Ro / NT & U-20 Tracker",
 		"trackernationalteamlink": {
 			"url": "http://www.ht-ro.org",
-			"filters": ["countryid"]
+			"filters": ["leagueid"]
+		},
+		"trackerleaguelink": {
+			"url": "http://www.ht-ro.org",
+			"filters": ["leagueid"]
 		},
 		"trackerplayerlink": {
 			"url": "http://www.ht-ro.org",
 			"filters": ["nationality"]
 		},
-		"countryidranges": [[37, 37]],
+		"leagueidranges": [[37, 37]],
 		"nationalityranges": [[37, 37]]
 	},
 	"uruguaytracker": {
-		"img": "http://www.sisu-ht.tk/SISU/images/Logo.ico",
+		"img": "http://www.sisu-ht.com/images/Logo.ico",
 		"title": "Sistema Integral de la Seleccion Uruguaya (SISU)",
 		"trackernationalteamlink": {
-			"url": "http://www.sisu-ht.tk/",
-			"filters": ["countryid"]
+			"url": "http://www.sisu-ht.com/VerEspirituSeleccion.aspx?teamId=[ntteamid]",
+			"filters": ["leagueid"]
+		},
+		"trackerleaguelink": {
+			"url": "http://www.sisu-ht.com/",
+			"filters": ["leagueid"]
 		},
 		"trackerplayerlink": {
-			"url": "http://www.sisu-ht.tk/",
+			"url": "http://www.sisu-ht.com/EditarJugadorSenior.aspx?playerId=[playerid]",
 			"filters": ["nationality"]
 		},
 		"trackeryouthlink": {
-			"url": "http://www.sisu-ht.tk/",
-			"filters": ["countryid"]
+			"url": "http://www.sisu-ht.com/",
+			"filters": ["leagueid"]
 		},
-		"countryidranges": [[28, 28]],
+		"trackeryouthplayerlink": {
+			"url": "http://www.sisu-ht.com/EditarJugadorNuevaCantera.aspx?playerId=[playerid]",
+			"filters": ["nationality"]
+		},
+		"leagueidranges": [[28, 28]],
 		"nationalityranges": [[28, 28]]
+	},
+	"chiletracker": {
+		"img": "http://www.botrick.altirogames.com/images/favicon.ico",
+		"title": "Botrick, Chilean Hattrick NT/U20 Tracker",
+		"trackernationalteamlink": {
+			"url": "http://www.botrick.altirogames.com/",
+			"filters": ["leagueid"]
+		},
+		"trackerleaguelink": {
+			"url": "http://www.botrick.altirogames.com/",
+			"filters": ["leagueid"]
+		},
+		"trackerplayerlink": {
+			"url": "http://www.botrick.altirogames.com/",
+			"filters": ["nationality"]
+		},
+		"leagueidranges": [[18, 18]],
+		"nationalityranges": [[18, 18]]
 	},
 	"tnt_youth": {
 		"youthlink": {
 			"url": "http://dasmagischedreieck.de/tnt/",
-			"filters": ["owncountryid"]
+			"filters": ["ownleagueid"]
 		},
 		"youthplayerlistlink": {
 			"url": "http://www.dasmagischedreieck.de/tnt/",
-			"filters": ["owncountryid"]
+			"filters": ["ownleagueid"]
 		},
 		"youthplayerdetaillink": {
 			"url": "http://www.dasmagischedreieck.de/tnt/addplayer.php",
-			"filters": ["owncountryid"]
+			"filters": ["ownleagueid"]
 		},
-		"owncountryidranges": [[110, 110]],
+		"ownleagueidranges": [[110, 110]],
 		"title": "Trinidad & Tobago Youth Academy Guide",
 		"img": "http://www.dasmagischedreieck.de/DivBilder/ateam.ico"
-	},
-	"ht-ys": {
-		"youthleaguelink": {
-			"url": "http://www.ht-ys.org/?league_id=[youthleagueid]"
-		},
-		"title": "Hattrick Youth Statistics",
-		"img": "resources/linkicons/htys.png"
 	},
 	"Wage_Reduction_Calculator": {
 		"playerlink": {
@@ -955,6 +863,9 @@
 	"hattrickportal": {
 		"title": "Hattrick Portal NT/U20 tracker",
 		"img": "http://hattrickportal.pro/favicon.ico",
+		"trackerleaguelink": {
+			"url": "http://hattrickportal.pro/Tracker"
+		},
 		"trackernationalteamlink": {
 			"url": "http://hattrickportal.pro/Tracker"
 		},
@@ -962,42 +873,24 @@
 			"url": "http://hattrickportal.pro/Tracker"
 		}
 	},
-	"hattrickchallenge_friendly": {
-		"challengeslink": {
-			"url": "http://www.hattrickchallenge.com/Tools/Entry.php?tool=friendly&teamid=[teamid]"
-		},
-		"youthchallengeslink": {
-			"url": "http://www.hattrickchallenge.com/Tools/Entry.php?tool=youthfriendly&youthteamid=[youthteamid]&teamid=[teamid]"
-		},
-		"youthlink": {
-			"url": "http://www.hattrickchallenge.com/Tools/Entry.php?tool=youthfriendly&youthteamid=[youthteamid]&teamid=[teamid]"
-		},
-		"title": "HattrickChallenge Friendly ads",
-		"img": "http://www.hattrickchallenge.com/images/favicon.ico",
-		"allow": [
-			"EQUAL",
-			"teamid",
-			"ownteamid"
-		]
-	},
 	"hattrick-youthclub": {
 		"youthlink": {
-			"url": "http://www.hattrick-youthclub.org/redirect/type/team/ht_id/[ownteamid]"
+			"url": "https://www.hattrick-youthclub.org/redirect/type/team/ht_id/[ownteamid]"
 		},
 		"youthplayerlistlink": {
-			"url": "http://www.hattrick-youthclub.org/redirect/type/team_sync/ht_id/[ownteamid]"
+			"url": "https://www.hattrick-youthclub.org/redirect/type/team_sync/ht_id/[ownteamid]"
 		},
 		"youthplayerdetaillink": {
-			"url": "http://www.hattrick-youthclub.org/redirect/type/player_details/ht_id/[playerid]"
+			"url": "https://www.hattrick-youthclub.org/redirect/type/player_details/ht_id/[playerid]"
 		},
 		"youthmatchlistlink": {
-			"url": "http://www.hattrick-youthclub.org/redirect/type/team_matches/ht_id/[ownteamid]"
+			"url": "https://www.hattrick-youthclub.org/redirect/type/team_matches/ht_id/[ownteamid]"
 		},
 		"youthtraininglink": {
-			"url": "http://www.hattrick-youthclub.org/redirect/type/team/ht_id/[ownteamid]"
+			"url": "https://www.hattrick-youthclub.org/redirect/type/team/ht_id/[ownteamid]"
 		},
 		"playedyouthmatchlink": {
-			"url": "http://www.hattrick-youthclub.org/redirect/type/lineup/ht_id/[matchid]"
+			"url": "https://www.hattrick-youthclub.org/redirect/type/lineup/ht_id/[matchid]"
 		},
 		"allow": [
 			"OR",
@@ -1015,51 +908,13 @@
 				"EQUAL",
 				"teamid2",
 				"ownyouthteamid"
+			],
+			[
+				"EXISTS",
+				"playerid"
 			]
 		],
 		"title": "Hattrick Youthclub",
-		"img": "http://static.hattrick-youthclub.org/resources/image/favicon.ico"
-	},
-	"htev": {
-		"teamlink": {
-			"url": "http://htev.org/team/[teamid]/"
-		},
-		"leaguelink": {
-			"url": "http://htev.org/search_leagueid/?SeriesID=[leagueid]"
-		},
-		"playedmatchlink": {
-			"url": "http://htev.org/match/[matchid]/"
-		},
-		"countrylink": {
-			"url": "http://htev.org/country/[countryid]/"
-		},
-		"worldlink": {
-			"url": "http://htev.org/world/"
-		},
-		"nationalteamlink": {
-			"url": "http://htev.org/scout/nat_team/[ntteamid]/"
-		},
-		"title": "HTEV",
-		"img": "http://htev.org/static/htevfavicon.gif"
-	},
-	"htev_simulator": {
-		"matchlink": {
-			"url": "http://htev.org/furminator/"
-		},
-		"title": "HTEV Simulator",
-		"img": "http://htev.org/static/htevfavicon.gif"
-	},
-	"hatstatsnet": {
-		"leaguelink": {
-			"url": "http://hatstats.net/[countryid]/standings.php?series=[leagueid]"
-		},
-		"teamlink": {
-			"url": "http://hatstats.net/[countryid]/team.php?teamID=[teamid]"
-		},
-		"countrylink": {
-			"url": "http://hatstats.net/[countryid]/"
-		},
-		"title": "Hatstats",
-		"img": "http://hatstats.net/favicon.ico"
+		"img": "https://static.hattrick-youthclub.org/resources/image/favicon.ico"
 	}
 }

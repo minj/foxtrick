@@ -14,10 +14,12 @@ Foxtrick.modules['SeniorTeamShortCuts'] = {
 		var ownteamid = Foxtrick.util.id.getOwnTeamId();
 
 		var boxleft = doc.getElementsByClassName('subMenu')[0];
-		if (boxleft == null) {return;}
+		if (!boxleft)
+			return;
+
 		var teamid = Foxtrick.util.id.findTeamId(boxleft);
-		if (teamid == ownteamid && Foxtrick.Prefs.getInt('module.' +
-		    this.MODULE_NAME + '.value') == 0)
+		if (!teamid || teamid == ownteamid &&
+		    Foxtrick.Prefs.getInt('module.' + this.MODULE_NAME + '.value') === 0)
 			return;
 
 		var pos1 = -1; var pos2 = -1;
@@ -48,7 +50,7 @@ Foxtrick.modules['SeniorTeamShortCuts'] = {
 		// coach make link
 		var li2 = Foxtrick.createFeaturedElement(doc, this, 'li');
 		var coachlink = doc.createElement('a');
-		if (teamid < 3000 || teamid >= 5000) { // normal teams
+		if (!Foxtrick.util.id.isNTId(teamid)) { // normal teams
 			if (teamid != ownteamid)
 				coachlink.setAttribute('href', '/Club/Players/?TeamID=' + teamid +
 				                       '&redir_to_coach=true');

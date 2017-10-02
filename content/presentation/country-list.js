@@ -28,7 +28,8 @@ Foxtrick.modules['CountryList'] = {
 		var ddlZone = Foxtrick.getMBElement(doc, 'ddlZone');
 
 		var ddlBornIn = Foxtrick.getMBElement(doc, 'ddlBornIn');
-		var poolLeague = Foxtrick.getMBElement(doc, 'ddlPoolSettingRequestLeague');
+		var poolCountry = Foxtrick.getMBElement(doc, 'ddlPoolSettingRequestLeague'); // country
+		var poolCountries = Foxtrick.getMBElement(doc, 'ddlPoolCountries');
 
 		var action;
 		if (Foxtrick.Prefs.isModuleOptionEnabled('CountryList', 'SelectBoxes')) {
@@ -41,7 +42,7 @@ Foxtrick.modules['CountryList'] = {
 		var pageMap = {
 			transferSearchForm: [[ddlZone, 10], [ddlBornIn, 1]],
 			country: [lgsDd_lgs, 0],
-			htPress: [lgs2_lgs, 1],
+			htPress: [lgs2_lgs, 2],
 			statsTransfersBuyers: [lgs, 1],
 			statsTeams: [lgs_lgs, 0],
 			statsPlayers: [lgs_lgs, 0],
@@ -52,7 +53,7 @@ Foxtrick.modules['CountryList'] = {
 			trainingStats: [lgs, 1],
 			statsArena: [lgsDd_lgs, 0],
 			helpContact: [lgsDd_lgs, 3],
-			challengesPool: [poolLeague, 2],
+			challenges: [[poolCountry, 2], [poolCountries, 0, 1]],
 		};
 
 		for (var page in pageMap) {
@@ -107,7 +108,7 @@ Foxtrick.modules['CountryList'] = {
 		}
 	},
 
-	_changelist: function(selectbox, start) {
+	_changelist: function(selectbox, start, skipLast) {
 		var module = this;
 		if (!selectbox)
 			return;
@@ -122,12 +123,14 @@ Foxtrick.modules['CountryList'] = {
 
 		var id = selectbox.id;
 		Foxtrick.log('id: ' + id + '   start: ' + start + '\n');
+
 		var options = selectbox.options;
-		var countries = options.length;
+		var end = options.length - (skipLast || 0);
+
 		var id_sel = selectbox.value;
-		for (var i = start; i < countries; i++) {
+		for (var i = start; i < end; i++) {
 			var leagueId;
-			if (/league|zone|pool/i.test(id)) {
+			if (/[^t]league|zone/i.test(id)) { // RequestLeague is actually country
 				leagueId = options[i].value;
 			}
 			else {
@@ -142,7 +145,7 @@ Foxtrick.modules['CountryList'] = {
 		Foxtrick.makeFeaturedElement(selectbox, Foxtrick.modules.CountryList);
 
 		var opt_array = [];
-		for (var i = start; i < options.length; i++) {
+		for (var i = start; i < end; i++) {
 			var oldopt = ['-1', '-1'];
 			oldopt[0] = options[i].value;
 			oldopt[1] = options[i].text;
@@ -154,7 +157,7 @@ Foxtrick.modules['CountryList'] = {
 		};
 
 		opt_array.sort(sortByOptionText);
-		for (var i = start; i < options.length; i++) {
+		for (var i = start; i < end; i++) {
 			if (opt_array[i - start][0] == id_sel)
 				selectbox.selectedIndex = i;
 			options[i].value = opt_array[i - start][0];

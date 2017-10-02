@@ -47,8 +47,15 @@ Foxtrick.Pages.All.isYouth = function(doc) {
  * @return {number}
  */
 Foxtrick.Pages.All.getId = function(doc) {
+	if (!Foxtrick.Pages.All.getMainHeader(doc)) {
+		// no header
+		// e. g. https://www.hattrick.org/goto.ashx?path=/Club/?TeamID=9999999
+		return null;
+	}
+
 	// defaults to own id
 	var id = this.getOwnTeamId(doc);
+
 	// parse links backwards, unless it's a youth page
 	// since teamID is used before youthTeamID in most places
 	var bcs = this.getBreadCrumbs(doc);
@@ -127,12 +134,15 @@ Foxtrick.Pages.All.getTeamId = function(doc) {
  */
 Foxtrick.Pages.All.getTeamNameFromBC = function(doc) {
 	var name = null;
+
 	var links = this.getBreadCrumbs(doc);
 	var link = Foxtrick.nth(function(link) {
 		return /TeamID=\d+/i.test(link.href);
 	}, links);
+
 	if (link)
-		name = link.textContent;
+		name = link.textContent.trim();
+
 	return name;
 };
 
@@ -143,15 +153,15 @@ Foxtrick.Pages.All.getTeamNameFromBC = function(doc) {
  * @return {number}
  */
 Foxtrick.Pages.All.getTeamName = function(doc) {
-	var name = null;
-	// check if this page has an associated team
-	var team = this.getTeamNameFromBC(doc);
-	if (team) {
+	var name = this.getTeamNameFromBC(doc);
+
+	if (!name || Foxtrick.Pages.All.isYouth(doc)) {
+		// README: this should not run for NT coaches
+		// since subMenu = main team, bread crumb = NT
 		var header = doc.querySelector('.subMenu h2');
-		if (header) {
-			name = header.textContent.trim();
-		}
+		name = header ? header.textContent.trim() : null;
 	}
+
 	return name;
 };
 
@@ -173,7 +183,7 @@ Foxtrick.Pages.All.isLoggedIn = function(doc) {
  * @return {element}
  */
 Foxtrick.Pages.All.getMainHeader = function(doc) {
-	return doc.querySelector('.mainRegular h2, .mainWide h2');
+	return doc.querySelector('.mainRegular h2, .mainWide h2, .mainConf h2');
 };
 
 /**
@@ -189,9 +199,12 @@ Foxtrick.Pages.All.getNotes = function(doc) {
 /**
  * Get bread crumb links
  * @param  {document} doc
- * @return {array}        Array.<HTMLAnchorElement>
+ * @return {array}        ?Array.<HTMLAnchorElement>
  */
 Foxtrick.Pages.All.getBreadCrumbs = function(doc) {
 	var header = this.getMainHeader(doc);
-	return Foxtrick.toArray(header.getElementsByTagName('a'));
+	if (header)
+		return Foxtrick.toArray(header.getElementsByTagName('a'));
+	else
+		return null;
 };

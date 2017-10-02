@@ -42,7 +42,7 @@ Foxtrick.modules['RatingsDisplay'] = {
 							Foxtrick.addClass(valueTd, 'ft-dummy');
 							var val = parseInt(valueTd.textContent, 10);
 							if (denom)
-								val = (val / 4 + 0.75).toFixed(2);
+								val = Foxtrick.Math.hsToFloat(val, true).toFixed(2);
 							else if (hatstats) {
 								if (i === 1 || i >= rows.length - 4)
 									// midfield and averages
@@ -84,8 +84,8 @@ Foxtrick.modules['RatingsDisplay'] = {
 						averagesMax[j] += valMax / 8;
 						averagesAvg[j] += valAvg / 8;
 						if (denom) {
-							elMax.textContent = (valMax / 4 + 0.75).toFixed(2);
-							elAvg.textContent = (valAvg / 4 + 0.75).toFixed(2);
+							elMax.textContent = Foxtrick.Math.hsToFloat(valMax, true).toFixed(2);
+							elAvg.textContent = Foxtrick.Math.hsToFloat(valAvg, true).toFixed(2);
 						}
 						else if (hatstats) {
 							if (j === 0) {
@@ -123,8 +123,8 @@ Foxtrick.modules['RatingsDisplay'] = {
 					spanMax.className = 'maxStat';
 					var avgText, maxText;
 					if (denom) {
-						avgText = (averagesAvg[cells] / 4 + 0.75).toFixed(2);
-						maxText = (averagesMax[cells] / 4 + 0.75).toFixed(2);
+						avgText = Foxtrick.Math.hsToFloat(averagesAvg[cells], true).toFixed(2);
+						maxText = Foxtrick.Math.hsToFloat(averagesMax[cells], true).toFixed(2);
 					}
 					else if (hatstats) {
 						// the total average cell, multiply by 9 (3 x def, 3x mid, 3x forward)

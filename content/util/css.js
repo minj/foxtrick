@@ -122,8 +122,8 @@ Foxtrick.util.css.unload_css_permanent = function(cssList) {
 				return;
 			}
 			// try unload
-			if (sss.sheetRegistered(uri, sss.USER_SHEET)) {
-				sss.unregisterSheet(uri, sss.USER_SHEET);
+			if (sss.sheetRegistered(uri, sss.AUTHOR_SHEET)) {
+				sss.unregisterSheet(uri, sss.AUTHOR_SHEET);
 			}
 		}
 		catch (e) {
@@ -228,8 +228,8 @@ Foxtrick.util.css.load_css_permanent = function(css) {
 			return;
 		}
 		// load
-		if (!sss.sheetRegistered(uri, sss.USER_SHEET)) {
-			sss.loadAndRegisterSheet(uri, sss.USER_SHEET); // unregistered in unload_css_permanent
+		if (!sss.sheetRegistered(uri, sss.AUTHOR_SHEET)) {
+			sss.loadAndRegisterSheet(uri, sss.AUTHOR_SHEET); // unregistered in unload_css_permanent
 		}
 	}
 	catch (e) {
@@ -302,8 +302,8 @@ Foxtrick.util.css.getCssFileArrayToString = function(cssUrls) {
 	}
 	if (Foxtrick.arch === 'Gecko') {
 		cssTextCollection =
-			'@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), ' +
-			'domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), ' +
+			'@-moz-document domain(hattrick.org), domain(hattrick.ws), domain(hattrick.bz), ' +
+			'domain(hat-trick.net), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), ' +
 			'domain(hattrick.name), domain(hattrick.fm) {\n' +
 				cssTextCollection +
 			'\n}\n\n/*# sourceURL=ft.ft-module-css.css */\n';

@@ -1,2087 +1,3770 @@
 /*
-Copyright (c) 2010 Jeremy Faivre
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is furnished
-to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
+  js-yaml 3.6.0
+  checkout https://github.com/minj/js-yaml/commit/b34e0323e653cbf5abe61fa1a656ca56d3a9e186
+  npm install // browserify@13.0.0 esprima@2.7.0
+  make browserify
 */
-(function(){
-/**
- * Exception class thrown when an error occurs during parsing.
- *
- * @author Fabien Potencier <fabien@symfony.com>
- *
- * @api
- */
- 
-/**
- * Constructor.
- *
- * @param string	message	The error message
- * @param integer   parsedLine The line where the error occurred
- * @param integer   snippet	The snippet of code near the problem
- * @param string	parsedFile The file name where the error occurred
- */
+(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.jsyaml = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+'use strict';
 
-var YamlParseException = function(message, parsedLine, snippet, parsedFile){
 
-		this.rawMessage = message;
-		this.parsedLine = (parsedLine !== undefined) ? parsedLine : -1;
-		this.snippet = (snippet !== undefined) ? snippet : null;
-		this.parsedFile = (parsedFile !== undefined) ? parsedFile : null;
+var loader = require('./js-yaml/loader');
+var dumper = require('./js-yaml/dumper');
 
-		this.updateRepr();
-		
-		this.message = message;
 
-};
-YamlParseException.prototype =
-{
-
-	name: 'YamlParseException',
-	message: null,
-	
-	parsedFile: null,
-	parsedLine: -1,
-	snippet: null,
-	rawMessage: null,
-
-	isDefined: function(input)
-	{
-		return input != undefined && input != null;
-	},
-
-	/**
-	* Gets the snippet of code near the error.
-	*
-	* @return string The snippet of code
-	*/
-	getSnippet: function()
-	{
-		return this.snippet;
-	},
-
-	/**
-	* Sets the snippet of code near the error.
-	*
-	* @param string snippet The code snippet
-	*/
-	setSnippet: function(snippet)
-	{
-		this.snippet = snippet;
-
-		this.updateRepr();
-	},
-
-	/**
-	* Gets the filename where the error occurred.
-	*
-	* This method returns null if a string is parsed.
-	*
-	* @return string The filename
-	*/
-	getParsedFile: function()
-	{
-		return this.parsedFile;
-	},
-
-	/**
-	* Sets the filename where the error occurred.
-	*
-	* @param string parsedFile The filename
-	*/
-	setParsedFile: function(parsedFile)
-	{
-		this.parsedFile = parsedFile;
-
-		this.updateRepr();
-	},
-
-	/**
-	* Gets the line where the error occurred.
-	*
-	* @return integer The file line
-	*/
-	getParsedLine: function()
-	{
-		return this.parsedLine;
-	},
-
-	/**
-	* Sets the line where the error occurred.
-	*
-	* @param integer parsedLine The file line
-	*/
-	setParsedLine: function(parsedLine)
-	{
-		this.parsedLine = parsedLine;
-
-		this.updateRepr();
-	},
-
-	updateRepr: function()
-	{
-		this.message = this.rawMessage;
-
-		var dot = false;
-		if ('.' === this.message.charAt(this.message.length - 1)) {
-			this.message = this.message.substring(0, this.message.length - 1);
-			dot = true;
-		}
-
-		if (null !== this.parsedFile) {
-			this.message += ' in ' + JSON.stringify(this.parsedFile);
-		}
-
-		if (this.parsedLine >= 0) {
-			this.message += ' at line ' + this.parsedLine;
-		}
-
-		if (this.snippet) {
-			this.message += ' (near "' + this.snippet + '")';
-		}
-
-		if (dot) {
-			this.message += '.';
-		}
-	}
+function deprecated(name) {
+  return function () {
+    throw new Error('Function ' + name + ' is deprecated and cannot be used.');
+  };
 }
-/**
- * Yaml offers convenience methods to parse and dump YAML.
- *
- * @author Fabien Potencier <fabien@symfony.com>
- *
- * @api
- */
 
-var YamlRunningUnderNode = false;
-var Yaml = function(){};
-Yaml.prototype =
-{
 
-	/**
-	 * Parses YAML into a JS representation.
-	 *
-	 * The parse method, when supplied with a YAML stream (file),
-	 * will do its best to convert YAML in a file into a JS representation.
-	 *
-	 *	Usage:
-	 *	<code>
-	 *	 obj = yaml.parseFile('config.yml');
-	 *	</code>
-	 *
-	 * @param string input Path of YAML file
-	 *
-	 * @return array The YAML converted to a JS representation
-	 *
-	 * @throws YamlParseException If the YAML is not valid
-	 */
-	parseFile: function(file /* String */, callback /* Function */)
-	{
-		if ( callback == null )
-		{
-			var input = this.getFileContents(file);
-			var ret = null;
-			try
-			{
-				ret = this.parse(input);
-			}
-			catch ( e )
-			{
-				if ( e instanceof YamlParseException ) {
-					e.setParsedFile(file);
-				}
-				throw e;
-			}
-			return ret;
-		}
-		
-		this.getFileContents(file, function(data)
-		{
-			callback(new Yaml().parse(data));
-		});
-	},
+module.exports.Type                = require('./js-yaml/type');
+module.exports.Schema              = require('./js-yaml/schema');
+module.exports.FAILSAFE_SCHEMA     = require('./js-yaml/schema/failsafe');
+module.exports.JSON_SCHEMA         = require('./js-yaml/schema/json');
+module.exports.CORE_SCHEMA         = require('./js-yaml/schema/core');
+module.exports.DEFAULT_SAFE_SCHEMA = require('./js-yaml/schema/default_safe');
+module.exports.DEFAULT_FULL_SCHEMA = require('./js-yaml/schema/default_full');
+module.exports.load                = loader.load;
+module.exports.loadAll             = loader.loadAll;
+module.exports.safeLoad            = loader.safeLoad;
+module.exports.safeLoadAll         = loader.safeLoadAll;
+module.exports.dump                = dumper.dump;
+module.exports.safeDump            = dumper.safeDump;
+module.exports.YAMLException       = require('./js-yaml/exception');
 
-	/**
-	 * Parses YAML into a JS representation.
-	 *
-	 * The parse method, when supplied with a YAML stream (string),
-	 * will do its best to convert YAML into a JS representation.
-	 *
-	 *	Usage:
-	 *	<code>
-	 *	 obj = yaml.parse(...);
-	 *	</code>
-	 *
-	 * @param string input string containing YAML
-	 *
-	 * @return array The YAML converted to a JS representation
-	 *
-	 * @throws YamlParseException If the YAML is not valid
-	 */
-	parse: function(input /* String */)
-	{
-		var yaml = new YamlParser();
+// Deprecated schema names from JS-YAML 2.0.x
+module.exports.MINIMAL_SCHEMA = require('./js-yaml/schema/failsafe');
+module.exports.SAFE_SCHEMA    = require('./js-yaml/schema/default_safe');
+module.exports.DEFAULT_SCHEMA = require('./js-yaml/schema/default_full');
 
-		return yaml.parse(input);
-	},
+// Deprecated functions from JS-YAML 1.x.x
+module.exports.scan           = deprecated('scan');
+module.exports.parse          = deprecated('parse');
+module.exports.compose        = deprecated('compose');
+module.exports.addConstructor = deprecated('addConstructor');
 
-	/**
-	 * Dumps a JS representation to a YAML string.
-	 *
-	 * The dump method, when supplied with an array, will do its best
-	 * to convert the array into friendly YAML.
-	 *
-	 * @param array	 array JS representation
-	 * @param integer inline The level where you switch to inline YAML
-	 *
-	 * @return string A YAML string representing the original JS representation
-    *
-    * @api
-    */
-	dump: function(array, inline, spaces)
-	{
-		if ( inline == null ) inline = 2;
+},{"./js-yaml/dumper":3,"./js-yaml/exception":4,"./js-yaml/loader":5,"./js-yaml/schema":7,"./js-yaml/schema/core":8,"./js-yaml/schema/default_full":9,"./js-yaml/schema/default_safe":10,"./js-yaml/schema/failsafe":11,"./js-yaml/schema/json":12,"./js-yaml/type":13}],2:[function(require,module,exports){
+'use strict';
 
-		var yaml = new YamlDumper();
-		if (spaces) {
-		    yaml.numSpacesForIndentation = spaces;
-		}
 
-		return yaml.dump(array, inline);
-	},
-	
-	getXHR: function()
-	{
-		if ( window.XMLHttpRequest )
-			return new XMLHttpRequest();
-		 
-		if ( window.ActiveXObject )
-		{
-			var names = [
-			"Msxml2.XMLHTTP.6.0",
-			"Msxml2.XMLHTTP.3.0",
-			"Msxml2.XMLHTTP",
-			"Microsoft.XMLHTTP"
-			];
-			
-			for ( var i = 0; i < 4; i++ )
-			{
-				try{ return new ActiveXObject(names[i]); }
-				catch(e){}
-			}
-		}
-		return null;
-	},
-	
-	getFileContents: function(file, callback)
-	{
-	    if ( YamlRunningUnderNode )
-	    {
-	        var fs = require('fs');
-	        if ( callback == null )
-	        {
-	            var data = fs.readFileSync(file);
-	            if (data == null) return null;
-	            return ''+data;
-	        }
-	        else
-	        {
-	            fs.readFile(file, function(err, data)
-	            {
-	                if (err)
-	                    callback(null);
-	                else
-	                    callback(data);
-	            });
-	        }
-	    }
-	    else
-	    {
-    		var request = this.getXHR();
-		
-    		// Sync
-    		if ( callback == null )
-    		{
-    			request.open('GET', file, false);                  
-    			request.send(null);
+function isNothing(subject) {
+  return (typeof subject === 'undefined') || (subject === null);
+}
 
-    			if ( request.status == 200 || request.status == 0 )
-    				return request.responseText;
-			
-    			return null;
-    		}
-		
-    		// Async
-    		request.onreadystatechange = function()
-    		{
-    			if ( request.readyState == 4 )
-    				if ( request.status == 200 || request.status == 0 )
-    					callback(request.responseText);
-    				else
-    					callback(null);
-    		};
-    		request.open('GET', file, true);                  
-    		request.send(null);
-	    }
-	}
-};
 
-var YAML =
-{
-	/*
-	 * @param integer inline The level where you switch to inline YAML
-	 */
-	 
-	stringify: function(input, inline, spaces)
-	{
-		return new Yaml().dump(input, inline, spaces);
-	},
-	
-	parse: function(input)
-	{
-		return new Yaml().parse(input);
-	},
-	
-	load: function(file, callback)
-	{
-		return new Yaml().parseFile(file, callback);
-	}
-};
+function isObject(subject) {
+  return (typeof subject === 'object') && (subject !== null);
+}
 
-// Handle node.js case
-if (typeof exports !== 'undefined') {
-    if (typeof module !== 'undefined' && module.exports) {
-        exports = module.exports = YAML;
-        YamlRunningUnderNode = true;
-        
-        // Add require handler
-        (function () {
-            var require_handler = function (module, filename) {
-                // fill in result
-                module.exports = YAML.load(filename);
-            };
 
-            // register require extensions only if we're on node.js
-            // hack for browserify
-            if ( undefined !== require.extensions ) {
-                require.extensions['.yml'] = require_handler;
-                require.extensions['.yaml'] = require_handler;
-            }
-        }());
+function toArray(sequence) {
+  if (Array.isArray(sequence)) return sequence;
+  else if (isNothing(sequence)) return [];
+
+  return [ sequence ];
+}
+
+
+function extend(target, source) {
+  var index, length, key, sourceKeys;
+
+  if (source) {
+    sourceKeys = Object.keys(source);
+
+    for (index = 0, length = sourceKeys.length; index < length; index += 1) {
+      key = sourceKeys[index];
+      target[key] = source[key];
     }
+  }
+
+  return target;
 }
 
-// Handle browser case
-if ( typeof(window) != "undefined" )
-{
-    window.YAML = YAML;
+
+function repeat(string, count) {
+  var result = '', cycle;
+
+  for (cycle = 0; cycle < count; cycle += 1) {
+    result += string;
+  }
+
+  return result;
 }
 
-/**
- * YamlInline implements a YAML parser/dumper for the YAML inline syntax.
- */
-var YamlInline = function(){};
-YamlInline.prototype =
-{
-	i: null,
-	
-	/**
-	 * Convert a YAML string to a JS object.
-	 *
-	 * @param string value A YAML string
-	 *
-	 * @return object A JS object representing the YAML string
-	 */
-	parse: function(value)
-	{
-		var result = null;
-		value = this.trim(value);
 
-		if ( 0 == value.length )
-		{
-			return '';
-		}
-
-		switch ( value.charAt(0) )
-		{
-			case '[':
-				result = this.parseSequence(value);
-				break;
-			case '{':
-				result = this.parseMapping(value);
-				break;
-			default:
-				result = this.parseScalar(value);
-		}
-
-		// some comment can end the scalar
-		if ( value.substr(this.i+1).replace(/^\s*#.*$/, '') != '' ) {
-		    console.log("oups "+value.substr(this.i+1));
-			throw new YamlParseException('Unexpected characters near "'+value.substr(this.i)+'".');
-		}
-
-		return result;
-	},
-
-	/**
-	 * Dumps a given JS variable to a YAML string.
-	 *
-	 * @param mixed value The JS variable to convert
-	 *
-	 * @return string The YAML string representing the JS object
-	 */
-	dump: function(value)
-	{
-		if ( undefined == value || null == value )
-			return 'null';	
-		if ( value instanceof Date)
-			return value.toISOString();
-		if ( typeof(value) == 'object')
-			return this.dumpObject(value);
-		if ( typeof(value) == 'boolean' )
-			return value ? 'true' : 'false';
-		if ( /^\d+$/.test(value) )
-			return typeof(value) == 'string' ? "'"+value+"'" : parseInt(value);
-		if ( this.isNumeric(value) )
-			return typeof(value) == 'string' ? "'"+value+"'" : parseFloat(value);
-		if ( typeof(value) == 'number' )
-			return value == Infinity ? '.Inf' : ( value == -Infinity ? '-.Inf' : ( isNaN(value) ? '.NAN' : value ) );
-		var yaml = new YamlEscaper();
-		if ( yaml.requiresDoubleQuoting(value) )
-			return yaml.escapeWithDoubleQuotes(value);
-		if ( yaml.requiresSingleQuoting(value) )
-			return yaml.escapeWithSingleQuotes(value);
-		if ( '' == value )
-			return "";
-		if ( this.getTimestampRegex().test(value) )
-			return "'"+value+"'";
-		if ( this.inArray(value.toLowerCase(), ['null','~','true','false']) )
-			return "'"+value+"'";
-		// default
-			return value;
-	},
-
-	/**
-	 * Dumps a JS object to a YAML string.
-	 *
-	 * @param object value The JS array to dump
-	 *
-	 * @return string The YAML string representing the JS object
-	 */
-	dumpObject: function(value)
-	{
-		var keys = this.getKeys(value);
-		var output = null;
-		var i;
-		var len = keys.length;
-
-		// array
-		if ( value instanceof Array )
-			/*( 1 == len && '0' == keys[0] )
-			||
-			( len > 1 && this.reduceArray(keys, function(v,w){return Math.floor(v+w);}, 0) == len * (len - 1) / 2) )*/
-		{
-			output = [];
-			for ( i = 0; i < len; i++ )
-			{
-				output.push(this.dump(value[keys[i]]));
-			}
-
-			return '['+output.join(', ')+']';
-		}
-
-		// mapping
-		output = [];
-		for ( i = 0; i < len; i++ )
-		{
-			output.push(this.dump(keys[i])+': '+this.dump(value[keys[i]]));
-		}
-
-		return '{ '+output.join(', ')+' }';
-	},
-
-	/**
-	 * Parses a scalar to a YAML string.
-	 *
-	 * @param scalar scalar
-	 * @param string delimiters
-	 * @param object stringDelimiters
-	 * @param integer i
-	 * @param boolean evaluate
-	 *
-	 * @return string A YAML string
-	 *
-	 * @throws YamlParseException When malformed inline YAML string is parsed
-	 */
-	parseScalar: function(scalar, delimiters, stringDelimiters, i, evaluate)
-	{
-		if ( delimiters == undefined ) delimiters = null;
-		if ( stringDelimiters == undefined ) stringDelimiters = ['"', "'"];
-		if ( i == undefined ) i = 0;
-		if ( evaluate == undefined ) evaluate = true;
-		
-		var output = null;
-		var pos = null;
-		var matches = null;
-		
-		if ( this.inArray(scalar[i], stringDelimiters) )
-		{
-			// quoted scalar
-			output = this.parseQuotedScalar(scalar, i);
-			i = this.i;
-			if (null !== delimiters) {
-				var tmp = scalar.substr(i).replace(/^\s+/, '');
-				if (!this.inArray(tmp.charAt(0), delimiters)) {
-					throw new YamlParseException('Unexpected characters ('+scalar.substr(i)+').');
-				}
-			}
-		}
-		else
-		{
-			// "normal" string
-			if ( !delimiters )
-			{
-				output = (scalar+'').substring(i);
-				
-				i += output.length;
-
-				// remove comments
-				pos = output.indexOf(' #');
-				if ( pos != -1 )
-				{
-					output = output.substr(0, pos).replace(/\s+$/g,'');
-				}
-			}
-			else if ( matches = new RegExp('^(.+?)('+delimiters.join('|')+')').exec((scalar+'').substring(i)) )
-			{
-				output = matches[1];
-				i += output.length;
-			}
-			else
-			{
-				throw new YamlParseException('Malformed inline YAML string ('+scalar+').');
-			}
-			output = evaluate ? this.evaluateScalar(output) : output;
-		}
-
-		this.i = i;
-		
-		return output;
-	},
-
-	/**
-	 * Parses a quoted scalar to YAML.
-	 *
-	 * @param string	scalar
-	 * @param integer i
-	 *
-	 * @return string A YAML string
-	 *
-	 * @throws YamlParseException When malformed inline YAML string is parsed
-	 */
-	parseQuotedScalar: function(scalar, i)
-	{
-		var matches = null;
-		//var item = /^(.*?)['"]\s*(?:[,:]|[}\]]\s*,)/.exec((scalar+'').substring(i))[1];
-		
-		if ( !(matches = new RegExp('^'+YamlInline.REGEX_QUOTED_STRING).exec((scalar+'').substring(i))) )
-		{
-			throw new YamlParseException('Malformed inline YAML string ('+(scalar+'').substring(i)+').');
-		}
-
-		var output = matches[0].substr(1, matches[0].length - 2);
-		
-		var unescaper = new YamlUnescaper();
-
-		if ( '"' == (scalar+'').charAt(i) )
-		{
-			output = unescaper.unescapeDoubleQuotedString(output);
-		}
-		else
-		{
-			output = unescaper.unescapeSingleQuotedString(output);
-		}
-
-		i += matches[0].length;
-
-		this.i = i;
-		return output;
-	},
-
-	/**
-	 * Parses a sequence to a YAML string.
-	 *
-	 * @param string sequence
-	 * @param integer i
-	 *
-	 * @return string A YAML string
-	 *
-	 * @throws YamlParseException When malformed inline YAML string is parsed
-	 */
-	parseSequence: function(sequence, i)
-	{
-		if ( i == undefined ) i = 0;
-		
-		var output = [];
-		var len = sequence.length;
-		i += 1;
-
-		// [foo, bar, ...]
-		while ( i < len )
-		{
-			switch ( sequence.charAt(i) )
-			{
-				case '[':
-					// nested sequence
-					output.push(this.parseSequence(sequence, i));
-					i = this.i;
-					break;
-				case '{':
-					// nested mapping
-					output.push(this.parseMapping(sequence, i));
-					i = this.i;
-					break;
-				case ']':
-					this.i = i;
-					return output;
-				case ',':
-				case ' ':
-					break;
-				default:
-					var isQuoted = this.inArray(sequence.charAt(i), ['"', "'"]);
-					var value = this.parseScalar(sequence, [',', ']'], ['"', "'"], i);
-					i = this.i;
-					
-					if ( !isQuoted && (value+'').indexOf(': ') != -1 )
-					{
-						// embedded mapping?
-						try
-						{
-							value = this.parseMapping('{'+value+'}');
-						}
-						catch ( e )
-						{
-							if ( !(e instanceof YamlParseException ) ) throw e;
-							// no, it's not
-						}
-					}
-
-					output.push(value);
-
-					i--;
-			}
-
-			i++;
-		}
-
-		throw new YamlParseException('Malformed inline YAML string "'+sequence+'"');
-	},
-
-	/**
-	 * Parses a mapping to a YAML string.
-	 *
-	 * @param string mapping
-	 * @param integer i
-	 *
-	 * @return string A YAML string
-	 *
-	 * @throws YamlParseException When malformed inline YAML string is parsed
-	 */
-	parseMapping: function(mapping, i)
-	{
-		if ( i == undefined ) i = 0;
-		var output = {};
-		var len = mapping.length;
-		i += 1;
-		var done = false;
-		var doContinue = false;
-
-		// {foo: bar, bar:foo, ...}
-		while ( i < len )
-		{
-			doContinue = false;
-			
-			switch ( mapping.charAt(i) )
-			{
-				case ' ':
-				case ',':
-					i++;
-					doContinue = true;
-					break;
-				case '}':
-					this.i = i;
-					return output;
-			}
-			
-			if ( doContinue ) continue;
-
-			// key
-			var key = this.parseScalar(mapping, [':', ' '], ['"', "'"], i, false);
-			i = this.i;
-
-			// value
-			done = false;
-			while ( i < len )
-			{
-				switch ( mapping.charAt(i) )
-				{
-					case '[':
-						// nested sequence
-						output[key] = this.parseSequence(mapping, i);
-						i = this.i;
-						done = true;
-						break;
-					case '{':
-						// nested mapping
-						output[key] = this.parseMapping(mapping, i);
-						i = this.i;
-						done = true;
-						break;
-					case ':':
-					case ' ':
-						break;
-					default:
-						output[key] = this.parseScalar(mapping, [',', '}'], ['"', "'"], i);
-						i = this.i;
-						done = true;
-						i--;
-				}
-
-				++i;
-
-				if ( done )
-				{
-					doContinue = true;
-					break;
-				}
-			}
-			
-			if ( doContinue ) continue;
-		}
-
-		throw new YamlParseException('Malformed inline YAML string "'+mapping+'"');
-	},
-
-	/**
-	 * Evaluates scalars and replaces magic values.
-	 *
-	 * @param string scalar
-	 *
-	 * @return string A YAML string
-	 */
-	evaluateScalar: function(scalar)
-	{
-		scalar = this.trim(scalar);
-		
-		var raw = null;
-		var cast = null;
-
-		if (	( 'null' == scalar.toLowerCase() ) ||
-				( '' == scalar ) ||
-				( '~' == scalar ) )
-			return null;
-		if ( (scalar+'').indexOf('!str ') == 0 )
-			return (''+scalar).substring(5);
-		if ( (scalar+'').indexOf('! ') == 0 )
-			return parseInt(this.parseScalar((scalar+'').substr(2)));
-		if ( /^\d+$/.test(scalar) )
-		{
-			raw = scalar;
-			cast = parseInt(scalar);
-			return '0' == scalar.charAt(0) ? this.octdec(scalar) : (( ''+raw == ''+cast ) ? cast : raw);
-		}
-		if ( 'true' == (scalar+'').toLowerCase() )
-			return true;
-		if ( 'false' == (scalar+'').toLowerCase() )
-			return false;
-		if ( this.isNumeric(scalar) )
-			return '0x' == (scalar+'').substr(0, 2) ? this.hexdec(scalar) : parseFloat(scalar);
-		if ( scalar.toLowerCase() == '.inf' )
-			return Infinity;
-		if ( scalar.toLowerCase() == '.nan' )
-			return NaN;
-		if ( scalar.toLowerCase() == '-.inf' )
-			return -Infinity;
-		if ( /^(-|\+)?[0-9,]+(\.[0-9]+)?$/.test(scalar) )
-			return parseFloat(scalar.split(',').join(''));
-		if ( this.getTimestampRegex().test(scalar) )
-			return new Date(this.strtotime(scalar));
-		//else
-			return ''+scalar;
-	},
-
-	/**
-	 * Gets a regex that matches an unix timestamp
-	 *
-	 * @return string The regular expression
-	 */
-	getTimestampRegex: function()
-	{
-		return new RegExp('^'+
-		'([0-9][0-9][0-9][0-9])'+
-		'-([0-9][0-9]?)'+
-		'-([0-9][0-9]?)'+
-		'(?:(?:[Tt]|[ \t]+)'+
-		'([0-9][0-9]?)'+
-		':([0-9][0-9])'+
-		':([0-9][0-9])'+
-		'(?:\.([0-9]*))?'+
-		'(?:[ \t]*(Z|([-+])([0-9][0-9]?)'+
-		'(?::([0-9][0-9]))?))?)?'+
-		'$','gi');
-	},
-	
-	trim: function(str /* String */)
-	{
-		return (str+'').replace(/^\s+/,'').replace(/\s+$/,'');
-	},
-	
-	isNumeric: function(input)
-	{
-		return (input - 0) == input && input.length > 0 && input.replace(/\s+/g,'') != '';
-	},
-	
-	inArray: function(key, tab)
-	{
-		var i;
-		var len = tab.length;
-		for ( i = 0; i < len; i++ )
-		{
-			if ( key == tab[i] ) return true;
-		}
-		return false;
-	},
-	
-	getKeys: function(tab)
-	{
-		var ret = [];
-		
-		for ( var name in tab )
-		{
-			if ( tab.hasOwnProperty(name) )
-			{
-				ret.push(name);
-			}
-		}
-		
-		return ret;
-	},
-	
-	/*reduceArray: function(tab, fun)
-	{
-		var len = tab.length;
-		if (typeof fun != "function")
-			throw new YamlParseException("fun is not a function");
-		
-		// no value to return if no initial value and an empty array
-		if (len == 0 && arguments.length == 1)
-			throw new YamlParseException("empty array");
-		
-		var i = 0;
-		if (arguments.length >= 2)
-		{
-			var rv = arguments[1];
-		}
-		else
-		{
-			do
-			{
-				if (i in tab)
-				{
-					rv = tab[i++];
-					break;
-				}
-		
-				// if array contains no values, no initial value to return
-				if (++i >= len)
-					throw new YamlParseException("no initial value to return");
-			}
-			while (true);
-		}
-
-		for (; i < len; i++)
-		{
-			if (i in tab)
-				rv = fun.call(null, rv, tab[i], i, tab);
-		}
-
-		return rv;
-	},*/
-	
-	octdec: function(input)
-	{
-	    return parseInt((input+'').replace(/[^0-7]/gi, ''), 8);
-	},
-	
-	hexdec: function(input)
-	{
-		input = this.trim(input);
-		if ( (input+'').substr(0, 2) == '0x' ) input = (input+'').substring(2);
-	    return parseInt((input+'').replace(/[^a-f0-9]/gi, ''), 16);
-	},
-	
-	/**
-	 * @see http://phpjs.org/functions/strtotime
-	 * @note we need timestamp with msecs so /1000 removed
-	 * @note original contained binary | 0 (wtf?!) everywhere, which messes everything up 
-	 */
-	strtotime: function (h,b){var f,c,g,k,d="";h=(h+"").replace(/\s{2,}|^\s|\s$/g," ").replace(/[\t\r\n]/g,"");if(h==="now"){return b===null||isNaN(b)?new Date().getTime()||0:b||0}else{if(!isNaN(d=Date.parse(h))){return d||0}else{if(b){b=new Date(b)}else{b=new Date()}}}h=h.toLowerCase();var e={day:{sun:0,mon:1,tue:2,wed:3,thu:4,fri:5,sat:6},mon:["jan","feb","mar","apr","may","jun","jul","aug","sep","oct","nov","dec"]};var a=function(i){var o=(i[2]&&i[2]==="ago");var n=(n=i[0]==="last"?-1:1)*(o?-1:1);switch(i[0]){case"last":case"next":switch(i[1].substring(0,3)){case"yea":b.setFullYear(b.getFullYear()+n);break;case"wee":b.setDate(b.getDate()+(n*7));break;case"day":b.setDate(b.getDate()+n);break;case"hou":b.setHours(b.getHours()+n);break;case"min":b.setMinutes(b.getMinutes()+n);break;case"sec":b.setSeconds(b.getSeconds()+n);break;case"mon":if(i[1]==="month"){b.setMonth(b.getMonth()+n);break}default:var l=e.day[i[1].substring(0,3)];if(typeof l!=="undefined"){var p=l-b.getDay();if(p===0){p=7*n}else{if(p>0){if(i[0]==="last"){p-=7}}else{if(i[0]==="next"){p+=7}}}b.setDate(b.getDate()+p);b.setHours(0,0,0,0)}}break;default:if(/\d+/.test(i[0])){n*=parseInt(i[0],10);switch(i[1].substring(0,3)){case"yea":b.setFullYear(b.getFullYear()+n);break;case"mon":b.setMonth(b.getMonth()+n);break;case"wee":b.setDate(b.getDate()+(n*7));break;case"day":b.setDate(b.getDate()+n);break;case"hou":b.setHours(b.getHours()+n);break;case"min":b.setMinutes(b.getMinutes()+n);break;case"sec":b.setSeconds(b.getSeconds()+n);break}}else{return false}break}return true};g=h.match(/^(\d{2,4}-\d{2}-\d{2})(?:\s(\d{1,2}:\d{2}(:\d{2})?)?(?:\.(\d+))?)?$/);if(g!==null){if(!g[2]){g[2]="00:00:00"}else{if(!g[3]){g[2]+=":00"}}k=g[1].split(/-/g);k[1]=e.mon[k[1]-1]||k[1];k[0]=+k[0];k[0]=(k[0]>=0&&k[0]<=69)?"20"+(k[0]<10?"0"+k[0]:k[0]+""):(k[0]>=70&&k[0]<=99)?"19"+k[0]:k[0]+"";return parseInt(this.strtotime(k[2]+" "+k[1]+" "+k[0]+" "+g[2])+(g[4]?g[4]:""),10)}var j="([+-]?\\d+\\s(years?|months?|weeks?|days?|hours?|min|minutes?|sec|seconds?|sun\\.?|sunday|mon\\.?|monday|tue\\.?|tuesday|wed\\.?|wednesday|thu\\.?|thursday|fri\\.?|friday|sat\\.?|saturday)|(last|next)\\s(years?|months?|weeks?|days?|hours?|min|minutes?|sec|seconds?|sun\\.?|sunday|mon\\.?|monday|tue\\.?|tuesday|wed\\.?|wednesday|thu\\.?|thursday|fri\\.?|friday|sat\\.?|saturday))(\\sago)?";g=h.match(new RegExp(j,"gi"));if(g===null){return false}for(f=0,c=g.length;f<c;f++){if(!a(g[f].split(" "))){return false}}return b.getTime()||0}
-	 
-};
-
-/*
- * @note uses only non-capturing sub-patterns (unlike PHP original)
- */
-YamlInline.REGEX_QUOTED_STRING = '(?:"(?:[^"\\\\]*(?:\\\\.[^"\\\\]*)*)"|\'(?:[^\']*(?:\'\'[^\']*)*)\')';
-
-
-/**
- * YamlParser parses YAML strings to convert them to JS objects
- * (port of Yaml Symfony Component)
- */
-var YamlParser = function(offset /* Integer */)
-{
-		this.offset = (offset !== undefined) ? offset : 0;
-};
-YamlParser.prototype =
-{
-	offset: 0,
-	lines: [],
-	currentLineNb: -1,
-	currentLine: '',
-	refs: {},
-	
-	/**
-	 * Parses a YAML string to a JS value.
-	 *
-	 * @param String value A YAML string
-	 *
-	 * @return mixed A JS value
-	 */
-	parse: function(value /* String */)
-	{
-		this.currentLineNb = -1;
-		this.currentLine = '';
-		this.lines = this.cleanup(value).split("\n");
-		
-		var data = null;
-      var context = null;
-      		
-		while ( this.moveToNextLine() )
-		{
-			if ( this.isCurrentLineEmpty() )
-			{
-				continue;
-			}
-			
-			// tab?
-			if ( this.currentLine.charAt(0) == '\t' )
-			{
-				throw new YamlParseException('A YAML file cannot contain tabs as indentation.', this.getRealCurrentLineNb() + 1, this.currentLine);
-			}
-			
-			var isRef = false;
-			var isInPlace = false;
-			var isProcessed = false;
-			var values = null;
-			var matches = null;
-			var c = null;
-			var parser = null;
-			var block = null;
-			var key = null;
-			var parsed = null;
-			var len = null;
-			var reverse = null;
-			
-			if ( values = /^\-((\s+)(.+?))?\s*$/.exec(this.currentLine) )
-			{
-
-				if (context && 'mapping' == context) {
-					throw new YamlParseException('You cannot define a sequence item when in a mapping', this.getRealCurrentLineNb() + 1, this.currentLine);
-				}
-				context = 'sequence';
-
-				if ( !this.isDefined(data) ) data = [];
-				//if ( !(data instanceof Array) ) throw new YamlParseException("Non array entry", this.getRealCurrentLineNb() + 1, this.currentLine);
-				
-				values = {leadspaces: values[2], value: values[3]};
-				
-				if ( this.isDefined(values.value) && ( matches = /^&([^ ]+) *(.*)/.exec(values.value) ) )
-				{
-					matches = {ref: matches[1], value: matches[2]};
-					isRef = matches.ref;
-					values.value = matches.value;
-				}
-				
-				// array
-				if ( !this.isDefined(values.value) || '' == this.trim(values.value) || values.value.replace(/^ +/,'').charAt(0) == '#' )
-				{
-					c = this.getRealCurrentLineNb() + 1;
-					parser = new YamlParser(c);
-					parser.refs = this.refs;
-					data.push(parser.parse(this.getNextEmbedBlock()));
-					this.refs = parser.refs;
-				}
-				else
-				{
-					if ( this.isDefined(values.leadspaces) && 
-						' ' == values.leadspaces && 
-						( matches = new RegExp('^('+YamlInline.REGEX_QUOTED_STRING+'|[^ \'"\{\[].*?) *\:(\\s+(.+?))?\\s*$').exec(values.value) ) 
-					) {
-						matches = {key: matches[1], value: matches[3]};
-						// this is a compact notation element, add to next block and parse
-						c = this.getRealCurrentLineNb();
-						parser = new YamlParser(c);
-						parser.refs = this.refs;
-						block = values.value;
-						
-						if ( !this.isNextLineIndented() )
-						{
-							block += "\n"+this.getNextEmbedBlock(this.getCurrentLineIndentation() + 2);
-						}
-
-						data.push(parser.parse(block));
-						this.refs = parser.refs;
-					}
-					else
-					{
-						data.push(this.parseValue(values.value));
-					}
-				}
-			}
-			else if ( values = new RegExp('^('+YamlInline.REGEX_QUOTED_STRING+'|[^ \'"\[\{].*?) *\:(\\s+(.+?))?\\s*$').exec(this.currentLine) )
-			{
-				if ( !this.isDefined(data) ) data = {};
-				if (context && 'sequence' == context) {
-					throw new YamlParseException('You cannot define a mapping item when in a sequence', this.getRealCurrentLineNb() + 1, this.currentLine);
-				}
-				context = 'mapping';				
-				//if ( data instanceof Array ) throw new YamlParseException("Non mapped entry", this.getRealCurrentLineNb() + 1, this.currentLine);
-				
-				values = {key: values[1], value: values[3]};
-				
-				try {
-					key = new YamlInline().parseScalar(values.key);
-				} catch (e) {
-					if ( e instanceof YamlParseException ) {
-						e.setParsedLine(this.getRealCurrentLineNb() + 1);
-						e.setSnippet(this.currentLine);
-					}
-					throw e;
-				}				
-				
-				
-				if ( '<<' == key )
-				{
-					if ( this.isDefined(values.value) && '*' == (values.value+'').charAt(0) )
-					{
-						isInPlace = values.value.substr(1);
-						if ( this.refs[isInPlace] == undefined )
-						{
-							throw new YamlParseException('Reference "'+value+'" does not exist', this.getRealCurrentLineNb() + 1, this.currentLine);
-						}
-					}
-					else
-					{
-						if ( this.isDefined(values.value) && values.value != '' )
-						{
-							value = values.value;
-						}
-						else
-						{
-							value = this.getNextEmbedBlock();
-						}
-						
-						c = this.getRealCurrentLineNb() + 1;
-						parser = new YamlParser(c);
-						parser.refs = this.refs;
-						parsed = parser.parse(value);
-						this.refs = parser.refs;
-				
-						var merged = [];
-						if ( !this.isObject(parsed) )
-						{
-							throw new YamlParseException("YAML merge keys used with a scalar value instead of an array", this.getRealCurrentLineNb() + 1, this.currentLine);
-						}
-						else if ( this.isDefined(parsed[0]) )
-						{
-							// Numeric array, merge individual elements
-							reverse = this.reverseArray(parsed);
-							len = reverse.length;
-							for ( var i = 0; i < len; i++ )
-							{
-								var parsedItem = reverse[i];
-								if ( !this.isObject(reverse[i]) )
-								{
-									throw new YamlParseException("Merge items must be arrays", this.getRealCurrentLineNb() + 1, this.currentLine);
-								}
-								merged = this.mergeObject(reverse[i], merged);
-							}
-						}
-						else
-						{
-							// Associative array, merge
-							merged = this.mergeObject(merged, parsed);
-						}
-				
-						isProcessed = merged;
-					}
-				}
-				else if ( this.isDefined(values.value) && (matches = /^&([^ ]+) *(.*)/.exec(values.value) ) )
-				{
-					matches = {ref: matches[1], value: matches[2]};
-					isRef = matches.ref;
-					values.value = matches.value;
-				}
-				
-				if ( isProcessed )
-				{
-					// Merge keys
-					data = isProcessed;
-				}
-				// hash
-				else if ( !this.isDefined(values.value) || '' == this.trim(values.value) || this.trim(values.value).charAt(0) == '#' )
-				{
-					// if next line is less indented or equal, then it means that the current value is null
-					if ( this.isNextLineIndented() && !this.isNextLineUnIndentedCollection() )
-					{
-						data[key] = null;
-					}
-					else
-					{
-						c = this.getRealCurrentLineNb() + 1;
-						parser = new YamlParser(c);
-						parser.refs = this.refs;
-						data[key] = parser.parse(this.getNextEmbedBlock());
-						this.refs = parser.refs;
-					}
-				}
-				else
-				{
-					if ( isInPlace )
-					{
-						data = this.refs[isInPlace];
-					}
-					else
-					{
-						data[key] = this.parseValue(values.value);
-					}
-				}
-			}
-			else
-			{
-				// 1-liner followed by newline
-				if ( 2 == this.lines.length && this.isEmpty(this.lines[1]) )
-				{
-					try {
-						value = new YamlInline().parse(this.lines[0]);
-					} catch (e) {
-						if ( e instanceof YamlParseException ) {
-							e.setParsedLine(this.getRealCurrentLineNb() + 1);
-							e.setSnippet(this.currentLine);
-						}
-						throw e;
-					}
-					
-					if ( this.isObject(value) )
-					{
-						var first = value[0];
-						if ( typeof(value) == 'string' && '*' == first.charAt(0) )
-						{
-							data = [];
-							len = value.length;
-							for ( var i = 0; i < len; i++ )
-							{
-								data.push(this.refs[value[i].substr(1)]);
-							}
-							value = data;
-						}
-					}
-				
-					return value;
-				}
-				
-				throw new YamlParseException('Unable to parse.', this.getRealCurrentLineNb() + 1, this.currentLine);
-			}
-		
-			if ( isRef )
-			{
-				if ( data instanceof Array )
-					this.refs[isRef] = data[data.length-1];
-				else
-				{
-					var lastKey = null;
-					for ( var k in data )
-					{
-						if ( data.hasOwnProperty(k) ) lastKey = k;
-					}
-					this.refs[isRef] = data[k];
-				}
-			}
-		}
-		
-		return this.isEmpty(data) ? null : data;
-	},
-
-	/**
-	 * Returns the current line number (takes the offset into account).
-	 *
-	 * @return integer The current line number
-	 */
-	getRealCurrentLineNb: function()
-	{
-		return this.currentLineNb + this.offset;
-	},
-
-	/**
-	 * Returns the current line indentation.
-	 *
-	 * @return integer The current line indentation
-	 */
-	getCurrentLineIndentation: function()
-	{
-		return this.currentLine.length - this.currentLine.replace(/^ +/g, '').length;
-	},
-
-	/**
-	 * Returns the next embed block of YAML.
-	 *
-	 * @param integer indentation The indent level at which the block is to be read, or null for default
-	 *
-	 * @return string A YAML string
-	 *
-	 * @throws YamlParseException When indentation problem are detected
-	 */
-	getNextEmbedBlock: function(indentation)
-	{
-		this.moveToNextLine();
-		var newIndent = null;
-		var indent = null;
-
-		if ( !this.isDefined(indentation) )
-		{
-			newIndent = this.getCurrentLineIndentation();
-			
-			var unindentedEmbedBlock = this.isStringUnIndentedCollectionItem(this.currentLine);
-
-			if ( !this.isCurrentLineEmpty() && 0 == newIndent && !unindentedEmbedBlock )
-			{
-				throw new YamlParseException('Indentation problem A', this.getRealCurrentLineNb() + 1, this.currentLine);
-			}
-		}
-		else
-		{
-			newIndent = indentation;
-		}
-
-		var data = [this.currentLine.substr(newIndent)];
-
-		var isUnindentedCollection = this.isStringUnIndentedCollectionItem(this.currentLine);
-
-		var continuationIndent = -1;
-		if (isUnindentedCollection === true) {
-			continuationIndent = 1 + /^\-((\s+)(.+?))?\s*$/.exec(this.currentLine)[2].length;
-		}
-
-		while ( this.moveToNextLine() )
-		{
-
-			if (isUnindentedCollection && !this.isStringUnIndentedCollectionItem(this.currentLine) && this.getCurrentLineIndentation() != continuationIndent) {
-				this.moveToPreviousLine();
-				break;
-			}
-
-			if ( this.isCurrentLineEmpty() )
-			{
-				if ( this.isCurrentLineBlank() )
-				{
-					data.push(this.currentLine.substr(newIndent));
-				}
-
-				continue;
-			}
-
-			indent = this.getCurrentLineIndentation();
-			var matches;
-			if ( matches = /^( *)$/.exec(this.currentLine) )
-			{
-				// empty line
-				data.push(matches[1]);
-			}
-			else if ( indent >= newIndent )
-			{
-				data.push(this.currentLine.substr(newIndent));
-			}
-			else if ( 0 == indent )
-			{
-				this.moveToPreviousLine();
-
-				break;
-			}
-			else
-			{
-				throw new YamlParseException('Indentation problem B', this.getRealCurrentLineNb() + 1, this.currentLine);
-			}
-		}
-
-		return data.join("\n");
-	},
-
-	/**
-	 * Moves the parser to the next line.
-	 *
-	 * @return Boolean
-	 */
-	moveToNextLine: function()
-	{
-		if ( this.currentLineNb >= this.lines.length - 1 )
-		{
-			return false;
-		}
-
-		this.currentLineNb++;
-		this.currentLine = this.lines[this.currentLineNb];
-
-		return true;
-	},
-
-	/**
-	 * Moves the parser to the previous line.
-	 */
-	moveToPreviousLine: function()
-	{
-		this.currentLineNb--;
-		this.currentLine = this.lines[this.currentLineNb];
-	},
-
-	/**
-	 * Parses a YAML value.
-	 *
-	 * @param string value A YAML value
-	 *
-	 * @return mixed A JS value
-	 *
-	 * @throws YamlParseException When reference does not exist
-	 */
-	parseValue: function(value)
-	{
-		if ( '*' == (value+'').charAt(0) )
-		{
-			if ( this.trim(value).charAt(0) == '#' )
-			{
-				value = (value+'').substr(1, value.indexOf('#') - 2);
-			}
-			else
-			{
-				value = (value+'').substr(1);
-			}
-
-			if ( this.refs[value] == undefined )
-			{
-				throw new YamlParseException('Reference "'+value+'" does not exist', this.getRealCurrentLineNb() + 1, this.currentLine);
-			}
-			return this.refs[value];
-		}
-
-		var matches = null;
-		if ( matches = /^(\||>)(\+|\-|\d+|\+\d+|\-\d+|\d+\+|\d+\-)?( +#.*)?$/.exec(value) )
-		{
-			matches = {separator: matches[1], modifiers: matches[2], comments: matches[3]};
-			var modifiers = this.isDefined(matches.modifiers) ? matches.modifiers : '';
-
-			return this.parseFoldedScalar(matches.separator, modifiers.replace(/\d+/g, ''), Math.abs(parseInt(modifiers)));
-		}
-		try {
-			return new YamlInline().parse(value);
-		} catch (e) {
-			if ( e instanceof YamlParseException ) {
-				e.setParsedLine(this.getRealCurrentLineNb() + 1);
-				e.setSnippet(this.currentLine);
-			}
-			throw e;
-		}
-	},
-
-	/**
-	 * Parses a folded scalar.
-	 *
-	 * @param	string	separator	 The separator that was used to begin this folded scalar (| or >)
-	 * @param	string	indicator	 The indicator that was used to begin this folded scalar (+ or -)
-	 * @param	integer indentation  The indentation that was used to begin this folded scalar
-	 *
-	 * @return string	The text value
-	 */
-	parseFoldedScalar: function(separator, indicator, indentation)
-	{
-		if ( indicator == undefined ) indicator = '';
-		if ( indentation == undefined ) indentation = 0;
-		
-		separator = '|' == separator ? "\n" : ' ';
-		var text = '';
-		var diff = null;
-
-		var notEOF = this.moveToNextLine();
-
-		while ( notEOF && this.isCurrentLineBlank() )
-		{
-			text += "\n";
-
-			notEOF = this.moveToNextLine();
-		}
-
-		if ( !notEOF )
-		{
-			return '';
-		}
-
-		var matches = null;
-		if ( !(matches = new RegExp('^('+(indentation ? this.strRepeat(' ', indentation) : ' +')+')(.*)$').exec(this.currentLine)) )
-		{
-			this.moveToPreviousLine();
-
-			return '';
-		}
-		
-		matches = {indent: matches[1], text: matches[2]};
-		
-		var textIndent = matches.indent;
-		var previousIndent = 0;
-
-		text += matches.text + separator;
-		while ( this.currentLineNb + 1 < this.lines.length )
-		{
-			this.moveToNextLine();
-			
-			if ( matches = new RegExp('^( {'+textIndent.length+',})(.+)$').exec(this.currentLine) )
-			{
-				matches = {indent: matches[1], text: matches[2]};
-				
-				if ( ' ' == separator && previousIndent != matches.indent )
-				{
-					text = text.substr(0, text.length - 1)+"\n";
-				}
-				
-				previousIndent = matches.indent;
-
-				diff = matches.indent.length - textIndent.length;
-				text += this.strRepeat(' ', diff) + matches.text + (diff != 0 ? "\n" : separator);
-			}
-			else if ( matches = /^( *)$/.exec(this.currentLine) )
-			{
-				text += matches[1].replace(new RegExp('^ {1,'+textIndent.length+'}','g'), '')+"\n";
-			}
-			else
-			{
-				this.moveToPreviousLine();
-
-				break;
-			}
-		}
-
-		if ( ' ' == separator )
-		{
-			// replace last separator by a newline
-			text = text.replace(/ (\n*)$/g, "\n$1");
-		}
-
-		switch ( indicator )
-		{
-			case '':
-				text = text.replace(/\n+$/g, "\n");
-				break;
-			case '+':
-				break;
-			case '-':
-				text = text.replace(/\n+$/g, '');
-				break;
-		}
-
-		return text;
-	},
-
-	/**
-	 * Returns true if the next line is indented.
-	 *
-	 * @return Boolean Returns true if the next line is indented, false otherwise
-	 */
-	isNextLineIndented: function()
-	{
-		var currentIndentation = this.getCurrentLineIndentation();
-		var notEOF = this.moveToNextLine();
-
-		while ( notEOF && this.isCurrentLineEmpty() )
-		{
-			notEOF = this.moveToNextLine();
-		}
-
-		if ( false == notEOF )
-		{
-			return false;
-		}
-
-		var ret = false;
-		if ( this.getCurrentLineIndentation() <= currentIndentation )
-		{
-			ret = true;
-		}
-
-		this.moveToPreviousLine();
-
-		return ret;
-	},
-
-	/**
-	 * Returns true if the current line is blank or if it is a comment line.
-	 *
-	 * @return Boolean Returns true if the current line is empty or if it is a comment line, false otherwise
-	 */
-	isCurrentLineEmpty: function()
-	{
-		return this.isCurrentLineBlank() || this.isCurrentLineComment();
-	},
-
-	/**
-	 * Returns true if the current line is blank.
-	 *
-	 * @return Boolean Returns true if the current line is blank, false otherwise
-	 */
-	isCurrentLineBlank: function()
-	{
-		return '' == this.trim(this.currentLine);
-	},
-
-	/**
-	 * Returns true if the current line is a comment line.
-	 *
-	 * @return Boolean Returns true if the current line is a comment line, false otherwise
-	 */
-	isCurrentLineComment: function()
-	{
-		//checking explicitly the first char of the trim is faster than loops or strpos
-		var ltrimmedLine = this.currentLine.replace(/^ +/g, '');
-		return ltrimmedLine.charAt(0) == '#';
-	},
-
-	/**
-	 * Cleanups a YAML string to be parsed.
-	 *
-	 * @param string value The input YAML string
-	 *
-	 * @return string A cleaned up YAML string
-	 */
-	cleanup: function(value)
-	{
-		value = value.split("\r\n").join("\n").split("\r").join("\n");
-
-		if ( !/\n$/.test(value) )
-		{
-			value += "\n";
-		}
-
-		// strip YAML header
-		var count = 0;
-		var regex = /^\%YAML[: ][\d\.]+.*\n/;
-		while ( regex.test(value) )
-		{
-			value = value.replace(regex, '');
-			count++;
-		}
-		this.offset += count;
-
-		// remove leading comments
-		regex = /^(#.*?\n)+/;
-		if ( regex.test(value) )
-		{
-			var trimmedValue = value.replace(regex, '');
-			
-			// items have been removed, update the offset
-			this.offset += this.subStrCount(value, "\n") - this.subStrCount(trimmedValue, "\n");
-			value = trimmedValue;
-		}
-
-		// remove start of the document marker (---)
-		regex = /^\-\-\-.*?\n/;
-		if ( regex.test(value) )
-		{
-			trimmedValue = value.replace(regex, '');
-			
-			// items have been removed, update the offset
-			this.offset += this.subStrCount(value, "\n") - this.subStrCount(trimmedValue, "\n");
-			value = trimmedValue;
-
-			// remove end of the document marker (...)
-			value = value.replace(/\.\.\.\s*$/g, '');
-		}
-
-		return value;
-	},
-
-	/**
-	 * Returns true if the next line starts unindented collection
-	 *
-	 * @return Boolean Returns true if the next line starts unindented collection, false otherwise
-	 */
-	isNextLineUnIndentedCollection: function()
-	{
-		var currentIndentation = this.getCurrentLineIndentation();
-		var notEOF = this.moveToNextLine();
-
-		while (notEOF && this.isCurrentLineEmpty()) {
-			notEOF = this.moveToNextLine();
-		}
-
-		if (false === notEOF) {
-			return false;
-		}
-
-		var ret = false;
-		if (
-			this.getCurrentLineIndentation() == currentIndentation
-			&&
-			this.isStringUnIndentedCollectionItem(this.currentLine)
-		) {
-			ret = true;
-		}
-
-		this.moveToPreviousLine();
-
-		return ret;
-	},
-
-	/**
-	 * Returns true if the string is unindented collection item
-	 *
-	 * @return Boolean Returns true if the string is unindented collection item, false otherwise
-	 */
-	isStringUnIndentedCollectionItem: function(string)
-	{
-		return (0 === this.currentLine.indexOf('- '));
-	},
-	
-	isObject: function(input)
-	{
-		return typeof(input) == 'object' && this.isDefined(input);
-	},
-	
-	isEmpty: function(input)
-	{
-		return input == undefined || input == null || input == '' || input == 0 || input == "0" || input == false;
-	},
-	
-	isDefined: function(input)
-	{
-		return input != undefined && input != null;
-	},
-	
-	reverseArray: function(input /* Array */)
-	{
-		var result = [];
-		var len = input.length;
-		for ( var i = len-1; i >= 0; i-- )
-		{
-			result.push(input[i]);
-		}
-		
-		return result;
-	},
-	
-	merge: function(a /* Object */, b /* Object */)
-	{
-		var c = {};
-		var i;
-		
-		for ( i in a )
-		{
-			if ( a.hasOwnProperty(i) )
-				if ( /^\d+$/.test(i) ) c.push(a);
-				else c[i] = a[i];
-		}
-		for ( i in b )
-		{
-			if ( b.hasOwnProperty(i) )
-				if ( /^\d+$/.test(i) ) c.push(b);
-				else c[i] = b[i];
-		}
-		
-		return c;
-	},
-	
-	strRepeat: function(str /* String */, count /* Integer */)
-	{
-		var i;
-		var result = '';
-		for ( i = 0; i < count; i++ ) result += str;
-		return result;
-	},
-	
-	subStrCount: function(string, subString, start, length)
-	{
-		var c = 0;
-		
-		string = '' + string;
-		subString = '' + subString;
-		
-		if ( start != undefined ) string = string.substr(start);
-		if ( length != undefined ) string = string.substr(0, length); 
-		
-		var len = string.length;
-		var sublen = subString.length;
-		for ( var i = 0; i < len; i++ )
-		{
-			if ( subString == string.substr(i, sublen) )
-				c++;
-				i += sublen - 1;
-		}
-		
-		return c;
-	},
-	
-	trim: function(str /* String */)
-	{
-		return (str+'').replace(/^ +/,'').replace(/ +$/,'');
-	}
-};
-/**
- * YamlEscaper encapsulates escaping rules for single and double-quoted
- * YAML strings.
- *
- * @author Matthew Lewinski <matthew@lewinski.org>
- */
-var YamlEscaper = function(){};
-YamlEscaper.prototype =
-{
-	/**
-	 * Determines if a JS value would require double quoting in YAML.
-	 *
-	 * @param string value A JS value
-	 *
-	 * @return Boolean True if the value would require double quotes.
-	 */
-	requiresDoubleQuoting: function(value)
-	{
-		return new RegExp(YamlEscaper.REGEX_CHARACTER_TO_ESCAPE).test(value);
-	},
-
-	/**
-	 * Escapes and surrounds a JS value with double quotes.
-	 *
-	 * @param string value A JS value
-	 *
-	 * @return string The quoted, escaped string
-	 */
-	escapeWithDoubleQuotes: function(value)
-	{
-		value = value + '';
-		var len = YamlEscaper.escapees.length;
-		var maxlen = YamlEscaper.escaped.length;
-		var esc = YamlEscaper.escaped;
-		for (var i = 0; i < len; ++i)
-			if ( i >= maxlen ) esc.push('');
-
-		var ret = '';		
-		ret = value.replace(new RegExp(YamlEscaper.escapees.join('|'),'g'), function(str){
-			for(var i = 0; i < len; ++i){
-				if( str == YamlEscaper.escapees[i] )
-					return esc[i];
-			}
-		});
-		return '"' + ret + '"'; 
-	},
-
-	/**
-	 * Determines if a JS value would require single quoting in YAML.
-	 *
-	 * @param string value A JS value
-	 *
-	 * @return Boolean True if the value would require single quotes.
-	 */
-	requiresSingleQuoting: function(value)
-	{
-		return /[\s'":{}[\],&*#?]|^[-?|<>=!%@`]/.test(value);
-	},
-
-	/**
-	 * Escapes and surrounds a JS value with single quotes.
-	 *
-	 * @param string value A JS value
-	 *
-	 * @return string The quoted, escaped string
-	 */
-	escapeWithSingleQuotes : function(value)
-	{
-		return "'" + value.replace(/'/g, "''") + "'";
-	}
-};
-
-// Characters that would cause a dumped string to require double quoting.
-YamlEscaper.REGEX_CHARACTER_TO_ESCAPE = "[\\x00-\\x1f]|\xc2\x85|\xc2\xa0|\xe2\x80\xa8|\xe2\x80\xa9";
-
-// Mapping arrays for escaping a double quoted string. The backslash is
-// first to ensure proper escaping. 
-YamlEscaper.escapees = ['\\\\', '\\"', '"',
-									 "\x00",  "\x01",  "\x02",  "\x03",  "\x04",  "\x05",  "\x06",  "\x07",
-									 "\x08",  "\x09",  "\x0a",  "\x0b",  "\x0c",  "\x0d",  "\x0e",  "\x0f",
-									 "\x10",  "\x11",  "\x12",  "\x13",  "\x14",  "\x15",  "\x16",  "\x17",
-									 "\x18",  "\x19",  "\x1a",  "\x1b",  "\x1c",  "\x1d",  "\x1e",  "\x1f",
-									 "\xc2\x85", "\xc2\xa0", "\xe2\x80\xa8", "\xe2\x80\xa9"];
-YamlEscaper.escaped = ['\\"', '\\\\', '\\"',
-									 "\\0",   "\\x01", "\\x02", "\\x03", "\\x04", "\\x05", "\\x06", "\\a",
-									 "\\b",   "\\t",   "\\n",   "\\v",   "\\f",   "\\r",   "\\x0e", "\\x0f",
-									 "\\x10", "\\x11", "\\x12", "\\x13", "\\x14", "\\x15", "\\x16", "\\x17",
-									 "\\x18", "\\x19", "\\x1a", "\\e",   "\\x1c", "\\x1d", "\\x1e", "\\x1f",
-									 "\\N", "\\_", "\\L", "\\P"];
-/**
- * YamlUnescaper encapsulates unescaping rules for single and double-quoted
- * YAML strings.
- *
- * @author Matthew Lewinski <matthew@lewinski.org>
- */
-var YamlUnescaper = function(){};
-YamlUnescaper.prototype =
-{
-	/**
-	 * Unescapes a single quoted string.
-	 *
-	 * @param string value A single quoted string.
-	 *
-	 * @return string The unescaped string.
-	 */
-	unescapeSingleQuotedString: function(value)
-	{
-		return value.replace(/''/g, "'");
-	},
-
-	/**
-	 * Unescapes a double quoted string.
-	 *
-	 * @param string value A double quoted string.
-	 *
-	 * @return string The unescaped string.
-	 */
-	unescapeDoubleQuotedString: function(value)
-	{
-		var callback = function(m) {
-			return new YamlUnescaper().unescapeCharacter(m);
-		};
-
-		// evaluate the string
-		return value.replace(new RegExp(YamlUnescaper.REGEX_ESCAPED_CHARACTER, 'g'), callback);
-	},
-
-	/**
-	 * Unescapes a character that was found in a double-quoted string
-	 *
-	 * @param string value An escaped character
-	 *
-	 * @return string The unescaped character
-	 */
-	unescapeCharacter: function(value)
-	{
-		switch (value.charAt(1)) {
-			case '0':
-				return String.fromCharCode(0);
-			case 'a':
-				return String.fromCharCode(7);
-			case 'b':
-				return String.fromCharCode(8);
-			case 't':
-				return "\t";
-			case "\t":
-				return "\t";
-			case 'n':
-				return "\n";
-			case 'v':
-				return String.fromCharCode(11);
-			case 'f':
-				return String.fromCharCode(12);
-			case 'r':
-				return String.fromCharCode(13);
-			case 'e':
-				return "\x1b";
-			case ' ':
-				return ' ';
-			case '"':
-				return '"';
-			case '/':
-				return '/';
-			case '\\':
-				return '\\';
-			case 'N':
-				// U+0085 NEXT LINE
-				return "\x00\x85";
-			case '_':
-				// U+00A0 NO-BREAK SPACE
-				return "\x00\xA0";
-			case 'L':
-				// U+2028 LINE SEPARATOR
-				return "\x20\x28";
-			case 'P':
-				// U+2029 PARAGRAPH SEPARATOR
-				return "\x20\x29";
-			case 'x':
-				return this.pack('n', new YamlInline().hexdec(value.substr(2, 2)));
-			case 'u':
-				return this.pack('n', new YamlInline().hexdec(value.substr(2, 4)));
-			case 'U':
-				return this.pack('N', new YamlInline().hexdec(value.substr(2, 8)));
-		}
-	},
-	
-	/**
-	 * @see http://phpjs.org/functions/pack
-	 * @warning only modes used above copied
-	 */
-	 pack: function(B){var g=0,o=1,m="",l="",z=0,p=[],E,s,C,I,h,c;var d,b,x,H,u,e,A,q,D,t,w,a,G,F,y,v,f;while(g<B.length){E=B.charAt(g);s="";g++;while((g<B.length)&&(B.charAt(g).match(/[\d\*]/)!==null)){s+=B.charAt(g);g++}if(s===""){s="1"}switch(E){case"n":if(s==="*"){s=arguments.length-o}if(s>(arguments.length-o)){throw new Error("Warning:  pack() Type "+E+": too few arguments")}for(z=0;z<s;z++){m+=String.fromCharCode(arguments[o]>>8&255);m+=String.fromCharCode(arguments[o]&255);o++}break;case"N":if(s==="*"){s=arguments.length-o}if(s>(arguments.length-o)){throw new Error("Warning:  pack() Type "+E+": too few arguments")}for(z=0;z<s;z++){m+=String.fromCharCode(arguments[o]>>24&255);m+=String.fromCharCode(arguments[o]>>16&255);m+=String.fromCharCode(arguments[o]>>8&255);m+=String.fromCharCode(arguments[o]&255);o++}break;default:throw new Error("Warning:  pack() Type "+E+": unknown format code")}}if(o<arguments.length){throw new Error("Warning: pack(): "+(arguments.length-o)+" arguments unused")}return m}
+function isNegativeZero(number) {
+  return (number === 0) && (Number.NEGATIVE_INFINITY === 1 / number);
 }
 
-// Regex fragment that matches an escaped character in a double quoted
-// string.
-// why escape quotes, ffs!
-YamlUnescaper.REGEX_ESCAPED_CHARACTER = '\\\\([0abt\tnvfre "\\/\\\\N_LP]|x[0-9a-fA-F]{2}|u[0-9a-fA-F]{4}|U[0-9a-fA-F]{8})';
 
-/**
- * YamlDumper dumps JS variables to YAML strings.
- *
- * @author Fabien Potencier <fabien@symfony.com>
- */
-var YamlDumper = function(){};
-YamlDumper.prototype =
-{
-	/**
-	 * Dumps a JS value to YAML.
-	 *
-	 * @param	mixed	 input	The JS value
-	 * @param	integer inline The level where you switch to inline YAML
-	 * @param	integer indent The level o indentation indentation (used internally)
-	 *
-	 * @return string	The YAML representation of the JS value
-	 */
-	dump: function(input, inline, indent)
-	{
-		if ( inline == null ) inline = 0;
-		if ( indent == null ) indent = 0;
-		var output = '';
-		var prefix = indent ? this.strRepeat(' ', indent) : '';
-		var yaml;
-		if (!this.numSpacesForIndentation) this.numSpacesForIndentation = 2;
+module.exports.isNothing      = isNothing;
+module.exports.isObject       = isObject;
+module.exports.toArray        = toArray;
+module.exports.repeat         = repeat;
+module.exports.isNegativeZero = isNegativeZero;
+module.exports.extend         = extend;
 
-		if ( inline <= 0 || !this.isObject(input) || this.isEmpty(input) )
-		{
-			yaml = new YamlInline();
-			output += prefix + yaml.dump(input);
-		}
-		else
-		{
-			var isAHash = !this.arrayEquals(this.getKeys(input), this.range(0,input.length - 1));
-			var willBeInlined;
-			
-			for ( var key in input )
-			{
-				if ( input.hasOwnProperty(key) )
-				{
-					willBeInlined = inline - 1 <= 0 || !this.isObject(input[key]) || this.isEmpty(input[key]);
-					
-					if ( isAHash ) yaml = new YamlInline();
-					
-					output += 
-						prefix + '' +
-						(isAHash ? yaml.dump(key)+':' : '-') + '' +
-						(willBeInlined ? ' ' : "\n") + '' +
-						this.dump(input[key], inline - 1, (willBeInlined ? 0 : indent + this.numSpacesForIndentation)) + '' +
-						(willBeInlined ? "\n" : '');
-				}
-			}
-		}
+},{}],3:[function(require,module,exports){
+'use strict';
 
-		return output;
-	},
-	
-	strRepeat: function(str /* String */, count /* Integer */)
-	{
-		var i;
-		var result = '';
-		for ( i = 0; i < count; i++ ) result += str;
-		return result;
-	},
-	
-	isObject: function(input)
-	{
-		return this.isDefined(input) && typeof(input) == 'object';
-	},
-	
-	isEmpty: function(input)
-	{
-		var ret = input == undefined || input == null || input == '' || input == 0 || input == "0" || input == false;
-		if ( !ret && typeof(input) == "object" && !(input instanceof Array)){
-			var propCount = 0;
-			for ( var key in input )
-				if ( input.hasOwnProperty(key) ) propCount++;
-			ret = !propCount;
-		}
-		return ret;
-	},
-	
-	isDefined: function(input)
-	{
-		return input != undefined && input != null;
-	},
-	
-	getKeys: function(tab)
-	{
-		var ret = [];
-		
-		for ( var name in tab )
-		{
-			if ( tab.hasOwnProperty(name) )
-			{
-				ret.push(name);
-			}
-		}
-		
-		return ret;
-	},
-	
-	range: function(start, end)
-	{
-		if ( start > end ) return [];
-		
-		var ret = [];
-		
-		for ( var i = start; i <= end; i++ )
-		{
-			ret.push(i);
-		}
-		
-		return ret;
-	},
-	
-	arrayEquals: function(a,b)
-	{
-		if ( a.length != b.length ) return false;
-		
-		var len = a.length;
-		
-		for ( var i = 0; i < len; i++ )
-		{
-			if ( a[i] != b[i] ) return false;
-		}
-		
-		return true;
-	}
+/*eslint-disable no-use-before-define*/
+
+var common              = require('./common');
+var YAMLException       = require('./exception');
+var DEFAULT_FULL_SCHEMA = require('./schema/default_full');
+var DEFAULT_SAFE_SCHEMA = require('./schema/default_safe');
+
+var _toString       = Object.prototype.toString;
+var _hasOwnProperty = Object.prototype.hasOwnProperty;
+
+var CHAR_TAB                  = 0x09; /* Tab */
+var CHAR_LINE_FEED            = 0x0A; /* LF */
+var CHAR_SPACE                = 0x20; /* Space */
+var CHAR_EXCLAMATION          = 0x21; /* ! */
+var CHAR_DOUBLE_QUOTE         = 0x22; /* " */
+var CHAR_SHARP                = 0x23; /* # */
+var CHAR_PERCENT              = 0x25; /* % */
+var CHAR_AMPERSAND            = 0x26; /* & */
+var CHAR_SINGLE_QUOTE         = 0x27; /* ' */
+var CHAR_ASTERISK             = 0x2A; /* * */
+var CHAR_COMMA                = 0x2C; /* , */
+var CHAR_MINUS                = 0x2D; /* - */
+var CHAR_COLON                = 0x3A; /* : */
+var CHAR_GREATER_THAN         = 0x3E; /* > */
+var CHAR_QUESTION             = 0x3F; /* ? */
+var CHAR_COMMERCIAL_AT        = 0x40; /* @ */
+var CHAR_LEFT_SQUARE_BRACKET  = 0x5B; /* [ */
+var CHAR_RIGHT_SQUARE_BRACKET = 0x5D; /* ] */
+var CHAR_GRAVE_ACCENT         = 0x60; /* ` */
+var CHAR_LEFT_CURLY_BRACKET   = 0x7B; /* { */
+var CHAR_VERTICAL_LINE        = 0x7C; /* | */
+var CHAR_RIGHT_CURLY_BRACKET  = 0x7D; /* } */
+
+var ESCAPE_SEQUENCES = {};
+
+ESCAPE_SEQUENCES[0x00]   = '\\0';
+ESCAPE_SEQUENCES[0x07]   = '\\a';
+ESCAPE_SEQUENCES[0x08]   = '\\b';
+ESCAPE_SEQUENCES[0x09]   = '\\t';
+ESCAPE_SEQUENCES[0x0A]   = '\\n';
+ESCAPE_SEQUENCES[0x0B]   = '\\v';
+ESCAPE_SEQUENCES[0x0C]   = '\\f';
+ESCAPE_SEQUENCES[0x0D]   = '\\r';
+ESCAPE_SEQUENCES[0x1B]   = '\\e';
+ESCAPE_SEQUENCES[0x22]   = '\\"';
+ESCAPE_SEQUENCES[0x5C]   = '\\\\';
+ESCAPE_SEQUENCES[0x85]   = '\\N';
+ESCAPE_SEQUENCES[0xA0]   = '\\_';
+ESCAPE_SEQUENCES[0x2028] = '\\L';
+ESCAPE_SEQUENCES[0x2029] = '\\P';
+
+var DEPRECATED_BOOLEANS_SYNTAX = [
+  'y', 'Y', 'yes', 'Yes', 'YES', 'on', 'On', 'ON',
+  'n', 'N', 'no', 'No', 'NO', 'off', 'Off', 'OFF'
+];
+
+function compileStyleMap(schema, map) {
+  var result, keys, index, length, tag, style, type;
+
+  if (map === null) return {};
+
+  result = {};
+  keys = Object.keys(map);
+
+  for (index = 0, length = keys.length; index < length; index += 1) {
+    tag = keys[index];
+    style = String(map[tag]);
+
+    if (tag.slice(0, 2) === '!!') {
+      tag = 'tag:yaml.org,2002:' + tag.slice(2);
+    }
+
+    type = schema.compiledTypeMap[tag];
+
+    if (type && _hasOwnProperty.call(type.styleAliases, style)) {
+      style = type.styleAliases[style];
+    }
+
+    result[tag] = style;
+  }
+
+  return result;
+}
+
+function encodeHex(character) {
+  var string, handle, length;
+
+  string = character.toString(16).toUpperCase();
+
+  if (character <= 0xFF) {
+    handle = 'x';
+    length = 2;
+  } else if (character <= 0xFFFF) {
+    handle = 'u';
+    length = 4;
+  } else if (character <= 0xFFFFFFFF) {
+    handle = 'U';
+    length = 8;
+  } else {
+    throw new YAMLException('code point within a string may not be greater than 0xFFFFFFFF');
+  }
+
+  return '\\' + handle + common.repeat('0', length - string.length) + string;
+}
+
+function State(options) {
+  this.schema       = options['schema'] || DEFAULT_FULL_SCHEMA;
+  this.indent       = Math.max(1, (options['indent'] || 2));
+  this.skipInvalid  = options['skipInvalid'] || false;
+  this.flowLevel    = (common.isNothing(options['flowLevel']) ? -1 : options['flowLevel']);
+  this.styleMap     = compileStyleMap(this.schema, options['styles'] || null);
+  this.sortKeys     = options['sortKeys'] || false;
+  this.lineWidth    = options['lineWidth'] || 80;
+  this.noRefs       = options['noRefs'] || false;
+  this.noCompatMode = options['noCompatMode'] || false;
+
+  this.implicitTypes = this.schema.compiledImplicit;
+  this.explicitTypes = this.schema.compiledExplicit;
+
+  this.tag = null;
+  this.result = '';
+
+  this.duplicates = [];
+  this.usedDuplicates = null;
+}
+
+// Indents every line in a string. Empty lines (\n only) are not indented.
+function indentString(string, spaces) {
+  var ind = common.repeat(' ', spaces),
+      position = 0,
+      next = -1,
+      result = '',
+      line,
+      length = string.length;
+
+  while (position < length) {
+    next = string.indexOf('\n', position);
+    if (next === -1) {
+      line = string.slice(position);
+      position = length;
+    } else {
+      line = string.slice(position, next + 1);
+      position = next + 1;
+    }
+
+    if (line.length && line !== '\n') result += ind;
+
+    result += line;
+  }
+
+  return result;
+}
+
+function generateNextLine(state, level) {
+  return '\n' + common.repeat(' ', state.indent * level);
+}
+
+function testImplicitResolving(state, str) {
+  var index, length, type;
+
+  for (index = 0, length = state.implicitTypes.length; index < length; index += 1) {
+    type = state.implicitTypes[index];
+
+    if (type.resolve(str)) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+// [33] s-white ::= s-space | s-tab
+function isWhitespace(c) {
+  return c === CHAR_SPACE || c === CHAR_TAB;
+}
+
+// Returns true if the character can be printed without escaping.
+// From YAML 1.2: "any allowed characters known to be non-printable
+// should also be escaped. [However,] This isn’t mandatory"
+// Derived from nb-char - \t - #x85 - #xA0 - #x2028 - #x2029.
+function isPrintable(c) {
+  return  (0x00020 <= c && c <= 0x00007E)
+      || ((0x000A1 <= c && c <= 0x00D7FF) && c !== 0x2028 && c !== 0x2029)
+      || ((0x0E000 <= c && c <= 0x00FFFD) && c !== 0xFEFF /* BOM */)
+      ||  (0x10000 <= c && c <= 0x10FFFF);
+}
+
+// Simplified test for values allowed after the first character in plain style.
+function isPlainSafe(c) {
+  // Uses a subset of nb-char - c-flow-indicator - ":" - "#"
+  // where nb-char ::= c-printable - b-char - c-byte-order-mark.
+  return isPrintable(c) && c !== 0xFEFF
+    // - c-flow-indicator
+    && c !== CHAR_COMMA
+    && c !== CHAR_LEFT_SQUARE_BRACKET
+    && c !== CHAR_RIGHT_SQUARE_BRACKET
+    && c !== CHAR_LEFT_CURLY_BRACKET
+    && c !== CHAR_RIGHT_CURLY_BRACKET
+    // - ":" - "#"
+    && c !== CHAR_COLON
+    && c !== CHAR_SHARP;
+}
+
+// Simplified test for values allowed as the first character in plain style.
+function isPlainSafeFirst(c) {
+  // Uses a subset of ns-char - c-indicator
+  // where ns-char = nb-char - s-white.
+  return isPrintable(c) && c !== 0xFEFF
+    && !isWhitespace(c) // - s-white
+    // - (c-indicator ::=
+    // “-” | “?” | “:” | “,” | “[” | “]” | “{” | “}”
+    && c !== CHAR_MINUS
+    && c !== CHAR_QUESTION
+    && c !== CHAR_COLON
+    && c !== CHAR_COMMA
+    && c !== CHAR_LEFT_SQUARE_BRACKET
+    && c !== CHAR_RIGHT_SQUARE_BRACKET
+    && c !== CHAR_LEFT_CURLY_BRACKET
+    && c !== CHAR_RIGHT_CURLY_BRACKET
+    // | “#” | “&” | “*” | “!” | “|” | “>” | “'” | “"”
+    && c !== CHAR_SHARP
+    && c !== CHAR_AMPERSAND
+    && c !== CHAR_ASTERISK
+    && c !== CHAR_EXCLAMATION
+    && c !== CHAR_VERTICAL_LINE
+    && c !== CHAR_GREATER_THAN
+    && c !== CHAR_SINGLE_QUOTE
+    && c !== CHAR_DOUBLE_QUOTE
+    // | “%” | “@” | “`”)
+    && c !== CHAR_PERCENT
+    && c !== CHAR_COMMERCIAL_AT
+    && c !== CHAR_GRAVE_ACCENT;
+}
+
+var STYLE_PLAIN   = 1,
+    STYLE_SINGLE  = 2,
+    STYLE_LITERAL = 3,
+    STYLE_FOLDED  = 4,
+    STYLE_DOUBLE  = 5;
+
+// Determines which scalar styles are possible and returns the preferred style.
+// lineWidth = -1 => no limit.
+// Pre-conditions: str.length > 0.
+// Post-conditions:
+//    STYLE_PLAIN or STYLE_SINGLE => no \n are in the string.
+//    STYLE_LITERAL => no lines are suitable for folding (or lineWidth is -1).
+//    STYLE_FOLDED => a line > lineWidth and can be folded (and lineWidth != -1).
+function chooseScalarStyle(string, singleLineOnly, indentPerLevel, lineWidth, testAmbiguousType) {
+  var i;
+  var char;
+  var hasLineBreak = false;
+  var hasFoldableLine = false; // only checked if shouldTrackWidth
+  var shouldTrackWidth = lineWidth !== -1;
+  var previousLineBreak = -1; // count the first line correctly
+  var plain = isPlainSafeFirst(string.charCodeAt(0))
+          && !isWhitespace(string.charCodeAt(string.length - 1));
+
+  if (singleLineOnly) {
+    // Case: no block styles.
+    // Check for disallowed characters to rule out plain and single.
+    for (i = 0; i < string.length; i++) {
+      char = string.charCodeAt(i);
+      if (!isPrintable(char)) {
+        return STYLE_DOUBLE;
+      }
+      plain = plain && isPlainSafe(char);
+    }
+  } else {
+    // Case: block styles permitted.
+    for (i = 0; i < string.length; i++) {
+      char = string.charCodeAt(i);
+      if (char === CHAR_LINE_FEED) {
+        hasLineBreak = true;
+        // Check if any line can be folded.
+        if (shouldTrackWidth) {
+          hasFoldableLine = hasFoldableLine ||
+            // Foldable line = too long, and not more-indented.
+            (i - previousLineBreak - 1 > lineWidth &&
+             string[previousLineBreak + 1] !== ' ');
+          previousLineBreak = i;
+        }
+      } else if (!isPrintable(char)) {
+        return STYLE_DOUBLE;
+      }
+      plain = plain && isPlainSafe(char);
+    }
+    // in case the end is missing a \n
+    hasFoldableLine = hasFoldableLine || (shouldTrackWidth &&
+      (i - previousLineBreak - 1 > lineWidth &&
+       string[previousLineBreak + 1] !== ' '));
+  }
+  // Although every style can represent \n without escaping, prefer block styles
+  // for multiline, since they're more readable and they don't add empty lines.
+  // Also prefer folding a super-long line.
+  if (!hasLineBreak && !hasFoldableLine) {
+    // Strings interpretable as another type have to be quoted;
+    // e.g. the string 'true' vs. the boolean true.
+    return plain && !testAmbiguousType(string)
+      ? STYLE_PLAIN : STYLE_SINGLE;
+  }
+  // Edge case: block indentation indicator can only have one digit.
+  if (string[0] === ' ' && indentPerLevel > 9) {
+    return STYLE_DOUBLE;
+  }
+  // At this point we know block styles are valid.
+  // Prefer literal style unless we want to fold.
+  return hasFoldableLine ? STYLE_FOLDED : STYLE_LITERAL;
+}
+
+// Note: line breaking/folding is implemented for only the folded style.
+// NB. We drop the last trailing newline (if any) of a returned block scalar
+//  since the dumper adds its own newline. This always works:
+//    • No ending newline => unaffected; already using strip "-" chomping.
+//    • Ending newline    => removed then restored.
+//  Importantly, this keeps the "+" chomp indicator from gaining an extra line.
+function writeScalar(state, string, level, iskey) {
+  state.dump = (function () {
+    if (string.length === 0) {
+      return "''";
+    }
+    if (!state.noCompatMode &&
+        DEPRECATED_BOOLEANS_SYNTAX.indexOf(string) !== -1) {
+      return "'" + string + "'";
+    }
+
+    var indent = state.indent * Math.max(1, level); // no 0-indent scalars
+    // As indentation gets deeper, let the width decrease monotonically
+    // to the lower bound min(state.lineWidth, 40).
+    // Note that this implies
+    //  state.lineWidth ≤ 40 + state.indent: width is fixed at the lower bound.
+    //  state.lineWidth > 40 + state.indent: width decreases until the lower bound.
+    // This behaves better than a constant minimum width which disallows narrower options,
+    // or an indent threshold which causes the width to suddenly increase.
+    var lineWidth = state.lineWidth === -1
+      ? -1 : Math.max(Math.min(state.lineWidth, 40), state.lineWidth - indent);
+
+    // Without knowing if keys are implicit/explicit, assume implicit for safety.
+    var singleLineOnly = iskey
+      // No block styles in flow mode.
+      || (state.flowLevel > -1 && level >= state.flowLevel);
+    function testAmbiguity(string) {
+      return testImplicitResolving(state, string);
+    }
+
+    switch (chooseScalarStyle(string, singleLineOnly, state.indent, lineWidth, testAmbiguity)) {
+      case STYLE_PLAIN:
+        return string;
+      case STYLE_SINGLE:
+        return "'" + string.replace(/'/g, "''") + "'";
+      case STYLE_LITERAL:
+        return '|' + blockHeader(string, state.indent)
+          + dropEndingNewline(indentString(string, indent));
+      case STYLE_FOLDED:
+        return '>' + blockHeader(string, state.indent)
+          + dropEndingNewline(indentString(foldString(string, lineWidth), indent));
+      case STYLE_DOUBLE:
+        return '"' + escapeString(string, lineWidth) + '"';
+      default:
+        throw new YAMLException('impossible error: invalid scalar style');
+    }
+  }());
+}
+
+// Pre-conditions: string is valid for a block scalar, 1 <= indentPerLevel <= 9.
+function blockHeader(string, indentPerLevel) {
+  var indentIndicator = (string[0] === ' ') ? String(indentPerLevel) : '';
+
+  // note the special case: the string '\n' counts as a "trailing" empty line.
+  var clip =          string[string.length - 1] === '\n';
+  var keep = clip && (string[string.length - 2] === '\n' || string === '\n');
+  var chomp = keep ? '+' : (clip ? '' : '-');
+
+  return indentIndicator + chomp + '\n';
+}
+
+// (See the note for writeScalar.)
+function dropEndingNewline(string) {
+  return string[string.length - 1] === '\n' ? string.slice(0, -1) : string;
+}
+
+// Note: a long line without a suitable break point will exceed the width limit.
+// Pre-conditions: every char in str isPrintable, str.length > 0, width > 0.
+function foldString(string, width) {
+  // In folded style, $k$ consecutive newlines output as $k+1$ newlines—
+  // unless they're before or after a more-indented line, or at the very
+  // beginning or end, in which case $k$ maps to $k$.
+  // Therefore, parse each chunk as newline(s) followed by a content line.
+  var lineRe = /(\n+)([^\n]*)/g;
+
+  // first line (possibly an empty line)
+  var result = (function () {
+    var nextLF = string.indexOf('\n');
+    nextLF = nextLF !== -1 ? nextLF : string.length;
+    lineRe.lastIndex = nextLF;
+    return foldLine(string.slice(0, nextLF), width);
+  }());
+  // If we haven't reached the first content line yet, don't add an extra \n.
+  var prevMoreIndented = string[0] === '\n' || string[0] === ' ';
+  var moreIndented;
+
+  // rest of the lines
+  var match;
+  while ((match = lineRe.exec(string))) {
+    var prefix = match[1], line = match[2];
+    moreIndented = (line[0] === ' ');
+    result += prefix
+      + (!prevMoreIndented && !moreIndented && line !== ''
+        ? '\n' : '')
+      + foldLine(line, width);
+    prevMoreIndented = moreIndented;
+  }
+
+  return result;
+}
+
+// Greedy line breaking.
+// Picks the longest line under the limit each time,
+// otherwise settles for the shortest line over the limit.
+// NB. More-indented lines *cannot* be folded, as that would add an extra \n.
+function foldLine(line, width) {
+  if (line === '' || line[0] === ' ') return line;
+
+  // Since a more-indented line adds a \n, breaks can't be followed by a space.
+  var breakRe = / [^ ]/g; // note: the match index will always be <= length-2.
+  var match;
+  // start is an inclusive index. end, curr, and next are exclusive.
+  var start = 0, end, curr = 0, next = 0;
+  var result = '';
+
+  // Invariants: 0 <= start <= length-1.
+  //   0 <= curr <= next <= max(0, length-2). curr - start <= width.
+  // Inside the loop:
+  //   A match implies length >= 2, so curr and next are <= length-2.
+  while ((match = breakRe.exec(line))) {
+    next = match.index;
+    // maintain invariant: curr - start <= width
+    if (next - start > width) {
+      end = (curr > start) ? curr : next; // derive end <= length-2
+      result += '\n' + line.slice(start, end);
+      // skip the space that was output as \n
+      start = end + 1;                    // derive start <= length-1
+    }
+    curr = next;
+  }
+
+  // By the invariants, start <= length-1, so there is something left over.
+  // It is either the whole string or a part starting from non-whitespace.
+  result += '\n';
+  // Insert a break if the remainder is too long and there is a break available.
+  if (line.length - start > width && curr > start) {
+    result += line.slice(start, curr) + '\n' + line.slice(curr + 1);
+  } else {
+    result += line.slice(start);
+  }
+
+  return result.slice(1); // drop extra \n joiner
+}
+
+// Escapes a double-quoted string.
+function escapeString(string) {
+  var result = '';
+  var char;
+  var escapeSeq;
+
+  for (var i = 0; i < string.length; i++) {
+    char = string.charCodeAt(i);
+    escapeSeq = ESCAPE_SEQUENCES[char];
+    result += !escapeSeq && isPrintable(char)
+      ? string[i]
+      : escapeSeq || encodeHex(char);
+  }
+
+  return result;
+}
+
+function writeFlowSequence(state, level, object) {
+  var _result = '',
+      _tag    = state.tag,
+      index,
+      length;
+
+  for (index = 0, length = object.length; index < length; index += 1) {
+    // Write only valid elements.
+    if (writeNode(state, level, object[index], false, false)) {
+      if (index !== 0) _result += ', ';
+      _result += state.dump;
+    }
+  }
+
+  state.tag = _tag;
+  state.dump = '[' + _result + ']';
+}
+
+function writeBlockSequence(state, level, object, compact) {
+  var _result = '',
+      _tag    = state.tag,
+      index,
+      length;
+
+  for (index = 0, length = object.length; index < length; index += 1) {
+    // Write only valid elements.
+    if (writeNode(state, level + 1, object[index], true, true)) {
+      if (!compact || index !== 0) {
+        _result += generateNextLine(state, level);
+      }
+      _result += '- ' + state.dump;
+    }
+  }
+
+  state.tag = _tag;
+  state.dump = _result || '[]'; // Empty sequence if no valid values.
+}
+
+function writeFlowMapping(state, level, object) {
+  var _result       = '',
+      _tag          = state.tag,
+      objectKeyList = Object.keys(object),
+      index,
+      length,
+      objectKey,
+      objectValue,
+      pairBuffer;
+
+  for (index = 0, length = objectKeyList.length; index < length; index += 1) {
+    pairBuffer = '';
+
+    if (index !== 0) pairBuffer += ', ';
+
+    objectKey = objectKeyList[index];
+    objectValue = object[objectKey];
+
+    if (!writeNode(state, level, objectKey, false, false)) {
+      continue; // Skip this pair because of invalid key;
+    }
+
+    if (state.dump.length > 1024) pairBuffer += '? ';
+
+    pairBuffer += state.dump + ': ';
+
+    if (!writeNode(state, level, objectValue, false, false)) {
+      continue; // Skip this pair because of invalid value.
+    }
+
+    pairBuffer += state.dump;
+
+    // Both key and value are valid.
+    _result += pairBuffer;
+  }
+
+  state.tag = _tag;
+  state.dump = '{' + _result + '}';
+}
+
+function writeBlockMapping(state, level, object, compact) {
+  var _result       = '',
+      _tag          = state.tag,
+      objectKeyList = Object.keys(object),
+      index,
+      length,
+      objectKey,
+      objectValue,
+      explicitPair,
+      pairBuffer;
+
+  // Allow sorting keys so that the output file is deterministic
+  if (state.sortKeys === true) {
+    // Default sorting
+    objectKeyList.sort();
+  } else if (typeof state.sortKeys === 'function') {
+    // Custom sort function
+    objectKeyList.sort(state.sortKeys);
+  } else if (state.sortKeys) {
+    // Something is wrong
+    throw new YAMLException('sortKeys must be a boolean or a function');
+  }
+
+  for (index = 0, length = objectKeyList.length; index < length; index += 1) {
+    pairBuffer = '';
+
+    if (!compact || index !== 0) {
+      pairBuffer += generateNextLine(state, level);
+    }
+
+    objectKey = objectKeyList[index];
+    objectValue = object[objectKey];
+
+    if (!writeNode(state, level + 1, objectKey, true, true, true)) {
+      continue; // Skip this pair because of invalid key.
+    }
+
+    explicitPair = (state.tag !== null && state.tag !== '?') ||
+                   (state.dump && state.dump.length > 1024);
+
+    if (explicitPair) {
+      if (state.dump && CHAR_LINE_FEED === state.dump.charCodeAt(0)) {
+        pairBuffer += '?';
+      } else {
+        pairBuffer += '? ';
+      }
+    }
+
+    pairBuffer += state.dump;
+
+    if (explicitPair) {
+      pairBuffer += generateNextLine(state, level);
+    }
+
+    if (!writeNode(state, level + 1, objectValue, true, explicitPair)) {
+      continue; // Skip this pair because of invalid value.
+    }
+
+    if (state.dump && CHAR_LINE_FEED === state.dump.charCodeAt(0)) {
+      pairBuffer += ':';
+    } else {
+      pairBuffer += ': ';
+    }
+
+    pairBuffer += state.dump;
+
+    // Both key and value are valid.
+    _result += pairBuffer;
+  }
+
+  state.tag = _tag;
+  state.dump = _result || '{}'; // Empty mapping if no valid pairs.
+}
+
+function detectType(state, object, explicit) {
+  var _result, typeList, index, length, type, style;
+
+  typeList = explicit ? state.explicitTypes : state.implicitTypes;
+
+  for (index = 0, length = typeList.length; index < length; index += 1) {
+    type = typeList[index];
+
+    if ((type.instanceOf  || type.predicate) &&
+        (!type.instanceOf || ((typeof object === 'object') && (object instanceof type.instanceOf))) &&
+        (!type.predicate  || type.predicate(object))) {
+
+      state.tag = explicit ? type.tag : '?';
+
+      if (type.represent) {
+        style = state.styleMap[type.tag] || type.defaultStyle;
+
+        if (_toString.call(type.represent) === '[object Function]') {
+          _result = type.represent(object, style);
+        } else if (_hasOwnProperty.call(type.represent, style)) {
+          _result = type.represent[style](object, style);
+        } else {
+          throw new YAMLException('!<' + type.tag + '> tag resolver accepts not "' + style + '" style');
+        }
+
+        state.dump = _result;
+      }
+
+      return true;
+    }
+  }
+
+  return false;
+}
+
+// Serializes `object` and writes it to global `result`.
+// Returns true on success, or false on invalid object.
+//
+function writeNode(state, level, object, block, compact, iskey) {
+  state.tag = null;
+  state.dump = object;
+
+  if (!detectType(state, object, false)) {
+    detectType(state, object, true);
+  }
+
+  var type = _toString.call(state.dump);
+
+  if (block) {
+    block = (state.flowLevel < 0 || state.flowLevel > level);
+  }
+
+  var objectOrArray = type === '[object Object]' || type === '[object Array]',
+      duplicateIndex,
+      duplicate;
+
+  if (objectOrArray) {
+    duplicateIndex = state.duplicates.indexOf(object);
+    duplicate = duplicateIndex !== -1;
+  }
+
+  if ((state.tag !== null && state.tag !== '?') || duplicate || (state.indent !== 2 && level > 0)) {
+    compact = false;
+  }
+
+  if (duplicate && state.usedDuplicates[duplicateIndex]) {
+    state.dump = '*ref_' + duplicateIndex;
+  } else {
+    if (objectOrArray && duplicate && !state.usedDuplicates[duplicateIndex]) {
+      state.usedDuplicates[duplicateIndex] = true;
+    }
+    if (type === '[object Object]') {
+      if (block && (Object.keys(state.dump).length !== 0)) {
+        writeBlockMapping(state, level, state.dump, compact);
+        if (duplicate) {
+          state.dump = '&ref_' + duplicateIndex + state.dump;
+        }
+      } else {
+        writeFlowMapping(state, level, state.dump);
+        if (duplicate) {
+          state.dump = '&ref_' + duplicateIndex + ' ' + state.dump;
+        }
+      }
+    } else if (type === '[object Array]') {
+      if (block && (state.dump.length !== 0)) {
+        writeBlockSequence(state, level, state.dump, compact);
+        if (duplicate) {
+          state.dump = '&ref_' + duplicateIndex + state.dump;
+        }
+      } else {
+        writeFlowSequence(state, level, state.dump);
+        if (duplicate) {
+          state.dump = '&ref_' + duplicateIndex + ' ' + state.dump;
+        }
+      }
+    } else if (type === '[object String]') {
+      if (state.tag !== '?') {
+        writeScalar(state, state.dump, level, iskey);
+      }
+    } else {
+      if (state.skipInvalid) return false;
+      throw new YAMLException('unacceptable kind of an object to dump ' + type);
+    }
+
+    if (state.tag !== null && state.tag !== '?') {
+      state.dump = '!<' + state.tag + '> ' + state.dump;
+    }
+  }
+
+  return true;
+}
+
+function getDuplicateReferences(object, state) {
+  var objects = [],
+      duplicatesIndexes = [],
+      index,
+      length;
+
+  inspectNode(object, objects, duplicatesIndexes);
+
+  for (index = 0, length = duplicatesIndexes.length; index < length; index += 1) {
+    state.duplicates.push(objects[duplicatesIndexes[index]]);
+  }
+  state.usedDuplicates = new Array(length);
+}
+
+function inspectNode(object, objects, duplicatesIndexes) {
+  var objectKeyList,
+      index,
+      length;
+
+  if (object !== null && typeof object === 'object') {
+    index = objects.indexOf(object);
+    if (index !== -1) {
+      if (duplicatesIndexes.indexOf(index) === -1) {
+        duplicatesIndexes.push(index);
+      }
+    } else {
+      objects.push(object);
+
+      if (Array.isArray(object)) {
+        for (index = 0, length = object.length; index < length; index += 1) {
+          inspectNode(object[index], objects, duplicatesIndexes);
+        }
+      } else {
+        objectKeyList = Object.keys(object);
+
+        for (index = 0, length = objectKeyList.length; index < length; index += 1) {
+          inspectNode(object[objectKeyList[index]], objects, duplicatesIndexes);
+        }
+      }
+    }
+  }
+}
+
+function dump(input, options) {
+  options = options || {};
+
+  var state = new State(options);
+
+  if (!state.noRefs) getDuplicateReferences(input, state);
+
+  if (writeNode(state, 0, input, true, true)) return state.dump + '\n';
+
+  return '';
+}
+
+function safeDump(input, options) {
+  return dump(input, common.extend({ schema: DEFAULT_SAFE_SCHEMA }, options));
+}
+
+module.exports.dump     = dump;
+module.exports.safeDump = safeDump;
+
+},{"./common":2,"./exception":4,"./schema/default_full":9,"./schema/default_safe":10}],4:[function(require,module,exports){
+// YAML error class. http://stackoverflow.com/questions/8458984
+//
+'use strict';
+
+function YAMLException(reason, mark) {
+  // Super constructor
+  Error.call(this);
+
+  // Include stack trace in error object
+  if (Error.captureStackTrace) {
+    // Chrome and NodeJS
+    Error.captureStackTrace(this, this.constructor);
+  } else {
+    // FF, IE 10+ and Safari 6+. Fallback for others
+    this.stack = (new Error()).stack || '';
+  }
+
+  this.name = 'YAMLException';
+  this.reason = reason;
+  this.mark = mark;
+  this.message = (this.reason || '(unknown reason)') + (this.mark ? ' ' + this.mark.toString() : '');
+}
+
+
+// Inherit from Error
+YAMLException.prototype = Object.create(Error.prototype);
+YAMLException.prototype.constructor = YAMLException;
+
+
+YAMLException.prototype.toString = function toString(compact) {
+  var result = this.name + ': ';
+
+  result += this.reason || '(unknown reason)';
+
+  if (!compact && this.mark) {
+    result += ' ' + this.mark.toString();
+  }
+
+  return result;
 };
-})();
+
+
+module.exports = YAMLException;
+
+},{}],5:[function(require,module,exports){
+'use strict';
+
+/*eslint-disable max-len,no-use-before-define*/
+
+var common              = require('./common');
+var YAMLException       = require('./exception');
+var Mark                = require('./mark');
+var DEFAULT_SAFE_SCHEMA = require('./schema/default_safe');
+var DEFAULT_FULL_SCHEMA = require('./schema/default_full');
+
+
+var _hasOwnProperty = Object.prototype.hasOwnProperty;
+
+
+var CONTEXT_FLOW_IN   = 1;
+var CONTEXT_FLOW_OUT  = 2;
+var CONTEXT_BLOCK_IN  = 3;
+var CONTEXT_BLOCK_OUT = 4;
+
+
+var CHOMPING_CLIP  = 1;
+var CHOMPING_STRIP = 2;
+var CHOMPING_KEEP  = 3;
+
+
+var PATTERN_NON_PRINTABLE         = /[\x00-\x08\x0B\x0C\x0E-\x1F\x7F-\x84\x86-\x9F\uFFFE\uFFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF]/;
+var PATTERN_NON_ASCII_LINE_BREAKS = /[\x85\u2028\u2029]/;
+var PATTERN_FLOW_INDICATORS       = /[,\[\]\{\}]/;
+var PATTERN_TAG_HANDLE            = /^(?:!|!!|![a-z\-]+!)$/i;
+var PATTERN_TAG_URI               = /^(?:!|[^,\[\]\{\}])(?:%[0-9a-f]{2}|[0-9a-z\-#;\/\?:@&=\+\$,_\.!~\*'\(\)\[\]])*$/i;
+
+
+function is_EOL(c) {
+  return (c === 0x0A/* LF */) || (c === 0x0D/* CR */);
+}
+
+function is_WHITE_SPACE(c) {
+  return (c === 0x09/* Tab */) || (c === 0x20/* Space */);
+}
+
+function is_WS_OR_EOL(c) {
+  return (c === 0x09/* Tab */) ||
+         (c === 0x20/* Space */) ||
+         (c === 0x0A/* LF */) ||
+         (c === 0x0D/* CR */);
+}
+
+function is_FLOW_INDICATOR(c) {
+  return c === 0x2C/* , */ ||
+         c === 0x5B/* [ */ ||
+         c === 0x5D/* ] */ ||
+         c === 0x7B/* { */ ||
+         c === 0x7D/* } */;
+}
+
+function fromHexCode(c) {
+  var lc;
+
+  if ((0x30/* 0 */ <= c) && (c <= 0x39/* 9 */)) {
+    return c - 0x30;
+  }
+
+  /*eslint-disable no-bitwise*/
+  lc = c | 0x20;
+
+  if ((0x61/* a */ <= lc) && (lc <= 0x66/* f */)) {
+    return lc - 0x61 + 10;
+  }
+
+  return -1;
+}
+
+function escapedHexLen(c) {
+  if (c === 0x78/* x */) { return 2; }
+  if (c === 0x75/* u */) { return 4; }
+  if (c === 0x55/* U */) { return 8; }
+  return 0;
+}
+
+function fromDecimalCode(c) {
+  if ((0x30/* 0 */ <= c) && (c <= 0x39/* 9 */)) {
+    return c - 0x30;
+  }
+
+  return -1;
+}
+
+function simpleEscapeSequence(c) {
+  return (c === 0x30/* 0 */) ? '\x00' :
+        (c === 0x61/* a */) ? '\x07' :
+        (c === 0x62/* b */) ? '\x08' :
+        (c === 0x74/* t */) ? '\x09' :
+        (c === 0x09/* Tab */) ? '\x09' :
+        (c === 0x6E/* n */) ? '\x0A' :
+        (c === 0x76/* v */) ? '\x0B' :
+        (c === 0x66/* f */) ? '\x0C' :
+        (c === 0x72/* r */) ? '\x0D' :
+        (c === 0x65/* e */) ? '\x1B' :
+        (c === 0x20/* Space */) ? ' ' :
+        (c === 0x22/* " */) ? '\x22' :
+        (c === 0x2F/* / */) ? '/' :
+        (c === 0x5C/* \ */) ? '\x5C' :
+        (c === 0x4E/* N */) ? '\x85' :
+        (c === 0x5F/* _ */) ? '\xA0' :
+        (c === 0x4C/* L */) ? '\u2028' :
+        (c === 0x50/* P */) ? '\u2029' : '';
+}
+
+function charFromCodepoint(c) {
+  if (c <= 0xFFFF) {
+    return String.fromCharCode(c);
+  }
+  // Encode UTF-16 surrogate pair
+  // https://en.wikipedia.org/wiki/UTF-16#Code_points_U.2B010000_to_U.2B10FFFF
+  return String.fromCharCode(((c - 0x010000) >> 10) + 0xD800,
+                             ((c - 0x010000) & 0x03FF) + 0xDC00);
+}
+
+var simpleEscapeCheck = new Array(256); // integer, for fast access
+var simpleEscapeMap = new Array(256);
+for (var i = 0; i < 256; i++) {
+  simpleEscapeCheck[i] = simpleEscapeSequence(i) ? 1 : 0;
+  simpleEscapeMap[i] = simpleEscapeSequence(i);
+}
+
+
+function State(input, options) {
+  this.input = input;
+
+  this.filename  = options['filename']  || null;
+  this.schema    = options['schema']    || DEFAULT_FULL_SCHEMA;
+  this.onWarning = options['onWarning'] || null;
+  this.legacy    = options['legacy']    || false;
+  this.json      = options['json']      || false;
+  this.listener  = options['listener']  || null;
+
+  this.implicitTypes = this.schema.compiledImplicit;
+  this.typeMap       = this.schema.compiledTypeMap;
+
+  this.length     = input.length;
+  this.position   = 0;
+  this.line       = 0;
+  this.lineStart  = 0;
+  this.lineIndent = 0;
+
+  this.documents = [];
+
+  /*
+  this.version;
+  this.checkLineBreaks;
+  this.tagMap;
+  this.anchorMap;
+  this.tag;
+  this.anchor;
+  this.kind;
+  this.result;*/
+
+}
+
+
+function generateError(state, message) {
+  return new YAMLException(
+    message,
+    new Mark(state.filename, state.input, state.position, state.line, (state.position - state.lineStart)));
+}
+
+function throwError(state, message) {
+  throw generateError(state, message);
+}
+
+function throwWarning(state, message) {
+  if (state.onWarning) {
+    state.onWarning.call(null, generateError(state, message));
+  }
+}
+
+
+var directiveHandlers = {
+
+  YAML: function handleYamlDirective(state, name, args) {
+
+    var match, major, minor;
+
+    if (state.version !== null) {
+      throwError(state, 'duplication of %YAML directive');
+    }
+
+    if (args.length !== 1) {
+      throwError(state, 'YAML directive accepts exactly one argument');
+    }
+
+    match = /^([0-9]+)\.([0-9]+)$/.exec(args[0]);
+
+    if (match === null) {
+      throwError(state, 'ill-formed argument of the YAML directive');
+    }
+
+    major = parseInt(match[1], 10);
+    minor = parseInt(match[2], 10);
+
+    if (major !== 1) {
+      throwError(state, 'unacceptable YAML version of the document');
+    }
+
+    state.version = args[0];
+    state.checkLineBreaks = (minor < 2);
+
+    if (minor !== 1 && minor !== 2) {
+      throwWarning(state, 'unsupported YAML version of the document');
+    }
+  },
+
+  TAG: function handleTagDirective(state, name, args) {
+
+    var handle, prefix;
+
+    if (args.length !== 2) {
+      throwError(state, 'TAG directive accepts exactly two arguments');
+    }
+
+    handle = args[0];
+    prefix = args[1];
+
+    if (!PATTERN_TAG_HANDLE.test(handle)) {
+      throwError(state, 'ill-formed tag handle (first argument) of the TAG directive');
+    }
+
+    if (_hasOwnProperty.call(state.tagMap, handle)) {
+      throwError(state, 'there is a previously declared suffix for "' + handle + '" tag handle');
+    }
+
+    if (!PATTERN_TAG_URI.test(prefix)) {
+      throwError(state, 'ill-formed tag prefix (second argument) of the TAG directive');
+    }
+
+    state.tagMap[handle] = prefix;
+  }
+};
+
+
+function captureSegment(state, start, end, checkJson) {
+  var _position, _length, _character, _result;
+
+  if (start < end) {
+    _result = state.input.slice(start, end);
+
+    if (checkJson) {
+      for (_position = 0, _length = _result.length;
+           _position < _length;
+           _position += 1) {
+        _character = _result.charCodeAt(_position);
+        if (!(_character === 0x09 ||
+              (0x20 <= _character && _character <= 0x10FFFF))) {
+          throwError(state, 'expected valid JSON character');
+        }
+      }
+    } else if (PATTERN_NON_PRINTABLE.test(_result)) {
+      throwError(state, 'the stream contains non-printable characters');
+    }
+
+    state.result += _result;
+  }
+}
+
+function mergeMappings(state, destination, source, overridableKeys) {
+  var sourceKeys, key, index, quantity;
+
+  if (!common.isObject(source)) {
+    throwError(state, 'cannot merge mappings; the provided source object is unacceptable');
+  }
+
+  sourceKeys = Object.keys(source);
+
+  for (index = 0, quantity = sourceKeys.length; index < quantity; index += 1) {
+    key = sourceKeys[index];
+
+    if (!_hasOwnProperty.call(destination, key)) {
+      destination[key] = source[key];
+      overridableKeys[key] = true;
+    }
+  }
+}
+
+function storeMappingPair(state, _result, overridableKeys, keyTag, keyNode, valueNode) {
+  var index, quantity;
+
+  keyNode = String(keyNode);
+
+  if (_result === null) {
+    _result = {};
+  }
+
+  if (keyTag === 'tag:yaml.org,2002:merge') {
+    if (Array.isArray(valueNode)) {
+      for (index = 0, quantity = valueNode.length; index < quantity; index += 1) {
+        mergeMappings(state, _result, valueNode[index], overridableKeys);
+      }
+    } else {
+      mergeMappings(state, _result, valueNode, overridableKeys);
+    }
+  } else {
+    if (!state.json &&
+        !_hasOwnProperty.call(overridableKeys, keyNode) &&
+        _hasOwnProperty.call(_result, keyNode)) {
+      throwError(state, 'duplicated mapping key');
+    }
+    _result[keyNode] = valueNode;
+    delete overridableKeys[keyNode];
+  }
+
+  return _result;
+}
+
+function readLineBreak(state) {
+  var ch;
+
+  ch = state.input.charCodeAt(state.position);
+
+  if (ch === 0x0A/* LF */) {
+    state.position++;
+  } else if (ch === 0x0D/* CR */) {
+    state.position++;
+    if (state.input.charCodeAt(state.position) === 0x0A/* LF */) {
+      state.position++;
+    }
+  } else {
+    throwError(state, 'a line break is expected');
+  }
+
+  state.line += 1;
+  state.lineStart = state.position;
+}
+
+function skipSeparationSpace(state, allowComments, checkIndent) {
+  var lineBreaks = 0,
+      ch = state.input.charCodeAt(state.position);
+
+  while (ch !== 0) {
+    while (is_WHITE_SPACE(ch)) {
+      ch = state.input.charCodeAt(++state.position);
+    }
+
+    if (allowComments && ch === 0x23/* # */) {
+      do {
+        ch = state.input.charCodeAt(++state.position);
+      } while (ch !== 0x0A/* LF */ && ch !== 0x0D/* CR */ && ch !== 0);
+    }
+
+    if (is_EOL(ch)) {
+      readLineBreak(state);
+
+      ch = state.input.charCodeAt(state.position);
+      lineBreaks++;
+      state.lineIndent = 0;
+
+      while (ch === 0x20/* Space */) {
+        state.lineIndent++;
+        ch = state.input.charCodeAt(++state.position);
+      }
+    } else {
+      break;
+    }
+  }
+
+  if (checkIndent !== -1 && lineBreaks !== 0 && state.lineIndent < checkIndent) {
+    throwWarning(state, 'deficient indentation');
+  }
+
+  return lineBreaks;
+}
+
+function testDocumentSeparator(state) {
+  var _position = state.position,
+      ch;
+
+  ch = state.input.charCodeAt(_position);
+
+  // Condition state.position === state.lineStart is tested
+  // in parent on each call, for efficiency. No needs to test here again.
+  if ((ch === 0x2D/* - */ || ch === 0x2E/* . */) &&
+      ch === state.input.charCodeAt(_position + 1) &&
+      ch === state.input.charCodeAt(_position + 2)) {
+
+    _position += 3;
+
+    ch = state.input.charCodeAt(_position);
+
+    if (ch === 0 || is_WS_OR_EOL(ch)) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+function writeFoldedLines(state, count) {
+  if (count === 1) {
+    state.result += ' ';
+  } else if (count > 1) {
+    state.result += common.repeat('\n', count - 1);
+  }
+}
+
+
+function readPlainScalar(state, nodeIndent, withinFlowCollection) {
+  var preceding,
+      following,
+      captureStart,
+      captureEnd,
+      hasPendingContent,
+      _line,
+      _lineStart,
+      _lineIndent,
+      _kind = state.kind,
+      _result = state.result,
+      ch;
+
+  ch = state.input.charCodeAt(state.position);
+
+  if (is_WS_OR_EOL(ch)      ||
+      is_FLOW_INDICATOR(ch) ||
+      ch === 0x23/* # */    ||
+      ch === 0x26/* & */    ||
+      ch === 0x2A/* * */    ||
+      ch === 0x21/* ! */    ||
+      ch === 0x7C/* | */    ||
+      ch === 0x3E/* > */    ||
+      ch === 0x27/* ' */    ||
+      ch === 0x22/* " */    ||
+      ch === 0x25/* % */    ||
+      ch === 0x40/* @ */    ||
+      ch === 0x60/* ` */) {
+    return false;
+  }
+
+  if (ch === 0x3F/* ? */ || ch === 0x2D/* - */) {
+    following = state.input.charCodeAt(state.position + 1);
+
+    if (is_WS_OR_EOL(following) ||
+        withinFlowCollection && is_FLOW_INDICATOR(following)) {
+      return false;
+    }
+  }
+
+  state.kind = 'scalar';
+  state.result = '';
+  captureStart = captureEnd = state.position;
+  hasPendingContent = false;
+
+  while (ch !== 0) {
+    if (ch === 0x3A/* : */) {
+      following = state.input.charCodeAt(state.position + 1);
+
+      if (is_WS_OR_EOL(following) ||
+          withinFlowCollection && is_FLOW_INDICATOR(following)) {
+        break;
+      }
+
+    } else if (ch === 0x23/* # */) {
+      preceding = state.input.charCodeAt(state.position - 1);
+
+      if (is_WS_OR_EOL(preceding)) {
+        break;
+      }
+
+    } else if ((state.position === state.lineStart && testDocumentSeparator(state)) ||
+               withinFlowCollection && is_FLOW_INDICATOR(ch)) {
+      break;
+
+    } else if (is_EOL(ch)) {
+      _line = state.line;
+      _lineStart = state.lineStart;
+      _lineIndent = state.lineIndent;
+      skipSeparationSpace(state, false, -1);
+
+      if (state.lineIndent >= nodeIndent) {
+        hasPendingContent = true;
+        ch = state.input.charCodeAt(state.position);
+        continue;
+      } else {
+        state.position = captureEnd;
+        state.line = _line;
+        state.lineStart = _lineStart;
+        state.lineIndent = _lineIndent;
+        break;
+      }
+    }
+
+    if (hasPendingContent) {
+      captureSegment(state, captureStart, captureEnd, false);
+      writeFoldedLines(state, state.line - _line);
+      captureStart = captureEnd = state.position;
+      hasPendingContent = false;
+    }
+
+    if (!is_WHITE_SPACE(ch)) {
+      captureEnd = state.position + 1;
+    }
+
+    ch = state.input.charCodeAt(++state.position);
+  }
+
+  captureSegment(state, captureStart, captureEnd, false);
+
+  if (state.result) {
+    return true;
+  }
+
+  state.kind = _kind;
+  state.result = _result;
+  return false;
+}
+
+function readSingleQuotedScalar(state, nodeIndent) {
+  var ch,
+      captureStart, captureEnd;
+
+  ch = state.input.charCodeAt(state.position);
+
+  if (ch !== 0x27/* ' */) {
+    return false;
+  }
+
+  state.kind = 'scalar';
+  state.result = '';
+  state.position++;
+  captureStart = captureEnd = state.position;
+
+  while ((ch = state.input.charCodeAt(state.position)) !== 0) {
+    if (ch === 0x27/* ' */) {
+      captureSegment(state, captureStart, state.position, true);
+      ch = state.input.charCodeAt(++state.position);
+
+      if (ch === 0x27/* ' */) {
+        captureStart = captureEnd = state.position;
+        state.position++;
+      } else {
+        return true;
+      }
+
+    } else if (is_EOL(ch)) {
+      captureSegment(state, captureStart, captureEnd, true);
+      writeFoldedLines(state, skipSeparationSpace(state, false, nodeIndent));
+      captureStart = captureEnd = state.position;
+
+    } else if (state.position === state.lineStart && testDocumentSeparator(state)) {
+      throwError(state, 'unexpected end of the document within a single quoted scalar');
+
+    } else {
+      state.position++;
+      captureEnd = state.position;
+    }
+  }
+
+  throwError(state, 'unexpected end of the stream within a single quoted scalar');
+}
+
+function readDoubleQuotedScalar(state, nodeIndent) {
+  var captureStart,
+      captureEnd,
+      hexLength,
+      hexResult,
+      tmp,
+      ch;
+
+  ch = state.input.charCodeAt(state.position);
+
+  if (ch !== 0x22/* " */) {
+    return false;
+  }
+
+  state.kind = 'scalar';
+  state.result = '';
+  state.position++;
+  captureStart = captureEnd = state.position;
+
+  while ((ch = state.input.charCodeAt(state.position)) !== 0) {
+    if (ch === 0x22/* " */) {
+      captureSegment(state, captureStart, state.position, true);
+      state.position++;
+      return true;
+
+    } else if (ch === 0x5C/* \ */) {
+      captureSegment(state, captureStart, state.position, true);
+      ch = state.input.charCodeAt(++state.position);
+
+      if (is_EOL(ch)) {
+        skipSeparationSpace(state, false, nodeIndent);
+
+        // TODO: rework to inline fn with no type cast?
+      } else if (ch < 256 && simpleEscapeCheck[ch]) {
+        state.result += simpleEscapeMap[ch];
+        state.position++;
+
+      } else if ((tmp = escapedHexLen(ch)) > 0) {
+        hexLength = tmp;
+        hexResult = 0;
+
+        for (; hexLength > 0; hexLength--) {
+          ch = state.input.charCodeAt(++state.position);
+
+          if ((tmp = fromHexCode(ch)) >= 0) {
+            hexResult = (hexResult << 4) + tmp;
+
+          } else {
+            throwError(state, 'expected hexadecimal character');
+          }
+        }
+
+        state.result += charFromCodepoint(hexResult);
+
+        state.position++;
+
+      } else {
+        throwError(state, 'unknown escape sequence');
+      }
+
+      captureStart = captureEnd = state.position;
+
+    } else if (is_EOL(ch)) {
+      captureSegment(state, captureStart, captureEnd, true);
+      writeFoldedLines(state, skipSeparationSpace(state, false, nodeIndent));
+      captureStart = captureEnd = state.position;
+
+    } else if (state.position === state.lineStart && testDocumentSeparator(state)) {
+      throwError(state, 'unexpected end of the document within a double quoted scalar');
+
+    } else {
+      state.position++;
+      captureEnd = state.position;
+    }
+  }
+
+  throwError(state, 'unexpected end of the stream within a double quoted scalar');
+}
+
+function readFlowCollection(state, nodeIndent) {
+  var readNext = true,
+      _line,
+      _tag     = state.tag,
+      _result,
+      _anchor  = state.anchor,
+      following,
+      terminator,
+      isPair,
+      isExplicitPair,
+      isMapping,
+      overridableKeys = {},
+      keyNode,
+      keyTag,
+      valueNode,
+      ch;
+
+  ch = state.input.charCodeAt(state.position);
+
+  if (ch === 0x5B/* [ */) {
+    terminator = 0x5D;/* ] */
+    isMapping = false;
+    _result = [];
+  } else if (ch === 0x7B/* { */) {
+    terminator = 0x7D;/* } */
+    isMapping = true;
+    _result = {};
+  } else {
+    return false;
+  }
+
+  if (state.anchor !== null) {
+    state.anchorMap[state.anchor] = _result;
+  }
+
+  ch = state.input.charCodeAt(++state.position);
+
+  while (ch !== 0) {
+    skipSeparationSpace(state, true, nodeIndent);
+
+    ch = state.input.charCodeAt(state.position);
+
+    if (ch === terminator) {
+      state.position++;
+      state.tag = _tag;
+      state.anchor = _anchor;
+      state.kind = isMapping ? 'mapping' : 'sequence';
+      state.result = _result;
+      return true;
+    } else if (!readNext) {
+      throwError(state, 'missed comma between flow collection entries');
+    }
+
+    keyTag = keyNode = valueNode = null;
+    isPair = isExplicitPair = false;
+
+    if (ch === 0x3F/* ? */) {
+      following = state.input.charCodeAt(state.position + 1);
+
+      if (is_WS_OR_EOL(following)) {
+        isPair = isExplicitPair = true;
+        state.position++;
+        skipSeparationSpace(state, true, nodeIndent);
+      }
+    }
+
+    _line = state.line;
+    composeNode(state, nodeIndent, CONTEXT_FLOW_IN, false, true);
+    keyTag = state.tag;
+    keyNode = state.result;
+    skipSeparationSpace(state, true, nodeIndent);
+
+    ch = state.input.charCodeAt(state.position);
+
+    if ((isExplicitPair || state.line === _line) && ch === 0x3A/* : */) {
+      isPair = true;
+      ch = state.input.charCodeAt(++state.position);
+      skipSeparationSpace(state, true, nodeIndent);
+      composeNode(state, nodeIndent, CONTEXT_FLOW_IN, false, true);
+      valueNode = state.result;
+    }
+
+    if (isMapping) {
+      storeMappingPair(state, _result, overridableKeys, keyTag, keyNode, valueNode);
+    } else if (isPair) {
+      _result.push(storeMappingPair(state, null, overridableKeys, keyTag, keyNode, valueNode));
+    } else {
+      _result.push(keyNode);
+    }
+
+    skipSeparationSpace(state, true, nodeIndent);
+
+    ch = state.input.charCodeAt(state.position);
+
+    if (ch === 0x2C/* , */) {
+      readNext = true;
+      ch = state.input.charCodeAt(++state.position);
+    } else {
+      readNext = false;
+    }
+  }
+
+  throwError(state, 'unexpected end of the stream within a flow collection');
+}
+
+function readBlockScalar(state, nodeIndent) {
+  var captureStart,
+      folding,
+      chomping       = CHOMPING_CLIP,
+      didReadContent = false,
+      detectedIndent = false,
+      textIndent     = nodeIndent,
+      emptyLines     = 0,
+      atMoreIndented = false,
+      tmp,
+      ch;
+
+  ch = state.input.charCodeAt(state.position);
+
+  if (ch === 0x7C/* | */) {
+    folding = false;
+  } else if (ch === 0x3E/* > */) {
+    folding = true;
+  } else {
+    return false;
+  }
+
+  state.kind = 'scalar';
+  state.result = '';
+
+  while (ch !== 0) {
+    ch = state.input.charCodeAt(++state.position);
+
+    if (ch === 0x2B/* + */ || ch === 0x2D/* - */) {
+      if (CHOMPING_CLIP === chomping) {
+        chomping = (ch === 0x2B/* + */) ? CHOMPING_KEEP : CHOMPING_STRIP;
+      } else {
+        throwError(state, 'repeat of a chomping mode identifier');
+      }
+
+    } else if ((tmp = fromDecimalCode(ch)) >= 0) {
+      if (tmp === 0) {
+        throwError(state, 'bad explicit indentation width of a block scalar; it cannot be less than one');
+      } else if (!detectedIndent) {
+        textIndent = nodeIndent + tmp - 1;
+        detectedIndent = true;
+      } else {
+        throwError(state, 'repeat of an indentation width identifier');
+      }
+
+    } else {
+      break;
+    }
+  }
+
+  if (is_WHITE_SPACE(ch)) {
+    do { ch = state.input.charCodeAt(++state.position); }
+    while (is_WHITE_SPACE(ch));
+
+    if (ch === 0x23/* # */) {
+      do { ch = state.input.charCodeAt(++state.position); }
+      while (!is_EOL(ch) && (ch !== 0));
+    }
+  }
+
+  while (ch !== 0) {
+    readLineBreak(state);
+    state.lineIndent = 0;
+
+    ch = state.input.charCodeAt(state.position);
+
+    while ((!detectedIndent || state.lineIndent < textIndent) &&
+           (ch === 0x20/* Space */)) {
+      state.lineIndent++;
+      ch = state.input.charCodeAt(++state.position);
+    }
+
+    if (!detectedIndent && state.lineIndent > textIndent) {
+      textIndent = state.lineIndent;
+    }
+
+    if (is_EOL(ch)) {
+      emptyLines++;
+      continue;
+    }
+
+    // End of the scalar.
+    if (state.lineIndent < textIndent) {
+
+      // Perform the chomping.
+      if (chomping === CHOMPING_KEEP) {
+        state.result += common.repeat('\n', didReadContent ? 1 + emptyLines : emptyLines);
+      } else if (chomping === CHOMPING_CLIP) {
+        if (didReadContent) { // i.e. only if the scalar is not empty.
+          state.result += '\n';
+        }
+      }
+
+      // Break this `while` cycle and go to the funciton's epilogue.
+      break;
+    }
+
+    // Folded style: use fancy rules to handle line breaks.
+    if (folding) {
+
+      // Lines starting with white space characters (more-indented lines) are not folded.
+      if (is_WHITE_SPACE(ch)) {
+        atMoreIndented = true;
+        // except for the first content line (cf. Example 8.1)
+        state.result += common.repeat('\n', didReadContent ? 1 + emptyLines : emptyLines);
+
+      // End of more-indented block.
+      } else if (atMoreIndented) {
+        atMoreIndented = false;
+        state.result += common.repeat('\n', emptyLines + 1);
+
+      // Just one line break - perceive as the same line.
+      } else if (emptyLines === 0) {
+        if (didReadContent) { // i.e. only if we have already read some scalar content.
+          state.result += ' ';
+        }
+
+      // Several line breaks - perceive as different lines.
+      } else {
+        state.result += common.repeat('\n', emptyLines);
+      }
+
+    // Literal style: just add exact number of line breaks between content lines.
+    } else {
+      // Keep all line breaks except the header line break.
+      state.result += common.repeat('\n', didReadContent ? 1 + emptyLines : emptyLines);
+    }
+
+    didReadContent = true;
+    detectedIndent = true;
+    emptyLines = 0;
+    captureStart = state.position;
+
+    while (!is_EOL(ch) && (ch !== 0)) {
+      ch = state.input.charCodeAt(++state.position);
+    }
+
+    captureSegment(state, captureStart, state.position, false);
+  }
+
+  return true;
+}
+
+function readBlockSequence(state, nodeIndent) {
+  var _line,
+      _tag      = state.tag,
+      _anchor   = state.anchor,
+      _result   = [],
+      following,
+      detected  = false,
+      ch;
+
+  if (state.anchor !== null) {
+    state.anchorMap[state.anchor] = _result;
+  }
+
+  ch = state.input.charCodeAt(state.position);
+
+  while (ch !== 0) {
+
+    if (ch !== 0x2D/* - */) {
+      break;
+    }
+
+    following = state.input.charCodeAt(state.position + 1);
+
+    if (!is_WS_OR_EOL(following)) {
+      break;
+    }
+
+    detected = true;
+    state.position++;
+
+    if (skipSeparationSpace(state, true, -1)) {
+      if (state.lineIndent <= nodeIndent) {
+        _result.push(null);
+        ch = state.input.charCodeAt(state.position);
+        continue;
+      }
+    }
+
+    _line = state.line;
+    composeNode(state, nodeIndent, CONTEXT_BLOCK_IN, false, true);
+    _result.push(state.result);
+    skipSeparationSpace(state, true, -1);
+
+    ch = state.input.charCodeAt(state.position);
+
+    if ((state.line === _line || state.lineIndent > nodeIndent) && (ch !== 0)) {
+      throwError(state, 'bad indentation of a sequence entry');
+    } else if (state.lineIndent < nodeIndent) {
+      break;
+    }
+  }
+
+  if (detected) {
+    state.tag = _tag;
+    state.anchor = _anchor;
+    state.kind = 'sequence';
+    state.result = _result;
+    return true;
+  }
+  return false;
+}
+
+function readBlockMapping(state, nodeIndent, flowIndent) {
+  var following,
+      allowCompact,
+      _line,
+      _tag          = state.tag,
+      _anchor       = state.anchor,
+      _result       = {},
+      overridableKeys = {},
+      keyTag        = null,
+      keyNode       = null,
+      valueNode     = null,
+      atExplicitKey = false,
+      detected      = false,
+      ch;
+
+  if (state.anchor !== null) {
+    state.anchorMap[state.anchor] = _result;
+  }
+
+  ch = state.input.charCodeAt(state.position);
+
+  while (ch !== 0) {
+    following = state.input.charCodeAt(state.position + 1);
+    _line = state.line; // Save the current line.
+
+    //
+    // Explicit notation case. There are two separate blocks:
+    // first for the key (denoted by "?") and second for the value (denoted by ":")
+    //
+    if ((ch === 0x3F/* ? */ || ch === 0x3A/* : */) && is_WS_OR_EOL(following)) {
+
+      if (ch === 0x3F/* ? */) {
+        if (atExplicitKey) {
+          storeMappingPair(state, _result, overridableKeys, keyTag, keyNode, null);
+          keyTag = keyNode = valueNode = null;
+        }
+
+        detected = true;
+        atExplicitKey = true;
+        allowCompact = true;
+
+      } else if (atExplicitKey) {
+        // i.e. 0x3A/* : */ === character after the explicit key.
+        atExplicitKey = false;
+        allowCompact = true;
+
+      } else {
+        throwError(state, 'incomplete explicit mapping pair; a key node is missed');
+      }
+
+      state.position += 1;
+      ch = following;
+
+    //
+    // Implicit notation case. Flow-style node as the key first, then ":", and the value.
+    //
+    } else if (composeNode(state, flowIndent, CONTEXT_FLOW_OUT, false, true)) {
+
+      if (state.line === _line) {
+        ch = state.input.charCodeAt(state.position);
+
+        while (is_WHITE_SPACE(ch)) {
+          ch = state.input.charCodeAt(++state.position);
+        }
+
+        if (ch === 0x3A/* : */) {
+          ch = state.input.charCodeAt(++state.position);
+
+          if (!is_WS_OR_EOL(ch)) {
+            throwError(state, 'a whitespace character is expected after the key-value separator within a block mapping');
+          }
+
+          if (atExplicitKey) {
+            storeMappingPair(state, _result, overridableKeys, keyTag, keyNode, null);
+            keyTag = keyNode = valueNode = null;
+          }
+
+          detected = true;
+          atExplicitKey = false;
+          allowCompact = false;
+          keyTag = state.tag;
+          keyNode = state.result;
+
+        } else if (detected) {
+          throwError(state, 'can not read an implicit mapping pair; a colon is missed');
+
+        } else {
+          state.tag = _tag;
+          state.anchor = _anchor;
+          return true; // Keep the result of `composeNode`.
+        }
+
+      } else if (detected) {
+        throwError(state, 'can not read a block mapping entry; a multiline key may not be an implicit key');
+
+      } else {
+        state.tag = _tag;
+        state.anchor = _anchor;
+        return true; // Keep the result of `composeNode`.
+      }
+
+    } else {
+      break; // Reading is done. Go to the epilogue.
+    }
+
+    //
+    // Common reading code for both explicit and implicit notations.
+    //
+    if (state.line === _line || state.lineIndent > nodeIndent) {
+      if (composeNode(state, nodeIndent, CONTEXT_BLOCK_OUT, true, allowCompact)) {
+        if (atExplicitKey) {
+          keyNode = state.result;
+        } else {
+          valueNode = state.result;
+        }
+      }
+
+      if (!atExplicitKey) {
+        storeMappingPair(state, _result, overridableKeys, keyTag, keyNode, valueNode);
+        keyTag = keyNode = valueNode = null;
+      }
+
+      skipSeparationSpace(state, true, -1);
+      ch = state.input.charCodeAt(state.position);
+    }
+
+    if (state.lineIndent > nodeIndent && (ch !== 0)) {
+      throwError(state, 'bad indentation of a mapping entry');
+    } else if (state.lineIndent < nodeIndent) {
+      break;
+    }
+  }
+
+  //
+  // Epilogue.
+  //
+
+  // Special case: last mapping's node contains only the key in explicit notation.
+  if (atExplicitKey) {
+    storeMappingPair(state, _result, overridableKeys, keyTag, keyNode, null);
+  }
+
+  // Expose the resulting mapping.
+  if (detected) {
+    state.tag = _tag;
+    state.anchor = _anchor;
+    state.kind = 'mapping';
+    state.result = _result;
+  }
+
+  return detected;
+}
+
+function readTagProperty(state) {
+  var _position,
+      isVerbatim = false,
+      isNamed    = false,
+      tagHandle,
+      tagName,
+      ch;
+
+  ch = state.input.charCodeAt(state.position);
+
+  if (ch !== 0x21/* ! */) return false;
+
+  if (state.tag !== null) {
+    throwError(state, 'duplication of a tag property');
+  }
+
+  ch = state.input.charCodeAt(++state.position);
+
+  if (ch === 0x3C/* < */) {
+    isVerbatim = true;
+    ch = state.input.charCodeAt(++state.position);
+
+  } else if (ch === 0x21/* ! */) {
+    isNamed = true;
+    tagHandle = '!!';
+    ch = state.input.charCodeAt(++state.position);
+
+  } else {
+    tagHandle = '!';
+  }
+
+  _position = state.position;
+
+  if (isVerbatim) {
+    do { ch = state.input.charCodeAt(++state.position); }
+    while (ch !== 0 && ch !== 0x3E/* > */);
+
+    if (state.position < state.length) {
+      tagName = state.input.slice(_position, state.position);
+      ch = state.input.charCodeAt(++state.position);
+    } else {
+      throwError(state, 'unexpected end of the stream within a verbatim tag');
+    }
+  } else {
+    while (ch !== 0 && !is_WS_OR_EOL(ch)) {
+
+      if (ch === 0x21/* ! */) {
+        if (!isNamed) {
+          tagHandle = state.input.slice(_position - 1, state.position + 1);
+
+          if (!PATTERN_TAG_HANDLE.test(tagHandle)) {
+            throwError(state, 'named tag handle cannot contain such characters');
+          }
+
+          isNamed = true;
+          _position = state.position + 1;
+        } else {
+          throwError(state, 'tag suffix cannot contain exclamation marks');
+        }
+      }
+
+      ch = state.input.charCodeAt(++state.position);
+    }
+
+    tagName = state.input.slice(_position, state.position);
+
+    if (PATTERN_FLOW_INDICATORS.test(tagName)) {
+      throwError(state, 'tag suffix cannot contain flow indicator characters');
+    }
+  }
+
+  if (tagName && !PATTERN_TAG_URI.test(tagName)) {
+    throwError(state, 'tag name cannot contain such characters: ' + tagName);
+  }
+
+  if (isVerbatim) {
+    state.tag = tagName;
+
+  } else if (_hasOwnProperty.call(state.tagMap, tagHandle)) {
+    state.tag = state.tagMap[tagHandle] + tagName;
+
+  } else if (tagHandle === '!') {
+    state.tag = '!' + tagName;
+
+  } else if (tagHandle === '!!') {
+    state.tag = 'tag:yaml.org,2002:' + tagName;
+
+  } else {
+    throwError(state, 'undeclared tag handle "' + tagHandle + '"');
+  }
+
+  return true;
+}
+
+function readAnchorProperty(state) {
+  var _position,
+      ch;
+
+  ch = state.input.charCodeAt(state.position);
+
+  if (ch !== 0x26/* & */) return false;
+
+  if (state.anchor !== null) {
+    throwError(state, 'duplication of an anchor property');
+  }
+
+  ch = state.input.charCodeAt(++state.position);
+  _position = state.position;
+
+  while (ch !== 0 && !is_WS_OR_EOL(ch) && !is_FLOW_INDICATOR(ch)) {
+    ch = state.input.charCodeAt(++state.position);
+  }
+
+  if (state.position === _position) {
+    throwError(state, 'name of an anchor node must contain at least one character');
+  }
+
+  state.anchor = state.input.slice(_position, state.position);
+  return true;
+}
+
+function readAlias(state) {
+  var _position, alias,
+      ch;
+
+  ch = state.input.charCodeAt(state.position);
+
+  if (ch !== 0x2A/* * */) return false;
+
+  ch = state.input.charCodeAt(++state.position);
+  _position = state.position;
+
+  while (ch !== 0 && !is_WS_OR_EOL(ch) && !is_FLOW_INDICATOR(ch)) {
+    ch = state.input.charCodeAt(++state.position);
+  }
+
+  if (state.position === _position) {
+    throwError(state, 'name of an alias node must contain at least one character');
+  }
+
+  alias = state.input.slice(_position, state.position);
+
+  if (!state.anchorMap.hasOwnProperty(alias)) {
+    throwError(state, 'unidentified alias "' + alias + '"');
+  }
+
+  state.result = state.anchorMap[alias];
+  skipSeparationSpace(state, true, -1);
+  return true;
+}
+
+function composeNode(state, parentIndent, nodeContext, allowToSeek, allowCompact) {
+  var allowBlockStyles,
+      allowBlockScalars,
+      allowBlockCollections,
+      indentStatus = 1, // 1: this>parent, 0: this=parent, -1: this<parent
+      atNewLine  = false,
+      hasContent = false,
+      typeIndex,
+      typeQuantity,
+      type,
+      flowIndent,
+      blockIndent;
+
+  if (state.listener !== null) {
+    state.listener('open', state);
+  }
+
+  state.tag    = null;
+  state.anchor = null;
+  state.kind   = null;
+  state.result = null;
+
+  allowBlockStyles = allowBlockScalars = allowBlockCollections =
+    CONTEXT_BLOCK_OUT === nodeContext ||
+    CONTEXT_BLOCK_IN  === nodeContext;
+
+  if (allowToSeek) {
+    if (skipSeparationSpace(state, true, -1)) {
+      atNewLine = true;
+
+      if (state.lineIndent > parentIndent) {
+        indentStatus = 1;
+      } else if (state.lineIndent === parentIndent) {
+        indentStatus = 0;
+      } else if (state.lineIndent < parentIndent) {
+        indentStatus = -1;
+      }
+    }
+  }
+
+  if (indentStatus === 1) {
+    while (readTagProperty(state) || readAnchorProperty(state)) {
+      if (skipSeparationSpace(state, true, -1)) {
+        atNewLine = true;
+        allowBlockCollections = allowBlockStyles;
+
+        if (state.lineIndent > parentIndent) {
+          indentStatus = 1;
+        } else if (state.lineIndent === parentIndent) {
+          indentStatus = 0;
+        } else if (state.lineIndent < parentIndent) {
+          indentStatus = -1;
+        }
+      } else {
+        allowBlockCollections = false;
+      }
+    }
+  }
+
+  if (allowBlockCollections) {
+    allowBlockCollections = atNewLine || allowCompact;
+  }
+
+  if (indentStatus === 1 || CONTEXT_BLOCK_OUT === nodeContext) {
+    if (CONTEXT_FLOW_IN === nodeContext || CONTEXT_FLOW_OUT === nodeContext) {
+      flowIndent = parentIndent;
+    } else {
+      flowIndent = parentIndent + 1;
+    }
+
+    blockIndent = state.position - state.lineStart;
+
+    if (indentStatus === 1) {
+      if (allowBlockCollections &&
+          (readBlockSequence(state, blockIndent) ||
+           readBlockMapping(state, blockIndent, flowIndent)) ||
+          readFlowCollection(state, flowIndent)) {
+        hasContent = true;
+      } else {
+        if ((allowBlockScalars && readBlockScalar(state, flowIndent)) ||
+            readSingleQuotedScalar(state, flowIndent) ||
+            readDoubleQuotedScalar(state, flowIndent)) {
+          hasContent = true;
+
+        } else if (readAlias(state)) {
+          hasContent = true;
+
+          if (state.tag !== null || state.anchor !== null) {
+            throwError(state, 'alias node should not have any properties');
+          }
+
+        } else if (readPlainScalar(state, flowIndent, CONTEXT_FLOW_IN === nodeContext)) {
+          hasContent = true;
+
+          if (state.tag === null) {
+            state.tag = '?';
+          }
+        }
+
+        if (state.anchor !== null) {
+          state.anchorMap[state.anchor] = state.result;
+        }
+      }
+    } else if (indentStatus === 0) {
+      // Special case: block sequences are allowed to have same indentation level as the parent.
+      // http://www.yaml.org/spec/1.2/spec.html#id2799784
+      hasContent = allowBlockCollections && readBlockSequence(state, blockIndent);
+    }
+  }
+
+  if (state.tag !== null && state.tag !== '!') {
+    if (state.tag === '?') {
+      for (typeIndex = 0, typeQuantity = state.implicitTypes.length;
+           typeIndex < typeQuantity;
+           typeIndex += 1) {
+        type = state.implicitTypes[typeIndex];
+
+        // Implicit resolving is not allowed for non-scalar types, and '?'
+        // non-specific tag is only assigned to plain scalars. So, it isn't
+        // needed to check for 'kind' conformity.
+
+        if (type.resolve(state.result)) { // `state.result` updated in resolver if matched
+          state.result = type.construct(state.result);
+          state.tag = type.tag;
+          if (state.anchor !== null) {
+            state.anchorMap[state.anchor] = state.result;
+          }
+          break;
+        }
+      }
+    } else if (_hasOwnProperty.call(state.typeMap, state.tag)) {
+      type = state.typeMap[state.tag];
+
+      if (state.result !== null && type.kind !== state.kind) {
+        throwError(state, 'unacceptable node kind for !<' + state.tag + '> tag; it should be "' + type.kind + '", not "' + state.kind + '"');
+      }
+
+      if (!type.resolve(state.result)) { // `state.result` updated in resolver if matched
+        throwError(state, 'cannot resolve a node with !<' + state.tag + '> explicit tag');
+      } else {
+        state.result = type.construct(state.result);
+        if (state.anchor !== null) {
+          state.anchorMap[state.anchor] = state.result;
+        }
+      }
+    } else {
+      throwError(state, 'unknown tag !<' + state.tag + '>');
+    }
+  }
+
+  if (state.listener !== null) {
+    state.listener('close', state);
+  }
+  return state.tag !== null ||  state.anchor !== null || hasContent;
+}
+
+function readDocument(state) {
+  var documentStart = state.position,
+      _position,
+      directiveName,
+      directiveArgs,
+      hasDirectives = false,
+      ch;
+
+  state.version = null;
+  state.checkLineBreaks = state.legacy;
+  state.tagMap = {};
+  state.anchorMap = {};
+
+  while ((ch = state.input.charCodeAt(state.position)) !== 0) {
+    skipSeparationSpace(state, true, -1);
+
+    ch = state.input.charCodeAt(state.position);
+
+    if (state.lineIndent > 0 || ch !== 0x25/* % */) {
+      break;
+    }
+
+    hasDirectives = true;
+    ch = state.input.charCodeAt(++state.position);
+    _position = state.position;
+
+    while (ch !== 0 && !is_WS_OR_EOL(ch)) {
+      ch = state.input.charCodeAt(++state.position);
+    }
+
+    directiveName = state.input.slice(_position, state.position);
+    directiveArgs = [];
+
+    if (directiveName.length < 1) {
+      throwError(state, 'directive name must not be less than one character in length');
+    }
+
+    while (ch !== 0) {
+      while (is_WHITE_SPACE(ch)) {
+        ch = state.input.charCodeAt(++state.position);
+      }
+
+      if (ch === 0x23/* # */) {
+        do { ch = state.input.charCodeAt(++state.position); }
+        while (ch !== 0 && !is_EOL(ch));
+        break;
+      }
+
+      if (is_EOL(ch)) break;
+
+      _position = state.position;
+
+      while (ch !== 0 && !is_WS_OR_EOL(ch)) {
+        ch = state.input.charCodeAt(++state.position);
+      }
+
+      directiveArgs.push(state.input.slice(_position, state.position));
+    }
+
+    if (ch !== 0) readLineBreak(state);
+
+    if (_hasOwnProperty.call(directiveHandlers, directiveName)) {
+      directiveHandlers[directiveName](state, directiveName, directiveArgs);
+    } else {
+      throwWarning(state, 'unknown document directive "' + directiveName + '"');
+    }
+  }
+
+  skipSeparationSpace(state, true, -1);
+
+  if (state.lineIndent === 0 &&
+      state.input.charCodeAt(state.position)     === 0x2D/* - */ &&
+      state.input.charCodeAt(state.position + 1) === 0x2D/* - */ &&
+      state.input.charCodeAt(state.position + 2) === 0x2D/* - */) {
+    state.position += 3;
+    skipSeparationSpace(state, true, -1);
+
+  } else if (hasDirectives) {
+    throwError(state, 'directives end mark is expected');
+  }
+
+  composeNode(state, state.lineIndent - 1, CONTEXT_BLOCK_OUT, false, true);
+  skipSeparationSpace(state, true, -1);
+
+  if (state.checkLineBreaks &&
+      PATTERN_NON_ASCII_LINE_BREAKS.test(state.input.slice(documentStart, state.position))) {
+    throwWarning(state, 'non-ASCII line breaks are interpreted as content');
+  }
+
+  state.documents.push(state.result);
+
+  if (state.position === state.lineStart && testDocumentSeparator(state)) {
+
+    if (state.input.charCodeAt(state.position) === 0x2E/* . */) {
+      state.position += 3;
+      skipSeparationSpace(state, true, -1);
+    }
+    return;
+  }
+
+  if (state.position < (state.length - 1)) {
+    throwError(state, 'end of the stream or a document separator is expected');
+  } else {
+    return;
+  }
+}
+
+
+function loadDocuments(input, options) {
+  input = String(input);
+  options = options || {};
+
+  if (input.length !== 0) {
+
+    // Add tailing `\n` if not exists
+    if (input.charCodeAt(input.length - 1) !== 0x0A/* LF */ &&
+        input.charCodeAt(input.length - 1) !== 0x0D/* CR */) {
+      input += '\n';
+    }
+
+    // Strip BOM
+    if (input.charCodeAt(0) === 0xFEFF) {
+      input = input.slice(1);
+    }
+  }
+
+  var state = new State(input, options);
+
+  // Use 0 as string terminator. That significantly simplifies bounds check.
+  state.input += '\0';
+
+  while (state.input.charCodeAt(state.position) === 0x20/* Space */) {
+    state.lineIndent += 1;
+    state.position += 1;
+  }
+
+  while (state.position < (state.length - 1)) {
+    readDocument(state);
+  }
+
+  return state.documents;
+}
+
+
+function loadAll(input, iterator, options) {
+  var documents = loadDocuments(input, options), index, length;
+
+  for (index = 0, length = documents.length; index < length; index += 1) {
+    iterator(documents[index]);
+  }
+}
+
+
+function load(input, options) {
+  var documents = loadDocuments(input, options);
+
+  if (documents.length === 0) {
+    /*eslint-disable no-undefined*/
+    return undefined;
+  } else if (documents.length === 1) {
+    return documents[0];
+  }
+  throw new YAMLException('expected a single document in the stream, but found more');
+}
+
+
+function safeLoadAll(input, output, options) {
+  loadAll(input, output, common.extend({ schema: DEFAULT_SAFE_SCHEMA }, options));
+}
+
+
+function safeLoad(input, options) {
+  return load(input, common.extend({ schema: DEFAULT_SAFE_SCHEMA }, options));
+}
+
+
+module.exports.loadAll     = loadAll;
+module.exports.load        = load;
+module.exports.safeLoadAll = safeLoadAll;
+module.exports.safeLoad    = safeLoad;
+
+},{"./common":2,"./exception":4,"./mark":6,"./schema/default_full":9,"./schema/default_safe":10}],6:[function(require,module,exports){
+'use strict';
+
+
+var common = require('./common');
+
+
+function Mark(name, buffer, position, line, column) {
+  this.name     = name;
+  this.buffer   = buffer;
+  this.position = position;
+  this.line     = line;
+  this.column   = column;
+}
+
+
+Mark.prototype.getSnippet = function getSnippet(indent, maxLength) {
+  var head, start, tail, end, snippet;
+
+  if (!this.buffer) return null;
+
+  indent = indent || 4;
+  maxLength = maxLength || 75;
+
+  head = '';
+  start = this.position;
+
+  while (start > 0 && '\x00\r\n\x85\u2028\u2029'.indexOf(this.buffer.charAt(start - 1)) === -1) {
+    start -= 1;
+    if (this.position - start > (maxLength / 2 - 1)) {
+      head = ' ... ';
+      start += 5;
+      break;
+    }
+  }
+
+  tail = '';
+  end = this.position;
+
+  while (end < this.buffer.length && '\x00\r\n\x85\u2028\u2029'.indexOf(this.buffer.charAt(end)) === -1) {
+    end += 1;
+    if (end - this.position > (maxLength / 2 - 1)) {
+      tail = ' ... ';
+      end -= 5;
+      break;
+    }
+  }
+
+  snippet = this.buffer.slice(start, end);
+
+  return common.repeat(' ', indent) + head + snippet + tail + '\n' +
+         common.repeat(' ', indent + this.position - start + head.length) + '^';
+};
+
+
+Mark.prototype.toString = function toString(compact) {
+  var snippet, where = '';
+
+  if (this.name) {
+    where += 'in "' + this.name + '" ';
+  }
+
+  where += 'at line ' + (this.line + 1) + ', column ' + (this.column + 1);
+
+  if (!compact) {
+    snippet = this.getSnippet();
+
+    if (snippet) {
+      where += ':\n' + snippet;
+    }
+  }
+
+  return where;
+};
+
+
+module.exports = Mark;
+
+},{"./common":2}],7:[function(require,module,exports){
+'use strict';
+
+/*eslint-disable max-len*/
+
+var common        = require('./common');
+var YAMLException = require('./exception');
+var Type          = require('./type');
+
+
+function compileList(schema, name, result) {
+  var exclude = [];
+
+  schema.include.forEach(function (includedSchema) {
+    result = compileList(includedSchema, name, result);
+  });
+
+  schema[name].forEach(function (currentType) {
+    result.forEach(function (previousType, previousIndex) {
+      if (previousType.tag === currentType.tag) {
+        exclude.push(previousIndex);
+      }
+    });
+
+    result.push(currentType);
+  });
+
+  return result.filter(function (type, index) {
+    return exclude.indexOf(index) === -1;
+  });
+}
+
+
+function compileMap(/* lists... */) {
+  var result = {}, index, length;
+
+  function collectType(type) {
+    result[type.tag] = type;
+  }
+
+  for (index = 0, length = arguments.length; index < length; index += 1) {
+    arguments[index].forEach(collectType);
+  }
+
+  return result;
+}
+
+
+function Schema(definition) {
+  this.include  = definition.include  || [];
+  this.implicit = definition.implicit || [];
+  this.explicit = definition.explicit || [];
+
+  this.implicit.forEach(function (type) {
+    if (type.loadKind && type.loadKind !== 'scalar') {
+      throw new YAMLException('There is a non-scalar type in the implicit list of a schema. Implicit resolving of such types is not supported.');
+    }
+  });
+
+  this.compiledImplicit = compileList(this, 'implicit', []);
+  this.compiledExplicit = compileList(this, 'explicit', []);
+  this.compiledTypeMap  = compileMap(this.compiledImplicit, this.compiledExplicit);
+}
+
+
+Schema.DEFAULT = null;
+
+
+Schema.create = function createSchema() {
+  var schemas, types;
+
+  switch (arguments.length) {
+    case 1:
+      schemas = Schema.DEFAULT;
+      types = arguments[0];
+      break;
+
+    case 2:
+      schemas = arguments[0];
+      types = arguments[1];
+      break;
+
+    default:
+      throw new YAMLException('Wrong number of arguments for Schema.create function');
+  }
+
+  schemas = common.toArray(schemas);
+  types = common.toArray(types);
+
+  if (!schemas.every(function (schema) { return schema instanceof Schema; })) {
+    throw new YAMLException('Specified list of super schemas (or a single Schema object) contains a non-Schema object.');
+  }
+
+  if (!types.every(function (type) { return type instanceof Type; })) {
+    throw new YAMLException('Specified list of YAML types (or a single Type object) contains a non-Type object.');
+  }
+
+  return new Schema({
+    include: schemas,
+    explicit: types
+  });
+};
+
+
+module.exports = Schema;
+
+},{"./common":2,"./exception":4,"./type":13}],8:[function(require,module,exports){
+// Standard YAML's Core schema.
+// http://www.yaml.org/spec/1.2/spec.html#id2804923
+//
+// NOTE: JS-YAML does not support schema-specific tag resolution restrictions.
+// So, Core schema has no distinctions from JSON schema is JS-YAML.
+
+
+'use strict';
+
+
+var Schema = require('../schema');
+
+
+module.exports = new Schema({
+  include: [
+    require('./json')
+  ]
+});
+
+},{"../schema":7,"./json":12}],9:[function(require,module,exports){
+// JS-YAML's default schema for `load` function.
+// It is not described in the YAML specification.
+//
+// This schema is based on JS-YAML's default safe schema and includes
+// JavaScript-specific types: !!js/undefined, !!js/regexp and !!js/function.
+//
+// Also this schema is used as default base schema at `Schema.create` function.
+
+
+'use strict';
+
+
+var Schema = require('../schema');
+
+
+module.exports = Schema.DEFAULT = new Schema({
+  include: [
+    require('./default_safe')
+  ],
+  explicit: [
+    require('../type/js/undefined'),
+    require('../type/js/regexp'),
+  ]
+});
+
+},{"../schema":7,"../type/js/regexp":18,"../type/js/undefined":19,"./default_safe":10}],10:[function(require,module,exports){
+// JS-YAML's default schema for `safeLoad` function.
+// It is not described in the YAML specification.
+//
+// This schema is based on standard YAML's Core schema and includes most of
+// extra types described at YAML tag repository. (http://yaml.org/type/)
+
+
+'use strict';
+
+
+var Schema = require('../schema');
+
+
+module.exports = new Schema({
+  include: [
+    require('./core')
+  ],
+  implicit: [
+    require('../type/timestamp'),
+    require('../type/merge')
+  ],
+  explicit: [
+    require('../type/binary'),
+    require('../type/omap'),
+    require('../type/pairs'),
+    require('../type/set')
+  ]
+});
+
+},{"../schema":7,"../type/binary":14,"../type/merge":21,"../type/omap":23,"../type/pairs":24,"../type/set":26,"../type/timestamp":28,"./core":8}],11:[function(require,module,exports){
+// Standard YAML's Failsafe schema.
+// http://www.yaml.org/spec/1.2/spec.html#id2802346
+
+
+'use strict';
+
+
+var Schema = require('../schema');
+
+
+module.exports = new Schema({
+  explicit: [
+    require('../type/str'),
+    require('../type/seq'),
+    require('../type/map')
+  ]
+});
+
+},{"../schema":7,"../type/map":20,"../type/seq":25,"../type/str":27}],12:[function(require,module,exports){
+// Standard YAML's JSON schema.
+// http://www.yaml.org/spec/1.2/spec.html#id2803231
+//
+// NOTE: JS-YAML does not support schema-specific tag resolution restrictions.
+// So, this schema is not such strict as defined in the YAML specification.
+// It allows numbers in binary notaion, use `Null` and `NULL` as `null`, etc.
+
+
+'use strict';
+
+
+var Schema = require('../schema');
+
+
+module.exports = new Schema({
+  include: [
+    require('./failsafe')
+  ],
+  implicit: [
+    require('../type/null'),
+    require('../type/bool'),
+    require('../type/int'),
+    require('../type/float')
+  ]
+});
+
+},{"../schema":7,"../type/bool":15,"../type/float":16,"../type/int":17,"../type/null":22,"./failsafe":11}],13:[function(require,module,exports){
+'use strict';
+
+var YAMLException = require('./exception');
+
+var TYPE_CONSTRUCTOR_OPTIONS = [
+  'kind',
+  'resolve',
+  'construct',
+  'instanceOf',
+  'predicate',
+  'represent',
+  'defaultStyle',
+  'styleAliases'
+];
+
+var YAML_NODE_KINDS = [
+  'scalar',
+  'sequence',
+  'mapping'
+];
+
+function compileStyleAliases(map) {
+  var result = {};
+
+  if (map !== null) {
+    Object.keys(map).forEach(function (style) {
+      map[style].forEach(function (alias) {
+        result[String(alias)] = style;
+      });
+    });
+  }
+
+  return result;
+}
+
+function Type(tag, options) {
+  options = options || {};
+
+  Object.keys(options).forEach(function (name) {
+    if (TYPE_CONSTRUCTOR_OPTIONS.indexOf(name) === -1) {
+      throw new YAMLException('Unknown option "' + name + '" is met in definition of "' + tag + '" YAML type.');
+    }
+  });
+
+  // TODO: Add tag format check.
+  this.tag          = tag;
+  this.kind         = options['kind']         || null;
+  this.resolve      = options['resolve']      || function () { return true; };
+  this.construct    = options['construct']    || function (data) { return data; };
+  this.instanceOf   = options['instanceOf']   || null;
+  this.predicate    = options['predicate']    || null;
+  this.represent    = options['represent']    || null;
+  this.defaultStyle = options['defaultStyle'] || null;
+  this.styleAliases = compileStyleAliases(options['styleAliases'] || null);
+
+  if (YAML_NODE_KINDS.indexOf(this.kind) === -1) {
+    throw new YAMLException('Unknown kind "' + this.kind + '" is specified for "' + tag + '" YAML type.');
+  }
+}
+
+module.exports = Type;
+
+},{"./exception":4}],14:[function(require,module,exports){
+'use strict';
+
+/*eslint-disable no-bitwise*/
+
+var NodeBuffer;
+
+try {
+  // A trick for browserified version, to not include `Buffer` shim
+  var _require = require;
+  NodeBuffer = _require('buffer').Buffer;
+} catch (__) {}
+
+var Type       = require('../type');
+
+
+// [ 64, 65, 66 ] -> [ padding, CR, LF ]
+var BASE64_MAP = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=\n\r';
+
+
+function resolveYamlBinary(data) {
+  if (data === null) return false;
+
+  var code, idx, bitlen = 0, max = data.length, map = BASE64_MAP;
+
+  // Convert one by one.
+  for (idx = 0; idx < max; idx++) {
+    code = map.indexOf(data.charAt(idx));
+
+    // Skip CR/LF
+    if (code > 64) continue;
+
+    // Fail on illegal characters
+    if (code < 0) return false;
+
+    bitlen += 6;
+  }
+
+  // If there are any bits left, source was corrupted
+  return (bitlen % 8) === 0;
+}
+
+function constructYamlBinary(data) {
+  var idx, tailbits,
+      input = data.replace(/[\r\n=]/g, ''), // remove CR/LF & padding to simplify scan
+      max = input.length,
+      map = BASE64_MAP,
+      bits = 0,
+      result = [];
+
+  // Collect by 6*4 bits (3 bytes)
+
+  for (idx = 0; idx < max; idx++) {
+    if ((idx % 4 === 0) && idx) {
+      result.push((bits >> 16) & 0xFF);
+      result.push((bits >> 8) & 0xFF);
+      result.push(bits & 0xFF);
+    }
+
+    bits = (bits << 6) | map.indexOf(input.charAt(idx));
+  }
+
+  // Dump tail
+
+  tailbits = (max % 4) * 6;
+
+  if (tailbits === 0) {
+    result.push((bits >> 16) & 0xFF);
+    result.push((bits >> 8) & 0xFF);
+    result.push(bits & 0xFF);
+  } else if (tailbits === 18) {
+    result.push((bits >> 10) & 0xFF);
+    result.push((bits >> 2) & 0xFF);
+  } else if (tailbits === 12) {
+    result.push((bits >> 4) & 0xFF);
+  }
+
+  // Wrap into Buffer for NodeJS and leave Array for browser
+  if (NodeBuffer) return new NodeBuffer(result);
+
+  return result;
+}
+
+function representYamlBinary(object /*, style*/) {
+  var result = '', bits = 0, idx, tail,
+      max = object.length,
+      map = BASE64_MAP;
+
+  // Convert every three bytes to 4 ASCII characters.
+
+  for (idx = 0; idx < max; idx++) {
+    if ((idx % 3 === 0) && idx) {
+      result += map[(bits >> 18) & 0x3F];
+      result += map[(bits >> 12) & 0x3F];
+      result += map[(bits >> 6) & 0x3F];
+      result += map[bits & 0x3F];
+    }
+
+    bits = (bits << 8) + object[idx];
+  }
+
+  // Dump tail
+
+  tail = max % 3;
+
+  if (tail === 0) {
+    result += map[(bits >> 18) & 0x3F];
+    result += map[(bits >> 12) & 0x3F];
+    result += map[(bits >> 6) & 0x3F];
+    result += map[bits & 0x3F];
+  } else if (tail === 2) {
+    result += map[(bits >> 10) & 0x3F];
+    result += map[(bits >> 4) & 0x3F];
+    result += map[(bits << 2) & 0x3F];
+    result += map[64];
+  } else if (tail === 1) {
+    result += map[(bits >> 2) & 0x3F];
+    result += map[(bits << 4) & 0x3F];
+    result += map[64];
+    result += map[64];
+  }
+
+  return result;
+}
+
+function isBinary(object) {
+  return NodeBuffer && NodeBuffer.isBuffer(object);
+}
+
+module.exports = new Type('tag:yaml.org,2002:binary', {
+  kind: 'scalar',
+  resolve: resolveYamlBinary,
+  construct: constructYamlBinary,
+  predicate: isBinary,
+  represent: representYamlBinary
+});
+
+},{"../type":13}],15:[function(require,module,exports){
+'use strict';
+
+var Type = require('../type');
+
+function resolveYamlBoolean(data) {
+  if (data === null) return false;
+
+  var max = data.length;
+
+  return (max === 4 && (data === 'true' || data === 'True' || data === 'TRUE')) ||
+         (max === 5 && (data === 'false' || data === 'False' || data === 'FALSE'));
+}
+
+function constructYamlBoolean(data) {
+  return data === 'true' ||
+         data === 'True' ||
+         data === 'TRUE';
+}
+
+function isBoolean(object) {
+  return Object.prototype.toString.call(object) === '[object Boolean]';
+}
+
+module.exports = new Type('tag:yaml.org,2002:bool', {
+  kind: 'scalar',
+  resolve: resolveYamlBoolean,
+  construct: constructYamlBoolean,
+  predicate: isBoolean,
+  represent: {
+    lowercase: function (object) { return object ? 'true' : 'false'; },
+    uppercase: function (object) { return object ? 'TRUE' : 'FALSE'; },
+    camelcase: function (object) { return object ? 'True' : 'False'; }
+  },
+  defaultStyle: 'lowercase'
+});
+
+},{"../type":13}],16:[function(require,module,exports){
+'use strict';
+
+var common = require('../common');
+var Type   = require('../type');
+
+var YAML_FLOAT_PATTERN = new RegExp(
+  '^(?:[-+]?(?:[0-9][0-9_]*)\\.[0-9_]*(?:[eE][-+][0-9]+)?' +
+  '|\\.[0-9_]+(?:[eE][-+][0-9]+)?' +
+  '|[-+]?[0-9][0-9_]*(?::[0-5]?[0-9])+\\.[0-9_]*' +
+  '|[-+]?\\.(?:inf|Inf|INF)' +
+  '|\\.(?:nan|NaN|NAN))$');
+
+function resolveYamlFloat(data) {
+  if (data === null) return false;
+
+  if (!YAML_FLOAT_PATTERN.test(data)) return false;
+
+  return true;
+}
+
+function constructYamlFloat(data) {
+  var value, sign, base, digits;
+
+  value  = data.replace(/_/g, '').toLowerCase();
+  sign   = value[0] === '-' ? -1 : 1;
+  digits = [];
+
+  if ('+-'.indexOf(value[0]) >= 0) {
+    value = value.slice(1);
+  }
+
+  if (value === '.inf') {
+    return (sign === 1) ? Number.POSITIVE_INFINITY : Number.NEGATIVE_INFINITY;
+
+  } else if (value === '.nan') {
+    return NaN;
+
+  } else if (value.indexOf(':') >= 0) {
+    value.split(':').forEach(function (v) {
+      digits.unshift(parseFloat(v, 10));
+    });
+
+    value = 0.0;
+    base = 1;
+
+    digits.forEach(function (d) {
+      value += d * base;
+      base *= 60;
+    });
+
+    return sign * value;
+
+  }
+  return sign * parseFloat(value, 10);
+}
+
+
+var SCIENTIFIC_WITHOUT_DOT = /^[-+]?[0-9]+e/;
+
+function representYamlFloat(object, style) {
+  var res;
+
+  if (isNaN(object)) {
+    switch (style) {
+      case 'lowercase': return '.nan';
+      case 'uppercase': return '.NAN';
+      case 'camelcase': return '.NaN';
+    }
+  } else if (Number.POSITIVE_INFINITY === object) {
+    switch (style) {
+      case 'lowercase': return '.inf';
+      case 'uppercase': return '.INF';
+      case 'camelcase': return '.Inf';
+    }
+  } else if (Number.NEGATIVE_INFINITY === object) {
+    switch (style) {
+      case 'lowercase': return '-.inf';
+      case 'uppercase': return '-.INF';
+      case 'camelcase': return '-.Inf';
+    }
+  } else if (common.isNegativeZero(object)) {
+    return '-0.0';
+  }
+
+  res = object.toString(10);
+
+  // JS stringifier can build scientific format without dots: 5e-100,
+  // while YAML requres dot: 5.e-100. Fix it with simple hack
+
+  return SCIENTIFIC_WITHOUT_DOT.test(res) ? res.replace('e', '.e') : res;
+}
+
+function isFloat(object) {
+  return (Object.prototype.toString.call(object) === '[object Number]') &&
+         (object % 1 !== 0 || common.isNegativeZero(object));
+}
+
+module.exports = new Type('tag:yaml.org,2002:float', {
+  kind: 'scalar',
+  resolve: resolveYamlFloat,
+  construct: constructYamlFloat,
+  predicate: isFloat,
+  represent: representYamlFloat,
+  defaultStyle: 'lowercase'
+});
+
+},{"../common":2,"../type":13}],17:[function(require,module,exports){
+'use strict';
+
+var common = require('../common');
+var Type   = require('../type');
+
+function isHexCode(c) {
+  return ((0x30/* 0 */ <= c) && (c <= 0x39/* 9 */)) ||
+         ((0x41/* A */ <= c) && (c <= 0x46/* F */)) ||
+         ((0x61/* a */ <= c) && (c <= 0x66/* f */));
+}
+
+function isOctCode(c) {
+  return ((0x30/* 0 */ <= c) && (c <= 0x37/* 7 */));
+}
+
+function isDecCode(c) {
+  return ((0x30/* 0 */ <= c) && (c <= 0x39/* 9 */));
+}
+
+function resolveYamlInteger(data) {
+  if (data === null) return false;
+
+  var max = data.length,
+      index = 0,
+      hasDigits = false,
+      ch;
+
+  if (!max) return false;
+
+  ch = data[index];
+
+  // sign
+  if (ch === '-' || ch === '+') {
+    ch = data[++index];
+  }
+
+  if (ch === '0') {
+    // 0
+    if (index + 1 === max) return true;
+    ch = data[++index];
+
+    // base 2, base 8, base 16
+
+    if (ch === 'b') {
+      // base 2
+      index++;
+
+      for (; index < max; index++) {
+        ch = data[index];
+        if (ch === '_') continue;
+        if (ch !== '0' && ch !== '1') return false;
+        hasDigits = true;
+      }
+      return hasDigits;
+    }
+
+
+    if (ch === 'x') {
+      // base 16
+      index++;
+
+      for (; index < max; index++) {
+        ch = data[index];
+        if (ch === '_') continue;
+        if (!isHexCode(data.charCodeAt(index))) return false;
+        hasDigits = true;
+      }
+      return hasDigits;
+    }
+
+    // base 8
+    for (; index < max; index++) {
+      ch = data[index];
+      if (ch === '_') continue;
+      if (!isOctCode(data.charCodeAt(index))) return false;
+      hasDigits = true;
+    }
+    return hasDigits;
+  }
+
+  // base 10 (except 0) or base 60
+
+  for (; index < max; index++) {
+    ch = data[index];
+    if (ch === '_') continue;
+    if (ch === ':') break;
+    if (!isDecCode(data.charCodeAt(index))) {
+      return false;
+    }
+    hasDigits = true;
+  }
+
+  if (!hasDigits) return false;
+
+  // if !base60 - done;
+  if (ch !== ':') return true;
+
+  // base60 almost not used, no needs to optimize
+  return /^(:[0-5]?[0-9])+$/.test(data.slice(index));
+}
+
+function constructYamlInteger(data) {
+  var value = data, sign = 1, ch, base, digits = [];
+
+  if (value.indexOf('_') !== -1) {
+    value = value.replace(/_/g, '');
+  }
+
+  ch = value[0];
+
+  if (ch === '-' || ch === '+') {
+    if (ch === '-') sign = -1;
+    value = value.slice(1);
+    ch = value[0];
+  }
+
+  if (value === '0') return 0;
+
+  if (ch === '0') {
+    if (value[1] === 'b') return sign * parseInt(value.slice(2), 2);
+    if (value[1] === 'x') return sign * parseInt(value, 16);
+    return sign * parseInt(value, 8);
+  }
+
+  if (value.indexOf(':') !== -1) {
+    value.split(':').forEach(function (v) {
+      digits.unshift(parseInt(v, 10));
+    });
+
+    value = 0;
+    base = 1;
+
+    digits.forEach(function (d) {
+      value += (d * base);
+      base *= 60;
+    });
+
+    return sign * value;
+
+  }
+
+  return sign * parseInt(value, 10);
+}
+
+function isInteger(object) {
+  return (Object.prototype.toString.call(object)) === '[object Number]' &&
+         (object % 1 === 0 && !common.isNegativeZero(object));
+}
+
+module.exports = new Type('tag:yaml.org,2002:int', {
+  kind: 'scalar',
+  resolve: resolveYamlInteger,
+  construct: constructYamlInteger,
+  predicate: isInteger,
+  represent: {
+    binary:      function (object) { return '0b' + object.toString(2); },
+    octal:       function (object) { return '0'  + object.toString(8); },
+    decimal:     function (object) { return        object.toString(10); },
+    hexadecimal: function (object) { return '0x' + object.toString(16).toUpperCase(); }
+  },
+  defaultStyle: 'decimal',
+  styleAliases: {
+    binary:      [ 2,  'bin' ],
+    octal:       [ 8,  'oct' ],
+    decimal:     [ 10, 'dec' ],
+    hexadecimal: [ 16, 'hex' ]
+  }
+});
+
+},{"../common":2,"../type":13}],18:[function(require,module,exports){
+'use strict';
+
+var Type = require('../../type');
+
+function resolveJavascriptRegExp(data) {
+  if (data === null) return false;
+  if (data.length === 0) return false;
+
+  var regexp = data,
+      tail   = /\/([gim]*)$/.exec(data),
+      modifiers = '';
+
+  // if regexp starts with '/' it can have modifiers and must be properly closed
+  // `/foo/gim` - modifiers tail can be maximum 3 chars
+  if (regexp[0] === '/') {
+    if (tail) modifiers = tail[1];
+
+    if (modifiers.length > 3) return false;
+    // if expression starts with /, is should be properly terminated
+    if (regexp[regexp.length - modifiers.length - 1] !== '/') return false;
+  }
+
+  return true;
+}
+
+function constructJavascriptRegExp(data) {
+  var regexp = data,
+      tail   = /\/([gim]*)$/.exec(data),
+      modifiers = '';
+
+  // `/foo/gim` - tail can be maximum 4 chars
+  if (regexp[0] === '/') {
+    if (tail) modifiers = tail[1];
+    regexp = regexp.slice(1, regexp.length - modifiers.length - 1);
+  }
+
+  return new RegExp(regexp, modifiers);
+}
+
+function representJavascriptRegExp(object /*, style*/) {
+  var result = '/' + object.source + '/';
+
+  if (object.global) result += 'g';
+  if (object.multiline) result += 'm';
+  if (object.ignoreCase) result += 'i';
+
+  return result;
+}
+
+function isRegExp(object) {
+  return Object.prototype.toString.call(object) === '[object RegExp]';
+}
+
+module.exports = new Type('tag:yaml.org,2002:js/regexp', {
+  kind: 'scalar',
+  resolve: resolveJavascriptRegExp,
+  construct: constructJavascriptRegExp,
+  predicate: isRegExp,
+  represent: representJavascriptRegExp
+});
+
+},{"../../type":13}],19:[function(require,module,exports){
+'use strict';
+
+var Type = require('../../type');
+
+function resolveJavascriptUndefined() {
+  return true;
+}
+
+function constructJavascriptUndefined() {
+  /*eslint-disable no-undefined*/
+  return undefined;
+}
+
+function representJavascriptUndefined() {
+  return '';
+}
+
+function isUndefined(object) {
+  return typeof object === 'undefined';
+}
+
+module.exports = new Type('tag:yaml.org,2002:js/undefined', {
+  kind: 'scalar',
+  resolve: resolveJavascriptUndefined,
+  construct: constructJavascriptUndefined,
+  predicate: isUndefined,
+  represent: representJavascriptUndefined
+});
+
+},{"../../type":13}],20:[function(require,module,exports){
+'use strict';
+
+var Type = require('../type');
+
+module.exports = new Type('tag:yaml.org,2002:map', {
+  kind: 'mapping',
+  construct: function (data) { return data !== null ? data : {}; }
+});
+
+},{"../type":13}],21:[function(require,module,exports){
+'use strict';
+
+var Type = require('../type');
+
+function resolveYamlMerge(data) {
+  return data === '<<' || data === null;
+}
+
+module.exports = new Type('tag:yaml.org,2002:merge', {
+  kind: 'scalar',
+  resolve: resolveYamlMerge
+});
+
+},{"../type":13}],22:[function(require,module,exports){
+'use strict';
+
+var Type = require('../type');
+
+function resolveYamlNull(data) {
+  if (data === null) return true;
+
+  var max = data.length;
+
+  return (max === 1 && data === '~') ||
+         (max === 4 && (data === 'null' || data === 'Null' || data === 'NULL'));
+}
+
+function constructYamlNull() {
+  return null;
+}
+
+function isNull(object) {
+  return object === null;
+}
+
+module.exports = new Type('tag:yaml.org,2002:null', {
+  kind: 'scalar',
+  resolve: resolveYamlNull,
+  construct: constructYamlNull,
+  predicate: isNull,
+  represent: {
+    canonical: function () { return '~';    },
+    lowercase: function () { return 'null'; },
+    uppercase: function () { return 'NULL'; },
+    camelcase: function () { return 'Null'; }
+  },
+  defaultStyle: 'lowercase'
+});
+
+},{"../type":13}],23:[function(require,module,exports){
+'use strict';
+
+var Type = require('../type');
+
+var _hasOwnProperty = Object.prototype.hasOwnProperty;
+var _toString       = Object.prototype.toString;
+
+function resolveYamlOmap(data) {
+  if (data === null) return true;
+
+  var objectKeys = [], index, length, pair, pairKey, pairHasKey,
+      object = data;
+
+  for (index = 0, length = object.length; index < length; index += 1) {
+    pair = object[index];
+    pairHasKey = false;
+
+    if (_toString.call(pair) !== '[object Object]') return false;
+
+    for (pairKey in pair) {
+      if (_hasOwnProperty.call(pair, pairKey)) {
+        if (!pairHasKey) pairHasKey = true;
+        else return false;
+      }
+    }
+
+    if (!pairHasKey) return false;
+
+    if (objectKeys.indexOf(pairKey) === -1) objectKeys.push(pairKey);
+    else return false;
+  }
+
+  return true;
+}
+
+function constructYamlOmap(data) {
+  return data !== null ? data : [];
+}
+
+module.exports = new Type('tag:yaml.org,2002:omap', {
+  kind: 'sequence',
+  resolve: resolveYamlOmap,
+  construct: constructYamlOmap
+});
+
+},{"../type":13}],24:[function(require,module,exports){
+'use strict';
+
+var Type = require('../type');
+
+var _toString = Object.prototype.toString;
+
+function resolveYamlPairs(data) {
+  if (data === null) return true;
+
+  var index, length, pair, keys, result,
+      object = data;
+
+  result = new Array(object.length);
+
+  for (index = 0, length = object.length; index < length; index += 1) {
+    pair = object[index];
+
+    if (_toString.call(pair) !== '[object Object]') return false;
+
+    keys = Object.keys(pair);
+
+    if (keys.length !== 1) return false;
+
+    result[index] = [ keys[0], pair[keys[0]] ];
+  }
+
+  return true;
+}
+
+function constructYamlPairs(data) {
+  if (data === null) return [];
+
+  var index, length, pair, keys, result,
+      object = data;
+
+  result = new Array(object.length);
+
+  for (index = 0, length = object.length; index < length; index += 1) {
+    pair = object[index];
+
+    keys = Object.keys(pair);
+
+    result[index] = [ keys[0], pair[keys[0]] ];
+  }
+
+  return result;
+}
+
+module.exports = new Type('tag:yaml.org,2002:pairs', {
+  kind: 'sequence',
+  resolve: resolveYamlPairs,
+  construct: constructYamlPairs
+});
+
+},{"../type":13}],25:[function(require,module,exports){
+'use strict';
+
+var Type = require('../type');
+
+module.exports = new Type('tag:yaml.org,2002:seq', {
+  kind: 'sequence',
+  construct: function (data) { return data !== null ? data : []; }
+});
+
+},{"../type":13}],26:[function(require,module,exports){
+'use strict';
+
+var Type = require('../type');
+
+var _hasOwnProperty = Object.prototype.hasOwnProperty;
+
+function resolveYamlSet(data) {
+  if (data === null) return true;
+
+  var key, object = data;
+
+  for (key in object) {
+    if (_hasOwnProperty.call(object, key)) {
+      if (object[key] !== null) return false;
+    }
+  }
+
+  return true;
+}
+
+function constructYamlSet(data) {
+  return data !== null ? data : {};
+}
+
+module.exports = new Type('tag:yaml.org,2002:set', {
+  kind: 'mapping',
+  resolve: resolveYamlSet,
+  construct: constructYamlSet
+});
+
+},{"../type":13}],27:[function(require,module,exports){
+'use strict';
+
+var Type = require('../type');
+
+module.exports = new Type('tag:yaml.org,2002:str', {
+  kind: 'scalar',
+  construct: function (data) { return data !== null ? data : ''; }
+});
+
+},{"../type":13}],28:[function(require,module,exports){
+'use strict';
+
+var Type = require('../type');
+
+var YAML_DATE_REGEXP = new RegExp(
+  '^([0-9][0-9][0-9][0-9])'          + // [1] year
+  '-([0-9][0-9])'                    + // [2] month
+  '-([0-9][0-9])$');                   // [3] day
+
+var YAML_TIMESTAMP_REGEXP = new RegExp(
+  '^([0-9][0-9][0-9][0-9])'          + // [1] year
+  '-([0-9][0-9]?)'                   + // [2] month
+  '-([0-9][0-9]?)'                   + // [3] day
+  '(?:[Tt]|[ \\t]+)'                 + // ...
+  '([0-9][0-9]?)'                    + // [4] hour
+  ':([0-9][0-9])'                    + // [5] minute
+  ':([0-9][0-9])'                    + // [6] second
+  '(?:\\.([0-9]*))?'                 + // [7] fraction
+  '(?:[ \\t]*(Z|([-+])([0-9][0-9]?)' + // [8] tz [9] tz_sign [10] tz_hour
+  '(?::([0-9][0-9]))?))?$');           // [11] tz_minute
+
+function resolveYamlTimestamp(data) {
+  if (data === null) return false;
+  if (YAML_DATE_REGEXP.exec(data) !== null) return true;
+  if (YAML_TIMESTAMP_REGEXP.exec(data) !== null) return true;
+  return false;
+}
+
+function constructYamlTimestamp(data) {
+  var match, year, month, day, hour, minute, second, fraction = 0,
+      delta = null, tz_hour, tz_minute, date;
+
+  match = YAML_DATE_REGEXP.exec(data);
+  if (match === null) match = YAML_TIMESTAMP_REGEXP.exec(data);
+
+  if (match === null) throw new Error('Date resolve error');
+
+  // match: [1] year [2] month [3] day
+
+  year = +(match[1]);
+  month = +(match[2]) - 1; // JS month starts with 0
+  day = +(match[3]);
+
+  if (!match[4]) { // no hour
+    return new Date(Date.UTC(year, month, day));
+  }
+
+  // match: [4] hour [5] minute [6] second [7] fraction
+
+  hour = +(match[4]);
+  minute = +(match[5]);
+  second = +(match[6]);
+
+  if (match[7]) {
+    fraction = match[7].slice(0, 3);
+    while (fraction.length < 3) { // milli-seconds
+      fraction += '0';
+    }
+    fraction = +fraction;
+  }
+
+  // match: [8] tz [9] tz_sign [10] tz_hour [11] tz_minute
+
+  if (match[9]) {
+    tz_hour = +(match[10]);
+    tz_minute = +(match[11] || 0);
+    delta = (tz_hour * 60 + tz_minute) * 60000; // delta in mili-seconds
+    if (match[9] === '-') delta = -delta;
+  }
+
+  date = new Date(Date.UTC(year, month, day, hour, minute, second, fraction));
+
+  if (delta) date.setTime(date.getTime() - delta);
+
+  return date;
+}
+
+function representYamlTimestamp(object /*, style*/) {
+  return object.toISOString();
+}
+
+module.exports = new Type('tag:yaml.org,2002:timestamp', {
+  kind: 'scalar',
+  resolve: resolveYamlTimestamp,
+  construct: constructYamlTimestamp,
+  instanceOf: Date,
+  represent: representYamlTimestamp
+});
+
+},{"../type":13}],"/":[function(require,module,exports){
+'use strict';
+
+
+var yaml = require('./lib/js-yaml.js');
+
+
+module.exports = yaml;
+
+},{"./lib/js-yaml.js":1}]},{},[])("/")
+});

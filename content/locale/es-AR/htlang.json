@@ -269,6 +269,7 @@
 		"leagueNames": {
 			"1": "Suecia",
 			"100": "El Salvador",
+			"1000": "Hattrick International",
 			"101": "Malta",
 			"102": "Kirguistán",
 			"103": "Moldavia",
@@ -490,7 +491,7 @@
 			},
 			{
 				"type": "WingBack",
-				"value": "Defensor lateral"
+				"value": "Defensor Lateral"
 			},
 			{
 				"type": "CentralDefender",
@@ -502,7 +503,7 @@
 			},
 			{
 				"type": "Winger",
-				"value": "Medio lateral"
+				"value": "Mediocampista lateral"
 			},
 			{
 				"type": "Forward",

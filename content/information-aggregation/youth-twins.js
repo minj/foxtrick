@@ -65,7 +65,7 @@ Foxtrick.modules['YouthTwins'] = {
 					var av = encodeURIComponent(xml.serializeToString(avatars));
 
 					//api url
-					var url = 'http://www.hattrick-youthclub.org' +
+					var url = 'https://www.hattrick-youthclub.org' +
 						'/_data_provider/foxtrick/playersTwinsCheck';
 
 					//assemble param string
@@ -117,7 +117,16 @@ Foxtrick.modules['YouthTwins'] = {
 						callback(json);
 					}, params,
 					  function(response, status) {
-						var msg = 'Error ' + status + ': ' + JSON.parse(response).error;
+						var msg = 'Error ' + status + ': ';
+
+						try {
+							var err = JSON.parse(response).error;
+							msg += err;
+						}
+						catch (e) {
+							msg += response;
+						}
+
 						Foxtrick.util.note.add(doc, msg);
 					  },
 					  function() {
@@ -176,9 +185,15 @@ Foxtrick.modules['YouthTwins'] = {
 					Foxtrick.createFeaturedElement(doc, Foxtrick.modules['YouthTwins'], 'a');
 				var container =
 					Foxtrick.createFeaturedElement(doc, Foxtrick.modules['YouthTwins'], 'span');
+
 				Foxtrick.addClass(container, 'ft-youth-twins-container');
 				container.setAttribute('title', title);
 				container.setAttribute('alt', title);
+
+				container.dataset.possible = possible;
+				container.dataset.marked = marked;
+				container.dataset.unmarked = non;
+				container.dataset.undecided = missing;
 
 				//add icons according to amount of occurance
 				var addIcons = function(parent, limit, alt, className, src) {
@@ -194,14 +209,13 @@ Foxtrick.modules['YouthTwins'] = {
 				link.appendChild(container);
 
 				//link destinations as Mackshot from HY requested
-				if (isHYuser)
-					link.setAttribute('href',
-					                  'http://www.hattrick-youthclub.org/site/players_twins');
-				else
-					link.setAttribute('href',
-					                  'http://www.hattrick-youthclub.org');
+				var url = isHYuser ? 'https://www.hattrick-youthclub.org/site/players_twins' :
+					'https://www.hattrick-youthclub.org';
 
-				link.setAttribute('target', '_blank');
+				container.dataset.url = url;
+
+				link.href = url;
+				link.target = '_blank';
 
 				if (possible > 0 &&
 				    !Foxtrick.Prefs.isModuleOptionEnabled('YouthTwins','HideInfoLink')) {
@@ -209,7 +223,7 @@ Foxtrick.modules['YouthTwins'] = {
 					var infolink =
 						Foxtrick.createFeaturedElement(doc, Foxtrick.modules['YouthTwins'], 'a');
 					Foxtrick.addClass(infolink, 'ft-youth-twins-info');
-					infolink.href = 'http://www.hattrick-youthclub.org/site/wiki-player_twins';
+					infolink.href = 'https://www.hattrick-youthclub.org/site/wiki-player_twins';
 					infolink.target = '_blank';
 					var infotext = Foxtrick.L10n.getString('YouthTwins.infoText');
 					target.parentNode.insertBefore(infolink, target.nextSibling);

@@ -1,35 +1,32 @@
-#aspnetForm[action*="Read.aspx"] .cfHeader a[class="flag inner"] img
-{ margin: 0 0px 2px 0 !important; }
+#aspnetForm[action*="Read.aspx"] .cfHeader a.flag.inner img
+{ margin: 0 0px 2px 0; }
+#aspnetForm[action*="Read.aspx"]  .cfHeader a.bookmarkMessage img
+{margin: 0 0px -2px 0;}
+#aspnetForm[action*="Read.aspx"] .cfHeader {
+    padding-right: 0px;
+}
 
-#aspnetForm[action*="Read.aspx"]  div[class="cfHeader doubleLine"] b:after {content:" " !important;}
+#aspnetForm[action*="Read.aspx"]  div.cfHeader.doubleLine b:after,
+div.cfHeader.ftdoubleLine b:after
+{content:" ";}
 
-#aspnetForm[action*="Read.aspx"]  .cfHeader a[class="bookmarkMessage"] img
-{margin: 0 0px -2px 0 !important;}
+#aspnetForm[action*="Read.aspx"] div.cfHeader.doubleLine
+{height:14px;}
 
-#aspnetForm[action*="Read.aspx"] div[class="cfHeader doubleLine"]
-{height:14px!important;}
+div.cfHeader.ftdoubleLine
+{height:30px;}
 
-#aspnetForm[action*="Read.aspx"] div[class="cfHeader doubleLine"] br
-{display:none !important; padding: 5px;}
+#aspnetForm[action*="Read.aspx"] div.cfHeader.doubleLine br {
+	display: none;
+	padding: 5px;
+}
 
-div[class="cfHeader ftdoubleLine"]
-{height:30px !important;}
-
-div[class="cfHeader ftdoubleLine"] b:after {content:" " !important;}
-
-/*obsoltete div[class="cfHeader ftdoubleLine"] br
-{display:none !important; padding: 5px;}*/
-
-#aspnetForm[action*="Read.aspx"] div[class="cfHeader doubleLine"] p {display:inline;}
+#aspnetForm[action*="Read.aspx"] div.cfHeader.doubleLine p {display:inline;}
 
 
 /* broken dsign workaround*/
-#aspnetForm[action*="Read.aspx"] div.cfHeader>div[class="float_right right"]
-{padding: 0px 2px 1px;}
-
-#aspnetForm[action*="Read.aspx"] .cfHeader
-{
-    padding-right:0px !important;
+#aspnetForm[action*="Read.aspx"] div.cfHeader>div.float_right.right {
+	padding: 0px 2px 1px;
 }
 
 
@@ -39,13 +36,13 @@ div[class="cfHeader ftdoubleLine"] b:after {content:" " !important;}
 #aspnetForm[action*="Read.aspx"] div.mainConf div.cfInnerWrapperRed
 {margin-top:18px;}
 
-#aspnetForm[action*="Read.aspx"] div.cfHeader>div[class="float_right right"]
+#aspnetForm[action*="Read.aspx"] div.cfHeader>div.float_right.right
 {background: inherit;/* #849D84;*/}
 
 #aspnetForm[action*="Read.aspx"] div.mainConf div.cfMessage,
 #aspnetForm[action*="Read.aspx"] div.mainConf div.cfUser,
 #aspnetForm[action*="Read.aspx"] div.mainConf div.cfMessageNoAvatar
-{padding-top:0px !important;}
+{padding-top:0px;}
 
 #aspnetForm[action*="Read.aspx"] div.mainConf div.cfUser  div.faceCard
 { margin-bottom:-5px;}

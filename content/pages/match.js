@@ -19,62 +19,18 @@ Foxtrick.Pages.Match = {};
  * @return {array}
  */
 Foxtrick.Pages.Match.getTeams = function(doc) {
-	var teams = [], container;
+	var container;
 	if (Foxtrick.isPage(doc, 'matchesLive')) {
 		container = doc.querySelector('.rtsSelected .liveTabText');
 		if (!container) {
 			// no match open
 			return [null, null];
 		}
-
-		Foxtrick.forEach(function(child) {
-			if (child.textContent.trim() === '')
-				// skip empty
-				return;
-			var team;
-			if (child.nodeType == Foxtrick.NodeTypes.TEXT_NODE) {
-				var name = child.textContent.replace(/\s+-\s+$/, '').trim();
-				if (name === '')
-					// hyphen for non-street teams
-					return;
-				// street team
-				team = doc.createTextNode(name);
-			}
-			else if (child.nodeName.toLowerCase() !== 'a')
-				// skip spans etc
-				return;
-			else
-				team = child;
-
-			teams.push(team);
-		}, container.childNodes);
 	}
 	else {
 		container = doc.querySelector('#mainBody h1');
-		Foxtrick.forEach(function(child) {
-			if (child.textContent.trim() === '')
-				// skip empty
-				return;
-			var team;
-			if (child.nodeType == Foxtrick.NodeTypes.TEXT_NODE) {
-				var name = child.textContent.replace(/\s+\d+\s+-\s+\d+\s+$/, '').trim();
-				if (name === '')
-					// hyphen for non-street teams
-					return;
-				// street team
-				team = doc.createTextNode(name);
-			}
-			else if (child.nodeName.toLowerCase() !== 'a') {
-				// team popup
-				team = child.querySelector('a[href*="TeamID"]');
-			}
-			else
-				team = child;
-
-			teams.push(team);
-		}, container.childNodes);
 	}
-	return teams;
+	return [container.querySelector('.hometeam'), container.querySelector('.awayteam')];
 };
 
 /**
@@ -83,9 +39,18 @@ Foxtrick.Pages.Match.getTeams = function(doc) {
  * @return {HTMLAnchorElement}
  */
 Foxtrick.Pages.Match.getHomeTeam = function(doc) {
-	var homeIdx = Foxtrick.util.layout.isRtl(doc) ? 1 : 0;
-	var teams = this.getTeams(doc);
-	return teams[homeIdx];
+	var container;
+	if (Foxtrick.isPage(doc, 'matchesLive')) {
+		container = doc.querySelector('.rtsSelected .liveTabText');
+		if (!container) {
+			// no match open
+			return null;
+		}
+	}
+	else {
+		container = doc.querySelector('#mainBody h1');
+	}
+	return container.querySelector('.hometeam');
 };
 
 /**
@@ -94,9 +59,18 @@ Foxtrick.Pages.Match.getHomeTeam = function(doc) {
  * @return {HTMLAnchorElement}
  */
 Foxtrick.Pages.Match.getAwayTeam = function(doc) {
-	var awayIdx = Foxtrick.util.layout.isRtl(doc) ? 0 : 1;
-	var teams = this.getTeams(doc);
-	return teams[awayIdx];
+	var container;
+	if (Foxtrick.isPage(doc, 'matchesLive')) {
+		container = doc.querySelector('.rtsSelected .liveTabText');
+		if (!container) {
+			// no match open
+			return null;
+		}
+	}
+	else {
+		container = doc.querySelector('#mainBody h1');
+	}
+	return container.querySelector('.awayteam');
 };
 
 /**
@@ -120,6 +94,32 @@ Foxtrick.Pages.Match.getAwayTeamId = function(doc) {
 };
 
 /**
+ * Get team ID belonging to user's team.
+ *
+ * Mostly suited for matchOrder page.
+ * May be youth or NT team ID.
+ * @param  {document} doc
+ * @return {number}
+ */
+Foxtrick.Pages.Match.getMyTeamId = function(doc) {
+	if (Foxtrick.isPage(doc, 'matchOrder')) {
+		if (!this.isYouth(doc)) {
+			// URL id is not really reliable: it might be completely wrong or missing
+			// alas it is the only place to find NT team ID
+			var urlId = Foxtrick.util.id.getTeamIdFromUrl(doc.location.href); // NT
+			if (Foxtrick.util.id.isNTId(urlId))
+				return urlId;
+		}
+
+		var crumbs = Foxtrick.Pages.All.getBreadCrumbs(doc);
+		var crumbId = Foxtrick.util.id.getTeamIdFromUrl(crumbs[0].href);
+		if (crumbId)
+			return crumbId;
+	}
+	return Foxtrick.util.id.getOwnTeamId();
+};
+
+/**
  * Get home team name
  * @param  {document} doc
  * @return {string}
@@ -140,6 +140,33 @@ Foxtrick.Pages.Match.getAwayTeamName = function(doc) {
 };
 
 /**
+ * Get the game result as an array [home, away]
+ * @param  {document} doc
+ * @return {array}        {Array.<number>}
+ */
+Foxtrick.Pages.Match.getResult = function(doc) {
+	var isLive = Foxtrick.isPage(doc, 'matchesLive');
+	var score;
+	if (isLive) {
+		score = doc.querySelector('.rtsSelected .liveTabScore');
+		if (!score) {
+			// no match open
+			return null;
+		}
+	}
+	else {
+		score = doc.querySelector('#mainBody h1 [class="notByLine"]');
+	}
+	var match = score.textContent.trim().match(/^(\d+) - (\d+)$/);
+	var goals = Foxtrick.toArray(match).slice(1);
+	var ret = goals.map(function(s) { return parseInt(s, 10); });
+
+	if (!isLive && Foxtrick.util.layout.isRtl(doc))
+		ret.reverse();
+	return ret;
+};
+
+/**
  * Test whether match has not started
  * @param  {document} doc
  * @return {Boolean}
@@ -154,7 +181,9 @@ Foxtrick.Pages.Match.isPrematch = function(doc) {
  * @return {Boolean}
  */
 Foxtrick.Pages.Match.hasRatingsTabs = function(doc) {
-	return doc.getElementById('divSectors') !== null;
+	var lineupTab = doc.querySelector('#mainBody .tab2');
+
+	return !!(lineupTab && lineupTab.style.display != 'none');
 };
 
 /**
@@ -209,7 +238,8 @@ Foxtrick.Pages.Match.isHTOIntegrated = function(doc) {
 Foxtrick.Pages.Match.isNT = function(doc) {
 	var homeId = this.getHomeTeamId(doc);
 	var awayId = this.getAwayTeamId(doc);
-	return homeId && awayId && homeId < 10000 && awayId < 10000 || false;
+	return homeId && Foxtrick.util.id.isNTId(homeId) &&
+		awayId && Foxtrick.util.id.isNTId(awayId) || false;
 };
 
 /**
@@ -243,6 +273,24 @@ Foxtrick.Pages.Match.getDate = function(doc) {
 };
 
 /**
+ * Get the ArenaID where the match took place
+ * @param  {document} doc
+ * @return {number}       {?number}
+ */
+Foxtrick.Pages.Match.getArenaId = function(doc) {
+	var arenaId = null;
+	try {
+		var matchReport = doc.getElementById('matchReport');
+		var arena = matchReport.querySelector('a[href^="/Club/Arena/"]');
+		arenaId = parseInt(Foxtrick.getParameterFromUrl(arena.href, 'ArenaID'), 10);
+	}
+	catch (e) {
+		Foxtrick.log(e);
+	}
+	return arenaId;
+};
+
+/**
  * Test whether match is in progress
  * @param  {document} doc
  * @return {Boolean}
@@ -271,6 +319,17 @@ Foxtrick.Pages.Match.isLeague = function(doc) {
 	var mainBody = doc.getElementById('mainBody');
 	var isLeague = mainBody.getElementsByClassName('matchLeague').length > 0;
 	return isLeague;
+};
+
+/**
+ * Test whether match is a qualification match
+ * @param  {document} doc
+ * @return {Boolean}
+ */
+Foxtrick.Pages.Match.isQualification = function(doc) {
+	var mainBody = doc.getElementById('mainBody');
+	var isQualification = mainBody.getElementsByClassName('matchQualification').length > 0;
+	return isQualification;
 };
 
 /**
@@ -426,6 +485,35 @@ Foxtrick.Pages.Match.getTacticsByTeam = function(ratingstable) {
 // START NEW RATINGS UTILS
 
 /**
+ * Add a listener to changes on HT-Live page.
+ * Calls callback(document) on mutation.
+ * Cannot use subtree: true on the container because
+ * change() would execute every second in FF.
+ * This is because the match timer triggers childList changes in FF.
+ * @param {document} doc
+ * @param {Function} callback function(document)
+ */
+Foxtrick.Pages.Match.addLiveListener = function(doc, callback) {
+	var safeCallback = function(doc) {
+		try {
+			callback(doc);
+		}
+		catch (e) {
+			Foxtrick.log('Uncaught exception in callback', e);
+		}
+	};
+
+	// start everything onLoad
+	safeCallback(doc);
+	var liveContainer = this.getLiveContainer(doc);
+	if (liveContainer) {
+		// this is the smallest container that contains overview OR match view
+		Foxtrick.onChange(liveContainer, safeCallback, { subtree: false });
+	}
+};
+
+
+/**
  * Add a listener to changes of tabId in HT-Live matches.
  * Calls callback(doc) on mutation.
  * Registers a chain of MOs to by-pass the Live timer.
@@ -437,12 +525,20 @@ Foxtrick.Pages.Match.getTacticsByTeam = function(ratingstable) {
  * @param {Function} callback function(document)
  */
 Foxtrick.Pages.Match.addLiveTabListener = function(doc, tabId, callback) {
+	var safeCallback = function(doc) {
+		try {
+			callback(doc);
+		}
+		catch (e) {
+			Foxtrick.log('Uncaught exception in callback', e);
+		}
+	};
 	var registerTab = function(doc) {
-		callback(doc);
+		safeCallback(doc);
 		var target = doc.getElementById(tabId);
 		if (target) {
 			// found the right tab
-			Foxtrick.onChange(target, callback);
+			Foxtrick.onChange(target, safeCallback);
 		}
 	};
 	var registerMatch = function(doc) {
@@ -461,6 +557,42 @@ Foxtrick.Pages.Match.addLiveTabListener = function(doc, tabId, callback) {
 		Foxtrick.onChange(liveContainer, registerMatch, { subtree: false });
 	}
 };
+
+/**
+ * Add a listener to changes of HT-Live overview.
+ * Calls callback(overview) on mutation.
+ * Cannot use subtree: true on the container because
+ * change() would execute every second in FF.
+ * This is because the match timer triggers childList changes in FF.
+ * @param {document} doc
+ * @param {Function} callback function(HTMLElement)
+ */
+Foxtrick.Pages.Match.addLiveOverviewListener = function(doc, callback) {
+	var safeCallback = function(overview) {
+		try {
+			callback(overview);
+		}
+		catch (e) {
+			Foxtrick.log('Uncaught exception in callback', e);
+		}
+	};
+
+	var findOverview = function(doc) {
+		var overview = Foxtrick.getMBElement(doc, 'repM');
+		if (overview) {
+			safeCallback(overview);
+		}
+	};
+
+	// start everything onLoad
+	findOverview(doc);
+	var liveContainer = this.getLiveContainer(doc);
+	if (liveContainer) {
+		// this is the smallest container that contains overview OR match view
+		Foxtrick.onChange(liveContainer, findOverview, { subtree: false });
+	}
+};
+
 
 /**
  * Add a box to the sidebar on the right.
@@ -575,6 +707,9 @@ Foxtrick.Pages.Match.addBoxToSidebar = function(doc, title, content, prec) {
  * @param  {NodeList} links
  */
 Foxtrick.Pages.Match.modPlayerDiv = function(playerId, func, links) {
+	if (!playerId)
+		return;
+
 	var link = Foxtrick.filter(function(link) {
 		return new RegExp(playerId).test(link.href);
 	}, links)[0];
@@ -681,9 +816,10 @@ Foxtrick.Pages.Match.getTimeline = function(doc) {
 		var time = el.value;
 		return {
 			min: parseInt(time.match(/^\d+/), 10),
-			sec: parseInt(time.match(/\d+$/), 10)
+			sec: parseInt(time.match(/\d+$/), 10),
 		};
 	}, doc.querySelectorAll('input[id$="_time"]'));
+	timeline.unshift({ min: -1, sec: 0 });
 	return timeline;
 };
 
@@ -718,20 +854,53 @@ Foxtrick.Pages.Match.getTeamRatingsByEvent = function(doc, isHome) {
  * Where eventIdx is the event index in the report (xml),
  * used to match highlights (#matchEventIndex_ + eventIdx).
  * 5 minute updates have index=0, no event.
- * While idx is the timeline index (starts at 0, includes 5 minute updates)
+ * While idx is the timeline index (starts at average, includes 5 minute updates)
  * @param  {document} doc
  * @return {array}        Array.<{eventIdx: number, idx: number}>
  */
 Foxtrick.Pages.Match.getEventIndicesByEvent = function(doc) {
 	var eventIndices = doc.querySelectorAll('input[id$="_eventIndex"]');
-	var eventIndexByEvent = Foxtrick.map(function(index, i) {
-		return { eventIdx: index.value, idx: i };
+	var eventIndexByEvent = Foxtrick.map(function(index) {
+		return { eventIdx: index.value };
 	}, eventIndices);
+	eventIndexByEvent.unshift({ eventIdx: -1 }); // timeline average
+	Foxtrick.forEach(function(evnt, i) {
+		evnt.idx = i;
+	}, eventIndexByEvent);
 	return eventIndexByEvent;
 };
 
 /**
- * Get the smallest HT-Live container that includes
+ * Get event types event by event.
+ * Returns an array of {type, idx}.
+ * Where type is event type ID;
+ * Where idx is the timeline index (starts at average, includes 5 minute updates).
+ * @param  {document} doc
+ * @return {array}        Array.<{type: number, idx: number}>
+ */
+Foxtrick.Pages.Match.getEventTypesByEvent = function(doc) {
+	var timelineEvents = doc.querySelectorAll('input[id$="_timelineEventType"]');
+	var tEventTypeByEvent = Foxtrick.map(function(evTypeEl) {
+		return { type: parseInt(evTypeEl.value, 10) };
+	}, timelineEvents);
+	tEventTypeByEvent.unshift({ type: -1 }); // timeline average
+	Foxtrick.forEach(function(evnt, i) {
+		evnt.idx = i;
+	}, tEventTypeByEvent);
+	return tEventTypeByEvent;
+};
+
+/**
+ * Test whether this is the new HT-Live view
+ * @param  {document}  doc
+ * @return {Boolean}
+ */
+Foxtrick.Pages.Match.isNewLive = function(doc) {
+	return !!doc.getElementById('ngLive');
+};
+
+/**
+ * Get the smallest OLD HT-Live container that includes
  * both the single match view and the match list view
  * @param  {document} doc
  * @return {element}

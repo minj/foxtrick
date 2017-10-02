@@ -207,7 +207,7 @@
 		],
 		"fans_season": [
 			{
-				"text": "Sólo vinimos de vacaciones a esta división",
+				"text": "Solo venimos de vacaciones a esta división",
 				"value": "0"
 			},
 			{
@@ -269,6 +269,7 @@
 		"leagueNames": {
 			"1": "Suecia",
 			"100": "El Salvador",
+			"1000": "Hattrick International",
 			"101": "Malta",
 			"102": "Kirguistán",
 			"103": "Moldavia",
@@ -490,11 +491,11 @@
 			},
 			{
 				"type": "WingBack",
-				"value": "Defensor lateral"
+				"value": "Defensa lateral"
 			},
 			{
 				"type": "CentralDefender",
-				"value": "Defensor central"
+				"value": "Defensa central"
 			},
 			{
 				"type": "InnerMidfield",
@@ -602,7 +603,7 @@
 		"specialties": [
 			{
 				"type": "None",
-				"value": "Ninguna"
+				"value": "Sin especialidad"
 			},
 			{
 				"type": "Technical",

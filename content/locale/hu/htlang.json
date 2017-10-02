@@ -215,7 +215,7 @@
 				"value": "1"
 			},
 			{
-				"text": "Küzdeni kell a bent maradásért",
+				"text": "Küzdeni kell a bennmaradásért",
 				"value": "2"
 			},
 			{
@@ -269,6 +269,7 @@
 		"leagueNames": {
 			"1": "Svédország",
 			"100": "Salvador",
+			"1000": "Hattrick International",
 			"101": "Málta",
 			"102": "Kirgizisztán",
 			"103": "Moldova",
@@ -344,7 +345,7 @@
 			"39": "Ausztria",
 			"4": "Olaszország",
 			"44": "Belgium",
-			"45": "Malájzia",
+			"45": "Malajzia",
 			"46": "Svájc",
 			"47": "Szingapúr",
 			"5": "Franciaország",

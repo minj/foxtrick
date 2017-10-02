@@ -166,13 +166,17 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 			Foxtrick.Pages.Players.isYouth(doc) ||
 			Foxtrick.Pages.Players.isYouthMatchOrder(doc);
 
+		if (options && typeof options.isNT !== 'undefined')
+			isNT = options.isNT;
+		else if (Foxtrick.util.id.isNTId(teamId) || Foxtrick.Pages.Players.isNT(doc))
+			isNT = true;
+
 		if (isYouth) {
 			args.push(['file', 'youthplayerlist']);
 			args.push(['youthTeamId', teamId]);
 			args.push(['actionType', 'details']);
 		}
-		else if (Foxtrick.Pages.Players.isNT(doc) || (options && options.isNT)) {
-			isNT = true;
+		else if (isNT) {
 			var action = 'supporterstats', all = true;
 			if (options && options.currentSquad || !Foxtrick.util.layout.isSupporter(doc)) {
 				action = 'view';
@@ -201,11 +205,45 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 		}
 
 		if (options && options.refresh) {
-			var now = Foxtrick.util.time.getHtTimeStamp(doc);
+			var now = Foxtrick.util.time.getHTTimeStamp(doc);
 			Foxtrick.util.api.setCacheLifetime(JSON.stringify(args), now);
 		}
-		Foxtrick.util.currency.establish(doc, function() {
+		Foxtrick.util.currency.detect(doc).then(function() {
 			Foxtrick.util.api.retrieve(doc, args, { cache_lifetime: 'session' }, callback);
+		}).catch(function(reason) {
+			Foxtrick.log('WARNING: currency.detect aborted:', reason);
+		});
+	};
+
+	var addPerfHistLink = function(doc, player) {
+		var ps = doc.createElement('a');
+		ps.title = Foxtrick.L10n.getString('PerformanceHistory');
+		var psUrl = player.nameLink.href;
+		psUrl = psUrl.replace('/Club/Players/Player.aspx',
+		                      '/Club/Players/PlayerStats.aspx') + '&ShowAll=true';
+		ps.href = psUrl;
+		ps.target = '_blank';
+		player.performanceHistory = ps;
+		Foxtrick.addImage(doc, ps, {
+			src: Foxtrick.InternalPath + 'resources/img/shortcuts/stats.png',
+			alt: Foxtrick.L10n.getString('PerformanceHistory.abbr'),
+			height: 16,
+			'aria-label': ps.title,
+		});
+	};
+	var addHYLink = function(doc, player) {
+		var hyUrl = 'https://www.hattrick-youthclub.org/redirect/type/player_details/ht_id/' +
+			player.id;
+
+		var hyLink = doc.createElement('a');
+		hyLink.title = Foxtrick.L10n.getString('HyLink');
+		hyLink.href = hyUrl;
+		hyLink.target = '_blank';
+		player.hyLink = hyLink;
+		Foxtrick.addImage(doc, hyLink, {
+			src: Foxtrick.InternalPath + 'resources/img/staff/hyouthclub.png',
+			alt: Foxtrick.L10n.getString('HyLink.abbr'),
+			'aria-label': hyLink.title,
 		});
 	};
 
@@ -234,23 +272,28 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 			};
 
 			var playerNode;
-			var num = function(nodeName) {
-				return xml.num(nodeName, playerNode);
+			var num = function(nodeName, parent) {
+				var value = xml.num(nodeName, parent || playerNode);
+				// deal with goals being undefined during matches
+				if (isNaN(value))
+					return undefined;
+
+				return value;
 			};
-			var money = function(nodeName) {
-				return xml.money(nodeName, currencyRate, playerNode);
+			var money = function(nodeName, parent) {
+				return xml.money(nodeName, currencyRate, parent || playerNode);
 			};
-			var node = function(nodeName) {
-				return xml.node(nodeName, playerNode);
+			var node = function(nodeName, parent) {
+				return xml.node(nodeName, parent || playerNode);
 			};
-			var text = function(nodeName) {
-				return xml.text(nodeName, playerNode);
+			var text = function(nodeName, parent) {
+				return xml.text(nodeName, parent || playerNode);
 			};
-			var bool = function(nodeName) {
-				return xml.bool(nodeName, playerNode);
+			var bool = function(nodeName, parent) {
+				return xml.bool(nodeName, parent || playerNode);
 			};
-			var ifPositive = function(nodeName) {
-				var value = num(nodeName);
+			var ifPositive = function(nodeName, parent) {
+				var value = num(nodeName, parent);
 				if (value > 0)
 					return value;
 				return undefined;
@@ -261,7 +304,15 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				Foxtrick.Pages.Players.isYouth(doc) ||
 				Foxtrick.Pages.Players.isYouthMatchOrder(doc);
 			var fetchedDate = xml.date('FetchedDate');
-			var now = Foxtrick.util.time.getHtDate(doc);
+			var now = Foxtrick.util.time.getHTDate(doc);
+
+			var currentClubId = xml.num(isYouth ? 'YouthTeamID' : 'TeamID');
+			var currentClubUrl = isYouth ? '/Club/Youth/?YouthTeamID=' + currentClubId :
+				'/Club/?TeamID=' + currentClubId;
+			var currentClubLink = doc.createElement('a');
+			currentClubLink.textContent = xml.text(isYouth ? 'YouthTeamName' : 'TeamName');
+			currentClubLink.href = currentClubUrl;
+			currentClubLink.target = '_blank';
 
 			var nodeName = !isYouth ? 'Player' : 'YouthPlayer';
 			var playerNodes = xml.getElementsByTagName(nodeName);
@@ -302,8 +353,26 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				// README: normally this section is already defined in HTML but
 				// sometimes part of it is not available
 				// we set it here if needed
+				if (node('Age') && node('AgeDays')) {
+					var age = {};
+					age.years = num('Age');
+					age.days = num('AgeDays');
+					player.age = age;
+					player.ageYears = age.years;
+				}
+
+				var nums = [
+					'StaminaSkill',
+					['form', 'PlayerForm'],
+					'Loyalty',
+					'TransferListed',
+					['tsi', 'TSI'],
+				];
+				Foxtrick.forEach(addProperty(player, num), nums);
+
 				if (!player.skills)
 					player.skills = {};
+
 				var skills = [
 					['defending', 'DefenderSkill'],
 					'KeeperSkill',
@@ -314,18 +383,29 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 					'WingerSkill',
 				];
 				Foxtrick.forEach(addProperty(player.skills, num), skills);
+
+				var newSkillInfo = false;
 				for (var skill in player.skills) {
-					if (typeof player[skill] === 'undefined')
+					if (typeof player[skill] === 'undefined') {
 						player[skill] = player.skills[skill];
+						// skill info was missing
+						newSkillInfo = true;
+					}
 				}
 
-				var nums = [
-					'StaminaSkill',
-					['form', 'PlayerForm'],
-					'Loyalty',
-					'TransferListed',
-				];
-				Foxtrick.forEach(addProperty(player, num), nums);
+				if (newSkillInfo && !isYouth) {
+					var htmsInput = {
+						years: player.age.years,
+						days: player.age.days,
+					};
+					Foxtrick.mergeAll(htmsInput, player.skills);
+					var htmsResult = Foxtrick.modules['HTMSPoints'].calc(htmsInput);
+					player.htmsAbility = htmsResult[0];
+					player.htmsPotential = htmsResult[1];
+
+					var psico = Foxtrick.modules['PsicoTSI'].getPrediction(player);
+					player.psicoTSI = psico.formAvg;
+				}
 
 				if (typeof player.speciality === 'undefined' && node('Specialty')) {
 					var specNum = num('Specialty') || 0;
@@ -364,26 +444,56 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 					player.injured = (player.bruised || player.injuredWeeks !== 0);
 				}
 
-
-				// README: XML exclusive info starts here
-
-				// first name stripping
-				player.nameLink = doc.createElement('a');
-				player.nameLink.href = '/Club/Players/' + (isYouth ? 'Youth' : '') +
-					'Player.aspx?' + (isYouth ? 'Youth' : '') + 'PlayerID=' + id;
-				if (node('PlayerName'))
-					player.nameLink.textContent = text('PlayerName');
+				var nameLink = doc.createElement('a');
+				nameLink.href = '/Club/Players/' + (isYouth ? 'Youth' : '') + 'Player.aspx?' +
+					(isYouth ? 'Youth' : '') + 'PlayerID=' + id;
+				nameLink.target = '_blank';
+				if (node('PlayerName')) {
+					// NT
+					nameLink.textContent = text('PlayerName');
+				}
 				else {
-					player.nameLink.textContent = text('FirstName').
-						replace(/(-[^\(])([^-\s]+)/g, '$1.'). // replaces first name
+					var first = text('FirstName');
+					var last = text('LastName');
+					var nick = text('NickName');
+
+					var fullName = first + ' ' + last;
+					nameLink.textContent = fullName;
+					nameLink.dataset.fullName = fullName;
+
+					nameLink.title = first + (nick ? ' \'' + nick + '\'' : '') + ' ' + last;
+					nameLink.dataset.fullNameAndNick = nameLink.title;
+					nameLink.dataset.nickName = nick;
+
+					// first name stripping
+					var shortName = first.replace(/(-[^\(])([^-\s]+)/g, '$1.'). // replaces first
 						replace(/(\s[^\(])([^-\s]+)/g, '$1.'). // replace further first names
 						replace(/(\(.)([^-\)]+)/g, '$1.'). // non-latin in brackets
 						replace(/(^[^\(])([^-\s]+)/g, '$1.') + // replace names with '-'
-						' ' + text('LastName');
-
-					// keep full name in title
-					player.nameLink.title = text('FirstName') + ' ' + text('LastName');
+						' ' + last;
+					nameLink.dataset.shortName = shortName;
 				}
+				player.nameLink = nameLink;
+
+				if (!isYouth) {
+					if (typeof player.performanceHistory === 'undefined')
+						addPerfHistLink(doc, player);
+				}
+				else {
+					if (typeof player.hyLink === 'undefined')
+						addHYLink(doc, player);
+				}
+
+				if ((Foxtrick.Pages.Players.isOldies(doc) ||
+				    Foxtrick.Pages.Players.isCoaches(doc) ||
+				    Foxtrick.Pages.Players.isNT(doc)) &&
+				    typeof player.currentClubLink === 'undefined') {
+					player.currentClubLink = currentClubLink.cloneNode(true);
+					player.currentClubId = currentClubId;
+				}
+
+				// README: XML exclusive info starts here
+
 				var xmlNums = [
 					'Agreeability',
 					'Aggressiveness',
@@ -393,13 +503,13 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 					'CupGoals',
 					'Experience',
 					'FriendliesGoals',
+					['friendliesGoals', 'FriendlyGoals'], // youth
 					'Honesty',
 					'IsAbroad',
 					'Leadership',
 					'LeagueGoals',
 					['matchCount', 'NrOfMatches'], // NT supp stats
 					['nationalTeamId', 'NationalTeamID'],
-					['tsi', 'TSI'],
 				];
 				Foxtrick.forEach(addProperty(player, num), xmlNums);
 
@@ -435,13 +545,6 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				if (node('Salary')) {
 					player.salary = money('Salary');
 				}
-				if (node('Age') && node('AgeDays')) {
-					var age = {};
-					age.years = num('Age');
-					age.days = num('AgeDays');
-					player.age = age;
-					player.ageYears = age.years;
-				}
 				var trainerData = node('TrainerData');
 				if (trainerData) {
 					player.trainerData = {};
@@ -472,6 +575,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 							player.lastMatchId = xml.num('YouthMatchID', LastMatch);
 
 						var matchDate = xml.date('Date', LastMatch);
+						matchDate = Foxtrick.util.time.toUser(doc, matchDate);
 						player.lastMatchDate = matchDate;
 
 						var link = doc.createElement('a');
@@ -482,7 +586,9 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 							(isYouth ? '&youthTeamId=' +
 							 Foxtrick.Pages.All.getTeamIdFromBC(doc) : '') +
 							'&HighlightPlayerID=' + player.id + '#tab2';
-						link.textContent = Foxtrick.util.time.buildDate(matchDate);
+						link.textContent =
+							Foxtrick.util.time.buildDate(matchDate, { showTime: false });
+						link.target = '_blank';
 						player.lastMatch = link;
 
 						var lastPositionCode = num('PositionCode', LastMatch);
@@ -495,17 +601,22 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 
 					}
 
-					player.lastPlayedMinutes = num('PlayedMinutes', LastMatch);
+					var mins = player.lastPlayedMinutes = num('PlayedMinutes', LastMatch);
 
-					var dateText = Foxtrick.util.time.buildDate(player.lastMatchDate);
-					var str = Foxtrick.L10n.getString('Last_match_played_as_at',
-					                                  player.lastPlayedMinutes);
-					player.lastMatchText = str.replace('%1', player.lastPlayedMinutes).
-						replace('%2', player.lastPosition).replace('%3', dateText);
+					if (mins) {
+						var dateText =
+							Foxtrick.util.time.buildDate(player.lastMatchDate, { showTime: false });
+
+						var str = Foxtrick.L10n.getString('Last_match_played_as_at', mins);
+						player.lastMatchText =
+							str.replace('%1', player.lastPlayedMinutes)
+							   .replace('%2', player.lastPosition)
+							   .replace('%3', dateText);
+					}
+					else {
+						player.lastMatchText = Foxtrick.L10n.getString('Last_match_didnot_play');
+					}
 				}
-				if (!player.lastMatchText)
-					player.lastMatchText =
-						Foxtrick.L10n.getString('Last_match_didnot_play');
 			}
 
 			var missingXML = Foxtrick.filter(function(p) {
@@ -514,7 +625,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 			}, playerList);
 			if (missingXML.length) {
 				Foxtrick.log('WARNING: New players in HTML', missingXML, 'resetting cache');
-				var htTime = Foxtrick.util.time.getHtTimeStamp(doc);
+				var htTime = Foxtrick.util.time.getHTTimeStamp(doc);
 				Foxtrick.util.api.setCacheLifetime(JSON.stringify(args), htTime);
 			}
 		}
@@ -528,10 +639,10 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 
 		var playerNodes = doc.getElementsByClassName('playerInfo');
 		Foxtrick.forEach(function(playerNode, i) {
-			var paragraphs = playerNode.getElementsByTagName('p');
-			var imgs = playerNode.getElementsByTagName('img');
-			var as = playerNode.getElementsByTagName('a');
-			var bs = playerNode.getElementsByTagName('b');
+			var paragraphs = Foxtrick.toArray(playerNode.getElementsByTagName('p'));
+			var imgs = Foxtrick.toArray(playerNode.getElementsByTagName('img'));
+			var as = Foxtrick.toArray(playerNode.getElementsByTagName('a'));
+			var bs = Foxtrick.toArray(playerNode.getElementsByTagName('b'));
 
 			var id = Foxtrick.Pages.Players.getPlayerId(playerNode);
 			// see if player is already in playerList, add if not
@@ -613,8 +724,9 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 
 			var specMatch = info.textContent.match(/\[(\D+)\]/);
 			if (specMatch) {
-				player.speciality = specMatch[1];
-				player.specialityNumber = Foxtrick.L10n.getNumberFromSpeciality(specMatch[1]);
+				var spec = specMatch[1].trim();
+				player.speciality = spec;
+				player.specialityNumber = Foxtrick.L10n.getNumberFromSpeciality(spec);
 			}
 
 			// this could include form, stamina, leadership and experience
@@ -667,6 +779,26 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				}
 				else if (Foxtrick.Pages.Players.isYouth(doc)) {
 					skillInfo = Foxtrick.Pages.Player.parseYouthSkills(skillTable);
+
+					var twinsInfo = playerNode.querySelector('.ft-youth-twins-container');
+					if (twinsInfo && Number(twinsInfo.dataset.possible)) {
+						var marked = Number(twinsInfo.dataset.marked);
+						var undecided = Number(twinsInfo.dataset.undecided);
+
+						var twinLink = doc.createElement('a');
+						twinLink.href = twinsInfo.dataset.url;
+						twinLink.target = '_blank';
+						twinLink.title = twinsInfo.title;
+						twinLink.textContent = marked || '';
+
+						if (undecided) {
+							var newTwins = doc.createElement('strong');
+							newTwins.textContent = '+' + undecided;
+							twinLink.appendChild(newTwins);
+						}
+
+						player.twinLink = twinLink;
+					}
 				}
 				if (skillInfo) {
 					var skills = skillInfo.values;
@@ -689,31 +821,33 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				player.transferListed = false;
 			}
 
-			for (var j = 0; j < imgs.length; ++j) {
-				if (Foxtrick.hasClass(imgs[j], 'motherclubBonus')) {
+			for (var img of imgs) {
+				if (Foxtrick.hasClass(img, 'motherclubBonus')) {
 					player.motherClubBonus = doc.createElement('span');
 					player.motherClubBonus.textContent = '✔';
 					player.motherClubBonus.title =
 						Foxtrick.L10n.getString('skilltable.youthplayer');
 				}
-				if (Foxtrick.hasClass(imgs[j], 'cardsOne')) {
-					if (/red_card/i.test(imgs[j].src)) {
+				if (Foxtrick.hasClass(img, 'cardsOne')) {
+					if (/red_card/i.test(img.src)) {
 						player.redCard = 1;
 					}
 					else {
 						player.yellowCard = 1;
 					}
 				}
-				else if (Foxtrick.hasClass(imgs[j], 'cardsTwo')) {
+				else if (Foxtrick.hasClass(img, 'cardsTwo')) {
 					player.yellowCard = 2;
 				}
-				else if (Foxtrick.hasClass(imgs[j], 'injuryBruised')) {
+				else if (Foxtrick.hasClass(img, 'injuryBruised')) {
 					player.bruised = true;
 				}
-				else if (Foxtrick.hasClass(imgs[j], 'injuryInjured')) {
-					player.injuredWeeks = parseInt(imgs[j].nextSibling.textContent, 10);
+				else if (Foxtrick.hasClass(img, 'injuryInjured')) {
+					var injSpan = img.nextSibling;
+					// README: span may contain infinity sign
+					player.injuredWeeks = parseInt(injSpan.textContent, 10) || injSpan.textContent;
 				}
-				else if (Foxtrick.hasClass(imgs[j], 'transferListed')) {
+				else if (Foxtrick.hasClass(img, 'transferListed')) {
 					player.transferListed = true;
 				}
 			}
@@ -736,6 +870,8 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				var matchRatingCell = matchDateCell.nextElementSibling;
 
 				player.lastMatch = matchLink.cloneNode(true);
+				player.lastMatch.target = '_blank';
+				// README: using user date since no time is available
 				player.lastMatchDate = Foxtrick.util.time.getDateFromText(matchLink.textContent);
 
 				var matchId = Foxtrick.getParameterFromUrl(matchLink.href, 'matchId');
@@ -743,7 +879,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				player.lastMatchId = parseInt(youthMatchId || matchId, 10);
 
 				var positionSpan = matchRatingCell.querySelector('.shy');
-				var position = positionSpan.textContent.match(/\((.+)\)/)[1];
+				var position = positionSpan.textContent.match(/\((.+)\)/)[1].trim();
 				player.lastPosition = position;
 				player.lastPositionType = Foxtrick.L10n.getPositionType(position);
 
@@ -775,25 +911,28 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 			if (Foxtrick.Pages.Players.isOwn(doc) &&
 			    !Foxtrick.Pages.Players.isNT(doc)) {
 				var tc = doc.createElement('a');
-				tc.textContent = Foxtrick.L10n.getString('TransferCompare.abbr');
 				tc.title = Foxtrick.L10n.getString('TransferCompare');
 				var tcUrl = player.nameLink.href;
 				tcUrl = tcUrl.replace('/Club/Players/Player.aspx',
 				                      '/Club/Transfers/TransferCompare.aspx');
 				tc.href = tcUrl;
+				tc.target = '_blank';
 				player.transferCompare = tc;
+
+				var tcImg = doc.createElement('img');
+				tcImg.height = 16;
+				tcImg.src = '/App_Themes/Standard/images/ActionIcons/sell.png';
+				tcImg.alt = Foxtrick.L10n.getString('TransferCompare.abbr');
+				tcImg.setAttribute('aria-label', tc.title);
+				tc.appendChild(tcImg);
 			}
 
 			// playerstats
 			if (!Foxtrick.Pages.Players.isYouth(doc)) {
-				var ps = doc.createElement('a');
-				ps.textContent = Foxtrick.L10n.getString('PerformanceHistory.abbr');
-				ps.title = Foxtrick.L10n.getString('PerformanceHistory');
-				var psUrl = player.nameLink.href;
-				psUrl = psUrl.replace('/Club/Players/Player.aspx',
-				                      '/Club/Players/PlayerStats.aspx') + '&ShowAll=true';
-				ps.href = psUrl;
-				player.performanceHistory = ps;
+				addPerfHistLink(doc, player);
+			}
+			else {
+				addHYLink(doc, player);
 			}
 
 			if (Foxtrick.Pages.Players.isOldies(doc) ||
@@ -808,6 +947,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 					if (currentClubLink) {
 						currentClubId = Foxtrick.util.id.getTeamIdFromUrl(currentClubLink.href);
 						player.currentClubLink = currentClubLink.cloneNode(true);
+						player.currentClubLink.target = '_blank';
 						player.currentClubId = currentClubId;
 
 						if (!Foxtrick.Pages.Players.isNT(doc)) {
@@ -823,8 +963,9 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 								}
 							}, currentPara.childNodes);
 							for (var j in Foxtrick.XMLData.League) {
-								// README: this will break with localized country names
-								var re = new RegExp(Foxtrick.XMLData.getNTNameByLeagueId(j));
+								// README: this will break with localized league names
+								var league = Foxtrick.L10n.getCountryNameNative(j);
+								var re = new RegExp(Foxtrick.strToRe(league));
 								if (re.test(leagueText)) {
 									player.currentLeagueId = j;
 									break;
@@ -837,14 +978,21 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 					return false;
 				}, paragraphs);
 			}
-			var psicoLink = null;
-			var showDiv = doc.getElementById('psicotsi_show_div_' + i) ||
-				doc.getElementById('psico_show_div_' + i) ||
-				doc.getElementById('ft_psico_show_div_' + i);
-			if (showDiv) {
-				psicoLink = showDiv.getElementsByTagName('a')[0];
-				player.psicoTSI = psicoLink.textContent.match(/\d+\.\d+/)[0];
-				player.psicoTitle = psicoLink.textContent.match(/(.+)\s\[/)[1];
+
+			var psicoDiv = playerNode.querySelector('.ft-psico');
+			if (psicoDiv) {
+				player.psicoTSI = psicoDiv.dataset.psicoAvg;
+				player.psicoTitle = psicoDiv.dataset.psicoSkill;
+			}
+			else {
+				var psicoLink = null;
+				var showDiv = doc.getElementById('psicotsi_show_div_' + i) ||
+					doc.getElementById('psico_show_div_' + i);
+				if (showDiv) {
+					psicoLink = showDiv.getElementsByTagName('a')[0];
+					player.psicoTSI = psicoLink.textContent.match(/\d+\.\d+/)[0];
+					player.psicoTitle = psicoLink.textContent.match(/(.+)\s\[/)[1];
+				}
 			}
 
 		}, playerNodes);
@@ -854,16 +1002,8 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 		if (Foxtrick.Pages.Players.isOwn(doc)) {
 			for (var i = 0; i < playerList.length; ++i) {
 				var player = playerList[i];
-				var skills = {
-					keeper: player.keeper,
-					playmaking: player.playmaking,
-					passing: player.passing,
-					winger: player.winger,
-					defending: player.defending,
-					scoring: player.scoring,
-				};
 
-				var contributions = Foxtrick.Pages.Player.getContributions(skills, player);
+				var contributions = Foxtrick.Pages.Player.getContributions(player.skills, player);
 				for (var name in contributions)
 					player[name] = contributions[name];
 
@@ -896,17 +1036,27 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 		catch (e) {
 			Foxtrick.log(e);
 		}
-		if (data && typeof data === 'object') {
-			Foxtrick.map(function(player) {
-				if (data[player.id]) {
-					player.staminaPrediction = {
-						value: data[player.id][1], date: data[player.id][0]
-					};
-				}
-				else
-					player.staminaPrediction = null;
-			}, playerList);
-		}
+
+		if (!data || typeof data !== 'object')
+			return;
+
+		var newData = {}; // update player list
+		Foxtrick.map(function(player) {
+			if (!(player.id in data)) {
+				player.staminaPrediction = null;
+				return;
+			}
+
+			newData[player.id] = data[player.id]; // only copy existing players
+
+			player.staminaPrediction = {
+				value: data[player.id][1], date: data[player.id][0]
+			};
+			player.staminaPred = parseFloat(data[player.id][1]);
+
+		}, playerList);
+
+		Foxtrick.Prefs.setString('StaminaData.' + ownId, JSON.stringify(newData));
 	};
 	// if callback is provided, we get list with XML
 	// otherwise, we get list synchronously and return it
@@ -922,8 +1072,8 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 						parseHtml();
 					if (xml)
 						parseXml(xml);
-					addContributionsInfo(playerList);
 					addStamindaData(doc, playerList);
+					addContributionsInfo(playerList);
 				}
 				catch (e) {
 					Foxtrick.log(e);
@@ -942,8 +1092,8 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 	else {
 		try {
 			parseHtml();
-			addContributionsInfo(playerList);
 			addStamindaData(doc, playerList);
+			addContributionsInfo(playerList);
 			return playerList;
 		}
 		catch (e) {
@@ -1025,7 +1175,9 @@ Foxtrick.Pages.Players.getLastMatchDates = function(players, getMatchDate, playe
 
 	matchdays = Foxtrick.filter(function(n) {
 		// delete all older than a week and all with too few players (might be transfers)
-		return n > lastMatch - 7 * 24 * 60 * 60 * 1000 && matchdays_count[n] >= playerLimit;
+		var MSECS_IN_WEEK = Foxtrick.util.time.DAYS_IN_WEEK * Foxtrick.util.time.MSECS_IN_DAY;
+		var lastWeek = lastMatch - MSECS_IN_WEEK;
+		return n > lastWeek && matchdays_count[n] >= playerLimit;
 	}, matchdays);
 
 	if (matchdays.length)

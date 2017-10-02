@@ -27,12 +27,14 @@ Foxtrick.modules['HeaderFix'] = {
 			return;
 
 		var panel;
-		if (isArena)
+		if (isArena) {
 			// main container in #mainBody
 			// arena page only, only used here
 			panel = Foxtrick.getMBElement(doc, 'pnlMain');
-		else
+		}
+		else {
 			panel = Foxtrick.Pages.Match.getPreMatchPanel(doc);
+		}
 
 		var panelTeamInfo = Foxtrick.Pages.Match.getPreMatchSummary(doc);
 		var panelArenaFlash = Foxtrick.Pages.Match.getArenaContainer(doc);
@@ -45,26 +47,26 @@ Foxtrick.modules['HeaderFix'] = {
 		if (!panelArenaFlash)
 			return;
 
-		if (isArena && panel.getElementsByTagName('h1').length > 1)
-			return; // don't move if arena is under constriction
+		// if (isArena && panel.getElementsByTagName('h1').length > 1)
+		// 	return; // don't move if arena is under constriction
 
 		var mainBox = panel.getElementsByClassName('mainBox')[0];
 		if (mainBox && Foxtrick.util.layout.isStandard(doc))
 			mainBox.setAttribute('style', 'margin-bottom:0px;');
 
-		// (re)move sperators
+		// (re)move separators
 		var seps = Foxtrick.toArray(doc.querySelectorAll('#mainBody .separator'));
 		if (seps.length) {
-			var separator = seps.shift();
-			panel.appendChild(separator);
+			// skip first separator: used in MatchWeather
+			seps.shift();
 			Foxtrick.forEach(function(sep) {
 				sep.parentNode.removeChild(sep);
 			}, seps);
 		}
 
-		// move flash
+		// move flash: flickers in FF
 		panelArenaFlash = panel.removeChild(panelArenaFlash);
 		Foxtrick.removeClass(panelArenaFlash, 'float_left');
 		panel.appendChild(panelArenaFlash);
-	}
+	},
 };

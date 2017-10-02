@@ -1,26 +1,30 @@
 'use strict';
 /**
  * pages.js
- * @author FoxTrick developers
  *
  * This is a list of Hattrick pages that modules can run on.
- * Those values are simply taken from the hattrick URL, so when the current
- * url contains e.g. 'Forum/Read' AND we are on hattrick, all the modules
- * registered to listen to 'forumViewThread' will have their run() functions
- * called.
+ * These values are simply taken from the Hattrick URLs.
  *
- * You can add new values here, but make sure your NEWLY added pages have names
- * in camelCase (it'd be hard to modify existing non-camelCase names), using the
- * name similar to the URI, and escape the URI correctly.
- * Use '\\' to escape (double backslash for escaping backslash itself).
- * '.' and '?' will be escaped automatically.
- * Consequently it is not possible to use their special meaning in regex.
+ * E.g. when the current URL contains 'Forum/Read' AND we are on HT,
+ * all the modules containing a reference to 'forumViewThread'
+ * will have their run() functions called.
+ *
+ * You can add new values here but make sure to follow camelCase standard.
+ * Use a name similar to the URI and escape the URI correctly:
+ * 1) '.' and '?' will be escaped automatically when creating RegExp,
+ *    consequently it is not possible to use their special meaning;
+ * 2) Use '\\' to escape other characters;
+ * 3) '\\\\' for backslash itself.
+ *
+ * @author Foxtrick developers
  */
 
 if (!Foxtrick)
-	var Foxtrick = {};
+	var Foxtrick = {}; // jshint ignore:line
 
-Foxtrick.ht_pages = {
+// jscs:disable disallowSpaceAfterObjectKeys, disallowQuotedKeysInObjects
+// jscs:disable disallowMultipleSpaces
+Foxtrick.htPages = {
 	// following are mainly used for information gathering. keep on top
 	'myHattrick'                : '/MyHattrick/$',  // that's the news page
 	'myHattrickAll'             : '/MyHattrick/|.(org|fm|ws|name|net|pl|br)/$', // TLD
@@ -39,7 +43,8 @@ Foxtrick.ht_pages = {
 	                              '/MyHattrick/Inbox/(Default.aspx?|?)actionType=readMail',
 	'ticket'                    : '/MyHattrick/Inbox/(Default.aspx?|?)' +
 	                              'actionType=viewInfoTicket',
-	'forumSettings'             : '/MyHattrick/Preferences/ForumSettings.aspx',
+	'forumSettings'             : '/Forum/ForumUserPreferences.aspx|' +
+	                              '/MyHattrick/Preferences/ForumSettings.aspx',
 	'prefSettings'              : '/MyHattrick/Preferences/ProfileSettings.aspx',
 	'bookmarks'                 : '/MyHattrick/Bookmarks/(Default.aspx|?|$)',
 	'series'                    : '/World/Series/(Default.aspx|?|$)',
@@ -48,8 +53,7 @@ Foxtrick.ht_pages = {
 	'country'                   : '/World/Leagues/League.aspx',
 	'region'                    : '/World/Regions/Region.aspx',
 	'regionOverview'            : '/World/Regions/(Default.aspx|?|$)',
-	'challenges'                : '/Club/Challenges/$',
-	'challengesPool'            : '/Club/Challenges/default.aspx',
+	'challenges'                : '/Club/Challenges/(Default.aspx|?|$)',
 	'youthChallenges'           : '/Club/Challenges/YouthChallenges.aspx',
 	'achievements'              : '/Club/Achievements/(Default.aspx|?|$)',
 	'history'                   : '/Club/History/(Default.aspx|?|$)',
@@ -135,12 +139,13 @@ Foxtrick.ht_pages = {
 	'ntNewsLetter'              : '/Club/NationalTeam/NTNotice.aspx',
 	'national'                  : '/Club/NationalTeam/NationalTeam.aspx',
 	'guestbook'                 : '/Club/Manager/Guestbook.aspx',
-	'announcements'             : '/Club/Announcements/New.aspx|' +
-	                              '/Club/Announcements/Edit.aspx',
+	'announcementsView'         : '/Club/Announcements/(Default.aspx?|?)',
+	'announcementsWrite'        : '/Club/Announcements/(New|Edit).aspx',
 	'htPress'                   : '/Community/Press/(Default.aspx|?|$)',
 	'cupMatches'                : '/World/Cup/CupMatches.aspx',
 	'cupOverview'               : '/World/Cup/(Default.aspx|?|$)',
 	'election'                  : '/World/Elections/(Default.aspx|?|$)',
+	'worldCup'                  : '/World/WorldCup/',
 	'denominations'             : '/Help/Rules/AppDenominations.aspx',
 	'helpContact'               : '/Help/Contact.aspx',
 	'statsBestGames'            : '/World/Stats/StatsBestgames.aspx',
@@ -181,18 +186,29 @@ Foxtrick.pagesExcluded = {
 	'offline'                   : '/down.aspx',
 	'oath'                      : 'chpp.hattrick.org/',
 	'error'                     : '/Errors/',
-	'logout'                    : '/Logout.aspx'
+	'logout'                    : '/Logout.aspx',
 };
+// jscs:enable disallowSpaceAfterObjectKeys, disallowQuotedKeysInObjects
+// jscs:enable disallowMultipleSpaces
 
 /**
- * Test whether document belongs to a certain page type
- * @param  {document} doc
- * @param  {string}   page
+ * Test whether document belongs to certain page type(s)
+ * page may be Array.<string>
+ *
+ * @param  {document}     doc
+ * @param  {string|array} page
  * @return {Boolean}
  */
 Foxtrick.isPage = function(doc, page) {
-	if (typeof Foxtrick.ht_pages[page] !== 'undefined')
-		return Foxtrick.isPageHref(doc.location.href, Foxtrick.ht_pages[page]);
+	if (Array.isArray(page)) {
+		return Foxtrick.any(function(p) {
+			return Foxtrick.isPage(doc, p);
+		}, page);
+	}
+
+	if (typeof Foxtrick.htPages[page] !== 'undefined') {
+		return Foxtrick.isPageHref(doc.location.href, Foxtrick.htPages[page]);
+	}
 	else {
 		Foxtrick.error('Requesting unknown page: ' + page);
 		return false;
@@ -200,26 +216,23 @@ Foxtrick.isPage = function(doc, page) {
 };
 
 /**
- * Test whether URL belongs to a certain page type
- * @param  {string}  href
- * @param  {string}  page
- * @return {Boolean}
+ * Form a regular expression from page spec
+ * @param  {string} reStr page spec
+ * @return {RegExp}
  */
-Foxtrick.isPageHref = function(href, page) {
-	var htpage_regexp = new RegExp(page.replace(/([.?])/g, '\\$1'), 'i');
-	return htpage_regexp.test(href.replace(/#.*$/, ''));
+Foxtrick.makePageRe = function(reStr) {
+	return new RegExp(reStr.replace(/([.?])/g, '\\$1'), 'i');
 };
 
 /**
- * Test whether document belongs to one of page types
- * @param  {document} doc
- * @param  {string[]} pages Array.<string>
+ * Test whether URL belongs to a certain page type
+ * @param  {string}  href
+ * @param  {string}  reStr
  * @return {Boolean}
  */
-Foxtrick.isOneOfPages = function(doc, pages) {
-	return Foxtrick.any(function(page) {
-		return Foxtrick.isPage(doc, page);
-	}, pages);
+Foxtrick.isPageHref = function(href, reStr) {
+	var pageRe = this.makePageRe(reStr);
+	return pageRe.test(href.replace(/#.*$/, ''));
 };
 
 /**
@@ -228,11 +241,12 @@ Foxtrick.isOneOfPages = function(doc, pages) {
  * @return {Boolean}
  */
 Foxtrick.isExcluded = function(doc) {
-	for (var i in Foxtrick.pagesExcluded) {
-		var excludeRe = new RegExp(Foxtrick.pagesExcluded[i].replace(/([.?])/g, '\\$1'), 'i');
-		if (excludeRe.test(doc.location.href))
+	for (var i in this.pagesExcluded) {
+		var pageRe = this.pagesExcluded[i];
+		if (this.isPageHref(doc.location.href, pageRe)) {
 			// page excluded, return
 			return true;
+		}
 	}
 	return false;
 };

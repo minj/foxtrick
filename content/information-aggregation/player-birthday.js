@@ -10,6 +10,8 @@ Foxtrick.modules['PlayerBirthday'] = {
 	PAGES: ['allPlayers', 'youthPlayers'],
 
 	run: function(doc) {
+		var DAYS_IN_WEEK = Foxtrick.util.time.DAYS_IN_WEEK;
+
 		// array of players
 		var birthdayToday = [];
 		var birthdayFuture = [];
@@ -25,7 +27,7 @@ Foxtrick.modules['PlayerBirthday'] = {
 				else if (playerList[i].age.days > 105) {
 					birthdayFuture.push(playerList[i]);
 				}
-				else if (playerList[i].age.days < 7) {
+				else if (playerList[i].age.days < DAYS_IN_WEEK) {
 					birthdayPast.push(playerList[i]);
 				}
 			}

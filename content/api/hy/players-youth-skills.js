@@ -14,7 +14,7 @@ if (!Foxtrick.api.hy.URL)
  * @author LA-MJ, HY backend/API by MackShot
  *
  * @Interface:
- * 		Url: http://www.hattrick-youthclub.org/_data_provider/foxtrick/playersYouthSkills
+ * 		Url: https://www.hattrick-youthclub.org/_data_provider/foxtrick/playersYouthSkills
  * @params:
  *		//params send via http 'POST'
  * 		teamId: teamId
@@ -50,7 +50,7 @@ if (!Foxtrick.api.hy.URL)
  */
 
 
-Foxtrick.api.hy.URL['playersYouthSkills'] = 'http://www.hattrick-youthclub.org' +
+Foxtrick.api.hy.URL['playersYouthSkills'] = 'https://www.hattrick-youthclub.org' +
 	'/_data_provider/foxtrick/playersYouthSkills';
 
 //this maps HY skill-id to skill
@@ -89,6 +89,7 @@ Foxtrick.api.hy._fetchYouthSkills = function(callback, params, failure, finalize
  * @param	{[integer]}		teamId		senior team ID to fetch data for (optional)
  */
 Foxtrick.api.hy.getYouthSkills = function(callback, failure, finalize, teamId) {
-	Foxtrick.api.hy._fetchViaCache(7, 'playersYouthSkills', null, this._fetchYouthSkills,
+	var days = Foxtrick.util.time.DAYS_IN_WEEK;
+	Foxtrick.api.hy._fetchViaCache(days, 'playersYouthSkills', null, this._fetchYouthSkills,
 								   callback, failure, finalize, teamId);
 };

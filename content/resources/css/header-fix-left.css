@@ -1,13 +1,13 @@
 /* HeaderFix by Catalyst2950 */
 /* fix left submenu */
 #content .subMenu {
-	position: fixed !important;
+	position: fixed;
 }
 
 html[data-theme="simple"] #content .subMenu {
-	background: white !important;
-	border-color: #ddd !important;
-	border-style: solid !important;
+	background: white;
+	border-color: #ddd;
+	border-style: solid;
 }
 
 /* show main over left menu */

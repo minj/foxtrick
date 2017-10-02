@@ -10,6 +10,9 @@ Foxtrick.modules['SupportershipExpirationDate'] = {
 	PAGES: ['dashboard'],
 
 	run: function(doc) {
+		if (!Foxtrick.util.layout.isSupporter(doc))
+			return;
+
 		//get the content, translate days to date
 		var container = doc.getElementById('ctl00_ctl00_CPContent_CPSidebar_pnlSupporterDays');
 
@@ -17,11 +20,11 @@ Foxtrick.modules['SupportershipExpirationDate'] = {
 		Foxtrick.makeFeaturedElement(container, this);
 
 		var days = container.textContent.match(/\d+/);
-		var now = new Date();
+		var now = Foxtrick.util.time.getDate(doc);
 		var endDate = Foxtrick.util.time.addDaysToDate(now, days);
 
 		//get date in localized/correct format
-		var printDate = Foxtrick.util.time.buildDate(endDate, 0, 0);
+		var printDate = Foxtrick.util.time.buildDate(endDate, { showTime: false });
 		var newText = doc.createTextNode(printDate);
 
 		//grab original text

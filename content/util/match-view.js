@@ -6,7 +6,7 @@
  */
 
 if (!Foxtrick)
-	var Foxtrick = {};
+	var Foxtrick = {}; // jshint ignore:line
 if (!Foxtrick.util)
 	Foxtrick.util = {};
 
@@ -24,166 +24,197 @@ Foxtrick.util.matchView.fillMatches = function(container, xml, errorText) {
 		return;
 	}
 
-	var type2info = function(type) {
+	var type2info = function(type, cup) {
 		// convert match type integer to match type info
 		// source:
 		// https://www.hattrick.org/goto.ashx?path=/Community/CHPP/NewDocs/DataTypes.aspx%23matchTypeID
+		// TODO generalize and extract
 		var mapping = {
-			'1': { key: 'league', className: 'matchLeague' },
-			'2': { key: 'qualification', className: 'matchQualification' },
-			'3': { key: 'cup', className: 'matchCupA' },
-			'4': { key: 'friendly', className: 'matchFriendly' },
-			'5': { key: 'friendly.cup', className: 'matchFriendly' },
-			'7': { key: 'masters', className: 'matchMasters' },
-			'8': { key: 'friendly', className: 'matchFriendly' },
-			'9': { key: 'friendly.cup', className: 'matchFriendly' },
-			'10': { key: 'nt.competitive', className: ' matchLeague' },
-			'11': { key: 'nt.competitive', className: ' matchLeague' },
-			'12': { key: 'nt.friendly', className: ' matchFriendly' },
-			'100': { key: 'youth.league', className: 'matchLeague' },
-			'101': { key: 'youth.friendly', className: 'matchFriendly' },
-			'103': { key: 'youth.friendly.cup', className: 'matchFriendly' },
-			'105': { key: 'youth.friendly', className: 'matchFriendly' },
-			'106': { key: 'youth.friendly.cup', className: 'matchFriendly' },
+			1: { key: 'league', className: 'matchLeague' },
+			2: { key: 'qualification', className: 'matchQualification' },
+			4: { key: 'friendly', className: 'matchFriendly' },
+			5: { key: 'friendly.cup', className: 'matchFriendly' },
+			7: { key: 'masters', className: 'matchMasters' },
+			8: { key: 'friendly', className: 'matchFriendly' },
+			9: { key: 'friendly.cup', className: 'matchFriendly' },
+			10: { key: 'nt.competitive', className: ' matchLeague' },
+			11: { key: 'nt.competitive', className: ' matchLeague' },
+			12: { key: 'nt.friendly', className: ' matchFriendly' },
+			100: { key: 'youth.league', className: 'matchLeague' },
+			101: { key: 'youth.friendly', className: 'matchFriendly' },
+			103: { key: 'youth.friendly.cup', className: 'matchFriendly' },
+			105: { key: 'youth.friendly', className: 'matchFriendly' },
+			106: { key: 'youth.friendly.cup', className: 'matchFriendly' },
 		};
-		var obj = mapping[type];
+		var cups = {
+			4: { key: 'cupA', className: 'matchCupA' },
+			7: { key: 'cupB1', className: 'matchCupB1' },
+			8: { key: 'cupB2', className: 'matchCupB2' },
+			9: { key: 'cupB3', className: 'matchCupB3' },
+			10: { key: 'cupC', className: 'matchCupC' },
+		};
+		var obj = type == 3 ? cups[cup] : mapping[type];
+
 		if (obj) {
 			return {
 				str: Foxtrick.L10n.getString('match.type.' + obj.key),
-				className: obj.className
+				className: obj.className,
 			};
 		}
 		return null;
 	};
+	var getMatchInfo = function(match) {
+		var type = xml.text('MatchType', match);
+		var cupLvl = xml.num('CupLevel', match);
+		var cupIdx = xml.num('CupLevelIndex', match);
+		var cup = cupLvl * 3 + cupIdx;
+		return type2info(type, cup);
+	};
 
 	var doc = container.ownerDocument;
+	var IS_RTL = Foxtrick.util.layout.isRtl(doc);
 
 	container.textContent = ''; // clear container first
 	var table = doc.createElement('table');
 	container.appendChild(table);
 
-	var teamId = xml.getElementsByTagName('TeamID')[0].textContent;
-	var teamName = xml.getElementsByTagName('TeamName')[0].textContent;
+	var teamId = xml.num('TeamID');
+	// var teamName = xml.text('TeamName');
+
 	var isYouth = xml.bool('IsYouth');
 	var matches = xml.getElementsByTagName('Match');
+
 	// add one played and one not played
-	var played = Foxtrick.filter(function(n) {
-		return n.getElementsByTagName('Status')[0].textContent == 'FINISHED';
+	var playedMatches = Foxtrick.filter(function(m) {
+		return xml.text('Status', m) == 'FINISHED';
 	}, matches);
-	var notPlayed = Foxtrick.filter(function(n) {
-		return n.getElementsByTagName('Status')[0].textContent != 'FINISHED';
+	var notPlayedMatches = Foxtrick.filter(function(m) {
+		return xml.text('Status', m) != 'FINISHED';
 	}, matches);
-	var toAdd = [];
-	if (played.length > 0)
-		toAdd.push(played[played.length - 1]);
-	if (notPlayed.length > 0) {
-		toAdd.push(notPlayed[0]);
-		var nextmatchdate = xml.time('MatchDate', notPlayed[0]);
-	}
-	for (var i = 0; i < toAdd.length; ++i) {
-		var match = toAdd[i];
-		var date = xml.time('MatchDate', match);
-		var matchId = match.getElementsByTagName('MatchID')[0].textContent;
-		var homeTeam = match.getElementsByTagName('HomeTeamName')[0].textContent;
-		var awayTeam = match.getElementsByTagName('AwayTeamName')[0].textContent;
-		var homeId = match.getElementsByTagName('HomeTeamID')[0].textContent;
-		var awayId = match.getElementsByTagName('AwayTeamID')[0].textContent;
-		var side = (teamId == homeId) ? 'home' : 'away';
-		var type = match.getElementsByTagName('MatchType')[0].textContent;
-		var typeInfo = type2info(type);
-		var status = match.getElementsByTagName('Status')[0].textContent;
-		if (status == 'FINISHED') {
-			var homeGoals = match.getElementsByTagName('HomeGoals')[0].textContent;
-			var awayGoals = match.getElementsByTagName('AwayGoals')[0].textContent;
+
+	// get last previous and first future match
+	playedMatches.reverse();
+	var displayed = Foxtrick.map(function(matches) {
+		// only supported types (no HTO)
+		return Foxtrick.nth(getMatchInfo, matches);
+	}, [playedMatches, notPlayedMatches]);
+
+	var nextMatchDate = displayed[1] ? xml.time('MatchDate', displayed[1]) : null;
+
+	var makeMatchRow = function(match) {
+		var row = doc.createElement('tr');
+
+		var matchTypeCell = doc.createElement('td');
+		if (match.typeInfo) {
+			var typeImg = doc.createElement('img');
+			typeImg.src = '/Img/icons/transparent.gif';
+			typeImg.className = match.typeInfo.className;
+			typeImg.title = typeImg.alt = match.typeInfo.str;
+			matchTypeCell.appendChild(typeImg);
+		}
+		row.appendChild(matchTypeCell);
+
+		var matchCell = doc.createElement('td');
+		var matchLink = doc.createElement('a');
+		matchLink.dataset.matchType = match.type;
+		matchLink.href = '/Club/Matches/Match.aspx?matchID=' + match.id + '&SourceSystem=' +
+			(isYouth ? 'Youth' : 'Hattrick');
+
+		// limit team name length to fit in one line
+		var cutLength = 12;
+		var spanHome = doc.createElement('span');
+		spanHome.className = 'nowrap';
+		spanHome.textContent = match.home.slice(0, cutLength);
+
+		var spanAway = doc.createElement('span');
+		spanAway.className = 'nowrap';
+		spanAway.textContent = match.away.slice(0, cutLength);
+
+		if (!IS_RTL) {
+			matchLink.title = match.home + ' - ' + match.away;
+			matchLink.appendChild(spanHome);
+			matchLink.appendChild(doc.createTextNode(' - '));
+			matchLink.appendChild(spanAway);
 		}
 		else {
-			var homeGoals = null;
-			var awayGoals = null;
+			matchLink.title = match.away + ' - ' + match.home;
+			matchLink.appendChild(spanAway);
+			matchLink.appendChild(doc.createTextNode(' - '));
+			matchLink.appendChild(spanHome);
 		}
 
-		var getMatchRow = function() {
-			var rtl = Foxtrick.util.layout.isRtl(doc);
+		matchCell.appendChild(matchLink);
+		row.appendChild(matchCell);
 
-			var row = doc.createElement('tr');
-
-			var matchTypeCell = doc.createElement('td');
-			if (typeInfo) {
-				var typeImg = doc.createElement('img');
-				typeImg.src = '/Img/icons/transparent.gif';
-				typeImg.className = typeInfo.className;
-				typeImg.title = typeImg.alt = typeInfo.str;
-				matchTypeCell.appendChild(typeImg);
+		var resultCell = doc.createElement('td');
+		if (match.homeGoals !== null && match.awayGoals !== null) {
+			resultCell.textContent = match.homeGoals + ' - ' + match.awayGoals;
+			if (match.homeGoals == match.awayGoals) {
+				resultCell.className = 'draw';
 			}
-			row.appendChild(matchTypeCell);
-
-			var matchCell = doc.createElement('td');
-			var matchLink = doc.createElement('a');
-			matchLink.href = '/Club/Matches/Match.aspx?matchID=' + matchId
-				+ (isYouth ? '&SourceSystem=Youth' : '&SourceSystem=Hattrick');
-			// get in one line for standard theme while won't fit in one
-			// line anyway for simple theme
-			var cutlength = 12;
-			if (!rtl) {
-				matchLink.title = homeTeam + ' - ' + awayTeam;
-				var span1 = doc.createElement('span');
-				span1.className = 'nowrap';
-				span1.textContent = homeTeam.substr(0, cutlength);
-				matchLink.appendChild(span1);
-				matchLink.appendChild(doc.createTextNode(' - '));
-				var span2 = doc.createElement('span');
-				span2.className = 'nowrap';
-				span2.textContent = awayTeam.substr(0, cutlength);
-				matchLink.appendChild(span2);
+			else if (match.homeGoals > match.awayGoals && match.side == 'home' ||
+			         match.homeGoals < match.awayGoals && match.side == 'away') {
+				resultCell.className = 'won';
 			}
 			else {
-				matchLink.title = awayTeam + ' - ' + homeTeam;
-				var span1 = doc.createElement('span');
-				span1.className = 'nowrap';
-				span1.textContent = awayTeam.substr(0, cutlength);
-				matchLink.appendChild(span1);
-				matchLink.appendChild(doc.createTextNode(' - '));
-				var span2 = doc.createElement('span');
-				span2.className = 'nowrap';
-				span2.textContent = homeTeam.substr(0, cutlength);
-				matchLink.appendChild(span2);
+				resultCell.className = 'lost';
 			}
-			matchCell.appendChild(matchLink);
-			row.appendChild(matchCell);
+		}
+		else {
+			matchLink.dataset.live = '';
 
-			var resultCell = doc.createElement('td');
-			if (homeGoals !== null && awayGoals !== null) {
-				resultCell.textContent = homeGoals + ' - ' + awayGoals;
-				homeGoals = Number(homeGoals);
-				awayGoals = Number(awayGoals);
-				if (homeGoals == awayGoals) {
-					resultCell.className = 'draw';
-				}
-				else if ((homeGoals > awayGoals && side == 'home')
-					|| (homeGoals < awayGoals && side == 'away')) {
-					resultCell.className = 'won';
-				}
-				else {
-					resultCell.className = 'lost';
-				}
-			}
-			else {
-				// add HT-Live
-				var liveLink = doc.createElement('a');
-				liveLink.href = '/Club/Matches/Live.aspx?actionType=addMatch&matchID=' + matchId
-					+ '&SourceSystem=' + (isYouth ? 'Youth' : 'Hattrick');
-				var liveImg = doc.createElement('img');
-				liveImg.className = 'matchHTLive';
-				liveImg.src = '/Img/Icons/transparent.gif';
-				liveImg.alt = liveImg.title = Foxtrick.L10n.getString('MyMonitor.htLive');
-				liveLink.appendChild(liveImg);
-				resultCell.appendChild(liveLink);
-			}
-			Foxtrick.addClass(resultCell, 'nowrap');
-			row.appendChild(resultCell);
-			return row;
+			// add HT-Live
+			var liveLink = doc.createElement('a');
+			liveLink.href = '/Club/Matches/Live.aspx?actionType=addMatch&matchID=' + match.id +
+				'&SourceSystem=' + (isYouth ? 'Youth' : 'Hattrick');
+
+			var liveImg = doc.createElement('img');
+			liveImg.className = 'matchHTLive';
+			liveImg.src = '/Img/Icons/transparent.gif';
+			liveImg.alt = liveImg.title = Foxtrick.L10n.getString('MyMonitor.htLive');
+			liveLink.appendChild(liveImg);
+
+			resultCell.appendChild(liveLink);
+		}
+
+		Foxtrick.addClass(resultCell, 'nowrap');
+		row.appendChild(resultCell);
+		return row;
+	};
+
+	for (var matchXML of displayed) {
+		if (!matchXML)
+			continue;
+
+		var type = xml.text('MatchType', matchXML);
+		var typeInfo = getMatchInfo(matchXML);
+
+		var matchId = xml.num('MatchID', matchXML);
+		var homeTeam = xml.text('HomeTeamName', matchXML);
+		var awayTeam = xml.text('AwayTeamName', matchXML);
+		var homeId = xml.num('HomeTeamID', matchXML);
+		// var awayId = xml.num('AwayTeamID', matchXML);
+		var side = teamId == homeId ? 'home' : 'away';
+
+		var homeGoals = null, awayGoals = null;
+		var status = xml.text('Status', matchXML);
+		if (status == 'FINISHED') {
+			homeGoals = xml.num('HomeGoals', matchXML);
+			awayGoals = xml.num('AwayGoals', matchXML);
+		}
+
+		var match = {
+			type: type,
+			typeInfo: typeInfo,
+			id: matchId,
+			side: side,
+			home: homeTeam,
+			homeGoals: homeGoals,
+			away: awayTeam,
+			awayGoals: awayGoals,
 		};
 
-		table.appendChild(getMatchRow());
+		table.appendChild(makeMatchRow(match));
 	}
-	return nextmatchdate;
+	return nextMatchDate;
 };

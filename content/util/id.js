@@ -27,6 +27,10 @@ Foxtrick.util.id.isSeriesDetailUrl = function(href) {
 	return href.match(/Series\/(Default\.aspx)?\?LeagueLevelUnitID=/i);
 };
 
+Foxtrick.util.id.isNTId = function(teamId) {
+	return teamId >= 3000 && teamId < 4000; // regular teams seem to start @5000
+};
+
 Foxtrick.util.id.getLeagueLeveUnitIdFromUrl = function(url) {
 	return url.replace(/.+leagueLevelUnitID=/i, '').match(/^\d+/);
 };
@@ -121,7 +125,7 @@ Foxtrick.util.id.findTeamId = function(element) {
 			return Number(links[i].href.replace(/.+TeamID=/i, '').match(/^\d+/)[0]);
 		}
 	}
-	return false;
+	return null;
 };
 
 Foxtrick.util.id.findYouthTeamId = function(element) {
@@ -205,37 +209,50 @@ Foxtrick.util.id.extractLeagueName = function(element) {
 	return null;
 };
 
-Foxtrick.util.id.getSeriesNum = function(leaguename) {
-	if (!leaguename.match(/^[A-Z]+\.\d+/i)) {
-		return '1';
-	} else {
-		return leaguename.match(/\d+/)[0];
-	}
-};
+/**
+ * Parse seriesName into [levelnum, seriesnum].
+ * levelnum is division number, seriesnum is series number in that division.
+ * @param  {string} seriesName
+ * @param  {number} leagueId
+ * @return {array}             Array.<number>
+ */
+Foxtrick.util.id.parseSeries = function(seriesName, leagueId) {
+	if (!seriesName || !leagueId)
+		return null;
 
-Foxtrick.util.id.getLevelNum = function(leaguename, countryid) {
-	if (leaguename == null || countryid == null) return null;
-	if (!leaguename.match(/^[A-Z]+\.\d+/i)) {
-		// sweden
-		if (countryid == '1') {
-			if (leaguename.match(/^II[a-z]+/)) {
-				return '3';
+	var level, number;
+	var m = seriesName.match(/^([IVX])+\.(\d+)$/);
+	if (!m) {
+		if (leagueId == 1) {
+			// Sweden
+			if ((m = seriesName.match(/^II\.?([a-z])$/))) {
+				level = 3;
 			}
-			if (leaguename.match(/^I[a-z]+/)) {
-				return '2';
+			else if ((m = seriesName.match(/^I([a-z])$/))) {
+				level = 2;
 			}
-			return '1';
+			else {
+				level = 1;
+			}
+
+			number = m ? m[1].charCodeAt(0) - 'a'.charCodeAt(0) + 1 : 1;
 		}
-		return '1';
-	} else {
-		var temp = Foxtrick.util.id.romantodecimal(leaguename.match(/[A-Z]+/)[0]);
-		// sweden
-		if (countryid == '1') {
-			return temp + 1;
-		} else {
-			return temp;
+		else {
+			level = number = 1;
 		}
 	}
+	else {
+		var dec = Foxtrick.util.id.romantodecimal(m[1]);
+		if (leagueId == '1') {
+			// Sweden
+			level = dec + 1;
+		}
+		else {
+			level = dec;
+		}
+		number = parseInt(m[2], 10);
+	}
+	return [level, number];
 };
 
 Foxtrick.util.id.romantodecimal = function(roman) {
@@ -251,6 +268,7 @@ Foxtrick.util.id.romantodecimal = function(roman) {
 		case ('VIII'): return 8;
 		case ('IX'): return 9;
 		case ('X'): return 10;
+		case ('XI'): return 11;
 		default: return null;
 	}
 };
@@ -271,6 +289,9 @@ Foxtrick.util.id.findLeagueLeveUnitId = function(element) {
  * Returns a flag as a link element
  * link href and img title may optionally override defaults:
  * league link and league name respectively
+ *
+ * README: DO NOT use if leagueId is available
+ *
  * @param	{document}	doc
  * @param	{Integer}	countryId
  * @param	{String}	href		optional

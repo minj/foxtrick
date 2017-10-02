@@ -1,3 +1,6 @@
+.dimmedOverlay {
+	display: none;
+}
 /* our ratings as number */
 .overlayRatingsNum {
 	border-bottom: 1px solid #79A777;
@@ -22,7 +25,6 @@
 .overlayRatingsNumOther {
 }
 
-
 /* other teams tactics level */
 #tacticLevelLabelOther {
 	position: absolute;
@@ -46,19 +48,31 @@ html[dir="ltr"] #tacticLevelLabelOther {
 }
 .ftMatchLeague { background-image: url("chrome://foxtrick/content/resources/img/matches/matchLeague.png"); }
 .ftMatchQualification { background-image: url("chrome://foxtrick/content/resources/img/matches/matchQualification.png"); }
-.ftMatchCup { background-image: url("chrome://foxtrick/content/resources/img/matches/matchCup.png"); }
-.ftMatchFriendly { background-image: url("chrome://foxtrick/content/resources/img/matches/matchFriendly.png"); }
+.ftMatchCupA { background-image: url("chrome://foxtrick/content/resources/img/matches/matchCup.png"); }
+.ftMatchMasters { background-image: url("chrome://foxtrick/content/resources/img/matches/matchMasters.png"); }
+.ftMatchFriendly, .ftMatchFriendlyNT { background-image: url("chrome://foxtrick/content/resources/img/matches/matchFriendly.png"); }
+.ftMatchSingle { background-image: url("chrome://foxtrick/content/resources/img/matches/matchSingle.png"); }
 .ftMatchTournament { background-image: url("chrome://foxtrick/content/resources/img/matches/matchTournament.png"); }
-.ftUpcomingNationalIcon { background-image: url("chrome://foxtrick/content/resources/img/matches/upcomingNationalIcon.png"); }
+.ftMatchTournamentLadder { background-image: url("chrome://foxtrick/content/resources/img/matches/matchTournamentLadder.png"); }
+.ftMatchLeagueNT { background-image: url("chrome://foxtrick/content/resources/img/matches/upcomingNationalIcon.png"); }
 
 
 html[safari] .ftMatchLeague , html[chrome] .ftMatchLeague  { background-color: #C7FBBB}
-html[safari] .ftMatchQualification , html[chrome] .ftMatchQualification  { background-color: #B7EBBB}
-html[safari] .ftMatchCup , html[chrome] .ftMatchCup  { background-color: #CCD2CC}
+html[safari] .ftMatchQualification , html[chrome] .ftMatchQualification  { background-color: #66CC66}
+html[safari] .ftMatchMasters , html[chrome] .ftMatchMasters  { background-color: #FF9999}
+html[safari] .ftMatchCupA , html[chrome] .ftMatchCupA  { background-color: #CCD2CC}
+html[safari] .ftMatchFriendlyNT , html[chrome] .ftMatchFriendlyNT ,
 html[safari] .ftMatchFriendly , html[chrome] .ftMatchFriendly  { background-color: white}
+html[safari] .ftMatchSingle , html[chrome] .ftMatchSingle ,
+html[safari] .ftMatchTournamentLadder , html[chrome] .ftMatchTournamentLadder ,
 html[safari] .ftMatchTournament , html[chrome] .ftMatchTournament  { background-color: #FFC880}
-html[safari] .ftUpcomingNationalIcon , html[chrome] .ftUpcomingNationalIcon  { background-color: #FFC880}
+html[safari] .ftMatchLeagueNT , html[chrome] .ftMatchLeagueNT  { background-color: #FFC880}
 
+.ft-simulator-pred-controls {
+	z-index: 4;
+	right: 10px !important;
+	bottom: 0 !important;
+}
 
 /* bottom box */
 #ft-overlayBottom {
@@ -93,45 +107,45 @@ html[data-theme="standard"] #ft-overlayBottom {
 #nisse {
 	display: none;
 }
-.visible {
+.visible, .visible .ft-simulator-pred-controls {
 	visibility: visible !important;
 }
 #fieldOverlay .ratingInnerBox {
-	margin: 10px 3px 0px 3px !important;
-	padding: 0px !important;
+	margin: 10px 3px 0px 3px;
+	padding: 0px;
 }
 #fieldOverlay .ratingInnerBox div[id$="Rating"], .overlayRatingsOther, .overlayRatingsDiscounted {
-	font-weight: normal !important;
+	font-weight: normal;
 }
 #fieldOverlay.not_flipped .overlayRightDefense, #fieldOverlay.not_flipped .overlayMidDefense, #fieldOverlay.not_flipped .overlayLeftDefense {
-	top: 9px !important;
+	top: 9px;
 }
 #fieldOverlay.not_flipped .overlayMidfield {
-	top: 160px !important;
+	top: 160px;
 }
 #fieldOverlay.not_flipped .overlayRightAttack, #fieldOverlay.not_flipped .overlayMidAttack, #fieldOverlay.not_flipped .overlayLeftAttack {
-	top: 310px !important;
+	top: 310px;
 }
 #fieldOverlay.flipped .overlayRightDefense, #fieldOverlay.flipped .overlayMidDefense, #fieldOverlay.flipped .overlayLeftDefense {
-	top: 310px !important;
+	top: 310px;
 }
 #fieldOverlay.flipped .overlayMidfield {
-	top: 160px !important;
+	top: 160px;
 }
 #fieldOverlay.flipped .overlayRightAttack, #fieldOverlay.flipped .overlayMidAttack, #fieldOverlay.flipped .overlayLeftAttack {
-	top: 9px !important;
+	top: 9px;
 }
 html[dir="rtl"] .overlayMidDefense, .overlayMidAttack {
-	right: 202px !important;
+	right: 202px;
 }
 html[dir="ltr"] .overlayMidDefense, .overlayMidAttack {
-	left: 202px !important;
+	left: 202px;
 }
 #fieldOverlay .overlaySector {
-	height: 150px !important;
+	height: 150px;
 }
 #fieldOverlay .ratingInnerBox img{
-	margin-top:7px !important;
+	margin-top:7px;
 }
 .posLabel  {
 	padding-top: 3px;
@@ -147,7 +161,7 @@ html[dir="ltr"] .overlayMidDefense, .overlayMidAttack {
 
 }
 #ft_matchsimulator_options {
-	left: 395px !important;
+	left: 395px;
 }
 #ft_matchsimulator_options div{
 	float:left;
@@ -158,19 +172,18 @@ html[dir="ltr"] .overlayMidDefense, .overlayMidAttack {
 #fieldOverlay.displayBelow {
 	height: 520px;
 	position: relative;
-	top: 630px !important;
+	top: 675px !important;
 }
-
 #fieldOverlay.displayRight {
 	height: 520px;
 	position: relative;
-	top: -80px !important;
+	top: -80px;
 }
 html[dir="rtl"] #fieldOverlay.displayRight {
-	right: 775px !important;
+	right: 775px;
 }
 html[dir="ltr"] #fieldOverlay.displayRight {
-	left: 775px !important;
+	left: 775px;
 }
 
 #ft-copyRatingsButton {
@@ -185,14 +198,13 @@ html[dir="ltr"] #fieldOverlay.displayRight {
 	left: 80px;
 }
 
-#addMatchDiv {
+#addMatchDiv, #addTeamDiv {
 	float: left;
 	left: 80px;
 	position: absolute;
 	bottom: 0px;
 }
 
-#addMatchhomeAwayLabel, #addMatchisHTOIntegrated, #addMatchButton {
+#addMatchhomeAwayLabel, #addMatchisHTOIntegrated, #addMatchButton, #addTeamText, #addTeamButton {
 	margin-left: 20px;
 }
-

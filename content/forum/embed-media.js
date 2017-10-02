@@ -18,6 +18,9 @@ Foxtrick.modules['EmbedMedia'] = {
 	CSS: Foxtrick.InternalPath + 'resources/css/embed-media.css',
 
 	run: function(doc) {
+		var module = this;
+
+		var BAD_RESPONSE = Foxtrick.L10n.getString('oembed.badresponse');
 
 		var do_embed_youtube_videos = Foxtrick.Prefs.isModuleOptionEnabled('EmbedMedia',
 		                                                                  'EmbedYoutubeVideos');
@@ -71,7 +74,8 @@ Foxtrick.modules['EmbedMedia'] = {
 				'(?:youtu\\.be/|youtube\\.\\w{2,3}(?:/embed/|/v/|/watch\\?(?:.+?&)?v=))' +
 				'([\\w\\d-]{11})(?:.*)$',
 			'vimeo': '^(?:https?://)?(?:\\w{2,3}\\.)?vimeo\\.com/(\\d+)',
-			'flickr': '^(?:https?://)?(?:\\w{2,3}\\.)?flickr\\.com/',
+			'flickr': '^(?:https?://)?(?:(?:\\w{2,3}\\.)?flickr\\.com/photos/[^/]+/[0-9]+/|' +
+				'flic\\.kr/p/[\\w\\d]+$)',
 			'dailymotion': '^(?:https?://)?(?:\\w{2,3}\\.)?dailymotion\\.com/' +
 				'video/([\\w\\d-]+)',
 			'imgur': '^(?:https?://)?imgur.com/([\\w\\d]+)$',
@@ -178,10 +182,16 @@ Foxtrick.modules['EmbedMedia'] = {
 
 		var doEmbedActualImageUrl = function(target) {
 			var title = Foxtrick.L10n.getString('EmbedMedia.EmbeddedImage');
-			target.nextSibling.firstChild.setAttribute('target', '_blank');
-			Foxtrick.addImage(doc, target.nextSibling.firstChild,
-			                  { src: target.nextSibling.firstChild.href, title: title, alt: title,
-			                  class: 'ft-embeded-image' });
+			target.nextSibling.firstChild.target = '_blank';
+			var img = {
+				src: target.nextSibling.firstChild.href,
+				title: title, alt: title,
+				class: 'ft-embeded-image',
+				onError: function() {
+					this.parentNode.textContent = BAD_RESPONSE;
+				},
+			};
+			Foxtrick.addImage(doc, target.nextSibling.firstChild, img);
 		};
 
 		var extractMediaIdFromUrl = function(url, site) {
@@ -342,21 +352,21 @@ Foxtrick.modules['EmbedMedia'] = {
 				if (oembed_enabled) {
 					var oEmbedRequestURL = oembed_urls[key] + target.firstChild.href;
 					//load json from providers async
-					Foxtrick.util.load.get(oEmbedRequestURL)('success',
-					  function(response) {
-						try {
-							var json = JSON.parse(response);
+					Foxtrick.load(oEmbedRequestURL).then(Foxtrick.parseJSON)
+						.then(function(json) {
+
+							if (!json) {
+								Foxtrick.log('oEmbed parsing error');
+								target.nextSibling.textContent = BAD_RESPONSE;
+								return;
+							}
+
 							do_oEmbed(target, json);
-						}
-						catch (e) {
-							Foxtrick.log('oEmbed error:', e.toString());
-						}
-					})('failure', function(code) {
-						Foxtrick.log('Error loading embed code: ', oembed_urls[key] +
-									 target.firstChild.href);
-						target.nextSibling.textContent =
-							Foxtrick.L10n.getString('oembed.badresponse');
-					});
+
+						}, function(resp) {
+							Foxtrick.log('Error loading embed code:', resp);
+							target.nextSibling.textContent = BAD_RESPONSE;
+						}).catch(Foxtrick.catch(module));
 				}
 				//iFrame
 				else

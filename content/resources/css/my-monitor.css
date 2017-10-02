@@ -3,12 +3,20 @@
 	margin-top: 20px ;
 }
 
-#ft-monitor-add-remove {
-	float: right;
-}
-
 #ft-monitor-container {
 	clear: both;
+}
+
+#ft-monitor-live-links {
+	background-color: #EDF1ED;
+	border-bottom: solid 2px #DCE0DC;
+}
+#ft-monitor-live-links td {
+	vertical-align: middle;
+}
+#ft-monitor-live-info {
+	color: red;
+	width: 100%;
 }
 
 .ft-monitor-frame {
@@ -21,19 +29,21 @@
 	clear: left; /* two in a row */
 }
 
-.ft-monitor-frame  > h3 {
+.ft-monitor-frame > h3 {
 	color: #222;
 	background-color: #EDF1ED;
 	border-bottom: solid 2px #DCE0DC;
 }
 
-.ft-monitor-frame  > h3:hover  > div.ft_sort {
-	display:inline;
+.ft-monitor-team-name {
+	width: 85%;
+	display: inline-block;
 }
-
-.ft-monitor-frame > h3 > div.ft_sort {
-	float:right;
-	/*display:none; hiding controls is against accessibility*/
+.teamIconSpan + .ft-monitor-team-name  {
+	width: 70%;
+}
+.flag + .ft-monitor-team-name {
+	width: 75%;
 }
 
 .ft-monitor-remove {
@@ -50,18 +60,23 @@
 }
 
 #ft-monitor-sidebar-box .hidden {
-	display: none !important; /* need to overwrite */
+	display: none;
 }
 
-.teamicon {
+.teamIcon {
 	padding: 0 5px 0 0;
-	margin:0 0 -2px
+	margin: 0 0 -2px;
+	max-height: 24px;
+	max-width: 36px;
+}
+html[dir="rtl"] .teamIcon {
+	padding: 0 0 0 5px;
 }
 
 .ft-monitor-frame > h3 > a.flag + img {
 	margin-top:-2px;
 }
 #eventList {
-	min-height: 0px !important;
+	min-height: 0px;
 }
 

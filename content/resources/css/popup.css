@@ -23,7 +23,8 @@ a:hover { color: #aaaaff }
 	text-align:center;
 	width:auto;
 	margin:0px auto;
-	padding:5px 5px 5px 5px;	
+	padding:5px 5px 5px 5px;
+	list-style: none;
 }
 #bottomLinks a{
 	padding: 2px;

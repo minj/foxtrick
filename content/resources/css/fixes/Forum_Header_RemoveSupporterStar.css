@@ -1,2 +1,4 @@
-   #aspnetForm[action*="Read.aspx"] .cfHeader img[src^="/Img/Icons/supporter_"] {display:none !important; padding-left: -3px;}
-   #aspnetForm[action*="Read.aspx"] .cfHeader img[src^="/Img/icons/supporter_"] {display:none !important; padding-left: -3px;}
+#aspnetForm[action*="Read.aspx"] .cfHeader img[src^="/Img/Icons/supporter_"],
+#aspnetForm[action*="Read.aspx"] .cfHeader img[src^="/Img/icons/supporter_"] {
+	display:none;
+}

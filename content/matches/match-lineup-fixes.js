@@ -17,6 +17,9 @@ Foxtrick.modules['MatchLineupFixes'] = {
 
 		var module = this;
 
+		if (!Foxtrick.Pages.Match.hasRatingsTabs(doc))
+			return;
+
 		// START PREPARATION STAGE
 
 		// this is where we fix HTs shit
@@ -120,12 +123,7 @@ Foxtrick.modules['MatchLineupFixes'] = {
 			TIMELINE_EVENT_TYPES.SUN,
 		];
 
-		var timelineEvents = doc.querySelectorAll('input[id$="_timelineEventType"]');
-		var tEventTypeByEvent = [];
-		for (var i = 0; i < timelineEvents.length; i++) {
-			tEventTypeByEvent.push({ type: Number(timelineEvents[i].value), idx: i });
-		}
-
+		var tEventTypeByEvent = Foxtrick.Pages.Match.getEventTypesByEvent(doc);
 		var lineupEvents = Foxtrick.filter(function(event) {
 			return Foxtrick.has(lineupEventTypes, event.type);
 		}, tEventTypeByEvent);
@@ -165,7 +163,7 @@ Foxtrick.modules['MatchLineupFixes'] = {
 			events = Foxtrick.filter(function(evt) {
 				return !Foxtrick.hasClass(evt, 'hidden');
 			}, events);
-			Foxtrick.forEach(function(evt, i) {
+			Foxtrick.forEach(function(evt) {
 				var evtType = parseInt(evt.dataset.eventtype, 10);
 				if (evtType > 300 && evtType < 310) {
 					// weather events
@@ -189,11 +187,13 @@ Foxtrick.modules['MatchLineupFixes'] = {
 					 * getEventTypeHighlightClass returns undefined for weather SEs
 					 * so we need to fake this cell accordingly to be picked up by HTs ;)
 					 */
-					cell.id = 'matchEventIndex_' + i;
-					// README: match event index is assumed to be i here
-					// it normally works for regular events
-					// but might break in the future
-					// just like all things in HT :P
+
+					// README: time line match event index no longer matches match report idx
+					var sel = Foxtrick.format('[id$="_matchEventTypeId"][value="{}"]', [evtType]);
+					var evtTypeInput = doc.querySelector(sel);
+					var timelineEvent = evtTypeInput.parentNode;
+					var evtIdxInput = timelineEvent.querySelector('[id$="_eventIndex"]');
+					cell.id = 'matchEventIndex_' + evtIdxInput.value;
 					Foxtrick.addClass(cell, 'undefined');
 					cell.appendChild(playerLink);
 				}
@@ -203,10 +203,11 @@ Foxtrick.modules['MatchLineupFixes'] = {
 		// add stars for players that leave the field
 		var addStarsToSubs = function(playerRatingsByEvent) {
 			// filter players that have not played: { FromMin: 0, ToMin: 0 }
+			// or { FromMin: -1, ToMin: -1 } => coaches
 			// these have
 			var played = [];
 			playerRatingsByEvent[0].players.forEach(function(player, i) {
-				if (!(player.FromMin === 0 && player.ToMin === 0)) {
+				if (player.ToMin !== -1 && !(player.FromMin === 0 && player.ToMin === 0)) {
 					player.ftIdx = i; // saving the index in the original array
 					played.push(player);
 				}
@@ -627,19 +628,67 @@ Foxtrick.modules['MatchLineupFixes'] = {
 			var isYouth = Foxtrick.Pages.Match.isYouth(doc);
 			var pl = isYouth ? 'YouthPlayer' : 'Player';
 
-			var html = ordersTable.innerHTML;
-			for (var i = 0; i < playerData.length; i++) {
-				var p = playerData[i];
-				var id = Number(p.SourcePlayerId);
-				var fullName = p.FirstName +
-					(p.NickName ? " '" + p.NickName + "' " : ' ') +
-					p.LastName;
-				var link = '<a id="playerLink" href="/Club/Players/' + pl + '.aspx?' + pl + 'Id=' +
-					id + '">' + fullName + '</a>';
-				// use negative lookahead in case HTs actually shape up
-				html = html.replace(new RegExp(fullName + '(?!</a>)', 'g'), link);
-			}
-			ordersTable.innerHTML = html;
+			var links = {};
+			var names = Foxtrick.map(function(p) {
+				var fullName = p.FirstName + ' ' + p.LastName;
+
+				// create a player link for replacements
+				var link = Foxtrick.createFeaturedElement(doc, module, 'a');
+				var id = parseInt(p.SourcePlayerId, 10);
+				var url = '/Club/Players/' + pl + '.aspx?' + pl + 'Id=' + id;
+				link.href = url;
+				link.id = 'playerLink';
+				link.textContent = fullName;
+				links[fullName] = link;
+
+				return fullName;
+			}, playerData);
+			// create a RegExp for all player names
+			var namesRE = new RegExp(names.join('|'), 'g');
+
+			var tNodes = Foxtrick.getTextNodes(ordersTable);
+			Foxtrick.forEach(function(node) {
+				if (node.parentNode.nodeName.toLowerCase() === 'a') {
+					// skip if inside a link already
+					return;
+				}
+
+				var text = node.textContent.trim();
+				if (text === '')
+					return;
+
+				var mArray, nodes = [], prevIndex = 0;
+				while ((mArray = namesRE.exec(text))) {
+					var name = mArray[0];
+					var start = namesRE.lastIndex - name.length;
+					if (start > prevIndex) {
+						// add any previous text as a text node
+						var previousText = text.slice(prevIndex, start);
+						nodes.push(doc.createTextNode(previousText));
+					}
+					// add matched player link
+					var link = links[name];
+					if (link) {
+						nodes.push(link.cloneNode(true));
+					}
+					else {
+						Foxtrick.error('Incorrectly escaped name in regex: ' + name);
+					}
+					prevIndex = namesRE.lastIndex;
+				}
+
+				if (nodes.length) {
+					if (prevIndex < text.length) {
+						// add any ending text
+						var endText = text.slice(prevIndex);
+						nodes.push(doc.createTextNode(endText));
+					}
+
+					var frag = doc.createDocumentFragment();
+					Foxtrick.appendChildren(frag, nodes);
+					node.parentNode.replaceChild(frag, node);
+				}
+			}, tNodes);
 		};
 
 

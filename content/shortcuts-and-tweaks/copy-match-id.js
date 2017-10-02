@@ -18,7 +18,7 @@ Foxtrick.modules['CopyMatchID'] = {
 		var copyId = function() {
 			try {
 				var matchid = this.getAttribute('data-matchid');
-				Foxtrick.copyStringToClipboard(matchid);
+				Foxtrick.copy(doc, matchid);
 				Foxtrick.util.note.add(doc, Foxtrick.L10n.getString('copy.matchid.copied'),
 				                       'ft-match-id-copy-note');
 			}
@@ -28,7 +28,7 @@ Foxtrick.modules['CopyMatchID'] = {
 		};
 
 		var mainBody = doc.getElementById('mainBody');
-		var matches = '.' + Foxtrick.Pages.Matches.Types.join(', .');
+		var matches = '.' + Foxtrick.Pages.Matches.IconTypes.join(', .');
 		var count = 0;
 
 		var images = mainBody.querySelectorAll(matches);

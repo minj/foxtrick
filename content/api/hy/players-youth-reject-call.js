@@ -10,7 +10,7 @@ if (!Foxtrick.api.hy.URL)
 	Foxtrick.api.hy.URL = {};
 
 /* players-youth-reject-call.js
- * url: http://www.hattrick-youthclub.org/_data_provider/foxtrick/playersYouthRejectCall
+ * url: https://www.hattrick-youthclub.org/_data_provider/foxtrick/playersYouthRejectCall
  *
  * params:
  * teamid or managerid: teamid or managerid
@@ -35,7 +35,7 @@ if (!Foxtrick.api.hy.URL)
  * - unauthorized request
  */
 
-Foxtrick.api.hy.URL['playersYouthRejectCall'] = 'http://www.hattrick-youthclub.org' +
+Foxtrick.api.hy.URL['playersYouthRejectCall'] = 'https://www.hattrick-youthclub.org' +
 	'/_data_provider/foxtrick/playersYouthRejectCall';
 /**
  * Tries to post the youth scout call to HY and executes callback(response);

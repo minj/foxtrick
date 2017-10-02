@@ -1,10 +1,5 @@
-#aspnetForm[action*="Read.aspx"] .cfHeader a[class="flag inner"] img
-{ border: 0px solid #DDDDDD !important; }
-
-#aspnetForm[action*="Read.aspx"] .cfHeader
-{
-    padding-left:0px !important;
-}
+#aspnetForm[action*="Read.aspx"] .cfHeader a.flag.inner img
+{ border: 0px solid #DDDDDD; }
 
 #aspnetForm[action*="Read.aspx"] .cfHeader, .cfHeader img,
 #aspnetForm[action*="Read.aspx"] .cfHeader a,
@@ -13,10 +8,5 @@
     padding-left:0px;
     padding-right:0px;
     font-size:10px;
-    line-height: 16px !important;
+    line-height: 16px;
 }
-
-/*.cfHeader  .float_left {
-	margin-left:-4px;
-}*/
-

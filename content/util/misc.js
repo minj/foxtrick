@@ -8,46 +8,7 @@ if (!Foxtrick)
 	var Foxtrick = {};
 
 // global change listener.
-// uses setTimout to queue the change function call after
-// all current DOMNodeInserted events have passed.
 (function() {
-	// var changeQueued = false;
-
-	// var waitForChanges = function(ev) {
-	// 	// we ignore further events
-	// 	if (changeQueued)
-	// 		return;
-
-	// 	// first call. queue our change function call
-	// 	changeQueued = true;
-	// 	Foxtrick.stopListenToChange(ev.target.ownerDocument);
-	// 	window.setTimeout(function() {
-	// 		// all events have passed. run change function now and restart listening to changes
-	// 		Foxtrick.entry.change(ev);
-	// 		Foxtrick.startListenToChange(ev.target.ownerDocument);
-	// 		changeQueued = false;
-	// 	}, 0);
-	// };
-
-	// Foxtrick.startListenToChange = function(doc) {
-	// 	if (!Foxtrick.isHt(doc))
-	// 		return;
-	// 	var content = doc.getElementById('content');
-	// 	content.addEventListener('DOMNodeInserted', waitForChanges, true);
-	// };
-
-	// Foxtrick.stopListenToChange = function(doc) {
-	// 	var content = doc.getElementById('content');
-	// 	content.removeEventListener('DOMNodeInserted', waitForChanges, true);
-	// };
-
-	// Foxtrick.preventChange = function(doc, func) {
-	// 	return function() {
-	// 		Foxtrick.stopListenToChange(doc);
-	// 		func.apply(this, arguments);
-	// 		Foxtrick.startListenToChange(doc);
-	// 	};
-	// };
 	var waitForChanges = function(changes) {
 		var doc = changes[0].ownerDocument;
 		Foxtrick.stopListenToChange(doc);
@@ -92,139 +53,144 @@ if (!Foxtrick)
 	};
 })();
 
-
-// Play the sound with URL given as parameter.
-// Gecko only supports WAV format at the moment.
-// May throw an error if unable to play the sound.
-Foxtrick.playSound = function(url, doc) {
-	try {
-		if (typeof url !== 'string') {
-			Foxtrick.log('Bad sound:', url);
-			return;
-		}
-		url = url.replace(/^foxtrick:\/\//, Foxtrick.ResourcePath);
-		var type = 'wav';
-		if (url.indexOf('data:audio') == 0)
-			type = url.match(/data:audio\/(.+);/)[1];
-		else {
-			var ext = url.match(/\.([^\.]+)$/);
-			if (ext)
-				type = ext[1];
-			else {
-				Foxtrick.log('Not a sound file:', url);
-				return;
-			}
-		}
-		Foxtrick.log('play: ' + url.substring(0, 100));
+/**
+ * Try playing an audio url
+ * @param  {document} doc
+ * @param  {string} url
+ */
+Foxtrick.playSound = function(url) {
+	var play = function(url, type, volume) {
 		try {
 			var music = new Audio();
 			var canPlay = music.canPlayType('audio/' + type);
-			Foxtrick.log('can play ' + type + ':' + (canPlay == '' ? 'no' : canPlay));
-			if (canPlay == 'maybe' || canPlay == 'probably') {
-					music.src = url;
-					// try overwrite mime type (in case server says wrongly
-					// it's a generic application/octet-stream)
-					music.type = 'audio/' + type;
-					music.play();
-			}
-			else {
-				Foxtrick.log('try embeded using plugin');
-				var videoElement = doc.createElement('embed');
-				videoElement.setAttribute('style', 'visibility:hidden');
-				videoElement.setAttribute('width', '1');
-				videoElement.setAttribute('height', '1');
-				videoElement.setAttribute('autoplay', 'true');
-				videoElement.setAttribute('type', 'audio/' + type);
-				videoElement.setAttribute('src', url);
-				doc.getElementsByTagName('body')[0].appendChild(videoElement);
-				/*
-				flash need media/OriginalMusicPlayer.swf shipped i guess
-				var videoElement = doc.createElement('object');
-				videoElement.setAttribute('style','visibility:hidden');
-				videoElement.setAttribute('width','1');
-				videoElement.setAttribute('height','1');
-				videoElement.setAttribute('autoplay', 'true');
-				videoElement.setAttribute('type', 'application/x-shockwave-flash');
-				videoElement.setAttribute('data', 'media/OriginalMusicPlayer.swf');
-				var param = doc.createElement('param');
-				param.setAttribute('name', 'movie');
-				param.setAttribute('value', 'media/OriginalMusicPlayer.swf');
-				videoElement.appendChild(param);
-				var param = doc.createElement('param');
-				param.setAttribute('name', 'FlashVars');
-				param.setAttribute('value', 'mediaPath='+url);
-				videoElement.appendChild(param);
-				doc.getElementsByTagName('body')[0].appendChild(videoElement);*/
-			}
-		} catch (e) {
-			if (Foxtrick.chromeContext() == 'content') {
-				// via background since internal sounds might not be acessible
-				// from the html page itself
-				Foxtrick.SB.ext.sendRequest({req: 'playSound', url: url});
-			}
-			else
-			{
-				Foxtrick.log(e, '\ntry play with audio tag in document');
-				var music = doc.createElement('audio');
-				music.setAttribute('autoplay', 'autoplay');
-				var source = doc.createElement('source');
-				source.setAttribute('src', url);
-				source.setAttribute('type', 'audio/' + type);
-				music.appendChild(source);
-				doc.getElementsByTagName('body')[0].appendChild(music);
-			}
+			Foxtrick.log('can play', type, ':', canPlay === '' ? 'no' : canPlay);
+
+			if (canPlay === 'no')
+				return;
+
+			music.src = url;
+
+			// try overwrite mime type (in case server says wrongly
+			// it's a generic application/octet-stream)
+			music.type = 'audio/' + type;
+			music.volume = volume;
+			music.play();
 		}
-	} catch (e) {
-		Foxtrick.log('Cannot play sound: ', url.substring(0, 100));
-		Foxtrick.log(e);
+		catch (e) {
+			Foxtrick.log('Playback failed', e);
+		}
+	};
+
+	if (Foxtrick.context == 'content') {
+		// delegate to background due to playback delay
+		Foxtrick.SB.ext.sendRequest({ req: 'playSound', url: url });
+		return;
 	}
+
+	if (typeof url !== 'string') {
+		Foxtrick.log('Bad sound:', url);
+		return;
+	}
+	url = url.replace(/^foxtrick:\/\//, Foxtrick.ResourcePath);
+
+	var type = 'wav';
+	if (url.indexOf('data:audio/') === 0) {
+		var dataURLRe = /data:audio\/(.+);/;
+		if (!dataURLRe.test(url)) {
+			Foxtrick.log('Bad data URL:', url);
+			return;
+		}
+
+		type = dataURLRe.exec(url)[1];
+	}
+	else {
+		var extRe = /\.([^\.]+)$/;
+		if (!extRe.test(url)) {
+			Foxtrick.log('Not a sound file:', url);
+			return;
+		}
+
+		type = extRe.exec(url)[1];
+	}
+
+	var volume = (parseInt(Foxtrick.Prefs.getString('volume'), 10) || 100) / 100;
+	Foxtrick.log('play', volume, url.slice(0, 100));
+
+	play(url, type, volume);
 };
 
-Foxtrick.copyStringToClipboard = function(string) {
-	if (Foxtrick.arch === 'Gecko') {
-		if (Foxtrick.chromeContext() === 'content') {
-			Foxtrick.SB.ext.sendRequest({ req: 'clipboard', content: string });
+/**
+ * Copy something to the clipboard.
+ *
+ * Must be used in a listener for a user-initiated event.
+ * Use addCopying instead
+ *
+ * copy maybe a string or a function that returns a string or {mime, content}
+ * mime may specify additional mime type
+ * 'text/plain' is always used
+ *
+ * c.f. https://stackoverflow.com/questions/3436102/copy-to-clipboard-in-chrome-extension/12693636#12693636
+ *
+ * @param {document} doc
+ * @param {string}   copy {string|function}
+ * @param {string}   mime {string?}
+ */
+Foxtrick.copy = function(doc, copy, mime) {
+	if (Foxtrick.platform == 'Safari') {
+		// FIXME needs testing
+		Foxtrick.sessionSet('clipboard', copy);
+		Foxtrick.error('Safari copying is untested');
+		return;
+	}
+
+	const DEFAULT_MIME = 'text/plain';
+	var contentMime = null;
+	var copyContent;
+
+	if (typeof copy === 'function') {
+		var ret = copy();
+		if (ret && typeof ret === 'object') {
+			contentMime = ret.mime || null;
+			copyContent = ret.content;
 		}
 		else {
-			var gClipboardHelper = Cc['@mozilla.org/widget/clipboardhelper;1'].
-				getService(Ci.nsIClipboardHelper);
-			gClipboardHelper.copyString(string);
+			copyContent = ret;
 		}
 	}
-	else if (Foxtrick.platform == 'Safari') {
-		Foxtrick.sessionSet('clipboard', string);
+	else {
+		contentMime = mime || null;
+		copyContent = copy;
 	}
-	else if (Foxtrick.arch === 'Sandboxed') {
-		if (Foxtrick.chromeContext() == 'content')
-			Foxtrick.SB.ext.sendRequest({ req: 'clipboard', content: string });
-		else {
-			if (Foxtrick.platform == 'Chrome')
-				Foxtrick.loader.background.copyToClipBoard(string);
-			else
-				Foxtrick.copyStringToClipboard(string);
-		}
-	}
+
+	doc.addEventListener('copy', function (ev) {
+
+		ev.clipboardData.setData(DEFAULT_MIME, copyContent);
+		if (contentMime)
+			ev.clipboardData.setData(contentMime, copyContent);
+		ev.preventDefault();
+
+	}, { once: true });
+
+	doc.execCommand('Copy', false, null);
 };
 
 Foxtrick.newTab = function(url) {
-	if (Foxtrick.chromeContext() === 'content') {
+	var tab;
+
+	if (Foxtrick.context === 'content') {
 		Foxtrick.SB.ext.sendRequest({ req: 'newTab', url: url });
 	}
-	else if (Foxtrick.platform == 'Firefox')
-		window.gBrowser.selectedTab = window.gBrowser.addTab(url);
-	else if (Foxtrick.platform == 'Android')
-		BrowserApp.addTab(url);
+	else if (Foxtrick.platform == 'Firefox') {
+		tab = window.gBrowser.addTab(url);
+		window.gBrowser.selectedTab = tab;
+		return tab;
+	}
+	else if (Foxtrick.platform == 'Android') {
+		tab = window.BrowserApp.addTab(url);
+		window.BrowserApp.selectedTab = tab;
+		return tab;
+	}
 };
-
-/*
- * @desc return an XML file parsed from given text
- */
-Foxtrick.parseXml = function(text) {
-	var parser = new window.DOMParser();
-	var xml = parser.parseFromString(text, 'text/xml');
-	return xml;
-};
-
 
 Foxtrick.XML_evaluate = function(xmlresponse, basenodestr, labelstr,
                                  valuestr, value2str, value3str) {
@@ -271,16 +237,25 @@ Foxtrick.xml_single_evaluate = function(xmldoc, path, attribute) {
 		return null;
 };
 
-Foxtrick.version = function() {
+Foxtrick.lazyProp(Foxtrick, 'version', function() {
 	// get rid of user-imported value
 	Foxtrick.Prefs.deleteValue('version');
 	return Foxtrick.Prefs.getString('version');
-};
+});
 
-Foxtrick.branch = function() {
+Foxtrick.lazyProp(Foxtrick, 'branch', function() {
 	// get rid of user-imported value
 	Foxtrick.Prefs.deleteValue('branch');
 	return Foxtrick.Prefs.getString('branch');
+});
+
+/**
+ * Clear all caches
+ */
+Foxtrick.clearCaches = function() {
+	Foxtrick.sessionDeleteBranch('');
+	Foxtrick.localDeleteBranch('');
+	Foxtrick.cache.clear();
 };
 
 Foxtrick.getHref = function(doc) {
@@ -305,14 +280,15 @@ Foxtrick.isHt = function(doc) {
 
 Foxtrick.isHtUrl = function(url) {
 	var htMatches = [
-		/^https?:\/\/(www\d{2}\.)?hattrick\.org(\/|$)/i,
-		/^https?:\/\/stage\.hattrick\.org(\/|$)/i,
-		/^https?:\/\/www\d{2}\.hattrick\.interia\.pl(\/|$)/i,
-		/^https?:\/\/www\d{2}\.hattrick\.uol\.com\.br(\/|$)/i,
-		/^https?:\/\/www\d{2}\.hattrick\.ws(\/|$)/i,
-		/^https?:\/\/www\d{2}\.hat-trick\.net(\/|$)/i,
-		/^https?:\/\/www\d{2}\.hattrick\.name(\/|$)/i,
-		/^https?:\/\/www\d{2}\.hattrick\.fm(\/|$)/i,
+		/^(https?:)?\/\/(www(\d{2})?\.)?hattrick\.org(\/|$)/i,
+		/^(https?:)?\/\/stage\.hattrick\.org(\/|$)/i,
+		/^(https?:)?\/\/www(\d{2})?\.hattrick\.ws(\/|$)/i,
+		/^(https?:)?\/\/www(\d{2})?\.hattrick\.bz(\/|$)/i,
+		/^(https?:)?\/\/www(\d{2})?\.hat-trick\.net(\/|$)/i,
+		/^(https?:)?\/\/www(\d{2})?\.hattrick\.uol\.com\.br(\/|$)/i,
+		/^(https?:)?\/\/www(\d{2})?\.hattrick\.interia\.pl(\/|$)/i,
+		/^(https?:)?\/\/www(\d{2})?\.hattrick\.name(\/|$)/i,
+		/^(https?:)?\/\/www(\d{2})?\.hattrick\.fm(\/|$)/i,
 	];
 	return Foxtrick.any(function(re) { return re.test(url); }, htMatches);
 };
@@ -346,12 +322,72 @@ Foxtrick.getPanel = function(doc) {
 	}
 };
 
-Foxtrick.setLastHost = function(host) {
-	Foxtrick.Prefs.setString('last-host', String(host));
+/**
+ * Test whether object obj has a property prop
+ *
+ * Deals with non-objects and null.
+ * Traverses prototype chain.
+ *
+ * @param  {object}  obj
+ * @param  {string}  prop
+ * @return {Boolean}
+ */
+Foxtrick.hasProp = function(obj, prop) {
+	return obj != null && typeof obj === 'object' && prop in obj;
 };
 
-Foxtrick.getLastHost = function(host) {
-	return Foxtrick.Prefs.getString('last-host') || 'http://www.hattrick.org';
+/**
+ * Test whether object obj is a simple key-value map
+ *
+ * @param  {object}  obj
+ * @return {Boolean}
+ */
+Foxtrick.isMap = function(obj) {
+	return obj != null && Object.getPrototypeOf(obj) == Object.prototype;
+};
+
+/**
+ * Test whether object obj is an array-like
+ *
+ * @param  {object}  obj
+ * @return {Boolean}
+ */
+Foxtrick.isArrayLike = function(obj) {
+	return Foxtrick.hasProp(obj, 'length');
+};
+
+/**
+ * Copy all members from modified to original.
+ * Modifies original.
+ * @param {object} original
+ * @param {object} modified
+ */
+Foxtrick.mergeAll = function(original, modified) {
+	if (original && typeof original === 'object' &&
+	    modified && typeof modified === 'object') {
+		for (var mem in modified) {
+			if (modified.hasOwnProperty(mem)) {
+				original[mem] = modified[mem];
+			}
+		}
+	}
+};
+
+/**
+ * Overwrite members in original with members from modified.
+ * Modifies original. No new members added.
+ * @param  {object} original
+ * @param  {object} modified
+ */
+Foxtrick.mergeValid = function(original, modified) {
+	if (original && typeof original === 'object' &&
+	    modified && typeof modified === 'object') {
+		for (var mem in original) {
+			if (modified.hasOwnProperty(mem)) {
+				original[mem] = modified[mem];
+			}
+		}
+	}
 };
 
 Foxtrick.setLastPage = function(host) {
@@ -481,6 +517,26 @@ Foxtrick.decodeBase64 = function(str) {
 		Foxtrick.log('Error decoding base64 encoded string', str, e);
 		return null;
 	}
+};
+
+/**
+ * Save an array of arrays of bytes/chars as a file.
+ *
+ * Default name: foxtrick.txt
+ * Default mime: text/plain;charset=utf-8'
+ * @param {document} doc
+ * @param {array}    arr  array of arrays of bytes/chars
+ * @param {string}   name file name
+ * @param {string}   mime mime type + charset
+ */
+Foxtrick.saveAs = function(doc, arr, name, mime) {
+	var win = doc.defaultView;
+	var blob = new win.Blob(arr, { type: mime || 'text/plain;charset=utf-8' });
+	var url = win.URL.createObjectURL(blob);
+	var link = doc.createElement('a');
+	link.href = url;
+	link.download = name || 'foxtrick.txt';
+	link.dispatchEvent(new MouseEvent('click'));
 };
 
 /**

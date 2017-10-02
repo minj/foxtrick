@@ -146,17 +146,18 @@ Foxtrick.modules['MainMenuDropDown'] = {
 			}
 			this.concat = function(menus, target) {
 				var secondary = this.menus[target];
-				Foxtrick.map(function(newMenu) {
-					Foxtrick.any(function(menu) {
-						if (menu.url.toLowerCase() === newMenu.url.toLowerCase() &&
-						   menu.name === newMenu.name) {
-							secondary = Foxtrick.exclude(secondary, menu);
-							return true; // stops on first match
-						}
-						return false;
-					}, secondary);
-					secondary.push(newMenu);
-				}, menus);
+				var urls = Foxtrick.unique(Foxtrick.map(function(newMenu) {
+					return newMenu.url.toLowerCase();
+				}, menus));
+
+				secondary = Foxtrick.filter(function(menu) {
+					var menuUrl = menu.url.toLowerCase();
+					return Foxtrick.all(function(url) {
+						return menuUrl != url;
+					}, urls);
+				}, secondary);
+
+				Foxtrick.push(secondary, menus);
 				this.menus[target] = secondary;
 			}
 			this.learn = function(doc) {
@@ -320,6 +321,7 @@ Foxtrick.modules['MainMenuDropDown'] = {
 			// build the menu
 			var links = doc.querySelectorAll('#menu > ul > li > a');
 			for (var l = 0; l < links.length; l++) {
+				Foxtrick.addClass(links[l], 'ft-mmdd-primary');
 				var primaryUrl = links[l].href;
 				var primaries = navi.getPrimaryMenusForUrl(primaryUrl);
 				var secondaries = navi.getSecondaryMenusForUrl(primaryUrl);
@@ -360,9 +362,9 @@ Foxtrick.modules['MainMenuDropDown'] = {
 			};
 
 			var css = getCustomCss(doc);
-			// extract bg color
-			var bgColor = css.match(/background-color:\s*(.+?);/);
+			// extract bg color to replace default hoverColor with a generated one
 			var hoverColor;
+			var bgColor = css.match(/#menu\s*\{[^}]*background-color:\s*(.+?);/);
 			if (bgColor) {
 				bgColor = bgColor[1];
 				var hsl = Foxtrick.util.color.rgbToHsl(Foxtrick.util.color.hexToRgb(bgColor));
@@ -373,9 +375,10 @@ Foxtrick.modules['MainMenuDropDown'] = {
 
 			var newcss = css.replace(/#menu\s*\{/gi, '#menu h3, #menu ul, #menu {');
 			newcss = newcss.replace(/#menu\s*a\s*\{/gi, '#menu h3, #menu a {');
-			newcss = newcss.replace(/#menu\s*a\s*:\s*hover\s*\{(.+?)\}/gi, function() {
-				return '#menu li:hover, #menu a:hover {' +
-					arguments[1].replace(bgColor, hoverColor) + '}';
+			newcss = newcss.replace(/#menu\s*a\s*:\s*hover\s*\{(.+?)\}/gi, function(css, hover) {
+				var newColor = hover.replace(bgColor, hoverColor);
+				var ret = '#menu li:hover, #menu a:hover {' + newColor + '}';
+				return ret;
 			});
 			if (newcss != css) {
 				Foxtrick.util.inject.css(doc, newcss, 'modified-ht-style');
@@ -391,29 +394,40 @@ Foxtrick.modules['MainMenuDropDown'] = {
 			return null;
 		};
 
+		var hasCssRules = function(sheet) {
+			try {
+				if (sheet.cssRules)
+					return true;
+			}
+			catch (e) {}
+			return false;
+		};
+
 		var getMenuTextColor = function() {
 			var tcolor;
 			Foxtrick.map(function(styleSheet) {
-				if (styleSheet.cssRules) {
-					Foxtrick.any(function(rule) {
-						var c = textColor(rule.cssText);
+				if (!hasCssRules(styleSheet))
+					return;
 
-						if (c) {
-							tcolor = c;
-							return true;
-						}
-						else
-							return false;
+				Foxtrick.any(function(rule) {
+					var c = textColor(rule.cssText);
 
-					}, styleSheet.cssRules);
-				}
+					if (c) {
+						tcolor = c;
+						return true;
+					}
+					else
+						return false;
+
+				}, styleSheet.cssRules);
 			}, doc.styleSheets);
 			return tcolor;
 		};
 		var tc = getMenuTextColor();
 
-		var hrstyle = '#menu hr { background-color:' + tc +
-			' !important;} .ft-drop-down-submenu li span, #menu h3 {color:' + tc + ' !important;}';
+		var hrstyle = '#menu hr { background-color:' + tc + ';}\n' +
+			'.ft-drop-down-submenu li span, #menu h3 {color:' + tc + ';}\n' +
+			'#ft-drop-down-menu > li.ft-hasSubMenu::after{border-top-color:' + tc + ';}';
 		Foxtrick.util.inject.css(doc, hrstyle, 'dynamic-mmmd-style');
 	}
 };

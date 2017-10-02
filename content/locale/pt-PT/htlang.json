@@ -223,7 +223,7 @@
 				"value": "3"
 			},
 			{
-				"text": "Devemos ficar nos 4 primeiros",
+				"text": "Devemos ficar nos primeiros 4",
 				"value": "4"
 			},
 			{
@@ -269,6 +269,7 @@
 		"leagueNames": {
 			"1": "Suécia",
 			"100": "El Salvador",
+			"1000": "Hattrick International",
 			"101": "Malta",
 			"102": "Quirguistão",
 			"103": "Moldávia",
@@ -294,7 +295,7 @@
 			"126": "Costa do Marfim",
 			"127": "Koweit",
 			"128": "Iraque",
-			"129": "Azerbeijão",
+			"129": "Azerbaijão",
 			"130": "Angola",
 			"131": "Montenegro",
 			"132": "Bangladesh",

@@ -31,29 +31,29 @@ Foxtrick.modules['TransferDeadline'] = {
 			this.runTransferResult(doc);
 	},
 
-	processNode: function(node, htTime) {
+	processNode: function(node, userTime) {
 		var doc = node.ownerDocument;
 		var dateNode = Foxtrick.hasClass(node, 'date') ? node :
 			node.getElementsByClassName('date')[0];
 		if (!dateNode)
 			return;
 		var deadline;
-		if (dateNode.hasAttribute('x-ht-date')) {
-			// node displays local time instead of HT time as modified
-			// in LocalTime, HT time is saved in attribute x-ht-date
+		if (dateNode.dataset.userDate) {
+			// node displays local time instead of user time as modified
+			// in LocalTime, user time is saved in attribute data-user-date
 			deadline = new Date();
-			deadline.setTime(dateNode.getAttribute('x-ht-date'));
+			deadline.setTime(dateNode.dataset.userDate);
 		}
 		else
 			deadline = Foxtrick.util.time.getDateFromText(dateNode.textContent);
 
 		if (deadline) {
-			var countdown = Math.floor((deadline.getTime() - htTime) / 1000);
+			var countdown = Math.floor((deadline.getTime() - userTime) / 1000);
 			if (!isNaN(countdown) && countdown >= 0) {
 				var countdownNode = doc.createElement('span');
 				countdownNode.className = 'smallText ft-deadline nowrap';
-				countdownNode.textContent = '(' +
-					Foxtrick.util.time.timeDifferenceToElement(doc, countdown).textContent + ')';
+				var span = Foxtrick.util.time.timeDiffToSpan(doc, countdown);
+				countdownNode.textContent = '(' + span.textContent + ')';
 				Foxtrick.makeFeaturedElement(countdownNode, this);
 				node.appendChild(countdownNode);
 			}
@@ -61,30 +61,30 @@ Foxtrick.modules['TransferDeadline'] = {
 	},
 
 	runTransferResult: function(doc) {
-		var htDate = Foxtrick.util.time.getHtDate(doc);
-		var htTime = htDate.getTime();
+		var userDate = Foxtrick.util.time.getDate(doc);
+		var userTime = userDate.getTime();
 		var dates = doc.getElementsByClassName('date');
 		for (var i = 0; i < dates.length; ++i)
-			this.processNode(dates[i], htTime);
+			this.processNode(dates[i], userTime);
 	},
 
 	runPlayerList: function(doc) {
-		var htDate = Foxtrick.util.time.getHtDate(doc);
-		var htTime = htDate.getTime();
+		var userDate = Foxtrick.util.time.getDate(doc);
+		var userTime = userDate.getTime();
 		var i = 0;
 		var MAIN = Foxtrick.getMainIDPrefix();
 		var idPrefix = MAIN + 'lstBids_ctrl';
 		var element;
 		while ((element = doc.getElementById(idPrefix + (i++) + '_jsonDeadLine')))
-			this.processNode(element, htTime);
+			this.processNode(element, userTime);
 	},
 
 	runPlayerDetail: function(doc) {
 		if (Foxtrick.Pages.Player.wasFired(doc))
 			return;
 
-		var htDate = Foxtrick.util.time.getHtDate(doc);
-		var htTime = htDate.getTime();
+		var userDate = Foxtrick.util.time.getDate(doc);
+		var userTime = userDate.getTime();
 		var selltime_elm;
 		try {
 			var div = Foxtrick.Pages.Player.getBidInfo(doc);
@@ -102,6 +102,6 @@ Foxtrick.modules['TransferDeadline'] = {
 		for (var i = 0; i < oldDeadline.length; ++i)
 			oldDeadline[i].parentNode.removeChild(oldDeadline[i]);
 
-		this.processNode(selltime_elm, htTime);
-	}
+		this.processNode(selltime_elm, userTime);
+	},
 };

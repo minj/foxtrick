@@ -8,6 +8,37 @@ if (!Foxtrick)
 	var Foxtrick = {};
 
 /**
+ * Node type map.
+ *
+ * Allegedly not available in some browsers
+ * @type {Object}
+ */
+Foxtrick.NodeTypes = {
+	ELEMENT_NODE: 1,
+	ATTRIBUTE_NODE: 2,
+	TEXT_NODE: 3,
+	CDATA_SECTION_NODE: 4,
+	ENTITY_REFERENCE_NODE: 5,
+	ENTITY_NODE: 6,
+	PROCESSING_INSTRUCTION_NODE: 7,
+	COMMENT_NODE: 8,
+	DOCUMENT_NODE: 9,
+	DOCUMENT_TYPE_NODE: 10,
+	DOCUMENT_FRAGMENT_NODE: 11,
+	NOTATION_NODE: 12,
+};
+
+/**
+ * Create an element in SVG namespace. Root element is typically 'svg'.
+ * @param  {document} doc
+ * @param  {string}   type
+ * @return {element}
+ */
+Foxtrick.createSVG = function(doc, type) {
+	return doc.createElementNS('http://www.w3.org/2000/svg', type);
+};
+
+/**
  * Create an element with Foxtrick feature highlight enabled.
  * This and other similar functions must be used on the outer container
  * of DOM created and/or modified by Foxtrick.
@@ -135,6 +166,44 @@ Foxtrick.removeAttributeValue = function(el, attribute, value) {
 };
 
 /**
+ * Set element attributes/properties based on attribute map.
+ *
+ * Also supports style/dataset and on* listeners.
+ *
+ * @param {element} el
+ * @param {object}  attributes
+ */
+Foxtrick.setAttributes = function(el, attributes) {
+	var ELEMENT_PROPERTIES = [
+		'textContent',
+		'className',
+	];
+
+	for (var attr in attributes) {
+		if ((attr == 'dataset' || attr == 'style') && typeof attributes[attr] == 'object') {
+			for (var item of attributes[attr]) {
+				el[attr][item] = attributes[attr][item];
+			}
+		}
+		else if (attr.slice(0, 2) == 'on' && typeof attributes[attr] == 'function') {
+			var cb = attributes[attr];
+			var type = attr.slice(2).toLowerCase();
+
+			if (type == 'click')
+				Foxtrick.onClick(el, cb);
+			else if (type == 'change')
+				Foxtrick.onChange(el, cb);
+			else
+				Foxtrick.listen(el, type, cb);
+		}
+		else if (Foxtrick.has(ELEMENT_PROPERTIES, attr))
+			el[attr] = attributes[attr];
+		else
+			el.setAttribute(attr, attributes[attr]);
+	}
+};
+
+/**
  * Test whether an element has a class
  * @param  {HTMLElement} el
  * @param  {String}      cls
@@ -224,14 +293,64 @@ Foxtrick.getChildIndex = function(element) {
 };
 
 /**
+ * Insert newNode after sibling
+ * @param {element} newNode
+ * @param {element} sibling
+ */
+Foxtrick.insertAfter = function(newNode, sibling) {
+	if (sibling.nextSibling) {
+		sibling.parentNode.insertBefore(newNode, sibling.nextSibling);
+	}
+	else {
+		sibling.parentNode.appendChild(newNode);
+	}
+};
+
+/**
+ * Append an array of elements to a container
+ * @param {element} parent
+ * @param {array}   children Array.<element>
+ */
+Foxtrick.appendChildren = function(parent, children) {
+	Foxtrick.forEach(function(child) {
+		parent.appendChild(child);
+	}, children);
+};
+
+/**
+ * Append child(ren) to parent.
+ *
+ * child may be a Node, String or an array of such.
+ *
+ * @param {element} parent
+ * @param {object}  child
+ */
+Foxtrick.append = function(parent, child) {
+	var doc = parent.ownerDocument;
+	var win = doc.defaultView;
+
+	if (Foxtrick.isArrayLike(child)) {
+		Foxtrick.forEach(function(c) {
+			Foxtrick.append(parent, c);
+		}, child);
+	}
+	else if (win.Node.prototype.isPrototypeOf(child))
+		parent.appendChild(child);
+	else if (child != null) // skip null/undefined
+		parent.appendChild(doc.createTextNode(child.toString()));
+};
+
+/**
  * Adds a click event listener to an element.
  * Sets tabindex=0 and role=button if these attributes have no value.
  * The callback is executed with global change listeners stopped.
+ *
  * @param {HTMLElement} el
  * @param {function}    listener
+ * @param {Boolean}     useCapture
  */
-Foxtrick.onClick = function(el, listener) {
-	Foxtrick.listen(el, 'click', listener, false);
+Foxtrick.onClick = function(el, listener, useCapture) {
+	Foxtrick.listen(el, 'click', listener, useCapture);
 	if (!el.hasAttribute('tabindex'))
 		el.setAttribute('tabindex', '0');
 	if (!el.hasAttribute('role'))
@@ -248,12 +367,41 @@ Foxtrick.onClick = function(el, listener) {
  */
 Foxtrick.listen = function(el, type, listener, useCapture) {
 	el.addEventListener(type, function(ev) {
-		var doc = ev.target.ownerDocument;
+		var doc = ev.target.ownerDocument || ev.target;
 		Foxtrick.stopListenToChange(doc);
-		listener.bind(this)(ev);
+
+		var ret = listener.bind(this)(ev);
+
 		Foxtrick.log.flush(doc);
 		Foxtrick.startListenToChange(doc);
+
+		if (ret === false) {
+			// simply returning false does not seem to work in capture phase
+			ev.stopPropagation();
+			ev.preventDefault();
+		}
+
+		return ret;
 	}, useCapture);
+};
+
+/**
+ * Activate an element by adding a copy listener.
+ *
+ * copy maybe a string or a function that returns {mime, content}
+ * mime may specify additional mime type
+ * 'text/plain' is always used
+ *
+ * @param {element} el
+ * @param {string}  copy {string|function}
+ * @param {string}  mime {string?}
+ */
+Foxtrick.addCopying = function(el, copy, mime) {
+	Foxtrick.onClick(el, function() {
+		var doc = this.ownerDocument;
+
+		Foxtrick.copy(doc, copy, mime);
+	});
 };
 
 /**
@@ -493,6 +641,7 @@ Foxtrick.getDataURIText = function(str) {
 
 /**
  * Add an image in an asynchronous way.
+ * TODO: promisify
  * Used to be the only way to add images from FT package
  * in some extension architectures.
  * Continued to be used with forward compatibility in mind.
@@ -505,8 +654,9 @@ Foxtrick.getDataURIText = function(str) {
  */
 Foxtrick.addImage = function(doc, parent, features, insertBefore, callback) {
 	var img = doc.createElement('img');
-	for (var i in features)
-		img.setAttribute(i, features[i]);
+
+	Foxtrick.setAttributes(img, features);
+
 	if (insertBefore)
 		parent.insertBefore(img, insertBefore);
 	else
@@ -514,6 +664,108 @@ Foxtrick.addImage = function(doc, parent, features, insertBefore, callback) {
 
 	if (callback)
 		callback(img);
+};
+
+/**
+ * Add a specialty icon from a specialty number.
+ *
+ * options is a map of DOM attributes: {string: string}.
+ * NOTE: insertBefore and onError has special meaning.
+ *
+ * Returns Promise.<HTMLImageElement>
+ *
+ * @param  {element} parent
+ * @param  {number}  specNum {Integer}
+ * @param  {object}  options {string: string}
+ * @return {Promise}         Promise.<HTMLImageElement>
+ */
+Foxtrick.addSpecialty = function(parent, specNum, options) {
+	var doc = parent.ownerDocument;
+
+	var specialtyName = Foxtrick.L10n.getSpecialityFromNumber(specNum);
+	var specialtyUrl = Foxtrick.getSpecialtyImagePathFromNumber(specNum);
+
+	var insertBefore = null;
+	if (Foxtrick.hasProp(options, 'insertBefore')) {
+		insertBefore = options.insertBefore;
+		delete options.insertBefore;
+	}
+
+	var imgContainer = doc.createElement('span');
+	if (insertBefore)
+		parent.insertBefore(imgContainer, insertBefore);
+	else
+		parent.appendChild(imgContainer);
+
+	if (Foxtrick.Prefs.isModuleEnabled('SpecialtyInfo')) {
+		Foxtrick.addClass(imgContainer, 'ft-specInfo-parent');
+		imgContainer.dataset.specialty = specNum;
+
+		specialtyName += '\n' + Foxtrick.L10n.getString('SpecialtyInfo.open');
+	}
+
+	var opts = {
+		alt: specialtyName,
+		title: specialtyName,
+		src: specialtyUrl,
+	};
+	Foxtrick.mergeAll(opts, options);
+
+	return new Promise(function(resolve) {
+		Foxtrick.addImage(doc, imgContainer, opts, null, resolve);
+	});
+};
+
+/**
+ * Make table rows from a row definition array.
+ *
+ * Row definitions may be <TR>s or arrays of cell definitions.
+ * Cell definitions may be either cell attribute maps,
+ * or Nodes, Strings and arrays of such.
+ *
+ * An optional section param is a <TABLE>, <THEAD>, <TBODY> or <TFOOT>
+ * to add rows to. A new table is created by default.
+ *
+ * Returns the created table or section.
+ *
+ * @param  {document}                doc
+ * @param  {array}                   rows
+ * @param  {HTMLTableSectionElement} section
+ * @return {HTMLTableSectionElement}
+ */
+Foxtrick.makeRows = function(doc, rows, section) {
+	var win = doc.defaultView;
+
+	if (!section)
+		section = doc.createElement('table');
+
+	for (var rowItem of Foxtrick.toArray(rows)) {
+		if (win.HTMLTableRowElement.prototype.isPrototypeOf(rowItem)) {
+			section.appendChild(rowItem);
+			continue;
+		}
+
+		var row = section.insertRow(-1);
+
+		for (var cellItem of Foxtrick.toArray(rowItem)) {
+			if (cellItem == null)
+				continue;
+
+			if (win.HTMLTableCellElement.prototype.isPrototypeOf(cellItem)) {
+				row.appendChild(cellItem);
+				continue;
+			}
+
+			var cell = row.insertCell(-1);
+
+			if (Foxtrick.isMap(cellItem))
+				Foxtrick.setAttributes(cell, cellItem);
+			else
+				Foxtrick.append(cell, cellItem);
+		}
+	}
+
+	return section;
 };
 
 /**
@@ -598,4 +850,227 @@ Foxtrick.getButton = function(doc, ID) {
 	if (!btn)
 		btn = doc.getElementById(PRE + 'but' + ID);
 	return btn;
+};
+
+/**
+ * Get all text nodes in the node tree
+ * @param  {element} parent
+ * @return {array}          Array.<element>
+ */
+Foxtrick.getTextNodes = function(parent) {
+	var ret = [];
+	var doc = parent.ownerDocument;
+	var win = doc.defaultView;
+	var walker = doc.createTreeWalker(parent, win.NodeFilter.SHOW_TEXT, null, false);
+	var node;
+	while ((node = walker.nextNode())) {
+		ret.push(node);
+	}
+	return ret;
+};
+
+/**
+ * Get all text and element nodes in the node tree
+ * @param  {element} parent
+ * @return {array}          Array.<element>
+ */
+Foxtrick.getNodes = function(parent) {
+	var ret = [];
+	var doc = parent.ownerDocument;
+	var win = doc.defaultView;
+	/* jshint -W016 */
+	var bitMask = win.NodeFilter.SHOW_TEXT | win.NodeFilter.SHOW_ELEMENT;
+	/* jshint +W016 */
+	var walker = doc.createTreeWalker(parent, bitMask, null, false);
+	var node;
+	while ((node = walker.nextNode())) {
+		ret.push(node);
+	}
+	return ret;
+};
+
+/**
+ * Render pre elements in a container
+ * @param  {element} parent
+ */
+Foxtrick.renderPre = function(parent) {
+	var doc = parent.ownerDocument;
+	var testRE = /\[\/?pre\]/i;
+	if (testRE.test(parent.textContent)) {
+		// valid pre found
+		var allNodes = Foxtrick.getNodes(parent);
+		var pre = null, target = null, nodes = [];
+		Foxtrick.forEach(function(node) {
+			if (node.hasChildNodes()) {
+				// skip containers
+				return;
+			}
+			var text = node.textContent;
+			if (testRE.test(text)) {
+				// create a new RE object for each node
+				var preRE = /\[\/?pre\]/ig;
+				var mArray, prevIndex = 0;
+				while ((mArray = preRE.exec(text))) {
+					var tag = mArray[0];
+					var start = preRE.lastIndex - tag.length;
+					if (start > prevIndex) {
+						// add any previous text as a text node
+						var previousText = text.slice(prevIndex, start);
+						var prevTextNode = doc.createTextNode(previousText);
+						if (pre) {
+							pre.appendChild(prevTextNode);
+						}
+						else {
+							nodes.push(prevTextNode);
+						}
+					}
+					if (tag === '[pre]' && !pre) {
+						pre = doc.createElement('pre');
+						pre.className = 'ft-dummy';
+						nodes.push(pre);
+						// target is a pointer for DOM insertion
+						target = node;
+					}
+					else if (tag === '[/pre]' && pre) {
+						var frag = doc.createDocumentFragment();
+						Foxtrick.appendChildren(frag, nodes);
+						target.parentNode.replaceChild(frag, target);
+
+						if (node !== target) {
+							// node is still in DOM, remove it
+							node.parentNode.removeChild(node);
+						}
+
+						// set target as pre to be used outside loop
+						target = pre;
+						pre = null;
+						nodes = [];
+					}
+					else {
+						Foxtrick.log('renderPre: unsupported state');
+						return;
+					}
+					prevIndex = preRE.lastIndex;
+				}
+				if (prevIndex < text.length) {
+					// add any ending text
+					var endText = text.slice(prevIndex);
+					var endTextNode = doc.createTextNode(endText);
+					if (pre) {
+						// pre still not inserted
+						pre.appendChild(endTextNode);
+					}
+					else {
+						// target points to inserted pre instead
+						Foxtrick.insertAfter(endTextNode, target);
+					}
+				}
+			}
+			else if (pre) {
+				// add any nodes in between pre tags as is
+				pre.appendChild(node);
+			}
+		}, allNodes);
+	}
+	// replace \u2060 everywhere
+	var tNodes = Foxtrick.getTextNodes(parent);
+	Foxtrick.forEach(function(node) {
+		node.textContent = node.textContent.replace(/\u2060/g, '');
+	}, tNodes);
+};
+
+/**
+ * Make and display a modal dialog.
+ * Handles foxtrick:// links automatically
+ * content can either be a string or an element/fragment
+ * buttons is {Array.<{title:string, handler:function}>} (optional)
+ * @param {document} doc
+ * @param {string}   title
+ * @param {element}  content {element|string}
+ * @param {array}    buttons {?Array.<{title:string, handler:function}>}
+ */
+Foxtrick.makeModal = function(doc, title, content, buttons) {
+	var DEFAULT_HANDLER = function(ev) {
+		var doc = ev.target.ownerDocument;
+		var dialog = doc.getElementById('foxtrick-modal-dialog');
+		doc.body.removeChild(dialog);
+		var scr = doc.getElementById('foxtrick-modal-screen');
+		doc.body.removeChild(scr);
+	};
+	var DEFAULT_BUTTON = { title: Foxtrick.L10n.getString('button.close') };
+
+	var createButton = function(button) {
+		var btn = doc.createElement('button');
+		btn.type = 'button';
+		Foxtrick.addClass(btn, 'ft-dialog-button ft-rborder');
+
+		var text = doc.createElement('span');
+		Foxtrick.addClass(text, 'ft-dialog-button-text');
+		text.textContent = button.title;
+		btn.appendChild(text);
+
+		if (typeof button.handler !== 'function') {
+			button.handler = DEFAULT_HANDLER;
+		}
+		Foxtrick.onClick(btn, button.handler);
+
+		return btn;
+	};
+
+	var dialog = doc.createElement('div');
+	dialog.id = 'foxtrick-modal-dialog';
+
+	// handle foxtrick:// links
+	// TODO refactor into an util
+	var listener = Foxtrick.modules['ForumStripHattrickLinks'].changeLinks;
+	Foxtrick.listen(dialog, 'mousedown', listener);
+
+	var hdrWrapper = doc.createElement('div');
+	Foxtrick.addClass(hdrWrapper, 'ft-dialog-hdrWrapper');
+	dialog.appendChild(hdrWrapper);
+
+	var header = doc.createElement('div');
+	Foxtrick.addClass(header, 'ft-dialog-header ft-clearfix ft-rborder');
+	hdrWrapper.appendChild(header);
+
+	var titleHeader = doc.createElement('h1');
+	Foxtrick.addClass(titleHeader, 'ft-dialog-title float_left');
+	titleHeader.textContent = 'Foxtrick » ' + title;
+	titleHeader.title = title;
+	header.appendChild(titleHeader);
+
+	var contentDiv = doc.createElement('div');
+	Foxtrick.addClass(contentDiv, 'ft-dialog-content');
+	dialog.appendChild(contentDiv);
+
+	if (typeof content !== 'object' || content === null) {
+		var p = doc.createElement('p');
+		p.textContent = content;
+		content = p;
+	}
+	contentDiv.appendChild(content);
+
+	var btnWrapper = doc.createElement('div');
+	Foxtrick.addClass(btnWrapper, 'ft-dialog-btnWrapper');
+	dialog.appendChild(btnWrapper);
+
+	var btnRow = doc.createElement('div');
+	Foxtrick.addClass(btnRow, 'ft-dialog-button-row ft-clearfix');
+	btnWrapper.appendChild(btnRow);
+
+	var btns = doc.createElement('div');
+	Foxtrick.addClass(btns, 'ft-dialog-buttons float_right');
+	btnRow.appendChild(btns);
+
+	buttons = Array.isArray(buttons) ? buttons : [];
+	buttons.push(DEFAULT_BUTTON);
+	Foxtrick.forEach(function(button) {
+		var btn = createButton(button);
+		btns.appendChild(btn);
+	}, buttons);
+
+	var scr = doc.createElement('div');
+	scr.id = 'foxtrick-modal-screen';
+	doc.body.appendChild(dialog);
+	doc.body.appendChild(scr);
 };

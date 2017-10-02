@@ -11,7 +11,6 @@ Foxtrick.modules['ForumChangePosts'] = {
 	CSS: Foxtrick.InternalPath + 'resources/css/forum-change-post.css',
 
 	run: function(doc) {
-		var bDetailedHeader = true;
 		var addCopyPostId = function(idLink) {
 			// part of copypostid
 			var link = doc.createElement('a');
@@ -24,7 +23,7 @@ Foxtrick.modules['ForumChangePosts'] = {
 			Foxtrick.onClick(img, function() {
 				var idExpanded = (idLink.href.search(/MInd/i) >= 0);
 				var postId = idExpanded ? idLink.href.match(/\d+\.\d+/g)[0] : idLink.title;
-				Foxtrick.copyStringToClipboard('[post=Oops]'.replace('Oops', postId));
+				Foxtrick.copy(doc, '[post=Oops]'.replace('Oops', postId));
 				var insertBefore = idLink;
 				while (!Foxtrick.hasClass(insertBefore, 'cfWrapper') &&
 				       !Foxtrick.hasClass(insertBefore, 'boxBody'))
@@ -39,179 +38,184 @@ Foxtrick.modules['ForumChangePosts'] = {
 		var copy_posting_to_clipboard = function(ev) {
 			try {
 				var doc = ev.target.ownerDocument;
-				var is_archive_link = (ev.target.getAttribute('is_archive_link') == 'true');
+				var copy_style = 'ht-ml';
+				var header = null;
 
+				// find header
+				var is_archive_link = ev.target.getAttribute('is_archive_link') == 'true';
 				if (!is_archive_link) {
-					var copy_style = ev.target.getAttribute('copy_style');
+					var post_nr = ev.target.getAttribute('post_nr');
+					header = doc.getElementById('ft_copy_posting_link_id' + post_nr);
+					while (header && !Foxtrick.hasClass(header, 'cfHeader')) {
+						header = header.parentNode;
+					}
+
+					copy_style = ev.target.getAttribute('copy_style');
 					if (copy_style == 'last')
 						Foxtrick.Prefs.getString('CopyPostingStyle');
 					else
 						Foxtrick.Prefs.setString('CopyPostingStyle', copy_style);
-					var post_nr = ev.target.getAttribute('post_nr');
-					var header = doc.getElementById('ft_copy_posting_link_id' + post_nr).parentNode
-						.parentNode.parentNode;
-					if (header.className.search('cfHeader') == -1) header = header.parentNode;
-					// detailed header is one up
 				}
 				else {
-					var copy_style = 'ht-ml';
-					var header = ev.target.parentNode.parentNode.parentNode
-						.getElementsByTagName('div')[0];
-					if (header.className.search('cfHeader') == -1)
-						header = header.nextSibling;
-					// official. detailed header is one down
-					Foxtrick.log(header.className, '\n');
+					var cfWrapper = ev.target;
+					while (cfWrapper && !Foxtrick.hasClass(cfWrapper, 'cfWrapper')) {
+						cfWrapper = cfWrapper.parentNode;
+					}
+					if (cfWrapper)
+						header = cfWrapper.getElementsByClassName('cfHeader')[0];
+				}
+				if (!header) {
+					Foxtrick.error('CopyPosting: post header not found');
+					return;
 				}
 
+				// get message content
+				var opts = {
+					external: copy_style == 'wiki' || copy_style == 'md',
+					format: copy_style != 'md' ? 'htMl' : 'md',
+				};
+				var msg = header.parentNode.getElementsByClassName('message')[0];
+				var message = Foxtrick.util.htMl.getMarkupFromNode(msg, opts);
+
+				// parse header
 				var header_left = null;
 				var header_right = null;
-
 				var k = 0, header_part;
-				while (header_part = header.childNodes[k++]) {
-					if (header_part.className.search(/float_left/) != -1)
+				while ((header_part = header.childNodes[k++])) {
+					if (Foxtrick.hasClass(header_part, 'float_left'))
 						header_left = header_part;
-					if (header_part.className.search(/float_right/) != -1) {
-						if (header_right == null)
-							header_right = header_part;
+					if (!header_right && Foxtrick.hasClass(header_part, 'float_right')) {
+						header_right = header_part;
 					}
 				}
 
 				// the only text node of head_right, which contains date and time
 				var header_right_text = '';
-				for (var i = 0; i < header_right.childNodes.length; ++i) {
-					if (header_right.childNodes[i].nodeType === Foxtrick.NodeTypes.TEXT_NODE) {
-						header_right_text = header_right.childNodes[i].textContent;
-						break;
-					}
-				}
+				var header_right_text_node = Foxtrick.nth(function(node) {
+					return node.nodeType === Foxtrick.NodeTypes.TEXT_NODE;
+				}, header_right.childNodes);
+				if (header_right_text_node)
+					header_right_text = header_right_text_node.textContent;
 
-				// get post_links, poster_links, poster_id from header
-				var header_left_links = header_left.getElementsByTagName('a');
-				var post_link1 = null;
-				var poster_link1 = null;
-				var poster_id1 = null;
-				var post_link2 = null;
-				var poster_link2 = null;
-				var poster_id2 = null;
-				var supporter_link1 = null;
-				var supporter_link2 = null;
-				var series_link1 = null;
-				var series_link2 = null;
-				var post_id1 = null;
-				var post_id2 = null;
-
-				var k = 0, header_left_link;
-				if (header_left_links[0].href.search(/showMInd/) == -1)
-					bDetailedHeader = true;
-				else
-					bDetailedHeader = false;
-				while (header_left_link = header_left_links[k++]) {
-
-					if (!poster_link1) {
-						if (header_left_link.href.search(/javascript/) != -1) {
-							if (header_left_link.href.search(/showMInd/) != -1)
-								post_id1 = header_left_link.href.match(/(\d+\.\d+)/)[1];
-								//header_left_link.href.match(/(\d+)-\d+/)[1]+ '.'
-								//+header_left_link.href.match(/\d+-(\d+)/, '')[1];
-							else
-								post_id1 = header_left_link.title.match(/(\d+\.\d+)/)[1];
-							post_link1 = header_left_link;
-						}
-						else if (header_left_link.href.search(/Forum\/Read\.aspx/) != -1) {
-							post_id1 = header_left_link.title;
-							post_link1 = header_left_link;
-						}
-						else if (header_left_link.href.search(/Club\/Manager\/\?userId=/i) != -1
-								 && header_left_link.parentNode.tagName != 'LI') { //skip popup-links
-							poster_link1 = header_left_link;
-							poster_id1 = poster_link1.href.match(/\?userId=(\d+)/i)[1];
-							if (header_left_links[k]
-								&& header_left_links[k].href.search(/Supporter/i) != -1) {
-									supporter_link1 = header_left_links[k];
-							}
-						}
-					} else if (!poster_link2 || !post_link2) {
-						if (header_left_link.href.search(/javascript/) != -1) {
-							if (header_left_link.href.search(/showMInd/) != -1)
-								post_id2 = header_left_link.href.match(/(\d+\.\d+)/)[1];
-								//header_left_link.href.match(/(\d+)-\d+/)[1]+ '.'
-								//+header_left_link.href.match(/\d+-(\d+)/, '')[1];
-							else
-								post_id2 = header_left_link.title.match(/(\d+\.\d+)/)[1];
-							post_link2 = header_left_link;
-						}
-						else if (header_left_link.href.search(/Forum\/Read\.aspx/) != -1) {
-							post_id2 = header_left_link.title;
-							post_link2 = header_left_link;
-						}
-						else if (post_link2 && header_left_link.href
-						         .search(/Club\/Manager\/\?userId=/i) != -1
-								 && header_left_link.parentNode.tagName != 'LI') { //skip popup-links
-							poster_link2 = header_left_link;
-							poster_id2 = poster_link2.href.match(/\d+$/);
-							if (header_left_links[k]
-								&& header_left_links[k].href.search(/Supporter/i) != -1) {
-									supporter_link2 = header_left_links[k];
-							}
-						}
-					}
-				}
-
-				// make header
-				var headstr = post_id1 + ': ' + poster_link1.title + ' » ';
-				if (poster_link2 && post_link2)
-					headstr += post_id2 + ': ' + poster_link2.title + '\n';
-				else
-					headstr += 'all\n';
-				if (copy_style == 'ht-ml')
-					headstr = '[q=' + poster_link1.title + '][post=' + post_id1 + ']\n';
-
-				// get date+time
+				// get datetime
 				var date = header_right_text.replace(/^ /, '');
 				var time = '';
-				if (date.search(/\d+:\d+/) == 0) {  // time unaltered
+				// time unaltered
+				if (date.search(/\d+:\d+/) === 0) {
 					var cur_time = doc.getElementById('time').textContent;
 					var hi = cur_time.search(/\d+:\d+/);
 					time = date;
 					date = cur_time.substring(0, hi);
 				}
-				else if (date.search(/\d+:\d+/) == -1) { // date hidden by forumalterheaderline
+				// date hidden by forumalterheaderline
+				else if (!/\d+:\d+/.test(date)) {
 					var span = header_right.getElementsByTagName('span')[0];
-					if (span) time = span.title;
-					else time = date;
+					if (span)
+						time = span.title;
+					else
+						time = date;
 				}
-
 				var fulldate = date + time;
-				if (copy_style != 'ht-ml') headstr = fulldate + '  \n' + headstr + '';
 
-				if (copy_style == 'wiki') {
-					var headstr = '{{forum_message|\n';
-						headstr += '| from = [ [ ' + poster_link1.title + ' ] ]\n';
-						headstr += '| to = ' + (poster_link2 ? poster_link2.title : 'Everyone') + '\n';
-						headstr += '| msgid = ' + post_id1 + '\n';
-						headstr += '| prevmsgid = ' + (post_id2 ? post_id2 : '') + '\n';
-						headstr += '| datetime = ' + fulldate.replace(/(.+)(\d+:\d+)/, '$1' + 'at ' +
-						                                              '$2') + '\n';
-						headstr += '| keywords = \n';
-						headstr += '| text =\n';
+				var post_1 = {};
+				var post_2 = {};
+				var post = post_1;
+				var author_1 = {};
+				var author_2 = {};
+				var author = author_1;
+
+				// get post_links, poster_links, poster_id from header
+				var header_left_links = header_left.getElementsByTagName('a');
+				var k = 0, header_left_link;
+				while ((header_left_link = header_left_links[k++])) {
+
+					var isJsLink = /javascript/.test(header_left_link.href);
+					var isShowMInd = /showMInd/.test(header_left_link.href);
+					var isPostLink = /Forum\/Read\.aspx/.test(header_left_link.href);
+					var isManagerLink = /Club\/Manager\/\?userId=/i.test(header_left_link.href);
+					var isPopupLink = header_left_link.parentNode.tagName == 'LI';
+					// test if next link is a supporter link
+					var hasSupporter = header_left_links[k] &&
+						/Supporter/i.test(header_left_links[k].href);
+
+					if (isJsLink) {
+						var post_id = isShowMInd ? header_left_link.href : header_left_link.title;
+						post.id = post_id.match(/(\d+\.\d+)/)[1];
+						post.link = header_left_link;
+						post = post_2;
+					}
+					else if (isPostLink) {
+						post.id = header_left_link.title;
+						post.link = header_left_link;
+						post = post_2;
+					}
+					else if (isManagerLink && !isPopupLink) {
+						author.link = header_left_link;
+						author.name = author.link.title;
+						author.id = author.link.href.match(/\?userId=(\d+)/i)[1];
+						if (hasSupporter) {
+							author.sup = header_left_links[k];
+						}
+						author = author_2;
+					}
+				}
+				if (!('name' in author_2))
+					author_2.name = 'Everyone';
+				if (!('id' in post_2))
+					post_2.id = post_1.id;
+
+				var template = '';
+				var args = {};
+
+				if (copy_style == 'raw') {
+					template = '{}\n{}: {} » {}\n{}\n';
+					args = [
+						fulldate,
+						post_1.id,
+						author_1.name,
+						author_2.name,
+						message
+					];
+				}
+				else if (copy_style == 'ht-ml') {
+					template = '[q={}][post={}]\n{}\n[/q]\n';
+					args = [author_1.name, post_1.id, message];
+				}
+				else if (copy_style == 'wiki') {
+					template = '{{forum_message|\n| from = [ [ {poster1} ] ]\n| to = {poster2}\n' +
+						'| msgid = {post_id1}\n| prevmsgid = {post_id2}\n' +
+						'| datetime = {datetime}\n| keywords = \n| text =\n{message}\n}}\n';
+					args = {
+						poster1: author_1.name,
+						post_id1: post_1.id,
+						poster2: author_2.name,
+						post_id2: post_2.id,
+						datetime: fulldate,
+						message: message
+					};
+				}
+				else if (copy_style == 'md') {
+					template = '**From:** {poster1}\n**PostID:** [{post_id1}]({post_url1})\n' +
+						'**To:** {poster2}\n**Re:** [{post_id2}]({post_url2})\n' +
+						'**Datetime:** {datetime}\n**Message:**\n\n{message}\n';
+					args = {
+						poster1: author_1.name,
+						post_id1: post_1.id,
+						post_url1: Foxtrick.getForumUrl(post_1.id),
+						poster2: author_2.name,
+						post_id2: post_2.id,
+						post_url2: Foxtrick.getForumUrl(post_2.id),
+						datetime: fulldate,
+						message: message
+					};
 				}
 
-				// get message content
-				var msg = header.parentNode.getElementsByClassName('message')[0];
-				var message = Foxtrick.util.htMl.getMarkupFromNode(msg);
-				message = headstr + message;
-
-				// complete message
-				if (copy_style == 'wiki')
-					message += '}}';
-				else if (copy_style == 'ht-ml')
-					message += '[/q]';
-
-				Foxtrick.copyStringToClipboard(message);
+				var copy = Foxtrick.format(template, args);
+				Foxtrick.copy(doc, copy);
 
 				var insertBefore = header.parentNode;
-				var id = 'ft-posting-copy-note- ' + post_id1.replace(/\D/, ' - ');
-				var note = Foxtrick.L10n.getString('copy.posting.copied').replace('%s', post_id1);
+				var id = 'ft-posting-copy-note- ' + post_1.id.replace(/\D/, ' - ');
+				var note = Foxtrick.L10n.getString('copy.posting.copied').replace('%s', post_1.id);
 				Foxtrick.util.note.add(doc, note, id, { at: insertBefore });
 			}
 			catch (e) {
@@ -268,7 +272,7 @@ Foxtrick.modules['ForumChangePosts'] = {
 			copy_posting_div.className = 'ft-pop-up-container ft-copy-small';
 		copy_posting_div.appendChild(copy_posting_img);
 
-		var possibleStyles = ['ht-ml', 'wiki', 'raw'];
+		var possibleStyles = ['ht-ml', 'wiki', 'raw', 'md'];
 		var list = doc.createElement('ul');
 		list.className = 'ft-pop right top';
 		for (var i = 0; i < possibleStyles.length; ++i) {
@@ -296,9 +300,8 @@ Foxtrick.modules['ForumChangePosts'] = {
 		// part of alter header
 		var trunclength = 14;
 
-		var doubleHeaderStyle = 'height:30px !important; ';
 		var alt_supporter = doc.createElement('a');
-		alt_supporter.href = '/Help/Supporter/';
+		alt_supporter.href = '/Help/Supporter/About.aspx';
 		alt_supporter.textContent = ' * ';
 		alt_supporter.title = 'Hattrick Supporter';
 
@@ -321,7 +324,7 @@ Foxtrick.modules['ForumChangePosts'] = {
 					Foxtrick.Prefs.getString('module.FormatPostingText.NestedQuotesAsSpoilers_text');
 				var numSpoilerQuotes = 0;
 
-				var getQuotes = function(node, level) {
+				var getQuotes = function(node, level, spoilers) {
 					if (level == HideLevel && node.getElementsByClassName('quote').length >= 0) {
 						var spoiler_show = Foxtrick
 							.createFeaturedElement(doc, Foxtrick.modules.FormatPostingText,
@@ -353,37 +356,26 @@ Foxtrick.modules['ForumChangePosts'] = {
 					else {
 						var quoteNodes = node.getElementsByClassName('quote');
 						for (var j = 0; j < quoteNodes.length; ++j)
-							getQuotes(quoteNodes[j], level + 1);
+							getQuotes(quoteNodes[j], level + 1, spoilers);
 					}
 				};
 
 				var messages = doc.getElementsByClassName('message');
-				for (var i = 0; i < messages.length; ++i) {
-					var count_pre = Foxtrick.substr_count(messages[i].textContent, '[pre');
-					// using u2060 'word joiner' zero-width space
-					var org = [
-						/\[pre\](.*?)\[\/pre\]/gi ,
-						new RegExp(String.fromCharCode(8288), 'gi')
-					];
-					var rep = ["<pre class='ft-dummy'>$1</pre>", ''];
-					for (var j = 0; j <= count_pre; ++j) {
-						for (var k = 0; k < org.length; ++k) {
-							messages[i].innerHTML = messages[i].innerHTML.replace(org[k], rep[k]);
-						}
-					}
+				Foxtrick.forEach(function(message) {
+					Foxtrick.renderPre(message);
 
 					if (Foxtrick.Prefs.isModuleOptionEnabled('FormatPostingText',
 					    'NestedQuotesAsSpoilers')) {
 						var spoilers = [];
 
-						getQuotes(messages[i], -1);
+						getQuotes(message, -1, spoilers);
 
 						for (var j = 0; j < spoilers.length; ++j) {
 							spoilers[j][0].parentNode.insertBefore(spoilers[j][1],
 							                                       spoilers[j][0].nextSibling);
 						}
 					}
-				}
+				}, messages);
 
 			} catch (e) {
 				Foxtrick.log('FORMAT TEXT ', e);
@@ -432,10 +424,7 @@ Foxtrick.modules['ForumChangePosts'] = {
 			}
 
 			var k = 0, header_left_link;
-			if (header_left_links[0].href.search(/showMInd/) == -1)
-				bDetailedHeader = true;
-			else
-				bDetailedHeader = false;
+			var bDetailedHeader = !/showMInd/.test(header_left_links[0].href);
 			while (header_left_link = header_left_links[k++]) {
 				if (!poster_link1) {
 					if (header_left_link.href.search(/showMInd|Forum\/Read\.aspx/) != -1)
@@ -679,7 +668,7 @@ Foxtrick.modules['ForumChangePosts'] = {
 			}
 
 			if (do_single_header && is_ignored && header.className == 'cfHeader doubleLine') {
-				wrapper.setAttribute('style', 'margin-bottom: 20px !important;');
+				wrapper.setAttribute('style', 'margin-bottom: 20px');
 			}
 			// end single header line
 

@@ -1,0 +1,60 @@
+.ft-specInfo-parent {
+	cursor: pointer;
+}
+
+.ft-specInfo {
+	display: none;
+
+	position: absolute;
+	z-index: 10002;
+	box-sizing: border-box;
+	width: 320px;
+	padding: 8px;
+
+	border: solid 3px #295223;
+	border-radius: 8px;
+
+	background: white;
+	color: black;
+
+	white-space: normal;
+
+	cursor: pointer;
+}
+
+html[dir="ltr"] .cards_health .ft-specInfo {
+	right: 0;
+}
+
+.ft-specInfo-active {
+	display: block;
+}
+
+.ft-specInfo-col:nth-child(odd) {
+	width: 19px;
+}
+.ft-specInfo-col:nth-child(even) {
+	width: 130px;
+}
+
+.ft-specInfo-textIcon {
+	vertical-align: middle;
+}
+
+.ft-specInfo-tbl th, .ft-specInfo-tbl td {
+	box-sizing: border-box;
+	padding-right: 0;
+}
+
+.ft-specInfo-tbl td:nth-child(even) {
+	padding-right: 0.5em;
+}
+
+.ft-specInfo-tbl td {
+	border-bottom: 1px solid #dce0dc;
+
+	/* SkillTable /sigh */
+	background: white !important;
+	color: black;
+	vertical-align: middle !important;
+}

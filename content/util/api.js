@@ -76,7 +76,7 @@ Foxtrick.util.api = {
 			div.appendChild(linkPar);
 			linkPar.appendChild(Foxtrick.util.note.createLoading(doc, null, true));
 			Foxtrick.log('Requesting token at: ', Foxtrick.util.api.stripToken(requestTokenUrl));
-			Foxtrick.util.load.async(requestTokenUrl, function(text, status) {
+			Foxtrick.util.load.fetch(requestTokenUrl, function(text, status) {
 				Foxtrick.stopListenToChange(doc);
 				linkPar.textContent = ''; // clear linkPar first
 				if (status != 200) {
@@ -124,7 +124,7 @@ Foxtrick.util.api = {
 					var accessTokenUrl = Foxtrick.util.api.accessTokenUrl + '?' + query;
 					Foxtrick.log('Requesting access token at: ',
 					             Foxtrick.util.api.stripToken(accessTokenUrl));
-					Foxtrick.util.load.async(accessTokenUrl, function(text, status) {
+					Foxtrick.util.load.fetch(accessTokenUrl, function(text, status) {
 						if (status != 200) {
 							// failed to fetch link
 							showFinished(Foxtrick.util.api.getErrorText(text, status));
@@ -140,7 +140,7 @@ Foxtrick.util.api = {
 				inputPar.appendChild(button);
 				//disabled to prevent auth-reset on dynamic pages
 				//Foxtrick.startListenToChange(doc);
-			}); // get authorize URL with Foxtrick.util.load.async()
+			}); // get authorize URL with Foxtrick.util.load.fetch()
 			Foxtrick.startListenToChange(doc);
 		}); // initial authorize link event listener
 		div.appendChild(link);
@@ -216,7 +216,8 @@ Foxtrick.util.api = {
 			return container.getElementsByTagName(tagName)[0];
 		};
 		xml.text = function(tagName, container) {
-			return this.node(tagName, container).textContent;
+			var node = this.node(tagName, container);
+			return node.textContent;
 		};
 		xml.bool = function(tagName, container) {
 			var text = this.text(tagName, container);
@@ -235,11 +236,12 @@ Foxtrick.util.api = {
 			return Foxtrick.util.time.getDateFromText(text, 'yyyymmdd', true);
 		};
 		xml.num = function(tagName, container) {
-			return parseInt(this.text(tagName, container), 10);
+			var text = this.text(tagName, container);
+			return parseInt(text, 10);
 		};
 		xml.money = function(tagName, rate, container) {
 			var sek = this.num(tagName, container);
-			return Math.floor(sek / (10 * rate));
+			return Math.ceil(sek / (10 * rate));
 		};
 	},
 
@@ -254,7 +256,15 @@ Foxtrick.util.api = {
 	//                     integers over strings;
 	//                     strings over booleans.
 	retrieve: function(doc, parameters, options, callback) {
+		// create a local copy so that oauth params are not propagated into the calling scope
+		if (Array.isArray(parameters))
+			parameters = parameters.slice();
+
 		var safeCallback = (function(parameters) {
+			// create a local copy so that oauth params are skipped
+			if (Array.isArray(parameters))
+				parameters = parameters.slice();
+
 			return function() {
 				Foxtrick.util.api.addHelpers(arguments[0]);
 				try {
@@ -273,29 +283,35 @@ Foxtrick.util.api = {
 			return;
 		}
 
-		var httime = doc.getElementById('time').textContent;
+		var HT_date;
 		try {
-			var HT_date = Foxtrick.util.time.getDateFromText(httime).getTime();
-		} catch (e) { // no httime yet.we have been to fast. lets put us 1 day in the future
-			Foxtrick.log('no httime yet');
-			var HT_date = (new Date()).getTime() + 24 * 60 * 60 * 1000;
+			HT_date = Foxtrick.util.time.getHTTimeStamp(doc);
+		}
+		catch (e) {
+			// No HT time yet. We have been to fast. Lets put us 1 day in the future
+			Foxtrick.log('no HT time yet');
+			HT_date = Date.now() + Foxtrick.util.time.MSECS_IN_DAY;
 		}
 
-		// check global_cache_lifetime first, aka server down
-		Foxtrick.sessionGet('xml_cache.global_cache_lifetime',
-		  function(recheckDate) {
-			if (recheckDate && (Number(recheckDate) > HT_date)) {
-				Foxtrick.log('global_cache_lifetime set. recheck later: ',
-									'  recheckDate: ', (new Date(recheckDate)).toString(),
-									'  current timestamp: ', (new Date(HT_date)).toString());
-				Foxtrick.util.api.addClearCacheLink(doc);
-				safeCallback(null, Foxtrick.L10n.getString('api.serverUnavailable'));
-				return;
-			}
+		// global_cache_lifetime = server down
+		var glblLifetime = Foxtrick.session.get('xml_cache.global_cache_lifetime');
+		var parameters_str = JSON.stringify(parameters);
+		var xmlCache = Foxtrick.session.get('xml_cache.' + parameters_str);
 
-			var parameters_str = JSON.stringify(parameters);
-			Foxtrick.sessionGet('xml_cache.' + parameters_str,
-			  function(xml_cache) {
+		Promise.all([glblLifetime, xmlCache])
+			.then(function(session) {
+				var recheckDate = session[0];
+				var xml_cache = session[1];
+
+				if (recheckDate && (Number(recheckDate) > HT_date)) {
+					Foxtrick.log('global_cache_lifetime set. recheck later: ',
+										'  recheckDate: ', (new Date(recheckDate)).toString(),
+										'  current timestamp: ', (new Date(HT_date)).toString());
+					Foxtrick.util.api.addClearCacheLink(doc);
+					safeCallback(null, Foxtrick.L10n.getString('api.serverUnavailable'));
+					return;
+				}
+
 				var session = options && options.cache_lifetime === 'session' || false;
 				var cacheTime = 0;
 				if (xml_cache) {
@@ -307,6 +323,23 @@ Foxtrick.util.api = {
 					             'current timestamp: ', new Date(HT_date).toString());
 				}
 
+				var getError = function(x, status) {
+					var errorText = null;
+					if (x == null)
+						errorText = Foxtrick.L10n.getString('api.failure');
+					else {
+						var ErrorNode = x.getElementsByTagName('Error')[0];
+						if (typeof(ErrorNode) !== 'undefined') {
+							// chpp api return error xml
+							errorText = ErrorNode.textContent;
+							x = null;
+						}
+					}
+					if (status == 503)
+						errorText = Foxtrick.L10n.getString('api.serverUnavailable');
+
+					return errorText;
+				};
 				// check file cache next
 				// numetical cache time overrides 'session'
 				if (xml_cache && xml_cache.xml_string && options &&
@@ -322,8 +355,9 @@ Foxtrick.util.api = {
 					}
 
 					var parser = new doc.defaultView.DOMParser();
-					safeCallback(parser.parseFromString(JSON.parse(xml_cache.xml_string),
-						         'text/xml'));
+					var xml = parser.parseFromString(JSON.parse(xml_cache.xml_string), 'text/xml');
+					var errorText = getError(xml);
+					safeCallback(xml, errorText);
 				}
 				else {
 					// add to or create queue
@@ -338,19 +372,7 @@ Foxtrick.util.api = {
 
 					// process queued requested
 					var process_queued = function(x, status) {
-						var errorText = null;
-						if (x == null)
-							errorText = Foxtrick.L10n.getString('api.failure');
-						else {
-							var ErrorNode = x.getElementsByTagName('Error')[0];
-							if (typeof(ErrorNode) !== 'undefined') {
-								// chpp api return error xml
-								errorText = ErrorNode.textContent;
-								x = null;
-							}
-						}
-						if (status == 503)
-							errorText = Foxtrick.L10n.getString('api.serverUnavailable');
+						var errorText = getError(x, status);
 						for (var i = 0; i < Foxtrick.util.api.queue[parameters_str].length; ++i)
 							Foxtrick.util.api.queue[parameters_str][i](x, errorText);
 						delete (Foxtrick.util.api.queue[parameters_str]);
@@ -359,7 +381,7 @@ Foxtrick.util.api = {
 					// determine cache liftime
 					if (options && options.cache_lifetime) {
 						if (options.cache_lifetime == 'default')
-							var cache_lifetime = HT_date + 60 * 60 * 1000;  //= 1 hour
+							var cache_lifetime = HT_date + Foxtrick.util.time.MSECS_IN_HOUR;
 						else var cache_lifetime = options.cache_lifetime;
 					}
 					else var cache_lifetime = 0;
@@ -424,7 +446,8 @@ Foxtrick.util.api = {
 								// server down. no need to check very page load.
 								// let's say we check again in 30 min
 								if (status == 503) {
-									var recheckDate = (new Date()).getTime() + 30 * 60 * 1000;
+									var recheckDate =
+										HT_date + 30 * Foxtrick.util.time.MSECS_IN_MIN;
 									Foxtrick.sessionSet('xml_cache.' + parameters_str,
 													{ xml_string: '503',
 													cache_lifetime: recheckDate });
@@ -439,8 +462,11 @@ Foxtrick.util.api = {
 						process_queued(null, 0);
 					}
 				}
+
+			}).catch(function(e) {
+				Foxtrick.log('FATAL CHPP ERROR in retrieve:', e);
 			});
-		});
+
 	},
 
 	// batchParameters: array of parameters for retrieve function
@@ -453,27 +479,44 @@ Foxtrick.util.api = {
 				callback(null);
 			}
 			catch (e) {
-				Foxtrick.log('ApiProxy: uncaught callback error: ', e,
-				             'parameters: ', batchParameters);
+				Foxtrick.log('ApiProxy: uncaught callback error:', e,
+				             'parameters:', batchParameters);
 			}
 			return;
 		}
-		var index = 0, responses = [], errors = [];
-		var processSingle = function(last_response, errorText) {
-			// collect responses
-			if (index !== 0) {
-				Foxtrick.util.api.addHelpers(last_response);
-				responses.push(last_response);
-				errors.push(errorText);
-			}
-			// return if finished
-			if (index == batchParameters.length)
-				callback(responses, errors);
-			else
-				// load next file
-				Foxtrick.util.api.retrieve(doc, batchParameters[index++], options, processSingle);
-		};
-		processSingle();
+
+		var chppPromises = Foxtrick.map(function(params, i) {
+			var opts = Array.isArray(options) ? options[i] : options;
+
+			return new Promise(function(resolve) {
+
+				Foxtrick.util.api.retrieve(doc, params, opts,
+				  function(xml, errorText) {
+					Foxtrick.util.api.addHelpers(xml);
+					resolve([xml, errorText]);
+				});
+
+			}).catch(function(e) {
+				Foxtrick.log('FATAL CHPP ERROR in batchRetrieve:', e);
+				return [null, e.message];
+			});
+
+		}, batchParameters);
+
+		Promise.all(chppPromises).then(function(arr) {
+			var responses = Foxtrick.map(function(resolved) {
+				return resolved[0];
+			}, arr);
+			var errors = Foxtrick.map(function(resolved) {
+				return resolved[1];
+			}, arr);
+
+			callback(responses, errors);
+
+		}).catch(function(e) {
+			Foxtrick.log('ApiProxy: uncaught callback error:', e, 'parameters:', batchParameters);
+		});
+
 	},
 
 	invalidateAccessToken: function() {
@@ -508,18 +551,28 @@ Foxtrick.util.api = {
 	},
 
 	getErrorText: function(text, status) {
+		var errorText;
+
 		try {
-			var errorText = text.getElementsByTagName('title')[0].textContent;
+			errorText = text.getElementsByTagName('title')[0].textContent;
 		}
 		catch (e) {
 			try {
-				var xml = Foxtrick.parseXml(text);
-				var errorText = xml.getElementsByTagName('h2')[0].textContent;
+
+				var xml = Foxtrick.parseXML(text);
+				if (xml == null)
+					errorText = Foxtrick.L10n.getString('exception.error').replace(/%s/, -1);
+				else
+					errorText = xml.getElementsByTagName('h2')[0].textContent;
+
 			}
-			catch (e) {
-				var errorText = Foxtrick.L10n.getString('exception.error').replace(/%s/, status);
+			catch (ee) {
+
+				errorText = Foxtrick.L10n.getString('exception.error').replace(/%s/, status);
+
 			}
 		}
+
 		return errorText;
-	}
+	},
 };

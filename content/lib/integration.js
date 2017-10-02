@@ -3,8 +3,7 @@
 // for those contexts where boot-strap does not take affect
 (function(global) {
 	var libs = [
-		'saveAs',
-		'YAML',
+		'jsyaml',
 		'IDBStore',
 	];
 	libs.forEach(function(lib) {

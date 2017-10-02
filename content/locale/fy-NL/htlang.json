@@ -40,7 +40,7 @@
 				"value": "2"
 			},
 			{
-				"text": "sympatyke spiler",
+				"text": "sympatike spiler",
 				"value": "3"
 			},
 			{
@@ -48,7 +48,7 @@
 				"value": "4"
 			},
 			{
-				"text": "spiler wêr't elts fan hâldt",
+				"text": "adorearre spiler",
 				"value": "5"
 			}
 		],
@@ -269,6 +269,7 @@
 		"leagueNames": {
 			"1": "Sweden",
 			"100": "El Salvador",
+			"1000": "Hattrick International",
 			"101": "Malta",
 			"102": "Kirgyzje",
 			"103": "Moldaavje",
