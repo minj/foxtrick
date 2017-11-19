@@ -291,6 +291,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "12058681",
+			"name": "robertkr"
+		},
+		{
+			"duty": "supporter",
 			"id": "12066737",
 			"name": "pimhitv"
 		},
@@ -398,6 +403,11 @@
 			"duty": "supporter",
 			"id": "12608460",
 			"name": "Jarly"
+		},
+		{
+			"duty": "supporter",
+			"id": "12620856",
+			"name": "jad933"
 		},
 		{
 			"duty": "developer",
