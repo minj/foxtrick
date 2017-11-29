@@ -62,7 +62,7 @@
 		{
 			"duty": "translator",
 			"id": "1048018",
-			"name": "ivo_stoyanov"
+			"name": "LA-ivo"
 		},
 		{
 			"duty": "supporter",
@@ -477,7 +477,7 @@
 		{
 			"duty": "translator",
 			"id": "13121281",
-			"name": "Fantomas_"
+			"name": "HKakashi"
 		},
 		{
 			"duty": "translator",
@@ -1233,6 +1233,11 @@
 			"duty": "supporter",
 			"id": "777893",
 			"name": "Hocke"
+		},
+		{
+			"duty": "supporter",
+			"id": "7861087",
+			"name": "Benedictus_DE"
 		},
 		{
 			"duty": "supporter",
