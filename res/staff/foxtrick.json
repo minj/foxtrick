@@ -55,6 +55,11 @@
 			"name": "gtavo"
 		},
 		{
+			"duty": "supporter",
+			"id": "10380313",
+			"name": "pinkusachi"
+		},
+		{
 			"duty": "translator",
 			"id": "10438815",
 			"name": "puuslik"
@@ -208,6 +213,11 @@
 			"duty": "translator",
 			"id": "11528071",
 			"name": "HPE-Flatron"
+		},
+		{
+			"duty": "supporter",
+			"id": "11528359",
+			"name": "antonin298"
 		},
 		{
 			"duty": "translator",
