@@ -22,7 +22,7 @@
 		{
 			"duty": "translator",
 			"id": "10038631",
-			"name": "Mod-Mohammad"
+			"name": "-Mohammad-"
 		},
 		{
 			"duty": "translator",
@@ -55,6 +55,11 @@
 			"name": "gtavo"
 		},
 		{
+			"duty": "supporter",
+			"id": "10380313",
+			"name": "pinkusachi"
+		},
+		{
 			"duty": "translator",
 			"id": "10438815",
 			"name": "puuslik"
@@ -62,7 +67,7 @@
 		{
 			"duty": "translator",
 			"id": "1048018",
-			"name": "ivo_stoyanov"
+			"name": "LA-ivo"
 		},
 		{
 			"duty": "supporter",
@@ -82,7 +87,7 @@
 		{
 			"duty": "translator",
 			"id": "10613189",
-			"name": "GM-Romanolus"
+			"name": "Romanolus"
 		},
 		{
 			"duty": "translator",
@@ -201,6 +206,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "11449158",
+			"name": "brulcb"
+		},
+		{
+			"duty": "supporter",
 			"id": "11525655",
 			"name": "brutuscat"
 		},
@@ -208,6 +218,11 @@
 			"duty": "translator",
 			"id": "11528071",
 			"name": "HPE-Flatron"
+		},
+		{
+			"duty": "supporter",
+			"id": "11528359",
+			"name": "antonin298"
 		},
 		{
 			"duty": "translator",
@@ -218,6 +233,16 @@
 			"duty": "supporter",
 			"id": "11578876",
 			"name": "FCJoe"
+		},
+		{
+			"duty": "supporter",
+			"id": "1159401",
+			"name": "----------"
+		},
+		{
+			"duty": "supporter",
+			"id": "11599538",
+			"name": "ernest11"
 		},
 		{
 			"duty": "supporter",
@@ -267,7 +292,7 @@
 		{
 			"duty": "translator",
 			"id": "11817135",
-			"name": "Parjikia"
+			"name": "Davit_Parjikia"
 		},
 		{
 			"duty": "translator",
@@ -288,6 +313,11 @@
 			"duty": "translator",
 			"id": "11988102",
 			"name": "LA-levang"
+		},
+		{
+			"duty": "supporter",
+			"id": "12058681",
+			"name": "robertkr"
 		},
 		{
 			"duty": "supporter",
@@ -315,9 +345,14 @@
 			"name": "Alienjake"
 		},
 		{
+			"duty": "supporter",
+			"id": "1230839",
+			"name": "hetekroket"
+		},
+		{
 			"duty": "translator",
 			"id": "12326398",
-			"name": "Dr-Jalal"
+			"name": "LA-Jalal"
 		},
 		{
 			"duty": "supporter",
@@ -400,6 +435,11 @@
 			"name": "Jarly"
 		},
 		{
+			"duty": "supporter",
+			"id": "12620856",
+			"name": "jad933"
+		},
+		{
 			"duty": "developer",
 			"id": "1270528",
 			"name": "larsw84"
@@ -467,7 +507,7 @@
 		{
 			"duty": "translator",
 			"id": "13121281",
-			"name": "Fantomas_"
+			"name": "Giovanni_Trapattoni"
 		},
 		{
 			"duty": "translator",
@@ -478,6 +518,11 @@
 			"duty": "supporter",
 			"id": "13204824",
 			"name": "ReeeN"
+		},
+		{
+			"duty": "supporter",
+			"id": "13209572",
+			"name": "-Pecu-"
 		},
 		{
 			"duty": "supporter",
@@ -543,6 +588,11 @@
 			"duty": "supporter",
 			"id": "1806088",
 			"name": "GeissbockHennes"
+		},
+		{
+			"duty": "supporter",
+			"id": "188374",
+			"name": "----------"
 		},
 		{
 			"duty": "supporter",
@@ -822,7 +872,7 @@
 		{
 			"duty": "translator",
 			"id": "3955847",
-			"name": "Mod-Unknown_Guy"
+			"name": "Unknown_Guy"
 		},
 		{
 			"duty": "translator",
@@ -936,6 +986,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "4963483",
+			"name": "Maske"
+		},
+		{
+			"duty": "supporter",
 			"id": "50011",
 			"name": "Wilbor"
 		},
@@ -998,6 +1053,11 @@
 			"duty": "supporter",
 			"id": "5717080",
 			"name": "kondeswoasei"
+		},
+		{
+			"duty": "supporter",
+			"id": "5740182",
+			"name": "mendrugo_"
 		},
 		{
 			"duty": "supporter",
@@ -1221,6 +1281,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "7861087",
+			"name": "Benedictus_DE"
+		},
+		{
+			"duty": "supporter",
 			"id": "7865524",
 			"name": "Dovco_HandF"
 		},
@@ -1267,7 +1332,7 @@
 		{
 			"duty": "supporter",
 			"id": "8190906",
-			"name": "DxHT-pawpol"
+			"name": "dxht-pawpol"
 		},
 		{
 			"duty": "supporter",
@@ -1337,7 +1402,7 @@
 		{
 			"duty": "translator",
 			"id": "8988135",
-			"name": "LA-Vital_top7"
+			"name": "Vital_top7"
 		},
 		{
 			"duty": "supporter",
@@ -1382,7 +1447,7 @@
 		{
 			"duty": "translator",
 			"id": "9469076",
-			"name": "Mod-Comandante"
+			"name": "MEO_Comandante"
 		},
 		{
 			"duty": "supporter",
