@@ -236,7 +236,6 @@ FoxtrickFirefox.prototype = {
 		'shortcuts-and-tweaks/extra-shortcuts.js',
 		'shortcuts-and-tweaks/filter.js',
 		'shortcuts-and-tweaks/lineup-shortcut.js',
-		'shortcuts-and-tweaks/main-menu-drop-down.js',
 		'shortcuts-and-tweaks/manager-buttons.js',
 		'shortcuts-and-tweaks/player-filters.js',
 		'shortcuts-and-tweaks/rapid-id.js',
