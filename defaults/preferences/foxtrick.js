@@ -738,6 +738,7 @@ pref("extensions.foxtrick.prefs.module.YouthSkillHideUnknown.HideUnknown.enabled
 pref("extensions.foxtrick.prefs.module.YouthSkills.enabled", true);
 pref("extensions.foxtrick.prefs.module.YouthTwins.enabled", true);
 pref("extensions.foxtrick.prefs.module.YouthTwins.HideInfoLink.enabled", false);
+pref("extensions.foxtrick.prefs.module.U20LastMatch.enabled", true);
 pref("extensions.foxtrick.prefs.module.U20LastMatch.YouthPlayers.enabled", true);
 pref("extensions.foxtrick.prefs.module.U20LastMatch.SeniorPlayers.enabled", true);
 pref("extensions.foxtrick.prefs.module.U20LastMatch.AllPlayers.enabled", true);
