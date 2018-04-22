@@ -160,6 +160,7 @@
 			"content/information-aggregation/team-stats.js",
 			"content/information-aggregation/transfer-compare-players.js",
 			"content/information-aggregation/transfer-deadline.js",
+			"content/information-aggregation/u20-lastmatch.js",
 			"content/information-aggregation/youth-promotes.js",
 			"content/information-aggregation/youth-series-estimation.js",
 			"content/information-aggregation/youth-skills.js",
