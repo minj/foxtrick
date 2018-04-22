@@ -8,6 +8,9 @@
 Foxtrick.modules["U20LastMatch"] = {
   MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
   PAGES: ["youthPlayerDetails", "playerDetails", "allPlayers"],
+  OPTIONS: [
+		'YouthPlayers', 'SeniorPlayers', 'AllPlayers'
+	],
   MATCHES_OFFSETS: [
     7,
     14,
@@ -152,11 +155,11 @@ Foxtrick.modules["U20LastMatch"] = {
 
     var isYouthEnabled = Foxtrick.Prefs.isModuleOptionEnabled(
       "U20LastMatch",
-      "YouthPlayersDetails"
+      "YouthPlayers"
     );
     var isSeniorsEnabled = Foxtrick.Prefs.isModuleOptionEnabled(
       "U20LastMatch",
-      "SeniorPlayersDetails"
+      "SeniorPlayers"
     );
     var isAllPlayersEnabled = Foxtrick.Prefs.isModuleOptionEnabled(
       "U20LastMatch",
