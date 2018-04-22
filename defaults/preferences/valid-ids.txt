@@ -382,9 +382,6 @@ module.LiveMatchReportFormat.enabled
 module.LocalTime.enabled
 module.LocalTime.local
 module.LoyaltyDisplay.enabled
-module.MainMenuDropDown.DisregardFirstHeader.enabled
-module.MainMenuDropDown.DropDownArrows.enabled
-module.MainMenuDropDown.enabled
 module.ManagerButtons.GuestBook.enabled
 module.ManagerButtons.enabled
 module.MarkAllAsRead.enabled
