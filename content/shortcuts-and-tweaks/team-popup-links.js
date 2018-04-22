@@ -162,10 +162,7 @@ Foxtrick.modules['TeamPopupLinks'] = {
 		if (sUrl.search(/ShowOldConnections=true/i) != -1) {
 			var a = Foxtrick.getMBElement(doc, 'lnkShowLogins');
 			if (a) {
-				var func = a.href;
-				if (func) {
-					doc.location.href = func;
-				}
+				a.click();
 			}
 		}
 		this.add_popup_links(doc);
