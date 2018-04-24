@@ -1125,6 +1125,11 @@
 			"name": "CHPP-teles"
 		},
 		{
+			"duty": "supporter",
+			"id": "6559512",
+			"name": "_112_"
+		},
+		{
 			"duty": "translator",
 			"id": "6595557",
 			"name": "edzus"
