@@ -111,32 +111,39 @@ Foxtrick.modules["U20LastMatch"] = {
       }
     }
 
+    var ROUND1 = Foxtrick.L10n.getString("U20LastMatch.round").replace(/%1/, "I");
+    var ROUND2 = Foxtrick.L10n.getString("U20LastMatch.round").replace(/%1/, "II");
+    var ROUND3 = Foxtrick.L10n.getString("U20LastMatch.round").replace(/%1/, "III");
+    var ROUND4 = Foxtrick.L10n.getString("U20LastMatch.round").replace(/%1/, "IV");
+    var SEMI = Foxtrick.L10n.getString("U20LastMatch.semi");
+    var FINAL = Foxtrick.L10n.getString("U20LastMatch.final");
+
     var MATCHES_DESCRIPTIONS = [
-      Foxtrick.L10n.getString("U20LastMatch.round1") + " - #1",
-      Foxtrick.L10n.getString("U20LastMatch.round1") + " - #2",
-      Foxtrick.L10n.getString("U20LastMatch.round1") + " - #3",
-      Foxtrick.L10n.getString("U20LastMatch.round1") + " - #4",
-      Foxtrick.L10n.getString("U20LastMatch.round1") + " - #5",
-      Foxtrick.L10n.getString("U20LastMatch.round1") + " - #6",
-      Foxtrick.L10n.getString("U20LastMatch.round1") + " - #7",
-      Foxtrick.L10n.getString("U20LastMatch.round1") + " - #8",
-      Foxtrick.L10n.getString("U20LastMatch.round1") + " - #9",
-      Foxtrick.L10n.getString("U20LastMatch.round1") + " - #10",
-      Foxtrick.L10n.getString("U20LastMatch.round1") + " - #11",
-      Foxtrick.L10n.getString("U20LastMatch.round1") + " - #12",
-      Foxtrick.L10n.getString("U20LastMatch.round1") + " - #13",
-      Foxtrick.L10n.getString("U20LastMatch.round1") + " - #14",
-      Foxtrick.L10n.getString("U20LastMatch.round2") + " - #1",
-      Foxtrick.L10n.getString("U20LastMatch.round2") + " - #2",
-      Foxtrick.L10n.getString("U20LastMatch.round2") + " - #3",
-      Foxtrick.L10n.getString("U20LastMatch.round3") + " - #1",
-      Foxtrick.L10n.getString("U20LastMatch.round3") + " - #2",
-      Foxtrick.L10n.getString("U20LastMatch.round3") + " - #3",
-      Foxtrick.L10n.getString("U20LastMatch.round4") + " - #1",
-      Foxtrick.L10n.getString("U20LastMatch.round4") + " - #2",
-      Foxtrick.L10n.getString("U20LastMatch.round4") + " - #3",
-      Foxtrick.L10n.getString("U20LastMatch.semi"),
-      Foxtrick.L10n.getString("U20LastMatch.final")
+      ROUND1.replace(/%2/,"1"),
+      ROUND1.replace(/%2/,"2"),
+      ROUND1.replace(/%2/,"3"),
+      ROUND1.replace(/%2/,"4"),
+      ROUND1.replace(/%2/,"5"),
+      ROUND1.replace(/%2/,"6"),
+      ROUND1.replace(/%2/,"7"),
+      ROUND1.replace(/%2/,"8"),
+      ROUND1.replace(/%2/,"9"),
+      ROUND1.replace(/%2/,"10"),
+      ROUND1.replace(/%2/,"11"),
+      ROUND1.replace(/%2/,"12"),
+      ROUND1.replace(/%2/,"13"),
+      ROUND1.replace(/%2/,"14"),
+      ROUND2.replace(/%2/,"1"),
+      ROUND2.replace(/%2/,"2"),
+      ROUND2.replace(/%2/,"3"),
+      ROUND3.replace(/%2/,"1"),
+      ROUND3.replace(/%2/,"2"),
+      ROUND3.replace(/%2/,"3"),
+      ROUND4.replace(/%2/,"1"),
+      ROUND4.replace(/%2/,"2"),
+      ROUND4.replace(/%2/,"3"),
+      SEMI,
+      FINAL
     ];
 
     return {
