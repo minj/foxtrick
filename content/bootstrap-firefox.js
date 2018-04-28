@@ -156,6 +156,7 @@ FoxtrickFirefox.prototype = {
 		'information-aggregation/team-stats.js',
 		'information-aggregation/transfer-compare-players.js',
 		'information-aggregation/transfer-deadline.js',
+		'information-aggregation/u20-lastmatch.js',
 		'information-aggregation/youth-promotes.js',
 		'information-aggregation/youth-series-estimation.js',
 		'information-aggregation/youth-skills.js',
