@@ -11,7 +11,7 @@ Foxtrick.modules["U20LastMatch"] = {
   OPTIONS: [
 		'YouthPlayers', 'SeniorPlayers', 'AllPlayers'
 	],
-  MATCHES_OFFSETS: [
+  DATE_CUTOFFS: [
     7,
     14,
     21,
@@ -63,8 +63,8 @@ Foxtrick.modules["U20LastMatch"] = {
     var worldCupNumber = 26 + worldCupOffset;
 
     var index = 0;
-    for (var i = 0; i < this.MATCHES_OFFSETS.length; i++) {
-      if (daysOffset < this.MATCHES_OFFSETS[i]) {
+    for (var i = 0; i < this.DATE_CUTOFFS.length; i++) {
+      if (daysOffset < this.DATE_CUTOFFS[i]) {
         index = i;
         break;
       }
@@ -139,9 +139,11 @@ Foxtrick.modules["U20LastMatch"] = {
       Foxtrick.addClass(row, 'ft-u20-last-match');
       title.textContent = Foxtrick.L10n.getString("U20LastMatch.title");
       var lastMatch = row.insertCell(1);
-      lastMatch.textContent = Foxtrick.L10n.getString("U20LastMatch.worldcup");
-      lastMatch.textContent += Foxtrick.decToRoman(result.worldCupNumber) + " - ";
-      lastMatch.textContent += result.lastMatch;
+      var lastMatchText = Foxtrick.L10n.getString("U20LastMatch.templateWithTable");
+      lastMatchText = lastMatchText.replace(/%1/,Foxtrick.L10n.getString("U20LastMatch.worldcup"));
+      lastMatchText = lastMatchText.replace(/%2/,Foxtrick.decToRoman(result.worldCupNumber));
+      lastMatchText = lastMatchText.replace(/%3/,result.lastMatch);
+      lastMatch.textContent = lastMatchText;
     } else if (isAllPlayersPage) {
       var players = Foxtrick.modules.Core.getPlayerList();
 			Foxtrick.forEach(function(player) {
@@ -152,10 +154,12 @@ Foxtrick.modules["U20LastMatch"] = {
         var table = player.playerNode.querySelector('table');
         var container = Foxtrick.createFeaturedElement(doc, module, 'div');
         Foxtrick.addClass(row, 'ft-u20-last-match');
-        container.textContent = Foxtrick.L10n.getString("U20LastMatch.title") +
-          ' ' + Foxtrick.L10n.getString("U20LastMatch.worldcup") + 
-          Foxtrick.decToRoman(result.worldCupNumber) + ' - ' + result.lastMatch;
-
+        var containerText = Foxtrick.L10n.getString("U20LastMatch.templateWithoutTable");
+        containerText = containerText.replace(/%1/,Foxtrick.L10n.getString("U20LastMatch.title"));
+        containerText = containerText.replace(/%2/,Foxtrick.L10n.getString("U20LastMatch.worldcup"));
+        containerText = containerText.replace(/%3/,Foxtrick.decToRoman(result.worldCupNumber));
+        containerText = containerText.replace(/%4/,result.lastMatch);
+        container.textContent = containerText;
         var before = table.nextSibling;
         before.parentNode.insertBefore(container, before);
 			}, players);
