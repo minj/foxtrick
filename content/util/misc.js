@@ -586,7 +586,8 @@ Foxtrick.getSpecialtyImagePathFromNumber = function(type, negative) {
 
 /**
  * Given a number in decimal representation, returns its roman representation
- *
+ * Source: http://blog.stevenlevithan.com/archives/javascript-roman-numeral-converter
+ * 
  * @param  {Number}  num
  * @return {String}
  */
