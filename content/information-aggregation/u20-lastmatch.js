@@ -39,47 +39,6 @@ Foxtrick.modules["U20LastMatch"] = {
     224
   ],
 
-  romanize: function(num) {
-    if (isNaN(num)) return "";
-    var digits = String(+num).split(""),
-      key = [
-        "",
-        "C",
-        "CC",
-        "CCC",
-        "CD",
-        "D",
-        "DC",
-        "DCC",
-        "DCCC",
-        "CM",
-        "",
-        "X",
-        "XX",
-        "XXX",
-        "XL",
-        "L",
-        "LX",
-        "LXX",
-        "LXXX",
-        "XC",
-        "",
-        "I",
-        "II",
-        "III",
-        "IV",
-        "V",
-        "VI",
-        "VII",
-        "VIII",
-        "IX"
-      ],
-      roman = "",
-      i = 3;
-    while (i--) roman = (key[+digits.pop() + i * 10] || "") + roman;
-    return Array(+digits.join("") + 1).join("M") + roman;
-  },
-
   calculate: function(age, doc) {
     var DAYS_IN_SEASON = Foxtrick.util.time.DAYS_IN_SEASON;
     var MSECS_IN_DAY = Foxtrick.util.time.MSECS_IN_DAY;
@@ -118,33 +77,22 @@ Foxtrick.modules["U20LastMatch"] = {
     var SEMI = Foxtrick.L10n.getString("U20LastMatch.semi");
     var FINAL = Foxtrick.L10n.getString("U20LastMatch.final");
 
-    var MATCHES_DESCRIPTIONS = [
-      ROUND1.replace(/%2/,"1"),
-      ROUND1.replace(/%2/,"2"),
-      ROUND1.replace(/%2/,"3"),
-      ROUND1.replace(/%2/,"4"),
-      ROUND1.replace(/%2/,"5"),
-      ROUND1.replace(/%2/,"6"),
-      ROUND1.replace(/%2/,"7"),
-      ROUND1.replace(/%2/,"8"),
-      ROUND1.replace(/%2/,"9"),
-      ROUND1.replace(/%2/,"10"),
-      ROUND1.replace(/%2/,"11"),
-      ROUND1.replace(/%2/,"12"),
-      ROUND1.replace(/%2/,"13"),
-      ROUND1.replace(/%2/,"14"),
-      ROUND2.replace(/%2/,"1"),
-      ROUND2.replace(/%2/,"2"),
-      ROUND2.replace(/%2/,"3"),
-      ROUND3.replace(/%2/,"1"),
-      ROUND3.replace(/%2/,"2"),
-      ROUND3.replace(/%2/,"3"),
-      ROUND4.replace(/%2/,"1"),
-      ROUND4.replace(/%2/,"2"),
-      ROUND4.replace(/%2/,"3"),
-      SEMI,
-      FINAL
-    ];
+    // Load the Match descriptions array.
+    var MATCHES_DESCRIPTIONS = [];
+    for (var i=1; i<15; i++) {
+      MATCHES_DESCRIPTIONS.push(ROUND1.replace(/%2/,String(i)));
+    }
+    for (var i=1; i<4; i++) {
+      MATCHES_DESCRIPTIONS.push(ROUND2.replace(/%2/,String(i)));
+    }
+    for (var i=1; i<4; i++) {
+      MATCHES_DESCRIPTIONS.push(ROUND3.replace(/%2/,String(i)));
+    }
+    for (var i=1; i<4; i++) {
+      MATCHES_DESCRIPTIONS.push(ROUND4.replace(/%2/,String(i)));
+    }
+    MATCHES_DESCRIPTIONS.push(SEMI);
+    MATCHES_DESCRIPTIONS.push(FINAL);
 
     return {
       lastMatch: MATCHES_DESCRIPTIONS[index],
@@ -192,7 +140,7 @@ Foxtrick.modules["U20LastMatch"] = {
       title.textContent = Foxtrick.L10n.getString("U20LastMatch.title");
       var lastMatch = row.insertCell(1);
       lastMatch.textContent = Foxtrick.L10n.getString("U20LastMatch.worldcup");
-      lastMatch.textContent += module.romanize(result.worldCupNumber) + " - ";
+      lastMatch.textContent += Foxtrick.decToRoman(result.worldCupNumber) + " - ";
       lastMatch.textContent += result.lastMatch;
     } else if (isAllPlayersPage) {
       var players = Foxtrick.modules.Core.getPlayerList();
@@ -206,7 +154,7 @@ Foxtrick.modules["U20LastMatch"] = {
         Foxtrick.addClass(row, 'ft-u20-last-match');
         container.textContent = Foxtrick.L10n.getString("U20LastMatch.title") +
           ' ' + Foxtrick.L10n.getString("U20LastMatch.worldcup") + 
-          module.romanize(result.worldCupNumber) + ' - ' + result.lastMatch;
+          Foxtrick.decToRoman(result.worldCupNumber) + ' - ' + result.lastMatch;
 
         var before = table.nextSibling;
         before.parentNode.insertBefore(container, before);
