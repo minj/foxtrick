@@ -7,7 +7,7 @@
 
 Foxtrick.modules["U20LastMatch"] = {
   MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
-  PAGES: ["youthPlayerDetails", "playerDetails", "allPlayers"],
+  PAGES: ["youthPlayerDetails", "playerDetails", "players"],
   OPTIONS: [
 		'YouthPlayers', 'SeniorPlayers', 'AllPlayers'
 	],
@@ -106,7 +106,7 @@ Foxtrick.modules["U20LastMatch"] = {
 
     var isYouthPlayerDetailsPage = Foxtrick.isPage(doc, "youthPlayerDetails");
     var isSeniorPlayerDetailsPage = Foxtrick.isPage(doc, "playerDetails");
-    var isAllPlayersPage = Foxtrick.isPage(doc, "allPlayers");
+    var isPlayersPage = Foxtrick.isPage(doc, "players");
 
     var isYouthEnabled = Foxtrick.Prefs.isModuleOptionEnabled(
       "U20LastMatch",
@@ -116,7 +116,7 @@ Foxtrick.modules["U20LastMatch"] = {
       "U20LastMatch",
       "SeniorPlayers"
     );
-    var isAllPlayersEnabled = Foxtrick.Prefs.isModuleOptionEnabled(
+    var isPlayersEnabled = Foxtrick.Prefs.isModuleOptionEnabled(
       "U20LastMatch",
       "AllPlayers"
     )
@@ -124,14 +124,14 @@ Foxtrick.modules["U20LastMatch"] = {
     // If the option isn't enabled for this page, don't show.
     if (isYouthPlayerDetailsPage && !isYouthEnabled) return;
     if (isSeniorPlayerDetailsPage && !isSeniorsEnabled) return;
-    if (isAllPlayersPage && !isAllPlayersEnabled) return;
+    if (isPlayersPage && !isPlayersEnabled) return;
 
     if (isYouthPlayerDetailsPage || isSeniorPlayerDetailsPage) {
       var age = Foxtrick.Pages.Player.getAge(doc);
       if (age.years > 20) return;
-  
+
       var result = module.calculate(age, doc);
-  
+
       // Display the U20 Last Match information.
       var table = doc.querySelector(".playerInfo table");
       var row = Foxtrick.insertFeaturedRow(table, module, table.rows.length);
@@ -148,7 +148,7 @@ Foxtrick.modules["U20LastMatch"] = {
       var players = Foxtrick.modules.Core.getPlayerList();
 			Foxtrick.forEach(function(player) {
         if (player.age.years > 20) return;
-        
+
         var result = module.calculate(player.age, doc);
 
         var table = player.playerNode.querySelector('table');
