@@ -54,7 +54,7 @@ Foxtrick.modules["U20LastMatch"] = {
     );
 
     // Round I, Match #1 of World Cup XXVI. (26/05/2017)
-    var origin = Foxtrick.util.time.toHT(doc, new Date(2017, 4, 26));
+    var origin = new Date(2017, 4, 26);
     var msDiff = dateWhenPlayerIs21.getTime() - origin.getTime();
     var dayDiff = Math.floor(msDiff / MSECS_IN_DAY) - 1;
 
