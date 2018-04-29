@@ -236,8 +236,9 @@ Foxtrick.storage.set = function(key, value) {
 				value: value,
 			}, function onSendResponse(response) {
 
-				if (response instanceof Error)
-					reject(response);
+				var err = Foxtrick.JSONError(response);
+				if (err instanceof Error)
+					reject(err);
 				else
 					fulfill(response);
 
@@ -326,8 +327,9 @@ Foxtrick.storage.deleteBranch = function(branch) {
 				branch: branch,
 			}, function onSendResponse(response) {
 
-				if (response instanceof Error)
-					reject(response);
+				var err = Foxtrick.JSONError(response);
+				if (err instanceof Error)
+					reject(err);
 				else
 					fulfill(response);
 

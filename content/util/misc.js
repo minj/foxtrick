@@ -54,6 +54,41 @@ if (!Foxtrick)
 })();
 
 /**
+ * A hack to enable passing Error instances over the message port.
+ *
+ * @param  {Error|object} err An Error instance here, an object there
+ * @return {object|Error}     An object here, an Error instance there
+ */
+Foxtrick.JSONError = (err) => {
+	const ERROR_SYMBOL = '__ftErrorSymbol';
+	if (err == null)
+		return err;
+
+	if (typeof err == 'object') {
+		if (err instanceof Error) {
+			return {
+				[ERROR_SYMBOL]: 1,
+				name: err.name,
+				message: err.message,
+				stack: err.stack,
+			};
+		}
+		else if (ERROR_SYMBOL in err) {
+			let obj = new window[err.name]();
+			obj.message = err.message;
+			obj.stack = err.stack;
+			return obj;
+		}
+
+		for (let k of Object.keys(err))
+			err[k] = Foxtrick.JSONError(err[k]);
+
+	}
+
+	return err;
+};
+
+/**
  * Try playing an audio url
  * @param  {document} doc
  * @param  {string} url
