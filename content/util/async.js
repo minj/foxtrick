@@ -134,7 +134,8 @@ Foxtrick.delay = function(time) {
  */
 Foxtrick.catch = function(module) {
 	return function(e) {
-		if (e === Foxtrick.SWALLOWED_ERROR)
+		if (e === Foxtrick.SWALLOWED_ERROR ||
+		    e.message && e.message === Foxtrick.SWALLOWED_ERROR)
 			return;
 
 		var what = module && module.MODULE_NAME || module;

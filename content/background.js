@@ -246,8 +246,12 @@ Foxtrick.loader.background.browserLoad = function() {
 		};
 
 		// from notify.js
-		this.requests.notify = function(request, sender) {
-			Foxtrick.util.notify.create(request.msg, sender, request);
+		this.requests.notify = function(request, sender, sendResponse) {
+			Foxtrick.util.notify.create(request.msg, sender, request)
+				.then(sendResponse, err => sendResponse(Foxtrick.JSONError(err)))
+				.catch(Foxtrick.catch(sender));
+
+			return true; // async
 		};
 
 		// from context-menu.js: dummy. request handled in there
@@ -290,14 +294,14 @@ Foxtrick.loader.background.browserLoad = function() {
 		};
 		this.requests.storageSet = function(request, sender, sendResponse) {
 			Foxtrick.storage.set(request.key, request.value)
-				.then(sendResponse, sendResponse) // use the same callback for both
+				.then(sendResponse, err => sendResponse(Foxtrick.JSONError(err)))
 				.catch(Foxtrick.catch(sender));
 
 			return true; // async
 		};
 		this.requests.storageDeleteBranch = function(request, sender, sendResponse) {
 			Foxtrick.storage.deleteBranch(request.branch)
-				.then(sendResponse, sendResponse) // use the same callback for both
+				.then(sendResponse, err => sendResponse(Foxtrick.JSONError(err)))
 				.catch(Foxtrick.catch(sender));
 
 			return true; // async
@@ -313,14 +317,14 @@ Foxtrick.loader.background.browserLoad = function() {
 		};
 		this.requests.sessionSet = function(request, sender, sendResponse) {
 			Foxtrick.session.set(request.key, request.value)
-				.then(sendResponse, sendResponse) // use the same callback for both
+				.then(sendResponse, err => sendResponse(Foxtrick.JSONError(err)))
 				.catch(Foxtrick.catch(sender));
 
 			return true; // async
 		};
 		this.requests.sessionDeleteBranch = function(request, sender, sendResponse) {
 			Foxtrick.session.deleteBranch(request.branch)
-				.then(sendResponse, sendResponse) // use the same callback for both
+				.then(sendResponse, err => sendResponse(Foxtrick.JSONError(err)))
 				.catch(Foxtrick.catch(sender));
 
 			return true; // async

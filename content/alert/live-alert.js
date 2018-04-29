@@ -136,6 +136,8 @@ Foxtrick.modules['LiveAlert'] = {
 	},
 
 	alert: function(doc, teams, score) {
+		const MODULE = this;
+
 		var ALERT_TMPL = '{homeFull} {homeGoals} - {awayGoals} {awayFull}';
 
 		var homeText = teams[0].textContent;
@@ -185,7 +187,9 @@ Foxtrick.modules['LiveAlert'] = {
 			var txt = Foxtrick.format(ALERT_TMPL, info);
 			var url = doc.location.href;
 
-			Foxtrick.util.notify.create(txt, url, { id: info.teamsText });
+			Foxtrick.util.notify.create(txt, url, { id: info.teamsText })
+				.catch(e => e.message != Foxtrick.TIMEOUT_ERROR ? Promise.reject(e) : e)
+				.catch(Foxtrick.catch(MODULE));
 		}
 
 		// play sound if enabled
