@@ -15,17 +15,21 @@ Foxtrick.util.notify = {};
 
 /**
  * Create a desktop notification with a given message and link to source
+ * Returns a promise that fulfills with the url once user acts on the notification
+ * OR rejects with Foxtrick.TIMEOUT_ERROR if the notification is closed
  *
  * source is normally an URL or sender object in the background (non-Gecko).
  * opts is chrome NotificationOptions or
  * {msg, url, id: string, opts: NotificationOptions} in the background (non-Gecko).
  *
- * @param {string}        msg
- * @param {string|object} source
- * @param {object}        opts
- * @param {function}      callback {function(string)} TODO fails due to disconnected port
+ * @param  {string}          msg
+ * @param  {string|object}   source
+ * @param  {object}          opts
+ * @param  {function}        callback {function(string)}
+ *
+ * @return {Promise<string>}
  */
-Foxtrick.util.notify.create = function(msg, source, opts/*, callback*/) {
+Foxtrick.util.notify.create = function(msg, source, opts) {
 	const TITLE = 'Hattrick';
 	const IMG = Foxtrick.InternalPath + 'resources/img/icon-128.png';
 	const NAME = 'Foxtrick';
@@ -33,93 +37,53 @@ Foxtrick.util.notify.create = function(msg, source, opts/*, callback*/) {
 
 	var gId = '', gUrl = '', gTabOpts = {}, gTabOptsBtn = {};
 
-	var createGecko = function() {
-
-		var glbl = window.gBrowser || window.BrowserApp;
-		var currentTabIdx = Foxtrick.indexOf(glbl.tabs, glbl.selectedTab);
-
-		var listener = {
-			/**
-			 * observer function
-			 * @param  {object} subject null
-			 * @param  {string} topic   {alertclickcallback|alertshow|alertfinished}
-			 * @param  {string} data    url
-			 */
-			observe: function(subject, topic, data) { // jshint ignore:line
-				try {
-					if (topic === 'alertclickcallback') {
-
-						var tab = Foxtrick.newTab(data);
-
-						if (Foxtrick.platform === 'Firefox') {
-							// Android has no moveTabTo
-
-							var index;
-
-							if (source.tab) {
-								// e10s FF
-								var browser = source.tab.target;
-								index = browser.selectedIndex + 1;
-
-								// FIXME?
-								// var deck = browser.parentNode;
-								// var index = Foxtrick.indexOf(deck.childNodes, browser);
-
-							}
-							else {
-								// old FF
-								index = currentTabIdx + 1;
-							}
-
-							window.gBrowser.moveTabTo(tab, index);
-							window.focus();
-
-						}
-
-						// if (typeof callback === 'function')
-						// 	callback(data);
-					}
-				}
-				catch (e) {
-					Foxtrick.log(e);
-				}
-			},
+	var updateOriginTab = function(originTab, tabOpts) {
+		var focusWindow = function(winId) {
+			return new Promise(function(resolve) {
+				chrome.windows.update(winId, { focused: true }, resolve);
+			});
 		};
 
-		try {
-			var alertWin = Cc['@mozilla.org/alerts-service;1'].getService(Ci.nsIAlertsService);
-			alertWin.showAlertNotification(IMG, TITLE, msg, IS_CLICKABLE, gUrl, listener, NAME);
-		}
-		catch (e) {
-			// fix for when alerts-service is not available (e.g. SUSE)
-			var ALERT_XUL = 'chrome://global/content/alerts/alert.xul';
-			var FF_WIN_OPTS = 'chrome,dialog=yes,titlebar=no,popup=yes';
+		return new Promise(function(resolve) {
+			if (tabOpts.url) {
+				// open URLs in a new tab next to original
+				// set correct position
+				// not setting opener since originTab may already be closed
+				var newOpts = {
+					windowId: originTab.windowId,
+					index: originTab.index + 1,
+				};
+				Foxtrick.mergeAll(newOpts, tabOpts);
 
-			// arguments[0] --> the image src url
-			// arguments[1] --> the alert title
-			// arguments[2] --> the alert text
-			// arguments[3] --> is the text clickable?
-			// arguments[4] --> the alert cookie to be passed back to the listener
-			// arguments[5] --> the alert origin reported by the look and feel
-			// 0: bottom right.
-			// 2: bottom left
-			// 4: top right
-			// 6: top left
-			// arguments[6] --> bidi
-			// arguments[7] --> lang
-			// arguments[8] --> replaced alert window (nsIDOMWindow)
-			// // i. e. previous alert
-			// arguments[9] --> an optional callback listener (nsIObserver)
-			// arguments[10] -> the nsIURI.hostPort of the origin, optional
-			var wArgs = [IMG, TITLE, msg, IS_CLICKABLE, gUrl, 2, null, null, null, listener, NAME];
+				chrome.tabs.create(newOpts, resolve);
+				return;
+			}
 
-			// aParentwindow, aUrl, aWindowName, aWindowFeatures, aWindowArguments (nsISupports)
-			var win = Services.ww.openWindow(null, ALERT_XUL, '_blank', FF_WIN_OPTS, null);
-			win.arguments = wArgs;
-		}
+			chrome.tabs.update(originTab.id, tabOpts,
+			  function(tab) { // jshint ignore:line
+				if (chrome.runtime.lastError) {
+					// tab closed, restore
+					var restoreOpts = {
+						url: gUrl,
+						windowId: originTab.windowId,
+						index: originTab.index,
+					};
+					Foxtrick.mergeAll(restoreOpts, tabOpts);
+
+					chrome.tabs.create(restoreOpts, resolve);
+				}
+				else {
+					resolve(tab);
+				}
+			});
+		}).then(function(tab) {
+			return focusWindow(tab.windowId).then(function() {
+				return tab;
+			});
+		});
 	};
 
-	var createChrome = function() {
+	var createChrome = async function() {
 		var options = {
 			type: 'basic',
 			iconUrl: IMG,
@@ -142,173 +106,140 @@ Foxtrick.util.notify.create = function(msg, source, opts/*, callback*/) {
 				options[opt] = opts[opt];
 		}
 
-
-		var retry = function() {
-			delete options.buttons;
-			opts = options;
-			gTabOpts.url = gTabOptsBtn.url;
-
-			createChrome();
-		};
-
 		var clearNote = function(noteId) {
 			return new Promise(function(resolve) {
 				chrome.notifications.clear(noteId, resolve);
 			});
 		};
 
-		var updateOriginTab = function(originTab, tabOpts) {
-			var focusWindow = function(winId) {
-				return new Promise(function(resolve) {
-					chrome.windows.update(winId, { focused: true }, resolve);
-				});
-			};
-
-			return new Promise(function(resolve) {
-				if (tabOpts.url) {
-					// open URLs in a new tab next to original
-					// set correct position
-					// not setting opener since originTab may already be closed
-					var newOpts = {
-						windowId: originTab.windowId,
-						index: originTab.index + 1,
-					};
-					Foxtrick.mergeAll(newOpts, tabOpts);
-
-					chrome.tabs.create(newOpts, resolve);
-					return;
-				}
-
-				chrome.tabs.update(originTab.id, tabOpts,
-				  function(tab) { // jshint ignore:line
-					if (chrome.runtime.lastError) {
-						// tab closed, restore
-						var restoreOpts = {
-							url: gUrl,
-							windowId: originTab.windowId,
-							index: originTab.index,
-						};
-						Foxtrick.mergeAll(restoreOpts, tabOpts);
-
-						chrome.tabs.create(restoreOpts, resolve);
+		var createNote = function(gId, options) {
+			return new Promise((fulfill, reject) => {
+				chrome.notifications.create(gId, options,
+				  function(nId) {
+					var err = chrome.runtime.lastError;
+					if (err) {
+						reject(err);
 					}
 					else {
-						resolve(tab);
+						fulfill(nId);
 					}
-				});
-			}).then(function(tab) {
-				return focusWindow(tab.windowId).then(function() {
-					return tab;
 				});
 			});
 		};
 
-		var onClicked = function onClicked(noteId) {
-			if (noteId !== gId)
-				return;
+		var getNotes = function() {
+			return new Promise((fulfill) => {
+				chrome.notifications.getAll(function(notes) {
+					if (chrome.runtime.lastError) {} // jscs:ignore disallowEmptyBlocks
 
-			clearNote(noteId).then(function() {
-				return updateOriginTab(source.tab, gTabOpts);
-			}).then(function() {
-				// callback(gUrl);
-			}).catch(Foxtrick.catch('notifications.onClicked'));
-		};
-
-		var onButtonClicked = function onButtonClicked(noteId, btnIdx) { // jshint ignore:line
-			if (noteId !== gId)
-				return;
-
-			clearNote(noteId).then(function() {
-				return updateOriginTab(source.tab, gTabOptsBtn);
-			}).then(function() {
-				// callback(gUrl);
-			}).catch(Foxtrick.catch('notifications.onButtonClicked'));
-		};
-
-		var onClosed = function onClosed(noteId) {
-			if (noteId !== gId)
-				return;
-
-			chrome.notifications.onButtonClicked.removeListener(onButtonClicked);
-			chrome.notifications.onClicked.removeListener(onClicked);
-			chrome.notifications.onClosed.removeListener(onClosed);
-		};
-
-		chrome.notifications.getAll(function(notes) {
-			if (chrome.runtime.lastError) {} // jscs:ignore disallowEmptyBlocks
-
-			// clear dupes manually to trigger onClosed listener
-			// prevents double execution when a note is duplicated before closing
-			var now = gId in notes ? clearNote(gId) : Promise.resolve();
-			now.then(function() {
-				chrome.notifications.create(gId, options,
-				  function(nId) { // jshint ignore:line
-					var err = chrome.runtime.lastError;
-					if (err) {
-						if (/^Adding buttons/.test(err.message)) {
-							// opera does not support buttons
-							retry();
-						}
-					}
-					else {
-						chrome.notifications.onClicked.addListener(onClicked);
-						chrome.notifications.onButtonClicked.addListener(onButtonClicked);
-						chrome.notifications.onClosed.addListener(onClosed);
-					}
+					fulfill(notes);
 				});
-			}).catch(function(err) {
-				if (/buttons/.test(err.message))
-					retry();
-				else
-					throw err;
-			})
-			.catch(Foxtrick.catch('notifications.create'));
+			});
+		};
+
+		let notes = await getNotes();
+
+		// clear dupes manually to trigger onClosed listener
+		// prevents double execution when a note is duplicated before closing
+		if (gId in notes)
+			await clearNote(gId);
+
+		try {
+			await createNote(gId, options);
+		}
+		catch (err) {
+			// opera and FF do not support buttons
+			// retrying without them
+			if (!/buttons/.test(err.message))
+				throw err;
+
+			delete options.buttons;
+			gTabOpts.url = gTabOptsBtn.url;
+
+			await createNote(gId, options);
+		}
+
+		return new Promise((fulfill, reject) => {
+			var onClicked = async function onClicked(noteId) {
+				if (noteId !== gId)
+					return;
+
+				try {
+					await clearNote(noteId);
+					await updateOriginTab(source.tab, gTabOpts);
+					fulfill(gUrl);
+				}
+				catch (e) {
+					reject(e);
+				}
+				// onClosed(noteId);
+			};
+
+			var onButtonClicked = async function onButtonClicked(noteId, btnIdx) { // jshint ignore:line
+				if (noteId !== gId)
+					return;
+
+				try {
+					await clearNote(noteId);
+					await updateOriginTab(source.tab, gTabOptsBtn);
+					fulfill(gUrl);
+				}
+				catch (e) {
+					reject(e);
+				}
+				// onClosed(noteId);
+			};
+
+			var onClosed = function onClosed(noteId) {
+				if (noteId !== gId)
+					return;
+
+				chrome.notifications.onButtonClicked.removeListener(onButtonClicked);
+				chrome.notifications.onClicked.removeListener(onClicked);
+				chrome.notifications.onClosed.removeListener(onClosed);
+
+				reject(new Error(Foxtrick.TIMEOUT_ERROR));
+			};
+
+			chrome.notifications.onClicked.addListener(onClicked);
+			chrome.notifications.onButtonClicked.addListener(onButtonClicked);
+			chrome.notifications.onClosed.addListener(onClosed);
 		});
 	};
 
 	var createWebkit = function() {
-		var onclick = function() {
-			if (Foxtrick.platform === 'Chrome') {
-				// goto url in sender tab
-				var focusWindow = function(windowId) {
-					try {
-						chrome.windows.update(windowId, { focused: true });
-					}
-					catch (e) {}
-				};
-
-				chrome.tabs.update(source.tab.id, { url: gUrl, selected: true }, function() {
-					if (chrome.runtime.lastError) {
-						// tab closed, open new
-						chrome.tabs.create({ url: gUrl }, function(tab) {
-							focusWindow(tab.windowId);
-						});
+		return new Promise((fulfill, reject) => {
+			var onclick = async function onClick() {
+				try {
+					if (Foxtrick.platform === 'Chrome') {
+						await updateOriginTab(source.tab, { url: gUrl, selected: true });
 					}
 					else {
-						focusWindow(source.tab.windowId);
+						Foxtrick.SB.tabs.create({ url: gUrl });
 					}
-				});
+					fulfill(gUrl);
+				}
+				catch (err) {
+					reject(err);
+				}
 
-			}
-			else {
-				Foxtrick.SB.tabs.create({ url: gUrl });
-			}
+				this.cancel();
+			};
 
-			this.cancel();
+			var notification = window.webkitNotifications.createNotification(IMG, TITLE, msg);
 
-			// callback(gUrl);
-		};
+			if (gUrl)
+				notification.onclick = onclick;
 
-		var notification = window.webkitNotifications.createNotification(IMG, TITLE, msg);
+			// Then show the notification.
+			notification.show();
 
-		if (gUrl)
-			notification.onclick = onclick;
-
-		// Then show the notification.
-		notification.show();
-
-		// close after 20 sec
-		window.setTimeout(function() { notification.cancel(); }, 20000);
+			// close after 20 sec
+			window.setTimeout(function() {
+				reject(new Error(Foxtrick.TIMEOUT_ERROR));
+				notification.cancel();
+			}, 20000);
+		});
 	};
 
 	var createGrowl = function() {
@@ -321,8 +252,11 @@ Foxtrick.util.notify.create = function(msg, source, opts/*, callback*/) {
 					imageUrl: IMG,
 				});
 			}
+			return Promise.reject(new Error(Foxtrick.TIMEOUT_ERROR));
 		}
-		catch (e) { Foxtrick.log(e); }
+		catch (e) {
+			return Promise.reject(e);
+		}
 	};
 
 	// standardize options
@@ -351,26 +285,37 @@ Foxtrick.util.notify.create = function(msg, source, opts/*, callback*/) {
 	// start logic
 	if (Foxtrick.context === 'background') {
 		if (Foxtrick.arch == 'Gecko') {
-			createGecko();
+			return createGecko();
 		}
 		else if (Foxtrick.platform === 'Chrome' && chrome.notifications) {
-			createChrome();
+			return createChrome();
 		}
 		else if (window.webkitNotifications) {
-			createWebkit();
+			return createWebkit();
 		}
 		else if (Foxtrick.platform === 'Safari') {
-			createGrowl();
+			return createGrowl();
 		}
 	}
 	else {
-		// content needs to notify bg
-		Foxtrick.SB.ext.sendRequest({
-			req: 'notify',
-			msg: msg,
-			id: gId,
-			url: gUrl,
-			opts: opts,
-		}/*, callback*/);
+
+		return new Promise((fulfill, reject) => {
+			// content needs to notify bg
+			Foxtrick.SB.ext.sendRequest({
+				req: 'notify',
+				msg: msg,
+				id: gId,
+				url: gUrl,
+				opts: opts,
+			}, function onSendResponse(response) {
+
+				var err = Foxtrick.JSONError(response);
+				if (err instanceof Error)
+					reject(err);
+				else
+					fulfill(response);
+			});
+
+		});
 	}
 };
