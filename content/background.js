@@ -21,7 +21,10 @@ Foxtrick.loader.background = {};
 // listener for request from content script
 Foxtrick.loader.background.contentRequestsListener = function(request, sender, sendResponse) {
 	try {
-		Foxtrick.loader.background.requests[request.req](request, sender, sendResponse);
+		var reqHandlers = Foxtrick.loader.background.requests;
+		var handler = reqHandlers[request.req].bind(reqHandlers);
+
+		return handler(request, sender, sendResponse);
 	}
 	catch (e) {
 		Foxtrick.log('Foxtrick - background onRequest error:', e);
@@ -138,7 +141,7 @@ Foxtrick.loader.background.browserLoad = function() {
 
 
 		// from env.js. dummy for tab register
-		this.requests.register = function(request, sender, sendResponse) {}; // jshint ignore:line
+		this.requests.register = function() {};
 
 		// from prefs-util.js
 		this.requests.setValue = function(request) {
@@ -187,6 +190,7 @@ Foxtrick.loader.background.browserLoad = function() {
 		//
 		// 		sendResponse({ cssText: cssText });
 		// 	});
+		// 	return true; // async
 		// };
 
 		this.requests.getDataUrl = function(request, sender, sendResponse) { // jshint ignore:line
@@ -213,6 +217,8 @@ Foxtrick.loader.background.browserLoad = function() {
 				replaceImage(request.url);
 			else
 				sendResponse({ url: dataUrl });
+
+			return true; // async
 		};
 
 		this.requests.playSound = function(request) {
@@ -240,8 +246,8 @@ Foxtrick.loader.background.browserLoad = function() {
 		};
 
 		// from notify.js
-		this.requests.notify = function(request, sender, sendResponse) {
-			Foxtrick.util.notify.create(request.msg, sender, request, sendResponse);
+		this.requests.notify = function(request, sender) {
+			Foxtrick.util.notify.create(request.msg, sender, request);
 		};
 
 		// from context-menu.js: dummy. request handled in there
@@ -257,6 +263,8 @@ Foxtrick.loader.background.browserLoad = function() {
 			Foxtrick.fetch(request.url, request.params)
 				.then(sendResponse, sendResponse) // use the same callback for both
 				.catch(Foxtrick.catch(sender));
+
+			return true; // async
 		};
 
 		this.requests.load = function(request, sender, sendResponse) {
@@ -268,6 +276,8 @@ Foxtrick.loader.background.browserLoad = function() {
 			Foxtrick.load(request.url, request.params, request.lifeTime, request.now)
 				.then(sendResponse, sendResponse) // use the same callback for both
 				.catch(Foxtrick.catch(sender));
+
+			return true; // async
 		};
 
 		// from localStore.js
@@ -275,16 +285,22 @@ Foxtrick.loader.background.browserLoad = function() {
 			Foxtrick.storage.get(request.key) // never rejects
 				.then(sendResponse)
 				.catch(Foxtrick.catch(sender));
+
+			return true; // async
 		};
 		this.requests.storageSet = function(request, sender, sendResponse) {
 			Foxtrick.storage.set(request.key, request.value)
 				.then(sendResponse, sendResponse) // use the same callback for both
 				.catch(Foxtrick.catch(sender));
+
+			return true; // async
 		};
 		this.requests.storageDeleteBranch = function(request, sender, sendResponse) {
 			Foxtrick.storage.deleteBranch(request.branch)
 				.then(sendResponse, sendResponse) // use the same callback for both
 				.catch(Foxtrick.catch(sender));
+
+			return true; // async
 		};
 
 		// from session-store.js
@@ -292,16 +308,22 @@ Foxtrick.loader.background.browserLoad = function() {
 			Foxtrick.session.get(request.key) // never rejects
 				.then(sendResponse)
 				.catch(Foxtrick.catch(sender));
+
+			return true; // async
 		};
 		this.requests.sessionSet = function(request, sender, sendResponse) {
 			Foxtrick.session.set(request.key, request.value)
 				.then(sendResponse, sendResponse) // use the same callback for both
 				.catch(Foxtrick.catch(sender));
+
+			return true; // async
 		};
 		this.requests.sessionDeleteBranch = function(request, sender, sendResponse) {
 			Foxtrick.session.deleteBranch(request.branch)
 				.then(sendResponse, sendResponse) // use the same callback for both
 				.catch(Foxtrick.catch(sender));
+
+			return true; // async
 		};
 
 		// from load.js
@@ -314,11 +336,15 @@ Foxtrick.loader.background.browserLoad = function() {
 			Foxtrick.cookies.get(request.key, request.name) // never rejects
 				.then(sendResponse)
 				.catch(Foxtrick.catch(sender));
+
+			return true; // async
 		};
 		this.requests.cookiesSet = function(request, sender, sendResponse) {
 			Foxtrick.cookies.set(request.key, request.value, request.name) // never rejects
 				.then(sendResponse)
 				.catch(Foxtrick.catch(sender));
+
+			return true; // async
 		};
 
 		// from permissions.js
@@ -329,6 +355,8 @@ Foxtrick.loader.background.browserLoad = function() {
 			Foxtrick._containsPermission(request.types, function(response) {
 				sendResponse(response);
 			});
+
+			return true; // async
 		};
 
 		// TODO
@@ -339,6 +367,7 @@ Foxtrick.loader.background.browserLoad = function() {
 		// 	Foxtrick._removePermission(request.types, function(response) {
 		// 		sendResponse(response);
 		// 	});
+		// return true; // async
 		// };
 		// this.requests.requestPermission = function(request, sender, sendResponse) {
 		// 	// @param origin - permission origin to check
@@ -346,6 +375,7 @@ Foxtrick.loader.background.browserLoad = function() {
 		// 	Foxtrick._requestPermission(request.types, function(response) {
 		// 		sendResponse(response);
 		// 	});
+		// return true; // async
 		// };
 
 		// from log.js
