@@ -417,10 +417,10 @@ Foxtrick.lazyProp = function(obj, prop, calc) {
 			chrome.runtime.onMessage.removeListener(handler);
 		};
 		makeHandler = function(handler) {
-			return function(request, sender, sendResponse) {
-				handler(request, sender, sendResponse);
-				return true; // assure message channel is left open for async
-			};
+			// no custom wrapper in this arch
+			// however, the handler must return true
+			// if sendResponse will be called asynchronously
+			return handler; // (request, sender, sendResponse) => bool
 		};
 
 		Foxtrick.SB.ext.getBackgroundPage = function() {
