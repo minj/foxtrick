@@ -162,7 +162,12 @@ if (Foxtrick.platform == 'Chrome') {
 	};
 
 	Foxtrick.modules.UI.update = function(tab) {
-		Foxtrick.modules.UI.updateIcon(tab); // not called
+		try {
+			Foxtrick.modules.UI.updateIcon(tab);
+		}
+		catch (e) {
+			Foxtrick.log(e);
+		}
 	};
 
 	Foxtrick.modules.UI.updateIcon = function(tab) {
@@ -182,8 +187,10 @@ if (Foxtrick.platform == 'Chrome') {
 		var tooltipText = Foxtrick.L10n.getString('toolbar.title') + ' ' +
 			Foxtrick.version + ' ' + Foxtrick.branch + ' (' + statusText + ')';
 
-		chrome.pageAction.setIcon({ tabId: tab.id, path: iconUrl });
-		chrome.pageAction.setTitle({ tabId: tab.id, title: tooltipText });
+		if (chrome.pageAction.setIcon)
+			chrome.pageAction.setIcon({ tabId: tab.id, path: iconUrl });
+		if (chrome.pageAction.setTitle)
+			chrome.pageAction.setTitle({ tabId: tab.id, title: tooltipText });
 	};
 }
 

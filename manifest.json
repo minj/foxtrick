@@ -311,6 +311,7 @@
 	"options_ui" : {
 		"page": "content/preferences.html",
 		"chrome_style": false,
+		"browser_style": false,
 		"open_in_tab": true
 	},
 	"homepage_url": "https://www.foxtrick.org/",
