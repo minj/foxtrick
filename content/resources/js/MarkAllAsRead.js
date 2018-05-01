@@ -1,4 +1,3 @@
-'use strict';
 /* global __doPostBack */
 (function() {
 	var ACTION = 'ctl00$ctl00$CPContent$ucLeftMenu$ucNewPosts';
