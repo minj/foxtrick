@@ -189,7 +189,7 @@ ru:
       bug_report: 'Теперь "подвал" страниц Hattrick (footer) содержит ссылку для составления правильного отчёта об ошибке Foxtrick. Используёте её на странице с подозрением на ошибку и следуйте появившимся инструкциям.'
       twitter: 'Вы можете следить за сообщениями от Foxtrick в <linkTwitter>твиттере</linkTwitter>, чтобы получать последние новости, информацию об обновлениях и анонсы.'
       new: '<header>Новые модули</header>'
-      series_transfers: Модуль <module>SeriesTransfers</module> показывает список игроков, выставленных на трансфер командами лиги.
+      series_transfers: 'Модуль <module>SeriesTransfers</module> показывает список игроков, выставленных на трансфер командами лиги.'
       player_positions: 'Модули <module>PlayerPositionsEvaluations</module> и <module>BestPlayerPosition</module> рассчитывают эффективность игроков на разных позициях по формулам из <linkContributionsWiki>Hattrick Wiki</linkContributionsWiki>.'
       bugs: '<header>Исправления ошибок</header>'
       australis: 'Меню Foxtrick, вызываемое из панели Firefox, было исправлено для работы с новой темой браузера.'
@@ -269,8 +269,8 @@ ru:
       note_3: 'Модуль <module>ShowLineupSet</module>: добавлен параметр для выделения вашей команды в турнирных таблицах.'
       note_4: 'Модуль <module>CopyYouth</module>: теперь изменения навыком игроков юношеской команды будет автоматически отсылаться на сервер hattrick youthclub (только для пользователей HY).'
       note_5: 'НОВЫЙ модуль <module>SupportersList</module>: показывает взаимную поддержку.'
-      note_6: 'Модуль <module>MatchLineupTweaks</module>: параметр для сбора информации о выносливости вашего игрока каждый раз как вы заходите на страницу матча.'
-      note_7: 'НОВЫЙ модуль <module>Fans</module>: добавляет ссылку на HT Live рядом со ссылкой на матч. Добавляет итог к изменению количества болельщиков в боковом окне.'
+      note_6: "Модуль <module>MatchLineupTweaks</module>: параметр для сбора информации о выносливости вашего игрока каждый раз как вы заходите на страницу матча."
+      note_7: "НОВЫЙ модуль <module>Fans</module>: добавляет ссылку на HT Live рядом со ссылкой на матч. Добавляет итог к изменению количества болельщиков в боковом окне."
       note_8: "Пользователи с несколькими командами теперь могут выбирать для каждой из них свой стиль Hattrick с использованием классов вида 'body.ft-teamID-0000000' в модуле <module>SkinPlugin</module>."
       note_9: "Модуль <module>HeaderToggle</module> теперь более устойчив к влиянию других модулей и самого Hattrick."
       note_10: "Копирование рейтингов в модуле <module>MatchSimulator</module> было адаптировано для учёта изменения рейтингов при выборе другого тренера."
@@ -334,9 +334,9 @@ ru:
       note_3: 'Модуль <module>MatchOrderInterface</module>: исправление для списка пенальтистов. Вы можете добавить игроков выставленного состава в список или очистить его одним нажатием.'
       note_4: 'Модуль <module>SkillTable</module>: возможность дополнительной сортировки по другому столбцу с использованием Ctrl+левая кнопка на его заголовке.'
       note_5: 'Модуль <module>SkillTable</module>: теперь для сокращения занимаемого пространства имена игроков сокращены до инициала.'
-      note_6: Модуль <module>SkillColoring</module> полностью переписан, большое количество исправлений и добавлений. Изменены параметры модуля. Пожалуйста, настройте модуль заново.
+      note_6: 'Модуль <module>SkillColoring</module> полностью переписан, большое количество исправлений и добавлений. Изменены параметры модуля. Пожалуйста, настройте модуль заново.'
       note_7: 'Модуль <module>TransferSearchResultFilters</module>: добавлены возможности фильтрации по форме и скрытия игроков без специализации. Теперь модуль взаимодействует с <module>TransferSearchFilters</module>.'
-      note_8: Модуль <module>MatchSimulator</module> интегрирован с модулем <module>Ratings</module>.
+      note_8: 'Модуль <module>MatchSimulator</module> интегрирован с модулем <module>Ratings</module>.'
       note_9: 'Модуль <module>FriendlyPool</module>: добавлена возможность расширения поля выбора страны.'
       note_10: 'Модуль <module>MovePlayerStatement</module>: добавлена возможность полного удаления сообщения.'
       note_11: 'Модуль <module>YouthTwins</module>: изменения, сделанные вручную на сайте HY, теперь сразу же показываются на странице игроков юношеской команды.'
@@ -357,7 +357,7 @@ ru:
       note_26: 'Модуль <module>MatchSimulator</module> теперь использует новую формулу падения выносливости (by Senzascrupoli [post=15917246.1]).'
       note_27: 'Модуль <module>MatchReportFormat</module> использует новые значки HT.'
       note_28: 'Модуль <module>PlayerStatsExperience</module>: очки выносливости на уровень увеличены до 28.62 (см. дискуссию в [post=15766691.423]). Технические победы теперь отделены, т.к. они не дают опыта.'
-      note_29: Модули, работающие на страницах форума, теперь используют специальный пробельный символ вместо '·' для экранирования специальных символов, это должно помочь использующим каталонский язык.
+      note_29: "Модули, работающие на страницах форума, теперь используют специальный пробельный символ вместо '·' для экранирования специальных символов, это должно помочь использующим каталонский язык."
       note_30: 'Предотвращение перекрытия слоёв HT и Foxtrick.'
       note_31: 'Теперь поддерживается адрес www.hattrick.fm'
       note_32: 'Из модуля <module>Links</module> удалены неработающие ссылки, для работающих по возможности используются внешние значки.'
@@ -401,8 +401,8 @@ ru:
       note_2: 'Модуль <module>MatchOrderInterface</module>: параметр для показа лиц игроков вместо рубашек для будущих и прошлых расстановок (включен по умолчанию)'
       note_3: 'Модуль <module>MatchOrderInterface</module>: добавлен параметр (включён по умолчанию) для исключения матчей турнира из информации о последних матчах и подсветки'
       note_4: 'Модуль <module>MatchIncome</module>: поддержка увеличения стоимости билетов начиная с 49 сезона. Доход от продажи билетов теперь подсчитывается по ценам, действовавшим во время матча.'
-      note_5: 'Модуль <module>MatchOrderInterface</module>: исправлена ошибка с нерабочим индикатором playedLastMatch в Firefox'
-      note_6: 'Модуль <module>MatchOrderInterface</module>: убрана подстветка игроков, игравших в последнем матче, поскольку разрешение на это отозвано :( (но вскоре появится замена от HT - только для supporter-ов)'
+      note_5: "Модуль <module>MatchOrderInterface</module>: исправлена ошибка с нерабочим индикатором playedLastMatch в Firefox"
+      note_6: "Модуль <module>MatchOrderInterface</module>: убрана подстветка игроков, игравших в последнем матче, поскольку разрешение на это отозвано :( (но вскоре появится замена от HT - только для supporter-ов)"
       note_7: 'Модуль <module>PlayerStatsExperience</module>: исправлена ошибка с учётом полученной красной карточки как пропуска игры из-за технического поражения'
       note_8: 'Модуль <module>PlayerStatsExperience</module>: исправлена работа модуля в Firefox 3.6'
       note_9: 'Модуль <module>CustomMedals</module>: исправлено исчезновение турнирных трофеев'
@@ -446,11 +446,11 @@ ru:
       note_6: Переключение выделения изменений перенесено на значок FoxTrick на панели инструментов, а также на страницу настроек Главные.
       note_7: Модуль MatchTables был удалён, т.к. его никто не использовал.
       note_8: 'Учёт выносливости в модуле <module>MatchSimulator</module>: округлённые значения показаны текстом, а неокруглённые - числами.'
-      note_9: 'Исправление стилей вида "foxtrick://" в настройках.'
+      note_9: Исправление стилей вида "foxtrick://" в настройках.
       note_10: В отчёте о матче теперь показываются значки для всех событий.
       note_11: Ресурс со ссылками перемещён на другой сервер.
       note_12: Некоторые внутренние изменения для улучшения совместимости с <linkAMO>AMO</linkAMO>.
-      note_13: Огромное количество обновлений переводов (aegeansailor, brauxx, Mod-Utku, ebitechv, Polytropos, gkon13, SOLARIS1973, Fieras, margaale, ipefix, stephan.cardot, OmaniMilani, LambdaB, SI-CH, Convincedd, margaale, ljushaff, serjhanti, playMaker, CoRrRan, Aristodemos, margaale, spider007, FeritAkarsu и, возможно, некоторых пропущенных людей - пожалуйста,         напишите нам, если чувствуете себя обойдёнными - it's kinda hard to keep tracking all of you guys. Это потрясающе! Огромное спасибо всем вам!
+      note_13: "Огромное количество обновлений переводов (aegeansailor, brauxx, Mod-Utku, ebitechv, Polytropos, gkon13, SOLARIS1973, Fieras, margaale, ipefix, stephan.cardot, OmaniMilani, LambdaB, SI-CH, Convincedd, margaale, ljushaff, serjhanti, playMaker, CoRrRan, Aristodemos, margaale, spider007, FeritAkarsu и, возможно, некоторых пропущенных людей - пожалуйста,         напишите нам, если чувствуете себя обойдёнными - it's kinda hard to keep tracking all of you guys. Это потрясающе! Огромное спасибо всем вам!"
     0.9.0.4:
       note_0: Ресурс со ссылками перемещён на другой сервер.
       note_1: Добавлены английские текстовые подписи к значкам матчевых событий в модуле <module>MatchReportFormat</module>.
@@ -477,7 +477,7 @@ ru:
       note_6: Мы добавили возможность подсвечивать изменения, вносимые на страницы HT модулями FoxTrick. Вы можете включить или выключить подсветку нажатием на строку с информацией о версии FoxTrick, которая находится справа в нижней части каждой страницы. Во всплывающем окне-подсказке будет сообщено название модуля, делающего это изменение.
       note_7: '<header>Новые возможности и изменения</header>'
       note_8: 'Модуль <module>MatchReportFormat</module>: полностью переработан отчёт о матче (ryanli, Catzhoek, ljushaff).'
-      note_9: 'Модуль <module>Ratings</module>: параметр для скрытия средних рейтингов Hattrick (convinced).'
+      note_9: "Модуль <module>Ratings</module>: параметр для скрытия средних рейтингов Hattrick (convinced)."
       note_10: 'Модуль <module>Filter</module>: добавлены фильтры для страницы лучших игроков (convinced).'
       note_11: 'Модуль <module>MatchOrder</module>: добавлено больше информации на страницу указаний на матч и функция перестановки игроков (convinced).'
       note_12: 'Модуль <module>MatchSimulator</module>: добавлена возможность учёта выносливости при вычислении рейтингов, а также симулятор матча с использованием <linkHTMS>HTMS</linkHTMS> (convinced).'
@@ -502,7 +502,7 @@ ru:
     0.8.1:
       note_0: 'Модуль <module>ElectionTable</module>: адаптация к новому виду таблицы голосования (convincedd, ryanli).'
       note_1: 'Модуль <module>HTThreadMarker</module>: новый вид (convincedd, ryanli).'
-      note_2: 'Модуль <module>TableSort</module>: предотвращение конфликтования с собственной сортировкой HT (convincedd).'
+      note_2: "Модуль <module>TableSort</module>: предотвращение конфликтования с собственной сортировкой HT (convincedd)."
       note_3: 'Модули <module>HTMSPrediction</module>, <module>CopyRatings</module>: адаптация к новоми виду отчёта о матче (convincedd).'
       note_4: 'Модуль <module>LineupShortcut</module>: также показывается для не-supporter-ов (ryanli).'
       note_5: 'Модуль <module>TransferSearchResultFilters</module>: исправление согласно последним изменениям (convincedd).'
@@ -586,3 +586,4 @@ ru:
       note_19: 'Модуль <module>TeamSelectBox</module> по умолчанию отключен (ryanli).'
       note_20: 'Модуль <module>SmallerPages</module> по умолчанию отключен (ljushaff).'
       note_21: 'Параметры радио в модуле <module>ExtraShortcuts</module> теперь выключены по умолчанию.'
+

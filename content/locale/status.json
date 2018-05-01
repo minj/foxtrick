@@ -66,11 +66,11 @@
 			"code": "bs",
 			"name": "Bosnian",
 			"phrases": "2298",
-			"translated": "2208",
+			"translated": "2219",
 			"translated_progress": "89",
 			"words": "16759",
 			"words_approved": "0",
-			"words_translated": "14993"
+			"words_translated": "15055"
 		},
 		{
 			"approved": "0",
@@ -354,11 +354,11 @@
 			"code": "it",
 			"name": "Italian",
 			"phrases": "2298",
-			"translated": "2287",
-			"translated_progress": "99",
+			"translated": "2298",
+			"translated_progress": "100",
 			"words": "16759",
 			"words_approved": "0",
-			"words_translated": "16697"
+			"words_translated": "16759"
 		},
 		{
 			"approved": "0",
@@ -529,16 +529,16 @@
 			"words_translated": "15346"
 		},
 		{
-			"approved": "2287",
-			"approved_progress": "99",
+			"approved": "2298",
+			"approved_progress": "100",
 			"code": "ru",
 			"name": "Russian",
 			"phrases": "2298",
-			"translated": "2287",
-			"translated_progress": "99",
+			"translated": "2298",
+			"translated_progress": "100",
 			"words": "16759",
-			"words_approved": "16697",
-			"words_translated": "16697"
+			"words_approved": "16759",
+			"words_translated": "16759"
 		},
 		{
 			"approved": "2082",
