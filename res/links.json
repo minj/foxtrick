@@ -749,7 +749,7 @@
 	},
 	"romaniantracker": {
 		"img": "http://www.ht-ro.org/favicon.ico",
-		"title": "HT-Ro / NT & U-20 Tracker",
+		"title": "HT-Ro / Romanian NT & U-20 Tracker",
 		"trackernationalteamlink": {
 			"url": "http://www.ht-ro.org",
 			"filters": ["leagueid"]
@@ -758,8 +758,12 @@
 			"url": "http://www.ht-ro.org",
 			"filters": ["leagueid"]
 		},
+		"teamlink": {
+			"url": "http://www.ht-ro.org/do/search?teamid=[teamid]",
+			"filters": ["leagueid"]
+		},
 		"trackerplayerlink": {
-			"url": "http://www.ht-ro.org",
+			"url": "http://www.ht-ro.org/site/player.html?pid=[playerid]",
 			"filters": ["nationality"]
 		},
 		"leagueidranges": [[37, 37]],
