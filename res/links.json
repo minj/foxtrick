@@ -293,7 +293,7 @@
 	},
 	"junnukoira": {
 		"youthplayerdetaillink": {
-			"url": "http://www.saunalahti.fi/pterasti/Hattrick/junnukoira/index.php",
+			"url": "http://pterasti.arkku.net//Hattrick/junnukoira/",
 			"filters": ["ownleagueid"]
 		},
 		"ownleagueidranges": [[12, 12]],
