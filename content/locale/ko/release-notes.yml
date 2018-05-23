@@ -56,7 +56,7 @@ ko:
       safari_cert: 'Safari 사용자들의 Foxtrick 지원을 복구하는데 도와주실 iOS 또는 OSX App 개발자 분들을 Hattrick 커뮤니티에서 찾고 있습니다. 자세한 정보는 저희 <linkSafariCertBug>issue tracker</linkSafariCertBug>를 참조하세요.'
       beta: '새로운 기능을 미리 접하거나 개발에 영향을 주거나 새롭게 발생하는 문제점들을 찾고 수정하는데 도움을 주실 생각이 있으시면 <linkFTBeta>Foxtrick beta</linkFTBeta>를 사용해보는 것을 고려해보세요.'
       bugs: '<header>버그 수정</header>'
-      defence_stamina: <module>MatchSimulator</module>에서 수비 구역의 체력 효과 계산이 고장난 것을 해결했습니다. 이전 릴리즈에서는 때때로 골키퍼의 체력만으로 계산되었습니다.
+      defence_stamina: '<module>MatchSimulator</module>에서 수비 구역의 체력 효과 계산이 고장난 것을 해결했습니다. 이전 릴리즈에서는 때때로 골키퍼의 체력만으로 계산되었습니다.'
       time_rewrite: '다음 Hattrick 변경 사항들 때문에 Foxtrick의 날짜 및 시간 감지를 다시 만들었습니다. 불행하게도 지난 릴리즈에서 몇 가지 실수가 있었고 일부 국가에서는 CHPP를 사용하는 모듈때문에 문제가 발생했습니다. 이제 이 문제는 해결되었습니다.'
       calendar_fix: '날짜 감지와 관련된 문제로 인해 어떤 경우에는 <module>DashboardCalendar</module>가 완전히 고장 났었습니다.'
       and_more: '그 외에 작은 규모의 변화와 수정이 있었습니다.'
@@ -86,7 +86,7 @@ ko:
       bugs: '<header>버그 수정</header>'
       stamina_prediction: 'HT 변화 때문에 체력 서브레벨 예측 (<module>MatchLineupTweaks</module>) 이 올바르지 않았습니다. 이 문제점은 이제 수정되었습니다.'
       match_order: 'Hattrick 디자인 변화를 처리하기 위해 <module>MatchSimulator</module>와 <module>MatchOrderInterface</module>의 레이아웃을 조정했습니다.'
-      team_detection: HT 디자인 변화에 따른 여러 문제점들이 발생했습니다. 예를 들면 원정 팀 선수 얼굴이 사라지거나, <module>LiveAlert</module> 득점 감지가 고장나는 등이 있습니다. 이제 모든 문제점들을 해결되었습니다.
+      team_detection: 'HT 디자인 변화에 따른 여러 문제점들이 발생했습니다. 예를 들면 원정 팀 선수 얼굴이 사라지거나, <module>LiveAlert</module> 득점 감지가 고장나는 등이 있습니다. 이제 모든 문제점들을 해결되었습니다.'
       other: '<header>기타 변경 사항</header>'
       table: '<module>PlayerFilters</module>와 <module>SkillTable</module>를 일부 버그 수정과 기능 확장을 위해 다시 작성했습니다. 키 테이블 열은 이제 수평 스크롤을 방지하기 위해 동결되었습니다. 이제 특정 선수들을 감추는 등의 행위를 할 수 있습니다. 전체 설명을 읽으려면 도움말 버튼을 사용하세요.'
       opponent_goals: '<module>LiveAlert</module>에 상대팀 득점을 위한 또 다른 득점 사운드를 추가했습니다.'
@@ -269,8 +269,8 @@ ko:
       note_3: '<module>ShowLineupSet</module>: 순위 테이블에서 팀 강조 옵션 추가하였습니다.'
       note_4: '<module>CopyYouth</module>: 이제 훈련 변경 정보를 Hattrick Youthclub으로 자동으로 보냅니다(HY 유저만 해당).'
       note_5: 'NEW: <module>SupportersList</module>: 지원 받는 팀들에서 당신의 팀을 지원하는 팀을 표시하고 지원하는 팀들에서 당신이 지원하는 팀을 표시합니다.'
-      note_6: '<module>MatchLineupTweaks</module>: 경기 페이지를 방문할 때마다 선수 체력 자료를 수집하는 옵션을 추가하였습니다. 이 자료는 <module>MatchSimulator</module> 모듈에서 더 나은 레이팅 예측을 위해 사용되며 <module>SkillTable</module>에서 볼 수 있습니다. 선수들은 90분 전체 출전해야 합니다. 압박 전술을 사용하거나 부정적인 날씨 SE (힘 있음 이벤트)가 있었던 경기들은 배제됩니다. 예측 공식은  Pappagallopoli에 의해 만들어 졌습니다.'
-      note_7: 'NEW: <module>Fans</module>: 다음 경기 링크 옆에 라이브 링크를 추가하고 사이드 바에 팬 클럽 총원 발전 지표를 추가하였습니다.'
+      note_6: "<module>MatchLineupTweaks</module>: 경기 페이지를 방문할 때마다 선수 체력 자료를 수집하는 옵션을 추가하였습니다. 이 자료는 <module>MatchSimulator</module> 모듈에서 더 나은 레이팅 예측을 위해 사용되며 <module>SkillTable</module>에서 볼 수 있습니다. 선수들은 90분 전체 출전해야 합니다. 압박 전술을 사용하거나 부정적인 날씨 SE (힘 있음 이벤트)가 있었던 경기들은 배제됩니다. 예측 공식은  Pappagallopoli에 의해 만들어 졌습니다."
+      note_7: "NEW: <module>Fans</module>: 다음 경기 링크 옆에 라이브 링크를 추가하고 사이드 바에 팬 클럽 총원 발전 지표를 추가하였습니다."
       note_8: "여러 개의 팀을 가진 사용자들은 이제 <module>SkinPlugin</module>의 'body.ft-teamID-0000000'구분자를 사용하여 Hattrick을 다르게 스타일링 할 수 있습니다."
       note_9: "<module>HeaderToggle</module>은 다른 모듈 및 Hattrick에 의한 영향을 대비하여 더욱 견고하게 만들어졌습니다."
       note_10: "레이팅을 복사할 때 트레이너 유형을 포함하도록 <module>MatchSimulator</module>을 조정했습니다."
@@ -297,7 +297,7 @@ ko:
       note_2: '<module>MatchIncome</module>: 경기 페이지에 관중 수 옆에 좌석 사용률을 백분율로 표시하는 옵션을 추가하였습니다.'
       note_3: 'NEW: <module>MainMenuDropDown</module>: 메인 탐색 바에 일반적으로 사용가능한 모든 링크를 포함하는 드롭 다운 메뉴를 추가합니다.'
       note_4: 'Firefox에서 <module>DashboardCalendar</module> 내보낼 때 시간 인식 해결'
-      note_5: <module>MatchOrderInterface</module>은 이제 여러 팀들의 아바타를 보여 줍니다.
+      note_5: '<module>MatchOrderInterface</module>은 이제 여러 팀들의 아바타를 보여 줍니다.'
       note_6: '<module>DashboardCalendar</module>: Firefox에서 여러 개의 다운로드 확인 메시지를 제거 합니다.'
       note_7: '<module>HeaderFix</module>: 이제 예전에 숨겨진  팀 스위칭 바를 표시합니다.'
       note_8: '<module>ConfirmActions</module>: 여러 팀을 보유한 사용자들은 이제 입찰한 팀의 이름을 볼 것입니다.'
@@ -357,7 +357,7 @@ ko:
       note_26: '<module>MatchSimulator</module>은 이제 새로운 체력 수식(by Senzascrupoli [post=15917246.1])을 체력 감소를 계산하는데 사용합니다.'
       note_27: '<module>MatchReportFormat</module>은 새로운 HT아이콘을 사용합니다.'
       note_28: '<module>PlayerStatsExperience</module>: 레벨 당 경험 포인트를 28.62 으로 증가시켰습니다(토론장 15766691.423 참조). 부전승은 이제 경험치를 주지 않은 것으로 표시됩니다.'
-      note_29: '토론장 모듈은 이제 텍스트를 피하기 위해서 ''·''대신에 공백 문자를 사용합니다:이것은 카탈로니아어 언어에 도움이 됩니다.'
+      note_29: "토론장 모듈은 이제 텍스트를 피하기 위해서 '·'대신에 공백 문자를 사용합니다:이것은 카탈로니아어 언어에 도움이 됩니다."
       note_30: 'HT 레이아웃이 폭스트릭을 방해하는 것을 방지합니다.'
       note_31: 'www.hattrick.fm에 대한 지원 추가'
       note_32: '<module>Links</module>에 있는 죽은 외부 링크를 제거합니다. 그리고 가능한 외부 아이콘을 사용합니다.'
@@ -401,8 +401,8 @@ ko:
       note_2: '<module>MatchOrderInterface</module>: 라인업 페이지에서 각 선수의 유니폼 대신에 얼굴을 표시하는 옵션을 추가하였습니다.(기본 활성화)'
       note_3: '<module>MatchOrderInterface</module>: 최근 경기 정보를 비활성화시키는 옵션과 토너먼트 게임을 회색 표시하는 옵션을 추가하였습니다.(기본 활성화)'
       note_4: '<module>MatchIncome</module>: 49 시즌(한국 37 시즌)의 증가된 티켓 가격을 지원합니다. 경기 수입은 이제 경기가 종료된 후에 적용된 티켓 가격으로 계산합니다.'
-      note_5: 'MatchOrderInterface: Firefox에서 최근 경기 지시자가 표시되지 (않거나 올바르게 표시하지 않던) 버그를 수정하였습니다.'
-      note_6: 'MatchOrderInterface: 더 이상 허가받지 않기 때문에 최근 경기 강조 표시를 제거하였습니다:( (이제 서포터즈에게만 제공하는 HT 고유의 기능으로 대체되었습니다.)'
+      note_5: "MatchOrderInterface: Firefox에서 최근 경기 지시자가 표시되지 (않거나 올바르게 표시하지 않던) 버그를 수정하였습니다."
+      note_6: "MatchOrderInterface: 더 이상 허가받지 않기 때문에 최근 경기 강조 표시를 제거하였습니다:( (이제 서포터즈에게만 제공하는 HT 고유의 기능으로 대체되었습니다.)"
       note_7: 'PlayerStatsExperience: 레드 카드가 게임을 부전승으로 감지하던 버그를 수정하였습니다.'
       note_8: 'PlayerStatsExperience: 이 모듈이 Firefox 3.6에서 제대로 동작하지 못하도록 야기시키는 문제를 수정하였습니다.'
       note_9: 'CustomMedals: 토너먼트 트로피가 사라지는 것을 수정하였습니다.'
@@ -450,7 +450,7 @@ ko:
       note_10: 이제 Matchreport는 모든 이벤트에 대한 풍선말을 표시합니다.
       note_11: 링크 리소스를 아직까지 다른 서버로 이전되었습니다.
       note_12: AMO 준수 개선을 위한 몇 가지 내부 변화
-      note_13: '수많은 번역 업데이트: aegeansailor, brauxx, Mod-Utku, ebitechv, Polytropos, gkon13, SOLARIS1973, Fieras, margaale, ipefix, stephan.cardot, OmaniMilani, LambdaB, SI-CH, Convincedd, margaale, ljushaff, serjhanti, playMaker, CoRrRan, Aristodemos, margaale, spider007, FeritAkarsu 그리고 저희가 빠뜨린 분이 상심이 크시다면 저희에게 연락 주세요. 정말 굉장합니다! 여러분 모두에게 감사드립니다!'
+      note_13: "수많은 번역 업데이트: aegeansailor, brauxx, Mod-Utku, ebitechv, Polytropos, gkon13, SOLARIS1973, Fieras, margaale, ipefix, stephan.cardot, OmaniMilani, LambdaB, SI-CH, Convincedd, margaale, ljushaff, serjhanti, playMaker, CoRrRan, Aristodemos, margaale, spider007, FeritAkarsu 그리고 저희가 빠뜨린 분이 상심이 크시다면 저희에게 연락 주세요. 정말 굉장합니다! 여러분 모두에게 감사드립니다!"
     0.9.0.4:
       note_0: 링크 리소스를 다른 서버로 이전되었습니다.
       note_1: MatchReportFormat에 있는 아이콘 제목으로 기본적인 영어 이벤트 문장 추가되었습니다.
@@ -477,7 +477,7 @@ ko:
       note_6: 우리는 더 쉽게 FoxTrick 기능과 책임 모듈의 감지하기 위한 기능 강조 표시를 포함했습니다. 모든 페이지의 우측 하단의 FoxTrick 버전을 클릭함으로써 켜고 끌 수 있습니다. 한 번 다시 불러온 후에 풍선말 툴팁에 책임 모듈을 나타냅니다.
       note_7: '<header>새로운 기능과 변화</header>'
       note_8: '<module>MatchReportFormat</module>: 완전히 수정된 경기 보고서 (ryanli, Catzhoek, ljushaff)'
-      note_9: '<module>Ratings</module>: Hattrick의 평균 레이팅을 감추기 위한 옵션 (convinced)'
+      note_9: "<module>Ratings</module>: Hattrick의 평균 레이팅을 감추기 위한 옵션 (convinced)"
       note_10: '<module>Filter</module>: 최고의 선수 페이지에 필터 추가 (convinced)'
       note_11: '<module>MatchOrder</module>: 경기 지시 사항 인터페이스에 더 많은 정보와 선수 좌우 바꾸기 기능 추가 (convinced)'
       note_12: '<module>MatchSimulator</module>: 체력 감소 옵션과 <linkHTMS>HTMS</linkHTMS>을 사용하는 경기 시뮬레이터 추가 (convinced)'
@@ -502,7 +502,7 @@ ko:
     0.8.1:
       note_0: '<module>ElectionTable</module>: 새로운 선거 페이지 레이아웃을 적용. (convincedd, ryanli)'
       note_1: '<module>HTThreadMarker</module>: 새로운 스타일 추가. (convincedd, ryanli)'
-      note_2: '<module>TableSort</module>: Hattrick의 정렬과 충돌 방지. (convincedd)'
+      note_2: "<module>TableSort</module>: Hattrick의 정렬과 충돌 방지. (convincedd)"
       note_3: '<module>HTMSPrediction</module>, <module>CopyRatings</module>: 새로운 경기 보고서 레이아웃 적용. (convincedd)'
       note_4: '<module>LineupShortcut</module>: 이제 비 서포터를 위해서도 표시. (ryanli)'
       note_5: '<module>TransferSearchResultFilters</module>: 최신 변경 후에 수정. (convincedd)'
@@ -586,3 +586,4 @@ ko:
       note_19: '모듈 <module>TeamSelectBox</module> 기본으로 비활성화. (ryanli)'
       note_20: '모듈 <module>SmallerPages</module> 기본으로 비활성화. (ljushaff)'
       note_21: '<module>ExtraShortcuts</module>에 라디오 옵션 기본으로 비활성화. (ryanli)'
+
