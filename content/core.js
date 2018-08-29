@@ -1,4 +1,5 @@
 'use strict';
+
 /**
 * core.js
 * Some core functions for Foxtrick
@@ -18,6 +19,7 @@ Foxtrick.modules.Core = {
 
 	TEAM: {},
 	PLAYER_LIST: {},
+
 	// UTC timestamp
 	HT_TIME: 0,
 
@@ -114,24 +116,25 @@ Foxtrick.modules.Core = {
 
 			var versionRe = /\d+\.\d+(\.\d+)?/;
 			var freshInstall = false;
-			var br = Foxtrick.branch.slice(0, 4);
+			var br = Foxtrick.branch.slice(0, 'beta'.length);
 
 			var newVMajor, newV = Foxtrick.version;
 			var oldVMajor, oldV = Foxtrick.Prefs.getString('oldVersion');
 
-			if (!oldV) {
-				freshInstall = true;
-			}
-			else {
+			if (oldV) {
 				oldVMajor = oldV.match(versionRe)[0];
 				newVMajor = newV.match(versionRe)[0];
+			}
+			else {
+				freshInstall = true;
 			}
 
 			if (freshInstall || oldV !== newV && br !== 'beta' || oldVMajor !== newVMajor) {
 				Foxtrick.Prefs.setString('oldVersion', newV);
-				if (Foxtrick.Prefs.getBool('showReleaseNotes')) {
+
+				if (Foxtrick.Prefs.getBool('showReleaseNotes'))
 					Foxtrick.Prefs.show('#tab=changes');
-				}
+
 				this.showReleaseModal(doc);
 			}
 		}
@@ -169,6 +172,7 @@ Foxtrick.modules.Core = {
 			'border: 1px solid #66ccff !important;}';
 
 		var featureCss = doc.getElementById('ft-feature-highlight-css');
+
 		// remove old CSS if exists
 		if (featureCss) {
 			featureCss.parentNode.removeChild(featureCss);
@@ -190,15 +194,17 @@ Foxtrick.modules.Core = {
 			var teamLink = teamLinks.querySelector('a');
 
 			var processShortName = function(name) {
+				var n = name;
 				if (doc.querySelector('.ongoingEvents a[href*="/Club/Matches/Live.aspx"]')) {
-					name = teamLink.textContent;
-					Foxtrick.log('Short team name found!', name);
+					n = teamLink.textContent;
+					Foxtrick.log('Short team name found!', n);
+
 					// move away from localStore
 					Foxtrick.localSet('shortTeamName.' + CORE.TEAM.teamId, null);
-					Foxtrick.Prefs.setString('shortTeamName.' + CORE.TEAM.teamId, name);
+					Foxtrick.Prefs.setString('shortTeamName.' + CORE.TEAM.teamId, n);
 				}
-				if (name)
-					CORE.TEAM.shortTeamName = name;
+				if (n)
+					CORE.TEAM.shortTeamName = n;
 			};
 
 			CORE.TEAM = {
@@ -210,15 +216,15 @@ Foxtrick.modules.Core = {
 
 			var teamId = CORE.TEAM.teamId;
 			var shortName = Foxtrick.Prefs.getString('shortTeamName.' + teamId);
-			if (shortName !== null) {
-				processShortName(shortName);
-			}
-			else {
+			if (shortName === null)
 				Foxtrick.localGet('shortTeamName.' + teamId, processShortName);
-			}
+			else
+				processShortName(shortName);
 
+			/* eslint-disable dot-notation */
 			Foxtrick.htPages['ownPlayers'] =
 				Foxtrick.htPages['ownPlayersTemplate'].replace(/\[id\]/g, teamId);
+			/* eslint-enable dot-notation */
 
 			Foxtrick.addClass(doc.body, 'ft-teamID-' + teamId);
 		}
@@ -234,8 +240,10 @@ Foxtrick.modules.Core = {
 		if (!CORE.TEAM.youthTeamId) {
 			var youthId = Foxtrick.util.id.findYouthTeamId(subMenu);
 			CORE.TEAM.youthTeamId = youthId;
+			/* eslint-disable dot-notation */
 			Foxtrick.htPages['ownYouthPlayers'] =
 				Foxtrick.htPages['ownYouthPlayersTemplate'].replace(/\[id\]/g, youthId);
+			/* eslint-enable dot-notation */
 		}
 
 		// NT coach
@@ -247,7 +255,9 @@ Foxtrick.modules.Core = {
 		if (!ntId)
 			return;
 
+		/* eslint-disable dot-notation */
 		Foxtrick.htPages['ownPlayers'] = Foxtrick.htPages['ownPlayers'].replace(/\[ntid\]/g, ntId);
+		/* eslint-enable dot-notation */
 	},
 
 	/**
@@ -284,7 +294,10 @@ Foxtrick.modules.Core = {
 			var bug = log + '\n\n\n' + prefs;
 
 			// add a somewhat sane limit of 200K
-			var MAX_LENGTH = 200 * 1024;
+			var Ki = 1024,
+				KB = 200,
+				MAX_LENGTH = KB * Ki;
+
 			if (bug.length > MAX_LENGTH)
 				bug = bug.slice(bug.length - MAX_LENGTH);
 
@@ -357,7 +370,7 @@ Foxtrick.modules.Core = {
 	 * don't use in async context because
 	 * data is overwritten by subsequent reloads
 	 * team might change in FF!
-	 * @return {Array} playerList
+	 * @return {array} playerList
 	 */
 	getPlayerList: function() {
 		return this.PLAYER_LIST;
