@@ -104,14 +104,15 @@ Foxtrick.modules['ExportTopYouth'] = {
 		};
 
 		const getFileName = function() {
-		    if (playerType.selectedIndex == -1)
-		        return null;
-		    let rawAge = ageInput.value;
-		    let age = parseInt(rawAge);
-		    if (!age || age > 17 || age < 15) {
+			if (playerType.selectedIndex == -1) {
+				return 'Players.csv';
+			}
+			let rawAge = ageInput.value;
+			let age = parseInt(rawAge);
+			if (!age || age > 17 || age < 15) {
 				return playerType.options[playerType.selectedIndex].text.replace(' ', '_') + '.csv';
 			}
-		    else {
+			else {
 				return playerType.options[playerType.selectedIndex].text.replace(' ', '_') + ' (' + rawAge + ')' + '.csv';
 			}
 		};
