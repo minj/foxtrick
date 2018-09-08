@@ -22,6 +22,8 @@ Foxtrick.modules['ExportTopYouth'] = {
 		const playerType = doc.querySelector('#ctl00_ctl00_CPContent_CPMain_ddlPosition');
 		const ageInput = doc.querySelector('#ctl00_ctl00_CPContent_CPMain_txtAge');
 		let csvContent = "data:text/csv;charset=utf-8,";
+		let players = {};
+		let processed = 0;
 
 		const getExportData = function() {
 		    let playerPosition = playerType.options[playerType.selectedIndex].text;
@@ -33,12 +35,14 @@ Foxtrick.modules['ExportTopYouth'] = {
 				Foxtrick.L10n.getString('ExportTopYouth.header.toPromote'), 
 				Foxtrick.L10n.getString('ExportTopYouth.header.specialty'), 
 				Foxtrick.L10n.getString('ExportTopYouth.header.stars'), 
-				Foxtrick.L10n.getString('ExportTopYouth.header.position')
+				Foxtrick.L10n.getString('ExportTopYouth.header.position'),
+				Foxtrick.L10n.getString('ExportTopYouth.header.minutesPlayed')
 			];
 			csvContent += header.join(',') + '\r\n';
 			for(let tr of results) {
-				let row = getRowFromTR(tr).join(',') + "," + playerPosition;
-				csvContent += row + '\r\n';
+				let row = getRowFromTR(tr);
+				row.push(playerPosition);
+				players[row[1]] = row;
 			}
 		};
 		
@@ -55,13 +59,15 @@ Foxtrick.modules['ExportTopYouth'] = {
 		const getRowFromTR = function(tr) {
 			let rowArray = [];
 			let index = 0;
+			let youthPlayerId;
 			for(let td of tr.querySelectorAll('td')) {
 				let images = td.querySelectorAll('img');
 				let playerLink = td.querySelector('a');
 				let innerText = td.innerText.trim();
 			    if(index === 0 && playerLink) {
+			    	youthPlayerId = playerLink.href.substring(playerLink.href.indexOf('=') + 1);
 					rowArray.push(innerText);
-					rowArray.push(playerLink.href.substring(playerLink.href.indexOf('=') + 1));
+					rowArray.push(youthPlayerId);
 				}
 				if(index === 1 && innerText.indexOf('(') !== -1) {
 					let splitted = innerText.split(' (');
@@ -75,7 +81,8 @@ Foxtrick.modules['ExportTopYouth'] = {
 					rowArray.push(getNumberFromStars(images));
 				}
 				index++;
-			}    
+			}
+			addMinutesPlayed(youthPlayerId);
 			return rowArray;
 		};
 
@@ -101,13 +108,37 @@ Foxtrick.modules['ExportTopYouth'] = {
 		        return null;
 		    let rawAge = ageInput.value;
 		    let age = parseInt(rawAge);
-		    if ((age == "NaN") || (age > 17 || age < 15))
-			return playerType.options[playerType.selectedIndex].text.replace(' ', '_') + '.csv';
-		    else
-			return playerType.options[playerType.selectedIndex].text.replace(' ', '_') + ' (' + rawAge + ')' + '.csv';
+		    if (!age || age > 17 || age < 15) {
+				return playerType.options[playerType.selectedIndex].text.replace(' ', '_') + '.csv';
+			}
+		    else {
+				return playerType.options[playerType.selectedIndex].text.replace(' ', '_') + ' (' + rawAge + ')' + '.csv';
+			}
+		};
+
+		const addMinutesPlayed = function (youthPlayerId) {
+			if(processed > 50) {
+				return;
+			}
+			const params = [
+				['file', 'youthplayerdetails'],
+				['version', '1.1'],
+				['actionType', 'details'],
+				['showLastMatch', 'true'],
+				['youthPlayerId', parseInt(youthPlayerId)]
+			];
+			Foxtrick.util.api.retrieve(doc, params, { cache_lifetime: 'default' },
+			  function(xml, errorText) {
+			  	let minutes = xml.num('PlayedMinutes');
+			  	players[youthPlayerId].push(minutes);
+			  	csvContent += players[youthPlayerId].join(',') + '\r\n';
+			  	processed++;
+			  	if(processed == 50 || processed === results.length) {
+			  		addExportButton();
+			  	}
+			});
 		};
 
 		getExportData();
-		addExportButton();
 	}
 };
