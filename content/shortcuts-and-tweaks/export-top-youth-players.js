@@ -51,7 +51,7 @@ Foxtrick.modules['ExportTopYouth'] = {
 			let link = doc.createElement("a");
 			link.setAttribute("href", encodedUri);
 			link.setAttribute("download", getFileName());
-			link.innerHTML = Foxtrick.L10n.getString('exportToCsv');
+			link.innerHTML = Foxtrick.L10n.getString('ExportTopYouth.exportToCsv');
 			link.className = 'exportLink';
 			panel.parentNode.insertBefore(link, panel);
 		};
@@ -118,7 +118,7 @@ Foxtrick.modules['ExportTopYouth'] = {
 		};
 
 		const addMinutesPlayed = function (youthPlayerId) {
-			if(processed > 50) {
+			if(Object.keys(players).length > 50) {
 				return;
 			}
 			const params = [
