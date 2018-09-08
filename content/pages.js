@@ -161,6 +161,7 @@ Foxtrick.htPages = {
 	'statsMatchesHeadToHead'    : '/World/Stats/StatsMatchesHeadToHead.aspx',
 	'statsSeries'               : '/World/Series/Stats.aspx',
 	'statsTopPlayers'           : '/World/Players/TopPlayers.aspx',
+	'statsTopYouthPlayers'      : '/World/Players/TopYouthPlayers.aspx',
 	'supporters'                : '/Club/Supporters/(Default.aspx?|?)actionType=mysupporters',
 	'supported'                 : '/Club/Supporters/(Default.aspx$|$)',
 	'hallOfFame'                : '/Club/HallOfFame/(Default.aspx|?|$)',

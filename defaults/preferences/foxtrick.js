@@ -765,3 +765,4 @@ pref("extensions.foxtrick.prefs.logDisabled", true);
 pref("extensions.foxtrick.prefs.volume", "100");
 pref("extensions.foxtrick.prefs.module.MobileEnhancements.ViewPort.enabled", true);
 pref("extensions.foxtrick.prefs.module.MobileEnhancements.ViewPort_text", "320");
+pref("extensions.foxtrick.prefs.module.ExportTopYouth.enabled", true);

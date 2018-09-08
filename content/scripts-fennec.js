@@ -237,6 +237,7 @@ Foxtrick.loader.background.contentScriptManager = {
 		'shortcuts-and-tweaks/copy-match-id.js',
 		'shortcuts-and-tweaks/copy-player-ad.js',
 		'shortcuts-and-tweaks/copy-youth.js',
+		'shortcuts-and-tweaks/export-top-youth-players.js',
 		'shortcuts-and-tweaks/extra-shortcuts.js',
 		'shortcuts-and-tweaks/filter.js',
 		'shortcuts-and-tweaks/lineup-shortcut.js',

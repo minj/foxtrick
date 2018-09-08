@@ -253,6 +253,7 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/shortcuts-and-tweaks/copy-match-id.js</string>
 				<string>content/shortcuts-and-tweaks/copy-player-ad.js</string>
 				<string>content/shortcuts-and-tweaks/copy-youth.js</string>
+				<string>content/shortcuts-and-tweaks/export-top-youth-players.js</string>
 				<string>content/shortcuts-and-tweaks/extra-shortcuts.js</string>
 				<string>content/shortcuts-and-tweaks/filter.js</string>
 				<string>content/shortcuts-and-tweaks/lineup-shortcut.js</string>
