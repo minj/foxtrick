@@ -22,7 +22,7 @@ cd "$DIR/../$BETA" || logf "Cannot cd to $BETA"
 git stash
 git checkout master || logf "Cannot checkout master"
 git pull --rebase origin master || logf "Cannot git pull rebase master"
-git merge --no-ff --no-edit l10n || logf "Cannot merge l10n"
+git merge --no-ff --no-edit origin/l10n || logf "Cannot merge origin/l10n"
 git push origin master || logf "Cannot push l10n merge"
 
 log "Success crowdin update."
