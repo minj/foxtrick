@@ -8,7 +8,7 @@ DIR=$(cd $(dirname $0); pwd)
 
 unset GIT_DIR GIT_WORK_TREE
 
-cd "$DIR/../l10" || logf "Cannot cd to l10n"
+cd "$DIR/../l10n" || logf "Cannot cd to l10n"
 git stash
 git checkout l10n || logf "Cannot checkout l10n"
 git pull --rebase origin l10n || logf "Cannot git pull rebase l10n"
