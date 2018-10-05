@@ -3,7 +3,7 @@ function log {
 	echo "################ [`date`] $1 ###############" >&2
 }
 
-fuction logf {
+function logf {
 	log $@
 	false
 }
