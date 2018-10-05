@@ -27,7 +27,7 @@ done
 if [ $re -eq 1 ]; then
 #Download all translations as a single ZIP archive.
 	echo "download zip.."
-	wget -O langs.zip "$CROWDIN_URL"/download/all.zip?key="$CROWDIN_KEY"
+	curl -sfL "$CROWDIN_URL"/download/all.zip?key="$CROWDIN_KEY" -o langs.zip
 	  if [ $? -ne 0 ]; then
 		echo "failed"
 		exit 1
@@ -41,8 +41,7 @@ if [ $re -eq 1 ]; then
 		  else
 			echo "Unzipped to $CROWDIN_FOLDER"
 #get translation status
-			curl -s \
-			  "$CROWDIN_URL"/status?key="$CROWDIN_KEY" > status.xml
+			curl -sfL "$CROWDIN_URL"/status?key="$CROWDIN_KEY" -o status.xml
 			locale/XMLToJSON.py status.xml
 			rm status.xml
 			mv status.json "$CROWDIN_FOLDER"/status.json
@@ -57,4 +56,4 @@ fi
 
 
 #Download French translations.
-#wget http://api.crowdin.net/api/project/{project-identifier}/download/fr.zip?key={project-key}
+#http://api.crowdin.net/api/project/{project-identifier}/download/fr.zip?key={project-key}
