@@ -4,10 +4,10 @@ echo 'update build scripts'
 set -e
 
 DIR=$(cd $(dirname $0); pwd)
-. "$DIR"/include.sh || (log "==============ERROR=========== include.sh" && false)
-. "$DIR"/cron-config.sh || (log "==============ERROR=========== cron-config.sh" && false)
-cd "$DIR" || (log "Cannot cd to $DIR" && false)
+. "$DIR"/include.sh || logf "==============ERROR=========== include.sh"
+. "$DIR"/cron-config.sh || logf "==============ERROR=========== cron-config.sh"
+cd "$DIR" || logf "Cannot cd to $DIR"
 
 git stash
-git pull --rebase || (log "Cannot git pull rebase" && false)
+git pull --rebase || logf "Cannot git pull rebase"
 log "Success build script update."
