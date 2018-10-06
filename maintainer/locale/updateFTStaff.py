@@ -15,7 +15,7 @@ import xml.etree.ElementTree as ET
 if sys.version > '3':
     import urllib.request as urllib
 else:
-    import urllib
+    import urllib2 as urllib
 
 
 if len(sys.argv) > 1:
@@ -35,9 +35,9 @@ session = chpp.getSession()
 SUPPORTER_JSON = 'https://www.foxtrick.org/paypal/list.php'
 with urllib.urlopen(SUPPORTER_JSON) as sup_json:
     if sys.version > '3':
-        sup_json_str = sup_json.readall().decode()
+        sup_json_str = sup_json.read().decode()
     else:
-        sup_json_str = ''.join(sup_json.readlines())
+        sup_json_str = sup_json.read()
 
 supporters = json.loads(sup_json_str)
 
