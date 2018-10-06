@@ -1,20 +1,24 @@
 #!/bin/bash
 echo 'update supporters'
 
+set -e
+
 DIR=$(cd $(dirname $0); pwd)
-. "$DIR"/include.sh || (echo "==============ERROR=========== include.sh" && exit -1)
-. "$DIR"/cron-config.sh || (echo "==============ERROR=========== cron-config.sh" && exit -1)
+. "$DIR"/include.sh || logf "==============ERROR=========== include.sh"
+. "$DIR"/cron-config.sh || logf "==============ERROR=========== cron-config.sh"
 
-cd "$DIR/../$NIGHTLY" || log "Cannot cd to $NIGHTLY"
+unset GIT_DIR GIT_WORK_TREE
 
-git stash
-git pull --rebase || log "Cannot git pull rebase $NIGHTLY"
-
-cd "$DIR/../cdn" || log "Cannot cd to cdn"
+cd "$DIR/../$NIGHTLY" || logf "Cannot cd to $NIGHTLY"
 
 git stash
-git pull --rebase || log "Cannot git pull rebase cdn"
-python "$DIR/../$NIGHTLY/maintainer/locale/updateFTStaff.py" 'res/staff/foxtrick.json' || log "Cannot update staff"
-git commit -a -m "*automated* supporter update"
-git push origin cdn || log "Cannot push cdn"
+git pull --rebase origin master || logf "Cannot git pull rebase $NIGHTLY"
+
+cd "$DIR/../cdn" || logf "Cannot cd to cdn"
+
+git stash
+git pull --rebase origin cdn || logf "Cannot git pull rebase cdn"
+python "$DIR/../$NIGHTLY/maintainer/locale/updateFTStaff.py" 'res/staff/foxtrick.json' || logf "Cannot update staff"
+git commit -am "*automated* supporter update"
+git push origin cdn || logf "Cannot push cdn"
 log "Success supporter update."
