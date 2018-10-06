@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 from __future__ import print_function
 
-from .Hattrick.Parsers import XMLParser
-from .Hattrick.CHPP import Client
-from .Hattrick.CHPP import Credentials
-from .Hattrick.CHPP import AccessToken
+from Hattrick.Parsers import XMLParser
+from Hattrick.CHPP import Client
+from Hattrick.CHPP import Credentials
+from Hattrick.CHPP import AccessToken
 
 import sys
 import os
