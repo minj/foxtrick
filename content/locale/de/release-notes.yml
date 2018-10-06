@@ -221,8 +221,8 @@ de:
       note_3: '<module>ShowLineupSet</module>: Option zur Hervorhebung des eigenen Teams in der Ligatabelle hinzugefügt.'
       note_4: '<module>CopyYouth</module>: Änderungen am Jugendtraining werden jetzt automatisch an den hattrick youthclub (nur für HY-Benutzer) gesendet.'
       note_5: 'NEU: <module>SupportersList</module>: In der Liste, der von Dir unterstützten Teams, die Teams anzeigen, die Dich unterstützen und umgekehrt'
-      note_6: '<module>MatchLineupTweaks</module>: Ausdauerdaten deiner Spieler sammeln wann immer ein beendetes Spiel betrachtet. Diese Daten dienen dazu die Bewertungsprognose des <module>MatchSimulator</module> zu verbessern und können im <module>SkillTable</module> betrachtet werden. Es werden nur Spieler berücksichtigt die durchgespielt haben. Spieltest du Pressing oder traten negative Spezialereignisse ein wird ein Spiel nicht berücksichtigt. Die Formel zur Prognose wurde von Pappagallopoli entwickelt.'
-      note_7: 'NEW: <module>Fans</module>: Auf der Fan-Seite gibt es nun Live-Links und die Summe der Fanentwicklung wird angezeigt.'
+      note_6: "<module>MatchLineupTweaks</module>: Ausdauerdaten deiner Spieler sammeln wann immer ein beendetes Spiel betrachtet. Diese Daten dienen dazu die Bewertungsprognose des <module>MatchSimulator</module> zu verbessern und können im <module>SkillTable</module> betrachtet werden. Es werden nur Spieler berücksichtigt die durchgespielt haben. Spieltest du Pressing oder traten negative Spezialereignisse ein wird ein Spiel nicht berücksichtigt. Die Formel zur Prognose wurde von Pappagallopoli entwickelt."
+      note_7: "NEW: <module>Fans</module>: Auf der Fan-Seite gibt es nun Live-Links und die Summe der Fanentwicklung wird angezeigt."
       note_8: "Nutzer mit mehreren Teams können nun den Selektor 'body.ft-teamID-0000000' nutzen um Hattrick anhand des aktiven Teams z.B. mit <module>SkinPlugin</module> o.ä. zu stylen."
       note_9: "<module>HeaderToggle</module> wurde gegen Einflüsse seitens Hattrick oder anderer Module besser geschützt."
       note_10: "<module>MatchSimulator</module> berücksichtigt nun den Trainertyp wenn die Ratings kopiert werden. "
@@ -309,7 +309,7 @@ de:
       note_26: '<module>MatchSimulator</module> verwendet nun eine neue Formel bezüglich des Konditionsverlustes. (Diskussion siehe 15917246.1)'
       note_27: '<module>MatchReportFormat</module> nutzt nun die neuen Hattrick Symbole.'
       note_28: '<module>PlayerStatsExperience</module>: Erfahrungspunkte pro Skilllevel auf 28.62 erhöht (Diskussion siehe 15766691.423). Walkovers werden nun deutlich hervorgehoben.'
-      note_29: Forum-Module nutzen nun eine spezielles Leerzeichen. Dies sollte der katalanische Sprache helfen.
+      note_29: "Forum-Module nutzen nun eine spezielles Leerzeichen. Dies sollte der katalanische Sprache helfen."
       note_30: 'Layout interferenzen zwischen Hattrick und Foxtrick bereinigt'
       note_31: 'Ünterstützung der offiziellen Hattrick Domain www.hattrick.fm'
       note_32: 'Ausgestorbene externe Links entfernt aus dem Modul <module>Links</module> entfernt. Wenn möglich werden nun externe Icons verwendet.'
@@ -353,8 +353,8 @@ de:
       note_2: '<module>MatchOrderInterface</module>: Option die Spielergesichter anstelle der Trikots anzuzeigen. Funktioniert für zukünftige und vergangene Spiele (default on)'
       note_3: '<module>MatchOrderInterface</module>: Option to disable last match information and highlighting for tournament games added (default on)'
       note_4: '<module>MatchIncome</module>: Support for increased ticket prices in season 49. Income is now calculated by the ticket prices that were active when the match was played.'
-      note_5: 'MatchOrderInterface: Fixed bug where the playedLastMatch indicator didn''t show (or showed incorrectly) on Firefox'
-      note_6: 'MatchOrderInterface: Der Indikator der anzeigte ob ein Spieler im letzten Spiel auf dem Feld stand musste leider auf Nachfrage herrausgenommen werden. Diese Funktion steht Supportern in verbesserter Form von Haus aus zur Verfügung.'
+      note_5: "MatchOrderInterface: Fixed bug where the playedLastMatch indicator didn't show (or showed incorrectly) on Firefox"
+      note_6: "MatchOrderInterface: Der Indikator der anzeigte ob ein Spieler im letzten Spiel auf dem Feld stand musste leider auf Nachfrage herrausgenommen werden. Diese Funktion steht Supportern in verbesserter Form von Haus aus zur Verfügung."
       note_7: 'PlayerStatsExperience: Bug gefixed wodurch Rote Karten dazu führten dass fälschlicherweise ein ''Walkover'' erkannt wurde.'
       note_8: 'PlayerStatsExperience: Das Modul funktionierte nicht unter FF 3.6. Auch das wurde behoben. Aber bitte updaten, der Browser bekommt keinen Support mehr!'
       note_9: 'CustomMedals: Tournament Trophäen verschwinden nicht mehr.'
@@ -398,11 +398,11 @@ de:
       note_6: Moved the highlight feature toggle to the FoxTrick toolbar icon resp. preferences main tab
       note_7: module MatchTables removed since no one used it
       note_8: 'MatchSimulator stamina effect: show texts rounded and values not rounded'
-      note_9: 'preference linking "foxtrick://"-style fixed'
+      note_9: preference linking "foxtrick://"-style fixed
       note_10: Matchreport now shows tooltips for all events
       note_11: Links resources moved to yet another server
       note_12: Some internal changes to improve AMO compliance
-      note_13: 'A huge ammount of translation updates by: aegeansailor, brauxx, Mod-Utku, ebitechv, Polytropos, gkon13, SOLARIS1973, Fieras, margaale, ipefix, stephan.cardot, OmaniMilani, LambdaB, SI-CH, Convincedd, margaale, ljushaff, serjhanti, playMaker, CoRrRan, Aristodemos, margaale, spider007, FeritAkarsu and probably some people i missed, please drop us a msg if you feel unrespected, it''s kinda hard to keep tracking all of you guys. This is awesome! Thanks to all of you!'
+      note_13: "A huge ammount of translation updates by: aegeansailor, brauxx, Mod-Utku, ebitechv, Polytropos, gkon13, SOLARIS1973, Fieras, margaale, ipefix, stephan.cardot, OmaniMilani, LambdaB, SI-CH, Convincedd, margaale, ljushaff, serjhanti, playMaker, CoRrRan, Aristodemos, margaale, spider007, FeritAkarsu and probably some people i missed, please drop us a msg if you feel unrespected, it's kinda hard to keep tracking all of you guys. This is awesome! Thanks to all of you!"
     0.9.0.4:
       note_0: Links resources moved to another server
       note_1: Added basic english event texts to the icons' titles in MatchReportFormat
@@ -429,7 +429,7 @@ de:
       note_6: Wir haben eine Option hinzugefügt mit der FoxTrick-Elemente leichter identifiziert werden können. Sie kann ein- bzw. ausschalten werden indem man in der rechten unteren Ecke jeder Seite auf die FoxTrick Versionsnummer klickt. Nach erstmaligen Neuladen wird im ToolTip das jeweilige Modul angezeigt.
       note_7: '<header>Neue Features und Änderungen</header>'
       note_8: '<module>MatchReportFormat</module>: Die Art und Weise wie Spielberichte angezeigt werden wurde komplett überarbeitet (ryanli, Catzhoek, ljushaff)'
-      note_9: '<module>Ratings</module>: Es gibt eine neue Option um Hattricks Durchschnittratings zu verstecken (convinced)'
+      note_9: "<module>Ratings</module>: Es gibt eine neue Option um Hattricks Durchschnittratings zu verstecken (convinced)"
       note_10: '<module>Filter</module>: Fügt oben auf der Spielerübersichtsseite Filteroptionen hinzu (convinced)'
       note_11: '<module>MatchOrder</module>: Mehrere neue Informationen auf der Aufstellungsseite und eine Option die Seiten zu vertauschen (convinced)'
       note_12: '<module>MatchSimulator</module>: Fügt einen Spielsimulator unter Verwendung von <linkHTMS>HTMS</linkHTMS> und eine Option zum Abschätzen des Konditionsverlusts hinzu (convinced)'
@@ -454,7 +454,7 @@ de:
     0.8.1:
       note_0: '<module>ElectionTable</module>: adapted to new election page layout. (convincedd, ryanli)'
       note_1: '<module>HTThreadMarker</module>: new style. (convincedd, ryanli)'
-      note_2: '<module>TableSort</module>: prevent conflicting with Hattrick''s sorting. (convincedd)'
+      note_2: "<module>TableSort</module>: prevent conflicting with Hattrick's sorting. (convincedd)"
       note_3: '<module>HTMSPrediction</module>, <module>CopyRatings</module>: adapted to new match report layout. (convincedd)'
       note_4: '<module>LineupShortcut</module>: also show for non-supporters now. (ryanli)'
       note_5: '<module>TransferSearchResultFilters</module>: fix after latest changes. (convincedd)'
@@ -538,3 +538,4 @@ de:
       note_19: 'Modul <module>TeamSelectBox</module> grundsätzlich ausgeschaltet. (ryanli)'
       note_20: 'Modul <module>SmallerPages</module> grundsätzlich ausgeschaltet. (ljushaff)'
       note_21: 'Radio-Optionen in <module>ExtraShortcuts</module> sind grundsätzlich ausgeschaltet. (ryanli)'
+

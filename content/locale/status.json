@@ -109,15 +109,15 @@
 			"words_translated": "16649"
 		},
 		{
-			"approved": "1908",
-			"approved_progress": "81",
+			"approved": "1907",
+			"approved_progress": "80",
 			"code": "hr",
 			"name": "Croatian",
 			"phrases": "2298",
 			"translated": "2253",
 			"translated_progress": "94",
 			"words": "16759",
-			"words_approved": "13577",
+			"words_approved": "13563",
 			"words_translated": "15759"
 		},
 		{
@@ -282,11 +282,11 @@
 			"code": "de",
 			"name": "German",
 			"phrases": "2298",
-			"translated": "2201",
+			"translated": "2207",
 			"translated_progress": "91",
 			"words": "16759",
 			"words_approved": "48",
-			"words_translated": "15333"
+			"words_translated": "15344"
 		},
 		{
 			"approved": "0",
@@ -306,11 +306,11 @@
 			"code": "he",
 			"name": "Hebrew",
 			"phrases": "2298",
-			"translated": "2287",
-			"translated_progress": "99",
+			"translated": "2298",
+			"translated_progress": "100",
 			"words": "16759",
 			"words_approved": "0",
-			"words_translated": "16697"
+			"words_translated": "16759"
 		},
 		{
 			"approved": "194",
@@ -402,11 +402,11 @@
 			"code": "lt",
 			"name": "Lithuanian",
 			"phrases": "2298",
-			"translated": "2287",
+			"translated": "2292",
 			"translated_progress": "99",
 			"words": "16759",
 			"words_approved": "9215",
-			"words_translated": "16697"
+			"words_translated": "16706"
 		},
 		{
 			"approved": "0",
@@ -618,11 +618,11 @@
 			"code": "sv-SE",
 			"name": "Swedish",
 			"phrases": "2298",
-			"translated": "2099",
-			"translated_progress": "92",
+			"translated": "2139",
+			"translated_progress": "93",
 			"words": "16759",
 			"words_approved": "15321",
-			"words_translated": "15522"
+			"words_translated": "15746"
 		},
 		{
 			"approved": "0",
