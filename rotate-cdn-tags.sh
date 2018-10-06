@@ -9,9 +9,9 @@ DIR=$(cd $(dirname $0); pwd)
 ago=$(date -d '1 days ago' -u +'%y%m%d')
 tomorrow=$(date -d 'tomorrow' -u +'%y%m%d')
 
-cd "$DIR/../cdn" || logf "Cannot cd to cdn"
-
 unset GIT_DIR GIT_WORK_TREE
+
+cd "$DIR/../cdn" || logf "Cannot cd to cdn"
 
 git stash
 git fetch --prune origin "+refs/tags/*:refs/tags/*" || logf "Cannot update tags"
