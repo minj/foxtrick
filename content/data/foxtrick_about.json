@@ -149,6 +149,9 @@
 				{
 					"id": "4417979",
 					"name": "Aze-Maestro"
+				},
+				{
+					"name": "Gülsüm"
 				}
 			]
 		},
@@ -591,6 +594,9 @@
 				{
 					"id": "9668661",
 					"name": "dzsoo"
+				},
+				{
+					"name": "montlikadani"
 				}
 			]
 		},
@@ -599,6 +605,18 @@
 			"translators": [
 				{
 					"name": "yosua_k"
+				},
+				{
+					"name": "zikraa"
+				},
+				{
+					"name": "auliaramadhn"
+				},
+				{
+					"name": "isfar"
+				},
+				{
+					"name": "saifullah05"
 				}
 			]
 		},
@@ -832,6 +850,9 @@
 				{
 					"id": "4577648",
 					"name": "ampulka"
+				},
+				{
+					"name": "pawpol"
 				}
 			]
 		},
@@ -948,6 +969,17 @@
 			]
 		},
 		{
+			"language": "Slovenščina",
+			"translators": [
+				{
+					"name": "zagec"
+				},
+				{
+					"name": "igor.nikolic"
+				}
+			]
+		},
+		{
 			"language": "Srpski",
 			"translators": [
 				{
@@ -1010,6 +1042,9 @@
 				},
 				{
 					"name": "jarxhaushinka"
+				},
+				{
+					"name": "fiira"
 				}
 			]
 		},
@@ -1030,6 +1065,21 @@
 				},
 				{
 					"name": "ufukfb"
+				},
+				{
+					"name": "atakanoz"
+				},
+				{
+					"name": "erhanoz"
+				},
+				{
+					"name": "onurcan"
+				},
+				{
+					"name": "wefayss"
+				},
+				{
+					"name": "ycct"
 				}
 			]
 		},
@@ -1062,6 +1112,12 @@
 				},
 				{
 					"name": "alex_kunmy"
+				},
+				{
+					"name": "myjourney"
+				},
+				{
+					"name": "sandan"
 				}
 			]
 		}
