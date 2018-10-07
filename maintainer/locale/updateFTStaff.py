@@ -73,11 +73,19 @@ for person in staff:
     dom = ET.fromstring(resp.content)
     result = dict()
     XMLParser.xml_to_python(dom, result)
+
     container = result['HattrickData']['SearchResults']
-    if 'Result' in container:
-        person['name'] = container['Result']['ResultName']
+    new_name = container['Result']['ResultName'] if 'Result' in container else ''
+    if not new_name or new_name.startswith('DEL_'):
+        if not person['name']:
+            person['name'] = '<>'
+        elif not person['name'].startswith('<'):
+            person['name'] = f"<{person['name']}>"
+        else:
+            # already replaced
+            pass
     else:
-        person['name'] = '----------'
+        person['name'] = new_name
 
 # output updated staff file
 staff.sort(key=lambda person: person['id'])
