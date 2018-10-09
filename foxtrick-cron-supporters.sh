@@ -18,7 +18,7 @@ cd "$DIR/../cdn" || logf "Cannot cd to cdn"
 
 git stash
 git pull --rebase origin cdn || logf "Cannot git pull rebase cdn"
-python "$DIR/../$NIGHTLY/maintainer/locale/updateFTStaff.py" 'res/staff/foxtrick.json' || logf "Cannot update staff"
+python "../$NIGHTLY/maintainer/locale/updateFTStaff.py" 'res/staff/foxtrick.json' || logf "Cannot update staff"
 git commit -am "*automated* supporter update"
 git push origin cdn || logf "Cannot push cdn"
 log "Success supporter update."
