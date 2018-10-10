@@ -1055,6 +1055,11 @@
 			"name": "Mod-Guaipeca"
 		},
 		{
+			"duty": "supporter",
+			"id": "555",
+			"name": "<>"
+		},
+		{
 			"duty": "translator",
 			"id": "5577946",
 			"name": "<eekels>"
