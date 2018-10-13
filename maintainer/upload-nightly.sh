@@ -52,10 +52,7 @@ else
 	VERSION="$MAJOR_VERSION"
 fi
 
-UPLOAD_BRANCH=$(basename "$URL_BASE")
-UPLOAD_PARENT=$(dirname "$URL_BASE")
-
-PREVIOUS_VERSION=$(curl "${UPLOAD_PARENT}/last.php?path=${UPLOAD_BRANCH}")
+PREVIOUS_VERSION=$(ls -1tr "${DEST}/foxtrick-*.xpi" | tail -1 | grep -Po '[\d.]+(?=.xpi)')
 echo "Previous: ${PREVIOUS_VERSION}"
 echo "Current: ${VERSION}"
 
@@ -83,16 +80,16 @@ if [ -f "${SRC_DIR}/foxtrick.xpi" ]; then
 	[[ -z "${GECKO_CHKSUM}" ]] && exit 3
 fi
 
-echo "uploading to $DEST @ server"
+echo "copying to $DEST @ server"
 
 if [ -f "${SRC_DIR}/foxtrick.xpi" ]; then
-	scp "${SRC_DIR}/foxtrick.xpi" server:"${DEST}/foxtrick-${VERSION}.xpi"
+	cp "${SRC_DIR}/foxtrick.xpi" "${DEST}/foxtrick-${VERSION}.xpi"
 fi
 if [ -f "${SRC_DIR}/foxtrick.crx" ]; then
-	scp "${SRC_DIR}/foxtrick.crx" server:"${DEST}/chrome/foxtrick-${VERSION}.crx"
+	cp "${SRC_DIR}/foxtrick.crx" "${DEST}/chrome/foxtrick-${VERSION}.crx"
 fi
 if [ -f "${SRC_DIR}/foxtrick.safariextz" ]; then
-	scp "${SRC_DIR}/foxtrick.safariextz" server:"${DEST}/safari/foxtrick-${VERSION}.safariextz"
+	cp "${SRC_DIR}/foxtrick.safariextz" "${DEST}/safari/foxtrick-${VERSION}.safariextz"
 fi
 
 if [ "$UPLOAD_UPDATE_FILES" == "true" ]; then
@@ -104,7 +101,7 @@ if [ "$UPLOAD_UPDATE_FILES" == "true" ]; then
 		sed -i "s|{UPDATE_HASH}|${GECKO_CHKSUM}|g" update-firefox.rdf
 		sed -i "s|{VERSION}|${VERSION}|g" update-firefox.rdf
 
-		scp update-firefox.rdf server:"${DEST}/update.rdf"
+		cp update-firefox.rdf "${DEST}/update.rdf"
 	fi
 
 	if [ -f "${SRC_DIR}/foxtrick.crx" ]; then
@@ -113,7 +110,7 @@ if [ "$UPLOAD_UPDATE_FILES" == "true" ]; then
 		sed -i "s|{UPDATE_LINK}|${URL_BASE}/chrome/foxtrick-${VERSION}.crx|g" update-chrome.xml
 		sed -i "s|{VERSION}|${VERSION}|g" update-chrome.xml
 
-		scp update-chrome.xml server:"${DEST}/chrome/update.xml"
+		cp update-chrome.xml "${DEST}/chrome/update.xml"
 	fi
 
 	if [ -f "${SRC_DIR}/foxtrick.safariextz" ]; then
@@ -122,7 +119,7 @@ if [ "$UPLOAD_UPDATE_FILES" == "true" ]; then
 		sed -i "s|{UPDATE_LINK}|${URL_BASE}/safari/foxtrick-${VERSION}.safariextz|g" update-safari.plist
 		sed -i "s|{VERSION}|${VERSION}|g" update-safari.plist
 
-		scp update-safari.plist server:"${DEST}/safari/update.plist"
+		cp update-safari.plist "${DEST}/safari/update.plist"
 	fi
 
 	rm -f update-firefox.rdf update-chrome.xml update-safari.plist
