@@ -82,7 +82,9 @@ if [ "$DO_MAKE" == "true" ]; then
 fi
 
 if [ -f "${SRC_DIR}/foxtrick.zip" ]; then
-	xvfb-run python dist/cws_upload.py ${CHROME_ID} "${SRC_DIR}/foxtrick.zip" || \
+	webstore upload --source "${SRC_DIR}/foxtrick.zip" --extension-id "$CHROME_ID" \
+		--client-id "$CWS_CLIENT_ID" --client-secret "$CWS_CLIENT_SECRET" \
+		--refresh-token "$CWS_REFRESH_TOKEN" --auto-publish || \
 		echo "WARNING: failed to upload to CWS" >&2
 fi
 
