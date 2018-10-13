@@ -52,7 +52,7 @@ else
 	VERSION="$MAJOR_VERSION"
 fi
 
-PREVIOUS_VERSION=$(ls -1tr "${DEST}/foxtrick-*.xpi" | tail -1 | grep -Po '[\d.]+(?=.xpi)')
+PREVIOUS_VERSION=$(ls -1tr "${DEST}"/foxtrick-*.xpi | tail -1 | grep -Po '[\d.]+(?=.xpi)')
 echo "Previous: ${PREVIOUS_VERSION}"
 echo "Current: ${VERSION}"
 
