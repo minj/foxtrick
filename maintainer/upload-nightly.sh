@@ -16,10 +16,6 @@
 # 2) Failed to make
 # 3) Failed to upload
 
-# FTP settings arrays
-USER=''
-PASSWORD=''
-HOST='www.foxtrick.org'
 DEST='.'
 DO_MAKE='true'
 UPLOAD_UPDATE_FILES='true'
@@ -28,7 +24,7 @@ CHROME_ID='gpfggkkkmpaalfemiafhfobkfnadeegj'
 FF_ADDON_ID='{9d1f059c-cada-4111-9696-41a62d64e3ba}'
 
 # update manifest settings
-URL_BASE='http://foxtrick.foundationhorizont.org/nightly'
+URL_BASE='https://www.foxtrick.org/nightly'
 DIST=nightly
 
 # source setting
@@ -48,12 +44,6 @@ fi
 echo "using config file: $CONFIG_FILE"
 . $CONFIG_FILE
 
-# see if values are set
-if [[ -z "$USER" || -z "$PASSWORD" ]]; then
-	echo 'Please specify USER and PASSWORD in upload.conf.sh' >&2
-	exit 1
-fi
-
 # version settings
 MAJOR_VERSION=$(cd ${SRC_DIR} && ./version.sh)
 if [ "$DIST" == "nightly" ]; then
@@ -62,10 +52,7 @@ else
 	VERSION="$MAJOR_VERSION"
 fi
 
-UPLOAD_BRANCH=$(basename "$URL_BASE")
-UPLOAD_PARENT=$(dirname "$URL_BASE")
-
-PREVIOUS_VERSION=$(curl "${UPLOAD_PARENT}/last.php?path=${UPLOAD_BRANCH}")
+PREVIOUS_VERSION=$(ls -1tr "${DEST}/foxtrick-*.xpi" | tail -1 | grep -Po '[\d.]+(?=.xpi)')
 echo "Previous: ${PREVIOUS_VERSION}"
 echo "Current: ${VERSION}"
 
@@ -82,7 +69,9 @@ if [ "$DO_MAKE" == "true" ]; then
 fi
 
 if [ -f "${SRC_DIR}/foxtrick.zip" ]; then
-	xvfb-run python dist/cws_upload.py ${CHROME_ID} "${SRC_DIR}/foxtrick.zip" || \
+	webstore upload --source "${SRC_DIR}/foxtrick.zip" --extension-id "$CHROME_ID" \
+		--client-id "$CWS_CLIENT_ID" --client-secret "$CWS_CLIENT_SECRET" \
+		--refresh-token "$CWS_REFRESH_TOKEN" --auto-publish || \
 		echo "WARNING: failed to upload to CWS" >&2
 fi
 
@@ -91,16 +80,16 @@ if [ -f "${SRC_DIR}/foxtrick.xpi" ]; then
 	[[ -z "${GECKO_CHKSUM}" ]] && exit 3
 fi
 
-echo "uploading to $DEST @ server"
+echo "copying to $DEST @ server"
 
 if [ -f "${SRC_DIR}/foxtrick.xpi" ]; then
-	scp "${SRC_DIR}/foxtrick.xpi" server:"${DEST}/foxtrick-${VERSION}.xpi"
+	cp "${SRC_DIR}/foxtrick.xpi" "${DEST}/foxtrick-${VERSION}.xpi"
 fi
 if [ -f "${SRC_DIR}/foxtrick.crx" ]; then
-	scp "${SRC_DIR}/foxtrick.crx" server:"${DEST}/chrome/foxtrick-${VERSION}.crx"
+	cp "${SRC_DIR}/foxtrick.crx" "${DEST}/chrome/foxtrick-${VERSION}.crx"
 fi
 if [ -f "${SRC_DIR}/foxtrick.safariextz" ]; then
-	scp "${SRC_DIR}/foxtrick.safariextz" server:"${DEST}/safari/foxtrick-${VERSION}.safariextz"
+	cp "${SRC_DIR}/foxtrick.safariextz" "${DEST}/safari/foxtrick-${VERSION}.safariextz"
 fi
 
 if [ "$UPLOAD_UPDATE_FILES" == "true" ]; then
@@ -112,7 +101,7 @@ if [ "$UPLOAD_UPDATE_FILES" == "true" ]; then
 		sed -i "s|{UPDATE_HASH}|${GECKO_CHKSUM}|g" update-firefox.rdf
 		sed -i "s|{VERSION}|${VERSION}|g" update-firefox.rdf
 
-		scp update-firefox.rdf server:"${DEST}/update.rdf"
+		cp update-firefox.rdf "${DEST}/update.rdf"
 	fi
 
 	if [ -f "${SRC_DIR}/foxtrick.crx" ]; then
@@ -121,7 +110,7 @@ if [ "$UPLOAD_UPDATE_FILES" == "true" ]; then
 		sed -i "s|{UPDATE_LINK}|${URL_BASE}/chrome/foxtrick-${VERSION}.crx|g" update-chrome.xml
 		sed -i "s|{VERSION}|${VERSION}|g" update-chrome.xml
 
-		scp update-chrome.xml server:"${DEST}/chrome/update.xml"
+		cp update-chrome.xml "${DEST}/chrome/update.xml"
 	fi
 
 	if [ -f "${SRC_DIR}/foxtrick.safariextz" ]; then
@@ -130,7 +119,7 @@ if [ "$UPLOAD_UPDATE_FILES" == "true" ]; then
 		sed -i "s|{UPDATE_LINK}|${URL_BASE}/safari/foxtrick-${VERSION}.safariextz|g" update-safari.plist
 		sed -i "s|{VERSION}|${VERSION}|g" update-safari.plist
 
-		scp update-safari.plist server:"${DEST}/safari/update.plist"
+		cp update-safari.plist "${DEST}/safari/update.plist"
 	fi
 
 	rm -f update-firefox.rdf update-chrome.xml update-safari.plist
