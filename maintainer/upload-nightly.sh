@@ -62,7 +62,10 @@ else
 	VERSION="$MAJOR_VERSION"
 fi
 
-PREVIOUS_VERSION=$(curl ${URL_BASE}/last.php)
+UPLOAD_BRANCH=$(basename "$URL_BASE")
+UPLOAD_PARENT=$(dirname "$URL_BASE")
+
+PREVIOUS_VERSION=$(curl "${UPLOAD_PARENT}/last.php?path=${UPLOAD_BRANCH}")
 echo "Previous: ${PREVIOUS_VERSION}"
 echo "Current: ${VERSION}"
 
@@ -79,13 +82,25 @@ if [ "$DO_MAKE" == "true" ]; then
 fi
 
 if [ -f "${SRC_DIR}/foxtrick.zip" ]; then
-	DISPLAY=:89 python dist/cws_upload.py ${CHROME_ID} "${SRC_DIR}/foxtrick.zip" || \
+	xvfb-run python dist/cws_upload.py ${CHROME_ID} "${SRC_DIR}/foxtrick.zip" || \
 		echo "WARNING: failed to upload to CWS" >&2
 fi
 
 if [ -f "${SRC_DIR}/foxtrick.xpi" ]; then
 	GECKO_CHKSUM=$(dist/amo-upload.sh "${FF_ADDON_ID}" "${VERSION}" "${SRC_DIR}/foxtrick.xpi")
 	[[ -z "${GECKO_CHKSUM}" ]] && exit 3
+fi
+
+echo "uploading to $DEST @ server"
+
+if [ -f "${SRC_DIR}/foxtrick.xpi" ]; then
+	scp "${SRC_DIR}/foxtrick.xpi" server:"${DEST}/foxtrick-${VERSION}.xpi"
+fi
+if [ -f "${SRC_DIR}/foxtrick.crx" ]; then
+	scp "${SRC_DIR}/foxtrick.crx" server:"${DEST}/chrome/foxtrick-${VERSION}.crx"
+fi
+if [ -f "${SRC_DIR}/foxtrick.safariextz" ]; then
+	scp "${SRC_DIR}/foxtrick.safariextz" server:"${DEST}/safari/foxtrick-${VERSION}.safariextz"
 fi
 
 if [ "$UPLOAD_UPDATE_FILES" == "true" ]; then
@@ -96,6 +111,8 @@ if [ "$UPLOAD_UPDATE_FILES" == "true" ]; then
 		sed -i "s|{FF_ADDON_ID}|${FF_ADDON_ID}|g" update-firefox.rdf
 		sed -i "s|{UPDATE_HASH}|${GECKO_CHKSUM}|g" update-firefox.rdf
 		sed -i "s|{VERSION}|${VERSION}|g" update-firefox.rdf
+
+		scp update-firefox.rdf server:"${DEST}/update.rdf"
 	fi
 
 	if [ -f "${SRC_DIR}/foxtrick.crx" ]; then
@@ -103,6 +120,8 @@ if [ "$UPLOAD_UPDATE_FILES" == "true" ]; then
 		cp update-tmpl-chrome.xml update-chrome.xml
 		sed -i "s|{UPDATE_LINK}|${URL_BASE}/chrome/foxtrick-${VERSION}.crx|g" update-chrome.xml
 		sed -i "s|{VERSION}|${VERSION}|g" update-chrome.xml
+
+		scp update-chrome.xml server:"${DEST}/chrome/update.xml"
 	fi
 
 	if [ -f "${SRC_DIR}/foxtrick.safariextz" ]; then
@@ -110,19 +129,25 @@ if [ "$UPLOAD_UPDATE_FILES" == "true" ]; then
 		cp update-tmpl-safari.plist update-safari.plist
 		sed -i "s|{UPDATE_LINK}|${URL_BASE}/safari/foxtrick-${VERSION}.safariextz|g" update-safari.plist
 		sed -i "s|{VERSION}|${VERSION}|g" update-safari.plist
+
+		scp update-safari.plist server:"${DEST}/safari/update.plist"
 	fi
+
+	rm -f update-firefox.rdf update-chrome.xml update-safari.plist
+
 fi
 
-echo "uploading to $HOST $DEST"
-cp ftp-tmpl ftp
-sed -i \
-    -e "s|{USER}|${USER}|g" \
-    -e "s|{PASSWORD}|${PASSWORD}|g" \
-    -e "s|{HOST}|${HOST}|g" \
-    -e "s|{DEST}|${DEST}|g" \
-    -e "s|{PATH}|${SRC_DIR}|g" \
-    -e "s|{VERSION}|${VERSION}|g" ftp
-lftp -f ftp || exit 3
-rm ftp
+# README: old FTP implementation
+# echo "uploading to $HOST $DEST"
+# cp ftp-tmpl ftp
+# sed -i \
+#     -e "s|{USER}|${USER}|g" \
+#     -e "s|{PASSWORD}|${PASSWORD}|g" \
+#     -e "s|{HOST}|${HOST}|g" \
+#     -e "s|{DEST}|${DEST}|g" \
+#     -e "s|{PATH}|${SRC_DIR}|g" \
+#     -e "s|{VERSION}|${VERSION}|g" ftp
+# lftp -f ftp || exit 3
+# rm ftp
 
-rm -f update-firefox.rdf update-chrome.xml update-safari.plist
+# rm -f update-firefox.rdf update-chrome.xml update-safari.plist
