@@ -16,10 +16,6 @@
 # 2) Failed to make
 # 3) Failed to upload
 
-# FTP settings arrays
-USER=''
-PASSWORD=''
-HOST='www.foxtrick.org'
 DEST='.'
 DO_MAKE='true'
 UPLOAD_UPDATE_FILES='true'
@@ -28,7 +24,7 @@ CHROME_ID='gpfggkkkmpaalfemiafhfobkfnadeegj'
 FF_ADDON_ID='{9d1f059c-cada-4111-9696-41a62d64e3ba}'
 
 # update manifest settings
-URL_BASE='http://foxtrick.foundationhorizont.org/nightly'
+URL_BASE='https://www.foxtrick.org/nightly'
 DIST=nightly
 
 # source setting
@@ -47,12 +43,6 @@ if [ $1 ]; then
 fi
 echo "using config file: $CONFIG_FILE"
 . $CONFIG_FILE
-
-# see if values are set
-if [[ -z "$USER" || -z "$PASSWORD" ]]; then
-	echo 'Please specify USER and PASSWORD in upload.conf.sh' >&2
-	exit 1
-fi
 
 # version settings
 MAJOR_VERSION=$(cd ${SRC_DIR} && ./version.sh)
