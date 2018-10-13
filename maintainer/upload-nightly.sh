@@ -75,6 +75,8 @@ if [ -f "${SRC_DIR}/foxtrick.zip" ]; then
 		echo "WARNING: failed to upload to CWS" >&2
 fi
 
+# disable firefox builds temporarily
+rm -f "${SRC_DIR}/foxtrick.xpi"
 if [ -f "${SRC_DIR}/foxtrick.xpi" ]; then
 	GECKO_CHKSUM=$(dist/amo-upload.sh "${FF_ADDON_ID}" "${VERSION}" "${SRC_DIR}/foxtrick.xpi")
 	[[ -z "${GECKO_CHKSUM}" ]] && exit 3
