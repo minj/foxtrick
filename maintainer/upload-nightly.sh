@@ -62,7 +62,7 @@ if [ "${PREVIOUS_VERSION}" == "${VERSION}" ]; then
 fi
 
 if [ "$DO_MAKE" == "true" ]; then
-	if make -C "$SRC_DIR" DIST_TYPE="$DIST" MODULES="$MODULES" UPDATE_URL="$URL_BASE" \
+	if ! make -C "$SRC_DIR" DIST_TYPE="$DIST" MODULES="$MODULES" UPDATE_URL="$URL_BASE" \
 			FF_ADDON_ID="$FF_ADDON_ID" "$@"; then
 
 		echo "ERROR: failed to build" >&2
