@@ -803,7 +803,6 @@ Foxtrick.util.htMl.getHtMl = function(node, options) {
 		markup = markup.trim();
 		return { copyTitle: Foxtrick.L10n.getString('copy.ht-ml'), markup: markup };
 	}
-	return null;
 };
 
 /**

@@ -1,43 +1,10 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 /* from mozilla changed to work for chrome (convincedd) */
 if (Foxtrick.arch === "Sandboxed") {
 
 var PluralForm = (function() {
-
-/* ***** BEGIN LICENSE BLOCK *****
- *   Version: MPL 1.1/GPL 2.0/LGPL 2.1
- *
- * The contents of this file are subject to the Mozilla Public License Version
- * 1.1 (the "License"); you may not use this file except in compliance with
- * the License. You may obtain a copy of the License at
- * http://www.mozilla.org/MPL/
- *
- * Software distributed under the License is distributed on an "AS IS" basis,
- * WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
- * for the specific language governing rights and limitations under the
- * License.
- *
- * The Original Code is Plural Form l10n Code.
- *
- * The Initial Developer of the Original Code is
- * Edward Lee <edward.lee@engineering.uiuc.edu>.
- * Portions created by the Initial Developer are Copyright (C) 2008
- * the Initial Developer. All Rights Reserved.
- *
- * Contributor(s):
- *
- * Alternatively, the contents of this file may be used under the terms of
- * either the GNU General Public License Version 2 or later (the "GPL"), or
- * the GNU Lesser General Public License Version 2.1 or later (the "LGPL"),
- * in which case the provisions of the GPL or the LGPL are applicable instead
- * of those above. If you wish to allow use of your version of this file only
- * under the terms of either the GPL or the LGPL, and not to allow others to
- * use your version of this file under the terms of the MPL, indicate your
- * decision by deleting the provisions above and replace them with the notice
- * and other provisions required by the GPL or the LGPL. If you do not delete
- * the provisions above, a recipient may use your version of this file under
- * the terms of any one of the MPL, the GPL or the LGPL.
- *
- * ***** END LICENSE BLOCK ***** */
 
 var EXPORTED_SYMBOLS = [ "PluralForm" ];
 
@@ -50,6 +17,10 @@ var EXPORTED_SYMBOLS = [ "PluralForm" ];
  * (I.e., the extension hasn't been localized to the browser's locale.)
  *
  * See: http://developer.mozilla.org/en/docs/Localization_and_Plurals
+ *
+ * NOTE: any change to these plural forms need to be reflected in
+ * compare-locales:
+ * https://hg.mozilla.org/l10n/compare-locales/file/default/compare_locales/plurals.py
  *
  * List of methods:
  *
@@ -64,7 +35,6 @@ var EXPORTED_SYMBOLS = [ "PluralForm" ];
  * Note: Basically, makeGetter returns 2 functions that do "get" and "numForm"
  */
 
-
 const kIntlProperties = "chrome://global/locale/intl.properties";
 
 // These are the available plural functions that give the appropriate index
@@ -72,39 +42,43 @@ const kIntlProperties = "chrome://global/locale/intl.properties";
 // of plural forms and the second is the function to figure out the index.
 var gFunctions = [
   // 0: Chinese
-  [1, function(n) {return 0;}],
+  [1, (n) => 0],
   // 1: English
-  [2, function(n) {return n!=1?1:0;}],
+  [2, (n) => n!=1?1:0],
   // 2: French
-  [2, function(n) {return  n>1?1:0;}],
+  [2, (n) => n>1?1:0],
   // 3: Latvian
-  [3, function(n) {return  n%10==1&&n%100!=11?1:n!=0?2:0;}],
+  [3, (n) => n%10==1&&n%100!=11?1:n%10==0?0:2],
   // 4: Scottish Gaelic
-  [4, function(n) {return  n==1||n==11?0:n==2||n==12?1:n>0&&n<20?2:3;}],
+  [4, (n) => n==1||n==11?0:n==2||n==12?1:n>0&&n<20?2:3],
   // 5: Romanian
-  [3, function(n) {return  n==1?0:n==0||n%100>0&&n%100<20?1:2;}],
+  [3, (n) => n==1?0:n==0||n%100>0&&n%100<20?1:2],
   // 6: Lithuanian
-  [3, function(n) {return  n%10==1&&n%100!=11?0:n%10>=2&&(n%100<10||n%100>=20)?2:1;}],
+  [3, (n) => n%10==1&&n%100!=11?0:n%10>=2&&(n%100<10||n%100>=20)?2:1],
   // 7: Russian
-  [3, function(n) {return  n%10==1&&n%100!=11?0:n%10>=2&&n%10<=4&&(n%100<10||n%100>=20)?1:2;}],
+  [3, (n) => n%10==1&&n%100!=11?0:n%10>=2&&n%10<=4&&(n%100<10||n%100>=20)?1:2],
   // 8: Slovak
-  [3, function(n) {return  n==1?0:n>=2&&n<=4?1:2;}],
+  [3, (n) => n==1?0:n>=2&&n<=4?1:2],
   // 9: Polish
-  [3, function(n) {return  n==1?0:n%10>=2&&n%10<=4&&(n%100<10||n%100>=20)?1:2;}],
+  [3, (n) => n==1?0:n%10>=2&&n%10<=4&&(n%100<10||n%100>=20)?1:2],
   // 10: Slovenian
-  [4, function(n) {return  n%100==1?0:n%100==2?1:n%100==3||n%100==4?2:3;}],
+  [4, (n) => n%100==1?0:n%100==2?1:n%100==3||n%100==4?2:3],
   // 11: Irish Gaeilge
-  [5, function(n) {return  n==1?0:n==2?1:n>=3&&n<=6?2:n>=7&&n<=10?3:4;}],
+  [5, (n) => n==1?0:n==2?1:n>=3&&n<=6?2:n>=7&&n<=10?3:4],
   // 12: Arabic
-  [6, function(n) {return  n==0?5:n==1?0:n==2?1:n%100>=3&&n%100<=10?2:n%100>=11&&n%100<=99?3:4;}],
+  [6, (n) => n==0?5:n==1?0:n==2?1:n%100>=3&&n%100<=10?2:n%100>=11&&n%100<=99?3:4],
   // 13: Maltese
-  [4, function(n) {return  n==1?0:n==0||n%100>0&&n%100<=10?1:n%100>10&&n%100<20?2:3;}],
-  // 14: Macedonian
-  [3, function(n) {return  n%10==1?0:n%10==2?1:2;}],
-  // 15: Icelandic
-  [2, function(n) {return  n%10==1&&n%100!=11?0:1;}],
+  [4, (n) => n==1?0:n==0||n%100>0&&n%100<=10?1:n%100>10&&n%100<20?2:3],
+  // 14: Unused
+  [3, (n) => n%10==1?0:n%10==2?1:2],
+  // 15: Icelandic, Macedonian
+  [2, (n) => n%10==1&&n%100!=11?0:1],
   // 16: Breton
-  [5, function(n) {return  n%10==1&&n%100!=11&&n%100!=71&&n%100!=91?0:n%10==2&&n%100!=12&&n%100!=72&&n%100!=92?1:(n%10==3||n%10==4||n%10==9)&&n%100!=13&&n%100!=14&&n%100!=19&&n%100!=73&&n%100!=74&&n%100!=79&&n%100!=93&&n%100!=94&&n%100!=99?2:n%1000000==0&&n!=0?3:4}],
+  [5, (n) => n%10==1&&n%100!=11&&n%100!=71&&n%100!=91?0:n%10==2&&n%100!=12&&n%100!=72&&n%100!=92?1:(n%10==3||n%10==4||n%10==9)&&n%100!=13&&n%100!=14&&n%100!=19&&n%100!=73&&n%100!=74&&n%100!=79&&n%100!=93&&n%100!=94&&n%100!=99?2:n%1000000==0&&n!=0?3:4],
+  // 17: Shuar
+  [2, (n) => n!=0?1:0],
+  // 18: Welsh
+  [6, (n) => n==0?0:n==1?1:n==2?2:n==3?3:n==6?4:5],
 ];
 
 var PluralForm = {
@@ -129,13 +103,8 @@ var PluralForm = {
     delete PluralForm.numForms;
     delete PluralForm.get;
 
-    // Get the plural rule number from the intl stringbundle
-    let ruleNum = Number(Cc["@mozilla.org/intl/stringbundle;1"].
-      getService(Ci.nsIStringBundleService).createBundle(kIntlProperties).
-      GetStringFromName("pluralRule"));
-
     // Make the plural form get function and set it as the default get
-    [PluralForm.get, PluralForm.numForms] = PluralForm.makeGetter(ruleNum);
+    [PluralForm.get, PluralForm.numForms] = PluralForm.makeGetter(PluralForm.ruleNum);
     return PluralForm.get;
   },*/
 
@@ -156,39 +125,33 @@ var PluralForm = {
     }
 
     // Get the desired pluralRule function
-    var numForms = gFunctions[aRuleNum][0];
-	var pluralFunc = gFunctions[aRuleNum][1];
+    let [numForms, pluralFunc] = gFunctions[aRuleNum];
 
     // Return functions that give 1) the number of forms and 2) gets the right
     // plural form
-    return [
-		function(aNum, aWords) {
-		  // Figure out which index to use for the semi-colon separated words
-		  var index = pluralFunc(aNum ? Number(aNum) : 0);
-		  var words = aWords ? aWords.split(/;/) : [""];
+    return [function(aNum, aWords) {
+      // Figure out which index to use for the semi-colon separated words
+      let index = pluralFunc(aNum ? Number(aNum) : 0);
+      let words = aWords ? aWords.split(/;/) : [""];
 
-		  // Explicitly check bounds to avoid strict warnings
-		  var ret = index < words.length ? words[index] : undefined;
+      // Explicitly check bounds to avoid strict warnings
+      let ret = index < words.length ? words[index] : undefined;
 
-		  // Check for array out of bounds or empty strings
-		  if ((ret == undefined) || (ret == "")) {
-			// Report the caller to help figure out who is causing badness
-			var caller = '';//PluralForm.get.caller ? PluralForm.get.caller.name : "top";
+      // Check for array out of bounds or empty strings
+      if ((ret == undefined) || (ret == "")) {
+        // Report the caller to help figure out who is causing badness
+        let caller = '';//Components.stack.caller ? Components.stack.caller.name : "top";
 
-			// Display a message in the error console
-			//Foxtrick.log(["Index #", index, " of '", aWords, "' for value ", aNum,
-			//	" is invalid -- plural rule #", aRuleNum, "; called by ", caller]);
+        // Display a message in the error console
+        //Foxtrick.log(["Index #", index, " of '", aWords, "' for value ", aNum,
+        //  " is invalid -- plural rule #", aRuleNum, "; called by ", caller]);
 
-			// Default to the first entry (which might be empty, but not undefined)
-			ret = words[0];
-		  }
+        // Default to the first entry (which might be empty, but not undefined)
+        ret = words[0];
+      }
 
-		  return ret;
-		},
-		function() {
-			return numForms;
-		}
-	];
+      return ret;
+    }, () => numForms];
   },
 
   /**
@@ -202,7 +165,19 @@ var PluralForm = {
     // We lazily load numForms, so trigger the init logic with get()
     PluralForm.get();
     return PluralForm.numForms;
-  },*/
+  },
+  /**
+   * Get the plural rule number from the intl stringbundle
+   *
+   * @return The plural rule number
+   */
+  /*
+  get ruleNum()
+  {
+    return Number(Cc["@mozilla.org/intl/stringbundle;1"].
+      getService(Ci.nsIStringBundleService).createBundle(kIntlProperties).
+      GetStringFromName("pluralRule"));
+  }*/
 };
 
 return PluralForm;

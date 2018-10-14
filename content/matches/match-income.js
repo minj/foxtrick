@@ -249,7 +249,7 @@ Foxtrick.modules['MatchIncome'] = {
 
 					var row = table.rows[rowIdx];
 					var td = Foxtrick.insertFeaturedCell(row, module, -1);
-					td.textContent = avail ? (100 * usage / capacity).toFixed(1) + '%' : '-';
+					td.textContent = capacity ? (100 * usage / capacity).toFixed(1) + '%' : '-';
 					rowIdx++;
 				}
 

@@ -32,11 +32,6 @@
 			"duty": "support"
 		},
 		{
-			"id": "5024503",
-			"name": "Camelmaniac",
-			"duty": "support"
-		},
-		{
 			"id": "4613900",
 			"name": "Mod-Baumschubser",
 			"duty": "helper"
@@ -217,6 +212,11 @@
 			"duty": "translator"
 		},
 		{
+			"id": "2201648",
+			"name": "Mod-D",
+			"duty": "translator"
+		},
+		{
 			"id": "9668661",
 			"name": "LA-dzsoo",
 			"duty": "translator"
@@ -278,7 +278,7 @@
 		},
 		{
 			"id": "5397227",
-			"name": "LA-Ellydone",
+			"name": "Ellydone",
 			"duty": "translator"
 		},
 		{
@@ -403,7 +403,7 @@
 		},
 		{
 			"id": "815564",
-			"name": "Siem_",
+			"name": "Carpe_Siem_",
 			"duty": "translator"
 		},
 		{
@@ -432,6 +432,11 @@
 			"duty": "translator"
 		},
 		{
+			"id": "12407319",
+			"name": "mudoct",
+			"duty": "translator"
+		},
+		{
 			"id": "12971983",
 			"name": "m4nufactured",
 			"duty": "translator"
@@ -444,6 +449,11 @@
 		{
 			"id": "299466",
 			"name": "CoachDinamo",
+			"duty": "translator"
+		},
+		{
+			"id": "4116867",
+			"name": "BoTTH-RaffaelPinto",
 			"duty": "translator"
 		},
 		{
@@ -462,8 +472,13 @@
 			"duty": "translator"
 		},
 		{
-			"id": "10104187",
-			"name": "Morcivert",
+			"id": "12433095",
+			"name": "janisg",
+			"duty": "translator"
+		},
+		{
+			"id": "11191407",
+			"name": "anna_rose",
 			"duty": "translator"
 		}
 	]

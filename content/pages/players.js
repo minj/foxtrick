@@ -272,28 +272,28 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 			};
 
 			var playerNode;
-			var num = function(nodeName) {
-				var value = xml.num(nodeName, playerNode);
+			var num = function(nodeName, parent) {
+				var value = xml.num(nodeName, parent || playerNode);
 				// deal with goals being undefined during matches
 				if (isNaN(value))
 					return undefined;
 
 				return value;
 			};
-			var money = function(nodeName) {
-				return xml.money(nodeName, currencyRate, playerNode);
+			var money = function(nodeName, parent) {
+				return xml.money(nodeName, currencyRate, parent || playerNode);
 			};
-			var node = function(nodeName) {
-				return xml.node(nodeName, playerNode);
+			var node = function(nodeName, parent) {
+				return xml.node(nodeName, parent || playerNode);
 			};
-			var text = function(nodeName) {
-				return xml.text(nodeName, playerNode);
+			var text = function(nodeName, parent) {
+				return xml.text(nodeName, parent || playerNode);
 			};
-			var bool = function(nodeName) {
-				return xml.bool(nodeName, playerNode);
+			var bool = function(nodeName, parent) {
+				return xml.bool(nodeName, parent || playerNode);
 			};
-			var ifPositive = function(nodeName) {
-				var value = num(nodeName);
+			var ifPositive = function(nodeName, parent) {
+				var value = num(nodeName, parent);
 				if (value > 0)
 					return value;
 				return undefined;
@@ -639,10 +639,10 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 
 		var playerNodes = doc.getElementsByClassName('playerInfo');
 		Foxtrick.forEach(function(playerNode, i) {
-			var paragraphs = playerNode.getElementsByTagName('p');
-			var imgs = playerNode.getElementsByTagName('img');
-			var as = playerNode.getElementsByTagName('a');
-			var bs = playerNode.getElementsByTagName('b');
+			var paragraphs = Foxtrick.toArray(playerNode.getElementsByTagName('p'));
+			var imgs = Foxtrick.toArray(playerNode.getElementsByTagName('img'));
+			var as = Foxtrick.toArray(playerNode.getElementsByTagName('a'));
+			var bs = Foxtrick.toArray(playerNode.getElementsByTagName('b'));
 
 			var id = Foxtrick.Pages.Players.getPlayerId(playerNode);
 			// see if player is already in playerList, add if not
@@ -821,31 +821,33 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				player.transferListed = false;
 			}
 
-			for (var j = 0; j < imgs.length; ++j) {
-				if (Foxtrick.hasClass(imgs[j], 'motherclubBonus')) {
+			for (var img of imgs) {
+				if (Foxtrick.hasClass(img, 'motherclubBonus')) {
 					player.motherClubBonus = doc.createElement('span');
 					player.motherClubBonus.textContent = '✔';
 					player.motherClubBonus.title =
 						Foxtrick.L10n.getString('skilltable.youthplayer');
 				}
-				if (Foxtrick.hasClass(imgs[j], 'cardsOne')) {
-					if (/red_card/i.test(imgs[j].src)) {
+				if (Foxtrick.hasClass(img, 'cardsOne')) {
+					if (/red_card/i.test(img.src)) {
 						player.redCard = 1;
 					}
 					else {
 						player.yellowCard = 1;
 					}
 				}
-				else if (Foxtrick.hasClass(imgs[j], 'cardsTwo')) {
+				else if (Foxtrick.hasClass(img, 'cardsTwo')) {
 					player.yellowCard = 2;
 				}
-				else if (Foxtrick.hasClass(imgs[j], 'injuryBruised')) {
+				else if (Foxtrick.hasClass(img, 'injuryBruised')) {
 					player.bruised = true;
 				}
-				else if (Foxtrick.hasClass(imgs[j], 'injuryInjured')) {
-					player.injuredWeeks = parseInt(imgs[j].nextSibling.textContent, 10);
+				else if (Foxtrick.hasClass(img, 'injuryInjured')) {
+					var injSpan = img.nextSibling;
+					// README: span may contain infinity sign
+					player.injuredWeeks = parseInt(injSpan.textContent, 10) || injSpan.textContent;
 				}
-				else if (Foxtrick.hasClass(imgs[j], 'transferListed')) {
+				else if (Foxtrick.hasClass(img, 'transferListed')) {
 					player.transferListed = true;
 				}
 			}
