@@ -12,11 +12,11 @@
 #
 # Exit codes:
 # 0) Success
-# 1) Variables USER and PASSWORD unset (set in upload.conf.sh)
+# 1) Version already uploaded
 # 2) Failed to make
 # 3) Failed to upload
 
-DEST='.'
+DEST_DIR='.'
 DO_MAKE='true'
 UPLOAD_UPDATE_FILES='true'
 MODULES=modules
@@ -52,46 +52,53 @@ else
 	VERSION="$MAJOR_VERSION"
 fi
 
-PREVIOUS_VERSION=$(ls -1tr "${DEST}"/foxtrick-*.xpi | tail -1 | grep -Po '[\d.]+(?=.xpi)')
+PREVIOUS_VERSION=$(ls -1tr "${DEST_DIR}"/foxtrick-*.xpi | tail -1 | grep -Po '[\d.]+(?=.xpi)')
 echo "Previous: ${PREVIOUS_VERSION}"
 echo "Current: ${VERSION}"
 
 if [ "${PREVIOUS_VERSION}" == "${VERSION}" ]; then
 	echo "Current version matches last upload. Stopping." >&2
-	exit 3
+	exit 1
 fi
 
 if [ "$DO_MAKE" == "true" ]; then
-	(\
-	 cd "$SRC_DIR" && \
-	 make DIST_TYPE="$DIST" MODULES="$MODULES" UPDATE_URL="$URL_BASE" FF_ADDON_ID="$FF_ADDON_ID" "$@"\
-	 ) || exit 2
+	if make -C "$SRC_DIR" DIST_TYPE="$DIST" MODULES="$MODULES" UPDATE_URL="$URL_BASE" \
+			FF_ADDON_ID="$FF_ADDON_ID" "$@"; then
+
+		echo "ERROR: failed to build" >&2
+		exit 2
+	fi
 fi
 
 if [ -f "${SRC_DIR}/foxtrick.zip" ]; then
-	webstore upload --source "${SRC_DIR}/foxtrick.zip" --extension-id "$CHROME_ID" \
-		--client-id "$CWS_CLIENT_ID" --client-secret "$CWS_CLIENT_SECRET" \
-		--refresh-token "$CWS_REFRESH_TOKEN" --auto-publish || \
+	if ! webstore upload --source "${SRC_DIR}/foxtrick.zip" --extension-id "$CHROME_ID" \
+			--client-id "$CWS_CLIENT_ID" --client-secret "$CWS_CLIENT_SECRET" \
+			--refresh-token "$CWS_REFRESH_TOKEN" --auto-publish; then
+
 		echo "WARNING: failed to upload to CWS" >&2
+		#exit 3
+	fi
 fi
 
 # disable firefox builds temporarily
 rm -f "${SRC_DIR}/foxtrick.xpi"
 if [ -f "${SRC_DIR}/foxtrick.xpi" ]; then
 	GECKO_CHKSUM=$(dist/amo-upload.sh "${FF_ADDON_ID}" "${VERSION}" "${SRC_DIR}/foxtrick.xpi")
-	[[ -z "${GECKO_CHKSUM}" ]] && exit 3
+	[ -z "${GECKO_CHKSUM}" ] && echo "ERROR: failed to upload to AMO" >&2 && exit 3
 fi
 
-echo "copying to $DEST @ server"
+echo "copying to $DEST_DIR @ server"
+
+set -e
 
 if [ -f "${SRC_DIR}/foxtrick.xpi" ]; then
-	cp "${SRC_DIR}/foxtrick.xpi" "${DEST}/foxtrick-${VERSION}.xpi"
+	cp "${SRC_DIR}/foxtrick.xpi" "${DEST_DIR}/foxtrick-${VERSION}.xpi"
 fi
 if [ -f "${SRC_DIR}/foxtrick.crx" ]; then
-	cp "${SRC_DIR}/foxtrick.crx" "${DEST}/chrome/foxtrick-${VERSION}.crx"
+	cp "${SRC_DIR}/foxtrick.crx" "${DEST_DIR}/chrome/foxtrick-${VERSION}.crx"
 fi
 if [ -f "${SRC_DIR}/foxtrick.safariextz" ]; then
-	cp "${SRC_DIR}/foxtrick.safariextz" "${DEST}/safari/foxtrick-${VERSION}.safariextz"
+	cp "${SRC_DIR}/foxtrick.safariextz" "${DEST_DIR}/safari/foxtrick-${VERSION}.safariextz"
 fi
 
 if [ "$UPLOAD_UPDATE_FILES" == "true" ]; then
@@ -103,7 +110,7 @@ if [ "$UPLOAD_UPDATE_FILES" == "true" ]; then
 		sed -i "s|{UPDATE_HASH}|${GECKO_CHKSUM}|g" update-firefox.rdf
 		sed -i "s|{VERSION}|${VERSION}|g" update-firefox.rdf
 
-		cp update-firefox.rdf "${DEST}/update.rdf"
+		cp update-firefox.rdf "${DEST_DIR}/update.rdf"
 	fi
 
 	if [ -f "${SRC_DIR}/foxtrick.crx" ]; then
@@ -112,7 +119,7 @@ if [ "$UPLOAD_UPDATE_FILES" == "true" ]; then
 		sed -i "s|{UPDATE_LINK}|${URL_BASE}/chrome/foxtrick-${VERSION}.crx|g" update-chrome.xml
 		sed -i "s|{VERSION}|${VERSION}|g" update-chrome.xml
 
-		cp update-chrome.xml "${DEST}/chrome/update.xml"
+		cp update-chrome.xml "${DEST_DIR}/chrome/update.xml"
 	fi
 
 	if [ -f "${SRC_DIR}/foxtrick.safariextz" ]; then
@@ -121,7 +128,7 @@ if [ "$UPLOAD_UPDATE_FILES" == "true" ]; then
 		sed -i "s|{UPDATE_LINK}|${URL_BASE}/safari/foxtrick-${VERSION}.safariextz|g" update-safari.plist
 		sed -i "s|{VERSION}|${VERSION}|g" update-safari.plist
 
-		cp update-safari.plist "${DEST}/safari/update.plist"
+		cp update-safari.plist "${DEST_DIR}/safari/update.plist"
 	fi
 
 	rm -f update-firefox.rdf update-chrome.xml update-safari.plist
@@ -129,13 +136,13 @@ if [ "$UPLOAD_UPDATE_FILES" == "true" ]; then
 fi
 
 # README: old FTP implementation
-# echo "uploading to $HOST $DEST"
+# echo "uploading to $HOST $DEST_DIR"
 # cp ftp-tmpl ftp
 # sed -i \
 #     -e "s|{USER}|${USER}|g" \
 #     -e "s|{PASSWORD}|${PASSWORD}|g" \
 #     -e "s|{HOST}|${HOST}|g" \
-#     -e "s|{DEST}|${DEST}|g" \
+#     -e "s|{DEST_DIR}|${DEST_DIR}|g" \
 #     -e "s|{PATH}|${SRC_DIR}|g" \
 #     -e "s|{VERSION}|${VERSION}|g" ftp
 # lftp -f ftp || exit 3
