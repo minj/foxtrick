@@ -76,12 +76,10 @@ if [ -f "${SRC_DIR}/foxtrick.zip" ]; then
 			--refresh-token "$CWS_REFRESH_TOKEN" --auto-publish; then
 
 		echo "WARNING: failed to upload to CWS" >&2
-		#exit 3
+		exit 3
 	fi
 fi
 
-# disable firefox builds temporarily
-rm -f "${SRC_DIR}/foxtrick.xpi"
 if [ -f "${SRC_DIR}/foxtrick.xpi" ]; then
 	GECKO_CHKSUM=$(dist/amo-upload.sh "${FF_ADDON_ID}" "${VERSION}" "${SRC_DIR}/foxtrick.xpi")
 	[ -z "${GECKO_CHKSUM}" ] && echo "ERROR: failed to upload to AMO" >&2 && exit 3
@@ -103,14 +101,23 @@ fi
 
 if [ "$UPLOAD_UPDATE_FILES" == "true" ]; then
 	if [ -f "${SRC_DIR}/foxtrick.xpi" ]; then
-		# modify update-firefox.rdf for Gecko
-		cp update-tmpl-firefox.rdf update-firefox.rdf
-		sed -i "s|{UPDATE_LINK}|${URL_BASE}/foxtrick-${VERSION}.xpi|g" update-firefox.rdf
-		sed -i "s|{FF_ADDON_ID}|${FF_ADDON_ID}|g" update-firefox.rdf
-		sed -i "s|{UPDATE_HASH}|${GECKO_CHKSUM}|g" update-firefox.rdf
-		sed -i "s|{VERSION}|${VERSION}|g" update-firefox.rdf
+		# modify update-firefox.json for Gecko
+		cp update-tmpl-firefox.json update-firefox.json
+		sed -i "s|{UPDATE_LINK}|${URL_BASE}/foxtrick-${VERSION}.xpi|g" update-firefox.json
+		sed -i "s|{FF_ADDON_ID}|${FF_ADDON_ID}|g" update-firefox.json
+		sed -i "s|{UPDATE_HASH}|${GECKO_CHKSUM}|g" update-firefox.json
+		sed -i "s|{VERSION}|${VERSION}|g" update-firefox.json
 
-		cp update-firefox.rdf "${DEST_DIR}/update.rdf"
+		cp update-firefox.json "${DEST_DIR}/update.json"
+
+		# # modify update-firefox.rdf for Gecko
+		# cp update-tmpl-firefox.rdf update-firefox.rdf
+		# sed -i "s|{UPDATE_LINK}|${URL_BASE}/foxtrick-${VERSION}.xpi|g" update-firefox.rdf
+		# sed -i "s|{FF_ADDON_ID}|${FF_ADDON_ID}|g" update-firefox.rdf
+		# sed -i "s|{UPDATE_HASH}|${GECKO_CHKSUM}|g" update-firefox.rdf
+		# sed -i "s|{VERSION}|${VERSION}|g" update-firefox.rdf
+
+		# cp update-firefox.rdf "${DEST_DIR}/update.rdf"
 	fi
 
 	if [ -f "${SRC_DIR}/foxtrick.crx" ]; then
@@ -131,7 +138,7 @@ if [ "$UPLOAD_UPDATE_FILES" == "true" ]; then
 		cp update-safari.plist "${DEST_DIR}/safari/update.plist"
 	fi
 
-	rm -f update-firefox.rdf update-chrome.xml update-safari.plist
+	rm -f update-firefox.json update-firefox.rdf update-chrome.xml update-safari.plist
 
 fi
 
