@@ -15,11 +15,13 @@ REV_VERSION := $(shell git describe --long | sed -E 's/([^-]+)-g.*/\1/;s/-/./g')
 HASH := $(shell git rev-parse --short HEAD)
 
 # URL prefix of update manifest
-UPDATE_URL = https://www.foxtrick.org/nightly/
+UPDATE_URL = https://www.foxtrick.org/nightly
 
 BUILD_DIR = build
 SAFARI_TARGET = foxtrick.safariextension
 SAFARI_BUILD_DIR = build/$(SAFARI_TARGET)
+
+FF_ADDON_ID = '{9d1f059c-cada-4111-9696-41a62d64e3ba}'
 
 UNSIGNED_CHROME = false
 ifeq ($(DIST_TYPE),$(filter $(DIST_TYPE),nightly hosting)) #OR
@@ -39,6 +41,8 @@ ifeq ($(VERSION),)
 	endif
 endif
 
+ZIP = zip -q
+
 # cf safari: xar needs to have sign capabilities ie xar --help shows --sign as option.
 # sudo apt-get install gcc libssl-dev libxml2-dev make openssl lftp autoconf build-essential
 # git clone git://github.com/mackyle/xar
@@ -48,40 +52,51 @@ endif
 # make
 # sudo make install
 # see http://code.google.com/p/xar/issues/detail?id=76 for an howto
-ZIP = zip -q
 XAR = xar
 
-ROOT_FILES_FIREFOX = chrome.manifest \
-	install.rdf \
-	bootstrap.js \
-	icon.png \
-	COPYING \
-	HACKING.md
-ROOT_FILES_CHROME = manifest.json \
-	COPYING \
-	HACKING.md
-ROOT_FILES_SAFARI = Info.plist \
-	Settings.plist \
-	skin/icon.png \
-	COPYING \
-	HACKING.md
 ROOT_FOLDERS_FIREFOX = defaults/ res/
 ROOT_FOLDERS_CHROME = defaults/ skin/
 ROOT_FOLDERS_SAFARI = defaults/ skin/
-SCRIPT_FOLDERS = api/ \
+
+ROOT_FILES_FIREFOX = \
+	bootstrap.js \
+	chrome.manifest \
+	COPYING \
+	HACKING.md \
+	icon.png \
+	install.rdf \
+
+ROOT_FILES_CHROME = \
+	COPYING \
+	HACKING.md \
+	manifest.json \
+
+ROOT_FILES_SAFARI = \
+	COPYING \
+	HACKING.md \
+	Info.plist \
+	Settings.plist \
+	skin/icon.png \
+
+SCRIPT_FOLDERS = \
+	api/ \
 	lib/ \
 	pages/ \
-	util/
-RESOURCE_FOLDERS = data/ \
+	util/ \
+
+RESOURCES = \
+	data/ \
 	locale/ \
 	resources/ \
+	faq-links.yml \
+	faq.yml \
 	foxtrick.properties \
 	foxtrick.screenshots \
-	release-notes.yml \
 	release-notes-links.yml \
-	faq.yml \
-	faq-links.yml
-CONTENT_FILES = add-class.js \
+	release-notes.yml \
+
+CONTENT_FILES = \
+	add-class.js \
 	core.js \
 	entry.js \
 	env.js \
@@ -93,32 +108,90 @@ CONTENT_FILES = add-class.js \
 	read-ht-prefs.js \
 	redirections.js \
 	ui.js \
-	xml-load.js
-CONTENT_FILES_FIREFOX = $(CONTENT_FILES) bootstrap-firefox.js \
+	xml-load.js \
+
+CONTENT_FILES_FIREFOX = $(CONTENT_FILES) \
+	background.js \
 	bootstrap-fennec.js \
+	bootstrap-firefox.js \
+	loader-fennec.js \
+	loader-firefox.js \
 	preferences.html \
 	preferences.js \
 	scripts-fennec.js \
+
+CONTENT_FILES_CHROME = $(CONTENT_FILES) \
+	background.html \
 	background.js \
-	loader-firefox.js \
-	loader-fennec.js
-	# ../res/
-CONTENT_FILES_CHROME = $(CONTENT_FILES) background.html \
-	background.js \
-	preferences.html \
-	preferences.js \
+	loader-chrome.js \
 	popup.html \
 	popup.js \
-	loader-chrome.js
-CONTENT_FILES_SAFARI = $(CONTENT_FILES) background.html \
-	background.js \
 	preferences.html \
 	preferences.js \
-	loader-chrome.js
-BACKGROUND_LIBS = \
-	jquery.js
 
-all: firefox chrome
+CONTENT_FILES_SAFARI = $(CONTENT_FILES) \
+	background.html \
+	background.js \
+	loader-chrome.js \
+	preferences.html \
+	preferences.js \
+
+
+all: webext-gecko chrome
+
+webext-gecko:
+	#
+	############ make firefox-webext ############
+	#
+	make clean-firefox clean-build
+	mkdir $(BUILD_DIR)
+	# copy root files
+	cp -r $(ROOT_FILES_CHROME) $(ROOT_FOLDERS_CHROME) $(BUILD_DIR)
+	# content/
+	mkdir $(BUILD_DIR)/content
+	cd content/; \
+	cp -r $(SCRIPT_FOLDERS) $(RESOURCES) $(CONTENT_FILES_CHROME) \
+		../$(BUILD_DIR)/content
+	# modules
+	cd content/; \
+	cat ../$(MODULES) | while read m; do cp --parents "$$m" ../$(BUILD_DIR)/content; done;
+	# remove ignore modules from files
+	python module-update.py build -s $(MODULES) -e $(IGNORED_MODULES) -d $(BUILD_DIR)/
+	# set branch, name and id
+	cd $(BUILD_DIR); \
+	sed -i -r "/extensions\\.foxtrick\\.prefs\\.branch/s|\"dev\"|\"$(BRANCH_FULL) webext\"|" defaults/preferences/foxtrick.js; \
+	sed -i -r 's|("id": ").+(")|\1$(FF_ADDON_ID)\2|' manifest.json; \
+	sed -i -r 's|("name": ").+(")|\1Foxtrick WebExt ($(BRANCH))\2|' manifest.json
+
+# modify according to dist type
+ifeq ($(DIST_TYPE),nightly)
+	# add minor version
+	cd $(BUILD_DIR); \
+	../version.sh $(VERSION)
+endif
+
+ifeq ($(DIST_TYPE),hosting)
+	# remove update_url
+	cd $(BUILD_DIR); \
+	sed -i -r '/update_url/d' manifest.json
+else
+	# set update_url
+	cd $(BUILD_DIR); \
+	sed -i -r 's|("update_url": ").+(")|\1'$(UPDATE_URL)'/update.json\2|' manifest.json
+endif
+
+	# strip comments
+	cd $(BUILD_DIR); \
+	sed -i -r '/\/\/ <!--/d' manifest.json
+	# make android-prefs after all modifications are done
+	cd $(BUILD_DIR)/defaults/preferences; \
+	cat foxtrick.js foxtrick.android > foxtrick.android.js; \
+	rm foxtrick.android
+	# make xpi
+	cd $(BUILD_DIR); \
+	$(ZIP) -r ../$(APP_NAME).xpi *
+	# clean up
+	make clean-build
 
 firefox:
 	#
@@ -134,32 +207,23 @@ firefox:
 	cp -r skin $(BUILD_DIR)/chrome
 	# content/
 	cd content/; \
-	cp -r $(SCRIPT_FOLDERS) $(RESOURCE_FOLDERS) $(CONTENT_FILES_FIREFOX) \
+	cp -r $(SCRIPT_FOLDERS) $(RESOURCES) $(CONTENT_FILES_FIREFOX) \
 		../$(BUILD_DIR)/chrome/content
 	# modules
 	cd content/; \
 	cat ../$(MODULES) | while read m; do cp --parents "$$m" ../$(BUILD_DIR)/chrome/content; done;
 	# remove ignore modules from files
 	python module-update.py build -s $(MODULES) -e $(IGNORED_MODULES) -d $(BUILD_DIR)/chrome/
-	#removes zips from res
+	# removes zips from res
 	rm -rf $(BUILD_DIR)/chrome/*/*.zip
 	rm -rf $(BUILD_DIR)/chrome/*/*/*.zip
-	# build jar
+	# removing CVS files and empty dirs
 	cd $(BUILD_DIR)/chrome; \
-	$(ZIP) -0 -r $(APP_NAME).jar `find . \( -path '*CVS*' -o -path \
-		'*.git*' \) -prune -o -type f -print | grep -v \~ `; \
-	rm -rf content skin
-	# ditch the jar
+	find . \( -path '*CVS*' -o -path '*.git*' \) -o \( -type d -empty \) -print -delete
+	# moving back to BUILD_DIR
 	cd $(BUILD_DIR); \
-	unzip -o chrome/$(APP_NAME).jar; \
+	mv chrome/* ./; \
 	rm -rf chrome
-	# process manifest
-	#cd $(BUILD_DIR); \
-	#if test -f chrome.manifest; \
-	#	then \
-	#	sed -i -r 's|^(content\s+\S*\s+)(\S*/)(.*)$$|\1jar:chrome/'$(APP_NAME)'.jar!/\2\3|' chrome.manifest; \
-	#	sed -i -r 's|^(skin\|locale)(\s+\S*\s+\S*\s+)(.*/)$$|\1\2jar:chrome/'$(APP_NAME)'.jar!/\3|' chrome.manifest; \
-	#fi
 	# set branch
 	cd $(BUILD_DIR); \
 	sed -i -r "/extensions\\.foxtrick\\.prefs\\.branch/s|\"dev\"|\"$(BRANCH_FULL) mozilla\"|" defaults/preferences/foxtrick.js
@@ -193,7 +257,8 @@ endif
 
 	# make android-prefs after all modifications are done
 	cd $(BUILD_DIR)/defaults/preferences; \
-	cat foxtrick.js foxtrick.android > foxtrick.android.js
+	cat foxtrick.js foxtrick.android > foxtrick.android.js; \
+	rm foxtrick.android
 	# make xpi
 	cd $(BUILD_DIR); \
 	$(ZIP) -r ../$(APP_NAME).xpi *
@@ -211,7 +276,7 @@ chrome:
 	# content/
 	mkdir $(BUILD_DIR)/content
 	cd content/; \
-	cp -r $(SCRIPT_FOLDERS) $(RESOURCE_FOLDERS) $(CONTENT_FILES_CHROME) \
+	cp -r $(SCRIPT_FOLDERS) $(RESOURCES) $(CONTENT_FILES_CHROME) \
 		../$(BUILD_DIR)/content
 	# modules
 	cd content/; \
@@ -221,23 +286,26 @@ chrome:
 	# set branch
 	cd $(BUILD_DIR); \
 	sed -i -r "/extensions\\.foxtrick\\.prefs\\.branch/s|\"dev\"|\"$(BRANCH_FULL) chrome\"|" defaults/preferences/foxtrick.js
+	# remove gecko info
+	cd $(BUILD_DIR); \
+	sed -i '/<!-- gecko-specific -->/,/<!-- end gecko-specific -->/d' manifest.json
 
 # modify according to dist type
 ifeq ($(DIST_TYPE),nightly)
 	# add minor version and change name
 	cd $(BUILD_DIR); \
 	../version.sh $(VERSION); \
-	sed -i -r 's|("name" : ").+(")|\1Foxtrick (Beta)\2|' manifest.json
+	sed -i -r 's|("name": ").+(")|\1Foxtrick (Beta)\2|' manifest.json
 else ifeq ($(DIST_TYPE),light)
 	# change name
 	cd $(BUILD_DIR); \
-	sed -i -r 's|("name" : ").+(")|\1Foxtrick (light)\2|' manifest.json
+	sed -i -r 's|("name": ").+(")|\1Foxtrick (light)\2|' manifest.json
 endif
 
 ifneq ($(DIST_TYPE),hosting)
 	# make crx
 	cd $(BUILD_DIR); \
-	sed -i -r 's|("update_url" : ").+(")|\1'$(UPDATE_URL)'/chrome/update.xml\2|' manifest.json; \
+	sed -i -r 's|("update_url": ").+(")|\1'$(UPDATE_URL)'/chrome/update.xml\2|' manifest.json; \
 	sed -i -r '/\/\/ <!--/d' manifest.json
 	./maintainer/crxmake.sh $(BUILD_DIR) maintainer/chrome.pem
 	mv $(BUILD_DIR).crx $(APP_NAME).crx
@@ -264,7 +332,7 @@ safari:
 	# content/
 	mkdir $(SAFARI_BUILD_DIR)/content
 	cd content/; \
-	cp -r $(SCRIPT_FOLDERS) $(RESOURCE_FOLDERS) $(CONTENT_FILES_SAFARI) \
+	cp -r $(SCRIPT_FOLDERS) $(RESOURCES) $(CONTENT_FILES_SAFARI) \
 		../$(SAFARI_BUILD_DIR)/content
 	# modules
 	cd content/; \
