@@ -19,11 +19,13 @@ cd maintainer || logf "Cannot cd to maintainer"
 #./crowdin-download.sh || echo "Cannot download external translations"
 #./commit.locale.sh || echo "Cannot commit locale"
 
-if ! ./upload-nightly.sh -c upload.beta.conf.sh BRANCH=beta XAR=/usr/local/bin/xar; then
+./upload-nightly.sh -c upload.beta.conf.sh BRANCH=beta XAR=/usr/local/bin/xar || {
 	if [ $? -ne 1 ]; then
-		logf "Cannot upload beta"
+		logf "Cannot upload beta";
+	else
+		log "Success: no new build was needed."
+		exit 0
 	fi
-	log "Success: no new build was needed." && exit 0
-fi
+}
 
 log "Success beta upload."
