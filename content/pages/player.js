@@ -1,8 +1,9 @@
-'use strict';
 /* player.js
  * Utilities on player page
  * @author ryanli, LA-MJ, Greblys
  */
+
+'use strict';
 
 if (!Foxtrick)
 	var Foxtrick = {};
@@ -53,12 +54,13 @@ Foxtrick.Pages.Player.getAge = function(doc) {
 
 		var age = {
 			years: parseInt(birthdayMatch[1], 10),
-			days: parseInt(birthdayMatch[2], 10)
+			days: parseInt(birthdayMatch[2], 10),
 		};
 		return age;
 	}
 	catch (e) {
 		Foxtrick.log(e);
+		return null;
 	}
 };
 
@@ -103,8 +105,10 @@ Foxtrick.Pages.Player.getId = function(doc) {
  */
 Foxtrick.Pages.Player.getNationalityId = function(doc) {
 	var id = null;
-	var link = this.isSenior(doc) ? doc.getElementsByClassName('flag')[0] :
+	var link = this.isSenior(doc) ?
+		doc.getElementsByClassName('flag')[0] :
 		doc.querySelector('.playerInfo a[href^="/World/Leagues/League.aspx"]');
+
 	if (link) {
 		var val = Foxtrick.getParameterFromUrl(link.href, 'LeagueID');
 		id = parseInt(val, 10);
@@ -171,6 +175,7 @@ Foxtrick.Pages.Player.getAttributes = function(doc) {
 			var num = function(link) {
 				return Foxtrick.util.id.getSkillLevelFromLink(link);
 			};
+
 			// form vs stamina
 			if (regE.test(links[1].href)) {
 				attrs.form = num(links[1]);
@@ -201,12 +206,14 @@ Foxtrick.Pages.Player.getAttributes = function(doc) {
 				offset = 1;
 				attrs.coachSkill = num(links[2]);
 			}
+
 			// personality:
 			// gentleness aggressiveness honesty
 			for (var i = 2 + offset; i < 5 + offset; i++) {
 				var attr = Foxtrick.getParameterFromUrl(links[i], 'lt');
 				attrs[attr] = num(links[i]);
 			}
+
 			// leadership vs experience
 			if (regE.test(links[6 + offset].href)) {
 				attrs.leadership = num(links[6 + offset]);
@@ -216,6 +223,7 @@ Foxtrick.Pages.Player.getAttributes = function(doc) {
 				attrs.leadership = num(links[5 + offset]);
 				attrs.experience = num(links[6 + offset]);
 			}
+
 			// loyalty
 			attrs.loyalty = num(links[7 + offset]);
 
@@ -493,7 +501,7 @@ Foxtrick.Pages.Player.getSkillsWithText = function(doc) {
  */
 Foxtrick.Pages.Player.parseSeniorSkills = function(table) {
 	var skillMap = {
-		senior_bars: [
+		seniorBars: [
 			'keeper',
 			'defending',
 			'playmaking',
@@ -516,13 +524,13 @@ Foxtrick.Pages.Player.parseSeniorSkills = function(table) {
 	var found = true, regE = /ll=(\d+)/i;
 	var skills = {}, skillTexts = {}, skillNames = {};
 	var parseSeniorBars = function(table) {
-		var order = skillMap.senior_bars;
+		var order = skillMap.seniorBars;
 		var rows = table.rows;
 		for (var i = 0; i < order.length; ++i) {
 			var skillLink = rows[i].getElementsByTagName('a')[0];
 			if (!regE.test(skillLink.href)) {
 				found = false;
-				return; //skills are not visible
+				return; // skills are not visible
 			}
 			var skillValue = parseInt(skillLink.href.match(regE)[1], 10);
 			var skillText = skillLink.textContent.trim();
@@ -540,12 +548,12 @@ Foxtrick.Pages.Player.parseSeniorSkills = function(table) {
 			var cell = cells[2 * i + 1];
 			if (!cell) {
 				found = false;
-				return; //skills are not visible
+				return; // skills are not visible
 			}
 			var skillLink = cell.getElementsByTagName('a')[0];
 			if (!regE.test(skillLink.href)) {
 				found = false;
-				return; //skills are not visible
+				return; // skills are not visible
 			}
 			var skillValue = parseInt(skillLink.href.match(regE)[1], 10);
 			var skillText = skillLink.textContent.trim();
