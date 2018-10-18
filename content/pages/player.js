@@ -280,13 +280,26 @@ Foxtrick.Pages.Player.isBruised = function(doc) {
 Foxtrick.Pages.Player.getInjuryWeeks = function(doc) {
 	var weeks = 0;
 	try {
-		var infoTable = doc.querySelector('.playerInfo table');
-		var injuryCell = infoTable.rows[4].cells[1];
-		var injuryImages = injuryCell.getElementsByTagName('img');
-		if (injuryImages.length) {
-			if (/injured.gif/i.test(injuryImages[0].src)) {
-				var length = injuryImages[0].nextSibling;
-				weeks = parseInt(length.textContent.match(/\d+/), 10);
+		var injuryCell, infoTable;
+
+		var teamLink = doc.querySelector('#mainBody a[href^="/Club/?TeamID="]');
+		if (teamLink && (infoTable = teamLink.closest('table'))) {
+			var icon = infoTable.querySelector('.plaster, .icon-injury');
+			if (icon) {
+				injuryCell = icon.closest('td');
+				var injuryText = injuryCell.textContent.trim().replace(/\u221e/, 'Infinity');
+				weeks = parseFloat(injuryText) || 0;
+			}
+		}
+		else {
+			infoTable = doc.querySelector('.playerInfo table');
+			injuryCell = infoTable.rows[4].cells[1];
+			var injuryImages = injuryCell.getElementsByTagName('img');
+			if (injuryImages.length) {
+				if (/injured.gif/i.test(injuryImages[0].src)) {
+					var length = injuryImages[0].nextSibling;
+					weeks = parseInt(length.textContent.match(/\d+/), 10);
+				}
 			}
 		}
 	}
@@ -349,6 +362,26 @@ Foxtrick.Pages.Player.getTeamName = function(doc) {
 };
 
 /**
+ * Get the player info table.
+ *
+ * Senior player only.
+ * @param  {document} doc
+ * @return {{isNewDesign: Boolean, table: element}}
+ */
+Foxtrick.Pages.Player.getInfoTable = function(doc) {
+	var isNewDesign = false;
+	var infoDiv = doc.querySelector('.transferPlayerInformation');
+	if (infoDiv)
+		isNewDesign = true;
+	else
+		infoDiv = doc.querySelector('.playerInfo');
+
+	var table = infoDiv.querySelector('table');
+
+	return { isNewDesign, table };
+};
+
+/**
  * Get the player wage cell.
  *
  * Senior player only.
@@ -359,9 +392,10 @@ Foxtrick.Pages.Player.getWageCell = function(doc) {
 	var ret = null;
 	if (this.isSenior(doc)) {
 		try {
-			var infoTable = doc.querySelector('.playerInfo table');
+			let { isNewDesign, table: infoTable } = this.getInfoTable(doc);
+
 			// wage position varies for free agents
-			var rowIdx = this.isFreeAgent(doc) ? 1 : 2;
+			var rowIdx = isNewDesign || this.isFreeAgent(doc) ? 1 : 2;
 			ret = infoTable.rows[rowIdx].cells[1];
 		}
 		catch (e) {
@@ -474,14 +508,14 @@ Foxtrick.Pages.Player.getSkillsWithText = function(doc) {
 	// }
 
 	try {
-		var skillTable = doc.querySelector('.mainBox table');
+		var skillTable = doc.querySelector('.transferPlayerSkills, .mainBox table');
 		if (skillTable && this.isPage(doc)) {
-			if (this.isSenior(doc)) {
+			if (this.isSenior(doc))
 				return this.parseSeniorSkills(skillTable);
-			}
-			else
-				return this.parseYouthSkills(skillTable);
+
+			return this.parseYouthSkills(skillTable);
 		}
+		return null;
 	}
 	catch (e) {
 		Foxtrick.log(e);
@@ -564,12 +598,42 @@ Foxtrick.Pages.Player.parseSeniorSkills = function(table) {
 			skillNames[order[i]] = skillName;
 		}
 	};
+	var parseNewSkills = function(table) {
+		var order = skillMap.seniorBars;
+		var cells = table.querySelectorAll('td');
+		for (var i = 0; i < order.length; ++i) {
+			var cell = cells[3 * i + 1];
+			if (!cell) {
+				found = false;
+				return; // skills are not visible
+			}
+
+			var skillLink = cell.querySelector('a');
+			if (!regE.test(skillLink.href)) {
+				found = false;
+				return; // skills are not visible
+			}
+
+			var skillValue = parseInt(skillLink.href.match(regE)[1], 10);
+			var skillText = skillLink.textContent.trim();
+			var skillName = cells[3 * i].textContent.trim();
+			skills[order[i]] = skillValue;
+			skillTexts[order[i]] = skillText;
+			skillNames[order[i]] = skillName;
+		}
+	};
+
 	try {
-		var hasBars = table.querySelector('.percentImage, .ft-percentImage');
-		if (hasBars)
-			parseSeniorBars(table);
-		else
-			parseSeniorTable(table);
+		if (Foxtrick.hasClass(table, 'transferPlayerSkills')) {
+			parseNewSkills(table);
+		}
+		else {
+			var hasBars = table.querySelector('.percentImage, .ft-percentImage');
+			if (hasBars)
+				parseSeniorBars(table);
+			else
+				parseSeniorTable(table);
+		}
 	}
 	catch (e) {
 		Foxtrick.log(e);
