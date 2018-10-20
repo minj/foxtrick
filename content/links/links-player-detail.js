@@ -32,8 +32,6 @@ Foxtrick.modules['LinksPlayerDetail'] = {
 		if (Foxtrick.Pages.Player.wasFired(doc))
 			return;
 
-		var playerInfo = doc.getElementsByClassName('playerInfo')[0];
-		var infoTable = playerInfo.getElementsByTagName('table')[0];
 		var mainBox = doc.getElementsByClassName('mainBox')[0];
 		var skillTable = mainBox ? mainBox.getElementsByTagName('table')[0] : null;
 
@@ -117,7 +115,7 @@ Foxtrick.modules['LinksPlayerDetail'] = {
 		if (injuredWeeks > 0) {
 			var injuryLinks = {
 				type: 'playerhealinglink',
-				parent: infoTable.rows[4].cells[1],
+				parent: Foxtrick.Pages.Player.getInjuryCell(doc),
 				className: 'ft-link-injury',
 			};
 			types.push(injuryLinks);
