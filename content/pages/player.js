@@ -430,7 +430,7 @@ Foxtrick.Pages.Player.getWage = function(doc) {
 
 	var ret = { base: wage, bonus: 0, total: wage };
 
-	var hasBonus = /%/.test(wageText);
+	var hasBonus = /%/.test(wageText) || wageCell.querySelector('span[title]');
 	if (hasBonus) {
 		var bonus = Math.round(wage / 6);
 		ret.bonus = bonus;
