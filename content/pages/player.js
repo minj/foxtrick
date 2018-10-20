@@ -283,6 +283,33 @@ Foxtrick.Pages.Player.isBruised = function(doc) {
 };
 
 /**
+ * Get the player injury cell.
+ *
+ * Senior player only.
+ * @param  {document} doc
+ * @return {element}
+ */
+Foxtrick.Pages.Player.getInjuryCell = function(doc) {
+	var ret = null;
+	try {
+		var injuryRow, infoTable;
+		var teamLink = doc.querySelector('#mainBody a[href^="/Club/?TeamID="]');
+		if (teamLink && (infoTable = teamLink.closest('table')) ||
+			(infoTable = doc.querySelector('.playerInfo table'))) {
+			var icon = infoTable.querySelector('.plaster, .icon-injury');
+			if (icon)
+				ret = icon.closest('td');
+			else if ((injuryRow = infoTable.rows[4]))
+				ret = injuryRow.cells[1];
+		}
+	}
+	catch (e) {
+		Foxtrick.log(e);
+	}
+	return ret;
+};
+
+/**
  * Get the player injury length
  * @param  {document} doc
  * @return {number}
@@ -290,25 +317,10 @@ Foxtrick.Pages.Player.isBruised = function(doc) {
 Foxtrick.Pages.Player.getInjuryWeeks = function(doc) {
 	var weeks = 0;
 	try {
-		var injuryRow, injuryCell, infoTable;
-		var teamLink = doc.querySelector('#mainBody a[href^="/Club/?TeamID="]');
-		if (teamLink && (infoTable = teamLink.closest('table')) ||
-		    (infoTable = doc.querySelector('.playerInfo table'))) {
-			var icon = infoTable.querySelector('.plaster, .icon-injury');
-			if (icon) {
-				injuryCell = icon.closest('td');
-				var injuryText = injuryCell.textContent.trim().replace(/\u221e/, 'Infinity');
-				weeks = parseFloat(injuryText) || 0;
-			}
-			else if ((injuryRow = infoTable.rows[4])) {
-				injuryCell = injuryRow.cells[1];
-				var injuryImage = injuryCell.querySelector('img');
-				if (injuryImage && /injured.gif/i.test(injuryImage.src)) {
-					var lengthNode = injuryImage.nextSibling;
-					var length = lengthNode.textContent.trim().replace(/\u221e/, 'Infinity');
-					weeks = parseFloat(length);
-				}
-			}
+		let injuryCell = this.getInjuryCell(doc);
+		if (injuryCell) {
+			let injuryText = injuryCell.textContent.trim().replace(/\u221e/, 'Infinity');
+			weeks = parseFloat(injuryText) || 0;
 		}
 	}
 	catch (e) {
