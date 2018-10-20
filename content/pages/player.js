@@ -278,19 +278,8 @@ Foxtrick.Pages.Player.isCoach = function(doc) {
  * @return {Boolean}
  */
 Foxtrick.Pages.Player.isBruised = function(doc) {
-	var bruised = false;
-	try {
-		var infoTable = doc.querySelector('.playerInfo table');
-		var injuryCell = infoTable.rows[4].cells[1];
-		var injuryImages = injuryCell.getElementsByTagName('img');
-		if (injuryImages.length > 0) {
-			bruised = /bruised.gif/i.test(injuryImages[0].src);
-		}
-	}
-	catch (e) {
-		Foxtrick.log(e);
-	}
-	return bruised;
+	let mainBody = doc.getElementById('mainBody');
+	return !!mainBody.querySelector('.plaster, img[src$="/bruised.gif"]');
 };
 
 /**
