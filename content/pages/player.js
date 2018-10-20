@@ -197,9 +197,20 @@ Foxtrick.Pages.Player.getAttributes = function(doc) {
 	try {
 		let { isNewDesign, table: infoTable } = this.getInfoTable(doc);
 		if (isNewDesign) {
-			let getInfoLink = i => infoTable.rows[i].cells[1].querySelector('.skill');
-			attrs.form = num(getInfoLink(3));
-			attrs.stamina = num(getInfoLink(4));
+			let getNumFromRow = (i) => {
+				let cell = infoTable.rows[i].cells[1];
+				let link = cell.querySelector('.skill');
+				let skillBar = cell.querySelector('.ht-bar');
+				if (link)
+					return num(link);
+				else if (skillBar) {
+					return parseInt(skillBar.getAttribute('level'), 10);
+				}
+				throw Error('trait not found');
+			};
+
+			attrs.form = getNumFromRow(3);
+			attrs.stamina = getNumFromRow(4);
 
 			personLinks = Foxtrick.toArray(doc.querySelectorAll('#mainBody > .skill'));
 		}
@@ -267,19 +278,8 @@ Foxtrick.Pages.Player.isCoach = function(doc) {
  * @return {Boolean}
  */
 Foxtrick.Pages.Player.isBruised = function(doc) {
-	var bruised = false;
-	try {
-		var infoTable = doc.querySelector('.playerInfo table');
-		var injuryCell = infoTable.rows[4].cells[1];
-		var injuryImages = injuryCell.getElementsByTagName('img');
-		if (injuryImages.length > 0) {
-			bruised = /bruised.gif/i.test(injuryImages[0].src);
-		}
-	}
-	catch (e) {
-		Foxtrick.log(e);
-	}
-	return bruised;
+	let mainBody = doc.getElementById('mainBody');
+	return !!mainBody.querySelector('.plaster, img[src$="/bruised.gif"]');
 };
 
 /**
