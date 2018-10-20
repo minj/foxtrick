@@ -143,11 +143,11 @@ Foxtrick.Pages.Player.getTsi = function(doc) {
 	var tsi = null;
 	if (this.isSenior(doc)) {
 		try {
-			var infoTable = doc.querySelector('.playerInfo table');
-			var rowIdx = this.isFreeAgent(doc) ? 0 : 1;
-			var tsiCell = infoTable.rows[rowIdx].cells[1];
-			var tsiString = tsiCell.textContent.replace(/\D/g, '');
-			tsi = parseInt(tsiString, 10);
+			let { isNewDesign, table: infoTable } = this.getInfoTable(doc);
+			let rowIdx = isNewDesign || this.isFreeAgent(doc) ? 0 : 1;
+			let tsiCell = infoTable.rows[rowIdx].cells[1];
+			let tsiString = tsiCell.textContent.trim();
+			tsi = parseInt(tsiString.replace(/\D/g, ''), 10);
 		}
 		catch (e) {
 			Foxtrick.log(e);
