@@ -40,7 +40,7 @@ Foxtrick.modules['CopyPlayerAd'] = {
 				ad += ' [youthplayerid=' + Foxtrick.Pages.Player.getId(doc) + ']\n';
 
 			// nationality, age and next birthday
-			var byLine = doc.getElementsByClassName('byline')[0];
+			var byLine = doc.querySelector('.byline');
 
 			// add new lines before <p> so that textContent would have breaks
 			// at <p>s.
@@ -54,11 +54,50 @@ Foxtrick.modules['CopyPlayerAd'] = {
 			if (nationality)
 				ad += Foxtrick.L10n.getString('Nationality') + ': ' + nationality + '\n\n';
 
-			var playerInfo = doc.getElementsByClassName('playerInfo')[0];
+			let playerInfo;
+			let { isNewDesign, table: infoTable } = Foxtrick.Pages.Player.getInfoTable(doc);
+			if (isNewDesign) {
+				// because it's hard to use freaking wrappers once in a while /sigh
+				playerInfo = doc.createDocumentFragment();
+				let getClone = (el) => {
+					if (el.nodeName == 'P')
+						return doc.createTextNode('[b]' + el.textContent.trim() + '[/b]');
+					return el.cloneNode(true);
+				};
+
+				let personLinks = Foxtrick.toArray(doc.querySelectorAll('#mainBody > .skill'));
+				let el = byLine.nextElementSibling;
+				if (el && el.matches('p.shy')) {
+					// skip player statement
+					el = el.nextElementSibling.nextElementSibling;
+				}
+
+				let end;
+				if (personLinks.length && el && personLinks.includes(el) &&
+				    (end = personLinks[personLinks.length - 1].nextElementSibling) &&
+				    end.nodeName == 'BR') {
+					while (el != end) {
+						playerInfo.appendChild(getClone(el));
+						el = el.nextSibling;
+					}
+					while (end && ['BR', 'TABLE', 'P'].includes(end.nodeName)) {
+						let el = end;
+						end = end.nextElementSibling;
+						while (el && el != end) {
+							playerInfo.appendChild(getClone(el));
+							el = el.nextSibling;
+						}
+					}
+				}
+				playerInfo.appendChild(infoTable.cloneNode(true));
+			}
+			else {
+				playerInfo = doc.querySelector('.playerInfo');
+			}
 
 			// basic information
 			// for senior players:
-			// form, stamina, experience, leadership, personality (always there)
+			// (coach), form, stamina, experience, leadership, personality (always there)
 			// for youth players:
 			// speciality (only when he has a speciality)
 			var basicInfo;
@@ -66,8 +105,11 @@ Foxtrick.modules['CopyPlayerAd'] = {
 				// add new lines before <br> so that textContent would have breaks
 				// at <br>s.
 				basicInfo = playerInfo.cloneNode(true);
-				basicInfo.removeChild(basicInfo.getElementsByTagName('table')[0]);
-				var basicInfoBreaks = basicInfo.getElementsByTagName('br');
+				let tables = Foxtrick.toArray(basicInfo.querySelectorAll('table'));
+				for (let tbl of tables)
+					tbl.remove();
+
+				var basicInfoBreaks = basicInfo.querySelectorAll('br');
 				Foxtrick.forEach(function(br) {
 					br.parentNode.insertBefore(doc.createTextNode('\n'), br);
 				}, basicInfoBreaks);
@@ -93,24 +135,66 @@ Foxtrick.modules['CopyPlayerAd'] = {
 			}
 
 			// owner, TSI wage, etc.
-			var table = playerInfo.getElementsByTagName('table')[0];
+			let tables = Foxtrick.toArray(playerInfo.querySelectorAll('table'));
+			let table = tables.shift();
 			if (table) {
 				for (let r = 0; r < table.rows.length; r++) {
 					ad += table.rows[r].cells[0].textContent.trim() + ' ';
 
 					// remove teampopuplinks
-					var cellCopy = table.rows[r].cells[1].cloneNode(true);
-					var popupLinks = cellCopy.getElementsByTagName('a');
-					for (let l = 1; l < popupLinks.length; l++)
+					let teamLink;
+					let cellCopy = table.rows[r].cells[1].cloneNode(true);
+					let popupLinks = Foxtrick.toArray(cellCopy.querySelectorAll('a'));
+					if ((teamLink = popupLinks.shift()))
+						teamLink.textContent = '[b]' + teamLink.textContent.trim() + '[/b]';
+
+					for (let l = 0; l < popupLinks.length; l++)
 						popupLinks[l].textContent = '';
 
 					// bolding for speciality
-					var part = cellCopy.textContent.replace(/\n/g, '').replace(/\s+/g, ' ').trim();
+					let part = cellCopy.textContent.replace(/\n/g, '').replace(/\s+/g, ' ').trim();
 					if (r === 5)
 						part = '[b]' + part + '[/b]';
 					ad += part + '\n';
 				}
 				ad += '\n';
+
+				if ((table = tables.shift())) {
+					// ad += '[table]\n';
+					for (let r = 0; r < table.rows.length; r++) {
+						// ad += '[tr][th]';
+						ad += table.rows[r].cells[0].textContent.trim();
+						// ad += '[/th]';
+
+						let copy = table.rows[r].cells[1].cloneNode(true);
+						for (let tNode of Foxtrick.getTextNodes(copy)) {
+							let text = tNode.textContent.replace(/\n/g, ' ').replace(/\s+/g, ' ');
+							let parent = tNode.parentNode;
+							if (!Foxtrick.hasClass(parent, 'ft-skill') &&
+							    !Foxtrick.hasClass(parent, 'ft-skill-number') &&
+							    !text.startsWith(' '))
+								text = ' ' + text;
+
+							tNode.textContent = text.trimEnd();
+						}
+
+						let brs = copy.querySelectorAll('br');
+						for (let br of Foxtrick.toArray(brs))
+							br.parentNode.replaceChild(doc.createTextNode('\n'), br);
+
+						let text = copy.textContent.trim();
+
+						// bolding for speciality+htms
+						if (r === 2 || r === 5)
+							text = '[b]' + text + '[/b]';
+
+						// ad += '[td]' + text + '[/td][/tr]\n';
+						ad += ' ' + text + '\n';
+					}
+
+					// ad += '[/table]\n\n';
+					ad += '\n';
+				}
 			}
 
 			var formatSkill = function(text, value) {
