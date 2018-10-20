@@ -166,74 +166,87 @@ Foxtrick.Pages.Player.getTsi = function(doc) {
  * @return {object}
  */
 Foxtrick.Pages.Player.getAttributes = function(doc) {
-	var attrs = null;
-	if (this.isSenior(doc)) {
-		try {
-			var links = doc.querySelectorAll('.playerInfo .skill');
-			var regE = /skillshort/i;
-			attrs = {};
-			var num = function(link) {
-				return Foxtrick.util.id.getSkillLevelFromLink(link);
-			};
+	var attrs = {};
+	if (!this.isSenior(doc))
+		return null;
+
+	// stamina prediction
+	var ownId = Foxtrick.util.id.getOwnTeamId();
+	var pid = Foxtrick.Pages.All.getId(doc);
+	var data = null, dataText = Foxtrick.Prefs.getString('StaminaData.' + ownId);
+	try {
+		data = JSON.parse(dataText);
+	}
+	catch (e) {
+		Foxtrick.log(e);
+	}
+	if (data && typeof data === 'object' && data[pid])
+		attrs.staminaPred = parseFloat(data[pid][1]);
+
+	// motherClub
+	attrs.motherClubBonus = !!doc.querySelector('.motherclubBonus, .icon-mother-club');
+
+	const RE_SKILL = /skillshort/i;
+	const PERSONALITY = ['gentleness', 'aggressiveness', 'honesty'];
+	const OTHER_TRAITS = ['leadership', 'experience', 'loyalty'];
+	const TRAITS = [...PERSONALITY, ...OTHER_TRAITS];
+
+	var num = link => Foxtrick.util.id.getSkillLevelFromLink(link);
+	var personLinks;
+
+	try {
+		let { isNewDesign, table: infoTable } = this.getInfoTable(doc);
+		if (isNewDesign) {
+			let getInfoLink = i => infoTable.rows[i].cells[1].querySelector('.skill');
+			attrs.form = num(getInfoLink(3));
+			attrs.stamina = num(getInfoLink(4));
+
+			personLinks = Foxtrick.toArray(doc.querySelectorAll('#mainBody > .skill'));
+		}
+		else {
+			let links = Foxtrick.toArray(doc.querySelectorAll('.playerInfo .skill'));
 
 			// form vs stamina
-			if (regE.test(links[1].href)) {
-				attrs.form = num(links[1]);
-				attrs.stamina = num(links[0]);
-			}
-			else {
+			if (RE_SKILL.test(links[0].href)) {
 				attrs.form = num(links[0]);
 				attrs.stamina = num(links[1]);
 			}
-
-			// stamina prediction
-			var ownId = Foxtrick.util.id.getOwnTeamId();
-			var pid = Foxtrick.Pages.All.getId(doc);
-			var data = null, dataText = Foxtrick.Prefs.getString('StaminaData.' + ownId);
-			try {
-				data = JSON.parse(dataText);
-			}
-			catch (e) {
-				Foxtrick.log(e);
-			}
-			if (data && typeof data === 'object' && data[pid]) {
-				attrs.staminaPred = parseFloat(data[pid][1]);
-			}
-
-			// coaches have an additional link at this point
-			var offset = 0;
-			if (this.isCoach(doc)) {
-				offset = 1;
-				attrs.coachSkill = num(links[2]);
-			}
-
-			// personality:
-			// gentleness aggressiveness honesty
-			for (var i = 2 + offset; i < 5 + offset; i++) {
-				var attr = Foxtrick.getParameterFromUrl(links[i], 'lt');
-				attrs[attr] = num(links[i]);
-			}
-
-			// leadership vs experience
-			if (regE.test(links[6 + offset].href)) {
-				attrs.leadership = num(links[6 + offset]);
-				attrs.experience = num(links[5 + offset]);
-			}
 			else {
-				attrs.leadership = num(links[5 + offset]);
-				attrs.experience = num(links[6 + offset]);
+				attrs.stamina = num(links[0]);
+				attrs.form = num(links[1]);
 			}
 
-			// loyalty
-			attrs.loyalty = num(links[7 + offset]);
+			personLinks = links.slice(2);
+		}
 
-			// motherClub
-			attrs.motherClubBonus = !!Foxtrick.getMBElement(doc, 'lblMotherClub');
+		// coaches have an additional link as the first personality link
+		if (personLinks.length > TRAITS.length)
+			attrs.coachSkill = num(personLinks.shift());
+
+		// personality
+		let idx;
+		for (idx = 0; idx < PERSONALITY.length; idx++) {
+			let attr = Foxtrick.getParameterFromUrl(personLinks[idx], 'lt');
+			attrs[attr] = num(personLinks[idx]);
 		}
-		catch (e) {
-			Foxtrick.log(e);
+
+		// leadership vs experience
+		if (RE_SKILL.test(personLinks[idx].href)) {
+			attrs.leadership = num(personLinks[idx]);
+			attrs.experience = num(personLinks[idx + 1]);
 		}
+		else {
+			attrs.experience = num(personLinks[idx]);
+			attrs.leadership = num(personLinks[idx + 1]);
+		}
+
+		// loyalty
+		attrs.loyalty = num(personLinks[idx + 2]);
 	}
+	catch (e) {
+		Foxtrick.log(e);
+	}
+
 	return attrs;
 };
 
@@ -244,11 +257,8 @@ Foxtrick.Pages.Player.getAttributes = function(doc) {
  * @return {Boolean}
  */
 Foxtrick.Pages.Player.isCoach = function(doc) {
-	var coach = false;
-	if (this.isSenior(doc)) {
-		coach = doc.querySelectorAll('.playerInfo .skill').length > 8;
-	}
-	return coach;
+	var attr = this.getAttributes(doc);
+	return Foxtrick.hasProp(attr, 'coachSkill');
 };
 
 /**
