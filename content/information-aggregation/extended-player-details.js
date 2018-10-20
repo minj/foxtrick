@@ -119,10 +119,18 @@ Foxtrick.modules['ExtendedPlayerDetailsWage'] = {
 				Foxtrick.util.currency.displaySelector(doc, { reason: 'symbol' });
 				return;
 			}
-			var wageParts = wageCell.textContent.split(currencyRe);
 
+			var wageSpan, wageString = wageCell.textContent;
+			if ((wageSpan = wageCell.querySelector('span[title]'))) {
+				let amount = wageCell.firstChild.textContent;
+				wageString = amount + wageSpan.title.slice(amount.length);
+			}
+
+			var wageParts = wageString.split(currencyRe);
 			var wageWOBonus = Foxtrick.Prefs.isModuleOptionEnabled(module, 'WageWithoutBonus');
 			var seasonWage = Foxtrick.Prefs.isModuleOptionEnabled(module, 'SeasonWage');
+			if (wageWOBonus || seasonWage)
+				Foxtrick.removeClass(wageCell, 'nowrap');
 
 			var hasBonus = !!wageObj.bonus;
 			if (hasBonus && wageWOBonus) {

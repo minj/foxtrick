@@ -143,11 +143,11 @@ Foxtrick.Pages.Player.getTsi = function(doc) {
 	var tsi = null;
 	if (this.isSenior(doc)) {
 		try {
-			var infoTable = doc.querySelector('.playerInfo table');
-			var rowIdx = this.isFreeAgent(doc) ? 0 : 1;
-			var tsiCell = infoTable.rows[rowIdx].cells[1];
-			var tsiString = tsiCell.textContent.replace(/\D/g, '');
-			tsi = parseInt(tsiString, 10);
+			let { isNewDesign, table: infoTable } = this.getInfoTable(doc);
+			let rowIdx = isNewDesign || this.isFreeAgent(doc) ? 0 : 1;
+			let tsiCell = infoTable.rows[rowIdx].cells[1];
+			let tsiString = tsiCell.textContent.trim();
+			tsi = parseInt(tsiString.replace(/\D/g, ''), 10);
 		}
 		catch (e) {
 			Foxtrick.log(e);
@@ -166,74 +166,87 @@ Foxtrick.Pages.Player.getTsi = function(doc) {
  * @return {object}
  */
 Foxtrick.Pages.Player.getAttributes = function(doc) {
-	var attrs = null;
-	if (this.isSenior(doc)) {
-		try {
-			var links = doc.querySelectorAll('.playerInfo .skill');
-			var regE = /skillshort/i;
-			attrs = {};
-			var num = function(link) {
-				return Foxtrick.util.id.getSkillLevelFromLink(link);
-			};
+	var attrs = {};
+	if (!this.isSenior(doc))
+		return null;
+
+	// stamina prediction
+	var ownId = Foxtrick.util.id.getOwnTeamId();
+	var pid = Foxtrick.Pages.All.getId(doc);
+	var data = null, dataText = Foxtrick.Prefs.getString('StaminaData.' + ownId);
+	try {
+		data = JSON.parse(dataText);
+	}
+	catch (e) {
+		Foxtrick.log(e);
+	}
+	if (data && typeof data === 'object' && data[pid])
+		attrs.staminaPred = parseFloat(data[pid][1]);
+
+	// motherClub
+	attrs.motherClubBonus = !!doc.querySelector('.motherclubBonus, .icon-mother-club');
+
+	const RE_SKILL = /skillshort/i;
+	const PERSONALITY = ['gentleness', 'aggressiveness', 'honesty'];
+	const OTHER_TRAITS = ['leadership', 'experience', 'loyalty'];
+	const TRAITS = [...PERSONALITY, ...OTHER_TRAITS];
+
+	var num = link => Foxtrick.util.id.getSkillLevelFromLink(link);
+	var personLinks;
+
+	try {
+		let { isNewDesign, table: infoTable } = this.getInfoTable(doc);
+		if (isNewDesign) {
+			let getInfoLink = i => infoTable.rows[i].cells[1].querySelector('.skill');
+			attrs.form = num(getInfoLink(3));
+			attrs.stamina = num(getInfoLink(4));
+
+			personLinks = Foxtrick.toArray(doc.querySelectorAll('#mainBody > .skill'));
+		}
+		else {
+			let links = Foxtrick.toArray(doc.querySelectorAll('.playerInfo .skill'));
 
 			// form vs stamina
-			if (regE.test(links[1].href)) {
-				attrs.form = num(links[1]);
-				attrs.stamina = num(links[0]);
-			}
-			else {
+			if (RE_SKILL.test(links[0].href)) {
 				attrs.form = num(links[0]);
 				attrs.stamina = num(links[1]);
 			}
-
-			// stamina prediction
-			var ownId = Foxtrick.util.id.getOwnTeamId();
-			var pid = Foxtrick.Pages.All.getId(doc);
-			var data = null, dataText = Foxtrick.Prefs.getString('StaminaData.' + ownId);
-			try {
-				data = JSON.parse(dataText);
-			}
-			catch (e) {
-				Foxtrick.log(e);
-			}
-			if (data && typeof data === 'object' && data[pid]) {
-				attrs.staminaPred = parseFloat(data[pid][1]);
-			}
-
-			// coaches have an additional link at this point
-			var offset = 0;
-			if (this.isCoach(doc)) {
-				offset = 1;
-				attrs.coachSkill = num(links[2]);
-			}
-
-			// personality:
-			// gentleness aggressiveness honesty
-			for (var i = 2 + offset; i < 5 + offset; i++) {
-				var attr = Foxtrick.getParameterFromUrl(links[i], 'lt');
-				attrs[attr] = num(links[i]);
-			}
-
-			// leadership vs experience
-			if (regE.test(links[6 + offset].href)) {
-				attrs.leadership = num(links[6 + offset]);
-				attrs.experience = num(links[5 + offset]);
-			}
 			else {
-				attrs.leadership = num(links[5 + offset]);
-				attrs.experience = num(links[6 + offset]);
+				attrs.stamina = num(links[0]);
+				attrs.form = num(links[1]);
 			}
 
-			// loyalty
-			attrs.loyalty = num(links[7 + offset]);
+			personLinks = links.slice(2);
+		}
 
-			// motherClub
-			attrs.motherClubBonus = !!Foxtrick.getMBElement(doc, 'lblMotherClub');
+		// coaches have an additional link as the first personality link
+		if (personLinks.length > TRAITS.length)
+			attrs.coachSkill = num(personLinks.shift());
+
+		// personality
+		let idx;
+		for (idx = 0; idx < PERSONALITY.length; idx++) {
+			let attr = Foxtrick.getParameterFromUrl(personLinks[idx], 'lt');
+			attrs[attr] = num(personLinks[idx]);
 		}
-		catch (e) {
-			Foxtrick.log(e);
+
+		// leadership vs experience
+		if (RE_SKILL.test(personLinks[idx].href)) {
+			attrs.leadership = num(personLinks[idx]);
+			attrs.experience = num(personLinks[idx + 1]);
 		}
+		else {
+			attrs.experience = num(personLinks[idx]);
+			attrs.leadership = num(personLinks[idx + 1]);
+		}
+
+		// loyalty
+		attrs.loyalty = num(personLinks[idx + 2]);
 	}
+	catch (e) {
+		Foxtrick.log(e);
+	}
+
 	return attrs;
 };
 
@@ -244,11 +257,8 @@ Foxtrick.Pages.Player.getAttributes = function(doc) {
  * @return {Boolean}
  */
 Foxtrick.Pages.Player.isCoach = function(doc) {
-	var coach = false;
-	if (this.isSenior(doc)) {
-		coach = doc.querySelectorAll('.playerInfo .skill').length > 8;
-	}
-	return coach;
+	var attr = this.getAttributes(doc);
+	return Foxtrick.hasProp(attr, 'coachSkill');
 };
 
 /**
@@ -280,25 +290,23 @@ Foxtrick.Pages.Player.isBruised = function(doc) {
 Foxtrick.Pages.Player.getInjuryWeeks = function(doc) {
 	var weeks = 0;
 	try {
-		var injuryCell, infoTable;
-
+		var injuryRow, injuryCell, infoTable;
 		var teamLink = doc.querySelector('#mainBody a[href^="/Club/?TeamID="]');
-		if (teamLink && (infoTable = teamLink.closest('table'))) {
+		if (teamLink && (infoTable = teamLink.closest('table')) ||
+		    (infoTable = doc.querySelector('.playerInfo table'))) {
 			var icon = infoTable.querySelector('.plaster, .icon-injury');
 			if (icon) {
 				injuryCell = icon.closest('td');
 				var injuryText = injuryCell.textContent.trim().replace(/\u221e/, 'Infinity');
 				weeks = parseFloat(injuryText) || 0;
 			}
-		}
-		else {
-			infoTable = doc.querySelector('.playerInfo table');
-			injuryCell = infoTable.rows[4].cells[1];
-			var injuryImages = injuryCell.getElementsByTagName('img');
-			if (injuryImages.length) {
-				if (/injured.gif/i.test(injuryImages[0].src)) {
-					var length = injuryImages[0].nextSibling;
-					weeks = parseInt(length.textContent.match(/\d+/), 10);
+			else if ((injuryRow = infoTable.rows[4])) {
+				injuryCell = injuryRow.cells[1];
+				var injuryImage = injuryCell.querySelector('img');
+				if (injuryImage && /injured.gif/i.test(injuryImage.src)) {
+					var lengthNode = injuryImage.nextSibling;
+					var length = lengthNode.textContent.trim().replace(/\u221e/, 'Infinity');
+					weeks = parseFloat(length);
 				}
 			}
 		}
@@ -432,7 +440,7 @@ Foxtrick.Pages.Player.getWage = function(doc) {
 
 	var ret = { base: wage, bonus: 0, total: wage };
 
-	var hasBonus = /%/.test(wageText);
+	var hasBonus = /%/.test(wageText) || wageCell.querySelector('span[title]');
 	if (hasBonus) {
 		var bonus = Math.round(wage / 6);
 		ret.bonus = bonus;
@@ -600,23 +608,36 @@ Foxtrick.Pages.Player.parseSeniorSkills = function(table) {
 	};
 	var parseNewSkills = function(table) {
 		var order = skillMap.seniorBars;
-		var cells = table.querySelectorAll('td');
 		for (var i = 0; i < order.length; ++i) {
-			var cell = cells[3 * i + 1];
+			var row = table.rows[i];
+			var cell = row.cells[1];
 			if (!cell) {
 				found = false;
 				return; // skills are not visible
 			}
 
+			var skillText, skillValue, skillName;
+
 			var skillLink = cell.querySelector('a');
-			if (!regE.test(skillLink.href)) {
+			var skillBar = cell.querySelector('.ht-bar');
+			if (skillLink) {
+				if (!regE.test(skillLink.href)) {
+					found = false;
+					return; // skills are not visible
+				}
+				skillValue = parseInt(skillLink.href.match(regE)[1], 10);
+				skillText = skillLink.textContent.trim();
+			}
+			else if (skillBar) {
+				skillValue = parseInt(skillBar.getAttribute('level'), 10);
+				skillText = skillBar.querySelector('td[title]').title;
+			}
+			else {
 				found = false;
 				return; // skills are not visible
 			}
 
-			var skillValue = parseInt(skillLink.href.match(regE)[1], 10);
-			var skillText = skillLink.textContent.trim();
-			var skillName = cells[3 * i].textContent.trim();
+			skillName = row.cells[0].textContent.trim();
 			skills[order[i]] = skillValue;
 			skillTexts[order[i]] = skillText;
 			skillNames[order[i]] = skillName;
@@ -625,7 +646,7 @@ Foxtrick.Pages.Player.parseSeniorSkills = function(table) {
 
 	try {
 		if (Foxtrick.hasClass(table, 'transferPlayerSkills')) {
-			parseNewSkills(table);
+			parseNewSkills(table.querySelector('table'));
 		}
 		else {
 			var hasBars = table.querySelector('.percentImage, .ft-percentImage');
