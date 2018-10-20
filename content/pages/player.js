@@ -203,9 +203,9 @@ Foxtrick.Pages.Player.getAttributes = function(doc) {
 				let skillBar = cell.querySelector('.ht-bar');
 				if (link)
 					return num(link);
-				else if (skillBar) {
+				else if (skillBar)
 					return parseInt(skillBar.getAttribute('level'), 10);
-				}
+
 				throw Error('trait not found');
 			};
 
@@ -630,7 +630,8 @@ Foxtrick.Pages.Player.parseSeniorSkills = function(table) {
 			}
 			else if (skillBar) {
 				skillValue = parseInt(skillBar.getAttribute('level'), 10);
-				skillText = skillBar.querySelector('td[title]').title;
+				let titleCell = skillBar.querySelector('td[title]');
+				skillText = titleCell ? titleCell.title : '';
 			}
 			else {
 				found = false;
