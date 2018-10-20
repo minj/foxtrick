@@ -367,7 +367,7 @@
 		{
 			"duty": "translator",
 			"id": "12378459",
-			"name": "<ASTND>"
+			"name": "ASTND"
 		},
 		{
 			"duty": "translator",
@@ -498,6 +498,11 @@
 			"duty": "supporter",
 			"id": "13049551",
 			"name": "Novecento_BOT"
+		},
+		{
+			"duty": "supporter",
+			"id": "13087874",
+			"name": "Kelor"
 		},
 		{
 			"duty": "supporter",
@@ -788,6 +793,11 @@
 			"duty": "translator",
 			"id": "3455853",
 			"name": "Takiwaki"
+		},
+		{
+			"duty": "supporter",
+			"id": "3499253",
+			"name": "Gambit"
 		},
 		{
 			"duty": "supporter",
