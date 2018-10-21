@@ -5,9 +5,11 @@
  */
 
 'use strict';
+
 Foxtrick.modules['CurrentTransfers'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES: ['transfer'],
+
 	// CSS: Foxtrick.InternalPath + 'resources/css/current-transfers.css',
 	run: function(doc) {
 		var module = this;
@@ -19,40 +21,52 @@ Foxtrick.modules['CurrentTransfers'] = {
 		module.runPlayers(doc, players);
 	},
 
+	getPlayerCell(row) {
+		var playerCell = row.cells[0];
+		if (playerCell.rowSpan != 1)
+			playerCell = row.cells[1];
+
+		return playerCell;
+	},
+
+	getBidCell(row) {
+		var playerCell = this.getPlayerCell(row);
+		return playerCell.nextElementSibling;
+	},
+
 	runPlayers: function(doc, players) {
 		var module = this;
 
 		// time to add to player deadline for caching
 		var CACHE_BONUS = 0;
 
-		var argsPlayers = [], optsPlayers = [];
+		var pArgs = [], pOpts = [];
 		Foxtrick.forEach(function(player) {
 			var args = [
 				['file', 'playerdetails'],
 				['version', '2.5'],
 				['playerId', parseInt(player.id, 10)],
 			];
-			argsPlayers.push(args);
+			pArgs.push(args);
 			var cache = player.ddl + CACHE_BONUS;
-			optsPlayers.push({ cache_lifetime: cache });
+			pOpts.push({ cache_lifetime: cache });
 		}, players);
 
 		Foxtrick.util.currency.detect(doc).then(function(curr) {
-			Foxtrick.util.api.batchRetrieve(doc, argsPlayers, optsPlayers,
-			  function(xmls, errors) {
+			Foxtrick.util.api.batchRetrieve(doc, pArgs, pOpts, (xmls, errors) => {
 				if (!xmls)
 					return;
 
 				for (var i = 0; i < xmls.length; ++i) {
 					if (!xmls[i] || errors[i]) {
-						Foxtrick.log('No XML in batchRetrieve', argsPlayers[i], errors[i]);
+						Foxtrick.log('No XML in batchRetrieve', pArgs[i], errors[i]);
 						continue;
 					}
 
 					var data = {
 						rate: curr.rate,
 						symbol: curr.symbol,
-						args: argsPlayers[i],
+						args: pArgs[i],
 						ddl: players[i].ddl,
 						recursion: !!players[i].recursion,
 					};
@@ -66,8 +80,9 @@ Foxtrick.modules['CurrentTransfers'] = {
 
 	},
 	getPlayers: function(doc) {
-		var NOW = Foxtrick.util.time.getHTTimeStamp(doc);
+		var module = this;
 
+		var NOW = Foxtrick.util.time.getHTTimeStamp(doc);
 		var table = doc.querySelector('#mainBody table.naked');
 		if (!table)
 			return [];
@@ -83,18 +98,12 @@ Foxtrick.modules['CurrentTransfers'] = {
 		var players = [];
 
 		Foxtrick.forEach(function(row) {
-			var cells = Foxtrick.toArray(row.cells);
-			var playerCell = cells[0];
-			if (playerCell.rowSpan != 1) {
-				cells.shift();
-				playerCell = cells[0];
-			}
-
+			var playerCell = module.getPlayerCell(row);
 			var playerLink = playerCell.querySelector('a');
 			var playerId = Foxtrick.getParameterFromUrl(playerLink.href, 'playerId');
 			Foxtrick.addClass(row, 'ft-transfer-' + playerId);
 
-			if (Foxtrick.any(function(p) { return p.id === playerId; }, players)) {
+			if (Foxtrick.any(p => p.id === playerId, players)) {
 				// same player on different lists
 				return;
 			}
@@ -108,7 +117,7 @@ Foxtrick.modules['CurrentTransfers'] = {
 				deadline = ddl.valueOf();
 			}
 
-			var bidCell = cells[1];
+			var bidCell = module.getBidCell(row);
 			var bidLink = bidCell.querySelector('a');
 			if (!bidLink) {
 				// no current bid, adding for CHPP
@@ -145,12 +154,7 @@ Foxtrick.modules['CurrentTransfers'] = {
 
 		var rows = doc.getElementsByClassName('ft-transfer-' + id);
 		Foxtrick.forEach(function(row) {
-			var cells = Foxtrick.toArray(row.cells);
-			var playerCell = cells[0];
-			if (playerCell.rowSpan != 1)
-				cells.shift();
-
-			var bidCell = cells[1];
+			var bidCell = module.getBidCell(row);
 			var resultDiv = bidCell.querySelector('span.shy');
 
 			Foxtrick.makeFeaturedElement(resultDiv, module);
