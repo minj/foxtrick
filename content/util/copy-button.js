@@ -1,14 +1,17 @@
-'use strict';
 /*
  * copy-button.js
  * Utilities for adding a button for copying
  * @author ryanli
  */
 
+'use strict';
+
+/* eslint-disable */
 if (!Foxtrick)
 	var Foxtrick = {};
 if (!Foxtrick.util)
 	Foxtrick.util = {};
+/* eslint-enable */
 
 Foxtrick.util.copyButton = {};
 
@@ -19,25 +22,24 @@ Foxtrick.util.copyButton = {};
 Foxtrick.util.copyButton.add = function(doc, text) {
 	var link, img;
 	if (Foxtrick.Prefs.getBool('smallcopyicons')) {
-		var mainBody = doc.getElementById('mainBody');
-
 		// try to get order of the button in the header
 		// icons: contains a list of icons which is a list of classes
 		// that can occupy the header
 		// so, take first unoccupied by us or any HT icon
-		var icons = [
+		const ICONS = [
 			'ci_first', 'ci_second', 'ci_third', 'ci_fourth', 'ci_fifth', 'ci_sixth', 'ci_seventh',
 			'bookmark', 'backIcon', 'statsIcon', 'alltidIcon', 'forumSettings', 'forumSearch',
 			'forumStats', 'forumSearch2', 'searchSimilarPlayers', 'copyToClipboard',
 		];
-		var orderClass = icons[
-			Foxtrick.count(function(n) {
-				return mainBody.getElementsByClassName(n).length > 0;
-			}, icons)
-		];
+
+		let mainBody = doc.getElementById('mainBody');
+		let takenCount = Foxtrick.count(function(n) {
+			return mainBody.getElementsByClassName(n).length > 0;
+		}, ICONS);
+		let orderClass = ICONS[takenCount];
 
 		link = doc.createElement('a');
-		link.className = 'inner copyicon ' + orderClass;
+		link.className = `inner copyicon ${orderClass}`;
 		link.title = text;
 
 		img = doc.createElement('img');
@@ -64,8 +66,8 @@ Foxtrick.util.copyButton.add = function(doc, text) {
 			link.textContent = text;
 		}
 
-		Foxtrick.addBoxToSidebar(doc,
-			Foxtrick.L10n.getString('sidebarBox.actions'), link, -1);
+		let actions = Foxtrick.L10n.getString('sidebarBox.actions');
+		Foxtrick.addBoxToSidebar(doc, actions, link, -1);
 	}
 	return link;
 };
