@@ -95,7 +95,6 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/api/hy/common.js</string>
 				<string>content/api/hy/matches-report.js</string>
 				<string>content/api/hy/matches-training.js</string>
-				<string>content/api/hy/players-twins-check.js</string>
 				<string>content/api/hy/players-youth-reject-call.js</string>
 				<string>content/api/hy/players-youth-skills.js</string>
 				<string>content/api/hy/user-id.js</string>
@@ -177,7 +176,6 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/information-aggregation/youth-promotes.js</string>
 				<string>content/information-aggregation/youth-series-estimation.js</string>
 				<string>content/information-aggregation/youth-skills.js</string>
-				<string>content/information-aggregation/youth-twins.js</string>
 				<string>content/links/links-achievements.js</string>
 				<string>content/links/links-alliances.js</string>
 				<string>content/links/links-arena.js</string>

@@ -344,10 +344,6 @@ var neededPermissions = [
 		types: { origins: ['https://imageshack.us/*'] },
 	},
 	{
-		modules: ['YouthTwins'],
-		types: { origins: ['https://*.hattrick-youthclub.org/*'] },
-	},
-	{
 		modules: ['CopyYouth.AutoSendTrainingReportToHY'],
 		types: { origins: ['https://*.hattrick-youthclub.org/*'] },
 	},

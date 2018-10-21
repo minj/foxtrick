@@ -124,7 +124,7 @@ Foxtrick.modules['CopyYouth'] = {
 				Foxtrick.onClick(button, copyReport);
 			}
 
-			//if the user is a HY user (currently identified by a response from YouthTwins,
+			//if the user is a HY user
 			//send the TrainingReport to HY automatically
 			if (!Foxtrick.Prefs.isModuleOptionEnabled('CopyYouth', 'AutoSendTrainingReportToHY'))
 				return;
