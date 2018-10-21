@@ -83,7 +83,13 @@ Foxtrick.modules['CurrentTransfers'] = {
 		var players = [];
 
 		Foxtrick.forEach(function(row) {
-			var playerCell = row.cells[0];
+			var cells = Foxtrick.toArray(row.cells);
+			var playerCell = cells[0];
+			if (playerCell.rowSpan != 1) {
+				cells.shift();
+				playerCell = cells[0];
+			}
+
 			var playerLink = playerCell.querySelector('a');
 			var playerId = Foxtrick.getParameterFromUrl(playerLink.href, 'playerId');
 			Foxtrick.addClass(row, 'ft-transfer-' + playerId);
@@ -102,7 +108,7 @@ Foxtrick.modules['CurrentTransfers'] = {
 				deadline = ddl.valueOf();
 			}
 
-			var bidCell = row.cells[1];
+			var bidCell = cells[1];
 			var bidLink = bidCell.querySelector('a');
 			if (!bidLink) {
 				// no current bid, adding for CHPP
@@ -139,8 +145,13 @@ Foxtrick.modules['CurrentTransfers'] = {
 
 		var rows = doc.getElementsByClassName('ft-transfer-' + id);
 		Foxtrick.forEach(function(row) {
-			var bidCell = row.cells[1];
-			var resultDiv = bidCell.querySelector('.float_right');
+			var cells = Foxtrick.toArray(row.cells);
+			var playerCell = cells[0];
+			if (playerCell.rowSpan != 1)
+				cells.shift();
+
+			var bidCell = cells[1];
+			var resultDiv = bidCell.querySelector('span.shy');
 
 			Foxtrick.makeFeaturedElement(resultDiv, module);
 			Foxtrick.addClass(resultDiv, 'ft-transfers-price');
