@@ -252,6 +252,54 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 			'aria-label': hyLink.title,
 		});
 	};
+	var addLastMatchInfo = (player, matchLink, isNewDesign) => {
+		if (isNewDesign) {
+			// FIXME
+			return;
+		}
+
+		var matchDateCell = matchLink.parentNode;
+		var matchRatingCell = matchDateCell.nextElementSibling;
+
+		player.lastMatch = matchLink.cloneNode(true);
+		player.lastMatch.target = '_blank';
+
+		// README: using user date since no time is available
+		player.lastMatchDate = Foxtrick.util.time.getDateFromText(matchLink.textContent);
+
+		var matchId = Foxtrick.getParameterFromUrl(matchLink.href, 'matchId');
+		var youthMatchId = Foxtrick.getParameterFromUrl(matchLink.href, 'youthMatchId');
+		player.lastMatchId = parseInt(youthMatchId || matchId, 10);
+
+		var positionSpan = matchRatingCell.querySelector('.shy');
+		var position = positionSpan.textContent.match(/\((.+)\)/)[1].trim();
+		player.lastPosition = position;
+		player.lastPositionType = Foxtrick.L10n.getPositionType(position);
+
+		var rating = 0;
+		var ratingYellow = 0;
+		var stars = matchRatingCell.getElementsByTagName('img');
+		for (var j = 0; j < stars.length; ++j) {
+			if (Foxtrick.hasClass(stars[j], 'starBig'))
+				rating += 5;
+			if (Foxtrick.hasClass(stars[j], 'starWhole'))
+				rating += 1;
+			if (Foxtrick.hasClass(stars[j], 'starHalf'))
+				rating += 0.5;
+
+			if (/star_big_yellow.png$/i.test(stars[j]))
+				ratingYellow += 5;
+			if (/star_yellow.png$/i.test(stars[j]))
+				ratingYellow += 1;
+			if (/star_half_yellow.png$/i.test(stars[j]))
+				ratingYellow += 0.5;
+			if (/star_yellow_to_brown.png$/i.test(stars[j]))
+				ratingYellow += 0.5;
+		}
+		player.lastRating = rating;
+		player.lastRatingEndOfGame = ratingYellow;
+		player.lastRatingDecline = rating - ratingYellow;
+	};
 
 	var parseXml = function(xml) {
 		try {
@@ -665,12 +713,14 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 		var isOwn = Foxtrick.Pages.Players.isOwn(doc);
 		var isOwnYouth = Foxtrick.Pages.Players.isOwnYouth(doc);
 
-		var playerNodes = doc.getElementsByClassName('playerInfo');
+		var pNodes = doc.querySelectorAll('.playerList > div:not(.borderSeparator):not(.faceCard)');
 		Foxtrick.forEach(function(playerNode, i) {
 			var paragraphs = Foxtrick.toArray(playerNode.getElementsByTagName('p'));
 			var imgs = Foxtrick.toArray(playerNode.getElementsByTagName('img'));
 			var as = Foxtrick.toArray(playerNode.getElementsByTagName('a'));
 			var bs = Foxtrick.toArray(playerNode.getElementsByTagName('b'));
+
+			var isNewDesign = !Foxtrick.hasClass(playerNode, 'playerInfo');
 
 			var id = Foxtrick.Pages.Players.getPlayerId(playerNode);
 
@@ -688,113 +738,122 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 			}, playerNode.getElementsByTagName('a'));
 			player.nameLink = nameLink.cloneNode(true);
 
-			if (bs[0]) {
-				var nameB = bs[0];
-				var num = nameB.textContent.match(/(\d+)\./);
-				if (num)
-					player.number = parseInt(num[1], 10);
-
-				// README: category detection in HTML needs info in htlang.json
-				// thus disabled for now
-				// var cat = name_b.textContent.match(/\((.+)\)/);
-				// if (cat) {
-				// 	// stored as catergoy id
-				// 	player.category = Foxtrick.L10n.getCategoryId(cat[1]);
-				// }
-			}
-
 			if (Foxtrick.hasClass(playerNode, 'hidden'))
 				player.hidden = true;
 
 			var info = paragraphs[0];
+			var attributes = ['leadership', 'experience', 'loyalty'];
 
-			// The bit of text that contains age, tsi
-			var ageElement = info.firstChild;
-			var basicHtml = ageElement.textContent;
-			var br = info.firstChild.nextSibling;
-			if (br) {
-				basicHtml += ' ' + br.textContent;
-				var tsiElement = br.nextSibling;
-				if (tsiElement)
-					basicHtml += ' ' + tsiElement.textContent;
+			if (isNewDesign) {
+				// FIXME
 			}
+			else {
+				attributes.unshift('form', 'stamina');
+				if (bs[0]) {
+					var nameB = bs[0];
+					var num = nameB.textContent.match(/(\d+)\./);
+					if (num)
+						player.number = parseInt(num[1], 10);
 
-			var ageText = basicHtml.trim().replace(/\s\s+/g, ' ');
+					// README: category detection in HTML needs info in htlang.json
+					// thus disabled for now
+					// var cat = name_b.textContent.match(/\((.+)\)/);
+					// if (cat) {
+					// 	// stored as catergoy id
+					// 	player.category = Foxtrick.L10n.getCategoryId(cat[1]);
+					// }
+				}
 
-			// First we dump TSI out of the string, and then
-			// the first match is years and the second is days
-			var tsiMatch = ageText.match(/\w+(\s*[=:–])?\s*[\d\s]*,/);
-			if (tsiMatch) {
-				ageText = ageText.replace(tsiMatch[0], '');
-			}
+				// The bit of text that contains age, tsi
+				var ageElement = info.firstChild;
+				var basicHtml = ageElement.textContent;
+				var br = info.firstChild.nextSibling;
+				if (br) {
+					basicHtml += ' ' + br.textContent;
+					var tsiElement = br.nextSibling;
+					if (tsiElement)
+						basicHtml += ' ' + tsiElement.textContent;
+				}
 
-			var ageRe = /\d+\D+\d+\s\S+/;
-			if (ageText.match(ageRe) !== null) {
-				ageText = ageText.match(ageRe)[0].replace(',', '');
-			}
-			player.ageText = ageText;
+				var ageText = basicHtml.trim().replace(/\s\s+/g, ' ');
 
-			if (!player.age) {
-				var ageMatch = ageText.match(/(\d+)/g);
-				player.age = {
-					years: parseInt(ageMatch[0], 10),
-					days: parseInt(ageMatch[1], 10),
-				};
-				player.ageYears = player.age.years;
-			}
+				// First we dump TSI out of the string, and then
+				// the first match is years and the second is days
+				var tsiMatch = ageText.match(/\w+(\s*[=:–])?\s*[\d\s]*,/);
+				if (tsiMatch) {
+					ageText = ageText.replace(tsiMatch[0], '');
+				}
 
-			if (Foxtrick.Pages.Players.isSenior(doc) && !player.tsi) {
-				// youth players don't have TSI, and we can fetch directly
-				// from XML if it's there
-				var basicNumbers = basicHtml.replace(/\s+/g, '').match(/\d+/g);
-				if (basicNumbers) {
-					var tsi = basicNumbers[2];
-					player.tsi = parseInt(tsi, 10);
+				var ageRe = /\d+\D+\d+\s\S+/;
+				if (ageText.match(ageRe) !== null) {
+					ageText = ageText.match(ageRe)[0].replace(',', '');
+				}
+				player.ageText = ageText;
+
+				if (!player.age) {
+					var ageMatch = ageText.match(/(\d+)/g);
+					player.age = {
+						years: parseInt(ageMatch[0], 10),
+						days: parseInt(ageMatch[1], 10),
+					};
+					player.ageYears = player.age.years;
+				}
+
+				if (Foxtrick.Pages.Players.isSenior(doc) && !player.tsi) {
+					// youth players don't have TSI, and we can fetch directly
+					// from XML if it's there
+					var basicNumbers = basicHtml.replace(/\s+/g, '').match(/\d+/g);
+					if (basicNumbers) {
+						var tsi = basicNumbers[2];
+						player.tsi = parseInt(tsi, 10);
+					}
+				}
+
+				var specMatch = info.textContent.match(/\[(\D+)\]/);
+				if (specMatch) {
+					var spec = specMatch[1].trim();
+					player.speciality = spec;
+					player.specialityNumber = Foxtrick.L10n.getNumberFromSpeciality(spec);
 				}
 			}
 
-			var specMatch = info.textContent.match(/\[(\D+)\]/);
-			if (specMatch) {
-				var spec = specMatch[1].trim();
-				player.speciality = spec;
-				player.specialityNumber = Foxtrick.L10n.getNumberFromSpeciality(spec);
-			}
-
-			// this could include form, stamina, leadership and experience
+			// this could include form, stamina, leadership and experience, and loyaltz
 			// if its length ≥ 2, then it includes form and stamina
 			// if its length ≥ 4, then it includes leadership and experience
 			// loyalty is 5th
-			var attributeLinks = info.getElementsByClassName('skill');
+			var attributeLinks = Foxtrick.toArray(info.getElementsByClassName('skill'));
 
-			var attributes = ['form', 'stamina', 'leadership', 'experience', 'loyalty'];
 			var missingAttributes = Foxtrick.filter(function(attr) {
 				return typeof player[attr] === 'undefined';
 			}, attributes);
 			if (missingAttributes.length) {
 				var links = {};
-				if (attributeLinks.length >= 2) {
-					if (/skillshort/i.test(attributeLinks[1].href)) {
-						links.form = attributeLinks[1];
-						links.stamina = attributeLinks[0];
-					}
-					else {
+				if (attributeLinks.length >= 2 && attributes.includes('form')) {
+					if (/skillshort/i.test(attributeLinks[0].href)) {
 						links.form = attributeLinks[0];
 						links.stamina = attributeLinks[1];
 					}
+					else {
+						links.stamina = attributeLinks[0];
+						links.form = attributeLinks[1];
+					}
+					attributeLinks = attributeLinks.slice(2);
 				}
-				if (attributeLinks.length >= 4) {
-					if (/skillshort/i.test(attributeLinks[3].href)) {
-						links.leadership = attributeLinks[3];
-						links.experience = attributeLinks[2];
+				if (attributeLinks.length >= 2 && attributes.includes('experience')) {
+					if (/skillshort/i.test(attributeLinks[0].href)) {
+						links.leadership = attributeLinks[0];
+						links.experience = attributeLinks[1];
 					}
 					else {
-						links.leadership = attributeLinks[2];
-						links.experience = attributeLinks[3];
+						links.experience = attributeLinks[0];
+						links.leadership = attributeLinks[1];
 					}
+					attributeLinks = attributeLinks.slice(2);
 				}
-				if (attributeLinks.length >= 5) {
-					links.loyalty = attributeLinks[4];
+				if (attributeLinks.length >= 1) {
+					links.loyalty = attributeLinks.shift();
 				}
+
 				Foxtrick.forEach(function(attr) {
 					if (typeof links[attr] !== 'undefined') {
 						player[attr] = Foxtrick.util.id.getSkillLevelFromLink(links[attr]);
@@ -803,8 +862,12 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 			}
 
 			if (isOwn || isOwnYouth) {
-				var skillTable = playerNode.getElementsByTagName('table')[0];
-				var skillInfo;
+				let tables = playerNode.querySelectorAll('table');
+				let skillTable = tables[0];
+				if (Foxtrick.hasClass(skillTable.parentNode, 'transferPlayerInformation'))
+					skillTable = tables[1].parentNode;
+
+				let skillInfo;
 				if (Foxtrick.Pages.Players.isSenior(doc)) {
 					skillInfo = Foxtrick.Pages.Player.parseSeniorSkills(skillTable);
 				}
@@ -831,10 +894,12 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 						player.twinLink = twinLink;
 					}
 				}
+
+
 				if (skillInfo) {
-					var skills = skillInfo.values;
+					let skills = skillInfo.values;
 					player.skills = skills;
-					for (var skill in skills) {
+					for (let skill in skills) {
 						player[skill] = skills[skill];
 					}
 				}
@@ -854,6 +919,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 			}
 
 			for (var img of imgs) {
+				// FIXME
 				if (Foxtrick.hasClass(img, 'motherclubBonus')) {
 					player.motherClubBonus = doc.createElement('span');
 					player.motherClubBonus.textContent = '✔';
@@ -899,47 +965,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				return /matchId/i.test(a.href);
 			}, as);
 			if (matchLink) {
-				var matchDateCell = matchLink.parentNode;
-				var matchRatingCell = matchDateCell.nextElementSibling;
-
-				player.lastMatch = matchLink.cloneNode(true);
-				player.lastMatch.target = '_blank';
-
-				// README: using user date since no time is available
-				player.lastMatchDate = Foxtrick.util.time.getDateFromText(matchLink.textContent);
-
-				var matchId = Foxtrick.getParameterFromUrl(matchLink.href, 'matchId');
-				var youthMatchId = Foxtrick.getParameterFromUrl(matchLink.href, 'youthMatchId');
-				player.lastMatchId = parseInt(youthMatchId || matchId, 10);
-
-				var positionSpan = matchRatingCell.querySelector('.shy');
-				var position = positionSpan.textContent.match(/\((.+)\)/)[1].trim();
-				player.lastPosition = position;
-				player.lastPositionType = Foxtrick.L10n.getPositionType(position);
-
-				var rating = 0;
-				var ratingYellow = 0;
-				var stars = matchRatingCell.getElementsByTagName('img');
-				for (var j = 0; j < stars.length; ++j) {
-					if (Foxtrick.hasClass(stars[j], 'starBig'))
-						rating += 5;
-					if (Foxtrick.hasClass(stars[j], 'starWhole'))
-						rating += 1;
-					if (Foxtrick.hasClass(stars[j], 'starHalf'))
-						rating += 0.5;
-
-					if (/star_big_yellow.png$/i.test(stars[j]))
-						ratingYellow += 5;
-					if (/star_yellow.png$/i.test(stars[j]))
-						ratingYellow += 1;
-					if (/star_half_yellow.png$/i.test(stars[j]))
-						ratingYellow += 0.5;
-					if (/star_yellow_to_brown.png$/i.test(stars[j]))
-						ratingYellow += 0.5;
-				}
-				player.lastRating = rating;
-				player.lastRatingEndOfGame = ratingYellow;
-				player.lastRatingDecline = rating - ratingYellow;
+				addLastMatchInfo(player, matchLink, isNewDesign);
 			}
 
 			if (Foxtrick.Pages.Players.isOwn(doc) &&
@@ -1029,7 +1055,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				}
 			}
 
-		}, playerNodes);
+		}, pNodes);
 	};
 
 	var addContributionsInfo = function(playerList) {
