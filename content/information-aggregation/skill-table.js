@@ -582,8 +582,11 @@ Foxtrick.modules['SkillTable'] = {
 						// or string for infinity
 						// or boolean from transfer result page.
 						if (typeof player.injuredWeeks !== 'undefined' &&
-						    typeof player.injuredWeeks !== 'boolean')
-							cell.appendChild(doc.createTextNode(player.injuredWeeks));
+						    typeof player.injuredWeeks !== 'boolean') {
+							let weeks =
+								player.injuredWeeks == Infinity ? '\u221e' : player.injuredWeeks;
+							cell.appendChild(doc.createTextNode(weeks));
+						}
 
 						if (typeof player.injuredWeeks === 'number')
 							index += player.injuredWeeks * 100;
