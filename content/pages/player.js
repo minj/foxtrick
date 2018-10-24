@@ -431,14 +431,15 @@ Foxtrick.Pages.Player.getWageCell = function(doc) {
  * Returns {base, bonus, total: number}.
  * Senior player only.
  * @param  {document} doc
- * @return {object}       {base: number, bonus: number, total: number}
+ * @param  {?element} wageCell optional wage cell to parse; otherwise will be found
+ * @return {object}            {base: number, bonus: number, total: number}
  */
-Foxtrick.Pages.Player.getWage = function(doc) {
-	var wageCell = this.getWageCell(doc);
-	if (!wageCell)
+Foxtrick.Pages.Player.getWage = function(doc, wageCell) {
+	var cell = wageCell || this.getWageCell(doc);
+	if (!cell)
 		return null;
 
-	var wageText = wageCell.textContent;
+	var wageText = cell.textContent;
 
 	// we need to trim front text if any
 	// unfortunately new lines force using multiline mode

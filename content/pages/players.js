@@ -253,14 +253,6 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 		});
 	};
 	var addLastMatchInfo = (player, matchLink, isNewDesign) => {
-		if (isNewDesign) {
-			// FIXME
-			return;
-		}
-
-		var matchDateCell = matchLink.parentNode;
-		var matchRatingCell = matchDateCell.nextElementSibling;
-
 		player.lastMatch = matchLink.cloneNode(true);
 		player.lastMatch.target = '_blank';
 
@@ -270,6 +262,34 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 		var matchId = Foxtrick.getParameterFromUrl(matchLink.href, 'matchId');
 		var youthMatchId = Foxtrick.getParameterFromUrl(matchLink.href, 'youthMatchId');
 		player.lastMatchId = parseInt(youthMatchId || matchId, 10);
+
+		if (isNewDesign) {
+			let positionNode = matchLink.nextSibling;
+			let position = positionNode.textContent.match(/\((.+)\)/)[1].trim();
+			player.lastPosition = position;
+			player.lastPositionType = Foxtrick.L10n.getPositionType(position);
+
+			let ratingCircle = matchLink.previousElementSibling;
+			let fullStars = ratingCircle.querySelector('.stars-full');
+			let full = fullStars && parseInt(fullStars.textContent, 10) || 0;
+			let halfStars = ratingCircle.querySelector('.stars-half');
+			let half = halfStars && parseFloat(halfStars.textContent) || 0;
+			let rating = full + half;
+
+			let staminaCircle = ratingCircle.querySelector('circle[stroke-dasharray');
+			let totalStamina = parseFloat(staminaCircle.getAttribute('stroke-dasharray'));
+			let staminaLoss = parseFloat(staminaCircle.getAttribute('stroke-dashoffset'));
+			let lossPctg = staminaLoss / totalStamina;
+			let finalPctg = 1 - lossPctg;
+
+			player.lastRating = rating;
+			player.lastRatingEndOfGame = finalPctg * rating;
+			player.lastRatingDecline = lossPctg * rating;
+			return;
+		}
+
+		var matchDateCell = matchLink.parentNode;
+		var matchRatingCell = matchDateCell.nextElementSibling;
 
 		var positionSpan = matchRatingCell.querySelector('.shy');
 		var position = positionSpan.textContent.match(/\((.+)\)/)[1].trim();
@@ -716,7 +736,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 		var pNodes = doc.querySelectorAll('.playerList > div:not(.borderSeparator):not(.faceCard)');
 		Foxtrick.forEach(function(playerNode, i) {
 			var paragraphs = Foxtrick.toArray(playerNode.getElementsByTagName('p'));
-			var imgs = Foxtrick.toArray(playerNode.getElementsByTagName('img'));
+			var icons = Foxtrick.toArray(playerNode.querySelectorAll('img, i, object'));
 			var as = Foxtrick.toArray(playerNode.getElementsByTagName('a'));
 			var bs = Foxtrick.toArray(playerNode.getElementsByTagName('b'));
 
@@ -745,7 +765,72 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 			var attributes = ['leadership', 'experience', 'loyalty'];
 
 			if (isNewDesign) {
-				// FIXME
+				let numberNode, number;
+				if ((numberNode = nameLink.previousSibling) &&
+				    (number = numberNode.textContent.trim())) {
+					player.number = parseInt(number, 10);
+				}
+
+				let playerInfo = playerNode.querySelector('.transferPlayerInformation table');
+
+				{
+					let anonRows = ['age', 'tsi', 'salary'], anonCells = {}, anonTexts = {};
+					for (let [idx, rowType] of anonRows.entries()) {
+						let row = playerInfo.rows[idx];
+						let cell = row.cells[1];
+						anonCells[rowType] = cell;
+						anonTexts[rowType] = cell.textContent.trim();
+					}
+
+					player.ageText = anonTexts.age;
+					if (!player.age) {
+						let ageMatch = player.ageText.match(/(\d+)/g);
+						player.age = {
+							years: parseInt(ageMatch[0], 10),
+							days: parseInt(ageMatch[1], 10),
+						};
+						player.ageYears = player.age.years;
+					}
+
+					if (Foxtrick.Pages.Players.isSenior(doc)) {
+						if (!player.tsi) {
+							let tsi = anonTexts.tsi.replace(/\D/g, '');
+							player.tsi = parseInt(tsi, 10);
+						}
+						if (!player.salary) {
+							let { total } = Foxtrick.Pages.Player.getWage(doc, anonCells.salary);
+							player.salary = total;
+						}
+					}
+				}
+
+				{
+					const SPEC_PREFIX = 'icon-speciality-';
+					let getCellFromNamedRow =
+						id => playerInfo.querySelector(`tr[id$="${id}"] td:nth-child(2)`);
+
+					let specCell = getCellFromNamedRow('trSpeciality');
+					let specIcon = specCell.querySelector(`i[class*="${SPEC_PREFIX}"]`);
+					if (specIcon) {
+						let classes = [...specIcon.classList];
+						let specClass = classes.filter(c => c.startsWith(SPEC_PREFIX))[0];
+						let specNum = parseInt(specClass.match(/\d+/)[0], 10);
+
+						player.specialityNumber = specNum;
+						player.specialty = Foxtrick.L10n.getSpecialityFromNumber(specNum);
+					}
+
+					let namedSkillRows = ['trForm', 'trStamina'];
+					for (let rowId of namedSkillRows) {
+						let cell = getCellFromNamedRow(rowId);
+						if (!cell)
+							continue;
+
+						let link = cell.querySelector('a');
+						let skill = rowId.slice(2).toLowerCase();
+						player[skill] = Foxtrick.util.id.getSkillLevelFromLink(link);
+					}
+				}
 			}
 			else {
 				attributes.unshift('form', 'stamina');
@@ -918,38 +1003,51 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				player.transferListed = false;
 			}
 
-			for (var img of imgs) {
-				// FIXME
-				if (Foxtrick.hasClass(img, 'motherclubBonus')) {
+			for (let icon of icons) {
+				if (Foxtrick.hasClass(icon, 'motherclubBonus') ||
+				    Foxtrick.hasClass(icon, 'icon-mother-club')) {
 					player.motherClubBonus = doc.createElement('span');
 					player.motherClubBonus.textContent = '✔';
 					player.motherClubBonus.title =
 						Foxtrick.L10n.getString('skilltable.youthplayer');
 				}
-				if (Foxtrick.hasClass(img, 'cardsOne')) {
-					if (/red_card/i.test(img.src)) {
+				if (Foxtrick.hasClass(icon, 'cardsOne')) {
+					if (/red_card/i.test(icon.src)) {
 						player.redCard = 1;
 					}
 					else {
 						player.yellowCard = 1;
 					}
 				}
-				else if (Foxtrick.hasClass(img, 'cardsTwo')) {
+				else if (Foxtrick.hasClass(icon, 'icon-red-card')) {
+					player.redCard = 1;
+				}
+				else if (Foxtrick.hasClass(icon, 'icon-yellow-card')) {
+					player.yellowCard = 1;
+				}
+				else if (Foxtrick.hasClass(icon, 'cardsTwo') ||
+				         Foxtrick.hasClass(icon, 'icon-yellow-card-x2')) {
 					player.yellowCard = 2;
 				}
-				else if (Foxtrick.hasClass(img, 'injuryBruised')) {
+				else if (Foxtrick.any(cls => Foxtrick.hasClass(icon, cls),
+				         ['injuryBruised', 'plaster', 'icon-plaster'])) {
+
 					player.bruised = true;
 				}
-				else if (Foxtrick.hasClass(img, 'injuryInjured')) {
-					var injSpan = img.nextSibling;
+				else if (Foxtrick.hasClass(icon, 'injuryInjured') ||
+				         Foxtrick.hasClass(icon, 'icon-injury')) {
 
-					// README: span may contain infinity sign
-					player.injuredWeeks = parseInt(injSpan.textContent, 10) || injSpan.textContent;
+					// README: may contain infinity sign
+					let lengthStr = icon.dataset.injuryLength || icon.nextSibling.textContent;
+					let length = lengthStr.replace(/\u221e/, 'Infinity');
+					player.injuredWeeks = parseInt(length, 10) || length;
 				}
-				else if (Foxtrick.hasClass(img, 'transferListed')) {
+				else if (Foxtrick.hasClass(icon, 'transferListed') ||
+				         Foxtrick.hasClass(icon, 'icon-transferlisted')) {
 					player.transferListed = true;
 				}
 			}
+
 			player.cards = player.yellowCard + player.redCard !== 0;
 			player.injured = player.bruised || player.injuredWeeks !== 0;
 
