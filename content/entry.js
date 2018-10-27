@@ -46,15 +46,17 @@ Foxtrick.entry.docLoad = function(doc) {
 	// run Foxtrick modules
 	var begin = new Date().getTime();
 
-	Foxtrick.entry.run(doc);
+	let blockChange = Foxtrick.entry.run(doc);
 
 	var diff = new Date().getTime() - begin;
 	Foxtrick.log('page run time:', diff, 'ms |', doc.location.pathname, doc.location.search);
 
 	Foxtrick.log.flush(doc);
 
-	// listen to page content changes
-	Foxtrick.startListenToChange(doc);
+	if (!blockChange) {
+		// listen to page content changes
+		Foxtrick.startListenToChange(doc);
+	}
 };
 
 // invoked for each new instance of a content script
@@ -127,31 +129,68 @@ Foxtrick.entry.init = function(reInit) {
 };
 
 Foxtrick.entry.run = function(doc) {
+	const PERFORMANCE_LOG_THRESHOLD = 50;
+	let getModuleRunner = (doc, m) => () => {
+		let begin = new Date();
+
+		m.run(doc);
+
+		let diff = new Date().getTime() - begin;
+		if (diff > PERFORMANCE_LOG_THRESHOLD)
+			Foxtrick.log(m.MODULE_NAME, 'run time:', diff, 'ms');
+	};
+
 	try {
-		var modules = Foxtrick.util.modules.getActive(doc);
-		var PERFORMANCE_LOG_THRESHOLD = 50;
+		let modules = Foxtrick.util.modules.getActive(doc);
+		let hasMainBody = !!doc.getElementById('mainBody');
+		let ngApp = doc.querySelector('#mainWrapper ng-app');
+		let shouldDelay = !hasMainBody && !!ngApp;
+		let delayed = [], promise;
+
+		if (shouldDelay) {
+			promise = new Promise((resolve) => {
+				Foxtrick.onChange(ngApp, (doc, app) => {
+					if (!doc.getElementById('mainBody'))
+						return false;
+
+					if (app.getElementsByTagName('ht-loading').length)
+						return false;
+
+					Promise.resolve(doc).then(resolve);
+					return true;
+				});
+			});
+		}
 
 		// invoke niceRun to run modules
 		Foxtrick.entry.niceRun(modules, function(m) {
-			if (typeof m.run === 'function') {
-				return function() {
-					var begin = new Date();
+			if (typeof m.run !== 'function')
+				return null;
 
-					m.run(doc);
-
-					var diff = new Date().getTime() - begin;
-					if (diff > PERFORMANCE_LOG_THRESHOLD)
-						Foxtrick.log(m.MODULE_NAME, 'run time:', diff, 'ms');
-				};
+			if (shouldDelay && !m.OUTSIDE_MAINBODY) {
+				delayed.push(m);
+				return null;
 			}
-			return null;
+
+			return getModuleRunner(doc, m);
 		});
+
+		if (delayed.length) {
+			promise.then((doc) => {
+				Foxtrick.entry.niceRun(delayed, m => getModuleRunner(doc, m));
+				Foxtrick.entry.change(doc, []);
+				Foxtrick.startListenToChange(doc);
+			});
+			return true; // block change
+		}
 
 		Foxtrick.log.flush(doc);
 	}
 	catch (e) {
 		Foxtrick.log(e);
 	}
+
+	return false;
 };
 
 Foxtrick.entry.change = function(doc, changes) {
