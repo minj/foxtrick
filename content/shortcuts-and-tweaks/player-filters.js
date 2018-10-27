@@ -1,9 +1,10 @@
-'use strict';
 /*
  * player-filters.js
  * Add a select box for filtering players
  * @author OBarros, spambot, convinced, ryanli
  */
+
+'use strict';
 
 Foxtrick.modules['PlayerFilters'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
@@ -119,7 +120,8 @@ Foxtrick.modules['PlayerFilters'] = {
 				var specialties = {};
 				var specialtyCount = 0;
 
-				var playerDivs = doc.getElementsByClassName('playerInfo');
+				var playerDivs =
+					doc.querySelectorAll('.playerList > div:not(.borderSeparator):not(.faceCard)');
 				Foxtrick.forEach(function(div) {
 					var id = Foxtrick.Pages.Players.getPlayerId(div);
 					var player = Foxtrick.Pages.Players.getPlayerFromListById(playerList, id);
@@ -381,19 +383,19 @@ Foxtrick.modules['PlayerFilters'] = {
 
 			var body = doc.getElementById('mainBody');
 
-			var allElems;
+			let allElemColl;
 			if (doc.getElementsByClassName('playerList').length) {
 				var playerNodeList = doc.getElementsByClassName('playerList')[0];
-				allElems = playerNodeList.childNodes;
+				allElemColl = playerNodeList.children;
 			}
 			else {
-				allElems = body.childNodes;
+				allElemColl = body.children;
 			}
+			let allElems = [...allElemColl].filter(el => el.nodeName == 'DIV');
 
 			// these are attached information divs
 			var hideFace = ['category', 'playerInfo', 'borderSeparator', 'separator', 'youthnotes'];
 			var hideOther = ['borderSeparator', 'separator', 'youthnotes'];
-			var sepCls = ['borderSeparator', 'separator'];
 
 			// recording how many players are shown
 			var count = 0;
@@ -437,15 +439,11 @@ Foxtrick.modules['PlayerFilters'] = {
 				var hide = false;
 				var hideCategory = true;
 				var lastCategory = null;
-				var lastBorderSeparator = null;
 				var lastFace = null;
 				Foxtrick.forEach(function(elem) {
 					var hasHiddenCls = Foxtrick.any(function(cls) {
 						return Foxtrick.hasClass(elem, cls);
 					}, hideOther);
-					var isSeparator = Foxtrick.any(function(cls) {
-						return Foxtrick.hasClass(elem, cls);
-					}, sepCls);
 
 					if (Foxtrick.hasClass(elem, 'category')) {
 						if (lastCategory) {
@@ -462,7 +460,15 @@ Foxtrick.modules['PlayerFilters'] = {
 					else if (Foxtrick.hasClass(elem, 'faceCard')) {
 						lastFace = elem;
 					}
-					else if (Foxtrick.hasClass(elem, 'playerInfo')) {
+					else if (hasHiddenCls) {
+						if (hide) {
+							Foxtrick.addClass(elem, 'hidden');
+						}
+						else {
+							Foxtrick.removeClass(elem, 'hidden');
+						}
+					}
+					else {
 						var pid = Foxtrick.util.id.findPlayerId(elem);
 						var player = Foxtrick.Pages.Players.getPlayerFromListById(playerList, pid);
 						if (isVisible(elem, player)) {
@@ -485,17 +491,6 @@ Foxtrick.modules['PlayerFilters'] = {
 						if (!hide) {
 							++count;
 						}
-					}
-					else if (hasHiddenCls) {
-						if (hide) {
-							Foxtrick.addClass(elem, 'hidden');
-						}
-						else {
-							Foxtrick.removeClass(elem, 'hidden');
-						}
-					}
-					if (isSeparator) {
-						lastBorderSeparator = elem;
 					}
 				}, allElems);
 
