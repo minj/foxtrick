@@ -779,17 +779,28 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				}
 
 				let playerInfo = playerNode.querySelector('.transferPlayerInformation table');
+				if ( Foxtrick.Pages.Players.isYouth(doc) ) {
+					playerInfo = playerNode.querySelector('.playerInfo > div > table');
+				}
 
 				{
 					let anonRows = ['age', 'tsi', 'salary'], anonCells = {}, anonTexts = {};
-					for (let [idx, rowType] of anonRows.entries()) {
-						let row = playerInfo.rows[idx];
-						let cell = row.cells[1];
-						anonCells[rowType] = cell;
-						anonTexts[rowType] = cell.textContent.trim();
+					if ( Foxtrick.Pages.Players.isYouth(doc) ) {
+						ageText = player.playerNode.getElementsByTagName('p')[0].innerText;
+						var ageRe = /\d+\D+\d+\s\S+/;
+						if (ageText.match(ageRe) !== null) {
+							ageText = ageText.match(ageRe)[0].replace(',', '');
+						}
+						player.ageText = ageText;
+					} else {
+						for (let [idx, rowType] of anonRows.entries()) {
+							let row = playerInfo.rows[idx];
+							let cell = row.cells[1];
+							anonCells[rowType] = cell;
+							anonTexts[rowType] = cell.textContent.trim();
+						}
+						player.ageText = anonTexts.age;
 					}
-
-					player.ageText = anonTexts.age;
 					if (!player.age) {
 						let ageMatch = player.ageText.match(/(\d+)/g);
 						player.age = {
@@ -816,15 +827,21 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 					let getCellFromNamedRow =
 						id => playerInfo.querySelector(`tr[id$="${id}"] td:nth-child(2)`);
 
-					let specCell = getCellFromNamedRow('trSpeciality');
-					let specIcon = specCell.querySelector(`i[class*="${SPEC_PREFIX}"]`);
-					if (specIcon) {
+					let specCell,specIcon;
+					if (Foxtrick.Pages.Players.isYouth(doc)) {
+						specCell = playerInfo.querySelector(`*[id*=trSpeciality] td:nth-child(2)`);
+					} else {
+						specCell = getCellFromNamedRow('trSpeciality');
+					}
+						
+					if (specCell) {
+						specIcon = specCell.querySelector(`i[class*="${SPEC_PREFIX}"]`);
 						let classes = [...specIcon.classList];
 						let specClass = classes.filter(c => c.startsWith(SPEC_PREFIX))[0];
 						let specNum = parseInt(specClass.match(/\d+/)[0], 10);
 
 						player.specialityNumber = specNum;
-						player.specialty = Foxtrick.L10n.getSpecialityFromNumber(specNum);
+						player.speciality = Foxtrick.L10n.getSpecialityFromNumber(specNum);
 					}
 
 					let namedSkillRows = ['trForm', 'trStamina'];
