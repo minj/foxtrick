@@ -126,7 +126,7 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 				player[order[i]] = Foxtrick.util.id.getSkillLevelFromLink(links[i]);
 			}
 
-			// left info table - owner, age, TSI, speciality, deadline
+			// left info table - owner, age, TSI, specialty, deadline
 			var infoTable = playerInfo.querySelector('.transferPlayerInformation table');
 			var ownerCell = infoTable.rows[0].cells[1];
 			player.currentClubLink = ownerCell.querySelector('a').cloneNode(true);
@@ -135,9 +135,9 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 			player.age = { years: parseInt(ageMatch[0], 10), days: parseInt(ageMatch[1], 10) };
 			player.ageYears = player.age.years;
 			player.tsi = Foxtrick.trimnum(infoTable.rows[2].cells[1].textContent);
-			var speciality = infoTable.rows[3].cells[1].textContent.trim();
-			player.speciality = (speciality == '-') ? '' : speciality;
-			player.specialityNumber = Foxtrick.L10n.getNumberFromSpeciality(player.speciality);
+			var specialty = infoTable.rows[3].cells[1].textContent.trim();
+			player.specialty = (specialty == '-') ? '' : specialty;
+			player.specialtyNumber = Foxtrick.L10n.getNumberFromSpecialty(player.specialty);
 			player.deadline = infoTable.rows[4].cells[1].cloneNode(true);
 
 			var tc = doc.createElement('a');

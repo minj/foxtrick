@@ -504,11 +504,11 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 					player.psicoTSI = psico.formAvg;
 				}
 
-				if (typeof player.speciality === 'undefined' && node('Specialty')) {
+				if (typeof player.specialty === 'undefined' && node('Specialty')) {
 					var specNum = num('Specialty') || 0;
-					var spec = Foxtrick.L10n.getSpecialityFromNumber(specNum);
-					player.specialityNumber = specNum;
-					player.speciality = spec;
+					var spec = Foxtrick.L10n.getSpecialtyFromNumber(specNum);
+					player.specialtyNumber = specNum;
+					player.specialty = spec;
 				}
 
 				if (typeof player.motherClubBonus === 'undefined' && node('MotherClubBonus')) {
@@ -812,19 +812,19 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				}
 
 				{
-					const SPEC_PREFIX = 'icon-speciality-';
+					const SPEC_PREFIX = 'icon-speciality-'; // HT-TYPO
 					let getCellFromNamedRow =
 						id => playerInfo.querySelector(`tr[id$="${id}"] td:nth-child(2)`);
 
-					let specCell = getCellFromNamedRow('trSpeciality');
+					let specCell = getCellFromNamedRow('trSpeciality'); // HT-TYPO
 					let specIcon = specCell.querySelector(`i[class*="${SPEC_PREFIX}"]`);
 					if (specIcon) {
 						let classes = [...specIcon.classList];
 						let specClass = classes.filter(c => c.startsWith(SPEC_PREFIX))[0];
 						let specNum = parseInt(specClass.match(/\d+/)[0], 10);
 
-						player.specialityNumber = specNum;
-						player.specialty = Foxtrick.L10n.getSpecialityFromNumber(specNum);
+						player.specialtyNumber = specNum;
+						player.specialty = Foxtrick.L10n.getSpecialtyFromNumber(specNum);
 					}
 
 					let namedSkillRows = ['trForm', 'trStamina'];
@@ -903,8 +903,8 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				var specMatch = info.textContent.match(/\[(\D+)\]/);
 				if (specMatch) {
 					var spec = specMatch[1].trim();
-					player.speciality = spec;
-					player.specialityNumber = Foxtrick.L10n.getNumberFromSpeciality(spec);
+					player.specialty = spec;
+					player.specialtyNumber = Foxtrick.L10n.getNumberFromSpecialty(spec);
 				}
 			}
 

@@ -116,8 +116,8 @@ Foxtrick.modules['PlayerFilters'] = {
 					}
 				}
 
-				var specialities = {};
-				var specialityCount = 0;
+				var specialties = {};
+				var specialtyCount = 0;
 
 				var playerDivs = doc.getElementsByClassName('playerInfo');
 				Foxtrick.forEach(function(div) {
@@ -135,12 +135,12 @@ Foxtrick.modules['PlayerFilters'] = {
 					if (player.injured) {
 						div.setAttribute('injured', 'true');
 					}
-					if (player.speciality) {
-						if (typeof specialities[player.speciality] === 'undefined') {
-							specialities[player.speciality] = specialityCount++;
+					if (player.specialty) {
+						if (typeof specialties[player.specialty] === 'undefined') {
+							specialties[player.specialty] = specialtyCount++;
 						}
-						var spec = Foxtrick.L10n.getEnglishSpeciality(player.speciality);
-						div.setAttribute('speciality-' + spec, 'true');
+						var spec = Foxtrick.L10n.getEnglishSpecialty(player.specialty);
+						div.setAttribute('specialty-' + spec, 'true');
 					}
 					if (Foxtrick.Pages.Players.isPropertyInList(playerList, 'lastMatchDate')) {
 						if (lastMatch && player.lastMatchDate &&
@@ -188,11 +188,11 @@ Foxtrick.modules['PlayerFilters'] = {
 					});
 				}
 
-				for (var speciality in specialities) {
-					var spec = Foxtrick.L10n.getEnglishSpeciality(speciality);
+				for (var specialty in specialties) {
+					var spec = Foxtrick.L10n.getEnglishSpecialty(specialty);
 					filters.push({
-						props: ['speciality'],
-						name: 'speciality-' + spec, title: speciality,
+						props: ['specialty'],
+						name: 'specialty-' + spec, title: specialty,
 					});
 				}
 

@@ -103,7 +103,7 @@ Foxtrick.modules['SeriesTransfers'] = {
 				{ text: 'Nationality.abbr', title: 'Nationality' },
 				{ text: 'Player', title: 'Player' },
 				{ text: 'Team', title: 'Team' },
-				{ text: 'Speciality.abbr', title: 'Speciality' },
+				{ text: 'Specialty.abbr', title: 'Specialty' },
 				{ text: 'Age.abbr', title: 'Age' },
 				{ text: 'Experience.abbr', title: 'Experience' },
 				{ text: 'Form.abbr', title: 'Form' },
@@ -162,7 +162,7 @@ Foxtrick.modules['SeriesTransfers'] = {
 					}
 				}
 			};
-			var specialityFunc = function(cell, spec) {
+			var specialtyFunc = function(cell, spec) {
 				if (spec) {
 					Foxtrick.addSpecialty(cell, spec)
 						.catch(Foxtrick.catch('SeriesTransfers addSpecialty'));
@@ -241,7 +241,7 @@ Foxtrick.modules['SeriesTransfers'] = {
 
 						// specialty + respective icon
 						var specialtyTD = doc.createElement('td');
-						specialityFunc(specialtyTD, specialty);
+						specialtyFunc(specialtyTD, specialty);
 						tr.appendChild(specialtyTD);
 
 						// rest

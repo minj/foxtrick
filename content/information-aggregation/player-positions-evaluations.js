@@ -650,7 +650,7 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 			var attrs = Foxtrick.Pages.Player.getAttributes(doc);
 			attrs.bruised = Foxtrick.Pages.Player.isBruised(doc);
 			attrs.transferListed = Foxtrick.Pages.Player.isTransferListed(doc);
-			attrs.specialityNumber = Foxtrick.Pages.Player.getSpecialityNumber(doc);
+			attrs.specialtyNumber = Foxtrick.Pages.Player.getSpecialtyNumber(doc);
 
 			var contributions = Foxtrick.Pages.Player.getContributions(skills, attrs);
 			module.insertBestPosition(doc, contributions);
