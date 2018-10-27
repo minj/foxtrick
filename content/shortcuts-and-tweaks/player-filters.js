@@ -17,9 +17,8 @@ Foxtrick.modules['PlayerFilters'] = {
 			return;
 
 		var sortSelect = Foxtrick.getMBElement(doc, 'ucSorting_ddlSortBy');
-		if (Foxtrick.Pages.Players.isYouth(doc)) {
+		if (Foxtrick.Pages.Players.isYouth(doc))
 			sortSelect = Foxtrick.getMBElement(doc, 'ddlSortBy');
-		}
 
 		if (!sortSelect)
 			return;
@@ -95,7 +94,7 @@ Foxtrick.modules['PlayerFilters'] = {
 				// disable enter to submit HT form
 				// redirect to FT button instead
 				Foxtrick.listen(input, 'keypress', function(ev) {
-					var doc = this.ownerDocument;
+					var doc = ev.target.ownerDocument;
 					if (ev.keyCode == 13) {
 						ev.preventDefault();
 						doc.getElementById('filterSelectOptionsOk').click();
@@ -162,47 +161,52 @@ Foxtrick.modules['PlayerFilters'] = {
 				}, playerDivs);
 
 				var filters = [
-					{ props: ['redCard', 'yellowCard'], name: 'cards', l10n: 'Cards', },
-					{ props: ['injured', 'bruised'], name: 'injured', l10n: 'Injured', },
-					{ props: ['transferListed'],
-						name: 'transfer-listed', l10n: 'TransferListed', },
-					{ props: ['transferListed'],
-						name: 'not-transfer-listed', l10n: 'NotTransferListed', },
-					{ props: ['lastMatch'], name: 'played-latest', l10n: 'PlayedLatest', },
-					{ props: ['lastMatch'], name: 'not-played-latest', l10n: 'NotPlayedLatest', },
+					{ props: ['redCard', 'yellowCard'], name: 'cards', l10n: 'Cards' },
+					{ props: ['injured', 'bruised'], name: 'injured', l10n: 'Injured' },
+					{
+						props: ['transferListed'],
+						name: 'transfer-listed',
+						l10n: 'TransferListed',
+					},
+					{
+						props: ['transferListed'],
+						name: 'not-transfer-listed',
+						l10n: 'NotTransferListed',
+					},
+					{ props: ['lastMatch'], name: 'played-latest', l10n: 'PlayedLatest' },
+					{ props: ['lastMatch'], name: 'not-played-latest', l10n: 'NotPlayedLatest' },
 				];
 
 				if (Foxtrick.Pages.Players.isRegular(doc)) {
 					filters.push({
 						props: ['motherClubBonus'],
-						name: 'homegrown-player', l10n: 'HomeGrownPlayers',
+						name: 'homegrown-player',
+						l10n: 'HomeGrownPlayers',
 					});
 					filters.push({
 						props: ['motherClubBonus'],
-						name: 'purchased-player', l10n: 'PurchasedPlayers',
+						name: 'purchased-player',
+						l10n: 'PurchasedPlayers',
 					});
 				}
 
 				if (Foxtrick.Pages.Players.isOldies(doc) && Foxtrick.util.api.authorized()) {
 					filters.push({
-						props: ['id'],
-						name: 'active', l10n: 'ActivePlayers',
+						props: ['id'], name: 'active', l10n: 'ActivePlayers',
 					});
 				}
 
 				for (var specialty in specialties) {
 					var spec = Foxtrick.L10n.getEnglishSpecialty(specialty);
 					filters.push({
-						props: ['specialty'],
-						name: 'specialty-' + spec, title: specialty,
+						props: ['specialty'], name: 'specialty-' + spec, title: specialty,
 					});
 				}
 
 				var faceCards = doc.getElementsByClassName('faceCard');
 				if (faceCards.length > 0) {
 					filters.push({
-						props: ['id'],
-						name: 'face', l10n: 'Pictures',
+						props: ['id'], name: 'face', l10n: 'Pictures',
 					});
 				}
 
@@ -226,27 +230,32 @@ Foxtrick.modules['PlayerFilters'] = {
 
 				// adding attribute filters (senior pages)
 				var attributeOptions = [
-					{ name: 'TSI', property: 'tsi', pages: ['allPlayers'], },
-					{ name: 'Age', property: 'ageYears', pages: ['allPlayers', 'youthPlayers'], },
-					{ name: 'Leadership', property: 'leadership', pages: ['allPlayers'], },
-					{ name: 'Experience', property: 'experience', pages: ['allPlayers'], },
-					{ name: 'Form', property: 'form', pages: ['allPlayers'], },
-					{ name: 'Stamina', property: 'stamina', pages: ['allPlayers'], },
-					{ name: 'Loyalty', property: 'loyalty', pages: ['players', 'oldPlayers'], },
-					{ name: 'Keeper', property: 'keeper', pages: ['ownPlayers'], },
-					{ name: 'Defending', property: 'defending', pages: ['ownPlayers'], },
-					{ name: 'Playmaking', property: 'playmaking', pages: ['ownPlayers'], },
-					{ name: 'Winger', property: 'winger', pages: ['ownPlayers'], },
-					{ name: 'Passing', property: 'passing', pages: ['ownPlayers'], },
-					{ name: 'Scoring', property: 'scoring', pages: ['ownPlayers'], },
-					{ name: 'Set_pieces', property: 'setPieces', pages: ['ownPlayers'], },
-					// { name: 'HTMS_Ability', property: 'htmsAbility', pages: ['players'], },
-					// { name: 'HTMS_Potential', property: 'htmsPotential' , pages: ['players'], },
-					// { name: 'Agreeability', property: 'agreeability', pages: ['players'], },
-					// { name: 'Aggressiveness', property: 'aggressiveness', pages: ['players'], },
-					// { name: 'Honesty', property: 'honesty', pages: ['players'], },
-					{ name: 'Last_stars', property: 'lastRating',
-						pages: ['players', 'youthPlayers'], },
+					{ name: 'TSI', property: 'tsi', pages: ['allPlayers'] },
+					{ name: 'Age', property: 'ageYears', pages: ['allPlayers', 'youthPlayers'] },
+					{ name: 'Leadership', property: 'leadership', pages: ['allPlayers'] },
+					{ name: 'Experience', property: 'experience', pages: ['allPlayers'] },
+					{ name: 'Form', property: 'form', pages: ['allPlayers'] },
+					{ name: 'Stamina', property: 'stamina', pages: ['allPlayers'] },
+					{ name: 'Loyalty', property: 'loyalty', pages: ['players', 'oldPlayers'] },
+					{ name: 'Keeper', property: 'keeper', pages: ['ownPlayers'] },
+					{ name: 'Defending', property: 'defending', pages: ['ownPlayers'] },
+					{ name: 'Playmaking', property: 'playmaking', pages: ['ownPlayers'] },
+					{ name: 'Winger', property: 'winger', pages: ['ownPlayers'] },
+					{ name: 'Passing', property: 'passing', pages: ['ownPlayers'] },
+					{ name: 'Scoring', property: 'scoring', pages: ['ownPlayers'] },
+					{ name: 'Set_pieces', property: 'setPieces', pages: ['ownPlayers'] },
+
+					// { name: 'HTMS_Ability', property: 'htmsAbility', pages: ['players'] },
+					// { name: 'HTMS_Potential', property: 'htmsPotential' , pages: ['players'] },
+					// { name: 'Agreeability', property: 'agreeability', pages: ['players'] },
+					// { name: 'Aggressiveness', property: 'aggressiveness', pages: ['players'] },
+					// { name: 'Honesty', property: 'honesty', pages: ['players'] },
+
+					{
+						name: 'Last_stars',
+						property: 'lastRating',
+						pages: ['players', 'youthPlayers'],
+					},
 				];
 
 				var optionAttr = doc.createElement('option');
@@ -276,13 +285,13 @@ Foxtrick.modules['PlayerFilters'] = {
 			doc.querySelector('#mainBody p').appendChild(loading);
 
 			var batchArgs = [];
-			Foxtrick.map(function(n) {
+			Foxtrick.forEach(function(n) {
 				var args = [['file', 'teamdetails'], ['teamId', n.currentClubId]];
 				batchArgs.push(args);
 			}, playerList);
 
-			Foxtrick.util.api.batchRetrieve(doc, batchArgs, { cache_lifetime: 'session' },
-			  function(xmls, errors) {
+			let opts = { cache_lifetime: 'session' };
+			Foxtrick.util.api.batchRetrieve(doc, batchArgs, opts, (xmls, errors) => {
 				if (xmls) {
 					var skillTables = doc.querySelectorAll('.ft_skilltable');
 					Foxtrick.forEach(function(xml, i) {
@@ -296,7 +305,7 @@ Foxtrick.modules['PlayerFilters'] = {
 
 						if (!IsBot) {
 							// update playerInfo
-							Foxtrick.map(function(div) {
+							Foxtrick.forEach(function(div) {
 								var thisTeamId = Foxtrick.util.id.findTeamId(div);
 								if (thisTeamId == TeamID) {
 									div.setAttribute('active', 'true');
@@ -306,7 +315,7 @@ Foxtrick.modules['PlayerFilters'] = {
 							// update skillTables
 							Foxtrick.forEach(function(table) {
 								var rows = Foxtrick.toArray(table.rows).slice(1); // skip header
-								Foxtrick.map(function(row) {
+								Foxtrick.forEach(function(row) {
 									var thisTeamId = Foxtrick.util.id.findTeamId(row);
 									if (TeamID == thisTeamId) {
 										row.setAttribute('active', 'true');
@@ -320,11 +329,12 @@ Foxtrick.modules['PlayerFilters'] = {
 				hasBotsMarked = true;
 				if (loading)
 					loading.parentNode.removeChild(loading);
+
 				changeListener();
 			});
 		};
 
-		var changeListener = function(ev) {
+		var changeListener = function() {
 			if (filterSelect.getAttribute('scanned') !== 'true') {
 				addFilters();
 				return;
@@ -335,8 +345,9 @@ Foxtrick.modules['PlayerFilters'] = {
 				markBotPlayers();
 				return; // continues after bots are marked
 			}
+
 			// invalidate again. might be new page next time
-			hasBotsMarked = false;
+			hasBotsMarked = false; // FIXME
 
 			var filterSelectOptionsDiv = doc.getElementById('filterSelectOptionsDiv');
 			var attribute = '';
