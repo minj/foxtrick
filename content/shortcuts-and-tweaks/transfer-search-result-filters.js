@@ -50,9 +50,9 @@ Foxtrick.modules['TransferSearchResultFilters'] = {
 				return false;
 			},
 			'hideOrdinary': function(player, checked) {
-				if (player.speciality == null)
+				if (player.specialty == null)
 					return true;
-				return (player.speciality == '');
+				return (player.specialty == '');
 			}
 		};
 		// default filter values

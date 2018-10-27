@@ -130,23 +130,44 @@ Foxtrick.Pages.Players.isSimpleMatchOrder = function(doc) {
 	return Foxtrick.isPage(doc, 'matchOrderSimple');
 };
 
+/**
+ * Get the list of player containers
+ * @param  {document}       doc
+ * @return {Array<Element>}     playerNodes
+ */
+Foxtrick.Pages.Players.getPlayerNodes = function(doc) {
+	let mainBody = doc.getElementById('mainBody');
+	let playerList = doc.querySelector('.playerList');
+	let nodeColl = playerList ? playerList.children : mainBody.children;
+	let divs = [...nodeColl].filter(el => el.nodeName == 'DIV');
+	let playerNodes = divs.filter(el => !el.classList.contains('borderSeparator') &&
+		!el.classList.contains('faceCard'));
+
+	return playerNodes;
+};
+
 /* eslint-disable complexity */
 
 /**
  * Get player list.
+ *
  * CHPP needs a callback and options.
  * If callback is not provided, only HTML is parsed.
+ *
  * Options is {teamId, isYouth, isNT, includeMatchInfo, currentSquad, refresh}
+ *
  * First 3 are detected automatically from URL if possible.
  * includeMatchInfo adds last match data.
  * currentSquad is needed to fetch current player list (possibly from non-players page).
  * HTML parsing and oldies page detection are bypassed in this case.
  * It also limits NT player list for supporters.
+ *
  * Refresh invalidates cache before fetching.
- * @param  {document} doc
- * @param  {Function} callback function(Array.<object>)
- * @param  {object}   options  {teamId, isYouth, isNT, includeMatchInfo, currentSquad, refresh}
- * @return {array}             Array.<object>
+ *
+ * @param  {document}      doc
+ * @param  {Function}      callback function(Array<Player>)
+ * @param  {object}        options  {teamId, isYouth, isNT, includeMatchInfo, currentSquad, refresh}
+ * @return {Array<object>}          Array<Player>
  */
 Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 	var playerList = [];
@@ -504,11 +525,11 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 					player.psicoTSI = psico.formAvg;
 				}
 
-				if (typeof player.speciality === 'undefined' && node('Specialty')) {
+				if (typeof player.specialty === 'undefined' && node('Specialty')) {
 					var specNum = num('Specialty') || 0;
-					var spec = Foxtrick.L10n.getSpecialityFromNumber(specNum);
-					player.specialityNumber = specNum;
-					player.speciality = spec;
+					var spec = Foxtrick.L10n.getSpecialtyFromNumber(specNum);
+					player.specialtyNumber = specNum;
+					player.specialty = spec;
 				}
 
 				if (typeof player.motherClubBonus === 'undefined' && node('MotherClubBonus')) {
@@ -740,7 +761,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 		var isOwn = Foxtrick.Pages.Players.isOwn(doc);
 		var isOwnYouth = Foxtrick.Pages.Players.isOwnYouth(doc);
 
-		var pNodes = doc.querySelectorAll('.playerList > div:not(.borderSeparator):not(.faceCard)');
+		var pNodes = Foxtrick.Pages.Players.getPlayerNodes(doc);
 		Foxtrick.forEach(function(playerNode, i) {
 			var paragraphs = Foxtrick.toArray(playerNode.getElementsByTagName('p'));
 			var icons = Foxtrick.toArray(playerNode.querySelectorAll('img, i, object'));
@@ -812,19 +833,19 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				}
 
 				{
-					const SPEC_PREFIX = 'icon-speciality-';
+					const SPEC_PREFIX = 'icon-speciality-'; // HT-TYPO
 					let getCellFromNamedRow =
 						id => playerInfo.querySelector(`tr[id$="${id}"] td:nth-child(2)`);
 
-					let specCell = getCellFromNamedRow('trSpeciality');
+					let specCell = getCellFromNamedRow('trSpeciality'); // HT-TYPO
 					let specIcon = specCell.querySelector(`i[class*="${SPEC_PREFIX}"]`);
 					if (specIcon) {
 						let classes = [...specIcon.classList];
 						let specClass = classes.filter(c => c.startsWith(SPEC_PREFIX))[0];
 						let specNum = parseInt(specClass.match(/\d+/)[0], 10);
 
-						player.specialityNumber = specNum;
-						player.specialty = Foxtrick.L10n.getSpecialityFromNumber(specNum);
+						player.specialtyNumber = specNum;
+						player.specialty = Foxtrick.L10n.getSpecialtyFromNumber(specNum);
 					}
 
 					let namedSkillRows = ['trForm', 'trStamina'];
@@ -903,8 +924,8 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				var specMatch = info.textContent.match(/\[(\D+)\]/);
 				if (specMatch) {
 					var spec = specMatch[1].trim();
-					player.speciality = spec;
-					player.specialityNumber = Foxtrick.L10n.getNumberFromSpeciality(spec);
+					player.specialty = spec;
+					player.specialtyNumber = Foxtrick.L10n.getNumberFromSpecialty(spec);
 				}
 			}
 
@@ -1276,9 +1297,9 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 
 /**
  * Get player object from player list
- * @param  {array}  list Array.<object>
+ * @param  {Array}  list Array<Player>
  * @param  {number} id
- * @return {object}
+ * @return {object}      Player
  */
 Foxtrick.Pages.Players.getPlayerFromListById = function(list, id) {
 	return Foxtrick.nth(function(p) {
@@ -1310,7 +1331,7 @@ Foxtrick.Pages.Players.getPlayerId = function(playerInfo) {
 
 /**
  * Test whether any players in the player list have a certain property
- * @param  {array}   playerList Array.<object>
+ * @param  {Array}   playerList Array<Player>
  * @param  {string}  property
  * @return {Boolean}
  */
@@ -1322,11 +1343,14 @@ Foxtrick.Pages.Players.isPropertyInList = function(playerList, property) {
 
 /**
  * Get the timestamps of 2 last matches played by players: {last, second}.
+ *
  * players is an array of arbitrary objects.
+ *
  * getMatchDate extracts matchDate as a timestamp from a player object.
  * playerLimit is minimal player count for a match to be eligible.
- * @param  {array}    players      Array.<T>
- * @param  {Function} getMatchDate function(T): number
+ *
+ * @param  {Array}    players      Array<object>
+ * @param  {Function} getMatchDate function(object): number
  * @param  {number}   playerLimit
  * @return {object}                {last:number, second:number}
  */

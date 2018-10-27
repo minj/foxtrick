@@ -32,7 +32,7 @@ Foxtrick.htPages = {
 
 	'all'                       : '.*',
 	'dashboard'                 : '/MyHattrick/Dashboard.aspx',
-	'playerDetails'             : '/Club/Players/Player.aspx',
+	'playerDetails'             : '/Club/Players/Player(.|.Classic.)aspx',
 	'forum'                     : '/Forum/',
 	'forumViewThread'           : '/Forum/Read.aspx',
 	'forumOverview'             : '/Forum/Overview.aspx',
@@ -67,7 +67,7 @@ Foxtrick.htPages = {
 	'transfersTeam'             : '/Club/Transfers/TransfersTeam.aspx',
 	'transfersPlayer'           : '/Club/Transfers/TransfersPlayer.aspx',
 	'transferSearchForm'        : '/World/Transfers/(Default.aspx|?|$)',
-	'transferSearchResult'      : '/World/Transfers/TransfersSearchResult.aspx',
+	'transferSearchResult'      : '/World/Transfers/TransfersSearchResult(.|.Classic.)aspx',
 	'match'                     : '/Club/Matches/Match.aspx|/Club/Matches/PreMatch.aspx',
 	'matches'                   : '/Club/Matches/(Default.aspx|?|$)',
 	'matchesCup'                : '/Club/Cup/(Default.aspx|?|$)',
@@ -88,13 +88,15 @@ Foxtrick.htPages = {
 	'promotion'                 : '/World/Series/Promotion.aspx',
 	'fixtures'                  : '/World/Series/Fixtures.aspx',
 	'allPlayers'                : '/Club/Players/(Default.aspx|?|$)|' +
-	                              '/Club/Players/KeyPlayers.aspx|' +
-	                              '/Club/NationalTeam/NTPlayers.aspx|' +
-	                              '/Club/Players/Oldies.aspx|' +
-	                              '/Club/Players/Coaches.aspx',
+	                              '/Club/Players/(Default.Classic.aspx|?|$)|' +
+	                              '/Club/Players/KeyPlayers(.|.Classic.)aspx|' +
+	                              '/Club/NationalTeam/NTPlayers(.|.Classic.)aspx|' +
+	                              '/Club/Players/Oldies(.|.Classic.)aspx|' +
+	                              '/Club/Players/Coaches(.|.Classic.)aspx',
 	                              // all senior player pages
 	'players'                   : '/Club/Players/(Default.aspx|?|$)|' +
-	                              '/Club/Players/KeyPlayers.aspx',
+	                              '/Club/Players/(Default.Classic.aspx|?|$)|' +
+	                              '/Club/Players/KeyPlayers(.|.Classic.)aspx',
 	                              // has last match link and ratings
 	                              // KeyPlayers have basically the same structure as regular page
 	'ownPlayers'                : 'FakePage',
@@ -104,18 +106,19 @@ Foxtrick.htPages = {
 	                              // use 'players' and 'ntPlayers' instead
 	'ownPlayersTemplate'        : '/Club/Players/(Default.aspx$|$)|' +
 	                              '/Club/Players/(Default.aspx?|?)teamid=[id]|' +
-	                              '/Club/Players/KeyPlayers.aspx($|?teamid=[id])|' +
-	                              '/Club/NationalTeam/NTPlayers.aspx?teamId=[ntid]',
+	                              '/Club/Players/(Default.Classic.aspx?|?)teamid=[id]|' +
+	                              '/Club/Players/KeyPlayers(.|.Classic.)aspx($|?teamid=[id])|' +
+	                              '/Club/NationalTeam/NTPlayers(.|.Classic.)aspx?teamId=[ntid]',
 	                              // README: don't use this! The correct value is 'ownPlayers'
-	'keyPlayers'                : '/Club/Players/KeyPlayers.aspx',
-	'oldPlayers'                : '/Club/Players/Oldies.aspx',
-	'oldCoaches'                : '/Club/Players/Coaches.aspx',
-	'ntPlayers'                 : '/Club/NationalTeam/NTPlayers.aspx',
-	'youthPlayers'              : '/Club/Players/YouthPlayers.aspx',
+	'keyPlayers'                : '/Club/Players/KeyPlayers(.|.Classic.)aspx',
+	'oldPlayers'                : '/Club/Players/Oldies(.|.Classic.)aspx',
+	'oldCoaches'                : '/Club/Players/Coaches(.|.Classic.)aspx',
+	'ntPlayers'                 : '/Club/NationalTeam/NTPlayers(.|.Classic.)aspx',
+	'youthPlayers'              : '/Club/Players/YouthPlayers(.|.Classic.)aspx',
 	'ownYouthPlayers'           : 'FakePage',
 	                              // updated in core.js so you cannot rely on it in PAGES
 	                              // use 'youthPlayers' instead
-	'ownYouthPlayersTemplate'   : '/Club/Players/YouthPlayers.aspx($|?YouthTeamId=[id])',
+	'ownYouthPlayersTemplate'   : '/Club/Players/YouthPlayers(.|.Classic.)aspx($|?YouthTeamId=[id])',
 	                              // README: don't use this! The correct value is 'ownYouthPlayers'
 	'playerHistory'             : '/Club/Players/PlayerHistory.aspx',
 	'playerEvents'              : '/Club/Players/PlayerHistory.aspx?playerId=\\d+' +

@@ -533,7 +533,7 @@ Foxtrick.L10n.getShortPosition = function(pos) {
  * @param  {string} spec
  * @return {string}
  */
-Foxtrick.L10n.getShortSpecialityFromEnglish = function(spec) {
+Foxtrick.L10n.getShortSpecialtyFromEnglish = function(spec) {
 	Foxtrick.L10n.getString('specialty.' + spec + '.abbr');
 };
 
@@ -543,7 +543,7 @@ Foxtrick.L10n.getShortSpecialityFromEnglish = function(spec) {
  * @param  {string} spec
  * @return {string}
  */
-Foxtrick.L10n.getEnglishSpeciality = function(spec) {
+Foxtrick.L10n.getEnglishSpecialty = function(spec) {
 	if (!spec)
 		return '';
 
@@ -568,7 +568,7 @@ Foxtrick.L10n.getEnglishSpeciality = function(spec) {
  * @param  {number} number {Integer}
  * @return {string}
  */
-Foxtrick.L10n.getEnglishSpecialityFromNumber = function(number) {
+Foxtrick.L10n.getEnglishSpecialtyFromNumber = function(number) {
 	var specs = [
 		'',
 		'Technical',
@@ -589,8 +589,8 @@ Foxtrick.L10n.getEnglishSpecialityFromNumber = function(number) {
  * @param  {number} number {Integer}
  * @return {string}
  */
-Foxtrick.L10n.getSpecialityFromNumber = function(number) {
-	var spec = this.getEnglishSpecialityFromNumber(number);
+Foxtrick.L10n.getSpecialtyFromNumber = function(number) {
+	var spec = this.getEnglishSpecialtyFromNumber(number);
 	var query = {
 		category: 'specialties',
 		property: 'value',
@@ -604,11 +604,11 @@ Foxtrick.L10n.getSpecialityFromNumber = function(number) {
 /**
  * Map l10n spec to spec code
  *
- * @param  {string} speciality
+ * @param  {string} specialty
  * @return {number}            {Integer}
  */
-Foxtrick.L10n.getNumberFromSpeciality = function(speciality) {
-	var engSpec = this.getEnglishSpeciality(speciality);
+Foxtrick.L10n.getNumberFromSpecialty = function(specialty) {
+	var engSpec = this.getEnglishSpecialty(specialty);
 
 	var specs = [
 		'',

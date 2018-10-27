@@ -99,7 +99,7 @@ Foxtrick.modules['CopyPlayerAd'] = {
 			// for senior players:
 			// (coach), form, stamina, experience, leadership, personality (always there)
 			// for youth players:
-			// speciality (only when he has a speciality)
+			// specialty (only when he has a specialty)
 			var basicInfo;
 			if (isSenior) {
 				// add new lines before <br> so that textContent would have breaks
@@ -120,16 +120,16 @@ Foxtrick.modules['CopyPlayerAd'] = {
 				basicInfo = playerInfo.getElementsByTagName('p')[0] ||
 					playerInfo.getElementsByTagName('strong')[0];
 				if (basicInfo) {
-					var speciality = basicInfo.textContent.trim();
+					var specialty = basicInfo.textContent.trim();
 
-					// we will bold the speciality part, right after
+					// we will bold the specialty part, right after
 					// colon plus space
 					var colonRe = /:\s*/;
-					var colonIndex = speciality.search(colonRe);
-					var colonLength = speciality.match(colonRe)[0].length;
+					var colonIndex = specialty.search(colonRe);
+					var colonLength = specialty.match(colonRe)[0].length;
 					var colonEndIdx = colonIndex + colonLength;
-					ad += speciality.slice(0, colonEndIdx) + '[b]' +
-						speciality.slice(colonEndIdx, colonEndIdx + speciality.length) +
+					ad += specialty.slice(0, colonEndIdx) + '[b]' +
+						specialty.slice(colonEndIdx, colonEndIdx + specialty.length) +
 						'[/b]\n\n';
 				}
 			}
@@ -151,7 +151,7 @@ Foxtrick.modules['CopyPlayerAd'] = {
 					for (let l = 0; l < popupLinks.length; l++)
 						popupLinks[l].textContent = '';
 
-					// bolding for speciality
+					// bolding for specialty
 					let part = cellCopy.textContent.replace(/\n/g, '').replace(/\s+/g, ' ').trim();
 					if (r === 5)
 						part = '[b]' + part + '[/b]';
@@ -184,7 +184,7 @@ Foxtrick.modules['CopyPlayerAd'] = {
 
 						let text = copy.textContent.trim();
 
-						// bolding for speciality+htms
+						// bolding for specialty+htms
 						if (r === 2 || r === 5)
 							text = '[b]' + text + '[/b]';
 

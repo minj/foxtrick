@@ -269,7 +269,7 @@ Foxtrick.modules['YouthSkills'] = {
 					continue;
 
 				// add specialty
-				var specialty = json[playerID].speciality;
+				var specialty = json[playerID].speciality; // HY TYPO
 				if (specialty) {
 					var age = playerInfo.getElementsByTagName('p')[0];
 					var text = age.textContent;
@@ -278,11 +278,11 @@ Foxtrick.modules['YouthSkills'] = {
 						var span = Foxtrick.createFeaturedElement(doc, module, 'span');
 						var text = doc.createElement('strong');
 						Foxtrick.addClass(text, 'ft-hy-spec');
-						text.title = Foxtrick.L10n.getString('YouthSkills.newSpeciality');
+						text.title = Foxtrick.L10n.getString('YouthSkills.newSpecialty');
 						// use aria label for a11y
 						text.setAttribute('aria-label', text.title);
 
-						var spec = Foxtrick.L10n.getSpecialityFromNumber(specialty);
+						var spec = Foxtrick.L10n.getSpecialtyFromNumber(specialty);
 						text.textContent = '[' + spec + ']';
 						span.appendChild(text);
 						age.appendChild(span);

@@ -9,7 +9,7 @@ Foxtrick.modules['TeamStats'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES: ['allPlayers', 'youthPlayers'],
 	OPTIONS: [
-		'General', 'Attributes', 'Skills', 'Match', 'Speciality',
+		'General', 'Attributes', 'Skills', 'Match', 'Specialty',
 		'Personality', 'Status', 'Current_league'
 	],
 	NICE: -1, // before FoxtrickLinksPlayers
@@ -72,8 +72,8 @@ Foxtrick.modules['TeamStats'] = {
 			var totalAgreeability = 0;
 			var totalAggressiveness = 0;
 			var totalHonesty = 0;
-			var hasSpecialities = false;
-			var specialities = {};
+			var hasSpecialties = false;
+			var specialties = {};
 
 			var DAYS_IN_SEASON = Foxtrick.util.time.DAYS_IN_SEASON;
 
@@ -89,12 +89,12 @@ Foxtrick.modules['TeamStats'] = {
 				if (current.age.years >= 19) {
 					++olderThanNineteen;
 				}
-				if (current.speciality) {
-					if (!specialities[current.speciality]) {
-						hasSpecialities = true;
-						specialities[current.speciality] = 0;
+				if (current.specialty) {
+					if (!specialties[current.specialty]) {
+						hasSpecialties = true;
+						specialties[current.specialty] = 0;
 					}
-					++specialities[current.speciality];
+					++specialties[current.specialty];
 				}
 				if (current.transferListed) {
 					++transferListed;
@@ -289,18 +289,18 @@ Foxtrick.modules['TeamStats'] = {
 					}
 				}
 
-				if (Foxtrick.Prefs.isModuleOptionEnabled('TeamStats', 'Speciality')) {
-					if (hasSpecialities) {
-						var specSummary = [], speciality, i;
-						for (speciality in specialities) {
-							specSummary.push({ type: speciality, count: specialities[speciality] });
+				if (Foxtrick.Prefs.isModuleOptionEnabled('TeamStats', 'Specialty')) {
+					if (hasSpecialties) {
+						var specSummary = [], specialty, i;
+						for (specialty in specialties) {
+							specSummary.push({ type: specialty, count: specialties[specialty] });
 							specSummary.sort(function(a, b) { return a.type.localeCompare(b.type) });
 							specSummary.sort(function(a, b) { return b.count - a.count });
 						}
 						for (i in specSummary) {
-							addRow('Speciality', specSummary[i].type, specSummary[i].count,
-								   'speciality-' + Foxtrick.L10n
-								   .getEnglishSpeciality(specSummary[i].type), specSummary[i].type);
+							addRow('Specialty', specSummary[i].type, specSummary[i].count,
+								   'specialty-' + Foxtrick.L10n
+								   .getEnglishSpecialty(specSummary[i].type), specSummary[i].type);
 						}
 					}
 				}
