@@ -157,6 +157,23 @@ Foxtrick.Pages.Player.getTsi = function(doc) {
 };
 
 /**
+ * Get skill level from element containing skill link/bar.
+ * Senior players only.
+ * @param  {Element} el
+ * @return {number?}    {Int?}
+ */
+Foxtrick.Pages.Player.getSkillLevel = function(el) {
+	let link = el.querySelector('.skill');
+	let skillBar = el.querySelector('.ht-bar');
+	if (link)
+		return Foxtrick.util.id.getSkillLevelFromLink(link);
+	else if (skillBar)
+		return parseInt(skillBar.getAttribute('level'), 10);
+
+	return null;
+};
+
+/**
  * Get player attributes.
  * Returns {leadership, experience, coachSkill, stamina, staminaPred, form,
  * loyalty, motherClubBonus, gentleness, aggressiveness, honesty}.
@@ -199,14 +216,11 @@ Foxtrick.Pages.Player.getAttributes = function(doc) {
 		if (isNewDesign) {
 			let getNumFromRow = (i) => {
 				let cell = infoTable.rows[i].cells[1];
-				let link = cell.querySelector('.skill');
-				let skillBar = cell.querySelector('.ht-bar');
-				if (link)
-					return num(link);
-				else if (skillBar)
-					return parseInt(skillBar.getAttribute('level'), 10);
+				let level = Foxtrick.Pages.Player.getSkillLevel(cell);
+				if (level == null)
+					throw Error('trait not found');
 
-				throw Error('trait not found');
+				return level;
 			};
 
 			attrs.form = getNumFromRow(3);
@@ -287,7 +301,7 @@ Foxtrick.Pages.Player.isBruised = function(doc) {
  *
  * Senior player only.
  * @param  {document} doc
- * @return {element}
+ * @return {Element}
  */
 Foxtrick.Pages.Player.getInjuryCell = function(doc) {
 	var ret = null;
@@ -406,7 +420,7 @@ Foxtrick.Pages.Player.getInfoTable = function(doc) {
  *
  * Senior player only.
  * @param  {document} doc
- * @return {element}
+ * @return {Element}
  */
 Foxtrick.Pages.Player.getWageCell = function(doc) {
 	var ret = null;
@@ -453,7 +467,7 @@ Foxtrick.Pages.Player.getWage = function(doc, wageCell) {
 
 	var ret = { base: wage, bonus: 0, total: wage };
 
-	var hasBonus = /%/.test(wageText) || wageCell.querySelector('span[title]');
+	var hasBonus = /%/.test(wageText) || cell.querySelector('span[title]');
 	if (hasBonus) {
 		var bonus = Math.round(wage / 6);
 		ret.bonus = bonus;
