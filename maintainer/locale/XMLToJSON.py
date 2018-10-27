@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 from Hattrick.Parsers import XMLParser
 import xml.etree.ElementTree as ET
 
