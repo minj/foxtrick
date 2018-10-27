@@ -277,43 +277,50 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 			let rating = full + half;
 
 			let staminaCircle = ratingCircle.querySelector('circle[stroke-dasharray');
-			let totalStamina = parseFloat(staminaCircle.getAttribute('stroke-dasharray'));
-			let staminaLoss = parseFloat(staminaCircle.getAttribute('stroke-dashoffset'));
-			let lossPctg = staminaLoss / totalStamina;
-			let finalPctg = 1 - lossPctg;
+			if (staminaCircle) {
+				let totalStamina = parseFloat(staminaCircle.getAttribute('stroke-dasharray'));
+				let staminaLoss = parseFloat(staminaCircle.getAttribute('stroke-dashoffset'));
+				let lossPctg = staminaLoss / totalStamina;
+				let finalPctg = 1 - lossPctg;
 
-			player.lastRating = rating;
-			player.lastRatingEndOfGame = finalPctg * rating;
-			player.lastRatingDecline = lossPctg * rating;
-			return;
+				player.lastRating = rating;
+				player.lastRatingEndOfGame = finalPctg * rating;
+				player.lastRatingDecline = lossPctg * rating;
+				return;
+			}
 		}
 
-		var matchDateCell = matchLink.parentNode;
-		var matchRatingCell = matchDateCell.nextElementSibling;
-
-		var positionSpan = matchRatingCell.querySelector('.shy');
-		var position = positionSpan.textContent.match(/\((.+)\)/)[1].trim();
+		let positionText;
+		let parent = matchLink.parentNode;
+		if (Foxtrick.hasClass(parent, 'playerInfo')) {
+			positionText = matchLink.nextSibling.textContent;
+		}
+		else {
+			parent = parent.nextElementSibling;
+			let positionSpan = parent.querySelector('.shy');
+			positionText = positionSpan.textContent;
+		}
+		let position = positionText.match(/\((.+)\)/)[1].trim();
 		player.lastPosition = position;
 		player.lastPositionType = Foxtrick.L10n.getPositionType(position);
 
-		var rating = 0;
-		var ratingYellow = 0;
-		var stars = matchRatingCell.getElementsByTagName('img');
-		for (var j = 0; j < stars.length; ++j) {
-			if (Foxtrick.hasClass(stars[j], 'starBig'))
+		let rating = 0, ratingYellow = 0;
+		let stars = parent.querySelectorAll('img');
+		for (let star of stars) {
+			if (Foxtrick.hasClass(star, 'starBig'))
 				rating += 5;
-			if (Foxtrick.hasClass(stars[j], 'starWhole'))
+			if (Foxtrick.hasClass(star, 'starWhole'))
 				rating += 1;
-			if (Foxtrick.hasClass(stars[j], 'starHalf'))
+			if (Foxtrick.hasClass(star, 'starHalf'))
 				rating += 0.5;
 
-			if (/star_big_yellow.png$/i.test(stars[j]))
+			if (/star_big_yellow.png$/i.test(star))
 				ratingYellow += 5;
-			if (/star_yellow.png$/i.test(stars[j]))
+			if (/star_yellow.png$/i.test(star))
 				ratingYellow += 1;
-			if (/star_half_yellow.png$/i.test(stars[j]))
+			if (/star_half_yellow.png$/i.test(star))
 				ratingYellow += 0.5;
-			if (/star_yellow_to_brown.png$/i.test(stars[j]))
+			if (/star_yellow_to_brown.png$/i.test(star))
 				ratingYellow += 0.5;
 		}
 		player.lastRating = rating;
@@ -826,9 +833,8 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 						if (!cell)
 							continue;
 
-						let link = cell.querySelector('a');
 						let skill = rowId.slice(2).toLowerCase();
-						player[skill] = Foxtrick.util.id.getSkillLevelFromLink(link);
+						player[skill] = Foxtrick.Pages.Player.getSkillLevel(cell);
 					}
 				}
 			}
@@ -947,10 +953,9 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 			}
 
 			if (isOwn || isOwnYouth) {
-				let tables = playerNode.querySelectorAll('table');
-				let skillTable = tables[0];
+				let skillTable = playerNode.querySelector('table');
 				if (Foxtrick.hasClass(skillTable.parentNode, 'transferPlayerInformation'))
-					skillTable = tables[1].parentNode;
+					skillTable = playerNode.querySelector('.transferPlayerSkills');
 
 				let skillInfo;
 				if (Foxtrick.Pages.Players.isSenior(doc)) {
@@ -1283,7 +1288,7 @@ Foxtrick.Pages.Players.getPlayerFromListById = function(list, id) {
 
 /**
  * Get player ID from player container
- * @param  {element} playerInfo .playerInfo container
+ * @param  {Element} playerInfo .playerInfo container
  * @return {number}
  */
 Foxtrick.Pages.Players.getPlayerId = function(playerInfo) {
