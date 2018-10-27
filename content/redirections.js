@@ -127,7 +127,7 @@ Foxtrick.modules['Redirections'] = {
 
 						if (teamId === ownTeamId) {
 							// redirect to own coach
-							url = '/Club/Training/?redir_to_coach=true';
+							url = `/Club/Specialists/?teamId=${teamId}`;
 						}
 						else {
 							// redirect to other coaches
@@ -140,11 +140,6 @@ Foxtrick.modules['Redirections'] = {
 					else if (/\/Club\/NationalTeam\/NationalTeam/i.test(location)) {
 						var ntinfo = doc.getElementById('teamInfo');
 						coachId = Foxtrick.util.id.findPlayerId(ntinfo);
-						url = '/Club/Players/Player.aspx?playerId=' + coachId;
-					}
-					else if (/\/Club\/Training/i.test(location)) {
-						// redirect to own coach
-						coachId = Foxtrick.util.id.findPlayerId(mainBody);
 						url = '/Club/Players/Player.aspx?playerId=' + coachId;
 					}
 
