@@ -22,7 +22,6 @@ if (!Foxtrick.api.hy)
  * Otherwise localStore cache is checked: the data is used or refetched if it is stale
  * Stale cache is used if the fecthing fails
  *
- * userID API is also updated via playersTwinsCheck in the YouthTwins module for historic reasons
  *
  * All APIs use the 503 cooldown mechanism via _fetchOrIgnore:
  * If the request returns 503, a flag is set that causes all consequent requests

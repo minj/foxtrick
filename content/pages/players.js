@@ -763,6 +763,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 
 		var pNodes = Foxtrick.Pages.Players.getPlayerNodes(doc);
 		Foxtrick.forEach(function(playerNode, i) {
+			const AGE_RE = /\d+\D+\d+\s\S+/;
 			var paragraphs = Foxtrick.toArray(playerNode.getElementsByTagName('p'));
 			var icons = Foxtrick.toArray(playerNode.querySelectorAll('img, i, object'));
 			var as = Foxtrick.toArray(playerNode.getElementsByTagName('a'));
@@ -800,17 +801,29 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				}
 
 				let playerInfo = playerNode.querySelector('.transferPlayerInformation table');
+				if (Foxtrick.Pages.Players.isYouth(doc)) {
+					playerInfo = playerNode.querySelector('.playerInfo table');
+				}
 
 				{
 					let anonRows = ['age', 'tsi', 'salary'], anonCells = {}, anonTexts = {};
-					for (let [idx, rowType] of anonRows.entries()) {
-						let row = playerInfo.rows[idx];
-						let cell = row.cells[1];
-						anonCells[rowType] = cell;
-						anonTexts[rowType] = cell.textContent.trim();
-					}
 
-					player.ageText = anonTexts.age;
+					if (Foxtrick.Pages.Players.isYouth(doc)) {
+						let ageText = playerNode.querySelector('p').textContent;
+						if (ageText.match(AGE_RE) !== null) {
+							ageText = ageText.match(AGE_RE)[0].replace(',', '');
+						}
+						player.ageText = ageText;
+					}
+					else {
+						for (let [idx, rowType] of anonRows.entries()) {
+							let row = playerInfo.rows[idx];
+							let cell = row.cells[1];
+							anonCells[rowType] = cell;
+							anonTexts[rowType] = cell.textContent.trim();
+						}
+						player.ageText = anonTexts.age;
+					}
 					if (!player.age) {
 						let ageMatch = player.ageText.match(/(\d+)/g);
 						player.age = {
@@ -837,9 +850,8 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 					let getCellFromNamedRow =
 						id => playerInfo.querySelector(`tr[id$="${id}"] td:nth-child(2)`);
 
-					let specCell = getCellFromNamedRow('trSpeciality'); // HT-TYPO
-					let specIcon = specCell.querySelector(`i[class*="${SPEC_PREFIX}"]`);
-					if (specIcon) {
+					let specIcon, specTd = getCellFromNamedRow('trSpeciality'); // HT-TYPO
+					if (specTd && (specIcon = specTd.querySelector(`i[class*="${SPEC_PREFIX}"]`))) {
 						let classes = [...specIcon.classList];
 						let specClass = classes.filter(c => c.startsWith(SPEC_PREFIX))[0];
 						let specNum = parseInt(specClass.match(/\d+/)[0], 10);
@@ -887,7 +899,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 						basicHtml += ' ' + tsiElement.textContent;
 				}
 
-				var ageText = basicHtml.trim().replace(/\s\s+/g, ' ');
+				let ageText = basicHtml.trim().replace(/\s\s+/g, ' ');
 
 				// First we dump TSI out of the string, and then
 				// the first match is years and the second is days
@@ -896,9 +908,8 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 					ageText = ageText.replace(tsiMatch[0], '');
 				}
 
-				var ageRe = /\d+\D+\d+\s\S+/;
-				if (ageText.match(ageRe) !== null) {
-					ageText = ageText.match(ageRe)[0].replace(',', '');
+				if (ageText.match(AGE_RE) !== null) {
+					ageText = ageText.match(AGE_RE)[0].replace(',', '');
 				}
 				player.ageText = ageText;
 

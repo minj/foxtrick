@@ -56,6 +56,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "10357856",
+			"name": "rattlerx"
+		},
+		{
+			"duty": "supporter",
 			"id": "10380313",
 			"name": "pinkusachi"
 		},
@@ -236,6 +241,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "11562839",
+			"name": "rdroze"
+		},
+		{
+			"duty": "supporter",
 			"id": "11578876",
 			"name": "FCJoe"
 		},
@@ -367,7 +377,7 @@
 		{
 			"duty": "translator",
 			"id": "12378459",
-			"name": "<ASTND>"
+			"name": "ASTND"
 		},
 		{
 			"duty": "translator",
@@ -501,6 +511,16 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "13087874",
+			"name": "Kelor"
+		},
+		{
+			"duty": "supporter",
+			"id": "13099132",
+			"name": "harrylan"
+		},
+		{
+			"duty": "supporter",
 			"id": "13102527",
 			"name": "TomTrader"
 		},
@@ -606,6 +626,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "1883959",
+			"name": "Kundiman"
+		},
+		{
+			"duty": "supporter",
 			"id": "191061",
 			"name": "MHawk"
 		},
@@ -628,6 +653,11 @@
 			"duty": "supporter",
 			"id": "2029812",
 			"name": "Presida"
+		},
+		{
+			"duty": "supporter",
+			"id": "2058275",
+			"name": "<>"
 		},
 		{
 			"duty": "supporter",
@@ -720,6 +750,11 @@
 			"name": "gia73"
 		},
 		{
+			"duty": "supporter",
+			"id": "279449",
+			"name": "<>"
+		},
+		{
 			"duty": "translator",
 			"id": "2809993",
 			"name": "<damyr>"
@@ -788,6 +823,11 @@
 			"duty": "translator",
 			"id": "3455853",
 			"name": "Takiwaki"
+		},
+		{
+			"duty": "supporter",
+			"id": "3499253",
+			"name": "Gambit"
 		},
 		{
 			"duty": "supporter",
@@ -1023,6 +1063,11 @@
 			"duty": "translator",
 			"id": "5345125",
 			"name": "GM-Marin"
+		},
+		{
+			"duty": "supporter",
+			"id": "536514",
+			"name": "Mod-Piero00"
 		},
 		{
 			"duty": "translator",

@@ -4,62 +4,62 @@ el:
     0.17.0.1:
       bugs: '<header>Διορθώσεις σφαλμάτων</header>'
       other: '<header>Άλλες αλλαγές</header>'
-      and_more: Διάφορες άλλες μικρές αλλαγές και διορθώσεις.
+      and_more: 'Διάφορες άλλες μικρές αλλαγές και διορθώσεις.'
     0.17.0:
       bugs: '<header>Διορθώσεις σφαλμάτων</header>'
       other: '<header>Άλλες αλλαγές</header>'
-      and_more: Διάφορες άλλες μικρές αλλαγές και διορθώσεις.
+      and_more: 'Διάφορες άλλες μικρές αλλαγές και διορθώσεις.'
     0.16.1.1:
       bugs: '<header>Διορθώσεις σφαλμάτων</header>'
-      and_more: Διάφορες άλλες μικρές αλλαγές και διορθώσεις.
+      and_more: 'Διάφορες άλλες μικρές αλλαγές και διορθώσεις.'
     0.16.1:
       important: '<header>Σημαντικές ανακοινώσεις</header>'
       bugs: '<header>Διορθώσεις σφαλμάτων</header>'
       other: '<header>Άλλες αλλαγές</header>'
-      and_more: Διάφορες άλλες μικρές αλλαγές και διορθώσεις.
+      and_more: 'Διάφορες άλλες μικρές αλλαγές και διορθώσεις.'
     0.16.0:
       bugs: '<header>Διορθώσεις σφαλμάτων</header>'
       other: '<header>Άλλες αλλαγές</header>'
-      and_more: Διάφορες άλλες μικρές αλλαγές και διορθώσεις.
+      and_more: 'Διάφορες άλλες μικρές αλλαγές και διορθώσεις.'
     0.15.2.1:
       bugs: '<header>Διορθώσεις σφαλμάτων</header>'
       other: '<header>Άλλες αλλαγές</header>'
-      and_more: Διάφορες άλλες μικρές αλλαγές και διορθώσεις.
+      and_more: 'Διάφορες άλλες μικρές αλλαγές και διορθώσεις.'
     0.15.2:
       bugs: '<header>Διορθώσεις σφαλμάτων</header>'
       other: '<header>Άλλες αλλαγές</header>'
-      and_more: Διάφορες άλλες μικρές αλλαγές και διορθώσεις.
+      and_more: 'Διάφορες άλλες μικρές αλλαγές και διορθώσεις.'
     0.15.1:
       bugs: '<header>Διορθώσεις σφαλμάτων</header>'
       other: '<header>Άλλες αλλαγές</header>'
-      and_more: Διάφορες άλλες μικρές αλλαγές και διορθώσεις.
+      and_more: 'Διάφορες άλλες μικρές αλλαγές και διορθώσεις.'
     0.15.0:
       bugs: '<header>Διορθώσεις σφαλμάτων</header>'
       other: '<header>Άλλες αλλαγές</header>'
-      and_more: Διάφορες άλλες μικρές αλλαγές και διορθώσεις.
+      and_more: 'Διάφορες άλλες μικρές αλλαγές και διορθώσεις.'
     0.14.0.3:
       bugs: '<header>Διορθώσεις σφαλμάτων</header>'
     0.14.0.2:
       bugs: '<header>Διορθώσεις σφαλμάτων</header>'
       other: '<header>Άλλες αλλαγές</header>'
-      and_more: Διάφορες άλλες μικρές αλλαγές και διορθώσεις.
+      and_more: 'Διάφορες άλλες μικρές αλλαγές και διορθώσεις.'
     0.14.0.1:
       bugs: '<header>Διορθώσεις σφαλμάτων</header>'
     0.14.0:
       bugs: '<header>Διορθώσεις σφαλμάτων</header>'
       other: '<header>Άλλες αλλαγές</header>'
-      and_more: Διάφορες άλλες μικρές αλλαγές και διορθώσεις.
+      and_more: 'Διάφορες άλλες μικρές αλλαγές και διορθώσεις.'
     0.13.0.1:
       bugs: '<header>Διορθώσεις σφαλμάτων</header>'
       other: '<header>Άλλες αλλαγές</header>'
-      and_more: Διάφορες άλλες μικρές αλλαγές και διορθώσεις.
+      and_more: 'Διάφορες άλλες μικρές αλλαγές και διορθώσεις.'
     0.13.0:
       other: '<header>Άλλες αλλαγές</header>'
       bugs: '<header>Διορθώσεις σφαλμάτων</header>'
     0.12.2:
-      note_11: '<header>Διορθώσεις σφαλμάτων</header>'
+      note_11: "<header>Διορθώσεις σφαλμάτων</header>"
     0.12.1.1:
-      note_0: Ενημερώσεις μετάφρασης.
+      note_0: 'Ενημερώσεις μετάφρασης.'
     0.11.0:
       note_12: '<header>Διορθώσεις σφαλμάτων</header>'
     0.10.0:
@@ -86,7 +86,7 @@ el:
       note_21: '<header>For visually/hearing impaired users</header>'
       note_22: We added a new section to the settings page that will contain all modules that are related to accessibility.
       note_23: 'NEW: <module>ARIALandmarks</module>: Adds ARIA landmarks to the website. This should help navigating the site using screenreaders. The two main navigation bars and the list of all subscribed forums got the role "navigation". The main content has the role "main". All the sidebars with additional information and links will be marked as "complementary". The links to global search and forum search have the role "search" of course.'
-      note_24: "If you have any further suggestions please don't hesitate to contact us. We are also browsing the Hattrick Access forums."
+      note_24: If you have any further suggestions please don't hesitate to contact us. We are also browsing the Hattrick Access forums.
     0.9.3:
       note_0: 'A lot of language updates because Foxtrick users are awesome. Thank you so much. Keep contributing at <linkCrowdin>http://www.crowdin.net</linkCrowdin>'
       note_1: 'NEW: <module>YouthTwins</module>: Shows the amount of possible/marked/non twins on the youth players overview page for supporters (in conjunction with hattrick youthclub)'
@@ -99,7 +99,7 @@ el:
       note_8: 'PlayerStatsExperience: Fixed issue that caused this module not to work on Firefox 3.6'
       note_9: 'CustomMedals: Fixed disappearing tournament trophies'
       note_10: Ogg sounds for mozilla-based browsers enabled
-      note_11: "Fennec loads staffmarker and link resources from internal sources again. So they aren't updated dynamically but also save bandwidth."
+      note_11: Fennec loads staffmarker and link resources from internal sources again. So they aren't updated dynamically but also save bandwidth.
     0.9.2:
       note_0: Another massive language update. Thanks again to all those translators.
       note_1: Rewrote language detection. Should never break again
@@ -124,7 +124,7 @@ el:
       note_20: 'MatchOrder: Highlight of players that played in the last match can now be shown on the playing field too'
       note_21: Some more work on AMO compliance
       note_22: '<header>For Google Chrome users</header>'
-      note_23: "Seems that Chrome 18's optional permissions system is buggy. Feature which require those (HTY staffmarker and EmbedMedia) might not work currently."
+      note_23: Seems that Chrome 18's optional permissions system is buggy. Feature which require those (HTY staffmarker and EmbedMedia) might not work currently.
     0.9.1:
       note_0: 'HTMS: tactics used again'
       note_1: 'Tablesort: sort floating numbers'
@@ -138,14 +138,14 @@ el:
       note_6: Moved the highlight feature toggle to the FoxTrick toolbar icon resp. preferences main tab
       note_7: module MatchTables removed since no one used it
       note_8: 'MatchSimulator stamina effect: show texts rounded and values not rounded'
-      note_9: 'preference linking "foxtrick://"-style fixed'
+      note_9: preference linking "foxtrick://"-style fixed
       note_10: Matchreport now shows tooltips for all events
       note_11: Links resources moved to yet another server
       note_12: Some internal changes to improve AMO compliance
       note_13: "A huge ammount of translation updates by: aegeansailor, brauxx, Mod-Utku, ebitechv, Polytropos, gkon13, SOLARIS1973, Fieras, margaale, ipefix, stephan.cardot, OmaniMilani, LambdaB, SI-CH, Convincedd, margaale, ljushaff, serjhanti, playMaker, CoRrRan, Aristodemos, margaale, spider007, FeritAkarsu and probably some people i missed, please drop us a msg if you feel unrespected, it's kinda hard to keep tracking all of you guys. This is awesome! Thanks to all of you!"
     0.9.0.4:
       note_0: Links resources moved to another server
-      note_1: "Added basic english event texts to the icons' titles in MatchReportFormat"
+      note_1: Added basic english event texts to the icons' titles in MatchReportFormat
       note_2: Enabled MatchReportFormat and MatchPlayerColoring for tournament matches
     0.9.0.3:
       note_0: Fixed several modules after a change in HTs page layout
@@ -157,7 +157,7 @@ el:
       note_4: Several translation updates
     0.9.0.1:
       note_0: Fixed (accidental) excessive permissions for Chrome
-      note_1: 'Fixed LiveAlert '
+      note_1: Fixed LiveAlert 
       note_2: Fixed and some css issues (for Chrome, Opera, Safari)
     0.9:
       note_0: '<header>Localization:</header>'
@@ -184,7 +184,7 @@ el:
       note_21: LeagueChat and HeaderFixFlickerFix removed (convincedd)
       note_22: Many internal changes (ryanli, convincedd) and probably several other smaller fixes
       note_23: '<header>For Google Chrome users</header>'
-      note_24: "We implemented Chrome's optional permissions system. There are fewer mandatory permissions needed now when installing FoxTrick. Since you have not set any yet, you have to save the preference once and confirm whichever access you want to allow. Later, you will be asked to allow access to an external resource whenever you enable a module which requires it."
+      note_24: We implemented Chrome's optional permissions system. There are fewer mandatory permissions needed now when installing FoxTrick. Since you have not set any yet, you have to save the preference once and confirm whichever access you want to allow. Later, you will be asked to allow access to an external resource whenever you enable a module which requires it.
     0.8.2:
       note_0: Korean locale (SI-CH)
       note_1: Lithuanian locale (LA-MJ)
@@ -278,3 +278,4 @@ el:
       note_19: 'Module <module>TeamSelectBox</module> disabled by default. (ryanli)'
       note_20: 'Module <module>SmallerPages</module> disabled by default. (ljushaff)'
       note_21: 'Radio options in <module>ExtraShortcuts</module> are disabled by default. (ryanli)'
+
