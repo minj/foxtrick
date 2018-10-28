@@ -149,6 +149,7 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 
 			}
 			else if (Foxtrick.isPage(doc, 'transferSearchResult')) {
+				let isNewDesign = Foxtrick.Pages.TransferSearchResults.isNewDesign(doc);
 				var list = Foxtrick.Pages.TransferSearchResults.getPlayerList(doc);
 				// filter out players with out skill data (after deadline)
 				var transfers = Foxtrick.filter(function(p) {
@@ -159,7 +160,9 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 					var row = Foxtrick.insertFeaturedRow(table, module, table.rows.length);
 					Foxtrick.addClass(row, 'ft-best-player-position');
 					var title = row.insertCell(0);
-					title.colSpan = '2';
+					if (!isNewDesign)
+						title.colSpan = '2';
+
 					var b = doc.createElement('strong');
 					b.textContent = Foxtrick.L10n.getString('BestPlayerPosition.title');
 					title.appendChild(b);

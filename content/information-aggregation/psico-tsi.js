@@ -162,9 +162,7 @@ Foxtrick.modules['PsicoTSI'] = {
 
 			var entry = playerContainers[i];
 
-			// if the following container does not exist
-			// the player is sold and skills aren't visible
-			if (!entry.getElementsByClassName('transferPlayerCharacteristics').length)
+			if (!Foxtrick.hasProp(p, 'keeper'))
 				continue;
 
 			var age = p.ageYears;

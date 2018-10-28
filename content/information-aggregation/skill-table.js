@@ -737,6 +737,11 @@ Foxtrick.modules['SkillTable'] = {
 				},
 				dateCell: function(cell, deadline) {
 					var date = Foxtrick.util.time.getDateFromText(deadline.textContent);
+					if (date == null) {
+						cell.textContent = deadline.textContent;
+						return;
+					}
+
 					var index = date.getTime();
 					deadline.setAttribute('index', index);
 					cell.parentNode.replaceChild(deadline, cell);
