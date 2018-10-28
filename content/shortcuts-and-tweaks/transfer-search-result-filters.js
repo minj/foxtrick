@@ -312,22 +312,13 @@ Foxtrick.modules['TransferSearchResultFilters'] = {
 			});
 		};
 		var filterResults = function() {
-			getFilters(
-			  function(filters) {
-				var playerList = Foxtrick.Pages.TransferSearchResults.getPlayerList(doc);
-				var playerInfos = doc.getElementsByClassName('transferPlayerInfo');
-				// Transform a live NodeList to an array because we'll remove
-				// elements below. Without transformation the index would
-				// point to incorrect nodes.
-				playerInfos = Foxtrick.map(function(n) { return n; }, playerInfos);
-
+			getFilters((filters) => {
+				let playerList = Foxtrick.Pages.TransferSearchResults.getPlayerList(doc);
 				// playerList and playerInfos should have the same order,
 				// and the same length
-				for (var i = 0; i < playerInfos.length; ++i) {
-					var player = playerList[i];
-					var hide = false;
-					for (var j = 0; j < filters.length; ++j) {
-						var filter = filters[j];
+				for (let player of playerList) {
+					let hide = false;
+					for (let filter of filters) {
 						if (filter.type == 'minmax' &&
 						    (filter.min !== '' || filter.max !== '')) {
 							if (FILTER_FUNC[filter.key](player, filter.min, filter.max))
@@ -339,13 +330,16 @@ Foxtrick.modules['TransferSearchResultFilters'] = {
 								hide = true;
 						}
 						else if (filter.type == 'check') {
-							/*Foxtrick.log(filter, filter.checked,
-							             FILTER_FUNC[filter.key](player), player);*/
 							if (filter.checked && FILTER_FUNC[filter.key](player))
 								hide = true;
 						}
 						if (hide) {
-							playerInfos[i].parentNode.removeChild(playerInfos[i]);
+							let node = player.playerNode, next;
+							if ((next = node.nextElementSibling) &&
+							    Foxtrick.hasClass(next, 'borderSeparator')) {
+								next.remove();
+							}
+							node.remove();
 							break;
 						}
 					}
