@@ -268,8 +268,13 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 		player.specialty = texts.specialty == '-' ? '' : texts.specialty;
 		player.specialtyNumber = Foxtrick.L10n.getNumberFromSpecialty(player.specialty);
 
-		if (texts.salary)
-			player.salary = Foxtrick.trimnum(texts.salary); // FIXME
+		if (cells.salary) {
+			let salary = cells.salary.cloneNode(true), cConverter;
+			if ((cConverter = salary.querySelector('.ft-dummy')))
+				cConverter.remove();
+
+			player.salary = Foxtrick.trimnum(salary.textContent);
+		}
 
 		if (cells.form)
 			player.form = Foxtrick.Pages.Player.getSkillLevel(cells.form);

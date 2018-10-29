@@ -41,6 +41,8 @@ Foxtrick.modules['CurrencyConverter'] = {
 		if (doc.location.href.search(/Forum/i) != -1)
 			return;
 
+		var module = this;
+
 		Foxtrick.util.currency.detect(doc).then(function(curr) {
 			var rate = curr.rate, symbol = curr.symbol;
 
@@ -102,37 +104,43 @@ Foxtrick.modules['CurrencyConverter'] = {
 
 					var begin = re.lastIndex - matched[0].length;
 					var end = re.lastIndex;
-					sole = node.textContent.substr(0, begin).trim() === ''
-						&& node.textContent.substr(end).trim() === ''
-						&& node.parentNode.childNodes.length === 1;
+					sole = node.textContent.slice(0, begin).trim() === '' &&
+						node.textContent.slice(end).trim() === '' &&
+						node.parentNode.childNodes.length === 1;
 
 					pairs.push([end, formatMoney(newAmount)]);
 				}
 				// now we insert the money denoted in new currency
 				if (sole) {
-					var div = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.CurrencyConverter,
-															 'div');
-					div.textContent = pairs[0][1];
-					node.parentNode.appendChild(div);
+					let span = Foxtrick.createFeaturedElement(doc, module, 'span');
+					span.textContent = pairs[0][1];
+					node.parentNode.appendChild(span);
 				}
 				else {
-					while (pairs.length) {
-						// reduce the array from the end - otherwise the indices
-						// in upcoming pairs will be wrong
-						var pair = pairs.pop();
-						var pos = pair[0];
-						var ins = pair[1];
-						node.textContent = node.textContent.substr(0, pos) + ' '
-							+ ins + node.textContent.substr(pos);
+					let fr = doc.createDocumentFragment();
+					let children = [], lastPos = 0, text = node.textContent;
+					for (let [pos, ins] of pairs) {
+						children.push(text.slice(lastPos, pos));
+						let span = Foxtrick.createFeaturedElement(doc, module, 'span');
+						span.textContent = ' ' + ins;
+						children.push(span);
+						lastPos = pos;
 					}
-					Foxtrick.makeFeaturedElement(node.parentNode, Foxtrick.modules.CurrencyConverter);
+					children.push(text.slice(lastPos));
+					Foxtrick.append(fr, children);
+					node.parentNode.replaceChild(fr, node);
 				}
 			};
 			var traverse = function(node) {
-				if (node.childNodes.length == 0)
+				if (node.childNodes.length == 0) {
+					if (node.nodeName === 'BR')
+						return;
+
 					parseLeaf(node);
-				else
+				}
+				else {
 					Foxtrick.map(traverse, node.childNodes);
+				}
 			};
 			Foxtrick.map(traverse, nodes);
 
