@@ -297,90 +297,6 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 			'aria-label': hyLink.title,
 		});
 	};
-	var addLastMatchInfo = (player, matchLink, isNewDesign) => {
-		player.lastMatch = matchLink.cloneNode(true);
-		player.lastMatch.target = '_blank';
-
-		// README: using user date since no time is available
-		player.lastMatchDate = Foxtrick.util.time.getDateFromText(matchLink.textContent);
-
-		var matchId = Foxtrick.getParameterFromUrl(matchLink.href, 'matchId');
-		var youthMatchId = Foxtrick.getParameterFromUrl(matchLink.href, 'youthMatchId');
-		player.lastMatchId = parseInt(youthMatchId || matchId, 10);
-
-		if (isNewDesign) {
-			let parent = matchLink.parentNode;
-			let positionNode = parent.querySelector('.last_match_position') || matchLink.nextSibling;
-			let positionMatch = positionNode.textContent.match(/\((.+)\)/) ||
-				positionNode.nextElementSibling.textContent.match(/\((.+)\)/);
-
-			let [_, position] = positionMatch;
-			player.lastPosition = position;
-			player.lastPositionType = Foxtrick.L10n.getPositionType(position);
-
-			let ratingCircle = matchLink.previousElementSibling;
-			let fullStars = ratingCircle.querySelector('.stars-full');
-			let full = fullStars && parseInt(fullStars.textContent, 10) || 0;
-			let halfStars = ratingCircle.querySelector('.stars-half');
-			let half = halfStars && parseFloat(halfStars.textContent) || 0;
-			let rating = full + half;
-
-			let staminaCircle = ratingCircle.querySelector('circle[stroke-dasharray');
-			if (staminaCircle) {
-				let totalStamina = parseFloat(staminaCircle.getAttribute('stroke-dasharray'));
-				let staminaLoss = parseFloat(staminaCircle.getAttribute('stroke-dashoffset'));
-				let lossPctg = staminaLoss / totalStamina;
-				let finalPctg = 1 - lossPctg;
-
-				player.lastRating = rating;
-				player.lastRatingEndOfGame = finalPctg * rating;
-				player.lastRatingDecline = lossPctg * rating;
-				return;
-			}
-		}
-
-		let positionText;
-		let parent = matchLink.parentNode;
-		let positionSpan;
-		if ((positionSpan = parent.querySelector('.last_match_position'))) {
-			positionText = positionSpan.textContent;
-		}
-		else if (Foxtrick.hasClass(parent, 'playerInfo')) {
-			positionText = matchLink.nextSibling.textContent;
-		}
-		else {
-			parent = parent.nextElementSibling;
-			let positionSpan = parent.querySelector('.shy');
-			positionText = positionSpan.textContent;
-		}
-		let position = positionText.match(/\((.+)\)/)[1].trim();
-		player.lastPosition = position;
-		player.lastPositionType = Foxtrick.L10n.getPositionType(position);
-
-		let rating = 0, ratingYellow = 0;
-		let stars = parent.querySelectorAll('img');
-		for (let star of stars) {
-			if (Foxtrick.hasClass(star, 'starBig'))
-				rating += 5;
-			if (Foxtrick.hasClass(star, 'starWhole'))
-				rating += 1;
-			if (Foxtrick.hasClass(star, 'starHalf'))
-				rating += 0.5;
-
-			if (/star_big_yellow.png$/i.test(star))
-				ratingYellow += 5;
-			if (/star_yellow.png$/i.test(star))
-				ratingYellow += 1;
-			if (/star_half_yellow.png$/i.test(star))
-				ratingYellow += 0.5;
-			if (/star_yellow_to_brown.png$/i.test(star))
-				ratingYellow += 0.5;
-		}
-		player.lastRating = rating;
-		player.lastRatingEndOfGame = ratingYellow;
-		player.lastRatingDecline = rating - ratingYellow;
-	};
-
 	var parseXml = function(xml) {
 		try {
 			if (!xml)
@@ -789,6 +705,91 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 	};
 
 	var parseHtml = function() {
+		var addLastMatchInfo = (player, matchLink, isNewDesign) => {
+			player.lastMatch = matchLink.cloneNode(true);
+			player.lastMatch.target = '_blank';
+
+			// README: using user date since no time is available
+			player.lastMatchDate = Foxtrick.util.time.getDateFromText(matchLink.textContent);
+
+			var matchId = Foxtrick.getParameterFromUrl(matchLink.href, 'matchId');
+			var youthMatchId = Foxtrick.getParameterFromUrl(matchLink.href, 'youthMatchId');
+			player.lastMatchId = parseInt(youthMatchId || matchId, 10);
+
+			if (isNewDesign) {
+				let parent = matchLink.parentNode;
+				let positionNode = parent.querySelector('.last_match_position') ||
+					matchLink.nextSibling;
+				let positionMatch = positionNode.textContent.match(/\((.+)\)/) ||
+					positionNode.nextElementSibling.textContent.match(/\((.+)\)/);
+
+				let [_, position] = positionMatch;
+				player.lastPosition = position;
+				player.lastPositionType = Foxtrick.L10n.getPositionType(position);
+
+				let ratingCircle = matchLink.previousElementSibling;
+				let fullStars = ratingCircle.querySelector('.stars-full');
+				let full = fullStars && parseInt(fullStars.textContent, 10) || 0;
+				let halfStars = ratingCircle.querySelector('.stars-half');
+				let half = halfStars && parseFloat(halfStars.textContent) || 0;
+				let rating = full + half;
+
+				let staminaCircle = ratingCircle.querySelector('circle[stroke-dasharray');
+				if (staminaCircle) {
+					let totalStamina = parseFloat(staminaCircle.getAttribute('stroke-dasharray'));
+					let staminaLoss = parseFloat(staminaCircle.getAttribute('stroke-dashoffset'));
+					let lossPctg = staminaLoss / totalStamina;
+					let finalPctg = 1 - lossPctg;
+
+					player.lastRating = rating;
+					player.lastRatingEndOfGame = finalPctg * rating;
+					player.lastRatingDecline = lossPctg * rating;
+					return;
+				}
+			}
+
+			let positionText;
+			let parent = matchLink.parentNode;
+			let positionSpan;
+			if ((positionSpan = parent.querySelector('.last_match_position'))) {
+				positionText = positionSpan.textContent;
+			}
+			else if (Foxtrick.hasClass(parent, 'playerInfo')) {
+				positionText = matchLink.nextSibling.textContent;
+			}
+			else {
+				parent = parent.nextElementSibling;
+				let positionSpan = parent.querySelector('.shy');
+				positionText = positionSpan.textContent;
+			}
+			let position = positionText.match(/\((.+)\)/)[1].trim();
+			player.lastPosition = position;
+			player.lastPositionType = Foxtrick.L10n.getPositionType(position);
+
+			let rating = 0, ratingYellow = 0;
+			let stars = parent.querySelectorAll('img');
+			for (let star of stars) {
+				if (Foxtrick.hasClass(star, 'starBig'))
+					rating += 5;
+				if (Foxtrick.hasClass(star, 'starWhole'))
+					rating += 1;
+				if (Foxtrick.hasClass(star, 'starHalf'))
+					rating += 0.5;
+
+				if (/star_big_yellow.png$/i.test(star))
+					ratingYellow += 5;
+				if (/star_yellow.png$/i.test(star))
+					ratingYellow += 1;
+				if (/star_half_yellow.png$/i.test(star))
+					ratingYellow += 0.5;
+				if (/star_yellow_to_brown.png$/i.test(star))
+					ratingYellow += 0.5;
+			}
+			player.lastRating = rating;
+			player.lastRatingEndOfGame = ratingYellow;
+			player.lastRatingDecline = rating - ratingYellow;
+		};
+
 		// preparation steps
 		var isOwn = Foxtrick.Pages.Players.isOwn(doc);
 		var isOwnYouth = Foxtrick.Pages.Players.isOwnYouth(doc);
@@ -808,15 +809,13 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 			// see if player is already in playerList, add if not
 			var player = Foxtrick.nth(findById(id), playerList);
 			if (!player) {
-				player = { id: id };
+				player = { id };
 				playerList.push(player);
 			}
 
 			player.playerNode = playerNode;
 
-			var nameLink = Foxtrick.nth(function(n) {
-				return !Foxtrick.hasClass(n, 'flag');
-			}, playerNode.getElementsByTagName('a'));
+			var nameLink = playerNode.querySelector('a[href]:not(.flag)');
 			player.nameLink = nameLink.cloneNode(true);
 
 			if (Foxtrick.hasClass(playerNode, 'hidden'))
@@ -841,7 +840,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 					let anonRows = ['age', 'tsi', 'salary'], anonCells = {}, anonTexts = {};
 
 					if (Foxtrick.Pages.Players.isYouth(doc)) {
-						let ageText = playerNode.querySelector('p').textContent;
+						let ageText = info.textContent;
 						if (ageText.match(AGE_RE) !== null) {
 							ageText = ageText.match(AGE_RE)[0].replace(',', '');
 						}
@@ -857,10 +856,10 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 						player.ageText = anonTexts.age;
 					}
 					if (!player.age) {
-						let ageMatch = player.ageText.match(/(\d+)/g);
+						let [years, days] = player.ageText.match(/(\d+)/g);
 						player.age = {
-							years: parseInt(ageMatch[0], 10),
-							days: parseInt(ageMatch[1], 10),
+							years: parseInt(years, 10),
+							days: parseInt(days, 10),
 						};
 						player.ageYears = player.age.years;
 					}
