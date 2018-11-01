@@ -107,9 +107,8 @@ Foxtrick.Pages.Player.getId = function(doc) {
  */
 Foxtrick.Pages.Player.getNationalityId = function(doc) {
 	var id = null;
-	var link = this.isSenior(doc) ?
-		doc.getElementsByClassName('flag')[0] :
-		doc.querySelector('.playerInfo a[href^="/World/Leagues/League.aspx"]');
+	var link = doc.querySelector('.playerInfo a[href^="/World/Leagues/League.aspx"]') ||
+		doc.querySelector('.flag');
 
 	if (link) {
 		var val = Foxtrick.getParameterFromUrl(link.href, 'LeagueID');
@@ -403,9 +402,8 @@ Foxtrick.Pages.Player.getTeamName = function(doc) {
 /**
  * Get the player info table.
  *
- * Senior player only.
  * @param  {document} doc
- * @return {{isNewDesign: Boolean, table: element}}
+ * @return {{isNewDesign: Boolean, isYouth: Boolean, table: Element}}
  */
 Foxtrick.Pages.Player.getInfoTable = function(doc) {
 	var isNewDesign = false;
@@ -416,8 +414,9 @@ Foxtrick.Pages.Player.getInfoTable = function(doc) {
 		infoDiv = doc.querySelector('.playerInfo');
 
 	var table = infoDiv.querySelector('table');
+	var isYouth = this.isYouth(doc);
 
-	return { isNewDesign, table };
+	return { isNewDesign, isYouth, table };
 };
 
 /**
@@ -551,10 +550,17 @@ Foxtrick.Pages.Player.getSkillsWithText = function(doc) {
 	// }
 
 	try {
-		var skillTable = doc.querySelector('.transferPlayerSkills, .mainBox table');
-		if (skillTable && this.isPage(doc)) {
-			if (this.isSenior(doc))
+		if (this.isPage(doc)) {
+			var skillTable;
+			if (this.isSenior(doc)) {
+				skillTable = doc.querySelector('.transferPlayerSkills, .mainBox table');
 				return this.parseSeniorSkills(skillTable);
+			}
+
+			skillTable = doc.querySelector('.mainBox table');
+			let hasBars = !!skillTable.querySelector('.youthSkillBar');
+			if (!hasBars)
+				skillTable = doc.querySelector('.playerInfo table');
 
 			return this.parseYouthSkills(skillTable);
 		}
@@ -832,8 +838,8 @@ Foxtrick.Pages.Player.parseYouthSkills = function(table) {
 
 			skill.top3 = !!row.querySelector('strong.ft-dummy');
 
-			let current = '';
-			let max = '';
+			let current = '-';
+			let max = '-';
 			let bar = skillCell.querySelector('.youthSkillBar');
 			if (bar || links.length) {
 				// bar or links are present
@@ -849,6 +855,26 @@ Foxtrick.Pages.Player.parseYouthSkills = function(table) {
 				}
 				else if (current) {
 					max = current;
+				}
+			}
+			else if (hasNewBars) {
+				// new bars
+				let bar = skillCell.querySelector('.ht-bar');
+				let titles = [...bar.querySelectorAll('td[title]')];
+				if (titles.length) {
+					[current, max] = titles.map(t => t.title);
+					if (titles.length == 1) {
+						if (skill.maxed) {
+							max = current;
+						}
+						else if (skill.max) {
+							max = current;
+							current = '-';
+						}
+						else {
+							max = '-';
+						}
+					}
 				}
 			}
 			else {

@@ -134,7 +134,7 @@ Foxtrick.htPages = {
 	'finances'                  : '/Club/Finances/(Default.aspx|?|$)',
 	'youthOverview'             : '/Club/Youth/(Default.aspx|?|$)',
 	'youthMatchList'            : '/Club/Matches/?TeamID=\\d+&YouthTeamId=\\d+$',
-	'youthPlayerDetails'        : '/Club/Players/YouthPlayer.aspx',
+	'youthPlayerDetails'        : '/Club/Players/YouthPlayer(.|.Classic.)aspx',
 	'youthFixtures'             : '/World/Series/YouthFixtures.aspx',
 	'federation'                : '/Community/Federations/Federation.aspx',
 	'newsLetter'                : '/Community/Federations/SendMessage.aspx',
