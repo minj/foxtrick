@@ -160,10 +160,14 @@ Foxtrick.Pages.Players.getPlayerNodes = function(doc, include) {
 	let mainBody = doc.getElementById('mainBody');
 	let playerList = doc.querySelector('.playerList');
 	let nodeColl = playerList ? playerList.children : mainBody.children;
-	let divs = [...nodeColl].filter(el => el.nodeName == 'DIV');
-	let playerNodes = divs.filter(el => pred(el));
+	let divs = [...nodeColl].filter(el => el.nodeName == 'DIV' && !el.classList.contains('clear'));
+	let pNodes = divs.filter(el => pred(el));
+	if (include && include.face) {
+		let newFaces = pNodes.map(n => n.querySelector('.faceCardNoBottomInfo')).filter(x => x);
+		pNodes.push(...newFaces);
+	}
 
-	return playerNodes;
+	return pNodes;
 };
 
 /* eslint-disable complexity */
