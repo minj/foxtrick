@@ -309,8 +309,12 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 		player.lastMatchId = parseInt(youthMatchId || matchId, 10);
 
 		if (isNewDesign) {
-			let positionNode = matchLink.parentNode.querySelector('.last_match_position');
-			let position = positionNode.textContent.match(/\((.+)\)/)[1].trim();
+			let parent = matchLink.parentNode;
+			let positionNode = parent.querySelector('.last_match_position') || matchLink.nextSibling;
+			let positionMatch = positionNode.textContent.match(/\((.+)\)/) ||
+				positionNode.nextElementSibling.textContent.match(/\((.+)\)/);
+
+			let [_, position] = positionMatch;
 			player.lastPosition = position;
 			player.lastPositionType = Foxtrick.L10n.getPositionType(position);
 
