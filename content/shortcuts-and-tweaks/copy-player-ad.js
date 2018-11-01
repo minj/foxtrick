@@ -57,37 +57,15 @@ Foxtrick.modules['CopyPlayerAd'] = {
 			let playerInfo;
 			let { isNewDesign, table: infoTable } = Foxtrick.Pages.Player.getInfoTable(doc);
 			if (isNewDesign) {
-				// because it's hard to use freaking wrappers once in a while /sigh
 				playerInfo = doc.createDocumentFragment();
-				let getClone = (el) => {
-					if (el.nodeName == 'P')
-						return doc.createTextNode('[b]' + el.textContent.trim() + '[/b]');
-					return el.cloneNode(true);
-				};
-
-				let personLinks = Foxtrick.toArray(doc.querySelectorAll('#mainBody > .skill'));
 				let el = byLine.nextElementSibling;
-				if (el && el.matches('p.shy')) {
-					// skip player statement
-					el = el.nextElementSibling.nextElementSibling;
-				}
+				while (el && !el.querySelector('.playerInfo')) {
+					// let text = el.textContent.trim();
+					playerInfo.appendChild(el.cloneNode(true));
+					if (el.nodeName == 'P')
+						playerInfo.appendChild(doc.createTextNode('\n'));
 
-				let end;
-				if (personLinks.length && el && personLinks.includes(el) &&
-				    (end = personLinks[personLinks.length - 1].nextElementSibling) &&
-				    end.nodeName == 'BR') {
-					while (el != end) {
-						playerInfo.appendChild(getClone(el));
-						el = el.nextSibling;
-					}
-					while (end && ['BR', 'TABLE', 'P'].includes(end.nodeName)) {
-						let el = end;
-						end = end.nextElementSibling;
-						while (el && el != end) {
-							playerInfo.appendChild(getClone(el));
-							el = el.nextSibling;
-						}
-					}
+					el = el.nextElementSibling;
 				}
 				playerInfo.appendChild(infoTable.cloneNode(true));
 			}
@@ -169,9 +147,15 @@ Foxtrick.modules['CopyPlayerAd'] = {
 						let copy = table.rows[r].cells[1].cloneNode(true);
 						for (let tNode of Foxtrick.getTextNodes(copy)) {
 							let text = tNode.textContent.replace(/\n/g, ' ').replace(/\s+/g, ' ');
+							if (!text.trim()) {
+								tNode.textContent = text;
+								continue;
+							}
+
 							let parent = tNode.parentNode;
 							if (!Foxtrick.hasClass(parent, 'ft-skill') &&
 							    !Foxtrick.hasClass(parent, 'ft-skill-number') &&
+							    parent.id != 'ft_bonuswage' &&
 							    !text.startsWith(' '))
 								text = ' ' + text;
 
