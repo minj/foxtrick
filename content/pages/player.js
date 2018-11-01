@@ -751,6 +751,9 @@ Foxtrick.Pages.Player.parseYouthSkills = function(table) {
 			found = false;
 			return;
 		}
+
+		var hasNewBars = !!table.querySelector('.ht-bar');
+
 		{
 			let [first] = rows;
 			if (first.id.endsWith('trSpeciality'))
@@ -759,16 +762,27 @@ Foxtrick.Pages.Player.parseYouthSkills = function(table) {
 
 		for (let [idx, sType] of order.entries()) {
 			let row = rows[idx];
-			let [textCell, skillCell] = row.cells;
-			let skill = skills[sType] = {};
+			let [textCell, skillCell, numberCell] = row.cells;
+			let skill = { current: 0, max: 0, maxed: false };
 
 			let imgs = skillCell.getElementsByTagName('img');
+			let links = skillCell.querySelectorAll('.skill');
 			let HYSkills = skillCell.querySelector('.ft-youthSkillBars');
 			if (HYSkills) {
 				let [current, max] = HYSkills.title.split('/');
 				skill.current = parseFloat(current) || 0;
 				skill.max = parseFloat(max) || 0;
 				skill.maxed = HYSkills.querySelector('.ft-skillbar-maxed').hasAttribute('style');
+			}
+			else if (hasNewBars) {
+				// new bars
+				let bar = skillCell.querySelector('.ht-bar');
+				let [current, max] = numberCell.textContent.trim().split('/');
+				if (typeof max !== 'undefined') {
+					skill.current = parseFloat(current) || 0;
+					skill.max = parseFloat(max) || 0;
+					skill.maxed = !!(bar && bar.getAttribute('is-cap') !== '0');
+				}
 			}
 			else if (imgs.length) {
 				// when max is unknown first title is empty
@@ -794,10 +808,26 @@ Foxtrick.Pages.Player.parseYouthSkills = function(table) {
 				skill.current = current;
 				skill.max = max || 0;
 			}
-			else {
-				// no image is present, meaning nothing about
-				// that skill has been revealed
-				skill = { current: 0, max: 0, maxed: false };
+			else if (links.length) {
+				// links may also be reveal links
+				let [currNode, maxNode] = skillCell.querySelectorAll('.shy, a');
+				let current = 0, max = 0;
+
+				if (currNode.matches('a.skill'))
+					current = Foxtrick.util.id.getSkillLevelFromLink(currNode);
+
+				let maxed = false;
+				if (maxNode) {
+					// may also be activation link
+					if (maxNode.matches('a.skill'))
+						max = Foxtrick.util.id.getSkillLevelFromLink(maxNode);
+				}
+				else if (current) {
+					max = current;
+					maxed = true;
+				}
+
+				skill = { current, max, maxed };
 			}
 
 			skill.top3 = !!row.querySelector('strong.ft-dummy');
@@ -805,19 +835,27 @@ Foxtrick.Pages.Player.parseYouthSkills = function(table) {
 			let current = '';
 			let max = '';
 			let bar = skillCell.querySelector('.youthSkillBar');
-			if (bar) {
-				// bar is present
-				// skills could either be a skill or unknown (span.shy)
-				let skillNodes = bar.querySelectorAll('.skill, .shy');
-				if (skillNodes.length > 1) {
-					current = skillNodes[0].textContent;
-					max = skillNodes[1].textContent;
+			if (bar || links.length) {
+				// bar or links are present
+				// skills could either be a skill or unknown (span.shy) or activation link
+				let [currNode, maxNode] = skillCell.querySelectorAll('.shy, a');
+				if (currNode.matches('a.skill'))
+					current = currNode.textContent.trim();
+
+				if (maxNode) {
+					// may also be activation link
+					if (maxNode.matches('a.skill'))
+						max = maxNode.textContent.trim();
+				}
+				else if (current) {
+					max = current;
 				}
 			}
 			else {
 				// no images, the cell says 'unknown'
 				current = max = skillCell.textContent.trim();
 			}
+			skills[sType] = skill;
 			skillTexts[sType] = { current, max };
 			skillNames[sType] = textCell.textContent.replace(':', '').trim();
 		}
