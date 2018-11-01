@@ -399,7 +399,8 @@ Foxtrick.modules['PlayerFilters'] = {
 			var body = doc.getElementById('mainBody');
 			var pList = doc.querySelector('.playerList');
 			var backTopAnchor;
-			if (Foxtrick.Pages.Players.isRegular(doc)) {
+			if (Foxtrick.Pages.Players.isRegular(doc) ||
+			    Foxtrick.Pages.Players.isYouth(doc)) {
 				// If it's normal senior players list, there is an
 				// a element in the bottom for navigating back to top,
 				// and the cleaner should be inserted before it.
