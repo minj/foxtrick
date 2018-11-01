@@ -143,7 +143,8 @@ Foxtrick.Pages.Players.isSimpleMatchOrder = function(doc) {
 Foxtrick.Pages.Players.getPlayerNodes = function(doc, include) {
 	let pred = (el) => {
 		let is = {
-			face: el.classList.contains('faceCard'),
+			face: el.classList.contains('faceCard') ||
+				el.classList.contains('faceCardNoBottomInfo'),
 			separator: el.classList.contains('borderSeparator'),
 		};
 
