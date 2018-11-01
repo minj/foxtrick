@@ -15,6 +15,9 @@ Foxtrick.modules['YouthSkills'] = {
 		if (!Foxtrick.isPage(doc, 'ownYouthPlayers'))
 			return;
 
+		if (Foxtrick.Pages.Players.isYouthPerfView(doc))
+			return;
+
 		var module = this;
 		var UNKNOWNLEVELSYMBOL = '-';
 		var isRtl = Foxtrick.util.layout.isRtl(doc);

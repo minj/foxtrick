@@ -94,6 +94,17 @@ Foxtrick.Pages.Players.isYouth = function(doc) {
 };
 
 /**
+ * Test whether this is youth performance view.
+ * Skills are unavailable, but position matrix is.
+ *
+ * @param  {document} doc
+ * @return {Boolean}
+ */
+Foxtrick.Pages.Players.isYouthPerfView = function(doc) {
+	return !!doc.querySelector('.youthPlayerPerformance');
+};
+
+/**
  * Test whether this is own youth player page
  * @param  {document} doc
  * @return {Boolean}
@@ -794,14 +805,13 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 		// preparation steps
 		var isOwn = Foxtrick.Pages.Players.isOwn(doc);
 		var isOwnYouth = Foxtrick.Pages.Players.isOwnYouth(doc);
+		var isYouthPerfView = Foxtrick.Pages.Players.isYouthPerfView(doc);
 
 		var pNodes = Foxtrick.Pages.Players.getPlayerNodes(doc);
 		Foxtrick.forEach(function(playerNode, i) {
 			const AGE_RE = /\d+\D+\d+\s\S+/;
 			var paragraphs = Foxtrick.toArray(playerNode.getElementsByTagName('p'));
 			var icons = Foxtrick.toArray(playerNode.querySelectorAll('img, i, object'));
-			var as = Foxtrick.toArray(playerNode.getElementsByTagName('a'));
-			var bs = Foxtrick.toArray(playerNode.getElementsByTagName('b'));
 
 			var isNewDesign = !Foxtrick.hasClass(playerNode, 'playerInfo');
 
@@ -905,15 +915,15 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 			}
 			else {
 				attributes.unshift('form', 'stamina');
-				if (bs[0]) {
-					var nameB = bs[0];
-					var num = nameB.textContent.match(/(\d+)\./);
+				let nameB = playerNode.querySelector('b');
+				if (nameB) {
+					let num = nameB.textContent.match(/(\d+)\./);
 					if (num)
 						player.number = parseInt(num[1], 10);
 
 					// README: category detection in HTML needs info in htlang.json
 					// thus disabled for now
-					// var cat = name_b.textContent.match(/\((.+)\)/);
+					// var cat = nameB.textContent.match(/\((.+)\)/);
 					// if (cat) {
 					// 	// stored as catergoy id
 					// 	player.category = Foxtrick.L10n.getCategoryId(cat[1]);
@@ -1128,9 +1138,15 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 			}
 
 			// last match
-			var matchLink = Foxtrick.nth(function(a) {
-				return /matchId/i.test(a.href);
-			}, as);
+			let matchLink;
+			if (isYouthPerfView) {
+				let links = [...playerNode.querySelectorAll('a[href*="Matches/Match"]')];
+				let nonPerfLinks = links.filter(l => !l.closest('.youthPlayerPerformance'));
+				matchLink = nonPerfLinks.shift();
+			}
+			else {
+				matchLink = playerNode.querySelector('a[href*="Matches/Match"]');
+			}
 			if (matchLink) {
 				addLastMatchInfo(player, matchLink, isNewDesign);
 			}

@@ -18,6 +18,9 @@ Foxtrick.modules['YouthSkillHideUnknown'] = {
 		if (ownTeamId != teamId)
 			return;
 
+		if (Foxtrick.Pages.Players.isYouthPerfView(doc))
+			return;
+
 		// checks whether a table cell (<td> element) is unknown
 		var isUnknown = function(row) {
 			return !row.querySelector('.youthSkillBar, .highlight, .skill, .ht-bar');
