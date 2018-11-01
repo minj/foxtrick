@@ -35,8 +35,12 @@ Foxtrick.modules['TransferDeadline'] = {
 	processNode: function(node, userTime) {
 		const MSECS = Foxtrick.util.time.MSECS_IN_SEC;
 
-		var doc = node.ownerDocument;
-		var dateNode = Foxtrick.hasClass(node, 'date') ? node : node.querySelector('.date');
+		var dateNode;
+		if (node.matches('.date, [id*="lblDeadline"]'))
+			dateNode = node;
+		else
+			dateNode = node.querySelector('.date');
+
 		if (!dateNode)
 			return;
 
@@ -47,16 +51,20 @@ Foxtrick.modules['TransferDeadline'] = {
 			deadline = new Date();
 			deadline.setTime(dateNode.dataset.userDate);
 		}
+		else if (dateNode.dataset.isodate) {
+			deadline = Foxtrick.util.time.getDateFromText(dateNode.dataset.isodate);
+		}
 		else {
 			deadline = Foxtrick.util.time.getDateFromText(dateNode.textContent);
 		}
 
 		if (deadline) {
-			var countdown = Math.floor((deadline.getTime() - userTime) / MSECS);
+			let doc = node.ownerDocument;
+			let countdown = Math.floor((deadline.getTime() - userTime) / MSECS);
 			if (!isNaN(countdown) && countdown >= 0) {
-				var countdownNode = doc.createElement('span');
+				let countdownNode = doc.createElement('span');
 				countdownNode.className = 'smallText ft-deadline nowrap';
-				var span = Foxtrick.util.time.timeDiffToSpan(doc, countdown);
+				let span = Foxtrick.util.time.timeDiffToSpan(doc, countdown);
 				countdownNode.textContent = '(' + span.textContent + ')';
 				Foxtrick.makeFeaturedElement(countdownNode, this);
 				node.appendChild(countdownNode);
@@ -67,9 +75,9 @@ Foxtrick.modules['TransferDeadline'] = {
 	runTransferResult: function(doc) {
 		var userDate = Foxtrick.util.time.getDate(doc);
 		var userTime = userDate.getTime();
-		var dates = doc.getElementsByClassName('date');
-		for (var i = 0; i < dates.length; ++i)
-			this.processNode(dates[i], userTime);
+		var dates = doc.querySelectorAll('.date, [id*="lblDeadline"]');
+		for (let date of dates)
+			this.processNode(date, userTime);
 	},
 
 	runPlayerList: function(doc) {
