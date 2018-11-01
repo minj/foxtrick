@@ -226,7 +226,7 @@ Foxtrick.Pages.Player.getAttributes = function(doc) {
 			attrs.form = getNumFromRow(3);
 			attrs.stamina = getNumFromRow(4);
 
-			personLinks = Foxtrick.toArray(doc.querySelectorAll('#mainBody > .skill'));
+			personLinks = Foxtrick.toArray(doc.querySelectorAll('#mainBody > p .skill'));
 		}
 		else {
 			let links = Foxtrick.toArray(doc.querySelectorAll('.playerInfo .skill'));
