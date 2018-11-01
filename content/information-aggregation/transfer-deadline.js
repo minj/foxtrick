@@ -81,6 +81,7 @@ Foxtrick.modules['TransferDeadline'] = {
 	},
 
 	runPlayerList: function(doc) {
+		// FIXME
 		var userDate = Foxtrick.util.time.getDate(doc);
 		var userTime = userDate.getTime();
 		var i = 0;

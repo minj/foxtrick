@@ -337,7 +337,11 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 
 		let positionText;
 		let parent = matchLink.parentNode;
-		if (Foxtrick.hasClass(parent, 'playerInfo')) {
+		let positionSpan;
+		if ((positionSpan = parent.querySelector('.last_match_position'))) {
+			positionText = positionSpan.textContent;
+		}
+		else if (Foxtrick.hasClass(parent, 'playerInfo')) {
 			positionText = matchLink.nextSibling.textContent;
 		}
 		else {
