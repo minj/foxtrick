@@ -1,4 +1,3 @@
-'use strict';
 /**
  * specialty-info.js
  *
@@ -6,6 +5,8 @@
  *
  * @author LA-MJ
  */
+
+'use strict';
 
 Foxtrick.modules['SpecialtyInfo'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
@@ -114,7 +115,7 @@ Foxtrick.modules['SpecialtyInfo'] = {
 			var thTitle = titleRow.appendChild(doc.createElement('th'));
 			thTitle.className = 'center';
 			thTitle.colSpan = 4;
-			thTitle.textContent = Foxtrick.L10n.getSpecialityFromNumber(specNum);
+			thTitle.textContent = Foxtrick.L10n.getSpecialtyFromNumber(specNum);
 
 			var headerRow = thead.insertRow(-1);
 			var thPlus = headerRow.appendChild(doc.createElement('th'));

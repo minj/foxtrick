@@ -394,8 +394,8 @@ Foxtrick.modules['SkillTable'] = {
 					method: 'nationality', sortAsString: true, frozen: true, },
 				{ name: 'Player', properties: ['nameLink', 'nationalTeamId', 'trainerData'],
 					method: 'playerName', sortAsString: true, frozen: true, },
-				{ name: 'Speciality', property: 'speciality',
-					method: 'speciality', sortAsString: true, frozen: true, },
+				{ name: 'Specialty', property: 'specialty',
+					method: 'specialty', sortAsString: true, frozen: true, },
 				{ name: 'Status', properties: [
 					'yellowCard', 'redCard', 'bruised', 'injuredWeeks', 'transferListed',
 				], method: 'status', frozen: true, },
@@ -685,8 +685,8 @@ Foxtrick.modules['SkillTable'] = {
 						cell.setAttribute('index', '0');
 					}
 				},
-				speciality: function(cell, spec) {
-					var specIdx = Foxtrick.L10n.getNumberFromSpeciality(spec);
+				specialty: function(cell, spec) {
+					var specIdx = Foxtrick.L10n.getNumberFromSpecialty(spec);
 					if (specIdx) {
 						Foxtrick.addSpecialty(cell, specIdx)
 							.catch(Foxtrick.catch('SkillTable addSpecialty'));
@@ -737,6 +737,11 @@ Foxtrick.modules['SkillTable'] = {
 				},
 				dateCell: function(cell, deadline) {
 					var date = Foxtrick.util.time.getDateFromText(deadline.textContent);
+					if (date == null) {
+						cell.textContent = deadline.textContent;
+						return;
+					}
+
 					var index = date.getTime();
 					deadline.setAttribute('index', index);
 					cell.parentNode.replaceChild(deadline, cell);
@@ -1172,9 +1177,9 @@ Foxtrick.modules['SkillTable'] = {
 							row.setAttribute('transfer-listed', 'true');
 						else
 							row.setAttribute('not-transfer-listed', 'true');
-						if (player.speciality) {
-							var spec = Foxtrick.L10n.getEnglishSpeciality(player.speciality);
-							row.setAttribute('speciality-' + spec, true);
+						if (player.specialty) {
+							var spec = Foxtrick.L10n.getEnglishSpecialty(player.specialty);
+							row.setAttribute('specialty-' + spec, true);
 						}
 						if (player.active)
 							row.setAttribute('active', player.active);

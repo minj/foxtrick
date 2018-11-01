@@ -682,7 +682,7 @@ Foxtrick.addImage = function(doc, parent, features, insertBefore, callback) {
 Foxtrick.addSpecialty = function(parent, specNum, options) {
 	var doc = parent.ownerDocument;
 
-	var specialtyName = Foxtrick.L10n.getSpecialityFromNumber(specNum);
+	var specialtyName = Foxtrick.L10n.getSpecialtyFromNumber(specNum);
 	var specialtyUrl = Foxtrick.getSpecialtyImagePathFromNumber(specNum);
 
 	var insertBefore = null;

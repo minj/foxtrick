@@ -226,7 +226,7 @@ Foxtrick.Pages.Player.getAttributes = function(doc) {
 			attrs.form = getNumFromRow(3);
 			attrs.stamina = getNumFromRow(4);
 
-			personLinks = Foxtrick.toArray(doc.querySelectorAll('#mainBody > .skill'));
+			personLinks = Foxtrick.toArray(doc.querySelectorAll('#mainBody > p .skill'));
 		}
 		else {
 			let links = Foxtrick.toArray(doc.querySelectorAll('.playerInfo .skill'));
@@ -481,14 +481,14 @@ Foxtrick.Pages.Player.getWage = function(doc, wageCell) {
  * @param  {document} doc
  * @return {string}
  */
-Foxtrick.Pages.Player.getSpecialityNumber = function(doc) {
+Foxtrick.Pages.Player.getSpecialtyNumber = function(doc) {
 	var specNr = 0;
 	try {
 		var infoTable = doc.querySelector('.playerInfo table');
 		var specRow = infoTable.rows[5];
 		if (specRow) {
 			var specText = specRow.cells[1].textContent.trim();
-			specNr = Foxtrick.L10n.getNumberFromSpeciality(specText);
+			specNr = Foxtrick.L10n.getNumberFromSpecialty(specText);
 		}
 	}
 	catch (e) {
@@ -1030,8 +1030,8 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerid, callback) {
 			player.injuredWeeks = Math.max(player.injuredWeeks, 0);
 			player.injured = (player.bruised || player.injuredWeeks !== 0);
 
-			player.specialityNumber = xml.num('Specialty');
-			player.specialty = Foxtrick.L10n.getSpecialityFromNumber(player.specialityNumber);
+			player.specialtyNumber = xml.num('Specialty');
+			player.specialty = Foxtrick.L10n.getSpecialtyFromNumber(player.specialtyNumber);
 
 			// README: version=2.2
 			// player.joinedSince = xml.time('ArrivalDate');
@@ -1083,7 +1083,7 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerid, callback) {
  * Skill map must be {keeper, defending, playmaking, winger, passing, scoring, setPieces}.
  * Attributes map must be:
  * {form, stamina, ?staminaPred, experience, loyalty, motherClubBonus, bruised,
- * transferListed, specialityNumber}.
+ * transferListed, specialtyNumber}.
  * Options is {form, stamina, experience, loyalty, bruised, normalise: Boolean} (optional)
  * Params is {CTR_VS_WG, WBD_VS_CD, WO_VS_FW, MF_VS_ATT, DF_VS_ATT: number} (optional)
  * By default options and params are assembled from prefs or need to be fully overridden otherwise.
@@ -1125,8 +1125,8 @@ Foxtrick.Pages.Player.getContributions = function(playerSkills, playerAttrs, opt
 		cntrbMap[pos] = value;
 	}
 
-	var speciality = playerAttrs.specialityNumber;
-	if (speciality == 1) {
+	var specialty = playerAttrs.specialtyNumber;
+	if (specialty == 1) {
 		// Technical
 		cntrbMap.fwd = 0;
 	}

@@ -24,7 +24,7 @@ if (!Foxtrick.api.hy.URL)
  *		JSON:
  *			{
  *				$playerId: {
- *					speciality: @integer,
+ *					speciality: @integer, // HY TYPO
  *					skills: {
  *						$skill_id: {
  *							cap: @float,

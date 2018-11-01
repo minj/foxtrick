@@ -278,8 +278,8 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		var addSpecialty = function(node, player) {
 			if (node.getElementsByClassName('ft-specialty').length)
 				return;
-			if (player && player.specialityNumber) {
-				var specIdx = player.specialityNumber;
+			if (player && player.specialtyNumber) {
+				var specIdx = player.specialtyNumber;
 				var opts = { class: 'ft-specialty ft-match-lineup-tweaks-specialty-icon' };
 				Foxtrick.addSpecialty(node, specIdx, opts);
 			}
