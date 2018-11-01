@@ -393,7 +393,8 @@ Foxtrick.modules['PlayerFilters'] = {
 			};
 
 			var body = doc.getElementById('mainBody');
-			let allElems = Foxtrick.Pages.Players.getPlayerNodes(doc);
+			let opts = { face: true, separator: true };
+			let allElems = Foxtrick.Pages.Players.getPlayerNodes(doc, opts);
 
 			// these are attached information divs
 			var hideFace = ['category', 'playerInfo', 'borderSeparator', 'separator', 'youthnotes'];

@@ -211,25 +211,27 @@ Foxtrick.modules['TableSort'] = {
 			}
 		};
 
+		var tables;
 		if (Foxtrick.isPage(doc, 'forumViewThread')) {
-			var tables = doc.getElementsByClassName('htMlTable');
+			tables = doc.querySelectorAll('.htMlTable');
 		}
 		else {
-			var tables = doc.getElementById('mainBody').getElementsByTagName('table');
+			tables = doc.querySelectorAll('#mainBody table');
 		}
 
-		for (var i = 0; i < tables.length; ++i) {
-			if (tables[i].getAttribute('id') == 'ft_skilltable' ||
-			    Foxtrick.hasClass(tables[i], 'tablesorter'))
+		for (let table of tables) {
+			if (table.id == 'ft_skilltable' || Foxtrick.hasClass(table, 'tablesorter'))
 				continue;
-			var ths = tables[i].getElementsByTagName('th');
-			for (var j = 0; j < ths.length; ++j) {
-				if (ths[j].getElementsByTagName('input').length === 0
-					&& ths[j].getElementsByTagName('a').length === 0
-					&& !Foxtrick.hasClass(ths[j], 'header')) { // ht sorting
 
-					Foxtrick.makeFeaturedElement(ths[j], this);
-					Foxtrick.onClick(ths[j], doSort);
+			let ths = table.querySelectorAll('th');
+			for (let th of ths) {
+				if (!th.hasAttribute('ht-orderable-by') &&
+				    th.querySelectorAll('input').length === 0 &&
+				    th.querySelectorAll('a').length === 0 &&
+				    !Foxtrick.hasClass(th, 'header')) { // ht sorting
+
+					Foxtrick.makeFeaturedElement(th, this);
+					Foxtrick.onClick(th, doSort);
 				}
 			}
 		}

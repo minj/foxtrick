@@ -736,7 +736,9 @@ Foxtrick.modules['SkillTable'] = {
 					cell.setAttribute('index', diff);
 				},
 				dateCell: function(cell, deadline) {
-					var date = Foxtrick.util.time.getDateFromText(deadline.textContent);
+					var date = Foxtrick.util.time.getDateFromText(deadline.textContent) ||
+						Foxtrick.util.time.getDateFromText(deadline.dataset.isodate);
+
 					if (date == null) {
 						cell.textContent = deadline.textContent;
 						return;
