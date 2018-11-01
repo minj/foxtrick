@@ -131,17 +131,37 @@ Foxtrick.Pages.Players.isSimpleMatchOrder = function(doc) {
 };
 
 /**
- * Get the list of player containers
+ * Get the list of player containers.
+ *
+ * include may optionally include faces or separators,
+ * e.g. {face: true, separator: true}
+ *
  * @param  {document}       doc
- * @return {Array<Element>}     playerNodes
+ * @param  {object}         include
+ * @return {Array<Element>}         playerNodes
  */
-Foxtrick.Pages.Players.getPlayerNodes = function(doc) {
+Foxtrick.Pages.Players.getPlayerNodes = function(doc, include) {
+	let pred = (el) => {
+		let is = {
+			face: el.classList.contains('faceCard'),
+			separator: el.classList.contains('borderSeparator'),
+		};
+
+		if (include) {
+			let included = Object.entries(include).filter(([_, val]) => !!val);
+			let inclKeys = included.map(([key, _]) => key);
+			let excluded = Object.entries(is).filter(([key]) => !inclKeys.includes(key));
+			return !excluded.some(([_, val]) => val);
+		}
+
+		return !Object.values(is).some(val => val);
+	};
+
 	let mainBody = doc.getElementById('mainBody');
 	let playerList = doc.querySelector('.playerList');
 	let nodeColl = playerList ? playerList.children : mainBody.children;
 	let divs = [...nodeColl].filter(el => el.nodeName == 'DIV');
-	let playerNodes = divs.filter(el => !el.classList.contains('borderSeparator') &&
-		!el.classList.contains('faceCard'));
+	let playerNodes = divs.filter(el => pred(el));
 
 	return playerNodes;
 };
