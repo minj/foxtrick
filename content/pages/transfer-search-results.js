@@ -157,6 +157,7 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 		if (isNewDesign) {
 			let ddl = bidContainer.querySelector('span[id$="lblDeadline"]');
 			player.deadline = doc.createElement('td');
+			player.deadline.dataset.isodate = ddl.dataset.isodate;
 			player.deadline.appendChild(ddl.cloneNode(true));
 
 			let links = [...bidContainer.querySelectorAll('a[href]')];
