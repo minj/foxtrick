@@ -613,16 +613,16 @@
 			"words_translated": "16759"
 		},
 		{
-			"approved": "2049",
+			"approved": "2051",
 			"approved_progress": "91",
 			"code": "sv-SE",
 			"name": "Swedish",
 			"phrases": "2298",
-			"translated": "2146",
+			"translated": "2148",
 			"translated_progress": "94",
 			"words": "16759",
-			"words_approved": "15353",
-			"words_translated": "15762"
+			"words_approved": "15363",
+			"words_translated": "15772"
 		},
 		{
 			"approved": "0",
