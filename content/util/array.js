@@ -230,3 +230,38 @@ Foxtrick.exclude = function(array, e) {
 Foxtrick.unique = function(arrayLike) {
 	return Array.from(new Set(Foxtrick.toArray(arrayLike)));
 };
+
+/**
+ * Python's range implementation.
+ *
+ * @param  {number}           start
+ * @param  {number?}          limit optional; becomes (0, start) effectively
+ * @param  {number?}          step  optional; defaults to 1
+ * @return {Iterable<number>}       iterable of numbers, NOT an array
+ */
+Foxtrick.range = (start, limit, step = 1) => (function*(start, limit, step) {
+	let i = start, lim = limit;
+	if (typeof limit == 'undefined') {
+		lim = start;
+		i = 0;
+	}
+
+	let stp = Number(step);
+
+	if (!stp) {
+		throw new TypeError('Step must be non-zero');
+	}
+	else if (stp > 0) {
+		while (i < lim) {
+			yield i;
+			i += stp;
+		}
+	}
+	else {
+		while (i > lim) {
+			yield i;
+			i += stp;
+		}
+	}
+
+})(start, limit, step);

@@ -1,7 +1,7 @@
 /**
  * u20-lastmatch.js
  * Shows which would be the last official u20 match of a certain player.
- * @Author: rferromoreno
+ * @author: rferromoreno, LA-MJ
  */
 
 'use strict';
@@ -49,22 +49,22 @@ Foxtrick.modules['U20LastMatch'] = {
 		const MSECS_IN_DAY = Foxtrick.util.time.MSECS_IN_DAY;
 		const WORLD_CUP_DURATION = DAYS_IN_SEASON * 2;
 
-		var playerAgeInDays = DAYS_IN_SEASON * age.years + age.days;
-		var daysUntil21 = DAYS_IN_SEASON * 21 - playerAgeInDays;
+		let playerAgeInDays = DAYS_IN_SEASON * age.years + age.days;
+		let daysUntil21 = DAYS_IN_SEASON * 21 - playerAgeInDays;
 
-		var now = Foxtrick.util.time.getHTDate(doc);
-		var dateWhen21 = Foxtrick.util.time.addDaysToDate(now, daysUntil21);
+		let now = Foxtrick.util.time.getHTDate(doc);
+		let dateWhen21 = Foxtrick.util.time.addDaysToDate(now, daysUntil21);
 
 		// Round I, Match #1 of World Cup XXVI. (26/05/2017)
-		var origin = new Date(2017, 4, 26);
-		var msDiff = dateWhen21.getTime() - origin.getTime();
-		var dayDiff = Math.floor(msDiff / MSECS_IN_DAY) - 1;
+		let origin = new Date(2017, 4, 26);
+		let msDiff = dateWhen21.getTime() - origin.getTime();
+		let dayDiff = Math.floor(msDiff / MSECS_IN_DAY) - 1;
 
-		var daysOffset = dayDiff % WORLD_CUP_DURATION;
-		var worldCupOffset = Foxtrick.Math.div(dayDiff, WORLD_CUP_DURATION);
-		var worldCupNumber = 26 + worldCupOffset;
+		let daysOffset = dayDiff % WORLD_CUP_DURATION;
+		let worldCupOffset = Foxtrick.Math.div(dayDiff, WORLD_CUP_DURATION);
+		let worldCupNumber = 26 + worldCupOffset;
 
-		var index = 0;
+		let index = 0;
 		for (let i = 0; i < this.DATE_CUTOFFS.length; i++) {
 			if (daysOffset < this.DATE_CUTOFFS[i]) {
 				index = i;
@@ -72,20 +72,20 @@ Foxtrick.modules['U20LastMatch'] = {
 			}
 		}
 
-		var round1 = ROUND_STR.replace(/%1/, 'I');
-		var round2 = ROUND_STR.replace(/%1/, 'II');
-		var round3 = ROUND_STR.replace(/%1/, 'III');
-		var round4 = ROUND_STR.replace(/%1/, 'IV');
+		let round1 = ROUND_STR.replace(/%1/, 'I');
+		let round2 = ROUND_STR.replace(/%1/, 'II');
+		let round3 = ROUND_STR.replace(/%1/, 'III');
+		let round4 = ROUND_STR.replace(/%1/, 'IV');
 
 		// Load the Match descriptions array.
 		var matchDesc = [];
-		for (let i = 1; i < 15; i++)
+		for (let i of Foxtrick.range(1, 15))
 			matchDesc.push(round1.replace(/%2/, i));
-		for (let i = 1; i < 4; i++)
+		for (let i of Foxtrick.range(1, 4))
 			matchDesc.push(round2.replace(/%2/, i));
-		for (let i = 1; i < 4; i++)
+		for (let i of Foxtrick.range(1, 4))
 			matchDesc.push(round3.replace(/%2/, i));
-		for (let i = 1; i < 4; i++)
+		for (let i of Foxtrick.range(1, 4))
 			matchDesc.push(round4.replace(/%2/, i));
 
 		matchDesc.push(SEMI_STR);
@@ -96,8 +96,6 @@ Foxtrick.modules['U20LastMatch'] = {
 			worldCupNumber,
 		};
 	},
-
-	/* eslint-disable complexity */
 
 	run: function(doc) {
 		var module = this;
@@ -120,50 +118,62 @@ Foxtrick.modules['U20LastMatch'] = {
 		if (isPlayersPage && !isPlayersEnabled)
 			return;
 
-		var title = Foxtrick.L10n.getString('U20LastMatch.title');
-		var worldCup = Foxtrick.L10n.getString('U20LastMatch.worldcup');
+		if (isYouthPlayerDetailsPage || isSeniorPlayerDetailsPage)
+			module.runPlayer(doc);
+		else if (isPlayersPage)
+			module.runPlayerList(doc);
+	},
 
-		if (isYouthPlayerDetailsPage || isSeniorPlayerDetailsPage) {
-			var age = Foxtrick.Pages.Player.getAge(doc);
-			if (age.years > 20)
-				return;
+	runPlayer: function(doc) {
+		var module = this;
 
-			var result = module.calculate(age, doc);
+		const TITLE_STR = Foxtrick.L10n.getString('U20LastMatch.title');
+		const WC_STR = Foxtrick.L10n.getString('U20LastMatch.worldcup');
+		const TMPL_STR = Foxtrick.L10n.getString('U20LastMatch.templateWithoutTable');
 
-			// Display the U20 Last Match information.
-			var table = doc.querySelector('.playerInfo table');
-			var row = Foxtrick.insertFeaturedRow(table, module, table.rows.length);
-			let titleCell = row.insertCell(0);
-			Foxtrick.addClass(row, 'ft-u20-last-match');
-			titleCell.textContent = title;
-			var lastMatch = row.insertCell(1);
-			var lastMatchText = Foxtrick.L10n.getString('U20LastMatch.templateWithTable');
-			lastMatchText = lastMatchText.replace(/%1/, worldCup);
-			lastMatchText = lastMatchText.replace(/%2/, Foxtrick.decToRoman(result.worldCupNumber));
-			lastMatchText = lastMatchText.replace(/%3/, result.lastMatch);
-			lastMatch.textContent = lastMatchText;
-		}
-		else if (isPlayersPage) {
-			var players = Foxtrick.modules.Core.getPlayerList();
-			for (let player of players) {
-				if (player.age.years > 20)
-					continue;
+		let age = Foxtrick.Pages.Player.getAge(doc);
+		if (age.years > 20)
+			return;
 
-				let result = module.calculate(player.age, doc);
+		let { worldCupNumber, lastMatch } = module.calculate(age, doc);
+		let wcNum = Foxtrick.decToRoman(worldCupNumber);
 
-				let table = player.playerNode.querySelector('table');
-				var container = Foxtrick.createFeaturedElement(doc, module, 'div');
-				Foxtrick.addClass(container, 'ft-u20-last-match');
-				var containerText = Foxtrick.L10n.getString('U20LastMatch.templateWithoutTable');
-				containerText = containerText.replace(/%1/, title);
-				containerText = containerText.replace(/%2/, worldCup);
-				let wcNum = Foxtrick.decToRoman(result.worldCupNumber);
-				containerText = containerText.replace(/%3/, wcNum);
-				containerText = containerText.replace(/%4/, result.lastMatch);
-				container.textContent = containerText;
-				var before = table.nextSibling;
-				before.parentNode.insertBefore(container, before);
-			}
+		let text = TMPL_STR;
+		text = text.replace(/%1/, TITLE_STR);
+		text = text.replace(/%2/, WC_STR);
+		text = text.replace(/%3/, wcNum);
+		text = text.replace(/%4/, lastMatch);
+
+		let wrapper = Foxtrick.createFeaturedElement(doc, module, 'p');
+		wrapper.textContent = text;
+		let info = doc.querySelector('.playerInfo');
+		info.appendChild(wrapper);
+	},
+
+	runPlayerList: function(doc) {
+		var module = this;
+		const TITLE_STR = Foxtrick.L10n.getString('U20LastMatch.title');
+		const WC_STR = Foxtrick.L10n.getString('U20LastMatch.worldcup');
+		const TMPL_STR = Foxtrick.L10n.getString('U20LastMatch.templateWithoutTable');
+
+		let players = Foxtrick.modules.Core.getPlayerList();
+		for (let player of players) {
+			if (player.age.years > 20)
+				continue;
+
+			let { worldCupNumber, lastMatch } = module.calculate(player.age, doc);
+			let wcNum = Foxtrick.decToRoman(worldCupNumber);
+
+			let text = TMPL_STR;
+			text = text.replace(/%1/, TITLE_STR);
+			text = text.replace(/%2/, WC_STR);
+			text = text.replace(/%3/, wcNum);
+			text = text.replace(/%4/, lastMatch);
+
+			let container = Foxtrick.createFeaturedElement(doc, module, 'p');
+			container.textContent = text;
+			let table = player.playerNode.querySelector('table');
+			Foxtrick.insertAfter(container, table);
 		}
 	},
 };
