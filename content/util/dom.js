@@ -1,11 +1,14 @@
-'use strict';
-/*
+/**
  * dom.js
  * Utilities for HTML and DOM
  */
 
+'use strict';
+
+/* eslint-disable */
 if (!Foxtrick)
 	var Foxtrick = {};
+/* eslint-enable */
 
 /**
  * Node type map.
@@ -293,23 +296,57 @@ Foxtrick.getChildIndex = function(element) {
 };
 
 /**
- * Insert newNode after sibling
- * @param {element} newNode
- * @param {element} sibling
+ * Insert adjacent content
+ *
+ * @param {string}  where
+ * @param {Element} newNode
+ * @param {Element} target
  */
-Foxtrick.insertAfter = function(newNode, sibling) {
-	if (sibling.nextSibling) {
-		sibling.parentNode.insertBefore(newNode, sibling.nextSibling);
+Foxtrick.insertAdjacent = function(where, newNode, target) {
+	let win = target.ownerDocument.defaultView;
+	let isElement = {}.isPrototypeOf.call(win.Element.prototype, newNode);
+	let isNode = {}.isPrototypeOf.call(win.Node.prototype, newNode);
+
+	if (isElement) {
+		target.insertAdjacentElement(where, newNode);
 	}
 	else {
-		sibling.parentNode.appendChild(newNode);
+		let text = isNode ? newNode.textContent : newNode.toString();
+		target.insertAdjacentText(where, text);
 	}
+};
+
+/**
+ * Insert newNode before sibling
+ * @param {Element} newNode
+ * @param {Element} sibling
+ */
+Foxtrick.insertBefore = function(newNode, sibling) {
+	Foxtrick.insertAdjacent('beforeBegin', newNode, sibling);
+};
+
+/**
+ * Insert newNode after sibling
+ * @param {Element} newNode
+ * @param {Element} sibling
+ */
+Foxtrick.insertAfter = function(newNode, sibling) {
+	Foxtrick.insertAdjacent('afterEnd', newNode, sibling);
+};
+
+/**
+ * Insert newNode as first child of parent
+ * @param {Element} newNode
+ * @param {Element} parent
+ */
+Foxtrick.prependChild = function(newNode, parent) {
+	Foxtrick.insertAdjacent('afterBegin', newNode, parent);
 };
 
 /**
  * Append an array of elements to a container
  * @param {element} parent
- * @param {array}   children Array.<element>
+ * @param {Array}   children Array.<element>
  */
 Foxtrick.appendChildren = function(parent, children) {
 	Foxtrick.forEach(function(child) {
@@ -334,10 +371,13 @@ Foxtrick.append = function(parent, child) {
 			Foxtrick.append(parent, c);
 		}, child);
 	}
-	else if (win.Node.prototype.isPrototypeOf(child))
+	else if ({}.isPrototypeOf.call(win.Node.prototype, child)) {
 		parent.appendChild(child);
-	else if (child != null) // skip null/undefined
+	}
+	else if (child != null) {
+		// skip null/undefined
 		parent.appendChild(doc.createTextNode(child.toString()));
+	}
 };
 
 /**
@@ -361,12 +401,16 @@ Foxtrick.onClick = function(el, listener, useCapture) {
  * Add an event listener to an element.
  * The callback is executed with global change listeners stopped.
  * @param {HTMLElement} el
- * @param {String}      type       event type
+ * @param {string}      type       event type
  * @param {function}    listener
  * @param {Boolean}     useCapture
  */
 Foxtrick.listen = function(el, type, listener, useCapture) {
-	el.addEventListener(type, function(ev) {
+	/**
+	 * @this   {HTMLElement}
+	 * @param  {Event}       ev
+	 */
+	let wrapper = function(ev) {
 		var doc = ev.target.ownerDocument || ev.target;
 		Foxtrick.stopListenToChange(doc);
 
@@ -376,13 +420,12 @@ Foxtrick.listen = function(el, type, listener, useCapture) {
 		Foxtrick.startListenToChange(doc);
 
 		if (ret === false) {
-			// simply returning false does not seem to work in capture phase
 			ev.stopPropagation();
 			ev.preventDefault();
 		}
+	};
 
-		return ret;
-	}, useCapture);
+	el.addEventListener(type, wrapper, useCapture);
 };
 
 /**
@@ -412,25 +455,27 @@ Foxtrick.addCopying = function(el, copy, mime) {
  * Stops observing in case callback returns true.
  * Returns the observer.
  * @param  {Node}                                      node     observer target
- * @param  {function(Array.<MutationRecord>): boolean} callback
+ * @param  {function(Array.<MutationRecord>): boolean} shouldStop
  * @param  {MutationObserverInit}                      options  observer options
  * @return {MutationObserver}
  */
-Foxtrick.observe = function(node, callback, options) {
+Foxtrick.observe = function(node, shouldStop, options) {
 	var doc = node.ownerDocument;
 	var win = doc.defaultView;
 	var MO = win.MutationObserver || win.WebKitMutationObserver;
 	var opts = { childList: true, subtree: true };
-	for (var opt in options) {
+	for (var opt in options)
 		opts[opt] = options[opt];
-	}
+
+	var observer;
 	var observe = function() {
 		observer.takeRecords();
 		observer.observe(node, opts);
 	};
-	var observer = new MO(function(mutations) {
+
+	observer = new MO(function(mutations) {
 		observer.disconnect();
-		if (!callback(mutations))
+		if (!shouldStop(mutations))
 			observe();
 	});
 	observer.reconnect = observe;
@@ -491,7 +536,7 @@ Foxtrick.getChanges = function(node, callback, obsOpts) {
  * Returns the added box.
  * @author Ryan Li
  * @param  {document}    doc
- * @param  {String}      title     the title of the box, will create one if inexists
+ * @param  {string}      title     the title of the box, will create one if inexists
  * @param  {HTMLElement} content   HTML node of the content
  * @param  {Integer}     prec      precedence of the box, the smaller, the higher
  * @param  {Boolean}     forceLeft force the box to be displayed on the left

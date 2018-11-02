@@ -860,7 +860,7 @@ Foxtrick.Pages.Player.parseYouthSkills = function(table) {
 			else if (hasNewBars) {
 				// new bars
 				let bar = skillCell.querySelector('.ht-bar');
-				let titles = [...bar.querySelectorAll('td[title]')];
+				let titles = bar ? [...bar.querySelectorAll('td[title]')] : [];
 				if (titles.length) {
 					[current, max] = titles.map(t => t.title);
 					if (titles.length == 1) {

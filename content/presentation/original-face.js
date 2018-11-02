@@ -1,9 +1,10 @@
-'use strict';
 /**
  * original-face.js
  * Show player's original face
  * @author smates
  */
+
+'use strict';
 
 Foxtrick.modules['OriginalFace'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.PRESENTATION,
@@ -13,21 +14,18 @@ Foxtrick.modules['OriginalFace'] = {
 		Foxtrick.InternalPath + 'resources/css/HideFaceTransferImages.css',
 		Foxtrick.InternalPath + 'resources/css/HideFaceInjuryImages.css',
 		Foxtrick.InternalPath + 'resources/css/HideFaceSuspendedImages.css',
-		null
+		null,
 	],
 
 	run: function(doc) {
-		if (Foxtrick.Prefs.isModuleOptionEnabled('OriginalFace', 'ColouredYouth')) {
+		if (Foxtrick.Prefs.isModuleOptionEnabled(this, 'ColouredYouth')) {
 			if (Foxtrick.isPage(doc, 'youthPlayerDetails') ||
 			    Foxtrick.isPage(doc, 'youthPlayers')) {
-				var imgs = doc.getElementsByTagName('img');
-				var avatarImages = Foxtrick.filter(function(n) {
-					return /\/Img\/Avatar/i.test(n.src);
-				}, imgs);
-				Foxtrick.map(function(n) {
-					n.src = n.src.replace(/y_/, '');
-				}, avatarImages);
+
+				let imgs = doc.querySelectorAll('img[src*="/Img/Avatar"]');
+				for (let img of imgs)
+					img.src = img.src.replace(/y_/, '');
 			}
 		}
-	}
+	},
 };
