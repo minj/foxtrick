@@ -98,15 +98,16 @@ Foxtrick.modules['TransferDeadline'] = {
 
 		var userDate = Foxtrick.util.time.getDate(doc);
 		var userTime = userDate.getTime();
-		var sellTimeEl;
-		try {
-			var div = Foxtrick.Pages.Player.getBidInfo(doc);
-			var alert = div.getElementsByClassName('alert')[0];
-			sellTimeEl = alert.getElementsByTagName('p')[0];
-		}
-		catch (e) {
-			// these may not be present
-		}
+
+		var div = Foxtrick.Pages.Player.getBidInfo(doc);
+		if (!div)
+			return;
+
+		var alert = div.querySelector('.alert');
+		if (!alert)
+			return;
+
+		var sellTimeEl = alert.querySelector('p');
 		if (!sellTimeEl)
 			return;
 
