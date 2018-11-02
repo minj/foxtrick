@@ -323,7 +323,7 @@ Foxtrick.modules['YouthSkills'] = {
 			// get a timer for some profiling as this module runs in async mode
 			var start = new Date().getTime();
 
-			var playerInfos = doc.getElementsByClassName('playerInfo');
+			var playerInfos = Foxtrick.Pages.Players.getPlayerNodes(doc);
 			for (let playerInfo of playerInfos) {
 				// get playerid
 				let link = playerInfo.querySelector('a');
