@@ -1,4 +1,3 @@
-'use strict';
 /**
  * pages.js
  *
@@ -19,14 +18,17 @@
  * @author Foxtrick developers
  */
 
-if (!Foxtrick)
-	var Foxtrick = {}; // jshint ignore:line
+'use strict';
 
-// jscs:disable disallowSpaceAfterObjectKeys, disallowQuotedKeysInObjects
-// jscs:disable disallowMultipleSpaces
+/* eslint-disable */
+if (!Foxtrick)
+	var Foxtrick = {};
+/* eslint-enable */
+
+/* eslint-disable key-spacing, quote-props */
 Foxtrick.htPages = {
 	// following are mainly used for information gathering. keep on top
-	'myHattrick'                : '/MyHattrick/$',  // that's the news page
+	'myHattrick'                : '/MyHattrick/$', // that's the news page
 	'myHattrickAll'             : '/MyHattrick/|.(org|fm|ws|name|net|pl|br)/$', // TLD
 	'teamPageAny'               : '/Club/|/World/Series/|/Community/Tournaments/',
 
@@ -87,39 +89,48 @@ Foxtrick.htPages = {
 	'marathon'                  : '/World/Series/Marathon.aspx',
 	'promotion'                 : '/World/Series/Promotion.aspx',
 	'fixtures'                  : '/World/Series/Fixtures.aspx',
+
+	                              // all senior player pages
 	'allPlayers'                : '/Club/Players/(Default.aspx|?|$)|' +
 	                              '/Club/Players/(Default.Classic.aspx|?|$)|' +
 	                              '/Club/Players/KeyPlayers(.|.Classic.)aspx|' +
 	                              '/Club/NationalTeam/NTPlayers(.|.Classic.)aspx|' +
 	                              '/Club/Players/Oldies(.|.Classic.)aspx|' +
 	                              '/Club/Players/Coaches(.|.Classic.)aspx',
-	                              // all senior player pages
+
+	                              // has last match link and ratings
+	                              // KeyPlayers have basically the same structure as regular page
 	'players'                   : '/Club/Players/(Default.aspx|?|$)|' +
 	                              '/Club/Players/(Default.Classic.aspx|?|$)|' +
 	                              '/Club/Players/KeyPlayers(.|.Classic.)aspx',
-	                              // has last match link and ratings
-	                              // KeyPlayers have basically the same structure as regular page
-	'ownPlayers'                : 'FakePage',
-	                              // has visible skills
-	                              // KeyPlayers have basically the same structure as regular page
-	                              // updated in core.js so you cannot rely on it in PAGES
-	                              // use 'players' and 'ntPlayers' instead
+
+	                              // README: don't use this! The correct value is 'ownPlayers'
 	'ownPlayersTemplate'        : '/Club/Players/(Default.aspx$|$)|' +
 	                              '/Club/Players/(Default.aspx?|?)teamid=[id]|' +
 	                              '/Club/Players/(Default.Classic.aspx?|?)teamid=[id]|' +
 	                              '/Club/Players/KeyPlayers(.|.Classic.)aspx($|?teamid=[id])|' +
 	                              '/Club/NationalTeam/NTPlayers(.|.Classic.)aspx?teamId=[ntid]',
-	                              // README: don't use this! The correct value is 'ownPlayers'
+
+	                              // has visible skills
+	                              // KeyPlayers have basically the same structure as regular page
+	                              // updated in core.js so you cannot rely on it in PAGES
+	                              // use 'players' and 'ntPlayers' instead
+	'ownPlayers'                : 'FakePage',
+
 	'keyPlayers'                : '/Club/Players/KeyPlayers(.|.Classic.)aspx',
 	'oldPlayers'                : '/Club/Players/Oldies(.|.Classic.)aspx',
 	'oldCoaches'                : '/Club/Players/Coaches(.|.Classic.)aspx',
 	'ntPlayers'                 : '/Club/NationalTeam/NTPlayers(.|.Classic.)aspx',
 	'youthPlayers'              : '/Club/Players/YouthPlayers(.|.Classic.)aspx',
-	'ownYouthPlayers'           : 'FakePage',
+
+	                              // README: don't use this! The correct value is 'ownYouthPlayers'
+	'ownYouthPlayersTemplate'   : '/Club/Players/YouthPlayers(.|.Classic.)aspx' +
+	                              '($|?YouthTeamId=[id])',
+
 	                              // updated in core.js so you cannot rely on it in PAGES
 	                              // use 'youthPlayers' instead
-	'ownYouthPlayersTemplate'   : '/Club/Players/YouthPlayers(.|.Classic.)aspx($|?YouthTeamId=[id])',
-	                              // README: don't use this! The correct value is 'ownYouthPlayers'
+	'ownYouthPlayers'           : 'FakePage',
+
 	'playerHistory'             : '/Club/Players/PlayerHistory.aspx',
 	'playerEvents'              : '/Club/Players/PlayerHistory.aspx?playerId=\\d+' +
 	                              '&actionType=playerevents',
@@ -178,8 +189,10 @@ Foxtrick.htPages = {
 	'tournamentsFixtures'       : '/Community/Tournaments/Fixtures.aspx',
 	'tournamentsPlayerStatuses' : '/Community/Tournaments/PlayerStatuses.aspx',
 	'tournamentsCreate'         : '/Community/Tournaments/CreateTournament.aspx',
-	'tournamentsHistory'        : '/Community/Tournaments/TournamentHistory.aspx',
+
 	                              // perhaps not identical to 'tournaments'
+	'tournamentsHistory'        : '/Community/Tournaments/TournamentHistory.aspx',
+
 	'ladders'                   : '/World/Ladders/Ladder.aspx',
 	'world'                     : '/World/(Default.aspx|?|$)',
 	'reminders'                 : '/MyHattrick/Reminders/(Default.aspx|?|$)',
@@ -199,7 +212,7 @@ Foxtrick.pagesExcluded = {
  * page may be Array.<string>
  *
  * @param  {document}     doc
- * @param  {string|array} page
+ * @param  {string|Array} page
  * @return {Boolean}
  */
 Foxtrick.isPage = function(doc, page) {
@@ -209,13 +222,12 @@ Foxtrick.isPage = function(doc, page) {
 		}, page);
 	}
 
-	if (typeof Foxtrick.htPages[page] !== 'undefined') {
-		return Foxtrick.isPageHref(doc.location.href, Foxtrick.htPages[page]);
-	}
-	else {
+	if (typeof Foxtrick.htPages[page] == 'undefined') {
 		Foxtrick.error('Requesting unknown page: ' + page);
 		return false;
 	}
+
+	return Foxtrick.isPageHref(doc.location.href, Foxtrick.htPages[page]);
 };
 
 /**
@@ -234,7 +246,7 @@ Foxtrick.makePageRe = function(reStr) {
  * @return {Boolean}
  */
 Foxtrick.isPageHref = function(href, reStr) {
-	var pageRe = this.makePageRe(reStr);
+	let pageRe = this.makePageRe(reStr);
 	return pageRe.test(href.replace(/#.*$/, ''));
 };
 
@@ -244,8 +256,8 @@ Foxtrick.isPageHref = function(href, reStr) {
  * @return {Boolean}
  */
 Foxtrick.isExcluded = function(doc) {
-	for (var i in this.pagesExcluded) {
-		var pageRe = this.pagesExcluded[i];
+	for (let i in this.pagesExcluded) {
+		let pageRe = this.pagesExcluded[i];
 		if (this.isPageHref(doc.location.href, pageRe)) {
 			// page excluded, return
 			return true;

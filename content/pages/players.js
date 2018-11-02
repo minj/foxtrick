@@ -152,11 +152,17 @@ Foxtrick.Pages.Players.isSimpleMatchOrder = function(doc) {
  * @return {Array<Element>}         playerNodes
  */
 Foxtrick.Pages.Players.getPlayerNodes = function(doc, include) {
+	const INFOS = ['playerInfo', 'playerInfoOld', 'playerListDetails'];
+	const INFOS_SELECTOR = INFOS.map(cls => `.${cls}`).join(',');
+	const FACES = ['faceCard', 'faceCardNoBottomInfo'];
+	const FACES_SELECTOR = FACES.map(cls => `.${cls}`).join(',');
+	const SEPS = ['borderSeparator', 'separator'];
+	const SEPS_SELECTOR = SEPS.map(cls => `.${cls}`).join(',');
+
 	let pred = (el) => {
 		let is = {
-			face: el.classList.contains('faceCard') ||
-				el.classList.contains('faceCardNoBottomInfo'),
-			separator: el.classList.contains('borderSeparator'),
+			face: el.matches(FACES_SELECTOR),
+			separator: el.matches(SEPS_SELECTOR),
 		};
 
 		if (include) {
@@ -172,7 +178,11 @@ Foxtrick.Pages.Players.getPlayerNodes = function(doc, include) {
 	let mainBody = doc.getElementById('mainBody');
 	let playerList = doc.querySelector('.playerList');
 	let nodeColl = playerList ? playerList.children : mainBody.children;
-	let divs = [...nodeColl].filter(el => el.nodeName == 'DIV' && !el.classList.contains('clear'));
+	let nodes = [...nodeColl];
+
+	let divs = nodes.filter(el => el.nodeName == 'DIV' && (el.querySelector(INFOS_SELECTOR) ||
+	                        el.matches(`${INFOS_SELECTOR}, ${FACES_SELECTOR}, ${SEPS_SELECTOR}`)));
+
 	let pNodes = divs.filter(el => pred(el));
 	if (include && include.face) {
 		let newFaces = pNodes.map(n => n.querySelector('.faceCardNoBottomInfo')).filter(x => x);
@@ -383,10 +393,14 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				'/Club/Youth/?YouthTeamID=' + currentClubId :
 				'/Club/?TeamID=' + currentClubId;
 
-			var currentClubLink = doc.createElement('a');
-			currentClubLink.textContent = xml.text(isYouth ? 'YouthTeamName' : 'TeamName');
-			currentClubLink.href = currentClubUrl;
-			currentClubLink.target = '_blank';
+			var currentClubLink;
+			let tNameNode = xml.node(isYouth ? 'YouthTeamName' : 'TeamName');
+			if (tNameNode) {
+				currentClubLink = doc.createElement('a');
+				currentClubLink.textContent = tNameNode.textContent;
+				currentClubLink.href = currentClubUrl;
+				currentClubLink.target = '_blank';
+			}
 
 			var nodeName = isYouth ? 'YouthPlayer' : 'Player';
 			var playerNodes = xml.getElementsByTagName(nodeName);
@@ -566,7 +580,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 
 				if ((Foxtrick.Pages.Players.isOldies(doc) ||
 				    Foxtrick.Pages.Players.isCoaches(doc) ||
-				    Foxtrick.Pages.Players.isNT(doc)) &&
+				    Foxtrick.Pages.Players.isNT(doc)) && currentClubLink &&
 				    typeof player.currentClubLink === 'undefined') {
 					player.currentClubLink = currentClubLink.cloneNode(true);
 					player.currentClubId = currentClubId;
@@ -813,7 +827,8 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 			var paragraphs = Foxtrick.toArray(playerNode.getElementsByTagName('p'));
 			var icons = Foxtrick.toArray(playerNode.querySelectorAll('img, i, object'));
 
-			var isNewDesign = !Foxtrick.hasClass(playerNode, 'playerInfo');
+			var isNewDesign = !Foxtrick.hasClass(playerNode, 'playerInfo') &&
+				!Foxtrick.hasClass(playerNode, 'playerInfoOld');
 
 			var id = Foxtrick.Pages.Players.getPlayerId(playerNode);
 
@@ -848,7 +863,8 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				}
 
 				{
-					let anonRows = ['age', 'tsi', 'salary'], anonCells = {}, anonTexts = {};
+					let anonRows = ['owner', 'age', 'tsi', 'salary'],
+						anonCells = {}, anonTexts = {};
 
 					if (Foxtrick.Pages.Players.isYouth(doc)) {
 						let ageText = info.textContent;
@@ -858,6 +874,11 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 						player.ageText = ageText;
 					}
 					else {
+						if (Foxtrick.Pages.Players.isRegular(doc))
+							anonRows.shift(); // no owner
+						else if (Foxtrick.Pages.Players.isNT(doc))
+							anonRows.pop(); // no salary
+
 						for (let [idx, rowType] of anonRows.entries()) {
 							let row = playerInfo.rows[idx];
 							let cell = row.cells[1];
@@ -876,11 +897,18 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 					}
 
 					if (Foxtrick.Pages.Players.isSenior(doc)) {
-						if (!player.tsi) {
+						if (!player.currentClubLink && anonCells.owner) {
+							let link = anonCells.owner.querySelector('a');
+							let currentClubId = Foxtrick.util.id.getTeamIdFromUrl(link.href);
+							player.currentClubLink = link.cloneNode(true);
+							player.currentClubLink.target = '_blank';
+							player.currentClubId = currentClubId;
+						}
+						if (!player.tsi && anonTexts.tsi) {
 							let tsi = anonTexts.tsi.replace(/\D/g, '');
 							player.tsi = parseInt(tsi, 10);
 						}
-						if (!player.salary) {
+						if (!player.salary && anonCells.salary) {
 							let { total } = Foxtrick.Pages.Player.getWage(doc, anonCells.salary);
 							player.salary = total;
 						}
@@ -1131,7 +1159,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 			player.injured = player.bruised || player.injuredWeeks !== 0;
 
 			// HTMS points
-			var htms = playerNode.querySelector('.ft-htms-points');
+			let htms = playerNode.querySelector('.ft-htms-points');
 			if (htms) {
 				player.htmsAbility = parseInt(htms.getAttribute('data-htms-ability'), 10);
 				player.htmsPotential = parseInt(htms.getAttribute('data-htms-potential'), 10);
@@ -1178,12 +1206,13 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				addPerfHistLink(doc, player);
 			}
 
-			if (Foxtrick.Pages.Players.isOldies(doc) ||
+			if (!player.currentClubLink &&
+			   (Foxtrick.Pages.Players.isOldies(doc) ||
 			    Foxtrick.Pages.Players.isCoaches(doc) ||
-			    Foxtrick.Pages.Players.isNT(doc)) {
-				var currentClubLink = null, currentClubId = null;
+			    Foxtrick.Pages.Players.isNT(doc))) {
+				let currentClubLink = null, currentClubId = null;
 				Foxtrick.nth(function(currentPara) {
-					var plinks = currentPara.getElementsByTagName('a');
+					let plinks = currentPara.getElementsByTagName('a');
 					currentClubLink = Foxtrick.nth(function(link) {
 						return /TeamID=/i.test(link.href);
 					}, plinks);
@@ -1197,7 +1226,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 							// not applicable for NT players
 							// we concatenate the text nodes from the containing
 							// <p> to a string, and search for league names there.
-							var leagueText = '';
+							let leagueText = '';
 							Foxtrick.forEach(function(node) {
 								if (node.nodeName === '#text') {
 									// the text is in a child text node of currentPara,
@@ -1205,10 +1234,10 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 									leagueText += node.textContent;
 								}
 							}, currentPara.childNodes);
-							for (var j in Foxtrick.XMLData.League) {
+							for (let j in Foxtrick.XMLData.League) {
 								// README: this will break with localized league names
-								var league = Foxtrick.L10n.getCountryNameNative(j);
-								var re = new RegExp(Foxtrick.strToRe(league));
+								let league = Foxtrick.L10n.getCountryNameNative(j);
+								let re = new RegExp(Foxtrick.strToRe(league));
 								if (re.test(leagueText)) {
 									player.currentLeagueId = j;
 									break;
@@ -1222,14 +1251,14 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				}, paragraphs);
 			}
 
-			var psicoDiv = playerNode.querySelector('.ft-psico');
+			let psicoDiv = playerNode.querySelector('.ft-psico');
 			if (psicoDiv) {
 				player.psicoTSI = psicoDiv.dataset.psicoAvg;
 				player.psicoTitle = psicoDiv.dataset.psicoSkill;
 			}
 			else {
-				var psicoLink = null;
-				var showDiv = doc.getElementById('psicotsi_show_div_' + i) ||
+				let psicoLink = null;
+				let showDiv = doc.getElementById('psicotsi_show_div_' + i) ||
 					doc.getElementById('psico_show_div_' + i);
 				if (showDiv) {
 					psicoLink = showDiv.getElementsByTagName('a')[0];
