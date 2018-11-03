@@ -114,9 +114,14 @@
 			"url": "http://vnukstats.hattrick-sk.com/top-series/default/[leagueid]",
 			"filters": ["leagueid"]
 		},
+		"youthlink": {
+			"url": "http://vnukstats.eu/[ownteamid]/youth-scouts/scoutmap",
+			"filters": ["leagueid"]
+		},
 		"leagueidranges": [
 			[52, 52],
-			[67, 67]
+			[67, 67],
+			[38, 38]
 		],
 		"title": "VnukStats",
 		"img": "resources/linkicons/vnukstats.png"
