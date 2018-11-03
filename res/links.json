@@ -76,6 +76,10 @@
 			"url": "https://www.vnukstats.eu/[leagueid]/countries/view",
 			"filters": ["leagueid"]
 		},
+		"youthlink": {
+			"url": "https://www.vnukstats.eu/[ownteamid]/youth-scouts/scoutmap",
+			"filters": ["leagueid"]
+		},
 		"leagueidranges": [
 			[52, 52],
 			[67, 67],
