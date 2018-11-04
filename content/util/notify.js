@@ -1,15 +1,18 @@
-'use strict';
-/*
+/**
  * notify.js
  * Utilities for creating a notification
  *
  * @author ryanli, convincedd, LA-MJ
  */
 
+'use strict';
+
+/* eslint-disable */
 if (!Foxtrick)
-	var Foxtrick = {}; // jshint ignore: line
+	var Foxtrick = {};
 if (!Foxtrick.util)
 	Foxtrick.util = {};
+/* eslint-enable */
 
 Foxtrick.util.notify = {};
 
@@ -309,7 +312,7 @@ Foxtrick.util.notify.create = function(msg, source, opts) {
 				opts: opts,
 			}, function onSendResponse(response) {
 
-				var err = Foxtrick.JSONError(response);
+				var err = Foxtrick.jsonError(response);
 				if (err instanceof Error)
 					reject(err);
 				else

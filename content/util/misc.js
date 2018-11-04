@@ -59,7 +59,7 @@ if (!Foxtrick)
  * @param  {Error|object} err An Error instance here, an object there
  * @return {object|Error}     An object here, an Error instance there
  */
-Foxtrick.JSONError = (err) => {
+Foxtrick.jsonError = (err) => {
 	const ERROR_SYMBOL = '__ftErrorSymbol';
 	if (err == null)
 		return err;
@@ -81,7 +81,7 @@ Foxtrick.JSONError = (err) => {
 		}
 
 		for (let k of Object.keys(err))
-			err[k] = Foxtrick.JSONError(err[k]);
+			err[k] = Foxtrick.jsonError(err[k]);
 
 	}
 
@@ -618,3 +618,54 @@ Foxtrick.getSpecialtyImagePathFromNumber = function(type, negative) {
 
 	return url + '.png';
 };
+<<<<<<< web-ext-1339
+=======
+
+/**
+ * Given a number in decimal representation, returns its roman representation
+ * Source: http://blog.stevenlevithan.com/archives/javascript-roman-numeral-converter
+ *
+ * @param  {Number}  num
+ * @return {String}
+ */
+Foxtrick.decToRoman = function(num) {
+	if (isNaN(num)) return "";
+	var digits = String(+num).split(""),
+		key = [
+			"",
+			"C",
+			"CC",
+			"CCC",
+			"CD",
+			"D",
+			"DC",
+			"DCC",
+			"DCCC",
+			"CM",
+			"",
+			"X",
+			"XX",
+			"XXX",
+			"XL",
+			"L",
+			"LX",
+			"LXX",
+			"LXXX",
+			"XC",
+			"",
+			"I",
+			"II",
+			"III",
+			"IV",
+			"V",
+			"VI",
+			"VII",
+			"VIII",
+			"IX"
+		],
+		roman = "",
+		i = 3;
+	while (i--) roman = (key[+digits.pop() + i * 10] || "") + roman;
+	return Array(+digits.join("") + 1).join("M") + roman;
+};
+>>>>>>> local

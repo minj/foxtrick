@@ -1,4 +1,3 @@
-'use strict';
 /**
  * session-store.js
  *
@@ -10,8 +9,12 @@
  * @author ryanli, convincedd, LA-MJ
  */
 
+'use strict';
+
+/* eslint-disable */
 if (!Foxtrick)
 	var Foxtrick = {}; // jshint ignore:line
+/* eslint-enable */
 
 Foxtrick.session = {};
 
@@ -39,7 +42,7 @@ Foxtrick.session.set = function(key, value) {
 				value: value,
 			}, function onSendResponse(response) {
 
-				var err = Foxtrick.JSONError(response);
+				var err = Foxtrick.jsonError(response);
 				if (err instanceof Error)
 					reject(err);
 				else
@@ -112,7 +115,7 @@ Foxtrick.session.deleteBranch = function(branch) {
 				branch: branch,
 			}, function onSendResponse(response) {
 
-				var err = Foxtrick.JSONError(response);
+				var err = Foxtrick.jsonError(response);
 				if (err instanceof Error)
 					reject(err);
 				else

@@ -1,5 +1,4 @@
-'use strict';
-/*
+/**
  * storage.set() and storage.get() are a pair of functions that can store
  * permanent information.
  * The stored value must be a JSON-serializable object, or of native types.
@@ -7,10 +6,13 @@
  * @author convincedd, LA-MJ
  */
 
-/* global indexedDB */
+'use strict';
 
+/* global indexedDB */
+/* eslint-disable */
 if (!Foxtrick)
 	var Foxtrick = {}; // jshint ignore:line
+/* eslint-enable */
 
 Foxtrick.storage = {};
 
@@ -236,7 +238,7 @@ Foxtrick.storage.set = function(key, value) {
 				value: value,
 			}, function onSendResponse(response) {
 
-				var err = Foxtrick.JSONError(response);
+				var err = Foxtrick.jsonError(response);
 				if (err instanceof Error)
 					reject(err);
 				else
@@ -327,7 +329,7 @@ Foxtrick.storage.deleteBranch = function(branch) {
 				branch: branch,
 			}, function onSendResponse(response) {
 
-				var err = Foxtrick.JSONError(response);
+				var err = Foxtrick.jsonError(response);
 				if (err instanceof Error)
 					reject(err);
 				else
