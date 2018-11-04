@@ -189,7 +189,7 @@ Foxtrick.modules['Links'] = {
 		};
 		var testFilter = function(filter) {
 			// ranges to determine whether to show
-			var ranges = gLink[filter + 'ranges'];
+			var ranges = gLink[filter + 'ranges'] || gLink[filter.replace(/^own/, '') + 'ranges'];
 
 			return Foxtrick.any(function(range) {
 				return args[filter] >= range[0] && args[filter] <= range[1];

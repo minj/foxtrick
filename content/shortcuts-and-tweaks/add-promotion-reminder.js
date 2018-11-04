@@ -1,9 +1,10 @@
-'use strict';
 /**
  * add-promotion-reminder.js
  * Add a reminder in the day that you can promote a Youth Player
  * @author tasosventouris, LA-MJ
  */
+
+'use strict';
 
 Foxtrick.modules['AddPromotionReminder'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,

@@ -42,11 +42,6 @@
 			"duty": "support"
 		},
 		{
-			"id": "8366392",
-			"name": "LA-MJ",
-			"duty": "helper"
-		},
-		{
 			"id": "6381548",
 			"name": "Halli",
 			"duty": "helper"
@@ -87,11 +82,6 @@
 			"duty": "support"
 		},
 		{
-			"id": "5825500",
-			"name": "Frutuoso",
-			"duty": "translator"
-		},
-		{
 			"id": "6170192",
 			"name": "albertocorrez-SUB",
 			"duty": "translator"
@@ -114,11 +104,6 @@
 		{
 			"id": "1901569",
 			"name": "Shadow_of_hectepob",
-			"duty": "translator"
-		},
-		{
-			"id": "5572991",
-			"name": "Urmat",
 			"duty": "translator"
 		},
 		{
@@ -162,8 +147,8 @@
 			"duty": "translator"
 		},
 		{
-			"id": "5204575",
-			"name": "LA-RNH",
+			"id": "4554740",
+			"name": "notna78",
 			"duty": "translator"
 		},
 		{
@@ -207,11 +192,6 @@
 			"duty": "translator"
 		},
 		{
-			"id": "9793408",
-			"name": "LA-keebak",
-			"duty": "translator"
-		},
-		{
 			"id": "2201648",
 			"name": "Mod-D",
 			"duty": "translator"
@@ -219,11 +199,6 @@
 		{
 			"id": "9668661",
 			"name": "LA-dzsoo",
-			"duty": "translator"
-		},
-		{
-			"id": "9634554",
-			"name": "marcoslkz",
 			"duty": "translator"
 		},
 		{
@@ -239,11 +214,6 @@
 		{
 			"id": "11048399",
 			"name": "Strategyt",
-			"duty": "translator"
-		},
-		{
-			"id": "1957756",
-			"name": "llramone",
 			"duty": "translator"
 		},
 		{
@@ -264,11 +234,6 @@
 		{
 			"id": "9607801",
 			"name": "Kostitsyn46",
-			"duty": "translator"
-		},
-		{
-			"id": "11710656",
-			"name": "LA-Hadi",
 			"duty": "translator"
 		},
 		{
@@ -337,23 +302,13 @@
 			"duty": "translator"
 		},
 		{
-			"id": "11101114",
-			"name": "aaa-aaa",
-			"duty": "translator"
-		},
-		{
 			"id": "12069952",
-			"name": "LA-ffanes",
+			"name": "ffanes",
 			"duty": "translator"
 		},
 		{
 			"id": "1641271",
 			"name": "jaymz69",
-			"duty": "translator"
-		},
-		{
-			"id": "11660183",
-			"name": "Seba-DT",
 			"duty": "translator"
 		},
 		{
@@ -372,18 +327,8 @@
 			"duty": "translator"
 		},
 		{
-			"id": "11960000",
-			"name": "r6andrew",
-			"duty": "translator"
-		},
-		{
-			"id": "12640855",
-			"name": "StevenXu",
-			"duty": "translator"
-		},
-		{
 			"id": "11014585",
-			"name": "LA-Deuterium",
+			"name": "-Deuterium-",
 			"duty": "translator"
 		},
 		{
@@ -392,13 +337,13 @@
 			"duty": "translator"
 		},
 		{
-			"id": "12614915",
-			"name": "clashfan",
+			"id": "3704971",
+			"name": "flaxberg",
 			"duty": "translator"
 		},
 		{
-			"id": "5475689",
-			"name": "Calgar_",
+			"id": "12614915",
+			"name": "clashfan",
 			"duty": "translator"
 		},
 		{
@@ -417,23 +362,18 @@
 			"duty": "translator"
 		},
 		{
-			"id": "10806018",
-			"name": "theopap101",
+			"id": "12826203",
+			"name": "voodyalen",
+			"duty": "translator"
+		},
+		{
+			"id": "12890764",
+			"name": "zxzxlrlr",
 			"duty": "translator"
 		},
 		{
 			"id": "12938225",
 			"name": "Howard007",
-			"duty": "translator"
-		},
-		{
-			"id": "11795800",
-			"name": "Dotyfree",
-			"duty": "translator"
-		},
-		{
-			"id": "12407319",
-			"name": "mudoct",
 			"duty": "translator"
 		},
 		{
@@ -443,7 +383,7 @@
 		},
 		{
 			"id": "12326398",
-			"name": "Dr-Jalal",
+			"name": "LA-Jalal",
 			"duty": "translator"
 		},
 		{
@@ -452,13 +392,28 @@
 			"duty": "translator"
 		},
 		{
-			"id": "4116867",
-			"name": "BoTTH-RaffaelPinto",
+			"id": "2298130",
+			"name": "BoTTH-aNc-jesus",
 			"duty": "translator"
 		},
 		{
-			"id": "11107942",
-			"name": "mynayir",
+			"id": "4116867",
+			"name": "BoTTH-Blaz",
+			"duty": "translator"
+		},
+		{
+			"id": "13121665",
+			"name": "Goko84",
+			"duty": "translator"
+		},
+		{
+			"id": "3060960",
+			"name": "Haznfefer",
+			"duty": "translator"
+		},
+		{
+			"id": "13209572",
+			"name": "-Pecu-",
 			"duty": "translator"
 		},
 		{
@@ -467,8 +422,8 @@
 			"duty": "translator"
 		},
 		{
-			"id": "11689741",
-			"name": "LA-khoai",
+			"id": "13280539",
+			"name": "gaslei04",
 			"duty": "translator"
 		},
 		{
@@ -477,8 +432,28 @@
 			"duty": "translator"
 		},
 		{
+			"id": "13305011",
+			"name": "LA-derberker",
+			"duty": "translator"
+		},
+		{
 			"id": "11191407",
 			"name": "anna_rose",
+			"duty": "translator"
+		},
+		{
+			"id": "11449158",
+			"name": "brulcb",
+			"duty": "translator"
+		},
+		{
+			"id": "12735338",
+			"name": "HPTM-rubio1905",
+			"duty": "translator"
+		},
+		{
+			"id": "154602",
+			"name": "Kytampe",
 			"duty": "translator"
 		}
 	]

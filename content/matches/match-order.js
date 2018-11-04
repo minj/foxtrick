@@ -1,9 +1,10 @@
-'use strict';
 /**
  * match-order.js
  * adding extra info to match order interface
  * @author convinced
  */
+
+'use strict';
 
 Foxtrick.modules['MatchOrderInterface'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.MATCHES,
@@ -91,7 +92,7 @@ Foxtrick.modules['MatchOrderInterface'] = {
 			for (var i = 0, p, skill; p = playerList[i]; ++i) {
 				// formula by HO
 				skill = p.experience * 1.5 + p.setPieces * 0.7 + p.scoring * 0.3;
-				skill = (p.specialityNumber == 1) ? skill * 1.1 : skill;
+				skill = (p.specialtyNumber == 1) ? skill * 1.1 : skill;
 				players[p.id] = skill;
 			}
 			Foxtrick.sessionSet('match-orders-penalty-skills', players);
@@ -105,9 +106,9 @@ Foxtrick.modules['MatchOrderInterface'] = {
 						continue;
 
 					var player = Foxtrick.Pages.Players.getPlayerFromListById(playerList, id);
-					if (player && player.specialityNumber) {
+					if (player && player.specialtyNumber) {
 						Foxtrick.addClass(cards_health[i], 'ft-specialty');
-						var specIdx = player.specialityNumber;
+						var specIdx = player.specialtyNumber;
 						var opts = { class: 'ft-specialty-img' };
 						Foxtrick.addSpecialty(cards_health[i], specIdx, opts)
 							.catch(Foxtrick.catch('MOI addSpecialty'));
@@ -467,7 +468,7 @@ Foxtrick.modules['MatchOrderInterface'] = {
 				// spec
 				var strip = doc.querySelector('#players #list_playerID' + id);
 				var json = JSON.parse(strip.dataset.json);
-				var spec = Foxtrick.L10n.getSpecialityFromNumber(json.specialty);
+				var spec = Foxtrick.L10n.getSpecialtyFromNumber(json.specialty);
 				if (spec)
 					data['p' + pos + 'Spec'] = spec;
 
@@ -876,7 +877,7 @@ Foxtrick.modules['MatchOrderInterface'] = {
 							Foxtrick.addClass(listplayers[i], 'ft-highlight-onfield');
 				}
 
-				//show potential speciality icons
+				//show potential specialty icons
 				check_Specialties(doc, target, playerList, getIDParent, 'cards_health');
 			};
 

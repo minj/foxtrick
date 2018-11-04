@@ -189,7 +189,7 @@ lt:
       bug_report: 'Hattrick puslapių apačioje rasite nuorodą, kuria pasinaudoję galite pranešti apie Foxtrick sutrikimus. Tiesiog spragtelėkite ją tame puslapyje, kur pastebėjote klaidą, ir vykdykite pasirodžiusius nurodymus.'
       twitter: 'Paskutines Foxtrick naujienas, atnaujinimus ir pranešimus gausite sekdami <linkTwitter>Foxtrick Twitter''yje</linkTwitter>.'
       new: '<header>Nauji moduliai</header>'
-      series_transfers: <module>SeriesTransfers</module> grupės puslapyje rodo dabar parduodamų žaidėjų sąrašą.
+      series_transfers: '<module>SeriesTransfers</module> grupės puslapyje rodo dabar parduodamų žaidėjų sąrašą.'
       player_positions: '<module>PlayerPositionsEvaluations</module> ir <module>BestPlayerPosition</module> moduliai apskaičiuoja žaidėjų efektyvumą įvairiose pozicijose. Skaičiavimai atliekami pagal duomenis, esančius <linkContributionsWiki>Hattrick Wiki</linkContributionsWiki>.'
       bugs: '<header>Pataisytos klaidos</header>'
       australis: 'Foxtrick logotipo meniu pritaikytas prie naujosios Firefox išvaizdos.'
@@ -269,8 +269,8 @@ lt:
       note_3: '<module>ShowLineupSet</module>: turnyrinėse lentelėse Jūsų komanda bus paryškinta.'
       note_4: '<module>CopyYouth</module>: nuo šiol jaunių treniruočių pokyčiai bus automatiškai siunčiami į hattrick youthclub (tik HY vartotojams).'
       note_5: 'NAUJIENA: <module>SupportersList</module>: Jūsų remiamų komandų puslapyje pažymi komandas, kurios Jus irgi remia, ir atvirkščiai.'
-      note_6: '<module>MatchLineupTweaks</module>: kaupia Jūsų žaidėjų ištvermės duomenis kiekvieną kartą atvėrus rungtynių ataskaitą. Duomenys naudojami reitingų spėjimui „<module>MatchSimulator</module>“ modulyje patikslinti. Juos peržiūrėti galite įgūdžių lentelėje (<module>SkillTable</module>). Renkant duomenis žiūrima tik į tuos žaidėjus, kurie sužaidė visas 90 minučių. Duomenys iš rungtynių, kuriose naudojama spaudimo taktika, arba įvyksta neigiamas orų įvykis (stipriems žaidėjams), atmetami. Ištvermės polygmens spėjimo formulę sukūrė Pappagallopoli.'
-      note_7: 'NAUJIENA: <module>Fans</module>: sirgalių puslapyje prideda HT-Live nuorodas bei sirgalių klubo pokyčių sumą.'
+      note_6: "<module>MatchLineupTweaks</module>: kaupia Jūsų žaidėjų ištvermės duomenis kiekvieną kartą atvėrus rungtynių ataskaitą. Duomenys naudojami reitingų spėjimui „<module>MatchSimulator</module>“ modulyje patikslinti. Juos peržiūrėti galite įgūdžių lentelėje (<module>SkillTable</module>). Renkant duomenis žiūrima tik į tuos žaidėjus, kurie sužaidė visas 90 minučių. Duomenys iš rungtynių, kuriose naudojama spaudimo taktika, arba įvyksta neigiamas orų įvykis (stipriems žaidėjams), atmetami. Ištvermės polygmens spėjimo formulę sukūrė Pappagallopoli."
+      note_7: "NAUJIENA: <module>Fans</module>: sirgalių puslapyje prideda HT-Live nuorodas bei sirgalių klubo pokyčių sumą."
       note_8: "Kelias komandas turintys vartotojai gali suteikti Hattrick skirtingus stilius pagal tai, kuri komanda yra aktyvi. <module>SkinPlugin</module> modulyje reikia naudoti skiriamąsias žymes „body.ft-teamID-0000000“."
       note_9: "<module>HeaderToggle</module> modulis nuo šiol bus atsparesnis kitų modulių ir paties Hattrick pokyčiams."
       note_10: "Kopijuojant reitingus su <module>MatchSimulator</module> moduliu nuo šiol bus įterpiama neseniai pasirodžiusi informacija apie trenerio tipą."
@@ -297,9 +297,9 @@ lt:
       note_2: '<module>MatchIncome</module>: rungtynių ataskaitos puslapyje matysite stadiono sektorių užpildymą procentais'
       note_3: 'NAUJIENA: <module>MainMenuDropDown</module>: pagrindinį meniu papildo iškrentančiais meniu su nuorodomis, kurias įprastai matote tik šoniniuose atitinkamo puslapio meniu.'
       note_4: 'Sutvarkytas laiko atpažinimas Firefox naršylėje naudojantis moduliu <module>DashboardCalendar</module>.'
-      note_5: <module>MatchOrderInterface</module> nuo šiol rodys žaidėjų veidus abiejų komandų nurodymų puslapiuose.
+      note_5: '<module>MatchOrderInterface</module> nuo šiol rodys žaidėjų veidus abiejų komandų nurodymų puslapiuose.'
       note_6: '<module>DashboardCalendar</module>: Firefox naršyklė nebesiūlys parsisiųsti tvarkaraščio kelis kartus.'
-      note_7: <module>HeaderFix</module> nuo šiol nebepaslėps juostelės komandoms keisti.
+      note_7: '<module>HeaderFix</module> nuo šiol nebepaslėps juostelės komandoms keisti.'
       note_8: '<module>ConfirmActions</module>: kelias komandas turintys vartotojai nuo šiol matys komandos, kurios vardu perka žaidėją, pavadinimą.'
       note_9: '<module>TransferSearchFilters</module>: nuo šiol filtrai išsaugos ir dienų skaičių.'
       note_10: 'Azerbaidžaniečių kalbos palaikymas.'
@@ -357,7 +357,7 @@ lt:
       note_26: '<module>MatchSimulator</module> nuo šiol naudoja naująją ištvermės formulę (aut. Senzascrupoli [post=15917246.1]) ištvermės efektui apskaičiuoti.'
       note_27: '<module>MatchReportFormat</module> naudoja naująsias HT piktogramas.'
       note_28: '<module>PlayerStatsExperience</module>: patirties taškų viename lygyje skaičius padidintas iki 28,62 (žr. diskusiją 15766691.423). Išskirti techniniai pralaimėjimai, nes už juos patirties negaunama.'
-      note_29: 'Forumo moduliai nuo šiol naudos ypatingą nematomo tarpo simbolį (vietoj „·“) kitiems simboliams, turintiems specialą reikšmę internete, išskirti: turėtų pagelbėti katalonų kalbai.'
+      note_29: "Forumo moduliai nuo šiol naudos ypatingą nematomo tarpo simbolį (vietoj „·“) kitiems simboliams, turintiems specialą reikšmę internete, išskirti: turėtų pagelbėti katalonų kalbai."
       note_30: 'Neleis HT stiliaus nustatymams darkyti puslapių su Foxtrick priedais.'
       note_31: 'Nuo šiol veiks www.hattrick.fm domene'
       note_32: 'Pašalintos išorinės nuorodos į nebeveikiančius puslapius modulyje <module>Links</module>. Nuo šiol (kur įmanoma) naudojamos išorinės piktogramos.'
@@ -401,8 +401,8 @@ lt:
       note_2: '<module>MatchOrderInterface</module>: Option to show player faces instead of shirts for future and past line-ups (default on)'
       note_3: '<module>MatchOrderInterface</module>: Option to disable last match information and highlighting for tournament games added (default on)'
       note_4: '<module>MatchIncome</module>: Support for increased ticket prices in season 49. Income is now calculated by the ticket prices that were active when the match was played.'
-      note_5: 'MatchOrderInterface: Fixed bug where the playedLastMatch indicator didn''t show (or showed incorrectly) on Firefox'
-      note_6: 'MatchOrderInterface: Removed last match highlighting because it''s not approved anymore :( (But there''s a native HT replacement for supporters now)'
+      note_5: "MatchOrderInterface: Fixed bug where the playedLastMatch indicator didn't show (or showed incorrectly) on Firefox"
+      note_6: "MatchOrderInterface: Removed last match highlighting because it's not approved anymore :( (But there's a native HT replacement for supporters now)"
       note_7: 'PlayerStatsExperience: Fixed bug where red cards caused games beeing detected as walkovers'
       note_8: 'PlayerStatsExperience: Fixed issue that caused this module not to work on Firefox 3.6'
       note_9: 'CustomMedals: Fixed disappearing tournament trophies'
@@ -446,11 +446,11 @@ lt:
       note_6: Moved the highlight feature toggle to the FoxTrick toolbar icon resp. preferences main tab
       note_7: module MatchTables removed since no one used it
       note_8: 'MatchSimulator stamina effect: show texts rounded and values not rounded'
-      note_9: 'preference linking "foxtrick://"-style fixed'
+      note_9: preference linking "foxtrick://"-style fixed
       note_10: Matchreport now shows tooltips for all events
       note_11: Links resources moved to yet another server
       note_12: Some internal changes to improve AMO compliance
-      note_13: 'A huge ammount of translation updates by: aegeansailor, brauxx, Mod-Utku, ebitechv, Polytropos, gkon13, SOLARIS1973, Fieras, margaale, ipefix, stephan.cardot, OmaniMilani, LambdaB, SI-CH, Convincedd, margaale, ljushaff, serjhanti, playMaker, CoRrRan, Aristodemos, margaale, spider007, FeritAkarsu and probably some people i missed, please drop us a msg if you feel unrespected, it''s kinda hard to keep tracking all of you guys. This is awesome! Thanks to all of you!'
+      note_13: "A huge ammount of translation updates by: aegeansailor, brauxx, Mod-Utku, ebitechv, Polytropos, gkon13, SOLARIS1973, Fieras, margaale, ipefix, stephan.cardot, OmaniMilani, LambdaB, SI-CH, Convincedd, margaale, ljushaff, serjhanti, playMaker, CoRrRan, Aristodemos, margaale, spider007, FeritAkarsu and probably some people i missed, please drop us a msg if you feel unrespected, it's kinda hard to keep tracking all of you guys. This is awesome! Thanks to all of you!"
     0.9.0.4:
       note_0: Links resources moved to another server
       note_1: Added basic english event texts to the icons' titles in MatchReportFormat
@@ -477,7 +477,7 @@ lt:
       note_6: Dabar galite lengvai aptikti „Foxtrick“ patobulinimus ir jų modulius. Tiesiog spustelėkite „Foxtrick“ versijos lauką bet kurio puslapio dešiniajame apatiniame kampe. Perkrovus puslapį visų funkcijų modulių pavadinimus rasite užvedę pelės žymeklį ant atitinkamos funkcijos.
       note_7: '<header>Naujienos</header>'
       note_8: '<module>MatchReportFormat</module>: visiškai perdaryta rungtynių ataskaita (ryanli, Catzhoek, ljushaff)'
-      note_9: '<module>Ratings</module>: galima paslėpti vidutinius „Hattrick“ reitingus (convinced)'
+      note_9: "<module>Ratings</module>: galima paslėpti vidutinius „Hattrick“ reitingus (convinced)"
       note_10: '<module>Filter</module>: filtrai geriausiųjų žaidėjų puslapyje (convinced)'
       note_11: '<module>MatchOrder</module>: rungtynių nurodymų puslapyje pateikiama daugiau informacijos bei galima sukeisti kraštus (convinced)'
       note_12: '<module>MatchSimulator</module>: spėjant reitingus galima atsižvelgti į ištvermės poveikį ir naudoti „<linkHTMS>HTMS</linkHTMS>“ rungtynių simuliatorių (convinced)'
@@ -502,7 +502,7 @@ lt:
     0.8.1:
       note_0: '<module>ElectionTable</module>: pritaikyta naujajam rinkimų puslapiui. (convincedd, ryanli)'
       note_1: '<module>HTThreadMarker</module>: naujas stilius. (convincedd, ryanli)'
-      note_2: '<module>TableSort</module>: išvengta konfliktų su Hattrick rikiavimu. (convincedd)'
+      note_2: "<module>TableSort</module>: išvengta konfliktų su Hattrick rikiavimu. (convincedd)"
       note_3: '<module>HTMSPrediction</module>, <module>CopyRatings</module>: pritaikyta naujai rungtynių ataskaitos versijai. (convincedd)'
       note_4: '<module>LineupShortcut</module>: dabar rodoma ir ne rėmėjams. (ryanli)'
       note_5: '<module>TransferSearchResultFilters</module>: pritaikyta atnaujinimams. (convincedd)'
@@ -586,3 +586,4 @@ lt:
       note_19: 'Module <module>TeamSelectBox</module> disabled by default. (ryanli)'
       note_20: 'Module <module>SmallerPages</module> disabled by default. (ljushaff)'
       note_21: 'Radio options in <module>ExtraShortcuts</module> are disabled by default. (ryanli)'
+

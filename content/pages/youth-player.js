@@ -1,8 +1,10 @@
-'use strict';
-/* youth-player.js
+/**
+ * youth-player.js
  * Utilities on youth player page
- * @author ryanli
+ * @author ryanli, LA-MJ
  */
+
+'use strict';
 
 if (!Foxtrick)
 	var Foxtrick = {};
@@ -26,9 +28,9 @@ Foxtrick.Pages.YouthPlayer.isPage = function(doc) {
  * @return {Date}
  */
 Foxtrick.Pages.YouthPlayer.getJoinedDate = function(doc) {
-	var playerTable = doc.querySelector('.playerInfo table');
-	var joinedCell = playerTable.rows[2].cells[1];
-	return Foxtrick.util.time.getDateFromText(joinedCell.textContent);
+	var playerTable = doc.querySelector('#mainBody table');
+	var joinedNode = playerTable.querySelector('span.shy') || playerTable.rows[2].cells[1];
+	return Foxtrick.util.time.getDateFromText(joinedNode.textContent);
 };
 
 /**
@@ -37,6 +39,7 @@ Foxtrick.Pages.YouthPlayer.getJoinedDate = function(doc) {
  * @return {Date}         {?Date}
  */
 Foxtrick.Pages.YouthPlayer.getPromotionDate = function(doc) {
+	var ret = null;
 	try {
 		var joinedDate = this.getJoinedDate(doc);
 		var age = Foxtrick.Pages.Player.getAge(doc);
@@ -56,13 +59,13 @@ Foxtrick.Pages.YouthPlayer.getPromotionDate = function(doc) {
 			var bDayDate = Foxtrick.util.time.addDaysToDate(today, daysToSeventeen);
 
 			var promoDate = new Date(Math.max(bDayDate, seasonDate));
-			return Foxtrick.util.time.toUser(doc, promoDate);
+			ret = Foxtrick.util.time.toUser(doc, promoDate);
 		}
 	}
 	catch (e) {
 		Foxtrick.log(e);
-		return null;
 	}
+	return ret;
 };
 
 /**

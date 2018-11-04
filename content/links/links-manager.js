@@ -33,10 +33,10 @@ Foxtrick.modules['LinksManager'] = {
 			userName: userName,
 		};
 
-		var playerInfo = doc.querySelector('.playerInfo');
-		var teams = playerInfo.querySelectorAll('a[href^="/Club/?TeamID"]');
-		var series = playerInfo.querySelectorAll('a[href^="/World/Series/?"]');
-		var leagues = playerInfo.querySelectorAll('a[href^="/World/Leagues/League.aspx"]');
+		var managerInfo = doc.querySelector('.managerInfo');
+		var teams = managerInfo.querySelectorAll('a[href^="/Club/?TeamID"]');
+		var series = managerInfo.querySelectorAll('a[href^="/World/Series/?"]');
+		var leagues = managerInfo.querySelectorAll('a[href^="/World/Leagues/League.aspx"]');
 		var ct = Math.min(teams.length, series.length, leagues.length);
 		for (var i = 0; i < ct; i++) {
 			var idx = i ? (i + 1) : '';

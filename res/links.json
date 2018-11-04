@@ -1,42 +1,4 @@
 {
-	"ht_tools_subskill": {
-		"playerlink": {
-			"url": "http://www.ht-tools.eu/subskill?playerid=[playerid]&teamid=[teamid]"
-		},
-		"title": "HT-Tools Subskill",
-		"img": "http://www.ht-tools.eu/static/img/favicon.png"
-	},
-	"ht_tools_training_estimation": {
-		"playerlink": {
-			"url": "http://www.ht-tools.eu/training"
-		},
-		"traininglink": {
-			"url": "http://www.ht-tools.eu/training"
-		},
-		"title": "HT-Tools Training Estimation",
-		"img": "http://www.ht-tools.eu/static/img/favicon.png"
-	},
-	"ht_tools_arena_optimizer": {
-		"arenalink": {
-			"url": "http://www.ht-tools.eu/arena?teamid=[teamid]"
-		},
-		"title": "HT-Tools Arena",
-		"img": "http://www.ht-tools.eu/static/img/favicon.png"
-	},
-	"ht_tools_healing": {
-		"playerhealinglink": {
-			"url": "http://www.ht-tools.eu/healing?playerid=[playerid]&teamid=[teamid]"
-		},
-		"title": "HT-Tools healing",
-		"img": "http://www.ht-tools.eu/static/img/favicon.png"
-	},
-	"ht_tools_spyingopponent": {
-		"teamlink": {
-			"url": "http://www.ht-tools.eu/spyingtheopponent?teamid=[teamid]"
-		},
-		"title": "HT-Tools Spying the Opponent",
-		"img": "http://www.ht-tools.eu/static/img/favicon.png"
-	},
 	"htarena": {
 		"arenalink": {
 			"url": "http://htstart.se/htarena/"
@@ -103,20 +65,25 @@
 	},
 	"vnukstats": {
 		"serieslink": {
-			"url": "http://vnukstats.hattrick-sk.com/league/details/[seriesid]",
+			"url": "https://www.vnukstats.eu/leagues/view/[seriesid]",
 			"filters": ["leagueid"]
 		},
 		"teamlink": {
-			"url": "http://vnukstats.hattrick-sk.com/team/details/[teamid]",
+			"url": "https://www.vnukstats.eu/teams/view/[teamid]",
 			"filters": ["leagueid"]
 		},
 		"leaguelink": {
-			"url": "http://vnukstats.hattrick-sk.com/top-series/default/[leagueid]",
+			"url": "https://www.vnukstats.eu/[leagueid]/countries/view",
 			"filters": ["leagueid"]
+		},
+		"youthlink": {
+			"url": "https://www.vnukstats.eu/[ownteamid]/youth-scouts/scoutmap",
+			"filters": ["ownleagueid"]
 		},
 		"leagueidranges": [
 			[52, 52],
-			[67, 67]
+			[67, 67],
+			[38, 38]
 		],
 		"title": "VnukStats",
 		"img": "resources/linkicons/vnukstats.png"
@@ -331,7 +298,7 @@
 	},
 	"junnukoira": {
 		"youthplayerdetaillink": {
-			"url": "http://www.saunalahti.fi/pterasti/Hattrick/junnukoira/index.php",
+			"url": "http://pterasti.arkku.net//Hattrick/junnukoira/",
 			"filters": ["ownleagueid"]
 		},
 		"ownleagueidranges": [[12, 12]],
@@ -749,7 +716,7 @@
 	},
 	"romaniantracker": {
 		"img": "http://www.ht-ro.org/favicon.ico",
-		"title": "HT-Ro / NT & U-20 Tracker",
+		"title": "HT-Ro / Romanian NT & U-20 Tracker",
 		"trackernationalteamlink": {
 			"url": "http://www.ht-ro.org",
 			"filters": ["leagueid"]
@@ -758,8 +725,12 @@
 			"url": "http://www.ht-ro.org",
 			"filters": ["leagueid"]
 		},
+		"teamlink": {
+			"url": "http://www.ht-ro.org/do/search?teamid=[teamid]",
+			"filters": ["leagueid"]
+		},
 		"trackerplayerlink": {
-			"url": "http://www.ht-ro.org",
+			"url": "http://www.ht-ro.org/site/player.html?pid=[playerid]",
 			"filters": ["nationality"]
 		},
 		"leagueidranges": [[37, 37]],

@@ -394,8 +394,8 @@ Foxtrick.modules['SkillTable'] = {
 					method: 'nationality', sortAsString: true, frozen: true, },
 				{ name: 'Player', properties: ['nameLink', 'nationalTeamId', 'trainerData'],
 					method: 'playerName', sortAsString: true, frozen: true, },
-				{ name: 'Speciality', property: 'speciality',
-					method: 'speciality', sortAsString: true, frozen: true, },
+				{ name: 'Specialty', property: 'specialty',
+					method: 'specialty', sortAsString: true, frozen: true, },
 				{ name: 'Status', properties: [
 					'yellowCard', 'redCard', 'bruised', 'injuredWeeks', 'transferListed',
 				], method: 'status', frozen: true, },
@@ -582,8 +582,11 @@ Foxtrick.modules['SkillTable'] = {
 						// or string for infinity
 						// or boolean from transfer result page.
 						if (typeof player.injuredWeeks !== 'undefined' &&
-						    typeof player.injuredWeeks !== 'boolean')
-							cell.appendChild(doc.createTextNode(player.injuredWeeks));
+						    typeof player.injuredWeeks !== 'boolean') {
+							let weeks =
+								player.injuredWeeks == Infinity ? '\u221e' : player.injuredWeeks;
+							cell.appendChild(doc.createTextNode(weeks));
+						}
 
 						if (typeof player.injuredWeeks === 'number')
 							index += player.injuredWeeks * 100;
@@ -682,8 +685,8 @@ Foxtrick.modules['SkillTable'] = {
 						cell.setAttribute('index', '0');
 					}
 				},
-				speciality: function(cell, spec) {
-					var specIdx = Foxtrick.L10n.getNumberFromSpeciality(spec);
+				specialty: function(cell, spec) {
+					var specIdx = Foxtrick.L10n.getNumberFromSpecialty(spec);
 					if (specIdx) {
 						Foxtrick.addSpecialty(cell, specIdx)
 							.catch(Foxtrick.catch('SkillTable addSpecialty'));
@@ -733,7 +736,14 @@ Foxtrick.modules['SkillTable'] = {
 					cell.setAttribute('index', diff);
 				},
 				dateCell: function(cell, deadline) {
-					var date = Foxtrick.util.time.getDateFromText(deadline.textContent);
+					var date = Foxtrick.util.time.getDateFromText(deadline.textContent) ||
+						Foxtrick.util.time.getDateFromText(deadline.dataset.isodate);
+
+					if (date == null) {
+						cell.textContent = deadline.textContent;
+						return;
+					}
+
 					var index = date.getTime();
 					deadline.setAttribute('index', index);
 					cell.parentNode.replaceChild(deadline, cell);
@@ -1169,9 +1179,9 @@ Foxtrick.modules['SkillTable'] = {
 							row.setAttribute('transfer-listed', 'true');
 						else
 							row.setAttribute('not-transfer-listed', 'true');
-						if (player.speciality) {
-							var spec = Foxtrick.L10n.getEnglishSpeciality(player.speciality);
-							row.setAttribute('speciality-' + spec, true);
+						if (player.specialty) {
+							var spec = Foxtrick.L10n.getEnglishSpecialty(player.specialty);
+							row.setAttribute('specialty-' + spec, true);
 						}
 						if (player.active)
 							row.setAttribute('active', player.active);

@@ -61,8 +61,8 @@ Foxtrick.modules['HTMSPoints'] = {
 			if (!totSkills)
 				return;
 
-			//creating the new element
-			var table = doc.querySelector('.playerInfo table');
+			// creating the new element
+			let { table } = Foxtrick.Pages.Player.getInfoTable(doc);
 			var row = Foxtrick.insertFeaturedRow(table, module, table.rows.length);
 			Foxtrick.addClass(row, 'ft-htms-points');
 			var linkCell = row.insertCell(0);

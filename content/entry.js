@@ -1,12 +1,15 @@
-'use strict';
 /*
- * entry.js
- * Entry point of Foxtrick modules
- * @author ryanli, convincedd, LA-MJ
- */
+* entry.js
+* Entry point of Foxtrick modules
+* @author ryanli, convincedd, LA-MJ
+*/
 
+'use strict';
+
+/* eslint-disable */
 if (!Foxtrick)
 	var Foxtrick = {}; // jshint ignore:line
+/* eslint-enable */
 
 Foxtrick.entry = {};
 
@@ -43,15 +46,17 @@ Foxtrick.entry.docLoad = function(doc) {
 	// run Foxtrick modules
 	var begin = new Date().getTime();
 
-	Foxtrick.entry.run(doc);
+	let blockChange = Foxtrick.entry.run(doc);
 
 	var diff = new Date().getTime() - begin;
 	Foxtrick.log('page run time:', diff, 'ms |', doc.location.pathname, doc.location.search);
 
 	Foxtrick.log.flush(doc);
 
-	// listen to page content changes
-	Foxtrick.startListenToChange(doc);
+	if (!blockChange) {
+		// listen to page content changes
+		Foxtrick.startListenToChange(doc);
+	}
 };
 
 // invoked for each new instance of a content script
@@ -65,18 +70,7 @@ Foxtrick.entry.contentScriptInit = function(data) {
 	for (var mName in Foxtrick.modules)
 		Foxtrick.modules[mName].MODULE_NAME = mName;
 
-	if (Foxtrick.platform != 'Android') {
-		Foxtrick.Prefs._prefs_chrome_user = data._prefs_chrome_user;
-		Foxtrick.Prefs._prefs_chrome_default = data._prefs_chrome_default;
-
-		Foxtrick.L10n.properties_default = data.properties_default;
-		Foxtrick.L10n.properties = data.properties;
-		Foxtrick.L10n.screenshots_default = data.screenshots_default;
-		Foxtrick.L10n.screenshots = data.screenshots;
-		Foxtrick.L10n.plForm_default = data.plForm_default;
-		Foxtrick.L10n.plForm = data.plForm;
-	}
-	else {
+	if (Foxtrick.platform == 'Android') {
 		// fennec can access them from context, but they still need to get initialized
 		// xmldata has nothing to init only fetch
 		var coreModules = [Foxtrick.Prefs, Foxtrick.L10n];
@@ -85,10 +79,21 @@ Foxtrick.entry.contentScriptInit = function(data) {
 				cModule.init();
 		}
 	}
-
-	for (var lang in data.htLangJSON) {
-		Foxtrick.L10n.htLanguagesJSON[lang] = JSON.parse(data.htLangJSON[lang]);
+	else {
+		/* eslint-disable camelcase */
+		Foxtrick.Prefs._prefs_chrome_user = data._prefs_chrome_user;
+		Foxtrick.Prefs._prefs_chrome_default = data._prefs_chrome_default;
+		Foxtrick.L10n.properties_default = data.properties_default;
+		Foxtrick.L10n.properties = data.properties;
+		Foxtrick.L10n.screenshots_default = data.screenshots_default;
+		Foxtrick.L10n.screenshots = data.screenshots;
+		Foxtrick.L10n.plForm_default = data.plForm_default;
+		Foxtrick.L10n.plForm = data.plForm;
+		/* eslint-enable camelcase */
 	}
+
+	for (var lang in data.htLangJSON)
+		Foxtrick.L10n.htLanguagesJSON[lang] = JSON.parse(data.htLangJSON[lang]);
 
 	Foxtrick.XMLData.htCurrencyJSON = JSON.parse(data.currencyJSON);
 	Foxtrick.XMLData.aboutJSON = JSON.parse(data.aboutJSON);
@@ -124,30 +129,68 @@ Foxtrick.entry.init = function(reInit) {
 };
 
 Foxtrick.entry.run = function(doc) {
+	const PERFORMANCE_LOG_THRESHOLD = 50;
+	let getModuleRunner = (doc, m) => () => {
+		let begin = new Date();
+
+		m.run(doc);
+
+		let diff = new Date().getTime() - begin;
+		if (diff > PERFORMANCE_LOG_THRESHOLD)
+			Foxtrick.log(m.MODULE_NAME, 'run time:', diff, 'ms');
+	};
+
 	try {
-		var modules = Foxtrick.util.modules.getActive(doc);
+		let modules = Foxtrick.util.modules.getActive(doc);
+		let hasMainBody = !!doc.getElementById('mainBody');
+		let ngApp = doc.querySelector('#mainWrapper ng-app');
+		let shouldDelay = !hasMainBody && !!ngApp;
+		let delayed = [], promise;
+
+		if (shouldDelay) {
+			promise = new Promise((resolve) => {
+				Foxtrick.onChange(ngApp, (doc, app) => {
+					if (!doc.getElementById('mainBody'))
+						return false;
+
+					if (app.getElementsByTagName('ht-loading').length)
+						return false;
+
+					Promise.resolve(doc).then(resolve);
+					return true;
+				});
+			});
+		}
 
 		// invoke niceRun to run modules
 		Foxtrick.entry.niceRun(modules, function(m) {
-			if (typeof m.run === 'function') {
-				return function() {
-					var begin = new Date();
+			if (typeof m.run !== 'function')
+				return null;
 
-					m.run(doc);
-
-					var diff = new Date().getTime() - begin;
-					if (diff > 50)
-						Foxtrick.log(m.MODULE_NAME, 'run time:', diff, 'ms');
-				};
+			if (shouldDelay && !m.OUTSIDE_MAINBODY) {
+				delayed.push(m);
+				return null;
 			}
-			return null;
+
+			return getModuleRunner(doc, m);
 		});
+
+		if (delayed.length) {
+			promise.then((doc) => {
+				Foxtrick.entry.niceRun(delayed, m => getModuleRunner(doc, m));
+				Foxtrick.entry.change(doc, []);
+				Foxtrick.startListenToChange(doc);
+			});
+			return true; // block change
+		}
 
 		Foxtrick.log.flush(doc);
 	}
 	catch (e) {
 		Foxtrick.log(e);
 	}
+
+	return false;
 };
 
 Foxtrick.entry.change = function(doc, changes) {
@@ -207,14 +250,14 @@ Foxtrick.entry.change = function(doc, changes) {
  * @param {function} makeFn  {function(object)->?function}
  */
 Foxtrick.entry.niceRun = function(modules, makeFn) {
-	modules = Foxtrick.unique(modules);
-	modules.sort(function(a, b) {
+	var mdls = Foxtrick.unique(modules);
+	mdls.sort(function(a, b) {
 		var aNice = a.NICE || 0;
 		var bNice = b.NICE || 0;
 		return aNice - bNice;
 	});
 
-	Foxtrick.map(function(m) {
+	Foxtrick.forEach(function(m) {
 		try {
 			var fn = makeFn(m);
 			if (typeof fn === 'function')
@@ -226,7 +269,7 @@ Foxtrick.entry.niceRun = function(modules, makeFn) {
 			else
 				Foxtrick.log(e);
 		}
-	}, modules);
+	}, mdls);
 };
 
 Foxtrick.entry.checkCSS = function(doc) {
