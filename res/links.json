@@ -78,7 +78,7 @@
 		},
 		"youthlink": {
 			"url": "https://www.vnukstats.eu/[ownteamid]/youth-scouts/scoutmap",
-			"filters": ["leagueid"]
+			"filters": ["ownleagueid"]
 		},
 		"leagueidranges": [
 			[52, 52],
