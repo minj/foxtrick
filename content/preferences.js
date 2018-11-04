@@ -1,5 +1,7 @@
 'use strict';
 
+/* eslint-disable */
+
 /**
  * Foxtrick preferences
  *
@@ -738,7 +740,7 @@ function initCoreModules() {
 	// core functions needed for preferences, localization, etc.
 	var coreModules = [Foxtrick.Prefs, Foxtrick.L10n, Foxtrick.XMLData];
 	for (var module of coreModules)
-		if (typeof module.init == 'function')
+		if (module && typeof module.init == 'function')
 			module.init();
 }
 
@@ -1809,6 +1811,10 @@ function initTextAndValues() {
 function init() {
 	try {
 		initCoreModules();
+
+		if (!Foxtrick.Prefs)
+			return;
+
 		getPageIds();
 
 		initTabs().then(function() {

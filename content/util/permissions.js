@@ -34,7 +34,10 @@ Foxtrick.requestPermission = function(types, callback) {
 			throw Error("can't request permission from content scripts");
 		}
 		else {
-			chrome.permissions.request(types, callback);
+			if (Foxtrick.hasProp(chrome, 'permissions'))
+				chrome.permissions.request(types, callback);
+			else
+				browser.permissions.request(types).then(callback);
 		}
 		return;
 	}

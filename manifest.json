@@ -12,7 +12,9 @@
 		"content/resources/sounds/*.mp3",
 		"content/resources/sounds/*.ogg",
 		"content/resources/sounds/*.wav",
-		"content/preferences.html"
+		"content/preferences.html",
+		"content/popup.html",
+		"content/permission.html"
 	],
 	"background": {
 		"page": "content/background.html"

@@ -1033,7 +1033,9 @@ Foxtrick.L10n.getCountryNameLocal = function(leagueId, lang) {
 				}
 				catch (e) {}
 
-				var localeCode = Foxtrick.Prefs.getString('htLanguage');
+				var localeCode = Foxtrick.Prefs ?
+					Foxtrick.Prefs.getString('htLanguage') :
+					Foxtrick.getParameterFromUrl(document.location.href, 'htLanguage');
 
 				var l10nBundlePath = L10N_PATH + localeCode + '/foxtrick.properties';
 				try {
