@@ -11,52 +11,50 @@ if (!Foxtrick)
 	var Foxtrick = {};
 /* eslint-enable */
 
-(function() {
-	Foxtrick.containsPermission = function(types, callback) {
-		if (Foxtrick.platform == 'Chrome') {
-			if (Foxtrick.context == 'content')
-				Foxtrick.SB.ext.sendRequest({ req: 'containsPermission', types: types }, callback);
-			else
-				chrome.permissions.contains(types, callback);
+Foxtrick.containsPermission = function(types, callback) {
+	if (Foxtrick.platform == 'Chrome') {
+		if (Foxtrick.context == 'content')
+			Foxtrick.SB.ext.sendRequest({ req: 'containsPermission', types: types }, callback);
+		else
+			chrome.permissions.contains(types, callback);
 
-			return;
-		}
-		callback(true);
-	};
+		return;
+	}
+	callback(true);
+};
 
-	// Needs to be invoked by user gesture, such as an onclick handler
-	Foxtrick.requestPermission = function(types, callback) {
-		if (Foxtrick.platform == 'Chrome') {
-			if (Foxtrick.context == 'content') {
-				// Foxtrick.SB.ext.sendRequest({ req: 'requestPermission', types: types },
-				//   function(response) {
-				// 	callback(response);
-				// });
-				throw Error("can't request permission from content scripts");
-			}
-			else {
-				chrome.permissions.request(types, callback);
-			}
-			return;
+// Needs to be invoked by user gesture, such as an onclick handler
+Foxtrick.requestPermission = function(types, callback) {
+	if (Foxtrick.platform == 'Chrome') {
+		if (Foxtrick.context == 'content') {
+			// Foxtrick.SB.ext.sendRequest({ req: 'requestPermission', types: types },
+			//   function(response) {
+			// 	callback(response);
+			// });
+			throw Error("can't request permission from content scripts");
 		}
-		callback(true);
-	};
+		else {
+			chrome.permissions.request(types, callback);
+		}
+		return;
+	}
+	callback(true);
+};
 
-	// Needs to be invoked by user gesture, such as an onclick handler
-	Foxtrick.removePermission = function(types, callback) {
-		if (Foxtrick.platform == 'Chrome') {
-			if (Foxtrick.context == 'content') {
-				// Foxtrick.SB.ext.sendRequest({ req: 'removePermission', types: types },
-				//   function(response) {
-				// 	callback(response);
-				// });
-				throw Error("can't remove permission from content scripts");
-			}
-			else {
-				chrome.permissions.request(types, callback);
-			}
-			return;
+// Needs to be invoked by user gesture, such as an onclick handler
+Foxtrick.removePermission = function(types, callback) {
+	if (Foxtrick.platform == 'Chrome') {
+		if (Foxtrick.context == 'content') {
+			// Foxtrick.SB.ext.sendRequest({ req: 'removePermission', types: types },
+			//   function(response) {
+			// 	callback(response);
+			// });
+			throw Error("can't remove permission from content scripts");
 		}
-		callback(false);
-	};
-})();
+		else {
+			chrome.permissions.request(types, callback);
+		}
+		return;
+	}
+	callback(false);
+};
