@@ -318,7 +318,7 @@
 	// <!-- gecko-specific -->
 	"applications": {
 		"gecko": {
-			"strict_min_version": "55.0a1",
+			"strict_min_version": "60.0a1",
 			"update_url": "https://www.foxtrick.org/nightly/update.rdf",
 			"id": "foxtrick-webext-dev@foxtrick.org"
 		}
