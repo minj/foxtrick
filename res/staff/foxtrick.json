@@ -760,6 +760,11 @@
 			"name": "<damyr>"
 		},
 		{
+			"duty": "supporter",
+			"id": "281807",
+			"name": "<>"
+		},
+		{
 			"duty": "translator",
 			"id": "2884072",
 			"name": "<Karlthegreat>"
@@ -1398,6 +1403,11 @@
 			"duty": "supporter",
 			"id": "8131534",
 			"name": "necrospettro"
+		},
+		{
+			"duty": "supporter",
+			"id": "8179870",
+			"name": "Rummm"
 		},
 		{
 			"duty": "supporter",
