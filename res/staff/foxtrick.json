@@ -511,6 +511,16 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "13059131",
+			"name": "Harris92"
+		},
+		{
+			"duty": "supporter",
+			"id": "13071458",
+			"name": "markul77"
+		},
+		{
+			"duty": "supporter",
 			"id": "13087874",
 			"name": "Kelor"
 		},
@@ -656,11 +666,6 @@
 		},
 		{
 			"duty": "supporter",
-			"id": "2058275",
-			"name": "<>"
-		},
-		{
-			"duty": "supporter",
 			"id": "2068162",
 			"name": "-koen-"
 		},
@@ -750,19 +755,9 @@
 			"name": "gia73"
 		},
 		{
-			"duty": "supporter",
-			"id": "279449",
-			"name": "<>"
-		},
-		{
 			"duty": "translator",
 			"id": "2809993",
 			"name": "<damyr>"
-		},
-		{
-			"duty": "supporter",
-			"id": "281807",
-			"name": "<>"
 		},
 		{
 			"duty": "translator",
@@ -1493,6 +1488,11 @@
 			"duty": "translator",
 			"id": "8988135",
 			"name": "Vital_top7"
+		},
+		{
+			"duty": "supporter",
+			"id": "9052209",
+			"name": "Everthon"
 		},
 		{
 			"duty": "supporter",
