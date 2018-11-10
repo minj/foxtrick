@@ -123,7 +123,7 @@ Foxtrick.modules['ExtendedPlayerDetailsWage'] = {
 			let wageSpan, wageString = wageCell.textContent;
 			if ((wageSpan = wageCell.querySelector('span[title]'))) {
 				let amount = wageCell.firstChild.textContent;
-				wageString = amount + wageSpan.title.slice(amount.length);
+				wageString = amount + wageSpan.title.replace(/^[\d\s]+/, '');
 			}
 
 			var [wagePre, wageFull] = wageString.split(currencyRe);
