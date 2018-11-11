@@ -168,7 +168,7 @@ Foxtrick.intersect = function(a, b) {
  * @return {number}   new length
  */
 Foxtrick.push = function(a, b) {
-	return Array.prototype.push.apply(Foxtrick.toArray(a), Foxtrick.toArray(b));
+	return Array.prototype.push.apply(a, Foxtrick.toArray(b));
 };
 
 /**
