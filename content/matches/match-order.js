@@ -849,12 +849,13 @@ Foxtrick.modules['MatchOrderInterface'] = {
 				if (specials) {
 					var playerid = Number(specials.parentNode.getAttribute('playerid'));
 					if (playerid) {
-						var player = Foxtrick.Pages.Players.getPlayerFromListById(playerList,
-						                                                          playerid);
+						var player =
+							Foxtrick.Pages.Players.getPlayerFromListById(playerList, playerid);
 						if (!player)
 							return;
-						Foxtrick.modules['LoyaltyDisplay']
-							.replacePercentageImage(player, doc.getElementById('details'));
+
+						let details = doc.getElementById('details');
+						Foxtrick.modules['LoyaltyDisplay'].exec(player, details);
 					}
 				}
 			};
