@@ -23,7 +23,8 @@ Foxtrick.modules['YouthSkillHideUnknown'] = {
 
 		// checks whether a table cell (<td> element) is unknown
 		var isUnknown = function(row) {
-			return !row.querySelector('.youthSkillBar, .highlight, .skill, .ht-bar');
+			return !row.querySelector('.youthSkillBar, .highlight, .skill, .ht-bar') &&
+				!row.id.endsWith('trSpeciality');
 		};
 
 		var hideUnknown = Foxtrick.Prefs.isModuleOptionEnabled(this, 'HideUnknown');

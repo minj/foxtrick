@@ -21,14 +21,10 @@
 }
 html[dir="ltr"] .ft-skillbar {
 	left: 1px;
+	background-position: -2px 0;
 }
 html[dir="rtl"] .ft-skillbar {
 	right: 1px;
-}
-html[dir="ltr"] .ft-skillbar-hy {
-	background-position: -2px 0;
-}
-html[dir="rtl"] .ft-skillbar-hy {
 	background-position: 2px 0;
 }
 .ft-skillbar-hy-pot {
@@ -51,9 +47,7 @@ html[dir="rtl"] .ft-skillbar-hy {
 }
 .ft-skillbar-singlet {
 	width: 12px;
-	position: inherit;
 	position: initial;
-	position: -moz-initial;
 	margin: 0 5px;
 	vertical-align: text-top;
 	background-position: -2px 0;
