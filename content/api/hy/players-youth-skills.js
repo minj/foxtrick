@@ -81,7 +81,8 @@ Foxtrick.api.hy.skillMap = {
  * @param	{[integer]}		teamId		senior team ID to fetch data for (optional)
  */
 Foxtrick.api.hy._fetchYouthSkills = function(callback, params, failure, finalize, teamId) {
-	this._fetchGeneric('playersYouthSkills', callback, params, failure, finalize, teamId);
+	let api = Foxtrick.api.hy;
+	api._fetchGeneric('playersYouthSkills', callback, params, failure, finalize, teamId);
 };
 
 /**
