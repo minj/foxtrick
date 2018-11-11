@@ -12,36 +12,25 @@ Foxtrick.modules['LoyaltyDisplay'] = {
 	PAGES: ['players', 'playerDetails'],
 	CSS: Foxtrick.InternalPath + 'resources/css/loyalty-display.css',
 
-	replacePercentageImage: function(player, node) {
+	exec: function(player, node) {
+		var module = this;
 		const HOME_GROUND_BONUS = 1.5;
 		const THRESHOLD_COUNT = 8;
 		const DECIMAL_COUNT = (1 / THRESHOLD_COUNT).toString(10).length - 2;
-
-		var l10nMCB = Foxtrick.L10n.getString('LoyaltyDisplay.motherClubBonus');
-		var l10nLB = Foxtrick.L10n.getString('LoyaltyDisplay.loyaltyBonus');
-		var replaceBars = function(node, skillUp, appendix) {
-			let className = 'ft-percentImage ft-percentImage-loyalty-' + appendix;
-			let str = skillUp == HOME_GROUND_BONUS ? l10nMCB : l10nLB;
-			let bars = node.querySelectorAll('.percentImage');
-			for (let bar of bars) {
-				if (bar.title) {
-					let [num] = bar.title.match(/\S+/);
-					let bonus = skillUp.toString().slice(0, DECIMAL_COUNT + 2);
-					bar.title = `${num}\u00a0+${bonus}\u00a0${str}`;
-				}
-				Foxtrick.addClass(bar, className);
-				Foxtrick.removeClass(bar, 'percentImage');
-			}
-		};
 
 		let loyalty = player.loyalty;
 		let mcb = !!player.motherClubBonus;
 		let skillUp = Foxtrick.Predict.loyaltyBonus(loyalty, mcb);
 
+		var l10nMCB = Foxtrick.L10n.getString('LoyaltyDisplay.motherClubBonus');
+		var l10nLB = Foxtrick.L10n.getString('LoyaltyDisplay.loyaltyBonus');
+		let bonus = skillUp.toString().slice(0, DECIMAL_COUNT + 2);
+		let l10n = skillUp == HOME_GROUND_BONUS ? l10nMCB : l10nLB;
+
 		// find correct style for this loyalty level
 		if (skillUp == HOME_GROUND_BONUS) {
-			let appendix = 'homegrown';
-			replaceBars(node, skillUp, appendix);
+			let cls = 'homegrown';
+			module.addInfo(node, bonus, l10n, cls);
 			return;
 		}
 		for (let coef of Foxtrick.range(1, THRESHOLD_COUNT + 1)) {
@@ -49,9 +38,54 @@ Foxtrick.modules['LoyaltyDisplay'] = {
 			if (skillUp < threshold)
 				continue;
 
-			let appendix = threshold.toFixed(DECIMAL_COUNT).replace(/^0|\./g, '');
-			replaceBars(node, skillUp, appendix);
+			let cls = threshold.toFixed(DECIMAL_COUNT).replace(/^0|\./g, '');
+			module.addInfo(node, bonus, l10n, cls);
 			return;
+		}
+	},
+
+	addInfo: function(node, bonus, l10n, cls) {
+		var module = this;
+		var doc = node.ownerDocument;
+
+		let newTable;
+		if ((newTable = node.querySelector('.transferPlayerSkills'))) {
+			let bars = newTable.querySelectorAll('.ht-bar');
+			for (let bar of bars) {
+				let level = parseInt(bar.getAttribute('level'), 10);
+				let max = parseInt(bar.getAttribute('max'), 10);
+				let val = Math.min(max, level + parseFloat(bonus));
+
+				let maxBar = bar.querySelector('.bar-max');
+				let widthTotal = bar.getBoundingClientRect().width;
+				let widthAvail = maxBar.getBoundingClientRect().width;
+				let widthUsed = widthTotal - widthAvail;
+				let widthNeeded = Math.round(val / max * widthTotal);
+				let widthTaken = widthNeeded - widthUsed;
+				if (!widthTaken)
+					return;
+
+				widthAvail -= widthTaken;
+
+				let bonusBar = Foxtrick.createFeaturedElement(doc, module, 'td');
+				Foxtrick.addClass(bonusBar, `ft-bar-loyalty`);
+				bonusBar.style.width = `${widthTaken}px`;
+				bonusBar.title = `+${bonus}\u00a0${l10n}`;
+				maxBar.style.width = `${widthAvail}px`;
+				Foxtrick.insertBefore(bonusBar, maxBar);
+			}
+		}
+		else {
+			let className = 'ft-percentImage ft-percentImage-loyalty-' + cls;
+			let bars = node.querySelectorAll('.percentImage');
+			for (let bar of bars) {
+				if (bar.title) {
+					let [num] = bar.title.match(/\S+/);
+					bar.title = `${num}\u00a0+${bonus}\u00a0${l10n}`;
+				}
+				Foxtrick.addClass(bar, className);
+				Foxtrick.removeClass(bar, 'percentImage');
+			}
 		}
 	},
 
@@ -59,8 +93,8 @@ Foxtrick.modules['LoyaltyDisplay'] = {
 		var module = this;
 
 		if (Foxtrick.isPage(doc, 'ownPlayers')) {
-			let playerNodes = [...doc.querySelectorAll('.playerInfo')];
 			let players = Foxtrick.Pages.Players.getPlayerList(doc);
+			let playerNodes = Foxtrick.Pages.Players.getPlayerNodes(doc);
 			for (let pNode of playerNodes) {
 				let playerId = Foxtrick.Pages.Players.getPlayerId(pNode);
 				if (!playerId)
@@ -68,7 +102,7 @@ Foxtrick.modules['LoyaltyDisplay'] = {
 
 				let info = Foxtrick.Pages.Players.getPlayerFromListById(players, playerId);
 				if (info)
-					module.replacePercentageImage(info, pNode);
+					module.exec(info, pNode);
 			}
 		}
 		else if (Foxtrick.isPage(doc, 'playerDetails')) {
@@ -76,7 +110,7 @@ Foxtrick.modules['LoyaltyDisplay'] = {
 				return;
 
 			let player = Foxtrick.Pages.Player.getAttributes(doc);
-			module.replacePercentageImage(player, doc.getElementById('mainBody'));
+			module.exec(player, doc.getElementById('mainBody'));
 		}
 	},
 };
