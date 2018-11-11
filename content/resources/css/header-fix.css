@@ -2,7 +2,7 @@
 /* Fix the header on screen */
 #header {
 	position: fixed;
-	top: 0px;
+	top: 0;
 	z-index: 10001;
 }
 html[data-multiple] #header {
@@ -34,33 +34,19 @@ html[data-theme="simple"] #header {
 
 html[dir="ltr"][data-theme="simple"] #header {
 	margin-left: -11px;
-	padding-right:10px;
+	padding-right: 10px;
 	padding-left: 11px;
 }
 
 html[dir="rtl"][data-theme="simple"] #header {
 	margin-right: -11px;
-	padding-left:10px;
+	padding-left: 10px;
 	padding-right: 11px;
 }
 
 
-/* compensate for fixed header, move menu from the edge */
-html[data-theme="standard"] #menu {
-	width: 953px;
-	padding:0px 0px 0px 4px;
-	margin-left:0px;
-	border-top-right-radius: 10px;
-	border-bottom-right-radius: 10px;
-}
-
-html[data-theme="simple"] #menu {
-	margin-left:10px;
-	width: 980px;
-}
-
 html[dir="ltr"][data-theme="simple"] #shortcuts {
-	right:11px;
+	right: 11px;
 }
 
 /* add whitespace below header */
@@ -83,10 +69,13 @@ html[dir="rtl"][data-theme="standard"] #menu .logout {
 
 /* compensate for fixed header */
 #content {
-	padding-top: 105px;
+	padding-top: 115px;
 }
-html[data-multiple] #content {
-	padding-top: 125px;
+html[data-theme="simple"][data-multiple] #content {
+	padding-top: 130px;
+}
+html[data-theme="standard"][data-multiple] #content {
+	padding-top: 140px;
 }
 
 /* fix for forumbookmark z-index 99999 */
@@ -96,7 +85,7 @@ html[data-multiple] #content {
 
 /*forum search fix*/
 #ctl00_ctl00_CPContent_CPMain_updSearch {
-	z-index:9999;
+	z-index: auto;
 }
 
 /* prematch arena */
@@ -111,5 +100,5 @@ div.arenaInfo {
 
 /* fix for popup shop*/
 div[role="dialog"] {
-	z-index:10002;
+	z-index: 10002;
 }
