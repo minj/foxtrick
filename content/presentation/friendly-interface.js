@@ -12,7 +12,7 @@ Foxtrick.modules['FriendlyInterface'] = {
 	OPTIONS: [
 		'NtLinkForNtPlayer',
 		'HideAnswerTo',
-		'HideSpeechlessSecretary'
+		'HideSpeechlessSecretary',
 	],
 
 	run: function(doc) {
@@ -23,32 +23,37 @@ Foxtrick.modules['FriendlyInterface'] = {
 			if (Foxtrick.Pages.Player.wasFired(doc))
 				return;
 
-			var playerInfo = doc.getElementsByClassName('playerInfo')[0];
+			var playerInfo = doc.querySelector('.playerInfo');
+
 			// a player has highlight <=> he is a national player
-			var highlight = playerInfo.getElementsByClassName('highlight')[0];
+			var highlight = playerInfo.querySelector('.highlight');
 			if (highlight) {
-				// FIXME: this is bound to break
 				var text = highlight.textContent;
 				var leagueId = Foxtrick.Pages.Player.getNationalityId(doc);
 				var league = Foxtrick.XMLData.League[leagueId];
 				var ntId = league.NationalTeamId;
 				var u20Id = league.U20TeamId;
 				var ntName = Foxtrick.XMLData.getNTNameByLeagueId(leagueId);
-				var u20Name = 'U-20 ' + ntName;
+				var u20NameRe = new RegExp(`U-20 .*${Foxtrick.strToRe(ntName)}`);
+
 				var replace = function(team, id) {
-					highlight.textContent = text.substr(0, text.indexOf(team));
+					highlight.textContent = text.slice(0, text.indexOf(team));
 					var link = Foxtrick.createFeaturedElement(doc, module, 'a');
 					link.textContent = team;
 					link.href = '/Club/NationalTeam/NationalTeam.aspx?teamId=' + id;
 					highlight.appendChild(link);
-					var suffix = doc.createTextNode(text.substr(text.indexOf(team) + team.length));
+					var suffix = doc.createTextNode(text.slice(text.indexOf(team) + team.length));
 					highlight.appendChild(suffix);
 				};
+
 				// find U20 first because generally NT name is a substring of U20 name
-				if (text.indexOf(u20Name) > -1) // u20 player
+				if (u20NameRe.test(text)) {
+					let [u20Name] = u20NameRe.exec(text);
 					replace(u20Name, u20Id);
-				else if (text.indexOf(ntName) > -1) // nt player
+				}
+				else if (text.indexOf(ntName) > -1) {
 					replace(ntName, ntId);
+				}
 			}
 		}
 		else if (Foxtrick.isPage(doc, 'guestbook') &&
@@ -68,7 +73,7 @@ Foxtrick.modules['FriendlyInterface'] = {
 			if (doc.getElementsByClassName('pmNextMessageCounter').length)
 				return; // there are unread messages
 			// nothing new, container should be marked as hidden
-			var container = doc.getElementsByClassName('pmContainer')[0];
+			var container = doc.querySelector('.pmContainer');
 			Foxtrick.addClass(container, 'hidden');
 		}
 	}
