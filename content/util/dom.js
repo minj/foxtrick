@@ -296,14 +296,16 @@ Foxtrick.getChildIndex = function(element) {
 };
 
 /**
- * Insert adjacent content
+ * Insert adjacent content.
+ * ! Target must be Element !
  *
  * @param {string}  where
- * @param {Element} newNode
+ * @param {Node} newNode
  * @param {Element} target
  */
 Foxtrick.insertAdjacent = function(where, newNode, target) {
-	let win = target.ownerDocument.defaultView;
+	let doc = target.ownerDocument;
+	let win = doc.defaultView;
 	let isElement = {}.isPrototypeOf.call(win.Element.prototype, newNode);
 	let isNode = {}.isPrototypeOf.call(win.Node.prototype, newNode);
 
@@ -318,25 +320,37 @@ Foxtrick.insertAdjacent = function(where, newNode, target) {
 
 /**
  * Insert newNode before sibling
- * @param {Element} newNode
- * @param {Element} sibling
+ * @param {Node} newNode
+ * @param {Node} sibling
  */
 Foxtrick.insertBefore = function(newNode, sibling) {
-	Foxtrick.insertAdjacent('beforeBegin', newNode, sibling);
+	if (sibling.nodeType == Foxtrick.NodeTypes.DOCUMENT_NODE)
+		Foxtrick.insertAdjacent('beforeBegin', newNode, sibling);
+	else
+		sibling.parentNode.insertBefore(newNode, sibling);
 };
 
 /**
  * Insert newNode after sibling
- * @param {Element} newNode
- * @param {Element} sibling
+ * @param {Node} newNode
+ * @param {Node} sibling
  */
 Foxtrick.insertAfter = function(newNode, sibling) {
-	Foxtrick.insertAdjacent('afterEnd', newNode, sibling);
+	if (sibling.nodeType == Foxtrick.NodeTypes.DOCUMENT_NODE) {
+		Foxtrick.insertAdjacent('afterEnd', newNode, sibling);
+	}
+	else {
+		let next = sibling.nextSibling;
+		if (next)
+			sibling.parentNode.insertBefore(newNode, next);
+		else
+			sibling.parentNode.appendChild(newNode);
+	}
 };
 
 /**
  * Insert newNode as first child of parent
- * @param {Element} newNode
+ * @param {Node} newNode
  * @param {Element} parent
  */
 Foxtrick.prependChild = function(newNode, parent) {
@@ -345,7 +359,7 @@ Foxtrick.prependChild = function(newNode, parent) {
 
 /**
  * Append an array of elements to a container
- * @param {element} parent
+ * @param {Element} parent
  * @param {Array}   children Array.<element>
  */
 Foxtrick.appendChildren = function(parent, children) {
