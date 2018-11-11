@@ -8,6 +8,27 @@
 .ft-hy-top3-skill {
 	text-decoration: underline;
 }
+
+/* .ht-bar td.bar-cap {
+	background-color: hsl(88, calc(32/256*100%), calc(224/256*100%));
+} */
+.ht-bar td {
+	padding-right: 0;
+	padding-left: 0;
+}
+.ht-bar td.ft-bar-hy-pot-pred {
+	background-color: hsl(0, 100%, calc(240/256*100%));
+}
+.ht-bar td.ft-bar-hy-pot {
+	background-color: hsl(0, 100%, calc(208/256*100%));
+}
+.ht-bar td.ft-bar-hy-pred {
+	background-color: hsl(0, 100%, calc(160/256*100%));
+}
+.ht-bar td.ft-bar-hy-cur {
+	background-color: hsl(0, 100%, calc(112/256*100%));
+}
+
 .ft-skillbar-bg {
 	background: url(chrome://foxtrick/content/resources/img/skillbars/bg.png) top left no-repeat;
 	width: 93px;

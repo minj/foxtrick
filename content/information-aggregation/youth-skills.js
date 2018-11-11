@@ -20,6 +20,8 @@ Foxtrick.modules['YouthSkills'] = {
 
 		var module = this;
 		var isRtl = Foxtrick.util.layout.isRtl(doc);
+		var hasNewBars = doc.querySelector('.ht-bar');
+		var barMax = hasNewBars && hasNewBars.getAttribute('max');
 		var entry, loading;
 
 		// string to use when current skill is estimated
@@ -115,6 +117,39 @@ Foxtrick.modules['YouthSkills'] = {
 		 */
 		var addSkills = function(json) {
 			/**
+			 * Create new-type bar
+			 * @param  {HTMLTableCellElement} skillCell
+			 * @return {Element}                        skillBar created
+			 */
+			var createBar = function(skillCell) {
+				let barDef = {
+					class: 'ht-bar',
+					level: -1,
+					cap: -1,
+					'is-cap': 0,
+					max: barMax,
+				};
+
+				let div = doc.createElement('div');
+				for (let [attr, val] of Object.entries(barDef))
+					div.setAttribute(attr, val);
+
+				let table = doc.createElement('table');
+				let row = table.insertRow();
+				let cell = row.insertCell();
+				cell.className = 'bar-max';
+				cell.style.width = '100%';
+				div.appendChild(table);
+
+				if (skillCell.nextElementSibling) {
+					skillCell.nextElementSibling.textContent = '?/?';
+				}
+
+				skillCell.textContent = '';
+				return skillCell.appendChild(div);
+			};
+
+			/**
 			 * replace HT skill bars into our own
 			 * retain HT skill info on titleDiv
 			 * @param {Element} node
@@ -140,32 +175,17 @@ Foxtrick.modules['YouthSkills'] = {
 					let width = parseInt(el.style.width, 10) + 1;
 					maxed = parseInt(width / BAR_WIDTH, 10);
 				}
-				if (htPot + htCur + maxed === 0) {
-					let bar;
-					if ((bar = node.querySelector('.ht-bar'))) {
-						let level = parseInt(bar.getAttribute('level'), 10);
-						if (level != -1)
-							htCur = level;
-						let cap = parseInt(bar.getAttribute('cap'), 10);
-						if (cap != -1)
-							htPot = cap;
+				if (htPot + htCur + maxed === 0 && node.querySelector('a.skill')) {
+					// new design sans skill-bars
+					// retrieve current / potential
+					let [current, potential] = [...node.children];
+					if (current.nodeName == 'A')
+						htCur = Foxtrick.util.id.getSkillLevelFromLink(current);
 
-						let isCap = parseInt(bar.getAttribute('is-cap'), 10);
-						if (isCap == -1)
-							maxed = htCur;
-					}
-					else if (node.querySelector('a.skill')) {
-						// new design sans skill-bars
-						// retrieve current / potential
-						let [current, potential] = [...node.children];
-						if (current.nodeName == 'A')
-							htCur = Foxtrick.util.id.getSkillLevelFromLink(current);
-
-						if (typeof potential == 'undefined')
-							maxed = Foxtrick.util.id.getSkillLevelFromLink(current);
-						else if (potential.nodeName == 'A')
-							htPot = Foxtrick.util.id.getSkillLevelFromLink(potential);
-					}
+					if (typeof potential == 'undefined')
+						maxed = Foxtrick.util.id.getSkillLevelFromLink(current);
+					else if (potential.nodeName == 'A')
+						htPot = Foxtrick.util.id.getSkillLevelFromLink(potential);
 				}
 
 				for (let child of [...node.childNodes])
@@ -236,6 +256,36 @@ Foxtrick.modules['YouthSkills'] = {
 			};
 
 			/**
+			 * set the length of the corresponding HY skillbar inside ht-bar
+			 * @param {Element} bar
+			 * @param {string}  name     'hy-pot', 'hy-cur', 'hy-pred', or 'hy-pot-pred'
+			 * @param {number}  value    {Float}
+			 */
+			var setHYBar = function(bar, name, value) {
+				bar.setAttribute(name, value);
+
+				let widthTotal = bar.getBoundingClientRect().width;
+				let max = parseInt(bar.getAttribute('max'), 10);
+				let val = Math.min(max, value);
+
+				let maxBar = bar.querySelector('.bar-max');
+				let widthAvail = maxBar.getBoundingClientRect().width;
+				let widthUsed = widthTotal - widthAvail;
+				let widthNeeded = Math.round(val / max * widthTotal);
+				let widthTaken = widthNeeded - widthUsed;
+				if (!widthTaken)
+					return;
+
+				widthAvail -= widthTaken;
+
+				let hyBar = Foxtrick.createFeaturedElement(doc, module, 'td');
+				Foxtrick.addClass(hyBar, `ft-bar-${name}`);
+				hyBar.style.width = `${widthTaken}px`;
+				maxBar.style.width = `${widthAvail}px`;
+				Foxtrick.insertBefore(hyBar, maxBar);
+			};
+
+			/**
 			 * add skill link (if possible) to the node based on the skill level {Integer}
 			 * @param {Element} node
 			 * @param {number}  level {Integer}
@@ -265,9 +315,6 @@ Foxtrick.modules['YouthSkills'] = {
 			 * @param {Element} node
 			 */
 			var setTitleAndLinks = function(node) {
-				let gapText = doc.createTextNode(' ');
-				node.appendChild(gapText);
-
 				let cur, pot, curInt, potInt = 0;
 				let prediction = false;
 				let hyCur = node.getAttribute('hy-cur') || 0;
@@ -310,15 +357,17 @@ Foxtrick.modules['YouthSkills'] = {
 				// add aria info for a11y
 				node.setAttribute('aria-label', node.title);
 
+				if (Foxtrick.hasClass(node, 'ht-bar'))
+					return;
+
+				node.appendChild(doc.createTextNode(' '));
 				addSkillLink(node, curInt);
 
 				// only one link if levels match
 				if (curInt == potInt)
 					return;
 
-				gapText = doc.createTextNode(' / ');
-				node.appendChild(gapText);
-
+				node.appendChild(doc.createTextNode(' / '));
 				addSkillLink(node, potInt);
 			};
 
@@ -343,20 +392,45 @@ Foxtrick.modules['YouthSkills'] = {
 				// need to unhide blank row since we have new info from HY for this skill
 				Foxtrick.removeClass(sEntry.parentNode, 'hidden');
 
-				replaceBars(sEntry);
-				let ftBars = sEntry.firstChild.firstChild;
-				if (!ftBars || !Foxtrick.hasClass(ftBars, 'ft-youthSkillBars'))
-					return;
+				let ftBars;
+				if (hasNewBars) {
+					ftBars = sEntry.querySelector('.ht-bar') || createBar(sEntry);
+					let level = parseInt(ftBars.getAttribute('level'), 10);
+					if (level != -1)
+						ftBars.setAttribute('ht-cur', level);
+					let cap = parseInt(ftBars.getAttribute('cap'), 10);
+					if (cap != -1)
+						ftBars.setAttribute('ht-pot', cap);
+					let isCap = parseInt(ftBars.getAttribute('is-cap'), 10);
+					if (isCap == -1)
+						ftBars.setAttribute('ht-maxed', level);
 
-				if (pred)
-					setHYValue(ftBars, 'hy-pred', pred);
-				else if (current)
-					setHYValue(ftBars, 'hy-cur', current);
+					if (pred)
+						setHYBar(ftBars, 'hy-pred', pred);
+					else if (current)
+						setHYBar(ftBars, 'hy-cur', current);
 
-				if (max)
-					setHYValue(ftBars, 'hy-pot', max);
-				else if (maxPred)
-					setHYValue(ftBars, 'hy-pot-pred', maxPred);
+					if (max)
+						setHYBar(ftBars, 'hy-pot', max);
+					else if (maxPred)
+						setHYBar(ftBars, 'hy-pot-pred', maxPred);
+				}
+				else {
+					replaceBars(sEntry);
+					ftBars = sEntry.firstChild.firstChild;
+					if (!ftBars || !Foxtrick.hasClass(ftBars, 'ft-youthSkillBars'))
+						return;
+
+					if (pred)
+						setHYValue(ftBars, 'hy-pred', pred);
+					else if (current)
+						setHYValue(ftBars, 'hy-cur', current);
+
+					if (max)
+						setHYValue(ftBars, 'hy-pot', max);
+					else if (maxPred)
+						setHYValue(ftBars, 'hy-pot-pred', maxPred);
+				}
 
 				setTitleAndLinks(ftBars);
 			};
