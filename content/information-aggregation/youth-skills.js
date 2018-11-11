@@ -93,6 +93,15 @@ Foxtrick.modules['YouthSkills'] = {
 			legend.appendChild(potLegend);
 			hyInfoDiv.appendChild(legend);
 
+			let potPredLegend = doc.createElement('li');
+			potPredLegend.textContent = Foxtrick.L10n.getString('YouthSkills.skillPotentialMax');
+			Foxtrick.addImage(doc, potPredLegend, {
+				src: '/Img/icons/transparent.gif',
+				class: 'ft-skillbar-hy-pot-pred ft-skillbar-singlet',
+			}, potPredLegend.firstChild);
+			legend.appendChild(potPredLegend);
+			hyInfoDiv.appendChild(legend);
+
 			let info2 = doc.createElement('span');
 			info2.textContent = Foxtrick.L10n.getString('YouthSkills.info2');
 			hyInfoDiv.appendChild(info2);
@@ -172,6 +181,7 @@ Foxtrick.modules['YouthSkills'] = {
 
 				let skillbars = [
 					'ft-skillbar-bg',
+					'ft-skillbar-hy-pot-pred ft-skillbar-hy',
 					'ft-skillbar-hy-pot ft-skillbar-hy', 'ft-skillbar-ht-pot ft-skillbar-ht',
 					'ft-skillbar-hy-pred ft-skillbar-hy',
 					'ft-skillbar-hy-cur ft-skillbar-hy', 'ft-skillbar-ht-cur ft-skillbar-ht',
@@ -210,7 +220,7 @@ Foxtrick.modules['YouthSkills'] = {
 			 * set the length of the corresponding HY skillbar
 			 * and save the value on titleDiv
 			 * @param {Element} titleDiv
-			 * @param {string}  name     'hy-pot', 'hy-cur' or 'hy-pred'
+			 * @param {string}  name     'hy-pot', 'hy-cur', 'hy-pred', or 'hy-pot-pred'
 			 * @param {number}  value    {Float}
 			 */
 			var setHYValue = function(titleDiv, name, value) {
@@ -262,6 +272,7 @@ Foxtrick.modules['YouthSkills'] = {
 				let prediction = false;
 				let hyCur = node.getAttribute('hy-cur') || 0;
 				let hyPot = node.getAttribute('hy-pot') || 0;
+				let hyPotPred = node.getAttribute('hy-pot-pred') || 0;
 				let hyPred = node.getAttribute('hy-pred') || 0;
 				let htCur = node.getAttribute('ht-cur') || 0;
 				let htPot = node.getAttribute('ht-pot') || 0;
@@ -288,13 +299,16 @@ Foxtrick.modules['YouthSkills'] = {
 				else
 					pot = htPot;
 
-				node.title = `${cur || '?'}${prediction ? ' ' + approx : ''}/${pot || '?'}`;
+				curInt = parseInt(cur, 10);
+				potInt = parseInt(pot, 10);
+
+				if (!pot && hyPotPred)
+					pot = `<${hyPotPred}`;
+
+				node.title = `${cur || '?'}${prediction ? ' ' + l10nApprox : ''}/${pot || '?'}`;
 
 				// add aria info for a11y
 				node.setAttribute('aria-label', node.title);
-
-				curInt = parseInt(cur, 10);
-				potInt = parseInt(pot, 10);
 
 				addSkillLink(node, curInt);
 
@@ -315,8 +329,9 @@ Foxtrick.modules['YouthSkills'] = {
 			 * @param {number}  current    current_skill {Float}
 			 * @param {number}  pred       skill_estimated {Float}
 			 * @param {number}  max        skill_cap {Float}
+			 * @param {number}  maxPred    skill_capMaximal {Float}
 			 */
-			var setSkill = function(playerInfo, skill, { current, pred, max }) {
+			var setSkill = function(playerInfo, skill, { current, pred, max, maxPred }) {
 				let body = playerInfo.querySelector('tbody');
 				let [first] = body.rows;
 				let rIdx = first.id.endsWith('trSpeciality') ? skill + 1 : skill;
@@ -335,10 +350,13 @@ Foxtrick.modules['YouthSkills'] = {
 
 				if (pred)
 					setHYValue(ftBars, 'hy-pred', pred);
-				if (current)
+				else if (current)
 					setHYValue(ftBars, 'hy-cur', current);
+
 				if (max)
 					setHYValue(ftBars, 'hy-pot', max);
+				else if (maxPred)
+					setHYValue(ftBars, 'hy-pot-pred', maxPred);
 
 				setTitleAndLinks(ftBars);
 			};
@@ -407,7 +425,6 @@ Foxtrick.modules['YouthSkills'] = {
 					if (!(sk in ROW_MAP))
 						continue;
 
-					// let cap_maximal = skill['cap_maximal'] || 0;
 					let cap = skill.cap || 0;
 					let capMinimal = skill.cap_minimal || 0;
 
@@ -417,9 +434,10 @@ Foxtrick.modules['YouthSkills'] = {
 					let current = skill.current || 0;
 					let pred = skill.current_estimation || 0;
 					let max = Math.max(cap, capMinimal);
+					let maxPred = Math.floor((skill.cap_maximal || 0) * 10) / 10;
 
-					if (pred || current || max)
-						setSkill(playerInfo, ROW_MAP[sk], { current, pred, max });
+					if (pred || current || max || maxPred)
+						setSkill(playerInfo, ROW_MAP[sk], { current, pred, max, maxPred });
 
 					if (top)
 						markTopSkill(playerInfo, ROW_MAP[sk]);

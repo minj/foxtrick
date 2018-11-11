@@ -30,6 +30,9 @@ html[dir="rtl"] .ft-skillbar {
 .ft-skillbar-hy-pot {
 	background-image: url(chrome://foxtrick/content/resources/img/skillbars/hy-pot.png);
 }
+.ft-skillbar-hy-pot-pred {
+	background-image: url(chrome://foxtrick/content/resources/img/skillbars/hy-pot-pred.png);
+}
 .ft-skillbar-hy-pred {
 	background-image: url(chrome://foxtrick/content/resources/img/skillbars/hy-pred.png);
 }
