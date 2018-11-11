@@ -154,7 +154,7 @@ Foxtrick.modules['YouthSkills'] = {
 						if (isCap == -1)
 							maxed = htCur;
 					}
-					else if (node.querySelector('a')) {
+					else if (node.querySelector('a.skill')) {
 						// new design sans skill-bars
 						// retrieve current / potential
 						let [current, potential] = [...node.children];
