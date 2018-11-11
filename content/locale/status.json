@@ -217,7 +217,7 @@
 			"words_translated": "6207"
 		},
 		{
-			"approved": "2294",
+			"approved": "2297",
 			"approved_progress": "99",
 			"code": "fr",
 			"name": "French",
@@ -225,7 +225,7 @@
 			"translated": "2298",
 			"translated_progress": "100",
 			"words": "16759",
-			"words_approved": "16729",
+			"words_approved": "16737",
 			"words_translated": "16759"
 		},
 		{
@@ -258,11 +258,11 @@
 			"code": "gl",
 			"name": "Galician",
 			"phrases": "2298",
-			"translated": "1903",
-			"translated_progress": "79",
+			"translated": "2219",
+			"translated_progress": "89",
 			"words": "16759",
 			"words_approved": "0",
-			"words_translated": "13260"
+			"words_translated": "15055"
 		},
 		{
 			"approved": "0",
