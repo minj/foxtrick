@@ -138,11 +138,11 @@
 			"code": "da",
 			"name": "Danish",
 			"phrases": "2298",
-			"translated": "2287",
-			"translated_progress": "99",
+			"translated": "2298",
+			"translated_progress": "100",
 			"words": "16759",
 			"words_approved": "12611",
-			"words_translated": "16697"
+			"words_translated": "16759"
 		},
 		{
 			"approved": "2078",
@@ -217,7 +217,7 @@
 			"words_translated": "6207"
 		},
 		{
-			"approved": "2294",
+			"approved": "2297",
 			"approved_progress": "99",
 			"code": "fr",
 			"name": "French",
@@ -225,7 +225,7 @@
 			"translated": "2298",
 			"translated_progress": "100",
 			"words": "16759",
-			"words_approved": "16729",
+			"words_approved": "16737",
 			"words_translated": "16759"
 		},
 		{
@@ -258,11 +258,11 @@
 			"code": "gl",
 			"name": "Galician",
 			"phrases": "2298",
-			"translated": "1891",
-			"translated_progress": "78",
+			"translated": "2219",
+			"translated_progress": "89",
 			"words": "16759",
 			"words_approved": "0",
-			"words_translated": "13235"
+			"words_translated": "15055"
 		},
 		{
 			"approved": "0",
@@ -498,11 +498,11 @@
 			"code": "pt-PT",
 			"name": "Portuguese",
 			"phrases": "2298",
-			"translated": "2287",
-			"translated_progress": "99",
+			"translated": "2298",
+			"translated_progress": "100",
 			"words": "16759",
 			"words_approved": "0",
-			"words_translated": "16697"
+			"words_translated": "16759"
 		},
 		{
 			"approved": "1",
@@ -522,11 +522,11 @@
 			"code": "ro",
 			"name": "Romanian",
 			"phrases": "2298",
-			"translated": "2211",
+			"translated": "2219",
 			"translated_progress": "91",
 			"words": "16759",
 			"words_approved": "4631",
-			"words_translated": "15346"
+			"words_translated": "15369"
 		},
 		{
 			"approved": "2294",
@@ -613,16 +613,16 @@
 			"words_translated": "16759"
 		},
 		{
-			"approved": "2049",
+			"approved": "2052",
 			"approved_progress": "91",
 			"code": "sv-SE",
 			"name": "Swedish",
 			"phrases": "2298",
-			"translated": "2146",
+			"translated": "2149",
 			"translated_progress": "94",
 			"words": "16759",
-			"words_approved": "15353",
-			"words_translated": "15762"
+			"words_approved": "15366",
+			"words_translated": "15775"
 		},
 		{
 			"approved": "0",

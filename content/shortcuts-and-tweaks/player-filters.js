@@ -12,6 +12,9 @@ Foxtrick.modules['PlayerFilters'] = {
 
 	FILTER_SELECT_ID: 'foxtrick-filter-select',
 
+	/**
+	 * @param {document} doc
+	 */
 	run: function(doc) {
 		if (doc.getElementById(this.FILTER_SELECT_ID))
 			return;
@@ -119,9 +122,9 @@ Foxtrick.modules['PlayerFilters'] = {
 				var specialties = {};
 				var specialtyCount = 0;
 
-				var playerDivs =
-					doc.querySelectorAll('.playerList > div:not(.borderSeparator):not(.faceCard)');
+				var playerDivs = Foxtrick.Pages.Players.getPlayerNodes(doc);
 				Foxtrick.forEach(function(div) {
+					div.dataset.ftPlayerNode = true;
 					var id = Foxtrick.Pages.Players.getPlayerId(div);
 					var player = Foxtrick.Pages.Players.getPlayerFromListById(playerList, id);
 					if (player.redCard || player.yellowCard) {
@@ -203,7 +206,7 @@ Foxtrick.modules['PlayerFilters'] = {
 					});
 				}
 
-				var faceCards = doc.getElementsByClassName('faceCard');
+				var faceCards = doc.querySelectorAll('.faceCard, .faceCardNoBottomInfo');
 				if (faceCards.length > 0) {
 					filters.push({
 						props: ['id'], name: 'face', l10n: 'Pictures',
@@ -334,6 +337,7 @@ Foxtrick.modules['PlayerFilters'] = {
 			});
 		};
 
+		/* eslint-disable complexity */
 		var changeListener = function() {
 			if (filterSelect.getAttribute('scanned') !== 'true') {
 				addFilters();
@@ -393,7 +397,19 @@ Foxtrick.modules['PlayerFilters'] = {
 			};
 
 			var body = doc.getElementById('mainBody');
-			let allElems = Foxtrick.Pages.Players.getPlayerNodes(doc);
+			var pList = doc.querySelector('.playerList');
+			var backTopAnchor;
+			if (Foxtrick.Pages.Players.isRegular(doc) ||
+			    Foxtrick.Pages.Players.isYouth(doc)) {
+				// If it's normal senior players list, there is an
+				// a element in the bottom for navigating back to top,
+				// and the cleaner should be inserted before it.
+				let scrollLinks = [...pList.querySelectorAll('a[href^="javascript:scroll"]')];
+				backTopAnchor = scrollLinks.pop();
+			}
+
+			let opts = { face: true, separator: true };
+			let allElems = Foxtrick.Pages.Players.getPlayerNodes(doc, opts);
 
 			// these are attached information divs
 			var hideFace = ['category', 'playerInfo', 'borderSeparator', 'separator', 'youthnotes'];
@@ -403,41 +419,47 @@ Foxtrick.modules['PlayerFilters'] = {
 			var count = 0;
 			if (filter === 'face') {
 
-				var faceCards = doc.getElementsByClassName('faceCard');
+				var faceCards = doc.querySelectorAll('.faceCard, .faceCardNoBottomInfo');
 				if (faceCards.length) {
 					count = faceCards.length;
-					Foxtrick.forEach(function(elem) {
+					faceCards = Foxtrick.map(function(elem) {
 						var hasHiddenCls = Foxtrick.any(function(cls) {
 							return Foxtrick.hasClass(elem, cls);
 						}, hideFace);
 
-						if (hasHiddenCls) {
+						if (hasHiddenCls || elem.dataset.ftPlayerNode) {
 							Foxtrick.addClass(elem, 'hidden');
 						}
 						else if (Foxtrick.hasClass(elem, 'faceCard')) {
 							Foxtrick.removeClass(elem, 'hidden');
+							return elem;
 						}
-					}, allElems);
+						else if (Foxtrick.hasClass(elem, 'faceCardNoBottomInfo')) {
+							if (backTopAnchor)
+								return pList.insertBefore(elem.cloneNode(true), backTopAnchor);
+
+							return pList.appendChild(elem.cloneNode(true));
+						}
+						return null;
+					}, allElems).filter(x => x);
 
 					// Face cards are floated to the left, so we need a
 					// cleaner to maintain the container's length.
-					var container = faceCards[0].parentNode;
 					var cleaner = doc.createElement('div');
 					cleaner.className = 'clear';
-					if (Foxtrick.Pages.Players.isRegular(doc)) {
-						// If it's normal senior players list, there is an
-						// a element in the bottom for navigating back to top,
-						// and the cleaner should be inserted before it.
-						var containerLinks = container.getElementsByTagName('a');
-						var backTopAnchor = containerLinks[containerLinks.length - 1];
-						container.insertBefore(cleaner, backTopAnchor);
+					if (backTopAnchor) {
+						pList.insertBefore(cleaner, backTopAnchor);
 					}
 					else {
-						container.appendChild(cleaner);
+						pList.appendChild(cleaner);
 					}
 				}
 			}
 			else {
+				let newFaces = [...pList.children].filter(c => c.matches('.faceCardNoBottomInfo'));
+				for (let face of newFaces)
+					face.remove();
+
 				var hide = false;
 				var hideCategory = true;
 				var lastCategory = null;
@@ -470,7 +492,7 @@ Foxtrick.modules['PlayerFilters'] = {
 							Foxtrick.removeClass(elem, 'hidden');
 						}
 					}
-					else {
+					else if (!Foxtrick.hasClass(elem, 'faceCardNoBottomInfo')) {
 						var pid = Foxtrick.util.id.findPlayerId(elem);
 						var player = Foxtrick.Pages.Players.getPlayerFromListById(playerList, pid);
 						if (isVisible(elem, player)) {
@@ -529,10 +551,11 @@ Foxtrick.modules['PlayerFilters'] = {
 
 			// update team-stats
 			var	box = doc.getElementById('ft-team-stats-box');
-			if (box) {
+			if (box && filter != 'face') {
 				Foxtrick.modules.TeamStats.run(doc);
 			}
 		};
+		/* eslint-enable complexity */
 
 		Foxtrick.listen(filterSelect, 'change', function() {
 			try {

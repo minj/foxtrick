@@ -1,9 +1,10 @@
-'use strict';
 /**
  * ExtendedPlayerDetails
  * @desc displays wage without 20% bonus and time since player joined a team.
- * @author spambot, ryanli
+ * @author spambot, ryanli, LA-MJ
  */
+
+'use strict';
 
 Foxtrick.modules['ExtendedPlayerDetails'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
@@ -16,73 +17,68 @@ Foxtrick.modules['ExtendedPlayerDetails'] = {
 		if (Foxtrick.Pages.Player.wasFired(doc))
 			return;
 
-		this._Player_Joined(doc);
+		this.playerJoined(doc);
 
 		// experiment: add language
-		if (Foxtrick.Prefs.isModuleOptionEnabled('ExtendedPlayerDetails', 'Language')) {
-			var addPlayerLanguage = function(playerid, node) {
-				Foxtrick.Pages.Player.getPlayer(doc, playerid,
-				  function(player) {
-					if (!player)
-						return;
-					if (player.playerLanguage) {
-						var language = doc.createElement('em');
-						Foxtrick.addClass(language, 'shy');
-						language.setAttribute('style', 'font-weight:normal; margin-left:5px;');
-						language.textContent = player.playerLanguage;
-						if (player.playerLanguageID)
-							language.setAttribute('PlayerLanguageID', player.playerLanguageID);
+		if (!Foxtrick.Prefs.isModuleOptionEnabled('ExtendedPlayerDetails', 'Language'))
+			return;
 
-						var langPara = Foxtrick.createFeaturedElement(doc, module, 'p');
-						langPara.appendChild(language);
-						node.appendChild(langPara);
-					}
-				});
-			};
-			var id = Foxtrick.Pages.Player.getId(doc);
-			var targetNode = doc.getElementById('mainBody').getElementsByClassName('byline')[0];
-			addPlayerLanguage(id, targetNode);
-		}
+		let id = Foxtrick.Pages.Player.getId(doc);
+		let targetNode = doc.querySelector('#mainBody .byline');
+		Foxtrick.Pages.Player.getPlayer(doc, id, (player) => {
+			if (!player || !player.playerLanguage)
+				return;
+
+			let language = doc.createElement('em');
+			Foxtrick.addClass(language, 'shy');
+			language.setAttribute('style', 'font-weight:normal; margin-left:5px;');
+			language.textContent = player.playerLanguage;
+			if (player.playerLanguageID)
+				language.setAttribute('PlayerLanguageID', player.playerLanguageID);
+
+			let langPara = Foxtrick.createFeaturedElement(doc, module, 'p');
+			langPara.appendChild(language);
+			targetNode.appendChild(langPara);
+		});
 	},
 
-	_Player_Joined: function(doc) {
-		// Player in team since...
-		var processed = doc.getElementsByClassName('ft_since');
+	// Player in team since...
+	playerJoined: function(doc) {
+		var module = this;
+		var HTDateFormat = Foxtrick.modules.HTDateFormat;
+		let processed = doc.querySelectorAll('.ft-since');
 		if (processed.length > 0)
 			return;
 
-		var div = doc.getElementsByClassName('playerInfo')[0];
-		if (!Foxtrick.util.id.findTeamId(div.getElementsByTagName('table')[0]))
-			return; // player has no team
-
-		var joined_elm = div.getElementsByClassName('shy')[0];
-
-		var dateObj = Foxtrick.util.time.getDateFromText(joined_elm.textContent);
-		var season_week = Foxtrick.util.time.gregorianToHT(dateObj);
-
-		var htDate = Foxtrick.util.time.getDate(doc);
-
-		var sec = Math.floor((htDate.getTime() - dateObj.getTime()) / 1000); // sec
-
-		var JoinedSpan = Foxtrick.util.time.timeDiffToSpan(doc, sec, { useDHM: false });
-
-		if (JoinedSpan.textContent.search('NaN') == -1) {
-			Foxtrick.addClass(joined_elm, 'smallText ft_since');
-			joined_elm.textContent = joined_elm.textContent.replace(')', '');
-			joined_elm.insertBefore(doc.createElement('br'), joined_elm.firstChild);
-
-			if (Foxtrick.Prefs.isModuleEnabled('HTDateFormat')) {
-				var dateSpan = Foxtrick
-					.createFeaturedElement(doc, Foxtrick.modules.HTDateFormat, 'span');
-				dateSpan.textContent = '(' + season_week.week + '/' + season_week.season + '), ';
-				joined_elm.appendChild(dateSpan);
-			}
-			joined_elm.appendChild(JoinedSpan);
-			joined_elm.appendChild(doc.createTextNode(')'));
-			Foxtrick.makeFeaturedElement(joined_elm, this);
+		var table = doc.querySelector('.ownerAndStatusPlayerInfo table') ||
+			doc.querySelector('.playerInfo table');
+		if (!Foxtrick.util.id.findTeamId(table)) {
+			// player has no team
+			return;
 		}
-		else
-			Foxtrick.log('Could not create jointime (NaN)\n');
+		var joinedEl = table.querySelector('.shy');
+
+
+		let dateObj = Foxtrick.util.time.getDateFromText(joinedEl.textContent);
+		let seasonWeek = Foxtrick.util.time.gregorianToHT(dateObj);
+
+		let htDate = Foxtrick.util.time.getDate(doc);
+		let diff = htDate.getTime() - dateObj.getTime();
+		let sec = Math.floor(diff / Foxtrick.util.time.MSECS_IN_SEC);
+		let joinedSpan = Foxtrick.util.time.timeDiffToSpan(doc, sec, { useDHM: false });
+
+		Foxtrick.addClass(joinedEl, 'smallText ft-since');
+		joinedEl.textContent = joinedEl.textContent.replace(')', '');
+
+		if (Foxtrick.Prefs.isModuleEnabled(HTDateFormat)) {
+			let dateSpan = Foxtrick.createFeaturedElement(doc, HTDateFormat, 'span');
+			dateSpan.textContent = `(${seasonWeek.week}/${seasonWeek.season}), `;
+			joinedEl.appendChild(dateSpan);
+		}
+		joinedEl.appendChild(joinedSpan);
+		joinedEl.appendChild(doc.createTextNode(')'));
+
+		Foxtrick.makeFeaturedElement(joinedEl, module);
 	},
 };
 
@@ -93,25 +89,26 @@ Foxtrick.modules['ExtendedPlayerDetailsWage'] = {
 
 	run: function(doc) {
 		var module = this;
-		var NBSP = '\u00a0';
+		const NBSP = '\u00a0';
 
-		Foxtrick.util.currency.detect(doc).then(function(curr) {
-			var symbol = curr.symbol;
-
-			var done = doc.querySelector('#ft_bonuswage, #ft_seasonwage');
+		Foxtrick.util.currency.detect(doc).then(function({ symbol }) {
+			let done = doc.querySelector('#ft_bonuswage, #ft_seasonwage');
 			if (done)
 				return;
 
-			var wageObj = Foxtrick.Pages.Player.getWage(doc);
+			let wageObj = Foxtrick.Pages.Player.getWage(doc);
 			if (!wageObj)
 				return;
 
-			var symbolReStr = Foxtrick.strToRe(symbol);
+			var { total, bonus, base } = wageObj;
 			var wageCell = Foxtrick.Pages.Player.getWageCell(doc);
-			var wageStr = Foxtrick.formatNumber(wageObj.total, NBSP);
+
+			let wageStr = Foxtrick.formatNumber(total, NBSP);
+			let symbolReStr = Foxtrick.strToRe(symbol);
 
 			var currencyStr = wageStr + NBSP + symbol;
 			var currencyRe = new RegExp(wageStr + NBSP + symbolReStr);
+
 			if (!currencyRe.test(wageCell.textContent)) {
 				// bad currency
 				Foxtrick.log(symbol, 'NOT FOUND');
@@ -120,39 +117,41 @@ Foxtrick.modules['ExtendedPlayerDetailsWage'] = {
 				return;
 			}
 
-			var wageSpan, wageString = wageCell.textContent;
-			if ((wageSpan = wageCell.querySelector('span[title]'))) {
-				let amount = wageCell.firstChild.textContent;
-				wageString = amount + wageSpan.title.slice(amount.length);
-			}
-
-			var wageParts = wageString.split(currencyRe);
 			var wageWOBonus = Foxtrick.Prefs.isModuleOptionEnabled(module, 'WageWithoutBonus');
 			var seasonWage = Foxtrick.Prefs.isModuleOptionEnabled(module, 'SeasonWage');
+
+			let wageSpan, wageString = wageCell.textContent;
+			if ((wageSpan = wageCell.querySelector('span[title]'))) {
+				let amount = wageCell.firstChild.textContent;
+				wageString = amount + wageSpan.title.replace(/^[\d\s]+/, '');
+			}
+
+			var [wagePre, wageFull] = wageString.split(currencyRe);
+
 			if (wageWOBonus || seasonWage)
 				Foxtrick.removeClass(wageCell, 'nowrap');
 
-			var hasBonus = !!wageObj.bonus;
+			let hasBonus = !!bonus;
 			if (hasBonus && wageWOBonus) {
-				wageCell.textContent = wageParts[0] + currencyStr + NBSP;
+				wageCell.textContent = wagePre + currencyStr + NBSP;
 
-				var wageBaseStr = Foxtrick.formatNumber(wageObj.base, NBSP);
-				var baseSpan = doc.createElement('span');
+				let wageBaseStr = Foxtrick.formatNumber(base, NBSP);
+				let baseSpan = doc.createElement('span');
 				baseSpan.id = 'ft_bonuswage';
 				baseSpan.setAttribute('style', 'direction: ltr; color:#666666;');
-				baseSpan.textContent = '(' + wageBaseStr + NBSP + symbol + ')';
+				baseSpan.textContent = `(${wageBaseStr}${NBSP}${symbol})`;
 				Foxtrick.makeFeaturedElement(baseSpan, module);
 
 				wageCell.appendChild(baseSpan);
-				wageCell.appendChild(doc.createTextNode(wageParts[1]));
+				wageCell.appendChild(doc.createTextNode(wageFull));
 			}
 
 			if (seasonWage) {
-				var wageSeason = wageObj.total * 16;
-				var wageSeasonStr = Foxtrick.formatNumber(wageSeason, NBSP);
-				var perseason = Foxtrick.L10n.getString('ExtendedPlayerDetails.perseason');
+				let wageSeason = total * 16;
+				let wageSeasonStr = Foxtrick.formatNumber(wageSeason, NBSP);
+				let perseason = Foxtrick.L10n.getString('ExtendedPlayerDetails.perseason');
 
-				var spanSeason = doc.createElement('span');
+				let spanSeason = doc.createElement('span');
 				spanSeason.id = 'ft_seasonwage';
 				spanSeason.textContent = wageSeasonStr + NBSP + symbol + perseason;
 				Foxtrick.makeFeaturedElement(spanSeason, module);

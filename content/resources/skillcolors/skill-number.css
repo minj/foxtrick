@@ -1,5 +1,5 @@
 /* make space for long skills names */
-div.playerInfo table.thin  td {padding-right: 5px;}
+div.playerInfo table.thin > tbody > tr > td {padding-right: 5px;}
 
 a[href*="#skill"] {white-space:nowrap;}
 

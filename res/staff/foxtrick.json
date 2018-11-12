@@ -511,6 +511,16 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "13059131",
+			"name": "Harris92"
+		},
+		{
+			"duty": "supporter",
+			"id": "13071458",
+			"name": "markul77"
+		},
+		{
+			"duty": "supporter",
 			"id": "13087874",
 			"name": "Kelor"
 		},
@@ -656,11 +666,6 @@
 		},
 		{
 			"duty": "supporter",
-			"id": "2058275",
-			"name": "<>"
-		},
-		{
-			"duty": "supporter",
 			"id": "2068162",
 			"name": "-koen-"
 		},
@@ -748,11 +753,6 @@
 			"duty": "supporter",
 			"id": "2787409",
 			"name": "gia73"
-		},
-		{
-			"duty": "supporter",
-			"id": "279449",
-			"name": "<>"
 		},
 		{
 			"duty": "translator",
@@ -1086,6 +1086,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "54496",
+			"name": "Svennisson"
+		},
+		{
+			"duty": "supporter",
 			"id": "5489151",
 			"name": "legerutengenser"
 		},
@@ -1401,6 +1406,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "8179870",
+			"name": "Rummm"
+		},
+		{
+			"duty": "supporter",
 			"id": "8190906",
 			"name": "dxht-pawpol"
 		},
@@ -1481,6 +1491,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "9052209",
+			"name": "Everthon"
+		},
+		{
+			"duty": "supporter",
 			"id": "9063412",
 			"name": "<MagicRoFoX>"
 		},
@@ -1527,7 +1542,7 @@
 		{
 			"duty": "supporter",
 			"id": "9474452",
-			"name": "Zami1981"
+			"name": "<Zami1981>"
 		},
 		{
 			"duty": "translator",

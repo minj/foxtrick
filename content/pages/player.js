@@ -5,10 +5,12 @@
 
 'use strict';
 
+/* eslint-disable */
 if (!Foxtrick)
 	var Foxtrick = {};
 if (!Foxtrick.Pages)
 	Foxtrick.Pages = {};
+/* eslint-enable */
 
 Foxtrick.Pages.Player = {};
 
@@ -105,9 +107,8 @@ Foxtrick.Pages.Player.getId = function(doc) {
  */
 Foxtrick.Pages.Player.getNationalityId = function(doc) {
 	var id = null;
-	var link = this.isSenior(doc) ?
-		doc.getElementsByClassName('flag')[0] :
-		doc.querySelector('.playerInfo a[href^="/World/Leagues/League.aspx"]');
+	var link = doc.querySelector('.playerInfo a[href^="/World/Leagues/League.aspx"]') ||
+		doc.querySelector('.flag');
 
 	if (link) {
 		var val = Foxtrick.getParameterFromUrl(link.href, 'LeagueID');
@@ -207,6 +208,8 @@ Foxtrick.Pages.Player.getAttributes = function(doc) {
 	const PERSONALITY = ['gentleness', 'aggressiveness', 'honesty'];
 	const OTHER_TRAITS = ['leadership', 'experience', 'loyalty'];
 	const TRAITS = [...PERSONALITY, ...OTHER_TRAITS];
+	const FORM_ROW_NEW = 3;
+	const STAMINA_ROW_NEW = 4;
 
 	var num = link => Foxtrick.util.id.getSkillLevelFromLink(link);
 	var personLinks;
@@ -223,8 +226,8 @@ Foxtrick.Pages.Player.getAttributes = function(doc) {
 				return level;
 			};
 
-			attrs.form = getNumFromRow(3);
-			attrs.stamina = getNumFromRow(4);
+			attrs.form = getNumFromRow(FORM_ROW_NEW);
+			attrs.stamina = getNumFromRow(STAMINA_ROW_NEW);
 
 			personLinks = Foxtrick.toArray(doc.querySelectorAll('#mainBody > p .skill'));
 		}
@@ -350,13 +353,14 @@ Foxtrick.Pages.Player.getInjuryWeeks = function(doc) {
  * @return {number}
  */
 Foxtrick.Pages.Player.getCards = function(doc) {
+	const MAX_CARDS = 3;
 	var cards = 0;
 	try {
 		var infoTable = doc.querySelector('.playerInfo table');
 		var cardCell = infoTable.rows[3].cells[1];
 		cards = parseInt(cardCell.textContent.trim(), 10);
 		if (isNaN(cards))
-			cards = 3;
+			cards = MAX_CARDS;
 	}
 	catch (e) {
 		Foxtrick.log(e);
@@ -398,9 +402,8 @@ Foxtrick.Pages.Player.getTeamName = function(doc) {
 /**
  * Get the player info table.
  *
- * Senior player only.
  * @param  {document} doc
- * @return {{isNewDesign: Boolean, table: element}}
+ * @return {{isNewDesign: Boolean, isYouth: Boolean, table: Element}}
  */
 Foxtrick.Pages.Player.getInfoTable = function(doc) {
 	var isNewDesign = false;
@@ -411,8 +414,9 @@ Foxtrick.Pages.Player.getInfoTable = function(doc) {
 		infoDiv = doc.querySelector('.playerInfo');
 
 	var table = infoDiv.querySelector('table');
+	var isYouth = this.isYouth(doc);
 
-	return { isNewDesign, table };
+	return { isNewDesign, isYouth, table };
 };
 
 /**
@@ -449,6 +453,9 @@ Foxtrick.Pages.Player.getWageCell = function(doc) {
  * @return {object}            {base: number, bonus: number, total: number}
  */
 Foxtrick.Pages.Player.getWage = function(doc, wageCell) {
+	const WAGE_BONUS = 0.2;
+	const WAGE_BONUS_REC = WAGE_BONUS / (1 + WAGE_BONUS);
+
 	var cell = wageCell || this.getWageCell(doc);
 	if (!cell)
 		return null;
@@ -469,7 +476,7 @@ Foxtrick.Pages.Player.getWage = function(doc, wageCell) {
 
 	var hasBonus = /%/.test(wageText) || cell.querySelector('span[title]');
 	if (hasBonus) {
-		var bonus = Math.round(wage / 6);
+		var bonus = Math.round(wage * WAGE_BONUS_REC);
 		ret.bonus = bonus;
 		ret.base = wage - bonus;
 	}
@@ -543,10 +550,17 @@ Foxtrick.Pages.Player.getSkillsWithText = function(doc) {
 	// }
 
 	try {
-		var skillTable = doc.querySelector('.transferPlayerSkills, .mainBox table');
-		if (skillTable && this.isPage(doc)) {
-			if (this.isSenior(doc))
+		if (this.isPage(doc)) {
+			var skillTable;
+			if (this.isSenior(doc)) {
+				skillTable = doc.querySelector('.transferPlayerSkills, .mainBox table');
 				return this.parseSeniorSkills(skillTable);
+			}
+
+			skillTable = doc.querySelector('.mainBox table');
+			let hasBars = !!skillTable.querySelector('.youthSkillBar');
+			if (!hasBars)
+				skillTable = doc.querySelector('.playerInfo table');
 
 			return this.parseYouthSkills(skillTable);
 		}
@@ -735,24 +749,46 @@ Foxtrick.Pages.Player.parseYouthSkills = function(table) {
 	var found = true;
 	var skills = {}, skillTexts = {}, skillNames = {};
 
+	/* eslint-disable complexity */
 	var parseYouthBars = function(table) {
 		var order = skillMap.youth;
-		var rows = table.rows;
+		var rows = [...table.rows];
 		if (rows.length < order.length) {
 			found = false;
 			return;
 		}
-		for (var i = 0; i < order.length; ++i) {
-			var textCell = rows[i].cells[0];
-			var skillCell = rows[i].cells[1];
-			var skill = skills[order[i]] = {};
-			var imgs = skillCell.getElementsByTagName('img');
-			var HYSkills = skillCell.querySelector('.ft-youthSkillBars');
+
+		var hasNewBars = !!table.querySelector('.ht-bar');
+
+		{
+			let [first] = rows;
+			if (first.id.endsWith('trSpeciality'))
+				rows.shift();
+		}
+
+		for (let [idx, sType] of order.entries()) {
+			let row = rows[idx];
+			let [textCell, skillCell, numberCell] = row.cells;
+			let skill = { current: 0, max: 0, maxed: false };
+
+			let imgs = skillCell.getElementsByTagName('img');
+			let links = skillCell.querySelectorAll('.skill');
+			let HYSkills = skillCell.querySelector('.ft-youthSkillBars');
 			if (HYSkills) {
-				var info = HYSkills.title.split('/');
-				skill.current = parseFloat(info[0]) || 0;
-				skill.max = parseFloat(info[1]) || 0;
+				let [current, max] = HYSkills.title.split('/');
+				skill.current = parseFloat(current) || 0;
+				skill.max = parseFloat(max) || 0;
 				skill.maxed = HYSkills.querySelector('.ft-skillbar-maxed').hasAttribute('style');
+			}
+			else if (hasNewBars) {
+				// new bars
+				let bar = skillCell.querySelector('.ht-bar');
+				let [current, max] = numberCell.textContent.trim().split('/');
+				if (typeof max !== 'undefined') {
+					skill.current = parseFloat(current) || 0;
+					skill.max = parseFloat(max) || 0;
+					skill.maxed = !!(bar && bar.getAttribute('is-cap') !== '0');
+				}
 			}
 			else if (imgs.length) {
 				// when max is unknown first title is empty
@@ -764,46 +800,94 @@ Foxtrick.Pages.Player.parseYouthSkills = function(table) {
 				// when maxed out, first title is 'm/8'
 				// second title is empty
 				skill.maxed = false;
-				var max = parseInt(imgs[0].title.match(/\d/), 10);
-				var current = parseInt(imgs[1].title.match(/-?\d/), 10);
+				let max = parseInt(imgs[0].title.match(/\d/), 10);
+				let current = parseInt(imgs[1].title.match(/-?\d/), 10);
 				if (!current) {
 					skill.maxed = true;
 					current = max;
 				}
-				else if (current === -1)
+				else if (current === -1) {
 					current = 0;
+				}
+
 				// if current and/or max is unknown, mark it as 0
 				skill.current = current;
 				skill.max = max || 0;
 			}
-			else {
-				// no image is present, meaning nothing about
-				// that skill has been revealed
-				skill = { current: 0, max: 0, maxed: false };
+			else if (links.length) {
+				// links may also be reveal links
+				let [currNode, maxNode] = skillCell.querySelectorAll('.shy, a');
+				let current = 0, max = 0;
+
+				if (currNode.matches('a.skill'))
+					current = Foxtrick.util.id.getSkillLevelFromLink(currNode);
+
+				let maxed = false;
+				if (maxNode) {
+					// may also be activation link
+					if (maxNode.matches('a.skill'))
+						max = Foxtrick.util.id.getSkillLevelFromLink(maxNode);
+				}
+				else if (current) {
+					max = current;
+					maxed = true;
+				}
+
+				skill = { current, max, maxed };
 			}
 
-			skill.top3 = !!rows[i].querySelector('strong.ft-dummy');
+			skill.top3 = !!row.querySelector('strong.ft-dummy');
 
-			var currentText = '';
-			var maxText = '';
-			var bar = skillCell.getElementsByClassName('youthSkillBar')[0];
-			if (bar) {
-				// bar is present
-				// skills could either be a skill or unknown (span.shy)
-				var skillNodes = bar.querySelectorAll('.skill, .shy');
-				if (skillNodes.length > 1) {
-					currentText = skillNodes[0].textContent;
-					maxText = skillNodes[1].textContent;
+			let current = '-';
+			let max = '-';
+			let bar = skillCell.querySelector('.youthSkillBar');
+			if (bar || links.length) {
+				// bar or links are present
+				// skills could either be a skill or unknown (span.shy) or activation link
+				let [currNode, maxNode] = skillCell.querySelectorAll('.shy, a');
+				if (currNode.matches('a.skill'))
+					current = currNode.textContent.trim();
+
+				if (maxNode) {
+					// may also be activation link
+					if (maxNode.matches('a.skill'))
+						max = maxNode.textContent.trim();
+				}
+				else if (current) {
+					max = current;
+				}
+			}
+			else if (hasNewBars) {
+				// new bars
+				let bar = skillCell.querySelector('.ht-bar');
+				let titles = bar ? [...bar.querySelectorAll('td[title]')] : [];
+				if (titles.length) {
+					[current, max] = titles.map(t => t.title);
+					if (titles.length == 1) {
+						if (skill.maxed) {
+							max = current;
+						}
+						else if (skill.max) {
+							max = current;
+							current = '-';
+						}
+						else {
+							max = '-';
+						}
+					}
 				}
 			}
 			else {
 				// no images, the cell says 'unknown'
-				currentText = maxText = skillCell.textContent.trim();
+				current = max = skillCell.textContent.trim();
 			}
-			skillTexts[order[i]] = { current: currentText, max: maxText };
-			skillNames[order[i]] = textCell.textContent.replace(':', '').trim();
+			skills[sType] = skill;
+			skillTexts[sType] = { current, max };
+			skillNames[sType] = textCell.textContent.replace(':', '').trim();
 		}
 	};
+	/* eslint-enable complexity */
+
 	try {
 		parseYouthBars(table);
 	}
@@ -876,6 +960,8 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerid, callback) {
 	if (Foxtrick.Pages.Player.wasFired(doc))
 		return;
 
+	const MAX_CARDS = 3;
+
 	var args = [
 		['file', 'playerdetails'],
 
@@ -884,15 +970,16 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerid, callback) {
 		['version', '2.1'],
 		['playerId', playerid],
 	];
-	Foxtrick.util.api.retrieve(doc, args, { cache_lifetime: 'session' },
-	  function(xml, errorText) {
+	Foxtrick.util.api.retrieve(doc, args, { cache_lifetime: 'session' }, (xml, errorText) => {
 		if (!xml || errorText) {
 			Foxtrick.log(errorText);
 			callback(null);
 			return;
 		}
-		Foxtrick.util.currency.detect(doc).then(function(curr) {
-			var rate = curr.rate;
+		Foxtrick.util.currency.detect(doc).then(function({ rate }) {
+			var node = function(nodeName) {
+				return xml.node(nodeName);
+			};
 			var addProperty = function(player, fn) {
 				return function(name) {
 					var newName, nodeName;
@@ -918,9 +1005,6 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerid, callback) {
 			var money = function(nodeName) {
 				return xml.money(nodeName, rate);
 			};
-			var node = function(nodeName) {
-				return xml.node(nodeName);
-			};
 			var text = function(nodeName) {
 				return xml.text(nodeName);
 			};
@@ -931,7 +1015,8 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerid, callback) {
 				var value = num(nodeName);
 				if (value > 0)
 					return value;
-				return undefined;
+
+				return [][0];
 			};
 
 			var player = {};
@@ -947,9 +1032,8 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerid, callback) {
 				'WingerSkill',
 			];
 			Foxtrick.forEach(addProperty(player.skills, num), skills);
-			for (var skill in player.skills) {
+			for (let skill in player.skills)
 				player[skill] = player.skills[skill];
-			}
 
 			var optionalNums = [
 				'Caps',
@@ -969,6 +1053,7 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerid, callback) {
 				'CareerHattricks',
 				'CupGoals',
 				'Experience',
+
 				// README: version=2.3
 				// 'FriendliesGoals',
 				// README: version=2.7
@@ -1017,18 +1102,20 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerid, callback) {
 			player.ageYears = player.age.years;
 
 			player.yellowCard = xml.num('Cards');
-			if (player.yellowCard == 3) {
+			if (player.yellowCard == MAX_CARDS) {
 				player.yellowCard = 0;
 				player.redCard = 1;
 			}
-			else
+			else {
 				player.redCard = 0;
+			}
+
 			player.cards = player.yellowCard + player.redCard !== 0;
 
 			player.injuredWeeks = xml.num('InjuryLevel');
 			player.bruised = player.injuredWeeks === 0;
 			player.injuredWeeks = Math.max(player.injuredWeeks, 0);
-			player.injured = (player.bruised || player.injuredWeeks !== 0);
+			player.injured = player.bruised || player.injuredWeeks !== 0;
 
 			player.specialtyNumber = xml.num('Specialty');
 			player.specialty = Foxtrick.L10n.getSpecialtyFromNumber(player.specialtyNumber);
@@ -1099,8 +1186,8 @@ Foxtrick.Pages.Player.getContributions = function(playerSkills, playerAttrs, opt
 	if (!playerSkills)
 		return null;
 
-	var doNormal = options ? options.normalise :
-		Foxtrick.Prefs.isModuleOptionEnabled('PlayerPositionsEvaluations', 'Normalised');
+	let ppeNorm = Foxtrick.Prefs.isModuleOptionEnabled('PlayerPositionsEvaluations', 'Normalised');
+	var doNormal = options ? options.normalise : ppeNorm;
 
 	var cntrbMap = Foxtrick.Predict.contributionFactors(params);
 	var skills = Foxtrick.Predict.effectiveSkills(playerSkills, playerAttrs, options);
@@ -1117,9 +1204,8 @@ Foxtrick.Pages.Player.getContributions = function(playerSkills, playerAttrs, opt
 			}
 		}
 
-		if (doNormal) {
+		if (doNormal)
 			score /= sum;
-		}
 
 		var value = parseFloat(score.toFixed(2));
 		cntrbMap[pos] = value;
@@ -1145,10 +1231,11 @@ Foxtrick.Pages.Player.getContributions = function(playerSkills, playerAttrs, opt
  */
 Foxtrick.Pages.Player.getBestPosition = function(contributions) {
 	var max = { position: '', value: 0 };
-	for (var name in contributions)
+	for (let name in contributions) {
 		if (contributions[name] > max.value) {
 			max.position = name;
 			max.value = contributions[name];
 		}
+	}
 	return max;
 };

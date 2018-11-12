@@ -54,40 +54,21 @@ Foxtrick.modules['CopyPlayerAd'] = {
 			if (nationality)
 				ad += Foxtrick.L10n.getString('Nationality') + ': ' + nationality + '\n\n';
 
+			let { isNewDesign, isYouth, table: infoTable } =
+				Foxtrick.Pages.Player.getInfoTable(doc);
+
 			let playerInfo;
-			let { isNewDesign, table: infoTable } = Foxtrick.Pages.Player.getInfoTable(doc);
-			if (isNewDesign) {
-				// because it's hard to use freaking wrappers once in a while /sigh
+			if (isNewDesign || isYouth) {
 				playerInfo = doc.createDocumentFragment();
-				let getClone = (el) => {
-					if (el.nodeName == 'P')
-						return doc.createTextNode('[b]' + el.textContent.trim() + '[/b]');
-					return el.cloneNode(true);
-				};
-
-				let personLinks = Foxtrick.toArray(doc.querySelectorAll('#mainBody > .skill'));
 				let el = byLine.nextElementSibling;
-				if (el && el.matches('p.shy')) {
-					// skip player statement
-					el = el.nextElementSibling.nextElementSibling;
-				}
+				while (el && !el.classList.contains('playerInfo') &&
+				       !el.querySelector('.playerInfo')) {
+					// let text = el.textContent.trim();
+					playerInfo.appendChild(el.cloneNode(true));
+					if (el.nodeName == 'P')
+						playerInfo.appendChild(doc.createTextNode('\n'));
 
-				let end;
-				if (personLinks.length && el && personLinks.includes(el) &&
-				    (end = personLinks[personLinks.length - 1].nextElementSibling) &&
-				    end.nodeName == 'BR') {
-					while (el != end) {
-						playerInfo.appendChild(getClone(el));
-						el = el.nextSibling;
-					}
-					while (end && ['BR', 'TABLE', 'P'].includes(end.nodeName)) {
-						let el = end;
-						end = end.nextElementSibling;
-						while (el && el != end) {
-							playerInfo.appendChild(getClone(el));
-							el = el.nextSibling;
-						}
-					}
+					el = el.nextElementSibling;
 				}
 				playerInfo.appendChild(infoTable.cloneNode(true));
 			}
@@ -100,7 +81,7 @@ Foxtrick.modules['CopyPlayerAd'] = {
 			// (coach), form, stamina, experience, leadership, personality (always there)
 			// for youth players:
 			// specialty (only when he has a specialty)
-			var basicInfo;
+			var basicInfo, specialtyRow;
 			if (isSenior) {
 				// add new lines before <br> so that textContent would have breaks
 				// at <br>s.
@@ -117,20 +98,24 @@ Foxtrick.modules['CopyPlayerAd'] = {
 			}
 			else {
 				// sometime it's a string tag sometimes a paragraph seemingly
-				basicInfo = playerInfo.getElementsByTagName('p')[0] ||
-					playerInfo.getElementsByTagName('strong')[0];
+				basicInfo = playerInfo.querySelector('p') ||
+					playerInfo.querySelector('strong');
+
 				if (basicInfo) {
-					var specialty = basicInfo.textContent.trim();
+					let specialty = basicInfo.textContent.trim();
 
 					// we will bold the specialty part, right after
 					// colon plus space
-					var colonRe = /:\s*/;
-					var colonIndex = specialty.search(colonRe);
-					var colonLength = specialty.match(colonRe)[0].length;
-					var colonEndIdx = colonIndex + colonLength;
+					let colonRe = /:\s*/;
+					let colonIndex = specialty.search(colonRe);
+					let colonLength = specialty.match(colonRe)[0].length;
+					let colonEndIdx = colonIndex + colonLength;
 					ad += specialty.slice(0, colonEndIdx) + '[b]' +
 						specialty.slice(colonEndIdx, colonEndIdx + specialty.length) +
 						'[/b]\n\n';
+				}
+				else {
+					specialtyRow = infoTable.querySelector('tr[id$="trSpeciality"]');
 				}
 			}
 
@@ -138,40 +123,60 @@ Foxtrick.modules['CopyPlayerAd'] = {
 			let tables = Foxtrick.toArray(playerInfo.querySelectorAll('table'));
 			let table = tables.shift();
 			if (table) {
-				for (let r = 0; r < table.rows.length; r++) {
-					ad += table.rows[r].cells[0].textContent.trim() + ' ';
+				for (let [r, row] of [...table.rows].entries()) {
+					let [header, data] = row.cells;
+					ad += header.textContent.trim();
+
+					if (typeof data === 'undefined') {
+						ad += '\n\n'
+						continue;
+					}
 
 					// remove teampopuplinks
 					let teamLink;
-					let cellCopy = table.rows[r].cells[1].cloneNode(true);
+					let cellCopy = data.cloneNode(true);
 					let popupLinks = Foxtrick.toArray(cellCopy.querySelectorAll('a'));
 					if ((teamLink = popupLinks.shift()))
 						teamLink.textContent = '[b]' + teamLink.textContent.trim() + '[/b]';
 
-					for (let l = 0; l < popupLinks.length; l++)
-						popupLinks[l].textContent = '';
+					for (let link of popupLinks)
+						link.textContent = '';
 
 					// bolding for specialty
 					let part = cellCopy.textContent.replace(/\n/g, '').replace(/\s+/g, ' ').trim();
 					if (r === 5)
 						part = '[b]' + part + '[/b]';
-					ad += part + '\n';
+
+					ad += ' ' + part + '\n';
+				}
+				if (specialtyRow) {
+					let [header, data] = specialtyRow.cells;
+					ad += header.textContent.trim();
+					let part = data.textContent.replace(/\n/g, '').replace(/\s+/g, ' ').trim();
+					ad += ' [b]' + part + '[/b]\n';
 				}
 				ad += '\n';
 
-				if ((table = tables.shift())) {
+				if ((table = tables.shift()) && !isYouth) {
 					// ad += '[table]\n';
-					for (let r = 0; r < table.rows.length; r++) {
+					for (let [r, row] of [...table.rows].entries()) {
+						let [header, data] = row.cells;
 						// ad += '[tr][th]';
-						ad += table.rows[r].cells[0].textContent.trim();
+						ad += header.textContent.trim();
 						// ad += '[/th]';
 
-						let copy = table.rows[r].cells[1].cloneNode(true);
+						let copy = data.cloneNode(true);
 						for (let tNode of Foxtrick.getTextNodes(copy)) {
 							let text = tNode.textContent.replace(/\n/g, ' ').replace(/\s+/g, ' ');
+							if (!text.trim()) {
+								tNode.textContent = text;
+								continue;
+							}
+
 							let parent = tNode.parentNode;
 							if (!Foxtrick.hasClass(parent, 'ft-skill') &&
 							    !Foxtrick.hasClass(parent, 'ft-skill-number') &&
+							    parent.id != 'ft_bonuswage' &&
 							    !text.startsWith(' '))
 								text = ' ' + text;
 
@@ -272,18 +277,19 @@ Foxtrick.modules['CopyPlayerAd'] = {
 					}
 					else {
 						ad += '[table]\n';
-						for (let s = 0; s < skillArray.length; ++s) {
+						for (let [s, skill] of skillArray.entries()) {
 							if (s % 2 === 0)
 								ad += '[tr]';
 
-							ad += '[th]' + skillArray[s].name + '[/th]';
-							ad += '[td]' +
-								formatSkill(skillArray[s].text, skillArray[s].value) +
-								'[/td]';
+							ad += '[th]' + skill.name + '[/th]';
+							ad += `[td]${formatSkill(skill.text, skill.value)}[/td]`;
 
 							if (s % 2 == 1)
 								ad += '[/tr]\n';
 						}
+						if (skillArray.length % 2 == 1)
+							ad += '[/tr]\n';
+
 						ad += '[/table]';
 					}
 				}
