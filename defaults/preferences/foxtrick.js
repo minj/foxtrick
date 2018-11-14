@@ -176,6 +176,7 @@ pref("extensions.foxtrick.prefs.module.FriendlyPool.enabled", true);
 pref("extensions.foxtrick.prefs.module.FriendlyPool.ExpandCountrySelection.enabled", true);
 pref("extensions.foxtrick.prefs.module.GoalDifferenceToTables.enabled", true);
 pref("extensions.foxtrick.prefs.module.GoToPostBox.enabled", true);
+pref("extensions.foxtrick.prefs.module.Haruspex.enabled", true);
 pref("extensions.foxtrick.prefs.module.HeaderFix.enabled", false);
 pref("extensions.foxtrick.prefs.module.HeaderFix.FixLeft.enabled", false);
 pref("extensions.foxtrick.prefs.module.HideSignatures.enabled", false);

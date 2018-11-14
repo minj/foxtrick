@@ -182,6 +182,7 @@ FoxtrickFirefox.prototype = {
 		'links/links.js',
 		'matches/att-vs-def.js',
 		'matches/copy-ratings.js',
+		'matches/haruspex-prediction.js',
 		'matches/htms-prediction.js',
 		'matches/live-match-report-format.js',
 		'matches/match-income.js',
