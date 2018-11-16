@@ -270,11 +270,11 @@
 			"code": "ka",
 			"name": "Georgian",
 			"phrases": "2299",
-			"translated": "1606",
+			"translated": "1617",
 			"translated_progress": "52",
 			"words": "16766",
 			"words_approved": "0",
-			"words_translated": "8767"
+			"words_translated": "8829"
 		},
 		{
 			"approved": "15",
@@ -354,11 +354,11 @@
 			"code": "it",
 			"name": "Italian",
 			"phrases": "2299",
-			"translated": "2298",
-			"translated_progress": "99",
+			"translated": "2299",
+			"translated_progress": "100",
 			"words": "16766",
 			"words_approved": "0",
-			"words_translated": "16759"
+			"words_translated": "16766"
 		},
 		{
 			"approved": "0",
@@ -510,11 +510,11 @@
 			"code": "pt-BR",
 			"name": "Portuguese, Brazilian",
 			"phrases": "2299",
-			"translated": "2109",
+			"translated": "2110",
 			"translated_progress": "89",
 			"words": "16766",
 			"words_approved": "1",
-			"words_translated": "14929"
+			"words_translated": "14975"
 		},
 		{
 			"approved": "944",
