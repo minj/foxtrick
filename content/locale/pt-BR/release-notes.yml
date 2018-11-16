@@ -31,6 +31,7 @@ pt-BR:
       spec_info: '<module>SpecialtyInfo</module> mostra uma breve tabela de informação da especialidade tendo clicado num ícone de especialidade.'
       bugs: '<header>Correções de bugs</header>'
       tl_search_form: 'O filtro de forma do Foxtrick em <module>TransferSearchResultFilters</module> não funcionava devido a mudanças do navegador. Isto ocultava todos os jogadores na pesquisa de transferências. O problema deve agora estar corrigido.'
+      divine_skills: 'A adição recente da habilidade lendária+ quebrou essencialmente todos os produtos CHPP devido à negligência do HT. O Foxtrick não foi um exceção à esta regra. Os módulos afetados incluem <module>SkillTable</module>, <module>MatchOrderInterface</module>, <module>HTMSPoints</module>, <module>SkillColoring</module> e outros. Os problemas agora devem ser resolvidos.'
       opera_notifications: 'As notificações do Foxtrick não funcionavam no browser Opera e devem agora estar corrigidas.'
       nt_weather: '<module>MatchWeather</module> não funcionava para jogos da seleção e outros casos. O modulo foi reescrito para corrigir todos os problemas conhecidos.'
       nt_simulator: '<module>MatchSimulator</module> lista de jogos não mostrava os jogos corretos para seleções nacionais. Deve agora estar corrigido.'
