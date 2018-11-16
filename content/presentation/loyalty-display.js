@@ -67,12 +67,14 @@ Foxtrick.modules['LoyaltyDisplay'] = {
 
 				widthAvail -= widthTaken;
 
-				let bonusBar = Foxtrick.createFeaturedElement(doc, module, 'td');
+				let bonusBar = Foxtrick.createFeaturedElement(doc, module, 'div');
 				Foxtrick.addClass(bonusBar, `ft-bar-loyalty`);
+				Foxtrick.addClass(bonusBar, `bar-cap`); //css class from HT
 				bonusBar.style.width = `${widthTaken}px`;
-				bonusBar.title = `+${bonus}\u00a0${l10n}`;
-				maxBar.style.width = `${widthAvail}px`;
-				Foxtrick.insertBefore(bonusBar, maxBar);
+				bonusBar.title = `+${bonus}\u00a0${l10n}`;				
+				bonusBar.innerHTML = bar.querySelector(".bar-denomination").innerHTML;
+				//maxBar.style.width = `${widthAvail}px`;
+				Foxtrick.insertAfter(bonusBar, maxBar);
 			}
 		}
 		else {

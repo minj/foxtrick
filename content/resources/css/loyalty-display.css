@@ -1,5 +1,12 @@
-.ht-bar td.ft-bar-loyalty {
+.ht-bar div.ft-bar-loyalty {
 	background-color: hsl(34, 97%, 46%);
+	height: 12px;
+	line-height: 11px;
+    font-size: 9px;
+	margin-left: 2px;
+	color: #fff;
+	top: 0;
+	left: 0;
 }
 
 .ft-percentImage {
