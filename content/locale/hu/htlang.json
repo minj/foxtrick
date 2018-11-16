@@ -316,7 +316,12 @@
 			"146": "Kamerun",
 			"147": "Kuba",
 			"148": "Palesztina",
+			"149": "São Tomé és Príncipe",
 			"15": "Óceánia",
+			"151": "Comore-szigetek",
+			"152": "Srí Lanka",
+			"153": "Curaçao",
+			"154": "Guam",
 			"16": "Brazília",
 			"17": "Kanada",
 			"18": "Chile",
@@ -627,7 +632,7 @@
 			},
 			{
 				"type": "Regainer",
-				"value": "Szívós"
+				"value": "Ellenálló"
 			}
 		],
 		"spirit": [

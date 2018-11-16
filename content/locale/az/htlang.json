@@ -316,7 +316,12 @@
 			"146": "Kamerun",
 			"147": "Kuba",
 			"148": "Fələstin",
+			"149": "São Tomé e Príncipe",
 			"15": "Okeaniya",
+			"151": "Comoros",
+			"152": "Sri Lanka",
+			"153": "Curaçao",
+			"154": "Guam",
 			"16": "Braziliya",
 			"17": "Kanada",
 			"18": "Çili",
@@ -627,7 +632,7 @@
 			},
 			{
 				"type": "Regainer",
-				"value": "Tez sağalan"
+				"value": "Elastik"
 			}
 		],
 		"spirit": [

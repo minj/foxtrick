@@ -316,7 +316,12 @@
 			"146": "Camerun",
 			"147": "Cuba",
 			"148": "Palestina",
+			"149": "São Tomé i Príncipe",
 			"15": "Oceania",
+			"151": "Comores",
+			"152": "Sri Lanka",
+			"153": "Curaçao",
+			"154": "Guam",
 			"16": "Brasil",
 			"17": "Canadà",
 			"18": "Xile",
@@ -627,7 +632,7 @@
 			},
 			{
 				"type": "Regainer",
-				"value": "Cura ràpida"
+				"value": "Resilent"
 			}
 		],
 		"spirit": [

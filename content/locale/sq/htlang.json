@@ -211,7 +211,7 @@
 				"value": "0"
 			},
 			{
-				"text": "Ç'do ditë në këtë divizion është dhuratë",
+				"text": "Çdo ditë në këtë divizion është dhuratë",
 				"value": "1"
 			},
 			{
@@ -219,11 +219,11 @@
 				"value": "2"
 			},
 			{
-				"text": "Një vënd në mesin e tabelës është mirë",
+				"text": "Një vend në mesin e tabelës është mirë",
 				"value": "3"
 			},
 			{
-				"text": "Jemi për 4 vëndet e para",
+				"text": "Jemi për 4 vendet e para",
 				"value": "4"
 			},
 			{
@@ -316,7 +316,12 @@
 			"146": "Kameruni",
 			"147": "Kuba",
 			"148": "Palestina",
+			"149": "São Tomé e Príncipe",
 			"15": "Oqeania",
+			"151": "Comoros",
+			"152": "Sri Lanka",
+			"153": "Curaçao",
+			"154": "Guam",
 			"16": "Brazili",
 			"17": "Kanada",
 			"18": "Kili",
@@ -565,7 +570,7 @@
 			},
 			{
 				"type": "Stamina",
-				"value": "Rrezistenca"
+				"value": "Rezistenca"
 			},
 			{
 				"type": "Defender",
@@ -733,7 +738,7 @@
 			},
 			{
 				"type": "aim",
-				"value": "Sulmoni në Qëndër"
+				"value": "Sulmoni në Qendër"
 			},
 			{
 				"type": "aow",
