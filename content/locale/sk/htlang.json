@@ -316,7 +316,12 @@
 			"146": "Kamerun",
 			"147": "Kuba",
 			"148": "Palestína",
+			"149": "Svätý Tomáš a Princov ostrov",
 			"15": "Oceánia",
+			"151": "Komorské ostrovy",
+			"152": "Srí Lanka",
+			"153": "Curacao",
+			"154": "Guam",
 			"16": "Brazília",
 			"17": "Kanada",
 			"18": "Čile",
@@ -627,7 +632,7 @@
 			},
 			{
 				"type": "Regainer",
-				"value": "Nezmar"
+				"value": "Húževnatý"
 			}
 		],
 		"spirit": [

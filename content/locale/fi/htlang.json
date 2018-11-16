@@ -316,7 +316,12 @@
 			"146": "Kamerun",
 			"147": "Kuuba",
 			"148": "Palestiina",
+			"149": "São Tomé ja Príncipe",
 			"15": "Oseania",
+			"151": "Komorit",
+			"152": "Sri Lanka",
+			"153": "Curaçao",
+			"154": "Guam",
 			"16": "Brasilia",
 			"17": "Kanada",
 			"18": "Chile",
@@ -627,7 +632,7 @@
 			},
 			{
 				"type": "Regainer",
-				"value": "Toipuja"
+				"value": "Peräänantamaton"
 			}
 		],
 		"spirit": [

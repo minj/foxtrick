@@ -316,7 +316,12 @@
 			"146": "Kameroen",
 			"147": "Kuba",
 			"148": "Palestina",
+			"149": "São Tomé e Príncipe",
 			"15": "Oseaanje",
+			"151": "Comoros",
+			"152": "Sri Lanka",
+			"153": "Curaçao",
+			"154": "Guam",
 			"16": "Brazylje",
 			"17": "Kanada",
 			"18": "Sily",
@@ -627,7 +632,7 @@
 			},
 			{
 				"type": "Regainer",
-				"value": "Snelle hersteller"
+				"value": "Fearkrêftich"
 			}
 		],
 		"spirit": [

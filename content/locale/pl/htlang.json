@@ -316,7 +316,12 @@
 			"146": "Kamerun",
 			"147": "Kuba",
 			"148": "Palestyna",
+			"149": "Wyspy Św. Tomasza i Książęca",
 			"15": "Oceania",
+			"151": "Komory",
+			"152": "Sri Lanka",
+			"153": "Curaçao",
+			"154": "Guam",
 			"16": "Brazylia",
 			"17": "Kanada",
 			"18": "Chile",
@@ -759,55 +764,55 @@
 		"training": [
 			{
 				"type": "Gen",
-				"value": "ogólny (forma)"
+				"value": "Ogólny (forma)"
 			},
 			{
 				"type": "Sta",
-				"value": "kondycja"
+				"value": "Kondycja"
 			},
 			{
 				"type": "SP",
-				"value": "stałe fragmenty"
+				"value": "Stałe fragmenty"
 			},
 			{
 				"type": "Def",
-				"value": "defensywa"
+				"value": "Defensywa"
 			},
 			{
 				"type": "Sco",
-				"value": "skuteczność"
+				"value": "Skuteczność"
 			},
 			{
 				"type": "Cross",
-				"value": "dośrodkowania"
+				"value": "Dośrodkowania"
 			},
 			{
 				"type": "Shoot",
-				"value": "strzelecki"
+				"value": "Strzelecki"
 			},
 			{
 				"type": "Pass",
-				"value": "krótkie podania"
+				"value": "Krótkie podania"
 			},
 			{
 				"type": "PM",
-				"value": "rozgrywanie"
+				"value": "Rozgrywanie"
 			},
 			{
 				"type": "GK",
-				"value": "bramkarski"
+				"value": "Bramkarski"
 			},
 			{
 				"type": "ThPass",
-				"value": "prostopadłe podania"
+				"value": "Prostopadłe podania"
 			},
 			{
 				"type": "DefPos",
-				"value": "postawa obronna"
+				"value": "Postawa obronna"
 			},
 			{
 				"type": "WingAtt",
-				"value": "atak skrzydłem"
+				"value": "Atak skrzydłem"
 			},
 			{
 				"type": "Indiv",

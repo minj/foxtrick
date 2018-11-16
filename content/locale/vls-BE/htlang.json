@@ -316,7 +316,12 @@
 			"146": "Kameroen",
 			"147": "Cuba",
 			"148": "Palestina",
+			"149": "São Tomé en Principe",
 			"15": "Oceanië",
+			"151": "Comoros",
+			"152": "Sri Lanka",
+			"153": "Curaçao",
+			"154": "Guam",
 			"16": "Brazilië",
 			"17": "Canada",
 			"18": "Chili",
@@ -627,7 +632,7 @@
 			},
 			{
 				"type": "Regainer",
-				"value": "Kwikzalver"
+				"value": "Veerkrachtig"
 			}
 		],
 		"spirit": [

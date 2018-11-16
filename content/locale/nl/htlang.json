@@ -316,7 +316,12 @@
 			"146": "Kameroen",
 			"147": "Cuba",
 			"148": "Palestina",
+			"149": "São Tomé en Príncipe",
 			"15": "Oceanië",
+			"151": "Comoren",
+			"152": "Sri Lanka",
+			"153": "Curaçao",
+			"154": "Guam",
 			"16": "Brazilië",
 			"17": "Canada",
 			"18": "Chili",
@@ -585,7 +590,7 @@
 			},
 			{
 				"type": "Kicker",
-				"value": "Spelhervatting"
+				"value": "Spelhervattingen"
 			},
 			{
 				"type": "Passer",
@@ -627,7 +632,7 @@
 			},
 			{
 				"type": "Regainer",
-				"value": "Snel herstel"
+				"value": "Vitaal"
 			}
 		],
 		"spirit": [
@@ -759,59 +764,59 @@
 		"training": [
 			{
 				"type": "Gen",
-				"value": "algemeen (vorm)"
+				"value": "Algemeen (vorm)"
 			},
 			{
 				"type": "Sta",
-				"value": "conditie"
+				"value": "Conditie"
 			},
 			{
 				"type": "SP",
-				"value": "spelhervattingen"
+				"value": "Spelhervattingen"
 			},
 			{
 				"type": "Def",
-				"value": "verdedigen"
+				"value": "Verdedigen"
 			},
 			{
 				"type": "Sco",
-				"value": "scoren"
+				"value": "Scoren"
 			},
 			{
 				"type": "Cross",
-				"value": "vleugelspel"
+				"value": "Vleugelspel"
 			},
 			{
 				"type": "Shoot",
-				"value": "schieten"
+				"value": "Schieten"
 			},
 			{
 				"type": "Pass",
-				"value": "korte pass"
+				"value": "Korte pass"
 			},
 			{
 				"type": "PM",
-				"value": "positiespel"
+				"value": "Positiespel"
 			},
 			{
 				"type": "GK",
-				"value": "keepen"
+				"value": "Keepen"
 			},
 			{
 				"type": "ThPass",
-				"value": "openingen maken"
+				"value": "Openingen maken"
 			},
 			{
 				"type": "DefPos",
-				"value": "controlerend spel"
+				"value": "Controlerend spel"
 			},
 			{
 				"type": "WingAtt",
-				"value": "vleugelaanval"
+				"value": "Vleugelaanval"
 			},
 			{
 				"type": "Indiv",
-				"value": "individueel"
+				"value": "Individueel"
 			}
 		]
 	}

@@ -316,7 +316,12 @@
 			"146": "Camerún",
 			"147": "Cuba",
 			"148": "Palestina",
+			"149": "Santo Tomé e Príncipe",
 			"15": "Oceanía",
+			"151": "Comores",
+			"152": "Sri Lanka",
+			"153": "Curaçao",
+			"154": "Guam",
 			"16": "Brasil",
 			"17": "Canadá",
 			"18": "Chile",
@@ -627,7 +632,7 @@
 			},
 			{
 				"type": "Regainer",
-				"value": "Recuperador"
+				"value": "Rochoso"
 			}
 		],
 		"spirit": [

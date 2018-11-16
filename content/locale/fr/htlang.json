@@ -291,7 +291,7 @@
 			"122": "Arménie",
 			"123": "Bahreïn",
 			"124": "La Barbade",
-			"125": "Cap Vert",
+			"125": "Cap-Vert",
 			"126": "Côte d’Ivoire",
 			"127": "Koweït",
 			"128": "Irak",
@@ -316,7 +316,12 @@
 			"146": "Cameroun",
 			"147": "Cuba",
 			"148": "Palestine",
+			"149": "Sao Tomé-et-Principe",
 			"15": "Océanie",
+			"151": "Comores",
+			"152": "Sri Lanka",
+			"153": "Curaçao",
+			"154": "Guam",
 			"16": "Brésil",
 			"17": "Canada",
 			"18": "Chili",
@@ -388,7 +393,7 @@
 			"88": "République dominicaine",
 			"89": "Chypre",
 			"9": "Norvège",
-			"91": "Belarus",
+			"91": "Bélarus",
 			"93": "Irlande du Nord",
 			"94": "Jamaïque",
 			"95": "Kenya",
@@ -627,7 +632,7 @@
 			},
 			{
 				"type": "Regainer",
-				"value": "Guérison accélérée"
+				"value": "Résistant"
 			}
 		],
 		"spirit": [
