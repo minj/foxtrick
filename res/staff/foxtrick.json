@@ -46,6 +46,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "10330011",
+			"name": "holyoli"
+		},
+		{
+			"duty": "supporter",
 			"id": "10344768",
 			"name": "raetselecke"
 		},
@@ -498,6 +503,11 @@
 			"duty": "supporter",
 			"id": "12990065",
 			"name": "Lion_Holland"
+		},
+		{
+			"duty": "supporter",
+			"id": "13001247",
+			"name": "blu50_"
 		},
 		{
 			"duty": "supporter",
