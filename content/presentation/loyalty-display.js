@@ -58,22 +58,22 @@ Foxtrick.modules['LoyaltyDisplay'] = {
 
 				let maxBar = bar.querySelector('.bar-max');
 				let widthTotal = bar.getBoundingClientRect().width;
-				let widthAvail = maxBar.getBoundingClientRect().width;
-				let widthUsed = widthTotal - widthAvail;
 				let widthNeeded = Math.round(val / max * widthTotal);
-				let widthTaken = widthNeeded - widthUsed;
-				if (!widthTaken)
-					return;
 
-				widthAvail -= widthTaken;
+				// let widthAvail = maxBar.getBoundingClientRect().width;
+				// let widthUsed = widthTotal - widthAvail;
+				// let widthTaken = widthNeeded - widthUsed;
+				// if (!widthTaken)
+				// 	return;
+				// widthAvail -= widthTaken;
 
 				let bonusBar = Foxtrick.createFeaturedElement(doc, module, 'div');
-				Foxtrick.addClass(bonusBar, `ft-bar-loyalty`);
-				Foxtrick.addClass(bonusBar, `bar-cap`); //css class from HT
-				bonusBar.style.width = `${widthTaken}px`;
-				bonusBar.title = `+${bonus}\u00a0${l10n}`;				
-				bonusBar.innerHTML = bar.querySelector(".bar-denomination").innerHTML;
-				//maxBar.style.width = `${widthAvail}px`;
+				Foxtrick.addClass(bonusBar, `bar-level ft-bar-loyalty`);
+				bonusBar.style.width = `${widthNeeded}px`;
+				bonusBar.title = `+${bonus}\u00a0${l10n}`;
+				let contents = bonusBar.appendChild(doc.createElement('span'));
+				contents.clasName = 'bar-denomination';
+
 				Foxtrick.insertAfter(bonusBar, maxBar);
 			}
 		}
