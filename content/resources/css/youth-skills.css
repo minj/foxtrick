@@ -9,23 +9,19 @@
 	text-decoration: underline;
 }
 
-/* .ht-bar td.bar-cap {
+/* .ht-bar .bar-cap {
 	background-color: hsl(88, calc(32/256*100%), calc(224/256*100%));
 } */
-.ht-bar td {
-	padding-right: 0;
-	padding-left: 0;
-}
-.ht-bar td.ft-bar-hy-pot-pred {
+.ht-bar .ft-bar-hy-pot-pred {
 	background-color: hsl(0, 100%, calc(240/256*100%));
 }
-.ht-bar td.ft-bar-hy-pot {
+.ht-bar .ft-bar-hy-pot {
 	background-color: hsl(0, 100%, calc(208/256*100%));
 }
-.ht-bar td.ft-bar-hy-pred {
+.ht-bar .ft-bar-hy-pred {
 	background-color: hsl(0, 100%, calc(160/256*100%));
 }
-.ht-bar td.ft-bar-hy-cur {
+.ht-bar .ft-bar-hy-cur {
 	background-color: hsl(0, 100%, calc(112/256*100%));
 }
 
