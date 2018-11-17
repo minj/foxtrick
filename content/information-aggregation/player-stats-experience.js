@@ -183,7 +183,7 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 				var matchDate = statsRows[i].querySelector('td.keyColumn');
 				if (matchDate) {
 					let dateSpan = matchDate.querySelector('span.float_left');
-					let dateStr = dateSpan.dataset.title;
+					let dateStr = dateSpan.title || dateSpan.dataset.dateiso;
 					var date = Foxtrick.util.time.getDateFromText(dateStr);
 
 					// current skilllevel
