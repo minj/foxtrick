@@ -131,7 +131,7 @@ Foxtrick.modules['HTMSPrediction'] = {
 		cell.style.width = '160px';
 		cell.textContent = Foxtrick.L10n.getString('HTMSPrediction.prediction');
 
-		let url = 'http://www.fantamondi.it/HTMS/dorequest.php?action=predict&' + params;
+		var url = 'http://www.fantamondi.it/HTMS/dorequest.php?action=predict&' + params;
 		Foxtrick.load(url).then(function(text) {
 			var xml = Foxtrick.parseXML(text);
 			if (xml == null)
@@ -206,6 +206,25 @@ Foxtrick.modules['HTMSPrediction'] = {
 			cell = row.insertCell();
 			cell.textContent = lossprob;
 			cell.className = 'right';
+		}, (er) => {
+
+			if (!loading) {
+				Foxtrick.log(er);
+				return;
+			}
+			loading.textContent = '';
+			let p = loading.appendChild(doc.createElement('p'));
+			p.textContent = `There appears to be a problem with the HTMS prediction service.
+				This is not likely something Foxtrick developers can fix.`;
+
+			p = loading.appendChild(doc.createElement('p'));
+			p.textContent = `Try opening the `;
+			let a = p.appendChild(doc.createElement('a'));
+			a.target = '_blank';
+			a.href = url;
+			a.textContent = 'prediction result';
+			p.appendChild(doc.createTextNode(' manually'));
+
 		}).catch(Foxtrick.catch(module));
 
 		var p = doc.createElement('p');
