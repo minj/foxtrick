@@ -8,8 +8,12 @@ hr:
     0.17.0.1:
       important: '<header>Važne obavijesti</header>'
       safari_cert: 'U potrazi smo za nekim u Hattrick zajednici tko razvija aplikacije za iOS ili OSX kako bi pomogao obnoviti Foxtrick podršku za Safari korisnike. Pogledajte našu <linkSafariCertBug> listu problema </linkSafariCertBug> za više informacija.'
+      beta: 'Molimo razmislite o korištenju <linkFTBeta>Foxtrick beta</linkFTBeta> kako biste ranije dobili nove značajke, utjecali na njihov razvoj i pomogli u pronalaženju i popravljanju bilo kakvih problema koji mogu nastati.'
       support: '<header>Sviđa Vam se što radimo? Molim Vas da <linkContribute>podržite Foxtrick</linkContribute>.</header>'
       bugs: '<header>Popravljene greške</header>'
+      android: 'Foxtrick ne radi na Androidu zbog promjena od strane Mozille.'
+      filters: '<module>Filteri</module> modul ne radi nakon promjena na jezgri Foxtricka.'
+      simulator_hs: '<module>MatchSimulator</module> je koristio pogrešne oznake podrazina vještina za izračunate ocjene, u suprotnosti s izračunanim vrijednostima HatStats.'
       other: '<header>Druge promjene</header>'
       and_more: 'Razne druge male promjene i popravci.'
     0.17.0:
