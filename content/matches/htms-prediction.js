@@ -28,6 +28,7 @@ Foxtrick.modules['HTMSPrediction'] = {
 	                           rattack, cattack, lattack, tactics, tacticsLevel, teams) {
 
 		var module = this;
+		const HTMS_PATH = 'http://www.fantamondi.it/HTMS';
 		var loading = Foxtrick.util.note.createLoading(doc);
 		targetNode.appendChild(loading);
 
@@ -131,7 +132,7 @@ Foxtrick.modules['HTMSPrediction'] = {
 		cell.style.width = '160px';
 		cell.textContent = Foxtrick.L10n.getString('HTMSPrediction.prediction');
 
-		var url = 'http://www.fantamondi.it/HTMS/dorequest.php?action=predict&' + params;
+		var url = `${HTMS_PATH}/dorequest.php?action=predict&${params}`;
 		Foxtrick.load(url).then(function(text) {
 			var xml = Foxtrick.parseXML(text);
 			if (xml == null)
@@ -208,22 +209,38 @@ Foxtrick.modules['HTMSPrediction'] = {
 			cell.className = 'right';
 		}, (er) => {
 
-			if (!loading) {
-				Foxtrick.log(er);
-				return;
-			}
-			loading.textContent = '';
-			let p = loading.appendChild(doc.createElement('p'));
-			p.textContent = `There appears to be a problem with the HTMS prediction service.
-				This is not likely something Foxtrick developers can fix.`;
+			Foxtrick.log(er);
+			if (loading)
+				loading.remove();
 
-			p = loading.appendChild(doc.createElement('p'));
-			p.textContent = `Try opening the `;
+			let htmsTable = doc.getElementById('ft-htmstable');
+			if (!htmsTable)
+				return;
+
+			let div = doc.createElement('div');
+			let p = div.appendChild(doc.createElement('p'));
+			p.textContent = 'There appears to be a problem with the ';
+
 			let a = p.appendChild(doc.createElement('a'));
+			a.target = '_blank';
+			a.href = HTMS_PATH;
+			a.textContent = 'HTMS prediction service';
+			let end = '. This is not likely something Foxtrick developers can fix.';
+			p.appendChild(doc.createTextNode(end));
+
+			p = div.appendChild(doc.createElement('p'));
+			p.textContent = `Try opening the `;
+			a = p.appendChild(doc.createElement('a'));
 			a.target = '_blank';
 			a.href = url;
 			a.textContent = 'prediction result';
 			p.appendChild(doc.createTextNode(' manually'));
+
+			let changePred = htmsTable.nextElementSibling;
+			if (changePred)
+				changePred.remove();
+
+			htmsTable.parentNode.replaceChild(div, htmsTable);
 
 		}).catch(Foxtrick.catch(module));
 
