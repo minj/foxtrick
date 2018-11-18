@@ -72,7 +72,8 @@ Foxtrick.modules['LoyaltyDisplay'] = {
 				bonusBar.style.width = `${widthNeeded}px`;
 				bonusBar.title = `+${bonus}\u00a0${l10n}`;
 				let contents = bonusBar.appendChild(doc.createElement('span'));
-				contents.clasName = 'bar-denomination';
+				contents.className = 'bar-denomination';
+				contents.textContent = maxBar.textContent;
 
 				Foxtrick.insertAfter(bonusBar, maxBar);
 			}
