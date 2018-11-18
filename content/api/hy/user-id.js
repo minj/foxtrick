@@ -1,15 +1,5 @@
-'use strict';
-
-if (!Foxtrick)
-	var Foxtrick = {};
-if (!Foxtrick.api)
-	Foxtrick.api = {};
-if (!Foxtrick.api.hy)
-	Foxtrick.api.hy = {};
-if (!Foxtrick.api.hy.URL)
-	Foxtrick.api.hy.URL = {};
-
-/* user-id.js
+/**
+ * user-id.js
  * Functions working the HY userId API supplied by HY.
  * @author LA-MJ, HY backend/API by MackShot
  *
@@ -30,9 +20,23 @@ if (!Foxtrick.api.hy.URL)
  *			HY user ID or -1 if not a HY user
  */
 
+'use strict';
 
-Foxtrick.api.hy.URL['userId'] = 'https://www.hattrick-youthclub.org' +
+/* eslint-disable */
+if (!this.Foxtrick)
+	var Foxtrick = {};
+/* eslint-enable */
+
+if (!Foxtrick.api)
+	Foxtrick.api = {};
+if (!Foxtrick.api.hy)
+	Foxtrick.api.hy = {};
+if (!Foxtrick.api.hy.URL)
+	Foxtrick.api.hy.URL = {};
+
+Foxtrick.api.hy.URL.userId = 'https://www.hattrick-youthclub.org' +
 	'/_data_provider/foxtrick/userId';
+
 /**
  * Check if the id could be userId
  * @param	{Integer}	userId	Id to check

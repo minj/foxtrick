@@ -1,4 +1,4 @@
-/*
+/**
 * entry.js
 * Entry point of Foxtrick modules
 * @author ryanli, convincedd, LA-MJ
@@ -7,8 +7,8 @@
 'use strict';
 
 /* eslint-disable */
-if (!Foxtrick)
-	var Foxtrick = {}; // jshint ignore:line
+if (!this.Foxtrick)
+	var Foxtrick = {};
 /* eslint-enable */
 
 Foxtrick.entry = {};

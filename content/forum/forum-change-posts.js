@@ -1,14 +1,17 @@
-'use strict';
 /**
 * forum-change-posts.js
 * Foxtrick Copies post id to clipboard
 * @author convinced
 */
 
+'use strict';
+
 Foxtrick.modules['ForumChangePosts'] = {
 	CORE_MODULE: true,
 	PAGES: ['forumViewThread'],
 	CSS: Foxtrick.InternalPath + 'resources/css/forum-change-post.css',
+
+	/* eslint-disable complexity */
 
 	run: function(doc) {
 		var addCopyPostId = function(idLink) {
@@ -433,7 +436,8 @@ Foxtrick.modules['ForumChangePosts'] = {
 							 && header_left_link.parentNode.tagName != 'LI') { //skip popup-links
 						poster_link1 = header_left_link;
 
-						poster_id1 = poster_link1.href.replace(/\&browseIds.+/, '').match(/\d+$/);
+						let url = poster_link1.href.replace(/\&browseIds.+/, '');
+						poster_id1 = url.match(/\d+$/); // lgtm[js/useless-assignment-to-local]
 
 						if (header_left_links[k]
 							&& header_left_links[k].href.search(/Supporter/i) != -1) {
@@ -447,7 +451,9 @@ Foxtrick.modules['ForumChangePosts'] = {
 					else if (header_left_link.href.search(/Club\/Manager\/\?userId=/i) != -1
 							 && header_left_link.parentNode.tagName != 'LI') { //skip popup-links
 						poster_link2 = header_left_link;
-						poster_id2 = poster_link2.href.replace(/\&browseIds.+/, '').match(/\d+$/);
+
+						let url = poster_link2.href.replace(/\&browseIds.+/, '');
+						poster_id2 = url.match(/\d+$/); // lgtm[js/useless-assignment-to-local]
 						if (header_left_links[k]
 							&& header_left_links[k].href.search(/Supporter/i) != -1) {
 							supporter_link2 = header_left_links[k];
@@ -462,44 +468,58 @@ Foxtrick.modules['ForumChangePosts'] = {
 
 			// get user, user_info, user_avater: all maybe = null !!!
 			var user = null;
-			var user_avatar = null;
-			var user_info = null;
-			var message = null;
+			var userAvatar = null;
+			var userInfo = null;
+			var message = null; // eslint-disable-line no-unused-vars
 			var footer = null;
 
 			var divs = wrapper.getElementsByTagName('div');
-			var k = 2, div;
-			while (div = divs[++k]) {
-				if (div.className == 'cfUser') user = div;
-				else if (div.className == 'cfUserInfo') user_info = div;
-				else if (div.className == 'faceCard') user_avatar = div;
-				else if (div.className == 'cfMessage') message = div;
-				else if (div.className == 'cfFooter') footer = div;
+			for (let div of divs) {
+				switch (div.className) {
+					case 'cfUser':
+						user = div;
+						break;
+					case 'cfUserInfo':
+						userInfo = div;
+						break;
+					case 'faceCard':
+						userAvatar = div;
+						break;
+					case 'cfMessage':
+						message = div; // lgtm[js/useless-assignment-to-local]
+						break;
+					case 'cfFooter':
+						footer = div;
+						break;
+					default:
+						break;
+				}
 			}
 
 			// get info & nodes from user_info
-			var teamid = null;
-			var teamname = null;
-			var seriesId = null;
+			var teamId = null;
+			var teamName = null;
+			var seriesId = null; // eslint-disable-line no-unused-vars
 			var countryLink = null;
 			var seriesLinkUserInfo = null;
-			if (user_info) {
-				var user_info_links = user_info.getElementsByTagName('a');
-				var k = 0, user_info_link;
-				while (user_info_link = user_info_links[++k]) {
-					if (user_info_link.href.search(/teamid=/i) != -1) {
-						var teamid = user_info_link.href.match(/\d+$/);
-						var teamname = user_info_link.textContent;
+			if (userInfo) {
+				var userInfoLinks = userInfo.getElementsByTagName('a');
+				for (let userInfoLink of userInfoLinks) {
+					if (userInfoLink.href.search(/teamid=/i) != -1) {
+						teamId = userInfoLink.href.match(/\d+$/);
+						teamName = userInfoLink.textContent;
+
 						// set some info used for teampopup
-						poster_link1.setAttribute('teamid', teamid);
-						poster_link1.setAttribute('teamname', teamname);
+						poster_link1.setAttribute('teamid', teamId);
+						poster_link1.setAttribute('teamname', teamName);
 					}
-					if (user_info_link.href.search(/LeagueID=/i) != -1) {
-							countryLink = user_info_link;
-					} else if (user_info_link.href.search(/LeagueLevelUnitID=/i) != -1) {
-							seriesLinkUserInfo = user_info_link;
-							seriesId =
-								Foxtrick.util.id.getLeagueLeveUnitIdFromUrl(user_info_link.href);
+					if (userInfoLink.href.search(/LeagueID=/i) != -1) {
+						countryLink = userInfoLink;
+					}
+					else if (userInfoLink.href.search(/LeagueLevelUnitID=/i) != -1) {
+						seriesLinkUserInfo = userInfoLink;
+						seriesId = // lgtm[js/useless-assignment-to-local]
+							Foxtrick.util.id.getLeagueLeveUnitIdFromUrl(userInfoLink.href);
 					}
 				}
 			} // get user info
@@ -673,12 +693,12 @@ Foxtrick.modules['ForumChangePosts'] = {
 			// end single header line
 
 			// add default facecard ----------------------------
-			if (do_default_facecard && user && !user_avatar) {
-				var user_avatar = Foxtrick
+			if (do_default_facecard && user && !userAvatar) {
+				var userAvatar = Foxtrick
 					.createFeaturedElement(doc, Foxtrick.modules.AddDefaultFaceCard, 'div');
-				user_avatar.className = 'faceCard';
-				user_avatar.style.backgroundImage = "url('/Img/Avatar/silhouettes/sil1.png')";
-				user.insertBefore(user_avatar, user.firstChild);
+				userAvatar.className = 'faceCard';
+				userAvatar.style.backgroundImage = "url('/Img/Avatar/silhouettes/sil1.png')";
+				user.insertBefore(userAvatar, user.firstChild);
 			}
 
 			++num_wrapper;

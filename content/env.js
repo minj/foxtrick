@@ -1,16 +1,19 @@
-'use strict';
 /**
  * env.js
  * Foxtrick environment
  * @author convinced, LA-MJ
  */
 
+'use strict';
+
+/* eslint-disable */
+if (!this.Foxtrick)
+	var Foxtrick = {};
+/* eslint-enable */
+
 /* globals Components, Services, BrowserApp */
 /* globals addMessageListener, removeMessageListener, messageManager, sendAsyncMessage */
 /* globals safari, chrome */
-
-if (!Foxtrick)
-	var Foxtrick = {}; // jshint ignore:line
 
 /**
  * Browser architecture: Sandboxed|Gecko.

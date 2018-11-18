@@ -1,10 +1,10 @@
-'use strict';
 /**
  * mobile-enhancements.js
  * Collection of enhancements using mobile device/fennec
  * @author convinced
  */
 
+'use strict';
 
 //if (Foxtrick.platform == 'Android')
 Foxtrick.modules['MobileEnhancements'] = {
@@ -47,7 +47,7 @@ Foxtrick.modules['MobileEnhancements'] = {
 			menu_hide();
 
 			if (area == 'left' && lb) {
-				if (lb)
+				// if (lb)
 					Foxtrick.removeClass(lb, 'out');
 				if (rb)
 					Foxtrick.addClass(rb, 'out');
@@ -55,7 +55,7 @@ Foxtrick.modules['MobileEnhancements'] = {
 					Foxtrick.addClass(header, 'out');
 			}
 			else if (area == 'right' && rb) {
-				if (rb)
+				// if (rb)
 					Foxtrick.removeClass(rb, 'out');
 				if (lb)
 					Foxtrick.addClass(lb, 'out');

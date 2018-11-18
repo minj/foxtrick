@@ -1,12 +1,10 @@
-'use strict';
 /**
  * player-positions-evaluations.js
  * Compute and display player evaluation value for each position
  * @author Greblys, LA-MJ
  */
 
-if (!Foxtrick)
-	var Foxtrick = {};
+'use strict';
 
 Foxtrick.modules['PlayerPositionsEvaluations'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,

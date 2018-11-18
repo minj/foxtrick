@@ -1,13 +1,17 @@
-'use strict';
-/*
+/**
  * notify.js
  * Utilities for creating a notification
  *
  * @author ryanli, convincedd, LA-MJ
  */
 
-if (!Foxtrick)
-	var Foxtrick = {}; // jshint ignore: line
+'use strict';
+
+/* eslint-disable */
+if (!this.Foxtrick)
+	var Foxtrick = {};
+/* eslint-enable */
+
 if (!Foxtrick.util)
 	Foxtrick.util = {};
 

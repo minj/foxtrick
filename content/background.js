@@ -1,5 +1,4 @@
-'use strict';
-/*
+/**
  * background.js
  *
  * Foxtrick background loader for Sandboxed arch and Fennec
@@ -8,10 +7,14 @@
  * @author ryanli, convincedd, LA-MJ
  */
 
-/* global Browser */
+'use strict';
 
-if (!Foxtrick)
-	var Foxtrick = {}; // jshint ignore:line
+/* eslint-disable */
+if (!this.Foxtrick)
+	var Foxtrick = {};
+/* eslint-enable */
+
+/* global Browser */
 
 if (!Foxtrick.loader)
 	Foxtrick.loader = {};

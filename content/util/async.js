@@ -1,5 +1,4 @@
-'use strict';
-/*
+/**
 * async.js
 *
 * Utilities for asynchronous operations
@@ -7,9 +6,12 @@
 * @author LA-MJ
 */
 
-if (!Foxtrick)
-	var Foxtrick = {}; // jshint ignore:line
+'use strict';
 
+/* eslint-disable */
+if (!this.Foxtrick)
+	var Foxtrick = {};
+/* eslint-enable */
 
 // callbacks -> Promises
 // return new Promise(function(resolve, reject) {

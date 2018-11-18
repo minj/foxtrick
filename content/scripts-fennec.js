@@ -1,15 +1,19 @@
-'use strict';
-/*
+/**
  * scripts-fennec.js
  * content script inject for fennec
  *
  * @author convincedd, CatzHoek, LA-MJ
  */
 
+'use strict';
+
+/* eslint-disable */
+if (!this.Foxtrick)
+	var Foxtrick = {};
+/* eslint-enable */
+
 /* global FOXTRICK_PATH, FOXTRICK_RUNTIME */
 
-if (!Foxtrick)
-	var Foxtrick = {}; // jshint ignore:line
 if (!Foxtrick.loader)
 	Foxtrick.loader = {};
 if (!Foxtrick.loader.background)

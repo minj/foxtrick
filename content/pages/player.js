@@ -1,4 +1,5 @@
-/* player.js
+/**
+ * player.js
  * Utilities on player page
  * @author ryanli, LA-MJ, Greblys
  */
@@ -6,11 +7,12 @@
 'use strict';
 
 /* eslint-disable */
-if (!Foxtrick)
+if (!this.Foxtrick)
 	var Foxtrick = {};
+/* eslint-enable */
+
 if (!Foxtrick.Pages)
 	Foxtrick.Pages = {};
-/* eslint-enable */
 
 Foxtrick.Pages.Player = {};
 

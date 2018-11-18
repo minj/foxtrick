@@ -1,4 +1,3 @@
-'use strict';
 /*
 Copyright (c) 2010 Re4Ver <psicotsitool@gmail.com>, http://www.aldeaglobal.net/psicotsi/
 Copyright (c) 2013 lizardopoli <lizardopoli@gmail.com>, http://psicotsi.sourceforge.net/releases/
@@ -22,6 +21,9 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
+
+'use strict';
+
 if (!Foxtrick)
 	var Foxtrick = {};
 
@@ -35,6 +37,7 @@ Foxtrick.psico = {
 	tanh: function(x) {
 		return (Math.exp(x) - Math.exp(-x)) / (Math.exp(x) + Math.exp(-x));
 	},
+
 	/**
 	 * get the index of the highest skill
 	 * from [frm, sta, pm, w, sco, gk, ps, df, sp]
@@ -52,6 +55,7 @@ Foxtrick.psico = {
 		}
 		return pmax;
 	},
+
 	/**
 	 * test whether two top skills are the same
 	 * from [frm, sta, pm, w, sco, gk, ps, df, sp]
@@ -74,7 +78,7 @@ Foxtrick.psico = {
 		}
 		return false;
 	},
-	//
+
 	/**
 	 * checks if player is a goalkeeper by the index of highest skill
 	 * @param	{Integer}	maxSkill	index in the skill array
@@ -83,6 +87,7 @@ Foxtrick.psico = {
 	isGoalkeeper: function(maxSkill) {
 		return (maxSkill == 5);
 	},
+
 	/**
 	 * calculate maximum GK level using TSI
 	 * & form with sub {Low Avg High}
@@ -126,6 +131,7 @@ Foxtrick.psico = {
 
 		return level.toFixed(2);
 	},
+
 	/**
 	 * calculate maximum skill level
 	 * from [frm, sta, pm, w, sco, gk, ps, df, sp]
@@ -135,6 +141,7 @@ Foxtrick.psico = {
 	 * @param	{String}	formSubLevel	{Low Avg High}
 	 * @returns	{Number}					skill Level
 	 */
+	/* eslint-disable complexity */
 	calcMaxSkill: function(playerskills, TSI, formSubLevel) {
 		var pinput = [1, 0, 0, 0, 0, 0, 0, 0];
 		// Neural Network Input values
@@ -220,6 +227,8 @@ Foxtrick.psico = {
 		// Output
 		return (level + sublevel).toFixed(2);
 	},
+	/* eslint-enable complexity */
+
 	/**
 	 * Neural Network simulation
 	 * Predicts TSI (float) for {PM WG SC PS DF}
@@ -363,17 +372,16 @@ Foxtrick.psico = {
 
 		var coefficients = {
 			// wage = (a * (skill ^ b)) [* c, if secondary skill] [* d, if wage > 20000]
-			//sk    a             b             c     d
-			'5' : [ 0.0005010000, 6.4000000000, 0.50, 1      ], //keeping    [PLACEHOLDER]
-			'7' : [ 0.0007145560, 6.4607813171, 0.50, 0.7921 ], //defending
-			'2' : [ 0.0009418058, 6.4407950328, 0.50, 0.7832 ], //playmaking
-			'6' : [ 0.0004406158, 6.5212036764, 0.50, 0.7858 ], //passing
-			'3' : [ 0.0004437607, 6.4641257225, 0.50, 0.7789 ], //winger
-			'4' : [ 0.0009136982, 6.4090063683, 0.50, 0.7985 ]  //scoring
+			// sk   a             b             c     d
+			'5' : [ 0.0005010000, 6.4000000000, 0.50, 1.0000 ], // keeping    [PLACEHOLDER]
+			'7' : [ 0.0007145560, 6.4607813171, 0.50, 0.7921 ], // defending
+			'2' : [ 0.0009418058, 6.4407950328, 0.50, 0.7832 ], // playmaking
+			'6' : [ 0.0004406158, 6.5212036764, 0.50, 0.7858 ], // passing
+			'3' : [ 0.0004437607, 6.4641257225, 0.50, 0.7789 ], // winger
+			'4' : [ 0.0009136982, 6.4090063683, 0.50, 0.7985 ]  // scoring
 		};
 
-		var subtractFromSkill = 1; //default low prediction
-
+		var subtractFromSkill;
 		switch (predictionType) {
 			case 'High':
 				subtractFromSkill = 0.01;
@@ -381,9 +389,9 @@ Foxtrick.psico = {
 			case 'Avg':
 				subtractFromSkill = 0.5;
 				break;
-			default: //Low or invalid parameter
+			default: // default to Low
 				subtractFromSkill = 1;
-				predictionType = 'Low';
+				break;
 		}
 
 		//calculating mainSkill basing on wage

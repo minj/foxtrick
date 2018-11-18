@@ -1,5 +1,4 @@
-'use strict';
-/*
+/**
  * currency.js
  *
  * Utilities for handling currency
@@ -7,8 +6,13 @@
  * @author ryanli, LA-MJ
  */
 
-if (!Foxtrick)
-	var Foxtrick = {}; // jshint ignore:line
+'use strict';
+
+/* eslint-disable */
+if (!this.Foxtrick)
+	var Foxtrick = {};
+/* eslint-enable */
+
 if (!Foxtrick.util)
 	Foxtrick.util = {};
 

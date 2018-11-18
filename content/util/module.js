@@ -1,12 +1,15 @@
-'use strict';
-/*
+/**
  * module.js
  * Utilities for Foxtrick categorized module handling
  * @author ryanli
  */
 
-if (!Foxtrick)
+'use strict';
+
+/* eslint-disable */
+if (!this.Foxtrick)
 	var Foxtrick = {};
+/* eslint-enable */
 
 /**
  * Module categories list

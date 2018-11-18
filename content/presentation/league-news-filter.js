@@ -1,9 +1,10 @@
-'use strict';
 /**
  * league-news-filter.js
  * filters to league news
  * @author convinced
  */
+
+'use strict';
 
 Foxtrick.modules['LeagueNewsFilter'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.PRESENTATION,
@@ -105,6 +106,6 @@ Foxtrick.modules['LeagueNewsFilter'] = {
 		}
 
 		if (select.value != 0)
-			showHide(doc);
-	}
+			showHide();
+	},
 };

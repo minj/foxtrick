@@ -1,13 +1,16 @@
-'use strict';
-/*
+/**
  * cookies.js
  * cookie management
  *
  * @author convincedd, LA-MJ
  */
 
-if (!Foxtrick)
-	var Foxtrick = {}; // jshint ignore:line
+'use strict';
+
+/* eslint-disable */
+if (!this.Foxtrick)
+	var Foxtrick = {};
+/* eslint-enable */
 
 Foxtrick.cookies = {};
 

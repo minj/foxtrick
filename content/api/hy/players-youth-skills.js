@@ -1,4 +1,5 @@
-/** players-youth-skills.js
+/**
+ * players-youth-skills.js
  * Functions working the HY playersYouthSkills API supplied by HY.
  * @author LA-MJ, HY backend/API by MackShot
  *
@@ -43,7 +44,7 @@
 'use strict';
 
 /* eslint-disable */
-if (!Foxtrick)
+if (!this.Foxtrick)
 	var Foxtrick = {};
 /* eslint-enable */
 

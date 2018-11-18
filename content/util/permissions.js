@@ -1,13 +1,16 @@
-'use strict';
-/*
+/**
  * permissions.js
  * chrome permissions management
  * http://developer.chrome.com/extensions/permissions.html
  * https://groups.google.com/a/chromium.org/forum/?fromgroups=#!topic/chromium-extensions/8L0kORbNg8U
  */
 
-if (!Foxtrick)
+'use strict';
+
+/* eslint-disable */
+if (!this.Foxtrick)
 	var Foxtrick = {};
+/* eslint-enable */
 
 (function() {
 	Foxtrick.containsPermission = function(types, callback){
