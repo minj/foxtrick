@@ -310,7 +310,7 @@ Foxtrick.util.notify.create = function(msg, source, opts) {
 			url: gUrl,
 			opts: opts,
 		}, function onSendResponse(response) {
-			let err = new Foxtrick.JSONError(response);
+			let err = Foxtrick.JSONError(response);
 			if (err instanceof Error)
 				reject(err);
 			else
