@@ -622,7 +622,7 @@ Foxtrick.modules['ForumYouthIcons'] = {
 
 						// some formating
 						newText = newText.replace(/table\]/g, 'table]\n')
-							.replace(/\/tr\]/g, '/tr]\n')
+							.replace(/\/tr\]/g, '/tr]\n');
 							// .replace(/\[td/g, '[td')
 							// .replace(/\[\/td\]/g, '[/td]')
 							// .replace(/\[th/g, '[th')

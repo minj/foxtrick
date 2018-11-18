@@ -105,7 +105,7 @@ Foxtrick.modules['CurrencyConverter'] = {
 				// now we insert the money denoted in new currency
 				if (sole) {
 					let [pair] = pairs;
-					let [_, conv] = pair;
+					let [_, conv] = pair; // lgtm[js/unused-local-variable]
 					let span = Foxtrick.createFeaturedElement(doc, module, 'span');
 					span.textContent = conv;
 					node.parentNode.appendChild(span);

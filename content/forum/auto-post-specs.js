@@ -26,7 +26,7 @@ Foxtrick.modules['AutoPostSpecs'] = {
 		};
 
 		let breadCrumbs = doc.querySelectorAll('#mainWrapper h2 > span');
-		let [_, forumCrumb] = breadCrumbs;
+		let [_, forumCrumb] = breadCrumbs; // lgtm[js/unused-local-variable]
 		if (!forumCrumb)
 			return;
 

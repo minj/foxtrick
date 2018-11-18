@@ -750,7 +750,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				let positionMatch = positionNode.textContent.match(/\((.+)\)/) ||
 					positionNode.nextElementSibling.textContent.match(/\((.+)\)/);
 
-				let [_, position] = positionMatch;
+				let [_, position] = positionMatch; // lgtm[js/unused-local-variable]
 				player.lastPosition = position;
 				player.lastPositionType = Foxtrick.L10n.getPositionType(position);
 

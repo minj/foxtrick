@@ -77,7 +77,7 @@ Foxtrick.modules['DirectPageLinks'] = {
 				last = ll.getElementsByClassName('last');
 				next = ll.getElementsByClassName('next');
 				prev = rr.getElementsByClassName('prev');
-				first = rr.getElementsByClassName('first');
+				first = rr.getElementsByClassName('first'); // lgtm[js/useless-assignment-to-local]
 				if (!next.length && !prev.length)
 					return;
 

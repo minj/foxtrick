@@ -218,7 +218,7 @@ Foxtrick.modules['ForumPreview'] = {
 		preview_ctrl_div.style.marginTop = '1em';
 
 		var button_ok = null;
-		var targets = doc.getElementById('mainBody').getElementsByTagName('input');  // Forum
+		var targets = doc.getElementById('mainBody').getElementsByTagName('input'); // Forum
 		var target = targets[targets.length - 1];
 
 		if (Foxtrick.isPage(doc, 'forumWritePost'))
@@ -226,18 +226,17 @@ Foxtrick.modules['ForumPreview'] = {
 		if (Foxtrick.isPage(doc, 'guestbook'))
 			target = null;
 
-		// eslint-disable-next-line no-unused-vars
-		var msgType = 0; // lgtm[js/unused-local-variable]
+		var msgType = 0;
 		var index = 12; // index = 11;
 
 		if (!target) {
-			target = Foxtrick.getButton(doc, 'SendNew');  // Mail
+			target = Foxtrick.getButton(doc, 'SendNew'); // Mail
 			index = 6; // index = 5;
 			msgType = 1;
 		}
 
 		if (!target) {
-			target = Foxtrick.getButton(doc, 'ActionSend');  // Ticket
+			target = Foxtrick.getButton(doc, 'ActionSend'); // Ticket
 			if (target) {
 				msg_window.setAttribute('tabindex', 1);
 				target.setAttribute('tabindex', 2);
@@ -246,7 +245,7 @@ Foxtrick.modules['ForumPreview'] = {
 			}
 		}
 		if (!target) {
-			target = Foxtrick.getButton(doc, 'Add');  // GB
+			target = Foxtrick.getButton(doc, 'Add'); // GB
 			if (target) {
 				msg_window.setAttribute('tabindex', 1);
 				target.setAttribute('tabindex', 2);
@@ -275,7 +274,7 @@ Foxtrick.modules['ForumPreview'] = {
 			}
 		}
 		if (!target) {
-			target = Foxtrick.getButton(doc, 'Edit');  // AnnouncementEdit
+			target = Foxtrick.getButton(doc, 'Edit'); // AnnouncementEdit
 			if (target) {
 				msg_window.setAttribute('tabindex', 1);
 				target.setAttribute('tabindex', 2);
@@ -293,6 +292,7 @@ Foxtrick.modules['ForumPreview'] = {
 				msgType = 7;
 			}
 		}
+		Foxtrick.log('msgType', msgType);
 
 
 		if (doc.getElementById('ft-forum-preview-button') == null) {
