@@ -290,12 +290,13 @@ Foxtrick.storage.get = function(key) {
 
 		return new Promise(function(resolve, reject) {
 			store.get(key, function onStoreGet(value) {
+				let val = value;
 
-				// type-cast undefined to null
-				if (typeof value === 'undefined')
-					value = null;
+				// cast undefined to null
+				if (val == null)
+					val = null;
 
-				resolve(value);
+				resolve(val);
 
 			}, reject);
 		});

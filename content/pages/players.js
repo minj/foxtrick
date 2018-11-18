@@ -329,12 +329,11 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 
 			var playerNode;
 			var num = function(nodeName, parent) {
-				var dummy = {};
 				var value = xml.num(nodeName, parent || playerNode);
 
 				// deal with goals being undefined during matches
 				if (isNaN(value))
-					return dummy.noSuchProperty;
+					return void 0;
 
 				return value;
 			};
@@ -351,12 +350,11 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				return xml.bool(nodeName, parent || playerNode);
 			};
 			var ifPositive = function(nodeName, parent) {
-				var dummy = {};
 				var value = num(nodeName, parent);
 				if (value > 0)
 					return value;
 
-				return dummy.noSuchProperty;
+				return void 0;
 			};
 			var addProperty = function(player, fn) {
 				return function(name) {

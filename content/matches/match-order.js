@@ -682,7 +682,7 @@ Foxtrick.modules['MatchOrderInterface'] = {
 							players = Foxtrick.map(function(n) { return n; }, players);
 							// change live node list into array
 
-							if (customSort && hasPlayerInfo && ps !== undefined) {
+							if (customSort && hasPlayerInfo && typeof ps !== 'undefined') {
 								players.sort(function(a, b) { // sort descending
 									var aid = a.id.match(/\d+/)[0], bid = b.id.match(/\d+/)[0];
 									if (ps[aid] !== null && ps[bid] !== null) {

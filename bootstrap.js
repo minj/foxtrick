@@ -176,7 +176,7 @@ function shutdown(aData, aReason) { // jshint ignore:line
 	Services.strings.flushBundles();
 
 	// destroy scope
-	gScope = undefined;
+	gScope = void 0;
 }
 
 /* jshint ignore:start */

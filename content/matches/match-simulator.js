@@ -253,7 +253,7 @@ Foxtrick.modules.MatchSimulator = {
 
 				Foxtrick.forEach(function(wrapper, i) {
 					wrapper.parentNode.removeChild(wrapper);
-					gRatingsOther[i] = undefined;
+					gRatingsOther[i] = void 0;
 				}, otherWrappers);
 
 				var tacticLevelLabelOther = doc.getElementById('tacticLevelLabelOther');

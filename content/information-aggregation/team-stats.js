@@ -115,13 +115,13 @@ Foxtrick.modules['TeamStats'] = {
 				if (current.bruised) {
 					++bruised;
 				}
-				if (current.agreeability !== undefined) {
+				if (typeof current.agreeability !== 'undefined') {
 					totalAgreeability += current.agreeability;
 				}
-				if (current.aggressiveness !== undefined) {
+				if (typeof current.aggressiveness !== 'undefined') {
 					totalAggressiveness += current.aggressiveness;
 				}
-				if (current.honesty !== undefined) {
+				if (typeof current.honesty !== 'undefined') {
 					totalHonesty += current.honesty;
 				}
 
@@ -129,7 +129,7 @@ Foxtrick.modules['TeamStats'] = {
 				for (var j = 0; j < attributeOptions.length; ++j) {
 					if (!Foxtrick.isPage(doc, attributeOptions[j].pages))
 						continue;
-					if (current[attributeOptions[j].property] == undefined)
+					if (typeof current[attributeOptions[j].property] == 'undefined')
 						continue;
 
 					attributeOptions[j].value += current[attributeOptions[j].property];
@@ -385,8 +385,8 @@ Foxtrick.modules['TeamStats'] = {
 						var leagues = [];
 						for (var i = 0; i < playerList.length; ++i) {
 							var id = playerList[i].currentLeagueId || playerList[i].countryId;
-							if (id !== undefined) {
-								if (leagues[id] === undefined) {
+							if (typeof id !== 'undefined') {
+								if (typeof leagues[id] === 'undefined') {
 									leagues[id] = 1;
 								}
 								else {

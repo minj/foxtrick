@@ -179,7 +179,7 @@ Foxtrick.formatNumber = function(num, sep) {
 	var negative = (num < 0);
 	num = String(Math.abs(num));
 	var output = num;
-	if (sep === undefined) {
+	if (typeof sep === 'undefined') {
 		sep = ' ';
 	}
 	if (num.length > 3) {
@@ -224,7 +224,7 @@ Foxtrick.substr = function(f_string, f_start, f_length) {
 		f_start += f_string.length;
 	}
 
-	if (f_length == undefined) {
+	if (typeof f_length == 'undefined') {
 		f_length = f_string.length;
 	}
 	else if (f_length < 0) {

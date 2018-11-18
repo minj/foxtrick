@@ -141,6 +141,7 @@ Foxtrick.util.links = {
 				var img = doc.createElement('img');
 				img.alt = title;
 				img.className = 'ft-link-icon';
+
 				// undefined is a string here: comes from prefs
 				if (imgref && imgref !== 'null' && imgref !== 'undefined')
 					img.src = imgref;

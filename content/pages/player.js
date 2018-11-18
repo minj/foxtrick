@@ -1018,7 +1018,7 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerid, callback) {
 				if (value > 0)
 					return value;
 
-				return [][0];
+				return void 0;
 			};
 
 			var player = {};

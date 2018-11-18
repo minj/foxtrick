@@ -461,7 +461,7 @@ Foxtrick.util.htMl.getId = function(node) {
 	var link = null;
 	var currentObj = node;
 	while (currentObj) {
-		if (currentObj.href !== undefined) {
+		if (typeof currentObj.href !== 'undefined') {
 			link = currentObj.href;
 			break;
 		}
@@ -552,7 +552,7 @@ Foxtrick.util.htMl._parseLink = function(node) {
 	var link = null;
 	var currentObj = node;
 	while (currentObj) {
-		if (currentObj.href !== undefined) {
+		if (typeof currentObj.href !== 'undefined') {
 			link = currentObj.href;
 			break;
 		}
@@ -562,7 +562,7 @@ Foxtrick.util.htMl._parseLink = function(node) {
 	var url = null;
 	var id = null;
 	var text = null;
-	if (idObj !== null && idObj.tag !== undefined) {
+	if (idObj !== null && typeof idObj.tag !== 'undefined') {
 		id = idObj.id;
 		type = idObj.tag;
 	}
@@ -656,7 +656,7 @@ Foxtrick.util.htMl.getMarkupFromNode = function(node, options) {
  * @return {string}
  */
 Foxtrick.util.htMl._getMarkupRec = function(node, def, opts) {
-	if (node.nodeName === undefined) {
+	if (typeof node.nodeName === 'undefined') {
 		return '';
 	}
 
