@@ -1,13 +1,5 @@
-'use strict';
-
-if (!Foxtrick)
-	var Foxtrick = {};
-if (!Foxtrick.api)
-	Foxtrick.api = {};
-if (!Foxtrick.api.hy)
-	Foxtrick.api.hy = {};
-
-/* common.js
+/**
+ * common.js
  * Common functions for the HY API
  * @author LA-MJ, HY backend/API by MackShot
  *
@@ -45,6 +37,18 @@ if (!Foxtrick.api.hy)
  * Typical function call stack for a data-miner:
  * postSomething -> _fetchGeneric -> _fetchOrIgnore -> _buildParams -> load.async
  */
+
+'use strict';
+
+/* eslint-disable */
+if (!this.Foxtrick)
+	var Foxtrick = {};
+/* eslint-enable */
+
+if (!Foxtrick.api)
+	Foxtrick.api = {};
+if (!Foxtrick.api.hy)
+	Foxtrick.api.hy = {};
 
 /**
  * Low-level function to build the api params and inject them into callback

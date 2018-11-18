@@ -1,9 +1,10 @@
-'use strict';
 /**
  * header-toggle.js
  * Foxtrick team select box
  * @author convinced
  */
+
+'use strict';
 
 Foxtrick.modules['HeaderToggle'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.PRESENTATION,
@@ -89,18 +90,20 @@ Foxtrick.modules['HeaderToggle'] = {
 
 				// show new forum postings
 				if (numUnread && h2.getElementsByClassName('highlight')[0] == undefined) {
-					var page_num = 0;
-					var pages = h2.parentNode.getElementsByClassName('page');
-					for (var i = 0; i < pages.length; ++i) {
-						if (pages[i].getAttribute('disabled') == 'disabled') {
-							page_num = Number(pages[i].textContent) - 1;
-						}
-					}
-					h2.appendChild(doc.createTextNode(' '));
-					var span = doc.createElement('span');
+					// var page_num = 0;
+					// var pages = h2.parentNode.getElementsByClassName('page');
+					// for (var i = 0; i < pages.length; ++i) {
+					// 	if (pages[i].getAttribute('disabled') == 'disabled') {
+					// 		page_num = Number(pages[i].textContent) - 1;
+					// 	}
+					// }
+
+					let span = doc.createElement('span');
 					span.className = 'highlight ft-dummy';
 					span.textContent = '(' + numUnread + ')';
 					Foxtrick.makeFeaturedElement(span, Foxtrick.modules.HeaderToggle);
+
+					h2.appendChild(doc.createTextNode(' '));
 					h2.appendChild(span);
 				}
 			};

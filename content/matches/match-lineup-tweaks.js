@@ -316,7 +316,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 							Foxtrick.stopListenToChange(doc);
 							var node = players[missing[j].i].parentNode.parentNode.
 								getElementsByClassName('ft-indicator-wrapper')[0];
-							addSpecialty(node, p || null);
+							addSpecialty(node, p);
 							Foxtrick.startListenToChange(doc);
 						};
 					};
@@ -861,8 +861,8 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 
 		var isHome = team == 'home';
 
-		/* jshint ignore:start */
-		var getStamina = function(lastEnergy, checkpoints, isRested) {
+		// eslint-disable-next-line no-unused-vars
+		var getStamina = (lastEnergy, checkpoints, isRested) => { // lgtm[js/unused-local-variable]
 			// these formulas are derrived from the formula used in match-simulator
 			// currently they seem to have low accuracy :(
 			// UNUSED!!!
@@ -885,10 +885,10 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			}
 			return stamina;
 		};
-		var hasRest = function(from, to) {
+		// eslint-disable-next-line no-unused-vars
+		var hasRest = function(from, to) { // lgtm[js/unused-local-variable]
 			return from < 45 && to > 45;
 		};
-		/* jshint ignore:end */
 
 		var getCheckpointCount = function(from, to) {
 			var ct = Foxtrick.Math.div(to - 1, 5) - Foxtrick.Math.div(from - 1, 5) +

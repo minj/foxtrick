@@ -1,4 +1,3 @@
-'use strict';
 /**
  * loader_chrome.js
  * Foxtrick loader
@@ -6,8 +5,13 @@
  * @author ryanli, convincedd, CatzHoek, LA-MJ
  */
 
-if (!Foxtrick)
-	var Foxtrick = {}; // jshint ignore:line
+'use strict';
+
+/* eslint-disable */
+if (!this.Foxtrick)
+	var Foxtrick = {};
+/* eslint-enable */
+
 if (!Foxtrick.loader)
 	Foxtrick.loader = {};
 

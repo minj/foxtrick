@@ -1,12 +1,15 @@
-'use strict';
 /**
  * xml-load.js
  * xml loading
  * @author convinced, LA-MJ
  */
 
-if (!Foxtrick)
-	var Foxtrick = {}; // jshint ignore:line
+'use strict';
+
+/* eslint-disable */
+if (!this.Foxtrick)
+	var Foxtrick = {};
+/* eslint-enable */
 
 Foxtrick.XMLData = {
 	MODULE_NAME: 'XMLData',

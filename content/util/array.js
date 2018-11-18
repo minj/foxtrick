@@ -1,4 +1,4 @@
-/*
+/**
 * array.js
 * Array handler functions
 * Most of them can be used with array-like structures like node lists.
@@ -8,7 +8,7 @@
 'use strict';
 
 /* eslint-disable */
-if (!Foxtrick)
+if (!this.Foxtrick)
 	var Foxtrick = {};
 /* eslint-enable */
 

@@ -387,8 +387,8 @@ Foxtrick.modules['FlagCollectionToMap'] = {
 
 	addMap: function(doc, map, urlAfrica, urlAsia, urlEurope, urlMEast,
 	                 urlSAmerica, urlWorld, anchorId) {
-		var href = '#' + 'foxtrick-img-map-' + anchorId;
-		var hrefTop = '#' + 'foxtrick-top-map-' + anchorId;
+		var imgMap = 'foxtrick-img-map-' + anchorId;
+		var topMap = 'foxtrick-top-map-' + anchorId;
 		var Africa = Foxtrick.L10n.getString('flagCollectionToMap.Africa');
 		var Asia = Foxtrick.L10n.getString('flagCollectionToMap.Asia');
 		var Europe = Foxtrick.L10n.getString('flagCollectionToMap.Europe');
@@ -398,16 +398,16 @@ Foxtrick.modules['FlagCollectionToMap'] = {
 
 		var addNavLink = function(imgUrl, text) {
 			var a = doc.createElement('a');
-			a.href = hrefTop;
+			a.href = `#${topMap}`;
 			Foxtrick.onClick(a, function(ev) {
-				doc.getElementById('foxtrick-img-map-' + anchorId).src = imgUrl;
+				doc.getElementById(imgMap).src = imgUrl;
 			});
 			a.textContent = text;
 			map.appendChild(a);
 			return a;
 		};
 		var top = addNavLink(urlAfrica, Africa);
-		top.id = 'foxtrick-top-map-' + anchorId;
+		top.id = topMap;
 		map.appendChild(doc.createTextNode(' '));
 		addNavLink(urlAsia, Asia);
 		map.appendChild(doc.createTextNode(' '));
@@ -428,7 +428,7 @@ Foxtrick.modules['FlagCollectionToMap'] = {
 				Foxtrick.util.note.add(doc, msg, 'ft-flag-map-failed-note', { to: map });
 			}
 		};
-		img.id = 'foxtrick-img-map-' + anchorId;
+		img.id = imgMap;
 		img.alt = 'Map';
 		img.src = urlWorld;
 		map.appendChild(img);

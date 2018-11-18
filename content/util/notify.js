@@ -1,13 +1,17 @@
-'use strict';
-/*
+/**
  * notify.js
  * Utilities for creating a notification
  *
  * @author ryanli, convincedd, LA-MJ
  */
 
-if (!Foxtrick)
-	var Foxtrick = {}; // jshint ignore: line
+'use strict';
+
+/* eslint-disable */
+if (!this.Foxtrick)
+	var Foxtrick = {};
+/* eslint-enable */
+
 if (!Foxtrick.util)
 	Foxtrick.util = {};
 
@@ -32,7 +36,8 @@ Foxtrick.util.notify = {};
 Foxtrick.util.notify.create = function(msg, source, opts) {
 	const TITLE = 'Hattrick';
 	const IMG = Foxtrick.InternalPath + 'resources/img/icon-128.png';
-	const NAME = 'Foxtrick';
+	// eslint-disable-next-line no-unused-vars
+	const NAME = 'Foxtrick'; // lgtm[js/unused-local-variable]
 	const IS_CLICKABLE = true;
 
 	var gId = '', gUrl = '', gTabOpts = {}, gTabOptsBtn = {};
@@ -59,8 +64,7 @@ Foxtrick.util.notify.create = function(msg, source, opts) {
 				return;
 			}
 
-			chrome.tabs.update(originTab.id, tabOpts,
-			  function(tab) { // jshint ignore:line
+			chrome.tabs.update(originTab.id, tabOpts, (tab) => {
 				if (chrome.runtime.lastError) {
 					// tab closed, restore
 					var restoreOpts = {
@@ -91,6 +95,7 @@ Foxtrick.util.notify.create = function(msg, source, opts) {
 			message: msg,
 			contextMessage: Foxtrick.L10n.getString('notify.focus'),
 			isClickable: IS_CLICKABLE,
+
 			// buttons: [
 			// 	{ title: 'Button1', iconUrl: 'resources/img/hattrick-logo.png' },
 			// 	{ title: 'Button2', iconUrl: 'resources/img/hattrick-logo.png' }
@@ -114,15 +119,12 @@ Foxtrick.util.notify.create = function(msg, source, opts) {
 
 		var createNote = function(gId, options) {
 			return new Promise((fulfill, reject) => {
-				chrome.notifications.create(gId, options,
-				  function(nId) {
+				chrome.notifications.create(gId, options, (nId) => {
 					var err = chrome.runtime.lastError;
-					if (err) {
+					if (err)
 						reject(err);
-					}
-					else {
+					else
 						fulfill(nId);
-					}
 				});
 			});
 		};
@@ -130,7 +132,8 @@ Foxtrick.util.notify.create = function(msg, source, opts) {
 		var getNotes = function() {
 			return new Promise((fulfill) => {
 				chrome.notifications.getAll(function(notes) {
-					if (chrome.runtime.lastError) {} // jscs:ignore disallowEmptyBlocks
+					// eslint-disable-next-line no-empty
+					if (chrome.runtime.lastError) {}
 
 					fulfill(notes);
 				});
@@ -172,10 +175,12 @@ Foxtrick.util.notify.create = function(msg, source, opts) {
 				catch (e) {
 					reject(e);
 				}
+
 				// onClosed(noteId);
 			};
 
-			var onButtonClicked = async function onButtonClicked(noteId, btnIdx) { // jshint ignore:line
+			// eslint-disable-next-line no-unused-vars
+			var onButtonClicked = async function onButtonClicked(noteId, btnIdx) {
 				if (noteId !== gId)
 					return;
 
@@ -187,6 +192,7 @@ Foxtrick.util.notify.create = function(msg, source, opts) {
 				catch (e) {
 					reject(e);
 				}
+
 				// onClosed(noteId);
 			};
 
@@ -208,28 +214,29 @@ Foxtrick.util.notify.create = function(msg, source, opts) {
 	};
 
 	var createWebkit = function() {
+		const WEBKIT_TIMEOUT = 20000;
 		return new Promise((fulfill, reject) => {
-			var onclick = async function onClick() {
+			var onClick = async function onClick() {
 				try {
-					if (Foxtrick.platform === 'Chrome') {
+					if (Foxtrick.platform === 'Chrome')
 						await updateOriginTab(source.tab, { url: gUrl, selected: true });
-					}
-					else {
+					else
 						Foxtrick.SB.tabs.create({ url: gUrl });
-					}
+
 					fulfill(gUrl);
 				}
 				catch (err) {
 					reject(err);
 				}
 
+				// eslint-disable-next-line no-invalid-this
 				this.cancel();
 			};
 
 			var notification = window.webkitNotifications.createNotification(IMG, TITLE, msg);
 
 			if (gUrl)
-				notification.onclick = onclick;
+				notification.onclick = onClick;
 
 			// Then show the notification.
 			notification.show();
@@ -238,7 +245,7 @@ Foxtrick.util.notify.create = function(msg, source, opts) {
 			window.setTimeout(function() {
 				reject(new Error(Foxtrick.TIMEOUT_ERROR));
 				notification.cancel();
-			}, 20000);
+			}, WEBKIT_TIMEOUT);
 		});
 	};
 
@@ -265,11 +272,11 @@ Foxtrick.util.notify.create = function(msg, source, opts) {
 		gId = opts.id || '';
 		gUrl = opts.url;
 
-		opts = opts.opts;
+		opts = opts.opts; // FIXME
 	}
 	else {
 		// gecko or content
-		opts = opts || {};
+		opts = opts || {}; // FIXME
 
 		if (opts.id) {
 			gId = opts.id;
@@ -284,38 +291,30 @@ Foxtrick.util.notify.create = function(msg, source, opts) {
 
 	// start logic
 	if (Foxtrick.context === 'background') {
-		if (Foxtrick.arch == 'Gecko') {
-			return createGecko();
-		}
-		else if (Foxtrick.platform === 'Chrome' && chrome.notifications) {
+		if (Foxtrick.platform === 'Chrome' && chrome.notifications)
 			return createChrome();
-		}
-		else if (window.webkitNotifications) {
+		else if (window.webkitNotifications)
 			return createWebkit();
-		}
-		else if (Foxtrick.platform === 'Safari') {
+		else if (Foxtrick.platform === 'Safari')
 			return createGrowl();
-		}
+
+		return Promise.reject(Error('NotImplemented'));
 	}
-	else {
 
-		return new Promise((fulfill, reject) => {
-			// content needs to notify bg
-			Foxtrick.SB.ext.sendRequest({
-				req: 'notify',
-				msg: msg,
-				id: gId,
-				url: gUrl,
-				opts: opts,
-			}, function onSendResponse(response) {
-
-				var err = Foxtrick.JSONError(response);
-				if (err instanceof Error)
-					reject(err);
-				else
-					fulfill(response);
-			});
-
+	return new Promise((fulfill, reject) => {
+		// content needs to notify bg
+		Foxtrick.SB.ext.sendRequest({
+			req: 'notify',
+			msg: msg,
+			id: gId,
+			url: gUrl,
+			opts: opts,
+		}, function onSendResponse(response) {
+			let err = new Foxtrick.JSONError(response);
+			if (err instanceof Error)
+				reject(err);
+			else
+				fulfill(response);
 		});
-	}
+	});
 };

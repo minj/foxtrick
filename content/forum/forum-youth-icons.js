@@ -621,12 +621,12 @@ Foxtrick.modules['ForumYouthIcons'] = {
 								'[tr][td]cell3[/td][td]cell4[/td][/tr][/table]';
 
 						// some formating
-						newText = newText.replace(/table\]/g, 'table]\n').
-							replace(/\/tr\]/g, '/tr]\n').
-							replace(/\[td/g, '[td').
-							replace(/\[\/td\]/g, '[/td]').
-							replace(/\[th/g, '[th').
-							replace(/\[\/th\]/g, '[/th]');
+						newText = newText.replace(/table\]/g, 'table]\n')
+							.replace(/\/tr\]/g, '/tr]\n')
+							// .replace(/\[td/g, '[td')
+							// .replace(/\[\/td\]/g, '[/td]')
+							// .replace(/\[th/g, '[th')
+							// .replace(/\[\/th\]/g, '[/th]');
 					}
 
 					if (ta.selectionStart || ta.selectionStart == '0') {

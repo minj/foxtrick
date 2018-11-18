@@ -1,72 +1,83 @@
-'use strict';
 /**
  * bookmark-adjust.js
  * Colors bookmark icon extracting code from bookmark comment
- * @author taised
+ * @author taised, LA-MJ
  */
+
+'use strict';
 
 Foxtrick.modules['BookmarkAdjust'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.PRESENTATION,
 	PAGES: ['bookmarks'],
 
 	run: function(doc) {
-		this._adjust_bookmarks(doc);
+		this._adjustBookmarks(doc);
 	},
 
 	change: function(doc) {
-		this._adjust_bookmarks(doc);
+		this._adjustBookmarks(doc);
 	},
 
-	_bookmarkColor: function(imageObj, regexp, commentObj, color) {
-		if (commentObj.firstChild.nodeValue.search(regexp) > -1) {
-			imageObj.style.background = 'transparent url(' + Foxtrick.ResourcePath +
-			                                             'resources/notes/' + color +
-			                                             '.png) no-repeat scroll 0 0';
-			commentObj.firstChild.nodeValue = commentObj.firstChild.nodeValue.replace(regexp, '');
-		}
+	_bookmarkColor: function(comment, img, re, color) {
+		let tNode = comment.firstChild;
+		let text = tNode.textContent;
+		if (!re.test(text))
+			return;
+
+		img.style.background = `transparent
+			url(${Foxtrick.ResourcePath}resources/notes/${color}.png) no-repeat scroll 0 0`;
+
+		tNode.textContent = text.replace(re, '');
 	},
 
-	_adjust_bookmarks: function(doc) {
-		var spanObj = Foxtrick.getMBElement(doc, 'repB');
-		var tableObj = spanObj.getElementsByTagName('table').item(0);
+	_bookmarkColors: function(comment, img) {
+		const COLORS = {
+			aqua: /\[aqua\]/i,
+			B: /\[B\]/i,
+			black: /\[black\]/i,
+			blue: /\[blue\]/i,
+			brown: /\[brown\]/i,
+			cyan: /\[cyan\]/i,
+			darkpurple: /\[darkpurple\]/i,
+			green: /\[green\]/i,
+			idea: /\[idea\]/i,
+			lightblue: /\[lightblue\]/i,
+			lightgreen: /\[lightgreen\]/i,
+			orange: /\[orange\]/i,
+			pink: /\[pink\]/i,
+			purple: /\[purple\]/i,
+			red: /\[red\]/i,
+			white: /\[white\]/i,
+			yellow: /\[yellow\]/i,
+		};
 
-		//checking if deadline already set
-		var deadline_span = doc.getElementsByClassName('ft_deadline');
-		if (deadline_span.length > 0) {
-			var setDeadline = false;
-		}
-		else {
-			var setDeadline = true;
-		}
+		for (let [color, re] of Object.entries(COLORS))
+			this._bookmarkColor(comment, img, re, color);
+	},
 
-		//Now running through the table
-		for (var i = 0; i < tableObj.rows.length; i++) {
-			//If there aren't 4 cells on the row is a separator row
-			if (tableObj.rows[i].cells.length == 4) {
-				//a comment is on a span with class italic on the first cell
-				var comment = tableObj.rows[i].cells[0].getElementsByClassName('italic');
-				if (comment.length > 0) {
-					var commentObj = comment.item(0);
-					var imageObj = tableObj.rows[i].cells[2].childNodes[1];
-					this._bookmarkColor(imageObj, /\[aqua\]/i, commentObj, 'aqua');
-					this._bookmarkColor(imageObj, /\[B\]/i, commentObj, 'B');
-					this._bookmarkColor(imageObj, /\[black\]/i, commentObj, 'black');
-					this._bookmarkColor(imageObj, /\[blue\]/i, commentObj, 'blue');
-					this._bookmarkColor(imageObj, /\[brown\]/i, commentObj, 'brown');
-					this._bookmarkColor(imageObj, /\[cyan\]/i, commentObj, 'cyan');
-					this._bookmarkColor(imageObj, /\[darkpurple\]/i, commentObj, 'darkpurple');
-					this._bookmarkColor(imageObj, /\[green\]/i, commentObj, 'green');
-					this._bookmarkColor(imageObj, /\[idea\]/i, commentObj, 'idea');
-					this._bookmarkColor(imageObj, /\[lightblue\]/i, commentObj, 'lightblue');
-					this._bookmarkColor(imageObj, /\[lightgreen\]/i, commentObj, 'lightgreen');
-					this._bookmarkColor(imageObj, /\[orange\]/i, commentObj, 'orange');
-					this._bookmarkColor(imageObj, /\[pink\]/i, commentObj, 'pink');
-					this._bookmarkColor(imageObj, /\[purple\]/i, commentObj, 'purple');
-					this._bookmarkColor(imageObj, /\[red\]/i, commentObj, 'red');
-					this._bookmarkColor(imageObj, /\[white\]/i, commentObj, 'white');
-					this._bookmarkColor(imageObj, /\[yellow\]/i, commentObj, 'yellow');
-				}
-			}
+	_adjustBookmarks: function(doc) {
+		let spanObj = Foxtrick.getMBElement(doc, 'repB');
+		let tableObj = spanObj.querySelector('table');
+
+		// checking if deadline already set
+		let ddlSpan = doc.querySelector('ft_deadline');
+		// eslint-disable-next-line no-unused-vars
+		let setDeadline = !ddlSpan; // lgtm[js/unused-local-variable]
+
+		// Now running through the table
+		for (let row of tableObj.rows) {
+			// If there aren't 4 cells on the row is a separator row
+			if (row.cells.length != 4)
+				continue;
+
+			// a comment is on a span with class italic on the first cell
+			let [cCell, _, imgCell] = row.cells;
+			let comment = cCell.querySelector('.italic');
+			if (!comment)
+				continue;
+
+			let img = imgCell.querySelector('input[type="image"]');
+			this._bookmarkColors(comment, img);
 		}
 	},
 };

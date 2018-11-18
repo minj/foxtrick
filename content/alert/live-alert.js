@@ -1,9 +1,10 @@
-'use strict';
-/*
+/**
  * live-alert.js
  * Alerting HT Live goals
  * @author ryanli
  */
+
+'use strict';
 
 Foxtrick.modules['LiveAlert'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.ALERT,
@@ -159,7 +160,7 @@ Foxtrick.modules['LiveAlert'] = {
 
 		var store = this.store[info.teamsText];
 		if (typeof store === 'undefined') {
-			store = this.store[info.teamsText] = { score: score };
+			this.store[info.teamsText] = { score: score };
 			return;
 		}
 

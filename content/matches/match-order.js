@@ -36,13 +36,19 @@ Foxtrick.modules['MatchOrderInterface'] = {
 	],
 	run: function(doc) {
 		var module = this;
+
+		let url = doc.location.href;
+		var sourceSystem = Foxtrick.getParameterFromUrl(url, 'SourceSystem');
+		var isYouth = sourceSystem.toLowerCase() == 'youth' ||
+			!!Foxtrick.getParameterFromUrl(url, 'isYouth');
+
 		var avatarsParamsString;
 		var getAvatars;
 		var getPlayers;
 		var check_images = function(doc, target, avatarsXml, getID, scale, recursion) {
 			if (!Foxtrick.Prefs.isModuleOptionEnabled('MatchOrderInterface', 'ShowFaces'))
 				return;
-			var isYouth = (doc.location.href.search(/isYouth=true|SourceSystem=Youth/i) != -1);
+
 			var add_image = function(fieldplayer) {
 				var id = getID(fieldplayer);
 				if (!id)
@@ -494,7 +500,6 @@ Foxtrick.modules['MatchOrderInterface'] = {
 		};
 
 		var runMatchOrder = function(doc) {
-			var isYouth = (doc.location.href.search(/isYouth=true|SourceSystem=Youth/i) != -1);
 			var getID = function(fieldplayer) {
 				if (!fieldplayer.id)
 					return null;
@@ -560,7 +565,6 @@ Foxtrick.modules['MatchOrderInterface'] = {
 			};
 			getAvatars(avatarsParams);
 
-			var loading = doc.getElementById('loading');
 			var waitForInterface = function(ev) {
 				if (hasInterface)
 					return;
@@ -889,8 +893,7 @@ Foxtrick.modules['MatchOrderInterface'] = {
 			});
 		};
 
-		var isYouth = (doc.location.href.search(/isYouth=true|SourceSystem=Youth/i) != -1);
 		runMatchOrder(doc);
 		Foxtrick.util.inject.jsLink(doc, Foxtrick.InternalPath + 'resources/js/matchOrder.js');
-	}
+	},
 };

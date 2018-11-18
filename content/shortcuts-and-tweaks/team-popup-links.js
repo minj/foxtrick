@@ -1,9 +1,10 @@
-'use strict';
 /**
  * team-popup-links.js
  * Foxtrick show Team Popup
  * @author bummerland, convinced, ryanli
  */
+
+'use strict';
 
 Foxtrick.modules['TeamPopupLinks'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
@@ -172,6 +173,7 @@ Foxtrick.modules['TeamPopupLinks'] = {
 		this.add_popup_links(doc);
 	},
 
+	/* eslint-disable complexity */
 	add_popup_links: function(doc) {
 		var mainBody = doc.getElementById('mainBody');
 
@@ -241,8 +243,10 @@ Foxtrick.modules['TeamPopupLinks'] = {
 					}
 
 					var teamid = Foxtrick.util.id.getTeamIdFromUrl(org_link.href);
-					if (teamid)
-						var teamname = org_link.textContent;
+					if (teamid) {
+						// eslint-disable-next-line no-unused-vars
+						let teamname = org_link.textContent; // lgtm[js/unused-local-variable]
+					}
 
 					var username;
 					var userid = Foxtrick.util.id.getUserIdFromUrl(org_link.href);

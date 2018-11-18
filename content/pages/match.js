@@ -1,13 +1,16 @@
-'use strict';
 /**
  * match.js
  * utilities on match page
  * @author taised, Jestar, LA-MJ
  */
-////////////////////////////////////////////////////////////////////////////////
 
-if (!Foxtrick)
+'use strict';
+
+/* eslint-disable */
+if (!this.Foxtrick)
 	var Foxtrick = {};
+/* eslint-enable */
+
 if (!Foxtrick.Pages)
 	Foxtrick.Pages = {};
 

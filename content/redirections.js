@@ -54,7 +54,7 @@ Foxtrick.modules['Redirections'] = {
 		if (isManagerPage) {
 			userId = Foxtrick.Pages.All.getId(doc);
 			var userNode = mainBody.querySelector('h1 .speedBrowser').nextSibling;
-			userName = userNode.textContent.trim();
+			userName = userNode.textContent.trim(); // lgtm[js/useless-assignment-to-local]
 
 			switch (redirect) {
 				case 'analysis': url = '/Club/TacticsRoom/?TeamID=' + teamId; break;
@@ -116,7 +116,7 @@ Foxtrick.modules['Redirections'] = {
 				var userLink = mainBody.querySelector('a[href*="userId"]');
 				if (userLink) {
 					userId = Foxtrick.util.id.getUserIdFromUrl(userLink.href);
-					userName = userLink.title.trim();
+					userName = userLink.title.trim(); // lgtm[js/useless-assignment-to-local]
 				}
 			}
 

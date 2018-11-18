@@ -1,5 +1,5 @@
-'use strict';
-/* all.js
+/**
+ * all.js
  * Utilities on all pages
  * @author ryanli, LA-MJ
  *
@@ -12,8 +12,13 @@
  * their first arguments need to be `doc'.
  */
 
-if (!Foxtrick)
+'use strict';
+
+/* eslint-disable */
+if (!this.Foxtrick)
 	var Foxtrick = {};
+/* eslint-enable */
+
 if (!Foxtrick.Pages)
 	Foxtrick.Pages = {};
 

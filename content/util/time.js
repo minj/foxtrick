@@ -1,5 +1,4 @@
-'use strict';
-/*
+/**
  * time.js
  * Utilities for date and time.
  * @author ryan, convincedd, LA-MJ
@@ -16,8 +15,13 @@
  * UTC which was generated directly from the HT timestamp and nothing else.
  */
 
-if (!Foxtrick)
+'use strict';
+
+/* eslint-disable */
+if (!this.Foxtrick)
 	var Foxtrick = {};
+/* eslint-enable */
+
 if (!Foxtrick.util)
 	Foxtrick.util = {};
 

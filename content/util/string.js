@@ -1,11 +1,14 @@
-'use strict';
-/*
+/**
  * string.js
  * Utilities for string processing
  */
 
-if (!Foxtrick)
+'use strict';
+
+/* eslint-disable */
+if (!this.Foxtrick)
 	var Foxtrick = {};
+/* eslint-enable */
 
 /**
  * Prepare a string to be used as regex.
@@ -14,7 +17,7 @@ if (!Foxtrick)
  * @return {string}
  */
 Foxtrick.strToRe = function(str) {
-	return str.replace(/([[\](){}?+*.|^$])/g, '\\$1');
+	return str.replace(/([[\]\\(){}?+*.|^$])/g, '\\$1');
 };
 
 /**
@@ -197,7 +200,7 @@ Foxtrick.formatNumber = function(num, sep) {
 Foxtrick.substr_count = function(haystack, needle, offset, length) {
 	// http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_substr_count/
 	// Returns count of needle in a haystack.
-	var pos = 0, cnt = 0;
+	var cnt = 0;
 	haystack += '';
 	needle += '';
 	if (isNaN(offset)) offset = 0;
@@ -404,7 +407,7 @@ Foxtrick.hash = function(s) {
 	 * Configurable variables. You may need to tweak these to be compatible with
 	 * the server-side, but the defaults work in most cases.
 	 */
-	var hexcase = 0;  /* hex output format. 0 - lowercase; 1 - uppercase        */
+	var hexcase = 0; /* hex output format. 0 - lowercase; 1 - uppercase */
 
 	/*
 	 * Calculate the SHA1 of a raw string
@@ -419,7 +422,9 @@ Foxtrick.hash = function(s) {
 	 */
 	var rstr2hex = function(input)
 	{
-		try { hexcase } catch (e) { hexcase = 0; }
+		if (!hexcase)
+			hexcase = 0;
+
 		var hex_tab = hexcase ? '0123456789ABCDEF' : '0123456789abcdef';
 		var output = '';
 		var x;

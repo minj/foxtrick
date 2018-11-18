@@ -1,5 +1,4 @@
-'use strict';
-/*
+/**
  * storage.set() and storage.get() are a pair of functions that can store
  * permanent information.
  * The stored value must be a JSON-serializable object, or of native types.
@@ -7,10 +6,14 @@
  * @author convincedd, LA-MJ
  */
 
-/* global indexedDB */
+'use strict';
 
-if (!Foxtrick)
-	var Foxtrick = {}; // jshint ignore:line
+/* eslint-disable */
+if (!this.Foxtrick)
+	var Foxtrick = {};
+/* eslint-enable */
+
+/* global indexedDB */
 
 Foxtrick.storage = {};
 

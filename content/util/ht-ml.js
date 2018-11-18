@@ -1,12 +1,16 @@
-'use strict';
-/*
+/**
  * ht-ml.js
  * Utilities for HT-ML (Hattrick Markup Language)
  * @author ryanli, LA-MJ
  */
 
-if (!Foxtrick)
+'use strict';
+
+/* eslint-disable */
+if (!this.Foxtrick)
 	var Foxtrick = {};
+/* eslint-enable */
+
 if (!Foxtrick.util)
 	Foxtrick.util = {};
 
@@ -284,23 +288,22 @@ Foxtrick.util.htMl.getFormat = (function() {
 			},
 			td: function(content, node) {
 				var nodeName = node.nodeName.toLowerCase();
+
 				// README: colspan and rowspan do not work in MD
 				// align works on th only
 
 				// no line-feeds in md tables!
-				content = content.replace(/\n/g, ' ');
-				var ret = content.trim().replace(/\|/g, '\\|');
+				let ret = content.replace(/\n/g, ' ').trim();
+				ret = ret.replace(/([\\|])/g, '\\$1');
 				if (nodeName == 'th') {
-					if (Foxtrick.hasClass(node, 'center')) {
-						ret = ':' + ret + ':';
-					}
-					else if (Foxtrick.hasClass(node, 'right')) {
-						ret = ret + ':';
-					}
-					else {
-						ret = ':' + ret;
-					}
+					if (Foxtrick.hasClass(node, 'center'))
+						ret = `:${ret}:`;
+					else if (Foxtrick.hasClass(node, 'right'))
+						ret = `${ret}:`;
+					else
+						ret = `:${ret}`;
 				}
+
 				// outer loop also adds ' ' to the left
 				return '\u2060\u2060' + ret;
 			},

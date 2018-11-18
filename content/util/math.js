@@ -1,11 +1,14 @@
-'use strict';
-/*
+/**
  * math.js
  * Math and prediction utilities
  */
 
-if (!Foxtrick)
+'use strict';
+
+/* eslint-disable */
+if (!this.Foxtrick)
 	var Foxtrick = {};
+/* eslint-enable */
 
 Foxtrick.Math = {};
 /**
