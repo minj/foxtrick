@@ -303,10 +303,12 @@ Foxtrick.getHref = function(doc) {
 Foxtrick.getUrlParam = function(url, param) {
 	let needle = param.toLowerCase();
 	let params = new URL(url).searchParams;
-	let keys = [...params.keys()];
-	let key = Foxtrick.nth(k => k.toLowerCase() == needle, keys);
-	if (key)
-		return params.get(key);
+	let entries = [...params]; // keys() is not iterable in FF :(
+	let entry = Foxtrick.nth(([k]) => k.toLowerCase() == needle, entries);
+	if (entry) {
+		let [_, val] = entry; // lgtm[js/unused-local-variable]
+		return val;
+	}
 
 	return null;
 };
