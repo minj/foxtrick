@@ -102,7 +102,7 @@ Foxtrick.modules['Redirections'] = {
 					break;
 
 				case 'custom':
-					url = Foxtrick.getParameterFromUrl(location, 'redir_to');
+					url = Foxtrick.getUrlParam(location, 'redir_to');
 					url = url.replace(/%5BteamId%5D|\[teamId\]/i, teamId);
 					url = url.replace(/%5BuserId%5D|\[userId\]/i, userId);
 					break;
@@ -170,7 +170,7 @@ Foxtrick.modules['Redirections'] = {
 
 					var upcomingUrl = upcoming.parentNode.href;
 					var matchId = Foxtrick.util.id.getMatchIdFromUrl(upcomingUrl);
-					var sourceSystem = Foxtrick.getParameterFromUrl(upcomingUrl, 'SourceSystem');
+					var sourceSystem = Foxtrick.getUrlParam(upcomingUrl, 'SourceSystem');
 
 					if (redirect === 'nextmatch') {
 						url = '/Club/Matches/Match.aspx?matchID=' + matchId +

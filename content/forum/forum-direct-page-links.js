@@ -21,13 +21,13 @@ Foxtrick.modules['DirectPageLinks'] = {
 
 			if (nextNodes.length && nextNodes[0]) {
 				var nextUrl = nextNodes[0].parentNode.href;
-				var nextN = parseInt(Foxtrick.getParameterFromUrl(nextUrl, 'n'), 10);
+				var nextN = parseInt(Foxtrick.getUrlParam(nextUrl, 'n'), 10);
 				stepToNext = Math.abs(currentPostId - nextN);
 			}
 
 			if (prevNodes.length && prevNodes[0]) {
 				var prevUrl = prevNodes[0].parentNode.href;
-				var prevN = parseInt(Foxtrick.getParameterFromUrl(prevUrl, 'n'), 10);
+				var prevN = parseInt(Foxtrick.getUrlParam(prevUrl, 'n'), 10);
 				stepToLast = Math.abs(currentPostId - prevN);
 			}
 
@@ -41,7 +41,7 @@ Foxtrick.modules['DirectPageLinks'] = {
 			var posts;
 			if (lastLinks.length) {
 				var lastUrl = lastLinks[0].parentNode.href;
-				var lastN = parseInt(Foxtrick.getParameterFromUrl(lastUrl, 'n'), 10);
+				var lastN = parseInt(Foxtrick.getUrlParam(lastUrl, 'n'), 10);
 				posts = lastN + postsPerPage - 1;
 			}
 			else {
@@ -97,7 +97,7 @@ Foxtrick.modules['DirectPageLinks'] = {
 				div.appendChild(rr);
 			}
 
-			var nparam = Foxtrick.getParameterFromUrl(Foxtrick.getHref(doc), 'n');
+			var nparam = Foxtrick.getUrlParam(Foxtrick.getHref(doc), 'n');
 			var currentPostId = parseInt(nparam, 10) || 1;
 
 			var postsPerPage = getPostPerPage(next, prev, currentPostId);
@@ -158,7 +158,7 @@ Foxtrick.modules['DirectPageLinks'] = {
 
 				var num = Math.max(currentPostId - (currentPage - p) * postsPerPage, 1);
 
-				if (Foxtrick.getParameterFromUrl(href, 'n'))
+				if (Foxtrick.getUrlParam(href, 'n'))
 					href = href.replace(/n=\d+/i, 'n=' + num);
 				else
 					href = href + '&n=' + num;

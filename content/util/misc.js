@@ -300,7 +300,7 @@ Foxtrick.getHref = function(doc) {
 	return doc.location.href;
 };
 
-Foxtrick.getParameterFromUrl = function(url, param) {
+Foxtrick.getUrlParam = function(url, param) {
 	let needle = param.toLowerCase();
 	let params = new URL(url).searchParams;
 	let keys = [...params.keys()];

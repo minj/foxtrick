@@ -53,7 +53,7 @@ Foxtrick.modules['TransferComparePlayers'] = {
 				for (var i = 0; i < count; i++) {
 					var player = table.rows[i].cells[0].getElementsByTagName('a')[0];
 					if (player) {
-						var playerid = Foxtrick.getParameterFromUrl(player.href, 'playerId');
+						var playerid = Foxtrick.getUrlParam(player.href, 'playerId');
 						var args = [
 							['file', 'playerdetails'],
 							['version', '2.1'],
@@ -111,7 +111,7 @@ Foxtrick.modules['TransferComparePlayers'] = {
 			});
 
 			var ownPlayer = table.rows[1].cells[0].getElementsByTagName('a')[0];
-			var ownPlayerId = Foxtrick.getParameterFromUrl(ownPlayer.href, 'playerId');
+			var ownPlayerId = Foxtrick.getUrlParam(ownPlayer.href, 'playerId');
 
 			var count = table.rows.length;
 			var priceArray = [];
@@ -119,7 +119,7 @@ Foxtrick.modules['TransferComparePlayers'] = {
 			for (var i = 5; i < count; i++) {
 				var row = table.rows[i];
 				var thisPlayer = row.cells[0].getElementsByTagName('a')[0];
-				var thisPlayerId = Foxtrick.getParameterFromUrl(thisPlayer.href, 'playerId');
+				var thisPlayerId = Foxtrick.getUrlParam(thisPlayer.href, 'playerId');
 				if (thisPlayerId === ownPlayerId) {
 					Foxtrick.addClass(row, 'ft-tableHighlight');
 				}
@@ -213,8 +213,8 @@ Foxtrick.modules['TransferComparePlayers'] = {
 			ageTh.title = Foxtrick.L10n.getString('Age');
 			headerRow.insertBefore(ageTh, headerRow.cells[1]);
 
-			var links = Foxtrick.Pages.All.getBreadCrumbs(doc);
-			var playerId = Foxtrick.getParameterFromUrl(links, 'playerId');
+			let [link] = Foxtrick.Pages.All.getBreadCrumbs(doc);
+			var playerId = Foxtrick.getUrlParam(link.href, 'playerId');
 
 			var detailsArgs = [
 				['file', 'playerdetails'],

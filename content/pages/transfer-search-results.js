@@ -303,13 +303,13 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 		try {
 			// first row - country, name, ID
 			let nameLink = playerNode.querySelector('.transfer_search_playername a');
-			p.id = Foxtrick.getParameterFromUrl(nameLink.href, 'playerId');
+			p.id = Foxtrick.getUrlParam(nameLink.href, 'playerId');
 			p.nameLink = nameLink.cloneNode(true);
 			p.nameLink.target = '_blank';
 			addLinks(p, playerNode, nameLink.href);
 
 			let flag = playerNode.querySelector('.flag');
-			let leagueId = Foxtrick.getParameterFromUrl(flag.href, 'leagueId');
+			let leagueId = Foxtrick.getUrlParam(flag.href, 'leagueId');
 			p.countryId = Foxtrick.XMLData.getCountryIdByLeagueId(leagueId);
 
 			let [first, second] = playerNode.children;

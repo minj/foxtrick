@@ -285,7 +285,7 @@ Foxtrick.Pages.Match.getArenaId = function(doc) {
 	try {
 		var matchReport = doc.getElementById('matchReport');
 		var arena = matchReport.querySelector('a[href^="/Club/Arena/"]');
-		arenaId = parseInt(Foxtrick.getParameterFromUrl(arena.href, 'ArenaID'), 10);
+		arenaId = parseInt(Foxtrick.getUrlParam(arena.href, 'ArenaID'), 10);
 	}
 	catch (e) {
 		Foxtrick.log(e);

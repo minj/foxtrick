@@ -41,7 +41,7 @@ Foxtrick.modules['ForumModeratorPopup'] = {
 			if (link.href.indexOf('actionTypeFunctions') > -1) {
 				// eslint-disable-next-line no-unused-vars
 				let actionTypeFunctions = // lgtm[js/unused-local-variable]
-					Foxtrick.getParameterFromUrl(link.href, 'actionTypeFunctions');
+					Foxtrick.getUrlParam(link.href, 'actionTypeFunctions');
 				let li = doc.createElement('li');
 				let clone = link.cloneNode(true);
 				li.appendChild(clone);
@@ -51,7 +51,7 @@ Foxtrick.modules['ForumModeratorPopup'] = {
 			else if (link.href.indexOf('actionTypeWrite') > -1) {
 				// eslint-disable-next-line no-unused-vars
 				let actionTypeWrite = // lgtm[js/unused-local-variable]
-					Foxtrick.getParameterFromUrl(link.href, 'actionTypeWrite');
+					Foxtrick.getUrlParam(link.href, 'actionTypeWrite');
 				let li = doc.createElement('li');
 				let clone = link.cloneNode(true);
 				li.appendChild(clone);

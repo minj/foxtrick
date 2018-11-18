@@ -38,9 +38,9 @@ Foxtrick.modules['MatchOrderInterface'] = {
 		var module = this;
 
 		let url = doc.location.href;
-		var sourceSystem = Foxtrick.getParameterFromUrl(url, 'SourceSystem');
+		var sourceSystem = Foxtrick.getUrlParam(url, 'SourceSystem');
 		var isYouth = sourceSystem.toLowerCase() == 'youth' ||
-			!!Foxtrick.getParameterFromUrl(url, 'isYouth');
+			!!Foxtrick.getUrlParam(url, 'isYouth');
 
 		var avatarsParamsString;
 		var getAvatars;

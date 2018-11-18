@@ -454,7 +454,7 @@ Foxtrick.modules['YouthSkills'] = {
 			for (let playerInfo of playerInfos) {
 				// get playerid
 				let link = playerInfo.querySelector('a');
-				let param = Foxtrick.getParameterFromUrl(link.href, 'YouthPlayerId');
+				let param = Foxtrick.getUrlParam(link.href, 'YouthPlayerId');
 				let playerId = parseInt(param, 10);
 
 				// stop if player unknown in HY

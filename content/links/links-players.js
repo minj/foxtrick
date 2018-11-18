@@ -32,7 +32,7 @@ Foxtrick.modules['LinksPlayers'] = {
 		var teamName = Foxtrick.Pages.All.getTeamName(doc);
 		var main = doc.getElementById('mainBody');
 		var player = main.querySelector('a[href*="rowseI"]');
-		var playerIds = player ? Foxtrick.getParameterFromUrl(player.href, 'browseIds') : null;
+		var playerIds = player ? Foxtrick.getUrlParam(player.href, 'browseIds') : null;
 
 		var info = {
 			teamId: teamId,

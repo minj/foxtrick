@@ -98,7 +98,7 @@ Foxtrick.Pages.Player.getName = function(doc) {
  */
 Foxtrick.Pages.Player.getId = function(doc) {
 	var param = this.isSenior(doc) ? 'playerId' : 'youthPlayerId';
-	var id = Foxtrick.getParameterFromUrl(doc.location.href, param);
+	var id = Foxtrick.getUrlParam(doc.location.href, param);
 	return parseInt(id, 10) || null;
 };
 
@@ -113,7 +113,7 @@ Foxtrick.Pages.Player.getNationalityId = function(doc) {
 		doc.querySelector('.flag');
 
 	if (link) {
-		var val = Foxtrick.getParameterFromUrl(link.href, 'LeagueID');
+		var val = Foxtrick.getUrlParam(link.href, 'LeagueID');
 		id = parseInt(val, 10);
 	}
 	return id;
@@ -256,7 +256,7 @@ Foxtrick.Pages.Player.getAttributes = function(doc) {
 		// personality
 		let idx;
 		for (idx = 0; idx < PERSONALITY.length; idx++) {
-			let attr = Foxtrick.getParameterFromUrl(personLinks[idx], 'lt');
+			let attr = Foxtrick.getUrlParam(personLinks[idx], 'lt');
 			attrs[attr] = num(personLinks[idx]);
 		}
 

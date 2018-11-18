@@ -22,7 +22,7 @@ Foxtrick.modules['MatchWeather'] = {
 			return;
 		}
 
-		var arenaId = Foxtrick.getParameterFromUrl(arenaLink.href, 'arenaId');
+		var arenaId = Foxtrick.getUrlParam(arenaLink.href, 'arenaId');
 		var parameters = [
 			['file', 'arenadetails'],
 			['version', '1.5'],

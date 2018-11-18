@@ -739,8 +739,8 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 			// README: using user date since no time is available
 			player.lastMatchDate = Foxtrick.util.time.getDateFromText(matchLink.textContent);
 
-			var matchId = Foxtrick.getParameterFromUrl(matchLink.href, 'matchId');
-			var youthMatchId = Foxtrick.getParameterFromUrl(matchLink.href, 'youthMatchId');
+			var matchId = Foxtrick.getUrlParam(matchLink.href, 'matchId');
+			var youthMatchId = Foxtrick.getUrlParam(matchLink.href, 'youthMatchId');
 			player.lastMatchId = parseInt(youthMatchId || matchId, 10);
 
 			if (isNewDesign) {
@@ -1408,8 +1408,8 @@ Foxtrick.Pages.Players.getPlayerId = function(playerInfo) {
 		var nameLink = Foxtrick.nth(function(n) {
 			return !Foxtrick.hasClass(n, 'flag');
 		}, links);
-		var pId = Foxtrick.getParameterFromUrl(nameLink.href, 'playerId');
-		var yPId = Foxtrick.getParameterFromUrl(nameLink.href, 'youthPlayerId');
+		var pId = Foxtrick.getUrlParam(nameLink.href, 'playerId');
+		var yPId = Foxtrick.getUrlParam(nameLink.href, 'youthPlayerId');
 		id = parseInt(pId || yPId, 10);
 	}
 	catch (e) {
