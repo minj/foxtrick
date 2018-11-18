@@ -1,9 +1,10 @@
-'use strict';
 /**
  * forum-preview.js
  * area for forum post preview
  * @author spambot
  */
+
+'use strict';
 
 Foxtrick.modules['ForumPreview'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.FORUM,
@@ -14,6 +15,8 @@ Foxtrick.modules['ForumPreview'] = {
 	],
 	NICE: 1, // after ForumYouthIcons
 	CSS: Foxtrick.InternalPath + 'resources/css/forum-preview.css',
+
+	/* eslint-disable complexity */
 
 	run: function(doc) {
 		var preview = function() {
@@ -223,17 +226,14 @@ Foxtrick.modules['ForumPreview'] = {
 		if (Foxtrick.isPage(doc, 'guestbook'))
 			target = null;
 
-
-		var msg_type = 0;
-		//var index =11;
-
-		var index = 12;
+		// eslint-disable-next-line no-unused-vars
+		var msgType = 0; // lgtm[js/unused-local-variable]
+		var index = 12; // index = 11;
 
 		if (!target) {
 			target = Foxtrick.getButton(doc, 'SendNew');  // Mail
-			index = 6;
-			/*index=5;*/
-			var msg_type = 1;
+			index = 6; // index = 5;
+			msgType = 1;
 		}
 
 		if (!target) {
@@ -241,8 +241,8 @@ Foxtrick.modules['ForumPreview'] = {
 			if (target) {
 				msg_window.setAttribute('tabindex', 1);
 				target.setAttribute('tabindex', 2);
-				index = 3; /*index=5;*/
-				var msg_type = 2;
+				index = 3; // index = 5;
+				msgType = 2;
 			}
 		}
 		if (!target) {
@@ -250,8 +250,8 @@ Foxtrick.modules['ForumPreview'] = {
 			if (target) {
 				msg_window.setAttribute('tabindex', 1);
 				target.setAttribute('tabindex', 2);
-				index = 3; /*index=5;*/
-				var msg_type = 3;
+				index = 3; // index = 5;
+				msgType = 3;
 			}
 		}
 		if (!target) {
@@ -260,8 +260,8 @@ Foxtrick.modules['ForumPreview'] = {
 			if (target) {
 				msg_window.setAttribute('tabindex', 1);
 				target.setAttribute('tabindex', 2);
-				index = 3; /*index=5;*/
-				var msg_type = 5;
+				index = 3; // index = 5;
+				msgType = 5;
 			}
 		}
 		if (!target) {
@@ -270,8 +270,8 @@ Foxtrick.modules['ForumPreview'] = {
 			if (target) {
 				msg_window.setAttribute('tabindex', 1);
 				target.setAttribute('tabindex', 2);
-				index = 3; /*index=5;*/
-				var msg_type = 6;
+				index = 3; // index = 5;
+				msgType = 6;
 			}
 		}
 		if (!target) {
@@ -279,8 +279,8 @@ Foxtrick.modules['ForumPreview'] = {
 			if (target) {
 				msg_window.setAttribute('tabindex', 1);
 				target.setAttribute('tabindex', 2);
-				index = 3; /*index=5;*/
-				var msg_type = 6;
+				index = 3; // index = 5;
+				msgType = 6;
 			}
 		}
 		if (!target) {
@@ -289,8 +289,8 @@ Foxtrick.modules['ForumPreview'] = {
 			if (target) {
 				msg_window.setAttribute('tabindex', 1);
 				target.setAttribute('tabindex', 2);
-				index = 3; /*index=5;*/
-				var msg_type = 7;
+				index = 3; // index = 5;
+				msgType = 7;
 			}
 		}
 

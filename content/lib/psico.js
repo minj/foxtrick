@@ -518,7 +518,8 @@ Foxtrick.psico = {
 
 	// seems rather useless, leaving for now
 	simWageKeeper: function (skill) {
-		var coefficients = [
+		// eslint-disable-next-line no-unused-vars
+		var coefficients = [ // lgtm[js/unused-local-variable]
 			-3.71589339794053e-56,
 			1.04009125232652e-50,
 			-1.23925532612466e-45,

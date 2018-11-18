@@ -236,26 +236,31 @@ Foxtrick.modules['ForumChangePosts'] = {
 		var do_redir_to_team = Foxtrick.Prefs.isModuleEnabled('ForumRedirManagerToTeam');
 
 		var do_alter_header = Foxtrick.Prefs.isModuleEnabled('ForumAlterHeaderLine');
-			var do_single_header = do_alter_header &&
-				Foxtrick.Prefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'SingleHeaderLine');
-			var do_small_header_font = do_alter_header &&
-				Foxtrick.Prefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'SmallHeaderFont');
-			var do_single_header_allways = do_alter_header && do_single_header &&
-				!Foxtrick.Prefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'CheckDesign');
-			var do_truncate_nicks = do_alter_header &&
-				Foxtrick.Prefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'TruncateLongNick');
-			var do_truncate_seriesname = do_alter_header &&
-				Foxtrick.Prefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'TruncateLeagueName');
-			var do_hide_old_time = do_alter_header &&
-				Foxtrick.Prefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'HideOldTime');
-			var do_short_postid = do_alter_header &&
-				Foxtrick.Prefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'ShortPostId');
-			var do_replace_supporter_star = do_alter_header &&
-				Foxtrick.Prefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'ReplaceSupporterStar');
-			var do_HighlightThreadOpener = do_alter_header &&
-				Foxtrick.Prefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'HighlightThreadOpener');
+		var do_single_header = do_alter_header &&
+			Foxtrick.Prefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'SingleHeaderLine');
+		// eslint-disable-next-line no-unused-vars
+		var do_small_header_font = do_alter_header && // lgtm[js/unused-local-variable]
+			Foxtrick.Prefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'SmallHeaderFont');
+		// eslint-disable-next-line no-unused-vars
+		var do_single_header_allways = do_alter_header && // lgtm[js/unused-local-variable]
+			 do_single_header &&
+			!Foxtrick.Prefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'CheckDesign');
+		var do_truncate_nicks = do_alter_header &&
+			Foxtrick.Prefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'TruncateLongNick');
+		var do_truncate_seriesname = do_alter_header &&
+			Foxtrick.Prefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'TruncateLeagueName');
+		var do_hide_old_time = do_alter_header &&
+			Foxtrick.Prefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'HideOldTime');
+		var do_short_postid = do_alter_header &&
+			Foxtrick.Prefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'ShortPostId');
+		var do_replace_supporter_star = do_alter_header &&
+			Foxtrick.Prefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'ReplaceSupporterStar');
+		var do_HighlightThreadOpener = do_alter_header &&
+			Foxtrick.Prefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'HighlightThreadOpener');
 
-		var hasScroll = Foxtrick.util.layout.mainBodyHasScroll(doc);
+		// eslint-disable-next-line no-unused-vars
+		var hasScroll = // lgtm[js/unused-local-variable]
+			Foxtrick.util.layout.mainBodyHasScroll(doc);
 		var notif = Foxtrick.Pages.All.getNotes(doc);
 		// archived threads will have this message: 'This thread is closed!'
 		var isArchive = notif.getElementsByClassName('error').length > 0;
@@ -308,17 +313,27 @@ Foxtrick.modules['ForumChangePosts'] = {
 		alt_supporter.textContent = ' * ';
 		alt_supporter.title = 'Hattrick Supporter';
 
-		if (do_HighlightThreadOpener) try {
-			var Ftag = doc.getElementById('ctl00_ucGuestForum_ucGuestForum_updMain');
-			if (!Ftag)
-				Ftag = doc.getElementById('myForums');
-			if (Ftag) {
-				Ftag = Ftag.getElementsByTagName('strong')[0];
-				var TName = Ftag.textContent;
-				var TName_lng = Ftag.parentNode.getAttribute('data-author');
-			} else var TName_lng = false;
-		} catch (e_tag) {
-			Foxtrick.dump('HTO ' + e_tag + '\n'); var TName_lng = false;
+		if (do_HighlightThreadOpener) {
+			try {
+				var Ftag = doc.getElementById('ctl00_ucGuestForum_ucGuestForum_updMain');
+				if (!Ftag)
+					Ftag = doc.getElementById('myForums');
+
+				var TName_lng;
+				if (Ftag) {
+					Ftag = Ftag.getElementsByTagName('strong')[0];
+					// eslint-disable-next-line no-unused-vars
+					let TName = Ftag.textContent; // lgtm[js/unused-local-variable]
+					TName_lng = Ftag.parentNode.getAttribute('data-author');
+				}
+				else {
+					TName_lng = false;
+				}
+			}
+			catch (errTag) {
+				Foxtrick.log('HTO', errTag);
+				TName_lng = false;
+			}
 		}
 
 		if (do_format_text) {

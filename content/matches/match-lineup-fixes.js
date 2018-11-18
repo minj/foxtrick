@@ -9,7 +9,7 @@ Foxtrick.modules['MatchLineupFixes'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.MATCHES,
 	PAGES: ['match'],
 	OPTIONS: [
-		'FixWeatherSEs', 'AddStarsToSubs', 'FixMultipleEvents', 'AddLinksInOrders'
+		'FixWeatherSEs', 'AddStarsToSubs', 'FixMultipleEvents', 'AddLinksInOrders',
 	],
 	NICE: 2, // after match-player-colouring
 	//CSS: Foxtrick.InternalPath + 'resources/css/match-lineup-fixes.css',
@@ -135,17 +135,18 @@ Foxtrick.modules['MatchLineupFixes'] = {
 		// info for CHPP
 		var SourceSystem = Foxtrick.Pages.Match.getSourceSystem(doc);
 		var matchId = Foxtrick.Pages.Match.getId(doc);
+
 		// add locale as argument to prevent using old cache after
 		// language changed
-		var locale = Foxtrick.Prefs.getString('htLanguage');
-		var detailsArgs = [
-			['file', 'matchdetails'],
-			['matchEvents', 'true'],
-			['matchId', matchId],
-			['sourceSystem', SourceSystem],
-			['version', '2.3'],
-			['lang', locale]
-		];
+		// var locale = Foxtrick.Prefs.getString('htLanguage');
+		// var detailsArgs = [
+		// 	['file', 'matchdetails'],
+		// 	['matchEvents', 'true'],
+		// 	['matchId', matchId],
+		// 	['sourceSystem', SourceSystem],
+		// 	['version', '2.3'],
+		// 	['lang', locale],
+		// ];
 
 
 		// END PREPARATION STAGE

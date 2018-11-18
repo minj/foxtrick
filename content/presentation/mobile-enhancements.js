@@ -95,7 +95,8 @@ Foxtrick.modules['MobileEnhancements'] = {
 		var rb = doc.getElementById('sidebar');
 		var header = doc.getElementById('header');
 		var page = doc.getElementById('page');
-		var footer = doc.getElementById('footer');
+		// eslint-disable-next-line no-unused-vars
+		var footer = doc.getElementById('footer'); // lgtm[js/unused-local-variable]
 		var hattrick = doc.getElementsByClassName('hattrick')[0] ||
 			doc.getElementsByClassName('hattrickNoSupporter')[0];
 		var header = doc.getElementById('header');

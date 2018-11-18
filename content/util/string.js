@@ -200,7 +200,7 @@ Foxtrick.formatNumber = function(num, sep) {
 Foxtrick.substr_count = function(haystack, needle, offset, length) {
 	// http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_substr_count/
 	// Returns count of needle in a haystack.
-	var pos = 0, cnt = 0;
+	var cnt = 0;
 	haystack += '';
 	needle += '';
 	if (isNaN(offset)) offset = 0;
