@@ -71,7 +71,7 @@ Foxtrick.modules['BookmarkAdjust'] = {
 				continue;
 
 			// a comment is on a span with class italic on the first cell
-			let [cCell, _, imgCell] = row.cells;
+			let [cCell, _, imgCell] = row.cells; // lgtm[js/unused-local-variable]
 			let comment = cCell.querySelector('.italic');
 			if (!comment)
 				continue;

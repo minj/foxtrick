@@ -812,14 +812,14 @@ function initListeners() {
  * @return {HTMLDivElement}
  */
 function makeModuleDiv(module) {
-	var getScreenshot = function(link) {
-		var a = document.createElement('a');
-		a.className = 'screenshot';
-		a.href = link;
-		a.title = Foxtrick.L10n.getString('module.screenshot');
-		a.setAttribute('target', '_blank');
-		return a;
-	};
+	// var getScreenshot = function(link) {
+	// 	var a = document.createElement('a');
+	// 	a.className = 'screenshot';
+	// 	a.href = link;
+	// 	a.title = Foxtrick.L10n.getString('module.screenshot');
+	// 	a.setAttribute('target', '_blank');
+	// 	return a;
+	// };
 
 	var entry = document.createElement('div');
 	entry.id = 'pref-' + module.MODULE_NAME;

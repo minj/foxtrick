@@ -407,7 +407,9 @@ Foxtrick.hash = function(s) {
 	 * Configurable variables. You may need to tweak these to be compatible with
 	 * the server-side, but the defaults work in most cases.
 	 */
-	var hexcase = 0; /* hex output format. 0 - lowercase; 1 - uppercase */
+	// var hexcase = 0; /* hex output format. 0 - lowercase; 1 - uppercase */
+	// var hex_tab = hexcase ? '0123456789ABCDEF' : '0123456789abcdef';
+	var hex_tab = '0123456789abcdef';
 
 	/*
 	 * Calculate the SHA1 of a raw string
@@ -422,10 +424,6 @@ Foxtrick.hash = function(s) {
 	 */
 	var rstr2hex = function(input)
 	{
-		if (!hexcase)
-			hexcase = 0;
-
-		var hex_tab = hexcase ? '0123456789ABCDEF' : '0123456789abcdef';
 		var output = '';
 		var x;
 		for (var i = 0; i < input.length; i++)
