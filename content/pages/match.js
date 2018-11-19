@@ -1,13 +1,16 @@
-'use strict';
 /**
  * match.js
  * utilities on match page
  * @author taised, Jestar, LA-MJ
  */
-////////////////////////////////////////////////////////////////////////////////
 
-if (!Foxtrick)
+'use strict';
+
+/* eslint-disable */
+if (!this.Foxtrick)
 	var Foxtrick = {};
+/* eslint-enable */
+
 if (!Foxtrick.Pages)
 	Foxtrick.Pages = {};
 
@@ -282,7 +285,7 @@ Foxtrick.Pages.Match.getArenaId = function(doc) {
 	try {
 		var matchReport = doc.getElementById('matchReport');
 		var arena = matchReport.querySelector('a[href^="/Club/Arena/"]');
-		arenaId = parseInt(Foxtrick.getParameterFromUrl(arena.href, 'ArenaID'), 10);
+		arenaId = parseInt(Foxtrick.getUrlParam(arena.href, 'ArenaID'), 10);
 	}
 	catch (e) {
 		Foxtrick.log(e);

@@ -272,7 +272,7 @@
 			"1000": "Hattrick International",
 			"101": "Malta",
 			"102": "Kyrgyzstán",
-			"103": "Moldávie",
+			"103": "Moldavsko",
 			"104": "Gruzie",
 			"105": "Andorra",
 			"106": "Jordánsko",
@@ -316,7 +316,12 @@
 			"146": "Kamerun",
 			"147": "Kuba",
 			"148": "Palestina",
+			"149": "Svatý Tomáš a Princův ostrov",
 			"15": "Oceánie",
+			"151": "Komory",
+			"152": "Srí Lanka",
+			"153": "Curacao",
+			"154": "Guam",
 			"16": "Brazílie",
 			"17": "Kanada",
 			"18": "Chile",
@@ -627,7 +632,7 @@
 			},
 			{
 				"type": "Regainer",
-				"value": "Nezmar"
+				"value": "Houževnatý"
 			}
 		],
 		"spirit": [

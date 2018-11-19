@@ -316,7 +316,12 @@
 			"146": "Kamerūnas",
 			"147": "Kuba",
 			"148": "Palestina",
+			"149": "San Tomė ir Prinsipė",
 			"15": "Okeanija",
+			"151": "Komorai",
+			"152": "Šri Lanka",
+			"153": "Kiurasao",
+			"154": "Guamas",
 			"16": "Brazilija",
 			"17": "Kanada",
 			"18": "Čilė",
@@ -627,7 +632,7 @@
 			},
 			{
 				"type": "Regainer",
-				"value": "Atsigaunantis"
+				"value": "Gajus"
 			}
 		],
 		"spirit": [

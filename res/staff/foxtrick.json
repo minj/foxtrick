@@ -46,6 +46,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "10330011",
+			"name": "holyoli"
+		},
+		{
+			"duty": "supporter",
 			"id": "10344768",
 			"name": "raetselecke"
 		},
@@ -197,7 +202,7 @@
 		{
 			"duty": "translator",
 			"id": "1132186",
-			"name": "LA-gucan"
+			"name": "gucan"
 		},
 		{
 			"duty": "developer",
@@ -498,6 +503,11 @@
 			"duty": "supporter",
 			"id": "12990065",
 			"name": "Lion_Holland"
+		},
+		{
+			"duty": "supporter",
+			"id": "13001247",
+			"name": "blu50_"
 		},
 		{
 			"duty": "supporter",
@@ -857,7 +867,7 @@
 		{
 			"duty": "supporter",
 			"id": "3682430",
-			"name": "Feu-canari29"
+			"name": "canari29"
 		},
 		{
 			"duty": "translator",

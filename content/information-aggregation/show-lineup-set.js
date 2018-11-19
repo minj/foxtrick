@@ -1,4 +1,3 @@
-'use strict';
 /**
  * show-lineup-set.js
  *
@@ -7,6 +6,8 @@
  *
  * @author convinced, ryanli, teles, LA-MJ
  */
+
+'use strict';
 
 Foxtrick.modules['ShowLineupSet'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
@@ -84,7 +85,7 @@ Foxtrick.modules['ShowLineupSet'] = {
 			link.appendChild(teamNode0);
 			link.appendChild(doc.createTextNode('\u00a0-\u00a0'));
 			link.appendChild(teamNode1);
-			link = Foxtrick.makeFeaturedElement(link, module);
+			Foxtrick.makeFeaturedElement(link, module);
 
 			return [teamNode0, teamNode1];
 		};

@@ -6,7 +6,7 @@
 'use strict';
 
 /* eslint-disable */
-if (!Foxtrick)
+if (!this.Foxtrick)
 	var Foxtrick = {};
 /* eslint-enable */
 
@@ -373,7 +373,7 @@ Foxtrick.appendChildren = function(parent, children) {
  *
  * child may be a Node, String or an array of such.
  *
- * @param {element} parent
+ * @param {Element} parent
  * @param {object}  child
  */
 Foxtrick.append = function(parent, child) {

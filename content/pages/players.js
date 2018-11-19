@@ -7,11 +7,12 @@
 'use strict';
 
 /* eslint-disable */
-if (!Foxtrick)
+if (!this.Foxtrick)
 	var Foxtrick = {};
+/* eslint-enable */
+
 if (!Foxtrick.Pages)
 	Foxtrick.Pages = {};
-/* eslint-enable */
 
 Foxtrick.Pages.Players = {};
 
@@ -328,12 +329,11 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 
 			var playerNode;
 			var num = function(nodeName, parent) {
-				var dummy = {};
 				var value = xml.num(nodeName, parent || playerNode);
 
 				// deal with goals being undefined during matches
 				if (isNaN(value))
-					return dummy.noSuchProperty;
+					return void 0;
 
 				return value;
 			};
@@ -350,12 +350,11 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				return xml.bool(nodeName, parent || playerNode);
 			};
 			var ifPositive = function(nodeName, parent) {
-				var dummy = {};
 				var value = num(nodeName, parent);
 				if (value > 0)
 					return value;
 
-				return dummy.noSuchProperty;
+				return void 0;
 			};
 			var addProperty = function(player, fn) {
 				return function(name) {
@@ -738,8 +737,8 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 			// README: using user date since no time is available
 			player.lastMatchDate = Foxtrick.util.time.getDateFromText(matchLink.textContent);
 
-			var matchId = Foxtrick.getParameterFromUrl(matchLink.href, 'matchId');
-			var youthMatchId = Foxtrick.getParameterFromUrl(matchLink.href, 'youthMatchId');
+			var matchId = Foxtrick.getUrlParam(matchLink.href, 'matchId');
+			var youthMatchId = Foxtrick.getUrlParam(matchLink.href, 'youthMatchId');
 			player.lastMatchId = parseInt(youthMatchId || matchId, 10);
 
 			if (isNewDesign) {
@@ -749,7 +748,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				let positionMatch = positionNode.textContent.match(/\((.+)\)/) ||
 					positionNode.nextElementSibling.textContent.match(/\((.+)\)/);
 
-				let [_, position] = positionMatch;
+				let [_, position] = positionMatch; // lgtm[js/unused-local-variable]
 				player.lastPosition = position;
 				player.lastPositionType = Foxtrick.L10n.getPositionType(position);
 
@@ -1407,8 +1406,8 @@ Foxtrick.Pages.Players.getPlayerId = function(playerInfo) {
 		var nameLink = Foxtrick.nth(function(n) {
 			return !Foxtrick.hasClass(n, 'flag');
 		}, links);
-		var pId = Foxtrick.getParameterFromUrl(nameLink.href, 'playerId');
-		var yPId = Foxtrick.getParameterFromUrl(nameLink.href, 'youthPlayerId');
+		var pId = Foxtrick.getUrlParam(nameLink.href, 'playerId');
+		var yPId = Foxtrick.getUrlParam(nameLink.href, 'youthPlayerId');
 		id = parseInt(pId || yPId, 10);
 	}
 	catch (e) {

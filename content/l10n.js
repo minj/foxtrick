@@ -1,4 +1,3 @@
-'use strict';
 /**
  * l10n.js
  * Localization tools.
@@ -6,10 +5,14 @@
  * @author ryan, convincedd, CatzHoek, LA-MJ
  */
 
-/* global PluralForm */
+'use strict';
 
-if (!Foxtrick)
-	var Foxtrick = {}; // jshint ignore:line
+/* eslint-disable */
+if (!this.Foxtrick)
+	var Foxtrick = {};
+/* eslint-enable */
+
+/* global PluralForm */
 
 Foxtrick.L10n = {};
 

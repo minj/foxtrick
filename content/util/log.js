@@ -1,12 +1,15 @@
-'use strict';
-/*
+/**
  * log.js
  * Debug log functions
  * @author ryanli, convincedd
  */
 
-if (!Foxtrick)
+'use strict';
+
+/* eslint-disable */
+if (!this.Foxtrick)
 	var Foxtrick = {};
+/* eslint-enable */
 
 /**
  * Log an error

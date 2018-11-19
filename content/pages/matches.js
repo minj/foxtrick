@@ -1,13 +1,16 @@
-'use strict';
 /**
  * matches.js
  * utilities on matches page
  * @author CatzHoek
  */
-////////////////////////////////////////////////////////////////////////////////
 
-if (!Foxtrick)
+'use strict';
+
+/* eslint-disable */
+if (!this.Foxtrick)
 	var Foxtrick = {};
+/* eslint-enable */
+
 if (!Foxtrick.Pages)
 	Foxtrick.Pages = {};
 

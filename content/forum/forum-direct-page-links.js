@@ -1,44 +1,47 @@
-'use strict';
 /**
  * forum-direct-page-links.js
  * @author CatzHoek, LA-MJ
  * idea by 14932093.387: LA-PuhuvaKoira
  */
 
+'use strict';
+
 Foxtrick.modules['DirectPageLinks'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.FORUM,
 	PAGES: ['forumViewThread'],
 	CSS: Foxtrick.InternalPath + 'resources/css/forum-direct-page-links.css',
 
+	/* eslint-disable complexity */
+
 	run: function(doc) {
 
 		// Figure out Hattrick Setting for how many posts per page should be displayed
 		var getPostPerPage = function(nextNodes, prevNodes, currentPostId) {
-			var step = 20, stepToNext = 0, stepToLast = 0;
+			var stepToNext = 0, stepToLast = 0;
 
 			if (nextNodes.length && nextNodes[0]) {
 				var nextUrl = nextNodes[0].parentNode.href;
-				var nextN = parseInt(Foxtrick.getParameterFromUrl(nextUrl, 'n'), 10);
+				var nextN = parseInt(Foxtrick.getUrlParam(nextUrl, 'n'), 10);
 				stepToNext = Math.abs(currentPostId - nextN);
 			}
 
 			if (prevNodes.length && prevNodes[0]) {
 				var prevUrl = prevNodes[0].parentNode.href;
-				var prevN = parseInt(Foxtrick.getParameterFromUrl(prevUrl, 'n'), 10);
+				var prevN = parseInt(Foxtrick.getUrlParam(prevUrl, 'n'), 10);
 				stepToLast = Math.abs(currentPostId - prevN);
 			}
 
-			step = Math.max(stepToNext, stepToLast);
+			var step = Math.max(stepToNext, stepToLast) || 20;
 
 			return step;
 		};
 
 		// Figure out the maximum amount of pages in this thread
 		var getMaxPost = function(lastLinks, lastInPage, postsPerPage) {
-			var posts = postsPerPage;
+			var posts;
 			if (lastLinks.length) {
 				var lastUrl = lastLinks[0].parentNode.href;
-				var lastN = parseInt(Foxtrick.getParameterFromUrl(lastUrl, 'n'), 10);
+				var lastN = parseInt(Foxtrick.getUrlParam(lastUrl, 'n'), 10);
 				posts = lastN + postsPerPage - 1;
 			}
 			else {
@@ -65,14 +68,16 @@ Foxtrick.modules['DirectPageLinks'] = {
 			var last = rr.getElementsByClassName('last');
 			var next = rr.getElementsByClassName('next');
 			var prev = ll.getElementsByClassName('prev');
-			var first = ll.getElementsByClassName('first');
+
+			// eslint-disable-next-line no-unused-vars
+			var first = ll.getElementsByClassName('first'); // lgtm[js/useless-assignment-to-local]
 
 			// fails on right to left languages
 			if (!next.length && !prev.length) {
 				last = ll.getElementsByClassName('last');
 				next = ll.getElementsByClassName('next');
 				prev = rr.getElementsByClassName('prev');
-				first = rr.getElementsByClassName('first');
+				first = rr.getElementsByClassName('first'); // lgtm[js/useless-assignment-to-local]
 				if (!next.length && !prev.length)
 					return;
 
@@ -92,7 +97,7 @@ Foxtrick.modules['DirectPageLinks'] = {
 				div.appendChild(rr);
 			}
 
-			var nparam = Foxtrick.getParameterFromUrl(Foxtrick.getHref(doc), 'n');
+			var nparam = Foxtrick.getUrlParam(Foxtrick.getHref(doc), 'n');
 			var currentPostId = parseInt(nparam, 10) || 1;
 
 			var postsPerPage = getPostPerPage(next, prev, currentPostId);
@@ -153,7 +158,7 @@ Foxtrick.modules['DirectPageLinks'] = {
 
 				var num = Math.max(currentPostId - (currentPage - p) * postsPerPage, 1);
 
-				if (Foxtrick.getParameterFromUrl(href, 'n'))
+				if (Foxtrick.getUrlParam(href, 'n'))
 					href = href.replace(/n=\d+/i, 'n=' + num);
 				else
 					href = href + '&n=' + num;

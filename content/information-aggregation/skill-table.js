@@ -69,7 +69,7 @@ Foxtrick.modules['SkillTable'] = {
 
 		// returns full type of the document in this format:
 		// { type: ['senior'|'youth'|'transfer'], subtype: ['own'|'others'|'nt'|'oldiesCoach'] }
-		var getFullType = function() {
+		var getFullType = function(doc) {
 			var fullType = { type: '', subtype: '' };
 
 			if (Foxtrick.Pages.TransferSearchResults.isPage(doc)) {
@@ -947,12 +947,10 @@ Foxtrick.modules['SkillTable'] = {
 								return 0;
 							}
 							// place empty cells at the bottom
-							if (aContent === '' || aContent === 'X' ||
-							    aContent === null || aContent === undefined) {
+							if (aContent === '' || aContent === 'X' || aContent == null) {
 								return 1;
 							}
-							if (bContent === '' || bContent === 'X' ||
-							    bContent === null || bContent === undefined) {
+							if (bContent === '' || bContent === 'X' || bContent == null) {
 								return -1;
 							}
 							if (sortAsString) {
@@ -1288,6 +1286,7 @@ Foxtrick.modules['SkillTable'] = {
 		var createTable = function(fullType) {
 			if (!fullType)
 				fullType = getFullType(doc);
+
 			if (fullType.type == 'transfer') {
 				var playerList = Foxtrick.Pages.TransferSearchResults.getPlayerList(doc);
 				generateTable(playerList);
@@ -1727,7 +1726,7 @@ Foxtrick.modules['SkillTable'] = {
 			return;
 
 		if (Foxtrick.isPage(doc, 'transferSearchResult') ||
-		    getFullType().subtype != 'others' ||
+		    getFullType(doc).subtype != 'others' ||
 		    Foxtrick.Prefs.isModuleOptionEnabled('SkillTable', 'OtherTeams')) {
 
 			addTableDiv();

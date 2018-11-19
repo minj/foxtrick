@@ -216,7 +216,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			}
 			var subLinks = playerCell.getElementsByTagName('a');
 			var pIds = Foxtrick.map(function(link) {
-				return Math.abs(Foxtrick.getParameterFromUrl(link, param));
+				return Math.abs(Foxtrick.getUrlParam(link, param));
 			}, subLinks);
 
 			if (!pIds.length)
@@ -297,7 +297,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 				Foxtrick.stopListenToChange(doc);
 				var missing = [];
 				for (var i = 0; i < players.length; i++) {
-					var id = Math.abs(Foxtrick.getParameterFromUrl(players[i].href, param));
+					var id = Math.abs(Foxtrick.getUrlParam(players[i].href, param));
 					var player = Foxtrick.Pages.Players.getPlayerFromListById(playerInfo, id);
 					var node = players[i].parentNode.parentNode.
 						getElementsByClassName('ft-indicator-wrapper')[0];
@@ -316,7 +316,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 							Foxtrick.stopListenToChange(doc);
 							var node = players[missing[j].i].parentNode.parentNode.
 								getElementsByClassName('ft-indicator-wrapper')[0];
-							addSpecialty(node, p || null);
+							addSpecialty(node, p);
 							Foxtrick.startListenToChange(doc);
 						};
 					};
@@ -370,7 +370,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 				Foxtrick.stopListenToChange(doc);
 				var missing = [];
 				for (var i = 0; i < players.length; i++) {
-					var id = Math.abs(Foxtrick.getParameterFromUrl(players[i].href, param));
+					var id = Math.abs(Foxtrick.getUrlParam(players[i].href, param));
 					var player = Foxtrick.Pages.Players.getPlayerFromListById(playerInfo, id);
 					if (!player)
 						missing.push(i);
@@ -472,7 +472,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 				}
 				Foxtrick.stopListenToChange(doc);
 				for (var i = 0; i < players.length; i++) {
-					var id = Math.abs(Foxtrick.getParameterFromUrl(players[i].href, param));
+					var id = Math.abs(Foxtrick.getUrlParam(players[i].href, param));
 					addFace(players[i].parentNode.parentNode, id, xml);
 				}
 				Foxtrick.startListenToChange(doc);
@@ -629,7 +629,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		};
 
 		for (var i = 0; i < players.length; i++) {
-			var player = Math.abs(Foxtrick.getParameterFromUrl(players[i].href, param));
+			var player = Math.abs(Foxtrick.getUrlParam(players[i].href, param));
 			highlightPlayer(player);
 		}
 
@@ -861,8 +861,8 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 
 		var isHome = team == 'home';
 
-		/* jshint ignore:start */
-		var getStamina = function(lastEnergy, checkpoints, isRested) {
+		// eslint-disable-next-line no-unused-vars
+		var getStamina = (lastEnergy, checkpoints, isRested) => { // lgtm[js/unused-local-variable]
 			// these formulas are derrived from the formula used in match-simulator
 			// currently they seem to have low accuracy :(
 			// UNUSED!!!
@@ -885,10 +885,10 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			}
 			return stamina;
 		};
-		var hasRest = function(from, to) {
+		// eslint-disable-next-line no-unused-vars
+		var hasRest = function(from, to) { // lgtm[js/unused-local-variable]
 			return from < 45 && to > 45;
 		};
-		/* jshint ignore:end */
 
 		var getCheckpointCount = function(from, to) {
 			var ct = Foxtrick.Math.div(to - 1, 5) - Foxtrick.Math.div(from - 1, 5) +
@@ -961,7 +961,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 					affectedPlayerID = 0;
 				}
 				else
-					affectedPlayerID = Foxtrick.getParameterFromUrl(playerLink.href, 'playerId');
+					affectedPlayerID = Foxtrick.getUrlParam(playerLink.href, 'playerId');
 				return true;
 			}
 			return false;
@@ -1051,7 +1051,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 				var staminaText = staminaDiv.title;
 				var link = playerDiv.querySelector('#playerLink');
 				if (link) {
-					var id = Foxtrick.getParameterFromUrl(link.href, 'PlayerId');
+					var id = Foxtrick.getUrlParam(link.href, 'PlayerId');
 					var player = playersById[id];
 					if (player && player.stamina)
 						staminaText += Foxtrick.format(' ({})', [player.stamina]);

@@ -1,10 +1,16 @@
-'use strict';
-/* note.js
+/**
+ * note.js
  * Foxtrick.util.note used for creating Foxtrick notes.
  * @author ryanli
  */
-if (!Foxtrick)
+
+'use strict';
+
+/* eslint-disable */
+if (!this.Foxtrick)
 	var Foxtrick = {};
+/* eslint-enable */
+
 if (!Foxtrick.util)
 	Foxtrick.util = {};
 

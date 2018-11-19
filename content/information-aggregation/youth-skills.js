@@ -134,12 +134,12 @@ Foxtrick.modules['YouthSkills'] = {
 				for (let [attr, val] of Object.entries(barDef))
 					div.setAttribute(attr, val);
 
-				let table = doc.createElement('table');
-				let row = table.insertRow();
-				let cell = row.insertCell();
-				cell.className = 'bar-max';
-				cell.style.width = '100%';
-				div.appendChild(table);
+				let maxBar = doc.createElement('div');
+				maxBar.className = 'bar-max';
+				maxBar.style.width = '100%';
+				div.appendChild(maxBar);
+				let contents = maxBar.appendChild(doc.createElement('span'));
+				contents.clasName = 'bar-denomination';
 
 				if (skillCell.nextElementSibling) {
 					skillCell.nextElementSibling.textContent = '?/?';
@@ -269,20 +269,12 @@ Foxtrick.modules['YouthSkills'] = {
 				let val = Math.min(max, value);
 
 				let maxBar = bar.querySelector('.bar-max');
-				let widthAvail = maxBar.getBoundingClientRect().width;
-				let widthUsed = widthTotal - widthAvail;
 				let widthNeeded = Math.round(val / max * widthTotal);
-				let widthTaken = widthNeeded - widthUsed;
-				if (!widthTaken)
-					return;
 
-				widthAvail -= widthTaken;
-
-				let hyBar = Foxtrick.createFeaturedElement(doc, module, 'td');
-				Foxtrick.addClass(hyBar, `ft-bar-${name}`);
-				hyBar.style.width = `${widthTaken}px`;
-				maxBar.style.width = `${widthAvail}px`;
-				Foxtrick.insertBefore(hyBar, maxBar);
+				let hyBar = Foxtrick.createFeaturedElement(doc, module, 'div');
+				Foxtrick.addClass(hyBar, `bar-level ft-bar-${name}`);
+				hyBar.style.width = `${widthNeeded}px`;
+				Foxtrick.insertAfter(hyBar, maxBar);
 			};
 
 			/**
@@ -462,7 +454,7 @@ Foxtrick.modules['YouthSkills'] = {
 			for (let playerInfo of playerInfos) {
 				// get playerid
 				let link = playerInfo.querySelector('a');
-				let param = Foxtrick.getParameterFromUrl(link.href, 'YouthPlayerId');
+				let param = Foxtrick.getUrlParam(link.href, 'YouthPlayerId');
 				let playerId = parseInt(param, 10);
 
 				// stop if player unknown in HY

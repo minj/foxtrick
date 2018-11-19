@@ -1,4 +1,3 @@
-'use strict';
 /**
  * session-store.js
  *
@@ -10,8 +9,12 @@
  * @author ryanli, convincedd, LA-MJ
  */
 
-if (!Foxtrick)
-	var Foxtrick = {}; // jshint ignore:line
+'use strict';
+
+/* eslint-disable */
+if (!this.Foxtrick)
+	var Foxtrick = {};
+/* eslint-enable */
 
 Foxtrick.session = {};
 
@@ -79,8 +82,8 @@ Foxtrick.session.get = function(key) {
 		try {
 			var value = Foxtrick.session.__STORE[key];
 
-			// type-cast undefined to null
-			if (typeof value === 'undefined')
+			// cast undefined to null
+			if (value == null)
 				value = null;
 
 			resolve(value);

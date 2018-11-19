@@ -21,7 +21,7 @@
 'use strict';
 
 /* eslint-disable */
-if (!Foxtrick)
+if (!this.Foxtrick)
 	var Foxtrick = {};
 /* eslint-enable */
 
@@ -231,12 +231,14 @@ Foxtrick.isPage = function(doc, page) {
 };
 
 /**
- * Form a regular expression from page spec
+ * Form a regular expression from page spec.
+ *
+ * Only sanitizes ? and .
  * @param  {string} reStr page spec
  * @return {RegExp}
  */
 Foxtrick.makePageRe = function(reStr) {
-	return new RegExp(reStr.replace(/([.?])/g, '\\$1'), 'i');
+	return new RegExp(reStr.replace(/([.?])/g, '\\$1'), 'i'); // lgtm[js/incomplete-sanitization]
 };
 
 /**

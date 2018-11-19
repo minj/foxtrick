@@ -1,6 +1,10 @@
 'use strict';
-if (!Foxtrick)
+
+/* eslint-disable */
+if (!this.Foxtrick)
 	var Foxtrick = {};
+/* eslint-enable */
+
 if (!Foxtrick.api)
 	Foxtrick.api = {};
 if (!Foxtrick.api.pastebin)
@@ -76,4 +80,3 @@ Foxtrick.api.pastebin._generic = function(api, url, success, params, failure, fi
 		}, params);
 	}, params);
 };
-

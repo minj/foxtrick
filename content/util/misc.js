@@ -1,11 +1,14 @@
-'use strict';
-/*
+/**
  * misc.js
  * Miscellaneous utilities
  */
 
-if (!Foxtrick)
+'use strict';
+
+/* eslint-disable */
+if (!this.Foxtrick)
 	var Foxtrick = {};
+/* eslint-enable */
 
 // global change listener.
 (function() {
@@ -128,7 +131,7 @@ Foxtrick.playSound = function(url) {
 	}
 	url = url.replace(/^foxtrick:\/\//, Foxtrick.ResourcePath);
 
-	var type = 'wav';
+	var type;
 	if (url.indexOf('data:audio/') === 0) {
 		var dataURLRe = /data:audio\/(.+);/;
 		if (!dataURLRe.test(url)) {
@@ -151,7 +154,7 @@ Foxtrick.playSound = function(url) {
 	var volume = (parseInt(Foxtrick.Prefs.getString('volume'), 10) || 100) / 100;
 	Foxtrick.log('play', volume, url.slice(0, 100));
 
-	play(url, type, volume);
+	play(url, type || 'wav', volume);
 };
 
 /**
@@ -297,15 +300,17 @@ Foxtrick.getHref = function(doc) {
 	return doc.location.href;
 };
 
-Foxtrick.getParameterFromUrl = function(url, param) {
-	param = param.replace(/[\[]/, '\\\[').replace(/[\]]/, '\\\]');
-	var regexS = '[\\?&]' + param + '=([^&#]*)';
-	var regex = new RegExp(regexS, 'i');
-	var results = regex.exec(url);
-	if (results == null)
-		return null;
-	else
-		return decodeURIComponent(results[1]);
+Foxtrick.getUrlParam = function(url, param) {
+	let needle = param.toLowerCase();
+	let params = new URL(url).searchParams;
+	let entries = [...params]; // keys() is not iterable in FF :(
+	let entry = Foxtrick.nth(([k]) => k.toLowerCase() == needle, entries);
+	if (entry) {
+		let [_, val] = entry; // lgtm[js/unused-local-variable]
+		return val;
+	}
+
+	return null;
 };
 
 Foxtrick.isHt = function(doc) {
@@ -622,7 +627,7 @@ Foxtrick.getSpecialtyImagePathFromNumber = function(type, negative) {
 /**
  * Given a number in decimal representation, returns its roman representation
  * Source: http://blog.stevenlevithan.com/archives/javascript-roman-numeral-converter
- * 
+ *
  * @param  {Number}  num
  * @return {String}
  */

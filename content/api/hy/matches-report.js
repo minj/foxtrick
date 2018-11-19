@@ -1,15 +1,5 @@
-'use strict';
-
-if (!Foxtrick)
-	var Foxtrick = {};
-if (!Foxtrick.api)
-	Foxtrick.api = {};
-if (!Foxtrick.api.hy)
-	Foxtrick.api.hy = {};
-if (!Foxtrick.api.hy.URL)
-	Foxtrick.api.hy.URL = {};
-
-/* matches-report.js
+/**
+ * matches-report.js
  * url: 'https://www.hattrick-youthclub.org/_data_provider/foxtrick/matchesReport';
  *
  * params:
@@ -36,9 +26,23 @@ if (!Foxtrick.api.hy.URL)
  * 4. There is already a match report for this match on HY!
  */
 
+'use strict';
 
-Foxtrick.api.hy.URL['matchesReport'] = 'https://www.hattrick-youthclub.org' +
+/* eslint-disable */
+if (!this.Foxtrick)
+	var Foxtrick = {};
+/* eslint-enable */
+
+if (!Foxtrick.api)
+	Foxtrick.api = {};
+if (!Foxtrick.api.hy)
+	Foxtrick.api.hy = {};
+if (!Foxtrick.api.hy.URL)
+	Foxtrick.api.hy.URL = {};
+
+Foxtrick.api.hy.URL.matchesReport = 'https://www.hattrick-youthclub.org' +
 	'/_data_provider/foxtrick/matchesReport';
+
 /**
  * Tries to post the match report to HY and executes callback(response);
  * failure() is called if the request fails

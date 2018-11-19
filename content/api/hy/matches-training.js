@@ -1,15 +1,5 @@
-'use strict';
-
-if (!Foxtrick)
-	var Foxtrick = {};
-if (!Foxtrick.api)
-	Foxtrick.api = {};
-if (!Foxtrick.api.hy)
-	Foxtrick.api.hy = {};
-if (!Foxtrick.api.hy.URL)
-	Foxtrick.api.hy.URL = {};
-
-/* matches-training.js
+/**
+ * matches-training.js
  * url: 'https://www.hattrick-youthclub.org/_data_provider/foxtrick/matchesTraining';
  *
  * params:
@@ -31,9 +21,23 @@ if (!Foxtrick.api.hy.URL)
  * - service temporarly not available
  */
 
+'use strict';
 
-Foxtrick.api.hy.URL['matchesTraining'] = 'https://www.hattrick-youthclub.org' +
+/* eslint-disable */
+if (!this.Foxtrick)
+	var Foxtrick = {};
+/* eslint-enable */
+
+if (!Foxtrick.api)
+	Foxtrick.api = {};
+if (!Foxtrick.api.hy)
+	Foxtrick.api.hy = {};
+if (!Foxtrick.api.hy.URL)
+	Foxtrick.api.hy.URL = {};
+
+Foxtrick.api.hy.URL.matchesTraining = 'https://www.hattrick-youthclub.org' +
 	'/_data_provider/foxtrick/matchesTraining';
+
 /**
  * Tries to post the match report to HY and executes callback(response);
  * failure() is called if the request fails

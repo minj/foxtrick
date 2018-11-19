@@ -36,13 +36,19 @@ Foxtrick.modules['MatchOrderInterface'] = {
 	],
 	run: function(doc) {
 		var module = this;
+
+		let url = doc.location.href;
+		var sourceSystem = Foxtrick.getUrlParam(url, 'SourceSystem');
+		var isYouth = sourceSystem.toLowerCase() == 'youth' ||
+			!!Foxtrick.getUrlParam(url, 'isYouth');
+
 		var avatarsParamsString;
 		var getAvatars;
 		var getPlayers;
 		var check_images = function(doc, target, avatarsXml, getID, scale, recursion) {
 			if (!Foxtrick.Prefs.isModuleOptionEnabled('MatchOrderInterface', 'ShowFaces'))
 				return;
-			var isYouth = (doc.location.href.search(/isYouth=true|SourceSystem=Youth/i) != -1);
+
 			var add_image = function(fieldplayer) {
 				var id = getID(fieldplayer);
 				if (!id)
@@ -494,7 +500,6 @@ Foxtrick.modules['MatchOrderInterface'] = {
 		};
 
 		var runMatchOrder = function(doc) {
-			var isYouth = (doc.location.href.search(/isYouth=true|SourceSystem=Youth/i) != -1);
 			var getID = function(fieldplayer) {
 				if (!fieldplayer.id)
 					return null;
@@ -560,7 +565,6 @@ Foxtrick.modules['MatchOrderInterface'] = {
 			};
 			getAvatars(avatarsParams);
 
-			var loading = doc.getElementById('loading');
 			var waitForInterface = function(ev) {
 				if (hasInterface)
 					return;
@@ -678,7 +682,7 @@ Foxtrick.modules['MatchOrderInterface'] = {
 							players = Foxtrick.map(function(n) { return n; }, players);
 							// change live node list into array
 
-							if (customSort && hasPlayerInfo && ps !== undefined) {
+							if (customSort && hasPlayerInfo && typeof ps !== 'undefined') {
 								players.sort(function(a, b) { // sort descending
 									var aid = a.id.match(/\d+/)[0], bid = b.id.match(/\d+/)[0];
 									if (ps[aid] !== null && ps[bid] !== null) {
@@ -889,8 +893,7 @@ Foxtrick.modules['MatchOrderInterface'] = {
 			});
 		};
 
-		var isYouth = (doc.location.href.search(/isYouth=true|SourceSystem=Youth/i) != -1);
 		runMatchOrder(doc);
 		Foxtrick.util.inject.jsLink(doc, Foxtrick.InternalPath + 'resources/js/matchOrder.js');
-	}
+	},
 };

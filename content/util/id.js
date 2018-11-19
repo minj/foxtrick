@@ -1,11 +1,15 @@
-'use strict';
 /**
 * id.js
 * Utilities for dealing with ID
 */
 
-if (!Foxtrick)
+'use strict';
+
+/* eslint-disable */
+if (!this.Foxtrick)
 	var Foxtrick = {};
+/* eslint-enable */
+
 if (!Foxtrick.util)
 	Foxtrick.util = {};
 

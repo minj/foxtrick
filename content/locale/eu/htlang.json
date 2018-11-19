@@ -316,7 +316,12 @@
 			"146": "Kamerun",
 			"147": "Kuba",
 			"148": "Palestina",
+			"149": "São Tomé e Príncipe",
 			"15": "Ozeania",
+			"151": "Comoros",
+			"152": "Sri Lanka",
+			"153": "Curaçao",
+			"154": "Guam",
 			"16": "Brasil",
 			"17": "Kanada",
 			"18": "Txile",
@@ -491,7 +496,7 @@
 			},
 			{
 				"type": "WingBack",
-				"value": "Hego Atzelaria"
+				"value": "Hegal Atzelaria"
 			},
 			{
 				"type": "CentralDefender",
@@ -615,7 +620,7 @@
 			},
 			{
 				"type": "Powerful",
-				"value": "Ahaltsua"
+				"value": "Bortitza"
 			},
 			{
 				"type": "Unpredictable",
@@ -627,7 +632,7 @@
 			},
 			{
 				"type": "Regainer",
-				"value": "Sendaerraza"
+				"value": "Elastikoa"
 			}
 		],
 		"spirit": [

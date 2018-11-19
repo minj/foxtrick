@@ -86,8 +86,8 @@ Foxtrick.modules.FixLinks = {
 		var paramsTosave = {
 			teamId: Foxtrick.util.id.getTeamIdFromUrl(loc),
 			youthTeamId: Foxtrick.util.id.getYouthTeamIdFromUrl(loc),
-			HighlightPlayerID: Foxtrick.getParameterFromUrl(loc, 'HighlightPlayerID'),
-			BrowseIds: Foxtrick.getParameterFromUrl(loc, 'BrowseIds'),
+			HighlightPlayerID: Foxtrick.getUrlParam(loc, 'HighlightPlayerID'),
+			BrowseIds: Foxtrick.getUrlParam(loc, 'BrowseIds'),
 		};
 		var saveParams = function(link) {
 			var url = link.href;
@@ -134,7 +134,7 @@ Foxtrick.modules.FixLinks = {
 
 		var table = doc.querySelector('#mainBody table');
 		var browser = table.querySelector('a[href*="BrowseIds"]');
-		var browseIds = browser ? Foxtrick.getParameterFromUrl(browser.href, 'BrowseIds') : null;
+		var browseIds = browser ? Foxtrick.getUrlParam(browser.href, 'BrowseIds') : null;
 
 		var lineupImgs = table.querySelectorAll('img.matchOrder');
 		Foxtrick.forEach(function(lineupImg) {
@@ -171,7 +171,7 @@ Foxtrick.modules.FixLinks = {
 		};
 
 		var id = module.getDefaultTeamId(doc);
-		var pid = Foxtrick.getParameterFromUrl(doc.location.href, 'PlayerID');
+		var pid = Foxtrick.getUrlParam(doc.location.href, 'PlayerID');
 		var icons = doc.querySelectorAll('#stats .iconMatchtype img');
 		var links = doc.querySelectorAll('#matches a');
 		Foxtrick.forEach(function(link, i) {
@@ -185,8 +185,8 @@ Foxtrick.modules.FixLinks = {
 	parseH2HLatestMatches: function(doc) {
 		var module = this;
 
-		var homeId = Foxtrick.getParameterFromUrl(doc.location.href, 'HomeTeamID');
-		var awayId = Foxtrick.getParameterFromUrl(doc.location.href, 'AwayTeamID');
+		var homeId = Foxtrick.getUrlParam(doc.location.href, 'HomeTeamID');
+		var awayId = Foxtrick.getUrlParam(doc.location.href, 'AwayTeamID');
 
 		var names = doc.querySelectorAll('#mainBody th');
 		var home = names[0].textContent.trim();

@@ -584,7 +584,7 @@ Foxtrick.modules['StaffMarker'] = {
 						return;
 
 					var userName = a.title.trim();
-					var userId = Foxtrick.getParameterFromUrl(a.href, 'userId');
+					var userId = Foxtrick.getUrlParam(a.href, 'userId');
 					modify(a, data, userId, userName);
 
 				}, links);

@@ -1,12 +1,16 @@
-'use strict';
-/*
+/**
  * sanitize.js
  * Utilities for removing dangerous code from href/html. whitelist-based
- * @author:  based on http://refactormycode.com/codes/333-sanitize-html
+ * @author: based on http://refactormycode.com/codes/333-sanitize-html
  */
 
-if (!Foxtrick)
+'use strict';
+
+/* eslint-disable */
+if (!this.Foxtrick)
 	var Foxtrick = {};
+/* eslint-enable */
+
 if (!Foxtrick.util)
 	Foxtrick.util = {};
 

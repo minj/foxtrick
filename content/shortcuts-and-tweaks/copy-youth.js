@@ -1,9 +1,10 @@
-'use strict';
 /**
 * copy-youth.js
 * Copy functions for youth sources
 * @author larsw84, convincedd, Parminu, ryanli
 */
+
+'use strict';
 
 Foxtrick.modules['CopyYouth'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
@@ -106,16 +107,14 @@ Foxtrick.modules['CopyYouth'] = {
 		var readBtn = Foxtrick.getButton(doc, 'ReadAll');
 		if (readBtn) {
 			if (Foxtrick.Prefs.isModuleOptionEnabled('CopyYouth', 'AutoSendTrainingReportToHY')) {
-				var mainBody = doc.getElementById('mainBody');
-				var matchid = Foxtrick.util.id.findMatchId(mainBody);
-				var readBtn = Foxtrick.getButton(doc, 'ReadAll');
-
+				let readBtn = Foxtrick.getButton(doc, 'ReadAll');
 				Foxtrick.onClick(readBtn, function() {
 					Foxtrick.log('Marked');
 					Foxtrick.sessionSet('YouthClub.sendTrainingReport', true);
 				});
 			}
-		} else {
+		}
+		else {
 			// add button
 			var button = Foxtrick.util.copyButton.add(doc, Foxtrick.L10n.getString(
 			                                          'copy.trainingReport'));
@@ -166,7 +165,6 @@ Foxtrick.modules['CopyYouth'] = {
 					}
 					if (subDivs[i].className == 'managerInfo') {
 						lastmainbox = i; // not the last realy. just was lazy
-						var rejectreport = true;
 						break;
 					}
 				}

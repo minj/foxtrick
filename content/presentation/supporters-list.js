@@ -27,7 +27,7 @@ Foxtrick.modules['SupportersList'] = {
 		if (!supporterBack && !supportedBack)
 			return;
 
-		var action = Foxtrick.getParameterFromUrl(Foxtrick.getHref(doc), 'actionType');
+		var action = Foxtrick.getUrlParam(Foxtrick.getHref(doc), 'actionType');
 		var type = 'supporters';
 
 		if (action === 'mysupporters' && supportedBack) {

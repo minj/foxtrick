@@ -100,7 +100,7 @@ Foxtrick.modules['CurrentTransfers'] = {
 		Foxtrick.forEach(function(row) {
 			var playerCell = module.getPlayerCell(row);
 			var playerLink = playerCell.querySelector('a');
-			var playerId = Foxtrick.getParameterFromUrl(playerLink.href, 'playerId');
+			var playerId = Foxtrick.getUrlParam(playerLink.href, 'playerId');
 			Foxtrick.addClass(row, 'ft-transfer-' + playerId);
 
 			if (Foxtrick.any(p => p.id === playerId, players)) {
