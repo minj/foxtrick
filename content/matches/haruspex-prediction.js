@@ -1,10 +1,10 @@
-'use strict';
 /**
  * haruspex-prediction.js
  * adds match prediction on match report
- * based on taised work in htms-statistics.js
+ * based on taised work in htms-prediction.js
  */
-////////////////////////////////////////////////////////////////////////////////
+
+'use strict';
 
 Foxtrick.modules['Haruspex'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.MATCHES,
@@ -42,30 +42,32 @@ Foxtrick.modules['Haruspex'] = {
 		Foxtrick.load(url).then(function(response) {
 			var pred = Foxtrick.parseJSON(response);
 
-			// print table
 			pred[0] = (pred[0] * 100).toFixed(1);
 			pred[1] = (pred[1] * 100).toFixed(1);
 			pred[2] = (pred[2] * 100).toFixed(1);
+			pred[3] = pred[3].toFixed(2);
+			pred[4] = pred[4].toFixed(2);
+			// table
 			var predictiontable = doc.getElementById('ft-haruspextable');
 			// avg score (1st row)
 			var row = haruspextable.insertRow(0);
 			var cell = row.insertCell(0); cell.textContent = Foxtrick.L10n.getString('Haruspex.score');
-			cell = row.insertCell(1); cell.innerHTML = pred[3];
+			cell = row.insertCell(1); cell.textContent = pred[3];
 			cell = row.insertCell(2);
-			cell = row.insertCell(3); cell.innerHTML = pred[4];
+			cell = row.insertCell(3); cell.textContent = pred[4];
 			// graph (2nd row)
-			var row = predictiontable.insertRow(1);
+			row = predictiontable.insertRow(1);
 			cell = row.insertCell(0);
 			cell = row.insertCell(1); cell.setAttribute('colspan', 3);
 			var graph = cell.appendChild(doc.createElement('div'));
 			var div = graph.appendChild(doc.createElement('div')); div.className = 'haruspex-graph';
 			div.style.width = pred[0] + '%';
-			var div = graph.appendChild(doc.createElement('div')); div.className = 'haruspex-graph';
+			div = graph.appendChild(doc.createElement('div')); div.className = 'haruspex-graph';
 			div.style.width = pred[1] + '%';
-			var div = graph.appendChild(doc.createElement('div')); div.className = 'haruspex-graph';
+			div = graph.appendChild(doc.createElement('div')); div.className = 'haruspex-graph';
 			div.style.width = (100 - parseFloat(pred[0]) - parseFloat(pred[1])) + '%';
 			// odds (3rd row)
-			var row = predictiontable.insertRow(2);
+			row = predictiontable.insertRow(2);
 			cell = row.insertCell(0); cell.textContent = Foxtrick.L10n.getString('Haruspex.odds');
 			cell = row.insertCell(1); cell.textContent = pred[0] + '%';
 			cell = row.insertCell(2); cell.textContent = pred[1] + '%';
