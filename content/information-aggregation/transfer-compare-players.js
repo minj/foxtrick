@@ -8,14 +8,14 @@
 
 Foxtrick.modules['TransferComparePlayers'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
-	PAGES: ['transferCompare', 'transfersPlayer'],
+	PAGES: ['transferCompare', 'playerDetails'],
 	OPTIONS: ['ShowProfit'],
 	// CSS: Foxtrick.InternalPath + 'resources/css/transfercompareplayers.css',
 
 	run: function(doc) {
 		var module = this;
 		var isCompare = Foxtrick.isPage(doc, 'transferCompare');
-		var isHistory = Foxtrick.isPage(doc, 'transfersPlayer');
+		var isHistory = Foxtrick.isPage(doc, 'playerDetails');
 
 		var MSECS_IN_DAY = Foxtrick.util.time.MSECS_IN_DAY;
 		var DAYS_IN_SEASON = Foxtrick.util.time.DAYS_IN_SEASON;
@@ -195,27 +195,14 @@ Foxtrick.modules['TransferComparePlayers'] = {
 		else if (isHistory) {
 			if (!Foxtrick.Prefs.isModuleOptionEnabled('TransferComparePlayers', 'ShowProfit'))
 				return;
-			var hTable = doc.querySelector('#mainBody > table');
+			var hTable = doc.querySelector('#transferHistory > table');
 			if (!hTable)
-				return;
-			var headerRow = hTable.rows[0];
-			if (headerRow.cells.length < 2)
 				return;
 
 			var ct = hTable.rows.length;
-			var diffTh = Foxtrick.createFeaturedElement(doc, module, 'th');
-			diffTh.textContent = Foxtrick.L10n.getString('TransferComparePlayers.difference');
-			Foxtrick.addClass(diffTh, 'center');
-			headerRow.insertBefore(diffTh, headerRow.cells[4]);
 
-			var ageTh = Foxtrick.createFeaturedElement(doc, module, 'th');
-			ageTh.textContent = Foxtrick.L10n.getString('Age.abbr');
-			ageTh.title = Foxtrick.L10n.getString('Age');
-			headerRow.insertBefore(ageTh, headerRow.cells[1]);
-
-			let [link] = Foxtrick.Pages.All.getBreadCrumbs(doc);
-			var playerId = Foxtrick.getUrlParam(link.href, 'playerId');
-
+			var playerId = Foxtrick.Pages.All.getId(doc);
+			
 			var detailsArgs = [
 				['file', 'playerdetails'],
 				['version', '2.1'],
@@ -239,7 +226,7 @@ Foxtrick.modules['TransferComparePlayers'] = {
 					per: Foxtrick.L10n.getString('ExtendedPlayerDetails.perseason'),
 				};
 
-				for (var i = 1; i < ct; i++) {
+				for (var i = 0; i < ct - 1; i++) {
 					var transferRow = hTable.rows[i];
 					var prevRow = hTable.rows[i + 1];
 
@@ -255,14 +242,8 @@ Foxtrick.modules['TransferComparePlayers'] = {
 					var years = Foxtrick.Math.div(days, DAYS_IN_SEASON);
 					days %= DAYS_IN_SEASON;
 
-					transferRow.insertCell(1);
-					var ageCell = transferRow.cells[1];
-					ageCell.textContent = '';
-					Foxtrick.makeFeaturedElement(ageCell, module);
-					var ageSpan = doc.createElement('span');
-					ageSpan.textContent = years + '.' + days;
-					ageSpan.title = AGE_TITLE;
-					ageCell.appendChild(ageSpan);
+					Foxtrick.makeFeaturedElement(transferRow.cells[0], module);
+					transferRow.cells[0].title = '(' + AGE_TITLE +': ' + years + '.' + days + ')';
 
 					if (i < ct - 1) {
 						var prevDateText = prevRow.cells[0].textContent;
@@ -270,14 +251,15 @@ Foxtrick.modules['TransferComparePlayers'] = {
 						var daysInClub =
 							(transferDate.getTime() - prevDate.getTime()) / MSECS_IN_DAY;
 
-						var diffCell = transferRow.insertCell(5);
+						var diffCell = doc.createElement('td');
 						Foxtrick.makeFeaturedElement(diffCell, module);
 
-						var priceCell = transferRow.cells[4];
+						var priceCell = transferRow.cells[3];
 						var prevPriceCell = prevRow.cells[3];
 						var price = Foxtrick.trimnum(priceCell.firstChild.textContent);
 						var prevPrice = Foxtrick.trimnum(prevPriceCell.firstChild.textContent);
-
+						console.log(price);
+						console.log(prevPrice);
 						if (price == prevPrice) {
 							Foxtrick.addClass(diffCell, 'ft-player-transfer-history');
 						}
@@ -295,6 +277,7 @@ Foxtrick.modules['TransferComparePlayers'] = {
 							diff.pctg = Math.round(val / prevPrice * 100);
 							var season = Math.round(val / daysInClub * DAYS_IN_SEASON);
 							diff.season = Foxtrick.formatNumber(season, '\u00a0');
+							console.log(diff);
 
 							var span = doc.createElement('span');
 							span.textContent = Foxtrick.format(DIFF_TMPL, diff);
@@ -303,6 +286,7 @@ Foxtrick.modules['TransferComparePlayers'] = {
 							var seasonSpan = doc.createElement('span');
 							seasonSpan.textContent = Foxtrick.format(SEASON_TMPL, diff);
 							diffCell.appendChild(seasonSpan);
+							transferRow.appendChild(diffCell);
 						}
 					}
 				}
