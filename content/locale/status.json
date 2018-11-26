@@ -30,11 +30,11 @@
 			"code": "az",
 			"name": "Azerbaijani",
 			"phrases": "2299",
-			"translated": "747",
+			"translated": "749",
 			"translated_progress": "30",
 			"words": "16766",
 			"words_approved": "0",
-			"words_translated": "5075"
+			"words_translated": "5089"
 		},
 		{
 			"approved": "0",
@@ -378,11 +378,11 @@
 			"code": "ko",
 			"name": "Korean",
 			"phrases": "2299",
-			"translated": "2298",
-			"translated_progress": "99",
+			"translated": "2299",
+			"translated_progress": "100",
 			"words": "16766",
 			"words_approved": "0",
-			"words_translated": "16759"
+			"words_translated": "16766"
 		},
 		{
 			"approved": "0",
@@ -613,7 +613,7 @@
 			"words_translated": "16759"
 		},
 		{
-			"approved": "2052",
+			"approved": "2054",
 			"approved_progress": "91",
 			"code": "sv-SE",
 			"name": "Swedish",
@@ -621,7 +621,7 @@
 			"translated": "2149",
 			"translated_progress": "94",
 			"words": "16766",
-			"words_approved": "15366",
+			"words_approved": "15372",
 			"words_translated": "15775"
 		},
 		{
