@@ -226,7 +226,7 @@ Foxtrick.modules['TransferComparePlayers'] = {
 					per: Foxtrick.L10n.getString('ExtendedPlayerDetails.perseason'),
 				};
 
-				for (var i = 0; i < ct - 1; i++) {
+				for (var i = 1; i < ct; i++) {
 					var transferRow = hTable.rows[i];
 					var prevRow = hTable.rows[i + 1];
 
@@ -243,7 +243,7 @@ Foxtrick.modules['TransferComparePlayers'] = {
 					days %= DAYS_IN_SEASON;
 
 					Foxtrick.makeFeaturedElement(transferRow.cells[0], module);
-					transferRow.cells[0].title = '(' + AGE_TITLE +': ' + years + '.' + days + ')';
+					transferRow.cells[4].textContent += '('+days+')';
 
 					if (i < ct - 1) {
 						var prevDateText = prevRow.cells[0].textContent;
@@ -251,15 +251,14 @@ Foxtrick.modules['TransferComparePlayers'] = {
 						var daysInClub =
 							(transferDate.getTime() - prevDate.getTime()) / MSECS_IN_DAY;
 
-						var diffCell = doc.createElement('td');
+						var diffCell = doc.createElement('span');
 						Foxtrick.makeFeaturedElement(diffCell, module);
 
 						var priceCell = transferRow.cells[3];
 						var prevPriceCell = prevRow.cells[3];
 						var price = Foxtrick.trimnum(priceCell.firstChild.textContent);
 						var prevPrice = Foxtrick.trimnum(prevPriceCell.firstChild.textContent);
-						console.log(price);
-						console.log(prevPrice);
+
 						if (price == prevPrice) {
 							Foxtrick.addClass(diffCell, 'ft-player-transfer-history');
 						}
@@ -277,7 +276,6 @@ Foxtrick.modules['TransferComparePlayers'] = {
 							diff.pctg = Math.round(val / prevPrice * 100);
 							var season = Math.round(val / daysInClub * DAYS_IN_SEASON);
 							diff.season = Foxtrick.formatNumber(season, '\u00a0');
-							console.log(diff);
 
 							var span = doc.createElement('span');
 							span.textContent = Foxtrick.format(DIFF_TMPL, diff);
@@ -286,14 +284,12 @@ Foxtrick.modules['TransferComparePlayers'] = {
 							var seasonSpan = doc.createElement('span');
 							seasonSpan.textContent = Foxtrick.format(SEASON_TMPL, diff);
 							diffCell.appendChild(seasonSpan);
-							transferRow.appendChild(diffCell);
+							transferRow.cells[5].appendChild(doc.createElement('br'));
+							transferRow.cells[5].appendChild(diffCell);
 						}
 					}
 				}
-
-				var td = doc.createElement('td');
-				td.textContent = ' ';
-				hTable.rows[i - 1].insertBefore(td, hTable.rows[i - 1].cells[5]);
+			
 			});
 		}
 	},
