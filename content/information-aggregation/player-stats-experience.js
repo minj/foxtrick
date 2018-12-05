@@ -78,7 +78,7 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 
 			// new W.O detection
 			var isWalkover = function(node) {
-				var stars = node.querySelector('td.endColumn2').textContent.trim();
+				var stars = node.querySelector('td:last-child').textContent.trim();
 
 				// stars in standard || no perform || stars in simple
 				if (stars.length === 0 || stars === '-' || stars.match(/^[0-9,. ()]+$/))
