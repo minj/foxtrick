@@ -145,16 +145,16 @@
 			"words_translated": "16759"
 		},
 		{
-			"approved": "2078",
-			"approved_progress": "86",
+			"approved": "2103",
+			"approved_progress": "87",
 			"code": "nl",
 			"name": "Dutch",
 			"phrases": "2299",
-			"translated": "2082",
-			"translated_progress": "86",
+			"translated": "2108",
+			"translated_progress": "87",
 			"words": "16766",
-			"words_approved": "14524",
-			"words_translated": "14554"
+			"words_approved": "14694",
+			"words_translated": "14720"
 		},
 		{
 			"approved": "0",
