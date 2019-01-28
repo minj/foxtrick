@@ -58,7 +58,7 @@ Foxtrick.modules['HistoryStats'] = {
 				var date = Foxtrick.util.time.getDateFromText(dateSpan.textContent);
 				var season = Foxtrick.util.time.gregorianToHT(date).season;
 
-				var clone = feed.querySelector('.otherEventText').cloneNode(true);
+				var clone = feed.querySelector('td + td').cloneNode(true);
 				var links = clone.querySelectorAll('a');
 
 				var cupLink = Foxtrick.nth(isCupHist, links);
@@ -107,7 +107,7 @@ Foxtrick.modules['HistoryStats'] = {
 				return;
 		}
 
-		var events = log.cloneNode(true).querySelectorAll('.otherEventText');
+		var events = log.cloneNode(true).querySelectorAll('td + td');
 		for (var event of Foxtrick.toArray(events)) {
 			// stop if old manager
 			if (event.getElementsByClassName('shy').length)
