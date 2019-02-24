@@ -56,7 +56,6 @@ Foxtrick.modules['LoyaltyDisplay'] = {
 				let max = parseInt(bar.getAttribute('max'), 10);
 				let val = Math.min(max, level + parseFloat(bonus));
 
-				let maxBar = bar.querySelector('.bar-max');
 				let widthTotal = bar.getBoundingClientRect().width;
 				let widthNeeded = Math.round(val / max * widthTotal);
 
@@ -71,11 +70,16 @@ Foxtrick.modules['LoyaltyDisplay'] = {
 				Foxtrick.addClass(bonusBar, `bar-level ft-bar-loyalty`);
 				bonusBar.style.width = `${widthNeeded}px`;
 				bonusBar.title = `+${bonus}\u00a0${l10n}`;
-				let contents = bonusBar.appendChild(doc.createElement('span'));
-				contents.className = 'bar-denomination';
-				contents.textContent = maxBar.textContent;
 
-				Foxtrick.insertAfter(bonusBar, maxBar);
+				let denomination = bar.querySelector('.bar-denomination');
+				bonusBar.appendChild(denomination.cloneNode(true));
+
+				let maxBar = bar.querySelector('.bar-max');
+				let levelBar = bar.querySelector('.bar-level');
+				if (levelBar)
+					Foxtrick.insertBefore(bonusBar, levelBar);
+				else
+					Foxtrick.insertAfter(bonusBar, maxBar);
 			}
 		}
 		else {
