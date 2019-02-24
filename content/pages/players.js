@@ -753,20 +753,23 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				player.lastPositionType = Foxtrick.L10n.getPositionType(position);
 
 				let ratingCircle = matchLink.previousElementSibling;
-				let fullStars = ratingCircle.querySelector('.stars-full');
+				let fullStars = ratingCircle.querySelector('.stars-full, .stars-full-twodigits');
 				let full = fullStars && parseInt(fullStars.textContent, 10) || 0;
-				let halfStars = ratingCircle.querySelector('.stars-half');
+				let halfStars = ratingCircle.querySelector('.stars-half, .stars-half-twodigits');
 				let half = halfStars && parseFloat(halfStars.textContent) || 0;
 				let rating = full + half;
 
-				let staminaCircle = ratingCircle.querySelector('circle[stroke-dasharray');
-				if (staminaCircle) {
-					let totalStamina = parseFloat(staminaCircle.getAttribute('stroke-dasharray'));
-					let staminaLoss = parseFloat(staminaCircle.getAttribute('stroke-dashoffset'));
+				let stamCircle = ratingCircle.querySelector('circle[transform][stroke-dasharray]');
+				if (stamCircle) {
+					let bgCircle = ratingCircle.querySelector('circle.background');
+					let totalStamina = parseFloat(stamCircle.getAttribute('stroke-dasharray'));
+					let staminaVal = parseFloat(stamCircle.getAttribute('stroke-dashoffset'));
+					let bgVal = parseFloat(bgCircle.getAttribute('stroke-dashoffset'));
+					let staminaLoss = staminaVal - bgVal;
 					let lossPctg = staminaLoss / totalStamina;
 					let finalPctg = 1 - lossPctg;
 
-					player.lastRating = rating;
+					player.lastRating = rating; // =average
 					player.lastRatingEndOfGame = finalPctg * rating;
 					player.lastRatingDecline = lossPctg * rating;
 					return;
