@@ -111,6 +111,34 @@ Foxtrick.util.time.gregorianToHT = function(date, weekdayOffset, useLocal) {
 };
 
 /**
+ * Convert {season, week: number} into Date object.
+ *
+ * weekdayOffset adjusts the first day of the week:
+ * -2 for Saturday (economic update), 0 for Monday (default)
+ * useLocal assumes local season number
+ *
+ * @param  {{season: number, week: number}} htDate
+ * @param  {number}  [weekdayOffset]
+ * @param  {Boolean} [useLocal]
+ * @return {Date}
+ */
+Foxtrick.util.time.HTToGregorian = function(htDate, weekdayOffset = 0, useLocal = false) {
+	// 1997-08-22 should be the first day of the first season
+	let origin = new Date(1997, 8, 22);
+	let { season, week } = htDate;
+
+	if (useLocal)
+		season += this.getSeasonOffset();
+
+	let dayDiff = (season - 1) * this.DAYS_IN_SEASON;
+	dayDiff += (week - 1) * this.DAYS_IN_WEEK + weekdayOffset;
+	let msDiff = dayDiff * this.MSECS_IN_DAY;
+	let msVal = origin.getTime() + msDiff;
+
+	return new Date(msVal);
+};
+
+/**
  * Parse datetime text into {day, month, year, hour, minute: number}
  *
  * May optionally use a custom dateFormat.
