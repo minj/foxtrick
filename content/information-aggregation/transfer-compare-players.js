@@ -1,10 +1,13 @@
-'use strict';
 /**
  * transfer-compare-players.js
  * Shows median and average values in transfer compare.
  * Fetch additional player information on request
  * @author bummerland, tasosventouris, LA-MJ
  */
+
+'use strict';
+
+/* eslint-disable complexity, indent */
 
 Foxtrick.modules['TransferComparePlayers'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
@@ -202,7 +205,7 @@ Foxtrick.modules['TransferComparePlayers'] = {
 			var ct = hTable.rows.length;
 
 			var playerId = Foxtrick.Pages.All.getId(doc);
-			
+
 			var detailsArgs = [
 				['file', 'playerdetails'],
 				['version', '2.1'],
@@ -242,9 +245,6 @@ Foxtrick.modules['TransferComparePlayers'] = {
 					var years = Foxtrick.Math.div(days, DAYS_IN_SEASON);
 					days %= DAYS_IN_SEASON;
 
-					Foxtrick.makeFeaturedElement(transferRow.cells[0], module);
-					transferRow.cells[4].textContent += '('+days+')';
-
 					if (i < ct - 1) {
 						var prevDateText = prevRow.cells[0].textContent;
 						var prevDate = Foxtrick.util.time.getDateFromText(prevDateText);
@@ -254,8 +254,8 @@ Foxtrick.modules['TransferComparePlayers'] = {
 						var diffCell = doc.createElement('span');
 						Foxtrick.makeFeaturedElement(diffCell, module);
 
-						var priceCell = transferRow.cells[3];
-						var prevPriceCell = prevRow.cells[3];
+						var priceCell = [...transferRow.cells].pop();
+						var prevPriceCell = [...prevRow.cells].pop();
 						var price = Foxtrick.trimnum(priceCell.firstChild.textContent);
 						var prevPrice = Foxtrick.trimnum(prevPriceCell.firstChild.textContent);
 
@@ -284,12 +284,12 @@ Foxtrick.modules['TransferComparePlayers'] = {
 							var seasonSpan = doc.createElement('span');
 							seasonSpan.textContent = Foxtrick.format(SEASON_TMPL, diff);
 							diffCell.appendChild(seasonSpan);
-							transferRow.cells[5].appendChild(doc.createElement('br'));
-							transferRow.cells[5].appendChild(diffCell);
+							priceCell.appendChild(doc.createElement('br'));
+							priceCell.appendChild(diffCell);
 						}
 					}
 				}
-			
+
 			});
 		}
 	},
