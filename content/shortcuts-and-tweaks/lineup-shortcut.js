@@ -32,7 +32,7 @@ Foxtrick.modules['LineupShortcut'] = {
 		var mainBody = doc.getElementById('mainBody');
 		var boxes = mainBody.getElementsByClassName('mainBox');
 		boxes = Foxtrick.filter(function(n) {
-			return n.id != 'trainingDetails';
+			return n.id != 'trainingDetails' && n.id != 'transferHistory';
 		}, boxes);
 		var matchHistory = boxes[boxes.length - 1];
 		if (!matchHistory)
