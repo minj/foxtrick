@@ -33,6 +33,11 @@ Foxtrick.modules['CurrentTransfers'] = {
 		var playerCell = this.getPlayerCell(row);
 		return playerCell.nextElementSibling;
 	},
+	getInfoDiv(row) {
+		let infoRow = row.nextElementSibling;
+		let info = infoRow.querySelector('.smallText .shy');
+		return info.parentNode;
+	},
 
 	runPlayers: function(doc, players) {
 		var module = this;
@@ -155,12 +160,21 @@ Foxtrick.modules['CurrentTransfers'] = {
 		var rows = doc.getElementsByClassName('ft-transfer-' + id);
 		Foxtrick.forEach(function(row) {
 			var bidCell = module.getBidCell(row);
-			var resultDiv = bidCell.querySelector('span.shy');
+			var resultSpan = bidCell.querySelector('span.shy');
 
-			Foxtrick.makeFeaturedElement(resultDiv, module);
-			Foxtrick.addClass(resultDiv, 'ft-transfers-price');
-			resultDiv.textContent = OPENING_PRICE + ': ' + result;
-			bidCell.appendChild(resultDiv);
+			Foxtrick.makeFeaturedElement(resultSpan, module);
+			Foxtrick.addClass(resultSpan, 'ft-transfers-price');
+			resultSpan.textContent = OPENING_PRICE + ': ' + result;
+
+			resultSpan.remove();
+			for (let tN of Foxtrick.getTextNodes(bidCell)) {
+				if (/^[\s()]+$/.test(tN.textContent))
+					tN.textContent = '';
+			}
+
+			let infoDiv = module.getInfoDiv(row);
+			Foxtrick.prependChild(resultSpan, infoDiv);
+
 		}, rows);
 	},
 };

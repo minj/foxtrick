@@ -299,18 +299,20 @@ Foxtrick.getChildIndex = function(element) {
  * Insert adjacent content.
  * ! Target must be Element !
  *
- * @param {string}  where
+ * @param {InsertPosition}  where
  * @param {Node} newNode
  * @param {Element} target
  */
 Foxtrick.insertAdjacent = function(where, newNode, target) {
 	let doc = target.ownerDocument;
 	let win = doc.defaultView;
-	let isElement = {}.isPrototypeOf.call(win.Element.prototype, newNode);
-	let isNode = {}.isPrototypeOf.call(win.Node.prototype, newNode);
+	let isElement = newNode instanceof win.Element;
+	let isNode = newNode instanceof win.Node;
 
 	if (isElement) {
-		target.insertAdjacentElement(where, newNode);
+		/* eslint-disable-next-line no-extra-parens */
+		let element = /** @type {Element} */ (newNode);
+		target.insertAdjacentElement(where, element);
 	}
 	else {
 		let text = isNode ? newNode.textContent : newNode.toString();
