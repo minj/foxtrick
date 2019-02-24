@@ -30,16 +30,21 @@ Foxtrick.modules['TransferDeadline'] = {
 			this.runPlayerDetail(doc);
 		else if (Foxtrick.isPage(doc, 'bookmarks'))
 			this.runTransferResult(doc);
+		else if (Foxtrick.isPage(doc, 'transfer'))
+			this.runPlayerList(doc);
 	},
 
 	processNode: function(node, userTime) {
 		const MSECS = Foxtrick.util.time.MSECS_IN_SEC;
 
+		if (node.querySelector('.ft-deadline'))
+			return;
+
 		var dateNode;
 		if (node.matches('.date, [id*="lblDeadline"]'))
 			dateNode = node;
 		else
-			dateNode = node.querySelector('.date');
+			dateNode = node.querySelector('.date, [id*="lblDeadline"]');
 
 		if (!dateNode)
 			return;
