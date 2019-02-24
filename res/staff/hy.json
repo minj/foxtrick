@@ -32,11 +32,6 @@
 			"duty": "support"
 		},
 		{
-			"id": "4613900",
-			"name": "Mod-Baumschubser",
-			"duty": "helper"
-		},
-		{
 			"id": "6604640",
 			"name": "Smekke",
 			"duty": "support"
@@ -123,7 +118,7 @@
 		},
 		{
 			"id": "6808570",
-			"name": "g_wes_HT33",
+			"name": "GM-Wes",
 			"duty": "translator"
 		},
 		{

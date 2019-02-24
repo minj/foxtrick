@@ -163,6 +163,13 @@
 		"title": "Maptrick Botmap",
 		"img": "http://www.maptrick.org/favicon.ico"
 	},
+	"fcc_logo_coolness": {
+		"teamlink": {
+			"url": "http://fcclogo.kaoztribe.net/Countries.php?teamid=[teamid]"
+		},
+		"title": "",
+		"img": "http://fcclogo.kaoztribe.net/logoicon.png"
+	},
 	"ht-dog": {
 		"teamlink": {
 			"url": "http://ht-dog.net/?otherTeamID=[teamid]"
