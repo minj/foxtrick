@@ -403,7 +403,7 @@ Foxtrick.append = function(parent, child) {
  *
  * @param {HTMLElement} el
  * @param {function}    listener
- * @param {Boolean}     useCapture
+ * @param {Boolean}     [useCapture]
  */
 Foxtrick.onClick = function(el, listener, useCapture) {
 	Foxtrick.listen(el, 'click', listener, useCapture);
@@ -419,7 +419,7 @@ Foxtrick.onClick = function(el, listener, useCapture) {
  * @param {HTMLElement} el
  * @param {string}      type       event type
  * @param {function}    listener
- * @param {Boolean}     useCapture
+ * @param {Boolean}     [useCapture]
  */
 Foxtrick.listen = function(el, type, listener, useCapture) {
 	/**

@@ -205,7 +205,7 @@ Foxtrick.L10n.isStringAvailable = function(str) {};
  * @throws if string is n/a
  *
  * @param  {string} str locale key
- * @param  {number} num number to substitute in plural (optional integer)
+ * @param  {number} [num] number to substitute in plural (optional integer)
  * @return {string}
  */
 Foxtrick.L10n.getString = function(str, num) {};
