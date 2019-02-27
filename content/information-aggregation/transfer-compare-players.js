@@ -6,16 +6,18 @@
 
 'use strict';
 
+/* eslint-disable complexity, indent */
+
 Foxtrick.modules['TransferComparePlayers'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
-	PAGES: ['transfersPlayer'],
+	PAGES: ['playerDetails'],
 	OPTIONS: ['ShowProfit'],
 
 	// CSS: Foxtrick.InternalPath + 'resources/css/transfercompareplayers.css',
 
 	run: function(doc) {
 		var module = this;
-		var isHistory = Foxtrick.isPage(doc, 'transfersPlayer');
+		var isHistory = Foxtrick.isPage(doc, 'playerDetails');
 
 		var MSECS_IN_DAY = Foxtrick.util.time.MSECS_IN_DAY;
 		var DAYS_IN_SEASON = Foxtrick.util.time.DAYS_IN_SEASON;
@@ -25,26 +27,13 @@ Foxtrick.modules['TransferComparePlayers'] = {
 		if (isHistory) {
 			if (!Foxtrick.Prefs.isModuleOptionEnabled('TransferComparePlayers', 'ShowProfit'))
 				return;
-			var hTable = doc.querySelector('#mainBody > table');
+			var hTable = doc.querySelector('#transferHistory > table');
 			if (!hTable)
-				return;
-			var headerRow = hTable.rows[0];
-			if (headerRow.cells.length < 2)
 				return;
 
 			var ct = hTable.rows.length;
-			var diffTh = Foxtrick.createFeaturedElement(doc, module, 'th');
-			diffTh.textContent = Foxtrick.L10n.getString('TransferComparePlayers.difference');
-			Foxtrick.addClass(diffTh, 'center');
-			headerRow.insertBefore(diffTh, headerRow.cells[4]);
 
-			var ageTh = Foxtrick.createFeaturedElement(doc, module, 'th');
-			ageTh.textContent = Foxtrick.L10n.getString('Age.abbr');
-			ageTh.title = Foxtrick.L10n.getString('Age');
-			headerRow.insertBefore(ageTh, headerRow.cells[1]);
-
-			let [link] = Foxtrick.Pages.All.getBreadCrumbs(doc);
-			var playerId = Foxtrick.getUrlParam(link.href, 'playerId');
+			var playerId = Foxtrick.Pages.All.getId(doc);
 
 			var detailsArgs = [
 				['file', 'playerdetails'],
@@ -85,26 +74,17 @@ Foxtrick.modules['TransferComparePlayers'] = {
 					var years = Foxtrick.Math.div(days, DAYS_IN_SEASON);
 					days %= DAYS_IN_SEASON;
 
-					transferRow.insertCell(1);
-					var ageCell = transferRow.cells[1];
-					ageCell.textContent = '';
-					Foxtrick.makeFeaturedElement(ageCell, module);
-					var ageSpan = doc.createElement('span');
-					ageSpan.textContent = years + '.' + days;
-					ageSpan.title = AGE_TITLE;
-					ageCell.appendChild(ageSpan);
-
 					if (i < ct - 1) {
 						var prevDateText = prevRow.cells[0].textContent;
 						var prevDate = Foxtrick.util.time.getDateFromText(prevDateText);
 						var daysInClub =
 							(transferDate.getTime() - prevDate.getTime()) / MSECS_IN_DAY;
 
-						var diffCell = transferRow.insertCell(5);
+						var diffCell = doc.createElement('span');
 						Foxtrick.makeFeaturedElement(diffCell, module);
 
-						var priceCell = transferRow.cells[4];
-						var prevPriceCell = prevRow.cells[3];
+						var priceCell = [...transferRow.cells].pop();
+						var prevPriceCell = [...prevRow.cells].pop();
 						var price = Foxtrick.trimnum(priceCell.firstChild.textContent);
 						var prevPrice = Foxtrick.trimnum(prevPriceCell.firstChild.textContent);
 
@@ -133,13 +113,12 @@ Foxtrick.modules['TransferComparePlayers'] = {
 							var seasonSpan = doc.createElement('span');
 							seasonSpan.textContent = Foxtrick.format(SEASON_TMPL, diff);
 							diffCell.appendChild(seasonSpan);
+							priceCell.appendChild(doc.createElement('br'));
+							priceCell.appendChild(diffCell);
 						}
 					}
 				}
 
-				var td = doc.createElement('td');
-				td.textContent = ' ';
-				hTable.rows[i - 1].insertBefore(td, hTable.rows[i - 1].cells[5]);
 			});
 		}
 	},
