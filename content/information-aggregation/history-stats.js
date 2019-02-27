@@ -58,7 +58,7 @@ Foxtrick.modules['HistoryStats'] = {
 				var date = Foxtrick.util.time.getDateFromText(dateSpan.textContent);
 				var season = Foxtrick.util.time.gregorianToHT(date).season;
 
-				var clone = feed.querySelector('.otherEventText').cloneNode(true);
+				var clone = feed.querySelector('td + td').cloneNode(true);
 				var links = clone.querySelectorAll('a');
 
 				var cupLink = Foxtrick.nth(isCupHist, links);
@@ -107,7 +107,7 @@ Foxtrick.modules['HistoryStats'] = {
 				return;
 		}
 
-		var events = log.cloneNode(true).querySelectorAll('.otherEventText');
+		var events = log.cloneNode(true).querySelectorAll('.feedItem .float_left');
 		for (var event of Foxtrick.toArray(events)) {
 			// stop if old manager
 			if (event.getElementsByClassName('shy').length)
@@ -118,9 +118,24 @@ Foxtrick.modules['HistoryStats'] = {
 			var division = 0;
 			var cup = 0;
 
-			var eventDate = event.parentNode.querySelector('.date');
-			var date = Foxtrick.util.time.getDateFromText(eventDate.textContent);
-			var season = Foxtrick.util.time.gregorianToHT(date).season;
+			let eventDate = event.parentNode.querySelector('.date');
+			let date = Foxtrick.util.time.getDateFromText(eventDate.textContent);
+			let season;
+			if (!date) {
+				let feedItem = event.closest('.feedItem');
+				let row = feedItem.closest('tr');
+				while (row) {
+					let feed = row.querySelector('.feed');
+					if (!feed) {
+						row = row.previousElementSibling;
+						continue;
+					}
+					season = parseInt(feed.textContent.match(/\d+/), 10);
+					date = Foxtrick.util.time.HTToGregorian({ season, week: 16 }, -2, true);
+					break;
+				}
+			}
+			season = Foxtrick.util.time.gregorianToHT(date).season;
 
 			var links = Foxtrick.toArray(event.querySelectorAll('a'));
 			for (var link of links) {
