@@ -163,11 +163,24 @@
 		"title": "Maptrick Botmap",
 		"img": "http://www.maptrick.org/favicon.ico"
 	},
+	"flagtools": {
+		"challengeslink": {
+			"url": "http://www.ht-flagtools.org/my_challenges.php?teamId=[ownteamid]"
+		},
+		"worldlink": {
+			"url": "http://www.ht-flagtools.org/graphs.php"
+		},
+		"teamlink": {
+			"url": "http://www.ht-flagtools.org/profile.php?teamId=[teamid]"
+		},
+		"title": "HT Flagtools",
+		"img": "http://www.ht-flagtools.org/favicon.ico"
+	},
 	"fcc_logo_coolness": {
 		"teamlink": {
 			"url": "http://fcclogo.kaoztribe.net/Countries.php?teamid=[teamid]"
 		},
-		"title": "",
+		"title": "FCC Logo",
 		"img": "http://fcclogo.kaoztribe.net/logoicon.png"
 	},
 	"ht-dog": {
