@@ -11,7 +11,10 @@
 
 #ft_season_selectboxID {
 	float: right;
-	margin-top: 20px;
+	margin-top: 10px;
+}
+html[dir="rtl"] #ft_season_selectboxID {
+	float: left;
 }
 html[data-theme="simple"] #ft_season_selectboxID {
 	margin-top: 4px;
