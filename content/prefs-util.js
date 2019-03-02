@@ -97,9 +97,9 @@ Foxtrick.Prefs.hasUserValue = function(key) {},
  * starting with the branch name.
  *
  * @param  {string} branch branch to fetch
- * @return {array}         array of key names
+ * @return {string[]}      array of key names
  */
-Foxtrick.Prefs.getAllKeysOfBranch = function(branch) {},
+Foxtrick.Prefs.getAllKeysOfBranch = function(branch) { return []; },
 
 /**
  * Remove a saved pref value
@@ -114,7 +114,7 @@ Foxtrick.Prefs.deleteValue = function(key) {},
  * @param  {string} key pref key
  * @return {number}     pref value {Integer}
  */
-Foxtrick.Prefs.getInt = function(key) {},
+Foxtrick.Prefs.getInt = function(key) { return 0; },
 
 /**
  * Get a boolean value from prefs
@@ -122,7 +122,7 @@ Foxtrick.Prefs.getInt = function(key) {},
  * @param  {string}  key pref key
  * @return {Boolean}     pref value
  */
-Foxtrick.Prefs.getBool = function(key) {},
+Foxtrick.Prefs.getBool = function(key) { return false; },
 
 /**
  * Get a string value from prefs
@@ -130,7 +130,7 @@ Foxtrick.Prefs.getBool = function(key) {},
  * @param  {string} key pref key
  * @return {string}     pref value
  */
-Foxtrick.Prefs.getString = function(key) {},
+Foxtrick.Prefs.getString = function(key) { return ''; },
 
 /**
  * Save an integer value in prefs

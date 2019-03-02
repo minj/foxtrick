@@ -42,7 +42,7 @@ Foxtrick.session.set = function(key, value) {
 				value: value,
 			}, function onSendResponse(response) {
 
-				var err = Foxtrick.JSONError(response);
+				var err = Foxtrick.jsonError(response);
 				if (err instanceof Error)
 					reject(err);
 				else
@@ -115,7 +115,7 @@ Foxtrick.session.deleteBranch = function(branch) {
 				branch: branch,
 			}, function onSendResponse(response) {
 
-				var err = Foxtrick.JSONError(response);
+				var err = Foxtrick.jsonError(response);
 				if (err instanceof Error)
 					reject(err);
 				else
@@ -126,13 +126,14 @@ Foxtrick.session.deleteBranch = function(branch) {
 	}
 
 	return new Promise(function(resolve) {
+		let br;
 		if (branch == null)
-			branch = '';
+			br = '';
 
-		branch = branch.toString();
+		br = branch.toString();
 
 		for (var key in Foxtrick.session.__STORE) {
-			if (key.indexOf(branch) === 0)
+			if (key.indexOf(br) === 0)
 				Foxtrick.session.__STORE[key] = null;
 		}
 
@@ -164,7 +165,7 @@ Foxtrick.sessionSet = function(key, value) {
  * @deprecated use session.get() instead
  *
  * @param {string}   key
- * @param {function} callback
+ * @param {function(any):any} callback
  */
 Foxtrick.sessionGet = function(key, callback) {
 	Foxtrick.session.get(key).then(callback).catch(Foxtrick.catch('sessionGet'));

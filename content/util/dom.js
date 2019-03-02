@@ -470,9 +470,9 @@ Foxtrick.addCopying = function(el, copy, mime) {
  * Default behavior can be overridden by specifying observer options.
  * Stops observing in case callback returns true.
  * Returns the observer.
- * @param  {Node}                                      node     observer target
- * @param  {function(Array.<MutationRecord>): boolean} shouldStop
- * @param  {MutationObserverInit}                      options  observer options
+ * @param  {Node}                                           node       observer target
+ * @param  {function(Array.<MutationRecord>): boolean|void} shouldStop
+ * @param  {MutationObserverInit}                           [options]  observer options
  * @return {MutationObserver}
  */
 Foxtrick.observe = function(node, shouldStop, options) {
@@ -503,9 +503,9 @@ Foxtrick.observe = function(node, shouldStop, options) {
  * Execute callback(doc, node, observer) when node changes.
  * Stops observing if callback returns true.
  * Returns the observer.
- * @param  {Node}                                  node
- * @param  {function(HTMLDocument, Node): boolean} callback
- * @param  {MutationObserverInit}                  obsOpts  observer options
+ * @param  {Node}                                       node
+ * @param  {function(HTMLDocument, Node): boolean|void} callback
+ * @param  {MutationObserverInit}                       [obsOpts] observer options
  * @return {MutationObserver}
  */
 Foxtrick.onChange = function(node, callback, obsOpts) {
@@ -525,9 +525,9 @@ Foxtrick.onChange = function(node, callback, obsOpts) {
  * Get nodes whose children change.
  * Stops observing if callback returns true.
  * Returns the observer.
- * @param  {Node}                            node     container
- * @param  {function(Array.<Node>): boolean} callback
- * @param  {MutationObserverInit}            obsOpts  observer options
+ * @param  {Node}                                 node      container
+ * @param  {function(Array.<Node>): boolean|void} callback
+ * @param  {MutationObserverInit}                 [obsOpts] observer options
  * @return {MutationObserver}
  */
 Foxtrick.getChanges = function(node, callback, obsOpts) {
