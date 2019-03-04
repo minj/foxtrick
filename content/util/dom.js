@@ -707,11 +707,11 @@ Foxtrick.getDataURIText = function(str) {
  * in some extension architectures.
  * Continued to be used with forward compatibility in mind.
  * Callback receives the created image.
- * @param {document}                   doc
- * @param {HTMLElement}                parent
- * @param {Object}                     features     a map of image attributes
- * @param {HTMLElement}                insertBefore next sibling
- * @param {function(HTMLImageElement)} callback
+ * @param {document}                        doc
+ * @param {HTMLElement}                     parent
+ * @param {object}                          features       a map of image attributes
+ * @param {HTMLElement}                     [insertBefore] next sibling
+ * @param {function(HTMLImageElement):void} [callback]
  */
 Foxtrick.addImage = function(doc, parent, features, insertBefore, callback) {
 	var img = doc.createElement('img');
@@ -723,8 +723,7 @@ Foxtrick.addImage = function(doc, parent, features, insertBefore, callback) {
 	else
 		parent.appendChild(img);
 
-	if (callback)
-		callback(img);
+	callback && callback(img);
 };
 
 /**
@@ -735,7 +734,7 @@ Foxtrick.addImage = function(doc, parent, features, insertBefore, callback) {
  *
  * Returns Promise.<HTMLImageElement>
  *
- * @param  {element} parent
+ * @param  {Element} parent
  * @param  {number}  specNum {Integer}
  * @param  {object}  options {string: string}
  * @return {Promise}         Promise.<HTMLImageElement>
@@ -760,7 +759,7 @@ Foxtrick.addSpecialty = function(parent, specNum, options) {
 
 	if (Foxtrick.Prefs.isModuleEnabled('SpecialtyInfo')) {
 		Foxtrick.addClass(imgContainer, 'ft-specInfo-parent');
-		imgContainer.dataset.specialty = specNum;
+		imgContainer.dataset.specialty = specNum.toString();
 
 		specialtyName += '\n' + Foxtrick.L10n.getString('SpecialtyInfo.open');
 	}
