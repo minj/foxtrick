@@ -360,7 +360,7 @@ Foxtrick.Pages.Match.isFriendly = function(doc) {
 /**
  * Get ratings table
  * @param  {document} doc
- * @return {HTMLAnchorElement}
+ * @return {HTMLTableElement}
  */
 Foxtrick.Pages.Match.getRatingsTable = function(doc) {
 	return doc.querySelector('.teamMatchRatingsTable table');
