@@ -225,10 +225,22 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			var type = '';
 
 			let typeImage = typeCell.querySelector('img');
-			for (let t in SUBSTITUTION_TYPES) {
-				if (new RegExp(SUBSTITUTION_TYPES[t], 'i').test(typeImage.src)) {
-					type = SUBSTITUTION_TYPES[t];
-					break;
+			let typeIcon = typeCell.querySelector('i[class^="icon-"]');
+			if (typeImage) {
+				for (let t in SUBSTITUTION_TYPES) {
+					if (new RegExp(SUBSTITUTION_TYPES[t], 'i').test(typeImage.src)) {
+						type = SUBSTITUTION_TYPES[t];
+						break;
+					}
+				}
+			}
+			else if (typeIcon) {
+				let className = typeIcon.className.replace(/^icon-/, '');
+				for (let t in SUBSTITUTION_TYPES) {
+					if (new RegExp(SUBSTITUTION_TYPES[t], 'i').test(className)) {
+						type = SUBSTITUTION_TYPES[t];
+						break;
+					}
 				}
 			}
 
