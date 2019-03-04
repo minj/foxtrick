@@ -769,7 +769,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 
 		var invert = Foxtrick.Prefs.isModuleOptionEnabled(module, 'InvertSplit');
 
-		let awayDivs = doc.querySelectorAll('div.playerBoxAway');
+		let awayDivs = doc.querySelectorAll('#playersField div.playerBoxAway');
 		for (let awayDiv of Foxtrick.toArray(awayDivs)) {
 			/* eslint-disable no-magic-numbers */
 			if (!invert) {
@@ -777,13 +777,8 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 				continue;
 			}
 
-			if (awayDiv.parentNode.id == 'playersBenchAway') {
-				awayDiv.style.top = '-318px';
-			}
-			else {
-				awayDiv.style.left = 150 + 356 - parseInt(awayDiv.style.left, 10) + 'px';
-				awayDiv.style.top = 268 + 353 - parseInt(awayDiv.style.top, 10) + 'px';
-			}
+			awayDiv.style.left = 150 + 356 - parseInt(awayDiv.style.left, 10) + 'px';
+			awayDiv.style.top = 268 + 353 - parseInt(awayDiv.style.top, 10) + 'px';
 			/* eslint-enable no-magic-numbers */
 		}
 
@@ -815,7 +810,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 
 		var invert = Foxtrick.Prefs.isModuleOptionEnabled(module, 'InvertSplit');
 
-		let awayDivs = doc.querySelectorAll('div.playerBoxAway');
+		let awayDivs = doc.querySelectorAll('#playersField div.playerBoxAway');
 		for (let awayDiv of Foxtrick.toArray(awayDivs)) {
 			/* eslint-disable no-magic-numbers */
 			if (!invert) {
@@ -823,13 +818,8 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 				continue;
 			}
 
-			if (awayDiv.parentNode.id == 'playersBenchAway') {
-				awayDiv.style.top = '';
-			}
-			else {
-				awayDiv.style.left = 150 + 356 - parseInt(awayDiv.style.left, 10) + 'px';
-				awayDiv.style.top = 268 + 353 - parseInt(awayDiv.style.top, 10) + 'px';
-			}
+			awayDiv.style.left = 150 + 356 - parseInt(awayDiv.style.left, 10) + 'px';
+			awayDiv.style.top = 268 + 353 - parseInt(awayDiv.style.top, 10) + 'px';
 			/* eslint-enable no-magic-numbers */
 		}
 
@@ -839,8 +829,11 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 
 	hideOtherTeam: function(doc, undo) {
 		const module = this;
+		const showType = module.showAway ? 'Away' : 'Home';
+		const hideType = module.showAway ? 'Home' : 'Away';
 
-		let hideDivs = doc.querySelectorAll('div.playerBox' + (module.showAway ? 'Home' : 'Away'));
+		let hideDivs = doc.querySelectorAll('#playersField div.playerBox' + hideType +
+			', #playersBench' + hideType);
 		for (let hideDiv of Foxtrick.toArray(hideDivs)) {
 			if (undo)
 				Foxtrick.removeClass(hideDiv, 'hidden');
@@ -848,7 +841,8 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 				Foxtrick.addClass(hideDiv, 'hidden');
 		}
 
-		let showDivs = doc.querySelectorAll('div.playerBox' + (module.showAway ? 'Away' : 'Home'));
+		let showDivs = doc.querySelectorAll('#playersField div.playerBox' + showType +
+			', #playersBench' + showType);
 		for (let showDiv of Foxtrick.toArray(showDivs))
 			Foxtrick.removeClass(showDiv, 'hidden');
 
