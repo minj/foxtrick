@@ -785,11 +785,19 @@ Foxtrick.Pages.Player.parseYouthSkills = function(table) {
 			else if (hasNewBars) {
 				// new bars
 				let bar = skillCell.querySelector('.ht-bar');
-				let [current, max] = numberCell.textContent.trim().split('/');
-				if (typeof max !== 'undefined') {
-					skill.current = parseFloat(current) || 0;
-					skill.max = parseFloat(max) || 0;
-					skill.maxed = !!(bar && bar.getAttribute('is-cap') !== '0');
+				let ratings = numberCell.textContent.trim();
+				if (ratings) {
+					let [current, max] = ratings.split('/');
+					if (typeof max !== 'undefined') {
+						skill.current = parseFloat(current) || 0;
+						skill.max = parseFloat(max) || 0;
+						skill.maxed = !!(bar && bar.getAttribute('is-cap') !== '0');
+					}
+				}
+				else if (bar) {
+					skill.current = Math.max(bar.getAttribute('level'), 0);
+					skill.max = Math.max(bar.getAttribute('cap'), 0);
+					skill.maxed = bar.getAttribute('is-cap') !== '0';
 				}
 			}
 			else if (imgs.length) {
@@ -820,7 +828,6 @@ Foxtrick.Pages.Player.parseYouthSkills = function(table) {
 				// links may also be reveal links
 				let [currNode, maxNode] =
 					skillCell.querySelectorAll('a, .shy:not(.denominationNumber)');
-
 				let current = 0, max = 0;
 
 				if (currNode.matches('a.skill'))
