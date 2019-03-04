@@ -818,7 +818,9 @@ Foxtrick.Pages.Player.parseYouthSkills = function(table) {
 			}
 			else if (links.length) {
 				// links may also be reveal links
-				let [currNode, maxNode] = skillCell.querySelectorAll('.shy, a');
+				let [currNode, maxNode] =
+					skillCell.querySelectorAll('a, .shy:not(.denominationNumber)');
+
 				let current = 0, max = 0;
 
 				if (currNode.matches('a.skill'))
@@ -846,7 +848,9 @@ Foxtrick.Pages.Player.parseYouthSkills = function(table) {
 			if (bar || links.length) {
 				// bar or links are present
 				// skills could either be a skill or unknown (span.shy) or activation link
-				let [currNode, maxNode] = skillCell.querySelectorAll('.shy, a');
+				let [currNode, maxNode] =
+					skillCell.querySelectorAll('.shy:not(.denominationNumber), a');
+
 				if (currNode.matches('a.skill'))
 					current = currNode.textContent.trim();
 
