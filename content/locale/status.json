@@ -277,7 +277,7 @@
 			"words_translated": "8803"
 		},
 		{
-			"approved": "15",
+			"approved": "14",
 			"approved_progress": "0",
 			"code": "de",
 			"name": "German",
@@ -285,7 +285,7 @@
 			"translated": "2202",
 			"translated_progress": "91",
 			"words": "16747",
-			"words_approved": "48",
+			"words_approved": "41",
 			"words_translated": "15318"
 		},
 		{
@@ -613,16 +613,16 @@
 			"words_translated": "16740"
 		},
 		{
-			"approved": "2049",
+			"approved": "2050",
 			"approved_progress": "91",
 			"code": "sv-SE",
 			"name": "Swedish",
 			"phrases": "2295",
-			"translated": "2144",
+			"translated": "2145",
 			"translated_progress": "94",
 			"words": "16747",
-			"words_approved": "15346",
-			"words_translated": "15749"
+			"words_approved": "15353",
+			"words_translated": "15756"
 		},
 		{
 			"approved": "0",
