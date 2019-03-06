@@ -582,11 +582,11 @@
 			"code": "es-ES",
 			"name": "Spanish",
 			"phrases": "2295",
-			"translated": "2293",
-			"translated_progress": "99",
+			"translated": "2295",
+			"translated_progress": "100",
 			"words": "16747",
 			"words_approved": "1",
-			"words_translated": "16733"
+			"words_translated": "16747"
 		},
 		{
 			"approved": "0",
@@ -594,11 +594,11 @@
 			"code": "es-AR",
 			"name": "Spanish, Argentina",
 			"phrases": "2295",
-			"translated": "2293",
-			"translated_progress": "99",
+			"translated": "2295",
+			"translated_progress": "100",
 			"words": "16747",
 			"words_approved": "0",
-			"words_translated": "16733"
+			"words_translated": "16747"
 		},
 		{
 			"approved": "0",
@@ -606,11 +606,11 @@
 			"code": "es-CR",
 			"name": "Spanish, Costa Rica",
 			"phrases": "2295",
-			"translated": "2294",
-			"translated_progress": "99",
+			"translated": "2295",
+			"translated_progress": "100",
 			"words": "16747",
 			"words_approved": "0",
-			"words_translated": "16740"
+			"words_translated": "16747"
 		},
 		{
 			"approved": "2050",
