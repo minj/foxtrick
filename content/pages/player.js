@@ -311,11 +311,12 @@ Foxtrick.Pages.Player.isBruised = function(doc) {
 Foxtrick.Pages.Player.getInjuryCell = function(doc) {
 	var ret = null;
 	try {
-		var injuryRow, infoTable;
-		var teamLink = doc.querySelector('#mainBody a[href^="/Club/?TeamID="]');
-		if (teamLink && (infoTable = teamLink.closest('table')) ||
-			(infoTable = doc.querySelector('.playerInfo table'))) {
-			var icon = infoTable.querySelector('.plaster, .icon-injury');
+		var infoTable = doc.querySelector('.ownerAndStatusPlayerInfo table') ||
+			doc.querySelector('.playerInfo table');
+
+		if (infoTable) {
+			let injuryRow;
+			let icon = infoTable.querySelector('.plaster, .icon-injury');
 			if (icon)
 				ret = icon.closest('td');
 			else if ((injuryRow = infoTable.rows[4]))
