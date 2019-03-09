@@ -46,7 +46,7 @@ Foxtrick.Pages.Player.isYouth = function(doc) {
 /**
  * Get player age
  * @param  {document} doc
- * @return {number}
+ * @return {?{years:number, days:number}}
  */
 Foxtrick.Pages.Player.getAge = function(doc) {
 	try {
@@ -109,6 +109,8 @@ Foxtrick.Pages.Player.getId = function(doc) {
  */
 Foxtrick.Pages.Player.getNationalityId = function(doc) {
 	var id = null;
+
+	/** @type {HTMLAnchorElement} */
 	var link = doc.querySelector('.playerInfo a[href^="/World/Leagues/League.aspx"]') ||
 		doc.querySelector('.flag');
 
@@ -214,6 +216,8 @@ Foxtrick.Pages.Player.getAttributes = function(doc) {
 	const STAMINA_ROW_NEW = 4;
 
 	var num = link => Foxtrick.util.id.getSkillLevelFromLink(link);
+
+	/** @type {HTMLAnchorElement[]} */
 	var personLinks;
 
 	try {
@@ -234,6 +238,7 @@ Foxtrick.Pages.Player.getAttributes = function(doc) {
 			personLinks = Foxtrick.toArray(doc.querySelectorAll('#mainBody > p .skill'));
 		}
 		else {
+			/** @type {HTMLAnchorElement[]} */
 			let links = Foxtrick.toArray(doc.querySelectorAll('.playerInfo .skill'));
 
 			// form vs stamina
@@ -311,6 +316,7 @@ Foxtrick.Pages.Player.isBruised = function(doc) {
 Foxtrick.Pages.Player.getInjuryCell = function(doc) {
 	var ret = null;
 	try {
+		/** @type {HTMLTableElement} */
 		var infoTable = doc.querySelector('.ownerAndStatusPlayerInfo table') ||
 			doc.querySelector('.playerInfo table');
 
@@ -359,6 +365,7 @@ Foxtrick.Pages.Player.getCards = function(doc) {
 	const MAX_CARDS = 3;
 	var cards = 0;
 	try {
+		/** @type {HTMLTableElement} */
 		var infoTable = doc.querySelector('.playerInfo table');
 		var cardCell = infoTable.rows[3].cells[1];
 		cards = parseInt(cardCell.textContent.trim(), 10);
@@ -406,7 +413,7 @@ Foxtrick.Pages.Player.getTeamName = function(doc) {
  * Get the player info table.
  *
  * @param  {document} doc
- * @return {{isNewDesign: Boolean, isYouth: Boolean, table: Element}}
+ * @return {{isNewDesign: Boolean, isYouth: Boolean, table: HTMLTableElement}}
  */
 Foxtrick.Pages.Player.getInfoTable = function(doc) {
 	var isNewDesign = false;
@@ -452,7 +459,7 @@ Foxtrick.Pages.Player.getWageCell = function(doc) {
  * Returns {base, bonus, total: number}.
  * Senior player only.
  * @param  {document} doc
- * @param  {?element} wageCell optional wage cell to parse; otherwise will be found
+ * @param  {?Element} wageCell optional wage cell to parse; otherwise will be found
  * @return {object}            {base: number, bonus: number, total: number}
  */
 Foxtrick.Pages.Player.getWage = function(doc, wageCell) {
@@ -489,11 +496,12 @@ Foxtrick.Pages.Player.getWage = function(doc, wageCell) {
 /**
  * Get the player specialty number
  * @param  {document} doc
- * @return {string}
+ * @return {number}
  */
 Foxtrick.Pages.Player.getSpecialtyNumber = function(doc) {
 	var specNr = 0;
 	try {
+		/** @type {HTMLTableElement} */
 		var infoTable = doc.querySelector('.playerInfo table');
 		var specRow = infoTable.rows[5];
 		if (specRow) {
@@ -554,6 +562,7 @@ Foxtrick.Pages.Player.getSkillsWithText = function(doc) {
 
 	try {
 		if (this.isPage(doc)) {
+			/** @type {HTMLTableElement} */
 			var skillTable;
 			if (this.isSenior(doc)) {
 				skillTable = doc.querySelector('.transferPlayerSkills, .mainBox table');
@@ -1138,36 +1147,36 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerid, callback) {
 			// player.joinedSince = xml.time('ArrivalDate');
 
 			/*
-			    <TrainerData>
-			      <TrainerType>2</TrainerType>
-			      <TrainerSkill>7</TrainerSkill>
-			    </TrainerData>
-			    <OwningTeam>
-			      <TeamID>672194</TeamID>
-			      <TeamName>Strange quarks</TeamName>
-			      <LeagueID>66</LeagueID>
-			    </OwningTeam>
+				<TrainerData>
+					<TrainerType>2</TrainerType>
+					<TrainerSkill>7</TrainerSkill>
+				</TrainerData>
+				<OwningTeam>
+					<TeamID>672194</TeamID>
+					<TeamName>Strange quarks</TeamName>
+					<LeagueID>66</LeagueID>
+				</OwningTeam>
 
-			    // README: version=2.5
-			    <TransferDetails>
-			      <AskingPrice>760000</AskingPrice>
-			      <Deadline>2016-10-31 08:40:25</Deadline>
-			      <HighestBid>760000</HighestBid>
-			      <MaxBid/> // version=2.6, optional
-			      <BidderTeam> // may be empty
-			        <TeamID>1064154</TeamID>
-			        <TeamName>Dinamo3000</TeamName>
-			      </BidderTeam>
-			    </TransferDetails>
+				// README: version=2.5
+				<TransferDetails>
+					<AskingPrice>760000</AskingPrice>
+					<Deadline>2016-10-31 08:40:25</Deadline>
+					<HighestBid>760000</HighestBid>
+					<MaxBid/> // version=2.6, optional
+					<BidderTeam> // may be empty
+						<TeamID>1064154</TeamID>
+						<TeamName>Dinamo3000</TeamName>
+					</BidderTeam>
+				</TransferDetails>
 
-			    <LastMatch>
-			      <Date>2014-07-26 15:20:00</Date>
-			      <MatchId>483831455</MatchId>
-			      <PositionCode>109</PositionCode>
-			      <PlayedMinutes>90</PlayedMinutes>
-			      <Rating>7</Rating>
-			      <RatingEndOfGame>6</RatingEndOfGame>
-			    </LastMatch>
+				<LastMatch>
+					<Date>2014-07-26 15:20:00</Date>
+					<MatchId>483831455</MatchId>
+					<PositionCode>109</PositionCode>
+					<PlayedMinutes>90</PlayedMinutes>
+					<Rating>7</Rating>
+					<RatingEndOfGame>6</RatingEndOfGame>
+				</LastMatch>
 			 */
 
 			callback(player);

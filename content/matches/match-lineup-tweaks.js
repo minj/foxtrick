@@ -249,8 +249,12 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 				return;
 			}
 
+			/** @type {HTMLAnchorElement[]} */
 			let pLinks = [...playerCell.querySelectorAll('a')];
-			let pIds = pLinks.map(l => Math.abs(Foxtrick.getUrlParam(l, idParam)));
+			let pIds = pLinks.map((l) => {
+				let param = Foxtrick.getUrlParam(l.href, idParam);
+				return Math.abs(parseInt(param, 10));
+			});
 			if (!pIds.length) {
 				// neighborhood kids
 				return;
@@ -302,12 +306,16 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		var homeQuery =
 			'.playersField > div.playerBoxHome > div > a, ' +
 			'#playersBench > div#playersBenchHome > div.playerBoxHome > div > a';
-		var homePlayerLinks = doc.querySelectorAll(homeQuery);
+
+		/** @type {HTMLAnchorElement[]} */
+		var homePlayerLinks = [...doc.querySelectorAll(homeQuery)];
 
 		var awayQuery =
 			'.playersField > div.playerBoxAway > div > a, #playersBench > ' +
 			'div#playersBenchAway > div.playerBoxAway > div > a';
-		var awayPlayerLinks = doc.querySelectorAll(awayQuery);
+
+		/** @type {HTMLAnchorElement[]} */
+		var awayPlayerLinks = [...doc.querySelectorAll(awayQuery)];
 
 		var addSpecialty = function(node, player) {
 			if (node.getElementsByClassName('ft-specialty').length)
@@ -319,6 +327,10 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			}
 		};
 
+		/**
+		 * @param {number} teamId
+		 * @param {HTMLAnchorElement[]} pLinks
+		 */
 		var addSpecialtiesByTeamId = function(teamId, pLinks) {
 			if (teamId === null)
 				return;
@@ -331,7 +343,8 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 
 				var missing = [];
 				for (let [i, pL] of [...pLinks].entries()) {
-					let id = Math.abs(Foxtrick.getUrlParam(pL.href, idParam));
+					let param = Foxtrick.getUrlParam(pL.href, idParam);
+					let id = Math.abs(parseInt(param, 10));
 					let player = Foxtrick.Pages.Players.getPlayerFromListById(pInfo, id);
 					let node = pL.parentNode.parentNode.querySelector('.ft-indicator-wrapper');
 
@@ -381,7 +394,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		// get player list sucks for nt matches
 		var isNT = Foxtrick.Pages.Match.isNT(doc);
 		var isYouth = Foxtrick.Pages.Match.isYouth(doc);
-		var param = (isYouth ? 'youth' : '') + 'playerid';
+		var idParam = (isYouth ? 'youth' : '') + 'playerid';
 
 		var homeQuery =
 			'.playersField > div.playerBoxHome > div > a, ' +
@@ -395,7 +408,11 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 
 		var alt = Foxtrick.L10n.getString('MatchLineupTweaks.missing');
 
-		var addMissingByTeamId = function(teamId, players) {
+		/**
+		 * @param {number} teamId
+		 * @param {HTMLAnchorElement[]} pLinks
+		 */
+		var addMissingByTeamId = function(teamId, pLinks) {
 			if (teamId === null)
 				return;
 
@@ -405,17 +422,18 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 
 				Foxtrick.stopListenToChange(doc);
 				var missing = [];
-				for (var i = 0; i < players.length; i++) {
-					var id = Math.abs(Foxtrick.getUrlParam(players[i].href, param));
-					var player = Foxtrick.Pages.Players.getPlayerFromListById(playerInfo, id);
+				for (let [i, pL] of [...pLinks].entries()) {
+					let param = Foxtrick.getUrlParam(pL.href, idParam);
+					let id = Math.abs(parseInt(param, 10));
+					let player = Foxtrick.Pages.Players.getPlayerFromListById(playerInfo, id);
 					if (!player)
 						missing.push(i);
 				}
 				if (missing.length) {
-					for (var j = 0; j < missing.length; ++j) {
-						var playerDiv = players[missing[j]].parentNode.parentNode;
-						var ftDiv = playerDiv.getElementsByClassName('ft-indicator-wrapper')[0];
-						var missingDiv = doc.createElement('div');
+					for (let msIdx of missing) {
+						let playerDiv = pLinks[msIdx].parentNode.parentNode;
+						let ftDiv = playerDiv.querySelector('.ft-indicator-wrapper');
+						let missingDiv = doc.createElement('div');
 						Foxtrick.addClass(missingDiv, 'ft-playerMissing ft-indicator');
 						Foxtrick.addImage(doc, missingDiv, {
 							alt: alt,
@@ -439,7 +457,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		var homeTeamId = Foxtrick.Pages.Match.getHomeTeamId(doc);
 		var awayTeamId = Foxtrick.Pages.Match.getAwayTeamId(doc);
 		var isYouth = Foxtrick.Pages.Match.isYouth(doc);
-		var param = (isYouth ? 'youth' : '') + 'playerid';
+		var idParam = (isYouth ? 'youth' : '') + 'playerid';
 
 		var ownTeamId = isYouth
 			? Foxtrick.util.id.getOwnYouthTeamId()
@@ -495,6 +513,10 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 				shirt.appendChild(fragment);
 		};
 
+		/**
+		 * @param {number} teamId
+		 * @param {HTMLAnchorElement[]} pLinks
+		 */
 		var addFacesByTeamId = function(teamId, pLinks) {
 			if (teamId === null)
 				return;
@@ -519,7 +541,8 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 				Foxtrick.stopListenToChange(doc);
 
 				for (let pL of pLinks) {
-					let id = Math.abs(Foxtrick.getUrlParam(pL.href, param));
+					let param = Foxtrick.getUrlParam(pL.href, idParam);
+					let id = Math.abs(parseInt(param, 10));
 					addFace(pL.parentNode.parentNode, id, xml);
 				}
 
@@ -648,7 +671,8 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		if (!info)
 			return;
 
-		const eventPLinks = info.querySelectorAll('a');
+		/** @type {HTMLAnchorElement[]} */
+		const eventPLinks = [...info.querySelectorAll('a')];
 		if (!eventPLinks.length)
 			return;
 
@@ -674,8 +698,9 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		};
 
 		for (let pL of eventPLinks) {
-			let pId = Math.abs(Foxtrick.getUrlParam(pL.href, idParam));
-			highlightPlayer(pId);
+			let param = Foxtrick.getUrlParam(pL.href, idParam);
+			let id = Math.abs(parseInt(param, 10));
+			highlightPlayer(id);
 		}
 
 	},

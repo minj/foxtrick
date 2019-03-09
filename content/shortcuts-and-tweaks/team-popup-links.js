@@ -20,32 +20,32 @@ Foxtrick.modules['TeamPopupLinks'] = {
 
 	LINKS: {
 		Team: {
-			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_team=true'
+			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_team=true',
 		},
 		Manager: {
-			linkByTeam: '/Club/Manager/?teamId=[teamid]'
+			linkByTeam: '/Club/Manager/?teamId=[teamid]',
 		},
 		Matches: {
 			ownLink: '/Club/Matches/',
 			linkByTeam: '/Club/Matches/?teamId=[teamid]',
-			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_matches=true'
+			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_matches=true',
 		},
 		Players: {
 			ownLink: '/Club/Players/',
 			linkByTeam: '/Club/Players/?teamId=[teamid]',
-			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_players=true'
+			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_players=true',
 		},
 		Series: {
 			linkByTeam: '/Club/Manager/?teamId=[teamid]&redir_to_series=true',
-			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_series=true'
+			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_series=true',
 		},
 		last_5_ips: {
 			linkByTeam: '/Club/Manager/?teamId=[teamid]&ShowOldConnections=true',
-			linkByUser: '/Club/Manager/?userId=[userid]&ShowOldConnections=true'
+			linkByUser: '/Club/Manager/?userId=[userid]&ShowOldConnections=true',
 		},
 		Guestbook: {
 			linkByTeam: '/Club/Manager/Guestbook.aspx?teamId=[teamid]',
-			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_guestbook=true'
+			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_guestbook=true',
 		},
 		SendMessage: {
 			linkByTeam: '/Club/?teamId=[teamid]&redir_to_mail=true',
@@ -53,55 +53,55 @@ Foxtrick.modules['TeamPopupLinks'] = {
 		},
 		Challenge: {
 			linkByTeam: '/Club/?teamId=[teamid]&make_challenge',
-			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_challenge=true'
+			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_challenge=true',
 		},
 		Achievements: {
 			linkByTeam: '/Club/Manager/?teamId=[teamid]&redir_to_achievements=true',
-			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_achievements=true'
+			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_achievements=true',
 		},
 		Coach: {
 			ownLink: '/Club/Training/?redir_to_coach=true',
 			linkByTeam: '/Club/Players/?teamId=[teamid]&redir_to_coach=true',
-			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_coach=true'
+			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_coach=true',
 		},
 		TeamAnalysis: {
 			ownLink: '/Club/TacticsRoom/',
 			linkByTeam: '/Club/TacticsRoom/?teamId=[teamid]',
-			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_analysis=true'
+			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_analysis=true',
 		},
 		TransferHistory: {
 			linkByTeam: '/Club/Transfers/transfersTeam.aspx?teamId=[teamid]',
-			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_transferhistory=true'
+			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_transferhistory=true',
 		},
 		TeamHistory: {
 			linkByTeam: '/Club/History/?teamId=[teamid]',
-			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_teamhistory=true'
+			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_teamhistory=true',
 		},
 		FlagCollection: {
 			linkByTeam: '/Club/Flags/?teamId=[teamid]',
-			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_flags=true'
+			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_flags=true',
 		},
 		LastLineup: {
 			linkByTeam: '/Club/Matches/MatchLineup.aspx?teamId=[teamid]' +
 				'&useArchive=True&redir_to_newlineup=true',
-			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_lastlineup=true'
+			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_lastlineup=true',
 		},
 		NextMatch: {
 			linkByTeam: '/Club/Matches/?teamId=[teamid]&redir_to_nextmatch=true',
-			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_nextmatch=true'
+			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_nextmatch=true',
 		},
 		AddNextMatch: {
 			linkByTeam: '/Club/Matches/?teamId=[teamid]&redir_to_addnextmatch=true',
-			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_addnextmatch=true'
+			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_addnextmatch=true',
 		},
 		YouthMatches: {
 			linkByTeam: '/Club/Matches/?teamId=[teamid]&redir_to_youthmatches=true',
-			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_youthmatches=true'
+			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_youthmatches=true',
 		},
 		Tournaments: {
 			linkByTeam: '/Community/Tournaments/?teamId=[teamid]',
-			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_tournaments=true'
-		}
+			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_tournaments=true',
+		},
 	},
 
 	OPTION_FUNC: function(doc) {
@@ -215,7 +215,7 @@ Foxtrick.modules['TeamPopupLinks'] = {
 				span.className = 'ft-popup-span';
 
 				if (highlightEnabled && TEAM_RE.test(url) &&
-					curTeamId == Foxtrick.getUrlParam(url, 'TeamID')) {
+					curTeamId == parseInt(Foxtrick.getUrlParam(url, 'TeamID'), 10)) {
 
 					if (parent.nodeName == 'TD')
 						Foxtrick.addClass(grandParent, 'ftTeamHighlight');

@@ -130,7 +130,8 @@ if (Foxtrick.context == 'background') {
 				},
 
 				makeKeyRange: function(opts) {
-					const MAX_CHAR = String.fromCharCode(0xffff);
+					const MAX_CHAR_CODE = 0xffff;
+					const MAX_CHAR = String.fromCharCode(MAX_CHAR_CODE);
 					const MIN_CHAR = String.fromCharCode(0);
 
 					var ret = {};
@@ -223,9 +224,9 @@ if (Foxtrick.context == 'background') {
  * key should be a string.
  * value may be any stringify-able object.
  *
- * @param  {string}  key
- * @param  {object}  value
- * @return {Promise}       {Promise.<key>}
+ * @param  {string}          key
+ * @param  {*}               value
+ * @return {Promise<string>}       {Promise.<key>}
  */
 Foxtrick.storage.set = function(key, value) {
 
@@ -272,8 +273,8 @@ Foxtrick.storage.set = function(key, value) {
  * key should be a string.
  * value may be any stringify-able object or null if N/A.
  *
- * @param  {string}  key
- * @return {Promise}     {Promise.<?value>}
+ * @param  {string}      key
+ * @return {Promise<?*>}     {Promise.<?value>}
  */
 Foxtrick.storage.get = function(key) {
 

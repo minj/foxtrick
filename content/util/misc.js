@@ -314,6 +314,11 @@ Foxtrick.getHref = function(doc) {
 	return doc.location.href;
 };
 
+/**
+ * @param  {string}  url
+ * @param  {string}  param
+ * @return {?string}      ?value
+ */
 Foxtrick.getUrlParam = function(url, param) {
 	let needle = param.toLowerCase();
 	let params = new URL(url).searchParams;
