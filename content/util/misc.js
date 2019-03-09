@@ -114,6 +114,7 @@ Foxtrick.playSound = function(url) {
 			let canPlay = music.canPlayType('audio/' + type);
 			Foxtrick.log('can play', type, ':', canPlay === '' ? 'no' : canPlay);
 
+			// @ts-ignore
 			if (canPlay === '' || canPlay === 'no')
 				return;
 
@@ -177,8 +178,8 @@ Foxtrick.playSound = function(url) {
  * c.f. https://stackoverflow.com/questions/3436102/copy-to-clipboard-in-chrome-extension/12693636#12693636
  *
  * @param {document} doc
- * @param {string}   copy {string|function}
- * @param {string}   mime {string?}
+ * @param {string|function():string|{mime:string, content:string}} copy
+ * @param {?string} [mime]
  */
 Foxtrick.copy = function(doc, copy, mime) {
 	if (Foxtrick.platform == 'Safari') {
@@ -198,7 +199,7 @@ Foxtrick.copy = function(doc, copy, mime) {
 			contentMime = ret.mime || null;
 			copyContent = ret.content;
 		}
-		else {
+		else if (typeof ret === 'string') {
 			copyContent = ret;
 		}
 	}
@@ -221,20 +222,10 @@ Foxtrick.copy = function(doc, copy, mime) {
 };
 
 Foxtrick.newTab = function(url) {
-	var tab;
-
-	if (Foxtrick.context === 'content') {
+	if (Foxtrick.context === 'content')
 		Foxtrick.SB.ext.sendRequest({ req: 'newTab', url: url });
-	}
-	else if (Foxtrick.platform == 'Firefox') {
-		tab = window.gBrowser.addTab(url);
-		window.gBrowser.selectedTab = tab;
-	}
-	else if (Foxtrick.platform == 'Android') {
-		tab = window.BrowserApp.addTab(url);
-		window.BrowserApp.selectedTab = tab;
-	}
-	return tab;
+	else
+		Foxtrick.SB.tabs.create({ url });
 };
 
 /**
