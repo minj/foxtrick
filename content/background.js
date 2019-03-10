@@ -104,8 +104,8 @@ Foxtrick.loader.background.browserLoad = function() {
 			if (Foxtrick.arch == 'Sandboxed' && localStorage.getItem('preferences.updated')	||
 				Foxtrick.platform == 'Android' &&
 				Foxtrick.Prefs._prefs_gecko.getBoolPref('preferences.updated')) {
-
-				updateResources(true); // reInit
+ 				// reInit
+				updateResources(true);
 			}
 
 			let resource = {
@@ -166,9 +166,9 @@ Foxtrick.loader.background.browserLoad = function() {
 			try {
 				Foxtrick.Prefs.restore();
 
-				if (Foxtrick.platform !== 'Android') {
+				if (Foxtrick.platform !== 'Android')
 					updateResources();
-				}
+
 				sendResponse();
 			}
 			catch (e) {
@@ -380,11 +380,6 @@ Foxtrick.loader.background.browserLoad = function() {
 		// };
 
 		// from log.js
-		this.requests.log = function({ log }) {
-			// @param log - text to dump to console (Fennec)
-			window.dump(`FT: ${log}`);
-			Foxtrick.addToDebugLogStorage(log);
-		};
 		this.requests.addDebugLog = function({ log }) {
 			// @param log - text to add to debug log storage
 			Foxtrick.addToDebugLogStorage(log);
@@ -395,9 +390,9 @@ Foxtrick.loader.background.browserLoad = function() {
 		};
 
 		// from mobile-enhancements.js
-		this.requests.updateViewportSize = function() {
-			Browser.updateViewportSize();
-		};
+		// this.requests.updateViewportSize = function() {
+		// 	Browser.updateViewportSize();
+		// };
 
 	}
 	catch (e) {

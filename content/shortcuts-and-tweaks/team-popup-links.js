@@ -162,15 +162,15 @@ Foxtrick.modules['TeamPopupLinks'] = {
 	},
 
 	run: function(doc) {
-		var sUrl = Foxtrick.getHref(doc);
+		const module = this;
 
 		// show last 5 logins
-		if (sUrl.search(/ShowOldConnections=true/i) != -1) {
-			var a = Foxtrick.getMBElement(doc, 'lnkShowLogins');
+		if (/ShowOldConnections=true/i.test(doc.URL)) {
+			let a = Foxtrick.getMBElement(doc, 'lnkShowLogins');
 			a && a.click();
 		}
 
-		this.addPopupLinks(doc);
+		module.addPopupLinks(doc);
 	},
 
 	/* eslint-disable complexity */
@@ -193,7 +193,7 @@ Foxtrick.modules['TeamPopupLinks'] = {
 
 		var mainBody = doc.getElementById('mainBody');
 
-		var sUrl = Foxtrick.getHref(doc);
+		var sUrl = doc.URL;
 		var ownTeamId = Foxtrick.util.id.getOwnTeamId();
 		var curTeamId = Foxtrick.Pages.All.getTeamId(doc);
 		var hasScroll = Foxtrick.util.layout.mainBodyHasScroll(doc);

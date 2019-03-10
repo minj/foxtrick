@@ -107,7 +107,7 @@ Foxtrick.modules.Core = {
 	},
 
 	updateLastPage: function(doc) {
-		Foxtrick.setLastPage(doc.location.href);
+		Foxtrick.setLastPage(doc.URL);
 	},
 
 	showChangeLog: function(doc) {

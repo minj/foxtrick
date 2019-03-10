@@ -261,7 +261,7 @@ Foxtrick.Pages.Player.getAttributes = function(doc) {
 		// personality
 		let idx;
 		for (idx = 0; idx < PERSONALITY.length; idx++) {
-			let attr = Foxtrick.getUrlParam(personLinks[idx], 'lt');
+			let attr = Foxtrick.getUrlParam(personLinks[idx].href, 'lt');
 			attrs[attr] = num(personLinks[idx]);
 		}
 

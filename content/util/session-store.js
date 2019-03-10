@@ -18,9 +18,8 @@ if (!this.Foxtrick)
 
 Foxtrick.session = {};
 
-if (Foxtrick.context === 'background') {
+if (Foxtrick.context === 'background')
 	Foxtrick.session.__STORE = {};
-}
 
 /**
  * Get a promise when session value is set.
@@ -28,9 +27,9 @@ if (Foxtrick.context === 'background') {
  * key should be a string.
  * value may be any stringify-able object.
  *
- * @param  {string}  key
- * @param  {object}  value
- * @return {Promise}       {Promise.<key>}
+ * @param  {string}          key
+ * @param  {object}          value
+ * @return {Promise<string>}       {Promise.<key>}
  */
 Foxtrick.session.set = function(key, value) {
 
@@ -67,8 +66,8 @@ Foxtrick.session.set = function(key, value) {
  * key should be a string.
  * value may be any stringify-able object or null if N/A.
  *
- * @param  {string}  key
- * @return {Promise}     {Promise.<?value>}
+ * @param  {string}     key
+ * @return {Promise<?>}     {Promise.<?value>}
  */
 Foxtrick.session.get = function(key) {
 	if (Foxtrick.context == 'content') {

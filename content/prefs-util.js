@@ -781,13 +781,7 @@ Foxtrick.Prefs.show = function(page) {
  */
 Foxtrick.Prefs.disable = function(sender) {
 	this.setBool('disableTemporary', !this.getBool('disableTemporary'));
-
 	Foxtrick.modules.UI.update(sender);
-
-	if (Foxtrick.arch === 'Gecko') {
-		Foxtrick.entry.init(true); // reInit
-		Foxtrick.reloadAll();
-	}
 };
 
 /**
