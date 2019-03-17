@@ -329,19 +329,59 @@ Foxtrick.insertAdjacent = function(where, newNode, target) {
 /**
  * Insert newNode before sibling
  * @param {Node|string} newNode
- * @param {Element}     sibling
+ * @param {Node}        sibling
  */
 Foxtrick.insertBefore = function(newNode, sibling) {
-	Foxtrick.insertAdjacent('beforebegin', newNode, sibling);
+	let doc = sibling.ownerDocument;
+	let win = doc.defaultView;
+	let parent = sibling.parentNode;
+
+	// @ts-ignore
+	if (sibling instanceof win.Element) {
+		// eslint-disable-next-line no-extra-parens
+		let el = /** @type {Element} */ (sibling);
+		Foxtrick.insertAdjacent('beforebegin', newNode, el);
+	}
+
+	// @ts-ignore
+	else if (newNode instanceof win.Node) {
+		// eslint-disable-next-line no-extra-parens
+		let node = /** @type {Node} */ (newNode);
+		parent.insertBefore(node, sibling);
+	}
+	else {
+		let text = doc.createTextNode(String(newNode));
+		parent.insertBefore(text, sibling);
+	}
 };
 
 /**
  * Insert newNode after sibling
  * @param {Node|string} newNode
- * @param {Element}     sibling
+ * @param {Node}        sibling
  */
 Foxtrick.insertAfter = function(newNode, sibling) {
-	Foxtrick.insertAdjacent('afterend', newNode, sibling);
+	let doc = sibling.ownerDocument;
+	let win = doc.defaultView;
+	let parent = sibling.parentNode;
+
+	// @ts-ignore
+	if (sibling instanceof win.Element) {
+		// eslint-disable-next-line no-extra-parens
+		let el = /** @type {Element} */ (sibling);
+		Foxtrick.insertAdjacent('afterend', newNode, el);
+	}
+
+	// @ts-ignore
+	else if (newNode instanceof win.Node) {
+		// eslint-disable-next-line no-extra-parens
+		let node = /** @type {Node} */ (newNode);
+		parent.insertBefore(node, sibling.nextSibling);
+	}
+	else {
+		let text = doc.createTextNode(String(newNode));
+		parent.insertBefore(text, sibling.nextSibling);
+	}
 };
 
 /**

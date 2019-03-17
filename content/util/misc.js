@@ -164,7 +164,7 @@ Foxtrick.playSound = function(url) {
 	}
 	let soundUrl = url.replace(/^foxtrick:\/\//, Foxtrick.ResourcePath);
 
-	let type = 'wav';
+	let type = 'wav'; // lgtm[js/useless-assignment-to-local]
 	if (soundUrl.indexOf('data:audio/') === 0) {
 		let dataURLRe = /^data:audio\/(.+?);/;
 		if (!dataURLRe.test(soundUrl)) {
