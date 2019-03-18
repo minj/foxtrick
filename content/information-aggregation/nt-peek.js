@@ -1,9 +1,10 @@
-'use strict';
 /**
  * nt-peek.js
  * peeks NT/U20 matches at MyHT
  * @author ryanli, convincedd, ryanli
  */
+
+'use strict';
 
 Foxtrick.modules['NtPeek'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
@@ -74,15 +75,13 @@ Foxtrick.modules['NtPeek'] = {
 			['teamId', parseInt(ntId, 10)],
 		];
 		var ntArgStr = JSON.stringify(ntArgs);
-		Foxtrick.util.api.retrieve(doc, ntArgs, { cache_lifetime: 'default' },
-		  function(xml, errorText) {
+		Foxtrick.util.api.retrieve(doc, ntArgs, { cache: 'default' }, (xml, errorText) => {
 			var div = ntContainer.querySelector('div');
 			var nextMatchDate =
 				Foxtrick.util.matchView.fillMatches(div, xml, errorText);
 
-			if (nextMatchDate) {
+			if (nextMatchDate)
 				Foxtrick.util.api.setCacheLifetime(ntArgStr, nextMatchDate.getTime());
-			}
 		});
 
 		var u20Args = [
@@ -91,15 +90,13 @@ Foxtrick.modules['NtPeek'] = {
 			['teamId', parseInt(u20Id, 10)],
 		];
 		var u20ArgStr = JSON.stringify(u20Args);
-		Foxtrick.util.api.retrieve(doc, u20Args, { cache_lifetime: 'default' },
-		  function(xml, errorText) {
+		Foxtrick.util.api.retrieve(doc, u20Args, { cache: 'default' }, (xml, errorText) => {
 			var div = u20Container.querySelector('div');
 			var nextMatchDate =
 				Foxtrick.util.matchView.fillMatches(div, xml, errorText);
 
-			if (nextMatchDate) {
+			if (nextMatchDate)
 				Foxtrick.util.api.setCacheLifetime(u20ArgStr, nextMatchDate.getTime());
-			}
 		});
 	},
 };

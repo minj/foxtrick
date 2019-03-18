@@ -540,6 +540,21 @@ Foxtrick.psico = {
 		];
 		return 0;
 	},
+
+	/**
+	 * @typedef PsicoTSIPrediction
+	 * @prop {string} maxSkill
+	 * @prop {boolean} isGK
+	 * @prop {boolean} undef
+	 * @prop {string} limit
+	 * @prop {number} formLow
+	 * @prop {number} formAvg
+	 * @prop {number} formHigh
+	 * @prop {string} wageLow
+	 * @prop {string} wageAvg
+	 * @prop {string} wageHigh
+	 */
+
 	/**
 	 * Get PsicoTSI prediction data from playerskills
 	 * [frm, sta, pm, w, sco, gk, ps, df, sp]
@@ -549,7 +564,7 @@ Foxtrick.psico = {
 	 * @param	{Number}	currTSI
 	 * @param	{Number}	currWAGE
 	 * @param	{Number}	age
-	 * @returns	{Object}
+	 * @returns	{PsicoTSIPrediction}
 	 */
 	getPrediction: function(playerskills, currTSI, currWAGE, age) {
 		var frm = playerskills[0];

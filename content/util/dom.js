@@ -7,6 +7,7 @@
 
 /* eslint-disable */
 if (!this.Foxtrick)
+	// @ts-ignore
 	var Foxtrick = {};
 /* eslint-enable */
 
@@ -196,7 +197,8 @@ Foxtrick.setAttributes = function(el, attributes) {
 				el[attr][item] = subVal;
 		}
 		else if (attr.slice(0, 2) == 'on' && typeof val == 'function') {
-			let type = attr.slice(2).toLowerCase();
+			// eslint-disable-next-line no-extra-parens
+			let type = /** @type {keyof HTMLElementEventMap} */ (attr.slice(2).toLowerCase());
 
 			if (type == 'click')
 				Foxtrick.onClick(el, val);
@@ -490,6 +492,7 @@ Foxtrick.append = function(parent, child) {
  * The callback is executed with global change listeners stopped.
  *
  * @template {Element} T
+ *
  * @param {T}                      el
  * @param {Listener<T,MouseEvent>} listener
  * @param {boolean}                [useCapture]
@@ -505,16 +508,19 @@ Foxtrick.onClick = function(el, listener, useCapture) {
 /**
  * Add an event listener to an element.
  * The callback is executed with global change listeners stopped.
+ *
  * @template {EventTarget} T
- * @param {T}                 el
- * @param {string}            type     event type
- * @param {Listener<T,Event>} listener
- * @param {boolean}           [useCapture]
+ * @template {keyof HTMLElementEventMap} E
+ *
+ * @param {T}                        el
+ * @param {E}                        type     event type
+ * @param {Listener<T,HTMLEvent<E>>} listener
+ * @param {boolean}                  [useCapture]
  */
 Foxtrick.listen = function(el, type, listener, useCapture) {
 	/**
 	 * @this  {T}
-	 * @param {Event} ev
+	 * @param {HTMLEvent<E>} ev
 	 */
 	let wrapper = function(ev) {
 		// eslint-disable-next-line no-extra-parens
@@ -648,11 +654,11 @@ Foxtrick.getChanges = function(node, callback, obsOpts) {
  * Returns the added box.
  * @author Ryan Li, LA-MJ
  * @param  {document} doc
- * @param  {string}   title     the title of the box, will create one if inexists
- * @param  {Element}  content   HTML node of the content
- * @param  {number}   prec      precedence of the box, the smaller, the higher
- * @param  {boolean}  forceLeft force the box to be displayed on the left
- * @return {Element}            box to be added to
+ * @param  {string}   title       the title of the box, will create one if inexists
+ * @param  {Element}  content     HTML node of the content
+ * @param  {number}   prec        precedence of the box, the smaller, the higher
+ * @param  {boolean}  [forceLeft] force the box to be displayed on the left
+ * @return {Element}              box to be added to
  */
 // eslint-disable-next-line complexity
 Foxtrick.addBoxToSidebar = function(doc, title, content, prec, forceLeft) {
@@ -818,8 +824,8 @@ Foxtrick.addImage = function(doc, parent, features, insertBefore, callback) {
  * Returns Promise.<HTMLImageElement>
  *
  * @param  {Node}   parent
- * @param  {number} specNum {Integer}
- * @param  {object} features image attributes
+ * @param  {number} specNum    {Integer}
+ * @param  {object} [features] image attributes
  * @return {Promise<HTMLImageElement>}
  */
 Foxtrick.addSpecialty = function(parent, specNum, features) {
@@ -1005,18 +1011,21 @@ Foxtrick.getButton = function(doc, ID) {
 /**
  * Get all text nodes in the node tree
  * @param  {Element} parent
- * @return {Node[]}
+ * @return {Text[]}
  */
 Foxtrick.getTextNodes = function(parent) {
-	let ret = [];
 	let doc = parent.ownerDocument;
 	let win = doc.defaultView;
+
+	let ret = [];
 
 	// @ts-ignore
 	let walker = doc.createTreeWalker(parent, win.NodeFilter.SHOW_TEXT, null, false);
 	let node;
-	while ((node = walker.nextNode()))
-		ret.push(node);
+	while ((node = walker.nextNode())) {
+		// eslint-disable-next-line no-extra-parens
+		ret.push(/** @type {Text} */ (node));
+	}
 
 	return ret;
 };
@@ -1163,7 +1172,7 @@ Foxtrick.renderPre = function(parent) {
  * buttons is {Array.<{title:string, handler:function}>} (optional)
  * @param {document}       doc
  * @param {string}         title
- * @param {Element|string} content
+ * @param {Node|string}    content
  * @param {DialogButton[]} [buttons]
  */
 Foxtrick.makeModal = function(doc, title, content, buttons) {
@@ -1274,4 +1283,9 @@ Foxtrick.makeModal = function(doc, title, content, buttons) {
  * @template {EventTarget} T
  * @template {Event}       E
  * @typedef  {(this:T,ev:E)=>boolean|void} Listener<T,E>
+ */
+
+/**
+ * @template {keyof HTMLElementEventMap} E
+ * @typedef {HTMLElementEventMap[E]} HTMLEvent<E>
  */

@@ -216,7 +216,7 @@ Foxtrick.L10n.getString = function(str, num) {};
  * append it to parent and return it
  *
  * @param  {string}            str    locale key
- * @param  {element}           parent
+ * @param  {Element}           parent
  * @param  {string}            url
  * @return {HTMLAnchorElement}
  */
@@ -244,6 +244,14 @@ Foxtrick.L10n.appendLink = function(str, parent, url) {
 };
 
 /**
+ * @typedef HTLangPropQuery
+ * @prop {string} category
+ * @prop {string} filter
+ * @prop {string} value
+ * @prop {string} property
+ */
+
+/**
  * Get the value of a certain property from htlang.json.
  *
  * The query object {category, filter, value, property: string}
@@ -254,28 +262,29 @@ Foxtrick.L10n.appendLink = function(str, parent, url) {
  *
  * Optionally lang overrides language code to look in (defaults to user).
  *
- * @param  {Object} query {category, filter, value, property: string}
- * @param  {string} lang  language code
- * @return {string}       property value
+ * @param  {HTLangPropQuery} query  {category, filter, value, property: string}
+ * @param  {string}          [lang] language code
+ * @return {string}                 property value
  */
 Foxtrick.L10n.getHTLangProperty = function(query, lang) {
 	var prop = null;
-	if (!lang)
-		lang = Foxtrick.Prefs.getString('htLanguage');
 
-	var json = Foxtrick.L10n.htLanguagesJSON[lang].language;
-	var array = json[query.category];
+	let l = lang || Foxtrick.Prefs.getString('htLanguage');
+	let json = Foxtrick.L10n.htLanguagesJSON[l].language;
+	let array = json[query.category];
 
 	if (Array.isArray(array)) {
-		var value = query.value.toString().trim();
-		var el = Foxtrick.nth(function(e) {
+		let value = query.value.toString().trim();
+		let el = Foxtrick.nth(function(e) {
 			return e[query.filter] === value;
+
 			// return new RegExp('^' + e[query.filter], 'i').test(value);
 		}, array);
 
 		if (el && typeof el === 'object' && query.property in el)
 			prop = el[query.property];
 	}
+
 	return prop;
 };
 
@@ -293,19 +302,18 @@ Foxtrick.L10n.getHTLangProperty = function(query, lang) {
  * If property is not found English is looked up instead.
  * If that also fails, raw value is returned.
  *
- * @param  {Object} query {category, filter, value, property: string}
- * @param  {string} lang  language code
- * @return {string}       property value
+ * @param  {HTLangPropQuery} query  {category, filter, value, property: string}
+ * @param  {string}          [lang] language code
+ * @return {string}                 property value
  */
 Foxtrick.L10n.getLocalOrEnglish = function(query, lang) {
-	if (!lang)
-		lang = Foxtrick.Prefs.getString('htLanguage');
+	let l = lang || Foxtrick.Prefs.getString('htLanguage');
 
-	var text = this.getHTLangProperty(query, lang);
+	var text = this.getHTLangProperty(query, l);
 	if (text === null) {
-		var header = 'Requested ' + query.category + ':' + query.property +
+		let header = 'Requested ' + query.category + ':' + query.property +
 			' with ' + query.filter + '=' + query.value;
-		Foxtrick.error(header + ' does not exist in locale ' + lang + ', trying en instead.');
+		Foxtrick.error(header + ' does not exist in locale ' + l + ', trying en instead.');
 
 		text = this.getHTLangProperty(query, 'en');
 		if (text === null) {
@@ -325,13 +333,13 @@ Foxtrick.L10n.getLocalOrEnglish = function(query, lang) {
  * @return {number}
  */
 Foxtrick.L10n.getLevelFromText = function(text) {
-	text = text.trim();
+	var txt = text.trim();
 	var lang = Foxtrick.Prefs.getString('htLanguage');
 	var json = Foxtrick.L10n.htLanguagesJSON[lang].language;
 
 	var levelObj = Foxtrick.nth(function(jsonLevel) {
 		var levelText = Foxtrick.strToRe(jsonLevel.text);
-		return new RegExp('^' + levelText, 'i').test(text);
+		return new RegExp('^' + levelText, 'i').test(txt);
 	}, json.levels);
 
 	if (levelObj === null)
@@ -342,8 +350,9 @@ Foxtrick.L10n.getLevelFromText = function(text) {
 
 	var subObj = Foxtrick.nth(function(jsonSubLevel) {
 		var sublevelText = Foxtrick.strToRe(jsonSubLevel.text);
+
 		// using \)? in case LAs remove ) from sublevelText
-		return new RegExp(sublevelText + '\\)?$', 'i').test(text);
+		return new RegExp(sublevelText + '\\)?$', 'i').test(txt);
 	}, json.ratingSubLevels);
 
 	if (subObj)
@@ -503,12 +512,10 @@ Foxtrick.L10n.getTacticById = function(id) {
 Foxtrick.L10n.getShortPosition = function(pos) {
 	var defaultAbbr = function(pos) {
 		var space = pos.search(/ /);
-		if (space == -1) {
+		if (space == -1)
 			return pos.slice(0, 2);
-		}
-		else {
-			return pos.slice(0, 1) + pos.slice(space + 1, space + 2);
-		}
+
+		return pos.slice(0, 1) + pos.slice(space + 1, space + 2);
 	};
 
 	var shortPos = '';
@@ -660,7 +667,7 @@ Foxtrick.L10n.getCategoryById = function(id) {
  * Map position id to position type
  *
  * @param  {number} id {Integer}
- * @return {string}
+ * @return {PositionType}
  */
 Foxtrick.L10n.getPositionTypeById = function(id) {
 	var type = null;
@@ -714,10 +721,14 @@ Foxtrick.L10n.getPositionByType = function(val) {
 };
 
 /**
+ * @typedef {'Keeper'|'WingBack'|'CentralDefender'|'InnerMidfield'|'Winger'|'Forward'} PositionType
+ */
+
+/**
  * Map l10n position to position type
  *
  * @param  {string} pos
- * @return {string}
+ * @return {PositionType}
  */
 Foxtrick.L10n.getPositionType = function(pos) {
 	var query = {
@@ -726,7 +737,9 @@ Foxtrick.L10n.getPositionType = function(pos) {
 		filter: 'value',
 		value: pos,
 	};
-	return this.getHTLangProperty(query);
+
+	// eslint-disable-next-line no-extra-parens
+	return /** @type {PositionType} */ (this.getHTLangProperty(query));
 };
 
 /**

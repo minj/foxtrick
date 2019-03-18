@@ -1,9 +1,10 @@
-'use strict';
 /**
  * supporters-list.js
  * show which supported team support you back and vice versa
  * @author teles, LA-MJ
  */
+
+'use strict';
 
 Foxtrick.modules['SupportersList'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.PRESENTATION,
@@ -38,10 +39,11 @@ Foxtrick.modules['SupportersList'] = {
 			return;
 		}
 
+		var loading;
 		if (Foxtrick.Prefs.getBool('xmlLoad')) {
 			var entry = doc.querySelector('#mainBody table') ||
 				Foxtrick.getMBElement(doc, 'pnlMySupporters').querySelector('br');
-			var loading = Foxtrick.util.note.createLoading(doc);
+			loading = Foxtrick.util.note.createLoading(doc);
 			entry.parentNode.insertBefore(loading, entry);
 		}
 
@@ -128,16 +130,16 @@ Foxtrick.modules['SupportersList'] = {
 
 		var ids = [];
 
-		Foxtrick.util.api.retrieve(doc, [
+		let args = [
 			['file', 'supporters'],
 			['version', '1.0'],
 			['teamId', teamId],
 			['actionType', action],
 			['pageSize', TEAMS_PER_PAGE],
 			['pageIndex', 0],
-		  ],
-		  { cache_lifetime: 'session' },
-		  function(xml, errorText) {
+		];
+
+		Foxtrick.util.api.retrieve(doc, args, { cache: 'session' }, (xml, errorText) => {
 			if (!xml || errorText) {
 				Foxtrick.log(errorText);
 				return;
@@ -150,44 +152,46 @@ Foxtrick.modules['SupportersList'] = {
 			for (var i = 0; i < all.length; i++)
 				ids.push(all[i].textContent);
 
-			var total = sup.getAttribute('TotalItems');
-			if (total > TEAMS_PER_PAGE) {
-				var pageCt = Math.ceil(total / TEAMS_PER_PAGE);
-				var batchArgs = [];
-				for (var p = 1; p < pageCt; p++) {
-					batchArgs.push([
-						['file', 'supporters'],
-						['version', '1.0'],
-						['teamId', teamId],
-						['actionType', action],
-						['pageSize', TEAMS_PER_PAGE],
-						['pageIndex', p],
-					]);
-				}
-				Foxtrick.util.api.batchRetrieve(doc, batchArgs, { cache_lifetime: 'session' },
-				  function(xmls, errors) {
-					if (xmls) {
-						for (var x = 0; x < xmls.length; ++x) {
-							var xml = xmls[x];
-							var errorText = errors[x];
-							if (!xml || errorText) {
-								Foxtrick.log('No XML in batchRetrieve', batchArgs[x], errorText);
-								continue;
-							}
-							var sup = xml.getElementsByTagName(tag)[0];
-							if (typeof sup === 'undefined')
-								continue;
-
-							var all = sup.getElementsByTagName('TeamId');
-							for (var i = 0; i < all.length; i++)
-								ids.push(all[i].textContent);
-						}
-					}
-					callback(ids);
-				});
-			}
-			else
+			var total = parseInt(sup.getAttribute('TotalItems'), 10);
+			if (total <= TEAMS_PER_PAGE) {
 				callback(ids);
+				return;
+			}
+
+			/** @type {CHPPOpts} */
+			let cOpts = { cache: 'session' };
+			let bArgs = [];
+			var pageCt = Math.ceil(total / TEAMS_PER_PAGE);
+			for (var p = 1; p < pageCt; p++) {
+				bArgs.push([
+					['file', 'supporters'],
+					['version', '1.0'],
+					['teamId', teamId],
+					['actionType', action],
+					['pageSize', TEAMS_PER_PAGE],
+					['pageIndex', p],
+				]);
+			}
+			Foxtrick.util.api.batchRetrieve(doc, bArgs, cOpts, (xmls, errors) => {
+				if (xmls) {
+					for (var x = 0; x < xmls.length; ++x) {
+						var xml = xmls[x];
+						var errorText = errors[x];
+						if (!xml || errorText) {
+							Foxtrick.log('No XML in batchRetrieve', bArgs[x], errorText);
+							continue;
+						}
+						var sup = xml.node(tag);
+						if (sup == null)
+							continue;
+
+						var all = sup.getElementsByTagName('TeamId');
+						for (var i = 0; i < all.length; i++)
+							ids.push(all[i].textContent);
+					}
+				}
+				callback(ids);
+			});
 		});
 	},
 };

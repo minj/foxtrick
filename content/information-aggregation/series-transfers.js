@@ -1,35 +1,40 @@
-'use strict';
 /**
  * series-transfers.js
  * Lists all players for sale within a certain league on league pages
  * @author CatzHoek
  */
 
+'use strict';
+
 Foxtrick.modules['SeriesTransfers'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES: ['series'],
 
+	/** @param {document} doc */
 	run: function(doc) {
-
 		var AUTO_REFRESH_IN = 2 * Foxtrick.util.time.MSECS_IN_DAY;
 		var resultId = 'ft-series-transfers-result';
 		var timeId = 'ft-series-transfers-time';
 		var now = Foxtrick.util.time.getHTTimeStamp(doc);
+		var sidebar = doc.getElementById('sidebar');
+		var seriesId = Foxtrick.util.id.findLeagueLeveUnitId(sidebar);
+		var ownSeriesId = Foxtrick.modules.Core.TEAM.seriesId;
 
-		var leagueTable = doc.getElementById('mainBody').getElementsByTagName('table')[0];
+		var leagueTable = doc.querySelector('#mainBody table');
 
 		// checks whether a team is ownerless
 		var isNotOwnerless = function(link) {
 			return !Foxtrick.hasClass(link, 'shy') &&
-				Foxtrick.util.id.getTeamIdFromUrl(link.href);
+				!!Foxtrick.util.id.getTeamIdFromUrl(link.href);
 		};
 
 		// get bots/ownerless
 		var teams = leagueTable.getElementsByTagName('a');
 		var teamLinks = Foxtrick.filter(isNotOwnerless, teams);
-		if (!teamLinks.length)
+		if (!teamLinks.length) {
 			// only bots
 			return;
+		}
 
 		// get teamdIds
 		var teamIds = Foxtrick.map(function(link) {
@@ -52,6 +57,7 @@ Foxtrick.modules['SeriesTransfers'] = {
 			invalidateCache();
 			var win = ev.target.ownerDocument.defaultView;
 			win.setTimeout(function() {
+				// eslint-disable-next-line no-invalid-this
 				var doc = this.document;
 				Foxtrick.forEach(function(id) {
 					var node = doc.getElementById(id);
@@ -59,7 +65,9 @@ Foxtrick.modules['SeriesTransfers'] = {
 						node.parentNode.removeChild(node);
 				}, [resultId, timeId]);
 				now = Foxtrick.util.time.getHTTimeStamp(doc);
+				// eslint-disable-next-line no-use-before-define
 				showPlayers();
+				// eslint-disable-next-line no-magic-numbers
 			}, 300);
 		};
 
@@ -113,16 +121,16 @@ Foxtrick.modules['SeriesTransfers'] = {
 			];
 
 			var thead = doc.createElement('thead');
-			var thead_tr = doc.createElement('tr');
+			var theadRow = doc.createElement('tr');
 			for (var i = 0; i < columns.length; i++) {
-				var localized_text = Foxtrick.L10n.getString(columns[i].text);
-				var localized_alt_n_title = Foxtrick.L10n.getString(columns[i].title);
-				var th = createRowElement('th', localized_text);
-				th.setAttribute('title', localized_alt_n_title);
-				th.setAttribute('alt', localized_alt_n_title);
-				thead_tr.appendChild(th);
+				var l10nText = Foxtrick.L10n.getString(columns[i].text);
+				var l10bAltTitle = Foxtrick.L10n.getString(columns[i].title);
+				var th = createRowElement('th', l10nText);
+				th.setAttribute('title', l10bAltTitle);
+				th.setAttribute('alt', l10bAltTitle);
+				theadRow.appendChild(th);
 			}
-			thead.appendChild(thead_tr);
+			thead.appendChild(theadRow);
 
 			// tbody
 			tbody = doc.createElement('tbody');
@@ -137,11 +145,16 @@ Foxtrick.modules['SeriesTransfers'] = {
 			}
 		};
 
+		/**
+		 * @param {CHPPXML[]} xmls
+		 * @param {string[]}  errors
+		 * @param {number}    currencyRate
+		 */
 		var processXMLs = function(xmls, errors, currencyRate) {
 			var injuryFunc = function(cell, injury) {
 				if (injury > -1) {
 					var img;
-					if (injury === 0) { //bruised
+					if (injury === 0) { // bruised
 						img = doc.createElement('img');
 						img.src = '/Img/Icons/bruised.gif';
 						img.alt = Foxtrick.L10n.getString('Bruised.abbr');
@@ -154,11 +167,11 @@ Foxtrick.modules['SeriesTransfers'] = {
 						img.alt = Foxtrick.L10n.getString('Injured.abbr');
 						img.title = Foxtrick.L10n.getString('Injured');
 						cell.appendChild(img);
+
 						// player.injured is number from players page,
 						// or boolean from transfer result page.
-						if (typeof(injury) == 'number' && injury > 1) {
-							cell.appendChild(doc.createTextNode(injury));
-						}
+						if (typeof injury == 'number' && injury > 1)
+							cell.appendChild(doc.createTextNode(injury.toString()));
 					}
 				}
 			};
@@ -204,6 +217,7 @@ Foxtrick.modules['SeriesTransfers'] = {
 						var ageDays = num('AgeDays');
 						var form = num('PlayerForm');
 						var salary = xml.money('Salary', currencyRate, player);
+
 						// var agreeability = num('Agreeability');
 						// var aggressivness = num('Aggressiveness');
 						// var honesty = num('Honesty');
@@ -262,6 +276,7 @@ Foxtrick.modules['SeriesTransfers'] = {
 					}
 				}, players);
 			}, xmls);
+
 			Foxtrick.removeClass(table, 'hidden');
 			loading.parentNode.removeChild(loading);
 			if (!hasListedPlayers) {
@@ -282,13 +297,14 @@ Foxtrick.modules['SeriesTransfers'] = {
 
 		var showPlayers = function() {
 			buildTable();
+
 			// retrieve currency rate
 			Foxtrick.util.currency.detect(doc).then(function(curr) {
 				var currencyRate = curr.rate;
+
 				// batch retrieve
 				var time = now + AUTO_REFRESH_IN;
-				Foxtrick.util.api.batchRetrieve(doc, batchArgs, { cache_lifetime: time },
-				  function(xmls, errors) {
+				Foxtrick.util.api.batchRetrieve(doc, batchArgs, { cache: time }, (xmls, errors) => {
 					if (xmls)
 						processXMLs(xmls, errors, currencyRate);
 				});
@@ -299,9 +315,6 @@ Foxtrick.modules['SeriesTransfers'] = {
 
 		};
 
-		var sidebar = doc.getElementById('sidebar');
-		var seriesId = Foxtrick.util.id.findLeagueLeveUnitId(sidebar);
-		var ownSeriesId = Foxtrick.modules.Core.TEAM.seriesId;
 		Foxtrick.localGet('series_transfers.' + seriesId, function(time) {
 			if (time || seriesId === ownSeriesId) {
 				// we follow this series
@@ -311,5 +324,5 @@ Foxtrick.modules['SeriesTransfers'] = {
 			}
 		});
 
-	}
+	},
 };

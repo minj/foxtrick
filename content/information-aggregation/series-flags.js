@@ -1,110 +1,125 @@
-'use strict';
 /**
 * series-flags.js
 * Show series flags beside manager links and/or team links
 * @author taised, ryanli
 */
 
+'use strict';
+
 Foxtrick.modules['SeriesFlags'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES: [
 		'guestbook', 'teamPage', 'series', 'youthSeries', 'federation', 'tournaments',
-		'tournamentsGroups', 'tournamentsFixtures'
+		'tournamentsGroups', 'tournamentsFixtures',
 	],
 	OPTIONS: ['Guestbook', 'Supporters', 'Visitors', 'Tournaments', 'CountryOnly'],
-	NICE: +1,  // some conflict with another module. setting NICE +1 solved it
+	NICE: +1, // some conflict with another module. setting NICE +1 solved it
 
+	// eslint-disable-next-line complexity
 	run: function(doc) {
 		var buildFlag = function(arg, callback) {
-			Foxtrick.localGet('seriesFlags',
-			  function(mapping) {
-				if (!mapping || typeof mapping[arg[0]] === 'undefined')
-					mapping = { 'userId': {}, 'teamId': {} };
+			Foxtrick.localGet('seriesFlags', (mapping) => {
+				let map = mapping;
+				if (!map || typeof map[arg[0]] === 'undefined')
+					map = { userId: {}, teamId: {}};
 
 				// data is an Object with attributes leagueId, seriesName,
 				// and seriesId
 				var buildFromData = function(data) {
 					var flag =
 						Foxtrick.createFeaturedElement(doc, Foxtrick.modules.SeriesFlags, 'span');
-					if (data['leagueId'] != 0) {
+
+					if (data.leagueId) {
 						flag.className = 'ft-series-flag';
 						var country = Foxtrick.util.id.createFlagFromLeagueId(doc, data.leagueId);
 						flag.appendChild(country);
 						if (!Foxtrick.Prefs.isModuleOptionEnabled('SeriesFlags', 'CountryOnly') &&
-						    data['seriesId'] !== 0) {
+						    data.seriesId !== 0) {
 							var series = doc.createElement('a');
 							series.className = 'inner smallText';
-							series.textContent = data['seriesName'];
-							series.href = '/World/Series/?LeagueLevelUnitID=' +
-								data['seriesId'];
+							series.textContent = data.seriesName;
+							series.href = '/World/Series/?LeagueLevelUnitID=' + data.seriesId;
 							flag.appendChild(series);
 						}
 					}
-					else flag.className = 'ft-ownerless';
+					else {
+						flag.className = 'ft-ownerless';
+					}
+
 					return flag;
 				};
+
 				// fetch data from stored mapping if available, otherwise
 				// we retrieve XML
-				if (typeof mapping[arg[0]][arg[1]] != 'undefined') {
-					var mapObj = mapping[arg[0]][arg[1]];
-					var data = {
-						'leagueId': mapObj['leagueId'],
-						'seriesName': mapObj['seriesName'],
-						'seriesId': mapObj['seriesId']
-					};
-					var flag = buildFromData(data);
-					callback(flag);
-				}
-				else {
-					var args = [['file', 'teamdetails']];
+				if (typeof map[arg[0]][arg[1]] == 'undefined') {
+					let args = [['file', 'teamdetails']];
 					args.push(arg);
-					Foxtrick.util.api.retrieve(doc, args, { cache_lifetime: 'session' },
-					  function(xml, errorText) {
+
+					/** @type {CHPPOpts} */
+					let cOpts = { cache: 'session' };
+					Foxtrick.util.api.retrieve(doc, args, cOpts, (xml, errorText) => {
 						if (!xml || errorText) {
 							Foxtrick.log(errorText);
 							return;
 						}
+
 						Foxtrick.stopListenToChange(doc);
 						var data = { // in case LeagueLevelUnit is missing (eg during quali matches)
-							'leagueId': 0,
-							'seriesName': '',
-							'seriesId': 0
+							leagueId: 0,
+							seriesName: '',
+							seriesId: 0,
 						};
-						if (xml.getElementsByTagName('LeagueID')[0]) // has a team
-							data.leagueId = xml.getElementsByTagName('LeagueID')[0].textContent;
+
+						if (xml.node('LeagueID')) // has a team
+							data.leagueId = xml.num('LeagueID');
+
 						// there are can be several LeagueLevelUnitID.
 						// if LeagueLevelUnit is available it's the first
-						if (xml.getElementsByTagName('LeagueLevelUnit')[0] &&
-						    xml.getElementsByTagName('LeagueLevelUnit')[0]
-						    .getElementsByTagName('LeagueLevelUnitID')[0]) {
-							data.seriesName = xml.getElementsByTagName('LeagueLevelUnitName')[0]
-								.textContent,
-							data.seriesId = xml.getElementsByTagName('LeagueLevelUnitID')[0]
-								.textContent;
+						let llu = xml.node('LeagueLevelUnit');
+						let lluId = llu && xml.node('LeagueLevelUnitID', llu);
+						if (lluId) {
+							data.seriesId = xml.num('LeagueLevelUnitID', llu);
+							data.seriesName = xml.text('LeagueLevelUnitName', llu);
 						}
+
 						// get newest mapping and store the data, because
 						// it may have changed during the retrieval of XML
-						Foxtrick.localGet('seriesFlags',
-						  function(mapping) {
-							if (!mapping || typeof mapping[arg[0]] === 'undefined')
-								mapping = { 'userId': {}, 'teamId': {} };
-							mapping[arg[0]][arg[1]] = data;
-							Foxtrick.localSet('seriesFlags', mapping);
-							var flag = buildFromData(data);
+						Foxtrick.localGet('seriesFlags', (mapping) => {
+							let map = mapping;
+							if (!map || typeof map[arg[0]] === 'undefined')
+								map = { userId: {}, teamId: {}};
+
+							map[arg[0]][arg[1]] = data;
+
+							Foxtrick.localSet('seriesFlags', map);
+
+							let flag = buildFromData(data);
+							// eslint-disable-next-line callback-return
 							callback(flag);
+
 							Foxtrick.startListenToChange(doc);
 						});
 					});
+
+					return;
 				}
+
+				let mapObj = map[arg[0]][arg[1]];
+				let { leagueId, seriesName, seriesId } = mapObj;
+				let data = { leagueId, seriesName, seriesId };
+				let flag = buildFromData(data);
+
+				callback(flag);
 			});
 		};
 		var modifyUserLinks = function(links) {
-			Foxtrick.map(function(n) {
-				buildFlag(['userId', Foxtrick.util.id.getUserIdFromUrl(n.href)],
-				  function(flag) {
+			Foxtrick.forEach(function(n) {
+				let flagOpts = ['userId', Foxtrick.util.id.getUserIdFromUrl(n.href)];
+				buildFlag(flagOpts, (flag) => {
 					if (Foxtrick.hasClass(n, 'series-flag') ||
 					    Foxtrick.hasClass(n, 'ft-popup-list-link'))
 						return;
+
 					Foxtrick.addClass(n, 'series-flag');
 					n.parentNode.insertBefore(flag, n.nextSibling);
 					n.parentNode.insertBefore(doc.createTextNode(' '), flag);
@@ -112,9 +127,9 @@ Foxtrick.modules['SeriesFlags'] = {
 			}, links);
 		};
 		var modifyTeamLinks = function(links) {
-			Foxtrick.map(function(n) {
-				buildFlag(['teamId', Foxtrick.util.id.getTeamIdFromUrl(n.href)],
-				  function(flag) {
+			Foxtrick.forEach(function(n) {
+				let flagOpts = ['teamId', Foxtrick.util.id.getTeamIdFromUrl(n.href)];
+				buildFlag(flagOpts, (flag) => {
 					if (Foxtrick.hasClass(n, 'series-flag') ||
 					    Foxtrick.hasClass(n, 'ft-popup-list-link'))
 						return;
@@ -124,32 +139,33 @@ Foxtrick.modules['SeriesFlags'] = {
 				});
 			}, links);
 		};
-		if (Foxtrick.Prefs.isModuleOptionEnabled('SeriesFlags', 'Guestbook')
-			&& Foxtrick.isPage(doc, 'guestbook')) {
+
+		if (Foxtrick.Prefs.isModuleOptionEnabled('SeriesFlags', 'Guestbook') &&
+		    Foxtrick.isPage(doc, 'guestbook')) {
 			// add to guest managers
-			var wrapper = Foxtrick.getMBElement(doc, 'upGB');
-			var links = wrapper.getElementsByTagName('a');
-			var userLinks = Foxtrick.filter(function(n) {
+			let wrapper = Foxtrick.getMBElement(doc, 'upGB');
+			let links = wrapper.getElementsByTagName('a');
+			let userLinks = Foxtrick.filter(function(n) {
 				return n.href.search(/userId=/i) >= 0 &&
 					!Foxtrick.hasClass(n, 'ft-popup-list-link');
 			}, links);
 			modifyUserLinks(userLinks);
 		}
-		//We add also flag to the guestbook entry in teamPage, but we have to skip the own user link
-		if (Foxtrick.Prefs.isModuleOptionEnabled('SeriesFlags', 'Guestbook')
-			&& Foxtrick.isPage(doc, 'teamPage')) {
-			var mainBoxes = doc.getElementById('mainBody').getElementsByClassName('mainBox');
-			Foxtrick.map(function(b) {
-				var links = b.getElementsByTagName('a');
-				var userLinks = Foxtrick.filter(function(n) {
-					return (n.href.search(/userId=/i) >= 0 &&
-					        !Foxtrick.hasClass(n, 'ft-popup-list-link'));
+
+		// also add flag to the guestbook entry in teamPage, but we have to skip the own user link
+		if (Foxtrick.Prefs.isModuleOptionEnabled('SeriesFlags', 'Guestbook') &&
+		    Foxtrick.isPage(doc, 'teamPage')) {
+			let mainBoxes = doc.getElementById('mainBody').getElementsByClassName('mainBox');
+			Foxtrick.forEach(function(b) {
+				let links = b.getElementsByTagName('a');
+				let userLinks = Foxtrick.filter(function(n) {
+					return /userId=/i.test(n.href) && !Foxtrick.hasClass(n, 'ft-popup-list-link');
 				}, links);
 				modifyUserLinks(userLinks);
 			}, mainBoxes);
 		}
-		if (Foxtrick.Prefs.isModuleOptionEnabled('SeriesFlags', 'Supporters')
-			&& Foxtrick.isPage(doc, 'teamPage')) {
+		if (Foxtrick.Prefs.isModuleOptionEnabled('SeriesFlags', 'Supporters') &&
+		    Foxtrick.isPage(doc, 'teamPage')) {
 			// add to supporters
 			if (!Foxtrick.Pages.All.getMainHeader(doc)) {
 				// no team
@@ -157,57 +173,53 @@ Foxtrick.modules['SeriesFlags'] = {
 				return;
 			}
 
-			var sideBar = doc.getElementById('sidebar');
-			var sideBarBoxes = sideBar.getElementsByClassName('sidebarBox');
+			let sideBar = doc.getElementById('sidebar');
+			let sideBarBoxes = sideBar.getElementsByClassName('sidebarBox');
+
 			// supporters box is among the boxes without a table
-			var nonVisitorsBoxes = Foxtrick.filter(function(n) {
+			let nonVisitorsBoxes = Foxtrick.filter(function(n) {
 				return n.getElementsByTagName('table').length == 0 && n.id != 'ft-links-box';
 			}, sideBarBoxes);
-			Foxtrick.map(function(b) {
-				var links = b.getElementsByTagName('a');
-				var userLinks = Foxtrick.filter(function(n) {
-					return (n.href.search(/userId=/i) >= 0 &&
-					        !Foxtrick.hasClass(n, 'ft-popup-list-link'));
+			Foxtrick.forEach(function(b) {
+				let links = b.getElementsByTagName('a');
+				let userLinks = Foxtrick.filter(function(n) {
+					return /userId=/i.test(n.href) && !Foxtrick.hasClass(n, 'ft-popup-list-link');
 				}, links);
 				modifyUserLinks(userLinks);
 			}, nonVisitorsBoxes);
 		}
-		if (Foxtrick.Prefs.isModuleOptionEnabled('SeriesFlags', 'Visitors')
-			&& Foxtrick.any(function(n) {
-				return Foxtrick.isPage(doc, n);
-			}, ['teamPage', 'series', 'youthSeries', 'federation'])) {
+
+		let visitorPage = Foxtrick.isPage(doc, ['teamPage', 'series', 'youthSeries', 'federation']);
+		if (Foxtrick.Prefs.isModuleOptionEnabled('SeriesFlags', 'Visitors') && visitorPage) {
 			// add to visitors
-			var sideBar = doc.getElementById('sidebar');
-			var sideBarBoxes = sideBar.getElementsByClassName('sidebarBox');
+			let sideBar = doc.getElementById('sidebar');
+			let sideBarBoxes = sideBar.getElementsByClassName('sidebarBox');
+
 			// visitors box is the box with a table
-			var visitorsBoxes = Foxtrick.filter(function(n) {
+			let visitorsBoxes = Foxtrick.filter(function(n) {
 				return n.getElementsByTagName('table').length > 0 && n.id != 'ft-links-box';
 			}, sideBarBoxes);
-			Foxtrick.map(function(n) {
-				var links = n.getElementsByTagName('a');
-				var userLinks = Foxtrick.filter(function(n) {
-					return (n.href.search(/userId=/i) >= 0 &&
-					        !Foxtrick.hasClass(n, 'ft-popup-list-link'));
+
+			Foxtrick.forEach(function(n) {
+				let links = n.getElementsByTagName('a');
+				let userLinks = Foxtrick.filter(function(n) {
+					return /userId=/i.test(n.href) && !Foxtrick.hasClass(n, 'ft-popup-list-link');
 				}, links);
 				modifyUserLinks(userLinks);
 			}, visitorsBoxes);
 		}
 
-		if (Foxtrick.Prefs.isModuleOptionEnabled('SeriesFlags', 'Tournaments')
-			&& (Foxtrick.isPage(doc, 'tournaments')
-				|| Foxtrick.isPage(doc, 'tournamentsGroups')
-				|| Foxtrick.isPage(doc, 'tournamentsFixtures'))) {
-
-
+		let tournamentPage =
+			Foxtrick.isPage(doc, ['tournaments', 'tournamentsGroups', 'tournamentsFixtures']);
+		if (Foxtrick.Prefs.isModuleOptionEnabled('SeriesFlags', 'Tournaments') && tournamentPage) {
 			// add to tournaments table
-			var mainWrapper = doc.getElementById('mainBody');
-			var links = mainWrapper.getElementsByTagName('a');
-			var teamLinks = Foxtrick.filter(function(n) {
-				return (n.href.search(/matchId=/i) == -1
-					&& n.href.search(/teamId=/i) >= 0
-					&& !Foxtrick.hasClass(n, 'ft-popup-list-link')
-					// link in .boxHead
-					&& n.href.search(/Tournaments/i) == -1);
+			let mainWrapper = doc.getElementById('mainBody');
+			let links = mainWrapper.getElementsByTagName('a');
+			let teamLinks = Foxtrick.filter(function(n) {
+				return /matchId=/i.test(n.href) &&
+					/teamId=/i.test(n.href) &&
+					!Foxtrick.hasClass(n, 'ft-popup-list-link') && // link in .boxHead
+					!/Tournaments/i.test(n.href);
 			}, links);
 			modifyTeamLinks(teamLinks);
 		}
@@ -215,6 +227,6 @@ Foxtrick.modules['SeriesFlags'] = {
 
 	change: function(doc) {
 		this.run(doc);
-	}
+	},
 
 };

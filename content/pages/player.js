@@ -8,6 +8,7 @@
 
 /* eslint-disable */
 if (!this.Foxtrick)
+	// @ts-ignore
 	var Foxtrick = {};
 /* eslint-enable */
 
@@ -454,13 +455,20 @@ Foxtrick.Pages.Player.getWageCell = function(doc) {
 };
 
 /**
+ * @typedef PlayerWage
+ * @prop {number} base
+ * @prop {number} bonus
+ * @prop {number} total
+ */
+
+/**
  * Get the player wage.
  *
  * Returns {base, bonus, total: number}.
  * Senior player only.
  * @param  {document} doc
  * @param  {?Element} wageCell optional wage cell to parse; otherwise will be found
- * @return {object}            {base: number, bonus: number, total: number}
+ * @return {PlayerWage}        {base: number, bonus: number, total: number}
  */
 Foxtrick.Pages.Player.getWage = function(doc, wageCell) {
 	const WAGE_BONUS = 0.2;
@@ -976,10 +984,10 @@ Foxtrick.Pages.Player.wasFired = function(doc) {
  * Calls callback(player) where player contains various fields from playerdetails.xml.
  * Seniors only.
  * @param  {document} doc
- * @param  {number}   playerid
- * @param  {Function} callback function(object)
+ * @param  {number}   playerId
+ * @param  {function(Player):void} callback function(object)
  */
-Foxtrick.Pages.Player.getPlayer = function(doc, playerid, callback) {
+Foxtrick.Pages.Player.getPlayer = function(doc, playerId, callback) {
 	if (Foxtrick.Pages.Player.wasFired(doc))
 		return;
 
@@ -991,9 +999,9 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerid, callback) {
 		// README: version 2.5 is used in current transfers, but with specific deadlines
 		// otherwise few gains are obtained by upgrading, new fields are commented below
 		['version', '2.1'],
-		['playerId', playerid],
+		['playerId', playerId],
 	];
-	Foxtrick.util.api.retrieve(doc, args, { cache_lifetime: 'session' }, (xml, errorText) => {
+	Foxtrick.util.api.retrieve(doc, args, { cache: 'session' }, (xml, errorText) => {
 		if (!xml || errorText) {
 			Foxtrick.log(errorText);
 			callback(null);
@@ -1042,7 +1050,7 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerid, callback) {
 				return void 0;
 			};
 
-			var player = {};
+			var player = { id: playerId };
 			player.skills = {};
 
 			var skills = [
@@ -1189,6 +1197,16 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerid, callback) {
 };
 
 /**
+ * @typedef PlayerContributionOpts
+ * @prop {boolean} form
+ * @prop {boolean} stamina
+ * @prop {boolean} experience
+ * @prop {boolean} loyalty
+ * @prop {boolean} bruised
+ * @prop {boolean} normalise
+ */
+
+/**
  * Get position contributions from skill map and player's attributes map
  * Skill map must be {keeper, defending, playmaking, winger, passing, scoring, setPieces}.
  * Attributes map must be:
@@ -1199,11 +1217,11 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerid, callback) {
  * By default options and params are assembled from prefs or need to be fully overridden otherwise.
  *
  * Returns position contribution map.
- * @param  {object} playerSkills Object.<string, number>  skill map
- * @param  {object} playerAttrs  Object.<string, ?>       attributes map
- * @param  {object} options      Object.<string, Boolean> options map
- * @param  {object} params       Object.<string, number>  params map
- * @return {object}              Object.<string, number>  position contribution map
+ * @param  {PlayerSkills}             playerSkills skill map
+ * @param  {PlayerProps}              playerAttrs  attributes map
+ * @param  {PlayerContributionOpts}   [options]    options map
+ * @param  {PlayerContributionParams} [params]     params map
+ * @return {Contributions}                         position contribution map
  */
 Foxtrick.Pages.Player.getContributions = function(playerSkills, playerAttrs, options, params) {
 	if (!playerSkills)
@@ -1215,12 +1233,12 @@ Foxtrick.Pages.Player.getContributions = function(playerSkills, playerAttrs, opt
 	var cntrbMap = Foxtrick.Predict.contributionFactors(params);
 	var skills = Foxtrick.Predict.effectiveSkills(playerSkills, playerAttrs, options);
 
-	for (var pos in cntrbMap) {
+	for (let pos in cntrbMap) {
 		// Foxtrick.log(pos);
-		var score = 0;
-		var sum = 0;
-		for (var skill in skills) {
-			var data = cntrbMap[pos][skill];
+		let score = 0;
+		let sum = 0;
+		for (let skill in skills) {
+			let data = cntrbMap[pos][skill];
 			if (typeof data !== 'undefined') {
 				sum += data.factor;
 				score += data.factor * skills[skill];
@@ -1230,11 +1248,11 @@ Foxtrick.Pages.Player.getContributions = function(playerSkills, playerAttrs, opt
 		if (doNormal)
 			score /= sum;
 
-		var value = parseFloat(score.toFixed(2));
+		let value = parseFloat(score.toFixed(2));
 		cntrbMap[pos] = value;
 	}
 
-	var specialty = playerAttrs.specialtyNumber;
+	let specialty = playerAttrs.specialtyNumber;
 	if (specialty == 1) {
 		// Technical
 		cntrbMap.fwd = 0;
@@ -1246,11 +1264,17 @@ Foxtrick.Pages.Player.getContributions = function(playerSkills, playerAttrs, opt
 };
 
 /**
+ * @typedef BestPlayerPosition
+ * @prop {string} position
+ * @prop {number} value
+ */
+
+/**
  * Find the highest contribution in a position map.
  * Returns {position, value}.
  * @author Greblys
- * @param  {object} contributions Object<string, number> position map
- * @return {object}               {position: string, value: number}
+ * @param  {Contributions}     contributions position map
+ * @return {BestPlayerPosition}              {position: string, value: number}
  */
 Foxtrick.Pages.Player.getBestPosition = function(contributions) {
 	var max = { position: '', value: 0 };

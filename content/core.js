@@ -17,25 +17,41 @@ Foxtrick.modules.Core = {
 		Foxtrick.InternalPath + 'resources/css/flags.css',
 	],
 
-	TEAM: {},
-	PLAYER_LIST: {},
+	/**
+	 * @typedef OwnTeamInfo
+	 * @prop {number} teamId
+	 * @prop {number} [youthTeamId]
+	 * @prop {number} leagueId
+	 * @prop {number} seriesId
+	 * @prop {string} teamName
+	 * @prop {string} [shortTeamName]
+	 */
+
+	/**
+	 * @type {OwnTeamInfo}
+	 */
+	TEAM: null,
+	PLAYER_LIST: [],
 
 	// UTC timestamp
 	HT_TIME: 0,
 
+	/**
+	 * @param {document} doc
+	 */
 	run: function(doc) {
 		this.addBugReportLink(doc);
 
 		this.monitorWeekChanges(doc);
 
-		var UTC = Foxtrick.util.time.getUTCDate(doc);
+		let UTC = Foxtrick.util.time.getUTCDate(doc);
 		if (UTC) {
 			this.HT_TIME = UTC.getTime();
 			Foxtrick.Prefs.setString('lastTime', this.HT_TIME);
 		}
 
 		if (Foxtrick.isPage(doc, 'matchOrder')) {
-			var MOData = Foxtrick.InternalPath + 'resources/js/matchOrderData.js';
+			let MOData = Foxtrick.InternalPath + 'resources/js/matchOrderData.js';
 			Foxtrick.util.inject.jsLink(doc, MOData);
 		}
 
@@ -48,6 +64,10 @@ Foxtrick.modules.Core = {
 		this.showChangeLog(doc);
 		this.featureHighlight(doc);
 	},
+
+	/**
+	* @param {document} doc
+	*/
 	showReleaseModal: function(doc) {
 		// TODO: this needs maintenance:
 		// use release-notes-links.yml directly
@@ -81,13 +101,22 @@ Foxtrick.modules.Core = {
 		Foxtrick.makeModal(doc, Foxtrick.version, content);
 	},
 
+	/**
+	 * @param {document} doc
+	 */
 	monitorWeekChanges: function(doc) {
 		try {
-			var LAST_WEEK = Foxtrick.util.time.WEEKS_IN_SEASON;
+			const LAST_WEEK = Foxtrick.util.time.WEEKS_IN_SEASON;
 
-			var oldWeek = Foxtrick.Prefs.getInt('oldWeek');
-			var online = doc.getElementById('online');
-			var week = parseInt(online.textContent.trim().match(/\d+$/), 10);
+			let oldWeek = Foxtrick.Prefs.getInt('oldWeek');
+			let online = doc.getElementById('online');
+
+			let week;
+			let weekMatch = online.textContent.trim().match(/\d+$/);
+			if (weekMatch) {
+				let [weekStr] = weekMatch;
+				week = parseInt(weekStr, 10);
+			}
 
 			if (!week) {
 				Foxtrick.log('WARNING: week # detection failed.', online.textContent);
@@ -106,20 +135,26 @@ Foxtrick.modules.Core = {
 		}
 	},
 
+	/**
+	 * @param {document} doc
+	 */
 	updateLastPage: function(doc) {
 		Foxtrick.setLastPage(doc.URL);
 	},
 
+	/**
+	 * @param {document} doc
+	 */
 	showChangeLog: function(doc) {
 		try {
 			// show change log if anything but forth number changes
 
-			var versionRe = /\d+\.\d+(\.\d+)?/;
-			var freshInstall = false;
-			var br = Foxtrick.branch.slice(0, 'beta'.length);
+			let versionRe = /^\d+\.\d+(\.\d+)?/;
+			let freshInstall = false;
+			let br = Foxtrick.branch.slice(0, 'beta'.length);
 
-			var newVMajor, newV = Foxtrick.version;
-			var oldVMajor, oldV = Foxtrick.Prefs.getString('oldVersion');
+			let newVMajor, newV = Foxtrick.version;
+			let oldVMajor, oldV = Foxtrick.Prefs.getString('oldVersion');
 
 			if (oldV) {
 				oldVMajor = oldV.match(versionRe)[0];
@@ -144,57 +179,68 @@ Foxtrick.modules.Core = {
 		}
 	},
 
+	/**
+	 * @param {document} doc
+	 */
 	showVersion: function(doc) {
 		// show version number on the bottom of the page
-		var bottom = doc.getElementById('bottom');
+		let bottom = doc.getElementById('bottom');
 		if (!bottom) {
 			// sometimes bottom is not loaded yet. just skip it in those cases
 			Foxtrick.log('bottom not loaded yet');
 			return;
 		}
 
-		var server = bottom.querySelector('.currentServer');
-		var span = doc.createElement('span');
+		let server = bottom.querySelector('.currentServer');
+		let span = doc.createElement('span');
 		span.textContent += ' / Foxtrick ' + Foxtrick.version + ' ' + Foxtrick.branch;
 		span.id = 'ft_versionInfo';
 		server.appendChild(span);
 	},
 
+	/**
+	 * @param {document} doc
+	 */
 	featureHighlight: function(doc) {
 		if (!Foxtrick.Prefs.getBool('featureHighlight'))
 			return;
 
-		var css =
+		const CSS =
 			'[class^="ft"], [id^="ft"],' + // 'ft' at front
 			'[class*=" ft"], [id*=" ft"],' + // 'ft' at start word
 			'[class*="foxtrick"], [id*="foxtrick"]' + // 'foxtrick' anywhere
 			'{ background-color:#66ccff !important; color:black !important; ' +
 			'border: 1px solid #66ccff !important;}';
 
-		var featureCss = doc.getElementById('ft-feature-highlight-css');
-
 		// remove old CSS if exists
+		let featureCss = doc.getElementById('ft-feature-highlight-css');
 		if (featureCss) {
 			featureCss.parentNode.removeChild(featureCss);
 			Foxtrick.Prefs.setBool('featureHighlight', false);
 		}
 		else {
 			// inject CSS
-			Foxtrick.util.inject.css(doc, css, 'ft-feature-highlight-css');
+			Foxtrick.util.inject.css(doc, CSS, 'ft-feature-highlight-css');
 			Foxtrick.Prefs.setBool('featureHighlight', true);
 		}
 		Foxtrick.modules.UI.update(doc);
 	},
 
+	/**
+	 * @param {document} doc
+	 */
 	parseSelfTeamInfo: function(doc) {
-		var CORE = this; // jscs:ignore safeContextKeyword
+		const CORE = this; // jscs:ignore safeContextKeyword
 
 		var teamLinks = doc.getElementById('teamLinks');
 		if (teamLinks && teamLinks.getElementsByTagName('a').length > 0) {
 			var teamLink = teamLinks.querySelector('a');
 
+			/**
+			 * @param {string} name
+			 */
 			var processShortName = function(name) {
-				var n = name;
+				let n = name;
 				if (doc.querySelector('.ongoingEvents a[href*="/Club/Matches/Live.aspx"]')) {
 					n = teamLink.textContent;
 					Foxtrick.log('Short team name found!', n);
@@ -214,8 +260,8 @@ Foxtrick.modules.Core = {
 				seriesId: Foxtrick.util.id.findLeagueLeveUnitId(teamLinks),
 			};
 
-			var teamId = CORE.TEAM.teamId;
-			var shortName = Foxtrick.Prefs.getString('shortTeamName.' + teamId);
+			let teamId = CORE.TEAM.teamId;
+			let shortName = Foxtrick.Prefs.getString('shortTeamName.' + teamId);
 			if (shortName === null)
 				Foxtrick.localGet('shortTeamName.' + teamId, processShortName);
 			else
@@ -223,7 +269,7 @@ Foxtrick.modules.Core = {
 
 			/* eslint-disable dot-notation */
 			Foxtrick.htPages['ownPlayers'] =
-				Foxtrick.htPages['ownPlayersTemplate'].replace(/\[id\]/g, teamId);
+				Foxtrick.htPages['ownPlayersTemplate'].replace(/\[id\]/g, String(teamId));
 			/* eslint-enable dot-notation */
 
 			Foxtrick.addClass(doc.body, 'ft-teamID-' + teamId);
@@ -233,30 +279,32 @@ Foxtrick.modules.Core = {
 		if (!subMenu)
 			return;
 
-		var leftMenuTeamId = Foxtrick.util.id.findTeamId(subMenu);
+		let leftMenuTeamId = Foxtrick.util.id.findTeamId(subMenu);
 		if (CORE.TEAM.teamId !== leftMenuTeamId)
 			return;
 
 		if (!CORE.TEAM.youthTeamId) {
-			var youthId = Foxtrick.util.id.findYouthTeamId(subMenu);
+			let youthId = Foxtrick.util.id.findYouthTeamId(subMenu);
 			CORE.TEAM.youthTeamId = youthId;
 			/* eslint-disable dot-notation */
 			Foxtrick.htPages['ownYouthPlayers'] =
-				Foxtrick.htPages['ownYouthPlayersTemplate'].replace(/\[id\]/g, youthId);
+				Foxtrick.htPages['ownYouthPlayersTemplate'].replace(/\[id\]/g, String(youthId));
 			/* eslint-enable dot-notation */
 		}
 
 		// NT coach
-		var ntTeamLink = subMenu.querySelector('a[href^="/Club/NationalTeam/"]');
+		/** @type {HTMLAnchorElement} */
+		let ntTeamLink = subMenu.querySelector('a[href^="/Club/NationalTeam/"]');
 		if (!ntTeamLink)
 			return;
 
-		var ntId = Foxtrick.util.id.getTeamIdFromUrl(ntTeamLink.href);
+		let ntId = Foxtrick.util.id.getTeamIdFromUrl(ntTeamLink.href);
 		if (!ntId)
 			return;
 
 		/* eslint-disable dot-notation */
-		Foxtrick.htPages['ownPlayers'] = Foxtrick.htPages['ownPlayers'].replace(/\[ntid\]/g, ntId);
+		Foxtrick.htPages['ownPlayers'] =
+			Foxtrick.htPages['ownPlayers'].replace(/\[ntid\]/g, String(ntId));
 		/* eslint-enable dot-notation */
 	},
 
@@ -272,71 +320,64 @@ Foxtrick.modules.Core = {
 			return;
 
 		var reportBug = function(log) {
-			var BUG_TITLE_TMPL = 'Bug {nonce} by {team} ({id})';
+			const BUG_TITLE_TMPL = 'Bug {nonce} by {team} ({id})';
 
 			if (log === '')
 				return;
 
-			var team = CORE.TEAM.teamName;
-			var id = CORE.TEAM.teamId;
-			var url = doc.location.pathname + doc.location.search;
-			var nonce = Math.random().toString(16).slice(2).toUpperCase();
-
-			var info = {
-				nonce: nonce,
-				team: team,
-				id: id,
-			};
+			let info;
+			{
+				let team = CORE.TEAM.teamName;
+				let id = CORE.TEAM.teamId;
+				let nonce = Math.random().toString(16).slice(2).toUpperCase();
+				info = { nonce, team, id };
+			}
 			var title = Foxtrick.format(BUG_TITLE_TMPL, info);
-
-			var prefs = Foxtrick.Prefs.save({ notes: true, skipFiles: true });
-
-			var bug = log + '\n\n\n' + prefs;
+			var bug = log + '\n\n\n' + Foxtrick.Prefs.save({ notes: true, skipFiles: true });
 
 			// add a somewhat sane limit of 200K
-			var Ki = 1024,
-				KB = 200,
-				MAX_LENGTH = KB * Ki;
+			const Ki = 1024, KB = 200, MAX_LENGTH = KB * Ki;
 
 			if (bug.length > MAX_LENGTH)
 				bug = bug.slice(bug.length - MAX_LENGTH);
 
+			let url = doc.location.pathname + doc.location.search;
 			bug = Foxtrick.log.header(doc) + 'BUG URL: ' + url + '\n\n' + bug;
 
 			var showNote = function(url) {
-				var MANUAL_URL = 'http://pastebin.com/';
-				var FORUM_URL = '/Forum/Overview.aspx?v=0&f=173635';
+				const MANUAL_URL = 'http://pastebin.com/';
+				const FORUM_URL = '/Forum/Overview.aspx?v=0&f=173635';
 
 				var info = doc.createDocumentFragment();
 
 				if (/^https?:/.test(url)) {
 					// upload successful
 					Foxtrick.copy(doc, '[link=' + url + ']');
-					var upload = doc.createElement('p');
+					let upload = doc.createElement('p');
 					upload.textContent = Foxtrick.L10n.getString('reportBug.link.copied');
 					info.appendChild(upload);
 
-					var captcha = doc.createElement('p');
+					let captcha = doc.createElement('p');
 					Foxtrick.L10n.appendLink('reportBug.captcha', captcha, url);
 					info.appendChild(captcha);
 				}
 				else {
 					// too many pastes
 					Foxtrick.copy(doc, bug);
-					var copied = doc.createElement('p');
+					let copied = doc.createElement('p');
 					copied.textContent = Foxtrick.L10n.getString('reportBug.log.copied');
 					info.appendChild(copied);
 
-					var pastebin = doc.createElement('p');
+					let pastebin = doc.createElement('p');
 					Foxtrick.L10n.appendLink('reportBug.pastebin', pastebin, MANUAL_URL);
 					info.appendChild(pastebin);
 				}
 
-				var forum = doc.createElement('p');
+				let forum = doc.createElement('p');
 				Foxtrick.L10n.appendLink('reportBug.forum', forum, FORUM_URL);
 				info.appendChild(forum);
 
-				var NOTE_ID = 'ft-bug-report-link-note';
+				const NOTE_ID = 'ft-bug-report-link-note';
 				Foxtrick.util.note.add(doc, info, NOTE_ID, { closable: false, focus: true });
 			};
 
@@ -346,21 +387,22 @@ Foxtrick.modules.Core = {
 		var reportBugSpan = doc.createElement('span');
 		reportBugSpan.id = 'ft_report_bug';
 		reportBugSpan.textContent = Foxtrick.L10n.getString('reportBug.title');
-		var title = Foxtrick.L10n.getString('reportBug.desc');
+
+		let title = Foxtrick.L10n.getString('reportBug.desc');
 		reportBugSpan.setAttribute('area-label', reportBugSpan.title = title);
+
 		Foxtrick.onClick(reportBugSpan, function() {
-			if (Foxtrick.arch === 'Sandboxed' || Foxtrick.platform == 'Android') {
-				Foxtrick.SB.ext.sendRequest({ req: 'getDebugLog' }, function(r) {
-					reportBug(r.log);
-				});
-			}
-			else {
-				reportBug(Foxtrick.debugLogStorage);
-			}
+			Foxtrick.SB.ext.sendRequest({ req: 'getDebugLog' }, ({ log }) => {
+				reportBug(log);
+			});
 		});
+
 		bottom.insertBefore(reportBugSpan, bottom.firstChild);
 	},
 
+	/**
+	 * @param {document} doc
+	 */
 	parsePlayerList: function(doc) {
 		this.PLAYER_LIST = Foxtrick.Pages.Players.getPlayerList(doc);
 	},
@@ -370,7 +412,7 @@ Foxtrick.modules.Core = {
 	 * don't use in async context because
 	 * data is overwritten by subsequent reloads
 	 * team might change in FF!
-	 * @return {array} playerList
+	 * @return {*[]} playerList
 	 */
 	getPlayerList: function() {
 		return this.PLAYER_LIST;

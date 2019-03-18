@@ -61,7 +61,7 @@ Foxtrick.modules['SkillTable'] = {
 
 	run: function(doc) {
 		var module = this;
-		var DEFAULT_CACHE = { cache_lifetime: 'session' };
+		var DEFAULT_CACHE = { cache: 'session' };
 		var TABLE_DIV_ID = 'ft_skilltablediv';
 
 		var useFrozen = Foxtrick.Prefs.isModuleOptionEnabled(module, 'FrozenColumns');

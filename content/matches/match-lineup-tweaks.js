@@ -139,6 +139,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			'.playersField > div.playerBoxAway > div > a, ' +
 			'#playersBench > div#playersBenchAway > div.playerBoxAway > div > a';
 
+		/** @type {NodeListOf<HTMLAnchorElement>} */
 		const playerLinks = doc.querySelectorAll(playerQuery);
 
 		// will be used to regex on image.src
@@ -166,10 +167,13 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			[SUBSTITUTION_TYPES.SWAP]: Foxtrick.L10n.getString('MatchLineupTweaks.swap'),
 		};
 
+		/** @param {number} otherId */
 		var highlightSub = function(otherId) {
 			Foxtrick.Pages.Match.modPlayerDiv(otherId, function(node) {
 				// yellow on field, red on bench
-				const className = node.parentNode.id == 'playersField'
+				// eslint-disable-next-line no-extra-parens
+				let parent = /** @type {HTMLElement} */ (node.parentNode);
+				const className = parent.id == 'playersField'
 					? 'ft-highlight-playerDiv-field'
 					: 'ft-highlight-playerDiv-bench';
 
@@ -282,6 +286,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 	},
 
 	// adds teamsnames to the field for less confusion
+	/** @param {document} doc */
 	runTeamnNames: function(doc) {
 		var homeTeamName = Foxtrick.Pages.Match.getHomeTeamName(doc);
 		var awayTeamName = Foxtrick.Pages.Match.getAwayTeamName(doc);
@@ -300,7 +305,6 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 
 		doc.getElementById('playersField').appendChild(homeSpan);
 		doc.getElementById('playersField').appendChild(awaySpan);
-
 	},
 
 	/**
@@ -331,6 +335,10 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		/** @type {NodeListOf<HTMLAnchorElement>} */
 		var awayPlayerLinks = doc.querySelectorAll(awayQuery);
 
+		/**
+		 * @param {HTMLElement} node
+		 * @param {Player}      player
+		 */
 		var addSpecialty = function(node, player) {
 			if (node.getElementsByClassName('ft-specialty').length)
 				return;
@@ -360,6 +368,8 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 					let param = Foxtrick.getUrlParam(pL.href, idParam);
 					let id = Math.abs(parseInt(param, 10));
 					let player = Foxtrick.Pages.Players.getPlayerFromListById(pInfo, id);
+
+					/** @type {HTMLElement} */
 					let node = pL.parentNode.parentNode.querySelector('.ft-indicator-wrapper');
 
 					if (player)
@@ -373,6 +383,10 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 				if (!missing.length)
 					return;
 
+				/**
+				 * @param  {{id: number, i: number}} m
+				 * @return {function(Player):void}
+				 */
 				var makeCallback = m => (player) => {
 					if (!player)
 						return;
@@ -380,6 +394,8 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 					Foxtrick.stopListenToChange(doc);
 
 					let pL = pLinks[m.i];
+
+					/** @type {HTMLElement} */
 					let node = pL.parentNode.parentNode.querySelector('.ft-indicator-wrapper');
 					addSpecialty(node, player);
 
@@ -395,6 +411,8 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		addSpecialtiesByTeamId(homeTeamId, homePlayerLinks);
 		addSpecialtiesByTeamId(awayTeamId, awayPlayerLinks);
 	},
+
+	/** @param {document} doc */
 	runMissing: function(doc) {
 		if (!Foxtrick.Pages.Match.getHomeTeam(doc))
 			return; // we're not ready yet
@@ -413,11 +431,15 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		var homeQuery =
 			'.playersField > div.playerBoxHome > div > a, ' +
 			'#playersBench > div#playersBenchHome > div.playerBoxHome > div > a';
+
+		/** @type {NodeListOf<HTMLAnchorElement>} */
 		var homePlayerLinks = doc.querySelectorAll(homeQuery);
 
 		var awayQuery =
 			'.playersField > div.playerBoxAway > div > a, #playersBench > ' +
 			'div#playersBenchAway > div.playerBoxAway > div > a';
+
+		/** @type {NodeListOf<HTMLAnchorElement>} */
 		var awayPlayerLinks = doc.querySelectorAll(awayQuery);
 
 		var alt = Foxtrick.L10n.getString('MatchLineupTweaks.missing');
@@ -461,9 +483,11 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			}, { teamId: teamId, currentSquad: true, isNT: isNT, isYouth: isYouth });
 		};
 
-		addMissingByTeamId(homeTeamId, homePlayerLinks);
-		addMissingByTeamId(awayTeamId, awayPlayerLinks);
+		addMissingByTeamId(homeTeamId, [...homePlayerLinks]);
+		addMissingByTeamId(awayTeamId, [...awayPlayerLinks]);
 	},
+
+	/** @param {document} doc */
 	runFaces: function(doc) {
 		if (!Foxtrick.Pages.Match.getHomeTeam(doc))
 			return; // we're not ready yet
@@ -480,13 +504,22 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		var homeQuery =
 			'.playersField > div.playerBoxHome > div > a, ' +
 			'#playersBench > div#playersBenchHome > div.playerBoxHome > div > a';
+
+		/** @type {NodeListOf<HTMLAnchorElement>} */
 		var homePlayerLinks = doc.querySelectorAll(homeQuery);
 
 		var awayQuery =
 			'.playersField > div.playerBoxAway > div > a, #playersBench > ' +
 			'div#playersBenchAway > div.playerBoxAway > div > a';
+
+		/** @type {NodeListOf<HTMLAnchorElement>} */
 		var awayPlayerLinks = doc.querySelectorAll(awayQuery);
 
+		/**
+		 * @param {HTMLDivElement} fieldPlayer
+		 * @param {number} id
+		 * @param {CHPPXML} avatarsXml
+		 */
 		var addFace = function(fieldPlayer, id, avatarsXml) {
 			if (!avatarsXml)
 				return;
@@ -535,7 +568,8 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			if (teamId === null)
 				return;
 
-			const OPTS = { cache_lifetime: 'session' };
+			/** @type {CHPPOpts} */
+			const OPTS = { cache: 'session' };
 			const avatarArgs = [
 				['file', (isYouth ? 'youth' : '') + 'avatars'],
 				['version', '1.1'],
@@ -557,18 +591,21 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 				for (let pL of pLinks) {
 					let param = Foxtrick.getUrlParam(pL.href, idParam);
 					let id = Math.abs(parseInt(param, 10));
-					addFace(pL.parentNode.parentNode, id, xml);
+					// eslint-disable-next-line no-extra-parens
+					let pDiv = /** @type {HTMLDivElement} */ (pL.parentNode.parentNode);
+					addFace(pDiv, id, xml);
 				}
 
 				Foxtrick.startListenToChange(doc);
 			});
 		};
 
-		addFacesByTeamId(homeTeamId, homePlayerLinks);
-		addFacesByTeamId(awayTeamId, awayPlayerLinks);
+		addFacesByTeamId(homeTeamId, [...homePlayerLinks]);
+		addFacesByTeamId(awayTeamId, [...awayPlayerLinks]);
 	},
 
 	// adds a star summary to the page
+	/** @param {document} doc */
 	runStars: function(doc) {
 		// get the sum of stars from all players on the 'palyersField'
 		// @where: 'away' or 'home' ... that's replacing HTs classnames accordingly during lookup
@@ -619,6 +656,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 	},
 
 	// adds a stamina sumary to the page
+	/** @param {document} doc */
 	runStamina: function(doc) {
 		// @where: 'away' or 'home' ... that's replacing HTs classnames accordingly during lookup
 		var getStaminaAverage = function(doc, where) {
@@ -707,7 +745,9 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 
 		var highlightPlayer = function(playerId) {
 			Foxtrick.Pages.Match.modPlayerDiv(playerId, function(node) {
-				if (node.parentNode.id == 'playersField')
+				// eslint-disable-next-line no-extra-parens
+				let parent = /** @type {HTMLElement} */ (node.parentNode);
+				if (parent.id == 'playersField')
 					Foxtrick.addClass(node, 'ft-highlight-playerDiv-field');
 				else
 					Foxtrick.addClass(node, 'ft-highlight-playerDiv-bench');
@@ -723,6 +763,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 	},
 
 	// change the number-star display into real stars
+	/** @param {document} doc */
 	convertStars: function(doc) {
 		const STARS_STEP = 0.5;
 		const STARS_BIG = 5;
@@ -737,7 +778,8 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		for (let rating of ratings) {
 			var count = Number(rating.textContent);
 			var ratingsDiv = rating.parentNode;
-			var newDiv = ratingsDiv.cloneNode(false);
+			// eslint-disable-next-line no-extra-parens
+			var newDiv = /** @type {HTMLElement} */ (ratingsDiv.cloneNode(false));
 			Foxtrick.makeFeaturedElement(newDiv, this);
 
 			// weirdest bug ever: title too short
@@ -799,6 +841,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 	showAway: false,
 
 	// split lineup into two for home/away
+	/** @param {document} doc */
 	splitLineup: function(doc) {
 		const module = this;
 		if (!Foxtrick.Pages.Match.hasRatingsTabs(doc))
@@ -811,6 +854,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 
 		var invert = Foxtrick.Prefs.isModuleOptionEnabled(module, 'InvertSplit');
 
+		/** @type {NodeListOf<HTMLDivElement>} */
 		let awayDivs = doc.querySelectorAll('#playersField div.playerBoxAway');
 		for (let awayDiv of Foxtrick.toArray(awayDivs)) {
 			/* eslint-disable no-magic-numbers */
@@ -846,12 +890,14 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		field.appendChild(div);
 	},
 
+	/** @param {document} doc */
 	joinLineup: function(doc) {
 		const module = this;
 		module.hideOtherTeam(doc, true); // undo
 
 		var invert = Foxtrick.Prefs.isModuleOptionEnabled(module, 'InvertSplit');
 
+		/** @type {NodeListOf<HTMLDivElement>} */
 		let awayDivs = doc.querySelectorAll('#playersField div.playerBoxAway');
 		for (let awayDiv of Foxtrick.toArray(awayDivs)) {
 			/* eslint-disable no-magic-numbers */
@@ -869,6 +915,10 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		div.parentNode.removeChild(div);
 	},
 
+	/**
+	 * @param {document} doc
+	 * @param {boolean} undo
+	 */
 	hideOtherTeam: function(doc, undo) {
 		const module = this;
 		const showType = module.showAway ? 'Away' : 'Home';
@@ -970,6 +1020,11 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		Foxtrick.Prefs.setString('StaminaData.' + ownId, JSON.stringify(data));
 	},
 
+	/**
+	 * @param  {document}                  doc
+	 * @param  {'home'|'away'}             team
+	 * @return {MatchReportRatingPlayer[]}
+	 */
 	getPlayersWithStamina: function(doc, team) {
 		const EMPTY = [];
 		if (Foxtrick.Pages.Match.isYouth(doc))
@@ -1075,8 +1130,10 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		if (tactics == 'pressing')
 			return EMPTY;
 
-		var affectedPlayerID = '0';
-		var events = doc.getElementsByClassName('matchevent');
+		var affectedPlayerID = 0;
+
+		/** @type {NodeListOf<HTMLElement>} */
+		var events = doc.querySelectorAll('.matchevent');
 		Foxtrick.any(function(evt) {
 			// powerfull suffers in sun (loses stamina)
 			const POWERFUL_IN_SUN = 304;
@@ -1085,11 +1142,12 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 
 			let playerLink = evt.querySelector('a');
 			if (playerLink) {
-				affectedPlayerID = Foxtrick.getUrlParam(playerLink.href, 'playerId');
+				let pId = Foxtrick.getUrlParam(playerLink.href, 'playerId');
+				affectedPlayerID = parseInt(pId, 10);
 			}
 			else {
 				// neighborhood kids
-				affectedPlayerID = '0';
+				affectedPlayerID = 0;
 			}
 
 			// should not be more than one SE with same type
@@ -1119,11 +1177,27 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			return player.ToMin > 0 && player.PlayerId != affectedPlayerID;
 		}, playerRatings[0].players);
 
-		Foxtrick.forEach(function(player) {
+		/**
+		 * @typedef FTMatchReportRatingPlayer
+		 * @prop {number} checkpoints
+		 * @prop {number} lastEvent
+		 * @prop {number} lastEnergy
+		 * @prop {string} stamina
+		 */
+
+		/**
+		 * @typedef {HTMatchReportRatingPlayer & FTMatchReportRatingPlayer} MatchReportRatingPlayer
+		 */
+
+		let ret = Foxtrick.map(function(player) {
 			const MAX_CHECKPOINTS = 18;
-			player.checkpoints = getCheckpointCount(player.FromMin, player.ToMin);
-			player.lastEvent = findEvent(player.ToMin);
-			player.lastEnergy = playerRatings[player.lastEvent].players[player.ftIdx].Stamina;
+
+			// eslint-disable-next-line no-extra-parens
+			let p = /** @type {MatchReportRatingPlayer} */ (player);
+
+			p.checkpoints = getCheckpointCount(p.FromMin, p.ToMin);
+			p.lastEvent = findEvent(p.ToMin);
+			p.lastEnergy = playerRatings[p.lastEvent].players[p.ftIdx].Stamina;
 
 			// player.isRested = hasRest(player.FromMin, player.ToMin);
 			// if (player.checkpoints && player.lastEnergy != 1)
@@ -1132,16 +1206,23 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			// else if (player.checkpoints == MAX_CHECKPOINTS)
 			//	player.staminaSkill = 8.7;
 
-			if (player.checkpoints == MAX_CHECKPOINTS) {
-				if (player.lastEnergy == 1)
-					player.stamina = '8.63+';
+			if (p.checkpoints == MAX_CHECKPOINTS) {
+				if (p.lastEnergy == 1)
+					p.stamina = '8.63+';
 				else
-					player.stamina = Foxtrick.Predict.stamina(player.lastEnergy).toFixed(2);
+					p.stamina = Foxtrick.Predict.stamina(p.lastEnergy).toFixed(2);
 			}
+
+			return p;
 		}, players);
-		return players;
+
+		return ret;
 	},
 
+	/**
+	 * @param {document} doc
+	 * @param {ArrayLike<HTMLDivElement>} playerDivs
+	 */
 	flipStaminaBar: function(doc, playerDivs) {
 		var module = this;
 		var playersById = {};
@@ -1160,28 +1241,35 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		Foxtrick.forEach(function(playerDiv) {
 			// adjust HT shirt numbers
 			var shirt = playerDiv.querySelector('.sectorShirt');
-			var numSpan = shirt.firstChild;
+			// eslint-disable-next-line no-extra-parens
+			var numSpan = /** @type {HTMLSpanElement} */ (shirt.firstChild);
 			if (numSpan && !isNaN(parseInt(numSpan.textContent, 10)))
 				Foxtrick.addClass(numSpan, 'ft-ht-shirt-num');
 
 			var ftdiv = Foxtrick.createFeaturedElement(doc, module, 'div');
 			Foxtrick.addClass(ftdiv, 'ft-indicator-wrapper');
+
+			/** @type {HTMLDivElement} */
 			var staminaDiv = playerDiv.querySelector('div.sectorShirt + div > div');
 			Foxtrick.addClass(staminaDiv, 'ft-staminaDiv');
 			if (staminaDiv) {
-				var stamina = staminaDiv.title.match(/\d+/)[0];
+				var stamina = parseInt(staminaDiv.title.match(/\d+/)[0], 10);
 				var fatigue = 100 - Number(stamina);
-				staminaDiv.firstChild.style.height = fatigue + '%';
+				// eslint-disable-next-line no-extra-parens
+				let child = /** @type {HTMLElement} */ (staminaDiv.firstChild);
+				child.style.height = fatigue + '%';
 				var staminaSpan = doc.createElement('span');
 				Foxtrick.addClass(staminaSpan, 'ft-staminaText');
 				staminaSpan.style.backgroundColor = staminaDiv.style.backgroundColor;
 
 				// let's 'hide' 100
-				staminaSpan.textContent = stamina == 100 ? '00' : stamina;
+				staminaSpan.textContent = stamina == 100 ? '00' : stamina.toString();
 				if (stamina == 100)
 					staminaSpan.style.color = staminaSpan.style.backgroundColor;
 
 				var staminaText = staminaDiv.title;
+
+				/** @type {HTMLAnchorElement} */
 				var link = playerDiv.querySelector('#playerLink');
 				if (link) {
 					var id = Foxtrick.getUrlParam(link.href, 'PlayerId');
@@ -1196,18 +1284,28 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		}, playerDivs);
 	},
 
+	/**
+	 * @param {document} doc
+	 * @param {string}   playerId
+	 */
 	highlightPlayer(doc, playerId) {
 		let playerQuery = '.playersField > div.playerBoxHome > div > a, ' +
 			'#playersBench > div#playersBenchHome > div.playerBoxHome > div > a,' +
 			'.playersField > div.playerBoxAway > div > a, ' +
 			'#playersBench > div#playersBenchAway > div.playerBoxAway > div > a';
+
+		/** @type {NodeListOf<HTMLAnchorElement>} */
 		let playerLinks = doc.querySelectorAll(playerQuery);
 
-		let link = Foxtrick.nth(l => l.href.indexOf(playerId), playerLinks);
-		if (link)
-			Foxtrick.addClass(link.parentNode.parentNode, 'ft-highlight-playerDiv-url');
+		let link = Foxtrick.nth(l => l.href.indexOf(playerId) >= 0, playerLinks);
+		if (link) {
+			// eslint-disable-next-line no-extra-parens
+			let div = /** @type {HTMLElement} */ (link.parentNode.parentNode);
+			Foxtrick.addClass(div, 'ft-highlight-playerDiv-url');
+		}
 	},
 
+	/** @param {document} doc */
 	/* eslint-disable complexity */
 	onChange: function(doc) {
 		const module = this;
@@ -1234,7 +1332,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		let ratings = doc.querySelectorAll('div.playerRating > span');
 		for (let rating of ratings) {
 			let count = Number(rating.textContent);
-			rating.setAttribute('ft-stars', count);
+			rating.setAttribute('ft-stars', count.toString());
 		}
 
 		let hId = Foxtrick.getUrlParam(doc.location.href, 'HighlightPlayerID');

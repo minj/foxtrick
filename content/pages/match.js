@@ -705,19 +705,23 @@ Foxtrick.Pages.Match.addBoxToSidebar = function(doc, title, content, prec) {
  * Modify player container in the lineup tab.
  * Calls func(playerDiv).
  * The right player is found with help of player links list.
- * @param  {number}   playerId
- * @param  {Function} func     function(element)
- * @param  {NodeList} links
+ * @param  {number}                        playerId
+ * @param  {function(HTMLDivElement):void} func     function(element)
+ * @param  {ArrayLike<HTMLAnchorElement>}  links
  */
 Foxtrick.Pages.Match.modPlayerDiv = function(playerId, func, links) {
 	if (!playerId)
 		return;
 
-	var link = Foxtrick.filter(function(link) {
-		return new RegExp(playerId).test(link.href);
-	}, links)[0];
-	if (link && typeof(func) == 'function')
-		func(link.parentNode.parentNode);
+	var link = Foxtrick.nth(function(link) {
+		return new RegExp(String(playerId)).test(link.href);
+	}, links);
+
+	if (link && typeof func == 'function') {
+		// eslint-disable-next-line no-extra-parens
+		let div = /** @type {HTMLDivElement} */ (link.parentNode.parentNode);
+		func(div);
+	}
 };
 
 /**
@@ -790,20 +794,32 @@ Foxtrick.Pages.Match.makeAvatar = function(shirtDiv, avatarXml, scale) {
 };
 
 /**
+ * @typedef HTMatchReportPlayerData
+ * @prop {number} PlayerId
+ * @prop {number} SourcePlayerId
+ * @prop {number} ShirtNumber
+ * @prop {string} FirstName
+ * @prop {string} LastName
+ * @prop {string} NickName
+ * @prop {string} ChartRatings JSON.strinfify([minute, stars][][])
+ */
+
+/**
  * Parse and return playerData object used by HT lineup utils.
  * Produces a list of player objects:
  * {ChartRatings, FirstName, LastName, NickName, PlayerId, ShirtNumber, SourcePlayerId}
  * @param  {document} doc
- * @return {array}        Array.<object>
+ * @return {HTMatchReportPlayerData[]} Array.<object>
  */
 Foxtrick.Pages.Match.parsePlayerData = function(doc) {
 	var playerData = null;
 	try {
 		var json = doc.querySelector('#matchdata [id$="lblPlayerData"]').textContent;
-		playerData = JSON.parse(json);
+		// eslint-disable-next-line no-extra-parens
+		playerData = /** @type {HTMatchReportPlayerData[]} */ (JSON.parse(json));
 	}
 	catch (e) {
-		Foxtrick.error('FAILED to parse player JSON', e);
+		Foxtrick.error('FAILED to parse player JSON: ' + e);
 	}
 	return playerData;
 };
@@ -827,6 +843,28 @@ Foxtrick.Pages.Match.getTimeline = function(doc) {
 };
 
 /**
+ * @typedef HTMatchReportRatingPlayer
+ * @prop {number} PlayerId
+ * @prop {number} ftIdx] our expando
+ * @prop {number} FromMin
+ * @prop {number} ToMin
+ * @prop {number} PositionID
+ * @prop {number} PositionBehaviour
+ * @prop {number} Stars
+ * @prop {number} Stamina
+ * @prop {number} InjuryLevel
+ * @prop {number} Cards
+ * @prop {boolean} IsCaptain
+ * @prop {boolean} IsKicker
+ */
+
+/**
+ * @typedef MatchEventRatings
+ * @prop {HTMatchReportRatingPlayer[]} players
+ * @prop {HTMLInputElement} source
+ */
+
+/**
  * Get team ratings event by event.
  * Each minute has input.hidden[id$="_playerRatingsHome"][value="jsonArray"]
  * Returns an array of {players, source}.
@@ -837,14 +875,19 @@ Foxtrick.Pages.Match.getTimeline = function(doc) {
  * 	PositionID: 100, Stamina: 1, Stars: 3, ToMin: 90 }
  * @param  {document} doc
  * @param  {Boolean}  isHome
- * @return {array}           Array.<{players: Array.<object>, source: HTMLInputElement}>
+ * @return {MatchEventRatings[]} Array.<{players: Array.<object>, source: HTMLInputElement}>
  */
 Foxtrick.Pages.Match.getTeamRatingsByEvent = function(doc, isHome) {
-	var playerRatings = doc.querySelectorAll('input[id$="_playerRatings' +
-											 (isHome ? 'Home' : 'Away') + '"]');
-	var playerRatingsByEvent = Foxtrick.map(function(ratings) {
-		return { players: JSON.parse(ratings.value), source: ratings };
+	/** @type {NodeListOf<HTMLInputElement>} */
+	let playerRatings =
+		doc.querySelectorAll(`input[id$="_playerRatings${isHome ? 'Home' : 'Away'}"]`);
+
+	let playerRatingsByEvent = Foxtrick.map(function(ratings) {
+		// eslint-disable-next-line no-extra-parens
+		let players = /** @type {HTMatchReportRatingPlayer[]} */ (JSON.parse(ratings.value));
+		return { players, source: ratings };
 	}, playerRatings);
+
 	// keep playerRatingsByEvent[i].source as a pointer to the input
 	// so that we know where to save
 	return playerRatingsByEvent;

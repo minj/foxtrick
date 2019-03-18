@@ -18,6 +18,9 @@ Foxtrick.modules['ForumPreview'] = {
 
 	/* eslint-disable complexity */
 
+	/**
+	 * @param {document} doc
+	 */
 	run: function(doc) {
 		var preview = function() {
 			var singleReplace = [
@@ -167,32 +170,37 @@ Foxtrick.modules['ForumPreview'] = {
 		};
 
 		var toggleListener = function() {
-			var prev_div = doc.getElementById('ft-forum-preview-area');
-			Foxtrick.toggleClass(prev_div, 'hidden');
+			var prevDiv = doc.getElementById('ft-forum-preview-area');
+			Foxtrick.toggleClass(prevDiv, 'hidden');
 
+			/** @type {HTMLTextAreaElement} */
+			var msgWindow;
 			try {
-				var msg_window = doc.getElementById('mainBody').getElementsByTagName('textarea')[0];
+				msgWindow = doc.querySelector('#mainBody textarea');
 			}
 			catch (e) {
 				Foxtrick.log('FoxtrickForumPreview', e);
+				return;
 			}
 
 			try {
-				if (Foxtrick.hasClass(prev_div, 'hidden')) {
-					msg_window.removeEventListener('input', preview, false);
-					var toolbar = doc.getElementsByClassName('HTMLToolbar');
-					for (var i = 0; i < toolbar.length; ++i)
+				if (Foxtrick.hasClass(prevDiv, 'hidden')) {
+					msgWindow.removeEventListener('input', preview, false);
+					let toolbar = doc.getElementsByClassName('HTMLToolbar');
+					for (let i = 0; i < toolbar.length; ++i)
 						toolbar[i].removeEventListener('click', preview, false);
 
-				} else {
-					Foxtrick.listen(msg_window, 'input', preview, false);
-					var toolbar = doc.getElementsByClassName('HTMLToolbar');
-					for (var i = 0; i < toolbar.length; ++i)
+				}
+				else {
+					Foxtrick.listen(msgWindow, 'input', preview, false);
+					let toolbar = doc.getElementsByClassName('HTMLToolbar');
+					for (let i = 0; i < toolbar.length; ++i)
 						Foxtrick.onClick(toolbar[i], preview);
 
 					preview();
 				}
-			} catch (e) {
+			}
+			catch (e) {
 				Foxtrick.dump('FoxtrickForumPreview._toggleListener' + e);
 			}
 		};

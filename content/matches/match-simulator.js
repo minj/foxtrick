@@ -312,7 +312,9 @@ Foxtrick.modules.MatchSimulator = {
 				['matchId', parseInt(matchId, 10)],
 				['sourceSystem', sourceSystem],
 			];
-			var cacheArgs = { cache_lifetime: 'session' };
+
+			/** @type {CHPPOpts} */
+			var cacheArgs = { cache: 'session' };
 			Foxtrick.util.api.retrieve(doc, selectedMatchArgs, cacheArgs,
 			  function(matchXML, errorText) {
 				var select = doc.getElementById(module.MATCH_SELECT_ID);
@@ -570,7 +572,8 @@ Foxtrick.modules.MatchSimulator = {
 				['teamId', parseInt(teamId, 10)],
 			];
 
-			var cacheArgs = { cache_lifetime: 'session' };
+			/** @type {CHPPOpts} */
+			var cacheArgs = { cache: 'session' };
 			Foxtrick.util.api.retrieve(doc, otherMatchesArgs, cacheArgs,
 			  function(matchesXML, errorText) {
 				if (errorText) {
@@ -648,7 +651,7 @@ Foxtrick.modules.MatchSimulator = {
 				['sourceSystem', SOURCE_SYSTEM],
 			];
 
-			Foxtrick.util.api.retrieve(doc, orderMatchArgs, { cache_lifetime: 'session' },
+			Foxtrick.util.api.retrieve(doc, orderMatchArgs, { cache: 'session' },
 			  function(orderMatchXml, errorText) {
 				if (!orderMatchXml || errorText) {
 					if (loadingMatchList) {

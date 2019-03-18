@@ -145,22 +145,62 @@ Foxtrick.Predict.loyaltyBonus = function(loyaltyLevel, isMotherClub) {
 };
 
 /**
+ * @typedef PlayerContributionParams
+ * @prop {number} CTR_VS_WG
+ * @prop {number} WBD_VS_CD
+ * @prop {number} WO_VS_FW
+ * @prop {number} MF_VS_ATT
+ * @prop {number} DF_VS_ATT
+ * @prop {number} IM_VS_CD
+ */
+
+/* eslint-disable max-len */
+/**
+ * @typedef {'kp'|'cd'|'cdo'|'cdtw'|'wb'|'wbd'|'wbo'|'wbtm'|'w'|'wd'|'wo'|'wtm'|'im'|'imd'|'imo'|'imtw'|'fw'|'fwd'|'tdf'|'fwtw'} PlayerPositionCode
+ * @typedef {'defending'|'keeper'|'passing'|'playmaking'|'scoring'|'setPieces'|'winger'} PlayerSkillName
+ */
+/* eslint-enable max-len */
+
+/**
+ * @typedef SkillContribution
+ * @prop {number} center
+ * @prop {number} side
+ * @prop {number} farSide
+ * @prop {number} wings
+ * @prop {number} factor
+ */
+/**
+ * @typedef {number|SkillContribution} SkillContributionOptional
+ * @typedef {Object.<PlayerSkillName, SkillContributionOptional>} PositionContributions
+ * @typedef {Object.<PlayerPositionCode, PositionContributions>} ContributionFactors
+ * @typedef {Object.<PlayerPositionCode, number>} Contributions
+ */
+
+/**
  * Make a position contribution map.
- * Options is {CTR_VS_WG, WBD_VS_CD, WO_VS_FW, MF_VS_ATT, DF_VS_ATT: number} (optional)
+ * Options is {CTR_VS_WG, WBD_VS_CD, WO_VS_FW, MF_VS_ATT, DF_VS_ATT, IM_VS_CD: number} (optional)
  * By default options is assembled from prefs or needs to be fully overridden otherwise.
  *
  * Definition format: {center, side, farSide, wings, factor: number}
- * @param  {object} options Object.<string, number> options map
- * @return {object}         Object.<string, object> position contribution map
+ * @param  {PlayerContributionParams} [options]
+ * @return {ContributionFactors} position contribution map
  */
 Foxtrick.Predict.contributionFactors = function(options) {
+	/* eslint-disable no-magic-numbers */
 	var opts = options;
-	if (!opts) {
+	if (!opts)
 		opts = Foxtrick.modules['PlayerPositionsEvaluations'].getParams();
-	}
+
+	/**
+	 * @typedef {number|[number, number]|[number, number, number]} SkillContributionDef
+	 * @typedef {Object.<PlayerSkillName, SkillContributionDef>} PositionContributionDef
+	 * @typedef {Object.<PlayerPositionCode, PositionContributionDef>} ContributionFactorDef
+	 */
 
 	// all factors taken from https://docs.google.com/spreadsheets/d/1bNwtBdOxbY8pdY7uAx0boqHwRtJgj7tNpcFtDsP9Wq8/edit#gid=0
 	// format: middle[, side[, farSide]]
+
+	/** @type {ContributionFactorDef} */
 	var factors = {
 		kp: {
 			keeper: [0.87, 0.61, 0.61],
@@ -273,16 +313,23 @@ Foxtrick.Predict.contributionFactors = function(options) {
 		},
 	};
 
+	/**
+	 * @param  {PlayerPositionCode} position
+	 * @param  {PlayerSkillName} skill
+	 * @return {SkillContributionOptional}
+	 */
 	var getSkillData = function(position, skill) {
-		var pos = factors[position];
+		/** @type {PositionContributionDef} */
+		let pos = factors[position];
 
 		if (!(skill in pos))
 			return 0;
 
-		var contr = pos[skill];
-		var isDef = skill === 'defending' || skill === 'keeper';
+		/** @type {SkillContributionDef} */
+		let contr = pos[skill];
+		let isDef = skill === 'defending' || skill === 'keeper';
 
-		var factor = 0, center = 0, side = 0, farSide = 0, wings = 0;
+		let factor = 0, center = 0, side = 0, farSide = 0, wings = 0;
 		if (Array.isArray(contr)) {
 			center = contr[0];
 			side = contr[1];
@@ -302,17 +349,28 @@ Foxtrick.Predict.contributionFactors = function(options) {
 			center = contr * opts.IM_VS_CD;
 			factor = center * opts.MF_VS_ATT;
 		}
+
 		// Foxtrick.log(position, skill, factor);
 
-		return { center: center, side: side, farSide: farSide, wings: wings, factor: factor };
+		return { center, side, farSide, wings, factor };
+		/* eslint-disable no-magic-numbers */
 	};
 
+	/** @type {ContributionFactors} */
 	var ret = {};
-	for (var pos in factors) {
-		ret[pos] = {};
-		var skillDef = factors[pos];
-		for (var skill in skillDef) {
-			ret[pos][skill] = getSkillData(pos, skill);
+
+	for (let pos in factors) {
+		// eslint-disable-next-line no-extra-parens
+		let code = /** @type {PlayerPositionCode} */ (pos);
+		ret[code] = {};
+
+		/** @type {PositionContributionDef} */
+		let skillDef = factors[code];
+
+		for (let s in skillDef) {
+			// eslint-disable-next-line no-extra-parens
+			let skill = /** @type {PlayerSkillName} */ (s);
+			ret[code][skill] = getSkillData(code, skill);
 		}
 	}
 
@@ -329,37 +387,36 @@ Foxtrick.Predict.contributionFactors = function(options) {
  *
  * Returns effective skill map.
  * @author Greblys, LA-MJ
- * @param  {object} skills   Object.<string, number>  skill map
- * @param  {object} attrs    Object.<string, ?>       attribute map
- * @param  {object} options  Object.<string, Boolean> options map
- * @return {object}          Object.<string, number>  effective skill map
+ * @param  {PlayerSkills}          skills   Object.<string, number>  skill map
+ * @param  {PlayerProps}            attrs    Object.<string, ?>       attribute map
+ * @param  {PlayerContributionOpts} options  Object.<string, Boolean> options map
+ * @return {PlayerSkills}                                             effective skill map
  */
+// eslint-disable-next-line complexity
 Foxtrick.Predict.effectiveSkills = function(skills, attrs, options) {
-	if (!options) {
-		options = Foxtrick.modules['PlayerPositionsEvaluations'].getPrefs();
-	}
+	let opts = options || Foxtrick.modules['PlayerPositionsEvaluations'].getPrefs();
 
 	var ret = {};
 	Foxtrick.mergeAll(ret, skills);
 
 	// Source [post=16376110.4]
 	var bonus, skill;
-	if (options.experience && attrs.experience) { // don't do log 0
+	if (opts.experience && attrs.experience) { // don't do log 0
 		bonus = Math.log(attrs.experience) / Math.log(10) * 4.0 / 3.0;
 		for (skill in ret)
 			ret[skill] += bonus;
 	}
 
-	var loyalty = attrs.loyalty;
-	var mcb = attrs.motherClubBonus;
-	var tl = attrs.transferListed; // loyalty can be undefined in transfer pages
-	if (options.loyalty && typeof loyalty !== 'undefined' && !tl) {
+	let loyalty = attrs.loyalty;
+	let mcb = !!attrs.motherClubBonus;
+	let tl = attrs.transferListed; // loyalty can be undefined in transfer pages
+	if (opts.loyalty && typeof loyalty !== 'undefined' && !tl) {
 		bonus = Foxtrick.Predict.loyaltyBonus(loyalty, mcb);
 		for (skill in ret)
 			ret[skill] += bonus;
 	}
 
-	if (options.stamina) {
+	if (opts.stamina) {
 		var energy = Foxtrick.Predict.averageEnergy90(attrs.staminaPred || attrs.stamina);
 		for (skill in ret)
 			ret[skill] *= energy;
@@ -370,7 +427,7 @@ Foxtrick.Predict.effectiveSkills = function(skills, attrs, options) {
 	 * Probably we will never know if the form affect needs to be calculated before or after
 	 * other bonuses' addition to the main skills.
 	 */
-	if (options.form) {
+	if (opts.form) {
 		var formInfls = [
 			0,
 			0.305,
@@ -387,7 +444,7 @@ Foxtrick.Predict.effectiveSkills = function(skills, attrs, options) {
 	}
 
 	// source: http://www.hattrickinfo.com/en/training/284/#281-
-	if (options.bruised && attrs.bruised) {
+	if (opts.bruised && attrs.bruised) {
 		for (skill in ret)
 			ret[skill] *= 0.95;
 	}

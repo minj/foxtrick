@@ -1,9 +1,10 @@
-'use strict';
 /**
  * filter.js
  * add filters to lists
  * @author convinced
  */
+
+'use strict';
 
 Foxtrick.modules['Filter'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
@@ -11,61 +12,72 @@ Foxtrick.modules['Filter'] = {
 	CSS: Foxtrick.InternalPath + 'resources/css/filter.css',
 	OPTIONS: ['ShowOwned'],
 
+	/** @param {document} doc */
 	run: function(doc) {
-		var MAIN = Foxtrick.getMainIDPrefix();
+		const module = this;
+		const MAIN = Foxtrick.getMainIDPrefix();
 		var FILTER_FUNC = {
-			'category': function(val, category) {
+			category: function(val, category) {
 				if (category == 'Filters.noFilter')
 					return false;
 				else if (category == 'Filters.none')
 					return val != '';
 				return val != category;
 			},
-			'minmax': function(val, min, max) {
+			minmax: function(val, min, max) {
 				if (val === null)
 					return true;
-				if (typeof(min) == 'number' && val < min)
+				if (typeof min == 'number' && val < min)
 					return true;
-				if (typeof(max) == 'number' && val > max)
+				if (typeof max == 'number' && val > max)
 					return true;
 				return false;
-			}
+			},
 		};
 
 		// default filter values
 		var FILTER_VAL = {
-			'statsTopPlayers':
+			statsTopPlayers:
 			{
-				toBeFiltered: { nodeName: 'table', index: 2, rowType: 'tr', cellType: 'td',
-					rowStartIndex: 1 },
+				toBeFiltered: {
+					nodeName: 'table',
+					index: 2,
+					rowType: 'tr',
+					cellType: 'td',
+					rowStartIndex: 1,
+				},
 				insertFilterWhere: { id: MAIN + 'btnSearch', insertAfter: true },
 				filters: [
-					{ key: 'name', 		filtertype: null},
-					{ key: 'days', 		filtertype: 'minmax', min: null, max: null,	type: 'days'},
-					{ key: 'tsi', 		filtertype: 'minmax', min: null, max: null,	type: 'number'},
-					{ key: 'stamina',	filtertype: 'minmax', min: null, max: null,	type: 'number'},
-					{ key: 'Form', 		filtertype: 'minmax', min: null, max: null,	type: 'number'},
-					{ key: 'XP', 		filtertype: 'minmax', min: null, max: null,	type: 'number'},
-					{ key: 'specialty',	filtertype: 'category', category: null, 	type: 'text'},
+					{ key: 'name', filtertype: null },
+					{ key: 'days', filtertype: 'minmax', min: null, max: null, type: 'days' },
+					{ key: 'tsi', filtertype: 'minmax', min: null, max: null, type: 'number' },
+					{ key: 'stamina', filtertype: 'minmax', min: null, max: null, type: 'number' },
+					{ key: 'Form', filtertype: 'minmax', min: null, max: null, type: 'number' },
+					{ key: 'XP', filtertype: 'minmax', min: null, max: null, type: 'number' },
+					{ key: 'specialty',	filtertype: 'category', category: null, type: 'text' },
 					{
-						key: 'stars', 	filtertype: 'minmax', min: null, max: null,	type: 'image',
-						incPerClass: { starWhole: 1, starBig: 5, starHalf: 0.5 }
-					}
-				]
-			}
+						key: 'stars',
+						filtertype: 'minmax',
+						min: null,
+						max: null,
+						type: 'image',
+						incPerClass: { starWhole: 1, starBig: 5, starHalf: 0.5 },
+					},
+				],
+			},
 		};
 		var getFilters = function(page, callback) {
-			Foxtrick.sessionGet('filters.' + page,
-			  function(n) {
+			Foxtrick.sessionGet('filters.' + page, (n) => {
 				try {
-					if (!n) {
-						// set default filters if not set
-						Foxtrick.sessionSet('filters.' + page, FILTER_VAL[page].filters);
-						callback(FILTER_VAL[page].filters);
-					}
-					else {
+					if (n) {
 						callback(n);
+						return;
 					}
+
+					// set default filters if not set
+					Foxtrick.sessionSet('filters.' + page, FILTER_VAL[page].filters);
+					// eslint-disable-next-line callback-return
+					callback(FILTER_VAL[page].filters);
 				}
 				catch (e) {
 					Foxtrick.log(e);
@@ -76,6 +88,7 @@ Foxtrick.modules['Filter'] = {
 			Foxtrick.sessionSet('filters.' + page, filters);
 		};
 
+		// eslint-disable-next-line complexity
 		var addNewFilter = function(page, table, filters, idx) {
 			var saveValues = function(ev) {
 				getFilters(page, function(filters) {
@@ -84,10 +97,12 @@ Foxtrick.modules['Filter'] = {
 						if (ev.target.value != '' && !isNaN(ev.target.value))
 							value = Number(ev.target.value);
 					}
-					else if (ev.target.type == 'checkbox')
+					else if (ev.target.type == 'checkbox') {
 						value = Boolean(ev.target.checked);
-					else if (ev.target.nodeName == 'SELECT')
+					}
+					else if (ev.target.nodeName == 'SELECT') {
 						value = ev.target.options[ev.target.selectedIndex].value;
+					}
 					var index = ev.target.getAttribute('x-ft-filter-idx');
 					var prop = ev.target.getAttribute('x-ft-filter-prop');
 					filters[index][prop] = value;
@@ -101,30 +116,33 @@ Foxtrick.modules['Filter'] = {
 			table.appendChild(tr);
 
 			if (filter.filtertype == 'minmax') {
-				var td = doc.createElement('td');
-				tr.appendChild(td);
-				var strong = doc.createElement('strong');
-				strong.textContent = Foxtrick.L10n.getString('Filters.' + filter.key);
-				td.appendChild(strong);
+				{
+					let td = doc.createElement('td');
+					tr.appendChild(td);
+					let strong = doc.createElement('strong');
+					strong.textContent = Foxtrick.L10n.getString('Filters.' + filter.key);
+					td.appendChild(strong);
+				}
+				{
+					let td = doc.createElement('td');
+					td.colSpan = 2;
+					td.textContent = Foxtrick.L10n.getString('Filters.minimum') + '\u00a0';
+					tr.appendChild(td);
+					let input = doc.createElement('input');
+					input.style.width = '90px';
+					input.id = 'Filters.' + filter.key + '.min';
+					input.value = filter.min;
+					input.setAttribute('x-ft-filter-idx', idx);
+					input.setAttribute('x-ft-filter-prop', 'min');
+					Foxtrick.listen(input, 'blur', saveValues, false);
+					td.appendChild(input);
+				}
 
-				var td = doc.createElement('td');
-				td.colSpan = 2;
-				td.textContent = Foxtrick.L10n.getString('Filters.minimum') + '\u00a0';
-				tr.appendChild(td);
-				var input = doc.createElement('input');
-				input.style.width = '90px';
-				input.id = 'Filters.' + filter.key + '.min';
-				input.value = filter.min;
-				input.setAttribute('x-ft-filter-idx', idx);
-				input.setAttribute('x-ft-filter-prop', 'min');
-				Foxtrick.listen(input, 'blur', saveValues, false);
-				td.appendChild(input);
-
-				var td = doc.createElement('td');
+				let td = doc.createElement('td');
 				td.colSpan = 2;
 				td.textContent = Foxtrick.L10n.getString('Filters.maximum') + '\u00a0';
 				tr.appendChild(td);
-				var input = doc.createElement('input');
+				let input = doc.createElement('input');
 				input.style.width = '90px';
 				input.id = 'Filters.' + filter.key + '.max';
 				input.value = filter.max;
@@ -134,10 +152,10 @@ Foxtrick.modules['Filter'] = {
 				td.appendChild(input);
 			}
 			else if (filter.filtertype == 'check') {
-				var td = doc.createElement('td');
+				let td = doc.createElement('td');
 				td.colSpan = 5;
 				tr.appendChild(td);
-				var input = doc.createElement('input');
+				let input = doc.createElement('input');
 				input.type = 'checkbox';
 				input.id = 'Filters.' + filter.key + '.check';
 				input.setAttribute('x-ft-filter-idx', idx);
@@ -146,54 +164,57 @@ Foxtrick.modules['Filter'] = {
 					input.setAttribute('checked', 'checked');
 				Foxtrick.listen(input, 'blur', saveValues, false);
 				td.appendChild(input);
-				var label = doc.createElement('label');
+				let label = doc.createElement('label');
 				label.textContent = Foxtrick.L10n.getString('Filters.' + filter.key);
 				label.htmlFor = input.id;
 				td.appendChild(label);
 			}
 			else if (filter.filtertype == 'category') {
-				var target = doc.getElementById('mainBody')
-					.getElementsByTagName(FILTER_VAL[page].toBeFiltered.nodeName)[
-					FILTER_VAL[page].toBeFiltered.index];
+				let toBeFiltered = FILTER_VAL[page].toBeFiltered;
+				let { nodeName, index, rowType, rowStartIndex, cellType } = toBeFiltered;
 
+				let target = doc.querySelectorAll(`#mainBody ${nodeName}`)[index];
 				if (!target)
 					return;
 
-				var list = target.getElementsByTagName(FILTER_VAL[page].toBeFiltered.rowType);
+				let list = target.getElementsByTagName(rowType);
 				if (!list)
 					return;
 
-				var categories = {};
-				for (var i = FILTER_VAL[page].toBeFiltered.rowStartIndex; i < list.length; ++i) {
-					var cell = list[i].getElementsByTagName(FILTER_VAL[page].toBeFiltered.cellType);
-					if (cell[idx].textContent)
-						categories[cell[idx].textContent] = true;
+				let categories = {};
+				for (let i = rowStartIndex; i < list.length; ++i) {
+					let item = list[i];
+					let cells = item.getElementsByTagName(cellType);
+					let cell = cells[idx];
+					if (cell.textContent)
+						categories[cell.textContent] = true;
 					else
 						categories[Foxtrick.L10n.getString('Filters.none')] = true;
 				}
 
-				var td = doc.createElement('td');
+				let td = doc.createElement('td');
 				tr.appendChild(td);
-				var strong = doc.createElement('strong');
+				let strong = doc.createElement('strong');
 				strong.textContent = Foxtrick.L10n.getString('Filters.' + filter.key);
 				td.appendChild(strong);
 
-				var td = doc.createElement('td');
-				td.colSpan = 2;
-				tr.appendChild(td);
+				{
+					let td = doc.createElement('td');
+					td.colSpan = 2;
+					tr.appendChild(td);
+				}
 
-				var select = doc.createElement('select');
+				let select = doc.createElement('select');
 				select.id = 'Filters.' + filter.key + '.category';
 				select.setAttribute('x-ft-filter-idx', idx);
 				select.setAttribute('x-ft-filter-prop', 'category');
-				var option = doc.createElement('option');
+				let option = doc.createElement('option');
 				option.textContent = Foxtrick.L10n.getString('Filters.noFilter');
 				option.value = 'Filters.noFilter';
 				select.appendChild(option);
 
-				var i;
-				for (i in categories) {
-					var option = doc.createElement('option');
+				for (let i in categories) {
+					let option = doc.createElement('option');
 					option.textContent = i;
 					if (i == Foxtrick.L10n.getString('Filters.none'))
 						option.value = 'Filters.none';
@@ -202,8 +223,8 @@ Foxtrick.modules['Filter'] = {
 					select.appendChild(option);
 				}
 				if (filter.category) {
-					for (var i = 0; i < select.options.length; ++i) {
-						if (select.options[i].value == filter.category) {
+					for (let [i, option] of [...select.options].entries()) {
+						if (option.value == filter.category) {
 							select.selectedIndex = i;
 							break;
 						}
@@ -212,25 +233,27 @@ Foxtrick.modules['Filter'] = {
 				Foxtrick.listen(select, 'blur', saveValues, false);
 				td.appendChild(select);
 
-				var td = doc.createElement('td');
-				td.colSpan = 2;
-				tr.appendChild(td);
+				{
+					let td = doc.createElement('td');
+					td.colSpan = 2;
+					tr.appendChild(td);
+				}
 			}
 
 		};
 		var addExtraFilters = function(page) {
 			getFilters(page, function(filters) {
 				var insertBefore = null;
-				if (FILTER_VAL[page].insertFilterWhere && FILTER_VAL[page].insertFilterWhere.id) {
-					insertBefore = doc.getElementById(FILTER_VAL[page].insertFilterWhere.id);
-					if (FILTER_VAL[page].insertFilterWhere.insertAfter)
+				let insertFilterWhere = FILTER_VAL[page].insertFilterWhere;
+				if (insertFilterWhere && insertFilterWhere.id) {
+					insertBefore = doc.getElementById(insertFilterWhere.id);
+					if (insertFilterWhere.insertAfter)
 						insertBefore = insertBefore.nextSibling;
 				}
 				if (!insertBefore)
 					return;
 
-				var filterdiv = Foxtrick.createFeaturedElement(doc, Foxtrick.modules['Filter'],
-															   'div');
+				var filterdiv = Foxtrick.createFeaturedElement(doc, module, 'div');
 				insertBefore.parentNode.insertBefore(filterdiv, insertBefore);
 
 				var h2 = doc.createElement('h2');
@@ -240,10 +263,10 @@ Foxtrick.modules['Filter'] = {
 				var table = doc.createElement('table');
 				filterdiv.appendChild(table);
 
-				var target = doc.getElementById('mainBody')
-					.getElementsByTagName(FILTER_VAL[page].toBeFiltered.nodeName)[
-					FILTER_VAL[page].toBeFiltered.index];
+				let toBeFiltered = FILTER_VAL[page].toBeFiltered;
+				let { nodeName, index } = toBeFiltered;
 
+				var target = doc.querySelectorAll(`#mainBody ${nodeName}`)[index];
 				if (!target) {
 					Foxtrick.addClass(filterdiv, 'hidden');
 					return;
@@ -255,15 +278,15 @@ Foxtrick.modules['Filter'] = {
 				td.setAttribute('colspan', '5');
 				tr.appendChild(td);
 
-				for (var j = 0; j < filters.length; ++j) {
+				for (var j = 0; j < filters.length; ++j)
 					addNewFilter(page, table, filters, j);
-				}
 
 				var buttonFilter = doc.createElement('input');
 				buttonFilter.type = 'button';
 				buttonFilter.value = Foxtrick.L10n.getString('Filters.ok');
 				buttonFilter.setAttribute('page', page);
 				filterdiv.appendChild(buttonFilter);
+				// eslint-disable-next-line no-use-before-define
 				Foxtrick.onClick(buttonFilter, filterResults);
 
 				var buttonClear = doc.createElement('input');
@@ -272,23 +295,28 @@ Foxtrick.modules['Filter'] = {
 				filterdiv.appendChild(buttonClear);
 				Foxtrick.onClick(buttonClear, function() {
 					getFilters(page, function(filters) {
-						for (var j = 0; j < filters.length; ++j) {
-							var filter = filters[j];
+						for (let filter of filters) {
 							if (filter.filtertype == 'minmax') {
-								filters[j].min = null;
-								doc.getElementById('Filters.' + filter.key + '.min').value = '';
-								filters[j].max = null;
-								doc.getElementById('Filters.' + filter.key + '.max').value = '';
+								filter.min = null;
+								filter.max = null;
+
+								/** @type {HTMLInputElement} */
+								let input = doc.querySelector(`#Filters.${filter.key}.min`);
+								input.value = '';
+								input = doc.querySelector(`#Filters.${filter.key}.max`);
+								input.value = '';
 							}
 							else if (filter.filtertype == 'check') {
-								filters[j].checked = false;
+								filter.checked = false;
 								doc.getElementById('Filters.' + filter.key + '.check')
 									.removeAttribute('checked');
 							}
 							else if (filter.filtertype == 'category') {
-								filters[j].category = null;
-								doc.getElementById('Filters.' + filter.key + '.category')
-									.selectedIndex = 0;
+								filter.category = null;
+
+								/** @type {HTMLSelectElement} */
+								let select = doc.querySelector(`#Filters.${filter.key}.category`);
+								select.selectedIndex = 0;
 							}
 						}
 					});
@@ -297,51 +325,51 @@ Foxtrick.modules['Filter'] = {
 		};
 		var filterResults = function(ev) {
 			var page = ev.target.getAttribute('page');
-			getFilters(page,
-			  function(filters) {
+			// eslint-disable-next-line complexity
+			getFilters(page, (filters) => {
 				try {
 					var list = null;
-					if (FILTER_VAL[page].toBeFiltered.nodeName) {
-						list = doc.getElementById('mainBody')
-							.getElementsByTagName(FILTER_VAL[page].toBeFiltered.nodeName)[
-							FILTER_VAL[page].toBeFiltered.index]
-								.getElementsByTagName(FILTER_VAL[page].toBeFiltered.rowType);
+					let toBeFiltered = FILTER_VAL[page].toBeFiltered;
+					if (toBeFiltered.nodeName) {
+						let { nodeName, index, rowType } = toBeFiltered;
+						let node = doc.querySelectorAll(`#mainBody ${nodeName}`)[index];
+						list = node.querySelectorAll(rowType);
 					}
+
 					if (!list)
 						return;
 
-					for (var i = FILTER_VAL[page].toBeFiltered.rowStartIndex; i < list.length; ++i) {
-						var cell = list[i].getElementsByTagName(FILTER_VAL[page].toBeFiltered
-						                                        .cellType);
+					for (let i = toBeFiltered.rowStartIndex; i < list.length; ++i) {
+						let cells = list[i].getElementsByTagName(toBeFiltered.cellType);
 						Foxtrick.removeClass(list[i], 'hidden');
-						var hide = false;
-						for (var j = 0; j < filters.length; ++j) {
-							var filter = filters[j];
-
-							var val = null;
-							if (filter.type == 'number')
-								val = Foxtrick.trimnum(cell[j].textContent);
-							else if (filter.type == 'days')
-								val = cell[j].textContent.match(/\((\d+)\)/)[1];
-							else if (filter.type == 'text')
-								val = cell[j].textContent;
+						let hide = false;
+						for (let [j, filter] of filters.entries()) {
+							let cell = cells[j];
+							let val = null;
+							if (filter.type == 'number') {
+								val = Foxtrick.trimnum(cell.textContent);
+							}
+							else if (filter.type == 'days') {
+								val = cell.textContent.match(/\((\d+)\)/)[1];
+							}
+							else if (filter.type == 'text') {
+								val = cell.textContent;
+							}
 							else if (filter.type == 'image') {
-								var imgs = cell[j].getElementsByTagName('img');
 								val = 0;
-								for (var k = 0; k < imgs.length; ++k) {
-									var searchStr;
-									for (searchStr in filter.incPerClass) {
-										/*Foxtrick.log(imgs[k].className, searchStr,
-										            imgs[k].src.search(RegExp(searchStr)),
-													filter.incPerClass[searchStr], val );*/
-										if (imgs[k].className.search(RegExp(searchStr)) != -1)
+								let imgs = cell.querySelectorAll('img');
+								for (let img of imgs) {
+									for (let searchStr in filter.incPerClass) {
+										// eslint-disable-next-line max-depth
+										if (new RegExp(searchStr).test(img.className))
 											val += filter.incPerClass[searchStr];
 									}
 								}
 							}
 
-							if (val === null || !filter.filtertype)
+							if (val === null || !filter.filtertype) {
 								continue;
+							}
 							else if (filter.filtertype == 'minmax' && (filter.min != null ||
 							         filter.max != null)) {
 								if (FILTER_FUNC[filter.filtertype](val, filter.min, filter.max))
@@ -363,22 +391,24 @@ Foxtrick.modules['Filter'] = {
 							}
 						}
 					}
-				} catch (e) {
+				}
+				catch (e) {
 					Foxtrick.log(e);
 				}
 			});
 		};
 
-		for (var i = 0; i < this.PAGES.length; ++i) {
-			if (Foxtrick.isPage(doc, this.PAGES[i])) {
+		for (let i = 0; i < this.PAGES.length; ++i) {
+			if (Foxtrick.isPage(doc, this.PAGES[i]))
 				addExtraFilters(this.PAGES[i]);
-			}
 		}
+
 		if (Foxtrick.isPage(doc, 'statsTopPlayers')) {
 			if (Foxtrick.Prefs.isModuleOptionEnabled('Filter', 'ShowOwned'))
 				this.showOwned(doc);
 		}
 	},
+
 	/**
 	 * Highlight players of the logged in manager in Top Players stats page
 	 * @author tasosventouris
@@ -389,27 +419,29 @@ Foxtrick.modules['Filter'] = {
 		var teamId = Foxtrick.modules.Core.TEAM.teamId;
 		var ids = [];
 
-		Foxtrick.util.api.retrieve(doc, [
+		let args = [
 			['file', 'players'],
 			['version', '2.2'],
-			['teamId', teamId]
-		  ],
-		  { cache_lifetime: 'session' },
-		  function(xml, errorText) {
+			['teamId', teamId],
+		];
+
+		Foxtrick.util.api.retrieve(doc, args, { cache: 'session' }, (xml, errorText) => {
 			if (!xml || errorText) {
 				Foxtrick.log(errorText);
 				return;
 			}
 
-			var all = xml.getElementsByTagName('PlayerID');
-			for (var i = 0; i < all.length; i++)
-				ids.push(all[i].textContent);
+			let all = xml.getElementsByTagName('PlayerID');
+			for (let p of all)
+				ids.push(p.textContent);
 
-			var allPlayers = doc.getElementById('mainBody').getElementsByTagName('a');
-			for (var i = 0; i < allPlayers.length; ++i) {
-				var player = Foxtrick.getUrlParam(allPlayers[i].href, 'playerId');
-				if (player && ids.indexOf(player) >= 0) {
-					var row = allPlayers[i].parentNode.parentNode;
+			/** @type {NodeListOf<HTMLAnchorElement>} */
+			let allPlayers = doc.querySelectorAll('#mainBody a');
+			for (let player of allPlayers) {
+				let pId = Foxtrick.getUrlParam(player.href, 'playerId');
+				if (pId && ids.indexOf(pId) >= 0) {
+					// eslint-disable-next-line no-extra-parens
+					let row = /** @type {HTMLElement} */ (player.parentNode.parentNode);
 					Foxtrick.addClass(row, 'ft-top-players-owner');
 					Foxtrick.makeFeaturedElement(row, Foxtrick.modules.TopPlayersOwner);
 				}

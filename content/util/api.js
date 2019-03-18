@@ -8,6 +8,7 @@
 
 /* eslint-disable */
 if (!this.Foxtrick)
+	// @ts-ignore
 	var Foxtrick = {};
 /* eslint-enable */
 
@@ -192,7 +193,7 @@ Foxtrick.util.api = {
 	setCacheLifetime: function(paramStr, cacheLifetime) {
 		Foxtrick.sessionGet('xml_cache.' + paramStr, (xmlCache) => {
 			let xmlStr = xmlCache ? xmlCache.xml_string : '';
-			let obj = { xml_string: xmlStr, cache_lifetime: cacheLifetime };
+			let obj = { xmlString: xmlStr, cache: cacheLifetime };
 			Foxtrick.sessionSet('xml_cache.' + paramStr, obj);
 		});
 	},
@@ -225,13 +226,35 @@ Foxtrick.util.api = {
 	},
 
 	/**
+	 * @typedef CHPPMixin
+	 * @prop {(this: CHPPXML, tagName: string, container?: Element) => Element} node
+	 * @prop {(this: CHPPXML, tagName: string, container?: Element) => string} text
+	 * @prop {(this: CHPPXML, tagName: string, container?: Element) => boolean} bool
+	 * @prop {(this: CHPPXML, tagName: string, container?: Element) => number} num
+	 * @prop {(this: CHPPXML, tagName: string, rate: number, container?: Element) => number} money
+	 * @prop {(this: CHPPXML, tagName: string, container?: Element) => Date} time full timestamp
+	 * @prop {(this: CHPPXML, tagName: string, container?: Element) => Date} date date only
+	 */
+	/**
+	 * @typedef {XMLDocument & CHPPMixin} CHPPXML
+	 * @typedef {(xml: CHPPXML, errorText?: string) => void} CHPPCallback
+	 * @typedef {(xmls: CHPPXML[], errorTexts?: string[]) => void} CHPPMultiCallback
+	 * @typedef {'session'|'default'|number} CHPPCacheOpts
+	 * @typedef {{cache: CHPPCacheOpts}} CHPPOpts
+	 */
+
+	/**
 	 * Add helper functions node(), text() and num()
 	 * for easier data access.
-	 * @param {document} xml
+	 * @param  {XMLDocument} xmlDoc
+	 * @return {CHPPXML}
 	 */
-	addHelpers: function(xml) {
+	addHelpers: function(xmlDoc) {
+		// eslint-disable-next-line no-extra-parens
+		let xml = /** @type {CHPPXML} */(xmlDoc);
 		if (!xml || typeof xml !== 'object')
-			return;
+			return xml;
+
 		xml.node = function(tagName, container) {
 			let cont = container || this;
 			return cont.getElementsByTagName(tagName)[0];
@@ -264,6 +287,8 @@ Foxtrick.util.api = {
 			var sek = this.num(tagName, container);
 			return Math.ceil(sek / (10 * rate));
 		};
+
+		return xml;
 	},
 
 	// options: { cache:'session' or 'default' or timestamp }
@@ -276,6 +301,12 @@ Foxtrick.util.api = {
 	// preferred spelling: param names in camelBack, values in lowercase;
 	//                     integers over strings;
 	//                     strings over booleans.
+	/**
+	 * @param {document} doc
+	 * @param {Array<(string|number)[]>} apiParams
+	 * @param {CHPPOpts}     options
+	 * @param {CHPPCallback} callback
+	 */
 	retrieve: function(doc, apiParams, options, callback) {
 		var win = doc.defaultView;
 
@@ -284,9 +315,9 @@ Foxtrick.util.api = {
 		var params = [...apiParams]; // for API!
 
 		var safeCallback = (args => (xml, ...rest) => {
-			Foxtrick.util.api.addHelpers(xml);
+			let chpp = Foxtrick.util.api.addHelpers(xml);
 			try {
-				callback.call(this, xml, ...rest);
+				callback.call(this, chpp, ...rest);
 			}
 			catch (e) {
 				Foxtrick.log('ApiProxy: uncaught callback error:', e, 'args:', args);
@@ -337,15 +368,15 @@ Foxtrick.util.api = {
 				return;
 			}
 
-			var session = options && options.cache_lifetime === 'session' || false;
+			var session = options && options.cache === 'session' || false;
 			var cacheTime = 0;
 			if (xmlCache) {
-				cacheTime = Number(xmlCache.cache_lifetime);
+				cacheTime = Number(xmlCache.cache);
 				let cache = session ? 'session' : '';
 				if (cacheTime)
 					cache += new Date(cacheTime).toString();
 
-				Foxtrick.log('ApiProxy: options:', args, 'cache_lifetime:', cache, 'NOW:', NOW);
+				Foxtrick.log('ApiProxy: options:', args, 'cache:', cache, 'NOW:', NOW);
 			}
 
 			var getError = function(x, status) {
@@ -381,6 +412,7 @@ Foxtrick.util.api = {
 					return;
 				}
 
+				// @ts-ignore
 				let parser = new win.DOMParser();
 				let xml = parser.parseFromString(JSON.parse(xmlCache.xml_string), 'text/xml');
 				let errorText = getError(xml);
@@ -406,12 +438,13 @@ Foxtrick.util.api = {
 				};
 
 				// determine cache liftime
+				/** @type {CHPPCacheOpts} */
 				var cacheLifetime = 0;
-				if (options && options.cache_lifetime) {
-					if (options.cache_lifetime == 'default')
+				if (options && options.cache) {
+					if (options.cache == 'default')
 						cacheLifetime = HT_DATE + Foxtrick.util.time.MSECS_IN_HOUR;
 					else
-						cacheLifetime = options.cache_lifetime;
+						cacheLifetime = options.cache;
 				}
 
 				try {
@@ -448,17 +481,18 @@ Foxtrick.util.api = {
 					Foxtrick.log('Fetching XML data from', Foxtrick.util.api.stripToken(url));
 					Foxtrick.util.load.xml(url, (x, status) => {
 						if (status == HTTP_OK) {
+							// @ts-ignore
 							let serializer = new win.XMLSerializer();
 							let xml = JSON.stringify(serializer.serializeToString(x));
 							Foxtrick.sessionSet(cacheArgs, {
-								xml_string: xml,
-								cache_lifetime: cacheLifetime,
+								xmlString: xml,
+								cache: cacheLifetime,
 							});
 							processQueue(x, status);
 						}
 						else if (status == HTTP_FORBIDDEN) {
 							Foxtrick.log(`ApiProxy: error ${HTTP_FORBIDDEN}, unauthorized.`, args);
-							Foxtrick.util.api.invalidateAccessToken(doc);
+							Foxtrick.util.api.invalidateAccessToken();
 							Foxtrick.util.api.authorize(doc);
 							processQueue(null, status);
 						}
@@ -471,8 +505,8 @@ Foxtrick.util.api = {
 							if (status == HTTP_ERROR) {
 								let recheckDate = HT_DATE + ERROR_TIMEOUT_MSEC;
 								Foxtrick.sessionSet('xml_cache.' + argStr, {
-									xml_string: status.toString(),
-									cache_lifetime: recheckDate,
+									xmlString: status.toString(),
+									cache: recheckDate,
 								});
 
 								Foxtrick.sessionSet(SESSION_GCACHE, recheckDate);
@@ -496,6 +530,12 @@ Foxtrick.util.api = {
 	// batchParameters: array of parameters for retrieve function
 	// returns array of xml docs with matching indices
 	// still better to later identify xmls by content, not by index
+	/**
+	 * @param {document}                   doc
+	 * @param {Array<(string|number)[]>[]} batchParameters
+	 * @param {CHPPOpts|CHPPOpts[]}        options
+	 * @param {CHPPMultiCallback}          callback
+	 */
 	batchRetrieve: function(doc, batchParameters, options, callback) {
 		if (!Foxtrick.Prefs.getBool('xmlLoad')) {
 			Foxtrick.log('XML loading disabled');
@@ -512,7 +552,9 @@ Foxtrick.util.api = {
 
 		let chppPromises = Foxtrick.map(function(params, i) {
 			let opts = Array.isArray(options) ? options[i] : options;
-			return new Promise(function(resolve) {
+
+			/** @type {Promise<[CHPPXML, string]>} */
+			let p = new Promise(function(resolve) {
 				Foxtrick.util.api.retrieve(doc, params, opts, (xml, errorText) => {
 					Foxtrick.util.api.addHelpers(xml);
 					resolve([xml, errorText]);
@@ -521,6 +563,8 @@ Foxtrick.util.api = {
 				Foxtrick.log('FATAL CHPP ERROR in batchRetrieve:', e);
 				return [null, e.message];
 			});
+
+			return p;
 		}, batchParameters);
 
 		Promise.all(chppPromises).then(function(arr) {
@@ -575,7 +619,7 @@ Foxtrick.util.api = {
 
 				var xml = Foxtrick.parseXML(text);
 				if (xml == null)
-					errorText = Foxtrick.L10n.getString('exception.error').replace(/%s/, -1);
+					errorText = Foxtrick.L10n.getString('exception.error').replace(/%s/, '-1');
 				else
 					errorText = xml.getElementsByTagName('h2')[0].textContent;
 

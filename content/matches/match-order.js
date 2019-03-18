@@ -6,6 +6,7 @@
 
 'use strict';
 
+/* eslint-disable max-params, no-magic-numbers */
 Foxtrick.modules['MatchOrderInterface'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.MATCHES,
 	PAGES: ['matchOrder'],
@@ -21,8 +22,8 @@ Foxtrick.modules['MatchOrderInterface'] = {
 			'UseSubsForPenalties',
 			'DontSortPenaltyTakers',
 			'PrioritizeSP',
-			'ClearPenaltyTakersFirst'
-		]
+			'ClearPenaltyTakersFirst',
+		],
 	],
 	CSS: Foxtrick.InternalPath + 'resources/css/match-order.css',
 	OPTIONS_CSS: [
@@ -32,10 +33,10 @@ Foxtrick.modules['MatchOrderInterface'] = {
 		null, null,
 		[Foxtrick.InternalPath + 'resources/css/match-order-clone.css'],
 		null,
-		[]
+		[],
 	],
 	run: function(doc) {
-		var module = this;
+		const module = this;
 
 		let url = doc.location.href;
 		var sourceSystem = Foxtrick.getUrlParam(url, 'SourceSystem');
@@ -45,32 +46,34 @@ Foxtrick.modules['MatchOrderInterface'] = {
 		var avatarsParamsString;
 		var getAvatars;
 		var getPlayers;
-		var check_images = function(doc, target, avatarsXml, getID, scale, recursion) {
+		var checkImages = function(doc, target, avatarsXml, getID, scale, recursion) {
 			if (!Foxtrick.Prefs.isModuleOptionEnabled('MatchOrderInterface', 'ShowFaces'))
 				return;
 
-			var add_image = function(fieldplayer) {
+			var addImage = function(fieldplayer) {
 				var id = getID(fieldplayer);
 				if (!id)
 					return false;
 
 				var elName = (isYouth ? 'Youth' : '') + 'Player';
 				var players = avatarsXml.getElementsByTagName(elName);
-				for (var i = 0; i < players.length; ++i) {
+
+				let i;
+				for (i = 0; i < players.length; ++i) {
 					if (id === avatarsXml.num(elName + 'ID', players[i]))
 						break;
 				}
 				if (i == players.length) {
-					// id not found, possibly new player, invalidate cache and refetch
-					if (!recursion) {
-						var now = Foxtrick.util.time.getHTTimeStamp(doc);
+					if (recursion) {
+						Foxtrick.error('Infinite recursion in MatchOrderInterface');
+					}
+					else {
+						// id not found, possibly new player, invalidate cache and refetch
+						let now = Foxtrick.util.time.getHTTimeStamp(doc);
 						Foxtrick.util.api.setCacheLifetime(avatarsParamsString, now);
 						Foxtrick.log('New player found: refreshing player cache.');
 						getPlayers(true);
 						getAvatars(JSON.parse(avatarsParamsString), { recursion: true });
-					}
-					else {
-						Foxtrick.error('Infinite recursion in MatchOrderInterface');
 					}
 					return true;
 				}
@@ -84,6 +87,7 @@ Foxtrick.modules['MatchOrderInterface'] = {
 
 				Foxtrick.addClass(shirt, 'smallFaceCard');
 				var style = 'top:-20px; width:' + Math.round(100 / scale) + 'px; height:' +
+					// eslint-disable-next-line no-magic-numbers
 					Math.round(123 / scale) + 'px';
 				shirt.setAttribute('style', style);
 
@@ -91,41 +95,44 @@ Foxtrick.modules['MatchOrderInterface'] = {
 				return false;
 			};
 
-			Foxtrick.any(add_image, target.getElementsByClassName('player'));
+			Foxtrick.any(addImage, target.getElementsByClassName('player'));
 		};
 		var savePenaltySkills = function(playerList) {
 			var players = {};
-			for (var i = 0, p, skill; p = playerList[i]; ++i) {
+			for (let p of playerList) {
 				// formula by HO
-				skill = p.experience * 1.5 + p.setPieces * 0.7 + p.scoring * 0.3;
-				skill = (p.specialtyNumber == 1) ? skill * 1.1 : skill;
+				// eslint-disable-next-line no-magic-numbers
+				let skill = p.experience * 1.5 + p.setPieces * 0.7 + p.scoring * 0.3;
+				// eslint-disable-next-line no-magic-numbers
+				skill = p.specialtyNumber == 1 ? skill * 1.1 : skill;
 				players[p.id] = skill;
 			}
 			Foxtrick.sessionSet('match-orders-penalty-skills', players);
 		};
-		var check_Specialties = function(doc, target, playerList, getID, targetClass) {
+
+		var checkSpecialties = function(doc, target, playerList, getID, targetClass) {
 			if (Foxtrick.Prefs.isModuleOptionEnabled('MatchOrderInterface', 'Specialties')) {
-				var cards_health = target.getElementsByClassName(targetClass);
-				for (var i = 0; i < cards_health.length; ++i) {
-					var id = getID(cards_health[i]);
-					if (!id || Foxtrick.hasClass(cards_health[i], 'ft-specialty'))
+				var cardsHealth = target.getElementsByClassName(targetClass);
+				for (let card of cardsHealth) {
+					var id = getID(card);
+					if (!id || Foxtrick.hasClass(card, 'ft-specialty'))
 						continue;
 
 					var player = Foxtrick.Pages.Players.getPlayerFromListById(playerList, id);
 					if (player && player.specialtyNumber) {
-						Foxtrick.addClass(cards_health[i], 'ft-specialty');
+						Foxtrick.addClass(card, 'ft-specialty');
 						var specIdx = player.specialtyNumber;
 						var opts = { class: 'ft-specialty-img' };
-						Foxtrick.addSpecialty(cards_health[i], specIdx, opts)
+						Foxtrick.addSpecialty(card, specIdx, opts)
 							.catch(Foxtrick.catch('MOI addSpecialty'));
 					}
 				}
 			}
 		};
 
-		//button to clone last order
+		// button to clone last order
 		var runAddCloneButtons = function() {
-			//the brain, remembers which id is what kind of setting, substitution, swap or change
+			// the brain, remembers which id is what kind of setting, substitution, swap or change
 			var mapping = {};
 
 			if (Foxtrick.Prefs.isModuleOptionEnabled('MatchOrderInterface', 'CloneOrder')) {
@@ -150,163 +157,164 @@ Foxtrick.modules['MatchOrderInterface'] = {
 						return getIdFromNode(lastnode);
 					return 0;
 				};
-				//figure out the types of the loaded stuff
+
+				// figure out the types of the loaded stuff
 				var figureLoadedOrders = function() {
 					var orders = doc.getElementsByClassName('substitution');
 					if (!orders.length)
-						return 0;
+						return;
 
-					for (var i = 0; i < orders.length; i++) {
-						var id = getIdFromNode(orders[i]);
-						if (id) {
-							if (doc.getElementById('change_' + id)) {
-								mapping[id] = 'addChange';
-							}
-							if (doc.getElementById('swapout_' + id)) {
-								mapping[id] = 'addSwap';
-							}
-							if (doc.getElementById('out_' + id)) {
-								mapping[id] = 'addSub';
-							}
-						}
+					for (let order of orders) {
+						let id = getIdFromNode(order);
+						if (!id)
+							continue;
+
+						if (doc.getElementById('change_' + id))
+							mapping[id] = 'addChange';
+						if (doc.getElementById('swapout_' + id))
+							mapping[id] = 'addSwap';
+						if (doc.getElementById('out_' + id))
+							mapping[id] = 'addSub';
 					}
 				};
-				//addCloneAsTypeButton
-				var addCloneAsTypeButtonForNode = function(node, type, class_name, title, alt,
-				                                           text, link_type) {
 
-						if (node.getElementsByClassName(class_name).length)
-							return;
+				// addCloneAsTypeButton
+				var addCloneAsTypeButtonForNode = function(node, type, className, title, alt,
+				                                           text, linkType) {
 
-						var sub = node.getElementsByClassName('remove')[0];
-						var cloned = sub.cloneNode(true);
-						cloned.textContent = text;
-						Foxtrick.removeClass(cloned, 'remove');
-						Foxtrick.addClass(cloned, class_name);
-						Foxtrick.addClass(cloned, 'ft-match-order-clone-button');
-						cloned.setAttribute('title', title);
-						cloned.setAttribute('alt', alt);
-						node.appendChild(cloned);
+					if (node.getElementsByClassName(className).length)
+						return;
 
-						Foxtrick.onClick(cloned, function(ev) {
-							cloneAsTypeById(getIdFromNode(ev.target.parentNode), link_type);
+					let sub = node.getElementsByClassName('remove')[0];
+					let cloned = sub.cloneNode(true);
+					cloned.textContent = text;
+					Foxtrick.removeClass(cloned, 'remove');
+					Foxtrick.addClass(cloned, className);
+					Foxtrick.addClass(cloned, 'ft-match-order-clone-button');
+					cloned.setAttribute('title', title);
+					cloned.setAttribute('alt', alt);
+					node.appendChild(cloned);
 
-						});
+					Foxtrick.onClick(cloned, function(ev) {
+						// eslint-disable-next-line no-use-before-define, no-invalid-this
+						cloneAsTypeById(getIdFromNode(this.parentNode), linkType);
+					});
 				};
 				var cloneOpts = {
-					'clone': {
+					clone: {
 						title: Foxtrick.L10n.getString('matchOrder.cloneOrder'),
 						alt: Foxtrick.L10n.getString('matchOrder.cloneOrder'),
 						text: Foxtrick.L10n.getString('matchOrder.cloneOrder.abbr'),
 					},
-					'addSwap': {
+					addSwap: {
 						title: Foxtrick.L10n.getString('matchOrder.cloneAsSwap'),
 						alt: Foxtrick.L10n.getString('matchOrder.cloneAsSwap'),
 						text: Foxtrick.L10n.getString('matchOrder.cloneAsSwap.abbr'),
 					},
-					'addChange': {
+					addChange: {
 						title: Foxtrick.L10n.getString('matchOrder.cloneAsChange'),
 						alt: Foxtrick.L10n.getString('matchOrder.cloneAsChange'),
 						text: Foxtrick.L10n.getString('matchOrder.cloneAsChange.abbr'),
 					},
-					'addSub': {
+					addSub: {
 						title: Foxtrick.L10n.getString('matchOrder.cloneAsSub'),
 						alt: Foxtrick.L10n.getString('matchOrder.cloneAsSub'),
 						text: Foxtrick.L10n.getString('matchOrder.cloneAsSub.abbr'),
 					},
-
 				};
 				var addCloneButtonForNodeByType = function(node, type, idx) {
 					var title = cloneOpts[type].title;
 					var alt = cloneOpts[type].alt;
 					var text = cloneOpts[type].text;
-					if (type == 'clone')
-						type = mapping[getIdFromNode(node)];
+
+					var tp = type;
+					if (tp == 'clone')
+						tp = mapping[getIdFromNode(node)];
 
 					var desiredClass = 'ft-match-order-clone-' + idx;
-					addCloneAsTypeButtonForNode(node, type, desiredClass, title, alt, text, type);
+					addCloneAsTypeButtonForNode(node, tp, desiredClass, title, alt, text, tp);
 				};
-				var cloneAsTypeById = function(src_id, type) {
-					var clone_settings = function(sourceId, targetId) {
-						//adjust minutes
+				var cloneAsTypeById = function(srcId, type) {
+					var id;
+					var cloneSettings = function(sourceId, targetId) {
+						// adjust minutes
 						var min = doc.getElementById('minutestext_' + targetId);
-						var min_org = doc.getElementById('minutestext_' + sourceId);
-						while (min.textContent != min_org.textContent) {
+						var minOrg = doc.getElementById('minutestext_' + sourceId);
+
+						while (min.textContent != minOrg.textContent)
 							doc.getElementById('minutesplus_' + id).click();
+
+						// display advanced, default copy from src, otherwise autoexpand
+						if (Foxtrick.Prefs.isModuleOptionEnabled('MatchOrderInterface',
+						    'AutoExpandCloned')) {
+							doc.getElementById('advanced_' + targetId)
+								.setAttribute('style', 'display:block;');
 						}
-						//display advanced, default copy from src, otherwise autoexpand
-						if (!Foxtrick.Prefs.isModuleOptionEnabled('MatchOrderInterface',
-						    'AutoExpandCloned'))
+						else {
 							doc.getElementById('advanced_' + targetId)
 								.setAttribute('style', doc.getElementById('advanced_' + sourceId)
 								              .getAttribute('style'));
-						else
-							doc.getElementById('advanced_' + targetId)
-								.setAttribute('style', 'display:block;');
-						//behaviour
+						}
+
+						// behaviour
 						if (doc.getElementById('behaviour_' + targetId) &&
-						    doc.getElementById('behaviour_' + sourceId))
+						    doc.getElementById('behaviour_' + sourceId)) {
 							doc.getElementById('behaviour_' + targetId).value =
 								doc.getElementById('behaviour_' + sourceId).value;
-						//cardcond
+						}
+
+						// cardcond
 						doc.getElementById('cardcond_' + targetId).value =
 							doc.getElementById('cardcond_' + sourceId).value;
-						//standingcond
+
+						// standingcond
 						doc.getElementById('standingcond_' + targetId).value =
 							doc.getElementById('standingcond_' + sourceId).value;
-						//minifield
-						//it does not make much sence to clone the minifield and might lead to
-						//unwanted errors if we ever want to enabled it, here's the code:
-						/*
-						if (doc.getElementById('minifield_' + sourceId)) {
-							var lastactive = doc.getElementById('minifield_' + sourceId).getElementsByClassName('active')[0];
-							if (lastactive && doc.getElementById('minifield_' + targetId)) {
-								var lastactiveid = lastactive.className.match(/\d+/)[0];
-								doc.getElementById('minifield_' + targetId).getElementsByClassName('p'+lastactiveid)[0].click();
-							}
-						}
-						*/
+
+						// minifield
+						// it does not make much sence to clone the minifield and might lead to
+						// unwanted errors
 					};
-					//get button for the order by id
+
+					// get button for the order by id
 					var srcTypeButton = doc.getElementById(type);
 
-					//click it
+					// click it
 					srcTypeButton.click();
 
-					//get id of the cloned entry and update mapping
-					var id = getLastId();
-					mapping[id] = mapping[src_id];
+					// get id of the cloned entry and update mapping
+					id = getLastId();
+					mapping[id] = mapping[srcId];
 
-					//clone the settings
-					clone_settings(src_id, id);
+					// clone the settings
+					cloneSettings(srcId, id);
 				};
 
 				var addCloneButtonsForNode = function(node) {
 
-					//counter for class naming, used in styling
+					// counter for class naming, used in styling
 					var i = 0;
-					//normal clone button
+
+					// normal clone button
 					addCloneButtonForNodeByType(node, 'clone', ++i);
 
 					var type = mapping[getIdFromNode(node)];
 
-					if (type != 'addSub') {
+					if (type != 'addSub')
 						addCloneButtonForNodeByType(node, 'addSub', ++i);
-					}
-					if (type != 'addChange') {
+
+					if (type != 'addChange')
 						addCloneButtonForNodeByType(node, 'addChange', ++i);
-					}
-					if (type != 'addSwap') {
+
+					if (type != 'addSwap')
 						addCloneButtonForNodeByType(node, 'addSwap', ++i);
-					}
 				};
 
 				figureLoadedOrders();
 				var orders = doc.getElementsByClassName('substitution');
 				if (orders.length) {
-					for (var i = 0; i < orders.length; i++) {
-						addCloneButtonsForNode(orders[i]);
-					}
+					for (let order of orders)
+						addCloneButtonsForNode(order);
 				}
 			}
 		};
@@ -378,7 +386,9 @@ Foxtrick.modules['MatchOrderInterface'] = {
 		};
 
 
+		/** @type {Listener<HTMLElement, MouseEvent>} */
 		var copyLineup = function() {
+			// eslint-disable-next-line no-invalid-this
 			var doc = this.ownerDocument;
 			var COPY_TMPL = makeCopyTemplate();
 
@@ -424,8 +434,9 @@ Foxtrick.modules['MatchOrderInterface'] = {
 			var bothTeams = crumbs[1].textContent.trim();
 			var re = Foxtrick.strToRe(thisTeam);
 			var matched = bothTeams.match(re);
-			data.teams = matched ? bothTeams.replace(re, '[b]' + thisTeam + '[/b]') :
-				bothTeams += ' - ' + '[b]' + thisTeam + '[/b]';
+			data.teams = matched ?
+				bothTeams.replace(re, '[b]' + thisTeam + '[/b]') :
+				bothTeams += ' - [b]' + thisTeam + '[/b]';
 
 			data.matchId = Foxtrick.util.id.getMatchIdFromUrl(doc.location.href) || '';
 			data.formation = doc.getElementById('formations').textContent.trim();
@@ -456,9 +467,9 @@ Foxtrick.modules['MatchOrderInterface'] = {
 				for (var x in X_DIRS) {
 					if (Foxtrick.hasClass(posDiv, x)) {
 						var dirNum = X_DIRS[x][pos];
-						if (dirNum) {
+						if (dirNum)
 							dir = dirNum === 1 ? 'right' : 'left';
-						}
+
 						break;
 					}
 				}
@@ -522,8 +533,7 @@ Foxtrick.modules['MatchOrderInterface'] = {
 
 			// load ahead players and then wait for interface loaded
 			getPlayers = function(fresh) {
-				Foxtrick.Pages.Players.getPlayerList(doc,
-				  function(playerInfo) {
+				Foxtrick.Pages.Players.getPlayerList(doc, (playerInfo) => {
 					if (!playerInfo || playerInfo.length === 0) {
 						Foxtrick.log('unable to retrieve player list.');
 						return;
@@ -535,8 +545,10 @@ Foxtrick.modules['MatchOrderInterface'] = {
 
 					savePenaltySkills(playerList);
 
-					if (hasInterface)
+					if (hasInterface) {
+						// eslint-disable-next-line no-use-before-define
 						showPlayerInfo(doc.getElementById('orders'));
+					}
 				}, { teamId: teamId, currentSquad: true, includeMatchInfo: true, refresh: fresh });
 			};
 			getPlayers();
@@ -548,8 +560,9 @@ Foxtrick.modules['MatchOrderInterface'] = {
 			];
 			avatarsParamsString = JSON.stringify(avatarsParams); // save as string (immutable)
 			getAvatars = function(avatarsParams, opts) {
-				Foxtrick.util.api.retrieve(doc, avatarsParams, { cache_lifetime: 'session' },
-				  function(xml, errorText) {
+				/** @type {CHPPOpts} */
+				let cOpts = { cache: 'session' };
+				Foxtrick.util.api.retrieve(doc, avatarsParams, cOpts, (xml, errorText) => {
 					if (!xml || errorText) {
 						Foxtrick.log(errorText);
 						return;
@@ -560,20 +573,24 @@ Foxtrick.modules['MatchOrderInterface'] = {
 					var field = doc.getElementById('field');
 					var rec = opts && opts.recursion;
 					if (hasInterface)
-						check_images(doc, field, avatarsXml, getID, 3, rec);
+						checkImages(doc, field, avatarsXml, getID, 3, rec);
 				});
 			};
 			getAvatars(avatarsParams);
 
+			// eslint-disable-next-line complexity
 			var waitForInterface = function(ev) {
 				if (hasInterface)
 					return;
 				Foxtrick.log('hasInterface');
 				hasInterface = true;
-				if (hasPlayerInfo)
+				if (hasPlayerInfo) {
+					// eslint-disable-next-line no-use-before-define
 					showPlayerInfo(doc.getElementById('orders'));
+				}
+
 				if (hasAvatars)
-					check_images(doc, doc.getElementById('field'), avatarsXml, getID, 3);
+					checkImages(doc, doc.getElementById('field'), avatarsXml, getID, 3);
 
 				// copy lineuo
 				if (!doc.getElementById('ft_copy_lineup')) {
@@ -587,25 +604,25 @@ Foxtrick.modules['MatchOrderInterface'] = {
 					formations.parentNode.insertBefore(copyLineupDiv, formations.nextSibling);
 				}
 
-				//checkbox to swap positions
+				// checkbox to swap positions
 				var needsSwapPositions = Foxtrick.Prefs.isModuleOptionEnabled('MatchOrderInterface',
 				                                                             'SwapPositions');
 				if (needsSwapPositions && !doc.getElementById('ft_swap_positions')) {
-					var swapPositionsDiv = Foxtrick
+					let swapPositionsDiv = Foxtrick
 						.createFeaturedElement(doc, Foxtrick.modules.MatchOrderInterface, 'div');
 					swapPositionsDiv.id = 'ft_swap_positions';
-					var swapPositionsLink = doc.createElement('span');
+					let swapPositionsLink = doc.createElement('span');
 					swapPositionsLink.textContent =
 						Foxtrick.L10n.getString('matchOrder.swapPositions');
 					swapPositionsDiv.appendChild(swapPositionsLink);
-					var formations = doc.getElementById('formations');
+					let formations = doc.getElementById('formations');
 					formations.parentNode.insertBefore(swapPositionsDiv, formations.nextSibling);
-					doc.dispatchEvent(new Event('ft_enable_swap'));
-					doc.documentElement.dataset.ft_enable_swap = true;
+					doc.dispatchEvent(new Event('ftenableswap'));
+					doc.documentElement.dataset.ftEnableSwap = true;
 				}
 
 
-				//fill & clear penalty takers
+				// fill & clear penalty takers
 				var needsPenalties = Foxtrick.Prefs.isModuleOptionEnabled('MatchOrderInterface',
 				                                                         'AddPenaltyTakerButtons');
 
@@ -630,7 +647,8 @@ Foxtrick.modules['MatchOrderInterface'] = {
 						Foxtrick.onClick(toggle, (function(opt) {
 							return function(ev) {
 								var on = ev.target.checked;
-								Foxtrick.Prefs.setModuleEnableState('MatchOrderInterface.' + opt, on);
+								let oName = 'MatchOrderInterface.' + opt;
+								Foxtrick.Prefs.setModuleEnableState(oName, on);
 							};
 						})(opt));
 						toggleDiv.appendChild(toggle);
@@ -649,23 +667,24 @@ Foxtrick.modules['MatchOrderInterface'] = {
 
 					Foxtrick.onClick(FillPenaltyTakersLink, function() {
 
-						var useSubs = Foxtrick.Prefs.isModuleOptionEnabled('MatchOrderInterface',
-																		  'UseSubsForPenalties');
-						var customSort = !Foxtrick.Prefs.isModuleOptionEnabled('MatchOrderInterface',
-																			  'DontSortPenaltyTakers');
-						var priority = Foxtrick.Prefs.isModuleOptionEnabled('MatchOrderInterface',
-																		   'PrioritizeSP');
-						var clearFirst = Foxtrick.Prefs.isModuleOptionEnabled('MatchOrderInterface',
-																			 'ClearPenaltyTakersFirst');
+						var useSubs =
+							Foxtrick.Prefs.isModuleOptionEnabled(module, 'UseSubsForPenalties');
+						var customSort =
+							!Foxtrick.Prefs.isModuleOptionEnabled(module, 'DontSortPenaltyTakers');
+						var priority =
+							Foxtrick.Prefs.isModuleOptionEnabled(module, 'PrioritizeSP');
+						var clearFirst =
+							Foxtrick.Prefs.isModuleOptionEnabled(module, 'ClearPenaltyTakersFirst');
 
 						if (clearFirst)
 							doc.getElementById('ft_clear_penalty_takers').click();
 
-						Foxtrick.sessionGet('match-orders-penalty-skills',
-						  function(ps) {
+						// eslint-disable-next-line complexity
+						Foxtrick.sessionGet('match-orders-penalty-skills', (ps) => {
 
 							// collect data about existing kickers first
 							var taken = [], placed = [], sp;
+
 							// let's find the sp player (position #20)
 							var spPlayer = doc.getElementById(20).firstChild;
 							if (spPlayer)
@@ -679,33 +698,36 @@ Foxtrick.modules['MatchOrderInterface'] = {
 							var lastTaken = 20; // index to last filled position
 
 							var players = doc.querySelectorAll('#players > div');
-							players = Foxtrick.map(function(n) { return n; }, players);
+							players = Foxtrick.toArray(players);
+
 							// change live node list into array
 
 							if (customSort && hasPlayerInfo && typeof ps !== 'undefined') {
 								players.sort(function(a, b) { // sort descending
 									var aid = a.id.match(/\d+/)[0], bid = b.id.match(/\d+/)[0];
-									if (ps[aid] !== null && ps[bid] !== null) {
-										return (ps[bid] - ps[aid]);
-									}
-									else return 0;
+									if (ps[aid] !== null && ps[bid] !== null)
+										return ps[bid] - ps[aid];
+
+									return 0;
 								});
 							}
 
 							if (priority && sp) {
-								var idx;
-								for (var i = 0, player; player = players[i]; ++i) {
+								let idx;
+								for (let [i, player] of players.entries()) {
 									if (player.id == sp) {
 										idx = i;
 										break;
 									}
 								}
+
 								// remove sp taker from the middle and add to the front
-								var taker = players.splice(idx, 1)[0];
+								let taker = players.splice(idx, 1)[0];
 								players.unshift(taker);
 							}
 
-							for (var i = 0, player; (player = players[i]) && lastTaken < 31; ++i) {
+							// eslint-disable-next-line no-magic-numbers
+							for (let i = 0, player; (player = players[i]) && lastTaken < 31; ++i) {
 								// player exists and we have unchecked positions
 
 								// skip unused players, already placed players and subs
@@ -714,6 +736,7 @@ Foxtrick.modules['MatchOrderInterface'] = {
 								    placed[player.id])
 									continue;
 
+								// eslint-disable-next-line no-magic-numbers
 								while (lastTaken < 31) {
 									// next position exists
 									if (taken[lastTaken + 1]) {
@@ -721,10 +744,12 @@ Foxtrick.modules['MatchOrderInterface'] = {
 										++lastTaken;
 										continue;
 									}
+
 									// next position is free: placing player
 									player.click();
 									doc.getElementById(lastTaken + 1).click();
 									++lastTaken;
+
 									// continue with next player
 									break;
 								}
@@ -749,23 +774,22 @@ Foxtrick.modules['MatchOrderInterface'] = {
 
 					var penalties = doc.getElementById('tab_penaltytakers');
 					penalties.appendChild(frag);
-					doc.dispatchEvent(new Event('ft_enable_penalty_controls'));
-					doc.documentElement.dataset.ft_enable_penalty_controls = true;
+					doc.dispatchEvent(new Event('ftenablepenaltycontrols'));
+					doc.documentElement.dataset.ftEnablePenaltyControls = true;
 				}
 
 				if (Foxtrick.Prefs.isModuleOptionEnabled('MatchOrderInterface', 'StayOnPage')) {
-					doc.dispatchEvent(new Event('ft_enable_stay'));
-					doc.documentElement.dataset.ft_enable_stay = true;
+					doc.dispatchEvent(new Event('ftenablestay'));
+					doc.documentElement.dataset.ftEnableStay = true;
 				}
 				if (Foxtrick.Prefs.isModuleOptionEnabled('MatchOrderInterface',
 				    'FixPenaltyTakers')) {
-					doc.dispatchEvent(new Event('ft_enable_penalties_fix'));
-					doc.documentElement.dataset.ft_enable_penalties_fix = true;
+					doc.dispatchEvent(new Event('ftenablepenaltiesfix'));
+					doc.documentElement.dataset.ftEnablePenaltiesFix = true;
 				}
 
 				// add playerid to details
-				Foxtrick.listen(doc.getElementById('players'), 'mouseover',
-				  function(ev) {
+				Foxtrick.listen(doc.getElementById('players'), 'mouseover', (ev) => {
 					if (Foxtrick.hasClass(ev.target, 'player')) {
 						var detailsTemplate = doc.getElementById('detailsTemplate');
 						var idSearch = ev.target.id.match(/list_playerID(\d+)/i);
@@ -777,52 +801,65 @@ Foxtrick.modules['MatchOrderInterface'] = {
 				// listen to all that has players (seperatelly to reduce excessive calling)
 				var details = doc.getElementById('details');
 				Foxtrick.onChange(details, function() {
-					//Foxtrick.log('details change');
+					// Foxtrick.log('details change');
+					let display =
+						Foxtrick.Prefs.isModuleOptionEnabled(module, 'DisplayLastMatchInDetails');
 					if (hasPlayerInfo) {
-						if (Foxtrick.Prefs.isModuleOptionEnabled('MatchOrderInterface',
-						    'DisplayLastMatchInDetails'))
+						if (display) {
+							// eslint-disable-next-line no-use-before-define
 							addLastMatchtoDetails();
-						if (Foxtrick.Prefs.isModuleEnabled('LoyaltyDisplay'))
+						}
+						if (Foxtrick.Prefs.isModuleEnabled('LoyaltyDisplay')) {
+							// eslint-disable-next-line no-use-before-define
 							injectLoyaltyBars();
+						}
 					}
 				});
 
 				var list = doc.getElementById('list');
 				Foxtrick.onChange(list, function() {
-					//Foxtrick.log('list change');
-					if (hasPlayerInfo)
+					// Foxtrick.log('list change');
+					if (hasPlayerInfo) {
+						// eslint-disable-next-line no-use-before-define
 						showPlayerInfo(list);
+					}
 					if (hasAvatars)
-						check_images(doc, list, avatarsXml, getID, 3);
+						checkImages(doc, list, avatarsXml, getID, 3);
 				});
 
 				var fieldplayers = doc.getElementById('fieldplayers');
 				Foxtrick.onChange(fieldplayers, function() {
-					//Foxtrick.log('fieldplayers change');
-					if (hasPlayerInfo)
+					// Foxtrick.log('fieldplayers change');
+					if (hasPlayerInfo) {
+						// eslint-disable-next-line no-use-before-define
 						showPlayerInfo(fieldplayers);
+					}
 					if (hasAvatars)
-						check_images(doc, fieldplayers, avatarsXml, getID, 3);
+						checkImages(doc, fieldplayers, avatarsXml, getID, 3);
 				});
 
-				var tab_subs = doc.getElementById('tab_subs');
-				Foxtrick.onChange(tab_subs, function() {
-					//Foxtrick.log('tab_subs change');
-					if (hasPlayerInfo)
-						showPlayerInfo(tab_subs);
+				var tabSubs = doc.getElementById('tab_subs');
+				Foxtrick.onChange(tabSubs, function() {
+					// Foxtrick.log('tab_subs change');
+					if (hasPlayerInfo) {
+						// eslint-disable-next-line no-use-before-define
+						showPlayerInfo(tabSubs);
+					}
 					if (hasAvatars)
-						check_images(doc, tab_subs, avatarsXml, getID, 3);
+						checkImages(doc, tabSubs, avatarsXml, getID, 3);
 
 					runAddCloneButtons();
 				});
 
-				var tab_penaltytakers = doc.getElementById('tab_penaltytakers');
-				Foxtrick.onChange(tab_penaltytakers, function() {
-					//Foxtrick.log('tab_penaltytakers change');
-					if (hasPlayerInfo)
-						showPlayerInfo(tab_penaltytakers);
+				var tabPenaltytakers = doc.getElementById('tab_penaltytakers');
+				Foxtrick.onChange(tabPenaltytakers, function() {
+					// Foxtrick.log('tab_penaltytakers change');
+					if (hasPlayerInfo) {
+						// eslint-disable-next-line no-use-before-define
+						showPlayerInfo(tabPenaltytakers);
+					}
 					if (hasAvatars)
-						check_images(doc, tab_penaltytakers, avatarsXml, getID, 3);
+						checkImages(doc, tabPenaltytakers, avatarsXml, getID, 3);
 				});
 			};
 
@@ -848,7 +885,7 @@ Foxtrick.modules['MatchOrderInterface'] = {
 				specials.appendChild(span);
 			};
 
-			//loyalty, uses loyalty-display.js module code
+			// loyalty, uses loyalty-display.js module code
 			var injectLoyaltyBars = function() {
 				var details = doc.getElementById('details');
 				var specials = details.getElementsByClassName('specials')[0];
@@ -867,30 +904,31 @@ Foxtrick.modules['MatchOrderInterface'] = {
 			};
 
 			var showPlayerInfo = function(target) {
-
-				//original version was removed due to HT request,
-				//this highlights players on the field for supporters only
+				// original version was removed due to HT request,
+				// this highlights players on the field for supporters only
 				if (Foxtrick.Prefs.isModuleOptionEnabled('MatchOrderInterface',
 				    'GotTrainingOnField')) {
-					//players aren't send with the document, but the eventListeners
-					//later will take care
+					// players aren't sent with the document, but the eventListeners
+					// later will take care
 					var listplayers = target.getElementsByClassName('player');
 
 					if (!listplayers.length)
 						return;
 
-					for (var i = 0; i < listplayers.length; ++i)
-						if (Foxtrick.hasClass(listplayers[i], 'trained')) //only for supporters
+					for (var i = 0; i < listplayers.length; ++i) {
+						if (Foxtrick.hasClass(listplayers[i], 'trained')) // only for supporters
 							Foxtrick.addClass(listplayers[i], 'ft-highlight-onfield');
+					}
 				}
 
-				//show potential specialty icons
-				check_Specialties(doc, target, playerList, getIDParent, 'cards_health');
+				// show potential specialty icons
+				checkSpecialties(doc, target, playerList, getIDParent, 'cards_health');
 			};
 
-			Foxtrick.listen(doc, 'interface_ready', function(e) {
-				Foxtrick.log('interface ready: ', doc.getElementById('tab_penaltytakers')
-				             .getElementsByTagName('div').length !== 0);
+			// @ts-ignore
+			Foxtrick.listen(doc, 'ftinterfaceready', function(e) {
+				let found = doc.querySelector('#tab_penaltytakers div');
+				Foxtrick.log('interface ready:', !!found);
 				waitForInterface();
 			});
 		};

@@ -279,22 +279,20 @@ Foxtrick.modules['StaffMarker'] = {
 			var teamId = Foxtrick.util.id.getOwnTeamId();
 
 			return new Promise(function(fulfill, reject) {
-
-				Foxtrick.util.api.retrieve(doc, [
+				let args = [
 					['file', 'teamdetails'],
 					['version', '3.1'],
 					['teamId', teamId],
 					['includeSupporters', 'true'],
-				  ],
-				  { cache_lifetime: 'session' },
-				  function(xml, errorText) {
+				];
+				Foxtrick.util.api.retrieve(doc, args, { cache: 'session' }, (xml, errorText) => {
 					if (!xml || errorText) {
 						Foxtrick.log('StaffMarker teamdetails failed:', errorText);
 						reject();
 						return;
 					}
 
-					var batchArgs = [];
+					var bArgs = [];
 					var supportedCt, supporterCt;
 					var pageCt, p;
 
@@ -308,7 +306,7 @@ Foxtrick.modules['StaffMarker'] = {
 
 						pageCt = Math.ceil(supporterCt / TEAMS_PER_PAGE);
 						for (p = 0; p < pageCt; p++) {
-							batchArgs.push([
+							bArgs.push([
 								['file', 'supporters'],
 								['version', '1.0'],
 								['teamId', id],
@@ -326,7 +324,7 @@ Foxtrick.modules['StaffMarker'] = {
 					// supported teams are same for both teams so added once only
 					pageCt = Math.ceil(supportedCt / TEAMS_PER_PAGE);
 					for (p = 0; p < pageCt; p++) {
-						batchArgs.push([
+						bArgs.push([
 							['file', 'supporters'],
 							['version', '1.0'],
 							['teamId', teamId],
@@ -336,8 +334,9 @@ Foxtrick.modules['StaffMarker'] = {
 						]);
 					}
 
-					Foxtrick.util.api.batchRetrieve(doc, batchArgs, { cache_lifetime: 'session' },
-					  function(xmls, errors) {
+					/** @type {CHPPOpts} */
+					let cOpts = { cache: 'session' };
+					Foxtrick.util.api.batchRetrieve(doc, bArgs, cOpts, (xmls, errors) => {
 						if (!xmls) {
 							Foxtrick.log('StaffMarker supporters failed');
 							reject();
@@ -351,7 +350,7 @@ Foxtrick.modules['StaffMarker'] = {
 							var xml = xmls[x];
 							var errorText = errors[x];
 							if (!xml || errorText) {
-								Foxtrick.log('No XML in batchRetrieve', batchArgs[x], errorText);
+								Foxtrick.log('No XML in batchRetrieve', bArgs[x], errorText);
 								continue;
 							}
 

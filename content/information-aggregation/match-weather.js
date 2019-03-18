@@ -1,9 +1,10 @@
-'use strict';
 /**
  * match-weather.js
  * add ht and irl weather for today and tomorrow on match page
  * @author teles
  */
+
+'use strict';
 
 Foxtrick.modules['MatchWeather'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
@@ -28,8 +29,7 @@ Foxtrick.modules['MatchWeather'] = {
 			['version', '1.5'],
 			['arenaId', parseInt(arenaId, 10)],
 		];
-		Foxtrick.util.api.retrieve(doc, parameters, { cache_lifetime: 'session' },
-		  function(xml, errorText) {
+		Foxtrick.util.api.retrieve(doc, parameters, { cache: 'session' }, (xml, errorText) => {
 			if (!xml || errorText) {
 				Foxtrick.log(errorText);
 				return;
@@ -37,7 +37,6 @@ Foxtrick.modules['MatchWeather'] = {
 
 			var regionID = xml.num('RegionID');
 			module.fetchRegion(doc, regionID);
-
 		});
 	},
 
@@ -133,8 +132,7 @@ Foxtrick.modules['MatchWeather'] = {
 			['regionId', regionId],
 		];
 
-		Foxtrick.util.api.retrieve(doc, parameters, { cache_lifetime: until },
-		  function(xml, errorText) {
+		Foxtrick.util.api.retrieve(doc, parameters, { cache: until }, (xml, errorText) => {
 			if (!xml || errorText) {
 				Foxtrick.log(errorText);
 				return;
@@ -145,7 +143,7 @@ Foxtrick.modules['MatchWeather'] = {
 			data.weatherTomorrow = xml.num('TomorrowWeatherID');
 			data.regionName = xml.text('RegionName').replace(/'/g, '').replace(/ ,/g, '-');
 
-			var leagueId = xml.text('LeagueID');
+			var leagueId = xml.num('LeagueID');
 			data.country = Foxtrick.L10n.getCountryNameEnglish(leagueId);
 
 			if (Foxtrick.Prefs.isModuleOptionEnabled('MatchWeather', 'Irl')) {

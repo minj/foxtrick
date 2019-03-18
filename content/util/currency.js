@@ -10,6 +10,7 @@
 
 /* eslint-disable */
 if (!this.Foxtrick)
+	// @ts-ignore
 	var Foxtrick = {};
 /* eslint-enable */
 
@@ -19,12 +20,16 @@ if (!Foxtrick.util)
 Foxtrick.util.currency = {};
 
 /**
+ * @typedef {{rate: number, symbol: string}} Currency
+ */
+
+/**
  * Continue with correct currency if possible.
  *
  * Returns Promise.<[rate, symbol]>
  *
- * @param  {document}	doc
- * @return {Promise}
+ * @param  {document}          doc
+ * @return {Promise<Currency>}
  */
 Foxtrick.util.currency.detect = function(doc) {
 
@@ -44,6 +49,7 @@ Foxtrick.util.currency.detect = function(doc) {
 		}
 
 		if (!Foxtrick.util.layout.hasMultipleTeams(doc)) {
+			// @ts-ignore
 			code = Foxtrick.util.currency.findCode(); // safe
 			Foxtrick.Prefs.setString('Currency.Code.' + ownTeamId, code);
 
@@ -55,28 +61,29 @@ Foxtrick.util.currency.detect = function(doc) {
 			return;
 		}
 
-		var teamargs = [['file', 'teamdetails'], ['version', '2.9'], ['teamId', ownTeamId]];
-		Foxtrick.util.api.retrieve(doc, teamargs, { cache_lifetime: 'session' },
-		  function(teamXml, errorText) {
+		let teamargs = [['file', 'teamdetails'], ['version', '2.9'], ['teamId', ownTeamId]];
+		Foxtrick.util.api.retrieve(doc, teamargs, { cache: 'session' }, (teamXml, errorText) => {
 			if (!teamXml || errorText) {
 				Foxtrick.log('[ERROR] Currency detection failed:', errorText);
 
 				// can't detect if CHPP is disabled with multiple teams
 				Foxtrick.util.currency.displaySelector(doc, { reason: 'chpp' });
 
+				// eslint-disable-next-line prefer-promise-reject-errors
 				reject({ reason: 'chpp' });
 				return;
 			}
 
 			// set the correct currency
-			var teams = teamXml.getElementsByTagName('IsPrimaryClub');
-			for (var primaryTeamIdx = 0; primaryTeamIdx < teams.length; ++primaryTeamIdx) {
+			var primaryTeamIdx;
+			let teams = teamXml.getElementsByTagName('IsPrimaryClub');
+			for (primaryTeamIdx = 0; primaryTeamIdx < teams.length; ++primaryTeamIdx) {
 				if (teams[primaryTeamIdx].textContent == 'True')
 					break;
 			}
 
-			var leagues = teamXml.getElementsByTagName('LeagueID');
-			var leagueId = leagues[primaryTeamIdx].textContent;
+			let leagues = teamXml.getElementsByTagName('LeagueID');
+			let leagueId = parseInt(leagues[primaryTeamIdx].textContent, 10);
 
 			rate = Foxtrick.util.currency.findRate(leagueId); // safe
 			symbol = Foxtrick.util.currency.findSymbol(leagueId); // safe
@@ -98,8 +105,8 @@ Foxtrick.util.currency.detect = function(doc) {
  * info is {reason: string}.
  * reason: 'chpp' is off or 'symbol' was not found
  *
- * @param  {document} doc
- * @param  {object} info { reason: string }
+ * @param {document}         doc
+ * @param {{reason: string}} info { reason: string }
  */
 Foxtrick.util.currency.displaySelector = function(doc, info) {
 	var selectId = 'ft-currency-selector';
@@ -107,23 +114,22 @@ Foxtrick.util.currency.displaySelector = function(doc, info) {
 	if (doc.getElementById(noteId))
 		return;
 
+	// @ts-ignore
 	var defaultCode = this.findCode(); // unsafe
 
 	if (!defaultCode) {
-		var teamCodes = Foxtrick.Prefs.getAllKeysOfBranch('Currency.Code');
-		var freqMap = new Map();
+		let teamCodes = Foxtrick.Prefs.getAllKeysOfBranch('Currency.Code');
+		let freqMap = new Map();
 
-		for (var teamCode of teamCodes) {
-			var code = Foxtrick.Prefs.getString(teamCode);
+		for (let teamCode of teamCodes) {
+			let code = Foxtrick.Prefs.getString(teamCode);
 
-			var freq = freqMap.get(code) || 0;
+			let freq = freqMap.get(code) || 0;
 			freqMap.set(code, ++freq);
 		}
 
-		var entries = Array.from(freqMap.entries());
-		var mostFreqEntry = entries.sort(function(a, b) {
-			return a[1] - b[1];
-		}).pop();
+		let entries = Array.from(freqMap.entries());
+		let mostFreqEntry = entries.sort((a, b) => a[1] - b[1]).pop();
 
 		if (mostFreqEntry)
 			defaultCode = mostFreqEntry[0];
@@ -134,11 +140,11 @@ Foxtrick.util.currency.displaySelector = function(doc, info) {
 	var currencySelect = doc.createElement('select');
 	currencySelect.id = selectId;
 
-	var currencies = Foxtrick.XMLData.htCurrencyJSON.hattrickcurrencies;
-	currencies.sort(function(a, b) { return a.name.localeCompare(b.name); });
+	let currencies = Foxtrick.XMLData.htCurrencyJSON.hattrickcurrencies;
+	currencies.sort((a, b) => a.name.localeCompare(b.name));
 
-	for (var curr of currencies) {
-		var item = doc.createElement('option');
+	for (let curr of currencies) {
+		let item = doc.createElement('option');
 		item.value = curr.code;
 		item.textContent = curr.name;
 
@@ -149,38 +155,40 @@ Foxtrick.util.currency.displaySelector = function(doc, info) {
 	}
 
 	var cont = doc.createElement('div');
-	var h3 = doc.createElement('h3');
+	let h3 = doc.createElement('h3');
 	h3.textContent = Foxtrick.L10n.getString('currency.failed');
 	cont.appendChild(h3);
 
 	if (typeof info === 'object' && 'reason' in info) {
-		var reason = doc.createElement('p');
+		let reason = doc.createElement('p');
 		reason.textContent = Foxtrick.L10n.getString('currency.' + info.reason);
 		cont.appendChild(reason);
 	}
 
-	var span = doc.createElement('span');
+	let span = doc.createElement('span');
 	span.textContent = Foxtrick.L10n.getString('currency.select');
 	cont.appendChild(span);
 
 	cont.appendChild(currencySelect);
 
-	var button = doc.createElement('button');
+	let button = doc.createElement('button');
 	button.type = 'button';
 	button.textContent = Foxtrick.L10n.getString('button.save');
 	cont.appendChild(button);
 
 	Foxtrick.onClick(button, function(ev) {
-		var doc = ev.target.ownerDocument;
+		// eslint-disable-next-line no-invalid-this
+		let doc = this.ownerDocument;
 
-		var select = doc.getElementById(selectId);
+		// eslint-disable-next-line no-extra-parens
+		let select = /** @type {HTMLSelectElement} */ (doc.getElementById(selectId));
 		Foxtrick.Prefs.setString('Currency.Code.' + ownTeamId, select.value);
 
-		var note = doc.getElementById(noteId);
+		let note = doc.getElementById(noteId);
 		note.parentNode.removeChild(note);
 	});
 
-	var report = doc.createElement('p');
+	let report = doc.createElement('p');
 	report.textContent = Foxtrick.L10n.getString('currency.bugReport');
 	cont.appendChild(report);
 
@@ -193,7 +201,7 @@ Foxtrick.util.currency.displaySelector = function(doc, info) {
  */
 Foxtrick.util.currency.reset = function() {
 	Foxtrick.log('RESETING CURRENCY');
-	var ownTeamId = Foxtrick.util.id.getOwnTeamId();
+	let ownTeamId = Foxtrick.util.id.getOwnTeamId();
 	Foxtrick.Prefs.deleteValue('Currency.Code.' + ownTeamId);
 };
 
@@ -204,10 +212,10 @@ Foxtrick.util.currency.reset = function() {
  * @return {string}
  */
 Foxtrick.util.currency.getSymbolByCode = function(lookup) {
-	var ret = null;
+	let ret = null;
 
-	var category = Foxtrick.XMLData.htCurrencyJSON.hattrickcurrencies;
-	var cur = Foxtrick.nth(function(item) {
+	let category = Foxtrick.XMLData.htCurrencyJSON.hattrickcurrencies;
+	let cur = Foxtrick.nth(function(item) {
 		return item.code == lookup;
 	}, category);
 
@@ -224,10 +232,10 @@ Foxtrick.util.currency.getSymbolByCode = function(lookup) {
  * @return {number}
  */
 Foxtrick.util.currency.getRateByCode = function(lookup) {
-	var ret = null;
+	let ret = null;
 
-	var category = Foxtrick.XMLData.htCurrencyJSON.hattrickcurrencies;
-	var curr = Foxtrick.nth(function(item) {
+	let category = Foxtrick.XMLData.htCurrencyJSON.hattrickcurrencies;
+	let curr = Foxtrick.nth(function(item) {
 		return item.code == lookup;
 	}, category);
 
@@ -240,12 +248,12 @@ Foxtrick.util.currency.getRateByCode = function(lookup) {
 /**
  * Guess currency code from {rate, symbol}
  *
- * @param  {object} curr {rate: number, symbol: string}
+ * @param  {Currency} curr {rate: number, symbol: string}
  * @return {string}
  */
 Foxtrick.util.currency.guessCode = function(curr) {
-	var category = Foxtrick.XMLData.htCurrencyJSON.hattrickcurrencies;
-	var currency = Foxtrick.nth(function(item) {
+	let category = Foxtrick.XMLData.htCurrencyJSON.hattrickcurrencies;
+	let currency = Foxtrick.nth(function(item) {
 		return item.symbol === curr.symbol && parseFloat(item.eurorate) === curr.rate;
 	}, category);
 
@@ -259,7 +267,7 @@ Foxtrick.util.currency.guessCode = function(curr) {
  * @return {Boolean}
  */
 Foxtrick.util.currency.isValidCode = function(code) {
-	var category = Foxtrick.XMLData.htCurrencyJSON.hattrickcurrencies;
+	let category = Foxtrick.XMLData.htCurrencyJSON.hattrickcurrencies;
 	return Foxtrick.any(function(item) {
 		return item.code == code;
 	}, category);
@@ -276,7 +284,7 @@ Foxtrick.util.currency.isValidCode = function(code) {
  * @return {string}
  */
 Foxtrick.util.currency.findCode = function(id) {
-	var leagueId = id || Foxtrick.util.id.getOwnLeagueId();
+	let leagueId = id || Foxtrick.util.id.getOwnLeagueId();
 	if (!leagueId) {
 		Foxtrick.log('WARNING: no league found: using EUR as currency.');
 		return 'EUR';
@@ -299,18 +307,18 @@ Foxtrick.util.currency.findCode = function(id) {
  * @return {string}
  */
 Foxtrick.util.currency.findSymbol = function(id) {
-	var leagueId = id || Foxtrick.util.id.getOwnLeagueId();
+	let leagueId = id || Foxtrick.util.id.getOwnLeagueId();
 	if (!leagueId) {
 		Foxtrick.log('WARNING: no league found: using EUR as currency.');
 		return '€';
 	}
 
-	var country = Foxtrick.XMLData.League[leagueId].Country;
+	let country = Foxtrick.XMLData.League[leagueId].Country;
 
 	if (country.Available === 'False')
 		return null;
 
-	var name = country.CurrencyName;
+	let name = country.CurrencyName;
 
 	return name.replace(/000 /, '');
 };
@@ -327,22 +335,23 @@ Foxtrick.util.currency.findSymbol = function(id) {
  * @return {number}
  */
 Foxtrick.util.currency.findRate = function(id) {
-	var leagueId = id || Foxtrick.util.id.getOwnLeagueId();
+	let leagueId = id || Foxtrick.util.id.getOwnLeagueId();
 	if (!leagueId) {
 		Foxtrick.log('WARNING: no league found: using EUR as currency.');
 		return 1.0;
 	}
 
-	var country = Foxtrick.XMLData.League[leagueId].Country;
+	let country = Foxtrick.XMLData.League[leagueId].Country;
 
 	if (country.Available === 'False')
 		return null;
 
-	var name = country.CurrencyName;
-	var rate = country.CurrencyRate.replace(',', '.');
+	let name = country.CurrencyName;
+	let rate = country.CurrencyRate.replace(',', '.');
 
 	// jshint -W016
-	var mag = ~name.indexOf('000 ') ? 0.001 : 1;
+	// eslint-disable-next-line no-magic-numbers
+	let mag = ~name.indexOf('000 ') ? 0.001 : 1;
 	// jshint +W016
 
 	return parseFloat(rate) * mag / 10;
@@ -354,7 +363,7 @@ Foxtrick.util.currency.findRate = function(id) {
  * @return {string}
  */
 Foxtrick.util.currency.getCode = function() {
-	var id = Foxtrick.util.id.getOwnTeamId();
+	let id = Foxtrick.util.id.getOwnTeamId();
 	return Foxtrick.Prefs.getString('Currency.Code.' + id);
 };
 

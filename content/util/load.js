@@ -146,13 +146,13 @@ Foxtrick.parseURL = function(url) {
 Foxtrick.fetch = function(url, params) {
 	const ERROR_XHR_FATAL = 'FATAL error in XHR:';
 
-	url = Foxtrick.parseURL(url);
+	let pUrl = Foxtrick.parseURL(url);
 
 	if (Foxtrick.context == 'content') {
 
 		return new Promise(function(fulfill, reject) {
-			Foxtrick.SB.ext.sendRequest({ req: 'fetch', url: url, params: params },
-			  function(response) {
+			let req = { req: 'fetch', url: pUrl, params: params };
+			Foxtrick.SB.ext.sendRequest(req, (response) => {
 				if (typeof response === 'string') {
 					fulfill(response);
 				}
@@ -170,7 +170,7 @@ Foxtrick.fetch = function(url, params) {
 			var type = params ? 'POST' : 'GET';
 
 			var req = new window.XMLHttpRequest();
-			req.open(type, url, true);
+			req.open(type, pUrl, true);
 
 			if (typeof req.overrideMimeType === 'function')
 				req.overrideMimeType('text/plain');
@@ -188,15 +188,15 @@ Foxtrick.fetch = function(url, params) {
 					return;
 				}
 
-				reject({ url: url, status: this.status, text: this.responseText, params: params });
+				reject({ url: pUrl, status: this.status, text: this.responseText, params: params });
 			};
 
 			req.onerror = function() {
-				reject({ url: url, status: this.status, text: this.responseText, params: params });
+				reject({ url: pUrl, status: this.status, text: this.responseText, params: params });
 			};
 
 			req.onabort = function() {
-				reject({ url: url, status: -1, text: this.responseText, params: params });
+				reject({ url: pUrl, status: -1, text: this.responseText, params: params });
 			};
 
 			req.send(params);
@@ -205,7 +205,7 @@ Foxtrick.fetch = function(url, params) {
 		catch (e) {
 			// handle fatal errors here
 			Foxtrick.log(ERROR_XHR_FATAL, e);
-			reject({ url: url, status: -1, text: ERROR_XHR_FATAL + e.message, params: params });
+			reject({ url: pUrl, status: -1, text: ERROR_XHR_FATAL + e.message, params: params });
 		}
 	});
 
@@ -221,10 +221,12 @@ Foxtrick.fetch = function(url, params) {
  *
  * @param  {string}  url
  * @param  {object}  params
+ * @param  {number}  [lifeTime]
+ * @param  {number}  [now]
  * @return {Promise}
  */
 Foxtrick.load = function(url, params, lifeTime, now) {
-	url = Foxtrick.parseURL(url);
+	let pUrl = Foxtrick.parseURL(url);
 
 	if (Foxtrick.context == 'content') {
 		return new Promise(function(fulfill, reject) {
@@ -239,7 +241,7 @@ Foxtrick.load = function(url, params, lifeTime, now) {
 
 			var req = {
 				req: 'load',
-				url: url,
+				url: pUrl,
 				params: params,
 				lifeTime: lifeTime,
 				now: HT_TIME,
@@ -257,15 +259,15 @@ Foxtrick.load = function(url, params, lifeTime, now) {
 		});
 	}
 
-	var obj = Foxtrick.cache.getFor(url, params, lifeTime, now);
+	var obj = Foxtrick.cache.getFor(pUrl, params, lifeTime, now);
 	if (obj && obj.promise) {
 		return obj.promise;
 	}
 
-	Foxtrick.log('Promise cache replied:', obj, 'Fetching from', url);
+	Foxtrick.log('Promise cache replied:', obj, 'Fetching from', pUrl);
 
-	var promise = Foxtrick.fetch(url, params);
-	Foxtrick.cache.setFor(url, params, lifeTime)(promise);
+	var promise = Foxtrick.fetch(pUrl, params);
+	Foxtrick.cache.setFor(pUrl, params, lifeTime)(promise);
 
 	return promise;
 };
@@ -552,12 +554,12 @@ Foxtrick.util.load.async = function(url, callback, params) {
  *
  * @param {string}   url
  * @param {function} callback
- * @param {object}   params
+ * @param {object}   [params]
  */
 Foxtrick.util.load.fetch = function(url, callback, params) {
-
+	const HTTP_OK = 200;
 	Foxtrick.fetch(url, params).then(function(text) {
-		callback(text, 200);
+		callback(text, HTTP_OK);
 	}, function(resp) {
 		callback(resp.text, resp.status);
 	}).catch(function(e) {

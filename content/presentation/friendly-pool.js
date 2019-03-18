@@ -32,7 +32,7 @@ Foxtrick.modules['FriendlyPool'] = {
 			['teamId', ownTeamId],
 			['includeFlags', 'true'],
 		];
-		Foxtrick.util.api.retrieve(doc, parameters, { cache_lifetime: 'default' },
+		Foxtrick.util.api.retrieve(doc, parameters, { cache: 'default' },
 		  function(xml, errorText) {
 			if (!xml || errorText) {
 				Foxtrick.log(errorText);

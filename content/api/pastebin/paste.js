@@ -16,12 +16,12 @@ if (!Foxtrick.api.pastebin)
  * In case of success response is a URL to the pasted code.
  * failure(response, status) is called if the request fails
  * finalize(response, status) is always called
- * @param	{function}		callback	function to execute
- * @param	{String}		name		Name of the paste
- * @param	{String}		text		Text to be pasted
- * @param	{String}		type		Paste type (optional), defaults to 'public'.
- * @param	{[Function]}	failure		function to execute (optional)
- * @param	{[Function]}	finalize	function to execute (optional)
+ * @param {function} callback   to execute
+ * @param {string}   name       Name of the paste
+ * @param {string}   text       Text to be pasted
+ * @param {string}   [type]     Paste type (optional), defaults to 'public'.
+ * @param {Function} [failure]  function to execute (optional)
+ * @param {Function} [finalize] function to execute (optional)
  */
 Foxtrick.api.pastebin.paste = function(callback, name, text, type, failure, finalize) {
 	var params = {
