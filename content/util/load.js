@@ -7,6 +7,7 @@
 
 /* eslint-disable */
 if (!this.Foxtrick)
+	// @ts-ignore
 	var Foxtrick = {};
 /* eslint-enable */
 
@@ -46,7 +47,7 @@ Foxtrick.parseYAML = function(data) {
 	var ret = null;
 
 	try {
-		ret = data !== null ? Foxtrick.jsyaml.safeLoad(data) : null;
+		ret = data === null ? null : Foxtrick.jsyaml.safeLoad(data);
 	}
 	catch (e) {
 		// invalid YML
@@ -77,10 +78,17 @@ Foxtrick.parseYAML = function(data) {
 Foxtrick.parseXML = function(data) {
 	var errCode = null;
 
+	/**
+	 * @param  {string}      text
+	 * @return {XMLDocument}
+	 */
 	var parseXML = function(text) {
+		/** @type {XMLDocument} */
 		var xml = null;
 
 		try {
+			/** @type {DOMParser} */
+			// @ts-ignore
 			var parser = new window.DOMParser();
 
 			xml = parser.parseFromString(text, 'text/xml');
@@ -98,10 +106,13 @@ Foxtrick.parseXML = function(data) {
 		// i. e, CHPP server not reachable
 
 		var titleRe = /<title>(\d+)/i;
-		if (titleRe.test(data))
+		if (titleRe.test(data)) {
 			errCode = data.match(titleRe)[1];
-		else
+		}
+		else {
+			// eslint-disable-next-line no-magic-numbers
 			errCode = 503;
+		}
 
 		Foxtrick.error('safeXML got an html page. Server could be down. ' +
 		               'Assumed errCode: ' + errCode);
@@ -119,15 +130,16 @@ Foxtrick.parseXML = function(data) {
  * @return {string}
  */
 Foxtrick.parseURL = function(url) {
-	url = url.replace(/\/res\/%d\//, function() {
+	let pUrl = url.replace(/\/res\/%d\//, function() {
 		// get a timestamp in the form 150324, i. e. $(date +'%y%m%d')
 		// use HT date or -1 so as not to mess up due to wrong system time (in the future)
 		// -1 refers to 691231 which was tagged for default cases
-		var time = parseInt(Foxtrick.Prefs.getString('lastTime'), 10) || -1;
-		var date = new Date(time).toISOString().slice(2, 10).replace(/\D/g, '');
+		let time = parseInt(Foxtrick.Prefs.getString('lastTime'), 10) || -1;
+		let date = new Date(time).toISOString().slice(2, 10).replace(/\D/g, '');
 		return '/res/' + date + '/';
 	});
-	return url;
+
+	return pUrl;
 };
 
 
@@ -137,11 +149,16 @@ Foxtrick.parseURL = function(url) {
  * Returns a Promise that fulfills with a string on success
  * or rejects with {url, status, text, params}.
  *
- * params is optional, switches to POST.
+ * optional params can only be a urlEncoded param string
+ * since only JSON-ifiable objects can be passed from content
  *
- * @param  {string}  url
- * @param  {object}  params {?object}
- * @return {Promise}
+ * even if Fetch/XHR supports {document|BodyInit}
+ *
+ * using params switches to POST.
+ *
+ * @param  {string}          url
+ * @param  {string}          [params]
+ * @return {Promise<string>}
  */
 Foxtrick.fetch = function(url, params) {
 	const ERROR_XHR_FATAL = 'FATAL error in XHR:';
@@ -151,7 +168,7 @@ Foxtrick.fetch = function(url, params) {
 	if (Foxtrick.context == 'content') {
 
 		return new Promise(function(fulfill, reject) {
-			let req = { req: 'fetch', url: pUrl, params: params };
+			let req = { req: 'fetch', url: pUrl, params };
 			Foxtrick.SB.ext.sendRequest(req, (response) => {
 				if (typeof response === 'string') {
 					fulfill(response);
@@ -167,9 +184,11 @@ Foxtrick.fetch = function(url, params) {
 
 	return new Promise(function(fulfill, reject) {
 		try {
-			var type = params ? 'POST' : 'GET';
+			let type = params ? 'POST' : 'GET';
 
-			var req = new window.XMLHttpRequest();
+			/** @type {XMLHttpRequest} */
+			// @ts-ignore
+			let req = new window.XMLHttpRequest();
 			req.open(type, pUrl, true);
 
 			if (typeof req.overrideMimeType === 'function')
@@ -181,6 +200,7 @@ Foxtrick.fetch = function(url, params) {
 
 			req.onload = function() {
 				// README: safari returns chrome resources with status=0
+				// eslint-disable-next-line no-magic-numbers
 				if (this.status >= 200 && this.status < 300 ||
 				    this.status === 0 && this.responseText) {
 
@@ -188,15 +208,18 @@ Foxtrick.fetch = function(url, params) {
 					return;
 				}
 
-				reject({ url: pUrl, status: this.status, text: this.responseText, params: params });
+				// eslint-disable-next-line prefer-promise-reject-errors
+				reject({ url: pUrl, status: this.status, text: this.responseText, params });
 			};
 
 			req.onerror = function() {
-				reject({ url: pUrl, status: this.status, text: this.responseText, params: params });
+				// eslint-disable-next-line prefer-promise-reject-errors
+				reject({ url: pUrl, status: this.status, text: this.responseText, params });
 			};
 
 			req.onabort = function() {
-				reject({ url: pUrl, status: -1, text: this.responseText, params: params });
+				// eslint-disable-next-line prefer-promise-reject-errors
+				reject({ url: pUrl, status: -1, text: this.responseText, params });
 			};
 
 			req.send(params);
@@ -205,7 +228,8 @@ Foxtrick.fetch = function(url, params) {
 		catch (e) {
 			// handle fatal errors here
 			Foxtrick.log(ERROR_XHR_FATAL, e);
-			reject({ url: pUrl, status: -1, text: ERROR_XHR_FATAL + e.message, params: params });
+			// eslint-disable-next-line prefer-promise-reject-errors
+			reject({ url: pUrl, status: -1, text: ERROR_XHR_FATAL + e.message, params });
 		}
 	});
 
@@ -219,11 +243,11 @@ Foxtrick.fetch = function(url, params) {
  *
  * params is optional, switch to POST.
  *
- * @param  {string}  url
- * @param  {object}  params
- * @param  {number}  [lifeTime]
- * @param  {number}  [now]
- * @return {Promise}
+ * @param  {string}          url
+ * @param  {object}          [params]
+ * @param  {number|string}   [lifeTime]
+ * @param  {number}          [now]
+ * @return {Promise<string>}
  */
 Foxtrick.load = function(url, params, lifeTime, now) {
 	let pUrl = Foxtrick.parseURL(url);
@@ -239,11 +263,11 @@ Foxtrick.load = function(url, params, lifeTime, now) {
 				HT_TIME = Date.now() + Foxtrick.util.time.MSECS_IN_DAY;
 			}
 
-			var req = {
+			let req = {
 				req: 'load',
 				url: pUrl,
-				params: params,
-				lifeTime: lifeTime,
+				params,
+				lifeTime,
 				now: HT_TIME,
 			};
 
@@ -259,14 +283,19 @@ Foxtrick.load = function(url, params, lifeTime, now) {
 		});
 	}
 
-	var obj = Foxtrick.cache.getFor(pUrl, params, lifeTime, now);
-	if (obj && obj.promise) {
+	let obj = Foxtrick.cache.getFor(pUrl, params, lifeTime, now);
+	if (obj && 'promise' in obj)
 		return obj.promise;
-	}
 
 	Foxtrick.log('Promise cache replied:', obj, 'Fetching from', pUrl);
 
-	var promise = Foxtrick.fetch(pUrl, params);
+	let pString;
+	if (typeof params == 'string')
+		pString = params;
+	else
+		pString = JSON.stringify(params);
+
+	let promise = Foxtrick.fetch(pUrl, pString);
 	Foxtrick.cache.setFor(pUrl, params, lifeTime)(promise);
 
 	return promise;
@@ -282,7 +311,7 @@ Foxtrick.cache = (function() {
 		 * Promise cache
 		 *
 		 * Stores cache objects {promise: Promise, lifeTime}
-		 * @type {Map}
+		 * @type {Map<string, FTCacheObject>}
 		 */
 		const CACHE_OBJECTS = new Map();
 
@@ -290,11 +319,11 @@ Foxtrick.cache = (function() {
 		 * Generate an ID to index cache objects by
 		 *
 		 * @param  {string} url
-		 * @param  {object} params {?object}
+		 * @param  {object} [params]
 		 * @return {string}
 		 */
 		var genId = function(url, params) {
-			var id = url;
+			let id = url;
 			if (params)
 				id += ';' + JSON.stringify(params);
 
@@ -304,14 +333,14 @@ Foxtrick.cache = (function() {
 		/**
 		 * Get a cache object for {url, params}
 		 *
-		 * @param  {string}  url
-		 * @param  {object}  params {?object}
-		 * @return {Promise}        Promise.<?object>
+		 * @param  {string}        url
+		 * @param  {object}        [params]
+		 * @return {FTCacheObject}
 		 */
 		var get = function(url, params) {
-			var id = genId(url, params);
+			let id = genId(url, params);
 
-			var obj = CACHE_OBJECTS.get(id);
+			let obj = CACHE_OBJECTS.get(id);
 			if (!obj) {
 				// no cache
 				return null;
@@ -325,16 +354,16 @@ Foxtrick.cache = (function() {
 		 *
 		 * obj should be {promise: Promise, lifeTime}.
 		 *
-		 * @param {string} url
-		 * @param {object} params {?object}
-		 * @param {object} obj    {promise: Promise, lifeTime: ?Integer}
+		 * @param  {string}        url
+		 * @param  {object}        [params]
+		 * @param  {FTCacheObject} obj
 		 */
 		var set = function(url, params, obj) {
-			var id = genId(url, params);
+			let id = genId(url, params);
 			CACHE_OBJECTS.set(id, obj);
 
 			if (obj && obj.promise) {
-				obj.promise.catch(function() {
+				obj.promise.catch(() => {
 					// bad promise: remove cache object
 					if (CACHE_OBJECTS.get(id) === obj)
 						CACHE_OBJECTS.delete(id);
@@ -355,32 +384,32 @@ Foxtrick.cache = (function() {
 			 * aLifeTime is an optional timestamp to decrease cache lifeTime.
 			 * now is also optional and defaults to Date.now().
 			 *
-			 * @param  {string}  url
-			 * @param  {object}  params    {?object}
-			 * @param  {number}  aLifeTime {?Integer}
-			 * @param  {number}  now       {?Integer}
-			 * @return {object}
+			 * @param  {string}        url
+			 * @param  {object}        [params]
+			 * @param  {number|string} [aLifeTime] {?Integer}
+			 * @param  {number}        [now]       {?Integer}
+			 * @return {FTCacheObject|FTCacheMiss}
 			 */
 			getFor: function(url, params, aLifeTime, now) {
 
-				var obj = get(url, params);
-				if (!obj) {
+				let obj = get(url, params);
+				if (!obj)
 					return null;
-				}
 
-				now = now ? new Date(now) : new Date();
+				let date = now ? new Date(now) : new Date();
 
-				var cache = 'session';
+				/** @type {string|Date} */
+				let cache = 'session';
 
 				// deal with Promise lifeTime
 				if (typeof obj.lifeTime === 'number') {
 					cache = new Date(obj.lifeTime);
-					if (cache < now) {
+					if (cache < date) {
 						// stale cache
 
 						this.delete(url, params);
 
-						return { stale: cache.toString(), now: now.toString() };
+						return { stale: cache.toString(), now: date.toString() };
 					}
 				}
 				else if (obj.lifeTime) {
@@ -389,7 +418,7 @@ Foxtrick.cache = (function() {
 				}
 
 				if (typeof aLifeTime === 'number' &&
-				    (typeof cache !== 'object' || cache > aLifeTime)) {
+				    (typeof cache !== 'object' || cache.getTime() > aLifeTime)) {
 					// obj.lifeTime was not a number but aLifeTime is
 					// or aLifeTime is sooner than obj.lifeTime
 					Foxtrick.log('New lifeTime for cached', url, params, aLifeTime);
@@ -402,7 +431,7 @@ Foxtrick.cache = (function() {
 				}
 
 				Foxtrick.log('Using cache for:', url, 'until', cache.toString(),
-				             'now:', now.toString());
+				             'now:', date.toString());
 
 				return obj;
 
@@ -415,18 +444,18 @@ Foxtrick.cache = (function() {
 			 *
 			 * lifeTime is an optional timestamp.
 			 *
-			 * @param  {string}   url
-			 * @param  {object}   params   {?object}
-			 * @param  {number}   lifeTime {?Integer}
-			 * @return {function}          {function(Promise): Promise}
+			 * @param  {string}        url
+			 * @param  {object}        [params]
+			 * @param  {number|string} [lifeTime]
+			 * @return {function(Promise<string>):void}
 			 */
 			setFor: function(url, params, lifeTime) {
-				return function(promise) {
-
+				return (pr) => {
 					// promisify
-					promise = Promise.resolve(promise);
+					let promise = Promise.resolve(pr);
 
-					var cacheObj = { promise: promise };
+					/** @type {FTCacheObject} */
+					let cacheObj = { promise };
 
 					if (lifeTime)
 						cacheObj.lifeTime = lifeTime;
@@ -439,7 +468,7 @@ Foxtrick.cache = (function() {
 			 * Delete a cached promise if any
 			 *
 			 * @param  {string} url
-			 * @param  {object} params
+			 * @param  {object} [params]
 			 */
 			delete: function(url, params) {
 				set(url, params, null);
@@ -454,13 +483,12 @@ Foxtrick.cache = (function() {
 		};
 
 	}
-	else {
-		return {
-			clear: function() {
-				Foxtrick.SB.ext.sendRequest({ req: 'cacheClear' });
-			},
-		};
-	}
+
+	return {
+		clear: function() {
+			Foxtrick.SB.ext.sendRequest({ req: 'cacheClear' });
+		},
+	};
 
 })();
 
@@ -488,7 +516,9 @@ Foxtrick.util.load.sync = function(url) {
 	}
 
 	// load
-	var req = new window.XMLHttpRequest();
+	/** @type {XMLHttpRequest} */
+	// @ts-ignore
+	let req = new window.XMLHttpRequest();
 
 	req.open('GET', url, false); // sync load of a chrome resource
 
@@ -517,7 +547,7 @@ Foxtrick.util.load.sync = function(url) {
  * @return {string}
  */
 Foxtrick.util.load.ymlSync = function(url) {
-	var text = Foxtrick.util.load.sync(url);
+	let text = Foxtrick.util.load.sync(url);
 
 	return Foxtrick.parseYAML(text);
 };
@@ -529,17 +559,18 @@ Foxtrick.util.load.ymlSync = function(url) {
  *
  * @deprecated use load() instead
  *
- * @param {string}   url
- * @param {function} callback
- * @param {object}   params
+ * @param  {string} url
+ * @param  {function(string, number):void} callback
+ * @param  {string} [params]
  */
 Foxtrick.util.load.async = function(url, callback, params) {
 
-	Foxtrick.load(url, params).then(function(text) {
+	Foxtrick.load(url, params).then((text) => {
+		// eslint-disable-next-line no-magic-numbers
 		callback(text, 200);
-	}, function(resp) {
+	}, (resp) => {
 		callback(resp.text, resp.status);
-	}).catch(function(e) {
+	}).catch((e) => {
 		Foxtrick.log('Uncaught callback error: - url:', url, 'params:', params, e);
 	});
 
@@ -552,17 +583,17 @@ Foxtrick.util.load.async = function(url, callback, params) {
  *
  * @deprecated use fetch() instead
  *
- * @param {string}   url
- * @param {function} callback
- * @param {object}   [params]
+ * @param  {string} url
+ * @param  {function(string, number):void} callback
+ * @param  {string} [params]
  */
 Foxtrick.util.load.fetch = function(url, callback, params) {
 	const HTTP_OK = 200;
-	Foxtrick.fetch(url, params).then(function(text) {
+	Foxtrick.fetch(url, params).then((text) => {
 		callback(text, HTTP_OK);
-	}, function(resp) {
+	}, (resp) => {
 		callback(resp.text, resp.status);
-	}).catch(function(e) {
+	}).catch((e) => {
 		Foxtrick.log('Uncaught callback error: - url:', url, 'params:', params, e);
 	});
 
@@ -573,19 +604,23 @@ Foxtrick.util.load.fetch = function(url, callback, params) {
  *
  * @deprecated use Promises
  *
- * @param  {string}   url
- * @param  {function} callback
+ * @param  {string} url
+ * @param  {function(XMLDocument, number):void} callback
  */
 Foxtrick.util.load.xml = function(url, callback) {
 
 	// README: no promise cache
-	Foxtrick.util.load.fetch(url, function(text, status) {
-		var xml = Foxtrick.parseXML(text);
+	Foxtrick.util.load.fetch(url, (text, status) => {
+		let xml = Foxtrick.parseXML(text);
+		let st = status;
 
-		if (xml == null && status == 200)
-			status = 503;
+		// eslint-disable-next-line no-magic-numbers
+		if (xml == null && st == 200) {
+			// eslint-disable-next-line no-magic-numbers
+			st = 503;
+		}
 
-		callback(xml, status);
+		callback(xml, st);
 	});
 };
 
@@ -660,3 +695,15 @@ Foxtrick.util.load.filePickerForText = function(doc, callback) {
 
 	return input;
 };
+
+/**
+ * @typedef FTCacheObject
+ * @prop {Promise<string>} promise
+ * @prop {number|string}   [lifeTime]
+ */
+
+/**
+ * @typedef FTCacheMiss
+ * @prop {string} stale
+ * @prop {string} now
+ */
