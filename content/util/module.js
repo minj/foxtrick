@@ -8,12 +8,19 @@
 
 /* eslint-disable */
 if (!this.Foxtrick)
+	// @ts-ignore
 	var Foxtrick = {};
 /* eslint-enable */
 
+/* eslint-disable max-len */
+/**
+ * @typedef {'informationAggregation'|'shortcutsAndTweaks'|'presentation'|'matches'|'forum'|'links'|'alert'|'accessibility'} ModuleCategory
+ */
+/* eslint-enable max-len */
+
 /**
  * Module categories list
- * @type {Object}
+ * @type {Object.<string, ModuleCategory>}
  */
 Foxtrick.moduleCategories = {
 	INFORMATION_AGGREGATION: 'informationAggregation',
@@ -39,13 +46,13 @@ Foxtrick.util.modules = {};
  * causing major UX problems
  */
 Foxtrick.util.modules.enableEssential = function() {
-	var ANDROID_ESSENTIALS = [
+	const ANDROID_ESSENTIALS = [
 		'ExtraShortcuts',
 		'ExtraShortcuts.FoxTrickPrefs',
 	];
 
 	if (Foxtrick.platform == 'Android') {
-		for (var andrModule of ANDROID_ESSENTIALS)
+		for (let andrModule of ANDROID_ESSENTIALS)
 			Foxtrick.Prefs.setModuleEnableState(andrModule, true);
 	}
 };
@@ -55,57 +62,114 @@ Foxtrick.util.modules.enableEssential = function() {
  *
  * doc param is optional: returns only modules that run on that page if provided.
  *
- * @param  {document} doc {?document}
- * @return {array}        {Array.<object>}
+ * @param  {document}   [doc] {?document}
+ * @return {FTModule[]}       {Array.<object>}
  */
 Foxtrick.util.modules.getActive = function(doc) {
 	this.enableEssential();
 
-	var pages = Foxtrick.htPages;
+	/** @type {Object.<string, boolean|string>} */
+	let pages = Foxtrick.htPages;
 	if (doc) {
 		pages = {};
-		for (var page in Foxtrick.htPages) {
+		for (let page in Foxtrick.htPages) {
 			if (Foxtrick.isPage(doc, page))
 				pages[page] = true;
 		}
 	}
 
-	var modules = [];
-	for (var m in Foxtrick.modules) {
-		var module = Foxtrick.modules[m];
-		if (Foxtrick.Prefs.isModuleEnabled(module)) {
-			for (var mPage of module.PAGES) {
+	let modules = [];
+	for (let m of Object.values(Foxtrick.modules)) {
+		if (!Foxtrick.Prefs.isModuleEnabled(m))
+			continue;
 
-				if (typeof Foxtrick.htPages[mPage] === 'undefined') {
-					var args = [module.MODULE_NAME, mPage];
-					var msg = Foxtrick.format('{} wants to run on an unknown page {}', args);
+		for (let mPage of m.PAGES) {
+			if (typeof Foxtrick.htPages[mPage] === 'undefined') {
+				let args = [m.MODULE_NAME, mPage];
+				let msg = Foxtrick.format('{} wants to run on an unknown page {}', args);
 
-					Foxtrick.error(msg);
+				Foxtrick.error(msg);
 
-					continue;
-				}
-
-				if (pages[mPage])
-					modules.push(module);
+				continue;
 			}
+
+			if (pages[mPage])
+				modules.push(m);
 		}
 	}
 
 	if (doc) {
 		// pages with no mainBody
-		var mainBodyExcludes = [
+		let mainBodyExcludes = [
 			/^\/Shop\//i,
 		];
-		var noMainBody = Foxtrick.any(function(ex) {
+		let noMainBody = Foxtrick.any(function(ex) {
 			return ex.test(doc.location.pathname);
 		}, mainBodyExcludes);
 
-		if (noMainBody) {
-			modules = modules.filter(function(module) {
-				return module.OUTSIDE_MAINBODY;
-			});
-		}
+		if (noMainBody)
+			modules = modules.filter(m => m.OUTSIDE_MAINBODY);
 	}
 
 	return modules;
 };
+
+/**
+ * @typedef FTBackgroundModuleMixin
+ * @prop {(reInit?: boolean)=>void} [init]
+ * @prop {(document: document)=>void} [onLoad]
+ * @prop {(document: document)=>void} [onTabChange]
+ * @prop {(document: document)=>void} [update]
+ */
+
+/**
+ * @typedef FTCoreModuleMixin
+ * @prop {true} CORE_MODULE
+ * @prop {number} [NICE] nice value, lower value => higher prio
+ * @prop {boolean} [OUTSIDE_MAINBODY] this module does not touch mainBody
+ * @prop {ModuleCategory} [MODULE_CATEGORY]
+ * @prop {string[]}                      PAGES
+ * @prop {string[]}                      [CSS]
+ * @prop {(doc: document)=>void} [run]
+ * @prop {(doc: document)=>Element|void} [OPTION_FUNC]
+ * @prop {(string|string[])[]}           [OPTIONS]
+ */
+
+/**
+ * @typedef FTAppModuleMixin
+ * @prop {string} [MODULE_NAME] set automatically
+ * @prop {number} [NICE] nice value, lower value => higher prio
+ * @prop {boolean} [OUTSIDE_MAINBODY] this module does not touch mainBody
+ * @prop {ModuleCategory} MODULE_CATEGORY
+ * @prop {string[]}                   PAGES
+ * @prop {string|string[]}            [CSS]
+ * @prop {(doc: document)=>void} [run]
+ * @prop {(doc: document)=>void} [change]
+ * @prop {(doc: document)=>Node|string|(Node|string)[]|void} [OPTION_FUNC]
+ * @prop {(string|string[])[]} [OPTIONS]
+ * @prop {(string|string[])[]} [OPTIONS_CSS]
+ * @prop {string[]}            [RADIO_OPTIONS]
+ * @prop {string[]}            [RADIO_OPTIONS_CSS]
+ * @prop {boolean}             [OPTION_TEXTS]
+ * @prop {boolean[]}           [OPTION_TEXTS_DISABLED_LIST]
+ * @prop {boolean}             [OPTION_EDITS]
+ * @prop {boolean[]}           [OPTION_EDITS_DISABLED_LIST]
+ * @prop {boolean[]}           [OPTION_EDITS_TEXTFILE_LOAD_BUTTONS]
+ * @prop {boolean[]}           [OPTION_EDITS_DATAURL_LOAD_BUTTONS]
+ * @prop {boolean[]}           [OPTION_EDITS_DATAURL_IS_SOUND]
+ */
+
+/**
+ * @typedef FTLinkModuleMixin
+ * @prop {string}  [MODULE_NAME] set automatically
+ * @prop {'links'} MODULE_CATEGORY
+ * @prop {(keyof Foxtrick.htPages)[]} PAGES
+ * @prop {string|string[]} LINK_TYPES
+ * @prop {(doc: document)=>Node|string|(Node|string)[]|void} OPTION_FUNC
+ * @prop {(doc: document)=>void} [run]
+ * @prop {(doc: document)=>LinkPageDefinition} [links]
+ */
+
+/**
+ * @typedef {FTAppModuleMixin & FTBackgroundModuleMixin} FTModule
+ */

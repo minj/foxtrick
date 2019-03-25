@@ -8,7 +8,7 @@
 Foxtrick.modules['LinksYouthOverview'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
 	PAGES: ['youthOverview'],
-	LINK_TYPE: 'youthlink',
+	LINK_TYPES: 'youthlink',
 	/**
 	 * return HTML for FT prefs
 	 * @param  {document}         doc
@@ -53,7 +53,7 @@ Foxtrick.modules['LinksYouthOverview'] = {
 Foxtrick.modules['LinksYouthPlayerDetail'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
 	PAGES: ['youthPlayerDetails'],
-	LINK_TYPE: 'youthplayerdetaillink',
+	LINK_TYPES: 'youthplayerdetaillink',
 	/**
 	 * return HTML for FT prefs
 	 * @param  {document}         doc
@@ -113,7 +113,7 @@ Foxtrick.modules['LinksYouthPlayerDetail'] = {
 Foxtrick.modules['LinksYouthTraining'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
 	PAGES: ['youthTraining'],
-	LINK_TYPE: 'youthtraininglink',
+	LINK_TYPES: 'youthtraininglink',
 	/**
 	 * return HTML for FT prefs
 	 * @param  {document}         doc
@@ -153,7 +153,7 @@ Foxtrick.modules['LinksYouthTraining'] = {
 Foxtrick.modules['LinksYouthPlayerList'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
 	PAGES: ['youthPlayers'],
-	LINK_TYPE: 'youthplayerlistlink',
+	LINK_TYPES: 'youthplayerlistlink',
 	/**
 	 * return HTML for FT prefs
 	 * @param  {document}         doc
@@ -193,7 +193,7 @@ Foxtrick.modules['LinksYouthPlayerList'] = {
 Foxtrick.modules['LinksYouthMatchList'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
 	PAGES: ['youthMatchList'],
-	LINK_TYPE: 'youthmatchlistlink',
+	LINK_TYPES: 'youthmatchlistlink',
 	/**
 	 * return HTML for FT prefs
 	 * @param  {document}         doc
@@ -228,7 +228,7 @@ Foxtrick.modules['LinksYouthMatchList'] = {
 Foxtrick.modules['LinksYouthLeague'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
 	PAGES: ['youthSeries'],
-	LINK_TYPE: 'youthserieslink',
+	LINK_TYPES: 'youthserieslink',
 	/**
 	 * return HTML for FT prefs
 	 * @param  {document}         doc

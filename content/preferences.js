@@ -1,3 +1,6 @@
+/* eslint-disable consistent-this */
+/* eslint-disable func-style */
+/* eslint-disable no-implicit-globals */
 'use strict';
 
 /**
@@ -811,6 +814,7 @@ function initListeners() {
  * @param  {object}         module
  * @return {HTMLDivElement}
  */
+// eslint-disable-next-line complexity
 function makeModuleDiv(module) {
 	// var getScreenshot = function(link) {
 	// 	var a = document.createElement('a');

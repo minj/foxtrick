@@ -6,7 +6,7 @@
 
 'use strict';
 
-Foxtrick.modules['MatchLineupTweaks'] = {
+Foxtrick.modules.MatchLineupTweaks = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.MATCHES,
 	PAGES: ['match', 'matchesLive'],
 	OPTIONS: [

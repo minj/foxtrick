@@ -8,6 +8,7 @@
 
 /* eslint-disable */
 if (!this.Foxtrick)
+	// @ts-ignore
 	var Foxtrick = {};
 /* eslint-enable */
 
@@ -18,6 +19,7 @@ Foxtrick.startListenToChange = function(doc) {
 	if (!Foxtrick.isHt(doc))
 		return;
 
+	/** @param {Node[]} changes */
 	let waitForChanges = function(changes) {
 		if (!changes || !changes.length)
 			return;

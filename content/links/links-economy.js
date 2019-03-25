@@ -8,7 +8,7 @@
 Foxtrick.modules['LinksEconomy'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
 	PAGES: ['finances'],
-	LINK_TYPE: 'economylink',
+	LINK_TYPES: 'economylink',
 	/**
 	 * return HTML for FT prefs
 	 * @param  {document}         doc

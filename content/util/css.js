@@ -7,6 +7,7 @@
 
 /* eslint-disable */
 if (!this.Foxtrick)
+	// @ts-ignore
 	var Foxtrick = {};
 /* eslint-enable */
 
@@ -145,8 +146,10 @@ Foxtrick.util.css.unload_css_permanent = function(cssList) {
 };
 
 // collect all enabled module css urls in Foxtrick.cssFiles array
+// eslint-disable-next-line camelcase
 Foxtrick.util.css.collect_module_css = function() {
 	Foxtrick.cssFiles = [];
+	// eslint-disable-next-line consistent-this
 	var collect = function(module) {
 		if (Foxtrick.Prefs.isModuleEnabled(module.MODULE_NAME)) {
 			// module main CSS

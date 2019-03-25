@@ -50,7 +50,9 @@ Foxtrick.modules['LiveAlert'] = {
 		if (!goal)
 			return;
 
-		var tab = doc.querySelector('.live-matchlist-item.live-matchlist-item-selected');
+		var tab = doc.querySelector('.live-matchlist-item.live-matchlist-item-selected, ' +
+			'.ht-tabs-last-row.ht-tabs-item-selected');
+
 		var score = this.getScoreFromTab(tab);
 		if (score === null)
 			return;
