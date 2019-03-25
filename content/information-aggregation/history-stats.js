@@ -27,6 +27,7 @@ Foxtrick.modules['HistoryStats'] = {
 		this._paste(doc);
 	},
 
+	// eslint-disable-next-line complexity
 	_fetch: function(doc) {
 		var module = this;
 
@@ -49,21 +50,34 @@ Foxtrick.modules['HistoryStats'] = {
 		};
 
 		var gotSeasonOffset = function(log, teamId) {
-			var feeds = log.getElementsByClassName('feedItem');
-			return Foxtrick.any(function(feed) {
-				var dateSpan = feed.querySelector('.date');
+			let feedItems = log.querySelectorAll('.feedItem');
+			return Foxtrick.any(function(feedItem) {
+				let dateSpan = feedItem.querySelector('.date');
 				if (!dateSpan)
 					return false;
 
-				var date = Foxtrick.util.time.getDateFromText(dateSpan.textContent);
-				var season = Foxtrick.util.time.gregorianToHT(date).season;
+				/** @type {Element} */
+				let row = feedItem.closest('tr');
 
-				var clone = feed.querySelector('td + td').cloneNode(true);
-				var links = clone.querySelectorAll('a');
+				let date;
+				while (row && !date) {
+					let feedItem = row.querySelector('.feedItem');
+					if (feedItem) {
+						let dateSpan = feedItem.querySelector('.date');
+						date = Foxtrick.util.time.getDateFromText(dateSpan.textContent);
+					}
+					row = row.previousElementSibling;
+				}
+				if (!date)
+					return false;
 
-				var cupLink = Foxtrick.nth(isCupHist, links);
+				let season = Foxtrick.util.time.gregorianToHT(date).season;
+				let clone = feedItem.querySelector('td.float_left').cloneNode(true);
+				let links = clone.querySelectorAll('a');
+
+				let cupLink = Foxtrick.nth(isCupHist, links);
 				if (cupLink) {
-					var cupSeason = cupLink.textContent;
+					let cupSeason = cupLink.textContent;
 					module.Offset[teamId] = parseInt(season, 10) - parseInt(cupSeason, 10);
 					return true;
 				}
@@ -71,7 +85,7 @@ Foxtrick.modules['HistoryStats'] = {
 					Foxtrick.forEach(removeEl, links);
 
 					// README: match 2 digits only to guard against position number
-					var seriesSeason = clone.textContent.match(/\b\d\d\b/);
+					let seriesSeason = clone.textContent.match(/\b\d\d\b/);
 					if (seriesSeason) {
 						module.Offset[teamId] = parseInt(season, 10) - parseInt(seriesSeason, 10);
 						return true;
@@ -80,7 +94,7 @@ Foxtrick.modules['HistoryStats'] = {
 
 				return false;
 
-			}, feeds);
+			}, feedItems);
 		};
 
 		var teamId = Foxtrick.Pages.All.getTeamId(doc);
@@ -107,7 +121,7 @@ Foxtrick.modules['HistoryStats'] = {
 				return;
 		}
 
-		var events = log.cloneNode(true).querySelectorAll('.feedItem .float_left');
+		var events = log.querySelectorAll('.feedItem td.float_left');
 		for (var event of Foxtrick.toArray(events)) {
 			// stop if old manager
 			if (event.getElementsByClassName('shy').length)
@@ -118,24 +132,22 @@ Foxtrick.modules['HistoryStats'] = {
 			var division = 0;
 			var cup = 0;
 
-			let eventDate = event.parentNode.querySelector('.date');
-			let date = Foxtrick.util.time.getDateFromText(eventDate.textContent);
-			let season;
-			if (!date) {
-				let feedItem = event.closest('.feedItem');
-				let row = feedItem.closest('tr');
-				while (row) {
-					let feed = row.querySelector('.feed');
-					if (!feed) {
-						row = row.previousElementSibling;
-						continue;
-					}
-					season = parseInt(feed.textContent.match(/\d+/), 10);
-					date = Foxtrick.util.time.HTToGregorian({ season, week: 16 }, -2, true);
-					break;
+			/** @type {Element} */
+			let row = event.closest('.feedItem').closest('tr');
+
+			let date;
+			while (row && !date) {
+				let feedItem = row.querySelector('.feedItem');
+				if (feedItem) {
+					let dateSpan = feedItem.querySelector('.date');
+					date = Foxtrick.util.time.getDateFromText(dateSpan.textContent);
 				}
+				row = row.previousElementSibling;
 			}
-			season = Foxtrick.util.time.gregorianToHT(date).season;
+			if (!date)
+				continue;
+
+			let season = Foxtrick.util.time.gregorianToHT(date).season;
 
 			var links = Foxtrick.toArray(event.querySelectorAll('a'));
 			for (var link of links) {
@@ -155,6 +167,7 @@ Foxtrick.modules['HistoryStats'] = {
 
 				if (isCupHist(link)) {
 					Foxtrick.forEach(removeEl, event.querySelectorAll('a'));
+
 					// French/Flemish: '1e'
 					cup = event.textContent.match(/\b\d{1,2}(?!\d)/) || '!';
 				}

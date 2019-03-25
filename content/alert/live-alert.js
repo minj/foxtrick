@@ -18,18 +18,22 @@ Foxtrick.modules['LiveAlert'] = {
 	store: {},
 
 	run: function(doc) {
-		var isNewLive = Foxtrick.Pages.Match.isNewLive(doc);
-		var results = isNewLive ? doc.querySelector('#ngLive .htbox-content') :
+		let isNewLive = Foxtrick.Pages.Match.isNewLive(doc);
+		let results = isNewLive ?
+			doc.querySelector('#ngLive .htbox-content') :
 			Foxtrick.getMBElement(doc, 'UpdatePanelPopupMessages');
 
-		var opts = { childList: true, characterData: true, subtree: true };
+		if (!results)
+			return;
+
+		let opts = { childList: true, characterData: true, subtree: true };
 		Foxtrick.onChange(results, this.runTabs.bind(this), opts);
 
 		if (!isNewLive)
 			return;
 
 		// add overlay pre-announce support
-		var container = doc.querySelector('.live-left-container');
+		let container = doc.querySelector('.live-left-container');
 		Foxtrick.onChange(container, this.runOverlay.bind(this));
 	},
 
