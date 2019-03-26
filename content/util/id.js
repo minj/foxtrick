@@ -7,6 +7,7 @@
 
 /* eslint-disable */
 if (!this.Foxtrick)
+	// @ts-ignore
 	var Foxtrick = {};
 /* eslint-enable */
 
@@ -150,16 +151,20 @@ Foxtrick.util.id.findYouthTeamId = function(element) {
 	return null;
 };
 
+/**
+ * @param  {Element} element
+ * @return {number}
+ */
 Foxtrick.util.id.findUserId = function(element) {
-	var links = Foxtrick.filter(function(n) {
+	let links = Foxtrick.filter(function(n) {
 		return n.hasAttribute('href');
 	}, element.getElementsByTagName('a'));
-	for (var i = 0; i < links.length; i++) {
-		if (links[i].href.match(/UserID=/i)) {
-			return Number(links[i].href.replace(/.+UserID=/i, '').match(/^\d+/));
-		}
+
+	for (let link of links) {
+		if (link.href.match(/UserID=/i))
+			return Number(link.href.replace(/.+UserID=/i, '').match(/^\d+/));
 	}
-	return false;
+	return null;
 };
 
 

@@ -281,6 +281,9 @@ Foxtrick.util.time.getUTCDate = function(doc) {
 		return null;
 
 	var d = this.parse(dateEl.textContent);
+	if (!d)
+		return null;
+
 	var hour = d.hour - this.HT_GMT_OFFSET;
 	var utcHTDate = new Date(Date.UTC(d.year, d.month - 1, d.day, hour, d.minute));
 	if (this.isDST(utcHTDate))

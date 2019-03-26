@@ -30,7 +30,8 @@ Foxtrick.modules.Core = {
 	/**
 	 * @type {OwnTeamInfo}
 	 */
-	TEAM: null,
+	// @ts-ignore
+	TEAM: {},
 	PLAYER_LIST: [],
 
 	// UTC timestamp
