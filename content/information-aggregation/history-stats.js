@@ -121,7 +121,9 @@ Foxtrick.modules['HistoryStats'] = {
 				return;
 		}
 
-		var events = log.querySelectorAll('.feedItem td.float_left');
+		// eslint-disable-next-line no-extra-parens
+		var copy = /** @type {HTMLElement} */ (log.cloneNode(true));
+		var events = copy.querySelectorAll('.feedItem td.float_left');
 		for (var event of Foxtrick.toArray(events)) {
 			// stop if old manager
 			if (event.getElementsByClassName('shy').length)
