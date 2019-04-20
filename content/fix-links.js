@@ -133,6 +133,9 @@ Foxtrick.modules.FixLinks = {
 		var youthTeamId = isYouth ? module.getYouthTeamId(doc) : null;
 
 		var table = doc.querySelector('#mainBody table');
+		if (!table)
+			return;
+
 		var browser = table.querySelector('a[href*="BrowseIds"]');
 		var browseIds = browser ? Foxtrick.getUrlParam(browser.href, 'BrowseIds') : null;
 
