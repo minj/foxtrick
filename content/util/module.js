@@ -163,7 +163,7 @@ Foxtrick.util.modules.getActive = function(doc) {
  * @typedef FTLinkModuleMixin
  * @prop {string}  [MODULE_NAME] set automatically
  * @prop {'links'} MODULE_CATEGORY
- * @prop {(keyof Foxtrick.htPages)[]} PAGES
+ * @prop {PAGE[]} PAGES
  * @prop {string|string[]} LINK_TYPES
  * @prop {(doc: document)=>Node|string|(Node|string)[]|void} OPTION_FUNC
  * @prop {(doc: document)=>void} [run]
@@ -172,4 +172,8 @@ Foxtrick.util.modules.getActive = function(doc) {
 
 /**
  * @typedef {FTAppModuleMixin & FTBackgroundModuleMixin} FTModule
+ */
+
+/**
+ * @typedef {keyof Foxtrick.htPages} PAGE
  */

@@ -1,9 +1,10 @@
-'use strict';
-/*
+/**
  * fix-links.js
  * Add various parameters to standartise HT links
  * @author LA-MJ
  */
+
+'use strict';
 
 Foxtrick.modules.FixLinks = {
 	CORE_MODULE: true,
@@ -15,133 +16,190 @@ Foxtrick.modules.FixLinks = {
 		'players', 'youthPlayers',
 	],
 	NICE: -20, // place before all DOM mutating modules
+
+	/**
+	 * @param  {string}  originalUrl
+	 * @param  {string}  param
+	 * @param  {any}     value
+	 * @param  {boolean} [replace]
+	 * @return {string}
+	 */
 	addParam: function(originalUrl, param, value, replace) {
-		var parts = originalUrl.split('#'), url = parts[0], anchor = parts[1];
+		let parts = originalUrl.split('#'), [url, anchor] = parts;
 
-		param = encodeURIComponent(param);
-		value = encodeURIComponent(value);
+		let p = encodeURIComponent(param);
+		let v = encodeURIComponent(String(value));
 
-		var reStr = Foxtrick.strToRe(param);
-		var paramRe = new RegExp('([&?])' + reStr + '=[^&]*&?', 'i');
-		if (!replace && paramRe.test(url)) {
+		let reStr = Foxtrick.strToRe(p);
+		let paramRe = new RegExp('([&?])' + reStr + '=[^&]*?&?', 'i');
+
+		if (!replace && paramRe.test(url))
 			return originalUrl;
-		}
-		else {
-			url = url.replace(paramRe, '$1');
-			url = url.replace(/\?$/, ''); // strip ? if query was emptied
-		}
 
-		url += (/\?/.test(url) ? '&' : '?') + param + '=' + value + (anchor ? '#' + anchor : '');
+		url = url.replace(paramRe, '$1');
+		url = url.replace(/\?$/, ''); // strip ? if query was emptied
+
+		url += (/\?/.test(url) ? '&' : '?') + p + '=' + v + (anchor ? '#' + anchor : '');
 		return url;
 	},
+
+	/**
+	 * @param  {string} url
+	 * @param  {string} anchor
+	 * @return {string}
+	 */
 	addAnchor: function(url, anchor) {
-		var urlParts = url.split('#');
-		return urlParts[0] + '#' + encodeURIComponent(anchor);
+		let [baseUrl] = url.split('#');
+		return `${baseUrl}#${encodeURIComponent(anchor)}`;
 	},
+
+	/**
+	 * @param  {string} url
+	 * @param  {number} teamId
+	 * @param  {number} [youthTeamId]
+	 * @return {string}
+	 */
 	addTeamId: function(url, teamId, youthTeamId) {
-		url = this.addParam(url, 'teamId', teamId);
+		let newUrl = this.addParam(url, 'teamId', teamId);
 		if (youthTeamId)
-			url = this.addParam(url, 'youthTeamId', youthTeamId);
-		return url;
+			newUrl = this.addParam(newUrl, 'youthTeamId', youthTeamId);
+
+		return newUrl;
 	},
+
+	/**
+	 * @param  {HTMLAnchorElement} link
+	 * @param  {number} teamId
+	 * @param  {number} [youthTeamId]
+	 */
 	fixLineupLink: function(link, teamId, youthTeamId) {
-		var url = this.addTeamId(link.href, teamId, youthTeamId);
+		let url = this.addTeamId(link.href, teamId, youthTeamId);
 		url = this.addAnchor(url, 'tab2');
 		link.href = url;
 	},
+
+	/**
+	 * @param  {HTMLAnchorElement} link
+	 * @param  {number} playerId
+	 */
 	addPlayerHighlight: function(link, playerId) {
-		var url = this.addParam(link.href, 'HighlightPlayerID', playerId);
+		let url = this.addParam(link.href, 'HighlightPlayerID', playerId);
 		link.href = url;
 	},
+
+	/**
+	 * @param  {document} doc
+	 * @return {number?}
+	 */
 	getMenuTeamId: function(doc) {
-		var teamLink = doc.querySelector('.subMenu a[href*="TeamID="]');
+		/** @type {HTMLAnchorElement} */
+		let teamLink = doc.querySelector('.subMenu a[href*="TeamID="]');
 		if (teamLink)
 			return Foxtrick.util.id.getTeamIdFromUrl(teamLink.href);
 
 		return null;
 	},
+
+	/**
+	 * @param  {document} doc
+	 * @return {number}
+	 */
 	getDefaultTeamId: function(doc) {
-		var teamId = Foxtrick.util.id.getTeamIdFromUrl(doc.location.href);
-		if (!teamId) {
-			teamId = this.getMenuTeamId(doc) || Foxtrick.util.id.getOwnTeamId();
-		}
-		return teamId;
+		return Foxtrick.util.id.getTeamIdFromUrl(doc.location.href) ||
+			this.getMenuTeamId(doc) ||
+			Foxtrick.util.id.getOwnTeamId();
 	},
+
+	/**
+	 * @param  {document} doc
+	 * @return {number?}
+	 */
 	getYouthTeamId: function(doc) {
-		var youthId = Foxtrick.util.id.getYouthTeamIdFromUrl(doc.location.href);
+		let youthId = Foxtrick.util.id.getYouthTeamIdFromUrl(doc.location.href);
 		if (!youthId) {
-			var menu = doc.querySelector('.subMenu');
+			let menu = doc.querySelector('.subMenu');
 			youthId = menu ? Foxtrick.util.id.findYouthTeamId(menu) : null;
 		}
 		return youthId;
 	},
+
+	/** @param {document} doc */
 	parseMatchPage: function(doc) {
 		if (Foxtrick.Pages.Match.isPrematch(doc) || Foxtrick.Pages.Match.inProgress(doc))
 			return;
 
-		var module = this;
-		var loc = doc.location.href;
-		var docAnchor = loc.match(/#.*/);
+		const module = this;
+		const url = doc.location.href;
+		const docAnchor = url.match(/#.*/);
 
-		var paramsTosave = {
-			teamId: Foxtrick.util.id.getTeamIdFromUrl(loc),
-			youthTeamId: Foxtrick.util.id.getYouthTeamIdFromUrl(loc),
-			HighlightPlayerID: Foxtrick.getUrlParam(loc, 'HighlightPlayerID'),
-			BrowseIds: Foxtrick.getUrlParam(loc, 'BrowseIds'),
+		const PARAMS_TO_SAVE = {
+			teamId: Foxtrick.util.id.getTeamIdFromUrl(url),
+			youthTeamId: Foxtrick.util.id.getYouthTeamIdFromUrl(url),
+			HighlightPlayerID: Foxtrick.getUrlParam(url, 'HighlightPlayerID'),
+			BrowseIds: Foxtrick.getUrlParam(url, 'BrowseIds'),
 		};
+
+		/** @param {HTMLAnchorElement} link */
 		var saveParams = function(link) {
-			var url = link.href;
-			for (var p in paramsTosave) {
-				if (paramsTosave[p]) {
-					url = module.addParam(url, p, paramsTosave[p]);
-				}
+			let url = link.href;
+			for (let p in PARAMS_TO_SAVE) {
+				if (PARAMS_TO_SAVE[p])
+					url = module.addParam(url, p, PARAMS_TO_SAVE[p]);
 			}
+
 			link.href = url;
 		};
 
-		var browseLinks = doc.querySelectorAll('.speedBrowser a');
+		/** @type {NodeListOf<HTMLAnchorElement>} */
+		let browseLinks = doc.querySelectorAll('.speedBrowser a');
 		Foxtrick.forEach(function(link) {
 			saveParams(link);
 			Foxtrick.onClick(link, function() {
-				var linkAnchor = this.href.match(/#.*/);
+				// eslint-disable-next-line no-invalid-this
+				let linkAnchor = this.href.match(/#.*/);
 				if (!linkAnchor && docAnchor)
 					link.href += docAnchor[0];
 			});
 		}, browseLinks);
 
-		var id = module.getDefaultTeamId(doc);
-		var isYouth = Foxtrick.Pages.Match.isYouth(doc);
-		var links = doc.querySelectorAll('div.boxHead a');
+		let id = module.getDefaultTeamId(doc);
+		let isYouth = Foxtrick.Pages.Match.isYouth(doc);
+
+		/** @type {NodeListOf<HTMLAnchorElement>} */
+		let links = doc.querySelectorAll('div.boxHead a');
 		Foxtrick.forEach(saveParams, links);
 
-		var matchLinks = doc.querySelectorAll('#oldMatchRatings th a');
+		/** @type {NodeListOf<HTMLAnchorElement>} */
+		let matchLinks = doc.querySelectorAll('#oldMatchRatings th a');
 		Foxtrick.forEach(function(link) {
-			if (isYouth) {
+			if (isYouth)
 				module.fixLineupLink(link, id, Foxtrick.Pages.Match.getHomeTeamId(doc));
-			}
-			else {
+			else
 				module.fixLineupLink(link, Foxtrick.Pages.Match.getHomeTeamId(doc));
-			}
+
 			saveParams(link);
 		}, matchLinks);
 	},
-	parseMatchesPage: function(doc) {
-		var module = this;
 
-		var id = module.getDefaultTeamId(doc);
-		var isYouth = Foxtrick.Pages.All.isYouth(doc);
-		var youthTeamId = isYouth ? module.getYouthTeamId(doc) : null;
+	/** @param {document} doc */
+	parseMatchesPage: function(doc) {
+		const module = this;
+
+		const id = module.getDefaultTeamId(doc);
+		const isYouth = Foxtrick.Pages.All.isYouth(doc);
+		const youthTeamId = isYouth ? module.getYouthTeamId(doc) : null;
 
 		var table = doc.querySelector('#mainBody table');
 		if (!table)
 			return;
 
-		var browser = table.querySelector('a[href*="BrowseIds"]');
-		var browseIds = browser ? Foxtrick.getUrlParam(browser.href, 'BrowseIds') : null;
+		/** @type {HTMLAnchorElement} */
+		let browser = table.querySelector('a[href*="BrowseIds"]');
+		let browseIds = browser ? Foxtrick.getUrlParam(browser.href, 'BrowseIds') : null;
 
-		var lineupImgs = table.querySelectorAll('img.matchOrder');
+		let lineupImgs = table.querySelectorAll('img.matchOrder');
 		Foxtrick.forEach(function(lineupImg) {
-			var link = lineupImg.parentNode;
+			let link = lineupImg.closest('a');
 			module.fixLineupLink(link, id, youthTeamId);
 
 			if (browseIds)
@@ -149,9 +207,9 @@ Foxtrick.modules.FixLinks = {
 
 			if (youthTeamId) {
 				// add youthTeamId to report link
-				var row = link.parentNode.parentNode;
-				var rowLinks = row.getElementsByTagName('a');
-				var reportLink = Foxtrick.nth(function(a) {
+				let row = link.closest('tr');
+				let rowLinks = row.querySelectorAll('a');
+				let reportLink = Foxtrick.nth(function(a) {
 					return a.href && /Match\.aspx/.test(a.href) && !/#/.test(a.href);
 				}, rowLinks);
 
@@ -159,80 +217,111 @@ Foxtrick.modules.FixLinks = {
 			}
 		}, lineupImgs);
 	},
-	parsePlayerStats: function(doc) {
-		var module = this;
 
-		var OPEN_NEW = Foxtrick.L10n.getString('button.open_new');
+	/** @param {document} doc */
+	parsePlayerStats: function(doc) {
+		const module = this;
+
+		const OPEN_NEW = Foxtrick.L10n.getString('button.open_new');
+		const table = Foxtrick.getMBElement(doc, 'pnlAlltidMatches');
+
+		/**
+		 * @param {HTMLImageElement} icon
+		 * @param {string} url
+		 */
 		var addLinkToMatchIcon = function(icon, url) {
 			// don't modify icon className so as not to interfere with player-stats-xp
-			Foxtrick.addClass(icon.parentNode, 'ft-link');
+			let parent = icon.closest('span');
+			Foxtrick.addClass(parent, 'ft-link');
+
 			icon.title += '\n' + OPEN_NEW;
 			icon.dataset.url = url;
 			Foxtrick.onClick(icon, function() {
+				// eslint-disable-next-line no-invalid-this
 				Foxtrick.newTab(this.dataset.url);
 			});
 		};
 
-		var id = module.getDefaultTeamId(doc);
-		var pid = Foxtrick.getUrlParam(doc.location.href, 'PlayerID');
-		var icons = doc.querySelectorAll('#stats .iconMatchtype img');
-		var links = doc.querySelectorAll('#matches a');
-		Foxtrick.forEach(function(link, i) {
-			var icon = icons[i];
+		let id = module.getDefaultTeamId(doc);
+		let pid = parseInt(Foxtrick.getUrlParam(doc.location.href, 'PlayerID'), 10);
+
+		/** @type {NodeListOf<HTMLImageElement>} */
+		let icons = table.querySelectorAll('.iconMatchtype img');
+
+		/** @type {NodeListOf<HTMLAnchorElement>} */
+		let links = table.querySelectorAll('a');
+		Foxtrick.forEach(function(icon, i) {
+			let link = links[i];
 
 			module.fixLineupLink(link, id);
 			module.addPlayerHighlight(link, pid);
 			addLinkToMatchIcon(icon, link.href);
-		}, links);
+		}, icons);
 	},
+
+	/** @param {document} doc */
 	parseH2HLatestMatches: function(doc) {
-		var module = this;
+		const module = this;
 
-		var homeId = Foxtrick.getUrlParam(doc.location.href, 'HomeTeamID');
-		var awayId = Foxtrick.getUrlParam(doc.location.href, 'AwayTeamID');
+		const homeId = parseInt(Foxtrick.getUrlParam(doc.location.href, 'HomeTeamID'), 10);
+		const awayId = parseInt(Foxtrick.getUrlParam(doc.location.href, 'AwayTeamID'), 10);
 
-		var names = doc.querySelectorAll('#mainBody th');
-		var home = names[0].textContent.trim();
-		var homeRe = new RegExp('^' + Foxtrick.strToRe(home));
-		var away = names[1].textContent.trim();
-		var awayRe = new RegExp('^' + Foxtrick.strToRe(away));
+		let [homeHead, awayHead] = doc.querySelectorAll('#mainBody th');
+		let home = homeHead.textContent.trim();
+		let homeRe = new RegExp('^' + Foxtrick.strToRe(home));
+		let away = awayHead.textContent.trim();
+		let awayRe = new RegExp('^' + Foxtrick.strToRe(away));
 
+		/** @type {NodeListOf<HTMLAnchorElement>} */
+		let links = doc.querySelectorAll('#mainBody td.left a');
+
+		/**
+		 * add ids to lineup-links if away; we don't care about third-party teams
+		 * @param {HTMLAnchorElement} lineupLink
+		 * @param {number} teamId
+		 * @param {HTMLAnchorElement} matchLink
+		 * @param {RegExp} teamRe
+		 */
+		var addTeamIdForAwayGame = function(lineupLink, teamId, matchLink, teamRe) {
+			if (teamRe.test(matchLink.textContent.trim()))
+				return;
+
+			// home team name does not match
+			// assume away game
+			lineupLink.href = module.addParam(lineupLink.href, 'teamId', teamId);
+		};
+
+		/* eslint-disable no-magic-numbers */
 		// links go in cycles of 6
 		// home team match: match-link, match-home-lineup-link, match-away-lineup-link
 		// away team match: match-link, match-home-lineup-link, match-away-lineup-link
-		var links = doc.querySelectorAll('#mainBody td.left a');
-
-		// add ids to lineup-links if away; we don't care about third-party teams
-		var addTeamIdForAwayGame = function(lineupLink, teamId, matchLink, teamRe) {
-			if (!teamRe.test(matchLink.textContent.trim())) {
-				// home team name does not match
-				// assume away game
-				lineupLink.href = module.addParam(lineupLink.href, 'teamId', teamId);
-			}
-		};
-
-		for (var i = 0; i < links.length; i += 6) {
+		for (let i = 0; i < links.length; i += 6) {
 			// add ids to match-links first
-			var homeTeamMatch = links[i], awayTeamMatch = links[i + 3];
+			let homeTeamMatch = links[i], awayTeamMatch = links[i + 3];
 			homeTeamMatch.href = module.addParam(homeTeamMatch.href, 'teamId', homeId);
 			awayTeamMatch.href = module.addParam(awayTeamMatch.href, 'teamId', awayId);
 
-			var homeTeamLineup = links[i + 2], awayTeamLineup = links[i + 5];
+			let homeTeamLineup = links[i + 2], awayTeamLineup = links[i + 5];
 			addTeamIdForAwayGame(homeTeamLineup, homeId, homeTeamMatch, homeRe);
 			addTeamIdForAwayGame(awayTeamLineup, awayId, awayTeamMatch, awayRe);
 		}
+		/* eslint-enable no-magic-numbers */
 	},
+
+	/** @param {document} doc */
 	parsePlayers: function(doc) {
-		var module = this;
+		const module = this;
 
-		var id = module.getMenuTeamId(doc);
-		var isYouth = Foxtrick.isPage(doc, 'youthPlayers');
-		var youthId = isYouth ? module.getYouthTeamId(doc) : null;
+		const id = module.getMenuTeamId(doc);
+		const isYouth = Foxtrick.isPage(doc, 'youthPlayers');
+		const youthId = isYouth ? module.getYouthTeamId(doc) : null;
 
-		var players = doc.getElementsByClassName('playerInfo');
+		let players = doc.querySelectorAll('.playerInfo');
 		Foxtrick.forEach(function(p) {
-			var pid = Foxtrick.util.id.findPlayerId(p);
-			var matchLink = p.querySelector('a[href^="/Club/Matches/Match.aspx"]');
+			let pid = Foxtrick.util.id.findPlayerId(p);
+
+			/** @type {HTMLAnchorElement} */
+			let matchLink = p.querySelector('a[href^="/Club/Matches/Match.aspx"]');
 			if (!matchLink)
 				return;
 
@@ -241,19 +330,24 @@ Foxtrick.modules.FixLinks = {
 		}, players);
 	},
 
+	/** @param {document} doc */
 	run: function(doc) {
 
 		if (Foxtrick.isPage(doc, 'match')) {
 			// this might be a bit annoying as it causes match page to reload
 			this.parseMatchPage(doc);
 		}
-		else if (Foxtrick.isPage(doc, ['matches', 'matchesCup', 'matchesArchive']))
+		else if (Foxtrick.isPage(doc, ['matches', 'matchesCup', 'matchesArchive'])) {
 			this.parseMatchesPage(doc);
-		else if (Foxtrick.isPage(doc, 'playerStats'))
+		}
+		else if (Foxtrick.isPage(doc, 'playerStats')) {
 			this.parsePlayerStats(doc);
-		else if (Foxtrick.isPage(doc, 'matchesLatest'))
+		}
+		else if (Foxtrick.isPage(doc, 'matchesLatest')) {
 			this.parseH2HLatestMatches(doc);
-		else if (Foxtrick.isPage(doc, ['players', 'youthPlayers']))
+		}
+		else if (Foxtrick.isPage(doc, ['players', 'youthPlayers'])) {
 			this.parsePlayers(doc);
+		}
 	},
 };
