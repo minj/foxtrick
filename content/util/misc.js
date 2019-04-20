@@ -348,6 +348,9 @@ Foxtrick.clearCaches = function() {
  * @return {?string}       ?value
  */
 Foxtrick.getUrlParam = function(url, param) {
+	if (url == null || url === '')
+		return null;
+
 	let needle = param.toLowerCase();
 	let params = new URL(url).searchParams;
 	let entries = [...params]; // keys() is not iterable in FF :(
