@@ -237,14 +237,19 @@ Foxtrick.Pages.Players.getPlayerNodes = function(doc, include) {
  */
 
 /**
- * @typedef PlayerSkills
- * @prop {number} [defending]
- * @prop {number} [keeper]
- * @prop {number} [passing]
- * @prop {number} [playmaking]
- * @prop {number} [scoring]
- * @prop {number} [setPieces]
- * @prop {number} [winger]
+ * @template T
+ * @typedef SkillMap<T>
+ * @prop {T} [defending]
+ * @prop {T} [keeper]
+ * @prop {T} [passing]
+ * @prop {T} [playmaking]
+ * @prop {T} [scoring]
+ * @prop {T} [setPieces]
+ * @prop {T} [winger]
+ */
+
+/**
+ * @typedef {SkillMap<number>} PlayerSkills
  */
 
 /**
@@ -1372,7 +1377,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 
 				if (skillInfo) {
 					let skills = skillInfo.values;
-					player.skills = skills;
+					player.skills = skills; // FIXME
 					for (let skill in skills)
 						player[skill] = skills[skill];
 				}
@@ -1736,17 +1741,18 @@ Foxtrick.Pages.Players.isPropertyInList = function(playerList, property) {
  * getMatchDate extracts matchDate as a timestamp from a player object.
  * playerLimit is minimal player count for a match to be eligible.
  *
- * @param  {Array}    players      Array<object>
- * @param  {Function} getMatchDate function(object): number
- * @param  {number}   playerLimit
- * @return {object}                {last:number, second:number}
+ * @template T
+ * @param  {ArrayLike<T>}        players
+ * @param  {function(T): number} getMatchDate
+ * @param  {number}              playerLimit
+ * @return {{last:number, second:number}}
  */
 Foxtrick.Pages.Players.getLastMatchDates = function(players, getMatchDate, playerLimit) {
-	var limit = playerLimit || 1;
-	var matchdays = [], matchdaysCount = {}, lastMatch = 0, secondLastMatch = 0;
+	const limit = playerLimit || 1;
+	let matchdays = [], matchdaysCount = {}, lastMatch = 0, secondLastMatch = 0;
 
-	for (var i = 0; i < players.length; ++i) {
-		var thisMatchday = getMatchDate(players[i]);
+	for (let player of Foxtrick.toArray(players)) {
+		let thisMatchday = getMatchDate(player);
 		matchdays.push(thisMatchday);
 
 		if (matchdaysCount[thisMatchday])
@@ -1760,8 +1766,8 @@ Foxtrick.Pages.Players.getLastMatchDates = function(players, getMatchDate, playe
 
 	matchdays = Foxtrick.filter(function(n) {
 		// delete all older than a week and all with too few players (might be transfers)
-		var MSECS_IN_WEEK = Foxtrick.util.time.DAYS_IN_WEEK * Foxtrick.util.time.MSECS_IN_DAY;
-		var lastWeek = lastMatch - MSECS_IN_WEEK;
+		const MSECS_IN_WEEK = Foxtrick.util.time.DAYS_IN_WEEK * Foxtrick.util.time.MSECS_IN_DAY;
+		const lastWeek = lastMatch - MSECS_IN_WEEK;
 		return n > lastWeek && matchdaysCount[n] >= limit;
 	}, matchdays);
 

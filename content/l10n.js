@@ -247,7 +247,7 @@ Foxtrick.L10n.appendLink = function(str, parent, url) {
  * @typedef HTLangPropQuery
  * @prop {string} category
  * @prop {string} filter
- * @prop {string} value
+ * @prop {string|number} value
  * @prop {string} property
  */
 
@@ -274,7 +274,7 @@ Foxtrick.L10n.getHTLangProperty = function(query, lang) {
 	let array = json[query.category];
 
 	if (Array.isArray(array)) {
-		let value = query.value.toString().trim();
+		let value = String(query.value).trim();
 		let el = Foxtrick.nth(function(e) {
 			return e[query.filter] === value;
 
@@ -315,7 +315,7 @@ Foxtrick.L10n.getLocalOrEnglish = function(query, lang) {
 			' with ' + query.filter + '=' + query.value;
 		Foxtrick.error(header + ' does not exist in locale ' + l + ', trying en instead.');
 
-		text = this.getHTLangProperty(query, 'en');
+		text = this.getHTLangProperty(query, 'en-GB');
 		if (text === null) {
 			Foxtrick.error(header + ' does not exist, returning raw value.');
 			text = query.value;

@@ -242,12 +242,12 @@ Foxtrick.api.hy._fetchOrIgnore = function(api, url, params,
  * Calls _fetchOrIgnore and executes callback(json);
  * failure() is called if the request fails
  * finalize() is always called
- * @param	{String}		api			api name
- * @param	{function}		callback	function to execute
- * @param	{[String]}		params		specific params for the api (optional)
- * @param	{[Function]}	failure		function to execute (optional)
- * @param	{[Function]}	finalize	function to execute (optional)
- * @param	{[integer]}		teamId		senior team ID to fetch data for (optional)
+ * @param  {string}   api        api name
+ * @param  {function} callback   function to execute
+ * @param  {string}   [params]   specific params for the api
+ * @param  {function} [failure]  function to execute
+ * @param  {function} [finalize] function to execute
+ * @param  {number}   [teamId]   senior team ID to fetch data for
  */
 Foxtrick.api.hy._fetchGeneric = function(api, callback, params, failure, finalize, teamId) {
 	if (typeof(teamId) == 'undefined' || teamId === null)

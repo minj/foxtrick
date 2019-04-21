@@ -529,8 +529,8 @@ Foxtrick.Pages.Player.getSpecialtyNumber = function(doc) {
  * {keeper, defending, playmaking, winger, passing, scoring, setPieces}.
  * Youth player skill map contains {current, max: number, top3, maxed: Boolean} or
  * an empty object if no data is known.
- * @param  {document} doc
- * @return {object}       {current: number, max: number, maxed: Boolean}
+ * @param  {document}  doc
+ * @return {AnySkills}
  */
 Foxtrick.Pages.Player.getSkills = function(doc) {
 	var skillsWithText = this.getSkillsWithText(doc);
@@ -548,8 +548,9 @@ Foxtrick.Pages.Player.getSkills = function(doc) {
  * an empty object if no data is known.
  * For seniors texts are strings, while youth texts are {current, max: string}.
  * Texts may contain level numbers, e.g. 'weak (3)'.'
+ *
  * @param  {document} doc
- * @return {object}       {values, texts, names}
+ * @return {{values: AnySkills, texts: AnySkillTexts, names: SkillNames}}
  */
 Foxtrick.Pages.Player.getSkillsWithText = function(doc) {
 	// youth example
@@ -600,7 +601,7 @@ Foxtrick.Pages.Player.getSkillsWithText = function(doc) {
  * {keeper, defending, playmaking, winger, passing, scoring, setPieces}.
  * Texts may contain level numbers, e.g. 'weak (3)'.'
  * @param  {HTMLTableElement} table
- * @return {object}                 {values, texts, names}
+ * @return {{values: PlayerSkills, texts: SkillTexts, names: SkillNames}}
  */
 Foxtrick.Pages.Player.parseSeniorSkills = function(table) {
 	var skillMap = {
@@ -737,7 +738,7 @@ Foxtrick.Pages.Player.parseSeniorSkills = function(table) {
  * Each text is {current, max: string}.
  * Texts may contain level numbers, e.g. 'weak (3)'.'
  * @param  {HTMLTableElement} table
- * @return {object}                 {values, texts, names}
+ * @return {{values: YouthSkills, texts: YouthSkillTexts, names: SkillNames}}
  */
 Foxtrick.Pages.Player.parseYouthSkills = function(table) {
 	// youth example
@@ -993,6 +994,7 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerId, callback) {
 
 	const MAX_CARDS = 3;
 
+	/** @type {CHPPParams} */
 	var args = [
 		['file', 'playerdetails'],
 
@@ -1286,3 +1288,26 @@ Foxtrick.Pages.Player.getBestPosition = function(contributions) {
 	}
 	return max;
 };
+
+/**
+ * @typedef YouthSkill
+ * @prop {number} current
+ * @prop {number} max
+ * @prop {boolean} maxed
+ * @prop {boolean} [top3]
+ */
+
+/**
+ * @typedef YouthSkillText
+ * @prop {string} current
+ * @prop {string} max
+ */
+
+/**
+ * @typedef {SkillMap<YouthSkill>} YouthSkills
+ * @typedef {PlayerSkills|YouthSkills} AnySkills
+ * @typedef {SkillMap<YouthSkillText>} YouthSkillTexts
+ * @typedef {SkillMap<string>} SkillTexts
+ * @typedef {SkillTexts|YouthSkillTexts} AnySkillTexts
+ * @typedef {SkillMap<string>} SkillNames
+ */
