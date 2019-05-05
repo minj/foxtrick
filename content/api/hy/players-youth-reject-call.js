@@ -29,6 +29,7 @@
 
 /* eslint-disable */
 if (!this.Foxtrick)
+	// @ts-ignore
 	var Foxtrick = {};
 /* eslint-enable */
 
@@ -46,13 +47,12 @@ Foxtrick.api.hy.URL.playersYouthRejectCall = 'https://www.hattrick-youthclub.org
  * Tries to post the youth scout call to HY and executes callback(response);
  * failure() is called if the request fails
  * finalize() is always called
- * @param	{function}		callback	function to execute
- * @param	{String}		params		specific params for the api
- * @param	{[Function]}	failure		function to execute (optional)
- * @param	{[Function]}	finalize	function to execute (optional)
- * @param	{[integer]}		teamId		senior team ID to fetch data for (optional)
+ * @param  {function} callback   function to execute
+ * @param  {string}   params     specific params for the api
+ * @param  {function} [failure]  function to execute
+ * @param  {function} [finalize] function to execute
+ * @param  {number}   [teamId]   senior team ID to fetch data for
  */
 Foxtrick.api.hy.postScoutCall = function(callback, params, failure, finalize, teamId) {
-	Foxtrick.api.hy._fetchGeneric('playersYouthRejectCall', callback, params,
-								  failure, finalize, teamId);
+	this._fetchGeneric('playersYouthRejectCall', callback, params, failure, finalize, teamId);
 };
