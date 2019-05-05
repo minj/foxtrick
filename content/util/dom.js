@@ -486,7 +486,9 @@ Foxtrick.append = function(parent, child) {
 
 /**
  * Adds a click event listener to an element.
+ *
  * Sets tabindex=0 and role=button if these attributes have no value.
+ *
  * The callback is executed with global change listeners stopped.
  *
  * @template {Element} T
@@ -504,7 +506,9 @@ Foxtrick.onClick = function(el, listener, useCapture) {
 
 /**
  * Add an event listener to an element.
+ *
  * The callback is executed with global change listeners stopped.
+ *
  * @template {EventTarget} T
  * @param {T}                 el
  * @param {string}            type     event type
@@ -523,15 +527,21 @@ Foxtrick.listen = function(el, type, listener, useCapture) {
 		let doc = target instanceof Document ? target : target.ownerDocument;
 		Foxtrick.stopListenToChange(doc);
 
-		/** @type {boolean|void} */
+		/** @type {boolean|Promise|void} */
 		let ret = listener.call(this, ev);
-
-		Foxtrick.log.flush(doc);
-		Foxtrick.startListenToChange(doc);
-
 		if (ret === false) {
 			ev.stopPropagation();
 			ev.preventDefault();
+		}
+		else if (ret instanceof Promise) {
+			Foxtrick.finally(ret, () => {
+				Foxtrick.log.flush(doc);
+				Foxtrick.startListenToChange(doc);
+			}).catch(Foxtrick.catch('async listen'));
+		}
+		else {
+			Foxtrick.log.flush(doc);
+			Foxtrick.startListenToChange(doc);
 		}
 	};
 
@@ -1273,5 +1283,5 @@ Foxtrick.makeModal = function(doc, title, content, buttons) {
 /**
  * @template {EventTarget} T
  * @template {Event}       E
- * @typedef  {(this:T,ev:E)=>boolean|void} Listener<T,E>
+ * @typedef  {(this:T,ev:E)=>boolean|Promise|void} Listener<T,E>
  */
