@@ -13,35 +13,34 @@ if (!this.Foxtrick)
 	var Foxtrick = {};
 /* eslint-enable */
 
+/**
+ * Cookie specification object
+ */
+Foxtrick.COOKIE_SPEC = {
+	// eslint-disable-next-line camelcase
+	for_hty: {
+		url: 'https://www.hattrick-youthclub.org/*',
+		name: 'fromFoxtrick',
+		addId: true,
+		domain: '.hattrick-youthclub.org',
+		isJSON: true,
+		isBase64: true,
+	},
+	// eslint-disable-next-line camelcase
+	from_hty: {
+		url: 'https://hattrick-youthclub.org/*',
+		name: 'forFoxtrick',
+		addId: true,
+		domain: '.hattrick-youthclub.org',
+		isJSON: true,
+		isBase64: true,
+	},
+};
+
+/** @typedef {keyof Foxtrick.COOKIE_SPEC} CookieKey */
+
 Foxtrick.cookies = (function() {
-
-	/**
-	 * Cookie specification object
-	 * @type {Object}
-	 */
-	const COOKIE_SPEC = {
-		// eslint-disable-next-line camelcase
-		for_hty: {
-			url: 'https://www.hattrick-youthclub.org/*',
-			name: 'fromFoxtrick',
-			addId: true,
-			domain: '.hattrick-youthclub.org',
-			isJSON: true,
-			isBase64: true,
-		},
-		// eslint-disable-next-line camelcase
-		from_hty: {
-			url: 'https://hattrick-youthclub.org/*',
-			name: 'forFoxtrick',
-			addId: true,
-			domain: '.hattrick-youthclub.org',
-			isJSON: true,
-			isBase64: true,
-		},
-	};
-
-	/** @typedef {keyof COOKIE_SPEC} CookieKey */
-
+	const COOKIE_SPEC = Foxtrick.COOKIE_SPEC;
 
 	/**
 	 * Parse a value from a cookie string according to spec:
@@ -137,9 +136,9 @@ Foxtrick.cookies = (function() {
 	 *
  	 * value may be any stringify-able object.
 	 *
-	 * @param  {string}  key
-	 * @param  {object}  value
-	 * @param  {string}  [cookieName] optional in content, **REQUIRED** in BG
+	 * @param  {CookieKey} key
+	 * @param  {object}    value
+	 * @param  {string}    [cookieName] optional in content, **REQUIRED** in BG
 	 * @return {Promise}
 	 */
 	var set = function(key, value, cookieName) {
@@ -278,29 +277,13 @@ Foxtrick.cookies = (function() {
 // ////////////////////////
 
 /**
- * Save a value in the cookie storage.
- *
- * Cookie storage key must be preset in COOKIE_SPEC.
- *
- * @deprecated use cookies.set() instead
- *
- * @param {string}           key
- * @param {object}           value
- * @param {function(*):void} [callback]
- */
-Foxtrick.cookieSet = function(key, value, callback) {
-	let noOp = (_) => {};
-	Foxtrick.cookies.set(key, value).then(callback || noOp).catch(Foxtrick.catch('cookieSet'));
-};
-
-/**
  * Get a value from the cookie storage.
  *
  * Cookie storage key must be preset in COOKIE_SPEC.
  *
  * @deprecated use cookies.get() instead
  *
- * @param {string}           key
+ * @param {CookieKey}        key
  * @param {function(*):void} callback
  */
 Foxtrick.cookieGet = function(key, callback) {
