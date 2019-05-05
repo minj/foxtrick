@@ -232,7 +232,9 @@ Foxtrick.modules['HTMSPrediction'] = {
 			p.textContent = `Try opening the `;
 			a = p.appendChild(doc.createElement('a'));
 			a.target = '_blank';
-			a.href = url;
+			a.href =
+				'http://www.fantamondi.it/HTMS/index.php?page=predictor&action=showpredict&lang=' + lang + params;
+
 			a.textContent = 'prediction result';
 			p.appendChild(doc.createTextNode(' manually'));
 
