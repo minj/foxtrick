@@ -763,13 +763,10 @@ Foxtrick.Prefs.load = function(string) {
  *
  * page is actually an optional hash (#foo=bar)
  *
- * @param {string} page {?string}
+ * @param {string} [page]
  */
 Foxtrick.Prefs.show = function(page) {
-	if (!page)
-		page = '#tab=main';
-
-	Foxtrick.newTab(Foxtrick.InternalPath + 'preferences.html' + page);
+	Foxtrick.newTab(Foxtrick.InternalPath + 'preferences.html' + (page || '#tab=main'));
 };
 
 /**

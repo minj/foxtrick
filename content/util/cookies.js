@@ -270,22 +270,3 @@ Foxtrick.cookies = (function() {
 	return { get, set };
 
 })();
-
-
-// /////////////////////////
-// TODO: remove deprecated
-// ////////////////////////
-
-/**
- * Get a value from the cookie storage.
- *
- * Cookie storage key must be preset in COOKIE_SPEC.
- *
- * @deprecated use cookies.get() instead
- *
- * @param {CookieKey}        key
- * @param {function(*):void} callback
- */
-Foxtrick.cookieGet = function(key, callback) {
-	Foxtrick.cookies.get(key).then(callback).catch(Foxtrick.catch('cookieGet'));
-};

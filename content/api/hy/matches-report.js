@@ -45,15 +45,12 @@ Foxtrick.api.hy.URL.matchesReport = 'https://www.hattrick-youthclub.org' +
 	'/_data_provider/foxtrick/matchesReport';
 
 /**
- * Tries to post the match report to HY and executes callback(response);
- * failure() is called if the request fails
- * finalize() is always called
- * @param  {function} callback   function to execute
+ * Tries to post the match report to HY and executes callback(response)
+ *
  * @param  {string}   params     specific params for the api
- * @param  {function} [failure]  function to execute
- * @param  {function} [finalize] function to execute
  * @param  {number}   [teamId]   senior team ID to fetch data for
+ * @return {Promise}
  */
-Foxtrick.api.hy.postMatchReport = function(callback, params, failure, finalize, teamId) {
-	Foxtrick.api.hy._fetchGeneric('matchesReport', callback, params, failure, finalize, teamId);
+Foxtrick.api.hy.postMatchReport = function(params, teamId) {
+	return Foxtrick.api.hy._fetchGeneric('matchesReport', params, teamId);
 };

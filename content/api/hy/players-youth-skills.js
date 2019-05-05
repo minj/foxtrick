@@ -43,8 +43,10 @@
 
 'use strict';
 
+
 /* eslint-disable */
 if (!this.Foxtrick)
+	// @ts-ignore
 	var Foxtrick = {};
 /* eslint-enable */
 
@@ -75,30 +77,45 @@ Foxtrick.api.hy.skillMap = {
  * Tries to fetch the youth skills from HY and executes callback(players);
  * failure() is called if the request fails
  * finalize() is always called
- * @param	{function}		callback	function to execute
- * @param	{string}		params		specific params for the api = null
- * @param	{[Function]}	failure		function to execute (optional)
- * @param	{[Function]}	finalize	function to execute (optional)
- * @param	{[integer]}		teamId		senior team ID to fetch data for (optional)
+ * @param  {number}  [teamId] senior team ID to fetch data for
+ * @return {Promise<HYPlayers>}
  */
-Foxtrick.api.hy._fetchYouthSkills = function(callback, params, failure, finalize, teamId) {
-	let api = Foxtrick.api.hy;
-	api._fetchGeneric('playersYouthSkills', callback, params, failure, finalize, teamId);
+Foxtrick.api.hy._fetchYouthSkills = function(teamId) {
+	return Foxtrick.api.hy._fetchGeneric('playersYouthSkills', null, teamId);
 };
 
 /**
  * A localStore wrapper for _fetchYouthSkills
- * Gets youth skills and executes callback(players);
- * failure() is called if the request fails
- * finalize() is always called
- * @param	{function}		callback	function to execute
- * @param	{[Function]}	failure		function to execute (optional)
- * @param	{[Function]}	finalize	function to execute (optional)
- * @param	{[integer]}		teamId		senior team ID to fetch data for (optional)
+ *
+ * Gets youth skills
+ *
+ * @param  {number}  [teamId] senior team ID to fetch data for
+ * @return {Promise<HYPlayers>}
  */
-Foxtrick.api.hy.getYouthSkills = function(callback, failure, finalize, teamId) {
+Foxtrick.api.hy.getYouthSkills = function(teamId) {
 	let days = Foxtrick.util.time.DAYS_IN_WEEK;
 	let api = Foxtrick.api.hy;
-	api._fetchViaCache(days, 'playersYouthSkills', null, this._fetchYouthSkills, callback,
-	                   failure, finalize, teamId);
+	let fetch = () => api._fetchYouthSkills(teamId);
+	return api._fetchViaCache('playersYouthSkills', fetch, days, teamId);
 };
+
+/**
+ * @typedef HYSkill
+ * @prop {boolean} top3
+ * @prop {boolean} maxed
+ * @prop {number} [current]
+ * @prop {number} [cap]
+ * @prop {number} [current_estimation]
+ * @prop {number} [cap_minimal]
+ * @prop {number} [cap_maximal]
+ */
+/**
+ * @typedef {keyof Foxtrick.api.hy.skillMap} HYSkillIdx
+ * @typedef {Object<number, HYSkill>} HYSkills
+ */
+/**
+ * @typedef HYPlayer
+ * @prop {number} speciality HY Typo
+ * @prop {HYSkills} skills
+ */
+/** @typedef {Object<number, HYPlayer>} HYPlayers */
