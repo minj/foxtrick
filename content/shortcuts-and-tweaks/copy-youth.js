@@ -406,6 +406,11 @@ Foxtrick.modules.CopyYouth = {
 		if (!changeBtn || training.length != 2)
 			return;
 
+		Foxtrick.onClick(changeBtn, (ev) => {
+			Foxtrick.session.set('YouthClub.sendTrainingChange', true)
+				.catch(Foxtrick.catch(module));
+		});
+
 		(async () => {
 			let isUser = await Foxtrick.api.hy.isHYUser();
 			if (!isUser)
