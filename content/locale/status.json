@@ -114,11 +114,11 @@
 			"code": "hr",
 			"name": "Croatian",
 			"phrases": "2298",
-			"translated": "2259",
+			"translated": "2263",
 			"translated_progress": "95",
 			"words": "16757",
 			"words_approved": "13507",
-			"words_translated": "15959"
+			"words_translated": "15976"
 		},
 		{
 			"approved": "0",
@@ -498,11 +498,11 @@
 			"code": "pt-PT",
 			"name": "Portuguese",
 			"phrases": "2298",
-			"translated": "2296",
-			"translated_progress": "99",
+			"translated": "2298",
+			"translated_progress": "100",
 			"words": "16757",
 			"words_approved": "0",
-			"words_translated": "16754"
+			"words_translated": "16757"
 		},
 		{
 			"approved": "1",
