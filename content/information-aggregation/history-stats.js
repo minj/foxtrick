@@ -36,6 +36,8 @@ Foxtrick.modules.HistoryStats = {
 	_fetch: function(doc) {
 		const module = this;
 
+		const DATE_SPAN_SELECTOR = '.date, [id$="_spanDate"]';
+
 		/**
 		 * @param  {HTMLAnchorElement} a
 		 * @return {boolean}
@@ -77,7 +79,7 @@ Foxtrick.modules.HistoryStats = {
 		var gotSeasonOffset = function(log, teamId) {
 			let feedItems = log.querySelectorAll('.feedItem');
 			return Foxtrick.any(function(feedItem) {
-				let dateSpan = feedItem.querySelector('.date');
+				let dateSpan = feedItem.querySelector(DATE_SPAN_SELECTOR);
 				if (!dateSpan)
 					return false;
 
@@ -89,8 +91,9 @@ Foxtrick.modules.HistoryStats = {
 				while (row && !date) {
 					let feedItem = row.querySelector('.feedItem');
 					if (feedItem) {
-						let dateSpan = feedItem.querySelector('.date');
-						date = Foxtrick.util.time.getDateFromText(dateSpan.textContent);
+						let dateSpan = feedItem.querySelector(DATE_SPAN_SELECTOR);
+						if (dateSpan)
+							date = Foxtrick.util.time.getDateFromText(dateSpan.textContent);
 					}
 					row = row.previousElementSibling;
 				}
@@ -171,8 +174,9 @@ Foxtrick.modules.HistoryStats = {
 			while (row && !date) {
 				let feedItem = row.querySelector('.feedItem');
 				if (feedItem) {
-					let dateSpan = feedItem.querySelector('.date');
-					date = Foxtrick.util.time.getDateFromText(dateSpan.textContent);
+					let dateSpan = feedItem.querySelector(DATE_SPAN_SELECTOR);
+					if (dateSpan)
+						date = Foxtrick.util.time.getDateFromText(dateSpan.textContent);
 				}
 				row = row.previousElementSibling;
 			}
