@@ -19,6 +19,7 @@
 
 /* eslint-disable */
 if (!this.Foxtrick)
+	// @ts-ignore
 	var Foxtrick = {};
 /* eslint-enable */
 
@@ -26,6 +27,13 @@ if (!Foxtrick.util)
 	Foxtrick.util = {};
 
 Foxtrick.util.time = {
+	/**
+	 * The first day of the first HT season ever.
+	 *
+	 * Calculated to be 1997-08-22
+	 */
+	// eslint-disable-next-line no-magic-numbers
+	ORIGIN: new Date(1997, 8, 22),
 	MSECS_IN_SEC: 1000,
 	SECS_IN_MIN: 60,
 	MINS_IN_HOUR: 60,
@@ -91,23 +99,20 @@ Foxtrick.util.time.getPrintDateFormat = function() {
  * -2 for Saturday (economic update), 0 for Monday (default)
  * useLocal returns local season number
  * @param  {Date}    date
- * @param  {number}  weekdayOffset {?Integer}
- * @param  {Boolean} useLocal      {?Boolean}
- * @return {object}                {season, week: number}
+ * @param  {number}  [weekdayOffset]
+ * @param  {boolean} [useLocal]
+ * @return {{season: number, week: number}}
  */
-Foxtrick.util.time.gregorianToHT = function(date, weekdayOffset, useLocal) {
-	// 1997-08-22 should be the first day of the first season
-	var origin = new Date(1997, 8, 22);
-	weekdayOffset = parseInt(weekdayOffset, 10) || 0;
-	var msDiff = date.getTime() - origin.getTime();
-	var dayDiff = Math.floor(msDiff / this.MSECS_IN_DAY) - weekdayOffset;
-	var season = Math.floor(dayDiff / this.DAYS_IN_SEASON) + 1;
-	var week = Math.floor(dayDiff % this.DAYS_IN_SEASON / this.DAYS_IN_WEEK) + 1;
+Foxtrick.util.time.gregorianToHT = function(date, weekdayOffset = 0, useLocal = false) {
+	let msDiff = date.getTime() - this.ORIGIN.getTime();
+	let dayDiff = Math.floor(msDiff / this.MSECS_IN_DAY) - weekdayOffset;
+	let season = Math.floor(dayDiff / this.DAYS_IN_SEASON) + 1;
+	let week = Math.floor(dayDiff % this.DAYS_IN_SEASON / this.DAYS_IN_WEEK) + 1;
 
 	if (useLocal)
 		season -= this.getSeasonOffset();
 
-	return { season: season, week: week };
+	return { season, week };
 };
 
 /**
@@ -119,12 +124,10 @@ Foxtrick.util.time.gregorianToHT = function(date, weekdayOffset, useLocal) {
  *
  * @param  {{season: number, week: number}} htDate
  * @param  {number}  [weekdayOffset]
- * @param  {Boolean} [useLocal]
+ * @param  {boolean} [useLocal]
  * @return {Date}
  */
 Foxtrick.util.time.HTToGregorian = function(htDate, weekdayOffset = 0, useLocal = false) {
-	// 1997-08-22 should be the first day of the first season
-	let origin = new Date(1997, 8, 22);
 	let { season, week } = htDate;
 
 	if (useLocal)
@@ -133,7 +136,7 @@ Foxtrick.util.time.HTToGregorian = function(htDate, weekdayOffset = 0, useLocal 
 	let dayDiff = (season - 1) * this.DAYS_IN_SEASON;
 	dayDiff += (week - 1) * this.DAYS_IN_WEEK + weekdayOffset;
 	let msDiff = dayDiff * this.MSECS_IN_DAY;
-	let msVal = origin.getTime() + msDiff;
+	let msVal = this.ORIGIN.getTime() + msDiff;
 
 	return new Date(msVal);
 };

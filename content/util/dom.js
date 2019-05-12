@@ -658,11 +658,11 @@ Foxtrick.getChanges = function(node, callback, obsOpts) {
  * Returns the added box.
  * @author Ryan Li, LA-MJ
  * @param  {document} doc
- * @param  {string}   title     the title of the box, will create one if inexists
- * @param  {Element}  content   HTML node of the content
- * @param  {number}   prec      precedence of the box, the smaller, the higher
- * @param  {boolean}  forceLeft force the box to be displayed on the left
- * @return {Element}            box to be added to
+ * @param  {string}   title       the title of the box, will create one if inexists
+ * @param  {Element}  content     HTML node of the content
+ * @param  {number}   prec        precedence of the box, the smaller, the higher
+ * @param  {boolean}  [forceLeft] force the box to be displayed on the left
+ * @return {Element}              box to be added to
  */
 // eslint-disable-next-line complexity
 Foxtrick.addBoxToSidebar = function(doc, title, content, prec, forceLeft) {
