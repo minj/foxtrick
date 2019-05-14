@@ -152,11 +152,6 @@
 			"duty": "translator"
 		},
 		{
-			"id": "9060882",
-			"name": "nikpaisios",
-			"duty": "translator"
-		},
-		{
 			"id": "7908626",
 			"name": "superchivo",
 			"duty": "translator"
@@ -449,6 +444,11 @@
 		{
 			"id": "154602",
 			"name": "Kytampe",
+			"duty": "translator"
+		},
+		{
+			"id": "13335023",
+			"name": "gregvoo",
 			"duty": "translator"
 		}
 	]
