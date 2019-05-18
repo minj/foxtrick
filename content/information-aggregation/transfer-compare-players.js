@@ -63,6 +63,7 @@ Foxtrick.modules['TransferComparePlayers'] = {
 			var ct = hTable.rows.length;
 			var playerId = Foxtrick.Pages.All.getId(doc);
 
+			/** @type {CHPPParams} */
 			var detailsArgs = [
 				['file', 'playerdetails'],
 				['version', '2.1'],

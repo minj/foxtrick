@@ -40,7 +40,7 @@ Foxtrick.SWALLOWED_ERROR = 'Foxtrick ignore this error';
  * Test whether object obj is a thenable
  *
  * @param  {object}  obj
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.isThenable = obj => Foxtrick.hasProp(obj, 'then');
 

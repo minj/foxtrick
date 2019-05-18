@@ -52,6 +52,7 @@ Foxtrick.modules['SeriesFlags'] = {
 				// fetch data from stored mapping if available, otherwise
 				// we retrieve XML
 				if (typeof map[arg[0]][arg[1]] == 'undefined') {
+					/** @type {CHPPParams} */
 					let args = [['file', 'teamdetails']];
 					args.push(arg);
 

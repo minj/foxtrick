@@ -19,7 +19,7 @@ Foxtrick.Pages.TransferSearchResults = {};
 /**
  * Test whether it's transfer search results
  * @param  {document}  doc
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.TransferSearchResults.isPage = function(doc) {
 	return Foxtrick.isPage(doc, 'transferSearchResult');

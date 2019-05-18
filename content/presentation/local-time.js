@@ -13,7 +13,7 @@ Foxtrick.modules.LocalTime = {
 	NICE: -10, // place before HTDateFormat, below everything that adds dates
 	CSS: Foxtrick.InternalPath + 'resources/css/local-time.css',
 
-	/** @param {Document} doc */
+	/** @param {document} doc */
 	run: function(doc) {
 		const module = this;
 
@@ -26,7 +26,7 @@ Foxtrick.modules.LocalTime = {
 		var localTime = doc.createElement('div');
 		localTime.id = 'ft-local-time';
 		var updateTime = function() {
-			localTime.textContent = Foxtrick.util.time.buildDate(null, { showSecs: true });
+			localTime.textContent = Foxtrick.util.time.buildDate(void 0, { showSecs: true });
 		};
 
 		// Chrome needs characterData, FF needs childList
@@ -59,13 +59,13 @@ Foxtrick.modules.LocalTime = {
 		module.updatePage(doc);
 	},
 
-	/** @param {Document} doc */
+	/** @param {document} doc */
 	change: function(doc) {
 		this.updatePage(doc);
 	},
 
 	// updates all dates within the page
-	/** @param {Document} doc */
+	/** @param {document} doc */
 	updatePage: function(doc) {
 		// only deal with nodes with class date in mainBody
 		var mainBody = doc.getElementById('mainBody');

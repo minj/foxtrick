@@ -570,6 +570,8 @@ Foxtrick.modules.MatchLineupTweaks = {
 
 			/** @type {CHPPOpts} */
 			const OPTS = { cache: 'session' };
+
+			/** @type {CHPPParams} */
 			const avatarArgs = [
 				['file', (isYouth ? 'youth' : '') + 'avatars'],
 				['version', '1.1'],

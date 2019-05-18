@@ -1,4 +1,3 @@
-'use strict';
 /**
  * read-ht-prefs.js
  * Read Hattrick preferences and change Foxtrick's accordingly.
@@ -6,12 +5,15 @@
  * @author ryanli, convinced, CatzHoek, LA-MJ
  */
 
-Foxtrick.modules['ReadHtPrefs'] = {
+'use strict';
+
+Foxtrick.modules.ReadHtPrefs = {
 	OUTSIDE_MAINBODY: true,
 	PAGES: ['all'],
 	CORE_MODULE: true,
 	NICE: -20,
 
+	/** @param {document} doc */
 	run: function(doc) {
 		// only read preferences if logged in
 		if (!Foxtrick.Pages.All.isLoggedIn(doc))
@@ -22,9 +24,13 @@ Foxtrick.modules['ReadHtPrefs'] = {
 		this.readDateFormat(doc);
 	},
 
+	/**
+	 * @param  {document} doc
+	 * @return {string}
+	 */
 	readLanguageFromMetaTag: function(doc) {
 		var lang = null;
-		var metas = doc.getElementsByTagName('meta');
+		var metas = doc.querySelectorAll('meta');
 		Foxtrick.any(function(meta) {
 			if (meta.getAttribute('http-equiv') == 'Content-Language') {
 				lang = meta.getAttribute('content');
@@ -35,6 +41,7 @@ Foxtrick.modules['ReadHtPrefs'] = {
 		return lang;
 	},
 
+	/** @param {document} doc */
 	readLanguage: function(doc) {
 		var metaLang = this.readLanguageFromMetaTag(doc);
 		if (!metaLang) {
@@ -56,10 +63,10 @@ Foxtrick.modules['ReadHtPrefs'] = {
 				// change language
 				Foxtrick.L10n.setUserLocaleGecko(newLang);
 			}
-			var langDesc = langDef.language.desc;
+			let langDesc = langDef.language.desc;
 
-			var msg = Foxtrick.L10n.getString('ReadHtPrefs.HTLanguageChanged');
-			var tag = /%s/;
+			let msg = Foxtrick.L10n.getString('ReadHtPrefs.HTLanguageChanged');
+			let tag = /%s/;
 			if (tag.test(msg))
 				msg = msg.replace(tag, langDesc);
 			else
@@ -72,17 +79,19 @@ Foxtrick.modules['ReadHtPrefs'] = {
 			             'but no Foxtrick support yet.');
 		}
 
-		if (Foxtrick.platform === 'Firefox') {
+		if (Foxtrick.platform === 'Firefox')
 			Foxtrick.modules.UI.update(doc);
-		}
 	},
 
+	/** @param {document} doc */
 	readCountry: function(doc) {
+		/** @type {NodeListOf<HTMLAnchorElement>} */
 		var teamLinks = doc.querySelectorAll('#teamLinks a');
 		var leagueLink = teamLinks[2];
 		if (leagueLink) {
-			var leagueId = Foxtrick.getUrlParam(leagueLink.href, 'leagueId');
-			var country = Foxtrick.L10n.getCountryNameEnglish(leagueId);
+			let leagueId = Foxtrick.getUrlParam(leagueLink.href, 'leagueId');
+			let id = parseInt(leagueId, 10);
+			let country = Foxtrick.L10n.getCountryNameEnglish(id);
 			Foxtrick.Prefs.setString('htCountry', country);
 		}
 		else {
@@ -91,33 +100,35 @@ Foxtrick.modules['ReadHtPrefs'] = {
 		}
 	},
 
+	/** @param {document} doc */
 	readDateFormat: function(doc) {
 		var clockRe = /HT\.Clock\.init\((?!\))/i;
 		var formatRe = /HT\.Clock\.init\(\s*(?:\d+\s*,\s*)*'(.+?)'(?:\s*,\s*-?\d+)*\s*\)/i;
-		var scripts = doc.getElementsByTagName('script');
+		var scripts = doc.querySelectorAll('script');
 		Foxtrick.forEach(function(tag) {
 			var script = tag.textContent;
 			var clockMatch = script.match(clockRe);
-			if (clockMatch) {
-				// function call to timeDiff in the script
-				var formatMatch = script.match(formatRe);
-				if (!formatMatch) {
-					// failed to match regular expression
-					Foxtrick.error('Cannot find date format: ' + script.slice(clockMatch.index));
+			if (!clockMatch)
+				return;
+
+			// function call to timeDiff in the script
+			var formatMatch = script.match(formatRe);
+			if (formatMatch) {
+				let [_, dateFormat] = formatMatch;
+
+				if (dateFormat.indexOf('d') != -1 &&
+					dateFormat.indexOf('m') != -1 &&
+					dateFormat.indexOf('y') != -1) {
+					// make sure the format has characters 'd', 'm', 'y' in it
+					Foxtrick.util.time.setDateFormat(dateFormat);
 				}
 				else {
-					var dateFormat = formatMatch[1];
-					// make sure the format has characters 'd', 'm', 'y' in it
-					if (dateFormat.indexOf('d') != -1 &&
-					    dateFormat.indexOf('m') != -1 &&
-					    dateFormat.indexOf('y') != -1) {
-						Foxtrick.util.time.setDateFormat(dateFormat);
-					}
-					else {
-						Foxtrick.error('Incomplete date format:', dateFormat);
-					}
+					Foxtrick.error('Incomplete date format: ' + dateFormat);
 				}
-				return;
+			}
+			else {
+				// failed to match regular expression
+				Foxtrick.error('Cannot find date format: ' + script.slice(clockMatch.index));
 			}
 		}, scripts);
 	},

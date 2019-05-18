@@ -126,7 +126,7 @@ function initSearch() {
  * isModule is used for breadcrumb URL generation.
  *
  * @param {string}  needle
- * @param {Boolean} isModule
+ * @param {boolean} isModule
  */
 function search(needle, isModule) {
 
@@ -394,7 +394,7 @@ function getElementIdFromOption(option) {
  * showSaved: optionally show success message
  *
  * @param {object}  needed
- * @param {Boolean} showSaved
+ * @param {boolean} showSaved
  */
 function getPermission(needed, showSaved) {
 	// Permissions must be requested from inside a user gesture, like a button's click handler.
@@ -424,7 +424,7 @@ function getPermission(needed, showSaved) {
  *
  * returns true if needed
  *
- * @return {Boolean} isNeeded
+ * @return {boolean} isNeeded
  */
 function checkPermissions() {
 	var needsPermissions = false;
@@ -636,7 +636,7 @@ function save() {
  * and custom, predefined linkTags.
  *
  * @param {string}  note   Raw note to be parsed.
- * @param {element} parent Element to add the note to.
+ * @param {Element} parent Element to add the note to.
  * @param {object}  links  A map of custom linkTags and their corresponding URLs.
  */
 function addNote(note, parent, links) {
@@ -644,7 +644,7 @@ function addNote(note, parent, links) {
 	 * Create a white-listed tag or fall back to createLink
 	 * @param  {string}  tagName    Name of the tag or link
 	 * @param  {string}  tagContent Text content of the tag. May be recursive
-	 * @return {element}            Element created
+	 * @return {Element}            Element created
 	 */
 	var createTag = function(tagName, tagContent) {
 		/**
@@ -654,7 +654,7 @@ function addNote(note, parent, links) {
 		 * @param  {string}  nodeName    Name of the element to create.
 		 * @param  {string}  textContent Text content of the element.
 		 * @param  {object}  options     Map of properties and values of the element.
-		 * @return {element}             Element created.
+		 * @return {Element}             Element created.
 		 */
 		var createNode = function(nodeName, textContent, options) {
 			var node = document.createElement(nodeName);

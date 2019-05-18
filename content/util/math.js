@@ -35,7 +35,7 @@ Foxtrick.Math.div = function(a, b) {
  * solid (very low) = 6.0; non-existent = disastrous (very low) = 0.0
  * or solid (very low) = 7.0; non-existent = 0; disastrous (very low) = 1.0
  * @param	{Integer}	hs			HatStats
- * @param	{Boolean}	oneBased	return based on solid=7
+ * @param	{boolean}	oneBased	return based on solid=7
  * @returns	{Number}				floating point level
  */
 Foxtrick.Math.hsToFloat = function(hs, oneBased) {
@@ -131,7 +131,7 @@ Foxtrick.Predict.stamina = function(energyAt90) {
  * bonus = sqrt(days/336)
  * -> bonus = (loyalty - 1) / 19
  * @param  {number}  loyaltyLevel Loyalty attribute value
- * @param  {Boolean} isMotherClub Is player playing in mother club?
+ * @param  {boolean} isMotherClub Is player playing in mother club?
  * @return {number}               Bonus value for each skill
  */
 Foxtrick.Predict.loyaltyBonus = function(loyaltyLevel, isMotherClub) {

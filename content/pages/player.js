@@ -20,7 +20,7 @@ Foxtrick.Pages.Player = {};
 /**
  * Test whether this page is player page
  * @param  {document}  doc
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.Player.isPage = function(doc) {
 	return this.isSenior(doc) || this.isYouth(doc);
@@ -29,7 +29,7 @@ Foxtrick.Pages.Player.isPage = function(doc) {
 /**
  * Test whether this page is senior player page
  * @param  {document}  doc
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.Player.isSenior = function(doc) {
 	return Foxtrick.isPage(doc, 'playerDetails');
@@ -38,7 +38,7 @@ Foxtrick.Pages.Player.isSenior = function(doc) {
 /**
  * Test whether this page is youth player page
  * @param  {document}  doc
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.Player.isYouth = function(doc) {
 	return Foxtrick.isPage(doc, 'youthPlayerDetails');
@@ -290,7 +290,7 @@ Foxtrick.Pages.Player.getAttributes = function(doc) {
  * Test whether player is a coach.
  * Seniors only.
  * @param  {document}  doc
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.Player.isCoach = function(doc) {
 	var attr = this.getAttributes(doc);
@@ -300,7 +300,7 @@ Foxtrick.Pages.Player.isCoach = function(doc) {
 /**
  * Test whether player is bruised
  * @param  {document}  doc
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.Player.isBruised = function(doc) {
 	let mainBody = doc.getElementById('mainBody');
@@ -385,7 +385,7 @@ Foxtrick.Pages.Player.getCards = function(doc) {
  * .playerInfo table has a different structure in such a case.
  * E. g. [playerid=182715495]
  * @param  {document}  doc
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.Player.isFreeAgent = function(doc) {
 	return this.getTeamName(doc) === null;
@@ -414,7 +414,7 @@ Foxtrick.Pages.Player.getTeamName = function(doc) {
  * Get the player info table.
  *
  * @param  {document} doc
- * @return {{isNewDesign: Boolean, isYouth: Boolean, table: HTMLTableElement}}
+ * @return {{isNewDesign: boolean, isYouth: boolean, table: HTMLTableElement}}
  */
 Foxtrick.Pages.Player.getInfoTable = function(doc) {
 	var isNewDesign = false;
@@ -527,7 +527,7 @@ Foxtrick.Pages.Player.getSpecialtyNumber = function(doc) {
  * Get player skills.
  * For senior players returns an integer skill map:
  * {keeper, defending, playmaking, winger, passing, scoring, setPieces}.
- * Youth player skill map contains {current, max: number, top3, maxed: Boolean} or
+ * Youth player skill map contains {current, max: number, top3, maxed: boolean} or
  * an empty object if no data is known.
  * @param  {document}  doc
  * @return {AnySkills}
@@ -544,7 +544,7 @@ Foxtrick.Pages.Player.getSkills = function(doc) {
 -	 * Each field is a skill map:
  * {keeper, defending, playmaking, winger, passing, scoring, setPieces}.
  * For seniors values are integers, while youth values are
- * {current, max: number, maxed, top3: Boolean} or
+ * {current, max: number, maxed, top3: boolean} or
  * an empty object if no data is known.
  * For seniors texts are strings, while youth texts are {current, max: string}.
  * Texts may contain level numbers, e.g. 'weak (3)'.'
@@ -733,7 +733,7 @@ Foxtrick.Pages.Player.parseSeniorSkills = function(table) {
  * localized skill levels and names respectively.
  * Each field is a skill map:
  * {keeper, defending, playmaking, winger, passing, scoring, setPieces}.
- * Each value is {current, max: number, maxed, top3: Boolean}
+ * Each value is {current, max: number, maxed, top3: boolean}
  * or an empty object if no data is known.
  * Each text is {current, max: string}.
  * Texts may contain level numbers, e.g. 'weak (3)'.'
@@ -964,7 +964,7 @@ Foxtrick.Pages.Player.getTransferDeadline = function(doc) {
 /**
  * Test whether player is transfer listed
  * @param  {document} doc
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.Player.isTransferListed = function(doc) {
 	return !!this.getBidInfo(doc);
@@ -973,7 +973,7 @@ Foxtrick.Pages.Player.isTransferListed = function(doc) {
 /**
  * Test whether player was fired
  * @param  {document} doc
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.Player.wasFired = function(doc) {
 	var div = doc.getElementsByClassName('playerInfo')[0];
@@ -1214,7 +1214,7 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerId, callback) {
  * Attributes map must be:
  * {form, stamina, ?staminaPred, experience, loyalty, motherClubBonus, bruised,
  * transferListed, specialtyNumber}.
- * Options is {form, stamina, experience, loyalty, bruised, normalise: Boolean} (optional)
+ * Options is {form, stamina, experience, loyalty, bruised, normalise: boolean} (optional)
  * Params is {CTR_VS_WG, WBD_VS_CD, WO_VS_FW, MF_VS_ATT, DF_VS_ATT: number} (optional)
  * By default options and params are assembled from prefs or need to be fully overridden otherwise.
  *

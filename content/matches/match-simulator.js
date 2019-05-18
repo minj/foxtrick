@@ -1,9 +1,10 @@
-'use strict';
 /**
  * match-simulator.js
  * compare to other teams and simulate matches using HTMS
  * @author convinced, LA-MJ
  */
+
+'use strict';
 
 Foxtrick.modules.MatchSimulator = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.MATCHES,
@@ -306,6 +307,7 @@ Foxtrick.modules.MatchSimulator = {
 			else
 				doc.getElementById('field').appendChild(loading);
 
+			/** @type {CHPPParams} */
 			var selectedMatchArgs = [
 				['file', 'matchdetails'],
 				['version', '2.3'],
@@ -315,8 +317,7 @@ Foxtrick.modules.MatchSimulator = {
 
 			/** @type {CHPPOpts} */
 			var cacheArgs = { cache: 'session' };
-			Foxtrick.util.api.retrieve(doc, selectedMatchArgs, cacheArgs,
-			  function(matchXML, errorText) {
+			Foxtrick.util.api.retrieve(doc, selectedMatchArgs, cacheArgs, (matchXML, errorText) => {
 				var select = doc.getElementById(module.MATCH_SELECT_ID);
 				if (errorText || !matchXML) {
 					if (loading) {
@@ -567,15 +568,16 @@ Foxtrick.modules.MatchSimulator = {
 
 		var getMatchList = function(teamId, opts) {
 			var loadingMatchList = opts.loading;
-			var otherMatchesArgs = [
+
+			/** @type {CHPPParams} */
+			var otherMatchArgs = [
 				['file', 'matchesarchive'],
 				['teamId', parseInt(teamId, 10)],
 			];
 
 			/** @type {CHPPOpts} */
 			var cacheArgs = { cache: 'session' };
-			Foxtrick.util.api.retrieve(doc, otherMatchesArgs, cacheArgs,
-			  function(matchesXML, errorText) {
+			Foxtrick.util.api.retrieve(doc, otherMatchArgs, cacheArgs, (matchesXML, errorText) => {
 				if (errorText) {
 					Foxtrick.log(errorText);
 					if (loadingMatchList)
@@ -644,6 +646,7 @@ Foxtrick.modules.MatchSimulator = {
 			else
 				doc.getElementById('field').appendChild(loadingMatchList);
 
+			/** @type {CHPPParams} */
 			var orderMatchArgs = [
 				['file', 'matchdetails'],
 				['version', '2.3'],
@@ -651,12 +654,14 @@ Foxtrick.modules.MatchSimulator = {
 				['sourceSystem', SOURCE_SYSTEM],
 			];
 
-			Foxtrick.util.api.retrieve(doc, orderMatchArgs, { cache: 'session' },
-			  function(orderMatchXml, errorText) {
+			/** @type {CHPPOpts} */
+			var oCache = { cache: 'session' };
+
+			Foxtrick.util.api.retrieve(doc, orderMatchArgs, oCache, (orderMatchXml, errorText) => {
 				if (!orderMatchXml || errorText) {
-					if (loadingMatchList) {
+					if (loadingMatchList)
 						loadingMatchList.textContent = errorText;
-					}
+
 					Foxtrick.log(errorText);
 					return;
 				}
@@ -684,6 +689,7 @@ Foxtrick.modules.MatchSimulator = {
 			});
 		};
 
+		// eslint-disable-next-line complexity
 		var updateUI = function(target) {
 			if (!Foxtrick.hasClass(target, 'posLabel') &&
 			    target.id != 'ft_stamina_discount_check' &&
@@ -924,6 +930,7 @@ Foxtrick.modules.MatchSimulator = {
 
 		return 'ftOptionIcon ' + iconClass;
 	},
+
 	/**
 	 * Round to nearest sublevel
 	 * @param  {number} level
@@ -1262,6 +1269,9 @@ Foxtrick.modules.MatchSimulator = {
 				overlayHTMS.textContent = '';
 		}
 	},
+
+
+	// eslint-disable-next-line complexity
 	updateOtherRatings: function(doc, gRatingsOther, xml, gTeamNames, opts) {
 		var module = this;
 

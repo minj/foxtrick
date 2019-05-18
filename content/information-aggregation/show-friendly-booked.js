@@ -39,6 +39,7 @@ Foxtrick.modules['ShowFriendlyBooked'] = {
 				destCell.textContent = Foxtrick.L10n.getString('status.loading.abbr');
 				destCell.title = Foxtrick.L10n.getString('status.loading');
 
+				/** @type {CHPPParams} */
 				let params = [
 					['file', 'teamdetails'],
 					['teamId', teamId],

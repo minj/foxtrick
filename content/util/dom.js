@@ -32,11 +32,13 @@ Foxtrick.NodeTypes = {
 	NOTATION_NODE: 12,
 };
 
+// eslint-disable-next-line valid-jsdoc
 /**
  * Create an element in SVG namespace. Root element is typically 'svg'.
- * @param  {document}   doc
- * @param  {string}     type
- * @return {SVGElement}
+ * @template {keyof SVGElementTagNameMap} K
+ * @param  {document}                     doc
+ * @param  {K}                            type
+ * @return {SVGElementTagNameMap[K]}
  */
 Foxtrick.createSVG = function(doc, type) {
 	return doc.createElementNS('http://www.w3.org/2000/svg', type);
@@ -112,9 +114,10 @@ Foxtrick.insertFeaturedCell = function(row, module, index) {
 
 /**
  * Enable Foxtrick feature highlight on an existing element
- * @param  {HTMLElement} node
+ * @template {HTMLElement} E
+ * @param  {E} node
  * @param  {object}      module
- * @return {HTMLElement}
+ * @return {E}
  */
 // eslint-disable-next-line consistent-this
 Foxtrick.makeFeaturedElement = function(node, module) {

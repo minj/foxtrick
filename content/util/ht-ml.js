@@ -43,7 +43,7 @@ Foxtrick.util.htMl.getFormat = (function() {
 			/**
 			 * function called for each element.
 			 * returning null falls back to recursive (container) mode
-			 * @param  {element} node
+			 * @param  {Element} node
 			 * @return {string}       {?string}
 			 */
 			img: function(node) {
@@ -76,7 +76,7 @@ Foxtrick.util.htMl.getFormat = (function() {
 			/**
 			 * function called for each container
 			 * @param  {string}  content
-			 * @param  {element} node
+			 * @param  {Element} node
 			 * @param  {object}  opts
 			 * @return {string}          {?string}
 			 */
@@ -213,7 +213,7 @@ Foxtrick.util.htMl.getFormat = (function() {
 			/**
 			 * function called for each element.
 			 * returning null falls back to recursive (container) mode
-			 * @param  {element} node
+			 * @param  {Element} node
 			 * @return {string}       {?string}
 			 */
 			img: function(node) {
@@ -245,7 +245,7 @@ Foxtrick.util.htMl.getFormat = (function() {
 			/**
 			 * function called for each container
 			 * @param  {string}  content
-			 * @param  {element} node
+			 * @param  {Element} node
 			 * @param  {object}  opts
 			 * @return {string}          {?string}
 			 */
@@ -405,7 +405,7 @@ Foxtrick.util.htMl.getFormat = (function() {
  * Returns null if no link was found,
  * the found link was invalid (javascript: or SVG),
  * or the link URL does not contain a HT-ML ID.
- * @param  {element} node
+ * @param  {Element} node
  * @return {object}       ?{id, markup, type, copyTitle, ?tag}
  */
 Foxtrick.util.htMl.getId = function(node) {
@@ -513,7 +513,7 @@ Foxtrick.util.htMl.getId = function(node) {
  * external sets whether relative HT links are not used (defaults to false).
  * linksOnly is whether to reject non-link markup generated.
  * format is the markup language to use (defaults to htMl).
- * @param  {element} node
+ * @param  {Element} node
  * @param  {object}  options {external, linksOnly: boolean, format: string}
  * @return {string}          {?string}
  */
@@ -605,8 +605,8 @@ Foxtrick.util.htMl._parseLink = function(node) {
 
 /**
  * Find an appropriate node to start copying from
- * @param  {element} node
- * @return {element}
+ * @param  {Element} node
+ * @return {Element}
  */
 Foxtrick.util.htMl._findNode = function(node) {
 	if (node.nodeName.toLowerCase() === 'bdo') {
@@ -627,7 +627,7 @@ Foxtrick.util.htMl._findNode = function(node) {
  * Options is { external: boolean, format: string }.
  * external sets whether relative HT links are not used (defaults to false).
  * format is the markup language to use (defaults to htMl).
- * @param  {element} node
+ * @param  {Element} node
  * @param  {object}  options {external: boolean, format: string}
  * @return {string}
  */
@@ -650,7 +650,7 @@ Foxtrick.util.htMl.getMarkupFromNode = function(node, options) {
  * Get markup from node recursively.
  * def is a reference to markup language definition.
  * opts is options for tag parsers.
- * @param  {element} node
+ * @param  {Element} node
  * @param  {object}  def  markup language definition
  * @param  {object}  opts tag parser options
  * @return {string}
@@ -814,7 +814,7 @@ Foxtrick.util.htMl.getHtMl = function(node, options) {
  * Options is { external: boolean, format: string }.
  * external sets whether relative HT links are not used (defaults to false).
  * format is the markup language to use (defaults to htMl).
- * @param  {element} node
+ * @param  {Element} node
  * @param  {object}  options {external: boolean, format: string}
  * @return {string}          {?string}
  */

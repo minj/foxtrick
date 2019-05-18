@@ -319,6 +319,8 @@ Foxtrick.modules['CrossTable'] = {
 		// get season from select since the URL doesn't change when
 		// switching different seasons
 		var season = Foxtrick.getMBElement(doc, 'ucSeasonsDropdown_ddlSeasons').value;
+
+		/** @type {CHPPParams} */
 		var args = [
 			['file', 'leaguefixtures'],
 			['leagueLevelUnitId', leagueId],

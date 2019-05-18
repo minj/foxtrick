@@ -130,6 +130,7 @@ Foxtrick.modules['SupportersList'] = {
 
 		var ids = [];
 
+		/** @type {CHPPParams} */
 		let args = [
 			['file', 'supporters'],
 			['version', '1.0'],

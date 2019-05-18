@@ -42,6 +42,7 @@ Foxtrick.modules['SeriesTransfers'] = {
 		}, teamLinks);
 
 		// build batchArgs
+		/** @type {CHPPParams[]} */
 		var batchArgs = Foxtrick.map(function(n) {
 			return [['file', 'players'], ['version', '2.2'], ['teamId', n]];
 		}, teamIds);

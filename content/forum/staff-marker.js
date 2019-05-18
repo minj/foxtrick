@@ -279,6 +279,7 @@ Foxtrick.modules['StaffMarker'] = {
 			var teamId = Foxtrick.util.id.getOwnTeamId();
 
 			return new Promise(function(fulfill, reject) {
+				/** @type {CHPPParams} */
 				let args = [
 					['file', 'teamdetails'],
 					['version', '3.1'],

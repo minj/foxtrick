@@ -595,7 +595,7 @@ Foxtrick.util.time.buildDate = function(date = new Date(), options) {
  */
 Foxtrick.util.time.toBareISOString = function(date) {
 	const format = 'YYYYmmddTHHMMSS';
-	return this.buildDate(new Date(date), { format: format, showSecs: true });
+	return this.buildDate(new Date(date), { format, showSecs: true });
 };
 
 /**

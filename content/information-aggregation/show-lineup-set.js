@@ -53,7 +53,7 @@ Foxtrick.modules['ShowLineupSet'] = {
 			 * check whether an item is a set-lineup item, if is, return team
 			 * name, otherwise return null
 			 *
-			 * @param  {element} item
+			 * @param  {Element} item
 			 * @return {string}
 			 */
 			var getLineupTeam = function(item) {

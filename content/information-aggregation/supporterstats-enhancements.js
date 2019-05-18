@@ -27,6 +27,7 @@ Foxtrick.modules['SupporterStatsEnhancements'] = {
 		if (teamId == 0)
 			return;
 
+		/** @type {CHPPParams} */
 		let args = [
 			['file', 'players'],
 			['version', '2.2'],

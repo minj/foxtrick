@@ -1,9 +1,10 @@
-'use strict';
 /**
  * player-birthday.js
  * show information about past and coming birthdays
  * @author jurosz, ryanli
  */
+
+'use strict';
 
 Foxtrick.modules['PlayerBirthday'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
@@ -36,7 +37,7 @@ Foxtrick.modules['PlayerBirthday'] = {
 		// sorting of arrays according to days and then years
 		var sort = function(a, b) {
 			var maxYears = 10000;
-			return (a.age.days * maxYears + a.age.years) - (b.age.days * maxYears + b.age.years);
+			return a.age.days * maxYears + a.age.years - (b.age.days * maxYears + b.age.years);
 		};
 		birthdayToday.sort(sort);
 		birthdayFuture.sort(sort);
@@ -46,9 +47,9 @@ Foxtrick.modules['PlayerBirthday'] = {
 		parentDiv.id = 'foxtrick_addactionsbox_parentDiv';
 
 		var addType = function(parent, header, players) {
-			if (players == null || players.length === 0) {
+			if (players == null || players.length === 0)
 				return;
-			}
+
 			var div = doc.createElement('div');
 			var caption = doc.createElement('h5');
 			var captionText = doc.createTextNode(header);
@@ -68,15 +69,17 @@ Foxtrick.modules['PlayerBirthday'] = {
 			}
 		};
 
-		addType(parentDiv, Foxtrick.L10n.getString('PlayerBirthday.BirthdayToday'), birthdayToday);
-		addType(parentDiv, Foxtrick.L10n.getString('PlayerBirthday.BirthdayNextWeek'), birthdayFuture);
-		addType(parentDiv, Foxtrick.L10n.getString('PlayerBirthday.BirthdayLastWeek'), birthdayPast);
+		let today = Foxtrick.L10n.getString('PlayerBirthday.BirthdayToday');
+		let nextWeek = Foxtrick.L10n.getString('PlayerBirthday.BirthdayNextWeek');
+		let lastWeek = Foxtrick.L10n.getString('PlayerBirthday.BirthdayLastWeek');
+		addType(parentDiv, today, birthdayToday);
+		addType(parentDiv, nextWeek, birthdayFuture);
+		addType(parentDiv, lastWeek, birthdayPast);
 
 		// Append the box to the sidebar
 		if (birthdayToday.length + birthdayFuture.length + birthdayPast.length > 0) {
-			Foxtrick.addBoxToSidebar(doc,
-				Foxtrick.L10n.getString('PlayerBirthday.boxheader'),
-				parentDiv, 10);
+			let header = Foxtrick.L10n.getString('PlayerBirthday.boxheader');
+			Foxtrick.addBoxToSidebar(doc, header, parentDiv, 10);
 		}
-	}
+	},
 };

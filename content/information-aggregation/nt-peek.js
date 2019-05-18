@@ -69,6 +69,7 @@ Foxtrick.modules['NtPeek'] = {
 		separator.className = 'separator';
 		container.appendChild(separator);
 
+		/** @type {CHPPParams} */
 		var ntArgs = [
 			['file', 'matches'],
 			['version', '2.8'],
@@ -84,6 +85,7 @@ Foxtrick.modules['NtPeek'] = {
 				Foxtrick.util.api.setCacheLifetime(ntArgStr, nextMatchDate.getTime());
 		});
 
+		/** @type {CHPPParams} */
 		var u20Args = [
 			['file', 'matches'],
 			['version', '2.8'],

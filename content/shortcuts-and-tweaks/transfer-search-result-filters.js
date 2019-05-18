@@ -65,8 +65,7 @@ Foxtrick.modules['TransferSearchResultFilters'] = {
 			{ key: 'hideBruised', type: 'check', checked: false }
 		];
 		var getFilters = function(callback) {
-			Foxtrick.sessionGet('transfer-search-result-filters',
-			  function(n) {
+			Foxtrick.sessionGet('transfer-search-result-filters', (n) => {
 				try {
 					if (!n) {
 						// set default filters if not set
@@ -198,8 +197,7 @@ Foxtrick.modules['TransferSearchResultFilters'] = {
 			}
 		};
 		var addExtraFilters = function() {
-			getFilters(
-			  function(filters) {
+			getFilters((filters) => {
 				var tableAdvanced = Foxtrick.getMBElement(doc, 'tblAdvanced');
 				if (tableAdvanced === null) {
 					return;  //only show if advanced filters is on
@@ -262,8 +260,7 @@ Foxtrick.modules['TransferSearchResultFilters'] = {
 						// don't submit before we're done
 						ev.preventDefault();
 
-						getFilters(
-						  function(filters) {
+						getFilters((filters) => {
 							for (var j = 0; j < filters.length; ++j) {
 								var filter = filters[j];
 								if (filter.type == 'minmax') {

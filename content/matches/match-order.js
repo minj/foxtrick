@@ -553,6 +553,7 @@ Foxtrick.modules['MatchOrderInterface'] = {
 			};
 			getPlayers();
 
+			/** @type {CHPPParams} */
 			var avatarsParams = [
 				['file', (isYouth ? 'youth' : '') + 'avatars'],
 				['version', '1.1'],

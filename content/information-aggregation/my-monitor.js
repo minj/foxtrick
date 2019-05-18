@@ -501,6 +501,7 @@ Foxtrick.modules['MyMonitor'] = {
 
 				frame.appendChild(matchesContainer);
 
+				/** @type {CHPPParams} */
 				var args = [
 					['file', 'matches'],
 					['version', '2.8'],
@@ -699,9 +700,10 @@ Foxtrick.modules['MyMonitor'] = {
 	},
 
 	change: function(doc) {
-		// challenging etc removes box. need to re-add it
 		if (doc.getElementById('ft-monitor-sidebar-box') == null &&
 		    Foxtrick.isPage(doc, ['teamPage', 'youthOverview', 'national'])) {
+
+			// challenging etc removes box. need to re-add it
 			this.run(doc);
 		}
 	},

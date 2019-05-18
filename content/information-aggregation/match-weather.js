@@ -24,6 +24,8 @@ Foxtrick.modules['MatchWeather'] = {
 		}
 
 		var arenaId = Foxtrick.getUrlParam(arenaLink.href, 'arenaId');
+
+		/** @type {CHPPParams} */
 		var parameters = [
 			['file', 'arenadetails'],
 			['version', '1.5'],
@@ -126,6 +128,7 @@ Foxtrick.modules['MatchWeather'] = {
 		var now = Foxtrick.util.time.getHTTimeStamp(doc);
 		var until = now + CACHE_MSECS;
 
+		/** @type {CHPPParams} */
 		var parameters = [
 			['file', 'regiondetails'],
 			['version', '1.2'],

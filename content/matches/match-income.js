@@ -6,7 +6,7 @@
 
 'use strict';
 
-Foxtrick.modules['MatchIncome'] = {
+Foxtrick.modules.MatchIncome = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.MATCHES,
 	PAGES: ['match'],
 	OPTIONS: ['UtilizationPercentages'],
@@ -73,7 +73,6 @@ Foxtrick.modules['MatchIncome'] = {
 	getPricesForDate: function(matchDate) {
 		const module = this;
 
-		/** @type {ArenaPrices[]} */
 		const HIST = module.PRICE_HISTORY;
 
 		// use last if we find nothing
@@ -148,8 +147,7 @@ Foxtrick.modules['MatchIncome'] = {
 		};
 		/* eslint-enable no-magic-numbers */
 
-		// eslint-disable-next-line no-extra-parens
-		let svg = /** @type {SVGSVGElement} */ (Foxtrick.createSVG(doc, 'svg'));
+		let svg = Foxtrick.createSVG(doc, 'svg');
 		svg.height.baseVal.valueAsString = '16px';
 		svg.width.baseVal.valueAsString = '16px';
 
@@ -245,7 +243,6 @@ Foxtrick.modules['MatchIncome'] = {
 		if (!table)
 			return;
 
-		/** @type {ArenaVisitorMap} */
 		var visitors = module.getVisitorMap(table);
 
 		let totalRow = addTotalAttendance(table, visitors);
@@ -255,7 +252,6 @@ Foxtrick.modules['MatchIncome'] = {
 		var matchDate = Foxtrick.Pages.Match.getDate(doc);
 		matchDate = Foxtrick.util.time.toHT(doc, matchDate);
 
-		/** @type {ArenaPrices} */
 		let prices = module.getPricesForDate(matchDate);
 
 		var sum = 0;
@@ -287,6 +283,7 @@ Foxtrick.modules['MatchIncome'] = {
 			if (!arenaId)
 				return;
 
+			/** @type {CHPPParams} */
 			let args = [['file', 'arenadetails'], ['version', '1.5'], ['arenaId', arenaId]];
 			Foxtrick.util.api.retrieve(doc, args, { cache: 'session' }, (xml, errorText) => {
 				if (!xml || errorText) {

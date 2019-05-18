@@ -213,7 +213,7 @@ Foxtrick.util.api = {
 		});
 	},
 
-	/** @param {Document} doc */
+	/** @param {document} doc */
 	addClearCacheLink: function(doc) {
 		let bottom = doc.getElementById('bottom');
 		if (!bottom)

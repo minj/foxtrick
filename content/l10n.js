@@ -186,7 +186,7 @@ Foxtrick.L10n.plForm_default = 0;
  * Test if a string is localized
  *
  * @param  {string}  str locale key
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.L10n.isStringAvailableLocal = function(str) {};
 
@@ -194,7 +194,7 @@ Foxtrick.L10n.isStringAvailableLocal = function(str) {};
  * Test if a string exists
  *
  * @param  {string}  str locale key
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.L10n.isStringAvailable = function(str) {};
 

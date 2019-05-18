@@ -78,7 +78,7 @@ Foxtrick.modules['LiveAlert'] = {
 	 * Get goals from tab.
 	 *
 	 * Returns [home, away] goals as integers
-	 * @param  {element} tab
+	 * @param  {Element} tab
 	 * @return {array}       <Array.<number>>
 	 */
 	getScoreFromTab: function(tab) {
@@ -107,7 +107,7 @@ Foxtrick.modules['LiveAlert'] = {
 	 *
 	 * Returns an [home, away] where teams are either links or spans.
 	 * team.title = full team name team.textContent = shortTeamName.
-	 * @param  {element} tab
+	 * @param  {Element} tab
 	 * @return {array}       {Array.<HTMLAnchorElement|HTMLSpanElement}
 	 */
 	getTeamsFromTab: function(tab) {

@@ -27,7 +27,7 @@ Foxtrick.Pages.All = {};
 /**
  * Test whether this page belongs to our own team
  * @param  {document}  doc
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.All.isOwn = function(doc) {
 	var ownTeamId = this.getOwnTeamId(doc);
@@ -38,7 +38,7 @@ Foxtrick.Pages.All.isOwn = function(doc) {
 /**
  * Test whether this page is a youth page
  * @param  {document}  doc
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.All.isYouth = function(doc) {
 	return /youth/i.test(doc.location.href);
@@ -173,7 +173,7 @@ Foxtrick.Pages.All.getTeamName = function(doc) {
 /**
  * Test whether user is logged in
  * @param  {document}  doc
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.All.isLoggedIn = function(doc) {
 	var teamLinks = doc.getElementById('teamLinks');
@@ -185,7 +185,7 @@ Foxtrick.Pages.All.isLoggedIn = function(doc) {
 /**
  * Get the header of mainBody
  * @param  {document}    doc
- * @return {element}
+ * @return {Element}
  */
 Foxtrick.Pages.All.getMainHeader = function(doc) {
 	return doc.querySelector('.mainRegular h2, .mainWide h2, .mainConf h2');
@@ -194,7 +194,7 @@ Foxtrick.Pages.All.getMainHeader = function(doc) {
 /**
  * Get the default notification area
  * @param  {document}    doc
- * @return {element}
+ * @return {Element}
  */
 Foxtrick.Pages.All.getNotes = function(doc) {
 	return doc.getElementById('ctl00_updNotifications') ||

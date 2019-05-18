@@ -20,7 +20,7 @@ Foxtrick.Pages.Match = {};
 /**
  * Get team links
  * @param  {document} doc
- * @return {array}
+ * @return {[HTMLElement, HTMLElement]}
  */
 Foxtrick.Pages.Match.getTeams = function(doc) {
 	var container;
@@ -146,7 +146,7 @@ Foxtrick.Pages.Match.getAwayTeamName = function(doc) {
 /**
  * Get the game result as an array [home, away]
  * @param  {document} doc
- * @return {array}        {Array.<number>}
+ * @return {number[]}        {Array.<number>}
  */
 Foxtrick.Pages.Match.getResult = function(doc) {
 	var isLive = Foxtrick.isPage(doc, 'matchesLive');
@@ -163,7 +163,7 @@ Foxtrick.Pages.Match.getResult = function(doc) {
 	}
 	var match = score.textContent.trim().match(/^(\d+) - (\d+)$/);
 	var goals = Foxtrick.toArray(match).slice(1);
-	var ret = goals.map(function(s) { return parseInt(s, 10); });
+	var ret = goals.map(s => parseInt(s, 10));
 
 	if (!isLive && Foxtrick.util.layout.isRtl(doc))
 		ret.reverse();
@@ -173,7 +173,7 @@ Foxtrick.Pages.Match.getResult = function(doc) {
 /**
  * Test whether match has not started
  * @param  {document} doc
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.Match.isPrematch = function(doc) {
 	return this.getPreMatchPanel(doc) !== null;
@@ -182,9 +182,10 @@ Foxtrick.Pages.Match.isPrematch = function(doc) {
 /**
  * Test whether match report has advanced ratings
  * @param  {document} doc
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.Match.hasRatingsTabs = function(doc) {
+	/** @type {HTMLElement} */
 	var lineupTab = doc.querySelector('#mainBody .tab2');
 
 	return !!(lineupTab && lineupTab.style.display != 'none');
@@ -193,7 +194,7 @@ Foxtrick.Pages.Match.hasRatingsTabs = function(doc) {
 /**
  * Test whether match report has a valid timeline
  * @param  {document} doc
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.Match.hasTimeline = function(doc) {
 	var timeline = doc.getElementById('timeline');
@@ -219,7 +220,7 @@ Foxtrick.Pages.Match.getSourceSystem = function(doc) {
 /**
  * Test whether it's a youth match
  * @param  {document} doc
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.Match.isYouth = function(doc) {
 	return /isYouth=true|SourceSystem=Youth/i.test(doc.location.search);
@@ -228,7 +229,7 @@ Foxtrick.Pages.Match.isYouth = function(doc) {
 /**
  * Test whether it's an HTO match
  * @param  {document} doc
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.Match.isHTOIntegrated = function(doc) {
 	return /SourceSystem=HTOIntegrated/i.test(doc.location.search);
@@ -237,7 +238,7 @@ Foxtrick.Pages.Match.isHTOIntegrated = function(doc) {
 /**
  * Test whether it's an NT match
  * @param  {document} doc
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.Match.isNT = function(doc) {
 	var homeId = this.getHomeTeamId(doc);
@@ -252,13 +253,14 @@ Foxtrick.Pages.Match.isNT = function(doc) {
  * @return {number}
  */
 Foxtrick.Pages.Match.getId = function(doc) {
-	var url;
+	let url;
 	if (Foxtrick.isPage(doc, 'matchesLive')) {
-		var link = doc.querySelector('.liveResult a');
+		/** @type {HTMLAnchorElement} */
+		let link = doc.querySelector('.liveResult a');
 		if (!link)
 			return null;
-		else
-			url = link.href;
+
+		url = link.href;
 	}
 	else {
 		url = doc.location.href;
@@ -285,6 +287,8 @@ Foxtrick.Pages.Match.getArenaId = function(doc) {
 	var arenaId = null;
 	try {
 		var matchReport = doc.getElementById('matchReport');
+
+		/** @type {HTMLAnchorElement} */
 		var arena = matchReport.querySelector('a[href^="/Club/Arena/"]');
 		arenaId = parseInt(Foxtrick.getUrlParam(arena.href, 'ArenaID'), 10);
 	}
@@ -297,7 +301,7 @@ Foxtrick.Pages.Match.getArenaId = function(doc) {
 /**
  * Test whether match is in progress
  * @param  {document} doc
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.Match.inProgress = function(doc) {
 	var matchStatus = Foxtrick.getMBElement(doc, 'lblMatchStatus');
@@ -307,7 +311,7 @@ Foxtrick.Pages.Match.inProgress = function(doc) {
 /**
  * Test whether match is played in neutral grounds
  * @param  {document} doc
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.Match.isNeutral = function(doc) {
 	var neutralEvent = doc.querySelector('#matchReport span[data-eventtype^="26_"]');
@@ -317,7 +321,7 @@ Foxtrick.Pages.Match.isNeutral = function(doc) {
 /**
  * Test whether match is a league match
  * @param  {document} doc
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.Match.isLeague = function(doc) {
 	var mainBody = doc.getElementById('mainBody');
@@ -328,7 +332,7 @@ Foxtrick.Pages.Match.isLeague = function(doc) {
 /**
  * Test whether match is a qualification match
  * @param  {document} doc
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.Match.isQualification = function(doc) {
 	var mainBody = doc.getElementById('mainBody');
@@ -339,7 +343,7 @@ Foxtrick.Pages.Match.isQualification = function(doc) {
 /**
  * Test whether match is a cup match
  * @param  {document} doc
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.Match.isCup = function(doc) {
 	var mainBody = doc.getElementById('mainBody');
@@ -350,7 +354,7 @@ Foxtrick.Pages.Match.isCup = function(doc) {
 /**
  * Test whether match is a friendly match
  * @param  {document} doc
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.Match.isFriendly = function(doc) {
 	var mainBody = doc.getElementById('mainBody');
@@ -370,7 +374,7 @@ Foxtrick.Pages.Match.getRatingsTable = function(doc) {
 /**
  * Test whether ratings table has indirect SP info
  * @param  {HTMLTableElement} ratingstable
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.Match.hasIndSetPieces = function(ratingstable) {
 	// either iSP level link in that cell or for old matches tactic=no link
@@ -381,11 +385,13 @@ Foxtrick.Pages.Match.hasIndSetPieces = function(ratingstable) {
 /**
  * Test whether match is a walkover
  * @param  {HTMLTableElement} ratingstable
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.Match.isWalkOver = function(ratingstable) {
 	try {
+		// eslint-disable-next-line no-magic-numbers
 		for (var i = 1; i <= 7; i++) {
+			// eslint-disable-next-line no-magic-numbers
 			for (var j = 3; j <= 4; j++) {
 				var value = parseInt(ratingstable.rows[i].cells[j].textContent, 10);
 				if (value > 0) { // no Walk-over
@@ -402,23 +408,24 @@ Foxtrick.Pages.Match.isWalkOver = function(ratingstable) {
 
 /**
  * Get ratings in floats for both teams.
- * Returns an array map where first element is home team, away second:
+ * Returns an array map where first Element is home team, away second:
  * {mf, rd, cd, ld, ra, ca, la}
  * @param  {HTMLTableElement} ratingstable
  * @return {object}                        Object.<string, Array.<number>>
  */
 Foxtrick.Pages.Match.getRatingsByTeam = function(ratingstable) {
-	var getRatingFromCell = function(coords) {
-		var cell = ratingstable.rows[coords[0]].cells[coords[1]];
+	var getRatingFromCell = function([row, col]) {
+		let cell = ratingstable.rows[row].cells[col];
 		return Foxtrick.Math.hsToFloat(cell.textContent);
 	};
 	var ratings = {};
+
 	// rows 1-7 contain numeric data (columns 3-4) for both team ratings in this order:
-	var order = ['mf', 'rd', 'cd', 'ld', 'ra', 'ca', 'la'];
+	let order = ['mf', 'rd', 'cd', 'ld', 'ra', 'ca', 'la'];
+	const HOME_IDX = 3, AWAY_IDX = 4;
 	try {
-		for (var i = 1; i <= 7; i++) {
-			ratings[order[i - 1]] = Foxtrick.map(getRatingFromCell, [[i, 3], [i, 4]]);
-		}
+		for (let i of Foxtrick.range(1, order.length + 1))
+			ratings[order[i - 1]] = Foxtrick.map(getRatingFromCell, [[i, HOME_IDX], [i, AWAY_IDX]]);
 	}
 	catch (e) {
 		Foxtrick.log(e);
@@ -432,11 +439,11 @@ Foxtrick.Pages.Match.getRatingsByTeam = function(ratingstable) {
  * @return {number}
  */
 Foxtrick.Pages.Match.getTacticsLevelFromCell = function(cell) {
-	var basevalue = 0;
-	var tacticsLink = cell.getElementsByTagName('a')[0];
-	if (tacticsLink) {
+	let basevalue = 0;
+	let tacticsLink = cell.querySelector('a');
+	if (tacticsLink)
 		basevalue = Foxtrick.util.id.getSkillLevelFromLink(tacticsLink.href);
-	}
+
 	return basevalue;
 };
 
@@ -447,12 +454,12 @@ Foxtrick.Pages.Match.getTacticsLevelFromCell = function(cell) {
  * @return {string}
  */
 Foxtrick.Pages.Match.getTacticsFromCell = function(cell) {
-	var tactics = cell.textContent.trim();
-	var lang = Foxtrick.Prefs.getString('htLanguage');
+	let tactics = cell.textContent.trim();
+	let lang = Foxtrick.Prefs.getString('htLanguage');
 
 	try {
-		var category = Foxtrick.L10n.htLanguagesJSON[lang].language['tactics'];
-		var subLevelValue = Foxtrick.nth(function(item) {
+		let category = Foxtrick.L10n.htLanguagesJSON[lang].language.tactics;
+		let subLevelValue = Foxtrick.nth(function(item) {
 			return item.value == tactics;
 		}, category).type;
 		return subLevelValue || -1;
@@ -470,20 +477,22 @@ Foxtrick.Pages.Match.getTacticsFromCell = function(cell) {
  * @return {object}                        {tactics: Array.<string>, level: Array.<number>}
  */
 Foxtrick.Pages.Match.getTacticsByTeam = function(ratingstable) {
-	var tacticRow = 10, levelRow = 11;
+	let tacticRow = 10, levelRow = 11;
 	if (this.hasIndSetPieces(ratingstable)) {
+		// eslint-disable-next-line no-magic-numbers
 		tacticRow = 14;
+		// eslint-disable-next-line no-magic-numbers
 		levelRow = 15;
 	}
-	var tactics = [
+	let tactics = [
 		this.getTacticsFromCell(ratingstable.rows[tacticRow].cells[1]),
-		this.getTacticsFromCell(ratingstable.rows[tacticRow].cells[2])
+		this.getTacticsFromCell(ratingstable.rows[tacticRow].cells[2]),
 	];
-	var level = [
+	let level = [
 		parseInt(ratingstable.rows[levelRow].cells[3].textContent, 10) || 0,
-		parseInt(ratingstable.rows[levelRow].cells[4].textContent, 10) || 0
+		parseInt(ratingstable.rows[levelRow].cells[4].textContent, 10) || 0,
 	];
-	return { tactics: tactics, level: level };
+	return { tactics, level };
 };
 
 // START NEW RATINGS UTILS
@@ -501,6 +510,7 @@ Foxtrick.Pages.Match.addLiveListener = function(doc, callback) {
 	var safeCallback = function(doc) {
 		try {
 			callback(doc);
+			return;
 		}
 		catch (e) {
 			Foxtrick.log('Uncaught exception in callback', e);
@@ -525,13 +535,14 @@ Foxtrick.Pages.Match.addLiveListener = function(doc, callback) {
  * change() would execute every second in FF.
  * This is because the match timer triggers childList changes in FF.
  * @param {document} doc
- * @param {string}   tabId    element to listen to
+ * @param {string}   tabId    Element to listen to
  * @param {Function} callback function(document)
  */
 Foxtrick.Pages.Match.addLiveTabListener = function(doc, tabId, callback) {
 	var safeCallback = function(doc) {
 		try {
 			callback(doc);
+			return;
 		}
 		catch (e) {
 			Foxtrick.log('Uncaught exception in callback', e);
@@ -553,6 +564,7 @@ Foxtrick.Pages.Match.addLiveTabListener = function(doc, tabId, callback) {
 			Foxtrick.onChange(target, registerTab, { subtree: false });
 		}
 	};
+
 	// start everything onLoad
 	registerMatch(doc);
 	var liveContainer = this.getLiveContainer(doc);
@@ -575,6 +587,7 @@ Foxtrick.Pages.Match.addLiveOverviewListener = function(doc, callback) {
 	var safeCallback = function(overview) {
 		try {
 			callback(overview);
+			return;
 		}
 		catch (e) {
 			Foxtrick.log('Uncaught exception in callback', e);
@@ -583,9 +596,8 @@ Foxtrick.Pages.Match.addLiveOverviewListener = function(doc, callback) {
 
 	var findOverview = function(doc) {
 		var overview = Foxtrick.getMBElement(doc, 'repM');
-		if (overview) {
+		if (overview)
 			safeCallback(overview);
-		}
 	};
 
 	// start everything onLoad
@@ -604,18 +616,19 @@ Foxtrick.Pages.Match.addLiveOverviewListener = function(doc, callback) {
  * Modeled on Foxtrick.addBoxToSidebar.
  * @param  {document} doc
  * @param  {string}   title   the title of the box, will create one if inexists
- * @param  {element}  content HTML node of the content
+ * @param  {Element}  content HTML node of the content
  * @param  {number}   prec    precedence of the box, the smaller, the higher
- * @return {element}          box to be added to
+ * @return {Element}          box to be added to
  */
 Foxtrick.Pages.Match.addBoxToSidebar = function(doc, title, content, prec) {
-	if (this.isPrematch(doc))
+	if (this.isPrematch(doc)) {
 		// redirect to old style in prematch
-		return Foxtrick.addBoxToSidebar.apply(Foxtrick, arguments);
+		return Foxtrick.addBoxToSidebar(doc, title, content, prec);
+	}
 
 	var sidebar = doc.getElementsByClassName('reportHighlights')[0];
 	if (!sidebar)
-		return;
+		return null;
 
 	// class of the box to add
 	var boxClass = 'ft-newSidebarBox';
@@ -630,23 +643,28 @@ Foxtrick.Pages.Match.addBoxToSidebar = function(doc, title, content, prec) {
 		var h = box.querySelector('h4');
 		return h.textContent == title;
 	}, boxes);
+
 	// create new box if old one doesn't exist
 	if (!dest) {
 		dest = doc.createElement('div');
 		dest.className = boxClass;
-		dest.setAttribute('x-precedence', prec);
+		dest.setAttribute('x-precedence', String(prec));
+
 		// boxHead
 		var boxHead = doc.createElement('div');
 		dest.appendChild(boxHead);
+
 		// header
 		var header = doc.createElement('h4');
 		header.className = 'rightHandBoxHeader';
 		header.textContent = title;
 		boxHead.appendChild(header);
+
 		// boxBody
 		var boxBody = doc.createElement('div');
 		boxBody.className = 'rightHandBoxBody';
 		dest.appendChild(boxBody);
+
 		// append content to boxBody
 		boxBody.appendChild(content);
 
@@ -660,6 +678,7 @@ Foxtrick.Pages.Match.addBoxToSidebar = function(doc, title, content, prec) {
 		var topBoxes = Foxtrick.filter(function(box) {
 			return parseInt(box.getAttribute('x-precedence'), 10) <= 0;
 		}, boxes);
+
 		// list of buttom boxes
 		var bottomBoxes = Foxtrick.filter(function(box) {
 			return parseInt(box.getAttribute('x-precedence'), 10) > 0;
@@ -675,17 +694,17 @@ Foxtrick.Pages.Match.addBoxToSidebar = function(doc, title, content, prec) {
 		};
 
 		if (prec <= 0) {
-			if (!topBoxes.length) {
-				// first topBox, add up top
-				sidebar.insertBefore(dest, sidebar.firstChild);
-			}
-			else {
+			if (topBoxes.length) {
 				inserted = Foxtrick.any(insertBox, topBoxes);
 				if (!inserted) {
 					// insert after last top box
-					var lastTopBox = topBoxes.pop();
+					let lastTopBox = topBoxes.pop();
 					lastTopBox.parentNode.insertBefore(dest, lastTopBox.nextSibling);
 				}
+			}
+			else {
+				// first topBox, add up top
+				sidebar.insertBefore(dest, sidebar.firstChild);
 			}
 			inserted = true;
 		}
@@ -707,7 +726,7 @@ Foxtrick.Pages.Match.addBoxToSidebar = function(doc, title, content, prec) {
  * Calls func(playerDiv).
  * The right player is found with help of player links list.
  * @param  {number}                        playerId
- * @param  {function(HTMLDivElement):void} func     function(element)
+ * @param  {function(HTMLDivElement):void} func     function(Element)
  * @param  {ArrayLike<HTMLAnchorElement>}  links
  */
 Foxtrick.Pages.Match.modPlayerDiv = function(playerId, func, links) {
@@ -727,14 +746,16 @@ Foxtrick.Pages.Match.modPlayerDiv = function(playerId, func, links) {
 
 /**
  * Make the player avatar and append it to shirtDiv
- * @param  {element} shirtDiv
- * @param  {element} avatarXml
+ * @param  {Element} shirtDiv
+ * @param  {Element} avatarXml
  * @param  {number} scale
  */
 Foxtrick.Pages.Match.makeAvatar = function(shirtDiv, avatarXml, scale) {
 	var doc = shirtDiv.ownerDocument;
+
+	/* eslint-disable no-magic-numbers */
 	var sizes = {
-		backgrounds: [0, 0],// don't show
+		backgrounds: [0, 0], // don't show
 		kits: [92, 123],
 		bodies: [92, 123],
 		faces: [92, 123],
@@ -743,41 +764,46 @@ Foxtrick.Pages.Match.makeAvatar = function(shirtDiv, avatarXml, scale) {
 		goatees: [70, 70],
 		noses: [70, 70],
 		hair: [92, 123],
-		misc: [0, 0] // don't show (eg cards)
+		misc: [0, 0], // don't show (eg cards)
 	};
 	var sizesOld = {
-		backgrounds: [0, 0],// don't show
+		backgrounds: [0, 0], // don't show
 		faces: [47, 49],
 		eyes: [47, 49],
 		mouths: [47, 49],
 		noses: [47, 49],
 		hair: [47, 49],
-		misc: [0, 0] // don't show (eg cards)
+		misc: [0, 0], // don't show (eg cards)
 	};
-	var oldFaces = Foxtrick.Prefs.isModuleEnabled('OldStyleFace');
-	if (oldFaces)
-		scale = 1;
+	/* eslint-enable no-magic-numbers */
 
-	var sz = oldFaces ? sizesOld : sizes;
+	const oldFaces = Foxtrick.Prefs.isModuleEnabled('OldStyleFace');
+	const FACTOR = oldFaces ? 1 : scale;
+	const SZ = oldFaces ? sizesOld : sizes;
 
-	var layers = avatarXml.getElementsByTagName('Layer');
-	for (var j = 0; j < layers.length; ++j) {
-		var src = avatarXml.ownerDocument.text('Image', layers[j]);
-		for (var bodypart in sz) {
+	// eslint-disable-next-line no-extra-parens
+	let xml = /** @type {CHPPXML} */ (avatarXml.ownerDocument);
+	let layers = avatarXml.getElementsByTagName('Layer');
+	for (let layer of layers) {
+		let src = xml.text('Image', layer);
+		let bodypart;
+		for (bodypart in SZ) {
 			if (src.search(bodypart) != -1)
 				break;
 		}
 		if (!bodypart)
 			continue;
 
-		var styleString = '';
+		/** @type {number[]} */
+		let sizes = SZ[bodypart];
+		let [width, height] = sizes.map(s => Math.round(s / FACTOR));
+
+		let styleString = '';
 		if (!oldFaces) {
-			var x = Math.round(parseInt(layers[j].getAttribute('x'), 10) / scale);
-			var y = Math.round(parseInt(layers[j].getAttribute('y'), 10) / scale);
+			let x = Math.round(parseInt(layer.getAttribute('x'), 10) / FACTOR);
+			let y = Math.round(parseInt(layer.getAttribute('y'), 10) / FACTOR);
 			styleString = 'top:' + y + 'px;left:' + x + 'px;position:absolute;';
 		}
-		var width = Math.round(sz[bodypart][0] / scale);
-		var height = Math.round(sz[bodypart][1] / scale);
 
 		if (Foxtrick.Prefs.isModuleOptionEnabled('OriginalFace', 'ColouredYouth'))
 			src = src.replace(/y_/, '');
@@ -785,7 +811,7 @@ Foxtrick.Pages.Match.makeAvatar = function(shirtDiv, avatarXml, scale) {
 		// use protocol agnostic URLs
 		src = src.replace(/^https?:/, '');
 
-		var img = doc.createElement('img');
+		let img = doc.createElement('img');
 		img.setAttribute('style', styleString);
 		img.src = src;
 		img.width = width;
@@ -829,16 +855,19 @@ Foxtrick.Pages.Match.parsePlayerData = function(doc) {
  * Get timeline data as an array of {min, sec}.
  * Each minute/event has input.hidden[id$="_time"][value="min.sec"]
  * @param  {document} doc
- * @return {array}        Array.<{min: number, sec: number}>
+ * @return {{min: number, sec: number}[]}
  */
 Foxtrick.Pages.Match.getTimeline = function(doc) {
-	var timeline = Foxtrick.map(function(el) {
-		var time = el.value;
+	/** @type {NodeListOf<HTMLInputElement>} */
+	let inputs = doc.querySelectorAll('input[id$="_time"]');
+	let timeline = Foxtrick.map(function(el) {
+		let time = el.value;
 		return {
-			min: parseInt(time.match(/^\d+/), 10),
-			sec: parseInt(time.match(/\d+$/), 10),
+			min: parseInt(String(time.match(/^\d+/)), 10),
+			sec: parseInt(String(time.match(/\d+$/)), 10),
 		};
-	}, doc.querySelectorAll('input[id$="_time"]'));
+	}, inputs);
+
 	timeline.unshift({ min: -1, sec: 0 });
 	return timeline;
 };
@@ -869,13 +898,13 @@ Foxtrick.Pages.Match.getTimeline = function(doc) {
  * Get team ratings event by event.
  * Each minute has input.hidden[id$="_playerRatingsHome"][value="jsonArray"]
  * Returns an array of {players, source}.
- * Where source is the input element
+ * Where source is the input Element
  * and players is an array of Player objects
  * { Cards: 0,	FromMin: -1, InjuryLevel: 0, IsCaptain: false,
  * 	IsKicker: false, PlayerId: 360991810, PositionBehaviour: 0,
  * 	PositionID: 100, Stamina: 1, Stars: 3, ToMin: 90 }
  * @param  {document} doc
- * @param  {Boolean}  isHome
+ * @param  {boolean}  isHome
  * @return {MatchEventRatings[]} Array.<{players: Array.<object>, source: HTMLInputElement}>
  */
 Foxtrick.Pages.Match.getTeamRatingsByEvent = function(doc, isHome) {
@@ -903,14 +932,17 @@ Foxtrick.Pages.Match.getTeamRatingsByEvent = function(doc, isHome) {
  * 5 minute updates have index=0, no event.
  * While idx is the timeline index (starts at average, includes 5 minute updates)
  * @param  {document} doc
- * @return {array}        Array.<{eventIdx: number, idx: number}>
+ * @return {{ eventIdx: number, idx: number }[]}
  */
 Foxtrick.Pages.Match.getEventIndicesByEvent = function(doc) {
-	var eventIndices = doc.querySelectorAll('input[id$="_eventIndex"]');
-	var eventIndexByEvent = Foxtrick.map(function(index) {
-		return { eventIdx: index.value };
+	/** @type {NodeListOf<HTMLInputElement>} */
+	let eventIndices = doc.querySelectorAll('input[id$="_eventIndex"]');
+
+	let eventIndexByEvent = Foxtrick.map(function(index) {
+		return { eventIdx: parseInt(index.value, 10), idx: -1 };
 	}, eventIndices);
-	eventIndexByEvent.unshift({ eventIdx: -1 }); // timeline average
+	eventIndexByEvent.unshift({ eventIdx: -1, idx: 0 }); // timeline average
+
 	Foxtrick.forEach(function(evnt, i) {
 		evnt.idx = i;
 	}, eventIndexByEvent);
@@ -923,14 +955,17 @@ Foxtrick.Pages.Match.getEventIndicesByEvent = function(doc) {
  * Where type is event type ID;
  * Where idx is the timeline index (starts at average, includes 5 minute updates).
  * @param  {document} doc
- * @return {array}        Array.<{type: number, idx: number}>
+ * @return {{ type: number, idx: number }[]}
  */
 Foxtrick.Pages.Match.getEventTypesByEvent = function(doc) {
-	var timelineEvents = doc.querySelectorAll('input[id$="_timelineEventType"]');
-	var tEventTypeByEvent = Foxtrick.map(function(evTypeEl) {
-		return { type: parseInt(evTypeEl.value, 10) };
+	/** @type {NodeListOf<HTMLInputElement>} */
+	let timelineEvents = doc.querySelectorAll('input[id$="_timelineEventType"]');
+
+	let tEventTypeByEvent = Foxtrick.map(function(evTypeEl) {
+		return { type: parseInt(evTypeEl.value, 10), idx: -1 };
 	}, timelineEvents);
-	tEventTypeByEvent.unshift({ type: -1 }); // timeline average
+	tEventTypeByEvent.unshift({ type: -1, idx: 0 }); // timeline average
+
 	Foxtrick.forEach(function(evnt, i) {
 		evnt.idx = i;
 	}, tEventTypeByEvent);
@@ -940,7 +975,7 @@ Foxtrick.Pages.Match.getEventTypesByEvent = function(doc) {
 /**
  * Test whether this is the new HT-Live view
  * @param  {document}  doc
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.Match.isNewLive = function(doc) {
 	return !!doc.getElementById('ngLive');
@@ -950,7 +985,7 @@ Foxtrick.Pages.Match.isNewLive = function(doc) {
  * Get the smallest OLD HT-Live container that includes
  * both the single match view and the match list view
  * @param  {document} doc
- * @return {element}
+ * @return {Element}
  */
 Foxtrick.Pages.Match.getLiveContainer = function(doc) {
 	return Foxtrick.getMBElement(doc, 'UpdatePanelMatch');
@@ -960,7 +995,7 @@ Foxtrick.Pages.Match.getLiveContainer = function(doc) {
  * Get the pre-match panel that contains tabs for Head-To-Head,
  * stadium, fans, referee info, etc
  * @param  {document} doc
- * @return {element}
+ * @return {Element}
  */
 Foxtrick.Pages.Match.getPreMatchPanel = function(doc) {
 	return Foxtrick.getMBElement(doc, 'pnlPreMatch');
@@ -969,7 +1004,7 @@ Foxtrick.Pages.Match.getPreMatchPanel = function(doc) {
 /**
  * Get the pre-match container with team summary (coach, fans, etc)
  * @param  {document} doc
- * @return {element}
+ * @return {Element}
  */
 Foxtrick.Pages.Match.getPreMatchSummary = function(doc) {
 	return Foxtrick.getMBElement(doc, 'pnlTeamInfo');
@@ -978,7 +1013,7 @@ Foxtrick.Pages.Match.getPreMatchSummary = function(doc) {
 /**
  * Get the arena flash container
  * @param  {document} doc
- * @return {element}
+ * @return {Element}
  */
 Foxtrick.Pages.Match.getArenaContainer = function(doc) {
 	return Foxtrick.getMBElement(doc, 'pnlArenaFlash');
@@ -987,7 +1022,7 @@ Foxtrick.Pages.Match.getArenaContainer = function(doc) {
 /**
  * Get tabs from the match report
  * @param  {document} doc
- * @return {element}
+ * @return {Element}
  */
 Foxtrick.Pages.Match.getReportTabs = function(doc) {
 	return Foxtrick.getMBElement(doc, 'ucMatchTabs_ulTabs');

@@ -23,7 +23,11 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 	run: function(doc) {
 		var module = this;
 
+		// eslint-disable-next-line max-len
+		/** @typedef {'matchFriendly'|'matchLeague'|'matchCupA'|'matchCupB1'|'matchCupB2'|'matchCupB3'|'matchCupC'|'matchQualification'|'matchMasters'|'matchNtFriendly'|'matchNtLeague'|'matchNtFinals'} MatchTypeClass */
+
 		// don't randomly rename, parts of this are taken from hattrick using image classnames
+		/** @type {Record<MatchTypeClass, number>} */
 		var XP = {
 			// assume international friendly as default, considered in min-max,
 			// minimum uses 1/2 of this value
@@ -107,13 +111,25 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 				return Math.min(90, minutes);
 			};
 
-			// figure out the gametype, most important to figure out how many xp pts are gained
+			/**
+			 * figure out the gametype, most important to figure out how many xp pts are gained
+			 *
+			 * @param  {HTMLTableRowElement} node
+			 * @param  {Date}           date
+			 * @param  {boolean}        u20
+			 * @return {MatchTypeClass}
+			 */
 			var getGameType = function(node, date, u20) {
 				// most games can be identified by the classname directly, NT needs some tricks
+				/**
+				 * @param  {HTMLTableRowElement} node
+				 * @return {MatchTypeClass}
+				 */
 				var getBasicGameType = function(node) {
 					var gametypeParent = node.querySelector('td.keyColumn');
 					var gameTypeImage = gametypeParent.querySelector('.iconMatchtype img');
-					return gameTypeImage.className;
+					// eslint-disable-next-line no-extra-parens
+					return /** @type {MatchTypeClass} */ (gameTypeImage.className);
 				};
 
 				var gameType = getBasicGameType(node);
@@ -129,7 +145,7 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 
 					// oldies wc finals are in odd seasons, u20 in even seasons
 					// eslint-disable-next-line no-bitwise
-					let isWcFinalSeason = htDate.season % 2 ^ u20;
+					let isWcFinalSeason = htDate.season % 2 ^ Number(u20);
 					if (!isWcFinalSeason)
 						return 'matchNtLeague';
 

@@ -193,7 +193,8 @@ Foxtrick.util.css.collect_module_css = function() {
 			// module options CSS
 			if (module.RADIO_OPTIONS && module.RADIO_OPTIONS_CSS) {
 				var value = Foxtrick.Prefs.getInt('module.' + module.MODULE_NAME + '.value');
-			    if (module.RADIO_OPTIONS_CSS[value]) {
+
+				if (module.RADIO_OPTIONS_CSS[value]) {
 					Foxtrick.cssFiles.push(module.RADIO_OPTIONS_CSS[value]);
 				}
 			}
@@ -255,8 +256,7 @@ Foxtrick.util.css.load_module_css = function(doc) {
 	}
 	else {
 		Foxtrick.util.css.collect_module_css();
-		Foxtrick.SB.ext.sendRequest({ req: 'getCss', files: Foxtrick.cssFiles },
-		  function(data) {
+		Foxtrick.SB.ext.sendRequest({ req: 'getCss', files: Foxtrick.cssFiles }, (data) => {
 			if (Foxtrick.platform == 'Android') {
 				Foxtrick.current_css = data.cssText;
 				Foxtrick.util.css.load_css_permanent(Foxtrick.current_css);

@@ -458,16 +458,14 @@ Foxtrick.lazyProp = function(obj, prop, calc) {
 
 		if (Foxtrick.context === 'content') {
 			// register this tab for broadcastMessage messages and receive tabId
-			Foxtrick.SB.ext.sendRequest({ req: 'register' },
-			  function(response) {
+			Foxtrick.SB.ext.sendRequest({ req: 'register' }, (response) => {
 				Foxtrick.SB.ext.tabId = response.tabId;
 			});
 
 			// README: chrome content listeners go here
 
 			// answer to status check after every new page load
-			Foxtrick.SB.ext.onRequest.addListener(
-			  function(request, sender, sendResponse) { // jshint ignore:line
+			Foxtrick.SB.ext.onRequest.addListener((request, _, sendResponse) => {
 				if (request.req == 'checkAlive') {
 					// send back who answered
 					sendResponse({ id: request.id });
@@ -497,8 +495,7 @@ Foxtrick.lazyProp = function(obj, prop, calc) {
 				};
 
 				// listen to tab register
-				Foxtrick.SB.ext.onRequest.addListener(
-				  function(request, sender, sendResponse) {
+				Foxtrick.SB.ext.onRequest.addListener((request, sender, sendResponse) => {
 					if (request.req == 'register') {
 						updateTabList(sender.tab.id);
 						sendResponse({ tabId: sender.tab.id });

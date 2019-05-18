@@ -32,8 +32,7 @@ Foxtrick.loader.chrome.docLoadStart = function() {
 
 		// request resources from background script
 		// calls/adds LOADER.docLoadEnd
-		Foxtrick.SB.ext.sendRequest({ req: 'pageLoad' },
-		  function(data) {
+		Foxtrick.SB.ext.sendRequest({ req: 'pageLoad' }, (data) => {
 			try {
 				var beginInit = new Date();
 

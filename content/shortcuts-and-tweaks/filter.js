@@ -419,6 +419,7 @@ Foxtrick.modules['Filter'] = {
 		var teamId = Foxtrick.modules.Core.TEAM.teamId;
 		var ids = [];
 
+		/** @type {CHPPParams} */
 		let args = [
 			['file', 'players'],
 			['version', '2.2'],

@@ -244,11 +244,11 @@ Foxtrick.modules['PsicoTSI'] = {
 	/**
 	 * Draw PsicoTSI prediction table (player page)
 	 * @param	{documen}	doc
-	 * @param	{element}	entryPoint				the result is added as nextSibling to this
-	 * @param	{Boolean}	isGK
-	 * @param	{Boolean}	isUndefinedMainskill
-	 * @param	{Boolean}	isInjured
-	 * @param	{Boolean}	isOld
+	 * @param	{Element}	entryPoint				the result is added as nextSibling to this
+	 * @param	{boolean}	isGK
+	 * @param	{boolean}	isUndefinedMainskill
+	 * @param	{boolean}	isInjured
+	 * @param	{boolean}	isOld
 	 * @param	{Integer}	maxSkill
 	 * @param	{number}	formHigh				skill level when form sub is high
 	 * @param	{number}	formAvg					average
@@ -472,17 +472,17 @@ Foxtrick.modules['PsicoTSI'] = {
 	 * Draw PsicoTSI prediction div in player container (players page, TL results)
 	 * @param	{documen}	doc
 	 * @param	{string}	id						index to use for conainer IDs
-	 * @param	{element}	entryPoint
-	 * @param	{Boolean}	isUndefinedMainskill
-	 * @param	{Boolean}	isInjured
-	 * @param	{Boolean}	isOld
+	 * @param	{Element}	entryPoint
+	 * @param	{boolean}	isUndefinedMainskill
+	 * @param	{boolean}	isInjured
+	 * @param	{boolean}	isOld
 	 * @param	{Integer}	maxSkill
 	 * @param	{number}	formHigh				skill level when form sub is high
 	 * @param	{number}	formAvg					average
 	 * @param	{number}	formLow					low
 	 * @param	{number}	wageLow					skill level when secondary subs are low or 'N/A'
 	 * @param	{string}	limit					'High', 'Medium' or 'Low'
-	 * @param	{Boolean}	displayAsLink
+	 * @param	{boolean}	displayAsLink
 	 */
 	drawInPlayerInfo: function(doc, id, entryPoint, isUndefinedMainskill, isInjured, isOld,
 	                           maxSkill, formHigh, formAvg, formLow, wageLow,

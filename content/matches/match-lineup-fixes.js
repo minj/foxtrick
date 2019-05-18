@@ -450,6 +450,7 @@ Foxtrick.modules['MatchLineupFixes'] = {
 			var homeId = Foxtrick.Pages.Match.getHomeTeamId(doc);
 			var awayId = Foxtrick.Pages.Match.getAwayTeamId(doc);
 
+			/** @type {CHPPParams} */
 			var homeArgs = [
 				['file', 'matchlineup'],
 				['version', '1.8'],
@@ -457,6 +458,8 @@ Foxtrick.modules['MatchLineupFixes'] = {
 				['matchId', matchId],
 				['sourceSystem', SourceSystem],
 			];
+
+			/** @type {CHPPParams} */
 			var awayArgs = [
 				['file', 'matchlineup'],
 				['version', '1.8'],
@@ -490,7 +493,7 @@ Foxtrick.modules['MatchLineupFixes'] = {
 					 * replace SbjPId & ObjPId in sub.xml with HTO IDs
 					 * HTO IDs are used in the timeline/ratings for HTO matches
 					 * @param  {MLFSub[]} subGroup array of sub objects
-					 * @return {Boolean}           whether successful or not
+					 * @return {boolean}           whether successful or not
 					 */
 					var addHTOIds = function(subGroup) {
 						/**

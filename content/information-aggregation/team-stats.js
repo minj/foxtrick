@@ -1,9 +1,10 @@
-'use strict';
 /**
  * team-stats.js
  * Foxtrick team overview
  * @author OBarros, spambot, convinced, ryanli
  */
+
+'use strict';
 
 Foxtrick.modules['TeamStats'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
@@ -21,43 +22,44 @@ Foxtrick.modules['TeamStats'] = {
 	 */
 	run: function(doc) {
 		// delay execution after YouthSkills
-		if (Foxtrick.isPage(doc, 'ownYouthPlayers') && Foxtrick.Prefs.isModuleEnabled('YouthSkills'))
+		if (Foxtrick.isPage(doc, 'ownYouthPlayers') &&
+		    Foxtrick.Prefs.isModuleEnabled('YouthSkills'))
 			return;
 
 		this.execute(doc);
 	},
 
 	execute: function(doc) {
+		// eslint-disable-next-line complexity
 		var show = function(playerList) {
-		try {
-				var attributeOptions = [
-					{ category: 'TeamStats.General',	name: 'TSI.abbr', 		property: 'tsi', 		method: 'sum_avg',	pages: ['allPlayers'] },
-					//{ category: 'TeamStats.General',	name: 'Age', 			property: 'ageYears', 	method: 'age',		pages: ['players', 'youthPlayers'] },
-					{ category: 'TeamStats.General',	name: 'Salary', 		property: 'salary', 	method: 'sum_avg',	pages: ['players', 'oldPlayers', 'oldCoaches'] },
-					{ category: 'TeamStats.Attributes', name: 'Form', 			property: 'form', 		method: 'skill',	pages: ['allPlayers']},
-					{ category: 'TeamStats.Attributes', name: 'Stamina', 		property: 'stamina', 	method: 'skill',	pages: ['allPlayers']},
-					{ category: 'TeamStats.Attributes', name: 'Experience', 	property: 'experience', method: 'skill',	pages: ['allPlayers'] },
-					{ category: 'TeamStats.Attributes', name: 'Loyalty', 		property: 'loyalty', 	method: 'skill',	pages: ['allPlayers']},
-					{ category: 'TeamStats.Attributes', name: 'Leadership', 	property: 'leadership', method: 'skill',	pages: ['allPlayers'] },
-					{ category: 'TeamStats.Skills', 	name: 'Keeper', 		property: 'keeper', 	method: 'skill',	pages: ['ownPlayers']},
-					{ category: 'TeamStats.Skills', 	name: 'Defending', 	property: 'defending', method: 'skill',	pages: ['ownPlayers']},
-					{ category: 'TeamStats.Skills', 	name: 'Playmaking', 	property: 'playmaking', method: 'skill',	pages: ['ownPlayers']},
-					{ category: 'TeamStats.Skills', 	name: 'Winger', 		property: 'winger', 	method: 'skill',	pages: ['ownPlayers']},
-					{ category: 'TeamStats.Skills', 	name: 'Passing', 		property: 'passing', 	method: 'skill',	pages: ['ownPlayers']},
-					{ category: 'TeamStats.Skills', 	name: 'Scoring', 		property: 'scoring', 	method: 'skill',	pages: ['ownPlayers']},
-					{ category: 'TeamStats.Skills', 	name: 'Set_pieces', 	property: 'setPieces', method: 'skill',	pages: ['ownPlayers']},
-					/*{ category: 'TeamStats.Skills', name: 'HTMS_Ability', 		property: 'htmsAbility', 	method: 'average', pages: ['players'] },
-					{ category: 'TeamStats.Skills', 	name: 'HTMS_Potential', 	property: 'htmsPotential' , pages: ['players']},
-					{ category: 'TeamStats.Attributes', name: 'Agreeability', 		property: 'agreeability', 	pages: ['players']},
-					{ category: 'TeamStats.Attributes', name: 'Aggressiveness', 	property: 'aggressiveness', pages: ['players']},
-					{ category: 'TeamStats.Attributes', name: 'Honesty', 			property: 'honesty', 		pages: ['players']},*/
-					{ category: 'Match', 	name: 'Last_stars', 			property: 'lastRating', 			method: 'sum_avg',	pages: ['players', 'youthPlayers']}/*,
-					{ category: 'Match', 	name: 'Last_stars_EndOfGame', 	property: 'lastRatingEndOfGame', 	method: 'sum_avg',	pages: ['players']},
-					{ category: 'Match', 	name: 'Last_stars_decline', 	property: 'lastRatingDecline', 	method: 'sum_avg',	pages: ['players']}*/
-				];
-				for (var i = 0; i < attributeOptions.length; ++i) {
-					attributeOptions[i].value = 0;
-				}
+			var attributeOptions = [
+				{ category: 'TeamStats.General',	name: 'TSI.abbr', 		property: 'tsi', 		method: 'sum_avg',	pages: ['allPlayers'] },
+				//{ category: 'TeamStats.General',	name: 'Age', 			property: 'ageYears', 	method: 'age',		pages: ['players', 'youthPlayers'] },
+				{ category: 'TeamStats.General',	name: 'Salary', 		property: 'salary', 	method: 'sum_avg',	pages: ['players', 'oldPlayers', 'oldCoaches'] },
+				{ category: 'TeamStats.Attributes', name: 'Form', 			property: 'form', 		method: 'skill',	pages: ['allPlayers']},
+				{ category: 'TeamStats.Attributes', name: 'Stamina', 		property: 'stamina', 	method: 'skill',	pages: ['allPlayers']},
+				{ category: 'TeamStats.Attributes', name: 'Experience', 	property: 'experience', method: 'skill',	pages: ['allPlayers'] },
+				{ category: 'TeamStats.Attributes', name: 'Loyalty', 		property: 'loyalty', 	method: 'skill',	pages: ['allPlayers']},
+				{ category: 'TeamStats.Attributes', name: 'Leadership', 	property: 'leadership', method: 'skill',	pages: ['allPlayers'] },
+				{ category: 'TeamStats.Skills', 	name: 'Keeper', 		property: 'keeper', 	method: 'skill',	pages: ['ownPlayers']},
+				{ category: 'TeamStats.Skills', 	name: 'Defending', 	property: 'defending', method: 'skill',	pages: ['ownPlayers']},
+				{ category: 'TeamStats.Skills', 	name: 'Playmaking', 	property: 'playmaking', method: 'skill',	pages: ['ownPlayers']},
+				{ category: 'TeamStats.Skills', 	name: 'Winger', 		property: 'winger', 	method: 'skill',	pages: ['ownPlayers']},
+				{ category: 'TeamStats.Skills', 	name: 'Passing', 		property: 'passing', 	method: 'skill',	pages: ['ownPlayers']},
+				{ category: 'TeamStats.Skills', 	name: 'Scoring', 		property: 'scoring', 	method: 'skill',	pages: ['ownPlayers']},
+				{ category: 'TeamStats.Skills', 	name: 'Set_pieces', 	property: 'setPieces', method: 'skill',	pages: ['ownPlayers']},
+				/*{ category: 'TeamStats.Skills', name: 'HTMS_Ability', 		property: 'htmsAbility', 	method: 'average', pages: ['players'] },
+				{ category: 'TeamStats.Skills', 	name: 'HTMS_Potential', 	property: 'htmsPotential' , pages: ['players']},
+				{ category: 'TeamStats.Attributes', name: 'Agreeability', 		property: 'agreeability', 	pages: ['players']},
+				{ category: 'TeamStats.Attributes', name: 'Aggressiveness', 	property: 'aggressiveness', pages: ['players']},
+				{ category: 'TeamStats.Attributes', name: 'Honesty', 			property: 'honesty', 		pages: ['players']},*/
+				{ category: 'Match', 	name: 'Last_stars', 			property: 'lastRating', 			method: 'sum_avg',	pages: ['players', 'youthPlayers']}/*,
+				{ category: 'Match', 	name: 'Last_stars_EndOfGame', 	property: 'lastRatingEndOfGame', 	method: 'sum_avg',	pages: ['players']},
+				{ category: 'Match', 	name: 'Last_stars_decline', 	property: 'lastRatingDecline', 	method: 'sum_avg',	pages: ['players']}*/
+			];
+			for (var i = 0; i < attributeOptions.length; ++i) {
+				attributeOptions[i].value = 0;
+			}
 
 			var numPlayers = 0;
 			var totalAge = 0;
@@ -133,17 +135,21 @@ Foxtrick.modules['TeamStats'] = {
 						continue;
 
 					attributeOptions[j].value += current[attributeOptions[j].property];
+
 					// wildguess add subs to skills
-					if (attributeOptions[j].method == 'skill'
-					&& current[attributeOptions[j].property] > 0
-					&& current[attributeOptions[j].property] < 20)
+					if (attributeOptions[j].method == 'skill' &&
+						current[attributeOptions[j].property] > 0 &&
+						current[attributeOptions[j].property] < 20)
 						attributeOptions[j].value += 0.5;
 				}
 			}
-//Foxtrick.log('attributeOptions',attributeOptions);
-//Foxtrick.log('playerList',playerList)
+
+			// Foxtrick.log('attributeOptions',attributeOptions);
+			// Foxtrick.log('playerList',playerList)
+
 			var table = doc.createElement('table');
 			table.id = 'team-stats-table';
+
 			// label and data could either be strings or document nodes
 			var addRow = function(category, label, data, filter, title) {
 				var tbody = table.getElementsByClassName('TeamStats.' + category)[0];
@@ -226,18 +232,18 @@ Foxtrick.modules['TeamStats'] = {
 						var avgYears = Math.floor(avgAge / DAYS_IN_SEASON);
 						var avgDays = avgAge % DAYS_IN_SEASON;
 						addRow('TeamStats.General', Foxtrick.L10n.getString('Age'),
-							   avgYears + '.' + avgDays);
+							avgYears + '.' + avgDays);
 					}
 					if (Foxtrick.Pages.Players.isYouth(doc)) {
 						var youngerThanNineteen = numPlayers - olderThanNineteen;
 						var row = addRow('TeamStats.General', Foxtrick.L10n
-										 .getString('TeamStats.PlayerNotToOld'), youngerThanNineteen);
+										.getString('TeamStats.PlayerNotToOld'), youngerThanNineteen);
 						if (youngerThanNineteen < 9) {
 							row.className = 'red';
 						}
 						if (olderThanNineteen) {
 							var row = addRow('TeamStats.General', Foxtrick.L10n
-											 .getString('TeamStats.PlayerToOld'), olderThanNineteen);
+											.getString('TeamStats.PlayerToOld'), olderThanNineteen);
 							row.className = 'red';
 						}
 					}
@@ -260,7 +266,7 @@ Foxtrick.modules['TeamStats'] = {
 						data.appendChild(avgSpan);
 						return data;
 					},
-					avergage: function(val, numPlayers) {
+					average: function(val, numPlayers) {
 						return Math.round(val / numPlayers);
 					},
 					skill: function(val, numPlayers) {
@@ -270,9 +276,9 @@ Foxtrick.modules['TeamStats'] = {
 						span.title = Foxtrick.L10n.getFullLevelByValue(avg);
 						return span;
 					},
-					age: function(val, numPlayers) {
+					age: function(val, _) {
 						return val;
-					}
+					},
 				};
 				for (var j = 0; j < attributeOptions.length; ++j) {
 					if (!Foxtrick.isPage(doc, attributeOptions[j].pages))
@@ -280,12 +286,13 @@ Foxtrick.modules['TeamStats'] = {
 					if (!Foxtrick.Prefs.isModuleOptionEnabled('TeamStats',
 						attributeOptions[j].category.replace(/.+\./, '')))
 						continue;
+
 					if (Foxtrick.Pages.Players.isPropertyInList(playerList,
 						attributeOptions[j].property)) {
-						var text = methods[attributeOptions[j].method](attributeOptions[j].value,
-																	   numPlayers);
+
+						var text = methods[attributeOptions[j].method](attributeOptions[j].value, numPlayers);
 						addRow(attributeOptions[j].category, Foxtrick.L10n
-							   .getString(attributeOptions[j].name), text);
+							.getString(attributeOptions[j].name), text);
 					}
 				}
 
@@ -293,30 +300,33 @@ Foxtrick.modules['TeamStats'] = {
 					if (hasSpecialties) {
 						var specSummary = [], specialty, i;
 						for (specialty in specialties) {
-							specSummary.push({ type: specialty, count: specialties[specialty] });
-							specSummary.sort(function(a, b) { return a.type.localeCompare(b.type) });
-							specSummary.sort(function(a, b) { return b.count - a.count });
+							specSummary.push({
+								type: specialty,
+								count: specialties[specialty],
+							});
+							specSummary.sort((a, b) => a.type.localeCompare(b.type));
+							specSummary.sort((a, b) => b.count - a.count);
 						}
 						for (i in specSummary) {
 							addRow('Specialty', specSummary[i].type, specSummary[i].count,
-								   'specialty-' + Foxtrick.L10n
-								   .getEnglishSpecialty(specSummary[i].type), specSummary[i].type);
+								'specialty-' + Foxtrick.L10n
+								.getEnglishSpecialty(specSummary[i].type), specSummary[i].type);
 						}
 					}
 				}
 				if (Foxtrick.Prefs.isModuleOptionEnabled('TeamStats', 'Personality')) {
 					if (Foxtrick.Pages.Players.isPropertyInList(playerList, 'aggressiveness')
-						&& Foxtrick.Pages.Players.isPropertyInList(playerList, 'agreeability')
-						&& Foxtrick.Pages.Players.isPropertyInList(playerList, 'honesty')) {
+					&& Foxtrick.Pages.Players.isPropertyInList(playerList, 'agreeability')
+					&& Foxtrick.Pages.Players.isPropertyInList(playerList, 'honesty')) {
 						var avgAggressiveness = Math.round(totalAggressiveness / numPlayers);
 						var avgAgreeability = Math.round(totalAgreeability / numPlayers);
 						var avgHonesty = Math.round(totalHonesty / numPlayers);
 						addRow('Personality', Foxtrick.L10n.getString('Aggressiveness'),
-							   Foxtrick.L10n.getLevelByTypeAndValue('aggressiveness', avgAggressiveness));
+							Foxtrick.L10n.getLevelByTypeAndValue('aggressiveness', avgAggressiveness));
 						addRow('Personality', Foxtrick.L10n.getString('Agreeability'),
-							   Foxtrick.L10n.getLevelByTypeAndValue('agreeability', avgAgreeability));
+							Foxtrick.L10n.getLevelByTypeAndValue('agreeability', avgAgreeability));
 						addRow('Personality', Foxtrick.L10n.getString('Honesty'),
-							   Foxtrick.L10n.getLevelByTypeAndValue('honesty', avgHonesty));
+							Foxtrick.L10n.getLevelByTypeAndValue('honesty', avgHonesty));
 					}
 				}
 				if (Foxtrick.Prefs.isModuleOptionEnabled('TeamStats', 'Status')) {
@@ -326,7 +336,7 @@ Foxtrick.modules['TeamStats'] = {
 						img.alt = Foxtrick.L10n.getString('TransferListed');
 						img.className = 'transferListed';
 						addRow('Status', img, transferListed, 'transfer-listed',
-							   Foxtrick.L10n.getString('TeamStats.TransferListed'));
+						       Foxtrick.L10n.getString('TeamStats.TransferListed'));
 					}
 					if (yellowCards > 0) {
 						var img = doc.createElement('img');
@@ -334,7 +344,7 @@ Foxtrick.modules['TeamStats'] = {
 						img.alt = Foxtrick.L10n.getString('Yellow_card');
 						img.className = 'cardsOne';
 						addRow('Status', img, yellowCards, 'cards',
-							   Foxtrick.L10n.getString('TeamStats.Cards'));
+						       Foxtrick.L10n.getString('TeamStats.Cards'));
 					}
 					if (twoYellowCards > 0) {
 						var img = doc.createElement('img');
@@ -342,7 +352,7 @@ Foxtrick.modules['TeamStats'] = {
 						img.alt = '2 ' + Foxtrick.L10n.getString('Yellow_card');
 						img.className = 'cardsTwo';
 						addRow('Status', img, twoYellowCards, 'cards',
-							   Foxtrick.L10n.getString('TeamStats.Cards'));
+						       Foxtrick.L10n.getString('TeamStats.Cards'));
 					}
 					if (redCards > 0) {
 						var img = doc.createElement('img');
@@ -350,7 +360,7 @@ Foxtrick.modules['TeamStats'] = {
 						img.alt = Foxtrick.L10n.getString('Red_card');
 						img.className = 'cardsOne';
 						addRow('Status', img, redCards, 'cards',
-							   Foxtrick.L10n.getString('TeamStats.Cards'));
+						       Foxtrick.L10n.getString('TeamStats.Cards'));
 					}
 					if (bruised > 0) {
 						var img = doc.createElement('img');
@@ -358,7 +368,7 @@ Foxtrick.modules['TeamStats'] = {
 						img.alt = Foxtrick.L10n.getString('Bruised');
 						img.className = 'injuryBruised';
 						addRow('Status', img, bruised, 'injured',
-							   Foxtrick.L10n.getString('TeamStats.Injured'));
+						       Foxtrick.L10n.getString('TeamStats.Injured'));
 					}
 					if (injured > 0) {
 						var img = doc.createElement('img');
@@ -375,29 +385,27 @@ Foxtrick.modules['TeamStats'] = {
 						data.appendChild(doc.createTextNode(')'));
 
 						addRow('Status', img, data, 'injured',
-							   Foxtrick.L10n.getString('TeamStats.Injured'));
+						       Foxtrick.L10n.getString('TeamStats.Injured'));
 					}
 				}
 				if (Foxtrick.Prefs.isModuleOptionEnabled('TeamStats', 'Current_league')) {
 					if (Foxtrick.Pages.Players.isPropertyInList(playerList, 'currentLeagueId')
-					|| Foxtrick.Pages.Players.isPropertyInList(playerList, 'countryId')) {
+						|| Foxtrick.Pages.Players.isPropertyInList(playerList, 'countryId')) {
 
 						var leagues = [];
 						for (var i = 0; i < playerList.length; ++i) {
 							var id = playerList[i].currentLeagueId || playerList[i].countryId;
 							if (typeof id !== 'undefined') {
-								if (typeof leagues[id] === 'undefined') {
+								if (typeof leagues[id] === 'undefined')
 									leagues[id] = 1;
-								}
-								else {
+								else
 									++leagues[id];
-								}
 							}
 						}
 						var isLeague = false;
 						var category = 'Nationality';
-						var cli = Foxtrick.Pages.Players.isPropertyInList(playerList,
-						                                                  'currentLeagueId');
+						var cli =
+							Foxtrick.Pages.Players.isPropertyInList(playerList, 'currentLeagueId');
 						if (cli) {
 							isLeague = true;
 							category = 'Current_league';
@@ -413,11 +421,11 @@ Foxtrick.modules['TeamStats'] = {
 							var name = Foxtrick.L10n.getCountryName(leagueId);
 							leagueSummary.push({ name: name, count: leagues[i] });
 						}
-						leagueSummary.sort(function(a, b) { return a.name.localeCompare(b.name) });
-						leagueSummary.sort(function(a, b) { return b.count - a.count });
-						for (var i = 0; i < leagueSummary.length; ++i) {
+						leagueSummary.sort((a, b) => a.name.localeCompare(b.name));
+						leagueSummary.sort((a, b) => b.count - a.count);
+
+						for (var i = 0; i < leagueSummary.length; ++i)
 							addRow(category, leagueSummary[i].name, leagueSummary[i].count);
-						}
 					}
 				}
 			}
@@ -430,10 +438,6 @@ Foxtrick.modules['TeamStats'] = {
 			var old_note = boxBody.getElementsByClassName('ft-note')[0];
 			if (old_note)
 				old_note.parentNode.removeChild(old_note);
-
-		} catch (e) {
-			Foxtrick.log(e);
-		}
 		};
 
 		var	box = doc.getElementById('ft-team-stats-box');
@@ -449,15 +453,17 @@ Foxtrick.modules['TeamStats'] = {
 		else {
 			var boxBody = box.getElementsByTagName('div')[0];
 		}
-		Foxtrick.Pages.Players.getPlayerList(doc,
-		  function(list) {
-			try {
-				Foxtrick.preventChange(doc, show)(list);
-			}
-			catch (e) {
-				Foxtrick.log(e);
-				boxBody.removeChild(loading);
-			}
+
+		Foxtrick.Pages.Players.getPlayerList(doc, function(list) {
+			Foxtrick.preventChange(doc, (list) => {
+				try {
+					show(list);
+				}
+				catch (e) {
+					Foxtrick.log(e);
+					boxBody.removeChild(loading);
+				}
+			})(list);
 		});
-	}
+	},
 };

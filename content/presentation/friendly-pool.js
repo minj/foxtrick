@@ -26,14 +26,14 @@ Foxtrick.modules['FriendlyPool'] = {
 		// README: 0 for HTI
 		var ownCountryId = Foxtrick.XMLData.getCountryIdByLeagueId(ownLeagueId);
 
+		/** @type {CHPPParams} */
 		var parameters = [
 			['file', 'teamdetails'],
 			['version', '2.6'],
 			['teamId', ownTeamId],
 			['includeFlags', 'true'],
 		];
-		Foxtrick.util.api.retrieve(doc, parameters, { cache: 'default' },
-		  function(xml, errorText) {
+		Foxtrick.util.api.retrieve(doc, parameters, { cache: 'default' }, (xml, errorText) => {
 			if (!xml || errorText) {
 				Foxtrick.log(errorText);
 

@@ -1,9 +1,10 @@
-'use strict';
 /**
  * linksplayer.js
  * Foxtrick add links to team pages
  * @author convinced, LA-MJ
  */
+
+'use strict';
 
 Foxtrick.modules['LinksPlayerDetail'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
@@ -14,6 +15,7 @@ Foxtrick.modules['LinksPlayerDetail'] = {
 		'keeperlink',
 		'transfercomparelink',
 	],
+
 	/**
 	 * return HTML for FT prefs
 	 * @param  {document}         doc
@@ -30,7 +32,7 @@ Foxtrick.modules['LinksPlayerDetail'] = {
 
 	links: function(doc) {
 		if (Foxtrick.Pages.Player.wasFired(doc))
-			return;
+			return null;
 
 		var gkParent = this.getGKLinkTarget(doc);
 
@@ -43,9 +45,7 @@ Foxtrick.modules['LinksPlayerDetail'] = {
 		var tsi = Foxtrick.Pages.Player.getTsi(doc);
 
 		// age
-		var age = Foxtrick.Pages.Player.getAge(doc);
-		var years = age.years;
-		var days = age.days;
+		var { years, days } = Foxtrick.Pages.Player.getAge(doc);
 
 		var attrs = Foxtrick.Pages.Player.getAttributes(doc);
 		var form = attrs.form;
@@ -57,16 +57,25 @@ Foxtrick.modules['LinksPlayerDetail'] = {
 
 		var types = ['playerlink'];
 		var params = {
-			teamId: teamId, teamName: teamName,
-			playerId: playerId, playerName: playerName, nationality: nationality,
-			tsi: tsi, age: years, ageDays: days,
-			form: form, exp: exp, leadership: ls, stamina: stamina,
-			injuredWeeks: injuredWeeks, deadline: '',
+			teamId,
+			teamName,
+			playerId,
+			playerName,
+			nationality,
+			tsi,
+			age: years,
+			ageDays: days,
+			form,
+			exp,
+			leadership: ls,
+			stamina,
+			injuredWeeks,
+			deadline: '',
 		};
 
 		var rate = Foxtrick.util.currency.getRate();
 		if (rate) {
-			var wageObj = Foxtrick.Pages.Player.getWage(doc);
+			let wageObj = Foxtrick.Pages.Player.getWage(doc);
 			params.wage = Math.round(wageObj.base * rate);
 			params.wageBonus = Math.round(wageObj.bonus * rate);
 		}
@@ -75,7 +84,7 @@ Foxtrick.modules['LinksPlayerDetail'] = {
 		if (deadline) {
 			var format = 'YYYY-mm-dd HH:MM:SS';
 			deadline = Foxtrick.util.time.toUser(doc, deadline);
-			params.deadline = Foxtrick.util.time.buildDate(deadline, { format: format });
+			params.deadline = Foxtrick.util.time.buildDate(deadline, { format });
 		}
 
 		var skills = Foxtrick.Pages.Player.getSkills(doc);
@@ -121,7 +130,7 @@ Foxtrick.modules['LinksPlayerDetail'] = {
 			};
 			types.push(tracker);
 		}
-		return { types: types, info: params };
+		return { types, info: params };
 	},
 
 	getGKLinkTarget(doc) {

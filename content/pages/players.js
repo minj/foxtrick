@@ -21,7 +21,7 @@ Foxtrick.Pages.Players = {};
  * Test whether this is a player list page.
  * Applies to all possible senior and youth pages.
  * @param  {document} doc
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.Players.isPage = function(doc) {
 	return this.isSenior(doc) || this.isYouth(doc);
@@ -32,7 +32,7 @@ Foxtrick.Pages.Players.isPage = function(doc) {
  * Key feature: last match link.
  * Applies to KeyPlayers as well.
  * @param  {document} doc
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.Players.isRegular = function(doc) {
 	return Foxtrick.isPage(doc, 'players');
@@ -43,7 +43,7 @@ Foxtrick.Pages.Players.isRegular = function(doc) {
  * Key feature: visible skills.
  * Applies to KeyPlayers and NT coaches as well.
  * @param  {document} doc
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.Players.isOwn = function(doc) {
 	return Foxtrick.isPage(doc, 'ownPlayers');
@@ -53,7 +53,7 @@ Foxtrick.Pages.Players.isOwn = function(doc) {
  * Test whether this is a senior player list page.
  * Applies to all possible senior pages.
  * @param  {document} doc
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.Players.isSenior = function(doc) {
 	return Foxtrick.isPage(doc, 'allPlayers');
@@ -62,7 +62,7 @@ Foxtrick.Pages.Players.isSenior = function(doc) {
 /**
  * Test whether this is an NT player page
  * @param  {document} doc
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.Players.isNT = function(doc) {
 	return Foxtrick.isPage(doc, 'ntPlayers');
@@ -71,7 +71,7 @@ Foxtrick.Pages.Players.isNT = function(doc) {
 /**
  * Test whether this is an oldies page
  * @param  {document} doc
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.Players.isOldies = function(doc) {
 	return Foxtrick.isPage(doc, 'oldPlayers');
@@ -80,7 +80,7 @@ Foxtrick.Pages.Players.isOldies = function(doc) {
 /**
  * Test whether this is an old coaches page
  * @param  {document} doc
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.Players.isCoaches = function(doc) {
 	return Foxtrick.isPage(doc, 'oldCoaches');
@@ -89,7 +89,7 @@ Foxtrick.Pages.Players.isCoaches = function(doc) {
 /**
  * Test whether this is a youth player page
  * @param  {document} doc
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.Players.isYouth = function(doc) {
 	return Foxtrick.isPage(doc, 'youthPlayers');
@@ -100,7 +100,7 @@ Foxtrick.Pages.Players.isYouth = function(doc) {
  * Skills are unavailable, but position matrix is.
  *
  * @param  {document} doc
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.Players.isYouthPerfView = function(doc) {
 	return !!doc.querySelector('.youthPlayerPerformance');
@@ -109,7 +109,7 @@ Foxtrick.Pages.Players.isYouthPerfView = function(doc) {
 /**
  * Test whether this is own youth player page
  * @param  {document} doc
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.Players.isOwnYouth = function(doc) {
 	return Foxtrick.isPage(doc, 'ownYouthPlayers');
@@ -118,7 +118,7 @@ Foxtrick.Pages.Players.isOwnYouth = function(doc) {
 /**
  * Test whether this is a match order page
  * @param  {document} doc
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.Players.isMatchOrder = function(doc) {
 	return Foxtrick.isPage(doc, 'matchOrder') || Foxtrick.isPage(doc, 'matchOrderSimple');
@@ -127,7 +127,7 @@ Foxtrick.Pages.Players.isMatchOrder = function(doc) {
 /**
  * Test whether this is a youth match order page
  * @param  {document} doc
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.Players.isYouthMatchOrder = function(doc) {
 	return this.isMatchOrder(doc) &&
@@ -137,7 +137,7 @@ Foxtrick.Pages.Players.isYouthMatchOrder = function(doc) {
 /**
  * Test whether this is a simple match order page
  * @param  {document} doc
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.Players.isSimpleMatchOrder = function(doc) {
 	return Foxtrick.isPage(doc, 'matchOrderSimple');
@@ -395,6 +395,8 @@ Foxtrick.Pages.Players.getPlayerNodes = function(doc, include) {
 Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 	/** @type {Player[]} */
 	var playerList = [];
+
+	/** @type {CHPPParams} */
 	var args = [];
 	var isNT = false;
 
@@ -448,7 +450,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 			args.push(['file', 'nationalplayers']);
 			args.push(['teamId', teamId]);
 			args.push(['actionType', action]);
-			args.push(['showAll', all]);
+			args.push(['showAll', String(all)]);
 		}
 		else {
 			args.push(['file', 'players']);
@@ -706,6 +708,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 					player.ageYears = age.years;
 				}
 
+				/** @type {PlayerProp[]} */
 				let nums = [
 					'StaminaSkill',
 					['form', 'PlayerForm'],
@@ -718,6 +721,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				if (!player.skills)
 					player.skills = {};
 
+				/** @type {PlayerProp[]} */
 				let skills = [
 					['defending', 'DefenderSkill'],
 					'KeeperSkill',
@@ -853,6 +857,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				/** @type {PlayerXmlProps} */
 				let xPlayer = player;
 
+				/** @type {PlayerProp[]} */
 				let xmlNums = [
 					'Agreeability',
 					'Aggressiveness',
@@ -879,6 +884,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				Foxtrick.forEach(addProperty(xPlayer, text), texts);
 
 				// only include these if meaningful data available
+				/** @type {PlayerProp[]} */
 				let optionalNums = [
 					'Caps',
 					'CapsU20',
@@ -1377,6 +1383,8 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 
 				if (skillInfo) {
 					let skills = skillInfo.values;
+
+					// @ts-ignore
 					player.skills = skills; // FIXME
 					for (let skill in skills)
 						player[skill] = skills[skill];
@@ -1725,7 +1733,7 @@ Foxtrick.Pages.Players.getPlayerId = function(playerInfo) {
  * Test whether any players in the player list have a certain property
  * @param  {Array}   playerList Array<Player>
  * @param  {string}  property
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.Players.isPropertyInList = function(playerList, property) {
 	return Foxtrick.any(function(player) {

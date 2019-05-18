@@ -87,7 +87,7 @@ Foxtrick.Prefs = {};
  * Test if user has saved a custom value for key
  *
  * @param  key       pref key to check
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Prefs.hasUserValue = function(key) {},
 
@@ -122,7 +122,7 @@ Foxtrick.Prefs.getInt = function(key) { return 0; },
  * Get a boolean value from prefs
  *
  * @param  {string}  key pref key
- * @return {Boolean}     pref value
+ * @return {boolean}     pref value
  */
 Foxtrick.Prefs.getBool = function(key) { return false; },
 
@@ -148,7 +148,7 @@ Foxtrick.Prefs.setInt = function(key, value) {},
  * Save a boolean value in prefs
  *
  * @param {string}  key   pref key
- * @param {Boolean} value pref value
+ * @param {boolean} value pref value
  */
 Foxtrick.Prefs.setBool = function(key, value) {},
 
@@ -267,7 +267,7 @@ Foxtrick.Prefs.setAny = function(key, value) {
  *
  * @param  {string}  branch
  * @param  {string}  value
- * @return {Boolean}        is newly added
+ * @return {boolean}        is newly added
  */
 Foxtrick.Prefs.addPrefToList = function(branch, value) {
 	if (!value)
@@ -355,7 +355,7 @@ Foxtrick.Prefs.populateList = function(branch, values) {
  * Test whether Foxtrick is enabled on this page
  *
  * @param  {document} doc
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Prefs.isEnabled = function(doc) {
 	if (this.getBool('disableTemporary'))
@@ -376,7 +376,7 @@ Foxtrick.Prefs.isEnabled = function(doc) {
  * module may be module name or object.
  *
  * @param  {string|object} module {string|object}
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Prefs.isModuleEnabled = function(module) {
 	if (typeof module === 'string')
@@ -399,7 +399,7 @@ Foxtrick.Prefs.isModuleEnabled = function(module) {
  *
  * @param  {string|object} module {string|object}
  * @param  {string}        option
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Prefs.isModuleOptionEnabled = function(module, option) {
 	if (module && typeof module === 'object')
@@ -416,7 +416,7 @@ Foxtrick.Prefs.isModuleOptionEnabled = function(module, option) {
  *
  * @param  {string|object} module {string|object}
  * @param  {string}        option
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Prefs.isModuleOptionSet = function(module, option) {
 	if (module && typeof module === 'object')
@@ -432,7 +432,7 @@ Foxtrick.Prefs.isModuleOptionSet = function(module, option) {
  * module option may be specified as 'moduleName.optionName'.
  *
  * @param {string|object} module
- * @param {Boolean}       value
+ * @param {boolean}       value
  */
 Foxtrick.Prefs.setModuleEnableState = function(module, value) {
 	if (module && typeof module === 'object')
@@ -537,7 +537,7 @@ Foxtrick.Prefs.getModuleElementDescription = function(module, option) {
  * but not a personal pref or oAuth token
  *
  * @param  {string}  key
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Prefs.isPrefSetting = function(key) {
 	return key.indexOf('oauth') !== 0 &&
@@ -553,7 +553,7 @@ Foxtrick.Prefs.isPrefSetting = function(key) {
  *
  * return value indicates success.
  *
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Prefs.restore = function() {
 	if (Foxtrick.arch == 'Gecko') {
@@ -606,7 +606,7 @@ Foxtrick.Prefs.restore = function() {
  *
  * return value indicates success.
  *
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Prefs.disableAllModules = function() {
 	try {

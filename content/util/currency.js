@@ -61,6 +61,7 @@ Foxtrick.util.currency.detect = function(doc) {
 			return;
 		}
 
+		/** @type {CHPPParams} */
 		let teamargs = [['file', 'teamdetails'], ['version', '2.9'], ['teamId', ownTeamId]];
 		Foxtrick.util.api.retrieve(doc, teamargs, { cache: 'session' }, (teamXml, errorText) => {
 			if (!teamXml || errorText) {
@@ -264,7 +265,7 @@ Foxtrick.util.currency.guessCode = function(curr) {
  * Test whether a currency code is known in HT
  *
  * @param  {string}  code
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.util.currency.isValidCode = function(code) {
 	let category = Foxtrick.XMLData.htCurrencyJSON.hattrickcurrencies;

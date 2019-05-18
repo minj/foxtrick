@@ -200,7 +200,7 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 		 * opponent index is i + 1 if i is even, i - 1 if odd
 		 * @param	{NodeList}	ratings
 		 * @param	{Integer}	i
-		 * @param	{Boolean}	isOpponentRating
+		 * @param	{boolean}	isOpponentRating
 		 * @returns	{Integer}
 		 */
 		var getRating = function(ratings, i, isOpponentRating) {
