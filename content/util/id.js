@@ -316,42 +316,42 @@ Foxtrick.util.id.findLeagueLeveUnitId = function(element) {
  * @param  {number}   countryId
  * @param  {string}   [href]    optional
  * @param  {string}   [title]   optional
- * @param  {Boolean}  [imgOnly] return image only
  * @return {Element}            flag
  */
-Foxtrick.util.id.createFlagFromCountryId = function(doc, countryId, href, title, imgOnly) {
+Foxtrick.util.id.createFlagFromCountryId = function(doc, countryId, href, title) {
 	var leagueId = Foxtrick.XMLData.getLeagueIdByCountryId(countryId);
-	return Foxtrick.util.id.createFlagFromLeagueId(doc, leagueId, href, title, imgOnly);
+	return Foxtrick.util.id.createFlagFromLeagueId(doc, leagueId, href, title);
 };
 
 /**
  * Returns a flag as a link element
+ *
  * link href and img title may optionally override defaults:
+ *
  * league link and league name respectively
+ *
  * @param  {document} doc
  * @param  {number}   leagueId
  * @param  {string}   [href]    optional
  * @param  {string}   [title]   optional
- * @param  {Boolean}  [imgOnly] return image only
- * @return {Element}            flag
+ * @return {HTMLAnchorElement} flag
  */
-Foxtrick.util.id.createFlagFromLeagueId = function(doc, leagueId, href, title, imgOnly) {
-	var leagueName = Foxtrick.L10n.getCountryName(leagueId);
+Foxtrick.util.id.createFlagFromLeagueId = function(doc, leagueId, href, title) {
+	const leagueName = Foxtrick.L10n.getCountryName(leagueId);
 
 	var flag;
 
-	if (imgOnly) {
-		flag = doc.createElement('span');
-	}
-	else {
-		let a = doc.createElement('a');
-		if (href)
-			a.href = href;
-		else
-			a.href = '/World/Leagues/League.aspx?LeagueID=' + leagueId;
+	// if (imgOnly) {
+	// 	flag = doc.createElement('span');
+	// }
 
-		flag = a;
-	}
+	let a = doc.createElement('a');
+	if (href)
+		a.href = href;
+	else
+		a.href = '/World/Leagues/League.aspx?LeagueID=' + leagueId;
+
+	flag = a;
 
 	let img = doc.createElement('img');
 	img.className = 'flag' + leagueId;

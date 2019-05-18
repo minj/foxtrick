@@ -6,17 +6,15 @@
 
 'use strict';
 
-/* eslint-disable max-len */
 /**
  * @typedef FT.Links
  * @prop {()=>Promise<LinkCollection>} getCollection
  * @prop {(doc: document, options: LinkPageQuery)=>Promise<HTMLAnchorElement[]>} getLinks
- * @prop {(doc: document, collection: LinkCollection, options: LinkPageQuery)=>HTMLAnchorElement[]} makeAnchors
+ * @prop {(doc: document, c: LinkCollection, o: LinkPageQuery)=>HTMLAnchorElement[]} makeAnchors
  */
-/* eslint-enable max-len */
 
 /**
-//  * @type {FTAppModuleMixin & FTCoreModuleMixin & FT.Links}
+ * @type {FTAppModuleMixin & FTCoreModuleMixin & FT.Links}
  */
 Foxtrick.modules.Links = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
@@ -202,7 +200,8 @@ Foxtrick.modules.Links = {
 		var makeAnchorElement = function(link, url, key) {
 			let linkNode = doc.createElement('a');
 			if (isTracker) {
-				let id = args.nationality || args.leagueid;
+				let idStr = args.nationality || args.leagueid;
+				let id = typeof idStr == 'string' ? parseInt(idStr, 10) : idStr;
 				linkNode = Foxtrick.util.id.createFlagFromLeagueId(doc, id, url, link.title);
 			}
 			else {
@@ -417,6 +416,7 @@ Foxtrick.modules.Links = {
  * @typedef {'EXISTS'} LinkAllowPredicateFilterType
  * @typedef {[LinkAllowPredicateFilterType, string]} LinkAllowPredicateFilter
  * @typedef {LinkAllowCompareFilter|LinkAllowPredicateFilter} LinkAllowFilter
+ * typedef {LinkAllowCompareFilter|LinkAllowPredicateFilter|LinkAllowLogicFilter} LinkAllowFilter
  * @typedef {'OR'|'AND'} LinkAllowLogicFilterType
  * @typedef {[LinkAllowLogicFilterType, ...LinkAllowFilter[]]} LinkAllowLogicFilter recursive!
  * @typedef {LinkAllowFilter|LinkAllowLogicFilter} LinkDefinitionAllowFilter

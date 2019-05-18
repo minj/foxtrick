@@ -73,9 +73,11 @@
 
 /* eslint-disable */
 if (!this.Foxtrick)
+	// @ts-ignore
 	var Foxtrick = {};
 /* eslint-enable */
 
+/* eslint-disable consistent-this */
 Foxtrick.Prefs = {};
 
 // --------------------- function stubs ----------------

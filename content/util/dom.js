@@ -525,7 +525,7 @@ Foxtrick.listen = function(el, type, listener, useCapture) {
 	 * @this  {T}
 	 * @param {HTMLEvent<E>} ev
 	 */
-	let wrapper = function(ev) {
+	let listen = function listen(ev) {
 		// eslint-disable-next-line no-extra-parens
 		let target = /** @type {Element|Document} */ (ev.target);
 
@@ -550,7 +550,7 @@ Foxtrick.listen = function(el, type, listener, useCapture) {
 		}
 	};
 
-	el.addEventListener(type, wrapper, useCapture);
+	el.addEventListener(type, listen, useCapture);
 };
 
 /**

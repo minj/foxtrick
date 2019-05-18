@@ -68,11 +68,13 @@ Foxtrick.util.modules.enableEssential = function() {
 Foxtrick.util.modules.getActive = function(doc) {
 	this.enableEssential();
 
-	/** @type {Object.<string, boolean|string>} */
+	/** @type {Partial<Record<PAGE, boolean|string>>} */
 	let pages = Foxtrick.htPages;
 	if (doc) {
 		pages = {};
-		for (let page in Foxtrick.htPages) {
+
+		// eslint-disable-next-line no-extra-parens
+		for (let page of /** @type {PAGE[]} */ (Object.keys(Foxtrick.htPages))) {
 			if (Foxtrick.isPage(doc, page))
 				pages[page] = true;
 		}

@@ -37,6 +37,11 @@ Foxtrick.COOKIE_SPEC = {
 	},
 };
 
+for (let k of Object.keys(Foxtrick.COOKIE_SPEC))
+	Object.freeze(Foxtrick.COOKIE_SPEC[k]);
+
+Object.freeze(Foxtrick.COOKIE_SPEC);
+
 /** @typedef {keyof Foxtrick.COOKIE_SPEC} CookieKey */
 
 Foxtrick.cookies = (function() {
