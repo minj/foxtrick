@@ -114,11 +114,11 @@
 			"code": "hr",
 			"name": "Croatian",
 			"phrases": "2298",
-			"translated": "2259",
+			"translated": "2263",
 			"translated_progress": "95",
 			"words": "16757",
 			"words_approved": "13507",
-			"words_translated": "15959"
+			"words_translated": "15976"
 		},
 		{
 			"approved": "0",
@@ -258,11 +258,11 @@
 			"code": "gl",
 			"name": "Galician",
 			"phrases": "2298",
-			"translated": "2214",
+			"translated": "2219",
 			"translated_progress": "89",
 			"words": "16757",
 			"words_approved": "0",
-			"words_translated": "15029"
+			"words_translated": "15053"
 		},
 		{
 			"approved": "0",
@@ -306,11 +306,11 @@
 			"code": "he",
 			"name": "Hebrew",
 			"phrases": "2298",
-			"translated": "2296",
-			"translated_progress": "99",
+			"translated": "2298",
+			"translated_progress": "100",
 			"words": "16757",
 			"words_approved": "0",
-			"words_translated": "16754"
+			"words_translated": "16757"
 		},
 		{
 			"approved": "193",
@@ -378,11 +378,11 @@
 			"code": "ko",
 			"name": "Korean",
 			"phrases": "2298",
-			"translated": "2294",
-			"translated_progress": "99",
+			"translated": "2298",
+			"translated_progress": "100",
 			"words": "16757",
 			"words_approved": "0",
-			"words_translated": "16740"
+			"words_translated": "16757"
 		},
 		{
 			"approved": "0",
@@ -402,11 +402,11 @@
 			"code": "lt",
 			"name": "Lithuanian",
 			"phrases": "2298",
-			"translated": "2290",
+			"translated": "2291",
 			"translated_progress": "99",
 			"words": "16757",
 			"words_approved": "9185",
-			"words_translated": "16694"
+			"words_translated": "16701"
 		},
 		{
 			"approved": "0",
@@ -498,11 +498,11 @@
 			"code": "pt-PT",
 			"name": "Portuguese",
 			"phrases": "2298",
-			"translated": "2296",
-			"translated_progress": "99",
+			"translated": "2298",
+			"translated_progress": "100",
 			"words": "16757",
 			"words_approved": "0",
-			"words_translated": "16754"
+			"words_translated": "16757"
 		},
 		{
 			"approved": "1",
@@ -529,16 +529,16 @@
 			"words_translated": "15357"
 		},
 		{
-			"approved": "2296",
-			"approved_progress": "99",
+			"approved": "2298",
+			"approved_progress": "100",
 			"code": "ru",
 			"name": "Russian",
 			"phrases": "2298",
-			"translated": "2296",
-			"translated_progress": "99",
+			"translated": "2298",
+			"translated_progress": "100",
 			"words": "16757",
-			"words_approved": "16754",
-			"words_translated": "16754"
+			"words_approved": "16757",
+			"words_translated": "16757"
 		},
 		{
 			"approved": "2073",

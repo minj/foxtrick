@@ -1,9 +1,10 @@
-'use strict';
-/*
+/**
  * ht-date-format.js
  * displays week and season next to date
  * @author spambot, ryanli
  */
+
+'use strict';
 
 Foxtrick.modules['HTDateFormat'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.PRESENTATION,
@@ -17,9 +18,12 @@ Foxtrick.modules['HTDateFormat'] = {
 	run: function(doc) {
 		var module = this;
 
-		var useLocal = Foxtrick.Prefs.isModuleOptionEnabled('HTDateFormat', 'LocalSeason');
-		var weekOffset = Foxtrick.Prefs.getString('module.' + this.MODULE_NAME +
-		                                         '.FirstDayOfWeekOffset_text');
+		var useLocal = Foxtrick.Prefs.isModuleOptionEnabled(module, 'LocalSeason');
+		var weekOffsetText =
+			Foxtrick.Prefs.getString(`module.${this.MODULE_NAME}.FirstDayOfWeekOffset_text`);
+
+		let weekOffset = parseInt(weekOffsetText, 10) || 0;
+
 		// set up function for separating date and week/season,
 		var separate = function(node) {
 			node.appendChild(doc.createTextNode(' '));
@@ -71,12 +75,10 @@ Foxtrick.modules['HTDateFormat'] = {
 			'teamEvents', 'history', 'arena', 'country', 'hallOfFame',
 			'statsMatchesHeadToHead', 'seriesHistory', 'playerStats',
 		];
+
 		// don't show on where not needed and cluttering
-		if (!Foxtrick.any(function(page) {
-				return Foxtrick.isPage(doc, page);
-			}, pages)) {
+		if (!Foxtrick.isPage(doc, pages))
 			return;
-		}
 
 		var dates = mainBody.getElementsByClassName('date');
 		Foxtrick.map(modifyDate, dates);

@@ -33,8 +33,8 @@ Foxtrick.modules['LoyaltyDisplay'] = {
 			module.addInfo(node, bonus, l10n, cls);
 			return;
 		}
-		for (let coef of Foxtrick.range(1, THRESHOLD_COUNT + 1)) {
-			let threshold = 1 / coef;
+		for (let coef of Foxtrick.range(THRESHOLD_COUNT)) {
+			let threshold = 1 - coef / THRESHOLD_COUNT;
 			if (skillUp < threshold)
 				continue;
 
