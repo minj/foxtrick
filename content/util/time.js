@@ -96,7 +96,9 @@ Foxtrick.util.time.getPrintDateFormat = function() {
  * Convert Date object into {season, week: number}.
  *
  * weekdayOffset adjusts the first day of the week:
- * -2 for Saturday (economic update), 0 for Monday (default)
+ * * -2 for Saturday (economic update)
+ * * 0 for Monday (default)
+ *
  * useLocal returns local season number
  * @param  {Date}    date
  * @param  {number}  [weekdayOffset]
@@ -119,7 +121,9 @@ Foxtrick.util.time.gregorianToHT = function(date, weekdayOffset = 0, useLocal = 
  * Convert {season, week: number} into Date object.
  *
  * weekdayOffset adjusts the first day of the week:
- * -2 for Saturday (economic update), 0 for Monday (default)
+ * * -2 for Saturday (economic update)
+ * * 0 for Monday (default)
+ *
  * useLocal assumes local season number
  *
  * @param  {{season: number, week: number}} htDate
@@ -142,27 +146,39 @@ Foxtrick.util.time.HTToGregorian = function(htDate, weekdayOffset = 0, useLocal 
 };
 
 /**
+ * @typedef DateInfo
+ * @prop {number} day
+ * @prop {number} month
+ * @prop {number} year
+ * @prop {number} hour
+ * @prop {number} minute
+ */
+
+/**
  * Parse datetime text into {day, month, year, hour, minute: number}
  *
  * May optionally use a custom dateFormat.
  * @param  {string}  text
- * @param  {string}  dateFormat {?string}
- * @param  {Boolean} dateOnly   {?Boolean}
- * @return {object}             {day, month, year, hour, minute: number}
+ * @param  {string}  [dateFormat] {?string}
+ * @param  {boolean} [dateOnly]   {?boolean}
+ * @return {DateInfo}             {day, month, year, hour, minute: number}
  */
 Foxtrick.util.time.parse = function(text, dateFormat, dateOnly) {
-	// four-digit year first
-	var reLong = /(\d{4})\D(\d{1,2})\D(\d{1,2})\D?\s+(\d{2})\D(\d{2})/;
-	var reShort = /(\d{4})\D(\d{1,2})\D(\d{1,2})/;
+	const RE_SHORT_GROUP_CT = 3;
+	const RE_LONG_GROUP_CT = 5;
 
-	var DATEFORMAT = dateFormat || this.getDateFormat();
+	// four-digit year first
+	let reLong = /(\d{4})\D(\d{1,2})\D(\d{1,2})\D?\s+(\d{2})\D(\d{2})/;
+	let reShort = /(\d{4})\D(\d{1,2})\D(\d{1,2})/;
+
+	const DATEFORMAT = dateFormat || this.getDateFormat();
 	if (DATEFORMAT.indexOf('y') !== 0) {
 		// day or month first
 		reLong = /(\d{1,2})\D(\d{1,2})\D(\d{4})\D?\s+(\d{2})\D(\d{2})/;
 		reShort = /(\d{1,2})\D(\d{1,2})\D(\d{4})/;
 	}
 
-	var matches;
+	let matches;
 	if (reLong.test(text) && !dateOnly)
 		matches = text.match(reLong);
 	else if (reShort.test(text))
@@ -170,37 +186,35 @@ Foxtrick.util.time.parse = function(text, dateFormat, dateOnly) {
 	else
 		return null;
 
-	for (var i = 1; i < matches.length; ++i)
-		matches[i] = parseInt(matches[i], 10);
+	let matchNums = [...matches].slice(1).map(s => parseInt(s, 10));
 
-	var day, month, year;
+	let day, month, year;
 	if (DATEFORMAT.indexOf('d') === 0) {
 		// like dd-mm-yyyy
-		day = matches[1];
-		month = matches[2];
-		year = matches[3];
+		[day, month, year] = matchNums;
 	}
 	else if (DATEFORMAT.indexOf('m') === 0) {
 		// like mm-dd-yyyy
-		day = matches[2];
-		month = matches[1];
-		year = matches[3];
+		[month, day, year] = matchNums;
 	}
 	else if (DATEFORMAT.indexOf('y') === 0) {
 		// like yyyy-mm-dd
-		day = matches[3];
-		month = matches[2];
-		year = matches[1];
+		[year, month, day] = matchNums;
 	}
 	else {
 		Foxtrick.error('Unknown DATEFORMAT');
 		return null;
 	}
 
-	var hour = matches.length == 6 ? matches[4] : 0;
-	var minute = matches.length == 6 ? matches[5] : 0;
+	let hour = 0;
+	let minute = 0;
 
-	return { day: day, month: month, year: year, hour: hour, minute: minute };
+	if (matchNums.length == RE_LONG_GROUP_CT) {
+		// eslint-disable-next-line no-magic-numbers
+		[hour, minute] = matchNums.slice(RE_SHORT_GROUP_CT);
+	}
+
+	return { day, month, year, hour, minute };
 };
 
 /**
@@ -208,22 +222,23 @@ Foxtrick.util.time.parse = function(text, dateFormat, dateOnly) {
  *
  * May optionally use a custom dateFormat.
  * @param  {string}  text
- * @param  {string}  dateFormat {?string}
- * @param  {Boolean} dateOnly   {?Boolean}
- * @return {Date}               {?Date}
+ * @param  {string}  [dateFormat] {?string}
+ * @param  {boolean} [dateOnly]   {?boolean}
+ * @return {Date}                 {?Date}
  */
 Foxtrick.util.time.getDateFromText = function(text, dateFormat, dateOnly) {
-	var d = this.parse(text, dateFormat, dateOnly);
+	let d = this.parse(text, dateFormat, dateOnly);
 	if (!d)
 		return null;
 
 	// check validity of values
-	if (0 <= d.minute && d.minute < this.MINS_IN_HOUR &&
-	    0 <= d.hour && d.hour < this.HOURS_IN_DAY &&
-	    1 <= d.day && d.day <= this.MAX_DAY &&
-	    1 <= d.month && d.month <= this.MONTHS_IN_YEAR &&
+	if (d.minute >= 0 && d.minute < this.MINS_IN_HOUR &&
+	    d.hour >= 0 && d.hour < this.HOURS_IN_DAY &&
+	    d.day >= 1 && d.day <= this.MAX_DAY &&
+	    d.month >= 1 && d.month <= this.MONTHS_IN_YEAR &&
 	    this.UNIX_YEAR <= d.year) {
-		var date = new Date(d.year, d.month - 1, d.day, d.hour, d.minute);
+
+		let date = new Date(d.year, d.month - 1, d.day, d.hour, d.minute);
 		return date;
 	}
 	return null;
@@ -234,34 +249,38 @@ Foxtrick.util.time.getDateFromText = function(text, dateFormat, dateOnly) {
  *
  * May optionally use a custom dateFormat.
  * @param  {string}  text
- * @param  {string}  dateFormat {?string}
- * @return {Boolean}
+ * @param  {string}  [dateFormat] {?string}
+ * @return {boolean}
  */
 Foxtrick.util.time.hasTime = function(text, dateFormat) {
 	// four-digit year first
 	var re = /(\d{4})\D(\d{1,2})\D(\d{1,2})\D?\s+(\d{2})\D(\d{2})/;
 
-	dateFormat = dateFormat || this.getDateFormat();
-	if (dateFormat.indexOf('y') !== 0) {
+	const DATEFORMAT = dateFormat || this.getDateFormat();
+	if (DATEFORMAT.indexOf('y') !== 0) {
 		// day or month first
 		re = /(\d{1,2})\D(\d{1,2})\D(\d{4})\D?\s+(\d{2})\D(\d{2})/;
 	}
+
 	return re.test(text);
 };
 
 /**
  * Check if a HT Date in UTC falls during DST
  * @param  {Date}    utcHTDate
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.util.time.isDST = function(utcHTDate) {
-	var year = utcHTDate.getUTCFullYear();
+	let year = utcHTDate.getUTCFullYear();
+
 	// European DST starts on last March Sunday and ends on last October Sunday at 01:00 UTC
-	var utcDSTEnd = new Date(Date.UTC(year, 9, 31, 1)); // 9 = October, got to love 0-index
+	/* eslint-disable no-magic-numbers */
+	let utcDSTEnd = new Date(Date.UTC(year, 9, 31, 1)); // 9 = October, got to love 0-index
 	utcDSTEnd.setUTCDate(31 - utcDSTEnd.getUTCDay()); // 0 = Sunday
 
-	var utcDSTStart = new Date(Date.UTC(year, 2, 31, 1)); // 2 = March, got to love 0-index
+	let utcDSTStart = new Date(Date.UTC(year, 2, 31, 1)); // 2 = March, got to love 0-index
 	utcDSTStart.setUTCDate(31 - utcDSTStart.getUTCDay()); // 0 = Sunday
+	/* eslint-enable no-magic-numbers */
 
 	if (utcHTDate.getTime() > utcDSTStart.getTime() &&
 	    utcHTDate.getTime() < utcDSTEnd.getTime()) // this fails during 00:00-01:00 UTC on DSTEnd
@@ -276,19 +295,19 @@ Foxtrick.util.time.isDST = function(utcHTDate) {
  * @return {Date}         {?Date}
  */
 Foxtrick.util.time.getUTCDate = function(doc) {
-	var dateEl = doc.getElementById('hattrickTime');
+	let dateEl = doc.getElementById('hattrickTime');
 	if (!dateEl)
 		dateEl = doc.getElementById('time');
 
 	if (!dateEl)
 		return null;
 
-	var d = this.parse(dateEl.textContent);
+	let d = this.parse(dateEl.textContent);
 	if (!d)
 		return null;
 
-	var hour = d.hour - this.HT_GMT_OFFSET;
-	var utcHTDate = new Date(Date.UTC(d.year, d.month - 1, d.day, hour, d.minute));
+	let hour = d.hour - this.HT_GMT_OFFSET;
+	let utcHTDate = new Date(Date.UTC(d.year, d.month - 1, d.day, hour, d.minute));
 	if (this.isDST(utcHTDate))
 		utcHTDate.setUTCHours(hour - 1);
 
@@ -313,7 +332,7 @@ Foxtrick.util.time.getUTCTimeStamp = function(doc) {
  * @return {Date}         {?Date}
  */
 Foxtrick.util.time.getHTDate = function(doc) {
-	var dateEl = doc.getElementById('hattrickTime');
+	let dateEl = doc.getElementById('hattrickTime');
 	if (!dateEl)
 		dateEl = doc.getElementById('time');
 
@@ -341,11 +360,11 @@ Foxtrick.util.time.getHTTimeStamp = function(doc) {
  * @return {Date}         {?Date}
  */
 Foxtrick.util.time.getDate = function(doc) {
-	var dateEl = doc.getElementById('time');
+	let dateEl = doc.getElementById('time');
 	if (!dateEl)
 		return null;
 
-	var date = this.getDateFromText(dateEl.textContent);
+	let date = this.getDateFromText(dateEl.textContent);
 	return date;
 };
 
@@ -371,12 +390,15 @@ Foxtrick.util.time.getTimeStamp = function(doc) {
  * @return {number}       {Float}
  */
 Foxtrick.util.time.getBrowserOffset = function(doc) {
-	var htDate = this.getHTDate(doc);
+	let htDate = this.getHTDate(doc);
+	let now = new Date();
+	let hourDiff = (now.getTime() - htDate.getTime()) / this.MSECS_IN_HOUR;
 
-	var now = new Date();
 	// time zone difference is typically a multiple of 15 minutes
-	var diff = Math.round((now.getTime() - htDate.getTime()) / this.MSECS_IN_HOUR * 4) / 4;
-	return diff;
+	const GRANULARITY = 15;
+	const DIV = this.MINS_IN_HOUR / GRANULARITY;
+
+	return Math.round(hourDiff * DIV) / DIV;
 };
 
 /**
@@ -389,12 +411,15 @@ Foxtrick.util.time.getBrowserOffset = function(doc) {
  * @return {number}       {Float}
  */
 Foxtrick.util.time.getUserOffset = function(doc) {
-	var htDate = this.getHTDate(doc);
-	var userDate = this.getDate(doc);
+	let htDate = this.getHTDate(doc);
+	let userDate = this.getDate(doc);
+	let hourDiff = (userDate.getTime() - htDate.getTime()) / this.MSECS_IN_HOUR;
 
 	// time zone difference is typically a multiple of 15 minutes
-	var diff = Math.round((userDate.getTime() - htDate.getTime()) / this.MSECS_IN_HOUR * 4) / 4;
-	return diff;
+	const GRANULARITY = 15;
+	const DIV = this.MINS_IN_HOUR / GRANULARITY;
+
+	return Math.round(hourDiff * DIV) / DIV;
 };
 
 /**
@@ -412,39 +437,39 @@ Foxtrick.util.time.getLocalOffset = function(doc) {
 
 /**
  * Convert user date or timestamp into HT time
- * @param  {document} doc
- * @param  {number}   userDate
+ * @param  {document}    doc
+ * @param  {number|Date} userDate
  * @return {Date}
  */
 Foxtrick.util.time.toHT = function(doc, userDate) {
-	var offset = this.getUserOffset(doc);
-	var ret = new Date(userDate);
+	let offset = this.getUserOffset(doc);
+	let ret = new Date(userDate);
 	ret.setMinutes(ret.getMinutes() - this.MINS_IN_HOUR * offset);
 	return ret;
 };
 
 /**
  * Convert HT date or timestamp into user time
- * @param  {document} doc
- * @param  {number}   htDate
+ * @param  {document}    doc
+ * @param  {number|Date} htDate
  * @return {Date}
  */
 Foxtrick.util.time.toUser = function(doc, htDate) {
-	var offset = this.getUserOffset(doc);
-	var ret = new Date(htDate);
+	let offset = this.getUserOffset(doc);
+	let ret = new Date(htDate);
 	ret.setMinutes(ret.getMinutes() + this.MINS_IN_HOUR * offset);
 	return ret;
 };
 
 /**
  * Convert user date or timestamp into browser time
- * @param  {document} doc
- * @param  {number}   userDate
+ * @param  {document}    doc
+ * @param  {number|Date} userDate
  * @return {Date}
  */
 Foxtrick.util.time.toLocal = function(doc, userDate) {
-	var offset = this.getLocalOffset(doc);
-	var ret = new Date(userDate);
+	let offset = this.getLocalOffset(doc);
+	let ret = new Date(userDate);
 	ret.setMinutes(ret.getMinutes() + this.MINS_IN_HOUR * offset);
 	return ret;
 };
@@ -452,14 +477,15 @@ Foxtrick.util.time.toLocal = function(doc, userDate) {
 /**
  * Get the user league season offset (>0)
  *
- * @return {number}                       {Integer>0}
+ * @return {number} {Integer>0}
  */
 Foxtrick.util.time.getSeasonOffset = function() {
-	var country = Foxtrick.Prefs.getString('htCountry');
-	for (var i in Foxtrick.XMLData.League) {
-		if (country === Foxtrick.L10n.getCountryNameEnglish(i)) {
-			var data = Foxtrick.XMLData.League[i];
-			var offset = parseInt(data.SeasonOffset, 10);
+	let country = Foxtrick.Prefs.getString('htCountry');
+	for (let i in Foxtrick.XMLData.League) {
+		let id = parseInt(i, 10);
+		if (country === Foxtrick.L10n.getCountryNameEnglish(id)) {
+			let data = Foxtrick.XMLData.League[i];
+			let offset = parseInt(data.SeasonOffset, 10);
 			return -offset;
 		}
 	}
@@ -470,14 +496,15 @@ Foxtrick.util.time.getSeasonOffset = function() {
 
 /**
  * Get a new Date with an integer of days added
- * @param  {Date}   date
- * @param  {number} days {Integer}
+ * @param  {number|Date} date
+ * @param  {number}      days {Integer}
  * @return {Date}
  */
 Foxtrick.util.time.addDaysToDate = function(date, days) {
-	days = parseInt(days, 10);
-	var ret = new Date(date);
-	ret.setDate(ret.getDate() + days);
+	let dayCt = parseInt(String(days), 10);
+
+	let ret = new Date(date);
+	ret.setDate(ret.getDate() + dayCt);
 	return ret;
 };
 
@@ -492,62 +519,69 @@ Foxtrick.util.time.setMidnight = function(date) {
 };
 
 /**
- * Pad a string with zeros if shorter than length
- * @param  {string} str
+ * Pad a number string with zeros if shorter than length
+ * @param  {string|number} str
  * @param  {number} length
  * @return {string}
  */
 Foxtrick.util.time.fill = function(str, length) {
-	var s = String(str);
-	var i = 0;
-	while (i++ < length - s.length)
-		s = '0' + s;
+	let s = String(str);
+	if (s.length < length)
+		s = '0'.repeat(length - s.length) + s;
+
 	return s;
 };
 
 /**
+ * @typedef DateBuildOpts
+ * @prop {string} format
+ * @prop {boolean} showTime defaults to true
+ * @prop {boolean} showSecs
+ */
+
+/**
  * Convert a ?Date object into string.
  *
- * options: {format: string, showTime, showSecs: Boolean}
+ * options: {format: string, showTime, showSecs: boolean}
+ *
  * By default uses localized format, no secs.
- * @param  {Date}   date   	?Date
- * @param  {object} options {format: string, showTime, showSecs: Boolean}
+ * @param  {Date}                   [date]    ?Date
+ * @param  {Partial<DateBuildOpts>} [options] {format: string, showTime, showSecs: boolean}
  * @return {string}
  */
-Foxtrick.util.time.buildDate = function(date, options) {
-	var opts = {
+Foxtrick.util.time.buildDate = function(date = new Date(), options) {
+	/** @type {DateBuildOpts} */
+	let opts = {
 		format: this.getPrintDateFormat(),
 		showTime: true,
 		showSecs: false,
 	};
 	Foxtrick.mergeValid(opts, options);
 
-	if (!date)
-		date = new Date();
-
-	var string;
+	let string;
 	if (!opts.showTime) {
 		// presume date is before time in format and separated with first whitespace
 		string = opts.format.replace(/\s+.+$/, '');
 	}
-	else if (!opts.showSecs) {
+	else if (opts.showSecs) {
+		string = opts.format;
+	}
+	else {
 		// presume seconds are in final position with only one separator
 		string = opts.format.replace(/.S+$/, '');
 	}
-	else
-		string = opts.format;
 
-	string = string.replace(/YYYY/g, date.getFullYear());
+	string = string.replace(/YYYY/g, date.getFullYear().toString());
 	string = string.replace(/mm/g, this.fill(date.getMonth() + 1, 2));
-	string = string.replace(/m/g, date.getMonth() + 1);
+	string = string.replace(/m/g, (date.getMonth() + 1).toString());
 	string = string.replace(/dd/g, this.fill(date.getDate(), 2));
-	string = string.replace(/d/g, date.getDate(), 2);
+	string = string.replace(/d/g, date.getDate().toString());
 	string = string.replace(/HH/g, this.fill(date.getHours(), 2));
-	string = string.replace(/H/g, date.getHours(), 2);
+	string = string.replace(/H/g, date.getHours().toString());
 	string = string.replace(/MM/g, this.fill(date.getMinutes(), 2));
-	string = string.replace(/M/g, date.getMinutes());
+	string = string.replace(/M/g, date.getMinutes().toString());
 	string = string.replace(/SS/g, this.fill(date.getSeconds(), 2));
-	string = string.replace(/S/g, date.getSeconds());
+	string = string.replace(/S/g, date.getSeconds().toString());
 
 	return string;
 };
@@ -556,30 +590,41 @@ Foxtrick.util.time.buildDate = function(date, options) {
  * Get an ISO string without milisecs or timezone
  *
  * e.g. 20120727T000900, not adjusted to UTC
- * @param  {Date}   date
+ * @param  {number|Date}   date
  * @return {string}
  */
 Foxtrick.util.time.toBareISOString = function(date) {
-	var format = 'YYYYmmddTHHMMSS';
-	return this.buildDate(date, { format: format, showSecs: true });
+	const format = 'YYYYmmddTHHMMSS';
+	return this.buildDate(new Date(date), { format: format, showSecs: true });
 };
+
+/**
+ * @typedef DateDeltaOpts
+ * @prop {boolean} useDHM display time in whole days (may be >6), hours and minutes
+ * @prop {boolean} forceDHM useDHM even if everything is 0
+ * @prop {boolean} useSWD display time in whole seasons, weeks and days (mod)
+ * @prop {boolean} forceSWD useSWD even if everything is 0
+ */
 
 /**
  * Build a season/week/day/hour/minute span from time difference in seconds.
  *
- * options is {useDHM, useSWD, forceSWD, forceDHM: Boolean}.
- * where useDHM means display time in whole days (may be >6), hours and minutes,
- * defaults to true, (false implies useSWD=true);
- * where useSWD means display time in whole seasons, weeks and days (mod),
- * defaults to false.
- * Forcing options display respective parts even if they are equal to 0,
- * displays starts only when first non-zero is encountered
+ * options is {useDHM, useSWD, forceSWD, forceDHM: boolean}:
+ * * where useDHM means display time in whole days (may be >6), hours and minutes,
+ *   defaults to true, (false implies useSWD=true);
+ * * where useSWD means display time in whole seasons, weeks and days (mod),
+ *   defaults to false.
+ *
+ * Forcing options display respective parts even if they are equal to 0.
+ *
+ * Displays starts only when first non-zero is encountered
  * or it's the last number when false (default).
- * @param  {document}        doc
- * @param  {number}          secDiff {Integer}
- * @param  {object}          options {{useDHM, useSWD, forceDHM, forceSWD: Boolean}}
+ * @param  {document}               doc
+ * @param  {number}                 secDiff   {Integer}
+ * @param  {Partial<DateDeltaOpts>} [options] {{useDHM, useSWD, forceDHM, forceSWD: boolean}}
  * @return {HTMLSpanElement}
  */
+// eslint-disable-next-line complexity
 Foxtrick.util.time.timeDiffToSpan = function(doc, secDiff, options) {
 	// Returns the time difference as non-zero days/hours and minutes
 	// if !useDHM or useSWD shows non-zero seasons/weeks and days
@@ -587,82 +632,88 @@ Foxtrick.util.time.timeDiffToSpan = function(doc, secDiff, options) {
 	// if forceSWD shows seasons/weeks/days always
 
 	// should be positive
-	secDiff = Math.abs(secDiff);
+	let secDelta = Math.abs(secDiff);
 
-	var dateSpan = doc.createElement('span');
+	let dateSpan = doc.createElement('span');
 	dateSpan.className = 'nowrap';
 
-	var opts = {
+	/** @type {DateDeltaOpts} */
+	let opts = {
 		useDHM: true,
 		useSWD: false,
 		forceDHM: false,
 		forceSWD: false,
 	};
 	Foxtrick.mergeValid(opts, options);
-	var useDHM = opts.useDHM || opts.forceDHM;
-	var useSWD = opts.useSWD || opts.forceSWD || !opts.useDHM;
+	let useDHM = opts.useDHM || opts.forceDHM;
+	let useSWD = opts.useSWD || opts.forceSWD || !opts.useDHM;
 
 	// totals
-	var minDiff = Math.floor(secDiff / this.SECS_IN_MIN);
-	var hourDiff = Math.floor(secDiff / this.SECS_IN_HOUR);
-	var dayDiff = Math.floor(secDiff / this.SECS_IN_DAY);
-	var weekDiff = Math.floor(dayDiff / this.DAYS_IN_WEEK);
-	var seasDiff = Math.floor(dayDiff / this.DAYS_IN_SEASON);
+	let minDiff = Math.floor(secDelta / this.SECS_IN_MIN);
+	let hourDiff = Math.floor(secDelta / this.SECS_IN_HOUR);
+	let dayDiff = Math.floor(secDelta / this.SECS_IN_DAY);
+	let weekDiff = Math.floor(dayDiff / this.DAYS_IN_WEEK);
+	let seasDiff = Math.floor(dayDiff / this.DAYS_IN_SEASON);
 
 	// mods
-	var minMod = minDiff % this.MINS_IN_HOUR;
-	var hourMod = hourDiff % this.HOURS_IN_DAY;
-	var dayMod = dayDiff % this.DAYS_IN_WEEK;
-	var weekMod = weekDiff % this.WEEKS_IN_SEASON;
-	var seasMod = seasDiff;
+	let minMod = minDiff % this.MINS_IN_HOUR;
+	let hourMod = hourDiff % this.HOURS_IN_DAY;
+	let dayMod = dayDiff % this.DAYS_IN_WEEK;
+	let weekMod = weekDiff % this.WEEKS_IN_SEASON;
+	let seasMod = seasDiff;
 
-	var displayOption = Foxtrick.Prefs.getInt('module.ExtendedPlayerDetails.value') || 0;
+	let displayOption = Foxtrick.Prefs.getInt('module.ExtendedPlayerDetails.value') || 0;
 
-	var swdExists = false;
+	let swdExists = false;
 	if (useSWD) {
-		var swd;
+
+		/** @type {[number, string][]} */
+		let swd;
 
 		switch (displayOption) { // ('SWD', 'SW', 'SD', 'WD', 'D')
+			default:
 			case 0: // SWD
 				swd = [
 					[seasMod, 'short_seasons'],
 					[weekMod, 'short_weeks'],
 					[dayMod, 'short_days'],
 				];
-			break;
+				break;
 
 			case 1: // SW
 				swd = [
 					[seasMod, 'short_seasons'],
 					[weekMod, 'short_weeks'],
 				];
-			break;
+				break;
 
 			case 2: // SD
 				swd = [
 					[seasMod, 'short_seasons'],
 					[dayDiff - seasMod * this.DAYS_IN_SEASON, 'short_days'],
 				];
-			break;
+				break;
 
+			// eslint-disable-next-line no-magic-numbers
 			case 3: // WD
 				swd = [
 					[weekDiff, 'short_weeks'],
 					[dayMod, 'short_days'],
 				];
-			break;
+				break;
 
+			// eslint-disable-next-line no-magic-numbers
 			case 4: // D
 				swd = [
 					[dayDiff, 'short_days'],
 				];
-			break;
+				break;
 		}
 
 		if (!opts.forceSWD) {
 			// remove zeros
-			swd = Foxtrick.filter(function(def, i, arr) {
-				if (def[0]) {
+			swd = Foxtrick.filter(([value], i, arr) => {
+				if (value) {
 					// when non-zero is found, use all the rest
 					swdExists = true;
 				}
@@ -670,13 +721,13 @@ Foxtrick.util.time.timeDiffToSpan = function(doc, secDiff, options) {
 			}, swd);
 		}
 
-		var children = [];
-		Foxtrick.forEach(function(def) {
-			var b = doc.createElement('b');
-			b.textContent = def[0];
+		let children = [];
+		Foxtrick.forEach(([value, key]) => {
+			let b = doc.createElement('b');
+			b.textContent = String(value);
 			children.push(b);
 
-			var str = Foxtrick.L10n.getString('datetimestrings.' + def[1], def[0]);
+			let str = Foxtrick.L10n.getString('datetimestrings.' + key, value);
 			children.push(doc.createTextNode(str));
 			children.push(doc.createTextNode(' '));
 		}, swd);
@@ -690,27 +741,30 @@ Foxtrick.util.time.timeDiffToSpan = function(doc, secDiff, options) {
 	}
 
 	if (useDHM) {
-		var dhm = [
+		/** @type {[number, string][]} */
+		let dhm = [
 			[dayDiff, 'days'],
 			[hourMod, 'hours'],
 			[minMod, 'minutes'],
 		];
+
+		let [dayDef] = dhm;
 		if (useSWD) {
 			if (displayOption === 1) {
 				// weeks + no days, use dayMod instead
-				dhm[0][0] = dayMod;
+				dayDef[0] = dayMod;
 			}
 			else {
-				// remove day duplicate
+				// remove dayDef duplicate
 				dhm.shift();
 			}
 		}
 
 		if (!opts.forceDHM) {
 			// remove zeros if swd is missing
-			var dhmExists = swdExists;
-			dhm = Foxtrick.filter(function(def, i, arr) {
-				if (def[0]) {
+			let dhmExists = swdExists;
+			dhm = Foxtrick.filter(([value], i, arr) => {
+				if (value) {
 					// when non-zero is found, use all the rest
 					dhmExists = true;
 				}
@@ -718,9 +772,9 @@ Foxtrick.util.time.timeDiffToSpan = function(doc, secDiff, options) {
 			}, dhm);
 		}
 
-		var result = Foxtrick.map(function(def) {
-			var str = Foxtrick.L10n.getString('datetimestrings.' + def[1], def[0]);
-			return def[0] + str;
+		let result = Foxtrick.map(([value, key]) => {
+			let str = Foxtrick.L10n.getString('datetimestrings.' + key, value);
+			return value + str;
 		}, dhm).join(' ');
 
 		dateSpan.appendChild(doc.createTextNode(result));

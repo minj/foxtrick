@@ -1,13 +1,16 @@
-'use strict';
 /**
  * dashboard-calendar.js
  * Export dashboard calendar to iCal format
  * @author LA-MJ
  */
 
+'use strict';
+
 Foxtrick.modules['DashboardCalendar'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES: ['dashboard'],
+
+	// eslint-disable-next-line complexity
 	run: function(doc) {
 		// this is mostly for strings/iCal handling
 		var EVENTS = {
@@ -40,6 +43,7 @@ Foxtrick.modules['DashboardCalendar'] = {
 		var midWeekGames = {};
 		var weekendGames = {};
 
+		// eslint-disable-next-line complexity
 		var parseEvent = function(div, userMidnight) {
 			var image = div.querySelector('.largeMasterIcon');
 			if (!image)
@@ -202,6 +206,7 @@ Foxtrick.modules['DashboardCalendar'] = {
 		};
 
 		var events = [];
+		// eslint-disable-next-line complexity
 		var processEvent = function(evnt) {
 			if (!evnt)
 				return;
@@ -213,29 +218,31 @@ Foxtrick.modules['DashboardCalendar'] = {
 			evnt.time = Foxtrick.util.time.toBareISOString(evnt.date);
 			evnt.alarmMinutes = 30;
 
-			var endTime = 0;
+			var endTime;
 			switch (evnt.type) {
 				case EVENTS.LEAGUE:
 				case EVENTS.NT:
 				case EVENTS.YOUTHGAME:
 				case EVENTS.TOURNAMENT:
 					endTime = new Date(evnt.date.valueOf() + 105 * MSECS_IN_MIN);
-				break;
+					break;
 				case EVENTS.CUP:
 				case EVENTS.SINGLEMATCH:
 				case EVENTS.LADDER:
 					endTime = new Date(evnt.date.valueOf() + 180 * MSECS_IN_MIN);
-				break;
+					break;
 				case EVENTS.TRAINING:
 				case EVENTS.ECONOMY:
 					endTime = new Date(evnt.date.valueOf() + 30 * MSECS_IN_MIN);
-				break;
+					break;
 				case EVENTS.INTFRREMINDER:
-				break;
+					break;
 				case EVENTS.WKNDFRREMINDER:
 					endTime = new Date(evnt.date.valueOf() + 6 * MSECS_IN_HOUR);
 					evnt.alarmMinutes = 60;
-				break;
+					break;
+				default:
+					break;
 			}
 			if (endTime)
 				evnt.end = Foxtrick.util.time.toBareISOString(endTime);

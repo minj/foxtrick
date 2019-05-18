@@ -466,9 +466,9 @@ Foxtrick.Pages.Player.getWageCell = function(doc) {
  *
  * Returns {base, bonus, total: number}.
  * Senior player only.
- * @param  {document} doc
- * @param  {?Element} wageCell optional wage cell to parse; otherwise will be found
- * @return {PlayerWage}        {base: number, bonus: number, total: number}
+ * @param  {document}   doc
+ * @param  {Element}    [wageCell] optional wage cell to parse; otherwise will be found
+ * @return {PlayerWage}           {base: number, bonus: number, total: number}
  */
 Foxtrick.Pages.Player.getWage = function(doc, wageCell) {
 	const WAGE_BONUS = 0.2;
@@ -949,9 +949,9 @@ Foxtrick.Pages.Player.getBidInfo = function(doc) {
 Foxtrick.Pages.Player.getTransferDeadline = function(doc) {
 	var deadline = null;
 	try {
-		var bidDiv = this.getBidInfo(doc);
+		let bidDiv = this.getBidInfo(doc);
 		if (bidDiv) {
-			var bidPara = bidDiv.getElementsByTagName('p')[0];
+			let bidPara = bidDiv.querySelector('p');
 			deadline = Foxtrick.util.time.getDateFromText(bidPara.textContent);
 		}
 	}

@@ -272,12 +272,14 @@ Foxtrick.util.api = {
 			var text = this.text(tagName, container);
 			if (text === '0001-01-01 00:00:00')
 				return null;
+
 			return Foxtrick.util.time.getDateFromText(text, 'yyyymmdd');
 		};
 		xml.date = function(tagName, container) {
 			var text = this.text(tagName, container);
 			if (text === '0001-01-01 00:00:00')
 				return null;
+
 			return Foxtrick.util.time.getDateFromText(text, 'yyyymmdd', true);
 		};
 		xml.num = function(tagName, container) {
@@ -341,7 +343,6 @@ Foxtrick.util.api = {
 			return;
 		}
 
-		/** @type {number} */
 		const HT_DATE = (() => {
 			let htDate;
 			try {

@@ -92,7 +92,6 @@ Foxtrick.modules['TransferComparePlayers'] = {
 					// README: user time only => +-1 day
 					let transfer = transferRow.cells[0].textContent;
 
-					/** @type {Date} */
 					var trDate = Foxtrick.util.time.getDateFromText(transfer);
 					if (isHistory) {
 						let days = age * DAYS_IN_SEASON + agedays;

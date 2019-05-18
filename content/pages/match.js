@@ -8,6 +8,7 @@
 
 /* eslint-disable */
 if (!this.Foxtrick)
+	// @ts-ignore
 	var Foxtrick = {};
 /* eslint-enable */
 
@@ -271,7 +272,7 @@ Foxtrick.Pages.Match.getId = function(doc) {
  * @return {Date}
  */
 Foxtrick.Pages.Match.getDate = function(doc) {
-	var date = doc.getElementsByClassName('date')[0];
+	let date = doc.querySelector('.date');
 	return Foxtrick.util.time.getDateFromText(date.textContent);
 };
 

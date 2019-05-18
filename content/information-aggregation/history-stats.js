@@ -86,7 +86,6 @@ Foxtrick.modules.HistoryStats = {
 				/** @type {Element} */
 				let row = feedItem.closest('tr');
 
-				/** @type {Date} */
 				let date;
 				while (row && !date) {
 					let feedItem = row.querySelector('.feedItem');
@@ -100,7 +99,6 @@ Foxtrick.modules.HistoryStats = {
 				if (!date)
 					return false;
 
-				/** @type {number} */
 				let season = Foxtrick.util.time.gregorianToHT(date).season;
 				let cell = feedItem.querySelector('td.float_left');
 				// eslint-disable-next-line no-extra-parens
@@ -169,7 +167,6 @@ Foxtrick.modules.HistoryStats = {
 			/** @type {Element} */
 			let row = event.closest('.feedItem').closest('tr');
 
-			/** @type {Date} */
 			let date;
 			while (row && !date) {
 				let feedItem = row.querySelector('.feedItem');
@@ -183,7 +180,6 @@ Foxtrick.modules.HistoryStats = {
 			if (!date)
 				continue;
 
-			/** @type {number} */
 			let season = Foxtrick.util.time.gregorianToHT(date).season;
 
 			let links = Foxtrick.toArray(event.querySelectorAll('a'));

@@ -41,15 +41,16 @@ Foxtrick.modules['HTDateFormat'] = {
 				date = new Date();
 				date.setTime(node.dataset.userDate);
 			}
-			else
+			else {
 				date = Foxtrick.util.time.getDateFromText(node.textContent);
+			}
 
 			if (date) {
-				var htDate = Foxtrick.util.time.gregorianToHT(date, weekOffset, useLocal);
+				let htDate = Foxtrick.util.time.gregorianToHT(date, weekOffset, useLocal);
 				Foxtrick.addClass(node, 'ft-date');
 				separate(node);
-				var wsDate = Foxtrick.createFeaturedElement(doc, module, 'span');
-				wsDate.textContent = '(w/s)'.replace(/w/, htDate.week).replace(/s/, htDate.season);
+				let wsDate = Foxtrick.createFeaturedElement(doc, module, 'span');
+				wsDate.textContent = `(${htDate.week}/${htDate.season})`;
 				node.appendChild(wsDate);
 			}
 		};
@@ -68,6 +69,7 @@ Foxtrick.modules['HTDateFormat'] = {
 		if (!mainBody)
 			return;
 
+		/** @type {PAGE[]} */
 		var pages = [
 			'transfersTeam', 'transfersPlayer', 'transfer',
 			'transferCompare', 'match', 'matches', 'matchesCup', 'matchesArchive',

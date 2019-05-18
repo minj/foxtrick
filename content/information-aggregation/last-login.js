@@ -19,6 +19,8 @@ Foxtrick.modules['LastLogin'] = {
 		if (!now)
 			return;
 
+		const MSEC = Foxtrick.util.time.MSECS_IN_SEC;
+
 		Foxtrick.forEach(function(el) {
 			if (el.nodeType != Foxtrick.NodeTypes.TEXT_NODE)
 				return;
@@ -27,7 +29,7 @@ Foxtrick.modules['LastLogin'] = {
 			if (/\*\*\*\.\*\*\*/.test(text)) {
 				var last = doc.createElement('span');
 				var loginDate = Foxtrick.util.time.getDateFromText(text);
-				var secs = Math.floor((now.getTime() - loginDate.getTime()) / 1000); // sec
+				var secs = Math.floor((now.getTime() - loginDate.getTime()) / MSEC);
 				var diffEl = Foxtrick.util.time.timeDiffToSpan(doc, secs, { useSWD: true });
 				var result = diffEl.textContent;
 				if (!/NaN/.test(result)) {
