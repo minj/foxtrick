@@ -26,7 +26,7 @@ if (!this.Foxtrick)
 if (!Foxtrick.util)
 	Foxtrick.util = {};
 
-Foxtrick.util.time = {
+Foxtrick.util.time = (() => ({
 	/**
 	 * The first day of the first HT season ever.
 	 *
@@ -64,7 +64,7 @@ Foxtrick.util.time = {
 	get MSECS_IN_DAY() {
 		return this.MSECS_IN_SEC * this.SECS_IN_DAY;
 	},
-};
+}))();
 
 /**
  * Get the date format of Hattrick, with 'd', 'm', and 'y'
