@@ -161,6 +161,8 @@ Foxtrick.modules['SupportersList'] = {
 
 			/** @type {CHPPOpts} */
 			let cOpts = { cache: 'session' };
+
+			/** @type {CHPPParams[]} */
 			let bArgs = [];
 			var pageCt = Math.ceil(total / TEAMS_PER_PAGE);
 			for (var p = 1; p < pageCt; p++) {

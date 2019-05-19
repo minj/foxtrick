@@ -394,8 +394,7 @@ Foxtrick.modules['YouthSkills'] = {
 					return;
 
 				// need to unhide blank row since we have new info from HY for this skill
-				// eslint-disable-next-line no-extra-parens
-				let row = /** @type {HTMLTableRowElement} */ (sEntry.parentNode);
+				let row = sEntry.closest('tr');
 				Foxtrick.removeClass(row, 'hidden');
 
 				/** @type {HTMLElement} */
@@ -534,11 +533,18 @@ Foxtrick.modules['YouthSkills'] = {
 		};
 
 
+		/**
+		 * @param  {string|null} response
+		 * @param  {number}      status
+		 * @param  {string}      [prefLink] l10n key
+		 */
 		var showError = function(response, status, prefLink) {
 			if (!entry)
 				return;
 
 			var header = `Hattrick Youthclub Error ${status}: `;
+
+			/** @type {string|HTMLElement} */
 			var text;
 			try {
 				text = JSON.parse(response).error;
@@ -567,20 +573,33 @@ Foxtrick.modules['YouthSkills'] = {
 		};
 
 		// run this once we finish
-		var finalize = function(response, status, reason) {
-			const ERROR_CODE = 401;
+		/**
+		 * @param  {string|HYPlayers|null} response
+		 * @param  {'user'|'permission'}   [reason]
+		 */
+		var finalize = function(response, reason) {
 			if (loading) {
 				loading.parentNode.removeChild(loading);
 				loading = null;
 			}
 
-			if (response === null)
-				showError(null, ERROR_CODE, 'youthclub.api.nopermission');
+			if (response == null) {
+				const ERROR_CODE = 401;
+				let userTmpl = Foxtrick.L10n.getString('youthclub.api.notuser');
+				let userMsg = userTmpl.replace(/%s/, 'YouthSkills');
+				switch (reason) {
+					case 'user':
+						showError(userMsg, ERROR_CODE);
+						break;
 
-			if (reason === 'user') {
-				let moduleTemplate = Foxtrick.L10n.getString('youthclub.api.notuser');
-				let explanation = moduleTemplate.replace(/%s/, 'YouthSkills');
-				showError(explanation, ERROR_CODE);
+					case 'permission':
+						showError(null, ERROR_CODE, 'youthclub.api.nopermission');
+						break;
+
+					default:
+						showError(`Unknown reason: ${reason}`, ERROR_CODE);
+						break;
+				}
 			}
 
 			if (Foxtrick.Prefs.isModuleEnabled('SkillColoring'))
@@ -599,13 +618,13 @@ Foxtrick.modules['YouthSkills'] = {
 		Foxtrick.containsPermission(hy, async (perm) => {
 			if (!perm) {
 				Foxtrick.log('Permission missing!');
-				finalize(null);
+				finalize(null, 'permission');
 				return;
 			}
 
 			let isUser = await Foxtrick.api.hy.isHYUser();
 			if (!isUser) {
-				finalize(0, 'user');
+				finalize(null, 'user');
 				return;
 			}
 

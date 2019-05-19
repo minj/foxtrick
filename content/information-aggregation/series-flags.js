@@ -217,8 +217,7 @@ Foxtrick.modules['SeriesFlags'] = {
 			let mainWrapper = doc.getElementById('mainBody');
 			let links = mainWrapper.getElementsByTagName('a');
 			let teamLinks = Foxtrick.filter(function(n) {
-				return /matchId=/i.test(n.href) &&
-					/teamId=/i.test(n.href) &&
+				return !/matchId=/i.test(n.href) && /teamId=/i.test(n.href) &&
 					!Foxtrick.hasClass(n, 'ft-popup-list-link') && // link in .boxHead
 					!/Tournaments/i.test(n.href);
 			}, links);

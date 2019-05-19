@@ -59,7 +59,7 @@ Foxtrick.modules['SupporterStatsEnhancements'] = {
 			/** @type {NodeListOf<HTMLAnchorElement>} */
 			let as = doc.querySelectorAll('#mainBody a');
 			for (let a of as) {
-				if (!/\/Club\/Players\/Player.aspx\?playerId=\d+/i.test(a.href))
+				if (!/\/Club\/Players\/Player\./i.test(a.href))
 					continue;
 
 				let id = parseInt(Foxtrick.getUrlParam(a.href, 'playerId'), 10);

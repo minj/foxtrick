@@ -32,6 +32,10 @@ Foxtrick.modules.Core = {
 	 */
 	// @ts-ignore
 	TEAM: {},
+
+	/**
+	 * @type {Player[]}
+	 */
 	PLAYER_LIST: [],
 
 	// UTC timestamp
@@ -342,11 +346,12 @@ Foxtrick.modules.Core = {
 			if (bug.length > MAX_LENGTH)
 				bug = bug.slice(bug.length - MAX_LENGTH);
 
-			let url = doc.location.pathname + doc.location.search;
-			bug = Foxtrick.log.header(doc) + 'BUG URL: ' + url + '\n\n' + bug;
+			let url = new URL(doc.URL);
+			let href = `${url.pathname}?${url.searchParams.toString()}`;
+			bug = Foxtrick.log.header(doc) + 'BUG URL: ' + href + '\n\n' + bug;
 
 			var showNote = function(url) {
-				const MANUAL_URL = 'http://pastebin.com/';
+				const MANUAL_URL = 'https://pastebin.com/';
 				const FORUM_URL = '/Forum/Overview.aspx?v=0&f=173635';
 
 				var info = doc.createDocumentFragment();
@@ -390,7 +395,7 @@ Foxtrick.modules.Core = {
 		reportBugSpan.textContent = Foxtrick.L10n.getString('reportBug.title');
 
 		let title = Foxtrick.L10n.getString('reportBug.desc');
-		reportBugSpan.setAttribute('area-label', reportBugSpan.title = title);
+		reportBugSpan.setAttribute('aria-label', reportBugSpan.title = title);
 
 		Foxtrick.onClick(reportBugSpan, function() {
 			Foxtrick.SB.ext.sendRequest({ req: 'getDebugLog' }, ({ log }) => {
@@ -413,7 +418,7 @@ Foxtrick.modules.Core = {
 	 * don't use in async context because
 	 * data is overwritten by subsequent reloads
 	 * team might change in FF!
-	 * @return {*[]} playerList
+	 * @return {Player[]} playerList
 	 */
 	getPlayerList: function() {
 		return this.PLAYER_LIST;

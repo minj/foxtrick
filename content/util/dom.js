@@ -498,16 +498,18 @@ Foxtrick.append = function(parent, child) {
  *
  * @template {Element} T
  *
- * @param {T}                      el
- * @param {Listener<T,MouseEvent>} listener
- * @param {boolean}                [useCapture]
+ * @param  {T}                      el
+ * @param  {Listener<T,MouseEvent>} listener
+ * @param  {boolean}                [useCapture]
+ * @return {function():void}                     remove wrapped listener
  */
 Foxtrick.onClick = function(el, listener, useCapture) {
-	Foxtrick.listen(el, 'click', listener, useCapture);
 	if (!el.hasAttribute('tabindex'))
 		el.setAttribute('tabindex', '0');
 	if (!el.hasAttribute('role'))
 		el.setAttribute('role', 'button');
+
+	return Foxtrick.listen(el, 'click', listener, useCapture);
 };
 
 /**
@@ -518,10 +520,11 @@ Foxtrick.onClick = function(el, listener, useCapture) {
  * @template {EventTarget} T
  * @template {keyof HTMLElementEventMap} E
  *
- * @param {T}                        el
- * @param {E}                        type     event type
- * @param {Listener<T,HTMLEvent<E>>} listener
- * @param {boolean}                  [useCapture]
+ * @param  {T}                        el
+ * @param  {E}                        type     event type
+ * @param  {Listener<T,HTMLEvent<E>>} listener
+ * @param  {boolean}                  [useCapture]
+ * @return {function():void}                     remove wrapped listener
  */
 Foxtrick.listen = function(el, type, listener, useCapture) {
 	/**
@@ -554,6 +557,7 @@ Foxtrick.listen = function(el, type, listener, useCapture) {
 	};
 
 	el.addEventListener(type, listen, useCapture);
+	return () => el.removeEventListener(type, listen, useCapture);
 };
 
 /**

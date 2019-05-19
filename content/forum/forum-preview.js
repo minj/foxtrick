@@ -169,9 +169,55 @@ Foxtrick.modules['ForumPreview'] = {
 			}
 		};
 
+		var toggle = (() => {
+			/** @type {WeakMap<Element, function():void>} */
+			let map = new WeakMap();
+			let isHidden = true;
+
+			/**
+			 * @param  {Element}           input
+			 * @param  {Iterable<Element>} clicks
+			 * @param  {boolean}           hide
+			 */
+			var ret = function(input, clicks, hide) {
+				// eslint-disable-next-line no-bitwise
+				if (!(Number(hide) ^ Number(isHidden)))
+					return;
+
+				isHidden = hide;
+
+				for (let el of clicks) {
+					if (hide) {
+						if (!map.has(el))
+							continue;
+
+						map.get(el)();
+						map.delete(el);
+					}
+					else {
+						map.set(el, Foxtrick.onClick(el, preview));
+					}
+				}
+
+				if (hide) {
+					if (map.has(input)) {
+						map.get(input)();
+						map.delete(input);
+					}
+				}
+				else {
+					map.set(input, Foxtrick.listen(input, 'input', preview));
+					preview();
+				}
+			};
+
+			return ret;
+		})();
+
 		var toggleListener = function() {
 			var prevDiv = doc.getElementById('ft-forum-preview-area');
 			Foxtrick.toggleClass(prevDiv, 'hidden');
+			let hide = Foxtrick.hasClass(prevDiv, 'hidden');
 
 			/** @type {HTMLTextAreaElement} */
 			var msgWindow;
@@ -183,26 +229,8 @@ Foxtrick.modules['ForumPreview'] = {
 				return;
 			}
 
-			try {
-				if (Foxtrick.hasClass(prevDiv, 'hidden')) {
-					msgWindow.removeEventListener('input', preview, false);
-					let toolbar = doc.getElementsByClassName('HTMLToolbar');
-					for (let i = 0; i < toolbar.length; ++i)
-						toolbar[i].removeEventListener('click', preview, false);
-
-				}
-				else {
-					Foxtrick.listen(msgWindow, 'input', preview, false);
-					let toolbar = doc.getElementsByClassName('HTMLToolbar');
-					for (let i = 0; i < toolbar.length; ++i)
-						Foxtrick.onClick(toolbar[i], preview);
-
-					preview();
-				}
-			}
-			catch (e) {
-				Foxtrick.dump('FoxtrickForumPreview._toggleListener' + e);
-			}
+			let els = doc.querySelectorAll('.HTMLToolbar');
+			toggle(msgWindow, els, hide);
 		};
 
 		var check_div = doc.getElementById('ft-forum-preview-area');

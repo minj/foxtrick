@@ -295,10 +295,13 @@ Foxtrick.modules['PlayerFilters'] = {
 			var loading = Foxtrick.util.note.createLoading(doc);
 			doc.querySelector('#mainBody p').appendChild(loading);
 
+			/** @type {CHPPParams[]} */
 			var batchArgs = [];
 			Foxtrick.forEach(function(n) {
-				var args = [['file', 'teamdetails'], ['teamId', n.currentClubId]];
-				batchArgs.push(args);
+				batchArgs.push([
+					['file', 'teamdetails'],
+					['teamId', n.currentClubId],
+				]);
 			}, playerList);
 
 			/** @type {CHPPOpts} */

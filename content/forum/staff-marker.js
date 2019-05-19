@@ -293,6 +293,7 @@ Foxtrick.modules['StaffMarker'] = {
 						return;
 					}
 
+					/** @type {CHPPParams[]} */
 					var bArgs = [];
 					var supportedCt, supporterCt;
 					var pageCt, p;

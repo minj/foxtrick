@@ -185,7 +185,7 @@ Foxtrick.modules['SeriesTransfers'] = {
 			};
 			var hasListedPlayers = false;
 			var oldestFile = Infinity;
-			var idx = 1;
+			var pIdx = 0;
 			Foxtrick.forEach(function(xml, i) {
 				var errorText = errors[i];
 				if (!xml || errorText) {
@@ -195,7 +195,7 @@ Foxtrick.modules['SeriesTransfers'] = {
 				var fetchDate = xml.time('FetchedDate');
 				oldestFile = Math.min(fetchDate.valueOf(), oldestFile);
 
-				var tid = xml.num('TeamID');
+				var teamId = xml.num('TeamID');
 				var teamName = xml.text('TeamName');
 				var players = xml.getElementsByTagName('Player');
 				Foxtrick.forEach(function(player) {
@@ -228,7 +228,7 @@ Foxtrick.modules['SeriesTransfers'] = {
 						var injuryLevel = num('InjuryLevel');
 
 						var tr = doc.createElement('tr');
-						Foxtrick.addClass(tr, idx++ % 2 ? 'odd' : 'even');
+						Foxtrick.addClass(tr, ++pIdx % 2 ? 'odd' : 'even');
 
 						// country + image
 						var countryTd = doc.createElement('td');
@@ -248,7 +248,7 @@ Foxtrick.modules['SeriesTransfers'] = {
 						// link to team
 						var teamLinkTD = doc.createElement('td');
 						var teamLink = createRowElement('a', teamName);
-						teamLink.setAttribute('href', '/Club/?TeamID=' + tid);
+						teamLink.setAttribute('href', '/Club/?TeamID=' + teamId);
 						teamLink.setAttribute('alt', teamName);
 						teamLink.setAttribute('title', teamName);
 						teamLinkTD.appendChild(teamLink);

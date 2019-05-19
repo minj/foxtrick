@@ -45,20 +45,20 @@ Foxtrick.modules['CurrentTransfers'] = {
 		// time to add to player deadline for caching
 		var CACHE_BONUS = 0;
 
-		/** @type {(string|number)[][][]} */
+		/** @type {CHPPParams[]} */
 		var pArgs = [];
 
 		/** @type {CHPPOpts[]} */
 		var pOpts = [];
 		Foxtrick.forEach(function(player) {
-			var args = [
+			pArgs.push([
 				['file', 'playerdetails'],
 				['version', '2.5'],
 				['playerId', parseInt(player.id, 10)],
-			];
-			pArgs.push(args);
-			var cache = player.ddl + CACHE_BONUS;
-			pOpts.push({ cache: cache });
+			]);
+
+			let cache = player.ddl + CACHE_BONUS;
+			pOpts.push({ cache });
 		}, players);
 
 		Foxtrick.util.currency.detect(doc).then(function(curr) {
