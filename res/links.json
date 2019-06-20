@@ -534,24 +534,6 @@
 		"leagueidranges": [[141, 141]],
 		"nationalityranges": [[141, 141]]
 	},
-	"sverigetracker": {
-		"img": "http://www.htsweden.se/Content/Images/htsv-favicon.ico",
-		"title": "Sweden U20/NT Tracker",
-		"trackernationalteamlink": {
-			"url": "http://htsweden.htsv.se",
-			"filters": ["leagueid"]
-		},
-		"trackerleaguelink": {
-			"url": "http://htsweden.htsv.se",
-			"filters": ["leagueid"]
-		},
-		"trackerplayerlink": {
-			"url": "http://htsweden.htsv.se",
-			"filters": ["nationality"]
-		},
-		"leagueidranges": [[1, 1]],
-		"nationalityranges": [[1, 1]]
-	},
 	"tanzaniatracker": {
 		"img": "resources/linkicons/tracker.png",
 		"title": "Tanzania U-20/NT DB",
