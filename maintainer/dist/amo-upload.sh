@@ -11,8 +11,12 @@ dump() {
 	echo "$msg" >&2
 
 	if [[ $# -gt 0 ]]; then
-		cat "$@" >&2
-		echo -e "\n#EOF" >&2
+		for f in "$@"
+		do
+			cat "$f" >&2
+			echo -e "\n#EOF" >&2
+		done
+		echo "#END" >&2
 	fi
 
 	false
