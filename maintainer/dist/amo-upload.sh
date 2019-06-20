@@ -105,5 +105,5 @@ done
 
 dump "ERROR: downloading from AMO failed:" "${tmp_headers}" "${tmp_resp}"
 
-rm "${tmp_resp}" "${tmp_headers}"
+#rm "${tmp_resp}" "${tmp_headers}"
 exit 2
