@@ -80,11 +80,6 @@
 			"name": "puuslik"
 		},
 		{
-			"duty": "supporter",
-			"id": "1045060",
-			"name": "<>"
-		},
-		{
 			"duty": "translator",
 			"id": "1048018",
 			"name": "LA-ivo"
@@ -1043,6 +1038,11 @@
 			"duty": "translator",
 			"id": "4577648",
 			"name": "<ampulka>"
+		},
+		{
+			"duty": "supporter",
+			"id": "4666835",
+			"name": "Ermezzo"
 		},
 		{
 			"duty": "translator",
