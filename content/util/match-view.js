@@ -1,12 +1,17 @@
-'use strict';
-/* match-view.js
+/**
+ * match-view.js
  * utilities for match view
  *
  * @author ryanli
  */
 
-if (!Foxtrick)
-	var Foxtrick = {}; // jshint ignore:line
+'use strict';
+
+/* eslint-disable */
+if (!this.Foxtrick)
+	var Foxtrick = {};
+/* eslint-enable */
+
 if (!Foxtrick.util)
 	Foxtrick.util = {};
 

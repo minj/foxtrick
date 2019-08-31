@@ -1,11 +1,14 @@
-'use strict';
-/*
+/**
  * math.js
  * Math and prediction utilities
  */
 
-if (!Foxtrick)
+'use strict';
+
+/* eslint-disable */
+if (!this.Foxtrick)
 	var Foxtrick = {};
+/* eslint-enable */
 
 Foxtrick.Math = {};
 /**
@@ -120,23 +123,25 @@ Foxtrick.Predict.stamina = function(energyAt90) {
 	return energyAt90 <= 0.887 ? energyAt90 * 10.1341 - 0.9899 :
 		8 + (energyAt90 - 0.887) / 0.1792;
 };
+
 /**
  * Predict bonus for each player skill based on loyalty level.
  * formula
  * loyalty = 1 + sqrt(days/336)*19
  * bonus = sqrt(days/336)
  * -> bonus = (loyalty - 1) / 19
- * @param {Number} loyaltyLevel Loyalty attribute value
- * @param {Boolean} isMotherClub Is player playing in mother club?
- * @returns {Number}  Bonus value for each skill
+ * @param  {number}  loyaltyLevel Loyalty attribute value
+ * @param  {Boolean} isMotherClub Is player playing in mother club?
+ * @return {number}               Bonus value for each skill
  */
 Foxtrick.Predict.loyaltyBonus = function(loyaltyLevel, isMotherClub) {
 	if (isMotherClub)
 		return 1.5;
-	else if (loyaltyLevel !== undefined)
+
+	if (typeof loyaltyLevel !== 'undefined')
 		return Math.max(0, loyaltyLevel - 1) / 19.0;
-	else
-		return 0;
+
+	return 0;
 };
 
 /**

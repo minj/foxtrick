@@ -1,41 +1,46 @@
-'use strict';
-/*
+/**
  * cookies.js
  * cookie management
  *
  * @author convincedd, LA-MJ
  */
 
-if (!Foxtrick)
-	var Foxtrick = {}; // jshint ignore:line
+'use strict';
 
-Foxtrick.cookies = {};
+/* eslint-disable */
+if (!this.Foxtrick)
+	// @ts-ignore
+	var Foxtrick = {};
+/* eslint-enable */
 
+/**
+ * Cookie specification object
+ */
+Foxtrick.COOKIE_SPEC = {
+	// eslint-disable-next-line camelcase
+	for_hty: {
+		url: 'https://www.hattrick-youthclub.org/*',
+		name: 'fromFoxtrick',
+		addId: true,
+		domain: '.hattrick-youthclub.org',
+		isJSON: true,
+		isBase64: true,
+	},
+	// eslint-disable-next-line camelcase
+	from_hty: {
+		url: 'https://hattrick-youthclub.org/*',
+		name: 'forFoxtrick',
+		addId: true,
+		domain: '.hattrick-youthclub.org',
+		isJSON: true,
+		isBase64: true,
+	},
+};
 
-(function() {
+/** @typedef {keyof Foxtrick.COOKIE_SPEC} CookieKey */
 
-	/**
-	 * Cookie specification object
-	 * @type {Object}
-	 */
-	const COOKIE_SPEC = {
-		for_hty: {
-			url: 'https://www.hattrick-youthclub.org/*',
-			name: 'fromFoxtrick',
-			addId: true,
-			domain: '.hattrick-youthclub.org',
-			isJSON: true,
-			isBase64: true,
-		},
-		from_hty: {
-			url: 'https://hattrick-youthclub.org/*',
-			name: 'forFoxtrick',
-			addId: true,
-			domain: '.hattrick-youthclub.org',
-			isJSON: true,
-			isBase64: true,
-		},
-	};
+Foxtrick.cookies = (function() {
+	const COOKIE_SPEC = Foxtrick.COOKIE_SPEC;
 
 	/**
 	 * Parse a value from a cookie string according to spec:
@@ -51,14 +56,13 @@ Foxtrick.cookies = {};
 		if (!str)
 			return {};
 
-		if (!spec.isJSON) {
+		if (!spec.isJSON)
 			return str;
-		}
 
 		if (!spec.isBase64)
 			return JSON.parse(str);
-		else
-			return JSON.parse(Foxtrick.decodeBase64(str));
+
+		return JSON.parse(Foxtrick.decodeBase64(str));
 	};
 
 	/**
@@ -75,14 +79,13 @@ Foxtrick.cookies = {};
 		if (!val)
 			return '';
 
-		if (!spec.isJSON) {
+		if (!spec.isJSON)
 			return val.toString();
-		}
 
 		if (!spec.isBase64)
 			return JSON.stringify(val);
-		else
-			return Foxtrick.encodeBase64(JSON.stringify(val));
+
+		return Foxtrick.encodeBase64(JSON.stringify(val));
 	};
 
 	/**
@@ -94,17 +97,19 @@ Foxtrick.cookies = {};
 	 * @param  {string} name
 	 * @param  {object} oldVal
 	 * @param  {object} val
-	 * @return {object}
+	 * @return {chrome.cookies.SetDetails}
 	 */
 	var makeCookie = function(key, name, oldVal, val) {
-		var spec = COOKIE_SPEC[key];
+		const spec = COOKIE_SPEC[key];
+		const { url, domain } = spec;
 
-		var cookie = { url: spec.url, domain: spec.domain, name: name };
+		/** @type {chrome.cookies.SetDetails} */
+		const cookie = { url, domain, name };
 
 		if (spec.isJSON) {
-			oldVal = oldVal || {};
-			Foxtrick.mergeAll(oldVal, val);
-			cookie.value = stringifyVal(oldVal, spec);
+			let old = oldVal || {};
+			Foxtrick.mergeAll(old, val);
+			cookie.value = stringifyVal(old, spec);
 		}
 		else {
 			cookie.value = stringifyVal(val, spec);
@@ -125,39 +130,43 @@ Foxtrick.cookies = {};
 	 * Promise will never reject.
 	 *
  	 * Cookie storage key must be preset in COOKIE_SPEC.
- 	 * name is an optional cookie name override, typically used in BG comm.
+	 *
+	 * cookieName is optional cookie name override in content
+	 * which is **REQUIRED** in BG
+	 *
  	 * value may be any stringify-able object.
 	 *
-	 * @param  {string}  key
-	 * @param  {object}  value
-	 * @param  {string}  name
+	 * @param  {CookieKey} key
+	 * @param  {object}    value
+	 * @param  {string}    [cookieName] optional in content, **REQUIRED** in BG
 	 * @return {Promise}
 	 */
-	Foxtrick.cookies.set = function(key, value, name) {
-		var spec = COOKIE_SPEC[key];
-		name = name || (spec.addId ? spec.name + '_' + Foxtrick.util.id.getOwnTeamId() : spec.name);
+	var set = function(key, value, cookieName) {
+		const spec = COOKIE_SPEC[key];
+		let name = cookieName ||
+			(spec.addId ? spec.name + '_' + Foxtrick.util.id.getOwnTeamId() : spec.name);
 
 		if (Foxtrick.context == 'content') {
 			return new Promise(function(fulfill) {
 				Foxtrick.SB.ext.sendRequest({
 					req: 'cookiesSet',
-					key: key,
-					value: value,
-					name: name,
+					key,
+					value,
+					name,
 				}, fulfill);
 			});
 		}
 
-		return Foxtrick.cookies.get(key).then(function(oldVal) {
-			var cookie = makeCookie(key, name, oldVal, value);
+		return Foxtrick.cookies.get(key, name).then(function(oldVal) {
+			let cookie = makeCookie(key, name, oldVal, value);
 
 			if (Foxtrick.arch === 'Gecko') {
 				try {
 					// expire just to make the function happy, no effect
 					// when the param before is true (session only)
-					var MSECS_IN_WEEK = Foxtrick.util.time.DAYS_IN_WEEK *
+					const MSECS_IN_WEEK = Foxtrick.util.time.DAYS_IN_WEEK *
 						Foxtrick.util.time.MSECS_IN_DAY;
-					var expire = Date.now() + MSECS_IN_WEEK;
+					const expire = Date.now() + MSECS_IN_WEEK;
 
 					Services.cookies.add(cookie.domain, '/', cookie.name, cookie.value,
 					                     false, true, true, expire);
@@ -169,7 +178,7 @@ Foxtrick.cookies = {};
 			else if (Foxtrick.platform === 'Chrome') {
 				gCookiesReady = new Promise(function(resolve) {
 					try {
-						chrome.cookies.set(cookie, function(cookie) { // jshint ignore:line
+						chrome.cookies.set(cookie, function(_) {
 							resolve();
 						});
 					}
@@ -191,37 +200,43 @@ Foxtrick.cookies = {};
 	 * Promise will never reject, returns null instead.
 	 *
  	 * Cookie storage key must be preset in COOKIE_SPEC.
- 	 * name is an optional cookie name override, typically used in BG comm.
+	 *
+	 * cookieName is optional cookie name override in content
+	 * which is **REQUIRED** in BG
+	 *
 	 * value may be any stringify-able object or null if N/A.
 	 *
-	 * @param  {string}  key
-	 * @param  {string}  name
-	 * @return {Promise}      {Promise.<?value>}
+	 * @param  {CookieKey} key
+	 * @param  {string}    [cookieName] optional in content, **REQUIRED** in BG
+	 * @return {Promise}                {Promise.<?value>}
 	 */
-	Foxtrick.cookies.get = function(key, name) {
-		var spec = COOKIE_SPEC[key];
-		name = name || (spec.addId ? spec.name + '_' + Foxtrick.util.id.getOwnTeamId() : spec.name);
+	var get = function(key, cookieName) {
+		const spec = COOKIE_SPEC[key];
+		let name = cookieName ||
+			(spec.addId ? spec.name + '_' + Foxtrick.util.id.getOwnTeamId() : spec.name);
 
 		if (Foxtrick.context == 'content') {
 			return new Promise(function(fulfill) {
-				Foxtrick.SB.ext.sendRequest({ req: 'cookiesGet', key: key, name: name }, fulfill);
+				Foxtrick.SB.ext.sendRequest({ req: 'cookiesGet', key, name }, fulfill);
 			});
 		}
+
+		/** @type {chrome.cookies.Details} */
+		const cookie = { url: spec.url, name };
 
 		return gCookiesReady.then(function() {
 
 			if (Foxtrick.arch == 'Gecko') {
 				try {
-					var iter = Services.cookies.getCookiesFromHost(spec.domain);
+					let iter = Services.cookies.getCookiesFromHost(spec.domain);
 					while (iter.hasMoreElements()) {
-						var cookie = iter.getNext();
+						let cookie = iter.getNext();
 
 						if (!(cookie instanceof Ci.nsICookie))
 							continue;
 
-						if (cookie.name == name && cookie.host == spec.domain) {
+						if (cookie.name == name && cookie.host == spec.domain)
 							return parseVal(cookie.value, spec);
-						}
 					}
 				}
 				catch (e) {
@@ -232,8 +247,7 @@ Foxtrick.cookies = {};
 
 				return new Promise(function(resolve) {
 					try {
-						chrome.cookies.get({ url: spec.url, name: name },
-						  function(cookie) {
+						chrome.cookies.get(cookie, (cookie) => {
 							if (cookie)
 								resolve(parseVal(cookie.value, spec));
 							else
@@ -253,6 +267,8 @@ Foxtrick.cookies = {};
 
 	};
 
+	return { get, set };
+
 })();
 
 
@@ -261,30 +277,14 @@ Foxtrick.cookies = {};
 // ////////////////////////
 
 /**
- * Save a value in the cookie storage.
- *
- * Cookie storage key must be preset in COOKIE_SPEC.
- *
- * @deprecated use cookies.set() instead
- *
- * @param {string}   key
- * @param {object}   value
- * @param {function} callback
- */
-Foxtrick.cookieSet = function(key, value, callback) {
-	Foxtrick.cookies.set(key, value).then(callback).catch(Foxtrick.catch('cookieSet'));
-};
-
-/**
  * Get a value from the cookie storage.
  *
  * Cookie storage key must be preset in COOKIE_SPEC.
  *
  * @deprecated use cookies.get() instead
  *
- * @param {string}   key
- * @param {object}   value
- * @param {function} callback
+ * @param {CookieKey}        key
+ * @param {function(*):void} callback
  */
 Foxtrick.cookieGet = function(key, callback) {
 	Foxtrick.cookies.get(key).then(callback).catch(Foxtrick.catch('cookieGet'));

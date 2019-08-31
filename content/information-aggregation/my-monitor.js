@@ -1,10 +1,11 @@
-'use strict';
 /**
  * my-monitor.js
  * Monitors matches of friends and foes
  *
  * @author ryanli. convincedd, LA-MJ
  */
+
+'use strict';
 
 Foxtrick.modules['MyMonitor'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
@@ -208,7 +209,7 @@ Foxtrick.modules['MyMonitor'] = {
 		};
 
 		// display my monitor on MyHT, a.k.a news, and dashboard page
-		var display = function() {
+		var display = function(doc) {
 			var monitor = Foxtrick.createFeaturedElement(doc, module, 'div');
 			monitor.id = 'ft-monitor-div';
 
@@ -216,15 +217,18 @@ Foxtrick.modules['MyMonitor'] = {
 				var h1 = doc.querySelector('#mainBody h1');
 				h1.parentNode.insertBefore(monitor, h1);
 			}
-			else if (Foxtrick.isPage(doc, 'dashboard'))
+			else if (Foxtrick.isPage(doc, 'dashboard')) {
 				doc.getElementById('mainBody').appendChild(monitor);
-			else
+			}
+			else {
 				return;
+			}
 
-			var gTeams = getSavedTeams(doc);
+			var gTeams = getSavedTeams();
 
 			// header - 'My Monitor'
 			var header = doc.createElement('h2');
+
 			// header.id = 'ft-monitor-header';
 			header.textContent = Foxtrick.L10n.getString('MyMonitor.header');
 			monitor.appendChild(header);
@@ -409,7 +413,7 @@ Foxtrick.modules['MyMonitor'] = {
 
 				var move = function(direction) {
 					return function(ev) {
-						var teams = getSavedTeams(doc);
+						var teams = getSavedTeams();
 						var frames = doc.getElementsByClassName('ft-monitor-frame');
 						frames = Foxtrick.toArray(frames);
 
@@ -529,7 +533,7 @@ Foxtrick.modules['MyMonitor'] = {
 		};
 
 		// show my monitor shortcuts in sidebar
-		var showSidebar = function() {
+		var showSidebar = function(doc) {
 			var type;
 			if (Foxtrick.isPage(doc, 'teamPage'))
 				type = 'senior';
@@ -544,7 +548,7 @@ Foxtrick.modules['MyMonitor'] = {
 				return;
 			}
 
-			var teams = getSavedTeams(doc);
+			var teams = getSavedTeams();
 
 			var teamIdContainer = {
 				id: Foxtrick.Pages.All.getTeamIdFromBC(doc),

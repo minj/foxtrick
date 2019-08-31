@@ -1,15 +1,16 @@
-'use strict';
 /**
  * htms-statistics.js
  * adds some statistics on matches based on HTMS web site info
  * @author taised
  */
-////////////////////////////////////////////////////////////////////////////////
+
+'use strict';
+
 Foxtrick.modules['HTMSPrediction'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.MATCHES,
 	PAGES: ['match'],
 	CSS: Foxtrick.InternalPath + 'resources/css/htms-statistics.css',
-	NICE: -1,  // before ratings
+	NICE: -1, // before ratings
 
 	copy: function(div) {
 		var HTMSClone = div.cloneNode(true);
@@ -27,6 +28,7 @@ Foxtrick.modules['HTMSPrediction'] = {
 	                           rattack, cattack, lattack, tactics, tacticsLevel, teams) {
 
 		var module = this;
+		const HTMS_PATH = 'http://www.fantamondi.it/HTMS';
 		var loading = Foxtrick.util.note.createLoading(doc);
 		targetNode.appendChild(loading);
 
@@ -46,7 +48,7 @@ Foxtrick.modules['HTMSPrediction'] = {
 		lattack[1] = lattack[1] * 4 + 1;
 
 
-		//Creating params for link
+		// Creating params for link
 		var params = '&TAM=' + midfieldLevel[0] + '&TBM=' + midfieldLevel[1];
 		params += '&TARD=' + rdefence[0] + '&TBRD=' + rdefence[1];
 		params += '&TACD=' + cdefence[0] + '&TBCD=' + cdefence[1];
@@ -85,43 +87,52 @@ Foxtrick.modules['HTMSPrediction'] = {
 			params += '&TBTAC=LS&TBTACLEV=' + tacticsLevel[1];
 		}
 
-		//Inserting the table
+		// inserting the table
 		var htmstable = targetNode.appendChild(doc.createElement('table'));
 		htmstable.id = 'ft-htmstable';
 
-		//Inserting header
+		// inserting header
 		var lang = Foxtrick.Prefs.getString('htLanguage');
-		var h2 = doc.createElement('h2');
-		var a = doc.createElement('a');
-		a.href = 'http://www.fantamondi.it/HTMS/index.php?lang=' + lang;
-		a.textContent = Foxtrick.L10n.getString('HTMSPrediction.title');
-		a.target = '_blank';
-		h2.appendChild(a);
-		htmstable.parentNode.insertBefore(h2, htmstable);
+		{
+			let h2 = doc.createElement('h2');
+			let a = doc.createElement('a');
+			a.href = 'http://www.fantamondi.it/HTMS/index.php?lang=' + lang;
+			a.textContent = Foxtrick.L10n.getString('HTMSPrediction.title');
+			a.target = '_blank';
+			h2.appendChild(a);
+			htmstable.parentNode.insertBefore(h2, htmstable);
+		}
 
 		if (teams) {
-			var row = htmstable.insertRow(htmstable.rows.length);
+			let row = htmstable.insertRow(htmstable.rows.length);
 			row.className = 'htms_teams';
-			var cell = row.insertCell(0);
+			let cell = row.insertCell();
 			cell.className = 'ch ft-htms-leftcell';
 			cell.style.width = '160px';
 			cell.textContent = Foxtrick.L10n.getString('HTMSPrediction.team');
 
-			var b = doc.createElement('b');
+			let b = doc.createElement('b');
 			b.appendChild(doc.createTextNode(teams[0]));
-			cell = row.insertCell(1); cell.appendChild(b); cell.className = 'left';
-			cell = row.insertCell(2); cell.className = 'center';
-			var b = doc.createElement('b');
+			cell = row.insertCell();
+			cell.appendChild(b);
+			cell.className = 'left';
+
+			cell = row.insertCell();
+			cell.className = 'center';
+			b = doc.createElement('b');
 			b.appendChild(doc.createTextNode(teams[1]));
-			cell = row.insertCell(3); cell.appendChild(b); cell.className = 'right';
+
+			cell = row.insertCell();
+			cell.appendChild(b);
+			cell.className = 'right';
 		}
-		var row = htmstable.insertRow(htmstable.rows.length);
-		var cell = row.insertCell(0);
+		let row = htmstable.insertRow(htmstable.rows.length);
+		let cell = row.insertCell();
 		cell.className = 'ch ft-htms-leftcell';
 		cell.style.width = '160px';
 		cell.textContent = Foxtrick.L10n.getString('HTMSPrediction.prediction');
 
-		var url = 'http://www.fantamondi.it/HTMS/dorequest.php?action=predict&' + params;
+		var url = `${HTMS_PATH}/dorequest.php?action=predict&${params}`;
 		Foxtrick.load(url).then(function(text) {
 			var xml = Foxtrick.parseXML(text);
 			if (xml == null)
@@ -131,8 +142,8 @@ Foxtrick.modules['HTMSPrediction'] = {
 				loading.parentNode.removeChild(loading);
 
 			var htmstable = doc.getElementById('ft-htmstable');
-			var row = htmstable.rows[htmstable.rows.length - 1];
-			var cell;
+			let row = htmstable.rows[htmstable.rows.length - 1];
+			let cell;
 
 			var pred1 = xml.getElementsByTagName('T1').item(0).firstChild.nodeValue;
 			var pred2 = xml.getElementsByTagName('T2').item(0).firstChild.nodeValue;
@@ -147,43 +158,97 @@ Foxtrick.modules['HTMSPrediction'] = {
 				lossprob = 0;
 			}
 
-			var b = doc.createElement('b');
+			let b = doc.createElement('b');
 			b.appendChild(doc.createTextNode(pred1));
-			cell = row.insertCell(1); cell.appendChild(b); cell.className = 'left';
-			cell = row.insertCell(2); cell.className = 'center';
-			var b = doc.createElement('b');
-			b.appendChild(doc.createTextNode(pred2));
-			cell = row.insertCell(3); cell.appendChild(b); cell.className = 'right';
+			cell = row.insertCell();
+			cell.appendChild(b);
+			cell.className = 'left';
 
-			var row = htmstable.insertRow(htmstable.rows.length);
-			cell = row.insertCell(0);
-			cell = row.insertCell(1);
-			cell.setAttribute('colspan', 3);
-			var graph = cell.appendChild(doc.createElement('div'));
+			cell = row.insertCell();
+			cell.className = 'center';
+			b = doc.createElement('b');
+			b.appendChild(doc.createTextNode(pred2));
+			cell = row.insertCell();
+			cell.appendChild(b);
+			cell.className = 'right';
+
+			row = htmstable.insertRow(htmstable.rows.length);
+			row.insertCell();
+			cell = row.insertCell();
+			cell.colSpan = 3;
+			let graph = cell.appendChild(doc.createElement('div'));
 			graph.className = 'ft-htms-graph';
-			var windiv = graph.appendChild(doc.createElement('div'));
+			let windiv = graph.appendChild(doc.createElement('div'));
 			windiv.className = 'htms-bar htms-stats-win';
 			windiv.style.width = winprob + '%';
-			var drawdiv = graph.appendChild(doc.createElement('div'));
+			let drawdiv = graph.appendChild(doc.createElement('div'));
 			drawdiv.className = 'htms-bar htms-stats-draw';
 			drawdiv.style.width = drawprob + '%';
-			var lossdiv = graph.appendChild(doc.createElement('div'));
+			let lossdiv = graph.appendChild(doc.createElement('div'));
 			lossdiv.className = 'htms-bar htms-stats-loss';
+
 			// use minus to prevent from overall sum exceeding 100%
 			// when there is rounding up
-			lossdiv.style.width = (100 - parseFloat(winprob) - parseFloat(drawprob)) + '%';
+			lossdiv.style.width = 100 - parseFloat(winprob) - parseFloat(drawprob) + '%';
 
-			var row = htmstable.insertRow(htmstable.rows.length);
-			cell = row.insertCell(0); cell.className = 'ch';
+			row = htmstable.insertRow(htmstable.rows.length);
+			cell = row.insertCell();
+			cell.className = 'ch';
 			cell.textContent = Foxtrick.L10n.getString('HTMSPrediction.winDrawLoss');
-			cell = row.insertCell(1); cell.textContent = winprob; cell.className = 'left';
-			cell = row.insertCell(2); cell.textContent = drawprob; cell.className = 'center';
-			cell = row.insertCell(3); cell.textContent = lossprob; cell.className = 'right';
+
+			cell = row.insertCell();
+			cell.textContent = winprob;
+			cell.className = 'left';
+
+			cell = row.insertCell();
+			cell.textContent = drawprob;
+			cell.className = 'center';
+
+			cell = row.insertCell();
+			cell.textContent = lossprob;
+			cell.className = 'right';
+		}, (er) => {
+
+			Foxtrick.log(er);
+			if (loading)
+				loading.remove();
+
+			let htmsTable = doc.getElementById('ft-htmstable');
+			if (!htmsTable)
+				return;
+
+			let div = doc.createElement('div');
+			let p = div.appendChild(doc.createElement('p'));
+			p.textContent = 'There appears to be a problem with the ';
+
+			let a = p.appendChild(doc.createElement('a'));
+			a.target = '_blank';
+			a.href = HTMS_PATH;
+			a.textContent = 'HTMS prediction service';
+			let end = '. This is not likely something Foxtrick developers can fix.';
+			p.appendChild(doc.createTextNode(end));
+
+			p = div.appendChild(doc.createElement('p'));
+			p.textContent = `Try opening the `;
+			a = p.appendChild(doc.createElement('a'));
+			a.target = '_blank';
+			a.href =
+				'http://www.fantamondi.it/HTMS/index.php?page=predictor&action=showpredict&lang=' + lang + params;
+
+			a.textContent = 'prediction result';
+			p.appendChild(doc.createTextNode(' manually'));
+
+			let changePred = htmsTable.nextElementSibling;
+			if (changePred)
+				changePred.remove();
+
+			htmsTable.parentNode.replaceChild(div, htmsTable);
+
 		}).catch(Foxtrick.catch(module));
 
 		var p = doc.createElement('p');
 		var a = doc.createElement('a');
-		a.appendChild(doc.createTextNode(Foxtrick.L10n.getString('HTMSPrediction.changePrediction')));
+		a.textContent = Foxtrick.L10n.getString('HTMSPrediction.changePrediction');
 		a.href = 'http://www.fantamondi.it/HTMS/index.php?page=predictor&action=showpredict&lang=' +
 			lang + params;
 		a.target = '_blank';
@@ -219,5 +284,5 @@ Foxtrick.modules['HTMSPrediction'] = {
 		this.insertPrediction(doc, htmsDiv, midfieldLevel, rdefence, cdefence, ldefence, rattack,
 		                      cattack, lattack, tactics, tacticsLevel);
 
-	}
+	},
 };

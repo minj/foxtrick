@@ -1,9 +1,10 @@
-'use strict';
 /**
 * embed-media.js
 * Foxtrick Embedding for links to media files.
 * @author CatzHoek
 */
+
+'use strict';
 
 Foxtrick.modules['EmbedMedia'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.FORUM,
@@ -258,7 +259,7 @@ Foxtrick.modules['EmbedMedia'] = {
 							else if (key == 'imageshack') {
 								var imageshack = extractMediaIdFromUrl(link.href, linkDict['site']);
 								var params = imageshack.split(', ');
-								linkDict['params'] = imageshack.split(', ');
+								linkDict.params = params;
 							}
 							media_links.push(linkDict);
 							break;

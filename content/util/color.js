@@ -1,5 +1,4 @@
-'use strict';
-/*
+/**
  * color.js
  * color transformation utilities
  * From Michael Jackson
@@ -7,8 +6,13 @@
  * Foxtrick conversion and additions by CatzHoek
  */
 
-if (!Foxtrick)
+'use strict';
+
+/* eslint-disable */
+if (!this.Foxtrick)
 	var Foxtrick = {};
+/* eslint-enable */
+
 if (!Foxtrick.util)
 	Foxtrick.util = {};
 

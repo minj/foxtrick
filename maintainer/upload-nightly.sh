@@ -76,7 +76,7 @@ if [ -f "${SRC_DIR}/foxtrick.zip" ]; then
 			--refresh-token "$CWS_REFRESH_TOKEN" --auto-publish; then
 
 		echo "WARNING: failed to upload to CWS" >&2
-		exit 3
+#		exit 3
 	fi
 fi
 

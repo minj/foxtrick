@@ -1,11 +1,15 @@
-'use strict';
-/*
+/**
  * css.js
  * css management utilities
  */
 
-if (!Foxtrick)
+'use strict';
+
+/* eslint-disable */
+if (!this.Foxtrick)
 	var Foxtrick = {};
+/* eslint-enable */
+
 if (!Foxtrick.util)
 	Foxtrick.util = {};
 
@@ -49,26 +53,26 @@ Foxtrick.util.css = {};
 // 		var InternalPathRE = RegExp('chrome://foxtrick/content/', 'ig');
 // 		cssTextCollection = cssTextCollection.replace(InternalPathRE, Foxtrick.InternalPath);
 
-		// if (urls) {
-		// 	// first check dataurl cache
-		// 	for (var i = 0; i < urls.length; ++i) {
-		// 		urls[i] = urls[i].replace(/\(\'?\"?|\'?\"?\)/g, '').
-		// 			replace(InternalPathRE, Foxtrick.InternalPath);
-		// 		if (Foxtrick.dataUrlStorage[urls[i]]) {
-		// 			cssTextCollection =
-		// 				cssTextCollection.replace(RegExp(urls[i], 'g'),
-		// 				                          Foxtrick.dataUrlStorage[urls[i]]);
-		// 		}
-		// 	}
-		// 	// convert missing images
-		// 	for (var i = 0; i < urls.length; ++i) {
-		// 		urls[i] = urls[i].replace(/\(\'?\"?|\'?\"?\)/g, '').
-		// 			replace(InternalPathRE, Foxtrick.InternalPath);
-		// 		if (!Foxtrick.dataUrlStorage[urls[i]]) {
-		// 			pending++;
-		// 			replaceImage(urls[i]);
-		// 		}
-		// 	}
+// 		if (urls) {
+// 			// first check dataurl cache
+// 			for (var i = 0; i < urls.length; ++i) {
+// 				urls[i] = urls[i].replace(/\(\'?\"?|\'?\"?\)/g, '').
+// 					replace(InternalPathRE, Foxtrick.InternalPath);
+// 				if (Foxtrick.dataUrlStorage[urls[i]]) {
+// 					cssTextCollection =
+// 						cssTextCollection.replace(RegExp(urls[i], 'g'),
+// 						                          Foxtrick.dataUrlStorage[urls[i]]);
+// 				}
+// 			}
+// 			// convert missing images
+// 			for (var i = 0; i < urls.length; ++i) {
+// 				urls[i] = urls[i].replace(/\(\'?\"?|\'?\"?\)/g, '').
+// 					replace(InternalPathRE, Foxtrick.InternalPath);
+// 				if (!Foxtrick.dataUrlStorage[urls[i]]) {
+// 					pending++;
+// 					replaceImage(urls[i]);
+// 				}
+// 			}
 // 			// resolve cached dataurls
 // 			pending++;
 // 			resolve();

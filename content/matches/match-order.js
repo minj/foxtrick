@@ -36,13 +36,19 @@ Foxtrick.modules['MatchOrderInterface'] = {
 	],
 	run: function(doc) {
 		var module = this;
+
+		let url = doc.location.href;
+		var sourceSystem = Foxtrick.getUrlParam(url, 'SourceSystem');
+		var isYouth = sourceSystem.toLowerCase() == 'youth' ||
+			!!Foxtrick.getUrlParam(url, 'isYouth');
+
 		var avatarsParamsString;
 		var getAvatars;
 		var getPlayers;
 		var check_images = function(doc, target, avatarsXml, getID, scale, recursion) {
 			if (!Foxtrick.Prefs.isModuleOptionEnabled('MatchOrderInterface', 'ShowFaces'))
 				return;
-			var isYouth = (doc.location.href.search(/isYouth=true|SourceSystem=Youth/i) != -1);
+
 			var add_image = function(fieldplayer) {
 				var id = getID(fieldplayer);
 				if (!id)
@@ -494,7 +500,6 @@ Foxtrick.modules['MatchOrderInterface'] = {
 		};
 
 		var runMatchOrder = function(doc) {
-			var isYouth = (doc.location.href.search(/isYouth=true|SourceSystem=Youth/i) != -1);
 			var getID = function(fieldplayer) {
 				if (!fieldplayer.id)
 					return null;
@@ -560,7 +565,6 @@ Foxtrick.modules['MatchOrderInterface'] = {
 			};
 			getAvatars(avatarsParams);
 
-			var loading = doc.getElementById('loading');
 			var waitForInterface = function(ev) {
 				if (hasInterface)
 					return;
@@ -678,7 +682,7 @@ Foxtrick.modules['MatchOrderInterface'] = {
 							players = Foxtrick.map(function(n) { return n; }, players);
 							// change live node list into array
 
-							if (customSort && hasPlayerInfo && ps !== undefined) {
+							if (customSort && hasPlayerInfo && typeof ps !== 'undefined') {
 								players.sort(function(a, b) { // sort descending
 									var aid = a.id.match(/\d+/)[0], bid = b.id.match(/\d+/)[0];
 									if (ps[aid] !== null && ps[bid] !== null) {
@@ -824,22 +828,24 @@ Foxtrick.modules['MatchOrderInterface'] = {
 
 			var addLastMatchtoDetails = function() {
 				// add last match to details
-				var details = doc.getElementById('details');
-				var specials = details.getElementsByClassName('specials')[0];
-				if (specials && !details.getElementsByClassName('ft-extraInfo')[0]) {
-					var playerid = Number(specials.parentNode.getAttribute('playerid'));
-					if (playerid) {
-						var player = Foxtrick.Pages.Players.getPlayerFromListById(playerList,
-						                                                          playerid);
-						if (!player)
-							return;
-						var span = doc.createElement('span');
-						span.className = 'ft-extraInfo';
-						span.appendChild(doc.createElement('br'));
-						span.appendChild(doc.createTextNode(player.lastMatchText));
-						specials.appendChild(span);
-					}
-				}
+				let details = doc.getElementById('details');
+				let specials = details.querySelector('.specials');
+				if (!specials || details.querySelector('.ft-extraInfo'))
+					return;
+
+				let playerId = Number(specials.parentNode.getAttribute('playerid'));
+				if (!playerId)
+					return;
+
+				let player = Foxtrick.Pages.Players.getPlayerFromListById(playerList, playerId);
+				if (!player || !player.lastMatchText)
+					return;
+
+				let span = doc.createElement('span');
+				span.className = 'ft-extraInfo';
+				span.appendChild(doc.createElement('br'));
+				span.appendChild(doc.createTextNode(player.lastMatchText));
+				specials.appendChild(span);
 			};
 
 			//loyalty, uses loyalty-display.js module code
@@ -849,12 +855,13 @@ Foxtrick.modules['MatchOrderInterface'] = {
 				if (specials) {
 					var playerid = Number(specials.parentNode.getAttribute('playerid'));
 					if (playerid) {
-						var player = Foxtrick.Pages.Players.getPlayerFromListById(playerList,
-						                                                          playerid);
+						var player =
+							Foxtrick.Pages.Players.getPlayerFromListById(playerList, playerid);
 						if (!player)
 							return;
-						Foxtrick.modules['LoyaltyDisplay']
-							.replacePercentageImage(player, doc.getElementById('details'));
+
+						let details = doc.getElementById('details');
+						Foxtrick.modules['LoyaltyDisplay'].exec(player, details);
 					}
 				}
 			};
@@ -888,8 +895,7 @@ Foxtrick.modules['MatchOrderInterface'] = {
 			});
 		};
 
-		var isYouth = (doc.location.href.search(/isYouth=true|SourceSystem=Youth/i) != -1);
 		runMatchOrder(doc);
 		Foxtrick.util.inject.jsLink(doc, Foxtrick.InternalPath + 'resources/js/matchOrder.js');
-	}
+	},
 };

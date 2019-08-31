@@ -132,10 +132,10 @@ Foxtrick.modules['TableSort'] = {
 					var bContent = getText(b.cells[tdindex]);
 
 					// place empty cells at the bottom
-					if (aContent === '' || aContent === null || aContent === undefined) {
+					if (aContent === '' || aContent == null) {
 						return 1;
 					}
-					if (bContent === '' || bContent === null || bContent === undefined) {
+					if (bContent === '' || bContent == null) {
 						return -1;
 					}
 

@@ -22,7 +22,7 @@ Foxtrick.modules['MatchWeather'] = {
 			return;
 		}
 
-		var arenaId = Foxtrick.getParameterFromUrl(arenaLink.href, 'arenaId');
+		var arenaId = Foxtrick.getUrlParam(arenaLink.href, 'arenaId');
 		var parameters = [
 			['file', 'arenadetails'],
 			['version', '1.5'],
@@ -143,7 +143,7 @@ Foxtrick.modules['MatchWeather'] = {
 			var data = {};
 			data.weatherNow = xml.num('WeatherID');
 			data.weatherTomorrow = xml.num('TomorrowWeatherID');
-			data.regionName = xml.text('RegionName').replace('\'', '').replace(/ ,/g, '-');
+			data.regionName = xml.text('RegionName').replace(/'/g, '').replace(/ ,/g, '-');
 
 			var leagueId = xml.text('LeagueID');
 			data.country = Foxtrick.L10n.getCountryNameEnglish(leagueId);

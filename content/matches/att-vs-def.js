@@ -1,9 +1,10 @@
-'use strict';
 /**
  * matches.js
  * adds att vs def bars on matches page
  * @author taised, Jestar
  */
+
+'use strict';
 
 Foxtrick.modules['AttVsDef'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.MATCHES,
@@ -199,13 +200,13 @@ Foxtrick.modules['AttVsDef'] = {
 	},
 
 	_newStyleBars: function(doc, ratingstable, bodydiv) {
-		var sidebar = doc.getElementById('sidebar');
-		var percentArray = this._getPercentArray(doc, ratingstable);
-		var balldivnumber = 7;
-		if (Foxtrick.util.id.findIsYouthMatch(doc.location.href)) {
-			balldivnumber = 5; //youth haven't the kit div
-		}
+		// var sidebar = doc.getElementById('sidebar');
+		// var ballDivIdx = 7;
+		// if (Foxtrick.util.id.findIsYouthMatch(doc.location.href)) {
+		// 	ballDivIdx = 5; // youth haven't got the kit div
+		// }
 
+		var percentArray = this._getPercentArray(doc, ratingstable);
 		var strangediv = doc.createElement('div');
 		strangediv.setAttribute('style', 'clear: both;');
 		var rdefText = Foxtrick.L10n.getString('matches.right') + ' ' +

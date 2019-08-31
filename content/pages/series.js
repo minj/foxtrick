@@ -1,11 +1,16 @@
-'use strict';
-/* series.js
+/**
+ * series.js
  * utilities on series pages
  * @author LA-MJ
  */
 
-if (!Foxtrick)
+'use strict';
+
+/* eslint-disable */
+if (!this.Foxtrick)
 	var Foxtrick = {};
+/* eslint-enable */
+
 if (!Foxtrick.Pages)
 	Foxtrick.Pages = {};
 

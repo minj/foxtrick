@@ -50,13 +50,20 @@ Foxtrick.modules['ReLiveLinks'] = {
 
 			var matches = {};
 			Foxtrick.forEach(function(link) {
-				var url = link.getAttribute('onclick');
-				var uid = Foxtrick.getParameterFromUrl(url, 'UniqueMatchId');
-				var source = getSourceFromUId(uid);
+				let attr = link.getAttribute('onclick');
+				let [_, url] = attr.match(/['"](.+?)['"]/); // lgtm[js/unused-local-variable]
+				{
+					let temp = doc.createElement('a');
+					temp.href = url;
+					url = temp.href;
+				}
+
+				let uid = Foxtrick.getUrlParam(url, 'UniqueMatchId');
+				let source = getSourceFromUId(uid);
 				if (!matches[source])
 					matches[source] = [];
 
-				var id = uid.match(/\d+/)[0];
+				let id = uid.match(/\d+/)[0];
 				matches[source].push(id);
 			}, links);
 
@@ -241,7 +248,7 @@ Foxtrick.modules['ReLiveLinks'] = {
 
 			var url = matchLink.href;
 			var id = Foxtrick.util.id.getMatchIdFromUrl(url);
-			source = Foxtrick.getParameterFromUrl(url, 'SourceSystem');
+			source = Foxtrick.getUrlParam(url, 'SourceSystem');
 			if (matches) {
 				matches.push(id);
 				return;

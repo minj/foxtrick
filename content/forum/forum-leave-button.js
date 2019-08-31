@@ -1,14 +1,18 @@
-'use strict';
 /**
  * forum-leave-button.js
  * Foxtrick Leave Conference module
  * @author larsw84, LA-MJ
  */
 
+'use strict';
+
 Foxtrick.modules['ForumLeaveButton'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.FORUM,
 	PAGES: ['forum', 'forumSettings'],
 
+	/**
+	 * @param {document} doc
+	 */
 	run: function(doc) {
 		var module = this;
 		if (Foxtrick.isPage(doc, 'forum')) {
@@ -22,7 +26,7 @@ Foxtrick.modules['ForumLeaveButton'] = {
 					return;
 
 				var link = folderHeader.querySelector('a[href*="f="]');
-				var forumId = Foxtrick.getParameterFromUrl(link.href, 'f');
+				var forumId = Foxtrick.getUrlParam(link.href, 'f');
 				var url = URL + forumId;
 
 				var forumName = link.textContent.trim();
@@ -34,6 +38,7 @@ Foxtrick.modules['ForumLeaveButton'] = {
 
 				Foxtrick.onClick(leaveConf, function() {
 					if (Foxtrick.confirmDialog(alertText)) {
+						// eslint-disable-next-line no-invalid-this
 						var folder = this.parentNode.parentNode;
 						folder.parentNode.removeChild(folder);
 						Foxtrick.newTab(url);
@@ -50,8 +55,7 @@ Foxtrick.modules['ForumLeaveButton'] = {
 			}
 		}
 		else if (Foxtrick.isPage(doc, 'forumSettings')) {
-			var sUrl = Foxtrick.getHref(doc);
-			var forumId = Foxtrick.getParameterFromUrl(sUrl, 'LeaveConf');
+			var forumId = Foxtrick.getUrlParam(doc.URL, 'LeaveConf');
 			if (forumId) {
 				var ul = Foxtrick.getMBElement(doc, 'ucForumPreferences_rlFolders__rbl');
 				var forums = ul.querySelectorAll('.prioFolderName a');
@@ -83,7 +87,7 @@ Foxtrick.modules['ForumLeaveButton'] = {
 	},
 
 	getVValue: function(doc) {
-		var sUrl = Foxtrick.getHref(doc);
-		return Foxtrick.getParameterFromUrl(sUrl, 'v') || '1';
+		var sUrl = doc.URL;
+		return Foxtrick.getUrlParam(sUrl, 'v') || '1';
 	},
 };

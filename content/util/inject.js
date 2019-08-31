@@ -1,12 +1,16 @@
-'use strict';
 /**
  * inject.js
  * Utilities for injecting CSS/JavaScript in a page
  * @author convincedd, ryanli
  */
 
-if (!Foxtrick)
+'use strict';
+
+/* eslint-disable */
+if (!this.Foxtrick)
 	var Foxtrick = {};
+/* eslint-enable */
+
 if (!Foxtrick.util)
 	Foxtrick.util = {};
 

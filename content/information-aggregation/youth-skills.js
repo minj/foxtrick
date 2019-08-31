@@ -9,7 +9,7 @@ Foxtrick.modules['YouthSkills'] = {
 	NICE: -10,
 
 	/**
-	 * @param	{document}	doc
+	 * @param {document} doc
 	 */
 	run: function(doc) {
 		if (!Foxtrick.isPage(doc, 'ownYouthPlayers'))
@@ -19,29 +19,39 @@ Foxtrick.modules['YouthSkills'] = {
 			return;
 
 		var module = this;
-		var UNKNOWNLEVELSYMBOL = '-';
 		var isRtl = Foxtrick.util.layout.isRtl(doc);
+		var hasNewBars = doc.querySelector('.ht-bar');
+		var barMax = hasNewBars && hasNewBars.getAttribute('max');
+		var entry, loading;
 
 		// string to use when current skill is estimated
-		var approx = Foxtrick.L10n.getString('YouthSkills.estimated');
+		var l10nApprox = Foxtrick.L10n.getString('YouthSkills.estimated');
 
 		// string to use for top3 skill title
-		var top3 = Foxtrick.L10n.getString('YouthSkills.top3');
+		var l10nTop3 = Foxtrick.L10n.getString('YouthSkills.top3');
+
+		const UNKNOWN_LEVEL_SYMBOL = '-';
 
 		// this maps HY skill-id to the row index in the table
-		// cf Foxtrick.api.hy.skillMap
 		// (when looking for n-th child, add 1 to the result)
-		var rowMap = {
-			3: 2,
-			4: 3,
-			5: 5,
-			6: 0,
-			7: 4,
-			8: 1,
-			9: 6,
-		};
+		const ROW_MAP = {};
+		{
+			let skillOrder = [
+				'keeper',
+				'defending',
+				'playmaking',
+				'winger',
+				'passing',
+				'scoring',
+				'setPieces',
+			];
 
-		var entry, loading;
+			for (let [hyIdx, skill] of Object.entries(Foxtrick.api.hy.skillMap)) {
+				let htIdx = skillOrder.indexOf(skill);
+				if (htIdx != -1)
+					ROW_MAP[hyIdx] = htIdx;
+			}
+		}
 
 		/**
 		 * Draw informational message about HY skill data
@@ -85,6 +95,15 @@ Foxtrick.modules['YouthSkills'] = {
 			legend.appendChild(potLegend);
 			hyInfoDiv.appendChild(legend);
 
+			let potPredLegend = doc.createElement('li');
+			potPredLegend.textContent = Foxtrick.L10n.getString('YouthSkills.skillPotentialMax');
+			Foxtrick.addImage(doc, potPredLegend, {
+				src: '/Img/icons/transparent.gif',
+				class: 'ft-skillbar-hy-pot-pred ft-skillbar-singlet',
+			}, potPredLegend.firstChild);
+			legend.appendChild(potPredLegend);
+			hyInfoDiv.appendChild(legend);
+
 			let info2 = doc.createElement('span');
 			info2.textContent = Foxtrick.L10n.getString('YouthSkills.info2');
 			hyInfoDiv.appendChild(info2);
@@ -98,13 +117,46 @@ Foxtrick.modules['YouthSkills'] = {
 		 */
 		var addSkills = function(json) {
 			/**
+			 * Create new-type bar
+			 * @param  {HTMLTableCellElement} skillCell
+			 * @return {Element}                        skillBar created
+			 */
+			var createBar = function(skillCell) {
+				let barDef = {
+					class: 'ht-bar',
+					level: -1,
+					cap: -1,
+					'is-cap': 0,
+					max: barMax,
+				};
+
+				let div = doc.createElement('div');
+				for (let [attr, val] of Object.entries(barDef))
+					div.setAttribute(attr, val);
+
+				let maxBar = doc.createElement('div');
+				maxBar.className = 'bar-max';
+				maxBar.style.width = '100%';
+				div.appendChild(maxBar);
+				let contents = maxBar.appendChild(doc.createElement('span'));
+				contents.clasName = 'bar-denomination';
+
+				if (skillCell.nextElementSibling) {
+					skillCell.nextElementSibling.textContent = '?/?';
+				}
+
+				skillCell.textContent = '';
+				return skillCell.appendChild(div);
+			};
+
+			/**
 			 * replace HT skill bars into our own
 			 * retain HT skill info on titleDiv
-			 * @param	{element}	node
+			 * @param {Element} node
 			 */
 			var replaceBars = function(node) {
 				const BAR_WIDTH = 8;
-				var htPot, htCur, maxed;
+				var htPot = 0, htCur = 0, maxed = 0;
 
 				let el = node.querySelector('.youthSkillBar_max');
 				if (el) {
@@ -123,6 +175,18 @@ Foxtrick.modules['YouthSkills'] = {
 					let width = parseInt(el.style.width, 10) + 1;
 					maxed = parseInt(width / BAR_WIDTH, 10);
 				}
+				if (htPot + htCur + maxed === 0 && node.querySelector('a.skill')) {
+					// new design sans skill-bars
+					// retrieve current / potential
+					let [current, potential] = [...node.children];
+					if (current.nodeName == 'A')
+						htCur = Foxtrick.util.id.getSkillLevelFromLink(current);
+
+					if (typeof potential == 'undefined')
+						maxed = Foxtrick.util.id.getSkillLevelFromLink(current);
+					else if (potential.nodeName == 'A')
+						htPot = Foxtrick.util.id.getSkillLevelFromLink(potential);
+				}
 
 				for (let child of [...node.childNodes])
 					child.remove();
@@ -137,6 +201,7 @@ Foxtrick.modules['YouthSkills'] = {
 
 				let skillbars = [
 					'ft-skillbar-bg',
+					'ft-skillbar-hy-pot-pred ft-skillbar-hy',
 					'ft-skillbar-hy-pot ft-skillbar-hy', 'ft-skillbar-ht-pot ft-skillbar-ht',
 					'ft-skillbar-hy-pred ft-skillbar-hy',
 					'ft-skillbar-hy-cur ft-skillbar-hy', 'ft-skillbar-ht-cur ft-skillbar-ht',
@@ -147,18 +212,22 @@ Foxtrick.modules['YouthSkills'] = {
 						src: '/Img/icons/transparent.gif',
 						class: className,
 					}, null, (image) => {
-						if (image.className.split(' ')[0] == 'ft-skillbar-ht-pot' && htPot) {
-							image.style.width = `${1 + 11 * htPot}px`;
+						const MARGIN = 1;
+						const BAR_WIDTH = 10 + 1;
+
+						if (image.classList.contains('ft-skillbar-ht-pot') && htPot) {
+							image.style.width = `${MARGIN + BAR_WIDTH * htPot}px`;
 							div.setAttribute('ht-pot', htPot);
 						}
-						else if (image.className.split(' ')[0] == 'ft-skillbar-ht-cur' && htCur) {
-							image.style.width = `${1 + 11 * htCur}px`;
+						else if (image.classList.contains('ft-skillbar-ht-cur') && htCur) {
+							image.style.width = `${MARGIN + BAR_WIDTH * htCur}px`;
 							div.setAttribute('ht-cur', htCur);
 						}
-						else if (image.className.split(' ')[0] == 'ft-skillbar-maxed' && maxed) {
-							image.style.width = `${1 + 11 * maxed}px`;
+						else if (image.classList.contains('ft-skillbar-maxed') && maxed) {
+							image.style.width = `${MARGIN + BAR_WIDTH * maxed}px`;
 							div.setAttribute('ht-maxed', maxed);
 						}
+
 						if (image.className != 'ft-skillbar-bg')
 							Foxtrick.addClass(image, 'ft-skillbar');
 					});
@@ -170,9 +239,9 @@ Foxtrick.modules['YouthSkills'] = {
 			/**
 			 * set the length of the corresponding HY skillbar
 			 * and save the value on titleDiv
-			 * @param {element} titleDiv
-			 * @param {string}  name     'hy-pot', 'hy-cur' or 'hy-pred
-			 * @param {Float}   value
+			 * @param {Element} titleDiv
+			 * @param {string}  name     'hy-pot', 'hy-cur', 'hy-pred', or 'hy-pot-pred'
+			 * @param {number}  value    {Float}
 			 */
 			var setHYValue = function(titleDiv, name, value) {
 				titleDiv.setAttribute(name, value);
@@ -187,9 +256,31 @@ Foxtrick.modules['YouthSkills'] = {
 			};
 
 			/**
-			 * add skill link (if possible) to the node based on the skill level (integer)
-			 * @param {element} node
-			 * @param {Integer} level
+			 * set the length of the corresponding HY skillbar inside ht-bar
+			 * @param {Element} bar
+			 * @param {string}  name     'hy-pot', 'hy-cur', 'hy-pred', or 'hy-pot-pred'
+			 * @param {number}  value    {Float}
+			 */
+			var setHYBar = function(bar, name, value) {
+				bar.setAttribute(name, value);
+
+				let widthTotal = bar.getBoundingClientRect().width;
+				let max = parseInt(bar.getAttribute('max'), 10);
+				let val = Math.min(max, value);
+
+				let maxBar = bar.querySelector('.bar-max');
+				let widthNeeded = Math.round(val / max * widthTotal);
+
+				let hyBar = Foxtrick.createFeaturedElement(doc, module, 'div');
+				Foxtrick.addClass(hyBar, `bar-level ft-bar-${name}`);
+				hyBar.style.width = `${widthNeeded}px`;
+				Foxtrick.insertAfter(hyBar, maxBar);
+			};
+
+			/**
+			 * add skill link (if possible) to the node based on the skill level {Integer}
+			 * @param {Element} node
+			 * @param {number}  level {Integer}
 			 */
 			var addSkillLink = function(node, level) {
 				if (level) {
@@ -205,7 +296,7 @@ Foxtrick.modules['YouthSkills'] = {
 				else {
 					let minText = doc.createElement('span');
 					minText.className = 'shy';
-					minText.textContent = UNKNOWNLEVELSYMBOL;
+					minText.textContent = UNKNOWN_LEVEL_SYMBOL;
 					node.appendChild(minText);
 				}
 			};
@@ -213,16 +304,14 @@ Foxtrick.modules['YouthSkills'] = {
 			/**
 			 * parse all available info and assemble the node.title
 			 * add skill link(s)
-			 * @param	{element}	node
+			 * @param {Element} node
 			 */
 			var setTitleAndLinks = function(node) {
-				let gapText = doc.createTextNode(' ');
-				node.appendChild(gapText);
-
 				let cur, pot, curInt, potInt = 0;
 				let prediction = false;
 				let hyCur = node.getAttribute('hy-cur') || 0;
 				let hyPot = node.getAttribute('hy-pot') || 0;
+				let hyPotPred = node.getAttribute('hy-pot-pred') || 0;
 				let hyPred = node.getAttribute('hy-pred') || 0;
 				let htCur = node.getAttribute('ht-cur') || 0;
 				let htPot = node.getAttribute('ht-pot') || 0;
@@ -249,37 +338,45 @@ Foxtrick.modules['YouthSkills'] = {
 				else
 					pot = htPot;
 
-				node.title = `${cur || '?'}${prediction ? ' ' + approx : ''}/${pot || '?'}`;
+				curInt = parseInt(cur, 10);
+				potInt = parseInt(pot, 10);
+
+				if (!pot && hyPotPred)
+					pot = `<${hyPotPred}`;
+
+				node.title = `${cur || '?'}${prediction ? ' ' + l10nApprox : ''}/${pot || '?'}`;
 
 				// add aria info for a11y
 				node.setAttribute('aria-label', node.title);
 
-				curInt = parseInt(cur, 10);
-				potInt = parseInt(pot, 10);
+				if (Foxtrick.hasClass(node, 'ht-bar'))
+					return;
 
+				node.appendChild(doc.createTextNode(' '));
 				addSkillLink(node, curInt);
 
 				// only one link if levels match
 				if (curInt == potInt)
 					return;
 
-				gapText = doc.createTextNode(' / ');
-				node.appendChild(gapText);
-
+				node.appendChild(doc.createTextNode(' / '));
 				addSkillLink(node, potInt);
 			};
 
 			/**
-			 * merge HY info into player's skill (1-based row index)
-			 * @param {element} playerInfo
-			 * @param {Integer} skill      row index (1-based)
-			 * @param {Float}   pred       skill_estimated
-			 * @param {Float}   current    current_skill
-			 * @param {Float}   max	       skill_cap
+			 * merge HY info into player's skill (row index)
+			 * @param {Element} playerInfo
+			 * @param {number}  skill      row index
+			 * @param {number}  current    current_skill {Float}
+			 * @param {number}  pred       skill_estimated {Float}
+			 * @param {number}  max        skill_cap {Float}
+			 * @param {number}  maxPred    skill_capMaximal {Float}
 			 */
-			var setSkill = function(playerInfo, skill, pred, current, max) {
-				let table = playerInfo.querySelector('tbody');
-				let sEntry = table.querySelector(`tr:nth-of-type(${skill}) > td:nth-of-type(2)`);
+			var setSkill = function(playerInfo, skill, { current, pred, max, maxPred }) {
+				let body = playerInfo.querySelector('tbody');
+				let [first] = body.rows;
+				let rIdx = first.id.endsWith('trSpeciality') ? skill + 1 : skill;
+				let sEntry = body.querySelector(`tr:nth-of-type(${rIdx + 1}) > td:nth-of-type(2)`);
 
 				if (!sEntry)
 					return;
@@ -287,35 +384,65 @@ Foxtrick.modules['YouthSkills'] = {
 				// need to unhide blank row since we have new info from HY for this skill
 				Foxtrick.removeClass(sEntry.parentNode, 'hidden');
 
-				replaceBars(sEntry);
-				let ftBars = sEntry.firstChild.firstChild;
-				if (!ftBars || !Foxtrick.hasClass(ftBars, 'ft-youthSkillBars'))
-					return;
+				let ftBars;
+				if (hasNewBars) {
+					ftBars = sEntry.querySelector('.ht-bar') || createBar(sEntry);
+					let level = parseInt(ftBars.getAttribute('level'), 10);
+					if (level != -1)
+						ftBars.setAttribute('ht-cur', level);
+					let cap = parseInt(ftBars.getAttribute('cap'), 10);
+					if (cap != -1)
+						ftBars.setAttribute('ht-pot', cap);
+					let isCap = parseInt(ftBars.getAttribute('is-cap'), 10);
+					if (isCap == -1)
+						ftBars.setAttribute('ht-maxed', level);
 
-				if (pred)
-					setHYValue(ftBars, 'hy-pred', pred);
-				if (current)
-					setHYValue(ftBars, 'hy-cur', current);
-				if (max)
-					setHYValue(ftBars, 'hy-pot', max);
+					if (pred)
+						setHYBar(ftBars, 'hy-pred', pred);
+					else if (current)
+						setHYBar(ftBars, 'hy-cur', current);
+
+					if (max)
+						setHYBar(ftBars, 'hy-pot', max);
+					else if (maxPred)
+						setHYBar(ftBars, 'hy-pot-pred', maxPred);
+				}
+				else {
+					replaceBars(sEntry);
+					ftBars = sEntry.firstChild.firstChild;
+					if (!ftBars || !Foxtrick.hasClass(ftBars, 'ft-youthSkillBars'))
+						return;
+
+					if (pred)
+						setHYValue(ftBars, 'hy-pred', pred);
+					else if (current)
+						setHYValue(ftBars, 'hy-cur', current);
+
+					if (max)
+						setHYValue(ftBars, 'hy-pot', max);
+					else if (maxPred)
+						setHYValue(ftBars, 'hy-pot-pred', maxPred);
+				}
 
 				setTitleAndLinks(ftBars);
 			};
 
 			/**
 			 * mark top3 skill (1-based row index)
-			 * @param {element} playerInfo
-			 * @param {Integer} skill      row index (1-based)
+			 * @param {Element} playerInfo
+			 * @param {number} skill       row index
 			 */
 			var markTopSkill = function(playerInfo, skill) {
-				let table = playerInfo.querySelector('tbody');
-				let sName = table.querySelector(`tr:nth-of-type(${skill}) > td:nth-of-type(1)`);
+				let body = playerInfo.querySelector('tbody');
+				let [first] = body.rows;
+				let rIdx = first.id.endsWith('trSpeciality') ? skill + 1 : skill;
+				let sName = body.querySelector(`tr:nth-of-type(${rIdx + 1}) > td:nth-of-type(1)`);
 				if (!sName)
 					return;
 
 				let b = Foxtrick.createFeaturedElement(doc, module, 'strong');
 				b.textContent = sName.textContent;
-				b.title = top3;
+				b.title = l10nTop3;
 				sName.textContent = '';
 				sName.appendChild(b);
 			};
@@ -327,21 +454,23 @@ Foxtrick.modules['YouthSkills'] = {
 			for (let playerInfo of playerInfos) {
 				// get playerid
 				let link = playerInfo.querySelector('a');
-				let param = Foxtrick.getParameterFromUrl(link.href, 'YouthPlayerId');
+				let param = Foxtrick.getUrlParam(link.href, 'YouthPlayerId');
 				let playerId = parseInt(param, 10);
 
 				// stop if player unknown in HY
-				if (typeof json[playerId] == 'undefined')
+				if (!(playerId in json))
 					continue;
 
+				let player = json[playerId];
+
 				// add specialty
-				let specialty = json[playerId].speciality; // HY TYPO
+				let specialty = player.speciality; // HY TYPO
 				if (specialty) {
 					let info = playerInfo.querySelector('p');
 					let text = info.textContent;
 
 					// skip if specialty known on HT
-					if (!/\[/.test(text)) {
+					if (!/\[/.test(text) && !playerInfo.querySelector('tr[id$="_trSpeciality"]')) {
 						let span = Foxtrick.createFeaturedElement(doc, module, 'span');
 						let text = doc.createElement('strong');
 						Foxtrick.addClass(text, 'ft-hy-spec');
@@ -357,28 +486,27 @@ Foxtrick.modules['YouthSkills'] = {
 					}
 				}
 
-				for (let sk in json[playerId].skills) {
+				for (let [sk, skill] of Object.entries(player.skills)) {
 					// skip experience
-					if (sk == 10)
+					if (!(sk in ROW_MAP))
 						continue;
 
-					let skill = json[playerId].skills[sk];
-
-					// let cap_maximal = skill['cap_maximal'] || 0;
 					let cap = skill.cap || 0;
 					let capMinimal = skill.cap_minimal || 0;
-					let current = skill.current || 0;
-					let pred = skill.current_estimation || 0;
-					let maxed = skill.maxed || false;
+
+					// let maxed = skill.maxed || false;
 					let top = skill.top3 || false;
 
-					let min = current;
+					let current = skill.current || 0;
+					let pred = skill.current_estimation || 0;
 					let max = Math.max(cap, capMinimal);
+					let maxPred = Math.floor((skill.cap_maximal || 0) * 10) / 10;
 
-					if (pred || min || max)
-						setSkill(playerInfo, rowMap[sk] + 1, pred, min, max, maxed);
+					if (pred || current || max || maxPred)
+						setSkill(playerInfo, ROW_MAP[sk], { current, pred, max, maxPred });
+
 					if (top)
-						markTopSkill(playerInfo, rowMap[sk] + 1);
+						markTopSkill(playerInfo, ROW_MAP[sk]);
 				}
 			}
 
@@ -444,9 +572,8 @@ Foxtrick.modules['YouthSkills'] = {
 		};
 
 		entry = doc.querySelector('.playerList');
-		if (entry) {
+		if (entry)
 			drawMessage(doc);
-		}
 
 		// get skills from HY
 		Foxtrick.containsPermission({ origins: ['https://*.hattrick-youthclub.org/*'] }, (perm) => {

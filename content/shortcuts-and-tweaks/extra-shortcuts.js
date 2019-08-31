@@ -1,25 +1,35 @@
-'use strict';
 /**
 * extra-shortcuts.js
 * Adds an imagelink to the shortcut
 * @author baumanns, spambot
 */
 
+'use strict';
+
 Foxtrick.modules['ExtraShortcuts'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	OUTSIDE_MAINBODY: true,
 	PAGES: ['all'],
-	OPTIONS: ['AddSpace', 'AddLeft', 'Supporterstats', 'Transfers', 'Prefs', 'FoxTrickPrefs',
-		'ManageCHPP', 'No9', 'Latehome'],
+	OPTIONS: [
+		'AddSpace',
+		'AddLeft',
+		'FoxTrickPrefs',
+		'Supporterstats', 'Transfers', 'Prefs', 'ManageCHPP',
+		'No9', 'Latehome',
+	],
 	LINKS: {
-		'Supporterstats': { link:'/World/Stats/', 	imgClass:'ftSuppStats', property:'statistics'},
-		'Transfers':	{ link:'/Club/Transfers/', 	imgClass:'ftMyTransfers', property:'transfers'},
-		'Prefs':		{ link:'/MyHattrick/Preferences/', imgClass:'ftSCPrefs', property:'prefs'},
-		'ManageCHPP': { link:'/MyHattrick/Preferences/ExternalAccessGrants.aspx',
-					imgClass:'ftManageCHPP', property:'ManageCHPP'}
+		Supporterstats: { link: '/World/Stats/', imgClass: 'ftSuppStats', property: 'statistics' },
+		Transfers: { link: '/Club/Transfers/', imgClass: 'ftMyTransfers', property: 'transfers' },
+		Prefs: { link: '/MyHattrick/Preferences/', imgClass: 'ftSCPrefs', property: 'prefs' },
+		ManageCHPP: {
+			link: '/MyHattrick/Preferences/ExternalAccessGrants.aspx',
+			imgClass: 'ftManageCHPP',
+			property: 'ManageCHPP',
+		},
 	},
 
 	RADIOS: ['No9', 'Latehome'],
+
 	// following also need to be entered in manifest.json->optional_permissions
 	// and perferences.js->neededPermissions
 	RADIO_URLS: [
@@ -29,7 +39,7 @@ Foxtrick.modules['ExtraShortcuts'] = {
 	CSS: Foxtrick.InternalPath + 'resources/css/extra-shortcuts.css',
 
 	OPTIONS_CSS: [
-		Foxtrick.InternalPath + 'resources/css/extra-shortcuts-space.css'
+		Foxtrick.InternalPath + 'resources/css/extra-shortcuts-space.css',
 	],
 
 	run: function(doc) {
@@ -39,8 +49,7 @@ Foxtrick.modules['ExtraShortcuts'] = {
 					if (radio_xml.getElementsByTagName('status').length != 0) {
 						var span = doc.getElementById(radio + 'Span');
 
-						var list = span.getElementsByTagName('ul');
-						list = doc.createElement('ul');
+						var list = doc.createElement('ul');
 						list.className = 'ft-pop';
 						list.setAttribute('style', 'margin-top:-1px;');
 

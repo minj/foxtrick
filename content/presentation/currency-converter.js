@@ -47,7 +47,7 @@ Foxtrick.modules['CurrencyConverter'] = {
 			var { rate: oldRate, symbol: oldSymbol } = curr;
 
 			// regular expressions for getting out money
-			const RE = new RegExp("(-?[\\d][.,'\\d\\s]+)" + oldSymbol.replace(/\$/g, '\\$'), 'g');
+			const RE = new RegExp("(-?[\\d][.,'\\d\\s]+)" + Foxtrick.strToRe(oldSymbol), 'g');
 
 			// new stuffs
 			var code = Foxtrick.Prefs.getString('module.CurrencyConverter.to');
@@ -105,7 +105,7 @@ Foxtrick.modules['CurrencyConverter'] = {
 				// now we insert the money denoted in new currency
 				if (sole) {
 					let [pair] = pairs;
-					let [_, conv] = pair;
+					let [_, conv] = pair; // lgtm[js/unused-local-variable]
 					let span = Foxtrick.createFeaturedElement(doc, module, 'span');
 					span.textContent = conv;
 					node.parentNode.appendChild(span);

@@ -1,11 +1,14 @@
-'use strict';
-/*
+/**
  * load.js
  * loading files
  */
 
-if (!Foxtrick)
-	var Foxtrick = {}; // jshint ignore:line
+'use strict';
+
+/* eslint-disable */
+if (!this.Foxtrick)
+	var Foxtrick = {};
+/* eslint-enable */
 
 /**
  * Parse data as JSON.

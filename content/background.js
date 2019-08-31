@@ -1,5 +1,4 @@
-'use strict';
-/*
+/**
  * background.js
  *
  * Foxtrick background loader for Sandboxed arch and Fennec
@@ -8,10 +7,14 @@
  * @author ryanli, convincedd, LA-MJ
  */
 
+'use strict';
+
 /* global Browser */
 
-if (!Foxtrick)
-	var Foxtrick = {}; // jshint ignore:line
+/* eslint-disable */
+if (!this.Foxtrick)
+	var Foxtrick = {};
+/* eslint-enable */
 
 if (!Foxtrick.loader)
 	Foxtrick.loader = {};
@@ -21,16 +24,16 @@ Foxtrick.loader.background = {};
 // listener for request from content script
 Foxtrick.loader.background.contentRequestsListener = function(request, sender, sendResponse) {
 	try {
-		var reqHandlers = Foxtrick.loader.background.requests;
-		var handler = reqHandlers[request.req].bind(reqHandlers);
+		let reqHandlers = Foxtrick.loader.background.requests;
+		let handler = reqHandlers[request.req];
 
-		return handler(request, sender, sendResponse);
+		return handler.call(reqHandlers, request, sender, sendResponse);
 	}
 	catch (e) {
-		Foxtrick.log('Foxtrick - background onRequest error:', e);
-		Foxtrick.log(request.req);
+		Foxtrick.log('Foxtrick - background onRequest error:', request.req, e);
 		sendResponse({ error: 'Foxtrick - background onRequest: ' + e });
 	}
+	return false;
 };
 
 
@@ -49,7 +52,7 @@ Foxtrick.loader.background.browserLoad = function() {
 
 		var currencyJSON, aboutJSON, worldDetailsJSON, htLanguagesJSONText, cssTextCollection;
 
-		var updateResources = function(reInit) {
+		let updateResources = function(reInit) {
 			// init resources
 			Foxtrick.entry.init(reInit);
 
@@ -57,10 +60,11 @@ Foxtrick.loader.background.browserLoad = function() {
 			currencyJSON = JSON.stringify(Foxtrick.XMLData.htCurrencyJSON);
 			aboutJSON = JSON.stringify(Foxtrick.XMLData.aboutJSON);
 			worldDetailsJSON = JSON.stringify(Foxtrick.XMLData.worldDetailsJSON);
+
 			htLanguagesJSONText = {};
-			for (var lang in Foxtrick.L10n.htLanguagesJSON) {
-				htLanguagesJSONText[lang] = JSON.stringify(Foxtrick.L10n.htLanguagesJSON[lang]);
-			}
+			for (let [lang, obj] of Object.entries(Foxtrick.L10n.htLanguagesJSON))
+				htLanguagesJSONText[lang] = JSON.stringify(obj);
+
 			cssTextCollection = Foxtrick.util.css.getCssTextCollection();
 
 			Foxtrick.Prefs.deleteValue('preferences.updated');
@@ -71,8 +75,7 @@ Foxtrick.loader.background.browserLoad = function() {
 		Foxtrick.Prefs.setBool('translationKeys', false);
 
 		// calls module.onLoad() after the extension is loaded
-		for (var m in Foxtrick.modules) {
-			var module = Foxtrick.modules[m];
+		for (let module of Object.values(Foxtrick.modules)) {
 			if (typeof module.onLoad === 'function') {
 				try {
 					module.onLoad(document);
@@ -101,11 +104,11 @@ Foxtrick.loader.background.browserLoad = function() {
 			if (Foxtrick.arch == 'Sandboxed' && localStorage.getItem('preferences.updated')	||
 				Foxtrick.platform == 'Android' &&
 				Foxtrick.Prefs._prefs_gecko.getBoolPref('preferences.updated')) {
-
-				updateResources(true); // reInit
+ 				// reInit
+				updateResources(true);
 			}
 
-			var resource = {
+			let resource = {
 				_prefs_chrome_user: Foxtrick.Prefs._prefs_chrome_user,
 				_prefs_chrome_default: Foxtrick.Prefs._prefs_chrome_default,
 
@@ -137,35 +140,35 @@ Foxtrick.loader.background.browserLoad = function() {
 
 		// safari options page
 		this.requests.optionsPageLoad = this.requests.pageLoad;
-		// ----- end of init part. ------
 
+		// ----- end of init part. ------
 
 		// from env.js. dummy for tab register
 		this.requests.register = function() {};
 
 		// from prefs-util.js
-		this.requests.setValue = function(request) {
-			if (Foxtrick.Prefs.getAny(request.key) === request.value)
+		this.requests.setValue = function({ key, value, type }) {
+			if (Foxtrick.Prefs.getAny(key) === value)
 				return;
 
-			Foxtrick.Prefs.setWithType(request.key, request.value, request.type);
+			Foxtrick.Prefs.setWithType(key, value, type);
 
-			if (request.key == 'htLanguage')
+			if (key == 'htLanguage')
 				Foxtrick.L10n.init();
 		};
-		this.requests.deleteValue = function(request) {
-			Foxtrick.Prefs.deleteValue(request.key);
+		this.requests.deleteValue = function({ key }) {
+			Foxtrick.Prefs.deleteValue(key);
 
-			if (request.key == 'htLanguage')
+			if (key == 'htLanguage')
 				Foxtrick.L10n.init();
 		};
-		this.requests.clearPrefs = function(request, sender, sendResponse) { // jshint ignore:line
+		this.requests.clearPrefs = function(request, sender, sendResponse) {
 			try {
 				Foxtrick.Prefs.restore();
 
-				if (Foxtrick.platform !== 'Android') {
+				if (Foxtrick.platform !== 'Android')
 					updateResources();
-				}
+
 				sendResponse();
 			}
 			catch (e) {
@@ -174,10 +177,10 @@ Foxtrick.loader.background.browserLoad = function() {
 		};
 
 		// from misc.js. getting files, convert text
-		this.requests.getCss = function(request, sender, sendResponse) { // jshint ignore:line
+		this.requests.getCss = function({ files }, sender, sendResponse) {
 			// @param files - an array of files to be loaded into string
-			var css = Foxtrick.util.css.getCssFileArrayToString(request.files);
-			sendResponse({ cssText: css });
+			let cssText = Foxtrick.util.css.getCssFileArrayToString(files);
+			sendResponse({ cssText });
 		};
 
 		// TODO
@@ -193,16 +196,16 @@ Foxtrick.loader.background.browserLoad = function() {
 		// 	return true; // async
 		// };
 
-		this.requests.getDataUrl = function(request, sender, sendResponse) { // jshint ignore:line
-			var replaceImage = function(url) {
-				var image = new Image();
+		this.requests.getDataUrl = function({ url }, sender, sendResponse) {
+			let replaceImage = function(url) {
+				let image = new Image();
 				image.onload = function() {
-					var canvas = document.createElement('canvas');
+					let canvas = document.createElement('canvas');
 					canvas.width = image.width;
 					canvas.height = image.height;
-					var context = canvas.getContext('2d');
+					let context = canvas.getContext('2d');
 					context.drawImage(image, 0, 0);
-					var dataUrl = canvas.toDataURL();
+					let dataUrl = canvas.toDataURL();
 					Foxtrick.dataUrlStorage[url] = dataUrl;
 					return sendResponse({ url: dataUrl });
 				};
@@ -212,34 +215,34 @@ Foxtrick.loader.background.browserLoad = function() {
 				image.src = url;
 			};
 
-			var dataUrl = Foxtrick.dataUrlStorage[request.url];
-			if (!dataUrl)
-				replaceImage(request.url);
-			else
+			let dataUrl = Foxtrick.dataUrlStorage[url];
+			if (dataUrl)
 				sendResponse({ url: dataUrl });
+			else
+				replaceImage(url);
 
 			return true; // async
 		};
 
-		this.requests.playSound = function(request) {
+		this.requests.playSound = function({ url }) {
 			// @param url - the URL of new tab to create
-			Foxtrick.playSound(request.url);
+			Foxtrick.playSound(url);
 		};
 
 		// from misc.js: tabs
-		this.requests.newTab = function(request) {
+		this.requests.newTab = function({ url }) {
 			// @param url - the URL of new tab to create
-			Foxtrick.SB.tabs.create({ url: request.url });
+			Foxtrick.SB.tabs.create({ url });
 		};
-		this.requests.reuseTab = function(request) { // jshint ignore:line
+		this.requests.reuseTab = function({ url }) { // eslint-disable-line
 			// @param url - the URL of new tab to create
 			// if (Foxtrick.platform == 'Android') {
 			// 	// TODO
 			// 	// XUL Code:
-			// 	for (var i = 0; i < Browser.browsers.length; ++i) {
-			// 		if (sender.tab.id == Browser.browsers[i].tid) {
-			// 			Browser.selectedTab = Browser.getTabAtIndex(i);
-			// 			Browser.browsers[i].loadURI(request.url);
+			// 	for (let [idx, browser] of Browser.browsers.entries()) {
+			// 		if (sender.tab.id == browser.tid) {
+			// 			Browser.selectedTab = Browser.getTabAtIndex(idx);
+			// 			browser.loadURI(url);
 			// 		}
 			// 	}
 			// }
@@ -248,23 +251,23 @@ Foxtrick.loader.background.browserLoad = function() {
 		// from notify.js
 		this.requests.notify = function(request, sender, sendResponse) {
 			Foxtrick.util.notify.create(request.msg, sender, request)
-				.then(sendResponse, err => sendResponse(Foxtrick.JSONError(err)))
+				.then(sendResponse, err => sendResponse(Foxtrick.jsonError(err)))
 				.catch(Foxtrick.catch(sender));
 
 			return true; // async
 		};
 
 		// from context-menu.js: dummy. request handled in there
-		this.requests.updateContextMenu = function() {}; // jshint ignore:line
+		this.requests.updateContextMenu = function() {};
 
 		// from load.js
-		this.requests.fetch = function(request, sender, sendResponse) {
+		this.requests.fetch = function({ url, params }, sender, sendResponse) {
 			// @param url - the URL of resource to fetch with window.XMLHttpRequest
 			// @param params - params != null makes it and used for a POST request
 			// @callback_param data - response text
 			// @callback_param status - HTTP status of request
 
-			Foxtrick.fetch(request.url, request.params)
+			Foxtrick.fetch(url, params)
 				.then(sendResponse, sendResponse) // use the same callback for both
 				.catch(Foxtrick.catch(sender));
 
@@ -276,8 +279,8 @@ Foxtrick.loader.background.browserLoad = function() {
 			// @param params - params != null makes it and used for a POST request
 			// @callback_param data - response text
 			// @callback_param status - HTTP status of request
-
-			Foxtrick.load(request.url, request.params, request.lifeTime, request.now)
+			let { url, params, lifeTime, now } = request;
+			Foxtrick.load(url, params, lifeTime, now)
 				.then(sendResponse, sendResponse) // use the same callback for both
 				.catch(Foxtrick.catch(sender));
 
@@ -285,66 +288,64 @@ Foxtrick.loader.background.browserLoad = function() {
 		};
 
 		// from localStore.js
-		this.requests.storageGet = function(request, sender, sendResponse) {
-			Foxtrick.storage.get(request.key) // never rejects
+		this.requests.storageGet = function({ key }, sender, sendResponse) {
+			Foxtrick.storage.get(key) // never rejects
 				.then(sendResponse)
 				.catch(Foxtrick.catch(sender));
 
 			return true; // async
 		};
-		this.requests.storageSet = function(request, sender, sendResponse) {
-			Foxtrick.storage.set(request.key, request.value)
-				.then(sendResponse, err => sendResponse(Foxtrick.JSONError(err)))
+		this.requests.storageSet = function({ key, value }, sender, sendResponse) {
+			Foxtrick.storage.set(key, value)
+				.then(sendResponse, err => sendResponse(Foxtrick.jsonError(err)))
 				.catch(Foxtrick.catch(sender));
 
 			return true; // async
 		};
-		this.requests.storageDeleteBranch = function(request, sender, sendResponse) {
-			Foxtrick.storage.deleteBranch(request.branch)
-				.then(sendResponse, err => sendResponse(Foxtrick.JSONError(err)))
+		this.requests.storageDeleteBranch = function({ branch }, sender, sendResponse) {
+			Foxtrick.storage.deleteBranch(branch)
+				.then(sendResponse, err => sendResponse(Foxtrick.jsonError(err)))
 				.catch(Foxtrick.catch(sender));
 
 			return true; // async
 		};
 
 		// from session-store.js
-		this.requests.sessionGet = function(request, sender, sendResponse) {
-			Foxtrick.session.get(request.key) // never rejects
+		this.requests.sessionGet = function({ key }, sender, sendResponse) {
+			Foxtrick.session.get(key) // never rejects
 				.then(sendResponse)
 				.catch(Foxtrick.catch(sender));
 
 			return true; // async
 		};
-		this.requests.sessionSet = function(request, sender, sendResponse) {
-			Foxtrick.session.set(request.key, request.value)
-				.then(sendResponse, err => sendResponse(Foxtrick.JSONError(err)))
+		this.requests.sessionSet = function({ key, value }, sender, sendResponse) {
+			Foxtrick.session.set(key, value)
+				.then(sendResponse, err => sendResponse(Foxtrick.jsonError(err)))
 				.catch(Foxtrick.catch(sender));
 
 			return true; // async
 		};
-		this.requests.sessionDeleteBranch = function(request, sender, sendResponse) {
-			Foxtrick.session.deleteBranch(request.branch)
-				.then(sendResponse, err => sendResponse(Foxtrick.JSONError(err)))
+		this.requests.sessionDeleteBranch = function({ branch }, sender, sendResponse) {
+			Foxtrick.session.deleteBranch(branch)
+				.then(sendResponse, err => sendResponse(Foxtrick.jsonError(err)))
 				.catch(Foxtrick.catch(sender));
 
 			return true; // async
 		};
 
 		// from load.js
-		this.requests.cacheClear = function() {
-			Foxtrick.cache.clear();
-		};
+		this.requests.cacheClear = () => Foxtrick.cache.clear();
 
 		// from misc.js
-		this.requests.cookiesGet = function(request, sender, sendResponse) {
-			Foxtrick.cookies.get(request.key, request.name) // never rejects
+		this.requests.cookiesGet = function({ key, name }, sender, sendResponse) {
+			Foxtrick.cookies.get(key, name) // never rejects
 				.then(sendResponse)
 				.catch(Foxtrick.catch(sender));
 
 			return true; // async
 		};
-		this.requests.cookiesSet = function(request, sender, sendResponse) {
-			Foxtrick.cookies.set(request.key, request.value, request.name) // never rejects
+		this.requests.cookiesSet = function({ key, value, name }, sender, sendResponse) {
+			Foxtrick.cookies.set(key, value, name) // never rejects
 				.then(sendResponse)
 				.catch(Foxtrick.catch(sender));
 
@@ -352,14 +353,10 @@ Foxtrick.loader.background.browserLoad = function() {
 		};
 
 		// from permissions.js
-		this.requests.containsPermission =
-			function(request, sender, sendResponse) { // jshint ignore:line
+		this.requests.containsPermission = ({ types }, sender, sendResponse) => {
 			// @param origin - permission origin to check
 			// @callback boolean wether permission is set or not
-			Foxtrick._containsPermission(request.types, function(response) {
-				sendResponse(response);
-			});
-
+			Foxtrick.containsPermission(types, sendResponse);
 			return true; // async
 		};
 
@@ -368,7 +365,7 @@ Foxtrick.loader.background.browserLoad = function() {
 		// this.requests.removePermission = function(request, sender, sendResponse) {
 		// 	// @param origin - permission origin to check
 		// 	// @callback ???
-		// 	Foxtrick._removePermission(request.types, function(response) {
+		// 	Foxtrick.removePermission(request.types, function(response) {
 		// 		sendResponse(response);
 		// 	});
 		// return true; // async
@@ -376,31 +373,26 @@ Foxtrick.loader.background.browserLoad = function() {
 		// this.requests.requestPermission = function(request, sender, sendResponse) {
 		// 	// @param origin - permission origin to check
 		// 	// @callback boolean wether permission was granted
-		// 	Foxtrick._requestPermission(request.types, function(response) {
+		// 	Foxtrick.requestPermission(request.types, function(response) {
 		// 		sendResponse(response);
 		// 	});
 		// return true; // async
 		// };
 
 		// from log.js
-		this.requests.log = function(request) {
-			// @param log - text to dump to console (Fennec)
-			dump('FT: ' + request.log);
-			Foxtrick.addToDebugLogStorage(request.log);
-		};
-		this.requests.addDebugLog = function(request) {
+		this.requests.addDebugLog = function({ log }) {
 			// @param log - text to add to debug log storage
-			Foxtrick.addToDebugLogStorage(request.log);
+			Foxtrick.addToDebugLogStorage(log);
 		};
-		this.requests.getDebugLog = function(request, sender, sendResponse) { // jshint ignore:line
+		this.requests.getDebugLog = function(request, sender, sendResponse) {
 			// @callback_param log - contains the debug log storage
 			sendResponse({ log: Foxtrick.debugLogStorage });
 		};
 
 		// from mobile-enhancements.js
-		this.requests.updateViewportSize = function() {
-			Browser.updateViewportSize();
-		};
+		// this.requests.updateViewportSize = function() {
+		// 	Browser.updateViewportSize();
+		// };
 
 	}
 	catch (e) {

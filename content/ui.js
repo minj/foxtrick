@@ -1,11 +1,15 @@
-'use strict';
 /**
 * ui.js
 * UserInterfaces
 * @author convincedd, LA-MJ
 */
-if (!Foxtrick)
-	var Foxtrick = {}; // jshint ignore:line
+
+'use strict';
+
+/* eslint-disable */
+if (!this.Foxtrick)
+	var Foxtrick = {};
+/* eslint-enable */
 
 Foxtrick.modules.UI = {
 	OUTSIDE_MAINBODY: true,

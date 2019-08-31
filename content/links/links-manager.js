@@ -40,11 +40,11 @@ Foxtrick.modules['LinksManager'] = {
 		var ct = Math.min(teams.length, series.length, leagues.length);
 		for (var i = 0; i < ct; i++) {
 			var idx = i ? (i + 1) : '';
-			info['teamId' + idx] = Foxtrick.getParameterFromUrl(teams[i], 'teamId');
+			info['teamId' + idx] = Foxtrick.getUrlParam(teams[i], 'teamId');
 			info['teamName' + idx] = teams[i].textContent;
-			info['seriesId' + idx] = Foxtrick.getParameterFromUrl(series[i], 'leagueLevelUnitId');
+			info['seriesId' + idx] = Foxtrick.getUrlParam(series[i], 'leagueLevelUnitId');
 			info['seriesName' + idx] = series[i].textContent;
-			info['leagueId' + idx] = Foxtrick.getParameterFromUrl(leagues[i], 'leagueId');
+			info['leagueId' + idx] = Foxtrick.getUrlParam(leagues[i], 'leagueId');
 		}
 
 		return { info: info };

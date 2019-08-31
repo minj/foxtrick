@@ -3,3 +3,7 @@ az:
   faq:
     style:
       question: FoxTrick'i necə düzəldə bilərəm?
+    sound-format:
+      question: Xəbərdarlıq səsləri üçün hansı fayl formatlarına icazə verilir?
+    privacy:
+      question: FoxTrick gizliliyimi necə qoruyacaq?

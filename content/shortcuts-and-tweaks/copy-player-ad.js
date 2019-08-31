@@ -128,7 +128,7 @@ Foxtrick.modules['CopyPlayerAd'] = {
 					ad += header.textContent.trim();
 
 					if (typeof data === 'undefined') {
-						ad += '\n\n'
+						ad += '\n\n';
 						continue;
 					}
 
@@ -277,18 +277,19 @@ Foxtrick.modules['CopyPlayerAd'] = {
 					}
 					else {
 						ad += '[table]\n';
-						for (let s = 0; s < skillArray.length; ++s) {
+						for (let [s, skill] of skillArray.entries()) {
 							if (s % 2 === 0)
 								ad += '[tr]';
 
-							ad += '[th]' + skillArray[s].name + '[/th]';
-							ad += '[td]' +
-								formatSkill(skillArray[s].text, skillArray[s].value) +
-								'[/td]';
+							ad += '[th]' + skill.name + '[/th]';
+							ad += `[td]${formatSkill(skill.text, skill.value)}[/td]`;
 
 							if (s % 2 == 1)
 								ad += '[/tr]\n';
 						}
+						if (skillArray.length % 2 == 1)
+							ad += '[/tr]\n';
+
 						ad += '[/table]';
 					}
 				}

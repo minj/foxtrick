@@ -1,15 +1,5 @@
-'use strict';
-
-if (!Foxtrick)
-	var Foxtrick = {};
-if (!Foxtrick.api)
-	Foxtrick.api = {};
-if (!Foxtrick.api.hy)
-	Foxtrick.api.hy = {};
-if (!Foxtrick.api.hy.URL)
-	Foxtrick.api.hy.URL = {};
-
-/* players-twins-check.js
+/**
+ * players-twins-check.js
  * Functions working the HY playersTwinsCheck API supplied by HY.
  * @author LA-MJ, HY backend/API by MackShot
  *
@@ -55,8 +45,21 @@ if (!Foxtrick.api.hy.URL)
  *				to disrespect and use forceUpdate. *
  */
 
+'use strict';
 
-Foxtrick.api.hy.URL['playersTwinsCheck'] = 'https://www.hattrick-youthclub.org' +
+/* eslint-disable */
+if (!this.Foxtrick)
+	var Foxtrick = {};
+/* eslint-enable */
+
+if (!Foxtrick.api)
+	Foxtrick.api = {};
+if (!Foxtrick.api.hy)
+	Foxtrick.api.hy = {};
+if (!Foxtrick.api.hy.URL)
+	Foxtrick.api.hy.URL = {};
+
+Foxtrick.api.hy.URL.playersTwinsCheck = 'https://www.hattrick-youthclub.org' +
 	'/_data_provider/foxtrick/playersTwinsCheck';
 
 /**

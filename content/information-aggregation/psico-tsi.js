@@ -603,33 +603,32 @@ Foxtrick.modules['PsicoTSI'] = {
 			wrapper.appendChild(psicotsiShowDiv);
 		}
 
-		var img = logo;
 		if (limit == 'Low') {
-			img = new PlayerImg('LOW_SUBLEVELS');
+			let img = new PlayerImg('LOW_SUBLEVELS');
 			Foxtrick.addImage(doc, psicotsiHideDiv, img);
 			if (useLinks)
 				Foxtrick.addImage(doc, psicotsiShowDiv, img);
 		}
 		else if (limit == 'High') {
-			img = new PlayerImg('HIGH_SUBLEVELS');
+			let img = new PlayerImg('HIGH_SUBLEVELS');
 			Foxtrick.addImage(doc, psicotsiHideDiv, img);
 			if (useLinks)
 				Foxtrick.addImage(doc, psicotsiShowDiv, img);
 		}
 		if (isUndefinedMainskill) {
-			img = new PlayerImg('UNDEF_MAINSKILL');
+			let img = new PlayerImg('UNDEF_MAINSKILL');
 			Foxtrick.addImage(doc, psicotsiHideDiv, img);
 			if (useLinks)
 				Foxtrick.addImage(doc, psicotsiShowDiv, img);
 		}
 		if (isInjured) {
-			img = new PlayerImg('INJURED');
+			let img = new PlayerImg('INJURED');
 			Foxtrick.addImage(doc, psicotsiHideDiv, img);
 			if (useLinks)
 				Foxtrick.addImage(doc, psicotsiShowDiv, img);
 		}
 		if (isOld) {
-			img = new PlayerImg('OLD');
+			let img = new PlayerImg('OLD');
 			Foxtrick.addImage(doc, psicotsiHideDiv, img);
 			if (useLinks)
 				Foxtrick.addImage(doc, psicotsiShowDiv, img);

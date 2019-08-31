@@ -1,4 +1,3 @@
-'use strict';
 /**
  * loader_chrome.js
  * Foxtrick loader
@@ -6,8 +5,13 @@
  * @author ryanli, convincedd, CatzHoek, LA-MJ
  */
 
-if (!Foxtrick)
-	var Foxtrick = {}; // jshint ignore:line
+'use strict';
+
+/* eslint-disable */
+if (!this.Foxtrick)
+	var Foxtrick = {};
+/* eslint-enable */
+
 if (!Foxtrick.loader)
 	Foxtrick.loader = {};
 
@@ -94,17 +98,13 @@ Foxtrick.loader.chrome.docLoadStart = function() {
 
 
 Foxtrick.loader.chrome.clickListener = function(ev) {
+	const LEFT_MOUSE_BUTTON = 0;
 	try {
-		// jscs:disable disallowMultipleSpaces
 		if (typeof ev.target.tagName !== 'undefined' &&
-			(ev.target.tagName == 'INPUT' && ev.target.type == 'text' || // text imput
-			ev.target.tagName == 'TEXTAREA') &&                          // or text area
-			ev.button === 0 &&      // left mouse button
-			ev.shiftKey === true) { // our special key we listen too
+			ev.target.matches('input[type="text"], textarea') &&
+			ev.button === LEFT_MOUSE_BUTTON &&
+			ev.shiftKey === true) { // our special key we listen to
 
-			// jscs:enable disallowMultipleSpaces
-
-			// FIXME
 			Foxtrick.sessionGet('clipboard', function(text) {
 				if (!text)
 					return;
