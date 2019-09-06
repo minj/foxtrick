@@ -781,7 +781,7 @@ Foxtrick.util.htMl._getMarkupRec = function(node, def, opts) {
  * Options is { external: boolean, format: string }.
  * external sets whether relative HT links are not used (defaults to false).
  * format is the markup language to use (defaults to htMl).
- * @param  {element} node
+ * @param  {Element} node
  * @param  {object}  options {external: boolean, format: string}
  * @return {string}
  */

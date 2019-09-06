@@ -32,8 +32,7 @@ Foxtrick.modules['LinksPlayerDetail'] = {
 		if (Foxtrick.Pages.Player.wasFired(doc))
 			return;
 
-		var mainBox = doc.getElementsByClassName('mainBox')[0];
-		var skillTable = mainBox ? mainBox.getElementsByTagName('table')[0] : null;
+		var gkParent = this.getGKLinkTarget(doc);
 
 		var teamId = Foxtrick.Pages.All.getTeamId(doc);
 		var teamName = Foxtrick.Pages.All.getTeamName(doc);
@@ -98,15 +97,10 @@ Foxtrick.modules['LinksPlayerDetail'] = {
 			}, copy);
 
 			types.push('transfercomparelink');
-			if (skills.keeper > 3 && skillTable) {
-				var newTable = skillTable.rows.length === 7;
-				var keeperSkillNode = newTable ? skillTable.rows[0].cells[1] :
-					skillTable.rows[0].cells[3];
-				keeperSkillNode = keeperSkillNode.getElementsByTagName('a')[0];
-
+			if (skills.keeper > 3 && gkParent) {
 				var keeperLinks = {
 					type: 'keeperlink',
-					parent: keeperSkillNode.parentNode,
+					parent: gkParent,
 					className: 'ft-link-keeper',
 				};
 				types.push(keeperLinks);
@@ -128,5 +122,32 @@ Foxtrick.modules['LinksPlayerDetail'] = {
 			types.push(tracker);
 		}
 		return { types: types, info: params };
+	},
+
+	getGKLinkTarget(doc) {
+		// FIXME unmaintainable
+		var gkLinkTarget;
+		var skillTable = doc.querySelector('.transferPlayerSkills, .mainBox table');
+		if (Foxtrick.hasClass(skillTable, 'transferPlayerSkills')) {
+			let table = skillTable.querySelector('table');
+			if (table.rows[0].cells[1]) {
+				let target = Foxtrick.createFeaturedElement(doc, this, 'span');
+				Foxtrick.addClass(target, 'nowrap float_right');
+				Foxtrick.prependChild(target, skillTable);
+				gkLinkTarget = target;
+			}
+		}
+		else {
+			let hasBars = skillTable.querySelector('.percentImage, .ft-percentImage');
+			if (hasBars) {
+				let skillLink = skillTable.rows[0].querySelector('a');
+				if (skillLink)
+					gkLinkTarget = skillLink.closest('td');
+			}
+			else {
+				gkLinkTarget = skillTable.querySelectorAll('td')[1];
+			}
+		}
+		return gkLinkTarget;
 	},
 };

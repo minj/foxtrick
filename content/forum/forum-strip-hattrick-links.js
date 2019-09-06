@@ -1,9 +1,10 @@
-'use strict';
 /**
 * forumchangepstangelinks.js
 * Foxtrick Copies post id to clipboard
-* @author convinced
+* @author convinced, LA-MJ
 */
+
+'use strict';
 
 Foxtrick.modules['ForumStripHattrickLinks'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.FORUM,
@@ -13,87 +14,92 @@ Foxtrick.modules['ForumStripHattrickLinks'] = {
 		'forumModWritePost', 'forumViewThread', 'ticket', 'helpContact',
 	],
 	OPTIONS: ['NoConfirmStripping'],
-	NICE: -1, //  needs to be before forum preview for old submit button (order) detection
+	NICE: -1, // needs to be before forum preview for old submit button (order) detection
 
 	changeLinks: function(ev) {
-		var a = ev.target;
-		if (a.nodeName == 'A' && a.href.search('foxtrick://') != -1) {
-			a.href = a.href.replace('foxtrick://', Foxtrick.InternalPath);
-
-			// ff doesn't wanna open the changed href
-			if (Foxtrick.arch == 'Gecko')
-				Foxtrick.newTab(a.href);
-		}
+		/** @type {HTMLAnchorElement} */
+		let a = ev.target;
+		if (a.nodeName == 'A' && a.href.startsWith('foxtrick://'))
+			a.href = a.href.replace(/^foxtrick:\/\//, Foxtrick.InternalPath);
 	},
 
 	run: function(doc) {
-		var URLs = [
+		const module = this;
+		const URLs = [
 			{
 				reg: /\[link=https?:\/\/(www(\d+)?|stage)\.hattrick\.(org|ws|bz|uol\.com\.br|interia\.pl|name|fm)(\/.+?)\]/g,
-				repl: '[link=$4]'
+				repl: '[link=$4]',
 			},
+
 			// safari nightly
 			{
 				reg: /\[link=safari-extension:\/\/www\.foxtrick\.org-[\w\d]+\/[\w\d]+\/content\//g,
-				repl: '[link=foxtrick://'
+				repl: '[link=foxtrick://',
 			},
+
 			// official chrome
 			{
 				reg: /\[link=chrome-extension:\/\/bpfbbngccefbbndginomofgpagkjckik\/content\//g,
-				repl: '[link=foxtrick://'
+				repl: '[link=foxtrick://',
 			},
+
 			// official beta chrome
 			{
 				reg: /\[link=chrome-extension:\/\/bcbhbklnhonhojfmkobhhjkfaggkoali\/content\//g,
-				repl: '[link=foxtrick://'
+				repl: '[link=foxtrick://',
 			},
+
 			// foxtrick.org chrome (beta/release)
 			{
 				reg: /\[link=chrome-extension:\/\/gpfggkkkmpaalfemiafhfobkfnadeegj\/content\//g,
-				repl: '[link=foxtrick://'
+				repl: '[link=foxtrick://',
 			},
-			// all gecko
-			{
-				reg: /\[link=chrome:\/\/foxtrick\/content\//g,
-				repl: '[link=foxtrick://'
-			}
 		];
 
-		Foxtrick.listen(doc.getElementById('mainBody'), 'mousedown', this.changeLinks, true);
+		if (Foxtrick.platform == 'Chrome') {
+			// this will add random dev-mode URLs
+			// in web-ext ids are always generated randomly
+			let url = chrome.runtime.getURL('content/');
+			let reUrl = Foxtrick.strToRe(url);
+			URLs.push({
+				reg: new RegExp(`\\[link=${reUrl}`, 'g'),
+				repl: '[link=foxtrick://',
+			});
+		}
+
+		const noConfirm = Foxtrick.Prefs.isModuleOptionEnabled(module, 'NoConfirmStripping');
+		const confirmMsg = Foxtrick.L10n.getString('ForumStripHattrickLinks.ask');
+
+		Foxtrick.listen(doc.getElementById('mainBody'), 'mousedown', module.changeLinks, true);
 
 		if (Foxtrick.isPage(doc, 'forumViewThread'))
 			return;
 
-		var targets = doc.getElementById('mainBody').getElementsByTagName('input');  // Forum
-		var target = targets[targets.length - 1];
+		const targets = doc.querySelectorAll('#mainBody input'); // Forum
+		let target = targets[targets.length - 1];
 		if (Foxtrick.isPage(doc, 'forumWritePost'))
 			target = targets[targets.length - 2];
 		if (Foxtrick.isPage(doc, 'guestbook'))
 			target = targets[1];
-		if (target) {
-			// add submit listener
-			Foxtrick.onClick(target, function() {
-				// assume svn users post only FT links
-				if (Foxtrick.branch == 'dev')
-					URLs.push({
-						reg: /\[link=chrome-extension:\/\/\w+\/content\//g,
-						repl: '[link=foxtrick://'
-					});
-				var textarea = doc.getElementById('mainBody').getElementsByTagName('textarea')[0];
-				var has_url = false;
-				for (var i = 0; i < URLs.length; ++i) {
-					if (URLs[i].reg.test(textarea.value))
-						has_url = true;
-				}
-				if (has_url
-					&& (Foxtrick.Prefs.isModuleOptionEnabled('ForumStripHattrickLinks',
-					    'NoConfirmStripping')
-						|| confirm(Foxtrick.L10n.getString('ForumStripHattrickLinks.ask')))) {
-					for (var i = 0; i < URLs.length; ++i) {
-						textarea.value = textarea.value.replace(URLs[i].reg, URLs[i].repl);
-					}
-				}
-			});
-		}
-	}
+
+		if (!target)
+			return;
+
+		// add submit listener
+		Foxtrick.onClick(target, function() {
+			const textarea = doc.querySelector('#mainBody textarea');
+			let hasUrl = Foxtrick.any(u => u.reg.test(textarea.value), URLs);
+			if (!hasUrl)
+				return;
+
+			// eslint-disable-next-line no-alert
+			if (noConfirm || confirm(confirmMsg)) {
+				let val = textarea.value;
+				for (let u of URLs)
+					val = val.replace(u.reg, u.repl);
+
+				textarea.value = val;
+			}
+		});
+	},
 };

@@ -46,7 +46,7 @@ Foxtrick.Pages.Player.isYouth = function(doc) {
 /**
  * Get player age
  * @param  {document} doc
- * @return {number}
+ * @return {?{years:number, days:number}}
  */
 Foxtrick.Pages.Player.getAge = function(doc) {
 	try {
@@ -109,6 +109,8 @@ Foxtrick.Pages.Player.getId = function(doc) {
  */
 Foxtrick.Pages.Player.getNationalityId = function(doc) {
 	var id = null;
+
+	/** @type {HTMLAnchorElement} */
 	var link = doc.querySelector('.playerInfo a[href^="/World/Leagues/League.aspx"]') ||
 		doc.querySelector('.flag');
 
@@ -214,6 +216,8 @@ Foxtrick.Pages.Player.getAttributes = function(doc) {
 	const STAMINA_ROW_NEW = 4;
 
 	var num = link => Foxtrick.util.id.getSkillLevelFromLink(link);
+
+	/** @type {HTMLAnchorElement[]} */
 	var personLinks;
 
 	try {
@@ -234,6 +238,7 @@ Foxtrick.Pages.Player.getAttributes = function(doc) {
 			personLinks = Foxtrick.toArray(doc.querySelectorAll('#mainBody > p .skill'));
 		}
 		else {
+			/** @type {HTMLAnchorElement[]} */
 			let links = Foxtrick.toArray(doc.querySelectorAll('.playerInfo .skill'));
 
 			// form vs stamina
@@ -256,7 +261,7 @@ Foxtrick.Pages.Player.getAttributes = function(doc) {
 		// personality
 		let idx;
 		for (idx = 0; idx < PERSONALITY.length; idx++) {
-			let attr = Foxtrick.getUrlParam(personLinks[idx], 'lt');
+			let attr = Foxtrick.getUrlParam(personLinks[idx].href, 'lt');
 			attrs[attr] = num(personLinks[idx]);
 		}
 
@@ -311,11 +316,13 @@ Foxtrick.Pages.Player.isBruised = function(doc) {
 Foxtrick.Pages.Player.getInjuryCell = function(doc) {
 	var ret = null;
 	try {
-		var injuryRow, infoTable;
-		var teamLink = doc.querySelector('#mainBody a[href^="/Club/?TeamID="]');
-		if (teamLink && (infoTable = teamLink.closest('table')) ||
-			(infoTable = doc.querySelector('.playerInfo table'))) {
-			var icon = infoTable.querySelector('.plaster, .icon-injury');
+		/** @type {HTMLTableElement} */
+		var infoTable = doc.querySelector('.ownerAndStatusPlayerInfo table') ||
+			doc.querySelector('.playerInfo table');
+
+		if (infoTable) {
+			let injuryRow;
+			let icon = infoTable.querySelector('.plaster, .icon-injury');
 			if (icon)
 				ret = icon.closest('td');
 			else if ((injuryRow = infoTable.rows[4]))
@@ -358,6 +365,7 @@ Foxtrick.Pages.Player.getCards = function(doc) {
 	const MAX_CARDS = 3;
 	var cards = 0;
 	try {
+		/** @type {HTMLTableElement} */
 		var infoTable = doc.querySelector('.playerInfo table');
 		var cardCell = infoTable.rows[3].cells[1];
 		cards = parseInt(cardCell.textContent.trim(), 10);
@@ -405,7 +413,7 @@ Foxtrick.Pages.Player.getTeamName = function(doc) {
  * Get the player info table.
  *
  * @param  {document} doc
- * @return {{isNewDesign: Boolean, isYouth: Boolean, table: Element}}
+ * @return {{isNewDesign: Boolean, isYouth: Boolean, table: HTMLTableElement}}
  */
 Foxtrick.Pages.Player.getInfoTable = function(doc) {
 	var isNewDesign = false;
@@ -451,7 +459,7 @@ Foxtrick.Pages.Player.getWageCell = function(doc) {
  * Returns {base, bonus, total: number}.
  * Senior player only.
  * @param  {document} doc
- * @param  {?element} wageCell optional wage cell to parse; otherwise will be found
+ * @param  {?Element} wageCell optional wage cell to parse; otherwise will be found
  * @return {object}            {base: number, bonus: number, total: number}
  */
 Foxtrick.Pages.Player.getWage = function(doc, wageCell) {
@@ -488,11 +496,12 @@ Foxtrick.Pages.Player.getWage = function(doc, wageCell) {
 /**
  * Get the player specialty number
  * @param  {document} doc
- * @return {string}
+ * @return {number}
  */
 Foxtrick.Pages.Player.getSpecialtyNumber = function(doc) {
 	var specNr = 0;
 	try {
+		/** @type {HTMLTableElement} */
 		var infoTable = doc.querySelector('.playerInfo table');
 		var specRow = infoTable.rows[5];
 		if (specRow) {
@@ -553,6 +562,7 @@ Foxtrick.Pages.Player.getSkillsWithText = function(doc) {
 
 	try {
 		if (this.isPage(doc)) {
+			/** @type {HTMLTableElement} */
 			var skillTable;
 			if (this.isSenior(doc)) {
 				skillTable = doc.querySelector('.transferPlayerSkills, .mainBox table');
@@ -785,11 +795,19 @@ Foxtrick.Pages.Player.parseYouthSkills = function(table) {
 			else if (hasNewBars) {
 				// new bars
 				let bar = skillCell.querySelector('.ht-bar');
-				let [current, max] = numberCell.textContent.trim().split('/');
-				if (typeof max !== 'undefined') {
-					skill.current = parseFloat(current) || 0;
-					skill.max = parseFloat(max) || 0;
-					skill.maxed = !!(bar && bar.getAttribute('is-cap') !== '0');
+				let ratings = numberCell.textContent.trim();
+				if (ratings) {
+					let [current, max] = ratings.split('/');
+					if (typeof max !== 'undefined') {
+						skill.current = parseFloat(current) || 0;
+						skill.max = parseFloat(max) || 0;
+						skill.maxed = !!(bar && bar.getAttribute('is-cap') !== '0');
+					}
+				}
+				else if (bar) {
+					skill.current = Math.max(bar.getAttribute('level'), 0);
+					skill.max = Math.max(bar.getAttribute('cap'), 0);
+					skill.maxed = bar.getAttribute('is-cap') !== '0';
 				}
 			}
 			else if (imgs.length) {
@@ -818,7 +836,8 @@ Foxtrick.Pages.Player.parseYouthSkills = function(table) {
 			}
 			else if (links.length) {
 				// links may also be reveal links
-				let [currNode, maxNode] = skillCell.querySelectorAll('.shy, a');
+				let [currNode, maxNode] =
+					skillCell.querySelectorAll('a, .shy:not(.denominationNumber)');
 				let current = 0, max = 0;
 
 				if (currNode.matches('a.skill'))
@@ -846,7 +865,9 @@ Foxtrick.Pages.Player.parseYouthSkills = function(table) {
 			if (bar || links.length) {
 				// bar or links are present
 				// skills could either be a skill or unknown (span.shy) or activation link
-				let [currNode, maxNode] = skillCell.querySelectorAll('.shy, a');
+				let [currNode, maxNode] =
+					skillCell.querySelectorAll('.shy:not(.denominationNumber), a');
+
 				if (currNode.matches('a.skill'))
 					current = currNode.textContent.trim();
 
@@ -1126,36 +1147,36 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerid, callback) {
 			// player.joinedSince = xml.time('ArrivalDate');
 
 			/*
-			    <TrainerData>
-			      <TrainerType>2</TrainerType>
-			      <TrainerSkill>7</TrainerSkill>
-			    </TrainerData>
-			    <OwningTeam>
-			      <TeamID>672194</TeamID>
-			      <TeamName>Strange quarks</TeamName>
-			      <LeagueID>66</LeagueID>
-			    </OwningTeam>
+				<TrainerData>
+					<TrainerType>2</TrainerType>
+					<TrainerSkill>7</TrainerSkill>
+				</TrainerData>
+				<OwningTeam>
+					<TeamID>672194</TeamID>
+					<TeamName>Strange quarks</TeamName>
+					<LeagueID>66</LeagueID>
+				</OwningTeam>
 
-			    // README: version=2.5
-			    <TransferDetails>
-			      <AskingPrice>760000</AskingPrice>
-			      <Deadline>2016-10-31 08:40:25</Deadline>
-			      <HighestBid>760000</HighestBid>
-			      <MaxBid/> // version=2.6, optional
-			      <BidderTeam> // may be empty
-			        <TeamID>1064154</TeamID>
-			        <TeamName>Dinamo3000</TeamName>
-			      </BidderTeam>
-			    </TransferDetails>
+				// README: version=2.5
+				<TransferDetails>
+					<AskingPrice>760000</AskingPrice>
+					<Deadline>2016-10-31 08:40:25</Deadline>
+					<HighestBid>760000</HighestBid>
+					<MaxBid/> // version=2.6, optional
+					<BidderTeam> // may be empty
+						<TeamID>1064154</TeamID>
+						<TeamName>Dinamo3000</TeamName>
+					</BidderTeam>
+				</TransferDetails>
 
-			    <LastMatch>
-			      <Date>2014-07-26 15:20:00</Date>
-			      <MatchId>483831455</MatchId>
-			      <PositionCode>109</PositionCode>
-			      <PlayedMinutes>90</PlayedMinutes>
-			      <Rating>7</Rating>
-			      <RatingEndOfGame>6</RatingEndOfGame>
-			    </LastMatch>
+				<LastMatch>
+					<Date>2014-07-26 15:20:00</Date>
+					<MatchId>483831455</MatchId>
+					<PositionCode>109</PositionCode>
+					<PlayedMinutes>90</PlayedMinutes>
+					<Rating>7</Rating>
+					<RatingEndOfGame>6</RatingEndOfGame>
+				</LastMatch>
 			 */
 
 			callback(player);

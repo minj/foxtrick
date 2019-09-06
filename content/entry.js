@@ -135,16 +135,15 @@ Foxtrick.entry.run = function(doc) {
 
 		m.run(doc);
 
-		let diff = new Date().getTime() - begin;
+		let diff = new Date().getTime() - begin.getTime();
 		if (diff > PERFORMANCE_LOG_THRESHOLD)
 			Foxtrick.log(m.MODULE_NAME, 'run time:', diff, 'ms');
 	};
 
 	try {
 		let modules = Foxtrick.util.modules.getActive(doc);
-		let hasMainBody = !!doc.getElementById('mainBody');
-		let ngApp = doc.querySelector('#mainWrapper ng-app');
-		let shouldDelay = !hasMainBody && !!ngApp;
+		let ngApp = doc.querySelector('#mainWrapper ng-app, #mainBody ng-app');
+		let shouldDelay = !!ngApp;
 		let delayed = [], promise;
 
 		if (shouldDelay) {
@@ -154,6 +153,10 @@ Foxtrick.entry.run = function(doc) {
 						return false;
 
 					if (app.getElementsByTagName('ht-loading').length)
+						return false;
+
+					let spinner = app.querySelector('img[src$="/loading.gif"]');
+					if (spinner && !spinner.closest('ht-community-reactions'))
 						return false;
 
 					Promise.resolve(doc).then(resolve);

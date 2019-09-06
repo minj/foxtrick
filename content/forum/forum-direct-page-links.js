@@ -97,7 +97,7 @@ Foxtrick.modules['DirectPageLinks'] = {
 				div.appendChild(rr);
 			}
 
-			var nparam = Foxtrick.getUrlParam(Foxtrick.getHref(doc), 'n');
+			var nparam = Foxtrick.getUrlParam(doc.URL, 'n');
 			var currentPostId = parseInt(nparam, 10) || 1;
 
 			var postsPerPage = getPostPerPage(next, prev, currentPostId);
@@ -149,7 +149,7 @@ Foxtrick.modules['DirectPageLinks'] = {
 				}
 			}
 
-			var href = Foxtrick.getHref(doc);
+			var href = doc.URL;
 			var rtl = Foxtrick.util.layout.isRtl(doc);
 			for (var pp = start; pp <= end; pp++) {
 				var p = pp;

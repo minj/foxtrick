@@ -5,13 +5,13 @@ pt-BR:
       question: Como posso estilizar meu Foxtrick ?
       answer: |
         <p>FoxTrick fornece um conjunto de interfaces de apresentação para que os usuários possam customizar com seus próprios estilos. Estas interfaces são fornecidas por IDs HTML e classes e você pode usar CSS para definir seu estilo preferido.</p>
-        
+
         <p>Um exemplo de arquivo de estilo de usuário pode ser encontrado  <linkCSSExample>Aqui</linkCSSExample> ou <linkCSSExampleGCode>aqui</linkCSSExampleGCode>, os quais você pode alterar para satisfazer suas necessidades. Após salvar o arquivo podes usar o módulo <module>SkinPlugin</module> para carregar o CSS que tenha os efeitos do seu estilo.</p>
     sound-format:
       question: Quais formatos são permitidos para os sons de alerta ?
       answer: |
         <p>Navegadores diferentes permitem diferentes formatos. Aqui vai uma lista (formatos não listados podem funcionar com os plugins corretos instalados, p. ex. Quicktime para tocar mp3 no firefox);</p>
-        
+
         <ul>
         <li>Mozilla: wav, ogg</li>
         <li>Safari (pode precisar do Quicktime): wav, mp3</li>
@@ -21,23 +21,23 @@ pt-BR:
       question: Qual o tamanho limite para os arquivos dos sons de alerta e onde posso colocá-los ?
       answer: |
         <p>Todos os navegadores podem rodar informações de URLs. Aqueles são os sons salvos internamente quando você usa o botão de carregar que estã nas preferências. Quando eles são convertidos e salvos nas suas preferência , o tamanho limite é em torno de 160kb por som.</p>
-        
+
         <p>Todos os navegadores podem tocar sons diretamente da internet (http urls). É só copiar o link para um som (p.ex. http://foxtrick.org/sound.wav) no campo de edição para os sons. Sem limite de tamanho.</p>
-        
+
         <p>Os navegadores da Mozilla também podem tocar sons diretamente do seu HD (arquivos) sem limite de tamanho. A forma mais fácil de ter o formato correto: No navegador pressione ctrl+o, encontre o arquivo de som e o selecione. Na barra de endereço no topo da página agora está o link correto para o arquivo em seus computador (p. ex. file:///c:/sound.wav). Copie e cole isso no compo de edição de sons.</p>
     authorize:
       question: Por que devo autorizar o FoxTrick para acessar os dados da meu time?
       answer: |
         <p>Embora a maior parte das informações necessárias para o FoxTrick possa ser buscada diretamente da página que você está vendo, alguns módulos precisam baixar alguns dados para funcionar corretamente</p>
-        
+
         <p>Para baixar os dados do Hattrick, incluindo os dados do seu time, ligas e seleções nacionais você precisa autorizar o FoxTrick antes.</p>
-        
+
         <p>Você autoriza o FoxTrick fornecendo seu nome e senha em chpp.hattrick.org e receberá um código de verificação que você fornecerá ao FoxTrick. O FoxTrick não terá acesso ao seu nome de usuário e senha durante todo o processo.</p>
-        
+
         <p>Para saber mais sobre o processo de autorização, por favor leia  <linkCHPPDesc> CHPP - Como isso funciona</linkCHPPDesc> no Hattrick.</p>
-        
+
         <p>Alguns módulos que podem precisar de seus dados para funcionar corretamente:</P>
-        
+
         <ul>
         <li><module>CrossTable</module></li>
         <li><module>ExtraPlayerInfo</module></li>
@@ -46,9 +46,9 @@ pt-BR:
         <li><module>NtPeek</module></li>
         <li><module>SeriesFlags</module></li>
         </ul>
-        
+
         <p>Alguns módulos que podem lhe trazer informações extras se puderem acessar seus dados do seu time no Hattrick:</p>
-        
+
         <ul>
         <li><module>SkillTable</module></li>
         <li><module>TeamStats</module></li>
@@ -57,9 +57,9 @@ pt-BR:
       question: Como foxtrick protegerá minha privacidade ?
       answer: |
         <p>O FoxTrick não carrega nenhum de seus dados ou preferências para nossos servidores; Também não enviamos nenhum de seus dados, incluindo mas não se restringindo ao seu nome de usuário. senha, ID de jogadores associados às habilidades para terceiros.</p>
-        
+
         <p>As informações passadas à terceiros, as que estão listadas abaixo, são enviadas pelo método "GET CHPP" e serão enviadas apenas se você autorizar com clique em um link.</P>
-        
+
         <p>É isso, você poderá ver todas as informações que forem repassadas inspecionando o URI - (Uniform Resource Identifier) de um link externo e nenhuma informação será repassada sem o seu consentimento. Como listado acima, nenhum dado pessoal está envolvido.</p>
-        
+
         <p>As exceções são módulos  <module>HTMSPrediction</module> e  <module>HTEVPrediction</module>, em que ratings das partidas são enviados e recebidos dos respectivos sites com um XMLHttpRequest.</p>

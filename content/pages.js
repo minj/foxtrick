@@ -70,7 +70,8 @@ Foxtrick.htPages = {
 	'transfersPlayer'           : '/Club/Transfers/TransfersPlayer.aspx',
 	'transferSearchForm'        : '/World/Transfers/(Default.aspx|?|$)',
 	'transferSearchResult'      : '/World/Transfers/TransfersSearchResult(.|.Classic.)aspx',
-	'match'                     : '/Club/Matches/Match.aspx|/Club/Matches/PreMatch.aspx',
+	'match'                     : '/Club/Matches/Match(.|.Classic.)aspx|' +
+	                              '/Club/Matches/PreMatch.aspx',
 	'matches'                   : '/Club/Matches/(Default.aspx|?|$)',
 	'matchesCup'                : '/Club/Cup/(Default.aspx|?|$)',
 	'worldMatches'              : '/World/Matches/',
@@ -213,7 +214,7 @@ Foxtrick.pagesExcluded = {
  *
  * @param  {document}     doc
  * @param  {string|Array} page
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.isPage = function(doc, page) {
 	if (Array.isArray(page)) {
@@ -245,7 +246,7 @@ Foxtrick.makePageRe = function(reStr) {
  * Test whether URL belongs to a certain page type
  * @param  {string}  href
  * @param  {string}  reStr
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.isPageHref = function(href, reStr) {
 	let pageRe = this.makePageRe(reStr);
@@ -255,7 +256,7 @@ Foxtrick.isPageHref = function(href, reStr) {
 /**
  * Test whether Foxtrick should not run on this document
  * @param  {document} doc
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.isExcluded = function(doc) {
 	for (let i in this.pagesExcluded) {

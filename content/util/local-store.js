@@ -8,12 +8,12 @@
 
 'use strict';
 
+/* global indexedDB */
+
 /* eslint-disable */
 if (!this.Foxtrick)
 	var Foxtrick = {};
 /* eslint-enable */
-
-/* global indexedDB */
 
 Foxtrick.storage = {};
 
@@ -34,21 +34,20 @@ if (Foxtrick.context == 'background') {
 			const STORE = {
 				put: function(key, value, success, failure) {
 
-					var promise = new Promise(function(resolve) {
+					let promise = Promise.resolve().then(() => {
 
-						key = PREFIX + key;
-						var val = JSON.stringify(value);
+						let k = PREFIX + key;
+						let val = JSON.stringify(value);
 
-						window.localStorage.setItem(key, val);
+						window.localStorage.setItem(k, val);
 
-						resolve(key);
+						return k;
 
 					}).then(success, failure);
 
 					// return a 'raw' Promise for internal use if failure is null
-					if (failure === null) {
+					if (failure === null)
 						return promise;
-					}
 
 					// log any errors otherwise
 					return promise.catch(CLEANUP);
@@ -57,19 +56,18 @@ if (Foxtrick.context == 'background') {
 
 				get: function(key, success, failure) {
 
-					var promise = new Promise(function(resolve) {
+					let promise = Promise.resolve().then(() => {
 
-						key = PREFIX + key;
-						var val = window.localStorage.getItem(key);
+						let k = PREFIX + key;
+						let val = window.localStorage.getItem(k);
 
-						resolve(JSON.parse(val));
+						return JSON.parse(val);
 
 					}).then(success, failure);
 
 					// return a 'raw' Promise for internal use if failure is null
-					if (failure === null) {
+					if (failure === null)
 						return promise;
-					}
 
 					// log any errors otherwise
 					return promise.catch(CLEANUP);
@@ -91,9 +89,8 @@ if (Foxtrick.context == 'background') {
 								};
 
 								cursor.delete = function() {
-									return new Promise(function(resolve) {
+									return Promise.resolve().then(() => {
 										window.localStorage.removeItem(PREFIX + key);
-										resolve();
 									}).catch(CLEANUP);
 								};
 							}
@@ -133,7 +130,8 @@ if (Foxtrick.context == 'background') {
 				},
 
 				makeKeyRange: function(opts) {
-					const MAX_CHAR = String.fromCharCode(0xffff);
+					const MAX_CHAR_CODE = 0xffff;
+					const MAX_CHAR = String.fromCharCode(MAX_CHAR_CODE);
 					const MIN_CHAR = String.fromCharCode(0);
 
 					var ret = {};
@@ -146,8 +144,9 @@ if (Foxtrick.context == 'background') {
 							var last = ret.lower.charCodeAt(len - 1);
 							ret.upper = ret.lower.slice(0, len - 1) + String.fromCharCode(last + 1);
 						}
-						else
+						else {
 							ret.upper = MIN_CHAR;
+						}
 
 						ret.lowerOpen = false;
 						ret.upperOpen = true;
@@ -225,9 +224,9 @@ if (Foxtrick.context == 'background') {
  * key should be a string.
  * value may be any stringify-able object.
  *
- * @param  {string}  key
- * @param  {object}  value
- * @return {Promise}       {Promise.<key>}
+ * @param  {string}          key
+ * @param  {*}               value
+ * @return {Promise<string>}       {Promise.<key>}
  */
 Foxtrick.storage.set = function(key, value) {
 
@@ -239,7 +238,7 @@ Foxtrick.storage.set = function(key, value) {
 				value: value,
 			}, function onSendResponse(response) {
 
-				var err = Foxtrick.JSONError(response);
+				var err = Foxtrick.jsonError(response);
 				if (err instanceof Error)
 					reject(err);
 				else
@@ -274,8 +273,8 @@ Foxtrick.storage.set = function(key, value) {
  * key should be a string.
  * value may be any stringify-able object or null if N/A.
  *
- * @param  {string}  key
- * @return {Promise}     {Promise.<?value>}
+ * @param  {string}      key
+ * @return {Promise<?*>}     {Promise.<?value>}
  */
 Foxtrick.storage.get = function(key) {
 
@@ -331,7 +330,7 @@ Foxtrick.storage.deleteBranch = function(branch) {
 				branch: branch,
 			}, function onSendResponse(response) {
 
-				var err = Foxtrick.JSONError(response);
+				var err = Foxtrick.jsonError(response);
 				if (err instanceof Error)
 					reject(err);
 				else
@@ -344,45 +343,46 @@ Foxtrick.storage.deleteBranch = function(branch) {
 	return Foxtrick.localStore.then(function(store) {
 
 		return new Promise(function(fulfill, reject) {
+			let br;
 			if (branch == null)
-				branch = '';
+				br = '';
 
-			branch = branch.toString();
+			br = branch.toString();
 
 			var options = {
 				writeAccess: true,
 
 				onEnd: function() {
-					Foxtrick.log('localStore branch "' + branch + '" deleted');
+					Foxtrick.log('localStore branch "' + br + '" deleted');
 
 					fulfill();
 				},
 
 				onError: function(e) {
-					Foxtrick.log('Error deleting localStore branch', branch, e.message);
+					Foxtrick.log('Error deleting localStore branch', br, e.message);
 
 					reject(e);
 				},
 			};
 
 			try {
-				if (branch !== '') {
+				if (br !== '') {
 					options.keyRange = store.makeKeyRange({
-						lower: branch + '.', // charCode 46
-						upper: branch + '/', // charCode 47
+						lower: br + '.', // charCode 46
+						upper: br + '/', // charCode 47
 						excludeUpper: true,
 					});
 				}
 			}
 			catch (e) {
-				Foxtrick.log('Error deleting localStore branch', branch,
+				Foxtrick.log('Error deleting localStore branch', br,
 				             'in makeKeyRange', e.message);
 
 				reject(e);
 				return;
 			}
 
-			store.iterate(function onStoreIterate(item, cursor) { // jshint ignore:line
+			store.iterate(function onStoreIterate(item, cursor) {
 				cursor.delete();
 			}, options);
 
@@ -417,7 +417,7 @@ Foxtrick.localSet = function(key, value) {
  * @deprecated use storage.get() instead
  *
  * @param {string}   key
- * @param {function} callback
+ * @param {function(any):any} callback
  */
 Foxtrick.localGet = function(key, callback) {
 	Foxtrick.storage.get(key).then(callback).catch(Foxtrick.catch('localGet'));

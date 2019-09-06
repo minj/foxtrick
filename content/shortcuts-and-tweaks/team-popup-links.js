@@ -20,32 +20,32 @@ Foxtrick.modules['TeamPopupLinks'] = {
 
 	LINKS: {
 		Team: {
-			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_team=true'
+			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_team=true',
 		},
 		Manager: {
-			linkByTeam: '/Club/Manager/?teamId=[teamid]'
+			linkByTeam: '/Club/Manager/?teamId=[teamid]',
 		},
 		Matches: {
 			ownLink: '/Club/Matches/',
 			linkByTeam: '/Club/Matches/?teamId=[teamid]',
-			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_matches=true'
+			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_matches=true',
 		},
 		Players: {
 			ownLink: '/Club/Players/',
 			linkByTeam: '/Club/Players/?teamId=[teamid]',
-			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_players=true'
+			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_players=true',
 		},
 		Series: {
 			linkByTeam: '/Club/Manager/?teamId=[teamid]&redir_to_series=true',
-			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_series=true'
+			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_series=true',
 		},
 		last_5_ips: {
 			linkByTeam: '/Club/Manager/?teamId=[teamid]&ShowOldConnections=true',
-			linkByUser: '/Club/Manager/?userId=[userid]&ShowOldConnections=true'
+			linkByUser: '/Club/Manager/?userId=[userid]&ShowOldConnections=true',
 		},
 		Guestbook: {
 			linkByTeam: '/Club/Manager/Guestbook.aspx?teamId=[teamid]',
-			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_guestbook=true'
+			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_guestbook=true',
 		},
 		SendMessage: {
 			linkByTeam: '/Club/?teamId=[teamid]&redir_to_mail=true',
@@ -53,55 +53,55 @@ Foxtrick.modules['TeamPopupLinks'] = {
 		},
 		Challenge: {
 			linkByTeam: '/Club/?teamId=[teamid]&make_challenge',
-			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_challenge=true'
+			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_challenge=true',
 		},
 		Achievements: {
 			linkByTeam: '/Club/Manager/?teamId=[teamid]&redir_to_achievements=true',
-			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_achievements=true'
+			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_achievements=true',
 		},
 		Coach: {
 			ownLink: '/Club/Training/?redir_to_coach=true',
 			linkByTeam: '/Club/Players/?teamId=[teamid]&redir_to_coach=true',
-			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_coach=true'
+			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_coach=true',
 		},
 		TeamAnalysis: {
 			ownLink: '/Club/TacticsRoom/',
 			linkByTeam: '/Club/TacticsRoom/?teamId=[teamid]',
-			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_analysis=true'
+			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_analysis=true',
 		},
 		TransferHistory: {
 			linkByTeam: '/Club/Transfers/transfersTeam.aspx?teamId=[teamid]',
-			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_transferhistory=true'
+			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_transferhistory=true',
 		},
 		TeamHistory: {
 			linkByTeam: '/Club/History/?teamId=[teamid]',
-			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_teamhistory=true'
+			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_teamhistory=true',
 		},
 		FlagCollection: {
 			linkByTeam: '/Club/Flags/?teamId=[teamid]',
-			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_flags=true'
+			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_flags=true',
 		},
 		LastLineup: {
 			linkByTeam: '/Club/Matches/MatchLineup.aspx?teamId=[teamid]' +
 				'&useArchive=True&redir_to_newlineup=true',
-			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_lastlineup=true'
+			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_lastlineup=true',
 		},
 		NextMatch: {
 			linkByTeam: '/Club/Matches/?teamId=[teamid]&redir_to_nextmatch=true',
-			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_nextmatch=true'
+			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_nextmatch=true',
 		},
 		AddNextMatch: {
 			linkByTeam: '/Club/Matches/?teamId=[teamid]&redir_to_addnextmatch=true',
-			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_addnextmatch=true'
+			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_addnextmatch=true',
 		},
 		YouthMatches: {
 			linkByTeam: '/Club/Matches/?teamId=[teamid]&redir_to_youthmatches=true',
-			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_youthmatches=true'
+			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_youthmatches=true',
 		},
 		Tournaments: {
 			linkByTeam: '/Community/Tournaments/?teamId=[teamid]',
-			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_tournaments=true'
-		}
+			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_tournaments=true',
+		},
 	},
 
 	OPTION_FUNC: function(doc) {
@@ -162,134 +162,157 @@ Foxtrick.modules['TeamPopupLinks'] = {
 	},
 
 	run: function(doc) {
-		var sUrl = Foxtrick.getHref(doc);
+		const module = this;
+
 		// show last 5 logins
-		if (sUrl.search(/ShowOldConnections=true/i) != -1) {
-			var a = Foxtrick.getMBElement(doc, 'lnkShowLogins');
-			if (a) {
-				a.click();
-			}
+		if (/ShowOldConnections=true/i.test(doc.URL)) {
+			let a = Foxtrick.getMBElement(doc, 'lnkShowLogins');
+			a && a.click();
 		}
-		this.add_popup_links(doc);
+
+		module.addPopupLinks(doc);
 	},
 
 	/* eslint-disable complexity */
-	add_popup_links: function(doc) {
+	addPopupLinks: function(doc) {
+		const module = this;
+		const MODULE_NAME = module.MODULE_NAME;
+
+		const TEAM_RE = /Club\/(Default\.aspx)?\?TeamID=/i;
+		const MANAGER_RE = /Club\/Manager\/(Default\.aspx)?\?UserID=/i;
+		const FORUM_RE = /Forum\/(Default\.aspx)?\?/i;
+		const TEAM_ID_TAG = /\[teamid\]/i;
+		const USER_ID_TAG = /\[userid\]/i;
+		const USER_NAME_TAG = /\[username\]/i;
+		const REDIR_RE = /redir_to/i;
+
+		var teamEnabled = Foxtrick.Prefs.isModuleOptionEnabled(module, 'TeamLinks');
+		var userEnabled = Foxtrick.Prefs.isModuleOptionEnabled(module, 'UserLinks');
+		var highlightEnabled = Foxtrick.Prefs.isModuleOptionEnabled(module, 'TeamHighlight');
+		var customEnabled = Foxtrick.Prefs.isModuleOptionEnabled(module, 'CustomLink');
+
 		var mainBody = doc.getElementById('mainBody');
 
-		var sUrl = Foxtrick.getHref(doc);
+		var sUrl = doc.URL;
 		var ownTeamId = Foxtrick.util.id.getOwnTeamId();
 		var curTeamId = Foxtrick.Pages.All.getTeamId(doc);
 		var hasScroll = Foxtrick.util.layout.mainBodyHasScroll(doc);
 		var links = this.LINKS;
 
-
 		var addSpan = function(aLink) {
-			if (Foxtrick.hasClass(aLink, 'ft-tpl')
-			    || Foxtrick.hasClass(aLink, 'ft-popup-list-link'))
+			if (Foxtrick.hasClass(aLink, 'ft-tpl') ||
+			    Foxtrick.hasClass(aLink, 'ft-popup-list-link'))
 				return;
 
-			if ((aLink.href.search(/Club\/\?TeamID=/i) > -1 && aLink.href.search(/redir_to/i) === -1
-			    && Foxtrick.Prefs.isModuleOptionEnabled('TeamPopupLinks', 'TeamLinks'))
-				|| (aLink.href.search(/Club\/Manager\/\?UserID=/i) != -1
-				&& Foxtrick.Prefs.isModuleOptionEnabled('TeamPopupLinks', 'UserLinks'))) {
-				var par = aLink.parentNode;
-				var span = Foxtrick.createFeaturedElement(doc,
-				                                          Foxtrick.modules.TeamPopupLinks, 'span');
+			var url = aLink.href;
+			var parent = aLink.parentNode;
+			var grandParent = parent.parentNode;
+
+			if (TEAM_RE.test(url) && !REDIR_RE.test(url) && teamEnabled ||
+			    MANAGER_RE.test(url) && userEnabled) {
+
+				var span = Foxtrick.createFeaturedElement(doc, module, 'span');
 				span.className = 'ft-popup-span';
-				if (Foxtrick.Prefs.isModuleOptionEnabled('TeamPopupLinks', 'TeamHighlight')
-					&& aLink.href.search(/Club\/\?TeamID=/i) > -1
-					&& curTeamId == aLink.href.match(/Club\/\?TeamID=(\d+)/i)[1]) {
-					if (aLink.parentNode.nodeName == 'TD')
-						Foxtrick.addClass(aLink.parentNode.parentNode, 'ftTeamHighlight');
-					else if (aLink.parentNode.parentNode.nodeName == 'TD')
-						Foxtrick.addClass(aLink.parentNode.parentNode.parentNode,
-						                  'ftTeamHighlight');
+
+				if (highlightEnabled && TEAM_RE.test(url) &&
+					curTeamId == parseInt(Foxtrick.getUrlParam(url, 'TeamID'), 10)) {
+
+					if (parent.nodeName == 'TD')
+						Foxtrick.addClass(grandParent, 'ftTeamHighlight');
+					else if (grandParent.nodeName == 'TD')
+						Foxtrick.addClass(grandParent.parentNode, 'ftTeamHighlight');
 				}
 
-				if (!Foxtrick.isPage(doc, 'forumViewThread')
-					&& !Foxtrick.isPage(doc, 'forumWritePost')
-					&& !Foxtrick.isPage(doc, 'forumModWritePost')
-					&& !Foxtrick.isPage(doc, 'region')
-					&& (Foxtrick.util.layout.isStandard(doc) || aLink.parentNode.nodeName != 'TD'))
-					//Foxtrick.addClass(aLink, 'ft-nowrap');
+				const pages = ['forumViewThread', 'forumWritePost', 'forumModWritePost', 'region'];
+				if (!Foxtrick.isPage(doc, pages) &&
+					(Foxtrick.util.layout.isStandard(doc) || parent.nodeName != 'TD')) {
+					// Foxtrick.addClass(aLink, 'ft-nowrap');
 					Foxtrick.addClass(aLink, 'ft-tpl');
+				}
 				else {
 					Foxtrick.addClass(aLink, 'ft-tpl');
 				}
-				par.insertBefore(span, aLink);
 
+				parent.insertBefore(span, aLink);
 
 				// to show a pop-up!
 				var showPopup = function(ev) {
 					var findLink = function(node) {
-						if (node.nodeName.toLowerCase() == 'a' &&
-							!Foxtrick.hasClass(node, 'ft-no-popup'))
+						if (node.nodeName == 'A' && !Foxtrick.hasClass(node, 'ft-no-popup'))
 							return node;
+
 						if (!node.parentNode)
 							return null;
+
 						return findLink(node.parentNode);
 					};
+
 					// need to find <a> recursively as <a> may have children
 					// like <bdo>
-					var org_link = findLink(ev.target);
-					if (org_link === null)
+					var orgLink = findLink(ev.target);
+					if (orgLink == null)
 						return; // no link found
-					var show_more = false;
-					if (org_link.getAttribute('more')) {
-						if (org_link.getAttribute('more') == 'true')
-							show_more = true;
-						org_link = org_link.parentNode.parentNode.previousSibling;
+
+					var showMore = false;
+					if (orgLink.getAttribute('more')) {
+						if (orgLink.getAttribute('more') == 'true')
+							showMore = true;
+
+						orgLink = orgLink.parentNode.parentNode.previousSibling;
 					}
 
-					var teamid = Foxtrick.util.id.getTeamIdFromUrl(org_link.href);
-					if (teamid) {
+					var teamId = Foxtrick.util.id.getTeamIdFromUrl(orgLink.href);
+					if (teamId) {
 						// eslint-disable-next-line no-unused-vars
-						let teamname = org_link.textContent; // lgtm[js/unused-local-variable]
+						let teamName = orgLink.textContent; // lgtm[js/unused-local-variable]
 					}
 
-					var username;
-					var userid = Foxtrick.util.id.getUserIdFromUrl(org_link.href);
-					if (userid) {
-						var linkName = org_link.textContent.trim();
-						var titleName = org_link.title.trim();
+					var userName;
+					var userId = Foxtrick.util.id.getUserIdFromUrl(orgLink.href);
+					if (userId) {
+						let linkName = orgLink.textContent.trim();
+						let titleName = orgLink.title.trim();
 						if (titleName.slice(0, linkName.length) === linkName) {
 							// link name seems to be shortened for long user names
 							// using titleName instead if it's a superstring
-							username = titleName;
+							userName = titleName;
 						}
-						else
-							username = linkName;
+						else {
+							userName = linkName;
+						}
 					}
 
-					var owntopteamlinks = (org_link.parentNode.parentNode.tagName == 'DIV'
-					                       && org_link.parentNode.parentNode.id == 'teamLinks');
+					var ownTopTeamLinks = orgLink.parentNode.parentNode.nodeName == 'DIV' &&
+						orgLink.parentNode.parentNode.id == 'teamLinks';
 
-					var list = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.TeamPopupLinks,
-					                                          'ul');
+					var list = Foxtrick.createFeaturedElement(doc, module, 'ul');
 					list.className = 'ft-popup-list';
 
 					var addItem = function(key, isOwnTeam, teamId, userId, userName, ownLink,
 					                       linkByTeam, linkByUser, linkByUserName) {
+
 						var item = doc.createElement('li');
 						var link = doc.createElement('a');
 						link.className = 'ft-popup-list-link';
-						if (userName && userId && userId == userName.match(/\d+/))
-							userName = '';
+
+						var user = userName;
+						if (user && userId && userId == user.match(/\d+/))
+							user = '';
+
 						if (isOwnTeam && ownLink)
 							link.href = ownLink;
 						else if (teamId && linkByTeam)
-							link.href = linkByTeam.replace(/\[teamid\]/i, teamId);
-						else if (userName && linkByUserName)
-							link.href = linkByUserName.replace(/\[username\]/i, userName);
+							link.href = linkByTeam.replace(TEAM_ID_TAG, teamId);
+						else if (user && linkByUserName)
+							link.href = linkByUserName.replace(USER_NAME_TAG, user);
 						else if (userId && linkByUser)
-							link.href = linkByUser.replace(/\[userid\]/i, userId);
+							link.href = linkByUser.replace(USER_ID_TAG, userId);
 						else
 							return;
 
 						var openInNewTab = function(option) {
-							return Foxtrick.Prefs.getBool('module.TeamPopupLinks.' + option + '.' +
-							                             'newTab');
+							let key = `module.${MODULE_NAME}.${option}.newTab`;
+							return Foxtrick.Prefs.getBool(key);
 						};
 
 						if (openInNewTab(key))
@@ -301,103 +324,105 @@ Foxtrick.modules['TeamPopupLinks'] = {
 					};
 
 					var isEnabledWithinContext = function(option, more) {
-						return Foxtrick.Prefs.getBool('module.TeamPopupLinks.' + option + '.' +
-						                             (more ? 'more' : 'default'));
+						let key = `module.${MODULE_NAME}.${option}.${more ? 'more' : 'default'}`;
+						return Foxtrick.Prefs.getBool(key);
 					};
 
-					var show_less_more = false;
+					var showLessMore = false;
 
-					if (owntopteamlinks) {
+					if (ownTopTeamLinks) {
 						// own team's link at the top of the page
-						var ownLinks = ['Matches', 'Players'];
-						for (var item = 0; item < ownLinks.length; ++item) {
-							var link = ownLinks[item];
-							if (links[link]) {
-								addItem(link, true,
-									null, null, null,
-									links[link].ownLink,
-									null, null, null);
-							}
+						for (let link of ['Matches', 'Players']) {
+							let def = links[link];
+							if (!def)
+								continue;
+
+							let ownLink = def.ownLink;
+							addItem(link, true, null, null, null, ownLink, null, null, null);
 						}
 					}
 					else {
-						var link;
-						for (link in links) {
-							if (isEnabledWithinContext(link, show_more)) {
-								addItem(link, teamid == ownTeamId, teamid,
-									userid, username, links[link].ownLink,
-									links[link].linkByTeam, links[link].linkByUser,
-									links[link].linkByUserName);
-							} else {
-								if (isEnabledWithinContext(link, !show_more))
-									show_less_more = true;
+						for (let link in links) {
+							if (isEnabledWithinContext(link, showMore)) {
+								let def = links[link];
+								let own = teamId == ownTeamId;
+								addItem(link, own, teamId, userId, userName, def.ownLink,
+								        def.linkByTeam, def.linkByUser, def.linkByUserName);
+							}
+							else if (isEnabledWithinContext(link, !showMore)) {
+								showLessMore = true;
 							}
 						}
 
-						if (Foxtrick.Prefs.isModuleOptionEnabled('TeamPopupLinks', 'CustomLink')) {
-							var ownlinks =
-								Foxtrick.Prefs.getString('module.TeamPopupLinks.CustomLink_text');
-							if (typeof(ownlinks) === 'string') {
-								ownlinks = ownlinks.split(/\n/);
-								var i = 0, ownlink;
-								while (ownlink = ownlinks[i++]) {
-									try {
-										var redir_to_custom = false;
-										var json = JSON.parse(ownlink);
+						if (customEnabled) {
+							let customLinkText =
+								Foxtrick.Prefs.getString(`module.${MODULE_NAME}.CustomLink_text`);
 
-										if (show_more != json.more) {
-											show_less_more = true;
+							if (typeof customLinkText === 'string') {
+								let ownLinks = customLinkText.split(/\n/);
+								for (let ownLink of ownLinks) {
+									try {
+										let redirToCustom = false;
+										let json = JSON.parse(ownLink);
+
+										if (showMore != json.more) {
+											showLessMore = true;
 											continue;
 										}
 
-										var item = doc.createElement('li');
-										var a6 = doc.createElement('a');
-										a6.href = Foxtrick.util.sanitize.parseUrl(json.link);
-										a6.title = json.title;
-										a6.textContent = json.title;
+										let item = doc.createElement('li');
+										let link = doc.createElement('a');
+										link.href = Foxtrick.util.sanitize.parseUrl(json.link);
+										link.title = json.title;
+										link.textContent = json.title;
 
-										if (a6.href.search(/\[teamid\]/i) != -1) {
-											if (teamid) a6.href = a6.href.replace(/\[teamid\]/i, teamid);
-											else redir_to_custom = true;
-										}
-										if (a6.href.search(/\[userid\]/i) != -1) {
-											if (userid) a6.href = a6.href.replace(/\[userid\]/i, userid);
-											else redir_to_custom = true;
+										if (TEAM_ID_TAG.test(link.href)) {
+											if (teamId)
+												link.href = link.href.replace(TEAM_ID_TAG, teamId);
+											else
+												redirToCustom = true;
 										}
 
-										if (redir_to_custom) {
-											if (teamid == null) {
-												a6.href = '/Club/Manager/?userId=' +
-													userid + '&redir_to_custom=true&redir_to=' +
-													a6.href;
+										if (USER_ID_TAG.test(link.href)) {
+											if (userId)
+												link.href = link.href.replace(USER_ID_TAG, userId);
+											else
+												redirToCustom = true;
+										}
+
+										if (redirToCustom) {
+											if (teamId == null) {
+												link.href = '/Club/Manager/?userId=' + userId +
+													'&redir_to_custom=true&redir_to=' + link.href;
 											}
 											else {
-												a6.href = '/Club/Manager/?teamId=' + teamid +
-													'&redir_to_custom=true&redir_to=' + a6.href;
+												link.href = '/Club/Manager/?teamId=' + teamId +
+													'&redir_to_custom=true&redir_to=' + link.href;
 											}
 										}
 										if (json.newTab)
-											a6.target = '_blank';
+											link.target = '_blank';
 
-										item.appendChild(a6);
+										item.appendChild(link);
 										list.appendChild(item);
-									} catch (e) {
+									}
+									catch (e) {
 										Foxtrick.log('custom teampopup error:', e);
 									}
 								}
 							}
 						}
 
-						if (show_less_more) {
-							var item = doc.createElement('li');
-							var link = doc.createElement('a');
-							if (!show_more) {
-								link.setAttribute('more', 'true');
-								link.textContent = Foxtrick.L10n.getString('more');
-							}
-							else {
+						if (showLessMore) {
+							let item = doc.createElement('li');
+							let link = doc.createElement('a');
+							if (showMore) {
 								link.setAttribute('more', 'false');
 								link.textContent = Foxtrick.L10n.getString('less');
+							}
+							else {
+								link.setAttribute('more', 'true');
+								link.textContent = Foxtrick.L10n.getString('more');
 							}
 							Foxtrick.onClick(link, showPopup);
 							item.appendChild(link);
@@ -406,24 +431,26 @@ Foxtrick.modules['TeamPopupLinks'] = {
 
 					}
 
-					var pT = Foxtrick.getElementPosition(org_link, mainBody)['top'];
-					if ((hasScroll && (pT - mainBody.scrollTop < mainBody.offsetHeight / 2))
-						|| pT - doc.body.scrollTop < 300 || !mainBody) { // = popdown
-						var more = list.removeChild(list.lastChild);
+					var down = false;
+
+					let pos = Foxtrick.getElementPosition(orgLink, mainBody);
+					var pT = pos.top;
+					if (hasScroll && pT - mainBody.scrollTop < mainBody.offsetHeight / 2 ||
+					    pT - doc.body.scrollTop < 300 || !mainBody) { // = popdown
+
+						let more = list.removeChild(list.lastChild);
 						list.insertBefore(more, list.firstChild);
-						var down = true;
+
+						down = true;
 					}
 
-					if (!down)
-						Foxtrick.addClass(list, 'ft-popup-list-up');
-					else
-						Foxtrick.addClass(list, 'ft-popup-list-down');
+					Foxtrick.addClass(list, 'ft-popup-list-' + (down ? 'down' : 'up'));
 
-					if (org_link.parentNode.getElementsByClassName('ft-popup-list')[0])
-						org_link.parentNode.removeChild(org_link.parentNode
-						                                .getElementsByClassName('ft-popup-list')[0]);
+					let parentTPL = orgLink.parentNode.querySelector('.ft-popup-list');
+					if (parentTPL)
+						parentTPL.remove();
 
-					Foxtrick.insertAfter(list, org_link);
+					Foxtrick.insertAfter(list, orgLink);
 				};
 				Foxtrick.listen(aLink, 'mouseover', showPopup, false);
 				span.appendChild(aLink);
@@ -436,35 +463,36 @@ Foxtrick.modules['TeamPopupLinks'] = {
 			addSpan(link);
 
 		// all in mainWrapper (ie. not left boxes)
-		if (sUrl.search(/Forum\/(Default\.aspx)?\?/i) != -1)
+		if (FORUM_RE.test(sUrl))
 			return; // not in forum overview
+
 		if (mainBody) {
-			var aLinks = mainBody.getElementsByTagName('a');
-			var i = 0, aLink;
-			while ((aLink = aLinks[i++])) {
+			let aLinks = mainBody.querySelectorAll('a');
+			for (let aLink of aLinks) {
 				if (!aLink.hasAttribute('href') ||
 				    Foxtrick.hasClass(aLink, 'ft-no-popup') ||
 				    aLink.parentNode.className == 'liveTabText' ||
 				    aLink.querySelector('img:not(.ft-staff-icon)') !== null)
 					continue; // don't add to buttons, and htlive tabs
+
 				addSpan(aLink);
 			}
 		}
 
 		var sidebar = doc.getElementById('sidebar');
 		if (sidebar) {
-			aLinks = sidebar.getElementsByTagName('a');
-			i = 0;
-			while ((aLink = aLinks[i++])) {
+			let aLinks = sidebar.querySelectorAll('a');
+			for (let aLink of aLinks) {
 				if (!aLink.hasAttribute('href') ||
 				    aLink.querySelector('img:not(.ft-staff-icon)') !== null)
 					continue; // don't add to buttons
+
 				addSpan(aLink);
 			}
 		}
 	},
 
 	change: function(doc) {
-		this.add_popup_links(doc);
-	}
+		this.addPopupLinks(doc);
+	},
 };

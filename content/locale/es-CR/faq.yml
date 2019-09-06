@@ -9,7 +9,7 @@ es-CR:
       question: '¿Cuales son los formatos de archivo permitidos para los sonidos de alerta?'
       answer: |
         <p>Diferentes navegadores permiten diferentes formatos de archivo. Aquí está una lista (formatos no enumerados pueden funcionar si se instalan los plugins apropiados, por ejemplo Quicktime para reproducir mp3 en Firefox):</p>
-        
+
         <ul>
         <li>Mozilla: wav, ogg</li>
         <li>Safari (puede necesitar Quicktime): wav, mp3</li>

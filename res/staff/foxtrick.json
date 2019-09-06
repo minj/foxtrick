@@ -57,7 +57,7 @@
 		{
 			"duty": "supporter",
 			"id": "10354068",
-			"name": "gtavo"
+			"name": "<gtavo>"
 		},
 		{
 			"duty": "supporter",
@@ -68,6 +68,11 @@
 			"duty": "supporter",
 			"id": "10380313",
 			"name": "pinkusachi"
+		},
+		{
+			"duty": "supporter",
+			"id": "10403021",
+			"name": "luigimonte"
 		},
 		{
 			"duty": "translator",
@@ -90,6 +95,11 @@
 			"name": "AH-galla"
 		},
 		{
+			"duty": "supporter",
+			"id": "10537236",
+			"name": "Clepto"
+		},
+		{
 			"duty": "translator",
 			"id": "10562696",
 			"name": "<minskj-GIGANT>"
@@ -107,7 +117,7 @@
 		{
 			"duty": "supporter",
 			"id": "10621822",
-			"name": "<Baldruus>"
+			"name": "Baldruus"
 		},
 		{
 			"duty": "supporter",
@@ -162,7 +172,7 @@
 		{
 			"duty": "supporter",
 			"id": "11017062",
-			"name": "DDriver"
+			"name": "<DDriver>"
 		},
 		{
 			"duty": "supporter",
@@ -192,7 +202,7 @@
 		{
 			"duty": "supporter",
 			"id": "11315240",
-			"name": "<aleksi_h>"
+			"name": "aleksi_h"
 		},
 		{
 			"duty": "supporter",
@@ -208,6 +218,11 @@
 			"duty": "developer",
 			"id": "11335334",
 			"name": "CatzHoek"
+		},
+		{
+			"duty": "supporter",
+			"id": "11367759",
+			"name": "aeropaddy"
 		},
 		{
 			"duty": "supporter",
@@ -307,7 +322,7 @@
 		{
 			"duty": "translator",
 			"id": "11817135",
-			"name": "Davit_Parjikia"
+			"name": "Davit_P"
 		},
 		{
 			"duty": "translator",
@@ -422,7 +437,12 @@
 		{
 			"duty": "translator",
 			"id": "12533508",
-			"name": "MOD-RoLitoral"
+			"name": "RoLitoral"
+		},
+		{
+			"duty": "supporter",
+			"id": "12538647",
+			"name": "Red-J0hn"
 		},
 		{
 			"duty": "supporter",
@@ -492,7 +512,7 @@
 		{
 			"duty": "supporter",
 			"id": "12973873",
-			"name": "Shantiboss"
+			"name": "<Shantiboss>"
 		},
 		{
 			"duty": "translator",
@@ -522,7 +542,7 @@
 		{
 			"duty": "supporter",
 			"id": "13059131",
-			"name": "Harris92"
+			"name": "<Harris92>"
 		},
 		{
 			"duty": "supporter",
@@ -552,7 +572,7 @@
 		{
 			"duty": "supporter",
 			"id": "13113133",
-			"name": "Quantor"
+			"name": "<Quantor>"
 		},
 		{
 			"duty": "translator",
@@ -801,6 +821,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "322381",
+			"name": "Maik-2000"
+		},
+		{
+			"duty": "supporter",
 			"id": "32722",
 			"name": "FaderMerrin"
 		},
@@ -842,12 +867,12 @@
 		{
 			"duty": "supporter",
 			"id": "3508192",
-			"name": "jonny91"
+			"name": "<jonny91>"
 		},
 		{
 			"duty": "developer",
 			"id": "3542943",
-			"name": "Jestar"
+			"name": "<Jestar>"
 		},
 		{
 			"duty": "translator",
@@ -1012,7 +1037,12 @@
 		{
 			"duty": "translator",
 			"id": "4577648",
-			"name": "ampulka"
+			"name": "<ampulka>"
+		},
+		{
+			"duty": "supporter",
+			"id": "4666835",
+			"name": "Ermezzo"
 		},
 		{
 			"duty": "translator",
@@ -1170,6 +1200,11 @@
 			"name": "smates"
 		},
 		{
+			"duty": "supporter",
+			"id": "6234131",
+			"name": "Dagger-"
+		},
+		{
 			"duty": "translator",
 			"id": "6263697",
 			"name": "LA-Ron__Manager"
@@ -1237,7 +1272,7 @@
 		{
 			"duty": "supporter",
 			"id": "6895080",
-			"name": "sardinablu"
+			"name": "<sardinablu>"
 		},
 		{
 			"duty": "translator",
@@ -1312,7 +1347,7 @@
 		{
 			"duty": "supporter",
 			"id": "7445196",
-			"name": "Franz-Kremer"
+			"name": "<Franz-Kremer>"
 		},
 		{
 			"duty": "supporter",
@@ -1352,7 +1387,7 @@
 		{
 			"duty": "supporter",
 			"id": "7730271",
-			"name": "wildgoose"
+			"name": "<wildgoose>"
 		},
 		{
 			"duty": "developer",
@@ -1377,7 +1412,7 @@
 		{
 			"duty": "translator",
 			"id": "7873605",
-			"name": "JAM3SoN"
+			"name": "<JAM3SoN>"
 		},
 		{
 			"duty": "translator",
@@ -1393,6 +1428,11 @@
 			"duty": "translator",
 			"id": "7967145",
 			"name": "bigpapy"
+		},
+		{
+			"duty": "supporter",
+			"id": "7972975",
+			"name": "Wolverino"
 		},
 		{
 			"duty": "supporter",
