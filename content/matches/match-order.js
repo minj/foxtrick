@@ -828,22 +828,24 @@ Foxtrick.modules['MatchOrderInterface'] = {
 
 			var addLastMatchtoDetails = function() {
 				// add last match to details
-				var details = doc.getElementById('details');
-				var specials = details.getElementsByClassName('specials')[0];
-				if (specials && !details.getElementsByClassName('ft-extraInfo')[0]) {
-					var playerid = Number(specials.parentNode.getAttribute('playerid'));
-					if (playerid) {
-						var player = Foxtrick.Pages.Players.getPlayerFromListById(playerList,
-						                                                          playerid);
-						if (!player)
-							return;
-						var span = doc.createElement('span');
-						span.className = 'ft-extraInfo';
-						span.appendChild(doc.createElement('br'));
-						span.appendChild(doc.createTextNode(player.lastMatchText));
-						specials.appendChild(span);
-					}
-				}
+				let details = doc.getElementById('details');
+				let specials = details.querySelector('.specials');
+				if (!specials || details.querySelector('.ft-extraInfo'))
+					return;
+
+				let playerId = Number(specials.parentNode.getAttribute('playerid'));
+				if (!playerId)
+					return;
+
+				let player = Foxtrick.Pages.Players.getPlayerFromListById(playerList, playerId);
+				if (!player || !player.lastMatchText)
+					return;
+
+				let span = doc.createElement('span');
+				span.className = 'ft-extraInfo';
+				span.appendChild(doc.createElement('br'));
+				span.appendChild(doc.createTextNode(player.lastMatchText));
+				specials.appendChild(span);
 			};
 
 			//loyalty, uses loyalty-display.js module code

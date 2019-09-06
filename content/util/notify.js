@@ -10,10 +10,9 @@
 /* eslint-disable */
 if (!this.Foxtrick)
 	var Foxtrick = {};
-/* eslint-enable */
-
 if (!Foxtrick.util)
 	Foxtrick.util = {};
+/* eslint-enable */
 
 Foxtrick.util.notify = {};
 
@@ -310,7 +309,7 @@ Foxtrick.util.notify.create = function(msg, source, opts) {
 			url: gUrl,
 			opts: opts,
 		}, function onSendResponse(response) {
-			let err = Foxtrick.JSONError(response);
+			let err = Foxtrick.jsonError(response);
 			if (err instanceof Error)
 				reject(err);
 			else

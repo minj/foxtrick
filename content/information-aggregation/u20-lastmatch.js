@@ -172,7 +172,7 @@ Foxtrick.modules['U20LastMatch'] = {
 
 			let container = Foxtrick.createFeaturedElement(doc, module, 'p');
 			container.textContent = text;
-			let table = player.playerNode.querySelector('table');
+			let table = player.playerNode.querySelector('table') || player.playerNode.lastChild;
 			Foxtrick.insertAfter(container, table);
 		}
 	},

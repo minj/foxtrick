@@ -25,15 +25,15 @@ it:
       question: Perchè dovrei autorizzare Foxtrick ad accedere ai dati della mia squadra?
       answer: |
         <p>Sebbene la maggior parte dei dati necessari a Foxtrick possono essere ottenuti direttamente dalla pagina che stai vedendo, alcuni moduli richiedono dati da Hattrick per funzionare correttamente.</p>
-        
+
         <p>Per scaricare dati da Hattrick, inclusi i dati della tua squadra, lega, e nazionali, devi autorizzare Foxtrick in anticipo.</p>
-        
+
         <p>Autorizzi Foxtrick fornendo il tuo nome utente e password su chpp.hattrick.org per ottenere il codice di verifica, che fornirai a Foxtrick. Foxtrick non verrà a conoscenza del tuo nome utente e password durante il procedimento.</p>
-        
+
         <p>Per avere maggiori informazioni sul processo di autorizzazione, puoi leggere <linkCHPPDesc>CHPP - Come funziona</linkCHPPDesc> su Hattrick.</p>
-        
+
         <p>Alcuni moduli richiedono l'accesso ai dati per funzionare correttamente:</p>
-        
+
         <ul>
         <li><module>CrossTable</module></li>
         <li><module>ExtraPlayerInfo</module></li>
@@ -42,9 +42,9 @@ it:
         <li><module>NtPeek</module></li>
         <li><module>SeriesFlags</module></li>
         </ul>
-        
+
         <p>Alcuni moduli possono fornire informazioni aggiuntive se viene garantito loro l'accesso ai dati di Hattrick:</p>
-        
+
         <ul>
         <li><module>SkillTable</module></li>
         <li><module>TeamStats</module></li>
@@ -53,9 +53,9 @@ it:
       question: Come proteggerà FoxTrick la mia privacy?
       answer: |
         <p>Foxtrick non invierà nessuno dei tuoi dati o preferenze ad un server di Foxtrick, nè dati personali, inclusi ,ma non ristretto ai soli, username, password e ID dei giocatori associati con skill, a terze parti.</p>
-        
+
         <p>La maggior parte dei dati passati a terze parti, a meno che non sia espicitamente specificato sotto, sono inviati con il metodo HTTP GET, e verranno solamente mandati quando cliccherai su un link.</p>
-        
+
         <p>Sarai in grado di vedere quale dati verranno inviati ispezionando l' URI (Uniform Resource Identifier) di un collegament esterno, e nessun dato verrà inviato senza il tuo consenso. Come detto sopra non sono coinvolti dati personali.</p>
-        
+
         <p>Le eccezioni sono i moduli <module>HTMSPrediction</module> e <module>HTEVPrediction</module>, Dove le valutazioni delle partite vengono inviate e ricevute dai rispettivi siti con XMLHttpRequest.</p>

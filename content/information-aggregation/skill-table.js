@@ -1,9 +1,10 @@
-'use strict';
 /**
  * skill-table.js
  * Show a skill table on players list page
  * @author convincedd, ryanli, LA-MJ
  */
+
+'use strict';
 
 Foxtrick.modules['SkillTable'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
@@ -388,6 +389,7 @@ Foxtrick.modules['SkillTable'] = {
 				{ name: 'SkillTableHide', property: 'id',
 					method: 'hide', listener: 'hide', sortAsc: true, frozen: true, },
 				{ name: 'PlayerNumber', property: 'number', sortAsc: true, frozen: true, },
+				{ name: 'PlayerId', property: 'id', sortAsc: true, frozen: true, },
 				{ name: 'PlayerCategory', property: 'category',
 					method: 'category', sortAsc: true, frozen: true, },
 				{ name: 'Nationality', property: 'countryId',

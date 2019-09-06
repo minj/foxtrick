@@ -7,7 +7,7 @@ lv:
       question: Kuri failu formāti ir pieļaujami, lietojot brīdinājuma skaņas?
       answer: |
         <p>Dažādas pārlūkprogrammas pieļauj dažādus failu formātus. Lūk, saraksts (neuzskaitītie formāti var strādāt, ja ir uzstādīti attiecīgie spraudņi, piemēram, lai Quicktime atskaņotu mp3 iekš Firefox):</p>
-        
+
         <ul>
         <li>Mozilla: wav, ogg</li>
         <li>Safari (var būt nepieciešams Quicktime): wav, mp3</li>
