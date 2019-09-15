@@ -35,6 +35,9 @@ Foxtrick.loader.chrome.docLoadStart = function() {
 		Foxtrick.SB.ext.sendRequest({ req: 'pageLoad' },
 		  function(data) {
 			try {
+				if (!data)
+					return;
+
 				var beginInit = new Date();
 
 				if (data.error)
