@@ -242,7 +242,7 @@
 		{
 			"duty": "supporter",
 			"id": "11525655",
-			"name": "brutuscat"
+			"name": "<brutuscat>"
 		},
 		{
 			"duty": "translator",
@@ -435,6 +435,11 @@
 			"name": "EiCeKju"
 		},
 		{
+			"duty": "supporter",
+			"id": "12529571",
+			"name": "ChrischnCool"
+		},
+		{
 			"duty": "translator",
 			"id": "12533508",
 			"name": "RoLitoral"
@@ -596,6 +601,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "13359636",
+			"name": "Latic_"
+		},
+		{
+			"duty": "supporter",
 			"id": "1360148",
 			"name": "Stipe_GAK"
 		},
@@ -633,6 +643,11 @@
 			"duty": "translator",
 			"id": "1641271",
 			"name": "jaymz69"
+		},
+		{
+			"duty": "supporter",
+			"id": "1675627",
+			"name": "Luckeh"
 		},
 		{
 			"duty": "translator",
@@ -1232,7 +1247,7 @@
 		{
 			"duty": "translator",
 			"id": "6489521",
-			"name": "<-JENDA->"
+			"name": "-JENDA-"
 		},
 		{
 			"duty": "developer",
