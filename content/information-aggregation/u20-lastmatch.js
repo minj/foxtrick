@@ -127,7 +127,8 @@ Foxtrick.modules['U20LastMatch'] = {
 	runPlayer: function(doc) {
 		var module = this;
 
-		const TITLE_STR = Foxtrick.L10n.getString('U20LastMatch.title');
+		const TITLE_STR = Foxtrick.L10n.getString('U20LastMatch.eligibilityTitle');
+		const TEXT_STR = Foxtrick.L10n.getString('U20LastMatch.eligibilityText');
 		const WC_STR = Foxtrick.L10n.getString('U20LastMatch.worldcup');
 		const TMPL_STR = Foxtrick.L10n.getString('U20LastMatch.templateWithoutTable');
 
@@ -139,15 +140,22 @@ Foxtrick.modules['U20LastMatch'] = {
 		let wcNum = Foxtrick.decToRoman(worldCupNumber);
 
 		let text = TMPL_STR;
-		text = text.replace(/%1/, TITLE_STR);
+		text = text.replace(/%1/, TEXT_STR);
 		text = text.replace(/%2/, WC_STR);
 		text = text.replace(/%3/, wcNum);
 		text = text.replace(/%4/, lastMatch);
 
-		let wrapper = Foxtrick.createFeaturedElement(doc, module, 'p');
-		wrapper.textContent = text;
-		let info = doc.querySelector('.playerInfo');
-		info.appendChild(wrapper);
+
+		let entryPoint = doc.querySelector('#mainBody > .mainBox');
+		let wrapper = Foxtrick.createFeaturedElement(doc, module, 'div');
+		Foxtrick.addClass(wrapper, 'ft-lastU20match-mainBox mainBox');
+		let titleElement = doc.createElement('h2');
+		titleElement.textContent = TITLE_STR;
+		let textElement = doc.createElement('div');
+		textElement.textContent = text;
+		wrapper.appendChild(titleElement);
+		wrapper.appendChild(textElement);
+		entryPoint.parentNode.insertBefore(wrapper, entryPoint.nextSibling);
 	},
 
 	runPlayerList: function(doc) {
