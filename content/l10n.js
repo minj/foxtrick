@@ -117,7 +117,7 @@ Foxtrick.L10n.htMapping = {
 	'fa':    'fa',     // 75  فارسی, Farsi/Persian/Iranian
 	'fi':    'fi',     // 9   Suomi, Finnish
 	'fr':    'fr',     // 5   Français, French
-	'fu':    'fur-IT', // 113 Furlan, Friulian (Northern Italy)
+	'it-it': 'fur-IT', // 113 Furlan, Friulian (Northern Italy)
 	'fy':    'fy-NL',  // 109 Frysk, West Frisian (Eastern Netherlands/Northern Germany)
 	'gl':    'gl',     // 74  Galego, Galician (Northwestern Spain)
 	'he':    'he',     // 40  עברית, Hebrew
@@ -150,7 +150,7 @@ Foxtrick.L10n.htMapping = {
 	'tr':    'tr',     // 19  Türkçe, Turkish
 	'uk':    'uk',     // 57  Українська, Ukrainian
 	'vi':    'vi',     // 55  Tiếng Việt, Vietnamese
-	'vl':    'vls-BE', // 65  Vlaams, Flemish (Belgian Dutch)
+	'nl-be': 'vls-BE', // 65  Vlaams, Flemish (Belgian Dutch)
 	'zh':    'zh-CN',  // 15  中文（简体）, Chinese (Simplified)
 }; // jshint ignore:line
 // jscs:enable disallowSpaceAfterObjectKeys, disallowQuotedKeysInObjects
