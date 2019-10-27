@@ -12,7 +12,7 @@ cd "$DIR/../cdn" || logf "Cannot cd to cdn"
 
 git stash
 python "$DIR/../master/maintainer/locale/updateCoaches.py" ./res/staff || logf "Cannot build"
-git commit -am updateCoaches.py || logf "Cannot commit updateCoaches.py"
+git commit -am updateCoaches.py || true
 git push origin cdn || logf "Cannot push cdn to origin"
 
 log 'success update coaches'
