@@ -107,11 +107,6 @@
 			"duty": "translator"
 		},
 		{
-			"id": "5572991",
-			"name": "Urmat",
-			"duty": "translator"
-		},
-		{
 			"id": "52286",
 			"name": "Edguy",
 			"duty": "translator"
@@ -149,6 +144,11 @@
 		{
 			"id": "8418903",
 			"name": "LA-emmis",
+			"duty": "translator"
+		},
+		{
+			"id": "4554740",
+			"name": "notna78",
 			"duty": "translator"
 		},
 		{
@@ -199,11 +199,6 @@
 		{
 			"id": "9668661",
 			"name": "LA-dzsoo",
-			"duty": "translator"
-		},
-		{
-			"id": "9634554",
-			"name": "marcoslkz",
 			"duty": "translator"
 		},
 		{
@@ -264,11 +259,6 @@
 		{
 			"id": "1064499",
 			"name": "jaanes",
-			"duty": "translator"
-		},
-		{
-			"id": "11112383",
-			"name": "LA-artod",
 			"duty": "translator"
 		},
 		{
@@ -337,23 +327,18 @@
 			"duty": "translator"
 		},
 		{
-			"id": "12578742",
-			"name": "Arvin1988",
-			"duty": "translator"
-		},
-		{
-			"id": "12640855",
-			"name": "StevenXu",
-			"duty": "translator"
-		},
-		{
 			"id": "11014585",
-			"name": "LA-Deuterium",
+			"name": "-Deuterium-",
 			"duty": "translator"
 		},
 		{
 			"id": "12714984",
 			"name": "provonost",
+			"duty": "translator"
+		},
+		{
+			"id": "3704971",
+			"name": "flaxberg",
 			"duty": "translator"
 		},
 		{
@@ -377,18 +362,18 @@
 			"duty": "translator"
 		},
 		{
-			"id": "10806018",
-			"name": "theopap101",
+			"id": "12826203",
+			"name": "voodyalen",
+			"duty": "translator"
+		},
+		{
+			"id": "12890764",
+			"name": "zxzxlrlr",
 			"duty": "translator"
 		},
 		{
 			"id": "12938225",
 			"name": "Howard007",
-			"duty": "translator"
-		},
-		{
-			"id": "12407319",
-			"name": "mudoct",
 			"duty": "translator"
 		},
 		{
@@ -399,11 +384,6 @@
 		{
 			"id": "12326398",
 			"name": "LA-Jalal",
-			"duty": "translator"
-		},
-		{
-			"id": "11599538",
-			"name": "ernest11",
 			"duty": "translator"
 		},
 		{
@@ -418,7 +398,17 @@
 		},
 		{
 			"id": "4116867",
-			"name": "BoTTH-RaffaelPinto",
+			"name": "BoTTH-Blaz",
+			"duty": "translator"
+		},
+		{
+			"id": "13121665",
+			"name": "Goko84",
+			"duty": "translator"
+		},
+		{
+			"id": "3060960",
+			"name": "Haznfefer",
 			"duty": "translator"
 		},
 		{
@@ -429,6 +419,11 @@
 		{
 			"id": "13259084",
 			"name": "omer_bar",
+			"duty": "translator"
+		},
+		{
+			"id": "13280539",
+			"name": "gaslei04",
 			"duty": "translator"
 		},
 		{
@@ -444,6 +439,16 @@
 		{
 			"id": "11191407",
 			"name": "anna_rose",
+			"duty": "translator"
+		},
+		{
+			"id": "11449158",
+			"name": "brulcb",
+			"duty": "translator"
+		},
+		{
+			"id": "12735338",
+			"name": "HPTM-rubio1905",
 			"duty": "translator"
 		},
 		{

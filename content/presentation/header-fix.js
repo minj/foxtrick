@@ -1,9 +1,10 @@
-'use strict';
 /**
  * header-fix.js
  * Script which fixes the header
- * @author htbaumanns, CSS by Catalyst2950
+ * @author htbaumanns, LA-MJ, CSS by Catalyst2950
  */
+
+'use strict';
 
 Foxtrick.modules['HeaderFix'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.PRESENTATION,
@@ -13,6 +14,7 @@ Foxtrick.modules['HeaderFix'] = {
 	CSS: Foxtrick.InternalPath + 'resources/css/header-fix.css',
 	OPTIONS_CSS: [Foxtrick.InternalPath + 'resources/css/header-fix-left.css'],
 
+	/* eslint-disable complexity */
 	run: function(doc) {
 
 		// flash objects protrude from the header in Firefox

@@ -33,8 +33,8 @@ Foxtrick.util.matchEvent.eventIcons = {
 	20: 'formation',
 	21: 'formation',
 	22: 'kids',
-	23: null,
-	24: null,
+	23: 'formation',
+	24: 'formation',
 	25: { away: ['derby'] },
 	26: { home: ['neutral'] },
 	27: { away: ['home'] },
@@ -42,11 +42,15 @@ Foxtrick.util.matchEvent.eventIcons = {
 	31: { home: ['weather_cloudy'] },
 	32: { home: ['weather_fair'] },
 	33: { home: ['weather_sunny'] },
+
+	// TODO START
 	35: null,
 	36: null,
 	37: null,
 	38: null,
 	39: null,
+	// TODO END
+
 	40: 'possession',
 	41: 'best_player',
 	42: 'worst_player',
@@ -72,8 +76,8 @@ Foxtrick.util.matchEvent.eventIcons = {
 	71: 'penaltyShootOut',
 	72: 0,
 	73: 'tossing_coin',
-	75: null,
-	76: null,
+	75: null, // TODO
+	76: null, // TODO
 	80: 'captain',
 	81: 'setPieces',
 	90: 'bruised',
@@ -147,7 +151,7 @@ Foxtrick.util.matchEvent.eventIcons = {
 	185: { team: ['goal', 'indirect'] },
 	186: { team: ['goal', 'counter_attack', 'indirect'] },
 	187: { team: ['goal', 'longshot'] },
-	190: null,
+	190: { team: ['goal', 'se_powerful'] },
 	200: { team: ['miss', 'whistle'] },
 	201: { team: ['miss_C'] },
 	202: { team: ['miss_L'] },
@@ -212,17 +216,21 @@ Foxtrick.util.matchEvent.eventIcons = {
 	287: { team: ['miss', 'longshot'] },
 	288: { team: ['miss', 'longshot'] },
 	289: { team: ['se_quick_negative'], other: ['se_quick'] },
-	290: null,
+	290: { team: ['miss', 'se_powerful'] },
 	301: { team: ['se_technical_negative', 'weather_rainy'] },
 	302: { team: ['se_powerful', 'weather_rainy'] },
 	303: { team: ['se_technical', 'weather_sunny'] },
 	304: { team: ['se_powerful_negative', 'weather_sunny'] },
 	305: { team: ['se_quick_negative', 'weather_rainy'] },
 	306: { team: ['se_quick_negative', 'weather_sunny'] },
+
+	// TODO START
 	307: null,
 	308: null,
 	309: null,
-	310: null,
+	// TODO END
+
+	310: { team: ['se_powerful'], other: ['pressing'] },
 	331: 'pressing',
 	332: 'counter_attack',
 	333: 'aim',
@@ -240,16 +248,18 @@ Foxtrick.util.matchEvent.eventIcons = {
 	370: 'swap',
 	371: 'swap',
 	372: 'swap',
-	380: null,
-	381: null,
-	382: null,
-	383: null,
-	385: null,
-	386: null,
-	387: null,
-	388: null,
-	390: 'weather_rainy',
-	391: 'weather_sunny',
+	380: 'mm_short',
+	381: 'mm_long',
+	382: 'mm_long',
+	383: 'mm_short',
+	384: 'mm_penalty',
+	385: 'mm_long',
+	386: 'mm_short',
+	387: 'mm_penalty',
+	388: 'mm_penalty',
+	389: 'mm_penalty',
+	390: { home: ['weather_rainy'] },
+	391: { home: ['weather_sunny'] },
 	401: 'injured',
 	402: 'injured',
 	403: 'injured',
@@ -275,8 +285,10 @@ Foxtrick.util.matchEvent.eventIcons = {
 	423: 'injured',
 	424: 'substitution',
 	425: 'sub_out',
-	426: null,
-	427: null,
+	426: 'swap',
+	427: 'bruised',
+
+	// TODO START
 	450: null,
 	451: null,
 	452: null,
@@ -321,6 +333,8 @@ Foxtrick.util.matchEvent.eventIcons = {
 	491: null,
 	492: null,
 	493: null,
+	// TODO END
+
 	500: { home: ['stop'], away: ['stop'] },
 	501: { home: ['stop'] },
 	502: { away: ['stop'] },
@@ -335,14 +349,22 @@ Foxtrick.util.matchEvent.eventIcons = {
 	597: null,
 	598: null,
 	599: 'result',
+
+	// TODO START
 	601: null,
 	602: null,
 	603: null,
 	604: null,
+	// TODO END
+
 	605: null,
 	606: null,
+
+	// TODO START
 	650: null,
 	651: null,
+	// TODO END
+
 	700: 'thumb_down',
 	701: 'thumb_up',
 	702: 'fan',
@@ -377,6 +399,9 @@ Foxtrick.util.matchEvent.eventIconDefinition = {
 	kids: Foxtrick.InternalPath + 'resources/img/matches/kids.png',
 	left_wing: '/Img/Matches/sub_in.gif',
 	longshot: Foxtrick.InternalPath + 'resources/img/matches/longshot.png',
+	mm_short: Foxtrick.InternalPath + 'resources/img/matches/mm_short.png',
+	mm_long: Foxtrick.InternalPath + 'resources/img/matches/mm_long.png',
+	mm_penalty: Foxtrick.InternalPath + 'resources/img/matches/mm_penalty.png',
 	middle: Foxtrick.InternalPath + 'resources/img/matches/middle.png',
 	miss: Foxtrick.InternalPath + 'resources/img/matches/redball.png',
 	miss_C: Foxtrick.InternalPath + 'resources/img/matches/red_ball_C.png',
@@ -488,8 +513,8 @@ Foxtrick.util.matchEvent.eventDescription = {
 	71: 'Penalty contest (after extra time)',
 	72: 'Extra time decided',
 	73: 'After 22 penalties tossing coin!',
-	75: 'Injury time',
-	76: 'No injury time',
+	75: 'Added time',
+	76: 'No added time',
 	80: 'New captain',
 	81: 'New set pieces taker',
 	90: 'Injured but keeps playing',
@@ -660,6 +685,7 @@ Foxtrick.util.matchEvent.eventDescription = {
 	381: 'Man marking success, long distance',
 	382: 'Man marked changed from short to long distance',
 	383: 'Man marked changed from long to short distance',
+	384: 'Man marker penalty, man marked not on the field',
 	385: 'Man marker changed from short to long distance',
 	386: 'Man marker changed from long to short distance',
 	387: 'Man marker penalty, man marked not in marking position',

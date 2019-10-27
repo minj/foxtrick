@@ -65,20 +65,25 @@
 	},
 	"vnukstats": {
 		"serieslink": {
-			"url": "http://vnukstats.hattrick-sk.com/league/details/[seriesid]",
+			"url": "https://www.vnukstats.eu/leagues/view/[seriesid]",
 			"filters": ["leagueid"]
 		},
 		"teamlink": {
-			"url": "http://vnukstats.hattrick-sk.com/team/details/[teamid]",
+			"url": "https://www.vnukstats.eu/teams/view/[teamid]",
 			"filters": ["leagueid"]
 		},
 		"leaguelink": {
-			"url": "http://vnukstats.hattrick-sk.com/top-series/default/[leagueid]",
+			"url": "https://www.vnukstats.eu/[leagueid]/countries/view",
 			"filters": ["leagueid"]
+		},
+		"youthlink": {
+			"url": "https://www.vnukstats.eu/[ownteamid]/youth-scouts/scoutmap",
+			"filters": ["ownleagueid"]
 		},
 		"leagueidranges": [
 			[52, 52],
-			[67, 67]
+			[67, 67],
+			[38, 38]
 		],
 		"title": "VnukStats",
 		"img": "resources/linkicons/vnukstats.png"

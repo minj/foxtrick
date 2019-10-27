@@ -14,11 +14,11 @@
 		"content/resources/sounds/*.wav",
 		"content/preferences.html"
 	],
-	"background" : {
-		"page" : "content/background.html"
+	"background": {
+		"page": "content/background.html"
 	},
-	"content_scripts" : [ {
-		"js" : [
+	"content_scripts": [ {
+		"js": [
 			// <!-- essential -->
 			"content/env.js",
 			"content/prefs-util.js",
@@ -82,7 +82,6 @@
 			"content/api/hy/common.js",
 			"content/api/hy/matches-report.js",
 			"content/api/hy/matches-training.js",
-			"content/api/hy/players-twins-check.js",
 			"content/api/hy/players-youth-reject-call.js",
 			"content/api/hy/players-youth-skills.js",
 			"content/api/hy/user-id.js",
@@ -164,7 +163,6 @@
 			"content/information-aggregation/youth-promotes.js",
 			"content/information-aggregation/youth-series-estimation.js",
 			"content/information-aggregation/youth-skills.js",
-			"content/information-aggregation/youth-twins.js",
 			"content/links/links-achievements.js",
 			"content/links/links-alliances.js",
 			"content/links/links-arena.js",
@@ -260,7 +258,7 @@
 			"content/entry.js",
 			"content/loader-chrome.js"
 		],
-		"matches" : [
+		"matches": [
 			"*://*.hattrick.org/*",
 			"*://*.hattrick.ws/*",
 			"*://*.hattrick.bz/*",
@@ -270,16 +268,16 @@
 			"*://*.hattrick.name/*",
 			"*://*.hattrick.fm/*"
 		],
-		"run_at" : "document_start"
+		"run_at": "document_start"
 	} ],
-	"description" : "A set of presentation enhancements for hattrick.org",
-	"icons" : {
-		"16" : "skin/icon-16.png",
-		"48" : "skin/icon-48.png",
-		"128" : "skin/icon-128.png"
+	"description": "A set of presentation enhancements for hattrick.org",
+	"icons": {
+		"16": "skin/icon-16.png",
+		"48": "skin/icon-48.png",
+		"128": "skin/icon-128.png"
 	},
-	"name" : "Foxtrick",
-	"permissions" : [
+	"name": "Foxtrick",
+	"permissions": [
 		"storage",
 		"cookies",
 		"contextMenus",
@@ -290,7 +288,7 @@
 		"http://www.fantamondi.it/*",
 		"http://pastebin.com/api/*"
 	],
-	"optional_permissions" : [
+	"optional_permissions": [
 		"https://*.hattrick-youthclub.org/*",
 		"http://no9-online.de/*",
 		"http://www.latehome.de/*",
@@ -315,6 +313,15 @@
 		"open_in_tab": true
 	},
 	"homepage_url": "https://www.foxtrick.org/",
-	"update_url" : "https://www.foxtrick.org/nightly/chrome/update.xml",
-	"version" : "0.17.9"
+	// <!-- gecko-specific -->
+	"applications": {
+		"gecko": {
+			"strict_min_version": "52.0a1",
+			"update_url": "https://www.foxtrick.org/nightly/update.rdf",
+			"id": "foxtrick-webext-dev@foxtrick.org"
+		}
+	},
+	// <!-- end gecko-specific -->
+	"update_url": "https://www.foxtrick.org/nightly/chrome/update.xml",
+	"version": "0.17.9"
 }
