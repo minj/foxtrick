@@ -35,6 +35,7 @@ Foxtrick.modules['ReadHtPrefs'] = {
 		return lang;
 	},
 
+	/** @param {document} doc */
 	readLanguage: function(doc) {
 		var metaLang = this.readLanguageFromMetaTag(doc);
 		if (!metaLang) {
@@ -70,6 +71,20 @@ Foxtrick.modules['ReadHtPrefs'] = {
 		else {
 			Foxtrick.log('Language changed:', newLang, '(' + metaLang + ')',
 			             'but no Foxtrick support yet.');
+
+			let el = doc.createElement('div');
+			let p = el.appendChild(doc.createElement('p'));
+			p.textContent = `ERROR: Foxtrick language detection failed (${metaLang}).`;
+
+			p = el.appendChild(doc.createElement('p'));
+			p.textContent = 'Please report about this problem on the ';
+
+			let a = p.appendChild(doc.createElement('a'));
+			a.href = '/Forum/Overview.aspx?v=0&f=173635';
+			a.target = '_blank';
+			a.textContent = 'Foxtrick forum';
+
+			Foxtrick.util.note.add(doc, el, 'ft-language-changed', { focus: true });
 		}
 
 		if (Foxtrick.platform === 'Firefox') {
