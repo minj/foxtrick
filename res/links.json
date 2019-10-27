@@ -1,11 +1,5 @@
 {
-	"htarena": {
-		"arenalink": {
-			"url": "http://htstart.se/htarena/"
-		},
-		"title": "HT-Arena",
-		"img": "http://htstart.se/htarena/favicon.ico"
-	},
+	
 	"htlivesight": {
 		"matchlink": {
 			"url": "http://htlivesight.sourceforge.net/"
@@ -223,14 +217,6 @@
 		"title": "Substitutions calculator tool",
 		"img": "http://lizardopoli.altervista.org/staminia/img/staminia_favicon.png"
 	},
-	"coachexperience": {
-		"coachlink": {
-			"url": "http://www.hattrickinfo.com/en/players/134/#129"
-		},
-		"title": "Experience table",
-		"shorttitle": "Exp",
-		"img": "http://www.hattrickinfo.com/favicon.ico"
-	},
 	"htlinks_trainingspeedchecker": {
 		"traininglink": {
 			"url": "http://www.ht-links.de/Hattrick/TrainingsSpeedCheckerE.html?Trainer=[Coach]&TI=[TI]&KO=[STA]&TrainingType=[TrainingType]"
@@ -295,13 +281,6 @@
 		"leagueidranges": [[85, 85]],
 		"title": "The Hattrick Radio’s Podcast",
 		"img": "https://hattrickradio.podbean.com/mf/web/8skbtp/hattrick_ball_dark_green_png.ico"
-	},
-	"htbook": {
-		"managerlink": {
-			"url": "http://htbook.cf"
-		},
-		"title": "Hattrick Social Network",
-		"img": "http://htbook.cf/favicon.ico"
 	},
 	"englandyadb": {
 		"youthlink": {
@@ -629,32 +608,6 @@
 		},
 		"leagueidranges": [[24, 24]],
 		"nationalityranges": [[24, 24]]
-	},
-	"hungarytracker" : {
-		"img": "http://ht-tracker.rakoczif.hu/pics/favicon.ico",
-		"title": "Hungary National Tracker",
-		"trackernationalteamlink": {
-			"url": "http://ht-tracker.rakoczif.hu/",
-			"filters": ["leagueid"]
-		},
-		"trackerleaguelink": {
-			"url": "http://ht-tracker.rakoczif.hu/",
-			"filters": ["leagueid"]
-		},
-		"trackerplayerlink": {
-			"url": "http://ht-tracker.rakoczif.hu/",
-			"filters": ["nationality"]
-		},
-		"trackeryouthlink": {
-			"url": "http://ht-tracker.rakoczif.hu/",
-			"filters": ["leagueid"]
-		},
-		"trackeryouthplayerlink": {
-			"url": "http://ht-tracker.rakoczif.hu/",
-			"filters": ["nationality"]
-		},
-		"leagueidranges": [[51, 51]],
-		"nationalityranges": [[51, 51]]
 	},
 	"russiatracker": {
 		"img": "resources/linkicons/tracker.png",
