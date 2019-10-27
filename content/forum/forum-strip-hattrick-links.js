@@ -23,6 +23,7 @@ Foxtrick.modules['ForumStripHattrickLinks'] = {
 			a.href = a.href.replace(/^foxtrick:\/\//, Foxtrick.InternalPath);
 	},
 
+	/** @param {document} doc */
 	run: function(doc) {
 		const module = this;
 		const URLs = [
@@ -75,10 +76,11 @@ Foxtrick.modules['ForumStripHattrickLinks'] = {
 		if (Foxtrick.isPage(doc, 'forumViewThread'))
 			return;
 
+		/** @type {NodeListOf<HTMLInputElement>} */
 		const targets = doc.querySelectorAll('#mainBody input'); // Forum
-		let target = targets[targets.length - 1];
+		let target = targets[targets.length - 2];
 		if (Foxtrick.isPage(doc, 'forumWritePost'))
-			target = targets[targets.length - 2];
+			target = Foxtrick.nth(t => t.name.endsWith('btnOK'), targets);
 		if (Foxtrick.isPage(doc, 'guestbook'))
 			target = targets[1];
 
