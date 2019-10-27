@@ -529,7 +529,7 @@
 			"code": "MKD",
 			"eurorate": "0.05",
 			"leagues": {
-				"97": "FYR Macedonia"
+				"97": "North Macedonia"
 			},
 			"name": "MKD (Macedonian denar)",
 			"symbol": "MKD"
@@ -659,15 +659,6 @@
 			},
 			"name": "฿ (Panamanian balboa)",
 			"symbol": "฿"
-		},
-		{
-			"code": "PYG",
-			"eurorate": "0.0002",
-			"leagues": {
-				"72": "Paraguay"
-			},
-			"name": "PYG (Paraguayan guaraní)",
-			"symbol": "PYG"
 		},
 		{
 			"code": "PHP",
@@ -929,6 +920,15 @@
 			},
 			"name": "Netherlands Antillean guilder",
 			"symbol": "guilder"
+		},
+		{
+			"code": "PYG",
+			"eurorate": "0.2",
+			"leagues": {
+				"72": "Paraguay"
+			},
+			"name": "PYG (Paraguayan guaraní)",
+			"symbol": "PYG"
 		},
 		{
 			"code": "BYR",
