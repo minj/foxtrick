@@ -693,6 +693,7 @@ Foxtrick.util.matchEvent.eventDescription = {
 	386: 'Man marker changed from long to short distance',
 	387: 'Man marker penalty, man marked not in marking position',
 	388: 'Man marker penalty, man marker not in marking position',
+	389: 'Man Marker penalty, no man marked in opponent team',
 	390: 'Rainy weather - Many players affected',
 	391: 'Sunny weather - Many players affected',
 	401: 'Injury: Knee left',
