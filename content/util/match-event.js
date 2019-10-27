@@ -371,6 +371,8 @@ Foxtrick.util.matchEvent.eventIcons = {
 	703: 'fire',
 	704: 'trophy',
 };
+
+/* eslint-disable camelcase */
 Foxtrick.util.matchEvent.eventIconDefinition = {
 	aow: Foxtrick.InternalPath + 'resources/img/matches/aow.png',
 	aim: Foxtrick.InternalPath + 'resources/img/matches/aim.png',
@@ -468,6 +470,7 @@ Foxtrick.util.matchEvent.eventIconDefinition = {
 	worst_player: '/Img/Matches/star_brown.png',
 	yellow_card: '/Img/Icons/yellow_card.gif',
 };
+/* eslint-enable camelcase */
 
 Foxtrick.util.matchEvent.eventDescription = {
 	19: 'Players enter the field',
@@ -813,43 +816,46 @@ Foxtrick.util.matchEvent.isNeutralEvent = function(evnt) {
 
 Foxtrick.util.matchEvent.getEventMinute = function(evnt) {
 	var min = 0;
-	var minute;
-	if (!Foxtrick.util.matchEvent.isLiveEvent(evnt)) {
-		minute = evnt.getAttribute('data-match-minute');
-		if (minute)
-			min = parseInt(minute.match(/\d+/)[0], 10);
-	}
-	else {
-		minute = evnt.firstChild;
+
+	if (Foxtrick.util.matchEvent.isLiveEvent(evnt)) {
+		let minute = evnt.firstChild;
 		if (minute)
 			min = parseInt(minute.textContent.match(/\d+/)[0], 10);
+	}
+	else {
+		let minute = evnt.getAttribute('data-match-minute');
+		if (minute)
+			min = parseInt(minute.match(/\d+/)[0], 10);
 	}
 	return min;
 };
 
 Foxtrick.util.matchEvent.getEventTitle = function(eventId) {
 	var l10nId = 'match.events.' + eventId;
-	var eventText = Foxtrick.L10n.isStringAvailable(l10nId) ? Foxtrick.L10n.getString(l10nId)
-		: Foxtrick.L10n.getString('match.events.unknown');
+	var eventText = Foxtrick.L10n.isStringAvailable(l10nId) ?
+		Foxtrick.L10n.getString(l10nId) :
+		Foxtrick.L10n.getString('match.events.unknown');
+
 	return eventText + ' (' + eventId + ')';
 };
 
 Foxtrick.util.matchEvent.getEventId = function(evnt) {
 	var id = 0;
 	var type = evnt.getAttribute('data-eventtype');
-	if (type) {
+	if (type)
 		id = parseInt(type.match(/\d+/)[0], 10);
-	}
+
 	return id;
 };
 
 Foxtrick.util.matchEvent.isFirstEvent = function(evnt) {
 	var id = Foxtrick.util.matchEvent.getEventId(evnt);
+
 	// in HTO matches there is no weather event
 	// so lineup event 20 is first instead
 	// in neighborhood matches (friendly WOs) 22 is the first event
 	// event-o-Matic events: 700-705
-	return (id >= 30 && id <= 33 || id === 20 || id === 22 || id >= 700 && id < 710);
+	return id >= 30 && id <= 33 || id === 20 || id === 22 || id >= 700 && id < 710;
 };
 
 Foxtrick.util.matchEvent.getEventIcons = function(evnt, type) {
@@ -858,12 +864,12 @@ Foxtrick.util.matchEvent.getEventIcons = function(evnt, type) {
 		return null;
 
 	var eventIcons = Foxtrick.util.matchEvent.eventIcons[eventId];
-	if (typeof eventIcons === 'object') {
+	if (typeof eventIcons === 'object')
 		return eventIcons[type] || null;
-	}
-	else if (type == 'team') {
+
+	else if (type == 'team')
 		return [eventIcons];
-	}
+
 
 	return null;
 };
@@ -889,8 +895,7 @@ Foxtrick.util.matchEvent.getHomeIcons = function(evnt) {
 		return Foxtrick.util.matchEvent.getEventTeamIcons(evnt);
 	else if (Foxtrick.util.matchEvent.isAwayEvent(evnt))
 		return Foxtrick.util.matchEvent.getOtherTeamIcons(evnt);
-	else
-		return Foxtrick.util.matchEvent.getGeneralIconsHome(evnt);
+	return Foxtrick.util.matchEvent.getGeneralIconsHome(evnt);
 };
 
 Foxtrick.util.matchEvent.getAwayIcons = function(evnt) {
@@ -898,8 +903,7 @@ Foxtrick.util.matchEvent.getAwayIcons = function(evnt) {
 		return Foxtrick.util.matchEvent.getEventTeamIcons(evnt);
 	else if (Foxtrick.util.matchEvent.isHomeEvent(evnt))
 		return Foxtrick.util.matchEvent.getOtherTeamIcons(evnt);
-	else
-		return Foxtrick.util.matchEvent.getGeneralIconsAway(evnt);
+	return Foxtrick.util.matchEvent.getGeneralIconsAway(evnt);
 };
 
 Foxtrick.util.matchEvent.addEventIcons = function(evnt) {
@@ -908,6 +912,7 @@ Foxtrick.util.matchEvent.addEventIcons = function(evnt) {
 	var eventId = Foxtrick.util.matchEvent.getEventId(evnt);
 	var title = Foxtrick.util.matchEvent.getEventTitle(eventId);
 
+	// eslint-disable-next-line consistent-this
 	var module = Foxtrick.modules.MatchReportFormat;
 	var insertBefore = evnt.firstChild.nextSibling;
 
@@ -927,12 +932,12 @@ Foxtrick.util.matchEvent.addEventIcons = function(evnt) {
 	var awayContainer = Foxtrick.createFeaturedElement(doc, module, 'td');
 	evnt.insertBefore(awayContainer, insertBefore);
 
-	if (homeIcons) {
+	if (homeIcons)
 		Foxtrick.util.matchEvent.appendIcons(doc, homeContainer, homeIcons, title);
-	}
-	if (awayIcons) {
+
+	if (awayIcons)
 		Foxtrick.util.matchEvent.appendIcons(doc, awayContainer, awayIcons, homeIcons ? '' : title);
-	}
+
 };
 
 Foxtrick.util.matchEvent.appendIcons = function(doc, container, icons, title) {
@@ -953,12 +958,13 @@ Foxtrick.util.matchEvent.appendIcons = function(doc, container, icons, title) {
 
 				src = Foxtrick.getSpecialtyImagePathFromNumber(ret.specialty, ret.failure);
 			}
-			else
+			else {
 				src = ret;
+			}
 		}
 
 		if (src == null)
-			src = Foxtrick.util.matchEvent.eventIconDefinition['transparent'];
+			src = Foxtrick.util.matchEvent.eventIconDefinition.transparent;
 
 		features.src = src;
 
@@ -971,7 +977,7 @@ Foxtrick.util.matchEvent.addEventIndicators = function(container) {
 	if (!eventRows.length)
 		return;
 
-	//figure out if the reading direction is inverted (last event first)
+	// figure out if the reading direction is inverted (last event first)
 	var inverted = !Foxtrick.util.matchEvent.isFirstEvent(eventRows[0]);
 	for (var e = 0; e < eventRows.length; e++)
 		Foxtrick.util.matchEvent.addEventIndicator(eventRows[e], inverted);
@@ -987,63 +993,63 @@ Foxtrick.util.matchEvent.addEventIndicator = function(evnt, invert) {
 	// indicators to be added
 	var indicatorList = [
 		{
-			'class': 'kick-off',
+			class: 'kick-off',
 			text: 'kickOff',
 			before: true,
 			func: function() {
 				var koPending = !table.getElementsByClassName('ft-match-report-kick-off').length;
 
-				if (koPending && !invert && eventMinute !== 0)
+				if (koPending && !invert && eventMinute !== 0) {
 					return true;
+				}
 				else if (koPending && invert && eventMinute !== 0 && evnt.nextSibling) {
 					var node = evnt.nextElementSibling;
 					if (node) {
 						var nextEventMinute = Foxtrick.util.matchEvent.getEventMinute(node);
 						return nextEventMinute === 0;
 					}
-					else
-						return false;
-				}
-				else
+
 					return false;
+				}
+				return false;
 			},
 		},
 		{
-			'class': 'half-time',
+			class: 'half-time',
 			text: 'halfTime',
 			func: function() {
-				return (eventType == 'possession') && (eventMinute == 45);
-			}
+				return eventType == 'possession' && eventMinute == 45;
+			},
 		},
 		{
-			'class': 'full-time',
+			class: 'full-time',
 			text: 'fullTime',
 			func: function() {
-				return (eventType == 'possession') && (eventMinute == 90);
-			}
+				return eventType == 'possession' && eventMinute == 90;
+			},
 		},
 		{
-			'class': 'extra-time',
+			class: 'extra-time',
 			text: 'extraTime',
 			func: function() {
 				return eventType == 'extraTime';
-			}
+			},
 		},
 		{
-			'class': 'penalty-shoot-out',
+			class: 'penalty-shoot-out',
 			text: 'penaltyShootOut',
 			func: function() {
 				return eventType == 'penaltyShootOut';
-			}
+			},
 		},
 		{
-			'class': 'result',
+			class: 'result',
 			text: 'result',
 			before: true,
 			func: function() {
 				return eventType == 'result';
-			}
-		}
+			},
+		},
 	];
 
 	var indType = Foxtrick.nth(function(n) {
@@ -1062,21 +1068,18 @@ Foxtrick.util.matchEvent.addEventIndicator = function(evnt, invert) {
 		}, 0);
 		indicatorCell.colSpan = colSpan;
 		indicatorCell.textContent = Foxtrick.L10n.getString('MatchReportFormat.' + indType.text);
-		Foxtrick.addClass(indicator, 'ft-match-report-' + indType['class']);
+		Foxtrick.addClass(indicator, 'ft-match-report-' + indType.class);
 
-		//invert before when reading direction is flipped
+		// invert before when reading direction is flipped
 		var before = indType.before;
 		if (invert)
 			before = !before;
 
-		if (before) {
+		if (before)
 			table.insertBefore(indicator, evnt);
-		}
-		else {
-			if (evnt.nextSibling)
-				table.insertBefore(indicator, evnt.nextSibling);
-			else
-				table.appendChild(indicator);
-		}
+		else if (evnt.nextSibling)
+			table.insertBefore(indicator, evnt.nextSibling);
+		else
+			table.appendChild(indicator);
 	}
 };
