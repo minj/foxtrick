@@ -1,12 +1,16 @@
-'use strict';
-/*
+/**
  * ht-ml.js
  * Utilities for HT-ML (Hattrick Markup Language)
  * @author ryanli, LA-MJ
  */
 
-if (!Foxtrick)
+'use strict';
+
+/* eslint-disable */
+if (!this.Foxtrick)
 	var Foxtrick = {};
+/* eslint-enable */
+
 if (!Foxtrick.util)
 	Foxtrick.util = {};
 
@@ -284,23 +288,22 @@ Foxtrick.util.htMl.getFormat = (function() {
 			},
 			td: function(content, node) {
 				var nodeName = node.nodeName.toLowerCase();
+
 				// README: colspan and rowspan do not work in MD
 				// align works on th only
 
 				// no line-feeds in md tables!
-				content = content.replace(/\n/g, ' ');
-				var ret = content.trim().replace(/\|/g, '\\|');
+				let ret = content.replace(/\n/g, ' ').trim();
+				ret = ret.replace(/([\\|])/g, '\\$1');
 				if (nodeName == 'th') {
-					if (Foxtrick.hasClass(node, 'center')) {
-						ret = ':' + ret + ':';
-					}
-					else if (Foxtrick.hasClass(node, 'right')) {
-						ret = ret + ':';
-					}
-					else {
-						ret = ':' + ret;
-					}
+					if (Foxtrick.hasClass(node, 'center'))
+						ret = `:${ret}:`;
+					else if (Foxtrick.hasClass(node, 'right'))
+						ret = `${ret}:`;
+					else
+						ret = `:${ret}`;
 				}
+
 				// outer loop also adds ' ' to the left
 				return '\u2060\u2060' + ret;
 			},
@@ -458,7 +461,7 @@ Foxtrick.util.htMl.getId = function(node) {
 	var link = null;
 	var currentObj = node;
 	while (currentObj) {
-		if (currentObj.href !== undefined) {
+		if (typeof currentObj.href !== 'undefined') {
 			link = currentObj.href;
 			break;
 		}
@@ -549,7 +552,7 @@ Foxtrick.util.htMl._parseLink = function(node) {
 	var link = null;
 	var currentObj = node;
 	while (currentObj) {
-		if (currentObj.href !== undefined) {
+		if (typeof currentObj.href !== 'undefined') {
 			link = currentObj.href;
 			break;
 		}
@@ -559,7 +562,7 @@ Foxtrick.util.htMl._parseLink = function(node) {
 	var url = null;
 	var id = null;
 	var text = null;
-	if (idObj !== null && idObj.tag !== undefined) {
+	if (idObj !== null && typeof idObj.tag !== 'undefined') {
 		id = idObj.id;
 		type = idObj.tag;
 	}
@@ -653,7 +656,7 @@ Foxtrick.util.htMl.getMarkupFromNode = function(node, options) {
  * @return {string}
  */
 Foxtrick.util.htMl._getMarkupRec = function(node, def, opts) {
-	if (node.nodeName === undefined) {
+	if (typeof node.nodeName === 'undefined') {
 		return '';
 	}
 
@@ -778,7 +781,7 @@ Foxtrick.util.htMl._getMarkupRec = function(node, def, opts) {
  * Options is { external: boolean, format: string }.
  * external sets whether relative HT links are not used (defaults to false).
  * format is the markup language to use (defaults to htMl).
- * @param  {element} node
+ * @param  {Element} node
  * @param  {object}  options {external: boolean, format: string}
  * @return {string}
  */

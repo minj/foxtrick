@@ -54,7 +54,7 @@ Foxtrick.modules['Redirections'] = {
 		if (isManagerPage) {
 			userId = Foxtrick.Pages.All.getId(doc);
 			var userNode = mainBody.querySelector('h1 .speedBrowser').nextSibling;
-			userName = userNode.textContent.trim();
+			userName = userNode.textContent.trim(); // lgtm[js/useless-assignment-to-local]
 
 			switch (redirect) {
 				case 'analysis': url = '/Club/TacticsRoom/?TeamID=' + teamId; break;
@@ -102,7 +102,7 @@ Foxtrick.modules['Redirections'] = {
 					break;
 
 				case 'custom':
-					url = Foxtrick.getParameterFromUrl(location, 'redir_to');
+					url = Foxtrick.getUrlParam(location, 'redir_to');
 					url = url.replace(/%5BteamId%5D|\[teamId\]/i, teamId);
 					url = url.replace(/%5BuserId%5D|\[userId\]/i, userId);
 					break;
@@ -116,7 +116,7 @@ Foxtrick.modules['Redirections'] = {
 				var userLink = mainBody.querySelector('a[href*="userId"]');
 				if (userLink) {
 					userId = Foxtrick.util.id.getUserIdFromUrl(userLink.href);
-					userName = userLink.title.trim();
+					userName = userLink.title.trim(); // lgtm[js/useless-assignment-to-local]
 				}
 			}
 
@@ -170,7 +170,7 @@ Foxtrick.modules['Redirections'] = {
 
 					var upcomingUrl = upcoming.parentNode.href;
 					var matchId = Foxtrick.util.id.getMatchIdFromUrl(upcomingUrl);
-					var sourceSystem = Foxtrick.getParameterFromUrl(upcomingUrl, 'SourceSystem');
+					var sourceSystem = Foxtrick.getUrlParam(upcomingUrl, 'SourceSystem');
 
 					if (redirect === 'nextmatch') {
 						url = '/Club/Matches/Match.aspx?matchID=' + matchId +

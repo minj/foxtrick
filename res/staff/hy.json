@@ -22,19 +22,9 @@
 			"duty": "translator"
 		},
 		{
-			"id": "1904227",
-			"name": "Homer-Simpson",
-			"duty": "support"
-		},
-		{
 			"id": "704348",
 			"name": "Junyi",
 			"duty": "support"
-		},
-		{
-			"id": "4613900",
-			"name": "Mod-Baumschubser",
-			"duty": "helper"
 		},
 		{
 			"id": "6604640",
@@ -44,11 +34,6 @@
 		{
 			"id": "6381548",
 			"name": "Halli",
-			"duty": "helper"
-		},
-		{
-			"id": "7277437",
-			"name": "Dorie_tries_soccer",
 			"duty": "helper"
 		},
 		{
@@ -83,7 +68,7 @@
 		},
 		{
 			"id": "6170192",
-			"name": "albertocorrez-SUB",
+			"name": "arvalstnieks-SUB",
 			"duty": "translator"
 		},
 		{
@@ -123,7 +108,7 @@
 		},
 		{
 			"id": "6808570",
-			"name": "g_wes_HT33",
+			"name": "GM-Wes",
 			"duty": "translator"
 		},
 		{
@@ -154,11 +139,6 @@
 		{
 			"id": "8812769",
 			"name": "dspacedog",
-			"duty": "translator"
-		},
-		{
-			"id": "9060882",
-			"name": "nikpaisios",
 			"duty": "translator"
 		},
 		{
@@ -214,11 +194,6 @@
 		{
 			"id": "11048399",
 			"name": "Strategyt",
-			"duty": "translator"
-		},
-		{
-			"id": "11364099",
-			"name": "Mr_Aida",
 			"duty": "translator"
 		},
 		{
@@ -323,7 +298,7 @@
 		},
 		{
 			"id": "6263697",
-			"name": "LA-Ron__Manager",
+			"name": "LA-Ron_Riverboat",
 			"duty": "translator"
 		},
 		{
@@ -402,11 +377,6 @@
 			"duty": "translator"
 		},
 		{
-			"id": "13121665",
-			"name": "Goko84",
-			"duty": "translator"
-		},
-		{
 			"id": "3060960",
 			"name": "Haznfefer",
 			"duty": "translator"
@@ -438,7 +408,7 @@
 		},
 		{
 			"id": "11191407",
-			"name": "anna_rose",
+			"name": "linhtd",
 			"duty": "translator"
 		},
 		{
@@ -452,8 +422,28 @@
 			"duty": "translator"
 		},
 		{
-			"id": "154602",
-			"name": "Kytampe",
+			"id": "13335023",
+			"name": "gregvoo",
+			"duty": "translator"
+		},
+		{
+			"id": "13506882",
+			"name": "Aaawww",
+			"duty": "translator"
+		},
+		{
+			"id": "13472675",
+			"name": "julio9269",
+			"duty": "translator"
+		},
+		{
+			"id": "13524202",
+			"name": "rainboo",
+			"duty": "translator"
+		},
+		{
+			"id": "11178881",
+			"name": "zabest",
 			"duty": "translator"
 		}
 	]

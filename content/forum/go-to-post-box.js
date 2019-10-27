@@ -18,11 +18,11 @@ Foxtrick.modules['GoToPostBox'] = {
 		var tab = '';
 		try {
 			var activeTab = doc.querySelector('.forumTabs > .active');
-			tab = '&v=' + Foxtrick.getParameterFromUrl(activeTab.href, 'v');
+			tab = '&v=' + Foxtrick.getUrlParam(activeTab.href, 'v');
 		}
 		catch (e) {}
 
-		var topicId = Foxtrick.getParameterFromUrl(doc.location.href, 't');
+		var topicId = Foxtrick.getUrlParam(doc.location.href, 't');
 
 		var goToHandler = function() {
 			var doc = this.ownerDocument;

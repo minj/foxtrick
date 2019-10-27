@@ -1,4 +1,4 @@
-/*
+/**
  * copy-button.js
  * Utilities for adding a button for copying
  * @author ryanli
@@ -7,11 +7,12 @@
 'use strict';
 
 /* eslint-disable */
-if (!Foxtrick)
+if (!this.Foxtrick)
 	var Foxtrick = {};
+/* eslint-enable */
+
 if (!Foxtrick.util)
 	Foxtrick.util = {};
-/* eslint-enable */
 
 Foxtrick.util.copyButton = {};
 

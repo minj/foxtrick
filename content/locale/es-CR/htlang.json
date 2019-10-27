@@ -316,7 +316,14 @@
 			"146": "Camerún",
 			"147": "Cuba",
 			"148": "Palestina",
+			"149": "Santo Tomé y Príncipe",
 			"15": "Oceanía",
+			"151": "Comoras",
+			"152": "Sri Lanka",
+			"153": "Curazao",
+			"154": "Guam",
+			"155": "R.D. del Congo",
+			"156": "Etiopía",
 			"16": "Brasil",
 			"17": "Canadá",
 			"18": "Chile",
@@ -379,7 +386,7 @@
 			"76": "Islas Feroe",
 			"77": "Marruecos",
 			"79": "Arabia Saudita",
-			"8": "EE.UU.",
+			"8": "EE. UU.",
 			"80": "Túnez",
 			"81": "Costa Rica",
 			"83": "Emiratos Árabes Unidos",
@@ -393,7 +400,7 @@
 			"94": "Jamaica",
 			"95": "Kenya",
 			"96": "Panamá",
-			"97": "Macedonia",
+			"97": "Macedonia del Norte",
 			"98": "Albania",
 			"99": "Honduras"
 		},
@@ -627,7 +634,7 @@
 			},
 			{
 				"type": "Regainer",
-				"value": "Recuperador"
+				"value": "Resistente"
 			}
 		],
 		"spirit": [

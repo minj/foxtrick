@@ -7,14 +7,26 @@ sr:
       note_0: 'Ово је бета верзија наредне званичне верзије. Уколико желите да помогнете у превођењу посетите нашу страницу за преводиоце на <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.17.0.1:
       important: '<header>Важна обавештења</header>'
+      safari_cert: 'Тражимо заинтересоване чланове Хетрик заједнице који се баве развојем апликација за iOS или OSX оперативне сисеме ради враћања Foxtrick подршке за Safari кориснике. Више информација можете наћи на <linkSafariCertBug>праћење проблема</linkSafariCertBug>.'
+      support: '<header>Допада вам се ово што радимо? <linkContribute>Подржите Foxtrick</linkContribute></header>'
+      bugs: '<header>Исправке грешака</header>'
+      specinfo_fixes: 'Модул <module>SpecialtyInfo</module> је имао лошу интеракцију са модулима <module>SkillTable</module> и <module>ContextMenuCopy</module>. Модул је прерађен ради побољшања његове интеграције.'
+      other: '<header>Остале промене</header>'
     0.17.0:
       important: '<header>Важна обавештења</header>'
       crowdin: '<header>Ажурирани преводи на многобројне језике уз помоћ <linkCrowdin>crowdin алата</linkCrowdin>. Ако и Ви хоћете да помогнете, само изволите!</header>'
+      new: '<header>Нови модули</header>'
+      training_week: 'Модул PlayerStatsTrainingWeek је избачен јер је Хетрик увео идентичну функцију.'
     0.16.1.1:
       important: '<header>Важна обавештења</header>'
     0.16.1:
       important: '<header>Важна обавештења</header>'
       crowdin: '<header>Ажурирани преводи на многобројне језике уз помоћ <linkCrowdin>crowdin алата</linkCrowdin>. Ако и Ви хоћете да помогнете, само изволите!</header>'
+      support: '<header>Допада вам се ово што радимо? <linkContribute>Подржите Foxtrick</linkContribute></header>'
+      other: '<header>Остале измене</header>'
+      stamina_contributions: 'Модул <module>MatchSimulator</module> сада користи <module>PlayerPositionsEvaluations</module> за израчунавање ефекта кондиције. Промене су мале али значајне. Сваки коментар ради побољшања ове функције је увек добродошао.'
+      copy_lineup: 'Сада можете копирати своју стартну поставу у <module>MatchOrderInterface</module>.'
+      total_capacity: 'Модул <module>MatchIncome</module> сада показује статистику за укупни капацитет стадиона.'
     0.16.0:
       important: '<header>Важна обавештења</header>'
       safari: 'Због измена у Apple Inc. политици и генералном одбијању да унапреде љихов браузер више нисмо у могућности да гарантујемо аутоматска ажурирања за Safari. Уколико желите саветујемо вам да пређете на Firefox, Google Chrome или Opera.'
@@ -61,6 +73,7 @@ sr:
     0.15.0:
       important: '<header>Важна обавештења</header>'
       crowdin: '<header>Ажурирани преводи на многобројне језике уз помоћ <linkCrowdin>crowdin алата</linkCrowdin>. Ако и Ви хоћете да помогнете, само изволите!</header>'
+      twitter: 'Можете нас пратити на нашем <linkTwitter>Foxtrick on Twitter</linkTwitter> налогу да сазнате најновије вести, ажурирања и најаве.'
     0.14.0.3:
       important: '<header>Важна обавештења</header>'
     0.14.0.1:

@@ -1,13 +1,17 @@
-'use strict';
-/*
+/**
  * loader-firefox.js
  * Foxtrick loader for Firefox/Seamonkey
  *
  * @author convincedd, LA-MJ
  */
 
-if (!Foxtrick)
-	var Foxtrick = {}; // jshint ignore:line
+'use strict';
+
+/* eslint-disable */
+if (!this.Foxtrick)
+	var Foxtrick = {};
+/* eslint-enable */
+
 if (!Foxtrick.loader)
 	Foxtrick.loader = {};
 

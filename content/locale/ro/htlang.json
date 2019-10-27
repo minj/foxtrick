@@ -316,7 +316,14 @@
 			"146": "Camerun",
 			"147": "Cuba",
 			"148": "Palestina",
+			"149": "São Tomé e Príncipe",
 			"15": "Oceania",
+			"151": "Insulele Comore",
+			"152": "Sri Lanka",
+			"153": "Curaçao",
+			"154": "Guam",
+			"155": "RD Congo",
+			"156": "Etiopia",
 			"16": "Brazilia",
 			"17": "Canada",
 			"18": "Chile",
@@ -393,7 +400,7 @@
 			"94": "Jamaica",
 			"95": "Kenya",
 			"96": "Panama",
-			"97": "Macedonia",
+			"97": "Macedonia de Nord",
 			"98": "Albania",
 			"99": "Honduras"
 		},
@@ -627,7 +634,7 @@
 			},
 			{
 				"type": "Regainer",
-				"value": "Recuperare"
+				"value": "Rezistent"
 			}
 		],
 		"spirit": [

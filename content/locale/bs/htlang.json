@@ -316,7 +316,14 @@
 			"146": "Kamerun",
 			"147": "Kuba",
 			"148": "Palestina",
+			"149": "Sao Tome i Principe",
 			"15": "Australija",
+			"151": "Komori",
+			"152": "Šri Lanka",
+			"153": "Kurasao",
+			"154": "Guam",
+			"155": "DR Kongo",
+			"156": "Etiopija",
 			"16": "Brazil",
 			"17": "Kanada",
 			"18": "Čile",
@@ -393,7 +400,7 @@
 			"94": "Jamajka",
 			"95": "Kenija",
 			"96": "Panama",
-			"97": "Makedonija",
+			"97": "Sjeverna Makedonija",
 			"98": "Albanija",
 			"99": "Honduras"
 		},
@@ -627,7 +634,7 @@
 			},
 			{
 				"type": "Regainer",
-				"value": "Nesalomljiv"
+				"value": "Otporan"
 			}
 		],
 		"spirit": [

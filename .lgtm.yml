@@ -1,0 +1,4 @@
+path_classifiers:
+  library:
+    - content/lib
+    - exclude: content/lib/psico.js

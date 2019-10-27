@@ -422,7 +422,7 @@ Foxtrick.modules['PlayerFilters'] = {
 				var faceCards = doc.querySelectorAll('.faceCard, .faceCardNoBottomInfo');
 				if (faceCards.length) {
 					count = faceCards.length;
-					faceCards = Foxtrick.map(function(elem) {
+					faceCards = Foxtrick.map((elem) => { // lgtm[js/useless-assignment-to-local]
 						var hasHiddenCls = Foxtrick.any(function(cls) {
 							return Foxtrick.hasClass(elem, cls);
 						}, hideFace);

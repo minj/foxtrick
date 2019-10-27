@@ -225,7 +225,7 @@ function locateFragment(uri) {
 		search('', true); // search reset
 
 		$('#pane > div').hide();
-		$('#tabs > li').removeClass('active');
+		$('.tabs > li').removeClass('active');
 
 		$('#tab-' + tab).addClass('active');
 		$('#pane > div[x-on*=' + tab + ']').show();
@@ -271,7 +271,7 @@ function locateFragment(uri) {
 
 	// if (Foxtrick.Prefs.isModuleEnabled('MobileEnhancements')) {
 	// 	// mobile
-	// 	$('#tabs').hide();
+	// 	$('.tabs').hide();
 	// 	$('#main').show();
 	// }
 }
@@ -812,14 +812,14 @@ function initListeners() {
  * @return {HTMLDivElement}
  */
 function makeModuleDiv(module) {
-	var getScreenshot = function(link) {
-		var a = document.createElement('a');
-		a.className = 'screenshot';
-		a.href = link;
-		a.title = Foxtrick.L10n.getString('module.screenshot');
-		a.setAttribute('target', '_blank');
-		return a;
-	};
+	// var getScreenshot = function(link) {
+	// 	var a = document.createElement('a');
+	// 	a.className = 'screenshot';
+	// 	a.href = link;
+	// 	a.title = Foxtrick.L10n.getString('module.screenshot');
+	// 	a.setAttribute('target', '_blank');
+	// 	return a;
+	// };
 
 	var entry = document.createElement('div');
 	entry.id = 'pref-' + module.MODULE_NAME;
@@ -860,11 +860,11 @@ function makeModuleDiv(module) {
 	title.appendChild(link);
 
 	// screenshot
-	if (false) { // README: disabled
-		var screenshotLink = Foxtrick.L10n.getScreenshot(module.MODULE_NAME);
-		if (screenshotLink)
-			title.appendChild(getScreenshot(screenshotLink));
-	}
+	// if (false) {
+	// 	var screenshotLink = Foxtrick.L10n.getScreenshot(module.MODULE_NAME);
+	// 	if (screenshotLink)
+	// 		title.appendChild(getScreenshot(screenshotLink));
+	// }
 
 	var desc = document.createElement('p');
 	desc.id = entry.id + '-desc';
@@ -921,11 +921,11 @@ function makeModuleDiv(module) {
 			label.appendChild(document.createTextNode(desc));
 
 			// screenshot
-			if (false) { // README: disabled
-				var screenshotLink = Foxtrick.L10n.getScreenshot(module.MODULE_NAME + '.' + key);
-				if (screenshotLink)
-					label.appendChild(getScreenshot(screenshotLink));
-			}
+			// if (false) { // README: disabled
+			// 	var screenshotLink = Foxtrick.L10n.getScreenshot(module.MODULE_NAME + '.' + key);
+			// 	if (screenshotLink)
+			// 		label.appendChild(getScreenshot(screenshotLink));
+			// }
 		};
 
 		var appendOptionsArrayToList = function(optionsArray, parentList) {
@@ -1609,7 +1609,7 @@ function initAboutTab() {
  */
 function initTabs() {
 	// attach each tab with corresponding pane
-	$('#tabs li a').each(function() {
+	$('.tabs li a').each(function() {
 		var tab = $(this).parent().attr('id').replace(/^tab-/, '');
 		$(this).attr('href', generateURI({ tab: tab }));
 	});
@@ -1829,11 +1829,11 @@ function init() {
 
 		// if (Foxtrick.Prefs.isModuleEnabled('MobileEnhancements')) {
 		// 	// mobile
-		// 	$('#tabs').hide();
+		// 	$('.tabs').hide();
 		// 	$('#content').addClass('ft-mobile');
 		// 	Foxtrick.log(Foxtrick, 'MobileEnhancements');
 		// 	Foxtrick.onClick($('#navigation-header')[0], function() {
-		// 		$('#tabs').toggle();
+		// 		$('.tabs').toggle();
 		// 		$('#main').toggle();
 		// 	});
 		// }

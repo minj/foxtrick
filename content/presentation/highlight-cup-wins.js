@@ -1,19 +1,23 @@
-'use strict';
 /**
  * highlight-cup-wins.js
  * Highlight winners of cup matches and cupsets (optional)
  * @author convincedd, ryanli
  */
 
+'use strict';
+
 Foxtrick.modules['HighlightCupwins'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.PRESENTATION,
 	PAGES: ['cupMatches'],
 	OPTIONS: ['HighlightCupsets'],
 
+	/* eslint-disable complexity */
+
 	run: function(doc) {
 		var rtl = Foxtrick.util.layout.isRtl(doc);
-		var highlightCupsets = Foxtrick.Prefs.isModuleOptionEnabled('HighlightCupwins',
-		                                                           'HighlightCupsets');
+		var highlightCupsets =
+			Foxtrick.Prefs.isModuleOptionEnabled('HighlightCupwins', 'HighlightCupsets');
+
 		// matches of Hattrick Masters aren't arranged by cup ranks
 		var isMasters = (doc.location.search.search(/\bCupId=183\b/i) !== -1);
 		var highlightHomeWin = !isMasters && highlightCupsets;
@@ -42,9 +46,11 @@ Foxtrick.modules['HighlightCupwins'] = {
 			var goalsAway = parseInt(goals[1], 10);
 
 			// win, draw, lose from the aspect of home team
-			var win = (goalsHome > goalsAway);
-			var draw = (goalsHome === goalsAway); // 0 - 0 if match isn't played yet
-			var lose = (goalsHome < goalsAway);
+			var win = goalsHome > goalsAway;
+			// 0 - 0 if match isn't played yet
+			// eslint-disable-next-line no-unused-vars
+			var draw = goalsHome === goalsAway; // lgtm[js/unused-local-variable]
+			var lose = goalsHome < goalsAway;
 			var matchlink = table.rows[i].cells[3].getElementsByTagName('a')[0];
 			var teams = matchlink.textContent.match(/(.+)\u00a0-\u00a0(.+)/);
 			try {

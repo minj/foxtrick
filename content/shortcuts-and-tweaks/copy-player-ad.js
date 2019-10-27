@@ -128,7 +128,7 @@ Foxtrick.modules['CopyPlayerAd'] = {
 					ad += header.textContent.trim();
 
 					if (typeof data === 'undefined') {
-						ad += '\n\n'
+						ad += '\n\n';
 						continue;
 					}
 

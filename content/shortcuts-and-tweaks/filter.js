@@ -407,7 +407,7 @@ Foxtrick.modules['Filter'] = {
 
 			var allPlayers = doc.getElementById('mainBody').getElementsByTagName('a');
 			for (var i = 0; i < allPlayers.length; ++i) {
-				var player = Foxtrick.getParameterFromUrl(allPlayers[i].href, 'playerId');
+				var player = Foxtrick.getUrlParam(allPlayers[i].href, 'playerId');
 				if (player && ids.indexOf(player) >= 0) {
 					var row = allPlayers[i].parentNode.parentNode;
 					Foxtrick.addClass(row, 'ft-top-players-owner');

@@ -81,7 +81,7 @@ Foxtrick.modules['ReadHtPrefs'] = {
 		var teamLinks = doc.querySelectorAll('#teamLinks a');
 		var leagueLink = teamLinks[2];
 		if (leagueLink) {
-			var leagueId = Foxtrick.getParameterFromUrl(leagueLink.href, 'leagueId');
+			var leagueId = Foxtrick.getUrlParam(leagueLink.href, 'leagueId');
 			var country = Foxtrick.L10n.getCountryNameEnglish(leagueId);
 			Foxtrick.Prefs.setString('htCountry', country);
 		}

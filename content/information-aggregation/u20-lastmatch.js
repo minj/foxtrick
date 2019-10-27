@@ -10,7 +10,7 @@
 
 Foxtrick.modules['U20LastMatch'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
-	PAGES: ['youthPlayerDetails', 'playerDetails', 'players'],
+	PAGES: ['youthPlayerDetails', 'playerDetails', 'players', 'transferSearchResult'],
 	OPTIONS: ['YouthPlayers', 'SeniorPlayers', 'AllPlayers'],
 	DATE_CUTOFFS: [
 		7,
@@ -99,16 +99,19 @@ Foxtrick.modules['U20LastMatch'] = {
 
 	run: function(doc) {
 		var module = this;
-		if (Foxtrick.Pages.Player.wasFired(doc))
-			return;
 
 		var isYouthPlayerDetailsPage = Foxtrick.isPage(doc, 'youthPlayerDetails');
 		var isSeniorPlayerDetailsPage = Foxtrick.isPage(doc, 'playerDetails');
 		var isPlayersPage = Foxtrick.isPage(doc, 'players');
+		var isTransferResultsPage = Foxtrick.isPage(doc, 'transferSearchResult');
+
+		if (Foxtrick.Pages.Player.wasFired(doc) && !isTransferResultsPage)
+			return;
 
 		var isYouthEnabled = Foxtrick.Prefs.isModuleOptionEnabled(this, 'YouthPlayers');
 		var isSeniorsEnabled = Foxtrick.Prefs.isModuleOptionEnabled(this, 'SeniorPlayers');
 		var isPlayersEnabled = Foxtrick.Prefs.isModuleOptionEnabled(this, 'AllPlayers');
+		var isTransferResultsPageEnabled = Foxtrick.Prefs.isModuleOptionEnabled(this, 'TransfersResults');
 
 		// If the option isn't enabled for this page, don't show.
 		if (isYouthPlayerDetailsPage && !isYouthEnabled)
@@ -117,17 +120,22 @@ Foxtrick.modules['U20LastMatch'] = {
 			return;
 		if (isPlayersPage && !isPlayersEnabled)
 			return;
+		if (isTransferResultsPage && !isTransferResultsPageEnabled)
+			return;
 
 		if (isYouthPlayerDetailsPage || isSeniorPlayerDetailsPage)
 			module.runPlayer(doc);
 		else if (isPlayersPage)
 			module.runPlayerList(doc);
+		else if (isTransferResultsPage)
+			module.runTransferList(doc);
 	},
 
 	runPlayer: function(doc) {
 		var module = this;
 
-		const TITLE_STR = Foxtrick.L10n.getString('U20LastMatch.title');
+		const TITLE_STR = Foxtrick.L10n.getString('U20LastMatch.eligibilityTitle');
+		const TEXT_STR = Foxtrick.L10n.getString('U20LastMatch.eligibilityText');
 		const WC_STR = Foxtrick.L10n.getString('U20LastMatch.worldcup');
 		const TMPL_STR = Foxtrick.L10n.getString('U20LastMatch.templateWithoutTable');
 
@@ -139,15 +147,22 @@ Foxtrick.modules['U20LastMatch'] = {
 		let wcNum = Foxtrick.decToRoman(worldCupNumber);
 
 		let text = TMPL_STR;
-		text = text.replace(/%1/, TITLE_STR);
+		text = text.replace(/%1/, TEXT_STR);
 		text = text.replace(/%2/, WC_STR);
 		text = text.replace(/%3/, wcNum);
 		text = text.replace(/%4/, lastMatch);
 
-		let wrapper = Foxtrick.createFeaturedElement(doc, module, 'p');
-		wrapper.textContent = text;
-		let info = doc.querySelector('.playerInfo');
-		info.appendChild(wrapper);
+
+		let entryPoint = doc.querySelector('#mainBody > .mainBox');
+		let wrapper = Foxtrick.createFeaturedElement(doc, module, 'div');
+		Foxtrick.addClass(wrapper, 'mainBox');
+		let titleElement = doc.createElement('h2');
+		titleElement.textContent = TITLE_STR;
+		let textElement = doc.createElement('div');
+		textElement.textContent = text;
+		wrapper.appendChild(titleElement);
+		wrapper.appendChild(textElement);
+		entryPoint.parentNode.insertBefore(wrapper, entryPoint.nextSibling);
 	},
 
 	runPlayerList: function(doc) {
@@ -172,8 +187,35 @@ Foxtrick.modules['U20LastMatch'] = {
 
 			let container = Foxtrick.createFeaturedElement(doc, module, 'p');
 			container.textContent = text;
-			let table = player.playerNode.querySelector('table');
+			let table = player.playerNode.querySelector('table') || player.playerNode.lastChild;
 			Foxtrick.insertAfter(container, table);
 		}
 	},
+
+	runTransferList: function(doc) {
+		var module = this;
+		const TITLE_STR = Foxtrick.L10n.getString('U20LastMatch.title');
+		const WC_STR = Foxtrick.L10n.getString('U20LastMatch.worldcup');
+		const TMPL_STR = Foxtrick.L10n.getString('U20LastMatch.templateWithoutTable');
+
+		let players = Foxtrick.Pages.TransferSearchResults.getPlayerList(doc);
+		for (let player of players) {
+			if (player.age.years > 20)
+				continue;
+
+			let { worldCupNumber, lastMatch } = module.calculate(player.age, doc);
+			let wcNum = Foxtrick.decToRoman(worldCupNumber);
+
+			let text = TMPL_STR;
+			text = text.replace(/%1/, TITLE_STR);
+			text = text.replace(/%2/, WC_STR);
+			text = text.replace(/%3/, wcNum);
+			text = text.replace(/%4/, lastMatch);
+
+			let container = Foxtrick.createFeaturedElement(doc, module, 'div');
+			container.textContent = text;
+			let element = player.playerNode.querySelector('.flex') || player.playerNode.lastChild;
+			Foxtrick.insertAfter(container, element);
+		}
+	}
 };

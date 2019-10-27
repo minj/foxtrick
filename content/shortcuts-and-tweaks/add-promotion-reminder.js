@@ -11,7 +11,7 @@ Foxtrick.modules['AddPromotionReminder'] = {
 	PAGES: ['youthPlayerDetails', 'reminders'],
 	CSS: Foxtrick.InternalPath + 'resources/css/add-promotion-reminder.css',
 	run: function(doc) {
-		var sendDate = Foxtrick.getParameterFromUrl(doc.location.href, 'sendDate');
+		var sendDate = Foxtrick.getUrlParam(doc.location.href, 'sendDate');
 		var isReminders = Foxtrick.isPage(doc, 'reminders');
 		var isYouthPlayerDetails = Foxtrick.isPage(doc, 'youthPlayerDetails');
 

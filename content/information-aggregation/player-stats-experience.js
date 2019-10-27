@@ -78,10 +78,12 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 
 			// new W.O detection
 			var isWalkover = function(node) {
-				var stars = node.querySelector('td.endColumn2').textContent.trim();
+				var starCell = node.querySelector('td:last-child');
+				var starImg = starCell.querySelector('img[class^="star"]');
+				var stars = starCell.textContent.trim();
 
 				// stars in standard || no perform || stars in simple
-				if (stars.length === 0 || stars === '-' || stars.match(/^[0-9,. ()]+$/))
+				if (stars.length === 0 || !!starImg || stars.match(/^[0-9,.\s()]+$/))
 					return false;
 
 				return true;
@@ -183,7 +185,7 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 				var matchDate = statsRows[i].querySelector('td.keyColumn');
 				if (matchDate) {
 					let dateSpan = matchDate.querySelector('span.float_left');
-					let dateStr = dateSpan.dataset.title;
+					let dateStr = dateSpan.title || dateSpan.dataset.dateiso;
 					var date = Foxtrick.util.time.getDateFromText(dateStr);
 
 					// current skilllevel

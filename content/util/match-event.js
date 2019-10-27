@@ -1,13 +1,16 @@
-/*
-	* Utilities to handle match events as delivered by HT
-	* Also including common functionality shared by
-	* match report format and live match report format
+/**
+ * Utilities to handle match events as delivered by HT
+ * Also including common functionality shared by
+ * match report format and live match report format
 */
 
 'use strict';
 
-if (!Foxtrick)
+/* eslint-disable */
+if (!this.Foxtrick)
 	var Foxtrick = {};
+/* eslint-enable */
+
 if (!Foxtrick.util)
 	Foxtrick.util = {};
 

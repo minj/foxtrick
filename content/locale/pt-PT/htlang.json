@@ -316,7 +316,14 @@
 			"146": "Camarões",
 			"147": "Cuba",
 			"148": "Palestina",
+			"149": "São Tomé e Príncipe",
 			"15": "Oceania",
+			"151": "Comores",
+			"152": "Sri Lanka",
+			"153": "Curaçao",
+			"154": "Guam",
+			"155": "Rep. Dem. Congo",
+			"156": "Etiópia",
 			"16": "Brasil",
 			"17": "Canadá",
 			"18": "Chile",
@@ -360,7 +367,7 @@
 			"58": "Croácia",
 			"59": "Hong Kong",
 			"6": "México",
-			"60": "Taipei Chinês",
+			"60": "República da China",
 			"61": "País de Gales",
 			"62": "Bulgária",
 			"63": "Israel",
@@ -393,7 +400,7 @@
 			"94": "Jamaica",
 			"95": "Quénia",
 			"96": "Panamá",
-			"97": "ARJ Macedónia",
+			"97": "Macedónia do Norte",
 			"98": "Albânia",
 			"99": "Honduras"
 		},
@@ -627,7 +634,7 @@
 			},
 			{
 				"type": "Regainer",
-				"value": "Reabilitação"
+				"value": "Resiliente"
 			}
 		],
 		"spirit": [

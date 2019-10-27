@@ -1,17 +1,21 @@
-'use strict';
-/*
+/**
  * loader-fennec.js
  * Foxtrick loader for Fennec platform
  *
  * @author convincedd, LA-MJ
  */
 
-if (!Foxtrick)
-	var Foxtrick = {}; // jshint ignore:line
+'use strict';
+
+/* eslint-disable */
+if (!this.Foxtrick)
+	var Foxtrick = {};
 
 // window in content fennec script is named 'content'
-if (!window)
-	var window = content; // jshint ignore:line
+if (!this.window)
+	var window = content;
+/* eslint-enable */
+
 
 // Fennec tab load. starts the content instances for Fennec (one per tab, persistent)
 (function() {

@@ -20,7 +20,7 @@ Foxtrick.modules['PlayerBirthday'] = {
 		var playerList = Foxtrick.modules.Core.getPlayerList();
 
 		for (var i = 0; i < playerList.length; ++i) {
-			if (playerList[i].age !== undefined) {
+			if (typeof playerList[i].age !== 'undefined') {
 				if (playerList[i].age.days === 0) {
 					birthdayToday.push(playerList[i]);
 				}

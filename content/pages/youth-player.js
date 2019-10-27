@@ -6,8 +6,11 @@
 
 'use strict';
 
-if (!Foxtrick)
+/* eslint-disable */
+if (!this.Foxtrick)
 	var Foxtrick = {};
+/* eslint-enable */
+
 if (!Foxtrick.Pages)
 	Foxtrick.Pages = {};
 

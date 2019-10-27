@@ -316,7 +316,14 @@
 			"146": "Kamerun",
 			"147": "Kuba",
 			"148": "Palestina",
+			"149": "São Tomé eta Príncipe",
 			"15": "Ozeania",
+			"151": "Comoros",
+			"152": "Sri Lanka",
+			"153": "Curaçao",
+			"154": "Guam",
+			"155": "DR Congo",
+			"156": "Ethiopia",
 			"16": "Brasil",
 			"17": "Kanada",
 			"18": "Txile",
@@ -393,7 +400,7 @@
 			"94": "Jamaica",
 			"95": "Kenya",
 			"96": "Panama",
-			"97": "Mazedoniako Errepublika",
+			"97": "Ipar Mazedoniako Errepublika",
 			"98": "Albania",
 			"99": "Honduras"
 		},
@@ -491,7 +498,7 @@
 			},
 			{
 				"type": "WingBack",
-				"value": "Hego Atzelaria"
+				"value": "Hegal Atzelaria"
 			},
 			{
 				"type": "CentralDefender",
@@ -615,7 +622,7 @@
 			},
 			{
 				"type": "Powerful",
-				"value": "Ahaltsua"
+				"value": "Bortitza"
 			},
 			{
 				"type": "Unpredictable",
@@ -627,7 +634,7 @@
 			},
 			{
 				"type": "Regainer",
-				"value": "Sendaerraza"
+				"value": "Elastikoa"
 			}
 		],
 		"spirit": [

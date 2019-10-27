@@ -316,7 +316,14 @@
 			"146": "Kamerun",
 			"147": "Kuba",
 			"148": "Palestina",
+			"149": "Sveti Toma i Princip",
 			"15": "Oceanija",
+			"151": "Komori",
+			"152": "Šri Lanka",
+			"153": "Curaçao",
+			"154": "Guam",
+			"155": "DR Kongo",
+			"156": "Etiopija",
 			"16": "Brazil",
 			"17": "Kanada",
 			"18": "Čile",
@@ -393,7 +400,7 @@
 			"94": "Jamajka",
 			"95": "Kenija",
 			"96": "Panama",
-			"97": "Makedonija",
+			"97": "Sjeverna Makedonija",
 			"98": "Albanija",
 			"99": "Honduras"
 		},
@@ -491,7 +498,7 @@
 			},
 			{
 				"type": "WingBack",
-				"value": "Zadnji bočni"
+				"value": "Bočni"
 			},
 			{
 				"type": "CentralDefender",
@@ -499,7 +506,7 @@
 			},
 			{
 				"type": "InnerMidfield",
-				"value": "Srednji vezni"
+				"value": "Vezni"
 			},
 			{
 				"type": "Winger",
@@ -569,23 +576,23 @@
 			},
 			{
 				"type": "Defender",
-				"value": "U obrani"
+				"value": "Obrana"
 			},
 			{
 				"type": "Playmaker",
-				"value": "Kreiranje igre"
+				"value": "Kreiranje"
 			},
 			{
 				"type": "Winger",
-				"value": "Na krilu"
+				"value": "Krilo"
 			},
 			{
 				"type": "Scorer",
-				"value": "U napadu"
+				"value": "Napad"
 			},
 			{
 				"type": "Kicker",
-				"value": "Iz prekida"
+				"value": "Prekidi"
 			},
 			{
 				"type": "Passer",
@@ -603,7 +610,7 @@
 		"specialties": [
 			{
 				"type": "None",
-				"value": "Bez specijalnosti"
+				"value": "Nema"
 			},
 			{
 				"type": "Technical",
@@ -627,7 +634,7 @@
 			},
 			{
 				"type": "Regainer",
-				"value": "Brži oporavak"
+				"value": "Otporan"
 			}
 		],
 		"spirit": [
@@ -779,7 +786,7 @@
 			},
 			{
 				"type": "Cross",
-				"value": "Nabacivanja (Krila)"
+				"value": "Krila"
 			},
 			{
 				"type": "Shoot",
@@ -791,7 +798,7 @@
 			},
 			{
 				"type": "PM",
-				"value": "Veza"
+				"value": "Kreiranje igre"
 			},
 			{
 				"type": "GK",

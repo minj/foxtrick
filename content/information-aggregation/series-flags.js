@@ -45,7 +45,7 @@ Foxtrick.modules['SeriesFlags'] = {
 				};
 				// fetch data from stored mapping if available, otherwise
 				// we retrieve XML
-				if (mapping[arg[0]][arg[1]] != undefined) {
+				if (typeof mapping[arg[0]][arg[1]] != 'undefined') {
 					var mapObj = mapping[arg[0]][arg[1]];
 					var data = {
 						'leagueId': mapObj['leagueId'],

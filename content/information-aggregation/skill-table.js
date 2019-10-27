@@ -1,9 +1,10 @@
-'use strict';
 /**
  * skill-table.js
  * Show a skill table on players list page
  * @author convincedd, ryanli, LA-MJ
  */
+
+'use strict';
 
 Foxtrick.modules['SkillTable'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
@@ -69,7 +70,7 @@ Foxtrick.modules['SkillTable'] = {
 
 		// returns full type of the document in this format:
 		// { type: ['senior'|'youth'|'transfer'], subtype: ['own'|'others'|'nt'|'oldiesCoach'] }
-		var getFullType = function() {
+		var getFullType = function(doc) {
 			var fullType = { type: '', subtype: '' };
 
 			if (Foxtrick.Pages.TransferSearchResults.isPage(doc)) {
@@ -388,6 +389,7 @@ Foxtrick.modules['SkillTable'] = {
 				{ name: 'SkillTableHide', property: 'id',
 					method: 'hide', listener: 'hide', sortAsc: true, frozen: true, },
 				{ name: 'PlayerNumber', property: 'number', sortAsc: true, frozen: true, },
+				{ name: 'PlayerId', property: 'id', sortAsc: true, frozen: true, },
 				{ name: 'PlayerCategory', property: 'category',
 					method: 'category', sortAsc: true, frozen: true, },
 				{ name: 'Nationality', property: 'countryId',
@@ -947,12 +949,10 @@ Foxtrick.modules['SkillTable'] = {
 								return 0;
 							}
 							// place empty cells at the bottom
-							if (aContent === '' || aContent === 'X' ||
-							    aContent === null || aContent === undefined) {
+							if (aContent === '' || aContent === 'X' || aContent == null) {
 								return 1;
 							}
-							if (bContent === '' || bContent === 'X' ||
-							    bContent === null || bContent === undefined) {
+							if (bContent === '' || bContent === 'X' || bContent == null) {
 								return -1;
 							}
 							if (sortAsString) {
@@ -1288,6 +1288,7 @@ Foxtrick.modules['SkillTable'] = {
 		var createTable = function(fullType) {
 			if (!fullType)
 				fullType = getFullType(doc);
+
 			if (fullType.type == 'transfer') {
 				var playerList = Foxtrick.Pages.TransferSearchResults.getPlayerList(doc);
 				generateTable(playerList);
@@ -1727,7 +1728,7 @@ Foxtrick.modules['SkillTable'] = {
 			return;
 
 		if (Foxtrick.isPage(doc, 'transferSearchResult') ||
-		    getFullType().subtype != 'others' ||
+		    getFullType(doc).subtype != 'others' ||
 		    Foxtrick.Prefs.isModuleOptionEnabled('SkillTable', 'OtherTeams')) {
 
 			addTableDiv();

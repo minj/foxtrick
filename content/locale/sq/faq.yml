@@ -5,7 +5,7 @@ sq:
       question: Si mund ta stiloj FoxTrick?
       answer: |
         <p>FoxTrick ofron nje grup nderfaqesh prezantimi per user-at per te rregulluar stilet e tyre te preferuara. Keto nderfaqe ofrohen permes HTML IDs dhe klasave, dhe ju mund te perdorni CSS per te vendosuri stilin e preferuar.</p>
-        
+
         <p>Nje shembull i stilit te perdorur nga userat mund te gjendet
         <linkCSSExample>ketu</linkCSSExample> ose 
         <linkCSSExampleGCode>ketu</linkCSSExampleGCode>, ku ju mund te 
@@ -15,7 +15,7 @@ sq:
       question: Cilat formate te dokumentave jane te lejuara per njoftimet me ze?
       answer: |
         <p>Shfletues të ndryshme të lejojë formate të ndryshme te dokumentave. Këtu është një listë (nuk jane listuar  formatet qe punojne me shtojca, prsh Quicktime per te aktivizuar mp3 ne Firefox):</p>
-        
+
         <ul>
         <li>Mozilla: wav, ogg</li>
         <li>Safari (mund te kerkoje Quicktime): wav, mp3</li>
@@ -25,23 +25,23 @@ sq:
       question: Sa eshte limiti i njoftimeve me ze dhe ku jane te lokalizuara?
       answer: |
         <p>Te gjithe shfletuesit e ueb-it mund te perdorin url-t e te dhenave. Ato jane tinguj te ruajtura mire kur ju klikoni mbi butonin Ngarko qe gjendet te preferencat. Qe nga momenti qe ato jane te konvertuara dhe te ruajtura ne preferencat tuaja, madhesia juaj eshte e limituar deri ne 160kB per tingull.</p>
-        
+
         <p>Te gjithe shfletuesit gjithashtu mund te perdorin tingujt direkt nga interneti (http url). Vetem kopjoni linkun e tingullit (psh. http://foxtrick.org/sound.wav) ne fushen editimit te tingullit. Nuk ka limit madhesie.</p>
-        
+
         <p>Shfletuesi Mozilla gjithashtu mund te luaje tinguj direkt nga hard driver (file url) pa limit madhesie. Menyra me e thjeshte per te marre formatin e duhur: Ne shfletues shtypni Ctrl+o, shfletoni deri tek tingulli dhe me pas selektojeni. Ne adress bar gjendet adresa lokale e skedarit (psh. file:///c:/sound.wav). Kopjoje dhe pas vendose ne fushen e editimit te tingujve.</p>
     authorize:
       question: Pse duhet qe te autorizoj FoxTrick per te marre te dhena nga ekipi im?
       answer: |
         <p>Gjithashtu shumica e te dhenave qe kerkohen nga FoxTrick mund te merren direkt nga faqja qe jeni duke pare, disa module kerkojn shkarkim te te dhenave nga Hattrick per te punuar sic duhet.</p>
-        
+
         <p>Per te shkarkuar te dhenat nga Hattrick, duke perfshir te dhenat e ekipit tuaj, liges, dhe te ekipit kombetar, ju duhet te autorizoheni nga FoxTrick.</p>
-        
+
         <p>Ju autorizoni FoxTrick duke siguruar emrin e perdoruesit dhe fjalekalimin ne chpp.hattrick.org ne kembim te kodit te verifikimit, e cila ju mundeson perdorimin e FoxTrick. FoxTrick nuk do e dije emrin e perdoruesit ose fjalekalimin gjate gjithe procesit.</p>
-        
+
         <p>Per te mesuar me shume rreth procesit te autorizimit, ju lutem lexoni <linkCHPPDesc>CHPP - Si funksionon</linkCHPPDesc> ne Hattrick.</p>
-        
+
         <p>Disa nga modulet kerkojne te dhena per te funksionuar mire.</p>
-        
+
         <ul>
         <li><module>CrossTable</module></li>
         <li><module>ExtraPlayerInfo</module></li>
@@ -50,9 +50,9 @@ sq:
         <li><module>NtPeek</module></li>
         <li><module>SeriesFlags</module></li>
         </ul>
-        
+
         <p>Disa module mund te kerkojne shume te dhena neqoftese ato aksesojn te dhenat nga Hattrick:</p>
-        
+
         <ul>
         <li><module>SkillTable</module></li>
         <li><module>TeamStats</module></li>
@@ -61,9 +61,9 @@ sq:
       question: Si e mbron privatesin time FoxTrick?
       answer: |
         <p>FoxTrick nuk do te ngarkoje ndonje te dhene ose preference ne serverat e FoxTrick; as te dhenat private nuk do te dergohen nga FoxTrick, duke perfshire por jo duke kufizuar, emrin e perdoruesit, password, apo ndonje ID te lojtareve lidhur me aftesite per palet e treta.</p>
-        
+
         <p>Shumica e të dhënave kaluar palëve të treta, nëse nuk shprehet në mënyrë të qartë më poshtë, janë dërguar me metodën HTTP dhe GET, dhe do të dërgohen vetëm nese klikoni mbi link.</p>
-        
+
         <p>Kjo është, ju do të jetë në gjendje për të parë se çfarë të dhënash janë derguar te inspektuar URI (Uniform Resource Identifier) nga një lidhjeje e jashtme, dhe asnje e dhene nuk do te dergohet pa miratimin tuaj. Siç u tha më sipër, asnje e dhene private nuk eshte e perfshire.</p>
-        
+
         <p>Perjashtim bejn modulet <module>HTMSPrediction</module> dhe <module>HTEVPrediction</module>, ku vleresimi i ndeshjeve i kalon dhe mirret nga websitet respektive me XMLHttpRequest.</p>

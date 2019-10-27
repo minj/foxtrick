@@ -316,7 +316,14 @@
 			"146": "Kameroen",
 			"147": "Kuba",
 			"148": "Palestina",
+			"149": "Sao Tomee en Prinsipe",
 			"15": "Oseaanje",
+			"151": "Komoaren",
+			"152": "Sri Lanka",
+			"153": "Kurasau",
+			"154": "Gûam",
+			"155": "DR Kongo",
+			"156": "Etiopië",
 			"16": "Brazylje",
 			"17": "Kanada",
 			"18": "Sily",
@@ -393,7 +400,7 @@
 			"94": "Jamaika",
 			"95": "Kenia",
 			"96": "Panama",
-			"97": "Masedoanje",
+			"97": "Noard Masedoanje",
 			"98": "Albaanje",
 			"99": "Hondoeras"
 		},
@@ -627,7 +634,7 @@
 			},
 			{
 				"type": "Regainer",
-				"value": "Snelle hersteller"
+				"value": "Fearkrêftich"
 			}
 		],
 		"spirit": [

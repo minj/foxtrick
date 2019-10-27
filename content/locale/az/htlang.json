@@ -316,7 +316,14 @@
 			"146": "Kamerun",
 			"147": "Kuba",
 			"148": "Fələstin",
+			"149": "San Tome və Prinsipi",
 			"15": "Okeaniya",
+			"151": "Komor adaları",
+			"152": "Şri Lanka",
+			"153": "Kurasao",
+			"154": "Quam",
+			"155": "Konqo DR",
+			"156": "Efiopiya",
 			"16": "Braziliya",
 			"17": "Kanada",
 			"18": "Çili",
@@ -393,7 +400,7 @@
 			"94": "Yamayka",
 			"95": "Kenya",
 			"96": "Panama",
-			"97": "Makedoniya KYR",
+			"97": "Şimali Makedoniya",
 			"98": "Albaniya",
 			"99": "Honduras"
 		},
@@ -627,7 +634,7 @@
 			},
 			{
 				"type": "Regainer",
-				"value": "Tez sağalan"
+				"value": "Elastik"
 			}
 		],
 		"spirit": [

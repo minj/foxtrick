@@ -5,13 +5,13 @@ id:
       question: Bagaimana saya bisa menata FoxTrick saya?
       answer: |
         <p>FoxTrick menyediakan satu set antarmuka presentasi bagi pengguna untuk menyesuaikan gaya mereka sendiri. Antarmuka ini disediakan melalui ID HTML dan kelas, dan Anda dapat menggunakan CSS untuk menentukan gaya pilihan Anda.</p>
-        
+
         <p>Contoh file gaya pengguna dapat ditemukan <linkCSSExample>di sini</linkCSSExample> atau <linkCSSExampleGCode>di sini</linkCSSExampleGCode>, yang dapat Anda modifikasi untuk memenuhi kebutuhan Anda. Setelah menyimpan file, Anda dapat menggunakan modul <module>SkinPlugin</module> untuk memuatkan file CSS agar ada gaya pengguna yang berlaku.</p>
     sound-format:
       question: Format file mana yang diizinkan untuk suara waspada?
       answer: |
         <p>Browser yang berbeda memungkinkan format file yang berbeda. Berikut daftar (format yang tidak terdaftar dapat bekerja jika plugin yang sesuai terpasang, misalnya Quicktime untuk memutar mp3 di Firefox):</p>
-        
+
         <ul>
         <li>Mozilla: wav, ogg</li>
         <li>Safari (mungkin butuh Quicktime): wav, mp3</li>
@@ -21,23 +21,23 @@ id:
       question: Berapa batas ukuran untuk suara perhatian dan di mana letaknya?
       answer: |
         <p> Semua browser dapat memutar data url. Itu adalah suara yang tersimpan secara internal saat Anda menggunakan tombol beban yang disediakan dalam preferensi. Karena mereka dikonversi dan disimpan dalam preferensi Anda, ukurannya dibatasi sekitar 160kB per suara. </P>
-        
+
         <p> Semua browser juga bisa memutar suara langsung dari internet (http url). Cukup salin tautan ke suara (misalnya http://foxtrick.org/sound.wav) ke bidang edit untuk suara. Tidak ada batas ukuran. </P>
-        
+
         <p> Browser Mozilla juga bisa memutar suara langsung dari harddisk Anda (file urls) tanpa batas ukuran. Cara termudah untuk mendapatkan format yang tepat: Pada tipe browser Ctrl + o, browse ke file suara dan pilih. Di bilah alamat di atas sekarang ada tautan yang benar ke file lokal (misalnya file: /// c: /sound.wav). Salin dan sisipkan ini ke bidang edit untuk suara. </P>
     authorize:
       question: Mengapa saya harus memberi izin pada FoxTrick untuk mengakses data tim saya?
       answer: |
         <p>Meskipun sebagian besar data yang dibutuhkan oleh FoxTrick dapat diambil langsung dari halaman yang Anda lihat, beberapa modul memerlukan data download dari Hattrick untuk bekerja dengan baik.</p>
-        
+
         <p>Untuk mendownload data dari Hattrick, termasuk data tim, liga, dan tim nasional Anda, Anda perlu memberi otorisasi FoxTrick sebelumnya.</p>
-        
+
         <p>Anda memberi wewenang pada FoxTrick dengan memberikan nama pengguna dan kata sandi Anda di chpp.hattrick.org dengan imbalan kode verifikasi, yang Anda berikan ke FoxTrick. FoxTrick tidak akan mengetahui nama pengguna atau kata sandi Anda dalam keseluruhan proses.</p>
-        
+
         <p>Untuk mempelajari lebih lanjut tentang proses otorisasi, baca <linkCHPPDesc>CHPP - Cara kerjanya</linkCHPPDesc> di Hattrick.</p>
-        
+
         <p>Beberapa modul memerlukan akses data untuk bekerja dengan benar:</p>
-        
+
         <ul>
         <li><module>CrossTable</module></li>
         <li><module>ExtraPlayerInfo</module></li>
@@ -46,9 +46,9 @@ id:
         <li><module>NtPeek</module></li>
         <li><module>SeriesFlags</module></li>
         </ul>
-        
+
         <p>Beberapa modul dapat memberikan info lengkap jika mereka dapat mengakses data dari Hattrick:</p>
-        
+
         <ul>
         <li><module>SkillTable</module></li>
         <li><module>TeamStats</module></li>
@@ -57,9 +57,9 @@ id:
       question: Bagaimana FoxTrick melindungi privasi saya?
       answer: |
         <p>FoxTrick tidak akan mengunggah data atau preferensi Anda ke server FoxTrick; FoxTrick juga tidak akan mengirimkan data pribadi Anda, termasuk namun tidak terbatas pada nama pengguna, kata sandi, dan ID pemain Anda yang terkait dengan keterampilan kepada pihak ketiga.</p>
-        
+
         <p>Sebagian besar data dikirimkan ke pihak ketiga, kecuali dinyatakan secara eksplisit di bawah, dikirim dengan metode HTTP GET, dan hanya akan dikirim setelah mengklik tautan.</p>
-        
+
         <p>Artinya, Anda akan dapat melihat data apa yang dilewati dengan memeriksa URI (Uniform Resource Identifier) dari tautan eksternal, dan tidak ada data yang akan dikirim tanpa persetujuan Anda. Seperti yang dinyatakan di atas, tidak ada data pribadi yang terlibat.</p>
-        
+
         <p>Pengecualiannya adalah modul <module>HTMSPrediction</module> dan <module>HTEVPrediction</module> di mana nilai kecocokan dilewatkan dan diterima dari situs masing-masing dengan XMLHttpRequest.</p>

@@ -1,77 +1,80 @@
-'use strict';
 /**
  * prefs-util.js
  * Foxtrick preferences service
  *
+ * Prefs can be accessed from both content & background.
+ * However, different browsers have a different architecture.
+ * Consequently, prefs-util has quite a complicated internal flow.
+ * Consult the following diagrams.
+ *
+ * ------------ FF -------------
+ *
+ * [BG] getString(key)==[C] getString(key) // direct access
+ * [BG] setString(key)
+ * =>[BG] __cleanString(val)
+ * =>[BG] __setString(key, val)
+ *
+ * [C] setString(key)
+ * =>[C] __cleanString(val)
+ * =>[C] __setString(key, val)
+ *
+ * [C] setAny(key, val)
+ * =>[C] setString(key, val)
+ * 	=> ...
+ *
+ * ------------ Android -------------
+ *
+ * [BG] getString(key)==[C] getString(key) // direct access
+ *
+ * [BG] setString(key, val)
+ * =>[BG] __cleanString(val)
+ * =>[BG] __setString(key, val)
+ *
+ * [C] setString(key, val)
+ * =>[C] __cleanString(val)
+ * =>[BG] getAny(key)
+ * 	=>[BG] getString(key) // each type
+ * =>[BG] setWithType(key, val, type)
+ * 	=>[BG] __setString(key, val)
+ *
+ * [C] setAny(key, val)
+ * =>[C] setString(key, val)
+ * 	=> ...
+ *
+ * ------------ Chrome -------------
+ *
+ * [BG] getString(key)
+ * =>[BG] __get(key)
+ *
+ * [C] getString(key)
+ * =>[C] __get(key) // cached
+ *
+ * [BG] setString(key, val)
+ * =>[BG] __cleanString(val)
+ * =>[BG] __set(key, val)
+ *
+ * [C] setString(key, val)
+ * =>[C] __cleanString(val)
+ * =>[C] __set(key, val)
+ * 	=>[BG] getAny(key)
+ * 		=>[BG] getString(key) // each type
+ * 			=>[BG] __get(key)
+ * 	=>[BG] setWithType(key, val)
+ * 		=> [BG] __set(key, val)
+ *
+ * [C] setAny(key, val)
+ * =>[C] setString(key, val)
+ * 	=> ...
+ *
  * @author Mod-PaV, ryanli, convincedd, LA-MJ
  */
 
-// Prefs can be accessed from both content & background.
-// However, different browsers have a different architecture.
-// Consequently, prefs-util has quite a complicated internal flow.
-// Consult the following diagrams.
-//
-// ------------ FF -------------
-//
-// [BG] getString(key)==[C] getString(key) // direct access
-// [BG] setString(key)
-// =>[BG] __cleanString(val)
-// =>[BG] __setString(key, val)
-//
-// [C] setString(key)
-// =>[C] __cleanString(val)
-// =>[C] __setString(key, val)
-//
-// [C] setAny(key, val)
-// =>[C] setString(key, val)
-// 	=> ...
+'use strict';
 
-// ------------ Android -------------
-//
-// [BG] getString(key)==[C] getString(key) // direct access
-//
-// [BG] setString(key, val)
-// =>[BG] __cleanString(val)
-// =>[BG] __setString(key, val)
-//
-// [C] setString(key, val)
-// =>[C] __cleanString(val)
-// =>[BG] getAny(key)
-// 	=>[BG] getString(key) // each type
-// =>[BG] setWithType(key, val, type)
-// 	=>[BG] __setString(key, val)
-//
-// [C] setAny(key, val)
-// =>[C] setString(key, val)
-// 	=> ...
-
-// ------------ Chrome -------------
-//
-// [BG] getString(key)
-// =>[BG] __get(key)
-//
-// [C] getString(key)
-// =>[C] __get(key) // cached
-//
-// [BG] setString(key, val)
-// =>[BG] __cleanString(val)
-// =>[BG] __set(key, val)
-//
-// [C] setString(key, val)
-// =>[C] __cleanString(val)
-// =>[C] __set(key, val)
-// 	=>[BG] getAny(key)
-// 		=>[BG] getString(key) // each type
-// 			=>[BG] __get(key)
-// 	=>[BG] setWithType(key, val)
-// 		=> [BG] __set(key, val)
-//
-// [C] setAny(key, val)
-// =>[C] setString(key, val)
-// 	=> ...
-
-if (!Foxtrick)
-	var Foxtrick = {}; // jshint ignore:line
+/* eslint-disable */
+if (!this.Foxtrick)
+	var Foxtrick = {};
+/* eslint-enable */
 
 Foxtrick.Prefs = {};
 
@@ -94,9 +97,9 @@ Foxtrick.Prefs.hasUserValue = function(key) {},
  * starting with the branch name.
  *
  * @param  {string} branch branch to fetch
- * @return {array}         array of key names
+ * @return {string[]}      array of key names
  */
-Foxtrick.Prefs.getAllKeysOfBranch = function(branch) {},
+Foxtrick.Prefs.getAllKeysOfBranch = function(branch) { return []; },
 
 /**
  * Remove a saved pref value
@@ -111,7 +114,7 @@ Foxtrick.Prefs.deleteValue = function(key) {},
  * @param  {string} key pref key
  * @return {number}     pref value {Integer}
  */
-Foxtrick.Prefs.getInt = function(key) {},
+Foxtrick.Prefs.getInt = function(key) { return 0; },
 
 /**
  * Get a boolean value from prefs
@@ -119,7 +122,7 @@ Foxtrick.Prefs.getInt = function(key) {},
  * @param  {string}  key pref key
  * @return {Boolean}     pref value
  */
-Foxtrick.Prefs.getBool = function(key) {},
+Foxtrick.Prefs.getBool = function(key) { return false; },
 
 /**
  * Get a string value from prefs
@@ -127,7 +130,7 @@ Foxtrick.Prefs.getBool = function(key) {},
  * @param  {string} key pref key
  * @return {string}     pref value
  */
-Foxtrick.Prefs.getString = function(key) {},
+Foxtrick.Prefs.getString = function(key) { return ''; },
 
 /**
  * Save an integer value in prefs
@@ -778,13 +781,7 @@ Foxtrick.Prefs.show = function(page) {
  */
 Foxtrick.Prefs.disable = function(sender) {
 	this.setBool('disableTemporary', !this.getBool('disableTemporary'));
-
 	Foxtrick.modules.UI.update(sender);
-
-	if (Foxtrick.arch === 'Gecko') {
-		Foxtrick.entry.init(true); // reInit
-		Foxtrick.reloadAll();
-	}
 };
 
 /**
