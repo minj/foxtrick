@@ -859,6 +859,8 @@ Foxtrick.util.matchEvent.isFirstEvent = function(evnt) {
 	// so lineup event 20 is first instead
 	// in neighborhood matches (friendly WOs) 22 is the first event
 	// event-o-Matic events: 700-705
+
+	// eslint-disable-next-line no-magic-numbers
 	return id >= 30 && id <= 33 || id === 20 || id === 22 || id >= 700 && id < 710;
 };
 
@@ -1021,16 +1023,14 @@ Foxtrick.util.matchEvent.addEventIndicator = function(evnt, invert) {
 		{
 			class: 'half-time',
 			text: 'halfTime',
-			func: function() {
-				return eventType == 'possession' && eventMinute == 45;
-			},
+			// eslint-disable-next-line no-magic-numbers
+			func: () => eventType == 'possession' && eventMinute == 45,
 		},
 		{
 			class: 'full-time',
 			text: 'fullTime',
-			func: function() {
-				return eventType == 'possession' && eventMinute == 90;
-			},
+			// eslint-disable-next-line no-magic-numbers
+			func: () => eventType == 'possession' && eventMinute == 90,
 		},
 		{
 			class: 'extra-time',
