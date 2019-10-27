@@ -931,6 +931,24 @@
 			"symbol": "PYG"
 		},
 		{
+			"code": "ETB",
+			"eurorate": "0.025",
+			"leagues": {
+				"156": "Federal Democratic Republic of Ethiopia"
+			},
+			"name": "Ethiopian birr",
+			"symbol": "Birr"
+		},
+		{
+			"code": "CDF",
+			"eurorate": "0.0005",
+			"leagues": {
+				"155": "Democratic Republic of the Congo"
+			},
+			"name": "Congolese franc",
+			"symbol": "CDF"
+		},
+		{
 			"code": "BYR",
 			"eurorate": "0.0005",
 			"name": "Ruble (Belarusian)",

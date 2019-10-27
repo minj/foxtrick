@@ -11278,6 +11278,162 @@
 				"ZoneName": "Asia,  Africa and Oceania"
 			},
 			{
+				"ActiveTeams": "73",
+				"ActiveUsers": "9",
+				"Continent": "Africa",
+				"Country": {
+					"Available": "True",
+					"CountryCode": "CD",
+					"CountryID": "181",
+					"CountryName": "DR Congo",
+					"CurrencyName": "CDF",
+					"CurrencyRate": "0,005",
+					"DateFormat": "MM/DD/YYYY",
+					"TimeFormat": "hh.mm"
+				},
+				"CupMatchDate": "2019-10-30 18:50:00",
+				"Cups": [
+					{
+						"CupID": "1463",
+						"CupLeagueLevel": "0",
+						"CupLevel": "1",
+						"CupLevelIndex": "1",
+						"CupName": "RD Congo Cup",
+						"MatchRound": "1",
+						"MatchRoundsLeft": "6"
+					},
+					{
+						"CupID": "1464",
+						"CupLeagueLevel": "0",
+						"CupLevel": "2",
+						"CupLevelIndex": "1",
+						"CupName": "RD Congo Emerald Challenger Cup",
+						"MatchRound": "0",
+						"MatchRoundsLeft": "7"
+					},
+					{
+						"CupID": "1465",
+						"CupLeagueLevel": "0",
+						"CupLevel": "2",
+						"CupLevelIndex": "2",
+						"CupName": "RD Congo Ruby Challenger Cup",
+						"MatchRound": "-1",
+						"MatchRoundsLeft": "0"
+					},
+					{
+						"CupID": "1466",
+						"CupLeagueLevel": "0",
+						"CupLevel": "2",
+						"CupLevelIndex": "3",
+						"CupName": "RD Congo Sapphire Challenger Cup",
+						"MatchRound": "-1",
+						"MatchRoundsLeft": "0"
+					},
+					{
+						"CupID": "1467",
+						"CupLeagueLevel": "0",
+						"CupLevel": "3",
+						"CupLevelIndex": "1",
+						"CupName": "RD Congo Consolation Cup",
+						"MatchRound": "-1",
+						"MatchRoundsLeft": "0"
+					}
+				],
+				"EconomyDate": "2019-11-02 04:35:00",
+				"EnglishName": "Democratic Republic of the Congo",
+				"LeagueID": "155",
+				"LeagueName": "RD Congo",
+				"MatchRound": "1",
+				"NationalTeamId": "0",
+				"NumberOfLevels": "3",
+				"Season": "1",
+				"SeasonOffset": "-72",
+				"SeriesMatchDate": "2019-10-27 18:30:00",
+				"ShortName": "DR Congo",
+				"TrainingDate": "2019-10-31 13:15:00",
+				"U20TeamId": "0",
+				"WaitingUsers": "3",
+				"ZoneName": "Asia,  Africa and Oceania"
+			},
+			{
+				"ActiveTeams": "58",
+				"ActiveUsers": "1",
+				"Continent": "Africa",
+				"Country": {
+					"Available": "True",
+					"CountryCode": "ET",
+					"CountryID": "182",
+					"CountryName": "Ethiopia",
+					"CurrencyName": "Birr",
+					"CurrencyRate": "0,25",
+					"DateFormat": "MM/DD/YYYY",
+					"TimeFormat": "hh.mm"
+				},
+				"CupMatchDate": "2019-10-30 18:50:00",
+				"Cups": [
+					{
+						"CupID": "1468",
+						"CupLeagueLevel": "0",
+						"CupLevel": "1",
+						"CupLevelIndex": "1",
+						"CupName": "Ītyōṗṗyā Cup",
+						"MatchRound": "1",
+						"MatchRoundsLeft": "6"
+					},
+					{
+						"CupID": "1469",
+						"CupLeagueLevel": "0",
+						"CupLevel": "2",
+						"CupLevelIndex": "1",
+						"CupName": "Ītyōṗṗyā Emerald Challenger Cup",
+						"MatchRound": "0",
+						"MatchRoundsLeft": "7"
+					},
+					{
+						"CupID": "1470",
+						"CupLeagueLevel": "0",
+						"CupLevel": "2",
+						"CupLevelIndex": "2",
+						"CupName": "Ītyōṗṗyā Ruby Challenger Cup",
+						"MatchRound": "-1",
+						"MatchRoundsLeft": "0"
+					},
+					{
+						"CupID": "1471",
+						"CupLeagueLevel": "0",
+						"CupLevel": "2",
+						"CupLevelIndex": "3",
+						"CupName": "Ītyōṗṗyā Ruby Sapphire Cup",
+						"MatchRound": "-1",
+						"MatchRoundsLeft": "0"
+					},
+					{
+						"CupID": "1472",
+						"CupLeagueLevel": "0",
+						"CupLevel": "3",
+						"CupLevelIndex": "1",
+						"CupName": "Ītyōṗṗyā Consolation Cup",
+						"MatchRound": "-1",
+						"MatchRoundsLeft": "0"
+					}
+				],
+				"EconomyDate": "2019-11-02 04:35:00",
+				"EnglishName": "Federal Democratic Republic of Ethiopia",
+				"LeagueID": "156",
+				"LeagueName": "Ītyōṗṗyā",
+				"MatchRound": "1",
+				"NationalTeamId": "0",
+				"NumberOfLevels": "3",
+				"Season": "1",
+				"SeasonOffset": "-72",
+				"SeriesMatchDate": "2019-10-27 18:30:00",
+				"ShortName": "Ethiopia",
+				"TrainingDate": "2019-10-31 13:15:00",
+				"U20TeamId": "0",
+				"WaitingUsers": "0",
+				"ZoneName": "Asia,  Africa and Oceania"
+			},
+			{
 				"ActiveTeams": "2385",
 				"ActiveUsers": "0",
 				"Continent": "World",
