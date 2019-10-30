@@ -92,19 +92,6 @@
 		"title": "VnukStats HTI",
 		"img": "resources/linkicons/vnukstats.png"
 	},
-	"todohattrick": {
-		"serieslink": {
-			"url": "http://www.stepi.org/todohattrick/grupo.asp?grupoID=[seriesid]",
-			"filters": ["leagueid"]
-		},
-		"teamlink": {
-			"url": "http://www.stepi.org/todohattrick/equipo.asp?equipoID=[teamid]",
-			"filters": ["leagueid"]
-		},
-		"leagueidranges": [[36, 36]],
-		"title": "TodoHattrick",
-		"img": "http://www.stepi.org/todohattrick/images/thbystepi3.ico"
-	},
 	"hattristics": {
 		"serieslink": {
 			"url": "http://www.hattristics.org/pub/viewLeague.php?leagueName=[seriesname]",
@@ -281,19 +268,6 @@
 		"title": "The Hattrick Radio’s Podcast",
 		"img": "https://hattrickradio.podbean.com/mf/web/8skbtp/hattrick_ball_dark_green_png.ico"
 	},
-	"englandyadb": {
-		"youthlink": {
-			"url": "http://www.realfootball.co.uk/hattrick/ya/",
-			"filters": ["ownleagueid"]
-		},
-		"youthtraininglink": {
-			"url": "http://www.realfootball.co.uk/hattrick/ya/",
-			"filters": ["ownleagueid"]
-		},
-		"ownleagueidranges": [[2, 2]],
-		"title": "England YA DB",
-		"img": "resources/linkicons/tracker.png"
-	},
 	"junnukoira": {
 		"youthplayerdetaillink": {
 			"url": "http://pterasti.arkku.net//Hattrick/junnukoira/",
@@ -333,41 +307,6 @@
 		"title": "NRG Pop",
 		"img": "resources/linkicons/nrg_pop.png"
 	},
-	"argenstat": {
-		"serieslink": {
-			"url": "http://argenstat.com.ar/?V=L&ID=[seriesid]",
-			"filters": ["leagueid"]
-		},
-		"teamlink": {
-			"url": "http://argenstat.com.ar/?V=T&ID=[teamid]",
-			"filters": ["leagueid"]
-		},
-		"leaguelink": {
-			"url": "http://argenstat.com.ar/",
-			"filters": ["leagueid"]
-		},
-		"leagueidranges": [[7, 7]],
-		"title": "ArgenStat",
-		"img": "resources/linkicons/argenstat.png"
-	},
-	"frenchtracker":  {
-		"img": "http://www.ht-fff.org/favicon.ico",
-		"title": "French U20/NT Tracker",
-		"trackernationalteamlink": {
-			"url": "http://www.ht-dtnfff.fr/",
-			"filters": ["leagueid"]
-		},
-		"trackerleaguelink": {
-			"url": "http://www.ht-dtnfff.fr/",
-			"filters": ["leagueid"]
-		},
-		"trackerplayerlink": {
-			"url": "http://www.ht-dtnfff.fr/",
-			"filters": ["nationality"]
-		},
-		"leagueidranges": [[5, 5]],
-		"nationalityranges": [[5, 5]]
-	},
 	"scotlandtracker":  {
 		"img": "http://hattrickscotland.org/favicon.png",
 		"title": "Scotland U20/NT Tracker",
@@ -385,24 +324,6 @@
 		},
 		"leagueidranges": [[26, 26]],
 		"nationalityranges": [[26, 26]]
-	},
-	"canadatracker": {
-		"img": "http://canada.htravenia.com/favicon.png",
-		"title": "Canada U20/NT Tracker",
-		"trackernationalteamlink": {
-			"url": "http://canada.htravenia.com/?server=[server]",
-			"filters": ["leagueid"]
-		},
-		"trackerleaguelink": {
-			"url": "http://canada.htravenia.com/?server=[server]",
-			"filters": ["leagueid"]
-		},
-		"trackerplayerlink": {
-			"url": "http://canada.htravenia.com/players/?id=[playerid]&server=[server]",
-			"filters": ["nationality"]
-		},
-		"leagueidranges": [[17, 17]],
-		"nationalityranges": [[17, 17]]
 	},
 	"benintracker": {
 		"img": "http://htbenin.athost.fr/img/beninDB.ico",
@@ -487,23 +408,6 @@
 		},
 		"leagueidranges": [[18, 18]],
 		"nationalityranges": [[18, 18]]
-	},
-	"tnt_youth": {
-		"youthlink": {
-			"url": "http://dasmagischedreieck.de/tnt/",
-			"filters": ["ownleagueid"]
-		},
-		"youthplayerlistlink": {
-			"url": "http://www.dasmagischedreieck.de/tnt/",
-			"filters": ["ownleagueid"]
-		},
-		"youthplayerdetaillink": {
-			"url": "http://www.dasmagischedreieck.de/tnt/addplayer.php",
-			"filters": ["ownleagueid"]
-		},
-		"ownleagueidranges": [[110, 110]],
-		"title": "Trinidad & Tobago Youth Academy Guide",
-		"img": "http://www.dasmagischedreieck.de/DivBilder/ateam.ico"
 	},
 	"Wage_Reduction_Calculator": {
 		"playerlink": {
