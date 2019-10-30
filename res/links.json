@@ -81,17 +81,6 @@
 		"title": "VnukStats",
 		"img": "resources/linkicons/vnukstats.png"
 	},
-	"vnukstats_hti": {
-		"leaguelink": {
-			"url": "http://vnukstats.hattrick-sk.com/hti/",
-			"filters": ["leagueid"]
-		},
-		"leagueidranges": [
-			[1000, 1000]
-		],
-		"title": "VnukStats HTI",
-		"img": "resources/linkicons/vnukstats.png"
-	},
 	"hattristics": {
 		"serieslink": {
 			"url": "http://www.hattristics.org/pub/viewLeague.php?leagueName=[seriesname]",
@@ -275,15 +264,6 @@
 		},
 		"ownleagueidranges": [[12, 12]],
 		"title": "Junnukoira - U-20 -superlupausten arvioija",
-		"img": "resources/linkicons/puhuvakoira.png"
-	},
-	"treenikoira": {
-		"traininglink": {
-			"url": "http://www.saunalahti.fi/pterasti/Hattrick/treenikoira/index.php?coach=[Coach]&ti=[TI]&sta=[STA]&trainingtype=[TrainingType]",
-			"filters": ["ownleagueid"]
-		},
-		"ownleagueidranges": [[12, 12]],
-		"title": "Treenikoira - treenilaskuri",
 		"img": "resources/linkicons/puhuvakoira.png"
 	},
 	"nrg_eco": {
