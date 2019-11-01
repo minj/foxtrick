@@ -249,7 +249,7 @@ Foxtrick.modules.ForumPreview = {
 			Foxtrick.insertBefore(previewDiv, at);
 		}
 
-		if (doc.getElementById('ft-forum-preview-button'))
+		if (doc.getElementById('foxtrick-forum-preview-button'))
 			return;
 
 		let target = module.getButtonTarget(msgWindow);
@@ -257,10 +257,17 @@ Foxtrick.modules.ForumPreview = {
 			return;
 
 		{
+			let context = msgWindow.closest('.info, .boxBody');
+			let htButtons = context.querySelectorAll('.hattrick-ml-preview-button');
+			let unhandled = Foxtrick.nth(e => !e.matches('.ft-replaced'), htButtons);
+			if (unhandled)
+				Foxtrick.addClass(unhandled, 'ft-replaced');
+		}
+		{
 			let newButton = doc.createElement('input');
 			newButton.value = Foxtrick.L10n.getString('ForumPreview.preview');
 			newButton.title = Foxtrick.L10n.getString('ForumPreview.preview.title');
-			newButton.id = 'ft-forum-preview-button';
+			newButton.id = 'foxtrick-forum-preview-button';
 			newButton.type = 'button';
 			newButton = Foxtrick.makeFeaturedElement(newButton, module);
 			Foxtrick.onClick(newButton, () => toggleListener(previewDiv));

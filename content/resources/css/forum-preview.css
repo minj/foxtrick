@@ -4,6 +4,10 @@
 	font-weight:bold;
 }
 
-#ft-forum-preview-button {
+#foxtrick-forum-preview-button {
 	margin-left:10px;
+}
+
+.hattrick-ml-preview-button.ft-replaced {
+	display: none !important;
 }
