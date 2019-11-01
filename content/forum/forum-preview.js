@@ -10,7 +10,7 @@ Foxtrick.modules.ForumPreview = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.FORUM,
 	PAGES: [
 		'forumWritePost', 'messageWritePost', 'guestbook', 'announcementsWrite',
-		'newsLetter', 'mailNewsLetter', 'ntNewsLetter',
+		'newsLetter', 'mailNewsLetter', 'ntNewsLetter', 'helpContact',
 		'forumSettings', 'forumModWritePost', 'ticket',
 	],
 	NICE: 1, // after ForumYouthIcons
@@ -264,6 +264,9 @@ Foxtrick.modules.ForumPreview = {
 				Foxtrick.addClass(unhandled, 'ft-replaced');
 		}
 		{
+			msgWindow.tabIndex = msgWindow.tabIndex || 1;
+			target.tabIndex = msgWindow.tabIndex + 1;
+
 			let newButton = doc.createElement('input');
 			newButton.value = Foxtrick.L10n.getString('ForumPreview.preview');
 			newButton.title = Foxtrick.L10n.getString('ForumPreview.preview.title');
@@ -271,7 +274,7 @@ Foxtrick.modules.ForumPreview = {
 			newButton.type = 'button';
 			newButton = Foxtrick.makeFeaturedElement(newButton, module);
 			Foxtrick.onClick(newButton, () => toggleListener(previewDiv));
-			newButton.tabIndex = target.tabIndex > 0 ? target.tabIndex + 1 : 0;
+			newButton.tabIndex = target.tabIndex + 1;
 
 			Foxtrick.insertAfter(newButton, target);
 		}
@@ -285,87 +288,15 @@ Foxtrick.modules.ForumPreview = {
 	 */
 	getButtonTarget(area) {
 		let doc = area.ownerDocument;
+		let scope = area.closest('.info, .boxBody');
 
 		if (Foxtrick.isPage(doc, 'forumWritePost')) {
-			let buttonOk = Foxtrick.getButton(doc.querySelector('#mainBody'), 'OK');
+			let buttonOk = Foxtrick.getButton(scope, 'OK');
 			if (buttonOk && Foxtrick.L10n.isStringAvailableLocal('ForumPreview.send'))
 				buttonOk.value = Foxtrick.L10n.getString('ForumPreview.send');
 		}
 
-		/* eslint-disable no-magic-numbers */
-
-		var msgType = 0;
-
-		/** @type {NodeListOf<HTMLInputElement>} */
-		let targets = doc.querySelectorAll('#mainBody input'); // Forum
-		var target = targets[targets.length - 1];
-		if (Foxtrick.isPage(doc, 'guestbook'))
-			target = null;
-
-		if (target) {
-			Foxtrick.log('msgType', msgType);
-			return target;
-		}
-
-		target = Foxtrick.getButton(doc, 'SendNew'); // Mail
-		if (target)
-			msgType = 1;
-
-		if (!target) {
-			area.tabIndex = 1;
-
-			target = Foxtrick.getButton(doc, 'ActionSend');
-
-			// Ticket
-			if (target)
-				msgType = 2;
-		}
-		if (!target) {
-			target = Foxtrick.getButton(doc, 'Add');
-
-			// GB
-			if (target)
-				msgType = 3;
-		}
-		if (!target) {
-			target = Foxtrick.getButton(doc, 'SendNewsletter');
-
-			// newsletter
-			if (target)
-				msgType = 4;
-		}
-		if (!target) {
-			target = Foxtrick.getButton(doc, 'NewsSend');
-
-			// mailnewsletter
-			if (target)
-				msgType = 5;
-		}
-		if (!target) {
-			target = Foxtrick.getButton(doc, 'Edit');
-
-			// AnnouncementEdit
-			if (target)
-				msgType = 6;
-		}
-
-		if (!target) {
-			target = Foxtrick.getButton(doc, 'ThreadCloseReplyOK');
-
-			// forumModWritePost
-			if (target)
-				msgType = 7;
-		}
-		/* eslint-enable no-magic-numbers */
-
-		Foxtrick.log('msgType', msgType);
-
-		if (target) {
-			area.tabIndex = 1;
-			target.tabIndex = 2;
-		}
-
-		return target;
+		return Foxtrick.getSubmitButton(scope);
 	},
 
 	/** @param {document} doc */

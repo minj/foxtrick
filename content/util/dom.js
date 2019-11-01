@@ -1009,8 +1009,9 @@ Foxtrick.getMBElement = function(doc, ID) {
 /**
  * Get HT Button by the relevant part of its ID.
  *
- * Supports ctl00_ctl00_CPContent_CPMain_btn$ID and
- * ctl00_ctl00_CPContent_CPMain_but$ID.
+ * Supports ctl00_ctl00_CPContent_CPMain_$ID,
+ * ctl00_ctl00_CPContent_CPMain_btn$ID and
+ * ctl00_ctl00_CPContent_CPMain_but$ID
  *
  * @param  {document|Element} scope
  * @param  {string}               ID
@@ -1019,11 +1020,39 @@ Foxtrick.getMBElement = function(doc, ID) {
 Foxtrick.getButton = function(scope, ID) {
 	const PRE = this.getMainIDPrefix();
 
-	let btn = scope.querySelector(`#${PRE}btn${ID}`);
-	if (!btn)
-		btn = scope.querySelector(`#${PRE}but${ID}`);
+	let btn =
+		scope.querySelector(`#${PRE}${ID}`) ||
+		scope.querySelector(`#${PRE}btn${ID}`) ||
+		scope.querySelector(`#${PRE}but${ID}`);
 
 	return /** @type {HTMLInputElement} */ (btn);
+};
+
+/**
+ * @param  {document|Element} scope
+ * @return {HTMLInputElement}
+ */
+Foxtrick.getSubmitButton = function(scope) {
+	// because HTs do not believe in standards
+	const buttons = [
+		'OK',
+		'SendNew',
+		'Add',
+		'Edit',
+		'SendNewsletter',
+		'NewsSend',
+		'ActionSend',
+		'SendWithoutPreview',
+		'ucForumPreferences_btnSave',
+	];
+
+	for (let btn of buttons) {
+		let el = Foxtrick.getButton(scope, btn);
+		if (el)
+			return el;
+	}
+
+	return null;
 };
 
 /**
