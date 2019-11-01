@@ -111,9 +111,10 @@ Foxtrick.insertFeaturedCell = function(row, module, index) {
 
 /**
  * Enable Foxtrick feature highlight on an existing element
- * @param  {HTMLElement} node
+ * @template {HTMLElement} E
+ * @param  {E} node
  * @param  {object}      module
- * @return {HTMLElement}
+ * @return {E}
  */
 // eslint-disable-next-line consistent-this
 Foxtrick.makeFeaturedElement = function(node, module) {
@@ -492,16 +493,19 @@ Foxtrick.append = function(parent, child) {
  * The callback is executed with global change listeners stopped.
  *
  * @template {Element} T
- * @param {T}                      el
- * @param {Listener<T,MouseEvent>} listener
- * @param {boolean}                [useCapture]
+ *
+ * @param  {T}                      el
+ * @param  {Listener<T,MouseEvent>} listener
+ * @param  {boolean}                [useCapture]
+ * @return {function():void}                     remove wrapped listener
  */
 Foxtrick.onClick = function(el, listener, useCapture) {
-	Foxtrick.listen(el, 'click', listener, useCapture);
 	if (!el.hasAttribute('tabindex'))
 		el.setAttribute('tabindex', '0');
 	if (!el.hasAttribute('role'))
 		el.setAttribute('role', 'button');
+
+	return Foxtrick.listen(el, 'click', listener, useCapture);
 };
 
 /**
@@ -510,18 +514,20 @@ Foxtrick.onClick = function(el, listener, useCapture) {
  * The callback is executed with global change listeners stopped.
  *
  * @template {EventTarget} T
- * @param {T}                 el
- * @param {string}            type     event type
- * @param {Listener<T,Event>} listener
- * @param {boolean}           [useCapture]
+ * @template {keyof HTMLElementEventMap} E
+ *
+ * @param  {T}                        el
+ * @param  {E}                        type     event type
+ * @param  {Listener<T,HTMLEvent<E>>} listener
+ * @param  {boolean}                  [useCapture]
+ * @return {function():void}                     remove wrapped listener
  */
 Foxtrick.listen = function(el, type, listener, useCapture) {
 	/**
 	 * @this  {T}
-	 * @param {Event} ev
+	 * @param {HTMLEvent<E>} ev
 	 */
-	let wrapper = function(ev) {
-		// eslint-disable-next-line no-extra-parens
+	let listen = function listen(ev) {
 		let target = /** @type {Element|Document} */ (ev.target);
 
 		let doc = target instanceof Document ? target : target.ownerDocument;
@@ -529,23 +535,28 @@ Foxtrick.listen = function(el, type, listener, useCapture) {
 
 		/** @type {boolean|Promise|void} */
 		let ret = listener.call(this, ev);
-		if (ret === false) {
-			ev.stopPropagation();
-			ev.preventDefault();
-		}
-		else if (ret instanceof Promise) {
+		if (ret instanceof Promise) {
 			Foxtrick.finally(ret, () => {
 				Foxtrick.log.flush(doc);
 				Foxtrick.startListenToChange(doc);
 			}).catch(Foxtrick.catch('async listen'));
+			return;
 		}
-		else {
-			Foxtrick.log.flush(doc);
-			Foxtrick.startListenToChange(doc);
+
+		if (ret === false) {
+			ev.stopPropagation();
+			ev.preventDefault();
 		}
+
+		Foxtrick.log.flush(doc);
+		Foxtrick.startListenToChange(doc);
 	};
 
-	el.addEventListener(type, wrapper, useCapture);
+	// @ts-ignore for some reason addEventListener lost the specificity in recent update
+	el.addEventListener(type, listen, useCapture);
+
+	// @ts-ignore for some reason removeEventListener lost the specificity in recent update
+	return () => el.removeEventListener(type, listen, useCapture);
 };
 
 /**
@@ -997,19 +1008,51 @@ Foxtrick.getMBElement = function(doc, ID) {
 
 /**
  * Get HT Button by the relevant part of its ID.
- * Supports ctl00_ctl00_CPContent_CPMain_btn$ID and
- * ctl00_ctl00_CPContent_CPMain_but$ID.
- * @param  {document}    doc
- * @param  {string}      ID
- * @return {HTMLElement}
+ *
+ * Supports ctl00_ctl00_CPContent_CPMain_$ID,
+ * ctl00_ctl00_CPContent_CPMain_btn$ID and
+ * ctl00_ctl00_CPContent_CPMain_but$ID
+ *
+ * @param  {document|Element} scope
+ * @param  {string}               ID
+ * @return {HTMLInputElement}
  */
-Foxtrick.getButton = function(doc, ID) {
+Foxtrick.getButton = function(scope, ID) {
 	const PRE = this.getMainIDPrefix();
-	let btn = doc.getElementById(PRE + 'btn' + ID);
-	if (!btn)
-		btn = doc.getElementById(PRE + 'but' + ID);
 
-	return btn;
+	let btn =
+		scope.querySelector(`#${PRE}${ID}`) ||
+		scope.querySelector(`#${PRE}btn${ID}`) ||
+		scope.querySelector(`#${PRE}but${ID}`);
+
+	return /** @type {HTMLInputElement} */ (btn);
+};
+
+/**
+ * @param  {document|Element} scope
+ * @return {HTMLInputElement}
+ */
+Foxtrick.getSubmitButton = function(scope) {
+	// because HTs do not believe in standards
+	const buttons = [
+		'OK',
+		'SendNew',
+		'Add',
+		'Edit',
+		'SendNewsletter',
+		'NewsSend',
+		'ActionSend',
+		'SendWithoutPreview',
+		'ucForumPreferences_btnSave',
+	];
+
+	for (let btn of buttons) {
+		let el = Foxtrick.getButton(scope, btn);
+		if (el)
+			return el;
+	}
+
+	return null;
 };
 
 /**
@@ -1284,4 +1327,9 @@ Foxtrick.makeModal = function(doc, title, content, buttons) {
  * @template {EventTarget} T
  * @template {Event}       E
  * @typedef  {(this:T,ev:E)=>boolean|Promise|void} Listener<T,E>
+ */
+
+/**
+ * @template {keyof HTMLElementEventMap} E
+ * @typedef {HTMLElementEventMap[E]} HTMLEvent<E>
  */
