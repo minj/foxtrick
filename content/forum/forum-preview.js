@@ -279,18 +279,18 @@ Foxtrick.modules.ForumPreview = {
 	getButtonTarget(area) {
 		let doc = area.ownerDocument;
 
-		/** @type {NodeListOf<HTMLInputElement>} */
-		let targets = doc.querySelectorAll('#mainBody input'); // Forum
+		if (Foxtrick.isPage(doc, 'forumWritePost')) {
+			let buttonOk = Foxtrick.getButton(doc.querySelector('#mainBody'), 'OK');
+			if (buttonOk && Foxtrick.L10n.isStringAvailableLocal('ForumPreview.send'))
+				buttonOk.value = Foxtrick.L10n.getString('ForumPreview.send');
+		}
 
 		/* eslint-disable no-magic-numbers */
-		var buttonOk = null;
-		if (Foxtrick.isPage(doc, 'forumWritePost'))
-			buttonOk = targets[targets.length - 2];
-
-		if (buttonOk && Foxtrick.L10n.isStringAvailableLocal('ForumPreview.send'))
-			buttonOk.value = Foxtrick.L10n.getString('ForumPreview.send');
 
 		var msgType = 0;
+
+		/** @type {NodeListOf<HTMLInputElement>} */
+		let targets = doc.querySelectorAll('#mainBody input'); // Forum
 		var target = targets[targets.length - 1];
 		if (Foxtrick.isPage(doc, 'guestbook'))
 			target = null;
