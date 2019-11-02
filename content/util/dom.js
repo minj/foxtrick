@@ -517,12 +517,12 @@ Foxtrick.onClick = function(el, listener, useCapture) {
  * @template {keyof HTMLElementEventMap} E
  *
  * @param  {T}                        el
- * @param  {E}                        type     event type
+ * @param  {E}                        evType       event type
  * @param  {Listener<T,HTMLEvent<E>>} listener
  * @param  {boolean}                  [useCapture]
- * @return {function():void}                     remove wrapped listener
+ * @return {function():void}                       remove wrapped listener
  */
-Foxtrick.listen = function(el, type, listener, useCapture) {
+Foxtrick.listen = function(el, evType, listener, useCapture) {
 	/**
 	 * @this  {T}
 	 * @param {HTMLEvent<E>} ev
@@ -552,11 +552,16 @@ Foxtrick.listen = function(el, type, listener, useCapture) {
 		Foxtrick.startListenToChange(doc);
 	};
 
-	// @ts-ignore for some reason addEventListener lost the specificity in recent update
-	el.addEventListener(type, listen, useCapture);
+	/*
+		README: since TS 3.5 union type checking became 'smarter' and errors here
+		since addEventListener API is contravariant (dumb) here,
+		it will not accept a callback requiring a more specific Event
+		we know better however, since we actually type-check the evType argument
+	*/
+	let cb = /** @type {EventListener} */ (listen);
 
-	// @ts-ignore for some reason removeEventListener lost the specificity in recent update
-	return () => el.removeEventListener(type, listen, useCapture);
+	el.addEventListener(evType, cb, useCapture);
+	return () => el.removeEventListener(evType, cb, useCapture);
 };
 
 /**
