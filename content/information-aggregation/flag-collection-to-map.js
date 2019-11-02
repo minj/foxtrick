@@ -15,138 +15,146 @@ Foxtrick.modules['FlagCollectionToMap'] = {
 	// country codes. see  http://code.google.com/apis/chart/#iso_codes
 	// leaugeid: ISO codes for google chart api
 	HT_countries: {
-		128	:	['IQ'],	// Al Iraq
-		118	:	['DZ'],	// Al Jazair
-		127	:	['KW'],	// Al Kuwayt
-		77	:	['MA'],	// Al Maghrib
-		106	:	['JO'],	// Al Urdun
-		133	:	['YE'],	// Al Yaman
-		105	:	['AD'],	// Andorra
-		130	:	['AO'],	// Angola
-		7	:	['AR'],	// Argentina
-		129	:	['AZ'],	// Az?rbaycan
-		123	:	['BH'],	// Bahrain
-		132	:	['BD'],	// Bangladesh
-		124	:	['BB'],	// Barbados
-		91	:	['BY'],	// Belarus
-		44	:	['BE'],	// België
-		139	:	['BJ'],	// Benin
-		74	:	['BO'],	// Bolivia
-		69	:	['BA'],	// Bosna i Herc
-		16	:	['BR'],	// Brasil
-		136	:	['BN'],	// Brunei
-		62	:	['BG'],	// Bulgaria
-		126	:	['CI'],	// C. d']Ivoire
-		125	:	['CV'],	// Cabo Verde
-		146	:	['CM'],	// Cameroon
-		17	:	['CA'],	// Canada
-		52	:	['CZ'],	// Ceská rep.
-		18	:	['CL'],	// Chile
-		60	:	['TW'],	// Chin. Taipei
-		34	:	['CN', 'MO'],	// China
-		19	:	['CO'],	// Colombia
-		81	:	['CR'],	// Costa Rica
-		147	:	['CU'],	// Cuba
-		131	:	['ME'],	// Crna Gora
-		61	:	['GB-WLS'],	// Cymru
-		89	:	['CY'],	// Cyprus
-		11	:	['DK', 'GL'],	// Danmark
-		3	:	['DE'],	// Deutschland
-		73	:	['EC'],	// Ecuador
-		56	:	['EE'],	// Eesti
-		100	:	['SV'],	// El Salvador
-		2	:	['GB-ENG'],	// England
-		36	:	['ES'],	// Espana
-		76	:	['FO'],	// Foroyar
-		5	:	['FR', 'GF', 'TF', 'BL', 'GP', 'MF', 'MQ', 'NC', 'PF', 'PM', 'RE', 'WF', 'YT'],
-			// France  PF part of oceania?
-		137	:	['GH'],	// Ghana
-		107	:	['GT'],	// Guatemala
-		30	:	['KR'],	// Hanguk
-		122	:	['AM'],	// Hayastan
-		50	:	['GR'],	// Hellas
-		99	:	['HN'],	// Honduras
-		59	:	['HK'],	// Hong Kong
-		58	:	['HR'],	// Hrvatska
-		20	:	['IN'],	// India
-		54	:	['ID'],	// Indonesia
-		85	:	['IR'],	// Iran
-		21	:	['IE'],	// Ireland
-		38	:	['IS'],	// Ísland
-		63	:	['IL'],	// Israel
-		4	:	['IT'],	// Italia
-		94	:	['JM'],	// Jamaica
-		138	:	['KH'],	// Kampuchea
-		112	:	['KZ'],	// Kazakhstan
-		95	:	['KE'],	// Kenya
-		102	:	['KG'],	// Kyrgyzstan
-		53	:	['LV'],	// Latvija
-		84	:	['LU'],	// Lëtzebuerg
-		117	:	['LI'],	// Liechtenst.
-		66	:	['LT'],	// Lietuva
-		120	:	['LB'],	// Lubnan
-		51	:	['HU'],	// Magyarország
-		97	:	['MK'],	// Makedonija
-		45	:	['MY'],	// Malaysia
-		144	:	['MV'],	// Maldives
-		101	:	['MT'],	// Malta
-		6	:	['MX'],	// México
-		33	:	['EG'],	// Misr
-		135	:	['MZ'],	// Moçambique
-		103	:	['MD'],	// Moldova
-		119	:	['MN'],	// Mongol Uls
-		93	:	['GB-NIR'],	// N. Ireland
-		14	:	['NL'],	// Nederland
-		111	:	['NI'],	// Nicaragua
-		75	:	['NG'],	// Nigeria
-		22	:	['JP'],	// Nippon
-		9	:	['NO', 'SJ'], // Norge
-		15	:	[
-			'AU', 'NZ', 'CX', 'CC', 'NF', 'FJ', 'NC', 'PG', 'SB', 'VU', 'FM', 'GU', 'KI', 'MH',
-			'NR', 'MP', 'PW', 'AS', 'CK', 'PF', 'NU', 'PN', 'WS', 'TK', 'TO', 'TV', 'WF'
-		],				// Oceania
-		134	:	['OM'],	// Oman
-		39	:	['AT'],	// Österreich
-		71	:	['PK'],	// Pakistan
-		96	:	['PA'],	// Panamá
-		148	:	['PS'],	// Palestinian Territory, Occupied
-		72	:	['PY'],	// Paraguay
-		23	:	['PE'],	// Perú
-		55	:	['PH'],	// Philippines
-		24	:	['PL'],	// Polska
-		25	:	['PT'],	// Portugal
-		31	:	['TH'],	// Prathet Thai
-		141	:	['QA'],	// Qatar
-		88	:	['DO'],	// Rep. Dom.
-		37	:	['RO'],	// România
-		35	:	['RU'],	// Rossiya
-		104	:	['GE'],	// Sakartvelo
-		79	:	['SA'],	// Saudi Arabia
-		46	:	['CH'],	// Schweiz
-		26	:	['GB-SCT'],	// Scotland
-		121	:	['SN'],	// Sénégal
-		98	:	['AL'],	// Shqiperia
-		47	:	['SG'],	// Singapore
-		64	:	['SI'],	// Slovenija
-		67	:	['SK'],	// Slovensko
-		27	:	['ZA'],	// South Africa
-		57	:	['RS'],	// Srbija
-		12	:	['FI', 'AX'],	// Suomi
-		113	:	['SR'],	// Suriname
-		140	:	['SY'],	// Suriyah
-		1	:	['SE'],	// Sverige
-		142	:	['TZ'],	// Tanzania
-		80	:	['TN'],	// Tounes
-		110	:	['TT'],	// Trinidad/T.
-		32	:	['TR'],	// Türkiye
-		83	:	['AE'],	// U.A.E.
-		143	:	['UG'],	// Uganda
-		68	:	['UA'],	// Ukraina
-		28	:	['UY'],	// Uruguay
-		8	:	['US', 'AS', 'GU', 'MP', 'PR', 'UM', 'VI'],	// USA
-		145	:	['UZ'],	// Uzbekistan
-		29	:	['VE'],	// Venezuela
-		70	:	['VN'],	// Vietnam
+		128: ['IQ'], // Al Iraq
+		127: ['KW'], // Al Kuwayt
+		77 : ['MA'], // Al Maghrib
+		106: ['JO'], // Al Urdun
+		133: ['YE'], // Al Yaman
+		118: ['DZ'], // Algérie / Al Jazair
+		105: ['AD'], // Andorra
+		130: ['AO'], // Angola
+		7  : ['AR'], // Argentina
+		129: ['AZ'], // Azərbaycan
+		123: ['BH'], // Bahrain
+		132: ['BD'], // Bangladesh
+		124: ['BB'], // Barbados
+		91 : ['BY'], // Belarus
+		44 : ['BE'], // Belgium / België
+		139: ['BJ'], // Benin
+		74 : ['BO'], // Bolivia
+		69 : ['BA'], // Bosna i Hercegovina
+		16 : ['BR'], // Brasil
+		136: ['BN'], // Brunei
+		62 : ['BG'], // Bulgaria
+		125: ['CV'], // Cabo Verde
+		146: ['CM'], // Cameroon
+		17 : ['CA'], // Canada
+		52 : ['CZ'], // Česká republika
+		18 : ['CL'], // Chile
+		34 : ['CN', 'MO'], // China
+		60 : ['TW'], // Chinese Taipei / Taiwan
+		19 : ['CO'], // Colombia
+		151: ['KM'], // Comoros # NEW
+		81 : ['CR'], // Costa Rica
+		126: ['CI'], // Côte d’Ivoire
+		131: ['ME'], // Crna Gora
+		147: ['CU'], // Cuba
+		153: ['CW'], // Curaçao # NEW
+		61 : ['GB-WLS'], // Cymru
+		89 : ['CY'], // Cyprus
+		11 : ['DK', 'GL'], // Danmark
+		141: ['QA'], // Dawlat Qatar
+		3  : ['DE'], // Deutschland
+		144: ['MV'], // Dhivehi Raajje / Maldives
+		73 : ['EC'], // Ecuador
+		56 : ['EE'], // Eesti
+		100: ['SV'], // El Salvador
+		2  : ['GB-ENG'], // England
+		36 : ['ES'], // España
+		5  : [
+			'FR', 'GF', 'TF', 'BL', 'GP', 'MF', 'MQ', 'NC', 'PF', 'PM', 'RE', 'WF', 'YT',
+		], // France PF part of oceania?
+		76 : ['FO'], // Føroyar
+		137: ['GH'], // Ghana
+		154: ['GU'], // Guam # NEW
+		107: ['GT'], // Guatemala
+		30 : ['KR'], // Hanguk / Korea
+		122: ['AM'], // Hayastan / Armenia
+		50 : ['GR'], // Hellas
+		99 : ['HN'], // Honduras
+		59 : ['HK'], // Hong Kong
+		58 : ['HR'], // Hrvatska
+		20 : ['IN'], // India
+		54 : ['ID'], // Indonesia
+		85 : ['IR'], // Iran
+		21 : ['IE'], // Ireland
+		38 : ['IS'], // Ísland
+		63 : ['IL'], // Israel
+		4  : ['IT'], // Italia
+		156: ['ET'], // Ītyōṗṗyā / Ethiopia # NEW
+		94 : ['JM'], // Jamaica
+		138: ['KH'], // Kampuchea / Cambodia
+		112: ['KZ'], // Kazakhstan
+		95 : ['KE'], // Kenya
+		102: ['KG'], // Kyrgyz Republic
+		53 : ['LV'], // Latvija
+		84 : ['LU'], // Lëtzebuerg
+		117: ['LI'], // Liechtenstein
+		66 : ['LT'], // Lietuva
+		120: ['LB'], // Lubnan
+		51 : ['HU'], // Magyarország
+		45 : ['MY'], // Malaysia
+		101: ['MT'], // Malta
+		6  : ['MX'], // México
+		33 : ['EG'], // Misr / Egypt
+		135: ['MZ'], // Moçambique / Mozambique
+		103: ['MD'], // Moldova
+		119: ['MN'], // Mongol Uls
+		14 : ['NL'], // Nederland
+		111: ['NI'], // Nicaragua
+		75 : ['NG'], // Nigeria
+		22 : ['JP'], // Nippon / Japan
+		9  : ['NO', 'SJ'], // Norge
+		93 : ['GB-NIR'], // Northern Ireland
+		145: ['UZ'], // O’zbekiston / Uzbekistan
+		15 : [
+			'AU', 'NZ', 'CX', 'CC', 'NF', 'FJ', 'NC', 'PG', 'SB', 'VU', 'FM', 'KI', 'MH',
+			'NR', 'MP', 'PW', 'AS', 'CK', 'PF', 'NU', 'PN', 'WS', 'TK', 'TO', 'TV', 'WF',
+		], // Oceania
+		134: ['OM'], // Oman
+		39 : ['AT'], // Österreich
+		71 : ['PK'], // Pakistan
+		148: ['PS'], // Palestine
+		96 : ['PA'], // Panamá
+		72 : ['PY'], // Paraguay
+		23 : ['PE'], // Perú
+		55 : ['PH'], // Pilipinas / Philippines
+		24 : ['PL'], // Polska
+		25 : ['PT'], // Portugal
+		31 : ['TH'], // Prathet Thai / Thailand
+		155: ['CD'], // RD Congo # NEW
+		88 : ['DO'], // República Dominicana
+		37 : ['RO'], // România
+		35 : ['RU'], // Rossiya
+		104: ['GE'], // Sakartvelo / Georgia
+		149: ['ST'], // São Tomé e Príncipe # NEW
+		79 : ['SA'], // Saudi Arabia
+		46 : ['CH'], // Schweiz
+		26 : ['GB-SCT'], // Scotland
+		121: ['SN'], // Sénégal
+		97 : ['MK'], // Severna Makedonija / North Macedonia
+		98 : ['AL'], // Shqiperia / Albania
+		47 : ['SG'], // Singapore
+		64 : ['SI'], // Slovenija
+		67 : ['SK'], // Slovensko / Slovakia
+		27 : ['ZA'], // South Africa
+		57 : ['RS'], // Srbija
+		152: ['LK'], // Sri Lanka # NEW
+		12 : ['FI', 'AX'], // Suomi
+		113: ['SR'], // Suriname
+		140: ['SY'], // Suriyah
+		1  : ['SE'], // Sverige
+		142: ['TZ'], // Tanzania
+		80 : ['TN'], // Tounes
+		110: ['TT'], // Trinidad & Tobago
+		32 : ['TR'], // Türkiye
+		143: ['UG'], // Uganda
+		68 : ['UA'], // Ukraina
+		83 : ['AE'], // United Arab Emirates
+		28 : ['UY'], // Uruguay
+		8  : ['US', 'AS', 'MP', 'PR', 'UM', 'VI'], // USA
+		29 : ['VE'], // Venezuela
+		70 : ['VN'], // Việt Nam / Vietnam
 	},
 
 	non_HT_countries: [
@@ -166,14 +174,12 @@ Foxtrick.modules['FlagCollectionToMap'] = {
 		'BV',
 		'BW',
 		'BZ',
-		'CD',
 		'CF',
 		'CG',
 		'DJ',
 		'DM',
 		'EH',
 		'ER',
-		'ET',
 		'FK',
 		'GA',
 		'GD',
@@ -191,13 +197,11 @@ Foxtrick.modules['FlagCollectionToMap'] = {
 		'IM',
 		'IO',
 		'JE',
-		'KM',
 		'KN',
 		'KP',
 		'KY',
 		'LA',
 		'LC',
-		'LK',
 		'LR',
 		'LS',
 		'LY',
@@ -225,7 +229,6 @@ Foxtrick.modules['FlagCollectionToMap'] = {
 		'SL',
 		'SM',
 		'SO',
-		'ST',
 		'SZ',
 		'TC',
 		'TD',
@@ -240,7 +243,7 @@ Foxtrick.modules['FlagCollectionToMap'] = {
 		'VI',
 		'YT',
 		'ZM',
-		'ZW'
+		'ZW',
 	],
 
 
