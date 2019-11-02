@@ -493,7 +493,7 @@
 			"words_translated": "16733"
 		},
 		{
-			"approved": "0",
+			"approved": "1",
 			"approved_progress": "0",
 			"code": "pt-PT",
 			"name": "Portuguese",
@@ -501,7 +501,7 @@
 			"translated": "2298",
 			"translated_progress": "100",
 			"words": "16757",
-			"words_approved": "0",
+			"words_approved": "5",
 			"words_translated": "16757"
 		},
 		{
