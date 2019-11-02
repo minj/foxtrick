@@ -41,22 +41,29 @@ Foxtrick.modules['HeaderToggle'] = {
 			else
 				Foxtrick.Prefs.setBool(key, true);
 
-			var toggleSiblings = function(el) {
-				var parent = el.parentNode;
-				el = el.nextSibling;
+			// eslint-disable-next-line complexity
+			var toggleSiblings = function(header) {
+				var parent = header.parentNode;
+				var el = header.nextSibling;
 				var forumThreads = {}, numUnread = 0;
 				while (el) {
 					// if text node, wrap in span on first encounter
 					if (el.nodeType == Foxtrick.NodeTypes.TEXT_NODE) {
-						if (el.nodeValue.trim() !== '') {
-							var target = el.nextSibling;
-							var span = doc.createElement('span');
+						if (el.nodeValue.trim().length) {
+							let target = el.nextSibling;
+							let span = doc.createElement('span');
 							span.appendChild(el);
 							el = parent.insertBefore(span, target);
-						} else {
+						}
+						else {
 							el = el.nextSibling;
 							continue;
 						}
+					}
+
+					if (el.nodeType != Foxtrick.NodeTypes.ELEMENT_NODE) {
+						el = el.nextSibling;
+						continue;
 					}
 
 					// stop with next header or dedicated parentNode mainBox
@@ -115,12 +122,16 @@ Foxtrick.modules['HeaderToggle'] = {
 			}
 		};
 
-		// exclude h2 of type info (eg training coach)
-		if (Foxtrick.hasClass(header, 'info')
-			|| Foxtrick.hasClass(header, 'ft-expander-expanded')
-			|| Foxtrick.hasClass(header, 'ft-expander-unexpanded')) {
+		// exclude new native colappse
+		if (header.querySelector('i.icon-caret-down, i.icon-caret-up'))
 			return;
-		}
+
+		// exclude h2 of type info (eg training coach)
+		let excludedClasses = ['info', 'ft-expander-expanded', 'ft-expander-unexpanded'];
+		let excludedSelector = excludedClasses.map(c => `.${c}`).join(',');
+		if (header.matches(excludedSelector))
+			return;
+
 		Foxtrick.onClick(header, function(ev) {
 			toggle(ev.target);
 		});
