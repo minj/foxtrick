@@ -1,20 +1,19 @@
-'use strict';
 /**
  * Visited countries map
  * @author seben, fixes convincedd
  */
 
-Foxtrick.modules['FlagCollectionToMap'] = {
+'use strict';
+
+/* eslint-disable key-spacing */
+
+Foxtrick.modules.FlagCollectionToMap = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES: ['flagCollection'],
 
-	own_countryid: 0,
-	own_countryvisited: false,
-	own_countryCodes: 'XX',
-
 	// country codes. see  http://code.google.com/apis/chart/#iso_codes
 	// leaugeid: ISO codes for google chart api
-	HT_countries: {
+	HTCountries: {
 		128: ['IQ'], // Al Iraq
 		127: ['KW'], // Al Kuwayt
 		77 : ['MA'], // Al Maghrib
@@ -157,7 +156,7 @@ Foxtrick.modules['FlagCollectionToMap'] = {
 		70 : ['VN'], // Việt Nam / Vietnam
 	},
 
-	non_HT_countries: [
+	nonHTCountries: [
 		'AF',
 		'AG',
 		'AI',
@@ -248,91 +247,70 @@ Foxtrick.modules['FlagCollectionToMap'] = {
 
 
 	run: function(doc) {
-		// this.own_countryid = Foxtrick.util.id.getOwnLeagueId(); // unused, check for null
+		const module = this;
 
 		var mapId = 0;
-		var mainbox = doc.getElementsByClassName('mainBox');
-		for (var i = 0; i < mainbox.length; i++) {
-			var divElement = mainbox[i];
+		var mainboxes = doc.getElementsByClassName('mainBox');
 
-			var countryIds = [];
-			for (var j = 0; j < divElement.childNodes.length; j++) {
-				var currentNode = divElement.childNodes[j];
-				if (currentNode.nodeName == 'A' && currentNode.href.search(/LeagueID=/i) > -1) {
-					var countryId = currentNode.href.substr(currentNode.href.lastIndexOf('=') + 1,
-					                                        currentNode.href.length);
-					if (currentNode.getElementsByTagName('img')[0].getAttribute('style')
-					    .search(/flags\.gif/i) != -1) {
+		for (let divElement of mainboxes) {
+			let countryIds = [];
+			for (let currentNode of [...divElement.childNodes]) {
+				if (currentNode.nodeName == 'A' && /LeagueID=/i.test(currentNode.href)) {
+					let idx = currentNode.href.lastIndexOf('=') + 1;
+					let countryId = currentNode.href.slice(idx, idx + currentNode.href.length);
+					let style = currentNode.querySelector('img').getAttribute('style');
+					if (/flags\.gif/i.test(style))
 						countryIds.push(countryId);
-					}
-				} else if (currentNode.nodeName == 'P') {
+				}
+				else if (currentNode.nodeName == 'P') {
 					// not a flag, flush the buffer
-					this.createAndInsertMap(doc, countryIds, mapId++, divElement, currentNode);
+					module.createAndInsertMap(doc, countryIds, mapId++, divElement, currentNode);
 					countryIds = [];
 				}
 			}
-			this.createAndInsertMap(doc, countryIds, mapId++, divElement, null);
+			module.createAndInsertMap(doc, countryIds, mapId++, divElement, null);
 		}
 
 	},
 
 
 	insertBeforeOrAppend: function(parent, what, beforeWhat) {
-		if (beforeWhat == null) {
+		if (beforeWhat == null)
 			parent.appendChild(what);
-		} else {
+		else
 			parent.insertBefore(what, beforeWhat);
-		}
 	},
 
-	createAndInsertMap: function(document, countryIdsHasFlags, mapId, parent, insertBefore) {
+	createAndInsertMap: function(doc, countryIdsHasFlags, mapId, parent, insertBefore) {
+		const module = this;
 
-		if (countryIdsHasFlags.length == 0) return;
+		if (countryIdsHasFlags.length == 0)
+			return;
 
 		var collectedCountryCodes = '';
 		var colouringOrder = '';
 
 		// flags
-		for (var i = 0; i < countryIdsHasFlags.length; i++) {
-			var countryId = countryIdsHasFlags[i];
-			var countryCodes = this.HT_countries[countryId];
-			for (var j = 0; j < countryCodes.length; ++j) {
-				collectedCountryCodes += countryCodes[j] + '|';
+		for (let i = 0; i < countryIdsHasFlags.length; i++) {
+			let countryId = countryIdsHasFlags[i];
+			let countryCodes = module.HTCountries[countryId];
+			for (let code of countryCodes) {
+				collectedCountryCodes += code + '|';
 				colouringOrder += '0,';
 			}
 		}
 
 		// no flag
-		var noflags = '', countryId;
-		for (countryId in this.HT_countries) {
-			var countryCodes = this.HT_countries[countryId];
-			if (!Foxtrick.any(function(n) {
-				return n == countryId;
-				}, countryIdsHasFlags)) { // not hasFlag
-				for (var j = 0; j < countryCodes.length; ++j) {
-					noflags += countryCodes[j] + '|';
-					collectedCountryCodes += countryCodes[j] + '|';
-					colouringOrder += '100,';
-				}
+		for (let [countryId, countryCodes] of Object.entries(module.HTCountries)) {
+			if (countryIdsHasFlags.includes(countryId))
+				continue;
+
+			// not hasFlag
+			for (let code of countryCodes) {
+				collectedCountryCodes += code + '|';
+				colouringOrder += '100,';
 			}
 		}
-
-		/*
-		// non-ht countries. not updated to new version and url would get too long probably
-		for (var i = 0; i < this.non_HT_countries.length-1 ; i++) {
-			collectedCountryCodes += this.non_HT_countries[i]+'|';
-			colouringOrder += '0,';
-		}
-		collectedCountryCodes += this.non_HT_countries[this.non_HT_countries.length-1];
-		colouringOrder += '0';*/
-
-		/*
-		// own country. add to front. is overwriten by visited color if visited
-		this.own_countryCodes = this.countryCodes['c_'+this.own_countryid];
-		if (typeof this.own_countryCodes != 'undefined') {
-				collectedCountryCodes = this.own_countryCodes + '|'+collectedCountryCodes;
-				colouringOrder = '100,' + colouringOrder;
-		}*/
 
 		var Africa = Foxtrick.L10n.getString('flagCollectionToMap.Africa');
 		var Asia = Foxtrick.L10n.getString('flagCollectionToMap.Asia');
@@ -342,49 +320,49 @@ Foxtrick.modules['FlagCollectionToMap'] = {
 		var World = Foxtrick.L10n.getString('flagCollectionToMap.World');
 
 		// get all required urls
-		var urlAfrica = this.getMapUrl(Africa, collectedCountryCodes, colouringOrder,
+		var urlAfrica = module.getMapUrl(Africa, collectedCountryCodes, colouringOrder,
 		                               '-35,-25,38,50', '440x500');
-		var urlAsia = this.getMapUrl(Asia, collectedCountryCodes, colouringOrder,
+		var urlAsia = module.getMapUrl(Asia, collectedCountryCodes, colouringOrder,
 		                             '-50,40,70,180', '440x530');
-		var urlEurope = this.getMapUrl(Europe, collectedCountryCodes, colouringOrder,
+		var urlEurope = module.getMapUrl(Europe, collectedCountryCodes, colouringOrder,
 		                               '34,-11,64,30', '440x540');
-		var urlMEast = this.getMapUrl(MEast, collectedCountryCodes, colouringOrder,
+		var urlMEast = module.getMapUrl(MEast, collectedCountryCodes, colouringOrder,
 		                              '12,24,44,64', '440x440');
-		var urlSAmerica = this.getMapUrl(SAmerica, collectedCountryCodes, colouringOrder,
+		var urlSAmerica = module.getMapUrl(SAmerica, collectedCountryCodes, colouringOrder,
 		                                 '-55,-95,25,-30', '440x640');
-		var urlWorld = this.getMapUrl(World, collectedCountryCodes, colouringOrder,
+		var urlWorld = module.getMapUrl(World, collectedCountryCodes, colouringOrder,
 		                              '-60,-180,80,180', '440x300');
 
-		var mapDiv = document.createElement('div');
+		var mapDiv = doc.createElement('div');
 		mapDiv.id = 'foxtrick-map' + mapId;
 		Foxtrick.addClass(mapDiv, 'hidden');
 
-		var openMapA = document.createElement('A');
+		var openMapA = doc.createElement('A');
 
 		var ShowMap = Foxtrick.L10n.getString('flagCollectionToMap.ShowMap');
 		var HideMap = Foxtrick.L10n.getString('flagCollectionToMap.HideMap');
-		openMapA.appendChild(document.createTextNode(ShowMap));
+		openMapA.appendChild(doc.createTextNode(ShowMap));
 		openMapA.name = 'flags' + mapId;
-		openMapA.href = '#' + 'foxtrick-top-map-' + mapId;
+		openMapA.href = '#foxtrick-top-map-' + mapId;
 		openMapA.id = 'flagsA' + mapId;
 		Foxtrick.onClick(openMapA, function(ev) {
-			if (Foxtrick.hasClass(document.getElementById('foxtrick-map' + mapId), 'hidden')) {
-				Foxtrick.removeClass(document.getElementById('foxtrick-map' + mapId), 'hidden');
-				document.getElementById('flagsA' + mapId).textContent = HideMap;
+			if (Foxtrick.hasClass(doc.getElementById('foxtrick-map' + mapId), 'hidden')) {
+				Foxtrick.removeClass(doc.getElementById('foxtrick-map' + mapId), 'hidden');
+				doc.getElementById('flagsA' + mapId).textContent = HideMap;
 			}
 			else {
-				Foxtrick.addClass(document.getElementById('foxtrick-map' + mapId), 'hidden');
-				document.getElementById('flagsA' + mapId).textContent = ShowMap;
+				Foxtrick.addClass(doc.getElementById('foxtrick-map' + mapId), 'hidden');
+				doc.getElementById('flagsA' + mapId).textContent = ShowMap;
 			}
 			return false;
 		});
-		var openMapDiv = Foxtrick.createFeaturedElement(document, this, 'div');
+		var openMapDiv = Foxtrick.createFeaturedElement(doc, module, 'div');
 		openMapDiv.appendChild(openMapA);
 
-		this.insertBeforeOrAppend(parent, mapDiv, insertBefore);
-		this.insertBeforeOrAppend(parent, openMapDiv, insertBefore);
+		module.insertBeforeOrAppend(parent, mapDiv, insertBefore);
+		module.insertBeforeOrAppend(parent, openMapDiv, insertBefore);
 
-		this.addMap(document, document.getElementById('foxtrick-map' + mapId), urlAfrica,
+		module.addMap(doc, doc.getElementById('foxtrick-map' + mapId), urlAfrica,
 		            urlAsia, urlEurope, urlMEast, urlSAmerica, urlWorld, mapId);
 	},
 
@@ -425,6 +403,7 @@ Foxtrick.modules['FlagCollectionToMap'] = {
 
 		var img = doc.createElement('img');
 		img.onload = img.onerror = function() {
+			// eslint-disable-next-line no-magic-numbers
 			if (this.height < 300 || this.width < 300) {
 				var msg = Foxtrick.L10n.getString('resource.error');
 				msg = msg.replace(/%s/, 'chart.googleapis.com');
@@ -443,14 +422,14 @@ Foxtrick.modules['FlagCollectionToMap'] = {
 	 */
 	//* @param: title, ISO 3166-2 countrycodes, gradient codes (0-100), lang-long box, x*y
 	getMapUrl: function(title, countryCodes, colorOrder, areaParam, size) {
-		var base = '//chart.googleapis.com/chart';
+		var base = 'https://chart.googleapis.com/chart';
 		var chartType = '?cht=map:fixed=' + areaParam; // lang long: bottom,left,top,right
 		var dimensions = '&chs=' + size;
 
-		var colors = '&chco=CCCCCC,849D84,FCF6DF';  // non-ht,flag,noflag,
+		var colors = '&chco=CCCCCC,849D84,FCF6DF'; // non-ht,flag,noflag,
 		var order = '&chd=t:' + colorOrder;
 		var countries = '&chld=' + countryCodes;
-		var title = '&chtt=' + title;
+		title = '&chtt=' + title;
 		var background = '&chf=bg,s,a6dfe7'; // bg water color
 
 		var url = base + chartType + dimensions + title + colors + background + order + countries;
