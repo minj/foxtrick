@@ -43,12 +43,12 @@ Foxtrick.modules.FlagCollectionToMap = {
 		34 : ['CN', 'MO'], // China
 		60 : ['TW'], // Chinese Taipei / Taiwan
 		19 : ['CO'], // Colombia
-		151: ['KM'], // Comoros # NEW
+		151: ['KM'], // Comoros
 		81 : ['CR'], // Costa Rica
 		126: ['CI'], // Côte d’Ivoire
 		131: ['ME'], // Crna Gora
 		147: ['CU'], // Cuba
-		153: ['CW'], // Curaçao # NEW
+		153: ['CW'], // Curaçao
 		61 : ['GB-WLS'], // Cymru
 		89 : ['CY'], // Cyprus
 		11 : ['DK', 'GL'], // Danmark
@@ -65,7 +65,7 @@ Foxtrick.modules.FlagCollectionToMap = {
 		], // France PF part of oceania?
 		76 : ['FO'], // Føroyar
 		137: ['GH'], // Ghana
-		154: ['GU'], // Guam # NEW
+		154: ['GU'], // Guam
 		107: ['GT'], // Guatemala
 		30 : ['KR'], // Hanguk / Korea
 		122: ['AM'], // Hayastan / Armenia
@@ -80,7 +80,7 @@ Foxtrick.modules.FlagCollectionToMap = {
 		38 : ['IS'], // Ísland
 		63 : ['IL'], // Israel
 		4  : ['IT'], // Italia
-		156: ['ET'], // Ītyōṗṗyā / Ethiopia # NEW
+		156: ['ET'], // Ītyōṗṗyā / Ethiopia
 		94 : ['JM'], // Jamaica
 		138: ['KH'], // Kampuchea / Cambodia
 		112: ['KZ'], // Kazakhstan
@@ -121,12 +121,12 @@ Foxtrick.modules.FlagCollectionToMap = {
 		24 : ['PL'], // Polska
 		25 : ['PT'], // Portugal
 		31 : ['TH'], // Prathet Thai / Thailand
-		155: ['CD'], // RD Congo # NEW
+		155: ['CD'], // RD Congo
 		88 : ['DO'], // República Dominicana
 		37 : ['RO'], // România
 		35 : ['RU'], // Rossiya
 		104: ['GE'], // Sakartvelo / Georgia
-		149: ['ST'], // São Tomé e Príncipe # NEW
+		149: ['ST'], // São Tomé e Príncipe
 		79 : ['SA'], // Saudi Arabia
 		46 : ['CH'], // Schweiz
 		26 : ['GB-SCT'], // Scotland
@@ -138,7 +138,7 @@ Foxtrick.modules.FlagCollectionToMap = {
 		67 : ['SK'], // Slovensko / Slovakia
 		27 : ['ZA'], // South Africa
 		57 : ['RS'], // Srbija
-		152: ['LK'], // Sri Lanka # NEW
+		152: ['LK'], // Sri Lanka
 		12 : ['FI', 'AX'], // Suomi
 		113: ['SR'], // Suriname
 		140: ['SY'], // Suriyah
