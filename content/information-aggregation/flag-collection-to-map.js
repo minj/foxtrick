@@ -155,6 +155,7 @@ Foxtrick.modules.FlagCollectionToMap = {
 		29 : ['VE'], // Venezuela
 		70 : ['VN'], // Việt Nam / Vietnam
 	},
+	/* eslint-enable key-spacing */
 
 	nonHTCountries: [
 		'AF',
