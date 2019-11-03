@@ -1,6 +1,6 @@
 /**
  * Visited countries map
- * @author seben, fixes convincedd
+ * @author seben, fixes convincedd, LA-MJ
  */
 
 'use strict';
@@ -245,35 +245,38 @@ Foxtrick.modules.FlagCollectionToMap = {
 		'ZW',
 	],
 
-
+	/** @param {document} doc */
 	run: function(doc) {
 		const module = this;
 
-		var mapId = 0;
 		var mainboxes = doc.getElementsByClassName('mainBox');
 
 		for (let divElement of mainboxes) {
 			let countryIds = [];
-			for (let currentNode of [...divElement.childNodes]) {
-				if (currentNode.nodeName == 'A' && /LeagueID=/i.test(currentNode.href)) {
-					let idx = currentNode.href.lastIndexOf('=') + 1;
-					let countryId = currentNode.href.slice(idx, idx + currentNode.href.length);
-					let style = currentNode.querySelector('img').getAttribute('style');
-					if (/flags\.gif/i.test(style))
-						countryIds.push(countryId);
+
+			for (let currentNode of [...divElement.children]) {
+				if (currentNode.matches('a.flag')) {
+					let link = /** @type {HTMLAnchorElement} */ (currentNode);
+					countryIds.push(Foxtrick.getUrlParam(link.href, 'LeagueID'));
 				}
 				else if (currentNode.nodeName == 'P') {
 					// not a flag, flush the buffer
-					module.createAndInsertMap(doc, countryIds, mapId++, divElement, currentNode);
+					module.createAndInsertMap(doc, countryIds, divElement, currentNode);
 					countryIds = [];
 				}
 			}
-			module.createAndInsertMap(doc, countryIds, mapId++, divElement, null);
+			module.createAndInsertMap(doc, countryIds, divElement, null);
 		}
 
 	},
 
+	lastMapId: 0,
 
+	/**
+	 * @param {Element} parent
+	 * @param {Element} what
+	 * @param {Element} beforeWhat
+	 */
 	insertBeforeOrAppend: function(parent, what, beforeWhat) {
 		if (beforeWhat == null)
 			parent.appendChild(what);
@@ -281,159 +284,201 @@ Foxtrick.modules.FlagCollectionToMap = {
 			parent.insertBefore(what, beforeWhat);
 	},
 
-	createAndInsertMap: function(doc, countryIdsHasFlags, mapId, parent, insertBefore) {
+	/**
+	 * @param {document} doc
+	 * @param {string[]} flagCountryIds
+	 * @param {Element}  parent
+	 * @param {Element}  insertBefore
+	 */
+	createAndInsertMap: function(doc, flagCountryIds, parent, insertBefore) {
 		const module = this;
 
-		if (countryIdsHasFlags.length == 0)
+		if (flagCountryIds.length == 0)
 			return;
 
-		var collectedCountryCodes = '';
-		var colouringOrder = '';
+		/** @type {string[]} */
+		var collectedCountryCodes = [];
+
+		/** @type {number[]} */
+		var colouringOrder = [];
 
 		// flags
-		for (let i = 0; i < countryIdsHasFlags.length; i++) {
-			let countryId = countryIdsHasFlags[i];
+		for (let countryId of flagCountryIds) {
+
+			/** @type {string[]} */
 			let countryCodes = module.HTCountries[countryId];
-			for (let code of countryCodes) {
-				collectedCountryCodes += code + '|';
-				colouringOrder += '0,';
+			if (!countryCodes) {
+				if (countryId != '1000') // HTI
+					Foxtrick.log(`WARNING: ${countryId} country unknown`);
+
+				continue;
 			}
+
+			collectedCountryCodes.push(...countryCodes);
+			colouringOrder.push(...countryCodes.map(_ => 0));
 		}
 
 		// no flag
 		for (let [countryId, countryCodes] of Object.entries(module.HTCountries)) {
-			if (countryIdsHasFlags.includes(countryId))
+			if (flagCountryIds.includes(countryId))
 				continue;
 
 			// not hasFlag
-			for (let code of countryCodes) {
-				collectedCountryCodes += code + '|';
-				colouringOrder += '100,';
-			}
+			collectedCountryCodes.push(...countryCodes);
+			colouringOrder.push(...countryCodes.map(_ => 100));
 		}
 
-		var Africa = Foxtrick.L10n.getString('flagCollectionToMap.Africa');
-		var Asia = Foxtrick.L10n.getString('flagCollectionToMap.Asia');
-		var Europe = Foxtrick.L10n.getString('flagCollectionToMap.Europe');
-		var MEast = Foxtrick.L10n.getString('flagCollectionToMap.MEast');
-		var SAmerica = Foxtrick.L10n.getString('flagCollectionToMap.SAmerica');
-		var World = Foxtrick.L10n.getString('flagCollectionToMap.World');
+		/** @type {FlagMapUrlDefinition} */
+		var urls;
 
-		// get all required urls
-		var urlAfrica = module.getMapUrl(Africa, collectedCountryCodes, colouringOrder,
-		                               '-35,-25,38,50', '440x500');
-		var urlAsia = module.getMapUrl(Asia, collectedCountryCodes, colouringOrder,
-		                             '-50,40,70,180', '440x530');
-		var urlEurope = module.getMapUrl(Europe, collectedCountryCodes, colouringOrder,
-		                               '34,-11,64,30', '440x540');
-		var urlMEast = module.getMapUrl(MEast, collectedCountryCodes, colouringOrder,
-		                              '12,24,44,64', '440x440');
-		var urlSAmerica = module.getMapUrl(SAmerica, collectedCountryCodes, colouringOrder,
-		                                 '-55,-95,25,-30', '440x640');
-		var urlWorld = module.getMapUrl(World, collectedCountryCodes, colouringOrder,
-		                              '-60,-180,80,180', '440x300');
+		{
+			let codes = collectedCountryCodes.join('|');
+			let colors = colouringOrder.join(',');
 
-		var mapDiv = doc.createElement('div');
-		mapDiv.id = 'foxtrick-map' + mapId;
-		Foxtrick.addClass(mapDiv, 'hidden');
+			let sAfrica = Foxtrick.L10n.getString('flagCollectionToMap.Africa');
+			let sAsia = Foxtrick.L10n.getString('flagCollectionToMap.Asia');
+			let sEurope = Foxtrick.L10n.getString('flagCollectionToMap.Europe');
+			let sMEast = Foxtrick.L10n.getString('flagCollectionToMap.MEast');
+			let sSAmerica = Foxtrick.L10n.getString('flagCollectionToMap.SAmerica');
+			let sWorld = Foxtrick.L10n.getString('flagCollectionToMap.World');
 
-		var openMapA = doc.createElement('A');
+			// get all required urls
+			let africa = module.getMapUrl(sAfrica, codes, colors, '-35,-25,38,50', '440x500');
+			let asia = module.getMapUrl(sAsia, codes, colors, '-50,40,70,180', '440x530');
+			let europe = module.getMapUrl(sEurope, codes, colors, '34,-11,64,30', '440x540');
+			let mEast = module.getMapUrl(sMEast, codes, colors, '12,24,44,64', '440x440');
+			let sAmerica = module.getMapUrl(sSAmerica, codes, colors, '-55,-95,25,-30', '440x640');
+			let world = module.getMapUrl(sWorld, codes, colors, '-60,-180,80,180', '440x300');
 
-		var ShowMap = Foxtrick.L10n.getString('flagCollectionToMap.ShowMap');
-		var HideMap = Foxtrick.L10n.getString('flagCollectionToMap.HideMap');
-		openMapA.appendChild(doc.createTextNode(ShowMap));
+			urls = { africa, asia, europe, mEast, sAmerica, world };
+		}
+
+		const mapId = module.lastMapId++;
+		const showMap = Foxtrick.L10n.getString('flagCollectionToMap.ShowMap');
+		const hideMap = Foxtrick.L10n.getString('flagCollectionToMap.HideMap');
+
+		var openMapA = doc.createElement('a');
+		openMapA.appendChild(doc.createTextNode(showMap));
 		openMapA.name = 'flags' + mapId;
 		openMapA.href = '#foxtrick-top-map-' + mapId;
 		openMapA.id = 'flagsA' + mapId;
+
 		Foxtrick.onClick(openMapA, function(ev) {
 			if (Foxtrick.hasClass(doc.getElementById('foxtrick-map' + mapId), 'hidden')) {
 				Foxtrick.removeClass(doc.getElementById('foxtrick-map' + mapId), 'hidden');
-				doc.getElementById('flagsA' + mapId).textContent = HideMap;
+				doc.getElementById('flagsA' + mapId).textContent = hideMap;
 			}
 			else {
 				Foxtrick.addClass(doc.getElementById('foxtrick-map' + mapId), 'hidden');
-				doc.getElementById('flagsA' + mapId).textContent = ShowMap;
+				doc.getElementById('flagsA' + mapId).textContent = showMap;
 			}
 			return false;
 		});
+
 		var openMapDiv = Foxtrick.createFeaturedElement(doc, module, 'div');
 		openMapDiv.appendChild(openMapA);
 
+		var mapDiv = doc.createElement('div');
+		mapDiv.id = 'foxtrick-map' + mapId;
+		mapDiv.dataset.mapId = String(mapId);
+		Foxtrick.addClass(mapDiv, 'hidden');
+
 		module.insertBeforeOrAppend(parent, mapDiv, insertBefore);
 		module.insertBeforeOrAppend(parent, openMapDiv, insertBefore);
-
-		module.addMap(doc, doc.getElementById('foxtrick-map' + mapId), urlAfrica,
-		            urlAsia, urlEurope, urlMEast, urlSAmerica, urlWorld, mapId);
+		module.addMap(doc, mapDiv, urls);
 	},
 
-	addMap: function(doc, map, urlAfrica, urlAsia, urlEurope, urlMEast,
-	                 urlSAmerica, urlWorld, anchorId) {
-		var imgMap = 'foxtrick-img-map-' + anchorId;
-		var topMap = 'foxtrick-top-map-' + anchorId;
-		var Africa = Foxtrick.L10n.getString('flagCollectionToMap.Africa');
-		var Asia = Foxtrick.L10n.getString('flagCollectionToMap.Asia');
-		var Europe = Foxtrick.L10n.getString('flagCollectionToMap.Europe');
-		var MEast = Foxtrick.L10n.getString('flagCollectionToMap.MEast');
-		var SAmerica = Foxtrick.L10n.getString('flagCollectionToMap.SAmerica');
-		var World = Foxtrick.L10n.getString('flagCollectionToMap.World');
+	/**
+	 * @typedef FlagMapUrlDefinition
+	 * @prop {string} africa
+	 * @prop {string} asia
+	 * @prop {string} europe
+	 * @prop {string} mEast
+	 * @prop {string} sAmerica
+	 * @prop {string} world
+	 */
+
+	/**
+	 * @param {document}             doc
+	 * @param {HTMLElement}          map
+	 * @param {FlagMapUrlDefinition} urls
+	 */
+	addMap: function(doc, map, urls) {
+		let { africa, asia, europe, mEast, sAmerica, world } = urls;
+
+		var mapId = map.dataset.mapId;
+		var imgMap = 'foxtrick-img-map-' + mapId;
+		var topMap = 'foxtrick-top-map-' + mapId;
 
 		var addNavLink = function(imgUrl, text) {
-			var a = doc.createElement('a');
+			let a = doc.createElement('a');
 			a.href = `#${topMap}`;
-			Foxtrick.onClick(a, function(ev) {
-				doc.getElementById(imgMap).src = imgUrl;
-			});
 			a.textContent = text;
-			map.appendChild(a);
-			return a;
+			Foxtrick.onClick(a, function(ev) {
+				let img = /** @type {HTMLImageElement} */ (doc.getElementById(imgMap));
+				img.src = imgUrl;
+			});
+			return map.appendChild(a);
 		};
-		var top = addNavLink(urlAfrica, Africa);
-		top.id = topMap;
-		map.appendChild(doc.createTextNode(' '));
-		addNavLink(urlAsia, Asia);
-		map.appendChild(doc.createTextNode(' '));
-		addNavLink(urlEurope, Europe);
-		map.appendChild(doc.createTextNode(' '));
-		addNavLink(urlMEast, MEast);
-		map.appendChild(doc.createTextNode(' '));
-		addNavLink(urlSAmerica, SAmerica);
-		map.appendChild(doc.createTextNode(' '));
-		addNavLink(urlWorld, World);
-		map.appendChild(doc.createTextNode(' '));
 
-		var img = doc.createElement('img');
+		{
+			let maps = [
+				[africa, Foxtrick.L10n.getString('flagCollectionToMap.Africa')],
+				[asia, Foxtrick.L10n.getString('flagCollectionToMap.Asia')],
+				[europe, Foxtrick.L10n.getString('flagCollectionToMap.Europe')],
+				[mEast, Foxtrick.L10n.getString('flagCollectionToMap.MEast')],
+				[sAmerica, Foxtrick.L10n.getString('flagCollectionToMap.SAmerica')],
+				[world, Foxtrick.L10n.getString('flagCollectionToMap.World')],
+			];
+
+			for (let [url, txt] of maps) {
+				let link = addNavLink(url, txt);
+				if (url == africa)
+					link.id = topMap;
+
+				map.appendChild(doc.createTextNode(' '));
+			}
+		}
+
+		let img = doc.createElement('img');
 		img.onload = img.onerror = function() {
 			// eslint-disable-next-line no-magic-numbers
 			if (this.height < 300 || this.width < 300) {
-				var msg = Foxtrick.L10n.getString('resource.error');
+				let msg = Foxtrick.L10n.getString('resource.error');
 				msg = msg.replace(/%s/, 'chart.googleapis.com');
 				Foxtrick.util.note.add(doc, msg, 'ft-flag-map-failed-note', { to: map });
 			}
 		};
 		img.id = imgMap;
 		img.alt = 'Map';
-		img.src = urlWorld;
+		img.src = world;
 		map.appendChild(img);
 	},
 
 	/**
 	 * Build the url for the map image
-	 * Example: http://chart.apis.google.com/chart?cht=t&chs=440x220&chco=ffffff,339933,339933&chd=s:AAAAAA&chld=USCAAUFINODK&chtm=world&chf=bg,s,EAF7FE
+	 *
+	 * E.g.: https://chart.apis.google.com/chart?cht=t&chs=440x220&chco=ffffff,339933,339933&chd=s:AAAAAA&chld=USCAAUFINODK&chtm=world&chf=bg,s,EAF7FE
+	 *
+	 * @param  {string} title        map title
+	 * @param  {string} countryCodes pipe separated list of ISO 3166-2 codes
+	 * @param  {string} colorCodes   comma separated list of gradient codes 0..100
+	 * @param  {string} coords       degree coordinates 'S,W,N,E'
+	 * @param  {string} size         x*y in pixels, e.g. 400x300
+	 * @return {string}              map url
 	 */
-	//* @param: title, ISO 3166-2 countrycodes, gradient codes (0-100), lang-long box, x*y
-	getMapUrl: function(title, countryCodes, colorOrder, areaParam, size) {
-		var base = 'https://chart.googleapis.com/chart';
-		var chartType = '?cht=map:fixed=' + areaParam; // lang long: bottom,left,top,right
-		var dimensions = '&chs=' + size;
+	getMapUrl: function(title, countryCodes, colorCodes, coords, size) {
+		const parts = [
+			'https://chart.googleapis.com/chart',
+			'?cht=map:fixed=' + coords,
+			'&chs=' + size,
+			'&chtt=' + title,
+			'&chco=CCCCCC,849D84,FCF6DF', // colors: non-ht,flag,noflag,
+			'&chf=bg,s,a6dfe7', // bg water color
+			'&chd=t:' + colorCodes,
+			'&chld=' + countryCodes,
+		];
 
-		var colors = '&chco=CCCCCC,849D84,FCF6DF'; // non-ht,flag,noflag,
-		var order = '&chd=t:' + colorOrder;
-		var countries = '&chld=' + countryCodes;
-		title = '&chtt=' + title;
-		var background = '&chf=bg,s,a6dfe7'; // bg water color
-
-		var url = base + chartType + dimensions + title + colors + background + order + countries;
-		url = url.replace(',&', '&');
-		return url;
+		return parts.join('');
 	},
 };
