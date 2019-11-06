@@ -1447,7 +1447,7 @@
 		{
 			"duty": "supporter",
 			"id": "7973946",
-			"name": "Steo1968"
+			"name": "<Steo1968>"
 		},
 		{
 			"duty": "supporter",
@@ -1548,6 +1548,11 @@
 			"duty": "translator",
 			"id": "8988135",
 			"name": "Vital_top7"
+		},
+		{
+			"duty": "supporter",
+			"id": "8997758",
+			"name": "Ir_pa_na"
 		},
 		{
 			"duty": "supporter",
