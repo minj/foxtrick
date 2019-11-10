@@ -123,9 +123,10 @@ Foxtrick.modules.SupportersList = {
 			Foxtrick.addClass(img, className);
 		};
 
+		// assuming team links start with TeamID here, otherwise matches are caught
 		/** @type {NodeListOf<HTMLAnchorElement>} */
-		var links = doc.querySelectorAll('#mainBody a[href*="TeamID"i]');
-		var re = /TeamID=([0-9]+)/i;
+		var links = doc.querySelectorAll('#mainBody a[href*="?TeamID"i]');
+		var re = /\?TeamID=([0-9]+)/i;
 
 		for (let link of links) {
 			let href = link.href;
