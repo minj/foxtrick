@@ -130,7 +130,7 @@ Foxtrick.modules.SupportersList = {
 		for (let link of links) {
 			let href = link.href;
 			let matches = re.exec(href);
-			if (!matches[1] || Foxtrick.indexOf(ids, matches[1]) == -1)
+			if (!matches || Foxtrick.indexOf(ids, matches[1]) == -1)
 				continue;
 
 			Foxtrick.addClass(link, 'ft-suppList-' + type);
