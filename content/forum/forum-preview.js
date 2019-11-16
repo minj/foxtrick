@@ -55,7 +55,7 @@ Foxtrick.modules.ForumPreview = {
 						"target='_blank'>($1)</a>"],
 				[/\[message=(\d+)\.(\d+)\]/gi,
 					"<a href='/Forum/Read.aspx?t=$1&n=$2' target='_blank'>($1.$2)</a>"],
-				[/\[post\\=(\d+)\.(\d+)\]/gi,
+				[/\[post=(\d+)\.(\d+)\]/gi,
 					"<a href='/Forum/Read.aspx?t=$1&n=$2' target='_blank'>($1.$2)</a>"],
 				[/\[leagueid=(\d+)\]/gi,
 					"<a href='/World/Series/?LeagueLevelUnitID=$1' " +
