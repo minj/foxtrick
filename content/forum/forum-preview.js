@@ -67,7 +67,7 @@ Foxtrick.modules.ForumPreview = {
 					"<a href='/Community/Tournaments/Tournament.aspx?tournamentId=$1' " +
 						"target='_blank'>($1)</a>"],
 				[/\[link=(.*?)\]/gi,
-					"<a href='$1' target='_blank'>($1)</a>"],
+					"<a href='$1' target='_blank' rel='noopener'>($1)</a>"],
 				[/\[articleid=(.*?)\]/gi,
 					"<a href='/Community/Press?ArticleID=$1' target='_blank'>($1)</a>"],
 				[/\[br\]/gi, '<br>'],
