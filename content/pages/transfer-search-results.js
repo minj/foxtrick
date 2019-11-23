@@ -153,6 +153,10 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 		tc.appendChild(tcImg);
 	};
 
+	/**
+	 * @param {*}       player
+	 * @param {Element} bidContainer
+	 */
 	let parseBidInfo = (player, bidContainer) => {
 		var bid, bidderLink;
 		if (isNewDesign) {
@@ -172,11 +176,17 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 		}
 		else {
 			let items = [...bidContainer.querySelectorAll('.transferPlayerInfoItems')].reverse();
-			items.shift(); // skip hot-list
 
-			let [bidder, bidItem] = items;
-			bidderLink = bidder.querySelector('a');
-			bid = bidItem;
+			// search for first item with parenthesis
+			// this indicates bidder / starting price
+			let indices = Foxtrick.range(items.length);
+			let idx = Foxtrick.nth(i => items[i].textContent.includes('('), indices);
+
+			if (idx != null) {
+				let [bidder, bidItem] = items.slice(idx);
+				bidderLink = bidder.querySelector('a');
+				bid = bidItem;
+			}
 		}
 
 		player.currentBid = Foxtrick.trimnum(bid.textContent);
