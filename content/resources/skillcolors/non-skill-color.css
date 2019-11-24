@@ -57,5 +57,15 @@ a[href*="ll=20#FanMood"], a[href*="ll=20#FanMatch"], a[href*="ll=20#FanSeason"],
 a:hover[href*="#FanMood"], a:hover[href*="#FanMatch"], a:hover[href*="#FanSeason"], a:hover[href*="#skillshort"], a:hover[href*="#gentleness"], a:hover[href*="#aggressiveness"], a:hover[href*="#honesty"], a:hover[href*="#teamskills"], a:hover[href*="#sponsors"], a:hover[href*="#morale"], a:hover[href*="#confidence"]
 {background-color:transparent; color:#267F30;}
 
+a.skillMaxed {
+	color: hsl(27.5, 94%, 48%);
+	background-color: white;
+	font-weight: bold;
+}
+a.skillMaxed:hover {
+	color: white;
+	background-color: hsl(27.5, 94%, 48%);
+}
+
 #experienceView-text > li
 { padding-bottom: 3px; }
