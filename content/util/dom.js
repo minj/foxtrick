@@ -7,6 +7,7 @@
 
 /* eslint-disable */
 if (!this.Foxtrick)
+	// @ts-ignore
 	var Foxtrick = {};
 /* eslint-enable */
 
@@ -534,22 +535,28 @@ Foxtrick.listen = function(el, evType, listener, useCapture) {
 		Foxtrick.stopListenToChange(doc);
 
 		/** @type {boolean|Promise|void} */
-		let ret = listener.call(this, ev);
-		if (ret instanceof Promise) {
-			Foxtrick.finally(ret, () => {
-				Foxtrick.log.flush(doc);
-				Foxtrick.startListenToChange(doc);
-			}).catch(Foxtrick.catch('async listen'));
-			return;
+		let ret;
+		try {
+			ret = listener.call(this, ev);
+		}
+		catch (e) {
+			Foxtrick.log(e);
 		}
 
 		if (ret === false) {
 			ev.stopPropagation();
 			ev.preventDefault();
 		}
-
-		Foxtrick.log.flush(doc);
-		Foxtrick.startListenToChange(doc);
+		else if (ret instanceof Promise) {
+			Foxtrick.finally(ret, () => {
+				Foxtrick.log.flush(doc);
+				Foxtrick.startListenToChange(doc);
+			}).catch(Foxtrick.catch('async listen'));
+		}
+		else {
+			Foxtrick.log.flush(doc);
+			Foxtrick.startListenToChange(doc);
+		}
 	};
 
 	/*
