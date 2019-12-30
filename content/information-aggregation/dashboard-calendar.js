@@ -381,22 +381,22 @@ Foxtrick.modules['DashboardCalendar'] = {
 		cal.push('END:VCALENDAR\r\n');
 
 		var newLink = Foxtrick.createFeaturedElement(doc, this, 'a');
-		Foxtrick.addClass(newLink, 'pmArchiveLink float_right');
 		newLink.href = '#';
-
-		var textContainer = newLink.appendChild(doc.createElement('div'));
-		Foxtrick.addClass(textContainer, 'float_left');
-		textContainer.style.margin = '0 10px';
-		textContainer.textContent = Foxtrick.L10n.getString('button.export');
+		newLink.style.display = 'flex';
+		newLink.style.alignItems = 'center';
 
 		var parent = newLink.appendChild(doc.createElement('div'));
-		Foxtrick.addClass(parent, 'float_right');
 		var title = Foxtrick.L10n.getString('dashBoardCalendar.export');
 		Foxtrick.addImage(doc, parent, {
 			src: Foxtrick.InternalPath + 'resources/img/calendar-day.png',
 			alt: title,
 			title: title,
 		});
+		parent.style.margin = '0.5em';
+
+		var textContainer = newLink.appendChild(doc.createElement('div'));
+		textContainer.textContent = Foxtrick.L10n.getString('button.export');
+
 		Foxtrick.onClick(newLink, function(ev) {
 			// eslint-disable-next-line no-invalid-this
 			var doc = this.ownerDocument;
@@ -404,8 +404,6 @@ Foxtrick.modules['DashboardCalendar'] = {
 			var mime = 'text/calendar;charset=utf-8';
 			Foxtrick.saveAs(doc, cal, name, mime);
 		});
-		var MAIN = Foxtrick.getMainIDPrefix();
-		var br = doc.querySelector('#' + MAIN + 'lnkArchive + br');
-		br.parentNode.insertBefore(newLink, br);
+		doc.querySelector('#eventList').appendChild(newLink);
 	},
 };
