@@ -178,13 +178,6 @@
 		"title": "Team Spirit Calculator",
 		"img": "resources/linkicons/Ht4u.png"
 	},
-	"hottrickkeeper": {
-		"keeperlink": {
-			"url": "http://www.hottrick.org/hattrick_keeper_tool.php"
-		},
-		"title": "Hottrick Keeper Tool",
-		"img": "http://www.hottrick.org/files/bluemarine-mod_favicon.ico"
-	},
 	"staminia": {
 		"playerlink": {
 			"url": "http://lizardopoli.altervista.org/staminia/"
