@@ -192,6 +192,7 @@
 			"content/matches/match-lineup-fixes.js",
 			"content/matches/match-lineup-tweaks.js",
 			"content/matches/match-order.js",
+			"content/matches/match-order-new.js",
 			"content/matches/match-player-colouring.js",
 			"content/matches/match-ratings-tweaks.js",
 			"content/matches/match-report-format.js",

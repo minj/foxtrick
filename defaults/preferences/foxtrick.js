@@ -283,6 +283,8 @@ pref("extensions.foxtrick.prefs.module.MatchSimulator.value", 0);
 pref("extensions.foxtrick.prefs.module.MatchSimulator.HTMSPrediction.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchSimulator.UseRatingsModule.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchSimulator.StaminaPrediction.enabled", true);
+pref("extensions.foxtrick.prefs.module.MatchOrderNew.enabled", true);
+pref("extensions.foxtrick.prefs.module.MatchOrderNew.UseRatingsModule.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchPlayerColouring.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchPlayerColouring.SeparateOwnPlayerColors.enabled", false);
 pref("extensions.foxtrick.prefs.module.MatchRatingsTweaks.enabled", true);

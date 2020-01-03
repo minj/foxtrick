@@ -84,6 +84,7 @@ Foxtrick.htPages = {
 	'matchReferees'             : '/Club/Matches/Referees.aspx',
 	'matchesLive'               : '/Club/Matches/Live.aspx',
 	'matchOrder'                : '/MatchOrder/(Default.aspx|?|$)',
+	'matchOrderNew'             : '/MatchOrder/Matchorder.aspx',
 	'matchOrderSimple'          : '/MatchOrder/Simple.aspx',
 	'flagCollection'            : '/Club/Flags/(Default.aspx|?|$)',
 	'teamPage'                  : '/Club/(Default.aspx|?|$)',
