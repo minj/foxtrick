@@ -298,6 +298,24 @@
 		"leagueidranges": [[26, 26]],
 		"nationalityranges": [[26, 26]]
 	},
+	"frenchtracker":  {
+		"img": "https://www.foxtrick.org/res/linkicons/frenchtracker.ico",
+		"title": "French U20/NT Tracker",
+		"trackernationalteamlink": {
+			"url": "https://www.ht-dtnfff.fr/",
+			"filters": ["leagueid"]
+		},
+		"trackerleaguelink": {
+			"url": "https://www.ht-dtnfff.fr/",
+			"filters": ["leagueid"]
+		},
+		"trackerplayerlink": {
+			"url": "https://www.ht-dtnfff.fr/",
+			"filters": ["nationality"]
+		},
+		"leagueidranges": [[5, 5]],
+		"nationalityranges": [[5, 5]]
+	},
 	"benintracker": {
 		"img": "https://www.foxtrick.org/res/linkicons/benintracker.ico",
 		"title": "Benin NT/U20 Tracker",
