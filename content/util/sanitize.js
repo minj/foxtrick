@@ -44,7 +44,7 @@ Foxtrick.util.sanitize.parseUrl = function(url) {
 // and save href/src for a & img and what we use in forum preview
 Foxtrick.util.sanitize._tags = new RegExp('<[^>]*(>|$)', 'g');
 Foxtrick.util.sanitize._whitelist = /^<\/?(b(lockquote)?|code|d(d|t|l|el)|em|h(1|2|3)|i|u|kbd|li|ol|p(re)?|s(ub|up|trong|trike)?|ul|t(able|body|h|r|d))(\s+?colspan=(\d+|['"][^"'<>]+['"]))?(\s+?class=['"][^"'<>]+['"])?(\s+?colspan=(\d+|['"][^"'<>]+['"]))?\s*?>$|^<[bh]r\s*?\/?>$|^<div class='quoteto'>$|^<\/div>|<blockquote class='spoiler hidden' style='display:block!important'>/i;
-Foxtrick.util.sanitize._whitelistLink = /^<a\s+?href=["'](?:#[-a-z0-9_]*?|(?:(?:https?|ftp|foxtrick):\/\/|\/)[-a-z0-9+&@#/%?=~_|!:,.;()]+)\1(?:\s+?title=["'][^<>]*?\2)?(?:\s+?target=["'][^<>]*?\3)?(?:\s+?class=["'][^<>]*?\4)?\s*?>$|^<\/a>$/i;
+Foxtrick.util.sanitize._whitelistLink = /^<a\s+?href=(["'])(?:#[-a-z0-9_]*?|(?:(?:https?|ftp|foxtrick):\/\/|\/)[-a-z0-9+&@#/%?=~_|!:,.;()]+)\1(?:\s+?title=(["'])[^<>]*?\2)?(?:\s+?target=(["'])[^<>]*?\3)?(?:\s+?class=(["'])[^<>]*?\4)?\s*?>$|^<\/a>$/i;
 Foxtrick.util.sanitize._whitelistImg = /^<img\s+?src=['"](https?|foxtrick):\/\/[-a-z0-9+&@#/%?=~_|!:,.;()]+['"](\s+?width="\d{1,3}")?(\s+?height="\d{1,3}")?(\s+?alt=['"][^"'<>]+['"])?(\s+?title=['"][^"'<>]+['"])?\s*?>$/i;
 
 Foxtrick.util.sanitize.parseHtml = function(html) {
