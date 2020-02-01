@@ -1,0 +1,12 @@
+{
+	"search.exclude": {
+		"**/node_modules": true,
+		"**/bower_components": true,
+		"content/lib" : true
+	},
+	"python.testing.promptToConfigure": false,
+	"python.testing.pytestEnabled": false,
+	"python.testing.unittestEnabled": false,
+	"python.testing.nosetestsEnabled": false,
+	"eslint.enable": true
+}
