@@ -661,8 +661,7 @@ function addNote(note, parent, links) {
 			if (textContent !== null)
 				node.textContent = textContent;
 
-			Foxtrick.mergeAll(node, options);
-			return node;
+			return Object.assign(node, options);
 		};
 		var createNestedNode = function(nodeName, tagContent, options) {
 			var el = createNode(nodeName, null, options);

@@ -8,6 +8,7 @@
 
 /* eslint-disable */
 if (!this.Foxtrick)
+	// @ts-ignore
 	var Foxtrick = {};
 /* eslint-enable */
 
@@ -17,394 +18,479 @@ if (!Foxtrick.util)
 if (!Foxtrick.util.links)
 	Foxtrick.util.links = {};
 
+/**
+ * @param {HTMLElement} ownBoxBody
+ * @param {string}      customLinkSet
+ * @param {LinkArgs}    info
+ * @param {boolean}     hasNewSidebar
+ */
 Foxtrick.util.links.add = function(ownBoxBody, customLinkSet, info, hasNewSidebar) {
 	try {
 		var doc = ownBoxBody.ownerDocument;
 
 		// save info for reuse
-		ownBoxBody.setAttribute('data-link-info', JSON.stringify(info));
+		ownBoxBody.dataset.linkInfo = JSON.stringify(info);
 
 		var expanded = false;
-		var headerClick = function(ev) {
-			var doc = ev.target.ownerDocument;
+
+		/** @type {Listener<HTMLElement, MouseEvent>} */
+		var headerClick = function() {
+			// eslint-disable-next-line no-invalid-this
+			let doc = this.ownerDocument;
 
 			try {
 				expanded = !expanded;
 
 				// remove old
-				var editbox = doc.getElementById('ft-edit-links');
+				let editbox = doc.getElementById('ft-edit-links');
 				if (editbox)
-					editbox.parentNode.removeChild(editbox);
+					editbox.remove();
 
-				var links = Foxtrick.util.links.getCustomLinks(customLinkSet);
+				let links = Foxtrick.util.links.getCustomLinks(customLinkSet);
 				Foxtrick.forEach(function(link) {
-					var key = link.key;
-					var mylink = doc.getElementById('ft-custom-link-' + key);
-					if (mylink) {
+					let key = link.key;
+					let mylink = doc.getElementById('ft-custom-link-' + key);
+					if (mylink)
 						mylink.parentNode.removeChild(mylink);
-					}
+
 				}, links);
 
-				if (expanded) {
+				if (expanded)
 					Foxtrick.util.links.showEdit(doc, ownBoxBody, customLinkSet);
-				}
-				else {
+				else
 					Foxtrick.util.links.showLinks(doc, ownBoxBody, customLinkSet);
-				}
 			}
 			catch (e) {
 				Foxtrick.log(e);
 			}
 		};
 
-		Foxtrick.stopListenToChange(doc);
+		Foxtrick.stopObserver(doc);
 
-		var boxHeader = Foxtrick.L10n.getString('links.boxheader');
-		var customLinkTitle = Foxtrick.L10n.getString('links.custom.addpersonallink');
-		var removeTitle = Foxtrick.L10n.getString('links.custom.remove');
+		const l10nBoxHeader = Foxtrick.L10n.getString('links.boxheader');
+		const l10nCustomLinkTitle = Foxtrick.L10n.getString('links.custom.addpersonallink');
+		const l10nRemoveTitle = Foxtrick.L10n.getString('links.custom.remove');
 
-		var sidebarCls = hasNewSidebar ? 'div.ft-newSidebarBox' : 'div.sidebarBox';
-		var headerTag = hasNewSidebar ? 'h4' : 'h2';
-		var allDivs = doc.querySelectorAll(sidebarCls);
+		let sidebarCls = hasNewSidebar ? 'div.ft-newSidebarBox' : 'div.sidebarBox';
+		let headerTag = hasNewSidebar ? 'h4' : 'h2';
+		let allDivs = doc.querySelectorAll(sidebarCls);
 		Foxtrick.any(function(sidebar) {
-			var header = sidebar.querySelector(headerTag);
-			if (header.textContent == boxHeader) {
-				var hh = header.cloneNode(true);
-				var div = doc.createElement('div');
-				div.appendChild(hh);
-				div.title = customLinkTitle;
-				Foxtrick.onClick(div, headerClick);
+			let header = sidebar.querySelector(headerTag);
+			if (header.textContent != l10nBoxHeader)
+				return false;
 
-				var pn = header.parentNode;
-				pn.replaceChild(div, header);
-				return true;
-			}
-			return false;
+			let hh = Foxtrick.cloneElement(header, true);
+			let div = doc.createElement('div');
+			div.appendChild(hh);
+			div.setAttribute('aria-label', div.title = l10nCustomLinkTitle);
+
+			Foxtrick.onClick(div, headerClick);
+
+			let pn = header.parentNode;
+			pn.replaceChild(div, header);
+			return true;
 		}, allDivs);
 
-		var all_links = ownBoxBody.getElementsByTagName('a');
-		Foxtrick.forEach(function(link) {
-			var linkContainer = doc.createElement('span');
+		let allLinks = ownBoxBody.querySelectorAll('a');
+		let containers = Foxtrick.map(function(link) {
+			let linkContainer = doc.createElement('span');
 			Foxtrick.addClass(linkContainer, 'ft-link-span');
 			linkContainer.appendChild(link);
-			var key = link.getAttribute('key');
-			var module = link.getAttribute('module');
-			if (key && module) {
-				var delLink = doc.createElement('span');
+
+			let key = link.dataset.key;
+			let moduleName = link.dataset.module;
+
+			if (key && moduleName) {
+				let delLink = doc.createElement('span');
 				delLink.className = 'ft_actionicon foxtrickRemove';
-				delLink.title = removeTitle;
+				delLink.setAttribute('aria-label', delLink.title = l10nRemoveTitle);
 				Foxtrick.onClick(delLink, Foxtrick.util.links.delStdLink);
 
-				var img = doc.createElement('img');
+				let img = doc.createElement('img');
 				delLink.appendChild(img);
 				linkContainer.appendChild(delLink);
 			}
-			ownBoxBody.appendChild(linkContainer);
-		}, all_links);
+
+			return linkContainer;
+		}, allLinks);
+
+		Foxtrick.append(ownBoxBody, containers);
 
 		Foxtrick.util.links.showLinks(doc, ownBoxBody, customLinkSet);
 
-		Foxtrick.startListenToChange(doc);
+		Foxtrick.startObserver(doc);
 	}
 	catch (e) {
 		Foxtrick.log(e);
 	}
 };
 
+/**
+ * @param {document}    doc
+ * @param {HTMLElement} ownBoxBody
+ * @param {string}      linkSet
+ */
 Foxtrick.util.links.showLinks = function(doc, ownBoxBody, linkSet) {
 	try {
-		var ownBoxId = 'ft-links-box';
-		var div = doc.getElementById(ownBoxId).firstChild;
+		let ownBoxId = 'ft-links-box';
+		let div = doc.getElementById(ownBoxId).firstElementChild;
 		Foxtrick.removeClass(div, 'ft-expander-unexpanded');
 		Foxtrick.addClass(div, 'ft-expander-expanded');
 
-		var foxtrickRemove = ownBoxBody.getElementsByClassName('foxtrickRemove');
-		for (var i = 0; i < foxtrickRemove.length; ++i) {
-			Foxtrick.toggleClass(foxtrickRemove[i], 'hidden');
-		}
+		let delLinks = ownBoxBody.querySelectorAll('.foxtrickRemove');
+		for (let delLink of delLinks)
+			Foxtrick.toggleClass(delLink, 'hidden');
 
-		var args = JSON.parse(ownBoxBody.getAttribute('data-link-info'));
+		/** @type {LinkArgs} */
+		let args = JSON.parse(ownBoxBody.dataset.linkInfo);
 
-		var links = Foxtrick.util.links.getCustomLinks(linkSet);
-		Foxtrick.forEach(function(link) {
+		let links = Foxtrick.util.links.getCustomLinks(linkSet);
+		let anchors = Foxtrick.map(function(link) {
 			// replace tags
-			var url = Foxtrick.util.links.makeUrl(link.url, args);
-			var title = link.title;
-			var imgref = link.img;
-			var key = link.key;
+			let url = Foxtrick.util.links.makeUrl(link.url, args);
+			let { title, imgSrc, key } = link;
 
-			var a = doc.createElement('a');
+			let a = doc.createElement('a');
 			a.id = 'ft-custom-link-' + key;
 			a.className = 'inner';
 			a.title = title;
 			a.href = url;
 			a.target = '_blank';
+			a.rel = 'noopener';
 
-			var img = doc.createElement('img');
-			img.alt = title;
-			img.className = 'ft-link-icon';
+			let icon = doc.createElement('img');
+			icon.alt = title;
+			icon.className = 'ft-link-icon';
 
 			// undefined is a string here: comes from prefs
-			if (imgref && imgref !== 'null' && imgref !== 'undefined')
-				img.src = imgref;
+			if (imgSrc && imgSrc !== 'null' && imgSrc !== 'undefined')
+				icon.src = imgSrc;
 
-			a.appendChild(img);
-			ownBoxBody.appendChild(a);
+			a.appendChild(icon);
+
+			return a;
 		}, links);
+
+		Foxtrick.append(ownBoxBody, anchors);
 	}
 	catch (e) {
 		Foxtrick.log(e);
 	}
 };
-Foxtrick.util.links.showEdit = function(doc, ownBoxBody, linkSet) {
-	try {
-		// box
-		var ownBoxId = 'ft-links-box';
-		var expander = doc.getElementById(ownBoxId).firstChild;
-		Foxtrick.removeClass(expander, 'ft-expander-expanded');
-		Foxtrick.addClass(expander, 'ft-expander-unexpanded');
 
-		var foxtrickRemove = ownBoxBody.getElementsByClassName('foxtrickRemove');
-		for (var i = 0; i < foxtrickRemove.length; ++i) {
-			Foxtrick.toggleClass(foxtrickRemove[i], 'hidden');
+/**
+ * @param {document}    doc
+ * @param {HTMLElement} ownBoxBody
+ * @param {string}      linkSet
+ */
+Foxtrick.util.links.showEdit = function(doc, ownBoxBody, linkSet) {
+	// TODO convert into a class
+	try {
+		{
+			// box
+			let ownBoxId = 'ft-links-box';
+			let expander = doc.getElementById(ownBoxId).firstElementChild;
+			Foxtrick.removeClass(expander, 'ft-expander-expanded');
+			Foxtrick.addClass(expander, 'ft-expander-unexpanded');
+
+			let delLinks = ownBoxBody.querySelectorAll('.foxtrickRemove');
+			for (let delLink of delLinks)
+				Foxtrick.toggleClass(delLink, 'hidden');
 		}
 
-		var divED = doc.createElement('div');
-		divED.id = 'ft-edit-links';
-		divED.className = 'ft-note';
-
-		var customLinkTable = doc.createElement('table');
-		customLinkTable.id = 'ft-custom-links-table';
-		var tr0 = doc.createElement('tr');
-		var th = doc.createElement('th');
-		th.textContent = Foxtrick.L10n.getString('links.custom.addpersonallink');
-		th.colSpan = 4;
-		tr0.appendChild(th);
-		customLinkTable.appendChild(tr0);
-
-		var links = Foxtrick.util.links.getCustomLinks(linkSet);
-		Foxtrick.forEach(function(link) {
-			Foxtrick.util.links.addLinkRow(customLinkTable, link);
-		}, links);
-
-		divED.appendChild(customLinkTable);
-
-		// image preview
-
-		var selectLabel = doc.createElement('span');
-		selectLabel.textContent = ' ' + Foxtrick.L10n.getString('links.custom.selecticon');
-		divED.appendChild(selectLabel);
-
-		var imgPre = {
-			id: 'ft-link-img-preview',
-			src: Foxtrick.InternalPath + 'resources/img/browse.png',
-		};
-		Foxtrick.addImage(doc, divED, imgPre, selectLabel);
-
-		// image upload
-		var inputDiv = doc.createElement('div');
-		inputDiv.id = 'ft-link-img-input';
-		divED.appendChild(inputDiv);
-		Foxtrick.util.links.addImageLoader(doc, inputDiv);
+		var editDiv = doc.createElement('div');
+		editDiv.id = 'ft-edit-links';
+		editDiv.className = 'ft-note';
 
 		var newLinkTable = doc.createElement('table');
 		newLinkTable.id = 'ft-new-link-table';
+		editDiv.appendChild(newLinkTable);
+		ownBoxBody.appendChild(editDiv);
 
-		// title edit field
-		var inputTitleText = Foxtrick.L10n.getString('links.custom.title');
-		var inputTitle = doc.createElement('input');
-		inputTitle.id = 'ft-link-title-input';
-		inputTitle.value = inputTitleText;
-		Foxtrick.listen(inputTitle, 'focus', function(ev) {
-			if (ev.target.value == inputTitleText)
-				ev.target.value = '';
-		});
-		inputTitle.type = 'text';
-		inputTitle.maxLength = 100;
-		inputTitle.className = 'ft-expand';
-		var trn4 = doc.createElement('tr');
-		var tdn4 = doc.createElement('td');
-		tdn4.colSpan = 2;
-		tdn4.appendChild(inputTitle);
-		trn4.appendChild(tdn4);
-		newLinkTable.appendChild(trn4);
+		{
+			let customLinkTable = doc.createElement('table');
+			customLinkTable.id = 'ft-custom-links-table';
 
-		// href edit field
-		var inputHrefUrl = Foxtrick.L10n.getString('links.custom.exampleUrl');
-		var inputHref = doc.createElement('input');
-		inputHref.id = 'ft-link-url-input';
-		inputHref.value = inputHrefUrl;
-		Foxtrick.listen(inputHref, 'focus', function() {
-			if (this.value == inputHrefUrl)
-				this.value = 'http://';
-		});
-		inputHref.type = 'text';
-		inputHref.maxLength = 5000;
-		inputHref.className = 'inner ft-expand';
-		var trn3 = doc.createElement('tr');
-		var tdn3 = doc.createElement('td');
-		tdn3.colSpan = 2;
-		tdn3.appendChild(inputHref);
-		trn3.appendChild(tdn3);
-		newLinkTable.appendChild(trn3);
+			let tr = doc.createElement('tr');
+			let th = doc.createElement('th');
+			th.textContent = Foxtrick.L10n.getString('links.custom.addpersonallink');
+			th.colSpan = 4;
+			tr.appendChild(th);
+			customLinkTable.appendChild(tr);
 
-		// tag select list
-		var selectbox = doc.createElement('select');
-		selectbox.title = Foxtrick.L10n.getString('links.custom.addtag');
-		selectbox.id = 'ft-link-tag-selector';
-		Foxtrick.listen(selectbox, 'change', Foxtrick.util.links.useTag);
+			let links = Foxtrick.util.links.getCustomLinks(linkSet);
+			let rows = Foxtrick.map(function(link) {
+				return Foxtrick.util.links.createLinkRow(doc, link);
+			}, links);
 
-		var titleOption = doc.createElement('option');
-		titleOption.value = '';
-		titleOption.textContent = Foxtrick.L10n.getString('links.custom.tags');
-		selectbox.appendChild(titleOption);
+			Foxtrick.append(customLinkTable, rows);
 
-		var args = JSON.parse(ownBoxBody.getAttribute('data-link-info'));
-		for (var key in args) {
-			var tag = doc.createElement('option');
-			tag.value = key;
-			tag.textContent = '[' + key + ']';
-			selectbox.appendChild(tag);
+			editDiv.appendChild(customLinkTable);
 		}
 
-		var tdn2 = doc.createElement('td');
-		tdn2.colSpan = 2;
-		tdn2.appendChild(selectbox);
-		var trn2 = doc.createElement('tr');
-		trn2.appendChild(tdn2);
-		newLinkTable.appendChild(trn2);
+		{
+			// image preview
+			let selectLabel = doc.createElement('label');
+			selectLabel.textContent = ' ' + Foxtrick.L10n.getString('links.custom.selecticon');
+			selectLabel.htmlFor = 'ft-link-img-preview';
+			editDiv.appendChild(selectLabel);
 
-		// save link
-		var saveLink = doc.createElement('a');
-		Foxtrick.addClass(saveLink, 'ft-link');
-		saveLink.setAttribute('data-set', linkSet);
-		saveLink.textContent = Foxtrick.L10n.getString('links.custom.addlink');
-		Foxtrick.onClick(saveLink, Foxtrick.util.links.saveMyLink);
+			let imgPre = {
+				id: 'ft-link-img-preview',
+				src: Foxtrick.InternalPath + 'resources/img/browse.png',
+			};
+			Foxtrick.addImage(doc, editDiv, imgPre, selectLabel);
+		}
 
-		var tdn5 = doc.createElement('td');
-		tdn5.appendChild(saveLink);
+		{
+			// image upload
+			let inputDiv = doc.createElement('div');
+			inputDiv.id = 'ft-link-img-input';
+			let input = Foxtrick.util.links.createImageLoader(doc);
+			inputDiv.appendChild(input);
+			editDiv.appendChild(inputDiv);
+		}
 
-		// help link
-		var helpText = Foxtrick.L10n.getString('links.custom.helptext');
-		var helplink = doc.createElement('a');
-		helplink.className = 'ft_actionicon foxtrickHelp float_right ft_link';
-		helplink.title = Foxtrick.L10n.getString('links.custom.help');
-		Foxtrick.onClick(helplink, function() {
-			Foxtrick.alert(helpText);
-		});
+		{
+			// title edit field
+			let placeholder = Foxtrick.L10n.getString('links.custom.title');
+			let inputTitle = doc.createElement('input');
+			inputTitle.id = 'ft-link-title-input';
+			inputTitle.placeholder = placeholder;
+			inputTitle.type = 'text';
+			inputTitle.maxLength = 100;
+			inputTitle.className = 'ft-expand';
 
-		var tdn5b = doc.createElement('td');
-		tdn5b.appendChild(helplink);
-		var trn5 = doc.createElement('tr');
-		trn5.appendChild(tdn5);
-		trn5.appendChild(tdn5b);
-		newLinkTable.appendChild(trn5);
+			let trn4 = doc.createElement('tr');
+			let tdn4 = doc.createElement('td');
+			tdn4.colSpan = 2;
+			tdn4.appendChild(inputTitle);
+			trn4.appendChild(tdn4);
+			newLinkTable.appendChild(trn4);
+		}
 
-		divED.appendChild(newLinkTable);
+		{
+			// href edit field
+			let inputHrefUrl = Foxtrick.L10n.getString('links.custom.exampleUrl');
+			let inputHref = doc.createElement('input');
+			inputHref.id = 'ft-link-url-input';
+			inputHref.placeholder = inputHrefUrl;
+			inputHref.type = 'text';
+			inputHref.maxLength = 5000;
+			inputHref.className = 'inner ft-expand';
+			let trn3 = doc.createElement('tr');
+			let tdn3 = doc.createElement('td');
+			tdn3.colSpan = 2;
+			tdn3.appendChild(inputHref);
+			trn3.appendChild(tdn3);
+			newLinkTable.appendChild(trn3);
+		}
 
-		ownBoxBody.appendChild(divED);
+		{
+			// tag select list
+			let selectbox = doc.createElement('select');
+			selectbox.title = Foxtrick.L10n.getString('links.custom.addtag');
+			selectbox.id = 'ft-link-tag-selector';
+			Foxtrick.listen(selectbox, 'change', Foxtrick.util.links.useTag);
 
+			let titleOption = doc.createElement('option');
+			titleOption.value = '';
+			titleOption.textContent = Foxtrick.L10n.getString('links.custom.tags');
+			selectbox.appendChild(titleOption);
+
+			let args = JSON.parse(ownBoxBody.dataset.linkInfo);
+			let opts = Object.keys(args).map((key) => {
+				let tag = doc.createElement('option');
+				tag.value = key;
+				tag.textContent = '[' + key + ']';
+				return tag;
+			});
+			Foxtrick.append(selectbox, opts);
+
+			let tdn2 = doc.createElement('td');
+			tdn2.colSpan = 2;
+			tdn2.appendChild(selectbox);
+			let trn2 = doc.createElement('tr');
+			trn2.appendChild(tdn2);
+			newLinkTable.appendChild(trn2);
+		}
+
+		{
+			let trn5 = doc.createElement('tr');
+			newLinkTable.appendChild(trn5);
+
+			{
+				// save link
+				let tdn5 = doc.createElement('td');
+				let saveLink = doc.createElement('a');
+				Foxtrick.addClass(saveLink, 'ft-link');
+				saveLink.dataset.set = linkSet;
+				saveLink.textContent = Foxtrick.L10n.getString('links.custom.addlink');
+				Foxtrick.onClick(saveLink, Foxtrick.util.links.saveMyLink);
+
+				tdn5.appendChild(saveLink);
+				trn5.appendChild(tdn5);
+			}
+
+			{
+				// help link
+				let helpText = Foxtrick.L10n.getString('links.custom.helptext');
+				let helplink = doc.createElement('a');
+				helplink.className = 'ft_actionicon foxtrickHelp float_right ft_link';
+				helplink.title = Foxtrick.L10n.getString('links.custom.help');
+
+				Foxtrick.onClick(helplink, function() {
+					Foxtrick.util.note.add(doc, helpText);
+				});
+
+				let tdn5b = doc.createElement('td');
+				tdn5b.appendChild(helplink);
+				trn5.appendChild(tdn5b);
+			}
+		}
 	}
 	catch (e) {
 		Foxtrick.log(e);
 	}
 };
 
-
+/**
+ * @type {Listener<HTMLElement, MouseEvent>}
+ */
 Foxtrick.util.links.delStdLink = function() {
 	try {
-		var link = this.previousElementSibling;
-		var key = link.getAttribute('key');
-		var module = link.getAttribute('module');
-		Foxtrick.Prefs.setModuleEnableState(module + '.' + key, false);
-		var linkSpan = this.parentNode;
-		linkSpan.parentNode.removeChild(linkSpan);
+		let link = this.previousElementSibling;
+		let key = link.getAttribute('key');
+		let moduleName = link.getAttribute('module');
+		Foxtrick.Prefs.setModuleEnableState(moduleName + '.' + key, false);
+		let linkSpan = this.parentElement;
+		linkSpan.remove();
 	}
 	catch (e) {
 		Foxtrick.log(e);
 	}
 };
+
+/**
+ * @type {Listener<HTMLElement, MouseEvent>}
+ */
 Foxtrick.util.links.delMyLink = function() {
 	try {
-		var doc = this.ownerDocument;
-		var confirmMsg = Foxtrick.L10n.getString('links.custom.confirmremove');
-		var confirm = Foxtrick.confirmDialog(confirmMsg);
+		let doc = this.ownerDocument;
+		let confirmMsg = Foxtrick.L10n.getString('links.custom.confirmremove');
+
+		// FIXME
+		let confirm = Foxtrick.confirmDialog(confirmMsg);
 		if (!confirm)
 			return;
 
-		var fullKey = this.getAttribute('data-full-key');
+		let fullKey = this.dataset.fullKey;
+
 		Foxtrick.Prefs.deleteValue(fullKey + '.href');
 		Foxtrick.Prefs.deleteValue(fullKey + '.title');
 		Foxtrick.Prefs.deleteValue(fullKey + '.img');
 
-		var key = this.getAttribute('data-key');
-		var row = doc.getElementById('ft-link-row-' + key);
-		row.parentNode.removeChild(row);
+		let key = this.dataset.key;
+		let row = doc.getElementById('ft-link-row-' + key);
+		row.remove();
 	}
 	catch (e) {
 		Foxtrick.log(e);
 	}
 };
+
+/**
+ * @type {Listener<HTMLElement, MouseEvent>}
+ */
 Foxtrick.util.links.copyOldLink = function() {
 	try {
-		var doc = this.ownerDocument;
-		var fullKey = this.getAttribute('data-full-key');
-		doc.getElementById('ft-link-url-input').value =
-			Foxtrick.Prefs.getString(fullKey + '.href');
-		doc.getElementById('ft-link-title-input').value =
-			Foxtrick.Prefs.getString(fullKey + '.title');
-		var img = doc.getElementById('ft-link-img-preview');
-		var imgref = Foxtrick.Prefs.getString(fullKey + '.img');
-		if (imgref && imgref !== 'null' && imgref !== 'undefined') {
-			img.src = imgref;
-		}
+		let doc = this.ownerDocument;
+		let fullKey = this.dataset.fullKey;
+
+		/** @type {HTMLInputElement[]} */
+		let [urlInput, titleInput] = [
+			doc.querySelector('#ft-link-url-input'),
+			doc.querySelector('#ft-link-title-input'),
+		];
+
+		urlInput.value = Foxtrick.Prefs.getString(fullKey + '.href');
+		titleInput.value = Foxtrick.Prefs.getString(fullKey + '.title');
+
+		/** @type {HTMLImageElement} */
+		let preview = doc.querySelector('#ft-link-img-preview');
+
+		let imgSrc = Foxtrick.Prefs.getString(fullKey + '.img');
+		if (imgSrc && imgSrc !== 'null' && imgSrc !== 'undefined')
+			preview.src = imgSrc;
+
 	}
 	catch (e) {
 		Foxtrick.log(e);
 	}
 };
+
+/** @type {Listener<HTMLAnchorElement, MouseEvent>} */
 Foxtrick.util.links.saveMyLink = function() {
 	try {
-		var doc = this.ownerDocument;
-		var uniquekey = Math.random().toString(16).slice(2);
+		let doc = this.ownerDocument;
+		let key = Math.random().toString(16).slice(2);
 
-		var linkSet = this.getAttribute('data-set');
-		var basePref = Foxtrick.util.links.getBasePref(linkSet);
-		var fullKey = basePref + '.' + uniquekey;
+		let linkSet = this.dataset.set;
+		let basePref = Foxtrick.util.links.getBasePref(linkSet);
+		let fullKey = basePref + '.' + key;
 
-		var href = doc.getElementById('ft-link-url-input').value;
-		var title = doc.getElementById('ft-link-title-input').value;
-		var inputImg = doc.getElementById('ft-link-img-preview');
-		var imgref = inputImg.src;
+		/** @type {HTMLInputElement[]} */
+		let [urlInput, titleInput] = [
+			doc.querySelector('#ft-link-url-input'),
+			doc.querySelector('#ft-link-title-input'),
+		];
 
-		Foxtrick.Prefs.setString(fullKey + '.href', href);
+		let url = urlInput.value;
+		let title = titleInput.value;
+
+		/** @type {HTMLImageElement} */
+		let inputImg = doc.querySelector('#ft-link-img-preview');
+		let imgSrc = inputImg.src;
+
+		Foxtrick.Prefs.setString(fullKey + '.href', url);
 		Foxtrick.Prefs.setString(fullKey + '.title', title);
-		Foxtrick.Prefs.setString(fullKey + '.img', imgref);
+		Foxtrick.Prefs.setString(fullKey + '.img', imgSrc);
 
-		var link = {
-			url: href,
-			title: title,
-			img: imgref,
+		/** @type {CustomLinkDefinition} */
+		let link = {
 			set: linkSet,
-			key: uniquekey,
-			fullKey: fullKey,
+			url,
+			title,
+			imgSrc,
+			key,
+			fullKey,
 		};
 
-		var table = doc.getElementById('ft-custom-links-table');
-		Foxtrick.util.links.addLinkRow(table, link);
+		let row = Foxtrick.util.links.createLinkRow(doc, link);
+
+		let table = doc.getElementById('ft-custom-links-table');
+		table.appendChild(row);
 	}
 	catch (e) {
 		Foxtrick.log(e);
 	}
 };
-Foxtrick.util.links.makeDelLink = function(doc, link) {
+
+/**
+ * @param  {document}             doc
+ * @param  {CustomLinkDefinition} link
+ * @return {HTMLElement}
+ */
+Foxtrick.util.links.createDelLink = function(doc, link) {
 	try {
-		var delLink = doc.createElement('div');
+		let delLink = doc.createElement('div');
 		delLink.className = 'ft_actionicon foxtrickRemove';
 		delLink.title = Foxtrick.L10n.getString('links.custom.remove');
-		delLink.setAttribute('data-full-key', link.fullKey);
-		delLink.setAttribute('data-key', link.key);
+		delLink.dataset.fullKey = link.fullKey;
+		delLink.dataset.key = link.key;
+
 		Foxtrick.onClick(delLink, Foxtrick.util.links.delMyLink);
+
 		return delLink;
 	}
 	catch (e) {
@@ -413,13 +499,21 @@ Foxtrick.util.links.makeDelLink = function(doc, link) {
 	}
 };
 
-Foxtrick.util.links.makeCopyLink = function(doc, link) {
+/**
+ * @param  {document}             doc
+ * @param  {CustomLinkDefinition} link
+ * @return {HTMLElement}
+ */
+Foxtrick.util.links.createCopyLink = function(doc, link) {
 	try {
-		var editOld = doc.createElement('div');
+		let editOld = doc.createElement('div');
 		editOld.className = 'ft_actionicon foxtrickCopy float_right';
-		editOld.setAttribute('data-full-key', link.fullKey);
+		editOld.dataset.fullKey = link.fullKey;
 		editOld.title = Foxtrick.L10n.getString('links.custom.copy');
+		editOld.setAttribute('aria-label', editOld.title);
+
 		Foxtrick.onClick(editOld, Foxtrick.util.links.copyOldLink);
+
 		return editOld;
 	}
 	catch (e) {
@@ -428,41 +522,53 @@ Foxtrick.util.links.makeCopyLink = function(doc, link) {
 	}
 };
 
-Foxtrick.util.links.addImageLoader = function(doc, divED) {
+/**
+ * @param  {document}         doc
+ * @return {HTMLInputElement}
+ */
+Foxtrick.util.links.createImageLoader = function(doc) {
+
+	/** @param {string} url */
 	var handleUrl = function(url) {
-		// if (url.length > 5000) {
-		// 	Foxtrick.alert('Image too large.');
-		// 	return;
-		// }
-		var div = doc.getElementById('ft-link-img-preview');
+		/** @type {HTMLImageElement} */
+		let div = doc.querySelector('#ft-link-img-preview');
 		div.src = url;
 	};
-	var form = Foxtrick.util.load.filePickerForDataUrl(doc, handleUrl);
-	divED.appendChild(form);
+
+	return Foxtrick.util.load.filePickerForDataUrl(doc, handleUrl);
 };
 
+/** @type {Listener<HTMLSelectElement, Event>} */
 Foxtrick.util.links.useTag = function() {
 	try {
 
 		if (!this.value)
 			return;
 
-		var doc = this.ownerDocument;
-		var urlInput = doc.getElementById('ft-link-url-input');
-		var value = urlInput.value;
-		if (!/\?/.test(value))
-			value += '?';
-		else
+		let doc = this.ownerDocument;
+
+		/** @type {HTMLSelectElement} */
+		let urlInput = doc.querySelector('#ft-link-url-input');
+
+		let value = urlInput.value;
+		if (/\?/.test(value))
 			value += '&';
+		else
+			value += '?';
 
 		value += this.value + '=[' + this.value + ']';
 		urlInput.value = value;
+
 	}
 	catch (e) {
 		Foxtrick.log(e);
 	}
 };
 
+/**
+ * @param  {string} linkSet
+ * @return {string}
+ */
 Foxtrick.util.links.getBasePref = function(linkSet) {
 	return 'module.LinksCustom.' + linkSet;
 };
@@ -482,111 +588,98 @@ Foxtrick.util.links.makeUrl = function(url, args) {
 	return u;
 };
 
-Foxtrick.util.links.addLinkRow = function(table, link) {
-	var doc = table.ownerDocument;
-	var imgref = link.img;
-	var title = link.title;
-	var url = link.url;
+/**
+ * @param  {document}             doc
+ * @param  {CustomLinkDefinition} link
+ * @return {HTMLTableRowElement}
+ */
+Foxtrick.util.links.createLinkRow = function(doc, link) {
+	let { imgSrc, url, title } = link;
 
-	var img = doc.createElement('img');
-	img.alt = title;
-	img.className = 'ft-links-custom-icon-edit';
-	if (imgref && imgref !== 'null' && imgref !== 'undefined')
-		img.src = imgref;
+	let icon = doc.createElement('img');
+	icon.alt = title;
+	icon.className = 'ft-links-custom-icon-edit';
+	if (imgSrc && imgSrc !== 'null' && imgSrc !== 'undefined')
+		icon.src = imgSrc;
 
-	var a = doc.createElement('a');
+	let a = doc.createElement('a');
 	a.title = title;
 	a.href = url;
 	a.target = '_blank';
-	a.appendChild(img);
+	a.relList.add('noopener');
+	a.appendChild(icon);
 
-	var tr1 = doc.createElement('tr');
-	tr1.id = 'ft-link-row-' + link.key;
-	var td1 = doc.createElement('td');
-	var td2 = doc.createElement('td');
-	var td3 = doc.createElement('td');
-	var td4 = doc.createElement('td');
+	let tr = doc.createElement('tr');
+	tr.id = 'ft-link-row-' + link.key;
+	let td1 = doc.createElement('td');
+	let td2 = doc.createElement('td');
+	let td3 = doc.createElement('td');
+	let td4 = doc.createElement('td');
 
 	td1.appendChild(a);
 	td2.textContent = title.slice(0, 10);
-	td3.appendChild(Foxtrick.util.links.makeCopyLink(doc, link));
-	td4.appendChild(Foxtrick.util.links.makeDelLink(doc, link));
+	td3.appendChild(Foxtrick.util.links.createCopyLink(doc, link));
+	td4.appendChild(Foxtrick.util.links.createDelLink(doc, link));
 
-	Foxtrick.appendChildren(tr1, [td1, td2, td3, td4]);
-	table.appendChild(tr1);
+	Foxtrick.appendChildren(tr, [td1, td2, td3, td4]);
+	return tr;
 };
 
+/**
+ * @param  {string}                 linkSet
+ * @return {CustomLinkDefinition[]}
+ */
 Foxtrick.util.links.getCustomLinks = function(linkSet) {
 	// format: module.LinksCustom.<module>.<random>.<title|href|img>
-	var basePref = this.getBasePref(linkSet);
-	var prefs = Foxtrick.Prefs.getAllKeysOfBranch(basePref);
-	var keys = {};
-	Foxtrick.forEach(function(key) {
-		key = key.replace(basePref + '.', '');
-		if (/\./.test(key)) {
-			key = key.replace(/\..+/, '');
-			keys[key] = key;
-		}
-	}, prefs);
+	const basePref = this.getBasePref(linkSet);
 
-	var links = [];
-	for (var key in keys) {
-		var fullKey = basePref + '.' + key;
-		var href = Foxtrick.Prefs.getString(fullKey + '.href');
-		var img = Foxtrick.Prefs.getString(fullKey + '.img');
-		var title = Foxtrick.Prefs.getString(fullKey + '.title');
+	let prefs = Foxtrick.Prefs.getAllKeysOfBranch(basePref);
 
-		if (!href || !title)
-			continue;
+	let keys = new Set(prefs.map((key) => {
+		let k = key.replace(basePref + '.', '');
+		if (!/\./.test(k))
+			return void 0;
 
-		var link = {
-			url: href,
-			title: title,
-			img: img,
+		return k.replace(/\..+/, '');
+	}).filter(Boolean));
+
+	let links = [...keys].map((key) => {
+		let fullKey = basePref + '.' + key;
+		let url = Foxtrick.Prefs.getString(fullKey + '.href');
+		let imgSrc = Foxtrick.Prefs.getString(fullKey + '.img');
+		let title = Foxtrick.Prefs.getString(fullKey + '.title');
+
+		if (!url || !title)
+			return void 0;
+
+		/** @type {CustomLinkDefinition} */
+		return {
 			set: linkSet,
-			key: key,
-			fullKey: fullKey,
+			url,
+			title,
+			imgSrc,
+			key,
+			fullKey,
 		};
-		links.push(link);
-	}
+
+	}).filter(Boolean);
+
 	return links;
 };
 
 /**
- * @param {document} doc
+ * @param {document}          doc
  * @param {FTLinkModuleMixin} module
  */
 // eslint-disable-next-line consistent-this
 Foxtrick.util.links.run = function(doc, module) {
-	var HEADER = Foxtrick.L10n.getString('links.boxheader');
-	var LINK_CLASS = 'inner';
-	var BOX_ID = 'foxtrick_links_content';
-
-	var ownInfo = {
-		server: doc.location.hostname,
-		lang: Foxtrick.Prefs.getString('htLanguage'),
-	};
-
-	var ownTeam = Foxtrick.modules.Core.TEAM;
-	for (var key in ownTeam)
-		ownInfo['own' + key] = ownTeam[key];
+	const HEADER = Foxtrick.L10n.getString('links.boxheader');
+	const LINK_CLASS = 'inner';
+	const BOX_ID = 'foxtrick_links_content';
 
 	var o = module.links(doc);
 	if (!o)
 		return;
-
-	var output = o.info || {};
-	Foxtrick.mergeAll(output, ownInfo);
-
-	/** @type {LinkArgs} */
-	var info = {};
-	for (var tag in output) {
-		// convert all tags to lower case
-		info[tag.toLowerCase()] = output[tag];
-	}
-
-	var box = Foxtrick.createFeaturedElement(doc, module, 'div');
-	box.id = BOX_ID;
 
 	if (!o.types) {
 		// default link types
@@ -595,73 +688,107 @@ Foxtrick.util.links.run = function(doc, module) {
 		else
 			o.types = [module.LINK_TYPES];
 	}
-	var specPromises = Foxtrick.map(function(type) {
+
+	var box = Foxtrick.createFeaturedElement(doc, module, 'div');
+	box.id = BOX_ID;
+
+	let ownInfo = {
+		server: doc.location.hostname,
+		lang: Foxtrick.Prefs.getString('htLanguage'),
+	};
+	let ownTeam = Foxtrick.modules.Core.TEAM;
+	for (let [key, val] of Object.entries(ownTeam))
+		ownInfo['own' + key] = val;
+	let output = Object.assign(o.info || {}, ownInfo);
+
+	/** @type {LinkArgs} */
+	let info = {};
+	for (let tag in output) {
+		// convert all tags to lower case
+		info[tag.toLowerCase()] = output[tag];
+	}
+
+	let specPromises = Foxtrick.map(async (type) => {
 		/** @type {LinkPageQuery} */
-		var opts = {
+		let opts = {
 			module: module.MODULE_NAME,
 			className: LINK_CLASS,
-			type: type,
 			parent: box,
-			info: info,
+			type,
+			info,
 		};
 
 		if (typeof type !== 'string')
 			Foxtrick.mergeValid(opts, type);
 
-		return Foxtrick.modules['Links'].getLinks(doc, opts)
-			.then(function(anchors) {
-				return { parent: opts.parent, anchors: anchors };
-			});
+		let anchors = await Foxtrick.modules.Links.getLinks(doc, opts);
+
+		return { parent: box, anchors };
 
 	}, o.types);
 
 	// allow concurrent resolution
 	// but append children in order
-	var done = specPromises.reduce(function(prev, now) {
-		return prev.then(function() {
-			return now.then(function(spec) {
-				Foxtrick.appendChildren(spec.parent, spec.anchors);
-			}).catch(Foxtrick.catch('links.run'));
-		});
-	}, Promise.resolve());
+	specPromises.reduce(async (prev, now) => {
+		await prev;
 
-	done.then(function() {
+		try {
+			let { parent, anchors } = await now;
+			Foxtrick.appendChildren(parent, anchors);
+		}
+		catch (e) {
+			Foxtrick.catch('links.run')(e);
+		}
+
+	}, Promise.resolve()).then(function() {
+
 		// append custom links last
-		var customLinkSet = o.customLinkSet || module.MODULE_NAME;
+		let customLinkSet = o.customLinkSet || module.MODULE_NAME;
 		Foxtrick.util.links.add(box, customLinkSet, info, o.hasNewSidebar);
+
 	}).catch(Foxtrick.catch('links.run.custom'));
 
-	var adder = o.hasNewSidebar ? Foxtrick.Pages.Match : Foxtrick;
+	let adder = o.hasNewSidebar ? Foxtrick.Pages.Match : Foxtrick;
+
 	// eslint-disable-next-line no-magic-numbers
-	var wrapper = adder.addBoxToSidebar(doc, HEADER, box, -20);
+	let wrapper = adder.addBoxToSidebar(doc, HEADER, box, -20);
 	wrapper.id = 'ft-links-box';
 };
 
+/**
+ * @param  {document}                doc
+ * @param  {FTLinkModuleMixin}       module
+  * @return {HTMLUListElement}
+ */
 // eslint-disable-next-line consistent-this
-Foxtrick.util.links.getPrefs = function(doc, module, cb) {
+Foxtrick.util.links.getPrefs = function(doc, module) {
 	var types = Array.isArray(module.LINK_TYPES) ? module.LINK_TYPES : [module.LINK_TYPES];
 	var mName = module.MODULE_NAME;
 
 	var gList = doc.createElement('ul');
 
+	/**
+	 * @param {LinkCollection} collection
+	 */
 	var parseCollection = function(collection) {
 		if (!collection)
 			return;
 
 		var hasOpts = false;
+
+		/** @param {string} type */
 		var generateOpts = function(type) {
 			try {
 				if (collection[type]) {
-					var links = collection[type];
-					for (var key in links) {
-						var link = links[key];
-						var item = doc.createElement('li');
+					let links = collection[type];
+					for (let [key, link] of Object.entries(links)) {
+						let item = doc.createElement('li');
 						gList.appendChild(item);
 
-						var label = doc.createElement('label');
+						let label = doc.createElement('label');
 						item.appendChild(label);
 
-						var check = doc.createElement('input');
+						let check = doc.createElement('input');
 						check.type = 'checkbox';
 						check.setAttribute('module', mName);
 						check.setAttribute('option', key);
@@ -670,20 +797,26 @@ Foxtrick.util.links.getPrefs = function(doc, module, cb) {
 						// the checked attribute manually
 						if (Foxtrick.Prefs.isModuleOptionEnabled(mName, key) ||
 						    !Foxtrick.Prefs.isModuleOptionSet(mName, key)) {
+
 							check.setAttribute('checked', 'checked');
-							var pref = mName + '.' + key;
+
+							let pref = mName + '.' + key;
 							Foxtrick.Prefs.setModuleEnableState(pref, true);
 							hasOpts = true;
 						}
+
 						label.appendChild(check);
 						label.appendChild(doc.createTextNode(link.title));
 					}
 				}
+
 				if (hasOpts && Foxtrick.Prefs.isModuleEnabled(mName) === null) {
-					var moduleCheck = doc.getElementById('pref-' + mName + '-check');
+					let moduleCheck = doc.getElementById('pref-' + mName + '-check');
 					moduleCheck.setAttribute('checked', 'checked');
-					var moduleOpts = doc.getElementById('pref-' + mName + '-options');
+
+					let moduleOpts = doc.getElementById('pref-' + mName + '-options');
 					moduleOpts.setAttribute('style', '');
+
 					Foxtrick.Prefs.setModuleEnableState(mName, true);
 				}
 			}
@@ -693,19 +826,9 @@ Foxtrick.util.links.getPrefs = function(doc, module, cb) {
 		};
 
 		Foxtrick.map(generateOpts, types);
-
-		if (typeof cb === 'function') {
-			try {
-				// run cb for async elements
-				cb(gList);
-			}
-			catch (e) {
-				Foxtrick.log('Error in callback for getPrefs', e);
-			}
-		}
 	};
 
-	Foxtrick.modules['Links'].getCollection().then(parseCollection);
+	Foxtrick.modules.Links.getCollection().then(parseCollection);
 
 	return gList;
 };
@@ -727,4 +850,13 @@ Foxtrick.util.links.getPrefs = function(doc, module, cb) {
  * @prop {string} type
  * @prop {HTMLElement} [parent]
  * @prop {LinkArgs} info
+ */
+/**
+ * @typedef CustomLinkDefinition
+ * @prop {string} url
+ * @prop {string} title
+ * @prop {string} imgSrc
+ * @prop {string} set
+ * @prop {string} key
+ * @prop {string} fullKey
  */

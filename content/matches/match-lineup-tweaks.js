@@ -171,8 +171,7 @@ Foxtrick.modules.MatchLineupTweaks = {
 		var highlightSub = function(otherId) {
 			Foxtrick.Pages.Match.modPlayerDiv(otherId, function(node) {
 				// yellow on field, red on bench
-				// eslint-disable-next-line no-extra-parens
-				let parent = /** @type {HTMLElement} */ (node.parentNode);
+				let parent = node.parentElement;
 				const className = parent.id == 'playersField'
 					? 'ft-highlight-playerDiv-field'
 					: 'ft-highlight-playerDiv-bench';
@@ -231,8 +230,7 @@ Foxtrick.modules.MatchLineupTweaks = {
 		};
 
 		Foxtrick.forEach(function(playerCell) {
-			// eslint-disable-next-line no-extra-parens
-			let row = /** @type {HTMLTableRowElement} */ (playerCell.parentNode);
+			let row = /** @type {HTMLTableRowElement} */ (playerCell.parentElement);
 			let typeCell = row.cells[0];
 			let timeCell = row.cells[2];
 
@@ -361,7 +359,7 @@ Foxtrick.modules.MatchLineupTweaks = {
 				if (!pInfo || !pInfo.length)
 					return;
 
-				Foxtrick.stopListenToChange(doc);
+				Foxtrick.stopObserver(doc);
 
 				var missing = [];
 				for (let [i, pL] of [...pLinks].entries()) {
@@ -378,7 +376,7 @@ Foxtrick.modules.MatchLineupTweaks = {
 						missing.push({ id: id, i: i });
 				}
 
-				Foxtrick.startListenToChange(doc);
+				Foxtrick.startObserver(doc);
 
 				if (!missing.length)
 					return;
@@ -391,7 +389,7 @@ Foxtrick.modules.MatchLineupTweaks = {
 					if (!player)
 						return;
 
-					Foxtrick.stopListenToChange(doc);
+					Foxtrick.stopObserver(doc);
 
 					let pL = pLinks[m.i];
 
@@ -399,7 +397,7 @@ Foxtrick.modules.MatchLineupTweaks = {
 					let node = pL.parentNode.parentNode.querySelector('.ft-indicator-wrapper');
 					addSpecialty(node, player);
 
-					Foxtrick.startListenToChange(doc);
+					Foxtrick.startObserver(doc);
 				};
 
 				for (let m of missing)
@@ -456,7 +454,7 @@ Foxtrick.modules.MatchLineupTweaks = {
 				if (!playerInfo || !playerInfo.length)
 					return;
 
-				Foxtrick.stopListenToChange(doc);
+				Foxtrick.stopObserver(doc);
 				var missing = [];
 				for (let [i, pL] of [...pLinks].entries()) {
 					let param = Foxtrick.getUrlParam(pL.href, idParam);
@@ -479,7 +477,7 @@ Foxtrick.modules.MatchLineupTweaks = {
 						ftDiv.appendChild(missingDiv);
 					}
 				}
-				Foxtrick.startListenToChange(doc);
+				Foxtrick.startObserver(doc);
 			}, { teamId: teamId, currentSquad: true, isNT: isNT, isYouth: isYouth });
 		};
 
@@ -588,17 +586,16 @@ Foxtrick.modules.MatchLineupTweaks = {
 					return;
 				}
 
-				Foxtrick.stopListenToChange(doc);
+				Foxtrick.stopObserver(doc);
 
 				for (let pL of pLinks) {
 					let param = Foxtrick.getUrlParam(pL.href, idParam);
 					let id = Math.abs(parseInt(param, 10));
-					// eslint-disable-next-line no-extra-parens
-					let pDiv = /** @type {HTMLDivElement} */ (pL.parentNode.parentNode);
+					let pDiv = /** @type {HTMLDivElement} */ (pL.parentElement.parentElement);
 					addFace(pDiv, id, xml);
 				}
 
-				Foxtrick.startListenToChange(doc);
+				Foxtrick.startObserver(doc);
 			});
 		};
 
@@ -634,11 +631,9 @@ Foxtrick.modules.MatchLineupTweaks = {
 		Foxtrick.addClass(displayHome, 'ft-match-lineup-tweaks-star-counter');
 		displayHome.appendChild(doc.createElement('span'));
 		starsContainer.appendChild(displayHome);
-		/* eslint-disable-next-line no-extra-parens */
-		var displayDiff = /** @type {HTMLElement} */ (displayHome.cloneNode(true));
+		var displayDiff = Foxtrick.cloneElement(displayHome, true);
 		starsContainer.appendChild(displayDiff);
-		/* eslint-disable-next-line no-extra-parens */
-		var displayAway = /** @type {HTMLElement} */ (displayHome.cloneNode(true));
+		var displayAway = Foxtrick.cloneElement(displayHome, true);
 		starsContainer.appendChild(displayAway);
 
 		let starsHome = countStars(doc, 'Home');
@@ -696,11 +691,9 @@ Foxtrick.modules.MatchLineupTweaks = {
 		displayHome.appendChild(doc.createElement('span'));
 		staminaContainer.appendChild(displayHome);
 
-		/* eslint-disable-next-line no-extra-parens */
-		var displayDiff = /** @type {HTMLElement} */ (displayHome.cloneNode(true));
+		var displayDiff = Foxtrick.cloneElement(displayHome, true);
 		staminaContainer.appendChild(displayDiff);
-		/* eslint-disable-next-line no-extra-parens */
-		var displayAway = /** @type {HTMLElement} */ (displayHome.cloneNode(true));
+		var displayAway = Foxtrick.cloneElement(displayHome, true);
 		staminaContainer.appendChild(displayAway);
 
 		// U+2211 is sum symbol, U+0394 is mathematical delta
@@ -747,8 +740,7 @@ Foxtrick.modules.MatchLineupTweaks = {
 
 		var highlightPlayer = function(playerId) {
 			Foxtrick.Pages.Match.modPlayerDiv(playerId, function(node) {
-				// eslint-disable-next-line no-extra-parens
-				let parent = /** @type {HTMLElement} */ (node.parentNode);
+				let parent = node.parentElement;
 				if (parent.id == 'playersField')
 					Foxtrick.addClass(node, 'ft-highlight-playerDiv-field');
 				else
@@ -779,9 +771,8 @@ Foxtrick.modules.MatchLineupTweaks = {
 		let ratings = doc.querySelectorAll('div.playerRating > span');
 		for (let rating of ratings) {
 			var count = Number(rating.textContent);
-			var ratingsDiv = rating.parentNode;
-			// eslint-disable-next-line no-extra-parens
-			var newDiv = /** @type {HTMLElement} */ (ratingsDiv.cloneNode(false));
+			var ratingsDiv = rating.parentElement;
+			var newDiv = Foxtrick.cloneElement(ratingsDiv, false);
 			Foxtrick.makeFeaturedElement(newDiv, this);
 
 			// weirdest bug ever: title too short
@@ -852,7 +843,7 @@ Foxtrick.modules.MatchLineupTweaks = {
 		module.hideOtherTeam(doc);
 
 		// that one started: stop again
-		// Foxtrick.stopListenToChange(doc);
+		// Foxtrick.stopObserver(doc);
 
 		var invert = Foxtrick.Prefs.isModuleOptionEnabled(module, 'InvertSplit');
 
@@ -882,10 +873,10 @@ Foxtrick.modules.MatchLineupTweaks = {
 		});
 
 		Foxtrick.onClick(div, () => {
-			Foxtrick.stopListenToChange(doc);
+			Foxtrick.stopObserver(doc);
 			module.showAway = !module.showAway;
 			module.hideOtherTeam(doc);
-			Foxtrick.startListenToChange(doc);
+			Foxtrick.startObserver(doc);
 		});
 
 		let field = doc.getElementById('playersField');
@@ -1194,7 +1185,6 @@ Foxtrick.modules.MatchLineupTweaks = {
 		let ret = Foxtrick.map(function(player) {
 			const MAX_CHECKPOINTS = 18;
 
-			// eslint-disable-next-line no-extra-parens
 			let p = /** @type {MatchReportRatingPlayer} */ (player);
 
 			p.checkpoints = getCheckpointCount(p.FromMin, p.ToMin);
@@ -1243,8 +1233,7 @@ Foxtrick.modules.MatchLineupTweaks = {
 		Foxtrick.forEach(function(playerDiv) {
 			// adjust HT shirt numbers
 			var shirt = playerDiv.querySelector('.sectorShirt');
-			// eslint-disable-next-line no-extra-parens
-			var numSpan = /** @type {HTMLSpanElement} */ (shirt.firstChild);
+			var numSpan = /** @type {HTMLSpanElement} */ (shirt.firstElementChild);
 			if (numSpan && !isNaN(parseInt(numSpan.textContent, 10)))
 				Foxtrick.addClass(numSpan, 'ft-ht-shirt-num');
 
@@ -1257,8 +1246,7 @@ Foxtrick.modules.MatchLineupTweaks = {
 			if (staminaDiv) {
 				var stamina = parseInt(staminaDiv.title.match(/\d+/)[0], 10);
 				var fatigue = 100 - Number(stamina);
-				// eslint-disable-next-line no-extra-parens
-				let child = /** @type {HTMLElement} */ (staminaDiv.firstChild);
+				let child = staminaDiv.firstElementChild;
 				child.style.height = fatigue + '%';
 				var staminaSpan = doc.createElement('span');
 				Foxtrick.addClass(staminaSpan, 'ft-staminaText');
@@ -1301,8 +1289,7 @@ Foxtrick.modules.MatchLineupTweaks = {
 
 		let link = Foxtrick.nth(l => l.href.indexOf(playerId) >= 0, playerLinks);
 		if (link) {
-			// eslint-disable-next-line no-extra-parens
-			let div = /** @type {HTMLElement} */ (link.parentNode.parentNode);
+			let div = link.parentElement.parentElement;
 			Foxtrick.addClass(div, 'ft-highlight-playerDiv-url');
 		}
 	},
@@ -1316,7 +1303,7 @@ Foxtrick.modules.MatchLineupTweaks = {
 		if (!Foxtrick.Pages.Match.hasRatingsTabs(doc))
 			return;
 
-		Foxtrick.stopListenToChange(doc);
+		Foxtrick.stopObserver(doc);
 
 		module.addSplitLineupToggle(doc);
 		var playerDivs = doc.querySelectorAll('div.playerDiv');
@@ -1358,7 +1345,7 @@ Foxtrick.modules.MatchLineupTweaks = {
 		if (Foxtrick.Prefs.isModuleOptionEnabled(module, 'ConvertStars'))
 			module.convertStars(doc);
 
-		Foxtrick.startListenToChange(doc);
+		Foxtrick.startObserver(doc);
 
 		// add async stuff last
 		if (Foxtrick.Prefs.isModuleOptionEnabled(module, 'ShowSpecialties'))

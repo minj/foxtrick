@@ -41,11 +41,10 @@ if (!Foxtrick.api.hy)
 if (!Foxtrick.api.hy.URL)
 	Foxtrick.api.hy.URL = {};
 
-Foxtrick.api.hy.URL.matchesReport = 'https://www.hattrick-youthclub.org' +
-	'/_data_provider/foxtrick/matchesReport';
+Foxtrick.api.hy.URL.matchesReport = '/_data_provider/foxtrick/matchesReport';
 
 /**
- * Tries to post the match report to HY and executes callback(response)
+ * Tries to post the match report to HY and returns response promise
  *
  * @param  {string}   params     specific params for the api
  * @param  {number}   [teamId]   senior team ID to fetch data for

@@ -213,31 +213,35 @@ Foxtrick.modules['PsicoTSI'] = {
 
 	/**
 	 * Get prediction for player object
+	 *
 	 * Wage prediction needs currRate, use 0 otherwise
+	 *
 	 * returns prediction object
+	 *
 	 * { maxSkill, isGK, undef, limit, formLow, formAvg, formHigh, wageLow, wageAvg, wageHigh }
+	 *
 	 * may be called from other scripts!
-	 * @param  {object}	p
-	 * @param  {number}	currRate
-	 * @return {object}
+	 * @param  {Player} p
+	 * @param  {number} [currRate]
+	 * @return {PsicoTSIPrediction}
 	 */
 	getPrediction: function(p, currRate) {
-		if (typeof p.playmaking == 'undefined') {
+		if (typeof p.playmaking == 'undefined')
 			return null;
-		}
 
-		var age = p.ageYears || p.age.years;
-		var currTSI = p.tsi;
-		var currWAGE = currRate ? parseInt(p.salary / (p.isAbroad ? 1.2 : 1) * currRate, 10) : 0;
+		let age = p.ageYears || p.age.years;
+		let currTSI = p.tsi;
+		let currWAGE = currRate ? Math.floor(p.salary / (p.isAbroad ? 1.2 : 1) * currRate) : 0;
 
-		var frm = p.form;
-		var sta = p.stamina;
+		let frm = p.form;
+		let sta = p.stamina;
 
-		var pla = p.playmaking, win = p.winger, sco = p.scoring, goa = p.keeper,
+		let pla = p.playmaking, win = p.winger, sco = p.scoring, goa = p.keeper,
 			pas = p.passing, def = p.defending, sp = p.setPieces;
-		var playerskills = [frm, sta, pla, win, sco, goa, pas, def, sp];
+		let playerskills = [frm, sta, pla, win, sco, goa, pas, def, sp];
 
-		var pr = Foxtrick.psico.getPrediction(playerskills, currTSI, currWAGE, age);
+		/** @type {PsicoTSIPrediction} */
+		let pr = Foxtrick.psico.getPrediction(playerskills, currTSI, currWAGE, age);
 		return pr;
 	},
 
@@ -599,7 +603,7 @@ Foxtrick.modules['PsicoTSI'] = {
 									 'hidden');
 			});
 			psicotsiShowDiv.appendChild(psicotsiShowLink);
-			psicotsiShowDiv.appendChild(spacer.cloneNode(true));
+			psicotsiShowDiv.appendChild(Foxtrick.cloneElement(spacer, true));
 			wrapper.appendChild(psicotsiShowDiv);
 		}
 

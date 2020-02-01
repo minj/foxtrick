@@ -15,7 +15,7 @@ if (!this.Foxtrick)
 /**
  * @param {document} doc
  */
-Foxtrick.startListenToChange = function(doc) {
+Foxtrick.startObserver = function(doc) {
 	if (!Foxtrick.isHt(doc))
 		return;
 
@@ -26,9 +26,9 @@ Foxtrick.startListenToChange = function(doc) {
 
 		let [first] = changes;
 		let doc = first.ownerDocument;
-		Foxtrick.stopListenToChange(doc);
+		Foxtrick.stopObserver(doc);
 		Foxtrick.entry.change(doc, changes);
-		Foxtrick.startListenToChange(doc);
+		Foxtrick.startObserver(doc);
 	};
 
 	// must store MO on contentWindow
@@ -62,7 +62,7 @@ Foxtrick.startListenToChange = function(doc) {
 /**
  * @param {document} doc
  */
-Foxtrick.stopListenToChange = function(doc) {
+Foxtrick.stopObserver = function(doc) {
 	let win = doc.defaultView;
 
 	// @ts-ignore
@@ -88,20 +88,30 @@ Foxtrick.preventChange = function(doc, func) {
 	 * @return {R}
 	 */
 	return function(...args) {
-		Foxtrick.stopListenToChange(doc);
+		Foxtrick.stopObserver(doc);
 		let ret = func.apply(this, args);
-		Foxtrick.startListenToChange(doc);
+		Foxtrick.startObserver(doc);
 		return ret;
 	};
 };
 
 /**
+ * @typedef {'__ftErrorSymbol'} FT_ERROR_SYMBOL
+ * @typedef SerializedError
+ * @prop {number} __ftErrorSymbol
+ * @prop {string} name
+ * @prop {string} message
+ * @prop {string} stack
+ */
+
+/**
  * A hack to enable passing Error instances over the message port.
  *
- * @param  {Error|object} err An Error instance here, an object there
- * @return {object|Error}     An object here, an Error instance there
+ * @param  {Error|SerializedError} err An Error instance here, an object there
+ * @return {SerializedError|Error}     An object here, an Error instance there
  */
 Foxtrick.jsonError = (err) => {
+	/** @type {FT_ERROR_SYMBOL} */
 	const ERROR_SYMBOL = '__ftErrorSymbol';
 	if (err == null)
 		return err;
@@ -302,7 +312,6 @@ Foxtrick.xmlEval = function(xml, containerPath, valueAttr, ...attributes) {
 Foxtrick.xmlEvalSingle = function(xml, path, attribute) {
 	let result = xml.evaluate(path, xml, null, xml.DOCUMENT_NODE, null);
 
-	// eslint-disable-next-line no-extra-parens
 	let node = /** @type {Element} */ (result.singleNodeValue);
 	if (!node)
 		return null;
@@ -352,7 +361,7 @@ Foxtrick.getUrlParam = function(url, param) {
 		return null;
 
 	let needle = param.toLowerCase();
-	let params = new URL(url).searchParams;
+	let params = new URL(url, Foxtrick.getLastPage()).searchParams;
 	let entries = [...params]; // keys() is not iterable in FF :(
 	let entry = Foxtrick.nth(([k]) => k.toLowerCase() == needle, entries);
 	if (entry) {
@@ -422,24 +431,34 @@ Foxtrick.getPanel = function(doc) {
 };
 
 /**
+ * @template {unknown}     T
+ * @template {PropertyKey} K
+ * @typedef {import('./types').Ensure<T,K>} Ensure
+ */
+
+// eslint-disable-next-line valid-jsdoc
+/**
  * Test whether object obj has a property prop
  *
  * Deals with non-objects and null.
  * Traverses prototype chain.
  *
- * @param  {object}  obj
- * @param  {string}  prop
- * @return {boolean}
+ * @template {unknown}     T
+ * @template {PropertyKey} K
+ * @param  {T} obj
+ * @param  {K} prop
+ * @return {obj is Ensure<T, K>}
  */
 Foxtrick.hasProp = function(obj, prop) {
 	return obj != null && typeof obj === 'object' && prop in obj;
 };
 
+// eslint-disable-next-line valid-jsdoc
 /**
  * Test whether object obj is a simple key-value map
  *
- * @param  {object}  obj
- * @return {boolean}
+ * @param  {unknown} obj
+ * @return {obj is Record<PropertyKey, unknown>}
  */
 Foxtrick.isMap = function(obj) {
 	if (obj == null)
@@ -449,11 +468,12 @@ Foxtrick.isMap = function(obj) {
 	return proto == null || proto == Object.prototype;
 };
 
+// eslint-disable-next-line valid-jsdoc
 /**
  * Test whether object obj is an array-like
  *
- * @param  {object}  obj
- * @return {boolean}
+ * @param  {unknown}          obj
+ * @return {obj is ArrayLike}
  */
 Foxtrick.isArrayLike = function(obj) {
 	return Foxtrick.hasProp(obj, 'length');
@@ -570,7 +590,9 @@ Foxtrick.decodeBase64 = function(str) {
  * @param {string}     mime mime type + charset
  */
 Foxtrick.saveAs = function(doc, arr, name, mime) {
-	let win = doc.defaultView;
+	/** @type {unknown} */
+	let global = doc.defaultView;
+	let win = /** @type {typeof globalThis} */ (global);
 	let blob = new win.Blob(arr, { type: mime || 'text/plain;charset=utf-8' });
 	let url = win.URL.createObjectURL(blob);
 	let link = doc.createElement('a');

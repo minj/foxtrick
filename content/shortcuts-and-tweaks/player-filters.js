@@ -455,9 +455,9 @@ Foxtrick.modules['PlayerFilters'] = {
 						}
 						else if (Foxtrick.hasClass(elem, 'faceCardNoBottomInfo')) {
 							if (backTopAnchor)
-								return pList.insertBefore(elem.cloneNode(true), backTopAnchor);
+								return pList.insertBefore(Foxtrick.cloneElement(elem, true), backTopAnchor);
 
-							return pList.appendChild(elem.cloneNode(true));
+							return pList.appendChild(Foxtrick.cloneElement(elem, true));
 						}
 						return null;
 					}, allElems).filter(x => x);

@@ -10,6 +10,7 @@
 
 /* eslint-disable */
 if (!this.Foxtrick)
+	// @ts-ignore
 	var Foxtrick = {};
 /* eslint-enable */
 
@@ -36,11 +37,13 @@ Foxtrick.TIMEOUT_ERROR = 'Foxtrick timeout';
 Foxtrick.SWALLOWED_ERROR = 'Foxtrick ignore this error';
 
 
+// eslint-disable-next-line valid-jsdoc
 /**
  * Test whether object obj is a thenable
  *
- * @param  {object}  obj
- * @return {boolean}
+ * @template T
+ * @param  {T} obj
+ * @return {obj is Ensure<T, 'then'>}
  */
 Foxtrick.isThenable = obj => Foxtrick.hasProp(obj, 'then');
 

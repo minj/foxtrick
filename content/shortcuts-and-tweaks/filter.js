@@ -441,8 +441,7 @@ Foxtrick.modules['Filter'] = {
 			for (let player of allPlayers) {
 				let pId = Foxtrick.getUrlParam(player.href, 'playerId');
 				if (pId && ids.indexOf(pId) >= 0) {
-					// eslint-disable-next-line no-extra-parens
-					let row = /** @type {HTMLElement} */ (player.parentNode.parentNode);
+					let row = player.parentElement.parentElement;
 					Foxtrick.addClass(row, 'ft-top-players-owner');
 					Foxtrick.makeFeaturedElement(row, Foxtrick.modules.TopPlayersOwner);
 				}

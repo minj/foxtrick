@@ -76,6 +76,7 @@ Foxtrick.parseYAML = function(data) {
  * @return {XMLDocument}
  */
 Foxtrick.parseXML = function(data) {
+	const HTTP_ERROR = 503;
 	var errCode = null;
 
 	/**
@@ -87,10 +88,7 @@ Foxtrick.parseXML = function(data) {
 		var xml = null;
 
 		try {
-			/** @type {DOMParser} */
-			// @ts-ignore
 			var parser = new window.DOMParser();
-
 			xml = parser.parseFromString(text, 'text/xml');
 		}
 		catch (e) {
@@ -106,13 +104,10 @@ Foxtrick.parseXML = function(data) {
 		// i. e, CHPP server not reachable
 
 		var titleRe = /<title>(\d+)/i;
-		if (titleRe.test(data)) {
+		if (titleRe.test(data))
 			errCode = data.match(titleRe)[1];
-		}
-		else {
-			// eslint-disable-next-line no-magic-numbers
-			errCode = 503;
-		}
+		else
+			errCode = HTTP_ERROR;
 
 		Foxtrick.error('safeXML got an html page. Server could be down. ' +
 		               'Assumed errCode: ' + errCode);
@@ -136,7 +131,7 @@ Foxtrick.parseURL = function(url) {
 		// -1 refers to 691231 which was tagged for default cases
 		let time = parseInt(Foxtrick.Prefs.getString('lastTime'), 10) || -1;
 		let date = new Date(time).toISOString().slice(2, 10).replace(/\D/g, '');
-		return '/res/' + date + '/';
+		return `/res/${date}/`;
 	});
 
 	return pUrl;
@@ -158,7 +153,7 @@ Foxtrick.parseURL = function(url) {
  *
  * @param  {string}          url
  * @param  {string}          [params]
- * @return {Promise<string>}
+ * @return {Promise<string|FetchError>}
  */
 Foxtrick.fetch = function(url, params) {
 	const ERROR_XHR_FATAL = 'FATAL error in XHR:';
@@ -183,6 +178,7 @@ Foxtrick.fetch = function(url, params) {
 	}
 
 	return new Promise(function(fulfill, reject) {
+		const HTTP_OK = 200, HTTP_REDIR = 300;
 		try {
 			let type = params ? 'POST' : 'GET';
 
@@ -200,26 +196,34 @@ Foxtrick.fetch = function(url, params) {
 
 			req.onload = function() {
 				// README: safari returns chrome resources with status=0
-				// eslint-disable-next-line no-magic-numbers
-				if (this.status >= 200 && this.status < 300 ||
+				if (this.status >= HTTP_OK && this.status < HTTP_REDIR ||
 				    this.status === 0 && this.responseText) {
 
 					fulfill(this.responseText);
 					return;
 				}
 
+				/** @type {FetchError} */
+				let error = { url: pUrl, status: this.status, text: this.responseText, params };
+
 				// eslint-disable-next-line prefer-promise-reject-errors
-				reject({ url: pUrl, status: this.status, text: this.responseText, params });
+				reject(error);
 			};
 
 			req.onerror = function() {
+				/** @type {FetchError} */
+				let error = { url: pUrl, status: this.status, text: this.responseText, params };
+
 				// eslint-disable-next-line prefer-promise-reject-errors
-				reject({ url: pUrl, status: this.status, text: this.responseText, params });
+				reject(error);
 			};
 
 			req.onabort = function() {
+				/** @type {FetchError} */
+				let error = { url: pUrl, status: -1, text: this.responseText, params };
+
 				// eslint-disable-next-line prefer-promise-reject-errors
-				reject({ url: pUrl, status: -1, text: this.responseText, params });
+				reject(error);
 			};
 
 			req.send(params);
@@ -228,8 +232,12 @@ Foxtrick.fetch = function(url, params) {
 		catch (e) {
 			// handle fatal errors here
 			Foxtrick.log(ERROR_XHR_FATAL, e);
+
+			/** @type {FetchError} */
+			let error = { url: pUrl, status: -1, text: ERROR_XHR_FATAL + e.message, params };
+
 			// eslint-disable-next-line prefer-promise-reject-errors
-			reject({ url: pUrl, status: -1, text: ERROR_XHR_FATAL + e.message, params });
+			reject(error);
 		}
 	});
 
@@ -247,7 +255,7 @@ Foxtrick.fetch = function(url, params) {
  * @param  {object}          [params]
  * @param  {number|string}   [lifeTime]
  * @param  {number}          [now]
- * @return {Promise<string>}
+ * @return {Promise<string|FetchError>}
  */
 Foxtrick.load = function(url, params, lifeTime, now) {
 	let pUrl = Foxtrick.parseURL(url);
@@ -301,6 +309,13 @@ Foxtrick.load = function(url, params, lifeTime, now) {
 	return promise;
 };
 
+/**
+ * @typedef FetchError
+ * @prop {number} status
+ * @prop {string} text
+ * @prop {string} [url]
+ * @prop {string} [params]
+ */
 
 // ----------------------- internal helpers ------------------------
 Foxtrick.cache = (function() {
@@ -386,8 +401,8 @@ Foxtrick.cache = (function() {
 			 *
 			 * @param  {string}        url
 			 * @param  {object}        [params]
-			 * @param  {number|string} [aLifeTime] {?Integer}
-			 * @param  {number}        [now]       {?Integer}
+			 * @param  {number|string} [aLifeTime]
+			 * @param  {number}        [now]
 			 * @return {FTCacheObject|FTCacheMiss}
 			 */
 			getFor: function(url, params, aLifeTime, now) {
@@ -447,7 +462,7 @@ Foxtrick.cache = (function() {
 			 * @param  {string}        url
 			 * @param  {object}        [params]
 			 * @param  {number|string} [lifeTime]
-			 * @return {function(Promise<string>):void}
+			 * @return {function(Promise<string|FetchError>):void}
 			 */
 			setFor: function(url, params, lifeTime) {
 				return (pr) => {
@@ -484,6 +499,7 @@ Foxtrick.cache = (function() {
 
 	}
 
+	// TODO add distinct types behind type guard (context)
 	return {
 		clear: function() {
 			Foxtrick.SB.ext.sendRequest({ req: 'cacheClear' });
@@ -516,8 +532,6 @@ Foxtrick.util.load.sync = function(url) {
 	}
 
 	// load
-	/** @type {XMLHttpRequest} */
-	// @ts-ignore
 	let req = new window.XMLHttpRequest();
 
 	req.open('GET', url, false); // sync load of a chrome resource
@@ -539,20 +553,6 @@ Foxtrick.util.load.sync = function(url) {
 };
 
 /**
- * Load an internal URL synchronously and parse YAML content
- *
- * @deprecated use async methods
- *
- * @param  {string} url
- * @return {string}
- */
-Foxtrick.util.load.ymlSync = function(url) {
-	let text = Foxtrick.util.load.sync(url);
-
-	return Foxtrick.parseYAML(text);
-};
-
-/**
  * Load an external URL asynchronously.
  *
  * params is any data to POST.
@@ -565,10 +565,11 @@ Foxtrick.util.load.ymlSync = function(url) {
  */
 Foxtrick.util.load.async = function(url, callback, params) {
 
+	const HTTP_OK = 200;
+
 	Foxtrick.load(url, params).then((text) => {
-		// eslint-disable-next-line no-magic-numbers
-		callback(text, 200);
-	}, (resp) => {
+		callback(/** @type {string} */ (text), HTTP_OK);
+	}, (/** @type {FetchError} */ resp) => {
 		callback(resp.text, resp.status);
 	}).catch((e) => {
 		Foxtrick.log('Uncaught callback error: - url:', url, 'params:', params, e);
@@ -590,8 +591,11 @@ Foxtrick.util.load.async = function(url, callback, params) {
 Foxtrick.util.load.fetch = function(url, callback, params) {
 	const HTTP_OK = 200;
 	Foxtrick.fetch(url, params).then((text) => {
+		if (typeof text != 'string')
+			return;
+
 		callback(text, HTTP_OK);
-	}, (resp) => {
+	}, (/** @type {FetchError} */ resp) => {
 		callback(resp.text, resp.status);
 	}).catch((e) => {
 		Foxtrick.log('Uncaught callback error: - url:', url, 'params:', params, e);
@@ -609,16 +613,15 @@ Foxtrick.util.load.fetch = function(url, callback, params) {
  */
 Foxtrick.util.load.xml = function(url, callback) {
 
+	const HTTP_OK = 200, HTTP_ERROR = 503;
+
 	// README: no promise cache
 	Foxtrick.util.load.fetch(url, (text, status) => {
 		let xml = Foxtrick.parseXML(text);
 		let st = status;
 
-		// eslint-disable-next-line no-magic-numbers
-		if (xml == null && st == 200) {
-			// eslint-disable-next-line no-magic-numbers
-			st = 503;
-		}
+		if (xml == null && st == HTTP_OK)
+			st = HTTP_ERROR;
 
 		callback(xml, st);
 	});
@@ -626,17 +629,27 @@ Foxtrick.util.load.xml = function(url, callback) {
 
 
 // FIXME: rewrite file pickers into a new async pattern
-/*
- * @desc html5 filepicker for dataUrl. eg pictures and sounds
+
+/**
+ * html5 filepicker for dataUrl. eg pictures and sounds
+ *
+ * @param  {document}             doc
+ * @param  {function(string):any} callback
+ * @return {HTMLInputElement}
  */
 Foxtrick.util.load.filePickerForDataUrl = function(doc, callback) {
 	var input = doc.createElement('input');
 	input.type = 'file';
 
 	input.addEventListener('change', function(ev) {
-		var win = this.ownerDocument.defaultView;
-		var file = this.files[0];
-		var reader = new win.FileReader();
+		// eslint-disable-next-line no-invalid-this
+		var win = this.ownerDocument.defaultView, file = this.files[0];
+
+		/** @type {FileReader} */
+		var reader;
+
+		// @ts-ignore
+		reader = new win.FileReader();
 
 		reader.onerror = function(e) {
 			win.alert('Error code: ' + e.target.error.code);
@@ -644,8 +657,9 @@ Foxtrick.util.load.filePickerForDataUrl = function(doc, callback) {
 		};
 
 		reader.onload = function(e) {
-			var dataUrl = e.target.result;
+			var dataUrl = /** @type {string} */ (e.target.result);
 
+			// eslint-disable-next-line no-magic-numbers
 			if (dataUrl.length > 164000) {
 				win.alert('File too large. Limit: 164kB');
 				dataUrl = null;
@@ -661,17 +675,26 @@ Foxtrick.util.load.filePickerForDataUrl = function(doc, callback) {
 	return input;
 };
 
-/*
- * @desc html5 filepicker for text
+/**
+ * html5 filepicker for text
+ *
+ * @param  {document}             doc
+ * @param  {function(string):any} callback
+ * @return {HTMLInputElement}
  */
 Foxtrick.util.load.filePickerForText = function(doc, callback) {
 	var input = doc.createElement('input');
 	input.type = 'file';
 
-	input.addEventListener('change', function(ev) {
-		var win = this.ownerDocument.defaultView;
-		var file = this.files[0];
-		var reader = new win.FileReader();
+	Foxtrick.listen(input, 'change', function(ev) {
+		// eslint-disable-next-line no-invalid-this
+		var win = this.ownerDocument.defaultView, file = this.files[0];
+
+		/** @type {FileReader} */
+		var reader;
+
+		// @ts-ignore
+		reader = new win.FileReader();
 
 		reader.onerror = function(e) {
 			win.alert('Error code: ' + e.target.error.code);
@@ -679,8 +702,9 @@ Foxtrick.util.load.filePickerForText = function(doc, callback) {
 		};
 
 		reader.onload = function(e) {
-			var text = e.target.result;
+			var text = /** @type {string} */ (e.target.result);
 
+			// eslint-disable-next-line no-magic-numbers
 			if (text.length > 64000) {
 				win.alert('File too large. Limit: 64kB');
 				text = null;
@@ -698,7 +722,7 @@ Foxtrick.util.load.filePickerForText = function(doc, callback) {
 
 /**
  * @typedef FTCacheObject
- * @prop {Promise<string>} promise
+ * @prop {Promise<string|FetchError>} promise
  * @prop {number|string}   [lifeTime]
  */
 

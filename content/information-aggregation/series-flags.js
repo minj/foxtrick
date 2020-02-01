@@ -64,7 +64,7 @@ Foxtrick.modules['SeriesFlags'] = {
 							return;
 						}
 
-						Foxtrick.stopListenToChange(doc);
+						Foxtrick.stopObserver(doc);
 						var data = { // in case LeagueLevelUnit is missing (eg during quali matches)
 							leagueId: 0,
 							seriesName: '',
@@ -98,7 +98,7 @@ Foxtrick.modules['SeriesFlags'] = {
 							// eslint-disable-next-line callback-return
 							callback(flag);
 
-							Foxtrick.startListenToChange(doc);
+							Foxtrick.startObserver(doc);
 						});
 					});
 

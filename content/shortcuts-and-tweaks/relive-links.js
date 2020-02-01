@@ -259,7 +259,7 @@ Foxtrick.modules['ReLiveLinks'] = {
 				'&actionType=addMatch&SourceSystem=' + source;
 			liveLink = Foxtrick.createFeaturedElement(doc, module, 'a');
 			liveLink.href = url;
-			liveLink.appendChild(img.cloneNode(true));
+			liveLink.appendChild(Foxtrick.cloneElement(img, true));
 			tds[liveTdIdx].appendChild(liveLink);
 		}, rows);
 

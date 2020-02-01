@@ -906,7 +906,7 @@ Foxtrick.modules.MatchSimulator = {
 	getTacticsLabel: function(doc) {
 		// TODO: replace with L10n string
 		try {
-			var teamTacticsDiv = doc.getElementById('tactics').cloneNode(true);
+			var teamTacticsDiv = Foxtrick.cloneElement(doc.getElementById('tactics'), true);
 			var speechLevelTxt = teamTacticsDiv.getElementsByClassName('speechLevel')[0];
 			speechLevelTxt.parentNode.removeChild(speechLevelTxt);
 			var speechLevel = teamTacticsDiv.getElementsByTagName('select')[0];
@@ -1220,7 +1220,7 @@ Foxtrick.modules.MatchSimulator = {
 		// move current prediction, if there, to previous. else create current
 		var overlayHTMSCurrent = doc.getElementById('overlayHTMSCurrent');
 		if (overlayHTMSCurrent) {
-			overlayHTMSPrevious = overlayHTMSCurrent.cloneNode(true);
+			overlayHTMSPrevious = Foxtrick.cloneElement(overlayHTMSCurrent, true);
 			overlayHTMSPrevious.id = 'overlayHTMSPrevious';
 			var table = overlayHTMSPrevious.getElementsByTagName('table')[0];
 			if (table) {
@@ -1456,7 +1456,7 @@ Foxtrick.modules.MatchSimulator = {
 		var tacticsLevel = [gRatings[8], gRatingsOther[8]];
 
 		var ratingsTable = doc.getElementById('ft_simulation_ratings_table');
-		var newTable = ratingsTable.cloneNode(false);
+		var newTable = Foxtrick.cloneElement(ratingsTable, false);
 
 		var twoTeams = typeof gRatingsOther[0] !== 'undefined';
 		Foxtrick.modules['Ratings'].addRatings(

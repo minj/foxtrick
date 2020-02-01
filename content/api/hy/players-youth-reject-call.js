@@ -40,8 +40,7 @@ if (!Foxtrick.api.hy)
 if (!Foxtrick.api.hy.URL)
 	Foxtrick.api.hy.URL = {};
 
-Foxtrick.api.hy.URL.playersYouthRejectCall = 'https://www.hattrick-youthclub.org' +
-	'/_data_provider/foxtrick/playersYouthRejectCall';
+Foxtrick.api.hy.URL.playersYouthRejectCall = '/_data_provider/foxtrick/playersYouthRejectCall';
 
 /**
  * Tries to post the youth scout call to HY

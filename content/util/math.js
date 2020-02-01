@@ -7,24 +7,18 @@
 
 /* eslint-disable */
 if (!this.Foxtrick)
+	// @ts-ignore
 	var Foxtrick = {};
 /* eslint-enable */
 
+/* eslint-disable no-magic-numbers */
 Foxtrick.Math = {};
-/**
- * Hyperbolic tangent (overflows ~700)
- * Returns [-1; 1]
- * @param	{Number}	x
- * @returns	{Number}
- */
-Foxtrick.Math.tanh = function(x) {
-	return (Math.exp(x) - Math.exp(-x)) / (Math.exp(x) + Math.exp(-x));
-};
+
 /**
  * find the quotent for integer division a / b
- * @param	{Integer}	a
- * @param	{Integer}	b
- * @returns	{Integer}
+ * @param  {number} a
+ * @param  {number} b
+ * @return {number}
  */
 Foxtrick.Math.div = function(a, b) {
 	return (a - a % b) / b;
@@ -34,51 +28,55 @@ Foxtrick.Math.div = function(a, b) {
  * Convert HatStats to 0-based (default) or 1-based float level
  * solid (very low) = 6.0; non-existent = disastrous (very low) = 0.0
  * or solid (very low) = 7.0; non-existent = 0; disastrous (very low) = 1.0
- * @param	{Integer}	hs			HatStats
- * @param	{boolean}	oneBased	return based on solid=7
- * @returns	{Number}				floating point level
+ * @param  {number}  hs         HatStats
+ * @param  {boolean} [oneBased] return based on solid=7
+ * @return {number}             floating point level
  */
-Foxtrick.Math.hsToFloat = function(hs, oneBased) {
-	var ret = parseInt(hs, 10);
+Foxtrick.Math.hsToFloat = function(hs, oneBased = false) {
+	var ret = parseInt(String(hs), 10);
 	return ret ? (ret - 1) / 4 + (oneBased ? 1.0 : 0.0) : 0.0;
 };
 
 Foxtrick.Predict = {};
+
 /**
  * Predict possesion probability according to midfield ratio
  * ratio = mfA / (mfA + mfB)
  * where mfA is 0-based rating (HS, float, w/e)
  * [post=15766691.242]
- * @param	{Number}	ratio	mfA / (mfA + mfB)
- * @returns	{Number}			probability
+ * @param  {number} ratio mfA / (mfA + mfB)
+ * @return {number}       probability
  */
 Foxtrick.Predict.possession = function(ratio) {
-	var first = Math.pow(ratio, Math.E);
-	var second = Math.pow(1 - ratio, Math.E);
+	var first = Math.exp(ratio);
+	var second = Math.exp(1 - ratio);
 	return first / (first + second);
 };
+
 /**
  * Predict scoring probability according to attack ratio
  * ratio = attA / (attA + defB)
  * where attA is 0-based rating (HS, float, w/e)
  * [post=15766691.221]
- * @param	{Number}	ratio	attA / (attA + defB)
- * @returns	{Number}			probability
+ * @param  {number} ratio attA / (attA + defB)
+ * @return {number}       probability
  */
 Foxtrick.Predict.attack = function(ratio) {
-	return Foxtrick.Math.tanh(6.9 * (ratio - 0.51)) * 0.455 + 0.46;
+	return Math.tanh(6.9 * (ratio - 0.51)) * 0.455 + 0.46;
 };
+
 /**
  * Predict defending probability according to defence ratio
  * ratio = defA / (defA + attB)
  * where defA is 0-based rating (HS, float, w/e)
  * [post=15766691.221]
- * @param	{Number}	ratio	defA / (defA + attB)
- * @returns	{Number}			probability
+ * @param  {number} ratio defA / (defA + attB)
+ * @return {number}       probability
  */
 Foxtrick.Predict.defence = function(ratio) {
-	return 1 - (Foxtrick.Math.tanh(6.9 * (1 - ratio - 0.51)) * 0.455 + 0.46);
+	return 1 - (Math.tanh(6.9 * (1 - ratio - 0.51)) * 0.455 + 0.46);
 };
+
 /**
  * Predict average energy for 90 minutes based on stamina level
  * 0 <= Energy <= 1
@@ -86,41 +84,43 @@ Foxtrick.Predict.defence = function(ratio) {
  * [post=15917246.1]
  * latest data:
  * https://docs.google.com/file/d/0Bzy0IjRlxhtxaGp0VXlmNjljaTA/edit?usp=sharing
- * @param	{Number}	stamina	1-based float level
- * @returns	{Number}			average energy/starting energy
+ * @param  {number} stamina 1-based float level
+ * @return {number}         average energy/starting energy
  */
 Foxtrick.Predict.averageEnergy90 = function(stamina) {
 	var checkpoint, currentEnergy, decay, initialEnergy, rest, totalEnergy, _i;
-	if (stamina >= 8.63) {
+	if (stamina >= 8.63)
 		return 1;
-	}
+
 	totalEnergy = 0;
 	initialEnergy = 1 + (0.0292 * stamina + 0.05);
-	if (stamina > 8) {
+	if (stamina > 8)
 		initialEnergy += 0.15 * (stamina - 8);
-	}
+
 	decay = Math.max(0.0325, -0.0039 * stamina + 0.0634);
 	rest = 0.1875;
 	for (checkpoint = _i = 1; _i <= 18; checkpoint = ++_i) {
 		currentEnergy = initialEnergy - checkpoint * decay;
-		if (checkpoint > 9) {
+		if (checkpoint > 9)
 			currentEnergy += rest;
-		}
+
 		currentEnergy = Math.min(1, currentEnergy);
 		totalEnergy += currentEnergy;
 	}
 	return totalEnergy / 18;
 };
+
 /**
  * Predict 1-based stamina level based on energy at 90 minutes
  * 0 <= energyAt90 <= 1
  * Player must have played from the start
  * Watch for negative SEs for powerful
- * @param	{Number}	energyAt90	energy/startingEnergy
- * @returns	{Number}				1-based stamina level
+ * @param  {number} energyAt90 energy/startingEnergy
+ * @return {number}            1-based stamina level
  */
 Foxtrick.Predict.stamina = function(energyAt90) {
-	return energyAt90 <= 0.887 ? energyAt90 * 10.1341 - 0.9899 :
+	return energyAt90 <= 0.887 ?
+		energyAt90 * 10.1341 - 0.9899 :
 		8 + (energyAt90 - 0.887) / 0.1792;
 };
 
@@ -130,11 +130,11 @@ Foxtrick.Predict.stamina = function(energyAt90) {
  * loyalty = 1 + sqrt(days/336)*19
  * bonus = sqrt(days/336)
  * -> bonus = (loyalty - 1) / 19
- * @param  {number}  loyaltyLevel Loyalty attribute value
- * @param  {boolean} isMotherClub Is player playing in mother club?
- * @return {number}               Bonus value for each skill
+ * @param  {number}  loyaltyLevel   Loyalty attribute value
+ * @param  {boolean} [isMotherClub] Is player playing in mother club?
+ * @return {number}                 Bonus value for each skill
  */
-Foxtrick.Predict.loyaltyBonus = function(loyaltyLevel, isMotherClub) {
+Foxtrick.Predict.loyaltyBonus = function(loyaltyLevel, isMotherClub = false) {
 	if (isMotherClub)
 		return 1.5;
 
@@ -154,13 +154,6 @@ Foxtrick.Predict.loyaltyBonus = function(loyaltyLevel, isMotherClub) {
  * @prop {number} IM_VS_CD
  */
 
-/* eslint-disable max-len */
-/**
- * @typedef {'kp'|'cd'|'cdo'|'cdtw'|'wb'|'wbd'|'wbo'|'wbtm'|'w'|'wd'|'wo'|'wtm'|'im'|'imd'|'imo'|'imtw'|'fw'|'fwd'|'tdf'|'fwtw'} PlayerPositionCode
- * @typedef {'defending'|'keeper'|'passing'|'playmaking'|'scoring'|'setPieces'|'winger'} PlayerSkillName
- */
-/* eslint-enable max-len */
-
 /**
  * @typedef SkillContribution
  * @prop {number} center
@@ -169,32 +162,39 @@ Foxtrick.Predict.loyaltyBonus = function(loyaltyLevel, isMotherClub) {
  * @prop {number} wings
  * @prop {number} factor
  */
+
+/* eslint-disable max-len */
+/**
+ * @typedef {'kp'|'cd'|'cdo'|'cdtw'|'wb'|'wbd'|'wbo'|'wbtm'|'w'|'wd'|'wo'|'wtm'|'im'|'imd'|'imo'|'imtw'|'fw'|'fwd'|'tdf'|'fwtw'} PlayerPositionCode
+ * @typedef {'defending'|'keeper'|'passing'|'playmaking'|'scoring'|'setPieces'|'winger'} PlayerSkillName
+ */
 /**
  * @typedef {number|SkillContribution} SkillContributionOptional
- * @typedef {Object.<PlayerSkillName, SkillContributionOptional>} PositionContributions
- * @typedef {Object.<PlayerPositionCode, PositionContributions>} ContributionFactors
- * @typedef {Object.<PlayerPositionCode, number>} Contributions
+ * @typedef {Record<PlayerSkillName, SkillContributionOptional>} PositionContributions
+ * @typedef {Record<PlayerPositionCode, PositionContributions>} ContributionFactors
+ * @typedef {Partial<Record<PlayerPositionCode, Partial<PositionContributions>>>} PartialContributionFactors
+ * @typedef {Record<PlayerPositionCode, number>} Contributions
  */
+/* eslint-enable max-len */
 
 /**
  * Make a position contribution map.
- * Options is {CTR_VS_WG, WBD_VS_CD, WO_VS_FW, MF_VS_ATT, DF_VS_ATT, IM_VS_CD: number} (optional)
+ * Options is {CTR_VS_WG, WBD_VS_CD, WO_VS_FW, MF_VS_ATT, DF_VS_ATT, IM_VS_CD: number}
  * By default options is assembled from prefs or needs to be fully overridden otherwise.
  *
  * Definition format: {center, side, farSide, wings, factor: number}
+ *
  * @param  {PlayerContributionParams} [options]
- * @return {ContributionFactors} position contribution map
+ * @return {ContributionFactors}                position contribution map
  */
 Foxtrick.Predict.contributionFactors = function(options) {
 	/* eslint-disable no-magic-numbers */
-	var opts = options;
-	if (!opts)
-		opts = Foxtrick.modules['PlayerPositionsEvaluations'].getParams();
+	var opts = options || Foxtrick.modules.PlayerPositionsEvaluations.getParams();
 
 	/**
 	 * @typedef {number|[number, number]|[number, number, number]} SkillContributionDef
-	 * @typedef {Object.<PlayerSkillName, SkillContributionDef>} PositionContributionDef
-	 * @typedef {Object.<PlayerPositionCode, PositionContributionDef>} ContributionFactorDef
+	 * @typedef {Record<PlayerSkillName, SkillContributionDef>} PositionContributionDef
+	 * @typedef {Record<PlayerPositionCode, Partial<PositionContributionDef>>} ContributionFactorDef
 	 */
 
 	// all factors taken from https://docs.google.com/spreadsheets/d/1bNwtBdOxbY8pdY7uAx0boqHwRtJgj7tNpcFtDsP9Wq8/edit#gid=0
@@ -319,21 +319,18 @@ Foxtrick.Predict.contributionFactors = function(options) {
 	 * @return {SkillContributionOptional}
 	 */
 	var getSkillData = function(position, skill) {
-		/** @type {PositionContributionDef} */
 		let pos = factors[position];
 
 		if (!(skill in pos))
 			return 0;
 
-		/** @type {SkillContributionDef} */
 		let contr = pos[skill];
 		let isDef = skill === 'defending' || skill === 'keeper';
 
 		let factor = 0, center = 0, side = 0, farSide = 0, wings = 0;
 		if (Array.isArray(contr)) {
-			center = contr[0];
-			side = contr[1];
-			farSide = contr[2] || 0;
+			[center, side, farSide] = contr;
+			farSide = farSide || 0;
 
 			side *= isDef ? opts.WBD_VS_CD : opts.WO_VS_FW;
 			farSide *= isDef ? opts.WBD_VS_CD : opts.WO_VS_FW;
@@ -356,25 +353,23 @@ Foxtrick.Predict.contributionFactors = function(options) {
 		/* eslint-disable no-magic-numbers */
 	};
 
-	/** @type {ContributionFactors} */
+	/** @type {PartialContributionFactors} */
 	var ret = {};
 
 	for (let pos in factors) {
-		// eslint-disable-next-line no-extra-parens
 		let code = /** @type {PlayerPositionCode} */ (pos);
 		ret[code] = {};
 
-		/** @type {PositionContributionDef} */
+		/** @type {Partial<PositionContributionDef>} */
 		let skillDef = factors[code];
 
 		for (let s in skillDef) {
-			// eslint-disable-next-line no-extra-parens
 			let skill = /** @type {PlayerSkillName} */ (s);
 			ret[code][skill] = getSkillData(code, skill);
 		}
 	}
 
-	return ret;
+	return /** @type {ContributionFactors} */ (ret);
 };
 
 /**
@@ -386,24 +381,24 @@ Foxtrick.Predict.contributionFactors = function(options) {
  * By default options is assembled from prefs or needs to be fully overridden otherwise.
  *
  * Returns effective skill map.
+ *
  * @author Greblys, LA-MJ
- * @param  {PlayerSkills}          skills   Object.<string, number>  skill map
- * @param  {PlayerProps}            attrs    Object.<string, ?>       attribute map
- * @param  {PlayerContributionOpts} options  Object.<string, Boolean> options map
- * @return {PlayerSkills}                                             effective skill map
+ * @param  {PlayerSkills}           skills    skill map
+ * @param  {PlayerProps}            attrs     attribute map
+ * @param  {PlayerContributionOpts} [options] options map
+ * @return {PlayerSkills}                                   effective skill map
  */
 // eslint-disable-next-line complexity
 Foxtrick.Predict.effectiveSkills = function(skills, attrs, options) {
-	let opts = options || Foxtrick.modules['PlayerPositionsEvaluations'].getPrefs();
+	let opts = options || Foxtrick.modules.PlayerPositionsEvaluations.getPrefs();
 
-	var ret = {};
-	Foxtrick.mergeAll(ret, skills);
+	var ret = Object.assign({}, skills);
 
 	// Source [post=16376110.4]
 	var bonus, skill;
 	if (opts.experience && attrs.experience) { // don't do log 0
-		bonus = Math.log(attrs.experience) / Math.log(10) * 4.0 / 3.0;
-		for (skill in ret)
+		bonus = Math.log10(attrs.experience) * 4.0 / 3.0;
+		for (let skill in ret)
 			ret[skill] += bonus;
 	}
 
@@ -424,7 +419,7 @@ Foxtrick.Predict.effectiveSkills = function(skills, attrs, options) {
 
 	/**
 	 * Source [post=16376110.4]
-	 * Probably we will never know if the form affect needs to be calculated before or after
+	 * Probably we will never know if the form effect needs to be calculated before or after
 	 * other bonuses' addition to the main skills.
 	 */
 	if (opts.form) {

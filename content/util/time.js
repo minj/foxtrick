@@ -163,7 +163,7 @@ Foxtrick.util.time.HTToGregorian = function(htDate, weekdayOffset = 0, useLocal 
  * @param  {boolean} [dateOnly]   {?boolean}
  * @return {DateInfo}             {day, month, year, hour, minute: number}
  */
-Foxtrick.util.time.parse = function(text, dateFormat, dateOnly) {
+Foxtrick.util.time.parse = function(text, dateFormat, dateOnly = false) {
 	const RE_SHORT_GROUP_CT = 3;
 	const RE_LONG_GROUP_CT = 5;
 
@@ -209,10 +209,8 @@ Foxtrick.util.time.parse = function(text, dateFormat, dateOnly) {
 	let hour = 0;
 	let minute = 0;
 
-	if (matchNums.length == RE_LONG_GROUP_CT) {
-		// eslint-disable-next-line no-magic-numbers
+	if (matchNums.length == RE_LONG_GROUP_CT)
 		[hour, minute] = matchNums.slice(RE_SHORT_GROUP_CT);
-	}
 
 	return { day, month, year, hour, minute };
 };
@@ -226,7 +224,7 @@ Foxtrick.util.time.parse = function(text, dateFormat, dateOnly) {
  * @param  {boolean} [dateOnly]   {?boolean}
  * @return {Date}                 {?Date}
  */
-Foxtrick.util.time.getDateFromText = function(text, dateFormat, dateOnly) {
+Foxtrick.util.time.getDateFromText = function(text, dateFormat, dateOnly = false) {
 	let d = this.parse(text, dateFormat, dateOnly);
 	if (!d)
 		return null;

@@ -23,7 +23,7 @@ Foxtrick.util.api = {
 	requestTokenUrl: 'https://chpp.hattrick.org/oauth/request_token.ashx',
 	authorizeUrl: 'https://chpp.hattrick.org/oauth/authorize.aspx',
 	accessTokenUrl: 'https://chpp.hattrick.org/oauth/access_token.ashx',
-	resourceUrl: 'http://chpp.hattrick.org/chppxml.ashx',
+	resourceUrl: 'https://chpp.hattrick.org/chppxml.ashx',
 
 	/**
 	 * map of requested and unprocessed urls { serialized params: [] }
@@ -76,7 +76,7 @@ Foxtrick.util.api = {
 			div.textContent = text ? text : Foxtrick.L10n.getString('oauth.success');
 		};
 
-		Foxtrick.stopListenToChange(doc);
+		Foxtrick.stopObserver(doc);
 
 		var div = doc.createElement('div');
 		var accessor = {
@@ -104,7 +104,7 @@ Foxtrick.util.api = {
 		link.textContent = Foxtrick.L10n.getString('oauth.authorize');
 
 		Foxtrick.onClick(link, () => {
-			Foxtrick.stopListenToChange(doc);
+			Foxtrick.stopObserver(doc);
 
 			showNotice(div, link);
 
@@ -113,7 +113,7 @@ Foxtrick.util.api = {
 			linkPar.appendChild(Foxtrick.util.note.createLoading(doc, null, true));
 			Foxtrick.log('Requesting token at:', Foxtrick.util.api.stripToken(rTokenUrl));
 			Foxtrick.util.load.fetch(rTokenUrl, function(text, status) {
-				Foxtrick.stopListenToChange(doc);
+				Foxtrick.stopObserver(doc);
 				linkPar.textContent = ''; // clear linkPar first
 				if (status != HTTP_OK) {
 					// failed to fetch link
@@ -183,15 +183,15 @@ Foxtrick.util.api = {
 				inputPar.appendChild(button);
 
 				// disabled to prevent auth-reset on dynamic pages
-				// Foxtrick.startListenToChange(doc);
+				// Foxtrick.startObserver(doc);
 			}); // get authorize URL with Foxtrick.util.load.fetch()
-			Foxtrick.startListenToChange(doc);
+			Foxtrick.startObserver(doc);
 		}); // initial authorize link event listener
 
 		div.appendChild(link);
 
 		Foxtrick.util.note.add(doc, div, 'ft-api-proxy-auth', { closable: false });
-		Foxtrick.startListenToChange(doc);
+		Foxtrick.startObserver(doc);
 	},
 
 
@@ -251,7 +251,6 @@ Foxtrick.util.api = {
 	 * @return {CHPPXML}
 	 */
 	addHelpers: function(xmlDoc) {
-		// eslint-disable-next-line no-extra-parens
 		let xml = /** @type {CHPPXML} */ (xmlDoc);
 		if (!xml || typeof xml !== 'object')
 			return xml;
@@ -662,10 +661,13 @@ Foxtrick.util.api = {
 		if (typeof text == 'string') {
 			try {
 				let xml = Foxtrick.parseXML(text);
-				if (xml == null)
+				if (xml == null) {
 					errorText = Foxtrick.L10n.getString('exception.error').replace(/%s/, '-1');
-				else
+				}
+				else {
 					errorText = xml.getElementsByTagName('h2')[0].textContent;
+					errorText += xml.getElementsByTagName('h3')[0].textContent;
+				}
 
 			}
 			catch (ee) {

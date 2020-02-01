@@ -186,7 +186,7 @@ Foxtrick.modules['MatchOrderInterface'] = {
 						return;
 
 					let sub = node.getElementsByClassName('remove')[0];
-					let cloned = sub.cloneNode(true);
+					let cloned = Foxtrick.cloneElement(sub, true);
 					cloned.textContent = text;
 					Foxtrick.removeClass(cloned, 'remove');
 					Foxtrick.addClass(cloned, className);
@@ -456,7 +456,7 @@ Foxtrick.modules['MatchOrderInterface'] = {
 				var id = player.id.match(/\d+/)[0];
 				data['p' + pos + 'Id'] = id;
 
-				var name = player.querySelector('.name').cloneNode(true);
+				var name = Foxtrick.cloneElement(player.querySelector('.name'), true);
 				var nrSpan = name.querySelector('span');
 				if (nrSpan)
 					nrSpan.parentNode.removeChild(nrSpan);

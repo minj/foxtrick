@@ -128,7 +128,6 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 				var getBasicGameType = function(node) {
 					var gametypeParent = node.querySelector('td.keyColumn');
 					var gameTypeImage = gametypeParent.querySelector('.iconMatchtype img');
-					// eslint-disable-next-line no-extra-parens
 					return /** @type {MatchTypeClass} */ (gameTypeImage.className);
 				};
 
@@ -535,7 +534,7 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 
 		// if more matches are required, clone showall link for easier access to top of table
 		if (showAllLink && !module.store.skillup) {
-			var showAllLinkClone = showAllLink.cloneNode(true);
+			var showAllLinkClone = Foxtrick.cloneElement(showAllLink, true);
 			entry.parentNode.insertBefore(showAllLinkClone, entry);
 		}
 

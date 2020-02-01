@@ -41,7 +41,7 @@ Foxtrick.modules.CopyYouth = {
 				const matchId = Foxtrick.util.id.findMatchId(mainBody);
 
 				let playerInfo = mainBody.querySelector('.playerInfo');
-				let clone = playerInfo.cloneNode(true);
+				let clone = Foxtrick.cloneElement(playerInfo, true);
 
 				// eslint-disable-next-line no-magic-numbers
 				for (let _ of Foxtrick.range(4)) { // remove greeting: text, p, text, strong
@@ -242,8 +242,7 @@ Foxtrick.modules.CopyYouth = {
 
 				// auto send the rejected player to HY
 
-				// eslint-disable-next-line no-extra-parens
-				let reportNode = /** @type {HTMLElement} */ (info.cloneNode(true));
+				let reportNode = Foxtrick.cloneElement(info, true);
 				let img = reportNode.querySelector('img');
 				if (img)
 					img.parentNode.removeChild(img);

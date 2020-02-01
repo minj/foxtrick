@@ -472,6 +472,7 @@ Foxtrick.modules['StaffMarker'] = {
 		}
 
 		// modify target element to mark staff types
+		// eslint-disable-next-line complexity
 		var modify = function(target, data, id, alias) {
 			// user-defined style in custom marker
 			if (typeof gCustomMarker[id] !== 'undefined')
@@ -508,7 +509,7 @@ Foxtrick.modules['StaffMarker'] = {
 				if (!gEnabled[type] || !data[type][id])
 					continue;
 
-				var icon = img.cloneNode(), link, marker;
+				var icon = Foxtrick.cloneElement(img, false), link, marker;
 
 				Foxtrick.addClass(target, 'ft-staff ft-staff-' + type);
 				Foxtrick.addClass(icon, 'ft-staff-icon ft-staff-' + type);

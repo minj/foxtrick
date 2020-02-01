@@ -180,14 +180,13 @@ Foxtrick.modules['MatchLineupFixes'] = {
 				// eslint-disable-next-line no-magic-numbers
 				if (evtType > 300 && evtType < 310) {
 					// weather events
-					var playerLink = evt.getElementsByTagName('a')[0];
+					var playerLink = evt.querySelector('a');
 					if (!playerLink) {
 						// kid from the hood
 						return;
 					}
 
-					// eslint-disable-next-line no-extra-parens
-					playerLink = /** @type {HTMLAnchorElement} */ (playerLink.cloneNode(true));
+					playerLink = Foxtrick.cloneElement(playerLink, true);
 
 					// let's inject a hidden row into
 					// match highlights table (report tab)
@@ -509,7 +508,6 @@ Foxtrick.modules['MatchLineupFixes'] = {
 						};
 
 						for (let sub of subGroup) {
-							// eslint-disable-next-line no-extra-parens
 							let xml = /** @type {CHPPXML} */ (sub.xml.ownerDocument);
 
 							let sbjIdEl = xml.node('SubjectPlayerID', sub.xml);
@@ -625,7 +623,6 @@ Foxtrick.modules['MatchLineupFixes'] = {
 							rewindRatings(ratingsData, sub.idx, goodIdx);
 
 							// get the relevant players and apply sub
-							// eslint-disable-next-line no-extra-parens
 							var xml = /** @type {CHPPXML} */ (sub.xml.ownerDocument);
 							let sbjId = xml.num('SubjectPlayerID', sub.xml);
 							let objId = xml.num('ObjectPlayerID', sub.xml);
@@ -735,7 +732,7 @@ Foxtrick.modules['MatchLineupFixes'] = {
 					// add matched player link
 					var link = links[name];
 					if (link)
-						nodes.push(link.cloneNode(true));
+						nodes.push(Foxtrick.cloneElement(link, true));
 					else
 						Foxtrick.error('Incorrectly escaped name in regex: ' + name);
 

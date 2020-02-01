@@ -6,7 +6,7 @@
 
 'use strict';
 
-Foxtrick.modules['PlayerPositionsEvaluations'] = {
+Foxtrick.modules.PlayerPositionsEvaluations = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES: ['playerDetails', 'transferSearchResult', 'players', 'ntPlayers'],
 	CSS: Foxtrick.InternalPath + 'resources/css/player-positions-evaluations.css',
@@ -32,6 +32,10 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 		MF_VS_ATT: 3,
 		DF_VS_ATT: 1.1,
 	},
+
+	/**
+	 * @return {PlayerContributionOpts}
+	 */
 	getPrefs: function() {
 		var prefs = {};
 		for (var pref in this.prefMap) {
@@ -55,6 +59,10 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 			Foxtrick.Prefs.setModuleEnableState(mName + '.' + this.prefMap[pref], prefs[pref]);
 		}
 	},
+
+	/**
+	 * @return {PlayerContributionParams}
+	 */
 	getParams: function() {
 		var params = {};
 		for (var param in this.paramMap) {
@@ -394,13 +402,14 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 			Foxtrick.onClick(btnReset, function() {
 				var doc = this.ownerDocument;
 
-				Foxtrick.mergeAll(opts, presetPrefs);
-				for (var pref in opts) {
-					doc.getElementById('ft-ppe-' + pref).checked = opts[pref];
+				let o = Object.assign(opts, presetPrefs);
+				for (var pref in o) {
+					doc.getElementById('ft-ppe-' + pref).checked = o[pref];
 				}
-				Foxtrick.mergeAll(params, presetParams);
-				for (var param in params) {
-					doc.getElementById('ft-ppe-' + param).value = params[param];
+
+				let p = Object.assign(params, presetParams);
+				for (var param in p) {
+					doc.getElementById('ft-ppe-' + param).value = p[param];
 				}
 				updateSkills(doc);
 			});
@@ -593,11 +602,9 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 		};
 
 		var presetPrefs = module.getPrefs();
-		var opts = {};
-		Foxtrick.mergeAll(opts, presetPrefs);
+		var opts = Object.assign({}, presetPrefs);
 		var presetParams = module.getParams();
-		var params = {};
-		Foxtrick.mergeAll(params, presetParams);
+		var params = Object.assign({}, presetParams);
 		var factors = Foxtrick.Predict.contributionFactors(params);
 
 		var strMap = {

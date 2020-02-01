@@ -112,8 +112,7 @@ Foxtrick.cookies = (function() {
 		const cookie = { url, domain, name };
 
 		if (spec.isJSON) {
-			let old = oldVal || {};
-			Foxtrick.mergeAll(old, val);
+			let old = Object.assign(oldVal || {}, val);
 			cookie.value = stringifyVal(old, spec);
 		}
 		else {

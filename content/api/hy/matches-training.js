@@ -36,8 +36,7 @@ if (!Foxtrick.api.hy)
 if (!Foxtrick.api.hy.URL)
 	Foxtrick.api.hy.URL = {};
 
-Foxtrick.api.hy.URL.matchesTraining = 'https://www.hattrick-youthclub.org' +
-	'/_data_provider/foxtrick/matchesTraining';
+Foxtrick.api.hy.URL.matchesTraining = '/_data_provider/foxtrick/matchesTraining';
 
 /**
  * Tries to post the match report to HY

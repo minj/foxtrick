@@ -20,8 +20,8 @@ if (!Foxtrick.api.pastebin)
  * @param {string}   name       Name of the paste
  * @param {string}   text       Text to be pasted
  * @param {string}   [type]     Paste type (optional), defaults to 'public'.
- * @param {Function} [failure]  function to execute (optional)
- * @param {Function} [finalize] function to execute (optional)
+ * @param {function} [failure]  function to execute (optional)
+ * @param {function} [finalize] function to execute (optional)
  */
 Foxtrick.api.pastebin.paste = function(callback, name, text, type, failure, finalize) {
 	var params = {

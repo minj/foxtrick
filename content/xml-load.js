@@ -8,6 +8,7 @@
 
 /* eslint-disable */
 if (!this.Foxtrick)
+	// @ts-ignore
 	var Foxtrick = {};
 /* eslint-enable */
 
@@ -15,10 +16,16 @@ Foxtrick.XMLData = {
 	MODULE_NAME: 'XMLData',
 	PAGES: ['all'],
 
+	/** @type {Record<number, LeagueDefinition>} */
 	League: {},
+
+	/** @type {Record<number, number>} */
 	countryToLeague: {},
 
-	init: function() {
+	/**
+	 * @param {boolean} _ reInit
+	 */
+	init: function(_) {
 		var module = this;
 
 		var currency = Foxtrick.util.load.sync(Foxtrick.InternalPath + 'data/htcurrency.json');
@@ -32,7 +39,7 @@ Foxtrick.XMLData = {
 		Foxtrick.forEach(function(league) {
 			module.League[league.LeagueID] = league;
 			if (league.Country.CountryID)
-				module.countryToLeague[league.Country.CountryID] = league.LeagueID;
+				module.countryToLeague[league.Country.CountryID] = parseInt(league.LeagueID, 10);
 		}, leagueList);
 	},
 
@@ -43,12 +50,10 @@ Foxtrick.XMLData = {
 	 * @return {number}
 	 */
 	getLeagueIdByCountryId: function(id) {
-		if (this.countryToLeague[id]) {
+		if (this.countryToLeague[id])
 			return this.countryToLeague[id];
-		}
-		else {
-			return 0;
-		}
+
+		return 0;
 	},
 
 	/**
@@ -59,12 +64,10 @@ Foxtrick.XMLData = {
 	 */
 	getCountryIdByLeagueId: function(id) {
 		var league = this.League[id];
-		if (league) {
+		if (league)
 			return league.Country.CountryID || 0;
-		}
-		else {
-			return 0;
-		}
+
+		return 0;
 	},
 
 	/**
@@ -76,7 +79,7 @@ Foxtrick.XMLData = {
 	 * @return {string}
 	 */
 	getNTNameByLeagueId: function(id) {
-		// jscs:disable disallowQuotedKeysInObjects
+		/* eslint-disable quote-props */
 		var NT_BY_COUNTRY = {
 			// 'Al Maghrib': 'Al Maghrib ', // oh yes, there's a space here!
 			'Côte d’Ivoire': 'Côte d\'Ivoire',
@@ -86,9 +89,13 @@ Foxtrick.XMLData = {
 			'Shqipëria': 'Shqiperia',
 			'Sénégal': 'Senegal',
 		};
-		// jscs:enable disallowQuotedKeysInObjects
+		/* eslint-enable quote-props */
 
-		var country = Foxtrick.L10n.getCountryNameNative(id);
+		let country = Foxtrick.L10n.getCountryNameNative(id);
 		return country in NT_BY_COUNTRY ? NT_BY_COUNTRY[country] : country;
 	},
 };
+
+/**
+ * @typedef {object} LeagueDefinition
+ */

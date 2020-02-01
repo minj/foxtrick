@@ -54,8 +54,11 @@ Foxtrick.api.hy.isUserId = function(userId) {
  *
  * Tries to fetch the user ID from HY.
  *
+ * Will never reject
+ *
  * userId is -1 if not a HY user
  * and null if request fails
+ *
  * @param  {number}   [teamId]   senior team ID to fetch data for
  * @return {Promise<number>}
  */
@@ -63,7 +66,7 @@ Foxtrick.api.hy._fetchUserId = async (teamId) => {
 	let id = null;
 	try {
 		let resp = await Foxtrick.api.hy._fetchGeneric('userId', null, teamId);
-		id = parseInt(JSON.parse(resp), 10);
+		id = parseInt(resp, 10);
 	}
 	catch (rej) {}
 	return id;
@@ -73,6 +76,8 @@ Foxtrick.api.hy._fetchUserId = async (teamId) => {
  * A localStore wrapper for _fetchUserId
  *
  * Gets HY user ID
+ *
+ * Will never reject
  *
  * userId is -1 if not a HY user
  * and null if request fails
@@ -86,7 +91,9 @@ Foxtrick.api.hy.getUserId = function(teamId) {
 };
 
 /**
- * Asynv test whether the team's manager is HY user
+ * Async test whether the team's manager is HY user
+ *
+ * Will never reject
  *
  * @param  {number}   [teamId]   senior team ID to check
  * @return {Promise<boolean>}

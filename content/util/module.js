@@ -14,13 +14,14 @@ if (!this.Foxtrick)
 
 /* eslint-disable max-len */
 /**
+ * TODO
  * @typedef {'informationAggregation'|'shortcutsAndTweaks'|'presentation'|'matches'|'forum'|'links'|'alert'|'accessibility'} ModuleCategory
  */
 /* eslint-enable max-len */
 
 /**
  * Module categories list
- * @type {Object.<string, ModuleCategory>}
+ * @type {Record<string, ModuleCategory>}
  */
 Foxtrick.moduleCategories = {
 	INFORMATION_AGGREGATION: 'informationAggregation',
@@ -33,8 +34,10 @@ Foxtrick.moduleCategories = {
 	ACCESSIBILITY: 'accessibility',
 };
 
-if (!Foxtrick.modules)
+if (!Foxtrick.modules) {
+	// TODO /** @type {Record<string, FTModule>} */
 	Foxtrick.modules = {};
+}
 
 if (!Foxtrick.util)
 	Foxtrick.util = {};
@@ -52,6 +55,7 @@ Foxtrick.util.modules.enableEssential = function() {
 	];
 
 	if (Foxtrick.platform == 'Android') {
+		// FIXME
 		for (let andrModule of ANDROID_ESSENTIALS)
 			Foxtrick.Prefs.setModuleEnableState(andrModule, true);
 	}
@@ -73,7 +77,6 @@ Foxtrick.util.modules.getActive = function(doc) {
 	if (doc) {
 		pages = {};
 
-		// eslint-disable-next-line no-extra-parens
 		for (let page of /** @type {PAGE[]} */ (Object.keys(Foxtrick.htPages))) {
 			if (Foxtrick.isPage(doc, page))
 				pages[page] = true;
@@ -81,15 +84,15 @@ Foxtrick.util.modules.getActive = function(doc) {
 	}
 
 	let modules = [];
-	for (let m of Object.values(Foxtrick.modules)) {
+	for (let mod of Object.values(Foxtrick.modules)) {
+		let m = /** @type {FTAppModuleMixin} */ (mod);
+
 		if (!Foxtrick.Prefs.isModuleEnabled(m))
 			continue;
 
 		for (let mPage of m.PAGES) {
 			if (typeof Foxtrick.htPages[mPage] === 'undefined') {
-				let args = [m.MODULE_NAME, mPage];
-				let msg = Foxtrick.format('{} wants to run on an unknown page {}', args);
-
+				let msg = `${m.MODULE_NAME} wants to run on an unknown page ${mPage}`;
 				Foxtrick.error(msg);
 
 				continue;
@@ -110,7 +113,7 @@ Foxtrick.util.modules.getActive = function(doc) {
 		}, mainBodyExcludes);
 
 		if (noMainBody)
-			modules = modules.filter(m => m.OUTSIDE_MAINBODY);
+			modules = modules.filter(m => !!m.OUTSIDE_MAINBODY);
 	}
 
 	return modules;
@@ -118,10 +121,11 @@ Foxtrick.util.modules.getActive = function(doc) {
 
 /**
  * @typedef FTBackgroundModuleMixin
+ * @prop {string} [MODULE_NAME] set automatically
  * @prop {(reInit?: boolean)=>void} [init]
- * @prop {(document: document)=>void} [onLoad]
- * @prop {(document: document)=>void} [onTabChange]
- * @prop {(document: document)=>void} [update]
+ * @prop {(doc: document)=>void} [onLoad]
+ * @prop {(doc: document)=>void} [onTabChange]
+ * @prop {(doc: document)=>void} [update]
  */
 
 /**
@@ -173,7 +177,8 @@ Foxtrick.util.modules.getActive = function(doc) {
  */
 
 /**
- * @typedef {FTAppModuleMixin & FTBackgroundModuleMixin} FTModule
+ // eslint-disable-next-line max-len
+ * @typedef {FTCoreModuleMixin & FTAppModuleMixin & FTBackgroundModuleMixin & FTLinkModuleMixin} FTModule
  */
 
 /**

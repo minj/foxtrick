@@ -43,7 +43,6 @@
 
 'use strict';
 
-
 /* eslint-disable */
 if (!this.Foxtrick)
 	// @ts-ignore
@@ -57,8 +56,7 @@ if (!Foxtrick.api.hy)
 if (!Foxtrick.api.hy.URL)
 	Foxtrick.api.hy.URL = {};
 
-Foxtrick.api.hy.URL.playersYouthSkills = 'https://www.hattrick-youthclub.org' +
-	'/_data_provider/foxtrick/playersYouthSkills';
+Foxtrick.api.hy.URL.playersYouthSkills = '/_data_provider/foxtrick/playersYouthSkills';
 
 // this maps HY skill-id to skill
 Foxtrick.api.hy.skillMap = {
@@ -74,9 +72,8 @@ Foxtrick.api.hy.skillMap = {
 
 /**
  * Low-level function to access HY's API. Should not be used directly
- * Tries to fetch the youth skills from HY and executes callback(players);
- * failure() is called if the request fails
- * finalize() is always called
+ * Tries to fetch the youth skills from HY and returns a Promise for players
+ *
  * @param  {number}  [teamId] senior team ID to fetch data for
  * @return {Promise<HYPlayers>}
  */
@@ -109,6 +106,7 @@ Foxtrick.api.hy.getYouthSkills = function(teamId) {
  * @prop {number} [cap_minimal]
  * @prop {number} [cap_maximal]
  */
+
 /**
  * @typedef {keyof Foxtrick.api.hy.skillMap} HYSkillIdx
  * @typedef {Record<HYSkillIdx, HYSkill>} HYSkills
@@ -118,4 +116,4 @@ Foxtrick.api.hy.getYouthSkills = function(teamId) {
  * @prop {number} speciality HY Typo
  * @prop {HYSkills} skills
  */
-/** @typedef {Object<number, HYPlayer>} HYPlayers */
+/** @typedef {Record<number, HYPlayer>} HYPlayers */

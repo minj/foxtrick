@@ -20,10 +20,8 @@ Foxtrick.entry = {};
  * @param  {document} doc HTML document to run on
  */
 Foxtrick.entry.docLoad = function(doc) {
-	if (doc.nodeName != '#document' || !doc.body.childNodes.length) {
-		// fennec raises annoying DOMContentLoaded events for blank pages
+	if (doc.nodeName != '#document' || !doc.body.childNodes.length)
 		return;
-	}
 
 	// don't execute if disabled
 	if ((Foxtrick.arch == 'Sandboxed' || Foxtrick.platform === 'Android') && !Foxtrick.isHt(doc) ||
@@ -45,7 +43,7 @@ Foxtrick.entry.docLoad = function(doc) {
 	if (!content)
 		return;
 
-	// init html debug (somehow needed for fennec atm)
+	// init html debug just in case
 	Foxtrick.log.flush(doc);
 
 	// run Foxtrick modules
@@ -54,35 +52,37 @@ Foxtrick.entry.docLoad = function(doc) {
 	let blockChange = Foxtrick.entry.run(doc);
 
 	let diff = new Date().getTime() - begin;
+
+	// eslint-disable-next-line no-restricted-properties
 	Foxtrick.log('page run time:', diff, 'ms |', doc.location.pathname, doc.location.search);
 
 	Foxtrick.log.flush(doc);
 
 	if (!blockChange) {
 		// listen to page content changes
-		Foxtrick.startListenToChange(doc);
+		Foxtrick.startObserver(doc);
 	}
 };
 
 /**
  * invoked for each new instance of a content script
  *
- * for chrome/safari after each page load
+ * for sandboxed after each page load
  *
- * for fennec on new tab opened
- *
- * @param  {object} data copy of the resources passed from the background script
+ * @param  {FT.ResourceDict} data copy of the resources passed from the background script
  */
 Foxtrick.entry.contentScriptInit = function(data) {
 	// Foxtrick.log('Foxtrick.entry.contentScriptInit');
 
 	// add MODULE_NAME to modules
+	/** @type {FTAppModuleMixin[]} */
 	for (let mName in Foxtrick.modules)
 		Foxtrick.modules[mName].MODULE_NAME = mName;
 
 	if (Foxtrick.platform == 'Android') {
-		// fennec can access them from context, but they still need to get initialized
+		// fennec can access them from content, but they still need to get initialized
 		// xmldata has nothing to init only fetch
+		/** @type {FTBackgroundModuleMixin[]} */
 		let coreModules = [Foxtrick.Prefs, Foxtrick.L10n];
 		for (let cModule of coreModules) {
 			if (typeof cModule.init === 'function')
@@ -91,13 +91,13 @@ Foxtrick.entry.contentScriptInit = function(data) {
 	}
 	else {
 		/* eslint-disable camelcase */
-		Foxtrick.Prefs._prefs_chrome_user = data._prefs_chrome_user;
-		Foxtrick.Prefs._prefs_chrome_default = data._prefs_chrome_default;
-		Foxtrick.L10n.properties_default = data.properties_default;
+		Foxtrick.Prefs.initContent(data.prefsChromeDefault, data.prefsChromeUser);
+
+		Foxtrick.L10n.propertiesDefault = data.propertiesDefault;
 		Foxtrick.L10n.properties = data.properties;
-		Foxtrick.L10n.screenshots_default = data.screenshots_default;
+		Foxtrick.L10n.screenshotsDefault = data.screenshotsDefault;
 		Foxtrick.L10n.screenshots = data.screenshots;
-		Foxtrick.L10n.plForm_default = data.plForm_default;
+		Foxtrick.L10n.plFormDefault = data.plFormDefault;
 		Foxtrick.L10n.plForm = data.plForm;
 		/* eslint-enable camelcase */
 	}
@@ -115,7 +115,8 @@ Foxtrick.entry.contentScriptInit = function(data) {
 
 /**
  * called on browser load and after preferences changes
- * (background side for sandboxed, fennec)
+ *
+ * (background side for sandboxed)
  *
  * @param  {boolean} reInit
  */
@@ -126,6 +127,7 @@ Foxtrick.entry.init = function(reInit) {
 	for (let mName in Foxtrick.modules)
 		Foxtrick.modules[mName].MODULE_NAME = mName;
 
+	/** @type {FTBackgroundModuleMixin[]} */
 	let coreModules = [Foxtrick.Prefs, Foxtrick.L10n, Foxtrick.XMLData];
 	for (let core of coreModules) {
 		if (typeof core.init === 'function')
@@ -213,7 +215,7 @@ Foxtrick.entry.run = function(doc) {
 			promise.then((doc) => {
 				Foxtrick.entry.niceRun(delayed, m => getModuleRunner(doc, m));
 				Foxtrick.entry.change(doc, []);
-				Foxtrick.startListenToChange(doc);
+				Foxtrick.startObserver(doc);
 			});
 			return true; // block change
 		}
@@ -253,13 +255,19 @@ Foxtrick.entry.change = function(doc, changes) {
 			'ft-popup-span',
 		];
 
+		/**
+		 * @param  {Element} node
+		 * @return {boolean}
+		 */
 		let isIgnored = function(node) {
-			return Foxtrick.any(function(cls) {
-				return Foxtrick.hasClass(node, cls);
-			}, ignoredClasses);
+			return Foxtrick.any(cls => Foxtrick.hasClass(node, cls), ignoredClasses);
 		};
 
-		if (Foxtrick.any(isIgnored, changes))
+		// @ts-ignore
+		let filtered = changes.filter(c => c instanceof doc.defaultView.Element);
+		let els = /** @type {Element[]} */ (filtered);
+
+		if (Foxtrick.any(isIgnored, els))
 			return;
 
 		Foxtrick.log('call modules change functions');

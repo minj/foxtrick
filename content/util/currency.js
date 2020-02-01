@@ -181,7 +181,6 @@ Foxtrick.util.currency.displaySelector = function(doc, info) {
 		// eslint-disable-next-line no-invalid-this
 		let doc = this.ownerDocument;
 
-		// eslint-disable-next-line no-extra-parens
 		let select = /** @type {HTMLSelectElement} */ (doc.getElementById(selectId));
 		Foxtrick.Prefs.setString('Currency.Code.' + ownTeamId, select.value);
 

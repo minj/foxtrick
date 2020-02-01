@@ -254,7 +254,7 @@ Foxtrick.modules['AttVsDef'] = {
 			bodydiv.appendChild(bardiv);
 			bodydiv.appendChild(this._createTextBox(doc, 100 - percentArray[i]));
 
-			bodydiv.appendChild(strangediv.cloneNode(true));
+			bodydiv.appendChild(Foxtrick.cloneElement(strangediv, true));
 		}
 	},
 

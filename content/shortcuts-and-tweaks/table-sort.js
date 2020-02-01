@@ -121,7 +121,7 @@ Foxtrick.modules['TableSort'] = {
 				// rows to be sorted
 				var rows = [];
 				for (var i = sort_start + 1; i < sort_end; ++i) {
-					rows.push(table.rows[i].cloneNode(true));
+					rows.push(Foxtrick.cloneElement(table.rows[i], true));
 				}
 
 				// eslint-disable-next-line complexity

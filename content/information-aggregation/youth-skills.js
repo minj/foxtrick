@@ -423,8 +423,7 @@ Foxtrick.modules['YouthSkills'] = {
 				}
 				else {
 					replaceBars(sEntry);
-					// eslint-disable-next-line no-extra-parens
-					ftBars = /** @type {HTMLDivElement} */ (sEntry.firstChild.firstChild);
+					ftBars = sEntry.firstElementChild.firstElementChild;
 					if (!ftBars || !Foxtrick.hasClass(ftBars, 'ft-youthSkillBars'))
 						return;
 

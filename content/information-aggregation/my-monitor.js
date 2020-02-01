@@ -551,7 +551,10 @@ Foxtrick.modules['MyMonitor'] = {
 			addBulkLiveSelect(monitor);
 		};
 
-		// show my monitor shortcuts in sidebar
+		/**
+		 * show my monitor shortcuts in sidebar
+		 * @param {document} doc
+		 */
 		// eslint-disable-next-line complexity
 		var showSidebar = function(doc) {
 			var type;
@@ -631,8 +634,8 @@ Foxtrick.modules['MyMonitor'] = {
 					if (!select.value)
 						return;
 
-					var newURL = new URL(select.value, doc.location.href);
-					doc.location.assign(newURL);
+					var newURL = new URL(select.value, doc.location.origin);
+					doc.location.assign(newURL.href);
 				});
 
 				// use an option as faux-header

@@ -1,14 +1,16 @@
-'use strict';
 /**
  * linksyouthoverview.js
  * Foxtrick add links to youth overview pages
  * @author convinced, LA-MJ
  */
 
+'use strict';
+
 Foxtrick.modules['LinksYouthOverview'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
 	PAGES: ['youthOverview'],
 	LINK_TYPES: 'youthlink',
+
 	/**
 	 * return HTML for FT prefs
 	 * @param  {document}         doc

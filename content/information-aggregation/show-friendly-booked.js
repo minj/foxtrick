@@ -18,12 +18,12 @@ Foxtrick.modules['ShowFriendlyBooked'] = {
 
 		var show = function() {
 			let leagueTable = Foxtrick.Pages.Series.getTable(doc);
-			let rowCol = leagueTable.getElementsByTagName('tr');
+			let rowCol = leagueTable.querySelectorAll('tr');
 
 			// remove header row and ownerless teams
 			let rows = Foxtrick.filter(function(n) {
 				let isHeader = () => n.querySelector('th');
-				let inCup = () => n.querySelector('td:nth-of-type(4) img');
+				let inCup = () => n.querySelector('td:nth-of-type(5) img');
 				let isOwnerless = () => n.querySelector('shy');
 
 				return !isHeader() && !inCup() && !isOwnerless();
@@ -31,11 +31,11 @@ Foxtrick.modules['ShowFriendlyBooked'] = {
 
 			// see whether friendly booked
 			Foxtrick.forEach(function(n) {
-				let teamCell = n.getElementsByTagName('td')[2];
-				let teamLink = teamCell.getElementsByTagName('a')[0].href;
+				let teamCell = n.cells[3];
+				let teamLink = teamCell.querySelector('a').href;
 				let teamId = Foxtrick.util.id.getTeamIdFromUrl(teamLink);
 
-				let destCell = n.getElementsByTagName('td')[3];
+				let destCell = n.cells[4];
 				destCell.textContent = Foxtrick.L10n.getString('status.loading.abbr');
 				destCell.title = Foxtrick.L10n.getString('status.loading');
 
@@ -81,9 +81,16 @@ Foxtrick.modules['ShowFriendlyBooked'] = {
 			link.id = 'ft-show-friendlies';
 			link.className = 'float_left ft-link';
 			link.textContent = Foxtrick.L10n.getString('ShowFriendlyBooked.ShowFriendlies');
+
 			Foxtrick.onClick(link, function() {
-				link.parentNode.removeChild(link);
-				show();
+				// eslint-disable-next-line no-invalid-this
+				this.remove();
+				try {
+					show();
+				}
+				catch (e) {
+					Foxtrick.catch(module)(e);
+				}
 			});
 			if (Foxtrick.util.layout.isSupporter(doc)) {
 				let liveTable = Foxtrick.Pages.Series.getLiveTable(doc);

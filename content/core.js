@@ -38,21 +38,27 @@ Foxtrick.modules.Core = {
 	 */
 	PLAYER_LIST: [],
 
-	// UTC timestamp
+	/**
+	 * UTC timestamp
+	 *
+	 * @type {number}
+	 */
 	HT_TIME: 0,
 
 	/**
 	 * @param {document} doc
 	 */
 	run: function(doc) {
-		this.addBugReportLink(doc);
+		const CORE = this;
 
-		this.monitorWeekChanges(doc);
+		CORE.addBugReportLink(doc);
 
-		let UTC = Foxtrick.util.time.getUTCDate(doc);
+		CORE.monitorWeekChanges(doc);
+
+		const UTC = Foxtrick.util.time.getUTCDate(doc);
 		if (UTC) {
-			this.HT_TIME = UTC.getTime();
-			Foxtrick.Prefs.setString('lastTime', this.HT_TIME);
+			CORE.HT_TIME = UTC.getTime();
+			Foxtrick.Prefs.setString('lastTime', CORE.HT_TIME);
 		}
 
 		if (Foxtrick.isPage(doc, 'matchOrder')) {
@@ -60,14 +66,14 @@ Foxtrick.modules.Core = {
 			Foxtrick.util.inject.jsLink(doc, MOData);
 		}
 
-		this.parseSelfTeamInfo(doc);
+		CORE.parseSelfTeamInfo(doc);
 		if (Foxtrick.isPage(doc, 'allPlayers') || Foxtrick.isPage(doc, 'youthPlayers'))
-			this.parsePlayerList(doc);
+			CORE.parsePlayerList(doc);
 
-		this.updateLastPage(doc);
-		this.showVersion(doc);
-		this.showChangeLog(doc);
-		this.featureHighlight(doc);
+		CORE.updateLastPage(doc);
+		CORE.showVersion(doc);
+		CORE.showChangeLog(doc);
+		CORE.featureHighlight(doc);
 	},
 
 	/**
@@ -151,8 +157,9 @@ Foxtrick.modules.Core = {
 	 * @param {document} doc
 	 */
 	showChangeLog: function(doc) {
+		const CORE = this;
 		try {
-			// show change log if anything but forth number changes
+			// show change log if anything but fourth number changes
 
 			let versionRe = /^\d+\.\d+(\.\d+)?/;
 			let freshInstall = false;
@@ -175,7 +182,7 @@ Foxtrick.modules.Core = {
 				if (Foxtrick.Prefs.getBool('showReleaseNotes'))
 					Foxtrick.Prefs.show('#tab=changes');
 
-				this.showReleaseModal(doc);
+				CORE.showReleaseModal(doc);
 			}
 		}
 		catch (e) {
@@ -185,10 +192,11 @@ Foxtrick.modules.Core = {
 	},
 
 	/**
+	 * show version number on the bottom of the page
+	 *
 	 * @param {document} doc
 	 */
 	showVersion: function(doc) {
-		// show version number on the bottom of the page
 		let bottom = doc.getElementById('bottom');
 		if (!bottom) {
 			// sometimes bottom is not loaded yet. just skip it in those cases
@@ -198,12 +206,15 @@ Foxtrick.modules.Core = {
 
 		let server = bottom.querySelector('.currentServer');
 		let span = doc.createElement('span');
-		span.textContent += ' / Foxtrick ' + Foxtrick.version + ' ' + Foxtrick.branch;
+		span.textContent = ` / Foxtrick ${Foxtrick.version} ${Foxtrick.branch}`;
 		span.id = 'ft_versionInfo';
 		server.appendChild(span);
 	},
 
 	/**
+	 * Inject CSS to highlight all elements
+	 * that were added or modified (i.e. 'featured') by FT
+	 *
 	 * @param {document} doc
 	 */
 	featureHighlight: function(doc) {
@@ -235,10 +246,10 @@ Foxtrick.modules.Core = {
 	 * @param {document} doc
 	 */
 	parseSelfTeamInfo: function(doc) {
-		const CORE = this; // jscs:ignore safeContextKeyword
+		const CORE = this;
 
 		var teamLinks = doc.getElementById('teamLinks');
-		if (teamLinks && teamLinks.getElementsByTagName('a').length > 0) {
+		if (teamLinks && teamLinks.querySelectorAll('a').length > 0) {
 			var teamLink = teamLinks.querySelector('a');
 
 			/**
@@ -251,7 +262,9 @@ Foxtrick.modules.Core = {
 					Foxtrick.log('Short team name found!', n);
 
 					// move away from localStore
-					Foxtrick.localSet('shortTeamName.' + CORE.TEAM.teamId, null);
+					Foxtrick.storage.set('shortTeamName.' + CORE.TEAM.teamId, null)
+						.catch(Foxtrick.catch('CORE.processShortName'));
+
 					Foxtrick.Prefs.setString('shortTeamName.' + CORE.TEAM.teamId, n);
 				}
 				if (n)
@@ -318,7 +331,7 @@ Foxtrick.modules.Core = {
 	 * @param {document} doc
 	 */
 	addBugReportLink: function(doc) {
-		var CORE = this; // jscs:ignore safeContextKeyword
+		var CORE = this;
 
 		var bottom = doc.getElementById('bottom');
 		if (!bottom)
@@ -415,9 +428,7 @@ Foxtrick.modules.Core = {
 
 	/**
 	 * get playerlist in sync only once
-	 * don't use in async context because
-	 * data is overwritten by subsequent reloads
-	 * team might change in FF!
+	 *
 	 * @return {Player[]} playerList
 	 */
 	getPlayerList: function() {

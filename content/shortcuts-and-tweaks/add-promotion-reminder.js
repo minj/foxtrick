@@ -18,7 +18,6 @@ Foxtrick.modules['AddPromotionReminder'] = {
 		let isYouthPlayerDetails = Foxtrick.isPage(doc, 'youthPlayerDetails');
 
 		if (sendDate && isReminders) {
-			// eslint-disable-next-line no-extra-parens
 			let input = /** @type {HTMLInputElement} */ (Foxtrick.getMBElement(doc, 'ddlSendAs'));
 			input.value = '2';
 		}
@@ -48,7 +47,7 @@ Foxtrick.modules['AddPromotionReminder'] = {
 			Foxtrick.makeFeaturedElement(button, this);
 			button.id = 'ft-promotion-button';
 			Foxtrick.onClick(button, function() {
-				var newURL = new URL(reminderlink, doc.location.href);
+				var newURL = new URL(reminderlink, doc.location.origin);
 				doc.location.assign(newURL.href);
 			});
 		}

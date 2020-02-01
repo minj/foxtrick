@@ -8,10 +8,9 @@
 
 'use strict';
 
-/* global indexedDB */
-
 /* eslint-disable */
 if (!this.Foxtrick)
+	// @ts-ignore
 	var Foxtrick = {};
 /* eslint-enable */
 
@@ -31,9 +30,11 @@ if (Foxtrick.context == 'background') {
 			const PREFIX = 'localStore.';
 			const CLEANUP = Foxtrick.catch(PREFIX);
 
+			/** @type {IDBStore} */
 			const STORE = {
 				put: function(key, value, success, failure) {
 
+					/** @type {Promise<string>} */
 					let promise = Promise.resolve().then(() => {
 
 						let k = PREFIX + key;
@@ -74,52 +75,62 @@ if (Foxtrick.context == 'background') {
 
 				},
 
-				iterate: function(cb, options) {
+				iterate: function(callback, options) {
 
+					/**
+					 * @param  {string} key
+					 * @return {function(any):void}
+					 */
 					var makeIterAdapter = function(key) {
 						return function iterAdapter(val) {
-							var cursor = {
+							/** @type {IDBStore.CursorAny} */
+							let cursor = {
 								key: key,
 								source: STORE,
 							};
 
 							if (options.writeAccess) {
-								cursor.update = function(newVal) {
+								let mutCursor = /** @type {IDBStore.Cursor} */ (cursor);
+								mutCursor.update = function(newVal) {
 									return Foxtrick.storage.set(key, newVal).catch(CLEANUP);
 								};
 
-								cursor.delete = function() {
+								mutCursor.delete = function() {
 									return Promise.resolve().then(() => {
 										window.localStorage.removeItem(PREFIX + key);
 									}).catch(CLEANUP);
 								};
 							}
 
-							cb(val, cursor);
+							callback(val, cursor);
 						};
 					};
 
 					options.onError = options.onError || CLEANUP;
 
-					var range = options.keyRange || STORE.makeKeyRange({});
-					var lower = range.lower;
-					var upper = range.upper;
+					let range = options.keyRange || STORE.makeKeyRange({});
+					let lower = range.lower;
+					let upper = range.upper;
 
+					/**
+					 * @param  {string} key
+					 * @return {boolean}
+					 */
 					var keyMatches = function(key) {
-						var lowOK = range.lowerOpen ? key > lower : key >= lower;
-						var upOK = range.upperOpen ? key < upper : key <= upper;
+						let lowOK = range.lowerOpen ? key > lower : key >= lower;
+						let upOK = range.upperOpen ? key < upper : key <= upper;
 						return lowOK && upOK;
 					};
 
 					var promises = [];
 
-					for (var key in window.localStorage) {
+					for (let key in window.localStorage) {
 						key = key.slice(PREFIX.length);
 
 						if (keyMatches(key)) {
 							// get a 'raw' Promise by
 							// overriding error callback with null
-							var promise = this.get(key, makeIterAdapter(key), null);
+							let promise = this.get(key, makeIterAdapter(key), null);
 							promises.push(promise);
 						}
 					}
@@ -134,14 +145,15 @@ if (Foxtrick.context == 'background') {
 					const MAX_CHAR = String.fromCharCode(MAX_CHAR_CODE);
 					const MIN_CHAR = String.fromCharCode(0);
 
+					/** @type {IDBStore.KeyRange} */
 					var ret = {};
 
 					if (opts.only) {
 						ret.lower = opts.only;
 
-						var len = ret.lower.length;
+						let len = ret.lower.length;
 						if (len) {
-							var last = ret.lower.charCodeAt(len - 1);
+							let last = ret.lower.charCodeAt(len - 1);
 							ret.upper = ret.lower.slice(0, len - 1) + String.fromCharCode(last + 1);
 						}
 						else {
@@ -152,8 +164,8 @@ if (Foxtrick.context == 'background') {
 						ret.upperOpen = true;
 					}
 					else {
-						var lower = ret.lower = opts.lower || '';
-						var maxString = Foxtrick.repeat(MAX_CHAR, lower.length + 1);
+						let lower = ret.lower = opts.lower || '';
+						let maxString = Foxtrick.repeat(MAX_CHAR, lower.length + 1);
 						ret.upper = opts.upper || maxString;
 
 						ret.lowerOpen = opts.excludeLower;
@@ -168,10 +180,12 @@ if (Foxtrick.context == 'background') {
 			return STORE;
 		};
 
+		/** @type {Promise<IDBStore>} */
 		const STORE_PROMISE = new Promise(function(fulfill, reject) {
 
 			if (indexedDB !== null) {
 
+				/** @type {IDBStore} */
 				const STORE = new Foxtrick.IDBStore({
 					storeName: 'localStore',
 					storePrefix: 'Foxtrick',
@@ -274,7 +288,7 @@ Foxtrick.storage.set = function(key, value) {
  * value may be any stringify-able object or null if N/A.
  *
  * @param  {string}      key
- * @return {Promise<?*>}     {Promise.<?value>}
+ * @return {Promise<*>}      {Promise.<?value>}
  */
 Foxtrick.storage.get = function(key) {
 
@@ -285,7 +299,7 @@ Foxtrick.storage.get = function(key) {
 		});
 	}
 
-	return Foxtrick.localStore.then(function(store) {
+	return Foxtrick.localStore.then(function(/** @type {IDBStore} */ store) {
 
 		return new Promise(function(resolve, reject) {
 			store.get(key, function onStoreGet(value) {
@@ -349,6 +363,7 @@ Foxtrick.storage.deleteBranch = function(branch) {
 
 			br = branch.toString();
 
+			/** @type {IDBStore.IterateOpts} */
 			var options = {
 				writeAccess: true,
 
@@ -382,7 +397,7 @@ Foxtrick.storage.deleteBranch = function(branch) {
 				return;
 			}
 
-			store.iterate(function onStoreIterate(item, cursor) {
+			store.iterate(function onStoreIterate(_, /** @type {IDBStore.Cursor} */ cursor) {
 				cursor.delete();
 			}, options);
 
@@ -433,3 +448,50 @@ Foxtrick.localGet = function(key, callback) {
 Foxtrick.localDeleteBranch = function(branch) {
 	Foxtrick.storage.deleteBranch(branch).catch(Foxtrick.catch('localDeleteBranch'));
 };
+
+/* eslint-disable max-len */
+/**
+ * @typedef IDBStore
+ * @prop {(key:string, success:(val:any)=>any, failure:((err:any)=>void)|null)=>Promise} get
+ * @prop {(key:string, val:any, success:(key:string)=>any, failure:((err:any)=>void)|null)=>Promise<string>} put
+ * @prop {(callback:IDBStore.IterateCallback, options:IDBStore.IterateOpts)=>void} iterate
+ * @prop {(options:IDBStore.KeyRangeOpts)=>IDBStore.KeyRange} makeKeyRange
+ */
+/* eslint-enable max-len */
+/**
+ * @typedef IDBStore.KeyRangeOpts
+ * @prop {string} [only]
+ * @prop {string} [lower]
+ * @prop {string} [upper]
+ * @prop {boolean} [excludeLower]
+ * @prop {boolean} [excludeUpper]
+ */
+/**
+ * @typedef IDBStore.KeyRange
+ * @prop {string} lower
+ * @prop {string} upper
+ * @prop {boolean} lowerOpen
+ * @prop {boolean} upperOpen
+ */
+/**
+ * @typedef IDBStore.IterateReadOnlyOpts
+ * @prop {(values:any[])=>void} onEnd
+ * @prop {(error:any)=>void} [onError]
+ * @prop {IDBStore.KeyRange} [keyRange]
+ */
+/**
+ * @typedef {IDBStore.IterateReadOnlyOpts & {writeAccess: true}} IDBStore.IterateOpts
+ */
+/**
+ * @typedef IDBStore.CursorReadOnly
+ * @prop {string} key
+ * @prop {IDBStore} source
+ */
+/**
+ * @typedef IDBStore.CursorMutable
+ * @prop {()=>any} [delete]
+ * @prop {(val:any)=>any} [update]
+ */
+/** @typedef {IDBStore.CursorReadOnly & IDBStore.CursorMutable} IDBStore.Cursor */
+/** @typedef {IDBStore.CursorReadOnly | IDBStore.Cursor} IDBStore.CursorAny */
+/** @typedef {(val:any, cursor:IDBStore.CursorAny)=>void} IDBStore.IterateCallback */

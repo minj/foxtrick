@@ -726,7 +726,7 @@ Foxtrick.Pages.Match.addBoxToSidebar = function(doc, title, content, prec) {
  * Calls func(playerDiv).
  * The right player is found with help of player links list.
  * @param  {number}                        playerId
- * @param  {function(HTMLDivElement):void} func     function(Element)
+ * @param  {function(HTMLElement):void} func     function(Element)
  * @param  {ArrayLike<HTMLAnchorElement>}  links
  */
 Foxtrick.Pages.Match.modPlayerDiv = function(playerId, func, links) {
@@ -738,8 +738,7 @@ Foxtrick.Pages.Match.modPlayerDiv = function(playerId, func, links) {
 	}, links);
 
 	if (link && typeof func == 'function') {
-		// eslint-disable-next-line no-extra-parens
-		let div = /** @type {HTMLDivElement} */ (link.parentNode.parentNode);
+		let div = link.parentElement.parentElement;
 		func(div);
 	}
 };
@@ -781,7 +780,6 @@ Foxtrick.Pages.Match.makeAvatar = function(shirtDiv, avatarXml, scale) {
 	const FACTOR = oldFaces ? 1 : scale;
 	const SZ = oldFaces ? sizesOld : sizes;
 
-	// eslint-disable-next-line no-extra-parens
 	let xml = /** @type {CHPPXML} */ (avatarXml.ownerDocument);
 	let layers = avatarXml.getElementsByTagName('Layer');
 	for (let layer of layers) {
@@ -842,7 +840,6 @@ Foxtrick.Pages.Match.parsePlayerData = function(doc) {
 	var playerData = null;
 	try {
 		var json = doc.querySelector('#matchdata [id$="lblPlayerData"]').textContent;
-		// eslint-disable-next-line no-extra-parens
 		playerData = /** @type {HTMatchReportPlayerData[]} */ (JSON.parse(json));
 	}
 	catch (e) {
@@ -913,7 +910,6 @@ Foxtrick.Pages.Match.getTeamRatingsByEvent = function(doc, isHome) {
 		doc.querySelectorAll(`input[id$="_playerRatings${isHome ? 'Home' : 'Away'}"]`);
 
 	let playerRatingsByEvent = Foxtrick.map(function(ratings) {
-		// eslint-disable-next-line no-extra-parens
 		let players = /** @type {HTMatchReportRatingPlayer[]} */ (JSON.parse(ratings.value));
 		return { players, source: ratings };
 	}, playerRatings);

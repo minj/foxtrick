@@ -13,7 +13,7 @@ Foxtrick.modules['HTMSPrediction'] = {
 	NICE: -1, // before ratings
 
 	copy: function(div) {
-		var HTMSClone = div.cloneNode(true);
+		var HTMSClone = Foxtrick.cloneElement(div, true);
 		var htmstable = HTMSClone.getElementsByTagName('table')[0];
 		if (htmstable) {
 			// remove empty row and fix some newlines

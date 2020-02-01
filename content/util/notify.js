@@ -9,6 +9,7 @@
 
 /* eslint-disable */
 if (!this.Foxtrick)
+	// @ts-ignore
 	var Foxtrick = {};
 if (!Foxtrick.util)
 	Foxtrick.util = {};
@@ -53,11 +54,10 @@ Foxtrick.util.notify.create = function(msg, source, opts) {
 				// open URLs in a new tab next to original
 				// set correct position
 				// not setting opener since originTab may already be closed
-				var newOpts = {
+				let newOpts = Object.assign({
 					windowId: originTab.windowId,
 					index: originTab.index + 1,
-				};
-				Foxtrick.mergeAll(newOpts, tabOpts);
+				}, tabOpts);
 
 				chrome.tabs.create(newOpts, resolve);
 				return;
@@ -66,12 +66,11 @@ Foxtrick.util.notify.create = function(msg, source, opts) {
 			chrome.tabs.update(originTab.id, tabOpts, (tab) => {
 				if (chrome.runtime.lastError) {
 					// tab closed, restore
-					var restoreOpts = {
+					let restoreOpts = Object.assign({
 						url: gUrl,
 						windowId: originTab.windowId,
 						index: originTab.index,
-					};
-					Foxtrick.mergeAll(restoreOpts, tabOpts);
+					}, tabOpts);
 
 					chrome.tabs.create(restoreOpts, resolve);
 				}
@@ -162,11 +161,14 @@ Foxtrick.util.notify.create = function(msg, source, opts) {
 		}
 
 		return new Promise((fulfill, reject) => {
+			var unregister = () => {};
+
 			var onClicked = async function onClicked(noteId) {
 				if (noteId !== gId)
 					return;
 
 				try {
+					unregister();
 					await clearNote(noteId);
 					await updateOriginTab(source.tab, gTabOpts);
 					fulfill(gUrl);
@@ -174,8 +176,6 @@ Foxtrick.util.notify.create = function(msg, source, opts) {
 				catch (e) {
 					reject(e);
 				}
-
-				// onClosed(noteId);
 			};
 
 			// eslint-disable-next-line no-unused-vars
@@ -184,6 +184,7 @@ Foxtrick.util.notify.create = function(msg, source, opts) {
 					return;
 
 				try {
+					unregister();
 					await clearNote(noteId);
 					await updateOriginTab(source.tab, gTabOptsBtn);
 					fulfill(gUrl);
@@ -191,17 +192,13 @@ Foxtrick.util.notify.create = function(msg, source, opts) {
 				catch (e) {
 					reject(e);
 				}
-
-				// onClosed(noteId);
 			};
 
 			var onClosed = function onClosed(noteId) {
 				if (noteId !== gId)
 					return;
 
-				chrome.notifications.onButtonClicked.removeListener(onButtonClicked);
-				chrome.notifications.onClicked.removeListener(onClicked);
-				chrome.notifications.onClosed.removeListener(onClosed);
+				unregister();
 
 				reject(new Error(Foxtrick.TIMEOUT_ERROR));
 			};
@@ -209,6 +206,11 @@ Foxtrick.util.notify.create = function(msg, source, opts) {
 			chrome.notifications.onClicked.addListener(onClicked);
 			chrome.notifications.onButtonClicked.addListener(onButtonClicked);
 			chrome.notifications.onClosed.addListener(onClosed);
+			unregister = () => {
+				chrome.notifications.onButtonClicked.removeListener(onButtonClicked);
+				chrome.notifications.onClicked.removeListener(onClicked);
+				chrome.notifications.onClosed.removeListener(onClosed);
+			};
 		});
 	};
 

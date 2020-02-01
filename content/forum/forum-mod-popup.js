@@ -43,7 +43,7 @@ Foxtrick.modules['ForumModeratorPopup'] = {
 				let actionTypeFunctions = // lgtm[js/unused-local-variable]
 					Foxtrick.getUrlParam(link.href, 'actionTypeFunctions');
 				let li = doc.createElement('li');
-				let clone = link.cloneNode(true);
+				let clone = Foxtrick.cloneElement(link, true);
 				li.appendChild(clone);
 				ul.appendChild(li);
 
@@ -53,7 +53,7 @@ Foxtrick.modules['ForumModeratorPopup'] = {
 				let actionTypeWrite = // lgtm[js/unused-local-variable]
 					Foxtrick.getUrlParam(link.href, 'actionTypeWrite');
 				let li = doc.createElement('li');
-				let clone = link.cloneNode(true);
+				let clone = Foxtrick.cloneElement(link, true);
 				li.appendChild(clone);
 				ul.appendChild(li);
 			}

@@ -64,13 +64,13 @@ Foxtrick.modules['CopyPlayerAd'] = {
 				while (el && !el.classList.contains('playerInfo') &&
 				       !el.querySelector('.playerInfo')) {
 					// let text = el.textContent.trim();
-					playerInfo.appendChild(el.cloneNode(true));
+					playerInfo.appendChild(Foxtrick.cloneElement(el, true));
 					if (el.nodeName == 'P')
 						playerInfo.appendChild(doc.createTextNode('\n'));
 
 					el = el.nextElementSibling;
 				}
-				playerInfo.appendChild(infoTable.cloneNode(true));
+				playerInfo.appendChild(Foxtrick.cloneElement(infoTable, true));
 			}
 			else {
 				playerInfo = doc.querySelector('.playerInfo');
@@ -85,7 +85,7 @@ Foxtrick.modules['CopyPlayerAd'] = {
 			if (isSenior) {
 				// add new lines before <br> so that textContent would have breaks
 				// at <br>s.
-				basicInfo = playerInfo.cloneNode(true);
+				basicInfo = Foxtrick.cloneElement(playerInfo, true);
 				let tables = Foxtrick.toArray(basicInfo.querySelectorAll('table'));
 				for (let tbl of tables)
 					tbl.remove();
@@ -134,7 +134,7 @@ Foxtrick.modules['CopyPlayerAd'] = {
 
 					// remove teampopuplinks
 					let teamLink;
-					let cellCopy = data.cloneNode(true);
+					let cellCopy = Foxtrick.cloneElement(data, true);
 					let popupLinks = Foxtrick.toArray(cellCopy.querySelectorAll('a'));
 					if ((teamLink = popupLinks.shift()))
 						teamLink.textContent = '[b]' + teamLink.textContent.trim() + '[/b]';
@@ -165,7 +165,7 @@ Foxtrick.modules['CopyPlayerAd'] = {
 						ad += header.textContent.trim();
 						// ad += '[/th]';
 
-						let copy = data.cloneNode(true);
+						let copy = Foxtrick.cloneElement(data, true);
 						for (let tNode of Foxtrick.getTextNodes(copy)) {
 							let text = tNode.textContent.replace(/\n/g, ' ').replace(/\s+/g, ' ');
 							if (!text.trim()) {
@@ -356,7 +356,7 @@ Foxtrick.modules['CopyPlayerAd'] = {
 				ad += '\n';
 				var paragraphs = bidDiv.getElementsByTagName('p');
 				for (let p = 0; p < paragraphs.length; p++) {
-					var parCopy = paragraphs[p].cloneNode(true);
+					var parCopy = Foxtrick.cloneElement(paragraphs[p], true);
 					var links = parCopy.getElementsByTagName('a');
 					for (let l = 1; l < links.length; l++)
 						links[l].textContent = '';

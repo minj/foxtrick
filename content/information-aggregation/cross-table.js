@@ -319,7 +319,6 @@ Foxtrick.modules['CrossTable'] = {
 		// get season from select since the URL doesn't change when
 		// switching different seasons
 		let select = /** @type {HTMLSelectElement} */
-			// eslint-disable-next-line no-extra-parens
 			(Foxtrick.getMBElement(doc, 'ucSeasonsDropdown_ddlSeasons'));
 
 		let season = parseInt(select.value, 10);
@@ -341,7 +340,7 @@ Foxtrick.modules['CrossTable'] = {
 				}
 				else if (errorText) {
 					let note = Foxtrick.util.note.add(doc, errorText, null, { at: graphContainer });
-					let clone = note.cloneNode(true);
+					let clone = Foxtrick.cloneElement(note, true);
 					table.parentNode.appendChild(clone);
 				}
 			}

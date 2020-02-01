@@ -194,13 +194,16 @@ Foxtrick.setAttributes = function(el, attributes) {
 		'className',
 	];
 
+	const ATTRIBUTE_MAP = Object.assign(Object.create(null), {
+		ariaLabel: 'aria-label',
+	});
+
 	for (let [attr, val] of Object.entries(attributes)) {
 		if ((attr == 'dataset' || attr == 'style') && typeof val == 'object') {
 			for (let [item, subVal] of Object.entries(val))
 				el[attr][item] = subVal;
 		}
-		else if (attr.slice(0, 2) == 'on' && typeof val == 'function') {
-			// eslint-disable-next-line no-extra-parens
+		else if (attr.startsWith('on') && typeof val == 'function') {
 			let type = /** @type {keyof HTMLElementEventMap} */ (attr.slice(2).toLowerCase());
 
 			if (type == 'click')
@@ -212,6 +215,9 @@ Foxtrick.setAttributes = function(el, attributes) {
 		}
 		else if (Foxtrick.has(ELEMENT_PROPERTIES, attr)) {
 			el[attr] = val;
+		}
+		else if (attr in ATTRIBUTE_MAP) {
+			el.setAttribute(ATTRIBUTE_MAP[attr], val);
 		}
 		else {
 			el.setAttribute(attr, val);
@@ -302,6 +308,17 @@ Foxtrick.getChildIndex = function(element) {
 };
 
 /**
+ * Because types /sigh
+ * @template {Element} E
+ * @param  {E}       el
+ * @param  {boolean} [deep]
+ * @return {E}
+ */
+Foxtrick.cloneElement = function(el, deep) {
+	return /** @type {E} */ (el.cloneNode(deep));
+};
+
+/**
  * Insert adjacent content.
  * ! Target must be Element !
  *
@@ -320,12 +337,10 @@ Foxtrick.insertAdjacent = function(where, newNode, target) {
 	let isNode = newNode instanceof win.Node;
 
 	if (isElement) {
-		/* eslint-disable-next-line no-extra-parens */
 		let element = /** @type {Element} */ (newNode);
 		target.insertAdjacentElement(where, element);
 	}
 	else {
-		// eslint-disable-next-line no-extra-parens
 		let text = isNode ? /** @type {Node} */ (newNode).textContent : String(newNode);
 		target.insertAdjacentText(where, text);
 	}
@@ -343,14 +358,12 @@ Foxtrick.insertBefore = function(newNode, sibling) {
 
 	// @ts-ignore
 	if (sibling instanceof win.Element) {
-		// eslint-disable-next-line no-extra-parens
 		let el = /** @type {Element} */ (sibling);
 		Foxtrick.insertAdjacent('beforebegin', newNode, el);
 	}
 
 	// @ts-ignore
 	else if (newNode instanceof win.Node) {
-		// eslint-disable-next-line no-extra-parens
 		let node = /** @type {Node} */ (newNode);
 		parent.insertBefore(node, sibling);
 	}
@@ -372,14 +385,12 @@ Foxtrick.insertAfter = function(newNode, sibling) {
 
 	// @ts-ignore
 	if (sibling instanceof win.Element) {
-		// eslint-disable-next-line no-extra-parens
 		let el = /** @type {Element} */ (sibling);
 		Foxtrick.insertAdjacent('afterend', newNode, el);
 	}
 
 	// @ts-ignore
 	else if (newNode instanceof win.Node) {
-		// eslint-disable-next-line no-extra-parens
 		let node = /** @type {Node} */ (newNode);
 		parent.insertBefore(node, sibling.nextSibling);
 	}
@@ -400,14 +411,12 @@ Foxtrick.prependChild = function(newNode, parent) {
 
 	// @ts-ignore
 	if (parent instanceof win.Element) {
-		// eslint-disable-next-line no-extra-parens
 		let el = /** @type {Element} */ (parent);
 		Foxtrick.insertAdjacent('afterbegin', newNode, el);
 	}
 
 	// @ts-ignore
 	else if (newNode instanceof win.Node) {
-		// eslint-disable-next-line no-extra-parens
 		let node = /** @type {Node} */ (newNode);
 		parent.insertBefore(node, parent.firstChild);
 	}
@@ -428,14 +437,12 @@ Foxtrick.appendChild = function(newNode, parent) {
 
 	// @ts-ignore
 	if (parent instanceof win.Element) {
-		// eslint-disable-next-line no-extra-parens
 		let el = /** @type {Element} */ (parent);
 		Foxtrick.insertAdjacent('beforeend', newNode, el);
 	}
 
 	// @ts-ignore
 	else if (newNode instanceof win.Node) {
-		// eslint-disable-next-line no-extra-parens
 		let node = /** @type {Node} */ (newNode);
 		parent.appendChild(node);
 	}
@@ -469,7 +476,6 @@ Foxtrick.append = function(parent, child) {
 	let win = doc.defaultView;
 
 	if (Foxtrick.isArrayLike(child)) {
-		// eslint-disable-next-line no-extra-parens
 		let children = /** @type {(Node|string)[]} */ (child);
 		Foxtrick.forEach(function(c) {
 			Foxtrick.append(parent, c);
@@ -478,7 +484,6 @@ Foxtrick.append = function(parent, child) {
 
 	// @ts-ignore
 	else if (child instanceof win.Node) {
-		// eslint-disable-next-line no-extra-parens
 		let node = /** @type {Node} */ (child);
 		parent.appendChild(node);
 	}
@@ -532,14 +537,20 @@ Foxtrick.listen = function(el, type, listener, useCapture) {
 	 * @param {HTMLEvent<E>} ev
 	 */
 	let listen = function listen(ev) {
-		// eslint-disable-next-line no-extra-parens
 		let target = /** @type {Element|Document} */ (ev.target);
 
 		let doc = target instanceof Document ? target : target.ownerDocument;
-		Foxtrick.stopListenToChange(doc);
+		Foxtrick.stopObserver(doc);
 
 		/** @type {boolean|Promise|void} */
-		let ret = listener.call(this, ev);
+		let ret;
+		try {
+			ret = listener.call(this, ev);
+		}
+		catch (e) {
+			Foxtrick.log(e);
+		}
+
 		if (ret === false) {
 			ev.stopPropagation();
 			ev.preventDefault();
@@ -547,12 +558,12 @@ Foxtrick.listen = function(el, type, listener, useCapture) {
 		else if (ret instanceof Promise) {
 			Foxtrick.finally(ret, () => {
 				Foxtrick.log.flush(doc);
-				Foxtrick.startListenToChange(doc);
+				Foxtrick.startObserver(doc);
 			}).catch(Foxtrick.catch('async listen'));
 		}
 		else {
 			Foxtrick.log.flush(doc);
-			Foxtrick.startListenToChange(doc);
+			Foxtrick.startObserver(doc);
 		}
 	};
 
@@ -789,7 +800,6 @@ Foxtrick.getElementPosition = function(el, ref) {
 		top += e.offsetTop;
 		left += e.offsetLeft;
 
-		// eslint-disable-next-line no-extra-parens
 		e = /** @type {HTMLElement} */ (e.offsetParent);
 	}
 
@@ -869,12 +879,11 @@ Foxtrick.addSpecialty = function(parent, specNum, features) {
 		specialtyName += '\n' + Foxtrick.L10n.getString('SpecialtyInfo.open');
 	}
 
-	let opts = {
+	let opts = Object.assign({
 		alt: specialtyName,
 		title: specialtyName,
 		src: specialtyUrl,
-	};
-	Foxtrick.mergeAll(opts, features);
+	}, features);
 
 	return new Promise(function(resolve) {
 		Foxtrick.addImage(doc, imgContainer, opts, null, resolve);
@@ -1038,10 +1047,8 @@ Foxtrick.getTextNodes = function(parent) {
 	// @ts-ignore
 	let walker = doc.createTreeWalker(parent, win.NodeFilter.SHOW_TEXT, null, false);
 	let node;
-	while ((node = walker.nextNode())) {
-		// eslint-disable-next-line no-extra-parens
+	while ((node = walker.nextNode()))
 		ret.push(/** @type {Text} */ (node));
-	}
 
 	return ret;
 };
@@ -1154,7 +1161,6 @@ Foxtrick.renderPre = function(parent) {
 				}
 				else {
 					// target points to inserted pre instead
-					// eslint-disable-next-line no-extra-parens
 					let pre = /** @type {HTMLPreElement} */ (target);
 					Foxtrick.insertAfter(endTextNode, pre);
 				}

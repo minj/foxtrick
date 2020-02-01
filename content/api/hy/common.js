@@ -53,8 +53,8 @@ if (!Foxtrick.api.hy)
 
 /**
  * Low-level function to build the api params
- * @param  {string} [args]   specific api params (optional)
- * @param  {number} [teamId] team id (optional)
+ * @param  {string} [args]   specific api params
+ * @param  {number} [teamId] team id
  * @return {string}
  */
 Foxtrick.api.hy._buildParams = function(args, teamId) {
@@ -88,13 +88,12 @@ Foxtrick.api.hy.ignoreHours = Foxtrick.util.time.HOURS_IN_DAY;
  * In case of failure, stale cached data will be used, if possible
  *
  * @template TData
- * @param  {string} api       api name
- * @param  {function():Promise<TData>} fetch api function to call
- * @param  {number} cacheDays
- * @param  {number}	[teamId]
+ * @param  {string}                    api       api name
+ * @param  {function():Promise<TData>} fetch     api function to call
+ * @param  {number}                    cacheDays
+ * @param  {number}                    [teamId]
  * @return {Promise<TData>}
  */
-// eslint-disable-next-line max-params
 Foxtrick.api.hy._fetchViaCache = async (api, fetch, cacheDays, teamId) => {
 	// this produces a valid UNIX timestamp that can be compared to HY
 	const now = Foxtrick.modules.Core.HT_TIME;
@@ -107,6 +106,10 @@ Foxtrick.api.hy._fetchViaCache = async (api, fetch, cacheDays, teamId) => {
 	const dataKey = `YouthClub.${id}.${api}`;
 	const timeKey = `${dataKey}.fetchTime`;
 
+	/**
+	 * @param  {string} [cachedData]
+	 * @return {Promise<TData>}
+	 */
 	var doFetch = async (cachedData) => {
 		try {
 			let data = await fetch();
@@ -120,10 +123,13 @@ Foxtrick.api.hy._fetchViaCache = async (api, fetch, cacheDays, teamId) => {
 			return data;
 		}
 		catch (rej) {
-			if (cachedData == null)
-				return Promise.reject(rej);
+			/** @type {FetchError} */
+			let err = rej;
 
-			let { status, text } = rej;
+			if (cachedData == null)
+				return Promise.reject(err);
+
+			let { status, text } = err;
 			Foxtrick.log(logKey, 'Fetch failed:', status, text);
 
 			let o = JSON.parse(cachedData);
@@ -132,9 +138,13 @@ Foxtrick.api.hy._fetchViaCache = async (api, fetch, cacheDays, teamId) => {
 		}
 	};
 
-	let dataPromise = Foxtrick.storage.get(dataKey);
-	let timePromise = Foxtrick.storage.get(timeKey);
 	let cookiePromise = Foxtrick.cookies.get('from_hty');
+
+	/** @type {Promise<string>} */
+	let dataPromise = Foxtrick.storage.get(dataKey);
+
+	/** @type {Promise<number>} */
+	let timePromise = Foxtrick.storage.get(timeKey);
 
 	const data = await dataPromise;
 	if (data == null) {
@@ -158,6 +168,7 @@ Foxtrick.api.hy._fetchViaCache = async (api, fetch, cacheDays, teamId) => {
 	}
 
 	// using cache
+	/** @type {TData} */
 	let o = JSON.parse(data);
 	let t = new Date(lifeTime);
 
@@ -174,14 +185,13 @@ Foxtrick.api.hy._fetchViaCache = async (api, fetch, cacheDays, teamId) => {
  * @param  {string}          api    api name for logging purposes
  * @param  {string}          url    api URL
  * @param  {string}          params api params
- * @return {Promise<string>}        rejects with { status, text }
+ * @return {Promise<string|FetchError>} rejects with { status, text }
  */
-// eslint-disable-next-line max-params
 Foxtrick.api.hy._fetchOrIgnore = async (api, url, params) => {
 	const MSEC = Foxtrick.util.time.MSEC;
 	const HOURS_IN_DAY = Foxtrick.util.time.HOURS_IN_DAY;
 	const MAX_SEC = 59;
-	const secMod = MAX_SEC * MSEC;
+	const msecMod = MAX_SEC * MSEC;
 
 	const HTTP_ERROR = 503;
 
@@ -189,39 +199,46 @@ Foxtrick.api.hy._fetchOrIgnore = async (api, url, params) => {
 	const failed = Foxtrick.L10n.getString('youthclub.api.failed');
 
 	const ignoreHours = Foxtrick.api.hy.ignoreHours;
-	const ignoreSec = ignoreHours * Foxtrick.util.time.MSECS_IN_HOUR;
+	const ignoreMsec = ignoreHours * Foxtrick.util.time.MSECS_IN_HOUR;
 
 	const ignored = await Foxtrick.storage.get('YouthClub.ignoreUntil');
-	const now = Foxtrick.modules.Core.HT_TIME + secMod;
+	const now = Foxtrick.modules.Core.HT_TIME + msecMod;
 	if (now <= ignored) {
 		let text = Foxtrick.L10n.getString('youthclub.api.down');
 		let status = HTTP_ERROR;
+
+		/** @type {FetchError} */
 		let rej = { text, status };
 		Foxtrick.log(logKey, 'Request aborted: HY is in ignore mode.');
+
 		return Promise.reject(rej);
 	}
 
 	try {
 		const response = await Foxtrick.fetch(url, params);
 		Foxtrick.log(logKey, 'Success');
-		return response;
+		return /** @type {string} */ (response);
 	}
 	catch (rej) {
-		let { status, text } = rej;
+		let err = /** @type {FetchError} */ (rej);
+		let { status, text } = err;
 		switch (status) {
 			case 0:
 				Foxtrick.log(logKey, 'Sending failed', status);
-				rej.text = text = `{ "error": "${failed}" }`;
+				err.text = text = `{ "error": "${failed}" }`;
 				break;
 			case HTTP_ERROR:
-				Foxtrick.localSet('YouthClub.ignoreUntil', now + ignoreSec);
-				Foxtrick.log(logKey, 'Failure', status, text);
+				Foxtrick.storage.set('YouthClub.ignoreUntil', now + ignoreMsec)
+					.catch(Foxtrick.catch(`failed to set ignoreUntil`));
+
+				Foxtrick.log(logKey, 'Error', status, text);
 				Foxtrick.log(`[HY_API] Cooldown for ${ignoreHours / HOURS_IN_DAY} day(s).`);
 				break;
 			default:
-				Foxtrick.log(logKey, 'Failure', status, text);
+				Foxtrick.log(logKey, 'Error', status, text);
 		}
-		return Promise.reject(rej);
+
+		return Promise.reject(err);
 	}
 };
 
@@ -237,11 +254,10 @@ Foxtrick.api.hy._fetchOrIgnore = async (api, url, params) => {
  * @param  {number} [teamId] senior team ID to fetch data for
  * @return {Promise}         rejects with { status, text }
  */
-// eslint-disable-next-line max-params
 Foxtrick.api.hy._fetchGeneric = async (api, args, teamId) => {
 	const id = teamId || Foxtrick.modules.Core.TEAM.teamId;
 	const logKey = `[HY_API][${api}]`;
-	const url = Foxtrick.api.hy.URL[api];
+	const url = Foxtrick.api.hy._getUrl(api);
 
 	Foxtrick.log(logKey, '_fetch:', [args], id);
 
@@ -250,7 +266,7 @@ Foxtrick.api.hy._fetchGeneric = async (api, args, teamId) => {
 	let response = await Foxtrick.api.hy._fetchOrIgnore(api, url, params);
 	let json = null;
 	try {
-		json = JSON.parse(response);
+		json = JSON.parse(/** @type {string} */ (response));
 		Foxtrick.log(logKey, 'json received:', json);
 	}
 	catch (e) {
@@ -258,4 +274,17 @@ Foxtrick.api.hy._fetchGeneric = async (api, args, teamId) => {
 	}
 
 	return json;
+};
+
+/**
+ * Get HY API URL
+ *
+ * @param  {string} api api name
+ * @return {string}
+ */
+Foxtrick.api.hy._getUrl = function(api) {
+	const path = Foxtrick.api.hy.URL[api];
+	const domain = Foxtrick.Prefs.getBool('YouthClub.useStage') ? 'stage' : 'www';
+
+	return `https://${domain}.hattrick-youthclub.org${path}`;
 };

@@ -100,9 +100,10 @@ Foxtrick.modules.HistoryStats = {
 					return false;
 
 				let season = Foxtrick.util.time.gregorianToHT(date).season;
+
+				/** @type {HTMLTableCellElement} */
 				let cell = feedItem.querySelector('td.float_left');
-				// eslint-disable-next-line no-extra-parens
-				let clone = /** @type {HTMLTableCellElement} */ (cell.cloneNode(true));
+				let clone = Foxtrick.cloneElement(cell, true);
 				let links = clone.querySelectorAll('a');
 
 				let cupLink = Foxtrick.nth(isCupHist, links);
@@ -151,8 +152,7 @@ Foxtrick.modules.HistoryStats = {
 				return;
 		}
 
-		// eslint-disable-next-line no-extra-parens
-		let copy = /** @type {HTMLElement} */ (log.cloneNode(true));
+		let copy = Foxtrick.cloneElement(log, true);
 		let events = copy.querySelectorAll('.feedItem td.float_left');
 		for (let event of Foxtrick.toArray(events)) {
 			// stop if old manager

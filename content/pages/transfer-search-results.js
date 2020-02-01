@@ -112,13 +112,13 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 	let addLinks = (player, pNode, urlTmpl) => {
 		let bookmarkLink = pNode.querySelector('.bookmarkSmall');
 		if (bookmarkLink) {
-			player.bookmarkLink = bookmarkLink.cloneNode(true);
+			player.bookmarkLink = Foxtrick.cloneElement(bookmarkLink, true);
 			player.bookmarkLink.target = '_blank';
 		}
 
 		let hotlistLink = pNode.querySelector('a[href*="hotList"]');
 		if (hotlistLink) {
-			player.hotlistLink = hotlistLink.cloneNode(true);
+			player.hotlistLink = Foxtrick.cloneElement(hotlistLink, true);
 			player.hotlistLink.target = '_blank';
 		}
 
@@ -159,13 +159,13 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 			let ddl = bidContainer.querySelector('span[id$="lblDeadline"]');
 			player.deadline = doc.createElement('td');
 			player.deadline.dataset.isodate = ddl.dataset.isodate;
-			player.deadline.appendChild(ddl.cloneNode(true));
+			player.deadline.appendChild(Foxtrick.cloneElement(ddl, true));
 
 			let links = [...bidContainer.querySelectorAll('a[href]')];
 			bidderLink = links.pop();
 
 			let strongs = [...bidContainer.querySelectorAll('strong')];
-			bid = strongs.pop().cloneNode(true);
+			bid = Foxtrick.cloneElement(strongs.pop(), true);
 			let curCalc = bid.querySelector('.ft-dummy');
 			if (curCalc)
 				curCalc.remove();
@@ -184,10 +184,10 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 			return;
 
 		let bidDesc = Foxtrick.L10n.getString('CurrentBidder');
-		let link = bidderLink.cloneNode(true);
+		let link = Foxtrick.cloneElement(bidderLink, true);
 		link.target = '_blank';
 
-		let shortBidder = link.cloneNode(true);
+		let shortBidder = Foxtrick.cloneElement(link, true);
 		shortBidder.textContent = '';
 		shortBidder.title = bidDesc + ': ' + shortBidder.title;
 		player.currentBidderLinkShort = shortBidder;
@@ -264,14 +264,14 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 			texts[row] = cells[row].textContent.trim();
 		}
 
-		player.currentClubLink = cells.owner.querySelector('a').cloneNode(true);
+		player.currentClubLink = Foxtrick.cloneElement(cells.owner.querySelector('a'), true);
 		player.tsi = Foxtrick.trimnum(texts.tsi);
 
 		player.specialty = texts.specialty == '-' ? '' : texts.specialty;
 		player.specialtyNumber = Foxtrick.L10n.getNumberFromSpecialty(player.specialty);
 
 		if (cells.salary) {
-			let salary = cells.salary.cloneNode(true), cConverter;
+			let salary = Foxtrick.cloneElement(cells.salary, true), cConverter;
 			if ((cConverter = salary.querySelector('.ft-dummy')))
 				cConverter.remove();
 
@@ -287,7 +287,7 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 		}
 
 		if (cells.deadline)
-			player.deadline = cells.deadline.cloneNode(true);
+			player.deadline = Foxtrick.cloneElement(cells.deadline, true);
 
 		player.ageText = texts.age;
 		let [yearsStr, daysStr] = player.ageText.match(/(\d+)/g);
@@ -304,7 +304,7 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 			// first row - country, name, ID
 			let nameLink = playerNode.querySelector('.transfer_search_playername a');
 			p.id = Foxtrick.getUrlParam(nameLink.href, 'playerId');
-			p.nameLink = nameLink.cloneNode(true);
+			p.nameLink = Foxtrick.cloneElement(nameLink, true);
 			p.nameLink.target = '_blank';
 			addLinks(p, playerNode, nameLink.href);
 

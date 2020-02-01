@@ -37,7 +37,7 @@ Foxtrick.modules.Links = {
 		cont.appendChild(label);
 
 		let textarea = doc.createElement('textarea');
-		textarea.setAttribute('pref', 'module.Links.feedsList');
+		textarea.setAttribute('pref', 'module.Links.feedsList'); // TODO move to dataset
 		cont.appendChild(textarea);
 
 		let button = doc.createElement('button');
@@ -48,7 +48,8 @@ Foxtrick.modules.Links = {
 
 			/** @type {NodeListOf<HTMLInputElement>} */
 			let links = doc.querySelectorAll('input[option][module^="Links"]:not([id])');
-			let state = links[0].checked;
+			let [link] = links;
+			let state = link && link.checked || false;
 			for (let link of links) {
 				if (link.checked === state)
 					link.click();
@@ -80,15 +81,15 @@ Foxtrick.modules.Links = {
 		 */
 		var parseFeeds = function(feeds) {
 			/**
-			 * Link type => Link name => LinkDefinition
+			 * Link type => Link key => LinkDefinition
 			 * @type {LinkCollection}
 			 */
 			var collection = {};
 
 			feeds.forEach(function(text) {
 				/**
-				 * Link name => LinkDefinition
-				 * @type {LinkFeedCollection}
+				 * Link key => LinkDefinition
+				 * @type {LinkDefinitionMap}
 				 */
 				let links;
 				try {
@@ -101,11 +102,11 @@ Foxtrick.modules.Links = {
 					return;
 				}
 
-				/** @type {LinkName} */
+				/** @type {LinkKey} */
 				for (let key in links) {
 					let link = links[key];
 					if (link.img) {
-						if (link.img.indexOf('resources') === 0) {
+						if (link.img.startsWith('resources')) {
 							// add path to internal images
 							link.img = Foxtrick.InternalPath + link.img;
 						}
@@ -113,13 +114,13 @@ Foxtrick.modules.Links = {
 					}
 
 					/** @type {LinkType} */
-					for (let prop in link) {
-						if (/link/.test(prop)) {
-							link[prop].url = Foxtrick.util.sanitize.parseUrl(link[prop].url);
-							if (typeof collection[prop] === 'undefined')
-								collection[prop] = {};
+					for (let type in link) {
+						if (/link/.test(type)) {
+							link[type].url = Foxtrick.util.sanitize.parseUrl(link[type].url);
+							if (typeof collection[type] === 'undefined')
+								collection[type] = {};
 
-							collection[prop][key] = link;
+							collection[type][key] = link;
 						}
 					}
 				}
@@ -132,32 +133,34 @@ Foxtrick.modules.Links = {
 		Foxtrick.log('Loading', feeds.length, 'link feeds from:', feeds);
 
 		/** @type {Promise<string>[]} */
-		let promises = Foxtrick.map(function(feed) {
+		let promises = feeds.map(async function fetchFeed(feed) {
 			// Foxtrick.log('loading feed:', feed);
 
-			// load a plain text Promise
-			return Foxtrick.load(feed)
-				.then(function(text) {
-					if (text) {
-						Foxtrick.storage.set('LinksFeed.' + feed, text);
-						return text;
-					}
-					Foxtrick.log('Error loading links from:', feed,
-					             '. Received empty response. Using cached feed.');
+			try {
+				let text = /** @type {string} */ (await Foxtrick.load(feed));
 
-					return Foxtrick.storage.get('LinksFeed.' + feed);
-				}, function(resp) {
+				if (text) {
+					Foxtrick.storage.set('LinksFeed.' + feed, text)
+						.catch(Foxtrick.catch('StoreLinksCollection'));
 
-					Foxtrick.log('Error', resp.status, 'loading links from:', resp.url,
-					             '. Using cached feed.');
+					return text;
+				}
 
-					return Foxtrick.storage.get('LinksFeed.' + feed);
+				Foxtrick.log('Error loading links from:', feed,
+				             '. Received empty response. Using cached feed.');
 
-				}).catch(Foxtrick.catch('StoreLinksCollection'));
+				return Foxtrick.storage.get('LinksFeed.' + feed);
+			}
+			catch (e) {
+				let resp = /** @type {FetchError} */ e;
+				Foxtrick.log('Error', resp.status, 'loading links from:', resp.url,
+				             '. Using cached feed.');
 
-		}, feeds);
+				return Foxtrick.storage.get('LinksFeed.' + feed);
+			}
+		}).map(p => p.catch(Foxtrick.catch('StoreLinksCollection')));
 
-		const feedTexts = (await Promise.all(promises)).filter(t => t);
+		const feedTexts = (await Promise.all(promises)).filter(Boolean);
 		return parseFeeds(feedTexts);
 	},
 
@@ -179,55 +182,53 @@ Foxtrick.modules.Links = {
 	 * @return {HTMLAnchorElement[]}
 	 */
 	makeAnchors: function(doc, collection, options) {
-		let reuseTab = Foxtrick.Prefs.isModuleOptionEnabled('Links', 'ReuseTab');
-
 		/** @type {LinkPageQuery} */
 		let opts = { type: '', info: {}, module: '', className: '' };
 		Foxtrick.mergeValid(opts, options);
 
-		let { info: args, type, module } = opts;
+		let { info: args, type, module, className } = opts;
 		let isTracker = /^tracker/.test(type);
 
-		/** @type {LinkDefinition} */
-		var gLink;
-
 		/**
-		 * @param  {LinkDefinition} link
+		 * @param  {LinkDefinitionProps} link
 		 * @param  {string} url
 		 * @param  {string} key
 		 * @return {HTMLAnchorElement}
 		 */
 		var makeAnchorElement = function(link, url, key) {
+			let { title, shorttitle, img, openinthesamewindow } = link;
 			let linkNode = doc.createElement('a');
 			if (isTracker) {
 				let idStr = args.nationality || args.leagueid;
 				let id = typeof idStr == 'string' ? parseInt(idStr, 10) : idStr;
-				linkNode = Foxtrick.util.id.createFlagFromLeagueId(doc, id, url, link.title);
+				linkNode = Foxtrick.util.id.createFlagFromLeagueId(doc, id, url, title);
 			}
 			else {
-				linkNode.title = link.title;
+				linkNode.title = title;
 				linkNode.href = url;
-				linkNode.className = opts.className;
-				if (typeof link.img === 'undefined') {
-					linkNode.textContent = link.shorttitle;
+				linkNode.className = className;
+				if (typeof img === 'undefined') {
+					linkNode.textContent = shorttitle;
 				}
 				else {
-					let img = {
-						alt: link.shorttitle || link.title,
-						title: link.title,
-						src: link.img,
+					let attr = {
+						alt: shorttitle || title,
+						title,
+						src: img,
 						class: 'ft-link-icon',
 					};
 
-					Foxtrick.addImage(doc, linkNode, img);
+					Foxtrick.addImage(doc, linkNode, attr);
 				}
 			}
 
-			if (typeof link.openinthesamewindow === 'undefined')
-				linkNode.target = reuseTab ? '_ftlinks' : '_blank';
+			if (typeof openinthesamewindow === 'undefined')
+				linkNode.target = '_blank';
 
-			linkNode.setAttribute('key', key);
-			linkNode.setAttribute('module', module);
+			linkNode.relList.add('noopener');
+
+			linkNode.dataset.key = key;
+			linkNode.dataset.module = module;
 			return linkNode;
 		};
 
@@ -242,18 +243,19 @@ Foxtrick.modules.Links = {
 		};
 
 		/**
-		 * @param  {string} filter
+		 * @param  {string}                  filter
+		 * @param  {LinkDefinitionRangeDefs} rangeDefs
 		 * @return {boolean}
 		 */
-		var testFilter = function(filter) {
+		var testFilter = function(filter, rangeDefs) {
 			// ranges to determine whether to show
-			/** @type {*} */
-			let f = gLink[filter + 'ranges'] || gLink[filter.replace(/^own/, '') + 'ranges'];
+			let fileterName = filter + 'ranges';
+			let fileterNameFallback = filter.replace(/^own/, '') + 'ranges';
 
-			/** @type {LinkDefinitionRangeFilter} */
-			let ranges = f;
+			/** @type {LinkDefinitionRangeDef} */
+			let ranges = rangeDefs[fileterName] || rangeDefs[fileterNameFallback];
 
-			let val = args[filter];
+			let val = /** @type {number} */ (args[filter]);
 			return Foxtrick.any(([start, end]) => val >= start && val <= end, ranges);
 		};
 
@@ -318,7 +320,7 @@ Foxtrick.modules.Links = {
 					let [type, ...rest] = c;
 					let filter = COMPARE[type];
 
-					// @ts-ignore
+					// @ts-ignore recursive type fail
 					result = result || filter(...rest);
 				}
 
@@ -335,7 +337,7 @@ Foxtrick.modules.Links = {
 					let [type, ...rest] = c;
 					let filter = COMPARE[type];
 
-					// @ts-ignore
+					// @ts-ignore recursive type fail
 					result = result && filter(...rest);
 				}
 
@@ -343,59 +345,73 @@ Foxtrick.modules.Links = {
 			},
 		};
 
-		// links to return
-		var links = [];
+		/** @type {LinkDefinitionMap} */
+		let linkDefs = collection[type];
 
-		for (let key in collection[type]) {
-			gLink = collection[type][key];
-			let urlTmpl = gLink[type].url;
-			let filters = gLink[type].filters;
+		/** @type {{ anchor: HTMLAnchorElement, obj: LinkDefinitionProps }[]} */
+		let links = Object.entries(linkDefs).map(([linkKey, linkDef]) => {
+			/** @type {LinkDefinitionSubs} */
+			let subs = linkDef;
+			let sub = subs[type];
+			let { url: urlTmpl, filters } = sub;
 
-			if (typeof gLink.SUM !== 'undefined') {
+			/** @type {LinkDefinitionProps} */
+			let props = linkDef;
+
+			if (typeof props.SUM !== 'undefined' && props.SUM) {
 				// makes calculation of requested parameteres and place values
 				// with the others in params
-				if (gLink.SUM) {
-					for (let sum in gLink.SUM)
-						args[sum] = gLink.SUM[sum].reduce(addUp, 0);
+				for (let sum in props.SUM) {
+					let members = props.SUM[sum];
+
+					if (Array.isArray(members))
+						args[sum] = members.reduce(addUp, 0);
 				}
 			}
 
+			/** @type {LinkDefinitionRangeDefs} */
+			let rangeDefs = linkDef;
+
 			let allowed = true;
-			if (!Foxtrick.Prefs.isModuleOptionEnabled(module, key) &&
-				Foxtrick.Prefs.isModuleOptionSet(module, key)) {
+			if (!Foxtrick.Prefs.isModuleOptionEnabled(module, linkKey) &&
+				Foxtrick.Prefs.isModuleOptionSet(module, linkKey)) {
 				// enable all by default unless set otherwise by user
 				allowed = false;
 			}
 			else if (filters && filters.length > 0) {
-				allowed = Foxtrick.all(testFilter, filters);
+				allowed = Foxtrick.all(f => testFilter(f, rangeDefs), filters);
 			}
 
 			// check allowed based on value comparison
-			else if (typeof gLink.allow !== 'undefined') {
-				let test = gLink.allow;
+			else if (typeof props.allow !== 'undefined') {
+				let test = props.allow;
 				let [type, ...rest] = test;
 
 				// @ts-ignore
 				allowed = COMPARE[type](...rest);
 			}
 
-			if (allowed) {
-				let url = Foxtrick.util.links.makeUrl(urlTmpl, args);
-				if (url) {
-					links.push({
-						anchor: makeAnchorElement(gLink, url, key),
-						obj: gLink,
-					});
-				}
-			}
-		}
+			if (!allowed)
+				return void 0;
+
+			let url = Foxtrick.util.links.makeUrl(urlTmpl, args);
+			if (!url)
+				return void 0;
+
+			return {
+				anchor: makeAnchorElement(props, url, linkKey),
+				obj: props,
+			};
+
+		}).filter(Boolean);
+
 		links.sort((a, b) => {
 			let noA = typeof a.obj.img === 'undefined';
 			let noB = typeof b.obj.img === 'undefined';
 
 			// pushing links without images last
 			if (noA && noB)
-				return 0;
+				return a.obj.title.localeCompare(b.obj.title);
 			else if (noA)
 				return 1;
 			else if (noB)
@@ -410,7 +426,6 @@ Foxtrick.modules.Links = {
 };
 
 /**
- * @typedef {[number, number][]} LinkDefinitionRangeFilter [start, end] inclusive
  * @typedef {'GREATER'|'SMALLER'|'EQUAL'} LinkAllowCompareFilterType
  * @typedef {[LinkAllowCompareFilterType, string, string]} LinkAllowCompareFilter
  * @typedef {'EXISTS'} LinkAllowPredicateFilterType
@@ -432,17 +447,19 @@ Foxtrick.modules.Links = {
  * @prop {string} [img]
  * @prop {string} [shorttitle]
  * @prop {true} [openinthesamewindow]
- * @prop {Object.<string, string[]>} [SUM]
+ * @prop {Record<string, string[]>} [SUM]
  * @prop {LinkDefinitionAllowFilter} [allow]
  */
 /**
  * @typedef {string} LinkType
- * @typedef {string} LinkName
- * @typedef {Object.<string, LinkDefinitionSub>} LinkDefinitionSubs map of link type to sub
- * @typedef {LinkDefinitionSubs & LinkDefinitionProps} LinkDefinition
- * @typedef {Object.<string, LinkDefinition>} LinkFeedCollection Link name => LinkDefinition
+ * @typedef {string} LinkKey
+ * @typedef {[number, number][]} LinkDefinitionRangeDef [start, end] inclusive
+ * @typedef {Record<string, LinkDefinitionRangeDef>} LinkDefinitionRangeDefs prop => filter
+ * @typedef {Record<LinkType, LinkDefinitionSub>} LinkDefinitionSubs Link Type => LinkDefinitionSub
+ * @typedef {LinkDefinitionSubs & LinkDefinitionProps & LinkDefinitionRangeDefs} LinkDefinition
+ * @typedef {Record<LinkKey, LinkDefinition>} LinkDefinitionMap Link key => LinkDefinition
  */
 /**
- * Link type => Link name => LinkDefinition
- * @typedef {Object.<string, Object.<string, LinkDefinition>>} LinkCollection
+ * Link type => Link key => LinkDefinition
+ * @typedef {Record<LinkType, LinkDefinitionMap>} LinkCollection
  */
