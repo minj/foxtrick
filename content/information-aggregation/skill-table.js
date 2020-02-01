@@ -402,7 +402,8 @@ Foxtrick.modules['SkillTable'] = {
 					'yellowCard', 'redCard', 'bruised', 'injuredWeeks', 'transferListed',
 				], method: 'status', frozen: true, },
 				{ name: 'Age', property: 'age', method: 'age', sortAsc: true, frozen: true, },
-				{ name: 'CanBePromotedIn', property: 'canBePromotedIn', frozen: true, },
+				{ name: 'CanBePromotedIn', property: 'canBePromotedIn',
+					method: 'promotion', frozen: true, },
 				{ name: 'CurrentBid', property: 'currentBid',
 					method: 'formatNum', alignRight: true, frozen: true, },
 				{ name: 'Bookmark', property: 'bookmarkLink', method: 'link',
@@ -719,6 +720,14 @@ Foxtrick.modules['SkillTable'] = {
 					abbr.title = pos;
 					cell.appendChild(abbr);
 					cell.setAttribute('index', pos);
+				},
+				promotion: (cell, days) => {
+					cell.textContent = days;
+					let today = Foxtrick.util.time.getHTDate(doc);
+					Foxtrick.util.time.setMidnight(today);
+					let promoDate = Foxtrick.util.time.addDaysToDate(today, days);
+					let title = Foxtrick.util.time.buildDate(promoDate);
+					cell.setAttribute('aria-label', cell.title = title);
 				},
 				league: function(cell, leagueId) {
 					var link = doc.createElement('a');
