@@ -68,7 +68,7 @@
 		},
 		{
 			"id": "6170192",
-			"name": "arvalstnieks-SUB",
+			"name": "Mod-arvalstnieks-SUB",
 			"duty": "translator"
 		},
 		{
@@ -377,6 +377,11 @@
 			"duty": "translator"
 		},
 		{
+			"id": "13266339",
+			"name": "st-yk",
+			"duty": "translator"
+		},
+		{
 			"id": "13280539",
 			"name": "gaslei04",
 			"duty": "translator"
@@ -414,6 +419,16 @@
 		{
 			"id": "13524202",
 			"name": "rainboo",
+			"duty": "translator"
+		},
+		{
+			"id": "13215238",
+			"name": "yesilarma",
+			"duty": "translator"
+		},
+		{
+			"id": "12334375",
+			"name": "gandagan",
 			"duty": "translator"
 		},
 		{
