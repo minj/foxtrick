@@ -45,7 +45,7 @@
 		{ "LeagueId": 50, "TeamId": 3098, "TeamName": "U-20 Hellas", "id": 9159612, "name": "tzavelasf" },
 		{ "LeagueId": 51, "TeamId": 3091, "TeamName": "U-20 Magyarország", "id": 11345786, "name": "Nactor" },
 		{ "LeagueId": 52, "TeamId": 3099, "TeamName": "U-20 Česká republika", "id": 13113186, "name": "Danda94" },
-		{ "LeagueId": 53, "TeamId": 3092, "TeamName": "U-20 Latvija", "id": 6170192, "name": "albertocorrez-SUB" },
+		{ "LeagueId": 53, "TeamId": 3092, "TeamName": "U-20 Latvija", "id": 6170192, "name": "Mod-albertocorrez-SUB" },
 		{ "LeagueId": 54, "TeamId": 3093, "TeamName": "U-20 Indonesia", "id": 13021610, "name": "LA-Agathama" },
 		{ "LeagueId": 55, "TeamId": 3094, "TeamName": "U-20 Pilipinas", "id": 13422090, "name": "Flavio_86" },
 		{ "LeagueId": 56, "TeamId": 3095, "TeamName": "U-20 Eesti", "id": 1225492, "name": "aanus" },
@@ -128,6 +128,6 @@
 		{ "LeagueId": 145, "TeamId": 3261, "TeamName": "U-20 O'zbekiston", "id": 8255649, "name": "LA-Gruzik" },
 		{ "LeagueId": 146, "TeamId": 3255, "TeamName": "U-20 Cameroon", "id": 5842822, "name": "coachjojo" },
 		{ "LeagueId": 147, "TeamId": 3257, "TeamName": "U-20 Cuba", "id": 12592087, "name": "Salva_ou" },
-		{ "LeagueId": 148, "TeamId": 3259, "TeamName": "U-20 Palestine", "id": 10008537, "name": "Eric_Cantona-91" }
+		{ "LeagueId": 148, "TeamId": 3259, "TeamName": "U-20 Palestine", "id": 10008537, "name": "Eric_Cantona-LSAP" }
 	]
 }
