@@ -595,6 +595,9 @@ Foxtrick.Pages.Player.getSkillsWithText = function(doc) {
  * @return {object}                 {values, texts, names}
  */
 Foxtrick.Pages.Player.parseSeniorSkills = function(table) {
+	if (table == null)
+		return null;
+
 	var skillMap = {
 		seniorBars: [
 			'keeper',
