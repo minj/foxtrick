@@ -232,8 +232,8 @@ Foxtrick.modules.SkillColoring = {
 		}
 		else {
 			// some HT skills follow weird patterns
-			level = def.indexOf(level);
 			skill = def[level];
+			level = def.indexOf(level);
 		}
 
 
