@@ -686,7 +686,7 @@ Foxtrick.Pages.Player.parseSeniorSkills = function(table) {
 			}
 			else if (skillBar) {
 				skillValue = parseInt(skillBar.getAttribute('level'), 10);
-				let titleCell = skillBar.querySelector('div[title]');
+				let titleCell = skillBar.querySelector('div[title]:not(.ft-bar-loyalty)');
 				skillText = titleCell ? titleCell.title : '';
 			}
 			else {
