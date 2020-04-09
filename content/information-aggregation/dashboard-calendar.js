@@ -6,12 +6,26 @@
 
 'use strict';
 
-Foxtrick.modules['DashboardCalendar'] = {
+Foxtrick.modules.DashboardCalendar = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES: ['dashboard'],
 
-	// eslint-disable-next-line complexity
+	/**
+	 * @param {document} doc
+	 */
 	run: function(doc) {
+		const module = this;
+		module.exec(doc);
+		let list = doc.querySelector('#eventList');
+		let panel = list.closest('[id*="UpdatePanel"]');
+		Foxtrick.onChange(panel, doc => module.exec(doc));
+	},
+
+	/**
+	 * @param {document} doc
+	 */
+	// eslint-disable-next-line complexity
+	exec: function(doc) {
 		// this is mostly for strings/iCal handling
 		var EVENTS = {
 			/* eslint-disable no-multi-spaces */
@@ -40,10 +54,43 @@ Foxtrick.modules['DashboardCalendar'] = {
 
 		var L10N_PREFIX = 'dashBoardCalendar.events.';
 
+		/** @type {Record<string, boolean>} */
 		var midWeekGames = {};
+
+		/** @type {Record<string, boolean>} */
 		var weekendGames = {};
 
 		const TUESDAY = 1, WEDNESDAY = 2, SATURDAY = 5;
+
+		/**
+		 * @typedef DashboardEvent
+		 * @prop {string} type
+		 * @prop {string} text
+		 * @prop {Date}   date
+		 * @prop {string} [team]
+		 * @prop {string} [URL]
+		 */
+		/** @typedef FakedEvent
+		 * @prop {string} type
+		 * @prop {number} offset
+		 * @prop {string} team
+		 * @prop {string} URL
+		 */
+
+		/**
+		 * @typedef ProcessedEvent
+		 * @prop {number} alarmMinutes
+		 * @prop {string} time
+		 * @prop {string} UID
+		 * @prop {string} [end]
+		 */
+		/** @typedef {DashboardEvent & ProcessedEvent} CalendarEvent */
+
+		/**
+		 * @param  {HTMLElement} div
+		 * @param  {Date}        userMidnight
+		 * @return {DashboardEvent}
+		 */
 		// eslint-disable-next-line complexity
 		var parseEvent = function(div, userMidnight) {
 
@@ -51,11 +98,13 @@ Foxtrick.modules['DashboardCalendar'] = {
 			if (!image)
 				return null;
 
+			/** @type {DashboardEvent} */
 			var ret = {};
 
 			var desc = div.querySelector('.eventItemText');
 			ret.text = desc.textContent.trim();
 
+			/** @type {HTMLImageElement} */
 			var logo = div.querySelector('.eventItemClubLogo img');
 			if (logo) {
 				ret.team = logo.title;
@@ -75,6 +124,7 @@ Foxtrick.modules['DashboardCalendar'] = {
 			var URL = desc.querySelector('a');
 			ret.URL = URL ? URL.href : null;
 
+			/** @type {NodeListOf<HTMLAnchorElement>} */
 			var links = div.querySelectorAll('.eventItemLink a');
 
 			var youthRe = /SourceSystem=Youth/i;
@@ -162,7 +212,8 @@ Foxtrick.modules['DashboardCalendar'] = {
 			return ret;
 		};
 
-		var eventNodes = doc.querySelectorAll('#eventList > div');
+		/** @type {NodeListOf<HTMLElement>} */
+		var eventNodes = doc.querySelectorAll('#eventList > .eventItem');
 		if (!eventNodes || !eventNodes.length)
 			return;
 
@@ -174,17 +225,21 @@ Foxtrick.modules['DashboardCalendar'] = {
 		var htWeekDay = htNow.getDay(); // sometimes dashboard calendar lags
 		var htToday = new Date(htNow);
 		Foxtrick.util.time.setMidnight(htToday);
-		htNow = Foxtrick.util.time.toBareISOString(htNow);
+		var HT_NOW_STRING = Foxtrick.util.time.toBareISOString(htNow);
 
 		var userToday = Foxtrick.util.time.getDate(doc);
 		Foxtrick.util.time.setMidnight(userToday);
 
-		var htDays = [], userDates = [];
+		/** @type {DashboardEvent[][]} */
+		var htDays = [];
+
+		/** @type {Date[]} */
+		var userDates = [];
 
 		for (var i = 0; i < DAYS_IN_WEEK; ++i) {
 			var dayHeader = doc.querySelector('.eventCalendarWeekday' + i);
 			var dayNumberSpan = dayHeader.querySelector('.eventCalendarDay');
-			var dayNumber = dayNumberSpan.textContent.trim();
+			var dayNumber = parseInt(dayNumberSpan.textContent.trim(), 10);
 
 			var userDate = new Date(userToday);
 			var userDayNumber = userDate.getDate();
@@ -207,7 +262,7 @@ Foxtrick.modules['DashboardCalendar'] = {
 		}
 
 		Foxtrick.forEach(function(node) {
-			var day = node.className.match(/eventDay(\d+)/)[1];
+			var day = parseInt(node.className.match(/eventDay(\d+)/)[1], 0);
 			var userDate = userDates[day];
 			var evnt = parseEvent(node, userDate);
 			if (!evnt)
@@ -217,27 +272,40 @@ Foxtrick.modules['DashboardCalendar'] = {
 			htDays[htDay].push(evnt);
 		}, eventNodes);
 
+		/**
+		 * @param {FakedEvent} evnt
+		 */
 		var addFake = function(evnt) {
-			if (!evnt.date) {
-				var date = Foxtrick.util.time.addDaysToDate(htToday, evnt.offset);
-				// eslint-disable-next-line no-magic-numbers
-				date.setHours(18);
-				evnt.date = date;
-			}
-			var userTime = Foxtrick.util.time.toUser(doc, evnt.date);
+			var date = Foxtrick.util.time.addDaysToDate(htToday, evnt.offset);
+			// eslint-disable-next-line no-magic-numbers
+			date.setHours(18);
+			var userTime = Foxtrick.util.time.toUser(doc, date);
 			var userClock = Foxtrick.util.time.buildDate(userTime, { format: 'HH:MM' });
 			var description = Foxtrick.L10n.getString(L10N_PREFIX + evnt.type + '.alarm');
-			evnt.text = userClock + ' » ' + description;
 
-			var htDay = evnt.date.getDay();
-			htDays[htDay].push(evnt);
+			/** @type {unknown} */
+			var e = evnt;
+			var evt = /** @type {DashboardEvent} */ (e);
+
+			evt.date = date;
+			evt.text = userClock + ' » ' + description;
+
+			var htDay = date.getDay();
+			htDays[htDay].push(evt);
 		};
 
+		/** @type {CalendarEvent[]} */
 		var events = [];
+
+		/**
+		 * @param {DashboardEvent} e
+		 */
 		// eslint-disable-next-line complexity
-		var processEvent = function(evnt) {
-			if (!evnt)
+		var processEvent = function(e) {
+			if (!e)
 				return;
+
+			var evnt = /** @type {CalendarEvent} */(e);
 
 			if (evnt.team)
 				evnt.text += ' (' + evnt.team + ')';
@@ -357,7 +425,7 @@ Foxtrick.modules['DashboardCalendar'] = {
 
 			return 'BEGIN:VEVENT\r\n' +
 				'ORGANIZER;CN="Foxtrick":https://www.foxtrick.org\r\n' +
-				'DTSTAMP:' + htNow + '\r\n' +
+				'DTSTAMP:' + HT_NOW_STRING + '\r\n' +
 				'UID:' + evnt.UID + '\r\n' +
 				descEntry +
 				sumEntry +
