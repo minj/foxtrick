@@ -686,7 +686,7 @@ Foxtrick.Pages.Player.parseSeniorSkills = function(table) {
 			}
 			else if (skillBar) {
 				skillValue = parseInt(skillBar.getAttribute('level'), 10);
-				let titleCell = skillBar.querySelector('td[title]');
+				let titleCell = skillBar.querySelector('div[title]:not(.ft-bar-loyalty)');
 				skillText = titleCell ? titleCell.title : '';
 			}
 			else {
@@ -886,7 +886,7 @@ Foxtrick.Pages.Player.parseYouthSkills = function(table) {
 			else if (hasNewBars) {
 				// new bars
 				let bar = skillCell.querySelector('.ht-bar');
-				let titles = bar ? [...bar.querySelectorAll('td[title]')] : [];
+				let titles = bar ? [...bar.querySelectorAll('div[title]')] : [];
 				if (titles.length) {
 					[current, max] = titles.map(t => t.title);
 					if (titles.length == 1) {
