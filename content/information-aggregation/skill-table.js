@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 /**
  * skill-table.js
  * Show a skill table on players list page
@@ -870,7 +871,7 @@ Foxtrick.modules['SkillTable'] = {
 
 			var attachListeners = function(tables) {
 				Foxtrick.forEach(function(table) {
-					Foxtrick.onClick(table, function(ev) {
+					Foxtrick.listen(table, 'click', function(ev) {
 						var target = ev.target;
 						while (target && !Foxtrick.hasClass(target, 'ft-skilltable_cellBtn'))
 							target = target.parentNode;
@@ -1162,6 +1163,8 @@ Foxtrick.modules['SkillTable'] = {
 								if (listener) {
 									cell.dataset.listener = listener;
 									Foxtrick.addClass(cell, 'ft-skilltable_cellBtn');
+									cell.setAttribute('aria-role', 'button');
+									cell.setAttribute('tabindex', '0');
 								}
 							}
 						};

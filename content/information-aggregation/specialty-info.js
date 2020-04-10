@@ -8,11 +8,27 @@
 
 'use strict';
 
-Foxtrick.modules['SpecialtyInfo'] = {
+Foxtrick.modules.SpecialtyInfo = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES: ['all'],
 	CSS: Foxtrick.InternalPath + 'resources/css/specialty-info.css',
 
+	/**
+	 * @typedef SpecialyEffectWeather
+	 * @prop {string} icon
+	 * @prop {string} text
+	 * @prop {string} title
+	 * @prop {{name: string, text: string}[]} [textIcons]
+	 * @typedef SpecialyEffectEvents
+	 * @prop {number[]} events
+	 * @typedef {SpecialyEffectWeather|SpecialyEffectEvents} SpecialtyEffect
+	 * @typedef SpecialtyDefinition
+	 * @prop {SpecialtyEffect[]} [pos]
+	 * @prop {SpecialtyEffect[]} [neg]
+	 */
+
+	/** @type {SpecialtyDefinition[]} */
+	/* eslint-disable no-magic-numbers */
 	SPECS: [
 		{}, // none
 		{ // Technical
@@ -75,7 +91,7 @@ Foxtrick.modules['SpecialtyInfo'] = {
 		},
 		{ // Unpredictable
 			pos: [{ events: [105, 106, 108] }],
-			neg: [{ events: [109, /*125 own goal*/] }],
+			neg: [{ events: [109/* , 125 own goal */] }],
 		},
 		{ // Head
 			pos: [{ events: [119, 137] }],
@@ -86,14 +102,20 @@ Foxtrick.modules['SpecialtyInfo'] = {
 			neg: [],
 		},
 	],
+	/* eslint-enable no-magic-numbers */
 
+	/** @param {document} doc */
 	run: function(doc) {
 		var module = this;
 		var EVENT_UTIL = Foxtrick.util.matchEvent;
 
+		/**
+		 * @param {HTMLElement} parent
+		 */
+		// eslint-disable-next-line complexity
 		var addInfo = function(parent) {
 			var doc = parent.ownerDocument;
-			var specNum = parent.dataset.specialty;
+			var specNum = parseInt(parent.dataset.specialty, 10) || 0;
 			var uuid = parent.dataset.uuid;
 
 			var infoContainer = Foxtrick.createFeaturedElement(doc, module, 'div');
@@ -127,10 +149,23 @@ Foxtrick.modules['SpecialtyInfo'] = {
 			thMinus.colSpan = 2;
 			thMinus.textContent = '-';
 
+			/**
+			 * @typedef {{className?:string,textContent?:string,colSpan?:number}} SpecInfoAttrs
+			 * @typedef {string|Node|(string|Node)[]|SpecInfoAttrs} SpecInfoCell
+			 * @typedef {[SpecInfoCell, SpecInfoCell, SpecInfoCell, SpecInfoCell]} SpecInfoRow
+			 */
 
-			var rows = [], iconCell;
+			/** @type {SpecInfoRow[]} */
+			var rows = [];
 
-			var row, rowIdx;
+			/** @type {SpecInfoRow} */
+			var row = null;
+
+			/** @type {HTMLTableCellElement} */
+			var iconCell = null;
+			var rowIdx = -1;
+
+			/** @param {number} newIdx */
 			var updateRowPointer = function(newIdx) {
 				rowIdx = newIdx;
 				while (rowIdx >= rows.length)
@@ -139,31 +174,33 @@ Foxtrick.modules['SpecialtyInfo'] = {
 				row = rows[rowIdx];
 			};
 
-			var spec = module.SPECS[specNum];
-			for (var pair of [[0, spec.pos], [2, spec.neg]]) {
-				var startIdx = pair[0], arr = pair[1];
+			let spec = module.SPECS[specNum];
+
+			/** @type {[number, SpecialtyEffect[]][]} */
+			let def = [[0, spec.pos], [2, spec.neg]];
+			for (let [startIdx, arr] of def) {
 				updateRowPointer(0);
 
-				if (!arr.length) {
+				if (!Array.isArray(arr)) {
 					row[startIdx] = { className: 'center', textContent: '-', colSpan: 2 };
 					row[startIdx + 1] = null;
 
 					continue;
 				}
 
-				for (var item of arr) {
-					if (item.events) {
-						var evRowIdx = rowIdx;
-						for (var eventId of item.events) {
+				for (let item of arr) {
+					if ('events' in item) {
+						let evRowIdx = rowIdx;
+						for (let eventId of item.events) {
 							updateRowPointer(evRowIdx);
 
 							iconCell = doc.createElement('td');
 							row[startIdx] = iconCell;
 
-							var icons = EVENT_UTIL.getEventIcons(eventId, 'team');
-							EVENT_UTIL.appendIcons(doc, iconCell, icons, eventId);
+							let icons = EVENT_UTIL.getEventIcons(eventId, 'team');
+							EVENT_UTIL.appendIcons(doc, iconCell, icons, eventId, false);
 
-							var title = EVENT_UTIL.getEventTitle(eventId);
+							let title = EVENT_UTIL.getEventTitle(eventId);
 							row[startIdx + 1] = title;
 
 							evRowIdx++;
@@ -177,22 +214,23 @@ Foxtrick.modules['SpecialtyInfo'] = {
 					row[startIdx] = iconCell;
 
 					if (item.icon) {
-						var iTitle = Foxtrick.L10n.getString(item.title);
+						let iTitle = Foxtrick.L10n.getString(item.title);
 						EVENT_UTIL.appendIcons(doc, iconCell, [item.icon], iTitle);
 					}
 
-					var text = Foxtrick.L10n.getString(item.text);
+					let text = Foxtrick.L10n.getString(item.text);
 					row[startIdx + 1] = text;
 
 					if (item.textIcons) {
-						var textArr = row[startIdx + 1] = [text];
-						for (var icon of item.textIcons) {
+						/** @type {(string|Node)[]} */
+						let textArr = row[startIdx + 1] = [text];
+						for (let icon of item.textIcons) {
 							textArr.push(' ');
 
-							var iconFrag = doc.createDocumentFragment();
+							let iconFrag = doc.createDocumentFragment();
 							textArr.push(iconFrag);
 
-							var iconText = Foxtrick.L10n.getString(icon.text);
+							let iconText = Foxtrick.L10n.getString(icon.text);
 							Foxtrick.addImage(doc, iconFrag, {
 								src: Foxtrick.InternalPath + 'resources/img/' + icon.name,
 								class: 'ft-specInfo-textIcon',
@@ -209,21 +247,25 @@ Foxtrick.modules['SpecialtyInfo'] = {
 			var tbody = infoTable.appendChild(doc.createElement('tbody'));
 			Foxtrick.makeRows(doc, rows, tbody);
 
-			var ancestor = parent.parentNode;
+			var ancestor = parent.parentElement;
 			while (ancestor && !Foxtrick.hasClass(ancestor, 'position'))
-				ancestor = ancestor.parentNode;
+				ancestor = ancestor.parentElement;
 
+			let target = parent;
 			if (ancestor) {
 				// match order field
 				// absolute positioning in HT design overlaps our container
 				// if attached at original position
 				// moving up a few nodes instead
-				parent = ancestor;
+				target = ancestor;
 			}
 
-			parent.appendChild(infoContainer);
+			target.appendChild(infoContainer);
 		};
 
+		/**
+		 * @param {HTMLElement} parent
+		 */
 		var activate = function(parent) {
 			var doc = parent.ownerDocument;
 
@@ -241,8 +283,8 @@ Foxtrick.modules['SpecialtyInfo'] = {
 		};
 
 		var mainBody = doc.getElementById('mainBody');
-		Foxtrick.onClick(mainBody, function specInfoListener(ev) {
-			var target = ev.target;
+		Foxtrick.listen(mainBody, 'click', function specInfoListener(ev) {
+			var target = /** @type {HTMLElement} */ (ev.target);
 			while (target) {
 				if (Foxtrick.hasClass(target, 'ft-specInfo')) {
 					var uuid = target.dataset.uuid;
@@ -254,11 +296,11 @@ Foxtrick.modules['SpecialtyInfo'] = {
 				if (Foxtrick.hasClass(target, 'ft-specInfo-parent'))
 					break;
 
-				target = target.parentNode;
+				target = target.parentElement;
 			}
 
 			if (!target)
-				return;
+				return true;
 
 			activate(target);
 

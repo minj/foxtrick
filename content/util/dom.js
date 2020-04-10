@@ -200,12 +200,16 @@ Foxtrick.setAttributes = function(el, attributes) {
 		else if (attr.slice(0, 2) == 'on' && typeof val == 'function') {
 			let type = attr.slice(2).toLowerCase();
 
-			if (type == 'click')
+			if (type == 'click') {
 				Foxtrick.onClick(el, val);
-			else if (type == 'change')
+			}
+			else if (type == 'mutate') {
 				Foxtrick.onChange(el, val);
-			else
-				Foxtrick.listen(el, type, val);
+			}
+			else {
+				let eventType = /** @type {keyof HTMLElementEventMap} */ (type);
+				Foxtrick.listen(el, eventType, val);
+			}
 		}
 		else if (Foxtrick.has(ELEMENT_PROPERTIES, attr)) {
 			el[attr] = val;
@@ -490,6 +494,8 @@ Foxtrick.append = function(parent, child) {
  * Adds a click event listener to an element.
  *
  * Sets tabindex=0 and role=button if these attributes have no value.
+ *
+ * ! This does more harm than good on 'delegated' listeners, listen() should be used instead.
  *
  * The callback is executed with global change listeners stopped.
  *
@@ -851,11 +857,11 @@ Foxtrick.addImage = function(doc, parent, features, insertBefore, callback) {
  * Returns Promise.<HTMLImageElement>
  *
  * @param  {Node}   parent
- * @param  {number} specNum {Integer}
- * @param  {object} features image attributes
+ * @param  {number} specNum    {Integer}
+ * @param  {object} [features] image attributes
  * @return {Promise<HTMLImageElement>}
  */
-Foxtrick.addSpecialty = function(parent, specNum, features) {
+Foxtrick.addSpecialty = function(parent, specNum, features = {}) {
 	let doc = parent.ownerDocument;
 
 	let specialtyName = Foxtrick.L10n.getSpecialtyFromNumber(specNum);
@@ -878,6 +884,8 @@ Foxtrick.addSpecialty = function(parent, specNum, features) {
 		imgContainer.dataset.specialty = specNum.toString();
 
 		specialtyName += '\n' + Foxtrick.L10n.getString('SpecialtyInfo.open');
+		features.tabindex = '0';
+		features['aria-role'] = 'button';
 	}
 
 	let opts = {
@@ -885,7 +893,8 @@ Foxtrick.addSpecialty = function(parent, specNum, features) {
 		title: specialtyName,
 		src: specialtyUrl,
 	};
-	Foxtrick.mergeAll(opts, features);
+
+	Object.assign(opts, features);
 
 	return new Promise(function(resolve) {
 		Foxtrick.addImage(doc, imgContainer, opts, null, resolve);

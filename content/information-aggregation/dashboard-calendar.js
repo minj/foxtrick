@@ -305,7 +305,7 @@ Foxtrick.modules.DashboardCalendar = {
 			if (!e)
 				return;
 
-			var evnt = /** @type {CalendarEvent} */(e);
+			var evnt = /** @type {CalendarEvent} */ (e);
 
 			if (evnt.team)
 				evnt.text += ' (' + evnt.team + ')';
