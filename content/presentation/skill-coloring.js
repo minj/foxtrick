@@ -267,7 +267,7 @@ Foxtrick.modules.SkillColoring = {
 		if (skillNumber) {
 			let numSpan = doc.createElement('span');
 			Foxtrick.addClass(numSpan, 'ft-skill-number');
-			numSpan.textContent = skillNumber && skillTranslated ? ` ${level}` : String(level);
+			numSpan.textContent = skillTranslated ? ` ${level}` : String(level);
 			result.appendChild(numSpan);
 		}
 
