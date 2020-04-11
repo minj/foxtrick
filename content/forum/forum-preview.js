@@ -284,7 +284,7 @@ Foxtrick.modules.ForumPreview = {
 			for (let button of toolbar.children) {
 				if (button.hasAttribute('onclick') && !button.hasAttribute('tabindex')) {
 					button.setAttribute('tabindex', '0');
-					button.setAttribute('aria-role', 'button');
+					button.setAttribute('role', 'button');
 				}
 			}
 		}

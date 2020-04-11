@@ -713,7 +713,7 @@ Foxtrick.util.matchEvent.appendIcons = function(doc, container, icons, title, ad
 					Foxtrick.addClass(container, 'ft-specInfo-parent');
 					container.dataset.specialty = ret.specialty;
 					features.tabindex = '0';
-					features['aria-role'] = 'button';
+					features.role = 'button';
 				}
 
 				src = Foxtrick.getSpecialtyImagePathFromNumber(ret.specialty, ret.failure);

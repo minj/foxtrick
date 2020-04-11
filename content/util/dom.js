@@ -507,12 +507,76 @@ Foxtrick.append = function(parent, child) {
  * @return {function():void}                     remove wrapped listener
  */
 Foxtrick.onClick = function(el, listener, useCapture) {
-	if (!el.hasAttribute('tabindex'))
-		el.setAttribute('tabindex', '0');
-	if (!el.hasAttribute('role'))
-		el.setAttribute('role', 'button');
-
+	Foxtrick.clickTarget(el);
 	return Foxtrick.listen(el, 'click', listener, useCapture);
+};
+
+/**
+ * Sets tabindex=0 and role=button if these attributes have no value.
+ *
+ * Uses wrappers for elements with important accessibility semantics.
+ *
+ * ! This does more harm than good on 'delegated' listeners
+ *
+ * @param  {Element} el
+ */
+Foxtrick.clickTarget = function(el) {
+	/**
+	 * @param  {Element} e
+	 * @return {Element}
+	 */
+	const wrapContents = (e) => {
+		let span = e.ownerDocument.createElement('span');
+		Foxtrick.append(span, [...e.childNodes]);
+		return e.appendChild(span);
+	};
+
+	/**
+	 * @param  {Element} e
+	 * @return {Element}
+	 */
+	const wrapElement = (e) => {
+		let span = e.ownerDocument.createElement('span');
+		e.parentElement.replaceChild(span, e);
+		span.appendChild(e);
+		return span;
+	};
+
+	/* eslint-disable no-magic-numbers */
+	/** @type {Record<string, function(Element):void>} */
+	const ROLES_CBS = {
+		h1: wrapContents,
+		h2: wrapContents,
+		h3: wrapContents,
+		h4: wrapContents,
+		h5: wrapContents,
+		h6: wrapContents,
+		th: wrapContents,
+
+		img: wrapElement,
+
+		input: null,
+	};
+	/* eslint-enable no-magic-numbers */
+
+	let target = null;
+	let tag = el.tagName.toLowerCase();
+	if (tag in ROLES_CBS) {
+		let role = ROLES_CBS[tag];
+		if (typeof role == 'function')
+			target = role(el);
+	}
+	else {
+		target = el;
+	}
+
+	if (!target)
+		return;
+
+	if (!target.hasAttribute('tabindex'))
+		target.setAttribute('tabindex', '0');
+	if (!target.hasAttribute('role'))
+		target.setAttribute('role', 'button');
 };
 
 /**
@@ -885,7 +949,7 @@ Foxtrick.addSpecialty = function(parent, specNum, features = {}) {
 
 		specialtyName += '\n' + Foxtrick.L10n.getString('SpecialtyInfo.open');
 		features.tabindex = '0';
-		features['aria-role'] = 'button';
+		features.role = 'button';
 	}
 
 	let opts = {

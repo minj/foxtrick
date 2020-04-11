@@ -84,7 +84,7 @@ Foxtrick.modules.MatchSimulator = {
 		var oldLineups = doc.getElementById('oldLineups');
 		let savedLineups = oldLineups.querySelectorAll('.savedLineup');
 		for (let saved of savedLineups) {
-			saved.setAttribute('aria-role', 'button');
+			saved.setAttribute('role', 'button');
 			saved.setAttribute('tabindex', '0');
 		}
 
