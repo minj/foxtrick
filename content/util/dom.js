@@ -551,6 +551,7 @@ Foxtrick.clickTarget = function(el) {
 		h4: wrapContents,
 		h5: wrapContents,
 		h6: wrapContents,
+		td: wrapContents,
 		th: wrapContents,
 
 		img: wrapElement,
