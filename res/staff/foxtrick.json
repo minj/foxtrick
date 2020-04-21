@@ -1666,6 +1666,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "970104",
+			"name": "machlas"
+		},
+		{
+			"duty": "supporter",
 			"id": "9720897",
 			"name": "NEOS1"
 		},
