@@ -80,8 +80,8 @@ Foxtrick.util.matchEvent.eventIcons = {
 	71: 'penaltyShootOut',
 	72: null, // TODO ?
 	73: 'tossing_coin',
-	75: null, // TODO
-	76: null, // TODO
+	75: { home: ['clock'] },
+	76: { home: ['clock'] },
 	80: 'captain',
 	81: 'setPieces',
 	90: 'bruised',
@@ -400,6 +400,7 @@ Foxtrick.util.matchEvent.eventIconDefinition = {
 	bruised: '/Img/Icons/bruised.gif',
 	captain: '/Club/Matches/images/captain.png',
 	change_tactics: '/Img/Matches/behaviorchange.gif',
+	clock: Foxtrick.InternalPath + 'resources/img/matches/clock.png',
 	confusion: '/Club/Matches/images/confusion.png',
 	corner: Foxtrick.InternalPath + 'resources/img/matches/corner.png',
 	counter_attack: Foxtrick.InternalPath + 'resources/img/matches/ca.png',
