@@ -1,0 +1,23 @@
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "noImplicitAny": false,
+        "noImplicitThis": false,
+        "strictBindCallApply": true,
+        "strictFunctionTypes": true,
+        "strictNullChecks": false,
+        "checkJs": true
+    },
+    "typeAcquisition": {
+        "include": [
+            "chrome",
+            "firefox-webext-browser",
+            "safari-extension",
+            "safari-extension-content",
+            "jquery"
+        ]
+    },
+    "exclude": [
+        "content/lib"
+    ]
+}

@@ -1,11 +1,12 @@
-'use strict';
 /**
  * skill-coloring.js
  * Script which add colorizes skills and shows numbers for the skills
  * @author spambot, LA-MJ, thx to baumanns
  */
 
-Foxtrick.modules['SkillColoring'] = {
+'use strict';
+
+Foxtrick.modules.SkillColoring = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.PRESENTATION,
 	PAGES: ['all'],
 	OPTIONS: [
@@ -26,6 +27,9 @@ Foxtrick.modules['SkillColoring'] = {
 		Foxtrick.InternalPath + 'resources/skillcolors/skill-number-selectoption.css',
 	],
 
+	/**
+	 * @type {Record<string, string[] | Record<number, string> & { indexOf: (ll: number)=>number}>}
+	 */
 	NAMES: {
 		skill: [
 			'non-existent',
@@ -149,8 +153,9 @@ Foxtrick.modules['SkillColoring'] = {
 		],
 		morale: {
 			indexOf: function(key) {
-				var index = key - 12;
-				return (index == -1) ? 10 : index;
+				// eslint-disable-next-line no-magic-numbers
+				let index = key - 12;
+				return index == -1 ? 10 : index;
 			},
 			12: 'like the Cold War',
 			13: 'murderous',
@@ -166,8 +171,10 @@ Foxtrick.modules['SkillColoring'] = {
 		},
 		confidence: {
 			indexOf: function(key) {
-				var index = key - 23;
-				return (index == -1) ? 9 : index;
+				// eslint-disable-next-line no-magic-numbers
+				let index = key - 23;
+				// eslint-disable-next-line no-magic-numbers
+				return index == -1 ? 9 : index;
 			},
 			23: 'non-existent',
 			24: 'disastrous',
@@ -181,238 +188,326 @@ Foxtrick.modules['SkillColoring'] = {
 			22: 'completely exaggerated',
 		},
 	},
-	addSkill: function(doc, el, type, htIndex, skill_number, skill_translated,
-	                   skill_translated_title, isProblemPage) {
 
-		var level = parseInt(htIndex, 10) || 0;
+	/**
+	 * @typedef SkillColoringFlags
+	 * @param {boolean} skillNumber
+	 * @param {boolean} skillTranslated
+	 * @param {boolean} skillTranslatedTitle
+	 * @param {boolean} isProblemPage
+	 */
+
+	/**
+	 * @param {document} doc
+	 * @param {Element}  el
+	 * @param {string}   type
+	 * @param {number}   htIndex
+	 * @param {SkillColoringFlags} flags
+	 */
+	// eslint-disable-next-line complexity
+	addSkill: function(doc, el, type, htIndex, flags) {
+
+		const module = this;
+		const MAX_SKILL = 20;
+
+		let { skillNumber, skillTranslated, skillTranslatedTitle, isProblemPage } = flags;
+
+		var level = parseInt(String(htIndex), 10) || 0;
 
 		var skill;
-		if (!(this.NAMES[type] instanceof Array)) {
-			level = this.NAMES[type].indexOf(level); // some HT skills follow weird patterns
-			skill = this.NAMES[type][level];
-		}
-		else {
-			var capped = Math.min(level, 20); // capped at 20
-			skill = this.NAMES[type][capped];
+
+		let def = module.NAMES[type];
+		if (Array.isArray(def)) {
+			let capped = Math.min(level, MAX_SKILL); // capped at 20
+			skill = def[capped];
+
 			if (capped < level) {
-				skill += Foxtrick.format(' (+{})', [level - capped]);
 				// if (el.href) {
-				// 	var re = new RegExp('=' + level + '(?!\\d)', 'g');
-				// 	el.href = el.href.replace(re, '=' + capped);
+				// 	let re = new RegExp(`=${level}(?!\\d)`, 'g');
+				// 	el.href = el.href.replace(re, `=${capped}`);
 				// }
+
+				skill += ` (+${level - capped})`;
 			}
 		}
-
-
-		if (skill_translated && skill_translated_title) { //add to title instead
-			el.setAttribute('title', skill);
-			skill_translated = false;
+		else {
+			// some HT skills follow weird patterns
+			skill = def[level];
+			level = def.indexOf(level);
 		}
 
-		if (skill_number && (type == 'gentleness' || type == 'honesty' || type == 'aggressiveness')
-		    && Foxtrick.Prefs.isModuleEnabled('PersonalityImages'))
-			skill_number = false; //don't add number if we have PersonalityImages
 
-		if (!(skill_number || skill_translated))
-			return; //nothing else to do here
+		if (skillTranslated && skillTranslatedTitle) {
+			// add to title instead
+			el.setAttribute('title', skill);
+			skillTranslated = false;
+		}
 
-		var n = doc.createElement('span');
-		Foxtrick.addClass(n, 'ft-skill-number');
-		var t = doc.createElement('span');
-		Foxtrick.addClass(t, 'ft-skill');
-		if (isProblemPage && skill_translated &&
-		    (el.parentNode.nodeName == 'TD' || el.parentNode.parentNode.nodeName == 'TD'))
-			t.appendChild(doc.createElement('br')); //add a br to pages with small width
-		n.textContent = (skill_number && skill_translated) ? ' ' + level : level;
+		if (skillNumber &&
+		    (type == 'gentleness' || type == 'honesty' || type == 'aggressiveness') &&
+		    Foxtrick.Prefs.isModuleEnabled('PersonalityImages')) {
+			// don't add number if we have PersonalityImages
+			skillNumber = false;
+		}
 
-		t.appendChild(doc.createTextNode(
-			(skill_translated) ? ' (' + skill : ' ('
-		));
-		if (skill_number)
-			t.appendChild(n);
-		t.appendChild(doc.createTextNode(')'));
-		el.appendChild(t);
+		if (!(skillNumber || skillTranslated)) {
+			// nothing else to do here
+			return;
+		}
+
+		var result = doc.createElement('span');
+		Foxtrick.addClass(result, 'ft-skill');
+		if (isProblemPage && skillTranslated &&
+		    (el.parentNode.nodeName == 'TD' || el.parentNode.parentNode.nodeName == 'TD')) {
+			// add a br to pages with small width
+			result.appendChild(doc.createElement('br'));
+		}
+		result.appendChild(doc.createTextNode(skillTranslated ? ` (${skill}` : ' ('));
+
+		if (skillNumber) {
+			let numSpan = doc.createElement('span');
+			Foxtrick.addClass(numSpan, 'ft-skill-number');
+			numSpan.textContent = skillTranslated ? ` ${level}` : String(level);
+			result.appendChild(numSpan);
+		}
+
+		result.appendChild(doc.createTextNode(')'));
+		el.appendChild(result);
 	},
+
+	/** @param {document} doc */
 	run: function(doc) {
 		if (Foxtrick.isPage(doc, 'ownYouthPlayers') &&
-			Foxtrick.Prefs.isModuleEnabled('YouthSkills'))
+		    Foxtrick.Prefs.isModuleEnabled('YouthSkills'))
 			return;
+
 		this.execute(doc);
 	},
+
+	/** @param {document} doc */
 	execute: function(doc) {
+		const module = this;
 
-		var skill_color = Foxtrick.Prefs.isModuleOptionEnabled('SkillColoring', 'skill_color');
-		var non_skill_color = Foxtrick.Prefs.isModuleOptionEnabled('SkillColoring',
-		                                                          'non_skill_color');
-		var no_colors = Foxtrick.Prefs.isModuleOptionEnabled('SkillColoring', 'no_colors');
-		var skill_number = Foxtrick.Prefs.isModuleOptionEnabled('SkillColoring', 'skill_number');
-		var skill_translated = Foxtrick.Prefs.isModuleOptionEnabled('SkillColoring',
-		                                                           'skill_translated');
-		var skill_translated_title = Foxtrick.Prefs.isModuleOptionEnabled('SkillColoring',
-		                                                                 'skill_translated_title');
-		var skill_select = Foxtrick.Prefs.isModuleOptionEnabled('SkillColoring', 'skill_select');
+		const skillColor = Foxtrick.Prefs.isModuleOptionEnabled(module, 'skill_color');
+		const nonSkillColor = Foxtrick.Prefs.isModuleOptionEnabled(module, 'non_skill_color');
+		const noColors = Foxtrick.Prefs.isModuleOptionEnabled(module, 'no_colors');
+		const skillNumber = Foxtrick.Prefs.isModuleOptionEnabled(module, 'skill_number');
+		const skillSelect = Foxtrick.Prefs.isModuleOptionEnabled(module, 'skill_select');
+		const skillTranslated = Foxtrick.Prefs.isModuleOptionEnabled(module, 'skill_translated');
+		const skillTranslatedTitle =
+			Foxtrick.Prefs.isModuleOptionEnabled(module, 'skill_translated_title');
 
+		// eslint-disable-next-line complexity
 		var playerDetailsChange = function() {
 			// Foxtrick.log('playerDetailsChange')
 
-			var createLink = function(type, level, skill, skill_translated) {
-				// skill_translated has to be a parameter here to support specials
-				var newLink = doc.createElement('a');
+			/**
+			 * @param  {string}  type
+			 * @param  {number}  level
+			 * @param  {string}  skill
+			 * @param  {boolean} skillTranslated
+			 * @return {HTMLAnchorElement}
+			 */
+			var createLink = function(type, level, skill, skillTranslated) {
+				// skillTranslated has to be a parameter here to support specials
+				let newLink = doc.createElement('a');
 				Foxtrick.addClass(newLink, 'ft-skill');
-				if ((!skill_color && type == 'skill') || (!non_skill_color && type != 'skill') ||
-				    no_colors)
-					Foxtrick.addClass(newLink, 'ft-skill-dont-touch');
-					// this is a match order page, we don't want white backgrounds here
-				newLink.textContent = skill;
-				newLink.href = '/Help/Rules/AppDenominations.aspx?lt=' + type + '&ll=' + level
-					+ '#' + type;
 
-				Foxtrick.modules['SkillColoring'].addSkill(doc, newLink, type, level, skill_number,
-					skill_translated, skill_translated_title, false);
-				// not problem page
+				if (!skillColor && type == 'skill' || !nonSkillColor && type != 'skill' ||
+				    noColors) {
+					// this is a match order page, we don't want white backgrounds here
+					Foxtrick.addClass(newLink, 'ft-skill-dont-touch');
+				}
+
+				newLink.textContent = skill;
+				newLink.href = `/Help/Rules/AppDenominations.aspx?lt=${type}&ll=${level}#${type}`;
+
+				let flags = {
+					skillNumber,
+					skillTranslated,
+					skillTranslatedTitle,
+					isProblemPage: false, // not problem page
+				};
+
+				module.addSkill(doc, newLink, type, level, flags);
 
 				return newLink;
 			};
+
+			/**
+			 * @param {[HTMLSpanElement, string][]} specials
+			 */
 			var toggleSpecials = function(specials) {
-				for (var i = 0, special; special = specials[i]; ++i) {
-					var span = special[0], type = special[1];
-					var skill = span.textContent;
-					span.textContent = null;
-					var level = Foxtrick.L10n.getLevelFromText(skill);
-					var newLink = createLink(type, level, skill, skill_translated);
-					// adding a link to apply styling, using 'global' skill_translated
+				for (let [span, type] of specials) {
+					let skill = span.textContent;
+					span.textContent = '';
+					let level = Foxtrick.L10n.getLevelFromText(skill);
+
+					// adding a link to apply styling, using 'global' skillTranslated
+					let newLink = createLink(type, level, skill, skillTranslated);
 					span.appendChild(newLink);
 				}
 			};
 
-			var details = doc.getElementById('details');
-			if (details) {
+			let details = doc.getElementById('details');
+			if (!details)
+				return;
 
-				// let's hope LAs don't mess with order of things here
-				var span = details.getElementsByClassName('experienceAndLeadership')[0];
-				var isYouth = ! (span.textContent);
-				if (!isYouth) {
-					var XPandLS = span.getElementsByTagName('span');
-					if (XPandLS[0].getElementsByTagName('a')[0])
-						return; // we've been here before
-					var XPspan = XPandLS[0], LSspan = XPandLS[1];
-					var STandFO = details.getElementsByClassName('staminaAndForm')[0]
-						.getElementsByTagName('span');
-					var STspan = STandFO[0], FOspan = STandFO[1];
-					var LOspan = details.getElementsByClassName('loyalty')[0]
-						.getElementsByTagName('span')[0];
+			// let's hope LAs don't mess with order of things here
+			let span = details.querySelector('.experienceAndLeadership');
+			let isYouth = !span.textContent;
+			if (!isYouth) {
+				let XPandLS = span.querySelectorAll('span');
+				let [XPspan, LSspan] = XPandLS;
 
-					toggleSpecials([
-						[XPspan, 'skill'],
-						[LSspan, 'skillshort'],
-						[STspan, 'skill'],
-						[FOspan, 'skillshort'],
-						[LOspan, 'skill'],
-					]);
+				if (XPspan.querySelector('a')) {
+					// we've been here before
+					return;
 				}
 
-				var tds = details.getElementsByTagName('td');
-				for (var i = 0, td; td = tds[i]; ++i) {
-					if (Foxtrick.hasClass(td, 'type'))
-						continue; // 'type' is for skill names (gk,pm etc)
-					if (isYouth) {
-						if (td.getElementsByClassName('ft-skill')[0])
-							break; // we've been here before
-						var percentImage = td.getElementsByTagName('img')[0];
-						var translated = (skill_translated) ? !percentImage : false;
-						var parent = (percentImage) ? td.firstChild : td;
-						var childs = parent.childNodes;
-						for (var j = 0, child; child = childs[j]; ++j) {
-							if (child.nodeType != 3) continue; // we need only text nodes
-							var temp = doc.createElement('span');
-							temp.className = 'ft-skill';
-							td.appendChild(temp);
-							var skills = child.textContent.split('/');
-							if (skills[0]) {
-								var level = Foxtrick.L10n.getLevelFromText(skills[0]);
-								var newLink = createLink('skill', level, skills[0], translated);
-								parent.insertBefore(newLink, child);
-								++j;
-							}
-							if (child.textContent.search(/\//) != -1) {
-								parent.insertBefore(doc.createTextNode('/'), child);
-								++j;
-							}
-							if (skills[1]) {
-								var level = Foxtrick.L10n.getLevelFromText(skills[1]);
-								var newLink = createLink('skill', level, skills[1], translated);
-								parent.insertBefore(newLink, child);
-								++j;
-							}
-							parent.removeChild(child);
-							--j;
+				let STandFO = details.querySelector('.staminaAndForm').querySelectorAll('span');
+				let [STspan, FOspan] = STandFO;
+
+				/** @type {HTMLSpanElement} */
+				let LOspan = details.querySelector('.loyalty span');
+
+				toggleSpecials([
+					[XPspan, 'skill'],
+					[LSspan, 'skillshort'],
+					[STspan, 'skill'],
+					[FOspan, 'skillshort'],
+					[LOspan, 'skill'],
+				]);
+			}
+
+			let tds = details.querySelectorAll('td');
+			for (let td of tds) {
+				if (Foxtrick.hasClass(td, 'type')) {
+					// 'type' is for skill names (gk,pm etc)
+					continue;
+				}
+
+				if (isYouth) {
+					if (td.querySelector('.ft-skill')) {
+						// we've been here before
+						break;
+					}
+
+					let percentImage = td.querySelector('img');
+					let translated = skillTranslated ? !percentImage : false;
+					let parent = percentImage ? td.firstChild : td;
+					for (let j = 0; j < parent.childNodes.length; j++) {
+						let child = parent.childNodes[j];
+						if (child.nodeType != doc.TEXT_NODE) {
+							// we need only text nodes
+							continue;
 						}
+
+						let temp = doc.createElement('span');
+						temp.className = 'ft-skill';
+						td.appendChild(temp);
+						let skills = child.textContent.split('/');
+						let [curr, cap] = skills;
+
+						if (curr) {
+							let level = Foxtrick.L10n.getLevelFromText(curr);
+							let newLink = createLink('skill', level, curr, translated);
+							parent.insertBefore(newLink, child);
+							++j;
+						}
+
+						if (/\//.test(child.textContent)) {
+							parent.insertBefore(doc.createTextNode('/'), child);
+							++j;
+						}
+
+						if (cap) {
+							let level = Foxtrick.L10n.getLevelFromText(cap);
+							let newLink = createLink('skill', level, cap, translated);
+							parent.insertBefore(newLink, child);
+							++j;
+						}
+						parent.removeChild(child);
+						--j;
 					}
-					else {
-						var skill = td.textContent.trim();
-						var percentImage = td.getElementsByTagName('img')[0];
-						var level = (percentImage) ? percentImage.title.match(/\d+/) :
-							Foxtrick.L10n.getLevelFromText(skill);
+				}
+				else {
+					let skill = td.textContent.trim();
+					let percentImage = td.querySelector('img');
 
-						if (td.lastChild)
-							td.removeChild(td.lastChild);
+					let level = percentImage ?
+						parseInt(String(percentImage.title.match(/\d+/)), 10) :
+						Foxtrick.L10n.getLevelFromText(skill);
 
-						if (percentImage) td.appendChild(doc.createTextNode('\u00a0'));
+					if (td.lastChild)
+						td.removeChild(td.lastChild);
 
-						var translated = (skill_translated) ? !percentImage : false;
-						// if skillbars are activated never show inline translation to prevent
-						// overflow
+					if (percentImage)
+						td.appendChild(doc.createTextNode('\u00a0'));
 
-						// we have to use a 'local' translated not to interfere with specials
-						var newLink = createLink('skill', level, skill, translated);
-						// adding a link to apply styling
-						td.appendChild(newLink);
-					}
+					// if skillbars are activated never show inline translation to prevent
+					// overflow
+					let translated = skillTranslated ? !percentImage : false;
+
+					// we have to use a 'local' translated not to interfere with specials
+					let newLink = createLink('skill', level, skill, translated);
+
+					// adding a link to apply styling
+					td.appendChild(newLink);
 				}
 			}
 		};
 
-		// add skill link colors (and or) numbers to the dynamically filled player details div
-		// on the lineup page
-		if ((skill_color || non_skill_color || skill_number || skill_translated) &&
+		if ((skillColor || nonSkillColor || skillNumber || skillTranslated) &&
 		    Foxtrick.isPage(doc, 'matchOrder')) {
+			// add skill link colors (and or) numbers to the dynamically filled player details div
+			// on the lineup page
 			Foxtrick.onChange(doc.getElementById('details'), playerDetailsChange);
 		}
 
-		if (skill_select && Foxtrick.isPage(doc, 'transferSearchForm')) {
-			var body = doc.getElementById('mainBody');
-			var query = 'select[id*="Skill"][id$="Min"]>option, ' +
-				'select[id*="Skill"][id$="Max"]>option';
-			var skills = body.querySelectorAll(query);
+		if (skillSelect && Foxtrick.isPage(doc, 'transferSearchForm')) {
+			let body = doc.getElementById('mainBody');
+			let query =
+				'select[id*="Skill"][id$="Min"]>option, select[id*="Skill"][id$="Max"]>option';
+
+			/** @type {NodeListOf<HTMLOptionElement>} */
+			let skills = body.querySelectorAll(query);
 			Foxtrick.forEach(function(skill) {
-				if (skill.value != -1) {
-					var level = doc.createElement('span');
-					Foxtrick.addClass(level, 'ft-tl-search-skill');
-					level.textContent = ' (' + skill.value + ')';
-					skill.appendChild(level);
-				}
+				if (skill.value == '-1')
+					return;
+
+				let level = doc.createElement('span');
+				Foxtrick.addClass(level, 'ft-tl-search-skill');
+				level.textContent = ` (${skill.value})`;
+				skill.appendChild(level);
+
 			}, skills);
 		}
 
-		if (skill_number || skill_translated) {
-			var isProblemPage = (Foxtrick.isPage(doc, 'ownPlayers') ||
-			                     Foxtrick.isPage(doc, 'transferSearchResult'));
+		if (skillNumber || skillTranslated) {
 			// too little space on these pages
-			var l = doc.getElementsByTagName('a');
-			// turn this into an array
-			var links = Foxtrick.map(function(link) {
-				return link;
-			}, l);
-			var e = /\/Help\/Rules\/AppDenominations\.aspx\?.*&(?:ll|labellevel)=(\d+)#(\w+)/;
-			for (var i = 0, link; link = links[i]; ++i) {
-				if (e.test(link.href)) {
-					var r = link.href.match(e), type = r[2], htIndex = r[1];
+			let isProblemPage = Foxtrick.isPage(doc, ['ownPlayers', 'transferSearchResult']);
 
-					this.addSkill(doc, link, type, htIndex, skill_number, skill_translated,
-					              skill_translated_title, isProblemPage);
+			let links = doc.querySelectorAll('a');
 
-				}
+			let e = /\/Help\/Rules\/AppDenominations\.aspx\?.*&(?:ll|labellevel)=(\d+)#(\w+)/;
+			for (let link of links) {
+				if (!e.test(link.href))
+					continue;
+
+				let [_, ll, type] = link.href.match(e);
+				let htIndex = parseInt(ll, 10);
+
+				let flags = {
+					skillNumber,
+					skillTranslated,
+					skillTranslatedTitle,
+					isProblemPage,
+				};
+
+				module.addSkill(doc, link, type, htIndex, flags);
 			}
 		}
-	}
+	},
+
 };

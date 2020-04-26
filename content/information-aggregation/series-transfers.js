@@ -1,14 +1,16 @@
-'use strict';
 /**
  * series-transfers.js
  * Lists all players for sale within a certain league on league pages
  * @author CatzHoek
  */
 
+'use strict';
+
 Foxtrick.modules['SeriesTransfers'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES: ['series'],
 
+	/** @param {document} doc */
 	run: function(doc) {
 
 		var AUTO_REFRESH_IN = 2 * Foxtrick.util.time.MSECS_IN_DAY;
@@ -16,25 +18,28 @@ Foxtrick.modules['SeriesTransfers'] = {
 		var timeId = 'ft-series-transfers-time';
 		var now = Foxtrick.util.time.getHTTimeStamp(doc);
 
-		var leagueTable = doc.getElementById('mainBody').getElementsByTagName('table')[0];
+		var leagueTable = doc.querySelector('#mainBody table');
 
 		// checks whether a team is ownerless
 		var isNotOwnerless = function(link) {
 			return !Foxtrick.hasClass(link, 'shy') &&
-				Foxtrick.util.id.getTeamIdFromUrl(link.href);
+				!!Foxtrick.util.id.getTeamIdFromUrl(link.href);
 		};
 
 		// get bots/ownerless
-		var teams = leagueTable.getElementsByTagName('a');
+		/** @type {NodeListOf<HTMLAnchorElement>} */
+		var teams = leagueTable.querySelectorAll('a:not([href*="/Matches/"])');
 		var teamLinks = Foxtrick.filter(isNotOwnerless, teams);
-		if (!teamLinks.length)
+		if (!teamLinks.length) {
 			// only bots
 			return;
+		}
 
 		// get teamdIds
 		var teamIds = Foxtrick.map(function(link) {
 			return Foxtrick.util.id.getTeamIdFromUrl(link.href);
 		}, teamLinks);
+		teamIds = Foxtrick.unique(teamIds);
 
 		// build batchArgs
 		var batchArgs = Foxtrick.map(function(n) {

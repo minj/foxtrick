@@ -946,7 +946,7 @@ Foxtrick.util.matchEvent.addEventIcons = function(evnt) {
 
 };
 
-Foxtrick.util.matchEvent.appendIcons = function(doc, container, icons, title) {
+Foxtrick.util.matchEvent.appendIcons = function(doc, container, icons, title, addInfo = true) {
 	var addSpaceBeforeImg = function(img) {
 		img.parentNode.insertBefore(doc.createTextNode(' '), img);
 	};
@@ -959,8 +959,12 @@ Foxtrick.util.matchEvent.appendIcons = function(doc, container, icons, title) {
 		if (typeof src === 'function') {
 			var ret = src();
 			if (ret.specialty) {
-				container.dataset.specialty = ret.specialty;
-				Foxtrick.addClass(container, 'ft-specInfo-parent');
+				if (addInfo && Foxtrick.Prefs.isModuleEnabled('SpecialtyInfo')) {
+					Foxtrick.addClass(container, 'ft-specInfo-parent');
+					container.dataset.specialty = ret.specialty;
+					features.tabindex = '0';
+					features.role = 'button';
+				}
 
 				src = Foxtrick.getSpecialtyImagePathFromNumber(ret.specialty, ret.failure);
 			}

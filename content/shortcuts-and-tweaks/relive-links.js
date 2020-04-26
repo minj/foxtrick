@@ -1,11 +1,12 @@
-'use strict';
 /**
  * relive-links.js
  * add missing Re-Live links
  * @author LA-MJ
  */
 
-Foxtrick.modules['ReLiveLinks'] = {
+'use strict';
+
+Foxtrick.modules.ReLiveLinks = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES: [
 		'matchesLive', // export live
@@ -16,21 +17,31 @@ Foxtrick.modules['ReLiveLinks'] = {
 	],
 	NICE: -1, // before any modules that might change row count
 	OPTIONS: ['ReLive', 'Live'],
+
+	/** @param {document} doc */
 	run: function(doc) {
+		const module = this;
+
 		if (Foxtrick.isPage(doc, 'matchesLive') &&
 		    Foxtrick.Prefs.isModuleOptionEnabled('ReLiveLinks', 'Live'))
-			this.live(doc);
+			module.live(doc);
 		else if (Foxtrick.Prefs.isModuleOptionEnabled('ReLiveLinks', 'ReLive'))
-			this.reLive(doc);
+			module.reLive(doc);
 	},
-	live: function(doc) {
-		var module = this;
-		var LINK_TEMPLATE = '[link=/Club/Matches/Live.aspx' +
-			'?matchID={}&actionType=addMatch&SourceSystem={}]\n';
-		var COPY = Foxtrick.L10n.getString('copy.asLink');
-		var SUCCESS = Foxtrick.L10n.getString('copy.asLink.copied');
-		var BUTTON_ID = 'ft-bulk-live-link';
 
+	/** @param {document} doc */
+	live: function(doc) {
+		const module = this;
+		const COPY = Foxtrick.L10n.getString('copy.asLink');
+		const SUCCESS = Foxtrick.L10n.getString('copy.asLink.copied');
+		const BUTTON_ID = 'ft-bulk-live-link';
+		const LINK_TEMPLATE = '[link=/Club/Matches/Live.aspx' +
+			'?matchID={}&actionType=addMatch&SourceSystem={}]\n';
+
+		/**
+		 * @param  {string} uid
+		 * @return {'HTOIntegrated'|'Youth'|'Hattrick'}
+		 */
 		var getSourceFromUId = function(uid) {
 			switch (uid[0]) {
 				case 'X':
@@ -42,14 +53,16 @@ Foxtrick.modules['ReLiveLinks'] = {
 			}
 		};
 
+		/** @type {Listener<HTMLAnchorElement, MouseEvent>} */
 		var copyBulkLinks = function() {
+			// eslint-disable-next-line no-invalid-this
 			var doc = this.ownerDocument;
 			var links = doc.getElementsByClassName('removeTab2');
 			if (!links.length)
 				return;
 
 			var matches = {};
-			Foxtrick.forEach(function(link) {
+			for (let link of links) {
 				let attr = link.getAttribute('onclick');
 				let [_, url] = attr.match(/['"](.+?)['"]/); // lgtm[js/unused-local-variable]
 				{
@@ -65,11 +78,11 @@ Foxtrick.modules['ReLiveLinks'] = {
 
 				let id = uid.match(/\d+/)[0];
 				matches[source].push(id);
-			}, links);
+			}
 
 			var text = '';
-			for (var type in matches) {
-				var list = matches[type].toString();
+			for (let type in matches) {
+				let list = matches[type].toString();
 				text += Foxtrick.format(LINK_TEMPLATE, [list, type]);
 			}
 
@@ -77,75 +90,103 @@ Foxtrick.modules['ReLiveLinks'] = {
 			Foxtrick.util.note.add(doc, SUCCESS, 'ft-relive-copy-note');
 		};
 
-		var addBulkButton = function() {
-			var button = doc.getElementById(BUTTON_ID);
+		/** @param {document} doc */
+		var addBulkButton = function(doc) {
+			/** @type {HTMLAnchorElement} */
+			let button = doc.querySelector(`#${BUTTON_ID}`);
 			if (button)
-				button.parentNode.removeChild(button);
+				button.remove();
 
-			var target = doc.querySelector('.liveConfLink');
+			let target = doc.querySelector('.liveConfLink');
 			if (!target)
 				return;
 
 			button = Foxtrick.createFeaturedElement(doc, module, 'a');
 			button.id = BUTTON_ID;
-			button.className = 'ft-link liveConfLink shy right';
+			Foxtrick.addClass(button, 'ft-link liveConfLink shy right');
 			button.textContent = COPY;
+			Foxtrick.insertBefore(button, target);
 			Foxtrick.onClick(button, copyBulkLinks);
-			target.parentNode.insertBefore(button, target);
 		};
 
 		Foxtrick.Pages.Match.addLiveListener(doc, addBulkButton);
 	},
+
+	/** @param {document} doc */
+	// eslint-disable-next-line complexity
 	reLive: function(doc) {
-		var module = this;
+		const module = this;
+
 		// don't run on live table
-		var liveSeriesLink = Foxtrick.getMBElement(doc, 'hlLive');
-		if (liveSeriesLink && liveSeriesLink.hasAttribute('disabled')) {
+		let liveSeriesLink = Foxtrick.getMBElement(doc, 'hlLive');
+		if (liveSeriesLink && liveSeriesLink.hasAttribute('disabled'))
 			return;
-		}
 
-		var MATCH_SELECTOR = 'a[href^="/Club/Matches/Match.aspx"]';
-		var LIVE_SELECTOR = 'a[href^="/Club/Matches/Live.aspx"]';
+		const MATCH_SELECTOR = 'a[href^="/Club/Matches/Match.aspx"]';
+		const LIVE_SELECTOR = 'a[href^="/Club/Matches/Live.aspx"]';
 
+		/**
+		 * @param  {ArrayLike<HTMLElement>} rows
+		 * @return {number}                 index
+		 */
 		var findMatchTdIdx = function(rows) {
-			if (!rows[0])
+			let [first] = Array.from(rows);
+			if (!first)
 				return -1;
-			var tbody = rows[0].parentNode;
-			var matchLink = tbody.querySelector(MATCH_SELECTOR);
+
+			let tbody = first.parentNode;
+			let matchLink = tbody.querySelector(MATCH_SELECTOR);
 			if (!matchLink)
 				return -1;
-			var cell = matchLink.parentNode;
-			if (cell.nodeName !== 'TD')
+
+			let cell = matchLink.closest('td');
+			if (!cell) {
 				// unknown structure
 				return -1;
-			var row = cell.parentNode;
-			if (row.parentNode !== tbody)
+			}
+
+			let row = cell.closest('tr');
+			if (!row || row.parentNode !== tbody) {
 				// unknown structure
 				return -1;
+			}
+
 			return Foxtrick.indexOf(row.cells, cell);
 		};
 
-		var img = doc.createElement('img');
-		img.src = '/Img/Icons/transparent.gif';
-		img.alt = img.title = 'HT Re-Live';
-		img.className = 'matchHTReLive';
+		/** @type {Promise<HTMLImageElement>} */
+		var imgPromise;
+		{
+			let img = doc.createElement('img');
+			img.src = '/Img/Icons/transparent.gif';
+			img.alt = img.title = 'HT Re-Live';
+			img.className = 'matchHTReLive';
+			imgPromise = Promise.resolve(img);
+		}
 
-		var rows, addAllLink, matches;
+		/** @type {NodeListOf<HTMLTableRowElement>} */
+		var rows;
+		var addAllLink, matches;
 		var insertCells = false, insertHeader = false, useColSpan = false;
 
 		var reLiveSrc = Foxtrick.InternalPath + 'resources/img/relive-small.png';
 		if (Foxtrick.isPage(doc, 'series')) {
 
 			matches = [];
+
 			rows = doc.querySelectorAll('table.indent.left.thin > tbody > tr');
 
 			if (!rows.length)
 				return;
 
-			img = doc.createDocumentFragment();
-			Foxtrick.addImage(doc, img, { src: reLiveSrc, alt: 'HT Re-Live', title: 'HT Re-Live' });
+			imgPromise = new Promise((resolve, _) => {
+				let frag = doc.createDocumentFragment();
+				let feat = { src: reLiveSrc, alt: 'HT Re-Live', title: 'HT Re-Live' };
+				Foxtrick.addImage(doc, frag, feat, null, resolve);
+			});
 
-			var addAll = doc.createElement('img');
+
+			let addAll = doc.createElement('img');
 			addAll.src = '/Img/Icons/transparent.gif';
 			addAll.className = 'matchHTReLive';
 			addAll.alt = addAll.title =
@@ -153,23 +194,23 @@ Foxtrick.modules['ReLiveLinks'] = {
 
 			addAllLink = doc.createElement('a');
 			addAllLink.appendChild(addAll);
-			var addAllSpan = Foxtrick.createFeaturedElement(doc, module, 'span');
+			let addAllSpan = Foxtrick.createFeaturedElement(doc, module, 'span');
 			Foxtrick.addClass(addAllSpan, 'float_right');
 			addAllSpan.appendChild(addAllLink);
 
-			if (/\d[^\d]+\d/.test(rows[1].cells[1].textContent))
+			if (/\d[^\d]+\d/.test(rows[1].cells[1].textContent)) {
 				// don't add before the first round of the season
 				rows[0].cells[0].appendChild(addAllSpan);
+			}
 		}
 		else if (Foxtrick.isPage(doc, 'fixtures') || Foxtrick.isPage(doc, 'youthFixtures')) {
-			var fixtures = Foxtrick.getMBElement(doc, 'repFixtures');
+			let fixtures = Foxtrick.getMBElement(doc, 'repFixtures');
 			rows = fixtures.querySelectorAll('tr');
 
 			useColSpan = true; // fixes broken layout due to expanded 1st column
 
-			if (Foxtrick.Pages.All.isYouth(doc)) {
+			if (Foxtrick.Pages.All.isYouth(doc))
 				insertCells = true;
-			}
 		}
 		else if (Foxtrick.isPage(doc, 'cupMatches')) {
 			rows = doc.querySelectorAll('table.indent > tbody > tr');
@@ -202,34 +243,34 @@ Foxtrick.modules['ReLiveLinks'] = {
 		var liveTdIdx = matchTdIdx + 2;
 
 		if (insertHeader) {
-			Foxtrick.forEach(function(row) {
-				var tbody = row.parentNode;
-				if (tbody.rows[0] !== row)
-					return;
+			for (let row of rows) {
+				if (row.sectionRowIndex != 0)
+					continue;
 
 				row.dataset.header = '1';
 
-				var header = Foxtrick.createFeaturedElement(doc, module, 'th');
-				var lastCell = row.cells.length - 1;
+				let header = Foxtrick.createFeaturedElement(doc, module, 'th');
+				let lastCell = row.cells.length - 1;
 				if (liveTdIdx < lastCell)
 					row.insertBefore(header, row.cells[liveTdIdx]);
 				else
 					row.appendChild(header);
-			}, rows);
+			}
 		}
 
 		if (insertCells) {
-			Foxtrick.forEach(function(row) {
+			for (let row of rows) {
 				if (!row.dataset.header)
 					Foxtrick.insertFeaturedCell(row, module, liveTdIdx);
-			}, rows);
+			}
 		}
 
 		var source;
 		Foxtrick.forEach(function(row) {
-			var tds = row.cells;
+			let tds = row.cells;
 
-			var matchLink = row.querySelector(MATCH_SELECTOR);
+			/** @type {HTMLAnchorElement} */
+			let matchLink = row.querySelector(MATCH_SELECTOR);
 			if (!matchLink) {
 				// unused row
 				if (useColSpan && tds[0])
@@ -238,33 +279,36 @@ Foxtrick.modules['ReLiveLinks'] = {
 				return;
 			}
 
-			var scoreTd = tds[scoreIdx];
+			let scoreTd = tds[scoreIdx];
 			if (!scoreTd || !/^\d+\D+\d+$/.test(scoreTd.textContent.trim()))
 				return;
 
-			var liveLink = row.querySelector(LIVE_SELECTOR);
+			/** @type {HTMLAnchorElement} */
+			let liveLink = row.querySelector(LIVE_SELECTOR);
 			if (liveLink)
 				return;
 
-			var url = matchLink.href;
-			var id = Foxtrick.util.id.getMatchIdFromUrl(url);
+			let url = matchLink.href;
+			let id = Foxtrick.util.id.getMatchIdFromUrl(url);
 			source = Foxtrick.getUrlParam(url, 'SourceSystem');
 			if (matches) {
 				matches.push(id);
-				return;
-				// don't run on series
+				return; // don't run on series
 			}
 
 			url = '/Club/Matches/Live.aspx?matchID=' + id +
 				'&actionType=addMatch&SourceSystem=' + source;
 			liveLink = Foxtrick.createFeaturedElement(doc, module, 'a');
 			liveLink.href = url;
-			liveLink.appendChild(img.cloneNode(true));
 			tds[liveTdIdx].appendChild(liveLink);
+
+			imgPromise.then(img => liveLink.appendChild(img.cloneNode(true)));
+
 		}, rows);
 
-		if (addAllLink)
+		if (addAllLink) {
 			addAllLink.href = '/Club/Matches/Live.aspx?matchID=' + matches.join(',') +
 				'&actionType=addMatch&SourceSystem=' + source;
+		}
 	},
 };

@@ -161,8 +161,15 @@ Foxtrick.modules['TeamStats'] = {
 
 				var row = doc.createElement('tr');
 				var addFilterShortcut = function(filter, title) {
-					row.title = Foxtrick.L10n.getString('TeamStats.FilterFor') + ' ' + title;
 					row.setAttribute('style', 'cursor:pointer');
+					row.title = Foxtrick.L10n.getString('TeamStats.FilterFor') + ' ' + title;
+
+					labelCell.setAttribute('aria-label', row.title + '.');
+					labelCell.id = 'ft-team-stats-filter-' + Math.random().toString(16).slice(2);
+					dataCell.id = 'ft-team-stats-filter-ct-' + Math.random().toString(16).slice(2);
+					label = `ft-team-stats-header ${labelCell.id} ${dataCell.id} ft-team-stats-ct`;
+					row.setAttribute('aria-labelledby', label);
+
 					Foxtrick.onClick(row, function(ev) {
 						var doc = ev.target.ownerDocument;
 						var win = doc.defaultView;
@@ -220,7 +227,11 @@ Foxtrick.modules['TeamStats'] = {
 					data.appendChild(selected);
 					data.appendChild(doc.createTextNode(' / '));
 					data.appendChild(total);
-					addRow('TeamStats.General', Foxtrick.L10n.getString('TeamStats.Players'), data);
+					{
+						let playersL10n = Foxtrick.L10n.getString('TeamStats.Players');
+						let row = addRow('TeamStats.General', playersL10n, data);
+						row.cells[0].id = 'ft-team-stats-ct';
+					}
 					if (totalAge) {
 						var avgAge = Math.round(totalAge / numPlayers);
 						var avgYears = Math.floor(avgAge / DAYS_IN_SEASON);
@@ -442,6 +453,7 @@ Foxtrick.modules['TeamStats'] = {
 			var header = Foxtrick.L10n.getString('TeamStats.boxheader');
 			var box = Foxtrick.addBoxToSidebar(doc, header, boxBody, 1);
 			box.id = 'ft-team-stats-box';
+			box.querySelector('h2').id = 'ft-team-stats-header';
 
 			var loading = Foxtrick.util.note.createLoading(doc);
 			boxBody.appendChild(loading);

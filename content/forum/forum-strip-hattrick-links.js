@@ -10,8 +10,8 @@ Foxtrick.modules['ForumStripHattrickLinks'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.FORUM,
 	PAGES: [
 		'forumWritePost', 'messageWritePost', 'guestbook', 'announcementsWrite',
-		'newsLetter', 'mailNewsLetter', 'ntNewsLetter',
-		'forumModWritePost', 'forumViewThread', 'ticket', 'helpContact',
+		'newsLetter', 'mailNewsLetter', 'ntNewsLetter', 'helpContact',
+		'forumSettings', 'forumModWritePost', 'ticket', 'forumViewThread',
 	],
 	OPTIONS: ['NoConfirmStripping'],
 	NICE: -1, // needs to be before forum preview for old submit button (order) detection
@@ -23,6 +23,7 @@ Foxtrick.modules['ForumStripHattrickLinks'] = {
 			a.href = a.href.replace(/^foxtrick:\/\//, Foxtrick.InternalPath);
 	},
 
+	/** @param {document} doc */
 	run: function(doc) {
 		const module = this;
 		const URLs = [
@@ -75,19 +76,19 @@ Foxtrick.modules['ForumStripHattrickLinks'] = {
 		if (Foxtrick.isPage(doc, 'forumViewThread'))
 			return;
 
-		const targets = doc.querySelectorAll('#mainBody input'); // Forum
-		let target = targets[targets.length - 1];
-		if (Foxtrick.isPage(doc, 'forumWritePost'))
-			target = targets[targets.length - 2];
-		if (Foxtrick.isPage(doc, 'guestbook'))
-			target = targets[1];
+		/** @type {HTMLTextAreaElement} */
+		let textarea = doc.querySelector('#mainBody textarea');
+		if (!textarea)
+			return;
+
+		let scope = textarea.closest('.info, .boxBody');
+		let target = Foxtrick.getSubmitButton(scope);
 
 		if (!target)
 			return;
 
 		// add submit listener
 		Foxtrick.onClick(target, function() {
-			const textarea = doc.querySelector('#mainBody textarea');
 			let hasUrl = Foxtrick.any(u => u.reg.test(textarea.value), URLs);
 			if (!hasUrl)
 				return;

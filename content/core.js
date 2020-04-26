@@ -304,7 +304,7 @@ Foxtrick.modules.Core = {
 			bug = Foxtrick.log.header(doc) + 'BUG URL: ' + url + '\n\n' + bug;
 
 			var showNote = function(url) {
-				var MANUAL_URL = 'http://pastebin.com/';
+				var MANUAL_URL = 'https://pastebin.com/';
 				var FORUM_URL = '/Forum/Overview.aspx?v=0&f=173635';
 
 				var info = doc.createDocumentFragment();

@@ -153,7 +153,10 @@ Foxtrick.modules['U20LastMatch'] = {
 		text = text.replace(/%4/, lastMatch);
 
 
-		let entryPoint = doc.querySelector('#mainBody > .mainBox');
+		let entryPoint =
+			doc.querySelector('#mainBody > .mainBox') ||
+			doc.querySelector('#mainBody > .playerInfo');
+
 		let wrapper = Foxtrick.createFeaturedElement(doc, module, 'div');
 		Foxtrick.addClass(wrapper, 'mainBox');
 		let titleElement = doc.createElement('h2');

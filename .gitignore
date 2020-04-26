@@ -14,3 +14,4 @@ Credentials.py
 maintainer/locale/Hattrick/CHPP/AccessToken.py
 build/
 content/locale/af/
+node_modules

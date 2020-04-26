@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 /**
  * skill-table.js
  * Show a skill table on players list page
@@ -60,6 +61,7 @@ Foxtrick.modules['SkillTable'] = {
 			Foxtrick.addClass(restoreBtn, 'hidden');
 	},
 
+	/** @param {document} doc */
 	run: function(doc) {
 		var module = this;
 		var DEFAULT_CACHE = { cache_lifetime: 'session' };
@@ -402,7 +404,8 @@ Foxtrick.modules['SkillTable'] = {
 					'yellowCard', 'redCard', 'bruised', 'injuredWeeks', 'transferListed',
 				], method: 'status', frozen: true, },
 				{ name: 'Age', property: 'age', method: 'age', sortAsc: true, frozen: true, },
-				{ name: 'CanBePromotedIn', property: 'canBePromotedIn', frozen: true, },
+				{ name: 'CanBePromotedIn', property: 'canBePromotedIn',
+					method: 'promotion', frozen: true, },
 				{ name: 'CurrentBid', property: 'currentBid',
 					method: 'formatNum', alignRight: true, frozen: true, },
 				{ name: 'Bookmark', property: 'bookmarkLink', method: 'link',
@@ -512,6 +515,7 @@ Foxtrick.modules['SkillTable'] = {
 					}
 				},
 				playerName: function(cell, player) {
+					cell.setAttribute('role', 'rowheader');
 					Foxtrick.addClass(cell, 'ft-skilltable_player');
 					var nameLink = player.nameLink.cloneNode(true);
 					if (!useFullNames && nameLink.dataset.shortName) {
@@ -720,6 +724,14 @@ Foxtrick.modules['SkillTable'] = {
 					cell.appendChild(abbr);
 					cell.setAttribute('index', pos);
 				},
+				promotion: (cell, days) => {
+					cell.textContent = days;
+					let today = Foxtrick.util.time.getHTDate(doc);
+					Foxtrick.util.time.setMidnight(today);
+					let promoDate = Foxtrick.util.time.addDaysToDate(today, days);
+					let title = Foxtrick.util.time.buildDate(promoDate);
+					cell.setAttribute('aria-label', cell.title = title);
+				},
 				league: function(cell, leagueId) {
 					var link = doc.createElement('a');
 					link.href = '/World/Leagues/League.aspx?LeagueID=' + leagueId;
@@ -828,6 +840,7 @@ Foxtrick.modules['SkillTable'] = {
 						var th = doc.createElement('th');
 
 						renderTH(th, prop);
+
 						var td = doc.createElement('td');
 						var check = doc.createElement('input');
 						check.id = prop.name;
@@ -861,7 +874,7 @@ Foxtrick.modules['SkillTable'] = {
 
 			var attachListeners = function(tables) {
 				Foxtrick.forEach(function(table) {
-					Foxtrick.onClick(table, function(ev) {
+					Foxtrick.listen(table, 'click', function(ev) {
 						var target = ev.target;
 						while (target && !Foxtrick.hasClass(target, 'ft-skilltable_cellBtn'))
 							target = target.parentNode;
@@ -1072,6 +1085,7 @@ Foxtrick.modules['SkillTable'] = {
 				}
 				if (useAbbr) {
 					if (column.img) {
+						// TODO convert to async
 						Foxtrick.addImage(doc, th, {
 							src: column.img,
 							alt: abbrName,
@@ -1105,12 +1119,13 @@ Foxtrick.modules['SkillTable'] = {
 					var addTH = function(column) {
 						if (column.enabled) {
 							var th = doc.createElement('th');
+							th.scope = 'col';
 							th.dataset.sortAsString = Number(!!column.sortAsString);
 							th.dataset.sortAsc = Number(!!column.sortAsc);
-							Foxtrick.onClick(th, sortClick);
 
 							renderTH(th, column);
 
+							Foxtrick.onClick(th, sortClick);
 							tr.appendChild(th);
 						}
 					};
@@ -1153,6 +1168,7 @@ Foxtrick.modules['SkillTable'] = {
 								if (listener) {
 									cell.dataset.listener = listener;
 									Foxtrick.addClass(cell, 'ft-skilltable_cellBtn');
+									Foxtrick.clickTarget(cell);
 								}
 							}
 						};
