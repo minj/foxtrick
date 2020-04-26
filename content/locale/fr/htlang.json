@@ -633,7 +633,7 @@
 				"value": "Joueur de tête"
 			},
 			{
-				"type": "Regainer",
+				"type": "Resilient",
 				"value": "Résistant"
 			}
 		],

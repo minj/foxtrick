@@ -633,7 +633,7 @@
 				"value": "ヘディング"
 			},
 			{
-				"type": "Regainer",
+				"type": "Resilient",
 				"value": "回復力"
 			}
 		],

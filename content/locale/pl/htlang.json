@@ -633,7 +633,7 @@
 				"value": "gra głową"
 			},
 			{
-				"type": "Regainer",
+				"type": "Resilient",
 				"value": "witalny"
 			}
 		],
@@ -818,7 +818,7 @@
 			},
 			{
 				"type": "Indiv",
-				"value": "indywidualny"
+				"value": "Indywidualny"
 			}
 		]
 	}

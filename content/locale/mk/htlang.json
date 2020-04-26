@@ -633,7 +633,7 @@
 				"value": "Игра со Глава"
 			},
 			{
-				"type": "Regainer",
+				"type": "Resilient",
 				"value": "Робусен"
 			}
 		],

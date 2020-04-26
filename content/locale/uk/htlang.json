@@ -633,7 +633,7 @@
 				"value": "Гра головою"
 			},
 			{
-				"type": "Regainer",
+				"type": "Resilient",
 				"value": "Стійкий"
 			}
 		],

@@ -633,7 +633,7 @@
 				"value": "Colpo di testa"
 			},
 			{
-				"type": "Regainer",
+				"type": "Resilient",
 				"value": "Coriaceo"
 			}
 		],

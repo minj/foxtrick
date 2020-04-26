@@ -280,7 +280,7 @@
 			"11": "Danmark",
 			"110": "Trinidad & Tobago",
 			"111": "Nicaragua",
-			"112": "Kazakhstan",
+			"112": "Kasakhstan",
 			"113": "Surinam",
 			"117": "Liechtenstein",
 			"118": "Algerie",
@@ -322,7 +322,7 @@
 			"152": "Sri Lanka",
 			"153": "Curaçao",
 			"154": "Guam",
-			"155": "Kongo",
+			"155": "DR Kongo",
 			"156": "Etiopia",
 			"16": "Brasil",
 			"17": "Canada",
@@ -633,7 +633,7 @@
 				"value": "Hodespesialist"
 			},
 			{
-				"type": "Regainer",
+				"type": "Resilient",
 				"value": "Friskus"
 			}
 		],

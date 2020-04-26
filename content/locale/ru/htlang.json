@@ -633,7 +633,7 @@
 				"value": "Игра головой"
 			},
 			{
-				"type": "Regainer",
+				"type": "Resilient",
 				"value": "Крепкое здоровье"
 			}
 		],

@@ -400,7 +400,7 @@
 			"94": "Xamaica",
 			"95": "Kenya",
 			"96": "Panamá",
-			"97": "Macedonia do Norte",
+			"97": "Macedonia (sen frutas)",
 			"98": "Albania",
 			"99": "Honduras"
 		},
@@ -633,7 +633,7 @@
 				"value": "Xogo aéreo"
 			},
 			{
-				"type": "Regainer",
+				"type": "Resilient",
 				"value": "Rochoso"
 			}
 		],

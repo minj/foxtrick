@@ -322,8 +322,8 @@
 			"152": "Srí Lanka",
 			"153": "Curaçao",
 			"154": "Gúam",
-			"155": "DR Congo",
-			"156": "Ethiopia",
+			"155": "Lýðveldið Kongó",
+			"156": "Eþíópía",
 			"16": "Brasilía",
 			"17": "Kanada",
 			"18": "Síle",
@@ -633,7 +633,7 @@
 				"value": "Skallamaður"
 			},
 			{
-				"type": "Regainer",
+				"type": "Resilient",
 				"value": "Hraustmenni"
 			}
 		],
@@ -744,7 +744,7 @@
 			},
 			{
 				"type": "aow",
-				"value": "Sókn á köntunum"
+				"value": "Sókn á köntum"
 			},
 			{
 				"type": "",

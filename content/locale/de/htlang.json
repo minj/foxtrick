@@ -633,7 +633,7 @@
 				"value": "Kopfballstärke"
 			},
 			{
-				"type": "Regainer",
+				"type": "Resilient",
 				"value": "robust"
 			}
 		],

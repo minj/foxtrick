@@ -322,8 +322,8 @@
 			"152": "Sri Lanka",
 			"153": "Curaçao",
 			"154": "Guam",
-			"155": "DR Congo",
-			"156": "Ethiopia",
+			"155": "Demokratesch Republik Kongo",
+			"156": "Ethiopien",
 			"16": "Brasilien",
 			"17": "Kanada",
 			"18": "Chile",
@@ -633,7 +633,7 @@
 				"value": "kappballstaark"
 			},
 			{
-				"type": "Regainer",
+				"type": "Resilient",
 				"value": "robust"
 			}
 		],

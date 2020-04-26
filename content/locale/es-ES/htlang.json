@@ -2,15 +2,15 @@
 	"language": {
 		"aggressiveness": [
 			{
-				"text": "tranquilo",
+				"text": "tranquila",
 				"value": "0"
 			},
 			{
-				"text": "calmado",
+				"text": "calmada",
 				"value": "1"
 			},
 			{
-				"text": "equilibrado",
+				"text": "equilibrada",
 				"value": "2"
 			},
 			{
@@ -18,21 +18,21 @@
 				"value": "3"
 			},
 			{
-				"text": "iracundo",
+				"text": "iracunda",
 				"value": "4"
 			},
 			{
-				"text": "violento",
+				"text": "violenta",
 				"value": "5"
 			}
 		],
 		"agreeability": [
 			{
-				"text": "antipático",
+				"text": "antipática",
 				"value": "0"
 			},
 			{
-				"text": "polémico",
+				"text": "polémica",
 				"value": "1"
 			},
 			{
@@ -40,7 +40,7 @@
 				"value": "2"
 			},
 			{
-				"text": "carismático",
+				"text": "carismática",
 				"value": "3"
 			},
 			{
@@ -48,7 +48,7 @@
 				"value": "4"
 			},
 			{
-				"text": "querido compañero de equipo",
+				"text": "querida compañera de equipo",
 				"value": "5"
 			}
 		],
@@ -245,15 +245,15 @@
 				"value": "0"
 			},
 			{
-				"text": "deshonesto",
+				"text": "deshonesta",
 				"value": "1"
 			},
 			{
-				"text": "honesto",
+				"text": "honesta",
 				"value": "2"
 			},
 			{
-				"text": "justo",
+				"text": "justa",
 				"value": "3"
 			},
 			{
@@ -261,7 +261,7 @@
 				"value": "4"
 			},
 			{
-				"text": "santito",
+				"text": "santita",
 				"value": "5"
 			}
 		],
@@ -633,7 +633,7 @@
 				"value": "Cabeceador"
 			},
 			{
-				"type": "Regainer",
+				"type": "Resilient",
 				"value": "Estoico"
 			}
 		],

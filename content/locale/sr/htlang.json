@@ -633,7 +633,7 @@
 				"value": "Игра главом"
 			},
 			{
-				"type": "Regainer",
+				"type": "Resilient",
 				"value": "Отпоран"
 			}
 		],
