@@ -633,7 +633,7 @@
 				"value": "Cap"
 			},
 			{
-				"type": "Regainer",
+				"type": "Resilient",
 				"value": "Rezistent"
 			}
 		],

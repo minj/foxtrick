@@ -633,7 +633,7 @@
 				"value": "ضربات الرأس"
 			},
 			{
-				"type": "Regainer",
+				"type": "Resilient",
 				"value": "مقاوم"
 			}
 		],

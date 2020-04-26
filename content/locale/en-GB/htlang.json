@@ -633,7 +633,7 @@
 				"value": "Head"
 			},
 			{
-				"type": "Regainer",
+				"type": "Resilient",
 				"value": "Resilient"
 			}
 		],

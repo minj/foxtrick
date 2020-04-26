@@ -633,7 +633,7 @@
 				"value": "משחק ראש"
 			},
 			{
-				"type": "Regainer",
+				"type": "Resilient",
 				"value": "עמיד"
 			}
 		],

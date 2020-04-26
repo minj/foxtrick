@@ -633,7 +633,7 @@
 				"value": "Jogo aéreo"
 			},
 			{
-				"type": "Regainer",
+				"type": "Resilient",
 				"value": "Resiliente"
 			}
 		],

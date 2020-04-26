@@ -633,7 +633,7 @@
 				"value": "Cabeceador"
 			},
 			{
-				"type": "Regainer",
+				"type": "Resilient",
 				"value": "Resiliente"
 			}
 		],

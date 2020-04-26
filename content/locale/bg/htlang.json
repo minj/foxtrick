@@ -633,7 +633,7 @@
 				"value": "Игра с глава"
 			},
 			{
-				"type": "Regainer",
+				"type": "Resilient",
 				"value": "Жилав"
 			}
 		],
