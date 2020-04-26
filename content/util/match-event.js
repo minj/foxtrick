@@ -8,6 +8,7 @@
 
 /* eslint-disable */
 if (!this.Foxtrick)
+	// @ts-ignore
 	var Foxtrick = {};
 /* eslint-enable */
 
@@ -32,7 +33,7 @@ Foxtrick.util.matchEvent = {};
 	 * { other: ['goal']}
 */
 Foxtrick.util.matchEvent.eventIcons = {
-	19: null,
+	19: false, // new-live
 	20: 'formation',
 	21: 'formation',
 	22: 'kids',
@@ -46,7 +47,7 @@ Foxtrick.util.matchEvent.eventIcons = {
 	32: { home: ['weather_fair'] },
 	33: { home: ['weather_sunny'] },
 
-	// TODO START
+	// TODO START ?
 	35: null,
 	36: null,
 	37: null,
@@ -57,7 +58,7 @@ Foxtrick.util.matchEvent.eventIcons = {
 	40: 'possession',
 	41: 'best_player',
 	42: 'worst_player',
-	45: 0,
+	45: null, // half-time
 	46: 'hattrick',
 	47: 'possession',
 	55: { team: ['goal', 'se_technical'] },
@@ -77,7 +78,7 @@ Foxtrick.util.matchEvent.eventIcons = {
 	69: 'underest_gone',
 	70: 'extraTime',
 	71: 'penaltyShootOut',
-	72: 0,
+	72: null, // TODO ?
 	73: 'tossing_coin',
 	75: null, // TODO
 	76: null, // TODO
@@ -227,7 +228,7 @@ Foxtrick.util.matchEvent.eventIcons = {
 	305: { team: ['se_quick_negative', 'weather_rainy'] },
 	306: { team: ['se_quick_negative', 'weather_sunny'] },
 
-	// TODO START
+	// TODO START support
 	307: null,
 	308: null,
 	309: null,
@@ -285,58 +286,64 @@ Foxtrick.util.matchEvent.eventIcons = {
 	420: 'injured',
 	421: 'injured',
 	422: 'injured',
-	423: 'injured',
+	423: 'injured', // new-live
 	424: 'substitution',
 	425: 'sub_out',
 	426: 'swap',
 	427: 'bruised',
 
-	// TODO START
-	450: null,
-	451: null,
-	452: null,
-	453: null,
-	454: null,
-	455: null,
-	456: null,
-	457: null,
-	458: null,
-	459: null,
-	460: null,
-	461: null,
-	462: null,
-	463: null,
-	464: null,
-	465: null,
-	466: null,
-	467: null,
-	468: null,
-	469: null,
-	470: null,
-	471: null,
-	472: null,
-	473: null,
-	474: null,
-	475: null,
-	476: null,
-	477: null,
-	478: null,
-	479: null,
-	480: null,
-	481: null,
-	482: null,
-	483: null,
-	484: null,
-	485: null,
-	486: null,
-	487: null,
-	488: null,
-	489: null,
-	490: null,
-	491: null,
-	492: null,
-	493: null,
-	// TODO END
+	// new-live START
+	450: false,
+	451: false,
+	452: false,
+	453: false,
+	454: false,
+	455: false,
+	456: false,
+	457: false,
+	458: false,
+	459: false,
+	460: false,
+	461: false,
+	462: false,
+	463: false,
+	464: false,
+	465: false,
+	466: false,
+	467: false,
+	468: false,
+	469: false,
+	470: false,
+	471: false,
+	472: false,
+	473: false,
+	474: false, // TODO ?
+	475: false,
+	476: false,
+	477: false,
+	478: false,
+	479: false,
+	480: false,
+	481: false,
+	482: false,
+	483: false,
+	484: false,
+	485: false,
+	486: false,
+	487: false,
+	488: false,
+	489: false,
+	490: false,
+	491: false,
+	492: false,
+	493: false,
+	494: false,
+	495: false,
+	496: false,
+	497: false,
+	498: false,
+
+	// new-live END
 
 	500: { home: ['stop'], away: ['stop'] },
 	501: { home: ['stop'] },
@@ -349,30 +356,40 @@ Foxtrick.util.matchEvent.eventIcons = {
 	512: { team: ['yellow_card', 'red_card'] },
 	513: { team: ['yellow_card', 'red_card'] },
 	514: 'red_card',
-	597: null,
-	598: null,
+	596: false, // new-live
+	597: false, // new-live
+	598: false, // new-live
 	599: 'result',
 
-	// TODO START
-	601: null,
-	602: null,
-	603: null,
-	604: null,
-	// TODO END
+	// new-live START
+	601: false,
+	602: false,
+	603: false,
+	604: false,
 
-	605: null,
-	606: null,
+	605: false, // TODO ?
+	606: false, // TODO ?
 
-	// TODO START
-	650: null,
-	651: null,
-	// TODO END
+	650: false,
+	651: false,
+
+	// new-live END
 
 	700: 'thumb_down',
 	701: 'thumb_up',
 	702: 'fan',
 	703: 'fire',
 	704: 'trophy',
+
+	// new-live START
+	800: false,
+	801: false,
+	802: false,
+	803: false,
+	804: false,
+	805: false,
+
+	// new-live END
 };
 
 /* eslint-disable camelcase */
@@ -770,6 +787,11 @@ Foxtrick.util.matchEvent.eventDescription = {
 	491: 'Previous match (cup) had different outcome',
 	492: 'Previous match (league) had similar outcome',
 	493: 'Previous match (league) had different outcome',
+	494: 'Team has the ball but is not attacking',
+	495: 'Team has the ball and has started attacking',
+	496: 'Team is still in the cup (for league matches)',
+	497: 'Both teams are still in the cup (for league matches)',
+	498: 'Team is looking tired (low avg stamina)',
 	500: 'Both teams walkover',
 	501: 'Home team walkover',
 	502: 'Away team walkover',
@@ -781,6 +803,7 @@ Foxtrick.util.matchEvent.eventDescription = {
 	512: 'Red card (2nd warning) nasty play',
 	513: 'Red card (2nd warning) cheating',
 	514: 'Red card without warning',
+	596: 'Extra time started (third half)',
 	597: 'Second half started',
 	598: 'Match started',
 	599: 'Match finished',
@@ -797,6 +820,12 @@ Foxtrick.util.matchEvent.eventDescription = {
 	702: 'Event-o-Matic: Plead for Fan Support',
 	703: 'Event-o-Matic: Build Positive Atmosphere',
 	704: 'Event-o-Matic: Honour Club Legacy',
+	800: 'Star player missed match because of red card',
+	801: 'Star player missed match because of injury',
+	802: 'Team is on winning streak',
+	803: 'Both teams are on winning streak',
+	804: 'Team will break winning streak',
+	805: 'Weakest team (HTRating) is winning',
 };
 
 Foxtrick.util.matchEvent.isLiveEvent = function(evnt) {
