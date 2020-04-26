@@ -68,17 +68,12 @@
 		},
 		{
 			"id": "6170192",
-			"name": "Mod-arvalstnieks-SUB",
+			"name": "Mod-albertocorrez-SUB",
 			"duty": "translator"
 		},
 		{
 			"id": "7128451",
 			"name": "LA-savcenko",
-			"duty": "translator"
-		},
-		{
-			"id": "6598614",
-			"name": "GM-Toni",
 			"duty": "translator"
 		},
 		{
@@ -208,7 +203,7 @@
 		},
 		{
 			"id": "9607801",
-			"name": "Kostitsyn46",
+			"name": "-Kostitsyn46-",
 			"duty": "translator"
 		},
 		{
@@ -387,18 +382,13 @@
 			"duty": "translator"
 		},
 		{
-			"id": "12433095",
-			"name": "janisg",
-			"duty": "translator"
-		},
-		{
-			"id": "11191407",
-			"name": "linhtd",
-			"duty": "translator"
-		},
-		{
 			"id": "11449158",
 			"name": "brulcb",
+			"duty": "translator"
+		},
+		{
+			"id": "1629515",
+			"name": "katwia",
 			"duty": "translator"
 		},
 		{
@@ -429,11 +419,6 @@
 		{
 			"id": "12334375",
 			"name": "gandagan",
-			"duty": "translator"
-		},
-		{
-			"id": "11178881",
-			"name": "zabest",
 			"duty": "translator"
 		}
 	]

@@ -122,7 +122,7 @@
 		{
 			"duty": "supporter",
 			"id": "10648045",
-			"name": "BigDima_WaF"
+			"name": "BigDima"
 		},
 		{
 			"duty": "supporter",
@@ -183,6 +183,11 @@
 			"duty": "supporter",
 			"id": "11037511",
 			"name": "lucian_baciu"
+		},
+		{
+			"duty": "supporter",
+			"id": "11087526",
+			"name": "siftekhar"
 		},
 		{
 			"duty": "supporter",
@@ -346,6 +351,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "12019593",
+			"name": "realper"
+		},
+		{
+			"duty": "supporter",
 			"id": "12058681",
 			"name": "<robertkr>"
 		},
@@ -462,12 +472,12 @@
 		{
 			"duty": "supporter",
 			"id": "12605339",
-			"name": "PhileasFogg"
+			"name": "<PhileasFogg>"
 		},
 		{
 			"duty": "supporter",
 			"id": "12605732",
-			"name": "MaxCman"
+			"name": "<MaxCman>"
 		},
 		{
 			"duty": "supporter",
@@ -582,7 +592,7 @@
 		{
 			"duty": "translator",
 			"id": "13121281",
-			"name": "DrDrunkenstein"
+			"name": "<DrDrunkenstein>"
 		},
 		{
 			"duty": "translator",
@@ -598,6 +608,11 @@
 			"duty": "supporter",
 			"id": "13209572",
 			"name": "-Pecu-"
+		},
+		{
+			"duty": "supporter",
+			"id": "13342405",
+			"name": "angel-ito"
 		},
 		{
 			"duty": "supporter",
@@ -892,7 +907,7 @@
 		{
 			"duty": "translator",
 			"id": "3613658",
-			"name": "LA-Iuve-"
+			"name": "GM-Iuve-"
 		},
 		{
 			"duty": "supporter",
@@ -972,7 +987,7 @@
 		{
 			"duty": "supporter",
 			"id": "3967774",
-			"name": "tmace85"
+			"name": "<tmace85>"
 		},
 		{
 			"duty": "supporter",
@@ -1202,7 +1217,7 @@
 		{
 			"duty": "supporter",
 			"id": "5932699",
-			"name": "<mm2007>"
+			"name": "mm2007"
 		},
 		{
 			"duty": "translator",
@@ -1402,7 +1417,7 @@
 		{
 			"duty": "supporter",
 			"id": "7730271",
-			"name": "<wildgoose>"
+			"name": "wildgoose"
 		},
 		{
 			"duty": "developer",
@@ -1637,7 +1652,7 @@
 		{
 			"duty": "translator",
 			"id": "9607801",
-			"name": "petit_berger"
+			"name": "-Kostitsyn46-"
 		},
 		{
 			"duty": "translator",
@@ -1648,6 +1663,11 @@
 			"duty": "translator",
 			"id": "9668661",
 			"name": "LA-dzsoo"
+		},
+		{
+			"duty": "supporter",
+			"id": "970104",
+			"name": "machlas"
 		},
 		{
 			"duty": "supporter",

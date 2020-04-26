@@ -6,7 +6,7 @@
 		{ "LeagueId": 3, "TeamId": 3043, "TeamName": "U-20 Deutschland", "id": 9702339, "name": "Maidichtling" },
 		{ "LeagueId": 4, "TeamId": 3044, "TeamName": "U-20 Italia", "id": 12516586, "name": "emilioveronica" },
 		{ "LeagueId": 5, "TeamId": 3045, "TeamName": "U-20 France", "id": 13289899, "name": "Petitclub" },
-		{ "LeagueId": 6, "TeamId": 3046, "TeamName": "U-20 México", "id": 12925500, "name": "-Isco-" },
+		{ "LeagueId": 6, "TeamId": 3046, "TeamName": "U-20 México", "id": 12381722, "name": "devegitta" },
 		{ "LeagueId": 7, "TeamId": 3047, "TeamName": "U-20 Argentina", "id": 10146832, "name": "Gonzo77" },
 		{ "LeagueId": 8, "TeamId": 3048, "TeamName": "U-20 USA", "id": 6981266, "name": "Mod-Runnerd" },
 		{ "LeagueId": 9, "TeamId": 3049, "TeamName": "U-20 Norge", "id": 10200667, "name": "Abooo" },
@@ -45,7 +45,7 @@
 		{ "LeagueId": 50, "TeamId": 3098, "TeamName": "U-20 Hellas", "id": 9159612, "name": "tzavelasf" },
 		{ "LeagueId": 51, "TeamId": 3091, "TeamName": "U-20 Magyarország", "id": 11345786, "name": "Nactor" },
 		{ "LeagueId": 52, "TeamId": 3099, "TeamName": "U-20 Česká republika", "id": 13113186, "name": "Danda94" },
-		{ "LeagueId": 53, "TeamId": 3092, "TeamName": "U-20 Latvija", "id": 6170192, "name": "albertocorrez-SUB" },
+		{ "LeagueId": 53, "TeamId": 3092, "TeamName": "U-20 Latvija", "id": 6170192, "name": "Mod-albertocorrez-SUB" },
 		{ "LeagueId": 54, "TeamId": 3093, "TeamName": "U-20 Indonesia", "id": 13021610, "name": "LA-Agathama" },
 		{ "LeagueId": 55, "TeamId": 3094, "TeamName": "U-20 Pilipinas", "id": 13422090, "name": "Flavio_86" },
 		{ "LeagueId": 56, "TeamId": 3095, "TeamName": "U-20 Eesti", "id": 1225492, "name": "aanus" },
@@ -76,7 +76,7 @@
 		{ "LeagueId": 84, "TeamId": 3147, "TeamName": "U-20 Lëtzebuerg", "id": 374730, "name": "GM-DaKar" },
 		{ "LeagueId": 85, "TeamId": 3151, "TeamName": "U-20 Iran", "id": 12932598, "name": "Ebrahim_the_Hero" },
 		{ "LeagueId": 88, "TeamId": 3153, "TeamName": "U-20 Dominican Republic", "id": 4459050, "name": "Bas-03" },
-		{ "LeagueId": 89, "TeamId": 3141, "TeamName": "U-20 Cyprus", "id": 2850617, "name": "henribbo" },
+		{ "LeagueId": 89, "TeamId": 3141, "TeamName": "U-20 Cyprus", "id": 2850617, "name": "Henribbo" },
 		{ "LeagueId": 91, "TeamId": 3157, "TeamName": "U-20 Belarus", "id": 7352867, "name": "BateFan" },
 		{ "LeagueId": 93, "TeamId": 3165, "TeamName": "U-20 Northern Ireland", "id": 7961623, "name": "RJoker" },
 		{ "LeagueId": 94, "TeamId": 3161, "TeamName": "U-20 Jamaica", "id": 3305534, "name": "LA-oysteiab" },
@@ -99,7 +99,7 @@
 		{ "LeagueId": 113, "TeamId": 3193, "TeamName": "U-20 Suriname", "id": 2503676, "name": "sattikz" },
 		{ "LeagueId": 117, "TeamId": 3205, "TeamName": "U-20 Liechtenstein", "id": 605782, "name": "lumpe" },
 		{ "LeagueId": 118, "TeamId": 3197, "TeamName": "U-20 Algérie", "id": 9333105, "name": "Eisbar" },
-		{ "LeagueId": 119, "TeamId": 3201, "TeamName": "U-20 Mongol Uls", "id": 4870697, "name": "med82" },
+		{ "LeagueId": 119, "TeamId": 3201, "TeamName": "U-20 Mongol Uls", "id": 6798660, "name": "Dittschberger" },
 		{ "LeagueId": 120, "TeamId": 3203, "TeamName": "U-20 Lubnan", "id": 13154386, "name": "specialoneabbas" },
 		{ "LeagueId": 121, "TeamId": 3199, "TeamName": "U-20 Senegal", "id": 12017995, "name": "Mathis2" },
 		{ "LeagueId": 122, "TeamId": 3207, "TeamName": "U-20 Hayastan", "id": 9855688, "name": "LA-Nika_Kvrivishvili" },
@@ -111,7 +111,7 @@
 		{ "LeagueId": 128, "TeamId": 3217, "TeamName": "U-20 Al Iraq", "id": 7860193, "name": "Monco-Ultras" },
 		{ "LeagueId": 129, "TeamId": 3219, "TeamName": "U-20 Azərbaycan", "id": 13092589, "name": "labach" },
 		{ "LeagueId": 130, "TeamId": 3223, "TeamName": "U-20 Angola", "id": 9224371, "name": "Moskao" },
-		{ "LeagueId": 131, "TeamId": 3227, "TeamName": "U-20 Crna Gora", "id": 6598614, "name": "GM-Toni" },
+		{ "LeagueId": 131, "TeamId": 3227, "TeamName": "U-20 Crna Gora", "id": 7243982, "name": "SilverZG" },
 		{ "LeagueId": 132, "TeamId": 3225, "TeamName": "U-20 Bangladesh", "id": 13289007, "name": "undoitrei123" },
 		{ "LeagueId": 133, "TeamId": 3229, "TeamName": "U-20 Al Yaman", "id": 11968763, "name": "sosyokopat" },
 		{ "LeagueId": 134, "TeamId": 3231, "TeamName": "U-20 Oman", "id": 1216324, "name": "Padde-" },
@@ -128,6 +128,6 @@
 		{ "LeagueId": 145, "TeamId": 3261, "TeamName": "U-20 O'zbekiston", "id": 8255649, "name": "LA-Gruzik" },
 		{ "LeagueId": 146, "TeamId": 3255, "TeamName": "U-20 Cameroon", "id": 5842822, "name": "coachjojo" },
 		{ "LeagueId": 147, "TeamId": 3257, "TeamName": "U-20 Cuba", "id": 12592087, "name": "Salva_ou" },
-		{ "LeagueId": 148, "TeamId": 3259, "TeamName": "U-20 Palestine", "id": 10008537, "name": "Eric_Cantona-91" }
+		{ "LeagueId": 148, "TeamId": 3259, "TeamName": "U-20 Palestine", "id": 10008537, "name": "Eric_Cantona-LSAP" }
 	]
 }
