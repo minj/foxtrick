@@ -12,7 +12,6 @@ SavePrefs_Notes
 SavePrefs_Prefs
 SavePrefs_Token
 StaminaData
-anstoss2icons
 branch
 dir
 disableOnStage

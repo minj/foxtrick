@@ -617,9 +617,6 @@ Foxtrick.getSpecialtyImagePathFromNumber = function(type, negative) {
 	if (negative)
 		url += '_red';
 
-	if (Foxtrick.Prefs.getBool('anstoss2icons'))
-		url += '_alt';
-
 	return url + '.png';
 };
 
