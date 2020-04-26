@@ -417,14 +417,12 @@ Foxtrick.util.matchEvent.eventIconDefinition = {
 	home: Foxtrick.InternalPath + 'resources/img/matches/home.png',
 	indirect: Foxtrick.InternalPath + 'resources/img/matches/indirect.png',
 	injured: '/Img/Icons/injured.gif',
-	injured_leaves: ['/Img/Icons/injured.gif', '/Img/Matches/substitution.gif'],
 	kids: Foxtrick.InternalPath + 'resources/img/matches/kids.png',
-	left_wing: '/Img/Matches/sub_in.gif',
 	longshot: Foxtrick.InternalPath + 'resources/img/matches/longshot.png',
 	mm_short: Foxtrick.InternalPath + 'resources/img/matches/mm_short.png',
 	mm_long: Foxtrick.InternalPath + 'resources/img/matches/mm_long.png',
 	mm_penalty: Foxtrick.InternalPath + 'resources/img/matches/mm_penalty.png',
-	middle: Foxtrick.InternalPath + 'resources/img/matches/middle.png',
+	middle: Foxtrick.InternalPath + 'resources/img/matches/middle.png', // unused
 	miss: Foxtrick.InternalPath + 'resources/img/matches/redball.png',
 	miss_C: Foxtrick.InternalPath + 'resources/img/matches/red_ball_C.png',
 	miss_L: Foxtrick.InternalPath + 'resources/img/matches/red_ball_L.png',
@@ -436,7 +434,6 @@ Foxtrick.util.matchEvent.eventIconDefinition = {
 	pullback: '/Club/Matches/images/pullback.png',
 	red_card: '/Img/Icons/red_card.gif',
 	reorganize: Foxtrick.InternalPath + 'resources/img/matches/reorg.png',
-	right_wing: '/Img/Matches/sub_out.gif',
 	se_head_specialist: function() {
 		return { specialty: 5 };
 	},
