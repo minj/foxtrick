@@ -579,7 +579,9 @@ Foxtrick.L10n.getEnglishSpecialtyFromNumber = function(number) {
 		'Powerful',
 		'Unpredictable',
 		'Head',
-		'Regainer',
+		'Resilient',
+		'Fool',
+		'Supporter',
 	];
 	var spec = specs[number];
 
@@ -620,7 +622,9 @@ Foxtrick.L10n.getNumberFromSpecialty = function(specialty) {
 		'Powerful',
 		'Unpredictable',
 		'Head',
-		'Regainer',
+		'Resilient',
+		'Fool',
+		'Support',
 	];
 	var idx = Foxtrick.indexOf(specs, engSpec);
 	if (idx === -1)

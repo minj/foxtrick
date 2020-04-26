@@ -240,13 +240,9 @@ Foxtrick.util.matchEvent.eventIcons = {
 	304: { team: ['se_powerful_negative', 'weather_sunny'] },
 	305: { team: ['se_quick_negative', 'weather_rainy'] },
 	306: { team: ['se_quick_negative', 'weather_sunny'] },
-
-	// TODO START support
-	307: null,
-	308: null,
-	309: null,
-
-	// TODO END
+	307: { team: ['se_support'] },
+	308: { team: ['se_support_negative', 'formation'] },
+	309: { team: ['se_support_negative'] },
 
 	310: { team: ['se_powerful'], other: ['pressing'] },
 	331: 'pressing',
@@ -304,7 +300,7 @@ Foxtrick.util.matchEvent.eventIcons = {
 	424: 'substitution',
 	425: { team: ['sub_out', 'formation'] },
 	426: { team: ['swap', 'formation'] },
-	427: 'bruised', // regainer
+	427: { team: ['bruised', 'se_resilient'] },
 
 	// new-live START
 	450: false,
@@ -368,7 +364,6 @@ Foxtrick.util.matchEvent.eventIcons = {
 	510: 'yellow_card',
 	511: 'yellow_card',
 	512: { team: ['yellow_card', 'red_card'] },
-	513: { team: ['yellow_card', 'red_card'] },
 	514: 'red_card',
 	596: false, // new-live
 	597: false, // new-live
@@ -470,6 +465,15 @@ Foxtrick.util.matchEvent.eventIconDefinition = {
 	},
 	se_quick_negative: function() {
 		return { specialty: 2, failure: true };
+	},
+	se_resilient: function() {
+		return { specialty: 6 };
+	},
+	se_support: function() {
+		return { specialty: 8 };
+	},
+	se_support_negative: function() {
+		return { specialty: 8, failure: true };
 	},
 	se_technical: function() {
 		return { specialty: 1 };
@@ -758,7 +762,7 @@ Foxtrick.util.matchEvent.eventDescription = {
 	424: 'Injured player replaced',
 	425: 'No replacement for injured player',
 	426: 'Field player has to take injured keeper\'s place',
-	427: 'Player injured was regainer so got bruised instead',
+	427: 'Player injured was resilient so got bruised instead',
 	450: 'Player got third yellow card: misses next match',
 	451: 'With this standing team will relegate',
 	452: 'Anniversary: 100s matches in the current team',
