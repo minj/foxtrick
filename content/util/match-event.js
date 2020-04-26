@@ -17,28 +17,30 @@ if (!Foxtrick.util)
 
 Foxtrick.util.matchEvent = {};
 
-/*
-	 * Source: /Community/CHPP/ChppMatchEventTypes.aspx
-	 * Event Types and Icon mapping
-	 *
-	 * 20,21,40,47,70,71,599 are used for match indicators, don't convert them to objects
-	 *
-	 * for events that require several icons specify a dictionary with
-	 * keys 'team' and 'other' and an array of icons as values.
-	 * If only one team needs icons the other key can be omnitted.
-	 *
-	 * Example:
-	 * { team: ['miss', 'se_technical'], other: ['se_head_specialist'] },
-	 * { team: ['goal', 'se_technical']},
-	 * { other: ['goal']}
-*/
+/**
+ * Source: /Community/CHPP/ChppMatchEventTypes.aspx
+ * Event Types and Icon mapping
+ *
+ * 20,21,40,47,70,71,599 are used for match indicators, don't convert them to objects
+ *
+ * for events that require several icons specify a dictionary with
+ * keys 'team' and 'other' and an array of icons as values.
+ * If only one team needs icons the other key can be omnitted.
+ *
+ * If an event is not attached to a single team, home/away props should always be used
+ *
+ * Example:
+ * { team: ['miss', 'se_technical'], other: ['se_head_specialist'] },
+ * { team: ['goal', 'se_technical']},
+ * { other: ['goal']}
+ */
 Foxtrick.util.matchEvent.eventIcons = {
 	19: false, // new-live
 	20: 'formation',
 	21: 'formation',
 	22: 'kids',
-	23: 'formation',
-	24: 'formation',
+	23: { home: ['formation'] },
+	24: { home: ['formation'] },
 	25: { away: ['derby'] },
 	26: { home: ['neutral'] },
 	27: { away: ['home'] },
@@ -53,6 +55,7 @@ Foxtrick.util.matchEvent.eventIcons = {
 	37: null,
 	38: null,
 	39: null,
+
 	// TODO END
 
 	40: 'possession',
@@ -232,6 +235,7 @@ Foxtrick.util.matchEvent.eventIcons = {
 	307: null,
 	308: null,
 	309: null,
+
 	// TODO END
 
 	310: { team: ['se_powerful'], other: ['pressing'] },
