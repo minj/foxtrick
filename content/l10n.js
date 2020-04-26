@@ -581,7 +581,7 @@ Foxtrick.L10n.getEnglishSpecialtyFromNumber = function(number) {
 		'Head',
 		'Resilient',
 		'Fool',
-		'Supporter',
+		'Support',
 	];
 	var spec = specs[number];
 

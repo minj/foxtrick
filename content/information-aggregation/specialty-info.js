@@ -106,10 +106,7 @@ Foxtrick.modules.SpecialtyInfo = {
 		},
 		{}, // Fool
 		{ // Support
-			pos: [
-				{ text: 'SpecialtyInfo.support' },
-				{ events: [307] },
-			],
+			pos: [{ events: [307] }],
 			neg: [{ events: [308, 309] }],
 		},
 	],
