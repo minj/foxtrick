@@ -14,14 +14,14 @@ Foxtrick.modules.SpecialtyInfo = {
 	CSS: Foxtrick.InternalPath + 'resources/css/specialty-info.css',
 
 	/**
-	 * @typedef SpecialyEffectWeather
-	 * @prop {string} icon
+	 * @typedef SpecialyEffectCustom
 	 * @prop {string} text
-	 * @prop {string} title
+	 * @prop {string} [icon] actually {MatchEventIcon} but tsc fails to infer json here :(
+	 * @prop {string} [title]
 	 * @prop {{name: string, text: string}[]} [textIcons]
 	 * @typedef SpecialyEffectEvents
 	 * @prop {number[]} events
-	 * @typedef {SpecialyEffectWeather|SpecialyEffectEvents} SpecialtyEffect
+	 * @typedef {SpecialyEffectCustom|SpecialyEffectEvents} SpecialtyEffect
 	 * @typedef SpecialtyDefinition
 	 * @prop {SpecialtyEffect[]} [pos]
 	 * @prop {SpecialtyEffect[]} [neg]
@@ -91,15 +91,26 @@ Foxtrick.modules.SpecialtyInfo = {
 		},
 		{ // Unpredictable
 			pos: [{ events: [105, 106, 108] }],
-			neg: [{ events: [109/* , 125 own goal */] }],
+			neg: [{ events: [109, 125] }],
 		},
 		{ // Head
 			pos: [{ events: [119, 137] }],
 			neg: [{ events: [139] }],
 		},
-		{ // Regainer
-			pos: [{ icon: 'injured', text: 'SpecialtyInfo.regainer', title: 'Injured' }],
+		{ // Resilient
+			pos: [
+				{ icon: 'injured', text: 'SpecialtyInfo.resilient', title: 'Injured' },
+				{ events: [427] },
+			],
 			neg: [],
+		},
+		{}, // Fool
+		{ // Support
+			pos: [
+				{ text: 'SpecialtyInfo.support' },
+				{ events: [307] },
+			],
+			neg: [{ events: [308, 309] }],
 		},
 	],
 	/* eslint-enable no-magic-numbers */
@@ -198,7 +209,7 @@ Foxtrick.modules.SpecialtyInfo = {
 							row[startIdx] = iconCell;
 
 							let icons = EVENT_UTIL.getEventIcons(eventId, 'team');
-							EVENT_UTIL.appendIcons(doc, iconCell, icons, eventId, false);
+							EVENT_UTIL.appendIcons(doc, iconCell, icons, String(eventId), false);
 
 							let title = EVENT_UTIL.getEventTitle(eventId);
 							row[startIdx + 1] = title;
@@ -215,7 +226,8 @@ Foxtrick.modules.SpecialtyInfo = {
 
 					if (item.icon) {
 						let iTitle = Foxtrick.L10n.getString(item.title);
-						EVENT_UTIL.appendIcons(doc, iconCell, [item.icon], iTitle);
+						let icon = /** @type {MatchEventIcon} */ (item.icon);
+						EVENT_UTIL.appendIcons(doc, iconCell, [icon], iTitle);
 					}
 
 					let text = Foxtrick.L10n.getString(item.text);

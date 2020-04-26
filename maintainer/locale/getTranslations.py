@@ -42,7 +42,9 @@ def getSpecialtyTypeById(id):
 		'Powerful',			# 3
 		'Unpredictable',	# 4
 		'Head',				# 5
-		'Regainer'			# 6
+		'Resilient',		# 6
+		'Fool',			# 7
+		'Support',			# 8
 	];
 	return specs[int(id, 10)]
 
