@@ -288,9 +288,9 @@ Foxtrick.util.matchEvent.eventIcons = {
 	422: 'injured',
 	423: 'injured', // new-live
 	424: 'substitution',
-	425: 'sub_out',
-	426: 'swap',
-	427: 'bruised',
+	425: { team: ['sub_out', 'formation'] },
+	426: { team: ['swap', 'formation'] },
+	427: 'bruised', // regainer
 
 	// new-live START
 	450: false,
