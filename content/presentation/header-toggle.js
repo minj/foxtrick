@@ -151,8 +151,8 @@ Foxtrick.modules['HeaderToggle'] = {
 	/** @param {document} doc */
 	run: function(doc) {
 		// add listener to all h2s in mainBody
-		let h2s = [...doc.querySelectorAll('#mainBody h2')].filter(h => !!h.closest('ng-app'));
-		for (let h2 of h2s)
+		let h2s = [...doc.querySelectorAll('#mainBody h2')];
+		for (let h2 of h2s.filter(h => !h.matches('.htbox-header') && !!h.closest('ng-app')))
 			Foxtrick.modules.HeaderToggle.addToggle(doc, h2);
 	},
 
