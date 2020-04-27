@@ -14,8 +14,10 @@ Foxtrick.modules['AttVsDef'] = {
 	RADIO_OPTIONS: ['newstyle', 'oldstyle', 'oldstyleifkseparated'],
 
 	run: function(doc) {
-		if (Foxtrick.Pages.Match.isPrematch(doc) || Foxtrick.Pages.Match.inProgress(doc))
+		if (Foxtrick.Pages.Match.isPrematch(doc) || Foxtrick.Pages.Match.inProgress(doc) ||
+		    Foxtrick.Pages.Match.isNewLive(doc))
 			return;
+
 		var ratingstable = Foxtrick.Pages.Match.getRatingsTable(doc);
 		if (Foxtrick.Pages.Match.isWalkOver(ratingstable))
 			return;
