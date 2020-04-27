@@ -919,7 +919,7 @@ Foxtrick.Pages.Match.getLiveContainer = function(doc) {
  * @return {element}
  */
 Foxtrick.Pages.Match.getPreMatchPanel = function(doc) {
-	return Foxtrick.getMBElement(doc, 'pnlPreMatch');
+	return Foxtrick.getMBElement(doc, 'pnlPreMatch') || doc.querySelector('.match-h2h');
 };
 
 /**
@@ -928,7 +928,7 @@ Foxtrick.Pages.Match.getPreMatchPanel = function(doc) {
  * @return {element}
  */
 Foxtrick.Pages.Match.getPreMatchSummary = function(doc) {
-	return Foxtrick.getMBElement(doc, 'pnlTeamInfo');
+	return Foxtrick.getMBElement(doc, 'pnlTeamInfo') || doc.querySelector('.match-h2h');
 };
 
 /**

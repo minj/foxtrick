@@ -112,7 +112,11 @@ Foxtrick.util.links = {
 	showLinks: function(doc, ownBoxBody, linkSet) {
 		try {
 			var ownBoxId = 'ft-links-box';
-			var div = doc.getElementById(ownBoxId).firstChild;
+			var box = doc.getElementById(ownBoxId);
+			if (!box)
+				return;
+
+			var div = box.firstChild;
 			Foxtrick.removeClass(div, 'ft-expander-unexpanded');
 			Foxtrick.addClass(div, 'ft-expander-expanded');
 
@@ -623,7 +627,8 @@ Foxtrick.util.links.run = function(doc, module) {
 
 	var adder = o.hasNewSidebar ? Foxtrick.Pages.Match : Foxtrick;
 	var wrapper = adder.addBoxToSidebar(doc, HEADER, box, -20);
-	wrapper.id = 'ft-links-box';
+	if (wrapper)
+		wrapper.id = 'ft-links-box';
 };
 
 Foxtrick.util.links.getPrefs = function(doc, module, cb) {

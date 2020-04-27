@@ -122,6 +122,9 @@ Foxtrick.util.id.findIsYouthMatch = function(href) {
 };
 
 Foxtrick.util.id.findTeamId = function(element) {
+	if (element == null)
+		return;
+
 	var links = Foxtrick.filter(function(n) {
 		return n.hasAttribute('href');
 	}, element.getElementsByTagName('a'));

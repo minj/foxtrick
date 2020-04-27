@@ -70,7 +70,10 @@ Foxtrick.modules.AddClass = {
 			return;
 
 		// start time
-		var parent = mainBody.getElementsByClassName('byline')[0];
+		var parent = mainBody.querySelector('.byline');
+		if (!parent)
+			return;
+
 		module.replaceInNode(doc, parent, module.timeRe);
 	},
 
