@@ -59,14 +59,15 @@ Foxtrick.util.matchEvent.eventIcons = {
 	32: { home: ['weather_fair'] },
 	33: { home: ['weather_sunny'] },
 
-	// TODO START ?
-	35: null,
-	36: null,
-	37: null,
-	38: null,
-	39: null,
+	35: { home: ['chair'] },
 
-	// TODO END
+	// UNUSED START
+	36: false,
+	37: false,
+	38: false,
+	39: false,
+
+	// UNUSED END
 
 	40: 'possession',
 	41: 'best_player',
@@ -91,7 +92,7 @@ Foxtrick.util.matchEvent.eventIcons = {
 	69: 'underest_gone',
 	70: 'extraTime',
 	71: 'penaltyShootOut',
-	72: null, // TODO ?
+	72: false, // unused
 	73: 'tossing_coin',
 	75: { home: ['clock'] },
 	76: { home: ['clock'] },
@@ -327,7 +328,7 @@ Foxtrick.util.matchEvent.eventIcons = {
 	471: false,
 	472: false,
 	473: false,
-	474: false, // TODO ?
+	474: false,
 	475: false,
 	476: false,
 	477: false,
@@ -376,8 +377,8 @@ Foxtrick.util.matchEvent.eventIcons = {
 	603: false,
 	604: false,
 
-	605: false, // TODO ?
-	606: false, // TODO ?
+	605: false,
+	606: false,
 
 	650: false,
 	651: false,
@@ -414,6 +415,7 @@ Foxtrick.util.matchEvent.eventIconDefinition = {
 	captain: '/Club/Matches/images/captain.png',
 	change_tactics: '/Img/Matches/behaviorchange.gif',
 	clock: Foxtrick.InternalPath + 'resources/img/matches/clock.png',
+	chair: Foxtrick.InternalPath + 'resources/img/matches/chair.png',
 	confusion: '/Club/Matches/images/confusion.png',
 	corner: Foxtrick.InternalPath + 'resources/img/matches/corner.png',
 	counter_attack: Foxtrick.InternalPath + 'resources/img/matches/ca.png',
