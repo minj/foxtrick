@@ -635,6 +635,10 @@
 			{
 				"type": "Resilient",
 				"value": "Çabuk İyileşen"
+			},
+			{
+				"type": "Support",
+				"value": "Destek"
 			}
 		],
 		"spirit": [

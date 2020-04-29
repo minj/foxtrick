@@ -635,6 +635,10 @@
 			{
 				"type": "Resilient",
 				"value": "witalny"
+			},
+			{
+				"type": "Support",
+				"value": "pomocny"
 			}
 		],
 		"spirit": [

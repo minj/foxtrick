@@ -635,6 +635,10 @@
 			{
 				"type": "Resilient",
 				"value": "Résistant"
+			},
+			{
+				"type": "Support",
+				"value": "Chef d'orchestre"
 			}
 		],
 		"spirit": [

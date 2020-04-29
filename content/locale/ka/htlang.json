@@ -635,6 +635,10 @@
 			{
 				"type": "Resilient",
 				"value": "ამტანი"
+			},
+			{
+				"type": "Support",
+				"value": "დამხმარე"
 			}
 		],
 		"spirit": [

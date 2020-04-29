@@ -635,6 +635,10 @@
 			{
 				"type": "Resilient",
 				"value": "Крепкое здоровье"
+			},
+			{
+				"type": "Support",
+				"value": "Командный игрок"
 			}
 		],
 		"spirit": [

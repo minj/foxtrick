@@ -635,6 +635,10 @@
 			{
 				"type": "Resilient",
 				"value": "Friskus"
+			},
+			{
+				"type": "Support",
+				"value": "Lagspiller"
 			}
 		],
 		"spirit": [

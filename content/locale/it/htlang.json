@@ -635,6 +635,10 @@
 			{
 				"type": "Resilient",
 				"value": "Coriaceo"
+			},
+			{
+				"type": "Support",
+				"value": "Trascinatore"
 			}
 		],
 		"spirit": [

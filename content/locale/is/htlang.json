@@ -635,6 +635,10 @@
 			{
 				"type": "Resilient",
 				"value": "Hraustmenni"
+			},
+			{
+				"type": "Support",
+				"value": "Traustur"
 			}
 		],
 		"spirit": [

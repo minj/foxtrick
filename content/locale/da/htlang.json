@@ -635,6 +635,10 @@
 			{
 				"type": "Resilient",
 				"value": "Robust"
+			},
+			{
+				"type": "Support",
+				"value": "Holdspiller"
 			}
 		],
 		"spirit": [

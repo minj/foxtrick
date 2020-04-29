@@ -635,6 +635,10 @@
 			{
 				"type": "Resilient",
 				"value": "Bugar"
+			},
+			{
+				"type": "Support",
+				"value": "Pendukung"
 			}
 		],
 		"spirit": [

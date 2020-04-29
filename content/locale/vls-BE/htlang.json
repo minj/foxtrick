@@ -635,6 +635,10 @@
 			{
 				"type": "Resilient",
 				"value": "Veerkrachtig"
+			},
+			{
+				"type": "Support",
+				"value": "Bezieler"
 			}
 		],
 		"spirit": [

@@ -635,6 +635,10 @@
 			{
 				"type": "Resilient",
 				"value": "Ripërtëritës"
+			},
+			{
+				"type": "Support",
+				"value": "Suport"
 			}
 		],
 		"spirit": [

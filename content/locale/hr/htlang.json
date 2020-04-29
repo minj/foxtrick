@@ -635,6 +635,10 @@
 			{
 				"type": "Resilient",
 				"value": "Otporan"
+			},
+			{
+				"type": "Support",
+				"value": "Timski igrač"
 			}
 		],
 		"spirit": [

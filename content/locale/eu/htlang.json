@@ -635,6 +635,10 @@
 			{
 				"type": "Resilient",
 				"value": "Elastikoa"
+			},
+			{
+				"type": "Support",
+				"value": "Eraginkorra"
 			}
 		],
 		"spirit": [

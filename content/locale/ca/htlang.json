@@ -635,6 +635,10 @@
 			{
 				"type": "Resilient",
 				"value": "Resilent"
+			},
+			{
+				"type": "Support",
+				"value": "Joc en equip"
 			}
 		],
 		"spirit": [

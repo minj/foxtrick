@@ -635,6 +635,10 @@
 			{
 				"type": "Resilient",
 				"value": "Peräänantamaton"
+			},
+			{
+				"type": "Support",
+				"value": "Joukkuepelaaja"
 			}
 		],
 		"spirit": [
