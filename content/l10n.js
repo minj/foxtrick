@@ -41,9 +41,9 @@ Foxtrick.L10n.locales = [
 	'el',     // 34  Ελληνικά, Greek
 	'en-GB',  // 2   English (UK)
 	'en-US',  // 151 English (US)
-	'es-ES',  // 103 Español España, Spanish
-	'es-CR',  // 51  Español Latinoamericano, Spanish Costa Rica/Mexico
-	'es-AR',  // 6   Español Rioplatense, Spanish Argentina
+	'es-ES',  // 6   Español España, Spanish
+	'es-CR',  // 103 Español Latinoamericano, Spanish Costa Rica/Mexico
+	'es-AR',  // 51  Español Rioplatense, Spanish Argentina
 	'et',     // 36  Eesti, Estonian
 	'eu',     // 110 Euskara, Basque
 	'fa',     // 75  فارسی, Farsi/Persian/Iranian
@@ -109,9 +109,9 @@ Foxtrick.L10n.htMapping = {
 	'el':    'el',     // 34  Ελληνικά, Greek
 	'en':    'en-GB',  // 2   English (UK)
 	'en-us': 'en-US',  // 151 English (US)
-	'es':    'es-ES',  // 103 Español España, Spanish
-	'es-mx': 'es-CR',  // 51  Español Latinoamericano, Spanish Costa Rica/Mexico
-	'es-ar': 'es-AR',  // 6   Español Rioplatense, Spanish Argentina
+	'es':    'es-ES',  // 6   Español España, Spanish
+	'es-mx': 'es-CR',  // 103 Español Latinoamericano, Spanish Costa Rica/Mexico
+	'es-ar': 'es-AR',  // 51  Español Rioplatense, Spanish Argentina
 	'et':    'et',     // 36  Eesti, Estonian
 	'eu':    'eu',     // 110 Euskara, Basque
 	'fa':    'fa',     // 75  فارسی, Farsi/Persian/Iranian
