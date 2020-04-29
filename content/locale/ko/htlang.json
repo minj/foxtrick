@@ -635,6 +635,10 @@
 			{
 				"type": "Resilient",
 				"value": "강인함"
+			},
+			{
+				"type": "Support",
+				"value": "조력자"
 			}
 		],
 		"spirit": [

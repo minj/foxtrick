@@ -635,6 +635,10 @@
 			{
 				"type": "Resilient",
 				"value": "坚忍不拔"
+			},
+			{
+				"type": "Support",
+				"value": "支援型"
 			}
 		],
 		"spirit": [

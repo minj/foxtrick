@@ -635,6 +635,10 @@
 			{
 				"type": "Resilient",
 				"value": "Trdoživ"
+			},
+			{
+				"type": "Support",
+				"value": "Požrtvovalen"
 			}
 		],
 		"spirit": [

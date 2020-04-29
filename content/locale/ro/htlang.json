@@ -635,6 +635,10 @@
 			{
 				"type": "Resilient",
 				"value": "Rezistent"
+			},
+			{
+				"type": "Support",
+				"value": "Ajutor"
 			}
 		],
 		"spirit": [

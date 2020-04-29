@@ -635,6 +635,10 @@
 			{
 				"type": "Resilient",
 				"value": "Gajus"
+			},
+			{
+				"type": "Support",
+				"value": "Padedantis"
 			}
 		],
 		"spirit": [

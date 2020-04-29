@@ -635,6 +635,10 @@
 			{
 				"type": "Resilient",
 				"value": "回復力"
+			},
+			{
+				"type": "Support",
+				"value": "サポート"
 			}
 		],
 		"spirit": [

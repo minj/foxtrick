@@ -635,6 +635,10 @@
 			{
 				"type": "Resilient",
 				"value": "Húževnatý"
+			},
+			{
+				"type": "Support",
+				"value": "Tímový"
 			}
 		],
 		"spirit": [

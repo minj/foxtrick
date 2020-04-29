@@ -635,6 +635,10 @@
 			{
 				"type": "Resilient",
 				"value": "Ανθεκτικός"
+			},
+			{
+				"type": "Support",
+				"value": "Εμψυχωτής"
 			}
 		],
 		"spirit": [

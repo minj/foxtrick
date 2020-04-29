@@ -635,6 +635,10 @@
 			{
 				"type": "Resilient",
 				"value": "עמיד"
+			},
+			{
+				"type": "Support",
+				"value": "שחקן נשמה"
 			}
 		],
 		"spirit": [

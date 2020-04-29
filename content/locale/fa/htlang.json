@@ -635,6 +635,10 @@
 			{
 				"type": "Resilient",
 				"value": "مقاوم"
+			},
+			{
+				"type": "Support",
+				"value": "بازیکن پشتیبان"
 			}
 		],
 		"spirit": [
