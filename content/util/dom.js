@@ -303,6 +303,17 @@ Foxtrick.getChildIndex = function(element) {
 };
 
 /**
+ * Because types /sigh
+ * @template {Element|DocumentFragment} E
+ * @param  {E}       el
+ * @param  {boolean} [deep]
+ * @return {E}
+ */
+Foxtrick.cloneElement = function(el, deep) {
+	return /** @type {E} */ (el.cloneNode(deep));
+};
+
+/**
  * Insert adjacent content.
  * ! Target must be Element !
  *
