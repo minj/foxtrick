@@ -692,6 +692,7 @@ module.SkillTable.transfer.Form
 module.SkillTable.transfer.HTMS_Ability
 module.SkillTable.transfer.HTMS_Potential
 module.SkillTable.transfer.Hotlist
+module.SkillTable.transfer.JoinedSince
 module.SkillTable.transfer.Keeper
 module.SkillTable.transfer.Leadership
 module.SkillTable.transfer.Nationality

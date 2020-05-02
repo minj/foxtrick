@@ -8,6 +8,7 @@
 
 /* eslint-disable */
 if (!this.Foxtrick)
+	// @ts-ignore
 	var Foxtrick = {};
 /* eslint-enable */
 
@@ -19,7 +20,7 @@ Foxtrick.Pages.TransferSearchResults = {};
 /**
  * Test whether it's transfer search results
  * @param  {document}  doc
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.TransferSearchResults.isPage = function(doc) {
 	return Foxtrick.isPage(doc, 'transferSearchResult');
@@ -45,7 +46,35 @@ Foxtrick.Pages.TransferSearchResults.isNewDesign = (doc) => {
  * @return {Array<Player>}     Array<Player>
  */
 Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
-	var isNewDesign = false;
+	var isNewDesign = this.isNewDesign(doc);
+
+	/** @type {Map<number, HTMLTableRowElement>} */
+	var htRows = null;
+
+	if (isNewDesign) {
+	/** @type {HTMLTableElement} */
+		var htTable = doc.querySelector('#playersTable');
+
+		if (htTable) {
+			/** @type {NodeListOf<HTMLAnchorElement>} */
+			let playerLinks = htTable.querySelectorAll('td[data-fullname] a');
+			htRows = new Map([...playerLinks].map((link) => {
+				let id = Foxtrick.getUrlParam(link.href, 'playerId');
+				return [parseInt(id, 10), link.closest('tr')];
+			}));
+		}
+	}
+
+	let parseHTTableRow = (player) => {
+		let htRow = htRows.get(player.id);
+
+		let cellClubWeeks = htRow.cells[9];
+		let clubWeeks = parseInt(cellClubWeeks.textContent.trim(), 10);
+		let daysInWeek = Foxtrick.util.time.DAYS_IN_WEEK;
+		let joinedSince = Foxtrick.util.time.addDaysToDate(Date.now(), -clubWeeks * daysInWeek);
+		Foxtrick.util.time.setMidnight(joinedSince);
+		player.joinedSince = joinedSince;
+	};
 
 	let parseSkills = (player, pNode) => {
 		const SKILLS_OLD = [
@@ -313,7 +342,7 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 		try {
 			// first row - country, name, ID
 			let nameLink = playerNode.querySelector('.transfer_search_playername a');
-			p.id = Foxtrick.getUrlParam(nameLink.href, 'playerId');
+			p.id = parseInt(Foxtrick.getUrlParam(nameLink.href, 'playerId'), 10);
 			p.nameLink = nameLink.cloneNode(true);
 			p.nameLink.target = '_blank';
 			addLinks(p, playerNode, nameLink.href);
@@ -338,6 +367,9 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 				parseAttributes(p, attrContainer, infoTable);
 				parseSkills(p, playerNode);
 			}
+
+			if (htRows)
+				parseHTTableRow(p);
 		}
 		catch (e) {
 			Foxtrick.log(e);
@@ -347,7 +379,6 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 		return p;
 	};
 
-	isNewDesign = this.isNewDesign(doc);
 	let playerNodes = [...doc.querySelectorAll('.transferPlayerInfo')];
 	if (isNewDesign)
 		playerNodes = playerNodes.map(p => p.parentNode.parentNode);

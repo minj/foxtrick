@@ -538,6 +538,7 @@ pref("extensions.foxtrick.prefs.module.SkillTable.transfer.Experience", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.transfer.Form", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.transfer.HTMS_Ability", false);
 pref("extensions.foxtrick.prefs.module.SkillTable.transfer.HTMS_Potential", false);
+pref("extensions.foxtrick.prefs.module.SkillTable.transfer.JoinedSince", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.transfer.Keeper", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.transfer.Leadership", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.transfer.Nationality", true);
