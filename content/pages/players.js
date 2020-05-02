@@ -597,17 +597,19 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 					'Experience',
 					'FriendliesGoals',
 					['friendliesGoals', 'FriendlyGoals'], // youth
+					'GoalsCurrentTeam',
 					'Honesty',
 					'IsAbroad',
 					'Leadership',
 					'LeagueGoals',
 					['matchCount', 'NrOfMatches'], // NT supp stats
+					'MatchesCurrentTeam',
 					['nationalTeamId', 'NationalTeamID'],
 				];
 				Foxtrick.forEach(addProperty(player, num), xmlNums);
 
 				var texts = [
-					'OwnerNotes', // README: youth only for some reason
+					'OwnerNotes',
 					'Statement',
 				];
 				Foxtrick.forEach(addProperty(player, text), texts);
@@ -621,10 +623,9 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				Foxtrick.forEach(addProperty(player, ifPositive), optionalNums);
 
 				// custom fields
-				if (node('ArrivalDate')) {
-					// README: youth only for some reason
+				if (node('ArrivalDate'))
 					player.joinedSince = xml.time('ArrivalDate', playerNode);
-				}
+
 				if (node('CanBePromotedIn')) {
 					// adjust for cached time
 					var cachedPromo = new Date(fetchedDate);
@@ -1423,11 +1424,17 @@ Foxtrick.Pages.Players.getPlayerId = function(playerInfo) {
  * Test whether any players in the player list have a certain property
  * @param  {Array}   playerList Array<Player>
  * @param  {string}  property
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.Players.isPropertyInList = function(playerList, property) {
 	return Foxtrick.any(function(player) {
-		return typeof player[property] !== 'undefined';
+		let val = player[property];
+		switch (typeof val) {
+			case 'undefined': return false;
+			case 'string': return !!val.trim().length;
+			case 'number': return !Number.isNaN(val) && val != 0;
+			default: return true;
+		}
 	}, playerList);
 };
 

@@ -1,3 +1,4 @@
+/* eslint-disable */
 pref("extensions.foxtrick.prefs.CopyPostingStyle", "ht-ml");
 pref("extensions.foxtrick.prefs.version", "0.17.9");
 pref("extensions.foxtrick.prefs.branch", "dev");
@@ -413,6 +414,7 @@ pref("extensions.foxtrick.prefs.module.SkillTable.senior.oldiesCoach.Experience"
 pref("extensions.foxtrick.prefs.module.SkillTable.senior.oldiesCoach.Form", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.senior.oldiesCoach.FriendliesGoals", false);
 pref("extensions.foxtrick.prefs.module.SkillTable.senior.oldiesCoach.Hattricks", true);
+pref("extensions.foxtrick.prefs.module.SkillTable.senior.oldiesCoach.JoinedSince", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.senior.oldiesCoach.Leadership", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.senior.oldiesCoach.LeagueGoals", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.senior.oldiesCoach.Nationality", false);
@@ -455,6 +457,8 @@ pref("extensions.foxtrick.prefs.module.SkillTable.senior.others.SkillTableHide",
 pref("extensions.foxtrick.prefs.module.SkillTable.senior.others.Specialty", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.senior.others.Stamina", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.senior.others.Status", true);
+pref("extensions.foxtrick.prefs.module.SkillTable.senior.others.TeamGoals", true);
+pref("extensions.foxtrick.prefs.module.SkillTable.senior.others.TeamMatches", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.senior.others.TSI", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.senior.others.Winger", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.senior.own.Age", true);
@@ -481,6 +485,7 @@ pref("extensions.foxtrick.prefs.module.SkillTable.senior.own.Loyalty", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.senior.own.MotherClubBonus", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.senior.own.Nationality", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.senior.own.NrOfMatches", true);
+pref("extensions.foxtrick.prefs.module.SkillTable.senior.own.OwnerNotes", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.senior.own.Passing", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.senior.own.PerformanceHistory", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.senior.own.Player", true);
@@ -496,6 +501,8 @@ pref("extensions.foxtrick.prefs.module.SkillTable.senior.own.Specialty", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.senior.own.Stamina", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.senior.own.StaminaPrediction", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.senior.own.Status", true);
+pref("extensions.foxtrick.prefs.module.SkillTable.senior.own.TeamGoals", true);
+pref("extensions.foxtrick.prefs.module.SkillTable.senior.own.TeamMatches", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.senior.own.TransferCompare", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.senior.own.TSI", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.senior.own.Winger", true);
@@ -589,6 +596,7 @@ pref("extensions.foxtrick.prefs.module.SkillTable.youth.own.Keeper", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.youth.own.Last_match", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.youth.own.Last_position", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.youth.own.Last_stars", true);
+pref("extensions.foxtrick.prefs.module.SkillTable.youth.own.OwnerNotes", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.youth.own.Passing", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.youth.own.Player", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.youth.own.PlayerId", false);

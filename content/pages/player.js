@@ -1117,10 +1117,16 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerid, callback) {
 				'CupGoals',
 				'Experience',
 
+				// README: version=2.2
+				// 'ArrivalDate',
 				// README: version=2.3
 				// 'FriendliesGoals',
+				// README: version=2.5-2.6
+				// 'TransferDetails',
 				// README: version=2.7
 				// 'GoalsCurrentTeam',
+				// README: version=2.8
+				// 'MatchesCurrentTeam',
 				'Honesty',
 				'Leadership',
 				'LeagueGoals',
