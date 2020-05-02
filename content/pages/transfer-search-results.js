@@ -131,10 +131,9 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 
 		let psico = pNode.querySelector('.ft-psico');
 		if (psico) {
-			let psicoTSI = psico.getAttribute('data-psico-avg');
-			let psicoTitle = psico.getAttribute('data-psico-skill');
-			player.psicoTSI = psicoTSI;
-			player.psicoTitle = psicoTitle;
+			player.psicoTSI = psico.dataset.psicoAvg;
+			player.psicoTitle = psico.dataset.psicoSkill;
+			player.psicoWage = psico.dataset.psicoWage;
 		}
 	};
 
@@ -284,6 +283,7 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 	};
 	/* eslint-enable complexity */
 
+	// eslint-disable-next-line complexity
 	let parseAttributes = (player, attrContainer, infoTable) => {
 		const ATTRIBUTES = ['experience', 'leadership', 'form'];
 		if (isNewDesign)
@@ -315,6 +315,16 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 				cConverter.remove();
 
 			player.salary = Foxtrick.trimnum(salary.textContent);
+			let span = salary.querySelector('span');
+			if (span && span.hasAttribute('title')) {
+				let title = span.title.replace(/\d+\s*%/, '');
+				player.salaryBase = Foxtrick.trimnum(title);
+				player.isAbroad = true;
+			}
+			else {
+				player.salaryBase = player.salary;
+				player.isAbroad = false;
+			}
 		}
 
 		if (cells.form)

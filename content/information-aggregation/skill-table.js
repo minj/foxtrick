@@ -231,6 +231,10 @@ Foxtrick.modules['SkillTable'] = {
 				{ name: 'Set_pieces', property: 'setPieces', method: 'skill', },
 				{ name: 'PsicoTSI', property: 'psicoTSI', alignRight: true,
 					method: 'formatNum', title: 'psicoTitle', },
+				{
+					name: 'PsicoWage', property: 'psicoWage', alignRight: true,
+					method: 'formatNum', title: 'psicoTitle',
+				},
 				{ name: 'HTMS_Ability', property: 'htmsAbility', },
 				{ name: 'HTMS_Potential', property: 'htmsPotential', },
 				{ name: 'Agreeability', property: 'agreeability', method: 'skill', },
@@ -243,6 +247,11 @@ Foxtrick.modules['SkillTable'] = {
 				{ name: 'Last_position', property: 'lastPosition',
 					method: 'position', sortAsString: true, },
 				{ name: 'Salary', property: 'salary', alignRight: true, method: 'formatNum', },
+				{
+					name: 'SalaryBase', property: 'salaryBase', alignRight: true,
+					method: 'formatNum',
+				},
+				{ name: 'IsAbroad', property: 'isAbroad', method: 'bool', },
 				{ name: 'NrOfMatches', property: 'matchCount', }, // NT
 				{ name: 'TeamMatches', property: 'matchesCurrentTeam', },
 				{ name: 'LeagueGoals', property: 'leagueGoals', },
@@ -575,6 +584,11 @@ Foxtrick.modules['SkillTable'] = {
 					cell.className = 'formatted-num';
 					cell.textContent = Foxtrick.formatNumber(num, '\u00a0');
 					cell.setAttribute('index', num);
+				},
+
+				bool: function(cell, val) {
+					cell.setAttribute('index', String(Number(val)));
+					cell.textContent = val ? '✔' : '✕';
 				},
 
 				object: function(cell, val) {

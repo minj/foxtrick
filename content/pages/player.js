@@ -1040,6 +1040,8 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerid, callback) {
 			return;
 		}
 		Foxtrick.util.currency.detect(doc).then(function({ rate }) {
+			const WAGE_Q = 1.2;
+
 			var node = function(nodeName) {
 				return xml.node(nodeName);
 			};
@@ -1157,6 +1159,9 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerid, callback) {
 
 			player.nextBirthDay = xml.date('NextBirthDay');
 			player.salary = money('Salary');
+			player.salaryBase = player.isAbroad
+				? Math.floor(player.salary / WAGE_Q)
+				: player.salary;
 
 			if (xml.node('PlayerNumber')) {
 				var number = xml.num('PlayerNumber');

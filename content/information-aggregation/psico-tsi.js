@@ -150,42 +150,46 @@ Foxtrick.modules['PsicoTSI'] = {
 	},
 
 	/**
-	 * @param	{document}	doc
+	 * @param {document} doc
 	 */
 	runTL: function(doc) {
-		var useLinks = Foxtrick.Prefs.isModuleOptionEnabled('PsicoTSI', 'displayAsLink');
-		var players = Foxtrick.Pages.TransferSearchResults.getPlayerList(doc);
-		var playerContainers = doc.getElementById('mainBody')
-			.getElementsByClassName('transferPlayerInfo');
+		const module = this;
+		Foxtrick.util.currency.detect(doc).then(({ rate }) => {
 
-		for (var i = 0, p; i < players.length && (p = players[i]); ++i) {
+			var useLinks = Foxtrick.Prefs.isModuleOptionEnabled('PsicoTSI', 'displayAsLink');
+			var players = Foxtrick.Pages.TransferSearchResults.getPlayerList(doc);
+			var playerContainers = doc.getElementById('mainBody')
+				.getElementsByClassName('transferPlayerInfo');
 
-			var entry = playerContainers[i];
+			for (var i = 0, p; i < players.length && (p = players[i]); ++i) {
 
-			if (!Foxtrick.hasProp(p, 'keeper'))
-				continue;
+				var entry = playerContainers[i];
 
-			var age = p.ageYears;
-			var injured = p.injured;
+				if (!Foxtrick.hasProp(p, 'keeper'))
+					continue;
 
-			var pr = p.psico || this.getPrediction(p, 0);
-			if (!pr)
-				continue;
+				var age = p.ageYears;
+				var injured = p.injured;
 
-			// clear floats
-			var div = doc.createElement('div');
-			Foxtrick.addClass(div, 'ft-clear-both');
-			entry.appendChild(div);
+				var pr = p.psico || module.getPrediction(p, rate);
+				if (!pr)
+					continue;
 
-			this.drawInPlayerInfo(doc, i, entry, pr.undef, injured, age > 27,
-								  pr.maxSkill, pr.formHigh, pr.formAvg, pr.formLow, 'N/A',
-								  pr.limit, useLinks);
+				// clear floats
+				var div = doc.createElement('div');
+				Foxtrick.addClass(div, 'ft-clear-both');
+				entry.appendChild(div);
 
-			// move the ruler below psico
-			var hr = playerContainers[i].getElementsByClassName('borderSeparator')[0];
-			if (hr)
-				playerContainers[i].appendChild(hr);
-		}
+				module.drawInPlayerInfo(doc, i, entry, pr.undef, injured, age > 27,
+				                        pr.maxSkill, pr.formHigh, pr.formAvg, pr.formLow,
+				                        pr.wageLow, pr.limit, useLinks);
+
+				// move the ruler below psico
+				var hr = playerContainers[i].getElementsByClassName('borderSeparator')[0];
+				if (hr)
+					playerContainers[i].appendChild(hr);
+			}
+		});
 	},
 
 	/**
@@ -573,6 +577,7 @@ Foxtrick.modules['PsicoTSI'] = {
 			paragraph.textContent = pre + Foxtrick.L10n.getString('PsicoTSI.DECIMALS_LOW') + ']=' +
 				wageLow;
 			psicotsiInfo.appendChild(paragraph);
+			wrapper.setAttribute('data-psico-wage', String(wageLow));
 		}
 
 		var psicotsiShowDiv;
@@ -636,7 +641,7 @@ Foxtrick.modules['PsicoTSI'] = {
 
 		wrapper.appendChild(psicotsiInfo);
 		wrapper.setAttribute('data-psico-skill', mainSkillText);
-		wrapper.setAttribute('data-psico-avg', formAvg);
+		wrapper.setAttribute('data-psico-avg', String(formAvg));
 		entryPoint.appendChild(wrapper);
 	},
 };
