@@ -673,7 +673,7 @@ Foxtrick.Pages.Player.parseSeniorSkills = function(table) {
 		var order = skillMap.seniorBars;
 		for (var i = 0; i < order.length; ++i) {
 			var row = table.rows[i];
-			var cell = row.cells[1];
+			var [cellName, cell, cellNum] = row.cells;
 			if (!cell) {
 				found = false;
 				return; // skills are not visible
@@ -703,7 +703,13 @@ Foxtrick.Pages.Player.parseSeniorSkills = function(table) {
 				return; // skills are not visible
 			}
 
-			skillName = row.cells[0].textContent.trim();
+			if (!skillText)
+				skillText = Foxtrick.L10n.getTextByLevel(0);
+
+			if (cellNum)
+				skillText += ` (${cellNum.textContent.trim()})`;
+
+			skillName = cellName.textContent.trim();
 			skills[order[i]] = skillValue;
 			skillTexts[order[i]] = skillText;
 			skillNames[order[i]] = skillName;
@@ -921,11 +927,23 @@ Foxtrick.Pages.Player.parseYouthSkills = function(table) {
 						}
 					}
 				}
+				else {
+					if (skill.current)
+						current = Foxtrick.L10n.getTextByLevel(skill.current);
+					if (skill.max)
+						max = Foxtrick.L10n.getTextByLevel(skill.max);
+				}
 			}
 			else {
 				// no images, the cell says 'unknown'
 				current = max = skillCell.textContent.trim();
 			}
+
+			if (!/\d/.test(current) && skill.current)
+				current = `${current} (${skill.current})`;
+			if (!/\d/.test(max) && skill.max)
+				max = `${max} (${skill.max})`;
+
 			skills[sType] = skill;
 			skillTexts[sType] = { current, max };
 			skillNames[sType] = textCell.textContent.replace(':', '').trim();

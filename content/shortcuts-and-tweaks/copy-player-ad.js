@@ -176,6 +176,9 @@ Foxtrick.modules.CopyPlayerAd = {
 
 						let copy = Foxtrick.cloneElement(data, true);
 						for (let tNode of Foxtrick.getTextNodes(copy)) {
+							if (tNode.parentElement.closest('.bar-max'))
+								tNode.textContent = ''; // prevent dupes
+
 							let text = tNode.textContent.replace(/\n/g, ' ').replace(/\s+/g, ' ');
 							if (!text.trim()) {
 								tNode.textContent = text;
@@ -198,6 +201,13 @@ Foxtrick.modules.CopyPlayerAd = {
 
 						let text = copy.textContent.trim();
 
+						if (parseInt(text, 10).toString() == text) {
+							/** @type {HTMLElement} */
+							let level = copy.querySelector('.bar-level');
+							if (level)
+								text = level.title.trim() + ` (${text})`;
+						}
+
 						// bolding for specialty+htms
 						if (r === SPECIALTY_ROW_IDX || r === HTMS_ROW_IDX)
 							text = '[b]' + text + '[/b]';
@@ -211,12 +221,14 @@ Foxtrick.modules.CopyPlayerAd = {
 
 			var formatSkill = function(text, value) {
 				const IMPORTANT_SKILL_THRESHOLD = 5;
-				if (value > IMPORTANT_SKILL_THRESHOLD)
-					return '[b]' + text + '[/b]';
-				else if (value == IMPORTANT_SKILL_THRESHOLD)
-					return '[i]' + text + '[/i]';
 
-				return text;
+				let skillText = /\d/.test(text) ? text : `${text} (${value})`;
+				if (value > IMPORTANT_SKILL_THRESHOLD)
+					return '[b]' + skillText + '[/b]';
+				else if (value == IMPORTANT_SKILL_THRESHOLD)
+					return '[i]' + skillText + '[/i]';
+
+				return skillText;
 			};
 
 			// skills
