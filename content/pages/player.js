@@ -1252,8 +1252,8 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerid, callback) {
  * Returns position contribution map.
  * @param  {object} playerSkills Object.<string, number>  skill map
  * @param  {object} playerAttrs  Object.<string, ?>       attributes map
- * @param  {object} options      Object.<string, boolean> options map
- * @param  {object} params       Object.<string, number>  params map
+ * @param  {object} [options]      Object.<string, boolean> options map
+ * @param  {object} [params]       Object.<string, number>  params map
  * @return {object}              Object.<string, number>  position contribution map
  */
 Foxtrick.Pages.Player.getContributions = function(playerSkills, playerAttrs, options, params) {

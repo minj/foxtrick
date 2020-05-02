@@ -252,6 +252,7 @@ Foxtrick.modules['SkillTable'] = {
 					method: 'formatNum',
 				},
 				{ name: 'IsAbroad', property: 'isAbroad', method: 'bool', },
+				{ name: 'U20Match', property: 'u20', method: 'def' },
 				{ name: 'NrOfMatches', property: 'matchCount', }, // NT
 				{ name: 'TeamMatches', property: 'matchesCurrentTeam', },
 				{ name: 'LeagueGoals', property: 'leagueGoals', },
@@ -303,6 +304,15 @@ Foxtrick.modules['SkillTable'] = {
 					cell.textContent = '–';
 					cell.setAttribute('aria-label', cell.title = l10n);
 					cell.setAttribute('index', cell.dataset.id = id);
+				},
+				def: function(cell, def) {
+					if (!def)
+						return;
+
+					let { value, text, title } = def;
+					cell.setAttribute('index', String(value));
+					cell.setAttribute('aria-label', cell.title = title);
+					cell.textContent = text;
 				},
 				category: function(cell, cat) {
 					var categories = ['GK', 'WB', 'CD', 'W', 'IM', 'FW', 'S', 'R', 'E1', 'E2'];

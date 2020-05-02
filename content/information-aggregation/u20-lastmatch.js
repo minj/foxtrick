@@ -10,7 +10,11 @@
 
 Foxtrick.modules.U20LastMatch = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
-	PAGES: ['youthPlayerDetails', 'playerDetails', 'players', 'transferSearchResult'],
+	PAGES: [
+		'youthPlayerDetails', 'playerDetails',
+		'allPlayers', 'youthPlayers',
+		'transferSearchResult',
+	],
 	OPTIONS: ['YouthPlayers', 'SeniorPlayers', 'AllPlayers'],
 	DATE_CUTOFFS: [
 		7,
@@ -41,9 +45,17 @@ Foxtrick.modules.U20LastMatch = {
 	],
 
 	/**
+	 * @typedef U20LastMatch
+	 * @prop {string} lastMatch
+	 * @prop {number} worldCupNumber
+	 * @prop {number} matchNumber
+	 * @prop {Date} dateWhen21
+	 */
+
+	/**
 	 * @param  {document} doc
 	 * @param  {{years: number, days: number}} age
-	 * @return {{lastMatch: string, worldCupNumber: number}}
+	 * @return {U20LastMatch}
 	 */
 	calculate: function(doc, age) {
 		const module = this;
@@ -101,6 +113,8 @@ Foxtrick.modules.U20LastMatch = {
 		return {
 			lastMatch: matchDesc[index],
 			worldCupNumber,
+			matchNumber: index + 1,
+			dateWhen21,
 		};
 	},
 
@@ -111,11 +125,9 @@ Foxtrick.modules.U20LastMatch = {
 
 		var isYouthPlayerDetailsPage = Foxtrick.isPage(doc, 'youthPlayerDetails');
 		var isSeniorPlayerDetailsPage = Foxtrick.isPage(doc, 'playerDetails');
-		var isPlayersPage = Foxtrick.isPage(doc, 'players');
+		var isPlayersPage = Foxtrick.isPage(doc, 'allPlayers');
+		var isYouthPlayersPage = Foxtrick.isPage(doc, 'youthPlayers');
 		var isTransferResultsPage = Foxtrick.isPage(doc, 'transferSearchResult');
-
-		if (Foxtrick.Pages.Player.wasFired(doc) && !isTransferResultsPage)
-			return;
 
 		var isYouthEnabled = Foxtrick.Prefs.isModuleOptionEnabled(module, 'YouthPlayers');
 		var isSeniorsEnabled = Foxtrick.Prefs.isModuleOptionEnabled(module, 'SeniorPlayers');
@@ -134,7 +146,7 @@ Foxtrick.modules.U20LastMatch = {
 
 		if (isYouthPlayerDetailsPage || isSeniorPlayerDetailsPage)
 			module.runPlayer(doc);
-		else if (isPlayersPage)
+		else if (isPlayersPage || isYouthPlayersPage)
 			module.runPlayerList(doc);
 		else if (isTransferResultsPage)
 			module.runTransferList(doc);
@@ -148,6 +160,9 @@ Foxtrick.modules.U20LastMatch = {
 		const TEXT_STR = Foxtrick.L10n.getString('U20LastMatch.eligibilityText');
 		const WC_STR = Foxtrick.L10n.getString('U20LastMatch.worldcup');
 		const TMPL_STR = Foxtrick.L10n.getString('U20LastMatch.templateWithoutTable');
+
+		if (Foxtrick.Pages.Player.wasFired(doc))
+			return;
 
 		let age = Foxtrick.Pages.Player.getAge(doc);
 		if (age.years > 20)
@@ -190,7 +205,9 @@ Foxtrick.modules.U20LastMatch = {
 			if (player.age.years > 20)
 				continue;
 
-			let { worldCupNumber, lastMatch } = module.calculate(doc, player.age);
+			let { worldCupNumber, lastMatch, matchNumber, dateWhen21 } =
+				module.calculate(doc, player.age);
+
 			let wcNum = Foxtrick.decToRoman(worldCupNumber);
 
 			let text = TMPL_STR;
@@ -200,9 +217,16 @@ Foxtrick.modules.U20LastMatch = {
 			text = text.replace(/%4/, lastMatch);
 
 			let container = Foxtrick.createFeaturedElement(doc, module, 'p');
+			Foxtrick.addClass(container, 'ft-u20lastmatch');
 			container.textContent = text;
-			let table = player.playerNode.querySelector('table') || player.playerNode.lastChild;
-			Foxtrick.insertAfter(container, table);
+			container.dataset.value = String(dateWhen21.getTime());
+			container.dataset.valueString = `${wcNum}:${matchNumber}`;
+
+			let entry = player.playerNode.querySelector('table') || player.playerNode.lastChild;
+			while (entry.parentElement && entry.parentElement.matches('.flex'))
+				entry = entry.parentElement;
+
+			Foxtrick.insertAfter(container, entry);
 		}
 	},
 
@@ -218,7 +242,9 @@ Foxtrick.modules.U20LastMatch = {
 			if (player.age.years > 20)
 				continue;
 
-			let { worldCupNumber, lastMatch } = module.calculate(doc, player.age);
+			let { worldCupNumber, lastMatch, matchNumber, dateWhen21 } =
+				module.calculate(doc, player.age);
+
 			let wcNum = Foxtrick.decToRoman(worldCupNumber);
 
 			let text = TMPL_STR;
@@ -228,7 +254,11 @@ Foxtrick.modules.U20LastMatch = {
 			text = text.replace(/%4/, lastMatch);
 
 			let container = Foxtrick.createFeaturedElement(doc, module, 'div');
+			Foxtrick.addClass(container, 'ft-u20lastmatch');
 			container.textContent = text;
+			container.dataset.value = String(dateWhen21.getTime());
+			container.dataset.valueString = `${wcNum}:${matchNumber}`;
+
 			let element = player.playerNode.querySelector('.flex') || player.playerNode.lastChild;
 			Foxtrick.insertAfter(container, element);
 		}

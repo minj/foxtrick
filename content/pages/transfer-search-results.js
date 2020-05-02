@@ -135,6 +135,15 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 			player.psicoTitle = psico.dataset.psicoSkill;
 			player.psicoWage = psico.dataset.psicoWage;
 		}
+
+		/** @type {HTMLElement} */
+		let u20 = pNode.querySelector('.ft-u20lastmatch');
+		if (u20) {
+			let title = u20.textContent;
+			let text = u20.dataset.valueString;
+			let value = parseInt(u20.dataset.value, 10);
+			player.u20 = { title, text, value };
+		}
 	};
 
 	let addLinks = (player, pNode, urlTmpl) => {

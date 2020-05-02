@@ -1177,6 +1177,15 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				player.htmsPotential = parseInt(htms.getAttribute('data-htms-potential'), 10);
 			}
 
+			/** @type {HTMLElement} */
+			let u20 = playerNode.querySelector('.ft-u20lastmatch');
+			if (u20) {
+				let title = u20.textContent;
+				let text = u20.dataset.valueString;
+				let value = parseInt(u20.dataset.value, 10);
+				player.u20 = { title, text, value };
+			}
+
 			// last match
 			let matchLink;
 			if (isYouthPerfView) {
