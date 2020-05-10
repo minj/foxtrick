@@ -67,7 +67,7 @@ Foxtrick.modules.Filter = {
 		/**
 		 * @typedef FilterMinMax
 		 * @prop {string} key
-		 * @prop {'number'|'text'|'days'|'image'} type
+		 * @prop {'number'|'text'|'days'|'stars'} type
 		 * @prop {Record<string, number>} [incPerClass]
 		 * @prop {'minmax'} filtertype
 		 * @prop {string|number} min
@@ -76,7 +76,7 @@ Foxtrick.modules.Filter = {
 		/**
 		 * @typedef FilterBool
 		 * @prop {string} key
-		 * @prop {'number'|'text'|'days'|'image'} type
+		 * @prop {'number'|'text'|'days'|'stars'} type
 		 * @prop {Record<string, number>} [incPerClass]
 		 * @prop {'check'} filtertype
 		 * @prop {boolean} checked
@@ -84,7 +84,7 @@ Foxtrick.modules.Filter = {
 		/**
 		 * @typedef FilterCategory
 		 * @prop {string} key
-		 * @prop {'number'|'text'|'days'|'image'} type
+		 * @prop {'number'|'text'|'days'|'stars'} type
 		 * @prop {Record<string, number>} [incPerClass]
 		 * @prop {'category'} filtertype
 		 * @prop {string} category
@@ -134,7 +134,7 @@ Foxtrick.modules.Filter = {
 						filtertype: 'minmax',
 						min: null,
 						max: null,
-						type: 'image',
+						type: 'stars',
 						incPerClass: { starWhole: 1, starBig: 5, starHalf: 0.5 },
 					},
 					/* eslint-enable object-curly-spacing */
@@ -465,15 +465,22 @@ Foxtrick.modules.Filter = {
 						else if (filter.type == 'text') {
 							val = cell.textContent;
 						}
-						else if (filter.type == 'image') {
+						else if (filter.type == 'stars') {
 							val = 0;
 
-							let imgs = cell.querySelectorAll('img');
-							for (let img of imgs) {
-								for (let searchStr in filter.incPerClass) {
-									// eslint-disable-next-line max-depth
-									if (new RegExp(searchStr).test(img.className))
-										val += filter.incPerClass[searchStr];
+							let stars = cell.querySelector('.stars');
+							if (stars) {
+								val = parseFloat(stars.textContent.trim()) || 0;
+							}
+							else {
+								let imgs = cell.querySelectorAll('img');
+								for (let img of imgs) {
+									/* eslint-disable max-depth */
+									for (let searchStr in filter.incPerClass) {
+										if (new RegExp(searchStr).test(img.className))
+											val += filter.incPerClass[searchStr];
+									}
+									/* eslint-enable max-depth */
 								}
 							}
 						}
