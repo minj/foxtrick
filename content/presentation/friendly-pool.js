@@ -1,24 +1,27 @@
-'use strict';
-
-/*
+/**
  * show-friendly-booked.js
  * Show whether a team has booked friendly on series page
  * @author ryanli, LA-MJ
  */
 
-Foxtrick.modules['FriendlyPool'] = {
+'use strict';
+
+Foxtrick.modules.FriendlyPool = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.PRESENTATION,
 	PAGES: ['challenges'],
 	CSS: Foxtrick.InternalPath + 'resources/css/friendly-pool.css',
 	OPTIONS: ['ExpandCountrySelection'],
 
+	/** @param {document} doc */
 	run: function(doc) {
-		var countrySelect = Foxtrick.getMBElement(doc, 'ddlPoolCountries');
+		var countrySelect = /** @type {HTMLSelectElement} */
+			(Foxtrick.getMBElement(doc, 'ddlPoolSettingRequestLeague'));
+
 		if (!countrySelect)
 			return;
 
 		if (Foxtrick.Prefs.isModuleOptionEnabled('FriendlyPool', 'ExpandCountrySelection'))
-			countrySelect.size = countrySelect.querySelectorAll('option').length;
+			countrySelect.size = countrySelect.options.length;
 
 		var ownTeamId = Foxtrick.util.id.getOwnTeamId();
 		var ownLeagueId = Foxtrick.util.id.getOwnLeagueId();
@@ -26,14 +29,14 @@ Foxtrick.modules['FriendlyPool'] = {
 		// README: 0 for HTI
 		var ownCountryId = Foxtrick.XMLData.getCountryIdByLeagueId(ownLeagueId);
 
-		var parameters = [
+		var params = [
 			['file', 'teamdetails'],
 			['version', '2.6'],
 			['teamId', ownTeamId],
 			['includeFlags', 'true'],
 		];
-		Foxtrick.util.api.retrieve(doc, parameters, { cache_lifetime: 'default' },
-		  function(xml, errorText) {
+		var opts = { cache_lifetime: 'default' };
+		Foxtrick.util.api.retrieve(doc, params, opts, function(xml, errorText) {
 			if (!xml || errorText) {
 				Foxtrick.log(errorText);
 
@@ -57,7 +60,7 @@ Foxtrick.modules['FriendlyPool'] = {
 				away[awayCountryId] = true;
 			}
 
-			var options = countrySelect.getElementsByTagName('option');
+			var options = countrySelect.options;
 			for (var option of Foxtrick.toArray(options)) {
 				if (home[option.getAttribute('value')] && away[option.getAttribute('value')]) {
 					Foxtrick.addClass(option, 'ft-home ft-away');
@@ -71,7 +74,7 @@ Foxtrick.modules['FriendlyPool'] = {
 					Foxtrick.addClass(option, 'ft-away');
 					option.title = Foxtrick.L10n.getString('matches.playedAway');
 				}
-				else if (option.getAttribute('value') == ownCountryId) {
+				else if (option.value == String(ownCountryId)) {
 					Foxtrick.addClass(option, 'ft-own');
 				}
 			}
