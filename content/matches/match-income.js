@@ -260,6 +260,8 @@ Foxtrick.modules['MatchIncome'] = {
 					graphCell.appendChild(module.createPieChart(doc, total));
 				}
 
+				[...table.rows[rowIdx].cells].pop().colSpan++;
+
 			});
 
 		}).catch(function(reason) {
