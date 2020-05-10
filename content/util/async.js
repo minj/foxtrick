@@ -146,3 +146,16 @@ Foxtrick.promiseChain = (promisoryList) => {
 
 	return chain;
 };
+
+Foxtrick.deferred = () => {
+	/** @type {(value?: any | PromiseLike<any>) => void} */
+	let resolve;
+
+	/** @type {(reason?: any) => void} */
+	let reject;
+	let promise = new Promise((res, rej) => {
+		resolve = res;
+		reject = rej;
+	});
+	return { resolve, reject, promise };
+};
