@@ -125,5 +125,5 @@ Foxtrick.util.layout.mainBodyHasScroll = function(doc) {
  * @return {Boolean}
  */
 Foxtrick.util.layout.hasMultipleTeams = function(doc) {
-	return doc.querySelector('id[*="ucClubSwitcher"i]') != null;
+	return doc.querySelector('[id*="ucClubSwitcher"i]') != null;
 };
