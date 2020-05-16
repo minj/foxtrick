@@ -451,7 +451,8 @@ Foxtrick.isMap = function(obj) {
  * @return {Boolean}
  */
 Foxtrick.isArrayLike = function(obj) {
-	return Foxtrick.hasProp(obj, 'length') && !(obj instanceof Text);
+	return Foxtrick.hasProp(obj, 'length') && !(obj instanceof Text) &&
+		!(obj instanceof HTMLSelectElement);
 };
 
 /**
