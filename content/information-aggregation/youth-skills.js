@@ -139,7 +139,7 @@ Foxtrick.modules['YouthSkills'] = {
 				maxBar.style.width = '100%';
 				div.appendChild(maxBar);
 				let contents = maxBar.appendChild(doc.createElement('span'));
-				contents.clasName = 'bar-denomination';
+				contents.className = 'bar-denomination';
 
 				if (skillCell.nextElementSibling) {
 					skillCell.nextElementSibling.textContent = '?/?';
