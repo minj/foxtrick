@@ -268,13 +268,14 @@ Foxtrick.modules['YouthSkills'] = {
 				let max = parseInt(bar.getAttribute('max'), 10);
 				let val = Math.min(max, value);
 
-				let maxBar = bar.querySelector('.bar-max');
 				let widthNeeded = Math.round(val / max * widthTotal);
 
 				let hyBar = Foxtrick.createFeaturedElement(doc, module, 'div');
 				Foxtrick.addClass(hyBar, `bar-level ft-bar-${name}`);
 				hyBar.style.width = `${widthNeeded}px`;
-				Foxtrick.insertAfter(hyBar, maxBar);
+
+				let bars = [...bar.querySelectorAll('.bar-max, .bar-cap')];
+				Foxtrick.insertAfter(hyBar, bars.pop());
 			};
 
 			/**
