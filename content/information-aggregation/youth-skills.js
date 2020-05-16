@@ -271,11 +271,25 @@ Foxtrick.modules['YouthSkills'] = {
 				let widthNeeded = Math.round(val / max * widthTotal);
 
 				let hyBar = Foxtrick.createFeaturedElement(doc, module, 'div');
-				Foxtrick.addClass(hyBar, `bar-level ft-bar-${name}`);
+				Foxtrick.addClass(hyBar, `bar-level ft-bar ft-bar-${name}`);
 				hyBar.style.width = `${widthNeeded}px`;
 
-				let bars = [...bar.querySelectorAll('.bar-max, .bar-cap')];
-				Foxtrick.insertAfter(hyBar, bars.pop());
+				let target;
+
+				switch (name) {
+					case 'hy-cur':
+					case 'hy-pred':
+						target = [...bar.querySelectorAll('.bar-max, .bar-cap')].pop();
+						break;
+					case 'hy-pot':
+					case 'hy-pot-pred':
+						target = bar.querySelector('.bar-max');
+						break;
+					default:
+						throw new Error('unknown bar type');
+				}
+
+				Foxtrick.insertAfter(hyBar, target);
 			};
 
 			/**
