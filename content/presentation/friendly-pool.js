@@ -14,8 +14,10 @@ Foxtrick.modules.FriendlyPool = {
 
 	/** @param {document} doc */
 	run: function(doc) {
-		var countrySelect = /** @type {HTMLSelectElement} */
-			(Foxtrick.getMBElement(doc, 'ddlPoolSettingRequestLeague'));
+		var countrySelect = /** @type {HTMLSelectElement} */ (
+			Foxtrick.getMBElement(doc, 'ddlPoolSettingRequestLeague') ||
+			Foxtrick.getMBElement(doc, 'ddlPoolCountries')
+		);
 
 		if (!countrySelect)
 			return;

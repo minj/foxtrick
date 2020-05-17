@@ -36,8 +36,6 @@ Foxtrick.modules.CountryList = {
 		var ddlDrop = /** @type {HTMLSelectElement} */
 			(Foxtrick.getMBElement(doc, 'ucLeaguesDropdown_ddlLeagues'));
 
-		var ddlZone = /** @type {HTMLSelectElement} */ (Foxtrick.getMBElement(doc, 'ddlZone'));
-
 		var ddlBornIn = /** @type {HTMLSelectElement} */ (Foxtrick.getMBElement(doc, 'ddlBornIn'));
 
 		var poolCountry = /** @type {HTMLSelectElement} */
@@ -51,7 +49,7 @@ Foxtrick.modules.CountryList = {
 		/** @typedef {[HTMLSelectElement, number]|[HTMLSelectElement, number, number]} CListArg */
 		/** @type {Record<string, CListArg[]>} */
 		var pageMap = {
-			transferSearchForm: [[ddlZone, 10], [ddlBornIn, 1]],
+			transferSearchForm: [[ddlBornIn, 1]],
 			country: [[ddlDrop, 0]],
 			htPress: [[ddlSide, 2]],
 			statsTransfersBuyers: [[lgs, 1]],
@@ -61,10 +59,8 @@ Foxtrick.modules.CountryList = {
 			statsNationalTeams: [[ddl, 0]],
 			statsConfs: [[ddl, 0]],
 			statsBookmarks: [[ddl, 0]],
-			trainingStats: [[lgs, 1]],
+			trainingStats: [[ddl, 1]],
 			statsArena: [[ddlDrop, 0]],
-			// eslint-disable-next-line no-magic-numbers
-			helpContact: [[ddlDrop, 3]],
 			challenges: [[poolCountry, 2], [poolCountries, 0, 1]],
 		};
 
@@ -162,7 +158,7 @@ Foxtrick.modules.CountryList = {
 		for (let opt of options) {
 			let leagueId;
 
-			if (/[^t]league|zone/i.test(id)) { // RequestLeague is actually country
+			if (/[^t]league/i.test(id)) { // RequestLeague is actually country
 				let lId = parseInt(opt.value, 10);
 				if (Number.isNaN(lId) || lId < 1)
 					continue;
