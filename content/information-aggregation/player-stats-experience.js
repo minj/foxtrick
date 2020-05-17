@@ -254,6 +254,9 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 				}
 			}
 
+			if (!store.last)
+				return;
+
 			// highlight the relevant skillup game in the table
 			Foxtrick.addClass(store.last.node, 'ft-xp-skillup');
 			Foxtrick.addClass(statsRows[store.last.nodeIndex], 'ft-xp-skillup');
