@@ -550,7 +550,7 @@ Foxtrick.modules['ForumChangePosts'] = {
 				copy_img.id = 'ft_copy_posting_link_id' + num_wrapper;
 				Foxtrick.onClick(copy_img, copy_posting_to_clipboard);
 				copy_img.setAttribute('post_nr', num_wrapper);
-				var copy_links = copy_div.getElementsByTagName('span');
+				var copy_links = copy_div.querySelectorAll('span[copy_style]');
 				for (var cl = 0; cl < possibleStyles.length; ++cl) {
 					Foxtrick.onClick(copy_links[cl], copy_posting_to_clipboard);
 					copy_links[cl].setAttribute('post_nr', num_wrapper);
