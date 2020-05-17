@@ -944,7 +944,7 @@ Foxtrick.util.matchEvent.isFirstEvent = function(evnt) {
 	// event-o-Matic events: 700-705
 
 	// eslint-disable-next-line no-magic-numbers
-	return id >= 30 && id <= 33 || id === 20 || id === 22 || id >= 700 && id < 710;
+	return id >= 30 && id <= 33 || id === 20 || id === 21 || id === 22 || id >= 700 && id < 710;
 };
 
 /**
@@ -1177,12 +1177,6 @@ Foxtrick.util.matchEvent.addEventIndicator = function(evnt, invert) {
 			text: 'halfTime',
 			// eslint-disable-next-line no-magic-numbers
 			func: () => eventType == 'possession' && eventMinute == 45,
-		},
-		{
-			class: 'full-time',
-			text: 'fullTime',
-			// eslint-disable-next-line no-magic-numbers
-			func: () => eventType == 'possession' && eventMinute == 90,
 		},
 		{
 			class: 'extra-time',
