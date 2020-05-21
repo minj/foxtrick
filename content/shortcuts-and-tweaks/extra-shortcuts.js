@@ -14,10 +14,16 @@ Foxtrick.modules['ExtraShortcuts'] = {
 		'AddSpace',
 		'AddLeft',
 		'FoxTrickPrefs',
+		'Stage',
 		'Supporterstats', 'Transfers', 'Prefs', 'ManageCHPP',
 		'No9', 'Latehome',
 	],
 	LINKS: {
+		Stage: {
+			link: '',
+			imgClass: 'ftStageLink',
+			property: 'stage',
+		},
 		Supporterstats: { link: '/World/Stats/', imgClass: 'ftSuppStats', property: 'statistics' },
 		Transfers: { link: '/Club/Transfers/', imgClass: 'ftMyTransfers', property: 'transfers' },
 		Prefs: { link: '/MyHattrick/Preferences/', imgClass: 'ftSCPrefs', property: 'prefs' },
@@ -46,6 +52,11 @@ Foxtrick.modules['ExtraShortcuts'] = {
 	// eslint-disable-next-line complexity
 	run: function(doc) {
 		const module = this;
+
+		// eslint-disable-next-line no-restricted-properties
+		let relative = document.location.pathname + document.location.search;
+		let stage = new URL(relative, 'https://stage.hattrick.org');
+		module.LINKS.Stage.link = stage.href;
 
 		/**
 		 * @param {string} url
