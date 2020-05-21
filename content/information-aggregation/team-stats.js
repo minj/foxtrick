@@ -133,11 +133,6 @@ Foxtrick.modules['TeamStats'] = {
 						continue;
 
 					attributeOptions[j].value += current[attributeOptions[j].property];
-					// wildguess add subs to skills
-					if (attributeOptions[j].method == 'skill'
-					&& current[attributeOptions[j].property] > 0
-					&& current[attributeOptions[j].property] < 20)
-						attributeOptions[j].value += 0.5;
 				}
 			}
 //Foxtrick.log('attributeOptions',attributeOptions);
