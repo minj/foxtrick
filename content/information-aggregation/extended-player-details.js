@@ -136,7 +136,7 @@ Foxtrick.modules['ExtendedPlayerDetailsWage'] = {
 
 			let hasBonus = !!bonus;
 			if (hasBonus && wageWOBonus) {
-				wageCell.textContent = wagePre + currencyStr + NBSP;
+				wageCell.textContent = wagePre + currencyStr + ' ';
 
 				let wageBaseStr = Foxtrick.formatNumber(base, NBSP);
 				let baseSpan = doc.createElement('span');
