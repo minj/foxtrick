@@ -572,7 +572,7 @@ Foxtrick.util.load.fetch = function(url, callback, params) {
  * @deprecated use Promises
  *
  * @param  {string}   url
- * @param  {function} callback
+ * @param  {function(XMLDocument, number):void} callback
  */
 Foxtrick.util.load.xml = function(url, callback) {
 
