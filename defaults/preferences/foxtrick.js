@@ -91,6 +91,7 @@ pref("extensions.foxtrick.prefs.module.ExtraShortcuts.FoxTrickPrefs.enabled", tr
 pref("extensions.foxtrick.prefs.module.ExtraShortcuts.Latehome.enabled", false);
 pref("extensions.foxtrick.prefs.module.ExtraShortcuts.No9.enabled", false);
 pref("extensions.foxtrick.prefs.module.ExtraShortcuts.Prefs.enabled", false);
+pref("extensions.foxtrick.prefs.module.ExtraShortcuts.Stage.enabled", false);
 pref("extensions.foxtrick.prefs.module.ExtraShortcuts.Supporterstats.enabled", false);
 pref("extensions.foxtrick.prefs.module.ExtraShortcuts.Transfers.enabled", false);
 pref("extensions.foxtrick.prefs.module.ExtraShortcuts.ManageCHPP.enabled", true);

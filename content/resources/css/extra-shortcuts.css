@@ -3,6 +3,12 @@
 	background-image: url('chrome://foxtrick/content/resources/img/shortcuts/chpp.png');
 }
 
+.ftStageLink {
+	background-image: url('/Img/Icons/star_t.gif');
+	background-position-x: -1px;
+	background-repeat: no-repeat;
+}
+
 .ftSuppStats {
 	margin-left:2px;
 	background-image: url('chrome://foxtrick/content/resources/img/shortcuts/stats.png');

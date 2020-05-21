@@ -108,6 +108,7 @@ module.ExtraShortcuts.Latehome.enabled
 module.ExtraShortcuts.ManageCHPP.enabled
 module.ExtraShortcuts.No9.enabled
 module.ExtraShortcuts.Prefs.enabled
+module.ExtraShortcuts.Stage.enabled
 module.ExtraShortcuts.Supporterstats.enabled
 module.ExtraShortcuts.Transfers.enabled
 module.ExtraShortcuts.enabled
