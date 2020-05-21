@@ -8,7 +8,7 @@ pref("extensions.foxtrick.prefs.disableTemporary", false);
 pref("extensions.foxtrick.prefs.DisplayHTMLDebugOutput", false);
 pref("extensions.foxtrick.prefs.htCountry", "N/A");
 pref("extensions.foxtrick.prefs.htDateFormat", "dd-mm-yyyy");
-pref("extensions.foxtrick.prefs.htLanguage", "en");
+pref("extensions.foxtrick.prefs.htLanguage", "en-GB");
 pref("extensions.foxtrick.prefs.module.ARIALandmarks.enabled", true);
 pref("extensions.foxtrick.prefs.module.AddDefaultFaceCard.enabled", false);
 pref("extensions.foxtrick.prefs.module.AddPromotionReminder.enabled", true);

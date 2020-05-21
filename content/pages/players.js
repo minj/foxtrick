@@ -1375,7 +1375,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				}
 				catch (e) {
 					Foxtrick.log(e);
-					playerList = null;
+					playerList = [];
 				}
 
 				try {
