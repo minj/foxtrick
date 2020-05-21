@@ -263,6 +263,11 @@ Foxtrick.L10n.getHTLangProperty = function(query, lang) {
 	if (!lang)
 		lang = Foxtrick.Prefs.getString('htLanguage');
 
+	if (!lang) {
+		Foxtrick.error('missing lang');
+		return null;
+	}
+
 	var json = Foxtrick.L10n.htLanguagesJSON[lang].language;
 	var array = json[query.category];
 
@@ -327,6 +332,10 @@ Foxtrick.L10n.getLocalOrEnglish = function(query, lang) {
 Foxtrick.L10n.getLevelFromText = function(text) {
 	text = text.trim();
 	var lang = Foxtrick.Prefs.getString('htLanguage');
+	if (!lang) {
+		Foxtrick.error('missing lang');
+		return NaN;
+	}
 	var json = Foxtrick.L10n.htLanguagesJSON[lang].language;
 
 	var levelObj = Foxtrick.nth(function(jsonLevel) {
@@ -809,6 +818,9 @@ Foxtrick.L10n.getCountryNameLocal = function(leagueId, lang) {
 	try {
 		if (!lang)
 			lang = Foxtrick.Prefs.getString('htLanguage');
+
+		if (!lang)
+			throw new Error('missing lang');
 
 		var json = Foxtrick.L10n.htLanguagesJSON[lang].language;
 		if (leagueId in json.leagueNames)

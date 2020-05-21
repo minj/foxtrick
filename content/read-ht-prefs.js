@@ -14,8 +14,10 @@ Foxtrick.modules['ReadHtPrefs'] = {
 
 	run: function(doc) {
 		// only read preferences if logged in
-		if (!Foxtrick.Pages.All.isLoggedIn(doc))
+		if (!Foxtrick.Pages.All.isLoggedIn(doc)) {
+			Foxtrick.log(`Not logged in at ${doc.URL}`);
 			return;
+		}
 
 		this.readLanguage(doc);
 		this.readCountry(doc);
@@ -23,16 +25,12 @@ Foxtrick.modules['ReadHtPrefs'] = {
 	},
 
 	readLanguageFromMetaTag: function(doc) {
-		var lang = null;
-		var metas = doc.getElementsByTagName('meta');
-		Foxtrick.any(function(meta) {
-			if (meta.getAttribute('http-equiv') == 'Content-Language') {
-				lang = meta.getAttribute('content');
-				return true;
-			}
-			return false;
-		}, metas);
-		return lang;
+		/** @type {HTMLMetaElement} */
+		let meta = doc.querySelector('meta[http-equiv*="language"i]');
+		if (!meta)
+			return null;
+
+		return meta.content.trim().toLowerCase();
 	},
 
 	/** @param {document} doc */
@@ -44,6 +42,9 @@ Foxtrick.modules['ReadHtPrefs'] = {
 		}
 
 		var newLang = Foxtrick.L10n.htMapping[metaLang];
+		if (!newLang)
+			Foxtrick.error(`Unknown meta lang: ${metaLang}`);
+
 		var oldLang = Foxtrick.Prefs.getString('htLanguage');
 		if (newLang == oldLang)
 			return;
