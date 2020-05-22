@@ -137,7 +137,7 @@ Foxtrick.modules.CountryList = {
 
 	/**
 	 * @param {HTMLSelectElement} selectbox
-	 * @param {number} [start]
+	 * @param {number} start
 	 * @param {number} [skipLast]
 	 */
 	// eslint-disable-next-line complexity
