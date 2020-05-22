@@ -61,13 +61,11 @@ Foxtrick.util.matchEvent.eventIcons = {
 
 	35: { home: ['chair'] },
 
-	// UNUSED START
-	36: false,
-	37: false,
-	38: false,
-	39: false,
-
-	// UNUSED END
+	// HTO weather
+	36: { home: ['weather_rainy'] },
+	37: { home: ['weather_cloudy'] },
+	38: { home: ['weather_fair'] },
+	39: { home: ['weather_sunny'] },
 
 	40: 'possession',
 	41: 'best_player',
@@ -940,13 +938,17 @@ Foxtrick.util.matchEvent.getEventId = function(evnt) {
 Foxtrick.util.matchEvent.isFirstEvent = function(evnt) {
 	var id = Foxtrick.util.matchEvent.getEventId(evnt);
 
-	// in HTO matches there is no weather event
-	// so lineup event 20 is first instead
+	// in HTO matches the weather events are 36-39
+	// if not available
+	// lineup event 20 is first instead
 	// in neighborhood matches (friendly WOs) 22 is the first event
 	// event-o-Matic events: 700-705
 
-	// eslint-disable-next-line no-magic-numbers
-	return id >= 30 && id <= 33 || id === 20 || id === 21 || id === 22 || id >= 700 && id < 710;
+	/* eslint-disable no-magic-numbers */
+	return id >= 30 && id <= 33 || id >= 36 && id <= 39 ||
+	       id === 20 || id === 21 || id === 22 ||
+	       id >= 700 && id < 710;
+	/* eslint-enable no-magic-numbers */
 };
 
 /**
