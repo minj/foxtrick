@@ -11434,6 +11434,86 @@
 				"ZoneName": "Asia,  Africa and Oceania"
 			},
 			{
+				"Country": {
+					"Available": "True",
+					"CountryCode": "VC",
+					"CountryID": "184",
+					"CountryName": "Saint Vincent and the Grenadines",
+					"CurrencyName": "dollar",
+					"CurrencyRate": "4",
+					"DateFormat": "MM/DD/YYYY",
+					"TimeFormat": "hh.mm"
+				},
+				"EnglishName": "Saint Vincent and the Grenadines",
+				"LeagueID": "157",
+				"LeagueName": "Saint Vincent and the Grenadines",
+				"NationalTeamId": "0",
+				"Season": "1",
+				"SeasonOffset": "-74",
+				"ShortName": "St. Vincent",
+				"U20TeamId": "0"
+			},
+			{
+				"Country": {
+					"Available": "True",
+					"CountryCode": "BZ",
+					"CountryID": "186",
+					"CountryName": "Belize",
+					"CurrencyName": "$",
+					"CurrencyRate": "5",
+					"DateFormat": "MM/DD/YYYY",
+					"TimeFormat": "hh.mm"
+				},
+				"EnglishName": "Belize",
+				"LeagueID": "158",
+				"LeagueName": "Belize",
+				"NationalTeamId": "0",
+				"Season": "1",
+				"SeasonOffset": "-74",
+				"ShortName": "Belize",
+				"U20TeamId": "0"
+			},
+			{
+				"Country": {
+					"Available": "True",
+					"CountryCode": "MG",
+					"CountryID": "183",
+					"CountryName": "Madagasikara",
+					"CurrencyName": "ariary",
+					"CurrencyRate": "0,0025",
+					"DateFormat": "MM/DD/YYYY",
+					"TimeFormat": "hh.mm"
+				},
+				"EnglishName": "Madagascar",
+				"LeagueID": "159",
+				"LeagueName": "Repoblikan’i Madagasikara",
+				"NationalTeamId": "0",
+				"Season": "1",
+				"SeasonOffset": "-74",
+				"ShortName": "Madagasikara",
+				"U20TeamId": "0"
+			},
+			{
+				"Country": {
+					"Available": "True",
+					"CountryCode": "BW",
+					"CountryID": "185",
+					"CountryName": "Botswana",
+					"CurrencyName": "pula",
+					"CurrencyRate": "10",
+					"DateFormat": "MM/DD/YYYY",
+					"TimeFormat": "hh.mm"
+				},
+				"EnglishName": "Botswana",
+				"LeagueID": "160",
+				"LeagueName": "Lefatshe la Botswana",
+				"NationalTeamId": "0",
+				"Season": "1",
+				"SeasonOffset": "-74",
+				"ShortName": "Botswana",
+				"U20TeamId": "0"
+			},
+			{
 				"ActiveTeams": "2385",
 				"ActiveUsers": "0",
 				"Continent": "World",
