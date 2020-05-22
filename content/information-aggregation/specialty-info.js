@@ -40,7 +40,7 @@ Foxtrick.modules.SpecialtyInfo = {
 					text: 'SpecialtyInfo.tdf',
 					title: 'PlayerPositionsEvaluations.wings',
 				},
-				{ events: [139, 55] },
+				{ events: [139, 311, 55] },
 			],
 			neg: [
 				{ icon: 'weather_rainy', text: 'Scoring', title: 'weather.0' },

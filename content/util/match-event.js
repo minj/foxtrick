@@ -246,6 +246,7 @@ Foxtrick.util.matchEvent.eventIcons = {
 	309: { team: ['se_support_negative'] },
 
 	310: { team: ['se_powerful'], other: ['pressing'] },
+	311: { team: ['se_technical'], other: ['miss'] },
 	331: 'pressing',
 	332: 'counter_attack',
 	333: 'aim',
@@ -709,6 +710,7 @@ Foxtrick.util.matchEvent.eventDescription = {
 	308: 'SE: Support player boost failed and organization dropped',
 	309: 'SE: Support player boost failed',
 	310: 'SE: Powerful defensive inner presses chance',
+	311: 'Counter attack triggered by technical defender/wingback',
 	331: 'Tactic Type: Pressing',
 	332: 'Tactic Type: Counter-attacks',
 	333: 'Tactic Type: Attack in the middle',
