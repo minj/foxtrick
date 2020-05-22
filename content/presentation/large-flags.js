@@ -29,7 +29,7 @@ Foxtrick.modules.LargeFlags = {
 		}
 
 		const URL = Foxtrick.ResourcePath + 'resources/img/largeflags.png';
-		const FLAG_COUNT = 158;
+		const FLAG_COUNT = 165;
 		const RATIO = 1.5;
 		const MARGIN = 5;
 		const NATIVE_SIZE = 105;
