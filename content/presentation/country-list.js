@@ -192,7 +192,7 @@ Foxtrick.modules.CountryList = {
 			opt.text = text;
 
 			if (val == value)
-				selectbox.selectedIndex = i;
+				selectbox.selectedIndex = i + start;
 		}
 	},
 
