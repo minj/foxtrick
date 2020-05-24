@@ -99,8 +99,6 @@ Foxtrick.modules.HTMSPoints = {
 				/** @type {HTMSSkills} */
 				var skills = {};
 				let { years, days } = p.age;
-				skills.years = years;
-				skills.days = days;
 
 				var skillQuery = `&anni=${years}&giorni=${days}`;
 				for (let i in p.skills) {
@@ -108,12 +106,13 @@ Foxtrick.modules.HTMSPoints = {
 					skillQuery += '&' + ITALIAN[i] + '=' + skills[i];
 					totSkills += skills[i];
 				}
+				skills.years = years;
+				skills.days = days;
 
 				if (!totSkills)
 					return;
 
 				// creating element
-				let firstdiv = p.playerNode.getElementsByTagName('div')[0];
 				let container = Foxtrick.createFeaturedElement(doc, module, 'span');
 				Foxtrick.addClass(container, 'ft-htms-points');
 				container.appendChild(getLink(skillQuery));
@@ -124,10 +123,12 @@ Foxtrick.modules.HTMSPoints = {
 				let result = Foxtrick.L10n.getString('HTMSPoints.AbilityAndPotential');
 				result = result.replace(/%1/, current).replace(/%2/, potential);
 				pointsSpan.textContent = result;
+				container.appendChild(pointsSpan);
 
 				container.dataset.htmsAbility = current;
 				container.dataset.htmsPotential = potential;
 
+				let firstdiv = p.playerNode.querySelector('div');
 				firstdiv.appendChild(container);
 
 			}, transferPlayers);
@@ -144,8 +145,6 @@ Foxtrick.modules.HTMSPoints = {
 				/** @type {HTMSSkills} */
 				var skills = {};
 				let { years, days } = p.age;
-				skills.years = years;
-				skills.days = days;
 
 				var skillQuery = `&anni=${years}&giorni=${days}`;
 				for (let i in p.skills) {
@@ -153,6 +152,9 @@ Foxtrick.modules.HTMSPoints = {
 					skillQuery += '&' + ITALIAN[i] + '=' + skills[i];
 					totSkills += skills[i];
 				}
+
+				skills.years = years;
+				skills.days = days;
 
 				if (!totSkills)
 					return;
@@ -168,6 +170,7 @@ Foxtrick.modules.HTMSPoints = {
 				let result = Foxtrick.L10n.getString('HTMSPoints.AbilityAndPotential');
 				result = result.replace(/%1/, current).replace(/%2/, potential);
 				pointsSpan.textContent = result;
+				container.appendChild(pointsSpan);
 
 				container.dataset.htmsAbility = current;
 				container.dataset.htmsPotential = potential;
@@ -175,7 +178,7 @@ Foxtrick.modules.HTMSPoints = {
 				// insert it
 				let table = p.playerNode.querySelector('table');
 				let before = table.nextSibling;
-				before.parentNode.insertBefore(container, before);
+				before.parentElement.insertBefore(container, before);
 
 			}, players);
 		}
