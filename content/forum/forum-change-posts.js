@@ -316,16 +316,16 @@ Foxtrick.modules['ForumChangePosts'] = {
 
 		if (do_HighlightThreadOpener) {
 			try {
-				var Ftag = doc.getElementById('ctl00_ucGuestForum_ucGuestForum_updMain');
+				var Ftag = doc.querySelector('[id$="ucGuestForum_ucGuestForum_updMain"]');
 				if (!Ftag)
 					Ftag = doc.getElementById('myForums');
 
 				var TName_lng;
 				if (Ftag) {
-					Ftag = Ftag.getElementsByTagName('strong')[0];
+					Ftag = Ftag.querySelector('strong');
 					// eslint-disable-next-line no-unused-vars
 					let TName = Ftag.textContent; // lgtm[js/unused-local-variable]
-					TName_lng = Ftag.parentNode.getAttribute('data-author');
+					TName_lng = Ftag.parentElement.getAttribute('data-author');
 				}
 				else {
 					TName_lng = false;
