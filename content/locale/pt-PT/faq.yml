@@ -2,13 +2,13 @@
 pt-PT:
   faq:
     style:
-      question: Como posso mudar o estilo do FoxTrick?
+      question: Como mudar o estilo do FoxTrick?
       answer: |
         <p>O FoxTrick fornece um conjunto de interfaces de apresentação para os utilizadores, que podem personalizar seus próprios estilos. Essas interfaces são fornecidas através de classes e IDs HTML, e pode usar CSS para definir o seu estilo preferido.</p>
 
         <p>Podemos ver um exemplo desses estilos <linkCSSExample>aqui</linkCSSExample> ou <linkCSSExampleGCode>aqui</linkCSSExampleGCode>, que pode modificar para satisfazer as necessidades específicas de cada um. Depois de gravar o ficheiro, pode utilizar o módulo <module>SkinPlugin</module> para o carregar para que o possa colocar em uso.</p>
     sound-format:
-      question: Que tipo de ficheiros são permitidos para som de alerta?
+      question: Que tipo de ficheiros são permitidos para sons de alerta?
       answer: |
         <p>Diferentes navegadores permitem diferentes formatos de ficheiros. Aqui está uma lista (formatos não referidos podem funcionar se os plugins necessários estiverem instalados, ex: o Quicktime para reproduzir mp3 no Firefox):</p>
 
@@ -18,7 +18,7 @@ pt-PT:
         <li>Chrome:  ogg, mp3, wav</li><li>Opera: wav, ogg</li>
         </ul>
     sound-location:
-      question: Qual é o tamanho limite e onde podem ser encontrados os ficheiros de som de alerta?
+      question: Qual é o tamanho limite e onde podem ser encontrados os ficheiros de sons de alerta?
       answer: |
         <p>Todos os navegadores podem reproduzir dados de URLs. Esses são os sons gravados internamente quando usa o botão existente nas preferências. Como são convertidos e guardados nas suas preferências o tamanho é limitado a cerca de 160Kb por som.</p>
 
