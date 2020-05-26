@@ -205,6 +205,7 @@ Foxtrick.pagesExcluded = {
 	'oath'                      : 'chpp.hattrick.org/',
 	'error'                     : '/Errors/',
 	'logout'                    : '/Logout.aspx',
+	'chppExampleApp'            : '/Community/CHPP/NewDocs/Example.aspx',
 };
 // jscs:enable disallowSpaceAfterObjectKeys, disallowQuotedKeysInObjects
 // jscs:enable disallowMultipleSpaces
