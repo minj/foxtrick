@@ -797,7 +797,7 @@ Foxtrick.L10n.getCountryNameNative = function(leagueId) {
 	var ret = 'New Moon';
 	try {
 		var league = Foxtrick.XMLData.League[leagueId];
-		ret = league.Country.CountryName || league.EnglishName; // HTI
+		ret = league.LeagueName;
 	}
 	catch (e) {
 		Foxtrick.log('getCountryNameNative:', leagueId, e);
