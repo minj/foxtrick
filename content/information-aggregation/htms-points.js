@@ -177,8 +177,7 @@ Foxtrick.modules.HTMSPoints = {
 
 				// insert it
 				let table = p.playerNode.querySelector('table');
-				let before = table.nextSibling;
-				before.parentElement.insertBefore(container, before);
+				table.parentElement.appendChild(container);
 
 			}, players);
 		}
