@@ -105,8 +105,12 @@ Foxtrick.modules.LocalTime = {
 
 				let localDate = Foxtrick.util.time.toLocal(doc, userDate);
 
+				let ddl = date.querySelector('.ft-deadline');
+
 				// always build strings with hours and seconds, but without seconds
 				date.textContent = Foxtrick.util.time.buildDate(localDate);
+				if (ddl)
+					date.appendChild(ddl);
 
 				// set original time as attribute for reference from other modules
 				date.dataset.userDate = userDate.getTime();
@@ -116,7 +120,11 @@ Foxtrick.modules.LocalTime = {
 			// turn local dates to user dates
 			for (let date of localDates) {
 				let timestamp = new Date(Number(date.dataset.userDate));
+				let ddl = date.querySelector('.ft-deadline');
 				date.textContent = Foxtrick.util.time.buildDate(timestamp);
+				if (ddl)
+					date.appendChild(ddl);
+
 				date.removeAttribute('data-local-time');
 				date.removeAttribute('data-user-date');
 			}
