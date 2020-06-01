@@ -1,1 +1,1 @@
-.teamNoLogo {display:none;}
+.teamNoLogo, .series-table-logo img[src$="no-logo.png"] {display:none;}
