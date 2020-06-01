@@ -117,16 +117,9 @@ module.Fans.ShowSumFans.enabled
 module.Fans.enabled
 module.Filter.ShowOwned.enabled
 module.Filter.enabled
-module.FixcssProblems.CalendarAutoMinHeight.enabled
-module.FixcssProblems.Club_Menu_Teamnames.enabled
-module.FixcssProblems.ForumScrollBarFix.enabled
-module.FixcssProblems.Forum_FoxLink_Headers.enabled
-module.FixcssProblems.HideInvitation.enabled
 module.FixcssProblems.MatchReportRatingsFontFix.enabled
-module.FixcssProblems.Page_Minimum_Height.enabled
 module.FixcssProblems.RTL_Fixes.enabled
 module.FixcssProblems.RemoveForumSneakPeak.enabled
-module.FixcssProblems.SkillbarsAdjust.enabled
 module.FixcssProblems.enabled
 module.FlagCollectionToMap.enabled
 module.FormatPostingText.NestedQuotesAsSpoilers.enabled

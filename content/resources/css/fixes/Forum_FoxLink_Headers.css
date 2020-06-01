@@ -1,6 +1,0 @@
-#aspnetForm[action*="Read.aspx"] .cfHeader a.bookmarkSmall {
-    display:none
-}
-#aspnetForm[action*="Read.aspx"] .cfHeader a[href^="/Forum"] ~ a.bookmarkSmall {
-    display:inline
-}
