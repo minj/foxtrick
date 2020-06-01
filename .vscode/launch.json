@@ -24,8 +24,8 @@
 			},
 			"addonPath": "${workspaceFolder}",
 			"firefoxArgs": [
-				"about:debugging#/runtime/this-firefox",
 				"about:addons",
+				"about:debugging#/runtime/this-firefox",
 				"https://stage.hattrick.org/Default.aspx",
 			],
 			"popupAutohideButton": false,
