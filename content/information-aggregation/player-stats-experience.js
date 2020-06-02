@@ -64,6 +64,7 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 
 		// define algorithm
 
+		// eslint-disable-next-line complexity
 		var runStatsTables = function(statsTable) {
 
 			// START ROW UTILS
@@ -182,6 +183,9 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 			for (var i = 1; i < statsRows.length; i++) {
 
 				var entry = statsRows[i];
+				if (entry.matches('.training-changes'))
+					continue;
+
 				var matchDate = statsRows[i].querySelector('td.keyColumn');
 				if (matchDate) {
 					let dateSpan = matchDate.querySelector('span.float_left');
