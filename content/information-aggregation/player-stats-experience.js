@@ -17,9 +17,11 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 	PAGES: ['playerStats', 'playerDetails'],
 	OPTIONS: ['AlwaysShowAll'],
 	CSS: Foxtrick.InternalPath + 'resources/css/player-stats.css',
-	XP_PTS_PER_LEVEL: 200.0 / 7, // =28.571; see 15766691.780
+	XP_PTS_PER_LEVEL: 100,
 	XP_CELL_IDX: 7, // current xp is the <integer>-th column in the table
 	store: {},
+
+	/** @param {document} doc */
 	run: function(doc) {
 		var module = this;
 
@@ -27,21 +29,21 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 		var XP = {
 			// assume international friendly as default, considered in min-max,
 			// minimum uses 1/2 of this value
-			matchFriendly: 0.2,
-			matchLeague: 1.0,
-			matchCupA: 2.0,
-			matchCupB1: 0.5,
-			matchCupB2: 0.5,
-			matchCupB3: 0.5,
-			matchCupC: 0.5,
-			matchQualification: 2.0,
-			matchMasters: 5.0,
+			matchFriendly: 0.7,
+			matchLeague: 3.5,
+			matchCupA: 7.0,
+			matchCupB1: 1.75,
+			matchCupB2: 1.75,
+			matchCupB3: 1.75,
+			matchCupC: 1.75,
+			matchQualification: 7,
+			matchMasters: 17.5,
 
 			// NT
 			// fakenames: we generate these types
-			matchNtFriendly: 2.0, // (iconsytle + gametype)
-			matchNtLeague: 10.0, // (iconsytle + gametype + match date)
-			matchNtFinals: 20.0, // (iconsytle + gametype + match date)
+			matchNtFriendly: 7, // (iconsytle + gametype)
+			matchNtLeague: 35.0, // (iconsytle + gametype + match date)
+			matchNtFinals: 70.0, // (iconsytle + gametype + match date)
 		};
 
 		// setup the 'database'
@@ -451,7 +453,7 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 
 			span = doc.createElement('span');
 			var ptsPerLevel = Foxtrick.L10n.getString('PlayerStatsExperience.PtsPerLevel');
-			span.textContent = ptsPerLevel.replace(/%1/, module.XP_PTS_PER_LEVEL.toFixed(3));
+			span.textContent = ptsPerLevel.replace(/%1/, module.XP_PTS_PER_LEVEL.toFixed(1));
 			commentDiv.appendChild(span);
 			commentDiv.appendChild(doc.createElement('br'));
 
