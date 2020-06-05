@@ -35,7 +35,7 @@ Foxtrick.modules.SkillTranslation = {
 		'non-existent',
 	],
 	coachSkills: [
-		'Coach skills / Leadership / Form / Youth Squad',
+		'Coach skills / Form / Youth Squad',
 		'excellent',
 		'solid',
 		'passable',
@@ -56,6 +56,17 @@ Foxtrick.modules.SkillTranslation = {
 		'inadequate',
 		'weak',
 		'poor',
+	],
+	leadership: [
+		'Leadership',
+		'solid',
+		'passable',
+		'inadequate',
+		'weak',
+		'poor',
+		'wretched',
+		'disastrous',
+		'non-existent',
 	],
 	sponsors: [
 		'Sponsors',
@@ -184,16 +195,17 @@ Foxtrick.modules.SkillTranslation = {
 		/* eslint-disable no-magic-numbers */
 		module.translateCategory(doc, table.rows[1], module.playerAbilities, false);
 		module.translateCategory(doc, table.rows[2], module.coachSkills, false);
-		module.translateCategory(doc, table.rows[3], module.formationExperience, false);
-		module.translateCategory(doc, table.rows[4], module.sponsors, false);
-		module.translateCategory(doc, table.rows[5], module.fanMood, false);
-		module.translateCategory(doc, table.rows[6], module.fanMatchExpectations, true);
-		module.translateCategory(doc, table.rows[7], module.fanSeasonExpectations, true);
-		module.translateCategory(doc, table.rows[8], module.agreeability, true);
-		module.translateCategory(doc, table.rows[9], module.honesty, false);
-		module.translateCategory(doc, table.rows[10], module.aggressiveness, false);
-		module.translateCategory(doc, table.rows[11], module.teamSpirit, false);
-		module.translateCategory(doc, table.rows[12], module.teamConfidence, false);
+		module.translateCategory(doc, table.rows[3], module.leadership, false);
+		module.translateCategory(doc, table.rows[4], module.formationExperience, false);
+		module.translateCategory(doc, table.rows[5], module.sponsors, false);
+		module.translateCategory(doc, table.rows[6], module.fanMood, false);
+		module.translateCategory(doc, table.rows[7], module.fanMatchExpectations, true);
+		module.translateCategory(doc, table.rows[8], module.fanSeasonExpectations, true);
+		module.translateCategory(doc, table.rows[9], module.agreeability, true);
+		module.translateCategory(doc, table.rows[10], module.honesty, false);
+		module.translateCategory(doc, table.rows[11], module.aggressiveness, false);
+		module.translateCategory(doc, table.rows[12], module.teamSpirit, false);
+		module.translateCategory(doc, table.rows[13], module.teamConfidence, false);
 		/* eslint-disable no-magic-numbers */
 	},
 
