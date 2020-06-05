@@ -473,7 +473,7 @@ Foxtrick.appendChildren = function(parent, children) {
  *
  * child may be a Node, string or an array of such.
  *
- * @param {Element}                     parent
+ * @param {Node}                        parent
  * @param {Node|string|(Node|string)[]} child
  */
 Foxtrick.append = function(parent, child) {
