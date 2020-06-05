@@ -65,6 +65,16 @@ Foxtrick.modules.SkillColoring = {
 			'solid',
 			'excellent',
 		],
+		leadership: [
+			'non-existent',
+			'disastrous',
+			'wretched',
+			'poor',
+			'weak',
+			'inadequate',
+			'passable',
+			'solid',
+		],
 		teamskills: [
 			'non-existent',
 			'disastrous',
@@ -191,10 +201,10 @@ Foxtrick.modules.SkillColoring = {
 
 	/**
 	 * @typedef SkillColoringFlags
-	 * @param {boolean} skillNumber
-	 * @param {boolean} skillTranslated
-	 * @param {boolean} skillTranslatedTitle
-	 * @param {boolean} isProblemPage
+	 * @prop {boolean} skillNumber
+	 * @prop {boolean} skillTranslated
+	 * @prop {boolean} skillTranslatedTitle
+	 * @prop {boolean} isProblemPage
 	 */
 
 	/**
@@ -373,7 +383,7 @@ Foxtrick.modules.SkillColoring = {
 
 				toggleSpecials([
 					[XPspan, 'skill'],
-					[LSspan, 'skillshort'],
+					[LSspan, 'leadership'],
 					[STspan, 'skill'],
 					[FOspan, 'skillshort'],
 					[LOspan, 'skill'],
