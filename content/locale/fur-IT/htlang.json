@@ -324,7 +324,11 @@
 			"154": "Guam",
 			"155": "Congo (RD)",
 			"156": "Etiopie",
+			"157": "Saint Vincent e Grenadine",
+			"158": "Belize",
+			"159": "Madagascar",
 			"16": "Brasîl",
+			"160": "Botswana",
 			"17": "Canadà",
 			"18": "Cile",
 			"19": "Colombie",
@@ -633,8 +637,12 @@
 				"value": "Cjavade"
 			},
 			{
-				"type": "Regainer",
+				"type": "Resilient",
 				"value": "Resistent"
+			},
+			{
+				"type": "Support",
+				"value": "Sostegn"
 			}
 		],
 		"spirit": [

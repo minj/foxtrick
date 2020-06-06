@@ -324,7 +324,11 @@
 			"154": "Guam",
 			"155": "DR Congo",
 			"156": "Ethiopië",
+			"157": "Saint Vincent en de Grenadines",
+			"158": "Belize",
+			"159": "Madagaskar",
 			"16": "Brazilië",
+			"160": "Botswana",
 			"17": "Canada",
 			"18": "Chili",
 			"19": "Colombia",
@@ -633,8 +637,12 @@
 				"value": "Koppen"
 			},
 			{
-				"type": "Regainer",
+				"type": "Resilient",
 				"value": "Veerkrachtig"
+			},
+			{
+				"type": "Support",
+				"value": "Bezieler"
 			}
 		],
 		"spirit": [

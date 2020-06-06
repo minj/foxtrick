@@ -266,6 +266,13 @@
 		"title": "NRG ECO",
 		"img": "https://www.foxtrick.org/res/linkicons/nrg_eco.ico"
 	},
+	"nrg_eco2": {
+		"arenalink": {
+			"url": "https://nrgjack.altervista.org/tools/eco?t=[terraces]&b=[basic]&r=[roof]&v=[vip]"
+		},
+		"title": "NRG ECO rev.II",
+		"img": "https://www.foxtrick.org/res/linkicons/eco2.png"
+	},
 	"nrg_fc": {
 		"coachlink": {
 			"url": "http://nrgjack.altervista.org/fc.php"
@@ -298,7 +305,7 @@
 		"leagueidranges": [[26, 26]],
 		"nationalityranges": [[26, 26]]
 	},
-	"frenchtracker":  {
+	"frenchtracker": {
 		"img": "https://www.foxtrick.org/res/linkicons/frenchtracker.ico",
 		"title": "French U20/NT Tracker",
 		"trackernationalteamlink": {

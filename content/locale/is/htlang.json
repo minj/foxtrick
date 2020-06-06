@@ -320,11 +320,15 @@
 			"15": "Ástralía",
 			"151": "Comoros",
 			"152": "Srí Lanka",
-			"153": "Curaçao",
+			"153": "Kúrakaá",
 			"154": "Gúam",
-			"155": "DR Congo",
-			"156": "Ethiopia",
+			"155": "Lýðveldið Kongó",
+			"156": "Eþíópía",
+			"157": "Saint Vincent og Granada",
+			"158": "Belize",
+			"159": "Madagaskar",
 			"16": "Brasilía",
+			"160": "Botsvana",
 			"17": "Kanada",
 			"18": "Síle",
 			"19": "Kólombía",
@@ -633,8 +637,12 @@
 				"value": "Skallamaður"
 			},
 			{
-				"type": "Regainer",
+				"type": "Resilient",
 				"value": "Hraustmenni"
+			},
+			{
+				"type": "Support",
+				"value": "Traustur"
 			}
 		],
 		"spirit": [
@@ -744,7 +752,7 @@
 			},
 			{
 				"type": "aow",
-				"value": "Sókn á köntunum"
+				"value": "Sókn á köntum"
 			},
 			{
 				"type": "",

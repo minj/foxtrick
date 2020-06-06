@@ -324,7 +324,11 @@
 			"154": "Guam",
 			"155": "Kongon demokraattinen tasavalta",
 			"156": "Etiopia",
+			"157": "Saint Vincent ja Grenadiinit",
+			"158": "Belize",
+			"159": "Madagaskar",
 			"16": "Brasilia",
+			"160": "Botswana",
 			"17": "Kanada",
 			"18": "Chile",
 			"19": "Kolumbia",
@@ -633,8 +637,12 @@
 				"value": "Pääpeli"
 			},
 			{
-				"type": "Regainer",
+				"type": "Resilient",
 				"value": "Peräänantamaton"
+			},
+			{
+				"type": "Support",
+				"value": "Joukkuepelaaja"
 			}
 		],
 		"spirit": [

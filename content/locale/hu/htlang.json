@@ -324,7 +324,11 @@
 			"154": "Guam",
 			"155": "Kongó",
 			"156": "Etiópia",
+			"157": "Saint Vincent és a Grenadine-szigetek",
+			"158": "Belize",
+			"159": "Madagaszkár",
 			"16": "Brazília",
+			"160": "Botswana",
 			"17": "Kanada",
 			"18": "Chile",
 			"19": "Kolumbia",
@@ -633,8 +637,12 @@
 				"value": "Jól fejelő"
 			},
 			{
-				"type": "Regainer",
+				"type": "Resilient",
 				"value": "Ellenálló"
+			},
+			{
+				"type": "Support",
+				"value": "Csapatjátékos"
 			}
 		],
 		"spirit": [

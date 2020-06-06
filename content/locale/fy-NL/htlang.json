@@ -324,7 +324,11 @@
 			"154": "Gûam",
 			"155": "DR Kongo",
 			"156": "Etiopië",
+			"157": "Saint Vincent en de Grenadinen",
+			"158": "Belize",
+			"159": "Madagaskar",
 			"16": "Brazylje",
+			"160": "Botswana",
 			"17": "Kanada",
 			"18": "Sily",
 			"19": "Kolombia",
@@ -633,8 +637,12 @@
 				"value": "Koppe"
 			},
 			{
-				"type": "Regainer",
+				"type": "Resilient",
 				"value": "Fearkrêftich"
+			},
+			{
+				"type": "Support",
+				"value": "Stypjend"
 			}
 		],
 		"spirit": [

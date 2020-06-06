@@ -324,7 +324,11 @@
 			"154": "Guam",
 			"155": "DR Congo",
 			"156": "Etiopien",
+			"157": "Saint Vincent og Grenadinerne",
+			"158": "Belize",
+			"159": "Madagascar",
 			"16": "Brasilien",
+			"160": "Botswana",
 			"17": "Canada",
 			"18": "Chile",
 			"19": "Colombia",
@@ -633,8 +637,12 @@
 				"value": "Hovedstød"
 			},
 			{
-				"type": "Regainer",
+				"type": "Resilient",
 				"value": "Robust"
+			},
+			{
+				"type": "Support",
+				"value": "Holdspiller"
 			}
 		],
 		"spirit": [

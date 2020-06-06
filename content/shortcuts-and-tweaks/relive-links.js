@@ -105,8 +105,8 @@ Foxtrick.modules.ReLiveLinks = {
 			button.id = BUTTON_ID;
 			Foxtrick.addClass(button, 'ft-link liveConfLink shy right');
 			button.textContent = COPY;
-			Foxtrick.onClick(button, copyBulkLinks);
 			Foxtrick.insertBefore(button, target);
+			Foxtrick.onClick(button, copyBulkLinks);
 		};
 
 		Foxtrick.Pages.Match.addLiveListener(doc, addBulkButton);

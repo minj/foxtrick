@@ -324,7 +324,11 @@
 			"154": "Guam",
 			"155": "Kongo DC",
 			"156": "Etiyopya",
+			"157": "Saint Vincent ve Grenadinler",
+			"158": "Belize",
+			"159": "Madagaskar",
 			"16": "Brezilya",
+			"160": "Botsvana",
 			"17": "Kanada",
 			"18": "Şili",
 			"19": "Kolombiya",
@@ -633,8 +637,12 @@
 				"value": "Kafa"
 			},
 			{
-				"type": "Regainer",
+				"type": "Resilient",
 				"value": "Çabuk İyileşen"
+			},
+			{
+				"type": "Support",
+				"value": "Destek"
 			}
 		],
 		"spirit": [

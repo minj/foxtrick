@@ -1,10 +1,11 @@
-'use strict';
 /**
  * Presentation Fixes
  * @author spambot, ljushaff
  */
 
-Foxtrick.modules['SimplePresentation'] = {
+'use strict';
+
+Foxtrick.modules.SimplePresentation = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.PRESENTATION,
 	OUTSIDE_MAINBODY: true,
 	PAGES: ['all'],
@@ -15,7 +16,7 @@ Foxtrick.modules['SimplePresentation'] = {
 		'liveHighlightRed',
 		'HideAchievementsIcons',
 		'NoLogo',
-		'NoDefaultLogo'
+		'NoDefaultLogo',
 	],
 	OPTIONS_CSS: [
 		Foxtrick.InternalPath + 'resources/css/fixes/League_Table.css',
@@ -23,6 +24,6 @@ Foxtrick.modules['SimplePresentation'] = {
 		Foxtrick.InternalPath + 'resources/css/fixes/liveHighlightRed.css',
 		Foxtrick.InternalPath + 'resources/css/fixes/achievement_hideicons.css',
 		Foxtrick.InternalPath + 'resources/css/fixes/NoLogo.css',
-		Foxtrick.InternalPath + 'resources/css/fixes/NoDefaultLogo.css'
-	]
+		Foxtrick.InternalPath + 'resources/css/fixes/NoDefaultLogo.css',
+	],
 };

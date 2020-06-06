@@ -324,7 +324,11 @@
 			"154": "Guami",
 			"155": "RD e Kongos",
 			"156": "Etiopia",
+			"157": "Shën Vincenti dhe Grenadinet",
+			"158": "Beliza",
+			"159": "Madagaskar",
 			"16": "Brazili",
+			"160": "Botsvana",
 			"17": "Kanada",
 			"18": "Kili",
 			"19": "Kolumbia",
@@ -633,8 +637,12 @@
 				"value": "Me Kokë"
 			},
 			{
-				"type": "Regainer",
+				"type": "Resilient",
 				"value": "Ripërtëritës"
+			},
+			{
+				"type": "Support",
+				"value": "Suport"
 			}
 		],
 		"spirit": [

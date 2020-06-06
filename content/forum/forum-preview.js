@@ -189,7 +189,7 @@ Foxtrick.modules.ForumPreview = {
 
 					let toolbars = doc.querySelectorAll('.HTMLToolbar');
 					for (let toolbar of toolbars) {
-						let rem = Foxtrick.onClick(toolbar, listener);
+						let rem = Foxtrick.listen(toolbar, 'click', listener);
 						REMOVE_MAP.set(toolbar, rem);
 					}
 
@@ -277,6 +277,16 @@ Foxtrick.modules.ForumPreview = {
 			newButton.tabIndex = target.tabIndex + 1;
 
 			Foxtrick.insertAfter(newButton, target);
+		}
+
+		let toolbars = doc.querySelectorAll('.HTMLToolbar');
+		for (let toolbar of toolbars) {
+			for (let button of toolbar.children) {
+				if (button.hasAttribute('onclick') && !button.hasAttribute('tabindex')) {
+					button.setAttribute('tabindex', '0');
+					button.setAttribute('role', 'button');
+				}
+			}
 		}
 	},
 

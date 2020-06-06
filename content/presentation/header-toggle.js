@@ -148,12 +148,12 @@ Foxtrick.modules['HeaderToggle'] = {
 		}
 	},
 
+	/** @param {document} doc */
 	run: function(doc) {
 		// add listener to all h2s in mainBody
-		var h2s = doc.getElementById('mainBody').getElementsByTagName('h2');
-		Foxtrick.map(function(n) {
-			Foxtrick.modules.HeaderToggle.addToggle(doc, n);
-		}, h2s);
+		let h2s = [...doc.querySelectorAll('#mainBody h2')];
+		for (let h2 of h2s.filter(h => !h.matches('.htbox-header') && !!h.closest('ng-app')))
+			Foxtrick.modules.HeaderToggle.addToggle(doc, h2);
 	},
 
 	change: function(doc) {

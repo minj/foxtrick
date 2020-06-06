@@ -324,7 +324,11 @@
 			"154": "Guam",
 			"155": "República Democrática de Congo",
 			"156": "Etiopía",
+			"157": "San Vicente y las Granadinas",
+			"158": "Belice",
+			"159": "Madagascar",
 			"16": "Brasil",
+			"160": "Botswana",
 			"17": "Canadá",
 			"18": "Chile",
 			"19": "Colombia",
@@ -633,8 +637,12 @@
 				"value": "Cabeceador"
 			},
 			{
-				"type": "Regainer",
+				"type": "Resilient",
 				"value": "Resiliente"
+			},
+			{
+				"type": "Support",
+				"value": "Solidario"
 			}
 		],
 		"spirit": [

@@ -1,15 +1,16 @@
-'use strict';
 /**
  * skill-translation.js
  * Script which add trasnlations to english to skills
  * @author convincedd
  */
 
-Foxtrick.modules['SkillTranslation'] = {
+'use strict';
+
+Foxtrick.modules.SkillTranslation = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.PRESENTATION,
 	PAGES: ['denominations'],
 
-	player_abilities: [
+	playerAbilities: [
 		'Player abilities',
 		'divine',
 		'utopian',
@@ -31,10 +32,10 @@ Foxtrick.modules['SkillTranslation'] = {
 		'poor',
 		'wretched',
 		'disastrous',
-		'non-existent'
+		'non-existent',
 	],
-	coach_skills: [
-		'Coach skills / Leadership / Form / Youth Squad',
+	coachSkills: [
+		'Coach skills / Form / Youth Squad',
 		'excellent',
 		'solid',
 		'passable',
@@ -43,9 +44,9 @@ Foxtrick.modules['SkillTranslation'] = {
 		'poor',
 		'wretched',
 		'disastrous',
-		'non-existent'
+		'non-existent',
 	],
-	formation_experience: [
+	formationExperience: [
 		'Formation experience',
 		'outstanding',
 		'formidable',
@@ -54,7 +55,18 @@ Foxtrick.modules['SkillTranslation'] = {
 		'passable',
 		'inadequate',
 		'weak',
-		'poor'
+		'poor',
+	],
+	leadership: [
+		'Leadership',
+		'solid',
+		'passable',
+		'inadequate',
+		'weak',
+		'poor',
+		'wretched',
+		'disastrous',
+		'non-existent',
 	],
 	sponsors: [
 		'Sponsors',
@@ -67,9 +79,9 @@ Foxtrick.modules['SkillTranslation'] = {
 		'calm',
 		'irritated',
 		'furious',
-		'murderous'
+		'murderous',
 	],
-	fan_mood: [
+	fanMood: [
 		'Fan mood',
 		'Sending love poems to you',
 		'dancing in the streets',
@@ -82,9 +94,9 @@ Foxtrick.modules['SkillTranslation'] = {
 		'irritated',
 		'angry',
 		'furious',
-		'murderous'
+		'murderous',
 	],
-	fan_match_expectations: [
+	fanMatchExpectations: [
 		'Fan match expectations',
 		"Let's humiliate them",
 		'Piece of cake!',
@@ -96,9 +108,9 @@ Foxtrick.modules['SkillTranslation'] = {
 		'They are favourites',
 		'We will lose',
 		'We are outclassed',
-		'Better not show up'
+		'Better not show up',
 	],
-	fan_season_expectations: [
+	fanSeasonExpectations: [
 		'Fan season expectations',
 		'We are so much better than this division!',
 		'We have to win this season',
@@ -107,7 +119,7 @@ Foxtrick.modules['SkillTranslation'] = {
 		'A mid table finish is nice',
 		'We will have to fight to stay up',
 		'Every day in this division is a bonus',
-		'We are not worthy of this division'
+		'We are not worthy of this division',
 	],
 	agreeability: [
 		'Agreeability',
@@ -116,7 +128,7 @@ Foxtrick.modules['SkillTranslation'] = {
 		'sympathetic guy',
 		'pleasant guy',
 		'controversial person',
-		'nasty fellow'
+		'nasty fellow',
 	],
 	honesty: [
 		'Honesty',
@@ -125,7 +137,7 @@ Foxtrick.modules['SkillTranslation'] = {
 		'upright',
 		'honest',
 		'dishonest',
-		'infamous'
+		'infamous',
 	],
 	aggressiveness: [
 		'Aggressiveness',
@@ -134,9 +146,9 @@ Foxtrick.modules['SkillTranslation'] = {
 		'temperamental',
 		'balanced',
 		'calm',
-		'tranquil'
+		'tranquil',
 	],
-	team_spirit: [
+	teamSpirit: [
 		'Team spirit',
 		'Paradise on Earth!',
 		'walking on clouds',
@@ -148,9 +160,9 @@ Foxtrick.modules['SkillTranslation'] = {
 		'irritated',
 		'furious',
 		'murderous',
-		'like the Cold War'
+		'like the Cold War',
 	],
-	team_confidence: [
+	teamConfidence: [
 		'Team confidence',
 		'completely exaggerated',
 		'exaggerated',
@@ -161,64 +173,84 @@ Foxtrick.modules['SkillTranslation'] = {
 		'poor',
 		'wretched',
 		'disastrous',
-		'non-existent'
+		'non-existent',
 	],
 
+	/** @param {document} doc */
 	run: function(doc) {
 		// no need to translate if language is already English
-		if (Foxtrick.Prefs.getString('htLanguage') === 'en') {
+		if (Foxtrick.Prefs.getString('htLanguage') === 'en')
 			return;
-		}
-		var table = doc.getElementById('mainBody').getElementsByTagName('table')[0];
+
+		const module = this;
+
+		/** @type {HTMLTableElement} */
+		var table = doc.querySelector('#mainBody table');
 
 		// is english test
-		if (table.rows[1].cells[0].getElementsByTagName('b')[0].textContent ==
-		    this.player_abilities[0])
+		if (table.rows[1].cells[0].querySelector('b').textContent ==
+		    this.playerAbilities[0])
 			return;
 
-		this.translate_category(doc, table, 1, this.player_abilities, false);
-		this.translate_category(doc, table, 2, this.coach_skills, false);
-		this.translate_category(doc, table, 3, this.formation_experience, false);
-		this.translate_category(doc, table, 4, this.sponsors, false);
-		this.translate_category(doc, table, 5, this.fan_mood, false);
-		this.translate_category(doc, table, 6, this.fan_match_expectations, true);
-		this.translate_category(doc, table, 7, this.fan_season_expectations, true);
-		this.translate_category(doc, table, 8, this.agreeability, true);
-		this.translate_category(doc, table, 9, this.honesty, false);
-		this.translate_category(doc, table, 10, this.aggressiveness, false);
-		this.translate_category(doc, table, 11, this.team_spirit, false);
-		this.translate_category(doc, table, 12, this.team_confidence, false);
-
-		doc.location.hash = doc.location.hash;
+		/* eslint-disable no-magic-numbers */
+		module.translateCategory(doc, table.rows[1], module.playerAbilities, false);
+		module.translateCategory(doc, table.rows[2], module.coachSkills, false);
+		module.translateCategory(doc, table.rows[3], module.leadership, false);
+		module.translateCategory(doc, table.rows[4], module.formationExperience, false);
+		module.translateCategory(doc, table.rows[5], module.sponsors, false);
+		module.translateCategory(doc, table.rows[6], module.fanMood, false);
+		module.translateCategory(doc, table.rows[7], module.fanMatchExpectations, true);
+		module.translateCategory(doc, table.rows[8], module.fanSeasonExpectations, true);
+		module.translateCategory(doc, table.rows[9], module.agreeability, true);
+		module.translateCategory(doc, table.rows[10], module.honesty, false);
+		module.translateCategory(doc, table.rows[11], module.aggressiveness, false);
+		module.translateCategory(doc, table.rows[12], module.teamSpirit, false);
+		module.translateCategory(doc, table.rows[13], module.teamConfidence, false);
+		/* eslint-disable no-magic-numbers */
 	},
 
-	translate_category: function(doc, table, index, denominations, two_lines) {
-		table.rows[index].cells[0].appendChild(doc.createElement('br'));
-		var span = Foxtrick.createFeaturedElement(doc, this, 'span');
-		Foxtrick.addClass(span, 'shy');
-		span.textContent = '(' + denominations[0] + ')';
-		table.rows[index].cells[0].appendChild(span);
+	/**
+	 * @param {document} doc
+	 * @param {HTMLTableRowElement} row
+	 * @param {string[]} denominations
+	 * @param {boolean} twoLines
+	 */
+	translateCategory: function(doc, row, denominations, twoLines) {
+		const module = this;
 
-		var org_skills = table.rows[index].cells[1].innerHTML.split('<br>');
-		table.rows[index].cells[1].textContent = '';
-		for (var i = 1; i < denominations.length; ++i) {
-			var strong = org_skills[i - 1].match(/<strong>(.+)<\/strong>/);
-			if (!strong)
-				table.rows[index].cells[1].appendChild(doc.createTextNode(org_skills[i - 1]));
-			else {
-				var node = doc.createElement('strong');
-				node.textContent = strong[1];
-					table.rows[index].cells[1].appendChild(node);
+		var [titleCell, valueCell] = row.cells;
+
+		titleCell.appendChild(doc.createElement('br'));
+		let span = Foxtrick.createFeaturedElement(doc, module, 'span');
+		Foxtrick.addClass(span, 'shy');
+		let [category, ...levels] = denominations;
+		span.textContent = `(${category})`;
+		titleCell.appendChild(span);
+
+		var orgSkills = valueCell.innerHTML.split('<br>');
+		valueCell.textContent = '';
+		for (let [i, level] of levels.entries()) {
+			let orgSkill = orgSkills[i];
+			let strong = orgSkill.match(/<strong>(.+)<\/strong>/);
+			if (strong) {
+				let [_, denom] = strong;
+				let node = doc.createElement('strong');
+				node.textContent = denom;
+				valueCell.appendChild(node);
 			}
-			if (two_lines)
-				table.rows[index].cells[1].appendChild(doc.createElement('br'));
+			else {
+				valueCell.appendChild(doc.createTextNode(orgSkill));
+			}
+			if (twoLines)
+				valueCell.appendChild(doc.createElement('br'));
 			else
-				table.rows[index].cells[1].appendChild(doc.createTextNode(' '));
-			var span = Foxtrick.createFeaturedElement(doc, this, 'span');
+				valueCell.appendChild(doc.createTextNode(' '));
+
+			let span = Foxtrick.createFeaturedElement(doc, module, 'span');
 			Foxtrick.addClass(span, 'nowrap shy');
-			span.textContent = '(' + denominations[i] + ')';
-			table.rows[index].cells[1].appendChild(span);
-			table.rows[index].cells[1].appendChild(doc.createElement('br'));
+			span.textContent = `(${level})`;
+			valueCell.appendChild(span);
+			valueCell.appendChild(doc.createElement('br'));
 		}
-	}
+	},
 };

@@ -139,7 +139,7 @@ Foxtrick.modules['YouthSkills'] = {
 				maxBar.style.width = '100%';
 				div.appendChild(maxBar);
 				let contents = maxBar.appendChild(doc.createElement('span'));
-				contents.clasName = 'bar-denomination';
+				contents.className = 'bar-denomination';
 
 				if (skillCell.nextElementSibling) {
 					skillCell.nextElementSibling.textContent = '?/?';
@@ -257,6 +257,23 @@ Foxtrick.modules['YouthSkills'] = {
 
 			/**
 			 * set the length of the corresponding HY skillbar inside ht-bar
+			 * @param  {Element} bar
+			 * @param  {number}  value    {Float}
+			 * @return {number}
+			 */
+			var calcWidth = function(bar, value) {
+				const PRECISION = 2;
+				let factor = Math.pow(10, PRECISION);
+
+				let widthTotal = bar.getBoundingClientRect().width;
+				let max = parseInt(bar.getAttribute('max'), 10);
+				let val = Math.min(max, value);
+
+				return Math.round(factor * val / max * widthTotal) / factor;
+			};
+
+			/**
+			 * set the length of the corresponding HY skillbar inside ht-bar
 			 * @param {Element} bar
 			 * @param {string}  name     'hy-pot', 'hy-cur', 'hy-pred', or 'hy-pot-pred'
 			 * @param {number}  value    {Float}
@@ -264,17 +281,28 @@ Foxtrick.modules['YouthSkills'] = {
 			var setHYBar = function(bar, name, value) {
 				bar.setAttribute(name, value);
 
-				let widthTotal = bar.getBoundingClientRect().width;
-				let max = parseInt(bar.getAttribute('max'), 10);
-				let val = Math.min(max, value);
-
-				let maxBar = bar.querySelector('.bar-max');
-				let widthNeeded = Math.round(val / max * widthTotal);
+				let widthNeeded = calcWidth(bar, value);
 
 				let hyBar = Foxtrick.createFeaturedElement(doc, module, 'div');
-				Foxtrick.addClass(hyBar, `bar-level ft-bar-${name}`);
+				Foxtrick.addClass(hyBar, `bar-level ft-bar ft-bar-${name}`);
 				hyBar.style.width = `${widthNeeded}px`;
-				Foxtrick.insertAfter(hyBar, maxBar);
+
+				let target;
+
+				switch (name) {
+					case 'hy-cur':
+					case 'hy-pred':
+						target = [...bar.querySelectorAll('.bar-max, .bar-cap')].pop();
+						break;
+					case 'hy-pot':
+					case 'hy-pot-pred':
+						target = bar.querySelector('.bar-max');
+						break;
+					default:
+						throw new Error('unknown bar type');
+				}
+
+				Foxtrick.insertAfter(hyBar, target);
 			};
 
 			/**
@@ -388,11 +416,29 @@ Foxtrick.modules['YouthSkills'] = {
 				if (hasNewBars) {
 					ftBars = sEntry.querySelector('.ht-bar') || createBar(sEntry);
 					let level = parseInt(ftBars.getAttribute('level'), 10);
-					if (level != -1)
+					if (level != -1) {
 						ftBars.setAttribute('ht-cur', level);
+
+						/** @type {HTMLElement} */
+						let bar = ftBars.querySelector('.bar-level');
+						if (bar != null) {
+							// HTs can't math
+							let widthNeeded = calcWidth(ftBars, level);
+							bar.style.width = `${widthNeeded}px`;
+						}
+					}
 					let cap = parseInt(ftBars.getAttribute('cap'), 10);
-					if (cap != -1)
+					if (cap != -1) {
 						ftBars.setAttribute('ht-pot', cap);
+
+						/** @type {HTMLElement} */
+						let bar = ftBars.querySelector('.bar-cap');
+						if (bar != null) {
+							// HTs can't math
+							let widthNeeded = calcWidth(ftBars, cap);
+							bar.style.width = `${widthNeeded}px`;
+						}
+					}
 					let isCap = parseInt(ftBars.getAttribute('is-cap'), 10);
 					if (isCap == -1)
 						ftBars.setAttribute('ht-maxed', level);

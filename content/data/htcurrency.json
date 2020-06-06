@@ -115,6 +115,15 @@
 			"symbol": "$"
 		},
 		{
+			"code": "BZD",
+			"eurorate": "0.5",
+			"leagues": {
+				"158": "Belize"
+			},
+			"name": "$ (Belize dollar)",
+			"symbol": "$"
+		},
+		{
 			"code": "MXN",
 			"eurorate": "0.1",
 			"leagues": {
@@ -947,6 +956,33 @@
 			},
 			"name": "Congolese franc",
 			"symbol": "CDF"
+		},
+		{
+			"code": "MGA",
+			"eurorate": "0.00025",
+			"leagues": {
+				"159": "Madagascar"
+			},
+			"name": "Malagasy ariary",
+			"symbol": "ariary"
+		},
+		{
+			"code": "XCD",
+			"eurorate": "0.4",
+			"leagues": {
+				"157": "Saint Vincent and the Grenadines"
+			},
+			"name": "East Caribbean dollar",
+			"symbol": "dollar"
+		},
+		{
+			"code": "BWP",
+			"eurorate": "1.0",
+			"leagues": {
+				"160": "Botswana"
+			},
+			"name": "Botswana pula",
+			"symbol": "pula"
 		},
 		{
 			"code": "BYR",

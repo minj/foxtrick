@@ -324,7 +324,11 @@
 			"154": "Guam",
 			"155": "Congo (RD)",
 			"156": "Etiopia",
+			"157": "Saint Vincent e Grenadine",
+			"158": "Belize",
+			"159": "Madagascar",
 			"16": "Brasile",
+			"160": "Botswana",
 			"17": "Canada",
 			"18": "Cile",
 			"19": "Colombia",
@@ -633,8 +637,12 @@
 				"value": "Colpo di testa"
 			},
 			{
-				"type": "Regainer",
+				"type": "Resilient",
 				"value": "Coriaceo"
+			},
+			{
+				"type": "Support",
+				"value": "Trascinatore"
 			}
 		],
 		"spirit": [

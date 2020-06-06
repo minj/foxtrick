@@ -478,7 +478,6 @@ Foxtrick.modules['ForumYouthIcons'] = {
 			for (var i = 0; i < mainicons.length; i++) {
 				newimage = doc.createElement('img');
 				newimage.src = '/Img/Icons/transparent.gif';
-				Foxtrick.onClick(newimage, addClick);
 				newimage.setAttribute('tags', mainicons[i].tags);
 				if (mainicons[i].replace_text)
 					newimage.setAttribute('replace_text', mainicons[i].replace_text);
@@ -486,6 +485,7 @@ Foxtrick.modules['ForumYouthIcons'] = {
 				newimage.title = mainicons[i].string;
 				newimage = Foxtrick.makeFeaturedElement(newimage, this);
 				cont.appendChild(newimage);
+				Foxtrick.onClick(newimage, addClick);
 			}
 
 			anchor.parentNode.insertBefore(cont, anchor);
@@ -769,7 +769,6 @@ Foxtrick.modules['ForumYouthIcons'] = {
 				if (Foxtrick.isPage(doc, page) && fields[j].add_quote === true) {
 					newimage = doc.createElement('img');
 					newimage.src = '/Img/Icons/transparent.gif';
-					Foxtrick.onClick(newimage, addClick);
 					newimage.setAttribute('tags', icons[0].tags);
 					if (icons[0].replace_text)
 						newimage.setAttribute('replace_text', icons[0].replace_text);
@@ -778,6 +777,7 @@ Foxtrick.modules['ForumYouthIcons'] = {
 						Foxtrick.L10n.getString('ForumSpecialBBCode.' + icons[0].string);
 					newimage = Foxtrick.makeFeaturedElement(newimage, this);
 					toolbar.insertBefore(newimage, toolbar.getElementsByTagName('img')[0]);
+					Foxtrick.onClick(newimage, addClick);
 				}
 			}
 		}
@@ -786,7 +786,6 @@ Foxtrick.modules['ForumYouthIcons'] = {
 				if (!icons[i].alt || !doc.getElementsByClassName(icons[i].alt).length) {
 					newimage = doc.createElement('img');
 					newimage.src = '/Img/Icons/transparent.gif';
-					Foxtrick.onClick(newimage, addClick);
 					newimage.setAttribute('tags', icons[i].tags);
 					if (icons[i].replace_text)
 						newimage.setAttribute('replace_text', icons[i].replace_text);
@@ -832,6 +831,8 @@ Foxtrick.modules['ForumYouthIcons'] = {
 					}
 					else
 						toolbar.insertBefore(newimage, target);
+
+					Foxtrick.onClick(newimage, addClick);
 				}
 			}
 		}
@@ -870,7 +871,6 @@ Foxtrick.modules['ForumYouthIcons'] = {
 			if (Foxtrick.Prefs.isModuleOptionEnabled('ForumYouthIcons', othericons[i].type)) {
 				newimage = doc.createElement('img');
 				newimage.src = '/Img/Icons/transparent.gif';
-				Foxtrick.onClick(newimage, addClick);
 				newimage.setAttribute('tags', othericons[i].tags);
 				if (othericons[i].replace_text)
 					newimage.setAttribute('replace_text', othericons[i].replace_text);
@@ -879,6 +879,7 @@ Foxtrick.modules['ForumYouthIcons'] = {
 					Foxtrick.L10n.getString('ForumYouthIcons.' + othericons[i].string);
 				newimage = Foxtrick.makeFeaturedElement(newimage, this);
 				otherbar.appendChild(newimage);
+				Foxtrick.onClick(newimage, addClick);
 			}
 		}
 
@@ -902,7 +903,6 @@ Foxtrick.modules['ForumYouthIcons'] = {
 			if (Foxtrick.Prefs.isModuleOptionEnabled('ForumYouthIcons', youthicons[i].type)) {
 				newimage = doc.createElement('img');
 				newimage.src = '/Img/Icons/transparent.gif';
-				Foxtrick.onClick(newimage, addClick);
 				newimage.setAttribute('tags', youthicons[i].tags);
 				if (youthicons[i].replace_text)
 					newimage.setAttribute('replace_text', youthicons[i].replace_text);
@@ -911,6 +911,7 @@ Foxtrick.modules['ForumYouthIcons'] = {
 					Foxtrick.L10n.getString('ForumYouthIcons.' + youthicons[i].string);
 				newimage = Foxtrick.makeFeaturedElement(newimage, this);
 				youthbar.appendChild(newimage);
+				Foxtrick.onClick(newimage, addClick);
 			}
 		}
 
@@ -935,7 +936,6 @@ Foxtrick.modules['ForumYouthIcons'] = {
 			if (Foxtrick.Prefs.isModuleOptionEnabled('ForumYouthIcons', tournamenticons[i].type)) {
 				newimage = doc.createElement('img');
 				newimage.src = '/Img/Icons/transparent.gif';
-				Foxtrick.onClick(newimage, addClick);
 				newimage.setAttribute('tags', tournamenticons[i].tags);
 				if (tournamenticons[i].replace_text)
 					newimage.setAttribute('replace_text', tournamenticons[i].replace_text);
@@ -944,6 +944,7 @@ Foxtrick.modules['ForumYouthIcons'] = {
 					Foxtrick.L10n.getString('ForumYouthIcons.' + tournamenticons[i].string);
 				newimage = Foxtrick.makeFeaturedElement(newimage, this);
 				tournamentbar.appendChild(newimage);
+				Foxtrick.onClick(newimage, addClick);
 			}
 		}
 

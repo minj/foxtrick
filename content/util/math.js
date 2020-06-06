@@ -20,11 +20,12 @@ Foxtrick.Math = {};
 Foxtrick.Math.tanh = function(x) {
 	return (Math.exp(x) - Math.exp(-x)) / (Math.exp(x) + Math.exp(-x));
 };
+
 /**
  * find the quotent for integer division a / b
- * @param	{Integer}	a
- * @param	{Integer}	b
- * @returns	{Integer}
+ * @param  {number}	a
+ * @param  {number}	b
+ * @return {number}
  */
 Foxtrick.Math.div = function(a, b) {
 	return (a - a % b) / b;

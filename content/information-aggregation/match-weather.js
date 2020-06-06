@@ -16,6 +16,9 @@ Foxtrick.modules['MatchWeather'] = {
 		if (!Foxtrick.Pages.Match.isPrematch(doc))
 			return;
 
+		if (Foxtrick.Pages.Match.isNewLive(doc))
+			return;
+
 		var arenaLink = doc.querySelector('#mainBody a[href*="ArenaID="]');
 		if (!arenaLink) {
 			// tournaments have no arena

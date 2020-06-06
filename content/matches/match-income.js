@@ -160,7 +160,7 @@ Foxtrick.modules['MatchIncome'] = {
 			tr2.appendChild(td2b);
 		};
 
-		if (Foxtrick.Pages.Match.isNT(doc))
+		if (Foxtrick.Pages.Match.isPrematch(doc) || Foxtrick.Pages.Match.isNT(doc))
 			return;
 
 		var table = Foxtrick.filter(function(n) {
@@ -259,6 +259,8 @@ Foxtrick.modules['MatchIncome'] = {
 					graphCell.title = totalStr;
 					graphCell.appendChild(module.createPieChart(doc, total));
 				}
+
+				[...table.rows[rowIdx].cells].pop().colSpan++;
 
 			});
 

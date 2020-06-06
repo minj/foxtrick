@@ -128,6 +128,9 @@ Foxtrick.modules['LinksPlayerDetail'] = {
 		// FIXME unmaintainable
 		var gkLinkTarget;
 		var skillTable = doc.querySelector('.transferPlayerSkills, .mainBox table');
+		if (!skillTable)
+			return gkLinkTarget;
+
 		if (Foxtrick.hasClass(skillTable, 'transferPlayerSkills')) {
 			let table = skillTable.querySelector('table');
 			if (table.rows[0].cells[1]) {

@@ -2,6 +2,6 @@ html[dir="rtl"] #shortcuts div, html[dir="rtl"] #shortcuts a {
 	float: left;
 }
 
-html[dir="rtl"] div.coachInfo, html[dir="rtl"] div.playerInfo {
+html[dir="rtl"] div.playerInfo.classic {
 	float: right;
 }

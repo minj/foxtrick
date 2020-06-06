@@ -326,6 +326,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				return;
 
 			var currencyRate = Foxtrick.util.currency.getRate();
+			const WAGE_Q = 1.2;
 
 			var playerNode;
 			var num = function(nodeName, parent) {
@@ -484,20 +485,6 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 					}
 				}
 
-				if (newSkillInfo && !isYouth) {
-					var htmsInput = {
-						years: player.age.years,
-						days: player.age.days,
-					};
-					Foxtrick.mergeAll(htmsInput, player.skills);
-					var htmsResult = Foxtrick.modules['HTMSPoints'].calc(htmsInput);
-					player.htmsAbility = htmsResult[0];
-					player.htmsPotential = htmsResult[1];
-
-					var psico = Foxtrick.modules['PsicoTSI'].getPrediction(player);
-					player.psicoTSI = psico.formAvg;
-				}
-
 				if (typeof player.specialty === 'undefined' && node('Specialty')) {
 					var specNum = num('Specialty') || 0;
 					var spec = Foxtrick.L10n.getSpecialtyFromNumber(specNum);
@@ -597,17 +584,19 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 					'Experience',
 					'FriendliesGoals',
 					['friendliesGoals', 'FriendlyGoals'], // youth
+					'GoalsCurrentTeam',
 					'Honesty',
 					'IsAbroad',
 					'Leadership',
 					'LeagueGoals',
 					['matchCount', 'NrOfMatches'], // NT supp stats
+					'MatchesCurrentTeam',
 					['nationalTeamId', 'NationalTeamID'],
 				];
 				Foxtrick.forEach(addProperty(player, num), xmlNums);
 
 				var texts = [
-					'OwnerNotes', // README: youth only for some reason
+					'OwnerNotes',
 					'Statement',
 				];
 				Foxtrick.forEach(addProperty(player, text), texts);
@@ -621,10 +610,26 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				Foxtrick.forEach(addProperty(player, ifPositive), optionalNums);
 
 				// custom fields
-				if (node('ArrivalDate')) {
-					// README: youth only for some reason
-					player.joinedSince = xml.time('ArrivalDate', playerNode);
+
+				if (newSkillInfo && !isYouth) {
+					var htmsInput = {
+						years: player.age.years,
+						days: player.age.days,
+					};
+					Foxtrick.mergeAll(htmsInput, player.skills);
+					var htmsResult = Foxtrick.modules['HTMSPoints'].calc(htmsInput);
+					player.htmsAbility = htmsResult[0];
+					player.htmsPotential = htmsResult[1];
+
+					// psicoWage requires isAbroad!
+					let psico = Foxtrick.modules.PsicoTSI.getPrediction(player, currencyRate);
+					player.psicoTSI = psico.formAvg;
+					player.psicoWage = psico.wageLow;
 				}
+
+				if (node('ArrivalDate'))
+					player.joinedSince = xml.time('ArrivalDate', playerNode);
+
 				if (node('CanBePromotedIn')) {
 					// adjust for cached time
 					var cachedPromo = new Date(fetchedDate);
@@ -637,6 +642,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				}
 				if (node('Salary')) {
 					player.salary = money('Salary');
+					player.salaryBase = player.isAbroad ? player.salary / WAGE_Q : player.salary;
 				}
 				var trainerData = node('TrainerData');
 				if (trainerData) {
@@ -911,8 +917,12 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 							player.tsi = parseInt(tsi, 10);
 						}
 						if (!player.salary && anonCells.salary) {
-							let { total } = Foxtrick.Pages.Player.getWage(doc, anonCells.salary);
+							let { base, total, bonus } =
+								Foxtrick.Pages.Player.getWage(doc, anonCells.salary);
+
 							player.salary = total;
+							player.salaryBase = base;
+							player.isAbroad = !!bonus;
 						}
 					}
 				}
@@ -1167,6 +1177,15 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				player.htmsPotential = parseInt(htms.getAttribute('data-htms-potential'), 10);
 			}
 
+			/** @type {HTMLElement} */
+			let u20 = playerNode.querySelector('.ft-u20lastmatch');
+			if (u20) {
+				let title = u20.textContent;
+				let text = u20.dataset.valueString;
+				let value = parseInt(u20.dataset.value, 10);
+				player.u20 = { title, text, value };
+			}
+
 			// last match
 			let matchLink;
 			if (isYouthPerfView) {
@@ -1257,6 +1276,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 			if (psicoDiv) {
 				player.psicoTSI = psicoDiv.dataset.psicoAvg;
 				player.psicoTitle = psicoDiv.dataset.psicoSkill;
+				player.psicoWage = psicoDiv.dataset.psicoWage;
 			}
 			else {
 				let psicoLink = null;
@@ -1355,7 +1375,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				}
 				catch (e) {
 					Foxtrick.log(e);
-					playerList = null;
+					playerList = [];
 				}
 
 				try {
@@ -1423,11 +1443,17 @@ Foxtrick.Pages.Players.getPlayerId = function(playerInfo) {
  * Test whether any players in the player list have a certain property
  * @param  {Array}   playerList Array<Player>
  * @param  {string}  property
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.Players.isPropertyInList = function(playerList, property) {
 	return Foxtrick.any(function(player) {
-		return typeof player[property] !== 'undefined';
+		let val = player[property];
+		switch (typeof val) {
+			case 'undefined': return false;
+			case 'string': return !!val.trim().length;
+			case 'number': return !Number.isNaN(val) && val != 0;
+			default: return val != null;
+		}
 	}, playerList);
 };
 

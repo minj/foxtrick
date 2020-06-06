@@ -8,6 +8,7 @@
 
 /* eslint-disable */
 if (!this.Foxtrick)
+	// @ts-ignore
 	var Foxtrick = {};
 /* eslint-enable */
 
@@ -19,7 +20,7 @@ Foxtrick.Pages.Player = {};
 /**
  * Test whether this page is player page
  * @param  {document}  doc
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.Player.isPage = function(doc) {
 	return this.isSenior(doc) || this.isYouth(doc);
@@ -28,7 +29,7 @@ Foxtrick.Pages.Player.isPage = function(doc) {
 /**
  * Test whether this page is senior player page
  * @param  {document}  doc
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.Player.isSenior = function(doc) {
 	return Foxtrick.isPage(doc, 'playerDetails');
@@ -37,7 +38,7 @@ Foxtrick.Pages.Player.isSenior = function(doc) {
 /**
  * Test whether this page is youth player page
  * @param  {document}  doc
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.Player.isYouth = function(doc) {
 	return Foxtrick.isPage(doc, 'youthPlayerDetails');
@@ -130,7 +131,7 @@ Foxtrick.Pages.Player.getNationalityName = function(doc) {
 	var name = null;
 	try {
 		var id = this.getNationalityId(doc);
-		name = Foxtrick.L10n.getCountryName(id);
+		name = Foxtrick.L10n.getCountryNameNative(id);
 	}
 	catch (e) {
 		Foxtrick.log(e);
@@ -289,7 +290,7 @@ Foxtrick.Pages.Player.getAttributes = function(doc) {
  * Test whether player is a coach.
  * Seniors only.
  * @param  {document}  doc
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.Player.isCoach = function(doc) {
 	var attr = this.getAttributes(doc);
@@ -299,7 +300,7 @@ Foxtrick.Pages.Player.isCoach = function(doc) {
 /**
  * Test whether player is bruised
  * @param  {document}  doc
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.Player.isBruised = function(doc) {
 	let mainBody = doc.getElementById('mainBody');
@@ -384,7 +385,7 @@ Foxtrick.Pages.Player.getCards = function(doc) {
  * .playerInfo table has a different structure in such a case.
  * E. g. [playerid=182715495]
  * @param  {document}  doc
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.Player.isFreeAgent = function(doc) {
 	return this.getTeamName(doc) === null;
@@ -413,7 +414,7 @@ Foxtrick.Pages.Player.getTeamName = function(doc) {
  * Get the player info table.
  *
  * @param  {document} doc
- * @return {{isNewDesign: Boolean, isYouth: Boolean, table: HTMLTableElement}}
+ * @return {{isNewDesign: boolean, isYouth: boolean, table: HTMLTableElement}}
  */
 Foxtrick.Pages.Player.getInfoTable = function(doc) {
 	var isNewDesign = false;
@@ -519,10 +520,10 @@ Foxtrick.Pages.Player.getSpecialtyNumber = function(doc) {
  * Get player skills.
  * For senior players returns an integer skill map:
  * {keeper, defending, playmaking, winger, passing, scoring, setPieces}.
- * Youth player skill map contains {current, max: number, top3, maxed: Boolean} or
+ * Youth player skill map contains {current, max: number, top3, maxed: boolean} or
  * an empty object if no data is known.
  * @param  {document} doc
- * @return {object}       {current: number, max: number, maxed: Boolean}
+ * @return {object}       {current: number, max: number, maxed: boolean}
  */
 Foxtrick.Pages.Player.getSkills = function(doc) {
 	var skillsWithText = this.getSkillsWithText(doc);
@@ -536,7 +537,7 @@ Foxtrick.Pages.Player.getSkills = function(doc) {
 -	 * Each field is a skill map:
  * {keeper, defending, playmaking, winger, passing, scoring, setPieces}.
  * For seniors values are integers, while youth values are
- * {current, max: number, maxed, top3: Boolean} or
+ * {current, max: number, maxed, top3: boolean} or
  * an empty object if no data is known.
  * For seniors texts are strings, while youth texts are {current, max: string}.
  * Texts may contain level numbers, e.g. 'weak (3)'.'
@@ -595,6 +596,9 @@ Foxtrick.Pages.Player.getSkillsWithText = function(doc) {
  * @return {object}                 {values, texts, names}
  */
 Foxtrick.Pages.Player.parseSeniorSkills = function(table) {
+	if (table == null)
+		return null;
+
 	var skillMap = {
 		seniorBars: [
 			'keeper',
@@ -618,6 +622,8 @@ Foxtrick.Pages.Player.parseSeniorSkills = function(table) {
 	};
 	var found = true, regE = /ll=(\d+)/i;
 	var skills = {}, skillTexts = {}, skillNames = {};
+
+	/** @param {HTMLTableElement} table */
 	var parseSeniorBars = function(table) {
 		var order = skillMap.seniorBars;
 		var rows = table.rows;
@@ -636,6 +642,8 @@ Foxtrick.Pages.Player.parseSeniorSkills = function(table) {
 			skillNames[order[i]] = skillName;
 		}
 	};
+
+	/** @param {HTMLTableElement} table */
 	var parseSeniorTable = function(table) {
 		var order = skillMap.senior;
 		var cells = table.getElementsByTagName('td');
@@ -659,11 +667,13 @@ Foxtrick.Pages.Player.parseSeniorSkills = function(table) {
 			skillNames[order[i]] = skillName;
 		}
 	};
+
+	/** @param {HTMLTableElement} table */
 	var parseNewSkills = function(table) {
 		var order = skillMap.seniorBars;
 		for (var i = 0; i < order.length; ++i) {
 			var row = table.rows[i];
-			var cell = row.cells[1];
+			var [cellName, cell, cellNum] = row.cells;
 			if (!cell) {
 				found = false;
 				return; // skills are not visible
@@ -683,15 +693,23 @@ Foxtrick.Pages.Player.parseSeniorSkills = function(table) {
 			}
 			else if (skillBar) {
 				skillValue = parseInt(skillBar.getAttribute('level'), 10);
-				let titleCell = skillBar.querySelector('td[title]');
-				skillText = titleCell ? titleCell.title : '';
+
+				/** @type {HTMLElement} */
+				let titleCell = skillBar.querySelector('div[title]:not(.ft-bar-loyalty)');
+				skillText = titleCell ? titleCell.title.trim() : '';
 			}
 			else {
 				found = false;
 				return; // skills are not visible
 			}
 
-			skillName = row.cells[0].textContent.trim();
+			if (!skillText)
+				skillText = Foxtrick.L10n.getTextByLevel(0);
+
+			if (cellNum)
+				skillText += ` (${cellNum.textContent.trim()})`;
+
+			skillName = cellName.textContent.trim();
 			skills[order[i]] = skillValue;
 			skillTexts[order[i]] = skillText;
 			skillNames[order[i]] = skillName;
@@ -724,7 +742,7 @@ Foxtrick.Pages.Player.parseSeniorSkills = function(table) {
  * localized skill levels and names respectively.
  * Each field is a skill map:
  * {keeper, defending, playmaking, winger, passing, scoring, setPieces}.
- * Each value is {current, max: number, maxed, top3: Boolean}
+ * Each value is {current, max: number, maxed, top3: boolean}
  * or an empty object if no data is known.
  * Each text is {current, max: string}.
  * Texts may contain level numbers, e.g. 'weak (3)'.'
@@ -761,6 +779,7 @@ Foxtrick.Pages.Player.parseYouthSkills = function(table) {
 	var found = true;
 	var skills = {}, skillTexts = {}, skillNames = {};
 
+	/** @param {HTMLTableElement} table */
 	/* eslint-disable complexity */
 	var parseYouthBars = function(table) {
 		var order = skillMap.youth;
@@ -785,6 +804,8 @@ Foxtrick.Pages.Player.parseYouthSkills = function(table) {
 
 			let imgs = skillCell.getElementsByTagName('img');
 			let links = skillCell.querySelectorAll('.skill');
+
+			/** @type {HTMLElement} */
 			let HYSkills = skillCell.querySelector('.ft-youthSkillBars');
 			if (HYSkills) {
 				let [current, max] = HYSkills.title.split('/');
@@ -805,8 +826,8 @@ Foxtrick.Pages.Player.parseYouthSkills = function(table) {
 					}
 				}
 				else if (bar) {
-					skill.current = Math.max(bar.getAttribute('level'), 0);
-					skill.max = Math.max(bar.getAttribute('cap'), 0);
+					skill.current = Math.max(parseInt(bar.getAttribute('level'), 10) || 0, 0);
+					skill.max = Math.max(parseInt(bar.getAttribute('cap'), 10) || 0, 0);
 					skill.maxed = bar.getAttribute('is-cap') !== '0';
 				}
 			}
@@ -820,8 +841,13 @@ Foxtrick.Pages.Player.parseYouthSkills = function(table) {
 				// when maxed out, first title is 'm/8'
 				// second title is empty
 				skill.maxed = false;
-				let max = parseInt(imgs[0].title.match(/\d/), 10);
-				let current = parseInt(imgs[1].title.match(/-?\d/), 10);
+
+				let [maxTitle, currTitle] = Array.from(imgs).map(i => i.title);
+				let maxStr = String(maxTitle.match(/\d/));
+				let currStr = String(currTitle.match(/-?\d/));
+
+				let max = parseInt(maxStr, 10);
+				let current = parseInt(currStr, 10);
 				if (!current) {
 					skill.maxed = true;
 					current = max;
@@ -831,7 +857,7 @@ Foxtrick.Pages.Player.parseYouthSkills = function(table) {
 				}
 
 				// if current and/or max is unknown, mark it as 0
-				skill.current = current;
+				skill.current = current || 0;
 				skill.max = max || 0;
 			}
 			else if (links.length) {
@@ -883,9 +909,11 @@ Foxtrick.Pages.Player.parseYouthSkills = function(table) {
 			else if (hasNewBars) {
 				// new bars
 				let bar = skillCell.querySelector('.ht-bar');
-				let titles = bar ? [...bar.querySelectorAll('td[title]')] : [];
-				if (titles.length) {
-					[current, max] = titles.map(t => t.title);
+
+				/** @type {NodeListOf<HTMLElement>} */
+				let titles = bar ? bar.querySelectorAll('div[title]') : null;
+				if (titles && titles.length) {
+					[current, max] = [...titles].map(t => t.title);
 					if (titles.length == 1) {
 						if (skill.maxed) {
 							max = current;
@@ -899,11 +927,23 @@ Foxtrick.Pages.Player.parseYouthSkills = function(table) {
 						}
 					}
 				}
+				else {
+					if (skill.current)
+						current = Foxtrick.L10n.getTextByLevel(skill.current);
+					if (skill.max)
+						max = Foxtrick.L10n.getTextByLevel(skill.max);
+				}
 			}
 			else {
 				// no images, the cell says 'unknown'
 				current = max = skillCell.textContent.trim();
 			}
+
+			if (!/\d/.test(current) && skill.current)
+				current = `${current} (${skill.current})`;
+			if (!/\d/.test(max) && skill.max)
+				max = `${max} (${skill.max})`;
+
 			skills[sType] = skill;
 			skillTexts[sType] = { current, max };
 			skillNames[sType] = textCell.textContent.replace(':', '').trim();
@@ -955,7 +995,7 @@ Foxtrick.Pages.Player.getTransferDeadline = function(doc) {
 /**
  * Test whether player is transfer listed
  * @param  {document} doc
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.Player.isTransferListed = function(doc) {
 	return !!this.getBidInfo(doc);
@@ -964,7 +1004,7 @@ Foxtrick.Pages.Player.isTransferListed = function(doc) {
 /**
  * Test whether player was fired
  * @param  {document} doc
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.Player.wasFired = function(doc) {
 	var div = doc.getElementsByClassName('playerInfo')[0];
@@ -1000,6 +1040,8 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerid, callback) {
 			return;
 		}
 		Foxtrick.util.currency.detect(doc).then(function({ rate }) {
+			const WAGE_Q = 1.2;
+
 			var node = function(nodeName) {
 				return xml.node(nodeName);
 			};
@@ -1077,10 +1119,16 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerid, callback) {
 				'CupGoals',
 				'Experience',
 
+				// README: version=2.2
+				// 'ArrivalDate',
 				// README: version=2.3
 				// 'FriendliesGoals',
+				// README: version=2.5-2.6
+				// 'TransferDetails',
 				// README: version=2.7
 				// 'GoalsCurrentTeam',
+				// README: version=2.8
+				// 'MatchesCurrentTeam',
 				'Honesty',
 				'Leadership',
 				'LeagueGoals',
@@ -1111,6 +1159,9 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerid, callback) {
 
 			player.nextBirthDay = xml.date('NextBirthDay');
 			player.salary = money('Salary');
+			player.salaryBase = player.isAbroad
+				? Math.floor(player.salary / WAGE_Q)
+				: player.salary;
 
 			if (xml.node('PlayerNumber')) {
 				var number = xml.num('PlayerNumber');
@@ -1194,15 +1245,15 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerid, callback) {
  * Attributes map must be:
  * {form, stamina, ?staminaPred, experience, loyalty, motherClubBonus, bruised,
  * transferListed, specialtyNumber}.
- * Options is {form, stamina, experience, loyalty, bruised, normalise: Boolean} (optional)
+ * Options is {form, stamina, experience, loyalty, bruised, normalise: boolean} (optional)
  * Params is {CTR_VS_WG, WBD_VS_CD, WO_VS_FW, MF_VS_ATT, DF_VS_ATT: number} (optional)
  * By default options and params are assembled from prefs or need to be fully overridden otherwise.
  *
  * Returns position contribution map.
  * @param  {object} playerSkills Object.<string, number>  skill map
  * @param  {object} playerAttrs  Object.<string, ?>       attributes map
- * @param  {object} options      Object.<string, Boolean> options map
- * @param  {object} params       Object.<string, number>  params map
+ * @param  {object} [options]      Object.<string, boolean> options map
+ * @param  {object} [params]       Object.<string, number>  params map
  * @return {object}              Object.<string, number>  position contribution map
  */
 Foxtrick.Pages.Player.getContributions = function(playerSkills, playerAttrs, options, params) {

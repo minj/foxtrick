@@ -324,7 +324,11 @@
 			"154": "Guam",
 			"155": "DR Kongo",
 			"156": "Äthiopien",
+			"157": "St. Vincent und die Grenadinen",
+			"158": "Belize",
+			"159": "Madagaskar",
 			"16": "Brasilien",
+			"160": "Botswana",
 			"17": "Kanada",
 			"18": "Chile",
 			"19": "Kolumbien",
@@ -633,8 +637,12 @@
 				"value": "Kopfballstärke"
 			},
 			{
-				"type": "Regainer",
+				"type": "Resilient",
 				"value": "robust"
+			},
+			{
+				"type": "Support",
+				"value": "mannschaftsdienlich"
 			}
 		],
 		"spirit": [

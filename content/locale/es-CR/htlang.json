@@ -161,7 +161,7 @@
 		],
 		"fans_match": [
 			{
-				"text": "¿Pedimos vaselina?",
+				"text": "Nos lloverán goles",
 				"value": "0"
 			},
 			{
@@ -169,7 +169,7 @@
 				"value": "1"
 			},
 			{
-				"text": "Vamos a perder",
+				"text": "Seguro que perdemos",
 				"value": "2"
 			},
 			{
@@ -177,7 +177,7 @@
 				"value": "3"
 			},
 			{
-				"text": "Ellos tienen la ventaja",
+				"text": "Ellos tienen algo de ventaja",
 				"value": "4"
 			},
 			{
@@ -193,7 +193,7 @@
 				"value": "7"
 			},
 			{
-				"text": "Vamos a ganar",
+				"text": "Seguro que ganamos",
 				"value": "8"
 			},
 			{
@@ -324,7 +324,11 @@
 			"154": "Guam",
 			"155": "R.D. del Congo",
 			"156": "Etiopía",
+			"157": "San Vicente y las Granadinas",
+			"158": "Belice",
+			"159": "Madagascar",
 			"16": "Brasil",
+			"160": "Botsuana",
 			"17": "Canadá",
 			"18": "Chile",
 			"19": "Colombia",
@@ -633,8 +637,12 @@
 				"value": "Cabeceador"
 			},
 			{
-				"type": "Regainer",
+				"type": "Resilient",
 				"value": "Resistente"
+			},
+			{
+				"type": "Support",
+				"value": "Conductor"
 			}
 		],
 		"spirit": [

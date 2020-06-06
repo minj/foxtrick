@@ -324,7 +324,11 @@
 			"154": "Guama",
 			"155": "Kongo Demokrātiskā Republika",
 			"156": "Etiopija",
+			"157": "Sentvinsenta un Grenadīnas",
+			"158": "Beliza",
+			"159": "Madagaskara",
 			"16": "Brazīlija",
+			"160": "Botsvāna",
 			"17": "Kanāda",
 			"18": "Čīle",
 			"19": "Kolumbija",
@@ -633,8 +637,12 @@
 				"value": "Spēle ar galvu"
 			},
 			{
-				"type": "Regainer",
+				"type": "Resilient",
 				"value": "Dzīvīgs"
+			},
+			{
+				"type": "Support",
+				"value": "Atbalsta spēlētājs"
 			}
 		],
 		"spirit": [

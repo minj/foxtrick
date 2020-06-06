@@ -13,6 +13,7 @@ Foxtrick.modules['ForumChangePosts'] = {
 
 	/* eslint-disable complexity */
 
+	/** @param {document} doc */
 	run: function(doc) {
 		var addCopyPostId = function(idLink) {
 			// part of copypostid
@@ -315,16 +316,16 @@ Foxtrick.modules['ForumChangePosts'] = {
 
 		if (do_HighlightThreadOpener) {
 			try {
-				var Ftag = doc.getElementById('ctl00_ucGuestForum_ucGuestForum_updMain');
+				var Ftag = doc.querySelector('[id$="ucGuestForum_ucGuestForum_updMain"]');
 				if (!Ftag)
 					Ftag = doc.getElementById('myForums');
 
 				var TName_lng;
 				if (Ftag) {
-					Ftag = Ftag.getElementsByTagName('strong')[0];
+					Ftag = Ftag.querySelector('strong');
 					// eslint-disable-next-line no-unused-vars
 					let TName = Ftag.textContent; // lgtm[js/unused-local-variable]
-					TName_lng = Ftag.parentNode.getAttribute('data-author');
+					TName_lng = Ftag.parentElement.getAttribute('data-author');
 				}
 				else {
 					TName_lng = false;
@@ -401,12 +402,12 @@ Foxtrick.modules['ForumChangePosts'] = {
 		}
 
 		// loop through cfWrapper --------------------------------------------
-		var num_wrapper = 0;  // message counter
+		var num_wrapper = 0; // message counter
 		var wrappers = doc.getElementsByClassName('cfWrapper');
-		var i = 0, wrapper;
-		while ((wrapper = wrappers[i++])) {
+		for (let wrapper of wrappers) {
 			if (wrapper.getElementsByClassName('cfDeleted').length > 0)
 				continue; // post deleted, process next
+
 			var header = wrapper.getElementsByClassName('cfHeader')[0];
 
 			// +++++++++++ gather info and nodes +++++++++++++++++++++++++
@@ -481,35 +482,31 @@ Foxtrick.modules['ForumChangePosts'] = {
 					series_link2 = header_left_link;
 			}
 
-			// get user, user_info, user_avater: all maybe = null !!!
-			var user = null;
-			var userAvatar = null;
-			var userInfo = null;
-			var message = null; // eslint-disable-line no-unused-vars
-			var footer = null;
+			const DIV_MAP = {
+				user: 'cfUser',
+				userInfo: 'cfUserInfo',
+				userAvatar: 'faceCard',
+				message: 'cfMessage',
+				footer: 'cfFooter',
+			};
+
+			let keys = /** @type {(keyof DIV_MAP)[]} */ (Object.keys(DIV_MAP));
+
+			const containers = /** @type {Record<keyof DIV_MAP, HTMLDivElement>} */
+				(Object.fromEntries(keys.map(k => [k, null])));
 
 			var divs = wrapper.getElementsByTagName('div');
 			for (let div of divs) {
-				switch (div.className) {
-					case 'cfUser':
-						user = div;
+				for (let [name, className] of Object.entries(DIV_MAP)) {
+					if (div.classList.contains(className)) {
+						containers[name] = div;
 						break;
-					case 'cfUserInfo':
-						userInfo = div;
-						break;
-					case 'faceCard':
-						userAvatar = div;
-						break;
-					case 'cfMessage':
-						message = div; // lgtm[js/useless-assignment-to-local]
-						break;
-					case 'cfFooter':
-						footer = div;
-						break;
-					default:
-						break;
+					}
 				}
 			}
+
+			// get user, user_info, user_avater: all maybe = null !!!
+			let { user, userInfo, userAvatar, footer } = containers; // message
 
 			// get info & nodes from user_info
 			var teamId = null;
@@ -553,7 +550,7 @@ Foxtrick.modules['ForumChangePosts'] = {
 				copy_img.id = 'ft_copy_posting_link_id' + num_wrapper;
 				Foxtrick.onClick(copy_img, copy_posting_to_clipboard);
 				copy_img.setAttribute('post_nr', num_wrapper);
-				var copy_links = copy_div.getElementsByTagName('span');
+				var copy_links = copy_div.querySelectorAll('span[copy_style]');
 				for (var cl = 0; cl < possibleStyles.length; ++cl) {
 					Foxtrick.onClick(copy_links[cl], copy_posting_to_clipboard);
 					copy_links[cl].setAttribute('post_nr', num_wrapper);
@@ -705,13 +702,14 @@ Foxtrick.modules['ForumChangePosts'] = {
 			if (do_single_header && is_ignored && header.className == 'cfHeader doubleLine') {
 				wrapper.setAttribute('style', 'margin-bottom: 20px');
 			}
+
 			// end single header line
 
 			// add default facecard ----------------------------
 			if (do_default_facecard && user && !userAvatar) {
-				var userAvatar = Foxtrick
-					.createFeaturedElement(doc, Foxtrick.modules.AddDefaultFaceCard, 'div');
-				userAvatar.className = 'faceCard';
+				let fModule = Foxtrick.modules.AddDefaultFaceCard;
+				userAvatar = Foxtrick.createFeaturedElement(doc, fModule, 'div');
+				userAvatar.className = 'faceCard faceCardNoBottomInfo';
 				userAvatar.style.backgroundImage = "url('/Img/Avatar/silhouettes/sil1.png')";
 				user.insertBefore(userAvatar, user.firstChild);
 			}

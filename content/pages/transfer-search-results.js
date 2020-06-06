@@ -8,6 +8,7 @@
 
 /* eslint-disable */
 if (!this.Foxtrick)
+	// @ts-ignore
 	var Foxtrick = {};
 /* eslint-enable */
 
@@ -19,7 +20,7 @@ Foxtrick.Pages.TransferSearchResults = {};
 /**
  * Test whether it's transfer search results
  * @param  {document}  doc
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.TransferSearchResults.isPage = function(doc) {
 	return Foxtrick.isPage(doc, 'transferSearchResult');
@@ -45,7 +46,35 @@ Foxtrick.Pages.TransferSearchResults.isNewDesign = (doc) => {
  * @return {Array<Player>}     Array<Player>
  */
 Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
-	var isNewDesign = false;
+	var isNewDesign = this.isNewDesign(doc);
+
+	/** @type {Map<number, HTMLTableRowElement>} */
+	var htRows = null;
+
+	if (isNewDesign) {
+	/** @type {HTMLTableElement} */
+		var htTable = doc.querySelector('#playersTable');
+
+		if (htTable) {
+			/** @type {NodeListOf<HTMLAnchorElement>} */
+			let playerLinks = htTable.querySelectorAll('td[data-fullname] a');
+			htRows = new Map([...playerLinks].map((link) => {
+				let id = Foxtrick.getUrlParam(link.href, 'playerId');
+				return [parseInt(id, 10), link.closest('tr')];
+			}));
+		}
+	}
+
+	let parseHTTableRow = (player) => {
+		let htRow = htRows.get(player.id);
+
+		let cellClubWeeks = htRow.cells[9];
+		let clubWeeks = parseInt(cellClubWeeks.textContent.trim(), 10);
+		let daysInWeek = Foxtrick.util.time.DAYS_IN_WEEK;
+		let joinedSince = Foxtrick.util.time.addDaysToDate(Date.now(), -clubWeeks * daysInWeek);
+		Foxtrick.util.time.setMidnight(joinedSince);
+		player.joinedSince = joinedSince;
+	};
 
 	let parseSkills = (player, pNode) => {
 		const SKILLS_OLD = [
@@ -102,10 +131,18 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 
 		let psico = pNode.querySelector('.ft-psico');
 		if (psico) {
-			let psicoTSI = psico.getAttribute('data-psico-avg');
-			let psicoTitle = psico.getAttribute('data-psico-skill');
-			player.psicoTSI = psicoTSI;
-			player.psicoTitle = psicoTitle;
+			player.psicoTSI = psico.dataset.psicoAvg;
+			player.psicoTitle = psico.dataset.psicoSkill;
+			player.psicoWage = psico.dataset.psicoWage;
+		}
+
+		/** @type {HTMLElement} */
+		let u20 = pNode.querySelector('.ft-u20lastmatch');
+		if (u20) {
+			let title = u20.textContent;
+			let text = u20.dataset.valueString;
+			let value = parseInt(u20.dataset.value, 10);
+			player.u20 = { title, text, value };
 		}
 	};
 
@@ -255,6 +292,7 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 	};
 	/* eslint-enable complexity */
 
+	// eslint-disable-next-line complexity
 	let parseAttributes = (player, attrContainer, infoTable) => {
 		const ATTRIBUTES = ['experience', 'leadership', 'form'];
 		if (isNewDesign)
@@ -286,6 +324,16 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 				cConverter.remove();
 
 			player.salary = Foxtrick.trimnum(salary.textContent);
+			let span = salary.querySelector('span');
+			if (span && span.hasAttribute('title')) {
+				let title = span.title.replace(/\d+\s*%/, '');
+				player.salaryBase = Foxtrick.trimnum(title);
+				player.isAbroad = true;
+			}
+			else {
+				player.salaryBase = player.salary;
+				player.isAbroad = false;
+			}
 		}
 
 		if (cells.form)
@@ -313,7 +361,7 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 		try {
 			// first row - country, name, ID
 			let nameLink = playerNode.querySelector('.transfer_search_playername a');
-			p.id = Foxtrick.getUrlParam(nameLink.href, 'playerId');
+			p.id = parseInt(Foxtrick.getUrlParam(nameLink.href, 'playerId'), 10);
 			p.nameLink = nameLink.cloneNode(true);
 			p.nameLink.target = '_blank';
 			addLinks(p, playerNode, nameLink.href);
@@ -338,6 +386,9 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 				parseAttributes(p, attrContainer, infoTable);
 				parseSkills(p, playerNode);
 			}
+
+			if (htRows)
+				parseHTTableRow(p);
 		}
 		catch (e) {
 			Foxtrick.log(e);
@@ -347,7 +398,6 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 		return p;
 	};
 
-	isNewDesign = this.isNewDesign(doc);
 	let playerNodes = [...doc.querySelectorAll('.transferPlayerInfo')];
 	if (isNewDesign)
 		playerNodes = playerNodes.map(p => p.parentNode.parentNode);

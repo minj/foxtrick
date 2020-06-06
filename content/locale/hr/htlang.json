@@ -324,7 +324,11 @@
 			"154": "Guam",
 			"155": "DR Kongo",
 			"156": "Etiopija",
+			"157": "Sveti Vincent i Grenadini",
+			"158": "Belize",
+			"159": "Madagaskar",
 			"16": "Brazil",
+			"160": "Bocvana",
 			"17": "Kanada",
 			"18": "Čile",
 			"19": "Kolumbija",
@@ -633,8 +637,12 @@
 				"value": "Igra glavom"
 			},
 			{
-				"type": "Regainer",
+				"type": "Resilient",
 				"value": "Otporan"
+			},
+			{
+				"type": "Support",
+				"value": "Timski igrač"
 			}
 		],
 		"spirit": [
