@@ -240,10 +240,14 @@ Foxtrick.modules.SkillColoring = {
 				skill += ` (+${level - capped})`;
 			}
 		}
-		else {
+		else if (def) {
 			// some HT skills follow weird patterns
 			skill = def[level];
 			level = def.indexOf(level);
+		}
+		else {
+			Foxtrick.error(`Unknown skill type '${type}'`);
+			return;
 		}
 
 
