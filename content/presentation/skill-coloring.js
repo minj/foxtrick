@@ -162,12 +162,16 @@ Foxtrick.modules.SkillColoring = {
 			'unstable',
 		],
 		morale: {
+			/**
+			 * @param  {number} key
+			 * @return {number}
+			 */
 			indexOf: function(key) {
 				// eslint-disable-next-line no-magic-numbers
-				let index = key - 12;
-				return index == -1 ? 10 : index;
+				let index = key - 12; // shift by 12
+				return index == -1 ? 10 : index; // 11 => 10
 			},
-			12: 'like the Cold War',
+			12: 'like the Cold War', // 0
 			13: 'murderous',
 			14: 'furious',
 			15: 'irritated',
@@ -176,17 +180,21 @@ Foxtrick.modules.SkillColoring = {
 			18: 'content',
 			19: 'satisfied',
 			20: 'delirious',
-			21: 'walking on clouds',
-			11: 'Paradise on Earth!',
+			21: 'walking on clouds', // 9
+			11: 'Paradise on Earth!', // 10
 		},
 		confidence: {
+			/**
+			 * @param  {number} key
+			 * @return {number}
+			 */
 			indexOf: function(key) {
 				// eslint-disable-next-line no-magic-numbers
-				let index = key - 23;
+				let index = key - 23; // shift by 23
 				// eslint-disable-next-line no-magic-numbers
-				return index == -1 ? 9 : index;
+				return index == -1 ? 9 : index; // 22 => 9
 			},
-			23: 'non-existent',
+			23: 'non-existent', // 0
 			24: 'disastrous',
 			25: 'wretched',
 			26: 'poor',
@@ -194,8 +202,8 @@ Foxtrick.modules.SkillColoring = {
 			28: 'strong',
 			29: 'wonderful',
 			30: 'slightly exaggerated',
-			31: 'exaggerated',
-			22: 'completely exaggerated',
+			31: 'exaggerated', // 8
+			22: 'completely exaggerated', // 9
 		},
 	},
 
@@ -224,6 +232,7 @@ Foxtrick.modules.SkillColoring = {
 
 		var level = parseInt(String(htIndex), 10) || 0;
 
+		/** @type {string} */
 		var skill;
 
 		let def = module.NAMES[type];
