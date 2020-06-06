@@ -26,11 +26,11 @@ Foxtrick.modules.LastLogin = {
 
 		for (let node of div.childNodes) {
 			if (node.nodeType != node.TEXT_NODE)
-				return;
+				continue;
 
 			let text = node.textContent;
 			if (!/\*\*\*\.\*\*\*/.test(text))
-				return;
+				continue;
 
 			let last = doc.createElement('span');
 			let loginDate = Foxtrick.util.time.getDateFromText(text);
