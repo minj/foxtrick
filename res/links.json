@@ -367,23 +367,23 @@
 		"img": "https://www.foxtrick.org/res/linkicons/uruguaytracker.ico",
 		"title": "Sistema Integral de la Seleccion Uruguaya (SISU)",
 		"trackernationalteamlink": {
-			"url": "http://www.sisu-ht.com/VerEspirituSeleccion.aspx?teamId=[ntteamid]",
+			"url": "https://sisu-ht.com/VerEspirituSeleccion.aspx?teamId=[ntteamid]",
 			"filters": ["leagueid"]
 		},
 		"trackerleaguelink": {
-			"url": "http://www.sisu-ht.com/",
+			"url": "https://sisu-ht.com/",
 			"filters": ["leagueid"]
 		},
 		"trackerplayerlink": {
-			"url": "http://www.sisu-ht.com/EditarJugadorSenior.aspx?playerId=[playerid]",
+			"url": "https://sisu-ht.com/EditarJugadorSenior.aspx?playerId=[playerid]",
 			"filters": ["nationality"]
 		},
 		"trackeryouthlink": {
-			"url": "http://www.sisu-ht.com/",
+			"url": "https://sisu-ht.com/",
 			"filters": ["leagueid"]
 		},
 		"trackeryouthplayerlink": {
-			"url": "http://www.sisu-ht.com/EditarJugadorNuevaCantera.aspx?playerId=[playerid]",
+			"url": "https://sisu-ht.com/EditarJugadorNuevaCantera.aspx?playerId=[playerid]",
 			"filters": ["nationality"]
 		},
 		"leagueidranges": [[28, 28]],
