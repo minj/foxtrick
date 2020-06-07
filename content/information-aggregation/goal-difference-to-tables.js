@@ -49,6 +49,10 @@ Foxtrick.modules.GoalDifferenceToTables = {
 				goalsFor = row.cells[goalIdx - 1].textContent.trim();
 				goalsAgainst = row.cells[goalIdx + 1].textContent.trim();
 			}
+			else if (goals.length == 1) {
+				[goalsAgainst] =
+					row.cells[goalIdx + 1].textContent.trim().split('-').filter(Boolean);
+			}
 
 			let result = parseInt(goalsFor, 10) - parseInt(goalsAgainst, 10);
 			newCell.textContent = String(result);
