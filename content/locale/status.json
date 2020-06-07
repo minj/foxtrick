@@ -306,11 +306,11 @@
 			"code": "he",
 			"name": "Hebrew",
 			"phrases": "2371",
-			"translated": "2297",
-			"translated_progress": "98",
+			"translated": "2347",
+			"translated_progress": "99",
 			"words": "17069",
 			"words_approved": "0",
-			"words_translated": "16769"
+			"words_translated": "16998"
 		},
 		{
 			"approved": "193",
@@ -366,11 +366,11 @@
 			"code": "ja",
 			"name": "Japanese",
 			"phrases": "2371",
-			"translated": "1266",
-			"translated_progress": "41",
+			"translated": "1282",
+			"translated_progress": "42",
 			"words": "17069",
 			"words_approved": "0",
-			"words_translated": "7153"
+			"words_translated": "7330"
 		},
 		{
 			"approved": "0",
