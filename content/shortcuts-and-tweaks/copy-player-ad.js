@@ -73,6 +73,32 @@ Foxtrick.modules.CopyPlayerAd = {
 
 					el = el.nextElementSibling;
 				}
+
+				/** @type {Element} */
+				let infoParent = infoTable;
+				let prev = null;
+				let pInfo = null;
+				while (infoParent) {
+					if (infoParent.matches('.playerInfo'))
+						break;
+
+					let children = [...infoParent.children].filter(c => c.matches('.playerInfo'));
+					if (children.length) {
+						[pInfo] = children;
+						break;
+					}
+
+					prev = infoParent;
+					infoParent = infoParent.parentElement;
+				}
+				if (infoParent) {
+					let child = infoParent.firstChild;
+					while (child && child != pInfo && child != prev) {
+						playerInfo.appendChild(child.cloneNode(true));
+						child = child.nextSibling;
+					}
+				}
+
 				playerInfo.appendChild(Foxtrick.cloneElement(infoTable, true));
 			}
 			else {
