@@ -26,6 +26,7 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 		// eslint-disable-next-line max-len
 		/** @typedef {'matchFriendly'|'matchLeague'|'matchCupA'|'matchCupB1'|'matchCupB2'|'matchCupB3'|'matchCupC'|'matchQualification'|'matchMasters'|'matchNtFriendly'|'matchNtLeague'|'matchNtFinals'} MatchTypeClass */
 
+		// TODO move onto module
 		// don't randomly rename, parts of this are taken from hattrick using image classnames
 		/** @type {Record<MatchTypeClass, number>} */
 		var XP = {
@@ -140,17 +141,17 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 					return 'matchNtFriendly';
 
 				if (gameType == 'matchLeague') {
-					let htDate = Foxtrick.util.time.gregorianToHT(date);
+					let { season, week } = Foxtrick.util.time.gregorianToHT(date);
 
 					// oldies wc finals are in odd seasons, u20 in even seasons
 					// eslint-disable-next-line no-bitwise
-					let isWcFinalSeason = htDate.season % 2 ^ Number(u20);
+					let isWcFinalSeason = season % 2 ^ Number(u20);
 					if (!isWcFinalSeason)
 						return 'matchNtLeague';
 
 					let semifinal = date.getDay() == 5;
 					let final = date.getDay() === 0;
-					if (htDate.week == 16 && (semifinal || final))
+					if (week == 16 && (semifinal || final))
 						return 'matchNtFinals';
 
 					return 'matchNtLeague';

@@ -1030,7 +1030,7 @@ Foxtrick.modules.SkillTable = {
 
 				let oldNotes = doc.querySelector('.ft_skilltable_wrapper .ft-note');
 				if (oldNotes)
-					oldNotes.parentNode.removeChild(oldNotes);
+					oldNotes.remove();
 
 				let oldcustomizeTable = doc.querySelector('.ft_skilltable_customizetable');
 				if (oldcustomizeTable)
@@ -1441,9 +1441,11 @@ Foxtrick.modules.SkillTable = {
 						if (player.currentSquad)
 							row.setAttribute('currentsquad', 'true');
 						if (player.currentClubLink) {
-							let m = player.currentClubLink.href.match(/\?TeamID=(\d+)/i);
-							if (m)
-								row.setAttribute('currentclub', m[1]);
+							let url = player.currentClubLink.href;
+							if (/\?TeamID=(\d+)/i.test(url)) {
+								let teamId = Foxtrick.getUrlParam(url, 'TeamID');
+								row.setAttribute('currentclub', teamId);
+							}
 						}
 						if (player.injured)
 							row.setAttribute('injured', 'true');
@@ -1680,7 +1682,7 @@ Foxtrick.modules.SkillTable = {
 				 */
 				var getNode = function(n) {
 					if ('href' in n && YOUTH_PLAYER_RE.test(n.href)) {
-						let youthId = n.href.match(YOUTH_PLAYER_RE)[1];
+						let [_, youthId] = n.href.match(YOUTH_PLAYER_RE);
 						return `${n.textContent} [youthplayerid=${youthId}]`;
 					}
 					else if ('href' in n && PLAYER_RE.test(n.href)) {

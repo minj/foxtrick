@@ -10,7 +10,7 @@ Foxtrick.modules['MatchLineupFixes'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.MATCHES,
 	PAGES: ['match'],
 	OPTIONS: [
-		'FixWeatherSEs', 'AddStarsToSubs', 'FixMultipleEvents', 'AddLinksInOrders',
+		'FixWeatherSEs', 'AddStarsToSubs', 'FixMultipleEvents',
 	],
 	NICE: 2, // after match-player-colouring
 
@@ -64,9 +64,10 @@ Foxtrick.modules['MatchLineupFixes'] = {
 		 * @param {MatchEventRatings[]} playerRatingsByEvent matchRatings to change
 		 * @param {number}              eventIdx             event to rewind
 		 * @param {number}              sourceIdx            event to rewind to
-		 * @param {string[]}            [attributesToReset]  attributes to actually reset (optional)
+		 * @param {string[]}            [attributesToReset]  attributes to actually reset
 		 */
 		var rewindRatings = function(playerRatingsByEvent, eventIdx, sourceIdx, attributesToReset) {
+			// TODO type
 			let reset = attributesToReset || [
 				'IsCaptain',
 				'IsKicker',
@@ -74,6 +75,7 @@ Foxtrick.modules['MatchLineupFixes'] = {
 				'PositionID',
 				'Stars',
 
+				// TODO exclude
 				// stamina is not position dependent + it changes in time
 			];
 
@@ -171,9 +173,7 @@ Foxtrick.modules['MatchLineupFixes'] = {
 			// this catches both original HT events
 			// and our liveEvents (if match-report-format is on)
 			// we need to exclude hidden events (originals after MRF has run)
-			var events = Foxtrick.filter(function(evt) {
-				return !Foxtrick.hasClass(evt, 'hidden');
-			}, eventCol);
+			var events = [...eventCol].filter(evt => !Foxtrick.hasClass(evt, 'hidden'));
 
 			Foxtrick.forEach(function(evt) {
 				var evtType = parseInt(evt.dataset.eventtype, 10);
@@ -206,7 +206,7 @@ Foxtrick.modules['MatchLineupFixes'] = {
 					 */
 
 					// README: time line match event index no longer matches match report idx
-					var sel = Foxtrick.format('[id$="_matchEventTypeId"][value="{}"]', [evtType]);
+					var sel = `[id$="_matchEventTypeId"][value="${evtType}"]`;
 					var evtTypeInput = doc.querySelector(sel);
 					var timelineEvent = evtTypeInput.parentNode;
 
@@ -270,6 +270,7 @@ Foxtrick.modules['MatchLineupFixes'] = {
 				for (var j = 0; j < timeline.length; ++j) {
 					if (timeline[j].min == subMin) {
 						// reached the sub minute
+						// TODO rewrite
 						while (playerRatingsByEvent[j].players[idx].Stars != -1)
 							++j;
 
@@ -305,17 +306,17 @@ Foxtrick.modules['MatchLineupFixes'] = {
 
 		var undoPreviousEvents = function() {
 
-			for (var i = 0; i < lineupEvents.length; i++) {
-				var idx = lineupEvents[i].idx;
-				var j = idx;
+			for (let i = 0; i < lineupEvents.length; i++) {
+				let idx = lineupEvents[i].idx;
+				let j = idx;
 
 				// trace back and search for events at the same time
-				var eventMin = timeline[j].min;
-				var eventSec = timeline[j].sec;
-				var found = false;
+				let event = timeline[j];
+				let { min, sec } = event;
+				let found = false;
 
 				--j;
-				while (j > -1 && timeline[j].min == eventMin && timeline[j].sec == eventSec) {
+				while (j > -1 && timeline[j].min == min && timeline[j].sec == sec) {
 					if (Foxtrick.has(lineupEventTypes, tEventTypeByEvent[j].type)) {
 						// multiple lineup events happen at the same time
 						// will be fixed in fixMulipleSubs()
@@ -330,7 +331,7 @@ Foxtrick.modules['MatchLineupFixes'] = {
 				// j now points to an event before these events
 				// while idx is still our lineup event
 				// let's go forward and reset players one event at a time
-				for (var k = j + 1; k < idx; k++) {
+				for (let k = j + 1; k < idx; k++) {
 					rewindRatings(playerRatingsHome, k, j);
 					rewindRatings(playerRatingsAway, k, j);
 				}
@@ -382,17 +383,17 @@ Foxtrick.modules['MatchLineupFixes'] = {
 			/** @type {Object.<string, MLFSub[]>} */
 			var subTimes = {};
 			var multiple = false;
-			for (var i = 0; i < subEvents.length; i++) {
-				var idx = subEvents[i].idx;
+			for (let i = 0; i < subEvents.length; i++) {
+				let idx = subEvents[i].idx;
 
-				var matchEventIdx = eventIndexByEvent[idx].eventIdx;
-				var eventDesc = doc.querySelector(`#matchEventIndex_${matchEventIdx}`);
+				let matchEventIdx = eventIndexByEvent[idx].eventIdx;
+				let eventDesc = doc.querySelector(`#matchEventIndex_${matchEventIdx}`);
 
 				// points to report tab
 				if (!eventDesc)
 					continue;
 
-				var isHomeEvent;
+				let isHomeEvent;
 				if (Foxtrick.hasClass(eventDesc, 'highlightHome'))
 					isHomeEvent = true;
 				else if (Foxtrick.hasClass(eventDesc, 'highlightAway'))
@@ -400,9 +401,9 @@ Foxtrick.modules['MatchLineupFixes'] = {
 				else
 					continue;
 
-				var eventMin = timeline[idx].min;
-				var eventSec = timeline[idx].sec;
-				var eventTime = Number(eventMin) * 100 + Number(eventSec);
+				let event = timeline[idx];
+				let { min, sec } = event;
+				let eventTime = Number(min) * 100 + Number(sec);
 
 				if (eventTime in subTimes) {
 					// we had this time before
@@ -423,8 +424,8 @@ Foxtrick.modules['MatchLineupFixes'] = {
 			// we still keep single subs because they are later used
 			// to bind correct xml to multiple subs
 			/** @type {MLFSub[][]} */
-			var subGroups = [], time;
-			for (time in subTimes) {
+			var subGroups = [];
+			for (let time in subTimes) {
 				let subs = subTimes[time];
 				subGroups.push(subs);
 			}
@@ -484,8 +485,8 @@ Foxtrick.modules['MatchLineupFixes'] = {
 					 * @param {number}    offset    offset to skip previously bound xml
 					 */
 					var bindXmlToEvents = function(subEvents, xmlSubs, offset) {
-						for (let i = 0; i < subEvents.length; i++)
-							subEvents[i].xml = xmlSubs[i + offset];
+						for (let [i, subEvent] of subEvents.entries())
+							subEvent.xml = xmlSubs[i + offset];
 					};
 
 					/**
@@ -672,97 +673,12 @@ Foxtrick.modules['MatchLineupFixes'] = {
 			});
 		};
 
-		// there's only plaintext in orders tab
-		// let's add links
-		var addLinksInOrders = function() {
-			var ordersTable = doc.querySelector('#ListPlayerOrders table');
-			if (!ordersTable)
-				return;
-
-			var playerData = Foxtrick.Pages.Match.parsePlayerData(doc);
-
-			if (!playerData || !playerData.length) {
-				Foxtrick.log('addLinksInOrders: failed to parse playerData');
-				return;
-			}
-
-			var isYouth = Foxtrick.Pages.Match.isYouth(doc);
-			var pl = isYouth ? 'YouthPlayer' : 'Player';
-
-			var links = {};
-			var names = Foxtrick.map(function(p) {
-				var fullName = p.FirstName + ' ' + p.LastName;
-
-				// create a player link for replacements
-				var link = Foxtrick.createFeaturedElement(doc, module, 'a');
-				var id = Number(p.SourcePlayerId);
-				var url = '/Club/Players/' + pl + '.aspx?' + pl + 'Id=' + id;
-				link.href = url;
-				link.id = 'playerLink';
-				link.textContent = fullName;
-				links[fullName] = link;
-
-				return fullName;
-			}, playerData);
-
-			// create a RegExp for all player names
-			var namesRE = new RegExp(names.join('|'), 'g');
-
-			var tNodes = Foxtrick.getTextNodes(ordersTable);
-			Foxtrick.forEach(function(node) {
-				if (node.parentNode.nodeName.toLowerCase() === 'a') {
-					// skip if inside a link already
-					return;
-				}
-
-				var text = node.textContent.trim();
-				if (text === '')
-					return;
-
-				var mArray, nodes = [], prevIndex = 0;
-				while ((mArray = namesRE.exec(text))) {
-					var name = mArray[0];
-					var start = namesRE.lastIndex - name.length;
-					if (start > prevIndex) {
-						// add any previous text as a text node
-						var previousText = text.slice(prevIndex, start);
-						nodes.push(doc.createTextNode(previousText));
-					}
-
-					// add matched player link
-					var link = links[name];
-					if (link)
-						nodes.push(Foxtrick.cloneElement(link, true));
-					else
-						Foxtrick.error('Incorrectly escaped name in regex: ' + name);
-
-					prevIndex = namesRE.lastIndex;
-				}
-
-				if (nodes.length) {
-					if (prevIndex < text.length) {
-						// add any ending text
-						var endText = text.slice(prevIndex);
-						nodes.push(doc.createTextNode(endText));
-					}
-
-					var frag = doc.createDocumentFragment();
-					Foxtrick.appendChildren(frag, nodes);
-					node.parentNode.replaceChild(frag, node);
-				}
-			}, tNodes);
-		};
-
-
 		// DO STUFF
 		if (Foxtrick.Pages.Match.isPrematch(doc) || Foxtrick.Pages.Match.inProgress(doc))
 			return;
 
 		if (Foxtrick.Pages.Match.isWalkOver(doc.querySelector('div.mainBox table')))
 			return;
-
-		if (Foxtrick.Prefs.isModuleOptionEnabled('MatchLineupFixes', 'AddLinksInOrders'))
-			addLinksInOrders();
 
 		if (weatherEvents.length &&
 			Foxtrick.Prefs.isModuleOptionEnabled('MatchLineupFixes', 'FixWeatherSEs'))

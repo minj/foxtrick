@@ -494,7 +494,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 		ps.title = Foxtrick.L10n.getString('PerformanceHistory');
 		let psUrl = player.nameLink.href;
 		psUrl = psUrl.replace('/Club/Players/Player.aspx',
-		                      '/Club/Players/PlayerStats.aspx');
+		                      '/Club/Players/PlayerStats.aspx') + '&ShowAll=true';
 		ps.href = psUrl;
 		ps.target = '_blank';
 

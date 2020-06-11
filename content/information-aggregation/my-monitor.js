@@ -339,6 +339,7 @@ Foxtrick.modules['MyMonitor'] = {
 
 				// add options to select box
 				Foxtrick.forEach(function(team) {
+					// TODO test
 					var option = doc.createElement('option');
 					option.textContent = Foxtrick.L10n.getString('MyMonitor.removeTeamFormat')
 						.replace(/%n/, team.name)

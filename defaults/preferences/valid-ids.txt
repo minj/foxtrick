@@ -388,7 +388,6 @@ module.MarkAllAsRead.enabled
 module.MarkUnread.enabled
 module.MatchIncome.UtilizationPercentages.enabled
 module.MatchIncome.enabled
-module.MatchLineupFixes.AddLinksInOrders.enabled
 module.MatchLineupFixes.AddStarsToSubs.enabled
 module.MatchLineupFixes.FixMultipleEvents.enabled
 module.MatchLineupFixes.FixWeatherSEs.enabled

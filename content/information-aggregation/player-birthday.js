@@ -12,6 +12,7 @@ Foxtrick.modules.PlayerBirthday = {
 
 	/** @param {document} doc */
 	run: function(doc) {
+		const module = this;
 		var DAYS_IN_WEEK = Foxtrick.util.time.DAYS_IN_WEEK;
 
 		// array of players
@@ -40,6 +41,7 @@ Foxtrick.modules.PlayerBirthday = {
 		 * @return {number}
 		 */
 		var sort = function(a, b) {
+			// TODO refactor
 			var maxYears = 10000;
 			let aDays = a.age.days * maxYears + a.age.years;
 			let bDays = b.age.days * maxYears + b.age.years;
@@ -49,7 +51,7 @@ Foxtrick.modules.PlayerBirthday = {
 		birthdayFuture.sort(sort);
 		birthdayPast.sort(sort);
 
-		var parentDiv = Foxtrick.createFeaturedElement(doc, this, 'div');
+		var parentDiv = Foxtrick.createFeaturedElement(doc, module, 'div');
 		parentDiv.id = 'foxtrick_addactionsbox_parentDiv';
 
 		/**

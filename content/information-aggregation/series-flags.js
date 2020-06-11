@@ -17,7 +17,9 @@ Foxtrick.modules['SeriesFlags'] = {
 
 	// eslint-disable-next-line complexity
 	run: function(doc) {
+		const module = this;
 		var buildFlag = function(arg, callback) {
+			// TODO promisify
 			Foxtrick.localGet('seriesFlags', (mapping) => {
 				let map = mapping;
 				if (!map || typeof map[arg[0]] === 'undefined')
@@ -26,8 +28,7 @@ Foxtrick.modules['SeriesFlags'] = {
 				// data is an Object with attributes leagueId, seriesName,
 				// and seriesId
 				var buildFromData = function(data) {
-					var flag =
-						Foxtrick.createFeaturedElement(doc, Foxtrick.modules.SeriesFlags, 'span');
+					var flag = Foxtrick.createFeaturedElement(doc, module, 'span');
 
 					if (data.leagueId) {
 						flag.className = 'ft-series-flag';
@@ -76,6 +77,7 @@ Foxtrick.modules['SeriesFlags'] = {
 
 						// there are can be several LeagueLevelUnitID.
 						// if LeagueLevelUnit is available it's the first
+						// TODO TEST
 						let llu = xml.node('LeagueLevelUnit');
 						let lluId = llu && xml.node('LeagueLevelUnitID', llu);
 						if (lluId) {
@@ -85,6 +87,7 @@ Foxtrick.modules['SeriesFlags'] = {
 
 						// get newest mapping and store the data, because
 						// it may have changed during the retrieval of XML
+						// TODO promisify
 						Foxtrick.localGet('seriesFlags', (mapping) => {
 							let map = mapping;
 							if (!map || typeof map[arg[0]] === 'undefined')
@@ -145,10 +148,9 @@ Foxtrick.modules['SeriesFlags'] = {
 		    Foxtrick.isPage(doc, 'guestbook')) {
 			// add to guest managers
 			let wrapper = Foxtrick.getMBElement(doc, 'upGB');
-			let links = wrapper.getElementsByTagName('a');
+			let links = wrapper.querySelectorAll('a');
 			let userLinks = Foxtrick.filter(function(n) {
-				return n.href.search(/userId=/i) >= 0 &&
-					!Foxtrick.hasClass(n, 'ft-popup-list-link');
+				return /userId=/i.test(n.href) && !Foxtrick.hasClass(n, 'ft-popup-list-link');
 			}, links);
 			modifyUserLinks(userLinks);
 		}
@@ -156,7 +158,7 @@ Foxtrick.modules['SeriesFlags'] = {
 		// also add flag to the guestbook entry in teamPage, but we have to skip the own user link
 		if (Foxtrick.Prefs.isModuleOptionEnabled('SeriesFlags', 'Guestbook') &&
 		    Foxtrick.isPage(doc, 'teamPage')) {
-			let mainBoxes = doc.getElementById('mainBody').getElementsByClassName('mainBox');
+			let mainBoxes = doc.querySelectorAll('#mainBody .mainBox');
 			Foxtrick.forEach(function(b) {
 				let links = b.getElementsByTagName('a');
 				let userLinks = Foxtrick.filter(function(n) {
@@ -174,15 +176,14 @@ Foxtrick.modules['SeriesFlags'] = {
 				return;
 			}
 
-			let sideBar = doc.getElementById('sidebar');
-			let sideBarBoxes = sideBar.getElementsByClassName('sidebarBox');
+			let sideBarBoxes = doc.querySelectorAll('#sidebar .sidebarBox');
 
 			// supporters box is among the boxes without a table
 			let nonVisitorsBoxes = Foxtrick.filter(function(n) {
-				return n.getElementsByTagName('table').length == 0 && n.id != 'ft-links-box';
+				return !n.querySelector('table') && n.id != 'ft-links-box';
 			}, sideBarBoxes);
 			Foxtrick.forEach(function(b) {
-				let links = b.getElementsByTagName('a');
+				let links = b.querySelectorAll('a');
 				let userLinks = Foxtrick.filter(function(n) {
 					return /userId=/i.test(n.href) && !Foxtrick.hasClass(n, 'ft-popup-list-link');
 				}, links);

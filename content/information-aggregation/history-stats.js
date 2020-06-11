@@ -180,7 +180,7 @@ Foxtrick.modules.HistoryStats = {
 			if (!date)
 				continue;
 
-			let season = { Foxtrick.util.time.gregorianToHT(date) };
+			let { season } = Foxtrick.util.time.gregorianToHT(date);
 
 			let links = Foxtrick.toArray(event.querySelectorAll('a'));
 			for (let link of links) {
