@@ -1,8 +1,9 @@
-'use strict';
 /**
  * Transfer list filters
  * @author kolmis, bummerland
  */
+
+'use strict';
 
 Foxtrick.modules['TransferSearchFilters'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
@@ -12,7 +13,7 @@ Foxtrick.modules['TransferSearchFilters'] = {
 	run: function(doc) {
 		// do not modify the mappings - the keys are stored in preferences
 		var MAIN = Foxtrick.getMainIDPrefix();
-		var FTPRE = 'FoxtrickTransferSearchResultFilters.';
+		var FTPRE = 'FoxtrickTransferSearchResultFilters';
 		var backwardCompatibleCodes = {
 			_01: MAIN + 'ddlDeadline',
 			_02: MAIN + 'ddlAgeMin',
@@ -34,30 +35,33 @@ Foxtrick.modules['TransferSearchFilters'] = {
 			_18: MAIN + 'ddlBornIn',
 			_19: MAIN + 'txtTSIMin_text',
 			_20: MAIN + 'txtTSIMin_Value',
+
 			// _21: MAIN + 'txtTSIMin_ClientState',
 			_22: MAIN + 'txtTSIMax_text',
 			_23: MAIN + 'txtTSIMax_Value',
+
 			// _24: MAIN + 'txtTSIMax_ClientState',
 			_25: MAIN + 'txtBidMin_text',
 			_26: MAIN + 'txtBidMin_Value',
+
 			// _27: MAIN + 'txtBidMin_ClientState',
 			_28: MAIN + 'txtBidMax_text',
 			_29: MAIN + 'txtBidMax_Value',
+
 			// _30: MAIN + 'txtBidMax_ClientState',
 			_31: MAIN + 'ddlGlobalSkillMax',
 			_32: MAIN + 'chkUseGlobalMax',
 			_33: MAIN + 'ddlAgeDaysMin',
 			_34: MAIN + 'ddlAgeDaysMax',
 
-			_51: FTPRE + 'hideBruised.check',
-			_52: FTPRE + 'hideInjured.check',
-			_53: FTPRE + 'hideSuspended.check',
-			_55: FTPRE + 'days.Min',
-			_56: FTPRE + 'days.Max',
-			_57: FTPRE + 'Skills.form.Min',
-			_58: FTPRE + 'Skills.form.Max',
-			_59: FTPRE + 'hideOrdinary.check'
-
+			_51: FTPRE + '_hideBruised_check',
+			_52: FTPRE + '_hideInjured_check',
+			_53: FTPRE + '_hideSuspended_check',
+			_55: FTPRE + '_days_min',
+			_56: FTPRE + '_days_max',
+			_57: FTPRE + '_Skills_form_min',
+			_58: FTPRE + '_Skills_form_max',
+			_59: FTPRE + '_hideOrdinary_check',
 		};
 		var NAME_PROMPT = Foxtrick.L10n.getString('TransferSearchFilters.enterName');
 		var DELETE_PROMPT = Foxtrick.L10n.getString('TransferSearchFilters.deleteFilter.ask');
