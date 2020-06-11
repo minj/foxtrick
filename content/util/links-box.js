@@ -51,7 +51,7 @@ Foxtrick.util.links.add = function(ownBoxBody, customLinkSet, info, hasNewSideba
 					let key = link.key;
 					let mylink = doc.getElementById('ft-custom-link-' + key);
 					if (mylink)
-						mylink.parentNode.removeChild(mylink);
+						mylink.remove();
 
 				}, links);
 
@@ -692,6 +692,7 @@ Foxtrick.util.links.run = function(doc, module) {
 	var box = Foxtrick.createFeaturedElement(doc, module, 'div');
 	box.id = BOX_ID;
 
+	/** @type {Record<string, string|number>} */
 	let ownInfo = {
 		server: doc.location.hostname,
 		lang: Foxtrick.Prefs.getString('htLanguage'),
@@ -699,6 +700,7 @@ Foxtrick.util.links.run = function(doc, module) {
 	let ownTeam = Foxtrick.modules.Core.TEAM;
 	for (let [key, val] of Object.entries(ownTeam))
 		ownInfo['own' + key] = val;
+
 	let output = Object.assign(o.info || {}, ownInfo);
 
 	/** @type {LinkArgs} */
@@ -714,7 +716,7 @@ Foxtrick.util.links.run = function(doc, module) {
 			module: module.MODULE_NAME,
 			className: LINK_CLASS,
 			parent: box,
-			type,
+			type: typeof type == 'string' ? type : '',
 			info,
 		};
 
@@ -834,22 +836,29 @@ Foxtrick.util.links.getPrefs = function(doc, module) {
 };
 
 /**
- * @typedef {Object.<string, string|number>} LinkArgs
+ * @typedef {Record<string, string|number>} LinkArgs
+ * @typedef {string|LinkPageTypeDef} LinkPageType
  */
 /**
  * @typedef LinkPageDefinition
  * @prop {LinkArgs} info
- * @prop {string[]} [types]
+ * @prop {LinkPageType[]} [types]
  * @prop {string} [customLinkSet]
  * @prop {boolean} [hasNewSidebar]
  */
 /**
  * @typedef LinkPageQuery
+ * @prop {string} type
  * @prop {string} module
  * @prop {string} className
- * @prop {string} type
- * @prop {HTMLElement} [parent]
  * @prop {LinkArgs} info
+ * @prop {HTMLElement} [parent]
+ */
+/**
+ * @typedef LinkPageTypeDef
+ * @prop {string} type
+ * @prop {string} [module]
+ * @prop {string} [className]
  */
 /**
  * @typedef CustomLinkDefinition

@@ -206,9 +206,13 @@ Foxtrick.util.id.findYouthPlayerId = function(element) {
 	return null;
 };
 
+/**
+ * @param  {HTMLAnchorElement} link
+ * @return {number}
+ */
 Foxtrick.util.id.getSkillLevelFromLink = function(link) {
 	var value = link.href.replace(/.+(ll|labellevel)=/i, '').match(/^\d+/);
-	return parseInt(value, 10);
+	return parseInt(String(value), 10);
 };
 
 Foxtrick.util.id.extractLeagueName = function(element) {

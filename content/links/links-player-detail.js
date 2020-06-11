@@ -6,7 +6,7 @@
 
 'use strict';
 
-Foxtrick.modules['LinksPlayerDetail'] = {
+Foxtrick.modules.LinksPlayerDetail = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
 	PAGES: ['playerDetails'],
 	LINK_TYPES: [
@@ -19,17 +19,23 @@ Foxtrick.modules['LinksPlayerDetail'] = {
 	/**
 	 * return HTML for FT prefs
 	 * @param  {document}         doc
-	 * @param  {function}         cb
 	 * @return {HTMLUListElement}
 	 */
-	OPTION_FUNC: function(doc, cb) {
-		return Foxtrick.util.links.getPrefs(doc, this, cb);
+	OPTION_FUNC: function(doc) {
+		// @ts-ignore
+		return Foxtrick.util.links.getPrefs(doc, this);
 	},
 
+	/** @param {document} doc */
 	run: function(doc) {
+		// @ts-ignore
 		Foxtrick.util.links.run(doc, this);
 	},
 
+	/**
+	 * @param  {document} doc
+	 * @return {LinkPageDefinition}
+	 */
 	links: function(doc) {
 		if (Foxtrick.Pages.Player.wasFired(doc))
 			return null;
@@ -48,15 +54,15 @@ Foxtrick.modules['LinksPlayerDetail'] = {
 		var { years, days } = Foxtrick.Pages.Player.getAge(doc);
 
 		var attrs = Foxtrick.Pages.Player.getAttributes(doc);
-		var form = attrs.form;
-		var stamina = attrs.stamina;
-		var exp = attrs.experience;
-		var ls = attrs.leadership;
+		var { form, stamina, experience, leadership } = attrs;
 
 		var injuredWeeks = Foxtrick.Pages.Player.getInjuryWeeks(doc);
 
+		/** @type {LinkPageType[]} */
 		var types = ['playerlink'];
-		var params = {
+
+		/** @type {LinkArgs} */
+		var info = {
 			teamId,
 			teamName,
 			playerId,
@@ -66,8 +72,8 @@ Foxtrick.modules['LinksPlayerDetail'] = {
 			age: years,
 			ageDays: days,
 			form,
-			exp,
-			leadership: ls,
+			exp: experience,
+			leadership,
 			stamina,
 			injuredWeeks,
 			deadline: '',
@@ -76,19 +82,22 @@ Foxtrick.modules['LinksPlayerDetail'] = {
 		var rate = Foxtrick.util.currency.getRate();
 		if (rate) {
 			let wageObj = Foxtrick.Pages.Player.getWage(doc);
-			params.wage = Math.round(wageObj.base * rate);
-			params.wageBonus = Math.round(wageObj.bonus * rate);
+			info.wage = Math.round(wageObj.base * rate);
+			info.wageBonus = Math.round(wageObj.bonus * rate);
 		}
 
 		var deadline = Foxtrick.Pages.Player.getTransferDeadline(doc);
 		if (deadline) {
-			var format = 'YYYY-mm-dd HH:MM:SS';
+			let format = 'YYYY-mm-dd HH:MM:SS';
 			deadline = Foxtrick.util.time.toUser(doc, deadline);
-			params.deadline = Foxtrick.util.time.buildDate(deadline, { format });
+			info.deadline = Foxtrick.util.time.buildDate(deadline, { format });
 		}
 
 		var skills = Foxtrick.Pages.Player.getSkills(doc);
 		if (skills) {
+			/**
+			 * @type {(keyof SkillMap<number>|[string, keyof SkillMap<number>])[]}
+			 */
 			var copy = [
 				['goalkeeping', 'keeper'],
 				'playmaking',
@@ -100,14 +109,15 @@ Foxtrick.modules['LinksPlayerDetail'] = {
 			];
 			Foxtrick.forEach(function(skill) {
 				if (typeof skill === 'string')
-					params[skill] = skills[skill];
+					info[skill] = /** @type {number} */ (skills[skill]);
 				else
-					params[skill[0]] = skills[skill[1]];
+					info[skill[0]] = /** @type {number} */ (skills[skill[1]]);
 			}, copy);
 
 			types.push('transfercomparelink');
+			// eslint-disable-next-line no-magic-numbers
 			if (skills.keeper > 3 && gkParent) {
-				var keeperLinks = {
+				let keeperLinks = {
 					type: 'keeperlink',
 					parent: gkParent,
 					className: 'ft-link-keeper',
@@ -116,7 +126,7 @@ Foxtrick.modules['LinksPlayerDetail'] = {
 			}
 		}
 		if (injuredWeeks > 0) {
-			var injuryLinks = {
+			let injuryLinks = {
 				type: 'playerhealinglink',
 				parent: Foxtrick.Pages.Player.getInjuryCell(doc),
 				className: 'ft-link-injury',
@@ -124,18 +134,24 @@ Foxtrick.modules['LinksPlayerDetail'] = {
 			types.push(injuryLinks);
 		}
 		if (Foxtrick.Prefs.isModuleEnabled('LinksTracker')) {
-			var tracker = {
+			let tracker = {
 				type: 'trackerplayerlink',
 				module: 'LinksTracker',
 			};
 			types.push(tracker);
 		}
-		return { types, info: params };
+		return { types, info };
 	},
 
+	/**
+	 * @param  {document} doc
+	 * @return {HTMLElement}
+	 */
 	getGKLinkTarget(doc) {
 		// FIXME unmaintainable
 		var gkLinkTarget;
+
+		/** @type {HTMLTableElement} */
 		var skillTable = doc.querySelector('.transferPlayerSkills, .mainBox table');
 		if (Foxtrick.hasClass(skillTable, 'transferPlayerSkills')) {
 			let table = skillTable.querySelector('table');

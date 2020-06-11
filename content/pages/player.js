@@ -186,9 +186,10 @@ Foxtrick.Pages.Player.getSkillLevel = function(el) {
  *
  * Senior players only.
  * @param  {document} doc
- * @return {object}
+ * @return {PlayerAttributes}
  */
 Foxtrick.Pages.Player.getAttributes = function(doc) {
+	/** @type {PlayerAttributes} */
 	var attrs = {};
 	if (!this.isSenior(doc))
 		return null;
@@ -209,13 +210,22 @@ Foxtrick.Pages.Player.getAttributes = function(doc) {
 	// motherClub
 	attrs.motherClubBonus = !!doc.querySelector('.motherclubBonus, .icon-mother-club');
 
-	const RE_SKILL = /skillshort/i;
+	const RE_SKILL_SHORT = /skillshort/i;
+	const RE_LEADERSHIP = /leadership/i;
+
+	/** @type {(keyof PlayerAttributes)[]} */
 	const PERSONALITY = ['gentleness', 'aggressiveness', 'honesty'];
+
+	/** @type {(keyof PlayerAttributes)[]} */
 	const OTHER_TRAITS = ['leadership', 'experience', 'loyalty'];
 	const TRAITS = [...PERSONALITY, ...OTHER_TRAITS];
 	const FORM_ROW_NEW = 3;
 	const STAMINA_ROW_NEW = 4;
 
+	/**
+	 * @param  {HTMLAnchorElement} link
+	 * @return {number}
+	 */
 	var num = link => Foxtrick.util.id.getSkillLevelFromLink(link);
 
 	/** @type {HTMLAnchorElement[]} */
@@ -243,7 +253,7 @@ Foxtrick.Pages.Player.getAttributes = function(doc) {
 			let links = Foxtrick.toArray(doc.querySelectorAll('.playerInfo .skill'));
 
 			// form vs stamina
-			if (RE_SKILL.test(links[0].href)) {
+			if (RE_SKILL_SHORT.test(links[0].href)) {
 				attrs.form = num(links[0]);
 				attrs.stamina = num(links[1]);
 			}
@@ -262,12 +272,14 @@ Foxtrick.Pages.Player.getAttributes = function(doc) {
 		// personality
 		let idx;
 		for (idx = 0; idx < PERSONALITY.length; idx++) {
-			let attr = Foxtrick.getUrlParam(personLinks[idx].href, 'lt');
+			let attr = /** @type {'gentleness'|'aggressiveness'|'honesty'} */
+				(Foxtrick.getUrlParam(personLinks[idx].href, 'lt'));
+
 			attrs[attr] = num(personLinks[idx]);
 		}
 
 		// leadership vs experience
-		if (RE_SKILL.test(personLinks[idx].href)) {
+		if (RE_LEADERSHIP.test(personLinks[idx].href)) {
 			attrs.leadership = num(personLinks[idx]);
 			attrs.experience = num(personLinks[idx + 1]);
 		}
@@ -1310,4 +1322,19 @@ Foxtrick.Pages.Player.getBestPosition = function(contributions) {
  * @typedef {SkillMap<string>} SkillTexts
  * @typedef {SkillTexts|YouthSkillTexts} AnySkillTexts
  * @typedef {SkillMap<string>} SkillNames
+ */
+
+/**
+ * @typedef PlayerAttributes
+ * @prop {number} leadership
+ * @prop {number} experience
+ * @prop {number} [coachSkill]
+ * @prop {number} stamina
+ * @prop {number} [staminaPred]
+ * @prop {number} form
+ * @prop {number} loyalty
+ * @prop {boolean} motherClubBonus
+ * @prop {number} gentleness
+ * @prop {number} aggressiveness
+ * @prop {number} honesty
  */
