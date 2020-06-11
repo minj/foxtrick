@@ -134,6 +134,7 @@ Foxtrick.Pages.Matches.getTypeFromIcon = function(iconClass) {
 	return type;
 };
 
+/* eslint-disable no-magic-numbers */
 Foxtrick.Pages.Matches.Official = [1, 2, 3, 7];
 Foxtrick.Pages.Matches.Friendly = [4, 5, 8, 9];
 Foxtrick.Pages.Matches.NT = [10, 11, 12];

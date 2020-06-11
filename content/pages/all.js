@@ -135,7 +135,7 @@ Foxtrick.Pages.All.getTeamId = function(doc) {
  * Usually same as getTeamName,
  * except returns youth team name in youth pages.
  * @param  {document} doc
- * @return {number}
+ * @return {string}
  */
 Foxtrick.Pages.All.getTeamNameFromBC = function(doc) {
 	var name = null;
@@ -204,12 +204,12 @@ Foxtrick.Pages.All.getNotes = function(doc) {
 /**
  * Get bread crumb links
  * @param  {document} doc
- * @return {array}        ?Array.<HTMLAnchorElement>
+ * @return {HTMLAnchorElement[]}        ?Array.<HTMLAnchorElement>
  */
 Foxtrick.Pages.All.getBreadCrumbs = function(doc) {
 	var header = this.getMainHeader(doc);
 	if (header)
 		return Foxtrick.toArray(header.getElementsByTagName('a'));
-	else
-		return null;
+
+	return null;
 };

@@ -542,7 +542,7 @@ Foxtrick.listen = function(el, type, listener, useCapture) {
 		let doc = target instanceof Document ? target : target.ownerDocument;
 		Foxtrick.stopObserver(doc);
 
-		/** @type {boolean|Promise|void} */
+		/** @type {boolean|Promise<any>|void} */
 		let ret;
 		try {
 			ret = listener.call(this, ev);
@@ -567,7 +567,10 @@ Foxtrick.listen = function(el, type, listener, useCapture) {
 		}
 	};
 
+	// @ts-ignore
 	el.addEventListener(type, listen, useCapture);
+
+	// @ts-ignore
 	return () => el.removeEventListener(type, listen, useCapture);
 };
 
