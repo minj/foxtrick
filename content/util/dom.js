@@ -1304,7 +1304,7 @@ Foxtrick.makeModal = function(doc, title, content, buttons) {
 /**
  * @template {EventTarget} T
  * @template {Event}       E
- * @typedef  {(this:T,ev:E)=>boolean|Promise|void} Listener<T,E>
+ * @typedef  {(this:T,ev:E)=>boolean|Promise<any>|void} Listener<T,E>
  */
 
 /**

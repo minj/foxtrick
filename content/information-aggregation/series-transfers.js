@@ -1,12 +1,12 @@
 /**
  * series-transfers.js
  * Lists all players for sale within a certain league on league pages
- * @author CatzHoek
+ * @author CatzHoek, LA-MJ
  */
 
 'use strict';
 
-Foxtrick.modules['SeriesTransfers'] = {
+Foxtrick.modules.SeriesTransfers = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES: ['series'],
 
@@ -22,7 +22,11 @@ Foxtrick.modules['SeriesTransfers'] = {
 
 		var leagueTable = doc.querySelector('#mainBody table');
 
-		// checks whether a team is ownerless
+		/**
+		 * checks whether a team is ownerless
+		 * @param  {HTMLAnchorElement} link
+		 * @return {boolean}
+		 */
 		var isNotOwnerless = function(link) {
 			return !Foxtrick.hasClass(link, 'shy') &&
 				!!Foxtrick.util.id.getTeamIdFromUrl(link.href);
@@ -54,12 +58,15 @@ Foxtrick.modules['SeriesTransfers'] = {
 			}, batchArgs);
 		};
 
-		var reFetch = function(ev) {
+		/** @type {Listener<HTMLAnchorElement, MouseEvent>} */
+		var reFetch = function() {
+			// eslint-disable-next-line no-invalid-this
+			var doc = this.ownerDocument;
+			var win = doc.defaultView;
+
 			invalidateCache();
-			var win = ev.target.ownerDocument.defaultView;
+
 			win.setTimeout(function() {
-				// eslint-disable-next-line no-invalid-this
-				var doc = this.document;
 				Foxtrick.forEach(function(id) {
 					var node = doc.getElementById(id);
 					if (node)
@@ -95,13 +102,27 @@ Foxtrick.modules['SeriesTransfers'] = {
 
 		div.appendChild(mainBox);
 
+		// eslint-disable-next-line valid-jsdoc
+		/**
+		 * @template {'a'|'td'|'th'} E
+		 * @param  {E} type
+		 * @param  {string} textContent
+		 * @return {HTMLElementTagNameMap[E]}
+		 */
 		var createRowElement = function(type, textContent) {
 			var elem = doc.createElement(type);
 			elem.textContent = textContent;
 			return elem;
 		};
 
-		var loading, table, tbody;
+		/** @type {HTMLElement} */
+		var loading;
+
+		/** @type {HTMLElement} */
+		var table;
+
+		/** @type {HTMLElement} */
+		var tbody;
 		var buildTable = function() {
 			table = doc.createElement('table');
 			Foxtrick.addClass(table, 'hidden');
@@ -123,10 +144,10 @@ Foxtrick.modules['SeriesTransfers'] = {
 
 			var thead = doc.createElement('thead');
 			var theadRow = doc.createElement('tr');
-			for (var i = 0; i < columns.length; i++) {
-				var l10nText = Foxtrick.L10n.getString(columns[i].text);
-				var l10bAltTitle = Foxtrick.L10n.getString(columns[i].title);
-				var th = createRowElement('th', l10nText);
+			for (let column of columns) {
+				let l10nText = Foxtrick.L10n.getString(column.text);
+				let l10bAltTitle = Foxtrick.L10n.getString(column.title);
+				let th = createRowElement('th', l10nText);
 				th.setAttribute('title', l10bAltTitle);
 				th.setAttribute('alt', l10bAltTitle);
 				theadRow.appendChild(th);
@@ -152,6 +173,10 @@ Foxtrick.modules['SeriesTransfers'] = {
 		 * @param {number}    currencyRate
 		 */
 		var processXMLs = function(xmls, errors, currencyRate) {
+			/**
+			 * @param {HTMLElement} cell
+			 * @param {number} injury
+			 */
 			var injuryFunc = function(cell, injury) {
 				if (injury > -1) {
 					var img;
@@ -169,6 +194,7 @@ Foxtrick.modules['SeriesTransfers'] = {
 						img.title = Foxtrick.L10n.getString('Injured');
 						cell.appendChild(img);
 
+						// TODO test
 						// player.injured is number from players page,
 						// or boolean from transfer result page.
 						if (typeof injury == 'number' && injury > 1)
@@ -176,12 +202,17 @@ Foxtrick.modules['SeriesTransfers'] = {
 					}
 				}
 			};
+
+			/**
+			 * @param {HTMLElement} cell
+			 * @param {number} spec
+			 */
 			var specialtyFunc = function(cell, spec) {
 				if (spec) {
 					Foxtrick.addSpecialty(cell, spec)
 						.catch(Foxtrick.catch('SeriesTransfers addSpecialty'));
 				}
-				cell.setAttribute('index', spec);
+				cell.setAttribute('index', String(spec));
 			};
 			var hasListedPlayers = false;
 			var oldestFile = Infinity;
@@ -199,6 +230,10 @@ Foxtrick.modules['SeriesTransfers'] = {
 				var teamName = xml.text('TeamName');
 				var players = xml.getElementsByTagName('Player');
 				Foxtrick.forEach(function(player) {
+					/**
+					 * @param  {string} field
+					 * @return {number}
+					 */
 					var num = function(field) {
 						return xml.num(field, player);
 					};
@@ -261,8 +296,8 @@ Foxtrick.modules['SeriesTransfers'] = {
 
 						// rest
 						tr.appendChild(createRowElement('td', age + '.' + ageDays));
-						tr.appendChild(createRowElement('td', experience));
-						tr.appendChild(createRowElement('td', form));
+						tr.appendChild(createRowElement('td', String(experience)));
+						tr.appendChild(createRowElement('td', String(form)));
 						var tsi = Foxtrick.formatNumber(playerTsi, '\u00a0');
 						tr.appendChild(createRowElement('td', tsi));
 						var wage = Foxtrick.formatNumber(salary, '\u00a0');
@@ -287,7 +322,9 @@ Foxtrick.modules['SeriesTransfers'] = {
 				div.textContent = Foxtrick.L10n.getString('SeriesTransfers.notransfers');
 				mainBox.insertBefore(div, fetchDiv);
 			}
-			Foxtrick.localSet('series_transfers.' + seriesId, oldestFile);
+			Foxtrick.storage.set(`series_transfers.${seriesId}`, oldestFile)
+				.catch(Foxtrick.catch('SeriesTransfers localSet'));
+
 			var infoDiv = doc.createElement('div');
 			var info = Foxtrick.L10n.getString('SeriesTransfers.lastFetch');
 			var dateText = Foxtrick.util.time.buildDate(new Date(oldestFile));
@@ -300,14 +337,12 @@ Foxtrick.modules['SeriesTransfers'] = {
 			buildTable();
 
 			// retrieve currency rate
-			Foxtrick.util.currency.detect(doc).then(function(curr) {
-				var currencyRate = curr.rate;
-
+			Foxtrick.util.currency.detect(doc).then(({ rate }) => {
 				// batch retrieve
 				var time = now + AUTO_REFRESH_IN;
 				Foxtrick.util.api.batchRetrieve(doc, batchArgs, { cache: time }, (xmls, errors) => {
 					if (xmls)
-						processXMLs(xmls, errors, currencyRate);
+						processXMLs(xmls, errors, rate);
 				});
 
 			}).catch(function(reason) {

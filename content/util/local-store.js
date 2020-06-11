@@ -420,7 +420,7 @@ Foxtrick.storage.deleteBranch = function(branch) {
  * @deprecated use storage.set() instead
  *
  * @param {string} key
- * @param {object} value
+ * @param {any} value
  */
 Foxtrick.localSet = function(key, value) {
 	Foxtrick.storage.set(key, value).catch(Foxtrick.catch('localSet'));
