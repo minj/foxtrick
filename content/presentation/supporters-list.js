@@ -6,7 +6,7 @@
 
 'use strict';
 
-Foxtrick.modules['SupportersList'] = {
+Foxtrick.modules.SupportersList = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.PRESENTATION,
 	PAGES: [
 		'supported', 'supporters',
@@ -15,12 +15,15 @@ Foxtrick.modules['SupportersList'] = {
 	OPTIONS: ['SupporterBack', 'SupportedBack', 'Series'],
 	CSS: Foxtrick.InternalPath + 'resources/css/supporters-list.css',
 
+	/** @param {document} doc */
 	run: function(doc) {
 		if (Foxtrick.isPage(doc, 'supported') || Foxtrick.isPage(doc, 'supporters'))
 			this.supporters(doc);
 		else if (Foxtrick.Prefs.isModuleOptionEnabled(this, 'Series'))
 			this.series(doc);
 	},
+
+	/** @param {document} doc */
 	supporters: function(doc) {
 		var module = this;
 		var supporterBack = Foxtrick.Prefs.isModuleOptionEnabled(module, 'SupporterBack');
@@ -29,6 +32,8 @@ Foxtrick.modules['SupportersList'] = {
 			return;
 
 		var action = Foxtrick.getUrlParam(doc.URL, 'actionType');
+
+		/** @type {SupporterListType} */
 		var type = 'supporters';
 
 		if (action === 'mysupporters' && supportedBack) {
@@ -39,20 +44,25 @@ Foxtrick.modules['SupportersList'] = {
 			return;
 		}
 
+		/** @type {HTMLElement} */
 		var loading;
 		if (Foxtrick.Prefs.getBool('xmlLoad')) {
-			var entry = doc.querySelector('#mainBody table') ||
+			let entry = doc.querySelector('#mainBody table') ||
 				Foxtrick.getMBElement(doc, 'pnlMySupporters').querySelector('br');
 			loading = Foxtrick.util.note.createLoading(doc);
 			entry.parentNode.insertBefore(loading, entry);
 		}
 
+		/**
+		 * @param  {HTMLAnchorElement} link
+		 * @return {Node}
+		 */
 		var callback = function(link) {
 			var node;
 			if (type === 'supporters')
 				node = link.parentNode;
 			else
-				node = link.parentNode.parentNode.previousElementSibling;
+				node = link.parentNode.parentElement.previousElementSibling;
 
 			return node;
 		};
@@ -62,6 +72,8 @@ Foxtrick.modules['SupportersList'] = {
 			loading.parentNode.removeChild(loading);
 		});
 	},
+
+	/** @param {document} doc */
 	series: function(doc) {
 		var module = this;
 		var supporterBack = Foxtrick.Prefs.isModuleOptionEnabled(module, 'SupporterBack');
@@ -69,12 +81,20 @@ Foxtrick.modules['SupportersList'] = {
 		if (!supporterBack && !supportedBack)
 			return;
 
+		/**
+		 * @param {string[]} ids
+		 * @param {SupporterListType} type
+		 */
 		var decorate = function(ids, type) {
 			module.decorateLinks(doc, ids, type, function(link) {
 				return link.parentNode;
 			});
 		};
 
+		/**
+		 * @param {string[]} supported
+		 * @param {string[]} supporters
+		 */
 		var run = function(supported, supporters) {
 			if (supported && supported.length && supportedBack)
 				decorate(supported, 'supported');
@@ -88,6 +108,13 @@ Foxtrick.modules['SupportersList'] = {
 			});
 		});
 	},
+
+	/**
+	 * @param {document} doc
+	 * @param {string[]} ids
+	 * @param {SupporterListType} type
+	 * @param {function(HTMLAnchorElement):Node} findParent
+	 */
 	decorateLinks: function(doc, ids, type, findParent) {
 		var module = this;
 		var title = Foxtrick.L10n.getString('supporters.otherSupportYou');
@@ -97,27 +124,41 @@ Foxtrick.modules['SupportersList'] = {
 			className = 'ft-suppList ft-staff-icon ft-staff-supported';
 		}
 
+		/**
+		 * @param {HTMLImageElement} img
+		 */
 		var imgCb = function(img) {
 			Foxtrick.makeFeaturedElement(img, module);
 			Foxtrick.addClass(img, className);
 		};
 
+		/** @type {NodeListOf<HTMLAnchorElement>} */
 		var links = doc.querySelectorAll('#mainBody a[href*="TeamID"]');
 		var re = /TeamID=([0-9]+)/i;
-		for (var l = 0; l < links.length; l++) {
-			var href = links[l].href;
-			var matches = re.exec(href);
-			if (matches[1] && Foxtrick.indexOf(ids, matches[1]) != -1) {
-				Foxtrick.addClass(links[l], 'ft-suppList-' + type);
-				var node = findParent(links[l]);
-				Foxtrick.addImage(doc, node, {
-					src: '/Img/Icons/transparent.gif',
-					title: title,
-					alt: title,
-				}, node.firstChild, imgCb);
-			}
+		for (let link of links) {
+			let matches = re.exec(link.href);
+			if (!matches)
+				continue;
+
+			let [_, id] = matches;
+			if (!id || Foxtrick.indexOf(ids, id) == -1)
+				continue;
+
+			Foxtrick.addClass(link, 'ft-suppList-' + type);
+			let node = findParent(link);
+			Foxtrick.addImage(doc, node, {
+				src: '/Img/Icons/transparent.gif',
+				title: title,
+				alt: title,
+			}, node.firstChild, imgCb);
 		}
 	},
+
+	/**
+	 * @param {document} doc
+	 * @param {SupporterListType} type
+	 * @param {function(string[]):void} callback
+	 */
 	fetch: function(doc, type, callback) {
 		var TEAMS_PER_PAGE = 200;
 		var teamId = Foxtrick.util.id.getOwnTeamId();
@@ -128,6 +169,7 @@ Foxtrick.modules['SupportersList'] = {
 			tag = 'SupportedTeams';
 		}
 
+		/** @type {string[]} */
 		var ids = [];
 
 		/** @type {CHPPParams} */
@@ -150,8 +192,8 @@ Foxtrick.modules['SupportersList'] = {
 				return;
 
 			var all = sup.getElementsByTagName('TeamId');
-			for (var i = 0; i < all.length; i++)
-				ids.push(all[i].textContent);
+			for (let id of all)
+				ids.push(id.textContent);
 
 			var total = parseInt(sup.getAttribute('TotalItems'), 10);
 			if (total <= TEAMS_PER_PAGE) {
@@ -189,8 +231,8 @@ Foxtrick.modules['SupportersList'] = {
 							continue;
 
 						var all = sup.getElementsByTagName('TeamId');
-						for (var i = 0; i < all.length; i++)
-							ids.push(all[i].textContent);
+						for (let id of all)
+							ids.push(id.textContent);
 					}
 				}
 				callback(ids);
@@ -198,3 +240,5 @@ Foxtrick.modules['SupportersList'] = {
 		});
 	},
 };
+
+/** @typedef {'supported'|'supporters'} SupporterListType */
