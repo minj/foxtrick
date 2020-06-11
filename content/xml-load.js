@@ -22,6 +22,15 @@ Foxtrick.XMLData = {
 	/** @type {Record<number, number>} */
 	countryToLeague: {},
 
+	/** @type {Partial<AboutJSONSchema>} */
+	aboutJSON: {},
+
+	/** @type {Partial<HTCurrencySchema>} */
+	htCurrencyJSON: {},
+
+	/** @type {Partial<WorldDetailsSchema>} */
+	worldDetailsJSON: {},
+
 	/**
 	 * @param {boolean} _ reInit
 	 */
@@ -37,9 +46,12 @@ Foxtrick.XMLData = {
 
 		var leagueList = module.worldDetailsJSON.HattrickData.LeagueList;
 		Foxtrick.forEach(function(league) {
-			module.League[league.LeagueID] = league;
-			if (league.Country.CountryID)
-				module.countryToLeague[league.Country.CountryID] = parseInt(league.LeagueID, 10);
+			let leagueId = parseInt(league.LeagueID, 10);
+			module.League[leagueId] = league;
+			if (league.Country.CountryID) {
+				let countryId = parseInt(league.Country.CountryID, 10);
+				module.countryToLeague[countryId] = leagueId;
+			}
 		}, leagueList);
 	},
 
@@ -65,7 +77,7 @@ Foxtrick.XMLData = {
 	getCountryIdByLeagueId: function(id) {
 		var league = this.League[id];
 		if (league)
-			return league.Country.CountryID || 0;
+			return parseInt(league.Country.CountryID, 10) || 0;
 
 		return 0;
 	},
@@ -80,6 +92,7 @@ Foxtrick.XMLData = {
 	 */
 	getNTNameByLeagueId: function(id) {
 		/* eslint-disable quote-props */
+		/** @type {Record<string, string>} */
 		var NT_BY_COUNTRY = {
 			// 'Al Maghrib': 'Al Maghrib ', // oh yes, there's a space here!
 			'Côte d’Ivoire': 'Côte d\'Ivoire',
@@ -97,5 +110,67 @@ Foxtrick.XMLData = {
 };
 
 /**
- * @typedef {object} LeagueDefinition
+ * @typedef CupDefinition
+ * @prop {string} CupID
+ * @prop {string} CupLeagueLevel
+ * @prop {string} CupLevel
+ * @prop {string} CupLevelIndex
+ * @prop {string} CupName
+ * @prop {string} MatchRound
+ * @prop {string} MatchRoundsLeft
+ * @typedef Countrydefinition
+ * @prop {string} Available
+ * @prop {string} CountryCode
+ * @prop {string} CountryID
+ * @prop {string} CountryName
+ * @prop {string} CurrencyName
+ * @prop {string} CurrencyRate
+ * @prop {string} DateFormat
+ * @prop {string} TimeFormat
+ * @typedef LeagueDefinition
+ * @prop {string} ActiveTeams
+ * @prop {string} ActiveUsers
+ * @prop {string} Continent
+ * @prop {Countrydefinition} Country
+ * @prop {string} CupMatchDate
+ * @prop {CupDefinition[]} Cups
+ * @prop {string} EconomyDate
+ * @prop {string} EnglishName
+ * @prop {string} LeagueID
+ * @prop {string} LeagueName
+ * @prop {string} MatchRound
+ * @prop {string} NationalTeamId
+ * @prop {string} NumberOfLevels
+ * @prop {string} Season
+ * @prop {string} SeasonOffset
+ * @prop {string} SeriesMatchDate
+ * @prop {string} ShortName
+ * @prop {string} TrainingDate
+ * @prop {string} U20TeamId
+ * @prop {string} WaitingUsers
+ * @prop {string} ZoneName
+ * @typedef { { HattrickData: { LeagueList: LeagueDefinition[] } } } WorldDetailsSchema
+ */
+
+/**
+ * @typedef CurrencyDefinition
+ * @prop {string} code
+ * @prop {string} eurorate
+ * @prop {Record<string, string>} leagues
+ * @prop {string} name
+ * @prop {string} symbol
+ * @typedef { { hattrickcurrencies: CurrencyDefinition[] } } HTCurrencySchema
+ */
+
+/**
+ * @typedef { { id: string, href: string } } AboutJSONLink
+ * @typedef { { id?: string, name: string } } AboutJSONPerson
+ * @typedef { { language: string, translators: AboutJSONPerson[] }} AboutJSONTranslation
+ * @typedef AboutJSONSchema
+ * @prop {AboutJSONLink[]} links
+ * @prop {AboutJSONPerson[]} maintainers
+ * @prop {AboutJSONPerson[]} developers
+ * @prop {AboutJSONPerson[]} designers
+ * @prop {AboutJSONPerson[]} donators
+ * @prop {AboutJSONTranslation[]} translations
  */
