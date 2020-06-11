@@ -83,14 +83,16 @@ Foxtrick.util.modules.getActive = function(doc) {
 		}
 	}
 
+	/** @type {FTModule[]} */
 	let modules = [];
 	for (let mod of Object.values(Foxtrick.modules)) {
-		let m = /** @type {FTAppModuleMixin} */ (mod);
+		let m = /** @type {FTModule} */ (mod);
 
 		if (!Foxtrick.Prefs.isModuleEnabled(m))
 			continue;
 
 		for (let mPage of m.PAGES) {
+			// @ts-ignore
 			if (typeof Foxtrick.htPages[mPage] === 'undefined') {
 				let msg = `${m.MODULE_NAME} wants to run on an unknown page ${mPage}`;
 				Foxtrick.error(msg);
@@ -98,6 +100,7 @@ Foxtrick.util.modules.getActive = function(doc) {
 				continue;
 			}
 
+			// @ts-ignore
 			if (pages[mPage])
 				modules.push(m);
 		}
@@ -177,10 +180,10 @@ Foxtrick.util.modules.getActive = function(doc) {
  */
 
 /**
- // eslint-disable-next-line max-len
- * @typedef {FTCoreModuleMixin & FTAppModuleMixin & FTBackgroundModuleMixin & FTLinkModuleMixin} FTModule
+ * @typedef {keyof Foxtrick.htPages} PAGE
  */
 
+/* eslint-disable max-len */
 /**
- * @typedef {keyof Foxtrick.htPages} PAGE
+ * @typedef {FTCoreModuleMixin & FTAppModuleMixin & FTBackgroundModuleMixin & FTLinkModuleMixin} FTModule
  */

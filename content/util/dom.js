@@ -50,9 +50,9 @@ Foxtrick.createSVG = function(doc, type) {
  * of DOM created and/or modified by Foxtrick.
  * Returns the element.
  * @template {keyof HTMLElementTagNameMap} K
- * @param  {document}                      doc
- * @param  {object}                        module
- * @param  {K}                             type
+ * @param  {document} doc
+ * @param  {any}      module // TODO module type
+ * @param  {K}        type
  * @return {HTMLElementTagNameMap[K]}
  */
 // eslint-disable-next-line consistent-this
@@ -75,9 +75,9 @@ Foxtrick.createFeaturedElement = function(doc, module, type) {
 /**
  * Insert a new row in a table with Foxtrick feature highlight.
  * Returns the row.
- * @param  {HTMLTableElement}    table
- * @param  {object}              module
- * @param  {number}              index
+ * @param  {HTMLTableElement} table
+ * @param  {any}              module // TODO module type
+ * @param  {number}           index
  * @return {HTMLTableRowElement}
  */
 // eslint-disable-next-line consistent-this
@@ -95,9 +95,9 @@ Foxtrick.insertFeaturedRow = function(table, module, index) {
 /**
  * Insert a new cell in a row with Foxtrick feature highlight.
  * Returns the cell.
- * @param  {HTMLTableRowElement}      row
- * @param  {object}                   module
- * @param  {number}                   index
+ * @param  {HTMLTableRowElement} row
+ * @param  {any}                 module // TODO module type
+ * @param  {number}              index
  * @return {HTMLTableDataCellElement}
  */
 // eslint-disable-next-line consistent-this
@@ -115,8 +115,8 @@ Foxtrick.insertFeaturedCell = function(row, module, index) {
 /**
  * Enable Foxtrick feature highlight on an existing element
  * @template {HTMLElement} E
- * @param  {E} node
- * @param  {object}      module
+ * @param  {E}   node
+ * @param  {any} module // TODO module type
  * @return {E}
  */
 // eslint-disable-next-line consistent-this
@@ -186,7 +186,7 @@ Foxtrick.removeAttributeValue = function(el, attribute, value) {
  * Also supports style/dataset and on* listeners.
  *
  * @param {HTMLElement} el
- * @param {object}      attributes
+ * @param {any}         attributes // TODO constrain
  */
 Foxtrick.setAttributes = function(el, attributes) {
 	const ELEMENT_PROPERTIES = [
@@ -200,8 +200,10 @@ Foxtrick.setAttributes = function(el, attributes) {
 
 	for (let [attr, val] of Object.entries(attributes)) {
 		if ((attr == 'dataset' || attr == 'style') && typeof val == 'object') {
-			for (let [item, subVal] of Object.entries(val))
+			for (let [item, subVal] of Object.entries(val)) {
+				// @ts-ignore
 				el[attr][item] = subVal;
+			}
 		}
 		else if (attr.startsWith('on') && typeof val == 'function') {
 			let type = /** @type {keyof HTMLElementEventMap} */ (attr.slice(2).toLowerCase());
@@ -214,6 +216,7 @@ Foxtrick.setAttributes = function(el, attributes) {
 				Foxtrick.listen(el, type, val);
 		}
 		else if (Foxtrick.has(ELEMENT_PROPERTIES, attr)) {
+			// @ts-ignore
 			el[attr] = val;
 		}
 		else if (attr in ATTRIBUTE_MAP) {
@@ -608,8 +611,7 @@ Foxtrick.addCopying = function(el, copy, mime) {
 Foxtrick.observe = function(node, shouldStop, options) {
 	/** @type {MutationObserverInit} */
 	let opts = { childList: true, subtree: true };
-	for (let opt in options)
-		opts[opt] = options[opt];
+	Object.assign(opts, options);
 
 	/**
 	 * @this {MutationObserver}
@@ -825,10 +827,10 @@ Foxtrick.getDataURIText = function(str) {
  * in some extension architectures.
  * Continued to be used with forward compatibility in mind.
  * Callback receives the created image.
- * @param {document}                        doc
- * @param {Node}                            parent
- * @param {object}                          features       a map of image attributes
- * @param {Node}                            [insertBefore] next sibling
+ * @param {document} doc
+ * @param {Node}     parent
+ * @param {any}      features       a map of image attributes // TODO constrain
+ * @param {Node}     [insertBefore] next sibling
  * @param {function(HTMLImageElement):void} [callback]
  */
 Foxtrick.addImage = function(doc, parent, features, insertBefore, callback) {
@@ -854,7 +856,7 @@ Foxtrick.addImage = function(doc, parent, features, insertBefore, callback) {
  *
  * @param  {Node}   parent
  * @param  {number} specNum    {Integer}
- * @param  {object} [features] image attributes
+ * @param  {any}    [features] image attributes // TODO constrain
  * @return {Promise<HTMLImageElement>}
  */
 Foxtrick.addSpecialty = function(parent, specNum, features) {
@@ -863,8 +865,10 @@ Foxtrick.addSpecialty = function(parent, specNum, features) {
 	let specialtyName = Foxtrick.L10n.getSpecialtyFromNumber(specNum);
 	let specialtyUrl = Foxtrick.getSpecialtyImagePathFromNumber(specNum);
 
+	/** @type {Node} */
 	let insertBefore = null;
 	if (Foxtrick.hasProp(features, 'insertBefore')) {
+		// @ts-ignore
 		insertBefore = features.insertBefore;
 		delete features.insertBefore;
 	}
@@ -1088,6 +1092,8 @@ Foxtrick.renderPre = function(parent) {
 	if (testRE.test(parent.textContent)) {
 		// valid pre found
 		let allNodes = Foxtrick.getNodes(parent);
+
+		/** @type {Node[]} */
 		let nodes = [];
 
 		/** @type {HTMLPreElement} */
@@ -1276,6 +1282,7 @@ Foxtrick.makeModal = function(doc, title, content, buttons) {
 		contentDiv.appendChild(cont);
 	}
 
+	// TODO convert to grid
 	{
 		let btnWrapper = doc.createElement('div');
 		Foxtrick.addClass(btnWrapper, 'ft-dialog-btnWrapper');

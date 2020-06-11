@@ -374,11 +374,16 @@ Foxtrick.Predict.contributionFactors = function(options) {
 
 /**
  * Get effective skill levels based on player attributes.
+ *
  * Skill map must be {keeper, defending, playmaking, winger, passing, scoring, setPieces}.
+ *
  * Attributes map must be:
  * {form, stamina, ?staminaPred, experience, loyalty, motherClubBonus, bruised, transferListed}
+ *
  * Options is {form, stamina, experience, loyalty, bruised: Boolean} (optional)
+ *
  * By default options is assembled from prefs or needs to be fully overridden otherwise.
+ *
  *
  * Returns effective skill map.
  *
@@ -395,26 +400,31 @@ Foxtrick.Predict.effectiveSkills = function(skills, attrs, options) {
 	var ret = Object.assign({}, skills);
 
 	// Source [post=16376110.4]
-	var bonus, skill;
 	if (opts.experience && attrs.experience) { // don't do log 0
-		bonus = Math.log10(attrs.experience) * 4.0 / 3.0;
-		for (let skill in ret)
+		let bonus = Math.log10(attrs.experience) * 4.0 / 3.0;
+		for (let skill in ret) {
+			// @ts-ignore
 			ret[skill] += bonus;
+		}
 	}
 
 	let loyalty = attrs.loyalty;
 	let mcb = !!attrs.motherClubBonus;
 	let tl = attrs.transferListed; // loyalty can be undefined in transfer pages
 	if (opts.loyalty && typeof loyalty !== 'undefined' && !tl) {
-		bonus = Foxtrick.Predict.loyaltyBonus(loyalty, mcb);
-		for (skill in ret)
+		let bonus = Foxtrick.Predict.loyaltyBonus(loyalty, mcb);
+		for (let skill in ret) {
+			// @ts-ignore
 			ret[skill] += bonus;
+		}
 	}
 
 	if (opts.stamina) {
 		var energy = Foxtrick.Predict.averageEnergy90(attrs.staminaPred || attrs.stamina);
-		for (skill in ret)
+		for (let skill in ret) {
+			// @ts-ignore
 			ret[skill] *= energy;
+		}
 	}
 
 	/**
@@ -434,14 +444,18 @@ Foxtrick.Predict.effectiveSkills = function(skills, attrs, options) {
 			0.967,
 			1,
 		];
-		for (skill in ret)
+		for (let skill in ret) {
+			// @ts-ignore
 			ret[skill] *= formInfls[attrs.form];
+		}
 	}
 
 	// source: http://www.hattrickinfo.com/en/training/284/#281-
 	if (opts.bruised && attrs.bruised) {
-		for (skill in ret)
+		for (let skill in ret) {
+			// @ts-ignore
 			ret[skill] *= 0.95;
+		}
 	}
 
 	return ret;

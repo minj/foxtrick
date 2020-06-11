@@ -169,6 +169,7 @@ Foxtrick.Pages.Player.getTsi = function(doc) {
  * @return {number?}    {Int?}
  */
 Foxtrick.Pages.Player.getSkillLevel = function(el) {
+	/** @type {HTMLAnchorElement} */
 	let link = el.querySelector('.skill');
 	let skillBar = el.querySelector('.ht-bar');
 	if (link)
@@ -802,6 +803,8 @@ Foxtrick.Pages.Player.parseYouthSkills = function(table) {
 		for (let [idx, sType] of order.entries()) {
 			let row = rows[idx];
 			let [textCell, skillCell, numberCell] = row.cells;
+
+			/** @type {YouthSkill} */
 			let skill = { current: 0, max: 0, maxed: false };
 
 			let imgs = skillCell.getElementsByTagName('img');
@@ -1064,7 +1067,9 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerId, callback) {
 				return void 0;
 			};
 
-			var player = { id: playerId };
+			/** @type {Player} */
+			var player = {};
+			player.id = playerId;
 			player.skills = {};
 
 			var skills = [
@@ -1077,8 +1082,10 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerId, callback) {
 				'WingerSkill',
 			];
 			Foxtrick.forEach(addProperty(player.skills, num), skills);
-			for (let skill in player.skills)
+			for (let skill in player.skills) {
+				// @ts-ignore
 				player[skill] = player.skills[skill];
+			}
 
 			var optionalNums = [
 				'Caps',
@@ -1222,15 +1229,22 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerId, callback) {
 
 /**
  * Get position contributions from skill map and player's attributes map
+ *
  * Skill map must be {keeper, defending, playmaking, winger, passing, scoring, setPieces}.
+ *
  * Attributes map must be:
  * {form, stamina, ?staminaPred, experience, loyalty, motherClubBonus, bruised,
  * transferListed, specialtyNumber}.
+ *
  * Options is {form, stamina, experience, loyalty, bruised, normalise: boolean} (optional)
+ *
  * Params is {CTR_VS_WG, WBD_VS_CD, WO_VS_FW, MF_VS_ATT, DF_VS_ATT: number} (optional)
+ *
+ *
  * By default options and params are assembled from prefs or need to be fully overridden otherwise.
  *
  * Returns position contribution map.
+ *
  * @param  {PlayerSkills}             playerSkills skill map
  * @param  {PlayerProps}              playerAttrs  attributes map
  * @param  {PlayerContributionOpts}   [options]    options map
@@ -1279,7 +1293,7 @@ Foxtrick.Pages.Player.getContributions = function(playerSkills, playerAttrs, opt
 
 /**
  * @typedef BestPlayerPosition
- * @prop {string} position
+ * @prop {PlayerPositionCode} position
  * @prop {number} value
  */
 
@@ -1291,11 +1305,15 @@ Foxtrick.Pages.Player.getContributions = function(playerSkills, playerAttrs, opt
  * @return {BestPlayerPosition}              {position: string, value: number}
  */
 Foxtrick.Pages.Player.getBestPosition = function(contributions) {
-	var max = { position: '', value: 0 };
-	for (let name in contributions) {
-		if (contributions[name] > max.value) {
-			max.position = name;
-			max.value = contributions[name];
+	/**
+	 * @type {BestPlayerPosition}
+	 */
+	var max = { position: null, value: 0 };
+	for (let name of Object.keys(contributions)) {
+		let key = /** @type {PlayerPositionCode} */ (name);
+		if (contributions[key] > max.value) {
+			max.position = key;
+			max.value = contributions[key];
 		}
 	}
 	return max;
@@ -1315,6 +1333,7 @@ Foxtrick.Pages.Player.getBestPosition = function(contributions) {
  * @prop {string} max
  */
 
+// TODO Record?
 /**
  * @typedef {SkillMap<YouthSkill>} YouthSkills
  * @typedef {PlayerSkills|YouthSkills} AnySkills

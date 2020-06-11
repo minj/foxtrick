@@ -6,10 +6,11 @@
 
 'use strict';
 
-Foxtrick.modules['PlayerBirthday'] = {
+Foxtrick.modules.PlayerBirthday = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES: ['allPlayers', 'youthPlayers'],
 
+	/** @param {document} doc */
 	run: function(doc) {
 		var DAYS_IN_WEEK = Foxtrick.util.time.DAYS_IN_WEEK;
 
@@ -20,24 +21,29 @@ Foxtrick.modules['PlayerBirthday'] = {
 
 		var playerList = Foxtrick.modules.Core.getPlayerList();
 
-		for (var i = 0; i < playerList.length; ++i) {
-			if (typeof playerList[i].age !== 'undefined') {
-				if (playerList[i].age.days === 0) {
-					birthdayToday.push(playerList[i]);
-				}
-				else if (playerList[i].age.days > 105) {
-					birthdayFuture.push(playerList[i]);
-				}
-				else if (playerList[i].age.days < DAYS_IN_WEEK) {
-					birthdayPast.push(playerList[i]);
-				}
+		for (let player of playerList) {
+			if (typeof player.age !== 'undefined') {
+				if (player.age.days === 0)
+					birthdayToday.push(player);
+				// eslint-disable-next-line no-magic-numbers
+				else if (player.age.days > 105)
+					birthdayFuture.push(player);
+				else if (player.age.days < DAYS_IN_WEEK)
+					birthdayPast.push(player);
 			}
 		}
 
 		// sorting of arrays according to days and then years
+		/**
+		 * @param  {Player} a
+		 * @param  {Player} b
+		 * @return {number}
+		 */
 		var sort = function(a, b) {
 			var maxYears = 10000;
-			return a.age.days * maxYears + a.age.years - (b.age.days * maxYears + b.age.years);
+			let aDays = a.age.days * maxYears + a.age.years;
+			let bDays = b.age.days * maxYears + b.age.years;
+			return aDays - bDays;
 		};
 		birthdayToday.sort(sort);
 		birthdayFuture.sort(sort);
@@ -46,25 +52,31 @@ Foxtrick.modules['PlayerBirthday'] = {
 		var parentDiv = Foxtrick.createFeaturedElement(doc, this, 'div');
 		parentDiv.id = 'foxtrick_addactionsbox_parentDiv';
 
+		/**
+		 * @param {HTMLElement} parent
+		 * @param {string} header
+		 * @param {Player[]} players
+		 */
 		var addType = function(parent, header, players) {
 			if (players == null || players.length === 0)
 				return;
 
-			var div = doc.createElement('div');
-			var caption = doc.createElement('h5');
-			var captionText = doc.createTextNode(header);
 			var list = doc.createElement('ul');
+
+			let div = doc.createElement('div');
+			let caption = doc.createElement('h5');
+			let captionText = doc.createTextNode(header);
 			parent.appendChild(div);
 			div.appendChild(caption);
 			div.appendChild(list);
 			caption.appendChild(captionText);
 
-			for (var i = 0; i < players.length; ++i) {
-				var item = doc.createElement('li');
-				var player = Foxtrick.cloneElement(players[i].nameLink, true);
-				var age = doc.createTextNode(' ' + players[i].ageText);
+			for (let player of players) {
+				let item = doc.createElement('li');
+				let playerLink = Foxtrick.cloneElement(player.nameLink, true);
+				let age = doc.createTextNode(' ' + player.ageText);
 				list.appendChild(item);
-				item.appendChild(player);
+				item.appendChild(playerLink);
 				item.appendChild(age);
 			}
 		};

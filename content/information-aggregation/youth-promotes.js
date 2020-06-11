@@ -1,17 +1,18 @@
 /**
  * youth-promotes.js
  * Shows days to promote a youth player
- * @author: smates, ryanli
+ * @author: smates, ryanli, LA-MJ
  */
 
 'use strict';
 
-Foxtrick.modules['YouthPromotes'] = {
+Foxtrick.modules.YouthPromotes = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES: ['youthPlayerDetails'],
 
 	/** @param {document} doc */
 	run: function(doc) {
+		const module = this;
 		if (Foxtrick.Pages.YouthPlayer.wasFired(doc))
 			return;
 
@@ -26,7 +27,7 @@ Foxtrick.modules['YouthPromotes'] = {
 		let birthdayCell = doc.querySelector('#mainBody div.byline');
 
 		let promotion = doc.createDocumentFragment();
-		let promotionCounter = Foxtrick.createFeaturedElement(doc, this, 'p');
+		let promotionCounter = Foxtrick.createFeaturedElement(doc, module, 'p');
 		promotion.appendChild(promotionCounter);
 
 		if (promoDate > now) { // you have to wait to promote
@@ -41,17 +42,17 @@ Foxtrick.modules['YouthPromotes'] = {
 
 			let years = Foxtrick.Math.div(days, DAYS_IN_SEASON);
 			let yearsL10n = Foxtrick.L10n.getString('datetimestrings.years', years);
-			let yearsString = years + ' ' + yearsL10n;
+			let yearsString = `${years} ${yearsL10n}`;
 
 			days %= DAYS_IN_SEASON;
 			let daysL10n = Foxtrick.L10n.getString('datetimestrings.days', days);
-			let daysString = days + ' ' + daysL10n;
+			let daysString = `${days} ${daysL10n}`;
 
 			let yearsDays = Foxtrick.L10n.getString('datetimestrings.years_and_days');
 			yearsDays = yearsDays.replace('%1', yearsString).replace('%2', daysString);
 			let old = Foxtrick.L10n.getString('YouthPromotes.age').replace('%1', yearsDays);
 
-			let promotionAge = Foxtrick.createFeaturedElement(doc, this, 'p');
+			let promotionAge = Foxtrick.createFeaturedElement(doc, module, 'p');
 			promotionAge.textContent = old;
 			promotion.appendChild(promotionAge);
 		}

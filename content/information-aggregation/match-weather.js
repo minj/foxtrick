@@ -149,7 +149,7 @@ Foxtrick.modules['MatchWeather'] = {
 			var leagueId = xml.num('LeagueID');
 			data.country = Foxtrick.L10n.getCountryNameEnglish(leagueId);
 
-			if (Foxtrick.Prefs.isModuleOptionEnabled('MatchWeather', 'Irl')) {
+			if (Foxtrick.Prefs.isModuleOptionEnabled(module, 'Irl')) {
 				var weather = { 1: 3, 2: 2, 3: 2, 4: 1, 9: 0, 10: 1, 11: 0, 13: 0, 50: 1 };
 
 				var url = 'http://api.openweathermap.org/data/2.5/forecast/daily?q=' +

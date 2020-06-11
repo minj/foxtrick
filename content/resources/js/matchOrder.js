@@ -41,9 +41,9 @@
 		];
 		/* eslint-enable no-magic-numbers */
 
-		for (var i = 0; i < swaps.length; ++i) {
-			var pos1 = ht.field.positions[swaps[i][0]];
-			var pos2 = ht.field.positions[swaps[i][1]];
+		for (let [first, second] of swaps) {
+			var pos1 = ht.field.positions[first];
+			var pos2 = ht.field.positions[second];
 
 			var player1 = null, player2 = null, tactic1, tactic2;
 

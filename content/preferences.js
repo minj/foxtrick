@@ -1,6 +1,7 @@
 /* eslint-disable consistent-this */
 /* eslint-disable func-style */
 /* eslint-disable no-implicit-globals */
+
 'use strict';
 
 /**
@@ -13,6 +14,7 @@
 
 // page IDs of last page are stored in array PAGEIDS
 var PAGEIDS = [];
+
 // get page IDs in Foxtrick.htPages that last page matches and store them in PAGEIDS
 function getPageIds() {
 	var lastPage = Foxtrick.getLastPage();
@@ -1446,16 +1448,19 @@ function initChangesTab() {
 
 /**
  * Setup help tab and FAQ layout
+ * @return {Promise<void>}
  */
 function initHelpTab() {
 	// external links
 	Foxtrick.load(Foxtrick.InternalPath + 'data/foxtrick_about.json')
 		.then(function(aboutJSON) {
 
+			/** @type {AboutJSONSchema} */
+			// @ts-ignore
 			var aboutData = JSON.parse(aboutJSON);
 			var category = aboutData.links;
 
-			Foxtrick.map(function(a) {
+			Foxtrick.forEach(function(a) {
 				var item = document.createElement('li');
 				$('#external-links-list').append(item);
 
@@ -1463,6 +1468,7 @@ function initHelpTab() {
 				item.appendChild(link);
 				link.textContent = Foxtrick.L10n.getString('link.' + a.id);
 				link.href = a.href;
+				link.relList.add('noopener');
 				link.target = '_blank';
 			}, category);
 
@@ -1549,6 +1555,7 @@ function initHelpTab() {
 
 /**
  * Setup about page and contributor layout
+ * @return {Promise<void>}
  */
 function initAboutTab() {
 	var addItem = function(person, list) {
@@ -1572,6 +1579,8 @@ function initAboutTab() {
 	return Foxtrick.load(Foxtrick.InternalPath + 'data/foxtrick_about.json')
 		.then(function(aboutJSON) {
 
+			/** @type {AboutJSONSchema} */
+			// @ts-ignore
 			var aboutData = JSON.parse(aboutJSON);
 
 			$('.about-list').each(function() {
@@ -1579,12 +1588,17 @@ function initAboutTab() {
 				var $container = $(this);
 				var type = $container.attr('path');
 
+				/** @type {AboutJSONPerson[]|AboutJSONTranslation[]} */
+				// @ts-ignore
 				var category = aboutData[type];
 				Foxtrick.map(function(data) {
 					if (type === 'translations') {
+						/** @type {unknown} */
+						let foo = data;
+						let trData = /** @type {AboutJSONTranslation}*/ (foo);
 						var item = document.createElement('li');
 						var header = document.createElement('h4');
-						header.textContent = data.language;
+						header.textContent = String(trData.language);
 						item.appendChild(header);
 
 						var list = document.createElement('ul');
@@ -1592,13 +1606,15 @@ function initAboutTab() {
 
 						Foxtrick.map(function(translator) {
 							addItem(translator, $(list));
-						}, data.translators);
+						}, trData.translators);
 
 						$container.append(item);
 					}
 					else {
 						addItem(data, $container);
 					}
+
+				// @ts-ignore
 				}, category);
 
 			});
@@ -1609,6 +1625,7 @@ function initAboutTab() {
 
 /**
  * Setup all tabs
+ * @return {Promise<void[]>}
  */
 function initTabs() {
 	// attach each tab with corresponding pane

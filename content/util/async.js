@@ -54,13 +54,14 @@ Foxtrick.isThenable = obj => Foxtrick.hasProp(obj, 'then');
  * of the Promise returned by the promisory
  * or rejects with Error(Foxtrick.TIMEOUT_ERROR).
  *
- * @param  {function} promisory {Promise|function(): Promise}
- * @param  {number}   limit     {Integer}
- * @return {Promise}
+ * @template T
+ * @param  {Promise<T>|function():T|Promise<T>} promisory
+ * @param  {number}                             limit     miliseconds
+ * @return {Promise<T>}
  */
 Foxtrick.timeout = (promisory, limit) => Promise.race([
 	Foxtrick.isThenable(promisory) ? promisory : Promise.resolve(promisory()),
-	new Promise(function timeoutReject(resolve, reject) {
+	new Promise(function timeoutReject(_, reject) {
 		setTimeout(reject, limit, new Error(Foxtrick.TIMEOUT_ERROR));
 	}),
 ]);
@@ -68,31 +69,39 @@ Foxtrick.timeout = (promisory, limit) => Promise.race([
 /**
  * Return a Promise that fulfills after a purposeful time delay (ms)
  *
- * @param  {number}  time miliseconds
- * @param  {object}   val
- * @return {Promise}
+ * @template T
+ * @param  {number}     time miliseconds
+ * @param  {T}          val
+ * @return {Promise<T>}
  */
 Foxtrick.delay = (time, val) => new Promise(function delayFinish(fulfill) {
 	setTimeout(fulfill, time, val);
 });
 
+// eslint-disable-next-line valid-jsdoc
 /**
  * Create a handler to catch errors at the end of a promise chain.
  *
  * Takes a module object or some other tag for logging.
  *
- * @param  {object}   module {object}
- * @return {function(any):any}        {function(Error)}
+ * @param  {{ MODULE_NAME: string } | string} module {object}
+ * @return {function(any):void}
  */
-Foxtrick.catch = module => (e) => {
+Foxtrick.catch = module => function(e) {
+	// @ts-ignore
 	if (e === Foxtrick.SWALLOWED_ERROR ||
-		e && e.message && e.message === Foxtrick.SWALLOWED_ERROR)
-		return;
 
+		// @ts-ignore
+		e && e.message && e.message === Foxtrick.SWALLOWED_ERROR)
+		return e;
+
+	// @ts-ignore
 	let what = module && module.MODULE_NAME || module;
 	Foxtrick.log('Uncaught error in callback for', what, e);
+	return e;
 };
 
+// eslint-disable-next-line valid-jsdoc
 /**
  * Run an additional step regardless of promise resolution status.
  *
@@ -101,9 +110,10 @@ Foxtrick.catch = module => (e) => {
  *
  * then is {function(result|reason): ?Promise}.
  *
- * @param  {Promise}  promise
- * @param  {function(any):any} then
- * @return {Promise}
+ * @template T
+ * @param  {Promise<T>}             promise
+ * @param  {function(T|Error):void} then
+ * @return {Promise<T>}
  */
 Foxtrick.finally = async (promise, then) => {
 	let result, reason;
@@ -129,14 +139,17 @@ Foxtrick.finally = async (promise, then) => {
  * Returns a Promise that either fulfills when the last promise fulfills
  * or rejects and stops on first failure.
  *
- * @param  {Array}   promisoryList {Array.<function(): Promise>}
- * @return {Promise}
+ * @template T
+ * @param  {(function(T):T|Promise<T>)[]} promisoryList
+ * @return {Promise<T>}
  */
 Foxtrick.promiseChain = (promisoryList) => {
 	const ERROR_UNCALLABLE_PROMISORY =
 		'Promisory must be a function that returns a Promise or a value. {} given.';
 
-	var chain = Promise.resolve();
+	/** @type {unknown} */
+	var p = Promise.resolve();
+	var chain = /** @type {Promise<T>} */ (p);
 
 	for (let promisory of promisoryList) {
 		// if (Foxtrick.isThenable(promisory))

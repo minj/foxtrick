@@ -99,7 +99,7 @@ Foxtrick.modules.HistoryStats = {
 				if (!date)
 					return false;
 
-				let season = Foxtrick.util.time.gregorianToHT(date).season;
+				let { season } = Foxtrick.util.time.gregorianToHT(date);
 
 				/** @type {HTMLTableCellElement} */
 				let cell = feedItem.querySelector('td.float_left');
@@ -180,7 +180,7 @@ Foxtrick.modules.HistoryStats = {
 			if (!date)
 				continue;
 
-			let season = Foxtrick.util.time.gregorianToHT(date).season;
+			let season = { Foxtrick.util.time.gregorianToHT(date) };
 
 			let links = Foxtrick.toArray(event.querySelectorAll('a'));
 			for (let link of links) {

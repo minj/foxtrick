@@ -6,13 +6,15 @@
 
 'use strict';
 
-Foxtrick.modules['AddPromotionReminder'] = {
+Foxtrick.modules.AddPromotionReminder = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES: ['youthPlayerDetails', 'reminders'],
 	CSS: Foxtrick.InternalPath + 'resources/css/add-promotion-reminder.css',
 
 	/** @param {document} doc */
 	run: function(doc) {
+		const module = this;
+
 		let sendDate = Foxtrick.getUrlParam(doc.location.href, 'sendDate');
 		let isReminders = Foxtrick.isPage(doc, 'reminders');
 		let isYouthPlayerDetails = Foxtrick.isPage(doc, 'youthPlayerDetails');
@@ -44,7 +46,7 @@ Foxtrick.modules['AddPromotionReminder'] = {
 			if (!button)
 				return;
 
-			Foxtrick.makeFeaturedElement(button, this);
+			Foxtrick.makeFeaturedElement(button, module);
 			button.id = 'ft-promotion-button';
 			Foxtrick.onClick(button, function() {
 				var newURL = new URL(reminderlink, doc.location.origin);

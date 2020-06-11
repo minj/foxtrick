@@ -33,11 +33,11 @@ if (Foxtrick.context == 'background') {
 			/** @type {IDBStore} */
 			const STORE = {
 				put: function(key, value, success, failure) {
+					let k = PREFIX + key;
 
 					/** @type {Promise<string>} */
 					let promise = Promise.resolve().then(() => {
 
-						let k = PREFIX + key;
 						let val = JSON.stringify(value);
 
 						window.localStorage.setItem(k, val);
@@ -51,7 +51,7 @@ if (Foxtrick.context == 'background') {
 						return promise;
 
 					// log any errors otherwise
-					return promise.catch(CLEANUP);
+					return promise.catch(CLEANUP).then(() => k);
 
 				},
 
@@ -186,6 +186,7 @@ if (Foxtrick.context == 'background') {
 			if (indexedDB !== null) {
 
 				/** @type {IDBStore} */
+				// @ts-ignore
 				const STORE = new Foxtrick.IDBStore({
 					storeName: 'localStore',
 					storePrefix: 'Foxtrick',
@@ -333,7 +334,7 @@ Foxtrick.storage.get = function(key) {
  * Get a promise for when a certain storage branch is deleted
  *
  * @param  {string}  branch
- * @return {Promise}
+ * @return {Promise<void>}
  */
 Foxtrick.storage.deleteBranch = function(branch) {
 
@@ -357,11 +358,7 @@ Foxtrick.storage.deleteBranch = function(branch) {
 	return Foxtrick.localStore.then(function(store) {
 
 		return new Promise(function(fulfill, reject) {
-			let br;
-			if (branch == null)
-				br = '';
-
-			br = branch.toString();
+			let br = branch == null ? '' : branch.toString();
 
 			/** @type {IDBStore.IterateOpts} */
 			var options = {
@@ -452,7 +449,7 @@ Foxtrick.localDeleteBranch = function(branch) {
 /* eslint-disable max-len */
 /**
  * @typedef IDBStore
- * @prop {(key:string, success:(val:any)=>any, failure:((err:any)=>void)|null)=>Promise} get
+ * @prop {(key:string, success:(val:any)=>any, failure:((err:any)=>void)|null)=>Promise<any>} get
  * @prop {(key:string, val:any, success:(key:string)=>any, failure:((err:any)=>void)|null)=>Promise<string>} put
  * @prop {(callback:IDBStore.IterateCallback, options:IDBStore.IterateOpts)=>void} iterate
  * @prop {(options:IDBStore.KeyRangeOpts)=>IDBStore.KeyRange} makeKeyRange

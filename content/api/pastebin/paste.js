@@ -2,6 +2,7 @@
 
 /* eslint-disable */
 if (!this.Foxtrick)
+	// @ts-ignore
 	var Foxtrick = {};
 /* eslint-enable */
 
@@ -23,7 +24,9 @@ if (!Foxtrick.api.pastebin)
  * @param {function} [failure]  function to execute (optional)
  * @param {function} [finalize] function to execute (optional)
  */
+// TODO promisify
 Foxtrick.api.pastebin.paste = function(callback, name, text, type, failure, finalize) {
+	/* eslint-disable camelcase */
 	var params = {
 		api_option: 'paste',
 		//api_user_key: this.api_user_key,
@@ -34,6 +37,7 @@ Foxtrick.api.pastebin.paste = function(callback, name, text, type, failure, fina
 		api_paste_name: encodeURIComponent(name),
 		api_paste_code: encodeURIComponent(text),
 	};
+	/* eslint-enable camelcase */
 
 	Foxtrick.api.pastebin._generic(params.api_option, this.api_url, callback, params,
 	                               failure, finalize);

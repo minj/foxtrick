@@ -114,13 +114,9 @@ Foxtrick.modules['PlayerFilters'] = {
 				// remove 'addFilterOptions'
 				filterSelect.removeChild(filterSelect.getElementsByTagName('option')[1]);
 
-				var lastMatch = new Date(0);
-				for (var i = 0; i < playerList.length; ++i) {
-					var matchDate = playerList[i].lastMatchDate;
 
-					if (matchDate && matchDate > lastMatch)
-						lastMatch = matchDate;
-				}
+				let mDates = playerList.map(p => p.lastMatchDate).filter(Boolean);
+				var lastMatch = new Date(Math.max(0, ...mDates.map(d => d.valueOf())));
 
 				var specialties = {};
 				var specialtyCount = 0;
@@ -316,14 +312,15 @@ Foxtrick.modules['PlayerFilters'] = {
 							Foxtrick.log('No XML in batchRetrieve', batchArgs[i], errorText);
 							return;
 						}
-						var TeamID = xml.num('TeamID');
-						var IsBot = xml.bool('IsBot');
+						var teamId = xml.num('TeamID');
+						var isBot = xml.bool('IsBot');
 
-						if (!IsBot) {
+						if (!isBot) {
 							// update playerInfo
 							Foxtrick.forEach(function(div) {
+								// TODO test
 								var thisTeamId = Foxtrick.util.id.findTeamId(div);
-								if (thisTeamId == TeamID)
+								if (thisTeamId == teamId)
 									div.setAttribute('active', 'true');
 
 							}, doc.getElementsByClassName('playerInfo'));
@@ -333,7 +330,7 @@ Foxtrick.modules['PlayerFilters'] = {
 								var rows = Foxtrick.toArray(table.rows).slice(1); // skip header
 								Foxtrick.forEach(function(row) {
 									var thisTeamId = Foxtrick.util.id.findTeamId(row);
-									if (TeamID == thisTeamId)
+									if (teamId == thisTeamId)
 										row.setAttribute('active', 'true');
 
 								}, rows);
@@ -402,6 +399,11 @@ Foxtrick.modules['PlayerFilters'] = {
 			var compType = filterOptions.value;
 			var comp = COMPARE[compType];
 
+			/**
+			 * @param  {HTMLElement} elem
+			 * @param  {Player} player
+			 * @return {boolean}
+			 */
 			var isVisible = function(elem, player) {
 				if (filter == 'all' || attribute == 'all')
 					return true;

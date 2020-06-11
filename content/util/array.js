@@ -248,6 +248,21 @@ Foxtrick.unique = function(arrayLike) {
 };
 
 /**
+  * Zips an arbitrary number of arrays
+ * @template {any} T
+ * @template {ArrayLike<T>[]} A
+ * @param  {A} arrayLikes array-likes
+ * @return {IterableIterator<T[]>}
+ */
+Foxtrick.zip = (...arrayLikes) => (function*(arrayLikes) {
+	let len = Math.min(...arrayLikes.map(a => a.length));
+
+	for (let i = 0; i < len; i++)
+		yield arrayLikes.map(a => a[i]);
+
+})(arrayLikes);
+
+/**
  * Python's range implementation.
  *
  * @param  {number}                   start

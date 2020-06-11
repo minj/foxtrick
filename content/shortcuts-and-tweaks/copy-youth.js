@@ -254,8 +254,7 @@ Foxtrick.modules.CopyYouth = {
 				var sendScoutCallToHY = async function() {
 					// assemble param string
 					let params = 'scoutcall=' + encodeURIComponent(reportNode.innerHTML);
-					params = params + '&lang=' +
-						Foxtrick.modules['ReadHtPrefs'].readLanguageFromMetaTag(doc);
+					params += `&lang=${Foxtrick.modules.ReadHtPrefs.readLanguageFromMetaTag(doc)}`;
 					let ok = 'module.CopyYouth.AutoSendRejectedToHY.success';
 					ok = Foxtrick.L10n.getString(ok);
 
@@ -398,10 +397,9 @@ Foxtrick.modules.CopyYouth = {
 			}
 		};
 
-		let changeBtn = Foxtrick.getButton(doc, 'ChangeTraining');
-
 		/** @type {NodeListOf<HTMLSelectElement>} */
 		var training = doc.querySelectorAll('#mainBody table.form select');
+		let changeBtn = Foxtrick.getButton(doc, 'ChangeTraining');
 		if (!changeBtn || training.length != 2)
 			return;
 

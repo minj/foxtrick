@@ -280,10 +280,13 @@ Foxtrick.modules.Core = {
 
 			let teamId = CORE.TEAM.teamId;
 			let shortName = Foxtrick.Prefs.getString('shortTeamName.' + teamId);
-			if (shortName === null)
-				Foxtrick.localGet('shortTeamName.' + teamId, processShortName);
-			else
+			if (shortName === null) {
+				Foxtrick.storage.get('shortTeamName.' + teamId).then(processShortName)
+				                .catch(Foxtrick.catch('CORE.processShortName'));
+			}
+			else {
 				processShortName(shortName);
+			}
 
 			/* eslint-disable dot-notation */
 			Foxtrick.htPages['ownPlayers'] =

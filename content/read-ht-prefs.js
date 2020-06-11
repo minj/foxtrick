@@ -103,12 +103,12 @@ Foxtrick.modules.ReadHtPrefs = {
 	/** @param {document} doc */
 	readDateFormat: function(doc) {
 		var clockRe = /HT\.Clock\.init\((?!\))/i;
-		var formatRe = /HT\.Clock\.init\(\s*(?:\d+\s*,\s*)*'(.+?)'(?:\s*,\s*-?\d+)*\s*\)/i;
+		var formatRe = /HT\.Clock\.init\(\s*(?:\d+\s*,\s*)*['"](.+?)['"](?:\s*,\s*-?\d+)*\s*\)/i;
 		var scripts = doc.querySelectorAll('script');
 		Foxtrick.forEach(function(tag) {
 			var script = tag.textContent;
 			var clockMatch = script.match(clockRe);
-			if (!clockMatch)
+			if (!clockMatch) // TODO test
 				return;
 
 			// function call to timeDiff in the script

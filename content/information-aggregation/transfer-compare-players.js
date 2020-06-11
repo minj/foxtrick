@@ -8,7 +8,7 @@
 
 /* eslint-disable complexity, indent */
 
-Foxtrick.modules['TransferComparePlayers'] = {
+Foxtrick.modules.TransferComparePlayers = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES: ['playerDetails', 'transfersPlayer'],
 	OPTIONS: ['ShowProfit'],
@@ -81,6 +81,8 @@ Foxtrick.modules['TransferComparePlayers'] = {
 
 				const DIFF_TMPL = '{sign}{val} {curr} ({sign}{pctg} %)';
 				const SEASON_TMPL = '{sign}{season} {curr} {per}';
+
+				// TODO test
 				var diff = {
 					curr: hTable.rows[1].cells[3].firstChild.textContent.match(/\D+$/)[0].trim(),
 					per: Foxtrick.L10n.getString('ExtendedPlayerDetails.perseason'),

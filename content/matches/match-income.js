@@ -12,13 +12,19 @@ Foxtrick.modules.MatchIncome = {
 	OPTIONS: ['UtilizationPercentages'],
 
 	/**
-	 * @typedef ArenaPrices
-	 * @prop {string} from
-	 * @prop {string} until
+	 * @typedef ArenaSeatMixin
 	 * @prop {number} terraces
 	 * @prop {number} basic
 	 * @prop {number} roof
 	 * @prop {number} vip
+	 */
+
+	/**
+	 * @typedef {ArenaSeatMixin & { total: number }} ArenaVisitorMap
+	 */
+
+	/**
+	 * @typedef {ArenaSeatMixin & { from: string, until: string }} ArenaPrices
 	 */
 
 	// based on research in post 15703189.1
@@ -96,15 +102,6 @@ Foxtrick.modules.MatchIncome = {
 	},
 
 	/**
-	 * @typedef ArenaVisitorMap
-	 * @prop {number} terraces
-	 * @prop {number} basic
-	 * @prop {number} roof
-	 * @prop {number} vip
-	 * @prop {number} total
-	 */
-
-	/**
 	 * @param  {HTMLTableElement} table
 	 * @return {ArenaVisitorMap}
 	 */
@@ -134,6 +131,8 @@ Foxtrick.modules.MatchIncome = {
 	},
 
 	/**
+	 * TODO extract into util
+	 *
 	 * @param  {document}      doc
 	 * @param  {number}        ratio
 	 * @return {SVGSVGElement}
@@ -266,17 +265,17 @@ Foxtrick.modules.MatchIncome = {
 		let isFriendly = Foxtrick.Pages.Match.isFriendly(doc);
 
 		// eslint-disable-next-line no-nested-ternary, no-magic-numbers
-		var priceQ = isFriendly || isQalification || isNeutral ? 0.5 : isCup ? 0.67 : 1;
+		const PRICE_Q = isFriendly || isQalification || isNeutral ? 0.5 : isCup ? 0.67 : 1;
 
 		Foxtrick.util.currency.detect(doc).then(function(curr) {
 			addIncome(table, 'income', sum, curr);
-			if (priceQ !== 1) {
-				addIncome(table, 'income.home', sum * priceQ, curr);
-				addIncome(table, 'income.away', sum * (1 - priceQ), curr);
+			if (PRICE_Q !== 1) {
+				addIncome(table, 'income.home', sum * PRICE_Q, curr);
+				addIncome(table, 'income.away', sum * (1 - PRICE_Q), curr);
 			}
 
 			// display utilization percentage for games that happened after last arena change
-			if (!Foxtrick.Prefs.isModuleOptionEnabled('MatchIncome', 'UtilizationPercentages'))
+			if (!Foxtrick.Prefs.isModuleOptionEnabled(module, 'UtilizationPercentages'))
 				return;
 
 			let arenaId = Foxtrick.Pages.Match.getArenaId(doc);

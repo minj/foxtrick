@@ -478,7 +478,7 @@ Foxtrick.modules.MatchLineupTweaks = {
 					}
 				}
 				Foxtrick.startObserver(doc);
-			}, { teamId: teamId, currentSquad: true, isNT: isNT, isYouth: isYouth });
+			}, { teamId, currentSquad: true, isNT, isYouth });
 		};
 
 		addMissingByTeamId(homeTeamId, [...homePlayerLinks]);
@@ -770,7 +770,7 @@ Foxtrick.modules.MatchLineupTweaks = {
 
 		let ratings = doc.querySelectorAll('div.playerRating > span');
 		for (let rating of ratings) {
-			var count = Number(rating.textContent);
+			var count = parseInt(rating.textContent, 10);
 			var ratingsDiv = rating.parentElement;
 			var newDiv = Foxtrick.cloneElement(ratingsDiv, false);
 			Foxtrick.makeFeaturedElement(newDiv, this);
@@ -831,7 +831,7 @@ Foxtrick.modules.MatchLineupTweaks = {
 	},
 
 	// which team to show in split
-	showAway: false,
+	showAway: false, // TODO parameterize
 
 	// split lineup into two for home/away
 	/** @param {document} doc */
@@ -850,7 +850,7 @@ Foxtrick.modules.MatchLineupTweaks = {
 		/** @type {NodeListOf<HTMLDivElement>} */
 		let awayDivs = doc.querySelectorAll('#playersField div.playerBoxAway');
 		for (let awayDiv of Foxtrick.toArray(awayDivs)) {
-			/* eslint-disable no-magic-numbers */
+			/* eslint-disable no-magic-numbers */ // FIXME
 			if (!invert) {
 				awayDiv.style.top = (parseInt(awayDiv.style.top, 10) || 0) - 240 + 'px';
 				continue;
@@ -893,7 +893,7 @@ Foxtrick.modules.MatchLineupTweaks = {
 		/** @type {NodeListOf<HTMLDivElement>} */
 		let awayDivs = doc.querySelectorAll('#playersField div.playerBoxAway');
 		for (let awayDiv of Foxtrick.toArray(awayDivs)) {
-			/* eslint-disable no-magic-numbers */
+			/* eslint-disable no-magic-numbers */ // FIXME
 			if (!invert) {
 				awayDiv.style.top = parseInt(awayDiv.style.top, 10) + 240 + 'px';
 				continue;
@@ -910,7 +910,7 @@ Foxtrick.modules.MatchLineupTweaks = {
 
 	/**
 	 * @param {document} doc
-	 * @param {boolean} undo
+	 * @param {boolean} [undo]
 	 */
 	hideOtherTeam: function(doc, undo) {
 		const module = this;
@@ -1010,7 +1010,7 @@ Foxtrick.modules.MatchLineupTweaks = {
 		}, players);
 
 		Foxtrick.log('StaminaData:', matchDate, players, data);
-		Foxtrick.Prefs.setString('StaminaData.' + ownId, JSON.stringify(data));
+		Foxtrick.Prefs.setString(`StaminaData.${ownId}`, JSON.stringify(data));
 	},
 
 	/**
@@ -1019,6 +1019,7 @@ Foxtrick.modules.MatchLineupTweaks = {
 	 * @return {MatchReportRatingPlayer[]}
 	 */
 	getPlayersWithStamina: function(doc, team) {
+		/** @type {MatchReportRatingPlayer[]} */
 		const EMPTY = [];
 		if (Foxtrick.Pages.Match.isYouth(doc))
 			return EMPTY;
@@ -1147,7 +1148,10 @@ Foxtrick.modules.MatchLineupTweaks = {
 			return true;
 		}, events);
 
-		var players = Foxtrick.filter(function(player, i) {
+		let [firstRating] = playerRatings;
+		let { players: firstPlayers } = firstRating;
+
+		var players = firstPlayers.filter(function(player, i) {
 			if (typeof HTOPlayers != 'undefined') {
 				// need to parse player data and change PlayerIds to HT Ids
 				Foxtrick.any(function(HTOPlayer) {
@@ -1168,19 +1172,7 @@ Foxtrick.modules.MatchLineupTweaks = {
 
 			// skip those who didn't play or had negative powerful SE
 			return player.ToMin > 0 && player.PlayerId != affectedPlayerID;
-		}, playerRatings[0].players);
-
-		/**
-		 * @typedef FTMatchReportRatingPlayer
-		 * @prop {number} checkpoints
-		 * @prop {number} lastEvent
-		 * @prop {number} lastEnergy
-		 * @prop {string} stamina
-		 */
-
-		/**
-		 * @typedef {HTMatchReportRatingPlayer & FTMatchReportRatingPlayer} MatchReportRatingPlayer
-		 */
+		});
 
 		let ret = Foxtrick.map(function(player) {
 			const MAX_CHECKPOINTS = 18;
@@ -1188,7 +1180,7 @@ Foxtrick.modules.MatchLineupTweaks = {
 			let p = /** @type {MatchReportRatingPlayer} */ (player);
 
 			p.checkpoints = getCheckpointCount(p.FromMin, p.ToMin);
-			p.lastEvent = findEvent(p.ToMin);
+			p.lastEvent = findEvent(p.ToMin); // TODO test OT and extension
 			p.lastEnergy = playerRatings[p.lastEvent].players[p.ftIdx].Stamina;
 
 			// player.isRested = hasRest(player.FromMin, player.ToMin);
@@ -1217,6 +1209,8 @@ Foxtrick.modules.MatchLineupTweaks = {
 	 */
 	flipStaminaBar: function(doc, playerDivs) {
 		var module = this;
+
+		/** @type {Record<number, MatchReportRatingPlayer>} */
 		var playersById = {};
 
 		var inProgress = Foxtrick.Pages.Match.inProgress(doc);
@@ -1242,12 +1236,14 @@ Foxtrick.modules.MatchLineupTweaks = {
 
 			/** @type {HTMLDivElement} */
 			var staminaDiv = playerDiv.querySelector('div.sectorShirt + div > div');
-			Foxtrick.addClass(staminaDiv, 'ft-staminaDiv');
 			if (staminaDiv) {
+				Foxtrick.addClass(staminaDiv, 'ft-staminaDiv');
 				var stamina = parseInt(staminaDiv.title.match(/\d+/)[0], 10);
-				var fatigue = 100 - Number(stamina);
-				let child = staminaDiv.firstElementChild;
+
+				let fatigue = 100 - stamina;
+				let child = /** @type {HTMLElement} */ (staminaDiv.firstElementChild);
 				child.style.height = fatigue + '%';
+
 				var staminaSpan = doc.createElement('span');
 				Foxtrick.addClass(staminaSpan, 'ft-staminaText');
 				staminaSpan.style.backgroundColor = staminaDiv.style.backgroundColor;
@@ -1260,12 +1256,12 @@ Foxtrick.modules.MatchLineupTweaks = {
 				var staminaText = staminaDiv.title;
 
 				/** @type {HTMLAnchorElement} */
-				var link = playerDiv.querySelector('#playerLink');
+				let link = playerDiv.querySelector('#playerLink');
 				if (link) {
-					var id = Foxtrick.getUrlParam(link.href, 'PlayerId');
-					var player = playersById[id];
+					let id = Number(Foxtrick.getUrlParam(link.href, 'PlayerId'));
+					let player = playersById[id];
 					if (player && player.stamina)
-						staminaText += Foxtrick.format(' ({})', [player.stamina]);
+						staminaText += ` (${player.stamina})`;
 				}
 				staminaSpan.title = staminaText;
 				ftdiv.appendChild(staminaSpan);
@@ -1303,16 +1299,16 @@ Foxtrick.modules.MatchLineupTweaks = {
 		if (!Foxtrick.Pages.Match.hasRatingsTabs(doc))
 			return;
 
-		Foxtrick.stopObserver(doc);
-
 		module.addSplitLineupToggle(doc);
+
+		/** @type {NodeListOf<HTMLDivElement>} */
 		var playerDivs = doc.querySelectorAll('div.playerDiv');
-		if (playerDivs.length && playerDivs[0].querySelector('.ft-indicator-wrapper')) {
+		if (playerDivs.length && [...playerDivs].shift().querySelector('.ft-indicator-wrapper')) {
 			// been here before
 			return;
 		}
 
-		if (Foxtrick.Prefs.isModuleOptionEnabled('MatchLineupTweaks', 'SplitLineup'))
+		if (Foxtrick.Prefs.isModuleOptionEnabled(module, 'SplitLineup'))
 			module.splitLineup(doc);
 
 		module.flipStaminaBar(doc, playerDivs);
@@ -1320,7 +1316,7 @@ Foxtrick.modules.MatchLineupTweaks = {
 		// add ft-stars="N" to ratings spans for possible styling
 		let ratings = doc.querySelectorAll('div.playerRating > span');
 		for (let rating of ratings) {
-			let count = Number(rating.textContent);
+			let count = parseInt(rating.textContent, 10);
 			rating.setAttribute('ft-stars', count.toString());
 		}
 
@@ -1345,8 +1341,6 @@ Foxtrick.modules.MatchLineupTweaks = {
 		if (Foxtrick.Prefs.isModuleOptionEnabled(module, 'ConvertStars'))
 			module.convertStars(doc);
 
-		Foxtrick.startObserver(doc);
-
 		// add async stuff last
 		if (Foxtrick.Prefs.isModuleOptionEnabled(module, 'ShowSpecialties'))
 			module.runSpecialties(doc);
@@ -1360,3 +1354,15 @@ Foxtrick.modules.MatchLineupTweaks = {
 	},
 
 };
+
+/**
+ * @typedef FTMatchReportRatingPlayer
+ * @prop {number} checkpoints
+ * @prop {number} lastEvent
+ * @prop {number} lastEnergy
+ * @prop {string} stamina
+ */
+
+/**
+ * @typedef {HTMatchReportRatingPlayer & FTMatchReportRatingPlayer} MatchReportRatingPlayer
+ */

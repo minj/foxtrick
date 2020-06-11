@@ -132,6 +132,7 @@ Foxtrick.api.hy._fetchViaCache = async (api, fetch, cacheDays, teamId) => {
 			let { status, text } = err;
 			Foxtrick.log(logKey, 'Fetch failed:', status, text);
 
+			/** @type {TData} */
 			let o = JSON.parse(cachedData);
 			Foxtrick.log(logKey, 'Using stale cache:', o);
 			return o;
@@ -225,7 +226,8 @@ Foxtrick.api.hy._fetchOrIgnore = async (api, url, params) => {
 		switch (status) {
 			case 0:
 				Foxtrick.log(logKey, 'Sending failed', status);
-				err.text = text = `{ "error": "${failed}" }`;
+				text = `{ "error": "${failed}" }`;
+				err.text = text;
 				break;
 			case HTTP_ERROR:
 				Foxtrick.storage.set('YouthClub.ignoreUntil', now + ignoreMsec)

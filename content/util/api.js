@@ -121,8 +121,9 @@ Foxtrick.util.api = {
 					return;
 				}
 
-				var requestToken = text.split('&')[0].split('=')[1];
-				var requestTokenSecret = text.split('&')[1].split('=')[1];
+				let [tokenPair, secretPair] = text.split('&');
+				let [_, requestToken] = tokenPair.split('=');
+				let [__, requestTokenSecret] = secretPair.split('=');
 
 				// link
 				var link = doc.createElement('a');
@@ -202,7 +203,8 @@ Foxtrick.util.api = {
 	 * @param {CHPPCacheOpts} cache
 	 */
 	setCacheLifetime: function(paramStr, cache) {
-		Foxtrick.sessionGet('xmlCache.' + paramStr, (arg) => {
+		// TODO add to CHPPXML / take params object
+		Foxtrick.sessionGet(`xmlCache.${paramStr}`, (arg) => {
 			/** @type {CHPPCacheObject} */
 			let xmlCache = arg;
 			let xmlString = xmlCache && xmlCache.xmlString || '';
@@ -304,6 +306,7 @@ Foxtrick.util.api = {
 	 * timestamp: time in milliseconds since 1970 when a new xml will get retrieved
 	 *
 	 * parameter order and spelling consistency helps caching
+	 * !TODO auto-sort
 	 *
 	 * preferred order: file, version?, id, actiontype?, others... (check existing usage)
 	 *
@@ -396,6 +399,7 @@ Foxtrick.util.api = {
 				Foxtrick.log('ApiProxy: options:', args, 'cache:', cache, 'NOW:', NOW);
 			}
 
+			// TODO merge with getErrorText
 			/**
 			 * @param  {XMLDocument} x
 			 * @param  {number}      [status]
@@ -450,6 +454,7 @@ Foxtrick.util.api = {
 					return;
 				}
 
+				// TODO promisify
 				Foxtrick.util.api.queue[argStr] = [];
 				Foxtrick.util.api.queue[argStr].push(safeCallback);
 
@@ -466,7 +471,7 @@ Foxtrick.util.api = {
 					delete Foxtrick.util.api.queue[argStr];
 				};
 
-				// determine cache liftime
+				// determine cache lifetime
 				/** @type {CHPPCacheOpts} */
 				var cacheLifetime = 0;
 				if (options && options.cache) {
@@ -566,6 +571,7 @@ Foxtrick.util.api = {
 	// batchParameters: array of parameters for retrieve function
 	// returns array of xml docs with matching indices
 	// still better to later identify xmls by content, not by index
+	// TODO consider removing
 	/**
 	 * @param {document}            doc
 	 * @param {CHPPParams[]}        batchParameters
@@ -591,8 +597,7 @@ Foxtrick.util.api = {
 
 			/** @type {Promise<[CHPPXML, string]>} */
 			let p = new Promise((resolve) => {
-				Foxtrick.util.api.retrieve(doc, params, opts, (xml, errorText) => {
-					let chpp = Foxtrick.util.api.addHelpers(xml);
+				Foxtrick.util.api.retrieve(doc, params, opts, (chpp, errorText) => {
 					resolve([chpp, errorText]);
 				});
 			}).catch((e) => {

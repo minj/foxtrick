@@ -1,11 +1,12 @@
-'use strict';
 /**
  * forum-youth-icons.js
  * Foxtrick forum post youth icons
  * @author spambot
  */
 
-Foxtrick.modules['ForumYouthIcons'] = {
+'use strict';
+
+Foxtrick.modules.ForumYouthIcons = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.FORUM,
 	PAGES: [
 		'forumWritePost', 'messageWritePost', 'guestbook',
@@ -453,7 +454,7 @@ Foxtrick.modules['ForumYouthIcons'] = {
 		if (Foxtrick.isPage(doc, ['newsLetter', 'mailNewsLetter', 'ntNewsLetter'])) {
 			if (Foxtrick.isPage(doc, 'newsLetter') || Foxtrick.isPage(doc, 'ntNewsLetter'))
 				textbox = txtMsg;
-			if (Foxtrick.isPage(doc, 'mailNewsLetter'))
+			else if (Foxtrick.isPage(doc, 'mailNewsLetter'))
 				textbox = MAIN + 'tbNewsBody';
 
 			anchor = doc.getElementById(textbox);
@@ -722,19 +723,19 @@ Foxtrick.modules['ForumYouthIcons'] = {
 							return str;
 						};
 						if (Foxtrick.arch === 'Sandboxed' || Foxtrick.platform == 'Android') {
-							Foxtrick.SB.ext.sendRequest({ req: 'getDebugLog' }, (n) => {
-								var header = Foxtrick.log.header(doc);
-								var log = ensureLength(n.log);
-								var text = header + '\n' + log;
+							Foxtrick.SB.ext.sendRequest({ req: 'getDebugLog' }, ({ log }) => {
+								let header = Foxtrick.log.header(doc);
+								let truncated = ensureLength(log);
+								let text = header + '\n' + truncated;
 								insertText(text);
+
 								textCounter(ta, fieldCounter, maxLength);
 							});
 							return;
 						}
-						else {
-							openingTag = Foxtrick.log.header(doc) + '\n' +
-								ensureLength(Foxtrick.debugLogStorage);
-						}
+
+						openingTag = Foxtrick.log.header(doc) + '\n' +
+							ensureLength(Foxtrick.debugLogStorage);
 					}
 					else if (openingTag == 'settings') {
 						var opts = {

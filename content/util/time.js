@@ -512,6 +512,7 @@ Foxtrick.util.time.addDaysToDate = function(date, days) {
  */
 Foxtrick.util.time.setMidnight = function(date) {
 	Foxtrick.forEach(function(part) {
+		// @ts-ignore
 		date['set' + part](0);
 	}, ['Hours', 'Minutes', 'Seconds', 'Milliseconds']);
 };
@@ -719,6 +720,7 @@ Foxtrick.util.time.timeDiffToSpan = function(doc, secDiff, options) {
 			}, swd);
 		}
 
+		/** @type {Node[]} */
 		let children = [];
 		Foxtrick.forEach(([value, key]) => {
 			let b = doc.createElement('b');

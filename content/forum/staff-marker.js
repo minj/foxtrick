@@ -1,4 +1,3 @@
-'use strict';
 /**
  * staff-marker.js
  * Foxtrick forum staff (HT, GM, Mod, CHPP, LA) marker
@@ -6,7 +5,9 @@
  * @author bummerland, ryanli, LA-MJ, CHPP-teles, CatzHoek
  */
 
-Foxtrick.modules['StaffMarker'] = {
+'use strict';
+
+Foxtrick.modules.StaffMarker = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.FORUM,
 	PAGES: [
 		'forumViewThread', 'forumWritePost',
@@ -82,6 +83,7 @@ Foxtrick.modules['StaffMarker'] = {
 		'foxtrick',
 		'htls', 'hy', 'ho',
 		'chpp-holder',
+
 		// supporters use custom scheme
 		['coach', 'nt', 'u20'],
 	],

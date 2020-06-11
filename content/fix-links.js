@@ -39,7 +39,7 @@ Foxtrick.modules.FixLinks = {
 		url = url.replace(paramRe, '$1');
 		url = url.replace(/\?$/, ''); // strip ? if query was emptied
 
-		url += (/\?/.test(url) ? '&' : '?') + p + '=' + v + (anchor ? '#' + anchor : '');
+		url += (/\?/.test(url) ? '&' : '?') + `${p}=${v}` + (anchor ? '#' + anchor : '');
 		return url;
 	},
 
@@ -220,6 +220,7 @@ Foxtrick.modules.FixLinks = {
 
 	/** @param {document} doc */
 	parsePlayerStats: function(doc) {
+		// TODO test
 		const module = this;
 
 		const OPEN_NEW = Foxtrick.L10n.getString('button.open_new');
@@ -243,12 +244,11 @@ Foxtrick.modules.FixLinks = {
 		};
 
 		let id = module.getDefaultTeamId(doc);
-		let pid = parseInt(Foxtrick.getUrlParam(doc.location.href, 'PlayerID'), 10);
+		let pid = parseInt(Foxtrick.getUrlParam(doc.URL, 'PlayerID'), 10);
 
 		/** @type {NodeListOf<HTMLImageElement>} */
 		let icons = table.querySelectorAll('.iconMatchtype img');
 
-		/** @type {NodeListOf<HTMLAnchorElement>} */
 		let links = table.querySelectorAll('a');
 		Foxtrick.forEach(function(icon, i) {
 			let link = links[i];
@@ -261,19 +261,15 @@ Foxtrick.modules.FixLinks = {
 
 	/** @param {document} doc */
 	parseH2HLatestMatches: function(doc) {
+		// TODO test
 		const module = this;
 
 		const homeId = parseInt(Foxtrick.getUrlParam(doc.location.href, 'HomeTeamID'), 10);
 		const awayId = parseInt(Foxtrick.getUrlParam(doc.location.href, 'AwayTeamID'), 10);
 
-		let [homeHead, awayHead] = doc.querySelectorAll('#mainBody th');
-		let home = homeHead.textContent.trim();
-		let homeRe = new RegExp('^' + Foxtrick.strToRe(home));
-		let away = awayHead.textContent.trim();
-		let awayRe = new RegExp('^' + Foxtrick.strToRe(away));
-
-		/** @type {NodeListOf<HTMLAnchorElement>} */
-		let links = doc.querySelectorAll('#mainBody td.left a');
+		let heads = [...doc.querySelectorAll('#mainBody th')];
+		let [home, away] = heads.map(h => h.textContent.trim());
+		let [homeRe, awayRe] = [home, away].map(t => new RegExp('^' + Foxtrick.strToRe(t)));
 
 		/**
 		 * add ids to lineup-links if away; we don't care about third-party teams
@@ -290,6 +286,9 @@ Foxtrick.modules.FixLinks = {
 			// assume away game
 			lineupLink.href = module.addParam(lineupLink.href, 'teamId', teamId);
 		};
+
+		/** @type {NodeListOf<HTMLAnchorElement>} */
+		let links = doc.querySelectorAll('#mainBody td.left a');
 
 		/* eslint-disable no-magic-numbers */
 		// links go in cycles of 6

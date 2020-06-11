@@ -319,13 +319,17 @@ Foxtrick.L10n.getLocalOrEnglish = function(query, lang) {
 
 	var text = this.getHTLangProperty(query, l);
 	if (text === null) {
-		let header = 'Requested ' + query.category + ':' + query.property +
-			' with ' + query.filter + '=' + query.value;
-		Foxtrick.error(header + ' does not exist in locale ' + l + ', trying en instead.');
+		let header = [
+			'Requested',
+			`${query.category}:${query.property}`,
+			'with',
+			`${query.filter}=${query.value}`,
+		].join(' ');
+		Foxtrick.error(`${header} does not exist in locale ${l}, trying en instead.`);
 
 		text = this.getHTLangProperty(query, 'en-GB');
 		if (text === null) {
-			Foxtrick.error(header + ' does not exist, returning raw value.');
+			Foxtrick.error(`${header} does not exist, returning raw value.`);
 			text = String(query.value);
 		}
 	}

@@ -105,7 +105,7 @@ Foxtrick.parseXML = function(data) {
 
 		var titleRe = /<title>(\d+)/i;
 		if (titleRe.test(data))
-			errCode = data.match(titleRe)[1];
+			[errCode] = data.match(titleRe).slice(1);
 		else
 			errCode = HTTP_ERROR;
 
@@ -436,10 +436,18 @@ Foxtrick.cache = (function() {
 				    (typeof cache !== 'object' || cache.getTime() > aLifeTime)) {
 					// obj.lifeTime was not a number but aLifeTime is
 					// or aLifeTime is sooner than obj.lifeTime
-					Foxtrick.log('New lifeTime for cached', url, params, aLifeTime);
 
 					// update for logging
 					cache = new Date(aLifeTime);
+					if (cache < date) {
+						// stale get
+
+						this.delete(url, params);
+
+						return { stale: cache.toString(), now: date.toString() };
+					}
+
+					Foxtrick.log('New lifeTime for cached', url, params, aLifeTime);
 
 					// set new lifeTime
 					this.setFor(url, params, aLifeTime)(obj.promise);
@@ -499,7 +507,7 @@ Foxtrick.cache = (function() {
 
 	}
 
-	// TODO add distinct types behind type guard (context)
+	// TODO add distinct types behind type guard (arch context)
 	return {
 		clear: function() {
 			Foxtrick.SB.ext.sendRequest({ req: 'cacheClear' });

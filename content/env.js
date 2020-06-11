@@ -123,7 +123,7 @@ Foxtrick.SB = (() => ({
 		 * callback: function(response).
 		 *
 		 * @param {object}   data
-		 * @param {function} [callback] {function(object)}
+		 * @param {function(any):void} [callback] {function(object)}
 		 */
 		sendRequest(data, callback) {},
 

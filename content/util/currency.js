@@ -49,7 +49,6 @@ Foxtrick.util.currency.detect = function(doc) {
 		}
 
 		if (!Foxtrick.util.layout.hasMultipleTeams(doc)) {
-			// @ts-ignore
 			code = Foxtrick.util.currency.findCode(); // safe
 			Foxtrick.Prefs.setString('Currency.Code.' + ownTeamId, code);
 
@@ -101,13 +100,17 @@ Foxtrick.util.currency.detect = function(doc) {
 };
 
 /**
+ * @typedef {'chpp'|'symbol'} CurrencyFailReason
+ */
+
+/**
  * Display manual currency selector.
  *
  * info is {reason: string}.
  * reason: 'chpp' is off or 'symbol' was not found
  *
- * @param {document}         doc
- * @param {{reason: string}} info { reason: string }
+ * @param {document} doc
+ * @param {{reason: CurrencyFailReason}} info
  */
 Foxtrick.util.currency.displaySelector = function(doc, info) {
 	var selectId = 'ft-currency-selector';
@@ -115,9 +118,7 @@ Foxtrick.util.currency.displaySelector = function(doc, info) {
 	if (doc.getElementById(noteId))
 		return;
 
-	// @ts-ignore
 	var defaultCode = this.findCode(); // unsafe
-
 	if (!defaultCode) {
 		let teamCodes = Foxtrick.Prefs.getAllKeysOfBranch('Currency.Code');
 		let freqMap = new Map();
@@ -177,7 +178,7 @@ Foxtrick.util.currency.displaySelector = function(doc, info) {
 	button.textContent = Foxtrick.L10n.getString('button.save');
 	cont.appendChild(button);
 
-	Foxtrick.onClick(button, function(ev) {
+	Foxtrick.onClick(button, function() {
 		// eslint-disable-next-line no-invalid-this
 		let doc = this.ownerDocument;
 
@@ -268,9 +269,7 @@ Foxtrick.util.currency.guessCode = function(curr) {
  */
 Foxtrick.util.currency.isValidCode = function(code) {
 	let category = Foxtrick.XMLData.htCurrencyJSON.hattrickcurrencies;
-	return Foxtrick.any(function(item) {
-		return item.code == code;
-	}, category);
+	return category.some(c => c.code == code);
 };
 
 /**
@@ -280,7 +279,7 @@ Foxtrick.util.currency.isValidCode = function(code) {
  *
  * Potentially unsafe: returns null
  *
- * @param  {number} id
+ * @param  {number} [id]
  * @return {string}
  */
 Foxtrick.util.currency.findCode = function(id) {
@@ -349,10 +348,8 @@ Foxtrick.util.currency.findRate = function(id) {
 	let name = country.CurrencyName;
 	let rate = country.CurrencyRate.replace(',', '.');
 
-	// jshint -W016
 	// eslint-disable-next-line no-magic-numbers
 	let mag = ~name.indexOf('000 ') ? 0.001 : 1;
-	// jshint +W016
 
 	return parseFloat(rate) * mag / 10;
 };

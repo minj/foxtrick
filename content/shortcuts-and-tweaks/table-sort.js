@@ -197,7 +197,7 @@ Foxtrick.modules['TableSort'] = {
 
 					// sort string
 					// always sort by ascending order
-					return direction * (aContent.localeCompare(bContent));
+					return direction * aContent.localeCompare(bContent);
 				};
 
 				// sort them

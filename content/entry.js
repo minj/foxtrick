@@ -325,6 +325,7 @@ Foxtrick.entry.niceRun = function(modules, makeFn) {
  * @param  {document} doc
  */
 Foxtrick.entry.checkCSS = function(doc) {
+	// TODO arch: {contentPrivileged: boolean}
 	if (Foxtrick.platform == 'Firefox' && Foxtrick.Prefs.getBool('preferences.updated')) {
 		Foxtrick.log('prefs updated');
 
@@ -355,6 +356,7 @@ Foxtrick.entry.checkCSS = function(doc) {
 	html.dir = currentDir;
 	html.dataset.theme = currentTheme;
 
+	// TODO fennec
 	if (Foxtrick.platform == 'Android') {
 		let fennecTheme = /Forum/i.test(doc.location.href) ? 'forum' : 'default';
 		html.dataset.fennecTheme = fennecTheme;
