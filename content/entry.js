@@ -30,7 +30,7 @@ Foxtrick.entry.docLoad = function(doc) {
 
 		// potential cleanup for injected CSS
 		if (Foxtrick.entry.cssLoaded) {
-			Foxtrick.util.css.unload_module_css(doc);
+			Foxtrick.util.css.unloadModuleCSS(doc);
 			Foxtrick.entry.cssLoaded = false;
 		}
 		return;
@@ -330,7 +330,7 @@ Foxtrick.entry.checkCSS = function(doc) {
 
 		Foxtrick.entry.init(true); // reInit
 
-		Foxtrick.util.css.reload_module_css(doc);
+		Foxtrick.util.css.reloadModuleCSS(doc);
 		Foxtrick.entry.cssLoaded = true;
 
 		Foxtrick.Prefs.setBool('preferences.updated', false);
@@ -347,7 +347,7 @@ Foxtrick.entry.checkCSS = function(doc) {
 		Foxtrick.Prefs.setString('theme', currentTheme);
 		Foxtrick.Prefs.setString('dir', currentDir);
 
-		Foxtrick.util.css.reload_module_css(doc);
+		Foxtrick.util.css.reloadModuleCSS(doc);
 		Foxtrick.entry.cssLoaded = true;
 	}
 
@@ -369,7 +369,7 @@ Foxtrick.entry.checkCSS = function(doc) {
 	if (!Foxtrick.entry.cssLoaded) {
 		Foxtrick.log('CSS not loaded');
 
-		Foxtrick.util.css.reload_module_css(doc);
+		Foxtrick.util.css.reloadModuleCSS(doc);
 		Foxtrick.entry.cssLoaded = true;
 	}
 };
