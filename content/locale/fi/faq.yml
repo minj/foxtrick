@@ -3,10 +3,6 @@ fi:
   faq:
     style:
       question: Kuinka voin muotoilla FoxTrickiani?
-      answer: |
-        <p>FoxTrick provides a set of presentation interfaces for users to customise their own styles. These interfaces are provided through HTML IDs and classes, and you can use CSS to define your preferred style.</p>
-
-        <p>An example user style file can be found <linkCSSExample>here</linkCSSExample> or <linkCSSExampleGCode>here</linkCSSExampleGCode>, which you can modify to satisfy your need. After saving the file, you can use the <module>SkinPlugin</module> module for loading the CSS file to have the user style in effect.</p>
     sound-format:
       question: Mitkä tiedostomuodot kelpaavat hälytysääniin?
       answer: |
@@ -19,12 +15,6 @@ fi:
         </ul>
     sound-location:
       question: Mikä on kokorajoitus hälytysäänille ja minne ne voi asettaa?
-      answer: |
-        <p>All browsers can play data urls. Those are the internally saved sounds when you use the load button provided in the preferences. Since they are converted and saved in your preferences, the size is limited to around 160kB per sound.</p>
-
-        <p>All browsers also can play sounds directly from the internet (http urls). Just copy a link to a sound (eg http://foxtrick.org/sound.wav) into the edit field for sounds. No size limit.</p>
-
-        <p>Mozilla browsers also can play sounds directly from your harddrive (file urls) with no size limit. Easiest way to get the right format: In the browser type Ctrl+o, browse to the sound file and select it. In the adress bar on top is now the right link to the local file (eg file:///c:/sound.wav). Copy and paste this into the edit field for the sounds.</p>
     authorize:
       question: Miksi minun pitää valtuuttaa FoxTrick päästäkseni joukkueeni tietoihin?
       answer: |
