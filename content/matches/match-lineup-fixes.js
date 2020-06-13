@@ -17,9 +17,6 @@ Foxtrick.modules['MatchLineupFixes'] = {
 	// CSS: Foxtrick.InternalPath + 'resources/css/match-lineup-fixes.css',
 	/** @param {document} doc */
 	run: function(doc) {
-
-		const module = this;
-
 		if (!Foxtrick.Pages.Match.hasRatingsTabs(doc))
 			return;
 
