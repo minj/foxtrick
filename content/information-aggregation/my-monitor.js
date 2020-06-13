@@ -55,6 +55,7 @@ Foxtrick.modules.MyMonitor = {
 						{ id: ntId, name: ntName, type: 'nt' },
 						{ id: u20Id, name: u20Name, type: 'nt' },
 					];
+					teams = teams.filter(t => !!t.id);
 				}
 				else {
 					// inactive team
