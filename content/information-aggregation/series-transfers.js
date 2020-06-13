@@ -196,9 +196,6 @@ Foxtrick.modules.SeriesTransfers = {
 						img.title = Foxtrick.L10n.getString('Injured');
 						cell.appendChild(img);
 
-						// TODO test
-						// player.injured is number from players page,
-						// or boolean from transfer result page.
 						if (typeof injury == 'number' && injury > 1)
 							cell.appendChild(doc.createTextNode(injury.toString()));
 					}

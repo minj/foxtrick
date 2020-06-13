@@ -285,6 +285,7 @@ Foxtrick.Pages.Players.getPlayerNodes = function(doc, include) {
  * @prop {number} [salary]
  * @prop {number} [salaryBase]
  * @prop {boolean} [transferListed]
+ * @prop {boolean} [isAbroad]
  *
  * @prop {PlayerAge} [age]
  * @prop {number} [ageYears]
@@ -350,10 +351,9 @@ Foxtrick.Pages.Players.getPlayerNodes = function(doc, include) {
  */
 
 /**
- * @typedef PlayerXmlProps
+ * @typedef PlayerXMLProps
  * @prop {number} [category]
  * @prop {number} [countryId]
- * @prop {boolean} [isAbroad]
  *
  * @prop {number} [agreeability]
  * @prop {number} [aggressiveness]
@@ -364,16 +364,19 @@ Foxtrick.Pages.Players.getPlayerNodes = function(doc, include) {
  * @prop {number} [cupGoals]
  * @prop {number} [friendliesGoals]
  * @prop {number} [leagueGoals]
+ * @prop {number} [goalsCurrentTeam]
+ * @prop {number} [matchesCurrentTeam]
  *
  * @prop {number} [caps]
  * @prop {number} [capsU20]
  * @prop {number} [nationalTeamId]
  * @prop {number} [matchCount] README: NT supp stats
  *
- * @prop {string} [ownerNotes] README: youth only for some reason
+ * @prop {string} [ownerNotes]
  * @prop {string} [statement]
  *
- * @prop {Date} [joinedSince] README: youth only for some reason
+ * @prop {Date} [nextBirthDay]
+ * @prop {Date} [joinedSince]
  * @prop {number} [canBePromotedIn]
  *
  * @prop {TrainerData} [trainerData]
@@ -382,11 +385,21 @@ Foxtrick.Pages.Players.getPlayerNodes = function(doc, include) {
  * @prop {string} [lastMatchText]
  */
 
+/**
+ * @typedef PlayerTLProps
+ * @prop {HTMLElement} [deadline]
+ * @prop {number} [currentBid]
+ * @prop {HTMLAnchorElement} [bookmarkLink]
+ * @prop {HTMLAnchorElement} [hotlistLink]
+ * @prop {HTMLAnchorElement} [currentBidderLink]
+ * @prop {HTMLAnchorElement} [currentBidderLinkShort]
+ */
+
 /** @typedef {keyof Player} PlayerKey */
 
 /* eslint-disable max-len */
 /**
- * @typedef {PlayerSkills & PlayerProps & PlayerXmlProps & PlayerContributionProps & Contributions} Player & ContributionFactors
+ * @typedef {PlayerSkills & PlayerProps & PlayerXMLProps & PlayerTLProps & PlayerContributionProps & Contributions} Player & ContributionFactors
  */
 /* eslint-enable max-len */
 
@@ -629,7 +642,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 			 */
 
 			/**
-			 * @param  {PlayerSkills|PlayerProps|PlayerXmlProps} player
+			 * @param  {PlayerSkills|PlayerProps|PlayerXMLProps} player
 			 * @param  {function(string):any}      fn value getter for provided nodeName
 			 * @return {function(PlayerProp):void}
 			 */
@@ -691,9 +704,12 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 						continue;
 					}
 					else {
+						// player = { id };
+
 						/** @type {Partial<Player>} */
 						let p = { id: id };
 						player = /** @type {Player} */ (p);
+
 						playerList.push(player);
 
 						// TODO why these set here only?
@@ -796,7 +812,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 
 				if (typeof player.injured === 'undefined' && node('InjuryLevel')) {
 					player.injuredWeeks = num('InjuryLevel');
-					player.bruised = !!player.injuredWeeks; // FIXME
+					player.bruised = !player.injuredWeeks; // 0 = bruised
 					if (player.injuredWeeks == -1)
 						player.injuredWeeks = 0;
 
@@ -856,7 +872,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				}
 
 				// README: XML exclusive info starts here
-				/** @type {PlayerXmlProps} */
+				/** @type {PlayerXMLProps} */
 				let xPlayer = player;
 
 				/** @type {PlayerProp[]} */
@@ -872,7 +888,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 					['friendliesGoals', 'FriendlyGoals'], // youth
 					'GoalsCurrentTeam',
 					'Honesty',
-					'IsAbroad',
+					'IsAbroad', // no longer exclusive
 					'Leadership',
 					'LeagueGoals',
 					['matchCount', 'NrOfMatches'], // NT supp stats
@@ -881,6 +897,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				];
 				Foxtrick.forEach(addProperty(xPlayer, num), xmlNums);
 
+				/** @type {PlayerProp[]} */
 				let texts = [
 					'OwnerNotes',
 					'Statement',
@@ -901,13 +918,11 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 					let { years, days } = player.age;
 					let htmsInput = Object.assign({ years, days }, player.skills);
 
-					// TODO type check
 					let [htmsAbility, htmsPotential] = Foxtrick.modules.HTMSPoints.calc(htmsInput);
 					let tuple = { htmsAbility, htmsPotential };
 					Object.assign(player, tuple);
 
 					// psicoWage requires isAbroad!
-					/** @type {PsicoTSIPrediction} */
 					let psico = Foxtrick.modules.PsicoTSI.getPrediction(player, currencyRate);
 					player.psicoTSI = psico.formAvg;
 					player.psicoWage = psico.wageLow;
@@ -1419,7 +1434,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 					let skills = skillInfo.values;
 
 					// @ts-ignore
-					player.skills = skills; // FIXME
+					player.skills = skills; // FIXME youth
 					for (let skill in skills)
 						player[skill] = skills[skill];
 				}
@@ -1549,7 +1564,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 			    Foxtrick.Pages.Players.isNT(doc))) {
 				let currentClubLink = null, currentClubId = null;
 				Foxtrick.any(function(currentPara) {
-					let plinks = currentPara.getElementsByTagName('a');
+					let plinks = currentPara.querySelectorAll('a');
 					currentClubLink = Foxtrick.nth(function(link) {
 						return /TeamID=/i.test(link.href);
 					}, plinks);
@@ -1577,7 +1592,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 						}, currentPara.childNodes);
 
 						for (let j in Foxtrick.XMLData.League) {
-							// TODO: this will break with localized league names
+							// README: this will break with localized league names
 							let id = parseInt(j, 10);
 							let league = Foxtrick.L10n.getCountryNameNative(id);
 							if (leagueText.indexOf(league) >= -1) {
@@ -1757,8 +1772,8 @@ Foxtrick.Pages.Players.getPlayerFromListById = function(list, id) {
 Foxtrick.Pages.Players.getPlayerId = function(playerInfo) {
 	var id = null;
 	try {
-		var links = playerInfo.getElementsByTagName('a');
-		var nameLink = Foxtrick.nth(n => !Foxtrick.hasClass(n, 'flag'), links);
+		/** @type {HTMLAnchorElement} */
+		var nameLink = playerInfo.querySelector('a:not(.flag)');
 		var pId = Foxtrick.getUrlParam(nameLink.href, 'playerId');
 		var yPId = Foxtrick.getUrlParam(nameLink.href, 'youthPlayerId');
 		id = parseInt(pId || yPId, 10);

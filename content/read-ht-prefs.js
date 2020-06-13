@@ -76,7 +76,7 @@ Foxtrick.modules.ReadHtPrefs = {
 			Foxtrick.util.note.add(doc, msg, 'ft-language-changed', { focus: true });
 		}
 		else {
-			Foxtrick.log('Language changed:', newLang, '(' + metaLang + ')',
+			Foxtrick.log('Language changed:', newLang, `(${metaLang})`,
 			             'but no Foxtrick support yet.');
 
 			let el = doc.createElement('div');
@@ -138,12 +138,12 @@ Foxtrick.modules.ReadHtPrefs = {
 					Foxtrick.util.time.setDateFormat(dateFormat);
 				}
 				else {
-					Foxtrick.error('Incomplete date format: ' + dateFormat);
+					Foxtrick.error(`Incomplete date format: ${dateFormat}`);
 				}
 			}
 			else {
 				// failed to match regular expression
-				Foxtrick.error('Cannot find date format: ' + script.slice(clockMatch.index));
+				Foxtrick.error(`Cannot find date format: ${script.slice(clockMatch.index)}`);
 			}
 		}, scripts);
 	},

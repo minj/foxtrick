@@ -889,14 +889,18 @@ Foxtrick.Pages.Player.parseYouthSkills = function(table) {
 					skillCell.querySelectorAll('a, .shy:not(.denominationNumber)');
 				let current = 0, max = 0;
 
-				if (currNode.matches('a.skill'))
-					current = Foxtrick.util.id.getSkillLevelFromLink(currNode);
+				if (currNode.matches('a.skill')) {
+					let link = /** @type {HTMLAnchorElement} */ (currNode);
+					current = Foxtrick.util.id.getSkillLevelFromLink(link);
+				}
 
 				let maxed = false;
 				if (maxNode) {
 					// may also be activation link
-					if (maxNode.matches('a.skill'))
-						max = Foxtrick.util.id.getSkillLevelFromLink(maxNode);
+					if (maxNode.matches('a.skill')) {
+						let link = /** @type {HTMLAnchorElement} */ (maxNode);
+						max = Foxtrick.util.id.getSkillLevelFromLink(link);
+					}
 				}
 				else if (current) {
 					max = current;
@@ -1308,16 +1312,17 @@ Foxtrick.Pages.Player.getContributions = function(playerSkills, playerAttrs, opt
 	let ppeNorm = Foxtrick.Prefs.isModuleOptionEnabled('PlayerPositionsEvaluations', 'Normalised');
 	var doNormal = options ? options.normalise : ppeNorm;
 
-	var cntrbMap = Foxtrick.Predict.contributionFactors(params);
+	var factors = Foxtrick.Predict.contributionFactors(params);
 	var skills = Foxtrick.Predict.effectiveSkills(playerSkills, playerAttrs, options);
 
-	for (let pos in cntrbMap) {
+	let entries = Object.entries(factors).map(([pos, factor]) => {
 		// Foxtrick.log(pos);
 		let score = 0;
 		let sum = 0;
-		for (let skill in skills) {
-			let data = cntrbMap[pos][skill];
-			if (typeof data !== 'undefined') {
+		for (let key in skills) {
+			let skill = /** @type {PlayerSkillName} */ (key);
+			let data = factor[skill];
+			if (data) {
 				sum += data.factor;
 				score += data.factor * skills[skill];
 			}
@@ -1327,18 +1332,21 @@ Foxtrick.Pages.Player.getContributions = function(playerSkills, playerAttrs, opt
 			score /= sum;
 
 		let value = parseFloat(score.toFixed(2));
-		cntrbMap[pos] = value;
-	}
+		return [pos, value];
+	});
+
+	/** @type {Contributions} */
+	let contribs = Object.fromEntries(entries);
 
 	let specialty = playerAttrs.specialtyNumber;
 	if (specialty == 1) {
 		// Technical
-		cntrbMap.fwd = 0;
+		contribs.fwd = 0;
 	}
 	else {
-		cntrbMap.tdf = 0;
+		contribs.tdf = 0;
 	}
-	return cntrbMap;
+	return contribs;
 };
 
 /**

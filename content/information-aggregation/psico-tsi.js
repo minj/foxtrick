@@ -193,29 +193,6 @@ Foxtrick.modules['PsicoTSI'] = {
 	},
 
 	/**
-	 * Loops through playerlist and adds psico, psicoTSI, psicoTitle properties
-	 * currRate is needed for wage prediction, use 0 otherwise
-	 * may be called from other scripts!
-	 * @param	{array}	playerList
-	 * @param	{number}	currRate
-	 */
-	loopPlayerList: function(playerList, currRate) {
-		for (var i = 0, p; i < playerList.length && (p = playerList[i]); ++i) {
-			if (typeof p.playmaking == 'undefined') {
-				continue;
-			}
-
-			var pr = this.getPrediction(p, currRate);
-			if (!pr)
-				continue;
-
-			p.psicoTSI = pr.formAvg;
-			p.psicoTitle = this.skills[pr.maxSkill];
-			p.psico = pr;
-		}
-	},
-
-	/**
 	 * Get prediction for player object
 	 *
 	 * Wage prediction needs currRate, use 0 otherwise
@@ -251,13 +228,13 @@ Foxtrick.modules['PsicoTSI'] = {
 
 	/**
 	 * Draw PsicoTSI prediction table (player page)
-	 * @param	{documen}	doc
+	 * @param	{document}	doc
 	 * @param	{Element}	entryPoint				the result is added as nextSibling to this
 	 * @param	{boolean}	isGK
 	 * @param	{boolean}	isUndefinedMainskill
 	 * @param	{boolean}	isInjured
 	 * @param	{boolean}	isOld
-	 * @param	{Integer}	maxSkill
+	 * @param	{number}	maxSkill
 	 * @param	{number}	formHigh				skill level when form sub is high
 	 * @param	{number}	formAvg					average
 	 * @param	{number}	formLow					low

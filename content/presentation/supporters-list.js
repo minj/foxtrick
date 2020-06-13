@@ -144,10 +144,10 @@ Foxtrick.modules.SupportersList = {
 				continue;
 
 			let [_, id] = matches;
-			if (!id || Foxtrick.indexOf(ids, id) == -1)
+			if (!id || ids.indexOf(id) == -1)
 				continue;
 
-			Foxtrick.addClass(link, 'ft-suppList-' + type);
+			Foxtrick.addClass(link, `ft-suppList-${type}`);
 			let node = findParent(link);
 			Foxtrick.addImage(doc, node, {
 				src: '/Img/Icons/transparent.gif',

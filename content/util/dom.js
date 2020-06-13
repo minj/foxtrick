@@ -555,8 +555,7 @@ Foxtrick.clickTarget = function(el) {
 		return span;
 	};
 
-	/* eslint-disable no-magic-numbers */
-	/** @type {Record<string, function(Element):void>} */
+	/** @type {Partial<Record<keyof HTMLElementTagNameMap, function(Element):Element>>} */
 	const ROLES_CBS = {
 		h1: wrapContents,
 		h2: wrapContents,
@@ -571,11 +570,12 @@ Foxtrick.clickTarget = function(el) {
 
 		input: null,
 	};
-	/* eslint-enable no-magic-numbers */
 
+	/** @type {Element} */
 	let target = null;
-	let tag = el.tagName.toLowerCase();
-	if (tag in ROLES_CBS) {
+	let name = el.nodeName.toLowerCase();
+	if (name in ROLES_CBS) {
+		let tag = /** @type {keyof HTMLElementTagNameMap} */ (name);
 		let role = ROLES_CBS[tag];
 		if (typeof role == 'function')
 			target = role(el);

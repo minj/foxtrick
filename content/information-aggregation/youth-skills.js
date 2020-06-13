@@ -180,13 +180,19 @@ Foxtrick.modules['YouthSkills'] = {
 					// new design sans skill-bars
 					// retrieve current / potential
 					let [current, potential] = [...node.children];
-					if (current.nodeName == 'A')
-						htCur = Foxtrick.util.id.getSkillLevelFromLink(current);
+					if (current.nodeName == 'A') {
+						let link = /** @type {HTMLAnchorElement} */ (current);
+						htCur = Foxtrick.util.id.getSkillLevelFromLink(link);
+					}
 
-					if (typeof potential == 'undefined')
-						maxed = Foxtrick.util.id.getSkillLevelFromLink(current);
-					else if (potential.nodeName == 'A')
-						htPot = Foxtrick.util.id.getSkillLevelFromLink(potential);
+					if (typeof potential == 'undefined') {
+						let link = /** @type {HTMLAnchorElement} */ (current);
+						maxed = Foxtrick.util.id.getSkillLevelFromLink(link);
+					}
+					else if (potential.nodeName == 'A') {
+						let link = /** @type {HTMLAnchorElement} */ (potential);
+						htPot = Foxtrick.util.id.getSkillLevelFromLink(link);
+					}
 				}
 
 				for (let child of [...node.childNodes])
@@ -469,7 +475,10 @@ Foxtrick.modules['YouthSkills'] = {
 				}
 				else {
 					replaceBars(sEntry);
-					ftBars = sEntry.firstElementChild.firstElementChild;
+
+					ftBars = /** @type {HTMLElement} */
+						(sEntry.firstElementChild.firstElementChild);
+
 					if (!ftBars || !Foxtrick.hasClass(ftBars, 'ft-youthSkillBars'))
 						return;
 

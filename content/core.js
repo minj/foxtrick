@@ -58,7 +58,7 @@ Foxtrick.modules.Core = {
 		const UTC = Foxtrick.util.time.getUTCDate(doc);
 		if (UTC) {
 			CORE.HT_TIME = UTC.getTime();
-			Foxtrick.Prefs.setString('lastTime', CORE.HT_TIME);
+			Foxtrick.Prefs.setString('lastTime', String(CORE.HT_TIME));
 		}
 
 		if (Foxtrick.isPage(doc, 'matchOrder')) {

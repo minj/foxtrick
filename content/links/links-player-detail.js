@@ -96,7 +96,7 @@ Foxtrick.modules.LinksPlayerDetail = {
 		var skills = Foxtrick.Pages.Player.getSkills(doc);
 		if (skills) {
 			/**
-			 * @type {(keyof SkillMap<number>|[string, keyof SkillMap<number>])[]}
+			 * @type {(PlayerSkillName|[string, PlayerSkillName])[]}
 			 */
 			var copy = [
 				['goalkeeping', 'keeper'],

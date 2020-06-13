@@ -166,10 +166,10 @@ Foxtrick.Predict.loyaltyBonus = function(loyaltyLevel, isMotherClub = false) {
 /* eslint-disable max-len */
 /**
  * @typedef {'kp'|'cd'|'cdo'|'cdtw'|'wb'|'wbd'|'wbo'|'wbtm'|'w'|'wd'|'wo'|'wtm'|'im'|'imd'|'imo'|'imtw'|'fw'|'fwd'|'tdf'|'fwtw'} PlayerPositionCode
- * @typedef {'defending'|'keeper'|'passing'|'playmaking'|'scoring'|'setPieces'|'winger'} PlayerSkillName
+ * @typedef {keyof PlayerSkills} PlayerSkillName
  */
 /**
- * @typedef {number|SkillContribution} SkillContributionOptional
+ * @typedef {0|SkillContribution} SkillContributionOptional
  * @typedef {Record<PlayerSkillName, SkillContributionOptional>} PositionContributions
  * @typedef {Record<PlayerPositionCode, PositionContributions>} ContributionFactors
  * @typedef {Partial<Record<PlayerPositionCode, Partial<PositionContributions>>>} PartialContributionFactors

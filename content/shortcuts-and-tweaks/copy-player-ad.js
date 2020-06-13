@@ -401,11 +401,11 @@ Foxtrick.modules.CopyPlayerAd = {
 			if (bidDiv) {
 				ad += '\n';
 				let paragraphs = bidDiv.querySelectorAll('p');
-				for (let p = 0; p < paragraphs.length; p++) {
-					let parCopy = Foxtrick.cloneElement(paragraphs[p], true);
+				for (let para of paragraphs) {
+					let parCopy = Foxtrick.cloneElement(para, true);
 					let links = parCopy.querySelectorAll('a');
-					for (let l = 1; l < links.length; l++)
-						links[l].textContent = '';
+					for (let link of [...links].slice(1))
+						link.textContent = '';
 
 					ad += parCopy.textContent.trim();
 					ad += '\n';
@@ -413,8 +413,8 @@ Foxtrick.modules.CopyPlayerAd = {
 			}
 
 			Foxtrick.copy(doc, ad);
-			Foxtrick.util.note.add(doc, Foxtrick.L10n.getString('copy.playerad.copied'),
-			                       'ft-playerad-copy-note');
+			const COPIED = Foxtrick.L10n.getString('copy.playerad.copied');
+			Foxtrick.util.note.add(doc, COPIED, 'ft-playerad-copy-note');
 		}
 		catch (e) {
 			Foxtrick.alert('createPlayerAd');

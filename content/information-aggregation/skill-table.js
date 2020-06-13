@@ -70,9 +70,6 @@ Foxtrick.modules.SkillTable = {
 		const module = this;
 		const TABLE_DIV_ID = 'ft_skilltablediv';
 
-		/** @type {CHPPOpts} */
-		const DEFAULT_CACHE = { cache: 'session' };
-
 		const useFrozen = Foxtrick.Prefs.isModuleOptionEnabled(module, 'FrozenColumns');
 		const useFullNames = Foxtrick.Prefs.isModuleOptionEnabled(module, 'FullNames');
 
@@ -212,243 +209,6 @@ Foxtrick.modules.SkillTable = {
 			});
 		};
 
-		/** @type {Listener<HTMLAnchorElement,MouseEvent>} */
-		var showTimeInClub = function() {
-			// eslint-disable-next-line no-invalid-this
-			Foxtrick.toggleClass(this, 'hidden');
-
-			var loading = Foxtrick.util.note.createLoading(doc);
-			var wrapper = doc.querySelector('.ft_skilltable_wrapper');
-			wrapper.appendChild(loading);
-
-			/**
-			 * @param  {CHPPXML}  xml
-			 * @param  {Player[]} list
-			 * @return {boolean}       whether joinedSince was set
-			 */
-			var setHomeGrownAndJoinedSinceFromTransfers = function(xml, list) {
-				let playerId = xml.num('PlayerID');
-				let player = Foxtrick.Pages.Players.getPlayerFromListById(list, playerId);
-				let teamId = xml.num('TeamId');
-
-				let transfers = xml.getElementsByTagName('Transfer');
-				if (transfers.length === 0)
-					return false;
-
-				let firstTransfer = [...transfers].pop();
-				let seller = xml.num('SellerTeamID', firstTransfer);
-				if (seller === teamId) {
-					player.motherClubBonus = doc.createElement('span');
-					player.motherClubBonus.textContent = '*';
-					player.motherClubBonus.title =
-						Foxtrick.L10n.getString('skilltable.rebought_youthplayer');
-				}
-
-				let lastTransfer = transfers[0];
-				let buyerTeamID = xml.num('BuyerTeamID', lastTransfer);
-				if (teamId === buyerTeamID) {
-					// legitimate transfer
-					let deadline = xml.time('Deadline', lastTransfer);
-					player.joinedSince = deadline;
-					return true;
-				}
-
-				// probably external coach
-				// let setJoinedSinceFromPullDate handle it
-				return false;
-			};
-
-			/**
-			 * return false if from own starting squad
-			 *
-			 * @param  {CHPPXML}  xml
-			 * @param  {Player[]} list
-			 * @return {boolean}       whether joinedSince was set
-			 */
-			var setJoinedSinceFromPullDate = function(xml, list) {
-				// check PlayerEventTypeID==20 -> pulled from YA, 13->pulled from SN, 12->coach
-				// possibilities:
-				// 1) external coach pulled elsewhere
-				// 2) player pulled here (never sold)
-				// 3) internal coach pulled here
-				// 4) external coach pulled here (is that even possible? let's hope not)*
-				// 5) player from starting squad (return false)
-				// 6) internal coach from starting squad (return false)
-				// 7) external coach from starting squad (is that even possible? let's hope not)*
-				// 8) external coach from someone else's starting squad
-				// * not taken care off
-
-				const YA_PULL_EV_ID = 20;
-				const SN_PULL_EV_ID = 13;
-				const COACH_EV_ID = 12;
-
-				const teamId = Foxtrick.Pages.All.getId(doc);
-				const playerId = xml.num('PlayerID');
-
-				let player = Foxtrick.Pages.Players.getPlayerFromListById(list, playerId);
-				let playerEvents = xml.getElementsByTagName('PlayerEvent');
-
-				let pulledElsewhere = false;
-				let isCoach = false;
-
-				var done = Foxtrick.any(function(event) {
-					let eventTypeId = xml.num('PlayerEventTypeID', event);
-					if (eventTypeId == COACH_EV_ID && !isCoach) {
-						// consider only the last coach contract
-						isCoach = true;
-						let coachDate = xml.time('EventDate', event);
-						player.joinedSince = coachDate;
-					}
-
-					if (eventTypeId == YA_PULL_EV_ID || eventTypeId == SN_PULL_EV_ID) {
-						// check to see if pulled from this team
-						let text = xml.text('EventText', event);
-						if (text.match(`\\b${teamId}\\b`)) {
-							// cases 2) & 3) -> pullDate
-							// pulledHere
-							let eventDate = xml.time('EventDate', event);
-							player.joinedSince = eventDate;
-
-							// pull is a last-ish and most important event
-							// we are done
-							return true;
-						}
-
-						pulledElsewhere = true;
-					}
-
-					// not done yet
-					return false;
-				}, playerEvents);
-
-				if (done) {
-					// joinedSince = pullDate
-					return true;
-				}
-
-				// pulledHere already dealt with above
-				// it's either pulled elsewhere which is 1): should have event 12 -> coachDate
-				// or starting in other team 8): motherClubBonus is undefined -> also coachDate
-				// or starting in own team  5) & 6): return false -> activationDate
-				let hasMCBonus = typeof player.motherClubBonus !== 'undefined';
-				return pulledElsewhere || !hasMCBonus;
-			};
-
-			/**
-			 * @param {document} doc
-			 * @param {Date}     activationDate
-			 */
-			var updatePlayers = function(doc, activationDate) {
-				/**
-				 * @param {document} doc
-			 	 * @param {Player[]} list
-				 */
-				var display = function(doc, list) {
-					Foxtrick.preventChange(doc, generateTable)(list);
-				};
-
-				/**
-				 * @param {document} doc
-				 * @param {Player[]} list
-				 * @param {number[]} missing
-				 */
-				var parseEvents = function(doc, list, missing) {
-					/** @type {CHPPParams[]} */
-					const args = missing.map(id => [['file', 'playerevents'], ['playerId', id]]);
-
-					// TODO promisify
-					// try set joined date from pull date
-					Foxtrick.util.api.batchRetrieve(doc, args, DEFAULT_CACHE, (xmls, errors) => {
-						Foxtrick.forEach(function(xml, i) {
-							let error = errors[i];
-							if (!xml || error) {
-								Foxtrick.log('No XML in batchRetrieve', error, xml, args[i]);
-								return;
-							}
-
-							if (setJoinedSinceFromPullDate(xml, list))
-								return;
-
-							// no pull date = from starting squad.
-							// joinedSince = activationDate
-							let pId = missing[i];
-							let player = Foxtrick.Pages.Players.getPlayerFromListById(list, pId);
-							player.joinedSince = activationDate;
-
-						}, xmls);
-
-						// finished. now display results
-						display(doc, list);
-					});
-				};
-
-				/**
-				 * @param {document} doc
-				 * @param {Player[]} list
-				 */
-				var parseTransfers = function(doc, list) {
-					// first we check transfers
-
-					/** @type {CHPPParams[]} */
-					const args = list.map(p => [['file', 'transfersplayer'], ['playerId', p.id]]);
-
-					Foxtrick.util.api.batchRetrieve(doc, args, DEFAULT_CACHE, (xmls, errors) => {
-						/** @type {number[]} */
-						let missing = [];
-						Foxtrick.forEach(function(xml, i) {
-							let error = errors[i];
-							if (!xml || error) {
-								Foxtrick.log('No XML in batchRetrieve', error, xml, args[i]);
-								return;
-							}
-
-							// if there is a transfer, we are finished with this player
-							if (setHomeGrownAndJoinedSinceFromTransfers(xml, list))
-								return;
-
-							// so, he's from home.
-							// need to get pull date from playerevents below
-							let playerId = xml.num('PlayerID');
-							missing.push(playerId);
-
-						}, xmls);
-
-						if (missing.length)
-							parseEvents(doc, list, missing);
-						else
-							display(doc, list);
-
-					});
-				};
-
-				Foxtrick.Pages.Players.getPlayerList(doc, list => parseTransfers(doc, list));
-			};
-
-			// first get teams activation date. we'll need it later
-			const teamId = Foxtrick.Pages.All.getTeamId(doc);
-
-			/** @type {CHPPParams} */
-			const args = [['file', 'teamdetails'], ['version', '2.9'], ['teamId', teamId]];
-			Foxtrick.util.api.retrieve(doc, args, DEFAULT_CACHE, (xml, errorText) => {
-				if (!xml || errorText) {
-					loading.parentNode.removeChild(loading);
-
-					/** @type {HTMLElement} */
-					let target = doc.querySelector('.ft_skilltable_wrapper');
-					Foxtrick.util.note.add(doc, errorText, null, { to: target });
-					return;
-				}
-
-				let teams = xml.getElementsByTagName('TeamID');
-				let teamIdEl = Foxtrick.nth(team => team.textContent === teamId.toString(), teams);
-
-				let team = /** @type {Element} */ (teamIdEl.parentNode);
-				let activationDate = xml.time('FoundedDate', team);
-
-				updatePlayers(doc, activationDate);
-			});
-		};
-
 		/** @param {Player[]} players */
 		generateTable = function(players) {
 			/** @type {HTMLElement} */
@@ -497,7 +257,7 @@ Foxtrick.modules.SkillTable = {
 				{ name: 'Specialty', property: 'specialty',
 					method: 'specialty', sortAsString: true, frozen: true, },
 				{ name: 'Status', properties: [
-					'yellowCard', 'redCard', 'bruised', 'injuredWeeks', 'transferListed',
+					'yellowCard', 'redCard', 'bruised', 'injured', 'injuredWeeks', 'transferListed',
 				], method: 'status', frozen: true, },
 				{ name: 'Age', property: 'age', method: 'age', sortAsc: true, frozen: true, },
 				{ name: 'CanBePromotedIn', property: 'canBePromotedIn',
@@ -561,13 +321,17 @@ Foxtrick.modules.SkillTable = {
 				{ name: 'FriendliesGoals', property: 'friendliesGoals', },
 				{ name: 'TeamGoals', property: 'goalsCurrentTeam', },
 				{ name: 'CareerGoals', property: 'careerGoals', },
-				{ name: 'Hattricks', property: 'hattricks', },
+
+				{ name: 'Hattricks', property: 'careerHattricks', },
 				{ name: 'Deadline', property: 'deadline', method: 'dateCell', },
 				{ name: 'Current_club', property: 'currentClubLink',
 					method: 'link', sortAsString: true, },
 				{ name: 'Current_league', property: 'currentLeagueId',
 					method: 'league', sortAsString: true, },
-				{ name: 'OwnerNotes', property: 'ownerNotes', method: 'notes', sortAsString: true, },
+				{
+					name: 'OwnerNotes', property: 'ownerNotes',
+					method: 'notes', sortAsString: true,
+				},
 				{ name: 'TransferCompare', property: 'transferCompare', method: 'link', },
 				{ name: 'PerformanceHistory', property: 'performanceHistory', method: 'link', },
 				{ name: 'TwinLink', property: 'twinLink',
@@ -765,22 +529,23 @@ Foxtrick.modules.SkillTable = {
 						img.title = Foxtrick.L10n.getString('Injured');
 						cell.appendChild(img);
 
-						// player.injured is number from players page,
-						// or string for infinity
-						// or boolean from transfer result page.
-						// FIXME
-						if (typeof p.injuredWeeks !== 'undefined' &&
-						    typeof p.injuredWeeks !== 'boolean') {
-							let weeks =
-								p.injuredWeeks == Infinity ? '\u221e' : String(p.injuredWeeks);
-
+						// player.injured is number from players page
+						// may not be available on the transfer result page
+						if (typeof p.injuredWeeks == 'number') {
+							let weeks = String(p.injuredWeeks);
+							if (p.injuredWeeks == Infinity) {
+								weeks = '\u221e';
+								index += 1000;
+							}
+							else {
+								index += p.injuredWeeks * 100;
+							}
 							cell.appendChild(doc.createTextNode(weeks));
 						}
-
-						if (typeof p.injuredWeeks === 'number')
-							index += p.injuredWeeks * 100;
-						else
+						else {
 							index += 1000;
+						}
+
 					}
 
 					if (p.transferListed) {

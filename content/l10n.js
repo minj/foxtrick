@@ -972,7 +972,7 @@ Foxtrick.L10n.getCountryNameLocal = function(leagueId, lang) {
 						return value;
 
 					// @ts-ignore
-					var get = PluralForm.makeGetter(plForm)[0];
+					var [get] = PluralForm.makeGetter(plForm);
 					try {
 						return get(num, value);
 					}

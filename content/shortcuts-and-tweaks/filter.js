@@ -164,7 +164,15 @@ Foxtrick.modules.Filter = {
 		 * @return {Promise<Filter[]>}
 		 */
 		var getFilters = async function(page) {
-			const saved = await Foxtrick.session.get('filters.' + page);
+			/** @type {Filter[]} */
+			var saved = null;
+			try {
+				saved = await Foxtrick.session.get('filters.' + page);
+			}
+			catch (e) {
+				Foxtrick.catch('Filter')(e);
+			}
+
 			if (saved)
 				return saved;
 

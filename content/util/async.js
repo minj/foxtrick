@@ -97,7 +97,8 @@ Foxtrick.catch = module => function(e) {
 
 	// @ts-ignore
 	let what = module && module.MODULE_NAME || module;
-	Foxtrick.log('Uncaught error in callback for', what, e);
+	let err = e instanceof Error ? e : new Error(String(e));
+	Foxtrick.log('Uncaught error in callback for', what, err);
 	return e;
 };
 

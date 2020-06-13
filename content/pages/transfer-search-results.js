@@ -52,7 +52,7 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 	var htRows = null;
 
 	if (isNewDesign) {
-	/** @type {HTMLTableElement} */
+		/** @type {HTMLTableElement} */
 		var htTable = doc.querySelector('#playersTable');
 
 		if (htTable) {
@@ -65,7 +65,10 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 		}
 	}
 
-	let parseHTTableRow = (player) => {
+	/**
+	 * @param {Player} player
+	 */
+	var parseHTTableRow = (player) => {
 		let htRow = htRows.get(player.id);
 
 		let cellClubWeeks = htRow.cells[9];
@@ -76,7 +79,12 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 		player.joinedSince = joinedSince;
 	};
 
-	let parseSkills = (player, pNode) => {
+	/**
+	 * @param {Player}  player
+	 * @param {Element} pNode
+	 */
+	var parseSkills = (player, pNode) => {
+		/** @type {(PlayerSkillName|'stamina')[]} */
 		const SKILLS_OLD = [
 			'stamina',
 			'keeper',
@@ -87,6 +95,8 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 			'scoring',
 			'setPieces',
 		];
+
+		/** @type {PlayerSkillName[]} */
 		const SKILLS_NEW = [
 			'keeper',
 			'defending',
@@ -99,8 +109,14 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 		let skills = isNewDesign ? SKILLS_NEW : SKILLS_OLD;
 
 		// right skill table - skills
+		/** @type {HTMLTableElement} */
 		let tbl = pNode.querySelector('.transferPlayerSkills table');
-		let getSkill = (idx) => {
+
+		/**
+		 * @param  {number} idx
+		 * @return {number}
+		 */
+		var getSkill = (idx) => {
 			let mod = idx % 2;
 			let mIdx = 1 + mod * 2;
 			let dIdx = (idx - mod) / 2 + 1; // first is empty
@@ -129,9 +145,10 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 			player.htmsPotential = parseInt(htms.getAttribute('data-htms-potential'), 10);
 		}
 
+		/** @type {HTMLElement} */
 		let psico = pNode.querySelector('.ft-psico');
 		if (psico) {
-			player.psicoTSI = psico.dataset.psicoAvg;
+			player.psicoTSI = Number(psico.dataset.psicoAvg);
 			player.psicoTitle = psico.dataset.psicoSkill;
 			player.psicoWage = psico.dataset.psicoWage;
 		}
@@ -146,13 +163,20 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 		}
 	};
 
-	let addLinks = (player, pNode, urlTmpl) => {
+	/**
+	 * @param {Player}  player
+	 * @param {Element} pNode
+	 * @param {string}  urlTmpl
+	 */
+	var addLinks = (player, pNode, urlTmpl) => {
+		/** @type {HTMLAnchorElement} */
 		let bookmarkLink = pNode.querySelector('.bookmarkSmall');
 		if (bookmarkLink) {
 			player.bookmarkLink = Foxtrick.cloneElement(bookmarkLink, true);
 			player.bookmarkLink.target = '_blank';
 		}
 
+		/** @type {HTMLAnchorElement} */
 		let hotlistLink = pNode.querySelector('a[href*="hotList"]');
 		if (hotlistLink) {
 			player.hotlistLink = Foxtrick.cloneElement(hotlistLink, true);
@@ -191,10 +215,10 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 	};
 
 	/**
-	 * @param {*}       player
+	 * @param {Player}  player
 	 * @param {Element} bidContainer
 	 */
-	let parseBidInfo = (player, bidContainer) => {
+	var parseBidInfo = (player, bidContainer) => {
 		/** @type {HTMLElement} */
 		var bid;
 
@@ -258,17 +282,22 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 		shortBidder.appendChild(bidderImg);
 	};
 
+	/**
+	 * @param {Player}  player
+	 * @param {Element} statusContainer
+	 */
 	/* eslint-disable complexity */
-	let parseStatus = (player, statusContainer) => {
+	var parseStatus = (player, statusContainer) => {
 		player.redCard = 0;
 		player.yellowCard = 0;
 		player.bruised = false;
 		player.injured = false;
 
+		/** @type {NodeListOf<HTMLImageElement|HTMLElement|HTMLObjectElement>} */
 		let icons = statusContainer.querySelectorAll('img, i, object');
 		for (let icon of icons) {
 			if (Foxtrick.hasClass(icon, 'cardsOne')) {
-				if (/red_card/i.test(icon.src))
+				if ('src' in icon && /red_card/i.test(icon.src))
 					player.redCard = 1;
 				else
 					player.yellowCard = 1;
@@ -292,16 +321,22 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 				player.injured = true;
 
 				// README: may contain infinity sign
-				let lengthStr = icon.dataset.injuryLength || icon.nextSibling.textContent;
-				let length = lengthStr.replace(/\u221e/, 'Infinity');
-				player.injuredWeeks = parseInt(length, 10) || length;
+				let lengthStr = icon.dataset.injuryLength || icon.nextSibling.textContent.trim();
+				let length = parseFloat(lengthStr.replace(/\u221e/, 'Infinity'));
+				if (!Number.isNaN(length))
+					player.injuredWeeks = length;
 			}
 		}
 	};
 	/* eslint-enable complexity */
 
+	/**
+	 * @param {Player}  player
+	 * @param {Element} attrContainer
+	 * @param {HTMLTableElement} infoTable
+	 */
 	// eslint-disable-next-line complexity
-	let parseAttributes = (player, attrContainer, infoTable) => {
+	var parseAttributes = (player, attrContainer, infoTable) => {
 		const ATTRIBUTES = ['experience', 'leadership', 'form'];
 		if (isNewDesign)
 			ATTRIBUTES.pop();
@@ -347,10 +382,8 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 		if (cells.form)
 			player.form = Foxtrick.Pages.Player.getSkillLevel(cells.form);
 
-		if (cells.stamina) {
+		if (cells.stamina)
 			player.stamina = Foxtrick.Pages.Player.getSkillLevel(cells.stamina);
-			player.skills.stamina = player.stamina;
-		}
 
 		if (cells.deadline)
 			player.deadline = Foxtrick.cloneElement(cells.deadline, true);
@@ -363,17 +396,25 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 		player.age = { years, days };
 	};
 
-	let parsePlayer = (playerNode) => {
-		var p = { playerNode, skills: {}};
+	/**
+	 * @param  {HTMLElement} playerNode
+	 * @return {Player}
+	 */
+	var parsePlayer = (playerNode) => {
+		/** @type {Partial<Player>} */
+		let player = { playerNode, skills: {}};
+		var p = /** @type {Player} */ (player);
 
 		try {
 			// first row - country, name, ID
+			/** @type {HTMLAnchorElement} */
 			let nameLink = playerNode.querySelector('.transfer_search_playername a');
 			p.id = Number(Foxtrick.getUrlParam(nameLink.href, 'playerId'));
 			p.nameLink = Foxtrick.cloneElement(nameLink, true);
 			p.nameLink.target = '_blank';
 			addLinks(p, playerNode, nameLink.href);
 
+			/** @type {HTMLAnchorElement} */
 			let flag = playerNode.querySelector('.flag');
 			let leagueId = Number(Foxtrick.getUrlParam(flag.href, 'leagueId'));
 			p.countryId = Foxtrick.XMLData.getCountryIdByLeagueId(leagueId);
@@ -390,6 +431,7 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 			let attrContSel = isNewDesign ? 'p' : '.transferPlayerCharacteristics';
 			let attrContainer = playerNode.querySelector(attrContSel);
 			if (attrContainer) {
+				/** @type {HTMLTableElement} */
 				let infoTable = playerNode.querySelector('.transferPlayerInformation table');
 				parseAttributes(p, attrContainer, infoTable);
 				parseSkills(p, playerNode);
@@ -406,7 +448,9 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 		return p;
 	};
 
-	let playerNodes = [...doc.querySelectorAll('.transferPlayerInfo')];
+	/** @type {NodeListOf<HTMLElement>} */
+	let tInfos = doc.querySelectorAll('.transferPlayerInfo');
+	let playerNodes = [...tInfos];
 	if (isNewDesign)
 		playerNodes = playerNodes.map(p => p.parentElement.parentElement);
 

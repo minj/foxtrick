@@ -237,7 +237,7 @@ Foxtrick.modules.DashboardCalendar = {
 		var userDates = [];
 
 		for (var i = 0; i < DAYS_IN_WEEK; ++i) {
-			var dayHeader = doc.querySelector('.eventCalendarWeekday' + i);
+			var dayHeader = doc.querySelector(`.eventCalendarWeekday${i}`);
 			var dayNumberSpan = dayHeader.querySelector('.eventCalendarDay');
 			var dayNumber = parseInt(dayNumberSpan.textContent.trim(), 10);
 
@@ -262,13 +262,17 @@ Foxtrick.modules.DashboardCalendar = {
 		}
 
 		Foxtrick.forEach(function(node) {
-			var day = parseInt(node.className.match(/eventDay(\d+)/)[1], 0);
-			var userDate = userDates[day];
-			var evnt = parseEvent(node, userDate);
+			let match = /eventDay(\d+)/.exec(node.className);
+			if (match == null)
+				return;
+
+			let [_, dayStr] = match;
+			let userDate = userDates[Number(dayStr)];
+			let evnt = parseEvent(node, userDate);
 			if (!evnt)
 				return;
 
-			var htDay = evnt.date.getDay();
+			let htDay = evnt.date.getDay();
 			htDays[htDay].push(evnt);
 		}, eventNodes);
 
@@ -276,21 +280,23 @@ Foxtrick.modules.DashboardCalendar = {
 		 * @param {FakedEvent} evnt
 		 */
 		var addFake = function(evnt) {
-			var date = Foxtrick.util.time.addDaysToDate(htToday, evnt.offset);
+			let { offset, type } = evnt;
+
+			let date = Foxtrick.util.time.addDaysToDate(htToday, offset);
 			// eslint-disable-next-line no-magic-numbers
 			date.setHours(18);
-			var userTime = Foxtrick.util.time.toUser(doc, date);
-			var userClock = Foxtrick.util.time.buildDate(userTime, { format: 'HH:MM' });
-			var description = Foxtrick.L10n.getString(L10N_PREFIX + evnt.type + '.alarm');
+			let userTime = Foxtrick.util.time.toUser(doc, date);
+			let userClock = Foxtrick.util.time.buildDate(userTime, { format: 'HH:MM' });
+			let description = Foxtrick.L10n.getString(`${L10N_PREFIX}${type}.alarm`);
 
 			/** @type {unknown} */
-			var e = evnt;
-			var evt = /** @type {DashboardEvent} */ (e);
+			let e = evnt;
+			let evt = /** @type {DashboardEvent} */ (e);
 
 			evt.date = date;
-			evt.text = userClock + ' » ' + description;
+			evt.text = `${userClock} » ${description}`;
 
-			var htDay = date.getDay();
+			let htDay = date.getDay();
 			htDays[htDay].push(evt);
 		};
 
@@ -308,7 +314,7 @@ Foxtrick.modules.DashboardCalendar = {
 			var evnt = /** @type {CalendarEvent} */ (e);
 
 			if (evnt.team)
-				evnt.text += ' (' + evnt.team + ')';
+				evnt.text += ` (${evnt.team})`;
 
 			evnt.time = Foxtrick.util.time.toBareISOString(evnt.date);
 			evnt.alarmMinutes = 30;
@@ -345,21 +351,22 @@ Foxtrick.modules.DashboardCalendar = {
 			if (endTime)
 				evnt.end = Foxtrick.util.time.toBareISOString(endTime);
 
-			var UID = evnt.time + '@foxtrick.org';
+			var UID = `${evnt.time}@foxtrick.org`;
 			var hasId = false;
 			if (evnt.URL) {
 				var ID = /ID=(\d+)/i.exec(evnt.URL);
-				if (ID && ID[1]) {
-					UID = ID[1] + '-' + UID;
+				if (ID) {
+					let [_, id] = ID;
+					UID = `${id}-${UID}`;
 					hasId = true;
 				}
 				evnt.URL = Foxtrick.goToUrl(evnt.URL);
 			}
 
 			if (!hasId && evnt.team)
-				UID = encodeURIComponent(evnt.team) + '-' + UID;
+				UID = `${encodeURIComponent(evnt.team)}-${UID}`;
 
-			evnt.UID = evnt.type + '-' + UID;
+			evnt.UID = `${evnt.type}-${UID}`;
 			events.push(evnt);
 		};
 
