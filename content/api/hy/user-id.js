@@ -35,8 +35,7 @@ if (!Foxtrick.api.hy)
 if (!Foxtrick.api.hy.URL)
 	Foxtrick.api.hy.URL = {};
 
-Foxtrick.api.hy.URL.userId = 'https://www.hattrick-youthclub.org' +
-	'/_data_provider/foxtrick/userId';
+Foxtrick.api.hy.URL.userId = '/_data_provider/foxtrick/userId';
 
 Foxtrick.api.hy.USER_ID_CACHE = 14;
 
