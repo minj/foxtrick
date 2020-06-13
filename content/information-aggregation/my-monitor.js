@@ -7,7 +7,7 @@
 
 'use strict';
 
-Foxtrick.modules['MyMonitor'] = {
+Foxtrick.modules.MyMonitor = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES: ['myHattrick', 'dashboard', 'teamPage', 'youthOverview', 'national'],
 	OPTIONS: ['TeamIcons'],
@@ -283,7 +283,7 @@ Foxtrick.modules['MyMonitor'] = {
 				let sortLink = doc.createElement('a');
 				sortLink.id = 'ft-monitor-sort-' + id;
 				Foxtrick.addClass(sortLink, 'ft-link');
-				sortLink.textContent = Foxtrick.L10n.getString(`module.MyMoitor.${id}.desc`);
+				sortLink.textContent = Foxtrick.L10n.getString(`module.MyMonitor.${id}.desc`);
 
 				Foxtrick.onClick(sortLink, sortAndReload(value));
 
