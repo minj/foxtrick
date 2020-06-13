@@ -37,6 +37,11 @@ Foxtrick.COOKIE_SPEC = {
 	},
 };
 
+for (let k of Object.keys(Foxtrick.COOKIE_SPEC))
+	Object.freeze(Foxtrick.COOKIE_SPEC[k]);
+
+Object.freeze(Foxtrick.COOKIE_SPEC);
+
 /** @typedef {keyof Foxtrick.COOKIE_SPEC} CookieKey */
 
 Foxtrick.cookies = (function() {
@@ -107,8 +112,7 @@ Foxtrick.cookies = (function() {
 		const cookie = { url, domain, name };
 
 		if (spec.isJSON) {
-			let old = oldVal || {};
-			Foxtrick.mergeAll(old, val);
+			let old = Object.assign(oldVal || {}, val);
 			cookie.value = stringifyVal(old, spec);
 		}
 		else {
@@ -270,22 +274,3 @@ Foxtrick.cookies = (function() {
 	return { get, set };
 
 })();
-
-
-// /////////////////////////
-// TODO: remove deprecated
-// ////////////////////////
-
-/**
- * Get a value from the cookie storage.
- *
- * Cookie storage key must be preset in COOKIE_SPEC.
- *
- * @deprecated use cookies.get() instead
- *
- * @param {CookieKey}        key
- * @param {function(*):void} callback
- */
-Foxtrick.cookieGet = function(key, callback) {
-	Foxtrick.cookies.get(key).then(callback).catch(Foxtrick.catch('cookieGet'));
-};

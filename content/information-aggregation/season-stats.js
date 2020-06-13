@@ -1,9 +1,10 @@
-'use strict';
 /**
  * season-stats.js
  * Foxtrick add stats to match archive
  * @author convinced
  */
+
+'use strict';
 
 Foxtrick.modules['SeasonStats'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
@@ -12,11 +13,13 @@ Foxtrick.modules['SeasonStats'] = {
 	CSS: Foxtrick.InternalPath + 'resources/css/seasonstats.css',
 
 
+	// eslint-disable-next-line complexity
 	run: function(doc) {
 
-		if (Foxtrick.Pages.All.isYouth(doc))
+		if (Foxtrick.Pages.All.isYouth(doc)) {
 			// don't run on youth
 			return;
+		}
 
 		try {
 			// get current season
@@ -39,8 +42,7 @@ Foxtrick.modules['SeasonStats'] = {
 		var selectbox = Foxtrick.createFeaturedElement(doc, this, 'select');
 		selectbox.setAttribute('id', 'ft_season_selectboxID');
 
-		Foxtrick.listen(selectbox, 'change',
-		  function(ev) {
+		Foxtrick.listen(selectbox, 'change', function(ev) {
 			try {
 				var actiontype = '';
 				var select = Foxtrick.getMBElement(doc, 'ddlMatchType');
@@ -51,14 +53,16 @@ Foxtrick.modules['SeasonStats'] = {
 						break;
 					}
 				}
-				if (doc.location.href.search(/actiontype/i) == -1)// has no actiontype. add one
-					doc.location.href = doc.location.href
-						.replace(/season=\d+/, 'season=' +
-						         ev['target']['value']) + '&actiontype=' + actiontype;
-				else
+				if (doc.location.href.search(/actiontype/i) == -1) {
+					// has no actiontype. add one
+					doc.location.href =
+						doc.location.href.replace(/season=\d+/, 'season=' + ev['target']['value']) + '&actiontype=' + actiontype;
+				}
+				else {
 					doc.location.href = doc.location.href
 						.replace(/season=\d+/, 'season=' + ev['target']['value'])
 						.replace(/actiontype=.+/, 'actiontype=' + actiontype);
+				}
 
 			}
 			catch (e) {
@@ -289,6 +293,6 @@ Foxtrick.modules['SeasonStats'] = {
 			ownBoxBody.appendChild(br);
 		}
 
-			Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, 1);
-	}
+		Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, 1);
+	},
 };

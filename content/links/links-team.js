@@ -8,7 +8,7 @@
 Foxtrick.modules['LinksTeam'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
 	PAGES: ['teamPage'],
-	LINK_TYPE: 'teamlink',
+	LINK_TYPES: 'teamlink',
 	/**
 	 * return HTML for FT prefs
 	 * @param  {document}         doc
@@ -49,7 +49,7 @@ Foxtrick.modules['LinksTeam'] = {
 			var seriesLink = teamInfo.querySelector('a[href^="/World/Series/"]');
 			if (seriesLink) {
 				// seriesPos is not known during a game
-				var seriesP = seriesLink.parentNode.cloneNode(true);
+				var seriesP = Foxtrick.cloneElement(seriesLink.parentNode, true);
 				seriesP.removeChild(seriesP.querySelector('a'));
 				seriesPos = seriesP.textContent.match(/\d/).toString();
 			}

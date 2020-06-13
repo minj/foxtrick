@@ -165,40 +165,45 @@ Foxtrick.modules.ForumPreview = {
 			}
 		};
 
-		/** @type {WeakMap<Element, ()=>void>} */
-		const REMOVE_MAP = new WeakMap();
-		const NO_OP = () => {};
-
-		/** @param {HTMLElement} previewDiv */
+		/**
+		 * @param  {HTMLElement} previewDiv
+		 * @return {Listener<HTMLInputElement, MouseEvent>}
+		 */
 		var toggleListener = function(previewDiv) {
-			Foxtrick.toggleClass(previewDiv, 'hidden');
-			let msgWindow = doc.querySelector('#mainBody textarea');
+			/** @type {WeakMap<Element, ()=>void>} */
+			const REMOVE_MAP = new WeakMap();
+			const NO_OP = () => {};
 
-			try {
-				if (Foxtrick.hasClass(previewDiv, 'hidden')) {
-					(REMOVE_MAP.get(msgWindow) || NO_OP)();
+			return function toggle() {
+				Foxtrick.toggleClass(previewDiv, 'hidden');
+				let msgWindow = doc.querySelector('#mainBody textarea');
 
-					let toolbars = doc.querySelectorAll('.HTMLToolbar');
-					for (let toolbar of toolbars)
-						(REMOVE_MAP.get(toolbar) || NO_OP)();
-				}
-				else {
-					let listener = () => preview(previewDiv);
-					let rem = Foxtrick.listen(msgWindow, 'input', listener, false);
-					REMOVE_MAP.set(msgWindow, rem);
+				try {
+					if (Foxtrick.hasClass(previewDiv, 'hidden')) {
+						(REMOVE_MAP.get(msgWindow) || NO_OP)();
 
-					let toolbars = doc.querySelectorAll('.HTMLToolbar');
-					for (let toolbar of toolbars) {
-						let rem = Foxtrick.listen(toolbar, 'click', listener);
-						REMOVE_MAP.set(toolbar, rem);
+						let toolbars = doc.querySelectorAll('.HTMLToolbar');
+						for (let toolbar of toolbars)
+							(REMOVE_MAP.get(toolbar) || NO_OP)();
 					}
+					else {
+						let listener = () => preview(previewDiv);
+						let rem = Foxtrick.listen(msgWindow, 'input', listener);
+						REMOVE_MAP.set(msgWindow, rem);
 
-					listener();
+						let toolbars = doc.querySelectorAll('.HTMLToolbar');
+						for (let toolbar of toolbars) {
+							let rem = Foxtrick.listen(toolbar, 'click', listener);
+							REMOVE_MAP.set(toolbar, rem);
+						}
+
+						listener();
+					}
 				}
-			}
-			catch (e) {
-				Foxtrick.dump('FoxtrickForumPreview._toggleListener' + e);
-			}
+				catch (e) {
+					Foxtrick.log('kForumPreview.toggle', e);
+				}
+			};
 		};
 
 		var msgWindow = Foxtrick.getMBElement(doc, 'tbNewsBody') ||
@@ -273,7 +278,7 @@ Foxtrick.modules.ForumPreview = {
 			newButton.id = 'foxtrick-forum-preview-button';
 			newButton.type = 'button';
 			newButton = Foxtrick.makeFeaturedElement(newButton, module);
-			Foxtrick.onClick(newButton, () => toggleListener(previewDiv));
+			Foxtrick.onClick(newButton, toggleListener(previewDiv));
 			newButton.tabIndex = target.tabIndex + 1;
 
 			Foxtrick.insertAfter(newButton, target);

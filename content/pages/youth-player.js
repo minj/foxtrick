@@ -8,6 +8,7 @@
 
 /* eslint-disable */
 if (!this.Foxtrick)
+	// @ts-ignore
 	var Foxtrick = {};
 /* eslint-enable */
 
@@ -19,7 +20,7 @@ Foxtrick.Pages.YouthPlayer = {};
 /**
  * Test whether it's youth player page
  * @param  {document}  doc
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.YouthPlayer.isPage = function(doc) {
 	return Foxtrick.Pages.Player.isYouth(doc);
@@ -31,6 +32,7 @@ Foxtrick.Pages.YouthPlayer.isPage = function(doc) {
  * @return {Date}
  */
 Foxtrick.Pages.YouthPlayer.getJoinedDate = function(doc) {
+	/** @type {HTMLTableElement} */
 	var playerTable = doc.querySelector('#mainBody table');
 	var joinedNode = playerTable.querySelector('span.shy') || playerTable.rows[2].cells[1];
 	return Foxtrick.util.time.getDateFromText(joinedNode.textContent);
@@ -42,26 +44,27 @@ Foxtrick.Pages.YouthPlayer.getJoinedDate = function(doc) {
  * @return {Date}         {?Date}
  */
 Foxtrick.Pages.YouthPlayer.getPromotionDate = function(doc) {
+	const PROMOTION_AGE = 17;
 	var ret = null;
 	try {
-		var joinedDate = this.getJoinedDate(doc);
-		var age = Foxtrick.Pages.Player.getAge(doc);
+		let joinedDate = this.getJoinedDate(doc);
+		let age = Foxtrick.Pages.Player.getAge(doc);
 		if (joinedDate && age && !isNaN(age.years) && !isNaN(age.days)) {
-			var DAYS_IN_SEASON = Foxtrick.util.time.DAYS_IN_SEASON;
-			var daysInSeventeen = 17 * DAYS_IN_SEASON;
+			let DAYS_IN_SEASON = Foxtrick.util.time.DAYS_IN_SEASON;
+			let daysInSeventeen = PROMOTION_AGE * DAYS_IN_SEASON;
 
-			var days = age.years * DAYS_IN_SEASON + age.days;
-			var daysToSeventeen = daysInSeventeen - days;
+			let days = age.years * DAYS_IN_SEASON + age.days;
+			let daysToSeventeen = daysInSeventeen - days;
 
 			joinedDate = Foxtrick.util.time.toHT(doc, joinedDate);
 			Foxtrick.util.time.setMidnight(joinedDate);
-			var seasonDate = Foxtrick.util.time.addDaysToDate(joinedDate, DAYS_IN_SEASON);
+			let seasonDate = Foxtrick.util.time.addDaysToDate(joinedDate, DAYS_IN_SEASON);
 
-			var today = Foxtrick.util.time.getHTDate(doc);
+			let today = Foxtrick.util.time.getHTDate(doc);
 			Foxtrick.util.time.setMidnight(today);
-			var bDayDate = Foxtrick.util.time.addDaysToDate(today, daysToSeventeen);
+			let bDayDate = Foxtrick.util.time.addDaysToDate(today, daysToSeventeen);
 
-			var promoDate = new Date(Math.max(bDayDate, seasonDate));
+			let promoDate = new Date(Math.max(bDayDate.valueOf(), seasonDate.valueOf()));
 			ret = Foxtrick.util.time.toUser(doc, promoDate);
 		}
 	}
@@ -74,7 +77,7 @@ Foxtrick.Pages.YouthPlayer.getPromotionDate = function(doc) {
 /**
  * Test whether youth player no longer exists
  * @param  {document} doc
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.YouthPlayer.wasFired = function(doc) {
 	return doc.querySelector('#mainBody .error') !== null;

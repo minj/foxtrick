@@ -1,11 +1,12 @@
-'use strict';
 /**
  * forum-youth-icons.js
  * Foxtrick forum post youth icons
  * @author spambot
  */
 
-Foxtrick.modules['ForumYouthIcons'] = {
+'use strict';
+
+Foxtrick.modules.ForumYouthIcons = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.FORUM,
 	PAGES: [
 		'forumWritePost', 'messageWritePost', 'guestbook',
@@ -33,6 +34,7 @@ Foxtrick.modules['ForumYouthIcons'] = {
 		}
 	},
 
+	// eslint-disable-next-line complexity
 	run: function(doc) {
 		var MAIN = Foxtrick.getMainIDPrefix();
 		var HMLtxtBody = MAIN + 'ucHattrickMLEditor_txtBody';
@@ -449,13 +451,10 @@ Foxtrick.modules['ForumYouthIcons'] = {
 			return;
 
 		var anchor, textbox, newimage;
-		if (Foxtrick.isPage(doc, 'newsLetter') ||
-		    Foxtrick.isPage(doc, 'mailNewsLetter') ||
-		    Foxtrick.isPage(doc, 'ntNewsLetter')) {
-
+		if (Foxtrick.isPage(doc, ['newsLetter', 'mailNewsLetter', 'ntNewsLetter'])) {
 			if (Foxtrick.isPage(doc, 'newsLetter') || Foxtrick.isPage(doc, 'ntNewsLetter'))
 				textbox = txtMsg;
-			if (Foxtrick.isPage(doc, 'mailNewsLetter'))
+			else if (Foxtrick.isPage(doc, 'mailNewsLetter'))
 				textbox = MAIN + 'tbNewsBody';
 
 			anchor = doc.getElementById(textbox);
@@ -530,11 +529,12 @@ Foxtrick.modules['ForumYouthIcons'] = {
 		while (nextElement) {
 			try {
 				if (nextElement.id == MAIN + 'ucHattrickMLEditor_pnlTags' ||
-					 nextElement.id == MAIN + 'ucActionEditor_pnlTags' ||
-					 nextElement.id == MAIN + 'ucEditorMain_pnlTags' ||
-					 new RegExp(MAIN + 'uc').test(nextElement.id) ||
-					 nextElement.href) {
-						Foxtrick.addClass(nextElement, 'hidden');
+					nextElement.id == MAIN + 'ucActionEditor_pnlTags' ||
+					nextElement.id == MAIN + 'ucEditorMain_pnlTags' ||
+					new RegExp(MAIN + 'uc').test(nextElement.id) ||
+					nextElement.href) {
+
+					Foxtrick.addClass(nextElement, 'hidden');
 				}
 				nextElement = nextElement.nextSibling;
 			}
@@ -555,10 +555,10 @@ Foxtrick.modules['ForumYouthIcons'] = {
 		}
 		target = target.nextSibling;
 
-		var clickHandler =
-		  function(textareaId, openingTag, replaceText, fieldCounterId, maxLength) {
-		  	var tab = Foxtrick.L10n.getString('ForumSpecialBBCode.tableSeparator.tab');
-		  	var separator = Foxtrick.Prefs.getString('tableSeparator');
+		// eslint-disable-next-line complexity
+		var clickHandler = (textareaId, openingTag, replaceText, fieldCounterId, maxLength) => {
+			var tab = Foxtrick.L10n.getString('ForumSpecialBBCode.tableSeparator.tab');
+			var separator = Foxtrick.Prefs.getString('tableSeparator');
 
 			var ta = doc.getElementById(textareaId);
 			var fieldCounter = doc.getElementById(fieldCounterId);
@@ -723,20 +723,19 @@ Foxtrick.modules['ForumYouthIcons'] = {
 							return str;
 						};
 						if (Foxtrick.arch === 'Sandboxed' || Foxtrick.platform == 'Android') {
-							Foxtrick.SB.ext.sendRequest({ req: 'getDebugLog' },
-							  function(n) {
-							  	var header = Foxtrick.log.header(doc);
-							  	var log = ensureLength(n.log);
-							  	var text = header + '\n' + log;
+							Foxtrick.SB.ext.sendRequest({ req: 'getDebugLog' }, ({ log }) => {
+								let header = Foxtrick.log.header(doc);
+								let truncated = ensureLength(log);
+								let text = header + '\n' + truncated;
 								insertText(text);
+
 								textCounter(ta, fieldCounter, maxLength);
 							});
 							return;
 						}
-						else {
-							openingTag = Foxtrick.log.header(doc) + '\n' +
-								ensureLength(Foxtrick.debugLogStorage);
-						}
+
+						openingTag = Foxtrick.log.header(doc) + '\n' +
+							ensureLength(Foxtrick.debugLogStorage);
 					}
 					else if (openingTag == 'settings') {
 						var opts = {

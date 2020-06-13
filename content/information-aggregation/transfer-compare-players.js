@@ -8,27 +8,29 @@
 
 /* eslint-disable complexity, indent */
 
-Foxtrick.modules['TransferComparePlayers'] = {
+Foxtrick.modules.TransferComparePlayers = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES: ['playerDetails', 'transfersPlayer'],
 	OPTIONS: ['ShowProfit'],
 
 	// CSS: Foxtrick.InternalPath + 'resources/css/transfercompareplayers.css',
 
+	/** @param {document} doc */
 	run: function(doc) {
-		var module = this;
-		var isDetails = Foxtrick.isPage(doc, 'playerDetails');
-		var isHistory = Foxtrick.isPage(doc, 'transfersPlayer');
+		const module = this;
+		const isDetails = Foxtrick.isPage(doc, 'playerDetails');
+		const isHistory = Foxtrick.isPage(doc, 'transfersPlayer');
 
-		var MSECS_IN_DAY = Foxtrick.util.time.MSECS_IN_DAY;
-		var DAYS_IN_SEASON = Foxtrick.util.time.DAYS_IN_SEASON;
+		const MSECS_IN_DAY = Foxtrick.util.time.MSECS_IN_DAY;
+		const DAYS_IN_SEASON = Foxtrick.util.time.DAYS_IN_SEASON;
 
-		var AGE_TITLE = Foxtrick.L10n.getString('TransferComparePlayers.transferAge');
+		const AGE_TITLE = Foxtrick.L10n.getString('TransferComparePlayers.transferAge');
 
 		if (isHistory || isDetails) {
 			if (!Foxtrick.Prefs.isModuleOptionEnabled('TransferComparePlayers', 'ShowProfit'))
 				return;
 
+			/** @type {HTMLTableElement} */
 			var hTable;
 			if (isDetails) {
 				hTable = doc.querySelector('#transferHistory > table');
@@ -61,13 +63,13 @@ Foxtrick.modules['TransferComparePlayers'] = {
 			var ct = hTable.rows.length;
 			var playerId = Foxtrick.Pages.All.getId(doc);
 
+			/** @type {CHPPParams} */
 			var detailsArgs = [
 				['file', 'playerdetails'],
 				['version', '2.1'],
 				['playerId', playerId],
 			];
-			Foxtrick.util.api.retrieve(doc, detailsArgs, { cache_lifetime: 'session' },
-			  function(xml, errorText) {
+			Foxtrick.util.api.retrieve(doc, detailsArgs, { cache: 'session' }, (xml, errorText) => {
 				if (!xml || errorText) {
 					Foxtrick.log(errorText);
 					return;
@@ -77,8 +79,10 @@ Foxtrick.modules['TransferComparePlayers'] = {
 				var agedays = xml.num('AgeDays');
 				var fetchDate = xml.date('FetchedDate');
 
-				var DIFF_TMPL = '{sign}{val} {curr} ({sign}{pctg} %)';
-				var SEASON_TMPL = '{sign}{season} {curr} {per}';
+				const DIFF_TMPL = '{sign}{val} {curr} ({sign}{pctg} %)';
+				const SEASON_TMPL = '{sign}{season} {curr} {per}';
+
+				// TODO test
 				var diff = {
 					curr: hTable.rows[1].cells[3].firstChild.textContent.match(/\D+$/)[0].trim(),
 					per: Foxtrick.L10n.getString('ExtendedPlayerDetails.perseason'),
@@ -90,11 +94,11 @@ Foxtrick.modules['TransferComparePlayers'] = {
 
 					// README: user time only => +-1 day
 					let transfer = transferRow.cells[0].textContent;
-					var transferDate = Foxtrick.util.time.getDateFromText(transfer);
 
+					var trDate = Foxtrick.util.time.getDateFromText(transfer);
 					if (isHistory) {
 						let days = age * DAYS_IN_SEASON + agedays;
-						let diffDays = (fetchDate - transferDate) / MSECS_IN_DAY;
+						let diffDays = (fetchDate.getTime() - trDate.getTime()) / MSECS_IN_DAY;
 						days -= Math.round(diffDays);
 						let years = Foxtrick.Math.div(days, DAYS_IN_SEASON);
 						days %= DAYS_IN_SEASON;
@@ -109,8 +113,10 @@ Foxtrick.modules['TransferComparePlayers'] = {
 					}
 
 					var diffCell = isHistory ?
+						// eslint-disable-next-line no-magic-numbers
 						transferRow.insertCell(5) :
 						doc.createElement('span');
+
 					Foxtrick.makeFeaturedElement(diffCell, module);
 
 					if (typeof prevRow == 'undefined')
@@ -118,7 +124,7 @@ Foxtrick.modules['TransferComparePlayers'] = {
 
 					let prevDateText = prevRow.cells[0].textContent;
 					let prevDate = Foxtrick.util.time.getDateFromText(prevDateText);
-					var daysInClub = (transferDate.getTime() - prevDate.getTime()) / MSECS_IN_DAY;
+					var daysInClub = (trDate.getTime() - prevDate.getTime()) / MSECS_IN_DAY;
 
 					var priceCell = isHistory ? transferRow.cells[4] : [...transferRow.cells].pop();
 					var price = Foxtrick.trimnum(priceCell.firstChild.textContent);
@@ -128,35 +134,35 @@ Foxtrick.modules['TransferComparePlayers'] = {
 
 					if (price == prevPrice) {
 						Foxtrick.addClass(diffCell, 'ft-player-transfer-history');
+						continue;
+					}
+
+					if (price > prevPrice) {
+						Foxtrick.addClass(diffCell, 'ft-player-transfer-history positive');
+						diff.sign = '+';
 					}
 					else {
-						if (price > prevPrice) {
-							Foxtrick.addClass(diffCell, 'ft-player-transfer-history positive');
-							diff.sign = '+';
-						}
-						else {
-							Foxtrick.addClass(diffCell, 'ft-player-transfer-history negative');
-							diff.sign = '-';
-						}
+						Foxtrick.addClass(diffCell, 'ft-player-transfer-history negative');
+						diff.sign = '-';
+					}
 
-						let val = Math.abs(price - prevPrice);
-						diff.val = Foxtrick.formatNumber(val, '\u00a0');
-						diff.pctg = Math.round(val / prevPrice * 100);
-						let season = Math.round(val / daysInClub * DAYS_IN_SEASON);
-						diff.season = Foxtrick.formatNumber(season, '\u00a0');
+					let val = Math.abs(price - prevPrice);
+					diff.val = Foxtrick.formatNumber(val, '\u00a0');
+					diff.pctg = Math.round(val / prevPrice * 100);
+					let season = Math.round(val / daysInClub * DAYS_IN_SEASON);
+					diff.season = Foxtrick.formatNumber(season, '\u00a0');
 
-						let span = doc.createElement('span');
-						span.textContent = Foxtrick.format(DIFF_TMPL, diff);
-						diffCell.appendChild(span);
-						diffCell.appendChild(doc.createElement('br'));
-						let seasonSpan = doc.createElement('span');
-						seasonSpan.textContent = Foxtrick.format(SEASON_TMPL, diff);
-						diffCell.appendChild(seasonSpan);
+					let span = doc.createElement('span');
+					span.textContent = Foxtrick.format(DIFF_TMPL, diff);
+					diffCell.appendChild(span);
+					diffCell.appendChild(doc.createElement('br'));
+					let seasonSpan = doc.createElement('span');
+					seasonSpan.textContent = Foxtrick.format(SEASON_TMPL, diff);
+					diffCell.appendChild(seasonSpan);
 
-						if (isDetails) {
-							priceCell.appendChild(doc.createElement('br'));
-							priceCell.appendChild(diffCell);
-						}
+					if (isDetails) {
+						priceCell.appendChild(doc.createElement('br'));
+						priceCell.appendChild(diffCell);
 					}
 				}
 			});

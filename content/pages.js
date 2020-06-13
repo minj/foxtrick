@@ -207,15 +207,16 @@ Foxtrick.pagesExcluded = {
 	'logout'                    : '/Logout.aspx',
 	'chppExampleApp'            : '/Community/CHPP/NewDocs/Example.aspx',
 };
-// jscs:enable disallowSpaceAfterObjectKeys, disallowQuotedKeysInObjects
-// jscs:enable disallowMultipleSpaces
+
+/* eslint-enable key-spacing, quote-props */
 
 /**
  * Test whether document belongs to certain page type(s)
- * page may be Array.<string>
  *
- * @param  {document}     doc
- * @param  {string|Array} page
+ * page may be Array
+ *
+ * @param  {document}    doc
+ * @param  {PAGE|PAGE[]} page
  * @return {boolean}
  */
 Foxtrick.isPage = function(doc, page) {
@@ -237,6 +238,7 @@ Foxtrick.isPage = function(doc, page) {
  * Form a regular expression from page spec.
  *
  * Only sanitizes ? and .
+ *
  * @param  {string} reStr page spec
  * @return {RegExp}
  */
@@ -246,6 +248,7 @@ Foxtrick.makePageRe = function(reStr) {
 
 /**
  * Test whether URL belongs to a certain page type
+ *
  * @param  {string}  href
  * @param  {string}  reStr
  * @return {boolean}
@@ -257,6 +260,7 @@ Foxtrick.isPageHref = function(href, reStr) {
 
 /**
  * Test whether Foxtrick should not run on this document
+ *
  * @param  {document} doc
  * @return {boolean}
  */

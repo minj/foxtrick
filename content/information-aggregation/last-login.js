@@ -22,7 +22,7 @@ Foxtrick.modules.LastLogin = {
 		if (!now)
 			return;
 
-		const SECS = Foxtrick.util.time.MSECS_IN_SEC;
+		const MSECS_IN_SEC = Foxtrick.util.time.MSECS_IN_SEC;
 
 		for (let node of div.childNodes) {
 			if (node.nodeType != node.TEXT_NODE)
@@ -34,14 +34,14 @@ Foxtrick.modules.LastLogin = {
 
 			let last = doc.createElement('span');
 			let loginDate = Foxtrick.util.time.getDateFromText(text);
-			let secs = Math.floor((now.getTime() - loginDate.getTime()) / SECS);
+			let secs = Math.floor((now.getTime() - loginDate.getTime()) / MSECS_IN_SEC);
 			let diffEl = Foxtrick.util.time.timeDiffToSpan(doc, secs, { useSWD: true });
 			let result = diffEl.textContent;
 			if (/NaN/.test(result)) {
 				Foxtrick.log('Could not create timeDiff (NaN)');
 			}
 			else {
-				last.textContent = '(' + result + ')';
+				last.textContent = `(${result})`;
 				last.className = 'date smallText ft-last-login-diff nowrap';
 			}
 

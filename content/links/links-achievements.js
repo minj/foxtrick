@@ -8,7 +8,7 @@
 Foxtrick.modules['LinksAchievements'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
 	PAGES: ['achievements'],
-	LINK_TYPE: 'achievementslink',
+	LINK_TYPES: 'achievementslink',
 	/**
 	 * return HTML for FT prefs
 	 * @param  {document}         doc

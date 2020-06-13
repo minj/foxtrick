@@ -193,14 +193,14 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 
 		var isLive = Foxtrick.isPage(doc, 'matchesLive');
 
-		Foxtrick.stopListenToChange(doc);
+		Foxtrick.stopObserver(doc);
 
 		/**
 		 * get the ith numeric rating or opponent rating in that sector
 		 * opponent index is i + 1 if i is even, i - 1 if odd
 		 * @param	{NodeList}	ratings
 		 * @param	{Integer}	i
-		 * @param	{Boolean}	isOpponentRating
+		 * @param	{boolean}	isOpponentRating
 		 * @returns	{Integer}
 		 */
 		var getRating = function(ratings, i, isOpponentRating) {
@@ -353,7 +353,7 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 		if (Foxtrick.Prefs.isModuleOptionEnabled('MatchRatingsTweaks', 'Ratings'))
 			this.addRatings(doc);
 
-		Foxtrick.startListenToChange(doc);
+		Foxtrick.startObserver(doc);
 	},
 
 	addRatings: function(doc) {

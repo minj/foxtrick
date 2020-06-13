@@ -31,14 +31,14 @@ Foxtrick.modules.FriendlyPool = {
 		// README: 0 for HTI
 		var ownCountryId = Foxtrick.XMLData.getCountryIdByLeagueId(ownLeagueId);
 
-		var params = [
+		/** @type {CHPPParams} */
+		var parameters = [
 			['file', 'teamdetails'],
 			['version', '2.6'],
 			['teamId', ownTeamId],
 			['includeFlags', 'true'],
 		];
-		var opts = { cache_lifetime: 'default' };
-		Foxtrick.util.api.retrieve(doc, params, opts, function(xml, errorText) {
+		Foxtrick.util.api.retrieve(doc, parameters, { cache: 'default' }, (xml, errorText) => {
 			if (!xml || errorText) {
 				Foxtrick.log(errorText);
 
@@ -48,22 +48,24 @@ Foxtrick.modules.FriendlyPool = {
 				return;
 			}
 
-			var home = {};
-			var homeIds = xml.node('HomeFlags').getElementsByTagName('LeagueId');
-			for (var homeId of Foxtrick.toArray(homeIds)) {
-				var homeCountryId = Foxtrick.XMLData.getCountryIdByLeagueId(homeId.textContent);
+			let home = {};
+			let homeIds = xml.node('HomeFlags').getElementsByTagName('LeagueId');
+			for (let homeId of Foxtrick.toArray(homeIds)) {
+				let id = Number(homeId.textContent);
+				let homeCountryId = Foxtrick.XMLData.getCountryIdByLeagueId(id);
 				home[homeCountryId] = true;
 			}
 
-			var away = {};
-			var awayIds = xml.node('AwayFlags').getElementsByTagName('LeagueId');
-			for (var awayId of Foxtrick.toArray(awayIds)) {
-				var awayCountryId = Foxtrick.XMLData.getCountryIdByLeagueId(awayId.textContent);
+			let away = {};
+			let awayIds = xml.node('AwayFlags').getElementsByTagName('LeagueId');
+			for (let awayId of Foxtrick.toArray(awayIds)) {
+				let id = Number(awayId.textContent);
+				let awayCountryId = Foxtrick.XMLData.getCountryIdByLeagueId(id);
 				away[awayCountryId] = true;
 			}
 
-			var options = countrySelect.options;
-			for (var option of Foxtrick.toArray(options)) {
+			let options = countrySelect.options;
+			for (let option of Foxtrick.toArray(options)) {
 				if (home[option.getAttribute('value')] && away[option.getAttribute('value')]) {
 					Foxtrick.addClass(option, 'ft-home ft-away');
 					option.title = Foxtrick.L10n.getString('matches.playedHomeAway');

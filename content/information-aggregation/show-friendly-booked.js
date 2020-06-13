@@ -29,9 +29,6 @@ Foxtrick.modules.ShowFriendlyBooked = {
 				return !isHeader() && !inCup() && !isOwnerless();
 			}, rowCol);
 
-			// eslint-disable-next-line camelcase
-			const cache = { cache_lifetime: 'default' };
-
 			// see whether friendly booked
 			for (let row of rows) {
 				let teamCell = row.cells[3];
@@ -42,11 +39,12 @@ Foxtrick.modules.ShowFriendlyBooked = {
 				destCell.textContent = Foxtrick.L10n.getString('status.loading.abbr');
 				destCell.title = Foxtrick.L10n.getString('status.loading');
 
+				/** @type {CHPPParams} */
 				let params = [
 					['file', 'teamdetails'],
 					['teamId', teamId],
 				];
-				Foxtrick.util.api.retrieve(doc, params, cache, (xml, errorText) => {
+				Foxtrick.util.api.retrieve(doc, params, { cache: 'default' }, (xml, errorText) => {
 					if (!xml || errorText) {
 						destCell.textContent = Foxtrick.L10n.getString('status.error.abbr');
 						destCell.title = errorText;

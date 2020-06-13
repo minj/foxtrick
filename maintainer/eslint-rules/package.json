@@ -1,0 +1,15 @@
+{
+  "name": "foxtrick-eslint-rules",
+  "version": "1.0.0",
+  "description": "Custom ESLint runtime rules for Foxtrick",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "minj",
+  "license": "MIT",
+  "dependencies": {
+    "eslint": "^5.16.0",
+    "eslint-rule-composer": "^0.3.0"
+  }
+}

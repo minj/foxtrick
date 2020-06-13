@@ -242,7 +242,6 @@ pref("extensions.foxtrick.prefs.module.MarkUnread.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchIncome.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchIncome.UtilizationPercentages.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchLineupFixes.enabled", true);
-pref("extensions.foxtrick.prefs.module.MatchLineupFixes.AddLinksInOrders.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchLineupFixes.AddStarsToSubs.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchLineupFixes.FixMultipleEvents.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchLineupFixes.FixWeatherSEs.enabled", true);

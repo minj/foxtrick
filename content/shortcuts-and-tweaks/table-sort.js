@@ -1,17 +1,20 @@
-'use strict';
 /**
 * sortTable.js
 * sorting of HT-ML tables
 * @author convinced
 */
 
+'use strict';
+
 Foxtrick.modules['TableSort'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES: ['all'],
-	NICE: 10,  // after anythig that adds or changes tables
+	NICE: 10, // after anythig that adds or changes tables
 	CSS: Foxtrick.InternalPath + 'resources/css/tableSort.css',
 
+	/** @param {document} doc */
 	run: function(doc) {
+		// eslint-disable-next-line complexity
 		var doSort = function(ev) {
 			try {
 				var this_th = ev.target;
@@ -118,9 +121,10 @@ Foxtrick.modules['TableSort'] = {
 				// rows to be sorted
 				var rows = [];
 				for (var i = sort_start + 1; i < sort_end; ++i) {
-					rows.push(table.rows[i].cloneNode(true));
+					rows.push(Foxtrick.cloneElement(table.rows[i], true));
 				}
 
+				// eslint-disable-next-line complexity
 				var cmp = function(a, b) {
 					var lastSort = Number(a.getAttribute('lastSort')) -
 						Number(b.getAttribute('lastSort'));
@@ -145,8 +149,8 @@ Foxtrick.modules['TableSort'] = {
 						return direction * (bContent - aContent);
 					}
 					else if (is_date) {
-						var date1 = Foxtrick.util.time.getDateFromText(aContent);
-						var date2 = Foxtrick.util.time.getDateFromText(bContent);
+						let date1 = Foxtrick.util.time.getDateFromText(aContent);
+						let date2 = Foxtrick.util.time.getDateFromText(bContent);
 						return direction * (date2.getTime() - date1.getTime());
 					}
 					else if (is_youthskill) {
@@ -187,14 +191,13 @@ Foxtrick.modules['TableSort'] = {
 						if (aContent === bContent) {
 							return lastSort;
 						}
-						else {
-							return direction * (bContent - aContent);
-						}
+
+						return direction * (bContent - aContent);
 					}
-					else { // sort string
-						// always sort by ascending order
-						return direction * (aContent.localeCompare(bContent));
-					}
+
+					// sort string
+					// always sort by ascending order
+					return direction * aContent.localeCompare(bContent);
 				};
 
 				// sort them

@@ -366,7 +366,7 @@ Foxtrick.modules['ForumChangePosts'] = {
 						var spoiler_hidden = doc.createElement('blockquote');
 						spoiler_hidden.id = 'spoilhid_quoteNum' + numSpoilerQuotes;
 						spoiler_hidden.className = 'spoiler hidden';
-						spoiler_hidden.appendChild(node.cloneNode(true));
+						spoiler_hidden.appendChild(Foxtrick.cloneElement(node, true));
 						node.parentNode.insertBefore(spoiler_show, node.nestSibling);
 						node.parentNode.removeChild(node);
 						spoilers.push([spoiler_show, spoiler_hidden]);
@@ -545,7 +545,7 @@ Foxtrick.modules['ForumChangePosts'] = {
 
 			// copy posting ---------------------------------------------
 			if (do_copy_posting) {
-				var copy_div = copy_posting_div.cloneNode(true);
+				var copy_div = Foxtrick.cloneElement(copy_posting_div, true);
 				var copy_img = copy_div.getElementsByTagName('img')[0];
 				copy_img.id = 'ft_copy_posting_link_id' + num_wrapper;
 				Foxtrick.onClick(copy_img, copy_posting_to_clipboard);
@@ -558,7 +558,7 @@ Foxtrick.modules['ForumChangePosts'] = {
 				header_right_inner.appendChild(copy_div);
 
 				if (isArchive) {
-					var copy_link = copy_posting_link_archive.cloneNode(true);
+					var copy_link = Foxtrick.cloneElement(copy_posting_link_archive, true);
 					Foxtrick.onClick(copy_link, copy_posting_to_clipboard);
 					var footer_left = footer.getElementsByTagName('div')[0];
 					footer_left.insertBefore(copy_link, footer_left.firstChild);
@@ -600,7 +600,7 @@ Foxtrick.modules['ForumChangePosts'] = {
 					header_left.insertBefore(space, placenode.nextSibling);
 					header_left.insertBefore(seriesLinkUserInfo, space);
 					header_left.insertBefore(countryLink, seriesLinkUserInfo);
-					header_left.insertBefore(space.cloneNode(false), countryLink);
+					header_left.insertBefore(Foxtrick.cloneElement(space, false), countryLink);
 				}
 
 			}
@@ -676,11 +676,11 @@ Foxtrick.modules['ForumChangePosts'] = {
 			}
 			if (do_replace_supporter_star) {
 				if (supporter_link1) {
-					poster_link1.parentNode.insertBefore(alt_supporter.cloneNode(true),
+					poster_link1.parentNode.insertBefore(Foxtrick.cloneElement(alt_supporter, true),
 					                                     poster_link1.nextSibling);
 				}
 				if (supporter_link2 && poster_link2) {
-					poster_link2.parentNode.insertBefore(alt_supporter.cloneNode(true),
+					poster_link2.parentNode.insertBefore(Foxtrick.cloneElement(alt_supporter, true),
 					                                     poster_link2.nextSibling);
 				}
 			}

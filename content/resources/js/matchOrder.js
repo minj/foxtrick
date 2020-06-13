@@ -1,33 +1,37 @@
 'use strict';
+
 /* global ht */
 /* @author LA-MJ */
 (function() {
 
-	var ft_init = function() {
-		document.dispatchEvent(new Event('interface_ready'));
+	var ftInit = function() {
+		document.dispatchEvent(new Event('ftinterfaceready'));
 	};
 
 	if (ht.txt) {
 		// README: this is the first object defined by ht.orders.handleData
 		// need to check this in case we run too slow
-		ft_init();
+		ftInit();
 	}
 	else {
 		ht.orders.handleDataOrg = ht.orders.handleData;
-		ht.orders.handleData = function() {
+		ht.orders.handleData = function(...args) {
 			// all org
-			ht.orders.handleDataOrg.apply(this, arguments);
+			ht.orders.handleDataOrg.apply(this, args);
+
 			// raise event after
-			ft_init();
+			ftInit();
+
 			// restore old
 			ht.orders.handleData = ht.orders.handleDataOrg;
 		};
 	}
 
 	/* function to swap players left to right including their orientation */
-	var ft_swap_positions = function() {
+	var ftSwapPositions = function() {
 
 		// position ids to swap
+		/* eslint-disable no-magic-numbers */
 		var swaps = [
 			[1, 5], // right/left WB
 			[2, 4], // right/left CD
@@ -35,10 +39,11 @@
 			[7, 9], // right/left IM
 			[11, 13], // right/left FW
 		];
+		/* eslint-enable no-magic-numbers */
 
-		for (var i = 0; i < swaps.length; ++i) {
-			var pos1 = ht.field.positions[swaps[i][0]];
-			var pos2 = ht.field.positions[swaps[i][1]];
+		for (let [first, second] of swaps) {
+			var pos1 = ht.field.positions[first];
+			var pos2 = ht.field.positions[second];
 
 			var player1 = null, player2 = null, tactic1, tactic2;
 
@@ -62,11 +67,12 @@
 				pos2.initTactic();
 			}
 			if (player2) {
-				if (!player1)
+				if (!player1) {
 					// calling changePlayer swaps players immediately
 					// the problem is that calling changePlayer twice is not only unnecessary
 					// but also loses sp/captain assignment for some reason
 					pos1.changePlayer(player2);
+				}
 
 				ht.$('#' + pos1.id).removeClass(pos1.getTactic());
 				pos1.tacticInt = tactic2;
@@ -74,32 +80,32 @@
 			}
 		}
 	};
-	var enable_swap = function() {
+	var enableSwap = function() {
 		var target = document.getElementById('ft_swap_positions');
 		if (target)
-			target.addEventListener('click', ft_swap_positions);
+			target.addEventListener('click', ftSwapPositions);
 	};
 
-	var ft_fix_penalty_takers = function() {
+	var ftFixPenaltyTakers = function() {
 		// based on matchorder_1_0_7.js:1691
 
-		if (ht.field.ft_kickersFixed)
+		if (ht.field.ftKickersFixed)
 			return;
 
 		ht.$.each(ht.field.positions, function(i, p) {
-			p.ft_handleKickerOld = p.handleKicker; // saving function
-			p.handleKicker = function() {
+			p.ftHandleKickerOld = p.handleKicker; // saving function
+			p.handleKicker = function(...args) {
 				var playerHere, draggedFromPlayer, draggedFrom;
 				try {
 					// saving data
-					var player = arguments[0];
+					var [player] = args;
 					playerHere = this.player;
 					draggedFrom = player.getKickerPosition();
-					draggedFromPlayer = (draggedFrom && draggedFrom.player !== null);
+					draggedFromPlayer = draggedFrom && draggedFrom.player !== null;
 				}
 				catch (e) {}
 
-				p.ft_handleKickerOld.apply(this, arguments); // redirecting to saved
+				p.ftHandleKickerOld.apply(this, args); // redirecting to saved
 				try {
 					if (draggedFromPlayer && draggedFrom.player === null) {
 						// HTs messed up: let's fix it
@@ -110,29 +116,31 @@
 				catch (e) {}
 			};
 		});
-		ht.field.ft_kickersFixed = true;
-	};
-	var enable_fix = function() {
-		var target = document.querySelector('#li_tab_subs + li > a');
-		if (target)
-			target.addEventListener('click', ft_fix_penalty_takers);
+
+		ht.field.ftKickersFixed = true;
 	};
 
-	var ft_clear_penalties = function() {
+	var enableFix = function() {
+		var target = document.querySelector('#li_tab_subs + li > a');
+		if (target)
+			target.addEventListener('click', ftFixPenaltyTakers);
+	};
+
+	var ftClearPenalties = function() {
 		ht.$.each(ht.field.positions, function(i, item) {
+			// eslint-disable-next-line no-magic-numbers
 			if (i > 20)
 				item.reset();
 		});
 		ht.field.updateFormation();
 	};
-	var enable_clear = function() {
+	var enableClear = function() {
 		var target = document.getElementById('ft_clear_penalty_takers');
-		if (target) {
-			target.addEventListener('click', ft_clear_penalties);
-		}
+		if (target)
+			target.addEventListener('click', ftClearPenalties);
 	};
 
-	var enable_stay = function() {
+	var enableStay = function() {
 		var target = document.getElementById('send');
 		if (target) {
 			target.addEventListener('click', function() {
@@ -142,28 +150,24 @@
 	};
 
 
-	if (document.documentElement.dataset.ft_enable_swap)
-		enable_swap();
-	else {
-		document.addEventListener('ft_enable_swap', enable_swap);
-	}
+	if (document.documentElement.dataset.ftEnableSwap)
+		enableSwap();
+	else
+		document.addEventListener('ftenableswap', enableSwap);
 
-	if (document.documentElement.dataset.ft_enable_penalties_fix)
-		enable_fix();
-	else {
-		document.addEventListener('ft_enable_penalties_fix', enable_fix);
-	}
+	if (document.documentElement.dataset.ftEnablePenaltiesFix)
+		enableFix();
+	else
+		document.addEventListener('ftenablepenaltiesfix', enableFix);
 
-	if (document.documentElement.dataset.ft_enable_penalty_controls)
-		enable_clear();
-	else {
-		document.addEventListener('ft_enable_penalty_controls', enable_clear);
-	}
+	if (document.documentElement.dataset.ftEnablePenaltyControls)
+		enableClear();
+	else
+		document.addEventListener('ftenablepenaltycontrols', enableClear);
 
-	if (document.documentElement.dataset.ft_enable_stay)
-		enable_stay();
-	else {
-		document.addEventListener('ft_enable_stay', enable_stay);
-	}
+	if (document.documentElement.dataset.ftEnableStay)
+		enableStay();
+	else
+		document.addEventListener('ftenablestay', enableStay);
 
 })();
