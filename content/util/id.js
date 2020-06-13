@@ -68,7 +68,7 @@ Foxtrick.util.id.getUserIdFromUrl = function(url) {
  * @return {number}
  */
 Foxtrick.util.id.getTeamIdFromUrl = function(url) {
-	let p = Foxtrick.getUrlParam(url, 'TeamID');
+	let p = Foxtrick.getUrlParam(url, 'TeamID') || Foxtrick.getUrlParam(url, 'YouthTeamID');
 	return p ? Number(p) : null;
 };
 
