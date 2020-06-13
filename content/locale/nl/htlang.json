@@ -322,7 +322,13 @@
 			"152": "Sri Lanka",
 			"153": "Curaçao",
 			"154": "Guam",
+			"155": "DR Congo",
+			"156": "Ethiopië",
+			"157": "Saint Vincent en de Grenadines",
+			"158": "Belize",
+			"159": "Madagaskar",
 			"16": "Brazilië",
+			"160": "Botswana",
 			"17": "Canada",
 			"18": "Chili",
 			"19": "Colombia",
@@ -365,7 +371,7 @@
 			"58": "Kroatië",
 			"59": "Hongkong",
 			"6": "Mexico",
-			"60": "Chinees Taipei",
+			"60": "Taiwan",
 			"61": "Wales",
 			"62": "Bulgarije",
 			"63": "Israël",
@@ -398,7 +404,7 @@
 			"94": "Jamaica",
 			"95": "Kenia",
 			"96": "Panama",
-			"97": "Macedonië",
+			"97": "Noord-Macedonië",
 			"98": "Albanië",
 			"99": "Honduras"
 		},
@@ -631,8 +637,12 @@
 				"value": "Koppen"
 			},
 			{
-				"type": "Regainer",
+				"type": "Resilient",
 				"value": "Vitaal"
+			},
+			{
+				"type": "Support",
+				"value": "Aanjager"
 			}
 		],
 		"spirit": [

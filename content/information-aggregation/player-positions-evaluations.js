@@ -187,8 +187,7 @@ Foxtrick.modules.PlayerPositionsEvaluations = {
 					container.textContent = Foxtrick.L10n.getString('BestPlayerPosition.title') +
 						' ' + p.bestPositionLong + ' (' + p.bestPositionValue.toFixed(2) + ')';
 
-					var before = table.nextSibling;
-					before.parentNode.insertBefore(container, before);
+					table.parentElement.appendChild(container);
 				}, playerList);
 			}
 		}

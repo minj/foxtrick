@@ -316,13 +316,19 @@
 			"146": "Kamerun",
 			"147": "Cuba",
 			"148": "Palestina",
-			"149": "São Tomé e Príncipe",
+			"149": "São Tomé og Príncipe",
 			"15": "Oseania",
-			"151": "Comoros",
+			"151": "Komorane",
 			"152": "Sri Lanka",
 			"153": "Curaçao",
 			"154": "Guam",
+			"155": "Kongo",
+			"156": "Etiopia",
+			"157": "Saint Vincent og Grenadinane",
+			"158": "Belize",
+			"159": "Madagaskar",
 			"16": "Brasil",
+			"160": "Botswana",
 			"17": "Canada",
 			"18": "Chile",
 			"19": "Colombia",
@@ -398,7 +404,7 @@
 			"94": "Jamaica",
 			"95": "Kenya",
 			"96": "Panama",
-			"97": "Makedonia",
+			"97": "Nord-Makedonia",
 			"98": "Albania",
 			"99": "Honduras"
 		},
@@ -631,8 +637,12 @@
 				"value": "Hovud"
 			},
 			{
-				"type": "Regainer",
+				"type": "Resilient",
 				"value": "Seiging"
+			},
+			{
+				"type": "Support",
+				"value": "Lagspelar"
 			}
 		],
 		"spirit": [

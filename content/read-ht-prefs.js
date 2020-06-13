@@ -16,8 +16,10 @@ Foxtrick.modules.ReadHtPrefs = {
 	/** @param {document} doc */
 	run: function(doc) {
 		// only read preferences if logged in
-		if (!Foxtrick.Pages.All.isLoggedIn(doc))
+		if (!Foxtrick.Pages.All.isLoggedIn(doc)) {
+			Foxtrick.log(`Not logged in at ${doc.URL}`);
 			return;
+		}
 
 		this.readLanguage(doc);
 		this.readCountry(doc);
@@ -29,16 +31,12 @@ Foxtrick.modules.ReadHtPrefs = {
 	 * @return {string}
 	 */
 	readLanguageFromMetaTag: function(doc) {
-		var lang = null;
-		var metas = doc.querySelectorAll('meta');
-		Foxtrick.any(function(meta) {
-			if (meta.getAttribute('http-equiv') == 'Content-Language') {
-				lang = meta.getAttribute('content');
-				return true;
-			}
-			return false;
-		}, metas);
-		return lang;
+		/** @type {HTMLMetaElement} */
+		let meta = doc.querySelector('meta[http-equiv*="language"i]');
+		if (!meta)
+			return null;
+
+		return meta.content.trim().toLowerCase();
 	},
 
 	/** @param {document} doc */
@@ -50,6 +48,9 @@ Foxtrick.modules.ReadHtPrefs = {
 		}
 
 		var newLang = Foxtrick.L10n.htMapping[metaLang];
+		if (!newLang)
+			Foxtrick.error(`Unknown meta lang: ${metaLang}`);
+
 		var oldLang = Foxtrick.Prefs.getString('htLanguage');
 		if (newLang == oldLang)
 			return;
@@ -77,6 +78,20 @@ Foxtrick.modules.ReadHtPrefs = {
 		else {
 			Foxtrick.log('Language changed:', newLang, '(' + metaLang + ')',
 			             'but no Foxtrick support yet.');
+
+			let el = doc.createElement('div');
+			let p = el.appendChild(doc.createElement('p'));
+			p.textContent = `ERROR: Foxtrick language detection failed (${metaLang}).`;
+
+			p = el.appendChild(doc.createElement('p'));
+			p.textContent = 'Please report about this problem on the ';
+
+			let a = p.appendChild(doc.createElement('a'));
+			a.href = '/Forum/Overview.aspx?v=0&f=173635';
+			a.target = '_blank';
+			a.textContent = 'Foxtrick forum';
+
+			Foxtrick.util.note.add(doc, el, 'ft-language-changed', { focus: true });
 		}
 
 		if (Foxtrick.platform === 'Firefox')

@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 /**
  * skill-table.js
  * Show a skill table on players list page
@@ -499,7 +500,8 @@ Foxtrick.modules.SkillTable = {
 					'yellowCard', 'redCard', 'bruised', 'injuredWeeks', 'transferListed',
 				], method: 'status', frozen: true, },
 				{ name: 'Age', property: 'age', method: 'age', sortAsc: true, frozen: true, },
-				{ name: 'CanBePromotedIn', property: 'canBePromotedIn', frozen: true, },
+				{ name: 'CanBePromotedIn', property: 'canBePromotedIn',
+					method: 'promotion', frozen: true, },
 				{ name: 'CurrentBid', property: 'currentBid',
 					method: 'formatNum', alignRight: true, frozen: true, },
 				{ name: 'Bookmark', property: 'bookmarkLink', method: 'link',
@@ -530,6 +532,10 @@ Foxtrick.modules.SkillTable = {
 				{ name: 'Set_pieces', property: 'setPieces', method: 'skill', },
 				{ name: 'PsicoTSI', property: 'psicoTSI', alignRight: true,
 					method: 'formatNum', title: 'psicoTitle', },
+				{
+					name: 'PsicoWage', property: 'psicoWage', alignRight: true,
+					method: 'formatNum', title: 'psicoTitle',
+				},
 				{ name: 'HTMS_Ability', property: 'htmsAbility', },
 				{ name: 'HTMS_Potential', property: 'htmsPotential', },
 				{ name: 'Agreeability', property: 'agreeability', method: 'skill', },
@@ -542,10 +548,18 @@ Foxtrick.modules.SkillTable = {
 				{ name: 'Last_position', property: 'lastPosition',
 					method: 'position', sortAsString: true, },
 				{ name: 'Salary', property: 'salary', alignRight: true, method: 'formatNum', },
-				{ name: 'NrOfMatches', property: 'matchCount', },
+				{
+					name: 'SalaryBase', property: 'salaryBase', alignRight: true,
+					method: 'formatNum',
+				},
+				{ name: 'IsAbroad', property: 'isAbroad', method: 'bool', },
+				{ name: 'U20Match', property: 'u20', method: 'def' },
+				{ name: 'NrOfMatches', property: 'matchCount', }, // NT
+				{ name: 'TeamMatches', property: 'matchesCurrentTeam', },
 				{ name: 'LeagueGoals', property: 'leagueGoals', },
 				{ name: 'CupGoals', property: 'cupGoals', },
 				{ name: 'FriendliesGoals', property: 'friendliesGoals', },
+				{ name: 'TeamGoals', property: 'goalsCurrentTeam', },
 				{ name: 'CareerGoals', property: 'careerGoals', },
 				{ name: 'Hattricks', property: 'hattricks', },
 				{ name: 'Deadline', property: 'deadline', method: 'dateCell', },
@@ -553,12 +567,12 @@ Foxtrick.modules.SkillTable = {
 					method: 'link', sortAsString: true, },
 				{ name: 'Current_league', property: 'currentLeagueId',
 					method: 'league', sortAsString: true, },
+				{ name: 'OwnerNotes', property: 'ownerNotes', method: 'notes', sortAsString: true, },
 				{ name: 'TransferCompare', property: 'transferCompare', method: 'link', },
 				{ name: 'PerformanceHistory', property: 'performanceHistory', method: 'link', },
 				{ name: 'TwinLink', property: 'twinLink',
 					img: Foxtrick.InternalPath + 'resources/img/twins/twin.png', method: 'link', },
 				{ name: 'HyLink', property: 'hyLink', method: 'link', },
-				{ name: 'OwnerNotes', property: 'OwnerNotes', },
 				{ name: 'kpPosition', property: 'kp', },
 				{ name: 'wbdPosition', property: 'wbd', },
 				{ name: 'wbPosition', property: 'wb', },
@@ -612,6 +626,16 @@ Foxtrick.modules.SkillTable = {
 					cell.setAttribute('index', cell.dataset.id = String(id));
 				},
 
+				def: function(cell, def) {
+					if (!def)
+						return;
+
+					let { value, text, title } = def;
+					cell.setAttribute('index', String(value));
+					cell.setAttribute('aria-label', cell.title = title);
+					cell.textContent = text;
+				},
+
 				/**
 				 * @param {HTMLTableCellElement} cell
 				 * @param {number} cat
@@ -653,6 +677,7 @@ Foxtrick.modules.SkillTable = {
 				 * @param {Player} player
 				 */
 				playerName: function(cell, player) {
+					cell.setAttribute('role', 'rowheader');
 					Foxtrick.addClass(cell, 'ft-skilltable_player');
 
 					let nameLink = Foxtrick.cloneElement(player.nameLink, true);
@@ -920,6 +945,14 @@ Foxtrick.modules.SkillTable = {
 					cell.appendChild(abbr);
 					cell.setAttribute('index', shortPos);
 				},
+				promotion: (cell, days) => {
+					cell.textContent = days;
+					let today = Foxtrick.util.time.getHTDate(doc);
+					Foxtrick.util.time.setMidnight(today);
+					let promoDate = Foxtrick.util.time.addDaysToDate(today, days);
+					let title = Foxtrick.util.time.buildDate(promoDate);
+					cell.setAttribute('aria-label', cell.title = title);
+				},
 
 				/**
 				 * @param {HTMLTableCellElement} cell
@@ -930,6 +963,18 @@ Foxtrick.modules.SkillTable = {
 					link.href = '/World/Leagues/League.aspx?LeagueID=' + leagueId;
 					link.textContent = Foxtrick.L10n.getCountryName(leagueId);
 					cell.appendChild(link);
+				},
+				notes: function(cell, notes) {
+					if (!notes || !notes.trim())
+						return;
+
+					Foxtrick.addImage(doc, cell, {
+						alt: notes,
+						title: notes,
+						class: 'ft-ownerNotes',
+						src: Foxtrick.InternalPath + 'resources/img/speak.png',
+					});
+					cell.setAttribute('index', notes);
 				},
 
 				/**
@@ -976,6 +1021,10 @@ Foxtrick.modules.SkillTable = {
 					cell.className = 'formatted-num';
 					cell.textContent = Foxtrick.formatNumber(num, '\u00a0');
 					cell.setAttribute('index', String(num));
+				},
+				bool: function(cell, val) {
+					cell.setAttribute('index', String(Number(val)));
+					cell.textContent = val ? '✔' : '✕';
 				},
 
 				/**
@@ -1047,6 +1096,7 @@ Foxtrick.modules.SkillTable = {
 				let useAbbr = !!abbrName && fullName !== abbrName;
 				if (useAbbr) {
 					if (column.img) {
+						// TODO convert to async
 						Foxtrick.addImage(doc, th, {
 							src: column.img,
 							alt: abbrName,
@@ -1139,11 +1189,9 @@ Foxtrick.modules.SkillTable = {
 			/** @param {ArrayLike<HTMLTableElement>} tables */
 			var attachListeners = function(tables) {
 				Foxtrick.forEach(function(table) {
-					Foxtrick.onClick(table, function(ev) {
-						let target = /** @type {HTMLElement} */ (ev.target);
+					Foxtrick.listen(table, 'click', function(ev) {
 						// @ts-ignore
-						target = target.closest('.ft-skilltable_cellBtn');
-
+						var target = ev.target.closest('.ft-skilltable_cellBtn');
 						if (!target)
 							return;
 
@@ -1410,6 +1458,7 @@ Foxtrick.modules.SkillTable = {
 							if (listener) {
 								cell.dataset.listener = listener;
 								Foxtrick.addClass(cell, 'ft-skilltable_cellBtn');
+								Foxtrick.clickTarget(cell);
 							}
 
 							if (title)

@@ -24,71 +24,28 @@
 			},
 			"addonPath": "${workspaceFolder}",
 			"firefoxArgs": [
-				"about:debugging#/runtime/this-firefox",
 				"about:addons",
+				"about:debugging#/runtime/this-firefox",
 				"https://stage.hattrick.org/Default.aspx",
 			],
 			"popupAutohideButton": false,
 			"skipFiles": [
-				"http?(s):/**",
+				"${workspaceFolder}/content/lib/jquery.js",
+				"${workspaceFolder}/content/lib/yaml.js",
+				"http?(s):/**", // this is indeed correct
 			],
+			// "pathMappings": [
+			// 	{
+			// 		"url": "moz-extension://cf276d29-81e6-4f14-9126-c14d1bf9e59f",
+			// 		"path": "${workspaceFolder}"
+			// 	}
+			// ],
 			// "keepProfileChanges": true,
 			// "log": {
 			// 	"consoleLevel": {
 			// 		"PathConversion": "Debug",
 			// 		"default": "Error"
-			// 	}
-			// },
-		},
-
-		{
-			"name": "Launch FF permanent",
-			"type": "firefox",
-			"request": "launch",
-			"reAttach": true,
-			"reloadOnAttach": true,
-			"reloadOnChange":{
-				"watch": [
-					"${workspaceFolder}/**/*.css",
-					"${workspaceFolder}/**/*.html",
-					"${workspaceFolder}/**/*.js",
-					"${workspaceFolder}/**/*.json",
-					"${workspaceFolder}/**/*.yml",
-					"${workspaceFolder}/defaults/preferences/*",
-				],
-				"ignore": [
-					"${workspaceFolder}/.vscode/**/*",
-					"${workspaceFolder}/content/locale/**/*",
-					"${workspaceFolder}/maintainer/**/*",
-				],
-			},
-			"pathMappings": [
-				{
-					"url": "moz-extension://cf276d29-81e6-4f14-9126-c14d1bf9e59f/",
-					"path": "${workspaceFolder}/"
-				},
-			],
-
-			"firefoxArgs": [
-				"about:debugging#/runtime/this-firefox",
-				"about:addons",
-			],
-			"url": "https://stage.hattrick.org/Default.aspx",
-
-			// "popupAutohideButton": false, // => ui.popup.disable_autohide
-
-			"skipFiles": [
-				"http?(s):/**",
-			],
-
-			"keepProfileChanges": true,
-
-			// "log": {
-			// 	"consoleLevel": {
-			// 		"PathConversion": "Debug",
-			// 		"default": "Error"
-			// 	}
-			// },
+			//  },
 		},
 	]
 }

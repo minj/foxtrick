@@ -92,7 +92,6 @@ Foxtrick.XMLData = {
 	 */
 	getNTNameByLeagueId: function(id) {
 		/* eslint-disable quote-props */
-		/** @type {Record<string, string>} */
 		var NT_BY_COUNTRY = {
 			// 'Al Maghrib': 'Al Maghrib ', // oh yes, there's a space here!
 			'Côte d’Ivoire': 'Côte d\'Ivoire',
@@ -101,6 +100,9 @@ Foxtrick.XMLData = {
 			'Panamá': 'Panama',
 			'Shqipëria': 'Shqiperia',
 			'Sénégal': 'Senegal',
+			'RD Congo': 'DR Congo', // FIXME
+			'Ītyōṗṗyā': 'Ethiopia', // FIXME
+			'Madagasikara': 'Madagasikara', // FIXME
 		};
 		/* eslint-enable quote-props */
 

@@ -322,7 +322,13 @@
 			"152": "Sri Lanka",
 			"153": "Curaçao",
 			"154": "Guam",
+			"155": "RD Congo",
+			"156": "Etiopía",
+			"157": "San Vicente e as Granadinas",
+			"158": "Belize",
+			"159": "Madagascar",
 			"16": "Brasil",
+			"160": "Botswana",
 			"17": "Canadá",
 			"18": "Chile",
 			"19": "Colombia",
@@ -398,7 +404,7 @@
 			"94": "Xamaica",
 			"95": "Kenya",
 			"96": "Panamá",
-			"97": "República de Macedonia",
+			"97": "Macedonia (sen frutas)",
 			"98": "Albania",
 			"99": "Honduras"
 		},
@@ -631,8 +637,12 @@
 				"value": "Xogo aéreo"
 			},
 			{
-				"type": "Regainer",
+				"type": "Resilient",
 				"value": "Rochoso"
+			},
+			{
+				"type": "Support",
+				"value": "Patrón"
 			}
 		],
 		"spirit": [

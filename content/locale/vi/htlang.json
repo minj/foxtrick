@@ -322,7 +322,13 @@
 			"152": "Sri Lanka",
 			"153": "Curaçao",
 			"154": "Guam",
+			"155": "DR Congo",
+			"156": "Ethiopia",
+			"157": "Saint Vincent & Grenadines",
+			"158": "Belize",
+			"159": "Madagascar",
 			"16": "Braxin",
+			"160": "Botswana",
 			"17": "Canada",
 			"18": "Chilê",
 			"19": "Colombia",
@@ -398,7 +404,7 @@
 			"94": "Jamaica",
 			"95": "Kenya",
 			"96": "Panama",
-			"97": "FYR Macedonia",
+			"97": "Bắc Macedonia",
 			"98": "Albania",
 			"99": "Honduras"
 		},
@@ -631,8 +637,12 @@
 				"value": "Đánh đầu"
 			},
 			{
-				"type": "Regainer",
+				"type": "Resilient",
 				"value": "Hồi phục nhanh"
+			},
+			{
+				"type": "Support",
+				"value": "Hỗ trợ"
 			}
 		],
 		"spirit": [

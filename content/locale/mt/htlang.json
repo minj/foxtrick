@@ -322,7 +322,13 @@
 			"152": "Sri Lanka",
 			"153": "Curaçao",
 			"154": "Guam",
+			"155": "DR Congo",
+			"156": "Ethiopia",
+			"157": "? {leaguenames}:{157}",
+			"158": "? {leaguenames}:{158}",
+			"159": "? {leaguenames}:{159}",
 			"16": "Brażil",
+			"160": "? {leaguenames}:{160}",
 			"17": "Kanada",
 			"18": "Ċili",
 			"19": "Kolombja",
@@ -631,8 +637,12 @@
 				"value": "Ras"
 			},
 			{
-				"type": "Regainer",
+				"type": "Resilient",
 				"value": "Akkwistatur"
+			},
+			{
+				"type": "Support",
+				"value": "Support"
 			}
 		],
 		"spirit": [

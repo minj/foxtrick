@@ -131,7 +131,7 @@ Foxtrick.Pages.Player.getNationalityName = function(doc) {
 	var name = null;
 	try {
 		var id = this.getNationalityId(doc);
-		name = Foxtrick.L10n.getCountryName(id);
+		name = Foxtrick.L10n.getCountryNameNative(id);
 	}
 	catch (e) {
 		Foxtrick.log(e);
@@ -617,6 +617,9 @@ Foxtrick.Pages.Player.getSkillsWithText = function(doc) {
  * @return {{values: PlayerSkills, texts: SkillTexts, names: SkillNames}}
  */
 Foxtrick.Pages.Player.parseSeniorSkills = function(table) {
+	if (table == null)
+		return null;
+
 	var skillMap = {
 		seniorBars: [
 			'keeper',
@@ -640,6 +643,8 @@ Foxtrick.Pages.Player.parseSeniorSkills = function(table) {
 	};
 	var found = true, regE = /ll=(\d+)/i;
 	var skills = {}, skillTexts = {}, skillNames = {};
+
+	/** @param {HTMLTableElement} table */
 	var parseSeniorBars = function(table) {
 		var order = skillMap.seniorBars;
 		var rows = table.rows;
@@ -658,6 +663,8 @@ Foxtrick.Pages.Player.parseSeniorSkills = function(table) {
 			skillNames[order[i]] = skillName;
 		}
 	};
+
+	/** @param {HTMLTableElement} table */
 	var parseSeniorTable = function(table) {
 		var order = skillMap.senior;
 		var cells = table.getElementsByTagName('td');
@@ -681,11 +688,13 @@ Foxtrick.Pages.Player.parseSeniorSkills = function(table) {
 			skillNames[order[i]] = skillName;
 		}
 	};
+
+	/** @param {HTMLTableElement} table */
 	var parseNewSkills = function(table) {
 		var order = skillMap.seniorBars;
 		for (var i = 0; i < order.length; ++i) {
 			var row = table.rows[i];
-			var cell = row.cells[1];
+			var [cellName, cell, cellNum] = row.cells;
 			if (!cell) {
 				found = false;
 				return; // skills are not visible
@@ -705,15 +714,23 @@ Foxtrick.Pages.Player.parseSeniorSkills = function(table) {
 			}
 			else if (skillBar) {
 				skillValue = parseInt(skillBar.getAttribute('level'), 10);
-				let titleCell = skillBar.querySelector('td[title]');
-				skillText = titleCell ? titleCell.title : '';
+
+				/** @type {HTMLElement} */
+				let titleCell = skillBar.querySelector('div[title]:not(.ft-bar-loyalty)');
+				skillText = titleCell ? titleCell.title.trim() : '';
 			}
 			else {
 				found = false;
 				return; // skills are not visible
 			}
 
-			skillName = row.cells[0].textContent.trim();
+			if (!skillText)
+				skillText = Foxtrick.L10n.getTextByLevel(0);
+
+			if (cellNum)
+				skillText += ` (${cellNum.textContent.trim()})`;
+
+			skillName = cellName.textContent.trim();
 			skills[order[i]] = skillValue;
 			skillTexts[order[i]] = skillText;
 			skillNames[order[i]] = skillName;
@@ -783,6 +800,7 @@ Foxtrick.Pages.Player.parseYouthSkills = function(table) {
 	var found = true;
 	var skills = {}, skillTexts = {}, skillNames = {};
 
+	/** @param {HTMLTableElement} table */
 	/* eslint-disable complexity */
 	var parseYouthBars = function(table) {
 		var order = skillMap.youth;
@@ -809,6 +827,8 @@ Foxtrick.Pages.Player.parseYouthSkills = function(table) {
 
 			let imgs = skillCell.getElementsByTagName('img');
 			let links = skillCell.querySelectorAll('.skill');
+
+			/** @type {HTMLElement} */
 			let HYSkills = skillCell.querySelector('.ft-youthSkillBars');
 			if (HYSkills) {
 				let [current, max] = HYSkills.title.split('/');
@@ -829,8 +849,8 @@ Foxtrick.Pages.Player.parseYouthSkills = function(table) {
 					}
 				}
 				else if (bar) {
-					skill.current = Math.max(bar.getAttribute('level'), 0);
-					skill.max = Math.max(bar.getAttribute('cap'), 0);
+					skill.current = Math.max(parseInt(bar.getAttribute('level'), 10) || 0, 0);
+					skill.max = Math.max(parseInt(bar.getAttribute('cap'), 10) || 0, 0);
 					skill.maxed = bar.getAttribute('is-cap') !== '0';
 				}
 			}
@@ -844,8 +864,13 @@ Foxtrick.Pages.Player.parseYouthSkills = function(table) {
 				// when maxed out, first title is 'm/8'
 				// second title is empty
 				skill.maxed = false;
-				let max = parseInt(imgs[0].title.match(/\d/), 10);
-				let current = parseInt(imgs[1].title.match(/-?\d/), 10);
+
+				let [maxTitle, currTitle] = Array.from(imgs).map(i => i.title);
+				let maxStr = String(maxTitle.match(/\d/));
+				let currStr = String(currTitle.match(/-?\d/));
+
+				let max = parseInt(maxStr, 10);
+				let current = parseInt(currStr, 10);
 				if (!current) {
 					skill.maxed = true;
 					current = max;
@@ -855,7 +880,7 @@ Foxtrick.Pages.Player.parseYouthSkills = function(table) {
 				}
 
 				// if current and/or max is unknown, mark it as 0
-				skill.current = current;
+				skill.current = current || 0;
 				skill.max = max || 0;
 			}
 			else if (links.length) {
@@ -907,9 +932,11 @@ Foxtrick.Pages.Player.parseYouthSkills = function(table) {
 			else if (hasNewBars) {
 				// new bars
 				let bar = skillCell.querySelector('.ht-bar');
-				let titles = bar ? [...bar.querySelectorAll('td[title]')] : [];
-				if (titles.length) {
-					[current, max] = titles.map(t => t.title);
+
+				/** @type {NodeListOf<HTMLElement>} */
+				let titles = bar ? bar.querySelectorAll('div[title]') : null;
+				if (titles && titles.length) {
+					[current, max] = [...titles].map(t => t.title);
 					if (titles.length == 1) {
 						if (skill.maxed) {
 							max = current;
@@ -923,11 +950,23 @@ Foxtrick.Pages.Player.parseYouthSkills = function(table) {
 						}
 					}
 				}
+				else {
+					if (skill.current)
+						current = Foxtrick.L10n.getTextByLevel(skill.current);
+					if (skill.max)
+						max = Foxtrick.L10n.getTextByLevel(skill.max);
+				}
 			}
 			else {
 				// no images, the cell says 'unknown'
 				current = max = skillCell.textContent.trim();
 			}
+
+			if (!/\d/.test(current) && skill.current)
+				current = `${current} (${skill.current})`;
+			if (!/\d/.test(max) && skill.max)
+				max = `${max} (${skill.max})`;
+
 			skills[sType] = skill;
 			skillTexts[sType] = { current, max };
 			skillNames[sType] = textCell.textContent.replace(':', '').trim();
@@ -1025,6 +1064,8 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerId, callback) {
 			return;
 		}
 		Foxtrick.util.currency.detect(doc).then(function({ rate }) {
+			const WAGE_Q = 1.2;
+
 			var node = function(nodeName) {
 				return xml.node(nodeName);
 			};
@@ -1106,10 +1147,16 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerId, callback) {
 				'CupGoals',
 				'Experience',
 
+				// README: version=2.2
+				// 'ArrivalDate',
 				// README: version=2.3
 				// 'FriendliesGoals',
+				// README: version=2.5-2.6
+				// 'TransferDetails',
 				// README: version=2.7
 				// 'GoalsCurrentTeam',
+				// README: version=2.8
+				// 'MatchesCurrentTeam',
 				'Honesty',
 				'Leadership',
 				'LeagueGoals',
@@ -1140,6 +1187,9 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerId, callback) {
 
 			player.nextBirthDay = xml.date('NextBirthDay');
 			player.salary = money('Salary');
+			player.salaryBase = player.isAbroad
+				? Math.floor(player.salary / WAGE_Q)
+				: player.salary;
 
 			if (xml.node('PlayerNumber')) {
 				var number = xml.num('PlayerNumber');

@@ -139,7 +139,7 @@ Foxtrick.htPages = {
 	'trainingEvents'            : '/Club/Players/PlayerHistory.aspx?playerId=\\d+' +
 	                              '&actionType=trainingevents',
 	'training'                  : '/Club/Training/(Default.aspx|?|$)',
-	'trainingStats'             : '/Club/Training/Statistics.aspx',
+	'trainingStats'             : '/World/Stats/StatsTraining.aspx',
 	'youthTraining'             : '/Club/Training/YouthTraining.aspx',
 	'teamEstimation'            : '/Club/Training/TeamEstimation.aspx',
 	'playerEstimation'          : '/Club/Training/PlayerEstimation.aspx',
@@ -205,6 +205,7 @@ Foxtrick.pagesExcluded = {
 	'oath'                      : 'chpp.hattrick.org/',
 	'error'                     : '/Errors/',
 	'logout'                    : '/Logout.aspx',
+	'chppExampleApp'            : '/Community/CHPP/NewDocs/Example.aspx',
 };
 
 /* eslint-enable key-spacing, quote-props */

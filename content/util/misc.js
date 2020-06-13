@@ -476,7 +476,8 @@ Foxtrick.isMap = function(obj) {
  * @return {obj is ArrayLike}
  */
 Foxtrick.isArrayLike = function(obj) {
-	return Foxtrick.hasProp(obj, 'length');
+	return Foxtrick.hasProp(obj, 'length') && !(obj instanceof Text) &&
+		!(obj instanceof HTMLSelectElement);
 };
 
 /**
@@ -643,9 +644,6 @@ Foxtrick.getSpecialtyImagePathFromNumber = function(type, negative) {
 	let url = base + type;
 	if (negative)
 		url += '_red';
-
-	if (Foxtrick.Prefs.getBool('anstoss2icons'))
-		url += '_alt';
 
 	return url + '.png';
 };

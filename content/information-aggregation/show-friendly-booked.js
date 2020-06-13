@@ -1,12 +1,12 @@
 /**
  * show-friendly-booked.js
  * Show whether a team has booked friendly on series page
- * @author ryanli
+ * @author ryanli, LA-MJ
  */
 
 'use strict';
 
-Foxtrick.modules['ShowFriendlyBooked'] = {
+Foxtrick.modules.ShowFriendlyBooked = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES: ['series'],
 	OPTIONS: ['OnDemand'],
@@ -22,20 +22,20 @@ Foxtrick.modules['ShowFriendlyBooked'] = {
 
 			// remove header row and ownerless teams
 			let rows = Foxtrick.filter(function(n) {
-				let isHeader = () => n.querySelector('th');
-				let inCup = () => n.querySelector('td:nth-of-type(5) img');
-				let isOwnerless = () => n.querySelector('shy');
+				let isHeader = () => !!n.querySelector('th');
+				let isOwnerless = () => !!n.querySelector('.shy');
+				let inCup = () => !!n.querySelector('img[src*="cup"i]');
 
 				return !isHeader() && !inCup() && !isOwnerless();
 			}, rowCol);
 
 			// see whether friendly booked
-			Foxtrick.forEach(function(n) {
-				let teamCell = n.cells[3];
+			for (let row of rows) {
+				let teamCell = row.cells[3];
 				let teamLink = teamCell.querySelector('a').href;
 				let teamId = Foxtrick.util.id.getTeamIdFromUrl(teamLink);
 
-				let destCell = n.cells[4];
+				let destCell = row.cells[4];
 				destCell.textContent = Foxtrick.L10n.getString('status.loading.abbr');
 				destCell.title = Foxtrick.L10n.getString('status.loading');
 
@@ -71,7 +71,7 @@ Foxtrick.modules['ShowFriendlyBooked'] = {
 						destCell.appendChild(img);
 					}
 				});
-			}, rows);
+			}
 		};
 
 		// add the stuffs
@@ -80,7 +80,7 @@ Foxtrick.modules['ShowFriendlyBooked'] = {
 			let link = Foxtrick.createFeaturedElement(doc, module, 'a');
 			link.id = 'ft-show-friendlies';
 			link.className = 'float_left ft-link';
-			link.textContent = Foxtrick.L10n.getString('ShowFriendlyBooked.ShowFriendlies');
+			link.textContent = Foxtrick.L10n.getString(`${module.MODULE_NAME}.ShowFriendlies`);
 
 			Foxtrick.onClick(link, function() {
 				// eslint-disable-next-line no-invalid-this
@@ -92,19 +92,20 @@ Foxtrick.modules['ShowFriendlyBooked'] = {
 					Foxtrick.catch(module)(e);
 				}
 			});
+
 			if (Foxtrick.util.layout.isSupporter(doc)) {
-				let liveTable = Foxtrick.Pages.Series.getLiveTable(doc);
-				liveTable.insertBefore(link, liveTable.querySelector('br').nextSibling);
+				let updPnlLiveLeagueTable = Foxtrick.Pages.Series.getLiveTable(doc);
+				Foxtrick.insertBefore(link, updPnlLiveLeagueTable.querySelector('br'));
 			}
 			else {
 				let table = Foxtrick.Pages.Series.getTable(doc);
 				let parent = table.parentNode;
-				parent.parentNode.insertBefore(link, parent);
+				Foxtrick.insertBefore(link, parent);
 
 				// style.clear needed before the table
 				let clear = doc.createElement('div');
 				clear.className = 'clear';
-				parent.parentNode.insertBefore(clear, parent);
+				Foxtrick.insertBefore(clear, parent);
 			}
 		}
 		else {

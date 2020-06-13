@@ -316,13 +316,19 @@
 			"146": "Kamerun",
 			"147": "Kuba",
 			"148": "Fələstin",
-			"149": "São Tomé e Príncipe",
+			"149": "San Tome və Prinsipi",
 			"15": "Okeaniya",
-			"151": "Comoros",
-			"152": "Sri Lanka",
-			"153": "Curaçao",
-			"154": "Guam",
+			"151": "Komor adaları",
+			"152": "Şri Lanka",
+			"153": "Kurasao",
+			"154": "Quam",
+			"155": "Konqo DR",
+			"156": "Efiopiya",
+			"157": "Sent-Vinsent və Qrenadin",
+			"158": "Beliz",
+			"159": "Madaqaskar",
 			"16": "Braziliya",
+			"160": "Botsvana",
 			"17": "Kanada",
 			"18": "Çili",
 			"19": "Kolumbiya",
@@ -398,7 +404,7 @@
 			"94": "Yamayka",
 			"95": "Kenya",
 			"96": "Panama",
-			"97": "Makedoniya KYR",
+			"97": "Şimali Makedoniya",
 			"98": "Albaniya",
 			"99": "Honduras"
 		},
@@ -631,8 +637,12 @@
 				"value": "Başla oynayan"
 			},
 			{
-				"type": "Regainer",
+				"type": "Resilient",
 				"value": "Elastik"
+			},
+			{
+				"type": "Support",
+				"value": "Dəstək"
 			}
 		],
 		"spirit": [

@@ -214,9 +214,12 @@ Foxtrick.modules.CopyYouth = {
 
 				info.dataset.ftInProgress = '1';
 
-				let plain = info.innerHTML;
-				let plainsplit = plain.split('<a');
-				plain = plainsplit[0];
+				let clone = /** @type {HTMLElement} */ (info.cloneNode(true));
+				let header = clone.querySelector('h3, h2');
+				if (header)
+					header.remove();
+
+				let plain = clone.innerHTML;
 				plain = plain.replace(/&nbsp;/ig, ' ');
 
 				// remove leading whitespace

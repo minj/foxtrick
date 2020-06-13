@@ -17,10 +17,11 @@ Foxtrick.modules.SupportersList = {
 
 	/** @param {document} doc */
 	run: function(doc) {
+		const module = this;
 		if (Foxtrick.isPage(doc, 'supported') || Foxtrick.isPage(doc, 'supporters'))
-			this.supporters(doc);
-		else if (Foxtrick.Prefs.isModuleOptionEnabled(this, 'Series'))
-			this.series(doc);
+			module.supporters(doc);
+		else if (Foxtrick.Prefs.isModuleOptionEnabled(module, 'Series'))
+			module.series(doc);
 	},
 
 	/** @param {document} doc */
@@ -49,8 +50,9 @@ Foxtrick.modules.SupportersList = {
 		if (Foxtrick.Prefs.getBool('xmlLoad')) {
 			let entry = doc.querySelector('#mainBody table') ||
 				Foxtrick.getMBElement(doc, 'pnlMySupporters').querySelector('br');
+
 			loading = Foxtrick.util.note.createLoading(doc);
-			entry.parentNode.insertBefore(loading, entry);
+			Foxtrick.insertBefore(loading, entry);
 		}
 
 		/**
@@ -69,7 +71,8 @@ Foxtrick.modules.SupportersList = {
 
 		module.fetch(doc, type, function(ids) {
 			module.decorateLinks(doc, ids, type, callback);
-			loading.parentNode.removeChild(loading);
+			if (loading)
+				loading.remove();
 		});
 	},
 
@@ -116,7 +119,8 @@ Foxtrick.modules.SupportersList = {
 	 * @param {function(HTMLAnchorElement):Node} findParent
 	 */
 	decorateLinks: function(doc, ids, type, findParent) {
-		var module = this;
+		const module = this;
+
 		var title = Foxtrick.L10n.getString('supporters.otherSupportYou');
 		var className = 'ft-suppList ft-staff-icon ft-staff-supporter';
 		if (type === 'supported') {
@@ -124,17 +128,16 @@ Foxtrick.modules.SupportersList = {
 			className = 'ft-suppList ft-staff-icon ft-staff-supported';
 		}
 
-		/**
-		 * @param {HTMLImageElement} img
-		 */
+		/** @param {HTMLImageElement} img */
 		var imgCb = function(img) {
 			Foxtrick.makeFeaturedElement(img, module);
 			Foxtrick.addClass(img, className);
 		};
 
+		// assuming team links start with TeamID here, otherwise matches are caught
 		/** @type {NodeListOf<HTMLAnchorElement>} */
-		var links = doc.querySelectorAll('#mainBody a[href*="TeamID"]');
-		var re = /TeamID=([0-9]+)/i;
+		var links = doc.querySelectorAll('#mainBody a[href*="?TeamID"]');
+		var re = /\?TeamID=([0-9]+)/;
 		for (let link of links) {
 			let matches = re.exec(link.href);
 			if (!matches)
@@ -160,8 +163,8 @@ Foxtrick.modules.SupportersList = {
 	 * @param {function(string[]):void} callback
 	 */
 	fetch: function(doc, type, callback) {
-		var TEAMS_PER_PAGE = 200;
-		var teamId = Foxtrick.util.id.getOwnTeamId();
+		const TEAMS_PER_PAGE = 200;
+		const teamId = Foxtrick.util.id.getOwnTeamId();
 
 		var tag = 'MySupporters', action = 'mysupporters';
 		if (type === 'supported') {

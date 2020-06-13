@@ -33,7 +33,8 @@ Foxtrick.modules.SeriesTransfers = {
 		};
 
 		// get bots/ownerless
-		var teams = leagueTable.getElementsByTagName('a');
+		/** @type {NodeListOf<HTMLAnchorElement>} */
+		var teams = leagueTable.querySelectorAll('a:not([href*="/Matches/"])');
 		var teamLinks = Foxtrick.filter(isNotOwnerless, teams);
 		if (!teamLinks.length) {
 			// only bots
@@ -44,6 +45,7 @@ Foxtrick.modules.SeriesTransfers = {
 		var teamIds = Foxtrick.map(function(link) {
 			return Foxtrick.util.id.getTeamIdFromUrl(link.href);
 		}, teamLinks);
+		teamIds = Foxtrick.unique(teamIds);
 
 		// build batchArgs
 		/** @type {CHPPParams[]} */

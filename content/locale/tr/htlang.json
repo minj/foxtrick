@@ -316,13 +316,19 @@
 			"146": "Kamerun",
 			"147": "Küba",
 			"148": "Filistin",
-			"149": "São Tomé e Príncipe",
+			"149": "Sao Tome ve Principe",
 			"15": "Okyanusya",
-			"151": "Comoros",
+			"151": "Komorlar Birliği",
 			"152": "Sri Lanka",
 			"153": "Curaçao",
 			"154": "Guam",
+			"155": "Kongo DC",
+			"156": "Etiyopya",
+			"157": "Saint Vincent ve Grenadinler",
+			"158": "Belize",
+			"159": "Madagaskar",
 			"16": "Brezilya",
+			"160": "Botsvana",
 			"17": "Kanada",
 			"18": "Şili",
 			"19": "Kolombiya",
@@ -393,12 +399,12 @@
 			"88": "Dominik Cumhuriyeti",
 			"89": "Güney Kıbrıs Rum Yönetimi",
 			"9": "Norveç",
-			"91": "Beyaz Rusya",
+			"91": "Belarus",
 			"93": "Kuzey İrlanda",
 			"94": "Jamaika",
 			"95": "Kenya",
 			"96": "Panama",
-			"97": "Makedonya",
+			"97": "Kuzey Makedonya",
 			"98": "Arnavutluk",
 			"99": "Honduras"
 		},
@@ -631,8 +637,12 @@
 				"value": "Kafa"
 			},
 			{
-				"type": "Regainer",
+				"type": "Resilient",
 				"value": "Çabuk İyileşen"
+			},
+			{
+				"type": "Support",
+				"value": "Destek"
 			}
 		],
 		"spirit": [

@@ -322,7 +322,13 @@
 			"152": "Sri Lanka",
 			"153": "Curaçao",
 			"154": "Guam",
+			"155": "Congo (RD)",
+			"156": "Etiopia",
+			"157": "Saint Vincent e Grenadine",
+			"158": "Belize",
+			"159": "Madagascar",
 			"16": "Brasile",
+			"160": "Botswana",
 			"17": "Canada",
 			"18": "Cile",
 			"19": "Colombia",
@@ -398,7 +404,7 @@
 			"94": "Giamaica",
 			"95": "Kenya",
 			"96": "Panamá",
-			"97": "Repubblica di Macedonia",
+			"97": "Macedonia del Nord",
 			"98": "Albania",
 			"99": "Honduras"
 		},
@@ -631,8 +637,12 @@
 				"value": "Colpo di testa"
 			},
 			{
-				"type": "Regainer",
-				"value": "Guarigione Veloce"
+				"type": "Resilient",
+				"value": "Coriaceo"
+			},
+			{
+				"type": "Support",
+				"value": "Trascinatore"
 			}
 		],
 		"spirit": [

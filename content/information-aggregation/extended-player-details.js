@@ -91,6 +91,9 @@ Foxtrick.modules['ExtendedPlayerDetailsWage'] = {
 		var module = this;
 		const NBSP = '\u00a0';
 
+		if (Foxtrick.Pages.Player.wasFired(doc))
+			return;
+
 		Foxtrick.util.currency.detect(doc).then(function({ symbol }) {
 			let done = doc.querySelector('#ft_bonuswage, #ft_seasonwage');
 			if (done)
@@ -136,7 +139,7 @@ Foxtrick.modules['ExtendedPlayerDetailsWage'] = {
 
 			let hasBonus = !!bonus;
 			if (hasBonus && wageWOBonus) {
-				wageCell.textContent = wagePre + currencyStr + NBSP;
+				wageCell.textContent = wagePre + currencyStr + ' ';
 
 				let wageBaseStr = Foxtrick.formatNumber(base, NBSP);
 				let baseSpan = doc.createElement('span');

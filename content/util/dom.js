@@ -208,12 +208,18 @@ Foxtrick.setAttributes = function(el, attributes) {
 		else if (attr.startsWith('on') && typeof val == 'function') {
 			let type = /** @type {keyof HTMLElementEventMap} */ (attr.slice(2).toLowerCase());
 
-			if (type == 'click')
+			if (type == 'click') {
 				Foxtrick.onClick(el, val);
-			else if (type == 'change')
+			}
+
+			// @ts-ignore
+			else if (type == 'mutate') {
 				Foxtrick.onChange(el, val);
-			else
-				Foxtrick.listen(el, type, val);
+			}
+			else {
+				let eventType = /** @type {keyof HTMLElementEventMap} */ (type);
+				Foxtrick.listen(el, eventType, val);
+			}
 		}
 		else if (Foxtrick.has(ELEMENT_PROPERTIES, attr)) {
 			// @ts-ignore
@@ -312,7 +318,7 @@ Foxtrick.getChildIndex = function(element) {
 
 /**
  * Because types /sigh
- * @template {Element} E
+ * @template {Element|DocumentFragment} E
  * @param  {E}       el
  * @param  {boolean} [deep]
  * @return {E}
@@ -471,7 +477,7 @@ Foxtrick.appendChildren = function(parent, children) {
  *
  * child may be a Node, string or an array of such.
  *
- * @param {Element}                     parent
+ * @param {Node}                        parent
  * @param {Node|string|(Node|string)[]} child
  */
 Foxtrick.append = function(parent, child) {
@@ -502,6 +508,8 @@ Foxtrick.append = function(parent, child) {
  *
  * Sets tabindex=0 and role=button if these attributes have no value.
  *
+ * ! This does more harm than good on 'delegated' listeners, listen() should be used instead.
+ *
  * The callback is executed with global change listeners stopped.
  *
  * @template {Element} T
@@ -512,12 +520,77 @@ Foxtrick.append = function(parent, child) {
  * @return {function():void}                     remove wrapped listener
  */
 Foxtrick.onClick = function(el, listener, useCapture) {
-	if (!el.hasAttribute('tabindex'))
-		el.setAttribute('tabindex', '0');
-	if (!el.hasAttribute('role'))
-		el.setAttribute('role', 'button');
-
+	Foxtrick.clickTarget(el);
 	return Foxtrick.listen(el, 'click', listener, useCapture);
+};
+
+/**
+ * Sets tabindex=0 and role=button if these attributes have no value.
+ *
+ * Uses wrappers for elements with important accessibility semantics.
+ *
+ * ! This does more harm than good on 'delegated' listeners
+ *
+ * @param  {Element} el
+ */
+Foxtrick.clickTarget = function(el) {
+	/**
+	 * @param  {Element} e
+	 * @return {Element}
+	 */
+	const wrapContents = (e) => {
+		let span = e.ownerDocument.createElement('span');
+		Foxtrick.append(span, [...e.childNodes]);
+		return e.appendChild(span);
+	};
+
+	/**
+	 * @param  {Element} e
+	 * @return {Element}
+	 */
+	const wrapElement = (e) => {
+		let span = e.ownerDocument.createElement('span');
+		e.parentElement.replaceChild(span, e);
+		span.appendChild(e);
+		return span;
+	};
+
+	/* eslint-disable no-magic-numbers */
+	/** @type {Record<string, function(Element):void>} */
+	const ROLES_CBS = {
+		h1: wrapContents,
+		h2: wrapContents,
+		h3: wrapContents,
+		h4: wrapContents,
+		h5: wrapContents,
+		h6: wrapContents,
+		td: wrapContents,
+		th: wrapContents,
+
+		img: wrapElement,
+
+		input: null,
+	};
+	/* eslint-enable no-magic-numbers */
+
+	let target = null;
+	let tag = el.tagName.toLowerCase();
+	if (tag in ROLES_CBS) {
+		let role = ROLES_CBS[tag];
+		if (typeof role == 'function')
+			target = role(el);
+	}
+	else {
+		target = el;
+	}
+
+	if (!target)
+		return;
+
+	if (!target.hasAttribute('tabindex'))
+		target.setAttribute('tabindex', '0');
+	if (!target.hasAttribute('role'))
+		target.setAttribute('role', 'button');
 };
 
 /**
@@ -529,12 +602,12 @@ Foxtrick.onClick = function(el, listener, useCapture) {
  * @template {keyof HTMLElementEventMap} E
  *
  * @param  {T}                        el
- * @param  {E}                        type     event type
+ * @param  {E}                        evType       event type
  * @param  {Listener<T,HTMLEvent<E>>} listener
  * @param  {boolean}                  [useCapture]
- * @return {function():void}                     remove wrapped listener
+ * @return {function():void}                       remove wrapped listener
  */
-Foxtrick.listen = function(el, type, listener, useCapture) {
+Foxtrick.listen = function(el, evType, listener, useCapture) {
 	/**
 	 * @this  {T}
 	 * @param {HTMLEvent<E>} ev
@@ -570,11 +643,16 @@ Foxtrick.listen = function(el, type, listener, useCapture) {
 		}
 	};
 
-	// @ts-ignore
-	el.addEventListener(type, listen, useCapture);
+	/*
+		README: since TS 3.5 union type checking became 'smarter' and errors here
+		since addEventListener API is contravariant (dumb) here,
+		it will not accept a callback requiring a more specific Event
+		we know better however, since we actually type-check the evType argument
+	*/
+	let cb = /** @type {EventListener} */ (listen);
 
-	// @ts-ignore
-	return () => el.removeEventListener(type, listen, useCapture);
+	el.addEventListener(evType, cb, useCapture);
+	return () => el.removeEventListener(evType, cb, useCapture);
 };
 
 /**
@@ -693,7 +771,7 @@ Foxtrick.getChanges = function(node, callback, obsOpts) {
  * @return {Element}              box to be added to
  */
 // eslint-disable-next-line complexity
-Foxtrick.addBoxToSidebar = function(doc, title, content, prec, forceLeft) {
+Foxtrick.addBoxToSidebar = function(doc, title, content, prec, forceLeft) { // FIXME support angular
 	// class of the box to add
 	var boxClass = 'sidebarBox';
 	var sidebar = doc.getElementById('sidebar');
@@ -859,7 +937,7 @@ Foxtrick.addImage = function(doc, parent, features, insertBefore, callback) {
  * @param  {any}    [features] image attributes // TODO constrain
  * @return {Promise<HTMLImageElement>}
  */
-Foxtrick.addSpecialty = function(parent, specNum, features) {
+Foxtrick.addSpecialty = function(parent, specNum, features = {}) {
 	let doc = parent.ownerDocument;
 
 	let specialtyName = Foxtrick.L10n.getSpecialtyFromNumber(specNum);
@@ -884,6 +962,8 @@ Foxtrick.addSpecialty = function(parent, specNum, features) {
 		imgContainer.dataset.specialty = specNum.toString();
 
 		specialtyName += '\n' + Foxtrick.L10n.getString('SpecialtyInfo.open');
+		features.tabindex = '0';
+		features.role = 'button';
 	}
 
 	let opts = Object.assign({
@@ -1025,19 +1105,51 @@ Foxtrick.getMBElement = function(doc, ID) {
 
 /**
  * Get HT Button by the relevant part of its ID.
- * Supports ctl00_ctl00_CPContent_CPMain_btn$ID and
- * ctl00_ctl00_CPContent_CPMain_but$ID.
- * @param  {document}    doc
- * @param  {string}      ID
- * @return {HTMLElement}
+ *
+ * Supports ctl00_ctl00_CPContent_CPMain_$ID,
+ * ctl00_ctl00_CPContent_CPMain_btn$ID and
+ * ctl00_ctl00_CPContent_CPMain_but$ID
+ *
+ * @param  {document|Element} scope
+ * @param  {string}               ID
+ * @return {HTMLInputElement}
  */
-Foxtrick.getButton = function(doc, ID) {
+Foxtrick.getButton = function(scope, ID) {
 	const PRE = this.getMainIDPrefix();
-	let btn = doc.getElementById(PRE + 'btn' + ID);
-	if (!btn)
-		btn = doc.getElementById(PRE + 'but' + ID);
 
-	return btn;
+	let btn =
+		scope.querySelector(`#${PRE}${ID}`) ||
+		scope.querySelector(`#${PRE}btn${ID}`) ||
+		scope.querySelector(`#${PRE}but${ID}`);
+
+	return /** @type {HTMLInputElement} */ (btn);
+};
+
+/**
+ * @param  {document|Element} scope
+ * @return {HTMLInputElement}
+ */
+Foxtrick.getSubmitButton = function(scope) {
+	// because HTs do not believe in standards
+	const buttons = [
+		'OK',
+		'SendNew',
+		'Add',
+		'Edit',
+		'SendNewsletter',
+		'NewsSend',
+		'ActionSend',
+		'SendWithoutPreview',
+		'ucForumPreferences_btnSave',
+	];
+
+	for (let btn of buttons) {
+		let el = Foxtrick.getButton(scope, btn);
+		if (el)
+			return el;
+	}
+
+	return null;
 };
 
 /**

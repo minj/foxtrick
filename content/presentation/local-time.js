@@ -23,8 +23,9 @@ Foxtrick.modules.LocalTime = {
 		time = Foxtrick.makeFeaturedElement(time, module);
 
 		// set up local time div at the header
-		var localTime = doc.createElement('div');
+		var localTime = Foxtrick.createFeaturedElement(doc, module, 'div');
 		localTime.id = 'ft-local-time';
+
 		var updateTime = function() {
 			localTime.textContent = Foxtrick.util.time.buildDate(void 0, { showSecs: true });
 		};
@@ -33,7 +34,6 @@ Foxtrick.modules.LocalTime = {
 		Foxtrick.onChange(time, updateTime, { characterData: true });
 
 		localTime.title = Foxtrick.L10n.getString('LocalTime.local.title');
-		localTime = Foxtrick.makeFeaturedElement(localTime, module);
 		time.parentNode.insertBefore(localTime, time);
 
 		// to tell whether #time or #ft-local-time should be hidden
@@ -46,12 +46,14 @@ Foxtrick.modules.LocalTime = {
 		}
 
 		// add on-click events for toggling between local/user times
+		/** @type {Listener<HTMLElement, MouseEvent>} */
 		var toggleDisplay = function() {
-			Foxtrick.Prefs.setBool('module.LocalTime.local',
-			                      !Foxtrick.Prefs.getBool('module.LocalTime.local'));
+			let local = Foxtrick.Prefs.getBool('module.LocalTime.local');
+			Foxtrick.Prefs.setBool('module.LocalTime.local', !local);
 			Foxtrick.toggleClass(time, 'hidden');
 			Foxtrick.toggleClass(localTime, 'hidden');
-			module.updatePage(doc);
+			// eslint-disable-next-line no-invalid-this
+			module.updatePage(this.ownerDocument);
 		};
 		Foxtrick.onClick(time, toggleDisplay);
 		Foxtrick.onClick(localTime, toggleDisplay);
@@ -64,31 +66,36 @@ Foxtrick.modules.LocalTime = {
 		this.updatePage(doc);
 	},
 
-	// updates all dates within the page
-	/** @param {document} doc */
+	/**
+	 * updates all dates within the page
+	 * @param {document} doc
+	 */
 	updatePage: function(doc) {
 		// only deal with nodes with class date in mainBody
-		var mainBody = doc.getElementById('mainBody');
+		let mainBody = doc.getElementById('mainBody');
 		if (!mainBody)
 			return;
 
 		// extract local and HT dates
 		/** @type {NodeListOf<HTMLElement>} */
-		let els = mainBody.querySelectorAll('.date');
-		var dates = [...els];
+		let col = mainBody.querySelectorAll('.date');
 
 		// if text doesn't have time (hours and minutes) in it,
 		// ignore it
-		dates = Foxtrick.filter(function(n) {
-			return Foxtrick.util.time.hasTime(n.textContent);
-		}, dates);
+		var dates = [...col].filter(n => Foxtrick.util.time.hasTime(n.textContent));
 
-		var isLocalDate = n => n.dataset.localTime;
-		var localDates = Foxtrick.filter(isLocalDate, dates);
-		var userDates = Foxtrick.filter(n => !isLocalDate(n), dates);
+		/**
+		 * @param {HTMLElement} el
+		 * @return {boolean}
+		 */
+		var isLocalDate = el => !!el.dataset.localTime;
+
+		let localDates = dates.filter(isLocalDate);
+		let userDates = dates.filter(n => !isLocalDate(n));
+
 		if (Foxtrick.Prefs.getBool('module.LocalTime.local')) {
 			// turn User dates to local dates
-			Foxtrick.forEach(function(date) {
+			for (let date of userDates) {
 				date.dataset.localTime = '1';
 
 				let userDate = Foxtrick.util.time.getDateFromText(date.textContent);
@@ -97,23 +104,29 @@ Foxtrick.modules.LocalTime = {
 
 				let localDate = Foxtrick.util.time.toLocal(doc, userDate);
 
+				let ddl = date.querySelector('.ft-deadline');
+
 				// always build strings with hours and seconds, but without seconds
 				date.textContent = Foxtrick.util.time.buildDate(localDate);
+				if (ddl)
+					date.appendChild(ddl);
 
 				// set original time as attribute for reference from other modules
-				date.dataset.userDate = userDate.getTime().toString();
-			}, userDates);
+				date.dataset.userDate = String(userDate.getTime());
+			}
 		}
 		else {
 			// turn local dates to user dates
-			Foxtrick.forEach(function(date) {
-				let timestamp = new Date();
-				let time = parseInt(date.dataset.userDate, 10) || timestamp.getTime();
-				timestamp.setTime(time);
+			for (let date of localDates) {
+				let timestamp = new Date(Number(date.dataset.userDate));
+				let ddl = date.querySelector('.ft-deadline');
 				date.textContent = Foxtrick.util.time.buildDate(timestamp);
+				if (ddl)
+					date.appendChild(ddl);
+
 				date.removeAttribute('data-local-time');
 				date.removeAttribute('data-user-date');
-			}, localDates);
+			}
 		}
 	},
 };

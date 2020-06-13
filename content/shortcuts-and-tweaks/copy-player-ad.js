@@ -6,29 +6,32 @@
 
 'use strict';
 
-Foxtrick.modules['CopyPlayerAd'] = {
+Foxtrick.modules.CopyPlayerAd = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES: ['playerDetails', 'youthPlayerDetails'],
 	OPTIONS: ['Sorted', 'NonTableStyle'],
 
 	CSS: Foxtrick.InternalPath + 'resources/css/copy-player-ad.css',
 
+	/** @param {document} doc */
 	run: function(doc) {
 		// skip non-existent and free agents
-		var header = Foxtrick.Pages.All.getMainHeader(doc);
-		var link = Foxtrick.util.id.findTeamId(header);
-		if (!link)
+		let header = Foxtrick.Pages.All.getMainHeader(doc);
+		let id = Foxtrick.util.id.findTeamId(header);
+		if (!id)
 			return;
 
-		var button = Foxtrick.util.copyButton.add(doc, Foxtrick.L10n.getString('copy.playerad'));
+		let button = Foxtrick.util.copyButton.add(doc, Foxtrick.L10n.getString('copy.playerad'));
 		if (button) {
 			Foxtrick.addClass(button, 'ft-copy-player-ad');
 			Foxtrick.onClick(button, this.createPlayerAd);
 		}
 	},
+
+	/** @type {Listener<HTMLAnchorElement,MouseEvent>} */
 	/* eslint-disable complexity */
 	createPlayerAd: function(ev) {
-		var doc = ev.target.ownerDocument;
+		var doc = this.ownerDocument;
 		var isSenior = Foxtrick.Pages.Player.isSenior(doc);
 		try {
 			var ad = '';
@@ -44,13 +47,13 @@ Foxtrick.modules['CopyPlayerAd'] = {
 
 			// add new lines before <p> so that textContent would have breaks
 			// at <p>s.
-			var byLinePars = byLine.getElementsByTagName('p');
+			let byLinePars = byLine.getElementsByTagName('p');
 			Foxtrick.forEach(function(p) {
 				p.parentNode.insertBefore(doc.createTextNode('\n'), p);
 			}, byLinePars);
 			ad += byLine.textContent.trim() + '\n\n';
 
-			var nationality = Foxtrick.Pages.Player.getNationalityName(doc);
+			let nationality = Foxtrick.Pages.Player.getNationalityName(doc);
 			if (nationality)
 				ad += Foxtrick.L10n.getString('Nationality') + ': ' + nationality + '\n\n';
 
@@ -70,6 +73,32 @@ Foxtrick.modules['CopyPlayerAd'] = {
 
 					el = el.nextElementSibling;
 				}
+
+				/** @type {Element} */
+				let infoParent = infoTable;
+				let prev = null;
+				let pInfo = null;
+				while (infoParent) {
+					if (infoParent.matches('.playerInfo'))
+						break;
+
+					let children = [...infoParent.children].filter(c => c.matches('.playerInfo'));
+					if (children.length) {
+						[pInfo] = children;
+						break;
+					}
+
+					prev = infoParent;
+					infoParent = infoParent.parentElement;
+				}
+				if (infoParent) {
+					let child = infoParent.firstChild;
+					while (child && child != pInfo && child != prev) {
+						playerInfo.appendChild(child.cloneNode(true));
+						child = child.nextSibling;
+					}
+				}
+
 				playerInfo.appendChild(Foxtrick.cloneElement(infoTable, true));
 			}
 			else {
@@ -81,7 +110,12 @@ Foxtrick.modules['CopyPlayerAd'] = {
 			// (coach), form, stamina, experience, leadership, personality (always there)
 			// for youth players:
 			// specialty (only when he has a specialty)
-			var basicInfo, specialtyRow;
+
+			/** @type {Element | DocumentFragment} */
+			var basicInfo;
+
+			/** @type {HTMLTableRowElement} */
+			var specialtyRow;
 			if (isSenior) {
 				// add new lines before <br> so that textContent would have breaks
 				// at <br>s.
@@ -90,7 +124,7 @@ Foxtrick.modules['CopyPlayerAd'] = {
 				for (let tbl of tables)
 					tbl.remove();
 
-				var basicInfoBreaks = basicInfo.querySelectorAll('br');
+				let basicInfoBreaks = basicInfo.querySelectorAll('br');
 				Foxtrick.forEach(function(br) {
 					br.parentNode.insertBefore(doc.createTextNode('\n'), br);
 				}, basicInfoBreaks);
@@ -107,12 +141,13 @@ Foxtrick.modules['CopyPlayerAd'] = {
 					// we will bold the specialty part, right after
 					// colon plus space
 					let colonRe = /:\s*/;
-					let colonIndex = specialty.search(colonRe);
-					let colonLength = specialty.match(colonRe)[0].length;
+					let match = specialty.match(colonRe);
+					let colonIndex = match.index;
+					let [colonText] = match;
+					let colonLength = colonText.length;
 					let colonEndIdx = colonIndex + colonLength;
-					ad += specialty.slice(0, colonEndIdx) + '[b]' +
-						specialty.slice(colonEndIdx, colonEndIdx + specialty.length) +
-						'[/b]\n\n';
+					ad += specialty.slice(0, colonEndIdx) +
+						'[b]' + specialty.slice(colonEndIdx) + '[/b]\n\n';
 				}
 				else {
 					specialtyRow = infoTable.querySelector('tr[id$="trSpeciality"]');
@@ -123,6 +158,7 @@ Foxtrick.modules['CopyPlayerAd'] = {
 			let tables = Foxtrick.toArray(playerInfo.querySelectorAll('table'));
 			let table = tables.shift();
 			if (table) {
+				const SPECIALTY_ROW_IDX = 5;
 				for (let [r, row] of [...table.rows].entries()) {
 					let [header, data] = row.cells;
 					ad += header.textContent.trim();
@@ -144,7 +180,7 @@ Foxtrick.modules['CopyPlayerAd'] = {
 
 					// bolding for specialty
 					let part = cellCopy.textContent.replace(/\n/g, '').replace(/\s+/g, ' ').trim();
-					if (r === 5)
+					if (r === SPECIALTY_ROW_IDX)
 						part = '[b]' + part + '[/b]';
 
 					ad += ' ' + part + '\n';
@@ -158,22 +194,24 @@ Foxtrick.modules['CopyPlayerAd'] = {
 				ad += '\n';
 
 				if ((table = tables.shift()) && !isYouth) {
-					// ad += '[table]\n';
+					const SPECIALTY_ROW_IDX = 2;
+					const HTMS_ROW_IDX = 5;
 					for (let [r, row] of [...table.rows].entries()) {
 						let [header, data] = row.cells;
-						// ad += '[tr][th]';
 						ad += header.textContent.trim();
-						// ad += '[/th]';
 
 						let copy = Foxtrick.cloneElement(data, true);
 						for (let tNode of Foxtrick.getTextNodes(copy)) {
+							if (tNode.parentElement.closest('.bar-max'))
+								tNode.textContent = ''; // prevent dupes
+
 							let text = tNode.textContent.replace(/\n/g, ' ').replace(/\s+/g, ' ');
 							if (!text.trim()) {
 								tNode.textContent = text;
 								continue;
 							}
 
-							let parent = tNode.parentNode;
+							let parent = tNode.parentElement;
 							if (!Foxtrick.hasClass(parent, 'ft-skill') &&
 							    !Foxtrick.hasClass(parent, 'ft-skill-number') &&
 							    parent.id != 'ft_bonuswage' &&
@@ -189,26 +227,34 @@ Foxtrick.modules['CopyPlayerAd'] = {
 
 						let text = copy.textContent.trim();
 
+						if (parseInt(text, 10).toString() == text) {
+							/** @type {HTMLElement} */
+							let level = copy.querySelector('.bar-level');
+							if (level)
+								text = level.title.trim() + ` (${text})`;
+						}
+
 						// bolding for specialty+htms
-						if (r === 2 || r === 5)
+						if (r === SPECIALTY_ROW_IDX || r === HTMS_ROW_IDX)
 							text = '[b]' + text + '[/b]';
 
-						// ad += '[td]' + text + '[/td][/tr]\n';
 						ad += ' ' + text + '\n';
 					}
 
-					// ad += '[/table]\n\n';
 					ad += '\n';
 				}
 			}
 
 			var formatSkill = function(text, value) {
-				if (value > 5)
-					return '[b]' + text + '[/b]';
-				else if (value == 5)
-					return '[i]' + text + '[/i]';
+				const IMPORTANT_SKILL_THRESHOLD = 5;
 
-				return text;
+				let skillText = /\d/.test(text) ? text : `${text} (${value})`;
+				if (value > IMPORTANT_SKILL_THRESHOLD)
+					return '[b]' + skillText + '[/b]';
+				else if (value == IMPORTANT_SKILL_THRESHOLD)
+					return '[i]' + skillText + '[/i]';
+
+				return skillText;
 			};
 
 			// skills
@@ -351,13 +397,13 @@ Foxtrick.modules['CopyPlayerAd'] = {
 			}
 
 			// current bid information
-			var bidDiv = Foxtrick.Pages.Player.getBidInfo(doc);
+			let bidDiv = Foxtrick.Pages.Player.getBidInfo(doc);
 			if (bidDiv) {
 				ad += '\n';
-				var paragraphs = bidDiv.getElementsByTagName('p');
+				let paragraphs = bidDiv.querySelectorAll('p');
 				for (let p = 0; p < paragraphs.length; p++) {
-					var parCopy = Foxtrick.cloneElement(paragraphs[p], true);
-					var links = parCopy.getElementsByTagName('a');
+					let parCopy = Foxtrick.cloneElement(paragraphs[p], true);
+					let links = parCopy.querySelectorAll('a');
 					for (let l = 1; l < links.length; l++)
 						links[l].textContent = '';
 
@@ -371,7 +417,8 @@ Foxtrick.modules['CopyPlayerAd'] = {
 			                       'ft-playerad-copy-note');
 		}
 		catch (e) {
-			Foxtrick.alert('createPlayerAd', e);
+			Foxtrick.alert('createPlayerAd');
+			Foxtrick.log(e);
 		}
 	},
 };

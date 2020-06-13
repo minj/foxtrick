@@ -322,7 +322,13 @@
 			"152": "Sri Lanka",
 			"153": "Curaçao",
 			"154": "Guam",
+			"155": "República Democrática do Congo",
+			"156": "Etiópia",
+			"157": "São Vicente e Granadinas",
+			"158": "Belize",
+			"159": "Madagascar",
 			"16": "Brasil",
+			"160": "Botsuana",
 			"17": "Canadá",
 			"18": "Chile",
 			"19": "Colômbia",
@@ -398,7 +404,7 @@
 			"94": "Jamaica",
 			"95": "Quênia",
 			"96": "Panamá",
-			"97": "Macedônia",
+			"97": "Macedônia do Norte",
 			"98": "Albânia",
 			"99": "Honduras"
 		},
@@ -631,8 +637,12 @@
 				"value": "Cabeceio"
 			},
 			{
-				"type": "Regainer",
+				"type": "Resilient",
 				"value": "Resiliência"
+			},
+			{
+				"type": "Support",
+				"value": "Apoio"
 			}
 		],
 		"spirit": [

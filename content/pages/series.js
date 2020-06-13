@@ -8,6 +8,7 @@
 
 /* eslint-disable */
 if (!this.Foxtrick)
+	// @ts-ignore
 	var Foxtrick = {};
 /* eslint-enable */
 
@@ -30,7 +31,7 @@ Foxtrick.Pages.Series.getTable = function(doc) {
 /**
  * Get the live series table container
  * @param  {document} doc
- * @return {Element}
+ * @return {HTMLElement}
  */
 Foxtrick.Pages.Series.getLiveTable = function(doc) {
 	return Foxtrick.getMBElement(doc, 'UpdatePanelLiveLeagueTable');
@@ -39,7 +40,7 @@ Foxtrick.Pages.Series.getLiveTable = function(doc) {
 /**
  * Get the series news feed container
  * @param  {document} doc
- * @return {Element}
+ * @return {HTMLElement}
  */
 Foxtrick.Pages.Series.getNewsFeed = function(doc) {
 	return Foxtrick.getMBElement(doc, 'repLLUFeed');

@@ -322,7 +322,13 @@
 			"152": "Sri Lanka",
 			"153": "Curaçao",
 			"154": "Guam",
+			"155": "RD Congo",
+			"156": "Ethiopie",
+			"157": "Saint-Vincent et les Grenadines",
+			"158": "Bélize",
+			"159": "Madagascar",
 			"16": "Brésil",
+			"160": "Botswana",
 			"17": "Canada",
 			"18": "Chili",
 			"19": "Colombie",
@@ -398,7 +404,7 @@
 			"94": "Jamaïque",
 			"95": "Kenya",
 			"96": "Panama",
-			"97": "ARY Macédoine",
+			"97": "Macédoine du Nord",
 			"98": "Albanie",
 			"99": "Honduras"
 		},
@@ -602,7 +608,7 @@
 			},
 			{
 				"type": "LeaderShip",
-				"value": "Temp. de chef"
+				"value": "Tempérament de chef"
 			}
 		],
 		"specialties": [
@@ -631,8 +637,12 @@
 				"value": "Joueur de tête"
 			},
 			{
-				"type": "Regainer",
+				"type": "Resilient",
 				"value": "Résistant"
+			},
+			{
+				"type": "Support",
+				"value": "Chef d'orchestre"
 			}
 		],
 		"spirit": [

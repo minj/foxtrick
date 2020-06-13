@@ -43,7 +43,7 @@ Foxtrick.Pages.Match.getTeams = function(doc) {
  * @return {HTMLAnchorElement}
  */
 Foxtrick.Pages.Match.getHomeTeam = function(doc) {
-	var container;
+	let container;
 	if (Foxtrick.isPage(doc, 'matchesLive')) {
 		container = doc.querySelector('.rtsSelected .liveTabText');
 		if (!container) {
@@ -54,7 +54,15 @@ Foxtrick.Pages.Match.getHomeTeam = function(doc) {
 	else {
 		container = doc.querySelector('#mainBody h1');
 	}
-	return container.querySelector('.hometeam');
+
+	if (container)
+		return container.querySelector('.hometeam');
+
+	/** @type {NodeListOf<HTMLAnchorElement>} */
+	let teams = doc.querySelectorAll('.live-scoreboard-teamname');
+	let [home, _away] = teams;
+
+	return home;
 };
 
 /**
@@ -74,7 +82,16 @@ Foxtrick.Pages.Match.getAwayTeam = function(doc) {
 	else {
 		container = doc.querySelector('#mainBody h1');
 	}
-	return container.querySelector('.awayteam');
+
+	if (container)
+		return container.querySelector('.awayteam');
+
+	/** @type {NodeListOf<HTMLAnchorElement>} */
+	let teams = doc.querySelectorAll('.live-scoreboard-teamname');
+	let [_home, away] = teams;
+
+	return away;
+
 };
 
 /**
@@ -305,7 +322,8 @@ Foxtrick.Pages.Match.getArenaId = function(doc) {
  */
 Foxtrick.Pages.Match.inProgress = function(doc) {
 	var matchStatus = Foxtrick.getMBElement(doc, 'lblMatchStatus');
-	return matchStatus !== null && matchStatus.textContent.trim() !== '';
+	return matchStatus !== null && matchStatus.textContent.trim() !== '' ||
+		!!doc.querySelector('img.matchHTLive');
 };
 
 /**
@@ -994,7 +1012,7 @@ Foxtrick.Pages.Match.getLiveContainer = function(doc) {
  * @return {Element}
  */
 Foxtrick.Pages.Match.getPreMatchPanel = function(doc) {
-	return Foxtrick.getMBElement(doc, 'pnlPreMatch');
+	return Foxtrick.getMBElement(doc, 'pnlPreMatch') || doc.querySelector('.match-h2h');
 };
 
 /**
@@ -1003,7 +1021,7 @@ Foxtrick.Pages.Match.getPreMatchPanel = function(doc) {
  * @return {Element}
  */
 Foxtrick.Pages.Match.getPreMatchSummary = function(doc) {
-	return Foxtrick.getMBElement(doc, 'pnlTeamInfo');
+	return Foxtrick.getMBElement(doc, 'pnlTeamInfo') || doc.querySelector('.match-h2h');
 };
 
 /**

@@ -322,7 +322,13 @@
 			"152": "Šri Lanka",
 			"153": "Kurasao",
 			"154": "Guam",
+			"155": "DR Kongo",
+			"156": "Etiopija",
+			"157": "Sv. Vincent i Grenadini",
+			"158": "Beliz",
+			"159": "Madagaskar",
 			"16": "Brazil",
+			"160": "Bocvana",
 			"17": "Kanada",
 			"18": "Čile",
 			"19": "Kolumbija",
@@ -398,7 +404,7 @@
 			"94": "Jamajka",
 			"95": "Kenija",
 			"96": "Panama",
-			"97": "Makedonija",
+			"97": "Sjeverna Makedonija",
 			"98": "Albanija",
 			"99": "Honduras"
 		},
@@ -631,8 +637,12 @@
 				"value": "Glavonja"
 			},
 			{
-				"type": "Regainer",
-				"value": "Nesalomljiv"
+				"type": "Resilient",
+				"value": "Otporan"
+			},
+			{
+				"type": "Support",
+				"value": "Timski igrač"
 			}
 		],
 		"spirit": [

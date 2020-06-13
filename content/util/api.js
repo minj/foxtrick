@@ -230,8 +230,8 @@ Foxtrick.util.api = {
 		clearCacheSpan.id = 'ft_clear_cache';
 		clearCacheSpan.textContent = Foxtrick.L10n.getString('api.clearCache');
 		clearCacheSpan.title = Foxtrick.L10n.getString('api.clearCache.title');
-		Foxtrick.onClick(clearCacheSpan, Foxtrick.util.api.clearCache);
 		bottom.insertBefore(clearCacheSpan, bottom.firstChild);
+		Foxtrick.onClick(clearCacheSpan, Foxtrick.util.api.clearCache);
 	},
 
 	/**

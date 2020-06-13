@@ -107,7 +107,7 @@ Foxtrick.modules.MatchReportFormat = {
 			matchReport.insertBefore(table, matchReport.firstChild);
 		};
 
-		if (Foxtrick.Pages.Match.isPrematch(doc))
+		if (Foxtrick.Pages.Match.isPrematch(doc) || Foxtrick.Pages.Match.isNewLive(doc))
 			return;
 
 		// do the stuff

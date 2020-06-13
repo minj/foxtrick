@@ -12,7 +12,6 @@ SavePrefs_Notes
 SavePrefs_Prefs
 SavePrefs_Token
 StaminaData
-anstoss2icons
 branch
 dir
 disableOnStage
@@ -109,6 +108,7 @@ module.ExtraShortcuts.Latehome.enabled
 module.ExtraShortcuts.ManageCHPP.enabled
 module.ExtraShortcuts.No9.enabled
 module.ExtraShortcuts.Prefs.enabled
+module.ExtraShortcuts.Stage.enabled
 module.ExtraShortcuts.Supporterstats.enabled
 module.ExtraShortcuts.Transfers.enabled
 module.ExtraShortcuts.enabled
@@ -117,16 +117,9 @@ module.Fans.ShowSumFans.enabled
 module.Fans.enabled
 module.Filter.ShowOwned.enabled
 module.Filter.enabled
-module.FixcssProblems.CalendarAutoMinHeight.enabled
-module.FixcssProblems.Club_Menu_Teamnames.enabled
-module.FixcssProblems.ForumScrollBarFix.enabled
-module.FixcssProblems.Forum_FoxLink_Headers.enabled
-module.FixcssProblems.HideInvitation.enabled
 module.FixcssProblems.MatchReportRatingsFontFix.enabled
-module.FixcssProblems.Page_Minimum_Height.enabled
 module.FixcssProblems.RTL_Fixes.enabled
 module.FixcssProblems.RemoveForumSneakPeak.enabled
-module.FixcssProblems.SkillbarsAdjust.enabled
 module.FixcssProblems.enabled
 module.FlagCollectionToMap.enabled
 module.FormatPostingText.NestedQuotesAsSpoilers.enabled
@@ -549,6 +542,7 @@ module.SkillTable.senior.nt.Specialty
 module.SkillTable.senior.nt.Stamina
 module.SkillTable.senior.nt.Status
 module.SkillTable.senior.nt.TSI
+module.SkillTable.senior.nt.U20Match
 module.SkillTable.senior.oldiesCoach.Age
 module.SkillTable.senior.oldiesCoach.Aggressiveness
 module.SkillTable.senior.oldiesCoach.Agreeability
@@ -561,6 +555,8 @@ module.SkillTable.senior.oldiesCoach.Form
 module.SkillTable.senior.oldiesCoach.FriendliesGoals
 module.SkillTable.senior.oldiesCoach.Hattricks
 module.SkillTable.senior.oldiesCoach.Honesty
+module.SkillTable.senior.oldiesCoach.IsAbroad
+module.SkillTable.senior.oldiesCoach.JoinedSince
 module.SkillTable.senior.oldiesCoach.Leadership
 module.SkillTable.senior.oldiesCoach.LeagueGoals
 module.SkillTable.senior.oldiesCoach.Loyalty
@@ -569,11 +565,13 @@ module.SkillTable.senior.oldiesCoach.PerformanceHistory
 module.SkillTable.senior.oldiesCoach.Player
 module.SkillTable.senior.oldiesCoach.PlayerNumber
 module.SkillTable.senior.oldiesCoach.Salary
+module.SkillTable.senior.oldiesCoach.SalaryBase
 module.SkillTable.senior.oldiesCoach.SkillTableHide
 module.SkillTable.senior.oldiesCoach.Specialty
 module.SkillTable.senior.oldiesCoach.Stamina
 module.SkillTable.senior.oldiesCoach.Status
 module.SkillTable.senior.oldiesCoach.TSI
+module.SkillTable.senior.oldiesCoach.U20Match
 module.SkillTable.senior.others.Age
 module.SkillTable.senior.others.Aggressiveness
 module.SkillTable.senior.others.Agreeability
@@ -585,6 +583,7 @@ module.SkillTable.senior.others.Form
 module.SkillTable.senior.others.FriendliesGoals
 module.SkillTable.senior.others.Hattricks
 module.SkillTable.senior.others.Honesty
+module.SkillTable.senior.others.IsAbroad
 module.SkillTable.senior.others.JoinedSince
 module.SkillTable.senior.others.Keeper
 module.SkillTable.senior.others.Last_match
@@ -601,13 +600,17 @@ module.SkillTable.senior.others.PerformanceHistory
 module.SkillTable.senior.others.Player
 module.SkillTable.senior.others.Playmaking
 module.SkillTable.senior.others.Salary
+module.SkillTable.senior.others.SalaryBase
 module.SkillTable.senior.others.Scoring
 module.SkillTable.senior.others.Set_pieces
 module.SkillTable.senior.others.SkillTableHide
 module.SkillTable.senior.others.Specialty
 module.SkillTable.senior.others.Stamina
 module.SkillTable.senior.others.Status
+module.SkillTable.senior.others.TeamGoals
+module.SkillTable.senior.others.TeamMatches
 module.SkillTable.senior.others.TSI
+module.SkillTable.senior.others.U20Match
 module.SkillTable.senior.others.Winger
 module.SkillTable.senior.own.Age
 module.SkillTable.senior.own.Aggressiveness
@@ -624,6 +627,7 @@ module.SkillTable.senior.own.HTMS_Ability
 module.SkillTable.senior.own.HTMS_Potential
 module.SkillTable.senior.own.Hattricks
 module.SkillTable.senior.own.Honesty
+module.SkillTable.senior.own.IsAbroad
 module.SkillTable.senior.own.JoinedSince
 module.SkillTable.senior.own.Keeper
 module.SkillTable.senior.own.Last_match
@@ -635,13 +639,16 @@ module.SkillTable.senior.own.Loyalty
 module.SkillTable.senior.own.MotherClubBonus
 module.SkillTable.senior.own.Nationality
 module.SkillTable.senior.own.NrOfMatches
+module.SkillTable.senior.own.OwnerNotes
 module.SkillTable.senior.own.Passing
 module.SkillTable.senior.own.PerformanceHistory
 module.SkillTable.senior.own.Player
 module.SkillTable.senior.own.PlayerCategory
 module.SkillTable.senior.own.Playmaking
 module.SkillTable.senior.own.PsicoTSI
+module.SkillTable.senior.own.PsicoWage
 module.SkillTable.senior.own.Salary
+module.SkillTable.senior.own.SalaryBase
 module.SkillTable.senior.own.Scoring
 module.SkillTable.senior.own.Set_pieces
 module.SkillTable.senior.own.SkillTableHide
@@ -649,6 +656,8 @@ module.SkillTable.senior.own.Specialty
 module.SkillTable.senior.own.Stamina
 module.SkillTable.senior.own.StaminaPrediction
 module.SkillTable.senior.own.Status
+module.SkillTable.senior.own.TeamGoals
+module.SkillTable.senior.own.TeamMatches
 module.SkillTable.senior.own.TSI
 module.SkillTable.senior.own.TransferCompare
 module.SkillTable.senior.own.Winger
@@ -666,6 +675,7 @@ module.SkillTable.senior.own.kpPosition
 module.SkillTable.senior.own.tdfPosition
 module.SkillTable.senior.own.wPosition
 module.SkillTable.senior.own.wbPosition
+module.SkillTable.senior.own.U20Match
 module.SkillTable.senior.own.wbdPosition
 module.SkillTable.senior.own.wboPosition
 module.SkillTable.senior.own.wbtmPosition
@@ -686,6 +696,8 @@ module.SkillTable.transfer.Form
 module.SkillTable.transfer.HTMS_Ability
 module.SkillTable.transfer.HTMS_Potential
 module.SkillTable.transfer.Hotlist
+module.SkillTable.transfer.IsAbroad
+module.SkillTable.transfer.JoinedSince
 module.SkillTable.transfer.Keeper
 module.SkillTable.transfer.Leadership
 module.SkillTable.transfer.Nationality
@@ -694,6 +706,9 @@ module.SkillTable.transfer.PerformanceHistory
 module.SkillTable.transfer.Player
 module.SkillTable.transfer.Playmaking
 module.SkillTable.transfer.PsicoTSI
+module.SkillTable.transfer.PsicoWage
+module.SkillTable.transfer.Salary
+module.SkillTable.transfer.SalaryBase
 module.SkillTable.transfer.Scoring
 module.SkillTable.transfer.Set_pieces
 module.SkillTable.transfer.SkillTableHide
@@ -717,6 +732,7 @@ module.SkillTable.transfer.kpPosition
 module.SkillTable.transfer.tdfPosition
 module.SkillTable.transfer.wPosition
 module.SkillTable.transfer.wbPosition
+module.SkillTable.transfer.U20Match
 module.SkillTable.transfer.wbdPosition
 module.SkillTable.transfer.wboPosition
 module.SkillTable.transfer.wbtmPosition
@@ -738,6 +754,7 @@ module.SkillTable.youth.others.Player
 module.SkillTable.youth.others.SkillTableHide
 module.SkillTable.youth.others.Specialty
 module.SkillTable.youth.others.Status
+module.SkillTable.youth.others.U20Match
 module.SkillTable.youth.own.Age
 module.SkillTable.youth.own.CanBePromotedIn
 module.SkillTable.youth.own.CareerGoals
@@ -751,6 +768,7 @@ module.SkillTable.youth.own.Last_match
 module.SkillTable.youth.own.Last_position
 module.SkillTable.youth.own.Last_stars
 module.SkillTable.youth.own.LeagueGoals
+module.SkillTable.youth.own.OwnerNotes
 module.SkillTable.youth.own.Passing
 module.SkillTable.youth.own.Player
 module.SkillTable.youth.own.Playmaking
@@ -760,6 +778,7 @@ module.SkillTable.youth.own.SkillTableHide
 module.SkillTable.youth.own.Specialty
 module.SkillTable.youth.own.Status
 module.SkillTable.youth.own.TwinLink
+module.SkillTable.youth.own.U20Match
 module.SkillTable.youth.own.Winger
 module.SkillTranslation.enabled
 module.SkinPlugin.enabled

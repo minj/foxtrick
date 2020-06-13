@@ -82,7 +82,13 @@ Foxtrick.modules.MatchSimulator = {
 		var oldLineupSource = 'Hattrick';
 
 		var oldLineups = doc.getElementById('oldLineups');
-		Foxtrick.onClick(oldLineups, function(ev) {
+		let savedLineups = oldLineups.querySelectorAll('.savedLineup');
+		for (let saved of savedLineups) {
+			saved.setAttribute('role', 'button');
+			saved.setAttribute('tabindex', '0');
+		}
+
+		Foxtrick.listen(oldLineups, 'click', function(ev) {
 			var target = ev.target;
 			while (target.id != 'oldLineups' && !Foxtrick.hasClass(target, 'savedLineup'))
 				target = target.parentNode;

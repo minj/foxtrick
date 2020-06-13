@@ -81,9 +81,9 @@ Foxtrick.L10n.locales = [
 	'el',     // 34  Ελληνικά, Greek
 	'en-GB',  // 2   English (UK)
 	'en-US',  // 151 English (US)
-	'es-ES',  // 103 Español España, Spanish
-	'es-CR',  // 51  Español Latinoamericano, Spanish Costa Rica/Mexico
-	'es-AR',  // 6   Español Rioplatense, Spanish Argentina
+	'es-ES',  // 6   Español España, Spanish
+	'es-CR',  // 103 Español Latinoamericano, Spanish Costa Rica/Mexico
+	'es-AR',  // 51  Español Rioplatense, Spanish Argentina
 	'et',     // 36  Eesti, Estonian
 	'eu',     // 110 Euskara, Basque
 	'fa',     // 75  فارسی, Farsi/Persian/Iranian
@@ -149,15 +149,15 @@ Foxtrick.L10n.htMapping = {
 	'el':    'el',     // 34  Ελληνικά, Greek
 	'en':    'en-GB',  // 2   English (UK)
 	'en-us': 'en-US',  // 151 English (US)
-	'es':    'es-ES',  // 103 Español España, Spanish
-	'es-mx': 'es-CR',  // 51  Español Latinoamericano, Spanish Costa Rica/Mexico
-	'es-ar': 'es-AR',  // 6   Español Rioplatense, Spanish Argentina
+	'es':    'es-ES',  // 6   Español España, Spanish
+	'es-mx': 'es-CR',  // 103 Español Latinoamericano, Spanish Costa Rica/Mexico
+	'es-ar': 'es-AR',  // 51  Español Rioplatense, Spanish Argentina
 	'et':    'et',     // 36  Eesti, Estonian
 	'eu':    'eu',     // 110 Euskara, Basque
 	'fa':    'fa',     // 75  فارسی, Farsi/Persian/Iranian
 	'fi':    'fi',     // 9   Suomi, Finnish
 	'fr':    'fr',     // 5   Français, French
-	'fu':    'fur-IT', // 113 Furlan, Friulian (Northern Italy)
+	'it-it': 'fur-IT', // 113 Furlan, Friulian (Northern Italy)
 	'fy':    'fy-NL',  // 109 Frysk, West Frisian (Eastern Netherlands/Northern Germany)
 	'gl':    'gl',     // 74  Galego, Galician (Northwestern Spain)
 	'he':    'he',     // 40  עברית, Hebrew
@@ -190,7 +190,7 @@ Foxtrick.L10n.htMapping = {
 	'tr':    'tr',     // 19  Türkçe, Turkish
 	'uk':    'uk',     // 57  Українська, Ukrainian
 	'vi':    'vi',     // 55  Tiếng Việt, Vietnamese
-	'vl':    'vls-BE', // 65  Vlaams, Flemish (Belgian Dutch)
+	'nl-be': 'vls-BE', // 65  Vlaams, Flemish (Belgian Dutch)
 	'zh':    'zh-CN',  // 15  中文（简体）, Chinese (Simplified)
 };
 
@@ -347,6 +347,10 @@ Foxtrick.L10n.getLocalOrEnglish = function(query, lang) {
 Foxtrick.L10n.getLevelFromText = function(text) {
 	var txt = text.trim();
 	var lang = Foxtrick.Prefs.getString('htLanguage');
+	if (!lang) {
+		Foxtrick.error('missing lang');
+		return NaN;
+	}
 	var json = Foxtrick.L10n.htLanguagesJSON[lang].language;
 
 	var levelObj = Foxtrick.nth(function(jsonLevel) {
@@ -592,7 +596,9 @@ Foxtrick.L10n.getEnglishSpecialtyFromNumber = function(number) {
 		'Powerful',
 		'Unpredictable',
 		'Head',
-		'Regainer',
+		'Resilient',
+		'Fool',
+		'Support',
 	];
 	var spec = specs[number];
 
@@ -633,7 +639,9 @@ Foxtrick.L10n.getNumberFromSpecialty = function(specialty) {
 		'Powerful',
 		'Unpredictable',
 		'Head',
-		'Regainer',
+		'Resilient',
+		'Fool',
+		'Support',
 	];
 	var idx = Foxtrick.indexOf(specs, engSpec);
 	if (idx === -1)
@@ -804,7 +812,7 @@ Foxtrick.L10n.getCountryNameNative = function(leagueId) {
 	var ret = 'New Moon';
 	try {
 		let league = Foxtrick.XMLData.League[leagueId];
-		ret = league.Country.CountryName || league.EnglishName; // HTI
+		ret = league.LeagueName;
 	}
 	catch (e) {
 		Foxtrick.log('getCountryNameNative:', leagueId, e);
@@ -824,7 +832,10 @@ Foxtrick.L10n.getCountryNameLocal = function(leagueId, lang) {
 	var ret = 'New Moon';
 	try {
 		let l10n = lang || Foxtrick.Prefs.getString('htLanguage');
-		let json = Foxtrick.L10n.htLanguagesJSON[l10n].language;
+		if (!l10n)
+			throw new Error('missing lang');
+
+		var json = Foxtrick.L10n.htLanguagesJSON[l10n].language;
 		if (leagueId in json.leagueNames)
 			ret = json.leagueNames[leagueId];
 		else

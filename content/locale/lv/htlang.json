@@ -322,7 +322,13 @@
 			"152": "Šrilanka",
 			"153": "Kirasao",
 			"154": "Guama",
+			"155": "Kongo Demokrātiskā Republika",
+			"156": "Etiopija",
+			"157": "Sentvinsenta un Grenadīnas",
+			"158": "Beliza",
+			"159": "Madagaskara",
 			"16": "Brazīlija",
+			"160": "Botsvāna",
 			"17": "Kanāda",
 			"18": "Čīle",
 			"19": "Kolumbija",
@@ -398,7 +404,7 @@
 			"94": "Jamaika",
 			"95": "Kenija",
 			"96": "Panama",
-			"97": "Maķedonija",
+			"97": "Ziemeļmaķedonija",
 			"98": "Albānija",
 			"99": "Hondurasa"
 		},
@@ -631,8 +637,12 @@
 				"value": "Spēle ar galvu"
 			},
 			{
-				"type": "Regainer",
+				"type": "Resilient",
 				"value": "Dzīvīgs"
+			},
+			{
+				"type": "Support",
+				"value": "Atbalsta spēlētājs"
 			}
 		],
 		"spirit": [

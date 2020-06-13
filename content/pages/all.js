@@ -16,6 +16,7 @@
 
 /* eslint-disable */
 if (!this.Foxtrick)
+	// @ts-ignore
 	var Foxtrick = {};
 /* eslint-enable */
 
@@ -30,7 +31,7 @@ Foxtrick.Pages.All = {};
  * @return {boolean}
  */
 Foxtrick.Pages.All.isOwn = function(doc) {
-	var ownTeamId = this.getOwnTeamId(doc);
+	var ownTeamId = this.getOwnTeamId();
 	var teamId = this.getTeamId(doc);
 	return ownTeamId === teamId && ownTeamId !== null;
 };
@@ -59,7 +60,7 @@ Foxtrick.Pages.All.getId = function(doc) {
 	}
 
 	// defaults to own id
-	var id = this.getOwnTeamId(doc);
+	var id = this.getOwnTeamId();
 
 	// parse links backwards, unless it's a youth page
 	// since teamID is used before youthTeamID in most places
@@ -124,9 +125,9 @@ Foxtrick.Pages.All.getTeamIdFromBC = function(doc) {
 Foxtrick.Pages.All.getTeamId = function(doc) {
 	var id = null;
 	var subMenu = doc.getElementsByClassName('subMenu')[0];
-	if (subMenu) {
+	if (subMenu)
 		id = Foxtrick.util.id.findTeamId(subMenu);
-	}
+
 	return id;
 };
 
@@ -155,7 +156,7 @@ Foxtrick.Pages.All.getTeamNameFromBC = function(doc) {
  * Get senior team name for the page.
  * Use getTeamNameFromBC for youth team name.
  * @param  {document} doc
- * @return {number}
+ * @return {string}
  */
 Foxtrick.Pages.All.getTeamName = function(doc) {
 	var name = this.getTeamNameFromBC(doc);
@@ -176,7 +177,7 @@ Foxtrick.Pages.All.getTeamName = function(doc) {
  * @return {boolean}
  */
 Foxtrick.Pages.All.isLoggedIn = function(doc) {
-	var teamLinks = doc.getElementById('teamLinks');
+	let teamLinks = doc.getElementById('teamLinks');
 	if (teamLinks && teamLinks.getElementsByTagName('a').length)
 		return true;
 	return false;
@@ -185,7 +186,7 @@ Foxtrick.Pages.All.isLoggedIn = function(doc) {
 /**
  * Get the header of mainBody
  * @param  {document}    doc
- * @return {Element}
+ * @return {HTMLElement}
  */
 Foxtrick.Pages.All.getMainHeader = function(doc) {
 	return doc.querySelector('.mainRegular h2, .mainWide h2, .mainConf h2');
@@ -194,7 +195,7 @@ Foxtrick.Pages.All.getMainHeader = function(doc) {
 /**
  * Get the default notification area
  * @param  {document}    doc
- * @return {Element}
+ * @return {HTMLElement}
  */
 Foxtrick.Pages.All.getNotes = function(doc) {
 	return doc.getElementById('ctl00_updNotifications') ||
@@ -207,7 +208,7 @@ Foxtrick.Pages.All.getNotes = function(doc) {
  * @return {HTMLAnchorElement[]}        ?Array.<HTMLAnchorElement>
  */
 Foxtrick.Pages.All.getBreadCrumbs = function(doc) {
-	var header = this.getMainHeader(doc);
+	let header = this.getMainHeader(doc);
 	if (header)
 		return Foxtrick.toArray(header.getElementsByTagName('a'));
 

@@ -6,15 +6,18 @@
 
 'use strict';
 
-Foxtrick.modules['LargeFlags'] = {
+Foxtrick.modules.LargeFlags = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.PRESENTATION,
 	PAGES: ['playerDetails'],
 
+	/** @param {document} doc */
 	run: function(doc) {
+		const module = this;
+
 		let faceCard = Foxtrick.getMBElement(doc, 'ucPlayerFace_pnlAvatar');
 		if (!faceCard) {
 			// if player faces aren't shown, remain with tiny flags
-			// since large flags breaks page layout
+			// since large flags break page layout
 			return;
 		}
 
@@ -26,7 +29,7 @@ Foxtrick.modules['LargeFlags'] = {
 		}
 
 		const URL = Foxtrick.ResourcePath + 'resources/img/largeflags.png';
-		const FLAG_COUNT = 149;
+		const FLAG_COUNT = 165;
 		const RATIO = 1.5;
 		const MARGIN = 5;
 		const NATIVE_SIZE = 105;
@@ -60,7 +63,7 @@ Foxtrick.modules['LargeFlags'] = {
 		ownDiv.style.margin = `${MARGIN}px ${MARGIN}px 0px 0px`;
 		ownDiv.appendChild(flag);
 
-		let wrapperDiv = Foxtrick.createFeaturedElement(doc, this, 'div');
+		let wrapperDiv = Foxtrick.createFeaturedElement(doc, module, 'div');
 		wrapperDiv.appendChild(ownDiv);
 		wrapperDiv.appendChild(faceCard);
 		wrapperDiv.style.cssFloat = 'left';

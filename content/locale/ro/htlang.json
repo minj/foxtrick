@@ -318,11 +318,17 @@
 			"148": "Palestina",
 			"149": "São Tomé e Príncipe",
 			"15": "Oceania",
-			"151": "Comoros",
+			"151": "Insulele Comore",
 			"152": "Sri Lanka",
 			"153": "Curaçao",
 			"154": "Guam",
+			"155": "RD Congo",
+			"156": "Etiopia",
+			"157": "Saint Vincent și Grenadines",
+			"158": "Belize",
+			"159": "Madagascar",
 			"16": "Brazilia",
+			"160": "Botswana",
 			"17": "Canada",
 			"18": "Chile",
 			"19": "Columbia",
@@ -398,7 +404,7 @@
 			"94": "Jamaica",
 			"95": "Kenya",
 			"96": "Panama",
-			"97": "Macedonia",
+			"97": "Macedonia de Nord",
 			"98": "Albania",
 			"99": "Honduras"
 		},
@@ -631,8 +637,12 @@
 				"value": "Cap"
 			},
 			{
-				"type": "Regainer",
+				"type": "Resilient",
 				"value": "Rezistent"
+			},
+			{
+				"type": "Support",
+				"value": "Ajutor"
 			}
 		],
 		"spirit": [

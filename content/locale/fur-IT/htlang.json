@@ -318,11 +318,17 @@
 			"148": "Palestine",
 			"149": "São Tomé e Príncipe",
 			"15": "Oceanie",
-			"151": "Comoros",
+			"151": "Comoris",
 			"152": "Sri Lanka",
 			"153": "Curaçao",
 			"154": "Guam",
+			"155": "Congo (RD)",
+			"156": "Etiopie",
+			"157": "Saint Vincent e Grenadine",
+			"158": "Belize",
+			"159": "Madagascar",
 			"16": "Brasîl",
+			"160": "Botswana",
 			"17": "Canadà",
 			"18": "Cile",
 			"19": "Colombie",
@@ -398,7 +404,7 @@
 			"94": "Gjamaiche",
 			"95": "Kenya",
 			"96": "Panamà",
-			"97": "Macedonie",
+			"97": "Macedonie dal Nord",
 			"98": "Albanie",
 			"99": "Honduras"
 		},
@@ -631,8 +637,12 @@
 				"value": "Cjavade"
 			},
 			{
-				"type": "Regainer",
-				"value": "Svelt a vuarî"
+				"type": "Resilient",
+				"value": "Resistent"
+			},
+			{
+				"type": "Support",
+				"value": "Sostegn"
 			}
 		],
 		"spirit": [

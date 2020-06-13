@@ -283,6 +283,7 @@ Foxtrick.Pages.Players.getPlayerNodes = function(doc, include) {
  *
  * @prop {number} [tsi]
  * @prop {number} [salary]
+ * @prop {number} [salaryBase]
  * @prop {boolean} [transferListed]
  *
  * @prop {PlayerAge} [age]
@@ -304,6 +305,7 @@ Foxtrick.Pages.Players.getPlayerNodes = function(doc, include) {
  * @prop {number} [htmsAbility]
  * @prop {number} [htmsPotential]
  * @prop {number} [psicoTSI]
+ * @prop {string} [psicoWage]
  * @prop {string} [psicoTitle]
  *
  * @prop {number} [specialtyNumber]
@@ -326,6 +328,8 @@ Foxtrick.Pages.Players.getPlayerNodes = function(doc, include) {
  * @prop {number} [lastRatingEndOfGame]
  * @prop {number} [lastRatingDecline]
  *
+ * @prop {U20LastMatchDef} u20
+ *
  * @prop {boolean} [currentSquad]
  * @prop {boolean} [active]
  * @prop {boolean} [inXML]
@@ -339,10 +343,17 @@ Foxtrick.Pages.Players.getPlayerNodes = function(doc, include) {
  */
 
 /**
+ * @typedef U20LastMatchDef
+ * @prop {string} title
+ * @prop {string} text
+ * @prop {number} value
+ */
+
+/**
  * @typedef PlayerXmlProps
  * @prop {number} [category]
  * @prop {number} [countryId]
- * @prop {number} [isAbroad]
+ * @prop {boolean} [isAbroad]
  *
  * @prop {number} [agreeability]
  * @prop {number} [aggressiveness]
@@ -459,7 +470,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 		}
 		else {
 			args.push(['file', 'players']);
-			args.push(['version', '2.2']);
+			args.push(['version', '2.4']);
 			args.push(['teamId', teamId]);
 
 			if (!options || !options.currentSquad) {
@@ -541,6 +552,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				return;
 
 			var currencyRate = Foxtrick.util.currency.getRate();
+			const WAGE_Q = 1.2;
 
 			/** @type {Element} */
 			var playerNode;
@@ -750,19 +762,6 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 					}
 				}
 
-				if (newSkillInfo && !isYouth) {
-					let { years, days } = player.age;
-					let htmsInput = Object.assign({ years, days }, player.skills);
-
-					let [htmsAbility, htmsPotential] = Foxtrick.modules.HTMSPoints.calc(htmsInput);
-					let tuple = { htmsAbility, htmsPotential };
-					Object.assign(player, tuple);
-
-					/** @type {PsicoTSIPrediction} */
-					let psico = Foxtrick.modules.PsicoTSI.getPrediction(player);
-					player.psicoTSI = psico.formAvg;
-				}
-
 				if (typeof player.specialty === 'undefined' && node('Specialty')) {
 					let specNum = num('Specialty') || 0;
 					let spec = Foxtrick.L10n.getSpecialtyFromNumber(specNum);
@@ -871,17 +870,19 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 					'Experience',
 					'FriendliesGoals',
 					['friendliesGoals', 'FriendlyGoals'], // youth
+					'GoalsCurrentTeam',
 					'Honesty',
 					'IsAbroad',
 					'Leadership',
 					'LeagueGoals',
 					['matchCount', 'NrOfMatches'], // NT supp stats
+					'MatchesCurrentTeam',
 					['nationalTeamId', 'NationalTeamID'],
 				];
 				Foxtrick.forEach(addProperty(xPlayer, num), xmlNums);
 
 				let texts = [
-					'OwnerNotes', // README: youth only for some reason
+					'OwnerNotes',
 					'Statement',
 				];
 				Foxtrick.forEach(addProperty(xPlayer, text), texts);
@@ -896,10 +897,25 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				Foxtrick.forEach(addProperty(xPlayer, ifPositive), optionalNums);
 
 				// custom fields
-				if (node('ArrivalDate')) {
-					// README: youth only for some reason
-					xPlayer.joinedSince = xml.time('ArrivalDate', playerNode);
+				if (newSkillInfo && !isYouth) {
+					let { years, days } = player.age;
+					let htmsInput = Object.assign({ years, days }, player.skills);
+
+					// TODO type check
+					let [htmsAbility, htmsPotential] = Foxtrick.modules.HTMSPoints.calc(htmsInput);
+					let tuple = { htmsAbility, htmsPotential };
+					Object.assign(player, tuple);
+
+					// psicoWage requires isAbroad!
+					/** @type {PsicoTSIPrediction} */
+					let psico = Foxtrick.modules.PsicoTSI.getPrediction(player, currencyRate);
+					player.psicoTSI = psico.formAvg;
+					player.psicoWage = psico.wageLow;
 				}
+
+				if (node('ArrivalDate'))
+					xPlayer.joinedSince = xml.time('ArrivalDate', playerNode);
+
 				if (node('CanBePromotedIn')) {
 					// adjust for cached time
 					let cachedPromo = new Date(fetchedDate);
@@ -910,9 +926,10 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 					}
 					xPlayer.canBePromotedIn = num('CanBePromotedIn') - diffDays;
 				}
-				if (node('Salary'))
+				if (node('Salary')) {
 					player.salary = money('Salary');
-
+					player.salaryBase = player.isAbroad ? player.salary / WAGE_Q : player.salary;
+				}
 				let trainerData = node('TrainerData');
 				if (trainerData) {
 					xPlayer.trainerData = {};
@@ -1209,8 +1226,12 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 							player.tsi = parseInt(tsi, 10);
 						}
 						if (!player.salary && anonCells.salary) {
-							let { total } = Foxtrick.Pages.Player.getWage(doc, anonCells.salary);
+							let { base, total, bonus } =
+								Foxtrick.Pages.Player.getWage(doc, anonCells.salary);
+
 							player.salary = total;
+							player.salaryBase = base;
+							player.isAbroad = !!bonus;
 						}
 					}
 				}
@@ -1471,6 +1492,15 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				player.htmsPotential = parseInt(htms.dataset.htmsPotential, 10);
 			}
 
+			/** @type {HTMLElement} */
+			let u20 = playerNode.querySelector('.ft-u20lastmatch');
+			if (u20) {
+				let title = u20.textContent;
+				let text = u20.dataset.valueString;
+				let value = parseInt(u20.dataset.value, 10);
+				player.u20 = { title, text, value };
+			}
+
 			// last match
 			/** @type {HTMLAnchorElement} */
 			let matchLink;
@@ -1566,6 +1596,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 			if (psicoDiv) {
 				player.psicoTSI = parseFloat(psicoDiv.dataset.psicoAvg);
 				player.psicoTitle = psicoDiv.dataset.psicoSkill;
+				player.psicoWage = psicoDiv.dataset.psicoWage;
 			}
 			else {
 				let psicoLink = null;
@@ -1678,7 +1709,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				}
 				catch (e) {
 					Foxtrick.log(e);
-					playerList = null;
+					playerList = [];
 				}
 
 				try {
@@ -1745,7 +1776,15 @@ Foxtrick.Pages.Players.getPlayerId = function(playerInfo) {
  * @return {boolean}
  */
 Foxtrick.Pages.Players.isPropertyInList = function(playerList, property) {
-	return Foxtrick.any(player => typeof player[property] !== 'undefined', playerList);
+	return Foxtrick.any((player) => {
+		let val = player[property];
+		switch (typeof val) {
+			case 'undefined': return false;
+			case 'string': return !!val.trim().length;
+			case 'number': return !Number.isNaN(val) && val != 0;
+			default: return val != null;
+		}
+	}, playerList);
 };
 
 /**
