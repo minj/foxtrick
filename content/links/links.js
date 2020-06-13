@@ -347,6 +347,8 @@ Foxtrick.modules.Links = {
 
 		/** @type {LinkDefinitionMap} */
 		let linkDefs = collection[type];
+		if (!linkDefs)
+			return [];
 
 		/** @type {{ anchor: HTMLAnchorElement, obj: LinkDefinitionProps }[]} */
 		let links = Object.entries(linkDefs).map(([linkKey, linkDef]) => {
