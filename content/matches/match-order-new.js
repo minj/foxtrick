@@ -9,7 +9,7 @@ Foxtrick.modules.MatchOrderNew = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.MATCHES,
 	PAGES: ['matchOrderNew'],
 	OPTIONS: ['UseRatingsModule'],
-	CSS: Foxtrick.InternalPath + 'resources/css/match-simulator.css',
+	CSS: Foxtrick.InternalPath + 'resources/css/match-order-new.css',
 
 	TACTIC_NAMES: [
 		'normal', 'pressing',
@@ -34,28 +34,59 @@ Foxtrick.modules.MatchOrderNew = {
 	runRatings(doc) {
 		const module = this;
 
+		var ensureTable = function() {
+			const TABLE_ID = 'ft_simulation_ratings_table';
+			let ratingsTable = doc.getElementById(TABLE_ID);
+			if (ratingsTable)
+				return ratingsTable;
+
+			let ratingsDiv = Foxtrick.createFeaturedElement(doc, module, 'div');
+			ratingsDiv.id = 'ft_simulation_ratings-new';
+
+			let ratingsLabel = doc.createElement('h2');
+			ratingsDiv.appendChild(ratingsLabel).textContent =
+				Foxtrick.L10n.getString('matchOrder.ratings');
+
+			ratingsTable = doc.createElement('table');
+			ratingsDiv.appendChild(ratingsTable).id = TABLE_ID;
+
+			let scope = doc.querySelector('.ng-scope[ng-if="lineupMgr"]');
+
+			// let content = scope.querySelector('.mo-field .htbox-content');
+
+			scope.appendChild(ratingsDiv);
+
+			return ratingsTable;
+		};
+
 		var updateRatings = function() {
 			const PRED_CLS = 'mo-field-rating-predicitons';
 			const PRED_DIFF_CLS = 'mo-field-rating-predicitons-diff';
 
+			// doc.querySelectorAll(`.${PRED_CLS} div.ng-binding[ng-repeat*='SectorRatings'i]`)
+
 			var predictions =
-				doc.querySelectorAll(`.${PRED_CLS} span.ng-binding:not(.${PRED_DIFF_CLS})`);
+				doc.querySelectorAll(`.${PRED_CLS} .ng-binding:not(.${PRED_DIFF_CLS})`);
 
 			if (predictions.length === 0)
 				return;
 
 			var ratings = [...predictions].map(elem => [Number(elem.textContent.trim()) - 1, 0]);
 
-			Foxtrick.modules.Ratings.initHtRatings();
+			/** @type {HTMLSelectElement} */
+			// var tacticType = doc.querySelector('#mo-tacticType');
+			var tacticType =
+				doc.querySelector('.mo-field .htbox-footer select:not(#mo-speechLevel)');
 
-			/** @type {HTMLInputElement} */
-			var tacticType = doc.querySelector('#mo-tacticType');
+			if (!tacticType)
+				return;
+
 			var tactics = module.TACTIC_NAMES[tacticType.value];
 
 			var tLevelSpan = doc.querySelector('.mo-field-rating-predicitons-tactic span');
 			var tacticLevel = Foxtrick.L10n.getLevelFromText(tLevelSpan.textContent.trim());
 
-			var ratingsTable = doc.getElementById('ft_simulation_ratings_table');
+			var ratingsTable = ensureTable();
 			var newTable = ratingsTable.cloneNode(false);
 
 			Foxtrick.modules.Ratings.addRatings(doc, newTable,
@@ -65,31 +96,58 @@ Foxtrick.modules.MatchOrderNew = {
 			ratingsTable.parentNode.replaceChild(newTable, ratingsTable);
 		};
 
-		var addUpdateListener = function() {
-			let predictionsHolder = doc.querySelector('.mo-field-rating-predicitons-holder');
-			if (!predictionsHolder)
-				return;
+		var addUpdateListener = (function() {
+			const LINEUP_Q = '.mo-field-view-lineup, .htbox-left[ng-class*="mo-field-view-lineup"]';
 
-			Foxtrick.onChange(predictionsHolder, updateRatings, { characterData: true });
-			updateRatings();
-		};
+			var lineups = new WeakSet();
+			var holders = new WeakSet();
 
-		let ratingsDiv = Foxtrick.createFeaturedElement(doc, module, 'div');
-		ratingsDiv.id = 'ft_simulation_ratings';
-		let ratingsLabel = doc.createElement('h2');
-		ratingsDiv.appendChild(ratingsLabel).textContent =
-			Foxtrick.L10n.getString('matchOrder.ratings');
+			return function updateListener() {
+				let lineupView = doc.querySelector(LINEUP_Q);
+				if (!Foxtrick.hasClass(lineupView, 'mo-field-view-lineup')) {
+					updateRatings();
+					if (!lineupView || lineups.has(lineupView))
+						return;
 
-		let ratingsTable = doc.createElement('table');
-		ratingsDiv.appendChild(ratingsTable).id = 'ft_simulation_ratings_table';
-		doc.getElementById('content').appendChild(ratingsDiv);
+					lineups.add(lineupView);
+					Foxtrick.onChange(lineupView, updateListener);
+					return;
+				}
 
-		setTimeout(function() {
-			doc.querySelector('.ht-tabs-wizard').addEventListener('click', function() {
-				setTimeout(addUpdateListener, 1000);
-			});
-			setTimeout(addUpdateListener, 1000);
-		}, 2000);
+				let predictionsHolder = doc.querySelector('.mo-field-rating-predicitons-holder');
+				if (!predictionsHolder)
+					return;
+
+				if (holders.has(predictionsHolder))
+					return;
+
+				holders.add(predictionsHolder);
+				Foxtrick.onChange(predictionsHolder, updateRatings, { characterData: true });
+				updateRatings();
+			};
+		})();
+
+		Foxtrick.onClick(doc.querySelector('.ht-tabs-wizard'), addUpdateListener);
+		addUpdateListener();
+
+		// let footer = doc.querySelector('.mo-field .htbox-footer');
+		// Foxtrick.onChange(footer, (doc, node) => {
+		// 	if (!node.querySelector('#mo-tacticType'))
+		// 		return false;
+
+		// 	Foxtrick.onClick(doc.querySelector('.ht-tabs-wizard'), addUpdateListener);
+		// 	addUpdateListener();
+
+		// 	return true;
+		// });
+
+
+		// setTimeout(function() {
+		// 	doc.querySelector('.ht-tabs-wizard').addEventListener('click', function() {
+		// 		setTimeout(addUpdateListener, 1000);
+		// 	});
+		// 	setTimeout(addUpdateListener, 1000);
+		// }, 2000);
 
 	},
 };

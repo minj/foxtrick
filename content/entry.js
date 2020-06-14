@@ -170,7 +170,8 @@ Foxtrick.entry.run = function(doc) {
 
 	try {
 		let modules = Foxtrick.util.modules.getActive(doc);
-		let ngApp = doc.querySelector('#mainWrapper ng-app, #mainBody ng-app');
+		let ngApp = doc.querySelector('#mainWrapper ng-app, #mainBody ng-app, ' +
+			'#mainWrapper [ng-app], #mainBody [ng-app]');
 		let shouldDelay = !!ngApp && ngApp.getAttribute('app') != 'chat';
 
 		/** @type {FTModule[]} */
