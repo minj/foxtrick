@@ -786,14 +786,15 @@ Foxtrick.modules['MatchOrderInterface'] = {
 				}
 
 				// add playerid to details
-				Foxtrick.listen(doc.getElementById('players'), 'mouseover', function() {
-					// eslint-disable-next-line consistent-this, no-invalid-this
-					let el = this;
+				Foxtrick.listen(doc.getElementById('players'), 'mouseover', function(ev) {
+					let el = /** @type {HTMLElement} */ (ev.target); // player bar
 					if (Foxtrick.hasClass(el, 'player')) {
-						var detailsTemplate = doc.getElementById('detailsTemplate');
-						var idSearch = el.id.match(/list_playerID(\d+)/i);
-						if (idSearch)
-							detailsTemplate.setAttribute('playerid', idSearch[1]);
+						let detailsTemplate = doc.getElementById('detailsTemplate');
+						let match = /list_playerID(\d+)/i.exec(el.id);
+						if (match) {
+							let [_, id] = match;
+							detailsTemplate.setAttribute('playerid', id);
+						}
 					}
 				}, true);
 
