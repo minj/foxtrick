@@ -117,15 +117,16 @@ Foxtrick.modules['HTMSPrediction'] = {
 			 * Mimimi add-on (part 1)
 			 */
 			if (mimimiActive) {
-				cell = row.insertCell(1);
-				cell = row.insertCell(2);
+				row.insertCell(-1);
+				cell = row.insertCell(-1);
 				cell.className = 'center';
 				let mimimicanvas = cell.appendChild(doc.createElement('canvas'));
 				mimimicanvas.id = 'ft-mimimicanvas';
 				mimimicanvas.className = 'ft-mimimi-canvas';
-				cell = row.insertCell(3);
+				row.insertCell(-1);
+
 				row = htmstable.insertRow(htmstable.rows.length);
-				cell = row.insertCell(0);
+				cell = row.insertCell();
 			}
 
 			/* End of Mimimi add-on (part 1) */
@@ -364,7 +365,8 @@ Foxtrick.modules['HTMSPrediction'] = {
 		var sign = Math.sign(result);
 		var expected = (WIN_PTS * parseFloat(winprob) + parseFloat(drawprob)) / 100;
 
-		var acquired = 1;
+		/** @type {number} */
+		var acquired;
 		switch (sign) {
 			case 1:
 				acquired = WIN_PTS;
