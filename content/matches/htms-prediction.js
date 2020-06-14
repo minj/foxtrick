@@ -25,6 +25,7 @@ Foxtrick.modules['HTMSPrediction'] = {
 		return '';
 	},
 
+	// eslint-disable-next-line complexity
 	insertPrediction: function(doc, targetNode, midfieldLevel, rdefence, cdefence, ldefence,
 	                           rattack, cattack, lattack, tactics, tacticsLevel, teams) {
 
@@ -355,11 +356,28 @@ Foxtrick.modules['HTMSPrediction'] = {
 	 * @param {string} drawprob
 	 */
 	minimi(doc, winprob, drawprob) {
+		const WIN_PTS = 3;
+
 		var goals = Foxtrick.Pages.Match.getResult(doc);
 		var [homeResult, awayResult] = goals;
 		var result = homeResult - awayResult;
-		var expected = (3 * parseFloat(winprob) + parseFloat(drawprob)) / 100;
-		var acquired = result > 0 ? 3 : result < 0 ? 0 : 1;
+		var sign = Math.sign(result);
+		var expected = (WIN_PTS * parseFloat(winprob) + parseFloat(drawprob)) / 100;
+
+		var acquired = 1;
+		switch (sign) {
+			case 1:
+				acquired = WIN_PTS;
+				break;
+			case -1:
+				acquired = 0;
+				break;
+			case 0:
+				acquired = 1;
+				break;
+			default:
+				throw new Error(`sign is '${sign}'`);
+		}
 		var diff = acquired - expected;
 		var luck = Math.round(100 * Math.abs(diff) * diff / 9);
 		var opts = {
