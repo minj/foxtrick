@@ -147,6 +147,10 @@ html[dir="rtl"] .ft_skilltable td.formatted-num { direction: ltr; }
 .ft-coach {
 	vertical-align: bottom;
 }
+.ft-ownerNotes {
+	background-color: #fc0;
+	outline: #fc0 solid 1px;
+}
 .ft-skilltable_cellBtn {
 	cursor: pointer;
 }

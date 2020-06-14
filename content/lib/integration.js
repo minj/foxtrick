@@ -1,15 +1,34 @@
 'use strict';
+
+/* global globalThis */
+
+// TODO find a way to fake AMD define to satisfy all libs
 // redefine external libs on top of Foxtrick
 // for those contexts where boot-strap does not take affect
-(function(global) {
-	var libs = [
+(function() {
+	const LIBS = [
 		'jsyaml',
 		'IDBStore',
+		'Gauge',
+		'Donut',
+		'BaseDonut',
+		'TextRenderer',
+		'AnimationUpdater',
 	];
-	libs.forEach(function(lib) {
-		if (typeof Foxtrick[lib] === 'undefined' && typeof global[lib] !== 'undefined') {
+
+	LIBS.forEach((lib) => {
+		var global = typeof globalThis == 'undefined' || typeof globalThis[lib] == 'undefined'
+			? window
+			: globalThis;
+
+		if (typeof Foxtrick[lib] == 'undefined')
 			Foxtrick[lib] = global[lib];
-			global[lib] = undefined;
+
+		try {
+			global[lib] = void 0;
+			delete global[lib];
 		}
+		catch (e) { }
 	});
-})(this);
+
+})();

@@ -66,7 +66,7 @@ Foxtrick.modules.MatchReportFormat = {
 			// work on the actual events
 			var events = doc.querySelectorAll('#matchReport > .matchevent');
 			Foxtrick.forEach(function(evnt) {
-				var clonedEvent = evnt.cloneNode(true);
+				var clonedEvent = Foxtrick.cloneElement(evnt, true);
 				var row = buildEventRow(doc, clonedEvent);
 				tbody.appendChild(row);
 
@@ -107,7 +107,7 @@ Foxtrick.modules.MatchReportFormat = {
 			matchReport.insertBefore(table, matchReport.firstChild);
 		};
 
-		if (Foxtrick.Pages.Match.isPrematch(doc))
+		if (Foxtrick.Pages.Match.isPrematch(doc) || Foxtrick.Pages.Match.isNewLive(doc))
 			return;
 
 		// do the stuff

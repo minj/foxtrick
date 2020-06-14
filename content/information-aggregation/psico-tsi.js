@@ -150,106 +150,91 @@ Foxtrick.modules['PsicoTSI'] = {
 	},
 
 	/**
-	 * @param	{document}	doc
+	 * @param {document} doc
 	 */
 	runTL: function(doc) {
-		var useLinks = Foxtrick.Prefs.isModuleOptionEnabled('PsicoTSI', 'displayAsLink');
-		var players = Foxtrick.Pages.TransferSearchResults.getPlayerList(doc);
-		var playerContainers = doc.getElementById('mainBody')
-			.getElementsByClassName('transferPlayerInfo');
+		const module = this;
+		Foxtrick.util.currency.detect(doc).then(({ rate }) => {
 
-		for (var i = 0, p; i < players.length && (p = players[i]); ++i) {
+			var useLinks = Foxtrick.Prefs.isModuleOptionEnabled('PsicoTSI', 'displayAsLink');
+			var players = Foxtrick.Pages.TransferSearchResults.getPlayerList(doc);
+			var playerContainers = doc.getElementById('mainBody')
+				.getElementsByClassName('transferPlayerInfo');
 
-			var entry = playerContainers[i];
+			for (var i = 0, p; i < players.length && (p = players[i]); ++i) {
 
-			if (!Foxtrick.hasProp(p, 'keeper'))
-				continue;
+				var entry = playerContainers[i];
 
-			var age = p.ageYears;
-			var injured = p.injured;
+				if (!Foxtrick.hasProp(p, 'keeper'))
+					continue;
 
-			var pr = p.psico || this.getPrediction(p, 0);
-			if (!pr)
-				continue;
+				var age = p.ageYears;
+				var injured = p.injured;
 
-			// clear floats
-			var div = doc.createElement('div');
-			Foxtrick.addClass(div, 'ft-clear-both');
-			entry.appendChild(div);
+				var pr = p.psico || module.getPrediction(p, rate);
+				if (!pr)
+					continue;
 
-			this.drawInPlayerInfo(doc, i, entry, pr.undef, injured, age > 27,
-								  pr.maxSkill, pr.formHigh, pr.formAvg, pr.formLow, 'N/A',
-								  pr.limit, useLinks);
+				// clear floats
+				var div = doc.createElement('div');
+				Foxtrick.addClass(div, 'ft-clear-both');
+				entry.appendChild(div);
 
-			// move the ruler below psico
-			var hr = playerContainers[i].getElementsByClassName('borderSeparator')[0];
-			if (hr)
-				playerContainers[i].appendChild(hr);
-		}
-	},
+				module.drawInPlayerInfo(doc, i, entry, pr.undef, injured, age > 27,
+				                        pr.maxSkill, pr.formHigh, pr.formAvg, pr.formLow,
+				                        pr.wageLow, pr.limit, useLinks);
 
-	/**
-	 * Loops through playerlist and adds psico, psicoTSI, psicoTitle properties
-	 * currRate is needed for wage prediction, use 0 otherwise
-	 * may be called from other scripts!
-	 * @param	{array}	playerList
-	 * @param	{number}	currRate
-	 */
-	loopPlayerList: function(playerList, currRate) {
-		for (var i = 0, p; i < playerList.length && (p = playerList[i]); ++i) {
-			if (typeof p.playmaking == 'undefined') {
-				continue;
+				// move the ruler below psico
+				var hr = playerContainers[i].getElementsByClassName('borderSeparator')[0];
+				if (hr)
+					playerContainers[i].appendChild(hr);
 			}
-
-			var pr = this.getPrediction(p, currRate);
-			if (!pr)
-				continue;
-
-			p.psicoTSI = pr.formAvg;
-			p.psicoTitle = this.skills[pr.maxSkill];
-			p.psico = pr;
-		}
+		});
 	},
 
 	/**
 	 * Get prediction for player object
+	 *
 	 * Wage prediction needs currRate, use 0 otherwise
+	 *
 	 * returns prediction object
+	 *
 	 * { maxSkill, isGK, undef, limit, formLow, formAvg, formHigh, wageLow, wageAvg, wageHigh }
+	 *
 	 * may be called from other scripts!
-	 * @param  {object}	p
-	 * @param  {number}	currRate
-	 * @return {object}
+	 * @param  {Player} p
+	 * @param  {number} [currRate]
+	 * @return {PsicoTSIPrediction}
 	 */
 	getPrediction: function(p, currRate) {
-		if (typeof p.playmaking == 'undefined') {
+		if (typeof p.playmaking == 'undefined')
 			return null;
-		}
 
-		var age = p.ageYears || p.age.years;
-		var currTSI = p.tsi;
-		var currWAGE = currRate ? parseInt(p.salary / (p.isAbroad ? 1.2 : 1) * currRate, 10) : 0;
+		let age = p.ageYears || p.age.years;
+		let currTSI = p.tsi;
+		let currWAGE = currRate ? Math.floor(p.salary / (p.isAbroad ? 1.2 : 1) * currRate) : 0;
 
-		var frm = p.form;
-		var sta = p.stamina;
+		let frm = p.form;
+		let sta = p.stamina;
 
-		var pla = p.playmaking, win = p.winger, sco = p.scoring, goa = p.keeper,
+		let pla = p.playmaking, win = p.winger, sco = p.scoring, goa = p.keeper,
 			pas = p.passing, def = p.defending, sp = p.setPieces;
-		var playerskills = [frm, sta, pla, win, sco, goa, pas, def, sp];
+		let playerskills = [frm, sta, pla, win, sco, goa, pas, def, sp];
 
-		var pr = Foxtrick.psico.getPrediction(playerskills, currTSI, currWAGE, age);
+		/** @type {PsicoTSIPrediction} */
+		let pr = Foxtrick.psico.getPrediction(playerskills, currTSI, currWAGE, age);
 		return pr;
 	},
 
 	/**
 	 * Draw PsicoTSI prediction table (player page)
-	 * @param	{documen}	doc
-	 * @param	{element}	entryPoint				the result is added as nextSibling to this
-	 * @param	{Boolean}	isGK
-	 * @param	{Boolean}	isUndefinedMainskill
-	 * @param	{Boolean}	isInjured
-	 * @param	{Boolean}	isOld
-	 * @param	{Integer}	maxSkill
+	 * @param	{document}	doc
+	 * @param	{Element}	entryPoint				the result is added as nextSibling to this
+	 * @param	{boolean}	isGK
+	 * @param	{boolean}	isUndefinedMainskill
+	 * @param	{boolean}	isInjured
+	 * @param	{boolean}	isOld
+	 * @param	{number}	maxSkill
 	 * @param	{number}	formHigh				skill level when form sub is high
 	 * @param	{number}	formAvg					average
 	 * @param	{number}	formLow					low
@@ -472,17 +457,17 @@ Foxtrick.modules['PsicoTSI'] = {
 	 * Draw PsicoTSI prediction div in player container (players page, TL results)
 	 * @param	{documen}	doc
 	 * @param	{string}	id						index to use for conainer IDs
-	 * @param	{element}	entryPoint
-	 * @param	{Boolean}	isUndefinedMainskill
-	 * @param	{Boolean}	isInjured
-	 * @param	{Boolean}	isOld
+	 * @param	{Element}	entryPoint
+	 * @param	{boolean}	isUndefinedMainskill
+	 * @param	{boolean}	isInjured
+	 * @param	{boolean}	isOld
 	 * @param	{Integer}	maxSkill
 	 * @param	{number}	formHigh				skill level when form sub is high
 	 * @param	{number}	formAvg					average
 	 * @param	{number}	formLow					low
 	 * @param	{number}	wageLow					skill level when secondary subs are low or 'N/A'
 	 * @param	{string}	limit					'High', 'Medium' or 'Low'
-	 * @param	{Boolean}	displayAsLink
+	 * @param	{boolean}	displayAsLink
 	 */
 	drawInPlayerInfo: function(doc, id, entryPoint, isUndefinedMainskill, isInjured, isOld,
 	                           maxSkill, formHigh, formAvg, formLow, wageLow,
@@ -573,6 +558,7 @@ Foxtrick.modules['PsicoTSI'] = {
 			paragraph.textContent = pre + Foxtrick.L10n.getString('PsicoTSI.DECIMALS_LOW') + ']=' +
 				wageLow;
 			psicotsiInfo.appendChild(paragraph);
+			wrapper.setAttribute('data-psico-wage', String(wageLow));
 		}
 
 		var psicotsiShowDiv;
@@ -599,7 +585,7 @@ Foxtrick.modules['PsicoTSI'] = {
 									 'hidden');
 			});
 			psicotsiShowDiv.appendChild(psicotsiShowLink);
-			psicotsiShowDiv.appendChild(spacer.cloneNode(true));
+			psicotsiShowDiv.appendChild(Foxtrick.cloneElement(spacer, true));
 			wrapper.appendChild(psicotsiShowDiv);
 		}
 
@@ -636,7 +622,7 @@ Foxtrick.modules['PsicoTSI'] = {
 
 		wrapper.appendChild(psicotsiInfo);
 		wrapper.setAttribute('data-psico-skill', mainSkillText);
-		wrapper.setAttribute('data-psico-avg', formAvg);
+		wrapper.setAttribute('data-psico-avg', String(formAvg));
 		entryPoint.appendChild(wrapper);
 	},
 };

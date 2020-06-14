@@ -154,8 +154,7 @@ Foxtrick.modules.ConfirmActions = {
 				}
 				msgPara.appendChild(doc.createTextNode(msg));
 
-				// eslint-disable-next-line no-extra-parens
-				let target = /** @type {HTMLElement} */ (sellButton.parentNode);
+				let target = sellButton.parentElement;
 				let id = ID.SELL.CONFIRM_ID;
 				Foxtrick.util.note.add(doc, msgPara, id, { buttons, to: target });
 				Foxtrick.addClass(sellButton, 'hidden');

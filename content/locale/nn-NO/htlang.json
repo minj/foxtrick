@@ -324,7 +324,11 @@
 			"154": "Guam",
 			"155": "Kongo",
 			"156": "Etiopia",
+			"157": "Saint Vincent og Grenadinane",
+			"158": "Belize",
+			"159": "Madagaskar",
 			"16": "Brasil",
+			"160": "Botswana",
 			"17": "Canada",
 			"18": "Chile",
 			"19": "Colombia",
@@ -633,8 +637,12 @@
 				"value": "Hovud"
 			},
 			{
-				"type": "Regainer",
+				"type": "Resilient",
 				"value": "Seiging"
+			},
+			{
+				"type": "Support",
+				"value": "Lagspelar"
 			}
 		],
 		"spirit": [

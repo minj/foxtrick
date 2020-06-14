@@ -8,11 +8,15 @@
 
 'use strict';
 
-Foxtrick.modules['CurrencyConverter'] = {
+Foxtrick.modules.CurrencyConverter = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.PRESENTATION,
 	PAGES: ['all'],
 	NICE: 10, // after anythings that adds currencies
 
+	/**
+	 * @param  {document} doc
+	 * @return {HTMLSelectElement}
+	 */
 	OPTION_FUNC: function(doc) {
 		var currencySelect = doc.createElement('select');
 		currencySelect.setAttribute('pref', 'module.CurrencyConverter.to');
@@ -30,15 +34,17 @@ Foxtrick.modules['CurrencyConverter'] = {
 			item.value = currencies[i].code;
 			item.textContent = currencies[i].desc;
 			if (selectedCurrencyTo == item.value)
-				item.selected = 'selected';
+				item.selected = true;
+
 			currencySelect.appendChild(item);
 		}
 		return currencySelect;
 	},
 
+	/** @param {document} doc */
 	run: function(doc) {
 		// don't run on forum pages
-		if (doc.location.href.search(/Forum/i) != -1)
+		if (/Forum/i.test(doc.URL))
 			return;
 
 		var module = this;
@@ -69,10 +75,19 @@ Foxtrick.modules['CurrencyConverter'] = {
 			// filter out nodes without currency symbols
 			nodes = nodes.filter(n => RE.test(n.textContent));
 
+			/** @param {Node} node */
 			var parseLeaf = function(node) {
+				/**
+				 * @param  {string} x
+				 * @return {string}
+				 */
 				var formatMoney = x => ` (${Foxtrick.formatNumber(x, '\u00a0')}\u00a0${symbol})`;
+
+				/** @type {[number, string][]} */
 				var pairs = []; // pairs of insert position and money denoted in new currency
 				var sole = false; // whether the money is the sole content of the node
+
+				var parent = node.parentElement;
 
 				// we may have numerous entries within one node, so we loop to
 				// find out all of them
@@ -92,7 +107,7 @@ Foxtrick.modules['CurrencyConverter'] = {
 
 					let begin = RE.lastIndex - full.length;
 					let end = RE.lastIndex;
-					sole = node.parentNode.childNodes.length === 1 &&
+					sole = parent.childNodes.length === 1 &&
 						node.textContent.slice(0, begin).trim() === '' &&
 						node.textContent.slice(end).trim() === '';
 
@@ -108,7 +123,7 @@ Foxtrick.modules['CurrencyConverter'] = {
 					let [_, conv] = pair; // lgtm[js/unused-local-variable]
 					let span = Foxtrick.createFeaturedElement(doc, module, 'span');
 					span.textContent = conv;
-					node.parentNode.appendChild(span);
+					parent.appendChild(span);
 				}
 				else {
 					let fr = doc.createDocumentFragment();
@@ -122,8 +137,11 @@ Foxtrick.modules['CurrencyConverter'] = {
 					}
 					children.push(text.slice(lastPos));
 					Foxtrick.append(fr, children);
-					node.parentNode.replaceChild(fr, node);
+					parent.replaceChild(fr, node);
 				}
+
+				if (parent.matches('.nowrap'))
+					Foxtrick.removeClass(parent, 'nowrap');
 			};
 			nodes.forEach(n => Foxtrick.getTextNodes(n).forEach(parseLeaf));
 

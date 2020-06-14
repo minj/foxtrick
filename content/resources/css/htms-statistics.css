@@ -18,3 +18,11 @@
 .htms-stats-loss {
 	background-color: #849d84;
 }
+
+#ft-htmstable.mimimi {
+	margin-top: -150px;
+}
+
+.ft-mimimi-row {
+	transform: scale(1, 0.5) translate(0, 140px);
+}

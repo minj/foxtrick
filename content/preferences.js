@@ -1,3 +1,7 @@
+/* eslint-disable consistent-this */
+/* eslint-disable func-style */
+/* eslint-disable no-implicit-globals */
+
 'use strict';
 
 /**
@@ -10,6 +14,7 @@
 
 // page IDs of last page are stored in array PAGEIDS
 var PAGEIDS = [];
+
 // get page IDs in Foxtrick.htPages that last page matches and store them in PAGEIDS
 function getPageIds() {
 	var lastPage = Foxtrick.getLastPage();
@@ -123,7 +128,7 @@ function initSearch() {
  * isModule is used for breadcrumb URL generation.
  *
  * @param {string}  needle
- * @param {Boolean} isModule
+ * @param {boolean} isModule
  */
 function search(needle, isModule) {
 
@@ -391,7 +396,7 @@ function getElementIdFromOption(option) {
  * showSaved: optionally show success message
  *
  * @param {object}  needed
- * @param {Boolean} showSaved
+ * @param {boolean} showSaved
  */
 function getPermission(needed, showSaved) {
 	// Permissions must be requested from inside a user gesture, like a button's click handler.
@@ -421,7 +426,7 @@ function getPermission(needed, showSaved) {
  *
  * returns true if needed
  *
- * @return {Boolean} isNeeded
+ * @return {boolean} isNeeded
  */
 function checkPermissions() {
 	var needsPermissions = false;
@@ -633,7 +638,7 @@ function save() {
  * and custom, predefined linkTags.
  *
  * @param {string}  note   Raw note to be parsed.
- * @param {element} parent Element to add the note to.
+ * @param {Element} parent Element to add the note to.
  * @param {object}  links  A map of custom linkTags and their corresponding URLs.
  */
 function addNote(note, parent, links) {
@@ -641,7 +646,7 @@ function addNote(note, parent, links) {
 	 * Create a white-listed tag or fall back to createLink
 	 * @param  {string}  tagName    Name of the tag or link
 	 * @param  {string}  tagContent Text content of the tag. May be recursive
-	 * @return {element}            Element created
+	 * @return {Element}            Element created
 	 */
 	var createTag = function(tagName, tagContent) {
 		/**
@@ -651,15 +656,14 @@ function addNote(note, parent, links) {
 		 * @param  {string}  nodeName    Name of the element to create.
 		 * @param  {string}  textContent Text content of the element.
 		 * @param  {object}  options     Map of properties and values of the element.
-		 * @return {element}             Element created.
+		 * @return {Element}             Element created.
 		 */
 		var createNode = function(nodeName, textContent, options) {
 			var node = document.createElement(nodeName);
 			if (textContent !== null)
 				node.textContent = textContent;
 
-			Foxtrick.mergeAll(node, options);
-			return node;
+			return Object.assign(node, options);
 		};
 		var createNestedNode = function(nodeName, tagContent, options) {
 			var el = createNode(nodeName, null, options);
@@ -811,6 +815,7 @@ function initListeners() {
  * @param  {object}         module
  * @return {HTMLDivElement}
  */
+// eslint-disable-next-line complexity
 function makeModuleDiv(module) {
 	// var getScreenshot = function(link) {
 	// 	var a = document.createElement('a');
@@ -1443,16 +1448,19 @@ function initChangesTab() {
 
 /**
  * Setup help tab and FAQ layout
+ * @return {Promise<void>}
  */
 function initHelpTab() {
 	// external links
 	Foxtrick.load(Foxtrick.InternalPath + 'data/foxtrick_about.json')
 		.then(function(aboutJSON) {
 
+			/** @type {AboutJSONSchema} */
+			// @ts-ignore
 			var aboutData = JSON.parse(aboutJSON);
 			var category = aboutData.links;
 
-			Foxtrick.map(function(a) {
+			Foxtrick.forEach(function(a) {
 				var item = document.createElement('li');
 				$('#external-links-list').append(item);
 
@@ -1460,6 +1468,7 @@ function initHelpTab() {
 				item.appendChild(link);
 				link.textContent = Foxtrick.L10n.getString('link.' + a.id);
 				link.href = a.href;
+				link.relList.add('noopener');
 				link.target = '_blank';
 			}, category);
 
@@ -1546,6 +1555,7 @@ function initHelpTab() {
 
 /**
  * Setup about page and contributor layout
+ * @return {Promise<void>}
  */
 function initAboutTab() {
 	var addItem = function(person, list) {
@@ -1569,6 +1579,8 @@ function initAboutTab() {
 	return Foxtrick.load(Foxtrick.InternalPath + 'data/foxtrick_about.json')
 		.then(function(aboutJSON) {
 
+			/** @type {AboutJSONSchema} */
+			// @ts-ignore
 			var aboutData = JSON.parse(aboutJSON);
 
 			$('.about-list').each(function() {
@@ -1576,12 +1588,17 @@ function initAboutTab() {
 				var $container = $(this);
 				var type = $container.attr('path');
 
+				/** @type {AboutJSONPerson[]|AboutJSONTranslation[]} */
+				// @ts-ignore
 				var category = aboutData[type];
 				Foxtrick.map(function(data) {
 					if (type === 'translations') {
+						/** @type {unknown} */
+						let foo = data;
+						let trData = /** @type {AboutJSONTranslation}*/ (foo);
 						var item = document.createElement('li');
 						var header = document.createElement('h4');
-						header.textContent = data.language;
+						header.textContent = String(trData.language);
 						item.appendChild(header);
 
 						var list = document.createElement('ul');
@@ -1589,13 +1606,15 @@ function initAboutTab() {
 
 						Foxtrick.map(function(translator) {
 							addItem(translator, $(list));
-						}, data.translators);
+						}, trData.translators);
 
 						$container.append(item);
 					}
 					else {
 						addItem(data, $container);
 					}
+
+				// @ts-ignore
 				}, category);
 
 			});
@@ -1606,6 +1625,7 @@ function initAboutTab() {
 
 /**
  * Setup all tabs
+ * @return {Promise<void[]>}
  */
 function initTabs() {
 	// attach each tab with corresponding pane

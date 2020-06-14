@@ -8,7 +8,7 @@
 Foxtrick.modules['LinksAlliances'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
 	PAGES: ['federation'],
-	LINK_TYPE: 'federationlink',
+	LINK_TYPES: 'federationlink',
 	/**
 	 * return HTML for FT prefs
 	 * @param  {document}         doc

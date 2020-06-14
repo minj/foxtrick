@@ -1,75 +1,83 @@
-'use strict';
-/* supporterstats-enhancements.js
+/**
+ * supporterstats-enhancements.js
  * Add extra information to supporterstats
  * @author convincedd
  */
+
+'use strict';
 
 Foxtrick.modules['SupporterStatsEnhancements'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES: ['statsSquad'],
 
+	/** @param {document} doc */
 	run: function(doc) {
+		const module = this;
+
 		// get selected teamid
-		var teamid = 0;
-		var options = Foxtrick.getMBElement(doc, 'ddlTeams').getElementsByTagName('option');
-		for (var i = 0; i < options.length; ++i) {
-			if (options[i].getAttribute('selected') == 'selected') {
-				teamid = Number(options[i].value);
+		let teamId = 0;
+		let options = Foxtrick.getMBElement(doc, 'ddlTeams').querySelectorAll('option');
+		for (let option of options) {
+			if (option.selected) {
+				teamId = parseInt(option.value, 10);
 				break;
 			}
 		}
-		if (teamid == 0)
+
+		if (teamId == 0)
 			return;
 
-		var args = [
+		/** @type {CHPPParams} */
+		let args = [
 			['file', 'players'],
 			['version', '2.2'],
-			['teamId', teamid],
+			['teamId', teamId],
 		];
-
-		Foxtrick.util.api.retrieve(doc, args, { cache_lifetime: 'session' },
-		  function(xml, errorText) {
+		Foxtrick.util.api.retrieve(doc, args, { cache: 'session' }, (xml, errorText) => {
 			if (!xml || errorText) {
 				Foxtrick.log(errorText);
 				return;
 			}
-			var playerNodes = xml.getElementsByTagName('Player');
 
-			var table = doc.getElementById('mainBody').getElementsByTagName('table')[0];
+			/** @type {HTMLTableElement} */
+			let table = doc.querySelector('#mainBody table');
 			if (!table)
 				return;
-			var th = Foxtrick
-				.createFeaturedElement(doc, Foxtrick.modules['SupporterStatsEnhancements'], 'th');
+
+			let th = Foxtrick.createFeaturedElement(doc, module, 'th');
 			Foxtrick.addClass(th, 'center');
 			Foxtrick.addImage(doc, th, {
 				src: Foxtrick.InternalPath + 'resources/img/formation.png',
 				alt: Foxtrick.L10n.getString('CurrentSquad'),
-				title: Foxtrick.L10n.getString('CurrentSquad')
+				title: Foxtrick.L10n.getString('CurrentSquad'),
 			});
 
-			table.getElementsByTagName('tr')[0].appendChild(th);
+			table.rows[0].appendChild(th);
 
-			var as = doc.getElementById('mainBody').getElementsByTagName('a');
-			for (var i = 0; i < as.length; ++i) {
-				if (as[i].href.search(/\/Club\/Players\/Player.aspx\?playerId=\d+/i) !== -1) {
-					var id =
-						Number(as[i].href.match(/\/Club\/Players\/Player.aspx\?playerId=(\d+)/i)[1]);
-					var inSquad = false;
-					for (var j = 0; j < playerNodes.length; ++j) {
-						var playerNode = playerNodes[j];
-						var pid = Number(playerNode.getElementsByTagName('PlayerID')[0].textContent);
-						if (pid === id) {
-							inSquad = true;
-							break;
-						}
+			let playerNodes = xml.getElementsByTagName('Player');
+
+			/** @type {NodeListOf<HTMLAnchorElement>} */
+			let as = doc.querySelectorAll('#mainBody a');
+			for (let a of as) {
+				if (!/\/Club\/Players\/Player\./i.test(a.href))
+					continue;
+
+				let id = parseInt(Foxtrick.getUrlParam(a.href, 'playerId'), 10);
+				let inSquad = false;
+				for (let playerNode of playerNodes) {
+					let pid = xml.num('PlayerID', playerNode);
+
+					if (pid === id) {
+						inSquad = true;
+						break;
 					}
-					var td = Foxtrick
-						.insertFeaturedCell(as[i].parentNode.parentNode,
-						                    Foxtrick.modules['SupporterStatsEnhancements'], -1);
-					td.className = 'center';
-					if (inSquad) td.textContent = 'x';
 				}
+
+				let td = Foxtrick.insertFeaturedCell(a.closest('tr'), module, -1);
+				td.className = 'center';
+				if (inSquad)
+					td.textContent = 'x';
 			}
 		});
-	}
+	},
 };

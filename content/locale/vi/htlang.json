@@ -324,7 +324,11 @@
 			"154": "Guam",
 			"155": "DR Congo",
 			"156": "Ethiopia",
+			"157": "Saint Vincent & Grenadines",
+			"158": "Belize",
+			"159": "Madagascar",
 			"16": "Braxin",
+			"160": "Botswana",
 			"17": "Canada",
 			"18": "Chilê",
 			"19": "Colombia",
@@ -633,8 +637,12 @@
 				"value": "Đánh đầu"
 			},
 			{
-				"type": "Regainer",
+				"type": "Resilient",
 				"value": "Hồi phục nhanh"
+			},
+			{
+				"type": "Support",
+				"value": "Hỗ trợ"
 			}
 		],
 		"spirit": [

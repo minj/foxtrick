@@ -8,6 +8,7 @@
 
 /* eslint-disable */
 if (!this.Foxtrick)
+	// @ts-ignore
 	var Foxtrick = {};
 /* eslint-enable */
 
@@ -16,9 +17,12 @@ if (!Foxtrick.util)
 
 Foxtrick.util.copyButton = {};
 
-/*
+/**
  * Adds a button on the HTML document
- * @returns HTML node of the button
+ *
+ * @param  {document} doc
+ * @param  {string} text
+ * @return {HTMLAnchorElement} HTML node of the button
  */
 Foxtrick.util.copyButton.add = function(doc, text) {
 	var link, img;

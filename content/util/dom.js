@@ -32,11 +32,13 @@ Foxtrick.NodeTypes = {
 	NOTATION_NODE: 12,
 };
 
+// eslint-disable-next-line valid-jsdoc
 /**
  * Create an element in SVG namespace. Root element is typically 'svg'.
- * @param  {document}   doc
- * @param  {string}     type
- * @return {SVGElement}
+ * @template {keyof SVGElementTagNameMap} K
+ * @param  {document}                     doc
+ * @param  {K}                            type
+ * @return {SVGElementTagNameMap[K]}
  */
 Foxtrick.createSVG = function(doc, type) {
 	return doc.createElementNS('http://www.w3.org/2000/svg', type);
@@ -48,9 +50,9 @@ Foxtrick.createSVG = function(doc, type) {
  * of DOM created and/or modified by Foxtrick.
  * Returns the element.
  * @template {keyof HTMLElementTagNameMap} K
- * @param  {document}                      doc
- * @param  {object}                        module
- * @param  {K}                             type
+ * @param  {document} doc
+ * @param  {any}      module // TODO module type
+ * @param  {K}        type
  * @return {HTMLElementTagNameMap[K]}
  */
 // eslint-disable-next-line consistent-this
@@ -73,9 +75,9 @@ Foxtrick.createFeaturedElement = function(doc, module, type) {
 /**
  * Insert a new row in a table with Foxtrick feature highlight.
  * Returns the row.
- * @param  {HTMLTableElement}    table
- * @param  {object}              module
- * @param  {number}              index
+ * @param  {HTMLTableElement} table
+ * @param  {any}              module // TODO module type
+ * @param  {number}           index
  * @return {HTMLTableRowElement}
  */
 // eslint-disable-next-line consistent-this
@@ -93,9 +95,9 @@ Foxtrick.insertFeaturedRow = function(table, module, index) {
 /**
  * Insert a new cell in a row with Foxtrick feature highlight.
  * Returns the cell.
- * @param  {HTMLTableRowElement}      row
- * @param  {object}                   module
- * @param  {number}                   index
+ * @param  {HTMLTableRowElement} row
+ * @param  {any}                 module // TODO module type
+ * @param  {number}              index
  * @return {HTMLTableDataCellElement}
  */
 // eslint-disable-next-line consistent-this
@@ -113,8 +115,8 @@ Foxtrick.insertFeaturedCell = function(row, module, index) {
 /**
  * Enable Foxtrick feature highlight on an existing element
  * @template {HTMLElement} E
- * @param  {E} node
- * @param  {object}      module
+ * @param  {E}   node
+ * @param  {any} module // TODO module type
  * @return {E}
  */
 // eslint-disable-next-line consistent-this
@@ -184,7 +186,7 @@ Foxtrick.removeAttributeValue = function(el, attribute, value) {
  * Also supports style/dataset and on* listeners.
  *
  * @param {HTMLElement} el
- * @param {object}      attributes
+ * @param {any}         attributes // TODO constrain
  */
 Foxtrick.setAttributes = function(el, attributes) {
 	const ELEMENT_PROPERTIES = [
@@ -192,23 +194,39 @@ Foxtrick.setAttributes = function(el, attributes) {
 		'className',
 	];
 
+	const ATTRIBUTE_MAP = Object.assign(Object.create(null), {
+		ariaLabel: 'aria-label',
+	});
+
 	for (let [attr, val] of Object.entries(attributes)) {
 		if ((attr == 'dataset' || attr == 'style') && typeof val == 'object') {
-			for (let [item, subVal] of Object.entries(val))
+			for (let [item, subVal] of Object.entries(val)) {
+				// @ts-ignore
 				el[attr][item] = subVal;
+			}
 		}
-		else if (attr.slice(0, 2) == 'on' && typeof val == 'function') {
-			let type = attr.slice(2).toLowerCase();
+		else if (attr.startsWith('on') && typeof val == 'function') {
+			let type = /** @type {keyof HTMLElementEventMap} */ (attr.slice(2).toLowerCase());
 
-			if (type == 'click')
+			if (type == 'click') {
 				Foxtrick.onClick(el, val);
-			else if (type == 'change')
+			}
+
+			// @ts-ignore
+			else if (type == 'mutate') {
 				Foxtrick.onChange(el, val);
-			else
-				Foxtrick.listen(el, type, val);
+			}
+			else {
+				let eventType = /** @type {keyof HTMLElementEventMap} */ (type);
+				Foxtrick.listen(el, eventType, val);
+			}
 		}
 		else if (Foxtrick.has(ELEMENT_PROPERTIES, attr)) {
+			// @ts-ignore
 			el[attr] = val;
+		}
+		else if (attr in ATTRIBUTE_MAP) {
+			el.setAttribute(ATTRIBUTE_MAP[attr], val);
 		}
 		else {
 			el.setAttribute(attr, val);
@@ -299,6 +317,17 @@ Foxtrick.getChildIndex = function(element) {
 };
 
 /**
+ * Because types /sigh
+ * @template {Element|DocumentFragment} E
+ * @param  {E}       el
+ * @param  {boolean} [deep]
+ * @return {E}
+ */
+Foxtrick.cloneElement = function(el, deep) {
+	return /** @type {E} */ (el.cloneNode(deep));
+};
+
+/**
  * Insert adjacent content.
  * ! Target must be Element !
  *
@@ -317,12 +346,10 @@ Foxtrick.insertAdjacent = function(where, newNode, target) {
 	let isNode = newNode instanceof win.Node;
 
 	if (isElement) {
-		/* eslint-disable-next-line no-extra-parens */
 		let element = /** @type {Element} */ (newNode);
 		target.insertAdjacentElement(where, element);
 	}
 	else {
-		// eslint-disable-next-line no-extra-parens
 		let text = isNode ? /** @type {Node} */ (newNode).textContent : String(newNode);
 		target.insertAdjacentText(where, text);
 	}
@@ -340,14 +367,12 @@ Foxtrick.insertBefore = function(newNode, sibling) {
 
 	// @ts-ignore
 	if (sibling instanceof win.Element) {
-		// eslint-disable-next-line no-extra-parens
 		let el = /** @type {Element} */ (sibling);
 		Foxtrick.insertAdjacent('beforebegin', newNode, el);
 	}
 
 	// @ts-ignore
 	else if (newNode instanceof win.Node) {
-		// eslint-disable-next-line no-extra-parens
 		let node = /** @type {Node} */ (newNode);
 		parent.insertBefore(node, sibling);
 	}
@@ -369,14 +394,12 @@ Foxtrick.insertAfter = function(newNode, sibling) {
 
 	// @ts-ignore
 	if (sibling instanceof win.Element) {
-		// eslint-disable-next-line no-extra-parens
 		let el = /** @type {Element} */ (sibling);
 		Foxtrick.insertAdjacent('afterend', newNode, el);
 	}
 
 	// @ts-ignore
 	else if (newNode instanceof win.Node) {
-		// eslint-disable-next-line no-extra-parens
 		let node = /** @type {Node} */ (newNode);
 		parent.insertBefore(node, sibling.nextSibling);
 	}
@@ -397,14 +420,12 @@ Foxtrick.prependChild = function(newNode, parent) {
 
 	// @ts-ignore
 	if (parent instanceof win.Element) {
-		// eslint-disable-next-line no-extra-parens
 		let el = /** @type {Element} */ (parent);
 		Foxtrick.insertAdjacent('afterbegin', newNode, el);
 	}
 
 	// @ts-ignore
 	else if (newNode instanceof win.Node) {
-		// eslint-disable-next-line no-extra-parens
 		let node = /** @type {Node} */ (newNode);
 		parent.insertBefore(node, parent.firstChild);
 	}
@@ -425,14 +446,12 @@ Foxtrick.appendChild = function(newNode, parent) {
 
 	// @ts-ignore
 	if (parent instanceof win.Element) {
-		// eslint-disable-next-line no-extra-parens
 		let el = /** @type {Element} */ (parent);
 		Foxtrick.insertAdjacent('beforeend', newNode, el);
 	}
 
 	// @ts-ignore
 	else if (newNode instanceof win.Node) {
-		// eslint-disable-next-line no-extra-parens
 		let node = /** @type {Node} */ (newNode);
 		parent.appendChild(node);
 	}
@@ -458,7 +477,7 @@ Foxtrick.appendChildren = function(parent, children) {
  *
  * child may be a Node, string or an array of such.
  *
- * @param {Element}                     parent
+ * @param {Node}                        parent
  * @param {Node|string|(Node|string)[]} child
  */
 Foxtrick.append = function(parent, child) {
@@ -466,7 +485,6 @@ Foxtrick.append = function(parent, child) {
 	let win = doc.defaultView;
 
 	if (Foxtrick.isArrayLike(child)) {
-		// eslint-disable-next-line no-extra-parens
 		let children = /** @type {(Node|string)[]} */ (child);
 		Foxtrick.forEach(function(c) {
 			Foxtrick.append(parent, c);
@@ -475,7 +493,6 @@ Foxtrick.append = function(parent, child) {
 
 	// @ts-ignore
 	else if (child instanceof win.Node) {
-		// eslint-disable-next-line no-extra-parens
 		let node = /** @type {Node} */ (child);
 		parent.appendChild(node);
 	}
@@ -491,6 +508,8 @@ Foxtrick.append = function(parent, child) {
  *
  * Sets tabindex=0 and role=button if these attributes have no value.
  *
+ * ! This does more harm than good on 'delegated' listeners, listen() should be used instead.
+ *
  * The callback is executed with global change listeners stopped.
  *
  * @template {Element} T
@@ -501,12 +520,77 @@ Foxtrick.append = function(parent, child) {
  * @return {function():void}                     remove wrapped listener
  */
 Foxtrick.onClick = function(el, listener, useCapture) {
-	if (!el.hasAttribute('tabindex'))
-		el.setAttribute('tabindex', '0');
-	if (!el.hasAttribute('role'))
-		el.setAttribute('role', 'button');
-
+	Foxtrick.clickTarget(el);
 	return Foxtrick.listen(el, 'click', listener, useCapture);
+};
+
+/**
+ * Sets tabindex=0 and role=button if these attributes have no value.
+ *
+ * Uses wrappers for elements with important accessibility semantics.
+ *
+ * ! This does more harm than good on 'delegated' listeners
+ *
+ * @param  {Element} el
+ */
+Foxtrick.clickTarget = function(el) {
+	/**
+	 * @param  {Element} e
+	 * @return {Element}
+	 */
+	const wrapContents = (e) => {
+		let span = e.ownerDocument.createElement('span');
+		Foxtrick.append(span, [...e.childNodes]);
+		return e.appendChild(span);
+	};
+
+	/**
+	 * @param  {Element} e
+	 * @return {Element}
+	 */
+	const wrapElement = (e) => {
+		let span = e.ownerDocument.createElement('span');
+		e.parentElement.replaceChild(span, e);
+		span.appendChild(e);
+		return span;
+	};
+
+	/** @type {Partial<Record<keyof HTMLElementTagNameMap, function(Element):Element>>} */
+	const ROLES_CBS = {
+		h1: wrapContents,
+		h2: wrapContents,
+		h3: wrapContents,
+		h4: wrapContents,
+		h5: wrapContents,
+		h6: wrapContents,
+		td: wrapContents,
+		th: wrapContents,
+
+		img: wrapElement,
+
+		input: null,
+	};
+
+	/** @type {Element} */
+	let target = null;
+	let name = el.nodeName.toLowerCase();
+	if (name in ROLES_CBS) {
+		let tag = /** @type {keyof HTMLElementTagNameMap} */ (name);
+		let role = ROLES_CBS[tag];
+		if (typeof role == 'function')
+			target = role(el);
+	}
+	else {
+		target = el;
+	}
+
+	if (!target)
+		return;
+
+	if (!target.hasAttribute('tabindex'))
+		target.setAttribute('tabindex', '0');
+	if (!target.hasAttribute('role'))
+		target.setAttribute('role', 'button');
 };
 
 /**
@@ -532,9 +616,9 @@ Foxtrick.listen = function(el, evType, listener, useCapture) {
 		let target = /** @type {Element|Document} */ (ev.target);
 
 		let doc = target instanceof Document ? target : target.ownerDocument;
-		Foxtrick.stopListenToChange(doc);
+		Foxtrick.stopObserver(doc);
 
-		/** @type {boolean|Promise|void} */
+		/** @type {boolean|Promise<any>|void} */
 		let ret;
 		try {
 			ret = listener.call(this, ev);
@@ -550,12 +634,12 @@ Foxtrick.listen = function(el, evType, listener, useCapture) {
 		else if (ret instanceof Promise) {
 			Foxtrick.finally(ret, () => {
 				Foxtrick.log.flush(doc);
-				Foxtrick.startListenToChange(doc);
+				Foxtrick.startObserver(doc);
 			}).catch(Foxtrick.catch('async listen'));
 		}
 		else {
 			Foxtrick.log.flush(doc);
-			Foxtrick.startListenToChange(doc);
+			Foxtrick.startObserver(doc);
 		}
 	};
 
@@ -605,8 +689,7 @@ Foxtrick.addCopying = function(el, copy, mime) {
 Foxtrick.observe = function(node, shouldStop, options) {
 	/** @type {MutationObserverInit} */
 	let opts = { childList: true, subtree: true };
-	for (let opt in options)
-		opts[opt] = options[opt];
+	Object.assign(opts, options);
 
 	/**
 	 * @this {MutationObserver}
@@ -688,7 +771,7 @@ Foxtrick.getChanges = function(node, callback, obsOpts) {
  * @return {Element}              box to be added to
  */
 // eslint-disable-next-line complexity
-Foxtrick.addBoxToSidebar = function(doc, title, content, prec, forceLeft) {
+Foxtrick.addBoxToSidebar = function(doc, title, content, prec, forceLeft) { // FIXME support angular
 	// class of the box to add
 	var boxClass = 'sidebarBox';
 	var sidebar = doc.getElementById('sidebar');
@@ -800,7 +883,6 @@ Foxtrick.getElementPosition = function(el, ref) {
 		top += e.offsetTop;
 		left += e.offsetLeft;
 
-		// eslint-disable-next-line no-extra-parens
 		e = /** @type {HTMLElement} */ (e.offsetParent);
 	}
 
@@ -823,10 +905,10 @@ Foxtrick.getDataURIText = function(str) {
  * in some extension architectures.
  * Continued to be used with forward compatibility in mind.
  * Callback receives the created image.
- * @param {document}                        doc
- * @param {Node}                            parent
- * @param {object}                          features       a map of image attributes
- * @param {Node}                            [insertBefore] next sibling
+ * @param {document} doc
+ * @param {Node}     parent
+ * @param {any}      features       a map of image attributes // TODO constrain
+ * @param {Node}     [insertBefore] next sibling
  * @param {function(HTMLImageElement):void} [callback]
  */
 Foxtrick.addImage = function(doc, parent, features, insertBefore, callback) {
@@ -851,18 +933,20 @@ Foxtrick.addImage = function(doc, parent, features, insertBefore, callback) {
  * Returns Promise.<HTMLImageElement>
  *
  * @param  {Node}   parent
- * @param  {number} specNum {Integer}
- * @param  {object} features image attributes
+ * @param  {number} specNum    {Integer}
+ * @param  {any}    [features] image attributes // TODO constrain
  * @return {Promise<HTMLImageElement>}
  */
-Foxtrick.addSpecialty = function(parent, specNum, features) {
+Foxtrick.addSpecialty = function(parent, specNum, features = {}) {
 	let doc = parent.ownerDocument;
 
 	let specialtyName = Foxtrick.L10n.getSpecialtyFromNumber(specNum);
 	let specialtyUrl = Foxtrick.getSpecialtyImagePathFromNumber(specNum);
 
+	/** @type {Node} */
 	let insertBefore = null;
 	if (Foxtrick.hasProp(features, 'insertBefore')) {
+		// @ts-ignore
 		insertBefore = features.insertBefore;
 		delete features.insertBefore;
 	}
@@ -878,14 +962,15 @@ Foxtrick.addSpecialty = function(parent, specNum, features) {
 		imgContainer.dataset.specialty = specNum.toString();
 
 		specialtyName += '\n' + Foxtrick.L10n.getString('SpecialtyInfo.open');
+		features.tabindex = '0';
+		features.role = 'button';
 	}
 
-	let opts = {
+	let opts = Object.assign({
 		alt: specialtyName,
 		title: specialtyName,
 		src: specialtyUrl,
-	};
-	Foxtrick.mergeAll(opts, features);
+	}, features);
 
 	return new Promise(function(resolve) {
 		Foxtrick.addImage(doc, imgContainer, opts, null, resolve);
@@ -1070,18 +1155,19 @@ Foxtrick.getSubmitButton = function(scope) {
 /**
  * Get all text nodes in the node tree
  * @param  {Element} parent
- * @return {Node[]}
+ * @return {Text[]}
  */
 Foxtrick.getTextNodes = function(parent) {
-	let ret = [];
 	let doc = parent.ownerDocument;
 	let win = doc.defaultView;
+
+	let ret = [];
 
 	// @ts-ignore
 	let walker = doc.createTreeWalker(parent, win.NodeFilter.SHOW_TEXT, null, false);
 	let node;
 	while ((node = walker.nextNode()))
-		ret.push(node);
+		ret.push(/** @type {Text} */ (node));
 
 	return ret;
 };
@@ -1118,6 +1204,8 @@ Foxtrick.renderPre = function(parent) {
 	if (testRE.test(parent.textContent)) {
 		// valid pre found
 		let allNodes = Foxtrick.getNodes(parent);
+
+		/** @type {Node[]} */
 		let nodes = [];
 
 		/** @type {HTMLPreElement} */
@@ -1194,7 +1282,6 @@ Foxtrick.renderPre = function(parent) {
 				}
 				else {
 					// target points to inserted pre instead
-					// eslint-disable-next-line no-extra-parens
 					let pre = /** @type {HTMLPreElement} */ (target);
 					Foxtrick.insertAfter(endTextNode, pre);
 				}
@@ -1228,7 +1315,7 @@ Foxtrick.renderPre = function(parent) {
  * buttons is {Array.<{title:string, handler:function}>} (optional)
  * @param {document}       doc
  * @param {string}         title
- * @param {Element|string} content
+ * @param {Node|string}    content
  * @param {DialogButton[]} [buttons]
  */
 Foxtrick.makeModal = function(doc, title, content, buttons) {
@@ -1307,6 +1394,7 @@ Foxtrick.makeModal = function(doc, title, content, buttons) {
 		contentDiv.appendChild(cont);
 	}
 
+	// TODO convert to grid
 	{
 		let btnWrapper = doc.createElement('div');
 		Foxtrick.addClass(btnWrapper, 'ft-dialog-btnWrapper');
@@ -1338,7 +1426,7 @@ Foxtrick.makeModal = function(doc, title, content, buttons) {
 /**
  * @template {EventTarget} T
  * @template {Event}       E
- * @typedef  {(this:T,ev:E)=>boolean|Promise|void} Listener<T,E>
+ * @typedef  {(this:T,ev:E)=>boolean|Promise<any>|void} Listener<T,E>
  */
 
 /**

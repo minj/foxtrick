@@ -19,7 +19,7 @@ Foxtrick.Pages.Matches = {};
 /**
  * Test whether it's a youth matches page
  * @param  {document}  doc
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.Matches.isYouth = function(doc) {
 	return /YouthTeamId=/i.test(doc.location.search);
@@ -28,7 +28,7 @@ Foxtrick.Pages.Matches.isYouth = function(doc) {
 /**
  * Test whether it's an NT matches page
  * @param  {document}  doc
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.Matches.isNT = function(doc) {
 	var teamId = Foxtrick.Pages.All.getTeamId(doc);
@@ -134,6 +134,7 @@ Foxtrick.Pages.Matches.getTypeFromIcon = function(iconClass) {
 	return type;
 };
 
+/* eslint-disable no-magic-numbers */
 Foxtrick.Pages.Matches.Official = [1, 2, 3, 7];
 Foxtrick.Pages.Matches.Friendly = [4, 5, 8, 9];
 Foxtrick.Pages.Matches.NT = [10, 11, 12];

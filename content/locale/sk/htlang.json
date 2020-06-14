@@ -324,7 +324,11 @@
 			"154": "Guam",
 			"155": "Demokratická republika Kongo",
 			"156": "Etiópia",
+			"157": "Svätý Vincent a Grenadíny",
+			"158": "Belize",
+			"159": "Madagaskar",
 			"16": "Brazília",
+			"160": "Botswana",
 			"17": "Kanada",
 			"18": "Čile",
 			"19": "Kolumbia",
@@ -633,8 +637,12 @@
 				"value": "Hlavičkár"
 			},
 			{
-				"type": "Regainer",
+				"type": "Resilient",
 				"value": "Húževnatý"
+			},
+			{
+				"type": "Support",
+				"value": "Tímový"
 			}
 		],
 		"spirit": [

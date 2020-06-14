@@ -8,6 +8,7 @@
 
 /* eslint-disable */
 if (!this.Foxtrick)
+	// @ts-ignore
 	var Foxtrick = {};
 /* eslint-enable */
 
@@ -24,27 +25,32 @@ Foxtrick.util.api = {
 	accessTokenUrl: 'https://chpp.hattrick.org/oauth/access_token.ashx',
 	resourceUrl: 'https://chpp.hattrick.org/chppxml.ashx',
 
-	// map of requested and unprocessed urls { serialized url: true }
+	/**
+	 * map of requested and unprocessed urls { serialized params: [] }
+	 * @type {Object.<string, CHPPSafeCallback[]>}
+	 */
 	queue: {},
 
 	authorized: function() {
-		return Foxtrick.util.api.getAccessToken() &&
-			Foxtrick.util.api.getAccessTokenSecret();
+		return !!Foxtrick.util.api.getAccessToken() &&
+			!!Foxtrick.util.api.getAccessTokenSecret();
 	},
 
 	authorizationQueued: false,
+
+	/** @param {document} doc */
 	authorize: function(doc) {
 		if (Foxtrick.util.api.authorizationQueued)
 			return;
 
 		Foxtrick.util.api.authorizationQueued = true;
-		var win = doc.defaultView;
-		win.setTimeout(function() {
+		Promise.resolve().then(() => {
+			Foxtrick.util.api._authorize(doc);
 			Foxtrick.util.api.authorizationQueued = false;
-			Foxtrick.util.api._authorize(win.document);
-		}, 0);
+		});
 	},
 
+	/** @param {document} doc */
 	_authorize: function(doc) {
 		const HTTP_OK = 200;
 
@@ -70,7 +76,7 @@ Foxtrick.util.api = {
 			div.textContent = text ? text : Foxtrick.L10n.getString('oauth.success');
 		};
 
-		Foxtrick.stopListenToChange(doc);
+		Foxtrick.stopObserver(doc);
 
 		var div = doc.createElement('div');
 		var accessor = {
@@ -97,25 +103,27 @@ Foxtrick.util.api = {
 		link.className = 'ft-link';
 		link.textContent = Foxtrick.L10n.getString('oauth.authorize');
 
-		Foxtrick.onClick(link, function(ev) {
-			Foxtrick.stopListenToChange(doc);
+		Foxtrick.onClick(link, () => {
+			Foxtrick.stopObserver(doc);
 
 			showNotice(div, link);
 
 			var linkPar = doc.createElement('p');
 			div.appendChild(linkPar);
 			linkPar.appendChild(Foxtrick.util.note.createLoading(doc, null, true));
-			Foxtrick.log('Requesting token at: ', Foxtrick.util.api.stripToken(rTokenUrl));
+			Foxtrick.log('Requesting token at:', Foxtrick.util.api.stripToken(rTokenUrl));
 			Foxtrick.util.load.fetch(rTokenUrl, function(text, status) {
-				Foxtrick.stopListenToChange(doc);
+				Foxtrick.stopObserver(doc);
 				linkPar.textContent = ''; // clear linkPar first
 				if (status != HTTP_OK) {
 					// failed to fetch link
 					linkPar.textContent = Foxtrick.util.api.getErrorText(text, status);
 					return;
 				}
-				var requestToken = text.split('&')[0].split('=')[1];
-				var requestTokenSecret = text.split('&')[1].split('=')[1];
+
+				let [tokenPair, secretPair] = text.split('&');
+				let [_, requestToken] = tokenPair.split('=');
+				let [__, requestTokenSecret] = secretPair.split('=');
 
 				// link
 				var link = doc.createElement('a');
@@ -176,27 +184,38 @@ Foxtrick.util.api = {
 				inputPar.appendChild(button);
 
 				// disabled to prevent auth-reset on dynamic pages
-				// Foxtrick.startListenToChange(doc);
+				// Foxtrick.startObserver(doc);
 			}); // get authorize URL with Foxtrick.util.load.fetch()
-			Foxtrick.startListenToChange(doc);
+			Foxtrick.startObserver(doc);
 		}); // initial authorize link event listener
 
 		div.appendChild(link);
 
 		Foxtrick.util.note.add(doc, div, 'ft-api-proxy-auth', { closable: false });
-		Foxtrick.startListenToChange(doc);
+		Foxtrick.startObserver(doc);
 	},
 
 
-	// used to change expire date of xml_cache eg for to my_monitors nextmachtdate
-	setCacheLifetime: function(paramStr, cacheLifetime) {
-		Foxtrick.sessionGet('xml_cache.' + paramStr, (xmlCache) => {
-			let xmlStr = xmlCache ? xmlCache.xml_string : '';
-			let obj = { xml_string: xmlStr, cache_lifetime: cacheLifetime };
-			Foxtrick.sessionSet('xml_cache.' + paramStr, obj);
+	/**
+	 * used to change expire date of xmlCache eg for to my_monitors nextmachtdate
+	 *
+	 * @param {string}        paramStr chpp parameter string
+	 * @param {CHPPCacheOpts} cache
+	 */
+	setCacheLifetime: function(paramStr, cache) {
+		// TODO add to CHPPXML / take params object
+		Foxtrick.sessionGet(`xmlCache.${paramStr}`, (arg) => {
+			/** @type {CHPPCacheObject} */
+			let xmlCache = arg;
+			let xmlString = xmlCache && xmlCache.xmlString || '';
+
+			/** @type {CHPPCacheObject} */
+			let obj = { xmlString, cache };
+			Foxtrick.sessionSet('xmlCache.' + paramStr, obj);
 		});
 	},
 
+	/** @param {document} doc */
 	addClearCacheLink: function(doc) {
 		let bottom = doc.getElementById('bottom');
 		if (!bottom)
@@ -211,14 +230,17 @@ Foxtrick.util.api = {
 		clearCacheSpan.id = 'ft_clear_cache';
 		clearCacheSpan.textContent = Foxtrick.L10n.getString('api.clearCache');
 		clearCacheSpan.title = Foxtrick.L10n.getString('api.clearCache.title');
-		Foxtrick.onClick(clearCacheSpan, Foxtrick.util.api.clearCache);
 		bottom.insertBefore(clearCacheSpan, bottom.firstChild);
+		Foxtrick.onClick(clearCacheSpan, Foxtrick.util.api.clearCache);
 	},
 
-	clearCache: function(ev) {
+	/**
+	 * @type {Listener<HTMLElement, MouseEvent>}
+	 */
+	clearCache: function() {
 		try {
-			var doc = ev.target.ownerDocument;
-			Foxtrick.sessionDeleteBranch('xml_cache');
+			let doc = this.ownerDocument;
+			Foxtrick.sessionDeleteBranch('xmlCache');
 			doc.location.reload();
 		}
 		catch (e) { Foxtrick.log(e); }
@@ -227,11 +249,14 @@ Foxtrick.util.api = {
 	/**
 	 * Add helper functions node(), text() and num()
 	 * for easier data access.
-	 * @param {document} xml
+	 * @param  {XMLDocument} xmlDoc
+	 * @return {CHPPXML}
 	 */
-	addHelpers: function(xml) {
+	addHelpers: function(xmlDoc) {
+		let xml = /** @type {CHPPXML} */ (xmlDoc);
 		if (!xml || typeof xml !== 'object')
-			return;
+			return xml;
+
 		xml.node = function(tagName, container) {
 			let cont = container || this;
 			return cont.getElementsByTagName(tagName)[0];
@@ -248,12 +273,14 @@ Foxtrick.util.api = {
 			var text = this.text(tagName, container);
 			if (text === '0001-01-01 00:00:00')
 				return null;
+
 			return Foxtrick.util.time.getDateFromText(text, 'yyyymmdd');
 		};
 		xml.date = function(tagName, container) {
 			var text = this.text(tagName, container);
 			if (text === '0001-01-01 00:00:00')
 				return null;
+
 			return Foxtrick.util.time.getDateFromText(text, 'yyyymmdd', true);
 		};
 		xml.num = function(tagName, container) {
@@ -264,18 +291,34 @@ Foxtrick.util.api = {
 			var sek = this.num(tagName, container);
 			return Math.ceil(sek / (10 * rate));
 		};
+
+		return xml;
 	},
 
-	// options: { cache:'session' or 'default' or timestamp }
-	// session: take xml from this session. xml doesn't expire
-	// unless timestamp is manually set on sessionStore later
-	// default: currently 1 hour, see below
-	// timestamp: time in milliseconds since 1970 when a new xml will get retrieved
-	// parameter order and spelling consistency helps caching
-	// preferred order: file, version?, id, actiontype?, others... (check existing usage)
-	// preferred spelling: param names in camelBack, values in lowercase;
-	//                     integers over strings;
-	//                     strings over booleans.
+	/**
+	 * options: { cache:'session' or 'default' or timestamp }
+	 *
+	 * session: take xml from this session. xml doesn't expire
+	 * unless timestamp is manually set on sessionStore later
+	 *
+	 * default: currently 1 hour, see below
+	 *
+	 * timestamp: time in milliseconds since 1970 when a new xml will get retrieved
+	 *
+	 * parameter order and spelling consistency helps caching
+	 * !TODO auto-sort
+	 *
+	 * preferred order: file, version?, id, actiontype?, others... (check existing usage)
+	 *
+	 * preferred spelling: param names in camelBack, values in lowercase;
+	 *                     integers over strings;
+	 *                     strings over booleans.
+	 *
+	 * @param {document}     doc
+	 * @param {CHPPParams}   apiParams
+	 * @param {CHPPOpts}     options
+	 * @param {CHPPCallback} callback
+	 */
 	retrieve: function(doc, apiParams, options, callback) {
 		var win = doc.defaultView;
 
@@ -283,10 +326,13 @@ Foxtrick.util.api = {
 		var args = [...apiParams]; // for logging etc!
 		var params = [...apiParams]; // for API!
 
+		/** @type {CHPPSafeCallback} */
 		var safeCallback = (args => (xml, ...rest) => {
-			Foxtrick.util.api.addHelpers(xml);
+			/** @type {XMLDocument} */
+			let doc = xml;
+			let chpp = Foxtrick.util.api.addHelpers(doc);
 			try {
-				callback.call(this, xml, ...rest);
+				callback.call(this, chpp, ...rest);
 			}
 			catch (e) {
 				Foxtrick.log('ApiProxy: uncaught callback error:', e, 'args:', args);
@@ -318,12 +364,17 @@ Foxtrick.util.api = {
 		const HTTP_OK = 200;
 		const ERROR_TIMEOUT_MIN = 30;
 		const ERROR_TIMEOUT_MSEC = ERROR_TIMEOUT_MIN * Foxtrick.util.time.MSECS_IN_MIN;
-		const SESSION_GCACHE = 'xml_cache.global_cache_lifetime';
+		const SESSION_GCACHE = 'xmlCache.globalCacheLifetime';
 
-		// global_cache_lifetime = server down
+		/**
+		 * globalCacheLifetime = server down
+		 * @type {Promise<number|null>}
+		 */
 		var globalLifetime = Foxtrick.session.get(SESSION_GCACHE);
 		var argStr = JSON.stringify(args);
-		var cacheArgs = 'xml_cache.' + argStr;
+		var cacheArgs = 'xmlCache.' + argStr;
+
+		/** @type {Promise<CHPPCacheObject>} */
 		var xmlCache = Foxtrick.session.get(cacheArgs);
 
 		/* eslint-disable complexity */
@@ -337,17 +388,23 @@ Foxtrick.util.api = {
 				return;
 			}
 
-			var session = options && options.cache_lifetime === 'session' || false;
+			var session = options && options.cache === 'session' || false;
 			var cacheTime = 0;
 			if (xmlCache) {
-				cacheTime = Number(xmlCache.cache_lifetime);
+				cacheTime = Number(xmlCache.cache);
 				let cache = session ? 'session' : '';
 				if (cacheTime)
 					cache += new Date(cacheTime).toString();
 
-				Foxtrick.log('ApiProxy: options:', args, 'cache_lifetime:', cache, 'NOW:', NOW);
+				Foxtrick.log('ApiProxy: options:', args, 'cache:', cache, 'NOW:', NOW);
 			}
 
+			// TODO merge with getErrorText
+			/**
+			 * @param  {XMLDocument} x
+			 * @param  {number}      [status]
+			 * @return {string}
+			 */
 			var getError = function(x, status) {
 				var errorText = null;
 				if (x == null) {
@@ -368,21 +425,25 @@ Foxtrick.util.api = {
 			};
 
 			// check file cache next
-			// numetical cache time overrides 'session'
-			if (xmlCache && xmlCache.xml_string && options &&
+			// numerical cache time overrides 'session'
+			if (xmlCache && xmlCache.xmlString && options &&
 				(session && !cacheTime || cacheTime > HT_DATE)) {
 				Foxtrick.log('ApiProxy: use cached xml:', argStr);
 
 				Foxtrick.util.api.addClearCacheLink(doc);
 
-				if (xmlCache.xml_string == HTTP_ERROR.toString()) {
+				if (xmlCache.xmlString == HTTP_ERROR.toString()) {
 					// server was down. we wait for cache expires
 					safeCallback(null, Foxtrick.L10n.getString('api.serverUnavailable'));
 					return;
 				}
 
+				/** @type {DOMParser} */
+				// @ts-ignore
 				let parser = new win.DOMParser();
-				let xml = parser.parseFromString(JSON.parse(xmlCache.xml_string), 'text/xml');
+
+				/** @type {XMLDocument} */
+				let xml = parser.parseFromString(JSON.parse(xmlCache.xmlString), 'text/xml');
 				let errorText = getError(xml);
 				safeCallback(xml, errorText);
 			}
@@ -393,9 +454,14 @@ Foxtrick.util.api = {
 					return;
 				}
 
+				// TODO promisify
 				Foxtrick.util.api.queue[argStr] = [];
 				Foxtrick.util.api.queue[argStr].push(safeCallback);
 
+				/**
+				 * @param  {XMLDocument} x
+				 * @param  {number}      [status]
+				 */
 				// process queued requested
 				var processQueue = function(x, status) {
 					let errorText = getError(x, status);
@@ -405,13 +471,14 @@ Foxtrick.util.api = {
 					delete Foxtrick.util.api.queue[argStr];
 				};
 
-				// determine cache liftime
+				// determine cache lifetime
+				/** @type {CHPPCacheOpts} */
 				var cacheLifetime = 0;
-				if (options && options.cache_lifetime) {
-					if (options.cache_lifetime == 'default')
+				if (options && options.cache) {
+					if (options.cache == 'default')
 						cacheLifetime = HT_DATE + Foxtrick.util.time.MSECS_IN_HOUR;
 					else
-						cacheLifetime = options.cache_lifetime;
+						cacheLifetime = options.cache;
 				}
 
 				try {
@@ -448,17 +515,22 @@ Foxtrick.util.api = {
 					Foxtrick.log('Fetching XML data from', Foxtrick.util.api.stripToken(url));
 					Foxtrick.util.load.xml(url, (x, status) => {
 						if (status == HTTP_OK) {
+							/** @type {XMLSerializer} */
+							// @ts-ignore
 							let serializer = new win.XMLSerializer();
 							let xml = JSON.stringify(serializer.serializeToString(x));
-							Foxtrick.sessionSet(cacheArgs, {
-								xml_string: xml,
-								cache_lifetime: cacheLifetime,
-							});
+
+							/** @type {CHPPCacheObject} */
+							let obj = {
+								xmlString: xml,
+								cache: cacheLifetime,
+							};
+							Foxtrick.sessionSet(cacheArgs, obj);
 							processQueue(x, status);
 						}
 						else if (status == HTTP_FORBIDDEN) {
 							Foxtrick.log(`ApiProxy: error ${HTTP_FORBIDDEN}, unauthorized.`, args);
-							Foxtrick.util.api.invalidateAccessToken(doc);
+							Foxtrick.util.api.invalidateAccessToken();
 							Foxtrick.util.api.authorize(doc);
 							processQueue(null, status);
 						}
@@ -470,10 +542,13 @@ Foxtrick.util.api = {
 							// let's say we check again in 30 min
 							if (status == HTTP_ERROR) {
 								let recheckDate = HT_DATE + ERROR_TIMEOUT_MSEC;
-								Foxtrick.sessionSet('xml_cache.' + argStr, {
-									xml_string: status.toString(),
-									cache_lifetime: recheckDate,
-								});
+
+								/** @type {CHPPCacheObject} */
+								let obj = {
+									xmlString: status.toString(),
+									cache: recheckDate,
+								};
+								Foxtrick.sessionSet('xmlCache.' + argStr, obj);
 
 								Foxtrick.sessionSet(SESSION_GCACHE, recheckDate);
 							}
@@ -496,6 +571,13 @@ Foxtrick.util.api = {
 	// batchParameters: array of parameters for retrieve function
 	// returns array of xml docs with matching indices
 	// still better to later identify xmls by content, not by index
+	// TODO consider removing
+	/**
+	 * @param {document}            doc
+	 * @param {CHPPParams[]}        batchParameters
+	 * @param {CHPPOpts|CHPPOpts[]} options
+	 * @param {CHPPMultiCallback}   callback
+	 */
 	batchRetrieve: function(doc, batchParameters, options, callback) {
 		if (!Foxtrick.Prefs.getBool('xmlLoad')) {
 			Foxtrick.log('XML loading disabled');
@@ -512,15 +594,18 @@ Foxtrick.util.api = {
 
 		let chppPromises = Foxtrick.map(function(params, i) {
 			let opts = Array.isArray(options) ? options[i] : options;
-			return new Promise(function(resolve) {
-				Foxtrick.util.api.retrieve(doc, params, opts, (xml, errorText) => {
-					Foxtrick.util.api.addHelpers(xml);
-					resolve([xml, errorText]);
+
+			/** @type {Promise<[CHPPXML, string]>} */
+			let p = new Promise((resolve) => {
+				Foxtrick.util.api.retrieve(doc, params, opts, (chpp, errorText) => {
+					resolve([chpp, errorText]);
 				});
-			}).catch(function(e) {
+			}).catch((e) => {
 				Foxtrick.log('FATAL CHPP ERROR in batchRetrieve:', e);
 				return [null, e.message];
 			});
+
+			return p;
 		}, batchParameters);
 
 		Promise.all(chppPromises).then(function(arr) {
@@ -545,6 +630,7 @@ Foxtrick.util.api = {
 		return Foxtrick.Prefs.getString('oauth.' + teamId + '.accessToken');
 	},
 
+	/** @param {string} token */
 	setAccessToken: function(token) {
 		let teamId = Foxtrick.util.id.getOwnTeamId();
 		Foxtrick.Prefs.setString('oauth.' + teamId + '.accessToken', token);
@@ -555,38 +641,77 @@ Foxtrick.util.api = {
 		return Foxtrick.Prefs.getString('oauth.' + teamId + '.accessTokenSecret');
 	},
 
+	/** @param {string} secret */
 	setAccessTokenSecret: function(secret) {
 		let teamId = Foxtrick.util.id.getOwnTeamId();
 		Foxtrick.Prefs.setString('oauth.' + teamId + '.accessTokenSecret', secret);
 	},
 
+	/**
+	 * @param  {string} url
+	 * @return {string}
+	 */
 	stripToken: function(url) {
 		return url.slice(0, url.indexOf('oauth_consumer_key'));
 	},
 
+	/**
+	 * @param  {XMLDocument|string} text
+	 * @param  {number} status
+	 * @return {string}
+	 */
 	getErrorText: function(text, status) {
 		var errorText;
 
-		try {
-			errorText = text.getElementsByTagName('title')[0].textContent;
-		}
-		catch (e) {
+		if (typeof text == 'string') {
 			try {
-
-				var xml = Foxtrick.parseXML(text);
-				if (xml == null)
-					errorText = Foxtrick.L10n.getString('exception.error').replace(/%s/, -1);
-				else
+				let xml = Foxtrick.parseXML(text);
+				if (xml == null) {
+					errorText = Foxtrick.L10n.getString('exception.error').replace(/%s/, '-1');
+				}
+				else {
 					errorText = xml.getElementsByTagName('h2')[0].textContent;
+					errorText += xml.getElementsByTagName('h3')[0].textContent;
+				}
 
 			}
 			catch (ee) {
-
-				errorText = Foxtrick.L10n.getString('exception.error').replace(/%s/, status);
-
+				errorText =
+					Foxtrick.L10n.getString('exception.error').replace(/%s/, String(status));
 			}
+		}
+		else {
+			try {
+				errorText = text.getElementsByTagName('title')[0].textContent;
+			}
+			catch (e) {}
 		}
 
 		return errorText;
 	},
 };
+
+/**
+ * @typedef CHPPMixin
+ * @prop {(this: CHPPXML, tagName: string, container?: Element) => Element} node
+ * @prop {(this: CHPPXML, tagName: string, container?: Element) => string} text
+ * @prop {(this: CHPPXML, tagName: string, container?: Element) => boolean} bool
+ * @prop {(this: CHPPXML, tagName: string, container?: Element) => number} num
+ * @prop {(this: CHPPXML, tagName: string, rate: number, container?: Element) => number} money
+ * @prop {(this: CHPPXML, tagName: string, container?: Element) => Date} time full timestamp
+ * @prop {(this: CHPPXML, tagName: string, container?: Element) => Date} date date only
+ */
+/**
+ * @typedef CHPPCacheObject
+ * @prop {string} xmlString JSON stingified CHPP args array
+ * @prop {CHPPCacheOpts} cache
+ */
+/**
+ * @typedef {[string, string|number][]} CHPPParams array of [name, value], numeric values preferred
+ * @typedef {XMLDocument & CHPPMixin} CHPPXML
+ * @typedef {(xml: XMLDocument, errorText?: string) => void} CHPPSafeCallback
+ * @typedef {(xml: CHPPXML, errorText?: string) => void} CHPPCallback
+ * @typedef {(xmls: CHPPXML[], errorTexts?: string[]) => void} CHPPMultiCallback
+ * @typedef {'session'|'default'|number} CHPPCacheOpts
+ * @typedef {{cache: CHPPCacheOpts}} CHPPOpts
+ */

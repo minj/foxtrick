@@ -4,8 +4,6 @@
 		"content/resources/css/*.css",
 		"content/resources/img/*.gif",
 		"content/resources/img/*.png",
-		"content/resources/linkicons/*.gif",
-		"content/resources/linkicons/*.png",
 		"content/resources/notes/*.png",
 		"content/resources/personality/*.jpg",
 		"content/resources/skillcolors/*.css",
@@ -31,8 +29,10 @@
 			"content/lib/sha1.js",
 			"content/lib/PluralForm.js",
 			"content/lib/psico.js",
-			"content/lib/integration.js",
+			"content/lib/gauge.js",
 			// <!-- end ext-lib -->
+
+			"content/lib/integration.js",
 
 			// <!-- util -->
 			"content/util/api.js",

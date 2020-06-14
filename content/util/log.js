@@ -8,11 +8,15 @@
 
 /* eslint-disable */
 if (!this.Foxtrick)
+	// @ts-ignore
 	var Foxtrick = {};
 /* eslint-enable */
 
 /**
  * Log an error
+ *
+ * TODO allow varargs
+ *
  * @param {string} err String to log. Will be converted into string if otherwise.
  */
 Foxtrick.error = function(err) {

@@ -271,7 +271,7 @@
 			"100": "El Salvador",
 			"1000": "Hattrick International",
 			"101": "Malta",
-			"102": "Krigizstan",
+			"102": "Kirgistan",
 			"103": "Moldova",
 			"104": "Georgia",
 			"105": "Andorra",
@@ -324,7 +324,11 @@
 			"154": "Guam",
 			"155": "Kongo",
 			"156": "Etiopia",
+			"157": "Saint Vincent dan Grenadine",
+			"158": "Belize",
+			"159": "Madagaskar",
 			"16": "Brasil",
+			"160": "Botswana",
 			"17": "Canada",
 			"18": "Chili",
 			"19": "Kolombia",
@@ -633,8 +637,12 @@
 				"value": "Sundul"
 			},
 			{
-				"type": "Regainer",
+				"type": "Resilient",
 				"value": "Bugar"
+			},
+			{
+				"type": "Support",
+				"value": "Pendukung"
 			}
 		],
 		"spirit": [

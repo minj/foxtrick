@@ -20,7 +20,7 @@ Foxtrick.modules['HeaderToggle'] = {
 
 		var getH2TextContent = function(h2) {
 			// remove some of our content to get original textContent of h2
-			var h2Clone = h2.cloneNode(true);
+			var h2Clone = Foxtrick.cloneElement(h2, true);
 			var highlight = h2Clone.getElementsByClassName('highlight')[0];
 			if (highlight)
 				highlight.parentNode.removeChild(highlight);
@@ -148,12 +148,12 @@ Foxtrick.modules['HeaderToggle'] = {
 		}
 	},
 
+	/** @param {document} doc */
 	run: function(doc) {
 		// add listener to all h2s in mainBody
-		var h2s = doc.getElementById('mainBody').getElementsByTagName('h2');
-		Foxtrick.map(function(n) {
-			Foxtrick.modules.HeaderToggle.addToggle(doc, n);
-		}, h2s);
+		let h2s = [...doc.querySelectorAll('#mainBody h2')];
+		for (let h2 of h2s.filter(h => !h.matches('.htbox-header') && !!h.closest('ng-app')))
+			Foxtrick.modules.HeaderToggle.addToggle(doc, h2);
 	},
 
 	change: function(doc) {

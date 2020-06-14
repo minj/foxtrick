@@ -8,6 +8,7 @@
 
 /* eslint-disable */
 if (!this.Foxtrick)
+	// @ts-ignore
 	var Foxtrick = {};
 /* eslint-enable */
 

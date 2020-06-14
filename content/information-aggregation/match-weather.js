@@ -1,9 +1,10 @@
-'use strict';
 /**
  * match-weather.js
  * add ht and irl weather for today and tomorrow on match page
  * @author teles
  */
+
+'use strict';
 
 Foxtrick.modules['MatchWeather'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
@@ -16,6 +17,9 @@ Foxtrick.modules['MatchWeather'] = {
 		if (!Foxtrick.Pages.Match.isPrematch(doc))
 			return;
 
+		if (Foxtrick.Pages.Match.isNewLive(doc))
+			return;
+
 		var arenaLink = doc.querySelector('#mainBody a[href*="ArenaID="]');
 		if (!arenaLink) {
 			// tournaments have no arena
@@ -23,13 +27,14 @@ Foxtrick.modules['MatchWeather'] = {
 		}
 
 		var arenaId = Foxtrick.getUrlParam(arenaLink.href, 'arenaId');
+
+		/** @type {CHPPParams} */
 		var parameters = [
 			['file', 'arenadetails'],
 			['version', '1.5'],
 			['arenaId', parseInt(arenaId, 10)],
 		];
-		Foxtrick.util.api.retrieve(doc, parameters, { cache_lifetime: 'session' },
-		  function(xml, errorText) {
+		Foxtrick.util.api.retrieve(doc, parameters, { cache: 'session' }, (xml, errorText) => {
 			if (!xml || errorText) {
 				Foxtrick.log(errorText);
 				return;
@@ -37,7 +42,6 @@ Foxtrick.modules['MatchWeather'] = {
 
 			var regionID = xml.num('RegionID');
 			module.fetchRegion(doc, regionID);
-
 		});
 	},
 
@@ -127,14 +131,14 @@ Foxtrick.modules['MatchWeather'] = {
 		var now = Foxtrick.util.time.getHTTimeStamp(doc);
 		var until = now + CACHE_MSECS;
 
+		/** @type {CHPPParams} */
 		var parameters = [
 			['file', 'regiondetails'],
 			['version', '1.2'],
 			['regionId', regionId],
 		];
 
-		Foxtrick.util.api.retrieve(doc, parameters, { cache_lifetime: until },
-		  function(xml, errorText) {
+		Foxtrick.util.api.retrieve(doc, parameters, { cache: until }, (xml, errorText) => {
 			if (!xml || errorText) {
 				Foxtrick.log(errorText);
 				return;
@@ -145,10 +149,10 @@ Foxtrick.modules['MatchWeather'] = {
 			data.weatherTomorrow = xml.num('TomorrowWeatherID');
 			data.regionName = xml.text('RegionName').replace(/'/g, '').replace(/ ,/g, '-');
 
-			var leagueId = xml.text('LeagueID');
+			var leagueId = xml.num('LeagueID');
 			data.country = Foxtrick.L10n.getCountryNameEnglish(leagueId);
 
-			if (Foxtrick.Prefs.isModuleOptionEnabled('MatchWeather', 'Irl')) {
+			if (Foxtrick.Prefs.isModuleOptionEnabled(module, 'Irl')) {
 				var weather = { 1: 3, 2: 2, 3: 2, 4: 1, 9: 0, 10: 1, 11: 0, 13: 0, 50: 1 };
 
 				var url = 'http://api.openweathermap.org/data/2.5/forecast/daily?q=' +

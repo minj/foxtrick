@@ -318,25 +318,30 @@ Foxtrick.modules['CrossTable'] = {
 
 		// get season from select since the URL doesn't change when
 		// switching different seasons
-		var season = Foxtrick.getMBElement(doc, 'ucSeasonsDropdown_ddlSeasons').value;
+		let select = /** @type {HTMLSelectElement} */
+			(Foxtrick.getMBElement(doc, 'ucSeasonsDropdown_ddlSeasons'));
+
+		let season = parseInt(select.value, 10);
+
+		/** @type {CHPPParams} */
 		var args = [
 			['file', 'leaguefixtures'],
-			['leagueLevelUnitId', leagueId],
+			['leagueLevelUnitId', parseInt(leagueId, 10)],
 			['season', season],
 		];
 
-		Foxtrick.util.api.retrieve(doc, args, { cache_lifetime: 'session' }, (xml, errorText) => {
+		Foxtrick.util.api.retrieve(doc, args, { cache: 'session' }, (xml, errorText) => {
 			try {
 				if (xml) {
-					var matchNodes = xml.getElementsByTagName('Match');
+					let matchNodes = xml.getElementsByTagName('Match');
 					processMatches(matchNodes);
 					fillCrossTable(doc);
 					drawSeasonGraph(doc);
 				}
-				if (errorText) {
-					var note = Foxtrick.util.note.add(doc, errorText, null, { at: graphContainer });
-					note = note.cloneNode(true);
-					table.parentNode.appendChild(note);
+				else if (errorText) {
+					let note = Foxtrick.util.note.add(doc, errorText, null, { at: graphContainer });
+					let clone = Foxtrick.cloneElement(note, true);
+					table.parentNode.appendChild(clone);
 				}
 			}
 			catch (e) {

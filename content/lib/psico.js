@@ -33,18 +33,18 @@ Foxtrick.psico = {
 	/**
 	 * Hyperbolic tangent (overflows ~700)
 	 * Returns [-1; 1]
-	 * @param	{Number}	x
-	 * @returns	{Number}
+	 * @param  {number} x
+	 * @return {number}
 	 */
 	tanh: function(x) {
-		return (Math.exp(x) - Math.exp(-x)) / (Math.exp(x) + Math.exp(-x));
+		return Math.tanh(x);
 	},
 
 	/**
 	 * get the index of the highest skill
 	 * from [frm, sta, pm, w, sco, gk, ps, df, sp]
-	 * @param	{Array}		skills	array of integers
-	 * @returns	{Integer}			index
+	 * @param  {number[]} skills array of integers
+	 * @return {number}          index
 	 */
 	getMaxSkill: function(skills) {
 		var vmax = 0;
@@ -61,8 +61,8 @@ Foxtrick.psico = {
 	/**
 	 * test whether two top skills are the same
 	 * from [frm, sta, pm, w, sco, gk, ps, df, sp]
-	 * @param	{Array}		vector	array of integers
-	 * @returns	{Boolean}
+	 * @param  {number[]} vector array of integers
+	 * @return {boolean}
 	 */
 	undefinedMainSkill: function(vector) {
 		var vmax = 0;
@@ -83,8 +83,8 @@ Foxtrick.psico = {
 
 	/**
 	 * checks if player is a goalkeeper by the index of highest skill
-	 * @param	{Integer}	maxSkill	index in the skill array
-	 * @returns	{Boolean}
+	 * @param  {number} maxSkill index in the skill array
+	 * @return {boolean}
 	 */
 	isGoalkeeper: function(maxSkill) {
 		return (maxSkill == 5);
@@ -93,10 +93,10 @@ Foxtrick.psico = {
 	/**
 	 * calculate maximum GK level using TSI
 	 * & form with sub {Low Avg High}
-	 * @param	{Integer}	TSI
-	 * @param	{Integer}	form
-	 * @param	{String}	formSubLevel	{Low Avg High}
-	 * @returns	{Number}					GK Level
+	 * @param  {number}  TSI
+	 * @param  {number}  form
+	 * @param  {string}	 formSubLevel {Low Avg High}
+	 * @return {number}               GK Level
 	 */
 	calcMaxSkillGK: function(TSI, form, formSubLevel) {
 		//tnx to phinetom (8430364)
@@ -138,10 +138,10 @@ Foxtrick.psico = {
 	 * calculate maximum skill level
 	 * from [frm, sta, pm, w, sco, gk, ps, df, sp]
 	 * using TSI & form {Low Avg High}
-	 * @param	{Array}		playerskills	array of integers
-	 * @param	{Integer}	TSI
-	 * @param	{String}	formSubLevel	{Low Avg High}
-	 * @returns	{Number}					skill Level
+	 * @param  {number[]} playerskills array of integers
+	 * @param  {number}   TSI
+	 * @param  {string}   formSubLevel {Low Avg High}
+	 * @return {number}                skill Level
 	 */
 	/* eslint-disable complexity */
 	calcMaxSkill: function(playerskills, TSI, formSubLevel) {
@@ -235,9 +235,9 @@ Foxtrick.psico = {
 	 * Neural Network simulation
 	 * Predicts TSI (float) for {PM WG SC PS DF}
 	 * from [1, frm, sta, pm, w, sco, ps, df]
-	 * @param	{Arrau}	pinput		array of numbers
-	 * @param	{String}	mainSkill	{PM WG SC PS DF}
-	 * @returns	{Number}				TSI
+	 * @param  {number[]} pinput    array of numbers
+	 * @param  {string}   mainSkill {PM WG SC PS DF}
+	 * @return {number}             TSI
 	 */
 	sim: function(pinput, mainSkill) {
 		// PlayMaking
@@ -340,12 +340,12 @@ Foxtrick.psico = {
 	/**
 	 * Predict skill using wage and age (type: Low Avg High)
 	 * from [frm, sta, pm, w, sco, gk, ps, df, sp]
-	 * @param	{Array}	playerskills	array of integers
-	 * @param	{Integer}	wage
-	 * @param	{Integer}	age
-	 * @param	{String}	predictionType	{Low Avg High}
-	 * @param	{Boolean}	debugEnabled	print to console
-	 * @returns	{Number}					Skill
+	 * @param  {number[]} playerskills	array of integers
+	 * @param  {number}   wage
+	 * @param  {number}   age
+	 * @param  {string}   predictionType {Low Avg High}
+	 * @param  {boolean}  debugEnabled   print to console
+	 * @return {number}                  Skill
 	 */
 	simWage: function(playerskills, wage, age, predictionType, debugEnabled) {
 		//                             0    1    2    3    4    5    6    7    8
@@ -540,16 +540,31 @@ Foxtrick.psico = {
 		];
 		return 0;
 	},
+
+	/**
+	 * @typedef PsicoTSIPrediction
+	 * @prop {string} maxSkill
+	 * @prop {boolean} isGK
+	 * @prop {boolean} undef
+	 * @prop {string} limit
+	 * @prop {number} formLow
+	 * @prop {number} formAvg
+	 * @prop {number} formHigh
+	 * @prop {string} wageLow
+	 * @prop {string} wageAvg
+	 * @prop {string} wageHigh
+	 */
+
 	/**
 	 * Get PsicoTSI prediction data from playerskills
 	 * [frm, sta, pm, w, sco, gk, ps, df, sp]
 	 * Returns prediction object:
 	 * { maxSkill, isGK, undef, limit, formLow, formAvg, formHigh, wageLow, wageAvg, wageHigh }
-	 * @param	{Object}	playerskills
-	 * @param	{Number}	currTSI
-	 * @param	{Number}	currWAGE
-	 * @param	{Number}	age
-	 * @returns	{Object}
+	 * @param  {number[]} playerskills
+	 * @param  {number}   currTSI
+	 * @param  {number}   currWAGE
+	 * @param  {number}   age
+	 * @return {PsicoTSIPrediction}
 	 */
 	getPrediction: function(playerskills, currTSI, currWAGE, age) {
 		var frm = playerskills[0];

@@ -22,7 +22,7 @@
 		{
 			"duty": "translator",
 			"id": "10038631",
-			"name": "-Mohammad-"
+			"name": "<-Mohammad->"
 		},
 		{
 			"duty": "translator",
@@ -37,7 +37,7 @@
 		{
 			"duty": "translator",
 			"id": "10246801",
-			"name": "<silkevicious>"
+			"name": "silkevicious"
 		},
 		{
 			"duty": "translator",
@@ -117,7 +117,7 @@
 		{
 			"duty": "supporter",
 			"id": "10621822",
-			"name": "Baldruus"
+			"name": "<Baldruus>"
 		},
 		{
 			"duty": "supporter",
@@ -172,7 +172,7 @@
 		{
 			"duty": "supporter",
 			"id": "11017062",
-			"name": "<DDriver>"
+			"name": "DDriver"
 		},
 		{
 			"duty": "supporter",
@@ -183,6 +183,11 @@
 			"duty": "supporter",
 			"id": "11037511",
 			"name": "lucian_baciu"
+		},
+		{
+			"duty": "supporter",
+			"id": "11087526",
+			"name": "siftekhar"
 		},
 		{
 			"duty": "supporter",
@@ -202,7 +207,7 @@
 		{
 			"duty": "supporter",
 			"id": "11315240",
-			"name": "<aleksi_h>"
+			"name": "aleksi_h"
 		},
 		{
 			"duty": "supporter",
@@ -302,7 +307,7 @@
 		{
 			"duty": "translator",
 			"id": "11758667",
-			"name": "Alan_Smithee"
+			"name": "<Alan_Smithee>"
 		},
 		{
 			"duty": "supporter",
@@ -343,6 +348,11 @@
 			"duty": "translator",
 			"id": "11988102",
 			"name": "LA-levang"
+		},
+		{
+			"duty": "supporter",
+			"id": "12019593",
+			"name": "realper"
 		},
 		{
 			"duty": "supporter",
@@ -462,12 +472,12 @@
 		{
 			"duty": "supporter",
 			"id": "12605339",
-			"name": "PhileasFogg"
+			"name": "<PhileasFogg>"
 		},
 		{
 			"duty": "supporter",
 			"id": "12605732",
-			"name": "MaxCman"
+			"name": "<MaxCman>"
 		},
 		{
 			"duty": "supporter",
@@ -497,7 +507,7 @@
 		{
 			"duty": "supporter",
 			"id": "12842434",
-			"name": "darkrider2"
+			"name": "<darkrider2>"
 		},
 		{
 			"duty": "supporter",
@@ -582,7 +592,7 @@
 		{
 			"duty": "translator",
 			"id": "13121281",
-			"name": "<Giovanni_Trapattoni>"
+			"name": "<DrDrunkenstein>"
 		},
 		{
 			"duty": "translator",
@@ -598,6 +608,11 @@
 			"duty": "supporter",
 			"id": "13209572",
 			"name": "-Pecu-"
+		},
+		{
+			"duty": "supporter",
+			"id": "13342405",
+			"name": "angel-ito"
 		},
 		{
 			"duty": "supporter",
@@ -762,7 +777,7 @@
 		{
 			"duty": "translator",
 			"id": "2391052",
-			"name": "eyanez"
+			"name": "<eyanez>"
 		},
 		{
 			"duty": "supporter",
@@ -892,7 +907,7 @@
 		{
 			"duty": "translator",
 			"id": "3613658",
-			"name": "LA-Iuve-"
+			"name": "GM-Iuve-"
 		},
 		{
 			"duty": "supporter",
@@ -972,7 +987,7 @@
 		{
 			"duty": "supporter",
 			"id": "3967774",
-			"name": "tmace85"
+			"name": "<tmace85>"
 		},
 		{
 			"duty": "supporter",
@@ -1112,7 +1127,7 @@
 		{
 			"duty": "translator",
 			"id": "524111",
-			"name": "piper_101"
+			"name": "<piper_101>"
 		},
 		{
 			"duty": "translator",
@@ -1202,7 +1217,7 @@
 		{
 			"duty": "supporter",
 			"id": "5932699",
-			"name": "<mm2007>"
+			"name": "mm2007"
 		},
 		{
 			"duty": "translator",
@@ -1232,7 +1247,7 @@
 		{
 			"duty": "translator",
 			"id": "6345528",
-			"name": "<franory>"
+			"name": "franory"
 		},
 		{
 			"duty": "translator",
@@ -1402,7 +1417,7 @@
 		{
 			"duty": "supporter",
 			"id": "7730271",
-			"name": "<wildgoose>"
+			"name": "wildgoose"
 		},
 		{
 			"duty": "developer",
@@ -1462,7 +1477,7 @@
 		{
 			"duty": "developer",
 			"id": "8107197",
-			"name": "Greblys"
+			"name": "<Greblys>"
 		},
 		{
 			"duty": "supporter",
@@ -1612,7 +1627,7 @@
 		{
 			"duty": "supporter",
 			"id": "9474452",
-			"name": "<Zami1981>"
+			"name": "Zami1981"
 		},
 		{
 			"duty": "translator",
@@ -1637,7 +1652,7 @@
 		{
 			"duty": "translator",
 			"id": "9607801",
-			"name": "Kostitsyn46"
+			"name": "-Kostitsyn46-"
 		},
 		{
 			"duty": "translator",
@@ -1648,6 +1663,11 @@
 			"duty": "translator",
 			"id": "9668661",
 			"name": "LA-dzsoo"
+		},
+		{
+			"duty": "supporter",
+			"id": "970104",
+			"name": "machlas"
 		},
 		{
 			"duty": "supporter",
@@ -1662,7 +1682,7 @@
 		{
 			"duty": "supporter",
 			"id": "9779968",
-			"name": "deliomnes"
+			"name": "K_Madig"
 		},
 		{
 			"duty": "supporter",
@@ -1707,7 +1727,7 @@
 		{
 			"duty": "translator",
 			"id": "9926153",
-			"name": "Ali_Mal_Tipo"
+			"name": "<Ali_Mal_Tipo>"
 		},
 		{
 			"duty": "translator",

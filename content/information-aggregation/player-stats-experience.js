@@ -17,31 +17,38 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 	PAGES: ['playerStats', 'playerDetails'],
 	OPTIONS: ['AlwaysShowAll'],
 	CSS: Foxtrick.InternalPath + 'resources/css/player-stats.css',
-	XP_PTS_PER_LEVEL: 200.0 / 7, // =28.571; see 15766691.780
+	XP_PTS_PER_LEVEL: 100,
 	XP_CELL_IDX: 7, // current xp is the <integer>-th column in the table
 	store: {},
+
+	/** @param {document} doc */
 	run: function(doc) {
 		var module = this;
 
+		// eslint-disable-next-line max-len
+		/** @typedef {'matchFriendly'|'matchLeague'|'matchCupA'|'matchCupB1'|'matchCupB2'|'matchCupB3'|'matchCupC'|'matchQualification'|'matchMasters'|'matchNtFriendly'|'matchNtLeague'|'matchNtFinals'} MatchTypeClass */
+
+		// TODO move onto module
 		// don't randomly rename, parts of this are taken from hattrick using image classnames
+		/** @type {Record<MatchTypeClass, number>} */
 		var XP = {
 			// assume international friendly as default, considered in min-max,
 			// minimum uses 1/2 of this value
-			matchFriendly: 0.2,
-			matchLeague: 1.0,
-			matchCupA: 2.0,
-			matchCupB1: 0.5,
-			matchCupB2: 0.5,
-			matchCupB3: 0.5,
-			matchCupC: 0.5,
-			matchQualification: 2.0,
-			matchMasters: 5.0,
+			matchFriendly: 0.7,
+			matchLeague: 3.5,
+			matchCupA: 7.0,
+			matchCupB1: 1.75,
+			matchCupB2: 1.75,
+			matchCupB3: 1.75,
+			matchCupC: 1.75,
+			matchQualification: 7,
+			matchMasters: 17.5,
 
 			// NT
 			// fakenames: we generate these types
-			matchNtFriendly: 2.0, // (iconsytle + gametype)
-			matchNtLeague: 10.0, // (iconsytle + gametype + match date)
-			matchNtFinals: 20.0, // (iconsytle + gametype + match date)
+			matchNtFriendly: 7, // (iconsytle + gametype)
+			matchNtLeague: 35.0, // (iconsytle + gametype + match date)
+			matchNtFinals: 70.0, // (iconsytle + gametype + match date)
 		};
 
 		// setup the 'database'
@@ -64,6 +71,7 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 
 		// define algorithm
 
+		// eslint-disable-next-line complexity
 		var runStatsTables = function(statsTable) {
 
 			// START ROW UTILS
@@ -107,13 +115,24 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 				return Math.min(90, minutes);
 			};
 
-			// figure out the gametype, most important to figure out how many xp pts are gained
+			/**
+			 * figure out the gametype, most important to figure out how many xp pts are gained
+			 *
+			 * @param  {HTMLTableRowElement} node
+			 * @param  {Date}           date
+			 * @param  {boolean}        u20
+			 * @return {MatchTypeClass}
+			 */
 			var getGameType = function(node, date, u20) {
 				// most games can be identified by the classname directly, NT needs some tricks
+				/**
+				 * @param  {HTMLTableRowElement} node
+				 * @return {MatchTypeClass}
+				 */
 				var getBasicGameType = function(node) {
 					var gametypeParent = node.querySelector('td.keyColumn');
 					var gameTypeImage = gametypeParent.querySelector('.iconMatchtype img');
-					return gameTypeImage.className;
+					return /** @type {MatchTypeClass} */ (gameTypeImage.className);
 				};
 
 				var gameType = getBasicGameType(node);
@@ -125,17 +144,17 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 					return 'matchNtFriendly';
 
 				if (gameType == 'matchLeague') {
-					let htDate = Foxtrick.util.time.gregorianToHT(date);
+					let { season, week } = Foxtrick.util.time.gregorianToHT(date);
 
 					// oldies wc finals are in odd seasons, u20 in even seasons
 					// eslint-disable-next-line no-bitwise
-					let isWcFinalSeason = htDate.season % 2 ^ u20;
+					let isWcFinalSeason = season % 2 ^ Number(u20);
 					if (!isWcFinalSeason)
 						return 'matchNtLeague';
 
 					let semifinal = date.getDay() == 5;
 					let final = date.getDay() === 0;
-					if (htDate.week == 16 && (semifinal || final))
+					if (week == 16 && (semifinal || final))
 						return 'matchNtFinals';
 
 					return 'matchNtLeague';
@@ -182,6 +201,9 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 			for (var i = 1; i < statsRows.length; i++) {
 
 				var entry = statsRows[i];
+				if (entry.matches('.training-changes'))
+					continue;
+
 				var matchDate = statsRows[i].querySelector('td.keyColumn');
 				if (matchDate) {
 					let dateSpan = matchDate.querySelector('span.float_left');
@@ -253,6 +275,9 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 					break;
 				}
 			}
+
+			if (!store.last)
+				return;
 
 			// highlight the relevant skillup game in the table
 			Foxtrick.addClass(store.last.node, 'ft-xp-skillup');
@@ -444,7 +469,7 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 
 			span = doc.createElement('span');
 			var ptsPerLevel = Foxtrick.L10n.getString('PlayerStatsExperience.PtsPerLevel');
-			span.textContent = ptsPerLevel.replace(/%1/, module.XP_PTS_PER_LEVEL.toFixed(3));
+			span.textContent = ptsPerLevel.replace(/%1/, module.XP_PTS_PER_LEVEL.toFixed(1));
 			commentDiv.appendChild(span);
 			commentDiv.appendChild(doc.createElement('br'));
 
@@ -519,7 +544,7 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 
 		// if more matches are required, clone showall link for easier access to top of table
 		if (showAllLink && !module.store.skillup) {
-			var showAllLinkClone = showAllLink.cloneNode(true);
+			var showAllLinkClone = Foxtrick.cloneElement(showAllLink, true);
 			entry.parentNode.insertBefore(showAllLinkClone, entry);
 		}
 

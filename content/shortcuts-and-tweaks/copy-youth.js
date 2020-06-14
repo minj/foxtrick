@@ -41,7 +41,7 @@ Foxtrick.modules.CopyYouth = {
 				const matchId = Foxtrick.util.id.findMatchId(mainBody);
 
 				let playerInfo = mainBody.querySelector('.playerInfo');
-				let clone = playerInfo.cloneNode(true);
+				let clone = Foxtrick.cloneElement(playerInfo, true);
 
 				// eslint-disable-next-line no-magic-numbers
 				for (let _ of Foxtrick.range(4)) { // remove greeting: text, p, text, strong
@@ -96,7 +96,7 @@ Foxtrick.modules.CopyYouth = {
 		 * @param {HTMLElement} reportNode
 		 * @param {ArrayLike<HTMLSelectElement>} training
 		 */
-		var sendTrainingReportToHY = function(matchId, trainerNode, reportNode, training) {
+		var sendTrainingReportToHY = async (matchId, trainerNode, reportNode, training) => {
 			let [primary, secondary] = Array.from(training);
 
 			// assemble param string
@@ -114,11 +114,19 @@ Foxtrick.modules.CopyYouth = {
 			const loading = Foxtrick.util.note.createLoading(doc);
 			entry.insertBefore(loading, entry.firstChild);
 
-			// eslint-disable-next-line no-magic-numbers
-			const success = () => module.addNode(doc, ok, 3000);
-			const eCb = (resp, st) => module.addNode(doc, `Error ${st}: ${JSON.parse(resp).error}`);
-			const finalize = () => entry.removeChild(loading);
-			Foxtrick.api.hy.postMatchReport(success, params, eCb, finalize);
+
+			try {
+				await Foxtrick.api.hy.postMatchReport(params);
+				// eslint-disable-next-line no-magic-numbers
+				module.addNode(doc, ok, 3000);
+			}
+			catch (rej) {
+				let { status, text } = rej;
+				module.addNode(doc, `Error ${status}: ${JSON.parse(text).error}`);
+			}
+			finally {
+				entry.removeChild(loading);
+			}
 		};
 
 		// if training report unread mark dirty on click so auto send to HY can kick in
@@ -150,29 +158,35 @@ Foxtrick.modules.CopyYouth = {
 		// DEBUG: Always send this report, can be used to test
 		// Foxtrick.sessionSet('YouthClub.sendTrainingReport', true);
 
-		Foxtrick.api.hy.runIfHYUser(function() {
-			var mainBody = doc.getElementById('mainBody');
-			var matchid = Foxtrick.util.id.findMatchId(mainBody);
-			Foxtrick.sessionGet('YouthClub.sendTrainingReport', (value) => {
-				if (!value) {
-					Foxtrick.log('Not sending to HY, YouthClub.sendTrainingReport', value);
-					return;
-				}
+		(async () => {
+			let isUser = await Foxtrick.api.hy.isHYUser();
+			if (!isUser)
+				return;
 
-				Foxtrick.log('Sending to HY, YouthClub.sendTrainingReport', value);
-				Foxtrick.sessionSet('YouthClub.sendTrainingReport', false);
+			let mainBody = doc.getElementById('mainBody');
+			let matchId = Foxtrick.util.id.findMatchId(mainBody);
 
-				/** @type {HTMLElement} */
-				let trainerNode = doc.querySelector('#mainBody .pmAvatar');
+			let value = await Foxtrick.session.get('YouthClub.sendTrainingReport');
+			if (!value) {
+				Foxtrick.log('Not sending to HY, YouthClub.sendTrainingReport', value);
+				return;
+			}
 
-				/** @type {HTMLElement} */
-				let reportNode = doc.querySelector('.playerInfo');
+			Foxtrick.log('Sending to HY, YouthClub.sendTrainingReport', value);
+			Foxtrick.session.set('YouthClub.sendTrainingReport', false)
+				.catch(Foxtrick.catch(module));
 
-				/** @type {NodeListOf<HTMLSelectElement>} */
-				let training = doc.querySelectorAll('#mainBody table.form select');
-				sendTrainingReportToHY(matchid, trainerNode, reportNode, training);
-			});
-		});
+			/** @type {HTMLElement} */
+			let trainerNode = doc.querySelector('#mainBody .pmAvatar');
+
+			/** @type {HTMLElement} */
+			let reportNode = doc.querySelector('.playerInfo');
+
+			/** @type {NodeListOf<HTMLSelectElement>} */
+			let training = doc.querySelectorAll('#mainBody table.form select');
+			await sendTrainingReportToHY(matchId, trainerNode, reportNode, training);
+
+		})().catch(Foxtrick.catch(module));
 	},
 
 	/** @param {document} doc */
@@ -231,8 +245,7 @@ Foxtrick.modules.CopyYouth = {
 
 				// auto send the rejected player to HY
 
-				// eslint-disable-next-line no-extra-parens
-				let reportNode = /** @type {HTMLElement} */ (info.cloneNode(true));
+				let reportNode = Foxtrick.cloneElement(info, true);
 				let img = reportNode.querySelector('img');
 				if (img)
 					img.parentNode.removeChild(img);
@@ -241,11 +254,10 @@ Foxtrick.modules.CopyYouth = {
 				if (alert)
 					alert.parentNode.removeChild(alert);
 
-				var sendScoutCallToHY = function() {
+				var sendScoutCallToHY = async function() {
 					// assemble param string
 					let params = 'scoutcall=' + encodeURIComponent(reportNode.innerHTML);
-					params = params + '&lang=' +
-						Foxtrick.modules['ReadHtPrefs'].readLanguageFromMetaTag(doc);
+					params += `&lang=${Foxtrick.modules.ReadHtPrefs.readLanguageFromMetaTag(doc)}`;
 					let ok = 'module.CopyYouth.AutoSendRejectedToHY.success';
 					ok = Foxtrick.L10n.getString(ok);
 
@@ -253,24 +265,31 @@ Foxtrick.modules.CopyYouth = {
 					let loading = Foxtrick.util.note.createLoading(doc);
 					entry.insertBefore(loading, entry.firstChild);
 
-					// eslint-disable-next-line no-magic-numbers
-					const success = () => module.addNode(doc, ok, 3000);
-					const fCb = (resp, st) => {
-						module.addNode(doc, `Error ${st}: ${JSON.parse(resp).error}`);
-					};
-					const finalize = () => {
+					try {
+						await Foxtrick.api.hy.postScoutCall(params);
+						// eslint-disable-next-line no-magic-numbers
+						module.addNode(doc, ok, 3000);
+					}
+					catch (rej) {
+						let { text, status } = rej;
+						module.addNode(doc, `Error ${status}: ${JSON.parse(text).error}`);
+					}
+					finally {
 						info.dataset.ftInProgress = '0';
 						entry.removeChild(loading);
-					};
-					Foxtrick.api.hy.postScoutCall(success, params, fCb, finalize);
+					}
 				};
 
 				// only when clicking the reject btn
 				if (sendToHY && typeof sendToHY == 'boolean') {
-					Foxtrick.api.hy.runIfHYUser(function() {
+					(async () => {
+						let isUser = await Foxtrick.api.hy.isHYUser();
+						if (!isUser)
+							return;
+
 						Foxtrick.log('HY user, sending rejected call to HY');
-						sendScoutCallToHY();
-					});
+						await sendScoutCallToHY();
+					})().catch(Foxtrick.catch(module));
 				}
 				else {
 					info.dataset.ftInProgress = '0';
@@ -354,7 +373,7 @@ Foxtrick.modules.CopyYouth = {
 		const module = this;
 
 		/** @param {ArrayLike<HTMLSelectElement>} training */
-		var sendTrainingChangeToHY = function(training) {
+		var sendTrainingChangeToHY = async (training) => {
 			let [primary, secondary] = Array.from(training);
 
 			// assemble param string
@@ -367,36 +386,45 @@ Foxtrick.modules.CopyYouth = {
 			let loading = Foxtrick.util.note.createLoading(doc);
 			entry.insertBefore(loading, entry.firstChild);
 
-			// eslint-disable-next-line no-magic-numbers
-			const success = () => module.addNode(doc, ok, 3000);
-			const fCb = (resp, st) => {
-				module.addNode(doc, `Error ${st}: ${JSON.parse(resp).error}`);
-			};
-			const finalize = () => entry.removeChild(loading);
-
-			Foxtrick.api.hy.postTrainingChange(success, params, fCb, finalize);
+			try {
+				await Foxtrick.api.hy.postTrainingChange(params);
+				// eslint-disable-next-line no-magic-numbers
+				module.addNode(doc, ok, 3000);
+			}
+			catch (rej) {
+				let { text, status } = rej;
+				module.addNode(doc, `Error ${status}: ${JSON.parse(text).error}`);
+			}
+			finally {
+				entry.removeChild(loading);
+			}
 		};
-
-		let changeBtn = Foxtrick.getButton(doc, 'ChangeTraining');
 
 		/** @type {NodeListOf<HTMLSelectElement>} */
 		var training = doc.querySelectorAll('#mainBody table.form select');
+		let changeBtn = Foxtrick.getButton(doc, 'ChangeTraining');
 		if (!changeBtn || training.length != 2)
 			return;
 
-		Foxtrick.api.hy.runIfHYUser(function() {
-			Foxtrick.sessionGet('YouthClub.sendTrainingChange', function(send) {
-				if (!send)
-					return;
-
-				Foxtrick.sessionSet('YouthClub.sendTrainingChange', false);
-				sendTrainingChangeToHY(training);
-			});
-
-			Foxtrick.onClick(changeBtn, function(ev) {
-				Foxtrick.sessionSet('YouthClub.sendTrainingChange', true);
-			});
+		Foxtrick.onClick(changeBtn, (ev) => {
+			Foxtrick.session.set('YouthClub.sendTrainingChange', true)
+				.catch(Foxtrick.catch(module));
 		});
+
+		(async () => {
+			let isUser = await Foxtrick.api.hy.isHYUser();
+			if (!isUser)
+				return;
+
+			let send = await Foxtrick.session.get('YouthClub.sendTrainingChange');
+			if (!send)
+				return;
+
+			Foxtrick.session.set('YouthClub.sendTrainingChange', false)
+				.catch(Foxtrick.catch(module));
+
+			await sendTrainingChangeToHY(training);
+		})().catch(Foxtrick.catch(module));
 	},
 
 	/** @param {document} doc */

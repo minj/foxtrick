@@ -322,9 +322,13 @@
 			"152": "Sri Lanka",
 			"153": "Curaçao",
 			"154": "Guam",
-			"155": "Rep. Dem. Congo",
+			"155": "República Democrática do Congo",
 			"156": "Etiópia",
+			"157": "São Vicente e Granadinas",
+			"158": "Belize",
+			"159": "Madagáscar",
 			"16": "Brasil",
+			"160": "Botsuana",
 			"17": "Canadá",
 			"18": "Chile",
 			"19": "Colômbia",
@@ -633,8 +637,12 @@
 				"value": "Jogo aéreo"
 			},
 			{
-				"type": "Regainer",
+				"type": "Resilient",
 				"value": "Resiliente"
+			},
+			{
+				"type": "Support",
+				"value": "Jogador de apoio"
 			}
 		],
 		"spirit": [

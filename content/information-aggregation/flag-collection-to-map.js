@@ -11,7 +11,7 @@ Foxtrick.modules.FlagCollectionToMap = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES: ['flagCollection'],
 
-	// country codes. see  http://code.google.com/apis/chart/#iso_codes
+	// country codes. see  https://developers.google.com/chart/image/docs/gallery/new_map_charts
 	// leaugeid: ISO codes for google chart api
 	HTCountries: {
 		128: ['IQ'], // Al Iraq
@@ -28,10 +28,12 @@ Foxtrick.modules.FlagCollectionToMap = {
 		132: ['BD'], // Bangladesh
 		124: ['BB'], // Barbados
 		91 : ['BY'], // Belarus
+		158: ['BZ'], // Belize
 		44 : ['BE'], // Belgium / België
 		139: ['BJ'], // Benin
 		74 : ['BO'], // Bolivia
 		69 : ['BA'], // Bosna i Hercegovina
+		160: ['BW'], // Botswana
 		16 : ['BR'], // Brasil
 		136: ['BN'], // Brunei
 		62 : ['BG'], // Bulgaria
@@ -91,6 +93,7 @@ Foxtrick.modules.FlagCollectionToMap = {
 		117: ['LI'], // Liechtenstein
 		66 : ['LT'], // Lietuva
 		120: ['LB'], // Lubnan
+		159: ['MG'], // Madagasikara
 		51 : ['HU'], // Magyarország
 		45 : ['MY'], // Malaysia
 		101: ['MT'], // Malta
@@ -125,6 +128,7 @@ Foxtrick.modules.FlagCollectionToMap = {
 		88 : ['DO'], // República Dominicana
 		37 : ['RO'], // România
 		35 : ['RU'], // Rossiya
+		157: ['VC'], // Saint Vincent and the Grenadines
 		104: ['GE'], // Sakartvelo / Georgia
 		149: ['ST'], // São Tomé e Príncipe
 		79 : ['SA'], // Saudi Arabia

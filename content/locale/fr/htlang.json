@@ -324,7 +324,11 @@
 			"154": "Guam",
 			"155": "RD Congo",
 			"156": "Ethiopie",
+			"157": "Saint-Vincent et les Grenadines",
+			"158": "Bélize",
+			"159": "Madagascar",
 			"16": "Brésil",
+			"160": "Botswana",
 			"17": "Canada",
 			"18": "Chili",
 			"19": "Colombie",
@@ -604,7 +608,7 @@
 			},
 			{
 				"type": "LeaderShip",
-				"value": "Temp. de chef"
+				"value": "Tempérament de chef"
 			}
 		],
 		"specialties": [
@@ -633,8 +637,12 @@
 				"value": "Joueur de tête"
 			},
 			{
-				"type": "Regainer",
+				"type": "Resilient",
 				"value": "Résistant"
+			},
+			{
+				"type": "Support",
+				"value": "Chef d'orchestre"
 			}
 		],
 		"spirit": [

@@ -324,7 +324,11 @@
 			"154": "Guam",
 			"155": "DR Congo",
 			"156": "Ethiopia",
+			"157": "Saint Vincent and the Grenadines",
+			"158": "Belize",
+			"159": "Madagascar",
 			"16": "Brazil",
+			"160": "Botswana",
 			"17": "Canada",
 			"18": "Chile",
 			"19": "Colombia",
@@ -633,8 +637,12 @@
 				"value": "头球专家"
 			},
 			{
-				"type": "Regainer",
+				"type": "Resilient",
 				"value": "坚忍不拔"
+			},
+			{
+				"type": "Support",
+				"value": "支援型"
 			}
 		],
 		"spirit": [

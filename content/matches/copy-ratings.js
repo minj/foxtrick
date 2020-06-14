@@ -286,7 +286,7 @@ Foxtrick.modules['CopyRatings'] = {
 				var copyTextRating = !Foxtrick.hasClass(byNumber, 'disabled');
 				var copyNumRating = !Foxtrick.hasClass(byText, 'disabled');
 
-				var table = Foxtrick.Pages.Match.getRatingsTable(doc).cloneNode(true);
+				var table = Foxtrick.cloneElement(Foxtrick.Pages.Match.getRatingsTable(doc), true);
 				Foxtrick.forEach(function(row) {
 					if (!team1 && row.cells.length >= 2)
 						row.cells[1].textContent = '###';

@@ -140,7 +140,7 @@ Foxtrick.htPages = {
 	'trainingEvents'            : '/Club/Players/PlayerHistory.aspx?playerId=\\d+' +
 	                              '&actionType=trainingevents',
 	'training'                  : '/Club/Training/(Default.aspx|?|$)',
-	'trainingStats'             : '/Club/Training/Statistics.aspx',
+	'trainingStats'             : '/World/Stats/StatsTraining.aspx',
 	'youthTraining'             : '/Club/Training/YouthTraining.aspx',
 	'teamEstimation'            : '/Club/Training/TeamEstimation.aspx',
 	'playerEstimation'          : '/Club/Training/PlayerEstimation.aspx',
@@ -206,16 +206,18 @@ Foxtrick.pagesExcluded = {
 	'oath'                      : 'chpp.hattrick.org/',
 	'error'                     : '/Errors/',
 	'logout'                    : '/Logout.aspx',
+	'chppExampleApp'            : '/Community/CHPP/NewDocs/Example.aspx',
 };
-// jscs:enable disallowSpaceAfterObjectKeys, disallowQuotedKeysInObjects
-// jscs:enable disallowMultipleSpaces
+
+/* eslint-enable key-spacing, quote-props */
 
 /**
  * Test whether document belongs to certain page type(s)
- * page may be Array.<string>
  *
- * @param  {document}     doc
- * @param  {string|Array} page
+ * page may be Array
+ *
+ * @param  {document}    doc
+ * @param  {PAGE|PAGE[]} page
  * @return {boolean}
  */
 Foxtrick.isPage = function(doc, page) {
@@ -237,6 +239,7 @@ Foxtrick.isPage = function(doc, page) {
  * Form a regular expression from page spec.
  *
  * Only sanitizes ? and .
+ *
  * @param  {string} reStr page spec
  * @return {RegExp}
  */
@@ -246,6 +249,7 @@ Foxtrick.makePageRe = function(reStr) {
 
 /**
  * Test whether URL belongs to a certain page type
+ *
  * @param  {string}  href
  * @param  {string}  reStr
  * @return {boolean}
@@ -257,6 +261,7 @@ Foxtrick.isPageHref = function(href, reStr) {
 
 /**
  * Test whether Foxtrick should not run on this document
+ *
  * @param  {document} doc
  * @return {boolean}
  */

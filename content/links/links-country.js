@@ -8,7 +8,7 @@
 Foxtrick.modules['LinksCountry'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
 	PAGES: ['country'],
-	LINK_TYPE: 'leaguelink',
+	LINK_TYPES: 'leaguelink',
 	/**
 	 * return HTML for FT prefs
 	 * @param  {document}         doc

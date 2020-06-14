@@ -29,6 +29,7 @@ FoxtrickFirefox.prototype = {
 		'lib/oauth.js',
 		'lib/sha1.js',
 		'lib/psico.js',
+		'lib/gauge.js',
 		// <!-- end ext-lib -->
 
 		// <!-- util -->
