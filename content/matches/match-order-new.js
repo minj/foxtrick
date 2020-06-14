@@ -129,25 +129,5 @@ Foxtrick.modules.MatchOrderNew = {
 
 		Foxtrick.onClick(doc.querySelector('.ht-tabs-wizard'), addUpdateListener);
 		addUpdateListener();
-
-		// let footer = doc.querySelector('.mo-field .htbox-footer');
-		// Foxtrick.onChange(footer, (doc, node) => {
-		// 	if (!node.querySelector('#mo-tacticType'))
-		// 		return false;
-
-		// 	Foxtrick.onClick(doc.querySelector('.ht-tabs-wizard'), addUpdateListener);
-		// 	addUpdateListener();
-
-		// 	return true;
-		// });
-
-
-		// setTimeout(function() {
-		// 	doc.querySelector('.ht-tabs-wizard').addEventListener('click', function() {
-		// 		setTimeout(addUpdateListener, 1000);
-		// 	});
-		// 	setTimeout(addUpdateListener, 1000);
-		// }, 2000);
-
 	},
 };
