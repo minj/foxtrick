@@ -25,6 +25,20 @@ Foxtrick.modules['HTMSPrediction'] = {
 		return '';
 	},
 
+	/**
+	 * @param {document} doc
+	 * @param {Node} targetNode
+	 * @param {string[]} midfieldLevel
+	 * @param {string[]} rdefence
+	 * @param {string[]} cdefence
+	 * @param {string[]} ldefence
+	 * @param {string[]} rattack
+	 * @param {string[]} cattack
+	 * @param {string[]} lattack
+	 * @param {string[]} tactics
+	 * @param {string[]} tacticsLevel
+	 * @param {any[]} teams
+	 */
 	// eslint-disable-next-line complexity
 	insertPrediction: function(doc, targetNode, midfieldLevel, rdefence, cdefence, ldefence,
 	                           rattack, cattack, lattack, tactics, tacticsLevel, teams) {
@@ -138,13 +152,16 @@ Foxtrick.modules['HTMSPrediction'] = {
 		 * Mimimi add-on (part 1)
 		 */
 		if (mimimiActive) {
-			row.insertCell(-1);
+			Foxtrick.addClass(row, 'ft-mimimi-row');
+			Foxtrick.addClass(htmstable, 'mimimi');
 			cell = row.insertCell(-1);
 			cell.className = 'center';
-			let mimimicanvas = cell.appendChild(doc.createElement('canvas'));
-			mimimicanvas.id = 'ft-mimimicanvas';
-			mimimicanvas.className = 'ft-mimimi-canvas';
-			row.insertCell(-1);
+			cell.colSpan = 3;
+			let canvas = cell.appendChild(doc.createElement('canvas'));
+			canvas.id = 'ft-mimimicanvas';
+			canvas.className = 'ft-mimimi-canvas';
+			canvas.height = 150;
+			canvas.width = 300;
 
 			row = htmstable.insertRow(htmstable.rows.length);
 			cell = row.insertCell();
@@ -384,11 +401,11 @@ Foxtrick.modules['HTMSPrediction'] = {
 		var luck = Math.round(100 * Math.abs(diff) * diff / 9);
 		var opts = {
 			angle: 0.0,
-			lineWidth: 0.3,
+			lineWidth: 0.5,
 			radiusScale: 1.0,
 			pointer: {
 				length: 0.7,
-				strokeWidth: 0.08,
+				strokeWidth: 0.03,
 				color: '#000000', // Fill color
 			},
 			limitMax: true,
@@ -410,7 +427,7 @@ Foxtrick.modules['HTMSPrediction'] = {
 		var gauge = new Foxtrick.Gauge(target).setOptions(opts); // create sexy gauge!
 		gauge.maxValue = 100; // set max gauge value
 		gauge.setMinValue(-100); // Prefer setter over gauge.minValue = 0
-		gauge.animationSpeed = 50; // set animation speed (32 is default value)
+		gauge.animationSpeed = 10; // set animation speed (32 is default value)
 		gauge.set(-luck);
 	},
 

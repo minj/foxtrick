@@ -19,6 +19,10 @@
 	background-color: #849d84;
 }
 
-.ft-mimimi-canvas {
-	width: 80px;
+#ft-htmstable.mimimi {
+	margin-top: -150px;
+}
+
+.ft-mimimi-row {
+	transform: scale(1, 0.5) translate(0, 140px);
 }
