@@ -112,25 +112,6 @@ Foxtrick.modules['HTMSPrediction'] = {
 			let row = htmstable.insertRow(htmstable.rows.length);
 			row.className = 'htms_teams';
 			let cell = row.insertCell();
-
-			/*
-			 * Mimimi add-on (part 1)
-			 */
-			if (mimimiActive) {
-				row.insertCell(-1);
-				cell = row.insertCell(-1);
-				cell.className = 'center';
-				let mimimicanvas = cell.appendChild(doc.createElement('canvas'));
-				mimimicanvas.id = 'ft-mimimicanvas';
-				mimimicanvas.className = 'ft-mimimi-canvas';
-				row.insertCell(-1);
-
-				row = htmstable.insertRow(htmstable.rows.length);
-				cell = row.insertCell();
-			}
-
-			/* End of Mimimi add-on (part 1) */
-
 			cell.className = 'ch ft-htms-leftcell';
 			cell.style.width = '160px';
 			cell.textContent = Foxtrick.L10n.getString('HTMSPrediction.team');
@@ -143,19 +124,6 @@ Foxtrick.modules['HTMSPrediction'] = {
 
 			cell = row.insertCell();
 			cell.className = 'center';
-
-			/*
-			 * Mimimi add-on (part 2)
-			 */
-			if (mimimiActive) {
-				b = doc.createElement('b');
-				let luckText = Foxtrick.L10n.getString('HTMSPrediction.luck');
-				b.appendChild(doc.createTextNode(luckText));
-				cell.appendChild(b);
-			}
-
-			/* End of Mimimi add-on (part 2) */
-
 			b = doc.createElement('b');
 			b.appendChild(doc.createTextNode(teams[1]));
 
@@ -165,6 +133,25 @@ Foxtrick.modules['HTMSPrediction'] = {
 		}
 		let row = htmstable.insertRow(htmstable.rows.length);
 		let cell = row.insertCell();
+
+		/*
+		 * Mimimi add-on (part 1)
+		 */
+		if (mimimiActive) {
+			row.insertCell(-1);
+			cell = row.insertCell(-1);
+			cell.className = 'center';
+			let mimimicanvas = cell.appendChild(doc.createElement('canvas'));
+			mimimicanvas.id = 'ft-mimimicanvas';
+			mimimicanvas.className = 'ft-mimimi-canvas';
+			row.insertCell(-1);
+
+			row = htmstable.insertRow(htmstable.rows.length);
+			cell = row.insertCell();
+		}
+
+		/* End of Mimimi add-on (part 1) */
+
 		cell.className = 'ch ft-htms-leftcell';
 		cell.style.width = '160px';
 		cell.textContent = Foxtrick.L10n.getString('HTMSPrediction.prediction');
@@ -204,6 +191,19 @@ Foxtrick.modules['HTMSPrediction'] = {
 
 			cell = row.insertCell();
 			cell.className = 'center';
+
+			/*
+			 * Mimimi add-on (part 2)
+			 */
+			if (mimimiActive) {
+				b = doc.createElement('b');
+				let luckText = Foxtrick.L10n.getString('HTMSPrediction.luck');
+				b.appendChild(doc.createTextNode(luckText));
+				cell.appendChild(b);
+			}
+
+			/* End of Mimimi add-on (part 2) */
+
 			b = doc.createElement('b');
 			b.appendChild(doc.createTextNode(pred2));
 			cell = row.insertCell();
