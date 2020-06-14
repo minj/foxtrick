@@ -702,7 +702,7 @@ Foxtrick.util.htMl._findNode = function(node) {
  * Get markup from node.
  *
  * @param  {Node} node
- * @param  {FTCopyOpts} options
+ * @param  {FTCopyOpts} [options]
  * @return {string}
  */
 Foxtrick.util.htMl.getMarkupFromNode = function(node, options) {

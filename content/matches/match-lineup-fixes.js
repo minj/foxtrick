@@ -267,9 +267,14 @@ Foxtrick.modules['MatchLineupFixes'] = {
 				for (var j = 0; j < timeline.length; ++j) {
 					if (timeline[j].min == subMin) {
 						// reached the sub minute
-						// TODO rewrite
-						while (playerRatingsByEvent[j].players[idx].Stars != -1)
-							++j;
+						// TODO rewrite: HTs changed something and Stars seem to no longer be reset
+						while (playerRatingsByEvent[j].players[idx].Stars != -1) {
+							let next = j + 1;
+							if (timeline.length == next || timeline[next].min != subMin)
+								break;
+
+							j = next;
+						}
 
 						// reached the sub second because stars = -1
 						// var subSec = timeline[j].sec;

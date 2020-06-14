@@ -11,6 +11,7 @@ Foxtrick.modules['HTMSPrediction'] = {
 	PAGES: ['match'],
 	CSS: Foxtrick.InternalPath + 'resources/css/htms-statistics.css',
 	NICE: -1, // before ratings
+	OPTIONS: ['Mimimi'],
 
 	copy: function(div) {
 		var HTMSClone = Foxtrick.cloneElement(div, true);
@@ -24,6 +25,21 @@ Foxtrick.modules['HTMSPrediction'] = {
 		return '';
 	},
 
+	/**
+	 * @param {document} doc
+	 * @param {Node} targetNode
+	 * @param {string[]} midfieldLevel
+	 * @param {string[]} rdefence
+	 * @param {string[]} cdefence
+	 * @param {string[]} ldefence
+	 * @param {string[]} rattack
+	 * @param {string[]} cattack
+	 * @param {string[]} lattack
+	 * @param {string[]} tactics
+	 * @param {string[]} tacticsLevel
+	 * @param {any[]} teams
+	 */
+	// eslint-disable-next-line complexity
 	insertPrediction: function(doc, targetNode, midfieldLevel, rdefence, cdefence, ldefence,
 	                           rattack, cattack, lattack, tactics, tacticsLevel, teams) {
 
@@ -31,6 +47,9 @@ Foxtrick.modules['HTMSPrediction'] = {
 		const HTMS_PATH = 'http://www.fantamondi.it/HTMS';
 		var loading = Foxtrick.util.note.createLoading(doc);
 		targetNode.appendChild(loading);
+
+		const mimimiActive = Foxtrick.Prefs.isModuleOptionEnabled(module, 'Mimimi') &&
+			Foxtrick.Pages.Match.hasRatingsTabs(doc);
 
 		midfieldLevel[0] = midfieldLevel[0] * 4 + 1;
 		midfieldLevel[1] = midfieldLevel[1] * 4 + 1;
@@ -128,12 +147,35 @@ Foxtrick.modules['HTMSPrediction'] = {
 		}
 		let row = htmstable.insertRow(htmstable.rows.length);
 		let cell = row.insertCell();
+
+		/*
+		 * Mimimi add-on (part 1)
+		 */
+		if (mimimiActive) {
+			Foxtrick.addClass(row, 'ft-mimimi-row');
+			Foxtrick.addClass(htmstable, 'mimimi');
+			cell = row.insertCell(-1);
+			cell.className = 'center';
+			cell.colSpan = 3;
+			let canvas = cell.appendChild(doc.createElement('canvas'));
+			canvas.id = 'ft-mimimicanvas';
+			canvas.className = 'ft-mimimi-canvas';
+			canvas.height = 150;
+			canvas.width = 300;
+
+			row = htmstable.insertRow(htmstable.rows.length);
+			cell = row.insertCell();
+		}
+
+		/* End of Mimimi add-on (part 1) */
+
 		cell.className = 'ch ft-htms-leftcell';
 		cell.style.width = '160px';
 		cell.textContent = Foxtrick.L10n.getString('HTMSPrediction.prediction');
 
 		var url = `${HTMS_PATH}/dorequest.php?action=predict&${params}`;
-		Foxtrick.load(url).then(function(text) {
+		Foxtrick.load(url).then(function(r) {
+			var text = /** @type {string} */ (r);
 			var xml = Foxtrick.parseXML(text);
 			if (xml == null)
 				return;
@@ -151,11 +193,11 @@ Foxtrick.modules['HTMSPrediction'] = {
 			var drawprob = xml.getElementsByTagName('SXP').item(0).firstChild.nodeValue;
 			var lossprob = xml.getElementsByTagName('S2P').item(0).firstChild.nodeValue;
 			if (pred1 == 'NAN') {
-				pred1 = 5;
-				pred2 = 0;
-				winprob = 100;
-				drawprob = 0;
-				lossprob = 0;
+				pred1 = '5';
+				pred2 = '0';
+				winprob = '100';
+				drawprob = '0';
+				lossprob = '0';
 			}
 
 			let b = doc.createElement('b');
@@ -166,6 +208,19 @@ Foxtrick.modules['HTMSPrediction'] = {
 
 			cell = row.insertCell();
 			cell.className = 'center';
+
+			/*
+			 * Mimimi add-on (part 2)
+			 */
+			if (mimimiActive) {
+				b = doc.createElement('b');
+				let luckText = Foxtrick.L10n.getString('HTMSPrediction.luck');
+				b.appendChild(doc.createTextNode(luckText));
+				cell.appendChild(b);
+			}
+
+			/* End of Mimimi add-on (part 2) */
+
 			b = doc.createElement('b');
 			b.appendChild(doc.createTextNode(pred2));
 			cell = row.insertCell();
@@ -207,6 +262,11 @@ Foxtrick.modules['HTMSPrediction'] = {
 			cell = row.insertCell();
 			cell.textContent = lossprob;
 			cell.className = 'right';
+
+			if (mimimiActive)
+				module.minimi(doc, winprob, drawprob); // set actual value
+
+			/* End of Mimimi add-on (part 2) */
 		}, (er) => {
 
 			Foxtrick.log(er);
@@ -287,4 +347,88 @@ Foxtrick.modules['HTMSPrediction'] = {
 		                      cattack, lattack, tactics, tacticsLevel);
 
 	},
+
+
+	/**
+	 * Mimimi add-on (main)
+	 *
+	 * @author educhielle (HT: MetalTeck)
+	 *
+	 * The Mimimi add-on aims to show if a match result was fair or if luck played a huge role
+	 * It takes into account the HTMS predictions and the match result,
+	 * and determines how lucky a team was
+	 *
+	 * There are three fields:
+	 * - expected: shows how many points the home team was expected to get from the match
+	 * - acquired: shows how many points the home team actually got from the match
+	 * - luck: shows how lucky the home team was (the luck parameter varies from -100% to +100%)
+	 *   - -100% means that the home team was very unlucky
+	 *      (and, consequently, the away team very lucky)
+	 *   - near 0% means that it was a fair result
+	 *   - +100% means that the home team was very lucky (and the away team very unlucky)
+	 *
+	 * The luck parameter is quadratic to emphasize results heavily influenced by randomness
+	 *
+	 * @param {document} doc
+	 * @param {string} winprob
+	 * @param {string} drawprob
+	 */
+	minimi(doc, winprob, drawprob) {
+		const WIN_PTS = 3;
+
+		var goals = Foxtrick.Pages.Match.getResult(doc);
+		var [homeResult, awayResult] = goals;
+		var result = homeResult - awayResult;
+		var sign = Math.sign(result);
+		var expected = (WIN_PTS * parseFloat(winprob) + parseFloat(drawprob)) / 100;
+
+		/** @type {number} */
+		var acquired;
+		switch (sign) {
+			case 1:
+				acquired = WIN_PTS;
+				break;
+			case -1:
+				acquired = 0;
+				break;
+			case 0:
+				acquired = 1;
+				break;
+			default:
+				throw new Error(`sign is '${sign}'`);
+		}
+		var diff = acquired - expected;
+		var luck = Math.round(100 * Math.abs(diff) * diff / 9);
+		var opts = {
+			angle: 0.0,
+			lineWidth: 0.4,
+			radiusScale: 1.0,
+			pointer: {
+				length: 0.7,
+				strokeWidth: 0.03,
+				color: '#000000', // Fill color
+			},
+			limitMax: true,
+			limitMin: true,
+			strokeColor: '#e0e0e0',
+			highDpiSupport: true,
+			staticZones: [],
+		};
+		var zones = opts.staticZones;
+		for (let pctg of Foxtrick.range(0, 105, 5)) {
+			let max = pctg + 5;
+			let hue = (1 - pctg / 100) * 360 / 3; // deg
+			let light = (0.6 - 0.3 * Math.abs(1 - pctg / 50)) * 100; // pctg
+			let hsl = `hsl(${hue}, 100%, ${light}%)`;
+			zones.push({ strokeStyle: hsl, min: pctg, max });
+			zones.unshift({ strokeStyle: hsl, min: -max, max: -pctg });
+		}
+		var target = doc.getElementById('ft-mimimicanvas'); // your canvas element
+		var gauge = new Foxtrick.Gauge(target).setOptions(opts); // create sexy gauge!
+		gauge.maxValue = 100; // set max gauge value
+		gauge.setMinValue(-100); // Prefer setter over gauge.minValue = 0
+		gauge.animationSpeed = 10; // set animation speed (32 is default value)
+		gauge.set(-luck);
+	},
+
 };
