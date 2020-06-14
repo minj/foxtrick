@@ -401,7 +401,7 @@ Foxtrick.modules['HTMSPrediction'] = {
 		var luck = Math.round(100 * Math.abs(diff) * diff / 9);
 		var opts = {
 			angle: 0.0,
-			lineWidth: 0.5,
+			lineWidth: 0.4,
 			radiusScale: 1.0,
 			pointer: {
 				length: 0.7,
