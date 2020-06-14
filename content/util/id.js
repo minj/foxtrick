@@ -171,7 +171,8 @@ Foxtrick.util.id.findTeamId = function(element) {
 	let links = element.querySelectorAll('a[href]');
 	for (let link of links) {
 		if (/TeamID=/i.test(link.href)) {
-			let p = Foxtrick.getUrlParam(link.href, 'TeamID');
+			let p = Foxtrick.getUrlParam(link.href, 'TeamID') ||
+				Foxtrick.getUrlParam(link.href, 'youthTeamID');
 			return p ? Number(p) : null;
 		}
 	}

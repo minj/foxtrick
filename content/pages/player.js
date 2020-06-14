@@ -592,7 +592,7 @@ Foxtrick.Pages.Player.getSkillsWithText = function(doc) {
 			}
 
 			skillTable = doc.querySelector('.mainBox table');
-			let hasBars = !!skillTable.querySelector('.youthSkillBar');
+			let hasBars = !!(skillTable && skillTable.querySelector('.youthSkillBar'));
 			if (!hasBars)
 				skillTable = doc.querySelector('.playerInfo table');
 
@@ -786,6 +786,10 @@ Foxtrick.Pages.Player.parseYouthSkills = function(table) {
 	// 		// ...
 	// 	}
 	// }
+
+	if (table == null)
+		return null;
+
 	var skillMap = {
 		youth: [
 			'keeper',
