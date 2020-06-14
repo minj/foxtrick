@@ -13,6 +13,7 @@
 		'Donut',
 		'BaseDonut',
 		'TextRenderer',
+		'AnimationUpdater',
 	];
 
 	LIBS.forEach((lib) => {
