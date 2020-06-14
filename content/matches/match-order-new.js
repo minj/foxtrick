@@ -1,14 +1,16 @@
-'use strict';
 /**
  * match-order-new.js
  * @author jazzzzz
  */
 
+'use strict';
+
 Foxtrick.modules.MatchOrderNew = {
-    MODULE_CATEGORY: Foxtrick.moduleCategories.MATCHES,
-    PAGES: ['matchOrderNew'],
-    OPTIONS: ['UseRatingsModule'],
-    CSS: Foxtrick.InternalPath + 'resources/css/match-simulator.css',
+	MODULE_CATEGORY: Foxtrick.moduleCategories.MATCHES,
+	PAGES: ['matchOrderNew'],
+	OPTIONS: ['UseRatingsModule'],
+	CSS: Foxtrick.InternalPath + 'resources/css/match-simulator.css',
+
 	TACTIC_NAMES: [
 		'normal', 'pressing',
 		'ca', 'aim', 'aow',
@@ -16,81 +18,78 @@ Foxtrick.modules.MatchOrderNew = {
 		'creatively', 'longshots',
 	],
 
-    run: function (doc) {
-        var module = this;
+	/** @param {document} doc */
+	run: function(doc) {
+		const module = this;
 
-        var IS_YOUTH = Foxtrick.Pages.Match.isYouth(doc);
-        if (IS_YOUTH)
-            return;
+		const isYouth = Foxtrick.Pages.Match.isYouth(doc);
+		const useRatings = Foxtrick.Prefs.isModuleEnabled('Ratings') &&
+			Foxtrick.Prefs.isModuleOptionEnabled(module, 'UseRatingsModule');
 
+		if (!isYouth && useRatings)
+			module.runRatings(doc);
+	},
 
-        var useRatings = Foxtrick.Prefs.isModuleEnabled('Ratings') &&
-            Foxtrick.Prefs.isModuleOptionEnabled(module, 'UseRatingsModule');
+	/** @param {document} doc */
+	runRatings(doc) {
+		const module = this;
 
-        // ratings
-        if (useRatings) {
-            var ratingsDiv = Foxtrick.createFeaturedElement(doc, module, 'div');
-            ratingsDiv.id = 'ft_simulation_ratings';
-            var ratingsLabel = doc.createElement('h2');
-            ratingsDiv.appendChild(ratingsLabel).textContent =
-                Foxtrick.L10n.getString('matchOrder.ratings');
-            var ratingsTable = doc.createElement('table');
-            ratingsDiv.appendChild(ratingsTable).id = 'ft_simulation_ratings_table';
-            document.getElementById("content").appendChild(ratingsDiv);
+		var updateRatings = function() {
+			const PRED_CLS = 'mo-field-rating-predicitons';
+			const PRED_DIFF_CLS = 'mo-field-rating-predicitons-diff';
 
-            setTimeout(function(){
-                document.querySelector(".ht-tabs-wizard").addEventListener('click', function(){
-                    setTimeout(addUpdateListener, 1000);
-                });
-                setTimeout(addUpdateListener, 1000);
-            }, 2000);
-        }
+			var predictions =
+				doc.querySelectorAll(`.${PRED_CLS} span.ng-binding:not(.${PRED_DIFF_CLS})`);
 
-
-		var updateRatings = function () {
-			var ratings = Array.from(document.querySelectorAll('.mo-field-rating-predicitons span.ng-binding:not(.mo-field-rating-predicitons-diff)'))
-				.map(elem => [elem.textContent - 1,0] );
-			if(ratings.length===0){
+			if (predictions.length === 0)
 				return;
-			}
-			Foxtrick.modules['Ratings'].initHtRatings();
 
-			var tactics = Foxtrick.modules.MatchOrderNew.TACTIC_NAMES[doc.getElementById('mo-tacticType').value];
-			var tacticLevel = Foxtrick.L10n.getLevelFromText(document.querySelector('.mo-field-rating-predicitons-tactic span').textContent.trim());
-			if(tacticLevel){
-				tacticLevel = tacticLevel.toString();
-			}
+			var ratings = [...predictions].map(elem => [Number(elem.textContent.trim()) - 1, 0]);
+
+			Foxtrick.modules.Ratings.initHtRatings();
+
+			/** @type {HTMLInputElement} */
+			var tacticType = doc.querySelector('#mo-tacticType');
+			var tactics = module.TACTIC_NAMES[tacticType.value];
+
+			var tLevelSpan = doc.querySelector('.mo-field-rating-predicitons-tactic span');
+			var tacticLevel = Foxtrick.L10n.getLevelFromText(tLevelSpan.textContent.trim());
 
 			var ratingsTable = doc.getElementById('ft_simulation_ratings_table');
 			var newTable = ratingsTable.cloneNode(false);
-			Foxtrick.modules['Ratings'].addRatings(
-				doc, newTable,
-				ratings[3], ratings[0], ratings[1], ratings[2], ratings[4], ratings[5], ratings[6],
-				[tactics,''], [tacticLevel,""], false
-			);
+
+			Foxtrick.modules.Ratings.addRatings(doc, newTable,
+			    ratings[3], ratings[0], ratings[1], ratings[2], ratings[4], ratings[5], ratings[6],
+			    [tactics, ''], [tacticLevel, ''], false);
 
 			ratingsTable.parentNode.replaceChild(newTable, ratingsTable);
-		}
+		};
 
-		function addUpdateListener() {
-			MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
-
-			let predictionsDomElement = document.querySelector(".mo-field-rating-predicitons-holder");
-			if(!predictionsDomElement ){
+		var addUpdateListener = function() {
+			let predictionsHolder = doc.querySelector('.mo-field-rating-predicitons-holder');
+			if (!predictionsHolder)
 				return;
-			}
-			var observer = new MutationObserver(function (mutations, observer) {
-				updateRatings();
-			});
 
-			observer.observe(predictionsDomElement, {
-				subtree: true,
-				attributes: false,
-				characterData: true,
-				childList: true
-			});
+			Foxtrick.onChange(predictionsHolder, updateRatings, { characterData: true });
 			updateRatings();
-		}
+		};
 
-    }
+		let ratingsDiv = Foxtrick.createFeaturedElement(doc, module, 'div');
+		ratingsDiv.id = 'ft_simulation_ratings';
+		let ratingsLabel = doc.createElement('h2');
+		ratingsDiv.appendChild(ratingsLabel).textContent =
+			Foxtrick.L10n.getString('matchOrder.ratings');
+
+		let ratingsTable = doc.createElement('table');
+		ratingsDiv.appendChild(ratingsTable).id = 'ft_simulation_ratings_table';
+		doc.getElementById('content').appendChild(ratingsDiv);
+
+		setTimeout(function() {
+			doc.querySelector('.ht-tabs-wizard').addEventListener('click', function() {
+				setTimeout(addUpdateListener, 1000);
+			});
+			setTimeout(addUpdateListener, 1000);
+		}, 2000);
+
+	},
 };
