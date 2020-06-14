@@ -1,6 +1,10 @@
 'use strict';
-if (!Foxtrick)
+
+/* eslint-disable */
+if (!this.Foxtrick)
 	var Foxtrick = {};
+/* eslint-enable */
+
 if (!Foxtrick.api)
 	Foxtrick.api = {};
 if (!Foxtrick.api.pastebin)
@@ -54,8 +58,7 @@ Foxtrick.api.pastebin._buildParams = function(callback, params) {
 Foxtrick.api.pastebin._generic = function(api, url, success, params, failure, finalize) {
 	params = params || {};
 	Foxtrick.api.pastebin._buildParams(function(params) {
-		Foxtrick.util.load.async(url,
-		  function(response, status) {
+		Foxtrick.util.load.async(url, function(response, status) {
 			switch (status) {
 				case 0:
 					Foxtrick.log('[PASTEBIN_API][' + api + '] Error', status, response);
@@ -76,4 +79,3 @@ Foxtrick.api.pastebin._generic = function(api, url, success, params, failure, fi
 		}, params);
 	}, params);
 };
-

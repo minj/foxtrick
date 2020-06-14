@@ -1,37 +1,56 @@
-/*
-	* Utilities to handle match events as delivered by HT
-	* Also including common functionality shared by
-	* match report format and live match report format
+/**
+ * Utilities to handle match events as delivered by HT
+ * Also including common functionality shared by
+ * match report format and live match report format
 */
 
 'use strict';
 
-if (!Foxtrick)
+/* eslint-disable */
+if (!this.Foxtrick)
+	// @ts-ignore
 	var Foxtrick = {};
+/* eslint-enable */
+
 if (!Foxtrick.util)
 	Foxtrick.util = {};
 
 Foxtrick.util.matchEvent = {};
 
-/*
-	 * Source: /Community/CHPP/ChppMatchEventTypes.aspx
-	 * Event Types and Icon mapping
-	 *
-	 * 20,21,40,47,70,71,599 are used for match indicators, don't convert them to objects
-	 *
-	 * for events that require several icons specify a dictionary with
-	 * keys 'team' and 'other' and an array of icons as values.
-	 * If only one team needs icons the other key can be omnitted.
-	 *
-	 * Example:
-	 * { team: ['miss', 'se_technical'], other: ['se_head_specialist'] },
-	 * { team: ['goal', 'se_technical']},
-	 * { other: ['goal']}
-*/
+/**
+ * @typedef {'possession'|'extraTime'|'penaltyShootOut'|'result'} MatchEventIndicator
+ * @typedef {keyof Foxtrick.util.matchEvent.eventIconDefinition} MatchEventIcon
+ * @typedef {MatchEventIcon|MatchEventIndicator} MatchEventMeta
+ * @typedef {MatchEventMeta|{team?:MatchEventMeta[], other?:MatchEventMeta[]}} MatchTeamEvent
+ * @typedef {{home?:MatchEventMeta[], away?:MatchEventMeta[]}} MatchGenericEvent
+ */
+
+/**
+ * Source: /Community/CHPP/ChppMatchEventTypes.aspx
+ * Event Types and Icon mapping
+ *
+ * 20,21,40,47,70,71,599 are used for match indicators, don't convert them to objects
+ *
+ * for events that require several icons specify a dictionary with
+ * keys 'team' and 'other' and an array of icons as values.
+ * If only one team needs icons the other key can be omnitted.
+ *
+ * If an event is not attached to a single team, home/away props should always be used
+ *
+ * Example:
+ * { team: ['miss', 'se_technical'], other: ['se_head_specialist'] },
+ * { team: ['goal', 'se_technical']},
+ * { other: ['goal']}
+ *
+ * @type {Record<number, false|null|MatchTeamEvent|MatchGenericEvent>}
+ */
 Foxtrick.util.matchEvent.eventIcons = {
+	19: false, // new-live
 	20: 'formation',
 	21: 'formation',
 	22: 'kids',
+	23: { home: ['formation'] },
+	24: { home: ['formation'] },
 	25: { away: ['derby'] },
 	26: { home: ['neutral'] },
 	27: { away: ['home'] },
@@ -39,9 +58,19 @@ Foxtrick.util.matchEvent.eventIcons = {
 	31: { home: ['weather_cloudy'] },
 	32: { home: ['weather_fair'] },
 	33: { home: ['weather_sunny'] },
+
+	35: { home: ['chair'] },
+
+	// HTO weather
+	36: { home: ['weather_rainy'] },
+	37: { home: ['weather_cloudy'] },
+	38: { home: ['weather_fair'] },
+	39: { home: ['weather_sunny'] },
+
 	40: 'possession',
 	41: 'best_player',
 	42: 'worst_player',
+	45: null, // half-time
 	46: 'hattrick',
 	47: 'possession',
 	55: { team: ['goal', 'se_technical'] },
@@ -61,7 +90,10 @@ Foxtrick.util.matchEvent.eventIcons = {
 	69: 'underest_gone',
 	70: 'extraTime',
 	71: 'penaltyShootOut',
+	72: false, // unused
 	73: 'tossing_coin',
+	75: { home: ['clock'] },
+	76: { home: ['clock'] },
 	80: 'captain',
 	81: 'setPieces',
 	90: 'bruised',
@@ -135,6 +167,7 @@ Foxtrick.util.matchEvent.eventIcons = {
 	185: { team: ['goal', 'indirect'] },
 	186: { team: ['goal', 'counter_attack', 'indirect'] },
 	187: { team: ['goal', 'longshot'] },
+	190: { team: ['goal', 'se_powerful'] },
 	200: { team: ['miss', 'whistle'] },
 	201: { team: ['miss_C'] },
 	202: { team: ['miss_L'] },
@@ -199,12 +232,19 @@ Foxtrick.util.matchEvent.eventIcons = {
 	287: { team: ['miss', 'longshot'] },
 	288: { team: ['miss', 'longshot'] },
 	289: { team: ['se_quick_negative'], other: ['se_quick'] },
+	290: { team: ['miss', 'se_powerful'] },
 	301: { team: ['se_technical_negative', 'weather_rainy'] },
 	302: { team: ['se_powerful', 'weather_rainy'] },
 	303: { team: ['se_technical', 'weather_sunny'] },
 	304: { team: ['se_powerful_negative', 'weather_sunny'] },
 	305: { team: ['se_quick_negative', 'weather_rainy'] },
 	306: { team: ['se_quick_negative', 'weather_sunny'] },
+	307: { team: ['se_support'] },
+	308: { team: ['se_support_negative', 'formation'] },
+	309: { team: ['se_support_negative'] },
+
+	310: { team: ['se_powerful'], other: ['pressing'] },
+	311: { team: ['se_technical'], other: ['miss'] },
 	331: 'pressing',
 	332: 'counter_attack',
 	333: 'aim',
@@ -222,6 +262,99 @@ Foxtrick.util.matchEvent.eventIcons = {
 	370: 'swap',
 	371: 'swap',
 	372: 'swap',
+	380: 'mm_short',
+	381: 'mm_long',
+	382: 'mm_long',
+	383: 'mm_short',
+	384: 'mm_penalty',
+	385: 'mm_long',
+	386: 'mm_short',
+	387: 'mm_penalty',
+	388: 'mm_penalty',
+	389: 'mm_penalty',
+	390: { home: ['weather_rainy'] },
+	391: { home: ['weather_sunny'] },
+	401: 'injured',
+	402: 'injured',
+	403: 'injured',
+	404: 'injured',
+	405: 'injured',
+	406: 'injured',
+	407: 'injured',
+	408: 'injured',
+	409: 'injured',
+	410: 'injured',
+	411: 'injured',
+	412: 'injured',
+	413: 'injured',
+	414: 'injured',
+	415: 'injured',
+	416: 'injured',
+	417: 'injured',
+	418: 'injured',
+	419: 'injured',
+	420: 'injured',
+	421: 'injured',
+	422: 'injured',
+	423: 'injured', // new-live
+	424: 'substitution',
+	425: { team: ['sub_out', 'formation'] },
+	426: { team: ['swap', 'formation'] },
+	427: { team: ['bruised', 'se_resilient'] },
+
+	// new-live START
+	450: false,
+	451: false,
+	452: false,
+	453: false,
+	454: false,
+	455: false,
+	456: false,
+	457: false,
+	458: false,
+	459: false,
+	460: false,
+	461: false,
+	462: false,
+	463: false,
+	464: false,
+	465: false,
+	466: false,
+	467: false,
+	468: false,
+	469: false,
+	470: false,
+	471: false,
+	472: false,
+	473: false,
+	474: false,
+	475: false,
+	476: false,
+	477: false,
+	478: false,
+	479: false,
+	480: false,
+	481: false,
+	482: false,
+	483: false,
+	484: false,
+	485: false,
+	486: false,
+	487: false,
+	488: false,
+	489: false,
+	490: false,
+	491: false,
+	492: false,
+	493: false,
+	494: false,
+	495: false,
+	496: false,
+	497: false,
+	498: false,
+
+	// new-live END
+
 	500: { home: ['stop'], away: ['stop'] },
 	501: { home: ['stop'] },
 	502: { away: ['stop'] },
@@ -231,15 +364,48 @@ Foxtrick.util.matchEvent.eventIcons = {
 	510: 'yellow_card',
 	511: 'yellow_card',
 	512: { team: ['yellow_card', 'red_card'] },
-	513: { team: ['yellow_card', 'red_card'] },
 	514: 'red_card',
+	596: false, // new-live
+	597: false, // new-live
+	598: false, // new-live
 	599: 'result',
+
+	// new-live START
+	601: false,
+	602: false,
+	603: false,
+	604: false,
+
+	605: false,
+	606: false,
+
+	650: false,
+	651: false,
+
+	// new-live END
+
 	700: 'thumb_down',
 	701: 'thumb_up',
 	702: 'fan',
 	703: 'fire',
 	704: 'trophy',
+
+	// new-live START
+	800: false,
+	801: false,
+	802: false,
+	803: false,
+	804: false,
+	805: false,
+
+	// new-live END
 };
+
+/**
+ * @typedef {string|(()=>string|{specialty:number, failure?:boolean})} MatchEventIconDef
+ * //type {{ [key: string]: MatchEventIconDef }}
+ */
+/* eslint-disable camelcase */
 Foxtrick.util.matchEvent.eventIconDefinition = {
 	aow: Foxtrick.InternalPath + 'resources/img/matches/aow.png',
 	aim: Foxtrick.InternalPath + 'resources/img/matches/aim.png',
@@ -247,6 +413,8 @@ Foxtrick.util.matchEvent.eventIconDefinition = {
 	bruised: '/Img/Icons/bruised.gif',
 	captain: '/Club/Matches/images/captain.png',
 	change_tactics: '/Img/Matches/behaviorchange.gif',
+	clock: Foxtrick.InternalPath + 'resources/img/matches/clock.png',
+	chair: Foxtrick.InternalPath + 'resources/img/matches/chair.png',
 	confusion: '/Club/Matches/images/confusion.png',
 	corner: Foxtrick.InternalPath + 'resources/img/matches/corner.png',
 	counter_attack: Foxtrick.InternalPath + 'resources/img/matches/ca.png',
@@ -264,11 +432,12 @@ Foxtrick.util.matchEvent.eventIconDefinition = {
 	home: Foxtrick.InternalPath + 'resources/img/matches/home.png',
 	indirect: Foxtrick.InternalPath + 'resources/img/matches/indirect.png',
 	injured: '/Img/Icons/injured.gif',
-	injured_leaves: ['/Img/Icons/injured.gif', '/Img/Matches/substitution.gif'],
 	kids: Foxtrick.InternalPath + 'resources/img/matches/kids.png',
-	left_wing: '/Img/Matches/sub_in.gif',
 	longshot: Foxtrick.InternalPath + 'resources/img/matches/longshot.png',
-	middle: Foxtrick.InternalPath + 'resources/img/matches/middle.png',
+	mm_short: Foxtrick.InternalPath + 'resources/img/matches/mm_short.png',
+	mm_long: Foxtrick.InternalPath + 'resources/img/matches/mm_long.png',
+	mm_penalty: Foxtrick.InternalPath + 'resources/img/matches/mm_penalty.png',
+	middle: Foxtrick.InternalPath + 'resources/img/matches/middle.png', // unused
 	miss: Foxtrick.InternalPath + 'resources/img/matches/redball.png',
 	miss_C: Foxtrick.InternalPath + 'resources/img/matches/red_ball_C.png',
 	miss_L: Foxtrick.InternalPath + 'resources/img/matches/red_ball_L.png',
@@ -280,36 +449,44 @@ Foxtrick.util.matchEvent.eventIconDefinition = {
 	pullback: '/Club/Matches/images/pullback.png',
 	red_card: '/Img/Icons/red_card.gif',
 	reorganize: Foxtrick.InternalPath + 'resources/img/matches/reorg.png',
-	right_wing: '/Img/Matches/sub_out.gif',
 	se_head_specialist: function() {
-		return Foxtrick.getSpecialtyImagePathFromNumber(5, false);
+		return { specialty: 5 };
 	},
 	se_head_specialist_negative: function() {
-		return Foxtrick.getSpecialtyImagePathFromNumber(5, true);
+		return { specialty: 5, failure: true };
 	},
 	se_powerful: function() {
-		return Foxtrick.getSpecialtyImagePathFromNumber(3, false);
+		return { specialty: 3 };
 	},
 	se_powerful_negative: function() {
-		return Foxtrick.getSpecialtyImagePathFromNumber(3, true);
+		return { specialty: 3, failure: true };
 	},
 	se_quick: function() {
-		return Foxtrick.getSpecialtyImagePathFromNumber(2, false);
+		return { specialty: 2 };
 	},
 	se_quick_negative: function() {
-		return Foxtrick.getSpecialtyImagePathFromNumber(2, true);
+		return { specialty: 2, failure: true };
+	},
+	se_resilient: function() {
+		return { specialty: 6 };
+	},
+	se_support: function() {
+		return { specialty: 8 };
+	},
+	se_support_negative: function() {
+		return { specialty: 8, failure: true };
 	},
 	se_technical: function() {
-		return Foxtrick.getSpecialtyImagePathFromNumber(1, false);
+		return { specialty: 1 };
 	},
 	se_technical_negative: function() {
-		return Foxtrick.getSpecialtyImagePathFromNumber(1, true);
+		return { specialty: 1, failure: true };
 	},
 	se_unpredictable: function() {
-		return Foxtrick.getSpecialtyImagePathFromNumber(4, false);
+		return { specialty: 4 };
 	},
 	se_unpredictable_negative: function() {
-		return Foxtrick.getSpecialtyImagePathFromNumber(4, true);
+		return { specialty: 4, failure: true };
 	},
 	setPieces: '/Club/Matches/images/set_Pieces.png',
 	stop: Foxtrick.InternalPath + 'resources/img/stop.png',
@@ -334,11 +511,15 @@ Foxtrick.util.matchEvent.eventIconDefinition = {
 	worst_player: '/Img/Matches/star_brown.png',
 	yellow_card: '/Img/Icons/yellow_card.gif',
 };
+/* eslint-enable camelcase */
 
 Foxtrick.util.matchEvent.eventDescription = {
+	19: 'Players enter the field',
 	20: 'Tactical disposition',
 	21: 'Player names in lineup',
 	22: 'Incomplete lineup, players from neighborhood used',
+	23: 'Same formation both teams',
+	24: 'Team formations different',
 	25: 'Regional derby',
 	26: 'Neutral ground',
 	27: 'Away is actually home',
@@ -346,6 +527,11 @@ Foxtrick.util.matchEvent.eventDescription = {
 	31: 'Spectators/venue - cloudy',
 	32: 'Spectators/venue - fair weather',
 	33: 'Spectators/venue - sunny',
+	35: 'Arena extended with temporary seats',
+	36: 'Only venue - rain',
+	37: 'Only venue - cloudy',
+	38: 'Only venue - fair weather',
+	39: 'Only venue - sunny',
 	40: 'Midfield domination',
 	41: 'Best player',
 	42: 'Worst player',
@@ -371,6 +557,8 @@ Foxtrick.util.matchEvent.eventDescription = {
 	71: 'Penalty contest (after extra time)',
 	72: 'Extra time decided',
 	73: 'After 22 penalties tossing coin!',
+	75: 'Added time',
+	76: 'No added time',
 	80: 'New captain',
 	81: 'New set pieces taker',
 	90: 'Injured but keeps playing',
@@ -444,6 +632,7 @@ Foxtrick.util.matchEvent.eventDescription = {
 	185: 'Goal indirect free kick',
 	186: 'Counter attack goal, indirect free kick',
 	187: 'Goal: long shot',
+	190: 'SE: Goal. Powerful normal forward generates extra chance',
 	200: 'No reducing goal home team free kick',
 	201: 'No reducing goal home team middle',
 	202: 'No reducing goal home team left wing',
@@ -508,12 +697,18 @@ Foxtrick.util.matchEvent.eventDescription = {
 	287: 'No goal long shot',
 	288: 'No goal long shot, defended',
 	289: 'SE: Quick rushes, stopped by quick defender',
+	290: 'SE: No goal. Powerful normal forward generates extra chance',
 	301: 'SE: Technical suffers from rain',
 	302: 'SE: Powerful thrives in rain',
 	303: 'SE: Technical thrives in sun',
 	304: 'SE: Powerful suffers from sun',
 	305: 'SE: Quick suffers in rain',
 	306: 'SE: Quick suffers in sun',
+	307: 'SE: Support player boost succeeded',
+	308: 'SE: Support player boost failed and organization dropped',
+	309: 'SE: Support player boost failed',
+	310: 'SE: Powerful defensive inner presses chance',
+	311: 'Counter attack triggered by technical defender/wingback',
 	331: 'Tactic Type: Pressing',
 	332: 'Tactic Type: Counter-attacks',
 	333: 'Tactic Type: Attack in the middle',
@@ -531,6 +726,94 @@ Foxtrick.util.matchEvent.eventDescription = {
 	370: 'Player position swap: team is behind',
 	371: 'Player position swap: team is ahead',
 	372: 'Player position swap: minute',
+	380: 'Man marking success, short distance',
+	381: 'Man marking success, long distance',
+	382: 'Man marked changed from short to long distance',
+	383: 'Man marked changed from long to short distance',
+	384: 'Man marker penalty, man marked not on the field',
+	385: 'Man marker changed from short to long distance',
+	386: 'Man marker changed from long to short distance',
+	387: 'Man marker penalty, man marked not in marking position',
+	388: 'Man marker penalty, man marker not in marking position',
+	389: 'Man Marker penalty, no man marked in opponent team',
+	390: 'Rainy weather - Many players affected',
+	391: 'Sunny weather - Many players affected',
+	401: 'Injury: Knee left',
+	402: 'Injury: Knee right',
+	403: 'Injury: Thigh left',
+	404: 'Injury: Thigh right',
+	405: 'Injury: Foot left',
+	406: 'Injury: Foot right',
+	407: 'Injury: Ankle left',
+	408: 'Injury: Ankle right',
+	409: 'Injury: Calf left',
+	410: 'Injury: Calf right',
+	411: 'Injury: Groin left',
+	412: 'Injury: Groin right',
+	413: 'Injury: Collarbone',
+	414: 'Injury: Back',
+	415: 'Injury: Hand left',
+	416: 'Injury: Hand right',
+	417: 'Injury: Arm left',
+	418: 'Injury: Arm right',
+	419: 'Injury: Shoulder left',
+	420: 'Injury: Shoulder right',
+	421: 'Injury: Rib',
+	422: 'Injury: Head',
+	423: 'Injured by foul',
+	424: 'Injured player replaced',
+	425: 'No replacement for injured player',
+	426: 'Field player has to take injured keeper\'s place',
+	427: 'Player injured was resilient so got bruised instead',
+	450: 'Player got third yellow card: misses next match',
+	451: 'With this standing team will relegate',
+	452: 'Anniversary: 100s matches in the current team',
+	453: 'Possibly the last game in this team',
+	454: 'Doctor report of injury length',
+	455: 'New star player of the team',
+	456: 'Player career goals: multiple of 50',
+	457: 'Player league goals this season',
+	458: 'Player cup goals this season',
+	459: 'Bench player warming up',
+	460: 'Fans shocked by losing',
+	461: 'Fans upset by losing',
+	462: 'Fans surprised by winning',
+	463: 'Fans excited by winning',
+	464: 'Exact number of spectators',
+	465: 'Team should win match to secure winning the league',
+	466: 'Team should win match to have chance of winning league',
+	467: 'The winner of this match may have a chance of winning the league',
+	468: 'Team should win match to prevent demotion',
+	469: 'Team should win match to have a chance of not demoting',
+	470: 'The loser of this match will demote',
+	471: 'Team has most possession in beginning of match',
+	472: 'Equal possession in beginning of match',
+	473: 'Career ending injury',
+	474: 'Possession shifted',
+	475: 'Low attendance because of fan mood',
+	476: 'Extra security because of fan mood',
+	477: 'Fans of both teams are angry',
+	478: 'Team will achieve the best cup run if won',
+	479: 'Both teams could achieve the best cup run',
+	480: 'Current round is team\'s best cup run',
+	481: 'New formation today',
+	482: 'Teams using the same style of play',
+	483: 'Teams using different styles of play',
+	484: 'One team\'s style of play',
+	485: 'Team of oldies',
+	486: 'Team is aggressive',
+	487: 'Team has only homegrown players',
+	488: 'Team has all players from the same country',
+	489: 'Comeback after a long injury',
+	490: 'Previous match (cup) had similar outcome',
+	491: 'Previous match (cup) had different outcome',
+	492: 'Previous match (league) had similar outcome',
+	493: 'Previous match (league) had different outcome',
+	494: 'Team has the ball but is not attacking',
+	495: 'Team has the ball and has started attacking',
+	496: 'Team is still in the cup (for league matches)',
+	497: 'Both teams are still in the cup (for league matches)',
+	498: 'Team is looking tired (low avg stamina)',
 	500: 'Both teams walkover',
 	501: 'Home team walkover',
 	502: 'Away team walkover',
@@ -542,83 +825,154 @@ Foxtrick.util.matchEvent.eventDescription = {
 	512: 'Red card (2nd warning) nasty play',
 	513: 'Red card (2nd warning) cheating',
 	514: 'Red card without warning',
+	596: 'Extra time started (third half)',
+	597: 'Second half started',
+	598: 'Match started',
 	599: 'Match finished',
+	601: 'Congratulations to the winner',
+	602: 'Winner advances to the next cup round (no relegation cup for the loser)',
+	603: 'Winner advances to the next cup round and loser relegates to another cup',
+	604: 'Match ended in a tie',
+	605: 'End of match, congratulations to series champions',
+	606: 'End of match, regrets that team will demote directly',
+	650: 'Hattrick Anniversary',
+	651: 'Team Anniversary',
 	700: 'Event-o-Matic: Taunt Opponent',
 	701: 'Event-o-Matic: Praise Opponent',
 	702: 'Event-o-Matic: Plead for Fan Support',
 	703: 'Event-o-Matic: Build Positive Atmosphere',
 	704: 'Event-o-Matic: Honour Club Legacy',
+	800: 'Star player missed match because of red card',
+	801: 'Star player missed match because of injury',
+	802: 'Team is on winning streak',
+	803: 'Both teams are on winning streak',
+	804: 'Team will break winning streak',
+	805: 'Weakest team (HTRating) is winning',
 };
 
+/**
+ * @param  {HTMLElement} evnt
+ * @return {boolean}
+ */
 Foxtrick.util.matchEvent.isLiveEvent = function(evnt) {
 	return Foxtrick.hasClass(evnt, 'liveHomeEvent') ||
 		Foxtrick.hasClass(evnt, 'liveAwayEvent') ||
-		evnt.getElementsByClassName('liveEvent').length;
+		!!evnt.getElementsByClassName('liveEvent').length;
 };
 
+/**
+ * @param  {HTMLElement} evnt
+ * @return {boolean}
+ */
 Foxtrick.util.matchEvent.isHomeEvent = function(evnt) {
 	return Foxtrick.hasClass(evnt, 'liveHomeEvent') || Foxtrick.hasClass(evnt, 'homeevent');
 };
 
+/**
+ * @param  {HTMLElement} evnt
+ * @return {boolean}
+ */
 Foxtrick.util.matchEvent.isAwayEvent = function(evnt) {
 	return Foxtrick.hasClass(evnt, 'liveAwayEvent') || Foxtrick.hasClass(evnt, 'awayevent');
 };
 
+/**
+ * @param  {HTMLElement} evnt
+ * @return {boolean}
+ */
 Foxtrick.util.matchEvent.isNeutralEvent = function(evnt) {
 	return !Foxtrick.util.matchEvent.isHomeEvent(evnt) &&
 	!Foxtrick.util.matchEvent.isAwayEvent(evnt);
 };
 
+/**
+ * @param  {HTMLElement} evnt
+ * @return {number}
+ */
 Foxtrick.util.matchEvent.getEventMinute = function(evnt) {
 	var min = 0;
-	var minute;
-	if (!Foxtrick.util.matchEvent.isLiveEvent(evnt)) {
-		minute = evnt.getAttribute('data-match-minute');
-		if (minute)
-			min = parseInt(minute.match(/\d+/)[0], 10);
-	}
-	else {
-		minute = evnt.firstChild;
+
+	if (Foxtrick.util.matchEvent.isLiveEvent(evnt)) {
+		let minute = evnt.firstChild;
 		if (minute)
 			min = parseInt(minute.textContent.match(/\d+/)[0], 10);
+	}
+	else {
+		let minute = evnt.dataset.matchMinute;
+		if (minute)
+			min = parseInt(minute.match(/\d+/)[0], 10);
 	}
 	return min;
 };
 
+/**
+ * @param  {number} eventId
+ * @return {string}
+ */
 Foxtrick.util.matchEvent.getEventTitle = function(eventId) {
 	var l10nId = 'match.events.' + eventId;
-	var eventText = Foxtrick.L10n.isStringAvailable(l10nId) ? Foxtrick.L10n.getString(l10nId)
-		: Foxtrick.L10n.getString('match.events.unknown');
+	var eventText = Foxtrick.L10n.isStringAvailable(l10nId) ?
+		Foxtrick.L10n.getString(l10nId) :
+		Foxtrick.L10n.getString('match.events.unknown');
+
 	return eventText + ' (' + eventId + ')';
 };
 
+/**
+ * @param  {HTMLElement} evnt
+ * @return {number}
+ */
 Foxtrick.util.matchEvent.getEventId = function(evnt) {
 	var id = 0;
-	var type = evnt.getAttribute('data-eventtype');
-	if (type) {
+	var type = evnt.dataset.eventtype;
+	if (type)
 		id = parseInt(type.match(/\d+/)[0], 10);
-	}
+
 	return id;
 };
 
+/**
+ * @param  {HTMLElement} evnt
+ * @return {boolean}
+ */
 Foxtrick.util.matchEvent.isFirstEvent = function(evnt) {
 	var id = Foxtrick.util.matchEvent.getEventId(evnt);
-	// in HTO matches there is no weather event
-	// so lineup event 20 is first instead
+
+	// in HTO matches the weather events are 36-39
+	// if not available
+	// lineup event 20 is first instead
 	// in neighborhood matches (friendly WOs) 22 is the first event
 	// event-o-Matic events: 700-705
-	return (id >= 30 && id <= 33 || id === 20 || id === 22 || id >= 700 && id < 710);
+
+	/* eslint-disable no-magic-numbers */
+	return id >= 30 && id <= 33 || id >= 36 && id <= 39 ||
+	       id === 20 || id === 21 || id === 22 ||
+	       id >= 700 && id < 710;
+	/* eslint-enable no-magic-numbers */
 };
 
+/**
+ * @param  {number|HTMLElement} evnt
+ * @param  {'team'|'other'|'home'|'away'} type
+ * @return {MatchEventMeta[]|null}
+ */
 Foxtrick.util.matchEvent.getEventIcons = function(evnt, type) {
 	var eventId = typeof evnt == 'number' ? evnt : Foxtrick.util.matchEvent.getEventId(evnt);
-	if (!Foxtrick.util.matchEvent.eventIcons[eventId])
+	var eventIcons = Foxtrick.util.matchEvent.eventIcons[eventId];
+
+	if (!eventIcons)
 		return null;
 
-	var eventIcons = Foxtrick.util.matchEvent.eventIcons[eventId];
 	if (typeof eventIcons === 'object') {
-		return eventIcons[type] || null;
+		if (type in eventIcons) {
+			// @ts-ignore
+			let icons = /** @type {MatchEventMeta[]} */ (eventIcons[type]);
+			return icons;
+		}
+
+		return null;
 	}
+
 	else if (type == 'team') {
 		return [eventIcons];
 	}
@@ -626,168 +980,230 @@ Foxtrick.util.matchEvent.getEventIcons = function(evnt, type) {
 	return null;
 };
 
+/**
+ * @param  {number|HTMLElement} evnt
+ * @return {MatchEventMeta[]|null}
+ */
 Foxtrick.util.matchEvent.getEventTeamIcons = function(evnt) {
 	return Foxtrick.util.matchEvent.getEventIcons(evnt, 'team');
 };
 
+/**
+ * @param  {number|HTMLElement} evnt
+ * @return {MatchEventMeta[]|null}
+ */
 Foxtrick.util.matchEvent.getOtherTeamIcons = function(evnt) {
 	return Foxtrick.util.matchEvent.getEventIcons(evnt, 'other');
 };
 
+/**
+ * @param  {number|HTMLElement} evnt
+ * @return {MatchEventMeta[]|null}
+ */
 Foxtrick.util.matchEvent.getGeneralIconsHome = function(evnt) {
 	return Foxtrick.util.matchEvent.getEventIcons(evnt, 'home');
 };
 
+/**
+ * @param  {number|HTMLElement} evnt
+ * @return {MatchEventMeta[]|null}
+ */
 Foxtrick.util.matchEvent.getGeneralIconsAway = function(evnt) {
 	return Foxtrick.util.matchEvent.getEventIcons(evnt, 'away');
 };
 
+/**
+ * @param  {HTMLElement} evnt
+ * @return {MatchEventMeta[]|null}
+ */
 Foxtrick.util.matchEvent.getHomeIcons = function(evnt) {
 	if (Foxtrick.util.matchEvent.isHomeEvent(evnt))
 		return Foxtrick.util.matchEvent.getEventTeamIcons(evnt);
 	else if (Foxtrick.util.matchEvent.isAwayEvent(evnt))
 		return Foxtrick.util.matchEvent.getOtherTeamIcons(evnt);
-	else
-		return Foxtrick.util.matchEvent.getGeneralIconsHome(evnt);
+	return Foxtrick.util.matchEvent.getGeneralIconsHome(evnt);
 };
 
+/**
+ * @param  {HTMLElement} evnt
+ * @return {MatchEventMeta[]|null}
+ */
 Foxtrick.util.matchEvent.getAwayIcons = function(evnt) {
 	if (Foxtrick.util.matchEvent.isAwayEvent(evnt))
 		return Foxtrick.util.matchEvent.getEventTeamIcons(evnt);
 	else if (Foxtrick.util.matchEvent.isHomeEvent(evnt))
 		return Foxtrick.util.matchEvent.getOtherTeamIcons(evnt);
-	else
-		return Foxtrick.util.matchEvent.getGeneralIconsAway(evnt);
+	return Foxtrick.util.matchEvent.getGeneralIconsAway(evnt);
 };
 
+/** @param {HTMLElement} evnt */
 Foxtrick.util.matchEvent.addEventIcons = function(evnt) {
 	var doc = evnt.ownerDocument;
 
-	var eventId = Foxtrick.util.matchEvent.getEventId(evnt);
+	let eventId = Foxtrick.util.matchEvent.getEventId(evnt);
 	var title = Foxtrick.util.matchEvent.getEventTitle(eventId);
 
+	// eslint-disable-next-line consistent-this
 	var module = Foxtrick.modules.MatchReportFormat;
 	var insertBefore = evnt.firstChild.nextSibling;
 
-	var homeIcons = Foxtrick.util.matchEvent.getHomeIcons(evnt);
-	var awayIcons = Foxtrick.util.matchEvent.getAwayIcons(evnt);
-	var hasNeither = !(homeIcons || awayIcons);
+	let homeIcons = Foxtrick.util.matchEvent.getHomeIcons(evnt);
+	let awayIcons = Foxtrick.util.matchEvent.getAwayIcons(evnt);
+	let hasNeither = !(homeIcons || awayIcons);
 	if (hasNeither) {
-		var container = Foxtrick.createFeaturedElement(doc, module, 'td');
+		let container = Foxtrick.createFeaturedElement(doc, module, 'td');
 		Foxtrick.util.matchEvent.appendIcons(doc, container, ['transparent'], title);
 		container.colSpan = 2;
 		evnt.insertBefore(container, insertBefore);
 		return;
 	}
 
-	var homeContainer = Foxtrick.createFeaturedElement(doc, module, 'td');
+	let homeContainer = Foxtrick.createFeaturedElement(doc, module, 'td');
 	evnt.insertBefore(homeContainer, insertBefore);
-	var awayContainer = Foxtrick.createFeaturedElement(doc, module, 'td');
+	let awayContainer = Foxtrick.createFeaturedElement(doc, module, 'td');
 	evnt.insertBefore(awayContainer, insertBefore);
 
-	if (homeIcons) {
+	if (homeIcons)
 		Foxtrick.util.matchEvent.appendIcons(doc, homeContainer, homeIcons, title);
-	}
-	if (awayIcons) {
+
+	if (awayIcons)
 		Foxtrick.util.matchEvent.appendIcons(doc, awayContainer, awayIcons, homeIcons ? '' : title);
-	}
+
 };
 
-Foxtrick.util.matchEvent.appendIcons = function(doc, container, icons, title) {
-	var appendEventIcon = function(parent, src, title, alt) {
-		Foxtrick.addImage(doc, parent, { alt: alt, title: title, src: src, 'aria-label': alt });
+/**
+ * @param {document} doc
+ * @param {HTMLElement} container
+ * @param {MatchEventMeta[]} icons
+ * @param {string} title
+ * @param {boolean} [addInfo]
+ */
+Foxtrick.util.matchEvent.appendIcons = function(doc, container, icons, title, addInfo = true) {
+
+	/** @param {HTMLImageElement} img */
+	var addSpaceBeforeImg = function(img) {
+		img.parentNode.insertBefore(doc.createTextNode(' '), img);
 	};
 
-	for (var idx = 0; idx < icons.length; idx++) {
-		var src = Foxtrick.util.matchEvent.eventIconDefinition[icons[idx]];
-		if (typeof src === 'function')
-			src = src();
+	for (let [idx, icon] of icons.entries()) {
+		let alt = idx ? '' : title;
+		let features = { alt, title, 'aria-label': alt };
 
-		if (src === undefined)
-			src = Foxtrick.util.matchEvent.eventIconDefinition['transparent'];
+		/** @type {string|null} */
+		let src;
 
-		appendEventIcon(container, src, title, idx ? '' : title);
+		/** @type {MatchEventIconDef} */
+		// @ts-ignore
+		let def = Foxtrick.util.matchEvent.eventIconDefinition[icon];
+		if (typeof def === 'function') {
+			let ret = def();
+			if (typeof ret == 'string') {
+				src = ret;
+			}
+			else if (ret.specialty) {
+				if (addInfo && Foxtrick.Prefs.isModuleEnabled('SpecialtyInfo')) {
+					Foxtrick.addClass(container, 'ft-specInfo-parent');
+					container.dataset.specialty = String(ret.specialty);
+					features.tabindex = '0';
+					features.role = 'button';
+				}
+
+				src = Foxtrick.getSpecialtyImagePathFromNumber(ret.specialty, ret.failure);
+			}
+		}
+		else {
+			src = def;
+		}
+
+		if (src == null) {
+			let transparent = /** @type {string} */
+				(Foxtrick.util.matchEvent.eventIconDefinition.transparent);
+
+			src = transparent;
+		}
+
+		features.src = src;
+
+		Foxtrick.addImage(doc, container, features, null, addSpaceBeforeImg);
 	}
 };
 
+/** @param {HTMLElement} container */
 Foxtrick.util.matchEvent.addEventIndicators = function(container) {
-	var eventRows = container.querySelectorAll('tr[data-eventtype]');
+	/** @type {NodeListOf<HTMLTableRowElement>} */
+	let eventRows = container.querySelectorAll('tr[data-eventtype]');
 	if (!eventRows.length)
 		return;
 
-	//figure out if the reading direction is inverted (last event first)
-	var inverted = !Foxtrick.util.matchEvent.isFirstEvent(eventRows[0]);
-	for (var e = 0; e < eventRows.length; e++)
-		Foxtrick.util.matchEvent.addEventIndicator(eventRows[e], inverted);
+	// figure out if the reading direction is inverted (last event first)
+	let inverted = !Foxtrick.util.matchEvent.isFirstEvent(eventRows[0]);
+	for (let row of eventRows)
+		Foxtrick.util.matchEvent.addEventIndicator(row, inverted);
 };
 
+/**
+ * @param {HTMLTableRowElement} evnt
+ * @param {boolean} invert
+ */
 Foxtrick.util.matchEvent.addEventIndicator = function(evnt, invert) {
 	var doc = evnt.ownerDocument;
 	var eventId = Foxtrick.util.matchEvent.getEventId(evnt);
 	var eventMinute = Foxtrick.util.matchEvent.getEventMinute(evnt);
 	var eventType = Foxtrick.util.matchEvent.eventIcons[eventId];
-	var table = evnt.parentNode;
+	var table = evnt.parentElement;
 
 	// indicators to be added
 	var indicatorList = [
 		{
-			'class': 'kick-off',
+			class: 'kick-off',
 			text: 'kickOff',
 			before: true,
 			func: function() {
-				var koPending = !table.getElementsByClassName('ft-match-report-kick-off').length;
+				let koPending = !table.getElementsByClassName('ft-match-report-kick-off').length;
 
-				if (koPending && !invert && eventMinute !== 0)
+				if (koPending && !invert && eventMinute !== 0) {
 					return true;
+				}
 				else if (koPending && invert && eventMinute !== 0 && evnt.nextSibling) {
-					var node = evnt.nextElementSibling;
+					let node = /** @type {HTMLElement} */ (evnt.nextElementSibling);
 					if (node) {
-						var nextEventMinute = Foxtrick.util.matchEvent.getEventMinute(node);
+						let nextEventMinute = Foxtrick.util.matchEvent.getEventMinute(node);
 						return nextEventMinute === 0;
 					}
-					else
-						return false;
-				}
-				else
+
 					return false;
+				}
+				return false;
 			},
 		},
 		{
-			'class': 'half-time',
+			class: 'half-time',
 			text: 'halfTime',
-			func: function() {
-				return (eventType == 'possession') && (eventMinute == 45);
-			}
+			// eslint-disable-next-line no-magic-numbers
+			func: () => eventType == 'possession' && eventMinute == 45,
 		},
 		{
-			'class': 'full-time',
-			text: 'fullTime',
-			func: function() {
-				return (eventType == 'possession') && (eventMinute == 90);
-			}
-		},
-		{
-			'class': 'extra-time',
+			class: 'extra-time',
 			text: 'extraTime',
 			func: function() {
 				return eventType == 'extraTime';
-			}
+			},
 		},
 		{
-			'class': 'penalty-shoot-out',
+			class: 'penalty-shoot-out',
 			text: 'penaltyShootOut',
 			func: function() {
 				return eventType == 'penaltyShootOut';
-			}
+			},
 		},
 		{
-			'class': 'result',
+			class: 'result',
 			text: 'result',
 			before: true,
 			func: function() {
 				return eventType == 'result';
-			}
-		}
+			},
+		},
 	];
 
 	var indType = Foxtrick.nth(function(n) {
@@ -796,31 +1212,28 @@ Foxtrick.util.matchEvent.addEventIndicator = function(evnt, invert) {
 
 	if (indType) {
 		// found a matching indicator
-		var indicator = doc.createElement('tr');
-		var indicatorCell = doc.createElement('td');
+		let indicator = doc.createElement('tr');
+		let indicatorCell = doc.createElement('td');
 		indicator.appendChild(indicatorCell);
 
-		var cells = Foxtrick.toArray(evnt.cells);
-		var colSpan = cells.reduce(function(sum, cell) {
+		let cells = Foxtrick.toArray(evnt.cells);
+		let colSpan = cells.reduce(function(sum, cell) {
 			return sum + cell.colSpan;
 		}, 0);
 		indicatorCell.colSpan = colSpan;
 		indicatorCell.textContent = Foxtrick.L10n.getString('MatchReportFormat.' + indType.text);
-		Foxtrick.addClass(indicator, 'ft-match-report-' + indType['class']);
+		Foxtrick.addClass(indicator, 'ft-match-report-' + indType.class);
 
-		//invert before when reading direction is flipped
-		var before = indType.before;
+		// invert before when reading direction is flipped
+		let before = indType.before;
 		if (invert)
 			before = !before;
 
-		if (before) {
+		if (before)
 			table.insertBefore(indicator, evnt);
-		}
-		else {
-			if (evnt.nextSibling)
-				table.insertBefore(indicator, evnt.nextSibling);
-			else
-				table.appendChild(indicator);
-		}
+		else if (evnt.nextSibling)
+			table.insertBefore(indicator, evnt.nextSibling);
+		else
+			table.appendChild(indicator);
 	}
 };

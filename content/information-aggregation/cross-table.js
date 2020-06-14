@@ -1,9 +1,10 @@
-'use strict';
 /**
  * cross-table.js
  * add cross table and season graph to fixtures page
  * @author spambot, ryanli
  */
+
+'use strict';
 
 Foxtrick.modules['CrossTable'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
@@ -159,7 +160,7 @@ Foxtrick.modules['CrossTable'] = {
 			}
 		};
 
-		var fillCrossTable = function() {
+		var fillCrossTable = function(doc) {
 			var getShortName = function(str) {
 				var minLength = 3; // only suggested
 				var maxLength = 9;
@@ -252,7 +253,7 @@ Foxtrick.modules['CrossTable'] = {
 			}
 		};
 
-		var drawSeasonGraph = function() {
+		var drawSeasonGraph = function(doc) {
 			var width = 540;
 			var sorter = function(r, a, b) {
 				var goalsDifference = function(t) {
@@ -264,6 +265,7 @@ Foxtrick.modules['CrossTable'] = {
 					return goalsDifference(b) - goalsDifference(a);
 				return b.goalsFor[r] - a.goalsFor[r];
 			};
+
 			// get position after each round
 			for (var i = 0; i < roundsPlayed; ++i) {
 				teams.sort(function(a, b) { return sorter(i, a, b); });
@@ -287,6 +289,7 @@ Foxtrick.modules['CrossTable'] = {
 						                       { to: graphContainer });
 					}
 				};
+
 				// Google Chart API documentation:
 				// Line charts:
 				// http://code.google.com/apis/chart/docs/gallery/line_charts.html
@@ -312,34 +315,38 @@ Foxtrick.modules['CrossTable'] = {
 		};
 
 		var leagueId = doc.location.href.match(/leagueLevelUnitID=(\d+)/i)[1];
+
 		// get season from select since the URL doesn't change when
 		// switching different seasons
-		var season = Foxtrick.getMBElement(doc, 'ucSeasonsDropdown_ddlSeasons').value;
+		let select = /** @type {HTMLSelectElement} */
+			(Foxtrick.getMBElement(doc, 'ucSeasonsDropdown_ddlSeasons'));
+
+		let season = parseInt(select.value, 10);
+
+		/** @type {CHPPParams} */
 		var args = [
 			['file', 'leaguefixtures'],
-			['leagueLevelUnitId', leagueId],
-			['season', season]
+			['leagueLevelUnitId', parseInt(leagueId, 10)],
+			['season', season],
 		];
 
-		Foxtrick.util.api.retrieve(doc, args, { cache_lifetime: 'session' },
-		  function(xml, errorText) {
+		Foxtrick.util.api.retrieve(doc, args, { cache: 'session' }, (xml, errorText) => {
 			try {
 				if (xml) {
-					var matchNodes = xml.getElementsByTagName('Match');
+					let matchNodes = xml.getElementsByTagName('Match');
 					processMatches(matchNodes);
-					fillCrossTable(xml);
-					drawSeasonGraph(xml);
+					fillCrossTable(doc);
+					drawSeasonGraph(doc);
 				}
-				if (errorText) {
-					var note = Foxtrick.util.note.add(doc, errorText, null,
-					                                  { at: graphContainer });
-					note = note.cloneNode(true);
-					table.parentNode.appendChild(note);
+				else if (errorText) {
+					let note = Foxtrick.util.note.add(doc, errorText, null, { at: graphContainer });
+					let clone = Foxtrick.cloneElement(note, true);
+					table.parentNode.appendChild(clone);
 				}
 			}
 			catch (e) {
 				Foxtrick.log(e);
 			}
 		});
-	}
+	},
 };

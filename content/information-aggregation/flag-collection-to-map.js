@@ -1,155 +1,167 @@
-'use strict';
 /**
  * Visited countries map
- * @author seben, fixes convincedd
+ * @author seben, fixes convincedd, LA-MJ
  */
 
-Foxtrick.modules['FlagCollectionToMap'] = {
+'use strict';
+
+/* eslint-disable key-spacing */
+
+Foxtrick.modules.FlagCollectionToMap = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES: ['flagCollection'],
 
-	own_countryid: 0,
-	own_countryvisited: false,
-	own_countryCodes: 'XX',
-
-	// country codes. see  http://code.google.com/apis/chart/#iso_codes
+	// country codes. see  https://developers.google.com/chart/image/docs/gallery/new_map_charts
 	// leaugeid: ISO codes for google chart api
-	HT_countries: {
-		128	:	['IQ'],	// Al Iraq
-		118	:	['DZ'],	// Al Jazair
-		127	:	['KW'],	// Al Kuwayt
-		77	:	['MA'],	// Al Maghrib
-		106	:	['JO'],	// Al Urdun
-		133	:	['YE'],	// Al Yaman
-		105	:	['AD'],	// Andorra
-		130	:	['AO'],	// Angola
-		7	:	['AR'],	// Argentina
-		129	:	['AZ'],	// Az?rbaycan
-		123	:	['BH'],	// Bahrain
-		132	:	['BD'],	// Bangladesh
-		124	:	['BB'],	// Barbados
-		91	:	['BY'],	// Belarus
-		44	:	['BE'],	// België
-		139	:	['BJ'],	// Benin
-		74	:	['BO'],	// Bolivia
-		69	:	['BA'],	// Bosna i Herc
-		16	:	['BR'],	// Brasil
-		136	:	['BN'],	// Brunei
-		62	:	['BG'],	// Bulgaria
-		126	:	['CI'],	// C. d']Ivoire
-		125	:	['CV'],	// Cabo Verde
-		146	:	['CM'],	// Cameroon
-		17	:	['CA'],	// Canada
-		52	:	['CZ'],	// Ceská rep.
-		18	:	['CL'],	// Chile
-		60	:	['TW'],	// Chin. Taipei
-		34	:	['CN', 'MO'],	// China
-		19	:	['CO'],	// Colombia
-		81	:	['CR'],	// Costa Rica
-		147	:	['CU'],	// Cuba
-		131	:	['ME'],	// Crna Gora
-		61	:	['GB-WLS'],	// Cymru
-		89	:	['CY'],	// Cyprus
-		11	:	['DK', 'GL'],	// Danmark
-		3	:	['DE'],	// Deutschland
-		73	:	['EC'],	// Ecuador
-		56	:	['EE'],	// Eesti
-		100	:	['SV'],	// El Salvador
-		2	:	['GB-ENG'],	// England
-		36	:	['ES'],	// Espana
-		76	:	['FO'],	// Foroyar
-		5	:	['FR', 'GF', 'TF', 'BL', 'GP', 'MF', 'MQ', 'NC', 'PF', 'PM', 'RE', 'WF', 'YT'],
-			// France  PF part of oceania?
-		137	:	['GH'],	// Ghana
-		107	:	['GT'],	// Guatemala
-		30	:	['KR'],	// Hanguk
-		122	:	['AM'],	// Hayastan
-		50	:	['GR'],	// Hellas
-		99	:	['HN'],	// Honduras
-		59	:	['HK'],	// Hong Kong
-		58	:	['HR'],	// Hrvatska
-		20	:	['IN'],	// India
-		54	:	['ID'],	// Indonesia
-		85	:	['IR'],	// Iran
-		21	:	['IE'],	// Ireland
-		38	:	['IS'],	// Ísland
-		63	:	['IL'],	// Israel
-		4	:	['IT'],	// Italia
-		94	:	['JM'],	// Jamaica
-		138	:	['KH'],	// Kampuchea
-		112	:	['KZ'],	// Kazakhstan
-		95	:	['KE'],	// Kenya
-		102	:	['KG'],	// Kyrgyzstan
-		53	:	['LV'],	// Latvija
-		84	:	['LU'],	// Lëtzebuerg
-		117	:	['LI'],	// Liechtenst.
-		66	:	['LT'],	// Lietuva
-		120	:	['LB'],	// Lubnan
-		51	:	['HU'],	// Magyarország
-		97	:	['MK'],	// Makedonija
-		45	:	['MY'],	// Malaysia
-		144	:	['MV'],	// Maldives
-		101	:	['MT'],	// Malta
-		6	:	['MX'],	// México
-		33	:	['EG'],	// Misr
-		135	:	['MZ'],	// Moçambique
-		103	:	['MD'],	// Moldova
-		119	:	['MN'],	// Mongol Uls
-		93	:	['GB-NIR'],	// N. Ireland
-		14	:	['NL'],	// Nederland
-		111	:	['NI'],	// Nicaragua
-		75	:	['NG'],	// Nigeria
-		22	:	['JP'],	// Nippon
-		9	:	['NO', 'SJ'], // Norge
-		15	:	[
-			'AU', 'NZ', 'CX', 'CC', 'NF', 'FJ', 'NC', 'PG', 'SB', 'VU', 'FM', 'GU', 'KI', 'MH',
-			'NR', 'MP', 'PW', 'AS', 'CK', 'PF', 'NU', 'PN', 'WS', 'TK', 'TO', 'TV', 'WF'
-		],				// Oceania
-		134	:	['OM'],	// Oman
-		39	:	['AT'],	// Österreich
-		71	:	['PK'],	// Pakistan
-		96	:	['PA'],	// Panamá
-		148	:	['PS'],	// Palestinian Territory, Occupied
-		72	:	['PY'],	// Paraguay
-		23	:	['PE'],	// Perú
-		55	:	['PH'],	// Philippines
-		24	:	['PL'],	// Polska
-		25	:	['PT'],	// Portugal
-		31	:	['TH'],	// Prathet Thai
-		141	:	['QA'],	// Qatar
-		88	:	['DO'],	// Rep. Dom.
-		37	:	['RO'],	// România
-		35	:	['RU'],	// Rossiya
-		104	:	['GE'],	// Sakartvelo
-		79	:	['SA'],	// Saudi Arabia
-		46	:	['CH'],	// Schweiz
-		26	:	['GB-SCT'],	// Scotland
-		121	:	['SN'],	// Sénégal
-		98	:	['AL'],	// Shqiperia
-		47	:	['SG'],	// Singapore
-		64	:	['SI'],	// Slovenija
-		67	:	['SK'],	// Slovensko
-		27	:	['ZA'],	// South Africa
-		57	:	['RS'],	// Srbija
-		12	:	['FI', 'AX'],	// Suomi
-		113	:	['SR'],	// Suriname
-		140	:	['SY'],	// Suriyah
-		1	:	['SE'],	// Sverige
-		142	:	['TZ'],	// Tanzania
-		80	:	['TN'],	// Tounes
-		110	:	['TT'],	// Trinidad/T.
-		32	:	['TR'],	// Türkiye
-		83	:	['AE'],	// U.A.E.
-		143	:	['UG'],	// Uganda
-		68	:	['UA'],	// Ukraina
-		28	:	['UY'],	// Uruguay
-		8	:	['US', 'AS', 'GU', 'MP', 'PR', 'UM', 'VI'],	// USA
-		145	:	['UZ'],	// Uzbekistan
-		29	:	['VE'],	// Venezuela
-		70	:	['VN'],	// Vietnam
+	HTCountries: {
+		128: ['IQ'], // Al Iraq
+		127: ['KW'], // Al Kuwayt
+		77 : ['MA'], // Al Maghrib
+		106: ['JO'], // Al Urdun
+		133: ['YE'], // Al Yaman
+		118: ['DZ'], // Algérie / Al Jazair
+		105: ['AD'], // Andorra
+		130: ['AO'], // Angola
+		7  : ['AR'], // Argentina
+		129: ['AZ'], // Azərbaycan
+		123: ['BH'], // Bahrain
+		132: ['BD'], // Bangladesh
+		124: ['BB'], // Barbados
+		91 : ['BY'], // Belarus
+		158: ['BZ'], // Belize
+		44 : ['BE'], // Belgium / België
+		139: ['BJ'], // Benin
+		74 : ['BO'], // Bolivia
+		69 : ['BA'], // Bosna i Hercegovina
+		160: ['BW'], // Botswana
+		16 : ['BR'], // Brasil
+		136: ['BN'], // Brunei
+		62 : ['BG'], // Bulgaria
+		125: ['CV'], // Cabo Verde
+		146: ['CM'], // Cameroon
+		17 : ['CA'], // Canada
+		52 : ['CZ'], // Česká republika
+		18 : ['CL'], // Chile
+		34 : ['CN', 'MO'], // China
+		60 : ['TW'], // Chinese Taipei / Taiwan
+		19 : ['CO'], // Colombia
+		151: ['KM'], // Comoros
+		81 : ['CR'], // Costa Rica
+		126: ['CI'], // Côte d’Ivoire
+		131: ['ME'], // Crna Gora
+		147: ['CU'], // Cuba
+		153: ['CW'], // Curaçao
+		61 : ['GB-WLS'], // Cymru
+		89 : ['CY'], // Cyprus
+		11 : ['DK', 'GL'], // Danmark
+		141: ['QA'], // Dawlat Qatar
+		3  : ['DE'], // Deutschland
+		144: ['MV'], // Dhivehi Raajje / Maldives
+		73 : ['EC'], // Ecuador
+		56 : ['EE'], // Eesti
+		100: ['SV'], // El Salvador
+		2  : ['GB-ENG'], // England
+		36 : ['ES'], // España
+		5  : [
+			'FR', 'GF', 'TF', 'BL', 'GP', 'MF', 'MQ', 'NC', 'PF', 'PM', 'RE', 'WF', 'YT',
+		], // France PF part of oceania?
+		76 : ['FO'], // Føroyar
+		137: ['GH'], // Ghana
+		154: ['GU'], // Guam
+		107: ['GT'], // Guatemala
+		30 : ['KR'], // Hanguk / Korea
+		122: ['AM'], // Hayastan / Armenia
+		50 : ['GR'], // Hellas
+		99 : ['HN'], // Honduras
+		59 : ['HK'], // Hong Kong
+		58 : ['HR'], // Hrvatska
+		20 : ['IN'], // India
+		54 : ['ID'], // Indonesia
+		85 : ['IR'], // Iran
+		21 : ['IE'], // Ireland
+		38 : ['IS'], // Ísland
+		63 : ['IL'], // Israel
+		4  : ['IT'], // Italia
+		156: ['ET'], // Ītyōṗṗyā / Ethiopia
+		94 : ['JM'], // Jamaica
+		138: ['KH'], // Kampuchea / Cambodia
+		112: ['KZ'], // Kazakhstan
+		95 : ['KE'], // Kenya
+		102: ['KG'], // Kyrgyz Republic
+		53 : ['LV'], // Latvija
+		84 : ['LU'], // Lëtzebuerg
+		117: ['LI'], // Liechtenstein
+		66 : ['LT'], // Lietuva
+		120: ['LB'], // Lubnan
+		159: ['MG'], // Madagasikara
+		51 : ['HU'], // Magyarország
+		45 : ['MY'], // Malaysia
+		101: ['MT'], // Malta
+		6  : ['MX'], // México
+		33 : ['EG'], // Misr / Egypt
+		135: ['MZ'], // Moçambique / Mozambique
+		103: ['MD'], // Moldova
+		119: ['MN'], // Mongol Uls
+		14 : ['NL'], // Nederland
+		111: ['NI'], // Nicaragua
+		75 : ['NG'], // Nigeria
+		22 : ['JP'], // Nippon / Japan
+		9  : ['NO', 'SJ'], // Norge
+		93 : ['GB-NIR'], // Northern Ireland
+		145: ['UZ'], // O’zbekiston / Uzbekistan
+		15 : [
+			'AU', 'NZ', 'CX', 'CC', 'NF', 'FJ', 'NC', 'PG', 'SB', 'VU', 'FM', 'KI', 'MH',
+			'NR', 'MP', 'PW', 'AS', 'CK', 'PF', 'NU', 'PN', 'WS', 'TK', 'TO', 'TV', 'WF',
+		], // Oceania
+		134: ['OM'], // Oman
+		39 : ['AT'], // Österreich
+		71 : ['PK'], // Pakistan
+		148: ['PS'], // Palestine
+		96 : ['PA'], // Panamá
+		72 : ['PY'], // Paraguay
+		23 : ['PE'], // Perú
+		55 : ['PH'], // Pilipinas / Philippines
+		24 : ['PL'], // Polska
+		25 : ['PT'], // Portugal
+		31 : ['TH'], // Prathet Thai / Thailand
+		155: ['CD'], // RD Congo
+		88 : ['DO'], // República Dominicana
+		37 : ['RO'], // România
+		35 : ['RU'], // Rossiya
+		157: ['VC'], // Saint Vincent and the Grenadines
+		104: ['GE'], // Sakartvelo / Georgia
+		149: ['ST'], // São Tomé e Príncipe
+		79 : ['SA'], // Saudi Arabia
+		46 : ['CH'], // Schweiz
+		26 : ['GB-SCT'], // Scotland
+		121: ['SN'], // Sénégal
+		97 : ['MK'], // Severna Makedonija / North Macedonia
+		98 : ['AL'], // Shqiperia / Albania
+		47 : ['SG'], // Singapore
+		64 : ['SI'], // Slovenija
+		67 : ['SK'], // Slovensko / Slovakia
+		27 : ['ZA'], // South Africa
+		57 : ['RS'], // Srbija
+		152: ['LK'], // Sri Lanka
+		12 : ['FI', 'AX'], // Suomi
+		113: ['SR'], // Suriname
+		140: ['SY'], // Suriyah
+		1  : ['SE'], // Sverige
+		142: ['TZ'], // Tanzania
+		80 : ['TN'], // Tounes
+		110: ['TT'], // Trinidad & Tobago
+		32 : ['TR'], // Türkiye
+		143: ['UG'], // Uganda
+		68 : ['UA'], // Ukraina
+		83 : ['AE'], // United Arab Emirates
+		28 : ['UY'], // Uruguay
+		8  : ['US', 'AS', 'MP', 'PR', 'UM', 'VI'], // USA
+		29 : ['VE'], // Venezuela
+		70 : ['VN'], // Việt Nam / Vietnam
 	},
+	/* eslint-enable key-spacing */
 
-	non_HT_countries: [
+	nonHTCountries: [
 		'AF',
 		'AG',
 		'AI',
@@ -166,14 +178,12 @@ Foxtrick.modules['FlagCollectionToMap'] = {
 		'BV',
 		'BW',
 		'BZ',
-		'CD',
 		'CF',
 		'CG',
 		'DJ',
 		'DM',
 		'EH',
 		'ER',
-		'ET',
 		'FK',
 		'GA',
 		'GD',
@@ -191,13 +201,11 @@ Foxtrick.modules['FlagCollectionToMap'] = {
 		'IM',
 		'IO',
 		'JE',
-		'KM',
 		'KN',
 		'KP',
 		'KY',
 		'LA',
 		'LC',
-		'LK',
 		'LR',
 		'LS',
 		'LY',
@@ -225,7 +233,6 @@ Foxtrick.modules['FlagCollectionToMap'] = {
 		'SL',
 		'SM',
 		'SO',
-		'ST',
 		'SZ',
 		'TC',
 		'TD',
@@ -240,218 +247,243 @@ Foxtrick.modules['FlagCollectionToMap'] = {
 		'VI',
 		'YT',
 		'ZM',
-		'ZW'
+		'ZW',
 	],
 
-
+	/** @param {document} doc */
 	run: function(doc) {
-		this.own_countryid = Foxtrick.util.id.getOwnLeagueId();
+		const module = this;
 
-		var mapId = 0;
-		var mainbox = doc.getElementsByClassName('mainBox');
-		for (var i = 0; i < mainbox.length; i++) {
-			var divElement = mainbox[i];
+		var mainboxes = doc.getElementsByClassName('mainBox');
 
-			var countryIds = [];
-			for (var j = 0; j < divElement.childNodes.length; j++) {
-				var currentNode = divElement.childNodes[j];
-				if (currentNode.nodeName == 'A' && currentNode.href.search(/LeagueID=/i) > -1) {
-					var countryId = currentNode.href.substr(currentNode.href.lastIndexOf('=') + 1,
-					                                        currentNode.href.length);
-					if (currentNode.getElementsByTagName('img')[0].getAttribute('style')
-					    .search(/flags\.gif/i) != -1) {
-						countryIds.push(countryId);
-					}
-				} else if (currentNode.nodeName == 'P') {
+		for (let divElement of mainboxes) {
+			let countryIds = [];
+
+			for (let currentNode of [...divElement.children]) {
+				if (currentNode.matches('a.flag')) {
+					let link = /** @type {HTMLAnchorElement} */ (currentNode);
+					countryIds.push(Foxtrick.getUrlParam(link.href, 'LeagueID'));
+				}
+				else if (currentNode.nodeName == 'P') {
 					// not a flag, flush the buffer
-					this.createAndInsertMap(doc, countryIds, mapId++, divElement, currentNode);
+					module.createAndInsertMap(doc, countryIds, divElement, currentNode);
 					countryIds = [];
 				}
 			}
-			this.createAndInsertMap(doc, countryIds, mapId++, divElement, null);
+			module.createAndInsertMap(doc, countryIds, divElement, null);
 		}
 
 	},
 
+	lastMapId: 0,
 
+	/**
+	 * @param {Element} parent
+	 * @param {Element} what
+	 * @param {Element} beforeWhat
+	 */
 	insertBeforeOrAppend: function(parent, what, beforeWhat) {
-		if (beforeWhat == null) {
+		if (beforeWhat == null)
 			parent.appendChild(what);
-		} else {
+		else
 			parent.insertBefore(what, beforeWhat);
-		}
 	},
 
-	createAndInsertMap: function(document, countryIdsHasFlags, mapId, parent, insertBefore) {
+	/**
+	 * @param {document} doc
+	 * @param {string[]} flagCountryIds
+	 * @param {Element}  parent
+	 * @param {Element}  insertBefore
+	 */
+	createAndInsertMap: function(doc, flagCountryIds, parent, insertBefore) {
+		const module = this;
 
-		if (countryIdsHasFlags.length == 0) return;
+		if (flagCountryIds.length == 0)
+			return;
 
-		var collectedCountryCodes = '';
-		var colouringOrder = '';
+		/** @type {string[]} */
+		var collectedCountryCodes = [];
+
+		/** @type {number[]} */
+		var colouringOrder = [];
 
 		// flags
-		for (var i = 0; i < countryIdsHasFlags.length; i++) {
-			var countryId = countryIdsHasFlags[i];
-			var countryCodes = this.HT_countries[countryId];
-			for (var j = 0; j < countryCodes.length; ++j) {
-				collectedCountryCodes += countryCodes[j] + '|';
-				colouringOrder += '0,';
+		for (let countryId of flagCountryIds) {
+
+			/** @type {string[]} */
+			let countryCodes = module.HTCountries[countryId];
+			if (!countryCodes) {
+				if (countryId != '1000') // HTI
+					Foxtrick.log(`WARNING: ${countryId} country unknown`);
+
+				continue;
 			}
+
+			collectedCountryCodes.push(...countryCodes);
+			colouringOrder.push(...countryCodes.map(_ => 0));
 		}
 
 		// no flag
-		var noflags = '', countryId;
-		for (countryId in this.HT_countries) {
-			var countryCodes = this.HT_countries[countryId];
-			if (!Foxtrick.any(function(n) {
-				return n == countryId;
-				}, countryIdsHasFlags)) { // not hasFlag
-				for (var j = 0; j < countryCodes.length; ++j) {
-					noflags += countryCodes[j] + '|';
-					collectedCountryCodes += countryCodes[j] + '|';
-					colouringOrder += '100,';
-				}
-			}
+		for (let [countryId, countryCodes] of Object.entries(module.HTCountries)) {
+			if (flagCountryIds.includes(countryId))
+				continue;
+
+			// not hasFlag
+			collectedCountryCodes.push(...countryCodes);
+			colouringOrder.push(...countryCodes.map(_ => 100));
 		}
 
-		/*
-		// non-ht countries. not updated to new version and url would get too long probably
-		for (var i = 0; i < this.non_HT_countries.length-1 ; i++) {
-			collectedCountryCodes += this.non_HT_countries[i]+'|';
-			colouringOrder += '0,';
+		/** @type {FlagMapUrlDefinition} */
+		var urls;
+
+		{
+			let codes = collectedCountryCodes.join('|');
+			let colors = colouringOrder.join(',');
+
+			let sAfrica = Foxtrick.L10n.getString('flagCollectionToMap.Africa');
+			let sAsia = Foxtrick.L10n.getString('flagCollectionToMap.Asia');
+			let sEurope = Foxtrick.L10n.getString('flagCollectionToMap.Europe');
+			let sMEast = Foxtrick.L10n.getString('flagCollectionToMap.MEast');
+			let sSAmerica = Foxtrick.L10n.getString('flagCollectionToMap.SAmerica');
+			let sWorld = Foxtrick.L10n.getString('flagCollectionToMap.World');
+
+			// get all required urls
+			let africa = module.getMapUrl(sAfrica, codes, colors, '-35,-25,38,50', '440x500');
+			let asia = module.getMapUrl(sAsia, codes, colors, '-50,40,70,180', '440x530');
+			let europe = module.getMapUrl(sEurope, codes, colors, '34,-11,64,30', '440x540');
+			let mEast = module.getMapUrl(sMEast, codes, colors, '12,24,44,64', '440x440');
+			let sAmerica = module.getMapUrl(sSAmerica, codes, colors, '-55,-95,25,-30', '440x640');
+			let world = module.getMapUrl(sWorld, codes, colors, '-60,-180,80,180', '440x300');
+
+			urls = { africa, asia, europe, mEast, sAmerica, world };
 		}
-		collectedCountryCodes += this.non_HT_countries[this.non_HT_countries.length-1];
-		colouringOrder += '0';*/
 
-		/*
-		// own country. add to front. is overwriten by visited color if visited
-		this.own_countryCodes = this.countryCodes['c_'+this.own_countryid];
-		if (typeof this.own_countryCodes != 'undefined') {
-				collectedCountryCodes = this.own_countryCodes + '|'+collectedCountryCodes;
-				colouringOrder = '100,' + colouringOrder;
-		}*/
+		const mapId = module.lastMapId++;
+		const showMap = Foxtrick.L10n.getString('flagCollectionToMap.ShowMap');
+		const hideMap = Foxtrick.L10n.getString('flagCollectionToMap.HideMap');
 
-		var Africa = Foxtrick.L10n.getString('flagCollectionToMap.Africa');
-		var Asia = Foxtrick.L10n.getString('flagCollectionToMap.Asia');
-		var Europe = Foxtrick.L10n.getString('flagCollectionToMap.Europe');
-		var MEast = Foxtrick.L10n.getString('flagCollectionToMap.MEast');
-		var SAmerica = Foxtrick.L10n.getString('flagCollectionToMap.SAmerica');
-		var World = Foxtrick.L10n.getString('flagCollectionToMap.World');
-
-		// get all required urls
-		var urlAfrica = this.getMapUrl(Africa, collectedCountryCodes, colouringOrder,
-		                               '-35,-25,38,50', '440x500');
-		var urlAsia = this.getMapUrl(Asia, collectedCountryCodes, colouringOrder,
-		                             '-50,40,70,180', '440x530');
-		var urlEurope = this.getMapUrl(Europe, collectedCountryCodes, colouringOrder,
-		                               '34,-11,64,30', '440x540');
-		var urlMEast = this.getMapUrl(MEast, collectedCountryCodes, colouringOrder,
-		                              '12,24,44,64', '440x440');
-		var urlSAmerica = this.getMapUrl(SAmerica, collectedCountryCodes, colouringOrder,
-		                                 '-55,-95,25,-30', '440x640');
-		var urlWorld = this.getMapUrl(World, collectedCountryCodes, colouringOrder,
-		                              '-60,-180,80,180', '440x300');
-
-		var mapDiv = document.createElement('div');
-		mapDiv.id = 'foxtrick-map' + mapId;
-		Foxtrick.addClass(mapDiv, 'hidden');
-
-		var openMapA = document.createElement('A');
-
-		var ShowMap = Foxtrick.L10n.getString('flagCollectionToMap.ShowMap');
-		var HideMap = Foxtrick.L10n.getString('flagCollectionToMap.HideMap');
-		openMapA.appendChild(document.createTextNode(ShowMap));
+		var openMapA = doc.createElement('a');
+		openMapA.appendChild(doc.createTextNode(showMap));
 		openMapA.name = 'flags' + mapId;
-		openMapA.href = '#' + 'foxtrick-top-map-' + mapId;
+		openMapA.href = '#foxtrick-top-map-' + mapId;
 		openMapA.id = 'flagsA' + mapId;
+
 		Foxtrick.onClick(openMapA, function(ev) {
-			if (Foxtrick.hasClass(document.getElementById('foxtrick-map' + mapId), 'hidden')) {
-				Foxtrick.removeClass(document.getElementById('foxtrick-map' + mapId), 'hidden');
-				document.getElementById('flagsA' + mapId).textContent = HideMap;
+			if (Foxtrick.hasClass(doc.getElementById('foxtrick-map' + mapId), 'hidden')) {
+				Foxtrick.removeClass(doc.getElementById('foxtrick-map' + mapId), 'hidden');
+				doc.getElementById('flagsA' + mapId).textContent = hideMap;
 			}
 			else {
-				Foxtrick.addClass(document.getElementById('foxtrick-map' + mapId), 'hidden');
-				document.getElementById('flagsA' + mapId).textContent = ShowMap;
+				Foxtrick.addClass(doc.getElementById('foxtrick-map' + mapId), 'hidden');
+				doc.getElementById('flagsA' + mapId).textContent = showMap;
 			}
 			return false;
 		});
-		var openMapDiv = Foxtrick.createFeaturedElement(document, this, 'div');
+
+		var openMapDiv = Foxtrick.createFeaturedElement(doc, module, 'div');
 		openMapDiv.appendChild(openMapA);
 
-		this.insertBeforeOrAppend(parent, mapDiv, insertBefore);
-		this.insertBeforeOrAppend(parent, openMapDiv, insertBefore);
+		var mapDiv = doc.createElement('div');
+		mapDiv.id = 'foxtrick-map' + mapId;
+		mapDiv.dataset.mapId = String(mapId);
+		Foxtrick.addClass(mapDiv, 'hidden');
 
-		this.addMap(document, document.getElementById('foxtrick-map' + mapId), urlAfrica,
-		            urlAsia, urlEurope, urlMEast, urlSAmerica, urlWorld, mapId);
+		module.insertBeforeOrAppend(parent, mapDiv, insertBefore);
+		module.insertBeforeOrAppend(parent, openMapDiv, insertBefore);
+		module.addMap(doc, mapDiv, urls);
 	},
 
-	addMap: function(doc, map, urlAfrica, urlAsia, urlEurope, urlMEast,
-	                 urlSAmerica, urlWorld, anchorId) {
-		var href = '#' + 'foxtrick-img-map-' + anchorId;
-		var hrefTop = '#' + 'foxtrick-top-map-' + anchorId;
-		var Africa = Foxtrick.L10n.getString('flagCollectionToMap.Africa');
-		var Asia = Foxtrick.L10n.getString('flagCollectionToMap.Asia');
-		var Europe = Foxtrick.L10n.getString('flagCollectionToMap.Europe');
-		var MEast = Foxtrick.L10n.getString('flagCollectionToMap.MEast');
-		var SAmerica = Foxtrick.L10n.getString('flagCollectionToMap.SAmerica');
-		var World = Foxtrick.L10n.getString('flagCollectionToMap.World');
+	/**
+	 * @typedef FlagMapUrlDefinition
+	 * @prop {string} africa
+	 * @prop {string} asia
+	 * @prop {string} europe
+	 * @prop {string} mEast
+	 * @prop {string} sAmerica
+	 * @prop {string} world
+	 */
+
+	/**
+	 * @param {document}             doc
+	 * @param {HTMLElement}          map
+	 * @param {FlagMapUrlDefinition} urls
+	 */
+	addMap: function(doc, map, urls) {
+		let { africa, asia, europe, mEast, sAmerica, world } = urls;
+
+		var mapId = map.dataset.mapId;
+		var imgMap = 'foxtrick-img-map-' + mapId;
+		var topMap = 'foxtrick-top-map-' + mapId;
 
 		var addNavLink = function(imgUrl, text) {
-			var a = doc.createElement('a');
-			a.href = hrefTop;
-			Foxtrick.onClick(a, function(ev) {
-				doc.getElementById('foxtrick-img-map-' + anchorId).src = imgUrl;
-			});
+			let a = doc.createElement('a');
+			a.href = `#${topMap}`;
 			a.textContent = text;
-			map.appendChild(a);
-			return a;
+			Foxtrick.onClick(a, function(ev) {
+				let img = /** @type {HTMLImageElement} */ (doc.getElementById(imgMap));
+				img.src = imgUrl;
+			});
+			return map.appendChild(a);
 		};
-		var top = addNavLink(urlAfrica, Africa);
-		top.id = 'foxtrick-top-map-' + anchorId;
-		map.appendChild(doc.createTextNode(' '));
-		addNavLink(urlAsia, Asia);
-		map.appendChild(doc.createTextNode(' '));
-		addNavLink(urlEurope, Europe);
-		map.appendChild(doc.createTextNode(' '));
-		addNavLink(urlMEast, MEast);
-		map.appendChild(doc.createTextNode(' '));
-		addNavLink(urlSAmerica, SAmerica);
-		map.appendChild(doc.createTextNode(' '));
-		addNavLink(urlWorld, World);
-		map.appendChild(doc.createTextNode(' '));
 
-		var img = doc.createElement('img');
+		{
+			let maps = [
+				[africa, Foxtrick.L10n.getString('flagCollectionToMap.Africa')],
+				[asia, Foxtrick.L10n.getString('flagCollectionToMap.Asia')],
+				[europe, Foxtrick.L10n.getString('flagCollectionToMap.Europe')],
+				[mEast, Foxtrick.L10n.getString('flagCollectionToMap.MEast')],
+				[sAmerica, Foxtrick.L10n.getString('flagCollectionToMap.SAmerica')],
+				[world, Foxtrick.L10n.getString('flagCollectionToMap.World')],
+			];
+
+			for (let [url, txt] of maps) {
+				let link = addNavLink(url, txt);
+				if (url == africa)
+					link.id = topMap;
+
+				map.appendChild(doc.createTextNode(' '));
+			}
+		}
+
+		let img = doc.createElement('img');
 		img.onload = img.onerror = function() {
+			// eslint-disable-next-line no-magic-numbers
 			if (this.height < 300 || this.width < 300) {
-				var msg = Foxtrick.L10n.getString('resource.error');
+				let msg = Foxtrick.L10n.getString('resource.error');
 				msg = msg.replace(/%s/, 'chart.googleapis.com');
 				Foxtrick.util.note.add(doc, msg, 'ft-flag-map-failed-note', { to: map });
 			}
 		};
-		img.id = 'foxtrick-img-map-' + anchorId;
+		img.id = imgMap;
 		img.alt = 'Map';
-		img.src = urlWorld;
+		img.src = world;
 		map.appendChild(img);
 	},
 
 	/**
 	 * Build the url for the map image
-	 * Example: http://chart.apis.google.com/chart?cht=t&chs=440x220&chco=ffffff,339933,339933&chd=s:AAAAAA&chld=USCAAUFINODK&chtm=world&chf=bg,s,EAF7FE
+	 *
+	 * E.g.: https://chart.apis.google.com/chart?cht=t&chs=440x220&chco=ffffff,339933,339933&chd=s:AAAAAA&chld=USCAAUFINODK&chtm=world&chf=bg,s,EAF7FE
+	 *
+	 * @param  {string} title        map title
+	 * @param  {string} countryCodes pipe separated list of ISO 3166-2 codes
+	 * @param  {string} colorCodes   comma separated list of gradient codes 0..100
+	 * @param  {string} coords       degree coordinates 'S,W,N,E'
+	 * @param  {string} size         x*y in pixels, e.g. 400x300
+	 * @return {string}              map url
 	 */
-	//* @param: title, ISO 3166-2 countrycodes, gradient codes (0-100), lang-long box, x*y
-	getMapUrl: function(title, countryCodes, colorOrder, areaParam, size) {
-		var base = '//chart.googleapis.com/chart';
-		var chartType = '?cht=map:fixed=' + areaParam; // lang long: bottom,left,top,right
-		var dimensions = '&chs=' + size;
+	getMapUrl: function(title, countryCodes, colorCodes, coords, size) {
+		const parts = [
+			'https://chart.googleapis.com/chart',
+			'?cht=map:fixed=' + coords,
+			'&chs=' + size,
+			'&chtt=' + title,
+			'&chco=CCCCCC,849D84,FCF6DF', // colors: non-ht,flag,noflag,
+			'&chf=bg,s,a6dfe7', // bg water color
+			'&chd=t:' + colorCodes,
+			'&chld=' + countryCodes,
+		];
 
-		var colors = '&chco=CCCCCC,849D84,FCF6DF';  // non-ht,flag,noflag,
-		var order = '&chd=t:' + colorOrder;
-		var countries = '&chld=' + countryCodes;
-		var title = '&chtt=' + title;
-		var background = '&chf=bg,s,a6dfe7'; // bg water color
-
-		var url = base + chartType + dimensions + title + colors + background + order + countries;
-		url = url.replace(',&', '&');
-		return url;
+		return parts.join('');
 	},
 };

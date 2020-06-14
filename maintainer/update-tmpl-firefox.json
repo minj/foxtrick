@@ -1,0 +1,19 @@
+{
+	"addons": {
+		"{FF_ADDON_ID}": {
+			"updates": [
+				{
+					"applications": {
+						"gecko": {
+							"strict_min_version": "60.0a1",
+							"strict_max_version": "*"
+						}
+					},
+					"version": "{VERSION}",
+					"update_link": "{UPDATE_LINK}",
+					"update_hash": "{UPDATE_HASH}"
+				}
+			]
+		}
+	}
+}

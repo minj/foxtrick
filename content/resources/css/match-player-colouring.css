@@ -8,6 +8,10 @@
 	border: 1px solid #849D84;
 	background-color: white;
 }
+.live-scoreboard-teamname.live-scoreboard-teamname.ft-match-player-home {
+	color: #849D84 !important; /* HTs 🥴 */
+}
+
 .ft-match-player-home:hover {
 	color: #849D84;
 }
@@ -17,6 +21,10 @@
 	background: #849D84;
 	color:white;
 }
+.live-scoreboard-teamname.live-scoreboard-teamname.ft-match-player-away {
+	color: white !important; /* HTs 🥴 */
+}
+
 .ft-match-player-away:hover {
 	color: white;
 }

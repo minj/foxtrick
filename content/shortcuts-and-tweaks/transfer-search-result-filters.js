@@ -1,360 +1,457 @@
-'use strict';
 /**
  * transfer-search-result-filters.js
  * Transfer list filters
  * @author convincedd, ryanli, LA-MJ
  */
 
-Foxtrick.modules['TransferSearchResultFilters'] = {
+'use strict';
+
+Foxtrick.modules.TransferSearchResultFilters = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES: ['transferSearchForm', 'transferSearchResult'],
 	NICE: -1, // before TransferDeadline and HTMSPoints
 
+	/** @param {document} doc */
 	run: function(doc) {
-		var filterIdPrefix = 'FoxtrickTransferSearchResultFilters.';
+		const module = this;
+		const FILTER_PREFIX = 'FoxtrickTransferSearchResultFilters';
+
 		// functions returning whether to hide a player
 		// need to check availablility of a certain property first since they
 		// may not be available for players just sold
 		var FILTER_FUNC = {
-			'hideBruised': function(player, checked) {
-				if (player.bruised == null)
-					return true;
-				return player.bruised;
-			},
-			'hideInjured': function(player, checked) {
-				if (player.injured == null)
-					return true;
-				return player.injured;
-			},
-			'hideSuspended': function(player, checked) {
-				if (player.redCard == null)
-					return true;
-				return player.redCard == 1;
-			},
-			'days': function(player, min, max) {
-				if (player.age == null)
-					return true;
-				if (typeof(min) == 'number' && player.age.days < min)
-					return true;
-				if (typeof(max) == 'number' && player.age.days > max)
-					return true;
-				return false;
-			},
-			'form': function(player, min, max) {
+
+			/**
+			 * @param  {Player} player
+			 * @param  {number|''} min
+			 * @param  {number|''} max
+			 * @return {boolean}
+			 */
+			form: function(player, min, max) {
 				if (player.form == null)
 					return true;
-				if (typeof(min) == 'number' && player.form < min)
+				if (typeof min == 'number' && min !== -1 && player.form < min)
 					return true;
-				if (typeof(max) == 'number' && player.form > max)
+				if (typeof max == 'number' && max !== -1 && player.form > max)
 					return true;
+
 				return false;
 			},
-			'hideOrdinary': function(player, checked) {
-				if (player.speciality == null)
+
+			/**
+			 * @param  {Player} player
+			 * @param  {number|''} min
+			 * @param  {number|''} max
+			 * @return {boolean}
+			 */
+			days: function(player, min, max) {
+				if (player.age == null)
 					return true;
-				return (player.speciality == '');
-			}
+				if (typeof min == 'number' && player.age.days < min)
+					return true;
+				if (typeof max == 'number' && player.age.days > max)
+					return true;
+
+				return false;
+			},
+
+			/**
+			 * @param  {Player} player
+			 * @return {boolean}
+			 */
+			hideBruised: function(player) {
+				if (player.bruised == null)
+					return true;
+
+				return player.bruised;
+			},
+
+			/**
+			 * @param  {Player} player
+			 * @return {boolean}
+			 */
+			hideInjured: function(player) {
+				if (player.injured == null)
+					return true;
+
+				return player.injured;
+			},
+
+			/**
+			 * @param  {Player} player
+			 * @return {boolean}
+			 */
+			hideSuspended: function(player) {
+				if (player.redCard == null)
+					return true;
+
+				return player.redCard == 1;
+			},
+
+			/**
+			 * @param  {Player} player
+			 * @return {boolean}
+			 */
+			hideOrdinary: function(player) {
+				if (player.specialty == null)
+					return true;
+
+				return player.specialty == '';
+			},
 		};
-		// default filter values
+
+		/**
+		 * @typedef TSFilterCheck
+		 * @prop {'check'} type
+		 * @prop {keyof FILTER_FUNC} key
+		 * @prop {boolean} checked
+		 */
+		/**
+		 * @typedef TSFilterMinMax
+		 * @prop {'minmax'} type
+		 * @prop {keyof FILTER_FUNC} key
+		 * @prop {number|''} min
+		 * @prop {number|''} max
+		 */
+		/**
+		 * @typedef TSFilterSkill
+		 * @prop {'skillselect'} type
+		 * @prop {keyof FILTER_FUNC} key
+		 * @prop {number} min
+		 * @prop {number} max
+		 * @prop {number} minAllowed
+		 * @prop {number} maxAllowed
+		 */
+		/**
+		 * @typedef {TSFilterCheck|TSFilterMinMax|TSFilterSkill} TSFilter
+		 */
+
+		/**
+		 * default filter values
+		 * @type {TSFilter[]}
+		 */
 		var FILTER_VAL = [
-			{ key: 'form', type: 'skillselect', min: -1, max: -1, minAllowed: 0, maxAllowed: 8},
+			{ key: 'form', type: 'skillselect', min: -1, max: -1, minAllowed: 0, maxAllowed: 8 },
 			{ key: 'days', type: 'minmax', min: '', max: '' },
 			{ key: 'hideOrdinary', type: 'check', checked: false },
 			{ key: 'hideInjured', type: 'check', checked: false },
 			{ key: 'hideSuspended', type: 'check', checked: false },
-			{ key: 'hideBruised', type: 'check', checked: false }
+			{ key: 'hideBruised', type: 'check', checked: false },
 		];
-		var getFilters = function(callback) {
-			Foxtrick.sessionGet('transfer-search-result-filters',
-			  function(n) {
-				try {
-					if (!n) {
-						// set default filters if not set
-						Foxtrick.sessionSet('transfer-search-result-filters', FILTER_VAL);
-						callback(FILTER_VAL);
-					}
-					else {
-						callback(n);
-					}
-				}
-				catch (e) {
-					Foxtrick.log(e);
-				}
-			});
+
+		const SESSION_KEY = 'transfer-search-result-filters';
+
+		/**
+		 * @param  {TSFilter[]} filters
+		 * @return {Promise<void>}
+		 */
+		var setFilters = async function(filters) {
+			await Foxtrick.session.set(SESSION_KEY, filters).catch(Foxtrick.catch('setFilters'));
 		};
-		var setFilters = function(filters) {
-			Foxtrick.sessionSet('transfer-search-result-filters', filters);
+
+		/**
+		 * @return {Promise<TSFilter[]>}
+		 */
+		var getFilters = async function() {
+			try {
+				let n = await Foxtrick.session.get(SESSION_KEY);
+				if (n)
+					return n;
+			}
+			catch (e) {
+				Foxtrick.log(e);
+			}
+
+			// set default filters if not set
+			await setFilters(FILTER_VAL);
+			return FILTER_VAL;
 		};
+
 		var showHTSearchProfileComment = function() {
 			var HTProfileRow = Foxtrick.getMBElement(doc, 'rowProfiles');
 			if (HTProfileRow) {
 				var HTProfileSelect = Foxtrick.getMBElement(doc, 'ddlSearchProfile');
-				var tr = Foxtrick.createFeaturedElement(doc,
-					Foxtrick.modules.TransferSearchResultFilters, 'tr');
+				var tr = Foxtrick.createFeaturedElement(doc, module, 'tr');
 				var td = doc.createElement('td');
 				td.textContent = HTProfileSelect.title;
-				td.colSpan = '3';
+				td.colSpan = 3;
 				tr.appendChild(td);
 				HTProfileRow.parentNode.insertBefore(tr, HTProfileRow.nextSibling);
 			}
 		};
-		var addNewFilter = function(table, filters, idx) {
 
-			var filter = filters[idx];
+		/**
+		 * @param {HTMLTableElement} table
+		 * @param {TSFilter} filter
+		 */
+		var addNewFilter = function(table, filter) {
 
 			var tr = doc.createElement('tr');
 			table.appendChild(tr);
 
 			if (filter.type == 'minmax') {
-				var td = doc.createElement('td');
+				let td = doc.createElement('td');
 				tr.appendChild(td);
-				var strong = doc.createElement('strong');
-				strong.textContent = Foxtrick.L10n.getString('TransferSearchResultFilters.' +
-				                                            filter.key);
+				let strong = doc.createElement('strong');
+				strong.textContent = Foxtrick.L10n.getString(`${module.MODULE_NAME}.${filter.key}`);
 				td.appendChild(strong);
 
-				var td = doc.createElement('td');
-				td.colSpan = 2;
-				td.textContent = Foxtrick.L10n.getString('Filters.minimum') + '\u00a0';
-				tr.appendChild(td);
-				var input = doc.createElement('input');
-				input.style.width = '90px';
-				input.id = filterIdPrefix + filter.key + '.Min';
-				input.value = filter.min;
-				td.appendChild(input);
+				{
+					let td = doc.createElement('td');
+					td.colSpan = 2;
+					td.textContent = Foxtrick.L10n.getString('Filters.minimum') + '\u00a0';
+					tr.appendChild(td);
+					let input = doc.createElement('input');
+					input.style.width = '90px';
+					input.id = `${FILTER_PREFIX}_${filter.key}_min`;
+					input.value = String(filter.min);
+					td.appendChild(input);
+				}
 
-				var td = doc.createElement('td');
-				td.colSpan = 2;
-				td.textContent = Foxtrick.L10n.getString('Filters.maximum') + '\u00a0';
-				tr.appendChild(td);
-				var input = doc.createElement('input');
-				input.style.width = '90px';
-				input.id = filterIdPrefix + filter.key + '.Max';
-				input.value = filter.max;
-				td.appendChild(input);
+				{
+					let td = doc.createElement('td');
+					td.colSpan = 2;
+					td.textContent = Foxtrick.L10n.getString('Filters.maximum') + '\u00a0';
+					tr.appendChild(td);
+					let input = doc.createElement('input');
+					input.style.width = '90px';
+					input.id = `${FILTER_PREFIX}_${filter.key}_max`;
+					input.value = String(filter.max);
+					td.appendChild(input);
+				}
 			}
 			else if (filter.type == 'skillselect') {
-				var steal = Foxtrick.getMBElement(doc, 'ddlSkill1Min');
-				//element to steal from
+				// element to steal from
+				let steal = /** @type {HTMLSelectElement} */
+					(Foxtrick.getMBElement(doc, 'ddlSkill1Min'));
 
-				var td = doc.createElement('td');
-				tr.appendChild(td);
-				var strong = doc.createElement('strong');
-				strong.textContent = Foxtrick.L10n.getString('TransferSearchResultFilters.' +
-				                                            filter.key);
-				td.appendChild(strong);
-
-				var td = doc.createElement('td');
-				td.colSpan = 2;
-				tr.appendChild(td);
-				var select = doc.createElement('select');
-				select.id = 'FoxtrickTransferSearchResultFilters.Skills.' + filter.key + '.Min';
-				var optionMin = doc.createElement('option');
-				optionMin.textContent = '-- ' + Foxtrick.L10n.getString('Filters.minimum') + ' --';
-				optionMin.value = '-1';
-				select.add(optionMin, null);
-				for (var i = filter.minAllowed; i < filter.maxAllowed + 1; ++i) {
-					var option = doc.createElement('option');
-					option.textContent = steal.options[i + 1].textContent;
-					option.value = i;
-					select.add(option, null);
+				{
+					let td = doc.createElement('td');
+					tr.appendChild(td);
+					let strong = doc.createElement('strong');
+					strong.textContent =
+						Foxtrick.L10n.getString(`${module.MODULE_NAME}.${filter.key}`);
+					td.appendChild(strong);
 				}
-				select.value = filter.min;
-				td.appendChild(select);
 
-				var td = doc.createElement('td');
-				td.colSpan = 2;
-				tr.appendChild(td);
-				var select = doc.createElement('select');
-				select.id = 'FoxtrickTransferSearchResultFilters.Skills.' + filter.key + '.Max';
-				var optionMin = doc.createElement('option');
-				optionMin.textContent = '-- ' + Foxtrick.L10n.getString('Filters.maximum') + ' --';
-				optionMin.value = '-1';
-				select.add(optionMin, null);
-				for (var i = filter.minAllowed; i < filter.maxAllowed + 1; ++i) {
-					var option = doc.createElement('option');
-					option.textContent = steal.options[i + 1].textContent;
-					option.value = i;
-					select.add(option, null);
+				{
+					let td = doc.createElement('td');
+					td.colSpan = 2;
+					tr.appendChild(td);
+					let select = doc.createElement('select');
+					select.id = `${FILTER_PREFIX}_Skills_${filter.key}_min`;
+					let optionMin = doc.createElement('option');
+					optionMin.textContent = `-- ${Foxtrick.L10n.getString('Filters.minimum')} --`;
+					optionMin.value = '-1';
+					select.add(optionMin, null);
+					for (let i = filter.minAllowed; i < filter.maxAllowed + 1; ++i) {
+						let option = doc.createElement('option');
+						option.textContent = steal.options[i + 1].textContent;
+						option.value = String(i);
+						select.add(option, null);
+					}
+					select.value = String(filter.min);
+					td.appendChild(select);
 				}
-				select.value = filter.max;
-				td.appendChild(select);
+
+				{
+					let td = doc.createElement('td');
+					td.colSpan = 2;
+					tr.appendChild(td);
+					let select = doc.createElement('select');
+					select.id = `${FILTER_PREFIX}_Skills_${filter.key}_max`;
+					let optionMin = doc.createElement('option');
+					optionMin.textContent = `-- ${Foxtrick.L10n.getString('Filters.maximum')} --`;
+					optionMin.value = '-1';
+					select.add(optionMin, null);
+					for (let i = filter.minAllowed; i < filter.maxAllowed + 1; ++i) {
+						let option = doc.createElement('option');
+						option.textContent = steal.options[i + 1].textContent;
+						option.value = String(i);
+						select.add(option, null);
+					}
+					select.value = String(filter.max);
+					td.appendChild(select);
+				}
 			}
 			else if (filter.type == 'check') {
-				var td = doc.createElement('td');
+				let td = doc.createElement('td');
 				td.colSpan = 5;
 				tr.appendChild(td);
-				var input = doc.createElement('input');
+				let input = doc.createElement('input');
 				input.type = 'checkbox';
-				input.id = filterIdPrefix + filter.key + '.check';
+				input.id = `${FILTER_PREFIX}_${filter.key}_check`;
 				if (filter.checked === true)
 					input.setAttribute('checked', 'checked');
 				td.appendChild(input);
-				var label = doc.createElement('label');
-				label.textContent = Foxtrick.L10n.getString('TransferSearchResultFilters.' +
-				                                           filter.key);
+				let label = doc.createElement('label');
+				label.textContent = Foxtrick.L10n.getString(`${module.MODULE_NAME}.${filter.key}`);
 				label.htmlFor = input.id;
 				td.appendChild(label);
 			}
 		};
-		var addExtraFilters = function() {
-			getFilters(
-			  function(filters) {
-				var tableAdvanced = Foxtrick.getMBElement(doc, 'tblAdvanced');
-				if (tableAdvanced === null) {
-					return;  //only show if advanced filters is on
-				}
-				var table = Foxtrick.createFeaturedElement(doc,
-					Foxtrick.modules.TransferSearchResultFilters, 'table');
-				table.id = 'ft-ExtraFilters';
-				var tr = doc.createElement('tr');
-				table.appendChild(tr);
-				var td = doc.createElement('td');
-				td.setAttribute('colspan', '5');
-				tr.appendChild(td);
-				var div = doc.createElement('div');
-				div.setAttribute('class', 'borderSeparator');
-				td.appendChild(div);
+		var addExtraFilters = async function() {
+			var tableAdvanced = Foxtrick.getMBElement(doc, 'tblAdvanced');
+			if (tableAdvanced === null) {
+				// only show if advanced filters is on
+				return;
+			}
 
-				for (var j = 0; j < filters.length; ++j) {
-					addNewFilter(table, filters, j);
-				}
-				tableAdvanced.parentNode.insertBefore(table, tableAdvanced.nextSibling);
+			var table = Foxtrick.createFeaturedElement(doc, module, 'table');
+			table.id = 'ft-ExtraFilters';
 
-				var buttonClear = Foxtrick.getButton(doc, 'Clear');
-				Foxtrick.onClick(buttonClear, function() {
-					getFilters(function(filters) {
-						for (var j = 0; j < filters.length; ++j) {
-							var filter = filters[j];
-							if (filter.type == 'minmax') {
-								filters[j].min = '';
-								doc.getElementById(filterIdPrefix +
-								                   filter.key + '.Min').value = '';
-								filters[j].max = '';
-								doc.getElementById(filterIdPrefix +
-								                   filter.key + '.Max').value = '';
-							}
-							else if (filter.type == 'check') {
-								filters[j].checked = false;
-								doc.getElementById(filterIdPrefix +
-								                   filter.key + '.check').removeAttribute('checked');
-							}
-							else if (filter.type == 'skillselect') {
-								filters[j].min = -1;
-								doc.getElementById('FoxtrickTransferSearchResultFilters.Skills.' +
-								                   filter.key + '.Min').value = '-1';
-								filters[j].max = -1;
-								doc.getElementById('FoxtrickTransferSearchResultFilters.Skills.' +
-								                   filter.key + '.Max').value = '-1';
-							}
-						}
-						setFilters(filters);
-					});
-				});
-				var buttonSearch = Foxtrick.getButton(doc, 'Search');
-				Foxtrick.onClick(buttonSearch, function(ev) {
-					// we can't get to localStore in async mode before the page
-					// navigates away in opera so we need some fake click logic;
-					// creating a modified event does not work
-					// because FF is too stupid to submit with it /facepalm
+			let tr = doc.createElement('tr');
+			table.appendChild(tr);
+			let td = doc.createElement('td');
+			td.setAttribute('colspan', '5');
+			tr.appendChild(td);
+			let div = doc.createElement('div');
+			div.setAttribute('class', 'borderSeparator');
+			td.appendChild(div);
 
-					if (!buttonSearch.getAttribute('x-updated')) {
-						// don't submit before we're done
-						ev.preventDefault();
+			let filters = await getFilters();
+			for (let filter of filters)
+				addNewFilter(table, filter);
 
-						getFilters(
-						  function(filters) {
-							for (var j = 0; j < filters.length; ++j) {
-								var filter = filters[j];
-								if (filter.type == 'minmax') {
-									var el = doc.getElementById(filterIdPrefix + filter.key +
-									                            '.Min');
-									if (el.value === '' || isNaN(el.value))
-										filters[j].min = '';
-									else filters[j].min = Number(el.value);
-									var el = doc.getElementById(filterIdPrefix + filter.key +
-									                            '.Max');
-									if (el.value === '' || isNaN(el.value))
-										filters[j].max = '';
-									else filters[j].max = Number(el.value);
-								}
-								else if (filter.type == 'check') {
-									var el = doc.getElementById(filterIdPrefix + filter.key +
-									                            '.check');
-									filters[j].checked = Boolean(el.checked);
-								}
-								else if (filter.type == 'skillselect') {
-									var el = doc.getElementById(filterIdPrefix + 'Skills.' +
-									                            filter.key + '.Min');
-									if (isNaN(el.value))
-										filters[j].min = -1;
-									else filters[j].min = Number(el.value);
-									var el = doc.getElementById(filterIdPrefix + 'Skills.' +
-									                            filter.key + '.Max');
-									if (isNaN(el.value))
-										filters[j].max = -1;
-									else filters[j].max = Number(el.value);
-								}
-							}
-							setFilters(filters);
+			Foxtrick.insertAfter(table, tableAdvanced);
 
-							// we are done: skip on fake
-							buttonSearch.setAttribute('x-updated', '1');
+			let buttonClear = Foxtrick.getButton(doc, 'Clear');
+			Foxtrick.onClick(buttonClear, async function() {
+				for (let filter of await getFilters()) {
+					if (filter.type == 'minmax') {
+						/** @type {HTMLInputElement} */
+						let min = doc.querySelector(`#${FILTER_PREFIX}_${filter.key}_min`);
+						min.value = '';
+						filter.min = '';
 
-							// fake click
-							buttonSearch.click();
-
-						});
+						/** @type {HTMLInputElement} */
+						let max = doc.querySelector(`#${FILTER_PREFIX}_${filter.key}_max`);
+						max.value = '';
+						filter.max = '';
 					}
-				});
+					else if (filter.type == 'check') {
+						/** @type {HTMLInputElement} */
+						let check = doc.querySelector(`#${FILTER_PREFIX}_${filter.key}_check`);
+						check.removeAttribute('checked');
+						check.checked = false;
+						filter.checked = false;
+					}
+					else if (filter.type == 'skillselect') {
+						/** @type {HTMLInputElement} */
+						let min = doc.querySelector(`#${FILTER_PREFIX}_Skills_${filter.key}_min`);
+						min.value = '-1';
+						filter.min = -1;
+
+						/** @type {HTMLInputElement} */
+						let max = doc.querySelector(`#${FILTER_PREFIX}_Skills_${filter.key}_max`);
+						max.value = '-1';
+						filter.max = -1;
+					}
+				}
+				await setFilters(filters);
+			});
+
+			var buttonSearch = Foxtrick.getButton(doc, 'Search');
+			Foxtrick.onClick(buttonSearch, async function(ev) {
+				// we can't get to localStore in async mode before the page
+				// navigates away in opera so we need some fake click logic;
+				// creating a modified event does not work
+				// because FF is too stupid to submit with it /facepalm
+
+				if (buttonSearch.getAttribute('x-updated'))
+					return;
+
+				// don't submit before we're done
+				ev.preventDefault();
+
+				let filters = await getFilters();
+				for (let filter of filters) {
+					if (filter.type == 'minmax') {
+						/** @type {HTMLInputElement} */
+						let min = doc.querySelector(`#${FILTER_PREFIX}_${filter.key}_min`);
+						if (min.value === '' || isNaN(parseFloat(min.value)))
+							filter.min = '';
+						else
+							filter.min = Number(min.value);
+
+						/** @type {HTMLInputElement} */
+						let max = doc.querySelector(`#${FILTER_PREFIX}_${filter.key}_max`);
+						if (max.value === '' || isNaN(parseFloat(max.value)))
+							filter.max = '';
+						else
+							filter.max = Number(max.value);
+					}
+					else if (filter.type == 'check') {
+						/** @type {HTMLInputElement} */
+						let check = doc.querySelector(`#${FILTER_PREFIX}_${filter.key}_check`);
+						filter.checked = Boolean(check.checked);
+					}
+					else if (filter.type == 'skillselect') {
+						/** @type {HTMLInputElement} */
+						let min = doc.querySelector(`#${FILTER_PREFIX}_Skills_${filter.key}_min`);
+						filter.min = parseInt(min.value, 10);
+						if (isNaN(filter.min))
+							filter.min = -1;
+
+						/** @type {HTMLInputElement} */
+						let max = doc.querySelector(`#${FILTER_PREFIX}_Skills_${filter.key}_max`);
+						filter.max = parseInt(max.value, 10);
+						if (isNaN(filter.max))
+							filter.max = -1;
+					}
+				}
+				await setFilters(filters);
+
+				// ensure reentrancy
+				buttonSearch.setAttribute('x-updated', '1');
+
+				// fake click
+				buttonSearch.click();
 			});
 		};
-		var filterResults = function() {
-			getFilters(
-			  function(filters) {
-				var playerList = Foxtrick.Pages.TransferSearchResults.getPlayerList(doc);
-				var playerInfos = doc.getElementsByClassName('transferPlayerInfo');
-				// Transform a live NodeList to an array because we'll remove
-				// elements below. Without transformation the index would
-				// point to incorrect nodes.
-				playerInfos = Foxtrick.map(function(n) { return n; }, playerInfos);
 
-				// playerList and playerInfos should have the same order,
-				// and the same length
-				for (var i = 0; i < playerInfos.length; ++i) {
-					var player = playerList[i];
-					var hide = false;
-					for (var j = 0; j < filters.length; ++j) {
-						var filter = filters[j];
-						if (filter.type == 'minmax' &&
-						    (filter.min !== '' || filter.max !== '')) {
-							if (FILTER_FUNC[filter.key](player, filter.min, filter.max))
-								hide = true;
-						}
-						else if (filter.type == 'skillselect' &&
-						    (filter.min != -1 || filter.max != -1)) {
-							if (FILTER_FUNC[filter.key](player, filter.min, filter.max))
-								hide = true;
-						}
-						else if (filter.type == 'check') {
-							/*Foxtrick.log(filter, filter.checked,
-							             FILTER_FUNC[filter.key](player), player);*/
-							if (filter.checked && FILTER_FUNC[filter.key](player))
-								hide = true;
-						}
-						if (hide) {
-							playerInfos[i].parentNode.removeChild(playerInfos[i]);
-							break;
-						}
+		var filterResults = async function() {
+			let filters = await getFilters();
+			let playerList = Foxtrick.Pages.TransferSearchResults.getPlayerList(doc);
+
+			// playerList and playerInfos should have the same order,
+			// and the same length
+			for (let player of playerList) {
+				let hide = filters.some((filter) => {
+					if (filter.type == 'minmax' &&
+						(filter.min !== '' || filter.max !== '')) {
+						if (FILTER_FUNC[filter.key](player, filter.min, filter.max))
+							return true;
 					}
+					else if (filter.type == 'skillselect' &&
+						(filter.min != -1 || filter.max != -1)) {
+						if (FILTER_FUNC[filter.key](player, filter.min, filter.max))
+							return true;
+					}
+					else if (filter.type == 'check') {
+						return filter.checked && FILTER_FUNC[filter.key](player, void 0, void 0);
+					}
+
+					return false;
+				});
+				if (hide) {
+					let node = player.playerNode, next;
+					if ((next = node.nextElementSibling) &&
+						Foxtrick.hasClass(next, 'borderSeparator')) {
+						// remove separator if exists
+						next.remove();
+					}
+
+					node.remove();
 				}
-			});
+			}
 		};
 		if (Foxtrick.isPage(doc, 'transferSearchForm')) {
 			addExtraFilters();
 			showHTSearchProfileComment();
 		}
-		else if (Foxtrick.isPage(doc, 'transferSearchResult'))
+		else if (Foxtrick.isPage(doc, 'transferSearchResult')) {
 			filterResults();
-	}
+		}
+	},
 };

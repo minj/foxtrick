@@ -269,6 +269,7 @@
 		"leagueNames": {
 			"1": "Iżvezja",
 			"100": "El Salvador",
+			"1000": "Hattrick International",
 			"101": "Malta",
 			"102": "Krigizstan",
 			"103": "Moldova",
@@ -315,8 +316,19 @@
 			"146": "Kamerun",
 			"147": "Kuba",
 			"148": "Palestina",
+			"149": "São Tomé e Príncipe",
 			"15": "Oceanja",
+			"151": "Comoros",
+			"152": "Sri Lanka",
+			"153": "Curaçao",
+			"154": "Guam",
+			"155": "DR Congo",
+			"156": "Ethiopia",
+			"157": "? {leaguenames}:{157}",
+			"158": "? {leaguenames}:{158}",
+			"159": "? {leaguenames}:{159}",
 			"16": "Brażil",
+			"160": "? {leaguenames}:{160}",
 			"17": "Kanada",
 			"18": "Ċili",
 			"19": "Kolombja",
@@ -625,8 +637,12 @@
 				"value": "Ras"
 			},
 			{
-				"type": "Regainer",
+				"type": "Resilient",
 				"value": "Akkwistatur"
+			},
+			{
+				"type": "Support",
+				"value": "Support"
 			}
 		],
 		"spirit": [

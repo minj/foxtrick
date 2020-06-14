@@ -1,117 +1,148 @@
-'use strict';
 /**
 * extra-shortcuts.js
 * Adds an imagelink to the shortcut
-* @author baumanns, spambot
+* @author baumanns, spambot, LA-MJ
 */
+
+'use strict';
 
 Foxtrick.modules['ExtraShortcuts'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	OUTSIDE_MAINBODY: true,
 	PAGES: ['all'],
-	OPTIONS: ['AddSpace', 'AddLeft', 'Supporterstats', 'Transfers', 'Prefs', 'FoxTrickPrefs',
-		'ManageCHPP', 'No9', 'Latehome'],
+	OPTIONS: [
+		'AddSpace',
+		'AddLeft',
+		'FoxTrickPrefs',
+		'Stage',
+		'Supporterstats', 'Transfers', 'Prefs', 'ManageCHPP',
+		'No9', 'Latehome',
+	],
 	LINKS: {
-		'Supporterstats': { link:'/World/Stats/', 	imgClass:'ftSuppStats', property:'statistics'},
-		'Transfers':	{ link:'/Club/Transfers/', 	imgClass:'ftMyTransfers', property:'transfers'},
-		'Prefs':		{ link:'/MyHattrick/Preferences/', imgClass:'ftSCPrefs', property:'prefs'},
-		'ManageCHPP': { link:'/MyHattrick/Preferences/ExternalAccessGrants.aspx',
-					imgClass:'ftManageCHPP', property:'ManageCHPP'}
+		Stage: {
+			link: '',
+			imgClass: 'ftStageLink',
+			property: 'stage',
+		},
+		Supporterstats: { link: '/World/Stats/', imgClass: 'ftSuppStats', property: 'statistics' },
+		Transfers: { link: '/Club/Transfers/', imgClass: 'ftMyTransfers', property: 'transfers' },
+		Prefs: { link: '/MyHattrick/Preferences/', imgClass: 'ftSCPrefs', property: 'prefs' },
+		ManageCHPP: {
+			link: '/MyHattrick/Preferences/ExternalAccessGrants.aspx',
+			imgClass: 'ftManageCHPP',
+			property: 'ManageCHPP',
+		},
 	},
 
 	RADIOS: ['No9', 'Latehome'],
+
 	// following also need to be entered in manifest.json->optional_permissions
 	// and perferences.js->neededPermissions
 	RADIO_URLS: [
-		'http://no9-online.de/_no9/no9status.php',
+		'http://radio-no9.de/_no9/no9status.php',
 		'http://www.latehome.de/foxtrick/status.php',
 	],
 	CSS: Foxtrick.InternalPath + 'resources/css/extra-shortcuts.css',
 
 	OPTIONS_CSS: [
-		Foxtrick.InternalPath + 'resources/css/extra-shortcuts-space.css'
+		Foxtrick.InternalPath + 'resources/css/extra-shortcuts-space.css',
 	],
 
+	/** @param {document} doc */
+	// eslint-disable-next-line complexity
 	run: function(doc) {
+		const module = this;
+
+		// eslint-disable-next-line no-restricted-properties
+		let relative = document.location.pathname + document.location.search;
+		let stage = new URL(relative, 'https://stage.hattrick.org');
+		module.LINKS.Stage.link = stage.href;
+
+		/**
+		 * @param {string} url
+		 * @param {string} radio
+		 */
 		var checkRadio = function(url, radio) {
-			Foxtrick.util.load.xml(url, function(radio_xml) {
-				if (radio_xml != null && radio_xml.getElementsByTagName('radio').length != 0) {
-					if (radio_xml.getElementsByTagName('status').length != 0) {
-						var span = doc.getElementById(radio + 'Span');
+			Foxtrick.util.load.xml(url, function(radioXML) {
+				if (radioXML == null || radioXML.getElementsByTagName('radio').length == 0)
+					return;
 
-						var list = span.getElementsByTagName('ul');
-						list = doc.createElement('ul');
-						list.className = 'ft-pop';
-						list.setAttribute('style', 'margin-top:-1px;');
+				if (radioXML.getElementsByTagName('status').length == 0)
+					return;
 
+				var span = doc.getElementById(radio + 'Span');
 
-						if (radio_xml.getElementsByTagName('status')[0].textContent === 'online') {
+				var list = doc.createElement('ul');
+				list.className = 'ft-pop';
+				list.setAttribute('style', 'margin-top:-1px;');
 
-							var item = doc.createElement('li');
-							var h2 = doc.createElement('h2');
-							h2.textContent = radio_xml.getElementsByTagName('iconOnline')[0]
-								.getAttribute('value');
-							item.appendChild(h2);
-							list.appendChild(item);
+				let [status] = radioXML.getElementsByTagName('status');
 
-							var item = doc.createElement('li');
-							item.textContent = radio_xml.getElementsByTagName('song')[0]
-								.getAttribute('value');
-							item.appendChild(doc.createElement('br'));
-							item.appendChild(doc.createTextNode(radio_xml
-							                 .getElementsByTagName('song')[0].textContent));
-							list.appendChild(item);
+				if (status.textContent === 'online') {
+					let item = doc.createElement('li');
+					let h2 = doc.createElement('h2');
+					let [iconOnline] = radioXML.getElementsByTagName('iconOnline');
+					h2.textContent = iconOnline.getAttribute('value');
+					item.appendChild(h2);
+					list.appendChild(item);
 
-							var streams = radio_xml.getElementsByTagName('stream');
-							for (var j = 0; j < streams.length; ++j) {
-								var item = doc.createElement('li');
-								var link = doc.createElement('a');
-								link.href = Foxtrick.util.sanitize.parseUrl(streams[j].textContent);
-								link.target = '_blank';
-								link.textContent = streams[j].getAttribute('value');
-								item.appendChild(link);
-								list.appendChild(item);
-							}
-
-							var iconurl = Foxtrick.util.sanitize
-								.parseUrl(radio_xml.getElementsByTagName('iconOnline')[0]
-								          .textContent);
-							var img1 = doc.getElementById(radio + 'Icon');
-							img1.setAttribute('style', 'margin-left:2px; ' +
-							                  'background-repeat:no-repeat; background-image: ' +
-							                  'url(' + iconurl + ');');
-							Foxtrick.Prefs.setString(radio + 'CurrentIcon', iconurl);
-						}
-						else {
-							var item = doc.createElement('li');
-							var h2 = doc.createElement('h2');
-							h2.textContent = radio_xml.getElementsByTagName('iconOffline')[0]
-								.getAttribute('value');
-							item.appendChild(h2);
-							list.appendChild(item);
-
-							var iconurl = Foxtrick.util.sanitize
-								.parseUrl(radio_xml.getElementsByTagName('iconOffline')[0]
-								          .textContent);
-							var img1 = doc.getElementById(radio + 'Icon');
-							img1.setAttribute('style', 'margin-left:2px; ' +
-							                  'background-repeat:no-repeat; background-image: ' +
-							                  'url(' + iconurl + ');');
-							Foxtrick.Prefs.setString(radio + 'CurrentIcon', iconurl);
-						}
-						var websites = radio_xml.getElementsByTagName('website');
-						for (var j = 0; j < websites.length; ++j) {
-							var item = doc.createElement('li');
-							var link = doc.createElement('a');
-							link.href = Foxtrick.util.sanitize.parseUrl(websites[j].textContent);
-							link.target = '_blank';
-							link.textContent = websites[j].getAttribute('value');
-							item.appendChild(link);
-							list.appendChild(item);
-						}
-						span.appendChild(list);
+					{
+						let item = doc.createElement('li');
+						let [song] = radioXML.getElementsByTagName('song');
+						item.textContent = song.getAttribute('value');
+						item.appendChild(doc.createElement('br'));
+						item.appendChild(doc.createTextNode(song.textContent));
+						list.appendChild(item);
 					}
+
+					let streams = radioXML.getElementsByTagName('stream');
+					for (let j = 0; j < streams.length; ++j) {
+						let item = doc.createElement('li');
+						let link = doc.createElement('a');
+						link.href = Foxtrick.util.sanitize.parseUrl(streams[j].textContent);
+						link.target = '_blank';
+						link.rel = 'noopener';
+						link.textContent = streams[j].getAttribute('value');
+						item.appendChild(link);
+						list.appendChild(item);
+					}
+
+					let iconurl = Foxtrick.util.sanitize.parseUrl(iconOnline.textContent);
+					let img1 = doc.getElementById(radio + 'Icon');
+
+					let style = `background-image:url('${iconurl}');`;
+					style += 'margin-left:2px;background-repeat:no-repeat;';
+					img1.setAttribute('style', style);
+					Foxtrick.Prefs.setString(radio + 'CurrentIcon', iconurl);
 				}
+				else {
+					let item = doc.createElement('li');
+					let h2 = doc.createElement('h2');
+					let [iconOffline] = radioXML.getElementsByTagName('iconOffline');
+					h2.textContent = iconOffline.getAttribute('value');
+					item.appendChild(h2);
+					list.appendChild(item);
+
+					let iconurl = Foxtrick.util.sanitize.parseUrl(iconOffline.textContent);
+					let img1 = doc.getElementById(radio + 'Icon');
+					let style = `background-image:url('${iconurl}');`;
+					style += 'margin-left:2px;background-repeat:no-repeat;';
+					img1.setAttribute('style', style);
+					Foxtrick.Prefs.setString(radio + 'CurrentIcon', iconurl);
+				}
+
+				let websites = radioXML.getElementsByTagName('website');
+				for (let j = 0; j < websites.length; ++j) {
+					let item = doc.createElement('li');
+					let link = doc.createElement('a');
+					link.href = Foxtrick.util.sanitize.parseUrl(websites[j].textContent);
+					link.target = '_blank';
+					link.rel = 'noopener';
+					link.textContent = websites[j].getAttribute('value');
+					item.appendChild(link);
+					list.appendChild(item);
+				}
+				span.appendChild(list);
 			});
 		};
 
@@ -119,106 +150,88 @@ Foxtrick.modules['ExtraShortcuts'] = {
 			doc.getElementById('shortcutsNoSupporter');
 		if (!shortcuts)
 			return;
-		var targetNode = shortcuts.getElementsByTagName('div');
-		var i = 0, scCont = null;
-		while (scCont = targetNode[i++]) {
-			if (Foxtrick.hasClass(scCont, 'scContainer') ||
-			    Foxtrick.hasClass(scCont, 'scContainerNoSupporter'))
-				break;
+
+		var targetNode = shortcuts.querySelector('div.scContainer, div.scContainerNoSupporter');
+		if (!targetNode)
+			return;
+
+		for (let [name, link] of Object.entries(module.LINKS)) {
+			if (!Foxtrick.Prefs.isModuleOptionEnabled('ExtraShortcuts', name))
+				continue;
+
+			let anchor = doc.createElement('a');
+			anchor.className = 'ft_extra-shortcuts';
+			anchor.href = link.link;
+
+			let img1 = doc.createElement('img');
+			img1.setAttribute('class', link.imgClass);
+			img1.src = '/Img/Icons/transparent.gif';
+			img1.title = Foxtrick.L10n.getString('ExtraShortcuts.' + link.property);
+			img1.alt = Foxtrick.L10n.getString('ExtraShortcuts.' + link.property);
+			img1 = Foxtrick.makeFeaturedElement(img1, module);
+
+			anchor.appendChild(img1);
+			if (Foxtrick.Prefs.isModuleOptionEnabled('ExtraShortcuts', 'AddLeft'))
+				targetNode.insertBefore(anchor, targetNode.firstChild);
+			else if (targetNode.lastChild.nodeName == 'BR')
+				targetNode.insertBefore(anchor, targetNode.lastChild);
+			else
+				targetNode.appendChild(anchor);
 		}
-		targetNode = scCont;
-		if (targetNode) {
-			var j;
-			for (j in this.LINKS) {
-				if (Foxtrick.Prefs.isModuleOptionEnabled('ExtraShortcuts', j)) {
-					var link = doc.createElement('a');
-					link.className = 'ft_extra-shortcuts';
-					link.href = this.LINKS[j].link;
 
-					var img1 = doc.createElement('img');
-					img1.setAttribute('class', this.LINKS[j].imgClass);
-					img1.src = '/Img/Icons/transparent.gif';
-					img1.title = Foxtrick.L10n.getString('ExtraShortcuts.' +
-														this.LINKS[j].property);
-					img1.alt = Foxtrick.L10n.getString('ExtraShortcuts.' +
-													  this.LINKS[j].property);
-					img1 = Foxtrick.makeFeaturedElement(img1, this);
+		if (Foxtrick.Prefs.isModuleOptionEnabled('ExtraShortcuts', 'FoxTrickPrefs')) {
+			let link = doc.createElement('a');
+			link.className = 'ft_extra-shortcuts ft-link';
+			Foxtrick.onClick(link, () => Foxtrick.Prefs.show('#tab=on_page'));
+			let img1 = doc.createElement('img');
+			img1.setAttribute('class', 'ftSCFtPrefs');
+			img1.src = '/Img/Icons/transparent.gif';
+			img1.title = Foxtrick.L10n.getString('ExtraShortcuts.ftprefs');
+			img1.alt = Foxtrick.L10n.getString('ExtraShortcuts.ftprefs');
+			img1 = Foxtrick.makeFeaturedElement(img1, module);
 
-					link.appendChild(img1);
-					if (Foxtrick.Prefs.isModuleOptionEnabled('ExtraShortcuts', 'AddLeft'))
-						targetNode.insertBefore(link, targetNode.firstChild);
-					else {
-						if (targetNode.lastChild.nodeName == 'BR') {
-							targetNode.insertBefore(link, targetNode.lastChild);
-						}
-						else {
-							targetNode.appendChild(link);
-						}
-					}
-				}
-			}
-			if (Foxtrick.Prefs.isModuleOptionEnabled('ExtraShortcuts', 'FoxTrickPrefs')) {
-				var link = doc.createElement('a');
-				link.className = 'ft_extra-shortcuts ft-link';
-				Foxtrick.onClick(link, function() {
-					Foxtrick.Prefs.show('#tab=on_page');
-				});
-				var img1 = doc.createElement('img');
-				img1.setAttribute('class', 'ftSCFtPrefs');
-				img1.src = '/Img/Icons/transparent.gif';
-				img1.title = Foxtrick.L10n.getString('ExtraShortcuts.ftprefs');
-				img1.alt = Foxtrick.L10n.getString('ExtraShortcuts.ftprefs');
-				img1 = Foxtrick.makeFeaturedElement(img1, this);
-
-				link.appendChild(img1);
-				if (Foxtrick.Prefs.isModuleOptionEnabled('ExtraShortcuts', 'AddLeft'))
-					targetNode.insertBefore(link, targetNode.firstChild);
-				else {
-					if (targetNode.lastChild.nodeName == 'BR') {
-						targetNode.insertBefore(link, targetNode.lastChild);
-					}
-					else {
-						targetNode.appendChild(link);
-					}
-				}
-			}
-
-			for (i = 0; i < this.RADIOS.length; ++i) {
-				var radio = this.RADIOS[i];
-				if (Foxtrick.Prefs.isModuleOptionEnabled('ExtraShortcuts', radio)) {
-
-					var link = Foxtrick.createFeaturedElement(doc, this, 'a');
-					link.className = 'ft_extra-shortcuts';
-					//link.target='_blank';
-					link.id = radio + 'Id';
-					var img1 = doc.createElement('img');
-					img1.setAttribute('class', 'ftSCRadio');
-					img1.src = '/Img/Icons/transparent.gif';
-					img1.id = radio + 'Icon';
-					if (Foxtrick.Prefs.getString(radio + 'CurrentIcon') != null)
-						img1.setAttribute('style', 'margin-left:2px; background-image: url(' +
-						                  Foxtrick.Prefs.getString(radio + 'CurrentIcon') +
-						                  ');');
-					link.appendChild(img1);
-
-					var span = doc.createElement('div');
-					span.className = 'ft-pop-up-container';
-					span.id = radio + 'Span';
-					span.appendChild(link);
-
-					if (Foxtrick.Prefs.isModuleOptionEnabled('ExtraShortcuts', 'AddLeft'))
-						targetNode.insertBefore(span, targetNode.firstChild);
-					else {
-						if (targetNode.lastChild.nodeName == 'BR') {
-							targetNode.insertBefore(span, targetNode.lastChild);
-						}
-						else {
-							targetNode.appendChild(span);
-						}
-					}
-					checkRadio(this.RADIO_URLS[i], radio);
-				}
-			}
+			link.appendChild(img1);
+			if (Foxtrick.Prefs.isModuleOptionEnabled('ExtraShortcuts', 'AddLeft'))
+				targetNode.insertBefore(link, targetNode.firstChild);
+			else if (targetNode.lastChild.nodeName == 'BR')
+				targetNode.insertBefore(link, targetNode.lastChild);
+			else
+				targetNode.appendChild(link);
 		}
-	}
+
+		for (let [i, radio] of module.RADIOS.entries()) {
+			if (!Foxtrick.Prefs.isModuleOptionEnabled('ExtraShortcuts', radio))
+				continue;
+
+			let link = Foxtrick.createFeaturedElement(doc, module, 'a');
+			link.className = 'ft_extra-shortcuts';
+
+			// link.target='_blank';
+			link.id = radio + 'Id';
+			let img1 = doc.createElement('img');
+			img1.setAttribute('class', 'ftSCRadio');
+			img1.src = '/Img/Icons/transparent.gif';
+			img1.id = radio + 'Icon';
+			let curIcon = Foxtrick.Prefs.getString(radio + 'CurrentIcon');
+			if (curIcon != null) {
+				let style = `margin-left:2px;background-image:url('${curIcon}')`;
+				img1.setAttribute('style', style);
+			}
+			link.appendChild(img1);
+
+			let span = doc.createElement('div');
+			span.className = 'ft-pop-up-container';
+			span.id = radio + 'Span';
+			span.appendChild(link);
+
+			if (Foxtrick.Prefs.isModuleOptionEnabled('ExtraShortcuts', 'AddLeft'))
+				targetNode.insertBefore(span, targetNode.firstChild);
+			else if (targetNode.lastChild.nodeName == 'BR')
+				targetNode.insertBefore(span, targetNode.lastChild);
+			else
+				targetNode.appendChild(span);
+
+			checkRadio(module.RADIO_URLS[i], radio);
+		}
+	},
 };

@@ -317,7 +317,7 @@ Foxtrick.OAuth.setProperties(Foxtrick.OAuth, // utility functions
         if (!src) return;
         var q = src.indexOf("?");
         if (q < 0) return;
-        parameters = Foxtrick.OAuth.getParameterMap(Foxtrick.OAuth.decodeForm(src.substring(q+1)));
+        var parameters = Foxtrick.OAuth.getParameterMap(Foxtrick.OAuth.decodeForm(src.substring(q+1)));
         var t = parameters[parameterName];
         if (t == null) return;
         Foxtrick.OAuth.correctTimestamp(t);

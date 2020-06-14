@@ -1,102 +1,116 @@
-'use strict';
-/*
+/**
  * show-friendly-booked.js
  * Show whether a team has booked friendly on series page
- * @author ryanli
+ * @author ryanli, LA-MJ
  */
 
-Foxtrick.modules['ShowFriendlyBooked'] = {
+'use strict';
+
+Foxtrick.modules.ShowFriendlyBooked = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES: ['series'],
 	OPTIONS: ['OnDemand'],
 	CSS: Foxtrick.InternalPath + 'resources/css/show-friendly-booked.css',
 
+	/** @param {document} doc */
 	run: function(doc) {
-		var show = function() {
-			var leagueTable = Foxtrick.Pages.Series.getTable(doc);
-			var rows = leagueTable.getElementsByTagName('tr');
-			// remove header row and ownerless teams
-			rows = Foxtrick.filter(function(n) {
-				var isHeader = function() { return n.getElementsByTagName('th').length > 0; };
-				var inCup = function() {
-					return n.getElementsByTagName('td')[3].getElementsByTagName('img').length > 0;
-				};
-				var isOwnerless = function() { return n.getElementsByClassName('shy').length > 0; };
-				return !isHeader() && !inCup() && !isOwnerless();
-			}, rows);
-			// see whether friendly booked
-			Foxtrick.map(function(n) {
-				var teamCell = n.getElementsByTagName('td')[2];
-				var teamLink = teamCell.getElementsByTagName('a')[0].href;
-				var teamId = Foxtrick.util.id.getTeamIdFromUrl(teamLink);
+		const module = this;
 
-				var destCell = n.getElementsByTagName('td')[3];
+		var show = function() {
+			let leagueTable = Foxtrick.Pages.Series.getTable(doc);
+			let rowCol = leagueTable.querySelectorAll('tr');
+
+			// remove header row and ownerless teams
+			let rows = Foxtrick.filter(function(n) {
+				let isHeader = () => !!n.querySelector('th');
+				let isOwnerless = () => !!n.querySelector('.shy');
+				let inCup = () => !!n.querySelector('img[src*="cup"i]');
+
+				return !isHeader() && !inCup() && !isOwnerless();
+			}, rowCol);
+
+			// see whether friendly booked
+			for (let row of rows) {
+				let teamCell = row.cells[3];
+				let teamLink = teamCell.querySelector('a').href;
+				let teamId = Foxtrick.util.id.getTeamIdFromUrl(teamLink);
+
+				let destCell = row.cells[4];
 				destCell.textContent = Foxtrick.L10n.getString('status.loading.abbr');
 				destCell.title = Foxtrick.L10n.getString('status.loading');
 
-				var parameters = [
+				/** @type {CHPPParams} */
+				let params = [
 					['file', 'teamdetails'],
-					['teamId', teamId]
+					['teamId', teamId],
 				];
-				Foxtrick.util.api.retrieve(doc, parameters, { cache_lifetime: 'default' },
-				  function(xml, errorText) {
+				Foxtrick.util.api.retrieve(doc, params, { cache: 'default' }, (xml, errorText) => {
 					if (!xml || errorText) {
 						destCell.textContent = Foxtrick.L10n.getString('status.error.abbr');
 						destCell.title = errorText;
 						Foxtrick.log(errorText);
 						return;
 					}
+
 					// reset textContent and title
 					destCell.textContent = '';
 					destCell.removeAttribute('title');
-					var friendly = xml.getElementsByTagName('FriendlyTeamID')[0];
+
+					let friendly = xml.node('FriendlyTeamID');
 					if (friendly.getAttribute('Available') != 'True') {
 						destCell.textContent = Foxtrick.L10n.getString('status.unknown.abbr');
 						destCell.title = Foxtrick.L10n.getString('status.unknown');
 					}
 					else if (friendly.textContent != '0') {
 						// friendly booked
-						var img = doc.createElement('img');
+						let img = doc.createElement('img');
 						img.src = '/Img/Icons/transparent.gif';
 						img.alt = img.title = Foxtrick.L10n.getString('team.status.booked');
 						img.className = 'ft_friendly';
-						img = Foxtrick.makeFeaturedElement(img, Foxtrick.modules
-						                                   .ShowFriendlyBooked);
+						Foxtrick.makeFeaturedElement(img, module);
 						destCell.appendChild(img);
 					}
 				});
-			}, rows);
+			}
 		};
 
 		// add the stuffs
-		if (Foxtrick.Prefs.isModuleOptionEnabled('ShowFriendlyBooked', 'OnDemand')) {
+		if (Foxtrick.Prefs.isModuleOptionEnabled(module, 'OnDemand')) {
 			// show on demand
-			var link = Foxtrick.createFeaturedElement(doc, this, 'a');
+			let link = Foxtrick.createFeaturedElement(doc, module, 'a');
 			link.id = 'ft-show-friendlies';
 			link.className = 'float_left ft-link';
-			link.textContent = Foxtrick.L10n.getString('ShowFriendlyBooked.ShowFriendlies');
+			link.textContent = Foxtrick.L10n.getString(`${module.MODULE_NAME}.ShowFriendlies`);
+
 			Foxtrick.onClick(link, function() {
-				link.parentNode.removeChild(link);
-				show();
+				// eslint-disable-next-line no-invalid-this
+				this.remove();
+				try {
+					show();
+				}
+				catch (e) {
+					Foxtrick.catch(module)(e);
+				}
 			});
+
 			if (Foxtrick.util.layout.isSupporter(doc)) {
-				var UpdatePanelLiveLeagueTable = Foxtrick.Pages.Series.getLiveTable(doc);
-				UpdatePanelLiveLeagueTable.insertBefore(link, UpdatePanelLiveLeagueTable
-				                                        .getElementsByTagName('br')[0].nextSibling);
+				let updPnlLiveLeagueTable = Foxtrick.Pages.Series.getLiveTable(doc);
+				Foxtrick.insertBefore(link, updPnlLiveLeagueTable.querySelector('br'));
 			}
 			else {
-				var table = Foxtrick.Pages.Series.getTable(doc);
-				var parent = table.parentNode;
-				parent.parentNode.insertBefore(link, parent);
+				let table = Foxtrick.Pages.Series.getTable(doc);
+				let parent = table.parentNode;
+				Foxtrick.insertBefore(link, parent);
+
 				// style.clear needed before the table
-				var clear = doc.createElement('div');
+				let clear = doc.createElement('div');
 				clear.className = 'clear';
-				parent.parentNode.insertBefore(clear, parent);
+				Foxtrick.insertBefore(clear, parent);
 			}
 		}
 		else {
 			// show automatically
 			show();
 		}
-	}
+	},
 };

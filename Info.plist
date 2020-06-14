@@ -17,9 +17,9 @@ a good reason to. They are for version bumps in Makefile.
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleVersion</key>
-	<string>0.17.0</string><!--version-->
+	<string>0.17.9</string><!--version-->
 	<key>CFBundleShortVersionString</key>
-	<string>0.17.0</string><!--version-->
+	<string>0.17.9</string><!--version-->
 	<key>Chrome</key>
 	<dict>
 		<key>Database Quota</key>
@@ -97,7 +97,6 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/api/hy/common.js</string>
 				<string>content/api/hy/matches-report.js</string>
 				<string>content/api/hy/matches-training.js</string>
-				<string>content/api/hy/players-twins-check.js</string>
 				<string>content/api/hy/players-youth-reject-call.js</string>
 				<string>content/api/hy/players-youth-skills.js</string>
 				<string>content/api/hy/user-id.js</string>
@@ -175,10 +174,10 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/information-aggregation/team-stats.js</string>
 				<string>content/information-aggregation/transfer-compare-players.js</string>
 				<string>content/information-aggregation/transfer-deadline.js</string>
+				<string>content/information-aggregation/u20-lastmatch.js</string>
 				<string>content/information-aggregation/youth-promotes.js</string>
 				<string>content/information-aggregation/youth-series-estimation.js</string>
 				<string>content/information-aggregation/youth-skills.js</string>
-				<string>content/information-aggregation/youth-twins.js</string>
 				<string>content/links/links-achievements.js</string>
 				<string>content/links/links-alliances.js</string>
 				<string>content/links/links-arena.js</string>
@@ -257,7 +256,6 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/shortcuts-and-tweaks/extra-shortcuts.js</string>
 				<string>content/shortcuts-and-tweaks/filter.js</string>
 				<string>content/shortcuts-and-tweaks/lineup-shortcut.js</string>
-				<string>content/shortcuts-and-tweaks/main-menu-drop-down.js</string>
 				<string>content/shortcuts-and-tweaks/manager-buttons.js</string>
 				<string>content/shortcuts-and-tweaks/player-filters.js</string>
 				<string>content/shortcuts-and-tweaks/rapid-id.js</string>

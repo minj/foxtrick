@@ -269,6 +269,7 @@
 		"leagueNames": {
 			"1": "Sweden",
 			"100": "El Salvador",
+			"1000": "Hattrick International",
 			"101": "Malta",
 			"102": "Kyrgyzstan",
 			"103": "Moldova",
@@ -315,8 +316,19 @@
 			"146": "Cameroon",
 			"147": "Cuba",
 			"148": "Palestine",
+			"149": "São Tomé e Príncipe",
 			"15": "Oceania",
+			"151": "Comoros",
+			"152": "Sri Lanka",
+			"153": "Curaçao",
+			"154": "Guam",
+			"155": "DR Congo",
+			"156": "Ethiopia",
+			"157": "Saint Vincent and the Grenadines",
+			"158": "Belize",
+			"159": "Madagascar",
 			"16": "Brazil",
+			"160": "Botswana",
 			"17": "Canada",
 			"18": "Chile",
 			"19": "Colombia",
@@ -392,7 +404,7 @@
 			"94": "Jamaica",
 			"95": "Kenya",
 			"96": "Panama",
-			"97": "FYR Macedonia",
+			"97": "North Macedonia",
 			"98": "Albania",
 			"99": "Honduras"
 		},
@@ -625,8 +637,12 @@
 				"value": "头球专家"
 			},
 			{
-				"type": "Regainer",
-				"value": "不药而愈"
+				"type": "Resilient",
+				"value": "坚忍不拔"
+			},
+			{
+				"type": "Support",
+				"value": "支援型"
 			}
 		],
 		"spirit": [

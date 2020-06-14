@@ -1,22 +1,30 @@
-'use strict';
 /**
  * forum-preview.js
  * area for forum post preview
  * @author spambot
  */
 
-Foxtrick.modules['ForumPreview'] = {
+'use strict';
+
+Foxtrick.modules.ForumPreview = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.FORUM,
 	PAGES: [
 		'forumWritePost', 'messageWritePost', 'guestbook', 'announcementsWrite',
-		'newsLetter', 'mailNewsLetter', 'ntNewsLetter',
+		'newsLetter', 'mailNewsLetter', 'ntNewsLetter', 'helpContact',
 		'forumSettings', 'forumModWritePost', 'ticket',
 	],
 	NICE: 1, // after ForumYouthIcons
 	CSS: Foxtrick.InternalPath + 'resources/css/forum-preview.css',
 
+	/* eslint-disable complexity */
+
+	/** @param {document} doc */
 	run: function(doc) {
-		var preview = function() {
+		const module = this;
+
+		/** @param {HTMLElement} previewDiv */
+		var preview = function(previewDiv) {
+			/** @type {[RegExp, string][]} */
 			var singleReplace = [
 				[/\[kitid=(\d+)\]/gi,
 					"<a href='/Community/KitSearch/?KitID=$1' target='_blank'>($1)</a>"],
@@ -29,6 +37,9 @@ Foxtrick.modules['ForumPreview'] = {
 						"target='_blank'>($1)</a>"],
 				[/\[teamid=(\d+)\]/gi,
 					"<a href='/Club/?TeamID=$1' target='_blank'>($1)</a>"],
+				[/\[ntteamid=(\d+)\]/gi,
+					"<a href='/Club/NationalTeam/NationalTeam.aspx?TeamID=$1' " +
+						"target='_blank'>($1)</a>"],
 				[/\[youthteamid=(\d+)\]/gi,
 					"<a href='/Club/Youth/?YouthTeamID=$1' target='_blank'>($1)</a>"],
 				[/\[matchid=(\d+)\]/gi,
@@ -42,9 +53,9 @@ Foxtrick.modules['ForumPreview'] = {
 				[/\[federationid=(\d+)\]/gi,
 					"<a href='/Community/Federations/Federation.aspx?AllianceID=$1' " +
 						"target='_blank'>($1)</a>"],
-				[/\[message\=(\d+)\.(\d+)\]/gi,
+				[/\[message=(\d+)\.(\d+)\]/gi,
 					"<a href='/Forum/Read.aspx?t=$1&n=$2' target='_blank'>($1.$2)</a>"],
-				[/\[post\=(\d+)\.(\d+)\]/gi,
+				[/\[post=(\d+)\.(\d+)\]/gi,
 					"<a href='/Forum/Read.aspx?t=$1&n=$2' target='_blank'>($1.$2)</a>"],
 				[/\[leagueid=(\d+)\]/gi,
 					"<a href='/World/Series/?LeagueLevelUnitID=$1' " +
@@ -56,25 +67,26 @@ Foxtrick.modules['ForumPreview'] = {
 					"<a href='/Community/Tournaments/Tournament.aspx?tournamentId=$1' " +
 						"target='_blank'>($1)</a>"],
 				[/\[link=(.*?)\]/gi,
-					"<a href='$1' target='_blank'>($1)</a>"],
+					"<a href='$1' target='_blank' rel='noopener'>($1)</a>"],
 				[/\[articleid=(.*?)\]/gi,
 					"<a href='/Community/Press?ArticleID=$1' target='_blank'>($1)</a>"],
 				[/\[br\]/gi, '<br>'],
-				[/\[hr\]/gi, '<hr>']
+				[/\[hr\]/gi, '<hr>'],
 			];
 
+			/** @type {[RegExp, string][]} */
 			var nestedReplace = [
 				[/\[b\](.*?)\[\/b\]/gi, '<b>$1</b>'],
 				[/\[u\](.*?)\[\/u\]/gi, '<u>$1</u>'],
 				[/\[i\](.*?)\[\/i\]/gi, '<i>$1</i>'],
 				[/\[q\](.*?)\[\/q\]/gi, "<blockquote class='quote'>$1</blockquote>"],
-				[/\[quote\=(.*?)\](.*?)\[\/quote\]/gi,
+				[/\[quote=(.*?)\](.*?)\[\/quote\]/gi,
 					"<blockquote class='quote'><div class='quoteto'>$1&nbsp;wrote:</div>" +
 						'$2</blockquote>'],
-				[/\[q\=(.*?)\](.*?)\[\/q\]/gi,
+				[/\[q=(.*?)\](.*?)\[\/q\]/gi,
 					"<blockquote class='quote'><div class='quoteto'>$1&nbsp;wrote:</div>" +
 						'$2</blockquote>'],
-				[/\[q\=(.*?)\](.*?)\[\/q\]/gi,
+				[/\[q=(.*?)\](.*?)\[\/q\]/gi,
 					"<blockquote class='quote'><div class='quoteto'>$1&nbsp;wrote:</div>" +
 						'$2</blockquote>'],
 				[/\[spoiler\](.*?)\[\/spoiler\]/gi,
@@ -92,31 +104,25 @@ Foxtrick.modules['ForumPreview'] = {
 					"<td $1 class='$2' $3>$4</td>"],
 				[/\[th(.*?)\](.*?)\[\/th\]/gi, '<th $1>$2</th>'],
 				[/\[td(.*?)\](.*?)\[\/td\]/gi, '<td $1>$2</td>'],
-				[/\<br \/\>\s*\<\/td\>/gi, '<br/></td>'],
-				[/\<br \/\>\s*\<\/th\>/gi, '<br/></th>'],
-				[/\<\/td\>\s*\<br \/\>/gi, '</td>'],
-				[/\<\/th\>\s*\<br \/\>/gi, '</th>'],
-				[/\<\/tr\>\s*\<br \/\>/gi, '</tr>'],
-				[/\<tr([^\>]*?)\>\s*\<br \/\>/gi, '<tr$1>'],
-				[/\<tbody\>\s*\<br \/\>/gi, '<tbody>'],
-				[/\<\/td\>\s*\<br \/\>/gi, '</td>'],
-				[/\<\/th\>\s*\<br \/\>/gi, '</th>'],
-				[/\<\/tr\>\s*\<br \/\>/gi, '</tr>'],
-				[/\<tr([^\>]*?)\>\s*\<br \/\>/gi, '<tr$1>'],
-				[/\<tbody\>\s*\<br \/\>/gi, '<tbody>']
+				[/<br \/>\s*<\/td>/gi, '<br/></td>'],
+				[/<br \/>\s*<\/th>/gi, '<br/></th>'],
+				[/<\/td>\s*<br \/>/gi, '</td>'],
+				[/<\/th>\s*<br \/>/gi, '</th>'],
+				[/<\/tr>\s*<br \/>/gi, '</tr>'],
+				[/<tr([^>]*?)>\s*<br \/>/gi, '<tr$1>'],
+				[/<tbody>\s*<br \/>/gi, '<tbody>'],
+				[/<\/td>\s*<br \/>/gi, '</td>'],
+				[/<\/th>\s*<br \/>/gi, '</th>'],
+				[/<\/tr>\s*<br \/>/gi, '</tr>'],
+				[/<tr([^>]*?)>\s*<br \/>/gi, '<tr$1>'],
+				[/<tbody>\s*<br \/>/gi, '<tbody>'],
 			];
 
-			var msg_window;
-			try {
-				msg_window = doc.getElementById('mainBody').getElementsByTagName('textarea')[0];
-			}
-			catch (e) {
-				Foxtrick.log(e);
-				return;
-			}
+			/** @type {HTMLTextAreaElement} */
+			var msgWindow = doc.querySelector('#mainBody textarea');
 
 			try {
-				var text = msg_window.value;
+				var text = msgWindow.value;
 
 				// escape HTML for preview
 				text = text.replace(/&/g, '&amp;');
@@ -128,224 +134,192 @@ Foxtrick.modules['ForumPreview'] = {
 				text = text.replace(/\n/g, '<br />');
 				text = text.replace(/\r/g, '');
 
-				var nested = ['[q', '[b', '[i', '[u', '[spoil', '[table', '[pre'];
-				var count = 0;
-				for (var i = 0; i < nested.length; ++i) {
-					var count_nested = Foxtrick.substr_count(text, nested[i]);
-					count = Math.max(count, count_nested);
-				}
+				let nested = ['[q', '[b', '[i', '[u', '[spoil', '[table', '[pre'];
 
-				for (var i = 0; i < singleReplace.length; i++) {
-					text = text.replace(singleReplace[i][0], singleReplace[i][1]);
-				}
+				let counts = /** @type {number[]} */ (
+					nested.map(n => Foxtrick.substr_count(text, n))
+				);
+				let count = Math.max(0, ...counts);
 
-				for (var j = 0; j <= count + 1; j++) {
-					for (var i = 0; i < nestedReplace.length; i++) {
-						text = text.replace(nestedReplace[i][0], nestedReplace[i][1]);
-					}
+				for (let [needle, replacement] of singleReplace)
+					text = text.replace(needle, replacement);
+
+				for (let j = 0; j <= count + 1; j++) {
+					for (let [needle, replacement] of nestedReplace)
+						text = text.replace(needle, replacement);
 				}
 
 				// remove HT-ML escaping but leave HTML
 				text = Foxtrick.unescapePre(text);
 
-				var preview_message = doc.createElement('div');
-				preview_message.id = 'message_preview';
-				preview_message.setAttribute('class', 'message');
+				let previewMessage = doc.createElement('div');
+				previewMessage.id = 'message_preview';
+				previewMessage.className = 'message';
+				Foxtrick.util.sanitize.addHTML(doc, text, previewMessage);
 
-				Foxtrick.util.sanitize.addHTML(doc, text, preview_message);
-				preview_div.replaceChild(preview_message, preview_div.firstChild);
+				let oldPreview = previewDiv.querySelector('#message_preview');
+				previewDiv.replaceChild(previewMessage, oldPreview);
 			}
 			catch (e) {
 				Foxtrick.log(e);
 			}
 		};
 
-		var toggleListener = function() {
-			var prev_div = doc.getElementById('ft-forum-preview-area');
-			Foxtrick.toggleClass(prev_div, 'hidden');
+		/**
+		 * @param  {HTMLElement} previewDiv
+		 * @return {Listener<HTMLInputElement, MouseEvent>}
+		 */
+		var toggleListener = function(previewDiv) {
+			/** @type {WeakMap<Element, ()=>void>} */
+			const REMOVE_MAP = new WeakMap();
+			const NO_OP = () => {};
 
-			try {
-				var msg_window = doc.getElementById('mainBody').getElementsByTagName('textarea')[0];
-			}
-			catch (e) {
-				Foxtrick.log('FoxtrickForumPreview', e);
-			}
+			return function toggle() {
+				Foxtrick.toggleClass(previewDiv, 'hidden');
+				let msgWindow = doc.querySelector('#mainBody textarea');
 
-			try {
-				if (Foxtrick.hasClass(prev_div, 'hidden')) {
-					msg_window.removeEventListener('input', preview, false);
-					var toolbar = doc.getElementsByClassName('HTMLToolbar');
-					for (var i = 0; i < toolbar.length; ++i)
-						toolbar[i].removeEventListener('click', preview, false);
+				try {
+					if (Foxtrick.hasClass(previewDiv, 'hidden')) {
+						(REMOVE_MAP.get(msgWindow) || NO_OP)();
 
-				} else {
-					Foxtrick.listen(msg_window, 'input', preview, false);
-					var toolbar = doc.getElementsByClassName('HTMLToolbar');
-					for (var i = 0; i < toolbar.length; ++i)
-						Foxtrick.onClick(toolbar[i], preview);
+						let toolbars = doc.querySelectorAll('.HTMLToolbar');
+						for (let toolbar of toolbars)
+							(REMOVE_MAP.get(toolbar) || NO_OP)();
+					}
+					else {
+						let listener = () => preview(previewDiv);
+						let rem = Foxtrick.listen(msgWindow, 'input', listener);
+						REMOVE_MAP.set(msgWindow, rem);
 
-					preview();
+						let toolbars = doc.querySelectorAll('.HTMLToolbar');
+						for (let toolbar of toolbars) {
+							let rem = Foxtrick.listen(toolbar, 'click', listener);
+							REMOVE_MAP.set(toolbar, rem);
+						}
+
+						listener();
+					}
 				}
-			} catch (e) {
-				Foxtrick.dump('FoxtrickForumPreview._toggleListener' + e);
-			}
+				catch (e) {
+					Foxtrick.log('kForumPreview.toggle', e);
+				}
+			};
 		};
 
-		var check_div = doc.getElementById('ft-forum-preview-area');
-		if (check_div != null) return;
+		var msgWindow = Foxtrick.getMBElement(doc, 'tbNewsBody') ||
+			doc.querySelector('#mainBody textarea');
 
-		try {
-			var msg_window = Foxtrick.getMBElement(doc, 'tbNewsBody');
-			//mailnewsletter
+		if (msgWindow == null)
+			return;
 
-			if (msg_window == null) {
-				msg_window = doc.getElementById('mainBody').getElementsByTagName('textarea')[0];
-			}
-			if (msg_window == null)
+		{
+			let previewDiv = doc.getElementById('ft-forum-preview-area');
+			if (previewDiv != null)
 				return;
-		}
-		catch (e) {
-			Foxtrick.log(e);
-		}
 
-		var preview_ctrl_div = doc.createElement('div');
-		preview_ctrl_div.style.marginTop = '1em';
-
-		var button_ok = null;
-		var targets = doc.getElementById('mainBody').getElementsByTagName('input');  // Forum
-		var target = targets[targets.length - 1];
-
-		if (Foxtrick.isPage(doc, 'forumWritePost'))
-			button_ok = targets[targets.length - 2];
-		if (Foxtrick.isPage(doc, 'guestbook'))
-			target = null;
-
-
-		var msg_type = 0;
-		//var index =11;
-
-		var index = 12;
-
-		if (!target) {
-			target = Foxtrick.getButton(doc, 'SendNew');  // Mail
-			index = 6;
-			/*index=5;*/
-			var msg_type = 1;
+			let previewCtrlDiv = doc.createElement('div');
+			previewCtrlDiv.style.marginTop = '1em';
+			Foxtrick.insertBefore(previewCtrlDiv, msgWindow);
 		}
 
-		if (!target) {
-			target = Foxtrick.getButton(doc, 'ActionSend');  // Ticket
-			if (target) {
-				msg_window.setAttribute('tabindex', 1);
-				target.setAttribute('tabindex', 2);
-				index = 3; /*index=5;*/
-				var msg_type = 2;
-			}
-		}
-		if (!target) {
-			target = Foxtrick.getButton(doc, 'Add');  // GB
-			if (target) {
-				msg_window.setAttribute('tabindex', 1);
-				target.setAttribute('tabindex', 2);
-				index = 3; /*index=5;*/
-				var msg_type = 3;
-			}
-		}
-		if (!target) {
-			target = Foxtrick.getButton(doc, 'SendNewsletter');
-			// newsletter
-			if (target) {
-				msg_window.setAttribute('tabindex', 1);
-				target.setAttribute('tabindex', 2);
-				index = 3; /*index=5;*/
-				var msg_type = 5;
-			}
-		}
-		if (!target) {
-			target = Foxtrick.getButton(doc, 'NewsSend');
-			// mailnewsletter
-			if (target) {
-				msg_window.setAttribute('tabindex', 1);
-				target.setAttribute('tabindex', 2);
-				index = 3; /*index=5;*/
-				var msg_type = 6;
-			}
-		}
-		if (!target) {
-			target = Foxtrick.getButton(doc, 'Edit');  // AnnouncementEdit
-			if (target) {
-				msg_window.setAttribute('tabindex', 1);
-				target.setAttribute('tabindex', 2);
-				index = 3; /*index=5;*/
-				var msg_type = 6;
-			}
-		}
-		if (!target) {
-			target = Foxtrick.getButton(doc, 'ThreadCloseReplyOK');
-			// forumModWritePost
-			if (target) {
-				msg_window.setAttribute('tabindex', 1);
-				target.setAttribute('tabindex', 2);
-				index = 3; /*index=5;*/
-				var msg_type = 7;
-			}
-		}
-
-
-		if (doc.getElementById('ft-forum-preview-button') == null) {
-			//button_ok.setAttribute('tabindex',  index);
-			if (button_ok && Foxtrick.L10n.isStringAvailableLocal('ForumPreview.send'))
-				button_ok.setAttribute('value', Foxtrick.L10n.getString('ForumPreview.send'));
-
-			//if (button_cancel) button_cancel.setAttribute('tabindex',  '12');
-			var new_button = doc.createElement('input');
-			new_button.setAttribute('value', Foxtrick.L10n.getString('ForumPreview.preview'));
-			new_button.setAttribute('title', Foxtrick.L10n.getString('ForumPreview.preview.title'));
-			new_button.setAttribute('id', 'ft-forum-preview-button');
-			new_button.setAttribute('type', 'button');
-			new_button = Foxtrick.makeFeaturedElement(new_button, this);
-			//if (msg_type != -1)
-			//new_button.setAttribute('style',  'float:right;');
-			Foxtrick.onClick(new_button, toggleListener);
-			new_button.setAttribute('tabindex', index);
-			//button_ok.parentNode.insertBefore(new_button,button_ok);
-			target.parentNode.insertBefore(new_button, target.nextSibling);
-		}
-
-		msg_window.parentNode.insertBefore(preview_ctrl_div, msg_window);
-
-		var preview_div = Foxtrick.createFeaturedElement(doc, this, 'div');
-		preview_div.id = 'ft-forum-preview-area';
-		preview_div.setAttribute('class', 'cfMessageNoAvatar hidden');
-		preview_div.style.border = '1px dotted grey';
-		if (msg_window.style.width == '95%')
-			preview_div.style.width = '89.5%';
+		var previewDiv = Foxtrick.createFeaturedElement(doc, module, 'div');
+		previewDiv.id = 'ft-forum-preview-area';
+		previewDiv.className = 'cfMessageNoAvatar hidden';
+		previewDiv.style.border = '1px dotted grey';
+		if (msgWindow.style.width == '95%')
+			previewDiv.style.width = '89.5%';
 		else
-			preview_div.style.width = '93%';
-		preview_div.style.margin = '5px';
-		preview_div.style.padding = '10px';
-		preview_div.style.background = '#fcf6df';
+			previewDiv.style.width = '93%';
+		previewDiv.style.margin = '5px';
+		previewDiv.style.padding = '10px';
+		previewDiv.style.background = '#fcf6df';
 
-		var preview_message = doc.createElement('div');
-		preview_message.id = 'message_preview';
-		preview_message.setAttribute('class', 'message');
-		preview_div.appendChild(preview_message);
+		{
+			let previewMessage = doc.createElement('div');
+			previewMessage.id = 'message_preview';
+			previewMessage.className = 'message';
+			previewDiv.appendChild(previewMessage);
 
-		var div = doc.querySelector('.HTMLToolbar');
-		if (!div) {
-			if (Foxtrick.isPage(doc, 'newsLetter') || Foxtrick.isPage(doc, 'ntNewsLetter'))
-				div = Foxtrick.getMBElement(doc, 'txtMessage');
-			if (Foxtrick.isPage(doc, 'mailNewsLetter'))
-				div = Foxtrick.getMBElement(doc, 'tbNewsBody');
+			let at = doc.querySelector('.HTMLToolbar');
+			if (!at) {
+				if (Foxtrick.isPage(doc, 'newsLetter') || Foxtrick.isPage(doc, 'ntNewsLetter'))
+					at = Foxtrick.getMBElement(doc, 'txtMessage');
+				if (Foxtrick.isPage(doc, 'mailNewsLetter'))
+					at = Foxtrick.getMBElement(doc, 'tbNewsBody');
+			}
+
+			if (!at)
+				return;
+
+			Foxtrick.insertBefore(previewDiv, at);
 		}
 
-		if (div)
-			div.parentNode.insertBefore(preview_div, div);
+		if (doc.getElementById('foxtrick-forum-preview-button'))
+			return;
+
+		let target = module.getButtonTarget(msgWindow);
+		if (!target)
+			return;
+
+		{
+			let context = msgWindow.closest('.info, .boxBody');
+			let htButtons = context.querySelectorAll('.hattrick-ml-preview-button');
+			let unhandled = Foxtrick.nth(e => !e.matches('.ft-replaced'), htButtons);
+			if (unhandled)
+				Foxtrick.addClass(unhandled, 'ft-replaced');
+		}
+		{
+			msgWindow.tabIndex = msgWindow.tabIndex || 1;
+			target.tabIndex = msgWindow.tabIndex + 1;
+
+			let newButton = doc.createElement('input');
+			newButton.value = Foxtrick.L10n.getString('ForumPreview.preview');
+			newButton.title = Foxtrick.L10n.getString('ForumPreview.preview.title');
+			newButton.id = 'foxtrick-forum-preview-button';
+			newButton.type = 'button';
+			newButton = Foxtrick.makeFeaturedElement(newButton, module);
+			Foxtrick.onClick(newButton, toggleListener(previewDiv));
+			newButton.tabIndex = target.tabIndex + 1;
+
+			Foxtrick.insertAfter(newButton, target);
+		}
+
+		let toolbars = doc.querySelectorAll('.HTMLToolbar');
+		for (let toolbar of toolbars) {
+			for (let button of toolbar.children) {
+				if (button.hasAttribute('onclick') && !button.hasAttribute('tabindex')) {
+					button.setAttribute('tabindex', '0');
+					button.setAttribute('role', 'button');
+				}
+			}
+		}
 	},
 
+	/**
+	 * Detect button layout and set up tabindices
+	 *
+	 * @param  {HTMLElement}      area message text area
+	 * @return {HTMLInputElement}      element to insert after
+	 */
+	getButtonTarget(area) {
+		let doc = area.ownerDocument;
+		let scope = area.closest('.info, .boxBody');
+
+		if (Foxtrick.isPage(doc, 'forumWritePost')) {
+			let buttonOk = Foxtrick.getButton(scope, 'OK');
+			if (buttonOk && Foxtrick.L10n.isStringAvailableLocal('ForumPreview.send'))
+				buttonOk.value = Foxtrick.L10n.getString('ForumPreview.send');
+		}
+
+		return Foxtrick.getSubmitButton(scope);
+	},
+
+	/** @param {document} doc */
 	change: function(doc) {
-		var check_div = doc.getElementById('ft-forum-preview-area');
-		if (check_div == null)
-			this.run(doc);
-	}
+		const module = this;
+
+		let previewDiv = doc.getElementById('ft-forum-preview-area');
+		if (previewDiv == null)
+			module.run(doc);
+	},
 };

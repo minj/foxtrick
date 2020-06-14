@@ -269,6 +269,7 @@
 		"leagueNames": {
 			"1": "Švedska",
 			"100": "Salvador",
+			"1000": "Hattrick International",
 			"101": "Malta",
 			"102": "Kirgistan",
 			"103": "Moldavija",
@@ -315,8 +316,19 @@
 			"146": "Kamerun",
 			"147": "Kuba",
 			"148": "Palestina",
+			"149": "Sveti Toma i Princip",
 			"15": "Oceanija",
+			"151": "Komori",
+			"152": "Šri Lanka",
+			"153": "Curaçao",
+			"154": "Guam",
+			"155": "DR Kongo",
+			"156": "Etiopija",
+			"157": "Sveti Vincent i Grenadini",
+			"158": "Belize",
+			"159": "Madagaskar",
 			"16": "Brazil",
+			"160": "Bocvana",
 			"17": "Kanada",
 			"18": "Čile",
 			"19": "Kolumbija",
@@ -392,7 +404,7 @@
 			"94": "Jamajka",
 			"95": "Kenija",
 			"96": "Panama",
-			"97": "Makedonija",
+			"97": "Sjeverna Makedonija",
 			"98": "Albanija",
 			"99": "Honduras"
 		},
@@ -490,7 +502,7 @@
 			},
 			{
 				"type": "WingBack",
-				"value": "Zadnji bočni"
+				"value": "Bočni"
 			},
 			{
 				"type": "CentralDefender",
@@ -498,7 +510,7 @@
 			},
 			{
 				"type": "InnerMidfield",
-				"value": "Srednji vezni"
+				"value": "Vezni"
 			},
 			{
 				"type": "Winger",
@@ -568,23 +580,23 @@
 			},
 			{
 				"type": "Defender",
-				"value": "U obrani"
+				"value": "Obrana"
 			},
 			{
 				"type": "Playmaker",
-				"value": "Kreiranje igre"
+				"value": "Kreiranje"
 			},
 			{
 				"type": "Winger",
-				"value": "Na krilu"
+				"value": "Krilo"
 			},
 			{
 				"type": "Scorer",
-				"value": "U napadu"
+				"value": "Napad"
 			},
 			{
 				"type": "Kicker",
-				"value": "Iz prekida"
+				"value": "Prekidi"
 			},
 			{
 				"type": "Passer",
@@ -602,7 +614,7 @@
 		"specialties": [
 			{
 				"type": "None",
-				"value": "Bez specijalnosti"
+				"value": "Nema"
 			},
 			{
 				"type": "Technical",
@@ -625,8 +637,12 @@
 				"value": "Igra glavom"
 			},
 			{
-				"type": "Regainer",
-				"value": "Brži oporavak"
+				"type": "Resilient",
+				"value": "Otporan"
+			},
+			{
+				"type": "Support",
+				"value": "Timski igrač"
 			}
 		],
 		"spirit": [
@@ -778,11 +794,11 @@
 			},
 			{
 				"type": "Cross",
-				"value": "Nabacivanja (Krila)"
+				"value": "Krila"
 			},
 			{
 				"type": "Shoot",
-				"value": "Udarci na gol"
+				"value": "Udarci na vrata"
 			},
 			{
 				"type": "Pass",
@@ -790,7 +806,7 @@
 			},
 			{
 				"type": "PM",
-				"value": "Veza"
+				"value": "Kreiranje igre"
 			},
 			{
 				"type": "GK",

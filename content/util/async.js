@@ -1,5 +1,4 @@
-'use strict';
-/*
+/**
 * async.js
 *
 * Utilities for asynchronous operations
@@ -7,9 +6,13 @@
 * @author LA-MJ
 */
 
-if (!Foxtrick)
-	var Foxtrick = {}; // jshint ignore:line
+'use strict';
 
+/* eslint-disable */
+if (!this.Foxtrick)
+	// @ts-ignore
+	var Foxtrick = {};
+/* eslint-enable */
 
 // callbacks -> Promises
 // return new Promise(function(resolve, reject) {
@@ -21,62 +24,28 @@ if (!Foxtrick)
 // 	});
 // });
 
-// 	// The fetch() API returns a Promise. This function
-// 	// exposes a similar API, except the fulfillment
-// 	// value of this function's Promise has had more
-// 	// work done on it.
-// 	return fetch('current-data.json').then((response) => {
-// 		if (response.headers.get('content-type') != 'application/json') {
-// 			throw new TypeError('JSON expected');
-// 		}
-// 		return response.json();
-// 	});
-
-// ///////////////
-// TODO: uncomment for generator support
-// ///////////////
-// Foxtrick.runAsync = function(gen) {
-// 	var args = [].slice.call(arguments, 1);
-
-// 	var it = gen.apply(this, args);
-
-// 	return Promise.resolve().then(function getNext(value) {
-// 		// push the resolved value back into the generator
-// 		// and take the next Promise/value
-// 		var next = it.next(value);
-
-// 		// expand promise chain
-// 		return (function handleYielded(next) {
-// 			if (next.done) {
-// 				// end chain
-// 				return next.value;
-// 			}
-// 			else {
-// 				// continue chain
-
-// 				// promisify and wait for resolution
-// 				return Promise.resolve(next.value)
-// 					.then(getNext, function handleError(e) {
-
-// 						// throw errors back into the generator
-// 						// promisify and wait for their resolution
-// 						return Promise.resolve(it.throw(e))
-// 							.then(handleYielded, handleError);
-
-// 					});
-// 			}
-
-// 		})(next);
-
-// 	});
-// };
-
-
 /**
  * Error message for Foxtrick.timeout() rejects
  * @type {String}
  */
 Foxtrick.TIMEOUT_ERROR = 'Foxtrick timeout';
+
+/**
+ * Error message to suppress additional logging
+ * @type {String}
+ */
+Foxtrick.SWALLOWED_ERROR = 'Foxtrick ignore this error';
+
+
+// eslint-disable-next-line valid-jsdoc
+/**
+ * Test whether object obj is a thenable
+ *
+ * @template T
+ * @param  {T} obj
+ * @return {obj is Ensure<T, 'then'>}
+ */
+Foxtrick.isThenable = obj => Foxtrick.hasProp(obj, 'then');
 
 /**
  * Setup a time limit (ms) for Promise fulfillment.
@@ -85,54 +54,55 @@ Foxtrick.TIMEOUT_ERROR = 'Foxtrick timeout';
  * of the Promise returned by the promisory
  * or rejects with Error(Foxtrick.TIMEOUT_ERROR).
  *
- * @param  {function} promisory {function(): Promise}
- * @param  {number}   limit     {Integer}
- * @return {Promise}
+ * @template T
+ * @param  {Promise<T>|function():T|Promise<T>} promisory
+ * @param  {number}                             limit     miliseconds
+ * @return {Promise<T>}
  */
-Foxtrick.timeout = function(promisory, limit) {
-
-	return Promise.race([
-		Promise.resolve(promisory()),
-		new Promise(function timeoutReject(resolve, reject) { // jshint ignore:line
-			setTimeout(function() {
-				reject(new Error(Foxtrick.TIMEOUT_ERROR));
-			}, limit);
-		}),
-	]);
-
-};
+Foxtrick.timeout = (promisory, limit) => Promise.race([
+	Foxtrick.isThenable(promisory) ? promisory : Promise.resolve(promisory()),
+	new Promise(function timeoutReject(_, reject) {
+		setTimeout(reject, limit, new Error(Foxtrick.TIMEOUT_ERROR));
+	}),
+]);
 
 /**
  * Return a Promise that fulfills after a purposeful time delay (ms)
  *
- * @param  {number}  time {Integer}
- * @return {Promise}
+ * @template T
+ * @param  {number}     time miliseconds
+ * @param  {T}          val
+ * @return {Promise<T>}
  */
-Foxtrick.delay = function(time) {
+Foxtrick.delay = (time, val) => new Promise(function delayFinish(fulfill) {
+	setTimeout(fulfill, time, val);
+});
 
-	return new Promise(function delayFinish(fulfill) {
-		setTimeout(function() {
-			fulfill();
-		}, time);
-	});
-
-};
-
+// eslint-disable-next-line valid-jsdoc
 /**
  * Create a handler to catch errors at the end of a promise chain.
  *
  * Takes a module object or some other tag for logging.
  *
- * @param  {object}   module {object}
- * @return {function}        {function(Error)}
+ * @param  {{ MODULE_NAME: string } | string} module {object}
+ * @return {function(any):void}
  */
-Foxtrick.catch = function(module) {
-	return function(e) {
-		var what = module && module.MODULE_NAME || module;
-		Foxtrick.log('Uncaught error in callback for', what, e);
-	};
+Foxtrick.catch = module => function(e) {
+	// @ts-ignore
+	if (e === Foxtrick.SWALLOWED_ERROR ||
+
+		// @ts-ignore
+		e && e.message && e.message === Foxtrick.SWALLOWED_ERROR)
+		return e;
+
+	// @ts-ignore
+	let what = module && module.MODULE_NAME || module;
+	let err = e instanceof Error ? e : new Error(String(e));
+	Foxtrick.log('Uncaught error in callback for', what, err);
+	return e;
 };
 
+// eslint-disable-next-line valid-jsdoc
 /**
  * Run an additional step regardless of promise resolution status.
  *
@@ -141,27 +111,27 @@ Foxtrick.catch = function(module) {
  *
  * then is {function(result|reason): ?Promise}.
  *
- * @param  {Promise}  promise
- * @param  {function} then
- * @return {Promise}
+ * @template T
+ * @param  {Promise<T>}             promise
+ * @param  {function(T|Error):void} then
+ * @return {Promise<T>}
  */
-Foxtrick.finally = function(promise, then) {
+Foxtrick.finally = async (promise, then) => {
+	let result, reason;
+	try {
+		result = await promise;
+	}
+	catch (e) {
+		reason = e;
+	}
 
-	return Promise.resolve(promise).then(function(result) {
-		var next = then(result);
+	await Promise.resolve(result || reason).then(then)
+		.catch(Foxtrick.catch('finally'));
 
-		return Promise.resolve(next).then(function() {
-			return result;
-		});
+	if (reason)
+		throw reason;
 
-	}, function(reason) {
-		var next = then(reason);
-
-		return Promise.resolve(next).then(function() {
-			throw reason;
-		});
-
-	});
+	return result;
 };
 
 /**
@@ -170,16 +140,21 @@ Foxtrick.finally = function(promise, then) {
  * Returns a Promise that either fulfills when the last promise fulfills
  * or rejects and stops on first failure.
  *
- * @param  {array}   promisoryList {Array.<function(): Promise>}
- * @return {Promise}
+ * @template T
+ * @param  {(function(T):T|Promise<T>)[]} promisoryList
+ * @return {Promise<T>}
  */
-Foxtrick.promiseQueue = function(promisoryList) {
+Foxtrick.promiseChain = (promisoryList) => {
 	const ERROR_UNCALLABLE_PROMISORY =
 		'Promisory must be a function that returns a Promise or a value. {} given.';
 
-	var chain = Promise.resolve();
+	/** @type {unknown} */
+	var p = Promise.resolve();
+	var chain = /** @type {Promise<T>} */ (p);
 
-	for (var promisory of promisoryList) {
+	for (let promisory of promisoryList) {
+		// if (Foxtrick.isThenable(promisory))
+		// 	promisory = () => promisory;
 		if (typeof promisory !== 'function')
 			throw new TypeError(Foxtrick.format(ERROR_UNCALLABLE_PROMISORY, [typeof promisory]));
 
@@ -187,4 +162,17 @@ Foxtrick.promiseQueue = function(promisoryList) {
 	}
 
 	return chain;
+};
+
+Foxtrick.deferred = () => {
+	/** @type {(value?: any | PromiseLike<any>) => void} */
+	let resolve;
+
+	/** @type {(reason?: any) => void} */
+	let reject;
+	let promise = new Promise((res, rej) => {
+		resolve = res;
+		reject = rej;
+	});
+	return { resolve, reject, promise };
 };

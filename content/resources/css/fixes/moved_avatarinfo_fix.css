@@ -1,8 +1,4 @@
 #aspnetForm[action*="Read.aspx"] div.mainConf div.cfInnerWrapper,
 #aspnetForm[action*="Read.aspx"] div.mainConf div.cfInnerWrapperGreen,
 #aspnetForm[action*="Read.aspx"] div.mainConf div.cfInnerWrapperRed
- {margin-top:20px;}
-#aspnetForm[action*="Read.aspx"] .cfUser,
-#aspnetForm[action*="Read.aspx"] .cfMessage
-{margin-top:-20px}
-
+ {margin-top:0;}

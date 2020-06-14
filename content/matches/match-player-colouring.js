@@ -97,16 +97,16 @@ Foxtrick.modules.MatchPlayerColouring = {
 			Foxtrick.addClass(n.parentNode.parentNode, 'ft-match-event-away');
 		}, awayLinks);
 
-		var hl = Foxtrick.getParameterFromUrl(doc.location.search, 'HighlightPlayerID');
+		var hl = Foxtrick.getUrlParam(doc.location.href, 'HighlightPlayerID');
 		if (hl) {
 			// highlight single player
 			var links = doc.querySelectorAll('#mainBody a');
 			Foxtrick.map(function(a) {
-				var pId = Foxtrick.getParameterFromUrl(a.href, 'playerId');
-				var yPId = Foxtrick.getParameterFromUrl(a.href, 'youthPlayerId');
+				var pId = Foxtrick.getUrlParam(a.href, 'playerId');
+				var yPId = Foxtrick.getUrlParam(a.href, 'youthPlayerId');
 				if (pId === hl || yPId === hl)
 					Foxtrick.addClass(a, 'ft-match-player-hl');
 			}, links);
 		}
-	}
+	},
 };

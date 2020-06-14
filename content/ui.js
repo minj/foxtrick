@@ -1,11 +1,15 @@
-'use strict';
 /**
 * ui.js
 * UserInterfaces
 * @author convincedd, LA-MJ
 */
-if (!Foxtrick)
-	var Foxtrick = {}; // jshint ignore:line
+
+'use strict';
+
+/* eslint-disable */
+if (!this.Foxtrick)
+	var Foxtrick = {};
+/* eslint-enable */
 
 Foxtrick.modules.UI = {
 	OUTSIDE_MAINBODY: true,
@@ -48,10 +52,7 @@ if (Foxtrick.platform == 'Firefox') {
 		// toolbar menu - clearCache
 		var toolCache = document.getElementById('foxtrick-toolbar-clearCache');
 		toolCache.addEventListener('click', function() {
-			Foxtrick.sessionDeleteBranch('');
-			Foxtrick.localDeleteBranch('');
-			Foxtrick.cache.clear();
-			// Foxtrick.util.api.clearCache();
+			Foxtrick.clearCaches();
 		});
 
 		// toolbar menu - highlight
@@ -165,7 +166,12 @@ if (Foxtrick.platform == 'Chrome') {
 	};
 
 	Foxtrick.modules.UI.update = function(tab) {
-		Foxtrick.modules.UI.updateIcon(tab); // not called
+		try {
+			Foxtrick.modules.UI.updateIcon(tab);
+		}
+		catch (e) {
+			Foxtrick.log(e);
+		}
 	};
 
 	Foxtrick.modules.UI.updateIcon = function(tab) {
@@ -185,8 +191,10 @@ if (Foxtrick.platform == 'Chrome') {
 		var tooltipText = Foxtrick.L10n.getString('toolbar.title') + ' ' +
 			Foxtrick.version + ' ' + Foxtrick.branch + ' (' + statusText + ')';
 
-		chrome.pageAction.setIcon({ tabId: tab.id, path: iconUrl });
-		chrome.pageAction.setTitle({ tabId: tab.id, title: tooltipText });
+		if (chrome.pageAction.setIcon)
+			chrome.pageAction.setIcon({ tabId: tab.id, path: iconUrl });
+		if (chrome.pageAction.setTitle)
+			chrome.pageAction.setTitle({ tabId: tab.id, title: tooltipText });
 	};
 }
 

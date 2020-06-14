@@ -1,181 +1,219 @@
-'use strict';
 /**
  * show-lineup-set.js
- * @desc highlight teams that have set a lineup, ownerless teams,
- *       and/or winning teams in league fixture/result table.
- * @author convinced, ryanli
+ *
+ * highlight own team, teams that have set a lineup, ownerless teams,
+ * and/or winning teams in league fixture/result tables.
+ *
+ * @author convinced, ryanli, teles, LA-MJ
  */
 
-Foxtrick.modules['ShowLineupSet'] = {
+'use strict';
+
+Foxtrick.modules.ShowLineupSet = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
-	PAGES: ['series', 'youthSeries', 'tournaments', 'tournamentsHistory', 'ladders', 'oldSeries', 'marathon', 'topScorers'],
+	PAGES: [
+		'series', 'youthSeries',
+		'tournaments', 'tournamentsHistory', 'ladders',
+		'oldSeries', 'marathon',
+		'topScorers',
+	],
 	OPTIONS: ['LineupSet', 'Ownerless', 'Standing', 'Winning'],
-	NICE: -2, //before ReLiveLinks
-	//CSS: Foxtrick.InternalPath + 'resources/css/show-lineup-set.css',
+	NICE: -2, // before ReLiveLinks
+	// CSS: Foxtrick.InternalPath + 'resources/css/show-lineup-set.css',
 
+	/**
+	 * @param  {HTMLTableElement} table
+	 * @return {boolean}
+	 */
+	isFixtureTable: function(table) {
+		// README: ReLiveLinks breaks this detection
+		return !!table.querySelector('a[href^="/Club/Matches/Live.aspx"]');
+	},
+
+	/**
+	 * @param  {HTMLTableElement} table
+	 * @return {boolean}
+	 */
+	isResultTable: function(table) {
+		return Foxtrick.hasClass(table, 'left') && !this.isFixtureTable(table);
+	},
+
+	/** @param {document} doc */
+	// eslint-disable-next-line complexity
 	run: function(doc) {
-		var rtl = Foxtrick.util.layout.isRtl(doc);
-		var lineupSet = [];
-		var bots = [];
+		const module = this;
+		const isRTL = Foxtrick.util.layout.isRtl(doc);
 
-		// check teams that have set a lineup
-		if (Foxtrick.Prefs.isModuleOptionEnabled('ShowLineupSet', 'LineupSet') &&
-			Foxtrick.isPage(doc, 'series')) {
-			var newsFeed = Foxtrick.Pages.Series.getNewsFeed(doc);
-			var items = newsFeed.getElementsByClassName('feedItem');
-			// check whether an item is a set-lineup item, if is, return team
-			// name, otherwise return null
-			var getLineupTeam = function(item) {
-				var links = item.getElementsByTagName('a');
-				if (links.length == 2) {
-					var isTransfer = Foxtrick.any(function(n) {
-						return n.href.search(/playerid=/i) >= 0;
-					}, links);
-					if (!isTransfer)
-						return links[0].textContent;
-				}
-				return null;
-			};
-
-			lineupSet = Foxtrick.map(getLineupTeam, items);
-			lineupSet = Foxtrick.filter(function(n) { return n != null; }, lineupSet);
-		}
-
-		// check ownerless teams
-		var leagueTable = doc.getElementById('mainBody').getElementsByTagName('table')[0];
+		var leagueTable = doc.querySelector('#mainBody table');
 		if (!leagueTable) {
 			Foxtrick.log('league table not found. Tournament has not started yet?');
 			return;
 		}
 
-		// checks whether a team is ownerless
-		var isOwnerless = function(link) { return Foxtrick.hasClass(link, 'shy'); };
+		/** @type {string[]} */
+		var lineupSet = [];
+
+		// check teams that have set a lineup
+		if (Foxtrick.Prefs.isModuleOptionEnabled(module, 'LineupSet') &&
+		    Foxtrick.isPage(doc, 'series')) {
+
+			let newsFeed = Foxtrick.Pages.Series.getNewsFeed(doc);
+			let items = newsFeed.getElementsByClassName('feedItem');
+
+			/**
+			 * check whether an item is a set-lineup item, if is, return team
+			 * name, otherwise return null
+			 *
+			 * @param  {Element} item
+			 * @return {string}
+			 */
+			let getLineupTeam = function(item) {
+				let teamLinks = item.querySelectorAll('a[href*="TeamID="]');
+				if (teamLinks.length == 2)
+					return teamLinks[0].textContent.trim();
+
+				return null;
+			};
+
+			lineupSet = Foxtrick.map(getLineupTeam, items);
+			lineupSet = Foxtrick.filter(n => n != null, lineupSet);
+		}
+
+		// check ownerless teams
 		// get bots/ownerless
-		var teams = leagueTable.getElementsByTagName('a');
-		var botLinks = Foxtrick.filter(isOwnerless, teams);
-		bots = Foxtrick.map(function(n) { return n.textContent; }, botLinks);
+		let botLinks = leagueTable.querySelectorAll('a.shy');
+		var bots = Foxtrick.map(n => n.textContent, botLinks);
 
-		var isFixtureTable = function(table) {
-			try {
-				return (table.getElementsByTagName('a')[0].href
-				        .search(/\/Club\/Matches\/Live.aspx/i) >= 0);
-			}
-			catch (e) {
-				return false;
+		/**
+		 * @param  {HTMLAnchorElement}          matchLink
+		 * @return {[HTMLElement, HTMLElement]}           wrapped team names
+		 */
+		var splitMatchLink = function(matchLink) {
+			var teams = matchLink.textContent.split('\u00a0-\u00a0');
+			var teamNode0 = doc.createElement('span');
+			teamNode0.textContent = teams[0];
+			var teamNode1 = doc.createElement('span');
+			teamNode1.textContent = teams[1];
+
+			Foxtrick.addClass(matchLink, 'nowrap');
+			matchLink.textContent = '';
+			matchLink.appendChild(teamNode0);
+			matchLink.appendChild(doc.createTextNode('\u00a0-\u00a0'));
+			matchLink.appendChild(teamNode1);
+			Foxtrick.makeFeaturedElement(matchLink, module);
+
+			return [teamNode0, teamNode1];
+		};
+
+		/**
+		 * @param {HTMLAnchorElement}          link
+		 * @param {[HTMLElement, HTMLElement]} teamWrappers
+		 * @param {string[]}                   teamsNeedle
+		 * @param {string}                     className
+		 */
+		var markTeams = function(link, teamWrappers, teamsNeedle, className) {
+			let [first, second] = teamWrappers;
+			for (let teamNeedle of teamsNeedle) {
+				let pos = link.title.trim().indexOf(teamNeedle);
+				if (pos == -1) {
+					// Foxtrick.log(`WARNING: team '${teamNeedle}' not found in '${link.title}'`);
+					continue;
+				}
+
+				let target = pos == 0 ? first : second;
+				Foxtrick.addClass(target, className);
 			}
 		};
-		var isResultTable = function(table) {
-			return Foxtrick.hasClass(table, 'left') && !isFixtureTable(table);
-		};
 
-		var tables = doc.getElementById('mainBody').getElementsByTagName('table');
+		/** @type {Iterable<HTMLTableElement>} */
+		var tables = doc.querySelectorAll('#mainBody table');
+
 		// only deal with fixture/result tables
 		tables = Foxtrick.filter(function(n) {
-			return isFixtureTable(n) || isResultTable(n);
+			return module.isFixtureTable(n) || module.isResultTable(n);
 		}, tables);
-		for (var k = 0; k < tables.length; ++k) {
-			var table = tables[k];
-			if (isFixtureTable(table))
+
+		for (let table of tables) {
+			if (module.isFixtureTable(table))
 				Foxtrick.addClass(table, 'ft_league_matches');
-			else if (isResultTable(table))
+			else if (module.isResultTable(table))
 				Foxtrick.addClass(table, 'ft_league_results');
-			for (var i = 1; i < table.rows.length; ++i) {
-				var row = table.rows[i];
+
+			let rows = Foxtrick.toArray(table.rows).slice(1); // skip header
+			for (let row of rows) {
 				if (row.cells.length < 2)
 					continue; // not a valid fixture/result row
 
-				var makeTeamNodes = function(link) {
-					var teams = link.textContent.split('\u00a0-\u00a0');
-					var teamNode0 = doc.createElement('span');
-					teamNode0.textContent = teams[0];
-					var teamNode1 = doc.createElement('span');
-					teamNode1.textContent = teams[1];
+				let link = row.querySelector('a');
+				let teams = splitMatchLink(link);
+				let [home, away] = teams;
 
-					link.textContent = '';
-					link.appendChild(teamNode0);
-					link.appendChild(doc.createTextNode(' - '));
-					link.appendChild(teamNode1);
-					Foxtrick.addClass(link, 'nowrap');
-					link = Foxtrick.makeFeaturedElement(link, Foxtrick.modules.ShowLineupSet);
-
-					return [teamNode0, teamNode1];
-				};
-
-				var markBots = function(link, teams) {
-					for (var j = 0; j < bots.length; ++j) {
-						var pos = link.title.indexOf(bots[j]);
-						if (pos == 0) {
-							Foxtrick.addClass(teams[0], 'shy');
-						}
-						else if (pos > 0) {
-							Foxtrick.addClass(teams[1], 'shy');
-						}
-					}
-				};
-
-				var link = row.cells[0].getElementsByTagName('a')[0];
+				if (Foxtrick.Prefs.isModuleOptionEnabled(module, 'Ownerless'))
+					markTeams(link, teams, bots, 'shy');
 
 				// lineup set (for future matches only)
-				if (isFixtureTable(table)) {
-					var teams = makeTeamNodes(link);
-					for (var j = 0; j < lineupSet.length; ++j) {
-						var pos = link.title.indexOf(lineupSet[j]);
-						if (pos == 0)
-							teams[0].className = 'bold';
-						else if (pos > 0)
-							teams[1].className = 'bold';
-					}
-					markBots(link, teams);
-				}
+				if (Foxtrick.Prefs.isModuleOptionEnabled(module, 'LineupSet') &&
+				    module.isFixtureTable(table))
+					markTeams(link, teams, lineupSet, 'bold');
+
 				// wins (for results only)
-				if (isResultTable(table)
-					&& Foxtrick.Prefs.isModuleOptionEnabled('ShowLineupSet', 'Winning')) {
+				if (Foxtrick.Prefs.isModuleOptionEnabled(module, 'Winning') &&
+				    module.isResultTable(table)) {
 
-					var teams = makeTeamNodes(link);
+					let goals = row.cells[1].textContent.trim().split(/\s*-\s*/);
+					let [first, second] = goals;
+					let goalDiff = parseInt(first, 10) - parseInt(second, 10);
 
-					var goals = row.cells[1].textContent.trim().split(/\s*-\s*/);
-					var goal_dif = parseInt(goals[0]) - parseInt(goals[1]);
-					if (rtl)
-						goal_dif *= -1; // reverted for rtl
-					if (goal_dif > 0)
-						teams[0].className = 'bold';
-					else if (goal_dif < 0)
-						teams[1].className = 'bold';
+					if (isRTL)
+						goalDiff *= -1; // reverted for RTL
 
-					markBots(link, teams);
+					if (goalDiff > 0)
+						Foxtrick.addClass(home, 'bold');
+					else if (goalDiff < 0)
+						Foxtrick.addClass(away, 'bold');
 				}
 			}
 		}
 
-		if (Foxtrick.Prefs.isModuleOptionEnabled('ShowLineupSet', 'Standing')) {
-				if(Foxtrick.isPage(doc, 'youthSeries')) {
-					var correctTeam = "TeamID="+Foxtrick.util.id.getOwnYouthTeamId();
-				} else {
-					var correctTeam = "TeamID="+Foxtrick.util.id.getOwnTeamId();
-				}
+		if (Foxtrick.Prefs.isModuleOptionEnabled(module, 'Standing'))
+			module.detectOwnTeam(doc);
+	},
 
-				var tables = doc.getElementById('mainBody').getElementsByTagName('table');
-				// only deal with fixture/result tables
-				tables = Foxtrick.filter(function(n) {
-					return !isFixtureTable(n) && !isResultTable(n) && n.getAttribute('class')=='indent';
-				}, tables);
-				for (var k = 0; k < tables.length; ++k) {
-					var table = tables[k];
-					for (var i = 1; i < table.rows.length; ++i) {
-						var row = table.rows[i];
-						for (var c = 0; c < row.cells.length; ++c) {
-							if(row.cells[c].getElementsByTagName('a').length) {
-								var link = row.cells[c].getElementsByTagName('a')[0];
-								if(link.getAttribute('href').match(correctTeam)) {
-									for (var s = 0; s < row.cells.length; ++s) {
-										Foxtrick.addClass(row.cells[s], 'bold');
-									}
-									Foxtrick.makeFeaturedElement(row, Foxtrick.modules.ShowLineupSet);
-								}
-							}
-						}
-					}
+	/** @param {document} doc */
+	detectOwnTeam: function(doc) {
+		const module = this;
+
+		let ownTeamId = Foxtrick.isPage(doc, 'youthSeries') ?
+			Foxtrick.util.id.getOwnYouthTeamId() :
+			Foxtrick.util.id.getOwnTeamId();
+
+		let ownTeamReText = `TeamID=${ownTeamId}(?!\\d)`; // lookahead to ignore longer IDs;
+		let ownTeamRe = new RegExp(ownTeamReText, 'i');
+
+		/** @type {Iterable<HTMLTableElement>} */
+		let tables = doc.querySelectorAll('#mainBody table.indent');
+
+		// skip fixture/result tables
+		tables = Foxtrick.filter(function(t) {
+			return !module.isFixtureTable(t) && !module.isResultTable(t);
+		}, tables);
+
+		for (let table of tables) {
+			for (let row of Foxtrick.toArray(table.rows)) {
+				let links = row.querySelectorAll('a');
+				for (let link of Foxtrick.toArray(links)) {
+					if (!ownTeamRe.test(link.href))
+						continue;
+
+					Foxtrick.makeFeaturedElement(row, module);
+
+					for (let cell of Foxtrick.toArray(row.cells))
+						Foxtrick.addClass(cell, 'bold');
+
+					break;
 				}
+			}
 		}
-	}
+
+	},
 };

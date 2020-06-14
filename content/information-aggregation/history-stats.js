@@ -1,166 +1,260 @@
 'use strict';
+
 /**
  * history-stats.js
  * Foxtrick team history stats
  * @author spambot
  */
-////////////////////////////////////////////////////////////////////////////////
-Foxtrick.modules['HistoryStats'] = {
+
+Foxtrick.modules.HistoryStats = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES: ['history'],
-	NICE: -1,  // before FoxtrickCopyMatchID
+	NICE: -1, // before FoxtrickCopyMatchID
+
+	/** @type {Object<string, string[]>} */
 	Buffer: {},
 	Pages: {},
 	Offset: {},
 
+	/** @param {document} doc */
 	run: function(doc) {
-		var teamId = Foxtrick.Pages.All.getTeamId(doc);
+		const teamId = Foxtrick.Pages.All.getTeamId(doc);
 		this.Buffer[teamId] = [];
 		this.Pages[teamId] = [];
-		this.Offset[teamId] = 0;
 		this._fetch(doc);
 		this._paste(doc);
 	},
 
+	/** @param {document} doc */
 	change: function(doc) {
 		this._fetch(doc);
 		this._paste(doc);
 	},
 
+	/** @param {document} doc */
+	// eslint-disable-next-line complexity
 	_fetch: function(doc) {
-		var module = this;
-		try {
-			var teamId = Foxtrick.Pages.All.getTeamId(doc);
-			// try to get current page number
-			var page;
-			try {
-				var pager = Foxtrick.getMBElement(doc, 'ucOtherEvents_ucPagerBottom_divWrapper');
-				page = parseInt(pager.getElementsByTagName('strong')[0].textContent, 10);
-			}
-			catch (e) {
-				page = 1;
-			}
-			if (!Foxtrick.has(this.Pages[teamId], page)) {
-				this.Pages[teamId].push(page);
-				var log = Foxtrick.getMBElement(doc, 'ucOtherEvents_ctl00');
-				// get season offset
-				var feeds = log.getElementsByClassName('feedItem');
-				var found = Foxtrick.any(function(feed) {
-					var a = feed.querySelector('a[href$="viewcup"]');
-					if (!a)
-						return false;
-					var check_season = a.textContent;
-					var dateSpan = feed.querySelector('.date');
-					if (dateSpan) {
-						var date = Foxtrick.util.time.getDateFromText(dateSpan.textContent);
-						var season = Foxtrick.util.time.gregorianToHT(date).season;
-						module.Offset[teamId] = parseInt(season, 10) - parseInt(check_season, 10);
+		const module = this;
+
+		const DATE_SPAN_SELECTOR = '.date, [id$="_spanDate"]';
+
+		/**
+		 * @param  {HTMLAnchorElement} a
+		 * @return {boolean}
+		 */
+		var isLgHist = function(a) {
+			return /LeagueLevelUnitID/i.test(a.href) &&
+				/RequestedSeason/i.test(a.href);
+		};
+
+		/**
+		 * @param  {HTMLAnchorElement} a
+		 * @return {boolean}
+		 */
+		var isCupHist = function(a) {
+			return /actiontype=viewcup/i.test(a.href);
+		};
+
+		/**
+		 * @param  {HTMLAnchorElement} a
+		 * @return {boolean}
+		 */
+		var isWinnerLink = function(a) {
+			return /Club\/Manager\/\?userId/i.test(a.href);
+		};
+
+		/**
+		 * @param  {number} teamId
+		 * @return {boolean}
+		 */
+		var hasSeasonOffset = function(teamId) {
+			return Foxtrick.hasProp(module.Offset, String(teamId));
+		};
+
+		/**
+		 * @param  {HTMLElement} log
+		 * @param  {number}      teamId
+		 * @return {boolean}
+		 */
+		var gotSeasonOffset = function(log, teamId) {
+			let feedItems = log.querySelectorAll('.feedItem');
+			return Foxtrick.any(function(feedItem) {
+				let dateSpan = feedItem.querySelector(DATE_SPAN_SELECTOR);
+				if (!dateSpan)
+					return false;
+
+				/** @type {Element} */
+				let row = feedItem.closest('tr');
+
+				let date;
+				while (row && !date) {
+					let feedItem = row.querySelector('.feedItem');
+					if (feedItem) {
+						let dateSpan = feedItem.querySelector(DATE_SPAN_SELECTOR);
+						if (dateSpan)
+							date = Foxtrick.util.time.getDateFromText(dateSpan.textContent);
+					}
+					row = row.previousElementSibling;
+				}
+				if (!date)
+					return false;
+
+				let { season } = Foxtrick.util.time.gregorianToHT(date);
+
+				/** @type {HTMLTableCellElement} */
+				let cell = feedItem.querySelector('td.float_left');
+				let clone = Foxtrick.cloneElement(cell, true);
+				let links = clone.querySelectorAll('a');
+
+				let cupLink = Foxtrick.nth(isCupHist, links);
+				if (cupLink) {
+					let cupSeason = cupLink.textContent;
+					module.Offset[teamId] = season - parseInt(cupSeason, 10);
+					return true;
+				}
+				else if (Foxtrick.any(isLgHist, links)) {
+					Foxtrick.forEach(l => l.remove(), links);
+
+					// README: match 2 digits only to guard against position number
+					let seriesSeason = clone.textContent.match(/\b\d\d\b/);
+					if (seriesSeason) {
+						let thisSeason = seriesSeason.toString();
+						module.Offset[teamId] = season - parseInt(thisSeason, 10);
 						return true;
 					}
-					return false;
-				}, feeds);
-				if (!found)
-					return;
+				}
 
-				var isLgHist = function(a) {
-					return /LeagueLevelUnitID/i.test(a.href) &&
-						/RequestedSeason/i.test(a.href);
-				};
-				var isCupHist = function(a) {
-					return /actiontype=viewcup/i.test(a.href);
-				};
-				var isWinnerAny = function(a) {
-					return /Club\/Manager\/\?userId/i.test(a.href);
-				};
-				var removeEl = function(a) {
-					a.parentNode.removeChild(a);
-				};
+				return false;
 
-				var table = log.cloneNode(true).getElementsByClassName('otherEventText');
-				for (var i = 0; i < table.length; i++) {
-					// stop if old manager
-					if (table[i].getElementsByClassName('shy').length)
-						break;
+			}, feedItems);
+		};
 
-					var buff = '';
-					var league = -1;
-					var leagueN = -1;
-					var cup = -1;
-					var winner_this = false;
-					var eventDate = table[i].parentNode.querySelector('.date');
-					var date = Foxtrick.util.time.getDateFromText(eventDate.textContent);
-					var season = Foxtrick.util.time.gregorianToHT(date).season;
-					var as = table[i].getElementsByTagName('a');
-					for (var j = 0; j < as.length; j++) {
-						if (isWinnerAny(as[j])) {
-							// this entry is for winning something
-							winner_this = true;
-						}
+		var teamId = Foxtrick.Pages.All.getTeamId(doc);
+
+		// try to get current page number
+		var page = 1;
+		try {
+			let pager = Foxtrick.getMBElement(doc, 'ucOtherEvents_ucPagerBottom_divWrapper');
+			page = parseInt(pager.querySelector('strong').textContent, 10);
+		}
+		catch (e) { }
+
+		if (Foxtrick.has(module.Pages[teamId], page))
+			return;
+
+		module.Pages[teamId].push(page);
+
+		let log = Foxtrick.getMBElement(doc, 'ucOtherEvents_ctl00');
+
+		// get season offset
+		if (!hasSeasonOffset(teamId)) {
+			if (!gotSeasonOffset(log, teamId))
+				return;
+		}
+
+		let copy = Foxtrick.cloneElement(log, true);
+		let events = copy.querySelectorAll('.feedItem td.float_left');
+		for (let event of Foxtrick.toArray(events)) {
+			// stop if old manager
+			if (event.getElementsByClassName('shy').length)
+				break;
+
+			let buff = '';
+			let series = '-';
+			let cup = '';
+			let division = 0;
+
+			/** @type {Element} */
+			let row = event.closest('.feedItem').closest('tr');
+
+			let date;
+			while (row && !date) {
+				let feedItem = row.querySelector('.feedItem');
+				if (feedItem) {
+					let dateSpan = feedItem.querySelector(DATE_SPAN_SELECTOR);
+					if (dateSpan)
+						date = Foxtrick.util.time.getDateFromText(dateSpan.textContent);
+				}
+				row = row.previousElementSibling;
+			}
+			if (!date)
+				continue;
+
+			let { season } = Foxtrick.util.time.gregorianToHT(date);
+
+			let links = Foxtrick.toArray(event.querySelectorAll('a'));
+			for (let link of links) {
+				if (isLgHist(link)) {
+					series = link.textContent;
+
+					// README: should use Foxtrick.util.id.parseSeries
+					// but leagueId is unavailable
+					if (/\./.test(series)) {
+						let [sSplit] = series.split('.');
+						division = Foxtrick.util.id.romantodecimal(sSplit);
 					}
-
-					for (var j = 0; j < as.length; j++) {
-						if (isLgHist(as[j])) {
-							league = as[j].textContent;
-							leagueN = league;
-							if (/\./.test(league)) {
-								league = league.split('.')[0];
-								league = Foxtrick.util.id.romantodecimal(league);
-							}
-							else {
-								league = 1;
-							}
-						}
-						if (isCupHist(as[j])) {
-							Foxtrick.forEach(removeEl, table[i].getElementsByTagName('a'));
-							cup = table[i].textContent.match(/\d{1,2}/);
-							if (!cup)
-								cup = '!';
-						}
+					else {
+						division = 1;
 					}
-					//league
-					if (league != -1) {
+				}
 
-						if (winner_this)
-							// double entry for winning league skipped
-							continue;
+				if (isCupHist(link)) {
+					Foxtrick.forEach(a => a.remove(), event.querySelectorAll('a'));
 
-						Foxtrick.forEach(removeEl, table[i].getElementsByTagName('a'));
-						table[i].textContent =
-							table[i].textContent.replace(season - this.Offset[teamId], '').trim();
-						var pos = table[i].textContent.match(/\d{1}/);
-						buff += season + '|' + league + '|' + pos + '|' + leagueN;
-					}
-					else if (cup != -1) {
-						buff += season + '|' + cup + '||';
-					}
-					else
-						// unimportant event
-						continue;
-
-					// add a short timestamp
-					buff += '|' + date.valueOf() / 100000;
-					if (!Foxtrick.has(this.Buffer[teamId], buff))
-						this.Buffer[teamId].push(buff);
+					// French/Flemish: '1e'
+					let match = event.textContent.match(/\b\d{1,2}(?!\d)/);
+					cup = match ? match.toString() : '!';
 				}
 			}
-		}
-		catch (e) {
-			Foxtrick.log(e);
+
+			// league
+			if (division) {
+				if (Foxtrick.any(isWinnerLink, links)) {
+					// skip double entry for winning league
+					continue;
+				}
+
+				let lSeason = season - module.Offset[teamId];
+				let lSeasonRe = new RegExp('\\b' + lSeason + '\\b');
+				Foxtrick.forEach(a => a.remove(), event.getElementsByTagName('a'));
+				event.textContent = event.textContent.replace(lSeasonRe, '').trim();
+
+				let pos = event.textContent.match(/\b\d{1}(?!\d)/); // French/Flemish: '1e'
+				buff += season + '|' + division + '|' + pos + '|' + series;
+			}
+			else if (cup) {
+				buff += season + '|' + cup + '||';
+			}
+			else {
+				// unimportant event
+				continue;
+			}
+
+			// add a short timestamp
+			buff += '|' + Math.floor(date.valueOf() / Foxtrick.util.time.MSECS_IN_DAY);
+			if (!Foxtrick.has(module.Buffer[teamId], buff))
+				module.Buffer[teamId].push(buff);
 		}
 	},
 
+	/** @param {document} doc */
 	_paste: function(doc) {
-		var teamId = Foxtrick.Pages.All.getTeamId(doc);
-		if (!this.Buffer[teamId].length)
+		const module = this;
+		const OWN_BOX_BODY_ID = 'ft_HistoryStats';
+
+		const teamId = Foxtrick.Pages.All.getTeamId(doc);
+
+		let buffer = module.Buffer[teamId];
+		if (!buffer.length)
 			return;
 
-		var table = doc.createElement('table');
+		let table = doc.createElement('table');
 		Foxtrick.addClass(table, 'smallText historystats');
-		var tbody = doc.createElement('tbody');
+		let tbody = doc.createElement('tbody');
 		table.appendChild(tbody);
 
-		var tr = doc.createElement('tr');
-		var td = doc.createElement('th');
+		let tr = doc.createElement('tr');
+		let td = doc.createElement('th');
 		td.title = Foxtrick.L10n.getString('HistoryStats.season');
 		td.textContent = Foxtrick.L10n.getString('HistoryStats.season.short');
 		tr.appendChild(td);
@@ -178,71 +272,73 @@ Foxtrick.modules['HistoryStats'] = {
 		tr.appendChild(td);
 		tbody.appendChild(tr);
 
-		for (var i = 0; i < this.Buffer[teamId].length; i++) {
-			var buffer = this.Buffer[teamId][i];
-			var info = buffer.split('|');
-			var season = parseInt(info[0], 10) - this.Offset[teamId];
-			var cup = info[1];
-			var position = info[2];
-			var league = info[3];
-			var timestamp = info[4];
-			var className = 'ft-history-stats-row-' + season;
-			var row = tbody.querySelector('.' + className);
+		for (let entry of buffer) {
+			let info = entry.split('|');
 
+			let [seas, cupRoundOrDivision, position, league, tmstmp] = info;
+			let season = String(parseInt(seas, 10) - module.Offset[teamId]);
+			let timestamp = parseInt(tmstmp, 10);
+
+			let className = 'ft-history-stats-row-' + season;
+
+			/** @type {HTMLTableRowElement} */
+			let row = tbody.querySelector('.' + className);
 			if (!row) {
 				row = doc.createElement('tr');
 				Foxtrick.addClass(row, className);
-				for (var j = 0; j < 4; j++) {
-					row.insertCell();
-				}
+				for (let j = 0; j < info.length - 1; j++)
+					row.insertCell().textContent = '-';
+
 				tbody.appendChild(row);
-				row.cells[0].textContent = season;
-				row.cells[1].textContent =
-					row.cells[2].textContent = row.cells[3].textContent = '-';
 			}
+
+			let [seasonCell, cupCell, leagueCell, posCell] = row.cells;
+			seasonCell.textContent = season;
+
 			if (league) {
-				row.cells[2].textContent = league;
-				row.cells[3].textContent = position;
+				leagueCell.textContent = league;
+				posCell.textContent = position;
 			}
 			else {
 				// only regard the first cup of the season = main cup
-				var timestampPrev = row.cells[1].getAttribute('data-timestamp') || Infinity;
+				let timestampPrev = parseInt(cupCell.dataset.timestamp, 10) || Infinity;
 				if (timestampPrev < timestamp)
 					continue;
 
-				row.cells[1].setAttribute('data-timestamp', timestamp);
-				if (cup != '!') {
-					row.cells[1].textContent = cup;
-				}
-				else {
-					row.cells[1].textContent = '';
-					var b = doc.createElement('strong');
+				cupCell.dataset.timestamp = String(timestamp);
+				if (cupRoundOrDivision == '!') {
+					cupCell.textContent = '';
+					let b = doc.createElement('strong');
 					b.title = Foxtrick.L10n.getString('HistoryStats.cupwinner');
 					b.textContent = Foxtrick.L10n.getString('HistoryStats.cupwinner.short');
-					row.cells[1].appendChild(b);
+					cupCell.appendChild(b);
+				}
+				else {
+					cupCell.textContent = cupRoundOrDivision;
 				}
 			}
 		}
-		// sort by season DESC
-		var rows = Foxtrick.toArray(table.rows);
-		rows.sort(function(a, b) {
-			return parseInt(b.cells[0].textContent, 10) - parseInt(a.cells[0].textContent, 10);
-		});
-		rows.forEach(function(row) {
-			tbody.appendChild(row);
-		});
 
-		var target = doc.getElementById('ft_HistoryStats');
-		if (target === null) {
-			var ownBoxBody = Foxtrick.createFeaturedElement(doc, this, 'div');
-			var header = Foxtrick.L10n.getString('HistoryStats.boxheader');
-			var ownBoxBodyId = 'ft_HistoryStats';
-			ownBoxBody.setAttribute('id', ownBoxBodyId);
-			ownBoxBody.appendChild(table);
-			Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, 1);
-		}
-		else {
+		// sort by season DESC
+		let rows = Foxtrick.toArray(table.rows);
+		rows.sort((a, b) => {
+			let [aSeason] = a.cells;
+			let [bSeason] = b.cells;
+			return parseInt(bSeason.textContent, 10) - parseInt(aSeason.textContent, 10);
+		});
+		Foxtrick.append(tbody, rows);
+
+		let target = doc.getElementById(OWN_BOX_BODY_ID);
+		if (target) {
 			target.replaceChild(table, target.firstChild);
 		}
-	}
+		else {
+			let ownBoxBody = Foxtrick.createFeaturedElement(doc, module, 'div');
+			ownBoxBody.id = OWN_BOX_BODY_ID;
+			ownBoxBody.appendChild(table);
+
+			let header = Foxtrick.L10n.getString('HistoryStats.boxheader');
+			Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, 1);
+		}
+	},
 };

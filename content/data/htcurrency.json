@@ -85,7 +85,7 @@
 		},
 		{
 			"code": "DOL",
-			"comment": "Benin, Ecuador, Syria, Taiwan, Tanzania",
+			"comment": "Benin, Guam, Ecuador, Syria, Taiwan, Tanzania",
 			"eurorate": "1.0",
 			"leagues": {
 				"60": "Chinese Taipei",
@@ -93,7 +93,8 @@
 				"139": "Benin",
 				"140": "Syria",
 				"142": "Tanzania",
-				"#147": "Cuba"
+				"#147": "Cuba",
+				"154": "Guam"
 			},
 			"name": "$ (Generic dollar)",
 			"symbol": "$"
@@ -107,9 +108,19 @@
 				"#139": "Benin",
 				"#140": "Syria",
 				"#142": "Tanzania",
-				"147": "Cuba"
+				"147": "Cuba",
+				"#154": "Guam"
 			},
 			"name": "$ (Cuban peso)",
+			"symbol": "$"
+		},
+		{
+			"code": "BZD",
+			"eurorate": "0.5",
+			"leagues": {
+				"158": "Belize"
+			},
+			"name": "$ (Belize dollar)",
 			"symbol": "$"
 		},
 		{
@@ -261,15 +272,6 @@
 			},
 			"name": "BBD (Barbados dollar)",
 			"symbol": "BBD"
-		},
-		{
-			"code": "BYR",
-			"eurorate": "0.0005",
-			"leagues": {
-				"91": "Belarus"
-			},
-			"name": "Ruble (Belarusian)",
-			"symbol": "BYR"
 		},
 		{
 			"code": "BOB",
@@ -509,7 +511,7 @@
 			"code": "KGS",
 			"eurorate": "0.02",
 			"leagues": {
-				"102": "Kyrgyzstan"
+				"102": "Kyrgyz Republic"
 			},
 			"name": "Som (Kyrgyzstani)",
 			"symbol": "som"
@@ -536,7 +538,7 @@
 			"code": "MKD",
 			"eurorate": "0.05",
 			"leagues": {
-				"97": "FYR Macedonia"
+				"97": "North Macedonia"
 			},
 			"name": "MKD (Macedonian denar)",
 			"symbol": "MKD"
@@ -668,15 +670,6 @@
 			"symbol": "฿"
 		},
 		{
-			"code": "PYG",
-			"eurorate": "0.0002",
-			"leagues": {
-				"72": "Paraguay"
-			},
-			"name": "PYG (Paraguayan guaraní)",
-			"symbol": "PYG"
-		},
-		{
 			"code": "PHP",
 			"eurorate": "0.025",
 			"leagues": {
@@ -755,7 +748,7 @@
 				"35": "Russia"
 			},
 			"name": "Roubel (Russian ruble)",
-			"symbol": "Roubel"
+			"symbol": "₽"
 		},
 		{
 			"code": "GEL",
@@ -891,6 +884,111 @@
 			},
 			"name": "Đồng (Vietnamese)",
 			"symbol": "đồng"
+		},
+		{
+			"code": "BYN",
+			"eurorate": "0.5",
+			"leagues": {
+				"91": "Belarus"
+			},
+			"name": "New Belarusian ruble",
+			"symbol": "BYN"
+		},
+		{
+			"code": "STN",
+			"eurorate": "0.04",
+			"leagues": {
+				"149": "São Tomé e Príncipe"
+			},
+			"name": "São Tomé and Príncipe dobra",
+			"symbol": "dobra"
+		},
+		{
+			"code": "KMF",
+			"eurorate": "0.002",
+			"leagues": {
+				"151": "Comoros"
+			},
+			"name": "Comorian franc",
+			"symbol": "franc"
+		},
+		{
+			"code": "LKR",
+			"eurorate": "0.005",
+			"leagues": {
+				"152": "Sri Lanka"
+			},
+			"name": "Sri Lankan rupee",
+			"symbol": "rupees"
+		},
+		{
+			"code": "ANG",
+			"eurorate": "0.5",
+			"leagues": {
+				"153": "Curaçao"
+			},
+			"name": "Netherlands Antillean guilder",
+			"symbol": "guilder"
+		},
+		{
+			"code": "PYG",
+			"eurorate": "0.2",
+			"leagues": {
+				"72": "Paraguay"
+			},
+			"name": "PYG (Paraguayan guaraní)",
+			"symbol": "PYG"
+		},
+		{
+			"code": "ETB",
+			"eurorate": "0.025",
+			"leagues": {
+				"156": "Federal Democratic Republic of Ethiopia"
+			},
+			"name": "Ethiopian birr",
+			"symbol": "Birr"
+		},
+		{
+			"code": "CDF",
+			"eurorate": "0.0005",
+			"leagues": {
+				"155": "Democratic Republic of the Congo"
+			},
+			"name": "Congolese franc",
+			"symbol": "CDF"
+		},
+		{
+			"code": "MGA",
+			"eurorate": "0.00025",
+			"leagues": {
+				"159": "Madagascar"
+			},
+			"name": "Malagasy ariary",
+			"symbol": "ariary"
+		},
+		{
+			"code": "XCD",
+			"eurorate": "0.4",
+			"leagues": {
+				"157": "Saint Vincent and the Grenadines"
+			},
+			"name": "East Caribbean dollar",
+			"symbol": "dollar"
+		},
+		{
+			"code": "BWP",
+			"eurorate": "1.0",
+			"leagues": {
+				"160": "Botswana"
+			},
+			"name": "Botswana pula",
+			"symbol": "pula"
+		},
+		{
+			"code": "BYR",
+			"eurorate": "0.0005",
+			"name": "Ruble (Belarusian)",
+			"symbol": "BYR"
 		},
 		{
 			"code": "LTL",

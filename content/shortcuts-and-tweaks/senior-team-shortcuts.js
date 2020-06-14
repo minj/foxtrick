@@ -1,75 +1,78 @@
-'use strict';
 /**
  * seniorshortcuts.js
  * Foxtrick add coach and lastlineup links to team pages
- * @author convinced
+ * @author convinced, LA-MJ
  */
+
+'use strict';
 
 Foxtrick.modules['SeniorTeamShortCuts'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES: ['teamPageAny', 'series', 'youthSeries', 'tournamentsGeneric'],
 	RADIO_OPTIONS: ['OnlyOtherPages', 'AllPages'],
 
+	/* eslint-disable complexity */
 	run: function(doc) {
-		var ownteamid = Foxtrick.util.id.getOwnTeamId();
+		var ownTeamId = Foxtrick.util.id.getOwnTeamId();
 
-		var boxleft = doc.getElementsByClassName('subMenu')[0];
-		if (boxleft == null) {return;}
-		var teamid = Foxtrick.util.id.findTeamId(boxleft);
-		if (teamid == ownteamid && Foxtrick.Prefs.getInt('module.' +
-		    this.MODULE_NAME + '.value') == 0)
+		var boxLeft = doc.getElementsByClassName('subMenu')[0];
+		if (!boxLeft)
 			return;
 
-		var pos1 = -1; var pos2 = -1;
-		var bl_header = boxleft.getElementsByTagName('li');
-		var bllink = boxleft.getElementsByTagName('a');
-		for (var j = 0; j < bllink.length; j++) {
-			if (pos1 == -1 && bllink[j].href.search(/\/Club\/Players\/\?TeamID/i) > 0)
-				pos1 = j;
-			if (pos1 == -1 && bllink[j].href.search(/\/Club\/NationalTeam\/NTPlayers/i) > 0)
-				pos1 = j;
-			if (pos2 == -1 && bllink[j].href.search(/\/Club\/Matches\/\?TeamID/i) > 0)
-				pos2 = j;
+		var teamId = Foxtrick.util.id.findTeamId(boxLeft);
+		if (!teamId || teamId == ownTeamId &&
+		    Foxtrick.Prefs.getInt('module.' + this.MODULE_NAME + '.value') === 0)
+			return;
+
+		var pos1 = -1;
+		var pos2 = -1;
+		var blHeaders = [...boxLeft.querySelectorAll('li')];
+		var blLinks = [...boxLeft.querySelectorAll('a')];
+		for (let [idx, blLink] of blLinks.entries()) {
+			if (pos1 == -1) {
+				if (/\/Club\/(Players\/\?TeamID|NationalTeam\/NTPlayers)/i.test(blLink.href))
+					pos1 = idx;
+			}
+			if (pos2 == -1 && /\/Club\/Matches\/\?TeamID/i.test(blLink.href))
+				pos2 = idx;
 		}
-		if (pos1 == -1) return; // not a team leftbox
-	// last lineup
+
+		if (pos1 == -1) {
+			// not a team leftbox
+			return;
+		}
+
+		// last lineup
 		var li = Foxtrick.createFeaturedElement(doc, this, 'li');
 		var lastmatchlink = doc.createElement('a');
-		lastmatchlink.setAttribute('href', '/Club/Matches/MatchLineup.aspx?MatchID=&TeamID='
-		                           + teamid + '&useArchive=True&redir_to_newlineup=true');
-		lastmatchlink.appendChild(doc.createTextNode(Foxtrick.L10n.getString('LastLineup')));
-		var ownlastmatchlinkId = 'foxtrick_content_lastmatch';
-		lastmatchlink.setAttribute('id', ownlastmatchlinkId);
+		lastmatchlink.href = `/Club/Matches/MatchLineup.aspx?MatchID=&TeamID=${teamId}` +
+			'&useArchive=True&redir_to_newlineup=true';
+		lastmatchlink.textContent = Foxtrick.L10n.getString('LastLineup');
+		lastmatchlink.id = 'foxtrick_content_lastmatch';
 		li.appendChild(lastmatchlink);
 
-		if (pos2 != -1) bl_header[pos2].parentNode.insertBefore(li, bl_header[pos2].nextSibling);
-		else bl_header[0].parentNode.appendChild(li);
+		if (pos2 > -1)
+			Foxtrick.insertAfter(li, blHeaders[pos2]);
+		else
+			blHeaders[0].parentNode.appendChild(li);
 
-		// coach make link
+		// NTs no longer have coaches, it seems
+		if (Foxtrick.util.id.isNTId(teamId))
+			return;
+
 		var li2 = Foxtrick.createFeaturedElement(doc, this, 'li');
 		var coachlink = doc.createElement('a');
-		if (!Foxtrick.util.id.isNTId(teamid)) { // normal teams
-			if (teamid != ownteamid)
-				coachlink.setAttribute('href', '/Club/Players/?TeamID=' + teamid +
-				                       '&redir_to_coach=true');
-			else
-				coachlink.setAttribute('href', '/Club/Training/?redir_to_coach=true');
-		}
-		else {   // nt teams
-			if (doc.location.href.search(/\/Club\/NationalTeam\/NationalTeam/i) != -1) {
-				var ntinfo = doc.getElementById('teamInfo');
-				var CoachId = Foxtrick.util.id.findPlayerId(ntinfo);
-				coachlink.setAttribute('href', '/Club/Players/Player.aspx?playerId=' + CoachId);
-			}
-			else
-				coachlink.setAttribute('href', '/Club/NationalTeam/NationalTeam.aspx?teamId=' +
-				                       teamid + '&redir_to_coach=true');
-		}
-		coachlink.appendChild(doc.createTextNode(Foxtrick.L10n.getString('Coach')));
-		var owncoachlinkId = 'foxtrick_content_coach';
-		coachlink.setAttribute('id', owncoachlinkId);
+		coachlink.href = teamId == ownTeamId ?
+			`/Club/Specialists/?teamId=${teamId}` :
+			`/Club/Players/?TeamID=${teamId}&redir_to_coach=true`;
+
+		coachlink.textContent = Foxtrick.L10n.getString('Coach');
+		coachlink.id = 'foxtrick_content_coach';
 		li2.appendChild(coachlink);
-		if (pos1 != -1) bl_header[pos1].parentNode.insertBefore(li2, bl_header[pos1].nextSibling);
-		else bl_header[0].parentNode.appendChild(li2);
-	}
+
+		if (pos1 > -1)
+			Foxtrick.insertAfter(li2, blHeaders[pos1]);
+		else
+			blHeaders[0].parentNode.appendChild(li2);
+	},
 };

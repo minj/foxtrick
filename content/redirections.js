@@ -1,10 +1,13 @@
-'use strict';
 /**
  * redirections.js
  * Foxtrick redirections
  *
  * @author convinced, ryan, CatzHoek, LA-MJ
  */
+
+'use strict';
+
+/* eslint-disable complexity, max-statements-per-line */
 
 Foxtrick.modules['Redirections'] = {
 	OUTSIDE_MAINBODY: true,
@@ -19,9 +22,9 @@ Foxtrick.modules['Redirections'] = {
 		if (/make_challenge/i.test(location)) {
 			var challengeId = 'ctl00_ctl00_CPContent_CPSidebar_ucVisitorActions_lnkChallenge';
 			var boot = doc.getElementById(challengeId);
-			if (boot) {
+			if (boot)
 				boot.click();
-			}
+
 			return;
 		}
 
@@ -42,7 +45,7 @@ Foxtrick.modules['Redirections'] = {
 		var isTeamPage = Foxtrick.isPage(doc, 'teamPage');
 
 		var mainBody = doc.getElementById('mainBody');
-		var userId, userName;
+		var userId, userName; /* eslint-disable-line no-unused-vars */
 		var url = '';
 
 		var redirect = location.match(redirectRe)[1];
@@ -51,13 +54,14 @@ Foxtrick.modules['Redirections'] = {
 		if (isManagerPage) {
 			userId = Foxtrick.Pages.All.getId(doc);
 			var userNode = mainBody.querySelector('h1 .speedBrowser').nextSibling;
-			userName = userNode.textContent.trim();
+			userName = userNode.textContent.trim(); // lgtm[js/useless-assignment-to-local]
 
 			switch (redirect) {
+				case 'analysis': url = '/Club/TacticsRoom/?TeamID=' + teamId; break;
 				case 'challenge': url = '/Club/?teamId=' + teamId + '&make_challenge'; break;
 				case 'flags': url = '/Club/Flags/?teamId=' + teamId; break;
 				case 'guestbook': url = '/Club/Manager/Guestbook.aspx?teamId=' + teamId; break;
-				case 'mail': url = '/MyHattrick/Inbox/?actionType=newMail&alias=' + userName; break;
+				case 'mail': url = '/MyHattrick/Inbox/?actionType=newMail&userId=' + userId; break;
 				case 'matches': url = '/Club/Matches/?TeamID=' + teamId; break;
 				case 'players': url = '/Club/Players/?TeamID=' + teamId; break;
 				case 'series': url = '/World/Series/?LeagueLevelUnitID=' + seriesId; break;
@@ -67,41 +71,41 @@ Foxtrick.modules['Redirections'] = {
 
 				case 'achievements':
 					url = '/Club/Achievements/?userID=' + userId + '&teamId=' + teamId;
-				break;
+					break;
 
 				case 'addnextmatch':
 					url = '/Club/Matches/?TeamID=' + teamId + '&redir_to_addnextmatch=true';
-				break;
+					break;
 
 				case 'lastlineup':
 					url = '/Club/Matches/MatchLineup.aspx?MatchID=&TeamID=' + teamId +
 						'&useArchive=True&redir_to_newlineup=true';
-				break;
+					break;
 
 				case 'nextmatch':
 					url = '/Club/Matches/?TeamID=' + teamId + '&redir_to_nextmatch=true';
-				break;
+					break;
 
 				case 'transferhistory':
 					url = '/Club/Transfers/transfersTeam.aspx?teamId=' + teamId;
-				break;
+					break;
 
 				case 'youthmatches':
 					url = '/Club/Matches/?TeamID=' + teamId + '&youthTeamId=' + youthTeamId;
-				break;
+					break;
 
 				case 'coach':
 					if (teamId === ownTeamId)
 						url = '/Club/Training/?redir_to_coach=true';
 					else
 						url = '/Club/Players/?TeamID=' + teamId + '&redir_to_coach=true';
-				break;
+					break;
 
 				case 'custom':
-					url = Foxtrick.getParameterFromUrl(location, 'redir_to');
+					url = Foxtrick.getUrlParam(location, 'redir_to');
 					url = url.replace(/%5BteamId%5D|\[teamId\]/i, teamId);
 					url = url.replace(/%5BuserId%5D|\[userId\]/i, userId);
-				break;
+					break;
 
 				default: Foxtrick.error('Unknown redirect: ' + redirect); break;
 			}
@@ -112,7 +116,7 @@ Foxtrick.modules['Redirections'] = {
 				var userLink = mainBody.querySelector('a[href*="userId"]');
 				if (userLink) {
 					userId = Foxtrick.util.id.getUserIdFromUrl(userLink.href);
-					userName = userLink.title.trim();
+					userName = userLink.title.trim(); // lgtm[js/useless-assignment-to-local]
 				}
 			}
 
@@ -123,7 +127,7 @@ Foxtrick.modules['Redirections'] = {
 
 						if (teamId === ownTeamId) {
 							// redirect to own coach
-							url = '/Club/Training/?redir_to_coach=true';
+							url = `/Club/Specialists/?teamId=${teamId}`;
 						}
 						else {
 							// redirect to other coaches
@@ -138,32 +142,24 @@ Foxtrick.modules['Redirections'] = {
 						coachId = Foxtrick.util.id.findPlayerId(ntinfo);
 						url = '/Club/Players/Player.aspx?playerId=' + coachId;
 					}
-					else if (/\/Club\/Training/i.test(location)) {
-						// redirect to own coach
-						coachId = Foxtrick.util.id.findPlayerId(mainBody);
-						url = '/Club/Players/Player.aspx?playerId=' + coachId;
-					}
 
-				break;
+					break;
 
 				case 'mail':
-					if (userName) {
-						url = '/MyHattrick/Inbox/?actionType=newMail&alias=' + userName;
-					}
-					else {
-						url = '/Club/Manager/?userId=' + userId + '&redir_to_mail=true';
-					}
-				break;
+					if (userId)
+						url = '/MyHattrick/Inbox/?actionType=newMail&userId=' + userId;
+					break;
 
 				case 'newlineup':
 					var match = mainBody.querySelector('a[href^="/Club/Matches/Match.aspx?"]');
+
 					// using getAttribute to generate a relative link
 					url = match.getAttribute('href') + '&teamId=' + teamId + '#tab2';
-				break;
+					break;
 
 				case 'youthmatches':
 					url = '/Club/Matches/?TeamID=' + teamId + '&youthTeamId=' + youthTeamId;
-				break;
+					break;
 
 				case 'nextmatch': // fall-through
 				case 'addnextmatch':
@@ -174,7 +170,7 @@ Foxtrick.modules['Redirections'] = {
 
 					var upcomingUrl = upcoming.parentNode.href;
 					var matchId = Foxtrick.util.id.getMatchIdFromUrl(upcomingUrl);
-					var sourceSystem = Foxtrick.getParameterFromUrl(upcomingUrl, 'SourceSystem');
+					var sourceSystem = Foxtrick.getUrlParam(upcomingUrl, 'SourceSystem');
 
 					if (redirect === 'nextmatch') {
 						url = '/Club/Matches/Match.aspx?matchID=' + matchId +
@@ -185,7 +181,7 @@ Foxtrick.modules['Redirections'] = {
 							'&SourceSystem=' + sourceSystem;
 					}
 
-				break;
+					break;
 
 				default: Foxtrick.error('Unknown redirect: ' + redirect); break;
 			}

@@ -269,6 +269,7 @@
 		"leagueNames": {
 			"1": "Szwecja",
 			"100": "Salwador",
+			"1000": "Hattrick International",
 			"101": "Malta",
 			"102": "Kirgistan",
 			"103": "Mołdawia",
@@ -315,8 +316,19 @@
 			"146": "Kamerun",
 			"147": "Kuba",
 			"148": "Palestyna",
+			"149": "Wyspy Św. Tomasza i Książęca",
 			"15": "Oceania",
+			"151": "Komory",
+			"152": "Sri Lanka",
+			"153": "Curaçao",
+			"154": "Guam",
+			"155": "Dem. Rep. Konga",
+			"156": "Etiopia",
+			"157": "Saint Vincent i Grenadyny",
+			"158": "Belize",
+			"159": "Madagaskar",
 			"16": "Brazylia",
+			"160": "Botswana",
 			"17": "Kanada",
 			"18": "Chile",
 			"19": "Kolumbia",
@@ -392,7 +404,7 @@
 			"94": "Jamajka",
 			"95": "Kenia",
 			"96": "Panama",
-			"97": "Macedonia",
+			"97": "Macedonia Północna",
 			"98": "Albania",
 			"99": "Honduras"
 		},
@@ -625,8 +637,12 @@
 				"value": "gra głową"
 			},
 			{
-				"type": "Regainer",
+				"type": "Resilient",
 				"value": "witalny"
+			},
+			{
+				"type": "Support",
+				"value": "pomocny"
 			}
 		],
 		"spirit": [
@@ -720,7 +736,7 @@
 		"tactics": [
 			{
 				"type": "normal",
-				"value": "normalny"
+				"value": "Normalny"
 			},
 			{
 				"type": "pressing",
@@ -758,59 +774,59 @@
 		"training": [
 			{
 				"type": "Gen",
-				"value": "ogólny (forma)"
+				"value": "Ogólny (forma)"
 			},
 			{
 				"type": "Sta",
-				"value": "kondycja"
+				"value": "Kondycja"
 			},
 			{
 				"type": "SP",
-				"value": "stałe fragmenty"
+				"value": "Stałe fragmenty"
 			},
 			{
 				"type": "Def",
-				"value": "defensywa"
+				"value": "Defensywa"
 			},
 			{
 				"type": "Sco",
-				"value": "skuteczność"
+				"value": "Skuteczność"
 			},
 			{
 				"type": "Cross",
-				"value": "dośrodkowania"
+				"value": "Dośrodkowania"
 			},
 			{
 				"type": "Shoot",
-				"value": "strzelecki"
+				"value": "Strzelecki"
 			},
 			{
 				"type": "Pass",
-				"value": "krótkie podania"
+				"value": "Krótkie podania"
 			},
 			{
 				"type": "PM",
-				"value": "rozgrywanie"
+				"value": "Rozgrywanie"
 			},
 			{
 				"type": "GK",
-				"value": "bramkarski"
+				"value": "Bramkarski"
 			},
 			{
 				"type": "ThPass",
-				"value": "prostopadłe podania"
+				"value": "Prostopadłe podania"
 			},
 			{
 				"type": "DefPos",
-				"value": "postawa obronna"
+				"value": "Postawa obronna"
 			},
 			{
 				"type": "WingAtt",
-				"value": "atak skrzydłem"
+				"value": "Atak skrzydłem"
 			},
 			{
 				"type": "Indiv",
-				"value": "indywidualny"
+				"value": "Indywidualny"
 			}
 		]
 	}

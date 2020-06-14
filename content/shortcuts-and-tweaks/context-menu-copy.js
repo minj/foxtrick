@@ -1,13 +1,15 @@
-'use strict';
 /**
  * context-menu-copy.js
  * Options at the context menu for copying ID and/or link and content in HT-ML
- * @author convinced, ryanli
+ * @author LA-MJ, convinced, ryanli
  */
 
+'use strict';
 
-if (Foxtrick.platform != 'Android')
 (function() {
+	if (Foxtrick.platform == 'Android')
+		return;
+
 	// option: corresponding to OPTIONS
 	// func: function to be called for getting text
 	// item: menu item for Firefox and Chrome
@@ -17,13 +19,13 @@ if (Foxtrick.platform != 'Android')
 			option: 'Id',
 			func: Foxtrick.util.htMl.getId,
 			item: null,
-			copyText: null
+			copyText: null,
 		},
 		'foxtrick-popup-copy-link': {
 			option: 'Link',
 			func: Foxtrick.util.htMl.getLink,
 			item: null,
-			copyText: null
+			copyText: null,
 		},
 		'foxtrick-popup-copy-external-link': {
 			option: 'external',
@@ -31,20 +33,20 @@ if (Foxtrick.platform != 'Android')
 				return Foxtrick.util.htMl.getLink(node, { external: true });
 			},
 			item: null,
-			copyText: null
+			copyText: null,
 		},
 		'foxtrick-popup-copy-ht-ml': {
 			option: 'HtMl',
 			func: Foxtrick.util.htMl.getHtMl,
 			item: null,
-			copyText: null
+			copyText: null,
 		},
 		'foxtrick-popup-copy-table': {
 			option: 'Table',
 			func: Foxtrick.util.htMl.getTable,
 			item: null,
-			copyText: null
-		}
+			copyText: null,
+		},
 	};
 
 	Foxtrick.modules.ContextMenuCopy = {
@@ -55,28 +57,23 @@ if (Foxtrick.platform != 'Android')
 
 		onLoad: function(document) {
 			var entries = contextEntries;
+
 			// returns copy function on click
 			var copy = function(entry) {
 				return function() {
-					Foxtrick.copyStringToClipboard(entry.copyText);
+					// FIXME copying from background
+					// does not work in WebExt
+					Foxtrick.copy(document, entry.copyText);
 				};
 			};
-			var firefoxInit = function() {
-				var type;
-				for (type in entries) {
-					var entry = entries[type];
-					entry.item = document.getElementById(type);
-					entry.item.addEventListener('command', copy(entry), false);
-				}
-				var menu = document.getElementById('foxtrick-popup-copy');
-				if (menu)
-					menu.setAttribute('hidden', true);
-			};
+
 			// called from background script
 			var chromeInit = function() {
 				// update menu in background on mousedown
-				Foxtrick.SB.ext.onRequest.addListener(
-				  function(request, sender, sendResponse) {
+				Foxtrick.SB.ext.onRequest.addListener((request) => {
+					if (request.req !== 'updateContextMenu')
+						return;
+
 					var documentUrlPatterns = [
 						'*://*.hattrick.org/*',
 						'*://*.hattrick.ws/*',
@@ -87,38 +84,41 @@ if (Foxtrick.platform != 'Android')
 						'*://*.hattrick.name/*',
 						'*://*.hattrick.fm/*',
 					];
-					if (request.req === 'updateContextMenu') {
-						// remove old entries
-						var type;
-						for (type in entries) {
-							if (entries[type].item !== null) {
-								chrome.contextMenus.remove(entries[type].item);
-								entries[type].item = null;
-							}
+
+					// remove old entries
+					for (let type in entries) {
+						let e = entries[type];
+						if (e.item !== null) {
+							chrome.contextMenus.remove(e.item);
+							e.item = null;
 						}
-						// add new entries
-						for (type in request.entries) {
-							entries[type].copyText = request.entries[type].copyText;
-							entries[type].item = chrome.contextMenus.create({
-								title: request.entries[type].title,
-								contexts: ['all'],
-								onclick: copy(entries[type]),
-								documentUrlPatterns: documentUrlPatterns
-							});
-						}
+					}
+
+					// add new entries
+					for (let type in request.entries) {
+						let target = entries[type];
+						let source = request.entries[type];
+
+						target.copyText = source.copyText;
+						target.item = chrome.contextMenus.create({
+							title: source.title,
+							contexts: ['all'],
+							onclick: copy(target),
+							documentUrlPatterns,
+						});
 					}
 				});
 			};
+
 			// called from background script
 			var safariInit = function() {
-				safari.application.addEventListener('contextmenu',
-				  function(event) {
-					var paste_note = '. ' + Foxtrick.L10n.getString('specialPaste.hint');
-					var type;
-					for (type in event.userInfo) {
-						entries[type].copyText = event.userInfo[type].copyText;
-						event.contextMenu.appendContextMenuItem(type, event.userInfo[type].title +
-						                                        paste_note);
+				safari.application.addEventListener('contextmenu', (event) => {
+					var pasteNote = '. ' + Foxtrick.L10n.getString('specialPaste.hint');
+					for (let type in event.userInfo) {
+						let source = event.userInfo[type];
+						let target = entries[type];
+						target.copyText = source.copyText;
+						event.contextMenu.appendContextMenuItem(type, source.title + pasteNote);
 					}
 
 					safari.application.addEventListener('command', function(commandEvent) {
@@ -127,9 +127,7 @@ if (Foxtrick.platform != 'Android')
 				}, true);
 			};
 
-			if (Foxtrick.platform == 'Firefox')
-				firefoxInit();
-			else if (Foxtrick.platform == 'Chrome')
+			if (Foxtrick.platform == 'Chrome')
 				chromeInit();
 			else if (Foxtrick.platform == 'Safari')
 				safariInit();
@@ -143,7 +141,6 @@ if (Foxtrick.platform != 'Android')
 					if (entries[type])
 						entries[type].item.setAttribute('hidden', true);
 				}
-				document.getElementById('foxtrick-popup-copy').setAttribute('hidden', true);
 			}
 		},
 
@@ -155,7 +152,8 @@ if (Foxtrick.platform != 'Android')
 					for (type in entries) {
 						entries[type].copyText = null;
 						if (Foxtrick.Prefs.isModuleOptionEnabled('ContextMenuCopy',
-							entries[type].option)) {
+						    entries[type].option)) {
+
 							var markupObj = entries[type].func(node);
 							if (markupObj !== null) {
 								entries[type].title = markupObj.copyTitle;
@@ -168,40 +166,21 @@ if (Foxtrick.platform != 'Android')
 					Foxtrick.log(e);
 				}
 			};
+
 			// context menu listeners
-			if (Foxtrick.platform == 'Firefox') {
-				doc.addEventListener('contextmenu', function(ev) {
-					collectData(ev.target);
-					var type, showing = false;
-					for (type in entries) {
-						if (entries[type].copyText !== null) {
-							entries[type].item.setAttribute('hidden', false);
-							entries[type].item.setAttribute('label', entries[type].title);
-							showing = true;
-						}
-						else
-							entries[type].item.setAttribute('hidden', true);
-					}
-					var popup = document.getElementById('foxtrick-popup-copy');
-					if (showing)
-						popup.setAttribute('hidden', false);
-					else
-						popup.setAttribute('hidden', true);
-				}, false);
-			}
-			else if (Foxtrick.arch == 'Sandboxed') {
+			if (Foxtrick.arch == 'Sandboxed') {
 				// data to be transfered to background
 				var getEntries = function() {
-					var active_entries = {};
+					var activeEntries = {};
 					var type;
 					for (type in entries) {
 						if (entries[type].copyText !== null) {
-							active_entries[type] = {};
-							active_entries[type].copyText = entries[type].copyText;
-							active_entries[type].title = entries[type].title;
+							activeEntries[type] = {};
+							activeEntries[type].copyText = entries[type].copyText;
+							activeEntries[type].title = entries[type].title;
 						}
 					}
-					return active_entries;
+					return activeEntries;
 				};
 
 				if (Foxtrick.platform == 'Safari') {
@@ -220,6 +199,6 @@ if (Foxtrick.platform != 'Android')
 					}, false);
 				}
 			}
-		}
+		},
 	};
-}());
+})();

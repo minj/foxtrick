@@ -1,17 +1,34 @@
-'use strict';
 /**
  * dashboard-calendar.js
  * Export dashboard calendar to iCal format
  * @author LA-MJ
  */
 
-Foxtrick.modules['DashboardCalendar'] = {
+'use strict';
+
+Foxtrick.modules.DashboardCalendar = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES: ['dashboard'],
+
+	/**
+	 * @param {document} doc
+	 */
 	run: function(doc) {
+		const module = this;
+		module.exec(doc);
+		let list = doc.querySelector('#eventList');
+		let panel = list.closest('[id*="UpdatePanel"]');
+		Foxtrick.onChange(panel, doc => module.exec(doc));
+	},
+
+	/**
+	 * @param {document} doc
+	 */
+	// eslint-disable-next-line complexity
+	exec: function(doc) {
 		// this is mostly for strings/iCal handling
 		var EVENTS = {
-			// jscs:disable disallowMultipleSpaces
+			/* eslint-disable no-multi-spaces */
 			TRAINING: 'training',             // upcomingTrainingIcon
 			ECONOMY: 'economy',               // upcomingEconomyIcon
 			FRREMINDER: 'frReminder',         // matchFriendly
@@ -32,24 +49,62 @@ Foxtrick.modules['DashboardCalendar'] = {
 			YOUTHGAME: 'youth',               // matchLeague
 			YOUTHFRIENDLY: 'youth',           // matchFriendly
 			UNKNOWN: 'unknown',
-			// jscs:enable disallowMultipleSpaces
+			/* eslint-enable no-multi-spaces */
 		};
 
 		var L10N_PREFIX = 'dashBoardCalendar.events.';
 
+		/** @type {Record<string, boolean>} */
 		var midWeekGames = {};
+
+		/** @type {Record<string, boolean>} */
 		var weekendGames = {};
 
+		const TUESDAY = 1, WEDNESDAY = 2, SATURDAY = 5;
+
+		/**
+		 * @typedef DashboardEvent
+		 * @prop {string} type
+		 * @prop {string} text
+		 * @prop {Date}   date
+		 * @prop {string} [team]
+		 * @prop {string} [URL]
+		 */
+		/** @typedef FakedEvent
+		 * @prop {string} type
+		 * @prop {number} offset
+		 * @prop {string} team
+		 * @prop {string} URL
+		 */
+
+		/**
+		 * @typedef ProcessedEvent
+		 * @prop {number} alarmMinutes
+		 * @prop {string} time
+		 * @prop {string} UID
+		 * @prop {string} [end]
+		 */
+		/** @typedef {DashboardEvent & ProcessedEvent} CalendarEvent */
+
+		/**
+		 * @param  {HTMLElement} div
+		 * @param  {Date}        userMidnight
+		 * @return {DashboardEvent}
+		 */
+		// eslint-disable-next-line complexity
 		var parseEvent = function(div, userMidnight) {
+
 			var image = div.querySelector('.largeMasterIcon');
 			if (!image)
 				return null;
 
+			/** @type {DashboardEvent} */
 			var ret = {};
 
 			var desc = div.querySelector('.eventItemText');
 			ret.text = desc.textContent.trim();
 
+			/** @type {HTMLImageElement} */
 			var logo = div.querySelector('.eventItemClubLogo img');
 			if (logo) {
 				ret.team = logo.title;
@@ -63,12 +118,13 @@ Foxtrick.modules['DashboardCalendar'] = {
 			var eTime = time.split(/\D/);
 
 			var userDate = new Date(userMidnight);
-			userDate.setHours(eTime[0], eTime[1]);
+			userDate.setHours(parseInt(eTime[0], 10), parseInt(eTime[1], 10));
 			ret.date = Foxtrick.util.time.toHT(doc, userDate);
 
 			var URL = desc.querySelector('a');
 			ret.URL = URL ? URL.href : null;
 
+			/** @type {NodeListOf<HTMLAnchorElement>} */
 			var links = div.querySelectorAll('.eventItemLink a');
 
 			var youthRe = /SourceSystem=Youth/i;
@@ -76,18 +132,23 @@ Foxtrick.modules['DashboardCalendar'] = {
 			switch (imageClass) {
 				case 'matchLeague':
 				case 'matchQualification':
-					var leagueLiveLink = links[links.length - 1];
-					if (youthRe.test(leagueLiveLink.href)) {
-						ret.type = EVENTS.YOUTHGAME;
-						return ret;
+					{
+						let leagueLiveLink = links[links.length - 1];
+						if (youthRe.test(leagueLiveLink.href)) {
+							ret.type = EVENTS.YOUTHGAME;
+							return ret;
+						}
+						else if (imageClass === 'matchLeague') {
+							ret.type = EVENTS.LEAGUE;
+						}
+						else {
+							ret.type = EVENTS.QUALIFICATION;
+						}
 					}
-					else if (imageClass === 'matchLeague')
-						ret.type = EVENTS.LEAGUE;
-					else
-						ret.type = EVENTS.QUALIFICATION;
 
 					weekendGames[ret.team] = true;
-				break;
+
+					break;
 				case 'matchCupA':
 				case 'matchCupB1':
 				case 'matchCupB2':
@@ -98,40 +159,61 @@ Foxtrick.modules['DashboardCalendar'] = {
 						ret.type = EVENTS.FRREMINDER;
 						return ret;
 					}
-					var liveLink = links[links.length - 1];
-					if (youthRe.test(liveLink.href)) {
-						ret.type = EVENTS.YOUTHFRIENDLY;
-						return ret;
+
+					{
+						let liveLink = links[links.length - 1];
+						if (youthRe.test(liveLink.href)) {
+							ret.type = EVENTS.YOUTHFRIENDLY;
+							return ret;
+						}
 					}
 
-					if (/Cup/.test(imageClass)) {
-						ret.type = EVENTS.CUP;
-					}
-					else {
-						ret.type = EVENTS.FRIENDLY;
-					}
+					ret.type = /Cup/.test(imageClass) ? EVENTS.CUP : EVENTS.FRIENDLY;
 
 					// test if not a weekend friendly
-					if (ret.date.getDay() > 1 && ret.date.getDay() < 5) {
+					if (ret.date.getDay() > TUESDAY && ret.date.getDay() < SATURDAY)
 						midWeekGames[ret.team] = true;
-					}
-				break;
-				case 'matchMasters': ret.type = EVENTS.MASTERS; break;
-				case 'matchTournament': ret.type = EVENTS.TOURNAMENT; break;
-				case 'matchSingleMatch': ret.type = EVENTS.SINGLEMATCH; break;
-				case 'matchTournamentLadder': ret.type = EVENTS.LADDER; break;
-				case 'matchNewbie': ret.type = EVENTS.PREPARATION; break;
-				case 'upcomingNationalIcon': ret.type = EVENTS.NT; break;
-				case 'upcomingTrainingIcon': ret.type = EVENTS.TRAINING; break;
-				case 'upcomingEconomyIcon': ret.type = EVENTS.ECONOMY; break;
-				case 'upcomingYouthTrainingIcon': ret.type = EVENTS.YOUTHCOACH; break;
-				case 'upcomingYouthCallScoutIcon': ret.type = EVENTS.YOUTHSCOUT; break;
-				default: ret.type = EVENTS.UNKNOWN; break;
+
+					break;
+				case 'matchMasters':
+					ret.type = EVENTS.MASTERS;
+					break;
+				case 'matchTournament':
+					ret.type = EVENTS.TOURNAMENT;
+					break;
+				case 'matchSingleMatch':
+					ret.type = EVENTS.SINGLEMATCH;
+					break;
+				case 'matchTournamentLadder':
+					ret.type = EVENTS.LADDER;
+					break;
+				case 'matchNewbie':
+					ret.type = EVENTS.PREPARATION;
+					break;
+				case 'upcomingNationalIcon':
+					ret.type = EVENTS.NT;
+					break;
+				case 'upcomingTrainingIcon':
+					ret.type = EVENTS.TRAINING;
+					break;
+				case 'upcomingEconomyIcon':
+					ret.type = EVENTS.ECONOMY;
+					break;
+				case 'upcomingYouthTrainingIcon':
+					ret.type = EVENTS.YOUTHCOACH;
+					break;
+				case 'upcomingYouthCallScoutIcon':
+					ret.type = EVENTS.YOUTHSCOUT;
+					break;
+				default:
+					ret.type = EVENTS.UNKNOWN;
+					break;
 			}
 			return ret;
 		};
 
-		var eventNodes = doc.querySelectorAll('#eventList > div');
+		/** @type {NodeListOf<HTMLElement>} */
+		var eventNodes = doc.querySelectorAll('#eventList > .eventItem');
 		if (!eventNodes || !eventNodes.length)
 			return;
 
@@ -143,23 +225,27 @@ Foxtrick.modules['DashboardCalendar'] = {
 		var htWeekDay = htNow.getDay(); // sometimes dashboard calendar lags
 		var htToday = new Date(htNow);
 		Foxtrick.util.time.setMidnight(htToday);
-		htNow = Foxtrick.util.time.toBareISOString(htNow);
+		var HT_NOW_STRING = Foxtrick.util.time.toBareISOString(htNow);
 
 		var userToday = Foxtrick.util.time.getDate(doc);
 		Foxtrick.util.time.setMidnight(userToday);
 
-		var htDays = [], userDates = [];
+		/** @type {DashboardEvent[][]} */
+		var htDays = [];
+
+		/** @type {Date[]} */
+		var userDates = [];
 
 		for (var i = 0; i < DAYS_IN_WEEK; ++i) {
-			var dayHeader = doc.querySelector('.eventCalendarWeekday' + i);
+			var dayHeader = doc.querySelector(`.eventCalendarWeekday${i}`);
 			var dayNumberSpan = dayHeader.querySelector('.eventCalendarDay');
-			var dayNumber = dayNumberSpan.textContent.trim();
+			var dayNumber = parseInt(dayNumberSpan.textContent.trim(), 10);
 
 			var userDate = new Date(userToday);
 			var userDayNumber = userDate.getDate();
 
 			var dayDiff = dayNumber - userDayNumber;
-			if (Math.abs(dayDiff) > 19) {
+			if (Math.abs(dayDiff) > 10) {
 				// different month
 				userDate.setMonth(userDate.getMonth() + (dayDiff > 0 ? -1 : 1));
 			}
@@ -176,85 +262,111 @@ Foxtrick.modules['DashboardCalendar'] = {
 		}
 
 		Foxtrick.forEach(function(node) {
-			var day = node.className.match(/eventDay(\d+)/)[1];
-			var userDate = userDates[day];
-			var evnt = parseEvent(node, userDate);
+			let match = /eventDay(\d+)/.exec(node.className);
+			if (match == null)
+				return;
+
+			let [_, dayStr] = match;
+			let userDate = userDates[Number(dayStr)];
+			let evnt = parseEvent(node, userDate);
 			if (!evnt)
 				return;
 
-			var htDay = evnt.date.getDay();
+			let htDay = evnt.date.getDay();
 			htDays[htDay].push(evnt);
 		}, eventNodes);
 
+		/**
+		 * @param {FakedEvent} evnt
+		 */
 		var addFake = function(evnt) {
-			if (!evnt.date) {
-				var date = Foxtrick.util.time.addDaysToDate(htToday, evnt.offset);
-				date.setHours(18);
-				evnt.date = date;
-			}
-			var userTime = Foxtrick.util.time.toUser(doc, evnt.date);
-			var userClock = Foxtrick.util.time.buildDate(userTime, { format: 'HH:MM' });
-			var description = Foxtrick.L10n.getString(L10N_PREFIX + evnt.type + '.alarm');
-			evnt.text = userClock + ' » ' + description;
+			let { offset, type } = evnt;
 
-			var htDay = evnt.date.getDay();
-			htDays[htDay].push(evnt);
+			let date = Foxtrick.util.time.addDaysToDate(htToday, offset);
+			// eslint-disable-next-line no-magic-numbers
+			date.setHours(18);
+			let userTime = Foxtrick.util.time.toUser(doc, date);
+			let userClock = Foxtrick.util.time.buildDate(userTime, { format: 'HH:MM' });
+			let description = Foxtrick.L10n.getString(`${L10N_PREFIX}${type}.alarm`);
+
+			/** @type {unknown} */
+			let e = evnt;
+			let evt = /** @type {DashboardEvent} */ (e);
+
+			evt.date = date;
+			evt.text = `${userClock} » ${description}`;
+
+			let htDay = date.getDay();
+			htDays[htDay].push(evt);
 		};
 
+		/** @type {CalendarEvent[]} */
 		var events = [];
-		var processEvent = function(evnt) {
-			if (!evnt)
+
+		/**
+		 * @param {DashboardEvent} e
+		 */
+		// eslint-disable-next-line complexity
+		var processEvent = function(e) {
+			if (!e)
 				return;
 
-			if (evnt.team) {
-				evnt.text += ' (' + evnt.team + ')';
-			}
+			var evnt = /** @type {CalendarEvent} */ (e);
+
+			if (evnt.team)
+				evnt.text += ` (${evnt.team})`;
 
 			evnt.time = Foxtrick.util.time.toBareISOString(evnt.date);
 			evnt.alarmMinutes = 30;
 
-			var endTime = 0;
+			const MATCH_LEN = 105, MATCH_LEN_CUP = 180, FINANCE_LEN = 30;
+			const FRIENDLY_ALARM_HOURS = 6;
+
+			var endTime;
 			switch (evnt.type) {
 				case EVENTS.LEAGUE:
 				case EVENTS.NT:
 				case EVENTS.YOUTHGAME:
 				case EVENTS.TOURNAMENT:
-					endTime = new Date(evnt.date.valueOf() + 105 * MSECS_IN_MIN);
-				break;
+					endTime = new Date(evnt.date.valueOf() + MATCH_LEN * MSECS_IN_MIN);
+					break;
 				case EVENTS.CUP:
 				case EVENTS.SINGLEMATCH:
 				case EVENTS.LADDER:
-					endTime = new Date(evnt.date.valueOf() + 180 * MSECS_IN_MIN);
-				break;
+					endTime = new Date(evnt.date.valueOf() + MATCH_LEN_CUP * MSECS_IN_MIN);
+					break;
 				case EVENTS.TRAINING:
 				case EVENTS.ECONOMY:
-					endTime = new Date(evnt.date.valueOf() + 30 * MSECS_IN_MIN);
-				break;
+					endTime = new Date(evnt.date.valueOf() + FINANCE_LEN * MSECS_IN_MIN);
+					break;
 				case EVENTS.INTFRREMINDER:
-				break;
+					break;
 				case EVENTS.WKNDFRREMINDER:
-					endTime = new Date(evnt.date.valueOf() + 6 * MSECS_IN_HOUR);
+					endTime = new Date(evnt.date.valueOf() + FRIENDLY_ALARM_HOURS * MSECS_IN_HOUR);
 					evnt.alarmMinutes = 60;
-				break;
+					break;
+				default:
+					break;
 			}
 			if (endTime)
 				evnt.end = Foxtrick.util.time.toBareISOString(endTime);
 
-			var UID = evnt.time + '@foxtrick.org';
+			var UID = `${evnt.time}@foxtrick.org`;
 			var hasId = false;
 			if (evnt.URL) {
 				var ID = /ID=(\d+)/i.exec(evnt.URL);
-				if (ID && ID[1]) {
-					UID = ID[1] + '-' + UID;
+				if (ID) {
+					let [_, id] = ID;
+					UID = `${id}-${UID}`;
 					hasId = true;
 				}
 				evnt.URL = Foxtrick.goToUrl(evnt.URL);
 			}
 
 			if (!hasId && evnt.team)
-				UID = encodeURIComponent(evnt.team) + '-' + UID;
+				UID = `${encodeURIComponent(evnt.team)}-${UID}`;
 
-			evnt.UID = evnt.type + '-' + UID;
+			evnt.UID = `${evnt.type}-${UID}`;
 			events.push(evnt);
 		};
 
@@ -263,7 +375,7 @@ Foxtrick.modules['DashboardCalendar'] = {
 			day = (htWeekDay + d) % DAYS_IN_WEEK;
 
 			// fake events
-			if (day == 2) {
+			if (day == WEDNESDAY) {
 				for (var team in midWeekGames) {
 					if (midWeekGames[team])
 						continue;
@@ -276,7 +388,7 @@ Foxtrick.modules['DashboardCalendar'] = {
 					});
 				}
 			}
-			else if (day == 5) {
+			else if (day == SATURDAY) {
 				for (var wkndTeam in weekendGames) {
 					if (weekendGames[wkndTeam])
 						continue;
@@ -293,6 +405,8 @@ Foxtrick.modules['DashboardCalendar'] = {
 			Foxtrick.forEach(processEvent, htDays[day]);
 		}
 
+		const WRAP = 75;
+
 		var header = 'BEGIN:VCALENDAR\r\n' +
 			'VERSION:2.0\r\n' +
 			'PRODID:-//foxtrick//v' + Foxtrick.version + '//EN\r\n';
@@ -301,23 +415,24 @@ Foxtrick.modules['DashboardCalendar'] = {
 			var desc = 'DESCRIPTION:' + evnt.text;
 			if (evnt.URL)
 				desc += '\\n' + evnt.URL;
-			var descEntry = Foxtrick.foldLines(desc, 75, '\r\n', '\t', true);
+
+			var descEntry = Foxtrick.foldLines(desc, WRAP, '\r\n', '\t', true);
 
 			var sum = Foxtrick.L10n.getString(L10N_PREFIX + evnt.type + '.summary');
 			var summary = 'SUMMARY:' + sum.replace(/\n/mg, '');
-			var sumEntry = Foxtrick.foldLines(summary, 75, '\r\n', '\t', true);
+			var sumEntry = Foxtrick.foldLines(summary, WRAP, '\r\n', '\t', true);
 
 			var urlEntry = '';
 			if (evnt.URL)
-				urlEntry = Foxtrick.foldLines('URL:' + evnt.URL, 75, '\r\n', '\t', true);
+				urlEntry = Foxtrick.foldLines('URL:' + evnt.URL, WRAP, '\r\n', '\t', true);
 
 			var alarm = Foxtrick.L10n.getString(L10N_PREFIX + evnt.type + '.alarm');
 			var alarmDesc = 'DESCRIPTION:' + alarm.replace(/\n/mg, '\\n');
-			var alarmEntry = Foxtrick.foldLines(alarmDesc, 75, '\r\n', '\t', true);
+			var alarmEntry = Foxtrick.foldLines(alarmDesc, WRAP, '\r\n', '\t', true);
 
 			return 'BEGIN:VEVENT\r\n' +
 				'ORGANIZER;CN="Foxtrick":https://www.foxtrick.org\r\n' +
-				'DTSTAMP:' + htNow + '\r\n' +
+				'DTSTAMP:' + HT_NOW_STRING + '\r\n' +
 				'UID:' + evnt.UID + '\r\n' +
 				descEntry +
 				sumEntry +
@@ -341,30 +456,29 @@ Foxtrick.modules['DashboardCalendar'] = {
 		cal.push('END:VCALENDAR\r\n');
 
 		var newLink = Foxtrick.createFeaturedElement(doc, this, 'a');
-		Foxtrick.addClass(newLink, 'pmArchiveLink float_right');
 		newLink.href = '#';
-
-		var textContainer = newLink.appendChild(doc.createElement('div'));
-		Foxtrick.addClass(textContainer, 'float_left');
-		textContainer.style.margin = '0 10px';
-		textContainer.textContent = Foxtrick.L10n.getString('button.export');
+		newLink.style.display = 'flex';
+		newLink.style.alignItems = 'center';
 
 		var parent = newLink.appendChild(doc.createElement('div'));
-		Foxtrick.addClass(parent, 'float_right');
 		var title = Foxtrick.L10n.getString('dashBoardCalendar.export');
 		Foxtrick.addImage(doc, parent, {
 			src: Foxtrick.InternalPath + 'resources/img/calendar-day.png',
 			alt: title,
 			title: title,
 		});
+		parent.style.margin = '0.5em';
+
+		var textContainer = newLink.appendChild(doc.createElement('div'));
+		textContainer.textContent = Foxtrick.L10n.getString('button.export');
+
 		Foxtrick.onClick(newLink, function(ev) {
+			// eslint-disable-next-line no-invalid-this
 			var doc = this.ownerDocument;
 			var name = 'ht-cal-' + htToday.toJSON().slice(0, 10) + '.ics';
 			var mime = 'text/calendar;charset=utf-8';
 			Foxtrick.saveAs(doc, cal, name, mime);
 		});
-		var MAIN = Foxtrick.getMainIDPrefix();
-		var br = doc.querySelector('#' + MAIN + 'lnkArchive + br');
-		br.parentNode.insertBefore(newLink, br);
+		doc.querySelector('#eventList').appendChild(newLink);
 	},
 };

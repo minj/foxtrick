@@ -269,6 +269,7 @@
 		"leagueNames": {
 			"1": "Švedska",
 			"100": "Salvador",
+			"1000": "Hattrick International",
 			"101": "Malta",
 			"102": "Kirgizistan",
 			"103": "Moldavija",
@@ -315,8 +316,19 @@
 			"146": "Kamerun",
 			"147": "Kuba",
 			"148": "Palestina",
+			"149": "Sveti Tomaž in princ",
 			"15": "Oceanija",
+			"151": "Komori",
+			"152": "Šri Lanka",
+			"153": "Curaçao",
+			"154": "Guam",
+			"155": "DR Kongo",
+			"156": "Etiopija",
+			"157": "Sveti Vincencij in Grenadine",
+			"158": "Belize",
+			"159": "Madagaskar",
 			"16": "Brazilija",
+			"160": "Bocvana",
 			"17": "Kanada",
 			"18": "Čile",
 			"19": "Kolumbija",
@@ -392,7 +404,7 @@
 			"94": "Jamajka",
 			"95": "Kenija",
 			"96": "Panama",
-			"97": "Makedonija",
+			"97": "Severna Makedonija",
 			"98": "Albanija",
 			"99": "Honduras"
 		},
@@ -625,8 +637,12 @@
 				"value": "Igra z glavo"
 			},
 			{
-				"type": "Regainer",
-				"value": "Hitreje okreva"
+				"type": "Resilient",
+				"value": "Trdoživ"
+			},
+			{
+				"type": "Support",
+				"value": "Požrtvovalen"
 			}
 		],
 		"spirit": [

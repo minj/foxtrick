@@ -1,15 +1,19 @@
-'use strict';
 /**
 * forum-change-posts.js
 * Foxtrick Copies post id to clipboard
 * @author convinced
 */
 
+'use strict';
+
 Foxtrick.modules['ForumChangePosts'] = {
 	CORE_MODULE: true,
 	PAGES: ['forumViewThread'],
 	CSS: Foxtrick.InternalPath + 'resources/css/forum-change-post.css',
 
+	/* eslint-disable complexity */
+
+	/** @param {document} doc */
 	run: function(doc) {
 		var addCopyPostId = function(idLink) {
 			// part of copypostid
@@ -23,7 +27,7 @@ Foxtrick.modules['ForumChangePosts'] = {
 			Foxtrick.onClick(img, function() {
 				var idExpanded = (idLink.href.search(/MInd/i) >= 0);
 				var postId = idExpanded ? idLink.href.match(/\d+\.\d+/g)[0] : idLink.title;
-				Foxtrick.copyStringToClipboard('[post=Oops]'.replace('Oops', postId));
+				Foxtrick.copy(doc, '[post=Oops]'.replace('Oops', postId));
 				var insertBefore = idLink;
 				while (!Foxtrick.hasClass(insertBefore, 'cfWrapper') &&
 				       !Foxtrick.hasClass(insertBefore, 'boxBody'))
@@ -211,7 +215,7 @@ Foxtrick.modules['ForumChangePosts'] = {
 				}
 
 				var copy = Foxtrick.format(template, args);
-				Foxtrick.copyStringToClipboard(copy);
+				Foxtrick.copy(doc, copy);
 
 				var insertBefore = header.parentNode;
 				var id = 'ft-posting-copy-note- ' + post_1.id.replace(/\D/, ' - ');
@@ -233,26 +237,31 @@ Foxtrick.modules['ForumChangePosts'] = {
 		var do_redir_to_team = Foxtrick.Prefs.isModuleEnabled('ForumRedirManagerToTeam');
 
 		var do_alter_header = Foxtrick.Prefs.isModuleEnabled('ForumAlterHeaderLine');
-			var do_single_header = do_alter_header &&
-				Foxtrick.Prefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'SingleHeaderLine');
-			var do_small_header_font = do_alter_header &&
-				Foxtrick.Prefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'SmallHeaderFont');
-			var do_single_header_allways = do_alter_header && do_single_header &&
-				!Foxtrick.Prefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'CheckDesign');
-			var do_truncate_nicks = do_alter_header &&
-				Foxtrick.Prefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'TruncateLongNick');
-			var do_truncate_seriesname = do_alter_header &&
-				Foxtrick.Prefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'TruncateLeagueName');
-			var do_hide_old_time = do_alter_header &&
-				Foxtrick.Prefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'HideOldTime');
-			var do_short_postid = do_alter_header &&
-				Foxtrick.Prefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'ShortPostId');
-			var do_replace_supporter_star = do_alter_header &&
-				Foxtrick.Prefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'ReplaceSupporterStar');
-			var do_HighlightThreadOpener = do_alter_header &&
-				Foxtrick.Prefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'HighlightThreadOpener');
+		var do_single_header = do_alter_header &&
+			Foxtrick.Prefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'SingleHeaderLine');
+		// eslint-disable-next-line no-unused-vars
+		var do_small_header_font = do_alter_header && // lgtm[js/unused-local-variable]
+			Foxtrick.Prefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'SmallHeaderFont');
+		// eslint-disable-next-line no-unused-vars
+		var do_single_header_allways = do_alter_header && // lgtm[js/unused-local-variable]
+			 do_single_header &&
+			!Foxtrick.Prefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'CheckDesign');
+		var do_truncate_nicks = do_alter_header &&
+			Foxtrick.Prefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'TruncateLongNick');
+		var do_truncate_seriesname = do_alter_header &&
+			Foxtrick.Prefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'TruncateLeagueName');
+		var do_hide_old_time = do_alter_header &&
+			Foxtrick.Prefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'HideOldTime');
+		var do_short_postid = do_alter_header &&
+			Foxtrick.Prefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'ShortPostId');
+		var do_replace_supporter_star = do_alter_header &&
+			Foxtrick.Prefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'ReplaceSupporterStar');
+		var do_HighlightThreadOpener = do_alter_header &&
+			Foxtrick.Prefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'HighlightThreadOpener');
 
-		var hasScroll = Foxtrick.util.layout.mainBodyHasScroll(doc);
+		// eslint-disable-next-line no-unused-vars
+		var hasScroll = // lgtm[js/unused-local-variable]
+			Foxtrick.util.layout.mainBodyHasScroll(doc);
 		var notif = Foxtrick.Pages.All.getNotes(doc);
 		// archived threads will have this message: 'This thread is closed!'
 		var isArchive = notif.getElementsByClassName('error').length > 0;
@@ -305,17 +314,27 @@ Foxtrick.modules['ForumChangePosts'] = {
 		alt_supporter.textContent = ' * ';
 		alt_supporter.title = 'Hattrick Supporter';
 
-		if (do_HighlightThreadOpener) try {
-			var Ftag = doc.getElementById('ctl00_ucGuestForum_ucGuestForum_updMain');
-			if (!Ftag)
-				Ftag = doc.getElementById('myForums');
-			if (Ftag) {
-				Ftag = Ftag.getElementsByTagName('strong')[0];
-				var TName = Ftag.textContent;
-				var TName_lng = Ftag.parentNode.getAttribute('data-author');
-			} else var TName_lng = false;
-		} catch (e_tag) {
-			Foxtrick.dump('HTO ' + e_tag + '\n'); var TName_lng = false;
+		if (do_HighlightThreadOpener) {
+			try {
+				var Ftag = doc.querySelector('[id$="ucGuestForum_ucGuestForum_updMain"]');
+				if (!Ftag)
+					Ftag = doc.getElementById('myForums');
+
+				var TName_lng;
+				if (Ftag) {
+					Ftag = Ftag.querySelector('strong');
+					// eslint-disable-next-line no-unused-vars
+					let TName = Ftag.textContent; // lgtm[js/unused-local-variable]
+					TName_lng = Ftag.parentElement.getAttribute('data-author');
+				}
+				else {
+					TName_lng = false;
+				}
+			}
+			catch (errTag) {
+				Foxtrick.log('HTO', errTag);
+				TName_lng = false;
+			}
 		}
 
 		if (do_format_text) {
@@ -347,7 +366,7 @@ Foxtrick.modules['ForumChangePosts'] = {
 						var spoiler_hidden = doc.createElement('blockquote');
 						spoiler_hidden.id = 'spoilhid_quoteNum' + numSpoilerQuotes;
 						spoiler_hidden.className = 'spoiler hidden';
-						spoiler_hidden.appendChild(node.cloneNode(true));
+						spoiler_hidden.appendChild(Foxtrick.cloneElement(node, true));
 						node.parentNode.insertBefore(spoiler_show, node.nestSibling);
 						node.parentNode.removeChild(node);
 						spoilers.push([spoiler_show, spoiler_hidden]);
@@ -383,12 +402,12 @@ Foxtrick.modules['ForumChangePosts'] = {
 		}
 
 		// loop through cfWrapper --------------------------------------------
-		var num_wrapper = 0;  // message counter
+		var num_wrapper = 0; // message counter
 		var wrappers = doc.getElementsByClassName('cfWrapper');
-		var i = 0, wrapper;
-		while ((wrapper = wrappers[i++])) {
+		for (let wrapper of wrappers) {
 			if (wrapper.getElementsByClassName('cfDeleted').length > 0)
 				continue; // post deleted, process next
+
 			var header = wrapper.getElementsByClassName('cfHeader')[0];
 
 			// +++++++++++ gather info and nodes +++++++++++++++++++++++++
@@ -433,7 +452,8 @@ Foxtrick.modules['ForumChangePosts'] = {
 							 && header_left_link.parentNode.tagName != 'LI') { //skip popup-links
 						poster_link1 = header_left_link;
 
-						poster_id1 = poster_link1.href.replace(/\&browseIds.+/, '').match(/\d+$/);
+						let url = poster_link1.href.replace(/\&browseIds.+/, '');
+						poster_id1 = url.match(/\d+$/); // lgtm[js/useless-assignment-to-local]
 
 						if (header_left_links[k]
 							&& header_left_links[k].href.search(/Supporter/i) != -1) {
@@ -447,7 +467,9 @@ Foxtrick.modules['ForumChangePosts'] = {
 					else if (header_left_link.href.search(/Club\/Manager\/\?userId=/i) != -1
 							 && header_left_link.parentNode.tagName != 'LI') { //skip popup-links
 						poster_link2 = header_left_link;
-						poster_id2 = poster_link2.href.replace(/\&browseIds.+/, '').match(/\d+$/);
+
+						let url = poster_link2.href.replace(/\&browseIds.+/, '');
+						poster_id2 = url.match(/\d+$/); // lgtm[js/useless-assignment-to-local]
 						if (header_left_links[k]
 							&& header_left_links[k].href.search(/Supporter/i) != -1) {
 							supporter_link2 = header_left_links[k];
@@ -460,46 +482,56 @@ Foxtrick.modules['ForumChangePosts'] = {
 					series_link2 = header_left_link;
 			}
 
-			// get user, user_info, user_avater: all maybe = null !!!
-			var user = null;
-			var user_avatar = null;
-			var user_info = null;
-			var message = null;
-			var footer = null;
+			const DIV_MAP = {
+				user: 'cfUser',
+				userInfo: 'cfUserInfo',
+				userAvatar: 'faceCard',
+				message: 'cfMessage',
+				footer: 'cfFooter',
+			};
+
+			let keys = /** @type {(keyof DIV_MAP)[]} */ (Object.keys(DIV_MAP));
+
+			const containers = /** @type {Record<keyof DIV_MAP, HTMLDivElement>} */
+				(Object.fromEntries(keys.map(k => [k, null])));
 
 			var divs = wrapper.getElementsByTagName('div');
-			var k = 2, div;
-			while (div = divs[++k]) {
-				if (div.className == 'cfUser') user = div;
-				else if (div.className == 'cfUserInfo') user_info = div;
-				else if (div.className == 'faceCard') user_avatar = div;
-				else if (div.className == 'cfMessage') message = div;
-				else if (div.className == 'cfFooter') footer = div;
+			for (let div of divs) {
+				for (let [name, className] of Object.entries(DIV_MAP)) {
+					if (div.classList.contains(className)) {
+						containers[name] = div;
+						break;
+					}
+				}
 			}
 
+			// get user, user_info, user_avater: all maybe = null !!!
+			let { user, userInfo, userAvatar, footer } = containers; // message
+
 			// get info & nodes from user_info
-			var teamid = null;
-			var teamname = null;
-			var seriesId = null;
+			var teamId = null;
+			var teamName = null;
+			var seriesId = null; // eslint-disable-line no-unused-vars
 			var countryLink = null;
 			var seriesLinkUserInfo = null;
-			if (user_info) {
-				var user_info_links = user_info.getElementsByTagName('a');
-				var k = 0, user_info_link;
-				while (user_info_link = user_info_links[++k]) {
-					if (user_info_link.href.search(/teamid=/i) != -1) {
-						var teamid = user_info_link.href.match(/\d+$/);
-						var teamname = user_info_link.textContent;
+			if (userInfo) {
+				var userInfoLinks = userInfo.getElementsByTagName('a');
+				for (let userInfoLink of userInfoLinks) {
+					if (userInfoLink.href.search(/teamid=/i) != -1) {
+						teamId = userInfoLink.href.match(/\d+$/);
+						teamName = userInfoLink.textContent;
+
 						// set some info used for teampopup
-						poster_link1.setAttribute('teamid', teamid);
-						poster_link1.setAttribute('teamname', teamname);
+						poster_link1.setAttribute('teamid', teamId);
+						poster_link1.setAttribute('teamname', teamName);
 					}
-					if (user_info_link.href.search(/LeagueID=/i) != -1) {
-							countryLink = user_info_link;
-					} else if (user_info_link.href.search(/LeagueLevelUnitID=/i) != -1) {
-							seriesLinkUserInfo = user_info_link;
-							seriesId =
-								Foxtrick.util.id.getLeagueLeveUnitIdFromUrl(user_info_link.href);
+					if (userInfoLink.href.search(/LeagueID=/i) != -1) {
+						countryLink = userInfoLink;
+					}
+					else if (userInfoLink.href.search(/LeagueLevelUnitID=/i) != -1) {
+						seriesLinkUserInfo = userInfoLink;
+						seriesId = // lgtm[js/useless-assignment-to-local]
+							Foxtrick.util.id.getLeagueLeveUnitIdFromUrl(userInfoLink.href);
 					}
 				}
 			} // get user info
@@ -513,12 +545,12 @@ Foxtrick.modules['ForumChangePosts'] = {
 
 			// copy posting ---------------------------------------------
 			if (do_copy_posting) {
-				var copy_div = copy_posting_div.cloneNode(true);
+				var copy_div = Foxtrick.cloneElement(copy_posting_div, true);
 				var copy_img = copy_div.getElementsByTagName('img')[0];
 				copy_img.id = 'ft_copy_posting_link_id' + num_wrapper;
 				Foxtrick.onClick(copy_img, copy_posting_to_clipboard);
 				copy_img.setAttribute('post_nr', num_wrapper);
-				var copy_links = copy_div.getElementsByTagName('span');
+				var copy_links = copy_div.querySelectorAll('span[copy_style]');
 				for (var cl = 0; cl < possibleStyles.length; ++cl) {
 					Foxtrick.onClick(copy_links[cl], copy_posting_to_clipboard);
 					copy_links[cl].setAttribute('post_nr', num_wrapper);
@@ -526,7 +558,7 @@ Foxtrick.modules['ForumChangePosts'] = {
 				header_right_inner.appendChild(copy_div);
 
 				if (isArchive) {
-					var copy_link = copy_posting_link_archive.cloneNode(true);
+					var copy_link = Foxtrick.cloneElement(copy_posting_link_archive, true);
 					Foxtrick.onClick(copy_link, copy_posting_to_clipboard);
 					var footer_left = footer.getElementsByTagName('div')[0];
 					footer_left.insertBefore(copy_link, footer_left.firstChild);
@@ -568,7 +600,7 @@ Foxtrick.modules['ForumChangePosts'] = {
 					header_left.insertBefore(space, placenode.nextSibling);
 					header_left.insertBefore(seriesLinkUserInfo, space);
 					header_left.insertBefore(countryLink, seriesLinkUserInfo);
-					header_left.insertBefore(space.cloneNode(false), countryLink);
+					header_left.insertBefore(Foxtrick.cloneElement(space, false), countryLink);
 				}
 
 			}
@@ -644,11 +676,11 @@ Foxtrick.modules['ForumChangePosts'] = {
 			}
 			if (do_replace_supporter_star) {
 				if (supporter_link1) {
-					poster_link1.parentNode.insertBefore(alt_supporter.cloneNode(true),
+					poster_link1.parentNode.insertBefore(Foxtrick.cloneElement(alt_supporter, true),
 					                                     poster_link1.nextSibling);
 				}
 				if (supporter_link2 && poster_link2) {
-					poster_link2.parentNode.insertBefore(alt_supporter.cloneNode(true),
+					poster_link2.parentNode.insertBefore(Foxtrick.cloneElement(alt_supporter, true),
 					                                     poster_link2.nextSibling);
 				}
 			}
@@ -670,15 +702,16 @@ Foxtrick.modules['ForumChangePosts'] = {
 			if (do_single_header && is_ignored && header.className == 'cfHeader doubleLine') {
 				wrapper.setAttribute('style', 'margin-bottom: 20px');
 			}
+
 			// end single header line
 
 			// add default facecard ----------------------------
-			if (do_default_facecard && user && !user_avatar) {
-				var user_avatar = Foxtrick
-					.createFeaturedElement(doc, Foxtrick.modules.AddDefaultFaceCard, 'div');
-				user_avatar.className = 'faceCard';
-				user_avatar.style.backgroundImage = "url('/Img/Avatar/silhouettes/sil1.png')";
-				user.insertBefore(user_avatar, user.firstChild);
+			if (do_default_facecard && user && !userAvatar) {
+				let fModule = Foxtrick.modules.AddDefaultFaceCard;
+				userAvatar = Foxtrick.createFeaturedElement(doc, fModule, 'div');
+				userAvatar.className = 'faceCard faceCardNoBottomInfo';
+				userAvatar.style.backgroundImage = "url('/Img/Avatar/silhouettes/sil1.png')";
+				user.insertBefore(userAvatar, user.firstChild);
 			}
 
 			++num_wrapper;

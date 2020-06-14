@@ -1,5 +1,5 @@
 .flag > img { background-image: url("chrome://foxtrick/content/resources/img/flags.gif"); }
-.flag0 { background-position: 0px 0px; }
+.flag0, .flag1000 { background-position: 0px 0px; }
 .flag1 { background-position: -20px 0px; }
 .flag2 { background-position: -40px 0px; }
 .flag3 { background-position: -60px 0px; }

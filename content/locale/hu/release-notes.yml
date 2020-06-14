@@ -1,10 +1,171 @@
 ---
 hu:
   versions:
+    nightly:
+      note_0: 'Fejlesztői verzió, saját belátásod szerint használd. Kérjük tekintsd meg változtatások részleteinek <linkSVN>jóváhagyási történetét</linkSVN> a Google Code-on.'
+    beta:
+      note_0: 'Ez a következő kiadás béta verziója. Kérlek segítsd a fordítást a szuper könnyű tömeg-fordító <linkCrowdin>crowdin.net</linkCrowdin> oldalunkon.'
+    0.17.0.1:
+      important: '<header>Fontos közlemények</header>'
+      safari_cert: 'A Hattrick közösség soraiból keresünk valakit, aki iOS vagy OSX applikációkat fejleszt, hogy segítsen visszaállítani a Foxtrick támogatást a Safari felhasználók számára. További információért tekintsd meg a <linkSafariCertBug>probléma követő oldalunkat</linkSafariCertBug>.'
+      beta: 'Az új funkciók korai megismerése kapcsán felhívom a figyelmed a <linkFTBeta>Foxtrick beta</linkFTBeta> használatára, befolyásolhatod a fejlesztéseket és segíthetsz megkeresni és javítani az esetlegesen felmerülő problémákat.'
+      support: '<header>Tetszik, amit csinálunk? Kérlek, támogasd a <linkContribute>Foxtrick kiegészítőt</linkContribute>.</header>'
+      bugs: '<header>Hibajavítások</header>'
+      android: 'A Foxtrick nem működik Androidon a Mozilla változtatásai miatt.'
+      filters: 'A <module>Filters</module> modul nem működik, miután változtatások történtek a Foxtrick magban.'
+      simulator_hs: 'A <module>MatchSimulator</module> modul rossz képesség alszint feliratokat használ a számított értékeléseknél, eltérően a HatStats értékeitől.'
+      nt_stats: 'A <module>SeasonStats</module> modul nem érzékeli helyesen a döntetlennel végződött NT mérkőzéseket a szövetségi kapitányoknál.'
+      specinfo_fixes: 'A <module>SpecialtyInfo</module> rosszul működött együtt a <module>SkillTable</module> és a <module>ContextMenuCopy</module> modullal. A modul újraírásra került az integráció javítása érdekében.'
+      other: '<header>Egyéb változtatások</header>'
+      minimum_search: 'Most már újra kereshetsz csak a minimális formára a <module>TransferSearchResultFilters</module> modulban. A felső keresési határ automatikusan "remek" szintre kerül beállításra.'
+      season_cache: 'A Foxtrick cache szezonváltáskor most már automatikusan törlődik. Ezzel meggátoljuk, hogy különböző modulok, mint a <module>SeriesFlags</module>, elavult adatokat használjon.'
+      weather_cache: 'A <module>MatchWeather</module> modul mindaddig ugyanazt az időjárást jelzi, amíg a böngésző fut. Az időjárási adatok ezentúl csak rövid ideig kerülnek tárolásra.'
+      android_prefs: 'Továbbiakban nem elérhető a Foxtrick beállítások letiltása hivatkozás Androidon, mint pl. a beállítások importálása asztali verzióra. Másrészt a beállítások elérhetetlenné válnak.'
+      and_more: 'Számos kis változtatás és javítás.'
+    0.17.0:
+      important: '<header>Fontos közlemények</header>'
+      crowdin: '<header>A mi nagyszerű felhasználóink a  <linkCrowdin>crowdin eszközt</linkCrowdin> használják a számtalan fordítási frissítéshez. Te is segíthetsz természetesen!</header>'
+      browsers: 'Jelenleg technikai okok miatt hivatalosan a legalacsonyabb támogatott böngésző verziók a Firefox v38, Google Chrome v39 és Opera v26. Ezért és saját biztonságod érdekében is mindig használd a legutolsó elérhető böngésző verziót.'
+      safari_cert: 'A Hattrick közösség soraiból keresünk valakit, aki iOS vagy OSX applikációkat fejleszt, hogy segítsen visszaállítani a Foxtrick támogatást a Safari felhasználók számára. További információért tekintsd meg a <linkSafariCertBug> pröbléma követő oldalunkat</linkSafariCertBug>.'
+      beta: 'Az új funkciók korai megismerése kapcsán felhívom a figyelmed a <linkFTBeta>Foxtrick beta</linkFTBeta> használatára, befolyásolhatod a fejlesztéseket és segíthetsz megkeresni és javítani az esetlegesen felmerülő problémákat.'
+      support: '<header>Tetszik, amit csinálunk? Kérlek <linkContribute>támogasd a Foxtrick kiegészítőt</linkContribute>.</header>'
+      new: '<header>Új modulok</header>'
+      spec_info: 'A <module>SpecialtyInfo</module> modul segítségével a specialitás ikonra kattintva egy tömör, specialitáshoz tartozó információs tábla jelenik meg.'
+      bugs: '<header>Hibajavítások</header>'
+      tl_search_form: '<module>TransferSearchResultFilters</module>, a Foxtrick forma szűrője böngészőváltozások miatt hibás volt, ezért az összes játékos rejtett volt az átigazolási keresési eredményeknél. A probléma most javításra került.'
+      divine_skills: 'A most bevezetett isteni+ képesség kijelzés hibás volt az összes CHPP alkalmazásnál a HT gondatlansága miatt. A Foxtrick sem volt kivétel ezalól. Az érintett modulok a <module>SkillTable</module>, <module>MatchOrderInterface</module>, <module>HTMSPoints</module>, <module>SkillColoring</module> és mások. A hibák most javításra kerültek.'
+      opera_notifications: 'A Foxtrick értesítések az Opera böngészőjében nem működtek és most javításra kerültek.'
+      nt_weather: 'A <module>MatchWeather</module> nem működött az NT mérkőzések egy néhány más egyéb eset kapcsán. A modul újraírásra került az összes ismert hiba javításához.'
+      nt_simulator: 'A <module>MatchSimulator</module> mérkőzés lista nem jelent meg helyesen az NT csapatoknál. Ez most javításra került.'
+      chrome_styles: 'A Foxtrick stílusok néha nem működtek a Google Chrome versenyfeltételei miatt, melyet a böngésző változásai okoztak. Intézkedéseket hoztunk, hogy megpróbáljuk megelőzni ezeket a hibákat a jövőben.'
+      supporter_list: '<module>SupportersList</module> leállt, ha a <module>StaffMarker</module> tiltott volt. A hibás egymásra hatást most eltávolítottuk.'
+      youth_promotes: 'A <module>YouthPromotes</module> modulban javításra került egy off-by-one hiba a hátralévő napok számításánál.'
+      other: '<header>Egyéb változások</header>'
+      performance_cache: 'A Foxtrick általános teljesítménye érdekében rengeteget dolgoztunk. CHPP és egyéb adatforrásokból származó adatok kezelése gyorsabb és rugalmasabb lett. A Foxtrick gyorsítótára szintén fejlesztésre került ezekhez a forrásokhoz igazítva.'
+      preferences_install: 'A Foxtrick beállítások mostmár gyorsabban töltődnek be, különösen Google Chrome esetén. Telepítés és a frissítések szintén gyorsabbak Firefoxon.'
+      backend: 'Több tisztogatás és frissítések készültek a Foxtrick magjához a jövőbeli fenntarthatóság növelése érdekében. A módosítások hatással voltak rengeteg oldalon, modulokon és funkciók esetén is. Kérjük bármilyen hibát találsz, jelentsd.'
+      firefox_support: 'Ezen munka eredményeként más Firefox bővítményekkel való közös működés sokkal jobb lett. Az új Firefox multi-process architektúrához való előkészületek is igen jól haladnak.'
+      notifications: 'A Firefox értesítéseken való kattintás után most már megnyílik a releváns oldal egy új fülön.'
+      context_copy: 'A <module>ContextMenuCopy</module> fejlesztésre került, hogy több hivatkozást kezeljen és precízebb HT-ML leíró nyelvezetet generáljon.'
+      training_week: 'A PlayerStatsTrainingWeek modul eltávolításra került, mivel a Hattrick ugyanezt a funkciót bevezette.'
+      wage: 'A fizetések valutanem detektálása újraírásra került a <module>ExtendedPlayerDetailsWage</module> modulban, ezzel megerősítve a HT változásokkal szemben. A funkció ezelőtt nem működött a kínai felhasználók számára, már igen.'
+      mail_counter: 'A HT dizájn változtatások miatt sokkal robusztusabbra került átírásra a <module>NewMail</module> modul.'
+      and_more: 'Számos kis változtatás és javítás.'
+    0.16.1.1:
+      important: '<header>Fontos közlemények</header>'
+      safari_cert: 'A Hattrick közösség soraiból keresünk valakit, aki iOS vagy OSX applikációkat fejleszt, hogy segítsen visszaállítani a Foxtrick támogatást a Safari felhasználók számára. További információért tekintsd meg a  <linkSafariCertBug>pröbléma követő oldalunkat</linkSafariCertBug>.'
+      beta: 'Az új funkciók korai megismerése kapcsán felhívom a figyelmed a <linkFTBeta>Foxtrick beta</linkFTBeta> használatára, befolyásolhatod a fejlesztéseket és segíthetsz megkeresni és javítani az esetlegesen felmerülő problémákat.'
+      bugs: '<header>Hibajavítások</header>'
+      defence_stamina: 'Megoldotta a védelmi szektorok törésállóságának kiszámítását a <module>MatchSimulator</module>-ban: csak az edző állóképességét vettük figyelembe véletlenül az előző kiadásban.'
+      time_rewrite: 'A Hattrick változások miatt a Foxtrick dátum- és időérzékelést újra kellett írni. Sajnos néhány hibát vezettek be az előző kiadás során, ami néhány ország számára problémákat okozott CHPP-t használó modulokkal. A problémát most meg kell oldani.'
+      calendar_fix: 'A <module>DashboardCalendar</module> egyes esetekben teljesen sérült a dátumfelismeréssel kapcsolatos probléma miatt.'
+      and_more: 'Számos kis változtatás és javítás.'
+    0.16.1:
+      important: '<header>Fontos közlemények</header>'
+      new_contributions: '<module>PlayerPositionsEvaluations</module> most használja a hivatalosan közzétett meccsmotor adatokat a HT globális szezon # 60 számára. Azonban további paraméterek szükségesek ahhoz, hogy értelmezzék ezeket a számokat. Míg az ésszerű alapértelmezett értékek rendelkezésre állnak, azok sem hivatalosak, sem statisztikai tanulmányok alapján. Bármilyen visszajelzést kapjunk ezek javítására. Minden beállítás minden játékos oldalán elérhető.'
+      crowdin: '<header>Sok fordítási frissítés a mi félelmetes felhasználók által használt <linkCrowdin>crowdin eszköz</linkCrowdin>. Segíthetsz is!</header>'
+      support: '<header>Testszik, amit csinálunk? Kérem <linkContribute>Támogassa a Foxtrick-ot</linkContribute>.</header>'
+      bugs: '<header>Hibajavítások</header>'
+      dollar_wage: 'Kijavítva <module>ExtendedPlayerDetailsWage</module> bérek kiszámítása azon országok számára, amelyek pénznemként használják a dollárokat.'
+      old_faces_moi: 'Kijavítva a törött játékos avatárokat okozhat interferenciával <module>OldStyleFace</module> és <module>MatchOrderInterface</module>.'
+      other: '<header>Egyéb változások</header>'
+      copy_lineup: 'Mostantól másolhatja a felépítését <module>MatchOrderInterface</module>.'
+      and_more: 'Számos kis változtatás és javítás.'
+    0.16.0:
+      important: '<header>Fontos közlemények</header>'
+      safari: 'Az Apple Inc. politikájának megváltozása és a böngésző javítása iránti általános vonakodás miatt már nem garantálhatjuk az automatikus frissítéseket és általános támogatást a Safari felhasználók számára. Kérjük, fontolja meg a Firefox, a Google Chrome vagy az Opera használatát.'
+      new: '<header>Új modulok</header>'
+      bugs: '<header>Hibajavítások</header>'
+      other: '<header>Egyéb változások</header>'
+      table: '<module>PlayerFilters</module> és <module>SkillTable</module> újraírásra kerültek, hogy javítsanak néhány hibát és bővítsék funkcionalitásukat. A kulcs táblázat oszlopai mostantól le vannak fagyva, hogy megakadályozzák a vízszintes görgetést, most már elrejthet bizonyos játékosokat és még sok mást. Az információs gomb segítségével olvashatja el a teljes leírást.'
+      opponent_goals: 'A <module>LiveAlert</module>-hoz hozzáadva egy másik célzást az ellenfél céljaihoz.'
+      indonesian: 'Hozzáadta az indonéz nyelv támogatását.'
+      match_events: 'Az eseménytípus-leírások illesztése most is lefordítható.'
+      and_more: 'Különböző egyéb kisebb változások és javítások.'
+    0.15.2.1:
+      important: '<header>Fontos közlemények</header>'
+      signed: 'Minden Firefox kiegészítőt digitálisan alá kell írnia a Mozilla-nak. Ez többnyire egy aláírt frissítés, amely biztosítja a Foxtrick kompatibilitását.'
+      bugs: '<header>Hibajavítások</header>'
+      other: '<header>Egyéb változások</header>'
+      sandbox: 'Hozzáadta a következő Hattrick meccs homokozó funkciót.'
+      and_more: 'Különböző egyéb kisebb változások és javítások.'
+    0.15.2:
+      bugs: '<header>Hibajavítások</header>'
+      other: '<header>Egyéb változások</header>'
+      and_more: 'Különböző egyéb kisebb változások és javítások.'
+    0.15.1:
+      bugs: '<header>Hibajavítások</header>'
+      and_more: 'Különböző egyéb kisebb változások és javítások.'
+    0.15.0:
+      breakages: 'A Foxtrick most megfelelően működik a Safari 7.1+ és a Firefox Android rendszeren.'
+      https: 'A Foxtrick-nek ismét megfelelően kell működnie a Hattrick Stage-ban.'
+      nt: 'Rengeteg olyan funkciót korrigált, amelyek korábban nem működtek megfelelően az NT edzők számára.'
+      en-US: 'Hozzáadta a megfelelő támogatást az amerikai angol nyelvhez.'
+      code: 'Nagyobb karbantartás történt a Foxtrick kóddal kapcsolatban. Ez lehetővé teszi számunkra, hogy megtaláljuk és javítsuk a rejtett hibákat, javítsuk a kiegészítő stabilitást és megkönnyítsük annak további fejlődését.'
+      and_more: 'Különböző egyéb kisebb változások és javítások.'
+    0.14.0.3:
+      sorry: "Bocsánatot kérve az utolsó 'hibajavítás' kiadáshoz, amely valójában több dolgot törött, mint amit rögzített. Ennek jobbnak kell lennie."
+      street_teams: 'Az utcai csapatok bevezetése az új csésze rendszerben számos különös problémát okozott, amelyeket most rögzítettek.'
+    0.14.0.2:
+      and_more: 'Különböző egyéb kisebb változások és javítások.'
+    0.14.0.1:
+      ff_cache: 'A Foxtrick csomagok többé nem lesznek tömörítve a Firefoxban. Ez megakadályoz minden olyan furcsa problémát, amelyet a felhasználók a 0.14.0 verzióval tapasztaltunk.'
+    0.14.0:
+      australis: 'A Firefox ikon menüt rögzítették az új böngésző témához.'
+      chrome_notes: 'A Foxtrick értesítéseket rögzítették az új értesítési rendszer használatára a Google Chrome-ban.'
+      player_cache: 'A Foxtrick most új játékosokat fog észrevenni a csapatban, és automatikusan frissíti a CHPP adatokat.'
+      train_est: 'A Foxtrick már nem zavarja az asztali rendezést az új képzési becslési szolgáltatásban.'
+      htev: 'A htev.org többé nem tudja fenntartani a Foxtrick kéréseit, így a HTEVPrediction modult eltávolították.'
+      removed: 'A SmallPages és a MatchTables modulokat is eltávolították a haszontalanság miatt.'
+      and_more: 'Különböző egyéb kisebb változások és javítások.'
+    0.13.0.1:
+      and_more: 'Különböző egyéb kisebb változások és javítások.'
+    0.13.0:
+      safari: 'A Safari 5.x verzió támogatása hamarosan leesik.'
+      ht_changes: 'A Foxtrick-et frissítették a Hattrick legutóbbi változásainak támogatására az ifjúsági meccsekre vonatkozó jelentések, az egyszerű téma és a meccs rendezési felület tekintetében.'
+      locale_support: 'Frissített helyi támogatás: Lettország euro valuta, új spanyol nyelvjárási nevek, korrigált időpontok és dátumformátumok stb.'
+      custom_marker: 'A fórumüzenetek láblécéhez hozzáadtunk egy felhasználói név színek egyszerű hozzáadását lehetővé tevő felületet.'
+      ff_button: 'A Firefox eszköztár gombja most jobban reagál, és jobban tükrözi a Foxtrick állapotát.'
+      ff_disable: 'A Foxtrick Firefox-ban történő letiltása most bezárja a Foxtrick preferenciáit (ha nyitva van) és újratölti az összes Hattrick lapot, hogy eltávolítsa a Foxtrick módosításait.'
+      ff_cache: 'Javítva egy hiba a Firefoxban, amely megakadályozta, hogy a Foxtrick bizonyos esetekben megfelelően frissítse az új verziót.'
+      custom_links: 'A külső kapcsolatok működését felülvizsgálták és minden ismert problémát rögzítettek. Most már hozzáadhat egyéni linkeket a meccsjelentés oldalára is.'
+    0.12.2.1:
+      note_0: 'A hivatkozások nem fognak eltűnni a Foxtrick gyorsítótárának törlése után a Firefoxban.'
+      note_1: 'A farzsi és más nyelvű változások, amelyek miatt a Foxtrick megszakadhat, most számolnak be.'
+      note_3: "Megoldotta a problémát, ami miatt a Foxtrick a felhasználói pénznem helyett fura szimbólumokat mutatott"
     0.12.2:
-      note_11: '<header>Hibajavítások</header>'
+      note_11: "<header>Hibajavítások</header>"
+      note_14: "A negatív játékosazonosítók körbejárása a szomszédságos mérkőzések során (megakadályozta a barátságos mérkőzéseken való átállást)."
+      note_16: "Javítva hibát a preferenciák keresési funkciójában."
+    0.12.1.1:
+      note_0: 'Fordítói frissítések.'
+      note_2: 'Kisegítő akadályok javítása.'
+      note_4: 'Rögzített néhány hangzással kapcsolatos problémát.'
+      note_5: 'Javítva egy Android-problémát, ami miatt néhány esetben Foxtrick nem indul el.'
+      note_6: 'A fórum- és postai sablonok sorainak megszakítását helyesen kell felismerni a preferenciák importálása során.'
+      note_7: 'Javítva a minősítések felismerési kérdése a Frysk locale számára.'
+    0.12.1:
+      note_10: 'Hozzáadták az azerbajdzsáni nyelv támogatását.'
+      note_11: 'A Hattrick által okozott problémákért még száz másik javítás történt.'
+    0.12.0:
+      note_2: 'Számos javítást sikerült bevezetni az új Hattrick Shop után törött modulok számára.'
+      note_13: 'Mostantól a böngésző és a Hattrick elrendezés beállításai automatikusan bekerülnek a FoxTrick fórumba küldött üzenetekbe. Ez segít nekünk gyorsabban megoldani a problémákat. Kérjük, ne törölje ezeket az információkat a közzétételkor.'
+      note_14: 'A kiegészítő kódot megtisztították a jobb olvashatóságért és karbantartásért.'
+      note_17: 'A Safari frissítések töröttek. A felhasználóknak el kell távolítaniuk az előző Foxtrick verziót, és telepíteniük kell egy újat.'
+    0.11.0.1:
+      note_2: 'Ne akadályozza meg a Firefox-ot abban, hogy új böngészőablakot nyitva lehessen az összes Hattrick lapon.'
     0.11.0:
       note_12: '<header>Hibajavítások</header>'
+      note_18: 'A háttértároló modult eltávolítottuk.'
+      note_23: 'Általános HT-ML másolási javítások.'
+      note_29: "A fórummodulok mostantól egy speciális karaktert használnak a szöveg helyett a \"·\" helyett: ez segítheti a katalán nyelvet."
+      note_30: 'Megakadályozza, hogy a HT elrendezés zavarja a Foxtrick-et.'
+      note_31: 'Hozzáadva támogatni a www.hattrick.fm'
+      note_33: '<header>Böngésző támogatás</header>'
+      note_34: 'Javítva a Firefox Android 17+ támogatással.'
+      note_35: 'A Firefox 12 most a minimális verzió a Foxtrick futtatásához.'
+      note_36: 'A Google Chrome 22 most a minimális verzió a Foxtrick futtatásához.'
+      note_37: 'Opera: olyan hibát javított, amely az FT-t interferálta más oldalakkal (például a hattrick ifjúsági klubjával). A képek most sokkal gyorsabban töltődnek be. Bizonyos modulok, amelyek kifejezetten letiltásra kerültek az Opera-ban, most már engedélyezettek.'
     0.10.0:
       note_0: 'NEW: <module>TransferHistoryFilters</module>: Allows you to filter transfers for bought or sold players only. Only available for the team history, not players (default on)'
       note_1: 'NEW: <module>FriendlyPool</module>: Colorizes visited countries in the friendly pool (supporters only, default on)'
@@ -29,7 +190,7 @@ hu:
       note_21: '<header>For visually/hearing impaired users</header>'
       note_22: We added a new section to the settings page that will contain all modules that are related to accessibility.
       note_23: 'NEW: <module>ARIALandmarks</module>: Adds ARIA landmarks to the website. This should help navigating the site using screenreaders. The two main navigation bars and the list of all subscribed forums got the role "navigation". The main content has the role "main". All the sidebars with additional information and links will be marked as "complementary". The links to global search and forum search have the role "search" of course.'
-      note_24: "If you have any further suggestions please don't hesitate to contact us. We are also browsing the Hattrick Access forums."
+      note_24: If you have any further suggestions please don't hesitate to contact us. We are also browsing the Hattrick Access forums.
     0.9.3:
       note_0: 'A lot of language updates because Foxtrick users are awesome. Thank you so much. Keep contributing at <linkCrowdin>http://www.crowdin.net</linkCrowdin>'
       note_1: 'NEW: <module>YouthTwins</module>: Shows the amount of possible/marked/non twins on the youth players overview page for supporters (in conjunction with hattrick youthclub)'
@@ -42,7 +203,7 @@ hu:
       note_8: 'PlayerStatsExperience: Fixed issue that caused this module not to work on Firefox 3.6'
       note_9: 'CustomMedals: Fixed disappearing tournament trophies'
       note_10: Ogg sounds for mozilla-based browsers enabled
-      note_11: "Fennec loads staffmarker and link resources from internal sources again. So they aren't updated dynamically but also save bandwidth."
+      note_11: Fennec loads staffmarker and link resources from internal sources again. So they aren't updated dynamically but also save bandwidth.
     0.9.2:
       note_0: Another massive language update. Thanks again to all those translators.
       note_1: Rewrote language detection. Should never break again
@@ -67,7 +228,7 @@ hu:
       note_20: 'MatchOrder: Highlight of players that played in the last match can now be shown on the playing field too'
       note_21: Some more work on AMO compliance
       note_22: '<header>For Google Chrome users</header>'
-      note_23: "Seems that Chrome 18's optional permissions system is buggy. Feature which require those (HTY staffmarker and EmbedMedia) might not work currently."
+      note_23: Seems that Chrome 18's optional permissions system is buggy. Feature which require those (HTY staffmarker and EmbedMedia) might not work currently.
     0.9.1:
       note_0: 'HTMS: tactics used again'
       note_1: 'Tablesort: sort floating numbers'
@@ -81,14 +242,14 @@ hu:
       note_6: Moved the highlight feature toggle to the FoxTrick toolbar icon resp. preferences main tab
       note_7: module MatchTables removed since no one used it
       note_8: 'MatchSimulator stamina effect: show texts rounded and values not rounded'
-      note_9: 'preference linking "foxtrick://"-style fixed'
+      note_9: preference linking "foxtrick://"-style fixed
       note_10: Matchreport now shows tooltips for all events
       note_11: Links resources moved to yet another server
       note_12: Some internal changes to improve AMO compliance
       note_13: "A huge ammount of translation updates by: aegeansailor, brauxx, Mod-Utku, ebitechv, Polytropos, gkon13, SOLARIS1973, Fieras, margaale, ipefix, stephan.cardot, OmaniMilani, LambdaB, SI-CH, Convincedd, margaale, ljushaff, serjhanti, playMaker, CoRrRan, Aristodemos, margaale, spider007, FeritAkarsu and probably some people i missed, please drop us a msg if you feel unrespected, it's kinda hard to keep tracking all of you guys. This is awesome! Thanks to all of you!"
     0.9.0.4:
       note_0: Links resources moved to another server
-      note_1: "Added basic english event texts to the icons' titles in MatchReportFormat"
+      note_1: Added basic english event texts to the icons' titles in MatchReportFormat
       note_2: Enabled MatchReportFormat and MatchPlayerColoring for tournament matches
     0.9.0.3:
       note_0: Fixed several modules after a change in HTs page layout
@@ -100,7 +261,7 @@ hu:
       note_4: Several translation updates
     0.9.0.1:
       note_0: Fixed (accidental) excessive permissions for Chrome
-      note_1: 'Fixed LiveAlert '
+      note_1: Fixed LiveAlert 
       note_2: Fixed and some css issues (for Chrome, Opera, Safari)
     0.9:
       note_0: '<header>Localization:</header>'
@@ -127,7 +288,7 @@ hu:
       note_21: LeagueChat and HeaderFixFlickerFix removed (convincedd)
       note_22: Many internal changes (ryanli, convincedd) and probably several other smaller fixes
       note_23: '<header>For Google Chrome users</header>'
-      note_24: "We implemented Chrome's optional permissions system. There are fewer mandatory permissions needed now when installing FoxTrick. Since you have not set any yet, you have to save the preference once and confirm whichever access you want to allow. Later, you will be asked to allow access to an external resource whenever you enable a module which requires it."
+      note_24: We implemented Chrome's optional permissions system. There are fewer mandatory permissions needed now when installing FoxTrick. Since you have not set any yet, you have to save the preference once and confirm whichever access you want to allow. Later, you will be asked to allow access to an external resource whenever you enable a module which requires it.
     0.8.2:
       note_0: Korean locale (SI-CH)
       note_1: Lithuanian locale (LA-MJ)
@@ -221,3 +382,4 @@ hu:
       note_19: 'Module <module>TeamSelectBox</module> disabled by default. (ryanli)'
       note_20: 'Module <module>SmallerPages</module> disabled by default. (ljushaff)'
       note_21: 'Radio options in <module>ExtraShortcuts</module> are disabled by default. (ryanli)'
+

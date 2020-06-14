@@ -161,7 +161,7 @@
 		],
 		"fans_match": [
 			{
-				"text": "¿Pedimos vaselina?",
+				"text": "Nos lloverán goles",
 				"value": "0"
 			},
 			{
@@ -169,7 +169,7 @@
 				"value": "1"
 			},
 			{
-				"text": "Vamos a perder",
+				"text": "Seguro que perdemos",
 				"value": "2"
 			},
 			{
@@ -177,7 +177,7 @@
 				"value": "3"
 			},
 			{
-				"text": "Ellos tienen la ventaja",
+				"text": "Ellos tienen algo de ventaja",
 				"value": "4"
 			},
 			{
@@ -193,7 +193,7 @@
 				"value": "7"
 			},
 			{
-				"text": "Vamos a ganar",
+				"text": "Seguro que ganamos",
 				"value": "8"
 			},
 			{
@@ -269,6 +269,7 @@
 		"leagueNames": {
 			"1": "Suecia",
 			"100": "El Salvador",
+			"1000": "Hattrick International",
 			"101": "Malta",
 			"102": "Kirguistán",
 			"103": "Moldavia",
@@ -315,8 +316,19 @@
 			"146": "Camerún",
 			"147": "Cuba",
 			"148": "Palestina",
+			"149": "Santo Tomé y Príncipe",
 			"15": "Oceanía",
+			"151": "Comoras",
+			"152": "Sri Lanka",
+			"153": "Curazao",
+			"154": "Guam",
+			"155": "R.D. del Congo",
+			"156": "Etiopía",
+			"157": "San Vicente y las Granadinas",
+			"158": "Belice",
+			"159": "Madagascar",
 			"16": "Brasil",
+			"160": "Botsuana",
 			"17": "Canadá",
 			"18": "Chile",
 			"19": "Colombia",
@@ -378,7 +390,7 @@
 			"76": "Islas Feroe",
 			"77": "Marruecos",
 			"79": "Arabia Saudita",
-			"8": "EE.UU.",
+			"8": "EE. UU.",
 			"80": "Túnez",
 			"81": "Costa Rica",
 			"83": "Emiratos Árabes Unidos",
@@ -392,7 +404,7 @@
 			"94": "Jamaica",
 			"95": "Kenya",
 			"96": "Panamá",
-			"97": "Macedonia",
+			"97": "Macedonia del Norte",
 			"98": "Albania",
 			"99": "Honduras"
 		},
@@ -602,7 +614,7 @@
 		"specialties": [
 			{
 				"type": "None",
-				"value": "Ninguna"
+				"value": "Sin especialidad"
 			},
 			{
 				"type": "Technical",
@@ -625,8 +637,12 @@
 				"value": "Cabeceador"
 			},
 			{
-				"type": "Regainer",
-				"value": "Recuperador"
+				"type": "Resilient",
+				"value": "Resistente"
+			},
+			{
+				"type": "Support",
+				"value": "Conductor"
 			}
 		],
 		"spirit": [

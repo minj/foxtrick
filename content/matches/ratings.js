@@ -19,7 +19,8 @@ Foxtrick.modules['Ratings'] = {
 	},
 	run: function(doc) {
 
-		if (Foxtrick.Pages.Match.isPrematch(doc) || Foxtrick.Pages.Match.inProgress(doc))
+		if (Foxtrick.Pages.Match.isPrematch(doc) || Foxtrick.Pages.Match.inProgress(doc) ||
+		    Foxtrick.Pages.Match.isNewLive(doc))
 			return;
 
 		var ratingstable = Foxtrick.Pages.Match.getRatingsTable(doc);
@@ -123,10 +124,10 @@ Foxtrick.modules['Ratings'] = {
 	                            defenceLevel) {
 		if (typeof(rating[ratingType]) == 'undefined')
 			return;
-			if (cell.textContent.length > 2) {
-				cell.appendChild(doc.createElement('br'));
-				cell.appendChild(doc.createTextNode('\n'));
-			}
+		if (cell.textContent.length > 2) {
+			cell.appendChild(doc.createElement('br'));
+			cell.appendChild(doc.createTextNode('\n'));
+		}
 		cell.appendChild(doc.createTextNode(label + ': '));
 		var b = cell.appendChild(doc.createElement('b'));
 		b.textContent = rating[ratingType](midfieldLevel, attackLevel, defenceLevel);

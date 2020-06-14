@@ -1,8 +1,9 @@
-'use strict';
 /**
  * Add some infos to fans page
  * @author teles
  */
+
+'use strict';
 
 Foxtrick.modules['Fans'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.PRESENTATION,
@@ -10,18 +11,23 @@ Foxtrick.modules['Fans'] = {
 
 	OPTIONS: [
 		'AddLiveLink',
-		'ShowSumFans'
+		'ShowSumFans',
 	],
 
+	/**
+	 * @param {document} doc
+	 */
 	run: function(doc) {
 		var module = this;
 
 		if (Foxtrick.Prefs.isModuleOptionEnabled('Fans', 'AddLiveLink')) {
+			/** @type {NodeListOf<HTMLAnchorElement>} */
 			var links = doc.querySelectorAll('#upcoming a[href*="matchID"]');
 			Foxtrick.forEach(function(link) {
 				var node = Foxtrick.createFeaturedElement(doc, module, 'a');
 				node.href = link.href.replace('/Club/Matches/Match.aspx?',
 				                              '/Club/Matches/Live.aspx?actionType=addMatch');
+
 				var liveText = Foxtrick.L10n.getString('MyMonitor.htLive');
 				Foxtrick.addImage(doc, node, {
 					alt: liveText,
@@ -29,7 +35,9 @@ Foxtrick.modules['Fans'] = {
 					src: '/Img/icons/transparent.gif',
 					class: 'matchHTLive',
 				});
-				link.parentNode.parentNode.previousElementSibling.appendChild(node);
+
+				let grandParent = link.parentElement.parentElement;
+				grandParent.previousElementSibling.appendChild(node);
 			}, links);
 		}
 
@@ -46,11 +54,11 @@ Foxtrick.modules['Fans'] = {
 				if (/%/.test(text)) {
 					var untilThen = fansNow - total;
 					n = Math.round(untilThen / (100 + n) * n);
-					num.textContent += ' (' + Math.abs(n) + ')';
 				}
 				total += n;
 			}, nums);
 
+			/** @type {HTMLTableElement} */
 			var table = doc.querySelector('#members .thin');
 			var row = Foxtrick.insertFeaturedRow(table, module, -1);
 			Foxtrick.addClass(row, 'ft-bordertop');
@@ -59,11 +67,11 @@ Foxtrick.modules['Fans'] = {
 			td1.textContent = Foxtrick.L10n.getString('TeamStats.Total');
 			var td2 = doc.createElement('td');
 			td2.className = total > 0 ? 'inc' : 'dec';
-			td2.textContent = total > 0 ? '+' + total : total;
+			td2.textContent = total > 0 ? '+' + total : total.toString();
 			row.appendChild(td1);
 			row.appendChild(td2);
 		}
 
-	}
+	},
 
 };

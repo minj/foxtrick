@@ -1,5 +1,5 @@
-'use strict';
-/* all.js
+/**
+ * all.js
  * Utilities on all pages
  * @author ryanli, LA-MJ
  *
@@ -12,8 +12,14 @@
  * their first arguments need to be `doc'.
  */
 
-if (!Foxtrick)
+'use strict';
+
+/* eslint-disable */
+if (!this.Foxtrick)
+	// @ts-ignore
 	var Foxtrick = {};
+/* eslint-enable */
+
 if (!Foxtrick.Pages)
 	Foxtrick.Pages = {};
 
@@ -22,10 +28,10 @@ Foxtrick.Pages.All = {};
 /**
  * Test whether this page belongs to our own team
  * @param  {document}  doc
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.All.isOwn = function(doc) {
-	var ownTeamId = this.getOwnTeamId(doc);
+	var ownTeamId = this.getOwnTeamId();
 	var teamId = this.getTeamId(doc);
 	return ownTeamId === teamId && ownTeamId !== null;
 };
@@ -33,7 +39,7 @@ Foxtrick.Pages.All.isOwn = function(doc) {
 /**
  * Test whether this page is a youth page
  * @param  {document}  doc
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.All.isYouth = function(doc) {
 	return /youth/i.test(doc.location.href);
@@ -54,7 +60,7 @@ Foxtrick.Pages.All.getId = function(doc) {
 	}
 
 	// defaults to own id
-	var id = this.getOwnTeamId(doc);
+	var id = this.getOwnTeamId();
 
 	// parse links backwards, unless it's a youth page
 	// since teamID is used before youthTeamID in most places
@@ -119,9 +125,9 @@ Foxtrick.Pages.All.getTeamIdFromBC = function(doc) {
 Foxtrick.Pages.All.getTeamId = function(doc) {
 	var id = null;
 	var subMenu = doc.getElementsByClassName('subMenu')[0];
-	if (subMenu) {
+	if (subMenu)
 		id = Foxtrick.util.id.findTeamId(subMenu);
-	}
+
 	return id;
 };
 
@@ -130,16 +136,19 @@ Foxtrick.Pages.All.getTeamId = function(doc) {
  * Usually same as getTeamName,
  * except returns youth team name in youth pages.
  * @param  {document} doc
- * @return {number}
+ * @return {string}
  */
 Foxtrick.Pages.All.getTeamNameFromBC = function(doc) {
 	var name = null;
+
 	var links = this.getBreadCrumbs(doc);
 	var link = Foxtrick.nth(function(link) {
 		return /TeamID=\d+/i.test(link.href);
 	}, links);
+
 	if (link)
-		name = link.textContent;
+		name = link.textContent.trim();
+
 	return name;
 };
 
@@ -147,28 +156,28 @@ Foxtrick.Pages.All.getTeamNameFromBC = function(doc) {
  * Get senior team name for the page.
  * Use getTeamNameFromBC for youth team name.
  * @param  {document} doc
- * @return {number}
+ * @return {string}
  */
 Foxtrick.Pages.All.getTeamName = function(doc) {
-	var name = null;
-	// check if this page has an associated team
-	var team = this.getTeamNameFromBC(doc);
-	if (team) {
+	var name = this.getTeamNameFromBC(doc);
+
+	if (!name || Foxtrick.Pages.All.isYouth(doc)) {
+		// README: this should not run for NT coaches
+		// since subMenu = main team, bread crumb = NT
 		var header = doc.querySelector('.subMenu h2');
-		if (header) {
-			name = header.textContent.trim();
-		}
+		name = header ? header.textContent.trim() : null;
 	}
+
 	return name;
 };
 
 /**
  * Test whether user is logged in
  * @param  {document}  doc
- * @return {Boolean}
+ * @return {boolean}
  */
 Foxtrick.Pages.All.isLoggedIn = function(doc) {
-	var teamLinks = doc.getElementById('teamLinks');
+	let teamLinks = doc.getElementById('teamLinks');
 	if (teamLinks && teamLinks.getElementsByTagName('a').length)
 		return true;
 	return false;
@@ -177,7 +186,7 @@ Foxtrick.Pages.All.isLoggedIn = function(doc) {
 /**
  * Get the header of mainBody
  * @param  {document}    doc
- * @return {element}
+ * @return {HTMLElement}
  */
 Foxtrick.Pages.All.getMainHeader = function(doc) {
 	return doc.querySelector('.mainRegular h2, .mainWide h2, .mainConf h2');
@@ -186,7 +195,7 @@ Foxtrick.Pages.All.getMainHeader = function(doc) {
 /**
  * Get the default notification area
  * @param  {document}    doc
- * @return {element}
+ * @return {HTMLElement}
  */
 Foxtrick.Pages.All.getNotes = function(doc) {
 	return doc.getElementById('ctl00_updNotifications') ||
@@ -196,12 +205,12 @@ Foxtrick.Pages.All.getNotes = function(doc) {
 /**
  * Get bread crumb links
  * @param  {document} doc
- * @return {array}        ?Array.<HTMLAnchorElement>
+ * @return {HTMLAnchorElement[]}        ?Array.<HTMLAnchorElement>
  */
 Foxtrick.Pages.All.getBreadCrumbs = function(doc) {
-	var header = this.getMainHeader(doc);
+	let header = this.getMainHeader(doc);
 	if (header)
 		return Foxtrick.toArray(header.getElementsByTagName('a'));
-	else
-		return null;
+
+	return null;
 };

@@ -1,54 +1,63 @@
-'use strict';
 /**
  * forum-mod-popup.js
  * @author CatzHoek
  */
+
+'use strict';
 
 Foxtrick.modules['ForumModeratorPopup'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.FORUM,
 	PAGES: ['forumViewThread'],
 	CSS: Foxtrick.InternalPath + 'resources/css/forum-mod-popup.css',
 
+	/**
+	 * @param {document} doc
+	 */
 	run: function(doc) {
-		var modoption = doc.getElementById('cfModFunctions');
-		if (modoption) {
-			var content = doc.getElementById('mainWrapper');
-			var header = content.getElementsByClassName('boxHead')[0];
-			var popupdiv = Foxtrick.createFeaturedElement(doc, this, 'div');
-			Foxtrick.addClass(popupdiv, 'ft-pop-up-container');
-			Foxtrick.addClass(popupdiv, 'ft-moderator-popup');
-			Foxtrick.addClass(popupdiv, 'ft-moderator-popup-align');
-			var lnk = doc.createTextNode(Foxtrick.L10n.getString('ForumModeratorPopup.toModerate'));
-			popupdiv.appendChild(lnk);
-			header.appendChild(popupdiv);
+		var modOption = doc.getElementById('cfModFunctions');
+		if (!modOption)
+			return;
 
-			var clear = doc.createElement('div');
-			Foxtrick.addClass(clear, 'ft-clear-both');
-			header.parentNode.insertBefore(clear, doc.getElementById('mainBody'));
+		var content = doc.getElementById('mainWrapper');
+		var header = content.querySelector('.boxHead');
 
+		var popupDiv = Foxtrick.createFeaturedElement(doc, this, 'div');
+		Foxtrick.addClass(popupDiv, 'ft-pop-up-container');
+		Foxtrick.addClass(popupDiv, 'ft-moderator-popup');
+		Foxtrick.addClass(popupDiv, 'ft-moderator-popup-align');
 
-			var ul = doc.createElement('ul');
-			Foxtrick.addClass(ul, 'ft-pop right');
-			var links = modoption.getElementsByTagName('a');
-			for (var l = 0; l < links.length; l++) {
-				if (links[l].href.search('actionTypeFunctions') > -1) {
-					var actionTypeFunctions = Foxtrick.getParameterFromUrl(links[l].href,
-					                                                       'actionTypeFunctions');
-					var li = doc.createElement('li');
-					var lnk_i = links[l].cloneNode(true);
-					li.appendChild(lnk_i);
-					ul.appendChild(li);
+		let lnk = doc.createTextNode(Foxtrick.L10n.getString('ForumModeratorPopup.toModerate'));
+		popupDiv.appendChild(lnk);
+		header.appendChild(popupDiv);
 
-				} else if (links[l].href.search('actionTypeWrite') > -1) {
-					var actionTypeWrite = Foxtrick.getParameterFromUrl(links[l].href,
-					                                                   'actionTypeWrite');
-					var li = doc.createElement('li');
-					var lnk_i = links[l].cloneNode(true);
-					li.appendChild(lnk_i);
-					ul.appendChild(li);
-				}
+		let clear = doc.createElement('div');
+		Foxtrick.addClass(clear, 'ft-clear-both');
+		header.parentNode.insertBefore(clear, doc.getElementById('mainBody'));
+
+		let ul = doc.createElement('ul');
+		Foxtrick.addClass(ul, 'ft-pop right');
+		let links = modOption.querySelectorAll('a');
+		for (let link of links) {
+			if (link.href.indexOf('actionTypeFunctions') > -1) {
+				// eslint-disable-next-line no-unused-vars
+				let actionTypeFunctions = // lgtm[js/unused-local-variable]
+					Foxtrick.getUrlParam(link.href, 'actionTypeFunctions');
+				let li = doc.createElement('li');
+				let clone = Foxtrick.cloneElement(link, true);
+				li.appendChild(clone);
+				ul.appendChild(li);
+
 			}
-			popupdiv.appendChild(ul);
+			else if (link.href.indexOf('actionTypeWrite') > -1) {
+				// eslint-disable-next-line no-unused-vars
+				let actionTypeWrite = // lgtm[js/unused-local-variable]
+					Foxtrick.getUrlParam(link.href, 'actionTypeWrite');
+				let li = doc.createElement('li');
+				let clone = Foxtrick.cloneElement(link, true);
+				li.appendChild(clone);
+				ul.appendChild(li);
+			}
 		}
-	}
+		popupDiv.appendChild(ul);
+	},
 };

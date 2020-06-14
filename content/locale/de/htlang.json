@@ -269,6 +269,7 @@
 		"leagueNames": {
 			"1": "Schweden",
 			"100": "El Salvador",
+			"1000": "Hattrick International",
 			"101": "Malta",
 			"102": "Kirgisistan",
 			"103": "Moldawien",
@@ -315,8 +316,19 @@
 			"146": "Kamerun",
 			"147": "Kuba",
 			"148": "Palästina",
+			"149": "São Tomé und Príncipe",
 			"15": "Ozeanien",
+			"151": "Komoren",
+			"152": "Sri Lanka",
+			"153": "Curaçao",
+			"154": "Guam",
+			"155": "DR Kongo",
+			"156": "Äthiopien",
+			"157": "St. Vincent und die Grenadinen",
+			"158": "Belize",
+			"159": "Madagaskar",
 			"16": "Brasilien",
+			"160": "Botswana",
 			"17": "Kanada",
 			"18": "Chile",
 			"19": "Kolumbien",
@@ -392,7 +404,7 @@
 			"94": "Jamaika",
 			"95": "Kenia",
 			"96": "Panama",
-			"97": "Mazedonien",
+			"97": "Nord-Mazedonien",
 			"98": "Albanien",
 			"99": "Honduras"
 		},
@@ -625,8 +637,12 @@
 				"value": "Kopfballstärke"
 			},
 			{
-				"type": "Regainer",
-				"value": "Geneser"
+				"type": "Resilient",
+				"value": "robust"
+			},
+			{
+				"type": "Support",
+				"value": "mannschaftsdienlich"
 			}
 		],
 		"spirit": [

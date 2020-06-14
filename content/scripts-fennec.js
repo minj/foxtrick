@@ -1,15 +1,19 @@
-'use strict';
-/*
+/**
  * scripts-fennec.js
  * content script inject for fennec
  *
  * @author convincedd, CatzHoek, LA-MJ
  */
 
+'use strict';
+
+/* eslint-disable */
+if (!this.Foxtrick)
+	var Foxtrick = {};
+/* eslint-enable */
+
 /* global FOXTRICK_PATH, FOXTRICK_RUNTIME */
 
-if (!Foxtrick)
-	var Foxtrick = {}; // jshint ignore:line
 if (!Foxtrick.loader)
 	Foxtrick.loader = {};
 if (!Foxtrick.loader.background)
@@ -82,7 +86,6 @@ Foxtrick.loader.background.contentScriptManager = {
 		'api/hy/common.js',
 		'api/hy/matches-report.js',
 		'api/hy/matches-training.js',
-		'api/hy/players-twins-check.js',
 		'api/hy/players-youth-reject-call.js',
 		'api/hy/players-youth-skills.js',
 		'api/hy/user-id.js',
@@ -159,10 +162,10 @@ Foxtrick.loader.background.contentScriptManager = {
 		'information-aggregation/team-stats.js',
 		'information-aggregation/transfer-compare-players.js',
 		'information-aggregation/transfer-deadline.js',
+		'information-aggregation/u20-lastmatch.js',
 		'information-aggregation/youth-promotes.js',
 		'information-aggregation/youth-series-estimation.js',
 		'information-aggregation/youth-skills.js',
-		'information-aggregation/youth-twins.js',
 		'links/links-achievements.js',
 		'links/links-alliances.js',
 		'links/links-arena.js',
@@ -241,7 +244,6 @@ Foxtrick.loader.background.contentScriptManager = {
 		'shortcuts-and-tweaks/extra-shortcuts.js',
 		'shortcuts-and-tweaks/filter.js',
 		'shortcuts-and-tweaks/lineup-shortcut.js',
-		'shortcuts-and-tweaks/main-menu-drop-down.js',
 		'shortcuts-and-tweaks/manager-buttons.js',
 		'shortcuts-and-tweaks/player-filters.js',
 		'shortcuts-and-tweaks/rapid-id.js',

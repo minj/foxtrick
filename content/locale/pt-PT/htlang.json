@@ -223,7 +223,7 @@
 				"value": "3"
 			},
 			{
-				"text": "Devemos ficar nos 4 primeiros",
+				"text": "Devemos ficar nos primeiros 4",
 				"value": "4"
 			},
 			{
@@ -269,6 +269,7 @@
 		"leagueNames": {
 			"1": "Suécia",
 			"100": "El Salvador",
+			"1000": "Hattrick International",
 			"101": "Malta",
 			"102": "Quirguistão",
 			"103": "Moldávia",
@@ -315,8 +316,19 @@
 			"146": "Camarões",
 			"147": "Cuba",
 			"148": "Palestina",
+			"149": "São Tomé e Príncipe",
 			"15": "Oceania",
+			"151": "Comores",
+			"152": "Sri Lanka",
+			"153": "Curaçao",
+			"154": "Guam",
+			"155": "República Democrática do Congo",
+			"156": "Etiópia",
+			"157": "São Vicente e Granadinas",
+			"158": "Belize",
+			"159": "Madagáscar",
 			"16": "Brasil",
+			"160": "Botsuana",
 			"17": "Canadá",
 			"18": "Chile",
 			"19": "Colômbia",
@@ -359,7 +371,7 @@
 			"58": "Croácia",
 			"59": "Hong Kong",
 			"6": "México",
-			"60": "Taipei Chinês",
+			"60": "República da China",
 			"61": "País de Gales",
 			"62": "Bulgária",
 			"63": "Israel",
@@ -392,7 +404,7 @@
 			"94": "Jamaica",
 			"95": "Quénia",
 			"96": "Panamá",
-			"97": "ARJ Macedónia",
+			"97": "Macedónia do Norte",
 			"98": "Albânia",
 			"99": "Honduras"
 		},
@@ -625,8 +637,12 @@
 				"value": "Jogo aéreo"
 			},
 			{
-				"type": "Regainer",
-				"value": "Reabilitação"
+				"type": "Resilient",
+				"value": "Resiliente"
+			},
+			{
+				"type": "Support",
+				"value": "Jogador de apoio"
 			}
 		],
 		"spirit": [

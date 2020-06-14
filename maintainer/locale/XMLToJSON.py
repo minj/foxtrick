@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 from Hattrick.Parsers import XMLParser
 import xml.etree.ElementTree as ET
 
@@ -12,7 +12,7 @@ p = re.compile('(\\.xml)?$')
 
 for f in files:
 	xml = ET.parse(f)
-	of = p.sub('.json', f)
+	of = p.sub('.json', f, count=1)
 	o = codecs.open(of, mode='w', encoding='utf-8')
 	o.write(XMLParser.toJSON(xml))
 	o.close()

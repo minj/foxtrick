@@ -269,6 +269,7 @@
 		"leagueNames": {
 			"1": "Švedija",
 			"100": "Salvadoras",
+			"1000": "Hattrick International",
 			"101": "Malta",
 			"102": "Kirgizija",
 			"103": "Moldova",
@@ -315,8 +316,19 @@
 			"146": "Kamerūnas",
 			"147": "Kuba",
 			"148": "Palestina",
+			"149": "San Tomė ir Prinsipė",
 			"15": "Okeanija",
+			"151": "Komorai",
+			"152": "Šri Lanka",
+			"153": "Kiurasao",
+			"154": "Guamas",
+			"155": "Kongo DR",
+			"156": "Etiopija",
+			"157": "Sent Vinsentas ir Grenadinai",
+			"158": "Belizas",
+			"159": "Madagaskaras",
 			"16": "Brazilija",
+			"160": "Botsvana",
 			"17": "Kanada",
 			"18": "Čilė",
 			"19": "Kolumbija",
@@ -392,7 +404,7 @@
 			"94": "Jamaika",
 			"95": "Kenija",
 			"96": "Panama",
-			"97": "Makedonija",
+			"97": "Šiaurės Makedonija",
 			"98": "Albanija",
 			"99": "Hondūras"
 		},
@@ -625,8 +637,12 @@
 				"value": "Aukštas"
 			},
 			{
-				"type": "Regainer",
-				"value": "Atsigaunantis"
+				"type": "Resilient",
+				"value": "Gajus"
+			},
+			{
+				"type": "Support",
+				"value": "Padedantis"
 			}
 		],
 		"spirit": [

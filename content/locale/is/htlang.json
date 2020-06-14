@@ -269,6 +269,7 @@
 		"leagueNames": {
 			"1": "Svíþjóð",
 			"100": "El Salvador",
+			"1000": "Hattrick International",
 			"101": "Malta",
 			"102": "Kirgistan",
 			"103": "Moldóva",
@@ -315,8 +316,19 @@
 			"146": "Kamerún",
 			"147": "Kúba",
 			"148": "Palestína",
+			"149": "São Tomé e Príncipe",
 			"15": "Ástralía",
+			"151": "Comoros",
+			"152": "Srí Lanka",
+			"153": "Kúrakaá",
+			"154": "Gúam",
+			"155": "Lýðveldið Kongó",
+			"156": "Eþíópía",
+			"157": "Saint Vincent og Granada",
+			"158": "Belize",
+			"159": "Madagaskar",
 			"16": "Brasilía",
+			"160": "Botsvana",
 			"17": "Kanada",
 			"18": "Síle",
 			"19": "Kólombía",
@@ -392,7 +404,7 @@
 			"94": "Jamaíka",
 			"95": "Kenía",
 			"96": "Panama",
-			"97": "Makedónía",
+			"97": "Norður Makedónía",
 			"98": "Albanía",
 			"99": "Hondúras"
 		},
@@ -625,8 +637,12 @@
 				"value": "Skallamaður"
 			},
 			{
-				"type": "Regainer",
+				"type": "Resilient",
 				"value": "Hraustmenni"
+			},
+			{
+				"type": "Support",
+				"value": "Traustur"
 			}
 		],
 		"spirit": [
@@ -736,7 +752,7 @@
 			},
 			{
 				"type": "aow",
-				"value": "Sókn á köntunum"
+				"value": "Sókn á köntum"
 			},
 			{
 				"type": "",

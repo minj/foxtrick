@@ -1,11 +1,17 @@
-'use strict';
-/* series.js
+/**
+ * series.js
  * utilities on series pages
  * @author LA-MJ
  */
 
-if (!Foxtrick)
+'use strict';
+
+/* eslint-disable */
+if (!this.Foxtrick)
+	// @ts-ignore
 	var Foxtrick = {};
+/* eslint-enable */
+
 if (!Foxtrick.Pages)
 	Foxtrick.Pages = {};
 
@@ -25,7 +31,7 @@ Foxtrick.Pages.Series.getTable = function(doc) {
 /**
  * Get the live series table container
  * @param  {document} doc
- * @return {element}
+ * @return {HTMLElement}
  */
 Foxtrick.Pages.Series.getLiveTable = function(doc) {
 	return Foxtrick.getMBElement(doc, 'UpdatePanelLiveLeagueTable');
@@ -34,7 +40,7 @@ Foxtrick.Pages.Series.getLiveTable = function(doc) {
 /**
  * Get the series news feed container
  * @param  {document} doc
- * @return {element}
+ * @return {HTMLElement}
  */
 Foxtrick.Pages.Series.getNewsFeed = function(doc) {
 	return Foxtrick.getMBElement(doc, 'repLLUFeed');

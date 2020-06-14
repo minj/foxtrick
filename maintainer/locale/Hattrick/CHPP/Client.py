@@ -17,7 +17,7 @@ class ChppOAuth1Service(OAuth1Service):
             request_token_url='https://chpp.hattrick.org/oauth/request_token.ashx',
             access_token_url='https://chpp.hattrick.org/oauth/access_token.ashx',
             authorize_url='https://chpp.hattrick.org/oauth/authorize.aspx',
-            base_url='http://chpp.hattrick.org/chppxml.ashx',
+            base_url='https://chpp.hattrick.org/chppxml.ashx',
             signature_obj=HmacSha1Signature)
 
     def _get_request_token(self,
@@ -87,7 +87,7 @@ class ChppClient():
 
     def getAccessToken(self, verifier):
         accessToken = self.chppService.get_access_token(self.requestToken[0], self.requestToken[1], params={'oauth_verifier': verifier})
-        self.setAccessToken(accessToken)    
+        self.setAccessToken(accessToken)
         return self.accessToken
 
     def setAccessToken(self, accessToken):

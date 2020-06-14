@@ -269,6 +269,7 @@
 		"leagueNames": {
 			"1": "Zweden",
 			"100": "El Salvador",
+			"1000": "Hattrick International",
 			"101": "Malta",
 			"102": "Kirgizië",
 			"103": "Moldavië",
@@ -315,8 +316,19 @@
 			"146": "Kameroen",
 			"147": "Cuba",
 			"148": "Palestina",
+			"149": "São Tomé en Príncipe",
 			"15": "Oceanië",
+			"151": "Comoren",
+			"152": "Sri Lanka",
+			"153": "Curaçao",
+			"154": "Guam",
+			"155": "DR Congo",
+			"156": "Ethiopië",
+			"157": "Saint Vincent en de Grenadines",
+			"158": "Belize",
+			"159": "Madagaskar",
 			"16": "Brazilië",
+			"160": "Botswana",
 			"17": "Canada",
 			"18": "Chili",
 			"19": "Colombia",
@@ -359,7 +371,7 @@
 			"58": "Kroatië",
 			"59": "Hongkong",
 			"6": "Mexico",
-			"60": "Chinees Taipei",
+			"60": "Taiwan",
 			"61": "Wales",
 			"62": "Bulgarije",
 			"63": "Israël",
@@ -392,7 +404,7 @@
 			"94": "Jamaica",
 			"95": "Kenia",
 			"96": "Panama",
-			"97": "Macedonië",
+			"97": "Noord-Macedonië",
 			"98": "Albanië",
 			"99": "Honduras"
 		},
@@ -584,7 +596,7 @@
 			},
 			{
 				"type": "Kicker",
-				"value": "Spelhervatting"
+				"value": "Spelhervattingen"
 			},
 			{
 				"type": "Passer",
@@ -625,8 +637,12 @@
 				"value": "Koppen"
 			},
 			{
-				"type": "Regainer",
-				"value": "Snel herstel"
+				"type": "Resilient",
+				"value": "Vitaal"
+			},
+			{
+				"type": "Support",
+				"value": "Aanjager"
 			}
 		],
 		"spirit": [
@@ -758,59 +774,59 @@
 		"training": [
 			{
 				"type": "Gen",
-				"value": "algemeen (vorm)"
+				"value": "Algemeen (vorm)"
 			},
 			{
 				"type": "Sta",
-				"value": "conditie"
+				"value": "Conditie"
 			},
 			{
 				"type": "SP",
-				"value": "spelhervattingen"
+				"value": "Spelhervattingen"
 			},
 			{
 				"type": "Def",
-				"value": "verdedigen"
+				"value": "Verdedigen"
 			},
 			{
 				"type": "Sco",
-				"value": "scoren"
+				"value": "Scoren"
 			},
 			{
 				"type": "Cross",
-				"value": "vleugelspel"
+				"value": "Vleugelspel"
 			},
 			{
 				"type": "Shoot",
-				"value": "schieten"
+				"value": "Schieten"
 			},
 			{
 				"type": "Pass",
-				"value": "korte pass"
+				"value": "Korte pass"
 			},
 			{
 				"type": "PM",
-				"value": "positiespel"
+				"value": "Positiespel"
 			},
 			{
 				"type": "GK",
-				"value": "keepen"
+				"value": "Keepen"
 			},
 			{
 				"type": "ThPass",
-				"value": "openingen maken"
+				"value": "Openingen maken"
 			},
 			{
 				"type": "DefPos",
-				"value": "controlerend spel"
+				"value": "Controlerend spel"
 			},
 			{
 				"type": "WingAtt",
-				"value": "vleugelaanval"
+				"value": "Vleugelaanval"
 			},
 			{
 				"type": "Indiv",
-				"value": "individueel"
+				"value": "Individueel"
 			}
 		]
 	}

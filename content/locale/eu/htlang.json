@@ -269,6 +269,7 @@
 		"leagueNames": {
 			"1": "Suedia",
 			"100": "El Salvador",
+			"1000": "Hattrick International",
 			"101": "Malta",
 			"102": "Kirgizistan",
 			"103": "Moldavia",
@@ -315,8 +316,19 @@
 			"146": "Kamerun",
 			"147": "Kuba",
 			"148": "Palestina",
+			"149": "São Tomé eta Príncipe",
 			"15": "Ozeania",
+			"151": "Comoros",
+			"152": "Sri Lanka",
+			"153": "Curaçao",
+			"154": "Guam",
+			"155": "Kongoko E.D.",
+			"156": "Etiopia",
+			"157": "Saint Vincent eta Grenadinak",
+			"158": "Belize",
+			"159": "Madagaskar",
 			"16": "Brasil",
+			"160": "Botswana",
 			"17": "Kanada",
 			"18": "Txile",
 			"19": "Kolonbia",
@@ -392,7 +404,7 @@
 			"94": "Jamaica",
 			"95": "Kenya",
 			"96": "Panama",
-			"97": "Mazedoniako Errepublika",
+			"97": "Ipar Mazedoniako Errepublika",
 			"98": "Albania",
 			"99": "Honduras"
 		},
@@ -490,7 +502,7 @@
 			},
 			{
 				"type": "WingBack",
-				"value": "Hego Atzelaria"
+				"value": "Hegal Atzelaria"
 			},
 			{
 				"type": "CentralDefender",
@@ -614,7 +626,7 @@
 			},
 			{
 				"type": "Powerful",
-				"value": "Ahaltsua"
+				"value": "Bortitza"
 			},
 			{
 				"type": "Unpredictable",
@@ -625,8 +637,12 @@
 				"value": "Buruz abila"
 			},
 			{
-				"type": "Regainer",
-				"value": "Sendaerraza"
+				"type": "Resilient",
+				"value": "Elastikoa"
+			},
+			{
+				"type": "Support",
+				"value": "Eraginkorra"
 			}
 		],
 		"spirit": [

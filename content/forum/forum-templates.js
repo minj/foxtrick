@@ -214,7 +214,10 @@ Foxtrick.modules['ForumTemplates'] = {
 		new_button.id = 'addTemplateId';
 		new_button.className = 'ft-link';
 		new_button.setAttribute('style', 'margin-right:10px;');
-		new_button.setAttribute('tabIndex', '3');
+
+		// tabindex is intended to be lower than ddlRecipient, which is 6 atm
+		new_button.setAttribute('tabindex', '3');
+		new_button.setAttribute('role', 'button');
 		new_button.textContent = Foxtrick.L10n.getString('ForumTemplates.make');
 		Foxtrick.onClick(new_button, addNewTitle);
 		controls_div.appendChild(new_button);

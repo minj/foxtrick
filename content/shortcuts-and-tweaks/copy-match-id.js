@@ -18,7 +18,7 @@ Foxtrick.modules['CopyMatchID'] = {
 		var copyId = function() {
 			try {
 				var matchid = this.getAttribute('data-matchid');
-				Foxtrick.copyStringToClipboard(matchid);
+				Foxtrick.copy(doc, matchid);
 				Foxtrick.util.note.add(doc, Foxtrick.L10n.getString('copy.matchid.copied'),
 				                       'ft-match-id-copy-note');
 			}

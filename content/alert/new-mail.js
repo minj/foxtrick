@@ -18,111 +18,129 @@ Foxtrick.modules['NewMail'] = {
 
 	CSS: Foxtrick.InternalPath + 'resources/css/new-mail.css',
 
-	exec: function(doc, oldMailCount, oldForumCount) {
-		oldMailCount = oldMailCount || 0;
-		oldForumCount = oldForumCount || 0;
+	exec: function(doc, mailCount, forumCount) {
+		const MODULE = this;
 
-		var menu = doc.getElementById('menu');
+		const MAIL_URL = doc.location.origin + '/MyHattrick/Inbox/';
+		const FORUM_URL = doc.location.origin + '/Forum/?actionType=refresh';
+
+		const OPEN = Foxtrick.L10n.getString('notify.open');
+		const MAIL_OPTS = {
+			id: 'mail',
+			buttons: [{ title: OPEN }],
+		};
+		const FORUM_OPTS = {
+			id: 'forum',
+			buttons: [{ title: OPEN }],
+		};
+
+		var oldMailCount = mailCount || 0;
+		var oldForumCount = forumCount || 0;
+
 		// mail count within My Hattrick link
-		var myHt = menu.querySelector('.ft-mmdd-primary[href^="/MyHattrick/"]') ||
-			menu.querySelector('a[href^="/MyHattrick/"]');
+		var newMailCount = 0;
 
+		let menu = doc.getElementById('menu');
+		let myHt = menu.querySelector('a[href^="/MyHattrick/"]');
 		if (myHt.getElementsByTagName('span').length) {
-			var mailCountSpan = myHt.getElementsByTagName('span')[0];
+			let mailCountSpan = myHt.getElementsByTagName('span')[0];
 			mailCountSpan.className = 'ft-new-mail';
-			Foxtrick.onClick(mailCountSpan, function(e){
-				e.target.ownerDocument.location.assign('/MyHattrick/Inbox/');
-				e.preventDefault();
-			});
-			var newMailCount = Number(mailCountSpan.textContent.match(/\d+/)[0]);
-		}
-		else {
-			// no unread mails
-			var newMailCount = 0;
-		}
 
-		var open = Foxtrick.L10n.getString('notify.open');
+			Foxtrick.onClick(mailCountSpan, function() {
+				let doc = this.ownerDocument;
+				let newURL = new URL('/MyHattrick/Inbox/', doc.location.origin);
+				doc.location.assign(newURL);
+
+				// disable MyHT link
+				return false;
+			});
+
+			newMailCount = parseInt(mailCountSpan.textContent.match(/\d+/)[0], 10) || 0;
+		}
 
 		Foxtrick.sessionSet('mailCount', newMailCount);
 		if (Foxtrick.Prefs.isModuleOptionEnabled('NewMail', 'NotifyMail')
 			&& newMailCount > oldMailCount) {
-			Foxtrick.util.notify.create(Foxtrick.L10n.getString('notify.newMail', newMailCount)
-			                            .replace(/%s/, newMailCount), 'http://' +
-			                            doc.location.host + '/MyHattrick/Inbox/',
-			                            {
-		                            		id: 'mail',
-		                            		buttons: [{ title: open }],
-			                            });
+
+			let mailL10n = Foxtrick.L10n.getString('notify.newMail', newMailCount);
+			let mailMsg = mailL10n.replace(/%s/, newMailCount);
+
+			Foxtrick.util.notify.create(mailMsg, MAIL_URL, MAIL_OPTS)
+				.catch(e => e.message != Foxtrick.TIMEOUT_ERROR ? Promise.reject(e) : e)
+				.catch(Foxtrick.catch(MODULE));
+
 			// play sound if enabled
 			if (Foxtrick.Prefs.isModuleOptionEnabled('NewMail', 'NotifyMailSound')) {
-				var sound = Foxtrick.Prefs.getString('module.NewMail.NotifyMailSound_text');
+				let sound = Foxtrick.Prefs.getString('module.NewMail.NotifyMailSound_text');
 				Foxtrick.playSound(sound);
 			}
 		}
 
 		// mail count in left menu
-		var subMenu = doc.getElementsByClassName('subMenu')[0];
+		let subMenu = doc.getElementsByClassName('subMenu')[0];
 		if (subMenu) {
-			var subMenuBox = subMenu.getElementsByClassName('subMenuBox')[0];
-			var listItems = subMenuBox.getElementsByTagName('li');
-			var mailCountItems = Foxtrick.filter(function(n) {
+			let subMenuBox = subMenu.getElementsByClassName('subMenuBox')[0];
+			let listItems = subMenuBox.getElementsByTagName('li');
+			let mailCountItems = Foxtrick.filter(function(n) {
 				return n.getElementsByTagName('span').length > 0;
 			}, listItems);
+
 			if (mailCountItems.length) {
-				var mailCount = mailCountItems[0].getElementsByTagName('span')[0];
-				mailCount.className = 'ft-new-mail';
+				let mailCountSpan = mailCountItems[0].getElementsByTagName('span')[0];
+				mailCountSpan.className = 'ft-new-mail';
 			}
 		}
 
 		// new forum message
-		var forum = menu.querySelector('.ft-mmdd-primary[href^="/Forum/"]') ||
-			menu.querySelector('a[href^="/Forum/"]');
+		var newForumCount = 0;
+
+		let forum = menu.querySelector('a[href^="/Forum/"]');
+
 		if (forum.textContent.indexOf('(') > -1) {
 			// has new message, no span this time, we need to add it
-			var newForumCount = Number(forum.textContent.match(/\d+/)[0]);
+			newForumCount = Number(forum.textContent.match(/\d+/)[0]);
 			forum.textContent = forum.textContent.replace(/\(\d+\)/, '');
-			var span = doc.createElement('span');
+
+			let span = doc.createElement('span');
 			span.className = 'ft-new-forum-msg';
 			span.textContent = '(' + newForumCount + ')';
 			forum.appendChild(span);
 		}
 		else {
 			// no new forum messages
-			var newForumCount = 0;
+			newForumCount = 0;
 		}
+
 		Foxtrick.sessionSet('forumCount', newForumCount);
 		if (Foxtrick.Prefs.isModuleOptionEnabled('NewMail', 'NotifyForum')
 			&& newForumCount > oldForumCount) {
-			Foxtrick.log('alert',
-			             Foxtrick.Prefs.isModuleOptionEnabled('NewMail', 'NotifyForumSound'),
-			             Foxtrick.Prefs.getString('module.NewMail.NotifyForumSound_text'));
-			Foxtrick.util.notify.create(Foxtrick.L10n.getString('notify.newForumMessage',
-			                            newForumCount).replace(/%s/, newForumCount),
-										'http://' + doc.location.host +
-										'/Forum/?actionType=refresh',
-			                            {
-			                            	id: 'forum',
-		                            		buttons: [{ title: open }],
-			                            });
+
+			let forumL10n = Foxtrick.L10n.getString('notify.newMail', newForumCount);
+			let forumMsg = forumL10n.replace(/%s/, newForumCount);
+
+			Foxtrick.util.notify.create(forumMsg, FORUM_URL, FORUM_OPTS)
+				.catch(e => e.message != Foxtrick.TIMEOUT_ERROR ? Promise.reject(e) : e)
+				.catch(Foxtrick.catch(MODULE));
+
 			// play sound if enabled
 			if (Foxtrick.Prefs.isModuleOptionEnabled('NewMail', 'NotifyForumSound')) {
-				var sound = Foxtrick.Prefs.getString('module.NewMail.NotifyForumSound_text');
+				let sound = Foxtrick.Prefs.getString('module.NewMail.NotifyForumSound_text');
 				Foxtrick.playSound(sound);
 			}
 		}
-		//Foxtrick.log('oldCount', oldCount)
-		//Foxtrick.log('newCount', newForumCount, newMailCount)
+		// Foxtrick.log('oldCount', oldCount)
+		// Foxtrick.log('newCount', newForumCount, newMailCount)
 	},
 
 	run: function(doc) {
-		var module = this;
+		const MODULE = this;
 
 		Promise.all([Foxtrick.session.get('mailCount'), Foxtrick.session.get('forumCount')])
 			.then(function(args) {
 				args.unshift(doc);
-				module.exec.apply(module, args);
+				MODULE.exec.apply(MODULE, args);
 			})
-			.catch(Foxtrick.catch(module));
+			.catch(Foxtrick.catch(MODULE));
 
 	},
 };

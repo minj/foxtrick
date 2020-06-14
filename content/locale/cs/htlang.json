@@ -269,9 +269,10 @@
 		"leagueNames": {
 			"1": "Švédsko",
 			"100": "Salvador",
+			"1000": "Hattrick International",
 			"101": "Malta",
 			"102": "Kyrgyzstán",
-			"103": "Moldávie",
+			"103": "Moldavsko",
 			"104": "Gruzie",
 			"105": "Andorra",
 			"106": "Jordánsko",
@@ -315,8 +316,19 @@
 			"146": "Kamerun",
 			"147": "Kuba",
 			"148": "Palestina",
+			"149": "Svatý Tomáš a Princův ostrov",
 			"15": "Oceánie",
+			"151": "Komory",
+			"152": "Srí Lanka",
+			"153": "Curacao",
+			"154": "Guam",
+			"155": "Kongo",
+			"156": "Etiopie",
+			"157": "Svatý Vincenc a Grenadiny",
+			"158": "Belize",
+			"159": "Madagaskar",
 			"16": "Brazílie",
+			"160": "Botswana",
 			"17": "Kanada",
 			"18": "Chile",
 			"19": "Kolumbie",
@@ -392,7 +404,7 @@
 			"94": "Jamajka",
 			"95": "Keňa",
 			"96": "Panama",
-			"97": "Makedonie",
+			"97": "Severní Makedonie",
 			"98": "Albánie",
 			"99": "Honduras"
 		},
@@ -625,8 +637,12 @@
 				"value": "Hlavičkář"
 			},
 			{
-				"type": "Regainer",
-				"value": "Nezmar"
+				"type": "Resilient",
+				"value": "Houževnatý"
+			},
+			{
+				"type": "Support",
+				"value": "Týmový hráč"
 			}
 		],
 		"spirit": [

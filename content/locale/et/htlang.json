@@ -269,9 +269,10 @@
 		"leagueNames": {
 			"1": "Rootsi",
 			"100": "Salvador",
+			"1000": "Hattrick International",
 			"101": "Malta",
 			"102": "Kirgiisia",
-			"103": "Moldaavia",
+			"103": "Moldova",
 			"104": "Gruusia",
 			"105": "Andorra",
 			"106": "Jordaania",
@@ -315,8 +316,19 @@
 			"146": "Kamerun",
 			"147": "Kuuba",
 			"148": "Palestiina",
+			"149": "São Tomé ja Príncipe",
 			"15": "Okeaania",
+			"151": "Komoorid",
+			"152": "Sri Lanka",
+			"153": "Curaçao",
+			"154": "Guam",
+			"155": "Kongo",
+			"156": "Etioopia",
+			"157": "Saint Vincent ja Grenadiinid",
+			"158": "Belize",
+			"159": "Madagaskar",
 			"16": "Brasiilia",
+			"160": "Botswana",
 			"17": "Kanada",
 			"18": "Tšiili",
 			"19": "Kolumbia",
@@ -392,7 +404,7 @@
 			"94": "Jamaika",
 			"95": "Keenia",
 			"96": "Panama",
-			"97": "Makedoonia",
+			"97": "Põhja-Makedoonia",
 			"98": "Albaania",
 			"99": "Honduras"
 		},
@@ -625,8 +637,12 @@
 				"value": "Peamäng"
 			},
 			{
-				"type": "Regainer",
-				"value": "Elujõuline"
+				"type": "Resilient",
+				"value": "Vastupidav"
+			},
+			{
+				"type": "Support",
+				"value": "Meeskonnamängija"
 			}
 		],
 		"spirit": [

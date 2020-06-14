@@ -269,6 +269,7 @@
 		"leagueNames": {
 			"1": "Schweden",
 			"100": "El Salvador",
+			"1000": "Hattrick International",
 			"101": "Malta",
 			"102": "Kyrgyzstan",
 			"103": "Moldavien",
@@ -315,8 +316,19 @@
 			"146": "Kamerun",
 			"147": "Kuba",
 			"148": "Palestina",
+			"149": "São Tomé e Príncipe",
 			"15": "Ozeanien",
+			"151": "Komoren",
+			"152": "Sri Lanka",
+			"153": "Curaçao",
+			"154": "Guam",
+			"155": "Demokratesch Republik Kongo",
+			"156": "Ethiopien",
+			"157": "Saint Vincent an d'Grenadinnen",
+			"158": "Belize",
+			"159": "Madagaskar",
 			"16": "Brasilien",
+			"160": "Botswana",
 			"17": "Kanada",
 			"18": "Chile",
 			"19": "Kolumbien",
@@ -392,7 +404,7 @@
 			"94": "Jamaika",
 			"95": "Kenia",
 			"96": "Panama",
-			"97": "Macedonien",
+			"97": "Nord Mazedonien",
 			"98": "Albanien",
 			"99": "Honduras"
 		},
@@ -625,8 +637,12 @@
 				"value": "kappballstaark"
 			},
 			{
-				"type": "Regainer",
-				"value": "Gesondheetswonner"
+				"type": "Resilient",
+				"value": "robust"
+			},
+			{
+				"type": "Support",
+				"value": "Equipespiller"
 			}
 		],
 		"spirit": [

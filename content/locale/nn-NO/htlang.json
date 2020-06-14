@@ -111,7 +111,7 @@
 		"desc": "Norsk, nynorsk",
 		"fans": [
 			{
-				"text": "morderiske",
+				"text": "mordariske",
 				"value": "0"
 			},
 			{
@@ -253,7 +253,7 @@
 				"value": "2"
 			},
 			{
-				"text": "redeleg",
+				"text": "reieleg",
 				"value": "3"
 			},
 			{
@@ -269,6 +269,7 @@
 		"leagueNames": {
 			"1": "Sverige",
 			"100": "El Salvador",
+			"1000": "Hattrick International",
 			"101": "Malta",
 			"102": "Kirgisistan",
 			"103": "Moldova",
@@ -277,12 +278,12 @@
 			"106": "Jordan",
 			"107": "Guatemala",
 			"11": "Danmark",
-			"110": "Trinidad & Tobago",
+			"110": "Trinidad og Tobago",
 			"111": "Nicaragua",
 			"112": "Kasakhstan",
 			"113": "Surinam",
 			"117": "Liechtenstein",
-			"118": "Algeria",
+			"118": "Algerie",
 			"119": "Mongolia",
 			"12": "Finland",
 			"120": "Libanon",
@@ -315,8 +316,19 @@
 			"146": "Kamerun",
 			"147": "Cuba",
 			"148": "Palestina",
+			"149": "São Tomé og Príncipe",
 			"15": "Oseania",
+			"151": "Komorane",
+			"152": "Sri Lanka",
+			"153": "Curaçao",
+			"154": "Guam",
+			"155": "Kongo",
+			"156": "Etiopia",
+			"157": "Saint Vincent og Grenadinane",
+			"158": "Belize",
+			"159": "Madagaskar",
 			"16": "Brasil",
+			"160": "Botswana",
 			"17": "Canada",
 			"18": "Chile",
 			"19": "Colombia",
@@ -377,14 +389,14 @@
 			"75": "Nigeria",
 			"76": "Færøyane",
 			"77": "Marokko",
-			"79": "Saudi Arabia",
+			"79": "Saudi-Arabia",
 			"8": "Sambandsstatane (USA)",
 			"80": "Tunisia",
 			"81": "Costa Rica",
-			"83": "De sameinte arabiske emirata",
+			"83": "Dei sameinte arabiske emirata",
 			"84": "Luxembourg",
 			"85": "Iran",
-			"88": "Den dominikanske republikk",
+			"88": "Den dominikanske republikken",
 			"89": "Kypros",
 			"9": "Noreg",
 			"91": "Kviterussland",
@@ -392,7 +404,7 @@
 			"94": "Jamaica",
 			"95": "Kenya",
 			"96": "Panama",
-			"97": "Makedonia",
+			"97": "Nord-Makedonia",
 			"98": "Albania",
 			"99": "Honduras"
 		},
@@ -610,7 +622,7 @@
 			},
 			{
 				"type": "Quick",
-				"value": "Rask"
+				"value": "Snøgg"
 			},
 			{
 				"type": "Powerful",
@@ -625,8 +637,12 @@
 				"value": "Hovud"
 			},
 			{
-				"type": "Regainer",
-				"value": "Frisking"
+				"type": "Resilient",
+				"value": "Seiging"
+			},
+			{
+				"type": "Support",
+				"value": "Lagspelar"
 			}
 		],
 		"spirit": [
@@ -635,7 +651,7 @@
 				"value": "0"
 			},
 			{
-				"text": "morderiske",
+				"text": "mordariske",
 				"value": "1"
 			},
 			{
@@ -677,7 +693,7 @@
 		],
 		"sponsors": [
 			{
-				"text": "morderiske",
+				"text": "mordariske",
 				"value": "0"
 			},
 			{

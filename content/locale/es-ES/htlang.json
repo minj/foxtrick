@@ -2,15 +2,15 @@
 	"language": {
 		"aggressiveness": [
 			{
-				"text": "tranquilo",
+				"text": "tranquila",
 				"value": "0"
 			},
 			{
-				"text": "calmado",
+				"text": "calmada",
 				"value": "1"
 			},
 			{
-				"text": "equilibrado",
+				"text": "equilibrada",
 				"value": "2"
 			},
 			{
@@ -18,21 +18,21 @@
 				"value": "3"
 			},
 			{
-				"text": "iracundo",
+				"text": "iracunda",
 				"value": "4"
 			},
 			{
-				"text": "violento",
+				"text": "violenta",
 				"value": "5"
 			}
 		],
 		"agreeability": [
 			{
-				"text": "antipático",
+				"text": "antipática",
 				"value": "0"
 			},
 			{
-				"text": "polémico",
+				"text": "polémica",
 				"value": "1"
 			},
 			{
@@ -40,7 +40,7 @@
 				"value": "2"
 			},
 			{
-				"text": "carismático",
+				"text": "carismática",
 				"value": "3"
 			},
 			{
@@ -48,7 +48,7 @@
 				"value": "4"
 			},
 			{
-				"text": "querido compañero de equipo",
+				"text": "querida compañera de equipo",
 				"value": "5"
 			}
 		],
@@ -245,15 +245,15 @@
 				"value": "0"
 			},
 			{
-				"text": "deshonesto",
+				"text": "deshonesta",
 				"value": "1"
 			},
 			{
-				"text": "honesto",
+				"text": "honesta",
 				"value": "2"
 			},
 			{
-				"text": "justo",
+				"text": "justa",
 				"value": "3"
 			},
 			{
@@ -261,7 +261,7 @@
 				"value": "4"
 			},
 			{
-				"text": "santito",
+				"text": "santita",
 				"value": "5"
 			}
 		],
@@ -269,6 +269,7 @@
 		"leagueNames": {
 			"1": "Suecia",
 			"100": "El Salvador",
+			"1000": "Hattrick International",
 			"101": "Malta",
 			"102": "Kirguistán",
 			"103": "Moldavia",
@@ -315,8 +316,19 @@
 			"146": "Camerún",
 			"147": "Cuba",
 			"148": "Palestina",
+			"149": "Santo Tomé y Príncipe",
 			"15": "Oceanía",
+			"151": "Comoras",
+			"152": "Sri Lanka",
+			"153": "Curazao",
+			"154": "Guam",
+			"155": "RD Congo",
+			"156": "Etiopía",
+			"157": "San Vicente y Granadinas",
+			"158": "Belice",
+			"159": "Madagascar",
 			"16": "Brasil",
+			"160": "Botsuana",
 			"17": "Canadá",
 			"18": "Chile",
 			"19": "Colombia",
@@ -392,7 +404,7 @@
 			"94": "Jamaica",
 			"95": "Kenia",
 			"96": "Panamá",
-			"97": "Macedonia",
+			"97": "Macedonia del Norte",
 			"98": "Albania",
 			"99": "Honduras"
 		},
@@ -625,8 +637,12 @@
 				"value": "Cabeceador"
 			},
 			{
-				"type": "Regainer",
-				"value": "Recuperarse"
+				"type": "Resilient",
+				"value": "Estoico"
+			},
+			{
+				"type": "Support",
+				"value": "Influyente"
 			}
 		],
 		"spirit": [

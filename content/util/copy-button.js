@@ -1,46 +1,50 @@
-'use strict';
-/*
+/**
  * copy-button.js
  * Utilities for adding a button for copying
  * @author ryanli
  */
 
-if (!Foxtrick)
+'use strict';
+
+/* eslint-disable */
+if (!this.Foxtrick)
+	// @ts-ignore
 	var Foxtrick = {};
+/* eslint-enable */
+
 if (!Foxtrick.util)
 	Foxtrick.util = {};
 
 Foxtrick.util.copyButton = {};
 
-/*
+/**
  * Adds a button on the HTML document
- * @returns HTML node of the button
+ *
+ * @param  {document} doc
+ * @param  {string} text
+ * @return {HTMLAnchorElement} HTML node of the button
  */
 Foxtrick.util.copyButton.add = function(doc, text) {
 	var link, img;
 	if (Foxtrick.Prefs.getBool('smallcopyicons')) {
-		var mainBody = doc.getElementById('mainBody');
-
-		if (Foxtrick.util.layout.isStandard(doc))
-			mainBody.style.paddingTop = '10px';
-
 		// try to get order of the button in the header
 		// icons: contains a list of icons which is a list of classes
 		// that can occupy the header
 		// so, take first unoccupied by us or any HT icon
-		var icons = [
+		const ICONS = [
 			'ci_first', 'ci_second', 'ci_third', 'ci_fourth', 'ci_fifth', 'ci_sixth', 'ci_seventh',
 			'bookmark', 'backIcon', 'statsIcon', 'alltidIcon', 'forumSettings', 'forumSearch',
-			'forumStats', 'forumSearch2'
-		];
-		var orderClass = icons[
-			Foxtrick.count(function(n) {
-				return mainBody.getElementsByClassName(n).length > 0;
-			}, icons)
+			'forumStats', 'forumSearch2', 'searchSimilarPlayers', 'copyToClipboard',
 		];
 
+		let mainBody = doc.getElementById('mainBody');
+		let takenCount = Foxtrick.count(function(n) {
+			return mainBody.getElementsByClassName(n).length > 0;
+		}, ICONS);
+		let orderClass = ICONS[takenCount];
+
 		link = doc.createElement('a');
-		link.className = 'inner copyicon ' + orderClass;
+		link.className = `inner copyicon ${orderClass}`;
 		link.title = text;
 
 		img = doc.createElement('img');
@@ -67,8 +71,8 @@ Foxtrick.util.copyButton.add = function(doc, text) {
 			link.textContent = text;
 		}
 
-		Foxtrick.addBoxToSidebar(doc,
-			Foxtrick.L10n.getString('sidebarBox.actions'), link, -1);
+		let actions = Foxtrick.L10n.getString('sidebarBox.actions');
+		Foxtrick.addBoxToSidebar(doc, actions, link, -1);
 	}
 	return link;
 };

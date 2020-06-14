@@ -8,6 +8,23 @@
 .ft-hy-top3-skill {
 	text-decoration: underline;
 }
+
+/* .ht-bar .bar-cap {
+	background-color: hsl(88, calc(32/256*100%), calc(224/256*100%));
+} */
+.ht-bar .ft-bar-hy-pot-pred {
+	background-color: hsl(0, 100%, calc(240/256*100%));
+}
+.ht-bar .ft-bar-hy-pot {
+	background-color: hsl(0, 100%, calc(208/256*100%));
+}
+.ht-bar .ft-bar-hy-pred {
+	background-color: hsl(0, 100%, calc(160/256*100%));
+}
+.ht-bar .ft-bar-hy-cur {
+	background-color: hsl(0, 100%, calc(112/256*100%));
+}
+
 .ft-skillbar-bg {
 	background: url(chrome://foxtrick/content/resources/img/skillbars/bg.png) top left no-repeat;
 	width: 93px;
@@ -21,18 +38,17 @@
 }
 html[dir="ltr"] .ft-skillbar {
 	left: 1px;
+	background-position: -2px 0;
 }
 html[dir="rtl"] .ft-skillbar {
 	right: 1px;
-}
-html[dir="ltr"] .ft-skillbar-hy {
-	background-position: -2px 0;
-}
-html[dir="rtl"] .ft-skillbar-hy {
 	background-position: 2px 0;
 }
 .ft-skillbar-hy-pot {
 	background-image: url(chrome://foxtrick/content/resources/img/skillbars/hy-pot.png);
+}
+.ft-skillbar-hy-pot-pred {
+	background-image: url(chrome://foxtrick/content/resources/img/skillbars/hy-pot-pred.png);
 }
 .ft-skillbar-hy-pred {
 	background-image: url(chrome://foxtrick/content/resources/img/skillbars/hy-pred.png);
@@ -51,9 +67,7 @@ html[dir="rtl"] .ft-skillbar-hy {
 }
 .ft-skillbar-singlet {
 	width: 12px;
-	position: inherit;
 	position: initial;
-	position: -moz-initial;
 	margin: 0 5px;
 	vertical-align: text-top;
 	background-position: -2px 0;

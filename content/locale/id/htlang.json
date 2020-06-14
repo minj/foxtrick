@@ -54,7 +54,7 @@
 		],
 		"attitude": [
 			{
-				"text": "Play it Cool",
+				"text": "Bermain santai",
 				"value": "-1"
 			},
 			{
@@ -62,7 +62,7 @@
 				"value": "0"
 			},
 			{
-				"text": "Match of the Season",
+				"text": "Bermain ngotot",
 				"value": "1"
 			}
 		],
@@ -269,8 +269,9 @@
 		"leagueNames": {
 			"1": "Swedia",
 			"100": "El Salvador",
+			"1000": "Hattrick International",
 			"101": "Malta",
-			"102": "Krigizstan",
+			"102": "Kirgistan",
 			"103": "Moldova",
 			"104": "Georgia",
 			"105": "Andorra",
@@ -310,13 +311,24 @@
 			"141": "Qatar",
 			"142": "Tanzania",
 			"143": "Uganda",
-			"144": "Maldives",
+			"144": "Maladewa",
 			"145": "Uzbekistan",
 			"146": "Kamerun",
 			"147": "Kuba",
 			"148": "Palestina",
+			"149": "Sao Tome dan Príncipe",
 			"15": "Oseania",
+			"151": "Komoro",
+			"152": "Sri Lanka",
+			"153": "Curaçao",
+			"154": "Guam",
+			"155": "Kongo",
+			"156": "Etiopia",
+			"157": "Saint Vincent dan Grenadine",
+			"158": "Belize",
+			"159": "Madagaskar",
 			"16": "Brasil",
+			"160": "Botswana",
 			"17": "Canada",
 			"18": "Chili",
 			"19": "Kolombia",
@@ -336,7 +348,7 @@
 			"31": "Thailand",
 			"32": "Turki",
 			"33": "Mesir",
-			"34": "Republik Rakyat Tiongkok",
+			"34": "Tiongkok",
 			"35": "Rusia",
 			"36": "Spanyol",
 			"37": "Romania",
@@ -392,7 +404,7 @@
 			"94": "Jamaika",
 			"95": "Kenya",
 			"96": "Panama",
-			"97": "Makedonia",
+			"97": "Makedonia Utara",
 			"98": "Albania",
 			"99": "Honduras"
 		},
@@ -625,8 +637,12 @@
 				"value": "Sundul"
 			},
 			{
-				"type": "Regainer",
-				"value": "Pemulihan"
+				"type": "Resilient",
+				"value": "Bugar"
+			},
+			{
+				"type": "Support",
+				"value": "Pendukung"
 			}
 		],
 		"spirit": [

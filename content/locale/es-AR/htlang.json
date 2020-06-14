@@ -269,6 +269,7 @@
 		"leagueNames": {
 			"1": "Suecia",
 			"100": "El Salvador",
+			"1000": "Hattrick International",
 			"101": "Malta",
 			"102": "Kirguistán",
 			"103": "Moldavia",
@@ -280,7 +281,7 @@
 			"110": "Trinidad & Tobago",
 			"111": "Nicaragua",
 			"112": "Kazajistán",
-			"113": "Suriname",
+			"113": "Surinam",
 			"117": "Liechtenstein",
 			"118": "Argelia",
 			"119": "Mongolia",
@@ -315,8 +316,19 @@
 			"146": "Camerún",
 			"147": "Cuba",
 			"148": "Palestina",
+			"149": "Santo Tomé y Príncipe",
 			"15": "Oceanía",
+			"151": "Comoras",
+			"152": "Sri Lanka",
+			"153": "Curazao",
+			"154": "Guam",
+			"155": "República Democrática de Congo",
+			"156": "Etiopía",
+			"157": "San Vicente y las Granadinas",
+			"158": "Belice",
+			"159": "Madagascar",
 			"16": "Brasil",
+			"160": "Botswana",
 			"17": "Canadá",
 			"18": "Chile",
 			"19": "Colombia",
@@ -392,7 +404,7 @@
 			"94": "Jamaica",
 			"95": "Kenia",
 			"96": "Panamá",
-			"97": "Macedonia",
+			"97": "Macedonia del Norte",
 			"98": "Albania",
 			"99": "Honduras"
 		},
@@ -490,7 +502,7 @@
 			},
 			{
 				"type": "WingBack",
-				"value": "Defensor lateral"
+				"value": "Defensor Lateral"
 			},
 			{
 				"type": "CentralDefender",
@@ -625,8 +637,12 @@
 				"value": "Cabeceador"
 			},
 			{
-				"type": "Regainer",
-				"value": "Regenerador"
+				"type": "Resilient",
+				"value": "Resiliente"
+			},
+			{
+				"type": "Support",
+				"value": "Solidario"
 			}
 		],
 		"spirit": [

@@ -5,13 +5,13 @@ lt:
       question: Kaip pakeisti Foxtrick išvaizdą?
       answer: |
         <p>FoxTrick turi sąsają išvaizdai individualizuoti. HTML elementams suteikiami „id“ ir „class“ atributai, kuriuos galite panaudoti rašydami savo CSS stilius.</p>
-        
+
         <p>Pavyzdinį stiliaus failą galima rasti <linkCSSExample>pačiame priedėlyje</linkCSSExample> arba <linkCSSExampleGCode>googlecode tinklalapyje</linkCSSExampleGCode>. Jį galite keisti pagal savo nuožiūrą. Išvaizdą pakeisite išsaugotą failą įkėlę į <module>SkinPlugin</module> modulį.</p>
     sound-format:
       question: Kuriuos garso rinkmenų formatus galima naudoti pranešimams?
       answer: |
         <p>Skirtingos naršyklės leidžia naudoti skirtingus rinkmenų formatus. Pateikiame sąrašą (kiti formatai taip pat gali veikti, jei įdiegti atitinkami naršyklės įskiepiai, pvz. „Quicktime“ groja „mp3“ rinkmenas „Firefox“ naršyklėje):</p>
-        
+
         <ul>
         <li>Mozilla: wav, ogg</li>
         <li>Safari (gali prireikti „Quicktime“): wav, mp3</li>
@@ -22,23 +22,23 @@ lt:
       question: Koks garso rinkmenų dydžio limitas ir kur jas rasti?
       answer: |
         <p>Visos naršyklės paleidžia garsus iš skaitmeninių nuorodų (angl. data urls). Tai – priedėlyje išsaugomi garsai, įkelti Foxtrick nustatymų puslapyje. Dydžio limitas – apytiksliai 160 kB vienai rinkmenai.</p>
-        
+
         <p>Visos naršyklės taip pat gali paleisti garsus tiesiai iš žiniatinklio („http“ nuorodas). Tiesiog įveskite adresą (pvz., „http://foxtrick.org/sound.wav“) į garsui skirtą tekstinį lauką. Dydis neribojamas.</p>
-        
+
         <p>„Mozilla“ naršyklės taip pat gali paleisti rinkmenas tiesiai iš Jūsų kietojo disko („file“ nuorodos, dydis neribojamas). Lengviausiai sudarysite tinkamą nuorodą tiesiog atidarę rinkmeną su naršykle. Naršyklės adreso lauke galėsite nukopijuoti teisingą nuorodą (pvz., „file:///c:/sound.wav“). Įterpkite ją į garsui skirtą lauką.</p>
     authorize:
       question: Kodėl turėčiau leisti Foxtrick pasiekti mano komandos duomenis?
       answer: |
         <p>Nors didžiąją duomenų dalį FoxTrick gali gauti tiesiogiai iš atidaryto Hattrick puslapio, kai kuriems moduliams veikti būtina CHPP sąsaja.</p>
-        
+
         <p>Norinti CHPP sąsaja siųsti duomenis apie Jūsų komandą, grupę, nacionalines rinktines ir pan. pirma reikia autorizuoti FoxTrick.</p>
-        
+
         <p>FoxTrick autorizuojamas įvedus savo prisijungimo duomenis „chpp.hattrick.org“ tinklalapyje ir nukopijavus suteiktą patvirtinimo kodą į FoxTrick. Viso proceso metu FoxTrick nežinos Jūsų prisijungimo duomenų.</p>
-        
+
         <p>Jei norite sužinoti daugiau apie šį procesą, perskaitykite Hattrick puslapį „<linkCHPPDesc>CHPP - Kaip tai veikia</linkCHPPDesc>“.</p>
-        
+
         <p>Keletas modulių, kuriems reikia CHPP sąsajos:</p>
-        
+
         <ul>
         <li><module>CrossTable</module></li>
         <li><module>ExtraPlayerInfo</module></li>
@@ -47,9 +47,9 @@ lt:
         <li><module>NtPeek</module></li>
         <li><module>SeriesFlags</module></li>
         </ul>
-        
+
         <p>Keletas modulių, kuriuos praturtina CHPP sąsaja:</p>
-        
+
         <ul>
         <li><module>SkillTable</module></li>
         <li><module>TeamStats</module></li>
@@ -58,9 +58,9 @@ lt:
       question: Kaip Foxtrick saugo mano privatumą?
       answer: |
         <p>FoxTrick nesiųs jokių Jūsų duomenų ar nustatymų į Foxtrick (ar kitus) serverius, įskaitant vartotojo vardus ir slaptažodžius, žaidėjų ID, įgūdžius ir t. t..</p>
-        
+
         <p>Dauguma į kitus serverius siunčiamų duomenų,  išskyrus paminėtus žemiau, siunčiami „HTTP GET“ metodu ir tik tada, kai paspaudžiate nuorodą.</p>
-        
+
         <p>Tai reiškia, kad galėsite matyti siunčiamus duomenis peržiūrėję nuorodos adresą: jokie duomenys nebus siunčiami be Jūsų sutikimo. Kaip ir minėta anksčiau, privatūs duomenys niekada nėra siunčiami.</p>
-        
+
         <p>Išimtys: <module>HTMSPrediction</module> ir <module>HTEVPrediction</module> moduliai, kurie siunčia ir gauna rungtynių reitingus iš atitinkamų portalų naudodami XMLHttpRequest technologiją.</p>

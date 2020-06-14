@@ -269,6 +269,7 @@
 		"leagueNames": {
 			"1": "Sverige",
 			"100": "El Salvador",
+			"1000": "Hattrick International",
 			"101": "Malta",
 			"102": "Kirgisistan",
 			"103": "Moldavien",
@@ -315,8 +316,19 @@
 			"146": "Cameroon",
 			"147": "Cuba",
 			"148": "Palæstina",
+			"149": "São Tomé og Príncipe",
 			"15": "Oceanien",
+			"151": "Comorerne",
+			"152": "Sri Lanka",
+			"153": "Curaçao",
+			"154": "Guam",
+			"155": "DR Congo",
+			"156": "Etiopien",
+			"157": "Saint Vincent og Grenadinerne",
+			"158": "Belize",
+			"159": "Madagascar",
 			"16": "Brasilien",
+			"160": "Botswana",
 			"17": "Canada",
 			"18": "Chile",
 			"19": "Colombia",
@@ -392,7 +404,7 @@
 			"94": "Jamaica",
 			"95": "Kenya",
 			"96": "Panama",
-			"97": "Makedonien",
+			"97": "Nordmakedonien",
 			"98": "Albanien",
 			"99": "Honduras"
 		},
@@ -625,8 +637,12 @@
 				"value": "Hovedstød"
 			},
 			{
-				"type": "Regainer",
-				"value": "Regainer"
+				"type": "Resilient",
+				"value": "Robust"
+			},
+			{
+				"type": "Support",
+				"value": "Holdspiller"
 			}
 		],
 		"spirit": [

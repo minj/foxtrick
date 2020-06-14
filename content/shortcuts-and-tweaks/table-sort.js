@@ -1,17 +1,20 @@
-'use strict';
 /**
 * sortTable.js
 * sorting of HT-ML tables
 * @author convinced
 */
 
+'use strict';
+
 Foxtrick.modules['TableSort'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES: ['all'],
-	NICE: 10,  // after anythig that adds or changes tables
+	NICE: 10, // after anythig that adds or changes tables
 	CSS: Foxtrick.InternalPath + 'resources/css/tableSort.css',
 
+	/** @param {document} doc */
 	run: function(doc) {
+		// eslint-disable-next-line complexity
 		var doSort = function(ev) {
 			try {
 				var this_th = ev.target;
@@ -118,9 +121,10 @@ Foxtrick.modules['TableSort'] = {
 				// rows to be sorted
 				var rows = [];
 				for (var i = sort_start + 1; i < sort_end; ++i) {
-					rows.push(table.rows[i].cloneNode(true));
+					rows.push(Foxtrick.cloneElement(table.rows[i], true));
 				}
 
+				// eslint-disable-next-line complexity
 				var cmp = function(a, b) {
 					var lastSort = Number(a.getAttribute('lastSort')) -
 						Number(b.getAttribute('lastSort'));
@@ -132,10 +136,10 @@ Foxtrick.modules['TableSort'] = {
 					var bContent = getText(b.cells[tdindex]);
 
 					// place empty cells at the bottom
-					if (aContent === '' || aContent === null || aContent === undefined) {
+					if (aContent === '' || aContent == null) {
 						return 1;
 					}
-					if (bContent === '' || bContent === null || bContent === undefined) {
+					if (bContent === '' || bContent == null) {
 						return -1;
 					}
 
@@ -145,8 +149,8 @@ Foxtrick.modules['TableSort'] = {
 						return direction * (bContent - aContent);
 					}
 					else if (is_date) {
-						var date1 = Foxtrick.util.time.getDateFromText(aContent);
-						var date2 = Foxtrick.util.time.getDateFromText(bContent);
+						let date1 = Foxtrick.util.time.getDateFromText(aContent);
+						let date2 = Foxtrick.util.time.getDateFromText(bContent);
 						return direction * (date2.getTime() - date1.getTime());
 					}
 					else if (is_youthskill) {
@@ -187,14 +191,13 @@ Foxtrick.modules['TableSort'] = {
 						if (aContent === bContent) {
 							return lastSort;
 						}
-						else {
-							return direction * (bContent - aContent);
-						}
+
+						return direction * (bContent - aContent);
 					}
-					else { // sort string
-						// always sort by ascending order
-						return direction * (aContent.localeCompare(bContent));
-					}
+
+					// sort string
+					// always sort by ascending order
+					return direction * aContent.localeCompare(bContent);
 				};
 
 				// sort them
@@ -211,25 +214,27 @@ Foxtrick.modules['TableSort'] = {
 			}
 		};
 
+		var tables;
 		if (Foxtrick.isPage(doc, 'forumViewThread')) {
-			var tables = doc.getElementsByClassName('htMlTable');
+			tables = doc.querySelectorAll('.htMlTable');
 		}
 		else {
-			var tables = doc.getElementById('mainBody').getElementsByTagName('table');
+			tables = doc.querySelectorAll('#mainBody table');
 		}
 
-		for (var i = 0; i < tables.length; ++i) {
-			if (tables[i].getAttribute('id') == 'ft_skilltable' ||
-			    Foxtrick.hasClass(tables[i], 'tablesorter'))
+		for (let table of tables) {
+			if (table.id == 'ft_skilltable' || Foxtrick.hasClass(table, 'tablesorter'))
 				continue;
-			var ths = tables[i].getElementsByTagName('th');
-			for (var j = 0; j < ths.length; ++j) {
-				if (ths[j].getElementsByTagName('input').length === 0
-					&& ths[j].getElementsByTagName('a').length === 0
-					&& !Foxtrick.hasClass(ths[j], 'header')) { // ht sorting
 
-					Foxtrick.makeFeaturedElement(ths[j], this);
-					Foxtrick.onClick(ths[j], doSort);
+			let ths = table.querySelectorAll('th');
+			for (let th of ths) {
+				if (!th.hasAttribute('ht-orderable-by') &&
+				    th.querySelectorAll('input').length === 0 &&
+				    th.querySelectorAll('a').length === 0 &&
+				    !Foxtrick.hasClass(th, 'header')) { // ht sorting
+
+					Foxtrick.makeFeaturedElement(th, this);
+					Foxtrick.onClick(th, doSort);
 				}
 			}
 		}

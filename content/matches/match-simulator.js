@@ -1,9 +1,10 @@
-'use strict';
 /**
  * match-simulator.js
  * compare to other teams and simulate matches using HTMS
  * @author convinced, LA-MJ
  */
+
+'use strict';
 
 Foxtrick.modules.MatchSimulator = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.MATCHES,
@@ -81,7 +82,13 @@ Foxtrick.modules.MatchSimulator = {
 		var oldLineupSource = 'Hattrick';
 
 		var oldLineups = doc.getElementById('oldLineups');
-		Foxtrick.onClick(oldLineups, function(ev) {
+		let savedLineups = oldLineups.querySelectorAll('.savedLineup');
+		for (let saved of savedLineups) {
+			saved.setAttribute('role', 'button');
+			saved.setAttribute('tabindex', '0');
+		}
+
+		Foxtrick.listen(oldLineups, 'click', function(ev) {
 			var target = ev.target;
 			while (target.id != 'oldLineups' && !Foxtrick.hasClass(target, 'savedLineup'))
 				target = target.parentNode;
@@ -253,7 +260,7 @@ Foxtrick.modules.MatchSimulator = {
 
 				Foxtrick.forEach(function(wrapper, i) {
 					wrapper.parentNode.removeChild(wrapper);
-					gRatingsOther[i] = undefined;
+					gRatingsOther[i] = void 0;
 				}, otherWrappers);
 
 				var tacticLevelLabelOther = doc.getElementById('tacticLevelLabelOther');
@@ -306,15 +313,17 @@ Foxtrick.modules.MatchSimulator = {
 			else
 				doc.getElementById('field').appendChild(loading);
 
+			/** @type {CHPPParams} */
 			var selectedMatchArgs = [
 				['file', 'matchdetails'],
 				['version', '2.3'],
 				['matchId', parseInt(matchId, 10)],
 				['sourceSystem', sourceSystem],
 			];
-			var cacheArgs = { cache_lifetime: 'session' };
-			Foxtrick.util.api.retrieve(doc, selectedMatchArgs, cacheArgs,
-			  function(matchXML, errorText) {
+
+			/** @type {CHPPOpts} */
+			var cacheArgs = { cache: 'session' };
+			Foxtrick.util.api.retrieve(doc, selectedMatchArgs, cacheArgs, (matchXML, errorText) => {
 				var select = doc.getElementById(module.MATCH_SELECT_ID);
 				if (errorText || !matchXML) {
 					if (loading) {
@@ -565,14 +574,16 @@ Foxtrick.modules.MatchSimulator = {
 
 		var getMatchList = function(teamId, opts) {
 			var loadingMatchList = opts.loading;
-			var otherMatchesArgs = [
+
+			/** @type {CHPPParams} */
+			var otherMatchArgs = [
 				['file', 'matchesarchive'],
 				['teamId', parseInt(teamId, 10)],
 			];
 
-			var cacheArgs = { cache_lifetime: 'session' };
-			Foxtrick.util.api.retrieve(doc, otherMatchesArgs, cacheArgs,
-			  function(matchesXML, errorText) {
+			/** @type {CHPPOpts} */
+			var cacheArgs = { cache: 'session' };
+			Foxtrick.util.api.retrieve(doc, otherMatchArgs, cacheArgs, (matchesXML, errorText) => {
 				if (errorText) {
 					Foxtrick.log(errorText);
 					if (loadingMatchList)
@@ -641,6 +652,7 @@ Foxtrick.modules.MatchSimulator = {
 			else
 				doc.getElementById('field').appendChild(loadingMatchList);
 
+			/** @type {CHPPParams} */
 			var orderMatchArgs = [
 				['file', 'matchdetails'],
 				['version', '2.3'],
@@ -648,12 +660,14 @@ Foxtrick.modules.MatchSimulator = {
 				['sourceSystem', SOURCE_SYSTEM],
 			];
 
-			Foxtrick.util.api.retrieve(doc, orderMatchArgs, { cache_lifetime: 'session' },
-			  function(orderMatchXml, errorText) {
+			/** @type {CHPPOpts} */
+			var oCache = { cache: 'session' };
+
+			Foxtrick.util.api.retrieve(doc, orderMatchArgs, oCache, (orderMatchXml, errorText) => {
 				if (!orderMatchXml || errorText) {
-					if (loadingMatchList) {
+					if (loadingMatchList)
 						loadingMatchList.textContent = errorText;
-					}
+
 					Foxtrick.log(errorText);
 					return;
 				}
@@ -681,6 +695,7 @@ Foxtrick.modules.MatchSimulator = {
 			});
 		};
 
+		// eslint-disable-next-line complexity
 		var updateUI = function(target) {
 			if (!Foxtrick.hasClass(target, 'posLabel') &&
 			    target.id != 'ft_stamina_discount_check' &&
@@ -897,7 +912,7 @@ Foxtrick.modules.MatchSimulator = {
 	getTacticsLabel: function(doc) {
 		// TODO: replace with L10n string
 		try {
-			var teamTacticsDiv = doc.getElementById('tactics').cloneNode(true);
+			var teamTacticsDiv = Foxtrick.cloneElement(doc.getElementById('tactics'), true);
 			var speechLevelTxt = teamTacticsDiv.getElementsByClassName('speechLevel')[0];
 			speechLevelTxt.parentNode.removeChild(speechLevelTxt);
 			var speechLevel = teamTacticsDiv.getElementsByTagName('select')[0];
@@ -921,6 +936,7 @@ Foxtrick.modules.MatchSimulator = {
 
 		return 'ftOptionIcon ' + iconClass;
 	},
+
 	/**
 	 * Round to nearest sublevel
 	 * @param  {number} level
@@ -1075,7 +1091,7 @@ Foxtrick.modules.MatchSimulator = {
 			text += Foxtrick.modules['HTMSPrediction'].copy(overlayHTMS);
 		}
 
-		Foxtrick.copyStringToClipboard(text);
+		Foxtrick.copy(doc, text);
 		var target = doc.getElementById('ft-overlayBottom');
 		var copied = Foxtrick.L10n.getString('copy.ratings.copied');
 		Foxtrick.util.note.add(doc, copied, 'ft-ratings-copy-note', { to: target });
@@ -1210,7 +1226,7 @@ Foxtrick.modules.MatchSimulator = {
 		// move current prediction, if there, to previous. else create current
 		var overlayHTMSCurrent = doc.getElementById('overlayHTMSCurrent');
 		if (overlayHTMSCurrent) {
-			overlayHTMSPrevious = overlayHTMSCurrent.cloneNode(true);
+			overlayHTMSPrevious = Foxtrick.cloneElement(overlayHTMSCurrent, true);
 			overlayHTMSPrevious.id = 'overlayHTMSPrevious';
 			var table = overlayHTMSPrevious.getElementsByTagName('table')[0];
 			if (table) {
@@ -1259,6 +1275,9 @@ Foxtrick.modules.MatchSimulator = {
 				overlayHTMS.textContent = '';
 		}
 	},
+
+
+	// eslint-disable-next-line complexity
 	updateOtherRatings: function(doc, gRatingsOther, xml, gTeamNames, opts) {
 		var module = this;
 
@@ -1443,7 +1462,7 @@ Foxtrick.modules.MatchSimulator = {
 		var tacticsLevel = [gRatings[8], gRatingsOther[8]];
 
 		var ratingsTable = doc.getElementById('ft_simulation_ratings_table');
-		var newTable = ratingsTable.cloneNode(false);
+		var newTable = Foxtrick.cloneElement(ratingsTable, false);
 
 		var twoTeams = typeof gRatingsOther[0] !== 'undefined';
 		Foxtrick.modules['Ratings'].addRatings(

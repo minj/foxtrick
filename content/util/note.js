@@ -1,19 +1,45 @@
-'use strict';
-/* note.js
+/**
+ * note.js
  * Foxtrick.util.note used for creating Foxtrick notes.
  * @author ryanli
  */
-if (!Foxtrick)
+
+'use strict';
+
+/* eslint-disable */
+if (!this.Foxtrick)
+	// @ts-ignore
 	var Foxtrick = {};
+/* eslint-enable */
+
 if (!Foxtrick.util)
 	Foxtrick.util = {};
 
-Foxtrick.util.note = {
-	BUTTON_OK: { name: 'button.ok' },
-	// BUTTON_CANCEL has a default event listener to remove the note if
-	// listener/onClick parameters are not passed
-	BUTTON_CANCEL: { name: 'button.cancel' },
-};
+Foxtrick.util.note = {};
+
+/** @type {Object<string, NoteButtonType>} */
+Foxtrick.util.note.BUTTONS = {};
+
+Foxtrick.util.note.BUTTONS.OK = { name: 'button.ok' };
+
+// BUTTON_CANCEL has a default event listener to remove the note if
+// listener/onClick parameters are not passed
+Foxtrick.util.note.BUTTONS.CANCEL = { name: 'button.cancel' };
+
+/**
+ * @typedef NoteButtonType
+ * @prop {string} name
+ * @typedef NoteButton
+ * @prop {NoteButtonType} type
+ * @prop {Listener<HTMLInputElement, MouseEvent>} [listener]
+ * @typedef NoteOptions
+ * @prop {HTMLElement} [at]
+ * @prop {HTMLElement} [to]
+ * @prop {boolean} [focus]
+ * @prop {boolean} [closable]
+ * @prop {number} [timeout]
+ * @prop {NoteButton[]} [buttons]
+ */
 
 /**
  * Creates a note container with a given message and ID, inserts it and returns it.
@@ -23,29 +49,28 @@ Foxtrick.util.note = {
  * timeout: close automatically in X ms (null)
  * closable: adds the close button (true)
  * buttons: additional buttons if any:
- * Array<{type: Foxtrick.util.note.BUTTON_XXX, listener: function}>
- * @param  {document}                                    doc
- * @param  {(String|HTMLElement)}                        msg     message to display
- * @param  {String?}                                     id      note ID
- * @param  {{at, to, focus, timeout, buttons, closable}} options additional options
- * @return {HTMLElement}                                         the constructed note
+ * Array<{type: Foxtrick.util.note.BUTTONS.XXX, listener: function}>
+ *
+ * @param  {document}    doc
+ * @param  {string|Node} msg       message to display
+ * @param  {string?}     [noteId]  note ID
+ * @param  {NoteOptions} [options] additional options
+ * @return {HTMLElement}           the constructed note
  */
-Foxtrick.util.note.add = function(doc, msg, id, options) {
-	var note = this._create(doc, msg, id, options);
-	id = note.id; // this may change (if id was null)
+Foxtrick.util.note.add = function(doc, msg, noteId, options) {
+	var note = this._create(doc, msg, noteId, options);
+	var id = note.id; // this may change (if id was null)
 
+	/** @type {NoteOptions} */
 	var opts = {
 		at: null,
 		to: null,
 		focus: false,
 		timeout: null,
 	};
-	if (options && typeof options === 'object') {
-		for (var o in opts) {
-			if (o in options)
-				opts[o] = options[o];
-		}
-	}
+
+	if (options && typeof options === 'object')
+		Foxtrick.mergeValid(opts, options);
 
 	if (opts.at && opts.at.parentNode) {
 		opts.at.parentNode.insertBefore(note, opts.at);
@@ -55,7 +80,7 @@ Foxtrick.util.note.add = function(doc, msg, id, options) {
 	}
 	else {
 		// default insert position
-		var appendTo = Foxtrick.Pages.All.getNotes(doc);
+		let appendTo = Foxtrick.Pages.All.getNotes(doc);
 		appendTo.appendChild(note);
 	}
 
@@ -63,12 +88,12 @@ Foxtrick.util.note.add = function(doc, msg, id, options) {
 	if (opts.focus)
 		note.scrollIntoView(false);
 
-
 	if (opts.timeout) {
-		var win = doc.defaultView;
+		let win = doc.defaultView;
 		win.setTimeout(function() {
 			try {
-				var container = this.document.getElementById(id);
+				// eslint-disable-next-line no-invalid-this
+				let container = this.document.getElementById(id);
 				if (container)
 					container.parentNode.removeChild(container);
 			}
@@ -78,85 +103,94 @@ Foxtrick.util.note.add = function(doc, msg, id, options) {
 		}, opts.timeout);
 	}
 
-	// add copy instructions for safari to copy notes
-	if (Foxtrick.platform == 'Safari' && id.indexOf('copy-note') !== -1) {
-		Foxtrick.sessionGet('clipboard',
-		  function(string) {
-			var msg_p = note.getElementsByTagName('p')[0];
-			msg_p.textContent = Foxtrick.L10n.getString('specialCopy.hint');
-			var textarea = doc.createElement('textarea');
-			msg_p.parentNode.insertBefore(textarea, msg_p.nextSibling);
-			textarea.value = string;
-			textarea.select();
-		});
-	}
+	// // add copy instructions for safari to copy notes
+	// if (Foxtrick.platform == 'Safari' && id.indexOf('copy-note') !== -1) {
+	// 	Foxtrick.sessionGet('clipboard', (string) => {
+	// 		let msgP = note.querySelector('p');
+	// 		msgP.textContent = Foxtrick.L10n.getString('specialCopy.hint');
+	// 		let textarea = doc.createElement('textarea');
+	// 		msgP.parentNode.insertBefore(textarea, msgP.nextSibling);
+	// 		textarea.value = string;
+	// 		textarea.select();
+	// 	});
+	// }
 
 	return note;
 };
+
 
 /**
  * Returns a note with a loading spinner.
  * Loading text can optionally be customized (defaults to Loading...).
  * inline: true returns a basic span
+ *
+ * TODO check if all calls test for xmlLoad pref
+ *
  * @param  {document}    doc
- * @param  {String}      loadingText
- * @param  {Boolean}     inline
+ * @param  {string}      [loadingText]
+ * @param  {boolean}     [inline]
  * @return {HTMLElement}
  */
 Foxtrick.util.note.createLoading = function(doc, loadingText, inline) {
-	if (!loadingText)
-		loadingText = Foxtrick.L10n.getString('status.loading');
+	var text = loadingText || Foxtrick.L10n.getString('status.loading');
+
 	var container;
 	if (inline) {
 		// if the note is inline, return a span with nothing special
 		container = doc.createElement('span');
 		container.className = 'hidden';
-		container.textContent = loadingText;
+		container.textContent = text;
 		return container;
 	}
-	else {
-		container = doc.createElement('div');
-		var img = doc.createElement('img');
-		img.src = '/Img/Icons/loading.gif';
-		img.alt = loadingText;
-		container.appendChild(img);
-		container.appendChild(doc.createTextNode(' '));
-		container.appendChild(doc.createTextNode(loadingText));
-		var id = 'ft-loading-' + Math.random().toString().substr(2);
-		var note = this._create(doc, container, id, { closable: false });
 
-		// delay showing
-		Foxtrick.addClass(note, 'hidden');
-		var win = doc.defaultView;
-		win.setTimeout(function() {
-			Foxtrick.removeClass(this.document.getElementById(id), 'hidden');
-		}, 500);
+	container = doc.createElement('div');
+	let img = doc.createElement('img');
+	img.src = '/Img/Icons/loading.gif';
+	img.alt = text;
+	container.appendChild(img);
+	container.appendChild(doc.createTextNode(' '));
+	container.appendChild(doc.createTextNode(text));
 
-		return note;
-	}
+	let id = 'ft-loading-' + Math.random().toString().slice(2);
+	let note = this._create(doc, container, id, { closable: false });
+
+	// delay showing
+	Foxtrick.addClass(note, 'hidden');
+	let win = doc.defaultView;
+	win.setTimeout(function() {
+		// eslint-disable-next-line no-invalid-this
+		Foxtrick.removeClass(this.document.getElementById(id), 'hidden');
+		// eslint-disable-next-line no-magic-numbers
+	}, 500);
+
+	return note;
 };
 
-Foxtrick.util.note._create = function(doc, msg, id, options) {
+/**
+ * @param  {document}    doc
+ * @param  {string|Node} msg
+ * @param  {string}      [noteId]
+ * @param  {NoteOptions} [options]
+ * @return {HTMLElement}
+ */
+// eslint-disable-next-line complexity
+Foxtrick.util.note._create = function(doc, msg, noteId, options) {
+	/** @type {NoteOptions} */
 	var opts = {
 		buttons: null,
 		closable: true,
 	};
-	if (options && typeof options === 'object') {
-		for (var o in opts) {
-			if (o in options)
-				opts[o] = options[o];
-		}
-	}
+	if (options && typeof options === 'object')
+		Foxtrick.mergeValid(opts, options);
+
 	try {
-		if (!id) {
-			id = 'ft-note-' + Foxtrick.hash(msg.textContent || msg);
-		}
+		let id = noteId ||
+			'ft-note-' + Foxtrick.hash(typeof msg == 'string' ? msg : msg.textContent);
 
 		// first we remove the old notes with same name
-		var old = doc.getElementById(id);
-		if (old) {
+		let old = doc.getElementById(id);
+		if (old)
 			old.parentNode.removeChild(old);
-		}
 
 		var container = doc.createElement('div');
 		container.className = 'ft-note';
@@ -164,7 +198,7 @@ Foxtrick.util.note._create = function(doc, msg, id, options) {
 
 		// msg could be either a string or an HTML node
 		if (typeof msg == 'string') {
-			var par = doc.createElement('p');
+			let par = doc.createElement('p');
 			par.textContent = msg;
 			container.appendChild(par);
 		}
@@ -173,29 +207,35 @@ Foxtrick.util.note._create = function(doc, msg, id, options) {
 		}
 
 		if (opts.buttons && opts.buttons.length) {
-			// default event listener for BUTTON_CANCEL
-			var cancel = function(ev) {
+			/**
+			 * default event listener for BUTTON_CANCEL
+			 *
+			 * @type {Listener<HTMLInputElement, MouseEvent>}
+			 * */
+			let cancel = function() {
 				try {
-					var doc = ev.target.ownerDocument;
-					var containerId = ev.currentTarget.getAttribute('container');
-					var container = doc.getElementById(containerId);
-					if (container) {
+					// eslint-disable-next-line no-invalid-this, consistent-this
+					let button = this;
+					let doc = button.ownerDocument;
+					let containerId = button.getAttribute('container');
+					let container = doc.getElementById(containerId);
+					if (container)
 						container.parentNode.removeChild(container);
-					}
 				}
 				catch (e) {
 					Foxtrick.log(e);
 				}
 			};
-			var buttonContainer = doc.createElement('div');
-			for (var i = 0; i < opts.buttons.length; ++i) {
-				var button = doc.createElement('input');
+
+			let buttonContainer = doc.createElement('div');
+			for (let btn of opts.buttons) {
+				let button = doc.createElement('input');
 				button.type = 'button';
-				button.value = Foxtrick.L10n.getString(opts.buttons[i].type.name);
-				if (opts.buttons[i].listener) {
-					Foxtrick.onClick(button, opts.buttons[i].listener);
+				button.value = Foxtrick.L10n.getString(btn.type.name);
+				if (btn.listener) {
+					Foxtrick.onClick(button, btn.listener);
 				}
-				else if (opts.buttons[i].type == this.BUTTON_CANCEL) {
+				else if (btn.type == this.BUTTONS.CANCEL) {
 					button.setAttribute('container', id);
 					Foxtrick.onClick(button, cancel);
 				}
@@ -205,23 +245,25 @@ Foxtrick.util.note._create = function(doc, msg, id, options) {
 		}
 
 		if (opts.closable) {
-			var close = doc.createElement('a');
+			let close = doc.createElement('a');
 			close.className = 'close';
 			close.textContent = Foxtrick.L10n.getString('button.close');
-			Foxtrick.onClick(close, function(ev) {
+
+			Foxtrick.onClick(close, function() {
 				try {
-					var container = ev.target.parentNode;
-					if (container) {
+					// eslint-disable-next-line no-invalid-this
+					let container = this.parentNode;
+					if (container)
 						container.parentNode.removeChild(container);
-					}
 				}
 				catch (e) {
 					Foxtrick.log(e);
 				}
 			});
 			container.appendChild(close);
+
 			// we need to add clear since close is floated to the right
-			var clear = doc.createElement('div');
+			let clear = doc.createElement('div');
 			clear.className = 'clear';
 			container.appendChild(clear);
 		}
@@ -231,4 +273,6 @@ Foxtrick.util.note._create = function(doc, msg, id, options) {
 	catch (e) {
 		Foxtrick.log(e);
 	}
+
+	return null;
 };

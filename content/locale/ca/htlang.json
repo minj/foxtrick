@@ -269,6 +269,7 @@
 		"leagueNames": {
 			"1": "Suècia",
 			"100": "El Salvador",
+			"1000": "Hattrick International",
 			"101": "Malta",
 			"102": "Kirguizistan",
 			"103": "Moldàvia",
@@ -315,8 +316,19 @@
 			"146": "Camerun",
 			"147": "Cuba",
 			"148": "Palestina",
+			"149": "São Tomé i Príncipe",
 			"15": "Oceania",
+			"151": "Comores",
+			"152": "Sri Lanka",
+			"153": "Curaçao",
+			"154": "Guam",
+			"155": "RD del Congo",
+			"156": "Etiòpia",
+			"157": "Saint Vincent i les Grenadines",
+			"158": "Belize",
+			"159": "Madagascar",
 			"16": "Brasil",
+			"160": "Botswana",
 			"17": "Canadà",
 			"18": "Xile",
 			"19": "Colòmbia",
@@ -392,7 +404,7 @@
 			"94": "Jamaica",
 			"95": "Kenya",
 			"96": "Panamà",
-			"97": "Macedònia",
+			"97": "Macedònia del Nord",
 			"98": "Albània",
 			"99": "Hondures"
 		},
@@ -625,8 +637,12 @@
 				"value": "Joc aeri"
 			},
 			{
-				"type": "Regainer",
-				"value": "Cura ràpida"
+				"type": "Resilient",
+				"value": "Resilent"
+			},
+			{
+				"type": "Support",
+				"value": "Joc en equip"
 			}
 		],
 		"spirit": [

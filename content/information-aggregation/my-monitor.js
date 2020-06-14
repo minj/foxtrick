@@ -1,4 +1,3 @@
-'use strict';
 /**
  * my-monitor.js
  * Monitors matches of friends and foes
@@ -6,7 +5,9 @@
  * @author ryanli. convincedd, LA-MJ
  */
 
-Foxtrick.modules['MyMonitor'] = {
+'use strict';
+
+Foxtrick.modules.MyMonitor = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES: ['myHattrick', 'dashboard', 'teamPage', 'youthOverview', 'national'],
 	OPTIONS: ['TeamIcons'],
@@ -14,17 +15,25 @@ Foxtrick.modules['MyMonitor'] = {
 	CSS: Foxtrick.InternalPath + 'resources/css/my-monitor.css',
 	NICE: -1, // add it before links for consistent sidebar placement
 
+	/**
+	 * @param {document} doc
+	 */
 	run: function(doc) {
-		var module = this;
-		var SORT = Foxtrick.Prefs.getModuleValue('MyMonitor');
+		const module = this;
+		const SORT = Foxtrick.Prefs.getModuleValue('MyMonitor');
 
+		/**
+		 * @param {MyMonitorTeam[]} teams
+		 */
 		var setSavedTeams = function(teams) {
 			Foxtrick.Prefs.setString('MyMonitor.teams', JSON.stringify(teams));
 		};
 
 		var getSavedTeams = function() {
 			var savedTeams = Foxtrick.Prefs.getString('MyMonitor.teams');
-			var teams = null;
+
+			/** @type {MyMonitorTeam[]} */
+			var teams = [];
 			try {
 				teams = JSON.parse(savedTeams);
 			}
@@ -32,29 +41,39 @@ Foxtrick.modules['MyMonitor'] = {
 				Foxtrick.log('Cannot parse saved teams:', savedTeams);
 			}
 
-			if (!teams) {
+			if (!Array.isArray(teams) || !teams.length) {
 				// return national teams if first run
 				var leagueId = Foxtrick.util.id.getOwnLeagueId();
-				var league = Foxtrick.XMLData.League[leagueId];
-				var ntId = league.NationalTeamId;
-				var u20Id = league.U20TeamId;
-				var ntName = Foxtrick.XMLData.getNTNameByLeagueId(leagueId);
-				var u20Name = 'U-20 ' + ntName;
+				if (leagueId) {
+					let league = Foxtrick.XMLData.League[leagueId];
+					let ntId = Number(league.NationalTeamId);
+					let u20Id = Number(league.U20TeamId);
+					let ntName = Foxtrick.XMLData.getNTNameByLeagueId(leagueId);
+					let u20Name = 'U-20 ' + ntName;
 
-				teams = [
-					{ id: ntId, name: ntName, type: 'nt' },
-					{ id: u20Id, name: u20Name, type: 'nt' },
-				];
+					teams = [
+						{ id: ntId, name: ntName, type: 'nt' },
+						{ id: u20Id, name: u20Name, type: 'nt' },
+					];
+					teams = teams.filter(t => !!t.id);
+				}
+				else {
+					// inactive team
+					teams = [];
+				}
 			}
 
 			if (SORT) {
+				/**
+				 * @param  {MyMonitorTeam} a
+				 * @param  {MyMonitorTeam} b
+				 * @return {number}
+				 */
 				var sorter = function(a, b) {
-					if (SORT == 1) {
+					if (SORT == 1)
 						return a.name.localeCompare(b.name);
-					}
-					else {
-						return parseInt(a.id, 10) - parseInt(b.id, 10);
-					}
+
+					return Number(a.id) - Number(b.id);
 				};
 				teams.sort(sorter);
 			}
@@ -62,17 +81,23 @@ Foxtrick.modules['MyMonitor'] = {
 		};
 
 		// return the link to a team given
+		/**
+		 * @param  {MyMonitorTeam} team
+		 * @return {string}
+		 */
 		var getLink = function(team) {
 			if (team.type == 'nt')
 				return '/Club/NationalTeam/NationalTeam.aspx?teamId=' + team.id;
 			else if (team.type == 'youth')
 				return '/Club/Youth/?YouthTeamID=' + team.id;
-			else {
-				// default as senior
-				return '/Club/?TeamID=' + team.id;
-			}
+
+			// default as senior
+			return '/Club/?TeamID=' + team.id;
 		};
 
+		/**
+		 * @param {HTMLElement} div
+		 */
 		var addBulkLiveSelect = function(div) {
 			var url = '/Club/Matches/Live.aspx?matchID=!&actionType=addMatch&SourceSystem=!';
 			var URL_TEMPLATE = Foxtrick.goToUrl(url).replace(/!/g, '{}');
@@ -99,6 +124,7 @@ Foxtrick.modules['MyMonitor'] = {
 			var matchesBySource = [
 				{ source: 'Hattrick', type: 'senior' },
 				{ source: 'Youth', type: 'youth' },
+
 				// README: HTO matches currently disabled in my monitor
 				// { source: 'HTOIntegrated', type: 'hto' },
 			];
@@ -110,6 +136,9 @@ Foxtrick.modules['MyMonitor'] = {
 				liveSelect.appendChild(sourceOpt);
 			}, matchesBySource);
 
+			/**
+			 * @type {MyMonitorFilterType[]}
+			 */
 			var matchesByType = [
 				'Official',
 				'NT',
@@ -124,6 +153,7 @@ Foxtrick.modules['MyMonitor'] = {
 
 			var buttonCell = row.appendChild(doc.createElement('td'));
 			var button = doc.createElement('button');
+			button.type = 'button';
 			button.textContent = Foxtrick.L10n.getString('button.import');
 			buttonCell.appendChild(button);
 
@@ -131,22 +161,24 @@ Foxtrick.modules['MyMonitor'] = {
 			infoCell.id = 'ft-monitor-live-info';
 
 			Foxtrick.onClick(button, function(ev) {
-				ev.preventDefault();
-				ev.stopPropagation();
+				// eslint-disable-next-line no-invalid-this
 				var doc = this.ownerDocument;
 
+				/** @type {NodeListOf<HTMLAnchorElement>} */
 				var liveLinks = doc.querySelectorAll('a[data-live]');
 				if (!liveLinks.length)
 					return;
 
-				var liveSelect = doc.getElementById('ft-monitor-live-select');
+				/** @type {HTMLSelectElement} */
+				var liveSelect = doc.querySelector('#ft-monitor-live-select');
 				var idx = liveSelect.selectedIndex;
 				if (!idx)
 					return;
 
 				var opt = liveSelect.options[idx];
 				var source = opt.dataset.source;
-				var type = opt.dataset.type;
+
+				var type = /** @type {MyMonitorFilterType} */ (opt.dataset.type);
 
 				var url;
 
@@ -167,7 +199,7 @@ Foxtrick.modules['MyMonitor'] = {
 				else if (type) {
 					var types = Foxtrick.Pages.Matches[type];
 					var typeMatches = Foxtrick.filter(function(link) {
-						var mType = link.dataset.matchType;
+						var mType = Number(link.dataset.matchType);
 						return Foxtrick.any(function(type) {
 							return type == mType;
 						}, types);
@@ -202,8 +234,11 @@ Foxtrick.modules['MyMonitor'] = {
 			div.appendChild(separator);
 		};
 
-		// display my monitor on MyHT, a.k.a news, and dashboard page
-		var display = function() {
+		/**
+		 * display my monitor on MyHT, a.k.a news, and dashboard page
+		 * @param {document} doc
+		 */
+		var display = function(doc) {
 			var monitor = Foxtrick.createFeaturedElement(doc, module, 'div');
 			monitor.id = 'ft-monitor-div';
 
@@ -211,15 +246,18 @@ Foxtrick.modules['MyMonitor'] = {
 				var h1 = doc.querySelector('#mainBody h1');
 				h1.parentNode.insertBefore(monitor, h1);
 			}
-			else if (Foxtrick.isPage(doc, 'dashboard'))
+			else if (Foxtrick.isPage(doc, 'dashboard')) {
 				doc.getElementById('mainBody').appendChild(monitor);
-			else
+			}
+			else {
 				return;
+			}
 
-			var gTeams = getSavedTeams(doc);
+			var gTeams = getSavedTeams();
 
 			// header - 'My Monitor'
 			var header = doc.createElement('h2');
+
 			// header.id = 'ft-monitor-header';
 			header.textContent = Foxtrick.L10n.getString('MyMonitor.header');
 			monitor.appendChild(header);
@@ -230,25 +268,29 @@ Foxtrick.modules['MyMonitor'] = {
 			Foxtrick.addClass(sortDiv, 'float_left');
 			monitor.appendChild(sortDiv);
 
+			/**
+			 * @param  {number} order
+			 * @return {Listener<HTMLElement,MouseEvent>}
+			 */
 			var sortAndReload = function(order) {
 				return function() {
 					Foxtrick.Prefs.setModuleValue('MyMonitor', order);
+					// eslint-disable-next-line no-invalid-this
 					this.ownerDocument.location.reload();
 				};
 			};
 
-			var addSortLink = function(id, value) {
-				var sortLink = doc.createElement('a');
+			module.RADIO_OPTIONS.forEach(function addSortLink(id, value) {
+				let sortLink = doc.createElement('a');
 				sortLink.id = 'ft-monitor-sort-' + id;
 				Foxtrick.addClass(sortLink, 'ft-link');
-				sortLink.textContent = Foxtrick.L10n.getString('module.MyMonitor.' + id + '.desc');
+				sortLink.textContent = Foxtrick.L10n.getString(`module.MyMonitor.${id}.desc`);
 
 				Foxtrick.onClick(sortLink, sortAndReload(value));
 
 				sortDiv.appendChild(sortLink);
 				sortDiv.appendChild(doc.createTextNode(' '));
-			};
-			Foxtrick.forEach(addSortLink, module.RADIO_OPTIONS);
+			});
 
 			// line containing add/remove links
 			var addRemove = Foxtrick.createFeaturedElement(doc, module, 'div');
@@ -297,12 +339,13 @@ Foxtrick.modules['MyMonitor'] = {
 				removeBox.appendChild(removeSelect);
 
 				// add options to select box
-				Foxtrick.map(function(team) {
+				Foxtrick.forEach(function(team) {
+					// TODO test
 					var option = doc.createElement('option');
 					option.textContent = Foxtrick.L10n.getString('MyMonitor.removeTeamFormat')
 						.replace(/%n/, team.name)
 						.replace(/%t/, Foxtrick.L10n.getString('MyMonitor.type.' + team.type))
-						.replace(/%i/, team.id);
+						.replace(/%i/, String(team.id));
 
 					removeSelect.appendChild(option);
 				}, gTeams);
@@ -334,12 +377,16 @@ Foxtrick.modules['MyMonitor'] = {
 			container.id = 'ft-monitor-container';
 			monitor.appendChild(container);
 
-			// add the teams
-			var addTeam = function(team) {
-				var buildLink = function(team, link) {
-					link.textContent = team.name;
-					link.href = getLink(team);
-				};
+			/**
+			 * @param {MyMonitorTeam} team
+			 * @param {HTMLAnchorElement} link
+			 */
+			var buildLink = function(team, link) {
+				link.textContent = team.name;
+				link.href = getLink(team);
+			};
+
+			var teamPromises = gTeams.map(function addTeam(team) {
 
 				// frame for each team
 				var frame = doc.createElement('div');
@@ -402,23 +449,20 @@ Foxtrick.modules['MyMonitor'] = {
 					src: '/Img/Icons/transparent.gif',
 				});
 
+				/**
+				 * @param  {'up'|'down'} direction
+				 * @return {Listener<HTMLInputElement, MouseEvent>}
+				 */
 				var move = function(direction) {
 					return function(ev) {
-						ev.preventDefault();
-						ev.stopPropagation();
-
-						var teams = getSavedTeams(doc);
-						var frames = doc.getElementsByClassName('ft-monitor-frame');
-						frames = Foxtrick.toArray(frames);
-
-						var thisFrame = this; // jscs:ignore safeContextKeyword
-						while ((thisFrame = thisFrame.parentNode)) // jshint ignore:line
-							if (Foxtrick.hasClass(thisFrame, 'ft-monitor-frame'))
-								break;
-
+						var teams = getSavedTeams();
+						var frames = [...doc.getElementsByClassName('ft-monitor-frame')];
+						// eslint-disable-next-line no-invalid-this, consistent-this
+						var thisFrame = this;
+						thisFrame = thisFrame.closest('.ft-monitor-frame');
 						if (!thisFrame) {
 							Foxtrick.error('Unexpected layout in MyMonitor');
-							return;
+							return null;
 						}
 
 						var parent = thisFrame.parentNode;
@@ -426,8 +470,8 @@ Foxtrick.modules['MyMonitor'] = {
 						var newOrder = [];
 						for (var i = 0; i < teams.length; ++i) {
 							if (i != teams.length - 1 &&
-							    (direction == 'up' && frames[i + 1] == thisFrame ||
-							     direction == 'down' && frames[i] == thisFrame)) {
+								(direction == 'up' && frames[i + 1] == thisFrame ||
+									direction == 'down' && frames[i] == thisFrame)) {
 								newOrder.push(teams[i + 1]);
 								newOrder.push(teams[i]);
 
@@ -435,16 +479,23 @@ Foxtrick.modules['MyMonitor'] = {
 
 								i++;
 							}
-							else
+							else {
 								newOrder.push(teams[i]);
+							}
 						}
 						setSavedTeams(newOrder);
 
 						// ensure manual
 						Foxtrick.Prefs.setModuleValue('MyMonitor', 0);
+
+						// disable input[type=image] submit
+						return false;
 					};
 				};
 
+				// styling depends on HT CSS
+				// ergo input.up[type=image] is needed
+				// need to use preventDefault accordingly
 				var upLink = doc.createElement('input');
 				upLink.type = 'image';
 				upLink.className = 'up';
@@ -452,17 +503,17 @@ Foxtrick.modules['MyMonitor'] = {
 				upLink.title = Foxtrick.L10n.getString('button.up');
 				sortDiv.appendChild(upLink);
 
-				Foxtrick.onClick(upLink, move('up', team.id));
+				Foxtrick.onClick(upLink, move('up'));
 
 				var downLink = doc.createElement('input');
 				downLink.type = 'image';
 				downLink.className = 'down';
 				downLink.src = '/Img/Icons/transparent.gif';
 				downLink.title = Foxtrick.L10n.getString('button.down');
-				downLink.setAttribute('teamid', team.id);
+				downLink.setAttribute('teamid', String(team.id));
 				sortDiv.appendChild(downLink);
 
-				Foxtrick.onClick(downLink, move('down', team.id));
+				Foxtrick.onClick(downLink, move('down'));
 
 				header.appendChild(sortDiv);
 
@@ -473,10 +524,11 @@ Foxtrick.modules['MyMonitor'] = {
 
 				frame.appendChild(matchesContainer);
 
+				/** @type {CHPPParams} */
 				var args = [
 					['file', 'matches'],
 					['version', '2.8'],
-					['teamId', parseInt(team.id, 10)],
+					['teamId', Number(team.id)],
 				];
 				if (team.type == 'youth')
 					args.push(['isYouth', 'true']);
@@ -484,8 +536,9 @@ Foxtrick.modules['MyMonitor'] = {
 				var argStr = JSON.stringify(args);
 
 				return new Promise(function(resolve) {
-					Foxtrick.util.api.retrieve(doc, args, { cache_lifetime: 'default' },
-					  function(xml, errorText) {
+					/** @type {CHPPOpts} */
+					let cOpts = { cache: 'default' };
+					Foxtrick.util.api.retrieve(doc, args, cOpts, (xml, errorText) => {
 						if (!xml || errorText) {
 							Foxtrick.log(errorText);
 
@@ -503,8 +556,9 @@ Foxtrick.modules['MyMonitor'] = {
 
 						// change expire date of XML to after next match game
 						if (nextMatchDate) {
+							const MATCH_DURATION = 105;
 							var time = nextMatchDate.getTime() +
-								105 * Foxtrick.util.time.MSECS_IN_MIN;
+								MATCH_DURATION * Foxtrick.util.time.MSECS_IN_MIN;
 
 							Foxtrick.util.api.setCacheLifetime(argStr, time);
 						}
@@ -512,16 +566,23 @@ Foxtrick.modules['MyMonitor'] = {
 						resolve(team);
 					});
 				});
-			};
-			var teamPromises = Foxtrick.map(addTeam, gTeams);
+			});
+
 			Promise.all(teamPromises).then(setSavedTeams)
+
+				// @ts-ignore
 				.catch(Foxtrick.catch(module));
 
 			addBulkLiveSelect(monitor);
 		};
 
-		// show my monitor shortcuts in sidebar
-		var showSidebar = function() {
+		/**
+		 * show my monitor shortcuts in sidebar
+		 * @param {document} doc
+		 */
+		// eslint-disable-next-line complexity
+		var showSidebar = function(doc) {
+			/** @type {MyMonitorTeamType} */
 			var type;
 			if (Foxtrick.isPage(doc, 'teamPage'))
 				type = 'senior';
@@ -536,8 +597,9 @@ Foxtrick.modules['MyMonitor'] = {
 				return;
 			}
 
-			var teams = getSavedTeams(doc);
+			var teams = getSavedTeams();
 
+			/** @type {Partial<MyMonitorTeam>} */
 			var teamIdContainer = {
 				id: Foxtrick.Pages.All.getTeamIdFromBC(doc),
 				name: Foxtrick.Pages.All.getTeamNameFromBC(doc),
@@ -553,7 +615,8 @@ Foxtrick.modules['MyMonitor'] = {
 			if (type == 'senior') {
 				var logo = doc.querySelector('.teamLogo'); // team logo
 				if (logo) {
-					var logoLink = logo.getElementsByTagName('a')[0];
+					var logoLink = logo.querySelector('a');
+
 					// better quality. original size
 					if (logoLink) {
 						teamIdContainer.logo = logoLink.href;
@@ -595,19 +658,22 @@ Foxtrick.modules['MyMonitor'] = {
 				select.textContent = ''; // clear first
 
 				Foxtrick.listen(select, 'change', function() {
-					if (select.value)
-						doc.location.assign(select.value);
+					if (!select.value)
+						return;
+
+					var newURL = new URL(select.value, doc.location.origin);
+					doc.location.assign(newURL.href);
 				});
 
 				// use an option as faux-header
 				var fauxHeader = doc.createElement('option');
 				fauxHeader.selected = true;
 				fauxHeader.textContent = Foxtrick.L10n.getString('MyMonitor.teams', teams.length)
-					.replace(/%s/, teams.length);
+					.replace(/%s/, teams.length.toString());
 				select.appendChild(fauxHeader);
 
 				// now add the teams
-				Foxtrick.map(function(n) {
+				Foxtrick.forEach(function(n) {
 					var option = doc.createElement('option');
 					option.textContent = n.name;
 					option.value = getLink(n);
@@ -657,19 +723,31 @@ Foxtrick.modules['MyMonitor'] = {
 		};
 
 		// call functions from here
-		if (Foxtrick.isPage(doc, ['myHattrick', 'dashboard'])) {
+		if (Foxtrick.isPage(doc, ['myHattrick', 'dashboard']))
 			display(doc);
-		}
-		else if (Foxtrick.isPage(doc, ['teamPage', 'youthOverview', 'national'])) {
+		else if (Foxtrick.isPage(doc, ['teamPage', 'youthOverview', 'national']))
 			showSidebar(doc);
-		}
 	},
 
+	/** @param {document} doc */
 	change: function(doc) {
-		// challenging etc removes box. need to re-add it
 		if (doc.getElementById('ft-monitor-sidebar-box') == null &&
 		    Foxtrick.isPage(doc, ['teamPage', 'youthOverview', 'national'])) {
+
+			// challenging etc removes box. need to re-add it
 			this.run(doc);
 		}
 	},
 };
+
+/**
+ * @typedef MyMonitorTeam
+ * @prop {number} id
+ * @prop {string} name
+ * @prop {MyMonitorTeamType} type
+ * @prop {string} [logo]
+ * @prop {number} [country]
+ */
+
+/** @typedef {'Official'|'NT'} MyMonitorFilterType */
+/** @typedef {'senior'|'youth'|'nt'} MyMonitorTeamType */

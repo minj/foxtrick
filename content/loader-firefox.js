@@ -1,13 +1,17 @@
-'use strict';
-/*
+/**
  * loader-firefox.js
  * Foxtrick loader for Firefox/Seamonkey
  *
  * @author convincedd, LA-MJ
  */
 
-if (!Foxtrick)
-	var Foxtrick = {}; // jshint ignore:line
+'use strict';
+
+/* eslint-disable */
+if (!this.Foxtrick)
+	var Foxtrick = {};
+/* eslint-enable */
+
 if (!Foxtrick.loader)
 	Foxtrick.loader = {};
 
@@ -71,7 +75,7 @@ Foxtrick.loader.firefox.browserUnLoad = function() {
 	var tabBrowser = browserWin.getBrowser();
 	tabBrowser.tabContainer.removeEventListener('select', LOADER.tabFocus);
 
-	Foxtrick.util.css.unload_module_css();
+	Foxtrick.util.css.unloadModuleCSS();
 
 	// refresh ht pages
 	Foxtrick.reloadAll();
@@ -96,7 +100,7 @@ Foxtrick.loader.firefox.tabFocus = function(ev) {
 		if (Foxtrick.Prefs.getBool('disableTemporary')) {
 			// potential disable cleanup
 			if (Foxtrick.entry.cssLoaded) {
-				Foxtrick.util.css.unload_module_css();
+				Foxtrick.util.css.unloadModuleCSS();
 				Foxtrick.entry.cssLoaded = false;
 			}
 			return;

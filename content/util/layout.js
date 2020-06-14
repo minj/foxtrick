@@ -1,12 +1,16 @@
-'use strict';
 /**
  * layout.js
  * Utilities for Hattrick layout
  * @author unknown (NOTE - fill in yourself!)
  */
 
-if (!Foxtrick)
+'use strict';
+
+/* eslint-disable */
+if (!this.Foxtrick)
 	var Foxtrick = {};
+/* eslint-enable */
+
 if (!Foxtrick.util)
 	Foxtrick.util = {};
 
@@ -14,78 +18,83 @@ Foxtrick.util.layout = {};
 
 // Returns whether the HTML document uses standard theme
 Foxtrick.util.layout.isStandard = function(doc) {
-	var head = doc.getElementsByTagName('head')[0];
+	var head = doc.head;
 	if (!head)
-		throw 'Not a valid document';
-	var links = head.getElementsByTagName('link');
-	if (links.length != 0) {
-		var i = 0, link;
-		while (link = links[i++])
-			if (link.href.search(/\/App_Themes\/Simple/i) != -1)
+		throw new Error('Not a valid document');
+
+	var links = head.querySelectorAll('link');
+	if (links.length == 0) { // mobile internet may have style embedded
+		var styles = head.querySelectorAll('style');
+		for (var style of styles) {
+			if (/\/App_Themes\/Simple/i.test(style.textContent))
 				return false;
+		}
 	}
-	else { // mobile internet may have style embedded
-		var styles = head.getElementsByTagName('style');
-		var i = 0, style;
-		while (style = styles[i++])
-			if (style.textContent.search(/\/App_Themes\/Simple/i) != -1)
+	else {
+		for (var link of links) {
+			if (/\/App_Themes\/Simple/i.test(link.href))
 				return false;
+		}
 	}
 	return true;
 };
 
 // Returns whether the HTML document uses right-to-left language
 Foxtrick.util.layout.isRtl = function(doc) {
-	var head = doc.getElementsByTagName('head')[0];
+	var head = doc.head;
 	if (!head)
-		throw 'Not a valid document';
-	var links = head.getElementsByTagName('link');
-	if (links.length != 0) {
-		var i = 0, link;
-		while (link = links[i++])
-			if (link.href.search('_rtl.css') != -1)
+		throw new Error('Not a valid document');
+
+	var links = head.querySelectorAll('link');
+	if (links.length == 0) { // mobile internet may have style embedded
+		var styles = head.querySelectorAll('style');
+		for (var style of styles) {
+			if (/direction:rtl/i.test(style.textContent))
 				return true;
+		}
 	}
 	else {
-		// mobile internet may have style embedded
-		var styles = head.getElementsByTagName('style');
-		var i = 0, style;
-		while (style = styles[i++])
-			if (style.textContent.search(/direction:rtl/i) != -1)
+		for (var link of links) {
+			if (/_rtl\.css/.test(link.href))
 				return true;
+		}
+
 	}
 	return false;
 };
 
 // Returns whether the HTML document uses eastern language
 Foxtrick.util.layout.isEastern = function(doc) {
-	var body = doc.getElementsByTagName('body')[0];
+	var body = doc.body;
 	if (!body)
-		throw 'Not a valid document';
+		throw new Error('Not a valid document');
+
 	var style = body.getAttribute('style');
 	if (style && style.indexOf('font-size:0.79em;') != -1)
 		return true;
+
 	return false;
 };
 
 // Returns whether the match order interface is flipped
 Foxtrick.util.layout.isFlipped = function(doc) {
-	var head = doc.getElementsByTagName('head')[0];
+	var head = doc.head;
 	if (!head)
-		throw 'Not a valid document';
-	var links = head.getElementsByTagName('link');
-	if (links.length != 0) {
-		var i = 0, link;
-		while (link = links[i++])
-			if (link.href.search(/orders_flip.css/i) != -1)
+		throw new Error('Not a valid document');
+
+	var links = head.querySelectorAll('link');
+	if (links.length == 0) { // mobile internet may have style embedded
+		var styles = head.querySelectorAll('style');
+		for (var style of styles) {
+			if (/field_flip.png/i.test(style.textContent))
 				return true;
+		}
 	}
-	else { // mobile internet may have style embedded
-		var styles = head.getElementsByTagName('style');
-		var i = 0, style;
-		while (style = styles[i++])
-			if (style.textContent.search(/field_flip.png/i) != -1)
+	else {
+		for (var link of links) {
+			if (/orders_flip.css/i.test(link.href))
 				return true;
+		}
 	}
 	return false;
 };
@@ -93,7 +102,7 @@ Foxtrick.util.layout.isFlipped = function(doc) {
 
 // Returns whether the user logged in is supporter
 Foxtrick.util.layout.isSupporter = function(doc) {
-	return (doc.getElementsByClassName('hattrickNoSupporter').length === 0);
+	return doc.getElementsByClassName('hattrickNoSupporter').length === 0;
 };
 
 // Returns whether scrolling is on for #mainBody
@@ -101,19 +110,20 @@ Foxtrick.util.layout.mainBodyHasScroll = function(doc) {
 	var mainBody = doc.getElementById('mainBody');
 	if (!mainBody)
 		return false;
-	var mainBodyChildren = mainBody.getElementsByTagName('script');
-	var i = 0, child;
-	while (child = mainBodyChildren[i++])
-		if (child.textContent && child.textContent.search(/adjustHeight\(\'mainBody\'/) != -1)
+
+	var mainBodyChildren = mainBody.querySelectorAll('script');
+	for (var child of mainBodyChildren) {
+		if (child.textContent && /adjustHeight\('mainBody'/.test(child.textContent))
 			return true;
+	}
 	return false;
 };
 
 /**
  * tests whether user has multiple teams
- * @param	{document}	doc
- * @returns	{Boolean}
+ * @param  {document} doc
+ * @return {boolean}
  */
 Foxtrick.util.layout.hasMultipleTeams = function(doc) {
-	return (doc.getElementById('ctl00_ctl00_ucClubSwitcher_btnSwitchClub') !== null);
+	return doc.querySelector('[id*="ucClubSwitcher"i]') != null;
 };

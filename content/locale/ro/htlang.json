@@ -269,6 +269,7 @@
 		"leagueNames": {
 			"1": "Suedia",
 			"100": "El Salvador",
+			"1000": "Hattrick International",
 			"101": "Malta",
 			"102": "Kîrgîzstan",
 			"103": "Moldova",
@@ -315,8 +316,19 @@
 			"146": "Camerun",
 			"147": "Cuba",
 			"148": "Palestina",
+			"149": "São Tomé e Príncipe",
 			"15": "Oceania",
+			"151": "Insulele Comore",
+			"152": "Sri Lanka",
+			"153": "Curaçao",
+			"154": "Guam",
+			"155": "RD Congo",
+			"156": "Etiopia",
+			"157": "Saint Vincent și Grenadines",
+			"158": "Belize",
+			"159": "Madagascar",
 			"16": "Brazilia",
+			"160": "Botswana",
 			"17": "Canada",
 			"18": "Chile",
 			"19": "Columbia",
@@ -392,7 +404,7 @@
 			"94": "Jamaica",
 			"95": "Kenya",
 			"96": "Panama",
-			"97": "Macedonia",
+			"97": "Macedonia de Nord",
 			"98": "Albania",
 			"99": "Honduras"
 		},
@@ -625,8 +637,12 @@
 				"value": "Cap"
 			},
 			{
-				"type": "Regainer",
-				"value": "Recuperare"
+				"type": "Resilient",
+				"value": "Rezistent"
+			},
+			{
+				"type": "Support",
+				"value": "Ajutor"
 			}
 		],
 		"spirit": [

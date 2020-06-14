@@ -1,0 +1,51 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "Launch FF",
+			"type": "firefox",
+			"request": "launch",
+			"reAttach": true,
+			"reloadOnAttach": true,
+			"reloadOnChange": {
+				"watch": [
+					"${workspaceFolder}/**/*.css",
+					"${workspaceFolder}/**/*.html",
+					"${workspaceFolder}/**/*.js",
+					"${workspaceFolder}/**/*.json",
+					"${workspaceFolder}/**/*.yml",
+					"${workspaceFolder}/defaults/preferences/*",
+				],
+				"ignore": [
+					"${workspaceFolder}/.vscode/**/*",
+					"${workspaceFolder}/content/locale/**/*",
+					"${workspaceFolder}/maintainer/**/*",
+				],
+			},
+			"addonPath": "${workspaceFolder}",
+			"firefoxArgs": [
+				"about:addons",
+				"about:debugging#/runtime/this-firefox",
+				"https://stage.hattrick.org/Default.aspx",
+			],
+			"popupAutohideButton": false,
+			"skipFiles": [
+				"${workspaceFolder}/content/lib/jquery.js",
+				"${workspaceFolder}/content/lib/yaml.js",
+				"http?(s):/**", // this is indeed correct
+			],
+			// "pathMappings": [
+			// 	{
+			// 		"url": "moz-extension://cf276d29-81e6-4f14-9126-c14d1bf9e59f",
+			// 		"path": "${workspaceFolder}"
+			// 	}
+			// ],
+			// "keepProfileChanges": true,
+			// "log": {
+			// 	"consoleLevel": {
+			// 		"PathConversion": "Debug",
+			// 		"default": "Error"
+			//  },
+		},
+	]
+}

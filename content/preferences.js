@@ -1,3 +1,7 @@
+/* eslint-disable consistent-this */
+/* eslint-disable func-style */
+/* eslint-disable no-implicit-globals */
+
 'use strict';
 
 /**
@@ -10,6 +14,7 @@
 
 // page IDs of last page are stored in array PAGEIDS
 var PAGEIDS = [];
+
 // get page IDs in Foxtrick.htPages that last page matches and store them in PAGEIDS
 function getPageIds() {
 	var lastPage = Foxtrick.getLastPage();
@@ -123,7 +128,7 @@ function initSearch() {
  * isModule is used for breadcrumb URL generation.
  *
  * @param {string}  needle
- * @param {Boolean} isModule
+ * @param {boolean} isModule
  */
 function search(needle, isModule) {
 
@@ -225,7 +230,7 @@ function locateFragment(uri) {
 		search('', true); // search reset
 
 		$('#pane > div').hide();
-		$('#tabs > li').removeClass('active');
+		$('.tabs > li').removeClass('active');
 
 		$('#tab-' + tab).addClass('active');
 		$('#pane > div[x-on*=' + tab + ']').show();
@@ -252,7 +257,7 @@ function locateFragment(uri) {
 	};
 
 	// only keep the fragment of URI
-	var fragment = /#/.test(uri) ? fragment = uri.replace(/^.*#/, '') : '';
+	var fragment = /#/.test(uri) ? uri.replace(/^.*#/, '') : '';
 	var param = parseFragment(fragment);
 
 	if (param.module)
@@ -271,7 +276,7 @@ function locateFragment(uri) {
 
 	// if (Foxtrick.Prefs.isModuleEnabled('MobileEnhancements')) {
 	// 	// mobile
-	// 	$('#tabs').hide();
+	// 	$('.tabs').hide();
 	// 	$('#main').show();
 	// }
 }
@@ -344,24 +349,20 @@ var neededPermissions = [
 		types: { origins: ['https://imageshack.us/*'] },
 	},
 	{
-		modules: ['YouthTwins'],
-		types: { origins: ['http://*.hattrick-youthclub.org/*'] },
-	},
-	{
 		modules: ['CopyYouth.AutoSendTrainingReportToHY'],
-		types: { origins: ['http://*.hattrick-youthclub.org/*'] },
+		types: { origins: ['https://*.hattrick-youthclub.org/*'] },
 	},
 	{
 		modules: ['CopyYouth.AutoSendRejectedToHY'],
-		types: { origins: ['http://*.hattrick-youthclub.org/*'] },
+		types: { origins: ['https://*.hattrick-youthclub.org/*'] },
 	},
 	{
 		modules: ['CopyYouth.AutoSendTrainingChangesToHY'],
-		types: { origins: ['http://*.hattrick-youthclub.org/*'] },
+		types: { origins: ['https://*.hattrick-youthclub.org/*'] },
 	},
 	{
 		modules: ['YouthSkills'],
-		types: { origins: ['http://*.hattrick-youthclub.org/*'] },
+		types: { origins: ['https://*.hattrick-youthclub.org/*'] },
 	},
 	{
 		modules: ['MatchWeather'],
@@ -395,7 +396,7 @@ function getElementIdFromOption(option) {
  * showSaved: optionally show success message
  *
  * @param {object}  needed
- * @param {Boolean} showSaved
+ * @param {boolean} showSaved
  */
 function getPermission(needed, showSaved) {
 	// Permissions must be requested from inside a user gesture, like a button's click handler.
@@ -425,7 +426,7 @@ function getPermission(needed, showSaved) {
  *
  * returns true if needed
  *
- * @return {Boolean} isNeeded
+ * @return {boolean} isNeeded
  */
 function checkPermissions() {
 	var needsPermissions = false;
@@ -469,6 +470,10 @@ function checkPermissions() {
  * TODO: test/fix/improve
  */
 function revokePermissions() {
+
+	if (Foxtrick.platform !== 'Chrome' || !('permissions' in chrome))
+	    return;
+
 	var revokeModulePermission = function(needed) {
 		chrome.permissions.remove(needed.types, function(result) {
 			for (var module of needed.modules) {
@@ -491,17 +496,54 @@ function revokePermissions() {
  * TODO: test/fix/improve
  */
 function testPermissions() {
-	if (Foxtrick.platform === 'Chrome') {
+	if (Foxtrick.platform !== 'Chrome' || !('permissions' in chrome))
+		return;
 
-		var modules = [];
+	var modules = [];
 
-		var checkPermission = function(id, neededPermission, module) {
-			if ($(id).prop('checked') && $(id).attr('permission-granted') == 'false')
-				getPermission(neededPermission);
-			else if (!$(id).prop('checked')) {
+	var checkPermission = function(id, neededPermission, module) {
+		if ($(id).prop('checked') && $(id).attr('permission-granted') == 'false')
+			getPermission(neededPermission);
+		else if (!$(id).prop('checked')) {
 
-				modules = Foxtrick.exclude(modules, module);
-				if (modules.length > 0) {
+			modules = Foxtrick.exclude(modules, module);
+			if (modules.length > 0) {
+
+				var needsPermHtml = '<strong/>' +
+					'<ul><li>' + modules.join('</li><li>') + '</li></ul>';
+
+				var l10n = Foxtrick.L10n.getString('prefs.needPermissions');
+				$('#alert-text').html(needsPermHtml).find('strong').text(l10n);
+
+				$('#alert').removeClass('hidden');
+				$('#breadcrumbs').addClass('hidden');
+			}
+			else {
+				$('#alert-text').text('');
+				$('#alert').addClass('hidden');
+			}
+		}
+	};
+
+	var makeChecker = function(id, perm, module) {
+		return function() {
+			checkPermission(id, perm, module);
+		};
+	};
+
+	var testModulePermission = function(needed) {
+		chrome.permissions.contains(needed.types, function(result) {
+			needed.granted = result;
+
+			for (var module of needed.modules) {
+				var id = getElementIdFromOption(module);
+				$(id).attr('permission-granted', result);
+				$(id).click(makeChecker(id, needed, module));
+
+				if (result === false &&
+				    Foxtrick.Prefs.getBool('module.' + module + '.enabled')) {
+
+					Foxtrick.pushNew(modules, needed.modules);
 
 					var needsPermHtml = '<strong/>' +
 						'<ul><li>' + modules.join('</li><li>') + '</li></ul>';
@@ -512,49 +554,12 @@ function testPermissions() {
 					$('#alert').removeClass('hidden');
 					$('#breadcrumbs').addClass('hidden');
 				}
-				else {
-					$('#alert-text').text('');
-					$('#alert').addClass('hidden');
-				}
 			}
-		};
+		});
+	};
 
-		var makeChecker = function(id, perm, module) {
-			return function() {
-				checkPermission(id, perm, module);
-			};
-		};
-
-		var testModulePermission = function(needed) {
-			chrome.permissions.contains(needed.types, function(result) {
-				needed.granted = result;
-
-				for (var module of needed.modules) {
-					var id = getElementIdFromOption(module);
-					$(id).attr('permission-granted', result);
-					$(id).click(makeChecker(id, needed, module));
-
-					if (result === false &&
-					    Foxtrick.Prefs.getBool('module.' + module + '.enabled')) {
-
-						Foxtrick.pushNew(modules, needed.modules);
-
-						var needsPermHtml = '<strong/>' +
-							'<ul><li>' + modules.join('</li><li>') + '</li></ul>';
-
-						var l10n = Foxtrick.L10n.getString('prefs.needPermissions');
-						$('#alert-text').html(needsPermHtml).find('strong').text(l10n);
-
-						$('#alert').removeClass('hidden');
-						$('#breadcrumbs').addClass('hidden');
-					}
-				}
-			});
-		};
-
-		for (var permission of neededPermissions) {
-			testModulePermission(permission);
-		}
+	for (var permission of neededPermissions) {
+		testModulePermission(permission);
 	}
 }
 
@@ -633,7 +638,7 @@ function save() {
  * and custom, predefined linkTags.
  *
  * @param {string}  note   Raw note to be parsed.
- * @param {element} parent Element to add the note to.
+ * @param {Element} parent Element to add the note to.
  * @param {object}  links  A map of custom linkTags and their corresponding URLs.
  */
 function addNote(note, parent, links) {
@@ -641,7 +646,7 @@ function addNote(note, parent, links) {
 	 * Create a white-listed tag or fall back to createLink
 	 * @param  {string}  tagName    Name of the tag or link
 	 * @param  {string}  tagContent Text content of the tag. May be recursive
-	 * @return {element}            Element created
+	 * @return {Element}            Element created
 	 */
 	var createTag = function(tagName, tagContent) {
 		/**
@@ -651,15 +656,14 @@ function addNote(note, parent, links) {
 		 * @param  {string}  nodeName    Name of the element to create.
 		 * @param  {string}  textContent Text content of the element.
 		 * @param  {object}  options     Map of properties and values of the element.
-		 * @return {element}             Element created.
+		 * @return {Element}             Element created.
 		 */
 		var createNode = function(nodeName, textContent, options) {
 			var node = document.createElement(nodeName);
 			if (textContent !== null)
 				node.textContent = textContent;
 
-			Foxtrick.mergeAll(node, options);
-			return node;
+			return Object.assign(node, options);
 		};
 		var createNestedNode = function(nodeName, tagContent, options) {
 			var el = createNode(nodeName, null, options);
@@ -811,15 +815,16 @@ function initListeners() {
  * @param  {object}         module
  * @return {HTMLDivElement}
  */
+// eslint-disable-next-line complexity
 function makeModuleDiv(module) {
-	var getScreenshot = function(link) {
-		var a = document.createElement('a');
-		a.className = 'screenshot';
-		a.href = link;
-		a.title = Foxtrick.L10n.getString('module.screenshot');
-		a.setAttribute('target', '_blank');
-		return a;
-	};
+	// var getScreenshot = function(link) {
+	// 	var a = document.createElement('a');
+	// 	a.className = 'screenshot';
+	// 	a.href = link;
+	// 	a.title = Foxtrick.L10n.getString('module.screenshot');
+	// 	a.setAttribute('target', '_blank');
+	// 	return a;
+	// };
 
 	var entry = document.createElement('div');
 	entry.id = 'pref-' + module.MODULE_NAME;
@@ -860,11 +865,11 @@ function makeModuleDiv(module) {
 	title.appendChild(link);
 
 	// screenshot
-	if (false) { // README: disabled
-		var screenshotLink = Foxtrick.L10n.getScreenshot(module.MODULE_NAME);
-		if (screenshotLink)
-			title.appendChild(getScreenshot(screenshotLink));
-	}
+	// if (false) {
+	// 	var screenshotLink = Foxtrick.L10n.getScreenshot(module.MODULE_NAME);
+	// 	if (screenshotLink)
+	// 		title.appendChild(getScreenshot(screenshotLink));
+	// }
 
 	var desc = document.createElement('p');
 	desc.id = entry.id + '-desc';
@@ -921,11 +926,11 @@ function makeModuleDiv(module) {
 			label.appendChild(document.createTextNode(desc));
 
 			// screenshot
-			if (false) { // README: disabled
-				var screenshotLink = Foxtrick.L10n.getScreenshot(module.MODULE_NAME + '.' + key);
-				if (screenshotLink)
-					label.appendChild(getScreenshot(screenshotLink));
-			}
+			// if (false) { // README: disabled
+			// 	var screenshotLink = Foxtrick.L10n.getScreenshot(module.MODULE_NAME + '.' + key);
+			// 	if (screenshotLink)
+			// 		label.appendChild(getScreenshot(screenshotLink));
+			// }
 		};
 
 		var appendOptionsArrayToList = function(optionsArray, parentList) {
@@ -1213,12 +1218,7 @@ function initMainTab() {
 
 	// clear cache
 	$('#pref-stored-clear-cache').click(function() {
-		Foxtrick.sessionDeleteBranch('');
-		Foxtrick.localDeleteBranch('');
-		Foxtrick.cache.clear();
-
-		// Foxtrick.util.api.clearCache();
-
+		Foxtrick.clearCaches();
 		window.location.reload();
 	});
 }
@@ -1448,16 +1448,19 @@ function initChangesTab() {
 
 /**
  * Setup help tab and FAQ layout
+ * @return {Promise<void>}
  */
 function initHelpTab() {
 	// external links
 	Foxtrick.load(Foxtrick.InternalPath + 'data/foxtrick_about.json')
 		.then(function(aboutJSON) {
 
+			/** @type {AboutJSONSchema} */
+			// @ts-ignore
 			var aboutData = JSON.parse(aboutJSON);
 			var category = aboutData.links;
 
-			Foxtrick.map(function(a) {
+			Foxtrick.forEach(function(a) {
 				var item = document.createElement('li');
 				$('#external-links-list').append(item);
 
@@ -1465,6 +1468,7 @@ function initHelpTab() {
 				item.appendChild(link);
 				link.textContent = Foxtrick.L10n.getString('link.' + a.id);
 				link.href = a.href;
+				link.relList.add('noopener');
 				link.target = '_blank';
 			}, category);
 
@@ -1551,6 +1555,7 @@ function initHelpTab() {
 
 /**
  * Setup about page and contributor layout
+ * @return {Promise<void>}
  */
 function initAboutTab() {
 	var addItem = function(person, list) {
@@ -1574,6 +1579,8 @@ function initAboutTab() {
 	return Foxtrick.load(Foxtrick.InternalPath + 'data/foxtrick_about.json')
 		.then(function(aboutJSON) {
 
+			/** @type {AboutJSONSchema} */
+			// @ts-ignore
 			var aboutData = JSON.parse(aboutJSON);
 
 			$('.about-list').each(function() {
@@ -1581,12 +1588,17 @@ function initAboutTab() {
 				var $container = $(this);
 				var type = $container.attr('path');
 
+				/** @type {AboutJSONPerson[]|AboutJSONTranslation[]} */
+				// @ts-ignore
 				var category = aboutData[type];
 				Foxtrick.map(function(data) {
 					if (type === 'translations') {
+						/** @type {unknown} */
+						let foo = data;
+						let trData = /** @type {AboutJSONTranslation}*/ (foo);
 						var item = document.createElement('li');
 						var header = document.createElement('h4');
-						header.textContent = data.language;
+						header.textContent = String(trData.language);
 						item.appendChild(header);
 
 						var list = document.createElement('ul');
@@ -1594,13 +1606,15 @@ function initAboutTab() {
 
 						Foxtrick.map(function(translator) {
 							addItem(translator, $(list));
-						}, data.translators);
+						}, trData.translators);
 
 						$container.append(item);
 					}
 					else {
 						addItem(data, $container);
 					}
+
+				// @ts-ignore
 				}, category);
 
 			});
@@ -1611,10 +1625,11 @@ function initAboutTab() {
 
 /**
  * Setup all tabs
+ * @return {Promise<void[]>}
  */
 function initTabs() {
 	// attach each tab with corresponding pane
-	$('#tabs li a').each(function() {
+	$('.tabs li a').each(function() {
 		var tab = $(this).parent().attr('id').replace(/^tab-/, '');
 		$(this).attr('href', generateURI({ tab: tab }));
 	});
@@ -1800,6 +1815,7 @@ function initTextAndValues() {
 			Foxtrick.Prefs.deleteValue('Currency.Code.' + id);
 			var row = ev.target.ownerDocument.getElementById('team-currency-row-' + id);
 			row.parentNode.removeChild(row);
+			Foxtrick.Prefs.setBool('preferences.updated', true);
 		});
 
 		$('#pref-setup-currency').append(row);
@@ -1833,11 +1849,11 @@ function init() {
 
 		// if (Foxtrick.Prefs.isModuleEnabled('MobileEnhancements')) {
 		// 	// mobile
-		// 	$('#tabs').hide();
+		// 	$('.tabs').hide();
 		// 	$('#content').addClass('ft-mobile');
 		// 	Foxtrick.log(Foxtrick, 'MobileEnhancements');
 		// 	Foxtrick.onClick($('#navigation-header')[0], function() {
-		// 		$('#tabs').toggle();
+		// 		$('.tabs').toggle();
 		// 		$('#main').toggle();
 		// 	});
 		// }

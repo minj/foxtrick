@@ -50,45 +50,43 @@
 			playh.className = 'col_play';
 			header.appendChild(playh);
 
-			var type;
-			for (type in types) {
-				var row = doc.createElement('tr');
+			for (let type in types) {
+				let row = doc.createElement('tr');
 				table.appendChild(row);
-				var rhead = doc.createElement('th');
+				let rhead = doc.createElement('th');
 				rhead.setAttribute('data-text', 'ticker.type.' + type);
 				row.appendChild(rhead);
-				var enablec = doc.createElement('td');
+				let enablec = doc.createElement('td');
 				row.appendChild(enablec);
-				var enable = doc.createElement('input');
+				let enable = doc.createElement('input');
 				enable.type = 'checkbox';
 				enable.setAttribute('pref', 'module.TickerAlert.' + type + '.enabled');
 				enablec.appendChild(enable);
-				var soundc = doc.createElement('td');
+				let soundc = doc.createElement('td');
 				row.appendChild(soundc);
 				Foxtrick.addClass(soundc, 'left');
-				var sound = doc.createElement('input');
+				let sound = doc.createElement('input');
 				sound.setAttribute('pref', 'module.TickerAlert.' + type + '.sound');
 				sound.id = 'module.TickerAlert.' + type + '.id';
 				soundc.appendChild(sound);
-				// var filec = doc.createElement('td');
+
+				// let filec = doc.createElement('td');
 				// row.appendChild(filec);
-				var input = Foxtrick.util.load.filePickerForDataUrl(doc,
-				  (function(sound) {
-					return function(url) {
-						sound.value = url;
-						sound.dispatchEvent(new Event('input', { bubbles: true }));
-						Foxtrick.playSound(url);
-					};
-				})(sound));
+				let input = Foxtrick.util.load.filePickerForDataUrl(doc, (url) => {
+					sound.value = url;
+					sound.dispatchEvent(new Event('input', { bubbles: true }));
+					Foxtrick.playSound(url);
+				});
 				soundc.appendChild(input);
 
-				var playc = doc.createElement('td');
+				let playc = doc.createElement('td');
 				row.appendChild(playc);
-				var playButton = doc.createElement('button');
+				let playButton = doc.createElement('button');
 				playButton.setAttribute('data-text', 'button.play');
 				playButton.setAttribute('soundId', 'module.TickerAlert.' + type + '.id');
-				playButton.addEventListener('click', function(ev) {
-					var url = doc.getElementById(ev.target.getAttribute('soundId')).value;
+				Foxtrick.onClick(playButton, function() {
+					// eslint-disable-next-line no-invalid-this
+					let url = doc.getElementById(this.getAttribute('soundId')).value;
 					Foxtrick.playSound(url);
 				}, false);
 				playc.appendChild(playButton);
@@ -113,11 +111,17 @@
 			var getTickers = function() {
 				var divs = ticker.getElementsByTagName('div');
 				var tickers = Foxtrick.map(function(n) {
+					var anchor = n.querySelector('a');
+					var prefix = anchor.textContent.match(/^[\d\W]+/);
+					var time = prefix.toString().trim();
+
 					return {
 						text: n.textContent,
-						link: n.getElementsByTagName('a')[0].href,
-						isNew: (n.getElementsByTagName('strong').length > 0)
+						link: anchor.href,
+						time: time,
+						isNew: !!n.querySelector('strong'),
 					};
+
 				}, divs);
 				return tickers;
 			};
@@ -128,7 +132,7 @@
 					return;
 				//Foxtrick.log('ticker check')
 				Foxtrick.sessionGet('tickers', function(tickers) {
-					if (tickers == undefined)
+					if (!tickers)
 						tickers = [];
 
 					var tickersNow = getTickers();
@@ -164,7 +168,7 @@
 
 						if (Foxtrick.Prefs.getBool('module.TickerAlert.' + type + '.enabled')) {
 							Foxtrick.util.notify.create(n.text, n.link, {
-								id: 'ticker-' + type + Date.valueOf(),
+								id: 'ticker-' + type + '-' + n.time,
 								buttons: [{ title: open }],
 							});
 							var sound = Foxtrick.Prefs.getString('module.TickerAlert.' + type + '.sound');

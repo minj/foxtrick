@@ -1,14 +1,12 @@
-'use strict';
 /**
  * player-positions-evaluations.js
  * Compute and display player evaluation value for each position
  * @author Greblys, LA-MJ
  */
 
-if (!Foxtrick)
-	var Foxtrick = {};
+'use strict';
 
-Foxtrick.modules['PlayerPositionsEvaluations'] = {
+Foxtrick.modules.PlayerPositionsEvaluations = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES: ['playerDetails', 'transferSearchResult', 'players', 'ntPlayers'],
 	CSS: Foxtrick.InternalPath + 'resources/css/player-positions-evaluations.css',
@@ -34,6 +32,10 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 		MF_VS_ATT: 3,
 		DF_VS_ATT: 1.1,
 	},
+
+	/**
+	 * @return {PlayerContributionOpts}
+	 */
 	getPrefs: function() {
 		var prefs = {};
 		for (var pref in this.prefMap) {
@@ -57,6 +59,10 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 			Foxtrick.Prefs.setModuleEnableState(mName + '.' + this.prefMap[pref], prefs[pref]);
 		}
 	},
+
+	/**
+	 * @return {PlayerContributionParams}
+	 */
 	getParams: function() {
 		var params = {};
 		for (var param in this.paramMap) {
@@ -149,6 +155,7 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 
 			}
 			else if (Foxtrick.isPage(doc, 'transferSearchResult')) {
+				let isNewDesign = Foxtrick.Pages.TransferSearchResults.isNewDesign(doc);
 				var list = Foxtrick.Pages.TransferSearchResults.getPlayerList(doc);
 				// filter out players with out skill data (after deadline)
 				var transfers = Foxtrick.filter(function(p) {
@@ -159,7 +166,9 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 					var row = Foxtrick.insertFeaturedRow(table, module, table.rows.length);
 					Foxtrick.addClass(row, 'ft-best-player-position');
 					var title = row.insertCell(0);
-					title.colSpan = '2';
+					if (!isNewDesign)
+						title.colSpan = '2';
+
 					var b = doc.createElement('strong');
 					b.textContent = Foxtrick.L10n.getString('BestPlayerPosition.title');
 					title.appendChild(b);
@@ -178,8 +187,7 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 					container.textContent = Foxtrick.L10n.getString('BestPlayerPosition.title') +
 						' ' + p.bestPositionLong + ' (' + p.bestPositionValue.toFixed(2) + ')';
 
-					var before = table.nextSibling;
-					before.parentNode.insertBefore(container, before);
+					table.parentElement.appendChild(container);
 				}, playerList);
 			}
 		}
@@ -393,13 +401,14 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 			Foxtrick.onClick(btnReset, function() {
 				var doc = this.ownerDocument;
 
-				Foxtrick.mergeAll(opts, presetPrefs);
-				for (var pref in opts) {
-					doc.getElementById('ft-ppe-' + pref).checked = opts[pref];
+				let o = Object.assign(opts, presetPrefs);
+				for (var pref in o) {
+					doc.getElementById('ft-ppe-' + pref).checked = o[pref];
 				}
-				Foxtrick.mergeAll(params, presetParams);
-				for (var param in params) {
-					doc.getElementById('ft-ppe-' + param).value = params[param];
+
+				let p = Object.assign(params, presetParams);
+				for (var param in p) {
+					doc.getElementById('ft-ppe-' + param).value = p[param];
 				}
 				updateSkills(doc);
 			});
@@ -592,11 +601,9 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 		};
 
 		var presetPrefs = module.getPrefs();
-		var opts = {};
-		Foxtrick.mergeAll(opts, presetPrefs);
+		var opts = Object.assign({}, presetPrefs);
 		var presetParams = module.getParams();
-		var params = {};
-		Foxtrick.mergeAll(params, presetParams);
+		var params = Object.assign({}, presetParams);
 		var factors = Foxtrick.Predict.contributionFactors(params);
 
 		var strMap = {
@@ -650,7 +657,7 @@ Foxtrick.modules['PlayerPositionsEvaluations'] = {
 			var attrs = Foxtrick.Pages.Player.getAttributes(doc);
 			attrs.bruised = Foxtrick.Pages.Player.isBruised(doc);
 			attrs.transferListed = Foxtrick.Pages.Player.isTransferListed(doc);
-			attrs.specialityNumber = Foxtrick.Pages.Player.getSpecialityNumber(doc);
+			attrs.specialtyNumber = Foxtrick.Pages.Player.getSpecialtyNumber(doc);
 
 			var contributions = Foxtrick.Pages.Player.getContributions(skills, attrs);
 			module.insertBestPosition(doc, contributions);

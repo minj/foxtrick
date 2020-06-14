@@ -269,6 +269,7 @@
 		"leagueNames": {
 			"1": "Sverige",
 			"100": "El Salvador",
+			"1000": "Hattrick International",
 			"101": "Malta",
 			"102": "Kirgisistan",
 			"103": "Moldova",
@@ -279,7 +280,7 @@
 			"11": "Danmark",
 			"110": "Trinidad & Tobago",
 			"111": "Nicaragua",
-			"112": "Kazakhstan",
+			"112": "Kasakhstan",
 			"113": "Surinam",
 			"117": "Liechtenstein",
 			"118": "Algerie",
@@ -315,8 +316,19 @@
 			"146": "Kamerun",
 			"147": "Cuba",
 			"148": "Palestina",
+			"149": "São Tomé og Príncipe",
 			"15": "Oseania",
+			"151": "Komorene",
+			"152": "Sri Lanka",
+			"153": "Curaçao",
+			"154": "Guam",
+			"155": "DR Kongo",
+			"156": "Etiopia",
+			"157": "Saint Vincent og Grenadinene",
+			"158": "Belize",
+			"159": "Madagaskar",
 			"16": "Brasil",
+			"160": "Botswana",
 			"17": "Canada",
 			"18": "Chile",
 			"19": "Colombia",
@@ -392,7 +404,7 @@
 			"94": "Jamaica",
 			"95": "Kenya",
 			"96": "Panama",
-			"97": "Makedonia",
+			"97": "Nord-Makedonia",
 			"98": "Albania",
 			"99": "Honduras"
 		},
@@ -625,8 +637,12 @@
 				"value": "Hodespesialist"
 			},
 			{
-				"type": "Regainer",
+				"type": "Resilient",
 				"value": "Friskus"
+			},
+			{
+				"type": "Support",
+				"value": "Lagspiller"
 			}
 		],
 		"spirit": [

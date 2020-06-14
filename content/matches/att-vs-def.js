@@ -1,9 +1,10 @@
-'use strict';
 /**
  * matches.js
  * adds att vs def bars on matches page
  * @author taised, Jestar
  */
+
+'use strict';
 
 Foxtrick.modules['AttVsDef'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.MATCHES,
@@ -13,8 +14,10 @@ Foxtrick.modules['AttVsDef'] = {
 	RADIO_OPTIONS: ['newstyle', 'oldstyle', 'oldstyleifkseparated'],
 
 	run: function(doc) {
-		if (Foxtrick.Pages.Match.isPrematch(doc) || Foxtrick.Pages.Match.inProgress(doc))
+		if (Foxtrick.Pages.Match.isPrematch(doc) || Foxtrick.Pages.Match.inProgress(doc) ||
+		    Foxtrick.Pages.Match.isNewLive(doc))
 			return;
+
 		var ratingstable = Foxtrick.Pages.Match.getRatingsTable(doc);
 		if (Foxtrick.Pages.Match.isWalkOver(ratingstable))
 			return;
@@ -199,13 +202,7 @@ Foxtrick.modules['AttVsDef'] = {
 	},
 
 	_newStyleBars: function(doc, ratingstable, bodydiv) {
-		var sidebar = doc.getElementById('sidebar');
 		var percentArray = this._getPercentArray(doc, ratingstable);
-		var balldivnumber = 7;
-		if (Foxtrick.util.id.findIsYouthMatch(doc.location.href)) {
-			balldivnumber = 5; //youth haven't the kit div
-		}
-
 		var strangediv = doc.createElement('div');
 		strangediv.setAttribute('style', 'clear: both;');
 		var rdefText = Foxtrick.L10n.getString('matches.right') + ' ' +
@@ -253,7 +250,7 @@ Foxtrick.modules['AttVsDef'] = {
 			bodydiv.appendChild(bardiv);
 			bodydiv.appendChild(this._createTextBox(doc, 100 - percentArray[i]));
 
-			bodydiv.appendChild(strangediv.cloneNode(true));
+			bodydiv.appendChild(Foxtrick.cloneElement(strangediv, true));
 		}
 	},
 

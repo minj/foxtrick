@@ -14,41 +14,42 @@ import codecs
 tag = '<!-- %s -->'
 targets = [
     {
-        "file" : "manifest.json",
-        "prefix" : "\t\t\t\"content/",
-        "suffix" : "\",\n"
+        "file": "manifest.json",
+        "prefix": "\t\t\t\"content/",
+        "suffix": "\",\n"
     },
     {
-        "file" : "Info.plist",
-        "prefix" : "\t\t\t\t<string>content/",
-        "suffix" : "</string>\n"
+        "file": "Info.plist",
+        "prefix": "\t\t\t\t<string>content/",
+        "suffix": "</string>\n"
     },
     {
-        "file" : "content/scripts-fennec.js",
-        "prefix" : "\t\t'",
-        "suffix" : "',\n"
+        "file": "content/scripts-fennec.js",
+        "prefix": "\t\t'",
+        "suffix": "',\n"
     },
     {
-        "file" : "content/bootstrap-firefox.js",
-        "prefix" : "\t\t'",
-        "suffix" : "',\n"
+        "file": "content/bootstrap-firefox.js",
+        "prefix": "\t\t'",
+        "suffix": "',\n"
     },
     {
-        "file" : "content/bootstrap-fennec.js",
-        "prefix" : "\t\t'",
-        "suffix" : "',\n"
+        "file": "content/bootstrap-fennec.js",
+        "prefix": "\t\t'",
+        "suffix": "',\n"
     },
     {
-        "file" : "content/preferences.html",
-        "prefix" : "\t<script type=\"application/x-javascript\" src=\"./",
-        "suffix" : "\"></script>\n"
+        "file": "content/preferences.html",
+        "prefix": "\t<script type=\"application/x-javascript\" src=\"./",
+        "suffix": "\"></script>\n"
     },
     {
-        "file" : "content/background.html",
-        "prefix" : "\t<script type=\"application/x-javascript\" src=\"./",
-        "suffix" : "\"></script>\n"
+        "file": "content/background.html",
+        "prefix": "\t<script type=\"application/x-javascript\" src=\"./",
+        "suffix": "\"></script>\n"
     }
 ]
+
 
 def build(args=dict(sourcefile="modules", excludefile=None, dirfile=".")):
     sourcefile = args['sourcefile']
@@ -60,43 +61,40 @@ def build(args=dict(sourcefile="modules", excludefile=None, dirfile=".")):
     else:
         path = dirfile+"/"
 
-    #get module file list from file *modules*
-    source = codecs.open(sourcefile, mode='r', encoding='utf-8')
-    modules = source.read().splitlines()
-    source.close()
+    # get module file list from file *modules*
+    with codecs.open(sourcefile, mode='r', encoding='utf-8') as source:
+        modules = source.read().splitlines()
 
-    #if exclude file in fuction, read the file
+    # if exclude file in fuction, read the file
     if excludefile and os.path.isfile(excludefile):
-        ignore = codecs.open(excludefile, mode='r', encoding='utf-8')
-        ignorelist = ignore.read().splitlines()
-        ignore.close()
+        with codecs.open(excludefile, mode='r', encoding='utf-8') as ignore:
+            ignorelist = ignore.read().splitlines()
 
         for mod in ignorelist:
-            #remove mod from modules
+            # remove mod from modules
             if mod in modules:
                 modules.remove(mod)
 
-            #delete files from ignorelist in the build
+            # delete files from ignorelist in the build
             pathfile = path + 'content/' + mod
-            #replace the backslash with a slash
-            #pathfile = pathfile.replace("/",'\\')
+            # replace the backslash with a slash
+            # pathfile = pathfile.replace("/",'\\')
             if os.path.isfile(pathfile):
                 os.remove(pathfile)
 
-    #iterate through targets
+    # iterate through targets
     for tar in targets:
-        #check if file exists
+        # check if file exists
         pathfile = path + tar['file']
         if not os.path.isfile(pathfile):
             continue
 
-        #open the file and copy the content to a list variable
-        target = codecs.open(pathfile, mode='r', encoding='utf-8')
-        #keep \n
-        lines = target.read().splitlines(True)
-        target.close()
+        # open the file and copy the content to a list variable
+        with codecs.open(pathfile, mode='r', encoding='utf-8') as target:
+            # keep \n
+            lines = target.read().splitlines(True)
 
-        #find the index of start and end tags
+        # find the index of start and end tags
         start_tag = tag % 'categorized modules'
         end_tag = tag % 'end categorized modules'
         start = -1
@@ -111,20 +109,21 @@ def build(args=dict(sourcefile="modules", excludefile=None, dirfile=".")):
             print('No \'%s\' in %s. Skipping.' % (start_tag, pathfile))
             continue
 
-        #create the text with the modules list
+        # create the text with the modules list
         modlines = []
         for mod in modules:
             line = tar['prefix'] + mod + tar['suffix']
             modlines.append(line)
 
-        #replace the content of the file
+        # replace the content of the file
         lines[start+1:end] = modlines
 
-        #write the new file
-        f_out = codecs.open(pathfile, mode='w', encoding='utf-8')
-        f_out.writelines(lines)
-        f_out.close()
+        # write the new file
+        with codecs.open(pathfile, mode='w', encoding='utf-8') as f_out:
+            f_out.writelines(lines)
+
         print('%s updated.' % pathfile)
+
 
 def add(args):
     filename = args['filename']
@@ -138,6 +137,7 @@ def add(args):
 
     build()
 
+
 def rm(args):
     filename = args['filename']
     module = normalize_path(filename)
@@ -147,46 +147,45 @@ def rm(args):
 
     build()
 
+
 def normalize_path(path):
-    #convert  '/path/to/foxtrick/content/category/module.js' to 'category/module.js
+    # convert  '/path/to/foxtrick/content/category/module.js' to 'category/module.js
     r = re.compile('^(.*?/)?content/')
     path = r.sub('', path)
     return path
 
 
 def rm_module(sourcefile, module):
-    #get module file list from file *sourcefile*
-    source = codecs.open(sourcefile, mode='r', encoding='utf-8')
-    #take \n
-    modules = source.read().splitlines(True)
-    source.close()
+    # get module file list from file *sourcefile*
+    with codecs.open(sourcefile, mode='r', encoding='utf-8') as source:
+        # take \n
+        modules = source.read().splitlines(True)
 
     module += '\n'
     if module in modules:
         modules.remove(module)
         modules.sort()
 
-        #write the new file
-        f_out = codecs.open(sourcefile, mode='w', encoding='utf-8')
-        f_out.writelines(modules)
-        f_out.close()
+        # write the new file
+        with codecs.open(sourcefile, mode='w', encoding='utf-8') as f_out:
+            f_out.writelines(modules)
+
 
 def add_module(sourcefile, module):
-    #get module file list from file *sourcefile*
-    source = codecs.open(sourcefile, mode='r', encoding='utf-8')
-    #take \n
-    modules = source.read().splitlines(True)
-    source.close()
+    # get module file list from file *sourcefile*
+    with codecs.open(sourcefile, mode='r', encoding='utf-8') as source:
+        # take \n
+        modules = source.read().splitlines(True)
 
     module += '\n'
     if module not in modules:
         modules.append(module)
         modules.sort()
 
-        #write the new file
-        f_out = codecs.open(sourcefile, mode='w', encoding='utf-8')
-        f_out.writelines(modules)
-        f_out.close()
+        # write the new file
+        with codecs.open(sourcefile, mode='w', encoding='utf-8') as f_out:
+            f_out.writelines(modules)
+
 
 def add_util(args):
 
@@ -198,20 +197,19 @@ def add_util(args):
 
     util = normalize_path(filename)
 
-    #iterate through targets
+    # iterate through targets
     for tar in targets:
-        #check if file exists
+        # check if file exists
         pathfile = tar['file']
         if not os.path.isfile(pathfile):
             continue
 
-        #open the file and copy the content to a list variable
-        fh = codecs.open(pathfile, mode='r', encoding='utf-8')
-        #keep \n
-        lines = fh.read().splitlines(True)
-        fh.close()
+        # open the file and copy the content to a list variable
+        with codecs.open(pathfile, mode='r', encoding='utf-8') as fh:
+            # keep \n
+            lines = fh.read().splitlines(True)
 
-        #find the index of start and end tags
+        # find the index of start and end tags
         start_tag = tag % util_type
         end_tag = tag % ('end ' + util_type)
         start = -1
@@ -226,37 +224,37 @@ def add_util(args):
             print('No \'%s\' in %s. Skipping.' % (start_tag, pathfile))
             continue
 
-        #create a copy of utils
+        # create a copy of utils
         utils = lines[start+1:end]
-        #create the new line and add it
+        # create the new line and add it
         utils.append(tar['prefix'] + util + tar['suffix'])
-        #sort and replace
+        # sort and replace
         if util_type not in NO_SORT_TYPES:
             utils.sort()
         lines[start+1:end] = utils
 
-        #write the new file
-        f_out = codecs.open(pathfile, mode='w', encoding='utf-8')
-        f_out.writelines(lines)
-        f_out.close()
+        # write the new file
+        with codecs.open(pathfile, mode='w', encoding='utf-8') as f_out:
+            f_out.writelines(lines)
+
         print('%s updated.' % pathfile)
+
 
 def rm_util(args):
     filename = args['filename']
     util = normalize_path(filename)
 
-    #iterate through targets
+    # iterate through targets
     for tar in targets:
-        #check if file exists
+        # check if file exists
         pathfile = tar['file']
         if not os.path.isfile(pathfile):
             continue
 
-        #open the file and copy the content to a list variable
-        fh = codecs.open(pathfile, mode='w', encoding='utf-8')
-        #keep \n
-        lines = fh.read().splitlines(True)
-        fh.close()
+        # open the file and copy the content to a list variable
+        with codecs.open(pathfile, mode='w', encoding='utf-8') as fh:
+            # keep \n
+            lines = fh.read().splitlines(True)
 
         search = tar['prefix'] + util + tar['suffix']
         try:
@@ -265,13 +263,13 @@ def rm_util(args):
             print('No \'%s\' in %s. Skipping.' % (util, pathfile))
             continue
 
-        #remove
+        # remove
         lines[pos:pos+1] = []
 
-        #write the new file
-        f_out = codecs.open(pathfile, mode='w', encoding='utf-8')
-        f_out.writelines(lines)
-        f_out.close()
+        # write the new file
+        with codecs.open(pathfile, mode='w', encoding='utf-8') as f_out:
+            f_out.writelines(lines)
+
         print('%s updated.' % pathfile)
 
 
@@ -281,9 +279,9 @@ if __name__ == '__main__':
     subparsers = parser.add_subparsers(help='Available commands:')
 
     parser_build = subparsers.add_parser('build', help='Update manifest files (default action). Optionally removes excluded modules.')
-    parser_build.add_argument('-s','--sources-file', dest='sourcefile', help='The name of the sources file. Default value = modules', required=False, default="modules")
-    parser_build.add_argument('-e','--excludes-file', dest='excludefile', help='The name of the file with sources to ignore when building. Default value = None', default=None, required=False)
-    parser_build.add_argument('-d','--build-dir', dest='dirfile', help='The path to the new working directory. Default value = CWD', default=".", required=False)
+    parser_build.add_argument('-s', '--sources-file', dest='sourcefile', help='The name of the sources file. Default value = modules', required=False, default="modules")
+    parser_build.add_argument('-e', '--excludes-file', dest='excludefile', help='The name of the file with sources to ignore when building. Default value = None', default=None, required=False)
+    parser_build.add_argument('-d', '--build-dir', dest='dirfile', help='The path to the new working directory. Default value = CWD', default=".", required=False)
     parser_build.set_defaults(func=build)
 
     parser_add = subparsers.add_parser('add', help='Link a module. The file will be loaded in Foxtrick.')

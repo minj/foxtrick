@@ -1,53 +1,78 @@
-'use strict';
 /**
  * nt-peek.js
  * peeks NT/U20 matches at MyHT
  * @author ryanli, convincedd, ryanli
  */
 
-Foxtrick.modules['NtPeek'] = {
+'use strict';
+
+Foxtrick.modules.NtPeek = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES: ['country'],
 	CSS: Foxtrick.InternalPath + 'resources/css/nt-peek.css',
 
+	/** @param {document} doc */
 	run: function(doc) {
+		const module = this;
+
+		/**
+		 * @param  {Date}   date
+		 * @return {number}
+		 */
+		var getMatchEnd = function(date) {
+			const MATCH_MIN = 150; // +5
+			let mSecs = Foxtrick.util.time.MSECS_IN_MIN * MATCH_MIN;
+			return date.getTime() + mSecs;
+		};
+
+		/**
+		 * @param  {string}      team
+		 * @param  {string}      id
+		 * @param  {boolean}     isNt
+		 * @return {HTMLElement}
+		 */
 		var buildContainer = function(team, id, isNt) {
 			var buildTeamHeader = function() {
-				var header = doc.createElement('h2');
-				var link = doc.createElement('a');
+				let header = doc.createElement('h2');
+				let link = doc.createElement('a');
 				link.textContent = team;
 				link.href = '/Club/NationalTeam/NationalTeam.aspx?teamId=' + id;
 				header.appendChild(link);
 				return header;
 			};
 
-			var container = doc.createElement('div');
+			let container = doc.createElement('div');
 			if (isNt)
 				container.className = 'ft-nt-peek-nt';
 			else
 				container.className = 'ft-nt-peek-u20';
 
-			var header = buildTeamHeader();
+			let header = buildTeamHeader();
 			container.appendChild(header);
 
-			var matchesContainer = doc.createElement('div');
+			let matchesContainer = doc.createElement('div');
 			Foxtrick.util.matchView.startLoad(matchesContainer);
 			container.appendChild(matchesContainer);
 
 			return container;
 		};
 
-		var leagueId = Foxtrick.Pages.All.getId(doc);
+		let leagueId = Foxtrick.Pages.All.getId(doc);
 
-		var league = Foxtrick.XMLData.League[leagueId];
+		// TODO type
+		let league = Foxtrick.XMLData.League[leagueId];
+		let hasCountry = league.Country.Available == 'True';
+		if (!hasCountry)
+			return;
+
 		var ntId = league.NationalTeamId;
 		var u20Id = league.U20TeamId;
-		var ntName = Foxtrick.XMLData.getNTNameByLeagueId(leagueId);
-		var u20Name = 'U-20 ' + ntName;
+		let ntName = Foxtrick.XMLData.getNTNameByLeagueId(leagueId);
+		let u20Name = 'U-20 ' + ntName;
 
-		var container = Foxtrick.createFeaturedElement(doc, this, 'div');
+		let container = Foxtrick.createFeaturedElement(doc, module, 'div');
 		container.className = 'ft-nt-peek';
-		var insertBefore = Foxtrick.getMBElement(doc, 'ucForumSneakpeek_updSneakpeek');
+		let insertBefore = Foxtrick.getMBElement(doc, 'ucForumSneakpeek_updSneakpeek');
 		insertBefore.parentNode.insertBefore(container, insertBefore);
 
 		// NT container
@@ -59,42 +84,39 @@ Foxtrick.modules['NtPeek'] = {
 		container.appendChild(u20Container);
 
 		// separator
-		var separator = doc.createElement('div');
+		let separator = doc.createElement('div');
 		separator.className = 'separator';
 		container.appendChild(separator);
 
-		var ntArgs = [
+		/** @type {CHPPParams} */
+		let ntArgs = [
 			['file', 'matches'],
 			['version', '2.8'],
 			['teamId', parseInt(ntId, 10)],
 		];
-		var ntArgStr = JSON.stringify(ntArgs);
-		Foxtrick.util.api.retrieve(doc, ntArgs, { cache_lifetime: 'default' },
-		  function(xml, errorText) {
-			var div = ntContainer.querySelector('div');
-			var nextMatchDate =
+		let ntArgStr = JSON.stringify(ntArgs);
+		Foxtrick.util.api.retrieve(doc, ntArgs, { cache: 'default' }, (xml, errorText) => {
+			let div = ntContainer.querySelector('div');
+			let nextMatchDate =
 				Foxtrick.util.matchView.fillMatches(div, xml, errorText);
 
-			if (nextMatchDate) {
-				Foxtrick.util.api.setCacheLifetime(ntArgStr, nextMatchDate.getTime());
-			}
+			if (nextMatchDate)
+				Foxtrick.util.api.setCacheLifetime(ntArgStr, getMatchEnd(nextMatchDate));
 		});
 
-		var u20Args = [
+		/** @type {CHPPParams} */
+		let u20Args = [
 			['file', 'matches'],
 			['version', '2.8'],
 			['teamId', parseInt(u20Id, 10)],
 		];
-		var u20ArgStr = JSON.stringify(u20Args);
-		Foxtrick.util.api.retrieve(doc, u20Args, { cache_lifetime: 'default' },
-		  function(xml, errorText) {
-			var div = u20Container.querySelector('div');
-			var nextMatchDate =
-				Foxtrick.util.matchView.fillMatches(div, xml, errorText);
+		let u20ArgStr = JSON.stringify(u20Args);
+		Foxtrick.util.api.retrieve(doc, u20Args, { cache: 'default' }, (xml, errorText) => {
+			let div = u20Container.querySelector('div');
+			let nextMatchDate = Foxtrick.util.matchView.fillMatches(div, xml, errorText);
 
-			if (nextMatchDate) {
-				Foxtrick.util.api.setCacheLifetime(u20ArgStr, nextMatchDate.getTime());
-			}
+			if (nextMatchDate)
+				Foxtrick.util.api.setCacheLifetime(u20ArgStr, getMatchEnd(nextMatchDate));
 		});
 	},
 };
