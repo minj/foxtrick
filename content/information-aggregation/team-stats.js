@@ -297,10 +297,11 @@ Foxtrick.modules.TeamStats = {
 			 * @return {HTMLTableRowElement} summary row
 			 */
 			var addRow = function(category, label, data, filter, title) {
-				var tbody = table.querySelector(`TeamStats-${category}`);
+				var className = category.replace(/^TeamStats\./, '');
+				var tbody = table.querySelector(`.TeamStats-${className}`);
 				if (!tbody) {
 					tbody = doc.createElement('tbody');
-					tbody.className = `TeamStats-${category}`;
+					tbody.className = `TeamStats-${className}`;
 					let row = doc.createElement('tr');
 					let header = doc.createElement('th');
 					header.colSpan = 2;
