@@ -24,5 +24,13 @@
 }
 
 .ft-mimimi-row {
-	transform: scale(1, 0.5) translate(0, 140px);
+	transform: scale(1, 0.5) translate(-3px, 140px);
+}
+
+#ft-mimimicanvas {
+	clip-path: polygon(
+		0 0, 100% 0, 100% 100%, 0 100%, 0 0,
+		60% 86%, 60% 64%, 41% 64%, 41% 86%,
+		60% 86%
+	)
 }

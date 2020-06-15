@@ -216,6 +216,7 @@ Foxtrick.modules['HTMSPrediction'] = {
 				b = doc.createElement('b');
 				let luckText = Foxtrick.L10n.getString('HTMSPrediction.luck');
 				b.appendChild(doc.createTextNode(luckText));
+				b.style.textTransform = 'uppercase';
 				cell.appendChild(b);
 			}
 
