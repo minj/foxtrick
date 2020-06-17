@@ -773,6 +773,7 @@ Foxtrick.util.links.getPrefs = function(doc, module) {
 	var mName = module.MODULE_NAME;
 
 	var gList = doc.createElement('ul');
+	var usedKeys = new Set();
 
 	/**
 	 * @param {LinkCollection} collection
@@ -789,6 +790,11 @@ Foxtrick.util.links.getPrefs = function(doc, module) {
 				if (collection[type]) {
 					let links = collection[type];
 					for (let [key, link] of Object.entries(links)) {
+						if (usedKeys.has(key))
+							continue;
+
+						usedKeys.add(key);
+
 						let item = doc.createElement('li');
 						gList.appendChild(item);
 
@@ -832,7 +838,7 @@ Foxtrick.util.links.getPrefs = function(doc, module) {
 			}
 		};
 
-		Foxtrick.map(generateOpts, types);
+		Foxtrick.forEach(generateOpts, types);
 	};
 
 	Foxtrick.modules.Links.getCollection().then(parseCollection);
