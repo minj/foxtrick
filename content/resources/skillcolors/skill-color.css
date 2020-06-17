@@ -15,21 +15,21 @@ a.ft-skill-dont-touch{
 a[href$="#skill"] /* divine plus, overridden by further declarations */
 {background-color:#000000; color:#fff;}
 
-a[href$="=0#skill"]
+a[href$="=0#skill"], a[href$="=0#leadership"]
 {background-color:#ffffff; color:#000;}
-a[href$="=1#skill"]
+a[href$="=1#skill"], a[href$="=1#leadership"]
 {background-color:#EFFFEF; color:#000;}
-a[href$="=2#skill"]
+a[href$="=2#skill"], a[href$="=2#leadership"]
 {background-color:#E0EFE0; color:#000;}
-a[href$="=3#skill"]
+a[href$="=3#skill"], a[href$="=3#leadership"]
 {background-color:#D2EFD1; color:#000;}
-a[href$="=4#skill"]
+a[href$="=4#skill"], a[href$="=4#leadership"]
 {background-color:#C4DFC3; color:#000;}
-a[href$="=5#skill"]
+a[href$="=5#skill"], a[href$="=5#leadership"]
 {background-color:#B6DFB5; color:#000;}
-a[href$="=6#skill"]
+a[href$="=6#skill"], a[href$="=6#leadership"]
 {background-color:#A9CFA8; color:#000;}
-a[href$="=7#skill"]
+a[href$="=7#skill"], a[href$="=7#leadership"]
 {background-color:#90BF8F; color:#000;}
 a[href$="=8#skill"]
 {background-color:#7AAF78; color:#000;}
