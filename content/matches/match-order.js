@@ -35,6 +35,8 @@ Foxtrick.modules['MatchOrderInterface'] = {
 		null,
 		[],
 	],
+
+	/** @param {document} doc */
 	run: function(doc) {
 		const module = this;
 
@@ -43,13 +45,31 @@ Foxtrick.modules['MatchOrderInterface'] = {
 		var isYouth = sourceSystem.toLowerCase() == 'youth' ||
 			!!Foxtrick.getUrlParam(url, 'isYouth');
 
+		/** @type {string} */
 		var avatarsParamsString;
+
+		/** @type {(params: CHPPParams, opts?: { recursion?: boolean }) => void} */
 		var getAvatars;
+
+		/** @type {(fresh?: boolean) => void} */
 		var getPlayers;
+
+		/**
+		 * @param {document} doc
+		 * @param {HTMLElement} target
+		 * @param {CHPPXML} avatarsXml
+		 * @param {function(HTMLElement):number} getID
+		 * @param {number} scale
+		 * @param {boolean} [recursion]
+		 */
 		var checkImages = function(doc, target, avatarsXml, getID, scale, recursion) {
 			if (!Foxtrick.Prefs.isModuleOptionEnabled(module, 'ShowFaces'))
 				return;
 
+			/**
+			 * @param  {HTMLElement} fieldplayer
+			 * @return {boolean}
+			 */
 			var addImage = function(fieldplayer) {
 				var id = getID(fieldplayer);
 				if (!id)
@@ -97,7 +117,12 @@ Foxtrick.modules['MatchOrderInterface'] = {
 			// stop on first match
 			Foxtrick.any(addImage, target.querySelectorAll('.player'));
 		};
+
+		/**
+		 * @param {Player[]} playerList
+		 */
 		var savePenaltySkills = function(playerList) {
+			/** @type {Record<number, number>} */
 			var players = {};
 			for (let p of playerList) {
 				// formula by HO
@@ -111,9 +136,17 @@ Foxtrick.modules['MatchOrderInterface'] = {
 				.catch(Foxtrick.catch('MO PenaltySkills'));
 		};
 
+		/**
+		 * @param {document} doc
+		 * @param {HTMLElement} target
+		 * @param {Player[]} playerList
+		 * @param {function(HTMLElement):number} getID
+		 * @param {string} targetClass
+		 */
 		var checkSpecialties = function(doc, target, playerList, getID, targetClass) {
 			if (Foxtrick.Prefs.isModuleOptionEnabled(module, 'Specialties')) {
-				var cardsHealth = target.getElementsByClassName(targetClass);
+				/** @type {NodeListOf<HTMLElement>} */
+				var cardsHealth = target.querySelectorAll(`.${targetClass}`);
 				for (let card of cardsHealth) {
 					let id = getID(card);
 					if (!id || Foxtrick.hasClass(card, 'ft-specialty'))
@@ -133,17 +166,29 @@ Foxtrick.modules['MatchOrderInterface'] = {
 
 		// button to clone last order
 		var runAddCloneButtons = function() {
+			/** @typedef {'clone'|'addSwap'|'addChange'|'addSub'} MOCloneAction */
+
 			// the brain, remembers which id is what kind of setting, substitution, swap or change
+			/** @type {Record<number, MOCloneAction>} */
 			var mapping = {};
 
 			if (Foxtrick.Prefs.isModuleOptionEnabled(module, 'CloneOrder')) {
+				/**
+				 * @return {HTMLElement}
+				 */
 				var getLastNode = function() {
-					var orders = doc.getElementsByClassName('substitution');
+					/** @type {NodeListOf<HTMLElement>} */
+					var orders = doc.querySelectorAll('.substitution');
 					if (!orders.length)
 						return null;
 
 					return orders[orders.length - 1];
 				};
+
+				/**
+				 * @param  {HTMLElement} node
+				 * @return {number}
+				 */
 				var getIdFromNode = function(node) {
 					try {
 						return parseInt(node.id.match(/\d+/)[0], 10);
@@ -152,6 +197,10 @@ Foxtrick.modules['MatchOrderInterface'] = {
 						return 0;
 					}
 				};
+
+				/**
+				 * @return {number}
+				 */
 				var getLastId = function() {
 					var lastnode = getLastNode();
 					if (lastnode !== null)
@@ -161,7 +210,8 @@ Foxtrick.modules['MatchOrderInterface'] = {
 
 				// figure out the types of the loaded stuff
 				var figureLoadedOrders = function() {
-					var orders = doc.getElementsByClassName('substitution');
+					/** @type {NodeListOf<HTMLElement>} */
+					var orders = doc.querySelectorAll('.substitution');
 					if (!orders.length)
 						return;
 
@@ -180,12 +230,21 @@ Foxtrick.modules['MatchOrderInterface'] = {
 				};
 
 				// addCloneAsTypeButton
-				var addCloneAsTypeButtonForNode = function(node, type, className, title, alt,
-				                                           text, linkType) {
-
+				// FIXME
+				/**
+				 * @param {HTMLElement} node
+				 * @param {MOCloneAction} type
+				 * @param {string} className
+				 * @param {string} title
+				 * @param {string} alt
+				 * @param {string} text
+				 * @param {string} linkType
+				 */
+				var addCloneAsTypeBtnFor = (node, type, className, title, alt, text, linkType) => {
 					if (node.getElementsByClassName(className).length)
 						return;
 
+					/** @type {HTMLImageElement} */
 					let sub = node.querySelector('.remove');
 					let cloned = Foxtrick.cloneElement(sub, true);
 					cloned.textContent = text;
@@ -198,9 +257,11 @@ Foxtrick.modules['MatchOrderInterface'] = {
 
 					Foxtrick.onClick(cloned, function() {
 						// eslint-disable-next-line no-use-before-define, no-invalid-this
-						cloneAsTypeById(getIdFromNode(this.parentNode), linkType);
+						cloneAsTypeById(getIdFromNode(this.parentElement), linkType);
 					});
 				};
+
+				/** @type {Record<MOCloneAction, {title: string, alt: string, text: string}>} */
 				var cloneOpts = {
 					clone: {
 						title: Foxtrick.L10n.getString('matchOrder.cloneOrder'),
@@ -223,6 +284,12 @@ Foxtrick.modules['MatchOrderInterface'] = {
 						text: Foxtrick.L10n.getString('matchOrder.cloneAsSub.abbr'),
 					},
 				};
+
+				/**
+				 * @param {HTMLElement} node
+				 * @param {MOCloneAction} type
+				 * @param {number} idx
+				 */
 				var addCloneButtonForNodeByType = function(node, type, idx) {
 					let opts = cloneOpts[type];
 					let { title, alt, text } = opts;
@@ -232,40 +299,64 @@ Foxtrick.modules['MatchOrderInterface'] = {
 						tp = mapping[getIdFromNode(node)];
 
 					let desiredClass = 'ft-match-order-clone-' + idx;
+
 					// FIXME
-					addCloneAsTypeButtonForNode(node, tp, desiredClass, title, alt, text, tp);
+					addCloneAsTypeBtnFor(node, tp, desiredClass, title, alt, text, tp);
 				};
+
+
+				/**
+				 * @param {number} srcId
+				 * @param {string} type
+				 */
 				var cloneAsTypeById = function(srcId, type) {
+					/** @type {number} */
 					var id;
+
+					/**
+					 * @param {number} sourceId
+					 * @param {number} targetId
+					 */
 					var cloneSettings = function(sourceId, targetId) {
 						// adjust minutes
-						var min = doc.getElementById('minutestext_' + targetId);
-						var minOrg = doc.getElementById('minutestext_' + sourceId);
+						var min = doc.getElementById(`minutestext_${targetId}`);
+						var minOrg = doc.getElementById(`minutestext_${sourceId}`);
 
 						while (min.textContent != minOrg.textContent)
-							doc.getElementById('minutesplus_' + id).click();
+							doc.getElementById(`minutesplus_${id}`).click();
 
 						// display advanced, default copy from src, otherwise autoexpand
-						let advTarget = doc.getElementById('advanced_' + targetId);
-						let advSource = doc.getElementById('advanced_' + sourceId);
+						let advTarget = doc.getElementById(`advanced_${targetId}`);
+						let advSource = doc.getElementById(`advanced_${sourceId}`);
 						if (Foxtrick.Prefs.isModuleOptionEnabled(module, 'AutoExpandCloned'))
 							advTarget.setAttribute('style', 'display:block;');
 						else
 							advTarget.setAttribute('style', advSource.getAttribute('style'));
 
 						// behaviour
-						let behTarget = doc.getElementById('behaviour_' + targetId);
-						let behSource = doc.getElementById('behaviour_' + sourceId);
+						/** @type {HTMLInputElement} */
+						let behTarget = doc.querySelector(`#behaviour_${targetId}`);
+
+						/** @type {HTMLInputElement} */
+						let behSource = doc.querySelector(`#behaviour_${sourceId}`);
 						if (behTarget && behSource)
 							behTarget.value = behSource.value;
 
 						// cardcond
-						doc.getElementById('cardcond_' + targetId).value =
-							doc.getElementById('cardcond_' + sourceId).value;
+						/** @type {HTMLInputElement} */
+						let cardCondSrc = doc.querySelector(`#cardcond_${sourceId}`);
+
+						/** @type {HTMLInputElement} */
+						let cardCondTrg = doc.querySelector(`#cardcond_${targetId}`);
+						cardCondTrg.value = cardCondSrc.value;
 
 						// standingcond
-						doc.getElementById('standingcond_' + targetId).value =
-							doc.getElementById('standingcond_' + sourceId).value;
+						/** @type {HTMLInputElement} */
+						let standingcondSrc = doc.querySelector(`#standingcond_${sourceId}`);
+
+						/** @type {HTMLInputElement} */
+						let standingcondTrg = doc.querySelector(`#standingcond_${targetId}`);
+						standingcondTrg.value = standingcondSrc.value;
 
 						// minifield
 						// it does not make much sence to clone the minifield and might lead to
@@ -286,6 +377,7 @@ Foxtrick.modules['MatchOrderInterface'] = {
 					cloneSettings(srcId, id);
 				};
 
+				/** @param {HTMLElement} node */
 				var addCloneButtonsForNode = function(node) {
 
 					// counter for class naming, used in styling
@@ -307,6 +399,8 @@ Foxtrick.modules['MatchOrderInterface'] = {
 				};
 
 				figureLoadedOrders();
+
+				/** @type {NodeListOf<HTMLElement>} */
 				var orders = doc.querySelectorAll('.substitution');
 				if (orders.length) {
 					for (let order of orders)
@@ -381,7 +475,6 @@ Foxtrick.modules['MatchOrderInterface'] = {
 			return template;
 		};
 
-
 		/** @type {Listener<HTMLElement, MouseEvent>} */
 		var copyLineup = function() {
 			// eslint-disable-next-line no-invalid-this
@@ -400,6 +493,7 @@ Foxtrick.modules['MatchOrderInterface'] = {
 				left: '◀︎',
 			};
 
+			/** @type {Record<string, string>} */
 			var data = {
 				tacticsStr: Foxtrick.L10n.getString('match.tactics'),
 				lineupStr: Foxtrick.L10n.getString('match.lineup'),
@@ -434,12 +528,14 @@ Foxtrick.modules['MatchOrderInterface'] = {
 				bothTeams.replace(re, `[b]${thisTeam}[/b]`) :
 				bothTeams += ` - [b]${thisTeam}[/b]`;
 
-			data.matchId = Foxtrick.util.id.getMatchIdFromUrl(doc.location.href) || '';
+			data.matchId = String(Foxtrick.util.id.getMatchIdFromUrl(doc.location.href) || '');
 			data.formation = doc.getElementById('formations').textContent.trim();
 
 			// tactics
 			// var teamTacticsTitle = module.getTacticsLabel(doc);
-			var teamTacticsSelect = doc.getElementById('teamtactics');
+
+			/** @type {HTMLSelectElement} */
+			var teamTacticsSelect = doc.querySelector('#teamtactics');
 			var selectedTactics = teamTacticsSelect.options[teamTacticsSelect.selectedIndex];
 			data.tactics = selectedTactics.textContent.trim();
 
@@ -459,17 +555,20 @@ Foxtrick.modules['MatchOrderInterface'] = {
 
 				data['p' + pos + 'Name'] = name.textContent.trim();
 
+				/** @type {keyof DIRS} */
 				var dir;
-				for (var x in X_DIRS) {
+				for (let k in X_DIRS) {
+					let x = /** @type {keyof X_DIRS} */ (k);
 					if (Foxtrick.hasClass(posDiv, x)) {
-						var dirNum = X_DIRS[x][pos];
+						let dirNum = X_DIRS[x][pos];
 						if (dirNum)
 							dir = dirNum === 1 ? 'right' : 'left';
 
 						break;
 					}
 				}
-				for (var d in DIRS) {
+				for (let k in DIRS) {
+					let d = /** @type {keyof DIRS} */ (k);
 					if (Foxtrick.hasClass(posDiv, d)) {
 						dir = d;
 						break;
@@ -479,6 +578,8 @@ Foxtrick.modules['MatchOrderInterface'] = {
 					data['p' + pos + 'Dir'] = DIRS[dir];
 
 				// spec
+
+				/** @type {HTMLElement} */
 				var strip = doc.querySelector('#players #list_playerID' + id);
 				var json = JSON.parse(strip.dataset.json);
 				var spec = Foxtrick.L10n.getSpecialtyFromNumber(json.specialty);
@@ -508,22 +609,38 @@ Foxtrick.modules['MatchOrderInterface'] = {
 
 		/** @param {document} doc */
 		var runMatchOrder = function(doc) {
+
+			/**
+			 * @param  {HTMLElement} fieldplayer
+			 * @return {number}
+			 */
 			var getID = function(fieldplayer) {
 				if (!fieldplayer.id)
 					return null;
+
 				return Number(fieldplayer.id.match(/list_playerID(\d+)/i)[1]);
 			};
+
+			/**
+			 * @param  {HTMLElement} node
+			 * @return {number}
+			 */
 			var getIDParent = function(node) {
-				if (!node.parentNode.id)
+				if (!node.parentElement.id)
 					return null;
-				return Number(node.parentNode.id.match(/list_playerID(\d+)/i)[1]);
+
+				return Number(node.parentElement.id.match(/list_playerID(\d+)/i)[1]);
 			};
 
 			// add extra info
 			var hasPlayerInfo = false;
 			var hasAvatars = false;
 			var hasInterface = false;
+
+			/** @type {Player[]} */
 			var playerList = null;
+
+			/** @type {CHPPXML} */
 			var avatarsXml = null;
 
 			var teamId = Foxtrick.Pages.Match.getMyTeamId(doc);
@@ -558,6 +675,7 @@ Foxtrick.modules['MatchOrderInterface'] = {
 				[(isYouth ? 'youthT' : 't') + 'eamId', teamId],
 			];
 			avatarsParamsString = JSON.stringify(avatarsParams); // save as string (immutable)
+
 			getAvatars = function(avatarsParams, opts) {
 				/** @type {CHPPOpts} */
 				let cOpts = { cache: 'session' };
@@ -571,6 +689,7 @@ Foxtrick.modules['MatchOrderInterface'] = {
 					hasAvatars = true;
 					var field = doc.getElementById('field');
 					var rec = opts && opts.recursion;
+
 					// TODO promisify
 					if (hasInterface)
 						checkImages(doc, field, avatarsXml, getID, 3, rec);
@@ -579,9 +698,10 @@ Foxtrick.modules['MatchOrderInterface'] = {
 			getAvatars(avatarsParams);
 
 			// eslint-disable-next-line complexity
-			var waitForInterface = function(ev) {
+			var waitForInterface = function() {
 				if (hasInterface)
 					return;
+
 				Foxtrick.log('hasInterface');
 				hasInterface = true;
 				if (hasPlayerInfo) {
@@ -618,7 +738,7 @@ Foxtrick.modules['MatchOrderInterface'] = {
 					let formations = doc.getElementById('formations');
 					formations.parentNode.insertBefore(swapPositionsDiv, formations.nextSibling);
 					doc.dispatchEvent(new Event('ftenableswap'));
-					doc.documentElement.dataset.ftEnableSwap = true;
+					doc.documentElement.dataset.ftEnableSwap = String(true);
 				}
 
 
@@ -643,8 +763,9 @@ Foxtrick.modules['MatchOrderInterface'] = {
 						toggle.type = 'checkbox';
 						toggle.id = 'ft-penaltyOpt-' + opt;
 						toggle.checked = Foxtrick.Prefs.isModuleOptionEnabled(module, opt);
-						Foxtrick.onClick(toggle, function(ev) {
-							var on = ev.target.checked;
+						Foxtrick.onClick(toggle, function() {
+							// eslint-disable-next-line no-invalid-this
+							var on = this.checked;
 							let oName = `${module.MODULE_NAME}.${opt}`;
 							Foxtrick.Prefs.setModuleEnableState(oName, on);
 						});
@@ -681,21 +802,30 @@ Foxtrick.modules['MatchOrderInterface'] = {
 						Foxtrick.sessionGet('match-orders-penalty-skills', (ps) => {
 
 							// collect data about existing kickers first
-							var taken = [], placed = [], sp;
+							/** @type {Element[]} */
+							var taken = [];
+
+							/** @type {Record<string, number>} */
+							var placed = {};
+
+							/** @type {string} */
+							var sp;
 
 							// let's find the sp player (position #20)
-							var spPlayer = doc.getElementById(20).firstChild;
+							var spPlayer = doc.getElementById('20').firstElementChild;
 							if (spPlayer)
 								sp = spPlayer.id;
 
 							for (var i = 21; i < 32; ++i) { // position #21 is first kicker
-								taken[i] = doc.getElementById(i).firstChild;
+								taken[i] = doc.getElementById(String(i)).firstElementChild;
 								if (taken[i])
 									placed[taken[i].id] = i;
 							}
 							var lastTaken = 20; // index to last filled position
 
-							var players = [...doc.querySelectorAll('#players > div')];
+							/** @type {NodeListOf<HTMLElement>} */
+							let playerList = doc.querySelectorAll('#players > div');
+							var players = [...playerList];
 
 							if (doSort && hasPlayerInfo && typeof ps !== 'undefined') {
 								players.sort(function(a, b) { // sort descending
@@ -745,7 +875,7 @@ Foxtrick.modules['MatchOrderInterface'] = {
 
 									// next position is free: placing player
 									player.click();
-									doc.getElementById(lastTaken + 1).click();
+									doc.getElementById(String(lastTaken + 1)).click();
 									++lastTaken;
 
 									// continue with next player
@@ -773,16 +903,16 @@ Foxtrick.modules['MatchOrderInterface'] = {
 					var penalties = doc.getElementById('tab_penaltytakers');
 					penalties.appendChild(frag);
 					doc.dispatchEvent(new Event('ftenablepenaltycontrols'));
-					doc.documentElement.dataset.ftEnablePenaltyControls = true;
+					doc.documentElement.dataset.ftEnablePenaltyControls = String(true);
 				}
 
 				if (Foxtrick.Prefs.isModuleOptionEnabled(module, 'StayOnPage')) {
 					doc.dispatchEvent(new Event('ftenablestay'));
-					doc.documentElement.dataset.ftEnableStay = true;
+					doc.documentElement.dataset.ftEnableStay = String(true);
 				}
 				if (Foxtrick.Prefs.isModuleOptionEnabled(module, 'FixPenaltyTakers')) {
 					doc.dispatchEvent(new Event('ftenablepenaltiesfix'));
-					doc.documentElement.dataset.ftEnablePenaltiesFix = true;
+					doc.documentElement.dataset.ftEnablePenaltiesFix = String(true);
 				}
 
 				// add playerid to details
@@ -905,6 +1035,7 @@ Foxtrick.modules['MatchOrderInterface'] = {
 				}
 			};
 
+			/** @param {HTMLElement} target */
 			var showPlayerInfo = function(target) {
 				// original version was removed due to HT request,
 				// this highlights players on the field for supporters only
