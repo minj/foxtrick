@@ -71,10 +71,10 @@
 		{ "id": "13441219", "name": "capitaineFro", "duty": "developer"},
 		{ "id": "13458976", "name": "Mistermax80", "duty": "developer"},
 		{ "id": "11370368", "name": "yaute", "duty": "developer"},
-		{ "id": "10764047", "name": "brokenelevator", "duty": "developer"}
-		{ "id": "6992417", "name": "tychobrailleur", "duty": "developer"}
-		{ "id": "1757369", "name": "wsbrenk", "duty": "developer"}
-		{ "id": "5199830", "name": "xxPhAIxx", "duty": "developer"}
+		{ "id": "10764047", "name": "brokenelevator", "duty": "developer"},
+		{ "id": "6992417", "name": "tychobrailleur", "duty": "developer"},
+		{ "id": "1757369", "name": "wsbrenk", "duty": "developer"},
+		{ "id": "5199830", "name": "xxPhAIxx", "duty": "developer"},
 		{ "id": "13609150", "name": "stefats", "duty": "developer"}
 	]
 }
