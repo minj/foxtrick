@@ -230,17 +230,15 @@ Foxtrick.modules['MatchOrderInterface'] = {
 				};
 
 				// addCloneAsTypeButton
-				// FIXME
 				/**
 				 * @param {HTMLElement} node
-				 * @param {MOCloneAction} type
 				 * @param {string} className
 				 * @param {string} title
 				 * @param {string} alt
 				 * @param {string} text
-				 * @param {string} linkType
+				 * @param {MOCloneAction} linkType
 				 */
-				var addCloneAsTypeBtnFor = (node, type, className, title, alt, text, linkType) => {
+				var addCloneAsTypeBtnFor = (node, className, title, alt, text, linkType) => {
 					if (node.getElementsByClassName(className).length)
 						return;
 
@@ -300,16 +298,15 @@ Foxtrick.modules['MatchOrderInterface'] = {
 
 					let desiredClass = 'ft-match-order-clone-' + idx;
 
-					// FIXME
-					addCloneAsTypeBtnFor(node, tp, desiredClass, title, alt, text, tp);
+					addCloneAsTypeBtnFor(node, desiredClass, title, alt, text, tp);
 				};
 
 
 				/**
 				 * @param {number} srcId
-				 * @param {string} type
+				 * @param {string} typeId
 				 */
-				var cloneAsTypeById = function(srcId, type) {
+				var cloneAsTypeById = function(srcId, typeId) {
 					/** @type {number} */
 					var id;
 
@@ -364,7 +361,7 @@ Foxtrick.modules['MatchOrderInterface'] = {
 					};
 
 					// get button for the order by id
-					var srcTypeButton = doc.getElementById(type);
+					var srcTypeButton = doc.getElementById(typeId);
 
 					// click it
 					srcTypeButton.click();
