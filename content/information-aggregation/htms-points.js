@@ -53,11 +53,13 @@ Foxtrick.modules.HTMSPoints = {
 			if (Foxtrick.Pages.Player.wasFired(doc))
 				return;
 
-			let skills = Foxtrick.Pages.Player.getSkills(doc);
+			// README: not youth
+			let skills = /** @type {PlayerSkills} */ (Foxtrick.Pages.Player.getSkills(doc));
 			if (skills === null)
 				return; // no skills available, goodbye
 
-			let { years, days } = Foxtrick.Pages.Player.getAge(doc);
+			let age = Foxtrick.Pages.Player.getAge(doc);
+			let { days, years } = age;
 
 			let skillQuery = `&anni=${years}&giorni=${days}`;
 			let totSkills = 0;
@@ -66,9 +68,7 @@ Foxtrick.modules.HTMSPoints = {
 				totSkills += skills[i];
 			}
 
-			skills.years = years;
-			skills.days = days;
-
+			let def = Object.assign(age, skills);
 			if (!totSkills)
 				return;
 
@@ -80,7 +80,7 @@ Foxtrick.modules.HTMSPoints = {
 			linkCell.appendChild(getLink(skillQuery));
 			let pointsCell = row.insertCell(1);
 
-			let [current, potential] = module.calc(skills).map(String);
+			let [current, potential] = module.calc(def).map(String);
 			let result = Foxtrick.L10n.getString('HTMSPoints.AbilityAndPotential');
 			result = result.replace(/%1/, current).replace(/%2/, potential);
 			pointsCell.textContent = result;
@@ -184,16 +184,7 @@ Foxtrick.modules.HTMSPoints = {
 	},
 
 	/**
-	 * @typedef HTMSSkills
-	 * @prop {number} keeper
-	 * @prop {number} defending
-	 * @prop {number} playmaking
-	 * @prop {number} winger
-	 * @prop {number} passing
-	 * @prop {number} scoring
-	 * @prop {number} setPieces
-	 * @prop {number} years
-	 * @prop {number} days
+	 * @typedef {PlayerSkills & PlayerAge} HTMSSkills
 	 */
 
 	/**

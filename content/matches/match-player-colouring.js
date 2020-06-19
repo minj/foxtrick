@@ -108,5 +108,5 @@ Foxtrick.modules.MatchPlayerColouring = {
 					Foxtrick.addClass(a, 'ft-match-player-hl');
 			}, links);
 		}
-	}
+	},
 };

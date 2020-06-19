@@ -45,8 +45,10 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/lib/sha1.js</string>
 				<string>content/lib/PluralForm.js</string>
 				<string>content/lib/psico.js</string>
-				<string>content/lib/integration.js</string>
+				<string>content/lib/gauge.js</string>
 				<!-- end ext-lib -->
+
+				<string>content/lib/integration.js</string>
 
 				<!-- util -->
 				<string>content/util/api.js</string>
@@ -205,6 +207,7 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/matches/match-lineup-fixes.js</string>
 				<string>content/matches/match-lineup-tweaks.js</string>
 				<string>content/matches/match-order.js</string>
+				<string>content/matches/match-order-new.js</string>
 				<string>content/matches/match-player-colouring.js</string>
 				<string>content/matches/match-ratings-tweaks.js</string>
 				<string>content/matches/match-report-format.js</string>

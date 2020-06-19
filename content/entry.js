@@ -8,26 +8,29 @@
 
 /* eslint-disable */
 if (!this.Foxtrick)
+	// @ts-ignore
 	var Foxtrick = {};
 /* eslint-enable */
 
 Foxtrick.entry = {};
 
-// invoked on DOMContentLoaded (all browsers)
-// @param doc - HTML document to run on
+/**
+ * invoked on DOMContentLoaded (all browsers)
+ *
+ * @param  {document} doc HTML document to run on
+ */
 Foxtrick.entry.docLoad = function(doc) {
-	if (doc.nodeName != '#document' || !doc.body.childNodes.length) {
-		// fennec raises annoying DOMContentLoaded events for blank pages
+	if (doc.nodeName != '#document' || !doc.body.childNodes.length)
 		return;
-	}
 
 	// don't execute if disabled
 	if ((Foxtrick.arch == 'Sandboxed' || Foxtrick.platform === 'Android') && !Foxtrick.isHt(doc) ||
 	    !Foxtrick.Prefs.isEnabled(doc) ||
 	    Foxtrick.isExcluded(doc)) {
+
 		// potential cleanup for injected CSS
 		if (Foxtrick.entry.cssLoaded) {
-			Foxtrick.util.css.unload_module_css(doc);
+			Foxtrick.util.css.unloadModuleCSS(doc);
 			Foxtrick.entry.cssLoaded = false;
 		}
 		return;
@@ -36,63 +39,70 @@ Foxtrick.entry.docLoad = function(doc) {
 	Foxtrick.entry.checkCSS(doc);
 
 	// ensure #content is available
-	var content = doc.getElementById('content');
+	let content = doc.getElementById('content');
 	if (!content)
 		return;
 
-	// init html debug (somehow needed for fennec atm)
+	// init html debug just in case
 	Foxtrick.log.flush(doc);
 
 	// run Foxtrick modules
-	var begin = new Date().getTime();
+	let begin = new Date().getTime();
 
 	let blockChange = Foxtrick.entry.run(doc);
 
-	var diff = new Date().getTime() - begin;
+	let diff = new Date().getTime() - begin;
+
+	// eslint-disable-next-line no-restricted-properties
 	Foxtrick.log('page run time:', diff, 'ms |', doc.location.pathname, doc.location.search);
 
 	Foxtrick.log.flush(doc);
 
 	if (!blockChange) {
 		// listen to page content changes
-		Foxtrick.startListenToChange(doc);
+		Foxtrick.startObserver(doc);
 	}
 };
 
-// invoked for each new instance of a content script
-// for chrome/safari after each page load
-// for fennec on new tab opened
-// @param data - copy of the resources passed from the background script
+/**
+ * invoked for each new instance of a content script
+ *
+ * for sandboxed after each page load
+ *
+ * @param  {FT.ResourceDict} data copy of the resources passed from the background script
+ */
 Foxtrick.entry.contentScriptInit = function(data) {
 	// Foxtrick.log('Foxtrick.entry.contentScriptInit');
 
 	// add MODULE_NAME to modules
-	for (var mName in Foxtrick.modules)
+	/** @type {FTAppModuleMixin[]} */
+	for (let mName in Foxtrick.modules)
 		Foxtrick.modules[mName].MODULE_NAME = mName;
 
 	if (Foxtrick.platform == 'Android') {
-		// fennec can access them from context, but they still need to get initialized
+		// fennec can access them from content, but they still need to get initialized
 		// xmldata has nothing to init only fetch
-		var coreModules = [Foxtrick.Prefs, Foxtrick.L10n];
-		for (var cModule of coreModules) {
+		/** @type {FTBackgroundModuleMixin[]} */
+		let coreModules = [Foxtrick.Prefs, Foxtrick.L10n];
+		for (let cModule of coreModules) {
 			if (typeof cModule.init === 'function')
 				cModule.init();
 		}
 	}
 	else {
 		/* eslint-disable camelcase */
-		Foxtrick.Prefs._prefs_chrome_user = data._prefs_chrome_user;
-		Foxtrick.Prefs._prefs_chrome_default = data._prefs_chrome_default;
-		Foxtrick.L10n.properties_default = data.properties_default;
+		Foxtrick.Prefs.initContent(data.prefsChromeDefault, data.prefsChromeUser);
+
+		Foxtrick.L10n.propertiesDefault = data.propertiesDefault;
 		Foxtrick.L10n.properties = data.properties;
-		Foxtrick.L10n.screenshots_default = data.screenshots_default;
+		Foxtrick.L10n.screenshotsDefault = data.screenshotsDefault;
 		Foxtrick.L10n.screenshots = data.screenshots;
-		Foxtrick.L10n.plForm_default = data.plForm_default;
+		Foxtrick.L10n.plFormDefault = data.plFormDefault;
 		Foxtrick.L10n.plForm = data.plForm;
 		/* eslint-enable camelcase */
 	}
 
-	for (var lang in data.htLangJSON)
+	for (let lang in data.htLangJSON)
 		Foxtrick.L10n.htLanguagesJSON[lang] = JSON.parse(data.htLangJSON[lang]);
 
 	Foxtrick.XMLData.htCurrencyJSON = JSON.parse(data.currencyJSON);
@@ -102,34 +112,52 @@ Foxtrick.entry.contentScriptInit = function(data) {
 	Foxtrick.XMLData.countryToLeague = data.countryToLeague;
 };
 
-// called on browser load and after preferences changes
-// (background side for sandboxed, fennec)
+
+/**
+ * called on browser load and after preferences changes
+ *
+ * (background side for sandboxed)
+ *
+ * @param  {boolean} reInit
+ */
 Foxtrick.entry.init = function(reInit) {
 	// Foxtrick.log('Initializing Foxtrick... reInit:', reInit);
 
 	// add MODULE_NAME to modules
-	for (var mName in Foxtrick.modules)
+	for (let mName in Foxtrick.modules)
 		Foxtrick.modules[mName].MODULE_NAME = mName;
 
-	var coreModules = [Foxtrick.Prefs, Foxtrick.L10n, Foxtrick.XMLData];
-	for (var i = 0; i < coreModules.length; ++i) {
-		if (typeof coreModules[i].init === 'function')
-			coreModules[i].init(reInit);
+	/** @type {FTBackgroundModuleMixin[]} */
+	let coreModules = [Foxtrick.Prefs, Foxtrick.L10n, Foxtrick.XMLData];
+	for (let core of coreModules) {
+		if (typeof core.init === 'function')
+			core.init(reInit);
 	}
 
-	var modules = Foxtrick.util.modules.getActive();
+	let modules = Foxtrick.util.modules.getActive();
 
 	Foxtrick.entry.niceRun(modules, function(m) {
 		if (typeof m.init == 'function')
-			return function() { m.init(reInit); };
+			return () => m.init(reInit);
+
 		return null;
 	});
 
 	// Foxtrick.log('Foxtrick initialization completed.');
 };
 
+/**
+ * @param  {document} doc
+ * @return {boolean}      whether to block automatic change() run
+ */
 Foxtrick.entry.run = function(doc) {
 	const PERFORMANCE_LOG_THRESHOLD = 50;
+
+	/**
+	 * @param  {document} doc
+	 * @param  {FTModule} m
+	 * @return {function}
+	 */
 	let getModuleRunner = (doc, m) => () => {
 		let begin = new Date();
 
@@ -142,9 +170,15 @@ Foxtrick.entry.run = function(doc) {
 
 	try {
 		let modules = Foxtrick.util.modules.getActive(doc);
-		let ngApp = doc.querySelector('#mainWrapper ng-app, #mainBody ng-app');
+		let ngApp = doc.querySelector('#mainWrapper ng-app, #mainBody ng-app, ' +
+			'#mainWrapper [ng-app], #mainBody [ng-app]');
 		let shouldDelay = !!ngApp && ngApp.getAttribute('app') != 'chat';
-		let delayed = [], promise;
+
+		/** @type {FTModule[]} */
+		let delayed = [];
+
+		/** @type {Promise<document>} */
+		let promise;
 
 		if (shouldDelay) {
 			promise = new Promise((resolve) => {
@@ -182,7 +216,7 @@ Foxtrick.entry.run = function(doc) {
 			promise.then((doc) => {
 				Foxtrick.entry.niceRun(delayed, m => getModuleRunner(doc, m));
 				Foxtrick.entry.change(doc, []);
-				Foxtrick.startListenToChange(doc);
+				Foxtrick.startObserver(doc);
 			});
 			return true; // block change
 		}
@@ -196,44 +230,56 @@ Foxtrick.entry.run = function(doc) {
 	return false;
 };
 
+/**
+ * @param  {document} doc
+ * @param  {Node[]}   changes
+ */
 Foxtrick.entry.change = function(doc, changes) {
 	try {
 		// don't act to changes on the excluded pages
-		var mutationExcludes = [
+		let mutationExcludes = [
 			/^\/Club\/Matches\/MatchOrder\//i,
 			/^\/Community\/CHPP\/ChppPrograms\.aspx/i,
 			/^\/Club\/Arena\/ArenaUsage\.aspx/i,
 			/^\/Club\/Matches\/Live\.aspx/i,
 			/^\/MatchOrder\/(Default.aspx|$)/i,
 		];
-		var excluded = Foxtrick.any(function(ex) {
+		let excluded = Foxtrick.any(function(ex) {
 			return ex.test(doc.location.pathname);
 		}, mutationExcludes);
 
 		if (excluded)
 			return;
 
-		var ignoredClasses = [
+		let ignoredClasses = [
 			'ft-ignore-changes',
 			'ft-popup-span',
 		];
-		var isIgnored = function(node) {
-			return Foxtrick.any(function(cls) {
-				return Foxtrick.hasClass(node, cls);
-			}, ignoredClasses);
+
+		/**
+		 * @param  {Element} node
+		 * @return {boolean}
+		 */
+		let isIgnored = function(node) {
+			return Foxtrick.any(cls => Foxtrick.hasClass(node, cls), ignoredClasses);
 		};
 
-		if (Foxtrick.any(isIgnored, changes))
+		// @ts-ignore
+		let filtered = changes.filter(c => c instanceof doc.defaultView.Element);
+		let els = /** @type {Element[]} */ (filtered);
+
+		if (Foxtrick.any(isIgnored, els))
 			return;
 
 		Foxtrick.log('call modules change functions');
 
-		var modules = Foxtrick.util.modules.getActive(doc);
+		let modules = Foxtrick.util.modules.getActive(doc);
 
 		// invoke niceRun to run modules
-		Foxtrick.entry.niceRun(modules, function(m) {
+		Foxtrick.entry.niceRun(modules, (m) => {
 			if (typeof m.change === 'function')
-				return function() { m.change(doc); };
+				return () => m.change(doc);
+
 			return null;
 		});
 
@@ -249,20 +295,21 @@ Foxtrick.entry.change = function(doc, changes) {
  *
  * makeFn(module) should return function(void) or null.
  *
- * @param {array}    modules {Array.<object>}
- * @param {function} makeFn  {function(object)->?function}
+ * @template {FTModule} M
+ * @param {M[]}                  modules {Array.<object>}
+ * @param {function(M):function} makeFn  {function(object)->?function}
  */
 Foxtrick.entry.niceRun = function(modules, makeFn) {
-	var mdls = Foxtrick.unique(modules);
+	let mdls = Foxtrick.unique(modules);
 	mdls.sort(function(a, b) {
-		var aNice = a.NICE || 0;
-		var bNice = b.NICE || 0;
+		let aNice = a.NICE || 0;
+		let bNice = b.NICE || 0;
 		return aNice - bNice;
 	});
 
 	Foxtrick.forEach(function(m) {
 		try {
-			var fn = makeFn(m);
+			let fn = makeFn(m);
 			if (typeof fn === 'function')
 				fn();
 		}
@@ -275,39 +322,44 @@ Foxtrick.entry.niceRun = function(modules, makeFn) {
 	}, mdls);
 };
 
+/**
+ * @param  {document} doc
+ */
 Foxtrick.entry.checkCSS = function(doc) {
+	// TODO arch: {contentPrivileged: boolean}
 	if (Foxtrick.platform == 'Firefox' && Foxtrick.Prefs.getBool('preferences.updated')) {
 		Foxtrick.log('prefs updated');
 
 		Foxtrick.entry.init(true); // reInit
 
-		Foxtrick.util.css.reload_module_css(doc);
+		Foxtrick.util.css.reloadModuleCSS(doc);
 		Foxtrick.entry.cssLoaded = true;
 
 		Foxtrick.Prefs.setBool('preferences.updated', false);
 	}
 
 	// set up direction and style attributes
-	var currentTheme = Foxtrick.util.layout.isStandard(doc) ? 'standard' : 'simple';
-	var currentDir = Foxtrick.util.layout.isRtl(doc) ? 'rtl' : 'ltr';
-	var oldTheme = Foxtrick.Prefs.getString('theme');
-	var oldDir = Foxtrick.Prefs.getString('dir');
+	let currentTheme = Foxtrick.util.layout.isStandard(doc) ? 'standard' : 'simple';
+	let currentDir = Foxtrick.util.layout.isRtl(doc) ? 'rtl' : 'ltr';
+	let oldTheme = Foxtrick.Prefs.getString('theme');
+	let oldDir = Foxtrick.Prefs.getString('dir');
 	if (currentTheme != oldTheme || currentDir != oldDir) {
 		Foxtrick.log('layout change');
 
 		Foxtrick.Prefs.setString('theme', currentTheme);
 		Foxtrick.Prefs.setString('dir', currentDir);
 
-		Foxtrick.util.css.reload_module_css(doc);
+		Foxtrick.util.css.reloadModuleCSS(doc);
 		Foxtrick.entry.cssLoaded = true;
 	}
 
-	var html = doc.documentElement;
+	let html = doc.documentElement;
 	html.dir = currentDir;
 	html.dataset.theme = currentTheme;
 
+	// TODO fennec
 	if (Foxtrick.platform == 'Android') {
-		var fennecTheme = /Forum/i.test(doc.location.href) ? 'forum' : 'default';
+		let fennecTheme = /Forum/i.test(doc.location.href) ? 'forum' : 'default';
 		html.dataset.fennecTheme = fennecTheme;
 	}
 
@@ -320,7 +372,7 @@ Foxtrick.entry.checkCSS = function(doc) {
 	if (!Foxtrick.entry.cssLoaded) {
 		Foxtrick.log('CSS not loaded');
 
-		Foxtrick.util.css.reload_module_css(doc);
+		Foxtrick.util.css.reloadModuleCSS(doc);
 		Foxtrick.entry.cssLoaded = true;
 	}
 };

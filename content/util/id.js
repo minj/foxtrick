@@ -28,191 +28,289 @@ Foxtrick.util.id.getOwnLeagueId = function() {
 	return Foxtrick.modules.Core.TEAM.leagueId;
 };
 
+/**
+ * @param  {string} href
+ * @return {boolean}
+ */
 Foxtrick.util.id.isSeriesDetailUrl = function(href) {
-	return href.match(/Series\/(Default\.aspx)?\?LeagueLevelUnitID=/i);
+	return /Series\/(Default\.aspx)?\?LeagueLevelUnitID=/i.test(href);
 };
 
+/**
+ * @param  {number} teamId
+ * @return {boolean}
+ */
 Foxtrick.util.id.isNTId = function(teamId) {
+	// eslint-disable-next-line no-magic-numbers
 	return teamId >= 3000 && teamId < 4000; // regular teams seem to start @5000
 };
 
+/**
+ * @param  {string} url
+ * @return {number}
+ */
 Foxtrick.util.id.getLeagueLeveUnitIdFromUrl = function(url) {
-	return url.replace(/.+leagueLevelUnitID=/i, '').match(/^\d+/);
+	let p = Foxtrick.getUrlParam(url, 'leagueLevelUnitID');
+	return Number(p);
 };
 
+/**
+ * @param  {string} url
+ * @return {number}
+ */
+Foxtrick.util.id.getUserIdFromUrl = function(url) {
+	let p = Foxtrick.getUrlParam(url, 'userId');
+	return p ? Number(p) : null;
+};
+
+/**
+ * @param  {string} url
+ * @return {number}
+ */
+Foxtrick.util.id.getTeamIdFromUrl = function(url) {
+	let p = Foxtrick.getUrlParam(url, 'TeamID') || Foxtrick.getUrlParam(url, 'YouthTeamID');
+	return p ? Number(p) : null;
+};
+
+/**
+ * @param  {string} url
+ * @return {number}
+ */
+Foxtrick.util.id.getYouthTeamIdFromUrl = function(url) {
+	let p = Foxtrick.getUrlParam(url, 'YouthTeamID');
+	return p ? Number(p) : null;
+};
+
+/**
+ * @param  {string} url
+ * @return {number}
+ */
+Foxtrick.util.id.getMatchIdFromUrl = function(url) {
+	let p = Foxtrick.getUrlParam(url, 'matchID') || Foxtrick.getUrlParam(url, 'youthMatchID');
+	return p ? Number(p) : null;
+};
+
+/**
+ * @param  {HTMLAnchorElement} link
+ * @return {number}
+ */
+Foxtrick.util.id.getSkillLevelFromLink = function(link) {
+	var value = link.href.replace(/.+(ll|labellevel)=/i, '').match(/^\d+/);
+	return parseInt(String(value), 10);
+};
+
+/**
+ * @param  {Element} element
+ * @return {number}
+ */
 Foxtrick.util.id.findLeagueId = function(element) {
 	if (!element)
 		return null;
 
-	var links = Foxtrick.filter(function(n) {
-		return n.hasAttribute('href');
-	}, element.getElementsByTagName('a'));
-	for (var i = 0; i < links.length; i++) {
-		if (links[i].href.match(/League\.aspx/i)) {
-			return Number(links[i].href.replace(/.+leagueid=/i, '').match(/^\d+/)[0]);
+	/** @type {NodeListOf<HTMLAnchorElement>} */
+	let links = element.querySelectorAll('a[href]');
+	for (let link of links) {
+		if (link.href.match(/League\.aspx/i)) {
+			let p = Foxtrick.getUrlParam(link.href, 'leagueid');
+			return Number(p);
 		}
 	}
 	return null;
 };
 
+/**
+ * @param  {Element} element
+ * @return {number}
+ */
 Foxtrick.util.id.findUserId = function(element) {
-	var links = Foxtrick.filter(function(n) {
-		return n.hasAttribute('href');
-	}, element.getElementsByTagName('a'));
-	for (var i = 0; i < links.length; i++) {
-		if (links[i].href.match(/userId/i)) {
-			return Number(links[i].href.replace(/.+userId=/i, '').match(/^\d+/)[0]);
-		}
-	}
-	return null;
-};
-Foxtrick.util.id.getUserIdFromUrl = function(url) {
-	var matched = url.match(/UserID=(\d+)/i);
-	return matched ? Number(matched[1]) : null;
-};
+	if (!element)
+		return null;
 
-Foxtrick.util.id.getTeamIdFromUrl = function(url) {
-	var matched = url.match(/TeamID=(\d+)/i);
-	return matched ? Number(matched[1]) : null;
-};
-
-Foxtrick.util.id.getYouthTeamIdFromUrl = function(url) {
-	var matched = url.match(/YouthTeamID=(\d+)/i);
-	return matched ? Number(matched[1]) : null;
-};
-
-Foxtrick.util.id.getMatchIdFromUrl = function(url) {
-	var matched = url.match(/matchID=(\d+)/i);
-	return matched ? Number(matched[1]) : null;
-};
-
-Foxtrick.util.id.isTeamDetailUrl = function(href) {
-	return href.match(/.+TeamID=/i);
-};
-
-Foxtrick.util.id.extractTeamName = function(element) {
-	var links = Foxtrick.filter(function(n) {
-		return n.hasAttribute('href');
-	}, element.getElementsByTagName('a'));
-	for (var i = 0; i < links.length; i++) {
-		if (Foxtrick.util.id.isTeamDetailUrl(links[i].href)) {
-			return links[i].textContent.trim();
+	/** @type {NodeListOf<HTMLAnchorElement>} */
+	let links = element.querySelectorAll('a[href]');
+	for (let link of links) {
+		if (/UserID=/i.test(link.href)) {
+			let p = Foxtrick.getUrlParam(link.href, 'UserID');
+			return p ? Number(p) : null;
 		}
 	}
 	return null;
 };
 
+/**
+ * @param  {Element} element
+ * @return {number}
+ */
 Foxtrick.util.id.findMatchId = function(element) {
-	var links = Foxtrick.filter(function(n) {
-		return n.hasAttribute('href');
-	}, element.getElementsByTagName('a'));
-	for (var i = 0; i < links.length; i++) {
-		if (links[i].href.match(/Club\/Matches\/Match\.aspx/i)) {
-			return Number(links[i].href.replace(/.+matchID=/i, '').match(/^\d+/)[0]);
+	if (!element)
+		return null;
+
+	/** @type {NodeListOf<HTMLAnchorElement>} */
+	let links = element.querySelectorAll('a[href]');
+	for (let link of links) {
+		if (/Club\/Matches\/Match\.aspx/i.test(link.href)) {
+			let p = Foxtrick.getUrlParam(link.href, 'matchID') ||
+				Foxtrick.getUrlParam(link.href, 'youthMatchID');
+
+			return p ? Number(p) : null;
 		}
 	}
 	return null;
 };
 
-Foxtrick.util.id.findIsYouthMatch = function(href) {
-	if (href.match(/Club\/Matches\/Match\.aspx/i)) {
-		return (href.search(/isYouth=true|SourceSystem=Youth/i) != -1);
-	}
-	return false;
-};
 
+/**
+ * @param  {Element} element
+ * @return {number}
+ */
 Foxtrick.util.id.findTeamId = function(element) {
-	if (element == null)
-		return;
+	if (!element)
+		return null;
 
-	var links = Foxtrick.filter(function(n) {
-		return n.hasAttribute('href');
-	}, element.getElementsByTagName('a'));
-	for (var i = 0; i < links.length; i++) {
-		if (links[i].href.match(/TeamID=/i)) {
-			return Number(links[i].href.replace(/.+TeamID=/i, '').match(/^\d+/)[0]);
+	/** @type {NodeListOf<HTMLAnchorElement>} */
+	let links = element.querySelectorAll('a[href]');
+	for (let link of links) {
+		if (/TeamID=/i.test(link.href)) {
+			let p = Foxtrick.getUrlParam(link.href, 'TeamID') ||
+				Foxtrick.getUrlParam(link.href, 'youthTeamID');
+			return p ? Number(p) : null;
 		}
 	}
 	return null;
 };
 
+/**
+ * @param  {Element} element
+ * @return {number}
+ */
 Foxtrick.util.id.findYouthTeamId = function(element) {
-	var links = Foxtrick.filter(function(n) {
-		return n.hasAttribute('href');
-	}, element.getElementsByTagName('a'));
+	if (!element)
+		return null;
 
-	for (var i = 0; i < links.length; i++) {
-		if (links[i].href.match(/YouthTeamID=/i)) {
-			return Number(links[i].href.replace(/.+YouthTeamID=/i, '').match(/^\d+/)[0]);
+	/** @type {NodeListOf<HTMLAnchorElement>} */
+	let links = element.querySelectorAll('a[href]');
+	for (let link of links) {
+		if (/YouthTeamID=/i.test(link.href)) {
+			let p = Foxtrick.getUrlParam(link.href, 'YouthTeamID');
+			return p ? Number(p) : null;
 		}
 	}
 	return null;
 };
 
-Foxtrick.util.id.findUserId = function(element) {
-	var links = Foxtrick.filter(function(n) {
-		return n.hasAttribute('href');
-	}, element.getElementsByTagName('a'));
-	for (var i = 0; i < links.length; i++) {
-		if (links[i].href.match(/UserID=/i)) {
-			return Number(links[i].href.replace(/.+UserID=/i, '').match(/^\d+/));
-		}
-	}
-	return false;
-};
+/**
+ * @param  {Element} element
+ * @param  {number} firstTeamId
+ * @return {number}
+ */
+Foxtrick.util.id.findSecondTeamId = function(element, firstTeamId) {
+	if (!element)
+		return null;
 
+	/** @type {NodeListOf<HTMLAnchorElement>} */
+	let links = element.querySelectorAll('a[href]');
+	for (let link of links) {
+		if (/TeamID=/i.test(link.href)) {
+			let p = Foxtrick.getUrlParam(link.href, 'TeamID') ||
+				Foxtrick.getUrlParam(link.href, 'YouthTeamID');
 
-Foxtrick.util.id.findSecondTeamId = function(element, firstteamid) {
-	var links = Foxtrick.filter(function(n) {
-		return n.hasAttribute('href');
-	}, element.getElementsByTagName('a'));
-	for (var i = 0; i < links.length; i++) {
-		if (links[i].href.match(/TeamID=/i)) {
-			var id = links[i].href.replace(/.+TeamID=/i, '').match(/^\d+/)[0];
-			if (id != firstteamid)
-				return Number(id);
+			if (p && p != String(firstTeamId))
+				return Number(p);
 		}
 	}
 	return 0;
 };
 
+/**
+ * @param  {Element} element
+ * @return {number}
+ */
 Foxtrick.util.id.findPlayerId = function(element) {
-	var links = Foxtrick.filter(function(n) {
-		return n.hasAttribute('href');
-	}, element.getElementsByTagName('a'));
-	for (var i = 0; i < links.length; i++) {
-		if (links[i].href.match(/playerID=/i)) {
-			return Number(links[i].href.replace(/.+playerID=/i, '').match(/^\d+/)[0]);
+	if (!element)
+		return null;
+
+	/** @type {NodeListOf<HTMLAnchorElement>} */
+	let links = element.querySelectorAll('a[href]');
+	for (let link of links) {
+		if (/playerID=/i.test(link.href)) {
+			let p = Foxtrick.getUrlParam(link.href, 'playerID') ||
+				Foxtrick.getUrlParam(link.href, 'YouthplayerID');
+			return p ? Number(p) : null;
 		}
 	}
 	return null;
 };
 
+/**
+ * @param  {Element} element
+ * @return {number}
+ */
 Foxtrick.util.id.findYouthPlayerId = function(element) {
-	var links = Foxtrick.filter(function(n) {
-		return n.hasAttribute('href');
-	}, element.getElementsByTagName('a'));
-	for (var i = 0; i < links.length; i++) {
-		if (links[i].href.match(/YouthPlayerID=/i)) {
-			return Number(links[i].href.replace(/.+YouthPlayerID=/i, '').match(/^\d+/)[0]);
+	if (!element)
+		return null;
+
+	/** @type {NodeListOf<HTMLAnchorElement>} */
+	let links = element.querySelectorAll('a[href]');
+	for (let link of links) {
+		if (/YouthPlayerID=/i.test(link.href)) {
+			let p = Foxtrick.getUrlParam(link.href, 'YouthplayerID');
+			return p ? Number(p) : null;
 		}
 	}
 	return null;
 };
 
-Foxtrick.util.id.getSkillLevelFromLink = function(link) {
-	var value = link.href.replace(/.+(ll|labellevel)=/i, '').match(/^\d+/);
-	return parseInt(value, 10);
+/**
+ * @param  {Element} element
+ * @return {number}
+ */
+Foxtrick.util.id.findLeagueLeveUnitId = function(element) {
+	if (!element)
+		return null;
+
+	/** @type {NodeListOf<HTMLAnchorElement>} */
+	let links = element.querySelectorAll('a[href]');
+	for (let link of links) {
+		if (/Series\/(Default\.aspx)?\?LeagueLevelUnitID=/i.test(link.href)) {
+			let p = Foxtrick.getUrlParam(link.href, 'leagueLevelUnitID');
+			return p ? Number(p) : null;
+		}
+	}
+	return null;
 };
 
-Foxtrick.util.id.extractLeagueName = function(element) {
-	var links = Foxtrick.filter(function(n) {
-		return n.hasAttribute('href');
-	}, element.getElementsByTagName('a'));
-	for (var i = 0; i < links.length; i++) {
-		if (Foxtrick.util.id.isSeriesDetailUrl(links[i].href)) {
-			return links[i].text.trim();
+/**
+ * @param  {Element} element
+ * @return {number}
+ */
+Foxtrick.util.id.findYouthLeagueId = function(element) {
+	if (!element)
+		return null;
+
+	/** @type {NodeListOf<HTMLAnchorElement>} */
+	let links = element.querySelectorAll('a[href]');
+	for (let link of links) {
+		if (/YouthLeagueId=/i.test(link.href)) {
+			let p = Foxtrick.getUrlParam(link.href, 'YouthLeagueId');
+			return p ? Number(p) : null;
 		}
+	}
+	return null;
+};
+
+/**
+ * @param  {Element} element
+ * @return {string}
+ */
+Foxtrick.util.id.extractLeagueName = function(element) {
+	if (!element)
+		return null;
+
+	/** @type {NodeListOf<HTMLAnchorElement>} */
+	let links = element.querySelectorAll('a[href]');
+	for (let link of links) {
+		if (Foxtrick.util.id.isSeriesDetailUrl(link.href))
+			return link.text.trim();
 	}
 	return null;
 };
@@ -222,7 +320,7 @@ Foxtrick.util.id.extractLeagueName = function(element) {
  * levelnum is division number, seriesnum is series number in that division.
  * @param  {string} seriesName
  * @param  {number} leagueId
- * @return {array}             Array.<number>
+ * @return {[number, number]}
  */
 Foxtrick.util.id.parseSeries = function(seriesName, leagueId) {
 	if (!seriesName || !leagueId)
@@ -230,36 +328,34 @@ Foxtrick.util.id.parseSeries = function(seriesName, leagueId) {
 
 	var level, number;
 	var m = seriesName.match(/^([IVX])+\.(\d+)$/);
-	if (!m) {
-		if (leagueId == 1) {
-			// Sweden
-			if ((m = seriesName.match(/^II\.?([a-z])$/))) {
-				level = 3;
-			}
-			else if ((m = seriesName.match(/^I([a-z])$/))) {
-				level = 2;
-			}
-			else {
-				level = 1;
-			}
-
-			number = m ? m[1].charCodeAt(0) - 'a'.charCodeAt(0) + 1 : 1;
-		}
-		else {
-			level = number = 1;
-		}
-	}
-	else {
-		var dec = Foxtrick.util.id.romantodecimal(m[1]);
-		if (leagueId == '1') {
+	if (m) {
+		let [_, roman, num] = m;
+		var dec = Foxtrick.util.id.romantodecimal(roman);
+		if (String(leagueId) == '1') {
 			// Sweden
 			level = dec + 1;
 		}
 		else {
 			level = dec;
 		}
-		number = parseInt(m[2], 10);
+		number = parseInt(num, 10);
 	}
+	else if (leagueId == 1) {
+		// Sweden
+		if ((m = seriesName.match(/^II\.?([a-z])$/)))
+			// eslint-disable-next-line no-magic-numbers
+			level = 3;
+		else if ((m = seriesName.match(/^I([a-z])$/)))
+			level = 2;
+		else
+			level = 1;
+
+		number = m ? m[1].charCodeAt(0) - 'a'.charCodeAt(0) + 1 : 1;
+	}
+	else {
+		level = number = 1;
+	}
+
 	return [level, number];
 };
 
@@ -287,24 +383,12 @@ Foxtrick.util.id.romantodecimal = function(roman) {
 	/* eslint-enable no-magic-numbers */
 };
 
-Foxtrick.util.id.findLeagueLeveUnitId = function(element) {
-	var links = Foxtrick.filter(function(n) {
-		return n.hasAttribute('href');
-	}, element.getElementsByTagName('a'));
-	for (var i = 0; i < links.length; i++) {
-		if (links[i].href.match(/Series\/(Default\.aspx)?\?LeagueLevelUnitID=/i)) {
-			return Number(links[i].href.replace(/.+leagueLevelUnitID=/i, '').match(/^\d+/)[0]);
-		}
-	}
-	return null;
-};
-
 /**
  * Returns a flag as a link element
  * link href and img title may optionally override defaults:
  * league link and league name respectively
  *
- * README: DO NOT use if leagueId is available
+ * !README: DO NOT use if leagueId is available
  *
  * @param  {document} doc
  * @param  {number}   countryId
@@ -313,7 +397,7 @@ Foxtrick.util.id.findLeagueLeveUnitId = function(element) {
  * @return {Element}            flag
  */
 Foxtrick.util.id.createFlagFromCountryId = function(doc, countryId, href, title) {
-	var leagueId = Foxtrick.XMLData.getLeagueIdByCountryId(countryId);
+	let leagueId = Foxtrick.XMLData.getLeagueIdByCountryId(countryId);
 	return Foxtrick.util.id.createFlagFromLeagueId(doc, leagueId, href, title);
 };
 
@@ -355,16 +439,4 @@ Foxtrick.util.id.createFlagFromLeagueId = function(doc, leagueId, href, title) {
 	flag.className = 'flag inner';
 	flag.appendChild(img);
 	return flag;
-};
-
-Foxtrick.util.id.findYouthLeagueId = function(element) {
-	var links = Foxtrick.filter(function(n) {
-		return n.hasAttribute('href');
-	}, element.getElementsByTagName('a'));
-	for (var i = 0; i < links.length; i++) {
-		if (links[i].href.match(/YouthLeagueId=/i)) {
-			return Number(links[i].href.replace(/.+YouthLeagueId=/i, '').match(/^\d+/)[0]);
-		}
-	}
-	return null;
 };

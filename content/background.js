@@ -9,8 +9,6 @@
 
 'use strict';
 
-/* global Browser */
-
 /* eslint-disable */
 if (!this.Foxtrick)
 	var Foxtrick = {};
@@ -21,17 +19,30 @@ if (!Foxtrick.loader)
 
 Foxtrick.loader.background = {};
 
-// listener for request from content script
+/** @type {Record<string, OnMessageListener>} */
+Foxtrick.loader.background.requests = {};
+
+/**
+ * listener for request from content script
+ *
+ * @param  {*} request
+ * @param  {chrome.runtime.MessageSender} sender
+ * @param  {ResponseCb} sendResponse
+ * @return {boolean}
+ */
 Foxtrick.loader.background.contentRequestsListener = function(request, sender, sendResponse) {
 	try {
 		let reqHandlers = Foxtrick.loader.background.requests;
 		let handler = reqHandlers[request.req];
 
-		return handler.call(reqHandlers, request, sender, sendResponse);
+		return handler.call(reqHandlers, request, sender, sendResponse) || false;
 	}
 	catch (e) {
 		Foxtrick.log('Foxtrick - background onRequest error:', request.req, e);
-		sendResponse({ error: 'Foxtrick - background onRequest: ' + e });
+
+		/** @type {FT.BGError} */
+		let response = { error: 'Foxtrick - background onRequest: ' + e };
+		sendResponse(response);
 	}
 	return false;
 };
@@ -50,7 +61,11 @@ Foxtrick.loader.background.browserLoad = function() {
 
 		Foxtrick.log('Foxtrick.loader.background.browserLoad');
 
-		var currencyJSON, aboutJSON, worldDetailsJSON, htLanguagesJSONText, cssTextCollection;
+		var [currencyJSON, aboutJSON, worldDetailsJSON, cssTextCollection] =
+			/** @type {string[]} */ ([]);
+
+		/** @type {Record<string, string>} */
+		var htLanguagesJSONText;
 
 		let updateResources = function(reInit) {
 			// init resources
@@ -76,12 +91,13 @@ Foxtrick.loader.background.browserLoad = function() {
 
 		// calls module.onLoad() after the extension is loaded
 		for (let module of Object.values(Foxtrick.modules)) {
-			if (typeof module.onLoad === 'function') {
+			let m = /** @type {FTBackgroundModuleMixin} */ (module);
+			if (typeof m.onLoad === 'function') {
 				try {
-					module.onLoad(document);
+					m.onLoad(document);
 				}
 				catch (e) {
-					Foxtrick.log('Error caught in module', module.MODULE_NAME, ':', e);
+					Foxtrick.log('Error caught in module', m.MODULE_NAME, ':', e);
 				}
 			}
 		}
@@ -93,7 +109,6 @@ Foxtrick.loader.background.browserLoad = function() {
 		// format: this.requests.requestName
 		// callback will be called with a sole JSON as argument
 		// sender not defined well for all browsers
-		this.requests = {};
 
 		// called to parse a copy of the settings and data to the content script
 		// pageLoad: on HT pages for chrome/safari
@@ -104,25 +119,32 @@ Foxtrick.loader.background.browserLoad = function() {
 			if (Foxtrick.arch == 'Sandboxed' && localStorage.getItem('preferences.updated')	||
 				Foxtrick.platform == 'Android' &&
 				Foxtrick.Prefs._prefs_gecko.getBoolPref('preferences.updated')) {
- 				// reInit
+
+				// reInit
 				updateResources(true);
 			}
 
+			let [prefsChromeDefault, prefsChromeUser] = Foxtrick.Prefs.clone();
+
+			/** @type {FT.ResourceDict} */
 			let resource = {
-				_prefs_chrome_user: Foxtrick.Prefs._prefs_chrome_user,
-				_prefs_chrome_default: Foxtrick.Prefs._prefs_chrome_default,
+				prefsChromeUser,
+				prefsChromeDefault,
 
 				htLangJSON: htLanguagesJSONText,
-				properties_default: Foxtrick.L10n.properties_default,
-				properties: Foxtrick.L10n.properties,
-				screenshots_default: Foxtrick.L10n.screenshots_default,
-				screenshots: Foxtrick.L10n.screenshots,
-				plForm: Foxtrick.L10n.plForm,
-				plForm_default: Foxtrick.L10n.plForm_default,
 
-				currencyJSON: currencyJSON,
-				aboutJSON: aboutJSON,
-				worldDetailsJSON: worldDetailsJSON,
+				propertiesDefault: Foxtrick.L10n.propertiesDefault,
+				properties: Foxtrick.L10n.properties,
+				screenshotsDefault: Foxtrick.L10n.screenshotsDefault,
+				screenshots: Foxtrick.L10n.screenshots,
+
+				plForm: Foxtrick.L10n.plForm,
+				plFormDefault: Foxtrick.L10n.plFormDefault,
+
+				currencyJSON,
+				aboutJSON,
+				worldDetailsJSON,
+
 				league: Foxtrick.XMLData.League,
 				countryToLeague: Foxtrick.XMLData.countryToLeague,
 			};
@@ -403,3 +425,32 @@ Foxtrick.loader.background.browserLoad = function() {
 // this is the background script entry point for sandboxed arch
 if (Foxtrick.arch == 'Sandboxed')
 	Foxtrick.loader.background.browserLoad();
+
+
+/**
+ * @typedef FT.ResourceDict
+ * @prop {Record<string, *>} prefsChromeUser
+ * @prop {Record<string, *>} prefsChromeDefault
+
+ * @prop {Record<string, string>} propertiesDefault
+ * @prop {Record<string, string>} properties
+ * @prop {string} screenshotsDefault
+ * @prop {string} screenshots
+
+ * @prop {number} plForm
+ * @prop {number} plFormDefault
+ *
+ * @prop {string} [cssText]
+
+ * @prop {Record<string, string>} htLangJSON
+ * @prop {string} currencyJSON
+ * @prop {string} aboutJSON
+ * @prop {string} worldDetailsJSON
+ * @prop {Record<number, LeagueDefinition>} league
+ * @prop {Record<number, number>} countryToLeague
+ */
+
+/**
+ * @typedef FT.BGError
+ * @prop {string} error
+ */

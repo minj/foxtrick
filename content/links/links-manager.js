@@ -8,7 +8,7 @@
 Foxtrick.modules['LinksManager'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
 	PAGES: ['managerPage'],
-	LINK_TYPE: 'managerlink',
+	LINK_TYPES: 'managerlink',
 	/**
 	 * return HTML for FT prefs
 	 * @param  {document}         doc

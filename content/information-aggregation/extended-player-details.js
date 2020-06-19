@@ -123,7 +123,10 @@ Foxtrick.modules['ExtendedPlayerDetailsWage'] = {
 			var wageWOBonus = Foxtrick.Prefs.isModuleOptionEnabled(module, 'WageWithoutBonus');
 			var seasonWage = Foxtrick.Prefs.isModuleOptionEnabled(module, 'SeasonWage');
 
-			let wageSpan, wageString = wageCell.textContent;
+			let wageString = wageCell.textContent;
+
+			/** @type {HTMLSpanElement} */
+			let wageSpan;
 			if ((wageSpan = wageCell.querySelector('span[title]'))) {
 				let amount = wageCell.firstChild.textContent;
 				wageString = amount + wageSpan.title.replace(/^[\d\s]+/, '');

@@ -118,10 +118,14 @@ Foxtrick.util.note.add = function(doc, msg, noteId, options) {
 	return note;
 };
 
+
 /**
  * Returns a note with a loading spinner.
  * Loading text can optionally be customized (defaults to Loading...).
  * inline: true returns a basic span
+ *
+ * TODO check if all calls test for xmlLoad pref
+ *
  * @param  {document}    doc
  * @param  {string}      [loadingText]
  * @param  {boolean}     [inline]

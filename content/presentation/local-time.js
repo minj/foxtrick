@@ -17,9 +17,8 @@ Foxtrick.modules.LocalTime = {
 	run: function(doc) {
 		const module = this;
 
-		var time = doc.getElementById('time');
-
 		// icon for Hattrick time zone
+		var time = doc.getElementById('time');
 		time.title = Foxtrick.L10n.getString('LocalTime.hattrick.title');
 		time = Foxtrick.makeFeaturedElement(time, module);
 
@@ -28,7 +27,7 @@ Foxtrick.modules.LocalTime = {
 		localTime.id = 'ft-local-time';
 
 		var updateTime = function() {
-			localTime.textContent = Foxtrick.util.time.buildDate(null, { showSecs: true });
+			localTime.textContent = Foxtrick.util.time.buildDate(void 0, { showSecs: true });
 		};
 
 		// Chrome needs characterData, FF needs childList
@@ -113,7 +112,7 @@ Foxtrick.modules.LocalTime = {
 					date.appendChild(ddl);
 
 				// set original time as attribute for reference from other modules
-				date.dataset.userDate = userDate.getTime();
+				date.dataset.userDate = String(userDate.getTime());
 			}
 		}
 		else {

@@ -13,23 +13,7 @@
 		}
 	},
 	"list": [
-		{ "id": "7837306", "name": "-schroeder-", "duty": "helper" },
-		{ "id": "1494131", "name": "a_cardoso", "duty": "helper" },
-		{ "id": "1393227", "name": "AmuseEmanc", "duty": "helper" },
-		{ "id": "8329542", "name": "Aristodemos", "duty": "helper" },
-		{ "id": "10355629", "name": "Art-Frisson", "duty": "helper" },
-		{ "id": "592272", "name": "Batigool", "duty": "helper" },
 		{ "id": "9100817", "name": "DavidatorusF", "duty": "helper" },
-		{ "id": "8257204", "name": "der_fips", "duty": "helper" },
-		{ "id": "3110519", "name": "DrBembel", "duty": "helper" },
-		{ "id": "12278912", "name": "Fresty", "duty": "helper" },
-		{ "id": "631477", "name": "GOD-of_Hell", "duty": "helper" },
-		{ "id": "9709772", "name": "okudera", "duty": "helper" },
-		{ "id": "11281423", "name": "Pyrotron", "duty": "helper" },
-		{ "id": "360241", "name": "RAGtime", "duty": "helper" },
-		{ "id": "3500819", "name": "SkyfireX", "duty": "helper" },
-		{ "id": "5543014", "name": "tatankov", "duty": "helper" },
-		{ "id": "6276339", "name": "Zoldon", "duty": "helper" },
 		{ "id": "2750668", "name": "alltid-oavsett", "duty": "translator" },
 		{ "id": "11328744", "name": "aMiUK", "duty": "translator" },
 		{ "id": "335181", "name": "Baler0", "duty": "translator"},
@@ -81,10 +65,16 @@
 		{ "id": "881906", "name": "ultracool", "duty": "translator"},
 		{ "id": "11741437", "name": "YLMZ-VRL", "duty": "translator"},
 		{ "id": "9855688", "name": "Nika_Kvrivishvili", "duty": "translator"},
+		{ "id": "9359971", "name": "inter87", "duty": "translator"},
+		{ "id": "11542276", "name": "Sebas90", "duty": "translator"},
 		{ "id": "2684151", "name": "zymbo", "duty": "translator"},
 		{ "id": "13441219", "name": "capitaineFro", "duty": "developer"},
 		{ "id": "13458976", "name": "Mistermax80", "duty": "developer"},
 		{ "id": "11370368", "name": "yaute", "duty": "developer"},
 		{ "id": "10764047", "name": "brokenelevator", "duty": "developer"}
+		{ "id": "6992417", "name": "tychobrailleur", "duty": "developer"}
+		{ "id": "1757369", "name": "wsbrenk", "duty": "developer"}
+		{ "id": "5199830", "name": "xxPhAIxx", "duty": "developer"}
+		{ "id": "13609150", "name": "stefats", "duty": "developer"}
 	]
 }

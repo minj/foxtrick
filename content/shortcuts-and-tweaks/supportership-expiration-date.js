@@ -31,7 +31,8 @@ Foxtrick.modules['SupportershipExpirationDate'] = {
 		// feature highlight
 		Foxtrick.makeFeaturedElement(container, this);
 
-		let days = container.textContent.match(/\d+/);
+		let dMatch = container.textContent.match(/\d+/);
+		let days = parseInt(dMatch.toString(), 10);
 		let now = Foxtrick.util.time.getDate(doc);
 		let endDate = Foxtrick.util.time.addDaysToDate(now, days);
 

@@ -20,7 +20,7 @@ Foxtrick.modules['HeaderToggle'] = {
 
 		var getH2TextContent = function(h2) {
 			// remove some of our content to get original textContent of h2
-			var h2Clone = h2.cloneNode(true);
+			var h2Clone = Foxtrick.cloneElement(h2, true);
 			var highlight = h2Clone.getElementsByClassName('highlight')[0];
 			if (highlight)
 				highlight.parentNode.removeChild(highlight);

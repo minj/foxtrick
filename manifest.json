@@ -29,8 +29,10 @@
 			"content/lib/sha1.js",
 			"content/lib/PluralForm.js",
 			"content/lib/psico.js",
-			"content/lib/integration.js",
+			"content/lib/gauge.js",
 			// <!-- end ext-lib -->
+
+			"content/lib/integration.js",
 
 			// <!-- util -->
 			"content/util/api.js",
@@ -190,6 +192,7 @@
 			"content/matches/match-lineup-fixes.js",
 			"content/matches/match-lineup-tweaks.js",
 			"content/matches/match-order.js",
+			"content/matches/match-order-new.js",
 			"content/matches/match-player-colouring.js",
 			"content/matches/match-ratings-tweaks.js",
 			"content/matches/match-report-format.js",

@@ -72,7 +72,7 @@ Foxtrick.modules['LoyaltyDisplay'] = {
 				bonusBar.title = `+${bonus}\u00a0${l10n}`;
 
 				let denomination = bar.querySelector('.bar-denomination');
-				bonusBar.appendChild(denomination.cloneNode(true));
+				bonusBar.appendChild(Foxtrick.cloneElement(denomination, true));
 
 				let maxBar = bar.querySelector('.bar-max');
 				let levelBar = bar.querySelector('.bar-level');

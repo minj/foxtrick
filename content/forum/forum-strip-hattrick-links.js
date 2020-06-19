@@ -89,6 +89,8 @@ Foxtrick.modules['ForumStripHattrickLinks'] = {
 
 		// add submit listener
 		Foxtrick.onClick(target, function() {
+			/** @type {HTMLTextAreaElement} */
+			const textarea = doc.querySelector('#mainBody textarea');
 			let hasUrl = Foxtrick.any(u => u.reg.test(textarea.value), URLs);
 			if (!hasUrl)
 				return;

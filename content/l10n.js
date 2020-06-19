@@ -7,17 +7,57 @@
 
 'use strict';
 
+/* global PluralForm */
+
 /* eslint-disable */
 if (!this.Foxtrick)
+	// @ts-ignore
 	var Foxtrick = {};
 /* eslint-enable */
 
-/* global PluralForm */
+Foxtrick.L10n = (() => ({
+	// ------------------------- function stubs ---------------------------
 
-Foxtrick.L10n = {};
+	/* eslint-disable no-unused-vars */
 
-// jscs:disable disallowMultipleSpaces
+	/**
+	 * @param {boolean} [reInit]
+	 */
+	init(reInit) {},
 
+	/**
+	 * Test if a string is localized
+	 *
+	 * @param  {string}  str locale key
+	 * @return {boolean}
+	 */
+	isStringAvailableLocal(str) { return false; },
+
+	/**
+	 * Test if a string exists
+	 *
+	 * @param  {string}  str locale key
+	 * @return {boolean}
+	 */
+	isStringAvailable(str) { return false; },
+
+	/**
+	 * Get string localization.
+	 *
+	 * Optionally returns the correct plural form (or last if matching fails).
+	 * @throws if string is n/a
+	 *
+	 * @param  {string} str locale key
+	 * @param  {number} [num] number to substitute in plural (optional integer)
+	 * @return {string}
+	 */
+	getString(str, num) { return ''; },
+
+	/* eslint-enable no-unused-vars */
+
+}))();
+
+/* eslint-disable no-multi-spaces */
 /**
  * List of FT locale IDs/folders.
  *
@@ -84,9 +124,9 @@ Foxtrick.L10n.locales = [
 	'vi',     // 55  Tiếng Việt, Vietnamese
 	'vls-BE', // 65  Vlaams, Flemish (Belgian Dutch)
 	'zh-CN',  // 15  中文（简体）, Chinese (Simplified)
-],
-// jscs:disable disallowSpaceAfterObjectKeys, disallowQuotedKeysInObjects
+];
 
+/* eslint-disable quote-props, key-spacing */
 /**
  * Map HT Content-Language to FT locale ID/folder.
  *
@@ -152,9 +192,9 @@ Foxtrick.L10n.htMapping = {
 	'vi':    'vi',     // 55  Tiếng Việt, Vietnamese
 	'nl-be': 'vls-BE', // 65  Vlaams, Flemish (Belgian Dutch)
 	'zh':    'zh-CN',  // 15  中文（简体）, Chinese (Simplified)
-}; // jshint ignore:line
-// jscs:enable disallowSpaceAfterObjectKeys, disallowQuotedKeysInObjects
-// jscs:enable disallowMultipleSpaces
+};
+
+/* eslint-enable no-multi-spaces, quote-props, key-spacing */
 
 /**
  * Language definitions from htlang.json files
@@ -177,46 +217,14 @@ Foxtrick.L10n.plForm = 0;
  *
  * @type {Number} {Integer}
  */
-Foxtrick.L10n.plForm_default = 0;
-
-// ------------------------- function stubs ---------------------------
-// jshint ignore:start
-
-/**
- * Test if a string is localized
- *
- * @param  {string}  str locale key
- * @return {Boolean}
- */
-Foxtrick.L10n.isStringAvailableLocal = function(str) {};
-
-/**
- * Test if a string exists
- *
- * @param  {string}  str locale key
- * @return {Boolean}
- */
-Foxtrick.L10n.isStringAvailable = function(str) {};
-
-/**
- * Get string localization.
- *
- * Optionally returns the correct plural form (or last if matching fails).
- * @throws if string is n/a
- *
- * @param  {string} str locale key
- * @param  {number} [num] number to substitute in plural (optional integer)
- * @return {string}
- */
-Foxtrick.L10n.getString = function(str, num) {};
-// jshint ignore:end
+Foxtrick.L10n.plFormDefault = 0;
 
 /**
  * Generate a link from a l10n key with a link tag,
  * append it to parent and return it
  *
  * @param  {string}            str    locale key
- * @param  {element}           parent
+ * @param  {Element}           parent
  * @param  {string}            url
  * @return {HTMLAnchorElement}
  */
@@ -244,6 +252,14 @@ Foxtrick.L10n.appendLink = function(str, parent, url) {
 };
 
 /**
+ * @typedef HTLangPropQuery
+ * @prop {string} category
+ * @prop {string} filter
+ * @prop {string|number} value
+ * @prop {string} property
+ */
+
+/**
  * Get the value of a certain property from htlang.json.
  *
  * The query object {category, filter, value, property: string}
@@ -254,33 +270,29 @@ Foxtrick.L10n.appendLink = function(str, parent, url) {
  *
  * Optionally lang overrides language code to look in (defaults to user).
  *
- * @param  {Object} query {category, filter, value, property: string}
- * @param  {string} lang  language code
- * @return {string}       property value
+ * @param  {HTLangPropQuery} query  {category, filter, value, property: string}
+ * @param  {string}          [lang] language code
+ * @return {string}                 property value
  */
 Foxtrick.L10n.getHTLangProperty = function(query, lang) {
 	var prop = null;
-	if (!lang)
-		lang = Foxtrick.Prefs.getString('htLanguage');
 
-	if (!lang) {
-		Foxtrick.error('missing lang');
-		return null;
-	}
-
-	var json = Foxtrick.L10n.htLanguagesJSON[lang].language;
-	var array = json[query.category];
+	let l = lang || Foxtrick.Prefs.getString('htLanguage');
+	let json = Foxtrick.L10n.htLanguagesJSON[l].language;
+	let array = json[query.category];
 
 	if (Array.isArray(array)) {
-		var value = query.value.toString().trim();
-		var el = Foxtrick.nth(function(e) {
+		let value = String(query.value).trim();
+		let el = Foxtrick.nth(function(e) {
 			return e[query.filter] === value;
+
 			// return new RegExp('^' + e[query.filter], 'i').test(value);
 		}, array);
 
 		if (el && typeof el === 'object' && query.property in el)
 			prop = el[query.property];
 	}
+
 	return prop;
 };
 
@@ -298,24 +310,27 @@ Foxtrick.L10n.getHTLangProperty = function(query, lang) {
  * If property is not found English is looked up instead.
  * If that also fails, raw value is returned.
  *
- * @param  {Object} query {category, filter, value, property: string}
- * @param  {string} lang  language code
- * @return {string}       property value
+ * @param  {HTLangPropQuery} query  {category, filter, value, property: string}
+ * @param  {string}          [lang] language code
+ * @return {string}                 property value
  */
 Foxtrick.L10n.getLocalOrEnglish = function(query, lang) {
-	if (!lang)
-		lang = Foxtrick.Prefs.getString('htLanguage');
+	let l = lang || Foxtrick.Prefs.getString('htLanguage');
 
-	var text = this.getHTLangProperty(query, lang);
+	var text = this.getHTLangProperty(query, l);
 	if (text === null) {
-		var header = 'Requested ' + query.category + ':' + query.property +
-			' with ' + query.filter + '=' + query.value;
-		Foxtrick.error(header + ' does not exist in locale ' + lang + ', trying en instead.');
+		let header = [
+			'Requested',
+			`${query.category}:${query.property}`,
+			'with',
+			`${query.filter}=${query.value}`,
+		].join(' ');
+		Foxtrick.error(`${header} does not exist in locale ${l}, trying en instead.`);
 
-		text = this.getHTLangProperty(query, 'en');
+		text = this.getHTLangProperty(query, 'en-GB');
 		if (text === null) {
-			Foxtrick.error(header + ' does not exist, returning raw value.');
-			text = query.value;
+			Foxtrick.error(`${header} does not exist, returning raw value.`);
+			text = String(query.value);
 		}
 	}
 	return text;
@@ -330,7 +345,7 @@ Foxtrick.L10n.getLocalOrEnglish = function(query, lang) {
  * @return {number}
  */
 Foxtrick.L10n.getLevelFromText = function(text) {
-	text = text.trim();
+	var txt = text.trim();
 	var lang = Foxtrick.Prefs.getString('htLanguage');
 	if (!lang) {
 		Foxtrick.error('missing lang');
@@ -340,7 +355,7 @@ Foxtrick.L10n.getLevelFromText = function(text) {
 
 	var levelObj = Foxtrick.nth(function(jsonLevel) {
 		var levelText = Foxtrick.strToRe(jsonLevel.text);
-		return new RegExp('^' + levelText, 'i').test(text);
+		return new RegExp('^' + levelText, 'i').test(txt);
 	}, json.levels);
 
 	if (levelObj === null)
@@ -351,8 +366,9 @@ Foxtrick.L10n.getLevelFromText = function(text) {
 
 	var subObj = Foxtrick.nth(function(jsonSubLevel) {
 		var sublevelText = Foxtrick.strToRe(jsonSubLevel.text);
+
 		// using \)? in case LAs remove ) from sublevelText
-		return new RegExp(sublevelText + '\\)?$', 'i').test(text);
+		return new RegExp(sublevelText + '\\)?$', 'i').test(txt);
 	}, json.ratingSubLevels);
 
 	if (subObj)
@@ -392,7 +408,9 @@ Foxtrick.L10n.getTextByLevel = function(value) {
  * @return {string}
  */
 Foxtrick.L10n.getLevelByTypeAndValue = function(type, val) {
-	var numVal = parseInt(val, 10) || 0;
+	var numVal = parseInt(String(val), 10) || 0;
+
+	// eslint-disable-next-line no-magic-numbers
 	var cappedVal = Math.min(numVal, 20); // cap divine
 	var query = {
 		category: type,
@@ -444,30 +462,22 @@ Foxtrick.L10n.getSublevelByValue = function(val) {
  * @return {string}
  */
 Foxtrick.L10n.getFullLevelByValue = function(val) {
-	var main = Math.floor(val);
-	var sub = val - main;
+	const thresholds = ['0', '0.25', '0.5', '0.75'];
+	const ct = thresholds.length;
+
+	let main = Math.floor(val);
+	let sub = val - main;
+
+	let subParts = Math.floor(sub * ct);
 
 	// subStr is just a representation
 	// actually sublevels are rounded up
 	// hence these calculations do not reflect reality
 	// subStr should be 0.25 higher in all cases
-	var subStr = '';
+	let subStr = thresholds[subParts];
 
-	if (sub >= 0 && sub < 0.25) {
-		subStr = '0';
-	}
-	else if (sub >= 0.25 && sub < 0.5) {
-		subStr = '0.25';
-	}
-	else if (sub >= 0.5 && sub < 0.75) {
-		subStr = '0.5';
-	}
-	else if (sub >= 0.75 && sub < 1) {
-		subStr = '0.75';
-	}
-
-	var mainL10n = this.getLevelByTypeAndValue('levels', main);
-	var subL10n = this.getSublevelByValue(subStr);
+	let mainL10n = this.getLevelByTypeAndValue('levels', main);
+	let subL10n = this.getSublevelByValue(subStr);
 	return mainL10n + ' ' + subL10n;
 };
 
@@ -479,7 +489,7 @@ Foxtrick.L10n.getFullLevelByValue = function(val) {
  */
 Foxtrick.L10n.getTacticById = function(id) {
 	var tactics = [
-		// jscs:disable disallowMultipleSpaces
+		/* eslint-disable no-multi-spaces */
 		'normal',     // 0
 		'pressing',   // 1
 		'ca',         // 2
@@ -489,7 +499,7 @@ Foxtrick.L10n.getTacticById = function(id) {
 		'',           // 6 (N/A)
 		'creatively', // 7
 		'longshots',  // 8
-		// jscs:enable disallowMultipleSpaces
+		/* eslint-enable no-multi-spaces */
 	];
 
 	var query = {
@@ -511,13 +521,11 @@ Foxtrick.L10n.getTacticById = function(id) {
  */
 Foxtrick.L10n.getShortPosition = function(pos) {
 	var defaultAbbr = function(pos) {
-		var space = pos.search(/ /);
-		if (space == -1) {
+		var space = pos.indexOf(' ');
+		if (space == -1)
 			return pos.slice(0, 2);
-		}
-		else {
-			return pos.slice(0, 1) + pos.slice(space + 1, space + 2);
-		}
+
+		return pos.slice(0, 1) + pos.slice(space + 1, space + 2);
 	};
 
 	var shortPos = '';
@@ -546,7 +554,7 @@ Foxtrick.L10n.getShortPosition = function(pos) {
  * @return {string}
  */
 Foxtrick.L10n.getShortSpecialtyFromEnglish = function(spec) {
-	Foxtrick.L10n.getString('specialty.' + spec + '.abbr');
+	return Foxtrick.L10n.getString('specialty.' + spec + '.abbr');
 };
 
 /**
@@ -673,7 +681,7 @@ Foxtrick.L10n.getCategoryById = function(id) {
  * Map position id to position type
  *
  * @param  {number} id {Integer}
- * @return {string}
+ * @return {PositionType}
  */
 Foxtrick.L10n.getPositionTypeById = function(id) {
 	var type = null;
@@ -727,10 +735,14 @@ Foxtrick.L10n.getPositionByType = function(val) {
 };
 
 /**
+ * @typedef {'Keeper'|'WingBack'|'CentralDefender'|'InnerMidfield'|'Winger'|'Forward'} PositionType
+ */
+
+/**
  * Map l10n position to position type
  *
  * @param  {string} pos
- * @return {string}
+ * @return {PositionType}
  */
 Foxtrick.L10n.getPositionType = function(pos) {
 	var query = {
@@ -739,7 +751,8 @@ Foxtrick.L10n.getPositionType = function(pos) {
 		filter: 'value',
 		value: pos,
 	};
-	return this.getHTLangProperty(query);
+
+	return /** @type {PositionType} */ (this.getHTLangProperty(query));
 };
 
 /**
@@ -752,16 +765,18 @@ Foxtrick.L10n.getPositionType = function(pos) {
  * @return {string}
  */
 Foxtrick.L10n.getCountryName = function(leagueId) {
-	var method = this.getCountryNameLocal;
+	/**
+	 * @param  {number} n
+	 * @return {string}
+	 */
+	var method = n => this.getCountryNameLocal(n);
 
 	if (Foxtrick.Prefs.isModuleEnabled('CountryList')) {
 		if (Foxtrick.Prefs.isModuleOptionEnabled('CountryList', 'UseEnglish'))
-			method = this.getCountryNameEnglish;
+			method = n => this.getCountryNameEnglish(n);
 		else
-			method = this.getCountryNameNative;
+			method = n => this.getCountryNameNative(n);
 	}
-
-	method = method.bind(this);
 
 	return method(leagueId);
 };
@@ -796,7 +811,7 @@ Foxtrick.L10n.getCountryNameEnglish = function(leagueId) {
 Foxtrick.L10n.getCountryNameNative = function(leagueId) {
 	var ret = 'New Moon';
 	try {
-		var league = Foxtrick.XMLData.League[leagueId];
+		let league = Foxtrick.XMLData.League[leagueId];
 		ret = league.LeagueName;
 	}
 	catch (e) {
@@ -810,19 +825,17 @@ Foxtrick.L10n.getCountryNameNative = function(leagueId) {
  * Returns 'New Moon' if the method fails.
  *
  * @param  {number} leagueId
- * @param  {string} lang     language (optional)
+ * @param  {string} [lang]   language (optional)
  * @return {string}
  */
 Foxtrick.L10n.getCountryNameLocal = function(leagueId, lang) {
 	var ret = 'New Moon';
 	try {
-		if (!lang)
-			lang = Foxtrick.Prefs.getString('htLanguage');
-
-		if (!lang)
+		let l10n = lang || Foxtrick.Prefs.getString('htLanguage');
+		if (!l10n)
 			throw new Error('missing lang');
 
-		var json = Foxtrick.L10n.htLanguagesJSON[lang].language;
+		var json = Foxtrick.L10n.htLanguagesJSON[l10n].language;
 		if (leagueId in json.leagueNames)
 			ret = json.leagueNames[leagueId];
 		else
@@ -837,197 +850,19 @@ Foxtrick.L10n.getCountryNameLocal = function(leagueId, lang) {
 
 (function() {
 
-	// -------------------- Gecko-specific getters/setters ----------------------
-	if (Foxtrick.arch === 'Gecko') {
-
-		// import PluralForm into it's own scope
-		// otherwise Fennec fails during first install/update:
-		// Could not set symbol 'PluralForm' on target object
-		// probably because 'this' is undefined
-
-		var plScope = {};
-		Cu.import('resource://gre/modules/PluralForm.jsm', plScope);
-
-		var FoxtrickL10nGecko = {
-
-			// Mozilla string bundles of localizations and screen-shot links
-			_strings_bundle: null,
-			_strings_bundle_default: null,
-			_strings_bundle_screenshots: null,
-			_strings_bundle_screenshots_default: null,
-
-			init: function() {
-				var L10N_BUNDLE_PATH = Foxtrick.InternalPath + 'foxtrick.properties';
-				// var SS_BUNDLE_PATH = Foxtrick.InternalPath + 'foxtrick.screenshots';
-
-				var L10N_PATH = Foxtrick.InternalPath + 'locale/';
-
-				if (Foxtrick.context === 'background') {
-					if (!/\/preferences\.html$/.test(window.location.pathname)) {
-						// don't run in prefs
-						// unnecessary and hurts performance
-						for (var locale of Foxtrick.L10n.locales) {
-							var url = L10N_PATH + locale + '/htlang.json';
-							var text = Foxtrick.util.load.sync(url);
-							this.htLanguagesJSON[locale] = JSON.parse(text);
-						}
-					}
-				}
-
-				this._strings_bundle_default = Services.strings.createBundle(L10N_BUNDLE_PATH);
-
-				try {
-					var rule = this._strings_bundle_default.GetStringFromName('pluralFormRuleID');
-					this.plForm_default = parseInt(rule.match(/\d+/), 10);
-				}
-				catch (e) {}
-
-				this.setUserLocaleGecko(Foxtrick.Prefs.getString('htLanguage'));
-
-				// this._strings_bundle_screenshots_default =
-				// 	Services.strings.createBundle(SS_BUNDLE_PATH);
-			},
-
-			setUserLocaleGecko: function(localeCode) {
-				var L10N_PATH = Foxtrick.InternalPath + 'locale/';
-
-				var l10nBundlePath = L10N_PATH + localeCode + '/foxtrick.properties';
-				try {
-					this._strings_bundle = Services.strings.createBundle(l10nBundlePath);
-				}
-				catch (e) {
-					this._strings_bundle = this._strings_bundle_default;
-					Foxtrick.log('Use default properties for locale', localeCode);
-				}
-
-				try {
-					var rule = this._strings_bundle.GetStringFromName('pluralFormRuleID');
-					this.plForm = parseInt(rule.match(/\d+/), 10);
-				}
-				catch (e) {}
-
-				// var ssBundlePath = L10N_PATH + localeCode + '/foxtrick.screenshots';
-				// try {
-				// 	this._strings_bundle_screenshots = Services.strings.createBundle(ssBundlePath);
-				// }
-				// catch (e) {
-				// 	this._strings_bundle_screenshots = this._strings_bundle_screenshots_default;
-				// 	Foxtrick.log('Use default screenshots for locale', localeCode);
-				// }
-			},
-
-			getString: function(str, num) {
-				var get, l10n;
-
-				try {
-					if (Foxtrick.Prefs.getBool('translationKeys'))
-						return str;
-
-					l10n = this._strings_bundle.GetStringFromName(str);
-					if (typeof num === 'undefined')
-						return l10n;
-
-					get = plScope.PluralForm.makeGetter(this.plForm)[0];
-					try {
-						return get(num, l10n);
-					}
-					catch (e) {
-						return l10n.replace(/.+;/g, '');
-					}
-				}
-				catch (e) {
-					try {
-						if (!this._strings_bundle_default)
-							return null;
-
-						l10n = this._strings_bundle_default.GetStringFromName(str);
-						if (typeof num === 'undefined')
-							return l10n;
-
-						get = plScope.PluralForm.makeGetter(this.plForm_default)[0];
-						try {
-							return get(num, l10n);
-						}
-						catch (e) {
-							return l10n.replace(/.+;/g, '');
-						}
-					}
-					catch (ee) {
-						Foxtrick.error('Error getString(\'' + str + '\')');
-						return str.slice(str.lastIndexOf('.') + 1);
-					}
-				}
-			},
-
-			isStringAvailable: function(str) {
-				if (!this._strings_bundle)
-					return false;
-
-				try {
-					return this._strings_bundle.GetStringFromName(str) !== null;
-				}
-				catch (e) {
-					try {
-						return this._strings_bundle_default.GetStringFromName(str) !== null;
-					}
-					catch (ee) {
-						return false;
-					}
-				}
-			},
-
-			isStringAvailableLocal: function(str) {
-				if (!this._strings_bundle)
-					return false;
-
-				try {
-					return this._strings_bundle.GetStringFromName(str) != null;
-				}
-				catch (e) {
-					return false;
-				}
-			},
-
-			getScreenshot: function(str) {
-				var link = '';
-
-				if (this._strings_bundle_screenshots) {
-					try {
-						link = this._strings_bundle_screenshots.GetStringFromName(str);
-					}
-					catch (e) {}
-				}
-
-				if (link === '') {
-					try {
-						if (this._strings_bundle_screenshots_default)
-							link = this._strings_bundle_screenshots_default.GetStringFromName(str);
-					}
-					catch (ee) {}
-				}
-
-				return link;
-			},
-		};
-
-		for (var flg in FoxtrickL10nGecko)
-			Foxtrick.L10n[flg] = FoxtrickL10nGecko[flg];
-
-	}
-
-
-	// -------------------- Chrome-specific getters/setters ----------------------
+	// -------------------- Sandboxed-specific getters/setters ----------------------
 	if (Foxtrick.arch === 'Sandboxed') {
 
 		var FoxtrickL10nChrome = {
 			// string collection of localizations and screen-shot links
-			properties_default: null,
+			propertiesDefault: null,
 			properties: null,
-			screenshots_default: null,
+			screenshotsDefault: null,
 			screenshots: null,
 
 			init: function() {
 				var L10N_BUNDLE_PATH = Foxtrick.InternalPath + 'foxtrick.properties';
+
 				// var SS_BUNDLE_PATH = Foxtrick.InternalPath + 'foxtrick.screenshots';
 				var L10N_PATH = Foxtrick.InternalPath + 'locale/';
 
@@ -1035,20 +870,20 @@ Foxtrick.L10n.getCountryNameLocal = function(leagueId, lang) {
 				if (!/\/preferences\.html$/.test(window.location.pathname)) {
 					// don't run in prefs
 					// unnecessary and hurts performance
-					for (var locale of Foxtrick.L10n.locales) {
-						var url = L10N_PATH + locale + '/htlang.json';
-						var text = Foxtrick.util.load.sync(url);
+					for (let locale of Foxtrick.L10n.locales) {
+						let url = L10N_PATH + locale + '/htlang.json';
+						let text = Foxtrick.util.load.sync(url);
 						this.htLanguagesJSON[locale] = JSON.parse(text);
 					}
 				}
 
 				var propsDefault = Foxtrick.util.load.sync(L10N_BUNDLE_PATH);
-				this.properties_default = this.__parse(propsDefault);
+				this.propertiesDefault = this.__parse(propsDefault);
 
-				// this.screenshots_default = Foxtrick.util.load.sync(SS_BUNDLE_PATH);
+				// this.screenshotsDefault = Foxtrick.util.load.sync(SS_BUNDLE_PATH);
 				try {
-					var rule = this._getString(this.properties_default, 'pluralFormRuleID');
-					this.plForm_default = parseInt(rule.match(/\d+/), 10);
+					let rule = this._getString(this.propertiesDefault, 'pluralFormRuleID');
+					this.plFormDefault = parseInt(rule.match(/\d+/), 10);
 				}
 				catch (e) {}
 
@@ -1056,21 +891,22 @@ Foxtrick.L10n.getCountryNameLocal = function(leagueId, lang) {
 
 				var l10nBundlePath = L10N_PATH + localeCode + '/foxtrick.properties';
 				try {
-					var props = Foxtrick.util.load.sync(l10nBundlePath);
+					let props = Foxtrick.util.load.sync(l10nBundlePath);
 					if (props === null) {
 						Foxtrick.log('Use default properties for locale', localeCode);
-						this.properties = this.properties_default;
+						this.properties = this.propertiesDefault;
 					}
-					else
+					else {
 						this.properties = this.__parse(props);
+					}
 				}
 				catch (e) {
 					Foxtrick.log('Use default properties for locale', localeCode);
-					this.properties = this.properties_default;
+					this.properties = this.propertiesDefault;
 				}
 
 				try {
-					var localRule = this._getString(this.properties, 'pluralFormRuleID');
+					let localRule = this._getString(this.properties, 'pluralFormRuleID');
 					this.plForm = parseInt(localRule.match(/\d+/), 10);
 				}
 				catch (e) {}
@@ -1080,20 +916,20 @@ Foxtrick.L10n.getCountryNameLocal = function(leagueId, lang) {
 				// 	this.screenshots = Foxtrick.util.load.sync(ssBundlePath);
 				// 	if (this.screenshots === null) {
 				// 		Foxtrick.log('Use default screenshots for locale', localeCode);
-				// 		this.screenshots = this.screenshots_default;
+				// 		this.screenshots = this.screenshotsDefault;
 				// 	}
 				// }
 				// catch (ee) {
 				// 	Foxtrick.log('Use default screenshots for locale', localeCode);
-				// 	this.screenshots = this.screenshots_default;
+				// 	this.screenshots = this.screenshotsDefault;
 				// }
 			},
 
 			__parse: function(props) {
-				var L10N_RE = /^(.+?)=(.+)$/mg;
+				const L10N_RE = /^(.+?)=(.+)$/mg;
 				var ret = {};
 
-				var prop;
+				let prop;
 				while ((prop = L10N_RE.exec(props)))
 					ret[prop[1]] = prop[2];
 
@@ -1116,8 +952,8 @@ Foxtrick.L10n.getCountryNameLocal = function(leagueId, lang) {
 					var value = this._getString(this.properties, str);
 
 					if (value === null) {
-						value = this._getString(this.properties_default, str);
-						plForm = this.plForm_default;
+						value = this._getString(this.propertiesDefault, str);
+						plForm = this.plFormDefault;
 					}
 
 					if (value === null)
@@ -1135,7 +971,8 @@ Foxtrick.L10n.getCountryNameLocal = function(leagueId, lang) {
 					if (typeof num === 'undefined')
 						return value;
 
-					var get = PluralForm.makeGetter(plForm)[0];
+					// @ts-ignore
+					var [get] = PluralForm.makeGetter(plForm);
 					try {
 						return get(num, value);
 					}
@@ -1150,7 +987,7 @@ Foxtrick.L10n.getCountryNameLocal = function(leagueId, lang) {
 			},
 
 			isStringAvailable: function(str) {
-				return str in Foxtrick.L10n.properties || str in Foxtrick.L10n.properties_default;
+				return str in Foxtrick.L10n.properties || str in Foxtrick.L10n.propertiesDefault;
 			},
 
 			isStringAvailableLocal: function(str) {
@@ -1159,12 +996,12 @@ Foxtrick.L10n.getCountryNameLocal = function(leagueId, lang) {
 
 			getScreenshot: function(str) {
 				try {
-					var string_regexp = new RegExp('^' + str + '=(.+)$', 'im');
+					const stringRE = new RegExp('^' + str + '=(.+)$', 'im');
 
-					if (Foxtrick.L10n.screenshots && string_regexp.test(Foxtrick.L10n.screenshots))
-						return Foxtrick.L10n.screenshots.match(string_regexp)[1];
-					else if (string_regexp.test(Foxtrick.L10n.screenshots_default))
-						return Foxtrick.L10n.screenshots_default.match(string_regexp)[1];
+					if (Foxtrick.L10n.screenshots && stringRE.test(Foxtrick.L10n.screenshots))
+						return Foxtrick.L10n.screenshots.match(stringRE)[1];
+					else if (stringRE.test(Foxtrick.L10n.screenshotsDefault))
+						return Foxtrick.L10n.screenshotsDefault.match(stringRE)[1];
 
 					return '';
 				}
@@ -1175,8 +1012,7 @@ Foxtrick.L10n.getCountryNameLocal = function(leagueId, lang) {
 			},
 		};
 
-		for (var flc in FoxtrickL10nChrome)
-			Foxtrick.L10n[flc] = FoxtrickL10nChrome[flc];
+		Object.assign(Foxtrick.L10n, FoxtrickL10nChrome);
 
 	}
 

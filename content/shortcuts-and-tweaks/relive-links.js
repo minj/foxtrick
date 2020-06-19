@@ -302,7 +302,7 @@ Foxtrick.modules.ReLiveLinks = {
 			liveLink.href = url;
 			tds[liveTdIdx].appendChild(liveLink);
 
-			imgPromise.then(img => liveLink.appendChild(img.cloneNode(true)));
+			imgPromise.then(img => liveLink.appendChild(Foxtrick.cloneElement(img, true)));
 
 		}, rows);
 

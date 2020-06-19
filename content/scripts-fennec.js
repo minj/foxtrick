@@ -33,8 +33,10 @@ Foxtrick.loader.background.contentScriptManager = {
 		'lib/sha1.js',
 		'lib/jester.js',
 		'lib/psico.js',
-		'lib/integration.js',
+		'lib/gauge.js',
 		// <!-- end ext-lib -->
+
+		'lib/integration.js',
 
 		// <!-- util -->
 		'util/api.js',
@@ -193,6 +195,7 @@ Foxtrick.loader.background.contentScriptManager = {
 		'matches/match-lineup-fixes.js',
 		'matches/match-lineup-tweaks.js',
 		'matches/match-order.js',
+		'matches/match-order-new.js',
 		'matches/match-player-colouring.js',
 		'matches/match-ratings-tweaks.js',
 		'matches/match-report-format.js',

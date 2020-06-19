@@ -2,6 +2,7 @@
 
 /* eslint-disable */
 if (!this.Foxtrick)
+	// @ts-ignore
 	var Foxtrick = {};
 /* eslint-enable */
 
@@ -16,14 +17,16 @@ if (!Foxtrick.api.pastebin)
  * In case of success response is a URL to the pasted code.
  * failure(response, status) is called if the request fails
  * finalize(response, status) is always called
- * @param	{function}		callback	function to execute
- * @param	{String}		name		Name of the paste
- * @param	{String}		text		Text to be pasted
- * @param	{String}		type		Paste type (optional), defaults to 'public'.
- * @param	{[Function]}	failure		function to execute (optional)
- * @param	{[Function]}	finalize	function to execute (optional)
+ * @param {function} callback   to execute
+ * @param {string}   name       Name of the paste
+ * @param {string}   text       Text to be pasted
+ * @param {string}   [type]     Paste type (optional), defaults to 'public'.
+ * @param {function} [failure]  function to execute (optional)
+ * @param {function} [finalize] function to execute (optional)
  */
+// TODO promisify
 Foxtrick.api.pastebin.paste = function(callback, name, text, type, failure, finalize) {
+	/* eslint-disable camelcase */
 	var params = {
 		api_option: 'paste',
 		//api_user_key: this.api_user_key,
@@ -34,6 +37,7 @@ Foxtrick.api.pastebin.paste = function(callback, name, text, type, failure, fina
 		api_paste_name: encodeURIComponent(name),
 		api_paste_code: encodeURIComponent(text),
 	};
+	/* eslint-enable camelcase */
 
 	Foxtrick.api.pastebin._generic(params.api_option, this.api_url, callback, params,
 	                               failure, finalize);

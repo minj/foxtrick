@@ -36,8 +36,7 @@ Foxtrick.modules['Fans'] = {
 					class: 'matchHTLive',
 				});
 
-				// eslint-disable-next-line no-extra-parens
-				let grandParent = /** @type {Element} */ (link.parentNode.parentNode);
+				let grandParent = link.parentElement.parentElement;
 				grandParent.previousElementSibling.appendChild(node);
 			}, links);
 		}

@@ -29,6 +29,7 @@ FoxtrickFirefox.prototype = {
 		'lib/oauth.js',
 		'lib/sha1.js',
 		'lib/psico.js',
+		'lib/gauge.js',
 		// <!-- end ext-lib -->
 
 		// <!-- util -->
@@ -188,6 +189,7 @@ FoxtrickFirefox.prototype = {
 		'matches/match-lineup-fixes.js',
 		'matches/match-lineup-tweaks.js',
 		'matches/match-order.js',
+		'matches/match-order-new.js',
 		'matches/match-player-colouring.js',
 		'matches/match-ratings-tweaks.js',
 		'matches/match-report-format.js',

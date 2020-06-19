@@ -40,7 +40,7 @@ Foxtrick.modules['GoToPostBox'] = {
 			}
 
 			// doc.location='' resolves to XUL here
-			var newURL = new URL('/Forum/Read.aspx?t=' + val, doc.location.href);
+			var newURL = new URL('/Forum/Read.aspx?t=' + val, doc.location.origin);
 			doc.location.assign(newURL);
 		};
 
@@ -75,7 +75,7 @@ Foxtrick.modules['GoToPostBox'] = {
 			inputBoxLabel.textContent = '\u00a0';
 			parent.appendChild(inputBoxLabel);
 			parent.appendChild(inputBox);
-			parent.appendChild(inputBoxLabel.cloneNode(true));
+			parent.appendChild(Foxtrick.cloneElement(inputBoxLabel, true));
 
 			var goButton = Foxtrick.createFeaturedElement(doc, module, 'button');
 			goButton.id = 'foxtrick_forum_postbox_okbutton_' + b;

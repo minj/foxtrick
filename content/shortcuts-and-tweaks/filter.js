@@ -147,9 +147,16 @@ Foxtrick.modules.Filter = {
 		 * @param  {Filter[]} filters
 		 * @return {Promise<string>}
 		 */
-		var saveFilters = function(page, filters) {
-			return Foxtrick.session.set('filters.' + page, filters)
-				.catch(Foxtrick.catch('sessionSet'));
+		var saveFilters = async function(page, filters) {
+			var k = '';
+			try {
+				k = await Foxtrick.session.set('filters.' + page, filters);
+			}
+			catch (e) {
+				Foxtrick.catch('Filter')(e);
+			}
+
+			return k;
 		};
 
 		/**
@@ -157,7 +164,15 @@ Foxtrick.modules.Filter = {
 		 * @return {Promise<Filter[]>}
 		 */
 		var getFilters = async function(page) {
-			const saved = await Foxtrick.session.get('filters.' + page);
+			/** @type {Filter[]} */
+			var saved = null;
+			try {
+				saved = await Foxtrick.session.get('filters.' + page);
+			}
+			catch (e) {
+				Foxtrick.catch('Filter')(e);
+			}
+
 			if (saved)
 				return saved;
 
@@ -576,7 +591,7 @@ Foxtrick.modules.Filter = {
 			Foxtrick.onClick(buttonClear, clearFilters(page));
 		};
 
-		for (let page of module.PAGES) {
+		for (let page of /** @type {PAGE[]} */ (module.PAGES)) {
 			if (Foxtrick.isPage(doc, page))
 				addExtraFilters(page);
 		}
@@ -596,16 +611,14 @@ Foxtrick.modules.Filter = {
 		const module = this;
 		const teamId = Foxtrick.modules.Core.TEAM.teamId;
 
+		/** @type {CHPPParams} */
 		const args = [
 			['file', 'players'],
 			['version', '2.2'],
 			['teamId', teamId],
 		];
 
-		// eslint-disable-next-line camelcase
-		const opts = { cache_lifetime: 'session' };
-
-		Foxtrick.util.api.retrieve(doc, args, opts, (xml, errorText) => {
+		Foxtrick.util.api.retrieve(doc, args, { cache: 'session' }, (xml, errorText) => {
 			if (!xml || errorText) {
 				Foxtrick.log(errorText);
 				return;

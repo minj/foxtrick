@@ -48,7 +48,7 @@ Foxtrick.modules['NewMail'] = {
 
 			Foxtrick.onClick(mailCountSpan, function() {
 				let doc = this.ownerDocument;
-				let newURL = new URL('/MyHattrick/Inbox/', doc.location.href);
+				let newURL = new URL('/MyHattrick/Inbox/', doc.location.origin);
 				doc.location.assign(newURL);
 
 				// disable MyHT link

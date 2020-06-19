@@ -202,12 +202,6 @@ Foxtrick.modules['AttVsDef'] = {
 	},
 
 	_newStyleBars: function(doc, ratingstable, bodydiv) {
-		// var sidebar = doc.getElementById('sidebar');
-		// var ballDivIdx = 7;
-		// if (Foxtrick.util.id.findIsYouthMatch(doc.location.href)) {
-		// 	ballDivIdx = 5; // youth haven't got the kit div
-		// }
-
 		var percentArray = this._getPercentArray(doc, ratingstable);
 		var strangediv = doc.createElement('div');
 		strangediv.setAttribute('style', 'clear: both;');
@@ -256,7 +250,7 @@ Foxtrick.modules['AttVsDef'] = {
 			bodydiv.appendChild(bardiv);
 			bodydiv.appendChild(this._createTextBox(doc, 100 - percentArray[i]));
 
-			bodydiv.appendChild(strangediv.cloneNode(true));
+			bodydiv.appendChild(Foxtrick.cloneElement(strangediv, true));
 		}
 	},
 
