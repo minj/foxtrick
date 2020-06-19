@@ -304,11 +304,7 @@ Foxtrick.util.time.getUTCDate = function(doc) {
 	if (!d)
 		return null;
 
-	let hour = d.hour - this.HT_GMT_OFFSET;
-	let utcHTDate = new Date(Date.UTC(d.year, d.month - 1, d.day, hour, d.minute));
-	if (this.isDST(utcHTDate))
-		utcHTDate.setUTCHours(hour - 1);
-
+	let utcHTDate = new Date(Date.UTC(d.year, d.month - 1, d.day, d.hour, d.minute));
 	return utcHTDate;
 };
 
