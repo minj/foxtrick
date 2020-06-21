@@ -12,79 +12,114 @@
 
 /* eslint-disable no-magic-numbers */
 
-Foxtrick.modules['PlayerStatsExperience'] = {
+Foxtrick.modules.PlayerStatsExperience = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES: ['playerStats', 'playerDetails'],
 	OPTIONS: ['AlwaysShowAll'],
 	CSS: Foxtrick.InternalPath + 'resources/css/player-stats.css',
 	XP_PTS_PER_LEVEL: 100,
 	XP_CELL_IDX: 7, // current xp is the <integer>-th column in the table
-	store: {},
+
+	/** @typedef {{min: number, max: number}} XPRecord */
+	/**
+	 * @typedef XpMatchTypeRecord
+	 * @prop {XPRecord} minutes
+	 * @prop {XPRecord} count
+	 * @prop {XPRecord} xp
+	 */
+
+	/**
+	 * @typedef LastXPRecordMixin
+	 * @prop {Element} node
+	 * @prop {number} nodeIndex
+	 * @prop {MatchTypeClass} gameType
+	 */
+
+	/** @typedef {XPRecord & {minutes: number, count: number} & LastXPRecordMixin} LastXPRecord */
+
+	// eslint-disable-next-line max-len
+	/** @typedef {'matchFriendly'|'matchLeague'|'matchCupA'|'matchCupB1'|'matchCupB2'|'matchCupB3'|'matchCupC'|'matchQualification'|'matchMasters'|'matchNtFriendly'|'matchNtLeague'|'matchNtFinals'} MatchTypeClass */
+
+	// don't randomly rename, parts of this are taken from hattrick using image classnames
+	/** @type {Record<MatchTypeClass, number>} */
+	XP: {
+		// assume international friendly as default, considered in min-max,
+		// minimum uses 1/2 of this value
+		matchFriendly: 0.7,
+		matchLeague: 3.5,
+		matchCupA: 7.0,
+		matchCupB1: 1.75,
+		matchCupB2: 1.75,
+		matchCupB3: 1.75,
+		matchCupC: 1.75,
+		matchQualification: 7,
+		matchMasters: 17.5,
+
+		// NT
+		// fakenames: we generate these types
+		matchNtFriendly: 7, // (iconsytle + gametype)
+		matchNtLeague: 35.0, // (iconsytle + gametype + match date)
+		matchNtFinals: 70.0, // (iconsytle + gametype + match date)
+	},
+
+	store: {
+		xp: { points: { min: 0.0, max: 0.0 }, xp: { min: 0.0, max: 0.0 }},
+		skillup: false,
+
+		/** @type {Record<MatchTypeClass, XpMatchTypeRecord>} */
+		matches: null,
+
+		/** @type {number} */
+		currentSkill: null,
+
+		/** @type {LastXPRecord} */
+		last: null,
+	},
+
+	/** @type {MatchTypeClass[]} */
+	matchTypes: [],
 
 	/** @param {document} doc */
 	run: function(doc) {
-		var module = this;
-
-		// eslint-disable-next-line max-len
-		/** @typedef {'matchFriendly'|'matchLeague'|'matchCupA'|'matchCupB1'|'matchCupB2'|'matchCupB3'|'matchCupC'|'matchQualification'|'matchMasters'|'matchNtFriendly'|'matchNtLeague'|'matchNtFinals'} MatchTypeClass */
-
-		// TODO move onto module
-		// don't randomly rename, parts of this are taken from hattrick using image classnames
-		/** @type {Record<MatchTypeClass, number>} */
-		var XP = {
-			// assume international friendly as default, considered in min-max,
-			// minimum uses 1/2 of this value
-			matchFriendly: 0.7,
-			matchLeague: 3.5,
-			matchCupA: 7.0,
-			matchCupB1: 1.75,
-			matchCupB2: 1.75,
-			matchCupB3: 1.75,
-			matchCupC: 1.75,
-			matchQualification: 7,
-			matchMasters: 17.5,
-
-			// NT
-			// fakenames: we generate these types
-			matchNtFriendly: 7, // (iconsytle + gametype)
-			matchNtLeague: 35.0, // (iconsytle + gametype + match date)
-			matchNtFinals: 70.0, // (iconsytle + gametype + match date)
-		};
+		const module = this;
 
 		// setup the 'database'
-
-		this.matchTypes = [];
-		for (var matchType in XP)
-			this.matchTypes.push(matchType);
-
-		var matches = this.store.matches = {};
-		Foxtrick.forEach(function(type) {
-			matches[type] = {
-				minutes: { min: 0, max: 0 },
-				count: { min: 0.0, max: 0.0 },
-				xp: { min: 0.0, max: 0.0 },
-			};
-		}, this.matchTypes);
-		this.store.xp = { points: { min: 0.0, max: 0.0 }, xp: { min: 0.0, max: 0.0 }};
-		this.store.currentSkill = null;
-		this.store.skillup = false;
+		module.matchTypes = /** @type {MatchTypeClass[]} */ (Object.keys(module.XP));
+		let entries = module.matchTypes.map(type => [type, {
+			minutes: { min: 0, max: 0 },
+			count: { min: 0.0, max: 0.0 },
+			xp: { min: 0.0, max: 0.0 },
+		}]);
+		module.store.matches = Object.fromEntries(entries);
 
 		// define algorithm
 
+		/** @param {HTMLTableElement} statsTable */
 		// eslint-disable-next-line complexity
-		var runStatsTables = function(statsTable) {
+		var runStatsTable = function(statsTable) {
 
 			// START ROW UTILS
 
-			// figure out if a match is a NT match, quite fragile i guess,
-			// only NT matches have styles atm
+			/**
+			 * figure out if a match is a NT match
+			 *
+			 * quite fragile, only NT matches have styles atm
+			 *
+			 * @param  {Element} node
+			 * @return {boolean}
+			 */
 			var isNTMatch = function(node) {
 				var gametypeParent = node.querySelector('td.keyColumn');
 				var gameTypeImage = gametypeParent.querySelector('.iconMatchtype img');
-				return gameTypeImage.parentNode.getAttribute('style') !== null;
+				return gameTypeImage.parentElement.getAttribute('style') !== null;
 			};
 
-			// new W.O detection
+			/**
+			 * new W.O detection
+			 *
+			 * @param  {Element} node
+			 * @return {boolean}
+			 */
 			var isWalkover = function(node) {
 				var starCell = node.querySelector('td:last-child');
 				var starImg = starCell.querySelector('img[class^="star"]');
@@ -97,17 +132,23 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 				return true;
 			};
 
-			// get minutes played, maximum 90 minutes though
+			/**
+			 * get minutes played, maximum 90 minutes though
+			 *
+			 * @param  {Element} node
+			 * @return {number}
+			 */
 			var getPlayedMinutes = function(node) {
 				// sum up the diff positions
-				var playtimes = node.querySelector('td.endColumn1');
-				var intRE = /\d+/g;
-				var playMinutes = playtimes.textContent.match(intRE);
 				var minutes = 0;
-				if (playMinutes !== null) {
-					for (var i = 0; i < playMinutes.length; i++) {
-						if (!isNaN(playMinutes[i]))
-							minutes += parseInt(playMinutes[i], 10);
+
+				let playtimes = node.querySelector('td.endColumn1');
+				let matches = playtimes.textContent.match(/\d+/g);
+				if (matches !== null) {
+					for (let minStr of [...matches]) {
+						let min = parseInt(minStr, 10);
+						if (!Number.isNaN(min))
+							minutes += min;
 					}
 				}
 
@@ -163,12 +204,25 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 				return null;
 			};
 
-			// get xp gain by gametype, see above
+			/**
+			 * get xp gain by gametype
+			 *
+			 * @param  {number} minutes
+			 * @param  {MatchTypeClass} gametype
+			 * @return {number}
+			 */
 			var getXpGain = function(minutes, gametype) {
-				return XP[gametype] / 90.0 * minutes;
+				return module.XP[gametype] / 90.0 * minutes;
 			};
 
-			// adjust min and max values to take care of international vs. national friendlies
+			/**
+			 * adjust min and max values to take care of international vs. national friendlies
+			 *
+			 * @param  {boolean} ntMatch
+			 * @param  {number} xpGain
+			 * @param  {MatchTypeClass} gameType
+			 * @return {XPRecord}
+			 */
 			var getXPMinMaxDifference = function(ntMatch, xpGain, gameType) {
 				var dxp = { min: xpGain, max: xpGain };
 				if (!ntMatch && gameType == 'matchFriendly')
@@ -206,6 +260,7 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 
 				var matchDate = statsRows[i].querySelector('td.keyColumn');
 				if (matchDate) {
+					/** @type {HTMLElement} */
 					let dateSpan = matchDate.querySelector('span.float_left');
 					let dateStr = dateSpan.title || dateSpan.dataset.dateiso;
 					var date = Foxtrick.util.time.getDateFromText(dateStr);
@@ -243,14 +298,15 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 						store.xp.xp.min += dxp.min / module.XP_PTS_PER_LEVEL;
 						store.xp.xp.max += dxp.max / module.XP_PTS_PER_LEVEL;
 
-						store.last = {};
-						store.last.node = statsRows[i];
-						store.last.nodeIndex = i;
-						store.last.gameType = gameType;
-						store.last.min = dxp.min;
-						store.last.max = dxp.max;
-						store.last.minutes = minutes;
-						store.last.count = minutes / 90.0;
+						store.last = {
+							node: statsRows[i],
+							nodeIndex: i,
+							gameType: gameType,
+							min: dxp.min,
+							max: dxp.max,
+							minutes: minutes,
+							count: minutes / 90.0,
+						};
 					}
 					else {
 						// store.last points to the skill up row
@@ -292,6 +348,7 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 			store.xp.xp.min -= store.last.min / module.XP_PTS_PER_LEVEL;
 		};
 
+		/** @param {HTMLTableElement} table */
 		var addHead = function(table) {
 			var thead = doc.createElement('thead');
 			table.appendChild(thead);
@@ -326,6 +383,7 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 			thead.appendChild(theadRow);
 		};
 
+		/** @param {HTMLTableElement} table */
 		var addBody = function(table) {
 			var tbody = doc.createElement('tbody');
 			table.appendChild(tbody);
@@ -333,8 +391,14 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 			var types = module.matchTypes;
 			var store = module.store;
 
+			/**
+			 * @param  {number} value
+			 * @return {number}
+			 */
 			var format = function(value) {
-				return value - Math.floor(value) > 0 ? value.toFixed(3) : Math.floor(value);
+				return value - Math.floor(value) > 0
+					? parseFloat(value.toFixed(3))
+					: Math.floor(value);
 			};
 
 			var addTotals = function() {
@@ -355,13 +419,13 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 				cell = doc.createElement('td');
 				cell.id = 'ft-xp-min-pts';
 				Foxtrick.addClass(cell, 'ft-xp-data-value ' + isCompleteClass);
-				cell.textContent = format(store.xp.points.min);
+				cell.textContent = String(format(store.xp.points.min));
 				row.appendChild(cell);
 
 				cell = doc.createElement('td');
 				cell.id = 'ft-xp-max-pts';
 				Foxtrick.addClass(cell, 'ft-xp-data-value ' + isCompleteClass);
-				cell.textContent = format(store.xp.points.max);
+				cell.textContent = String(format(store.xp.points.max));
 				row.appendChild(cell);
 				tbody.appendChild(row);
 
@@ -380,47 +444,54 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 				cell = doc.createElement('td');
 				cell.id = 'ft-xp-min';
 				Foxtrick.addClass(cell, 'ft-xp-data-value ' + isCompleteClass);
-				cell.textContent = format(store.currentSkill + store.xp.xp.min);
+				cell.textContent = String(format(store.currentSkill + store.xp.xp.min));
 				row.appendChild(cell);
 
 				cell = doc.createElement('td');
 				cell.id = 'ft-xp-max';
 				Foxtrick.addClass(cell, 'ft-xp-data-value ' + isCompleteClass);
-				cell.textContent = format(store.currentSkill + store.xp.xp.max);
+				cell.textContent = String(format(store.currentSkill + store.xp.xp.max));
 				row.appendChild(cell);
 
 				tbody.appendChild(row);
 
 			};
+
+			/**
+			 * @param {string} type
+			 * @param {XPRecord} count
+			 * @param {XPRecord} minutes
+			 * @param {XPRecord} xp
+			 * @param {number} i
+			 */
 			var addRow = function(type, count, minutes, xp, i) {
 				var row = doc.createElement('tr');
-				var cell;
 
 				if (i % 2)
 					Foxtrick.addClass(row, 'darkereven');
 				else
 					Foxtrick.addClass(row, 'odd');
 
-				cell = doc.createElement('td');
-				cell.id = 'ft-xp-' + type + '-desc';
-				cell.textContent = Foxtrick.L10n.getString('PlayerStatsExperience.' + type);
+				var cell = doc.createElement('td');
+				cell.id = `ft-xp-${type}-desc`;
+				cell.textContent = Foxtrick.L10n.getString(`PlayerStatsExperience.${type}`);
 				row.appendChild(cell);
 
 				cell = doc.createElement('td');
 				if (count.min === count.max)
-					cell.textContent = count.max;
+					cell.textContent = String(count.max);
 				else
-					cell.textContent = count.min + ' - ' + count.max;
-				cell.id = 'ft-xp-' + type + '-count';
+					cell.textContent = `${count.min} - ${count.max}`;
+				cell.id = `ft-xp-${type}-count`;
 				Foxtrick.addClass(cell, 'ft-xp-data-value');
 				row.appendChild(cell);
 
 				cell = doc.createElement('td');
 				if (minutes.min === minutes.max)
-					cell.textContent = minutes.max;
+					cell.textContent = String(minutes.max);
 				else
-					cell.textContent = minutes.min + ' - ' + minutes.max;
-				cell.id = 'ft-xp-' + type + '-minutes';
+					cell.textContent = `${minutes.min} - ${minutes.max}`;
+				cell.id = `ft-xp-${type}-minutes`;
 				Foxtrick.addClass(cell, 'ft-xp-data-value');
 				row.appendChild(cell);
 
@@ -430,29 +501,28 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 					skillup = 'ft-xp-skillup';
 
 				cell = doc.createElement('td');
-				cell.id = 'ft-xp-' + type + '-min';
-				Foxtrick.addClass(cell, 'ft-xp-data-value ' + skillup);
-				cell.textContent = xp.min;
+				cell.id = `ft-xp-${type}-min`;
+				Foxtrick.addClass(cell, `ft-xp-data-value ${skillup}`);
+				cell.textContent = String(xp.min);
 				row.appendChild(cell);
 
 				cell = doc.createElement('td');
-				cell.id = 'ft-xp-' + type + '-max';
-				Foxtrick.addClass(cell, 'ft-xp-data-value ' + skillup);
-				cell.textContent = xp.max;
+				cell.id = `ft-xp-${type}-max`;
+				Foxtrick.addClass(cell, `ft-xp-data-value ${skillup}`);
+				cell.textContent = String(xp.max);
 				row.appendChild(cell);
 
 				tbody.appendChild(row);
 			};
 
-			for (var i = 0, j = 0; i < types.length; i++) {
-				var count = store.matches[types[i]].count;
+			let j = 0;
+			for (let type of types) {
+				let { minutes, count, xp } = store.matches[type];
+
 				count.min = format(count.min);
 				count.max = format(count.max);
-				var minutes = store.matches[types[i]].minutes;
-				var xp = store.matches[types[i]].xp;
 				xp.min = format(xp.min);
 				xp.max = format(xp.max);
-				var type = types[i];
 
 				if (xp.max) {
 					// don't show empty rows
@@ -462,6 +532,10 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 			addTotals();
 		};
 
+		/**
+		 * @param {Element} commentDiv
+		 * @param {HTMLAnchorElement} showAllLink
+		 */
 		var addComments = function(commentDiv, showAllLink) {
 			var span = doc.createElement('span');
 			commentDiv.appendChild(span);
@@ -516,15 +590,15 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 		if (Foxtrick.isPage(doc, 'playerDetails'))
 			return;
 
-		// both tables you can alternate between atm
-		var statsTable = doc.querySelector('.alltidMatches');
+		/** @type {HTMLTableElement} */
+		let statsTable = doc.querySelector('.alltidMatches');
 		if (!statsTable)
 			return;
 
-		runStatsTables(statsTable);
+		runStatsTable(statsTable);
 
 		var matchListTable = Foxtrick.createFeaturedElement(doc, module, 'div');
-		var table = doc.createElement('table');
+		let table = doc.createElement('table');
 		Foxtrick.addClass(table, 'ft-ignore-changes');
 		matchListTable.appendChild(table);
 		addHead(table);
@@ -535,8 +609,8 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 
 		var entry = doc.querySelector('.mainBox');
 
-		var xpHeader = doc.createElement('h2');
-		var headerTitle = Foxtrick.L10n.getString('PlayerStatsExperience.Experience');
+		let xpHeader = doc.createElement('h2');
+		let headerTitle = Foxtrick.L10n.getString('PlayerStatsExperience.Experience');
 		xpHeader.textContent = headerTitle;
 		entry.parentNode.insertBefore(xpHeader, entry);
 		entry.parentNode.insertBefore(matchListTable, entry);
@@ -544,14 +618,13 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 
 		// if more matches are required, clone showall link for easier access to top of table
 		if (showAllLink && !module.store.skillup) {
-			var showAllLinkClone = Foxtrick.cloneElement(showAllLink, true);
+			let showAllLinkClone = Foxtrick.cloneElement(showAllLink, true);
 			entry.parentNode.insertBefore(showAllLinkClone, entry);
 		}
 
 		// header for the old table
-		var tableHeader = doc.createElement('h2');
+		let tableHeader = doc.createElement('h2');
 		tableHeader.title = Foxtrick.L10n.getString('PlayerStatsExperience.PerformanceHistory');
 		entry.parentNode.insertBefore(tableHeader, entry);
-
 	},
 };
