@@ -2,58 +2,7 @@
 
 See FoxtrickCallStack in the wiki
 
-==firefox/seamonkey==
-one thread per window
-=rights=
-	all
-=script loading=
-	bootstrap-firefox.js
-=content starter=
-	loader-gecko.js
-=preferences page=
-	as is
-=prefs=
-	read: gecko preferences
-	write: gecko preferences via background
-=l10n=
-	gecko strings manager
-=xml_resources_load=
-	directly
-=css=
-	into browser
-=sessionStore=
-	directly
-=log=
-	Browser console
-
-
-==fennec==
-one background thread and one for each tab (persistent with page reload)
-=rights=
-	xml and pref setting via background
-=script loading=
-	bootstrap-firefox.js (background)
-	scripts-fennec.js (content)
-=content starter=
-	loader-fennec.js
-=preferences page=
-	as is
-=prefs=
-	read: gecko preferences
-	write: gecko preferences via background
-=l10n=
-	gecko strings manager
-=xml_resources_load=
-	via background
-=css=
-	into browser
-=sessionStore=
-	updates via background
-=log=
-	Extension process via Remote debugging
-
-
-==chrome and opera==
+==Blink and WebExt==
 one background thread and one for each page (non-persistent with page reload)
 =rights=
 	content scripts can't access extension directory
@@ -76,7 +25,6 @@ one background thread and one for each page (non-persistent with page reload)
 	updates via background
 =log=
 	console.log directly both in content and background
-
 
 ==safari==
 one background thread and one for each page (non-persistent with page reload)
@@ -101,4 +49,3 @@ one background thread and one for each page (non-persistent with page reload)
 	updates via background
 =log=
 	console.log directly
-
