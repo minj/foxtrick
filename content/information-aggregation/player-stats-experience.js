@@ -113,8 +113,11 @@ Foxtrick.modules.PlayerStatsExperience = {
 			 */
 			var isNTMatch = function(node) {
 				var gametypeParent = node.querySelector('td.keyColumn');
-				var gameTypeImage = gametypeParent.querySelector('.iconMatchtype img');
-				return gameTypeImage.parentElement.getAttribute('style') !== null;
+
+				// var gameTypeImage = gametypeParent.querySelector('.iconMatchtype img');
+
+				var iconParent = gametypeParent.querySelector('.iconMatchtype');
+				return iconParent.getAttribute('style') !== null;
 			};
 
 			/**
