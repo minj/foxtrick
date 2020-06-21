@@ -10,8 +10,6 @@
 
 'use strict';
 
-/* eslint-disable no-magic-numbers */
-
 Foxtrick.modules.PlayerStatsExperience = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES: ['playerStats', 'playerDetails'],
@@ -31,7 +29,6 @@ Foxtrick.modules.PlayerStatsExperience = {
 	/**
 	 * @typedef LastXPRecordMixin
 	 * @prop {Element} node
-	 * @prop {number} nodeIndex
 	 * @prop {MatchTypeClass} gameType
 	 */
 
@@ -82,6 +79,12 @@ Foxtrick.modules.PlayerStatsExperience = {
 	/** @param {document} doc */
 	run: function(doc) {
 		const module = this;
+		const MAX_XP_MIN = 90.0;
+		const PRECISION = 3;
+
+		const WEEK_OF_FINALS = 16;
+		const DAY_OF_FINAL = 0; // Sunday
+		const DAY_OF_SEMIS = 5; // Saturday
 
 		// setup the 'database'
 		module.matchTypes = /** @type {MatchTypeClass[]} */ (Object.keys(module.XP));
@@ -153,7 +156,7 @@ Foxtrick.modules.PlayerStatsExperience = {
 				}
 
 				// max 90'
-				return Math.min(90, minutes);
+				return Math.min(MAX_XP_MIN, minutes);
 			};
 
 			/**
@@ -193,9 +196,9 @@ Foxtrick.modules.PlayerStatsExperience = {
 					if (!isWcFinalSeason)
 						return 'matchNtLeague';
 
-					let semifinal = date.getDay() == 5;
-					let final = date.getDay() === 0;
-					if (week == 16 && (semifinal || final))
+					let semifinal = date.getDay() == DAY_OF_SEMIS;
+					let final = date.getDay() === DAY_OF_FINAL;
+					if (week == WEEK_OF_FINALS && (semifinal || final))
 						return 'matchNtFinals';
 
 					return 'matchNtLeague';
@@ -212,7 +215,7 @@ Foxtrick.modules.PlayerStatsExperience = {
 			 * @return {number}
 			 */
 			var getXpGain = function(minutes, gametype) {
-				return module.XP[gametype] / 90.0 * minutes;
+				return module.XP[gametype] / MAX_XP_MIN * minutes;
 			};
 
 			/**
@@ -237,98 +240,95 @@ Foxtrick.modules.PlayerStatsExperience = {
 			// var weekOffset = Foxtrick.Prefs.getString(offset);
 
 			var WO_TITLE = Foxtrick.L10n.getString('PlayerStatsExperience.Walkover');
-			var statsRows = statsTable.rows;
 
 			// header
 			// add XP column
-			var thXP = doc.createElement('th');
+			let thXP = doc.createElement('th');
 			Foxtrick.makeFeaturedElement(thXP, module);
 			Foxtrick.addClass(thXP, 'stats');
 			thXP.textContent =
 				Foxtrick.L10n.getString('PlayerStatsExperience.ExperienceChange.title.abbr');
 			thXP.title = Foxtrick.L10n.getString('PlayerStatsExperience.ExperienceChange.title');
-			statsRows[0].insertBefore(thXP, statsRows[0].cells[8]);
 
 			var store = module.store;
+			var [header, ...statsRows] = [...statsTable.rows];
+			header.insertBefore(thXP, header.cells[8]);
 
 			// sum up xp stuff
-			for (var i = 1; i < statsRows.length; i++) {
-
-				var entry = statsRows[i];
-				if (entry.matches('.training-changes'))
+			for (let row of statsRows) {
+				if (row.matches('.training-changes'))
 					continue;
 
-				var matchDate = statsRows[i].querySelector('td.keyColumn');
-				if (matchDate) {
-					/** @type {HTMLElement} */
-					let dateSpan = matchDate.querySelector('span.float_left');
-					let dateStr = dateSpan.title || dateSpan.dataset.dateiso;
-					var date = Foxtrick.util.time.getDateFromText(dateStr);
+				let matchDate = row.querySelector('td.keyColumn');
+				if (!matchDate)
+					break;
 
-					// current skilllevel
-					var xpNow = parseInt(entry.cells[module.XP_CELL_IDX].textContent, 10);
+				/** @type {HTMLElement} */
+				let dateSpan = matchDate.querySelector('span.float_left');
+				let dateStr = dateSpan.title || dateSpan.dataset.dateiso;
+				let date = Foxtrick.util.time.getDateFromText(dateStr);
 
-					// remember current XP Level to detect skilldowns
-					if (store.currentSkill === null)
-						store.currentSkill = xpNow;
+				// current skilllevel
+				let xpNow = parseInt(row.cells[module.XP_CELL_IDX].textContent, 10);
 
-					var u20 = /U-20/.test(statsRows[i].querySelector('a').textContent);
-					var ntMatch = isNTMatch(entry);
-					var gameType = getGameType(entry, date, u20);
-					var minutes = getPlayedMinutes(entry);
-					var pseudoPoints = getXpGain(minutes, gameType); // for visualization
-					var walkover = isWalkover(entry);
+				// remember current XP Level to detect skilldowns
+				if (store.currentSkill === null)
+					store.currentSkill = xpNow;
 
-					// reset both xp_gain and minute count if it's a WO
-					var xpGain = walkover ? minutes = 0 : pseudoPoints;
+				let u20 = /U-20/.test(row.querySelector('a').textContent);
+				let ntMatch = isNTMatch(row);
+				let gameType = getGameType(row, date, u20);
+				let minutes = getPlayedMinutes(row);
+				let pseudoPoints = getXpGain(minutes, gameType); // for visualization
+				let walkover = isWalkover(row);
 
-					// set min/max values for friendlies
-					var dxp = getXPMinMaxDifference(ntMatch, xpGain, gameType);
-					if (xpNow === store.currentSkill) {
-						// store all until XP is lower than curremt
-						store.matches[gameType].xp.min += dxp.min;
-						store.matches[gameType].xp.max += dxp.max;
-						store.matches[gameType].minutes.min += minutes;
-						store.matches[gameType].minutes.max += minutes;
-						store.matches[gameType].count.min += minutes / 90.0;
-						store.matches[gameType].count.max += minutes / 90.0;
+				// reset both xp_gain and minute count if it's a WO
+				let xpGain = walkover ? minutes = 0 : pseudoPoints;
 
-						store.xp.points.min += dxp.min;
-						store.xp.points.max += dxp.max;
-						store.xp.xp.min += dxp.min / module.XP_PTS_PER_LEVEL;
-						store.xp.xp.max += dxp.max / module.XP_PTS_PER_LEVEL;
+				// set min/max values for friendlies
+				let dxp = getXPMinMaxDifference(ntMatch, xpGain, gameType);
+				if (xpNow === store.currentSkill) {
+					// store all until XP is lower than curremt
+					store.matches[gameType].xp.min += dxp.min;
+					store.matches[gameType].xp.max += dxp.max;
+					store.matches[gameType].minutes.min += minutes;
+					store.matches[gameType].minutes.max += minutes;
+					store.matches[gameType].count.min += minutes / MAX_XP_MIN;
+					store.matches[gameType].count.max += minutes / MAX_XP_MIN;
 
-						store.last = {
-							node: statsRows[i],
-							nodeIndex: i,
-							gameType: gameType,
-							min: dxp.min,
-							max: dxp.max,
-							minutes: minutes,
-							count: minutes / 90.0,
-						};
-					}
-					else {
-						// store.last points to the skill up row
-						store.skillup = true;
-					}
+					store.xp.points.min += dxp.min;
+					store.xp.points.max += dxp.max;
+					store.xp.xp.min += dxp.min / module.XP_PTS_PER_LEVEL;
+					store.xp.xp.max += dxp.max / module.XP_PTS_PER_LEVEL;
 
-					var tdXP = Foxtrick.insertFeaturedCell(entry, module, module.XP_CELL_IDX + 1);
-					Foxtrick.addClass(tdXP, 'stats');
-					if (walkover) {
-						Foxtrick.addClass(tdXP, 'ft-xp-walkover');
-						tdXP.textContent = pseudoPoints.toFixed(3);
-						tdXP.title = WO_TITLE;
-					}
-					else {
-						tdXP.textContent = xpGain.toFixed(3);
-					}
-
-					if (!ntMatch && gameType == 'matchFriendly' && minutes > 0)
-						tdXP.textContent = (xpGain / 2.0).toFixed(3) + '/' + xpGain.toFixed(3);
+					store.last = {
+						node: row,
+						gameType: gameType,
+						min: dxp.min,
+						max: dxp.max,
+						minutes: minutes,
+						count: minutes / MAX_XP_MIN,
+					};
 				}
 				else {
-					break;
+					// store.last points to the skill up row
+					store.skillup = true;
+				}
+
+				let tdXP = Foxtrick.insertFeaturedCell(row, module, module.XP_CELL_IDX + 1);
+				Foxtrick.addClass(tdXP, 'stats');
+				if (walkover) {
+					Foxtrick.addClass(tdXP, 'ft-xp-walkover');
+					tdXP.textContent = pseudoPoints.toFixed(PRECISION);
+					tdXP.title = WO_TITLE;
+				}
+				else {
+					tdXP.textContent = xpGain.toFixed(PRECISION);
+				}
+
+				if (!ntMatch && gameType == 'matchFriendly' && minutes > 0) {
+					tdXP.textContent =
+						(xpGain / 2.0).toFixed(PRECISION) + '/' + xpGain.toFixed(PRECISION);
 				}
 			}
 
@@ -337,11 +337,10 @@ Foxtrick.modules.PlayerStatsExperience = {
 
 			// highlight the relevant skillup game in the table
 			Foxtrick.addClass(store.last.node, 'ft-xp-skillup');
-			Foxtrick.addClass(statsRows[store.last.nodeIndex], 'ft-xp-skillup');
 
 			// adjust minimum gained xp depending on the relevant skillup game
 			store.matches[store.last.gameType].minutes.min -= store.last.minutes;
-			store.matches[store.last.gameType].count.min -= store.last.minutes / 90.0;
+			store.matches[store.last.gameType].count.min -= store.last.minutes / MAX_XP_MIN;
 			store.matches[store.last.gameType].xp.min -= store.last.min;
 
 			store.xp.points.min -= store.last.min;
@@ -397,7 +396,7 @@ Foxtrick.modules.PlayerStatsExperience = {
 			 */
 			var format = function(value) {
 				return value - Math.floor(value) > 0
-					? parseFloat(value.toFixed(3))
+					? parseFloat(value.toFixed(PRECISION))
 					: Math.floor(value);
 			};
 
@@ -549,7 +548,7 @@ Foxtrick.modules.PlayerStatsExperience = {
 
 			if (!module.store.skillup) {
 				span = doc.createElement('span');
-				var str = showAllLink ?
+				let str = showAllLink ?
 					'PlayerStatsExperience.NotAllMatchesVisible' :
 					'PlayerStatsExperience.NoSkillUpFound';
 
@@ -560,11 +559,10 @@ Foxtrick.modules.PlayerStatsExperience = {
 		};
 
 		var convertLinksToShowAll = function() {
-			var allLinks = doc.getElementsByTagName('a');
-			for (var l = 0; l < allLinks.length; l++) {
-				if (/PlayerStats\.aspx/i.test(allLinks[l].href)) {
-					if (!/ShowAll=True/i.test(allLinks[l].href))
-						allLinks[l].href += '&ShowAll=True';
+			for (let link of doc.getElementsByTagName('a')) {
+				if (/PlayerStats\.aspx/i.test(link.href)) {
+					if (!/ShowAll=True/i.test(link.href))
+						link.href += '&ShowAll=True';
 				}
 			}
 		};
@@ -575,7 +573,7 @@ Foxtrick.modules.PlayerStatsExperience = {
 		// used for comments and cloning
 		var showAllLink = null;
 		if (!/ShowAll=True/i.test(doc.location.href)) {
-			var links = doc.getElementsByTagName('a');
+			let links = doc.getElementsByTagName('a');
 			showAllLink = Foxtrick.nth(function(link) {
 				return /ShowAll=True/i.test(link.href);
 			}, links);
