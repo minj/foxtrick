@@ -54,17 +54,8 @@ ZIP = zip -q
 # see http://code.google.com/p/xar/issues/detail?id=76 for an howto
 XAR = xar
 
-ROOT_FOLDERS_FIREFOX = defaults/ res/
 ROOT_FOLDERS_CHROME = defaults/ skin/
 ROOT_FOLDERS_SAFARI = defaults/ skin/
-
-ROOT_FILES_FIREFOX = \
-	bootstrap.js \
-	chrome.manifest \
-	COPYING \
-	HACKING.md \
-	icon.png \
-	install.rdf \
 
 ROOT_FILES_CHROME = \
 	COPYING \
@@ -109,16 +100,6 @@ CONTENT_FILES = \
 	redirections.js \
 	ui.js \
 	xml-load.js \
-
-CONTENT_FILES_FIREFOX = $(CONTENT_FILES) \
-	background.js \
-	bootstrap-fennec.js \
-	bootstrap-firefox.js \
-	loader-fennec.js \
-	loader-firefox.js \
-	preferences.html \
-	preferences.js \
-	scripts-fennec.js \
 
 CONTENT_FILES_CHROME = $(CONTENT_FILES) \
 	background.html \
@@ -183,78 +164,6 @@ endif
 	# strip comments
 	cd $(BUILD_DIR); \
 	sed -i -r '/\/\/ <!--/d' manifest.json
-	# make android-prefs after all modifications are done
-	cd $(BUILD_DIR)/defaults/preferences; \
-	cat foxtrick.js foxtrick.android > foxtrick.android.js; \
-	rm foxtrick.android
-	# make xpi
-	cd $(BUILD_DIR); \
-	$(ZIP) -r ../$(APP_NAME).xpi *
-	# clean up
-	make clean-build
-
-firefox:
-	#
-	########### make firefox ############
-	#
-	make clean-firefox clean-build
-	mkdir $(BUILD_DIR)
-	# copy root files
-	cp -r $(ROOT_FILES_FIREFOX) $(ROOT_FOLDERS_FIREFOX) $(BUILD_DIR)
-	# make dir hierarchy
-	mkdir -p $(BUILD_DIR)/chrome/content
-	# skin/
-	cp -r skin $(BUILD_DIR)/chrome
-	# content/
-	cd content/; \
-	cp -r $(SCRIPT_FOLDERS) $(RESOURCES) $(CONTENT_FILES_FIREFOX) \
-		../$(BUILD_DIR)/chrome/content
-	# modules
-	cd content/; \
-	cat ../$(MODULES) | while read m; do cp --parents "$$m" ../$(BUILD_DIR)/chrome/content; done;
-	# remove ignore modules from files
-	python module-update.py build -s $(MODULES) -e $(IGNORED_MODULES) -d $(BUILD_DIR)/chrome/
-	# removes zips from res
-	rm -rf $(BUILD_DIR)/chrome/*/*.zip
-	rm -rf $(BUILD_DIR)/chrome/*/*/*.zip
-	# removing CVS files and empty dirs
-	cd $(BUILD_DIR)/chrome; \
-	find . \( -path '*CVS*' -o -path '*.git*' \) -o \( -type d -empty \) -print -delete
-	# moving back to BUILD_DIR
-	cd $(BUILD_DIR); \
-	mv chrome/* ./; \
-	rm -rf chrome
-	# set branch
-	cd $(BUILD_DIR); \
-	sed -i -r "/extensions\\.foxtrick\\.prefs\\.branch/s|\"dev\"|\"$(BRANCH_FULL) mozilla\"|" defaults/preferences/foxtrick.js
-
-ifneq ($(FF_ADDON_ID),)
-	# set addon ID
-	cd $(BUILD_DIR); \
-	sed -i -r 's|<!-- FF_ADDON_ID -->(<em:id>).+(</em:id>)|\1$(FF_ADDON_ID)\2|' install.rdf;
-endif
-
-# modify according to dist type
-ifeq ($(DIST_TYPE),nightly)
-	# add minor version and change name
-	cd $(BUILD_DIR); \
-	../version.sh $(VERSION); \
-	sed -i -r 's|(<em:name>).+(</em:name>)|\1Foxtrick (Beta)\2|' install.rdf;
-else ifeq ($(DIST_TYPE),light)
-	# change name
-	cd $(BUILD_DIR); \
-	sed -i -r 's|(<em:name>).+(</em:name>)|\1Foxtrick (light)\2|' install.rdf
-endif
-
-ifeq ($(DIST_TYPE),hosting)
-	# used on addons.mozilla.org, with no update URL
-	cd $(BUILD_DIR); \
-	sed -i '/<em:updateURL>/d' install.rdf
-else
-	cd $(BUILD_DIR); \
-	sed -i -r 's|(<em:updateURL>).+(</em:updateURL>)|\1'$(UPDATE_URL)'/update.rdf\2|' install.rdf
-endif
-
 	# make android-prefs after all modifications are done
 	cd $(BUILD_DIR)/defaults/preferences; \
 	cat foxtrick.js foxtrick.android > foxtrick.android.js; \

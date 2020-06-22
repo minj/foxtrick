@@ -1883,6 +1883,9 @@ function initLoader() {
 	if (w)
 		document.body.setAttribute('style', 'width:' + w[1] + 'px;');
 
+	if (document.URL.startsWith('moz-extension://'))
+		$('#main').attr('gecko', ''); // sigh mozilla
+
 	// Fennec runs init() from injected entry.js (injected)
 	// called directly, it'll run and save actually for some reason
 
@@ -1893,8 +1896,7 @@ function initLoader() {
 	else {
 		// safari prefs runs in content context for some people?!!
 		// add needed resources first
-		Foxtrick.SB.ext.sendRequest({ req: 'optionsPageLoad' },
-		  function(data) {
+		Foxtrick.SB.ext.sendRequest({ req: 'optionsPageLoad' }, (data) => {
 			try {
 				Foxtrick.entry.contentScriptInit(data);
 				init();

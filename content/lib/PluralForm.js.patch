@@ -1,0 +1,101 @@
+diff --git 92db92ce1abe/PluralForm.js ft/PluralForm.js
+--- 92db92ce1abe/PluralForm.js
++++ ft/PluralForm.js
+@@ -1,10 +1,16 @@
+ /* This Source Code Form is subject to the terms of the Mozilla Public
+  * License, v. 2.0. If a copy of the MPL was not distributed with this
+  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
++/* from mozilla changed to work for chrome (convincedd) */
++
++/* eslint-disable */
++if (Foxtrick.arch === "Sandboxed") {
++
++var PluralForm = (function() {
+ 
+ var EXPORTED_SYMBOLS = ["PluralForm"];
+ 
+-const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
++// const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
+ 
+ /**
+  * This module provides the PluralForm object which contains a method to figure
+@@ -199,6 +205,7 @@ var PluralForm = {
+    *        A semi-colon (;) separated string of words to pick the plural form
+    * @return The appropriate plural form of the word
+    */
++  /* not used currently (convincedd)
+   get get() {
+     // This method will lazily load to avoid perf when it is first needed and
+     // creates getPluralForm function. The function it creates is based on the
+@@ -214,7 +221,7 @@ var PluralForm = {
+       PluralForm.ruleNum
+     );
+     return PluralForm.get;
+-  },
++  },*/
+ 
+   /**
+    * Create a pair of plural form functions for the given plural rule number.
+@@ -248,12 +255,12 @@ var PluralForm = {
+         // Check for array out of bounds or empty strings
+         if (ret == undefined || ret == "") {
+           // Report the caller to help figure out who is causing badness
+-          let caller = Components.stack.caller
++          let caller = ''; /*Components.stack.caller
+             ? Components.stack.caller.name
+-            : "top";
++            : "top";*/
+ 
+           // Display a message in the error console
+-          log([
++          /*log([
+             "Index #",
+             index,
+             " of '",
+@@ -264,7 +271,7 @@ var PluralForm = {
+             aRuleNum,
+             "; called by ",
+             caller,
+-          ]);
++          ]);*/
+ 
+           // Default to the first entry (which might be empty, but not undefined)
+           ret = words[0];
+@@ -281,6 +288,7 @@ var PluralForm = {
+    *
+    * @return The number of forms
+    */
++  /* not used currently (convincedd)
+   get numForms() {
+     // We lazily load numForms, so trigger the init logic with get()
+     PluralForm.get();
+@@ -292,13 +300,14 @@ var PluralForm = {
+    *
+    * @return The plural rule number
+    */
++  /*
+   get ruleNum() {
+     return Number(
+       Services.strings
+         .createBundle(kIntlProperties)
+         .GetStringFromName("pluralRule")
+     );
+-  },
++  },*/
+ };
+ 
+ /**
+@@ -308,7 +317,10 @@ var PluralForm = {
+  *        Error message to log or an array of strings to concat
+  */
+ function log(aMsg) {
+-  let msg = "PluralForm.jsm: " + (aMsg.join ? aMsg.join("") : aMsg);
+-  Services.console.logStringMessage(msg);
+-  dump(msg + "\n");
++  Array.isArray(aMsg) ? Foxtrick.log(...aMsg) : Foxtrick.log(aMsg);
++}
++
++    return PluralForm;
++})();
++
+ }

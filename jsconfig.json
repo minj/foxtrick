@@ -6,7 +6,7 @@
         "strictBindCallApply": true,
         "strictFunctionTypes": true,
         "strictNullChecks": false,
-        "checkJs": true
+        "checkJs": true,
     },
     "typeAcquisition": {
         "include": [
@@ -14,10 +14,26 @@
             "firefox-webext-browser",
             "safari-extension",
             "safari-extension-content",
-            "jquery"
+            "jquery",
         ]
     },
+    "include": [
+        "content",
+
+        // tsc excludes/includes suck
+        // "content/lib/psico.js",
+    ],
     "exclude": [
-        "content/lib"
-    ]
+        // tsc excludes/includes suck
+        // "content/lib",
+
+        "content/lib/gauge.js",
+        "content/lib/idbstore.js",
+        "content/lib/indexedDB.polyfill.js",
+        "content/lib/jquery.js",
+        "content/lib/oauth.js",
+        "content/lib/PluralForm.js",
+        "content/lib/sha1.js",
+        "content/lib/yaml.js",
+    ],
 }

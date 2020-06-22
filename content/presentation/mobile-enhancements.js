@@ -141,29 +141,9 @@ Foxtrick.modules['MobileEnhancements'] = {
 			};
 			for (var i = 0; i < gestures.swipes.length; ++i) {
 				var addSwipe = function(swipe) {
-					if (swipe.el)
-						Foxtrick.jester(swipe.el, { swipeDistance: swipe.dist }) .swipe(
-						  function(touches, swipeDirection) {
-							if (swipeDirection[swipe.dir]) {
-								select(swipe.select);
-							}
-						});
 				};
 				addSwipe(gestures.swipes[i]);
 			}
-			// swipe log
-			Foxtrick.jester(page, { swipeDistance: swipe.dist }).swipe(
-			  function(touches, swipeDirection) {
-				Foxtrick.log('swipe', { swipeDirection: swipeDirection });
-			});
-
-			// toggle header on mobile_header tap
-			Foxtrick.jester(mobile_header).tap(
-			  function(touches) {
-				if (touches.event.originalTarget !== mobile_header_center_tab &&
-					touches.event.originalTarget !== menu)
-					select('header_toggle');
-			});
 
 			Foxtrick.addClass(hattrick, 'ft-touch-available');
 
@@ -171,11 +151,6 @@ Foxtrick.modules['MobileEnhancements'] = {
 			Foxtrick.log('no touch events');
 		}
 
-		// tap/click anywhere on cb to get back to center
-		Foxtrick.jester(cb).tap(
-		  function(touches) {
-			select('center');
-		});
 		// Foxtrick.onClick(cb, function(ev){
 		// 	select('center');
 		// });
