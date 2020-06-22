@@ -1,80 +1,117 @@
 {
-	"type": "ho",
-	"url": "https://github.com/akasolace/HO/releases/tag/stable/",
-	"duties" : {
-		"developer" : {
-			"alt": "HO developer"
-		},
-		"translator" : {
-			"alt": "HO translator"
-		},
-		"helper" : {
-			"alt": "HO helper"
-		}
-	},
-	"list": [
-		{ "id": "9100817", "name": "DavidatorusF", "duty": "helper" },
-		{ "id": "2750668", "name": "alltid-oavsett", "duty": "translator" },
-		{ "id": "11328744", "name": "aMiUK", "duty": "translator" },
-		{ "id": "335181", "name": "Baler0", "duty": "translator"},
-		{ "id": "4663129", "name": "Bilke5", "duty": "translator"},
-		{ "id": "5456479", "name": "BrammieG", "duty": "translator"},
-		{ "id": "2538833", "name": "Butboja", "duty": "translator"},
-		{ "id": "753905", "name": "carlesmu", "duty": "translator"},
-		{ "id": "109058", "name": "chiticco", "duty": "translator"},
-		{ "id": "3564260", "name": "dr_Chokky", "duty": "translator"},
-		{ "id": "5279919", "name": "DragosE", "duty": "translator"},
-		{ "id": "9668661", "name": "dzsoo", "duty": "translator"},
-		{ "id": "10952707", "name": "Ehlana", "duty": "translator"},
-		{ "id": "699184", "name": "Elling85", "duty": "translator"},
-		{ "id": "8041394", "name": "fierz1998", "duty": "translator"},
-		{ "id": "2526112", "name": "fisero", "duty": "translator"},
-		{ "id": "9464167", "name": "FoxWMB", "duty": "translator"},
-		{ "id": "11330893", "name": "garcilp", "duty": "translator"},
-		{ "id": "551632", "name": "goner", "duty": "translator"},
-		{ "id": "9815919", "name": "gwedalou", "duty": "translator"},
-		{ "id": "2915990", "name": "GZ-grobas", "duty": "translator"},
-		{ "id": "1693272", "name": "HHS_MaxSchreck_Al Khalifa", "duty": "translator"},
-		{ "id": "1572119", "name": "icarus95", "duty": "translator"},
-		{ "id": "2557972", "name": "Kacerga", "duty": "translator"},
-		{ "id": "914341", "name": "KrustyTheClown", "duty": "translator"},
-		{ "id": "12572467", "name": "ksunmn", "duty": "translator"},
-		{ "id": "3613658", "name": "LA-Iuve-", "duty": "translator"},
-		{ "id": "9845514", "name": "LA-SI-CH", "duty": "translator"},
-		{ "id": "3158234", "name": "LarsVegas", "duty": "translator"},
-		{ "id": "4342858", "name": "ljushaff", "duty": "translator"},
-		{ "id": "5639894", "name": "-Lupi-", "duty": "translator"},
-		{ "id": "9191400", "name": "lvl_Rashid_lvl", "duty": "translator"},
-		{ "id": "377309", "name": "MacErwt", "duty": "translator"},
-		{ "id": "716201", "name": "Mod-Transy", "duty": "translator"},
-		{ "id": "8964618", "name": "Mod-Zolfaghar", "duty": "translator"},
-		{ "id": "2783060", "name": "montevi", "duty": "translator"},
-		{ "id": "12166", "name": "murko", "duty": "translator"},
-		{ "id": "905484", "name": "NajrA", "duty": "translator"},
-		{ "id": "10453485", "name": "nomad331", "duty": "translator"},
-		{ "id": "5171243", "name": "oleh_deneb", "duty": "translator"},
-		{ "id": "2363296", "name": "OReiDasSachadas", "duty": "translator"},
-		{ "id": "5448973", "name": "paragon81", "duty": "translator"},
-		{ "id": "3370331", "name": "Refri", "duty": "translator"},
-		{ "id": "10567583", "name": "Rukhadze", "duty": "translator"},
-		{ "id": "9827890", "name": "salt00", "duty": "translator"},
-		{ "id": "10968856", "name": "serjhanti", "duty": "translator"},
-		{ "id": "10246801", "name": "silkevicious", "duty": "translator"},
-		{ "id": "10280665", "name": "tianbing", "duty": "translator"},
-		{ "id": "10063659", "name": "tricktron", "duty": "developer"},
-		{ "id": "881906", "name": "ultracool", "duty": "translator"},
-		{ "id": "11741437", "name": "YLMZ-VRL", "duty": "translator"},
-		{ "id": "9855688", "name": "Nika_Kvrivishvili", "duty": "translator"},
-		{ "id": "9359971", "name": "inter87", "duty": "translator"},
-		{ "id": "11542276", "name": "Sebas90", "duty": "translator"},
-		{ "id": "2684151", "name": "zymbo", "duty": "translator"},
-		{ "id": "13441219", "name": "capitaineFro", "duty": "developer"},
-		{ "id": "13458976", "name": "Mistermax80", "duty": "developer"},
-		{ "id": "11370368", "name": "yaute", "duty": "developer"},
-		{ "id": "10764047", "name": "brokenelevator", "duty": "developer"},
-		{ "id": "6992417", "name": "tychobrailleur", "duty": "developer"},
-		{ "id": "1757369", "name": "wsbrenk", "duty": "developer"},
-		{ "id": "5199830", "name": "xxPhAIxx", "duty": "developer"},
-		{ "id": "13609150", "name": "stefats", "duty": "developer"}
-	]
+    "type": "ho",
+    "url": "https://akasolace.github.io/HO/",
+    "duties": {
+        "developer": {
+            "alt": "HO developer"
+        },
+        "translator": {
+            "alt": "HO translator"
+        },
+        "helper": {
+            "alt": "HO helper"
+        }
+    },
+    "list": [
+        {
+            "id": "9100817",
+            "name": "DavidatorusF",
+            "duty": "translator"
+        },
+        {
+            "id": "335181",
+            "name": "Baler0",
+            "duty": "translator"
+        },
+        {
+            "id": "13497666",
+            "name": "aaasteins",
+            "duty": "translator"
+        },
+        {
+            "id": "12465562",
+            "name": "zigmondm",
+            "duty": "translator"
+        },
+        {
+            "id": "9845514",
+            "name": "LA-SI-CH",
+            "duty": "translator"
+        },
+        {
+            "id": "13351914",
+            "name": "karelant",
+            "duty": "translator"
+        },
+        {
+            "id": "13584779",
+            "name": "Hogtownie",
+            "duty": "translator"
+        },
+        {
+            "id": "11542276",
+            "name": "Sebas90",
+            "duty": "translator"
+        },
+        {
+            "id": "778515",
+            "name": "fEnIo",
+            "duty": "translator"
+        },
+        {
+            "id": "9651101",
+            "name": "andrejol",
+            "duty": "translator"
+        },
+        {
+            "id": "9862223",
+            "name": "Motavali",
+            "duty": "translator"
+        },
+        {
+            "id": "9100817",
+            "name": "DavidatorusF",
+            "duty": "helper"
+        },
+        {
+            "id": "13441219",
+            "name": "capitaineFro",
+            "duty": "developer"
+        },
+        {
+            "id": "13458976",
+            "name": "Mistermax80",
+            "duty": "developer"
+        },
+        {
+            "id": "11370368",
+            "name": "yaute",
+            "duty": "developer"
+        },
+        {
+            "id": "10764047",
+            "name": "brokenelevator",
+            "duty": "developer"
+        },
+        {
+            "id": "6992417",
+            "name": "tychobrailleur",
+            "duty": "developer"
+        },
+        {
+            "id": "1757369",
+            "name": "wsbrenk",
+            "duty": "developer"
+        },
+        {
+            "id": "5199830",
+            "name": "xxPhAIxx",
+            "duty": "developer"
+        },
+        {
+            "id": "13609150",
+            "name": "stefats",
+            "duty": "developer"
+        }
+    ]
 }
