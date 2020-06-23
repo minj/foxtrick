@@ -109,7 +109,7 @@
 			"words_translated": "16644"
 		},
 		{
-			"approved": "1888",
+			"approved": "1887",
 			"approved_progress": "78",
 			"code": "hr",
 			"name": "Croatian",
@@ -117,7 +117,7 @@
 			"translated": "2254",
 			"translated_progress": "93",
 			"words": "17021",
-			"words_approved": "13429",
+			"words_approved": "13428",
 			"words_translated": "15919"
 		},
 		{
@@ -541,7 +541,7 @@
 			"words_translated": "16700"
 		},
 		{
-			"approved": "2061",
+			"approved": "2060",
 			"approved_progress": "79",
 			"code": "sr",
 			"name": "Serbian (Cyrillic)",
@@ -549,7 +549,7 @@
 			"translated": "2100",
 			"translated_progress": "81",
 			"words": "17021",
-			"words_approved": "13473",
+			"words_approved": "13472",
 			"words_translated": "13848"
 		},
 		{
