@@ -614,7 +614,7 @@
 		"specialties": [
 			{
 				"type": "None",
-				"value": "없음"
+				"value": "특수 능력 없음"
 			},
 			{
 				"type": "Technical",
@@ -768,7 +768,7 @@
 			},
 			{
 				"type": "longshots",
-				"value": "장거리 슛"
+				"value": "중거리 슛"
 			}
 		],
 		"training": [

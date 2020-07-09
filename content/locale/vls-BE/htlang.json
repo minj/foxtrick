@@ -614,7 +614,7 @@
 		"specialties": [
 			{
 				"type": "None",
-				"value": "Specialiteiten zijn overroepen! (Geen)"
+				"value": "Geen specialiteit. (Die zijn toch overroepen!)"
 			},
 			{
 				"type": "Technical",
