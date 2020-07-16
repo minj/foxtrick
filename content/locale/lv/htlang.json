@@ -32,7 +32,7 @@
 				"value": "0"
 			},
 			{
-				"text": "strīdīgs puisis",
+				"text": "strīdīgs cilvēks",
 				"value": "1"
 			},
 			{
@@ -634,7 +634,7 @@
 			},
 			{
 				"type": "Head",
-				"value": "Spēle ar galvu"
+				"value": "Spēlē ar galvu"
 			},
 			{
 				"type": "Resilient",
