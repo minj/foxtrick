@@ -53,10 +53,14 @@ Foxtrick.modules['ExtraShortcuts'] = {
 	run: function(doc) {
 		const module = this;
 
+		const STAGE_ORIGIN = 'https://stage.hattrick.org';
+		const PROD_ORIGIN = 'https://www.hattrick.org';
+
+		let origin = doc.location.origin;
 		// eslint-disable-next-line no-restricted-properties
-		let relative = document.location.pathname + document.location.search;
-		let stage = new URL(relative, 'https://stage.hattrick.org');
-		module.LINKS.Stage.link = stage.href;
+		let relative = doc.location.pathname + doc.location.search;
+		let link = new URL(relative, origin == STAGE_ORIGIN ? PROD_ORIGIN : STAGE_ORIGIN);
+		module.LINKS.Stage.link = link.href;
 
 		/**
 		 * @param {string} url
