@@ -61,6 +61,7 @@ Foxtrick.htPages = {
 	'achievements'              : '/Club/Achievements/(Default.aspx|?|$)',
 	'history'                   : '/Club/History/(Default.aspx|?|$)',
 	'seriesHistory'             : '/World/Series/History.aspx',
+	'seriesHistoryNew'          : '/World/Series/SeriesHistory.aspx',
 	'teamEvents'                : '/Club/TeamEvents/(Default.aspx|?|$)',
 	'arena'                     : '/Club/Arena/(Default.aspx|?|$)',
 	'fans'                      : '/Club/Fans/(Default.aspx|?|$)',

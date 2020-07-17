@@ -80,7 +80,7 @@ Foxtrick.modules.HTDateFormat = {
 			'transferCompare', 'match', 'matches', 'matchesCup', 'matchesArchive',
 			'teamPageAny', 'achievements', 'playerEvents',
 			'teamEvents', 'history', 'arena', 'country', 'hallOfFame',
-			'statsMatchesHeadToHead', 'seriesHistory', 'playerStats',
+			'statsMatchesHeadToHead', 'seriesHistory', 'seriesHistoryNew', 'playerStats',
 		];
 
 		// don't show on where not needed and cluttering
