@@ -69,7 +69,7 @@ Foxtrick.modules['Fans'] = {
 			td1.textContent = Foxtrick.L10n.getString('TeamStats.Total');
 			td1.colSpan = isOld ? 1 : 2;
 			var td2 = doc.createElement('td');
-			td2.className = `right ${total > 0 ? 'inc' : 'dec'}`;
+			td2.className = `${isOld ? '' : 'right'} ${total > 0 ? 'inc' : 'dec'}`;
 			td2.textContent = total > 0 ? '+' + total : total.toString();
 			row.appendChild(td1);
 			row.appendChild(td2);
