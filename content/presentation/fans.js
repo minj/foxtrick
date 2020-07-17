@@ -22,7 +22,7 @@ Foxtrick.modules['Fans'] = {
 
 		if (Foxtrick.Prefs.isModuleOptionEnabled('Fans', 'AddLiveLink')) {
 			/** @type {NodeListOf<HTMLAnchorElement>} */
-			var links = doc.querySelectorAll('#upcoming a[href*="matchID"]');
+			var links = doc.querySelectorAll('#upcoming a[href*="matchID"]'); // FIXME
 			Foxtrick.forEach(function(link) {
 				var node = Foxtrick.createFeaturedElement(doc, module, 'a');
 				node.href = link.href.replace('/Club/Matches/Match.aspx?',
@@ -36,7 +36,7 @@ Foxtrick.modules['Fans'] = {
 					class: 'matchHTLive',
 				});
 
-				let grandParent = link.parentElement.parentElement;
+				let grandParent = link.closest('td');
 				grandParent.previousElementSibling.appendChild(node);
 			}, links);
 		}
