@@ -40,23 +40,6 @@ Foxtrick.modules.TransferSearchResultFilters = {
 
 			/**
 			 * @param  {Player} player
-			 * @param  {number|''} min
-			 * @param  {number|''} max
-			 * @return {boolean}
-			 */
-			days: function(player, min, max) {
-				if (player.age == null)
-					return true;
-				if (typeof min == 'number' && player.age.days < min)
-					return true;
-				if (typeof max == 'number' && player.age.days > max)
-					return true;
-
-				return false;
-			},
-
-			/**
-			 * @param  {Player} player
 			 * @return {boolean}
 			 */
 			hideBruised: function(player) {
@@ -132,7 +115,6 @@ Foxtrick.modules.TransferSearchResultFilters = {
 		 */
 		var FILTER_VAL = [
 			{ key: 'form', type: 'skillselect', min: -1, max: -1, minAllowed: 0, maxAllowed: 8 },
-			{ key: 'days', type: 'minmax', min: '', max: '' },
 			{ key: 'hideOrdinary', type: 'check', checked: false },
 			{ key: 'hideInjured', type: 'check', checked: false },
 			{ key: 'hideSuspended', type: 'check', checked: false },
@@ -291,11 +273,18 @@ Foxtrick.modules.TransferSearchResultFilters = {
 			}
 		};
 		var addExtraFilters = async function() {
-			var tableAdvanced = Foxtrick.getMBElement(doc, 'tblAdvanced');
-			if (tableAdvanced === null) {
-				// only show if advanced filters is on
+			// only show if advanced filters is on
+			var check = /** @type {HTMLInputElement} */
+				(Foxtrick.getMBElement(doc, 'chkShowAdvanced'));
+
+			if (!check || !check.checked)
 				return;
-			}
+
+			var tableAdvanced = Foxtrick.getMBElement(doc, 'tblAdvanced') ||
+				doc.querySelector('.transfer-search-table');
+
+			if (tableAdvanced === null)
+				return;
 
 			var table = Foxtrick.createFeaturedElement(doc, module, 'table');
 			table.id = 'ft-ExtraFilters';

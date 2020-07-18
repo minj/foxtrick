@@ -44,10 +44,10 @@ Foxtrick.modules.CountryList = {
 		var poolCountries = /** @type {HTMLSelectElement} */
 			(Foxtrick.getMBElement(doc, 'ddlPoolCountries'));
 
-		var change = Foxtrick.Prefs.isModuleOptionEnabled('CountryList', 'SelectBoxes');
+		var change = Foxtrick.Prefs.isModuleOptionEnabled(module, 'SelectBoxes');
 
 		/** @typedef {[HTMLSelectElement, number]|[HTMLSelectElement, number, number]} CListArg */
-		/** @type {Record<string, CListArg[]>} */
+		/** @type {Partial<Record<PAGE, CListArg[]>>} */
 		var pageMap = {
 			transferSearchForm: [[ddlBornIn, 1]],
 			country: [[ddlDrop, 0]],
@@ -65,34 +65,36 @@ Foxtrick.modules.CountryList = {
 		};
 
 		for (let [page, defs] of Object.entries(pageMap)) {
-			if (Foxtrick.isPage(doc, page)) {
-				if (change) {
-					for (let def of defs)
-						// eslint-disable-next-line prefer-spread
-						module._changelist.apply(module, def);
-				}
-				else {
-					for (let def of defs) {
-						let [s] = def;
-						module._activate(s);
-					}
-				}
+			let p = /** @type {PAGE} */ (page);
+			if (!Foxtrick.isPage(doc, p))
+				continue;
 
-				break;
+			if (change) {
+				for (let def of defs)
+					// eslint-disable-next-line prefer-spread
+					module._changelist.apply(module, def);
 			}
+			else {
+				for (let def of defs) {
+					let [s] = def;
+					module._activate(s);
+				}
+			}
+
+			break;
 		}
 
-		if (Foxtrick.Prefs.isModuleOptionEnabled('CountryList', 'TeamPage')) {
+		if (Foxtrick.Prefs.isModuleOptionEnabled(module, 'TeamPage')) {
 			if (Foxtrick.isPage(doc, 'teamPage'))
 				module._placeCountry(doc);
 		}
 
-		if (Foxtrick.Prefs.isModuleOptionEnabled('CountryList', 'ManagerPage')) {
+		if (Foxtrick.Prefs.isModuleOptionEnabled(module, 'ManagerPage')) {
 			if (Foxtrick.isPage(doc, 'managerPage'))
 				module._placeCountry(doc);
 		}
 
-		if (Foxtrick.Prefs.isModuleOptionEnabled('CountryList', 'Flags')) {
+		if (Foxtrick.Prefs.isModuleOptionEnabled(module, 'Flags')) {
 			if (Foxtrick.isPage(doc, 'flagCollection'))
 				module._changeFlags(doc);
 		}
@@ -112,7 +114,7 @@ Foxtrick.modules.CountryList = {
 		if (!league)
 			return;
 
-		if (Foxtrick.Prefs.isModuleOptionEnabled('CountryList', 'HideFlagOntop'))
+		if (Foxtrick.Prefs.isModuleOptionEnabled(module, 'HideFlagOntop'))
 			league.setAttribute('style', 'display:none');
 
 		Foxtrick.log(league.href);
@@ -198,6 +200,8 @@ Foxtrick.modules.CountryList = {
 
 	/** @param {document} doc */
 	_changeFlags: function(doc) {
+		const module = this;
+
 		/** @type {NodeListOf<HTMLAnchorElement>} */
 		var flags = doc.querySelectorAll('.flag');
 
@@ -230,7 +234,7 @@ Foxtrick.modules.CountryList = {
 			flagGroup.push(flag);
 		}
 
-		if (Foxtrick.Prefs.isModuleOptionEnabled('CountryList', 'FlagSort')) {
+		if (Foxtrick.Prefs.isModuleOptionEnabled(module, 'FlagSort')) {
 			for (let group of flagGroups) {
 				let insertBefore = group.slice().pop().nextSibling;
 

@@ -521,7 +521,6 @@ module.SkillColoring.no_colors.enabled
 module.SkillColoring.non_skill_color.enabled
 module.SkillColoring.skill_color.enabled
 module.SkillColoring.skill_number.enabled
-module.SkillColoring.skill_select.enabled
 module.SkillColoring.skill_translated.enabled
 module.SkillColoring.skill_translated_title.enabled
 module.SkillTable.ColouredYouth.enabled

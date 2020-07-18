@@ -15,7 +15,6 @@ Foxtrick.modules.SkillColoring = {
 		'no_colors',
 		'skill_number',
 		['skill_translated', 'skill_translated_title'],
-		'skill_select',
 	],
 	CSS: Foxtrick.InternalPath + 'resources/skillcolors/common.css',
 	OPTIONS_CSS: [
@@ -24,7 +23,6 @@ Foxtrick.modules.SkillColoring = {
 		Foxtrick.InternalPath + 'resources/skillcolors/no-colors.css',
 		Foxtrick.InternalPath + 'resources/skillcolors/skill-number.css',
 		[Foxtrick.InternalPath + 'resources/skillcolors/skill-number.css', ''],
-		Foxtrick.InternalPath + 'resources/skillcolors/skill-number-selectoption.css',
 	],
 
 	/**
@@ -315,7 +313,6 @@ Foxtrick.modules.SkillColoring = {
 		const nonSkillColor = Foxtrick.Prefs.isModuleOptionEnabled(module, 'non_skill_color');
 		const noColors = Foxtrick.Prefs.isModuleOptionEnabled(module, 'no_colors');
 		const skillNumber = Foxtrick.Prefs.isModuleOptionEnabled(module, 'skill_number');
-		const skillSelect = Foxtrick.Prefs.isModuleOptionEnabled(module, 'skill_select');
 		const skillTranslated = Foxtrick.Prefs.isModuleOptionEnabled(module, 'skill_translated');
 		const skillTranslatedTitle =
 			Foxtrick.Prefs.isModuleOptionEnabled(module, 'skill_translated_title');
@@ -486,25 +483,6 @@ Foxtrick.modules.SkillColoring = {
 			// add skill link colors (and or) numbers to the dynamically filled player details div
 			// on the lineup page
 			Foxtrick.onChange(doc.getElementById('details'), playerDetailsChange);
-		}
-
-		if (skillSelect && Foxtrick.isPage(doc, 'transferSearchForm')) {
-			let body = doc.getElementById('mainBody');
-			let query =
-				'select[id*="Skill"][id$="Min"]>option, select[id*="Skill"][id$="Max"]>option';
-
-			/** @type {NodeListOf<HTMLOptionElement>} */
-			let skills = body.querySelectorAll(query);
-			Foxtrick.forEach(function(skill) {
-				if (skill.value == '-1')
-					return;
-
-				let level = doc.createElement('span');
-				Foxtrick.addClass(level, 'ft-tl-search-skill');
-				level.textContent = ` (${skill.value})`;
-				skill.appendChild(level);
-
-			}, skills);
 		}
 
 		if (skillNumber || skillTranslated) {
