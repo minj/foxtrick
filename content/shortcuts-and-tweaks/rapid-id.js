@@ -156,8 +156,14 @@ Foxtrick.modules['RapidId'] = {
 
 		var rightnow = doc.getElementById('ctl00_ctl00_ucOngoingEvents_pnlOngoingEvents');
 		if (rightnow) {
-			rightnow.setAttribute('style', 'overflow:hidden; white-space:nowrap; width:300px;');
+			// +padding -margin -.scContainer -allowance
+			rightnow.setAttribute('style', 'overflow:hidden; white-space:nowrap;' +
+				'width: calc(100% + 16px - 235px - 324px - 100px);');
+
+			// rightnow.setAttribute('style', 'overflow:hidden; white-space:nowrap;' +
+			// 	'width: calc(100% + 16px - 235px - 324px - 150px);');
 		}
+
 		// get labels of optgroup and option
 		for (var i = 0; i < options.length; ++i) {
 			options[i].label = Foxtrick.L10n.getString(options[i].text);
