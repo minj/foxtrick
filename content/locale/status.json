@@ -126,11 +126,11 @@
 			"code": "cs",
 			"name": "Czech",
 			"phrases": "2367",
-			"translated": "2134",
-			"translated_progress": "84",
+			"translated": "2214",
+			"translated_progress": "86",
 			"words": "17021",
 			"words_approved": "0",
-			"words_translated": "14461"
+			"words_translated": "14752"
 		},
 		{
 			"approved": "1813",
@@ -606,11 +606,11 @@
 			"code": "es-CR",
 			"name": "Spanish, Costa Rica",
 			"phrases": "2367",
-			"translated": "2282",
-			"translated_progress": "97",
+			"translated": "2349",
+			"translated_progress": "99",
 			"words": "17021",
 			"words_approved": "0",
-			"words_translated": "16661"
+			"words_translated": "16904"
 		},
 		{
 			"approved": "2130",
