@@ -158,10 +158,7 @@ Foxtrick.modules['RapidId'] = {
 		if (rightnow) {
 			// +padding -margin -.scContainer -allowance
 			rightnow.setAttribute('style', 'overflow:hidden; white-space:nowrap;' +
-				'width: calc(100% + 16px - 235px - 324px - 100px);');
-
-			// rightnow.setAttribute('style', 'overflow:hidden; white-space:nowrap;' +
-			// 	'width: calc(100% + 16px - 235px - 324px - 150px);');
+				'width: calc(100% + 16px - 235px - 324px - 12%);');
 		}
 
 		// get labels of optgroup and option
