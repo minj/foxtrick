@@ -22,7 +22,7 @@ Foxtrick.modules['Fans'] = {
 
 		if (Foxtrick.Prefs.isModuleOptionEnabled('Fans', 'AddLiveLink')) {
 			/** @type {NodeListOf<HTMLAnchorElement>} */
-			var links = doc.querySelectorAll('#upcoming a[href*="matchID"]'); // FIXME
+			var links = doc.querySelectorAll('#upcoming a[href*="matchID"]');
 			Foxtrick.forEach(function(link) {
 				var node = Foxtrick.createFeaturedElement(doc, module, 'a');
 				node.href = link.href.replace('/Club/Matches/Match.aspx?',
