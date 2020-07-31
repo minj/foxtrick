@@ -80,6 +80,7 @@ Foxtrick.modules.Maxtools = {
         const module = this;
 
         const TITLE_STR = Foxtrick.L10n.getString('MaxTools.eligibilityTitle');
+        const SUBTITLE_STR = Foxtrick.L10n.getString('MaxTools.eligibilitySubtitle');
         const EDITION_STR = Foxtrick.L10n.getString('MaxTools.edition');
         const MATCH_STR = Foxtrick.L10n.getString('MaxTools.match');
         const TMPL_STR = Foxtrick.L10n.getString('MaxTools.templateWithoutTable');
@@ -129,12 +130,14 @@ Foxtrick.modules.Maxtools = {
 
             let wrapper = Foxtrick.createFeaturedElement(doc, module, 'div');
             Foxtrick.addClass(wrapper, 'mainBox');
+
             let titleElement = doc.createElement('h2');
             titleElement.textContent = TITLE_STR;
-
-            //titleElement.appendChild(getLink(age.years, age.days));
-
             wrapper.appendChild(titleElement);
+
+            let subtitleElement = doc.createElement('h3');
+            subtitleElement.textContent = SUBTITLE_STR;
+            wrapper.appendChild(subtitleElement);
 
             champsList.forEach(function (championship) {
                 if (Object.keys(championship).length !== 0) {
@@ -221,15 +224,16 @@ Foxtrick.modules.Maxtools = {
                     if (Object.keys(championship).length !== 0) {
                         let editionNum = isRomanNumberEditionEnabled ? Foxtrick.decToRoman(championship.edition) : championship.edition;
 
-                        //let lastMatch = championship.match.toString() + "/" + championship.last_phase_match.toString();
-                        let lastMatch = MATCH_STR.replace(/%1/, championship.match.toString());
-                        lastMatch = lastMatch.replace(/%2/, championship.last_phase_match.toString());
+                        let lastMatch = championship.match.toString() + "/" + championship.last_phase_match.toString();
+                        //let lastMatch = MATCH_STR.replace(/%1/, championship.match.toString());
+                        //lastMatch = lastMatch.replace(/%2/, championship.last_phase_match.toString());
 
                         let contentChamp = TMPL_STR_SHORT;
-                        contentChamp = contentChamp.replace(/%1/, championship.type);
-                        contentChamp = contentChamp.replace(/%2/, championship.phase);
-                        contentChamp = contentChamp.replace(/%3/, editionNum.toString());
-                        contentChamp = contentChamp.replace(/%4/, lastMatch);
+                        contentChamp = contentChamp.replace(/%1/, LAST_MATCH_STR);
+                        contentChamp = contentChamp.replace(/%2/, championship.type);
+                        contentChamp = contentChamp.replace(/%3/, championship.phase);
+                        contentChamp = contentChamp.replace(/%4/, editionNum.toString());
+                        contentChamp = contentChamp.replace(/%5/, lastMatch);
 
                         let champDiv = doc.createElement('div');
                         champDiv.textContent = contentChamp;
