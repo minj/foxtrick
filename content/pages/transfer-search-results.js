@@ -161,6 +161,13 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 			let value = parseInt(u20.dataset.value, 10);
 			player.u20 = { title, text, value };
 		}
+
+        /** @type {HTMLElement} */
+        let mtStats = pNode.querySelector('.ft-mercattrick-stats');
+        if (mtStats) {
+            player.mtFilters = mtStats.dataset.filters;
+            player.mtBookmarks = mtStats.dataset.bookmarks;
+        }
 	};
 
 	/**

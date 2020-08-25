@@ -292,6 +292,8 @@ pref("extensions.foxtrick.prefs.module.MatchReportFormat.ShowEventIcons.enabled"
 pref("extensions.foxtrick.prefs.module.LiveMatchReportFormat.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchWeather.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchWeather.Irl.enabled", true);
+pref("extensions.foxtrick.prefs.module.MercattrickStats.enabled", true);
+pref("extensions.foxtrick.prefs.module.MercattrickStats.enableTLPage.enabled", true);
 pref("extensions.foxtrick.prefs.module.MoveLinks.enabled", false);
 pref("extensions.foxtrick.prefs.module.MoveManagerOnline.enabled", false);
 pref("extensions.foxtrick.prefs.module.MovePlayerSelectbox.enabled", false);
@@ -590,6 +592,8 @@ pref("extensions.foxtrick.prefs.module.SkillTable.transfer.fwdPosition", false);
 pref("extensions.foxtrick.prefs.module.SkillTable.transfer.fwtwPosition", false);
 pref("extensions.foxtrick.prefs.module.SkillTable.transfer.tdfPosition", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.transfer.BestPosition", true);
+pref("extensions.foxtrick.prefs.module.SkillTable.transfer.MercattrickStats.filters", true);
+pref("extensions.foxtrick.prefs.module.SkillTable.transfer.MercattrickStats.bookmarks", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.youth.others.Age", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.youth.others.HyLink", false);
 pref("extensions.foxtrick.prefs.module.SkillTable.youth.others.Last_match", true);
