@@ -232,7 +232,7 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 			player.deadline.appendChild(Foxtrick.cloneElement(ddl, true));
 
 			/** @type {NodeListOf<HTMLAnchorElement>} */
-			let links = bidContainer.querySelectorAll('a[href]');
+			let links = bidContainer.querySelectorAll('a[href*="?TeamID="i]');
 			bidderLink = [...links].pop();
 
 			let strongs = [...bidContainer.querySelectorAll('strong')];

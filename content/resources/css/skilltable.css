@@ -35,7 +35,7 @@ html[dir="rtl"] .ft_skilltable_wrapperRight {
 	left: initial;
 }
 .transfer .ft_skilltable_wrapperRight {
-	max-width: 300px;
+	max-width: calc(100% - 440px);
 	left: 440px;
 }
 html[data-theme="simple"] .transfer .ft_skilltable_wrapperRight {

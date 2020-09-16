@@ -11,6 +11,7 @@ Foxtrick.modules.ReLiveLinks = {
 	PAGES: [
 		'matchesLive', // export live
 		'series', // combo link
+		'fans',
 		'fixtures', 'youthFixtures', // table mess
 		'cupMatches', 'worldCup', // insertCells, insertHeader
 		'matchesArchive', 'worldMatches', // insertCells
@@ -169,6 +170,9 @@ Foxtrick.modules.ReLiveLinks = {
 		var addAllLink, matches;
 		var insertCells = false, insertHeader = false, useColSpan = false;
 
+		var scoreIdx = NaN;
+		var liveTdIdx = NaN;
+
 		var reLiveSrc = Foxtrick.InternalPath + 'resources/img/relive-small.png';
 		if (Foxtrick.isPage(doc, 'series')) {
 
@@ -230,8 +234,19 @@ Foxtrick.modules.ReLiveLinks = {
 			rows = doc.querySelectorAll('#mainBody tr');
 			insertCells = true;
 		}
+		else if (Foxtrick.isPage(doc, 'fans')) {
+			rows = doc.querySelectorAll('#played tr');
+			// eslint-disable-next-line no-magic-numbers
+			scoreIdx = 3;
+			liveTdIdx = 1;
+		}
 		else {
 			Foxtrick.error('Unhandled case in ReLiveLinks');
+			return;
+		}
+
+		if (!rows) {
+			Foxtrick.error(`${module.MODULE_NAME} failed`);
 			return;
 		}
 
@@ -239,8 +254,10 @@ Foxtrick.modules.ReLiveLinks = {
 		if (matchTdIdx === -1)
 			return;
 
-		var scoreIdx = matchTdIdx + 1;
-		var liveTdIdx = matchTdIdx + 2;
+		if (!liveTdIdx) {
+			scoreIdx = matchTdIdx + 1;
+			liveTdIdx = matchTdIdx + 2;
+		}
 
 		if (insertHeader) {
 			for (let row of rows) {

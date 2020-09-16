@@ -14,7 +14,7 @@ Foxtrick.modules.ShowLineupSet = {
 	PAGES: [
 		'series', 'youthSeries',
 		'tournaments', 'tournamentsHistory', 'ladders',
-		'oldSeries', 'marathon',
+		'oldSeries', 'marathon', 'seriesHistoryNew',
 		'topScorers',
 	],
 	OPTIONS: ['LineupSet', 'Ownerless', 'Standing', 'Winning'],
@@ -177,6 +177,12 @@ Foxtrick.modules.ShowLineupSet = {
 
 		if (Foxtrick.Prefs.isModuleOptionEnabled(module, 'Standing'))
 			module.detectOwnTeam(doc);
+	},
+
+	/** @param {document} doc */
+	change: function(doc) {
+		if (Foxtrick.isPage(doc, 'seriesHistoryNew'))
+			this.run(doc);
 	},
 
 	/** @param {document} doc */

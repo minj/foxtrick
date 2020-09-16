@@ -126,11 +126,11 @@
 			"code": "cs",
 			"name": "Czech",
 			"phrases": "2367",
-			"translated": "2125",
-			"translated_progress": "84",
+			"translated": "2225",
+			"translated_progress": "87",
 			"words": "17021",
 			"words_approved": "0",
-			"words_translated": "14400"
+			"words_translated": "14838"
 		},
 		{
 			"approved": "1813",
@@ -222,11 +222,11 @@
 			"code": "fr",
 			"name": "French",
 			"phrases": "2367",
-			"translated": "2310",
-			"translated_progress": "98",
+			"translated": "2352",
+			"translated_progress": "99",
 			"words": "17021",
 			"words_approved": "16753",
-			"words_translated": "16758"
+			"words_translated": "16922"
 		},
 		{
 			"approved": "0",
@@ -354,11 +354,11 @@
 			"code": "it",
 			"name": "Italian",
 			"phrases": "2367",
-			"translated": "2330",
+			"translated": "2363",
 			"translated_progress": "99",
 			"words": "17021",
 			"words_approved": "0",
-			"words_translated": "16916"
+			"words_translated": "17009"
 		},
 		{
 			"approved": "0",
@@ -474,11 +474,11 @@
 			"code": "fa",
 			"name": "Persian",
 			"phrases": "2367",
-			"translated": "1596",
+			"translated": "1597",
 			"translated_progress": "54",
 			"words": "17021",
 			"words_approved": "0",
-			"words_translated": "9264"
+			"words_translated": "9271"
 		},
 		{
 			"approved": "0",
@@ -582,11 +582,11 @@
 			"code": "es-ES",
 			"name": "Spanish",
 			"phrases": "2367",
-			"translated": "2283",
-			"translated_progress": "97",
+			"translated": "2367",
+			"translated_progress": "100",
 			"words": "17021",
 			"words_approved": "1",
-			"words_translated": "16668"
+			"words_translated": "17021"
 		},
 		{
 			"approved": "0",
@@ -606,11 +606,11 @@
 			"code": "es-CR",
 			"name": "Spanish, Costa Rica",
 			"phrases": "2367",
-			"translated": "2282",
-			"translated_progress": "97",
+			"translated": "2349",
+			"translated_progress": "99",
 			"words": "17021",
 			"words_approved": "0",
-			"words_translated": "16661"
+			"words_translated": "16904"
 		},
 		{
 			"approved": "2130",

@@ -10,7 +10,7 @@ Foxtrick.modules.SupportersList = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.PRESENTATION,
 	PAGES: [
 		'supported', 'supporters',
-		'series', 'nextSeries', 'oldSeries', 'marathon', 'promotion',
+		'series', 'nextSeries', 'oldSeries', 'marathon', 'promotion', 'seriesHistoryNew',
 	],
 	OPTIONS: ['SupporterBack', 'SupportedBack', 'Series'],
 	CSS: Foxtrick.InternalPath + 'resources/css/supporters-list.css',
@@ -22,6 +22,13 @@ Foxtrick.modules.SupportersList = {
 			module.supporters(doc);
 		else if (Foxtrick.Prefs.isModuleOptionEnabled(module, 'Series'))
 			module.series(doc);
+	},
+
+	/** @param {document} doc */
+	change: function(doc) {
+		const module = this;
+		if (Foxtrick.isPage(doc, 'seriesHistoryNew'))
+			module.run(doc);
 	},
 
 	/** @param {document} doc */
@@ -147,7 +154,11 @@ Foxtrick.modules.SupportersList = {
 			if (!id || ids.indexOf(id) == -1)
 				continue;
 
-			Foxtrick.addClass(link, `ft-suppList-${type}`);
+			let cls = `ft-suppList-${type}`;
+			if (Foxtrick.hasClass(link, cls))
+				continue;
+
+			Foxtrick.addClass(link, cls);
 			let node = findParent(link);
 			Foxtrick.addImage(doc, node, {
 				src: '/Img/Icons/transparent.gif',
