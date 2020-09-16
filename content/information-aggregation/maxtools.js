@@ -117,12 +117,9 @@ Foxtrick.modules.Maxtools = {
         const HTMT_PATH = 'https://ht-mt.org';
         var url = `${HTMT_PATH}/maxtools-api/perfect-age/${age.years}/${age.days}`;
 
-        //console.log("vou chamar " + url);
         Foxtrick.load(url).then(function (r) {
             var text = /** @type {string} */ (r);
-            //console.log(text);
             let champsList = module.buildMaxToolPerfectAge(text);
-            //console.log(champsList);
 
             let entryPoint =
                 doc.querySelector('#mainBody > .mainBox') ||
@@ -175,9 +172,6 @@ Foxtrick.modules.Maxtools = {
     runPlayerList: function (doc) {
         const module = this;
 
-        const TITLE_STR = Foxtrick.L10n.getString('MaxTools.eligibilityTitle');
-        const EDITION_STR = Foxtrick.L10n.getString('MaxTools.edition');
-        const MATCH_STR = Foxtrick.L10n.getString('MaxTools.match');
         const TMPL_STR_SHORT = Foxtrick.L10n.getString('MaxTools.templateShortWithoutTable');
         const LAST_MATCH_STR = Foxtrick.L10n.getString('MaxTools.lastMatch');
 
@@ -189,10 +183,7 @@ Foxtrick.modules.Maxtools = {
          * @return {HTMLAnchorElement}
          */
         var getLink = function (years, days) {
-            //console.log('chegou aqui');
             let lang = Foxtrick.Prefs.getString('htLanguage');
-            //let prefix = 'http://www.fantamondi.it/HTMS/index.php' +
-            //    `?page=htmspoints&lang=${lang}&action=calc`;
             let prefix = 'https://ht-mt.org/nt/perfect-age';
             let skillQuery = `?lang=${lang}&years=${years}&days=${days}`;
 
@@ -219,14 +210,11 @@ Foxtrick.modules.Maxtools = {
                 container.appendChild(getLink(player.age.years, player.age.days));
                 container.appendChild(doc.createTextNode(' '));
 
-
                 champsList.forEach(function (championship) {
                     if (Object.keys(championship).length !== 0) {
                         let editionNum = isRomanNumberEditionEnabled ? Foxtrick.decToRoman(championship.edition) : championship.edition;
 
                         let lastMatch = championship.match.toString() + "/" + championship.last_phase_match.toString();
-                        //let lastMatch = MATCH_STR.replace(/%1/, championship.match.toString());
-                        //lastMatch = lastMatch.replace(/%2/, championship.last_phase_match.toString());
 
                         let contentChamp = TMPL_STR_SHORT;
                         contentChamp = contentChamp.replace(/%1/, LAST_MATCH_STR);
@@ -249,31 +237,6 @@ Foxtrick.modules.Maxtools = {
             }, (er) => {
                 console.log(er);
             }).catch(Foxtrick.catch(module));
-            //if (player.age.years > 20)
-            //    continue;
-
-            //let { worldCupNumber, lastMatch, matchNumber, dateWhen21 } =
-            //    module.calculate(doc, player.age);
-
-            //let wcNum = Foxtrick.decToRoman(worldCupNumber);
-
-            //let text = TMPL_STR;
-            //text = text.replace(/%1/, TITLE_STR);
-            //text = text.replace(/%2/, WC_STR);
-            //text = text.replace(/%3/, wcNum);
-            //text = text.replace(/%4/, lastMatch);
-
-            //let container = Foxtrick.createFeaturedElement(doc, module, 'p');
-            //Foxtrick.addClass(container, 'ft-u20lastmatch');
-            //container.textContent = text;
-            //container.dataset.value = String(dateWhen21.getTime());
-            //container.dataset.valueString = `${wcNum}:${matchNumber}`;
-
-            //let entry = player.playerNode.querySelector('table') || player.playerNode.lastChild;
-            //while (entry.parentElement && entry.parentElement.matches('.flex'))
-            //    entry = entry.parentElement;
-
-            //Foxtrick.insertAfter(container, entry);
         }
     },
 };
