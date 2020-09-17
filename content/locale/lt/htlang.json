@@ -161,7 +161,7 @@
 		],
 		"fans_match": [
 			{
-				"text": "Geriau išvis nesirodyti aikštelėje!",
+				"text": "Geriau išvis nesirodyti aikštėje!",
 				"value": "0"
 			},
 			{
@@ -329,6 +329,11 @@
 			"159": "Madagaskaras",
 			"16": "Brazilija",
 			"160": "Botsvana",
+			"161": "Mianmaras",
+			"162": "Zambija",
+			"163": "San Marinas",
+			"164": "Haitis",
+			"165": "Puerto Rikas",
 			"17": "Kanada",
 			"18": "Čilė",
 			"19": "Kolumbija",
