@@ -378,7 +378,6 @@ module.LoyaltyDisplay.enabled
 module.ManagerButtons.GuestBook.enabled
 module.ManagerButtons.enabled
 module.MarkAllAsRead.enabled
-module.MarkUnread.enabled
 module.MatchIncome.UtilizationPercentages.enabled
 module.MatchIncome.enabled
 module.MatchLineupFixes.AddStarsToSubs.enabled

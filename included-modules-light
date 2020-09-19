@@ -8,7 +8,6 @@ forum/forum-templates.js
 forum/forum-thread-auto-ignore.js
 forum/forum-youth-icons.js
 forum/mark-all-as-read.js
-forum/mark-unread.js
 information-aggregation/current-transfers.js
 information-aggregation/dashboard-calendar.js
 information-aggregation/extended-player-details.js

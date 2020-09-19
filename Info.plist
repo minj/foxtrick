@@ -141,7 +141,6 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/forum/hide-signatures.js</string>
 				<string>content/forum/ht-thread-marker.js</string>
 				<string>content/forum/mark-all-as-read.js</string>
-				<string>content/forum/mark-unread.js</string>
 				<string>content/forum/show-forum-pref-button.js</string>
 				<string>content/forum/staff-marker.js</string>
 				<string>content/information-aggregation/cross-table.js</string>
@@ -206,8 +205,8 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/matches/match-income.js</string>
 				<string>content/matches/match-lineup-fixes.js</string>
 				<string>content/matches/match-lineup-tweaks.js</string>
-				<string>content/matches/match-order.js</string>
 				<string>content/matches/match-order-new.js</string>
+				<string>content/matches/match-order.js</string>
 				<string>content/matches/match-player-colouring.js</string>
 				<string>content/matches/match-ratings-tweaks.js</string>
 				<string>content/matches/match-report-format.js</string>
