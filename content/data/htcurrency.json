@@ -689,7 +689,7 @@
 		},
 		{
 			"code": "KHR",
-			"eurorate": "0.00025",
+			"eurorate": "0.25",
 			"leagues": {
 				"138": "Cambodia"
 			},
