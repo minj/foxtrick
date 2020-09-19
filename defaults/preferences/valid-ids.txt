@@ -200,8 +200,6 @@ module.HTMSPoints.AddToSearchResult.enabled
 module.HTMSPoints.enabled
 module.HTMSPrediction.enabled
 module.HTThreadMarker.enabled
-module.HeaderFix.FixLeft.enabled
-module.HeaderFix.enabled
 module.HeaderToggle.enabled
 module.HideSignatures.enabled
 module.HighlightCupwins.HighlightCupsets.enabled
