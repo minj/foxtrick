@@ -24,7 +24,8 @@
 				"89": "Cyprus",
 				"101": "Malta",
 				"105": "Andorra",
-				"131": "Montenegro"
+				"131": "Montenegro",
+				"163": "San Marino"
 			},
 			"name": "€ (Euro)",
 			"symbol": "€"
@@ -94,7 +95,8 @@
 				"140": "Syria",
 				"142": "Tanzania",
 				"#147": "Cuba",
-				"154": "Guam"
+				"154": "Guam",
+				"165": "Puerto Rico"
 			},
 			"name": "$ (Generic dollar)",
 			"symbol": "$"
@@ -109,7 +111,8 @@
 				"#140": "Syria",
 				"#142": "Tanzania",
 				"147": "Cuba",
-				"#154": "Guam"
+				"#154": "Guam",
+				"#165": "Puerto Rico"
 			},
 			"name": "$ (Cuban peso)",
 			"symbol": "$"
@@ -983,6 +986,33 @@
 			},
 			"name": "Botswana pula",
 			"symbol": "pula"
+		},
+		{
+			"code": "HTG",
+			"eurorate": "0.01",
+			"leagues": {
+				"164": "Haiti"
+			},
+			"name": "Haitian gourde",
+			"symbol": "gourde"
+		},
+		{
+			"code": "ZMW",
+			"eurorate": "0.2",
+			"leagues": {
+				"162": "Zambia"
+			},
+			"name": "Zambian kwacha",
+			"symbol": "kwacha"
+		},
+		{
+			"code": "MMK",
+			"eurorate": "0.0005",
+			"leagues": {
+				"161": "Myanmar"
+			},
+			"name": "Kyat (Myanmar)",
+			"symbol": "kyat"
 		},
 		{
 			"code": "BYR",
