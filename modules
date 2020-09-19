@@ -31,7 +31,6 @@ information-aggregation/election-table.js
 information-aggregation/extended-player-details.js
 information-aggregation/extra-player-info.js
 information-aggregation/flag-collection-to-map.js
-information-aggregation/goal-difference-to-tables.js
 information-aggregation/history-stats.js
 information-aggregation/htms-points.js
 information-aggregation/last-login.js

@@ -82,7 +82,6 @@ YouthSkillHideUnknown.HideMaximalKeyWord=http://www.foxtrick.org/screenshots/ind
 # Matches
 AttVsDef=http://www.foxtrick.org/screenshots/index.php/matches/144-attvsdef
 CopyRatings=http://www.foxtrick.org/screenshots/index.php/matches/146-copyratingstoclipboard
-GoaldifferenceToTables=http://www.foxtrick.org/screenshots/index.php/matches/149-goaldifferencetotables
 HTMSPrediction=http://www.foxtrick.org/screenshots/index.php/matches/145-HTMSPrediction
 MatchIncome=http://www.foxtrick.org/screenshots/index.php/matches/150-matchincome
 MatchPlayerColouring=http://www.foxtrick.org/screenshots/index.php/matches/151-matchplayercolouring

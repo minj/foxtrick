@@ -189,7 +189,6 @@ module.FriendlyInterface.enabled
 module.FriendlyPool.ExpandCountrySelection.enabled
 module.FriendlyPool.enabled
 module.GoToPostBox.enabled
-module.GoalDifferenceToTables.enabled
 module.HTDateFormat.FirstDayOfWeekOffset.enabled
 module.HTDateFormat.FirstDayOfWeekOffset_text
 module.HTDateFormat.LocalSeason.enabled

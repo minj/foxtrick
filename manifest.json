@@ -135,7 +135,6 @@
 			"content/information-aggregation/extended-player-details.js",
 			"content/information-aggregation/extra-player-info.js",
 			"content/information-aggregation/flag-collection-to-map.js",
-			"content/information-aggregation/goal-difference-to-tables.js",
 			"content/information-aggregation/history-stats.js",
 			"content/information-aggregation/htms-points.js",
 			"content/information-aggregation/last-login.js",
