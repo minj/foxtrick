@@ -14,9 +14,9 @@ if (!Foxtrick.api.pastebin)
  * Global api settings
  * http://pastebin.com/api
  */
-Foxtrick.api.pastebin.api_url = 'http://pastebin.com/api/api_post.php';
-Foxtrick.api.pastebin.api_login_url = 'http://pastebin.com/api/api_login.php';
-Foxtrick.api.pastebin.api_get_url = 'http://pastebin.com/raw.php';
+Foxtrick.api.pastebin.api_url = 'https://pastebin.com/api/api_post.php';
+Foxtrick.api.pastebin.api_login_url = 'https://pastebin.com/api/api_login.php';
+Foxtrick.api.pastebin.api_get_url = 'https://pastebin.com/raw.php';
 Foxtrick.api.pastebin.api_dev_key = '4c9908e8d8f0cb90d7f7328b499f457c';
 Foxtrick.api.pastebin.api_user_key = 'cd224a63147fba48dcd092d4988f2e15';
 Foxtrick.api.pastebin.api_paste_private = {
