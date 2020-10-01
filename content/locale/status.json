@@ -529,16 +529,16 @@
 			"words_translated": "15351"
 		},
 		{
-			"approved": "2289",
-			"approved_progress": "98",
+			"approved": "2282",
+			"approved_progress": "97",
 			"code": "ru",
 			"name": "Russian",
 			"phrases": "2367",
-			"translated": "2289",
+			"translated": "2315",
 			"translated_progress": "98",
 			"words": "17021",
-			"words_approved": "16700",
-			"words_translated": "16700"
+			"words_approved": "16656",
+			"words_translated": "16835"
 		},
 		{
 			"approved": "2060",
