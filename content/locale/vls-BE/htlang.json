@@ -799,15 +799,15 @@
 			},
 			{
 				"type": "Cross",
-				"value": "Lange pass (vleugel)"
+				"value": "Lange pass (Vleugel)"
 			},
 			{
 				"type": "Shoot",
-				"value": "Schieten"
+				"value": "Schieten (Scoren en spelhervatten)"
 			},
 			{
 				"type": "Pass",
-				"value": "Korte pass"
+				"value": "Korte pass (Passen)"
 			},
 			{
 				"type": "PM",
@@ -819,7 +819,7 @@
 			},
 			{
 				"type": "ThPass",
-				"value": "Steekpass"
+				"value": "Steekpassen"
 			},
 			{
 				"type": "DefPos",
