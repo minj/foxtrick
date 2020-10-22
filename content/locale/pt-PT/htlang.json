@@ -799,11 +799,11 @@
 			},
 			{
 				"type": "Cross",
-				"value": "Cruzamentos (Ala)"
+				"value": "Ala"
 			},
 			{
 				"type": "Shoot",
-				"value": "Remates"
+				"value": "Finalização e Bolas Paradas"
 			},
 			{
 				"type": "Pass",
@@ -819,7 +819,7 @@
 			},
 			{
 				"type": "ThPass",
-				"value": "Passe Longo"
+				"value": "Assistências (Defesas + Médios)"
 			},
 			{
 				"type": "DefPos",
@@ -827,7 +827,7 @@
 			},
 			{
 				"type": "WingAtt",
-				"value": "Ataque Lateral"
+				"value": "Ala (Alas + Avançados)"
 			},
 			{
 				"type": "Indiv",
