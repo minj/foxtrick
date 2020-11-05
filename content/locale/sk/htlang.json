@@ -783,39 +783,39 @@
 			},
 			{
 				"type": "Sta",
-				"value": "kondícia"
+				"value": "Kondícia"
 			},
 			{
 				"type": "SP",
-				"value": "štandardky"
+				"value": "Štandardky"
 			},
 			{
 				"type": "Def",
-				"value": "bránenie"
+				"value": "Bránenie"
 			},
 			{
 				"type": "Sco",
-				"value": "zakončovanie"
+				"value": "Zakončovanie"
 			},
 			{
 				"type": "Cross",
-				"value": "centrované lopty (krídlo)"
+				"value": "Centrované lopty (krídlo)"
 			},
 			{
 				"type": "Shoot",
-				"value": "streľba"
+				"value": "Streľba"
 			},
 			{
 				"type": "Pass",
-				"value": "krátke prihrávky"
+				"value": "Krátke prihrávky"
 			},
 			{
 				"type": "PM",
-				"value": "tvorba hry"
+				"value": "Tvorba hry"
 			},
 			{
 				"type": "GK",
-				"value": "chytanie"
+				"value": "Chytanie"
 			},
 			{
 				"type": "ThPass",
