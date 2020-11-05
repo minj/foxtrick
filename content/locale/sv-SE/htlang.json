@@ -795,7 +795,7 @@
 			},
 			{
 				"type": "Sco",
-				"value": "Avslut"
+				"value": "Målgörare"
 			},
 			{
 				"type": "Cross",
@@ -811,7 +811,7 @@
 			},
 			{
 				"type": "PM",
-				"value": "Speluppbyggnad"
+				"value": "Spelupplägg"
 			},
 			{
 				"type": "GK",

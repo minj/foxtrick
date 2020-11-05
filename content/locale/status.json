@@ -126,11 +126,11 @@
 			"code": "cs",
 			"name": "Czech",
 			"phrases": "2367",
-			"translated": "2225",
+			"translated": "2226",
 			"translated_progress": "87",
 			"words": "17021",
 			"words_approved": "0",
-			"words_translated": "14838"
+			"words_translated": "14883"
 		},
 		{
 			"approved": "1813",
@@ -366,11 +366,11 @@
 			"code": "ja",
 			"name": "Japanese",
 			"phrases": "2367",
-			"translated": "1298",
-			"translated_progress": "43",
+			"translated": "1411",
+			"translated_progress": "45",
 			"words": "17021",
 			"words_approved": "0",
-			"words_translated": "7439"
+			"words_translated": "7692"
 		},
 		{
 			"approved": "0",
