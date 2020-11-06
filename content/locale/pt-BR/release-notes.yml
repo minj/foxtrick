@@ -96,6 +96,7 @@ pt-BR:
       other: '<header>Outras alterações</header>'
       volume: 'Colocamos um controlador de volume geral para o foxtrick, está em <FTlinkMainTab>general settings section</FTlinkMainTab>.'
       mrt_ratings: 'Módulo <module>Ratings</module> foi integrado no módulo <module>MatchRatingsTweaks</module> e tem agora funcionalidade limitada mesmo em HT-Live (apenas para Sócio-HT).'
+      monitor_update: '<module>MyMonitor</module> agora inclui uma ordenação de times mais inteligente e a habilidade de adicionar partidas à HT-Live de acordo com seus tipos.'
       promote_age: '<module>YouthPromotes</module> agora mostra a idade do jogador no dia de promoção.'
       export_live: 'Adicionado um botão para exportar a sua lista de jogos HT-Live como um link em <module>ReLiveLinks</module>.'
       match_icons: 'Mais ícones de eventos de jogo foram adicionados ao <module>MatchReportFormat</module>. Todos os eventos importantes devem agora estar cobertos.'

@@ -366,11 +366,11 @@
 			"code": "ja",
 			"name": "Japanese",
 			"phrases": "2367",
-			"translated": "1411",
+			"translated": "1445",
 			"translated_progress": "45",
 			"words": "17021",
 			"words_approved": "0",
-			"words_translated": "7692"
+			"words_translated": "7780"
 		},
 		{
 			"approved": "0",
@@ -510,11 +510,11 @@
 			"code": "pt-BR",
 			"name": "Portuguese, Brazilian",
 			"phrases": "2367",
-			"translated": "2109",
+			"translated": "2110",
 			"translated_progress": "87",
 			"words": "17021",
 			"words_approved": "1",
-			"words_translated": "14943"
+			"words_translated": "14963"
 		},
 		{
 			"approved": "938",
