@@ -150,7 +150,6 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/information-aggregation/extended-player-details.js</string>
 				<string>content/information-aggregation/extra-player-info.js</string>
 				<string>content/information-aggregation/flag-collection-to-map.js</string>
-				<string>content/information-aggregation/goal-difference-to-tables.js</string>
 				<string>content/information-aggregation/history-stats.js</string>
 				<string>content/information-aggregation/htms-points.js</string>
 				<string>content/information-aggregation/last-login.js</string>
@@ -220,7 +219,6 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/presentation/fix-css-problems.js</string>
 				<string>content/presentation/friendly-interface.js</string>
 				<string>content/presentation/friendly-pool.js</string>
-				<string>content/presentation/header-fix.js</string>
 				<string>content/presentation/header-toggle.js</string>
 				<string>content/presentation/highlight-cup-wins.js</string>
 				<string>content/presentation/highlight-ownerless.js</string>

@@ -601,7 +601,7 @@
 			},
 			{
 				"type": "Kicker",
-				"value": "Spelhervattingen"
+				"value": "Spelhervatten"
 			},
 			{
 				"type": "Passer",
@@ -787,7 +787,7 @@
 			},
 			{
 				"type": "SP",
-				"value": "Spelhervattingen"
+				"value": "Spelhervatten"
 			},
 			{
 				"type": "Def",

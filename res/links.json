@@ -497,5 +497,21 @@
 		],
 		"title": "Hattrick Youthclub",
 		"img": "https://www.foxtrick.org/res/linkicons/hattrick-youthclub.ico"
+	},
+	"hattid": {
+		"serieslink": {
+			"url": "https://hattid.com/leagueLevelUnit?leagueUnitId=[seriesid]"
+		},
+		"teamlink": {
+			"url": "https://hattid.com/team/teamOverview?teamId=[teamid]"
+		},
+		"leaguelink": {
+			"url": "https://hattid.com/league?leagueId=[leagueid]]"
+		},
+		"worldlink": {
+			"url": "https://hattid.com/worldOverview"
+		},
+		"title": "Hattid (AlltidLike)",
+		"img": "https://hattid.com/assets/images/favicon.png"
 	}
 }
