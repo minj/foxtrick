@@ -329,6 +329,11 @@
 			"159": "Madagaskar",
 			"16": "Brazil",
 			"160": "Bocvana",
+			"161": "Mijanmar",
+			"162": "Zambija",
+			"163": "San Marino",
+			"164": "Haiti",
+			"165": "Portoriko",
 			"17": "Kanada",
 			"18": "Čile",
 			"19": "Kolumbija",
@@ -790,7 +795,7 @@
 			},
 			{
 				"type": "Sco",
-				"value": "Napadači"
+				"value": "Napad"
 			},
 			{
 				"type": "Cross",

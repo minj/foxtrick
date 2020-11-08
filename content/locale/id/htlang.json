@@ -329,6 +329,11 @@
 			"159": "Madagaskar",
 			"16": "Brasil",
 			"160": "Botswana",
+			"161": "Myanmar",
+			"162": "Zambia",
+			"163": "San Marino",
+			"164": "Haiti",
+			"165": "Puerto Rico",
 			"17": "Canada",
 			"18": "Chili",
 			"19": "Kolombia",
@@ -614,7 +619,7 @@
 		"specialties": [
 			{
 				"type": "None",
-				"value": "Tidak ada"
+				"value": "Tanpa keahlian"
 			},
 			{
 				"type": "Technical",

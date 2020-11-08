@@ -37,11 +37,11 @@
 .cfFooter a[href*="/Forum/Functions.aspx?actionType=ignore&t="]{
   background-image: url("chrome://foxtrick/content/resources/img/forum-grey/forum_grey_ignore.png");
 }
+.cfFooter a[href*="/Forum/Functions.aspx?actionTypeFunctions=markunread&t="] {
+  background-image: url("chrome://foxtrick/content/resources/img/forum-grey/forum_grey_markunread.png");
+}
 .cfFooter .foxtrick-signaturetoggle{
   background-image: url("chrome://foxtrick/content/resources/img/forum-grey/forum_grey_sigtoggle.png");
-}
-.cfFooter .foxtrick-unreadlink {
-  background-image: url("chrome://foxtrick/content/resources/img/forum-grey/forum_grey_markunread.png");
 }
 .cfFooter .foxtrick-marker-link {
   background-image: url("chrome://foxtrick/content/resources/img/forum-grey/forum_palette.png");
@@ -67,6 +67,7 @@
 .cfFooter a[href*="/MyHattrick/Bookmarks/?actionType=add&BookmarkTypeID=4&ObjectID="],
 .cfFooter a[href*="/Forum/Functions.aspx?actionTypeFunctions=ignore&t="],
 .cfFooter a[href*="/Forum/Functions.aspx?actionType=ignore&t="],
+.cfFooter a[href*="/Forum/Functions.aspx?actionTypeFunctions=markunread&t="],
 .cfFooter .foxtrick-signaturetoggle,
 .cfFooter .foxtrick-unreadlink,
 .cfFooter .foxtrick-copyfromarchive,

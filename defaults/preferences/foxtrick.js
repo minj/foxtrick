@@ -170,10 +170,7 @@ pref("extensions.foxtrick.prefs.module.FriendlyInterface.HideAnswerTo.enabled", 
 pref("extensions.foxtrick.prefs.module.FriendlyInterface.HideSpeechlessSecretary.enabled", false);
 pref("extensions.foxtrick.prefs.module.FriendlyPool.enabled", true);
 pref("extensions.foxtrick.prefs.module.FriendlyPool.ExpandCountrySelection.enabled", true);
-pref("extensions.foxtrick.prefs.module.GoalDifferenceToTables.enabled", true);
 pref("extensions.foxtrick.prefs.module.GoToPostBox.enabled", true);
-pref("extensions.foxtrick.prefs.module.HeaderFix.enabled", false);
-pref("extensions.foxtrick.prefs.module.HeaderFix.FixLeft.enabled", false);
 pref("extensions.foxtrick.prefs.module.HideSignatures.enabled", false);
 pref("extensions.foxtrick.prefs.module.HighlightOwnerless.enabled", true);
 pref("extensions.foxtrick.prefs.module.HighlightCupwins.enabled", true);
@@ -239,7 +236,6 @@ pref("extensions.foxtrick.prefs.module.LoyaltyDisplay.enabled", true);
 pref("extensions.foxtrick.prefs.module.ManagerButtons.enabled", false);
 pref("extensions.foxtrick.prefs.module.ManagerButtons.GuestBook.enabled", false);
 pref("extensions.foxtrick.prefs.module.MarkAllAsRead.enabled", true);
-pref("extensions.foxtrick.prefs.module.MarkUnread.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchIncome.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchIncome.UtilizationPercentages.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchLineupFixes.enabled", true);

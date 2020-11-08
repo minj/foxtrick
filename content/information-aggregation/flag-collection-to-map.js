@@ -69,6 +69,7 @@ Foxtrick.modules.FlagCollectionToMap = {
 		137: ['GH'], // Ghana
 		154: ['GU'], // Guam
 		107: ['GT'], // Guatemala
+		164: ['HT'], // Haiti
 		30 : ['KR'], // Hanguk / Korea
 		122: ['AM'], // Hayastan / Armenia
 		50 : ['GR'], // Hellas
@@ -102,6 +103,7 @@ Foxtrick.modules.FlagCollectionToMap = {
 		135: ['MZ'], // Moçambique / Mozambique
 		103: ['MD'], // Moldova
 		119: ['MN'], // Mongol Uls
+		161: ['MM'], // Myanmar
 		14 : ['NL'], // Nederland
 		111: ['NI'], // Nicaragua
 		75 : ['NG'], // Nigeria
@@ -124,12 +126,14 @@ Foxtrick.modules.FlagCollectionToMap = {
 		24 : ['PL'], // Polska
 		25 : ['PT'], // Portugal
 		31 : ['TH'], // Prathet Thai / Thailand
+		165: ['PR'], // Puerto Rico
 		155: ['CD'], // RD Congo
 		88 : ['DO'], // República Dominicana
 		37 : ['RO'], // România
 		35 : ['RU'], // Rossiya
 		157: ['VC'], // Saint Vincent and the Grenadines
 		104: ['GE'], // Sakartvelo / Georgia
+		163: ['SM'], // San Marino
 		149: ['ST'], // São Tomé e Príncipe
 		79 : ['SA'], // Saudi Arabia
 		46 : ['CH'], // Schweiz
@@ -155,9 +159,10 @@ Foxtrick.modules.FlagCollectionToMap = {
 		68 : ['UA'], // Ukraina
 		83 : ['AE'], // United Arab Emirates
 		28 : ['UY'], // Uruguay
-		8  : ['US', 'AS', 'MP', 'PR', 'UM', 'VI'], // USA
+		8  : ['US', 'AS', 'MP', 'UM', 'VI'], // USA
 		29 : ['VE'], // Venezuela
 		70 : ['VN'], // Việt Nam / Vietnam
+		162: ['ZM'], // Zambia
 	},
 	/* eslint-enable key-spacing */
 
@@ -176,8 +181,6 @@ Foxtrick.modules.FlagCollectionToMap = {
 		'BS',
 		'BT',
 		'BV',
-		'BW',
-		'BZ',
 		'CF',
 		'CG',
 		'DJ',
@@ -197,7 +200,6 @@ Foxtrick.modules.FlagCollectionToMap = {
 		'GW',
 		'GY',
 		'HM',
-		'HT',
 		'IM',
 		'IO',
 		'JE',
@@ -211,9 +213,7 @@ Foxtrick.modules.FlagCollectionToMap = {
 		'LY',
 		'MC',
 		'MF',
-		'MG',
 		'ML',
-		'MM',
 		'MO',
 		'MQ',
 		'MR',
@@ -224,14 +224,12 @@ Foxtrick.modules.FlagCollectionToMap = {
 		'NE',
 		'NP',
 		'PM',
-		'PR',
 		'RE',
 		'RW',
 		'SC',
 		'SD',
 		'SH',
 		'SL',
-		'SM',
 		'SO',
 		'SZ',
 		'TC',
@@ -242,11 +240,9 @@ Foxtrick.modules.FlagCollectionToMap = {
 		'TM',
 		'UM',
 		'VA',
-		'VC',
 		'VG',
 		'VI',
 		'YT',
-		'ZM',
 		'ZW',
 	],
 

@@ -172,12 +172,12 @@ html[dir="ltr"] .overlayMidDefense, .overlayMidAttack {
 #fieldOverlay.displayBelow {
 	height: 520px;
 	position: relative;
-	top: 675px !important;
+	top: 720px !important;
 }
 #fieldOverlay.displayRight {
 	height: 520px;
 	position: relative;
-	top: -80px;
+	top: -50px;
 }
 html[dir="rtl"] #fieldOverlay.displayRight {
 	right: 775px;

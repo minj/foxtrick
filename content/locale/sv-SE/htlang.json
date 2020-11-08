@@ -329,6 +329,11 @@
 			"159": "Madagaskar",
 			"16": "Brasilien",
 			"160": "Botswana",
+			"161": "Myanmar",
+			"162": "Zambia",
+			"163": "San Marino",
+			"164": "Haiti",
+			"165": "Puerto Rico",
 			"17": "Kanada",
 			"18": "Chile",
 			"19": "Colombia",
@@ -790,7 +795,7 @@
 			},
 			{
 				"type": "Sco",
-				"value": "Avslut"
+				"value": "Målgörare"
 			},
 			{
 				"type": "Cross",
@@ -806,7 +811,7 @@
 			},
 			{
 				"type": "PM",
-				"value": "Speluppbyggnad"
+				"value": "Spelupplägg"
 			},
 			{
 				"type": "GK",

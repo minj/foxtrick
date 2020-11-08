@@ -329,6 +329,11 @@
 			"159": "Madagaskar",
 			"16": "Brazília",
 			"160": "Botswana",
+			"161": "Mjanmarsko",
+			"162": "Zambia",
+			"163": "San Marino",
+			"164": "Haiti",
+			"165": "Portoriko",
 			"17": "Kanada",
 			"18": "Čile",
 			"19": "Kolumbia",
@@ -778,39 +783,39 @@
 			},
 			{
 				"type": "Sta",
-				"value": "kondícia"
+				"value": "Kondícia"
 			},
 			{
 				"type": "SP",
-				"value": "štandardky"
+				"value": "Štandardky"
 			},
 			{
 				"type": "Def",
-				"value": "bránenie"
+				"value": "Bránenie"
 			},
 			{
 				"type": "Sco",
-				"value": "zakončovanie"
+				"value": "Zakončovanie"
 			},
 			{
 				"type": "Cross",
-				"value": "centrované lopty (krídlo)"
+				"value": "Centrované lopty (krídlo)"
 			},
 			{
 				"type": "Shoot",
-				"value": "streľba"
+				"value": "Streľba"
 			},
 			{
 				"type": "Pass",
-				"value": "krátke prihrávky"
+				"value": "Krátke prihrávky"
 			},
 			{
 				"type": "PM",
-				"value": "tvorba hry"
+				"value": "Tvorba hry"
 			},
 			{
 				"type": "GK",
-				"value": "chytanie"
+				"value": "Chytanie"
 			},
 			{
 				"type": "ThPass",

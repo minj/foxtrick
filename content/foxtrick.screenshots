@@ -54,8 +54,6 @@ SimplePresentation.NoLogo=http://www.foxtrick.org/screenshots/index.php/presenta
 SkinPlugin=http://www.foxtrick.org/screenshots/index.php/mainoptionsmenue/59-skinplugin
 ForumPresentation.hideForumNotificationBox=http://www.foxtrick.org/screenshots/index.php/presentation/214-fixcssproblemshideforumnotificationbox
 SmallerPages.ReduceBid=http://www.foxtrick.org/screenshots/index.php/presentation/191-foxtricksmallerpagesreducebid
-HeaderFix.FixLeft=http://www.foxtrick.org/screenshots/index.php/presentation/114-headerfixfixleft
-HeaderFix=http://www.foxtrick.org/screenshots/index.php/presentation/113-headerfix
 OriginalFace.HideInjury=http://www.foxtrick.org/screenshots/index.php/presentation/115-hidefaceinjuryimages
 OriginalFace.HideSuspended=http://www.foxtrick.org/screenshots/index.php/presentation/116-hidefacesuspendedimages
 OriginalFace.HideTransfer=http://www.foxtrick.org/screenshots/index.php/presentation/117-hidefacetransferimages
@@ -84,7 +82,6 @@ YouthSkillHideUnknown.HideMaximalKeyWord=http://www.foxtrick.org/screenshots/ind
 # Matches
 AttVsDef=http://www.foxtrick.org/screenshots/index.php/matches/144-attvsdef
 CopyRatings=http://www.foxtrick.org/screenshots/index.php/matches/146-copyratingstoclipboard
-GoaldifferenceToTables=http://www.foxtrick.org/screenshots/index.php/matches/149-goaldifferencetotables
 HTMSPrediction=http://www.foxtrick.org/screenshots/index.php/matches/145-HTMSPrediction
 MatchIncome=http://www.foxtrick.org/screenshots/index.php/matches/150-matchincome
 MatchPlayerColouring=http://www.foxtrick.org/screenshots/index.php/matches/151-matchplayercolouring
