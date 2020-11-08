@@ -97,7 +97,7 @@ Foxtrick.api.hy.ignoreHours = Foxtrick.util.time.HOURS_IN_DAY;
 Foxtrick.api.hy._fetchViaCache = async (api, fetch, cacheDays, teamId) => {
 	// this produces a valid UNIX timestamp that can be compared to HY
 	const now = Foxtrick.modules.Core.HT_TIME;
-	const MSEC = Foxtrick.util.time.MSEC;
+	const MSEC = Foxtrick.util.time.MSECS_IN_SEC;
 	const cacheTime = cacheDays * Foxtrick.util.time.MSECS_IN_DAY;
 
 	const id = teamId || Foxtrick.modules.Core.TEAM.teamId;
@@ -189,7 +189,7 @@ Foxtrick.api.hy._fetchViaCache = async (api, fetch, cacheDays, teamId) => {
  * @return {Promise<string|FetchError>} rejects with { status, text }
  */
 Foxtrick.api.hy._fetchOrIgnore = async (api, url, params) => {
-	const MSEC = Foxtrick.util.time.MSEC;
+	const MSEC = Foxtrick.util.time.MSECS_IN_SEC;
 	const HOURS_IN_DAY = Foxtrick.util.time.HOURS_IN_DAY;
 	const MAX_SEC = 59;
 	const msecMod = MAX_SEC * MSEC;
