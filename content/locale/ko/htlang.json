@@ -787,15 +787,15 @@
 			},
 			{
 				"type": "SP",
-				"value": "세트 피스"
+				"value": "세트 피스 (ALL)"
 			},
 			{
 				"type": "Def",
-				"value": "수비력"
+				"value": "수비력 (CD, WB)"
 			},
 			{
 				"type": "Sco",
-				"value": "득점력"
+				"value": "득점력 (FW)"
 			},
 			{
 				"type": "Cross",
@@ -811,7 +811,7 @@
 			},
 			{
 				"type": "PM",
-				"value": "플레이메이킹"
+				"value": "플레이메이킹 (IM, (W))"
 			},
 			{
 				"type": "GK",
