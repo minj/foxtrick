@@ -30,6 +30,7 @@
 			"content/lib/PluralForm.js",
 			"content/lib/psico.js",
 			"content/lib/gauge.js",
+			"content/lib/exceptionless.universal.js",
 			// <!-- end ext-lib -->
 
 			"content/lib/integration.js",

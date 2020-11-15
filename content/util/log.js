@@ -77,6 +77,11 @@ Foxtrick.log = function(...args) {
 	else
 		Foxtrick.addToDebugLogStorage(concated);
 
+	for (let content of args) {
+		if (content instanceof Error && content.stack)
+			Foxtrick.reportError(content);
+	}
+
 	// Foxtrick.Prefs may not have loaded yet
 	if (Foxtrick.Prefs && Foxtrick.Prefs.getBool('logDisabled'))
 		return;
@@ -136,6 +141,27 @@ Foxtrick.log.header = function(doc) {
  */
 Foxtrick.log.cache = '';
 
+Foxtrick.log.client = null;
+Foxtrick.lazyProp(Foxtrick.log, 'client', () => {
+	var client = new Foxtrick.exceptionless.ExceptionlessClient('Z6ACuQcWkqEirnhl1n7FD38J0rWxYNepS2DN9s7F', 'https://bugs.foxtrick.org');
+	client.config.updateSettingsWhenIdleInterval = 0;
+	client.config.useReferenceIds(); // Foxtrick.log.client.getLastReferenceId();
+	client.config.includeMachineName = false;
+	client.config.includeIpAddress = false;
+	client.config.includeCookies = false;
+	client.config.includePostData = false;
+	client.config.moduleCollector = false;
+
+	let versionRe = /^\d+\.\d+(\.\d+)?/;
+	let version = Foxtrick.version;
+	let vMajor = version.match(versionRe)[0];
+	if (vMajor != version)
+		version = version.slice(0, vMajor.length) + '-' + version.slice(vMajor.length + 1);
+	client.config.setVersion(version);
+	return client;
+});
+
+
 /**
  * a reference to the last document element for flushing
  *
@@ -154,8 +180,6 @@ Foxtrick.log.doc = null;
 Foxtrick.log.flush = function(document) {
 	if (Foxtrick.platform !== 'Firefox' && Foxtrick.context === 'background')
 		return;
-	if (!Foxtrick.Prefs.getBool('DisplayHTMLDebugOutput'))
-		return;
 
 	var doc = document;
 	if (!doc) {
@@ -171,6 +195,9 @@ Foxtrick.log.flush = function(document) {
 				Foxtrick.log.doc = null;
 		});
 	}
+
+	if (!Foxtrick.Prefs.getBool('DisplayHTMLDebugOutput'))
+		return;
 
 	if (!doc.getElementById('page') || Foxtrick.log.cache === '')
 		return;
@@ -229,4 +256,96 @@ Foxtrick.addToDebugLogStorage = function(text) {
  */
 Foxtrick.dump = function(content) {
 	Foxtrick.log(String(content).trim());
+};
+
+/**
+ * @param {string} header
+ * @param {string} bug
+ * @param {string} prefs
+ * @param {function(string):void} [refIdCb]
+ */
+Foxtrick.reportBug = (header, bug, prefs, refIdCb) => {
+	let client = Foxtrick.log.client;
+	let { teamId, teamName } = Foxtrick.modules.Core.TEAM;
+	client.config.setUserIdentity(String(teamId), String(teamName));
+
+	let b = client.createLog('bugReport', header, 'Error')
+		// eslint-disable-next-line no-magic-numbers
+		.setReferenceId(Math.floor((1 + Math.random()) * 0x10000000000).toString(16).slice(1))
+		.addTags(String(Foxtrick.branch.match(/^\w+/)))
+		.setProperty('HTLang', Foxtrick.Prefs.getString('htLanguage'))
+		.setProperty('bug', String(bug))
+		.setProperty('prefs', String(prefs));
+
+	let doc = Foxtrick.log.doc;
+	if (Foxtrick.isStage(doc))
+		b.addTags('onstage');
+	if (Foxtrick.util.layout.isRtl(doc))
+		b.addTags('RTL');
+	if (!Foxtrick.util.layout.isStandard(doc))
+		b.addTags('simpleSkin');
+
+	b.submit((ctx) => {
+		refIdCb && refIdCb(ctx.event.reference_id);
+	});
+};
+
+/**
+ * @param {Error} err
+ */
+Foxtrick.reportError = (err) => {
+	var report = () => {
+		let client = Foxtrick.log.client;
+		let { teamId, teamName } = Foxtrick.modules.Core.TEAM;
+		client.config.setUserIdentity(String(teamId), String(teamName));
+
+		// workaround for TracerKit parser
+		err.stack = err.stack.replace(/moz-extension/g, 'chrome-extension');
+		let e = client.createException(err)
+			.addTags(String(Foxtrick.branch.match(/^\w+/)))
+			.setProperty('HTLang', Foxtrick.Prefs.getString('htLanguage'));
+
+		if (Foxtrick.log.doc) {
+			let doc = Foxtrick.log.doc;
+			if (Foxtrick.isStage(doc))
+				e.addTags('onstage');
+			if (Foxtrick.util.layout.isRtl(doc))
+				e.addTags('RTL');
+			if (!Foxtrick.util.layout.isStandard(doc))
+				e.addTags('simpleSkin');
+		}
+		else {
+			e.addTags('bgcontext');
+		}
+
+		e.submit();
+
+		let doc = Foxtrick.log.doc;
+		if (!doc)
+			return; // TODO
+
+		Foxtrick.modules.Core.displayErrorNotice(doc, false);
+	};
+
+	var ask = () => {
+		let doc = Foxtrick.log.doc;
+		if (!doc)
+			return; // TODO
+
+		Foxtrick.modules.Core.displayErrorNotice(doc, true);
+	};
+
+	if (!Foxtrick.Prefs)
+		return;
+
+	switch (Foxtrick.Prefs.getString('errorReporting')) {
+		case 'reportAll':
+			report();
+			break;
+		case 'ignoreAll':
+			return;
+		default:
+			ask();
+			break;
+	}
 };

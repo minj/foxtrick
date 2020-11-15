@@ -25,6 +25,7 @@ htLanguage
 last-page
 lastTime
 logDisabled
+errorReporting
 mail_templates
 module.ARIALandmarks.enabled
 module.AddDefaultFaceCard.enabled
