@@ -799,15 +799,15 @@
 			},
 			{
 				"type": "Cross",
-				"value": "Kross (Linja)"
+				"value": "? {training}:{124}"
 			},
 			{
 				"type": "Shoot",
-				"value": "Xuttijiet"
+				"value": "? {training}:{128}"
 			},
 			{
 				"type": "Pass",
-				"value": "Tqassim fil-viċin"
+				"value": "? {training}:{122}"
 			},
 			{
 				"type": "PM",
@@ -815,19 +815,19 @@
 			},
 			{
 				"type": "GK",
-				"value": "Gowler"
+				"value": "? {training}:{123}"
 			},
 			{
 				"type": "ThPass",
-				"value": "Tqassim fit-Tul"
+				"value": "? {training}:{126}"
 			},
 			{
 				"type": "DefPos",
-				"value": "Pożizzjonijiet Difensivi"
+				"value": "? {training}:{125}"
 			},
 			{
 				"type": "WingAtt",
-				"value": "Attakki mill-Ġenb"
+				"value": "? {training}:{127}"
 			},
 			{
 				"type": "Indiv",

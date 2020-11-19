@@ -799,15 +799,15 @@
 			},
 			{
 				"type": "Cross",
-				"value": "Skersavimas (krašto saugams)"
+				"value": "Skersavimas"
 			},
 			{
 				"type": "Shoot",
-				"value": "Smūgiavimas"
+				"value": "Puolimas ir standartinės padėtys"
 			},
 			{
 				"type": "Pass",
-				"value": "Trumpi perdavimai"
+				"value": "Perdavimai"
 			},
 			{
 				"type": "PM",
@@ -815,19 +815,19 @@
 			},
 			{
 				"type": "GK",
-				"value": "Vartininko treniruotės"
+				"value": "Vartininkas"
 			},
 			{
 				"type": "ThPass",
-				"value": "Ilgi perdavimai"
+				"value": "Perdavimai (gynėjai + saugai)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Gynybos pozicijos"
+				"value": "Gynyba (vartininkai, gynėjai + saugai)"
 			},
 			{
 				"type": "WingAtt",
-				"value": "Atakos kraštais"
+				"value": "Skersavimas (krašto saugai + puolėjai)"
 			},
 			{
 				"type": "Indiv",

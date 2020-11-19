@@ -803,11 +803,11 @@
 			},
 			{
 				"type": "Shoot",
-				"value": "Udarci na vrata"
+				"value": "Napad i slobodni udarci"
 			},
 			{
 				"type": "Pass",
-				"value": "Kratka dodavanja"
+				"value": "Proigravanje"
 			},
 			{
 				"type": "PM",
@@ -819,15 +819,15 @@
 			},
 			{
 				"type": "ThPass",
-				"value": "Duga dodavanja"
+				"value": "Proigravanje (braniči, vezni i krila)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Obrambena igra"
+				"value": "Obrana (vratar, braniči, vezni i krila)"
 			},
 			{
 				"type": "WingAtt",
-				"value": "Krilni napadi"
+				"value": "Krila (krila + napadači)"
 			},
 			{
 				"type": "Indiv",

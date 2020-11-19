@@ -787,47 +787,47 @@
 			},
 			{
 				"type": "SP",
-				"value": "세트 피스"
+				"value": "세트 피스 (ALL)"
 			},
 			{
 				"type": "Def",
-				"value": "수비력"
+				"value": "수비력 (CD, WB)"
 			},
 			{
 				"type": "Sco",
-				"value": "득점력"
+				"value": "득점력 (FW)"
 			},
 			{
 				"type": "Cross",
-				"value": "크로스 패스(윙어)"
+				"value": "윙어 (W, (WB))"
 			},
 			{
 				"type": "Shoot",
-				"value": "슈팅"
+				"value": "득점력과 세트 피스 (ALL)"
 			},
 			{
 				"type": "Pass",
-				"value": "짧은 패스"
+				"value": "패스력 (IM, W, FW)"
 			},
 			{
 				"type": "PM",
-				"value": "플레이메이킹"
+				"value": "플레이메이킹 (IM, (W))"
 			},
 			{
 				"type": "GK",
-				"value": "골키핑"
+				"value": "골키핑 (GK)"
 			},
 			{
 				"type": "ThPass",
-				"value": "쓰루 패스"
+				"value": "패스력 (CD, WB, IM, W)"
 			},
 			{
 				"type": "DefPos",
-				"value": "수비 포지션"
+				"value": "수비력 (GK, CD, WB, IM, W)"
 			},
 			{
 				"type": "WingAtt",
-				"value": "측 공격"
+				"value": "윙어 (W, FW)"
 			},
 			{
 				"type": "Indiv",

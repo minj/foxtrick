@@ -803,11 +803,11 @@
 			},
 			{
 				"type": "Shoot",
-				"value": "Tiros"
+				"value": "Anotación y balón parado"
 			},
 			{
 				"type": "Pass",
-				"value": "Pases cortos"
+				"value": "Pases"
 			},
 			{
 				"type": "PM",
@@ -819,15 +819,15 @@
 			},
 			{
 				"type": "ThPass",
-				"value": "Pases largos"
+				"value": "Pases (defensores y todos los mediocampistas)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Posiciones defensivas"
+				"value": "Defensa (Porteros, defensores y mediocampistas)"
 			},
 			{
 				"type": "WingAtt",
-				"value": "Ataques laterales"
+				"value": "Lateral (laterales y delanteros)"
 			},
 			{
 				"type": "Indiv",

@@ -799,15 +799,15 @@
 			},
 			{
 				"type": "Cross",
-				"value": "Inlägg (Ytter)"
+				"value": "Ytter"
 			},
 			{
 				"type": "Shoot",
-				"value": "Skott"
+				"value": "Målgörare och Fasta situationer"
 			},
 			{
 				"type": "Pass",
-				"value": "Kortpassningar"
+				"value": "Framspel"
 			},
 			{
 				"type": "PM",
@@ -815,19 +815,19 @@
 			},
 			{
 				"type": "GK",
-				"value": "Målvaktsträning"
+				"value": "Målvakt"
 			},
 			{
 				"type": "ThPass",
-				"value": "Genomskärare"
+				"value": "Framspel (Försvarare + Mittfältare)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Försvarspositioner"
+				"value": "Försvar (Målvakter, Försvarare + Mittfältare)"
 			},
 			{
 				"type": "WingAtt",
-				"value": "Kantanfall"
+				"value": "Ytter (Yttrar + Anfallare)"
 			},
 			{
 				"type": "Indiv",

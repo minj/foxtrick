@@ -799,15 +799,15 @@
 			},
 			{
 				"type": "Cross",
-				"value": "Tạt bóng (Cánh)"
+				"value": "Chạy cánh"
 			},
 			{
 				"type": "Shoot",
-				"value": "Sút bóng"
+				"value": "Ghi bàn và đá phạt"
 			},
 			{
 				"type": "Pass",
-				"value": "Chuyền ngắn"
+				"value": "Chuyền bóng"
 			},
 			{
 				"type": "PM",
@@ -815,19 +815,19 @@
 			},
 			{
 				"type": "GK",
-				"value": "Chụp bóng"
+				"value": "Thủ môn"
 			},
 			{
 				"type": "ThPass",
-				"value": "Chuyền dài"
+				"value": "Chuyền bóng (Hậu vệ + Tiền vệ)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Vị trí phòng thủ"
+				"value": "Phòng ngự (Thủ môn, Hậu vệ + Tiền vệ)"
 			},
 			{
 				"type": "WingAtt",
-				"value": "Tấn công cánh"
+				"value": "Chạy cánh (TV Cánh + Tấn công)"
 			},
 			{
 				"type": "Indiv",

@@ -799,15 +799,15 @@
 			},
 			{
 				"type": "Cross",
-				"value": "Lange pass (Vleugel)"
+				"value": "Vleugelspel"
 			},
 			{
 				"type": "Shoot",
-				"value": "Schieten (Scoren en spelhervatten)"
+				"value": "Scoren-en-spelhervatten"
 			},
 			{
 				"type": "Pass",
-				"value": "Korte pass (Passen)"
+				"value": "Passen"
 			},
 			{
 				"type": "PM",
@@ -819,15 +819,15 @@
 			},
 			{
 				"type": "ThPass",
-				"value": "Steekpassen"
+				"value": "Passen (verdedigers, middenvelders en vleugelspelers)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Verdedigende posities"
+				"value": "Verdedigen (keepers, verdedigers, middenvelders en vleugelspelers)"
 			},
 			{
 				"type": "WingAtt",
-				"value": "Vleugelaanvallen"
+				"value": "Vleugelspel (vleugelspelers en aanvallers)"
 			},
 			{
 				"type": "Indiv",

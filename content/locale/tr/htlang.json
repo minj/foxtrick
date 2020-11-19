@@ -803,11 +803,11 @@
 			},
 			{
 				"type": "Shoot",
-				"value": "Şut"
+				"value": "Golcülük ve Duran Toplar"
 			},
 			{
 				"type": "Pass",
-				"value": "Kısa Pas"
+				"value": "Pas"
 			},
 			{
 				"type": "PM",
@@ -819,15 +819,15 @@
 			},
 			{
 				"type": "ThPass",
-				"value": "Ara Pas"
+				"value": "Pas (Defanslar + Tüm ortasahalar)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Defansif Pozisyon"
+				"value": "Defans (Kaleciler, Defanslar + Tüm ortasahalar)"
 			},
 			{
 				"type": "WingAtt",
-				"value": "Kanat Atakları"
+				"value": "Kanat (Kanat+ Forvetler)"
 			},
 			{
 				"type": "Indiv",

@@ -799,15 +799,15 @@
 			},
 			{
 				"type": "Cross",
-				"value": "Crossing (winger)"
+				"value": "Winger"
 			},
 			{
 				"type": "Shoot",
-				"value": "Shooting"
+				"value": "Scoring and Set Pieces"
 			},
 			{
 				"type": "Pass",
-				"value": "Short passes"
+				"value": "Passing"
 			},
 			{
 				"type": "PM",
@@ -815,19 +815,19 @@
 			},
 			{
 				"type": "GK",
-				"value": "Goalkeeping"
+				"value": "Keeper"
 			},
 			{
 				"type": "ThPass",
-				"value": "Through passes"
+				"value": "Passing (Defenders + Midfielders + Wingers)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Defensive positions"
+				"value": "Defending (Defenders, Keepers + All Midfielders)"
 			},
 			{
 				"type": "WingAtt",
-				"value": "Wing attacks"
+				"value": "Winger (Winger + Attackers)"
 			},
 			{
 				"type": "Indiv",
