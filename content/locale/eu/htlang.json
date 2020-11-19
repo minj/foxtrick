@@ -799,15 +799,15 @@
 			},
 			{
 				"type": "Cross",
-				"value": "Erdiraketak (Hegalekoa)"
+				"value": "Erdiraketak"
 			},
 			{
 				"type": "Shoot",
-				"value": "Jaurtiketak"
+				"value": "Erremateak eta Baloi Gelditua"
 			},
 			{
 				"type": "Pass",
-				"value": "Pase Motzak"
+				"value": "Paseak"
 			},
 			{
 				"type": "PM",
@@ -819,15 +819,15 @@
 			},
 			{
 				"type": "ThPass",
-				"value": "Pase Luzeak"
+				"value": "Paseak (Defentsak + Erdilari guztiak)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Defentsa Postuak"
+				"value": "Defentsa (Atezainak, Defentsak + Erdilari guztiak)"
 			},
 			{
 				"type": "WingAtt",
-				"value": "Hegaleko Erasoak"
+				"value": "Erdiraketak (Hegalekoak + Aurrelariak)"
 			},
 			{
 				"type": "Indiv",

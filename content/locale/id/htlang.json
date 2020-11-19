@@ -799,15 +799,15 @@
 			},
 			{
 				"type": "Cross",
-				"value": "Umpan Silang (Sayap)"
+				"value": "Sayap"
 			},
 			{
 				"type": "Shoot",
-				"value": "Menembak"
+				"value": "Mencetak gol dan Bola mati"
 			},
 			{
 				"type": "Pass",
-				"value": "Umpan Pendek"
+				"value": "Operan"
 			},
 			{
 				"type": "PM",
@@ -815,19 +815,19 @@
 			},
 			{
 				"type": "GK",
-				"value": "Menjaga gawang"
+				"value": "Kiper"
 			},
 			{
 				"type": "ThPass",
-				"value": "Umpan Terobosan"
+				"value": "Operan (Bek + Gelandang + Sayap)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Posisi Bertahan"
+				"value": "Bertahan (Kiper + Bek + Gelandang + Sayap)"
 			},
 			{
 				"type": "WingAtt",
-				"value": "Serangan Sayap"
+				"value": "Sayap (Pemain sayap + Penyerang)"
 			},
 			{
 				"type": "Indiv",

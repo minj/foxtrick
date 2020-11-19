@@ -799,11 +799,11 @@
 			},
 			{
 				"type": "Cross",
-				"value": "Cross (Ali)"
+				"value": "Ala"
 			},
 			{
 				"type": "Shoot",
-				"value": "Conclusioni (Tiri)"
+				"value": "Tiri e Calci Piazzati"
 			},
 			{
 				"type": "Pass",
@@ -815,19 +815,19 @@
 			},
 			{
 				"type": "GK",
-				"value": "Parate"
+				"value": "Portiere"
 			},
 			{
 				"type": "ThPass",
-				"value": "Passaggi lunghi"
+				"value": "Passaggi (Dif. + Centr. e Ali)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Interdizione"
+				"value": "Difesa (Por., Dif., + Centr. e Ali)"
 			},
 			{
 				"type": "WingAtt",
-				"value": "Offensive laterali"
+				"value": "Ala (Ali+ Attaccanti)"
 			},
 			{
 				"type": "Indiv",

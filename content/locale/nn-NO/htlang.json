@@ -799,15 +799,15 @@
 			},
 			{
 				"type": "Cross",
-				"value": "Innlegg (Kant)"
+				"value": "Kantspel"
 			},
 			{
 				"type": "Shoot",
-				"value": "Skottrening"
+				"value": "Målskåring og daudball"
 			},
 			{
 				"type": "Pass",
-				"value": "Pasningar"
+				"value": "Pasning"
 			},
 			{
 				"type": "PM",
@@ -819,15 +819,15 @@
 			},
 			{
 				"type": "ThPass",
-				"value": "Gjennombrotspasningar"
+				"value": "Pasning (forsvarsspelarar + alle midtbanespelarar)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Defensive posisjonar"
+				"value": "Forsvar (målvaktar, forsvarsspelarar + alle midtbanespelarar)"
 			},
 			{
 				"type": "WingAtt",
-				"value": "Kantangrep"
+				"value": "Kantspel (kantspelarar + angrepsspelarar)"
 			},
 			{
 				"type": "Indiv",

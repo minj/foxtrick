@@ -799,15 +799,15 @@
 			},
 			{
 				"type": "Cross",
-				"value": "Křížné přihrávky (křídlo)"
+				"value": "Křídlo"
 			},
 			{
 				"type": "Shoot",
-				"value": "Střelba"
+				"value": "Zakončování a Standardní situace"
 			},
 			{
 				"type": "Pass",
-				"value": "Krátké přihrávky"
+				"value": "Přihrávky"
 			},
 			{
 				"type": "PM",
@@ -815,19 +815,19 @@
 			},
 			{
 				"type": "GK",
-				"value": "Chytání"
+				"value": "Brankář"
 			},
 			{
 				"type": "ThPass",
-				"value": "Dlouhé přihrávky"
+				"value": "Přihrávky (obránci + hráči v záloze)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Obranná souhra"
+				"value": "Bránění (brankáři, obránci + hráči v záloze)"
 			},
 			{
 				"type": "WingAtt",
-				"value": "Křídelní útoky"
+				"value": "Křídlo (křídla + útočníci)"
 			},
 			{
 				"type": "Indiv",

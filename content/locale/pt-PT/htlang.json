@@ -815,15 +815,15 @@
 			},
 			{
 				"type": "GK",
-				"value": "Guarda-Redes"
+				"value": "Guarda-redes"
 			},
 			{
 				"type": "ThPass",
-				"value": "Assistências (Defesas + Médios)"
+				"value": "Assistências (Defesas + todos os Médios)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Posicionamento Defensivo"
+				"value": "Defesa (GR, Defesas + todos os Médios)"
 			},
 			{
 				"type": "WingAtt",

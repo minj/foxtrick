@@ -799,11 +799,11 @@
 			},
 			{
 				"type": "Cross",
-				"value": "Säitenugrëff"
+				"value": "Bandetraining"
 			},
 			{
 				"type": "Shoot",
-				"value": "Schosstraining"
+				"value": "Schoss an Strofstéiss Training"
 			},
 			{
 				"type": "Pass",
@@ -819,15 +819,15 @@
 			},
 			{
 				"type": "ThPass",
-				"value": "Passen an d'Déift"
+				"value": "Erweiderten Passtraining (Verteideger, Mëttelfeld a Banden)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Defensivtraining"
+				"value": "Verteidegung (GK, Verteideger + Mëttelfeld)"
 			},
 			{
 				"type": "WingAtt",
-				"value": "Fligelugrëff"
+				"value": "Bande (Bande + Stiermer)"
 			},
 			{
 				"type": "Indiv",

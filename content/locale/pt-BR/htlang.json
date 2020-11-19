@@ -799,15 +799,15 @@
 			},
 			{
 				"type": "Cross",
-				"value": "Cruzamentos (Ala)"
+				"value": "Ala"
 			},
 			{
 				"type": "Shoot",
-				"value": "Chute a gol"
+				"value": "Finalização e Bola Parada"
 			},
 			{
 				"type": "Pass",
-				"value": "Passe curto"
+				"value": "Assistências"
 			},
 			{
 				"type": "PM",
@@ -815,19 +815,19 @@
 			},
 			{
 				"type": "GK",
-				"value": "Goleiros"
+				"value": "Goleiro"
 			},
 			{
 				"type": "ThPass",
-				"value": "Lançamentos"
+				"value": "Assistências (Defensores + Todos os Meio-campistas)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Marcação"
+				"value": "Defesa (Goleiros, Defensores + Meio-campistas)"
 			},
 			{
 				"type": "WingAtt",
-				"value": "Ataques Laterais"
+				"value": "Ala (Alas + Atacantes)"
 			},
 			{
 				"type": "Indiv",

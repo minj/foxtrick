@@ -799,15 +799,15 @@
 			},
 			{
 				"type": "Cross",
-				"value": "Centrované lopty (krídlo)"
+				"value": "Krídlo"
 			},
 			{
 				"type": "Shoot",
-				"value": "Streľba"
+				"value": "Zakončovanie a štandardky"
 			},
 			{
 				"type": "Pass",
-				"value": "Krátke prihrávky"
+				"value": "Prihrávky"
 			},
 			{
 				"type": "PM",
@@ -815,19 +815,19 @@
 			},
 			{
 				"type": "GK",
-				"value": "Chytanie"
+				"value": "Brankár"
 			},
 			{
 				"type": "ThPass",
-				"value": "dlhé prihrávky"
+				"value": "Prihrávky (obrancovia + záložníci)"
 			},
 			{
 				"type": "DefPos",
-				"value": "obranná súhra"
+				"value": "Bránenie (obrancovia + záložníci)"
 			},
 			{
 				"type": "WingAtt",
-				"value": "krídelné útoky"
+				"value": "Krídlo (krajní záložníci + útočníci)"
 			},
 			{
 				"type": "Indiv",

@@ -799,15 +799,15 @@
 			},
 			{
 				"type": "Cross",
-				"value": "Krila"
+				"value": "Krilo"
 			},
 			{
 				"type": "Shoot",
-				"value": "Streljanje"
+				"value": "Napad in Prosti streli"
 			},
 			{
 				"type": "Pass",
-				"value": "Kratke podaje"
+				"value": "Podaje"
 			},
 			{
 				"type": "PM",
@@ -815,19 +815,19 @@
 			},
 			{
 				"type": "GK",
-				"value": "Trening vratarjev"
+				"value": "Vratar"
 			},
 			{
 				"type": "ThPass",
-				"value": "Podaje v prostor"
+				"value": "Podaje (branilci in vezisti)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Obrambni položaji"
+				"value": "Obramba (vratarji, branilci in vsi vezisti)"
 			},
 			{
 				"type": "WingAtt",
-				"value": "Krilni napad"
+				"value": "Krilo (krila in napadalci)"
 			},
 			{
 				"type": "Indiv",

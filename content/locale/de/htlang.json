@@ -799,11 +799,11 @@
 			},
 			{
 				"type": "Cross",
-				"value": "Flankenläufe"
+				"value": "Flügelspiel"
 			},
 			{
 				"type": "Shoot",
-				"value": "Schusstraining"
+				"value": "Torschuss und Standardsituationen"
 			},
 			{
 				"type": "Pass",
@@ -819,15 +819,15 @@
 			},
 			{
 				"type": "ThPass",
-				"value": "Steilpässe"
+				"value": "Passspiel (Verteidiger, Mittelfeldspieler)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Abwehrverhalten"
+				"value": "Verteidigung (Torhüter, Verteidiger, Mittelfeldspieler)"
 			},
 			{
 				"type": "WingAtt",
-				"value": "Flügelangriff"
+				"value": "Flügelspiel (Flügelspieler, Stürmer)"
 			},
 			{
 				"type": "Indiv",

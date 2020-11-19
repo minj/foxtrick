@@ -799,15 +799,15 @@
 			},
 			{
 				"type": "Cross",
-				"value": "Keresztlabdák (Szélsőjáték)"
+				"value": "Szélsőjáték"
 			},
 			{
 				"type": "Shoot",
-				"value": "Kapura lövés"
+				"value": "Gólszerzés és pontrúgások"
 			},
 			{
 				"type": "Pass",
-				"value": "Rövid passzok (Átadás)"
+				"value": "Átadás"
 			},
 			{
 				"type": "PM",
@@ -819,15 +819,15 @@
 			},
 			{
 				"type": "ThPass",
-				"value": "Támadásépítés"
+				"value": "Átadás (védők + minden középpályás)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Területvédekezés"
+				"value": "Védekezés (kapusok, védők + minden középpályás)"
 			},
 			{
 				"type": "WingAtt",
-				"value": "Széleken támadás"
+				"value": "Szélsőjáték (szélsők + támadók)"
 			},
 			{
 				"type": "Indiv",
