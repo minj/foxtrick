@@ -1,7 +1,5 @@
 'use strict';
 
-/* eslint-disable complexity, no-magic-numbers, max-params */
-
 Foxtrick.modules['MercattrickStats'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES: ['transferSearchResult'],

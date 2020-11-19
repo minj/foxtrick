@@ -121,7 +121,7 @@ Foxtrick.api.mercattrick._fetchViaCache = async (api, fetch, cacheHours, entitie
  * @return {Promise<string|FetchError>} rejects with { status, text }
  */
 Foxtrick.api.mercattrick._fetchOrIgnore = async (api, url) => {
-	const MSEC = Foxtrick.util.time.MSEC;
+	const MSEC = Foxtrick.util.time.MSECS_IN_SEC;
 	const HOURS_IN_DAY = Foxtrick.util.time.HOURS_IN_DAY;
 	const MAX_SEC = 59;
 	const msecMod = MAX_SEC * MSEC;

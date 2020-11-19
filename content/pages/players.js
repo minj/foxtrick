@@ -397,9 +397,15 @@ Foxtrick.Pages.Players.getPlayerNodes = function(doc, include) {
 
 /** @typedef {keyof Player} PlayerKey */
 
+/**
+ * @typedef PlayerMercattrickProps
+ * @prop {number} [mtFilters]
+ * @prop {number} [mtBookmarks]
+ */
+
 /* eslint-disable max-len */
 /**
- * @typedef {PlayerSkills & PlayerProps & PlayerXMLProps & PlayerTLProps & PlayerContributionProps & Contributions} Player & ContributionFactors
+ * @typedef {PlayerSkills & PlayerProps & PlayerXMLProps & PlayerTLProps & PlayerContributionProps & Contributions & PlayerMercattrickProps} Player & ContributionFactors
  */
 /* eslint-enable max-len */
 

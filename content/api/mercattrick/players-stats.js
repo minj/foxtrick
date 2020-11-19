@@ -43,7 +43,7 @@ Foxtrick.api.mercattrick.URL.playersStats = '/players/stats/';
  * Tries to fetch the player stats from Mercattrick and returns a Promise for players
  *
  * @param  {Array}  playerIds players ID to fetch data for
- * @return {Promise<Stats>}
+ * @return {Promise<MercattrickStatsList>}
  */
 Foxtrick.api.mercattrick._getPlayersStats = function(playerIds) {
 	let req = playerIds.join(',');
@@ -55,7 +55,7 @@ Foxtrick.api.mercattrick._getPlayersStats = function(playerIds) {
  * Get Mercattrick player stats
  *
  * @param  {Array}  playerIds IDs to fetch data for
- * @return {Promise<StatsList>}
+ * @return {Promise<MercattrickStatsList>}
  */
 Foxtrick.api.mercattrick.getPlayersStats = function(playerIds) {
 	let hours = 1;
@@ -66,10 +66,10 @@ Foxtrick.api.mercattrick.getPlayersStats = function(playerIds) {
 };
 
 /**
- * @typedef PlayerStats
+ * @typedef MercattrickStats
  * @prop {number} id
  * @prop {number} filters_count
  * @prop {number} filters_count
  */
 
-/** @typedef {PlayerStats[]} StatsList */
+/** @typedef {MercattrickStats[]} MercattrickStatsList */
