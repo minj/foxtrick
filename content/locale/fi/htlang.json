@@ -799,15 +799,15 @@
 			},
 			{
 				"type": "Cross",
-				"value": "Keskitykset (Laituri)"
+				"value": "Laituri"
 			},
 			{
 				"type": "Shoot",
-				"value": "Laukominen"
+				"value": "Maalinteko ja erikoistilanteet"
 			},
 			{
 				"type": "Pass",
-				"value": "Lyhytsyöttäminen"
+				"value": "Syöttäminen"
 			},
 			{
 				"type": "PM",
@@ -819,15 +819,15 @@
 			},
 			{
 				"type": "ThPass",
-				"value": "Läpisyötöt"
+				"value": "Syöttäminen (puolustajat + laiturit + kk-pelaajat)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Puolustuksen auttaminen"
+				"value": "Puolustus (maalivahdit, puolustajat + laiturit, kk-pelaajat)"
 			},
 			{
 				"type": "WingAtt",
-				"value": "Laitahyökkäykset"
+				"value": "Laituri (laiturit + hyökkääjät)"
 			},
 			{
 				"type": "Indiv",

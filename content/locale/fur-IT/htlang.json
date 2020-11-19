@@ -799,15 +799,15 @@
 			},
 			{
 				"type": "Cross",
-				"value": "Cross (Alis)"
+				"value": "Ale"
 			},
 			{
 				"type": "Shoot",
-				"value": "Tirâ"
+				"value": "Tîrs e Tîrs Plaçâts"
 			},
 			{
 				"type": "Pass",
-				"value": "Passaçs curts"
+				"value": "Passaçs"
 			},
 			{
 				"type": "PM",
@@ -815,19 +815,19 @@
 			},
 			{
 				"type": "GK",
-				"value": "Paradis"
+				"value": "Portîr"
 			},
 			{
 				"type": "ThPass",
-				"value": "Passaçs Luncs"
+				"value": "Passaçs (Difensôrs + Ducj i Centricjampiscj)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Posizions Difensivis"
+				"value": "Difese (Portîrs, Difensôrs + Ducj i Centricjampiscj)"
 			},
 			{
 				"type": "WingAtt",
-				"value": "Atacs laterâi"
+				"value": "Alis (Alis + Atacants)"
 			},
 			{
 				"type": "Indiv",

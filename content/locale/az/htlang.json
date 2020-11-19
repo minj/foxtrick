@@ -803,11 +803,11 @@
 			},
 			{
 				"type": "Shoot",
-				"value": "Qapıya Zərbələr"
+				"value": "Qol Vurma və Standard Vəziyyətlər"
 			},
 			{
 				"type": "Pass",
-				"value": "Qısa Ötürmələr"
+				"value": "Paslaşma"
 			},
 			{
 				"type": "PM",
@@ -815,19 +815,19 @@
 			},
 			{
 				"type": "GK",
-				"value": "Qapıçılıq"
+				"value": "Qapıçı"
 			},
 			{
 				"type": "ThPass",
-				"value": "Ara Ötürmələr"
+				"value": "Paslaşma (Müdafiəçilər + Bütün Yarım Müdafiəçilər)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Müdafiə Mövqeləri"
+				"value": "Müdafiə (Qapıçılar, Müdafiəçilər + Bütün Yarım Müdafiəçilər)"
 			},
 			{
 				"type": "WingAtt",
-				"value": "Cinah Hücumları"
+				"value": "Cinah (Cinah + Hücumçular)"
 			},
 			{
 				"type": "Indiv",

@@ -803,11 +803,11 @@
 			},
 			{
 				"type": "Shoot",
-				"value": "Schieten"
+				"value": "Scoren & Spelhervatten"
 			},
 			{
 				"type": "Pass",
-				"value": "Korte pass"
+				"value": "Passen"
 			},
 			{
 				"type": "PM",
@@ -819,15 +819,15 @@
 			},
 			{
 				"type": "ThPass",
-				"value": "Openingen maken"
+				"value": "Passen (verdedigers, middenvelders & vleugelspelers)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Controlerend spel"
+				"value": "Verdedigen (keeper, verdedigers, middenvelders & vleugelspelers)"
 			},
 			{
 				"type": "WingAtt",
-				"value": "Vleugelaanval"
+				"value": "Vleugelspel (vleugelspelers & aanvallers)"
 			},
 			{
 				"type": "Indiv",

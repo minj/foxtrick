@@ -791,7 +791,7 @@
 			},
 			{
 				"type": "Def",
-				"value": "Kaitse"
+				"value": "Kaitsmine"
 			},
 			{
 				"type": "Sco",
@@ -799,15 +799,15 @@
 			},
 			{
 				"type": "Cross",
-				"value": "Tsenderdused (Ääred)"
+				"value": "Ääre treening"
 			},
 			{
 				"type": "Shoot",
-				"value": "Pealelöögid"
+				"value": "Ründamine ja Standardolukorrad"
 			},
 			{
 				"type": "Pass",
-				"value": "Lühikesed söödud"
+				"value": "Söötmine"
 			},
 			{
 				"type": "PM",
@@ -815,19 +815,19 @@
 			},
 			{
 				"type": "GK",
-				"value": "Väravavaht"
+				"value": "Väravavahtimine"
 			},
 			{
 				"type": "ThPass",
-				"value": "Pikad söödud"
+				"value": "Söötmine (kaitsjad + kõik poolkaitsjad)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Kaitsvad asetused"
+				"value": "Kaitsmine (väravavahid, kaitsjad + kõik poolkaitsjad)"
 			},
 			{
 				"type": "WingAtt",
-				"value": "Äärerünnak"
+				"value": "Ääre treening (äärepoolkaitsjad + ründajad)"
 			},
 			{
 				"type": "Indiv",

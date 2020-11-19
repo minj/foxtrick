@@ -799,15 +799,15 @@
 			},
 			{
 				"type": "Cross",
-				"value": "传中(边锋)"
+				"value": "边锋"
 			},
 			{
 				"type": "Shoot",
-				"value": "射门"
+				"value": "进球和定位球技术"
 			},
 			{
 				"type": "Pass",
-				"value": "短传"
+				"value": "传球"
 			},
 			{
 				"type": "PM",
@@ -815,19 +815,19 @@
 			},
 			{
 				"type": "GK",
-				"value": "守门"
+				"value": "门将"
 			},
 			{
 				"type": "ThPass",
-				"value": "后场长传"
+				"value": "传球（后卫和中场球员）"
 			},
 			{
 				"type": "DefPos",
-				"value": "防守位置"
+				"value": "防守（门将、后卫和所有中场球员）"
 			},
 			{
 				"type": "WingAtt",
-				"value": "边翼进攻"
+				"value": "边锋（边锋和前锋）"
 			},
 			{
 				"type": "Indiv",

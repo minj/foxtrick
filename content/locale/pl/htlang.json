@@ -803,11 +803,11 @@
 			},
 			{
 				"type": "Shoot",
-				"value": "Strzelecki"
+				"value": "Skuteczność i St. fragmenty"
 			},
 			{
 				"type": "Pass",
-				"value": "Krótkie podania"
+				"value": "Podania"
 			},
 			{
 				"type": "PM",
@@ -815,19 +815,19 @@
 			},
 			{
 				"type": "GK",
-				"value": "Bramkarski"
+				"value": "Um. bramkarskie"
 			},
 			{
 				"type": "ThPass",
-				"value": "Prostopadłe podania"
+				"value": "Podania (obrońcy, pomocnicy i skrzydłowi)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Postawa obronna"
+				"value": "Defensywa (bramkarze, obrońcy, pomocnicy i skrzydłowi)"
 			},
 			{
 				"type": "WingAtt",
-				"value": "Atak skrzydłem"
+				"value": "Dośrodkowania (skrzydłowi i napastnicy)"
 			},
 			{
 				"type": "Indiv",

@@ -803,11 +803,11 @@
 			},
 			{
 				"type": "Shoot",
-				"value": "Şut"
+				"value": "Atac și Faze Fixe"
 			},
 			{
 				"type": "Pass",
-				"value": "Pase scurte"
+				"value": "Pase"
 			},
 			{
 				"type": "PM",
@@ -819,15 +819,15 @@
 			},
 			{
 				"type": "ThPass",
-				"value": "Pase în adâncime"
+				"value": "Pase (Apărători, Mijlocași și Extreme)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Poziţii defensive"
+				"value": "Apărare (Portari, Apărători, Mijlocași și Extreme)"
 			},
 			{
 				"type": "WingAtt",
-				"value": "Atacuri pe extremă"
+				"value": "Extremă (Extreme și Atacanți)"
 			},
 			{
 				"type": "Indiv",

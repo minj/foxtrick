@@ -799,15 +799,15 @@
 			},
 			{
 				"type": "Cross",
-				"value": "Centrējumi"
+				"value": "Flangi"
 			},
 			{
 				"type": "Shoot",
-				"value": "Sitieni pa vārtiem"
+				"value": "Realizācija un Standarti"
 			},
 			{
 				"type": "Pass",
-				"value": "Īsās piespēles"
+				"value": "Piespēles"
 			},
 			{
 				"type": "PM",
@@ -819,15 +819,15 @@
 			},
 			{
 				"type": "ThPass",
-				"value": "Tālās piespēles"
+				"value": "Piespēles (Aizsargi + Visi Pussargi)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Aizsardzības pozīcijas"
+				"value": "Aizsardzība (Vārtsargi + Aizsargi + Visi Pussargi)"
 			},
 			{
 				"type": "WingAtt",
-				"value": "Malējie uzbrukumi"
+				"value": "Flangi (Malējie pussargi + Uzbrucēji)"
 			},
 			{
 				"type": "Indiv",

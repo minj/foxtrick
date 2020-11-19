@@ -803,7 +803,7 @@
 			},
 			{
 				"type": "Shoot",
-				"value": "Tirs"
+				"value": "Buteur et Coup franc"
 			},
 			{
 				"type": "Pass",
@@ -819,15 +819,15 @@
 			},
 			{
 				"type": "ThPass",
-				"value": "Relances"
+				"value": "Passe (Défenseurs, Milieux, Ailiers)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Positions défensives"
+				"value": "Défense (Gardien, Défenseurs, Milieux, Ailiers)"
 			},
 			{
 				"type": "WingAtt",
-				"value": "Débordement"
+				"value": "Ailier (Ailiers, Attaquants)"
 			},
 			{
 				"type": "Indiv",

@@ -799,15 +799,15 @@
 			},
 			{
 				"type": "Cross",
-				"value": "Krosime"
+				"value": "Në krah"
 			},
 			{
 				"type": "Shoot",
-				"value": "Gjuajtje"
+				"value": "Shënim dhe Goditje standarte"
 			},
 			{
 				"type": "Pass",
-				"value": "Pasime të shkurtra"
+				"value": "Pasime"
 			},
 			{
 				"type": "PM",
@@ -815,19 +815,19 @@
 			},
 			{
 				"type": "GK",
-				"value": "Pritje topash"
+				"value": "Portier"
 			},
 			{
 				"type": "ThPass",
-				"value": "Pasime tërthorazi"
+				"value": "Pasime (Mbrojtësat + gjithë Mesfushorët)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Pozicione Mbrojtëse"
+				"value": "Mbrojtje (Portieri, Mbrojtësat + gjithë Mesfushorët)"
 			},
 			{
 				"type": "WingAtt",
-				"value": "Sulmim nga Krahët"
+				"value": "Në krah (Mesfushorat e krahut + Sulmuesit)"
 			},
 			{
 				"type": "Indiv",

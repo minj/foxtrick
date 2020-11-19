@@ -799,15 +799,15 @@
 			},
 			{
 				"type": "Cross",
-				"value": "Innlegg (Vingspill)"
+				"value": "Ving"
 			},
 			{
 				"type": "Shoot",
-				"value": "Skuddtrening"
+				"value": "Målskåring and Dødballer"
 			},
 			{
 				"type": "Pass",
-				"value": "Pasning"
+				"value": "Pasninger"
 			},
 			{
 				"type": "PM",
@@ -819,15 +819,15 @@
 			},
 			{
 				"type": "ThPass",
-				"value": "Gjennombruddspasninger"
+				"value": "Pasninger (Forsvarere + Alle midtbanespillere)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Markeringer"
+				"value": "Forsvar (Målvakt, Forsvarere + Alle midtbanespillere)"
 			},
 			{
 				"type": "WingAtt",
-				"value": "Flanke"
+				"value": "Ving (Ving + Angripere)"
 			},
 			{
 				"type": "Indiv",

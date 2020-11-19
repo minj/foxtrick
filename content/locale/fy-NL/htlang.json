@@ -803,7 +803,7 @@
 			},
 			{
 				"type": "Shoot",
-				"value": "Sjitten"
+				"value": "Skoaren & Dea Spul"
 			},
 			{
 				"type": "Pass",
@@ -819,15 +819,15 @@
 			},
 			{
 				"type": "ThPass",
-				"value": "Iepeningen meitsje"
+				"value": "Oerspyljen (Ferdigeners, Middenfjilders en Wjukspilers)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Definsive posysjes"
+				"value": "Ferdigenjen (Doelferdigeners, Ferdigeners, Middenfjilders en Wjukspilers)"
 			},
 			{
 				"type": "WingAtt",
-				"value": "Wjukoanfallen"
+				"value": "Wjukspul (Wjukspilers en Oanfallers)"
 			},
 			{
 				"type": "Indiv",
