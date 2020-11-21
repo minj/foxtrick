@@ -249,6 +249,9 @@ Foxtrick.modules.MatchIncome = {
 
 		// find correct price for match
 		var matchDate = Foxtrick.Pages.Match.getDate(doc);
+		if (!matchDate)
+			return;
+
 		matchDate = Foxtrick.util.time.toHT(doc, matchDate);
 
 		let prices = module.getPricesForDate(matchDate);

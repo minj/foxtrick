@@ -109,6 +109,7 @@ Foxtrick.modules['CopyRatings'] = {
 			'[td align=center]{away_team}\n{away_link}[/td][/tr]\n' +
 			'{sectors}\n[/table]\n';
 
+		// eslint-disable-next-line complexity
 		var listener = function(ev) {
 			var doc = ev.target.ownerDocument;
 
@@ -264,6 +265,9 @@ Foxtrick.modules['CopyRatings'] = {
 		Foxtrick.onClick(button, listener);
 
 		var title = doc.querySelector('#divSectors h4');
+		if (!title)
+			return;
+
 		var actions = title.parentNode;
 		actions.appendChild(button);
 	},

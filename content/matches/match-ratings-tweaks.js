@@ -51,6 +51,9 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 			return;
 
 		var sectorsField = doc.getElementById('sectorsField');
+		if (!sectorsField)
+			return;
+
 		var doProb =
 			Foxtrick.Prefs.isModuleOptionEnabled('MatchRatingsTweaks', 'RealProbabilities');
 		var doChanges =
