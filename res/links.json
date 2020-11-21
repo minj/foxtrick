@@ -498,6 +498,19 @@
 		"title": "Hattrick Youthclub",
 		"img": "https://www.foxtrick.org/res/linkicons/hattrick-youthclub.ico"
 	},
+	"mercattrick": {
+		"img": "https://mercattrick.com/favicon.ico",
+		"title": "Better transfers with Mercattrick",
+		"playerlink": {
+			"url": "https://mercattrick.com/"
+		},
+		"teamlink": {
+			"url": "https://mercattrick.com/"
+		},
+		"serieslink": {
+			"url": "https://mercattrick.com/"
+		}
+	},
 	"hattid": {
 		"serieslink": {
 			"url": "https://hattid.com/leagueLevelUnit?leagueUnitId=[seriesid]"

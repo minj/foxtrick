@@ -86,6 +86,8 @@
 			"content/api/hy/players-youth-reject-call.js",
 			"content/api/hy/players-youth-skills.js",
 			"content/api/hy/user-id.js",
+			"content/api/mercattrick/common.js",
+			"content/api/mercattrick/players-stats.js",
 			// <!-- end api-util -->
 
 			// <!-- core -->
@@ -136,6 +138,7 @@
 			"content/information-aggregation/htms-points.js",
 			"content/information-aggregation/last-login.js",
 			"content/information-aggregation/match-weather.js",
+			"content/information-aggregation/mercattrick-stats.js",
 			"content/information-aggregation/my-monitor.js",
 			"content/information-aggregation/nt-peek.js",
 			"content/information-aggregation/player-birthday.js",
