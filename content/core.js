@@ -334,7 +334,8 @@ Foxtrick.modules.Core = {
 	 * @param {document} doc
 	 */
 	addBugReportLink: function(doc) {
-		const CORE = this;
+		const NOTE_ID = 'ft-bug-report-confirm';
+		const BUG_DATA_URL = 'https://www.foxtrick.org/bug-report-data';
 
 		var bottom = doc.getElementById('bottom');
 		if (!bottom)
@@ -347,8 +348,33 @@ Foxtrick.modules.Core = {
 		let title = Foxtrick.L10n.getString('reportBug.descNew');
 		reportBugSpan.setAttribute('aria-label', reportBugSpan.title = title);
 
+		var hideNote = function() {
+			doc.getElementById(NOTE_ID).remove();
+		};
+
 		Foxtrick.onClick(reportBugSpan, function() {
-			CORE.reportBug(doc);
+			var info = doc.createDocumentFragment();
+
+			let sorry = doc.createElement('p');
+			sorry.textContent = Foxtrick.L10n.getString('reportBug.sorry');
+			info.appendChild(sorry);
+
+			let data = doc.createElement('p');
+			Foxtrick.L10n.appendLink('reportBug.error.data', data, BUG_DATA_URL);
+			info.appendChild(data);
+
+			let report = doc.createElement('button');
+			report.type = 'button';
+			report.textContent = Foxtrick.L10n.getString('reportBug.now');
+			Foxtrick.onClick(report, function() {
+				// eslint-disable-next-line no-invalid-this
+				let doc = this.ownerDocument;
+				hideNote();
+				Foxtrick.modules.Core.reportBug(doc);
+			});
+			info.appendChild(report);
+
+			Foxtrick.util.note.add(doc, info, NOTE_ID, { closable: true, focus: true });
 		});
 
 		bottom.insertBefore(reportBugSpan, bottom.firstChild);
@@ -414,6 +440,7 @@ Foxtrick.modules.Core = {
 	 */
 	displayErrorNotice: function(doc, ask) {
 		const NOTE_ID = 'ft-bug-ask-notice';
+		const BUG_DATA_URL = 'https://www.foxtrick.org/bug-report-data';
 
 		if (doc.getElementById(NOTE_ID))
 			return;
@@ -439,6 +466,10 @@ Foxtrick.modules.Core = {
 			  Foxtrick.L10n.getString('reportBug.error.help')
 			: Foxtrick.L10n.getString('reportBug.error.reported');
 		info.appendChild(help);
+
+		let data = doc.createElement('p');
+		Foxtrick.L10n.appendLink('reportBug.error.data', data, BUG_DATA_URL);
+		info.appendChild(data);
 
 		if (ask) {
 			let options = doc.createElement('div');

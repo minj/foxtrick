@@ -241,6 +241,7 @@ Foxtrick.L10n.appendLink = function(str, parent, url) {
 		link = doc.createElement('a');
 		link.href = url;
 		link.target = '_blank';
+		link.relList.add('noopener');
 		link.textContent = parts[1];
 		parent.appendChild(link);
 	}
