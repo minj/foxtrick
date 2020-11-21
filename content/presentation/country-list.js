@@ -175,6 +175,9 @@ Foxtrick.modules.CountryList = {
 				leagueId = Foxtrick.XMLData.getLeagueIdByCountryId(cId);
 			}
 
+			if (!leagueId)
+				continue;
+
 			let newName = Foxtrick.L10n.getCountryName(leagueId);
 			if (newName === 'New Moon')
 				continue;

@@ -198,7 +198,12 @@ Foxtrick.modules.CopyPlayerAd = {
 					const HTMS_ROW_IDX = 5;
 					for (let [r, row] of [...table.rows].entries()) {
 						let [header, data] = row.cells;
+
 						ad += header.textContent.trim();
+						if (!data) {
+							ad += '\n';
+							continue;
+						}
 
 						let copy = Foxtrick.cloneElement(data, true);
 						for (let tNode of Foxtrick.getTextNodes(copy)) {
