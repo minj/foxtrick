@@ -61,7 +61,8 @@ Foxtrick.modules['MercattrickStats'] = {
 			let img = doc.createElement('img');
 			img.width = 21;
 			img.height = 16;
-			img.title = Foxtrick.L10n.getString('MercattrickStats.title');
+			img.alt = Foxtrick.L10n.getString('MercattrickStats.title');
+			img.setAttribute('aria-label', img.title = img.alt);
 			img.src = module.IMAGES.LOGO_XSMALL;
 			container.appendChild(img);
 

@@ -425,6 +425,8 @@ module.MatchSimulator.enabled
 module.MatchSimulator.value
 module.MatchWeather.Irl.enabled
 module.MatchWeather.enabled
+module.MercattrickStats.enabled
+module.MercattrickStats.enableTLPage.enabled
 module.MobileEnhancements.ViewPort.enabled
 module.MobileEnhancements.ViewPort_text
 module.MobileEnhancements.enabled
