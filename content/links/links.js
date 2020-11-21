@@ -201,7 +201,8 @@ Foxtrick.modules.Links = {
 			if (isTracker) {
 				let idStr = args.nationality || args.leagueid;
 				let id = typeof idStr == 'string' ? parseInt(idStr, 10) : idStr;
-				linkNode = Foxtrick.util.id.createFlagFromLeagueId(doc, id, url, title);
+				if (id)
+					linkNode = Foxtrick.util.id.createFlagFromLeagueId(doc, id, url, title);
 			}
 			else {
 				linkNode.title = title;

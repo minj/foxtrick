@@ -57,6 +57,9 @@ Foxtrick.modules['BookmarkAdjust'] = {
 
 	_adjustBookmarks: function(doc) {
 		let spanObj = Foxtrick.getMBElement(doc, 'repB');
+		if (!spanObj)
+			return;
+
 		let tableObj = spanObj.querySelector('table');
 
 		// checking if deadline already set

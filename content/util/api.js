@@ -263,7 +263,7 @@ Foxtrick.util.api = {
 		};
 		xml.text = function(tagName, container) {
 			var node = this.node(tagName, container);
-			return node.textContent;
+			return node == null ? null : node.textContent;
 		};
 		xml.bool = function(tagName, container) {
 			var text = this.text(tagName, container);
@@ -271,14 +271,14 @@ Foxtrick.util.api = {
 		};
 		xml.time = function(tagName, container) {
 			var text = this.text(tagName, container);
-			if (text === '0001-01-01 00:00:00')
+			if (text == null || text === '0001-01-01 00:00:00')
 				return null;
 
 			return Foxtrick.util.time.getDateFromText(text, 'yyyymmdd');
 		};
 		xml.date = function(tagName, container) {
 			var text = this.text(tagName, container);
-			if (text === '0001-01-01 00:00:00')
+			if (text == null || text === '0001-01-01 00:00:00')
 				return null;
 
 			return Foxtrick.util.time.getDateFromText(text, 'yyyymmdd', true);

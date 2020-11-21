@@ -122,7 +122,17 @@ Foxtrick.modules.CopyYouth = {
 			}
 			catch (rej) {
 				let { status, text } = rej;
-				module.addNode(doc, `Error ${status}: ${JSON.parse(text).error}`);
+
+				let payload = { error: 'Unknown error' };
+				try {
+					payload = JSON.parse(text);
+				}
+				catch (e) {
+					Foxtrick.log(`[${sendTrainingReportToHY}]: could not parse '${text}'`);
+				}
+
+				let { error } = payload;
+				module.addNode(doc, `Error ${status}: ${error}`);
 			}
 			finally {
 				entry.removeChild(loading);
