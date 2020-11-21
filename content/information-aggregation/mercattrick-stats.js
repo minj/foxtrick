@@ -19,65 +19,71 @@ Foxtrick.modules['MercattrickStats'] = {
 	 * @param	{document}	doc
 	 */
 	run: function(doc) {
-        if (Foxtrick.isPage(doc, 'transferSearchResult') && Foxtrick.Prefs.isModuleOptionEnabled('MercattrickStats', 'enableTLPage')) {
-            this.runTL(doc);
-        }
+		if (Foxtrick.isPage(doc, 'transferSearchResult') &&
+			Foxtrick.Prefs.isModuleOptionEnabled('MercattrickStats', 'enableTLPage')) {
+			// no other pages for now
+			this.runTL(doc);
+		}
 	},
 
-    /**
-     * @param {document} doc
-     */
-    runTL: async function(doc) {
-        const module = this;
+	/**
+	 * @param {document} doc
+	 */
+	runTL: async function(doc) {
+		const module = this;
 
-        var playerNodes = Foxtrick.Pages.TransferSearchResults.getPlayerList(doc);
+		var playerNodes = Foxtrick.Pages.TransferSearchResults.getPlayerList(doc);
 
-        let ids = playerNodes.map((playerNode) => playerNode.id);
-        // get mercattrick stats
-        try {
-            var data = await Foxtrick.api.mercattrick.getPlayersStats(ids);
-        }
-        catch (err) {
-            return;
-        }
+		let ids = playerNodes.map(playerNode => playerNode.id);
 
-        if (data) {
-            Foxtrick.forEach(function (p) {
-                const statObj = data.find(obj => obj.id === p.id);
-                const filters = statObj ? statObj.filters_count : 0;
-                const bookmarks = statObj ? statObj.bookmarks_count : 0;
-                // creating element
-                const container = Foxtrick.createFeaturedElement(doc, module, 'div');
+		// get mercattrick stats
+		var data = null;
+		try {
+			data = await Foxtrick.api.mercattrick.getPlayersStats(ids);
+		}
+		catch (err) {
+			return;
+		}
 
-                Foxtrick.addClass(container, 'ft-mercattrick-stats');
+		if (!data)
+			return;
 
-                let img = doc.createElement('img');
-                img.width = 21;
-                img.height = 16;
-                img.title = Foxtrick.L10n.getString('MercattrickStats.title');
-                img.src = module.IMAGES.LOGO_XSMALL;
-                container.appendChild(img);
+		Foxtrick.forEach((p) => {
+			const statObj = data.find(obj => obj.id === p.id);
+			const filters = statObj ? statObj.filters_count : 0;
+			const bookmarks = statObj ? statObj.bookmarks_count : 0;
 
-                let link = doc.createElement('a');
-                link.textContent = Foxtrick.L10n.getString('MercattrickStats.transfers');
-                link.href = 'https://mercattrick.com';
-                link.target = '_blank';
-                link.rel = 'noopener';
-                container.appendChild(link);
-                container.appendChild(doc.createTextNode(' '));
+			// creating element
+			const container = Foxtrick.createFeaturedElement(doc, module, 'div');
 
-                let statsSpan = doc.createElement('span');
-                let stats = Foxtrick.L10n.getString('MercattrickStats.filtersAndBookmarks');
-                stats = stats.replace(/%1/, filters).replace(/%2/, bookmarks);
-                statsSpan.textContent = stats;
-                container.appendChild(statsSpan);
+			Foxtrick.addClass(container, 'ft-mercattrick-stats');
 
-                container.dataset.filters = filters;
-                container.dataset.bookmarks = bookmarks;
+			let img = doc.createElement('img');
+			img.width = 21;
+			img.height = 16;
+			img.title = Foxtrick.L10n.getString('MercattrickStats.title');
+			img.src = module.IMAGES.LOGO_XSMALL;
+			container.appendChild(img);
 
-                let entity = p.playerNode.querySelector('.transferPlayerInfo');
-                entity.appendChild(container);
-            }, playerNodes);
-        }
-	}
+			let link = doc.createElement('a');
+			link.textContent = Foxtrick.L10n.getString('MercattrickStats.transfers');
+			link.href = 'https://mercattrick.com';
+			link.target = '_blank';
+			link.rel = 'noopener';
+			container.appendChild(link);
+			container.appendChild(doc.createTextNode(' '));
+
+			let statsSpan = doc.createElement('span');
+			let stats = Foxtrick.L10n.getString('MercattrickStats.filtersAndBookmarks');
+			stats = stats.replace(/%1/, filters).replace(/%2/, bookmarks);
+			statsSpan.textContent = stats;
+			container.appendChild(statsSpan);
+
+			container.dataset.filters = filters;
+			container.dataset.bookmarks = bookmarks;
+
+			let entity = p.playerNode.querySelector('.transferPlayerInfo');
+			entity.appendChild(container);
+		}, playerNodes);
+	},
 };

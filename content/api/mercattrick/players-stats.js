@@ -60,7 +60,7 @@ Foxtrick.api.mercattrick._getPlayersStats = function(playerIds) {
 Foxtrick.api.mercattrick.getPlayersStats = function(playerIds) {
 	let hours = 1;
 	let api = Foxtrick.api.mercattrick;
-	let fetch = (ids) => api._getPlayersStats(ids);
+	let fetch = ids => api._getPlayersStats(ids);
 
 	return api._fetchViaCache('playersStats', fetch, hours, playerIds);
 };

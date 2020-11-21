@@ -360,9 +360,9 @@ Foxtrick.modules.SkillTable = {
 				{ name: 'BestPosition', property: 'bestPosition', sortAsString: true, },
 				{ name: 'BestPositionValue', property: 'bestPositionValue', },
 				{ name: 'MercattrickStats.filters', property: 'mtFilters',
-                    img: Foxtrick.modules['MercattrickStats'].IMAGES.FILTERS},
+					img: Foxtrick.modules['MercattrickStats'].IMAGES.FILTERS, },
 				{ name: 'MercattrickStats.bookmarks', property: 'mtBookmarks',
-                    img: Foxtrick.modules['MercattrickStats'].IMAGES.BOOKMARKS},
+					img: Foxtrick.modules['MercattrickStats'].IMAGES.BOOKMARKS, },
 			];
 			/* eslint-enable comma-dangle */
 			/* eslint-enable object-property-newline */
