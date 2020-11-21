@@ -40,7 +40,8 @@ Foxtrick.modules.ForumPresentation = {
 		for (let element of elements) {
 			Foxtrick.makeFeaturedElement(element, module);
 			for (let text of Foxtrick.getTextNodes(element))
-				element.removeChild(text);
+				if (text.parentElement == element)
+					element.removeChild(text);
 		}
 
 		// fplThreadInfo should be added to but that's dynamic in default -> more tricky

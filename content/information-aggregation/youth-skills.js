@@ -312,6 +312,9 @@ Foxtrick.modules['YouthSkills'] = {
 						throw new Error('unknown bar type');
 				}
 
+				if (!target)
+					return;
+
 				Foxtrick.insertAfter(hyBar, target);
 			};
 

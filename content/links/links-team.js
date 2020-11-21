@@ -51,7 +51,7 @@ Foxtrick.modules['LinksTeam'] = {
 				// seriesPos is not known during a game
 				var seriesP = Foxtrick.cloneElement(seriesLink.parentNode, true);
 				seriesP.removeChild(seriesP.querySelector('a'));
-				seriesPos = seriesP.textContent.match(/\d/).toString();
+				seriesPos = Number(seriesP.textContent.match(/\d/));
 			}
 		}
 		catch (e) {

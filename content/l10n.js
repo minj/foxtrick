@@ -241,6 +241,7 @@ Foxtrick.L10n.appendLink = function(str, parent, url) {
 		link = doc.createElement('a');
 		link.href = url;
 		link.target = '_blank';
+		link.relList.add('noopener');
 		link.textContent = parts[1];
 		parent.appendChild(link);
 	}
@@ -812,6 +813,9 @@ Foxtrick.L10n.getCountryNameNative = function(leagueId) {
 	var ret = 'New Moon';
 	try {
 		let league = Foxtrick.XMLData.League[leagueId];
+		if (!league)
+			throw new Error(`'${leagueId}' not found`);
+
 		ret = league.LeagueName;
 	}
 	catch (e) {

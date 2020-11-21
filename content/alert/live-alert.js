@@ -59,7 +59,7 @@ Foxtrick.modules['LiveAlert'] = {
 
 		// new goal logic
 		var scorer = doc.querySelector('.specialMention');
-		if (scorer.dataset.done)
+		if (!scorer || scorer.dataset.done)
 			return;
 
 		scorer.dataset.done = true; // use a tag to prevent alerting twice during match change
@@ -82,6 +82,9 @@ Foxtrick.modules['LiveAlert'] = {
 	 * @return {array}       <Array.<number>>
 	 */
 	getScoreFromTab: function(tab) {
+		if (!tab)
+			return null;
+
 		var goals = null;
 
 		if (Foxtrick.Pages.Match.isNewLive(tab.ownerDocument)) {

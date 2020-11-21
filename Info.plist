@@ -102,10 +102,6 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/api/hy/user-id.js</string>
 				<string>content/api/mercattrick/common.js</string>
 				<string>content/api/mercattrick/players-stats.js</string>
-				<string>content/api/pastebin/common.js</string>
-				<string>content/api/pastebin/get.js</string>
-				<string>content/api/pastebin/login.js</string>
-				<string>content/api/pastebin/paste.js</string>
 				<!-- end api-util -->
 
 				<!-- core -->
@@ -297,7 +293,6 @@ a good reason to. They are for version bumps in Makefile.
 				<string>*.foxtrick.org</string>
 				<string>*.hattrick-youthclub.org</string>
 				<string>www.fantamondi.it</string>
-				<string>pastebin.com</string>
 				<string>api.openweathermap.org</string>
 			</array>
 			<key>Include Secure Pages</key>

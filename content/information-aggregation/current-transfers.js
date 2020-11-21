@@ -225,6 +225,8 @@ Foxtrick.modules.CurrentTransfers = {
 
 			/** @type {HTMLSpanElement} */
 			let resultSpan = bidCell.querySelector('span.shy');
+			if (!resultSpan)
+				continue;
 
 			Foxtrick.makeFeaturedElement(resultSpan, module);
 			Foxtrick.addClass(resultSpan, 'ft-transfers-price');

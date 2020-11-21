@@ -30,6 +30,7 @@
 			"content/lib/PluralForm.js",
 			"content/lib/psico.js",
 			"content/lib/gauge.js",
+			"content/lib/exceptionless.universal.js",
 			// <!-- end ext-lib -->
 
 			"content/lib/integration.js",
@@ -87,10 +88,6 @@
 			"content/api/hy/user-id.js",
 			"content/api/mercattrick/common.js",
 			"content/api/mercattrick/players-stats.js",
-			"content/api/pastebin/common.js",
-			"content/api/pastebin/get.js",
-			"content/api/pastebin/login.js",
-			"content/api/pastebin/paste.js",
 			// <!-- end api-util -->
 
 			// <!-- core -->
@@ -286,8 +283,7 @@
 		"clipboardWrite",
 		"*://chpp.hattrick.org/*",
 		"*://*.foxtrick.org/*",
-		"http://www.fantamondi.it/*",
-		"https://pastebin.com/api/*"
+		"http://www.fantamondi.it/*"
 	],
 	"optional_permissions": [
 		"https://*.hattrick-youthclub.org/*",
