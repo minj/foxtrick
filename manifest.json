@@ -86,10 +86,6 @@
 			"content/api/hy/players-youth-reject-call.js",
 			"content/api/hy/players-youth-skills.js",
 			"content/api/hy/user-id.js",
-			"content/api/pastebin/common.js",
-			"content/api/pastebin/get.js",
-			"content/api/pastebin/login.js",
-			"content/api/pastebin/paste.js",
 			// <!-- end api-util -->
 
 			// <!-- core -->
@@ -284,8 +280,7 @@
 		"clipboardWrite",
 		"*://chpp.hattrick.org/*",
 		"*://*.foxtrick.org/*",
-		"http://www.fantamondi.it/*",
-		"https://pastebin.com/api/*"
+		"http://www.fantamondi.it/*"
 	],
 	"optional_permissions": [
 		"https://*.hattrick-youthclub.org/*",
