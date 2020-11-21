@@ -438,8 +438,10 @@ Foxtrick.modules['TeamPopupLinks'] = {
 					if (hasScroll && pT - mainBody.scrollTop < mainBody.offsetHeight / 2 ||
 					    pT - doc.body.scrollTop < 300 || !mainBody) { // = popdown
 
-						let more = list.removeChild(list.lastChild);
-						list.insertBefore(more, list.firstChild);
+						if (list.lastChild) {
+							let more = list.removeChild(list.lastChild);
+							list.insertBefore(more, list.firstChild);
+						}
 
 						down = true;
 					}
