@@ -132,8 +132,12 @@ Foxtrick.jsonError = (err) => {
 			return obj;
 		}
 
-		for (let k of Object.keys(err))
+		for (let k of Object.keys(err)) {
+			if (!Object.getOwnPropertyDescriptor(err, k).writable)
+				continue;
+
 			err[k] = Foxtrick.jsonError(err[k]);
+		}
 
 	}
 
