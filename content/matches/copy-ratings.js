@@ -164,6 +164,19 @@ Foxtrick.modules['CopyRatings'] = {
 					: eventDetails.textContent.trim().match(/^\d+/)[0];
 				map.match_time = isNaN(parseInt(match_time, 10)) ? match_time : match_time + '\'';
 			}
+			else if (isLive) {
+				var timer = doc.getElementById('match');
+				var timerTime = parseInt(timer.textContent.trim().match(/^\d+/), 10);
+				if (!isNaN(timerTime) && timerTime <= 15) {
+					// test half-time counter
+					var tmstmps = doc.querySelectorAll('.timelineEventTimeStamp');
+					var lastTmstmp = [].slice.call(tmstmps, -1)[0];
+					if (lastTmstmp && lastTmstmp.textContent.trim() === '45') {
+						timerTime = 45;
+					}
+				}
+				map.match_time = timerTime + '\'';
+			}
 			else if (inProgress) {
 				// README: this is fragile match minute detection
 				// matchdetails:154-7
@@ -190,19 +203,6 @@ Foxtrick.modules['CopyRatings'] = {
 					minute = lastMinute;
 
 				map.match_time = minute + '\'';
-			}
-			else if (isLive) {
-				var timer = doc.getElementById('match');
-				var timerTime = parseInt(timer.textContent.trim().match(/^\d+/), 10);
-				if (!isNaN(timerTime) && timerTime <= 15) {
-					// test half-time counter
-					var tmstmps = doc.querySelectorAll('.timelineEventTimeStamp');
-					var lastTmstmp = [].slice.call(tmstmps, -1)[0];
-					if (lastTmstmp && lastTmstmp.textContent.trim() === '45') {
-						timerTime = 45;
-					}
-				}
-				map.match_time = timerTime + '\'';
 			}
 
 			map.sectors = Foxtrick.format(SECTORS_TEMPLATE, map);
