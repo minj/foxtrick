@@ -303,6 +303,7 @@
 		"default_title": "Foxtrick enabled",
 		"default_popup": "content/popup.html"
 	},
+	"minimum_chrome_version": "73",
 	"options_ui" : {
 		"page": "content/preferences.html",
 		"chrome_style": false,
@@ -313,7 +314,7 @@
 	// <!-- gecko-specific -->
 	"browser_specific_settings": {
 		"gecko": {
-			"strict_min_version": "60.0a1",
+			"strict_min_version": "63.0a1",
 			"update_url": "https://www.foxtrick.org/nightly/update.rdf",
 			"id": "foxtrick-webext-dev@foxtrick.org"
 		}
