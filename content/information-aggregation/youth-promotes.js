@@ -20,6 +20,11 @@ Foxtrick.modules.YouthPromotes = {
 		const MSECS_IN_DAY = Foxtrick.util.time.MSECS_IN_DAY;
 
 		const now = Foxtrick.util.time.getDate(doc);
+		if (!now) {
+			Foxtrick.log('User time missing');
+			return;
+		}
+
 		const promoDate = Foxtrick.Pages.YouthPlayer.getPromotionDate(doc);
 		if (!promoDate)
 			return;

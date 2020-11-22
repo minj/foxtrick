@@ -29,6 +29,11 @@ Foxtrick.modules.AddPromotionReminder = {
 
 			let playerId = Foxtrick.Pages.Player.getId(doc);
 			let now = Foxtrick.util.time.getDate(doc);
+			if (!now) {
+				Foxtrick.log('User time missing');
+				return;
+			}
+
 			let alarm = Foxtrick.Pages.YouthPlayer.getPromotionDate(doc);
 			if (alarm <= now)
 				return;

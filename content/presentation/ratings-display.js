@@ -100,8 +100,8 @@ Foxtrick.modules.RatingsDisplay = {
 
 						let elMax = cell.querySelector('a');
 						let elAvg = cell.querySelectorAll('span')[1];
-						let valMax = parseInt(elMax.textContent, 10);
-						let valAvg = parseInt(elAvg.textContent, 10);
+						let valMax = elMax ? parseInt(elMax.textContent, 10) : 0;
+						let valAvg = elAvg ? parseInt(elAvg.textContent, 10) : 0;
 
 						averagesMax[j] += valMax / rows.length;
 						averagesAvg[j] += valAvg / rows.length;

@@ -84,6 +84,10 @@ Foxtrick.modules['TransferDeadline'] = {
 
 	runTransferResult: function(doc) {
 		var userDate = Foxtrick.util.time.getDate(doc);
+		if (!userDate) {
+			Foxtrick.log('User time missing');
+			return;
+		}
 		var userTime = userDate.getTime();
 		var dates = doc.querySelectorAll('.date, [id*="lblDeadline"]');
 		for (let date of dates)
@@ -93,6 +97,11 @@ Foxtrick.modules['TransferDeadline'] = {
 	runPlayerList: function(doc) {
 		// FIXME
 		var userDate = Foxtrick.util.time.getDate(doc);
+		if (!userDate) {
+			Foxtrick.log('User time missing');
+			return;
+		}
+
 		var userTime = userDate.getTime();
 		var i = 0;
 		var MAIN = Foxtrick.getMainIDPrefix();
@@ -107,6 +116,11 @@ Foxtrick.modules['TransferDeadline'] = {
 			return;
 
 		var userDate = Foxtrick.util.time.getDate(doc);
+		if (!userDate) {
+			Foxtrick.log('User time missing');
+			return;
+		}
+
 		var userTime = userDate.getTime();
 
 		var div = Foxtrick.Pages.Player.getBidInfo(doc);

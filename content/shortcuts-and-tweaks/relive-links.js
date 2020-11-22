@@ -23,11 +23,13 @@ Foxtrick.modules.ReLiveLinks = {
 	run: function(doc) {
 		const module = this;
 
-		if (Foxtrick.isPage(doc, 'matchesLive') &&
-		    Foxtrick.Prefs.isModuleOptionEnabled('ReLiveLinks', 'Live'))
-			module.live(doc);
-		else if (Foxtrick.Prefs.isModuleOptionEnabled('ReLiveLinks', 'ReLive'))
+		if (Foxtrick.isPage(doc, 'matchesLive')) {
+			if (Foxtrick.Prefs.isModuleOptionEnabled('ReLiveLinks', 'Live'))
+				module.live(doc);
+		}
+		else if (Foxtrick.Prefs.isModuleOptionEnabled('ReLiveLinks', 'ReLive')) {
 			module.reLive(doc);
+		}
 	},
 
 	/** @param {document} doc */

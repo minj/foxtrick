@@ -190,39 +190,51 @@ Foxtrick.modules['LineupShortcut'] = {
 		cell.appendChild(link);
 	},
 
-	//***************** YOUTH TEAM ********************
+	/** @param {document} doc */
 	_Analyze_Youth_Player_Page: function(doc) {
-		var mainBody = doc.getElementById('mainBody');
-
-		var matchLink = Foxtrick.nth(function(n) {
-			return /\/Club\/Matches\/Match\.aspx\?MatchId=\d+&SourceSystem=Youth&/i.test(n.href);
-		}, mainBody.getElementsByTagName('a'));
-		if (!matchLink)
-			return; // hasn't played a match yet
-
-		// get matchTable which contains matches played
-		var matchTable = matchLink;
-		while (matchTable.tagName.toLowerCase() != 'table' && matchTable.parentNode)
-			matchTable = matchTable.parentNode;
-		if (matchTable.tagName.toLowerCase() != 'table')
+		let mainBody = doc.getElementById('mainBody');
+		let q = 'a[href^="/Club/Matches/Match."i][href*="MatchId="i][href*="SourceSystem=Youth"i]';
+		let links = mainBody.querySelectorAll(q);
+		if (!links.length) {
+			// has not played
 			return;
+		}
 
-		var youthTeamId = Foxtrick.Pages.All.getTeamIdFromBC(doc);
-		var teamId = Foxtrick.Pages.All.getTeamId(doc);
-		var playerId = Foxtrick.Pages.All.getId(doc);
-		for (var i = 0; i < matchTable.rows.length; i++) {
-			var link = matchTable.rows[i].cells[1].getElementsByTagName('a')[0];
+		let tables = new Set(Foxtrick.map(l => l.closest('table'), links).filter(Boolean));
+		let withDates = Foxtrick.filter(t => !!t.querySelector('.date'), tables);
+		let [matchTable] = withDates;
+		switch (withDates.length) {
+			case 0:
+				throw new Error('Matchtable not found');
+			case 1:
+				break;
+			default:
+				Foxtrick.error(`Found ${withDates.length} tables`);
+		}
+
+		let youthTeamId = Foxtrick.Pages.All.getTeamIdFromBC(doc);
+		let teamId = Foxtrick.Pages.All.getTeamId(doc);
+		let playerId = Foxtrick.Pages.All.getId(doc);
+		for (let row of matchTable.rows) {
+			let cell = row.cells[1];
+			if (!cell)
+				continue;
+
+			let link = cell.querySelector('a');
+			if (!link)
+				continue;
+
 			// fix matchlink
 			link.href += '&YouthTeamId=' + youthTeamId + '&HighlightPlayerID=' + playerId;
-			var matchId = Foxtrick.util.id.getMatchIdFromUrl(link.href);
-			var opts = {
+			let matchId = Foxtrick.util.id.getMatchIdFromUrl(link.href);
+			let opts = {
 				type: 'youth',
 				matchId: matchId,
 				playerId: playerId,
 				teamId: teamId,
-				youthTeamId: youthTeamId
+				youthTeamId: youthTeamId,
 			};
-			this._Add_Lineup_Link(doc, matchTable.rows[i], opts);
+			this._Add_Lineup_Link(doc, row, opts);
 		}
 	},
 };

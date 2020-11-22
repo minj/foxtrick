@@ -34,6 +34,11 @@ Foxtrick.modules['SupportershipExpirationDate'] = {
 		let dMatch = container.textContent.match(/\d+/);
 		let days = parseInt(dMatch.toString(), 10);
 		let now = Foxtrick.util.time.getDate(doc);
+		if (!now) {
+			Foxtrick.log('User time missing');
+			return;
+		}
+
 		let endDate = Foxtrick.util.time.addDaysToDate(now, days);
 
 		// get date in localized/correct format
