@@ -753,6 +753,9 @@ Foxtrick.modules.SkillTable = {
 				dateDiff: function(cell, deadline) {
 					const MSEC = Foxtrick.util.time.MSECS_IN_SEC;
 					let htDate = Foxtrick.util.time.getHTDate(doc);
+					if (!htDate)
+						return;
+
 					let diff = Math.floor((htDate.getTime() - deadline.getTime()) / MSEC);
 					let span = Foxtrick.util.time.timeDiffToSpan(doc, diff, { useDHM: false });
 					cell.appendChild(span);
