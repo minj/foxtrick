@@ -467,7 +467,7 @@ Foxtrick.modules.PlayerPositionsEvaluations = {
 			posDiv.appendChild(posSelect);
 
 			var bestPosCell = doc.getElementById('ft-ppe-bestPos');
-			var bestPos = bestPosCell.dataset.position;
+			var bestPos = bestPosCell ? bestPosCell.dataset.position : null;
 			for (var pos in factors) {
 				var option = doc.createElement('option');
 				option.value = pos;

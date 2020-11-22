@@ -131,7 +131,8 @@ Foxtrick.Pages.Player.getNationalityName = function(doc) {
 	var name = null;
 	try {
 		var id = this.getNationalityId(doc);
-		name = Foxtrick.L10n.getCountryNameNative(id);
+		if (id)
+			name = Foxtrick.L10n.getCountryNameNative(id);
 	}
 	catch (e) {
 		Foxtrick.log(e);

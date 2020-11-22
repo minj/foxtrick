@@ -222,6 +222,9 @@ Foxtrick.modules.DashboardCalendar = {
 		var DAYS_IN_WEEK = Foxtrick.util.time.DAYS_IN_WEEK;
 
 		var htNow = Foxtrick.util.time.getHTDate(doc);
+		if (!htNow)
+			return;
+
 		var htWeekDay = htNow.getDay(); // sometimes dashboard calendar lags
 		var htToday = new Date(htNow);
 		Foxtrick.util.time.setMidnight(htToday);
