@@ -200,8 +200,10 @@ Foxtrick.modules['LineupShortcut'] = {
 			return;
 		}
 
-		let tables = new Set(Foxtrick.map(l => l.closest('table'), links).filter(Boolean));
-		let withDates = Foxtrick.filter(t => !!t.querySelector('.date'), tables);
+		// skip links inside dates
+		let tables = Foxtrick.map(l => !l.closest('.date') && l.closest('table'), links);
+		let mTables = new Set(tables.filter(Boolean));
+		let withDates = Foxtrick.filter(t => !!t.querySelector('.date'), mTables);
 		let [matchTable] = withDates;
 		switch (withDates.length) {
 			case 0:
