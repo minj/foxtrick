@@ -823,7 +823,7 @@
 			},
 			{
 				"type": "DefPos",
-				"value": "Aizsardzība (Vārtsargi + Aizsargi + Visi Pussargi)"
+				"value": "Aizsardzība (VS + A + visi PS)"
 			},
 			{
 				"type": "WingAtt",
