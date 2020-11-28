@@ -200,6 +200,10 @@ Foxtrick.modules['LineupShortcut'] = {
 			return;
 		}
 
+		let byline = doc.querySelector('.byline');
+		if (!byline || !byline.textContent.trim())
+			return;
+
 		// skip links inside dates
 		let tables = Foxtrick.map(l => !l.closest('.date') && l.closest('table'), links);
 		let mTables = new Set(tables.filter(Boolean));
