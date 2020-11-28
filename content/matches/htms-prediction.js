@@ -180,7 +180,7 @@ Foxtrick.modules['HTMSPrediction'] = {
 			if (xml == null)
 				return;
 
-			if (loading)
+			if (loading && loading.parentNode)
 				loading.parentNode.removeChild(loading);
 
 			var htmstable = doc.getElementById('ft-htmstable');

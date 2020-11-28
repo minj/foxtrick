@@ -360,7 +360,7 @@ Foxtrick.modules['TeamPopupLinks'] = {
 
 							if (typeof customLinkText === 'string') {
 								let ownLinks = customLinkText.split(/\n/);
-								for (let ownLink of ownLinks) {
+								for (let ownLink of ownLinks.map(l => l.trim()).filter(Boolean)) {
 									try {
 										let redirToCustom = false;
 										let json = JSON.parse(ownLink);

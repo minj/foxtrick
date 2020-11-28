@@ -17,6 +17,9 @@ Foxtrick.modules.DashboardCalendar = {
 		const module = this;
 		module.exec(doc);
 		let list = doc.querySelector('#eventList');
+		if (!list)
+			return;
+
 		let panel = list.closest('[id*="UpdatePanel"]');
 		Foxtrick.onChange(panel, doc => module.exec(doc));
 	},

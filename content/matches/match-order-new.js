@@ -127,7 +127,11 @@ Foxtrick.modules.MatchOrderNew = {
 			};
 		})();
 
-		Foxtrick.onClick(doc.querySelector('.ht-tabs-wizard'), addUpdateListener);
+		let wizard = doc.querySelector('.ht-tabs-wizard');
+		if (!wizard)
+			return;
+
+		Foxtrick.onClick(wizard, addUpdateListener);
 		addUpdateListener();
 	},
 };
