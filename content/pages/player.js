@@ -1356,7 +1356,7 @@ Foxtrick.Pages.Player.getContributions = function(playerSkills, playerAttrs, opt
 
 /**
  * @typedef BestPlayerPosition
- * @prop {PlayerPositionCode} position
+ * @prop {PlayerPositionCode} [position]
  * @prop {number} value
  */
 
