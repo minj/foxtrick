@@ -6,9 +6,6 @@
 
 'use strict';
 
-import { tan } from "mathjs";
-import { exit } from "process";
-
 Foxtrick.modules['TableSort'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES: ['all'],
