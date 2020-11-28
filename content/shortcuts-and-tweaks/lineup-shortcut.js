@@ -87,7 +87,8 @@ Foxtrick.modules['LineupShortcut'] = {
 			var awayIdx = titleText.indexOf(textTeams[1]);
 
 			var fullNames = [
-				titleText.slice(homeIdx, awayIdx - 1).trim(), // skipping the hyphen
+				// eslint-disable-next-line no-magic-numbers
+				titleText.slice(homeIdx, awayIdx - 3).trim(), // skipping the hyphen
 				titleText.slice(awayIdx).trim(),
 			];
 
