@@ -53,7 +53,7 @@ Foxtrick.parseNestedTag = function(str, opts) {
 				}
 			}
 			else {
-				Foxtrick.error('parseNestedTag: incorrectly escaped regex for tag ' + tag);
+				Foxtrick.log(new Error('parseNestedTag: incorrectly escaped regex for tag ' + tag));
 				return [''];
 			}
 		}

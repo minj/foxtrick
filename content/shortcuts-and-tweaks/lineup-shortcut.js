@@ -211,7 +211,7 @@ Foxtrick.modules['LineupShortcut'] = {
 			case 1:
 				break;
 			default:
-				Foxtrick.error(`Found ${withDates.length} tables`);
+				Foxtrick.log(new Error(`Found ${withDates.length} tables`));
 		}
 
 		let youthTeamId = Foxtrick.Pages.All.getTeamIdFromBC(doc);

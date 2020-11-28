@@ -461,7 +461,7 @@ Foxtrick.modules.MyMonitor = {
 						var thisFrame = this;
 						thisFrame = thisFrame.closest('.ft-monitor-frame');
 						if (!thisFrame) {
-							Foxtrick.error('Unexpected layout in MyMonitor');
+							Foxtrick.log(new Error('Unexpected layout in MyMonitor'));
 							return null;
 						}
 

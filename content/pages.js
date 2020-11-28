@@ -229,7 +229,7 @@ Foxtrick.isPage = function(doc, page) {
 	}
 
 	if (typeof Foxtrick.htPages[page] == 'undefined') {
-		Foxtrick.error('Requesting unknown page: ' + page);
+		Foxtrick.log(new Error('Requesting unknown page: ' + page));
 		return false;
 	}
 

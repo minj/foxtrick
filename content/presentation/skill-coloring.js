@@ -253,7 +253,7 @@ Foxtrick.modules.SkillColoring = {
 			level = def.indexOf(level);
 		}
 		else {
-			Foxtrick.error(`Unknown skill type '${type}'`);
+			Foxtrick.log(new Error(`Unknown skill type '${type}'`));
 			return;
 		}
 

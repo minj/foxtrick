@@ -263,7 +263,7 @@ Foxtrick.modules.DashboardCalendar = {
 
 			// sanity check
 			if (userDate.getDay() !== i) {
-				Foxtrick.error('Failed to detect calendar day');
+				Foxtrick.log(new Error('Failed to detect calendar day'));
 				return;
 			}
 

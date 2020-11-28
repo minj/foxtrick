@@ -68,7 +68,8 @@ Foxtrick.createFeaturedElement = function(doc, module, type) {
 		return node;
 	}
 
-	Foxtrick.error(`Incorrect usage of createFeaturedElement. typeof(module):${typeof module}`);
+	let msg = `Incorrect usage of createFeaturedElement. typeof module = '${typeof module}'`;
+	Foxtrick.log(new Error(msg));
 	return null;
 };
 
@@ -1266,7 +1267,7 @@ Foxtrick.renderPre = function(parent) {
 					nodes = [];
 				}
 				else {
-					Foxtrick.error('renderPre: unsupported state');
+					Foxtrick.log(new Error('renderPre: unsupported state'));
 					return;
 				}
 				prevIndex = preRE.lastIndex;

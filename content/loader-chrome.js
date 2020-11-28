@@ -45,7 +45,7 @@ Foxtrick.loader.chrome.docLoadStart = function() {
 				var beginInit = new Date();
 
 				if ('error' in data) {
-					Foxtrick.log(data.error);
+					Foxtrick.log(new Error(data.error));
 					return;
 				}
 

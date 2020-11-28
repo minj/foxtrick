@@ -233,7 +233,8 @@ Foxtrick.modules.Filter = {
 							}
 							break;
 
-						default: Foxtrick.error('not implemented');
+						default:
+							Foxtrick.log(new Error('not implemented'));
 					}
 				}
 			};
@@ -269,7 +270,7 @@ Foxtrick.modules.Filter = {
 				let idxAttr = input.dataset.ftFilterIdx;
 				let index = parseInt(idxAttr, 10);
 				if (Number.isNaN(index)) {
-					Foxtrick.error(`Unrecognized filter ${idxAttr}`);
+					Foxtrick.log(new Error(`Unrecognized filter ${idxAttr}`));
 					return;
 				}
 

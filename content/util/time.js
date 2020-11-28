@@ -202,7 +202,7 @@ Foxtrick.util.time.parse = function(text, dateFormat, dateOnly = false) {
 		[year, month, day] = matchNums;
 	}
 	else {
-		Foxtrick.error('Unknown DATEFORMAT');
+		Foxtrick.log(new Error('Unknown DATEFORMAT'));
 		return null;
 	}
 

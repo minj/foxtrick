@@ -602,12 +602,19 @@ Foxtrick.modules['YouthSkills'] = {
 			var header = `Hattrick Youthclub Error ${status}: `;
 
 			/** @type {string|HTMLElement} */
-			var text;
+			var text = response;
+
 			try {
-				text = JSON.parse(response).error;
+				let payload = { error: 'Unknown error' };
+				if (response) {
+					payload = JSON.parse(response);
+					let { error } = payload;
+					text = error;
+				}
 			}
 			catch (e) {
-				text = response;
+				let msg = `[showError]: could not parse '${response}'`;
+				Foxtrick.log(new Error(msg));
 			}
 
 			if (!text && prefLink) {

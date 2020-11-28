@@ -444,7 +444,8 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 			teamId = Foxtrick.util.id.getTeamIdFromUrl(doc.location.href);
 
 		if (!teamId) {
-			Foxtrick.error(`Failed to parse teamId: '${teamId}' of ${JSON.stringify(options)}`);
+			let msg = `Failed to parse teamId: '${teamId}' of ${JSON.stringify(options)}`;
+			Foxtrick.log(new Error(msg));
 			return;
 		}
 

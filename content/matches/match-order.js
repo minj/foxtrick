@@ -85,7 +85,7 @@ Foxtrick.modules['MatchOrderInterface'] = {
 				}
 				if (!player) {
 					if (recursion) {
-						Foxtrick.error(`Infinite recursion in ${module.MODULE_NAME}`);
+						Foxtrick.log(new Error(`Infinite recursion in ${module.MODULE_NAME}`));
 					}
 					else {
 						// id not found, possibly new player, invalidate cache and refetch

@@ -243,12 +243,12 @@ Foxtrick.modules.ReLiveLinks = {
 			liveTdIdx = 1;
 		}
 		else {
-			Foxtrick.error('Unhandled case in ReLiveLinks');
+			Foxtrick.log(new Error('Unhandled case in ReLiveLinks'));
 			return;
 		}
 
 		if (!rows) {
-			Foxtrick.error(`${module.MODULE_NAME} failed`);
+			Foxtrick.log(new Error(`${module.MODULE_NAME} failed`));
 			return;
 		}
 

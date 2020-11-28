@@ -13,18 +13,6 @@ if (!this.Foxtrick)
 /* eslint-enable */
 
 /**
- * Log an error
- *
- * TODO allow varargs
- *
- * @param {string} err String to log. Will be converted into string if otherwise.
- */
-Foxtrick.error = function(err) {
-	Foxtrick.log(new Error(String(err)));
-};
-
-
-/**
  * outputs a list of strings/objects/errors to Foxtrick log
  *
  * @param {*[]} args
