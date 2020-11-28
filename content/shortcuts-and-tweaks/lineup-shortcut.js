@@ -1,4 +1,5 @@
 'use strict';
+
 /**
  * FoxtrickLineupShortcut (Add a direct shortcut to lineup in player detail page)
  * @author taised, ryanli
@@ -24,20 +25,27 @@ Foxtrick.modules['LineupShortcut'] = {
 			this._Analyze_Stat_Page(doc);
 	},
 
+	/** @param {document} doc */
+	// eslint-disable-next-line complexity
 	_Analyze_Player_Page: function(doc) {
 		if (Foxtrick.Pages.Player.wasFired(doc))
 			return;
 
 		// to get match history table
 		var mainBody = doc.getElementById('mainBody');
-		var boxes = mainBody.getElementsByClassName('mainBox');
+		var boxes = Array.from(mainBody.querySelectorAll('.mainBox'));
 		boxes = Foxtrick.filter(function(n) {
 			return n.id != 'trainingDetails' && n.id != 'transferHistory';
 		}, boxes);
-		var matchHistory = boxes[boxes.length - 1];
+
+		var matchHistory = Foxtrick.nth(function(b) {
+			return !!b.querySelector('.date') && /\(\d+'\)/.test(b.textContent) &&
+				!!b.querySelector('a[href^="/Club/Matches/Match.aspx?"i]');
+		}, boxes);
 		if (!matchHistory)
 			return;
-		var matchTable = matchHistory.getElementsByTagName('table')[0];
+
+		var matchTable = matchHistory.querySelector('table');
 		if (!matchTable)
 			return;
 
