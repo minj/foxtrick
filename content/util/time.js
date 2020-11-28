@@ -345,7 +345,8 @@ Foxtrick.util.time.getHTDate = function(doc) {
  * @return {number}
  */
 Foxtrick.util.time.getHTTimeStamp = function(doc) {
-	return this.getHTDate(doc).getTime();
+	let date = this.getHTDate(doc);
+	return date ? date.getTime() : null;
 };
 
 /**

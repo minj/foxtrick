@@ -491,7 +491,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 		}
 
 		if (options && options.refresh) {
-			let now = Foxtrick.util.time.getHTTimeStamp(doc);
+			let now = Foxtrick.util.time.getHTTimeStamp(doc) || Date.now();
 			Foxtrick.util.api.setCacheLifetime(JSON.stringify(args), now);
 		}
 		Foxtrick.util.currency.detect(doc).then(function() {
@@ -1023,7 +1023,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 			}, playerList);
 			if (missingXML.length) {
 				Foxtrick.log('WARNING: New players in HTML', missingXML, 'resetting cache');
-				let htTime = Foxtrick.util.time.getHTTimeStamp(doc);
+				let htTime = Foxtrick.util.time.getHTTimeStamp(doc) || Date.now();
 				Foxtrick.util.api.setCacheLifetime(JSON.stringify(args), htTime);
 			}
 		}

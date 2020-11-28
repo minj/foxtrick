@@ -350,11 +350,14 @@ Foxtrick.util.api = {
 			try {
 				htDate = Foxtrick.util.time.getHTTimeStamp(doc);
 			}
-			catch (e) {
+			catch (e) { }
+
+			if (!htDate) {
 				// No HT time yet. We have been to fast. Lets put us 1 day in the future
 				Foxtrick.log('no HT time yet');
 				htDate = Date.now() + Foxtrick.util.time.MSECS_IN_DAY;
 			}
+
 			return htDate;
 		})();
 		const NOW = new Date(HT_DATE).toString();
