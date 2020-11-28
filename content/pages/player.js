@@ -528,12 +528,29 @@ Foxtrick.Pages.Player.getWage = function(doc, wageCell) {
 Foxtrick.Pages.Player.getSpecialtyNumber = function(doc) {
 	var specNr = 0;
 	try {
+		var playerNode = doc.querySelector('.playerInfo');
+		var isNewDesign = !!playerNode.querySelector('.transferPlayerInformation');
+
 		/** @type {HTMLTableElement} */
-		var infoTable = doc.querySelector('.playerInfo table');
-		var specRow = infoTable.rows[5];
-		if (specRow) {
-			var specText = specRow.cells[1].textContent.trim();
-			specNr = Foxtrick.L10n.getNumberFromSpecialty(specText);
+		var playerInfo = playerNode.querySelector('table');
+
+		if (isNewDesign) {
+			const SPEC_PREFIX = 'icon-speciality-'; // HT-TYPO
+			const SPEC_SUFFIX = 'trSpeciality'; // HT-TYPO
+			let specTd = playerInfo.querySelector(`tr[id$="${SPEC_SUFFIX}"] td:nth-child(2)`);
+			let specIcon;
+			if (specTd && (specIcon = specTd.querySelector(`i[class*="${SPEC_PREFIX}"]`))) {
+				let classes = [...specIcon.classList];
+				let specClass = classes.filter(c => c.startsWith(SPEC_PREFIX))[0];
+				specNr = parseInt(specClass.match(/\d+/)[0], 10);
+			}
+		}
+		else {
+			let specRow = playerInfo.rows[5];
+			if (specRow) {
+				let specText = specRow.cells[1].textContent.trim();
+				specNr = Foxtrick.L10n.getNumberFromSpecialty(specText);
+			}
 		}
 	}
 	catch (e) {
