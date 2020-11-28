@@ -92,6 +92,7 @@ Foxtrick.modules['MatchLineupFixes'] = {
 		// other player movement events: 360-262; 370-372;
 
 		// doc.querySelectorAll('input[id$="_eventIndex"]') points to the report tab!
+		// the index does not match the timeline, however!
 		var eventIndexByEvent = Foxtrick.Pages.Match.getEventIndicesByEvent(doc);
 
 		// doc.querySelectorAll('input[id$="_timelineEventType"]')
@@ -511,6 +512,10 @@ Foxtrick.modules['MatchLineupFixes'] = {
 						};
 
 						for (let sub of subGroup) {
+							if (!sub.xml) {
+								// CHPP is unreliable
+								continue;
+							}
 							let xml = /** @type {CHPPXML} */ (sub.xml.ownerDocument);
 
 							let sbjIdEl = xml.node('SubjectPlayerID', sub.xml);
@@ -606,6 +611,11 @@ Foxtrick.modules['MatchLineupFixes'] = {
 						// OK, we assume everything's OK now.
 						// Let's go through subs one by one and fix each one except the last
 						subGroup.forEach(function(sub) {
+							if (!sub.xml) {
+								// CHPP is unreliable
+								return;
+							}
+
 							let ratingsData = sub.isHome ?
 								playerRatingsHome :
 								playerRatingsAway;
