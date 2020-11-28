@@ -717,6 +717,9 @@ Foxtrick.modules.MyMonitor = {
 
 			var l10nHeader = Foxtrick.L10n.getString('MyMonitor.header');
 			var box = Foxtrick.addBoxToSidebar(doc, l10nHeader, container, -1);
+			if (!box)
+				return;
+
 			box.id = 'ft-monitor-sidebar-box';
 
 			setSavedTeams(teams);
