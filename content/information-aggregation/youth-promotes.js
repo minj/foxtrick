@@ -43,6 +43,9 @@ Foxtrick.modules.YouthPromotes = {
 			promotionCounter.textContent = message;
 
 			let age = Foxtrick.Pages.Player.getAge(doc);
+			if (!age)
+				return;
+
 			let days = age.years * DAYS_IN_SEASON + age.days + daysToPromote;
 
 			let years = Foxtrick.Math.div(days, DAYS_IN_SEASON);

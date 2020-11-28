@@ -86,9 +86,8 @@ Foxtrick.modules['LinksYouthPlayerDetail'] = {
 		var leagueId = Foxtrick.util.id.findLeagueId(main);
 
 		// age
-		var age = Foxtrick.Pages.Player.getAge(doc);
-		var years = age.years;
-		var days = age.days;
+		var age = Foxtrick.Pages.Player.getAge(doc) || { years: NaN, days: NaN };
+		var { years, days } = age;
 
 		var info = {
 			teamId: teamId,

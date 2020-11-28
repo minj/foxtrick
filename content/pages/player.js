@@ -46,27 +46,32 @@ Foxtrick.Pages.Player.isYouth = function(doc) {
 
 /**
  * Get player age
+ *
+ * returns age in the following format:
+ * age = { years: xx, days: yyy };
+ *
  * @param  {document} doc
  * @return {?{years:number, days:number}}
  */
 Foxtrick.Pages.Player.getAge = function(doc) {
-	try {
-		// returns age in the following format:
-		// age = { years: xx, days: yyy };
-		var birthdayRe = /(\d+).*?(\d+).*?\d+.*?\d+.*?\d+.*?/;
-		var birthdayCell = doc.getElementsByClassName('byline')[0];
-		var birthdayMatch = birthdayRe.exec(birthdayCell.textContent);
+	var birthdayRe = /(\d+).*?(\d+).*?\d+.*?\d+.*?\d+.*?/;
+	var birthdayCell = doc.querySelector('.byline');
+	var age = null;
 
-		var age = {
-			years: parseInt(birthdayMatch[1], 10),
-			days: parseInt(birthdayMatch[2], 10),
-		};
-		return age;
+	if (birthdayCell && birthdayCell.textContent.trim()) {
+		try {
+			var birthdayMatch = birthdayRe.exec(birthdayCell.textContent);
+			age = {
+				years: parseInt(birthdayMatch[1], 10),
+				days: parseInt(birthdayMatch[2], 10),
+			};
+		}
+		catch (e) {
+			Foxtrick.log(e);
+		}
 	}
-	catch (e) {
-		Foxtrick.log(e);
-		return null;
-	}
+
+	return age;
 };
 
 /**

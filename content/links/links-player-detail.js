@@ -54,7 +54,8 @@ Foxtrick.modules.LinksPlayerDetail = {
 		var tsi = Foxtrick.Pages.Player.getTsi(doc);
 
 		// age
-		var { years, days } = Foxtrick.Pages.Player.getAge(doc);
+		var age = Foxtrick.Pages.Player.getAge(doc) || { years: NaN, days: NaN };
+		var { years, days } = age;
 
 		var attrs = Foxtrick.Pages.Player.getAttributes(doc);
 		var { form, stamina, experience, leadership } = attrs;
