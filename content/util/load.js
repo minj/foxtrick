@@ -109,8 +109,8 @@ Foxtrick.parseXML = function(data) {
 		else
 			errCode = HTTP_ERROR;
 
-		Foxtrick.error('safeXML got an html page. Server could be down. ' +
-		               'Assumed errCode: ' + errCode);
+		Foxtrick.log('safeXML got an html page. Server could be down.',
+		             'Assumed errCode:', errCode);
 
 		return null;
 	}

@@ -132,8 +132,12 @@ Foxtrick.jsonError = (err) => {
 			return obj;
 		}
 
-		for (let k of Object.keys(err))
+		for (let k of Object.keys(err)) {
+			if (!Object.getOwnPropertyDescriptor(err, k).writable)
+				continue;
+
 			err[k] = Foxtrick.jsonError(err[k]);
+		}
 
 	}
 
@@ -222,7 +226,7 @@ Foxtrick.copy = function(doc, copy, mime) {
 	if (Foxtrick.platform == 'Safari') {
 		// FIXME needs testing
 		Foxtrick.sessionSet('clipboard', copy);
-		Foxtrick.error('Safari copying is untested');
+		Foxtrick.log(new Error('Safari copying is untested'));
 		return;
 	}
 
@@ -611,16 +615,16 @@ Foxtrick.saveAs = function(doc, arr, name, mime) {
  */
 Foxtrick.rAF = function(win, cb) {
 	if (typeof win !== 'object') {
-		Foxtrick.error('rAF needs a window!');
+		Foxtrick.log(new Error('rAF needs a window!'));
 		return;
 	}
 	var rAF = win.requestAnimationFrame;
 	if (typeof rAF !== 'function') {
-		Foxtrick.error('No rAF defined!');
+		Foxtrick.log(new Error('No rAF defined!'));
 		return;
 	}
 	if (typeof cb !== 'function') {
-		Foxtrick.error('rAF needs a callback!');
+		Foxtrick.log(new Error('rAF needs a callback!'));
 		return;
 	}
 

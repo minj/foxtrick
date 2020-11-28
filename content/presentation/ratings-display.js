@@ -100,8 +100,8 @@ Foxtrick.modules.RatingsDisplay = {
 
 						let elMax = cell.querySelector('a');
 						let elAvg = cell.querySelectorAll('span')[1];
-						let valMax = parseInt(elMax.textContent, 10);
-						let valAvg = parseInt(elAvg.textContent, 10);
+						let valMax = elMax ? parseInt(elMax.textContent, 10) : 0;
+						let valAvg = elAvg ? parseInt(elAvg.textContent, 10) : 0;
 
 						averagesMax[j] += valMax / rows.length;
 						averagesAvg[j] += valAvg / rows.length;
@@ -189,8 +189,8 @@ Foxtrick.modules.RatingsDisplay = {
 					Foxtrick.forEach(function(cell, j) {
 						let elMax = cell.querySelector('a');
 						let elAvg = cell.querySelectorAll('span')[1];
-						let valMax = parseFloat(elMax.textContent.replace(',', '.'));
-						let valAvg = parseFloat(elAvg.textContent.replace(',', '.'));
+						let valMax = elMax ? parseFloat(elMax.textContent.replace(',', '.')) : 0;
+						let valAvg = elAvg ? parseFloat(elAvg.textContent.replace(',', '.')) : 0;
 						averagesMax[j] += valMax / rows.length;
 						averagesAvg[j] += valAvg / rows.length;
 					}, Foxtrick.toArray(row.cells).slice(2)); // skip first two columns

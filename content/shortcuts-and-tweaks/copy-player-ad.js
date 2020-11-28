@@ -142,12 +142,17 @@ Foxtrick.modules.CopyPlayerAd = {
 					// colon plus space
 					let colonRe = /:\s*/;
 					let match = specialty.match(colonRe);
-					let colonIndex = match.index;
-					let [colonText] = match;
-					let colonLength = colonText.length;
-					let colonEndIdx = colonIndex + colonLength;
-					ad += specialty.slice(0, colonEndIdx) +
-						'[b]' + specialty.slice(colonEndIdx) + '[/b]\n\n';
+					if (match) {
+						let colonIndex = match.index;
+						let [colonText] = match;
+						let colonLength = colonText.length;
+						let colonEndIdx = colonIndex + colonLength;
+						ad += specialty.slice(0, colonEndIdx) +
+							'[b]' + specialty.slice(colonEndIdx) + '[/b]\n\n';
+					}
+					else {
+						ad += `${specialty}\n\n`;
+					}
 				}
 				else {
 					specialtyRow = infoTable.querySelector('tr[id$="trSpeciality"]');

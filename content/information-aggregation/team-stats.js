@@ -39,6 +39,9 @@ Foxtrick.modules.TeamStats = {
 			boxBody = Foxtrick.createFeaturedElement(doc, this, 'div');
 			let header = Foxtrick.L10n.getString('TeamStats.boxheader');
 			box = Foxtrick.addBoxToSidebar(doc, header, boxBody, 1);
+			if (!box)
+				return;
+
 			box.id = 'ft-team-stats-box';
 			box.querySelector('h2').id = 'ft-team-stats-header';
 

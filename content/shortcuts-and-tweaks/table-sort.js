@@ -79,6 +79,10 @@ Foxtrick.modules['TableSort'] = {
 
 				var is_num = true, is_age = true, is_age_parentheses = true, is_youthskill = true,
 					is_ordinal = true, is_date = true, is_skill = true;
+
+				if (table.rows.length <= sort_start + 1)
+					return;
+
 				var num_cols = table.rows[sort_start + 1].cells.length;
 				for (var i = sort_start + 1; i < table.rows.length; ++i) {
 

@@ -53,8 +53,11 @@ Foxtrick.modules['AttVsDef'] = {
 		chkbox1.checked = Foxtrick.Prefs.getBool('AttVsDef.realProbabilitiesOn');
 		Foxtrick.listen(chkbox1, 'change', function(ev) {
 			Foxtrick.Prefs.setBool('AttVsDef.realProbabilitiesOn', ev.target.checked);
+
 			// remove previous view and redo
-			box.parentNode.removeChild(box);
+			if (box && box.parentNode)
+				box.parentNode.removeChild(box);
+
 			var doc = ev.target.ownerDocument;
 			module.run(doc);
 		});

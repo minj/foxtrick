@@ -20,7 +20,7 @@ Foxtrick.entry = {};
  * @param  {document} doc HTML document to run on
  */
 Foxtrick.entry.docLoad = function(doc) {
-	if (doc.nodeName != '#document' || !doc.body.childNodes.length)
+	if (doc.nodeName != '#document' || !doc.body || !doc.body.childNodes.length)
 		return;
 
 	// don't execute if disabled

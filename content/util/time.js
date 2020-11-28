@@ -202,7 +202,7 @@ Foxtrick.util.time.parse = function(text, dateFormat, dateOnly = false) {
 		[year, month, day] = matchNums;
 	}
 	else {
-		Foxtrick.error('Unknown DATEFORMAT');
+		Foxtrick.log(new Error('Unknown DATEFORMAT'));
 		return null;
 	}
 
@@ -345,7 +345,8 @@ Foxtrick.util.time.getHTDate = function(doc) {
  * @return {number}
  */
 Foxtrick.util.time.getHTTimeStamp = function(doc) {
-	return this.getHTDate(doc).getTime();
+	let date = this.getHTDate(doc);
+	return date ? date.getTime() : null;
 };
 
 /**

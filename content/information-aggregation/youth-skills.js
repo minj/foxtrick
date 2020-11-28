@@ -602,12 +602,19 @@ Foxtrick.modules['YouthSkills'] = {
 			var header = `Hattrick Youthclub Error ${status}: `;
 
 			/** @type {string|HTMLElement} */
-			var text;
+			var text = response;
+
 			try {
-				text = JSON.parse(response).error;
+				let payload = { error: 'Unknown error' };
+				if (response) {
+					payload = JSON.parse(response);
+					let { error } = payload;
+					text = error;
+				}
 			}
 			catch (e) {
-				text = response;
+				let msg = `[showError]: could not parse '${response}'`;
+				Foxtrick.log(new Error(msg));
 			}
 
 			if (!text && prefLink) {
@@ -646,7 +653,7 @@ Foxtrick.modules['YouthSkills'] = {
 				let userMsg = userTmpl.replace(/%s/, 'YouthSkills');
 				switch (reason) {
 					case 'user':
-						showError(userMsg, ERROR_CODE);
+						showError(`{ "error": "${userMsg}" }`, ERROR_CODE);
 						break;
 
 					case 'permission':
@@ -654,7 +661,7 @@ Foxtrick.modules['YouthSkills'] = {
 						break;
 
 					default:
-						showError(`Unknown reason: ${reason}`, ERROR_CODE);
+						showError(`{ "error": "Unknown reason: ${reason}" }`, ERROR_CODE);
 						break;
 				}
 			}

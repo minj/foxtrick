@@ -17,6 +17,9 @@ Foxtrick.modules.DashboardCalendar = {
 		const module = this;
 		module.exec(doc);
 		let list = doc.querySelector('#eventList');
+		if (!list)
+			return;
+
 		let panel = list.closest('[id*="UpdatePanel"]');
 		Foxtrick.onChange(panel, doc => module.exec(doc));
 	},
@@ -222,12 +225,22 @@ Foxtrick.modules.DashboardCalendar = {
 		var DAYS_IN_WEEK = Foxtrick.util.time.DAYS_IN_WEEK;
 
 		var htNow = Foxtrick.util.time.getHTDate(doc);
+		if (!htNow) {
+			Foxtrick.log('HT time missing');
+			return;
+		}
+
 		var htWeekDay = htNow.getDay(); // sometimes dashboard calendar lags
 		var htToday = new Date(htNow);
 		Foxtrick.util.time.setMidnight(htToday);
 		var HT_NOW_STRING = Foxtrick.util.time.toBareISOString(htNow);
 
 		var userToday = Foxtrick.util.time.getDate(doc);
+		if (!userToday) {
+			Foxtrick.log('User time missing');
+			return;
+		}
+
 		Foxtrick.util.time.setMidnight(userToday);
 
 		/** @type {DashboardEvent[][]} */
@@ -253,7 +266,7 @@ Foxtrick.modules.DashboardCalendar = {
 
 			// sanity check
 			if (userDate.getDay() !== i) {
-				Foxtrick.error('Failed to detect calendar day');
+				Foxtrick.log(new Error('Failed to detect calendar day'));
 				return;
 			}
 

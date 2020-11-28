@@ -16,6 +16,9 @@ Foxtrick.modules.SeriesTransfers = {
 		var resultId = 'ft-series-transfers-result';
 		var timeId = 'ft-series-transfers-time';
 		var now = Foxtrick.util.time.getHTTimeStamp(doc);
+		if (!now)
+			return;
+
 		var sidebar = doc.getElementById('sidebar');
 		var seriesId = Foxtrick.util.id.findLeagueLeveUnitId(sidebar);
 		var ownSeriesId = Foxtrick.modules.Core.TEAM.seriesId;
@@ -74,7 +77,7 @@ Foxtrick.modules.SeriesTransfers = {
 					if (node)
 						node.parentNode.removeChild(node);
 				}, [resultId, timeId]);
-				now = Foxtrick.util.time.getHTTimeStamp(doc);
+				now = Foxtrick.util.time.getHTTimeStamp(doc) || Date.now();
 				// eslint-disable-next-line no-use-before-define
 				showPlayers();
 				// eslint-disable-next-line no-magic-numbers

@@ -20,6 +20,11 @@ Foxtrick.modules.YouthPromotes = {
 		const MSECS_IN_DAY = Foxtrick.util.time.MSECS_IN_DAY;
 
 		const now = Foxtrick.util.time.getDate(doc);
+		if (!now) {
+			Foxtrick.log('User time missing');
+			return;
+		}
+
 		const promoDate = Foxtrick.Pages.YouthPlayer.getPromotionDate(doc);
 		if (!promoDate)
 			return;
@@ -38,6 +43,9 @@ Foxtrick.modules.YouthPromotes = {
 			promotionCounter.textContent = message;
 
 			let age = Foxtrick.Pages.Player.getAge(doc);
+			if (!age)
+				return;
+
 			let days = age.years * DAYS_IN_SEASON + age.days + daysToPromote;
 
 			let years = Foxtrick.Math.div(days, DAYS_IN_SEASON);

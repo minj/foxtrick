@@ -1420,7 +1420,7 @@ function initChangesTab() {
 			var statusText = resp[3];
 
 			if (!versions) {
-				Foxtrick.error('NO RELEASE NOTES!!!');
+				Foxtrick.log(new Error('NO RELEASE NOTES!!!'));
 				return;
 			}
 
@@ -1537,7 +1537,7 @@ function initHelpTab() {
 		var itemsLocal = parseFaq(resp[2]);
 
 		if (!items) {
-			Foxtrick.error('NO FAQ!!!');
+			Foxtrick.log(new Error('NO FAQ!!!'));
 			return;
 		}
 

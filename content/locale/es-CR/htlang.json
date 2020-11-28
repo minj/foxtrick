@@ -819,11 +819,11 @@
 			},
 			{
 				"type": "ThPass",
-				"value": "Pases (defensores y todos los mediocampistas)"
+				"value": "Pases (defensores y todos los jugadores del mediocampo)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Defensa (Porteros, defensores y mediocampistas)"
+				"value": "Defensivo (porteros, defensores y todos los jugadores del mediocampo)"
 			},
 			{
 				"type": "WingAtt",

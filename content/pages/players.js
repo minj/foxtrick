@@ -444,7 +444,8 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 			teamId = Foxtrick.util.id.getTeamIdFromUrl(doc.location.href);
 
 		if (!teamId) {
-			Foxtrick.error(`Failed to parse teamId: '${teamId}' of ${JSON.stringify(options)}`);
+			let msg = `Failed to parse teamId: '${teamId}' of ${JSON.stringify(options)}`;
+			Foxtrick.log(new Error(msg));
 			return;
 		}
 
@@ -491,7 +492,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 		}
 
 		if (options && options.refresh) {
-			let now = Foxtrick.util.time.getHTTimeStamp(doc);
+			let now = Foxtrick.util.time.getHTTimeStamp(doc) || Date.now();
 			Foxtrick.util.api.setCacheLifetime(JSON.stringify(args), now);
 		}
 		Foxtrick.util.currency.detect(doc).then(function() {
@@ -1023,7 +1024,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 			}, playerList);
 			if (missingXML.length) {
 				Foxtrick.log('WARNING: New players in HTML', missingXML, 'resetting cache');
-				let htTime = Foxtrick.util.time.getHTTimeStamp(doc);
+				let htTime = Foxtrick.util.time.getHTTimeStamp(doc) || Date.now();
 				Foxtrick.util.api.setCacheLifetime(JSON.stringify(args), htTime);
 			}
 		}

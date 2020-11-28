@@ -107,7 +107,13 @@ Foxtrick.modules.LocalTime = {
 				let ddl = date.querySelector('.ft-deadline');
 
 				// always build strings with hours and seconds, but without seconds
-				date.textContent = Foxtrick.util.time.buildDate(localDate);
+				let newText = Foxtrick.util.time.buildDate(localDate);
+				let texts = Foxtrick.getTextNodes(date);
+				let targets = texts.filter(t => t.textContent.indexOf(newText) > -1);
+				targets.forEach((t) => {
+					t.textContent = Foxtrick.util.time.buildDate(localDate);
+				});
+
 				if (ddl)
 					date.appendChild(ddl);
 

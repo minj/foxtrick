@@ -107,7 +107,9 @@ Foxtrick.modules['Redirections'] = {
 					url = url.replace(/%5BuserId%5D|\[userId\]/i, userId);
 					break;
 
-				default: Foxtrick.error('Unknown redirect: ' + redirect); break;
+				default:
+					Foxtrick.log(new Error('Unknown redirect: ' + redirect));
+					break;
 			}
 		}
 		else {
@@ -183,7 +185,9 @@ Foxtrick.modules['Redirections'] = {
 
 					break;
 
-				default: Foxtrick.error('Unknown redirect: ' + redirect); break;
+				default:
+					Foxtrick.log(new Error('Unknown redirect: ' + redirect));
+					break;
 			}
 		}
 

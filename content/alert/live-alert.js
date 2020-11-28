@@ -34,7 +34,8 @@ Foxtrick.modules['LiveAlert'] = {
 
 		// add overlay pre-announce support
 		let container = doc.querySelector('.live-left-container');
-		Foxtrick.onChange(container, this.runOverlay.bind(this));
+		if (container)
+			Foxtrick.onChange(container, this.runOverlay.bind(this));
 	},
 
 	// onChange: function(doc) {

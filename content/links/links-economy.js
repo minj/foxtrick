@@ -40,9 +40,10 @@ Foxtrick.modules['LinksEconomy'] = {
 		var cashTable = main.getElementsByTagName('table')[0];
 
 		var nums = cashTable.rows[0].cells[1].textContent.replace(/\u00a0/g, '').match(/\d+/g);
-		cash = nums[0];
+		cash = nums ? nums[0] : NaN;
+
 		// deal with currency converter
-		newCash = nums[nums.length > 2 ? 2 : 1];
+		newCash = nums ? nums[nums.length > 2 ? 2 : 1] : NaN;
 
 		// symbol may be undefined here, #care
 		var currencySymbol = Foxtrick.util.currency.getSymbol();

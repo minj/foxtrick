@@ -165,7 +165,7 @@ Foxtrick.modules.U20LastMatch = {
 			return;
 
 		let age = Foxtrick.Pages.Player.getAge(doc);
-		if (age.years > 20)
+		if (!age || age.years > 20)
 			return;
 
 		let { worldCupNumber, lastMatch } = module.calculate(doc, age);

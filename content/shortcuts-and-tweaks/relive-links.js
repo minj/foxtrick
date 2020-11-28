@@ -23,11 +23,13 @@ Foxtrick.modules.ReLiveLinks = {
 	run: function(doc) {
 		const module = this;
 
-		if (Foxtrick.isPage(doc, 'matchesLive') &&
-		    Foxtrick.Prefs.isModuleOptionEnabled('ReLiveLinks', 'Live'))
-			module.live(doc);
-		else if (Foxtrick.Prefs.isModuleOptionEnabled('ReLiveLinks', 'ReLive'))
+		if (Foxtrick.isPage(doc, 'matchesLive')) {
+			if (Foxtrick.Prefs.isModuleOptionEnabled('ReLiveLinks', 'Live'))
+				module.live(doc);
+		}
+		else if (Foxtrick.Prefs.isModuleOptionEnabled('ReLiveLinks', 'ReLive')) {
 			module.reLive(doc);
+		}
 	},
 
 	/** @param {document} doc */
@@ -241,12 +243,12 @@ Foxtrick.modules.ReLiveLinks = {
 			liveTdIdx = 1;
 		}
 		else {
-			Foxtrick.error('Unhandled case in ReLiveLinks');
+			Foxtrick.log(new Error('Unhandled case in ReLiveLinks'));
 			return;
 		}
 
 		if (!rows) {
-			Foxtrick.error(`${module.MODULE_NAME} failed`);
+			Foxtrick.log(new Error(`${module.MODULE_NAME} failed`));
 			return;
 		}
 

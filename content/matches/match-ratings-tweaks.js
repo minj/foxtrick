@@ -161,6 +161,7 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 	/**
 	 * @param	{document}	doc
 	 */
+	// eslint-disable-next-line complexity
 	onChange: function(doc) {
 		var module = this;
 		if (!Foxtrick.Pages.Match.hasRatingsTabs(doc))
@@ -307,7 +308,7 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 
 				if (!box || !result) {
 					Foxtrick.log(box, result);
-					Foxtrick.error('Broken layout in mrt');
+					Foxtrick.log(new Error('Broken layout in mrt'));
 					return;
 				}
 

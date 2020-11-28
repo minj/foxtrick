@@ -43,13 +43,13 @@ Foxtrick.modules.ReadHtPrefs = {
 	readLanguage: function(doc) {
 		var metaLang = this.readLanguageFromMetaTag(doc);
 		if (!metaLang) {
-			Foxtrick.error('No meta lang');
+			Foxtrick.log(new Error('No meta lang'));
 			return;
 		}
 
 		var newLang = Foxtrick.L10n.htMapping[metaLang];
 		if (!newLang)
-			Foxtrick.error(`Unknown meta lang: ${metaLang}`);
+			Foxtrick.log(new Error(`Unknown meta lang: ${metaLang}`));
 
 		var oldLang = Foxtrick.Prefs.getString('htLanguage');
 		if (newLang == oldLang)
@@ -138,12 +138,13 @@ Foxtrick.modules.ReadHtPrefs = {
 					Foxtrick.util.time.setDateFormat(dateFormat);
 				}
 				else {
-					Foxtrick.error(`Incomplete date format: ${dateFormat}`);
+					Foxtrick.log(new Error(`Incomplete date format: ${dateFormat}`));
 				}
 			}
 			else {
 				// failed to match regular expression
-				Foxtrick.error(`Cannot find date format: ${script.slice(clockMatch.index)}`);
+				let msg = `Cannot find date format: ${script.slice(clockMatch.index)}`;
+				Foxtrick.log(new Error(msg));
 			}
 		}, scripts);
 	},

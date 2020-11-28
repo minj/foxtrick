@@ -1,4 +1,5 @@
 'use strict';
+
 /**
  * matches.js
  * adds ratings to matches page
@@ -24,8 +25,7 @@ Foxtrick.modules['Ratings'] = {
 			return;
 
 		var ratingstable = Foxtrick.Pages.Match.getRatingsTable(doc);
-
-		if (Foxtrick.Pages.Match.isWalkOver(ratingstable))
+		if (!ratingstable || Foxtrick.Pages.Match.isWalkOver(ratingstable))
 			return;
 
 		var ratings = Foxtrick.Pages.Match.getRatingsByTeam(ratingstable);

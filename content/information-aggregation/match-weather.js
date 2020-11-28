@@ -129,6 +129,9 @@ Foxtrick.modules['MatchWeather'] = {
 		var CACHE_MSECS = CACHE_HOURS * Foxtrick.util.time.MSECS_IN_HOUR;
 
 		var now = Foxtrick.util.time.getHTTimeStamp(doc);
+		if (!now)
+			return;
+
 		var until = now + CACHE_MSECS;
 
 		/** @type {CHPPParams} */

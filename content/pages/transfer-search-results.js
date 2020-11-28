@@ -135,9 +135,11 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 			player[name] = contributions[name];
 
 		let bestPos = Foxtrick.Pages.Player.getBestPosition(contributions);
-		player.bestPosition = Foxtrick.L10n.getString(bestPos.position + 'Position.abbr');
-		player.bestPositionLong = Foxtrick.L10n.getString(bestPos.position + 'Position');
-		player.bestPositionValue = bestPos.value;
+		if (bestPos.position) {
+			player.bestPosition = Foxtrick.L10n.getString(bestPos.position + 'Position.abbr');
+			player.bestPositionLong = Foxtrick.L10n.getString(bestPos.position + 'Position');
+			player.bestPositionValue = bestPos.value;
+		}
 
 		let htms = pNode.querySelector('.ft-htms-points');
 		if (htms) {

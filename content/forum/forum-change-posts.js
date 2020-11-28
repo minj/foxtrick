@@ -69,7 +69,7 @@ Foxtrick.modules['ForumChangePosts'] = {
 						header = cfWrapper.getElementsByClassName('cfHeader')[0];
 				}
 				if (!header) {
-					Foxtrick.error('CopyPosting: post header not found');
+					Foxtrick.log(new Error('CopyPosting: post header not found'));
 					return;
 				}
 

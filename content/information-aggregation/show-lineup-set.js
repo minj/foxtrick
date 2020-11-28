@@ -58,6 +58,11 @@ Foxtrick.modules.ShowLineupSet = {
 		    Foxtrick.isPage(doc, 'series')) {
 
 			let newsFeed = Foxtrick.Pages.Series.getNewsFeed(doc);
+			if (!newsFeed) {
+				// archived series
+				return;
+			}
+
 			let items = newsFeed.getElementsByClassName('feedItem');
 
 			/**

@@ -861,7 +861,7 @@ Foxtrick.Pages.Match.parsePlayerData = function(doc) {
 		playerData = /** @type {HTMatchReportPlayerData[]} */ (JSON.parse(json));
 	}
 	catch (e) {
-		Foxtrick.error('FAILED to parse player JSON: ' + e);
+		Foxtrick.log(new Error('FAILED to parse player JSON: ' + e));
 	}
 	return playerData;
 };

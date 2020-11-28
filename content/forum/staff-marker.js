@@ -297,7 +297,7 @@ Foxtrick.modules.StaffMarker = {
 
 					/** @type {CHPPParams[]} */
 					var bArgs = [];
-					var supportedCt, supporterCt;
+					var supportedCt = 0, supporterCt = 0;
 					var pageCt, p;
 
 					// supporter teams are different for both teams
@@ -306,23 +306,26 @@ Foxtrick.modules.StaffMarker = {
 						var id = xml.num('TeamID', team);
 
 						var sups = xml.node('MySupporters', team);
-						supporterCt = parseInt(sups.getAttribute('TotalItems'), 10);
+						if (sups) {
+							supporterCt = parseInt(sups.getAttribute('TotalItems'), 10);
 
-						pageCt = Math.ceil(supporterCt / TEAMS_PER_PAGE);
-						for (p = 0; p < pageCt; p++) {
-							bArgs.push([
-								['file', 'supporters'],
-								['version', '1.0'],
-								['teamId', id],
-								['actionType', 'mysupporters'],
-								['pageSize', TEAMS_PER_PAGE],
-								['pageIndex', p],
-							]);
+							pageCt = Math.ceil(supporterCt / TEAMS_PER_PAGE);
+							for (p = 0; p < pageCt; p++) {
+								bArgs.push([
+									['file', 'supporters'],
+									['version', '1.0'],
+									['teamId', id],
+									['actionType', 'mysupporters'],
+									['pageSize', TEAMS_PER_PAGE],
+									['pageIndex', p],
+								]);
+							}
 						}
 
 						// set supportedCt as long as we are here
 						sups = xml.node('SupportedTeams', team);
-						supportedCt = parseInt(sups.getAttribute('TotalItems'), 10);
+						if (sups)
+							supportedCt = parseInt(sups.getAttribute('TotalItems'), 10);
 					}
 
 					// supported teams are same for both teams so added once only

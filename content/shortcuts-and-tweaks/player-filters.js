@@ -419,6 +419,11 @@ Foxtrick.modules['PlayerFilters'] = {
 
 			var body = doc.getElementById('mainBody');
 			var pList = doc.querySelector('.playerList');
+			if (!pList) {
+				// presumably fog of war in NT
+				return;
+			}
+
 			var backTopAnchor;
 			if (Foxtrick.Pages.Players.isRegular(doc) ||
 			    Foxtrick.Pages.Players.isYouth(doc)) {
