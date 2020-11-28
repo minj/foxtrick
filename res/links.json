@@ -499,7 +499,7 @@
 		"img": "https://www.foxtrick.org/res/linkicons/hattrick-youthclub.ico"
 	},
 	"mercattrick": {
-		"img": "https://mercattrick.com/favicon.ico",
+		"img": "https://www.foxtrick.org/res/linkicons/mercattrick.ico",
 		"title": "Better transfers with Mercattrick",
 		"playerlink": {
 			"url": "https://mercattrick.com/"
@@ -525,6 +525,6 @@
 			"url": "https://hattid.com/worldOverview"
 		},
 		"title": "Hattid (AlltidLike)",
-		"img": "https://hattid.com/assets/images/favicon.png"
+		"img": "https://www.foxtrick.org/res/linkicons/hattid.png"
 	}
 }
