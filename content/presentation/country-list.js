@@ -48,21 +48,23 @@ Foxtrick.modules.CountryList = {
 
 		/** @typedef {[HTMLSelectElement, number]|[HTMLSelectElement, number, number]} CListArg */
 		/** @type {Partial<Record<PAGE, CListArg[]>>} */
+		/* eslint-disable no-magic-numbers */
 		var pageMap = {
-			transferSearchForm: [[ddlBornIn, 1]],
-			country: [[ddlDrop, 0]],
-			htPress: [[ddlSide, 2]],
-			statsTransfersBuyers: [[lgs, 1]],
-			statsTeams: [[ddl, 0]],
-			statsPlayers: [[ddl, 0]],
-			statsRegions: [[ddl, 0]],
-			statsNationalTeams: [[ddl, 0]],
-			statsConfs: [[ddl, 0]],
-			statsBookmarks: [[ddl, 0]],
+			transferSearchForm: [[ddlBornIn, 2]],
+			country: [[ddlDrop, 2]],
+			htPress: [[ddlSide, 3]],
+			statsTransfersBuyers: [[lgs, 3]],
+			statsTeams: [[ddl, 2]],
+			statsPlayers: [[ddl, 2]],
+			statsRegions: [[ddl, 1]],
+			statsNationalTeams: [[ddl, 2]],
+			statsConfs: [[ddl, 3]],
+			statsBookmarks: [[ddl, 3]],
 			trainingStats: [[ddl, 1]],
-			statsArena: [[ddlDrop, 0]],
+			statsArena: [[ddlDrop, 3]],
 			challenges: [[poolCountry, 2], [poolCountries, 0, 1]],
 		};
+		/* eslint-enable no-magic-numbers */
 
 		for (let [page, defs] of Object.entries(pageMap)) {
 			let p = /** @type {PAGE} */ (page);
