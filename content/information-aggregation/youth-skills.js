@@ -653,7 +653,7 @@ Foxtrick.modules['YouthSkills'] = {
 				let userMsg = userTmpl.replace(/%s/, 'YouthSkills');
 				switch (reason) {
 					case 'user':
-						showError(userMsg, ERROR_CODE);
+						showError(`{ "error": "${userMsg}" }`, ERROR_CODE);
 						break;
 
 					case 'permission':
@@ -661,7 +661,7 @@ Foxtrick.modules['YouthSkills'] = {
 						break;
 
 					default:
-						showError(`Unknown reason: ${reason}`, ERROR_CODE);
+						showError(`{ "error": "Unknown reason: ${reason}" }`, ERROR_CODE);
 						break;
 				}
 			}
