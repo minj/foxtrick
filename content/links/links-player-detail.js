@@ -28,6 +28,9 @@ Foxtrick.modules.LinksPlayerDetail = {
 
 	/** @param {document} doc */
 	run: function(doc) {
+		if (!Foxtrick.util.time.getDate(doc))
+			return;
+
 		// @ts-ignore
 		Foxtrick.util.links.run(doc, this);
 	},
