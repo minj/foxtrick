@@ -74,6 +74,8 @@ Foxtrick.modules.ForumPreview = {
 				[/\[hr\]/gi, '<hr>'],
 			];
 
+			let quote = Foxtrick.L10n.getString('quote.author.wrote');
+
 			/** @type {[RegExp, string][]} */
 			var nestedReplace = [
 				[/\[b\](.*?)\[\/b\]/gi, '<b>$1</b>'],
@@ -81,13 +83,13 @@ Foxtrick.modules.ForumPreview = {
 				[/\[i\](.*?)\[\/i\]/gi, '<i>$1</i>'],
 				[/\[q\](.*?)\[\/q\]/gi, "<blockquote class='quote'>$1</blockquote>"],
 				[/\[quote=(.*?)\](.*?)\[\/quote\]/gi,
-					"<blockquote class='quote'><div class='quoteto'>$1&nbsp;wrote:</div>" +
+					`<blockquote class='quote'><div class='quoteto'>$1&nbsp;${quote}</div>` +
 						'$2</blockquote>'],
 				[/\[q=(.*?)\](.*?)\[\/q\]/gi,
-					"<blockquote class='quote'><div class='quoteto'>$1&nbsp;wrote:</div>" +
+					`<blockquote class='quote'><div class='quoteto'>$1&nbsp;${quote}</div>` +
 						'$2</blockquote>'],
 				[/\[q=(.*?)\](.*?)\[\/q\]/gi,
-					"<blockquote class='quote'><div class='quoteto'>$1&nbsp;wrote:</div>" +
+					`<blockquote class='quote'><div class='quoteto'>$1&nbsp;${quote}</div>` +
 						'$2</blockquote>'],
 				[/\[spoiler\](.*?)\[\/spoiler\]/gi,
 					"<blockquote class='spoiler hidden' style='display:block!important'>" +
