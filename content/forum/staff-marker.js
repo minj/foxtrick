@@ -577,8 +577,11 @@ Foxtrick.modules.StaffMarker = {
 
 			var userDivs = doc.querySelectorAll(query);
 			Foxtrick.map(function(user) {
+				if (user.parentElement.closest(query)) {
+					// re-entrancy, this element was processed with the parent
+					return;
+				}
 				var links = user.getElementsByTagName('a');
-
 				Foxtrick.map(function(a) {
 					if (!a.href)
 						return; // e.g. our copy link
