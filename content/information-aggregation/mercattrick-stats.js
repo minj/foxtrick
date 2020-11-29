@@ -58,13 +58,15 @@ Foxtrick.modules['MercattrickStats'] = {
 
 			Foxtrick.addClass(container, 'ft-mercattrick-stats');
 
-			let img = doc.createElement('img');
-			img.width = 21;
-			img.height = 16;
-			img.alt = Foxtrick.L10n.getString('MercattrickStats.title');
-			img.setAttribute('aria-label', img.title = img.alt);
-			img.src = module.IMAGES.LOGO_XSMALL;
-			container.appendChild(img);
+			let alt = Foxtrick.L10n.getString('MercattrickStats.title');
+			Foxtrick.addImage(doc, container, {
+				width: 21,
+				height: 16,
+				alt,
+				title: alt,
+				ariaLabel: alt,
+				src: module.IMAGES.LOGO_XSMALL,
+			});
 
 			let link = doc.createElement('a');
 			link.textContent = Foxtrick.L10n.getString('MercattrickStats.transfers');
