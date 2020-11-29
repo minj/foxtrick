@@ -1,0 +1,11 @@
+.ft-haruspex .prediction {
+	margin: 5px 0 10px;
+}
+.ft-haruspex .prediction > div {
+	min-width: 30px;
+	padding: 0 5px;
+	box-sizing: border-box;
+}
+.ft-haruspex .prediction-home {background-color: #6ecdea; text-align: left;}
+.ft-haruspex .prediction-draw {background-color: #eeeeee; text-align: center;}
+.ft-haruspex .prediction-away {background-color: #d15e5e; text-align: right;}
