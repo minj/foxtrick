@@ -316,7 +316,8 @@ Foxtrick.modules.SeriesTransfers = {
 			}, xmls);
 
 			Foxtrick.removeClass(table, 'hidden');
-			loading.parentNode.removeChild(loading);
+			if (loading && loading.parentNode)
+				loading.parentNode.removeChild(loading);
 			if (!hasListedPlayers) {
 				table.parentNode.removeChild(table);
 				var div = doc.createElement('div');
