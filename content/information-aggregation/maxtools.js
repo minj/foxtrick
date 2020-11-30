@@ -28,12 +28,10 @@ Foxtrick.modules.Maxtools = {
         var isSeniorPlayerDetailsPage = Foxtrick.isPage(doc, 'playerDetails');
         var isPlayersPage = Foxtrick.isPage(doc, 'allPlayers');
         var isYouthPlayersPage = Foxtrick.isPage(doc, 'youthPlayers');
-        var isTransferResultsPage = Foxtrick.isPage(doc, 'transferSearchResult');
 
         var isYouthEnabled = Foxtrick.Prefs.isModuleOptionEnabled(module, 'YouthPlayers');
         var isSeniorsEnabled = Foxtrick.Prefs.isModuleOptionEnabled(module, 'SeniorPlayers');
         var isPlayersEnabled = Foxtrick.Prefs.isModuleOptionEnabled(module, 'AllPlayers');
-        var isTransferEnabled = Foxtrick.Prefs.isModuleOptionEnabled(module, 'TransfersResults');
 
 
         // If the option isn't enabled for this page, don't show.
@@ -43,16 +41,12 @@ Foxtrick.modules.Maxtools = {
             return;
         if (isPlayersPage && !isPlayersEnabled)
             return;
-        if (isTransferResultsPage && !isTransferEnabled)
-            return;
 
         if (isYouthPlayerDetailsPage || isSeniorPlayerDetailsPage) {
             module.runPlayer(doc);
         }
         else if (isPlayersPage || isYouthPlayersPage)
             module.runPlayerList(doc);
-        else if (isTransferResultsPage)
-            module.runTransferList(doc);
     },
 
 	/**
@@ -75,39 +69,31 @@ Foxtrick.modules.Maxtools = {
         return champsList;
     },
 
+    /**
+    * @param  {number} years
+    * @param  {number} days
+    * @param  {document} doc
+    * @return {HTMLAnchorElement}
+    */
+    getLink: function (years, days, doc) {
+        let lang = Foxtrick.Prefs.getString('htLanguage');
+        let HTMT_PATH = 'https://ht-mt.org/nt/perfect-age';
+        let skillQuery = `?lang=${lang}&years=${years}&days=${days}`;
+
+        let link = doc.createElement('a');
+        link.textContent = Foxtrick.L10n.getString('MaxTools.MoreDetails');
+        link.href = HTMT_PATH + skillQuery;
+        link.target = '_blank';
+        link.rel = 'noopener';
+        return link;
+    },
+
     /** @param {document} doc */
     runPlayer: function (doc) {
         const module = this;
 
         const TITLE_STR = Foxtrick.L10n.getString('MaxTools.eligibilityTitle');
-        const SUBTITLE_STR = Foxtrick.L10n.getString('MaxTools.eligibilitySubtitle');
-        const EDITION_STR = Foxtrick.L10n.getString('MaxTools.edition');
-        const MATCH_STR = Foxtrick.L10n.getString('MaxTools.match');
-        const TMPL_STR = Foxtrick.L10n.getString('MaxTools.templateWithoutTable');
-        const LAST_MATCH_STR = Foxtrick.L10n.getString('MaxTools.lastMatch');
-
-        var isRomanNumberEditionEnabled = Foxtrick.Prefs.isModuleOptionEnabled(module, 'RomanNumberEdition');
-
-        /**
-         * @param  {number} years
-         * @param  {number} days
-         * @return {HTMLAnchorElement}
-         */
-        var getLink = function (years, days) {
-            //console.log('chegou aqui');
-            let lang = Foxtrick.Prefs.getString('htLanguage');
-            //let prefix = 'http://www.fantamondi.it/HTMS/index.php' +
-            //    `?page=htmspoints&lang=${lang}&action=calc`;
-            let prefix = 'https://ht-mt.org/nt/perfect-age';
-            let skillQuery = `?lang=${lang}&years=${years}&days=${days}`;
-
-            let link = doc.createElement('a');
-            link.textContent = Foxtrick.L10n.getString('MaxTools.MoreDetails');
-            link.href = prefix + skillQuery;
-            link.target = '_blank';
-            link.rel = 'noopener';
-            return link;
-        }
+        const SUBTITLE_STR = Foxtrick.L10n.getString('MaxTools.eligibilitySubtitle');        
 
         if (Foxtrick.Pages.Player.wasFired(doc))
             return;
@@ -136,30 +122,10 @@ Foxtrick.modules.Maxtools = {
             subtitleElement.textContent = SUBTITLE_STR;
             wrapper.appendChild(subtitleElement);
 
-            champsList.forEach(function (championship) {
-                if (Object.keys(championship).length !== 0) {
-                    let editionNum = isRomanNumberEditionEnabled ? Foxtrick.decToRoman(championship.edition) : championship.edition;
-
-                    let lastMatch = MATCH_STR.replace(/%1/, championship.match.toString());
-                    lastMatch = lastMatch.replace(/%2/, championship.last_phase_match.toString());
-
-                    let contentChamp = TMPL_STR;
-                    contentChamp = contentChamp.replace(/%1/, LAST_MATCH_STR);
-                    contentChamp = contentChamp.replace(/%2/, championship.type);
-                    contentChamp = contentChamp.replace(/%3/, championship.scheduler);
-                    contentChamp = contentChamp.replace(/%4/, EDITION_STR);
-                    contentChamp = contentChamp.replace(/%5/, editionNum.toString());
-                    contentChamp = contentChamp.replace(/%6/, championship.phase);
-                    contentChamp = contentChamp.replace(/%7/, lastMatch);
-
-                    let textElement = doc.createElement('div');
-                    textElement.textContent = contentChamp;
-                    wrapper.appendChild(textElement);
-                }
-            });
+            module.appendChampsDetail(champsList, doc, wrapper, true);             
 
             let textElement = doc.createElement('div');
-            textElement.appendChild(getLink(age.years, age.days));
+            textElement.appendChild(module.getLink(age.years, age.days, doc));
             wrapper.appendChild(textElement);
 
             entryPoint.parentNode.insertBefore(wrapper, entryPoint.nextSibling);
@@ -171,29 +137,6 @@ Foxtrick.modules.Maxtools = {
     /** @param {document} doc */
     runPlayerList: function (doc) {
         const module = this;
-
-        const TMPL_STR_SHORT = Foxtrick.L10n.getString('MaxTools.templateShortWithoutTable');
-        const LAST_MATCH_STR = Foxtrick.L10n.getString('MaxTools.lastMatch');
-
-        var isRomanNumberEditionEnabled = Foxtrick.Prefs.isModuleOptionEnabled(module, 'RomanNumberEdition');
-
-        /**
-         * @param  {number} years
-         * @param  {number} days
-         * @return {HTMLAnchorElement}
-         */
-        var getLink = function (years, days) {
-            let lang = Foxtrick.Prefs.getString('htLanguage');
-            let prefix = 'https://ht-mt.org/nt/perfect-age';
-            let skillQuery = `?lang=${lang}&years=${years}&days=${days}`;
-
-            let link = doc.createElement('a');
-            link.textContent = Foxtrick.L10n.getString('MaxTools');
-            link.href = prefix + skillQuery;
-            link.target = '_blank';
-            link.rel = 'noopener';
-            return link;
-        }
 
         let players = Foxtrick.modules.Core.getPlayerList();
         for (let player of players) {
@@ -207,36 +150,85 @@ Foxtrick.modules.Maxtools = {
 
                 let container = Foxtrick.createFeaturedElement(doc, module, 'p');
                 Foxtrick.addClass(container, 'ft-u20lastmatch');
-                container.appendChild(getLink(player.age.years, player.age.days));
+                container.appendChild(module.getLink(player.age.years, player.age.days, doc));
                 container.appendChild(doc.createTextNode(' '));
 
-                champsList.forEach(function (championship) {
-                    if (Object.keys(championship).length !== 0) {
-                        let editionNum = isRomanNumberEditionEnabled ? Foxtrick.decToRoman(championship.edition) : championship.edition;
-
-                        let lastMatch = championship.match.toString() + "/" + championship.last_phase_match.toString();
-
-                        let contentChamp = TMPL_STR_SHORT;
-                        contentChamp = contentChamp.replace(/%1/, LAST_MATCH_STR);
-                        contentChamp = contentChamp.replace(/%2/, championship.type);
-                        contentChamp = contentChamp.replace(/%3/, championship.phase);
-                        contentChamp = contentChamp.replace(/%4/, editionNum.toString());
-                        contentChamp = contentChamp.replace(/%5/, lastMatch);
-
-                        let champDiv = doc.createElement('div');
-                        champDiv.textContent = contentChamp;
-                        container.appendChild(champDiv);
-                    }
-                });
+                
+                module.appendChampsDetail(champsList, doc, container, false); 
 
                 let entry = player.playerNode.querySelector('table') || player.playerNode.lastChild;
                 while (entry.parentElement && entry.parentElement.matches('.flex'))
                     entry = entry.parentElement;
 
-                Foxtrick.insertAfter(container, entry);                
+                Foxtrick.insertAfter(container, entry);
             }, (er) => {
                 console.log(er);
             }).catch(Foxtrick.catch(module));
         }
     },
+
+    /**    
+    * @param {Array<MaxToolPerfectAge>} champsList
+    * @param {document} doc
+    * @param {boolean} extendedDescription
+    * @param {HTMLParagraphElement} container
+    */
+    appendChampsDetail: function (champsList, doc, container, extendedDescription) {        
+        const module = this;
+
+        var isRomanNumberEditionEnabled = Foxtrick.Prefs.isModuleOptionEnabled(module, 'RomanNumberEdition');
+
+        champsList.forEach(function (championship) {
+            if (Object.keys(championship).length !== 0) {
+                let editionNum = isRomanNumberEditionEnabled ? Foxtrick.decToRoman(championship.edition) : championship.edition;                
+
+                let tmplStr = module.buildTmplStr(championship, editionNum, extendedDescription);                
+
+                let champDiv = doc.createElement('div');
+                champDiv.textContent = tmplStr;
+                container.appendChild(champDiv);
+            }
+        });
+    },
+
+    /**
+    * @param   {MaxToolPerfectAge} championship
+    * @param   {string|number} editionNum
+    * @param   {boolean} extendedDescription
+    * @returns {string}
+    */
+    buildTmplStr: function (championship, editionNum, extendedDescription) {
+        const MATCH_STR = Foxtrick.L10n.getString('MaxTools.match');
+        const TMPL_STR = Foxtrick.L10n.getString('MaxTools.templateWithoutTable');
+
+        var textFormat = extendedDescription ? MATCH_STR : "%1/%2";
+
+        let strMatch = textFormat.replace(/%1/, championship.match.toString());
+        strMatch = strMatch.replace(/%2/, championship.last_phase_match.toString());
+
+        const TMPL_STR_SHORT = Foxtrick.L10n.getString('MaxTools.templateShortWithoutTable');
+        const LAST_MATCH_STR = Foxtrick.L10n.getString('MaxTools.lastMatch');
+        let contentChamp = extendedDescription ? TMPL_STR : TMPL_STR_SHORT;
+
+        contentChamp = contentChamp.replace(/%1/, LAST_MATCH_STR);
+        contentChamp = contentChamp.replace(/%2/, championship.type);
+
+        if (extendedDescription) {
+            const EDITION_STR = Foxtrick.L10n.getString('MaxTools.edition');
+
+            contentChamp = contentChamp.replace(/%3/, championship.scheduler);
+            contentChamp = contentChamp.replace(/%4/, EDITION_STR);
+            contentChamp = contentChamp.replace(/%5/, editionNum.toString());
+            contentChamp = contentChamp.replace(/%6/, championship.phase);
+            contentChamp = contentChamp.replace(/%7/, strMatch);
+        } else {
+            contentChamp = contentChamp.replace(/%3/, championship.phase);
+            contentChamp = contentChamp.replace(/%4/, editionNum.toString());
+            contentChamp = contentChamp.replace(/%5/, strMatch);
+        }
+        
+
+        return contentChamp;
+    }
 };
+
