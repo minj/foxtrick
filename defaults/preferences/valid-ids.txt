@@ -25,6 +25,7 @@ htLanguage
 last-page
 lastTime
 logDisabled
+errorReporting
 mail_templates
 module.ARIALandmarks.enabled
 module.AddDefaultFaceCard.enabled
@@ -189,7 +190,6 @@ module.FriendlyInterface.enabled
 module.FriendlyPool.ExpandCountrySelection.enabled
 module.FriendlyPool.enabled
 module.GoToPostBox.enabled
-module.GoalDifferenceToTables.enabled
 module.HTDateFormat.FirstDayOfWeekOffset.enabled
 module.HTDateFormat.FirstDayOfWeekOffset_text
 module.HTDateFormat.LocalSeason.enabled
@@ -200,8 +200,6 @@ module.HTMSPoints.AddToSearchResult.enabled
 module.HTMSPoints.enabled
 module.HTMSPrediction.enabled
 module.HTThreadMarker.enabled
-module.HeaderFix.FixLeft.enabled
-module.HeaderFix.enabled
 module.HeaderToggle.enabled
 module.HideSignatures.enabled
 module.HighlightCupwins.HighlightCupsets.enabled
@@ -299,6 +297,7 @@ module.LinksPlayerDetail.htlinks_Goalkeeper_Checker.enabled
 module.LinksPlayerDetail.nrg_deffor.enabled
 module.LinksPlayerDetail.nrg_pop.enabled
 module.LinksPlayerDetail.staminia.enabled
+module.LinksPlayerDetail.mercattrick.enabled
 module.LinksPlayers.enabled
 module.LinksTeam.argenstat.enabled
 module.LinksTeam.enabled
@@ -378,7 +377,6 @@ module.LoyaltyDisplay.enabled
 module.ManagerButtons.GuestBook.enabled
 module.ManagerButtons.enabled
 module.MarkAllAsRead.enabled
-module.MarkUnread.enabled
 module.MatchIncome.UtilizationPercentages.enabled
 module.MatchIncome.enabled
 module.MatchLineupFixes.AddStarsToSubs.enabled
@@ -428,6 +426,8 @@ module.MatchSimulator.enabled
 module.MatchSimulator.value
 module.MatchWeather.Irl.enabled
 module.MatchWeather.enabled
+module.MercattrickStats.enabled
+module.MercattrickStats.enableTLPage.enabled
 module.MobileEnhancements.ViewPort.enabled
 module.MobileEnhancements.ViewPort_text
 module.MobileEnhancements.enabled
@@ -738,6 +738,8 @@ module.SkillTable.transfer.wbtmPosition
 module.SkillTable.transfer.wdPosition
 module.SkillTable.transfer.woPosition
 module.SkillTable.transfer.wtmPosition
+module.SkillTable.transfer.MercattrickStats.filters
+module.SkillTable.transfer.MercattrickStats.bookmarks
 module.SkillTable.youth.others.Age
 module.SkillTable.youth.others.CanBePromotedIn
 module.SkillTable.youth.others.CareerGoals

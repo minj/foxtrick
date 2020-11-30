@@ -329,6 +329,11 @@
 			"159": "Madagaskar",
 			"16": "Brazilië",
 			"160": "Botswana",
+			"161": "Myanmar",
+			"162": "Zambia",
+			"163": "San Marino",
+			"164": "Haïti",
+			"165": "Puerto Rico",
 			"17": "Canada",
 			"18": "Chili",
 			"19": "Colombia",
@@ -596,7 +601,7 @@
 			},
 			{
 				"type": "Kicker",
-				"value": "Spelhervattingen"
+				"value": "Spelhervatten"
 			},
 			{
 				"type": "Passer",
@@ -782,7 +787,7 @@
 			},
 			{
 				"type": "SP",
-				"value": "Spelhervattingen"
+				"value": "Spelhervatten"
 			},
 			{
 				"type": "Def",
@@ -798,11 +803,11 @@
 			},
 			{
 				"type": "Shoot",
-				"value": "Schieten"
+				"value": "Scoren & Spelhervatten"
 			},
 			{
 				"type": "Pass",
-				"value": "Korte pass"
+				"value": "Passen"
 			},
 			{
 				"type": "PM",
@@ -814,15 +819,15 @@
 			},
 			{
 				"type": "ThPass",
-				"value": "Openingen maken"
+				"value": "Passen (verdedigers, middenvelders & vleugelspelers)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Controlerend spel"
+				"value": "Verdedigen (keeper, verdedigers, middenvelders & vleugelspelers)"
 			},
 			{
 				"type": "WingAtt",
-				"value": "Vleugelaanval"
+				"value": "Vleugelspel (vleugelspelers & aanvallers)"
 			},
 			{
 				"type": "Indiv",

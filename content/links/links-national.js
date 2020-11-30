@@ -1,50 +1,65 @@
 'use strict';
+
 /**
  * links-national.js
  * Foxtrick add links to national pages
  * @author convinced, LA-MJ
  */
 
-Foxtrick.modules['LinksNational'] = {
+Foxtrick.modules.LinksNational = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
 	PAGES: ['national'],
 	LINK_TYPES: 'nationalteamlink',
+
 	/**
 	 * return HTML for FT prefs
 	 * @param  {document}         doc
-	 * @param  {function}         cb
 	 * @return {HTMLUListElement}
 	 */
-	OPTION_FUNC: function(doc, cb) {
-		return Foxtrick.util.links.getPrefs(doc, this, cb);
+	OPTION_FUNC: function(doc) {
+		// @ts-ignore
+		return Foxtrick.util.links.getPrefs(doc, this);
 	},
 
+	/** @param {document} doc */
 	run: function(doc) {
+		// @ts-ignore
 		Foxtrick.util.links.run(doc, this);
 	},
 
+	/**
+	 * @param  {document} doc
+	 * @return {LinkPageDefinition}
+	 */
 	links: function(doc) {
-		var main = doc.getElementById('mainBody');
-		var header = main.getElementsByTagName('h1')[0];
-		var LeagueOfficeTypeID = /U-20/.test(header.textContent) ? 4 : 2;
-		var leagueId = Foxtrick.util.id.findLeagueId(main);
-		var ntTeamId = Foxtrick.Pages.All.getId(doc);
+		let main = doc.getElementById('mainBody');
+		let header = main.querySelector('h1');
+		let LeagueOfficeTypeID = -1;
+		if (header) {
+			// eslint-disable-next-line no-magic-numbers
+			LeagueOfficeTypeID = /U-20/.test(header.textContent) ? 4 : 2;
+		}
 
-		var info = {
-			leagueId: leagueId,
-			ntTeamId: ntTeamId,
-			LeagueOfficeTypeID: LeagueOfficeTypeID
+		let leagueId = Foxtrick.util.id.findLeagueId(main);
+		let ntTeamId = Foxtrick.Pages.All.getId(doc);
+
+		let info = {
+			leagueId,
+			ntTeamId,
+			LeagueOfficeTypeID,
 		};
-		var types = ['nationalteamlink'];
+
+		/** @type {LinkPageType[]} */
+		let types = ['nationalteamlink'];
 
 		if (Foxtrick.Prefs.isModuleEnabled('LinksTracker')) {
-			var tracker = {
+			let tracker = {
 				type: 'trackernationalteamlink',
 				module: 'LinksTracker',
 			};
 			types.push(tracker);
 		}
 
-		return { types: types, info: info };
-	}
+		return { types, info };
+	},
 };

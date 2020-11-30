@@ -329,6 +329,11 @@
 			"159": "Madagaskar",
 			"16": "Brasilien",
 			"160": "Botswana",
+			"161": "Myanmar",
+			"162": "Sambia",
+			"163": "San Marino",
+			"164": "Haiti",
+			"165": "Puerto Rico",
 			"17": "Kanada",
 			"18": "Chile",
 			"19": "Kolumbien",
@@ -794,11 +799,11 @@
 			},
 			{
 				"type": "Cross",
-				"value": "Säitenugrëff"
+				"value": "Bandetraining"
 			},
 			{
 				"type": "Shoot",
-				"value": "Schosstraining"
+				"value": "Schoss an Strofstéiss Training"
 			},
 			{
 				"type": "Pass",
@@ -814,15 +819,15 @@
 			},
 			{
 				"type": "ThPass",
-				"value": "Passen an d'Déift"
+				"value": "Erweiderten Passtraining (Verteideger, Mëttelfeld a Banden)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Defensivtraining"
+				"value": "Verteidegung (GK, Verteideger + Mëttelfeld)"
 			},
 			{
 				"type": "WingAtt",
-				"value": "Fligelugrëff"
+				"value": "Bande (Bande + Stiermer)"
 			},
 			{
 				"type": "Indiv",

@@ -23,7 +23,7 @@ if (!this.Foxtrick)
  */
 Foxtrick.toArray = function(arrayLike) {
 	if (typeof arrayLike === 'undefined') {
-		Foxtrick.error('No array specified');
+		Foxtrick.log(new Error('No array specified'));
 		return [];
 	}
 	else if (arrayLike === null) {

@@ -147,16 +147,18 @@ Foxtrick.modules.PlayerPositionsEvaluations = {
 				var title = row.insertCell(0);
 				title.textContent = Foxtrick.L10n.getString('BestPlayerPosition.title');
 				var best = Foxtrick.Pages.Player.getBestPosition(contributions);
-				var str = Foxtrick.L10n.getString(best.position + 'Position');
-				var bestPosCell = row.insertCell(1);
-				bestPosCell.id = 'ft-ppe-bestPos';
-				bestPosCell.dataset.position = best.position;
-				bestPosCell.textContent = str + ' (' + best.value.toFixed(2) + ')';
-
+				if (best.position) {
+					var str = Foxtrick.L10n.getString(best.position + 'Position');
+					var bestPosCell = row.insertCell(1);
+					bestPosCell.id = 'ft-ppe-bestPos';
+					bestPosCell.dataset.position = best.position;
+					bestPosCell.textContent = str + ' (' + best.value.toFixed(2) + ')';
+				}
 			}
 			else if (Foxtrick.isPage(doc, 'transferSearchResult')) {
 				let isNewDesign = Foxtrick.Pages.TransferSearchResults.isNewDesign(doc);
 				var list = Foxtrick.Pages.TransferSearchResults.getPlayerList(doc);
+
 				// filter out players with out skill data (after deadline)
 				var transfers = Foxtrick.filter(function(p) {
 					return typeof p.bestPositionValue !== 'undefined';
@@ -467,7 +469,7 @@ Foxtrick.modules.PlayerPositionsEvaluations = {
 			posDiv.appendChild(posSelect);
 
 			var bestPosCell = doc.getElementById('ft-ppe-bestPos');
-			var bestPos = bestPosCell.dataset.position;
+			var bestPos = bestPosCell ? bestPosCell.dataset.position : null;
 			for (var pos in factors) {
 				var option = doc.createElement('option');
 				option.value = pos;

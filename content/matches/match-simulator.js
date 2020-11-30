@@ -109,7 +109,7 @@ Foxtrick.modules.MatchSimulator = {
 					oldLineupSource = 'HTOIntegrated';
 			}
 			else {
-				Foxtrick.error('Failed to detect matchTypeIcon type: ' + matchClass);
+				Foxtrick.log(new Error('Failed to detect matchTypeIcon type: ' + matchClass));
 			}
 
 			var addMatchText = doc.getElementById('addMatchText');
@@ -1549,7 +1549,7 @@ Foxtrick.modules.MatchSimulator = {
 			Foxtrick.log('WARNING: no staminaPrediction');
 
 		if (playersMissing)
-			Foxtrick.error('Player JSON missing in staminaDiscount');
+			Foxtrick.log(new Error('Player JSON missing in staminaDiscount'));
 
 		try {
 			var overlayRatingsNums = doc.getElementsByClassName('overlayRatingsNum');

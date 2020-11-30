@@ -360,7 +360,7 @@ Foxtrick.modules['TeamPopupLinks'] = {
 
 							if (typeof customLinkText === 'string') {
 								let ownLinks = customLinkText.split(/\n/);
-								for (let ownLink of ownLinks) {
+								for (let ownLink of ownLinks.map(l => l.trim()).filter(Boolean)) {
 									try {
 										let redirToCustom = false;
 										let json = JSON.parse(ownLink);
@@ -438,8 +438,10 @@ Foxtrick.modules['TeamPopupLinks'] = {
 					if (hasScroll && pT - mainBody.scrollTop < mainBody.offsetHeight / 2 ||
 					    pT - doc.body.scrollTop < 300 || !mainBody) { // = popdown
 
-						let more = list.removeChild(list.lastChild);
-						list.insertBefore(more, list.firstChild);
+						if (list.lastChild) {
+							let more = list.removeChild(list.lastChild);
+							list.insertBefore(more, list.firstChild);
+						}
 
 						down = true;
 					}

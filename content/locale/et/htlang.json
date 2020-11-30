@@ -329,6 +329,11 @@
 			"159": "Madagaskar",
 			"16": "Brasiilia",
 			"160": "Botswana",
+			"161": "Myanmar",
+			"162": "Sambia",
+			"163": "San Marino",
+			"164": "Haiti",
+			"165": "Puerto Rico",
 			"17": "Kanada",
 			"18": "Tšiili",
 			"19": "Kolumbia",
@@ -786,7 +791,7 @@
 			},
 			{
 				"type": "Def",
-				"value": "Kaitse"
+				"value": "Kaitsmine"
 			},
 			{
 				"type": "Sco",
@@ -794,15 +799,15 @@
 			},
 			{
 				"type": "Cross",
-				"value": "Tsenderdused (Ääred)"
+				"value": "Ääre treening"
 			},
 			{
 				"type": "Shoot",
-				"value": "Pealelöögid"
+				"value": "Ründamine ja Standardolukorrad"
 			},
 			{
 				"type": "Pass",
-				"value": "Lühikesed söödud"
+				"value": "Söötmine"
 			},
 			{
 				"type": "PM",
@@ -810,19 +815,19 @@
 			},
 			{
 				"type": "GK",
-				"value": "Väravavaht"
+				"value": "Väravavahtimine"
 			},
 			{
 				"type": "ThPass",
-				"value": "Pikad söödud"
+				"value": "Söötmine (kaitsjad + kõik poolkaitsjad)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Kaitsvad asetused"
+				"value": "Kaitsmine (väravavahid, kaitsjad + kõik poolkaitsjad)"
 			},
 			{
 				"type": "WingAtt",
-				"value": "Äärerünnak"
+				"value": "Ääre treening (äärepoolkaitsjad + ründajad)"
 			},
 			{
 				"type": "Indiv",

@@ -329,6 +329,11 @@
 			"159": "Madagascar",
 			"16": "Brasile",
 			"160": "Botswana",
+			"161": "Birmania",
+			"162": "Zambia",
+			"163": "San Marino",
+			"164": "Haiti",
+			"165": "Portorico",
 			"17": "Canada",
 			"18": "Cile",
 			"19": "Colombia",
@@ -794,11 +799,11 @@
 			},
 			{
 				"type": "Cross",
-				"value": "Cross (Ali)"
+				"value": "Ala"
 			},
 			{
 				"type": "Shoot",
-				"value": "Conclusioni (Tiri)"
+				"value": "Tiri e Calci Piazzati"
 			},
 			{
 				"type": "Pass",
@@ -810,19 +815,19 @@
 			},
 			{
 				"type": "GK",
-				"value": "Parate"
+				"value": "Portiere"
 			},
 			{
 				"type": "ThPass",
-				"value": "Passaggi lunghi"
+				"value": "Passaggi (Dif. + Centr. e Ali)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Interdizione"
+				"value": "Difesa (Por., Dif., + Centr. e Ali)"
 			},
 			{
 				"type": "WingAtt",
-				"value": "Offensive laterali"
+				"value": "Ala (Ali+ Attaccanti)"
 			},
 			{
 				"type": "Indiv",

@@ -241,6 +241,7 @@ Foxtrick.L10n.appendLink = function(str, parent, url) {
 		link = doc.createElement('a');
 		link.href = url;
 		link.target = '_blank';
+		link.relList.add('noopener');
 		link.textContent = parts[1];
 		parent.appendChild(link);
 	}
@@ -325,11 +326,11 @@ Foxtrick.L10n.getLocalOrEnglish = function(query, lang) {
 			'with',
 			`${query.filter}=${query.value}`,
 		].join(' ');
-		Foxtrick.error(`${header} does not exist in locale ${l}, trying en instead.`);
+		Foxtrick.log(new Error(`${header} does not exist in locale ${l}, trying en instead.`));
 
 		text = this.getHTLangProperty(query, 'en-GB');
 		if (text === null) {
-			Foxtrick.error(`${header} does not exist, returning raw value.`);
+			Foxtrick.log(new Error(`${header} does not exist, returning raw value.`));
 			text = String(query.value);
 		}
 	}
@@ -348,7 +349,7 @@ Foxtrick.L10n.getLevelFromText = function(text) {
 	var txt = text.trim();
 	var lang = Foxtrick.Prefs.getString('htLanguage');
 	if (!lang) {
-		Foxtrick.error('missing lang');
+		Foxtrick.log(new Error('missing lang'));
 		return NaN;
 	}
 	var json = Foxtrick.L10n.htLanguagesJSON[lang].language;
@@ -812,6 +813,9 @@ Foxtrick.L10n.getCountryNameNative = function(leagueId) {
 	var ret = 'New Moon';
 	try {
 		let league = Foxtrick.XMLData.League[leagueId];
+		if (!league)
+			throw new Error(`'${leagueId}' not found`);
+
 		ret = league.LeagueName;
 	}
 	catch (e) {
@@ -981,7 +985,7 @@ Foxtrick.L10n.getCountryNameLocal = function(leagueId, lang) {
 					}
 				}
 				catch (e) {
-					Foxtrick.error('Error getString(\'' + str + '\')');
+					Foxtrick.log(new Error(`Error getString('${str}')`));
 					return str.slice(str.lastIndexOf('.') + 1);
 				}
 			},
@@ -1006,7 +1010,7 @@ Foxtrick.L10n.getCountryNameLocal = function(leagueId, lang) {
 					return '';
 				}
 				catch (e) {
-					Foxtrick.error('Error getScreenshot(\'' + str + '\')');
+					Foxtrick.log(new Error(`Error getScreenshot('${str}')`));
 					return '';
 				}
 			},

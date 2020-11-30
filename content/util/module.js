@@ -95,7 +95,7 @@ Foxtrick.util.modules.getActive = function(doc) {
 			// @ts-ignore
 			if (typeof Foxtrick.htPages[mPage] === 'undefined') {
 				let msg = `${m.MODULE_NAME} wants to run on an unknown page ${mPage}`;
-				Foxtrick.error(msg);
+				Foxtrick.log(new Error(msg));
 
 				continue;
 			}

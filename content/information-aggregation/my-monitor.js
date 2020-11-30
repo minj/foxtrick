@@ -461,7 +461,7 @@ Foxtrick.modules.MyMonitor = {
 						var thisFrame = this;
 						thisFrame = thisFrame.closest('.ft-monitor-frame');
 						if (!thisFrame) {
-							Foxtrick.error('Unexpected layout in MyMonitor');
+							Foxtrick.log(new Error('Unexpected layout in MyMonitor'));
 							return null;
 						}
 
@@ -717,6 +717,9 @@ Foxtrick.modules.MyMonitor = {
 
 			var l10nHeader = Foxtrick.L10n.getString('MyMonitor.header');
 			var box = Foxtrick.addBoxToSidebar(doc, l10nHeader, container, -1);
+			if (!box)
+				return;
+
 			box.id = 'ft-monitor-sidebar-box';
 
 			setSavedTeams(teams);

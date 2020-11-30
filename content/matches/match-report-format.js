@@ -112,7 +112,10 @@ Foxtrick.modules.MatchReportFormat = {
 
 		// do the stuff
 		var matchReport = doc.getElementById('matchReport');
+		if (!matchReport)
+			return;
+
 		doMatchReport(doc, matchReport);
 		Foxtrick.util.matchEvent.addEventIndicators(matchReport);
-	}
+	},
 };

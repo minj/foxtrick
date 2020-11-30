@@ -329,6 +329,11 @@
 			"159": "Madagaskar",
 			"16": "Brasil",
 			"160": "Botswana",
+			"161": "Myanmar",
+			"162": "Zambia",
+			"163": "San Marino",
+			"164": "Haiti",
+			"165": "Puerto Rico",
 			"17": "Canada",
 			"18": "Chile",
 			"19": "Colombia",
@@ -794,15 +799,15 @@
 			},
 			{
 				"type": "Cross",
-				"value": "Innlegg (Kant)"
+				"value": "Kantspel"
 			},
 			{
 				"type": "Shoot",
-				"value": "Skottrening"
+				"value": "Målskåring og daudball"
 			},
 			{
 				"type": "Pass",
-				"value": "Pasningar"
+				"value": "Pasning"
 			},
 			{
 				"type": "PM",
@@ -814,15 +819,15 @@
 			},
 			{
 				"type": "ThPass",
-				"value": "Gjennombrotspasningar"
+				"value": "Pasning (forsvarsspelarar + alle midtbanespelarar)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Defensive posisjonar"
+				"value": "Forsvar (målvaktar, forsvarsspelarar + alle midtbanespelarar)"
 			},
 			{
 				"type": "WingAtt",
-				"value": "Kantangrep"
+				"value": "Kantspel (kantspelarar + angrepsspelarar)"
 			},
 			{
 				"type": "Indiv",

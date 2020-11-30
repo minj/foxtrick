@@ -329,6 +329,11 @@
 			"159": "Мадагаскар",
 			"16": "Бразілія",
 			"160": "Батсвана",
+			"161": "М'янма",
+			"162": "Замбія",
+			"163": "Сан-Марына",
+			"164": "Гаіці",
+			"165": "Пуэрта-Рыка",
 			"17": "Канада",
 			"18": "Чылі",
 			"19": "Калумбія",
@@ -794,15 +799,15 @@
 			},
 			{
 				"type": "Cross",
-				"value": "Фланг"
+				"value": "Winger"
 			},
 			{
 				"type": "Shoot",
-				"value": "Удары"
+				"value": "Scoring and Set Pieces"
 			},
 			{
 				"type": "Pass",
-				"value": "Кароткія пасы"
+				"value": "Passing"
 			},
 			{
 				"type": "PM",
@@ -810,19 +815,19 @@
 			},
 			{
 				"type": "GK",
-				"value": "Брамніцтва"
+				"value": "Keeper"
 			},
 			{
 				"type": "ThPass",
-				"value": "Доўгія пасы"
+				"value": "Passing (Defenders + All Midfielders)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Зонавая абарона"
+				"value": "Defending (Keepers, Defenders + All Midfielders)"
 			},
 			{
 				"type": "WingAtt",
-				"value": "Атакі па флангах"
+				"value": "Winger (Winger + Attackers)"
 			},
 			{
 				"type": "Indiv",

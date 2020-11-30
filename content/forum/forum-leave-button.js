@@ -26,6 +26,9 @@ Foxtrick.modules['ForumLeaveButton'] = {
 					return;
 
 				var link = folderHeader.querySelector('a[href*="f="]');
+				if (!link)
+					return;
+
 				var forumId = Foxtrick.getUrlParam(link.href, 'f');
 				var url = URL + forumId;
 

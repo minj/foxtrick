@@ -312,6 +312,9 @@ Foxtrick.modules['YouthSkills'] = {
 						throw new Error('unknown bar type');
 				}
 
+				if (!target)
+					return;
+
 				Foxtrick.insertAfter(hyBar, target);
 			};
 
@@ -347,19 +350,19 @@ Foxtrick.modules['YouthSkills'] = {
 			var setTitleAndLinks = function(node) {
 				let cur, pot, curInt, potInt = 0;
 				let prediction = false;
-				let hyCur = node.getAttribute('hy-cur') || '0';
-				let hyPot = node.getAttribute('hy-pot') || '0';
-				let hyPotPred = node.getAttribute('hy-pot-pred') || '0';
-				let hyPred = node.getAttribute('hy-pred') || '0';
-				let htCur = node.getAttribute('ht-cur') || '0';
-				let htPot = node.getAttribute('ht-pot') || '0';
-				let htMaxed = node.getAttribute('ht-maxed') || '0';
+				let hyCur = parseFloat(node.getAttribute('hy-cur')) || 0;
+				let hyPot = parseFloat(node.getAttribute('hy-pot')) || 0;
+				let hyPotPred = parseFloat(node.getAttribute('hy-pot-pred')) || 0;
+				let hyPred = parseFloat(node.getAttribute('hy-pred')) || 0;
+				let htCur = parseFloat(node.getAttribute('ht-cur')) || 0;
+				let htPot = parseFloat(node.getAttribute('ht-pot')) || 0;
+				let htMaxed = parseFloat(node.getAttribute('ht-maxed')) || 0;
 
 				// htCur is not available when skill is maxed!!!
 				htCur = htCur || htMaxed;
 
 				// add HY info if no info available or it matches HT info
-				if (hyCur && (!htCur || parseInt(htCur, 10) == parseInt(hyCur, 10)))
+				if (hyCur && (!htCur || Math.floor(htCur) == Math.floor(hyCur)))
 					cur = hyCur;
 				else
 					cur = htCur;
@@ -371,13 +374,13 @@ Foxtrick.modules['YouthSkills'] = {
 				}
 
 				// add HY info if no info available or it matches HT info
-				if (hyPot && (!htPot || parseInt(htPot, 10) == parseInt(hyPot, 10)))
+				if (hyPot && (!htPot || Math.floor(htPot) == Math.floor(hyPot)))
 					pot = hyPot;
 				else
 					pot = htPot;
 
-				curInt = parseInt(cur, 10);
-				potInt = parseInt(pot, 10);
+				curInt = Math.floor(cur);
+				potInt = Math.floor(pot);
 
 				if (!pot && hyPotPred)
 					pot = `<${hyPotPred}`;
@@ -599,12 +602,19 @@ Foxtrick.modules['YouthSkills'] = {
 			var header = `Hattrick Youthclub Error ${status}: `;
 
 			/** @type {string|HTMLElement} */
-			var text;
+			var text = response;
+
 			try {
-				text = JSON.parse(response).error;
+				let payload = { error: 'Unknown error' };
+				if (response) {
+					payload = JSON.parse(response);
+					let { error } = payload;
+					text = error;
+				}
 			}
 			catch (e) {
-				text = response;
+				let msg = `[showError]: could not parse '${response}'`;
+				Foxtrick.log(new Error(msg));
 			}
 
 			if (!text && prefLink) {
@@ -643,7 +653,7 @@ Foxtrick.modules['YouthSkills'] = {
 				let userMsg = userTmpl.replace(/%s/, 'YouthSkills');
 				switch (reason) {
 					case 'user':
-						showError(userMsg, ERROR_CODE);
+						showError(`{ "error": "${userMsg}" }`, ERROR_CODE);
 						break;
 
 					case 'permission':
@@ -651,7 +661,7 @@ Foxtrick.modules['YouthSkills'] = {
 						break;
 
 					default:
-						showError(`Unknown reason: ${reason}`, ERROR_CODE);
+						showError(`{ "error": "Unknown reason: ${reason}" }`, ERROR_CODE);
 						break;
 				}
 			}

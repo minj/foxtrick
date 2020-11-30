@@ -329,6 +329,11 @@
 			"159": "Madagaskar",
 			"16": "Brasil",
 			"160": "Botswana",
+			"161": "Myanmar",
+			"162": "Zambia",
+			"163": "San Marino",
+			"164": "Haiti",
+			"165": "Puerto Rico",
 			"17": "Canada",
 			"18": "Chili",
 			"19": "Kolombia",
@@ -794,15 +799,15 @@
 			},
 			{
 				"type": "Cross",
-				"value": "Umpan Silang (Sayap)"
+				"value": "Sayap"
 			},
 			{
 				"type": "Shoot",
-				"value": "Menembak"
+				"value": "Mencetak gol dan Bola mati"
 			},
 			{
 				"type": "Pass",
-				"value": "Umpan Pendek"
+				"value": "Operan"
 			},
 			{
 				"type": "PM",
@@ -810,19 +815,19 @@
 			},
 			{
 				"type": "GK",
-				"value": "Menjaga gawang"
+				"value": "Kiper"
 			},
 			{
 				"type": "ThPass",
-				"value": "Umpan Terobosan"
+				"value": "Operan (Bek + Gelandang + Sayap)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Posisi Bertahan"
+				"value": "Bertahan (Kiper + Bek + Gelandang + Sayap)"
 			},
 			{
 				"type": "WingAtt",
-				"value": "Serangan Sayap"
+				"value": "Sayap (Pemain sayap + Penyerang)"
 			},
 			{
 				"type": "Indiv",

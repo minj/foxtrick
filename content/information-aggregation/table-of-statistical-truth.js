@@ -17,6 +17,9 @@ Foxtrick.modules.TableOfStatisticalTruth = {
 
 		/** @type {HTMLSelectElement} */
 		var seasonSelect = doc.querySelector('#mainBody select');
+		if (!seasonSelect)
+			return;
+
 		var season = seasonSelect.value;
 		var [_, seriesLink] = Foxtrick.Pages.All.getBreadCrumbs(doc);
 		var serie = Foxtrick.util.id.getLeagueLeveUnitIdFromUrl(seriesLink.href);

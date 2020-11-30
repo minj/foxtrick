@@ -329,6 +329,11 @@
 			"159": "Madagaskar",
 			"16": "Brazil",
 			"160": "Bocvana",
+			"161": "Mijanmar",
+			"162": "Zambija",
+			"163": "San Marino",
+			"164": "Haiti",
+			"165": "Portoriko",
 			"17": "Kanada",
 			"18": "Čile",
 			"19": "Kolumbija",
@@ -790,7 +795,7 @@
 			},
 			{
 				"type": "Sco",
-				"value": "Napadači"
+				"value": "Napad"
 			},
 			{
 				"type": "Cross",
@@ -798,11 +803,11 @@
 			},
 			{
 				"type": "Shoot",
-				"value": "Udarci na vrata"
+				"value": "Napad i slobodni udarci"
 			},
 			{
 				"type": "Pass",
-				"value": "Kratka dodavanja"
+				"value": "Proigravanje"
 			},
 			{
 				"type": "PM",
@@ -814,15 +819,15 @@
 			},
 			{
 				"type": "ThPass",
-				"value": "Duga dodavanja"
+				"value": "Proigravanje (braniči, vezni i krila)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Obrambena igra"
+				"value": "Obrana (vratar, braniči, vezni i krila)"
 			},
 			{
 				"type": "WingAtt",
-				"value": "Krilni napadi"
+				"value": "Krila (krila + napadači)"
 			},
 			{
 				"type": "Indiv",

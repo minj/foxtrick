@@ -329,6 +329,11 @@
 			"159": "Madagascar",
 			"16": "Brasil",
 			"160": "Botswana",
+			"161": "Myanmar",
+			"162": "Zàmbia",
+			"163": "San Marino",
+			"164": "Haití",
+			"165": "Puerto Rico",
 			"17": "Canadà",
 			"18": "Xile",
 			"19": "Colòmbia",
@@ -794,15 +799,15 @@
 			},
 			{
 				"type": "Cross",
-				"value": "Centrades (Extrem)"
+				"value": "Extrem"
 			},
 			{
 				"type": "Shoot",
-				"value": "Xuts"
+				"value": "Anotació i Pilota aturada"
 			},
 			{
 				"type": "Pass",
-				"value": "Passades curtes"
+				"value": "Passades"
 			},
 			{
 				"type": "PM",
@@ -814,15 +819,15 @@
 			},
 			{
 				"type": "ThPass",
-				"value": "Passades llargues"
+				"value": "Passades (Defensors + tots els migcampistes)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Posicions defensives"
+				"value": "Defensa (Defensors + tots els migcampistes)"
 			},
 			{
 				"type": "WingAtt",
-				"value": "Atacs per les bandes"
+				"value": "Extrem (Extrems + Davanters)"
 			},
 			{
 				"type": "Indiv",

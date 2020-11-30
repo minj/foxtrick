@@ -329,6 +329,11 @@
 			"159": "Madagascar",
 			"16": "Braxin",
 			"160": "Botswana",
+			"161": "Myanmar",
+			"162": "Zambia",
+			"163": "San Marino",
+			"164": "Haiti",
+			"165": "Puerto Rico",
 			"17": "Canada",
 			"18": "Chilê",
 			"19": "Colombia",
@@ -794,15 +799,15 @@
 			},
 			{
 				"type": "Cross",
-				"value": "Tạt bóng (Cánh)"
+				"value": "Chạy cánh"
 			},
 			{
 				"type": "Shoot",
-				"value": "Sút bóng"
+				"value": "Ghi bàn và đá phạt"
 			},
 			{
 				"type": "Pass",
-				"value": "Chuyền ngắn"
+				"value": "Chuyền bóng"
 			},
 			{
 				"type": "PM",
@@ -810,19 +815,19 @@
 			},
 			{
 				"type": "GK",
-				"value": "Chụp bóng"
+				"value": "Thủ môn"
 			},
 			{
 				"type": "ThPass",
-				"value": "Chuyền dài"
+				"value": "Chuyền bóng (Hậu vệ + Tiền vệ)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Vị trí phòng thủ"
+				"value": "Phòng ngự (Thủ môn, Hậu vệ + Tiền vệ)"
 			},
 			{
 				"type": "WingAtt",
-				"value": "Tấn công cánh"
+				"value": "Chạy cánh (TV Cánh + Tấn công)"
 			},
 			{
 				"type": "Indiv",

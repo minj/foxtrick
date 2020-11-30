@@ -329,6 +329,11 @@
 			"159": "Madagascar",
 			"16": "Brasil",
 			"160": "Botswana",
+			"161": "Birmania",
+			"162": "Zambia",
+			"163": "San Marino",
+			"164": "Haití",
+			"165": "Puerto Rico",
 			"17": "Canadá",
 			"18": "Chile",
 			"19": "Colombia",
@@ -794,15 +799,15 @@
 			},
 			{
 				"type": "Cross",
-				"value": "Lateral"
+				"value": "Laterales"
 			},
 			{
 				"type": "Shoot",
-				"value": "Tiros"
+				"value": "Anotación + Pelota Parada"
 			},
 			{
 				"type": "Pass",
-				"value": "Pases Cortos"
+				"value": "Pases cortos"
 			},
 			{
 				"type": "PM",
@@ -814,15 +819,15 @@
 			},
 			{
 				"type": "ThPass",
-				"value": "Pases Largos"
+				"value": "Pases largos (Defensores + todos los Mediocampistas)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Posiciones Defensivas"
+				"value": "Posiciones defensivas (Arquero + Defensores + Mediocampistas)"
 			},
 			{
 				"type": "WingAtt",
-				"value": "Ataque Lateral"
+				"value": "Ataques laterales (Laterales + Delanteros)"
 			},
 			{
 				"type": "Indiv",

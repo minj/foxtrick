@@ -109,6 +109,9 @@ Foxtrick.modules.MatchLineupTweaks = {
 		toggleDiv.appendChild(togLabel);
 
 		let entry = doc.querySelector('#divPlayers h4');
+		if (!entry)
+			return;
+
 		entry.parentNode.replaceChild(toggleDiv, entry);
 	},
 

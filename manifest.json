@@ -30,6 +30,7 @@
 			"content/lib/PluralForm.js",
 			"content/lib/psico.js",
 			"content/lib/gauge.js",
+			"content/lib/exceptionless.universal.js",
 			// <!-- end ext-lib -->
 
 			"content/lib/integration.js",
@@ -85,10 +86,8 @@
 			"content/api/hy/players-youth-reject-call.js",
 			"content/api/hy/players-youth-skills.js",
 			"content/api/hy/user-id.js",
-			"content/api/pastebin/common.js",
-			"content/api/pastebin/get.js",
-			"content/api/pastebin/login.js",
-			"content/api/pastebin/paste.js",
+			"content/api/mercattrick/common.js",
+			"content/api/mercattrick/players-stats.js",
 			// <!-- end api-util -->
 
 			// <!-- core -->
@@ -126,7 +125,6 @@
 			"content/forum/hide-signatures.js",
 			"content/forum/ht-thread-marker.js",
 			"content/forum/mark-all-as-read.js",
-			"content/forum/mark-unread.js",
 			"content/forum/show-forum-pref-button.js",
 			"content/forum/staff-marker.js",
 			"content/information-aggregation/cross-table.js",
@@ -136,11 +134,11 @@
 			"content/information-aggregation/extended-player-details.js",
 			"content/information-aggregation/extra-player-info.js",
 			"content/information-aggregation/flag-collection-to-map.js",
-			"content/information-aggregation/goal-difference-to-tables.js",
 			"content/information-aggregation/history-stats.js",
 			"content/information-aggregation/htms-points.js",
 			"content/information-aggregation/last-login.js",
 			"content/information-aggregation/match-weather.js",
+			"content/information-aggregation/mercattrick-stats.js",
 			"content/information-aggregation/maxtools.js",
 			"content/information-aggregation/my-monitor.js",
 			"content/information-aggregation/nt-peek.js",
@@ -192,8 +190,8 @@
 			"content/matches/match-income.js",
 			"content/matches/match-lineup-fixes.js",
 			"content/matches/match-lineup-tweaks.js",
-			"content/matches/match-order.js",
 			"content/matches/match-order-new.js",
+			"content/matches/match-order.js",
 			"content/matches/match-player-colouring.js",
 			"content/matches/match-ratings-tweaks.js",
 			"content/matches/match-report-format.js",
@@ -207,7 +205,6 @@
 			"content/presentation/fix-css-problems.js",
 			"content/presentation/friendly-interface.js",
 			"content/presentation/friendly-pool.js",
-			"content/presentation/header-fix.js",
 			"content/presentation/header-toggle.js",
 			"content/presentation/highlight-cup-wins.js",
 			"content/presentation/highlight-ownerless.js",
@@ -287,8 +284,7 @@
 		"clipboardWrite",
 		"*://chpp.hattrick.org/*",
 		"*://*.foxtrick.org/*",
-		"http://www.fantamondi.it/*",
-		"http://pastebin.com/api/*",
+		"http://www.fantamondi.it/*",		
 		"https://ht-mt.org/*"
 	],
 	"optional_permissions": [
@@ -309,6 +305,7 @@
 		"default_title": "Foxtrick enabled",
 		"default_popup": "content/popup.html"
 	},
+	"minimum_chrome_version": "73",
 	"options_ui" : {
 		"page": "content/preferences.html",
 		"chrome_style": false,
@@ -319,7 +316,7 @@
 	// <!-- gecko-specific -->
 	"browser_specific_settings": {
 		"gecko": {
-			"strict_min_version": "60.0a1",
+			"strict_min_version": "63.0a1",
 			"update_url": "https://www.foxtrick.org/nightly/update.rdf",
 			"id": "foxtrick-webext-dev@foxtrick.org"
 		}

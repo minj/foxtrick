@@ -329,6 +329,11 @@
 			"159": "Madagaskara",
 			"16": "Brazīlija",
 			"160": "Botsvāna",
+			"161": "Mjanma",
+			"162": "Zambija",
+			"163": "Sanmarīno",
+			"164": "Haiti",
+			"165": "Puertoriko",
 			"17": "Kanāda",
 			"18": "Čīle",
 			"19": "Kolumbija",
@@ -794,15 +799,15 @@
 			},
 			{
 				"type": "Cross",
-				"value": "Centrējumi"
+				"value": "Flangi"
 			},
 			{
 				"type": "Shoot",
-				"value": "Sitieni pa vārtiem"
+				"value": "Realizācija un Standarti"
 			},
 			{
 				"type": "Pass",
-				"value": "Īsās piespēles"
+				"value": "Piespēles"
 			},
 			{
 				"type": "PM",
@@ -814,15 +819,15 @@
 			},
 			{
 				"type": "ThPass",
-				"value": "Tālās piespēles"
+				"value": "Piespēles (Aizsargi + Visi Pussargi)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Aizsardzības pozīcijas"
+				"value": "Aizsardzība (VS + A + visi PS)"
 			},
 			{
 				"type": "WingAtt",
-				"value": "Malējie uzbrukumi"
+				"value": "Flangi (Malējie pussargi + Uzbrucēji)"
 			},
 			{
 				"type": "Indiv",

@@ -329,6 +329,11 @@
 			"159": "Madagaskar",
 			"16": "Brasilien",
 			"160": "Botswana",
+			"161": "Myanmar",
+			"162": "Sambia",
+			"163": "San Marino",
+			"164": "Haiti",
+			"165": "Puerto Rico",
 			"17": "Kanada",
 			"18": "Chile",
 			"19": "Kolumbien",
@@ -790,15 +795,15 @@
 			},
 			{
 				"type": "Sco",
-				"value": "Chancenverwertung"
+				"value": "Torschuss"
 			},
 			{
 				"type": "Cross",
-				"value": "Flankenläufe"
+				"value": "Flügelspiel"
 			},
 			{
 				"type": "Shoot",
-				"value": "Schusstraining"
+				"value": "Torschuss und Standardsituationen"
 			},
 			{
 				"type": "Pass",
@@ -814,15 +819,15 @@
 			},
 			{
 				"type": "ThPass",
-				"value": "Steilpässe"
+				"value": "Passspiel (Verteidiger, Mittelfeldspieler)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Abwehrverhalten"
+				"value": "Verteidigung (Torhüter, Verteidiger, Mittelfeldspieler)"
 			},
 			{
 				"type": "WingAtt",
-				"value": "Flügelangriff"
+				"value": "Flügelspiel (Flügelspieler, Stürmer)"
 			},
 			{
 				"type": "Indiv",

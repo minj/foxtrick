@@ -121,8 +121,20 @@ Foxtrick.modules.CopyYouth = {
 				module.addNode(doc, ok, 3000);
 			}
 			catch (rej) {
-				let { status, text } = rej;
-				module.addNode(doc, `Error ${status}: ${JSON.parse(text).error}`);
+				let { text, status } = rej;
+
+				let payload = { error: 'Unknown error' };
+				try {
+					if (text)
+						payload = JSON.parse(text);
+				}
+				catch (e) {
+					let msg = `[sendTrainingReportToHY]: could not parse '${text}'`;
+					Foxtrick.log(new Error(msg));
+				}
+				let { error } = payload;
+
+				module.addNode(doc, `Error ${status}: ${error}`);
 			}
 			finally {
 				entry.removeChild(loading);
@@ -272,7 +284,19 @@ Foxtrick.modules.CopyYouth = {
 					}
 					catch (rej) {
 						let { text, status } = rej;
-						module.addNode(doc, `Error ${status}: ${JSON.parse(text).error}`);
+
+						let payload = { error: 'Unknown error' };
+						try {
+							if (text)
+								payload = JSON.parse(text);
+						}
+						catch (e) {
+							let msg = `[sendScoutCallToHY]: could not parse '${text}'`;
+							Foxtrick.log(new Error(msg));
+						}
+						let { error } = payload;
+
+						module.addNode(doc, `Error ${status}: ${error}`);
 					}
 					finally {
 						info.dataset.ftInProgress = '0';
@@ -393,7 +417,19 @@ Foxtrick.modules.CopyYouth = {
 			}
 			catch (rej) {
 				let { text, status } = rej;
-				module.addNode(doc, `Error ${status}: ${JSON.parse(text).error}`);
+
+				let payload = { error: 'Unknown error' };
+				try {
+					if (text)
+						payload = JSON.parse(text);
+				}
+				catch (e) {
+					let msg = `[sendTrainingChangeToHY]: could not parse '${text}'`;
+					Foxtrick.log(new Error(msg));
+				}
+				let { error } = payload;
+
+				module.addNode(doc, `Error ${status}: ${error}`);
 			}
 			finally {
 				entry.removeChild(loading);

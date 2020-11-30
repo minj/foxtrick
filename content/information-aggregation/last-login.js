@@ -19,9 +19,10 @@ Foxtrick.modules.LastLogin = {
 			return;
 		}
 		var now = Foxtrick.util.time.getDate(doc);
-		if (!now)
+		if (!now) {
+			Foxtrick.log('User time missing');
 			return;
-
+		}
 		const MSECS_IN_SEC = Foxtrick.util.time.MSECS_IN_SEC;
 
 		for (let node of div.childNodes) {

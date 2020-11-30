@@ -263,7 +263,7 @@ Foxtrick.util.api = {
 		};
 		xml.text = function(tagName, container) {
 			var node = this.node(tagName, container);
-			return node.textContent;
+			return node == null ? null : node.textContent;
 		};
 		xml.bool = function(tagName, container) {
 			var text = this.text(tagName, container);
@@ -271,14 +271,14 @@ Foxtrick.util.api = {
 		};
 		xml.time = function(tagName, container) {
 			var text = this.text(tagName, container);
-			if (text === '0001-01-01 00:00:00')
+			if (text == null || text === '0001-01-01 00:00:00')
 				return null;
 
 			return Foxtrick.util.time.getDateFromText(text, 'yyyymmdd');
 		};
 		xml.date = function(tagName, container) {
 			var text = this.text(tagName, container);
-			if (text === '0001-01-01 00:00:00')
+			if (text == null || text === '0001-01-01 00:00:00')
 				return null;
 
 			return Foxtrick.util.time.getDateFromText(text, 'yyyymmdd', true);
@@ -350,11 +350,14 @@ Foxtrick.util.api = {
 			try {
 				htDate = Foxtrick.util.time.getHTTimeStamp(doc);
 			}
-			catch (e) {
+			catch (e) { }
+
+			if (!htDate) {
 				// No HT time yet. We have been to fast. Lets put us 1 day in the future
 				Foxtrick.log('no HT time yet');
 				htDate = Date.now() + Foxtrick.util.time.MSECS_IN_DAY;
 			}
+
 			return htDate;
 		})();
 		const NOW = new Date(HT_DATE).toString();

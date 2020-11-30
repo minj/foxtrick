@@ -329,6 +329,11 @@
 			"159": "Madagascar",
 			"16": "Brasilien",
 			"160": "Botswana",
+			"161": "Myanmar",
+			"162": "Zambia",
+			"163": "San Marino",
+			"164": "Haiti",
+			"165": "Puerto Rico",
 			"17": "Canada",
 			"18": "Chile",
 			"19": "Colombia",
@@ -794,11 +799,11 @@
 			},
 			{
 				"type": "Cross",
-				"value": "Indlæg (fløjspil)"
+				"value": "Fløje"
 			},
 			{
 				"type": "Shoot",
-				"value": "Skud"
+				"value": "Målscoring samt dødbolde"
 			},
 			{
 				"type": "Pass",
@@ -810,19 +815,19 @@
 			},
 			{
 				"type": "GK",
-				"value": "Målmandsspil"
+				"value": "Målmand"
 			},
 			{
 				"type": "ThPass",
-				"value": "Lange afleveringer"
+				"value": "Pasninger (forsvarere + alle midtbanespillere)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Placeringsevne"
+				"value": "Forsvar (Målmænd, forsvarere + alle midtbanespillere)"
 			},
 			{
 				"type": "WingAtt",
-				"value": "Angreb på fløjen"
+				"value": "Fløje (fløje + angribere)"
 			},
 			{
 				"type": "Indiv",

@@ -316,9 +316,9 @@
 			"146": "Kameroen",
 			"147": "Cuba",
 			"148": "Palestina",
-			"149": "São Tomé en Principe",
+			"149": "Sao Tomé en Principe",
 			"15": "Oceanië",
-			"151": "Comoros",
+			"151": "De Komoren",
 			"152": "Sri Lanka",
 			"153": "Curaçao",
 			"154": "Guam",
@@ -329,6 +329,11 @@
 			"159": "Madagaskar",
 			"16": "Brazilië",
 			"160": "Botswana",
+			"161": "Myanmar (Birma)",
+			"162": "Zambia",
+			"163": "San Marino",
+			"164": "Haïti",
+			"165": "Puerto Rico",
 			"17": "Canada",
 			"18": "Chili",
 			"19": "Colombia",
@@ -794,15 +799,15 @@
 			},
 			{
 				"type": "Cross",
-				"value": "Lange pass (vleugel)"
+				"value": "Vleugelspel"
 			},
 			{
 				"type": "Shoot",
-				"value": "Schieten"
+				"value": "Scoren-en-spelhervatten"
 			},
 			{
 				"type": "Pass",
-				"value": "Korte pass"
+				"value": "Passen"
 			},
 			{
 				"type": "PM",
@@ -814,15 +819,15 @@
 			},
 			{
 				"type": "ThPass",
-				"value": "Steekpass"
+				"value": "Passen (verdedigers, middenvelders en vleugelspelers)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Verdedigende posities"
+				"value": "Verdedigen (keepers, verdedigers, middenvelders en vleugelspelers)"
 			},
 			{
 				"type": "WingAtt",
-				"value": "Vleugelaanvallen"
+				"value": "Vleugelspel (vleugelspelers en aanvallers)"
 			},
 			{
 				"type": "Indiv",

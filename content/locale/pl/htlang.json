@@ -329,6 +329,11 @@
 			"159": "Madagaskar",
 			"16": "Brazylia",
 			"160": "Botswana",
+			"161": "Mjanma",
+			"162": "Zambia",
+			"163": "San Marino",
+			"164": "Haiti",
+			"165": "Portoryko",
 			"17": "Kanada",
 			"18": "Chile",
 			"19": "Kolumbia",
@@ -572,7 +577,7 @@
 		"skills": [
 			{
 				"type": "Keeper",
-				"value": "Bramkarz"
+				"value": "Um.bramkarskie"
 			},
 			{
 				"type": "Stamina",
@@ -588,7 +593,7 @@
 			},
 			{
 				"type": "Winger",
-				"value": "Skrzydłowy"
+				"value": "Dośrodkowania"
 			},
 			{
 				"type": "Scorer",
@@ -798,11 +803,11 @@
 			},
 			{
 				"type": "Shoot",
-				"value": "Strzelecki"
+				"value": "Skuteczność i St. fragmenty"
 			},
 			{
 				"type": "Pass",
-				"value": "Krótkie podania"
+				"value": "Podania"
 			},
 			{
 				"type": "PM",
@@ -810,19 +815,19 @@
 			},
 			{
 				"type": "GK",
-				"value": "Bramkarski"
+				"value": "Um. bramkarskie"
 			},
 			{
 				"type": "ThPass",
-				"value": "Prostopadłe podania"
+				"value": "Podania (obrońcy, pomocnicy i skrzydłowi)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Postawa obronna"
+				"value": "Defensywa (bramkarze, obrońcy, pomocnicy i skrzydłowi)"
 			},
 			{
 				"type": "WingAtt",
-				"value": "Atak skrzydłem"
+				"value": "Dośrodkowania (skrzydłowi i napastnicy)"
 			},
 			{
 				"type": "Indiv",

@@ -207,20 +207,6 @@ Foxtrick.Pages.Players.getPlayerNodes = function(doc, include) {
 /* eslint-disable complexity */
 
 /**
- * @typedef PsicoTSIPrediction
- * @prop {string} maxSkill
- * @prop {boolean} isGK
- * @prop {boolean} undef
- * @prop {string} limit
- * @prop {number} formLow
- * @prop {number} formAvg
- * @prop {number} formHigh
- * @prop {string} wageLow
- * @prop {string} wageAvg
- * @prop {string} wageHigh
- */
-
-/**
  * @typedef PlayerListOptions
  * @prop {string|number} [teamId]
  * @prop {boolean} [isYouth]
@@ -397,9 +383,15 @@ Foxtrick.Pages.Players.getPlayerNodes = function(doc, include) {
 
 /** @typedef {keyof Player} PlayerKey */
 
+/**
+ * @typedef PlayerMercattrickProps
+ * @prop {number} [mtFilters]
+ * @prop {number} [mtBookmarks]
+ */
+
 /* eslint-disable max-len */
 /**
- * @typedef {PlayerSkills & PlayerProps & PlayerXMLProps & PlayerTLProps & PlayerContributionProps & Contributions} Player & ContributionFactors
+ * @typedef {PlayerSkills & PlayerProps & PlayerXMLProps & PlayerTLProps & PlayerContributionProps & Contributions & PlayerMercattrickProps} Player & ContributionFactors
  */
 /* eslint-enable max-len */
 
@@ -452,7 +444,8 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 			teamId = Foxtrick.util.id.getTeamIdFromUrl(doc.location.href);
 
 		if (!teamId) {
-			Foxtrick.error(`Failed to parse teamId: '${teamId}' of ${JSON.stringify(options)}`);
+			let msg = `Failed to parse teamId: '${teamId}' of ${JSON.stringify(options)}`;
+			Foxtrick.log(new Error(msg));
 			return;
 		}
 
@@ -499,7 +492,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 		}
 
 		if (options && options.refresh) {
-			let now = Foxtrick.util.time.getHTTimeStamp(doc);
+			let now = Foxtrick.util.time.getHTTimeStamp(doc) || Date.now();
 			Foxtrick.util.api.setCacheLifetime(JSON.stringify(args), now);
 		}
 		Foxtrick.util.currency.detect(doc).then(function() {
@@ -836,7 +829,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 					nameLink.textContent = fullName;
 					nameLink.dataset.fullName = fullName;
 
-					nameLink.title = `${first}${(nick ? ` '${nick}'` : '')} ${last}`;
+					nameLink.title = `${first}${nick ? ` '${nick}'` : ''} ${last}`;
 					nameLink.dataset.fullNameAndNick = nameLink.title;
 					nameLink.dataset.nickName = nick;
 
@@ -959,7 +952,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				if (lastMatch && node('Date', lastMatch)) {
 					let old = /\.classic\./i.test(doc.URL);
 					let lastMatchUrlTemplate =
-						`/Club/Matches/Match${(old ? '.Classic.' : '')}.aspx?matchID={matchId}` +
+						`/Club/Matches/Match${old ? '.Classic.' : ''}.aspx?matchID={matchId}` +
 						'&SourceSystem={sourceSystem}&teamId={teamId}{youthId}' +
 						'&HighlightPlayerID={id}#tab2';
 
@@ -1031,7 +1024,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 			}, playerList);
 			if (missingXML.length) {
 				Foxtrick.log('WARNING: New players in HTML', missingXML, 'resetting cache');
-				let htTime = Foxtrick.util.time.getHTTimeStamp(doc);
+				let htTime = Foxtrick.util.time.getHTTimeStamp(doc) || Date.now();
 				Foxtrick.util.api.setCacheLifetime(JSON.stringify(args), htTime);
 			}
 		}

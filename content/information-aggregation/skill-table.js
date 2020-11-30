@@ -359,6 +359,10 @@ Foxtrick.modules.SkillTable = {
 				{ name: 'tdfPosition', property: 'tdf', },
 				{ name: 'BestPosition', property: 'bestPosition', sortAsString: true, },
 				{ name: 'BestPositionValue', property: 'bestPositionValue', },
+				{ name: 'MercattrickStats.filters', property: 'mtFilters',
+					img: Foxtrick.modules['MercattrickStats'].IMAGES.FILTERS, },
+				{ name: 'MercattrickStats.bookmarks', property: 'mtBookmarks',
+					img: Foxtrick.modules['MercattrickStats'].IMAGES.BOOKMARKS, },
 			];
 			/* eslint-enable comma-dangle */
 			/* eslint-enable object-property-newline */
@@ -749,6 +753,9 @@ Foxtrick.modules.SkillTable = {
 				dateDiff: function(cell, deadline) {
 					const MSEC = Foxtrick.util.time.MSECS_IN_SEC;
 					let htDate = Foxtrick.util.time.getHTDate(doc);
+					if (!htDate)
+						return;
+
 					let diff = Math.floor((htDate.getTime() - deadline.getTime()) / MSEC);
 					let span = Foxtrick.util.time.timeDiffToSpan(doc, diff, { useDHM: false });
 					cell.appendChild(span);

@@ -100,10 +100,8 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/api/hy/players-youth-reject-call.js</string>
 				<string>content/api/hy/players-youth-skills.js</string>
 				<string>content/api/hy/user-id.js</string>
-				<string>content/api/pastebin/common.js</string>
-				<string>content/api/pastebin/get.js</string>
-				<string>content/api/pastebin/login.js</string>
-				<string>content/api/pastebin/paste.js</string>
+				<string>content/api/mercattrick/common.js</string>
+				<string>content/api/mercattrick/players-stats.js</string>
 				<!-- end api-util -->
 
 				<!-- core -->
@@ -141,7 +139,6 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/forum/hide-signatures.js</string>
 				<string>content/forum/ht-thread-marker.js</string>
 				<string>content/forum/mark-all-as-read.js</string>
-				<string>content/forum/mark-unread.js</string>
 				<string>content/forum/show-forum-pref-button.js</string>
 				<string>content/forum/staff-marker.js</string>
 				<string>content/information-aggregation/cross-table.js</string>
@@ -151,11 +148,11 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/information-aggregation/extended-player-details.js</string>
 				<string>content/information-aggregation/extra-player-info.js</string>
 				<string>content/information-aggregation/flag-collection-to-map.js</string>
-				<string>content/information-aggregation/goal-difference-to-tables.js</string>
 				<string>content/information-aggregation/history-stats.js</string>
 				<string>content/information-aggregation/htms-points.js</string>
 				<string>content/information-aggregation/last-login.js</string>
 				<string>content/information-aggregation/match-weather.js</string>
+				<string>content/information-aggregation/mercattrick-stats.js</string>
 				<string>content/information-aggregation/maxtools.js</string>
 				<string>content/information-aggregation/my-monitor.js</string>
 				<string>content/information-aggregation/nt-peek.js</string>
@@ -207,8 +204,8 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/matches/match-income.js</string>
 				<string>content/matches/match-lineup-fixes.js</string>
 				<string>content/matches/match-lineup-tweaks.js</string>
-				<string>content/matches/match-order.js</string>
 				<string>content/matches/match-order-new.js</string>
+				<string>content/matches/match-order.js</string>
 				<string>content/matches/match-player-colouring.js</string>
 				<string>content/matches/match-ratings-tweaks.js</string>
 				<string>content/matches/match-report-format.js</string>
@@ -222,7 +219,6 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/presentation/fix-css-problems.js</string>
 				<string>content/presentation/friendly-interface.js</string>
 				<string>content/presentation/friendly-pool.js</string>
-				<string>content/presentation/header-fix.js</string>
 				<string>content/presentation/header-toggle.js</string>
 				<string>content/presentation/highlight-cup-wins.js</string>
 				<string>content/presentation/highlight-ownerless.js</string>
@@ -298,7 +294,6 @@ a good reason to. They are for version bumps in Makefile.
 				<string>*.foxtrick.org</string>
 				<string>*.hattrick-youthclub.org</string>
 				<string>www.fantamondi.it</string>
-				<string>pastebin.com</string>
 				<string>api.openweathermap.org</string>
         <string>ht-mt.org</string>
 			</array>

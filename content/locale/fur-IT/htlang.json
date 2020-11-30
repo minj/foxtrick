@@ -329,6 +329,11 @@
 			"159": "Madagascar",
 			"16": "Brasîl",
 			"160": "Botswana",
+			"161": "Myanmar",
+			"162": "Zambie",
+			"163": "San Marin",
+			"164": "Haiti",
+			"165": "Puerto Rico",
 			"17": "Canadà",
 			"18": "Cile",
 			"19": "Colombie",
@@ -794,15 +799,15 @@
 			},
 			{
 				"type": "Cross",
-				"value": "Cross (Alis)"
+				"value": "Ale"
 			},
 			{
 				"type": "Shoot",
-				"value": "Tirâ"
+				"value": "Tîrs e Tîrs Plaçâts"
 			},
 			{
 				"type": "Pass",
-				"value": "Passaçs curts"
+				"value": "Passaçs"
 			},
 			{
 				"type": "PM",
@@ -810,19 +815,19 @@
 			},
 			{
 				"type": "GK",
-				"value": "Paradis"
+				"value": "Portîr"
 			},
 			{
 				"type": "ThPass",
-				"value": "Passaçs Luncs"
+				"value": "Passaçs (Difensôrs + Ducj i Centricjampiscj)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Posizions Difensivis"
+				"value": "Difese (Portîrs, Difensôrs + Ducj i Centricjampiscj)"
 			},
 			{
 				"type": "WingAtt",
-				"value": "Atacs laterâi"
+				"value": "Alis (Alis + Atacants)"
 			},
 			{
 				"type": "Indiv",

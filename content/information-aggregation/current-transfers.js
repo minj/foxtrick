@@ -119,11 +119,15 @@ Foxtrick.modules.CurrentTransfers = {
 	 */
 	getPlayers: function(doc) {
 		const module = this;
+		const EMPTY = [];
 
 		const NOW = Foxtrick.util.time.getHTTimeStamp(doc);
+		if (!NOW)
+			return EMPTY;
+
 		const table = doc.querySelector('#mainBody table.naked');
 		if (!table)
-			return [];
+			return EMPTY;
 
 		// transfers table is the worst DOM ever created
 		// some rows include <h2> for player grouping
@@ -225,6 +229,8 @@ Foxtrick.modules.CurrentTransfers = {
 
 			/** @type {HTMLSpanElement} */
 			let resultSpan = bidCell.querySelector('span.shy');
+			if (!resultSpan)
+				continue;
 
 			Foxtrick.makeFeaturedElement(resultSpan, module);
 			Foxtrick.addClass(resultSpan, 'ft-transfers-price');

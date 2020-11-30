@@ -1,10 +1,5 @@
-html[dir="ltr"] .ft-moderator-popup-align {
-	float:right;
-	margin-right: 10px;
-}
-html[dir="rtl"] .ft-moderator-popup-align {
-	float: left;
-	margin-left: 10px;
+.ft-moderator-popup-align {
+	margin-inline-start: auto;
 }
 
 .ft-moderator-popup {
@@ -13,8 +8,4 @@ html[dir="rtl"] .ft-moderator-popup-align {
 	z-index: 99;
 	border: 1px solid black;
 	padding: 2px 8px 2px 8px;
-	margin-top: -22px;
-}
-html[data-theme="simple"] .ft-moderator-popup {
-	margin-top: -28px;
 }

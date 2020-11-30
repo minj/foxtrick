@@ -329,6 +329,11 @@
 			"159": "Madagaskar",
 			"16": "Brasilien",
 			"160": "Botswana",
+			"161": "Myanmar",
+			"162": "Zambia",
+			"163": "San Marino",
+			"164": "Haiti",
+			"165": "Puerto Rico",
 			"17": "Kanada",
 			"18": "Chile",
 			"19": "Colombia",
@@ -790,39 +795,39 @@
 			},
 			{
 				"type": "Sco",
-				"value": "Avslut"
+				"value": "Målgörare"
 			},
 			{
 				"type": "Cross",
-				"value": "Inlägg (Ytter)"
+				"value": "Ytter"
 			},
 			{
 				"type": "Shoot",
-				"value": "Skott"
+				"value": "Målgörare och Fasta situationer"
 			},
 			{
 				"type": "Pass",
-				"value": "Kortpassningar"
+				"value": "Framspel"
 			},
 			{
 				"type": "PM",
-				"value": "Speluppbyggnad"
+				"value": "Spelupplägg"
 			},
 			{
 				"type": "GK",
-				"value": "Målvaktsträning"
+				"value": "Målvakt"
 			},
 			{
 				"type": "ThPass",
-				"value": "Genomskärare"
+				"value": "Framspel (Försvarare + Mittfältare)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Försvarspositioner"
+				"value": "Försvar (Målvakter, Försvarare + Mittfältare)"
 			},
 			{
 				"type": "WingAtt",
-				"value": "Kantanfall"
+				"value": "Ytter (Yttrar + Anfallare)"
 			},
 			{
 				"type": "Indiv",

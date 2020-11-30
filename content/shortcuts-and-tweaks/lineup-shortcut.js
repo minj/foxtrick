@@ -1,4 +1,5 @@
 'use strict';
+
 /**
  * FoxtrickLineupShortcut (Add a direct shortcut to lineup in player detail page)
  * @author taised, ryanli
@@ -24,20 +25,27 @@ Foxtrick.modules['LineupShortcut'] = {
 			this._Analyze_Stat_Page(doc);
 	},
 
+	/** @param {document} doc */
+	// eslint-disable-next-line complexity
 	_Analyze_Player_Page: function(doc) {
 		if (Foxtrick.Pages.Player.wasFired(doc))
 			return;
 
 		// to get match history table
 		var mainBody = doc.getElementById('mainBody');
-		var boxes = mainBody.getElementsByClassName('mainBox');
+		var boxes = Array.from(mainBody.querySelectorAll('.mainBox'));
 		boxes = Foxtrick.filter(function(n) {
 			return n.id != 'trainingDetails' && n.id != 'transferHistory';
 		}, boxes);
-		var matchHistory = boxes[boxes.length - 1];
+
+		var matchHistory = Foxtrick.nth(function(b) {
+			return !!b.querySelector('.date') && /\(\d+'\)/.test(b.textContent) &&
+				!!b.querySelector('a[href^="/Club/Matches/Match.aspx?"i]');
+		}, boxes);
 		if (!matchHistory)
 			return;
-		var matchTable = matchHistory.getElementsByTagName('table')[0];
+
+		var matchTable = matchHistory.querySelector('table');
 		if (!matchTable)
 			return;
 
@@ -79,7 +87,8 @@ Foxtrick.modules['LineupShortcut'] = {
 			var awayIdx = titleText.indexOf(textTeams[1]);
 
 			var fullNames = [
-				titleText.slice(homeIdx, awayIdx - 1).trim(), // skipping the hyphen
+				// eslint-disable-next-line no-magic-numbers
+				titleText.slice(homeIdx, awayIdx - 3).trim(), // skipping the hyphen
 				titleText.slice(awayIdx).trim(),
 			];
 
@@ -190,39 +199,57 @@ Foxtrick.modules['LineupShortcut'] = {
 		cell.appendChild(link);
 	},
 
-	//***************** YOUTH TEAM ********************
+	/** @param {document} doc */
 	_Analyze_Youth_Player_Page: function(doc) {
-		var mainBody = doc.getElementById('mainBody');
+		let mainBody = doc.getElementById('mainBody');
+		let q = 'a[href^="/Club/Matches/Match."i][href*="MatchId="i][href*="SourceSystem=Youth"i]';
+		let links = mainBody.querySelectorAll(q);
+		if (!links.length) {
+			// has not played
+			return;
+		}
 
-		var matchLink = Foxtrick.nth(function(n) {
-			return /\/Club\/Matches\/Match\.aspx\?MatchId=\d+&SourceSystem=Youth&/i.test(n.href);
-		}, mainBody.getElementsByTagName('a'));
-		if (!matchLink)
-			return; // hasn't played a match yet
-
-		// get matchTable which contains matches played
-		var matchTable = matchLink;
-		while (matchTable.tagName.toLowerCase() != 'table' && matchTable.parentNode)
-			matchTable = matchTable.parentNode;
-		if (matchTable.tagName.toLowerCase() != 'table')
+		let byline = doc.querySelector('.byline');
+		if (!byline || !byline.textContent.trim())
 			return;
 
-		var youthTeamId = Foxtrick.Pages.All.getTeamIdFromBC(doc);
-		var teamId = Foxtrick.Pages.All.getTeamId(doc);
-		var playerId = Foxtrick.Pages.All.getId(doc);
-		for (var i = 0; i < matchTable.rows.length; i++) {
-			var link = matchTable.rows[i].cells[1].getElementsByTagName('a')[0];
+		// skip links inside dates
+		let tables = Foxtrick.map(l => !l.closest('.date') && l.closest('table'), links);
+		let mTables = new Set(tables.filter(Boolean));
+		let withDates = Foxtrick.filter(t => !!t.querySelector('.date'), mTables);
+		let [matchTable] = withDates;
+		switch (withDates.length) {
+			case 0:
+				throw new Error('Matchtable not found');
+			case 1:
+				break;
+			default:
+				Foxtrick.log(new Error(`Found ${withDates.length} tables`));
+		}
+
+		let youthTeamId = Foxtrick.Pages.All.getTeamIdFromBC(doc);
+		let teamId = Foxtrick.Pages.All.getTeamId(doc);
+		let playerId = Foxtrick.Pages.All.getId(doc);
+		for (let row of matchTable.rows) {
+			let cell = row.cells[1];
+			if (!cell)
+				continue;
+
+			let link = cell.querySelector('a');
+			if (!link)
+				continue;
+
 			// fix matchlink
 			link.href += '&YouthTeamId=' + youthTeamId + '&HighlightPlayerID=' + playerId;
-			var matchId = Foxtrick.util.id.getMatchIdFromUrl(link.href);
-			var opts = {
+			let matchId = Foxtrick.util.id.getMatchIdFromUrl(link.href);
+			let opts = {
 				type: 'youth',
 				matchId: matchId,
 				playerId: playerId,
 				teamId: teamId,
-				youthTeamId: youthTeamId
+				youthTeamId: youthTeamId,
 			};
-			this._Add_Lineup_Link(doc, matchTable.rows[i], opts);
+			this._Add_Lineup_Link(doc, row, opts);
 		}
 	},
 };

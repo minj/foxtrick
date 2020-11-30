@@ -329,6 +329,11 @@
 			"159": "Madagascar",
 			"16": "Brésil",
 			"160": "Botswana",
+			"161": "Birmanie",
+			"162": "Zambie",
+			"163": "Saint-Marin",
+			"164": "Haïti",
+			"165": "Porto Rico",
 			"17": "Canada",
 			"18": "Chili",
 			"19": "Colombie",
@@ -798,7 +803,7 @@
 			},
 			{
 				"type": "Shoot",
-				"value": "Tirs"
+				"value": "Buteur et Coup franc"
 			},
 			{
 				"type": "Pass",
@@ -814,15 +819,15 @@
 			},
 			{
 				"type": "ThPass",
-				"value": "Relances"
+				"value": "Passe (Défenseurs, Milieux, Ailiers)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Positions défensives"
+				"value": "Défense (Gardien, Défenseurs, Milieux, Ailiers)"
 			},
 			{
 				"type": "WingAtt",
-				"value": "Débordement"
+				"value": "Ailier (Ailiers, Attaquants)"
 			},
 			{
 				"type": "Indiv",

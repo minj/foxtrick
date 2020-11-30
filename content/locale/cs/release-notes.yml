@@ -106,6 +106,7 @@ cs:
       and_more: 'Pár dalších malých změn a oprav.'
     0.15.2:
       important: '<header>Důležitá oznámení</header>'
+      links: "ersion: 0.17.0\nVersion: 0.17.0.1\nImportant announcements\nWe are looking for someone in the Hattrick community who develops apps for iOS or OSX to help restore Foxtrick support for Safari users. See our issue tracker for more information.\nPlease consider using Foxtrick beta to get new"
       support: '<header>Používáte Foxtrick? Můžete ho i různými způsoby <linkContribute>podpořit</linkContribute>.</header>'
       crowdin: '<header>Spousta překladatelských updatů od našich skvělých uživatelů využívajících <linkCrowdin>crowdin nástroj</linkCrowdin>. Můžeš také pomoci!</header>'
       twitter: 'Foxtrick můžete sledovat i na <linkTwitter>Twitteru</linkTwitter> a mít aktuální informace o novinkách, aktualizacích a oznámeních.'

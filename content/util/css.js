@@ -144,7 +144,7 @@ Foxtrick.util.css.collectModuleCSS = function() {
 					'Unrecognized CSS from module',
 					module.MODULE_NAME, ':', module.CSS,
 				].join(' ');
-				Foxtrick.error(msg);
+				Foxtrick.log(new Error(msg));
 			}
 		}
 
@@ -173,7 +173,7 @@ Foxtrick.util.css.collectModuleCSS = function() {
 							module.MODULE_NAME, JSON.stringify(opt),
 							typeof css, JSON.stringify(css),
 						].join(' ');
-						Foxtrick.error(msg);
+						Foxtrick.log(new Error(msg));
 					}
 				}
 			};

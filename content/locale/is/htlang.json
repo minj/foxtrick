@@ -325,10 +325,15 @@
 			"155": "Lýðveldið Kongó",
 			"156": "Eþíópía",
 			"157": "Saint Vincent og Granada",
-			"158": "Belize",
+			"158": "Belís",
 			"159": "Madagaskar",
 			"16": "Brasilía",
 			"160": "Botsvana",
+			"161": "Mýanmar",
+			"162": "Zamibía",
+			"163": "San Marínó",
+			"164": "Haití",
+			"165": "Púertó Ríkó",
 			"17": "Kanada",
 			"18": "Síle",
 			"19": "Kólombía",
@@ -794,15 +799,15 @@
 			},
 			{
 				"type": "Cross",
-				"value": "Fyrirgjafir (Kantur)"
+				"value": "Kantur"
 			},
 			{
 				"type": "Shoot",
-				"value": "Markskot"
+				"value": "Markskot og Föst Leikatriði"
 			},
 			{
 				"type": "Pass",
-				"value": "Stuttar sendingar"
+				"value": "Sendingar"
 			},
 			{
 				"type": "PM",
@@ -810,19 +815,19 @@
 			},
 			{
 				"type": "GK",
-				"value": "Markvarsla"
+				"value": "Markmaður"
 			},
 			{
 				"type": "ThPass",
-				"value": "Stungusendingar"
+				"value": "Sendingar (Varnar- & Miðjumenn)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Varnarstöður"
+				"value": "Vörn (Mark-, Varnar- & Miðjumenn)"
 			},
 			{
 				"type": "WingAtt",
-				"value": "Sókn á köntum"
+				"value": "Kantur (Kant- & Sóknarmenn)"
 			},
 			{
 				"type": "Indiv",

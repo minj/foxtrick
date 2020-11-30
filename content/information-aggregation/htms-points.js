@@ -263,7 +263,8 @@ Foxtrick.modules.HTMSPoints = {
 		current += SKILL_PTS_PER_LVL[skills.winger][3];
 		current += SKILL_PTS_PER_LVL[skills.passing][4];
 		current += SKILL_PTS_PER_LVL[skills.scoring][5];
-		current += SKILL_PTS_PER_LVL[skills.setPieces][6];
+		// eslint-disable-next-line no-magic-numbers
+		current += SKILL_PTS_PER_LVL[Math.min(23, skills.setPieces)][6];
 
 		// now calculating the potential at 28yo
 		const AGE_FACTOR = 28;

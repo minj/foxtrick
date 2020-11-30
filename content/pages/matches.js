@@ -125,12 +125,14 @@ Foxtrick.Pages.Matches.IconsByType = {
  */
 Foxtrick.Pages.Matches.getTypeFromIcon = function(iconClass) {
 	var type = null;
+	var cls = iconClass == 'matchCup' ? 'matchCupA' : iconClass;
 	for (var id in this.IconsByType) {
-		if (this.IconsByType[id] === iconClass) {
+		if (this.IconsByType[id] === cls) {
 			type = parseInt(id, 10);
 			break;
 		}
 	}
+
 	return type;
 };
 

@@ -330,96 +330,208 @@ Foxtrick.modules.Core = {
 	},
 
 	/**
-	 * Adds a link to send Foxtrick log to pastebin
+	 * Adds a link to send Foxtrick log
 	 * @param {document} doc
 	 */
 	addBugReportLink: function(doc) {
-		var CORE = this;
+		const NOTE_ID = 'ft-bug-report-confirm';
+		const BUG_DATA_URL = 'https://www.foxtrick.org/bug-report-data';
 
 		var bottom = doc.getElementById('bottom');
 		if (!bottom)
 			return;
 
-		var reportBug = function(log) {
-			const BUG_TITLE_TMPL = 'Bug {nonce} by {team} ({id})';
+		var reportBugSpan = doc.createElement('span');
+		reportBugSpan.id = 'ft_report_bug';
+		reportBugSpan.textContent = Foxtrick.L10n.getString('reportBug.title');
 
+		let title = Foxtrick.L10n.getString('reportBug.descNew');
+		reportBugSpan.setAttribute('aria-label', reportBugSpan.title = title);
+
+		var hideNote = function() {
+			doc.getElementById(NOTE_ID).remove();
+		};
+
+		Foxtrick.onClick(reportBugSpan, function() {
+			var info = doc.createDocumentFragment();
+
+			let sorry = doc.createElement('p');
+			sorry.textContent = Foxtrick.L10n.getString('reportBug.sorry');
+			info.appendChild(sorry);
+
+			let data = doc.createElement('p');
+			Foxtrick.L10n.appendLink('reportBug.error.data', data, BUG_DATA_URL);
+			info.appendChild(data);
+
+			let report = doc.createElement('button');
+			report.type = 'button';
+			report.textContent = Foxtrick.L10n.getString('reportBug.now');
+			Foxtrick.onClick(report, function() {
+				// eslint-disable-next-line no-invalid-this
+				let doc = this.ownerDocument;
+				hideNote();
+				Foxtrick.modules.Core.reportBug(doc);
+			});
+			info.appendChild(report);
+
+			Foxtrick.util.note.add(doc, info, NOTE_ID, { closable: true, focus: true });
+		});
+
+		bottom.insertBefore(reportBugSpan, bottom.firstChild);
+	},
+
+	/**
+	 * @param {document} doc
+	 */
+	reportBug: function(doc) {
+		var reportBug = function(log) {
 			if (log === '')
 				return;
 
-			let info;
-			{
-				let team = CORE.TEAM.teamName;
-				let id = CORE.TEAM.teamId;
-				let nonce = Math.random().toString(16).slice(2).toUpperCase();
-				info = { nonce, team, id };
-			}
-			var title = Foxtrick.format(BUG_TITLE_TMPL, info);
-			var bug = log + '\n\n\n' + Foxtrick.Prefs.save({ notes: true, skipFiles: true });
 
 			// add a somewhat sane limit of 200K
 			const Ki = 1024, KB = 200, MAX_LENGTH = KB * Ki;
 
+			var bug = log;
 			if (bug.length > MAX_LENGTH)
 				bug = bug.slice(bug.length - MAX_LENGTH);
 
 			let url = new URL(doc.URL);
 			let href = `${url.pathname}?${url.searchParams.toString()}`;
-			bug = Foxtrick.log.header(doc) + 'BUG URL: ' + href + '\n\n' + bug;
+			let header = 'BUG URL: ' + href;
 
-			var showNote = function(url) {
-				const MANUAL_URL = 'https://pastebin.com/';
+			var prefs = Foxtrick.Prefs.save({ notes: true, skipFiles: true });
+
+			var showNote = function(refId) {
 				const FORUM_URL = '/Forum/Overview.aspx?v=0&f=173635';
+
+				Foxtrick.copy(doc, refId);
 
 				var info = doc.createDocumentFragment();
 
-				if (/^https?:/.test(url)) {
-					// upload successful
-					Foxtrick.copy(doc, '[link=' + url + ']');
-					let upload = doc.createElement('p');
-					upload.textContent = Foxtrick.L10n.getString('reportBug.link.copied');
-					info.appendChild(upload);
+				let success = doc.createElement('p');
+				success.textContent = Foxtrick.L10n.getString('reportBug.success');
+				info.appendChild(success);
 
-					let captcha = doc.createElement('p');
-					Foxtrick.L10n.appendLink('reportBug.captcha', captcha, url);
-					info.appendChild(captcha);
-				}
-				else {
-					// too many pastes
-					Foxtrick.copy(doc, bug);
-					let copied = doc.createElement('p');
-					copied.textContent = Foxtrick.L10n.getString('reportBug.log.copied');
-					info.appendChild(copied);
-
-					let pastebin = doc.createElement('p');
-					Foxtrick.L10n.appendLink('reportBug.pastebin', pastebin, MANUAL_URL);
-					info.appendChild(pastebin);
-				}
+				let result = doc.createElement('p');
+				let ref = Foxtrick.L10n.getString('reportBug.id.copied');
+				ref = ref.replace(/%s/g, String(refId));
+				result.textContent = ref;
+				info.appendChild(result);
 
 				let forum = doc.createElement('p');
-				Foxtrick.L10n.appendLink('reportBug.forum', forum, FORUM_URL);
+				Foxtrick.L10n.appendLink('reportBug.forumNew', forum, FORUM_URL);
 				info.appendChild(forum);
 
 				const NOTE_ID = 'ft-bug-report-link-note';
-				Foxtrick.util.note.add(doc, info, NOTE_ID, { closable: false, focus: true });
+				Foxtrick.util.note.add(doc, info, NOTE_ID, { closable: true, focus: true });
 			};
 
-			Foxtrick.api.pastebin.paste(showNote, title, bug, 'unlisted');
+			Foxtrick.reportBug(header, bug, prefs, showNote);
+		};
+		Foxtrick.SB.ext.sendRequest({ req: 'getDebugLog' }, ({ log }) => {
+			reportBug(log);
+		});
+	},
+
+	/**
+	 * @param {document} doc
+	 * @param {boolean} ask
+	 */
+	displayErrorNotice: function(doc, ask) {
+		const NOTE_ID = 'ft-bug-ask-notice';
+		const BUG_DATA_URL = 'https://www.foxtrick.org/bug-report-data';
+
+		if (doc.getElementById(NOTE_ID))
+			return;
+
+		/** @type {HTMLElement} */
+		var note;
+		let info = doc.createDocumentFragment();
+
+		var hideNote = function() {
+			note.style.display = 'none';
 		};
 
-		var reportBugSpan = doc.createElement('span');
-		reportBugSpan.id = 'ft_report_bug';
-		reportBugSpan.textContent = Foxtrick.L10n.getString('reportBug.title');
+		let title = doc.createElement('h3');
+		title.textContent = Foxtrick.L10n.getString('reportBug.error.title');
+		info.appendChild(title);
 
-		let title = Foxtrick.L10n.getString('reportBug.desc');
-		reportBugSpan.setAttribute('aria-label', reportBugSpan.title = title);
+		let detected = doc.createElement('p');
+		detected.textContent = Foxtrick.L10n.getString('reportBug.error.detected');
+		info.appendChild(detected);
 
-		Foxtrick.onClick(reportBugSpan, function() {
-			Foxtrick.SB.ext.sendRequest({ req: 'getDebugLog' }, ({ log }) => {
-				reportBug(log);
+		let help = doc.createElement('p');
+		help.textContent = ask ?
+			  Foxtrick.L10n.getString('reportBug.error.help')
+			: Foxtrick.L10n.getString('reportBug.error.reported');
+		info.appendChild(help);
+
+		let data = doc.createElement('p');
+		Foxtrick.L10n.appendLink('reportBug.error.data', data, BUG_DATA_URL);
+		info.appendChild(data);
+
+		if (ask) {
+			let options = doc.createElement('div');
+			options.style.display = 'flex';
+			info.appendChild(options);
+
+			let agree = doc.createElement('div');
+			agree.style.width = '50%';
+			agree.style.display = 'flex';
+			agree.style.justifyContent = 'space-around';
+			options.appendChild(agree);
+
+			let disagree = doc.createElement('div');
+			disagree.style.width = '50%';
+			disagree.style.display = 'flex';
+			disagree.style.justifyContent = 'space-around';
+			options.appendChild(disagree);
+
+			let always = doc.createElement('button');
+			always.type = 'button';
+			always.textContent = Foxtrick.L10n.getString('reportBug.always');
+			Foxtrick.onClick(always, function() {
+				Foxtrick.Prefs.setString('errorReporting', 'reportAll');
+				let doc = note.ownerDocument;
+				hideNote();
+				Foxtrick.modules.Core.reportBug(doc);
 			});
-		});
+			agree.appendChild(always);
 
-		bottom.insertBefore(reportBugSpan, bottom.firstChild);
+			let report = doc.createElement('button');
+			report.type = 'button';
+			report.textContent = Foxtrick.L10n.getString('reportBug.now');
+			Foxtrick.onClick(report, function() {
+				let doc = note.ownerDocument;
+				hideNote();
+				Foxtrick.modules.Core.reportBug(doc);
+			});
+			agree.appendChild(report);
+
+			let ignore = doc.createElement('button');
+			ignore.type = 'button';
+			ignore.textContent = Foxtrick.L10n.getString('reportBug.ignore');
+			Foxtrick.onClick(ignore, function() {
+				hideNote();
+			});
+			disagree.appendChild(ignore);
+
+			let never = doc.createElement('button');
+			never.type = 'button';
+			never.textContent = Foxtrick.L10n.getString('reportBug.never');
+			Foxtrick.onClick(never, function() {
+				Foxtrick.Prefs.setString('errorReporting', 'ignoreAll');
+				hideNote();
+			});
+			disagree.appendChild(never);
+		}
+
+		let opts = { closable: !ask, focus: ask };
+		if (!ask)
+			opts.timeout = 5000;
+
+		note = Foxtrick.util.note.add(doc, info, NOTE_ID, opts);
 	},
 
 	/**

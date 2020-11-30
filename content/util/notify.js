@@ -142,7 +142,8 @@ Foxtrick.util.notify.create = function(msg, source, opts) {
 
 		// clear dupes manually to trigger onClosed listener
 		// prevents double execution when a note is duplicated before closing
-		if (gId in notes)
+
+		if (notes && gId in notes)
 			await clearNote(gId);
 
 		try {

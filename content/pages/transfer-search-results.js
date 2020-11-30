@@ -135,9 +135,11 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 			player[name] = contributions[name];
 
 		let bestPos = Foxtrick.Pages.Player.getBestPosition(contributions);
-		player.bestPosition = Foxtrick.L10n.getString(bestPos.position + 'Position.abbr');
-		player.bestPositionLong = Foxtrick.L10n.getString(bestPos.position + 'Position');
-		player.bestPositionValue = bestPos.value;
+		if (bestPos.position) {
+			player.bestPosition = Foxtrick.L10n.getString(bestPos.position + 'Position.abbr');
+			player.bestPositionLong = Foxtrick.L10n.getString(bestPos.position + 'Position');
+			player.bestPositionValue = bestPos.value;
+		}
 
 		let htms = pNode.querySelector('.ft-htms-points');
 		if (htms) {
@@ -160,6 +162,13 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 			let text = u20.dataset.valueString;
 			let value = parseInt(u20.dataset.value, 10);
 			player.u20 = { title, text, value };
+		}
+
+		/** @type {HTMLElement} */
+		let mtStats = pNode.querySelector('.ft-mercattrick-stats');
+		if (mtStats) {
+			player.mtFilters = Number(mtStats.dataset.filters);
+			player.mtBookmarks = Number(mtStats.dataset.bookmarks);
 		}
 	};
 
@@ -309,15 +318,15 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 				player.yellowCard = 1;
 			}
 			else if (Foxtrick.hasClass(icon, 'cardsTwo') ||
-			         Foxtrick.hasClass(icon, 'icon-yellow-card-x2')) {
+					 Foxtrick.hasClass(icon, 'icon-yellow-card-x2')) {
 				player.yellowCard = 2;
 			}
 			else if (Foxtrick.any(cls => Foxtrick.hasClass(icon, cls),
-			        ['injuryBruised', 'plaster', 'icon-plaster'])) {
+			         ['injuryBruised', 'plaster', 'icon-plaster'])) {
 				player.bruised = true;
 			}
 			else if (Foxtrick.hasClass(icon, 'injuryInjured') ||
-			         Foxtrick.hasClass(icon, 'icon-injury')) {
+					 Foxtrick.hasClass(icon, 'icon-injury')) {
 				player.injured = true;
 
 				// README: may contain infinity sign

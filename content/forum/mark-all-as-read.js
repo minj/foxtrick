@@ -14,15 +14,10 @@ Foxtrick.modules['MarkAllAsRead'] = {
 		var threads = doc.getElementsByClassName('threadItem');
 		if (threads.length == 0)
 			return; // no threads!
-		var threadLinks = Foxtrick.map(function(n) {
-			//check if there are url or urlShort
-			var urltest = n.getElementsByClassName('url');
-			var urlclass = (urltest.length != 0) ? 'url' : 'urlShort';
-			return n.getElementsByClassName(urlclass)[0].getElementsByTagName('a')[0];
 
-		}, threads);
+		var threadLinks = doc.querySelectorAll('.threadItem .url a, .threadItem .urlShort a');
 		var threadIds = Foxtrick.map(function(n) {
-			return n.href.match(/\/Forum\/Read\.aspx\?t=(\d+)/)[1];
+			return Foxtrick.getUrlParam(n.href, 't');
 		}, threadLinks);
 		var threadList = threadIds.join(',');
 
