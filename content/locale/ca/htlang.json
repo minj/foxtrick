@@ -819,11 +819,11 @@
 			},
 			{
 				"type": "ThPass",
-				"value": "Passades (Defensors + tots els migcampistes)"
+				"value": "Passades (Defenses + tots els migcampistes)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Defensa (Defensors + tots els migcampistes)"
+				"value": "Defensa (Defenses + tots els migcampistes)"
 			},
 			{
 				"type": "WingAtt",
