@@ -799,15 +799,15 @@
 			},
 			{
 				"type": "Cross",
-				"value": "Winger"
+				"value": "Фланг"
 			},
 			{
 				"type": "Shoot",
-				"value": "Scoring and Set Pieces"
+				"value": "Нападзеньне і Стандарты"
 			},
 			{
 				"type": "Pass",
-				"value": "Passing"
+				"value": "Пас"
 			},
 			{
 				"type": "PM",
@@ -815,19 +815,19 @@
 			},
 			{
 				"type": "GK",
-				"value": "Keeper"
+				"value": "Брамніцтва"
 			},
 			{
 				"type": "ThPass",
-				"value": "Passing (Defenders + All Midfielders)"
+				"value": "Пас (абаронцы + усе паўабаронцы)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Defending (Keepers, Defenders + All Midfielders)"
+				"value": "Абарона (брамнікі, абаронцы + усе паўабаронцы)"
 			},
 			{
 				"type": "WingAtt",
-				"value": "Winger (Winger + Attackers)"
+				"value": "Фланг (крайнія паўабаронцы і нападаючыя)"
 			},
 			{
 				"type": "Indiv",
