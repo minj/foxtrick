@@ -799,7 +799,7 @@
 			},
 			{
 				"type": "Cross",
-				"value": "Ala"
+				"value": "Cross"
 			},
 			{
 				"type": "Shoot",
@@ -815,19 +815,19 @@
 			},
 			{
 				"type": "GK",
-				"value": "Portiere"
+				"value": "Parate"
 			},
 			{
 				"type": "ThPass",
-				"value": "Passaggi (Dif. + Centr. e Ali)"
+				"value": "Passaggi lunghi"
 			},
 			{
 				"type": "DefPos",
-				"value": "Difesa (Por., Dif., + Centr. e Ali)"
+				"value": "Fase difensiva"
 			},
 			{
 				"type": "WingAtt",
-				"value": "Ala (Ali+ Attaccanti)"
+				"value": "Ala"
 			},
 			{
 				"type": "Indiv",
