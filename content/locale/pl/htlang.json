@@ -322,7 +322,7 @@
 			"152": "Sri Lanka",
 			"153": "Curaçao",
 			"154": "Guam",
-			"155": "Dem. Rep. Konga",
+			"155": "Demokratyczna Republika Konga",
 			"156": "Etiopia",
 			"157": "Saint Vincent i Grenadyny",
 			"158": "Belize",
@@ -577,7 +577,7 @@
 		"skills": [
 			{
 				"type": "Keeper",
-				"value": "Um.bramkarskie"
+				"value": "Bronienie"
 			},
 			{
 				"type": "Stamina",
@@ -815,7 +815,7 @@
 			},
 			{
 				"type": "GK",
-				"value": "Um. bramkarskie"
+				"value": "Bronienie"
 			},
 			{
 				"type": "ThPass",
