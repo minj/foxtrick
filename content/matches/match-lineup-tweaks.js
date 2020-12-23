@@ -289,6 +289,10 @@ Foxtrick.modules.MatchLineupTweaks = {
 	// adds teamsnames to the field for less confusion
 	/** @param {document} doc */
 	runTeamnNames: function(doc) {
+		var field = doc.getElementById('playersField');
+		if (!field)
+			return;
+
 		var homeTeamName = Foxtrick.Pages.Match.getHomeTeamName(doc);
 		var awayTeamName = Foxtrick.Pages.Match.getAwayTeamName(doc);
 
@@ -304,8 +308,8 @@ Foxtrick.modules.MatchLineupTweaks = {
 		Foxtrick.addClass(homeSpan, 'ft-match-lineup-tweaks-teamname-home');
 		Foxtrick.addClass(awaySpan, 'ft-match-lineup-tweaks-teamname-away');
 
-		doc.getElementById('playersField').appendChild(homeSpan);
-		doc.getElementById('playersField').appendChild(awaySpan);
+		field.appendChild(homeSpan);
+		field.appendChild(awaySpan);
 	},
 
 	/**
@@ -883,7 +887,8 @@ Foxtrick.modules.MatchLineupTweaks = {
 		});
 
 		let field = doc.getElementById('playersField');
-		field.appendChild(div);
+		if (field)
+			field.appendChild(div);
 	},
 
 	/** @param {document} doc */

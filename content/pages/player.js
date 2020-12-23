@@ -195,6 +195,7 @@ Foxtrick.Pages.Player.getSkillLevel = function(el) {
  * @param  {document} doc
  * @return {PlayerAttributes}
  */
+// eslint-disable-next-line complexity
 Foxtrick.Pages.Player.getAttributes = function(doc) {
 	/** @type {PlayerAttributes} */
 	var attrs = {};
@@ -258,6 +259,8 @@ Foxtrick.Pages.Player.getAttributes = function(doc) {
 		else {
 			/** @type {HTMLAnchorElement[]} */
 			let links = Foxtrick.toArray(doc.querySelectorAll('.playerInfo .skill'));
+			if (!links.length)
+				return attrs;
 
 			// form vs stamina
 			if (RE_SKILL_SHORT.test(links[0].href)) {

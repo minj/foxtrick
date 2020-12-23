@@ -12,6 +12,7 @@ Foxtrick.modules.LeagueNewsFilter = {
 	RADIO_OPTIONS: ['all', 'friendlies', 'transfers', 'lineupChanges'],
 
 	/** @param {document} doc */
+	// eslint-disable-next-line complexity
 	run: function(doc) {
 		const module = this;
 
@@ -63,6 +64,9 @@ Foxtrick.modules.LeagueNewsFilter = {
 		};
 
 		let newsfeed = Foxtrick.Pages.Series.getNewsFeed(doc);
+		if (!newsfeed)
+			return;
+
 		let selectdiv = Foxtrick.createFeaturedElement(doc, this, 'div');
 		selectdiv.textContent = Foxtrick.L10n.getString('LeagueNewsFilter.label') + ' ';
 

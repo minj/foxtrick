@@ -698,7 +698,7 @@ Foxtrick.modules['MatchLineupFixes'] = {
 			fixWeatherSEs();
 
 		// FF is executing twice, wtf?
-		if (!('ftIdx' in playerRatingsHome[0].players[0]) &&
+		if (playerRatingsHome.length && !('ftIdx' in playerRatingsHome[0].players[0]) &&
 			Foxtrick.Prefs.isModuleOptionEnabled('MatchLineupFixes', 'AddStarsToSubs')) {
 			addStarsToSubs(playerRatingsHome);
 			addStarsToSubs(playerRatingsAway);

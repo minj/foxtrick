@@ -44,7 +44,8 @@ Foxtrick.modules['LinksTeam'] = {
 			var teamInfo = main.querySelector('.teamInfo');
 
 			var fanClubSize = teamInfo.querySelector('.fanClubSize');
-			fans = Foxtrick.trimnum(fanClubSize.textContent);
+			if (fanClubSize)
+				fans = Foxtrick.trimnum(fanClubSize.textContent);
 
 			var seriesLink = teamInfo.querySelector('a[href^="/World/Series/"]');
 			if (seriesLink) {

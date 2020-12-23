@@ -71,7 +71,11 @@ Foxtrick.modules['ForumStripHattrickLinks'] = {
 		const noConfirm = Foxtrick.Prefs.isModuleOptionEnabled(module, 'NoConfirmStripping');
 		const confirmMsg = Foxtrick.L10n.getString('ForumStripHattrickLinks.ask');
 
-		Foxtrick.listen(doc.getElementById('mainBody'), 'mousedown', module.changeLinks, true);
+		let mainBody = doc.getElementById('mainBody');
+		if (!mainBody)
+			return;
+
+		Foxtrick.listen(mainBody, 'mousedown', module.changeLinks, true);
 
 		if (Foxtrick.isPage(doc, 'forumViewThread'))
 			return;

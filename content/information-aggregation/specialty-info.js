@@ -292,6 +292,9 @@ Foxtrick.modules.SpecialtyInfo = {
 		};
 
 		var mainBody = doc.getElementById('mainBody');
+		if (!mainBody)
+			return;
+
 		Foxtrick.listen(mainBody, 'click', function specInfoListener(ev) {
 			var target = /** @type {HTMLElement} */ (ev.target);
 			while (target) {

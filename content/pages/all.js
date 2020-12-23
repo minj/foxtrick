@@ -199,7 +199,8 @@ Foxtrick.Pages.All.getMainHeader = function(doc) {
  */
 Foxtrick.Pages.All.getNotes = function(doc) {
 	return doc.getElementById('ctl00_updNotifications') ||
-		doc.getElementById('ctl00_ctl00_CPContent_ucNotifications_updNotifications');
+		doc.getElementById('ctl00_ctl00_CPContent_ucNotifications_updNotifications') ||
+		doc.getElementById('mainBody') || doc.body;
 };
 
 /**

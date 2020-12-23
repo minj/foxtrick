@@ -47,7 +47,7 @@ Foxtrick.platform = 'Browser';
  *
  * @type {string}
  */
-Foxtrick.context = 'context';
+Foxtrick.context = 'content';
 
 /**
  * Path to content/ files from an internal context.
